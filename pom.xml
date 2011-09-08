@@ -1,0 +1,67 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+  <parent>
+    <groupId>org.switchyard</groupId>
+    <artifactId>switchyard-parent</artifactId>
+    <version>0.3.0-SNAPSHOT</version>
+  </parent>
+  <groupId>org.switchyard.tools</groupId>
+  <artifactId>switchyard-tools-parent</artifactId>
+  <version>0.3.0-SNAPSHOT</version>
+  <packaging>pom</packaging>
+  <name>SwitchYard: Tools Parent</name>
+  <description>Parent project for SwitchYard tooling</description>
+
+  <modules>
+    <module>eclipse</module>
+  </modules>
+  <build>
+    <pluginManagement>
+      <plugins>
+        <!-- address "quirks" in m2e 1.0 -->
+        <plugin>
+          <groupId>org.eclipse.m2e</groupId>
+          <artifactId>lifecycle-mapping</artifactId>
+          <version>1.0.0</version>
+          <configuration>
+            <lifecycleMappingMetadata>
+              <pluginExecutions>
+                <pluginExecution>
+                  <pluginExecutionFilter>
+                    <groupId>org.apache.maven.plugins</groupId>
+                    <artifactId>maven-dependency-plugin</artifactId>
+                    <versionRange>[0.0.0,)</versionRange>
+                    <goals>
+                      <goal>unpack</goal>
+                    </goals>
+                  </pluginExecutionFilter>
+                  <action>
+                    <execute />
+                  </action>
+                </pluginExecution>
+              </pluginExecutions>
+            </lifecycleMappingMetadata>
+          </configuration>
+        </plugin>
+      </plugins>
+    </pluginManagement>
+  </build>
+
+  <profiles>
+    <profile>
+      <id>osx</id>
+      <activation>
+        <property>
+          <name>java.vendor.url</name>
+          <value>http://www.apple.com/</value>
+        </property>
+      </activation>
+      <properties>
+        <!-- THE FOLLOWING LINE MUST NOT BE BROKEN BY AUTOFORMATTING -->
+        <systemProperties combine.children="append"> -d32 -Dosgi.arch=x86 -XstartOnFirstThread </systemProperties>
+      </properties>
+    </profile>
+  </profiles>
+
+</project>

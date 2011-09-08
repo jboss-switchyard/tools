@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<site>
+   <description name="SwitchYard Tools Update Site">
+      This is the update site for SwitchYard tools.
+   </description>
+   <feature url="features/org.switchyard.tools_0.0.0.jar" id="org.switchyard.tools" version="0.0.0">
+      <category name="switchyard.category"/>
+   </feature>
+   <category-def name="switchyard.category" label="SwitchYard Tools">
+      <description>
+         Tools for creating, testing, and debugging SwitchYard applications.
+      </description>
+   </category-def>
+</site>
