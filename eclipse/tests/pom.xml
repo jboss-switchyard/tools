@@ -16,7 +16,16 @@
 
   <modules>
     <module>org.switchyard.tools.m2e.tests</module>
+    <module>org.switchyard.tools.ui.tests</module>
   </modules>
+
+  <repositories>
+    <repository>
+      <id>m2e</id>
+      <layout>p2</layout>
+      <url>http://download.eclipse.org/technology/m2e/releases/1.0</url>
+    </repository>
+  </repositories>
 
   <build>
     <plugins>
@@ -25,6 +34,7 @@
         <artifactId>tycho-surefire-plugin</artifactId>
         <version>${tycho-version}</version>
         <configuration>
+          <useUIHarness>true</useUIHarness>
           <includes>
             <include>**/*Test.java</include>
           </includes>

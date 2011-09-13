@@ -1,0 +1,24 @@
+Manifest-Version: 1.0
+Bundle-ManifestVersion: 2
+Bundle-Name: SwitchYard Tools Core
+Bundle-SymbolicName: org.switchyard.tools.core
+Bundle-Version: 0.3.0.qualifier
+Bundle-Vendor: www.jboss.org
+Bundle-RequiredExecutionEnvironment: JavaSE-1.6
+Bundle-ActivationPolicy: lazy
+Require-Bundle: org.apache.log4j;bundle-version="1.2.15"
+Bundle-ClassPath: lib/switchyard-common.jar,
+ lib/switchyard-config.jar,
+ .
+Export-Package: org.switchyard.config,
+ org.switchyard.config.model,
+ org.switchyard.config.model.composite,
+ org.switchyard.config.model.composite.v1,
+ org.switchyard.config.model.domain,
+ org.switchyard.config.model.domain.v1,
+ org.switchyard.config.model.resource,
+ org.switchyard.config.model.resource.v1,
+ org.switchyard.config.model.switchyard,
+ org.switchyard.config.model.switchyard.v1,
+ org.switchyard.config.model.transform,
+ org.switchyard.config.model.transform.v1

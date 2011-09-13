@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.4"?>
+<plugin>
+   <extension
+         point="org.eclipse.ui.newWizards">
+      <category
+            id="org.switchyard.tools.ui"
+            name="SwitchYard">
+      </category>
+      <wizard
+            category="org.switchyard.tools.ui"
+            class="org.switchyard.tools.ui.wizards.NewSwitchYardProjectWizard"
+            icon="icons/switchyard_icon_16px.png"
+            id="org.switchyard.tools.ui.wizards.NewSwitchYardProjectWizard"
+            name="SwitchYard Project"
+            project="true">
+      </wizard>
+   </extension>
+   <extension
+         point="org.eclipse.m2e.core.indexes">
+      <index
+            indexId="JBOSS_NEXUS"
+            isShort="true"
+            repositoryUrl="http://repository.jboss.org/nexus/content/groups/public">
+      </index>
+   </extension>
+
+</plugin>

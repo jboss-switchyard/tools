@@ -13,14 +13,6 @@
   <name>SwitchYard: Eclipse M2E Extensions Plugin Tests</name>
   <description>Test plugin for SwitchYard's Eclipse m2e extension plugin.</description>
 
-  <repositories>
-    <repository>
-      <id>m2e</id>
-      <layout>p2</layout>
-      <url>http://download.eclipse.org/technology/m2e/releases/1.0</url>
-    </repository>
-  </repositories>
-
   <build>
     <plugins>
       <plugin>

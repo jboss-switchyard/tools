@@ -18,6 +18,8 @@
     <module>org.switchyard.tools</module>
     <module>org.switchyard.tools.xsd</module>
     <module>org.switchyard.tools.m2e</module>
+    <module>org.switchyard.tools.core</module>
+    <module>org.switchyard.tools.ui</module>
   </modules>
 
 </project>

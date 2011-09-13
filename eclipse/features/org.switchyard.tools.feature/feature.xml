@@ -166,6 +166,7 @@ NO WARRANTY
 
    <requires>
       <import feature="org.eclipse.wst.xml_core.feature" version="3.3.0" match="greaterOrEqual"/>
+      <import feature="org.eclipse.jdt" version="3.3.0" match="greaterOrEqual"/>
    </requires>
 
    <plugin
@@ -184,6 +185,20 @@ NO WARRANTY
 
    <plugin
          id="org.switchyard.tools.m2e"
+         download-size="0"
+         install-size="0"
+         version="0.0.0"
+         unpack="false"/>
+
+   <plugin
+         id="org.switchyard.tools.ui"
+         download-size="0"
+         install-size="0"
+         version="0.0.0"
+         unpack="false"/>
+
+   <plugin
+         id="org.switchyard.tools.core"
          download-size="0"
          install-size="0"
          version="0.0.0"

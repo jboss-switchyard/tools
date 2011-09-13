@@ -1,0 +1,21 @@
+Manifest-Version: 1.0
+Bundle-ManifestVersion: 2
+Bundle-Name: SwitchYard Tools UI
+Bundle-SymbolicName: org.switchyard.tools.ui;singleton:=true
+Bundle-Version: 0.3.0.qualifier
+Bundle-Activator: org.switchyard.tools.ui.Activator
+Bundle-Vendor: www.jboss.org
+Require-Bundle: org.eclipse.ui,
+ org.eclipse.core.runtime,
+ org.eclipse.core.resources,
+ org.eclipse.ui.ide,
+ org.eclipse.jdt.core;bundle-version="3.3.0",
+ org.eclipse.jdt.ui;bundle-version="3.2.0",
+ org.eclipse.m2e.maven.runtime;bundle-version="1.0.0",
+ org.eclipse.m2e.core,
+ org.switchyard.tools.core;bundle-version="0.3.0"
+Bundle-RequiredExecutionEnvironment: JavaSE-1.6
+Bundle-ActivationPolicy: lazy
+Export-Package: org.switchyard.tools.ui,
+ org.switchyard.tools.ui.operations,
+ org.switchyard.tools.ui.wizards
