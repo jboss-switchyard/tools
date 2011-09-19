@@ -1,0 +1,15 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+  <parent>
+    <artifactId>switchyard-tools-eclipse-plugins</artifactId>
+    <groupId>org.switchyard.tools</groupId>
+    <version>0.3.0-SNAPSHOT</version>
+    <relativePath>..</relativePath>
+  </parent>
+  <groupId>org.switchyard.tools.m2e</groupId>
+  <artifactId>org.switchyard.tools.m2e</artifactId>
+  <name>SwitchYard: Eclipse M2E Extensions</name>
+  <description>Provides SwitchYard specific Eclipse m2e extensions.</description>
+  <packaging>eclipse-plugin</packaging>
+</project>

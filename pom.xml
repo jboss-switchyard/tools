@@ -31,9 +31,10 @@
                   <pluginExecutionFilter>
                     <groupId>org.apache.maven.plugins</groupId>
                     <artifactId>maven-dependency-plugin</artifactId>
-                    <versionRange>[0.0.0,)</versionRange>
+                    <versionRange>[1.0,)</versionRange>
                     <goals>
                       <goal>unpack</goal>
+                      <goal>copy</goal>
                     </goals>
                   </pluginExecutionFilter>
                   <action>

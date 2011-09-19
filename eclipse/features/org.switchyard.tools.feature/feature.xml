@@ -3,7 +3,7 @@
       id="org.switchyard.tools"
       label="SwitchYard Tools"
       version="0.3.0.qualifier"
-      provider-name="www.jboss.org"
+      provider-name="www.jboss.org - SwitchYard"
       plugin="org.switchyard.tools">
 
    <description url="http://www.jboss.org/switchyard">
@@ -177,6 +177,13 @@ NO WARRANTY
 
    <plugin
          id="org.switchyard.tools"
+         download-size="0"
+         install-size="0"
+         version="0.0.0"
+         unpack="false"/>
+
+   <plugin
+         id="org.switchyard.tools.m2e"
          download-size="0"
          install-size="0"
          version="0.0.0"

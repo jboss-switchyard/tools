@@ -17,6 +17,7 @@
   <modules>
     <module>org.switchyard.tools</module>
     <module>org.switchyard.tools.xsd</module>
+    <module>org.switchyard.tools.m2e</module>
   </modules>
 
 </project>
