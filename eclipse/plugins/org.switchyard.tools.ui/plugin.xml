@@ -10,10 +10,30 @@
       <wizard
             category="org.switchyard.tools.ui"
             class="org.switchyard.tools.ui.wizards.NewSwitchYardProjectWizard"
+            descriptionImage="icons/switchyard_logo_200px.png"
             icon="icons/switchyard_icon_16px.png"
             id="org.switchyard.tools.ui.wizards.NewSwitchYardProjectWizard"
             name="SwitchYard Project"
             project="true">
+         <description>Create a new SwitchYard project.</description>
+      </wizard>
+      <wizard
+            category="org.switchyard.tools.ui"
+            class="org.switchyard.tools.ui.wizards.NewBeanServiceWizard"
+            descriptionImage="icons/switchyard_logo_200px.png"
+            icon="icons/switchyard_icon_16px.png"
+            id="org.switchyard.tools.ui.wizards.NewBeanServiceWizard"
+            name="Bean Service">
+         <description>Create a new SwitchYard Bean service.</description>
+      </wizard>
+      <wizard
+            category="org.switchyard.tools.ui"
+            class="org.switchyard.tools.ui.wizards.NewServiceTestClassWizard"
+            descriptionImage="icons/switchyard_logo_200px.png"
+            icon="icons/switchyard_icon_16px.png"
+            id="org.switchyard.tools.ui.wizards.NewServiceTestWizard"
+            name="Service Test">
+         <description>Create a new SwitchYard service test.</description>
       </wizard>
    </extension>
    <extension

@@ -11,4 +11,48 @@
   <packaging>eclipse-test-plugin</packaging>
   <name>SwitchYard: Eclipse Tools UI Plugin Tests</name>
   <description>Test plugin for SwitchYard Eclipse UI tooling.</description>
+
+  <build>
+    <plugins>
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-dependency-plugin</artifactId>
+        <executions>
+          <execution>
+            <id>copy-xmlunit</id>
+            <phase>process-sources</phase>
+            <goals>
+              <goal>copy</goal>
+            </goals>
+            <configuration>
+              <stripVersion>true</stripVersion>
+              <outputDirectory>lib</outputDirectory>
+              <artifactItems>
+                <artifactItem>
+                  <groupId>xmlunit</groupId>
+                  <artifactId>xmlunit</artifactId>
+                </artifactItem>
+              </artifactItems>
+            </configuration>
+          </execution>
+        </executions>
+      </plugin>
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-clean-plugin</artifactId>
+        <version>2.4.1</version>
+        <configuration>
+          <filesets>
+            <fileset>
+              <directory>lib</directory>
+              <includes>
+                <include>**/*</include>
+              </includes>
+            </fileset>
+          </filesets>
+        </configuration>
+      </plugin>
+    </plugins>
+  </build>
+
 </project>
