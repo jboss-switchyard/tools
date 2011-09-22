@@ -37,6 +37,8 @@ import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.core.runtime.NullProgressMonitor;
 import org.eclipse.jface.viewers.StructuredSelection;
 import org.eclipse.m2e.tests.common.AbstractMavenProjectTestCase;
+import org.eclipse.wst.common.project.facet.core.IFacetedProject;
+import org.eclipse.wst.common.project.facet.core.ProjectFacetsManager;
 import org.switchyard.tools.ui.M2EUtils;
 import org.switchyard.tools.ui.operations.AbstractSwitchYardProjectOperation;
 import org.switchyard.tools.ui.operations.CreateBeanServiceOperation;
@@ -102,6 +104,13 @@ public class CreateSwitchYardProjectTest extends AbstractMavenProjectTestCase {
         IFile pomFile = newProjectHandle.getFile("pom.xml");
         assertTrue("Failed to create pom.xml", pomFile.exists());
         assertTrue("pom.xml file is out of sync after project creation", pomFile.isSynchronized(IFile.DEPTH_ZERO));
+
+        IFacetedProject fp = ProjectFacetsManager.create(newProjectHandle, false, new NullProgressMonitor());
+        assertNotNull("Project is not a faceted project.", fp);
+        assertTrue("jst.utility facet not configured on project",
+                fp.hasProjectFacet(ProjectFacetsManager.getProjectFacet("jst.utility")));
+        assertTrue("java facet not configured on project",
+                fp.hasProjectFacet(ProjectFacetsManager.getProjectFacet("java")));
 
         // Test project update
         op = new AbstractSwitchYardProjectOperation(Collections.singleton(M2EUtils.createSwitchYardDependency(

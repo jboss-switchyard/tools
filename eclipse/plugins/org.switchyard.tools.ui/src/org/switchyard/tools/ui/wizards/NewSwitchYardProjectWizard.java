@@ -146,7 +146,7 @@ public class NewSwitchYardProjectWizard extends Wizard implements INewWizard {
                                 realException));
             }
             MessageDialog.openError(getShell(), "Error Creating Project", realException.getMessage());
-            return false;
+            return newProjectHandle.exists();
         }
 
         return true;
