@@ -98,7 +98,7 @@ public final class M2EUtils {
     public static final String[] DEFAULT_SCANNERS = {
             "org.switchyard.component.bean.config.model.BeanSwitchYardScanner",
             "org.switchyard.component.camel.config.model.RouteScanner",
-            "org.switchyard.component.bpm.config.model.BpmSwitchYardScanner",
+            "org.switchyard.component.bpm.config.model.BPMSwitchYardScanner",
             "org.switchyard.component.rules.config.model.RulesSwitchYardScanner",
             "org.switchyard.transform.config.model.TransformSwitchYardScanner" };
 
