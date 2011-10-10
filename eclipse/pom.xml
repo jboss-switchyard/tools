@@ -7,9 +7,7 @@
     <version>0.3.0-SNAPSHOT</version>
     <relativePath>../pom.xml</relativePath>
   </parent>
-  <groupId>org.switchyard.tools</groupId>
   <artifactId>switchyard-tools-eclipse</artifactId>
-  <version>0.3.0-SNAPSHOT</version>
   <packaging>pom</packaging>
   <name>SwitchYard: Eclipse Tools Parent</name>
   <description>Parent project for Eclipse based SwitchYard tooling.</description>
@@ -25,52 +23,19 @@
     <module>site</module>
   </modules>
 
-  <profiles>
-    <profile>
-      <id>indigo</id>
-      <activation>
-        <activeByDefault>true</activeByDefault>
-      </activation>
-      <repositories>
-        <repository>
-          <id>indigo</id>
-          <layout>p2</layout>
-          <url>http://download.eclipse.org/releases/indigo</url>
-        </repository>
-      </repositories>
-    </profile>
-    <profile>
-      <id>helios</id>
-      <repositories>
-        <repository>
-          <id>helios</id>
-          <layout>p2</layout>
-          <url>http://download.eclipse.org/releases/helios</url>
-        </repository>
-      </repositories>
-    </profile>
-    <profile>
-      <id>local.requirements</id>
-      <activation>
-        <property>
-          <name>local.requirements</name>
-        </property>
-      </activation>
-      <repositories>
-        <repository>
-          <id>local.requirements</id>
-          <url>${local.requirements}</url>
-          <layout>p2</layout>
-          <snapshots>
-            <enabled>true</enabled>
-          </snapshots>
-          <releases>
-            <enabled>true</enabled>
-          </releases>
-        </repository>
-      </repositories>
-    </profile>
-  </profiles>
+  <repositories>
+    <repository>
+      <id>jbosstools-target-site</id>
+      <url>http://download.jboss.org/jbosstools/updates/target-platform_3.3.indigo/latest/</url>
+      <layout>p2</layout>
+      <snapshots>
+        <enabled>true</enabled>
+      </snapshots>
+      <releases>
+        <enabled>true</enabled>
+      </releases>
+    </repository>
+  </repositories>
 
   <build>
     <sourceDirectory>src</sourceDirectory>
@@ -105,18 +70,62 @@
               <arch>x86</arch>
             </environment>
             <environment>
-              <os>win32</os>
-              <ws>win32</ws>
-              <arch>x86_64</arch>
-            </environment>
-            <environment>
               <os>macosx</os>
               <ws>cocoa</ws>
-              <arch>x86_64</arch>
+              <arch>x86</arch>
             </environment>
           </environments>
         </configuration>
       </plugin>
+
+      <plugin>
+        <groupId>org.eclipse.tycho</groupId>
+        <artifactId>tycho-packaging-plugin</artifactId>
+        <version>${tycho-version}</version>
+        <configuration>
+          <format>'v'yyyyMMdd-HHmm'-LOCAL'</format>
+          <archiveSite>true</archiveSite>
+        </configuration>
+      </plugin>
     </plugins>
   </build>
+
+  <profiles>
+    <profile>
+      <id>osx</id>
+      <activation>
+        <property>
+          <name>java.vendor.url</name>
+          <value>http://www.apple.com/</value>
+        </property>
+      </activation>
+      <properties>
+        <!-- THE FOLLOWING LINE MUST NOT BE BROKEN BY AUTOFORMATTING -->
+        <systemProperties combine.children="append"> -d32 -Dosgi.arch=x86 -XstartOnFirstThread </systemProperties>
+      </properties>
+    </profile>
+
+    <profile>
+      <id>hudson</id>
+      <activation>
+        <property>
+          <name>BUILD_NUMBER</name>
+        </property>
+      </activation>
+      <build>
+        <plugins>
+          <plugin>
+            <groupId>org.eclipse.tycho</groupId>
+            <artifactId>tycho-packaging-plugin</artifactId>
+            <version>${tycho-version}</version>
+            <configuration>
+              <format>'v'yyyyMMdd-HHmm'-H${BUILD_NUMBER}'</format>
+              <archiveSite>true</archiveSite>
+            </configuration>
+          </plugin>
+        </plugins>
+      </build>
+    </profile>
+  </profiles>
+
 </project>

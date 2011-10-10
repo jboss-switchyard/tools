@@ -7,7 +7,6 @@
     <version>0.3.0-SNAPSHOT</version>
     <relativePath>../pom.xml</relativePath>
   </parent>
-  <groupId>org.switchyard.tools.m2e.tests</groupId>
   <artifactId>org.switchyard.tools.m2e.tests</artifactId>
   <packaging>eclipse-test-plugin</packaging>
   <name>SwitchYard: Eclipse M2E Extensions Plugin Tests</name>

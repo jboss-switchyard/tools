@@ -3,7 +3,7 @@
    <description name="SwitchYard Tools Update Site">
       This is the update site for SwitchYard tools.
    </description>
-   <feature url="features/org.switchyard.tools_0.0.0.jar" id="org.switchyard.tools" version="0.0.0">
+   <feature url="features/org.switchyard.tools.feature_0.0.0.jar" id="org.switchyard.tools.feature" version="0.0.0">
       <category name="switchyard.category"/>
    </feature>
    <category-def name="switchyard.category" label="SwitchYard Tools">

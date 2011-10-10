@@ -7,9 +7,7 @@
     <version>0.3.0-SNAPSHOT</version>
     <relativePath>../pom.xml</relativePath>
   </parent>
-  <groupId>org.switchyard.tools</groupId>
   <artifactId>switchyard-tools-eclipse-tests</artifactId>
-  <version>0.3.0-SNAPSHOT</version>
   <packaging>pom</packaging>
   <name>SwitchYard: Eclipse Tools Test Plugins</name>
   <description>Parent project for SwitchYard Eclipse plugin tests</description>
@@ -22,14 +20,6 @@
     <module>org.switchyard.tools.m2e.tests</module>
     <module>org.switchyard.tools.ui.tests</module>
   </modules>
-
-  <repositories>
-    <repository>
-      <id>m2e</id>
-      <layout>p2</layout>
-      <url>http://download.eclipse.org/technology/m2e/releases/1.0</url>
-    </repository>
-  </repositories>
 
   <build>
     <plugins>

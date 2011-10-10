@@ -6,7 +6,6 @@
     <version>0.3.0-SNAPSHOT</version>
     <relativePath>..</relativePath>
   </parent>
-  <groupId>org.switchyard.tools.ui.tests</groupId>
   <artifactId>org.switchyard.tools.ui.tests</artifactId>
   <packaging>eclipse-test-plugin</packaging>
   <name>SwitchYard: Eclipse Tools UI Plugin Tests</name>

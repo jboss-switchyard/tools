@@ -7,9 +7,7 @@
     <version>0.3.0-SNAPSHOT</version>
     <relativePath>../pom.xml</relativePath>
   </parent>
-  <groupId>org.switchyard.tools</groupId>
   <artifactId>org.switchyard.tools.xsd</artifactId>
-  <version>0.3.0-SNAPSHOT</version>
   <packaging>eclipse-plugin</packaging>
   <name>SwtichYard: Eclipse XSD Catalog</name>
   <description>Eclipse XML catalog for SwitchYard XSDs.</description>
