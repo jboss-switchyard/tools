@@ -125,7 +125,7 @@ public class NewBeanServiceWizard extends AbstractSwitchYardServiceWizard {
                     public void run() {
                         try {
                             IDE.openEditor(activePage, (IFile) resource, true);
-                            if (testResource != null) {
+                            if (testResource instanceof IFile && testResource.exists()) {
                                 IDE.openEditor(activePage, (IFile) testResource, true);
                             }
                         } catch (PartInitException e) {

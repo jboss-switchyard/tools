@@ -37,6 +37,14 @@
       </wizard>
    </extension>
    <extension
+         point="org.eclipse.m2e.core.indexes">
+      <index
+            indexId="JBOSS_NEXUS"
+            isShort="true"
+            repositoryUrl="http://repository.jboss.org/nexus/content/groups/public">
+      </index>
+   </extension>
+   <extension
          point="org.eclipse.wst.common.project.facet.core.presets">
       <static-preset
             id="org.switchyard.tools.ui.facet.switchYardJarPreset">

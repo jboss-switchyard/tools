@@ -82,9 +82,11 @@ public class CreateBeanServiceOperation extends AbstractSwitchYardProjectOperati
             }
 
             try {
-                monitor.subTask("Creating service test.");
-                subMonitor = new SubProgressMonitor(monitor, 50, SubProgressMonitor.PREPEND_MAIN_LABEL_TO_SUBTASK);
-                _serviceTestClassPage.createType(subMonitor);
+                if (_serviceTestClassPage != null) {
+                    monitor.subTask("Creating service test.");
+                    subMonitor = new SubProgressMonitor(monitor, 50, SubProgressMonitor.PREPEND_MAIN_LABEL_TO_SUBTASK);
+                    _serviceTestClassPage.createType(subMonitor);
+                }
             } catch (CoreException e) {
                 throw new CoreException(new Status(Status.WARNING, Activator.PLUGIN_ID,
                         "An error occurred while creating service test class.", e));

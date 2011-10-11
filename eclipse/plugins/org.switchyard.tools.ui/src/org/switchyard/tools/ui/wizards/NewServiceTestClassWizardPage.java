@@ -120,8 +120,8 @@ public class NewServiceTestClassWizardPage extends NewTypeWizardPage {
     public NewServiceTestClassWizardPage() {
         super(true, NewServiceTestClassWizardPage.class.getSimpleName());
 
-        setTitle("New Bean Service Class");
-        setDescription("Create a new Bean service implementation class.");
+        setTitle("New Service Test Class");
+        setDescription("Create a new service test class.");
 
         _serviceInterfaceDialogField = new StringButtonDialogField(new IStringButtonAdapter() {
             @Override
