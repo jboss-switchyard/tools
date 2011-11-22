@@ -7,10 +7,12 @@
 
   <!-- Specialized SwitchYard component schema. -->
   <public publicId="urn:switchyard-component-bean:config:1.0" uri="org/switchyard/component/bean/config/model/v1/bean-v1.xsd" />
+  <public publicId="http://docs.oasis-open.org/ns/opencsa/sca/200903" uri="org/switchyard/component/bpel/config/model/v1/bpel-v1.xsd" />
   <public publicId="urn:switchyard-component-bpm:config:1.0" uri="org/switchyard/component/bpm/config/model/v1/bpm-v1.xsd" />
   <public publicId="urn:switchyard-component-camel:config:1.0" uri="org/switchyard/component/camel/config/model/v1/camel-v1.xsd" />
   <public publicId="urn:switchyard-component-clojure:config:1.0" uri="org/switchyard/component/clojure/config/model/v1/clojure-v1.xsd" />
   <public publicId="urn:switchyard-component-hornetq:config:1.0" uri="org/switchyard/component/hornetq/config/model/v1/hornetq-v1.xsd" />
+  <public publicId="urn:switchyard-component-common-rules:config:1.0" uri="org/switchyard/component/common/rules/config/model/v1/common-rules-v1.xsd" />
   <public publicId="urn:switchyard-component-rules:config:1.0" uri="org/switchyard/component/rules/config/model/v1/rules-v1.xsd" />
   <public publicId="urn:switchyard-component-soap:config:1.0" uri="org/switchyard/component/soap/config/model/v1/soap-v1.xsd" />
 

@@ -30,7 +30,7 @@
                 <artifactItem>
                   <groupId>org.switchyard</groupId>
                   <artifactId>switchyard-config</artifactId>
-                  <version>${project.version}</version>
+                  <version>${version.switchyard.runtime}</version>
                   <classifier>sources</classifier>
                   <type>jar</type>
                   <includes>**/*.xsd</includes>
@@ -38,7 +38,7 @@
                 <artifactItem>
                   <groupId>org.switchyard</groupId>
                   <artifactId>switchyard-transform</artifactId>
-                  <version>${project.version}</version>
+                  <version>${version.switchyard.runtime}</version>
                   <classifier>sources</classifier>
                   <type>jar</type>
                   <includes>**/*.xsd</includes>
@@ -46,7 +46,15 @@
                 <artifactItem>
                   <groupId>org.switchyard.components</groupId>
                   <artifactId>switchyard-component-bean</artifactId>
-                  <version>${project.version}</version>
+                  <version>${version.switchyard.runtime}</version>
+                  <classifier>sources</classifier>
+                  <type>jar</type>
+                  <includes>**/*.xsd</includes>
+                </artifactItem>
+                <artifactItem>
+                  <groupId>org.switchyard.components</groupId>
+                  <artifactId>switchyard-component-bpel</artifactId>
+                  <version>${version.switchyard.runtime}</version>
                   <classifier>sources</classifier>
                   <type>jar</type>
                   <includes>**/*.xsd</includes>
@@ -54,7 +62,7 @@
                 <artifactItem>
                   <groupId>org.switchyard.components</groupId>
                   <artifactId>switchyard-component-bpm</artifactId>
-                  <version>${project.version}</version>
+                  <version>${version.switchyard.runtime}</version>
                   <classifier>sources</classifier>
                   <type>jar</type>
                   <includes>**/*.xsd</includes>
@@ -62,7 +70,7 @@
                 <artifactItem>
                   <groupId>org.switchyard.components</groupId>
                   <artifactId>switchyard-component-camel</artifactId>
-                  <version>${project.version}</version>
+                  <version>${version.switchyard.runtime}</version>
                   <classifier>sources</classifier>
                   <type>jar</type>
                   <includes>**/*.xsd</includes>
@@ -70,7 +78,7 @@
                 <artifactItem>
                   <groupId>org.switchyard.components</groupId>
                   <artifactId>switchyard-component-clojure</artifactId>
-                  <version>${project.version}</version>
+                  <version>${version.switchyard.runtime}</version>
                   <classifier>sources</classifier>
                   <type>jar</type>
                   <includes>**/*.xsd</includes>
@@ -78,7 +86,15 @@
                 <artifactItem>
                   <groupId>org.switchyard.components</groupId>
                   <artifactId>switchyard-component-hornetq</artifactId>
-                  <version>${project.version}</version>
+                  <version>${version.switchyard.runtime}</version>
+                  <classifier>sources</classifier>
+                  <type>jar</type>
+                  <includes>**/*.xsd</includes>
+                </artifactItem>
+                <artifactItem>
+                  <groupId>org.switchyard.components</groupId>
+                  <artifactId>switchyard-component-common-rules</artifactId>
+                  <version>${version.switchyard.runtime}</version>
                   <classifier>sources</classifier>
                   <type>jar</type>
                   <includes>**/*.xsd</includes>
@@ -86,7 +102,7 @@
                 <artifactItem>
                   <groupId>org.switchyard.components</groupId>
                   <artifactId>switchyard-component-rules</artifactId>
-                  <version>${project.version}</version>
+                  <version>${version.switchyard.runtime}</version>
                   <classifier>sources</classifier>
                   <type>jar</type>
                   <includes>**/*.xsd</includes>
@@ -94,7 +110,7 @@
                 <artifactItem>
                   <groupId>org.switchyard.components</groupId>
                   <artifactId>switchyard-component-soap</artifactId>
-                  <version>${project.version}</version>
+                  <version>${version.switchyard.runtime}</version>
                   <classifier>sources</classifier>
                   <type>jar</type>
                   <includes>**/*.xsd</includes>

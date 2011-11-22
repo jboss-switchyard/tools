@@ -8,12 +8,21 @@
     <relativePath>../pom.xml</relativePath>
   </parent>
   <artifactId>switchyard-tools-eclipse</artifactId>
+  <!--
+    Eclipse plugin build versioning (M.m.r.build) is handled through Tycho, so
+    versions like 0.3.0.CR1 and 0.3.0.Final would be handled by Tycho.  The
+    parent project's version, not being Eclipse specific, should continue to
+    evolve along with the rest of the SwitchYard projects.
+  -->
+  <version>0.3.0-SNAPSHOT</version>
   <packaging>pom</packaging>
   <name>SwitchYard: Eclipse Tools Parent</name>
   <description>Parent project for Eclipse based SwitchYard tooling.</description>
 
   <properties>
     <tycho-version>0.12.0</tycho-version>
+    <!-- Just in case the Eclipse project version does not match the parent. -->
+    <version.switchyard.runtime>${project.parent.version}</version.switchyard.runtime>
   </properties>
 
   <modules>
