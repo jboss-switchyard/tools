@@ -22,6 +22,7 @@ import java.io.InputStreamReader;
 import java.io.Reader;
 
 import org.custommonkey.xmlunit.Diff;
+import org.custommonkey.xmlunit.ElementNameAndAttributeQualifier;
 import org.custommonkey.xmlunit.XMLUnit;
 import org.eclipse.core.resources.IProject;
 import org.eclipse.core.resources.IResource;
@@ -79,7 +80,8 @@ public class SwitchYardConfigurationTest extends AbstractMavenProjectTestCase {
             testReader = new InputStreamReader(SwitchYardConfigurationTest.class.getClassLoader().getResourceAsStream(
                     "test-data/validation/" + projectName + "/META-INF/switchyard.xml"));
             Diff diff = XMLUnit.compareXML(sourceReader, testReader);
-            assertTrue(diff.toString(), diff.identical());
+            diff.overrideElementQualifier(new ElementNameAndAttributeQualifier());
+            assertTrue(diff.toString(), diff.similar());
         } finally {
             if (sourceReader != null) {
                 try {
