@@ -2,7 +2,7 @@ Manifest-Version: 1.0
 Bundle-ManifestVersion: 2
 Bundle-Name: SwitchYard Tools UI
 Bundle-SymbolicName: org.switchyard.tools.ui;singleton:=true
-Bundle-Version: 0.3.0.qualifier
+Bundle-Version: 0.4.0.qualifier
 Bundle-Activator: org.switchyard.tools.ui.Activator
 Bundle-Vendor: www.jboss.org
 Require-Bundle: org.eclipse.ui,
@@ -15,7 +15,7 @@ Require-Bundle: org.eclipse.ui,
  org.eclipse.wst.common.project.facet.core;bundle-version="1.4.0",
  org.eclipse.m2e.maven.runtime;bundle-version="1.0.0",
  org.eclipse.m2e.core,
- org.switchyard.tools.core;bundle-version="0.3.0"
+ org.switchyard.tools.core;bundle-version="0.4.0"
 Bundle-RequiredExecutionEnvironment: JavaSE-1.6
 Bundle-ActivationPolicy: lazy
 Export-Package: org.switchyard.tools.ui,
