@@ -270,8 +270,9 @@ public class NewServiceTestClassWizardPage extends NewTypeWizardPage {
             monitor.done();
         }
     }
-    
-    private void createTestMethodsForType(IType type, ITypeBinding interfaceType, ICompilationUnit cu, ImportsManager imports, String lineDelimiter, IProgressMonitor monitor) throws CoreException {
+
+    private void createTestMethodsForType(IType type, ITypeBinding interfaceType, ICompilationUnit cu,
+            ImportsManager imports, String lineDelimiter, IProgressMonitor monitor) throws CoreException {
         String typeName = type.getFullyQualifiedName();
         for (IMethodBinding method : interfaceType.getDeclaredMethods()) {
             if ("void".equals(method.getReturnType().getName())) {
@@ -332,11 +333,21 @@ public class NewServiceTestClassWizardPage extends NewTypeWizardPage {
             ImportsManager imports, String lineDelimiter) {
         String methodName = method.getName();
         String testMethodName = getTestMethodName(methodName);
-        String returnType = imports.addImport(method.getReturnType().getQualifiedName());
+        ITypeBinding returnTypeBinding = method.getReturnType();
+        String resultType;
+        String contentCastType;
 
         StringBuffer body = getBodyStart(lineDelimiter);
-        body.append(returnType).append(" result = service.operation(\"").append(methodName)
-                .append("\").sendInOut(message).getContent(").append(returnType).append(".class);")
+        if (returnTypeBinding.isParameterizedType()) {
+            resultType = imports.addImport(returnTypeBinding);
+            contentCastType = imports.addImport(returnTypeBinding.getErasure());
+            body.append("@SuppressWarnings(\"unchecked\")").append(lineDelimiter);
+        } else {
+            resultType = imports.addImport(returnTypeBinding);
+            contentCastType = resultType;
+        }
+        body.append(resultType).append(" result = service.operation(\"").append(methodName)
+                .append("\").sendInOut(message).getContent(").append(contentCastType).append(".class);")
                 .append(lineDelimiter).append(lineDelimiter);
         body.append(getBodyEnd(imports, lineDelimiter));
 
