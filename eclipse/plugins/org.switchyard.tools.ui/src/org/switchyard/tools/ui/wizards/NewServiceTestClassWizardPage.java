@@ -45,6 +45,7 @@ import org.eclipse.jdt.core.IPackageFragmentRoot;
 import org.eclipse.jdt.core.IType;
 import org.eclipse.jdt.core.JavaModelException;
 import org.eclipse.jdt.core.WorkingCopyOwner;
+import org.eclipse.jdt.core.dom.AST;
 import org.eclipse.jdt.core.dom.ASTNode;
 import org.eclipse.jdt.core.dom.CompilationUnit;
 import org.eclipse.jdt.core.dom.IMethodBinding;
@@ -63,7 +64,6 @@ import org.eclipse.jdt.internal.corext.util.JavaModelUtil;
 import org.eclipse.jdt.internal.ui.dialogs.FilteredTypesSelectionDialog;
 import org.eclipse.jdt.internal.ui.dialogs.StatusInfo;
 import org.eclipse.jdt.internal.ui.dialogs.TextFieldNavigationHandler;
-import org.eclipse.jdt.internal.ui.javaeditor.ASTProvider;
 import org.eclipse.jdt.internal.ui.refactoring.contentassist.CompletionContextRequestor;
 import org.eclipse.jdt.internal.ui.refactoring.contentassist.ControlContentAssistHelper;
 import org.eclipse.jdt.internal.ui.refactoring.contentassist.JavaTypeCompletionProcessor;
@@ -295,8 +295,7 @@ public class NewServiceTestClassWizardPage extends NewTypeWizardPage {
             try {
                 String serviceInterfaceName = getServiceInterface();
                 wc.getBuffer().setContents(stc.getBeforeString() + serviceInterfaceName + stc.getAfterString());
-                CompilationUnit compilationUnit = new RefactoringASTParser(ASTProvider.SHARED_AST_LEVEL)
-                        .parse(wc, true);
+                CompilationUnit compilationUnit = new RefactoringASTParser(AST.JLS3).parse(wc, true);
                 ASTNode type = NodeFinder.perform(compilationUnit, stc.getBeforeString().length(),
                         serviceInterfaceName.length());
                 if (type instanceof Type) {
