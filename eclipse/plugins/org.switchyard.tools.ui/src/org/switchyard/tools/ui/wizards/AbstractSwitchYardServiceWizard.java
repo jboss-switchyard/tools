@@ -39,6 +39,8 @@ public abstract class AbstractSwitchYardServiceWizard extends BasicNewResourceWi
     private NewServiceTestClassWizardPage _newTestClassPage;
     private boolean _initNewTestClassPage = true;
     private String _serviceInterfaceName;
+    private String _testTypeName;
+    private IPackageFragment _testPackageFragment;
 
     /**
      * Create a new NewBeanServiceWizard.
@@ -79,17 +81,36 @@ public abstract class AbstractSwitchYardServiceWizard extends BasicNewResourceWi
         if (!getCreateTestClass()) {
             return null;
         }
-        if (_initNewTestClassPage || _serviceInterfaceName.equals(getServiceInterfaceName())
+        if (_initNewTestClassPage || !_serviceInterfaceName.equals(getServiceInterfaceName())
                 || !getJavaProject().equals(_newTestClassPage.getJavaProject())) {
             _serviceInterfaceName = getServiceInterfaceName();
-            _initNewTestClassPage = true;
+            _initNewTestClassPage = false;
 
-            IPackageFragment packageFragment = getPackageFragment();
-            _newTestClassPage.init(packageFragment == null ? StructuredSelection.EMPTY : new StructuredSelection(
-                    packageFragment));
+            IPackageFragment origTestPackageFragment = _newTestClassPage.getPackageFragment();
+            IJavaProject javaProject = getJavaProject();
+            // initialize project and source folder
+            _newTestClassPage.init(javaProject == null ? StructuredSelection.EMPTY : new StructuredSelection(
+                    javaProject));
+            // initialize interface name
             _newTestClassPage.setServiceInterface(_serviceInterfaceName, false);
-            _newTestClassPage.setTypeName(getSimpleServiceInterfaceName() + "Test", true);
-            _newTestClassPage.setPackageFragment(packageFragment, _newTestClassPage.getPackageFragmentRoot() != null);
+            // update type name
+            if (_testTypeName == null || _testTypeName.equals(_newTestClassPage.getTypeName())) {
+                _testTypeName = getSimpleServiceInterfaceName() + "Test";
+                _newTestClassPage.setTypeName(_testTypeName, true);
+            }
+            // update package name
+            if (_testPackageFragment == null || origTestPackageFragment == null
+                    || _testPackageFragment.equals(origTestPackageFragment)) {
+                IPackageFragment packageFragment = getPackageFragment();
+                if (packageFragment == null) {
+                    _newTestClassPage.setPackageFragment(_testPackageFragment,
+                            _newTestClassPage.getPackageFragmentRoot() != null);
+                } else {
+                    _newTestClassPage.setPackageFragment(packageFragment,
+                            _newTestClassPage.getPackageFragmentRoot() != null);
+                }
+                _testPackageFragment = _newTestClassPage.getPackageFragment();
+            }
         }
         return _newTestClassPage;
     }

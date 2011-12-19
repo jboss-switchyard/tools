@@ -419,7 +419,9 @@ public class NewServiceTestClassWizardPage extends NewTypeWizardPage {
                 loadConfiguredServices();
             }
         } else if (newProject == null) {
+            _project = null;
             _configuredServices = Collections.emptySet();
+            updateMavenProjectFacade();
         } else if (!_project.equals(newProject.getProject())) {
             _project = newProject.getProject();
             updateMavenProjectFacade();
