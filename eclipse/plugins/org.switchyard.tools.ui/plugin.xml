@@ -46,23 +46,168 @@
    </extension>
    <extension
          point="org.eclipse.wst.common.project.facet.core.presets">
+      <dynamic-preset
+            id="preset.switchyard.basic">
+         <factory
+               class="org.switchyard.tools.ui.facets.SwitchYardBasicPresetFactory">
+         </factory>
+      </dynamic-preset>
       <static-preset
-            id="org.switchyard.tools.ui.facet.switchYardJarPreset">
+            extends="preset.switchyard.basic"
+            id="preset.switchyard.jar">
          <description>
-            Basic project facet preset for SwitchYard applications packaged as JARs.
+            Project facet set for SwitchYard JAR applications.
          </description>
          <label>
-            SwitchYard Application - JAR
+            SwitchYard Java Application
          </label>
-         <facet
-               id="java"
-               version="1.6">
-         </facet>
          <facet
                id="jst.utility"
                version="1.0">
          </facet>
       </static-preset>
    </extension>
+
+   <extension
+         point="org.eclipse.wst.common.project.facet.core.facets">
+      <project-facet
+            id="switchyard.core">
+         <default-version
+               version="1.0">
+         </default-version>
+    	 <property name="hide.version" value="true"/>
+         <description>
+            SwitchYard functionality.
+         </description>
+         <label>
+            SwitchYard
+         </label>
+      </project-facet>
+      <project-facet-version
+            facet="switchyard.core"
+            version="1.0">
+         <constraint>
+         	<and>
+	            <requires
+	                  facet="jst.java"
+	                  version="[6.0">
+	            </requires>
+	            <!-- currently only support maven builds -->
+	            <requires
+                   facet="jboss.m2"
+                   soft="true"
+                   version="*">
+	            </requires>
+            </and>
+         </constraint>
+      </project-facet-version>
+      <action
+            facet="switchyard.core"
+            id="switchyard.core.install"
+            type="install"
+            version="1.0">
+         <delegate
+               class="org.switchyard.tools.ui.facets.SwitchYardFacetInstallActionDelegate">
+         </delegate>
+         <config-factory
+               class="org.switchyard.tools.ui.facets.SwitchYardFacetInstallConfigFactory">
+         </config-factory>
+      </action>
+      <action
+            facet="switchyard.core"
+            id="switchyard.core.uninstall"
+            type="uninstall"
+            version="1.0">
+         <delegate
+               class="org.switchyard.tools.ui.facets.SwitchYardFacetUnInstallActionDelegate">
+         </delegate>
+      </action>
+   </extension>
+
+  <extension point="org.eclipse.wst.common.project.facet.ui.images">
+    <image 
+      facet="switchyard.core" 
+      path="icons/switchyard_icon_16px.png"/>
+  </extension>
+
+  <extension point="org.eclipse.wst.common.project.facet.ui.wizardPages">
+    <wizard-pages action="switchyard.core.install">
+      <page class="org.switchyard.tools.ui.facets.SwitchYardFacetInstallWizardPage"/>
+    </wizard-pages>
+  </extension>
+  <extension
+        point="org.eclipse.wst.common.project.facet.core.runtimes">
+     <supported>
+        <facet
+              id="switchyard.core"
+              version="1.0">
+        </facet>
+        <runtime-component
+              any="true">
+        </runtime-component>
+     </supported>
+  </extension>
+  <!--
+  <extension
+        point="org.eclipse.wst.common.project.facet.core.defaultFacets">
+     <default-facets>
+        <facet
+              id="switchyard.core"
+              version="1.0">
+        </facet>
+        <runtime-component
+              id="org.jboss.ide.eclipse.as.runtime.component"
+              version="[7.0">
+        </runtime-component>
+     </default-facets>
+  </extension>
+  -->
+
+  <extension
+        point="org.eclipse.wst.server.core.moduleTypes">
+     <moduleType
+           id="switchyard.core"
+           name="SwitchYard Application">
+     </moduleType>
+  </extension>
+  <extension
+        point="org.eclipse.wst.common.modulecore.componentimpl">
+     <componentimpl
+           typeID="switchyard.core"
+           class="org.eclipse.jst.j2ee.componentcore.J2EEModuleVirtualComponent">
+     </componentimpl>
+  </extension>
+  <extension
+        point="org.eclipse.wst.server.core.moduleFactories">
+     <moduleFactory
+           class="org.eclipse.jst.jee.internal.deployables.JEEDeployableFactory"
+           id="switchyard.deployable"
+           order="10"
+           projects="true">
+        <moduleType
+              types="switchyard.core"
+              versions="1.0">
+        </moduleType>
+     </moduleFactory>
+  </extension>
+  <extension
+        point="org.eclipse.wst.server.core.moduleArtifactAdapters">
+     <moduleArtifactAdapter
+           class="org.switchyard.tools.ui.modules.SwitchYardModuleArtifactAdapterDelegate"
+           id="org.switchyard.tools.ui.moduleArtifactAdapter1">
+          <enablement>
+             <with
+                   variable="selection">
+                <adapt
+                      type="org.eclipse.core.resources.IProject">
+                   <test
+                         forcePluginActivation="true"
+                         property="org.eclipse.wst.common.project.facet.core.projectFacet"
+                         value="switchyard.core">
+                   </test>
+                </adapt>
+             </with></enablement>
+     </moduleArtifactAdapter>
+  </extension>
 
 </plugin>

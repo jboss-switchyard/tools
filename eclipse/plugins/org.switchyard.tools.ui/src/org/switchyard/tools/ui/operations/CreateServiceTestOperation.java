@@ -49,7 +49,7 @@ public class CreateServiceTestOperation extends AbstractSwitchYardProjectOperati
      * @param uiInfo adaptable for UI Shell, may be null.
      */
     public CreateServiceTestOperation(NewServiceTestClassWizardPage serviceTestClassPage, IAdaptable uiInfo) {
-        super(DEFAULT_DEPENDENCIES, Collections.<String> emptySet(), false, "Creating new SwitchYard bean service.",
+        super(null, DEFAULT_DEPENDENCIES, Collections.<String> emptySet(), false, "Creating new SwitchYard bean service.",
                 uiInfo);
         _serviceTestClassPage = serviceTestClassPage;
     }

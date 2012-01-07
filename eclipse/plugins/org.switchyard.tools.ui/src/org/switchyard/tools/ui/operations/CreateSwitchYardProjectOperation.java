@@ -66,6 +66,7 @@ import org.switchyard.config.OutputKey;
 import org.switchyard.config.model.switchyard.SwitchYardModel;
 import org.switchyard.tools.ui.Activator;
 import org.switchyard.tools.ui.M2EUtils;
+import org.switchyard.tools.ui.facets.ISwitchYardFacetConstants;
 
 /**
  * CreateSwitchYardProjectOperation
@@ -239,7 +240,7 @@ public class CreateSwitchYardProjectOperation implements IWorkspaceRunnable {
 
                 subMonitor = new SubProgressMonitor(monitor, 50, SubProgressMonitor.PREPEND_MAIN_LABEL_TO_SUBTASK);
                 final IFacetedProjectWorkingCopy fpwc = facetedProject.createWorkingCopy();
-                fpwc.setSelectedPreset("org.switchyard.tools.ui.facet.switchYardJarPreset");
+                fpwc.setSelectedPreset(ISwitchYardFacetConstants.SWITCHYARD_JAR_PRESET_ID);
                 fpwc.commitChanges(subMonitor);
             } catch (Exception e) {
                 mergeStatus(status, "Error configuring project facets.", e);

@@ -156,7 +156,7 @@ public class NewSwitchYardProjectWizard extends Wizard implements INewWizard {
         String initialProjectName = DEFAULT_PROJECT_NAME;
         int i = 1;
         while (ResourcesPlugin.getWorkspace().getRoot().getProject(initialProjectName).exists()) {
-            initialProjectName = DEFAULT_PROJECT_NAME + i;
+            initialProjectName = DEFAULT_PROJECT_NAME + i++;
         }
         return initialProjectName;
     }

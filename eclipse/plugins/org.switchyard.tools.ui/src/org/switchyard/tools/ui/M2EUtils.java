@@ -39,6 +39,7 @@ import org.apache.maven.repository.internal.MavenRepositorySystemSession;
 import org.apache.maven.wagon.authentication.AuthenticationInfo;
 import org.codehaus.plexus.PlexusContainer;
 import org.codehaus.plexus.util.xml.Xpp3Dom;
+import org.eclipse.core.resources.IProject;
 import org.eclipse.core.runtime.CoreException;
 import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.core.runtime.NullProgressMonitor;
@@ -46,6 +47,7 @@ import org.eclipse.core.runtime.Status;
 import org.eclipse.m2e.core.MavenPlugin;
 import org.eclipse.m2e.core.embedder.IMaven;
 import org.eclipse.m2e.core.internal.embedder.MavenImpl;
+import org.eclipse.m2e.core.project.IMavenProjectFacade;
 import org.eclipse.m2e.core.repository.IRepository;
 import org.eclipse.m2e.core.repository.IRepositoryRegistry;
 import org.sonatype.aether.artifact.Artifact;
@@ -179,6 +181,33 @@ public final class M2EUtils {
         }
     }
 
+    /**
+     * Looks at the project POM to try to discern the version of SwitchYard
+     * being referenced.
+     * 
+     * Currently, this looks at the "switchyard.version" property.
+     * 
+     * @param project the project to look at
+     * @return the version; may be null or empty.
+     */
+    public static String getSwitchYardVersion(IProject project) {
+        IMavenProjectFacade mavenProjectFacade = MavenPlugin.getMavenProjectRegistry().create(project,
+                new NullProgressMonitor());
+        if (mavenProjectFacade == null) {
+            return null;
+        }
+        MavenProject mavenProject = mavenProjectFacade.getMavenProject();
+        String switchYardVersion = mavenProject.getProperties().getProperty(SWITCHYARD_VERSION);
+        if (switchYardVersion != null && switchYardVersion.length() > 0) {
+            return switchYardVersion;
+        }
+        Plugin switchYardPlugin = findSwitchYardPlugin(mavenProject.getModel());
+        if (switchYardPlugin == null) {
+            return null;
+        }
+        return switchYardPlugin.getVersion();
+    }
+
     private static List<RemoteRepository> getRemoteRepositories() {
         List<RemoteRepository> remoteRepositories;
         try {
@@ -247,6 +276,7 @@ public final class M2EUtils {
      * properly configured in the pom. Returns the updated model.
      * 
      * @param pomFile the location of the pom.
+     * @param switchYardVersion the version of the SwitchYard dependencies
      * @param requiredDependencies the required dependencies.
      * @param requiredScanners the required configuration scanners.
      * @param monitor the monitor
@@ -254,7 +284,7 @@ public final class M2EUtils {
      * 
      * @throws CoreException if an error occurs.
      */
-    public static Model updatePom(File pomFile, Collection<Dependency> requiredDependencies,
+    public static Model updatePom(File pomFile, String switchYardVersion, Collection<Dependency> requiredDependencies,
             Collection<String> requiredScanners, IProgressMonitor monitor) throws CoreException {
         requiredDependencies = new ArrayList<Dependency>(requiredDependencies);
         requiredScanners = new ArrayList<String>(requiredScanners);
@@ -270,7 +300,13 @@ public final class M2EUtils {
         boolean modelUpdated = false;
 
         monitor.subTask("Validating switchyard.version property.");
-        if (project.getProperties().getProperty(SWITCHYARD_VERSION) == null) {
+        String currentSwitchYardVersion = project.getProperties().getProperty(SWITCHYARD_VERSION);
+        if (switchYardVersion != null) {
+            if (!switchYardVersion.equals(currentSwitchYardVersion)) {
+                model.addProperty(SWITCHYARD_VERSION, switchYardVersion);
+                modelUpdated = true;
+            }
+        } else if (currentSwitchYardVersion == null) {
             model.addProperty(SWITCHYARD_VERSION, "");
             modelUpdated = true;
         }
@@ -286,62 +322,33 @@ public final class M2EUtils {
         monitor.worked(10);
 
         monitor.subTask("Validating SwitchYard plugin.");
-        Plugin plugin = findSwitchYardPlugin(project.getModel());
-        if (plugin == null) {
-            Build build = model.getBuild();
-            if (build == null) {
-                build = new Build();
-                model.setBuild(build);
+        Plugin plugin = getOrCreateSwitchYardPlugin(project.getModel());
+        for (PluginExecution execution : plugin.getExecutions()) {
+            if (!execution.getGoals().contains(CONFIGURE_GOAL)) {
+                plugin.addExecution(createSwitchYardPluginExecution());
+                modelUpdated = true;
             }
-            plugin = createSwitchYardPlugin();
-            plugin.addExecution(createSwitchYardPluginExecution());
+        }
+        Xpp3Dom configuration = findSwitchYardPluginConfiguration(plugin);
+        if (configuration == null) {
             plugin.setConfiguration(createSwitchYardPluginConfiguration(requiredScanners));
             modelUpdated = true;
         } else {
-            Plugin modelPlugin = null;
-            for (PluginExecution execution : plugin.getExecutions()) {
-                if (!execution.getGoals().contains(CONFIGURE_GOAL)) {
-                    modelPlugin = getOrCreateSwitchYardPlugin(model);
-                    modelPlugin.addExecution(createSwitchYardPluginExecution());
-                    modelUpdated = true;
-                }
-            }
-            Xpp3Dom configuration = findSwitchYardPluginConfiguration(plugin);
-            if (configuration == null) {
-                modelPlugin.setConfiguration(createSwitchYardPluginConfiguration(requiredScanners));
+            Xpp3Dom scannerClassNames = ((Xpp3Dom) configuration).getChild(SCANNER_CLASS_NAMES_ELEMENT);
+            if (scannerClassNames == null) {
+                configuration.addChild(createSwitchYardPluginScannerClassNames(requiredScanners));
                 modelUpdated = true;
             } else {
-                Xpp3Dom scannerClassNames = ((Xpp3Dom) configuration).getChild(SCANNER_CLASS_NAMES_ELEMENT);
-                if (scannerClassNames == null) {
-                    configuration = findSwitchYardPluginConfiguration(modelPlugin);
-                    if (configuration == null) {
-                        modelPlugin.setConfiguration(createSwitchYardPluginConfiguration(requiredScanners));
-                    } else {
-                        configuration.addChild(createSwitchYardPluginScannerClassNames(requiredScanners));
+                for (Xpp3Dom param : scannerClassNames.getChildren(PARAM_ELEMENT)) {
+                    requiredScanners.remove(param.getValue());
+                }
+                if (requiredScanners.size() > 0) {
+                    for (String scannerClassName : requiredScanners) {
+                        Xpp3Dom param = new Xpp3Dom(PARAM_ELEMENT);
+                        param.setValue(scannerClassName);
+                        scannerClassNames.addChild(param);
                     }
                     modelUpdated = true;
-                } else {
-                    for (Xpp3Dom param : scannerClassNames.getChildren(PARAM_ELEMENT)) {
-                        requiredScanners.remove(param.getValue());
-                    }
-                    if (requiredScanners.size() > 0) {
-                        configuration = findSwitchYardPluginConfiguration(modelPlugin);
-                        if (configuration == null) {
-                            modelPlugin.setConfiguration(createSwitchYardPluginConfiguration(requiredScanners));
-                        } else {
-                            scannerClassNames = configuration.getChild(SCANNER_CLASS_NAMES_ELEMENT);
-                            if (scannerClassNames == null) {
-                                configuration.addChild(createSwitchYardPluginScannerClassNames(requiredScanners));
-                            } else {
-                                for (String scannerClassName : requiredScanners) {
-                                    Xpp3Dom param = new Xpp3Dom(PARAM_ELEMENT);
-                                    param.setValue(scannerClassName);
-                                    scannerClassNames.addChild(param);
-                                }
-                            }
-                        }
-                        modelUpdated = true;
-                    }
                 }
             }
         }

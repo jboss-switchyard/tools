@@ -60,7 +60,7 @@ public class CreateBeanServiceOperation extends AbstractSwitchYardProjectOperati
      */
     public CreateBeanServiceOperation(NewBeanServiceClassWizardPage serviceClassPage,
             NewServiceTestClassWizardPage serviceTestClassPage, IAdaptable uiInfo) {
-        super(DEPENDENCIES, SCANNERS, true, "Creating new SwitchYard bean service.", uiInfo);
+        super(null, DEPENDENCIES, SCANNERS, true, "Creating new SwitchYard bean service.", uiInfo);
         _serviceClassPage = serviceClassPage;
         _serviceTestClassPage = serviceTestClassPage;
     }

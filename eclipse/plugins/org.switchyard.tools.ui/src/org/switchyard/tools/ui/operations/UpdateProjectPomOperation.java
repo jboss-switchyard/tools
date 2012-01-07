@@ -48,6 +48,7 @@ import org.switchyard.tools.ui.Activator;
 public class UpdateProjectPomOperation implements IWorkspaceRunnable {
 
     private IProject _project;
+    private String _switchYardVersion;
     private Collection<Dependency> _requiredDependencies;
     private Collection<String> _requiredScanners;
 
@@ -55,12 +56,14 @@ public class UpdateProjectPomOperation implements IWorkspaceRunnable {
      * Create a new UpdateProjectPomOperation.
      * 
      * @param project the project to update.
+     * @param switchYardVersion the version of the SwitchYard dependencies; may be null.
      * @param requiredDependencies the required dependencies.
      * @param requiredScanners the required scanners.
      */
-    public UpdateProjectPomOperation(IProject project, Collection<Dependency> requiredDependencies,
+    public UpdateProjectPomOperation(IProject project, String switchYardVersion, Collection<Dependency> requiredDependencies,
             Collection<String> requiredScanners) {
         _project = project;
+        _switchYardVersion = switchYardVersion;
         _requiredDependencies = requiredDependencies;
         _requiredScanners = requiredScanners;
     }
@@ -68,28 +71,23 @@ public class UpdateProjectPomOperation implements IWorkspaceRunnable {
     @Override
     public void run(IProgressMonitor monitor) throws CoreException {
         monitor.beginTask("Updating project pom.", 100);
-        IProgressMonitor subMonitor = new SubProgressMonitor(monitor, 33,
+        IProgressMonitor subMonitor = new SubProgressMonitor(monitor, 50,
                 SubProgressMonitor.PREPEND_MAIN_LABEL_TO_SUBTASK);
         try {
             IFile pomFile = _project.getFile("pom.xml");
-            Model model = updatePom(pomFile.getLocation().toFile(), _requiredDependencies, _requiredScanners, monitor);
+            Model model = updatePom(pomFile.getLocation().toFile(), _switchYardVersion, _requiredDependencies, _requiredScanners, subMonitor);
             subMonitor.done();
             if (model != null) {
                 ByteArrayOutputStream baos = new ByteArrayOutputStream();
                 MavenPlugin.getMaven().writeModel(model, baos);
 
-                subMonitor = new SubProgressMonitor(monitor, 33, SubProgressMonitor.PREPEND_MAIN_LABEL_TO_SUBTASK);
+                subMonitor = new SubProgressMonitor(monitor, 50, SubProgressMonitor.PREPEND_MAIN_LABEL_TO_SUBTASK);
                 pomFile.setContents(new ByteArrayInputStream(baos.toByteArray()), true, true, subMonitor);
-                subMonitor.done();
-
-                subMonitor = new SubProgressMonitor(monitor, 33, SubProgressMonitor.PREPEND_MAIN_LABEL_TO_SUBTASK);
-                MavenPlugin.getProjectConfigurationManager().updateProjectConfiguration(pomFile.getProject(),
-                        subMonitor);
                 subMonitor.done();
             }
         } catch (CoreException e) {
             throw new CoreException(new MultiStatus(Activator.PLUGIN_ID, Status.ERROR, new IStatus[] {e.getStatus() },
-                    "Unable to update project pom.xml file.", e.getCause()));
+                    "Unable to update project pom.xml file.", e));
         } finally {
             monitor.done();
         }

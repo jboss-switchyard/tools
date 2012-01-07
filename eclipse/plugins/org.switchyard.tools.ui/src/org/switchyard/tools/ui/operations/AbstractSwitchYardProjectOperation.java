@@ -60,6 +60,7 @@ public abstract class AbstractSwitchYardProjectOperation implements IWorkspaceRu
 
     private Collection<Dependency> _dependencies;
     private Collection<String> _scanners;
+    private String _switchYardVersion;
     private String _label;
     private boolean _addingServices;
     private IProject _project;
@@ -71,6 +72,7 @@ public abstract class AbstractSwitchYardProjectOperation implements IWorkspaceRu
      * adding service, the switchyard.xml validation will ensure that a
      * composite element exists.
      * 
+     * @param switchYardVersion the version of the SwitchYard dependencies
      * @param requiredDependencies required dependencies.
      * @param requiredScanners required SwitchYard plugin scanners.
      * @param addingServices true if this operation is adding a service to the
@@ -78,8 +80,9 @@ public abstract class AbstractSwitchYardProjectOperation implements IWorkspaceRu
      * @param label monitor task label.
      * @param uiInfo adaptable for UI Shell, may be null.
      */
-    public AbstractSwitchYardProjectOperation(Collection<Dependency> requiredDependencies,
+    public AbstractSwitchYardProjectOperation(String switchYardVersion, Collection<Dependency> requiredDependencies,
             Collection<String> requiredScanners, boolean addingServices, String label, IAdaptable uiInfo) {
+        _switchYardVersion = switchYardVersion;
         _dependencies = requiredDependencies;
         _scanners = requiredScanners;
         _addingServices = addingServices;
@@ -161,7 +164,7 @@ public abstract class AbstractSwitchYardProjectOperation implements IWorkspaceRu
             // update the project's pom
             try {
                 monitor.subTask("Updating project pom.xml file");
-                UpdateProjectPomOperation op = new UpdateProjectPomOperation(_project, _dependencies, _scanners);
+                UpdateProjectPomOperation op = new UpdateProjectPomOperation(_project, _switchYardVersion, _dependencies, _scanners);
                 subMonitor = new SubProgressMonitor(monitor, 100, SubProgressMonitor.PREPEND_MAIN_LABEL_TO_SUBTASK);
                 op.run(subMonitor);
             } catch (CoreException e) {

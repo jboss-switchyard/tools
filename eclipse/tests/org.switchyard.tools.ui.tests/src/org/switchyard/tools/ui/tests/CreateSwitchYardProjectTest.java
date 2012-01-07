@@ -107,13 +107,15 @@ public class CreateSwitchYardProjectTest extends AbstractMavenProjectTestCase {
 
         IFacetedProject fp = ProjectFacetsManager.create(newProjectHandle, false, new NullProgressMonitor());
         assertNotNull("Project is not a faceted project.", fp);
+        assertTrue("switchyard.core facet not configured on project",
+                fp.hasProjectFacet(ProjectFacetsManager.getProjectFacet("switchyard.core")));
         assertTrue("jst.utility facet not configured on project",
                 fp.hasProjectFacet(ProjectFacetsManager.getProjectFacet("jst.utility")));
         assertTrue("java facet not configured on project",
                 fp.hasProjectFacet(ProjectFacetsManager.getProjectFacet("java")));
 
         // Test project update
-        op = new AbstractSwitchYardProjectOperation(Collections.singleton(M2EUtils.createSwitchYardDependency(
+        op = new AbstractSwitchYardProjectOperation(null, Collections.singleton(M2EUtils.createSwitchYardDependency(
                 "org.switchyard.components", "switchyard-component-bpm")), Collections.<String> emptySet(), true,
                 "Testing SwitchYard project update", null) {
 
