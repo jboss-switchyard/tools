@@ -9,7 +9,7 @@
   </parent>
   <artifactId>switchyard-tools-eclipse-site</artifactId>
   <packaging>eclipse-update-site</packaging>
-  <name>SwtichYard: Eclipse Tools Update Site</name>
+  <name>SwitchYard: Eclipse Tools Update Site</name>
   <description>Eclipse update site for SwitchYard tooling.</description>
 
 </project>

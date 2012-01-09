@@ -9,7 +9,7 @@
   </parent>
   <artifactId>org.switchyard.tools.xsd</artifactId>
   <packaging>eclipse-plugin</packaging>
-  <name>SwtichYard: Eclipse XSD Catalog</name>
+  <name>SwitchYard: Eclipse XSD Catalog</name>
   <description>Eclipse XML catalog for SwitchYard XSDs.</description>
 
   <build>

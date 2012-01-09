@@ -9,7 +9,7 @@
   </parent>
   <artifactId>org.switchyard.tools.feature</artifactId>
   <packaging>eclipse-feature</packaging>
-  <name>SwtichYard: Eclipse Tools Feature</name>
+  <name>SwitchYard: Eclipse Tools Feature</name>
   <description>Eclipse Feature for SwitchYard tooling.</description>
 
 </project>

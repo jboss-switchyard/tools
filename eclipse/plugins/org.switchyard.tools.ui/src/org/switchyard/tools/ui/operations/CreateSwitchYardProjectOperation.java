@@ -71,7 +71,7 @@ import org.switchyard.tools.ui.facets.ISwitchYardFacetConstants;
 /**
  * CreateSwitchYardProjectOperation
  * 
- * Creates a new SwtichYard project: project, pom.xml, switchyard.xml, default
+ * Creates a new SwitchYard project: project, pom.xml, switchyard.xml, default
  * package folders.
  * 
  * TODO: replace hard-coded string literals with constants.

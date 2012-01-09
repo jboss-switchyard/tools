@@ -10,7 +10,7 @@
   <artifactId>switchyard-tools-eclipse-features</artifactId>
   <packaging>pom</packaging>
   <name>Switchyard: Eclipse Tools Features</name>
-  <description>Parent project for SwtichYard Eclipse features.</description>
+  <description>Parent project for SwitchYard Eclipse features.</description>
 
   <modules>
     <module>org.switchyard.tools.feature</module>

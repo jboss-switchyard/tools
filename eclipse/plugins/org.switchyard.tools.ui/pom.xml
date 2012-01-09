@@ -9,7 +9,7 @@
   </parent>
   <artifactId>org.switchyard.tools.ui</artifactId>
   <packaging>eclipse-plugin</packaging>
-  <name>SwtichYard: Eclipse Tools UI Plugin</name>
+  <name>SwitchYard: Eclipse Tools UI Plugin</name>
   <description>SwitchYard UI tooling plugin.</description>
 
 </project>
