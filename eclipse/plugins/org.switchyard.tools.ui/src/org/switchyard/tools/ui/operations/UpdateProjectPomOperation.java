@@ -18,25 +18,10 @@
  */
 package org.switchyard.tools.ui.operations;
 
-import static org.switchyard.tools.ui.M2EUtils.updatePom;
-
-import java.io.ByteArrayInputStream;
-import java.io.ByteArrayOutputStream;
-import java.util.Collection;
-
-import org.apache.maven.model.Dependency;
-import org.apache.maven.model.Model;
-import org.eclipse.core.resources.IFile;
-import org.eclipse.core.resources.IProject;
 import org.eclipse.core.resources.IWorkspaceRunnable;
 import org.eclipse.core.runtime.CoreException;
 import org.eclipse.core.runtime.IProgressMonitor;
-import org.eclipse.core.runtime.IStatus;
-import org.eclipse.core.runtime.MultiStatus;
-import org.eclipse.core.runtime.Status;
-import org.eclipse.core.runtime.SubProgressMonitor;
-import org.eclipse.m2e.core.MavenPlugin;
-import org.switchyard.tools.ui.Activator;
+import org.switchyard.tools.ui.common.ISwitchYardProjectWorkingCopy;
 
 /**
  * UpdateProjectPomOperation
@@ -47,47 +32,21 @@ import org.switchyard.tools.ui.Activator;
  */
 public class UpdateProjectPomOperation implements IWorkspaceRunnable {
 
-    private IProject _project;
-    private String _switchYardVersion;
-    private Collection<Dependency> _requiredDependencies;
-    private Collection<String> _requiredScanners;
+    private final ISwitchYardProjectWorkingCopy _workingCopy;
 
     /**
      * Create a new UpdateProjectPomOperation.
      * 
-     * @param project the project to update.
-     * @param switchYardVersion the version of the SwitchYard dependencies; may be null.
-     * @param requiredDependencies the required dependencies.
-     * @param requiredScanners the required scanners.
+     * @param workingCopy the working copy containing the changes.
      */
-    public UpdateProjectPomOperation(IProject project, String switchYardVersion, Collection<Dependency> requiredDependencies,
-            Collection<String> requiredScanners) {
-        _project = project;
-        _switchYardVersion = switchYardVersion;
-        _requiredDependencies = requiredDependencies;
-        _requiredScanners = requiredScanners;
+    public UpdateProjectPomOperation(ISwitchYardProjectWorkingCopy workingCopy) {
+        _workingCopy = workingCopy;
     }
 
     @Override
     public void run(IProgressMonitor monitor) throws CoreException {
-        monitor.beginTask("Updating project pom.", 100);
-        IProgressMonitor subMonitor = new SubProgressMonitor(monitor, 50,
-                SubProgressMonitor.PREPEND_MAIN_LABEL_TO_SUBTASK);
         try {
-            IFile pomFile = _project.getFile("pom.xml");
-            Model model = updatePom(pomFile.getLocation().toFile(), _switchYardVersion, _requiredDependencies, _requiredScanners, subMonitor);
-            subMonitor.done();
-            if (model != null) {
-                ByteArrayOutputStream baos = new ByteArrayOutputStream();
-                MavenPlugin.getMaven().writeModel(model, baos);
-
-                subMonitor = new SubProgressMonitor(monitor, 50, SubProgressMonitor.PREPEND_MAIN_LABEL_TO_SUBTASK);
-                pomFile.setContents(new ByteArrayInputStream(baos.toByteArray()), true, true, subMonitor);
-                subMonitor.done();
-            }
-        } catch (CoreException e) {
-            throw new CoreException(new MultiStatus(Activator.PLUGIN_ID, Status.ERROR, new IStatus[] {e.getStatus() },
-                    "Unable to update project pom.xml file.", e));
+            _workingCopy.commit(monitor);
         } finally {
             monitor.done();
         }

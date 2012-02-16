@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <?eclipse version="3.4"?>
 <plugin>
+   <extension-point id="switchYardComponent" name="SwitchYardComponent" schema="schema/switchYardComponent.exsd"/>
    <extension
          point="org.eclipse.ui.newWizards">
       <category
@@ -208,6 +209,167 @@
                 </adapt>
              </with></enablement>
      </moduleArtifactAdapter>
+  </extension>
+  <extension point="org.eclipse.wst.server.ui.serverImages">
+    <image 
+      id="org.switchyard.tools.switchyard.core"
+      typeIds="switchyard.core" 
+      icon="icons/switchyard_icon_16px.png"/>
+  </extension>
+  <extension
+        point="org.eclipse.ui.propertyPages">
+     <page
+           category="org.eclipse.wst.common.project.facet.ui.FacetsPropertyPage"
+           class="org.switchyard.tools.ui.properties.SwitchYardSettingsPropertyPage"
+           id="org.switchyard.tools.ui.configuration.page"
+           name="SwitchYard Settings"
+           selectionFilter="single">
+        <enabledWhen>
+           <adapt
+                 type="org.eclipse.core.resources.IProject">
+              <test
+                    property="org.eclipse.wst.common.project.facet.core.projectFacet"
+                    value="switchyard.core">
+              </test>
+           </adapt>
+        </enabledWhen>
+     </page>
+  </extension>
+  <extension
+        point="org.eclipse.ui.popupMenus">
+     <objectContribution
+           adaptable="true"
+           id="org.switchyard.tools.ui.configuration.menu"
+           objectClass="org.eclipse.core.resources.IProject">
+        <action
+              class="org.switchyard.tools.ui.actions.SwitchYardSettingsAction"
+              enablesFor="1"
+              id="org.switchyard.tools.ui.configuration.action.settings"
+              label="SwitchYard Capabilities..."
+              menubarPath="org.eclipse.ui.projectConfigure/additions">
+        </action>
+        <visibility>
+           <objectState
+                 name="projectNature"
+                 value="org.eclipse.m2e.core.maven2Nature">
+           </objectState>
+        </visibility>
+     </objectContribution>
+  </extension>
+  <extension
+        point="org.switchyard.tools.ui.switchYardComponent">
+     <component
+           id="org.switchyard:switchyard-runtime"
+           name="Runtime"
+           scannerClass="org.switchyard.transform.config.model.TransformSwitchYardScanner">
+        <description>
+           Core SwitchYard runtime dependencies.
+        </description>
+        <dependency>
+           <groupId>org.switchyard</groupId>
+           <artifactId>switchyard-api</artifactId>
+        </dependency>
+        <dependency>
+           <groupId>org.switchyard</groupId>
+           <artifactId>switchyard-plugin</artifactId>
+        </dependency>
+        <dependency>
+           <groupId>org.switchyard</groupId>
+           <artifactId>switchyard-test</artifactId>
+        </dependency>
+     </component>
+     <component
+           id="org.switchyard.components:switchyard-component-bean"
+           name="Bean"
+           scannerClass="org.switchyard.component.bean.config.model.BeanSwitchYardScanner">
+        <description>
+           Provides support for Java based service implementations.
+        </description>
+        <dependency>
+           <groupId>org.switchyard.components</groupId>
+           <artifactId>switchyard-component-bean</artifactId>
+        </dependency>
+     </component>
+     <component
+           name="BPEL"
+           id="org.switchyard.components:switchyard-component-bpel">
+        <description>
+           Provides support for BPEL based service implementations.
+        </description>
+        <dependency>
+           <groupId>org.switchyard.components</groupId>
+           <artifactId>switchyard-component-bpel</artifactId>
+        </dependency>
+     </component>
+     <component
+           id="org.switchyard.components:switchyard-component-bpm"
+           name="BPM (jBPM)"
+           scannerClass="org.switchyard.component.bpm.config.model.BPMSwitchYardScanner">
+        <description>
+           Provides support for BPM based service implementations.
+        </description>
+        <dependency>
+           <groupId>org.switchyard.components</groupId>
+           <artifactId>switchyard-component-bpm</artifactId>
+        </dependency>
+     </component>
+     <component
+           id="org.switchyard.components:switchyard-component-camel"
+           name="Camel"
+           scannerClass="org.switchyard.component.camel.config.model.RouteScanner">
+        <description>
+           Provides support for Camel based service implementations and Camel based gateways.
+        </description>
+        <dependency>
+           <groupId>org.switchyard.components</groupId>
+           <artifactId>switchyard-component-camel</artifactId>
+        </dependency>
+     </component>
+     <component
+           name="Clojure"
+           id="org.switchyard.components:switchyard-component-clojure">
+        <description>
+           Provides support for Clojure based service implementations.
+        </description>
+        <dependency>
+           <groupId>org.switchyard.components</groupId>
+           <artifactId>switchyard-component-clojure</artifactId>
+        </dependency>
+     </component>
+     <component
+           name="HornetQ"
+           id="org.switchyard.components:switchyard-component-hornetq">
+        <description>
+           Provides support for HornetQ based gateways.
+        </description>
+        <dependency>
+           <groupId>org.switchyard.components</groupId>
+           <artifactId>switchyard-component-hornetq</artifactId>
+        </dependency>
+     </component>
+     <component
+           id="org.switchyard.components:switchyard-component-rules"
+           name="Rules (Drools)"
+           scannerClass="org.switchyard.component.rules.config.model.RulesSwitchYardScanner">
+        <description>
+           Provides support for Drools based service implementations.
+        </description>
+        <dependency>
+           <groupId>org.switchyard.components</groupId>
+           <artifactId>switchyard-component-rules</artifactId>
+        </dependency>
+     </component>
+     <component
+           id="org.switchyard.components:switchyard-component-soap"
+           name="SOAP">
+        <description>
+           Provides support for SOAP based gateways.
+        </description>
+        <dependency>
+           <groupId>org.switchyard.components</groupId>
+           <artifactId>switchyard-component-soap</artifactId>
+        </dependency>
+     </component>
   </extension>
 
 </plugin>

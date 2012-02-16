@@ -26,7 +26,6 @@ import java.io.ByteArrayOutputStream;
 import java.io.InputStream;
 import java.util.Collection;
 
-import org.apache.maven.model.Dependency;
 import org.eclipse.core.commands.ExecutionException;
 import org.eclipse.core.resources.IFile;
 import org.eclipse.core.resources.IProject;
@@ -38,9 +37,8 @@ import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.core.runtime.MultiStatus;
 import org.eclipse.core.runtime.Status;
 import org.eclipse.core.runtime.SubProgressMonitor;
-import org.eclipse.m2e.core.MavenPlugin;
 import org.eclipse.m2e.core.embedder.ArtifactKey;
-import org.eclipse.m2e.core.project.IMavenProjectFacade;
+import org.eclipse.m2e.core.project.MavenProjectUtils;
 import org.eclipse.ui.ide.undo.CreateFileOperation;
 import org.switchyard.config.OutputKey;
 import org.switchyard.config.model.ModelPuller;
@@ -48,6 +46,9 @@ import org.switchyard.config.model.composite.CompositeModel;
 import org.switchyard.config.model.composite.v1.V1CompositeModel;
 import org.switchyard.config.model.switchyard.SwitchYardModel;
 import org.switchyard.tools.ui.Activator;
+import org.switchyard.tools.ui.common.ISwitchYardComponentExtension;
+import org.switchyard.tools.ui.common.ISwitchYardProjectWorkingCopy;
+import org.switchyard.tools.ui.common.impl.SwitchYardProject;
 
 /**
  * AbstractSwitchYardProjectOperation
@@ -58,13 +59,11 @@ import org.switchyard.tools.ui.Activator;
  */
 public abstract class AbstractSwitchYardProjectOperation implements IWorkspaceRunnable {
 
-    private Collection<Dependency> _dependencies;
-    private Collection<String> _scanners;
+    private ISwitchYardProjectWorkingCopy _workingCopy;
     private String _switchYardVersion;
+    private Collection<ISwitchYardComponentExtension> _components;
     private String _label;
     private boolean _addingServices;
-    private IProject _project;
-    private IMavenProjectFacade _mavenProjectFacade;
     private IAdaptable _uiInfo;
 
     /**
@@ -72,19 +71,35 @@ public abstract class AbstractSwitchYardProjectOperation implements IWorkspaceRu
      * adding service, the switchyard.xml validation will ensure that a
      * composite element exists.
      * 
-     * @param switchYardVersion the version of the SwitchYard dependencies
-     * @param requiredDependencies required dependencies.
-     * @param requiredScanners required SwitchYard plugin scanners.
+     * @param workingCopy the working copy containing any settings changes.
      * @param addingServices true if this operation is adding a service to the
      *            project.
      * @param label monitor task label.
      * @param uiInfo adaptable for UI Shell, may be null.
      */
-    public AbstractSwitchYardProjectOperation(String switchYardVersion, Collection<Dependency> requiredDependencies,
-            Collection<String> requiredScanners, boolean addingServices, String label, IAdaptable uiInfo) {
+    public AbstractSwitchYardProjectOperation(ISwitchYardProjectWorkingCopy workingCopy, boolean addingServices,
+            String label, IAdaptable uiInfo) {
+        _workingCopy = workingCopy;
+        _addingServices = addingServices;
+        _label = label;
+        _uiInfo = uiInfo;
+    }
+
+    /**
+     * Create a new AbstractSwitchYardProjectOperation.
+     * 
+     * @param switchYardVersion the version of the SwitchYard dependencies
+     * @param components the required components.
+     * @param addingServices true if this operation is adding a service to the
+     *            project.
+     * @param label monitor task label.
+     * @param uiInfo adaptable for UI Shell, may be null.
+     */
+    public AbstractSwitchYardProjectOperation(String switchYardVersion,
+            Collection<ISwitchYardComponentExtension> components, boolean addingServices, String label,
+            IAdaptable uiInfo) {
         _switchYardVersion = switchYardVersion;
-        _dependencies = requiredDependencies;
-        _scanners = requiredScanners;
+        _components = components;
         _addingServices = addingServices;
         _label = label;
         _uiInfo = uiInfo;
@@ -112,36 +127,36 @@ public abstract class AbstractSwitchYardProjectOperation implements IWorkspaceRu
                 subMonitor.setTaskName("");
             }
 
-            _project = getProject();
-
-            // read project pom
-            try {
-                monitor.subTask("Reading project pom.");
-                subMonitor = new SubProgressMonitor(monitor, 100, SubProgressMonitor.PREPEND_MAIN_LABEL_TO_SUBTASK);
-                _mavenProjectFacade = MavenPlugin.getMavenProjectRegistry().create(_project.getFile("pom.xml"), true,
-                        subMonitor);
-            } finally {
-                subMonitor.done();
-                subMonitor.setTaskName("");
+            // make sure the working copy is setup
+            if (_workingCopy == null) {
+                _workingCopy = new SwitchYardProject(getProject()).createWorkingCopy();
+                if (_components != null) {
+                    _workingCopy.addComponents(_components);
+                }
+                _workingCopy.setRuntimeVersion(_switchYardVersion);
             }
 
-            if (_mavenProjectFacade == null) {
-                throw new CoreException(new Status(Status.ERROR, Activator.PLUGIN_ID,
-                        "Unable to read project configuration."));
+            monitor.subTask("Reading pom.xml file.");
+            subMonitor = new SubProgressMonitor(monitor, 100, SubProgressMonitor.PREPEND_MAIN_LABEL_TO_SUBTASK);
+            if (_workingCopy.needsLoading()) {
+                _workingCopy.load(subMonitor);
             }
+            subMonitor.done();
 
             // make sure bean.xml exists
             try {
                 monitor.subTask("Creating beans.xml files.");
                 // create source beans.xml
                 subMonitor = new SubProgressMonitor(monitor, 100, SubProgressMonitor.PREPEND_MAIN_LABEL_TO_SUBTASK);
-                createBeansXMLFile(_mavenProjectFacade.getResourceLocations(), subMonitor);
+                createBeansXMLFile(MavenProjectUtils.getResourceLocations(_workingCopy.getProject(), _workingCopy
+                        .getMavenProject().getResources()), subMonitor);
                 subMonitor.done();
                 subMonitor.setTaskName("");
 
                 // create test beans.xml
                 subMonitor = new SubProgressMonitor(monitor, 100, SubProgressMonitor.PREPEND_MAIN_LABEL_TO_SUBTASK);
-                createBeansXMLFile(_mavenProjectFacade.getTestResourceLocations(), subMonitor);
+                createBeansXMLFile(MavenProjectUtils.getResourceLocations(_workingCopy.getProject(), _workingCopy
+                        .getMavenProject().getTestResources()), subMonitor);
             } catch (ExecutionException e) {
                 status.merge(new Status(Status.ERROR, Activator.PLUGIN_ID, "Unable to create beans.xml.", e));
             } finally {
@@ -153,7 +168,8 @@ public abstract class AbstractSwitchYardProjectOperation implements IWorkspaceRu
             try {
                 monitor.subTask("Updating switchyard.xml file.");
                 subMonitor = new SubProgressMonitor(monitor, 100, SubProgressMonitor.PREPEND_MAIN_LABEL_TO_SUBTASK);
-                updateSwitchYardFile(_mavenProjectFacade.getResourceLocations(), subMonitor);
+                updateSwitchYardFile(MavenProjectUtils.getResourceLocations(_workingCopy.getProject(), _workingCopy
+                        .getMavenProject().getResources()), subMonitor);
             } catch (CoreException e) {
                 status.merge(e.getStatus());
             } finally {
@@ -164,7 +180,7 @@ public abstract class AbstractSwitchYardProjectOperation implements IWorkspaceRu
             // update the project's pom
             try {
                 monitor.subTask("Updating project pom.xml file");
-                UpdateProjectPomOperation op = new UpdateProjectPomOperation(_project, _switchYardVersion, _dependencies, _scanners);
+                UpdateProjectPomOperation op = new UpdateProjectPomOperation(_workingCopy);
                 subMonitor = new SubProgressMonitor(monitor, 100, SubProgressMonitor.PREPEND_MAIN_LABEL_TO_SUBTASK);
                 op.run(subMonitor);
             } catch (CoreException e) {
@@ -200,8 +216,9 @@ public abstract class AbstractSwitchYardProjectOperation implements IWorkspaceRu
 
     private void createBeansXMLFile(IPath[] resourceLocations, IProgressMonitor monitor) throws ExecutionException {
         IFile beansFile = null;
+        IProject project = _workingCopy.getProject();
         for (IPath resourceLocation : resourceLocations) {
-            IFile temp = _project.getFolder(resourceLocation).getFile("META-INF/beans.xml");
+            IFile temp = project.getFolder(resourceLocation).getFile("META-INF/beans.xml");
             if (temp.exists()) {
                 beansFile = temp;
                 break;
@@ -210,7 +227,7 @@ public abstract class AbstractSwitchYardProjectOperation implements IWorkspaceRu
         if (beansFile == null && resourceLocations.length > 0) {
             // TODO: find the first resource root that would include a beans.xml
             // file
-            IFile beansIFile = _project.getFolder(resourceLocations[0]).getFile("META-INF/beans.xml");
+            IFile beansIFile = project.getFolder(resourceLocations[0]).getFile("META-INF/beans.xml");
             CreateFileOperation op = new CreateFileOperation(beansIFile, null, null, "Creating beans.xml file.");
             op.execute(monitor, _uiInfo);
         }
@@ -221,8 +238,9 @@ public abstract class AbstractSwitchYardProjectOperation implements IWorkspaceRu
         try {
             monitor.subTask("Reading switchyard.xml");
             IFile switchYardFile = null;
+            IProject project = _workingCopy.getProject();
             for (IPath resourceLocation : resourceLocations) {
-                IFile temp = _project.getFolder(resourceLocation).getFile("META-INF/switchyard.xml");
+                IFile temp = project.getFolder(resourceLocation).getFile("META-INF/switchyard.xml");
                 if (temp.exists()) {
                     switchYardFile = temp;
                     break;
@@ -232,7 +250,7 @@ public abstract class AbstractSwitchYardProjectOperation implements IWorkspaceRu
             boolean modelUpdated = false;
             SwitchYardModel switchYardModel;
             if (switchYardFile == null) {
-                ArtifactKey key = _mavenProjectFacade.getArtifactKey();
+                ArtifactKey key = new ArtifactKey(_workingCopy.getMavenProject().getArtifact());
                 switchYardModel = createSwitchYardModel(key.getArtifactId(),
                         createTargetnamespace(key.getGroupId(), key.getArtifactId(), key.getVersion()));
                 modelUpdated = true;
@@ -272,7 +290,7 @@ public abstract class AbstractSwitchYardProjectOperation implements IWorkspaceRu
                 if (resourceLocations.length > 0) {
                     // TODO: find the first resource root that would include a
                     // switchyard.xml file
-                    switchYardFile = _project.getFolder(resourceLocations[0]).getFile("META-INF/switchyard.xml");
+                    switchYardFile = project.getFolder(resourceLocations[0]).getFile("META-INF/switchyard.xml");
                 }
             }
             if (switchYardFile == null) {

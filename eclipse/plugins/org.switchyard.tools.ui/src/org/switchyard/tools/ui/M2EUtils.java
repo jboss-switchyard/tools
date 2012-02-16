@@ -20,11 +20,8 @@ package org.switchyard.tools.ui;
 
 import java.io.File;
 import java.util.ArrayList;
-import java.util.Collection;
-import java.util.Collections;
-import java.util.LinkedHashMap;
 import java.util.List;
-import java.util.Map;
+import java.util.Set;
 
 import org.apache.maven.RepositoryUtils;
 import org.apache.maven.artifact.repository.ArtifactRepository;
@@ -39,15 +36,12 @@ import org.apache.maven.repository.internal.MavenRepositorySystemSession;
 import org.apache.maven.wagon.authentication.AuthenticationInfo;
 import org.codehaus.plexus.PlexusContainer;
 import org.codehaus.plexus.util.xml.Xpp3Dom;
-import org.eclipse.core.resources.IProject;
 import org.eclipse.core.runtime.CoreException;
 import org.eclipse.core.runtime.IProgressMonitor;
-import org.eclipse.core.runtime.NullProgressMonitor;
 import org.eclipse.core.runtime.Status;
 import org.eclipse.m2e.core.MavenPlugin;
 import org.eclipse.m2e.core.embedder.IMaven;
 import org.eclipse.m2e.core.internal.embedder.MavenImpl;
-import org.eclipse.m2e.core.project.IMavenProjectFacade;
 import org.eclipse.m2e.core.repository.IRepository;
 import org.eclipse.m2e.core.repository.IRepositoryRegistry;
 import org.sonatype.aether.artifact.Artifact;
@@ -56,6 +50,7 @@ import org.sonatype.aether.repository.LocalRepository;
 import org.sonatype.aether.repository.RemoteRepository;
 import org.sonatype.aether.resolution.VersionRangeRequest;
 import org.sonatype.aether.resolution.VersionRangeResult;
+import org.sonatype.aether.util.artifact.DefaultArtifact;
 
 /**
  * M2EUtils
@@ -76,13 +71,6 @@ public final class M2EUtils {
     public static final String SWITCHYARD_API_ARTIFACT_ID = "switchyard-api";
     /** The core SwitchYard plugin project artifact ID. */
     public static final String SWITCHYARD_PLUGIN_ARTIFACT_ID = "switchyard-plugin";
-    /** The core SwitchYard test project artifact ID. */
-    public static final String SWITCHYARD_TEST_ARTIFACT_ID = "switchyard-test";
-
-    /** The group ID for SwitchYard components projects. */
-    public static final String SWITCHYARD_COMPONENTS_GROUP_ID = "org.switchyard.components";
-    /** The SwitchYard bean component artifact ID. */
-    public static final String SWITCHYARD_BEAN_COMPONENT_ARTIFACT_ID = "switchyard-component-bean";
 
     /** src/main/java. */
     public static final String MAVEN_MAIN_JAVA_PATH = "src/main/java";
@@ -96,21 +84,27 @@ public final class M2EUtils {
     /** The default ID for representing the JBoss Public Maven repository. */
     public static final String JBOSS_PUBLIC_REPOSITORY_DEFAULT_ID = "jboss-public-repository";
 
-    /** The DEFAULT_SCANNERS. */
-    public static final String[] DEFAULT_SCANNERS = {
-            "org.switchyard.component.bean.config.model.BeanSwitchYardScanner",
-            "org.switchyard.component.camel.config.model.RouteScanner",
-            "org.switchyard.component.bpm.config.model.BPMSwitchYardScanner",
-            "org.switchyard.component.rules.config.model.RulesSwitchYardScanner",
-            "org.switchyard.transform.config.model.TransformSwitchYardScanner" };
+    /**
+     * The as opposed to null, this identifies an indeterminate for the version
+     * string.
+     */
+    public static final String UNKNOWN_VERSION_STRING = new String("unknown");
 
-    /** The default SwitchYard dependencies. */
-    public static final Collection<Dependency> DEFAULT_DEPENDENCIES;
+    // SwitchYard configure plugin configuration
+    /** The key identifying the SwitchYard configure plugin. */
+    public static final String SWITCHYARD_PLUGIN_KEY = Plugin.constructKey(SWITCHYARD_CORE_GROUP_ID,
+            SWITCHYARD_PLUGIN_ARTIFACT_ID);
+    /** Maven "configuration" element. */
+    public static final String CONFIGURATION_ELEMENT = "configuration";
+    /** The SwitchYard plugin "scannerClassNames" element. */
+    public static final String SCANNER_CLASS_NAMES_ELEMENT = "scannerClassNames";
+    /** The SwitchYard plugin "param" element. */
+    public static final String PARAM_ELEMENT = "param";
+    /** The SwitchYard plugin "configure" goal. */
+    public static final String CONFIGURE_GOAL = "configure";
 
-    private static final String CONFIGURATION_ELEMENT = "configuration";
-    private static final String SCANNER_CLASS_NAMES_ELEMENT = "scannerClassNames";
-    private static final String PARAM_ELEMENT = "param";
-    private static final String CONFIGURE_GOAL = "configure";
+    /** The URL for the JBoss public Maven repository. */
+    public static final String JBOSS_PUBLIC_REPOSITORY_URL = "http://repository.jboss.org/nexus/content/groups/public";
 
     /**
      * @param groupId the groupId
@@ -121,19 +115,7 @@ public final class M2EUtils {
         Dependency dependency = new Dependency();
         dependency.setArtifactId(artifactId);
         dependency.setGroupId(groupId);
-        dependency.setVersion("${" + SWITCHYARD_VERSION + "}");
         return dependency;
-    }
-
-    /**
-     * @param scanners the scanners to include in the configuration.
-     * @return a new SwitchYard plugin instance.
-     */
-    public static Plugin createSwitchYardPlugin(Collection<String> scanners) {
-        Plugin plugin = createSwitchYardPlugin();
-        plugin.addExecution(createSwitchYardPluginExecution());
-        plugin.setConfiguration(createSwitchYardPluginConfiguration(scanners));
-        return plugin;
     }
 
     /**
@@ -146,9 +128,21 @@ public final class M2EUtils {
         Repository repository = new Repository();
         repository.setId(id);
         repository.setName("JBoss Public Maven Repository");
-        repository.setUrl("http://repository.jboss.org/nexus/content/groups/public");
+        repository.setUrl(JBOSS_PUBLIC_REPOSITORY_URL);
         repository.setLayout("default");
         return repository;
+    }
+
+    /**
+     * Utility method for resolving the version range for SwitchYard.
+     * 
+     * @param monitor the progress monitor
+     * @return the version range for org.switchyard:switchyard-api
+     * @throws CoreException if an error occurs.
+     */
+    public static VersionRangeResult resolveSwitchYardVersionRange(IProgressMonitor monitor) throws CoreException {
+        return resolveVersionRange(new DefaultArtifact(SWITCHYARD_CORE_GROUP_ID, SWITCHYARD_API_ARTIFACT_ID, "jar",
+                "[,]"), monitor);
     }
 
     /**
@@ -157,11 +151,13 @@ public final class M2EUtils {
      * It would be nice if this were exposed directly from m2e.
      * 
      * @param artifact to resolve.
+     * @param monitor the progress monitor
      * 
      * @return the version range for the artifact.
      * @throws CoreException if an error occurs.
      */
-    public static VersionRangeResult resolveVersionRange(Artifact artifact) throws CoreException {
+    public static VersionRangeResult resolveVersionRange(Artifact artifact, IProgressMonitor monitor)
+            throws CoreException {
         try {
             IMaven maven = MavenPlugin.getMaven();
             ArtifactRepository localRepository = maven.getLocalRepository();
@@ -173,39 +169,12 @@ public final class M2EUtils {
             MavenRepositorySystemSession session = new MavenRepositorySystemSession();
             session.setLocalRepositoryManager(repoSystem.newLocalRepositoryManager(new LocalRepository(localRepository
                     .getBasedir())));
-            session.setTransferListener(((MavenImpl) maven).createArtifactTransferListener(new NullProgressMonitor()));
+            session.setTransferListener(((MavenImpl) maven).createArtifactTransferListener(monitor));
             VersionRangeRequest rangeRequest = new VersionRangeRequest(artifact, getRemoteRepositories(), null);
             return repoSystem.resolveVersionRange(session, rangeRequest);
         } catch (Exception e) {
             throw new CoreException(new Status(Status.ERROR, Activator.PLUGIN_ID, "Error resolving version range", e));
         }
-    }
-
-    /**
-     * Looks at the project POM to try to discern the version of SwitchYard
-     * being referenced.
-     * 
-     * Currently, this looks at the "switchyard.version" property.
-     * 
-     * @param project the project to look at
-     * @return the version; may be null or empty.
-     */
-    public static String getSwitchYardVersion(IProject project) {
-        IMavenProjectFacade mavenProjectFacade = MavenPlugin.getMavenProjectRegistry().create(project,
-                new NullProgressMonitor());
-        if (mavenProjectFacade == null) {
-            return null;
-        }
-        MavenProject mavenProject = mavenProjectFacade.getMavenProject();
-        String switchYardVersion = mavenProject.getProperties().getProperty(SWITCHYARD_VERSION);
-        if (switchYardVersion != null && switchYardVersion.length() > 0) {
-            return switchYardVersion;
-        }
-        Plugin switchYardPlugin = findSwitchYardPlugin(mavenProject.getModel());
-        if (switchYardPlugin == null) {
-            return null;
-        }
-        return switchYardPlugin.getVersion();
     }
 
     private static List<RemoteRepository> getRemoteRepositories() {
@@ -243,6 +212,42 @@ public final class M2EUtils {
     }
 
     /**
+     * @param version the plugin version
+     * @param createExecution true to create an execution with a configure goal
+     * @param scanners the scanners to configure
+     * @return a new Plugin instance
+     */
+    public static Plugin createSwitchYardPlugin(String version, boolean createExecution, Set<String> scanners) {
+        Plugin plugin = new Plugin();
+
+        plugin.setArtifactId(SWITCHYARD_PLUGIN_ARTIFACT_ID);
+        plugin.setGroupId(SWITCHYARD_CORE_GROUP_ID);
+        plugin.setVersion(version);
+
+        if (createExecution) {
+            PluginExecution execution = new PluginExecution();
+            execution.addGoal(CONFIGURE_GOAL);
+            plugin.addExecution(execution);
+        }
+
+        if (scanners.isEmpty()) {
+            return plugin;
+        }
+
+        Xpp3Dom configuration = new Xpp3Dom(CONFIGURATION_ELEMENT);
+        plugin.setConfiguration(configuration);
+        Xpp3Dom scannerElement = new Xpp3Dom(SCANNER_CLASS_NAMES_ELEMENT);
+        configuration.addChild(scannerElement);
+        for (String scanner : scanners) {
+            Xpp3Dom paramElement = new Xpp3Dom(PARAM_ELEMENT);
+            paramElement.setValue(scanner);
+            scannerElement.addChild(paramElement);
+        }
+
+        return plugin;
+    }
+
+    /**
      * Returns the generated switchyard.xml file. By default, this is
      * target/class/META-INF/switchyard.xml.
      * 
@@ -271,142 +276,6 @@ public final class M2EUtils {
         return new File(project.getBuild().getOutputDirectory(), "META-INF/switchyard.xml");
     }
 
-    /**
-     * Updates a pom model ensuring the required dependencies and scanners are
-     * properly configured in the pom. Returns the updated model.
-     * 
-     * @param pomFile the location of the pom.
-     * @param switchYardVersion the version of the SwitchYard dependencies
-     * @param requiredDependencies the required dependencies.
-     * @param requiredScanners the required configuration scanners.
-     * @param monitor the monitor
-     * @return the updated model; null if the model was not updated.
-     * 
-     * @throws CoreException if an error occurs.
-     */
-    public static Model updatePom(File pomFile, String switchYardVersion, Collection<Dependency> requiredDependencies,
-            Collection<String> requiredScanners, IProgressMonitor monitor) throws CoreException {
-        requiredDependencies = new ArrayList<Dependency>(requiredDependencies);
-        requiredScanners = new ArrayList<String>(requiredScanners);
-
-        monitor.beginTask("Updating project pom.xml file.", 100);
-        IMaven maven = MavenPlugin.getMaven();
-
-        monitor.subTask("Reading current pom model.");
-        MavenProject project = maven.readProject(pomFile, monitor);
-        Model model = maven.readModel(pomFile);
-        monitor.worked(50);
-
-        boolean modelUpdated = false;
-
-        monitor.subTask("Validating switchyard.version property.");
-        String currentSwitchYardVersion = project.getProperties().getProperty(SWITCHYARD_VERSION);
-        if (switchYardVersion != null) {
-            if (!switchYardVersion.equals(currentSwitchYardVersion)) {
-                model.addProperty(SWITCHYARD_VERSION, switchYardVersion);
-                modelUpdated = true;
-            }
-        } else if (currentSwitchYardVersion == null) {
-            model.addProperty(SWITCHYARD_VERSION, "");
-            modelUpdated = true;
-        }
-        monitor.worked(10);
-
-        monitor.subTask("Validating component dependencies.");
-        Map<String, Dependency> requiredDependencyMap = createDependencyMap(requiredDependencies);
-        requiredDependencyMap.keySet().removeAll(createDependencyMap(project.getDependencies()).keySet());
-        if (requiredDependencyMap.size() > 0) {
-            model.getDependencies().addAll(requiredDependencyMap.values());
-            modelUpdated = true;
-        }
-        monitor.worked(10);
-
-        monitor.subTask("Validating SwitchYard plugin.");
-        Plugin plugin = getOrCreateSwitchYardPlugin(project.getModel());
-        for (PluginExecution execution : plugin.getExecutions()) {
-            if (!execution.getGoals().contains(CONFIGURE_GOAL)) {
-                plugin.addExecution(createSwitchYardPluginExecution());
-                modelUpdated = true;
-            }
-        }
-        Xpp3Dom configuration = findSwitchYardPluginConfiguration(plugin);
-        if (configuration == null) {
-            plugin.setConfiguration(createSwitchYardPluginConfiguration(requiredScanners));
-            modelUpdated = true;
-        } else {
-            Xpp3Dom scannerClassNames = ((Xpp3Dom) configuration).getChild(SCANNER_CLASS_NAMES_ELEMENT);
-            if (scannerClassNames == null) {
-                configuration.addChild(createSwitchYardPluginScannerClassNames(requiredScanners));
-                modelUpdated = true;
-            } else {
-                for (Xpp3Dom param : scannerClassNames.getChildren(PARAM_ELEMENT)) {
-                    requiredScanners.remove(param.getValue());
-                }
-                if (requiredScanners.size() > 0) {
-                    for (String scannerClassName : requiredScanners) {
-                        Xpp3Dom param = new Xpp3Dom(PARAM_ELEMENT);
-                        param.setValue(scannerClassName);
-                        scannerClassNames.addChild(param);
-                    }
-                    modelUpdated = true;
-                }
-            }
-        }
-
-        monitor.done();
-        if (modelUpdated) {
-            return model;
-        }
-        return null;
-    }
-
-    /**
-     * @return a new SwitchYard plugin instance.
-     */
-    private static Plugin createSwitchYardPlugin() {
-        Plugin plugin = new Plugin();
-        plugin.setArtifactId(SWITCHYARD_PLUGIN_ARTIFACT_ID);
-        plugin.setGroupId(SWITCHYARD_CORE_GROUP_ID);
-        plugin.setVersion("${" + SWITCHYARD_VERSION + "}");
-        return plugin;
-    }
-
-    /**
-     * @param scanners the scanners to add to the configuration.
-     * @return a new SwitchYard configuration element.
-     */
-    private static Xpp3Dom createSwitchYardPluginConfiguration(Collection<String> scanners) {
-        Xpp3Dom configuration = new Xpp3Dom(CONFIGURATION_ELEMENT);
-        Xpp3Dom scannerClassNames = new Xpp3Dom(SCANNER_CLASS_NAMES_ELEMENT);
-        for (String scanner : scanners) {
-            Xpp3Dom param = new Xpp3Dom(PARAM_ELEMENT);
-            param.setValue(scanner);
-            scannerClassNames.addChild(param);
-        }
-        configuration.addChild(scannerClassNames);
-
-        return configuration;
-    }
-
-    /**
-     * Creates a new PluginExecution with a "configure" goal.
-     * 
-     * @return a new SwitchYard PluginExecution.
-     */
-    private static final PluginExecution createSwitchYardPluginExecution() {
-        PluginExecution execution = new PluginExecution();
-        execution.addGoal(CONFIGURE_GOAL);
-        return execution;
-    }
-
-    private static Map<String, Dependency> createDependencyMap(Collection<Dependency> dependencies) {
-        Map<String, Dependency> dependencyMap = new LinkedHashMap<String, Dependency>();
-        for (Dependency dependency : dependencies) {
-            dependencyMap.put(dependency.getManagementKey(), dependency);
-        }
-        return dependencyMap;
-    }
-
     private static Plugin findSwitchYardPlugin(Model model) {
         Build build = model.getBuild();
         if (build == null) {
@@ -419,20 +288,6 @@ public final class M2EUtils {
             }
         }
         return null;
-    }
-
-    private static Plugin getOrCreateSwitchYardPlugin(Model model) {
-        Build build = model.getBuild();
-        if (build == null) {
-            build = new Build();
-            model.setBuild(build);
-        }
-        Plugin plugin = findSwitchYardPlugin(model);
-        if (plugin == null) {
-            plugin = createSwitchYardPlugin();
-            build.addPlugin(plugin);
-        }
-        return plugin;
     }
 
     private static Xpp3Dom findSwitchYardPluginConfiguration(Plugin plugin) {
@@ -452,29 +307,7 @@ public final class M2EUtils {
         return null;
     }
 
-    private static final Xpp3Dom createSwitchYardPluginScannerClassNames(Collection<String> scanners) {
-        Xpp3Dom scannerClassNames = new Xpp3Dom(SCANNER_CLASS_NAMES_ELEMENT);
-        for (String scanner : scanners) {
-            scannerClassNames.addChild(createParam(scanner));
-        }
-        return scannerClassNames;
-    }
-
-    private static final Xpp3Dom createParam(String value) {
-        Xpp3Dom param = new Xpp3Dom(PARAM_ELEMENT);
-        param.setValue(value);
-        return param;
-    }
-
     private M2EUtils() {
-    }
-
-    static {
-        List<Dependency> dependencies = new ArrayList<Dependency>();
-        dependencies.add(createSwitchYardDependency(SWITCHYARD_CORE_GROUP_ID, SWITCHYARD_API_ARTIFACT_ID));
-        dependencies.add(createSwitchYardDependency(SWITCHYARD_CORE_GROUP_ID, SWITCHYARD_PLUGIN_ARTIFACT_ID));
-        dependencies.add(createSwitchYardDependency(SWITCHYARD_CORE_GROUP_ID, SWITCHYARD_TEST_ARTIFACT_ID));
-        DEFAULT_DEPENDENCIES = Collections.unmodifiableCollection(dependencies);
     }
 
 }

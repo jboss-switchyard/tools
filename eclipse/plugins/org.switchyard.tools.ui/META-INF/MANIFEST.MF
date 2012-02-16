@@ -20,9 +20,15 @@ Require-Bundle: org.eclipse.ui,
  org.switchyard.tools.core;bundle-version="0.4.0",
  org.eclipse.wst.server.core;bundle-version="1.1.0",
  org.eclipse.jst.jee;bundle-version="1.0.0",
- org.eclipse.jst.j2ee;bundle-version="1.1.0"
+ org.eclipse.jst.j2ee;bundle-version="1.1.0",
+ org.eclipse.m2e.core.ui;bundle-version="1.0.0"
 Bundle-RequiredExecutionEnvironment: JavaSE-1.6
 Bundle-ActivationPolicy: lazy
 Export-Package: org.switchyard.tools.ui,
+ org.switchyard.tools.ui.actions,
+ org.switchyard.tools.ui.common,
+ org.switchyard.tools.ui.common.impl,
+ org.switchyard.tools.ui.facets,
  org.switchyard.tools.ui.operations,
+ org.switchyard.tools.ui.properties,
  org.switchyard.tools.ui.wizards

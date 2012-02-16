@@ -18,15 +18,9 @@
  */
 package org.switchyard.tools.ui.operations;
 
-import static org.switchyard.tools.ui.M2EUtils.DEFAULT_DEPENDENCIES;
-import static org.switchyard.tools.ui.M2EUtils.createSwitchYardDependency;
-
-import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Collections;
-import java.util.List;
 
-import org.apache.maven.model.Dependency;
 import org.eclipse.core.resources.IProject;
 import org.eclipse.core.runtime.CoreException;
 import org.eclipse.core.runtime.IAdaptable;
@@ -34,6 +28,8 @@ import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.core.runtime.Status;
 import org.eclipse.core.runtime.SubProgressMonitor;
 import org.switchyard.tools.ui.Activator;
+import org.switchyard.tools.ui.common.ISwitchYardComponentExtension;
+import org.switchyard.tools.ui.common.SwitchYardComponentExtensionManager;
 import org.switchyard.tools.ui.wizards.NewBeanServiceClassWizardPage;
 import org.switchyard.tools.ui.wizards.NewServiceTestClassWizardPage;
 
@@ -46,8 +42,7 @@ import org.switchyard.tools.ui.wizards.NewServiceTestClassWizardPage;
  */
 public class CreateBeanServiceOperation extends AbstractSwitchYardProjectOperation {
 
-    private static final Collection<String> SCANNERS;
-    private static final Collection<Dependency> DEPENDENCIES;
+    private static final Collection<ISwitchYardComponentExtension> REQUIRED_COMPONENTS;
     private NewBeanServiceClassWizardPage _serviceClassPage;
     private NewServiceTestClassWizardPage _serviceTestClassPage;
 
@@ -60,7 +55,7 @@ public class CreateBeanServiceOperation extends AbstractSwitchYardProjectOperati
      */
     public CreateBeanServiceOperation(NewBeanServiceClassWizardPage serviceClassPage,
             NewServiceTestClassWizardPage serviceTestClassPage, IAdaptable uiInfo) {
-        super(null, DEPENDENCIES, SCANNERS, true, "Creating new SwitchYard bean service.", uiInfo);
+        super(null, REQUIRED_COMPONENTS, true, "Creating new SwitchYard bean service.", uiInfo);
         _serviceClassPage = serviceClassPage;
         _serviceTestClassPage = serviceTestClassPage;
     }
@@ -108,10 +103,17 @@ public class CreateBeanServiceOperation extends AbstractSwitchYardProjectOperati
     }
 
     static {
-        List<Dependency> dependencies = new ArrayList<Dependency>();
-        dependencies.addAll(DEFAULT_DEPENDENCIES);
-        dependencies.add(createSwitchYardDependency("org.switchyard.components", "switchyard-component-bean"));
-        DEPENDENCIES = Collections.unmodifiableCollection(dependencies);
-        SCANNERS = Collections.singletonList("org.switchyard.component.bean.config.model.BeanSwitchYardScanner");
+        ISwitchYardComponentExtension found = null;
+        for (ISwitchYardComponentExtension extension : SwitchYardComponentExtensionManager.instance().getComponentExtensions()) {
+            if ("org.switchyard.components:switchyard-component-bean".equals(extension.getId())) {
+                found = extension;
+                break;
+            }
+        }
+        if (found == null) {
+            REQUIRED_COMPONENTS = Collections.emptySet();
+        } else {
+            REQUIRED_COMPONENTS = Collections.singleton(found);
+        }
     }
 }

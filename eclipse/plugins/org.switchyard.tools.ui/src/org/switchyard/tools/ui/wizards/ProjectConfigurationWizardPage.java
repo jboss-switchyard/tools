@@ -18,38 +18,29 @@
  */
 package org.switchyard.tools.ui.wizards;
 
-import static org.switchyard.tools.ui.M2EUtils.SWITCHYARD_API_ARTIFACT_ID;
-import static org.switchyard.tools.ui.M2EUtils.SWITCHYARD_CORE_GROUP_ID;
-import static org.switchyard.tools.ui.M2EUtils.resolveVersionRange;
-
-import java.util.Collections;
-import java.util.Comparator;
 import java.util.List;
+import java.util.Set;
 
-import org.eclipse.core.runtime.CoreException;
 import org.eclipse.core.runtime.IStatus;
 import org.eclipse.jdt.core.JavaConventions;
 import org.eclipse.jdt.internal.ui.dialogs.StatusUtil;
-import org.eclipse.jface.dialogs.MessageDialog;
-import org.eclipse.jface.viewers.ArrayContentProvider;
 import org.eclipse.jface.viewers.ISelection;
 import org.eclipse.jface.viewers.IStructuredSelection;
-import org.eclipse.jface.viewers.LabelProvider;
-import org.eclipse.jface.viewers.ListViewer;
 import org.eclipse.jface.viewers.StructuredSelection;
 import org.eclipse.jface.wizard.WizardPage;
-import org.eclipse.m2e.core.internal.index.IndexedArtifactFile;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.events.ModifyEvent;
 import org.eclipse.swt.events.ModifyListener;
 import org.eclipse.swt.layout.GridData;
 import org.eclipse.swt.layout.GridLayout;
+import org.eclipse.swt.widgets.Button;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Label;
 import org.eclipse.swt.widgets.Text;
-import org.sonatype.aether.util.artifact.DefaultArtifact;
 import org.sonatype.aether.version.Version;
-import org.switchyard.tools.ui.Activator;
+import org.switchyard.tools.ui.common.ILayoutUtilities;
+import org.switchyard.tools.ui.common.ISwitchYardComponentExtension;
+import org.switchyard.tools.ui.common.SwitchYardSettingsGroup;
 
 /**
  * ProjectConfigurationWizardPage
@@ -60,14 +51,15 @@ import org.switchyard.tools.ui.Activator;
  * @author Rob Cernich
  */
 @SuppressWarnings("restriction")
-public class ProjectConfigurationWizardPage extends WizardPage {
+public class ProjectConfigurationWizardPage extends WizardPage implements ILayoutUtilities {
 
     /** TODO: use preferences */
     private static final String DEFAULT_GROUP_ID = "com.example.switchyard";
 
+    private Text _artifactIdText;
     private Text _groupIdText;
     private Text _packageNameText;
-    private ListViewer _runtimeVersionsList;
+    private SwitchYardSettingsGroup _settingsGroup;
     private boolean _isInitialized;
     private String _groupId = "";
     private String _packageName = "";
@@ -99,22 +91,42 @@ public class ProjectConfigurationWizardPage extends WizardPage {
      * @return the selected SwitchYard runtime version.
      */
     public Version getRuntimeVersion() {
-        ISelection runtimeVersionListSelection = _runtimeVersionsList.getSelection();
+        ISelection runtimeVersionListSelection = _settingsGroup.getRuntimeVersionsList().getSelection();
         if (runtimeVersionListSelection.isEmpty()) {
             return null;
         }
         return (Version) ((IStructuredSelection) runtimeVersionListSelection).getFirstElement();
     }
 
+    /**
+     * @return the components selected by the user.
+     */
+    public Set<ISwitchYardComponentExtension> getSelectedComponents() {
+        return _settingsGroup.getSelectedComponents();
+    }
+
     @Override
     public void createControl(Composite parent) {
+        initializeDialogUnits(parent);
+
         Composite content = new Composite(parent, SWT.NONE);
-        content.setLayout(new GridLayout(2, false));
+        content.setLayout(new GridLayout());
+
+        Composite projectDetails = new Composite(content, SWT.NONE);
+        projectDetails.setLayout(new GridLayout(2, false));
+        projectDetails.setLayoutData(new GridData(GridData.FILL_HORIZONTAL));
+
+        // artifact id
+        Label label = new Label(projectDetails, SWT.RIGHT);
+        label.setText("Artifact Id:");
+        _artifactIdText = new Text(projectDetails, SWT.SINGLE | SWT.BORDER);
+        _artifactIdText.setLayoutData(new GridData(GridData.FILL_HORIZONTAL));
+        _artifactIdText.setEnabled(false);
 
         // group id
-        Label label = new Label(content, SWT.RIGHT);
+        label = new Label(projectDetails, SWT.RIGHT);
         label.setText("Group Id:");
-        _groupIdText = new Text(content, SWT.SINGLE | SWT.BORDER);
+        _groupIdText = new Text(projectDetails, SWT.SINGLE | SWT.BORDER);
         _groupIdText.setLayoutData(new GridData(GridData.FILL_HORIZONTAL));
         _groupIdText.addModifyListener(new ModifyListener() {
             @Override
@@ -127,9 +139,9 @@ public class ProjectConfigurationWizardPage extends WizardPage {
         });
 
         // package name
-        label = new Label(content, SWT.RIGHT);
+        label = new Label(projectDetails, SWT.RIGHT);
         label.setText("Package Name:");
-        _packageNameText = new Text(content, SWT.SINGLE | SWT.BORDER);
+        _packageNameText = new Text(projectDetails, SWT.SINGLE | SWT.BORDER);
         _packageNameText.setLayoutData(new GridData(GridData.FILL_HORIZONTAL));
         _packageNameText.addModifyListener(new ModifyListener() {
             @Override
@@ -140,26 +152,11 @@ public class ProjectConfigurationWizardPage extends WizardPage {
         });
 
         // runtime version
-        label = new Label(content, SWT.NONE);
-        label.setText("Select target runtime:");
-        GridData gd = new GridData();
-        gd.horizontalSpan = 2;
-        label.setLayoutData(gd);
+        Composite settingsContent = new Composite(content, SWT.NONE);
+        settingsContent.setLayout(new GridLayout());
+        settingsContent.setLayoutData(new GridData(GridData.FILL_HORIZONTAL));
 
-        _runtimeVersionsList = new ListViewer(content, SWT.SINGLE | SWT.H_SCROLL | SWT.V_SCROLL | SWT.BORDER);
-        gd = new GridData(GridData.FILL_BOTH);
-        gd.horizontalSpan = 2;
-        _runtimeVersionsList.getList().setLayoutData(gd);
-        _runtimeVersionsList.setLabelProvider(new LabelProvider() {
-            @Override
-            public String getText(Object element) {
-                if (element instanceof IndexedArtifactFile) {
-                    return ((IndexedArtifactFile) element).getArtifactKey().getVersion();
-                }
-                return super.getText(element);
-            }
-        });
-        _runtimeVersionsList.setContentProvider(new ArrayContentProvider());
+        _settingsGroup = new SwitchYardSettingsGroup(settingsContent, this, getContainer());
 
         setControl(content);
         setPageComplete(false);
@@ -167,40 +164,28 @@ public class ProjectConfigurationWizardPage extends WizardPage {
 
     @Override
     public void setVisible(boolean visible) {
-        if (visible && !_isInitialized) {
-            try {
-                populateRuntimeVersionsList();
-                String projectName = ((NewSwitchYardProjectWizard) getWizard()).getProjectName();
+        if (visible) {
+            String projectName = ((NewSwitchYardProjectWizard) getWizard()).getProjectName();
+            if (!_isInitialized) {
+                initRuntimeVersionsList();
                 _packageNameText.setText(normalizePackageName(projectName));
                 _groupIdText.setText(DEFAULT_GROUP_ID);
+                validate();
                 // clear out any error the first time we are displayed
                 setErrorMessage(null);
                 _isInitialized = true;
-            } catch (CoreException e) {
-                MessageDialog
-                        .openError(getShell(), "Error Populating SwitchYard Runtime Versions",
-                                "An error occurred while trying to resolve SwitchYard runtime versions available from Maven repositories.");
-                Activator.getDefault().getLog().log(e.getStatus());
             }
+            _artifactIdText.setText(projectName);
         }
         super.setVisible(visible);
     }
 
-    private void populateRuntimeVersionsList() throws CoreException {
-        List<Version> versions = resolveVersionRange(
-                new DefaultArtifact(SWITCHYARD_CORE_GROUP_ID, SWITCHYARD_API_ARTIFACT_ID, "jar", "[,]")).getVersions();
-        Collections.sort(versions, new Comparator<Version>() {
-            @Override
-            public int compare(Version o1, Version o2) {
-                // list the highest version first
-                return -o1.compareTo(o2);
-            }
-        });
-        _runtimeVersionsList.setInput(versions);
-        if (versions.size() > 0) {
+    private void initRuntimeVersionsList() {
+        List<Version> versions = _settingsGroup.getAvailableVersions();
+        if (versions != null && versions.size() > 0) {
             // TODO: allow use of preferred version or allow association of
             // server runtime version.
-            _runtimeVersionsList.setSelection(new StructuredSelection(versions.get(0)), true);
+            _settingsGroup.getRuntimeVersionsList().setSelection(new StructuredSelection(versions.get(0)), true);
         }
     }
 
@@ -264,4 +249,10 @@ public class ProjectConfigurationWizardPage extends WizardPage {
     private String normalizePackageName(String proposedPackageName) {
         return proposedPackageName.replaceAll("[^\\w\\.]", "_");
     }
+
+    @Override
+    public GridData setButtonLayoutData(Button button) {
+        return super.setButtonLayoutData(button);
+    }
+
 }

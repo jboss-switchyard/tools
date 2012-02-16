@@ -19,9 +19,7 @@
 package org.switchyard.tools.ui.wizards;
 
 import java.lang.reflect.InvocationTargetException;
-import java.net.URI;
 
-import org.eclipse.core.resources.IProject;
 import org.eclipse.core.resources.ResourcesPlugin;
 import org.eclipse.core.runtime.CoreException;
 import org.eclipse.core.runtime.IProgressMonitor;
@@ -39,6 +37,7 @@ import org.eclipse.ui.ide.undo.WorkspaceUndoUtil;
 import org.sonatype.aether.version.Version;
 import org.switchyard.tools.ui.Activator;
 import org.switchyard.tools.ui.operations.CreateSwitchYardProjectOperation;
+import org.switchyard.tools.ui.operations.CreateSwitchYardProjectOperation.NewSwitchYardProjectMetaData;
 
 /**
  * NewSwitchYardProjectWizard
@@ -101,28 +100,30 @@ public class NewSwitchYardProjectWizard extends Wizard implements INewWizard {
 
     @Override
     public boolean performFinish() {
+        final NewSwitchYardProjectMetaData projectMetaData = new NewSwitchYardProjectMetaData();
         // get a project handle
-        final IProject newProjectHandle = _newProjectPage.getProjectHandle();
+        projectMetaData.setNewProjectHandle(_newProjectPage.getProjectHandle());
 
         // get a project descriptor
-        URI location = null;
         if (!_newProjectPage.useDefaults()) {
-            location = _newProjectPage.getLocationURI();
+            projectMetaData.setProjectLocation(_newProjectPage.getLocationURI());
         }
 
-        final String packageName = _configurationPage.getPackageName();
-        final String groupId = _configurationPage.getGroupId();
+        projectMetaData.setPackageName(_configurationPage.getPackageName());
+        projectMetaData.setGroupId(_configurationPage.getGroupId());
+        projectMetaData.setProjectVersion(DEFAULT_PROJECT_VERSION);
         final Version runtimeVersion = _configurationPage.getRuntimeVersion();
-        final String runtimeVersionString = runtimeVersion == null ? DEFAULT_RUNTIME_VERSION : runtimeVersion.toString();
+        projectMetaData.setRuntimeVersion(runtimeVersion == null ? DEFAULT_RUNTIME_VERSION : runtimeVersion.toString());
+        projectMetaData.setComponents(_configurationPage.getSelectedComponents());
 
         // create the new project operation
-        final CreateSwitchYardProjectOperation op = new CreateSwitchYardProjectOperation(newProjectHandle, location,
-                packageName, groupId, DEFAULT_PROJECT_VERSION, runtimeVersionString, WorkspaceUndoUtil.getUIInfoAdapter(getShell()));
+        final CreateSwitchYardProjectOperation op = new CreateSwitchYardProjectOperation(projectMetaData,
+                WorkspaceUndoUtil.getUIInfoAdapter(getShell()));
 
         // run the new project creation operation
         try {
             getContainer().run(true, true, new IRunnableWithProgress() {
-                
+
                 @Override
                 public void run(IProgressMonitor monitor) throws InvocationTargetException, InterruptedException {
                     try {
@@ -146,7 +147,7 @@ public class NewSwitchYardProjectWizard extends Wizard implements INewWizard {
                                 realException));
             }
             MessageDialog.openError(getShell(), "Error Creating Project", realException.getMessage());
-            return newProjectHandle.exists();
+            return projectMetaData.getNewProjectHandle().exists();
         }
 
         return true;

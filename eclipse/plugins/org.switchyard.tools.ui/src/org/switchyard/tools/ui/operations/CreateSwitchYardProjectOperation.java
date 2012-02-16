@@ -18,8 +18,6 @@
  */
 package org.switchyard.tools.ui.operations;
 
-import static org.switchyard.tools.ui.M2EUtils.DEFAULT_DEPENDENCIES;
-import static org.switchyard.tools.ui.M2EUtils.DEFAULT_SCANNERS;
 import static org.switchyard.tools.ui.M2EUtils.JBOSS_PUBLIC_REPOSITORY_DEFAULT_ID;
 import static org.switchyard.tools.ui.M2EUtils.MAVEN_MAIN_JAVA_PATH;
 import static org.switchyard.tools.ui.M2EUtils.MAVEN_MAIN_RESOURCES_PATH;
@@ -33,9 +31,12 @@ import static org.switchyard.tools.ui.SwitchYardModelUtils.createTargetnamespace
 import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
 import java.net.URI;
-import java.util.Arrays;
+import java.util.Collection;
+import java.util.LinkedHashSet;
+import java.util.Set;
 
 import org.apache.maven.model.Build;
+import org.apache.maven.model.Dependency;
 import org.apache.maven.model.Model;
 import org.apache.maven.model.Plugin;
 import org.apache.maven.model.Repository;
@@ -66,6 +67,7 @@ import org.switchyard.config.OutputKey;
 import org.switchyard.config.model.switchyard.SwitchYardModel;
 import org.switchyard.tools.ui.Activator;
 import org.switchyard.tools.ui.M2EUtils;
+import org.switchyard.tools.ui.common.ISwitchYardComponentExtension;
 import org.switchyard.tools.ui.facets.ISwitchYardFacetConstants;
 
 /**
@@ -84,33 +86,128 @@ public class CreateSwitchYardProjectOperation implements IWorkspaceRunnable {
     private static final String SWITCHYARD_XML = "switchyard.xml";
     private static final String DEFAULT_JAVA_VERSION = "1.6";
 
-    private IProject _newProjectHandle;
-    private URI _projectLocation;
-    private String _packageName;
-    private String _groupId;
-    private String _version;
-    private String _runtimeVersion;
-    private IAdaptable _uiInfo;
+    /**
+     * Simple bean used for specifying details about the project to be created.
+     */
+    public static final class NewSwitchYardProjectMetaData {
+        private IProject _newProjectHandle;
+        private URI _projectLocation;
+        private String _packageName;
+        private String _groupId;
+        private String _projectVersion;
+        private String _runtimeVersion;
+        private Collection<ISwitchYardComponentExtension> _components;
+
+        /**
+         * @return the new project handle.
+         */
+        public IProject getNewProjectHandle() {
+            return _newProjectHandle;
+        }
+
+        /**
+         * @param newProjectHandle the new project handle.
+         */
+        public void setNewProjectHandle(IProject newProjectHandle) {
+            _newProjectHandle = newProjectHandle;
+        }
+
+        /**
+         * @return the project location.
+         */
+        public URI getProjectLocation() {
+            return _projectLocation;
+        }
+
+        /**
+         * @param projectLocation the project location.
+         */
+        public void setProjectLocation(URI projectLocation) {
+            _projectLocation = projectLocation;
+        }
+
+        /**
+         * @return the default package name.
+         */
+        public String getPackageName() {
+            return _packageName;
+        }
+
+        /**
+         * @param packageName the default package name.
+         */
+        public void setPackageName(String packageName) {
+            _packageName = packageName;
+        }
+
+        /**
+         * @return the groupId.
+         */
+        public String getGroupId() {
+            return _groupId;
+        }
+
+        /**
+         * @param groupId the groupId.
+         */
+        public void setGroupId(String groupId) {
+            _groupId = groupId;
+        }
+
+        /**
+         * @return the project version.
+         */
+        public String getProjectVersion() {
+            return _projectVersion;
+        }
+
+        /**
+         * @param projectVersion the project version.
+         */
+        public void setProjectVersion(String projectVersion) {
+            _projectVersion = projectVersion;
+        }
+
+        /**
+         * @return the SwitchYard runtime version.
+         */
+        public String getRuntimeVersion() {
+            return _runtimeVersion;
+        }
+
+        /**
+         * @param runtimeVersion SwtichYard runtime version.
+         */
+        public void setRuntimeVersion(String runtimeVersion) {
+            _runtimeVersion = runtimeVersion;
+        }
+
+        /**
+         * @return the SwitchYard components.
+         */
+        public Collection<ISwitchYardComponentExtension> getComponents() {
+            return _components;
+        }
+
+        /**
+         * @param components the SwitchYard components.
+         */
+        public void setComponents(Collection<ISwitchYardComponentExtension> components) {
+            _components = components;
+        }
+    }
+
+    private final NewSwitchYardProjectMetaData _projectMetatData;
+    private final IAdaptable _uiInfo;
 
     /**
      * Create a new CreateSwitchYardProjectOperation.
      * 
-     * @param newProjectHandle handle for the new project.
-     * @param projectLocation location for the project, may be null.
-     * @param packageName default Java package for project.
-     * @param groupId for project pom.
-     * @param version for project.
-     * @param runtimeVersion for switchyard.
+     * @param projectMetatData details about the project to be created.
      * @param uiInfo adaptable for UI Shell, may be null.
      */
-    public CreateSwitchYardProjectOperation(IProject newProjectHandle, URI projectLocation, String packageName,
-            String groupId, String version, String runtimeVersion, IAdaptable uiInfo) {
-        _newProjectHandle = newProjectHandle;
-        _projectLocation = projectLocation;
-        _packageName = packageName;
-        _groupId = groupId;
-        _version = version;
-        _runtimeVersion = runtimeVersion;
+    public CreateSwitchYardProjectOperation(NewSwitchYardProjectMetaData projectMetatData, IAdaptable uiInfo) {
+        _projectMetatData = projectMetatData;
         _uiInfo = uiInfo;
     }
 
@@ -125,8 +222,9 @@ public class CreateSwitchYardProjectOperation implements IWorkspaceRunnable {
                     SubProgressMonitor.PREPEND_MAIN_LABEL_TO_SUBTASK);
             try {
                 IWorkspace workspace = ResourcesPlugin.getWorkspace();
-                final IProjectDescription description = workspace.newProjectDescription(_newProjectHandle.getName());
-                description.setLocationURI(_projectLocation);
+                final IProjectDescription description = workspace.newProjectDescription(_projectMetatData
+                        .getNewProjectHandle().getName());
+                description.setLocationURI(_projectMetatData.getProjectLocation());
                 CreateProjectOperation op = new CreateProjectOperation(description, "New SwitchYard Project");
                 op.execute(subMonitor, _uiInfo);
             } catch (ExecutionException e) {
@@ -143,8 +241,9 @@ public class CreateSwitchYardProjectOperation implements IWorkspaceRunnable {
             // create the folder structure
             try {
                 monitor.subTask("Creating default folders.");
-                String packageFolder = _packageName.replace('.', '/');
-                IFolder folder = _newProjectHandle.getFolder(MAVEN_MAIN_JAVA_PATH).getFolder(packageFolder);
+                String packageFolder = _projectMetatData.getPackageName().replace('.', '/');
+                IFolder folder = _projectMetatData.getNewProjectHandle().getFolder(MAVEN_MAIN_JAVA_PATH)
+                        .getFolder(packageFolder);
                 CreateFolderOperation op = new CreateFolderOperation(folder, null,
                         "Creating default main source folder");
                 subMonitor = new SubProgressMonitor(monitor, 25, SubProgressMonitor.PREPEND_MAIN_LABEL_TO_SUBTASK);
@@ -152,21 +251,22 @@ public class CreateSwitchYardProjectOperation implements IWorkspaceRunnable {
                 subMonitor.done();
                 subMonitor.setTaskName("");
 
-                folder = _newProjectHandle.getFolder(MAVEN_MAIN_RESOURCES_PATH);
+                folder = _projectMetatData.getNewProjectHandle().getFolder(MAVEN_MAIN_RESOURCES_PATH);
                 op = new CreateFolderOperation(folder, null, "Creating default main resource folder");
                 subMonitor = new SubProgressMonitor(monitor, 25, SubProgressMonitor.PREPEND_MAIN_LABEL_TO_SUBTASK);
                 op.execute(subMonitor, _uiInfo);
                 subMonitor.done();
                 subMonitor.setTaskName("");
 
-                folder = _newProjectHandle.getFolder(MAVEN_TEST_JAVA_PATH).getFolder(packageFolder);
+                folder = _projectMetatData.getNewProjectHandle().getFolder(MAVEN_TEST_JAVA_PATH)
+                        .getFolder(packageFolder);
                 op = new CreateFolderOperation(folder, null, "Creating default test source folder");
                 subMonitor = new SubProgressMonitor(monitor, 25, SubProgressMonitor.PREPEND_MAIN_LABEL_TO_SUBTASK);
                 op.execute(subMonitor, _uiInfo);
                 subMonitor.done();
                 subMonitor.setTaskName("");
 
-                folder = _newProjectHandle.getFolder(MAVEN_TEST_RESOURCES_PATH);
+                folder = _projectMetatData.getNewProjectHandle().getFolder(MAVEN_TEST_RESOURCES_PATH);
                 op = new CreateFolderOperation(folder, null, "Creating default test resource folder");
                 subMonitor = new SubProgressMonitor(monitor, 25, SubProgressMonitor.PREPEND_MAIN_LABEL_TO_SUBTASK);
                 op.execute(subMonitor, _uiInfo);
@@ -183,7 +283,7 @@ public class CreateSwitchYardProjectOperation implements IWorkspaceRunnable {
                 Model model = createPom();
                 ByteArrayOutputStream baos = new ByteArrayOutputStream();
                 MavenPlugin.getMaven().writeModel(model, baos);
-                IFile pomFile = _newProjectHandle.getFile("pom.xml");
+                IFile pomFile = _projectMetatData.getNewProjectHandle().getFile("pom.xml");
                 CreateFileOperation op = new CreateFileOperation(pomFile, null, new ByteArrayInputStream(
                         baos.toByteArray()), "Creating pom.xml");
                 subMonitor = new SubProgressMonitor(monitor, 100, SubProgressMonitor.PREPEND_MAIN_LABEL_TO_SUBTASK);
@@ -198,12 +298,14 @@ public class CreateSwitchYardProjectOperation implements IWorkspaceRunnable {
             // create switchyard.xml
             try {
                 monitor.subTask("Creating switchyard.xml file.");
-                SwitchYardModel switchYardModel = createSwitchYardModel(_newProjectHandle.getName(),
-                        createTargetnamespace(_groupId, _newProjectHandle.getName(), _version));
+                SwitchYardModel switchYardModel = createSwitchYardModel(
+                        _projectMetatData.getNewProjectHandle().getName(),
+                        createTargetnamespace(_projectMetatData.getGroupId(), _projectMetatData.getNewProjectHandle()
+                                .getName(), _projectMetatData.getProjectVersion()));
                 ByteArrayOutputStream baos = new ByteArrayOutputStream();
                 switchYardModel.getModelConfiguration().write(baos, new OutputKey[0]);
-                IFile switchYardFile = _newProjectHandle.getFolder(MAVEN_MAIN_RESOURCES_PATH).getFolder(META_INF)
-                        .getFile(SWITCHYARD_XML);
+                IFile switchYardFile = _projectMetatData.getNewProjectHandle().getFolder(MAVEN_MAIN_RESOURCES_PATH)
+                        .getFolder(META_INF).getFile(SWITCHYARD_XML);
                 CreateFileOperation op = new CreateFileOperation(switchYardFile, null, new ByteArrayInputStream(
                         baos.toByteArray()), "Creating switchyard.xml");
                 subMonitor = new SubProgressMonitor(monitor, 100, SubProgressMonitor.PREPEND_MAIN_LABEL_TO_SUBTASK);
@@ -221,8 +323,9 @@ public class CreateSwitchYardProjectOperation implements IWorkspaceRunnable {
                 subMonitor = new SubProgressMonitor(monitor, 100, SubProgressMonitor.PREPEND_MAIN_LABEL_TO_SUBTASK);
                 IProjectConfigurationManager mavenProjectConfigurationManager = MavenPlugin
                         .getProjectConfigurationManager();
-                mavenProjectConfigurationManager.enableMavenNature(_newProjectHandle,
-                        mavenProjectConfigurationManager.getResolverConfiguration(_newProjectHandle), subMonitor);
+                mavenProjectConfigurationManager.enableMavenNature(_projectMetatData.getNewProjectHandle(),
+                        mavenProjectConfigurationManager.getResolverConfiguration(_projectMetatData
+                                .getNewProjectHandle()), subMonitor);
             } catch (Exception e) {
                 mergeStatus(status, "Error updating maven project configuration.", e);
             } finally {
@@ -234,7 +337,8 @@ public class CreateSwitchYardProjectOperation implements IWorkspaceRunnable {
             try {
                 monitor.subTask("Configuring project facets.");
                 subMonitor = new SubProgressMonitor(monitor, 50, SubProgressMonitor.PREPEND_MAIN_LABEL_TO_SUBTASK);
-                final IFacetedProject facetedProject = ProjectFacetsManager.create(_newProjectHandle, true, subMonitor);
+                final IFacetedProject facetedProject = ProjectFacetsManager.create(
+                        _projectMetatData.getNewProjectHandle(), true, subMonitor);
                 subMonitor.done();
                 subMonitor.setTaskName("");
 
@@ -272,18 +376,31 @@ public class CreateSwitchYardProjectOperation implements IWorkspaceRunnable {
 
         // basic project setup
         model.setModelVersion("4.0.0");
-        model.setGroupId(_groupId);
-        model.setArtifactId(_newProjectHandle.getName());
-        model.setVersion(_version);
+        model.setGroupId(_projectMetatData.getGroupId());
+        model.setArtifactId(_projectMetatData.getNewProjectHandle().getName());
+        model.setVersion(_projectMetatData.getProjectVersion());
         model.setPackaging("jar");
-        model.setName(_groupId + ":" + _newProjectHandle.getName());
+        model.setName(_projectMetatData.getGroupId() + ":" + _projectMetatData.getNewProjectHandle().getName());
 
         // add runtime dependencies
-        model.addProperty(SWITCHYARD_VERSION, _runtimeVersion);
-        model.getDependencies().addAll(DEFAULT_DEPENDENCIES);
+        model.addProperty(SWITCHYARD_VERSION, _projectMetatData.getRuntimeVersion());
+
+        String versionString = "${" + SWITCHYARD_VERSION + "}";
+        Set<String> scanners = new LinkedHashSet<String>();
+        for (ISwitchYardComponentExtension component : _projectMetatData.getComponents()) {
+            String scanner = component.getScannerClassName();
+            if (scanner != null) {
+                scanners.add(scanner);
+            }
+            for (Dependency dependency : component.getDependencies()) {
+                dependency = dependency.clone();
+                dependency.setVersion(versionString);
+                model.getDependencies().add(dependency);
+            }
+        }
 
         // add build section
-        model.setBuild(createBuildSection());
+        model.setBuild(createBuildSection(versionString, scanners));
 
         // add repository
         Repository repository = createJBossPublicRepository(JBOSS_PUBLIC_REPOSITORY_DEFAULT_ID);
@@ -293,10 +410,10 @@ public class CreateSwitchYardProjectOperation implements IWorkspaceRunnable {
         return model;
     }
 
-    private Build createBuildSection() {
+    private Build createBuildSection(String versionString, Set<String> scanners) {
         Build build = new Build();
+        build.addPlugin(createSwitchYardPlugin(versionString, scanners));
         build.addPlugin(createCompilerPlugin());
-        build.addPlugin(createSwitchYardPlugin());
         return build;
     }
 
@@ -327,8 +444,8 @@ public class CreateSwitchYardProjectOperation implements IWorkspaceRunnable {
         return plugin;
     }
 
-    private Plugin createSwitchYardPlugin() {
-        return M2EUtils.createSwitchYardPlugin(Arrays.asList(DEFAULT_SCANNERS));
+    private Plugin createSwitchYardPlugin(String versionString, Set<String> scanners) {
+        return M2EUtils.createSwitchYardPlugin(versionString, true, scanners);
     }
 
 }

@@ -39,10 +39,11 @@ import org.eclipse.jface.viewers.StructuredSelection;
 import org.eclipse.m2e.tests.common.AbstractMavenProjectTestCase;
 import org.eclipse.wst.common.project.facet.core.IFacetedProject;
 import org.eclipse.wst.common.project.facet.core.ProjectFacetsManager;
-import org.switchyard.tools.ui.M2EUtils;
+import org.switchyard.tools.ui.common.SwitchYardComponentExtensionManager;
 import org.switchyard.tools.ui.operations.AbstractSwitchYardProjectOperation;
 import org.switchyard.tools.ui.operations.CreateBeanServiceOperation;
 import org.switchyard.tools.ui.operations.CreateSwitchYardProjectOperation;
+import org.switchyard.tools.ui.operations.CreateSwitchYardProjectOperation.NewSwitchYardProjectMetaData;
 import org.switchyard.tools.ui.wizards.NewBeanServiceClassWizardPage;
 import org.switchyard.tools.ui.wizards.NewServiceTestClassWizardPage;
 
@@ -82,8 +83,16 @@ public class CreateSwitchYardProjectTest extends AbstractMavenProjectTestCase {
 
         assertTrue("Project already exists.", !newProjectHandle.exists());
 
-        IWorkspaceRunnable op = new CreateSwitchYardProjectOperation(newProjectHandle, null, packageName, groupId,
-                version, runtimeVersion, null);
+        final NewSwitchYardProjectMetaData projectMetaData = new NewSwitchYardProjectMetaData();
+        projectMetaData.setNewProjectHandle(newProjectHandle);
+        projectMetaData.setPackageName(packageName);
+        projectMetaData.setGroupId(groupId);
+        projectMetaData.setProjectVersion(version);
+        projectMetaData.setRuntimeVersion(runtimeVersion);
+        projectMetaData.setComponents(Collections.singleton(SwitchYardComponentExtensionManager.instance()
+                .getRuntimeComponentExtension()));
+
+        IWorkspaceRunnable op = new CreateSwitchYardProjectOperation(projectMetaData, null);
         workspace.run(op, new NullProgressMonitor());
 
         waitForJobsToComplete();
@@ -115,8 +124,8 @@ public class CreateSwitchYardProjectTest extends AbstractMavenProjectTestCase {
                 fp.hasProjectFacet(ProjectFacetsManager.getProjectFacet("java")));
 
         // Test project update
-        op = new AbstractSwitchYardProjectOperation(null, Collections.singleton(M2EUtils.createSwitchYardDependency(
-                "org.switchyard.components", "switchyard-component-bpm")), Collections.<String> emptySet(), true,
+        op = new AbstractSwitchYardProjectOperation(null, Collections.singleton(SwitchYardComponentExtensionManager
+                .instance().getComponentExtension("org.switchyard.components:switchyard-component-bpm")), true,
                 "Testing SwitchYard project update", null) {
 
             @Override

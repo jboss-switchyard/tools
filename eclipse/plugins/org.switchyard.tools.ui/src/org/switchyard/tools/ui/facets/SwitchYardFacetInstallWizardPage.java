@@ -18,39 +18,26 @@
  */
 package org.switchyard.tools.ui.facets;
 
-import static org.switchyard.tools.ui.M2EUtils.SWITCHYARD_API_ARTIFACT_ID;
-import static org.switchyard.tools.ui.M2EUtils.SWITCHYARD_CORE_GROUP_ID;
-import static org.switchyard.tools.ui.M2EUtils.resolveVersionRange;
-
-import java.util.Collections;
-import java.util.Comparator;
 import java.util.List;
 
-import org.eclipse.core.runtime.CoreException;
 import org.eclipse.core.runtime.IStatus;
-import org.eclipse.jface.dialogs.MessageDialog;
-import org.eclipse.jface.viewers.ArrayContentProvider;
 import org.eclipse.jface.viewers.ISelectionChangedListener;
 import org.eclipse.jface.viewers.IStructuredSelection;
-import org.eclipse.jface.viewers.LabelProvider;
-import org.eclipse.jface.viewers.ListViewer;
 import org.eclipse.jface.viewers.SelectionChangedEvent;
 import org.eclipse.jface.viewers.StructuredSelection;
-import org.eclipse.m2e.core.internal.index.IndexedArtifactFile;
 import org.eclipse.swt.SWT;
-import org.eclipse.swt.events.SelectionAdapter;
-import org.eclipse.swt.events.SelectionEvent;
 import org.eclipse.swt.layout.GridData;
 import org.eclipse.swt.layout.GridLayout;
 import org.eclipse.swt.widgets.Button;
 import org.eclipse.swt.widgets.Composite;
-import org.eclipse.swt.widgets.Label;
 import org.eclipse.wst.common.frameworks.datamodel.IDataModel;
 import org.eclipse.wst.common.project.facet.ui.AbstractFacetWizardPage;
 import org.eclipse.wst.common.project.facet.ui.IFacetWizardPage;
-import org.sonatype.aether.util.artifact.DefaultArtifact;
 import org.sonatype.aether.version.Version;
-import org.switchyard.tools.ui.Activator;
+import org.switchyard.tools.ui.common.ILayoutUtilities;
+import org.switchyard.tools.ui.common.ISwitchYardComponentExtension;
+import org.switchyard.tools.ui.common.SwitchYardComponentExtensionManager;
+import org.switchyard.tools.ui.common.SwitchYardSettingsGroup;
 
 /**
  * SwitchYardFacetInstallWizardPage
@@ -59,13 +46,11 @@ import org.switchyard.tools.ui.Activator;
  * 
  * @author Rob Cernich
  */
-@SuppressWarnings("restriction")
 public class SwitchYardFacetInstallWizardPage extends AbstractFacetWizardPage implements IFacetWizardPage,
-        ISwitchYardFacetConstants {
+        ISwitchYardFacetConstants, ILayoutUtilities {
 
     private boolean _isInitialized;
-    private ListViewer _runtimeVersionsList;
-    private Button _runtimeProvidedCheckbox;
+    private SwitchYardSettingsGroup _settingsGroup;
     private IDataModel _config;
 
     /**
@@ -79,39 +64,14 @@ public class SwitchYardFacetInstallWizardPage extends AbstractFacetWizardPage im
 
     @Override
     public void createControl(Composite parent) {
+        initializeDialogUnits(parent);
+
         Composite content = new Composite(parent, SWT.NONE);
         content.setLayout(new GridLayout());
 
-        _runtimeProvidedCheckbox = new Button(content, SWT.CHECK);
-        _runtimeProvidedCheckbox.setText("SwitchYard dependencies provided by runtime");
-        _runtimeProvidedCheckbox.setLayoutData(new GridData());
-        _runtimeProvidedCheckbox.addSelectionListener(new SelectionAdapter() {
-            @Override
-            public void widgetSelected(SelectionEvent event) {
-                _config.setBooleanProperty(RUNTIME_PROVIDED, _runtimeProvidedCheckbox.getSelection());
-                validate();
-            }
+        _settingsGroup = new SwitchYardSettingsGroup(content, this, getWizard().getContainer());
 
-        });
-        // not currently supported
-        _runtimeProvidedCheckbox.setVisible(false);
-
-        Label label = new Label(content, SWT.NONE);
-        label.setText("SwitchYard Runtime Version:");
-
-        _runtimeVersionsList = new ListViewer(content, SWT.SINGLE | SWT.H_SCROLL | SWT.V_SCROLL | SWT.BORDER);
-        _runtimeVersionsList.getList().setLayoutData(new GridData(GridData.FILL_BOTH));
-        _runtimeVersionsList.setLabelProvider(new LabelProvider() {
-            @Override
-            public String getText(Object element) {
-                if (element instanceof IndexedArtifactFile) {
-                    return ((IndexedArtifactFile) element).getArtifactKey().getVersion();
-                }
-                return super.getText(element);
-            }
-        });
-        _runtimeVersionsList.setContentProvider(new ArrayContentProvider());
-        _runtimeVersionsList.addSelectionChangedListener(new ISelectionChangedListener() {
+        _settingsGroup.getRuntimeVersionsList().addSelectionChangedListener(new ISelectionChangedListener() {
             @Override
             public void selectionChanged(SelectionChangedEvent event) {
                 if (event.getSelection().isEmpty()) {
@@ -124,68 +84,62 @@ public class SwitchYardFacetInstallWizardPage extends AbstractFacetWizardPage im
             }
         });
 
-        initControls();
-
         setControl(content);
+    }
+
+    @Override
+    public void transferStateToConfig() {
+        super.transferStateToConfig();
+        _config.setProperty(RUNTIME_COMPONENTS, _settingsGroup.getSelectedComponents());
     }
 
     @Override
     public void setConfig(Object config) {
         _config = (IDataModel) config;
-        initControls();
     }
-    
+
     @Override
     public void setVisible(boolean visible) {
         if (visible && !_isInitialized) {
-            try {
-                populateRuntimeVersionsList();
-                // clear out any error the first time we are displayed
-                setErrorMessage(null);
-                _isInitialized = true;
-            } catch (CoreException e) {
-                MessageDialog
-                        .openError(getShell(), "Error Populating SwitchYard Runtime Versions",
-                                "An error occurred while trying to resolve SwitchYard runtime versions available from Maven repositories.");
-                Activator.getDefault().getLog().log(e.getStatus());
-            }
+            initControls();
+            // clear out any error the first time we are displayed
+            setErrorMessage(null);
+            _isInitialized = true;
         }
         super.setVisible(visible);
     }
 
+    @SuppressWarnings("unchecked")
     private void initControls() {
-        if (_runtimeProvidedCheckbox == null) {
+        if (_settingsGroup == null) {
             return;
         }
         if (_config.isPropertySet(RUNTIME_PROVIDED)) {
-            _runtimeProvidedCheckbox.setSelection(_config.getBooleanProperty(RUNTIME_PROVIDED));
+            _settingsGroup.getRuntimeProvidedCheckbox().setSelection(_config.getBooleanProperty(RUNTIME_PROVIDED));
         } else {
-            _runtimeProvidedCheckbox.setSelection((Boolean) _config.getDefaultProperty(RUNTIME_PROVIDED));
+            _settingsGroup.getRuntimeProvidedCheckbox().setSelection(
+                    (Boolean) _config.getDefaultProperty(RUNTIME_PROVIDED));
         }
         if (_config.isPropertySet(RUNTIME_VERSION)) {
-            _runtimeVersionsList.setSelection(new StructuredSelection(_config.getProperty(RUNTIME_VERSION)), true);
+            _settingsGroup.getRuntimeVersionsList().setSelection(
+                    new StructuredSelection(_config.getProperty(RUNTIME_VERSION)), true);
+        } else {
+            Version defaultVersion = (Version) _config.getDefaultProperty(RUNTIME_VERSION);
+            if (defaultVersion != null) {
+                _settingsGroup.getRuntimeVersionsList().setSelection(new StructuredSelection(defaultVersion), true);
+            }
         }
+        if (_config.isPropertySet(RUNTIME_COMPONENTS)) {
+            _settingsGroup.getComponentsTable().setCheckedElements(
+                    ((List<ISwitchYardComponentExtension>) _config.getProperty(RUNTIME_COMPONENTS)).toArray());
+        } else {
+            _settingsGroup.getComponentsTable().setCheckedElements(
+                    ((List<ISwitchYardComponentExtension>) _config.getDefaultProperty(RUNTIME_COMPONENTS)).toArray());
+        }
+        _settingsGroup.getComponentsTable().setCheckedElements(
+                new Object[] {SwitchYardComponentExtensionManager.instance().getRuntimeComponentExtension() });
     }
 
-    private void populateRuntimeVersionsList() throws CoreException {
-        List<Version> versions = resolveVersionRange(
-                new DefaultArtifact(SWITCHYARD_CORE_GROUP_ID, SWITCHYARD_API_ARTIFACT_ID, "jar", "[,]")).getVersions();
-        Collections.sort(versions, new Comparator<Version>() {
-            @Override
-            public int compare(Version o1, Version o2) {
-                // list the highest version first
-                return -o1.compareTo(o2);
-            }
-        });
-        _runtimeVersionsList.setInput(versions);
-        if (versions.size() > 0) {
-            // TODO: allow use of preferred version or allow association of
-            // server runtime version.
-            _runtimeVersionsList.setSelection(new StructuredSelection(versions.get(0)), true);
-        }
-        validate();
-    }
-    
     private void validate() {
         IStatus status = _config.validate();
         switch (status.getSeverity()) {
@@ -204,6 +158,11 @@ public class SwitchYardFacetInstallWizardPage extends AbstractFacetWizardPage im
             break;
         }
         setPageComplete(getErrorMessage() == null);
+    }
+
+    @Override
+    public GridData setButtonLayoutData(Button button) {
+        return super.setButtonLayoutData(button);
     }
 
 }

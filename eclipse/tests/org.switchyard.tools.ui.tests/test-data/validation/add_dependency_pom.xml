@@ -48,17 +48,6 @@
   <build>
     <plugins>
       <plugin>
-        <artifactId>maven-compiler-plugin</artifactId>
-        <version>2.3.2</version>
-        <configuration>
-          <source>1.6</source>
-          <target>1.6</target>
-          <debug>true</debug>
-          <showWarnings>true</showWarnings>
-          <showDeprecation>true</showDeprecation>
-        </configuration>
-      </plugin>
-      <plugin>
         <groupId>org.switchyard</groupId>
         <artifactId>switchyard-plugin</artifactId>
         <version>${switchyard.version}</version>
@@ -71,12 +60,20 @@
         </executions>
         <configuration>
           <scannerClassNames>
-            <param>org.switchyard.component.bean.config.model.BeanSwitchYardScanner</param>
-            <param>org.switchyard.component.camel.config.model.RouteScanner</param>
-            <param>org.switchyard.component.bpm.config.model.BPMSwitchYardScanner</param>
-            <param>org.switchyard.component.rules.config.model.RulesSwitchYardScanner</param>
             <param>org.switchyard.transform.config.model.TransformSwitchYardScanner</param>
+            <param>org.switchyard.component.bpm.config.model.BPMSwitchYardScanner</param>
           </scannerClassNames>
+        </configuration>
+      </plugin>
+      <plugin>
+        <artifactId>maven-compiler-plugin</artifactId>
+        <version>2.3.2</version>
+        <configuration>
+          <source>1.6</source>
+          <target>1.6</target>
+          <debug>true</debug>
+          <showWarnings>true</showWarnings>
+          <showDeprecation>true</showDeprecation>
         </configuration>
       </plugin>
     </plugins>
