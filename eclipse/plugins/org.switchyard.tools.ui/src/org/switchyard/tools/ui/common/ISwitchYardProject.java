@@ -18,11 +18,15 @@
  */
 package org.switchyard.tools.ui.common;
 
+import java.io.IOException;
 import java.util.Set;
 
 import org.apache.maven.project.MavenProject;
+import org.eclipse.core.resources.IFile;
 import org.eclipse.core.resources.IProject;
+import org.eclipse.core.runtime.CoreException;
 import org.eclipse.core.runtime.IProgressMonitor;
+import org.switchyard.config.model.switchyard.SwitchYardModel;
 
 /**
  * ISwitchYardProject
@@ -75,6 +79,27 @@ public interface ISwitchYardProject {
      * @return true if the meta-data for this project needs to be updated.
      */
     boolean needsLoading();
+
+    /**
+     * Scans resource folders for the first instance of META-INF/switchyard.xml.
+     * If one is not located, the first applicable resource folder will be used.
+     * 
+     * @return the location of the switchyard.xml file.
+     */
+    public IFile getSwitchYardConfigurationFile();
+
+    /**
+     * Loads the SwitchYardModel associated with this project. This method will
+     * return an empty model if a switchyard.xml file does not exist within the
+     * project.
+     * 
+     * @param monitor the progress monitor.
+     * @return the SwitchYardModel associated with this project.
+     * @throws CoreException if an error occurs accessing the workspace
+     *             resource.
+     * @throws IOException if an error occurs loading the model.
+     */
+    public SwitchYardModel loadSwitchYardModel(IProgressMonitor monitor) throws CoreException, IOException;
 
     /**
      * Force loading of project meta-data. This may be a long running operation

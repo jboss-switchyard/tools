@@ -24,6 +24,7 @@ import static org.switchyard.tools.ui.M2EUtils.createJBossPublicRepository;
 
 import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
+import java.io.IOException;
 import java.util.Collection;
 import java.util.Iterator;
 import java.util.LinkedHashMap;
@@ -35,6 +36,7 @@ import org.apache.maven.model.Dependency;
 import org.apache.maven.model.Model;
 import org.apache.maven.model.Repository;
 import org.apache.maven.project.MavenProject;
+import org.eclipse.core.resources.IFile;
 import org.eclipse.core.resources.IProject;
 import org.eclipse.core.runtime.CoreException;
 import org.eclipse.core.runtime.IProgressMonitor;
@@ -44,6 +46,7 @@ import org.eclipse.m2e.core.MavenPlugin;
 import org.eclipse.m2e.core.internal.IMavenConstants;
 import org.eclipse.m2e.core.project.MavenUpdateRequest;
 import org.eclipse.m2e.core.ui.internal.UpdateConfigurationJob;
+import org.switchyard.config.model.switchyard.SwitchYardModel;
 import org.switchyard.tools.ui.Activator;
 import org.switchyard.tools.ui.common.ISwitchYardComponentExtension;
 import org.switchyard.tools.ui.common.ISwitchYardProjectWorkingCopy;
@@ -112,6 +115,16 @@ public class SwitchYardProjectWorkingCopy implements ISwitchYardProjectWorkingCo
     @Override
     public String getRawVersionString() {
         return _switchYardProject.getRawVersionString();
+    }
+
+    @Override
+    public IFile getSwitchYardConfigurationFile() {
+        return _switchYardProject.getSwitchYardConfigurationFile();
+    }
+
+    @Override
+    public SwitchYardModel loadSwitchYardModel(IProgressMonitor monitor) throws CoreException, IOException {
+        return _switchYardProject.loadSwitchYardModel(monitor);
     }
 
     @Override

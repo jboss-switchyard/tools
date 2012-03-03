@@ -168,8 +168,7 @@ public abstract class AbstractSwitchYardProjectOperation implements IWorkspaceRu
             try {
                 monitor.subTask("Updating switchyard.xml file.");
                 subMonitor = new SubProgressMonitor(monitor, 100, SubProgressMonitor.PREPEND_MAIN_LABEL_TO_SUBTASK);
-                updateSwitchYardFile(MavenProjectUtils.getResourceLocations(_workingCopy.getProject(), _workingCopy
-                        .getMavenProject().getResources()), subMonitor);
+                updateSwitchYardFile(subMonitor);
             } catch (CoreException e) {
                 status.merge(e.getStatus());
             } finally {
@@ -233,23 +232,15 @@ public abstract class AbstractSwitchYardProjectOperation implements IWorkspaceRu
         }
     }
 
-    private void updateSwitchYardFile(IPath[] resourceLocations, IProgressMonitor monitor) throws CoreException {
+    private void updateSwitchYardFile(IProgressMonitor monitor) throws CoreException {
         monitor.beginTask("Updating switchyard.xml", 100);
         try {
             monitor.subTask("Reading switchyard.xml");
-            IFile switchYardFile = null;
-            IProject project = _workingCopy.getProject();
-            for (IPath resourceLocation : resourceLocations) {
-                IFile temp = project.getFolder(resourceLocation).getFile("META-INF/switchyard.xml");
-                if (temp.exists()) {
-                    switchYardFile = temp;
-                    break;
-                }
-            }
+            IFile switchYardFile = _workingCopy.getSwitchYardConfigurationFile();
 
             boolean modelUpdated = false;
             SwitchYardModel switchYardModel;
-            if (switchYardFile == null) {
+            if (!switchYardFile.exists()) {
                 ArtifactKey key = new ArtifactKey(_workingCopy.getMavenProject().getArtifact());
                 switchYardModel = createSwitchYardModel(key.getArtifactId(),
                         createTargetnamespace(key.getGroupId(), key.getArtifactId(), key.getVersion()));
@@ -285,17 +276,6 @@ public abstract class AbstractSwitchYardProjectOperation implements IWorkspaceRu
 
             if (!modelUpdated) {
                 return;
-            }
-            if (switchYardFile == null) {
-                if (resourceLocations.length > 0) {
-                    // TODO: find the first resource root that would include a
-                    // switchyard.xml file
-                    switchYardFile = project.getFolder(resourceLocations[0]).getFile("META-INF/switchyard.xml");
-                }
-            }
-            if (switchYardFile == null) {
-                throw new CoreException(new Status(Status.ERROR, Activator.PLUGIN_ID,
-                        "Could not locate switchyard.xml file."));
             }
 
             monitor.subTask("Writing udpated switchyard.xml");

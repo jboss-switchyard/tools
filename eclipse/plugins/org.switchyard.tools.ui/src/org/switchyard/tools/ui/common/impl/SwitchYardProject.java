@@ -28,11 +28,15 @@ import static org.switchyard.tools.ui.M2EUtils.SWITCHYARD_VERSION;
 import static org.switchyard.tools.ui.M2EUtils.UNKNOWN_VERSION_STRING;
 import static org.switchyard.tools.ui.M2EUtils.createSwitchYardPlugin;
 
+import java.io.IOException;
+import java.io.InputStream;
 import java.util.Collection;
 import java.util.Collections;
 import java.util.HashSet;
 import java.util.LinkedHashSet;
 import java.util.Set;
+
+import javax.xml.namespace.QName;
 
 import org.apache.maven.model.Build;
 import org.apache.maven.model.Dependency;
@@ -41,13 +45,19 @@ import org.apache.maven.model.Plugin;
 import org.apache.maven.model.PluginExecution;
 import org.apache.maven.project.MavenProject;
 import org.codehaus.plexus.util.xml.Xpp3Dom;
+import org.eclipse.core.resources.IFile;
 import org.eclipse.core.resources.IProject;
 import org.eclipse.core.runtime.CoreException;
+import org.eclipse.core.runtime.IPath;
 import org.eclipse.core.runtime.IProgressMonitor;
+import org.eclipse.core.runtime.Status;
 import org.eclipse.core.runtime.SubProgressMonitor;
 import org.eclipse.m2e.core.MavenPlugin;
 import org.eclipse.m2e.core.internal.IMavenConstants;
 import org.eclipse.m2e.core.project.IMavenProjectFacade;
+import org.eclipse.m2e.core.project.MavenProjectUtils;
+import org.switchyard.config.model.ModelPuller;
+import org.switchyard.config.model.switchyard.SwitchYardModel;
 import org.switchyard.tools.ui.Activator;
 import org.switchyard.tools.ui.common.ISwitchYardComponentExtension;
 import org.switchyard.tools.ui.common.ISwitchYardProject;
@@ -73,6 +83,7 @@ public class SwitchYardProject implements ISwitchYardProject {
     private volatile boolean _usingDependencyManagement;
     private volatile Set<ISwitchYardComponentExtension> _components;
     private volatile SwitchYardConfigurePlugin _plugin;
+    private volatile IFile _switchYardConfigurationFile;
     private Set<SwitchYardProjectWorkingCopy> _workingCopies = new HashSet<SwitchYardProjectWorkingCopy>();
 
     /**
@@ -125,6 +136,38 @@ public class SwitchYardProject implements ISwitchYardProject {
     }
 
     @Override
+    public IFile getSwitchYardConfigurationFile() {
+        return _switchYardConfigurationFile;
+    }
+
+    @Override
+    public SwitchYardModel loadSwitchYardModel(IProgressMonitor monitor) throws CoreException, IOException {
+        if (needsLoading()) {
+            load(monitor);
+        }
+        if (_switchYardConfigurationFile.exists()) {
+            try {
+                InputStream is = _switchYardConfigurationFile.getContents(true);
+                try {
+                    return new ModelPuller<SwitchYardModel>().pull(is);
+                } finally {
+                    is.close();
+                }
+            } catch (CoreException e) {
+                Activator.getDefault().getLog().log(e.getStatus());
+            } catch (IOException e) {
+                Activator
+                        .getDefault()
+                        .getLog()
+                        .log(new Status(Status.ERROR, Activator.PLUGIN_ID,
+                                "Exception while loading switchyard.xml file.", e));
+            }
+        }
+        return new ModelPuller<SwitchYardModel>().pull(new QName(SwitchYardModel.DEFAULT_NAMESPACE,
+                SwitchYardModel.SWITCHYARD));
+    }
+
+    @Override
     public boolean needsLoading() {
         return _mavenProject == null;
     }
@@ -174,6 +217,7 @@ public class SwitchYardProject implements ISwitchYardProject {
         _rawVersionString = null;
         _usingDependencyManagement = false;
         _plugin = new SwitchYardConfigurePlugin();
+        _switchYardConfigurationFile = null;
 
         if (_mavenProject == null) {
             return;
@@ -194,6 +238,17 @@ public class SwitchYardProject implements ISwitchYardProject {
             }
         }
         _components = readComponents();
+
+        for (IPath resourceLocation : MavenProjectUtils.getResourceLocations(_project, _mavenProject.getResources())) {
+            IFile temp = _project.getFolder(resourceLocation).getFile("META-INF/switchyard.xml");
+            if (_switchYardConfigurationFile == null) {
+                _switchYardConfigurationFile = temp;
+            }
+            if (temp.exists()) {
+                _switchYardConfigurationFile = temp;
+                break;
+            }
+        }
     }
 
     private String readSwitchYardVersion() {

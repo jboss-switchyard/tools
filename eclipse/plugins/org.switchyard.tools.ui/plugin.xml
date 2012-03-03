@@ -2,6 +2,7 @@
 <?eclipse version="3.4"?>
 <plugin>
    <extension-point id="switchYardComponent" name="SwitchYardComponent" schema="schema/switchYardComponent.exsd"/>
+   <extension-point id="repositorySupport" name="RepositorySupport" schema="schema/repositorySupport.exsd"/>
    <extension
          point="org.eclipse.ui.newWizards">
       <category
@@ -239,8 +240,14 @@
         point="org.eclipse.ui.popupMenus">
      <objectContribution
            adaptable="true"
-           id="org.switchyard.tools.ui.configuration.menu"
+           id="org.switchyard.tools.ui.configuration.contribution"
            objectClass="org.eclipse.core.resources.IProject">
+        <visibility>
+           <objectState
+                 name="projectNature"
+                 value="org.eclipse.m2e.core.maven2Nature">
+           </objectState>
+        </visibility>
         <action
               class="org.switchyard.tools.ui.actions.SwitchYardSettingsAction"
               enablesFor="1"
@@ -248,12 +255,45 @@
               label="SwitchYard Capabilities..."
               menubarPath="org.eclipse.ui.projectConfigure/additions">
         </action>
-        <visibility>
-           <objectState
-                 name="projectNature"
-                 value="org.eclipse.m2e.core.maven2Nature">
-           </objectState>
-        </visibility>
+     </objectContribution>
+     <objectContribution
+           adaptable="true"
+           id="org.switchyard.tools.ui.switchyard.contribution"
+           objectClass="org.eclipse.core.resources.IProject">
+        <enablement>
+           <adapt
+                 type="org.eclipse.core.resources.IProject">
+              <test
+                    property="org.eclipse.wst.common.project.facet.core.projectFacet"
+                    value="switchyard.core">
+              </test>
+           </adapt>
+        </enablement>
+        <menu
+              id="org.switchyard.tools.ui.switchyard.menu"
+              label="SwitchYard"
+              path="additions">
+           <groupMarker
+                 name="additions">
+           </groupMarker>
+           <separator
+                 name="capabilities">
+           </separator>
+        </menu>
+        <action
+              class="org.switchyard.tools.ui.actions.SwitchYardSettingsAction"
+              enablesFor="1"
+              id="org.switchyard.tools.ui.configuration.action.settings2"
+              label="Configure Capabilities..."
+              menubarPath="org.switchyard.tools.ui.switchyard.menu/capabilities">
+        </action>
+        <action
+              class="org.switchyard.tools.ui.actions.AddArtifactReferenceAction"
+              enablesFor="1"
+              id="org.switchyard.tools.ui.configuration.action.addArtifactReference"
+              label="Add Artifact Reference..."
+              menubarPath="org.switchyard.tools.ui.switchyard.menu/additions">
+        </action>
      </objectContribution>
   </extension>
   <extension
@@ -370,6 +410,17 @@
            <artifactId>switchyard-component-soap</artifactId>
         </dependency>
      </component>
+  </extension>
+  <extension
+        point="org.switchyard.tools.ui.repositorySupport">
+     <wizard
+           class="org.switchyard.tools.ui.wizards.NewGenericArtifactReferenceWizard"
+           id="org.switchyard.tools.ui.repository.generic"
+           name="Generic Artifact Reference">
+        <description>
+           Adds an &lt;artifact&gt; element to the project&apos;s switchyard.xml file.
+        </description>
+     </wizard>
   </extension>
 
 </plugin>
