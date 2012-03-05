@@ -4,6 +4,7 @@
   <!-- Core SwitchYard schema. -->
   <public publicId="urn:switchyard-config:switchyard:1.0" uri="org/switchyard/config/model/switchyard/v1/switchyard-v1.xsd" />
   <public publicId="urn:switchyard-config:transform:1.0" uri="org/switchyard/transform/config/model/v1/transform-v1.xsd" />
+  <public publicId="urn:switchyard-config:validate:1.0" uri="org/switchyard/validate/config/model/v1/validate-v1.xsd" />
 
   <!-- Specialized SwitchYard component schema. -->
   <public publicId="urn:switchyard-component-bean:config:1.0" uri="org/switchyard/component/bean/config/model/v1/bean-v1.xsd" />

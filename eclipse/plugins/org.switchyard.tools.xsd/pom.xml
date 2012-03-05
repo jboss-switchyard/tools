@@ -44,6 +44,14 @@
                   <includes>**/*.xsd</includes>
                 </artifactItem>
                 <artifactItem>
+                  <groupId>org.switchyard</groupId>
+                  <artifactId>switchyard-validate</artifactId>
+                  <version>${version.switchyard.runtime}</version>
+                  <classifier>sources</classifier>
+                  <type>jar</type>
+                  <includes>**/*.xsd</includes>
+                </artifactItem>
+                <artifactItem>
                   <groupId>org.switchyard.components</groupId>
                   <artifactId>switchyard-component-bean</artifactId>
                   <version>${version.switchyard.runtime}</version>
@@ -123,7 +131,6 @@
       <plugin>
         <groupId>org.apache.maven.plugins</groupId>
         <artifactId>maven-clean-plugin</artifactId>
-        <version>2.4.1</version>
         <configuration>
           <filesets>
             <fileset>
