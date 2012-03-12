@@ -80,9 +80,9 @@ import org.eclipse.swt.widgets.Text;
 import org.eclipse.ui.dialogs.ISelectionStatusValidator;
 import org.switchyard.config.model.ModelPuller;
 import org.switchyard.config.model.composite.ComponentModel;
-import org.switchyard.config.model.composite.ComponentServiceInterfaceModel;
 import org.switchyard.config.model.composite.ComponentServiceModel;
 import org.switchyard.config.model.composite.CompositeModel;
+import org.switchyard.config.model.composite.InterfaceModel;
 import org.switchyard.config.model.switchyard.SwitchYardModel;
 import org.switchyard.tools.ui.Activator;
 
@@ -487,7 +487,7 @@ public class NewServiceTestClassWizardPage extends NewTypeWizardPage {
                     continue;
                 }
                 for (ComponentServiceModel service : services) {
-                    ComponentServiceInterfaceModel interfaceModel = service.getInterface();
+                    InterfaceModel interfaceModel = service.getInterface();
                     if ("java".equals(interfaceModel.getType())) {
                         String interfaceName = interfaceModel.getInterface();
                         if (interfaceName != null && interfaceName.length() > 0) {
