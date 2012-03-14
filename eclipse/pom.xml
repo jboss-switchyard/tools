@@ -35,7 +35,7 @@
   <repositories>
     <repository>
       <id>jbosstools-target-site</id>
-      <url>http://download.jboss.org/jbosstools/updates/target-platform_3.3.indigo/latest/</url>
+      <url>http://download.jboss.org/jbosstools/updates/target-platform_3.3.indigo.SR2/latest/</url>
       <layout>p2</layout>
       <snapshots>
         <enabled>true</enabled>
