@@ -34,7 +34,7 @@ import org.switchyard.config.model.switchyard.ArtifactsModel;
 import org.switchyard.config.model.switchyard.SwitchYardModel;
 import org.switchyard.tools.ui.Activator;
 import org.switchyard.tools.ui.common.ISwitchYardProject;
-import org.switchyard.tools.ui.common.impl.SwitchYardProject;
+import org.switchyard.tools.ui.common.impl.SwitchYardProjectManager;
 import org.switchyard.tools.ui.operations.CreateArtifactReferenceOperation;
 
 /**
@@ -228,7 +228,7 @@ public abstract class NewArtifactReferenceWizard extends Wizard implements IWork
     }
 
     private void loadSwitchYardModel() {
-        _switchYardProject = new SwitchYardProject(_project);
+        _switchYardProject = SwitchYardProjectManager.instance().getSwitchYardProject(_project);
         try {
             getContainer().run(false, true, new IRunnableWithProgress() {
                 @Override

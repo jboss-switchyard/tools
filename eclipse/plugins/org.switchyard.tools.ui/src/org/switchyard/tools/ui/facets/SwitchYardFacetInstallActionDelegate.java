@@ -26,7 +26,7 @@ import org.switchyard.tools.ui.Activator;
 import org.switchyard.tools.ui.common.ISwitchYardComponentExtension;
 import org.switchyard.tools.ui.common.ISwitchYardProject;
 import org.switchyard.tools.ui.common.ISwitchYardProjectWorkingCopy;
-import org.switchyard.tools.ui.common.impl.SwitchYardProject;
+import org.switchyard.tools.ui.common.impl.SwitchYardProjectManager;
 import org.switchyard.tools.ui.operations.AbstractSwitchYardProjectOperation;
 
 /**
@@ -52,7 +52,7 @@ public class SwitchYardFacetInstallActionDelegate implements IDelegate {
             IFacetedProjectWorkingCopy ifpwc = (IFacetedProjectWorkingCopy) dataModel
                     .getProperty(IFacetDataModelProperties.FACETED_PROJECT_WORKING_COPY);
             if (ifpwc != null) {
-                switchYardProject = new SwitchYardProject(ifpwc.getProject());
+                switchYardProject = SwitchYardProjectManager.instance().getSwitchYardProject(ifpwc.getProject());
             }
         }
         if (switchYardProject == null) {

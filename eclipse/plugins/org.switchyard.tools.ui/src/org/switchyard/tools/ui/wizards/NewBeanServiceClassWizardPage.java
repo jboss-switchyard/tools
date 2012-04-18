@@ -12,6 +12,7 @@ package org.switchyard.tools.ui.wizards;
 
 import java.util.List;
 
+import org.eclipse.core.resources.IResource;
 import org.eclipse.core.runtime.CoreException;
 import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.core.runtime.IStatus;
@@ -22,6 +23,7 @@ import org.eclipse.jdt.core.IJavaElement;
 import org.eclipse.jdt.core.IJavaProject;
 import org.eclipse.jdt.core.IPackageFragmentRoot;
 import org.eclipse.jdt.core.IType;
+import org.eclipse.jdt.core.JavaCore;
 import org.eclipse.jdt.core.dom.ParameterizedType;
 import org.eclipse.jdt.core.dom.Type;
 import org.eclipse.jdt.core.search.IJavaSearchConstants;
@@ -46,12 +48,18 @@ import org.eclipse.jdt.internal.ui.wizards.dialogfields.StringButtonDialogField;
 import org.eclipse.jdt.ui.wizards.NewTypeWizardPage;
 import org.eclipse.jface.dialogs.Dialog;
 import org.eclipse.jface.viewers.IStructuredSelection;
+import org.eclipse.jface.viewers.StructuredSelection;
 import org.eclipse.jface.window.Window;
 import org.eclipse.jface.wizard.IWizard;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.layout.GridLayout;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Text;
+import org.switchyard.config.model.composite.ComponentReferenceModel;
+import org.switchyard.config.model.composite.InterfaceModel;
+import org.switchyard.tools.ui.SwitchYardModelUtils;
+import org.switchyard.tools.ui.explorer.ISwitchYardNode;
+import org.switchyard.tools.ui.explorer.impl.ComponentReference;
 
 /**
  * NewBeanServiceClassWizardPage
@@ -114,7 +122,7 @@ public class NewBeanServiceClassWizardPage extends NewTypeWizardPage {
         if (cu != null) {
             elem = cu.findPrimaryType();
         }
-        initContainerPage(elem);
+        initContainerPage(getInitialContainerElement(selection, elem));
         initTypePage(elem);
         List<String> superInterfaces = getSuperInterfaces();
         if (superInterfaces.size() > 0) {
@@ -232,6 +240,36 @@ public class NewBeanServiceClassWizardPage extends NewTypeWizardPage {
         if (monitor != null) {
             monitor.done();
         }
+    }
+
+    @Override
+    protected IJavaElement getInitialJavaElement(IStructuredSelection selection) {
+        if (selection != null && !selection.isEmpty() && selection.getFirstElement() instanceof ISwitchYardNode) {
+            if (selection.getFirstElement() instanceof ComponentReference) {
+                ComponentReference componentReference = (ComponentReference) selection.getFirstElement();
+                ComponentReferenceModel reference = (ComponentReferenceModel) componentReference.getModel();
+                if (reference.getInterface() != null && InterfaceModel.JAVA.equals(reference.getInterface().getType())) {
+                    IResource javaInterface = SwitchYardModelUtils.getAssociatedResource(componentReference.getRoot()
+                            .getProject(), reference.getInterface());
+                    if (javaInterface != null) {
+                        return super.getInitialJavaElement(new StructuredSelection(javaInterface));
+                    }
+                }
+            }
+            selection = new StructuredSelection(((ISwitchYardNode) selection.getFirstElement()).getRoot().getProject());
+        }
+        return super.getInitialJavaElement(selection);
+    }
+
+    private IJavaElement getInitialContainerElement(IStructuredSelection selection, IJavaElement initialElement) {
+        if (selection != null && !selection.isEmpty() && selection.getFirstElement() instanceof ISwitchYardNode) {
+            ISwitchYardNode switchYardNode = (ISwitchYardNode) selection.getFirstElement();
+            if (initialElement == null || initialElement.getJavaProject() == null
+                    || !initialElement.getJavaProject().getProject().equals(switchYardNode.getRoot().getProject())) {
+                return JavaCore.create(switchYardNode.getRoot().getProject());
+            }
+        }
+        return initialElement;
     }
 
     @Override

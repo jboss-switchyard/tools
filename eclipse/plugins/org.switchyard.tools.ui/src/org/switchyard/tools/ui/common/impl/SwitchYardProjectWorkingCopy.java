@@ -115,6 +115,11 @@ public class SwitchYardProjectWorkingCopy implements ISwitchYardProjectWorkingCo
     }
 
     @Override
+    public IFile getOutputSwitchYardConfigurationFile() {
+        return _switchYardProject.getOutputSwitchYardConfigurationFile();
+    }
+
+    @Override
     public SwitchYardModel loadSwitchYardModel(IProgressMonitor monitor) throws CoreException, IOException {
         return _switchYardProject.loadSwitchYardModel(monitor);
     }

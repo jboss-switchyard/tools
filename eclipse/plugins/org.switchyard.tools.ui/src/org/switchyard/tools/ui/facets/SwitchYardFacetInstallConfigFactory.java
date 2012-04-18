@@ -29,7 +29,7 @@ import org.sonatype.aether.version.InvalidVersionSpecificationException;
 import org.sonatype.aether.version.Version;
 import org.switchyard.tools.ui.Activator;
 import org.switchyard.tools.ui.common.ISwitchYardProject;
-import org.switchyard.tools.ui.common.impl.SwitchYardProject;
+import org.switchyard.tools.ui.common.impl.SwitchYardProjectManager;
 
 /**
  * SwitchYardFacetInstallConfigFactory
@@ -139,7 +139,7 @@ public class SwitchYardFacetInstallConfigFactory extends FacetInstallDataModelPr
 
     private void loadDefaults(IFacetedProjectWorkingCopy ifpwc) throws InvocationTargetException, InterruptedException {
         if (ifpwc != null && ifpwc.getProject() != null && ifpwc.getProject().exists()) {
-            _switchYardProject = new SwitchYardProject(ifpwc.getProject());
+            _switchYardProject = SwitchYardProjectManager.instance().getSwitchYardProject(ifpwc.getProject());
         }
         if (_switchYardProject != null && _switchYardProject.needsLoading()) {
             _switchYardProject.load(new NullProgressMonitor());

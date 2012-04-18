@@ -21,6 +21,7 @@ import java.util.HashSet;
 import java.util.List;
 
 import org.eclipse.core.resources.IProject;
+import org.eclipse.core.resources.IResource;
 import org.eclipse.core.runtime.CoreException;
 import org.eclipse.core.runtime.IPath;
 import org.eclipse.core.runtime.IProgressMonitor;
@@ -35,6 +36,7 @@ import org.eclipse.jdt.core.IJavaElement;
 import org.eclipse.jdt.core.IJavaProject;
 import org.eclipse.jdt.core.IPackageFragmentRoot;
 import org.eclipse.jdt.core.IType;
+import org.eclipse.jdt.core.JavaCore;
 import org.eclipse.jdt.core.JavaModelException;
 import org.eclipse.jdt.core.WorkingCopyOwner;
 import org.eclipse.jdt.core.dom.AST;
@@ -70,6 +72,7 @@ import org.eclipse.jdt.ui.dialogs.TypeSelectionExtension;
 import org.eclipse.jdt.ui.wizards.NewTypeWizardPage;
 import org.eclipse.jface.dialogs.Dialog;
 import org.eclipse.jface.viewers.IStructuredSelection;
+import org.eclipse.jface.viewers.StructuredSelection;
 import org.eclipse.jface.window.Window;
 import org.eclipse.m2e.core.MavenPlugin;
 import org.eclipse.m2e.core.project.IMavenProjectFacade;
@@ -85,6 +88,9 @@ import org.switchyard.config.model.composite.CompositeModel;
 import org.switchyard.config.model.composite.InterfaceModel;
 import org.switchyard.config.model.switchyard.SwitchYardModel;
 import org.switchyard.tools.ui.Activator;
+import org.switchyard.tools.ui.SwitchYardModelUtils;
+import org.switchyard.tools.ui.explorer.ISwitchYardNode;
+import org.switchyard.tools.ui.explorer.impl.ComponentService;
 
 /**
  * NewServiceTestClassWizardPage
@@ -141,7 +147,7 @@ public class NewServiceTestClassWizardPage extends NewTypeWizardPage {
         if (cu != null) {
             elem = cu.findPrimaryType();
         }
-        initContainerPage(elem);
+        initContainerPage(getInitialContainerElement(selection, elem));
         initTypePage(elem);
         List<String> superInterfaces = getSuperInterfaces();
         if (superInterfaces.size() > 0) {
@@ -220,6 +226,36 @@ public class NewServiceTestClassWizardPage extends NewTypeWizardPage {
     public void setServiceInterface(String serviceInterfaceName, boolean canBeModified) {
         _serviceInterfaceDialogField.setText(serviceInterfaceName);
         _serviceInterfaceDialogField.setEnabled(canBeModified);
+    }
+
+    @Override
+    protected IJavaElement getInitialJavaElement(IStructuredSelection selection) {
+        if (selection != null && !selection.isEmpty() && selection.getFirstElement() instanceof ISwitchYardNode) {
+            if (selection.getFirstElement() instanceof ComponentService) {
+                ComponentService componentService = (ComponentService) selection.getFirstElement();
+                ComponentServiceModel service = (ComponentServiceModel) componentService.getModel();
+                if (service.getInterface() != null && InterfaceModel.JAVA.equals(service.getInterface().getType())) {
+                    IResource javaInterface = SwitchYardModelUtils.getAssociatedResource(componentService.getRoot()
+                            .getProject(), service.getInterface());
+                    if (javaInterface != null) {
+                        return super.getInitialJavaElement(new StructuredSelection(javaInterface));
+                    }
+                }
+            }
+            selection = new StructuredSelection(((ISwitchYardNode) selection.getFirstElement()).getRoot().getProject());
+        }
+        return super.getInitialJavaElement(selection);
+    }
+
+    private IJavaElement getInitialContainerElement(IStructuredSelection selection, IJavaElement initialElement) {
+        if (selection != null && !selection.isEmpty() && selection.getFirstElement() instanceof ISwitchYardNode) {
+            ISwitchYardNode switchYardNode = (ISwitchYardNode) selection.getFirstElement();
+            if (initialElement == null || initialElement.getJavaProject() == null
+                    || !initialElement.getJavaProject().getProject().equals(switchYardNode.getRoot().getProject())) {
+                return JavaCore.create(switchYardNode.getRoot().getProject());
+            }
+        }
+        return initialElement;
     }
 
     @Override

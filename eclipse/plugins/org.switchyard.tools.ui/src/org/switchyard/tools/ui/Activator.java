@@ -10,6 +10,8 @@
  ************************************************************************************/
 package org.switchyard.tools.ui;
 
+import org.eclipse.jface.resource.ImageDescriptor;
+import org.eclipse.jface.resource.ImageRegistry;
 import org.eclipse.ui.plugin.AbstractUIPlugin;
 import org.osgi.framework.BundleContext;
 
@@ -63,6 +65,21 @@ public class Activator extends AbstractUIPlugin {
      */
     public static Activator getDefault() {
         return plugin;
+    }
+
+    @Override
+    protected void initializeImageRegistry(ImageRegistry reg) {
+        super.initializeImageRegistry(reg);
+        reg.put(IImageDescriptors.SWITCH_YARD_SMALL, createImageDescriptor(IImageDescriptors.SWITCH_YARD_SMALL));
+        reg.put(IImageDescriptors.SWITCH_YARD_LARGE, createImageDescriptor(IImageDescriptors.SWITCH_YARD_LARGE));
+        reg.put(IImageDescriptors.SERVICE_ICON, createImageDescriptor(IImageDescriptors.SERVICE_ICON));
+        reg.put(IImageDescriptors.REFERENCE_ICON, createImageDescriptor(IImageDescriptors.REFERENCE_ICON));
+        reg.put(IImageDescriptors.COMPONENT_ICON, createImageDescriptor(IImageDescriptors.COMPONENT_ICON));
+        reg.put(IImageDescriptors.ARTIFACT_ICON, createImageDescriptor(IImageDescriptors.ARTIFACT_ICON));
+    }
+
+    private ImageDescriptor createImageDescriptor(String id) {
+        return imageDescriptorFromPlugin(PLUGIN_ID, id);
     }
 
 }

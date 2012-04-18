@@ -21,6 +21,7 @@ import org.eclipse.ui.IObjectActionDelegate;
 import org.eclipse.ui.IWorkbenchPart;
 import org.eclipse.ui.actions.ActionDelegate;
 import org.switchyard.tools.ui.Activator;
+import org.switchyard.tools.ui.explorer.ISwitchYardNode;
 import org.switchyard.tools.ui.wizards.RepositoryArtifactReferenceWizard;
 
 /**
@@ -52,6 +53,8 @@ public class AddArtifactReferenceAction extends ActionDelegate implements IObjec
         Object obj = ((IStructuredSelection) selection).getFirstElement();
         if (obj instanceof IProject) {
             _project = (IProject) obj;
+        } else if (obj instanceof ISwitchYardNode) {
+            _project = ((ISwitchYardNode) obj).getRoot().getProject();
         }
     }
 

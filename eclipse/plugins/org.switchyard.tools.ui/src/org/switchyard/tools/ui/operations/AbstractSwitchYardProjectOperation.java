@@ -40,7 +40,7 @@ import org.switchyard.config.model.switchyard.SwitchYardModel;
 import org.switchyard.tools.ui.Activator;
 import org.switchyard.tools.ui.common.ISwitchYardComponentExtension;
 import org.switchyard.tools.ui.common.ISwitchYardProjectWorkingCopy;
-import org.switchyard.tools.ui.common.impl.SwitchYardProject;
+import org.switchyard.tools.ui.common.impl.SwitchYardProjectManager;
 
 /**
  * AbstractSwitchYardProjectOperation
@@ -121,7 +121,7 @@ public abstract class AbstractSwitchYardProjectOperation implements IWorkspaceRu
 
             // make sure the working copy is setup
             if (_workingCopy == null) {
-                _workingCopy = new SwitchYardProject(getProject()).createWorkingCopy();
+                _workingCopy = SwitchYardProjectManager.instance().getSwitchYardProject(getProject()).createWorkingCopy();
                 if (_components != null) {
                     _workingCopy.addComponents(_components);
                 }

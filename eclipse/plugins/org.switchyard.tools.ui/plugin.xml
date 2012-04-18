@@ -25,7 +25,7 @@
             descriptionImage="icons/switchyard_logo_200px.png"
             icon="icons/switchyard_icon_16px.png"
             id="org.switchyard.tools.ui.wizards.NewBeanServiceWizard"
-            name="Bean Service">
+            name="SwitchYard Bean Component">
          <description>Create a new SwitchYard Bean service.</description>
       </wizard>
       <wizard
@@ -34,7 +34,7 @@
             descriptionImage="icons/switchyard_logo_200px.png"
             icon="icons/switchyard_icon_16px.png"
             id="org.switchyard.tools.ui.wizards.NewServiceTestWizard"
-            name="Service Test">
+            name="SwitchYard Service Test">
          <description>Create a new SwitchYard service test.</description>
       </wizard>
    </extension>
@@ -258,7 +258,7 @@
      </objectContribution>
      <objectContribution
            adaptable="true"
-           id="org.switchyard.tools.ui.switchyard.contribution"
+           id="org.switchyard.tools.ui.project.contribution"
            objectClass="org.eclipse.core.resources.IProject">
         <enablement>
            <adapt
@@ -295,7 +295,134 @@
               menubarPath="org.switchyard.tools.ui.switchyard.menu/additions">
         </action>
      </objectContribution>
+     <objectContribution
+           id="org.switchyard.tools.ui.switchyard.contribution"
+           objectClass="org.switchyard.tools.ui.explorer.ISwitchYardRootNode">
+        <action
+              class="org.switchyard.tools.ui.actions.SwitchYardSettingsAction"
+              enablesFor="1"
+              id="org.switchyard.tools.ui.configuration.action.settings2"
+              label="Configure Capabilities..."
+              menubarPath="org.eclipse.ui.projectConfigure">
+        </action>
+        <action
+              class="org.switchyard.tools.ui.actions.AddArtifactReferenceAction"
+              enablesFor="1"
+              id="org.switchyard.tools.ui.configuration.action.addArtifactReference"
+              label="Add Artifact Reference..."
+              menubarPath="org.switchyard.tools.ui.switchyard">
+        </action>
+     </objectContribution>
+     <objectContribution
+           id="org.switchyard.tools.ui.artifacts.contribution"
+           objectClass="org.switchyard.tools.ui.explorer.IArtifactsNode">
+        <action
+              class="org.switchyard.tools.ui.actions.AddArtifactReferenceAction"
+              enablesFor="1"
+              id="org.switchyard.tools.ui.configuration.action.addArtifactReference"
+              label="Add Artifact Reference..."
+              menubarPath="org.switchyard.tools.ui.switchyard">
+        </action>
+     </objectContribution>
   </extension>
+
+   <!-- Project Explorer View content -->
+	<extension
+      point="org.eclipse.ui.navigator.navigatorContent">
+    <navigatorContent
+          activeByDefault="true"
+          contentProvider="org.switchyard.tools.ui.explorer.SwitchYardExplorerContentProvider"
+          icon="icons/switchyard_icon_16px.png"
+          id="org.switchyard.tools.ui.explorer.content"
+          labelProvider="org.switchyard.tools.ui.explorer.SwitchYardExplorerLabelProvider"
+          name="SwitchYard"
+          priority="normal">
+       <triggerPoints>
+           <adapt
+                 type="org.eclipse.core.resources.IProject">
+              <test
+                    property="org.eclipse.wst.common.project.facet.core.projectFacet"
+                    value="switchyard.core">
+              </test>
+           </adapt>
+       </triggerPoints>
+       <possibleChildren>
+           <instanceof
+                 value="org.switchyard.tools.ui.explorer.ISwitchYardNode">
+           </instanceof>
+       </possibleChildren>
+       <commonSorter
+             class="org.switchyard.tools.ui.explorer.SwitchYardViewerSorter">
+       </commonSorter>
+       <commonWizard
+             menuGroupId="switchyard.group"
+             type="new"
+             wizardId="org.switchyard.tools.ui.wizards.NewBeanServiceWizard">
+          <enablement>
+             <or>
+                <instanceof
+                      value="org.eclipse.core.resources.IProject">
+                </instanceof>
+                <instanceof
+                      value="org.switchyard.tools.ui.explorer.ISwitchYardRootNode">
+                </instanceof>
+                <instanceof
+                      value="org.switchyard.tools.ui.explorer.IComponentsNode">
+                </instanceof>
+                <instanceof
+                      value="org.switchyard.tools.ui.explorer.IComponentReference">
+                </instanceof>
+                <adapt
+                      type="org.eclipse.jdt.core.IJavaElement">
+                </adapt>
+             </or>
+          </enablement>
+       </commonWizard>
+       <commonWizard
+             menuGroupId="switchyard.group"
+             type="new"
+             wizardId="org.switchyard.tools.ui.wizards.NewServiceTestWizard">
+          <enablement>
+             <or>
+                <instanceof
+                      value="org.eclipse.core.resources.IProject">
+                </instanceof>
+                <instanceof
+                      value="org.switchyard.tools.ui.explorer.ISwitchYardRootNode">
+                </instanceof>
+                <instanceof
+                      value="org.switchyard.tools.ui.explorer.IComponentService">
+                </instanceof>
+                <adapt
+                      type="org.eclipse.jdt.core.IJavaElement">
+                </adapt>
+             </or>
+          </enablement>
+       </commonWizard>
+       <actionProvider
+             class="org.switchyard.tools.ui.actions.SwitchYardActionProvider"
+             id="org.switchyard.tools.ui.actions.SwitchYardActionProvider">
+          <enablement>
+             <instanceof
+                   value="org.switchyard.tools.ui.explorer.ISwitchYardNode">
+             </instanceof>
+          </enablement>
+       </actionProvider>
+    </navigatorContent>
+	</extension>
+	<extension
+	      point="org.eclipse.ui.navigator.viewer">
+	   <viewerContentBinding
+	         viewerId="org.eclipse.ui.navigator.ProjectExplorer">
+	      <includes>
+             <contentExtension
+                isRoot="false"
+                pattern="org.switchyard.tools.ui.explorer.content">
+             </contentExtension>
+	      </includes>
+	   </viewerContentBinding>
+	</extension>
+
   <extension
         point="org.switchyard.tools.ui.switchYardComponent">
      <component
@@ -421,6 +548,23 @@
            Adds an &lt;artifact&gt; element to the project&apos;s switchyard.xml file.
         </description>
      </wizard>
+  </extension>
+  <extension
+        point="org.eclipse.core.runtime.adapters">
+     <factory
+           adaptableType="org.switchyard.tools.ui.explorer.ISwitchYardNode"
+           class="org.switchyard.tools.ui.properties.PropertySourceAdapterFactory">
+        <adapter
+              type="org.eclipse.ui.views.properties.IPropertySource">
+        </adapter>
+     </factory>
+     <factory
+           adaptableType="org.switchyard.config.model.Model"
+           class="org.switchyard.tools.ui.properties.PropertySourceAdapterFactory">
+        <adapter
+              type="org.eclipse.ui.views.properties.IPropertySource">
+        </adapter>
+     </factory>
   </extension>
 
 </plugin>

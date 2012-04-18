@@ -74,8 +74,6 @@ import org.switchyard.tools.ui.facets.ISwitchYardFacetConstants;
  */
 public class CreateSwitchYardProjectOperation implements IWorkspaceRunnable {
 
-    private static final String META_INF = "META-INF";
-    private static final String SWITCHYARD_XML = "switchyard.xml";
     private static final String DEFAULT_JAVA_VERSION = "1.6";
 
     /**
@@ -297,7 +295,7 @@ public class CreateSwitchYardProjectOperation implements IWorkspaceRunnable {
                 ByteArrayOutputStream baos = new ByteArrayOutputStream();
                 switchYardModel.getModelConfiguration().write(baos, new OutputKey[0]);
                 IFile switchYardFile = _projectMetatData.getNewProjectHandle().getFolder(MAVEN_MAIN_RESOURCES_PATH)
-                        .getFolder(META_INF).getFile(SWITCHYARD_XML);
+                        .getFolder(M2EUtils.META_INF).getFile(M2EUtils.SWITCHYARD_XML);
                 CreateFileOperation op = new CreateFileOperation(switchYardFile, null, new ByteArrayInputStream(
                         baos.toByteArray()), "Creating switchyard.xml");
                 subMonitor = new SubProgressMonitor(monitor, 100, SubProgressMonitor.PREPEND_MAIN_LABEL_TO_SUBTASK);

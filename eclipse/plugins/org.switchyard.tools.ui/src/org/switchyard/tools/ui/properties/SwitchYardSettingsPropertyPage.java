@@ -38,7 +38,7 @@ import org.switchyard.tools.ui.common.ILayoutUtilities;
 import org.switchyard.tools.ui.common.ISwitchYardComponentExtension;
 import org.switchyard.tools.ui.common.ISwitchYardProjectWorkingCopy;
 import org.switchyard.tools.ui.common.SwitchYardSettingsGroup;
-import org.switchyard.tools.ui.common.impl.SwitchYardProject;
+import org.switchyard.tools.ui.common.impl.SwitchYardProjectManager;
 import org.switchyard.tools.ui.operations.UpdateProjectPomOperation;
 
 /**
@@ -89,7 +89,7 @@ public class SwitchYardSettingsPropertyPage extends PropertyPage implements IWor
     }
 
     private void initControls() {
-        _switchYardProject = new SwitchYardProject(getProject()).createWorkingCopy();
+        _switchYardProject = SwitchYardProjectManager.instance().getSwitchYardProject(getProject()).createWorkingCopy();
         if (_switchYardProject.needsLoading()) {
             BusyIndicator.showWhile(getShell().getDisplay(), new Runnable() {
                 @Override

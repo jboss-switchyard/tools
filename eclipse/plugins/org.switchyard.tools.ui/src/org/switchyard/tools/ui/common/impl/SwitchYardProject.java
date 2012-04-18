@@ -12,11 +12,15 @@ package org.switchyard.tools.ui.common.impl;
 
 import static org.switchyard.tools.ui.M2EUtils.CONFIGURATION_ELEMENT;
 import static org.switchyard.tools.ui.M2EUtils.CONFIGURE_GOAL;
+import static org.switchyard.tools.ui.M2EUtils.META_INF;
+import static org.switchyard.tools.ui.M2EUtils.OUTPUT_DIRECTORY_ELEMENT;
+import static org.switchyard.tools.ui.M2EUtils.OUTPUT_FILE_ELEMENT;
 import static org.switchyard.tools.ui.M2EUtils.PARAM_ELEMENT;
 import static org.switchyard.tools.ui.M2EUtils.SCANNER_CLASS_NAMES_ELEMENT;
 import static org.switchyard.tools.ui.M2EUtils.SWITCHYARD_CORE_GROUP_ID;
 import static org.switchyard.tools.ui.M2EUtils.SWITCHYARD_PLUGIN_KEY;
 import static org.switchyard.tools.ui.M2EUtils.SWITCHYARD_VERSION;
+import static org.switchyard.tools.ui.M2EUtils.SWITCHYARD_XML;
 import static org.switchyard.tools.ui.M2EUtils.UNKNOWN_VERSION_STRING;
 import static org.switchyard.tools.ui.M2EUtils.createSwitchYardPlugin;
 
@@ -24,6 +28,7 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.util.Collection;
 import java.util.Collections;
+import java.util.EnumSet;
 import java.util.HashSet;
 import java.util.LinkedHashSet;
 import java.util.Set;
@@ -42,6 +47,7 @@ import org.eclipse.core.resources.IProject;
 import org.eclipse.core.runtime.CoreException;
 import org.eclipse.core.runtime.IPath;
 import org.eclipse.core.runtime.IProgressMonitor;
+import org.eclipse.core.runtime.Path;
 import org.eclipse.core.runtime.Status;
 import org.eclipse.core.runtime.SubProgressMonitor;
 import org.eclipse.m2e.core.MavenPlugin;
@@ -55,6 +61,7 @@ import org.switchyard.tools.ui.common.ISwitchYardComponentExtension;
 import org.switchyard.tools.ui.common.ISwitchYardProject;
 import org.switchyard.tools.ui.common.ISwitchYardProjectWorkingCopy;
 import org.switchyard.tools.ui.common.SwitchYardComponentExtensionManager;
+import org.switchyard.tools.ui.common.impl.SwitchYardProjectManager.ISwitchYardProjectListener.Type;
 
 /**
  * SwitchYardProject
@@ -77,13 +84,18 @@ public class SwitchYardProject implements ISwitchYardProject {
     private volatile SwitchYardConfigurePlugin _plugin;
     private volatile IFile _switchYardConfigurationFile;
     private Set<SwitchYardProjectWorkingCopy> _workingCopies = new HashSet<SwitchYardProjectWorkingCopy>();
+    private long _lastPomTimestamp;
+    private long _lastOutputTimestamp;
+    private final SwitchYardProjectManager _manager;
 
     /**
      * Create a new SwitchYardProject.
      * 
+     * @param manager the project manager.
      * @param project the underlying Eclipse project.
      */
-    public SwitchYardProject(IProject project) {
+    /* package */SwitchYardProject(SwitchYardProjectManager manager, IProject project) {
+        _manager = manager;
         _project = project;
         IMavenProjectFacade mavenProjectFacade = MavenPlugin.getMavenProjectRegistry().getProject(project);
         if (mavenProjectFacade != null && !mavenProjectFacade.isStale()) {
@@ -133,6 +145,11 @@ public class SwitchYardProject implements ISwitchYardProject {
     }
 
     @Override
+    public IFile getOutputSwitchYardConfigurationFile() {
+        return _plugin._outputFile;
+    }
+
+    @Override
     public SwitchYardModel loadSwitchYardModel(IProgressMonitor monitor) throws CoreException, IOException {
         if (needsLoading()) {
             load(monitor);
@@ -166,23 +183,49 @@ public class SwitchYardProject implements ISwitchYardProject {
 
     @Override
     public synchronized void load(IProgressMonitor monitor) {
+        final IFile pomFile = _project.getFile(IMavenConstants.POM_FILE_NAME);
+        final long pomTimestamp = pomFile.getLocalTimeStamp();
+        if (_mavenProject != null && pomTimestamp <= _lastPomTimestamp) {
+            final long outputTimestamp = getOutputSwitchYardConfigurationFile().getLocalTimeStamp();
+            if (outputTimestamp > _lastOutputTimestamp) {
+                _manager.notify(this, EnumSet.of(Type.CONFIG));
+                _lastOutputTimestamp = outputTimestamp;
+            }
+            return;
+        }
         monitor.beginTask("Loading Maven configuration for SwitchYard project.", 100);
         monitor.worked(10);
         SubProgressMonitor subMonitor = new SubProgressMonitor(monitor, 75);
+        Set<Type> types;
         try {
+            final IFile oldOutputFile = getOutputSwitchYardConfigurationFile();
+
             // reload the project
-            _mavenProject = MavenPlugin.getMaven().readProject(
-                    _project.getFile(IMavenConstants.POM_FILE_NAME).getLocation().toFile(), subMonitor);
+            _mavenProject = MavenPlugin.getMaven().readProject(pomFile.getLocation().toFile(), subMonitor);
+            _lastPomTimestamp = pomTimestamp;
             subMonitor.done();
+
+            init();
+
+            final IFile newOutputFile = getOutputSwitchYardConfigurationFile();
+            final long outputTimestamp = newOutputFile == null ? 0L : newOutputFile.getLocalTimeStamp();
+            if (outputTimestamp > _lastOutputTimestamp || (oldOutputFile == null && newOutputFile != null)
+                    || oldOutputFile.equals(newOutputFile)) {
+                types = EnumSet.of(Type.POM, Type.CONFIG);
+            } else {
+                types = EnumSet.of(Type.POM);
+            }
         } catch (CoreException e) {
             Activator.getDefault().getLog().log(e.getStatus());
+            types = Collections.emptySet();
         }
-        subMonitor.done();
-        init();
 
         for (SwitchYardProjectWorkingCopy workingCopy : _workingCopies) {
             workingCopy.reloaded();
         }
+
+        _manager.notify(this, types);
+
         monitor.done();
     }
 
@@ -285,7 +328,7 @@ public class SwitchYardProject implements ISwitchYardProject {
                 .getComponentExtensions();
         Set<ISwitchYardComponentExtension> retVal = new LinkedHashSet<ISwitchYardComponentExtension>(extensions.size());
         Set<String> dependencyKeys = createDependencyKeySet(_mavenProject.getDependencies());
-        Set<String> pluginScanners = new SwitchYardConfigurePlugin().getScannerClasses();
+        Set<String> pluginScanners = _plugin.getScannerClasses();
         ExtensionsLoop: for (ISwitchYardComponentExtension extension : extensions) {
             if (extension.getScannerClassName() != null && !pluginScanners.contains(extension.getScannerClassName())) {
                 continue ExtensionsLoop;
@@ -348,26 +391,35 @@ public class SwitchYardProject implements ISwitchYardProject {
 
         private Plugin _switchYardPlugin;
         private Set<String> _scannerClasses;
+        private IFile _outputFile;
 
         private SwitchYardConfigurePlugin() {
             _switchYardPlugin = getSwitchYardPlugin();
             if (_switchYardPlugin == null) {
                 _scannerClasses = Collections.emptySet();
+                setDefaultOutputFile();
                 return;
             }
 
             _scannerClasses = new HashSet<String>();
             Object configuration = _switchYardPlugin.getConfiguration();
             if (configuration instanceof Xpp3Dom) {
-                _scannerClasses.addAll(parseConfiguration((Xpp3Dom) configuration));
+                _scannerClasses.addAll(parseScanners((Xpp3Dom) configuration));
+                parseOutputFile((Xpp3Dom) configuration);
             }
             for (PluginExecution execution : _switchYardPlugin.getExecutions()) {
                 if (execution.getGoals().contains(CONFIGURE_GOAL)) {
                     configuration = execution.getConfiguration();
                     if (configuration instanceof Xpp3Dom) {
-                        _scannerClasses.addAll(parseConfiguration((Xpp3Dom) configuration));
+                        _scannerClasses.addAll(parseScanners((Xpp3Dom) configuration));
+                        if (_outputFile == null) {
+                            parseOutputFile((Xpp3Dom) configuration);
+                        }
                     }
                 }
+            }
+            if (_outputFile == null) {
+                setDefaultOutputFile();
             }
         }
 
@@ -477,7 +529,7 @@ public class SwitchYardProject implements ISwitchYardProject {
             }
         }
 
-        private Set<String> parseConfiguration(Xpp3Dom configuration) {
+        private Set<String> parseScanners(Xpp3Dom configuration) {
             Xpp3Dom scannerClassNames = configuration.getChild(SCANNER_CLASS_NAMES_ELEMENT);
             if (scannerClassNames == null) {
                 return Collections.emptySet();
@@ -487,6 +539,23 @@ public class SwitchYardProject implements ISwitchYardProject {
                 _scannerClasses.add(param.getValue());
             }
             return scannerClasses;
+        }
+
+        private void parseOutputFile(Xpp3Dom configuration) {
+            Xpp3Dom outputFileElement = configuration.getChild(OUTPUT_FILE_ELEMENT);
+            if (outputFileElement != null) {
+                String outputFile = outputFileElement.getValue();
+                if (outputFile != null && outputFile.length() > 0) {
+                    _outputFile = _project.getFile(new Path(outputFile));
+                    return;
+                }
+            }
+            // see if an output directory is specified
+            Xpp3Dom outputDirectoryElement = configuration.getChild(OUTPUT_DIRECTORY_ELEMENT);
+            if (outputDirectoryElement != null && outputDirectoryElement.getValue() != null) {
+                _outputFile = _project.getFile(new Path(outputDirectoryElement.getValue()).append(META_INF).append(
+                        SWITCHYARD_XML));
+            }
         }
 
         private void installSwitchYardPlugin(boolean createExecution, Set<String> scanners) {
@@ -499,5 +568,16 @@ public class SwitchYardProject implements ISwitchYardProject {
             build.addPlugin(createSwitchYardPlugin(_rawVersionString, createExecution, scanners));
         }
 
+        private void setDefaultOutputFile() {
+            if (_mavenProject == null) {
+                return;
+            }
+            _outputFile = _project
+                    .getWorkspace()
+                    .getRoot()
+                    .getFileForLocation(
+                            new Path(_mavenProject.getBuild().getOutputDirectory()).append(META_INF).append(
+                                    SWITCHYARD_XML));
+        }
     }
 }

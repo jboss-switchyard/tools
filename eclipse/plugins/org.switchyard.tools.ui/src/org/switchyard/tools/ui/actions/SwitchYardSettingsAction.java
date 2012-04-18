@@ -43,6 +43,7 @@ import org.eclipse.wst.common.project.facet.core.IProjectFacetVersion;
 import org.eclipse.wst.common.project.facet.core.ProjectFacetsManager;
 import org.eclipse.wst.common.project.facet.ui.ModifyFacetedProjectWizard;
 import org.switchyard.tools.ui.Activator;
+import org.switchyard.tools.ui.explorer.ISwitchYardNode;
 import org.switchyard.tools.ui.facets.ISwitchYardFacetConstants;
 import org.switchyard.tools.ui.facets.SwitchYardFacetInstallWizardPage;
 
@@ -205,6 +206,8 @@ public class SwitchYardSettingsAction extends ActionDelegate implements IObjectA
         Object obj = ((IStructuredSelection) selection).getFirstElement();
         if (obj instanceof IProject) {
             _project = (IProject) obj;
+        } else if (obj instanceof ISwitchYardNode) {
+            _project = ((ISwitchYardNode) obj).getRoot().getProject();
         }
     }
 

@@ -76,6 +76,11 @@ public final class M2EUtils {
     /** The default ID for representing the JBoss Public Maven repository. */
     public static final String JBOSS_PUBLIC_REPOSITORY_DEFAULT_ID = "jboss-public-repository";
 
+    /** switchyard.xml. */
+    public static final String SWITCHYARD_XML = "switchyard.xml";
+    /** META-INF. */
+    public static final String META_INF = "META-INF";
+
     /**
      * The as opposed to null, this identifies an indeterminate for the version
      * string.
@@ -90,6 +95,10 @@ public final class M2EUtils {
     public static final String CONFIGURATION_ELEMENT = "configuration";
     /** The SwitchYard plugin "scannerClassNames" element. */
     public static final String SCANNER_CLASS_NAMES_ELEMENT = "scannerClassNames";
+    /** The SwitchYard plugin "outputFile" element. */
+    public static final String OUTPUT_FILE_ELEMENT = "outputFile";
+    /** The SwitchYard plugin "outputDirectory" element. */
+    public static final String OUTPUT_DIRECTORY_ELEMENT = "outputDirectory";
     /** The SwitchYard plugin "param" element. */
     public static final String PARAM_ELEMENT = "param";
     /** The SwitchYard plugin "configure" goal. */

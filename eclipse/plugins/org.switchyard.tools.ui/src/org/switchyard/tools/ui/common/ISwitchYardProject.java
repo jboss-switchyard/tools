@@ -81,6 +81,13 @@ public interface ISwitchYardProject {
     public IFile getSwitchYardConfigurationFile();
 
     /**
+     * Returns the location of the generated switchyard.xml file.
+     * 
+     * @return the location of the generated switchyard.xml file.
+     */
+    public IFile getOutputSwitchYardConfigurationFile();
+
+    /**
      * Loads the SwitchYardModel associated with this project. This method will
      * return an empty model if a switchyard.xml file does not exist within the
      * project.
@@ -106,4 +113,5 @@ public interface ISwitchYardProject {
      * @return a working copy for making changes to SwitchYard settings.
      */
     ISwitchYardProjectWorkingCopy createWorkingCopy();
+    
 }
