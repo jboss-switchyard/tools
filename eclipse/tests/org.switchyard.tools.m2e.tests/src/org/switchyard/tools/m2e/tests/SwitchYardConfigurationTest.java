@@ -19,6 +19,8 @@ import org.custommonkey.xmlunit.XMLUnit;
 import org.eclipse.core.resources.IProject;
 import org.eclipse.core.resources.IResource;
 import org.eclipse.core.resources.IncrementalProjectBuilder;
+import org.eclipse.core.resources.ResourcesPlugin;
+import org.eclipse.core.runtime.jobs.Job;
 import org.eclipse.m2e.core.project.ResolverConfiguration;
 import org.eclipse.m2e.tests.common.AbstractMavenProjectTestCase;
 
@@ -53,11 +55,11 @@ public class SwitchYardConfigurationTest extends AbstractMavenProjectTestCase {
     private void runProjectTest(String projectName) throws Exception {
         ResolverConfiguration configuration = new ResolverConfiguration();
         IProject project = importProject("test-data/projects/" + projectName + "/pom.xml", configuration);
-        waitForJobsToComplete();
+        waitForJobs();
 
         project.build(IncrementalProjectBuilder.FULL_BUILD, monitor);
         project.build(IncrementalProjectBuilder.INCREMENTAL_BUILD, monitor);
-        waitForJobsToComplete();
+        waitForJobs();
 
         assertNoErrors(project);
 
@@ -92,6 +94,11 @@ public class SwitchYardConfigurationTest extends AbstractMavenProjectTestCase {
                 }
             }
         }
+    }
+
+    private void waitForJobs() throws Exception {
+        Job.getJobManager().join(ResourcesPlugin.FAMILY_MANUAL_BUILD, null);
+        Job.getJobManager().join(ResourcesPlugin.FAMILY_AUTO_BUILD, null);
     }
 
 }

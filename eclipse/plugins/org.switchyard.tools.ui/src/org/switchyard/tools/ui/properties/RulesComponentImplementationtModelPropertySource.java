@@ -29,7 +29,6 @@ import org.switchyard.config.model.resource.ResourceModel;
  */
 public class RulesComponentImplementationtModelPropertySource implements IPropertySource {
 
-    private static final String PROP_MESSAGE_CONTENT_NAME = "message-content-name";
     private static final String PROP_RESOURCES = "resources";
     private static final PropertyDescriptor[] DESCRIPTORS;
 
@@ -51,9 +50,7 @@ public class RulesComponentImplementationtModelPropertySource implements IProper
 
     @Override
     public Object getPropertyValue(Object id) {
-        if (PROP_MESSAGE_CONTENT_NAME.equals(id)) {
-            return _model.getMessageContentName();
-        } else if (PROP_RESOURCES.equals(id)) {
+        if (PROP_RESOURCES.equals(id)) {
             final List<ResourceModel> resources = _model.getResources();
             if (resources == null) {
                 return null;
@@ -84,10 +81,7 @@ public class RulesComponentImplementationtModelPropertySource implements IProper
     }
 
     static {
-        DESCRIPTORS = new PropertyDescriptor[] {
-                new PropertyDescriptor(PROP_MESSAGE_CONTENT_NAME, "Message Content Name"),
-                new PropertyDescriptor(PROP_RESOURCES, "Resources") };
-        DESCRIPTORS[0].setDescription("The class used to implement the component.");
-        DESCRIPTORS[1].setDescription("The resources used by the implementation.");
+        DESCRIPTORS = new PropertyDescriptor[] {new PropertyDescriptor(PROP_RESOURCES, "Resources") };
+        DESCRIPTORS[0].setDescription("The resources used by the implementation.");
     }
 }

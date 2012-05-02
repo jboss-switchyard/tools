@@ -435,7 +435,15 @@ public class SwitchYardProject implements ISwitchYardProject {
             if (_mavenProject == null) {
                 return null;
             }
-            return _mavenProject.getOriginalModel().getBuild().getPluginsAsMap().get(SWITCHYARD_PLUGIN_KEY);
+            final Model originalModel = _mavenProject.getOriginalModel();
+            if (originalModel == null) {
+                return null;
+            }
+            final Build build = originalModel.getBuild();
+            if (build == null) {
+                return null;
+            }
+            return build.getPluginsAsMap().get(SWITCHYARD_PLUGIN_KEY);
         }
 
         public boolean updateScannerClasses(Set<String> added, Set<String> removed) {

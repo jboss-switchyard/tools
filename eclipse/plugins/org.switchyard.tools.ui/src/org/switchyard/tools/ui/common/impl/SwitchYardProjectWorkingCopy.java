@@ -37,7 +37,6 @@ import org.eclipse.core.runtime.SubProgressMonitor;
 import org.eclipse.m2e.core.MavenPlugin;
 import org.eclipse.m2e.core.internal.IMavenConstants;
 import org.eclipse.m2e.core.project.MavenUpdateRequest;
-import org.eclipse.m2e.core.ui.internal.UpdateConfigurationJob;
 import org.switchyard.config.model.switchyard.SwitchYardModel;
 import org.switchyard.tools.ui.Activator;
 import org.switchyard.tools.ui.common.ISwitchYardComponentExtension;

@@ -10,7 +10,7 @@
  ************************************************************************************/
 package org.switchyard.tools.ui.facets;
 
-import java.util.List;
+import java.util.Set;
 
 import org.eclipse.core.runtime.IStatus;
 import org.eclipse.jface.viewers.ISelectionChangedListener;
@@ -123,10 +123,10 @@ public class SwitchYardFacetInstallWizardPage extends AbstractFacetWizardPage im
         }
         if (_config.isPropertySet(RUNTIME_COMPONENTS)) {
             _settingsGroup.getComponentsTable().setCheckedElements(
-                    ((List<ISwitchYardComponentExtension>) _config.getProperty(RUNTIME_COMPONENTS)).toArray());
+                    ((Set<ISwitchYardComponentExtension>) _config.getProperty(RUNTIME_COMPONENTS)).toArray());
         } else {
             _settingsGroup.getComponentsTable().setCheckedElements(
-                    ((List<ISwitchYardComponentExtension>) _config.getDefaultProperty(RUNTIME_COMPONENTS)).toArray());
+                    ((Set<ISwitchYardComponentExtension>) _config.getDefaultProperty(RUNTIME_COMPONENTS)).toArray());
         }
         _settingsGroup.getComponentsTable().setCheckedElements(
                 new Object[] {SwitchYardComponentExtensionManager.instance().getRuntimeComponentExtension() });

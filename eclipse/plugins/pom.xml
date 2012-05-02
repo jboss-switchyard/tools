@@ -13,11 +13,15 @@
   <description>Parent project for SwitchYard Eclipse plugins</description>
 
   <modules>
+    <module>org.switchyard.tools.models.sca.core</module>
+    <module>org.switchyard.tools.models.sca.sca1_1</module>
+    <module>org.switchyard.tools.models.switchyard1_0</module>
     <module>org.switchyard.tools</module>
     <module>org.switchyard.tools.xsd</module>
     <module>org.switchyard.tools.m2e</module>
     <module>org.switchyard.tools.core</module>
     <module>org.switchyard.tools.ui</module>
+    <module>org.switchyard.tools.ui.editor</module>
   </modules>
 
 </project>

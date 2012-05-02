@@ -27,6 +27,7 @@ import org.eclipse.core.resources.ResourcesPlugin;
 import org.eclipse.core.runtime.CoreException;
 import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.core.runtime.NullProgressMonitor;
+import org.eclipse.core.runtime.jobs.Job;
 import org.eclipse.jface.viewers.StructuredSelection;
 import org.eclipse.m2e.tests.common.AbstractMavenProjectTestCase;
 import org.eclipse.wst.common.project.facet.core.IFacetedProject;
@@ -87,9 +88,9 @@ public class CreateSwitchYardProjectTest extends AbstractMavenProjectTestCase {
         IWorkspaceRunnable op = new CreateSwitchYardProjectOperation(projectMetaData, null);
         workspace.run(op, new NullProgressMonitor());
 
-        waitForJobsToComplete();
+        waitForJobs();
         newProjectHandle.build(IncrementalProjectBuilder.FULL_BUILD, monitor);
-        waitForJobsToComplete();
+        waitForJobs();
         assertNoErrors(newProjectHandle);
 
         // TODO: change true to false once SWITCHYARD-469 is corrected
@@ -132,9 +133,9 @@ public class CreateSwitchYardProjectTest extends AbstractMavenProjectTestCase {
         };
         workspace.run(op, new NullProgressMonitor());
 
-        waitForJobsToComplete();
+        waitForJobs();
         newProjectHandle.build(IncrementalProjectBuilder.FULL_BUILD, monitor);
-        waitForJobsToComplete();
+        waitForJobs();
         assertNoErrors(newProjectHandle);
 
         assertTrue("Failed to update pom.xml", pomFile.exists());
@@ -157,9 +158,9 @@ public class CreateSwitchYardProjectTest extends AbstractMavenProjectTestCase {
         op = new CreateBeanServiceOperation(newBeanPage, newTestPage, null);
         workspace.run(op, new NullProgressMonitor());
 
-        waitForJobsToComplete();
+        waitForJobs();
         newProjectHandle.build(IncrementalProjectBuilder.FULL_BUILD, monitor);
-        waitForJobsToComplete();
+        waitForJobs();
         assertNoErrors(newProjectHandle);
 
         assertTrue("switchyard.xml missing after bean service creation", switchyardFile.exists());
@@ -217,6 +218,11 @@ public class CreateSwitchYardProjectTest extends AbstractMavenProjectTestCase {
                 expectedReader = null;
             }
         }
+    }
+
+    private void waitForJobs() throws Exception {
+        Job.getJobManager().join(ResourcesPlugin.FAMILY_MANUAL_BUILD, null);
+        Job.getJobManager().join(ResourcesPlugin.FAMILY_AUTO_BUILD, null);
     }
 
 }

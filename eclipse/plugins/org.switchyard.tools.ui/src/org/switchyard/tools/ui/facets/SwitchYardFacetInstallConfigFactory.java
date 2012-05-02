@@ -97,7 +97,7 @@ public class SwitchYardFacetInstallConfigFactory extends FacetInstallDataModelPr
         } else if (RUNTIME_VERSION.equals(propertyName)) {
             return _defaultVersion;
         } else if (RUNTIME_COMPONENTS.equals(propertyName)) {
-            return Collections.emptyList();
+            return Collections.emptySet();
         } else if (SWITCHYARD_PROJECT.equals(propertyName)) {
             return null;
         }

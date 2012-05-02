@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.4"?>
+<plugin>
+   <extension
+         point="org.eclipse.graphiti.ui.diagramTypes">
+      <diagramType
+            description="This is the diagram type for an SCA editor"
+            id="org.switchyard.tools.ui.editor.diagram"
+            name="SCA Diagram Type"
+            type="org.switchyard.tools.ui.editor.diagram">
+      </diagramType>
+   </extension>
+
+  <extension
+      point="org.eclipse.graphiti.ui.diagramTypeProviders">
+    <diagramTypeProvider
+      class="org.switchyard.tools.ui.editor.diagram.SCADiagramTypeProvider"
+      description="This is the SCA diagram type editor"
+      id="org.switchyard.tools.ui.editor.diagram.SCADiagramTypeProvider"
+      name="SCA Editor">
+      <diagramType
+        id="org.switchyard.tools.ui.editor.diagram">
+      </diagramType>
+      <imageProvider
+            id="org.switchyard.tools.ui.editor.ImageProvider">
+      </imageProvider>
+    </diagramTypeProvider>
+  </extension>
+	<extension
+	    point="org.eclipse.ui.views.properties.tabbed.propertyTabs">
+	    <propertyTabs contributorId="org.switchyard.tools.ui.editor.diagram.PropertyContributor">
+	        <propertyTab label="Main" category="SwitchyardSCA" 
+	            id="switchyard.main.tab">
+	        </propertyTab>
+	    </propertyTabs>
+	</extension>
+	 
+	<extension
+	    point="org.eclipse.ui.views.properties.tabbed.propertySections">
+	    <propertySections contributorId="org.switchyard.tools.ui.editor.diagram.PropertyContributor">
+	        <propertySection tab="switchyard.main.tab"            
+	         class="org.switchyard.tools.ui.editor.property.SwitchyardSCAPropertiesMain"
+	         filter="org.switchyard.tools.ui.editor.property.SwitchyardSCAPropertiesFilter"
+	         id="switchyard.main.tab.names">
+	        </propertySection>
+	    </propertySections>
+	</extension>
+ <extension
+       point="org.eclipse.ui.views.properties.tabbed.propertyContributor">
+    <propertyContributor
+          contributorId="org.switchyard.tools.ui.editor.diagram.PropertyContributor">
+       <propertyCategory
+             category="SwitchyardSCA">
+       </propertyCategory>
+    </propertyContributor>
+ </extension>
+ <extension
+       point="org.eclipse.ui.editors">
+    <editor
+          class="org.switchyard.tools.ui.editor.impl.SwitchyardSCAEditor"
+          contributorClass="org.eclipse.graphiti.ui.editor.DiagramEditorActionBarContributor"
+          default="true"
+          filenames="switchyard.xml"
+          id="org.switchyard.tools.ui.editor.switchyard.editor"
+          name="Switchyard Visual Editor">
+       <contentTypeBinding
+             contentTypeId="org.switchyard.tools.ui.editor.content-type.xml">
+       </contentTypeBinding>
+    </editor>
+    <editor
+          class="org.switchyard.tools.ui.editor.impl.MultiPageEditor"
+          contributorClass="org.switchyard.tools.ui.editor.impl.MultiPageEditorContributor"
+          default="true"
+          filenames="switchyard.xml"
+          id="org.switchyard.tools.ui.editor.switchyard.editor.multi"
+          name="Switchyard Visual Multipage Editor">
+       <contentTypeBinding
+             contentTypeId="org.switchyard.tools.ui.editor.content-type.xml">
+       </contentTypeBinding>
+    </editor>
+ </extension>
+    <extension
+         point="org.eclipse.core.contenttype.contentTypes">
+      <content-type
+            base-type="org.eclipse.core.runtime.xml"
+            id="org.switchyard.tools.ui.editor.content-type.xml"
+            name="SwitchYard 1.0 XML File"
+            priority="normal">
+         <describer
+               class="org.eclipse.core.runtime.content.XMLRootElementContentDescriber2"
+               plugin="org.eclipse.emf.ecore.xmi">
+            <parameter
+                  name="element"
+                  value="{urn:switchyard-config:switchyard:1.0}*">
+            </parameter>
+         </describer>
+      </content-type>
+ </extension>
+
+	<extension point="org.eclipse.graphiti.ui.imageProviders">
+		<imageProvider class="org.switchyard.tools.ui.editor.ImageProvider"
+			id="org.switchyard.tools.ui.editor.ImageProvider">
+		</imageProvider>
+	</extension>
+</plugin>

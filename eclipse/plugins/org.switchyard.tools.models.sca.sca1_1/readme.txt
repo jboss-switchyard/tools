@@ -1,0 +1,1 @@
+This project was derived from the Eclipse SOA tools project: org.eclipse.soa.sca.sca1_1.model

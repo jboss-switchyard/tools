@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<feature
+      id="org.switchyard.tools.editor.feature"
+      label="%featureName"
+      version="0.5.0.qualifier"
+      provider-name="%featureProvider">
+
+   <description url="http://www.jboss.org/switchyard">
+      %description
+   </description>
+
+   <copyright>
+      %copyright
+   </copyright>
+
+   <license url="%licenseURL">
+      %license
+   </license>
+
+   <requires>
+      <import feature="org.switchyard.tools.feature" version="0.5.0.qualifier" match="greaterOrEqual"/>
+      <import feature="org.eclipse.graphiti.feature" version="0.8.0" match="equivalent"/>
+   </requires>
+
+   <plugin
+         id="org.switchyard.tools.ui.editor"
+         download-size="0"
+         install-size="0"
+         version="0.0.0"
+         unpack="false"/>
+
+</feature>
