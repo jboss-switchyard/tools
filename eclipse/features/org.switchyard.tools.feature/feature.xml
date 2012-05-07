@@ -28,6 +28,7 @@
       <import feature="org.eclipse.wst.server_core.feature" version="3.2.0" match="greaterOrEqual"/>
       <import feature="org.eclipse.wst.xml_core.feature" version="1.0.0" match="greaterOrEqual"/>
       <import feature="org.eclipse.emf" version="2.6.0" match="greaterOrEqual"/>
+      <import plugin="javax.wsdl" version="1.6.2" match="equivalent"/>
    </requires>
 
    <plugin
@@ -80,6 +81,13 @@
 
    <plugin
          id="org.switchyard.tools.models.switchyard1_0"
+         download-size="0"
+         install-size="0"
+         version="0.0.0"
+         unpack="false"/>
+
+   <plugin
+         id="org.switchyard.tools.cxf"
          download-size="0"
          install-size="0"
          version="0.0.0"

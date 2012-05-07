@@ -17,6 +17,7 @@
     <module>org.switchyard.tools.models.sca.sca1_1</module>
     <module>org.switchyard.tools.models.switchyard1_0</module>
     <module>org.switchyard.tools</module>
+    <module>org.switchyard.tools.cxf</module>
     <module>org.switchyard.tools.xsd</module>
     <module>org.switchyard.tools.m2e</module>
     <module>org.switchyard.tools.core</module>

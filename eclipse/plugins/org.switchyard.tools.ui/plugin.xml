@@ -37,6 +37,18 @@
             name="SwitchYard Service Test">
          <description>Create a new SwitchYard service test.</description>
       </wizard>
+      <wizard
+            category="org.switchyard.tools.ui"
+            class="org.switchyard.tools.ui.wizards.Java2WSDLWizard"
+            descriptionImage="icons/switchyard_logo_200px.png"
+            icon="icons/switchyard_icon_16px.png"
+            id="org.switchyard.tools.ui.wizards.Java2WSDLWizard"
+            name="WSDL File from Java">
+         <description>Create a WSDL file from a Java class or interface.</description>
+         <selection
+               class="org.eclipse.core.resources.IResource">
+         </selection>
+      </wizard>
    </extension>
    <extension
          point="org.eclipse.m2e.core.indexes">
@@ -396,6 +408,33 @@
                 <adapt
                       type="org.eclipse.jdt.core.IJavaElement">
                 </adapt>
+             </or>
+          </enablement>
+       </commonWizard>
+       <commonWizard
+             menuGroupId="switchyard.group"
+             type="new"
+             wizardId="org.switchyard.tools.ui.wizards.Java2WSDLWizard">
+          <enablement>
+             <or>
+                <instanceof
+                      value="org.eclipse.core.resources.IProject">
+                </instanceof>
+                <instanceof
+                      value="org.switchyard.tools.ui.explorer.ISwitchYardRootNode">
+                </instanceof>
+                <instanceof
+                      value="org.switchyard.tools.ui.explorer.IComponentService">
+                </instanceof>
+                <instanceof
+                      value="org.switchyard.tools.ui.explorer.IComponentReference">
+                </instanceof>
+                <instanceof
+                      value="org.eclipse.jdt.core.IJavaElement">
+                </instanceof>
+                <instanceof
+                      value="org.eclipse.core.resources.IResource">
+                </instanceof>
              </or>
           </enablement>
        </commonWizard>
