@@ -17,23 +17,11 @@
             genModel="model/switchyard_1.0.genmodel"/>
    </extension>
 
-   <extension point="org.eclipse.emf.ecore.extension_parser">
-      <parser
-            type="bean"
-            class="org.switchyard.tools.models.switchyard1_0.bean.util.BeanResourceFactoryImpl"/>
-   </extension>
-
    <extension point="org.eclipse.emf.ecore.generated_package">
       <package
             uri="http://docs.oasis-open.org/ns/opencsa/sca/200903"
             class="org.open.oasis.docs.ns.opencsa.sca.bpel.BPELPackage"
             genModel="model/switchyard_1.0.genmodel"/>
-   </extension>
-
-   <extension point="org.eclipse.emf.ecore.extension_parser">
-      <parser
-            type="bpel"
-            class="org.open.oasis.docs.ns.opencsa.sca.bpel.util.BPELResourceFactoryImpl"/>
    </extension>
 
    <extension point="org.eclipse.emf.ecore.generated_package">
@@ -43,23 +31,11 @@
             genModel="model/switchyard_1.0.genmodel"/>
    </extension>
 
-   <extension point="org.eclipse.emf.ecore.extension_parser">
-      <parser
-            type="bpm"
-            class="org.switchyard.tools.models.switchyard1_0.bpm.util.BPMResourceFactoryImpl"/>
-   </extension>
-
    <extension point="org.eclipse.emf.ecore.generated_package">
       <package
             uri="urn:switchyard-component-common-rules:config:1.0"
             class="org.switchyard.tools.models.switchyard1_0.commonrules.CommonRulesPackage"
             genModel="model/switchyard_1.0.genmodel"/>
-   </extension>
-
-   <extension point="org.eclipse.emf.ecore.extension_parser">
-      <parser
-            type="commonrules"
-            class="org.switchyard.tools.models.switchyard1_0.commonrules.util.CommonRulesResourceFactoryImpl"/>
    </extension>
 
    <extension point="org.eclipse.emf.ecore.generated_package">
@@ -69,23 +45,11 @@
             genModel="model/switchyard_1.0.genmodel"/>
    </extension>
 
-   <extension point="org.eclipse.emf.ecore.extension_parser">
-      <parser
-            type="switchyard"
-            class="org.switchyard.tools.models.switchyard1_0.switchyard.util.SwitchyardResourceFactoryImpl"/>
-   </extension>
-
    <extension point="org.eclipse.emf.ecore.generated_package">
       <package
             uri="urn:switchyard-component-clojure:config:1.0"
             class="org.switchyard.tools.models.switchyard1_0.clojure.ClojurePackage"
             genModel="model/switchyard_1.0.genmodel"/>
-   </extension>
-
-   <extension point="org.eclipse.emf.ecore.extension_parser">
-      <parser
-            type="clojure"
-            class="org.switchyard.tools.models.switchyard1_0.clojure.util.ClojureResourceFactoryImpl"/>
    </extension>
 
    <extension point="org.eclipse.emf.ecore.generated_package">
@@ -95,23 +59,11 @@
             genModel="model/switchyard_1.0.genmodel"/>
    </extension>
 
-   <extension point="org.eclipse.emf.ecore.extension_parser">
-      <parser
-            type="hornetq"
-            class="org.switchyard.tools.models.switchyard1_0.hornetq.util.HornetQResourceFactoryImpl"/>
-   </extension>
-
    <extension point="org.eclipse.emf.ecore.generated_package">
       <package
             uri="urn:switchyard-component-rules:config:1.0"
             class="org.switchyard.tools.models.switchyard1_0.rules.RulesPackage"
             genModel="model/switchyard_1.0.genmodel"/>
-   </extension>
-
-   <extension point="org.eclipse.emf.ecore.extension_parser">
-      <parser
-            type="rules"
-            class="org.switchyard.tools.models.switchyard1_0.rules.util.RulesResourceFactoryImpl"/>
    </extension>
 
    <extension point="org.eclipse.emf.ecore.generated_package">
@@ -121,12 +73,6 @@
             genModel="model/switchyard_1.0.genmodel"/>
    </extension>
 
-   <extension point="org.eclipse.emf.ecore.extension_parser">
-      <parser
-            type="soap"
-            class="org.switchyard.tools.models.switchyard1_0.soap.util.SOAPResourceFactoryImpl"/>
-   </extension>
-
    <extension point="org.eclipse.emf.ecore.generated_package">
       <package
             uri="urn:switchyard-config:transform:1.0"
@@ -134,23 +80,11 @@
             genModel="model/switchyard_1.0.genmodel"/>
    </extension>
 
-   <extension point="org.eclipse.emf.ecore.extension_parser">
-      <parser
-            type="transform"
-            class="org.switchyard.tools.models.switchyard1_0.transform.util.TransformResourceFactoryImpl"/>
-   </extension>
-
    <extension point="org.eclipse.emf.ecore.generated_package">
       <package
             uri="urn:switchyard-config:validate:1.0"
             class="org.switchyard.tools.models.switchyard1_0.validate.ValidatePackage"
             genModel="model/switchyard_1.0.genmodel"/>
-   </extension>
-
-   <extension point="org.eclipse.emf.ecore.extension_parser">
-      <parser
-            type="validate"
-            class="org.switchyard.tools.models.switchyard1_0.validate.util.ValidateResourceFactoryImpl"/>
    </extension>
 
 </plugin>

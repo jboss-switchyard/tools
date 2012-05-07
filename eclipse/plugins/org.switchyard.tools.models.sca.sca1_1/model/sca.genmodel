@@ -5,9 +5,9 @@
     modelPluginID="org.switchyard.tools.models.sca.sca1_1" modelName="Sca" importerID="org.eclipse.emf.importer.ecore"
     complianceLevel="5.0" copyrightFields="false" usedGenPackages="platform:/plugin/org.switchyard.tools.models.sca.core/model/addressing.genmodel#//addressing platform:/plugin/org.switchyard.tools.models.sca.core/model/instance.genmodel#//instance platform:/plugin/org.eclipse.emf.ecore/model/XMLNamespace.genmodel#//namespace">
   <foreignModel>sca.ecore</foreignModel>
-  <genPackages prefix="Sca" basePackage="org.eclipse.soa.sca.sca1_1.model" resource="XML"
-      disposableProviderFactory="true" loadInitialization="true" literalsInterface="false"
-      extensibleProviderFactory="true" childCreationExtenders="true" ecorePackage="sca.ecore#/">
+  <genPackages prefix="Sca" basePackage="org.eclipse.soa.sca.sca1_1.model" disposableProviderFactory="true"
+      loadInitialization="true" literalsInterface="false" extensibleProviderFactory="true"
+      childCreationExtenders="true" fileExtensions="" ecorePackage="sca.ecore#/">
     <genEnums typeSafeEnumCompatible="false" ecoreEnum="sca.ecore#//CImplementationScope">
       <genEnumLiterals ecoreEnumLiteral="sca.ecore#//CImplementationScope/stateless"/>
       <genEnumLiterals ecoreEnumLiteral="sca.ecore#//CImplementationScope/composite"/>

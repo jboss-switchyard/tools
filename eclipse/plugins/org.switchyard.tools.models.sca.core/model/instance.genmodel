@@ -5,8 +5,8 @@
     modelPluginID="org.switchyard.tools.models.sca.core" modelName="Instance" importerID="org.eclipse.emf.importer.ecore"
     complianceLevel="5.0" copyrightFields="false">
   <foreignModel>instance.ecore</foreignModel>
-  <genPackages prefix="Instance" basePackage="org.eclipse.soa.sca.core.model" resource="XML"
-      disposableProviderFactory="true" extensibleProviderFactory="true" childCreationExtenders="true"
+  <genPackages prefix="Instance" basePackage="org.eclipse.soa.sca.core.model" disposableProviderFactory="true"
+      extensibleProviderFactory="true" childCreationExtenders="true" fileExtensions=""
       ecorePackage="instance.ecore#/">
     <genDataTypes ecoreDataType="instance.ecore#//WsdlLocationType"/>
     <genClasses ecoreClass="instance.ecore#//DocumentRoot">

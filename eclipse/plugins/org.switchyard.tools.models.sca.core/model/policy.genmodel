@@ -5,8 +5,8 @@
     modelPluginID="org.switchyard.tools.models.sca.core" modelName="Policy" importerID="org.eclipse.emf.importer.ecore"
     complianceLevel="5.0" copyrightFields="false">
   <foreignModel>policy.ecore</foreignModel>
-  <genPackages prefix="Policy" basePackage="org.eclipse.soa.sca.core.model" resource="XML"
-      disposableProviderFactory="true" extensibleProviderFactory="true" childCreationExtenders="true"
+  <genPackages prefix="Policy" basePackage="org.eclipse.soa.sca.core.model" disposableProviderFactory="true"
+      extensibleProviderFactory="true" childCreationExtenders="true" fileExtensions=""
       ecorePackage="policy.ecore#/">
     <genDataTypes ecoreDataType="policy.ecore#//PolicyURIsType"/>
     <genClasses ecoreClass="policy.ecore#//AppliesToType">

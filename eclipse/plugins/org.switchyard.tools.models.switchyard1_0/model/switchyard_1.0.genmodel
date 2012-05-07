@@ -2,8 +2,9 @@
 <genmodel:GenModel xmi:version="2.0"
     xmlns:xmi="http://www.omg.org/XMI" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore"
     xmlns:genmodel="http://www.eclipse.org/emf/2002/GenModel" modelDirectory="/org.switchyard.tools.models.switchyard1_0/src"
-    modelPluginID="org.switchyard.tools.models.switchyard1_0" modelName="Switchyard_1" importerID="org.eclipse.emf.importer.ecore"
-    complianceLevel="6.0" copyrightFields="false" usedGenPackages="platform:/plugin/org.switchyard.tools.models.sca.sca1_1/model/sca.genmodel#//sca platform:/plugin/org.switchyard.tools.models.sca.core/model/instance.genmodel#//instance platform:/plugin/org.switchyard.tools.models.sca.core/model/addressing.genmodel#//addressing platform:/plugin/org.eclipse.emf.ecore/model/XMLNamespace.genmodel#//namespace">
+    modelPluginID="org.switchyard.tools.models.switchyard1_0" modelName="Switchyard_1"
+    importerID="org.eclipse.emf.importer.ecore" complianceLevel="6.0" copyrightFields="false"
+    usedGenPackages="platform:/plugin/org.switchyard.tools.models.sca.sca1_1/model/sca.genmodel#//sca platform:/plugin/org.switchyard.tools.models.sca.core/model/instance.genmodel#//instance platform:/plugin/org.switchyard.tools.models.sca.core/model/addressing.genmodel#//addressing platform:/plugin/org.eclipse.emf.ecore/model/XMLNamespace.genmodel#//namespace">
   <foreignModel>component.bean.ecore</foreignModel>
   <foreignModel>component.bpel.ecore</foreignModel>
   <foreignModel>component.bpm.ecore</foreignModel>
@@ -17,8 +18,9 @@
   <foreignModel>config.validate.ecore</foreignModel>
   <foreignModel>component.camel.ecore</foreignModel>
   <foreignModel>camel-spring.ecore</foreignModel>
-  <genPackages prefix="Bean" basePackage="org.switchyard.tools.models.switchyard1_0" resource="XML"
-      disposableProviderFactory="true" ecorePackage="component.bean.ecore#/">
+  <genPackages prefix="Bean" basePackage="org.switchyard.tools.models.switchyard1_0"
+      disposableProviderFactory="true" contentTypeIdentifier="" fileExtensions=""
+      ecorePackage="component.bean.ecore#/">
     <genClasses ecoreClass="component.bean.ecore#//BeanImplementationType">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute component.bean.ecore#//BeanImplementationType/class"/>
     </genClasses>
@@ -29,18 +31,20 @@
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference component.bean.ecore#//DocumentRoot/implementationBean"/>
     </genClasses>
   </genPackages>
-  <genPackages prefix="BPEL" basePackage="org.open.oasis.docs.ns.opencsa.sca" resource="XML"
-      disposableProviderFactory="true" ecorePackage="component.bpel.ecore#/">
-    <genClasses ecoreClass="component.bpel.ecore#//BPELImplementation"/>
+  <genPackages prefix="BPEL" basePackage="org.open.oasis.docs.ns.opencsa.sca" disposableProviderFactory="true"
+      fileExtensions="" ecorePackage="component.bpel.ecore#/">
+    <genClasses ecoreClass="component.bpel.ecore#//BPELImplementation">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute component.bpel.ecore#//BPELImplementation/process"/>
+    </genClasses>
     <genClasses ecoreClass="component.bpel.ecore#//DocumentRoot">
       <genFeatures property="None" notify="false" createChild="false" ecoreFeature="ecore:EAttribute component.bpel.ecore#//DocumentRoot/mixed"/>
       <genFeatures property="None" notify="false" createChild="false" ecoreFeature="ecore:EReference component.bpel.ecore#//DocumentRoot/xMLNSPrefixMap"/>
       <genFeatures property="None" notify="false" createChild="false" ecoreFeature="ecore:EReference component.bpel.ecore#//DocumentRoot/xSISchemaLocation"/>
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute component.bpel.ecore#//DocumentRoot/implementationBpel"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EReference component.bpel.ecore#//DocumentRoot/implementationBpel"/>
     </genClasses>
   </genPackages>
-  <genPackages prefix="BPM" basePackage="org.switchyard.tools.models.switchyard1_0" resource="XML"
-      disposableProviderFactory="true" ecorePackage="component.bpm.ecore#/">
+  <genPackages prefix="BPM" basePackage="org.switchyard.tools.models.switchyard1_0"
+      disposableProviderFactory="true" fileExtensions="" ecorePackage="component.bpm.ecore#/">
     <genEnums typeSafeEnumCompatible="false" ecoreEnum="component.bpm.ecore#//ActionType">
       <genEnumLiterals ecoreEnumLiteral="component.bpm.ecore#//ActionType/STARTPROCESS"/>
       <genEnumLiterals ecoreEnumLiteral="component.bpm.ecore#//ActionType/SIGNALEVENT"/>
@@ -69,7 +73,7 @@
     <genClasses ecoreClass="component.bpm.ecore#//TaskHandlerType"/>
   </genPackages>
   <genPackages prefix="CommonRules" basePackage="org.switchyard.tools.models.switchyard1_0"
-      resource="XML" disposableProviderFactory="true" ecorePackage="component.common.rules.ecore#/">
+      disposableProviderFactory="true" fileExtensions="" ecorePackage="component.common.rules.ecore#/">
     <genClasses ecoreClass="component.common.rules.ecore#//DocumentRoot">
       <genFeatures property="None" notify="false" createChild="false" ecoreFeature="ecore:EAttribute component.common.rules.ecore#//DocumentRoot/mixed"/>
       <genFeatures property="None" notify="false" createChild="false" ecoreFeature="ecore:EReference component.common.rules.ecore#//DocumentRoot/xMLNSPrefixMap"/>
@@ -81,8 +85,8 @@
     </genClasses>
   </genPackages>
   <genPackages prefix="Switchyard" basePackage="org.switchyard.tools.models.switchyard1_0"
-      resource="XML" disposableProviderFactory="true" extensibleProviderFactory="true"
-      childCreationExtenders="true" ecorePackage="config.switchyard.ecore#/">
+      disposableProviderFactory="true" extensibleProviderFactory="true" childCreationExtenders="true"
+      fileExtensions="" ecorePackage="config.switchyard.ecore#/">
     <genClasses ecoreClass="config.switchyard.ecore#//ArtifactsType">
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference config.switchyard.ecore#//ArtifactsType/artifact"/>
     </genClasses>
@@ -177,8 +181,8 @@
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute config.switchyard.ecore#//ValidateType/name"/>
     </genClasses>
   </genPackages>
-  <genPackages prefix="Clojure" basePackage="org.switchyard.tools.models.switchyard1_0" resource="XML"
-      disposableProviderFactory="true" ecorePackage="component.clojure.ecore#/">
+  <genPackages prefix="Clojure" basePackage="org.switchyard.tools.models.switchyard1_0"
+      disposableProviderFactory="true" fileExtensions="" ecorePackage="component.clojure.ecore#/">
     <genClasses ecoreClass="component.clojure.ecore#//ClojureImplementationType">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute component.clojure.ecore#//ClojureImplementationType/script"/>
     </genClasses>
@@ -189,8 +193,8 @@
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference component.clojure.ecore#//DocumentRoot/implementationClojure"/>
     </genClasses>
   </genPackages>
-  <genPackages prefix="HornetQ" basePackage="org.switchyard.tools.models.switchyard1_0" resource="XML"
-      disposableProviderFactory="true" ecorePackage="component.hornetq.ecore#/">
+  <genPackages prefix="HornetQ" basePackage="org.switchyard.tools.models.switchyard1_0"
+      disposableProviderFactory="true" fileExtensions="" ecorePackage="component.hornetq.ecore#/">
     <genClasses ecoreClass="component.hornetq.ecore#//BindingType">
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference component.hornetq.ecore#//BindingType/hqOperationSelector"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference component.hornetq.ecore#//BindingType/config"/>
@@ -260,8 +264,8 @@
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute component.hornetq.ecore#//PropertyType/value"/>
     </genClasses>
   </genPackages>
-  <genPackages prefix="Rules" basePackage="org.switchyard.tools.models.switchyard1_0" resource="XML"
-      disposableProviderFactory="true" ecorePackage="component.rules.ecore#/">
+  <genPackages prefix="Rules" basePackage="org.switchyard.tools.models.switchyard1_0"
+      disposableProviderFactory="true" fileExtensions="" ecorePackage="component.rules.ecore#/">
     <genEnums typeSafeEnumCompatible="false" ecoreEnum="component.rules.ecore#//ActionType">
       <genEnumLiterals ecoreEnumLiteral="component.rules.ecore#//ActionType/EXECUTE"/>
       <genEnumLiterals ecoreEnumLiteral="component.rules.ecore#//ActionType/FIREALLRULES"/>
@@ -289,8 +293,8 @@
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference component.rules.ecore#//RulesImplementationType/resource"/>
     </genClasses>
   </genPackages>
-  <genPackages prefix="SOAP" basePackage="org.switchyard.tools.models.switchyard1_0" resource="XML"
-      disposableProviderFactory="true" ecorePackage="component.soap.ecore#/">
+  <genPackages prefix="SOAP" basePackage="org.switchyard.tools.models.switchyard1_0"
+      disposableProviderFactory="true" fileExtensions="" ecorePackage="component.soap.ecore#/">
     <genDataTypes ecoreDataType="component.soap.ecore#//WsdlPortType"/>
     <genClasses ecoreClass="component.soap.ecore#//DocumentRoot">
       <genFeatures property="None" notify="false" createChild="false" ecoreFeature="ecore:EAttribute component.soap.ecore#//DocumentRoot/mixed"/>
@@ -305,8 +309,8 @@
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute component.soap.ecore#//SOAPBindingType/contextPath"/>
     </genClasses>
   </genPackages>
-  <genPackages prefix="Transform" basePackage="org.switchyard.tools.models.switchyard1_0" resource="XML"
-      disposableProviderFactory="true" ecorePackage="config.transform.ecore#/">
+  <genPackages prefix="Transform" basePackage="org.switchyard.tools.models.switchyard1_0"
+      disposableProviderFactory="true" fileExtensions="" ecorePackage="config.transform.ecore#/">
     <genEnums typeSafeEnumCompatible="false" ecoreEnum="config.transform.ecore#//JavaTransformType">
       <genEnumLiterals ecoreEnumLiteral="config.transform.ecore#//JavaTransformType/XML2JAVA"/>
       <genEnumLiterals ecoreEnumLiteral="config.transform.ecore#//JavaTransformType/JAVA2XML"/>
@@ -336,8 +340,8 @@
     <genClasses ecoreClass="config.transform.ecore#//SmooksTransformType1"/>
     <genClasses ecoreClass="config.transform.ecore#//XsltTransformType"/>
   </genPackages>
-  <genPackages prefix="Validate" basePackage="org.switchyard.tools.models.switchyard1_0" resource="XML"
-      disposableProviderFactory="true" ecorePackage="config.validate.ecore#/">
+  <genPackages prefix="Validate" basePackage="org.switchyard.tools.models.switchyard1_0"
+      disposableProviderFactory="true" fileExtensions="" ecorePackage="config.validate.ecore#/">
     <genEnums typeSafeEnumCompatible="false" ecoreEnum="config.validate.ecore#//XmlSchemaType">
       <genEnumLiterals ecoreEnumLiteral="config.validate.ecore#//XmlSchemaType/DTD"/>
       <genEnumLiterals ecoreEnumLiteral="config.validate.ecore#//XmlSchemaType/XMLSCHEMA"/>
@@ -354,8 +358,8 @@
     <genClasses ecoreClass="config.validate.ecore#//JavaValidateType"/>
     <genClasses ecoreClass="config.validate.ecore#//XmlValidateType"/>
   </genPackages>
-  <genPackages prefix="Camel" basePackage="org.switchyard.tools.models.switchyard1_0" resource="XML"
-      disposableProviderFactory="true" ecorePackage="component.camel.ecore#/">
+  <genPackages prefix="Camel" basePackage="org.switchyard.tools.models.switchyard1_0"
+      disposableProviderFactory="true" fileExtensions="" ecorePackage="component.camel.ecore#/">
     <genClasses ecoreClass="component.camel.ecore#//CamelAtomBindingType">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute component.camel.ecore#//CamelAtomBindingType/feedURI"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute component.camel.ecore#//CamelAtomBindingType/splitEntries"/>
@@ -457,9 +461,9 @@
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute component.camel.ecore#//JavaDSLType/class"/>
     </genClasses>
   </genPackages>
-  <genPackages prefix="Spring" basePackage="org.switchyard.tools.models.switchyard1_0" resource="XML"
+  <genPackages prefix="Spring" basePackage="org.switchyard.tools.models.switchyard1_0"
       disposableProviderFactory="true" loadInitialization="true" literalsInterface="false"
-      ecorePackage="camel-spring.ecore#/">
+      fileExtensions="" ecorePackage="camel-spring.ecore#/">
     <genEnums typeSafeEnumCompatible="false" ecoreEnum="camel-spring.ecore#//BindyType">
       <genEnumLiterals ecoreEnumLiteral="camel-spring.ecore#//BindyType/Csv"/>
       <genEnumLiterals ecoreEnumLiteral="camel-spring.ecore#//BindyType/KeyValue"/>

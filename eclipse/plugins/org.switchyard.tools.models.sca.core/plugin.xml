@@ -17,12 +17,6 @@
             genModel="model/addressing.genmodel"/>
    </extension>
 
-   <extension point="org.eclipse.emf.ecore.extension_parser">
-      <parser
-            type="addressing"
-            class="org.eclipse.soa.sca.core.model.addressing.util.AddressingResourceFactoryImpl"/>
-   </extension>
-   
     <extension point="org.eclipse.emf.ecore.generated_package">
       <package
             uri="http://www.w3.org/ns/wsdl-instance"
@@ -30,23 +24,11 @@
             genModel="model/instance.genmodel"/>
    </extension>
 
-   <extension point="org.eclipse.emf.ecore.extension_parser">
-      <parser
-            type="instance"
-            class="org.eclipse.soa.sca.core.model.instance.util.InstanceResourceFactoryImpl"/>
-   </extension>
-   
     <extension point="org.eclipse.emf.ecore.generated_package">
       <package
             uri="http://schemas.xmlsoap.org/ws/2004/09/policy"
             class="org.eclipse.soa.sca.core.model.policy.PolicyPackage"
             genModel="model/policy.genmodel"/>
-   </extension>
-
-   <extension point="org.eclipse.emf.ecore.extension_parser">
-      <parser
-            type="policy"
-            class="org.eclipse.soa.sca.core.model.policy.util.PolicyResourceFactoryImpl"/>
    </extension>
 
 </plugin>

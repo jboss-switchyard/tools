@@ -17,10 +17,4 @@
             genModel="model/sca.genmodel"/>
    </extension>
 
-   <extension point="org.eclipse.emf.ecore.extension_parser">
-      <parser
-            type="composite"
-            class="org.eclipse.soa.sca.sca1_1.model.sca.util.ScaResourceFactoryImpl"/>
-   </extension>
-
 </plugin>
