@@ -56,6 +56,8 @@ import org.eclipse.wst.common.project.facet.core.IFacetedProject;
 import org.eclipse.wst.common.project.facet.core.IFacetedProjectWorkingCopy;
 import org.eclipse.wst.common.project.facet.core.ProjectFacetsManager;
 import org.switchyard.config.OutputKey;
+import org.switchyard.config.model.composite.CompositeModel;
+import org.switchyard.config.model.composite.v1.V1CompositeModel;
 import org.switchyard.config.model.switchyard.SwitchYardModel;
 import org.switchyard.tools.ui.Activator;
 import org.switchyard.tools.ui.M2EUtils;
@@ -189,6 +191,7 @@ public class CreateSwitchYardProjectOperation implements IWorkspaceRunnable {
 
     private final NewSwitchYardProjectMetaData _projectMetatData;
     private final IAdaptable _uiInfo;
+    private IFile _switchYardFile;
 
     /**
      * Create a new CreateSwitchYardProjectOperation.
@@ -199,6 +202,13 @@ public class CreateSwitchYardProjectOperation implements IWorkspaceRunnable {
     public CreateSwitchYardProjectOperation(NewSwitchYardProjectMetaData projectMetatData, IAdaptable uiInfo) {
         _projectMetatData = projectMetatData;
         _uiInfo = uiInfo;
+    }
+
+    /**
+     * @return the newly created switchyard.xml file.
+     */
+    public IFile getSwitchYardFile() {
+        return _switchYardFile;
     }
 
     @Override
@@ -288,15 +298,15 @@ public class CreateSwitchYardProjectOperation implements IWorkspaceRunnable {
             // create switchyard.xml
             try {
                 monitor.subTask("Creating switchyard.xml file.");
-                SwitchYardModel switchYardModel = createSwitchYardModel(
+                SwitchYardModel switchYardModel = newSwitchYardModel(
                         _projectMetatData.getNewProjectHandle().getName(),
                         createTargetnamespace(_projectMetatData.getGroupId(), _projectMetatData.getNewProjectHandle()
                                 .getName(), _projectMetatData.getProjectVersion()));
                 ByteArrayOutputStream baos = new ByteArrayOutputStream();
                 switchYardModel.getModelConfiguration().write(baos, new OutputKey[0]);
-                IFile switchYardFile = _projectMetatData.getNewProjectHandle().getFolder(MAVEN_MAIN_RESOURCES_PATH)
+                _switchYardFile = _projectMetatData.getNewProjectHandle().getFolder(MAVEN_MAIN_RESOURCES_PATH)
                         .getFolder(M2EUtils.META_INF).getFile(M2EUtils.SWITCHYARD_XML);
-                CreateFileOperation op = new CreateFileOperation(switchYardFile, null, new ByteArrayInputStream(
+                CreateFileOperation op = new CreateFileOperation(_switchYardFile, null, new ByteArrayInputStream(
                         baos.toByteArray()), "Creating switchyard.xml");
                 subMonitor = new SubProgressMonitor(monitor, 100, SubProgressMonitor.PREPEND_MAIN_LABEL_TO_SUBTASK);
                 op.execute(subMonitor, _uiInfo);
@@ -359,6 +369,15 @@ public class CreateSwitchYardProjectOperation implements IWorkspaceRunnable {
         } else {
             status.merge(new Status(Status.ERROR, Activator.PLUGIN_ID, message, e));
         }
+    }
+
+    private SwitchYardModel newSwitchYardModel(String name, String targetNamespace) {
+        SwitchYardModel switchYardModel = createSwitchYardModel(name, targetNamespace);
+        CompositeModel composite = new V1CompositeModel();
+        composite.setName(name);
+        composite.setTargetNamespace(targetNamespace);
+        switchYardModel.setComposite(composite);
+        return switchYardModel;
     }
 
     private Model createPom() {

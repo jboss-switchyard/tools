@@ -22,9 +22,13 @@ import org.eclipse.jface.operation.IRunnableWithProgress;
 import org.eclipse.jface.viewers.IStructuredSelection;
 import org.eclipse.jface.wizard.Wizard;
 import org.eclipse.swt.widgets.Composite;
+import org.eclipse.swt.widgets.Display;
 import org.eclipse.ui.INewWizard;
 import org.eclipse.ui.IWorkbench;
+import org.eclipse.ui.IWorkbenchPage;
+import org.eclipse.ui.PartInitException;
 import org.eclipse.ui.dialogs.WizardNewProjectCreationPage;
+import org.eclipse.ui.ide.IDE;
 import org.eclipse.ui.ide.undo.WorkspaceUndoUtil;
 import org.sonatype.aether.version.Version;
 import org.switchyard.tools.ui.Activator;
@@ -48,6 +52,7 @@ public class NewSwitchYardProjectWizard extends Wizard implements INewWizard {
     private WizardNewProjectCreationPage _newProjectPage;
     private ProjectConfigurationWizardPage _configurationPage;
     private IStructuredSelection _selection;
+    private IWorkbench _workbench;
 
     /**
      * Constructor for NewSwitchYardProjectWizard.
@@ -60,7 +65,8 @@ public class NewSwitchYardProjectWizard extends Wizard implements INewWizard {
 
     @Override
     public void init(IWorkbench workbench, IStructuredSelection selection) {
-        this._selection = selection;
+        _selection = selection;
+        _workbench = workbench;
     }
 
     /**
@@ -114,6 +120,8 @@ public class NewSwitchYardProjectWizard extends Wizard implements INewWizard {
 
         // run the new project creation operation
         try {
+            final Display display = _workbench.getDisplay();
+            final IWorkbenchPage activePage = _workbench.getActiveWorkbenchWindow().getActivePage();
             getContainer().run(true, true, new IRunnableWithProgress() {
 
                 @Override
@@ -122,6 +130,22 @@ public class NewSwitchYardProjectWizard extends Wizard implements INewWizard {
                         ResourcesPlugin.getWorkspace().run(op, monitor);
                     } catch (CoreException e) {
                         throw new InvocationTargetException(e);
+                    }
+                    if (activePage != null) {
+                        display.asyncExec(new Runnable() {
+                            @Override
+                            public void run() {
+                                try {
+                                    IDE.openEditor(activePage, op.getSwitchYardFile(), true);
+                                } catch (PartInitException e) {
+                                    Activator
+                                            .getDefault()
+                                            .getLog()
+                                            .log(new Status(Status.ERROR, Activator.PLUGIN_ID,
+                                                    "Error opening switchyard.xml.", e));
+                                }
+                            }
+                        });
                     }
                 }
             });

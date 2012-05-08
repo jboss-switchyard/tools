@@ -438,6 +438,21 @@
              </or>
           </enablement>
        </commonWizard>
+       <commonWizard
+             menuGroupId="switchyard.group"
+             type="new"
+             wizardId="org.switchyard.tools.ui.wizards.NewSwitchYardProjectWizard">
+          <enablement>
+              <or>
+                  <instanceof
+                          value="org.eclipse.core.resources.IWorkspaceRoot" />
+                  <and>
+                      <instanceof value="java.util.Collection"/>
+                      <count value="0" />
+                  </and>											
+              </or>
+          </enablement>
+       </commonWizard>
        <actionProvider
              class="org.switchyard.tools.ui.actions.SwitchYardActionProvider"
              id="org.switchyard.tools.ui.actions.SwitchYardActionProvider">
