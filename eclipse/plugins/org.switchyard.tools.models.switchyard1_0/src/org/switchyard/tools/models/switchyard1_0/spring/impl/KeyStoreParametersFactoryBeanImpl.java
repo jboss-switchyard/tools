@@ -22,22 +22,22 @@ import org.switchyard.tools.models.switchyard1_0.spring.SpringPackage;
  */
 public class KeyStoreParametersFactoryBeanImpl extends AbstractKeyStoreParametersFactoryBeanImpl implements KeyStoreParametersFactoryBean {
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	protected KeyStoreParametersFactoryBeanImpl() {
-		super();
-	}
+        super();
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	@Override
 	protected EClass eStaticClass() {
-		return SpringPackage.eINSTANCE.getKeyStoreParametersFactoryBean();
-	}
+        return SpringPackage.eINSTANCE.getKeyStoreParametersFactoryBean();
+    }
 
 } //KeyStoreParametersFactoryBeanImpl

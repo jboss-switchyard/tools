@@ -22,22 +22,22 @@ import org.switchyard.tools.models.switchyard1_0.spring.TopicLoadBalancerDefinit
  */
 public class TopicLoadBalancerDefinitionImpl extends LoadBalancerImpl implements TopicLoadBalancerDefinition {
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	protected TopicLoadBalancerDefinitionImpl() {
-		super();
-	}
+        super();
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	@Override
 	protected EClass eStaticClass() {
-		return SpringPackage.eINSTANCE.getTopicLoadBalancerDefinition();
-	}
+        return SpringPackage.eINSTANCE.getTopicLoadBalancerDefinition();
+    }
 
 } //TopicLoadBalancerDefinitionImpl

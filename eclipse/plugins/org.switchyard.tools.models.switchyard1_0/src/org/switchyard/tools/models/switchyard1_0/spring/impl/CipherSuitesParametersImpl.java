@@ -34,120 +34,120 @@ import org.switchyard.tools.models.switchyard1_0.spring.SpringPackage;
  */
 public class CipherSuitesParametersImpl extends EObjectImpl implements CipherSuitesParameters {
 	/**
-	 * The cached value of the '{@link #getCipherSuite() <em>Cipher Suite</em>}' attribute list.
-	 * <!-- begin-user-doc -->
+     * The cached value of the '{@link #getCipherSuite() <em>Cipher Suite</em>}' attribute list.
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #getCipherSuite()
-	 * @generated
-	 * @ordered
-	 */
+     * @see #getCipherSuite()
+     * @generated
+     * @ordered
+     */
 	protected EList<String> cipherSuite;
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	protected CipherSuitesParametersImpl() {
-		super();
-	}
+        super();
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	@Override
 	protected EClass eStaticClass() {
-		return SpringPackage.eINSTANCE.getCipherSuitesParameters();
-	}
+        return SpringPackage.eINSTANCE.getCipherSuitesParameters();
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public EList<String> getCipherSuite() {
-		if (cipherSuite == null) {
-			cipherSuite = new EDataTypeEList<String>(String.class, this, SpringPackage.CIPHER_SUITES_PARAMETERS__CIPHER_SUITE);
-		}
-		return cipherSuite;
-	}
+        if (cipherSuite == null) {
+            cipherSuite = new EDataTypeEList<String>(String.class, this, SpringPackage.CIPHER_SUITES_PARAMETERS__CIPHER_SUITE);
+        }
+        return cipherSuite;
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
-		switch (featureID) {
-			case SpringPackage.CIPHER_SUITES_PARAMETERS__CIPHER_SUITE:
-				return getCipherSuite();
-		}
-		return super.eGet(featureID, resolve, coreType);
-	}
+        switch (featureID) {
+            case SpringPackage.CIPHER_SUITES_PARAMETERS__CIPHER_SUITE:
+                return getCipherSuite();
+        }
+        return super.eGet(featureID, resolve, coreType);
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	@SuppressWarnings("unchecked")
 	@Override
 	public void eSet(int featureID, Object newValue) {
-		switch (featureID) {
-			case SpringPackage.CIPHER_SUITES_PARAMETERS__CIPHER_SUITE:
-				getCipherSuite().clear();
-				getCipherSuite().addAll((Collection<? extends String>)newValue);
-				return;
-		}
-		super.eSet(featureID, newValue);
-	}
+        switch (featureID) {
+            case SpringPackage.CIPHER_SUITES_PARAMETERS__CIPHER_SUITE:
+                getCipherSuite().clear();
+                getCipherSuite().addAll((Collection<? extends String>)newValue);
+                return;
+        }
+        super.eSet(featureID, newValue);
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	@Override
 	public void eUnset(int featureID) {
-		switch (featureID) {
-			case SpringPackage.CIPHER_SUITES_PARAMETERS__CIPHER_SUITE:
-				getCipherSuite().clear();
-				return;
-		}
-		super.eUnset(featureID);
-	}
+        switch (featureID) {
+            case SpringPackage.CIPHER_SUITES_PARAMETERS__CIPHER_SUITE:
+                getCipherSuite().clear();
+                return;
+        }
+        super.eUnset(featureID);
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	@Override
 	public boolean eIsSet(int featureID) {
-		switch (featureID) {
-			case SpringPackage.CIPHER_SUITES_PARAMETERS__CIPHER_SUITE:
-				return cipherSuite != null && !cipherSuite.isEmpty();
-		}
-		return super.eIsSet(featureID);
-	}
+        switch (featureID) {
+            case SpringPackage.CIPHER_SUITES_PARAMETERS__CIPHER_SUITE:
+                return cipherSuite != null && !cipherSuite.isEmpty();
+        }
+        return super.eIsSet(featureID);
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	@Override
 	public String toString() {
-		if (eIsProxy()) return super.toString();
+        if (eIsProxy()) return super.toString();
 
-		StringBuffer result = new StringBuffer(super.toString());
-		result.append(" (cipherSuite: ");
-		result.append(cipherSuite);
-		result.append(')');
-		return result.toString();
-	}
+        StringBuffer result = new StringBuffer(super.toString());
+        result.append(" (cipherSuite: ");
+        result.append(cipherSuite);
+        result.append(')');
+        return result.toString();
+    }
 
 } //CipherSuitesParametersImpl

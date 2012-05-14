@@ -25,30 +25,30 @@ import org.switchyard.tools.models.switchyard1_0.bpm.BPMPackage;
 public class BPMXMLProcessor extends XMLProcessor {
 
 	/**
-	 * Public constructor to instantiate the helper.
-	 * <!-- begin-user-doc -->
+     * Public constructor to instantiate the helper.
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public BPMXMLProcessor() {
-		super((EPackage.Registry.INSTANCE));
-		BPMPackage.eINSTANCE.eClass();
-	}
+        super((EPackage.Registry.INSTANCE));
+        BPMPackage.eINSTANCE.eClass();
+    }
 	
 	/**
-	 * Register for "*" and "xml" file extensions the BPMResourceFactoryImpl factory.
-	 * <!-- begin-user-doc -->
+     * Register for "*" and "xml" file extensions the BPMResourceFactoryImpl factory.
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	@Override
 	protected Map<String, Resource.Factory> getRegistrations() {
-		if (registrations == null) {
-			super.getRegistrations();
-			registrations.put(XML_EXTENSION, new BPMResourceFactoryImpl());
-			registrations.put(STAR_EXTENSION, new BPMResourceFactoryImpl());
-		}
-		return registrations;
-	}
+        if (registrations == null) {
+            super.getRegistrations();
+            registrations.put(XML_EXTENSION, new BPMResourceFactoryImpl());
+            registrations.put(STAR_EXTENSION, new BPMResourceFactoryImpl());
+        }
+        return registrations;
+    }
 
 } //BPMXMLProcessor

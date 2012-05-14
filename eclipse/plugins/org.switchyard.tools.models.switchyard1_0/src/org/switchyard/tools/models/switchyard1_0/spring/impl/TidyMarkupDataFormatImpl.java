@@ -30,137 +30,137 @@ import org.switchyard.tools.models.switchyard1_0.spring.TidyMarkupDataFormat;
  */
 public class TidyMarkupDataFormatImpl extends DataFormatImpl implements TidyMarkupDataFormat {
 	/**
-	 * The default value of the '{@link #getDataObjectType() <em>Data Object Type</em>}' attribute.
-	 * <!-- begin-user-doc -->
+     * The default value of the '{@link #getDataObjectType() <em>Data Object Type</em>}' attribute.
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #getDataObjectType()
-	 * @generated
-	 * @ordered
-	 */
+     * @see #getDataObjectType()
+     * @generated
+     * @ordered
+     */
 	protected static final String DATA_OBJECT_TYPE_EDEFAULT = null;
 
 	/**
-	 * The cached value of the '{@link #getDataObjectType() <em>Data Object Type</em>}' attribute.
-	 * <!-- begin-user-doc -->
+     * The cached value of the '{@link #getDataObjectType() <em>Data Object Type</em>}' attribute.
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #getDataObjectType()
-	 * @generated
-	 * @ordered
-	 */
+     * @see #getDataObjectType()
+     * @generated
+     * @ordered
+     */
 	protected String dataObjectType = DATA_OBJECT_TYPE_EDEFAULT;
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	protected TidyMarkupDataFormatImpl() {
-		super();
-	}
+        super();
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	@Override
 	protected EClass eStaticClass() {
-		return SpringPackage.eINSTANCE.getTidyMarkupDataFormat();
-	}
+        return SpringPackage.eINSTANCE.getTidyMarkupDataFormat();
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public String getDataObjectType() {
-		return dataObjectType;
-	}
+        return dataObjectType;
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public void setDataObjectType(String newDataObjectType) {
-		String oldDataObjectType = dataObjectType;
-		dataObjectType = newDataObjectType;
-		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, SpringPackage.TIDY_MARKUP_DATA_FORMAT__DATA_OBJECT_TYPE, oldDataObjectType, dataObjectType));
-	}
+        String oldDataObjectType = dataObjectType;
+        dataObjectType = newDataObjectType;
+        if (eNotificationRequired())
+            eNotify(new ENotificationImpl(this, Notification.SET, SpringPackage.TIDY_MARKUP_DATA_FORMAT__DATA_OBJECT_TYPE, oldDataObjectType, dataObjectType));
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
-		switch (featureID) {
-			case SpringPackage.TIDY_MARKUP_DATA_FORMAT__DATA_OBJECT_TYPE:
-				return getDataObjectType();
-		}
-		return super.eGet(featureID, resolve, coreType);
-	}
+        switch (featureID) {
+            case SpringPackage.TIDY_MARKUP_DATA_FORMAT__DATA_OBJECT_TYPE:
+                return getDataObjectType();
+        }
+        return super.eGet(featureID, resolve, coreType);
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	@Override
 	public void eSet(int featureID, Object newValue) {
-		switch (featureID) {
-			case SpringPackage.TIDY_MARKUP_DATA_FORMAT__DATA_OBJECT_TYPE:
-				setDataObjectType((String)newValue);
-				return;
-		}
-		super.eSet(featureID, newValue);
-	}
+        switch (featureID) {
+            case SpringPackage.TIDY_MARKUP_DATA_FORMAT__DATA_OBJECT_TYPE:
+                setDataObjectType((String)newValue);
+                return;
+        }
+        super.eSet(featureID, newValue);
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	@Override
 	public void eUnset(int featureID) {
-		switch (featureID) {
-			case SpringPackage.TIDY_MARKUP_DATA_FORMAT__DATA_OBJECT_TYPE:
-				setDataObjectType(DATA_OBJECT_TYPE_EDEFAULT);
-				return;
-		}
-		super.eUnset(featureID);
-	}
+        switch (featureID) {
+            case SpringPackage.TIDY_MARKUP_DATA_FORMAT__DATA_OBJECT_TYPE:
+                setDataObjectType(DATA_OBJECT_TYPE_EDEFAULT);
+                return;
+        }
+        super.eUnset(featureID);
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	@Override
 	public boolean eIsSet(int featureID) {
-		switch (featureID) {
-			case SpringPackage.TIDY_MARKUP_DATA_FORMAT__DATA_OBJECT_TYPE:
-				return DATA_OBJECT_TYPE_EDEFAULT == null ? dataObjectType != null : !DATA_OBJECT_TYPE_EDEFAULT.equals(dataObjectType);
-		}
-		return super.eIsSet(featureID);
-	}
+        switch (featureID) {
+            case SpringPackage.TIDY_MARKUP_DATA_FORMAT__DATA_OBJECT_TYPE:
+                return DATA_OBJECT_TYPE_EDEFAULT == null ? dataObjectType != null : !DATA_OBJECT_TYPE_EDEFAULT.equals(dataObjectType);
+        }
+        return super.eIsSet(featureID);
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	@Override
 	public String toString() {
-		if (eIsProxy()) return super.toString();
+        if (eIsProxy()) return super.toString();
 
-		StringBuffer result = new StringBuffer(super.toString());
-		result.append(" (dataObjectType: ");
-		result.append(dataObjectType);
-		result.append(')');
-		return result.toString();
-	}
+        StringBuffer result = new StringBuffer(super.toString());
+        result.append(" (dataObjectType: ");
+        result.append(dataObjectType);
+        result.append(')');
+        return result.toString();
+    }
 
 } //TidyMarkupDataFormatImpl

@@ -22,22 +22,22 @@ import org.switchyard.tools.models.switchyard1_0.spring.SpringPackage;
  */
 public class MvelExpressionImpl extends ExpressionImpl implements MvelExpression {
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	protected MvelExpressionImpl() {
-		super();
-	}
+        super();
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	@Override
 	protected EClass eStaticClass() {
-		return SpringPackage.eINSTANCE.getMvelExpression();
-	}
+        return SpringPackage.eINSTANCE.getMvelExpression();
+    }
 
 } //MvelExpressionImpl

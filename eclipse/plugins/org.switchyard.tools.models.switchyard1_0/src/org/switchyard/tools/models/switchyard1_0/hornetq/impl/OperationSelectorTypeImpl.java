@@ -22,22 +22,22 @@ import org.switchyard.tools.models.switchyard1_0.hornetq.OperationSelectorType;
  */
 public class OperationSelectorTypeImpl extends org.eclipse.soa.sca.sca1_1.model.sca.impl.OperationSelectorTypeImpl implements OperationSelectorType {
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	protected OperationSelectorTypeImpl() {
-		super();
-	}
+        super();
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	@Override
 	protected EClass eStaticClass() {
-		return HornetQPackage.Literals.OPERATION_SELECTOR_TYPE;
-	}
+        return HornetQPackage.Literals.OPERATION_SELECTOR_TYPE;
+    }
 
 } //OperationSelectorTypeImpl

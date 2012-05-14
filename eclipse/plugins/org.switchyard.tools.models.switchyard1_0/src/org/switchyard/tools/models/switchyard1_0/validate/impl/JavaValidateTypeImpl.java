@@ -24,22 +24,22 @@ import org.switchyard.tools.models.switchyard1_0.validate.ValidatePackage;
  */
 public class JavaValidateTypeImpl extends ValidateTypeImpl implements JavaValidateType {
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	protected JavaValidateTypeImpl() {
-		super();
-	}
+        super();
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	@Override
 	protected EClass eStaticClass() {
-		return ValidatePackage.Literals.JAVA_VALIDATE_TYPE;
-	}
+        return ValidatePackage.Literals.JAVA_VALIDATE_TYPE;
+    }
 
 } //JavaValidateTypeImpl

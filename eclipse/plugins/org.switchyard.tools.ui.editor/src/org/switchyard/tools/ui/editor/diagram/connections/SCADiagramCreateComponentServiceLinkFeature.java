@@ -18,14 +18,13 @@ import org.eclipse.graphiti.features.context.impl.AddConnectionContext;
 import org.eclipse.graphiti.features.impl.AbstractCreateConnectionFeature;
 import org.eclipse.graphiti.mm.pictograms.Anchor;
 import org.eclipse.graphiti.mm.pictograms.Connection;
-import org.eclipse.soa.sca.sca1_1.model.sca.Component;
 import org.eclipse.soa.sca.sca1_1.model.sca.ComponentService;
 import org.eclipse.soa.sca.sca1_1.model.sca.Service;
 import org.switchyard.tools.ui.editor.ImageProvider;
 
 /**
  * @author bfitzpat
- *
+ * 
  */
 public class SCADiagramCreateComponentServiceLinkFeature extends AbstractCreateConnectionFeature {
 
@@ -39,14 +38,13 @@ public class SCADiagramCreateComponentServiceLinkFeature extends AbstractCreateC
     @Override
     public boolean canCreate(ICreateConnectionContext context) {
         if (context.getSourceAnchor() != null && context.getTargetAnchor() != null) {
-
             Object source = getAnchorObject(context.getSourceAnchor());
             Object target = getAnchorObject(context.getTargetAnchor());
             if (source != null && target != null) {
-                if (source instanceof Service && target instanceof Component) {
+                if (source instanceof Service && target instanceof ComponentService) {
                     return true;
                 }
-                if (source instanceof Component && target instanceof Service) {
+                if (source instanceof ComponentService && target instanceof Service) {
                     return true;
                 }
             }
@@ -54,8 +52,12 @@ public class SCADiagramCreateComponentServiceLinkFeature extends AbstractCreateC
         return false;
     }
 
-    /* (non-Javadoc)
-     * @see org.eclipse.graphiti.func.ICreateConnection#canStartConnection(org.eclipse.graphiti.features.context.ICreateConnectionContext)
+    /*
+     * (non-Javadoc)
+     * 
+     * @see
+     * org.eclipse.graphiti.func.ICreateConnection#canStartConnection(org.eclipse
+     * .graphiti.features.context.ICreateConnectionContext)
      */
     @Override
     public boolean canStartConnection(ICreateConnectionContext context) {
@@ -67,8 +69,12 @@ public class SCADiagramCreateComponentServiceLinkFeature extends AbstractCreateC
 
     }
 
-    /* (non-Javadoc)
-     * @see org.eclipse.graphiti.func.ICreateConnection#create(org.eclipse.graphiti.features.context.ICreateConnectionContext)
+    /*
+     * (non-Javadoc)
+     * 
+     * @see
+     * org.eclipse.graphiti.func.ICreateConnection#create(org.eclipse.graphiti
+     * .features.context.ICreateConnectionContext)
      */
     @Override
     public Connection create(ICreateConnectionContext context) {
@@ -78,17 +84,20 @@ public class SCADiagramCreateComponentServiceLinkFeature extends AbstractCreateC
         Object target = getAnchorObject(context.getTargetAnchor());
 
         if (source != null && target != null) {
+            ComponentService componentService;
+            Service service;
             // add connection for business object
+            if (source instanceof ComponentService) {
+                componentService = (ComponentService) source;
+                service = (Service) target;
+            } else {
+                componentService = (ComponentService) target;
+                service = (Service) source;
+            }
             AddConnectionContext addContext = new AddConnectionContext(context.getSourceAnchor(),
                     context.getTargetAnchor());
-
-            Anchor sourceAnchor = context.getSourceAnchor();
-
-            ComponentService cs = (ComponentService) getFeatureProvider().getBusinessObjectForPictogramElement(
-                    sourceAnchor.getLink().getPictogramElement());
-            Service service = (Service) target;
-            cs.setName(service.getName());
-            addContext.setNewObject(cs);
+            service.setPromote(componentService);
+            addContext.setNewObject(componentService);
             newConnection = (Connection) getFeatureProvider().addIfPossible(addContext);
         }
 
@@ -98,7 +107,7 @@ public class SCADiagramCreateComponentServiceLinkFeature extends AbstractCreateC
     private Object getAnchorObject(Anchor anchor) {
         if (anchor != null) {
             Object object = getBusinessObjectForPictogramElement(anchor.getParent());
-            if (object instanceof Service || object instanceof Component) {
+            if (object instanceof Service || object instanceof ComponentService) {
                 return object;
             }
         }

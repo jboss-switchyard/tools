@@ -25,30 +25,30 @@ import org.switchyard.tools.models.switchyard1_0.clojure.ClojurePackage;
 public class ClojureXMLProcessor extends XMLProcessor {
 
 	/**
-	 * Public constructor to instantiate the helper.
-	 * <!-- begin-user-doc -->
+     * Public constructor to instantiate the helper.
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public ClojureXMLProcessor() {
-		super((EPackage.Registry.INSTANCE));
-		ClojurePackage.eINSTANCE.eClass();
-	}
+        super((EPackage.Registry.INSTANCE));
+        ClojurePackage.eINSTANCE.eClass();
+    }
 	
 	/**
-	 * Register for "*" and "xml" file extensions the ClojureResourceFactoryImpl factory.
-	 * <!-- begin-user-doc -->
+     * Register for "*" and "xml" file extensions the ClojureResourceFactoryImpl factory.
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	@Override
 	protected Map<String, Resource.Factory> getRegistrations() {
-		if (registrations == null) {
-			super.getRegistrations();
-			registrations.put(XML_EXTENSION, new ClojureResourceFactoryImpl());
-			registrations.put(STAR_EXTENSION, new ClojureResourceFactoryImpl());
-		}
-		return registrations;
-	}
+        if (registrations == null) {
+            super.getRegistrations();
+            registrations.put(XML_EXTENSION, new ClojureResourceFactoryImpl());
+            registrations.put(STAR_EXTENSION, new ClojureResourceFactoryImpl());
+        }
+        return registrations;
+    }
 
 } //ClojureXMLProcessor

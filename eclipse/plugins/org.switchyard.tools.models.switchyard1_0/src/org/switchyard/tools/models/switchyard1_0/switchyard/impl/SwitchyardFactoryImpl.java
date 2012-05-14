@@ -24,230 +24,230 @@ import org.switchyard.tools.models.switchyard1_0.switchyard.*;
  */
 public class SwitchyardFactoryImpl extends EFactoryImpl implements SwitchyardFactory {
 	/**
-	 * Creates the default factory implementation.
-	 * <!-- begin-user-doc -->
+     * Creates the default factory implementation.
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public static SwitchyardFactory init() {
-		try {
-			SwitchyardFactory theSwitchyardFactory = (SwitchyardFactory)EPackage.Registry.INSTANCE.getEFactory("urn:switchyard-config:switchyard:1.0"); 
-			if (theSwitchyardFactory != null) {
-				return theSwitchyardFactory;
-			}
-		}
-		catch (Exception exception) {
-			EcorePlugin.INSTANCE.log(exception);
-		}
-		return new SwitchyardFactoryImpl();
-	}
+        try {
+            SwitchyardFactory theSwitchyardFactory = (SwitchyardFactory)EPackage.Registry.INSTANCE.getEFactory("urn:switchyard-config:switchyard:1.0"); 
+            if (theSwitchyardFactory != null) {
+                return theSwitchyardFactory;
+            }
+        }
+        catch (Exception exception) {
+            EcorePlugin.INSTANCE.log(exception);
+        }
+        return new SwitchyardFactoryImpl();
+    }
 
 	/**
-	 * Creates an instance of the factory.
-	 * <!-- begin-user-doc -->
+     * Creates an instance of the factory.
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public SwitchyardFactoryImpl() {
-		super();
-	}
+        super();
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	@Override
 	public EObject create(EClass eClass) {
-		switch (eClass.getClassifierID()) {
-			case SwitchyardPackage.ARTIFACTS_TYPE: return createArtifactsType();
-			case SwitchyardPackage.ARTIFACT_TYPE: return createArtifactType();
-			case SwitchyardPackage.CONTEXT_MAPPER_TYPE: return createContextMapperType();
-			case SwitchyardPackage.DOCUMENT_ROOT: return createDocumentRoot();
-			case SwitchyardPackage.DOMAIN_TYPE: return createDomainType();
-			case SwitchyardPackage.ESB_INTERFACE: return createEsbInterface();
-			case SwitchyardPackage.HANDLERS_TYPE: return createHandlersType();
-			case SwitchyardPackage.HANDLER_TYPE: return createHandlerType();
-			case SwitchyardPackage.MESSAGE_COMPOSER_TYPE: return createMessageComposerType();
-			case SwitchyardPackage.PROPERTIES_TYPE: return createPropertiesType();
-			case SwitchyardPackage.PROPERTY_TYPE: return createPropertyType();
-			case SwitchyardPackage.RESOURCE_TYPE: return createResourceType();
-			case SwitchyardPackage.SWITCH_YARD_TYPE: return createSwitchYardType();
-			case SwitchyardPackage.TRANSFORMS_TYPE: return createTransformsType();
-			case SwitchyardPackage.VALIDATES_TYPE: return createValidatesType();
-			default:
-				throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier");
-		}
-	}
+        switch (eClass.getClassifierID()) {
+            case SwitchyardPackage.ARTIFACTS_TYPE: return createArtifactsType();
+            case SwitchyardPackage.ARTIFACT_TYPE: return createArtifactType();
+            case SwitchyardPackage.CONTEXT_MAPPER_TYPE: return createContextMapperType();
+            case SwitchyardPackage.DOCUMENT_ROOT: return createDocumentRoot();
+            case SwitchyardPackage.DOMAIN_TYPE: return createDomainType();
+            case SwitchyardPackage.ESB_INTERFACE: return createEsbInterface();
+            case SwitchyardPackage.HANDLERS_TYPE: return createHandlersType();
+            case SwitchyardPackage.HANDLER_TYPE: return createHandlerType();
+            case SwitchyardPackage.MESSAGE_COMPOSER_TYPE: return createMessageComposerType();
+            case SwitchyardPackage.PROPERTIES_TYPE: return createPropertiesType();
+            case SwitchyardPackage.PROPERTY_TYPE: return createPropertyType();
+            case SwitchyardPackage.RESOURCE_TYPE: return createResourceType();
+            case SwitchyardPackage.SWITCH_YARD_TYPE: return createSwitchYardType();
+            case SwitchyardPackage.TRANSFORMS_TYPE: return createTransformsType();
+            case SwitchyardPackage.VALIDATES_TYPE: return createValidatesType();
+            default:
+                throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier");
+        }
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public ArtifactsType createArtifactsType() {
-		ArtifactsTypeImpl artifactsType = new ArtifactsTypeImpl();
-		return artifactsType;
-	}
+        ArtifactsTypeImpl artifactsType = new ArtifactsTypeImpl();
+        return artifactsType;
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public ArtifactType createArtifactType() {
-		ArtifactTypeImpl artifactType = new ArtifactTypeImpl();
-		return artifactType;
-	}
+        ArtifactTypeImpl artifactType = new ArtifactTypeImpl();
+        return artifactType;
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public ContextMapperType createContextMapperType() {
-		ContextMapperTypeImpl contextMapperType = new ContextMapperTypeImpl();
-		return contextMapperType;
-	}
+        ContextMapperTypeImpl contextMapperType = new ContextMapperTypeImpl();
+        return contextMapperType;
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public DocumentRoot createDocumentRoot() {
-		DocumentRootImpl documentRoot = new DocumentRootImpl();
-		return documentRoot;
-	}
+        DocumentRootImpl documentRoot = new DocumentRootImpl();
+        return documentRoot;
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public DomainType createDomainType() {
-		DomainTypeImpl domainType = new DomainTypeImpl();
-		return domainType;
-	}
+        DomainTypeImpl domainType = new DomainTypeImpl();
+        return domainType;
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public EsbInterface createEsbInterface() {
-		EsbInterfaceImpl esbInterface = new EsbInterfaceImpl();
-		return esbInterface;
-	}
+        EsbInterfaceImpl esbInterface = new EsbInterfaceImpl();
+        return esbInterface;
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public HandlersType createHandlersType() {
-		HandlersTypeImpl handlersType = new HandlersTypeImpl();
-		return handlersType;
-	}
+        HandlersTypeImpl handlersType = new HandlersTypeImpl();
+        return handlersType;
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public HandlerType createHandlerType() {
-		HandlerTypeImpl handlerType = new HandlerTypeImpl();
-		return handlerType;
-	}
+        HandlerTypeImpl handlerType = new HandlerTypeImpl();
+        return handlerType;
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public MessageComposerType createMessageComposerType() {
-		MessageComposerTypeImpl messageComposerType = new MessageComposerTypeImpl();
-		return messageComposerType;
-	}
+        MessageComposerTypeImpl messageComposerType = new MessageComposerTypeImpl();
+        return messageComposerType;
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public PropertiesType createPropertiesType() {
-		PropertiesTypeImpl propertiesType = new PropertiesTypeImpl();
-		return propertiesType;
-	}
+        PropertiesTypeImpl propertiesType = new PropertiesTypeImpl();
+        return propertiesType;
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public PropertyType createPropertyType() {
-		PropertyTypeImpl propertyType = new PropertyTypeImpl();
-		return propertyType;
-	}
+        PropertyTypeImpl propertyType = new PropertyTypeImpl();
+        return propertyType;
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public ResourceType createResourceType() {
-		ResourceTypeImpl resourceType = new ResourceTypeImpl();
-		return resourceType;
-	}
+        ResourceTypeImpl resourceType = new ResourceTypeImpl();
+        return resourceType;
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public SwitchYardType createSwitchYardType() {
-		SwitchYardTypeImpl switchYardType = new SwitchYardTypeImpl();
-		return switchYardType;
-	}
+        SwitchYardTypeImpl switchYardType = new SwitchYardTypeImpl();
+        return switchYardType;
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public TransformsType createTransformsType() {
-		TransformsTypeImpl transformsType = new TransformsTypeImpl();
-		return transformsType;
-	}
+        TransformsTypeImpl transformsType = new TransformsTypeImpl();
+        return transformsType;
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public ValidatesType createValidatesType() {
-		ValidatesTypeImpl validatesType = new ValidatesTypeImpl();
-		return validatesType;
-	}
+        ValidatesTypeImpl validatesType = new ValidatesTypeImpl();
+        return validatesType;
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public SwitchyardPackage getSwitchyardPackage() {
-		return (SwitchyardPackage)getEPackage();
-	}
+        return (SwitchyardPackage)getEPackage();
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @deprecated
-	 * @generated
-	 */
+     * @deprecated
+     * @generated
+     */
 	@Deprecated
 	public static SwitchyardPackage getPackage() {
-		return SwitchyardPackage.eINSTANCE;
-	}
+        return SwitchyardPackage.eINSTANCE;
+    }
 
 } //SwitchyardFactoryImpl

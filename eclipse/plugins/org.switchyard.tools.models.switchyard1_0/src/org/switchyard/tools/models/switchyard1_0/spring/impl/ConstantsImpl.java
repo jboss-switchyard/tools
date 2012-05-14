@@ -24,22 +24,22 @@ import org.switchyard.tools.models.switchyard1_0.spring.SpringPackage;
  */
 public class ConstantsImpl extends EObjectImpl implements Constants {
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	protected ConstantsImpl() {
-		super();
-	}
+        super();
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	@Override
 	protected EClass eStaticClass() {
-		return SpringPackage.eINSTANCE.getConstants();
-	}
+        return SpringPackage.eINSTANCE.getConstants();
+    }
 
 } //ConstantsImpl

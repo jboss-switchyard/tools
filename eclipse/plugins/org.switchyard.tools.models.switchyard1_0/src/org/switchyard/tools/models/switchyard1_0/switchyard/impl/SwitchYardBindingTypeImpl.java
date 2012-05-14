@@ -37,212 +37,212 @@ import org.switchyard.tools.models.switchyard1_0.switchyard.SwitchyardPackage;
  */
 public abstract class SwitchYardBindingTypeImpl extends BindingImpl implements SwitchYardBindingType {
 	/**
-	 * The cached value of the '{@link #getContextMapper() <em>Context Mapper</em>}' containment reference.
-	 * <!-- begin-user-doc -->
+     * The cached value of the '{@link #getContextMapper() <em>Context Mapper</em>}' containment reference.
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #getContextMapper()
-	 * @generated
-	 * @ordered
-	 */
+     * @see #getContextMapper()
+     * @generated
+     * @ordered
+     */
 	protected ContextMapperType contextMapper;
 
 	/**
-	 * The cached value of the '{@link #getMessageComposer() <em>Message Composer</em>}' containment reference.
-	 * <!-- begin-user-doc -->
+     * The cached value of the '{@link #getMessageComposer() <em>Message Composer</em>}' containment reference.
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #getMessageComposer()
-	 * @generated
-	 * @ordered
-	 */
+     * @see #getMessageComposer()
+     * @generated
+     * @ordered
+     */
 	protected MessageComposerType messageComposer;
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	protected SwitchYardBindingTypeImpl() {
-		super();
-	}
+        super();
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	@Override
 	protected EClass eStaticClass() {
-		return SwitchyardPackage.Literals.SWITCH_YARD_BINDING_TYPE;
-	}
+        return SwitchyardPackage.Literals.SWITCH_YARD_BINDING_TYPE;
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public ContextMapperType getContextMapper() {
-		return contextMapper;
-	}
+        return contextMapper;
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public NotificationChain basicSetContextMapper(ContextMapperType newContextMapper, NotificationChain msgs) {
-		ContextMapperType oldContextMapper = contextMapper;
-		contextMapper = newContextMapper;
-		if (eNotificationRequired()) {
-			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, SwitchyardPackage.SWITCH_YARD_BINDING_TYPE__CONTEXT_MAPPER, oldContextMapper, newContextMapper);
-			if (msgs == null) msgs = notification; else msgs.add(notification);
-		}
-		return msgs;
-	}
+        ContextMapperType oldContextMapper = contextMapper;
+        contextMapper = newContextMapper;
+        if (eNotificationRequired()) {
+            ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, SwitchyardPackage.SWITCH_YARD_BINDING_TYPE__CONTEXT_MAPPER, oldContextMapper, newContextMapper);
+            if (msgs == null) msgs = notification; else msgs.add(notification);
+        }
+        return msgs;
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public void setContextMapper(ContextMapperType newContextMapper) {
-		if (newContextMapper != contextMapper) {
-			NotificationChain msgs = null;
-			if (contextMapper != null)
-				msgs = ((InternalEObject)contextMapper).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - SwitchyardPackage.SWITCH_YARD_BINDING_TYPE__CONTEXT_MAPPER, null, msgs);
-			if (newContextMapper != null)
-				msgs = ((InternalEObject)newContextMapper).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - SwitchyardPackage.SWITCH_YARD_BINDING_TYPE__CONTEXT_MAPPER, null, msgs);
-			msgs = basicSetContextMapper(newContextMapper, msgs);
-			if (msgs != null) msgs.dispatch();
-		}
-		else if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, SwitchyardPackage.SWITCH_YARD_BINDING_TYPE__CONTEXT_MAPPER, newContextMapper, newContextMapper));
-	}
+        if (newContextMapper != contextMapper) {
+            NotificationChain msgs = null;
+            if (contextMapper != null)
+                msgs = ((InternalEObject)contextMapper).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - SwitchyardPackage.SWITCH_YARD_BINDING_TYPE__CONTEXT_MAPPER, null, msgs);
+            if (newContextMapper != null)
+                msgs = ((InternalEObject)newContextMapper).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - SwitchyardPackage.SWITCH_YARD_BINDING_TYPE__CONTEXT_MAPPER, null, msgs);
+            msgs = basicSetContextMapper(newContextMapper, msgs);
+            if (msgs != null) msgs.dispatch();
+        }
+        else if (eNotificationRequired())
+            eNotify(new ENotificationImpl(this, Notification.SET, SwitchyardPackage.SWITCH_YARD_BINDING_TYPE__CONTEXT_MAPPER, newContextMapper, newContextMapper));
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public MessageComposerType getMessageComposer() {
-		return messageComposer;
-	}
+        return messageComposer;
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public NotificationChain basicSetMessageComposer(MessageComposerType newMessageComposer, NotificationChain msgs) {
-		MessageComposerType oldMessageComposer = messageComposer;
-		messageComposer = newMessageComposer;
-		if (eNotificationRequired()) {
-			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, SwitchyardPackage.SWITCH_YARD_BINDING_TYPE__MESSAGE_COMPOSER, oldMessageComposer, newMessageComposer);
-			if (msgs == null) msgs = notification; else msgs.add(notification);
-		}
-		return msgs;
-	}
+        MessageComposerType oldMessageComposer = messageComposer;
+        messageComposer = newMessageComposer;
+        if (eNotificationRequired()) {
+            ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, SwitchyardPackage.SWITCH_YARD_BINDING_TYPE__MESSAGE_COMPOSER, oldMessageComposer, newMessageComposer);
+            if (msgs == null) msgs = notification; else msgs.add(notification);
+        }
+        return msgs;
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public void setMessageComposer(MessageComposerType newMessageComposer) {
-		if (newMessageComposer != messageComposer) {
-			NotificationChain msgs = null;
-			if (messageComposer != null)
-				msgs = ((InternalEObject)messageComposer).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - SwitchyardPackage.SWITCH_YARD_BINDING_TYPE__MESSAGE_COMPOSER, null, msgs);
-			if (newMessageComposer != null)
-				msgs = ((InternalEObject)newMessageComposer).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - SwitchyardPackage.SWITCH_YARD_BINDING_TYPE__MESSAGE_COMPOSER, null, msgs);
-			msgs = basicSetMessageComposer(newMessageComposer, msgs);
-			if (msgs != null) msgs.dispatch();
-		}
-		else if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, SwitchyardPackage.SWITCH_YARD_BINDING_TYPE__MESSAGE_COMPOSER, newMessageComposer, newMessageComposer));
-	}
+        if (newMessageComposer != messageComposer) {
+            NotificationChain msgs = null;
+            if (messageComposer != null)
+                msgs = ((InternalEObject)messageComposer).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - SwitchyardPackage.SWITCH_YARD_BINDING_TYPE__MESSAGE_COMPOSER, null, msgs);
+            if (newMessageComposer != null)
+                msgs = ((InternalEObject)newMessageComposer).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - SwitchyardPackage.SWITCH_YARD_BINDING_TYPE__MESSAGE_COMPOSER, null, msgs);
+            msgs = basicSetMessageComposer(newMessageComposer, msgs);
+            if (msgs != null) msgs.dispatch();
+        }
+        else if (eNotificationRequired())
+            eNotify(new ENotificationImpl(this, Notification.SET, SwitchyardPackage.SWITCH_YARD_BINDING_TYPE__MESSAGE_COMPOSER, newMessageComposer, newMessageComposer));
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	@Override
 	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
-		switch (featureID) {
-			case SwitchyardPackage.SWITCH_YARD_BINDING_TYPE__CONTEXT_MAPPER:
-				return basicSetContextMapper(null, msgs);
-			case SwitchyardPackage.SWITCH_YARD_BINDING_TYPE__MESSAGE_COMPOSER:
-				return basicSetMessageComposer(null, msgs);
-		}
-		return super.eInverseRemove(otherEnd, featureID, msgs);
-	}
+        switch (featureID) {
+            case SwitchyardPackage.SWITCH_YARD_BINDING_TYPE__CONTEXT_MAPPER:
+                return basicSetContextMapper(null, msgs);
+            case SwitchyardPackage.SWITCH_YARD_BINDING_TYPE__MESSAGE_COMPOSER:
+                return basicSetMessageComposer(null, msgs);
+        }
+        return super.eInverseRemove(otherEnd, featureID, msgs);
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
-		switch (featureID) {
-			case SwitchyardPackage.SWITCH_YARD_BINDING_TYPE__CONTEXT_MAPPER:
-				return getContextMapper();
-			case SwitchyardPackage.SWITCH_YARD_BINDING_TYPE__MESSAGE_COMPOSER:
-				return getMessageComposer();
-		}
-		return super.eGet(featureID, resolve, coreType);
-	}
+        switch (featureID) {
+            case SwitchyardPackage.SWITCH_YARD_BINDING_TYPE__CONTEXT_MAPPER:
+                return getContextMapper();
+            case SwitchyardPackage.SWITCH_YARD_BINDING_TYPE__MESSAGE_COMPOSER:
+                return getMessageComposer();
+        }
+        return super.eGet(featureID, resolve, coreType);
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	@Override
 	public void eSet(int featureID, Object newValue) {
-		switch (featureID) {
-			case SwitchyardPackage.SWITCH_YARD_BINDING_TYPE__CONTEXT_MAPPER:
-				setContextMapper((ContextMapperType)newValue);
-				return;
-			case SwitchyardPackage.SWITCH_YARD_BINDING_TYPE__MESSAGE_COMPOSER:
-				setMessageComposer((MessageComposerType)newValue);
-				return;
-		}
-		super.eSet(featureID, newValue);
-	}
+        switch (featureID) {
+            case SwitchyardPackage.SWITCH_YARD_BINDING_TYPE__CONTEXT_MAPPER:
+                setContextMapper((ContextMapperType)newValue);
+                return;
+            case SwitchyardPackage.SWITCH_YARD_BINDING_TYPE__MESSAGE_COMPOSER:
+                setMessageComposer((MessageComposerType)newValue);
+                return;
+        }
+        super.eSet(featureID, newValue);
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	@Override
 	public void eUnset(int featureID) {
-		switch (featureID) {
-			case SwitchyardPackage.SWITCH_YARD_BINDING_TYPE__CONTEXT_MAPPER:
-				setContextMapper((ContextMapperType)null);
-				return;
-			case SwitchyardPackage.SWITCH_YARD_BINDING_TYPE__MESSAGE_COMPOSER:
-				setMessageComposer((MessageComposerType)null);
-				return;
-		}
-		super.eUnset(featureID);
-	}
+        switch (featureID) {
+            case SwitchyardPackage.SWITCH_YARD_BINDING_TYPE__CONTEXT_MAPPER:
+                setContextMapper((ContextMapperType)null);
+                return;
+            case SwitchyardPackage.SWITCH_YARD_BINDING_TYPE__MESSAGE_COMPOSER:
+                setMessageComposer((MessageComposerType)null);
+                return;
+        }
+        super.eUnset(featureID);
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	@Override
 	public boolean eIsSet(int featureID) {
-		switch (featureID) {
-			case SwitchyardPackage.SWITCH_YARD_BINDING_TYPE__CONTEXT_MAPPER:
-				return contextMapper != null;
-			case SwitchyardPackage.SWITCH_YARD_BINDING_TYPE__MESSAGE_COMPOSER:
-				return messageComposer != null;
-		}
-		return super.eIsSet(featureID);
-	}
+        switch (featureID) {
+            case SwitchyardPackage.SWITCH_YARD_BINDING_TYPE__CONTEXT_MAPPER:
+                return contextMapper != null;
+            case SwitchyardPackage.SWITCH_YARD_BINDING_TYPE__MESSAGE_COMPOSER:
+                return messageComposer != null;
+        }
+        return super.eIsSet(featureID);
+    }
 
 } //SwitchYardBindingTypeImpl

@@ -39,292 +39,292 @@ import org.switchyard.tools.models.switchyard1_0.spring.SpringPackage;
  */
 public class AopDefinitionImpl extends OutputImpl implements AopDefinition {
 	/**
-	 * The default value of the '{@link #getAfterFinallyUri() <em>After Finally Uri</em>}' attribute.
-	 * <!-- begin-user-doc -->
+     * The default value of the '{@link #getAfterFinallyUri() <em>After Finally Uri</em>}' attribute.
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #getAfterFinallyUri()
-	 * @generated
-	 * @ordered
-	 */
+     * @see #getAfterFinallyUri()
+     * @generated
+     * @ordered
+     */
 	protected static final String AFTER_FINALLY_URI_EDEFAULT = null;
 
 	/**
-	 * The cached value of the '{@link #getAfterFinallyUri() <em>After Finally Uri</em>}' attribute.
-	 * <!-- begin-user-doc -->
+     * The cached value of the '{@link #getAfterFinallyUri() <em>After Finally Uri</em>}' attribute.
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #getAfterFinallyUri()
-	 * @generated
-	 * @ordered
-	 */
+     * @see #getAfterFinallyUri()
+     * @generated
+     * @ordered
+     */
 	protected String afterFinallyUri = AFTER_FINALLY_URI_EDEFAULT;
 
 	/**
-	 * The default value of the '{@link #getAfterUri() <em>After Uri</em>}' attribute.
-	 * <!-- begin-user-doc -->
+     * The default value of the '{@link #getAfterUri() <em>After Uri</em>}' attribute.
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #getAfterUri()
-	 * @generated
-	 * @ordered
-	 */
+     * @see #getAfterUri()
+     * @generated
+     * @ordered
+     */
 	protected static final String AFTER_URI_EDEFAULT = null;
 
 	/**
-	 * The cached value of the '{@link #getAfterUri() <em>After Uri</em>}' attribute.
-	 * <!-- begin-user-doc -->
+     * The cached value of the '{@link #getAfterUri() <em>After Uri</em>}' attribute.
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #getAfterUri()
-	 * @generated
-	 * @ordered
-	 */
+     * @see #getAfterUri()
+     * @generated
+     * @ordered
+     */
 	protected String afterUri = AFTER_URI_EDEFAULT;
 
 	/**
-	 * The default value of the '{@link #getBeforeUri() <em>Before Uri</em>}' attribute.
-	 * <!-- begin-user-doc -->
+     * The default value of the '{@link #getBeforeUri() <em>Before Uri</em>}' attribute.
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #getBeforeUri()
-	 * @generated
-	 * @ordered
-	 */
+     * @see #getBeforeUri()
+     * @generated
+     * @ordered
+     */
 	protected static final String BEFORE_URI_EDEFAULT = null;
 
 	/**
-	 * The cached value of the '{@link #getBeforeUri() <em>Before Uri</em>}' attribute.
-	 * <!-- begin-user-doc -->
+     * The cached value of the '{@link #getBeforeUri() <em>Before Uri</em>}' attribute.
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #getBeforeUri()
-	 * @generated
-	 * @ordered
-	 */
+     * @see #getBeforeUri()
+     * @generated
+     * @ordered
+     */
 	protected String beforeUri = BEFORE_URI_EDEFAULT;
 
 	/**
-	 * The cached value of the '{@link #getAnyAttribute2() <em>Any Attribute2</em>}' attribute list.
-	 * <!-- begin-user-doc -->
+     * The cached value of the '{@link #getAnyAttribute2() <em>Any Attribute2</em>}' attribute list.
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #getAnyAttribute2()
-	 * @generated
-	 * @ordered
-	 */
+     * @see #getAnyAttribute2()
+     * @generated
+     * @ordered
+     */
 	protected FeatureMap anyAttribute2;
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	protected AopDefinitionImpl() {
-		super();
-	}
+        super();
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	@Override
 	protected EClass eStaticClass() {
-		return SpringPackage.eINSTANCE.getAopDefinition();
-	}
+        return SpringPackage.eINSTANCE.getAopDefinition();
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public String getAfterFinallyUri() {
-		return afterFinallyUri;
-	}
+        return afterFinallyUri;
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public void setAfterFinallyUri(String newAfterFinallyUri) {
-		String oldAfterFinallyUri = afterFinallyUri;
-		afterFinallyUri = newAfterFinallyUri;
-		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, SpringPackage.AOP_DEFINITION__AFTER_FINALLY_URI, oldAfterFinallyUri, afterFinallyUri));
-	}
+        String oldAfterFinallyUri = afterFinallyUri;
+        afterFinallyUri = newAfterFinallyUri;
+        if (eNotificationRequired())
+            eNotify(new ENotificationImpl(this, Notification.SET, SpringPackage.AOP_DEFINITION__AFTER_FINALLY_URI, oldAfterFinallyUri, afterFinallyUri));
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public String getAfterUri() {
-		return afterUri;
-	}
+        return afterUri;
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public void setAfterUri(String newAfterUri) {
-		String oldAfterUri = afterUri;
-		afterUri = newAfterUri;
-		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, SpringPackage.AOP_DEFINITION__AFTER_URI, oldAfterUri, afterUri));
-	}
+        String oldAfterUri = afterUri;
+        afterUri = newAfterUri;
+        if (eNotificationRequired())
+            eNotify(new ENotificationImpl(this, Notification.SET, SpringPackage.AOP_DEFINITION__AFTER_URI, oldAfterUri, afterUri));
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public String getBeforeUri() {
-		return beforeUri;
-	}
+        return beforeUri;
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public void setBeforeUri(String newBeforeUri) {
-		String oldBeforeUri = beforeUri;
-		beforeUri = newBeforeUri;
-		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, SpringPackage.AOP_DEFINITION__BEFORE_URI, oldBeforeUri, beforeUri));
-	}
+        String oldBeforeUri = beforeUri;
+        beforeUri = newBeforeUri;
+        if (eNotificationRequired())
+            eNotify(new ENotificationImpl(this, Notification.SET, SpringPackage.AOP_DEFINITION__BEFORE_URI, oldBeforeUri, beforeUri));
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public FeatureMap getAnyAttribute2() {
-		if (anyAttribute2 == null) {
-			anyAttribute2 = new BasicFeatureMap(this, SpringPackage.AOP_DEFINITION__ANY_ATTRIBUTE2);
-		}
-		return anyAttribute2;
-	}
+        if (anyAttribute2 == null) {
+            anyAttribute2 = new BasicFeatureMap(this, SpringPackage.AOP_DEFINITION__ANY_ATTRIBUTE2);
+        }
+        return anyAttribute2;
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	@Override
 	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
-		switch (featureID) {
-			case SpringPackage.AOP_DEFINITION__ANY_ATTRIBUTE2:
-				return ((InternalEList<?>)getAnyAttribute2()).basicRemove(otherEnd, msgs);
-		}
-		return super.eInverseRemove(otherEnd, featureID, msgs);
-	}
+        switch (featureID) {
+            case SpringPackage.AOP_DEFINITION__ANY_ATTRIBUTE2:
+                return ((InternalEList<?>)getAnyAttribute2()).basicRemove(otherEnd, msgs);
+        }
+        return super.eInverseRemove(otherEnd, featureID, msgs);
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
-		switch (featureID) {
-			case SpringPackage.AOP_DEFINITION__AFTER_FINALLY_URI:
-				return getAfterFinallyUri();
-			case SpringPackage.AOP_DEFINITION__AFTER_URI:
-				return getAfterUri();
-			case SpringPackage.AOP_DEFINITION__BEFORE_URI:
-				return getBeforeUri();
-			case SpringPackage.AOP_DEFINITION__ANY_ATTRIBUTE2:
-				if (coreType) return getAnyAttribute2();
-				return ((FeatureMap.Internal)getAnyAttribute2()).getWrapper();
-		}
-		return super.eGet(featureID, resolve, coreType);
-	}
+        switch (featureID) {
+            case SpringPackage.AOP_DEFINITION__AFTER_FINALLY_URI:
+                return getAfterFinallyUri();
+            case SpringPackage.AOP_DEFINITION__AFTER_URI:
+                return getAfterUri();
+            case SpringPackage.AOP_DEFINITION__BEFORE_URI:
+                return getBeforeUri();
+            case SpringPackage.AOP_DEFINITION__ANY_ATTRIBUTE2:
+                if (coreType) return getAnyAttribute2();
+                return ((FeatureMap.Internal)getAnyAttribute2()).getWrapper();
+        }
+        return super.eGet(featureID, resolve, coreType);
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	@Override
 	public void eSet(int featureID, Object newValue) {
-		switch (featureID) {
-			case SpringPackage.AOP_DEFINITION__AFTER_FINALLY_URI:
-				setAfterFinallyUri((String)newValue);
-				return;
-			case SpringPackage.AOP_DEFINITION__AFTER_URI:
-				setAfterUri((String)newValue);
-				return;
-			case SpringPackage.AOP_DEFINITION__BEFORE_URI:
-				setBeforeUri((String)newValue);
-				return;
-			case SpringPackage.AOP_DEFINITION__ANY_ATTRIBUTE2:
-				((FeatureMap.Internal)getAnyAttribute2()).set(newValue);
-				return;
-		}
-		super.eSet(featureID, newValue);
-	}
+        switch (featureID) {
+            case SpringPackage.AOP_DEFINITION__AFTER_FINALLY_URI:
+                setAfterFinallyUri((String)newValue);
+                return;
+            case SpringPackage.AOP_DEFINITION__AFTER_URI:
+                setAfterUri((String)newValue);
+                return;
+            case SpringPackage.AOP_DEFINITION__BEFORE_URI:
+                setBeforeUri((String)newValue);
+                return;
+            case SpringPackage.AOP_DEFINITION__ANY_ATTRIBUTE2:
+                ((FeatureMap.Internal)getAnyAttribute2()).set(newValue);
+                return;
+        }
+        super.eSet(featureID, newValue);
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	@Override
 	public void eUnset(int featureID) {
-		switch (featureID) {
-			case SpringPackage.AOP_DEFINITION__AFTER_FINALLY_URI:
-				setAfterFinallyUri(AFTER_FINALLY_URI_EDEFAULT);
-				return;
-			case SpringPackage.AOP_DEFINITION__AFTER_URI:
-				setAfterUri(AFTER_URI_EDEFAULT);
-				return;
-			case SpringPackage.AOP_DEFINITION__BEFORE_URI:
-				setBeforeUri(BEFORE_URI_EDEFAULT);
-				return;
-			case SpringPackage.AOP_DEFINITION__ANY_ATTRIBUTE2:
-				getAnyAttribute2().clear();
-				return;
-		}
-		super.eUnset(featureID);
-	}
+        switch (featureID) {
+            case SpringPackage.AOP_DEFINITION__AFTER_FINALLY_URI:
+                setAfterFinallyUri(AFTER_FINALLY_URI_EDEFAULT);
+                return;
+            case SpringPackage.AOP_DEFINITION__AFTER_URI:
+                setAfterUri(AFTER_URI_EDEFAULT);
+                return;
+            case SpringPackage.AOP_DEFINITION__BEFORE_URI:
+                setBeforeUri(BEFORE_URI_EDEFAULT);
+                return;
+            case SpringPackage.AOP_DEFINITION__ANY_ATTRIBUTE2:
+                getAnyAttribute2().clear();
+                return;
+        }
+        super.eUnset(featureID);
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	@Override
 	public boolean eIsSet(int featureID) {
-		switch (featureID) {
-			case SpringPackage.AOP_DEFINITION__AFTER_FINALLY_URI:
-				return AFTER_FINALLY_URI_EDEFAULT == null ? afterFinallyUri != null : !AFTER_FINALLY_URI_EDEFAULT.equals(afterFinallyUri);
-			case SpringPackage.AOP_DEFINITION__AFTER_URI:
-				return AFTER_URI_EDEFAULT == null ? afterUri != null : !AFTER_URI_EDEFAULT.equals(afterUri);
-			case SpringPackage.AOP_DEFINITION__BEFORE_URI:
-				return BEFORE_URI_EDEFAULT == null ? beforeUri != null : !BEFORE_URI_EDEFAULT.equals(beforeUri);
-			case SpringPackage.AOP_DEFINITION__ANY_ATTRIBUTE2:
-				return anyAttribute2 != null && !anyAttribute2.isEmpty();
-		}
-		return super.eIsSet(featureID);
-	}
+        switch (featureID) {
+            case SpringPackage.AOP_DEFINITION__AFTER_FINALLY_URI:
+                return AFTER_FINALLY_URI_EDEFAULT == null ? afterFinallyUri != null : !AFTER_FINALLY_URI_EDEFAULT.equals(afterFinallyUri);
+            case SpringPackage.AOP_DEFINITION__AFTER_URI:
+                return AFTER_URI_EDEFAULT == null ? afterUri != null : !AFTER_URI_EDEFAULT.equals(afterUri);
+            case SpringPackage.AOP_DEFINITION__BEFORE_URI:
+                return BEFORE_URI_EDEFAULT == null ? beforeUri != null : !BEFORE_URI_EDEFAULT.equals(beforeUri);
+            case SpringPackage.AOP_DEFINITION__ANY_ATTRIBUTE2:
+                return anyAttribute2 != null && !anyAttribute2.isEmpty();
+        }
+        return super.eIsSet(featureID);
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	@Override
 	public String toString() {
-		if (eIsProxy()) return super.toString();
+        if (eIsProxy()) return super.toString();
 
-		StringBuffer result = new StringBuffer(super.toString());
-		result.append(" (afterFinallyUri: ");
-		result.append(afterFinallyUri);
-		result.append(", afterUri: ");
-		result.append(afterUri);
-		result.append(", beforeUri: ");
-		result.append(beforeUri);
-		result.append(", anyAttribute2: ");
-		result.append(anyAttribute2);
-		result.append(')');
-		return result.toString();
-	}
+        StringBuffer result = new StringBuffer(super.toString());
+        result.append(" (afterFinallyUri: ");
+        result.append(afterFinallyUri);
+        result.append(", afterUri: ");
+        result.append(afterUri);
+        result.append(", beforeUri: ");
+        result.append(beforeUri);
+        result.append(", anyAttribute2: ");
+        result.append(anyAttribute2);
+        result.append(')');
+        return result.toString();
+    }
 
 } //AopDefinitionImpl

@@ -22,22 +22,22 @@ import org.switchyard.tools.models.switchyard1_0.spring.SpringPackage;
  */
 public class PythonExpressionImpl extends ExpressionImpl implements PythonExpression {
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	protected PythonExpressionImpl() {
-		super();
-	}
+        super();
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	@Override
 	protected EClass eStaticClass() {
-		return SpringPackage.eINSTANCE.getPythonExpression();
-	}
+        return SpringPackage.eINSTANCE.getPythonExpression();
+    }
 
 } //PythonExpressionImpl

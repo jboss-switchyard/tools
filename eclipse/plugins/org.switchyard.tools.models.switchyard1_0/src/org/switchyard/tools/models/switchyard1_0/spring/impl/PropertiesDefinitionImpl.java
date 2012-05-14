@@ -39,118 +39,118 @@ import org.switchyard.tools.models.switchyard1_0.spring.SpringPackage;
  */
 public class PropertiesDefinitionImpl extends EObjectImpl implements PropertiesDefinition {
 	/**
-	 * The cached value of the '{@link #getProperty() <em>Property</em>}' containment reference list.
-	 * <!-- begin-user-doc -->
+     * The cached value of the '{@link #getProperty() <em>Property</em>}' containment reference list.
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #getProperty()
-	 * @generated
-	 * @ordered
-	 */
+     * @see #getProperty()
+     * @generated
+     * @ordered
+     */
 	protected EList<EObject> property;
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	protected PropertiesDefinitionImpl() {
-		super();
-	}
+        super();
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	@Override
 	protected EClass eStaticClass() {
-		return SpringPackage.eINSTANCE.getPropertiesDefinition();
-	}
+        return SpringPackage.eINSTANCE.getPropertiesDefinition();
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public EList<EObject> getProperty() {
-		if (property == null) {
-			property = new EObjectContainmentEList<EObject>(EObject.class, this, SpringPackage.PROPERTIES_DEFINITION__PROPERTY);
-		}
-		return property;
-	}
+        if (property == null) {
+            property = new EObjectContainmentEList<EObject>(EObject.class, this, SpringPackage.PROPERTIES_DEFINITION__PROPERTY);
+        }
+        return property;
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	@Override
 	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
-		switch (featureID) {
-			case SpringPackage.PROPERTIES_DEFINITION__PROPERTY:
-				return ((InternalEList<?>)getProperty()).basicRemove(otherEnd, msgs);
-		}
-		return super.eInverseRemove(otherEnd, featureID, msgs);
-	}
+        switch (featureID) {
+            case SpringPackage.PROPERTIES_DEFINITION__PROPERTY:
+                return ((InternalEList<?>)getProperty()).basicRemove(otherEnd, msgs);
+        }
+        return super.eInverseRemove(otherEnd, featureID, msgs);
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
-		switch (featureID) {
-			case SpringPackage.PROPERTIES_DEFINITION__PROPERTY:
-				return getProperty();
-		}
-		return super.eGet(featureID, resolve, coreType);
-	}
+        switch (featureID) {
+            case SpringPackage.PROPERTIES_DEFINITION__PROPERTY:
+                return getProperty();
+        }
+        return super.eGet(featureID, resolve, coreType);
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	@SuppressWarnings("unchecked")
 	@Override
 	public void eSet(int featureID, Object newValue) {
-		switch (featureID) {
-			case SpringPackage.PROPERTIES_DEFINITION__PROPERTY:
-				getProperty().clear();
-				getProperty().addAll((Collection<? extends EObject>)newValue);
-				return;
-		}
-		super.eSet(featureID, newValue);
-	}
+        switch (featureID) {
+            case SpringPackage.PROPERTIES_DEFINITION__PROPERTY:
+                getProperty().clear();
+                getProperty().addAll((Collection<? extends EObject>)newValue);
+                return;
+        }
+        super.eSet(featureID, newValue);
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	@Override
 	public void eUnset(int featureID) {
-		switch (featureID) {
-			case SpringPackage.PROPERTIES_DEFINITION__PROPERTY:
-				getProperty().clear();
-				return;
-		}
-		super.eUnset(featureID);
-	}
+        switch (featureID) {
+            case SpringPackage.PROPERTIES_DEFINITION__PROPERTY:
+                getProperty().clear();
+                return;
+        }
+        super.eUnset(featureID);
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	@Override
 	public boolean eIsSet(int featureID) {
-		switch (featureID) {
-			case SpringPackage.PROPERTIES_DEFINITION__PROPERTY:
-				return property != null && !property.isEmpty();
-		}
-		return super.eIsSet(featureID);
-	}
+        switch (featureID) {
+            case SpringPackage.PROPERTIES_DEFINITION__PROPERTY:
+                return property != null && !property.isEmpty();
+        }
+        return super.eIsSet(featureID);
+    }
 
 } //PropertiesDefinitionImpl

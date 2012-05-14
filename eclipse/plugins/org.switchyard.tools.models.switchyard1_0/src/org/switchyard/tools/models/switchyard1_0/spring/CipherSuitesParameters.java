@@ -28,20 +28,20 @@ import org.eclipse.emf.ecore.EObject;
  */
 public interface CipherSuitesParameters extends EObject {
 	/**
-	 * Returns the value of the '<em><b>Cipher Suite</b></em>' attribute list.
-	 * The list contents are of type {@link java.lang.String}.
-	 * <!-- begin-user-doc -->
+     * Returns the value of the '<em><b>Cipher Suite</b></em>' attribute list.
+     * The list contents are of type {@link java.lang.String}.
+     * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Cipher Suite</em>' attribute list isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Cipher Suite</em>' attribute list.
-	 * @see org.switchyard.tools.models.switchyard1_0.spring.SpringPackage#getCipherSuitesParameters_CipherSuite()
-	 * @model unique="false" dataType="org.eclipse.emf.ecore.xml.type.String"
-	 *        extendedMetaData="kind='element' name='cipherSuite' namespace='##targetNamespace'"
-	 * @generated
-	 */
+     * @return the value of the '<em>Cipher Suite</em>' attribute list.
+     * @see org.switchyard.tools.models.switchyard1_0.spring.SpringPackage#getCipherSuitesParameters_CipherSuite()
+     * @model unique="false" dataType="org.eclipse.emf.ecore.xml.type.String"
+     *        extendedMetaData="kind='element' name='cipherSuite' namespace='##targetNamespace'"
+     * @generated
+     */
 	EList<String> getCipherSuite();
 
 } // CipherSuitesParameters

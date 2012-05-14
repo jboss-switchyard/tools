@@ -24,22 +24,22 @@ import org.switchyard.tools.models.switchyard1_0.transform.TransformPackage;
  */
 public class SmooksTransformType1Impl extends TransformTypeImpl implements SmooksTransformType1 {
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	protected SmooksTransformType1Impl() {
-		super();
-	}
+        super();
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	@Override
 	protected EClass eStaticClass() {
-		return TransformPackage.Literals.SMOOKS_TRANSFORM_TYPE1;
-	}
+        return TransformPackage.Literals.SMOOKS_TRANSFORM_TYPE1;
+    }
 
 } //SmooksTransformType1Impl

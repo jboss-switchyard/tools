@@ -22,22 +22,22 @@ import org.switchyard.tools.models.switchyard1_0.spring.SpringPackage;
  */
 public abstract class NamespaceAwareExpressionImpl extends ExpressionImpl implements NamespaceAwareExpression {
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	protected NamespaceAwareExpressionImpl() {
-		super();
-	}
+        super();
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	@Override
 	protected EClass eStaticClass() {
-		return SpringPackage.eINSTANCE.getNamespaceAwareExpression();
-	}
+        return SpringPackage.eINSTANCE.getNamespaceAwareExpression();
+    }
 
 } //NamespaceAwareExpressionImpl

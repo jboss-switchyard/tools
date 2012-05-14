@@ -147,7 +147,14 @@ public final class SwitchYardModelUtils {
         return null;
     }
 
-    private static IResource getJavaType(IProject project, String type) {
+    /**
+     * Return the corresponding resource for the specified type.
+     * 
+     * @param project the project containing the type (or type reference)
+     * @param type the type
+     * @return the corresponding resource
+     */
+    public static IResource getJavaType(IProject project, String type) {
         if (project == null || type == null || type.length() == 0) {
             return null;
         }
@@ -168,7 +175,14 @@ public final class SwitchYardModelUtils {
         }
     }
 
-    private static IResource getJavaResource(IProject project, String resourcePath) {
+    /**
+     * Return the corresponding resource for the resource path.
+     * 
+     * @param project the project containing the resource (or reference)
+     * @param resourcePath the location relative to the project's classpath
+     * @return the corresponding resource.
+     */
+    public static IResource getJavaResource(IProject project, String resourcePath) {
         if (project == null || resourcePath == null || resourcePath.length() == 0) {
             return null;
         }

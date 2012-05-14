@@ -35,155 +35,155 @@ import org.switchyard.tools.models.switchyard1_0.spring.SpringPackage;
  */
 public class FilterParametersImpl extends EObjectImpl implements FilterParameters {
 	/**
-	 * The cached value of the '{@link #getInclude() <em>Include</em>}' attribute list.
-	 * <!-- begin-user-doc -->
+     * The cached value of the '{@link #getInclude() <em>Include</em>}' attribute list.
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #getInclude()
-	 * @generated
-	 * @ordered
-	 */
+     * @see #getInclude()
+     * @generated
+     * @ordered
+     */
 	protected EList<String> include;
 
 	/**
-	 * The cached value of the '{@link #getExclude() <em>Exclude</em>}' attribute list.
-	 * <!-- begin-user-doc -->
+     * The cached value of the '{@link #getExclude() <em>Exclude</em>}' attribute list.
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #getExclude()
-	 * @generated
-	 * @ordered
-	 */
+     * @see #getExclude()
+     * @generated
+     * @ordered
+     */
 	protected EList<String> exclude;
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	protected FilterParametersImpl() {
-		super();
-	}
+        super();
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	@Override
 	protected EClass eStaticClass() {
-		return SpringPackage.eINSTANCE.getFilterParameters();
-	}
+        return SpringPackage.eINSTANCE.getFilterParameters();
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public EList<String> getInclude() {
-		if (include == null) {
-			include = new EDataTypeEList<String>(String.class, this, SpringPackage.FILTER_PARAMETERS__INCLUDE);
-		}
-		return include;
-	}
+        if (include == null) {
+            include = new EDataTypeEList<String>(String.class, this, SpringPackage.FILTER_PARAMETERS__INCLUDE);
+        }
+        return include;
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public EList<String> getExclude() {
-		if (exclude == null) {
-			exclude = new EDataTypeEList<String>(String.class, this, SpringPackage.FILTER_PARAMETERS__EXCLUDE);
-		}
-		return exclude;
-	}
+        if (exclude == null) {
+            exclude = new EDataTypeEList<String>(String.class, this, SpringPackage.FILTER_PARAMETERS__EXCLUDE);
+        }
+        return exclude;
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
-		switch (featureID) {
-			case SpringPackage.FILTER_PARAMETERS__INCLUDE:
-				return getInclude();
-			case SpringPackage.FILTER_PARAMETERS__EXCLUDE:
-				return getExclude();
-		}
-		return super.eGet(featureID, resolve, coreType);
-	}
+        switch (featureID) {
+            case SpringPackage.FILTER_PARAMETERS__INCLUDE:
+                return getInclude();
+            case SpringPackage.FILTER_PARAMETERS__EXCLUDE:
+                return getExclude();
+        }
+        return super.eGet(featureID, resolve, coreType);
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	@SuppressWarnings("unchecked")
 	@Override
 	public void eSet(int featureID, Object newValue) {
-		switch (featureID) {
-			case SpringPackage.FILTER_PARAMETERS__INCLUDE:
-				getInclude().clear();
-				getInclude().addAll((Collection<? extends String>)newValue);
-				return;
-			case SpringPackage.FILTER_PARAMETERS__EXCLUDE:
-				getExclude().clear();
-				getExclude().addAll((Collection<? extends String>)newValue);
-				return;
-		}
-		super.eSet(featureID, newValue);
-	}
+        switch (featureID) {
+            case SpringPackage.FILTER_PARAMETERS__INCLUDE:
+                getInclude().clear();
+                getInclude().addAll((Collection<? extends String>)newValue);
+                return;
+            case SpringPackage.FILTER_PARAMETERS__EXCLUDE:
+                getExclude().clear();
+                getExclude().addAll((Collection<? extends String>)newValue);
+                return;
+        }
+        super.eSet(featureID, newValue);
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	@Override
 	public void eUnset(int featureID) {
-		switch (featureID) {
-			case SpringPackage.FILTER_PARAMETERS__INCLUDE:
-				getInclude().clear();
-				return;
-			case SpringPackage.FILTER_PARAMETERS__EXCLUDE:
-				getExclude().clear();
-				return;
-		}
-		super.eUnset(featureID);
-	}
+        switch (featureID) {
+            case SpringPackage.FILTER_PARAMETERS__INCLUDE:
+                getInclude().clear();
+                return;
+            case SpringPackage.FILTER_PARAMETERS__EXCLUDE:
+                getExclude().clear();
+                return;
+        }
+        super.eUnset(featureID);
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	@Override
 	public boolean eIsSet(int featureID) {
-		switch (featureID) {
-			case SpringPackage.FILTER_PARAMETERS__INCLUDE:
-				return include != null && !include.isEmpty();
-			case SpringPackage.FILTER_PARAMETERS__EXCLUDE:
-				return exclude != null && !exclude.isEmpty();
-		}
-		return super.eIsSet(featureID);
-	}
+        switch (featureID) {
+            case SpringPackage.FILTER_PARAMETERS__INCLUDE:
+                return include != null && !include.isEmpty();
+            case SpringPackage.FILTER_PARAMETERS__EXCLUDE:
+                return exclude != null && !exclude.isEmpty();
+        }
+        return super.eIsSet(featureID);
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	@Override
 	public String toString() {
-		if (eIsProxy()) return super.toString();
+        if (eIsProxy()) return super.toString();
 
-		StringBuffer result = new StringBuffer(super.toString());
-		result.append(" (include: ");
-		result.append(include);
-		result.append(", exclude: ");
-		result.append(exclude);
-		result.append(')');
-		return result.toString();
-	}
+        StringBuffer result = new StringBuffer(super.toString());
+        result.append(" (include: ");
+        result.append(include);
+        result.append(", exclude: ");
+        result.append(exclude);
+        result.append(')');
+        return result.toString();
+    }
 
 } //FilterParametersImpl

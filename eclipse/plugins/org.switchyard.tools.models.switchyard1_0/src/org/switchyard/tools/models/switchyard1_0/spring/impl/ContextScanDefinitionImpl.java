@@ -35,155 +35,155 @@ import org.switchyard.tools.models.switchyard1_0.spring.SpringPackage;
  */
 public class ContextScanDefinitionImpl extends EObjectImpl implements ContextScanDefinition {
 	/**
-	 * The cached value of the '{@link #getExcludes() <em>Excludes</em>}' attribute list.
-	 * <!-- begin-user-doc -->
+     * The cached value of the '{@link #getExcludes() <em>Excludes</em>}' attribute list.
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #getExcludes()
-	 * @generated
-	 * @ordered
-	 */
+     * @see #getExcludes()
+     * @generated
+     * @ordered
+     */
 	protected EList<String> excludes;
 
 	/**
-	 * The cached value of the '{@link #getIncludes() <em>Includes</em>}' attribute list.
-	 * <!-- begin-user-doc -->
+     * The cached value of the '{@link #getIncludes() <em>Includes</em>}' attribute list.
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #getIncludes()
-	 * @generated
-	 * @ordered
-	 */
+     * @see #getIncludes()
+     * @generated
+     * @ordered
+     */
 	protected EList<String> includes;
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	protected ContextScanDefinitionImpl() {
-		super();
-	}
+        super();
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	@Override
 	protected EClass eStaticClass() {
-		return SpringPackage.eINSTANCE.getContextScanDefinition();
-	}
+        return SpringPackage.eINSTANCE.getContextScanDefinition();
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public EList<String> getExcludes() {
-		if (excludes == null) {
-			excludes = new EDataTypeEList<String>(String.class, this, SpringPackage.CONTEXT_SCAN_DEFINITION__EXCLUDES);
-		}
-		return excludes;
-	}
+        if (excludes == null) {
+            excludes = new EDataTypeEList<String>(String.class, this, SpringPackage.CONTEXT_SCAN_DEFINITION__EXCLUDES);
+        }
+        return excludes;
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public EList<String> getIncludes() {
-		if (includes == null) {
-			includes = new EDataTypeEList<String>(String.class, this, SpringPackage.CONTEXT_SCAN_DEFINITION__INCLUDES);
-		}
-		return includes;
-	}
+        if (includes == null) {
+            includes = new EDataTypeEList<String>(String.class, this, SpringPackage.CONTEXT_SCAN_DEFINITION__INCLUDES);
+        }
+        return includes;
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
-		switch (featureID) {
-			case SpringPackage.CONTEXT_SCAN_DEFINITION__EXCLUDES:
-				return getExcludes();
-			case SpringPackage.CONTEXT_SCAN_DEFINITION__INCLUDES:
-				return getIncludes();
-		}
-		return super.eGet(featureID, resolve, coreType);
-	}
+        switch (featureID) {
+            case SpringPackage.CONTEXT_SCAN_DEFINITION__EXCLUDES:
+                return getExcludes();
+            case SpringPackage.CONTEXT_SCAN_DEFINITION__INCLUDES:
+                return getIncludes();
+        }
+        return super.eGet(featureID, resolve, coreType);
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	@SuppressWarnings("unchecked")
 	@Override
 	public void eSet(int featureID, Object newValue) {
-		switch (featureID) {
-			case SpringPackage.CONTEXT_SCAN_DEFINITION__EXCLUDES:
-				getExcludes().clear();
-				getExcludes().addAll((Collection<? extends String>)newValue);
-				return;
-			case SpringPackage.CONTEXT_SCAN_DEFINITION__INCLUDES:
-				getIncludes().clear();
-				getIncludes().addAll((Collection<? extends String>)newValue);
-				return;
-		}
-		super.eSet(featureID, newValue);
-	}
+        switch (featureID) {
+            case SpringPackage.CONTEXT_SCAN_DEFINITION__EXCLUDES:
+                getExcludes().clear();
+                getExcludes().addAll((Collection<? extends String>)newValue);
+                return;
+            case SpringPackage.CONTEXT_SCAN_DEFINITION__INCLUDES:
+                getIncludes().clear();
+                getIncludes().addAll((Collection<? extends String>)newValue);
+                return;
+        }
+        super.eSet(featureID, newValue);
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	@Override
 	public void eUnset(int featureID) {
-		switch (featureID) {
-			case SpringPackage.CONTEXT_SCAN_DEFINITION__EXCLUDES:
-				getExcludes().clear();
-				return;
-			case SpringPackage.CONTEXT_SCAN_DEFINITION__INCLUDES:
-				getIncludes().clear();
-				return;
-		}
-		super.eUnset(featureID);
-	}
+        switch (featureID) {
+            case SpringPackage.CONTEXT_SCAN_DEFINITION__EXCLUDES:
+                getExcludes().clear();
+                return;
+            case SpringPackage.CONTEXT_SCAN_DEFINITION__INCLUDES:
+                getIncludes().clear();
+                return;
+        }
+        super.eUnset(featureID);
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	@Override
 	public boolean eIsSet(int featureID) {
-		switch (featureID) {
-			case SpringPackage.CONTEXT_SCAN_DEFINITION__EXCLUDES:
-				return excludes != null && !excludes.isEmpty();
-			case SpringPackage.CONTEXT_SCAN_DEFINITION__INCLUDES:
-				return includes != null && !includes.isEmpty();
-		}
-		return super.eIsSet(featureID);
-	}
+        switch (featureID) {
+            case SpringPackage.CONTEXT_SCAN_DEFINITION__EXCLUDES:
+                return excludes != null && !excludes.isEmpty();
+            case SpringPackage.CONTEXT_SCAN_DEFINITION__INCLUDES:
+                return includes != null && !includes.isEmpty();
+        }
+        return super.eIsSet(featureID);
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	@Override
 	public String toString() {
-		if (eIsProxy()) return super.toString();
+        if (eIsProxy()) return super.toString();
 
-		StringBuffer result = new StringBuffer(super.toString());
-		result.append(" (excludes: ");
-		result.append(excludes);
-		result.append(", includes: ");
-		result.append(includes);
-		result.append(')');
-		return result.toString();
-	}
+        StringBuffer result = new StringBuffer(super.toString());
+        result.append(" (excludes: ");
+        result.append(excludes);
+        result.append(", includes: ");
+        result.append(includes);
+        result.append(')');
+        return result.toString();
+    }
 
 } //ContextScanDefinitionImpl

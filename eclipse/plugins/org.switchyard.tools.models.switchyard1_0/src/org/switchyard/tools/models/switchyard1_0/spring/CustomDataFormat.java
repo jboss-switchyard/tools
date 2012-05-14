@@ -25,30 +25,30 @@ package org.switchyard.tools.models.switchyard1_0.spring;
  */
 public interface CustomDataFormat extends DataFormat {
 	/**
-	 * Returns the value of the '<em><b>Ref</b></em>' attribute.
-	 * <!-- begin-user-doc -->
+     * Returns the value of the '<em><b>Ref</b></em>' attribute.
+     * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Ref</em>' attribute isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Ref</em>' attribute.
-	 * @see #setRef(String)
-	 * @see org.switchyard.tools.models.switchyard1_0.spring.SpringPackage#getCustomDataFormat_Ref()
-	 * @model dataType="org.eclipse.emf.ecore.xml.type.String" required="true"
-	 *        extendedMetaData="kind='attribute' name='ref'"
-	 * @generated
-	 */
+     * @return the value of the '<em>Ref</em>' attribute.
+     * @see #setRef(String)
+     * @see org.switchyard.tools.models.switchyard1_0.spring.SpringPackage#getCustomDataFormat_Ref()
+     * @model dataType="org.eclipse.emf.ecore.xml.type.String" required="true"
+     *        extendedMetaData="kind='attribute' name='ref'"
+     * @generated
+     */
 	String getRef();
 
 	/**
-	 * Sets the value of the '{@link org.switchyard.tools.models.switchyard1_0.spring.CustomDataFormat#getRef <em>Ref</em>}' attribute.
-	 * <!-- begin-user-doc -->
+     * Sets the value of the '{@link org.switchyard.tools.models.switchyard1_0.spring.CustomDataFormat#getRef <em>Ref</em>}' attribute.
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Ref</em>' attribute.
-	 * @see #getRef()
-	 * @generated
-	 */
+     * @param value the new value of the '<em>Ref</em>' attribute.
+     * @see #getRef()
+     * @generated
+     */
 	void setRef(String value);
 
 } // CustomDataFormat

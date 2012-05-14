@@ -22,22 +22,22 @@ import org.switchyard.tools.models.switchyard1_0.spring.SpringPackage;
  */
 public class ConstantExpressionImpl extends ExpressionImpl implements ConstantExpression {
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	protected ConstantExpressionImpl() {
-		super();
-	}
+        super();
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	@Override
 	protected EClass eStaticClass() {
-		return SpringPackage.eINSTANCE.getConstantExpression();
-	}
+        return SpringPackage.eINSTANCE.getConstantExpression();
+    }
 
 } //ConstantExpressionImpl

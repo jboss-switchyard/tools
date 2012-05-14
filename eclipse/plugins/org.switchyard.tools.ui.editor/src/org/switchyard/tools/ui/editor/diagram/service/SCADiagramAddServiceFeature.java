@@ -14,12 +14,14 @@ package org.switchyard.tools.ui.editor.diagram.service;
 
 import org.eclipse.graphiti.features.IFeatureProvider;
 import org.eclipse.graphiti.features.context.IAddContext;
+import org.eclipse.graphiti.features.context.impl.AddConnectionContext;
 import org.eclipse.graphiti.features.impl.AbstractAddShapeFeature;
 import org.eclipse.graphiti.mm.algorithms.Polygon;
 import org.eclipse.graphiti.mm.algorithms.Rectangle;
 import org.eclipse.graphiti.mm.algorithms.Text;
 import org.eclipse.graphiti.mm.algorithms.styles.Font;
 import org.eclipse.graphiti.mm.algorithms.styles.Orientation;
+import org.eclipse.graphiti.mm.pictograms.Anchor;
 import org.eclipse.graphiti.mm.pictograms.ChopboxAnchor;
 import org.eclipse.graphiti.mm.pictograms.ContainerShape;
 import org.eclipse.graphiti.mm.pictograms.PictogramElement;
@@ -32,7 +34,7 @@ import org.switchyard.tools.ui.editor.diagram.StyleUtil;
 
 /**
  * @author bfitzpat
- *
+ * 
  */
 public class SCADiagramAddServiceFeature extends AbstractAddShapeFeature {
 
@@ -102,8 +104,7 @@ public class SCADiagramAddServiceFeature extends AbstractAddShapeFeature {
         // SHAPE WITH TEXT
         // create and set text graphics algorithm
         Text text = gaService.createDefaultText(getDiagram(), p, addedService.getName());
-        Font font = gaService.manageFont(getDiagram(), text.getFont().getName(), text.getFont().getSize(), false,
-                true);
+        Font font = gaService.manageFont(getDiagram(), text.getFont().getName(), text.getFont().getSize(), false, true);
         text.setFont(font);
 
         text.setForeground(manageColor(StyleUtil.BLACK));
@@ -112,6 +113,19 @@ public class SCADiagramAddServiceFeature extends AbstractAddShapeFeature {
         text.setHorizontalAlignment(Orientation.ALIGNMENT_CENTER);
         text.setVerticalAlignment(Orientation.ALIGNMENT_CENTER);
         gaService.setLocationAndSize(text, left + 10, 0, right - left - 10, height);
+
+        if (addedService.getPromote() == null) {
+            return containerShape;
+        }
+
+        for (PictogramElement pe : getFeatureProvider().getAllPictogramElementsForBusinessObject(
+                addedService.getPromote())) {
+            if (pe instanceof Anchor) {
+                AddConnectionContext addContext = new AddConnectionContext(anchor, (Anchor) pe);
+                addContext.setNewObject(addedService.getPromote());
+                getFeatureProvider().addIfPossible(addContext);
+            }
+        }
 
         return containerShape;
 

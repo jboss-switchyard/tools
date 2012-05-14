@@ -22,22 +22,22 @@ import org.switchyard.tools.models.switchyard1_0.spring.SpringPackage;
  */
 public class CamelEndpointFactoryBeanImpl extends AbstractCamelEndpointFactoryBeanImpl implements CamelEndpointFactoryBean {
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	protected CamelEndpointFactoryBeanImpl() {
-		super();
-	}
+        super();
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	@Override
 	protected EClass eStaticClass() {
-		return SpringPackage.eINSTANCE.getCamelEndpointFactoryBean();
-	}
+        return SpringPackage.eINSTANCE.getCamelEndpointFactoryBean();
+    }
 
 } //CamelEndpointFactoryBeanImpl

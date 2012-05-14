@@ -30,137 +30,137 @@ import org.switchyard.tools.models.switchyard1_0.spring.SpringPackage;
  */
 public class ProtobufDataFormatImpl extends DataFormatImpl implements ProtobufDataFormat {
 	/**
-	 * The default value of the '{@link #getInstanceClass() <em>Instance Class</em>}' attribute.
-	 * <!-- begin-user-doc -->
+     * The default value of the '{@link #getInstanceClass() <em>Instance Class</em>}' attribute.
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #getInstanceClass()
-	 * @generated
-	 * @ordered
-	 */
+     * @see #getInstanceClass()
+     * @generated
+     * @ordered
+     */
 	protected static final String INSTANCE_CLASS_EDEFAULT = null;
 
 	/**
-	 * The cached value of the '{@link #getInstanceClass() <em>Instance Class</em>}' attribute.
-	 * <!-- begin-user-doc -->
+     * The cached value of the '{@link #getInstanceClass() <em>Instance Class</em>}' attribute.
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #getInstanceClass()
-	 * @generated
-	 * @ordered
-	 */
+     * @see #getInstanceClass()
+     * @generated
+     * @ordered
+     */
 	protected String instanceClass = INSTANCE_CLASS_EDEFAULT;
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	protected ProtobufDataFormatImpl() {
-		super();
-	}
+        super();
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	@Override
 	protected EClass eStaticClass() {
-		return SpringPackage.eINSTANCE.getProtobufDataFormat();
-	}
+        return SpringPackage.eINSTANCE.getProtobufDataFormat();
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public String getInstanceClass() {
-		return instanceClass;
-	}
+        return instanceClass;
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public void setInstanceClass(String newInstanceClass) {
-		String oldInstanceClass = instanceClass;
-		instanceClass = newInstanceClass;
-		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, SpringPackage.PROTOBUF_DATA_FORMAT__INSTANCE_CLASS, oldInstanceClass, instanceClass));
-	}
+        String oldInstanceClass = instanceClass;
+        instanceClass = newInstanceClass;
+        if (eNotificationRequired())
+            eNotify(new ENotificationImpl(this, Notification.SET, SpringPackage.PROTOBUF_DATA_FORMAT__INSTANCE_CLASS, oldInstanceClass, instanceClass));
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
-		switch (featureID) {
-			case SpringPackage.PROTOBUF_DATA_FORMAT__INSTANCE_CLASS:
-				return getInstanceClass();
-		}
-		return super.eGet(featureID, resolve, coreType);
-	}
+        switch (featureID) {
+            case SpringPackage.PROTOBUF_DATA_FORMAT__INSTANCE_CLASS:
+                return getInstanceClass();
+        }
+        return super.eGet(featureID, resolve, coreType);
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	@Override
 	public void eSet(int featureID, Object newValue) {
-		switch (featureID) {
-			case SpringPackage.PROTOBUF_DATA_FORMAT__INSTANCE_CLASS:
-				setInstanceClass((String)newValue);
-				return;
-		}
-		super.eSet(featureID, newValue);
-	}
+        switch (featureID) {
+            case SpringPackage.PROTOBUF_DATA_FORMAT__INSTANCE_CLASS:
+                setInstanceClass((String)newValue);
+                return;
+        }
+        super.eSet(featureID, newValue);
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	@Override
 	public void eUnset(int featureID) {
-		switch (featureID) {
-			case SpringPackage.PROTOBUF_DATA_FORMAT__INSTANCE_CLASS:
-				setInstanceClass(INSTANCE_CLASS_EDEFAULT);
-				return;
-		}
-		super.eUnset(featureID);
-	}
+        switch (featureID) {
+            case SpringPackage.PROTOBUF_DATA_FORMAT__INSTANCE_CLASS:
+                setInstanceClass(INSTANCE_CLASS_EDEFAULT);
+                return;
+        }
+        super.eUnset(featureID);
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	@Override
 	public boolean eIsSet(int featureID) {
-		switch (featureID) {
-			case SpringPackage.PROTOBUF_DATA_FORMAT__INSTANCE_CLASS:
-				return INSTANCE_CLASS_EDEFAULT == null ? instanceClass != null : !INSTANCE_CLASS_EDEFAULT.equals(instanceClass);
-		}
-		return super.eIsSet(featureID);
-	}
+        switch (featureID) {
+            case SpringPackage.PROTOBUF_DATA_FORMAT__INSTANCE_CLASS:
+                return INSTANCE_CLASS_EDEFAULT == null ? instanceClass != null : !INSTANCE_CLASS_EDEFAULT.equals(instanceClass);
+        }
+        return super.eIsSet(featureID);
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	@Override
 	public String toString() {
-		if (eIsProxy()) return super.toString();
+        if (eIsProxy()) return super.toString();
 
-		StringBuffer result = new StringBuffer(super.toString());
-		result.append(" (instanceClass: ");
-		result.append(instanceClass);
-		result.append(')');
-		return result.toString();
-	}
+        StringBuffer result = new StringBuffer(super.toString());
+        result.append(" (instanceClass: ");
+        result.append(instanceClass);
+        result.append(')');
+        return result.toString();
+    }
 
 } //ProtobufDataFormatImpl

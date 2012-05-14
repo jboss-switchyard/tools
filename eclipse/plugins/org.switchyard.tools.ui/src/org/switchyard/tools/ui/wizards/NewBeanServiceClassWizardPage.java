@@ -118,7 +118,7 @@ public class NewBeanServiceClassWizardPage extends NewTypeWizardPage {
      */
     public void init(IStructuredSelection selection) {
         IJavaElement elem = getInitialJavaElement(selection);
-        ICompilationUnit cu = (ICompilationUnit) elem.getAncestor(IJavaElement.COMPILATION_UNIT);
+        ICompilationUnit cu = elem == null ? null : (ICompilationUnit) elem.getAncestor(IJavaElement.COMPILATION_UNIT);
         if (cu != null) {
             elem = cu.findPrimaryType();
         }

@@ -37,220 +37,220 @@ import org.switchyard.tools.models.switchyard1_0.spring.SpringPackage;
  */
 public class LoopDefinitionImpl extends ExpressionNodeImpl implements LoopDefinition {
 	/**
-	 * The default value of the '{@link #isCopy() <em>Copy</em>}' attribute.
-	 * <!-- begin-user-doc -->
+     * The default value of the '{@link #isCopy() <em>Copy</em>}' attribute.
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #isCopy()
-	 * @generated
-	 * @ordered
-	 */
+     * @see #isCopy()
+     * @generated
+     * @ordered
+     */
 	protected static final boolean COPY_EDEFAULT = false;
 
 	/**
-	 * The cached value of the '{@link #isCopy() <em>Copy</em>}' attribute.
-	 * <!-- begin-user-doc -->
+     * The cached value of the '{@link #isCopy() <em>Copy</em>}' attribute.
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #isCopy()
-	 * @generated
-	 * @ordered
-	 */
+     * @see #isCopy()
+     * @generated
+     * @ordered
+     */
 	protected boolean copy = COPY_EDEFAULT;
 
 	/**
-	 * This is true if the Copy attribute has been set.
-	 * <!-- begin-user-doc -->
+     * This is true if the Copy attribute has been set.
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
+     * @generated
+     * @ordered
+     */
 	protected boolean copyESet;
 
 	/**
-	 * The cached value of the '{@link #getAnyAttribute2() <em>Any Attribute2</em>}' attribute list.
-	 * <!-- begin-user-doc -->
+     * The cached value of the '{@link #getAnyAttribute2() <em>Any Attribute2</em>}' attribute list.
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #getAnyAttribute2()
-	 * @generated
-	 * @ordered
-	 */
+     * @see #getAnyAttribute2()
+     * @generated
+     * @ordered
+     */
 	protected FeatureMap anyAttribute2;
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	protected LoopDefinitionImpl() {
-		super();
-	}
+        super();
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	@Override
 	protected EClass eStaticClass() {
-		return SpringPackage.eINSTANCE.getLoopDefinition();
-	}
+        return SpringPackage.eINSTANCE.getLoopDefinition();
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public boolean isCopy() {
-		return copy;
-	}
+        return copy;
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public void setCopy(boolean newCopy) {
-		boolean oldCopy = copy;
-		copy = newCopy;
-		boolean oldCopyESet = copyESet;
-		copyESet = true;
-		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, SpringPackage.LOOP_DEFINITION__COPY, oldCopy, copy, !oldCopyESet));
-	}
+        boolean oldCopy = copy;
+        copy = newCopy;
+        boolean oldCopyESet = copyESet;
+        copyESet = true;
+        if (eNotificationRequired())
+            eNotify(new ENotificationImpl(this, Notification.SET, SpringPackage.LOOP_DEFINITION__COPY, oldCopy, copy, !oldCopyESet));
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public void unsetCopy() {
-		boolean oldCopy = copy;
-		boolean oldCopyESet = copyESet;
-		copy = COPY_EDEFAULT;
-		copyESet = false;
-		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.UNSET, SpringPackage.LOOP_DEFINITION__COPY, oldCopy, COPY_EDEFAULT, oldCopyESet));
-	}
+        boolean oldCopy = copy;
+        boolean oldCopyESet = copyESet;
+        copy = COPY_EDEFAULT;
+        copyESet = false;
+        if (eNotificationRequired())
+            eNotify(new ENotificationImpl(this, Notification.UNSET, SpringPackage.LOOP_DEFINITION__COPY, oldCopy, COPY_EDEFAULT, oldCopyESet));
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public boolean isSetCopy() {
-		return copyESet;
-	}
+        return copyESet;
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public FeatureMap getAnyAttribute2() {
-		if (anyAttribute2 == null) {
-			anyAttribute2 = new BasicFeatureMap(this, SpringPackage.LOOP_DEFINITION__ANY_ATTRIBUTE2);
-		}
-		return anyAttribute2;
-	}
+        if (anyAttribute2 == null) {
+            anyAttribute2 = new BasicFeatureMap(this, SpringPackage.LOOP_DEFINITION__ANY_ATTRIBUTE2);
+        }
+        return anyAttribute2;
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	@Override
 	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
-		switch (featureID) {
-			case SpringPackage.LOOP_DEFINITION__ANY_ATTRIBUTE2:
-				return ((InternalEList<?>)getAnyAttribute2()).basicRemove(otherEnd, msgs);
-		}
-		return super.eInverseRemove(otherEnd, featureID, msgs);
-	}
+        switch (featureID) {
+            case SpringPackage.LOOP_DEFINITION__ANY_ATTRIBUTE2:
+                return ((InternalEList<?>)getAnyAttribute2()).basicRemove(otherEnd, msgs);
+        }
+        return super.eInverseRemove(otherEnd, featureID, msgs);
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
-		switch (featureID) {
-			case SpringPackage.LOOP_DEFINITION__COPY:
-				return isCopy();
-			case SpringPackage.LOOP_DEFINITION__ANY_ATTRIBUTE2:
-				if (coreType) return getAnyAttribute2();
-				return ((FeatureMap.Internal)getAnyAttribute2()).getWrapper();
-		}
-		return super.eGet(featureID, resolve, coreType);
-	}
+        switch (featureID) {
+            case SpringPackage.LOOP_DEFINITION__COPY:
+                return isCopy();
+            case SpringPackage.LOOP_DEFINITION__ANY_ATTRIBUTE2:
+                if (coreType) return getAnyAttribute2();
+                return ((FeatureMap.Internal)getAnyAttribute2()).getWrapper();
+        }
+        return super.eGet(featureID, resolve, coreType);
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	@Override
 	public void eSet(int featureID, Object newValue) {
-		switch (featureID) {
-			case SpringPackage.LOOP_DEFINITION__COPY:
-				setCopy((Boolean)newValue);
-				return;
-			case SpringPackage.LOOP_DEFINITION__ANY_ATTRIBUTE2:
-				((FeatureMap.Internal)getAnyAttribute2()).set(newValue);
-				return;
-		}
-		super.eSet(featureID, newValue);
-	}
+        switch (featureID) {
+            case SpringPackage.LOOP_DEFINITION__COPY:
+                setCopy((Boolean)newValue);
+                return;
+            case SpringPackage.LOOP_DEFINITION__ANY_ATTRIBUTE2:
+                ((FeatureMap.Internal)getAnyAttribute2()).set(newValue);
+                return;
+        }
+        super.eSet(featureID, newValue);
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	@Override
 	public void eUnset(int featureID) {
-		switch (featureID) {
-			case SpringPackage.LOOP_DEFINITION__COPY:
-				unsetCopy();
-				return;
-			case SpringPackage.LOOP_DEFINITION__ANY_ATTRIBUTE2:
-				getAnyAttribute2().clear();
-				return;
-		}
-		super.eUnset(featureID);
-	}
+        switch (featureID) {
+            case SpringPackage.LOOP_DEFINITION__COPY:
+                unsetCopy();
+                return;
+            case SpringPackage.LOOP_DEFINITION__ANY_ATTRIBUTE2:
+                getAnyAttribute2().clear();
+                return;
+        }
+        super.eUnset(featureID);
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	@Override
 	public boolean eIsSet(int featureID) {
-		switch (featureID) {
-			case SpringPackage.LOOP_DEFINITION__COPY:
-				return isSetCopy();
-			case SpringPackage.LOOP_DEFINITION__ANY_ATTRIBUTE2:
-				return anyAttribute2 != null && !anyAttribute2.isEmpty();
-		}
-		return super.eIsSet(featureID);
-	}
+        switch (featureID) {
+            case SpringPackage.LOOP_DEFINITION__COPY:
+                return isSetCopy();
+            case SpringPackage.LOOP_DEFINITION__ANY_ATTRIBUTE2:
+                return anyAttribute2 != null && !anyAttribute2.isEmpty();
+        }
+        return super.eIsSet(featureID);
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	@Override
 	public String toString() {
-		if (eIsProxy()) return super.toString();
+        if (eIsProxy()) return super.toString();
 
-		StringBuffer result = new StringBuffer(super.toString());
-		result.append(" (copy: ");
-		if (copyESet) result.append(copy); else result.append("<unset>");
-		result.append(", anyAttribute2: ");
-		result.append(anyAttribute2);
-		result.append(')');
-		return result.toString();
-	}
+        StringBuffer result = new StringBuffer(super.toString());
+        result.append(" (copy: ");
+        if (copyESet) result.append(copy); else result.append("<unset>");
+        result.append(", anyAttribute2: ");
+        result.append(anyAttribute2);
+        result.append(')');
+        return result.toString();
+    }
 
 } //LoopDefinitionImpl

@@ -39,118 +39,118 @@ import org.switchyard.tools.models.switchyard1_0.spring.SpringPackage;
  */
 public class ConverterListImpl extends EObjectImpl implements ConverterList {
 	/**
-	 * The cached value of the '{@link #getConverter() <em>Converter</em>}' containment reference list.
-	 * <!-- begin-user-doc -->
+     * The cached value of the '{@link #getConverter() <em>Converter</em>}' containment reference list.
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #getConverter()
-	 * @generated
-	 * @ordered
-	 */
+     * @see #getConverter()
+     * @generated
+     * @ordered
+     */
 	protected EList<ConverterEntry> converter;
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	protected ConverterListImpl() {
-		super();
-	}
+        super();
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	@Override
 	protected EClass eStaticClass() {
-		return SpringPackage.eINSTANCE.getConverterList();
-	}
+        return SpringPackage.eINSTANCE.getConverterList();
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public EList<ConverterEntry> getConverter() {
-		if (converter == null) {
-			converter = new EObjectContainmentEList<ConverterEntry>(ConverterEntry.class, this, SpringPackage.CONVERTER_LIST__CONVERTER);
-		}
-		return converter;
-	}
+        if (converter == null) {
+            converter = new EObjectContainmentEList<ConverterEntry>(ConverterEntry.class, this, SpringPackage.CONVERTER_LIST__CONVERTER);
+        }
+        return converter;
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	@Override
 	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
-		switch (featureID) {
-			case SpringPackage.CONVERTER_LIST__CONVERTER:
-				return ((InternalEList<?>)getConverter()).basicRemove(otherEnd, msgs);
-		}
-		return super.eInverseRemove(otherEnd, featureID, msgs);
-	}
+        switch (featureID) {
+            case SpringPackage.CONVERTER_LIST__CONVERTER:
+                return ((InternalEList<?>)getConverter()).basicRemove(otherEnd, msgs);
+        }
+        return super.eInverseRemove(otherEnd, featureID, msgs);
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
-		switch (featureID) {
-			case SpringPackage.CONVERTER_LIST__CONVERTER:
-				return getConverter();
-		}
-		return super.eGet(featureID, resolve, coreType);
-	}
+        switch (featureID) {
+            case SpringPackage.CONVERTER_LIST__CONVERTER:
+                return getConverter();
+        }
+        return super.eGet(featureID, resolve, coreType);
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	@SuppressWarnings("unchecked")
 	@Override
 	public void eSet(int featureID, Object newValue) {
-		switch (featureID) {
-			case SpringPackage.CONVERTER_LIST__CONVERTER:
-				getConverter().clear();
-				getConverter().addAll((Collection<? extends ConverterEntry>)newValue);
-				return;
-		}
-		super.eSet(featureID, newValue);
-	}
+        switch (featureID) {
+            case SpringPackage.CONVERTER_LIST__CONVERTER:
+                getConverter().clear();
+                getConverter().addAll((Collection<? extends ConverterEntry>)newValue);
+                return;
+        }
+        super.eSet(featureID, newValue);
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	@Override
 	public void eUnset(int featureID) {
-		switch (featureID) {
-			case SpringPackage.CONVERTER_LIST__CONVERTER:
-				getConverter().clear();
-				return;
-		}
-		super.eUnset(featureID);
-	}
+        switch (featureID) {
+            case SpringPackage.CONVERTER_LIST__CONVERTER:
+                getConverter().clear();
+                return;
+        }
+        super.eUnset(featureID);
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	@Override
 	public boolean eIsSet(int featureID) {
-		switch (featureID) {
-			case SpringPackage.CONVERTER_LIST__CONVERTER:
-				return converter != null && !converter.isEmpty();
-		}
-		return super.eIsSet(featureID);
-	}
+        switch (featureID) {
+            case SpringPackage.CONVERTER_LIST__CONVERTER:
+                return converter != null && !converter.isEmpty();
+        }
+        return super.eIsSet(featureID);
+    }
 
 } //ConverterListImpl

@@ -34,120 +34,120 @@ import org.switchyard.tools.models.switchyard1_0.spring.SpringPackage;
  */
 public class SecureSocketProtocolsParametersImpl extends EObjectImpl implements SecureSocketProtocolsParameters {
 	/**
-	 * The cached value of the '{@link #getSecureSocketProtocol() <em>Secure Socket Protocol</em>}' attribute list.
-	 * <!-- begin-user-doc -->
+     * The cached value of the '{@link #getSecureSocketProtocol() <em>Secure Socket Protocol</em>}' attribute list.
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #getSecureSocketProtocol()
-	 * @generated
-	 * @ordered
-	 */
+     * @see #getSecureSocketProtocol()
+     * @generated
+     * @ordered
+     */
 	protected EList<String> secureSocketProtocol;
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	protected SecureSocketProtocolsParametersImpl() {
-		super();
-	}
+        super();
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	@Override
 	protected EClass eStaticClass() {
-		return SpringPackage.eINSTANCE.getSecureSocketProtocolsParameters();
-	}
+        return SpringPackage.eINSTANCE.getSecureSocketProtocolsParameters();
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public EList<String> getSecureSocketProtocol() {
-		if (secureSocketProtocol == null) {
-			secureSocketProtocol = new EDataTypeEList<String>(String.class, this, SpringPackage.SECURE_SOCKET_PROTOCOLS_PARAMETERS__SECURE_SOCKET_PROTOCOL);
-		}
-		return secureSocketProtocol;
-	}
+        if (secureSocketProtocol == null) {
+            secureSocketProtocol = new EDataTypeEList<String>(String.class, this, SpringPackage.SECURE_SOCKET_PROTOCOLS_PARAMETERS__SECURE_SOCKET_PROTOCOL);
+        }
+        return secureSocketProtocol;
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
-		switch (featureID) {
-			case SpringPackage.SECURE_SOCKET_PROTOCOLS_PARAMETERS__SECURE_SOCKET_PROTOCOL:
-				return getSecureSocketProtocol();
-		}
-		return super.eGet(featureID, resolve, coreType);
-	}
+        switch (featureID) {
+            case SpringPackage.SECURE_SOCKET_PROTOCOLS_PARAMETERS__SECURE_SOCKET_PROTOCOL:
+                return getSecureSocketProtocol();
+        }
+        return super.eGet(featureID, resolve, coreType);
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	@SuppressWarnings("unchecked")
 	@Override
 	public void eSet(int featureID, Object newValue) {
-		switch (featureID) {
-			case SpringPackage.SECURE_SOCKET_PROTOCOLS_PARAMETERS__SECURE_SOCKET_PROTOCOL:
-				getSecureSocketProtocol().clear();
-				getSecureSocketProtocol().addAll((Collection<? extends String>)newValue);
-				return;
-		}
-		super.eSet(featureID, newValue);
-	}
+        switch (featureID) {
+            case SpringPackage.SECURE_SOCKET_PROTOCOLS_PARAMETERS__SECURE_SOCKET_PROTOCOL:
+                getSecureSocketProtocol().clear();
+                getSecureSocketProtocol().addAll((Collection<? extends String>)newValue);
+                return;
+        }
+        super.eSet(featureID, newValue);
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	@Override
 	public void eUnset(int featureID) {
-		switch (featureID) {
-			case SpringPackage.SECURE_SOCKET_PROTOCOLS_PARAMETERS__SECURE_SOCKET_PROTOCOL:
-				getSecureSocketProtocol().clear();
-				return;
-		}
-		super.eUnset(featureID);
-	}
+        switch (featureID) {
+            case SpringPackage.SECURE_SOCKET_PROTOCOLS_PARAMETERS__SECURE_SOCKET_PROTOCOL:
+                getSecureSocketProtocol().clear();
+                return;
+        }
+        super.eUnset(featureID);
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	@Override
 	public boolean eIsSet(int featureID) {
-		switch (featureID) {
-			case SpringPackage.SECURE_SOCKET_PROTOCOLS_PARAMETERS__SECURE_SOCKET_PROTOCOL:
-				return secureSocketProtocol != null && !secureSocketProtocol.isEmpty();
-		}
-		return super.eIsSet(featureID);
-	}
+        switch (featureID) {
+            case SpringPackage.SECURE_SOCKET_PROTOCOLS_PARAMETERS__SECURE_SOCKET_PROTOCOL:
+                return secureSocketProtocol != null && !secureSocketProtocol.isEmpty();
+        }
+        return super.eIsSet(featureID);
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	@Override
 	public String toString() {
-		if (eIsProxy()) return super.toString();
+        if (eIsProxy()) return super.toString();
 
-		StringBuffer result = new StringBuffer(super.toString());
-		result.append(" (secureSocketProtocol: ");
-		result.append(secureSocketProtocol);
-		result.append(')');
-		return result.toString();
-	}
+        StringBuffer result = new StringBuffer(super.toString());
+        result.append(" (secureSocketProtocol: ");
+        result.append(secureSocketProtocol);
+        result.append(')');
+        return result.toString();
+    }
 
 } //SecureSocketProtocolsParametersImpl

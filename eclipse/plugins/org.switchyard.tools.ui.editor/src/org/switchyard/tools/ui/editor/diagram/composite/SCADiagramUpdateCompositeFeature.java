@@ -21,8 +21,8 @@ import org.eclipse.graphiti.mm.algorithms.GraphicsAlgorithm;
 import org.eclipse.graphiti.mm.algorithms.Text;
 import org.eclipse.graphiti.mm.pictograms.ContainerShape;
 import org.eclipse.graphiti.mm.pictograms.PictogramElement;
-import org.eclipse.graphiti.mm.pictograms.Shape;
 import org.eclipse.soa.sca.sca1_1.model.sca.Composite;
+import org.switchyard.tools.ui.editor.diagram.di.DIImport;
 
 /**
  * @author bfitzpat
@@ -103,13 +103,11 @@ public class SCADiagramUpdateCompositeFeature extends AbstractUpdateFeature {
 
         // Set name in pictogram model
         if (pictogramElement instanceof ContainerShape) {
-            ContainerShape cs = (ContainerShape) pictogramElement;
-            for (Shape shape : cs.getChildren()) {
-                if (shape.getGraphicsAlgorithm() instanceof Text) {
-                    Text text = (Text) shape.getGraphicsAlgorithm();
-                    text.setValue(businessName);
-                    return true;
-                }
+            GraphicsAlgorithm ga = pictogramElement.getGraphicsAlgorithm();
+            Text text = (Text) DIImport.findChildGA(ga, Text.class);
+            if (text != null) {
+                text.setValue(businessName);
+                return true;
             }
         }
         return false;

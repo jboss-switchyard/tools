@@ -24,22 +24,22 @@ import org.switchyard.tools.models.switchyard1_0.bpm.ResourceType;
  */
 public class ResourceTypeImpl extends EObjectImpl implements ResourceType {
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	protected ResourceTypeImpl() {
-		super();
-	}
+        super();
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	@Override
 	protected EClass eStaticClass() {
-		return BPMPackage.Literals.RESOURCE_TYPE;
-	}
+        return BPMPackage.Literals.RESOURCE_TYPE;
+    }
 
 } //ResourceTypeImpl

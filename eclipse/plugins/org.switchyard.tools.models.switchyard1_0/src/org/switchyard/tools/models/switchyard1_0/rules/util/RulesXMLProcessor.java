@@ -25,30 +25,30 @@ import org.switchyard.tools.models.switchyard1_0.rules.RulesPackage;
 public class RulesXMLProcessor extends XMLProcessor {
 
 	/**
-	 * Public constructor to instantiate the helper.
-	 * <!-- begin-user-doc -->
+     * Public constructor to instantiate the helper.
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public RulesXMLProcessor() {
-		super((EPackage.Registry.INSTANCE));
-		RulesPackage.eINSTANCE.eClass();
-	}
+        super((EPackage.Registry.INSTANCE));
+        RulesPackage.eINSTANCE.eClass();
+    }
 	
 	/**
-	 * Register for "*" and "xml" file extensions the RulesResourceFactoryImpl factory.
-	 * <!-- begin-user-doc -->
+     * Register for "*" and "xml" file extensions the RulesResourceFactoryImpl factory.
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	@Override
 	protected Map<String, Resource.Factory> getRegistrations() {
-		if (registrations == null) {
-			super.getRegistrations();
-			registrations.put(XML_EXTENSION, new RulesResourceFactoryImpl());
-			registrations.put(STAR_EXTENSION, new RulesResourceFactoryImpl());
-		}
-		return registrations;
-	}
+        if (registrations == null) {
+            super.getRegistrations();
+            registrations.put(XML_EXTENSION, new RulesResourceFactoryImpl());
+            registrations.put(STAR_EXTENSION, new RulesResourceFactoryImpl());
+        }
+        return registrations;
+    }
 
 } //RulesXMLProcessor

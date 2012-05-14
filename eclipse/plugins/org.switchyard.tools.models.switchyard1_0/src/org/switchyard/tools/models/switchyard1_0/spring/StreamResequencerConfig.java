@@ -26,111 +26,111 @@ package org.switchyard.tools.models.switchyard1_0.spring;
  */
 public interface StreamResequencerConfig extends ResequencerConfig {
 	/**
-	 * Returns the value of the '<em><b>Capacity</b></em>' attribute.
-	 * <!-- begin-user-doc -->
+     * Returns the value of the '<em><b>Capacity</b></em>' attribute.
+     * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Capacity</em>' attribute isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Capacity</em>' attribute.
-	 * @see #isSetCapacity()
-	 * @see #unsetCapacity()
-	 * @see #setCapacity(int)
-	 * @see org.switchyard.tools.models.switchyard1_0.spring.SpringPackage#getStreamResequencerConfig_Capacity()
-	 * @model unsettable="true" dataType="org.eclipse.emf.ecore.xml.type.Int"
-	 *        extendedMetaData="kind='attribute' name='capacity'"
-	 * @generated
-	 */
+     * @return the value of the '<em>Capacity</em>' attribute.
+     * @see #isSetCapacity()
+     * @see #unsetCapacity()
+     * @see #setCapacity(int)
+     * @see org.switchyard.tools.models.switchyard1_0.spring.SpringPackage#getStreamResequencerConfig_Capacity()
+     * @model unsettable="true" dataType="org.eclipse.emf.ecore.xml.type.Int"
+     *        extendedMetaData="kind='attribute' name='capacity'"
+     * @generated
+     */
 	int getCapacity();
 
 	/**
-	 * Sets the value of the '{@link org.switchyard.tools.models.switchyard1_0.spring.StreamResequencerConfig#getCapacity <em>Capacity</em>}' attribute.
-	 * <!-- begin-user-doc -->
+     * Sets the value of the '{@link org.switchyard.tools.models.switchyard1_0.spring.StreamResequencerConfig#getCapacity <em>Capacity</em>}' attribute.
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Capacity</em>' attribute.
-	 * @see #isSetCapacity()
-	 * @see #unsetCapacity()
-	 * @see #getCapacity()
-	 * @generated
-	 */
+     * @param value the new value of the '<em>Capacity</em>' attribute.
+     * @see #isSetCapacity()
+     * @see #unsetCapacity()
+     * @see #getCapacity()
+     * @generated
+     */
 	void setCapacity(int value);
 
 	/**
-	 * Unsets the value of the '{@link org.switchyard.tools.models.switchyard1_0.spring.StreamResequencerConfig#getCapacity <em>Capacity</em>}' attribute.
-	 * <!-- begin-user-doc -->
+     * Unsets the value of the '{@link org.switchyard.tools.models.switchyard1_0.spring.StreamResequencerConfig#getCapacity <em>Capacity</em>}' attribute.
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #isSetCapacity()
-	 * @see #getCapacity()
-	 * @see #setCapacity(int)
-	 * @generated
-	 */
+     * @see #isSetCapacity()
+     * @see #getCapacity()
+     * @see #setCapacity(int)
+     * @generated
+     */
 	void unsetCapacity();
 
 	/**
-	 * Returns whether the value of the '{@link org.switchyard.tools.models.switchyard1_0.spring.StreamResequencerConfig#getCapacity <em>Capacity</em>}' attribute is set.
-	 * <!-- begin-user-doc -->
+     * Returns whether the value of the '{@link org.switchyard.tools.models.switchyard1_0.spring.StreamResequencerConfig#getCapacity <em>Capacity</em>}' attribute is set.
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return whether the value of the '<em>Capacity</em>' attribute is set.
-	 * @see #unsetCapacity()
-	 * @see #getCapacity()
-	 * @see #setCapacity(int)
-	 * @generated
-	 */
+     * @return whether the value of the '<em>Capacity</em>' attribute is set.
+     * @see #unsetCapacity()
+     * @see #getCapacity()
+     * @see #setCapacity(int)
+     * @generated
+     */
 	boolean isSetCapacity();
 
 	/**
-	 * Returns the value of the '<em><b>Timeout</b></em>' attribute.
-	 * <!-- begin-user-doc -->
+     * Returns the value of the '<em><b>Timeout</b></em>' attribute.
+     * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Timeout</em>' attribute isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Timeout</em>' attribute.
-	 * @see #isSetTimeout()
-	 * @see #unsetTimeout()
-	 * @see #setTimeout(long)
-	 * @see org.switchyard.tools.models.switchyard1_0.spring.SpringPackage#getStreamResequencerConfig_Timeout()
-	 * @model unsettable="true" dataType="org.eclipse.emf.ecore.xml.type.Long"
-	 *        extendedMetaData="kind='attribute' name='timeout'"
-	 * @generated
-	 */
+     * @return the value of the '<em>Timeout</em>' attribute.
+     * @see #isSetTimeout()
+     * @see #unsetTimeout()
+     * @see #setTimeout(long)
+     * @see org.switchyard.tools.models.switchyard1_0.spring.SpringPackage#getStreamResequencerConfig_Timeout()
+     * @model unsettable="true" dataType="org.eclipse.emf.ecore.xml.type.Long"
+     *        extendedMetaData="kind='attribute' name='timeout'"
+     * @generated
+     */
 	long getTimeout();
 
 	/**
-	 * Sets the value of the '{@link org.switchyard.tools.models.switchyard1_0.spring.StreamResequencerConfig#getTimeout <em>Timeout</em>}' attribute.
-	 * <!-- begin-user-doc -->
+     * Sets the value of the '{@link org.switchyard.tools.models.switchyard1_0.spring.StreamResequencerConfig#getTimeout <em>Timeout</em>}' attribute.
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Timeout</em>' attribute.
-	 * @see #isSetTimeout()
-	 * @see #unsetTimeout()
-	 * @see #getTimeout()
-	 * @generated
-	 */
+     * @param value the new value of the '<em>Timeout</em>' attribute.
+     * @see #isSetTimeout()
+     * @see #unsetTimeout()
+     * @see #getTimeout()
+     * @generated
+     */
 	void setTimeout(long value);
 
 	/**
-	 * Unsets the value of the '{@link org.switchyard.tools.models.switchyard1_0.spring.StreamResequencerConfig#getTimeout <em>Timeout</em>}' attribute.
-	 * <!-- begin-user-doc -->
+     * Unsets the value of the '{@link org.switchyard.tools.models.switchyard1_0.spring.StreamResequencerConfig#getTimeout <em>Timeout</em>}' attribute.
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #isSetTimeout()
-	 * @see #getTimeout()
-	 * @see #setTimeout(long)
-	 * @generated
-	 */
+     * @see #isSetTimeout()
+     * @see #getTimeout()
+     * @see #setTimeout(long)
+     * @generated
+     */
 	void unsetTimeout();
 
 	/**
-	 * Returns whether the value of the '{@link org.switchyard.tools.models.switchyard1_0.spring.StreamResequencerConfig#getTimeout <em>Timeout</em>}' attribute is set.
-	 * <!-- begin-user-doc -->
+     * Returns whether the value of the '{@link org.switchyard.tools.models.switchyard1_0.spring.StreamResequencerConfig#getTimeout <em>Timeout</em>}' attribute is set.
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return whether the value of the '<em>Timeout</em>' attribute is set.
-	 * @see #unsetTimeout()
-	 * @see #getTimeout()
-	 * @see #setTimeout(long)
-	 * @generated
-	 */
+     * @return whether the value of the '<em>Timeout</em>' attribute is set.
+     * @see #unsetTimeout()
+     * @see #getTimeout()
+     * @see #setTimeout(long)
+     * @generated
+     */
 	boolean isSetTimeout();
 
 } // StreamResequencerConfig

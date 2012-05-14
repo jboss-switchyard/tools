@@ -28,20 +28,20 @@ import org.eclipse.emf.ecore.EObject;
  */
 public interface PropertiesDefinition extends EObject {
 	/**
-	 * Returns the value of the '<em><b>Property</b></em>' containment reference list.
-	 * The list contents are of type {@link org.eclipse.emf.ecore.EObject}.
-	 * <!-- begin-user-doc -->
+     * Returns the value of the '<em><b>Property</b></em>' containment reference list.
+     * The list contents are of type {@link org.eclipse.emf.ecore.EObject}.
+     * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Property</em>' containment reference list isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Property</em>' containment reference list.
-	 * @see org.switchyard.tools.models.switchyard1_0.spring.SpringPackage#getPropertiesDefinition_Property()
-	 * @model containment="true"
-	 *        extendedMetaData="kind='element' name='property' namespace='##targetNamespace'"
-	 * @generated
-	 */
+     * @return the value of the '<em>Property</em>' containment reference list.
+     * @see org.switchyard.tools.models.switchyard1_0.spring.SpringPackage#getPropertiesDefinition_Property()
+     * @model containment="true"
+     *        extendedMetaData="kind='element' name='property' namespace='##targetNamespace'"
+     * @generated
+     */
 	EList<EObject> getProperty();
 
 } // PropertiesDefinition

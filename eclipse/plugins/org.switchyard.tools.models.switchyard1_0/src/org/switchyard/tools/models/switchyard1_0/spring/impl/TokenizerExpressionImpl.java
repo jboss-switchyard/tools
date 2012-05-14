@@ -32,277 +32,277 @@ import org.switchyard.tools.models.switchyard1_0.spring.TokenizerExpression;
  */
 public class TokenizerExpressionImpl extends ExpressionImpl implements TokenizerExpression {
 	/**
-	 * The default value of the '{@link #getHeaderName() <em>Header Name</em>}' attribute.
-	 * <!-- begin-user-doc -->
+     * The default value of the '{@link #getHeaderName() <em>Header Name</em>}' attribute.
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #getHeaderName()
-	 * @generated
-	 * @ordered
-	 */
+     * @see #getHeaderName()
+     * @generated
+     * @ordered
+     */
 	protected static final String HEADER_NAME_EDEFAULT = null;
 
 	/**
-	 * The cached value of the '{@link #getHeaderName() <em>Header Name</em>}' attribute.
-	 * <!-- begin-user-doc -->
+     * The cached value of the '{@link #getHeaderName() <em>Header Name</em>}' attribute.
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #getHeaderName()
-	 * @generated
-	 * @ordered
-	 */
+     * @see #getHeaderName()
+     * @generated
+     * @ordered
+     */
 	protected String headerName = HEADER_NAME_EDEFAULT;
 
 	/**
-	 * The default value of the '{@link #isRegex() <em>Regex</em>}' attribute.
-	 * <!-- begin-user-doc -->
+     * The default value of the '{@link #isRegex() <em>Regex</em>}' attribute.
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #isRegex()
-	 * @generated
-	 * @ordered
-	 */
+     * @see #isRegex()
+     * @generated
+     * @ordered
+     */
 	protected static final boolean REGEX_EDEFAULT = false;
 
 	/**
-	 * The cached value of the '{@link #isRegex() <em>Regex</em>}' attribute.
-	 * <!-- begin-user-doc -->
+     * The cached value of the '{@link #isRegex() <em>Regex</em>}' attribute.
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #isRegex()
-	 * @generated
-	 * @ordered
-	 */
+     * @see #isRegex()
+     * @generated
+     * @ordered
+     */
 	protected boolean regex = REGEX_EDEFAULT;
 
 	/**
-	 * This is true if the Regex attribute has been set.
-	 * <!-- begin-user-doc -->
+     * This is true if the Regex attribute has been set.
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
+     * @generated
+     * @ordered
+     */
 	protected boolean regexESet;
 
 	/**
-	 * The default value of the '{@link #getToken() <em>Token</em>}' attribute.
-	 * <!-- begin-user-doc -->
+     * The default value of the '{@link #getToken() <em>Token</em>}' attribute.
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #getToken()
-	 * @generated
-	 * @ordered
-	 */
+     * @see #getToken()
+     * @generated
+     * @ordered
+     */
 	protected static final String TOKEN_EDEFAULT = null;
 
 	/**
-	 * The cached value of the '{@link #getToken() <em>Token</em>}' attribute.
-	 * <!-- begin-user-doc -->
+     * The cached value of the '{@link #getToken() <em>Token</em>}' attribute.
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #getToken()
-	 * @generated
-	 * @ordered
-	 */
+     * @see #getToken()
+     * @generated
+     * @ordered
+     */
 	protected String token = TOKEN_EDEFAULT;
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	protected TokenizerExpressionImpl() {
-		super();
-	}
+        super();
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	@Override
 	protected EClass eStaticClass() {
-		return SpringPackage.eINSTANCE.getTokenizerExpression();
-	}
+        return SpringPackage.eINSTANCE.getTokenizerExpression();
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public String getHeaderName() {
-		return headerName;
-	}
+        return headerName;
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public void setHeaderName(String newHeaderName) {
-		String oldHeaderName = headerName;
-		headerName = newHeaderName;
-		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, SpringPackage.TOKENIZER_EXPRESSION__HEADER_NAME, oldHeaderName, headerName));
-	}
+        String oldHeaderName = headerName;
+        headerName = newHeaderName;
+        if (eNotificationRequired())
+            eNotify(new ENotificationImpl(this, Notification.SET, SpringPackage.TOKENIZER_EXPRESSION__HEADER_NAME, oldHeaderName, headerName));
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public boolean isRegex() {
-		return regex;
-	}
+        return regex;
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public void setRegex(boolean newRegex) {
-		boolean oldRegex = regex;
-		regex = newRegex;
-		boolean oldRegexESet = regexESet;
-		regexESet = true;
-		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, SpringPackage.TOKENIZER_EXPRESSION__REGEX, oldRegex, regex, !oldRegexESet));
-	}
+        boolean oldRegex = regex;
+        regex = newRegex;
+        boolean oldRegexESet = regexESet;
+        regexESet = true;
+        if (eNotificationRequired())
+            eNotify(new ENotificationImpl(this, Notification.SET, SpringPackage.TOKENIZER_EXPRESSION__REGEX, oldRegex, regex, !oldRegexESet));
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public void unsetRegex() {
-		boolean oldRegex = regex;
-		boolean oldRegexESet = regexESet;
-		regex = REGEX_EDEFAULT;
-		regexESet = false;
-		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.UNSET, SpringPackage.TOKENIZER_EXPRESSION__REGEX, oldRegex, REGEX_EDEFAULT, oldRegexESet));
-	}
+        boolean oldRegex = regex;
+        boolean oldRegexESet = regexESet;
+        regex = REGEX_EDEFAULT;
+        regexESet = false;
+        if (eNotificationRequired())
+            eNotify(new ENotificationImpl(this, Notification.UNSET, SpringPackage.TOKENIZER_EXPRESSION__REGEX, oldRegex, REGEX_EDEFAULT, oldRegexESet));
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public boolean isSetRegex() {
-		return regexESet;
-	}
+        return regexESet;
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public String getToken() {
-		return token;
-	}
+        return token;
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public void setToken(String newToken) {
-		String oldToken = token;
-		token = newToken;
-		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, SpringPackage.TOKENIZER_EXPRESSION__TOKEN, oldToken, token));
-	}
+        String oldToken = token;
+        token = newToken;
+        if (eNotificationRequired())
+            eNotify(new ENotificationImpl(this, Notification.SET, SpringPackage.TOKENIZER_EXPRESSION__TOKEN, oldToken, token));
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
-		switch (featureID) {
-			case SpringPackage.TOKENIZER_EXPRESSION__HEADER_NAME:
-				return getHeaderName();
-			case SpringPackage.TOKENIZER_EXPRESSION__REGEX:
-				return isRegex();
-			case SpringPackage.TOKENIZER_EXPRESSION__TOKEN:
-				return getToken();
-		}
-		return super.eGet(featureID, resolve, coreType);
-	}
+        switch (featureID) {
+            case SpringPackage.TOKENIZER_EXPRESSION__HEADER_NAME:
+                return getHeaderName();
+            case SpringPackage.TOKENIZER_EXPRESSION__REGEX:
+                return isRegex();
+            case SpringPackage.TOKENIZER_EXPRESSION__TOKEN:
+                return getToken();
+        }
+        return super.eGet(featureID, resolve, coreType);
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	@Override
 	public void eSet(int featureID, Object newValue) {
-		switch (featureID) {
-			case SpringPackage.TOKENIZER_EXPRESSION__HEADER_NAME:
-				setHeaderName((String)newValue);
-				return;
-			case SpringPackage.TOKENIZER_EXPRESSION__REGEX:
-				setRegex((Boolean)newValue);
-				return;
-			case SpringPackage.TOKENIZER_EXPRESSION__TOKEN:
-				setToken((String)newValue);
-				return;
-		}
-		super.eSet(featureID, newValue);
-	}
+        switch (featureID) {
+            case SpringPackage.TOKENIZER_EXPRESSION__HEADER_NAME:
+                setHeaderName((String)newValue);
+                return;
+            case SpringPackage.TOKENIZER_EXPRESSION__REGEX:
+                setRegex((Boolean)newValue);
+                return;
+            case SpringPackage.TOKENIZER_EXPRESSION__TOKEN:
+                setToken((String)newValue);
+                return;
+        }
+        super.eSet(featureID, newValue);
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	@Override
 	public void eUnset(int featureID) {
-		switch (featureID) {
-			case SpringPackage.TOKENIZER_EXPRESSION__HEADER_NAME:
-				setHeaderName(HEADER_NAME_EDEFAULT);
-				return;
-			case SpringPackage.TOKENIZER_EXPRESSION__REGEX:
-				unsetRegex();
-				return;
-			case SpringPackage.TOKENIZER_EXPRESSION__TOKEN:
-				setToken(TOKEN_EDEFAULT);
-				return;
-		}
-		super.eUnset(featureID);
-	}
+        switch (featureID) {
+            case SpringPackage.TOKENIZER_EXPRESSION__HEADER_NAME:
+                setHeaderName(HEADER_NAME_EDEFAULT);
+                return;
+            case SpringPackage.TOKENIZER_EXPRESSION__REGEX:
+                unsetRegex();
+                return;
+            case SpringPackage.TOKENIZER_EXPRESSION__TOKEN:
+                setToken(TOKEN_EDEFAULT);
+                return;
+        }
+        super.eUnset(featureID);
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	@Override
 	public boolean eIsSet(int featureID) {
-		switch (featureID) {
-			case SpringPackage.TOKENIZER_EXPRESSION__HEADER_NAME:
-				return HEADER_NAME_EDEFAULT == null ? headerName != null : !HEADER_NAME_EDEFAULT.equals(headerName);
-			case SpringPackage.TOKENIZER_EXPRESSION__REGEX:
-				return isSetRegex();
-			case SpringPackage.TOKENIZER_EXPRESSION__TOKEN:
-				return TOKEN_EDEFAULT == null ? token != null : !TOKEN_EDEFAULT.equals(token);
-		}
-		return super.eIsSet(featureID);
-	}
+        switch (featureID) {
+            case SpringPackage.TOKENIZER_EXPRESSION__HEADER_NAME:
+                return HEADER_NAME_EDEFAULT == null ? headerName != null : !HEADER_NAME_EDEFAULT.equals(headerName);
+            case SpringPackage.TOKENIZER_EXPRESSION__REGEX:
+                return isSetRegex();
+            case SpringPackage.TOKENIZER_EXPRESSION__TOKEN:
+                return TOKEN_EDEFAULT == null ? token != null : !TOKEN_EDEFAULT.equals(token);
+        }
+        return super.eIsSet(featureID);
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	@Override
 	public String toString() {
-		if (eIsProxy()) return super.toString();
+        if (eIsProxy()) return super.toString();
 
-		StringBuffer result = new StringBuffer(super.toString());
-		result.append(" (headerName: ");
-		result.append(headerName);
-		result.append(", regex: ");
-		if (regexESet) result.append(regex); else result.append("<unset>");
-		result.append(", token: ");
-		result.append(token);
-		result.append(')');
-		return result.toString();
-	}
+        StringBuffer result = new StringBuffer(super.toString());
+        result.append(" (headerName: ");
+        result.append(headerName);
+        result.append(", regex: ");
+        if (regexESet) result.append(regex); else result.append("<unset>");
+        result.append(", token: ");
+        result.append(token);
+        result.append(')');
+        return result.toString();
+    }
 
 } //TokenizerExpressionImpl

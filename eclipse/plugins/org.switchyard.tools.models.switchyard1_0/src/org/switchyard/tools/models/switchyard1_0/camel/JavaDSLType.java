@@ -21,35 +21,35 @@ import org.eclipse.emf.ecore.EObject;
  * </p>
  *
  * @see org.switchyard.tools.models.switchyard1_0.camel.CamelPackage#getJavaDSLType()
- * @model extendedMetaData="name='JavaDSLType' kind='empty'"
+ * @model extendedMetaData="name='JavaDSLType' kind='elementOnly'"
  * @generated
  */
 public interface JavaDSLType extends EObject {
 	/**
-	 * Returns the value of the '<em><b>Class</b></em>' attribute.
-	 * <!-- begin-user-doc -->
+     * Returns the value of the '<em><b>Class</b></em>' attribute.
+     * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Class</em>' attribute isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Class</em>' attribute.
-	 * @see #setClass(String)
-	 * @see org.switchyard.tools.models.switchyard1_0.camel.CamelPackage#getJavaDSLType_Class()
-	 * @model dataType="org.eclipse.emf.ecore.xml.type.String"
-	 *        extendedMetaData="kind='attribute' name='class'"
-	 * @generated
-	 */
+     * @return the value of the '<em>Class</em>' attribute.
+     * @see #setClass(String)
+     * @see org.switchyard.tools.models.switchyard1_0.camel.CamelPackage#getJavaDSLType_Class()
+     * @model dataType="org.eclipse.emf.ecore.xml.type.String"
+     *        extendedMetaData="kind='attribute' name='class'"
+     * @generated
+     */
 	String getClass_();
 
 	/**
-	 * Sets the value of the '{@link org.switchyard.tools.models.switchyard1_0.camel.JavaDSLType#getClass_ <em>Class</em>}' attribute.
-	 * <!-- begin-user-doc -->
+     * Sets the value of the '{@link org.switchyard.tools.models.switchyard1_0.camel.JavaDSLType#getClass_ <em>Class</em>}' attribute.
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Class</em>' attribute.
-	 * @see #getClass_()
-	 * @generated
-	 */
+     * @param value the new value of the '<em>Class</em>' attribute.
+     * @see #getClass_()
+     * @generated
+     */
 	void setClass(String value);
 
 } // JavaDSLType

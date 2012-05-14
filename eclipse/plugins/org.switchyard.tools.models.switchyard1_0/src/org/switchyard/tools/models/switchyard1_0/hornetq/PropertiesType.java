@@ -28,20 +28,20 @@ import org.eclipse.emf.ecore.EObject;
  */
 public interface PropertiesType extends EObject {
 	/**
-	 * Returns the value of the '<em><b>Property</b></em>' containment reference list.
-	 * The list contents are of type {@link org.switchyard.tools.models.switchyard1_0.hornetq.PropertyType}.
-	 * <!-- begin-user-doc -->
+     * Returns the value of the '<em><b>Property</b></em>' containment reference list.
+     * The list contents are of type {@link org.switchyard.tools.models.switchyard1_0.hornetq.PropertyType}.
+     * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Property</em>' containment reference list isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Property</em>' containment reference list.
-	 * @see org.switchyard.tools.models.switchyard1_0.hornetq.HornetQPackage#getPropertiesType_Property()
-	 * @model containment="true"
-	 *        extendedMetaData="kind='element' name='property' namespace='##targetNamespace'"
-	 * @generated
-	 */
+     * @return the value of the '<em>Property</em>' containment reference list.
+     * @see org.switchyard.tools.models.switchyard1_0.hornetq.HornetQPackage#getPropertiesType_Property()
+     * @model containment="true"
+     *        extendedMetaData="kind='element' name='property' namespace='##targetNamespace'"
+     * @generated
+     */
 	EList<PropertyType> getProperty();
 
 } // PropertiesType

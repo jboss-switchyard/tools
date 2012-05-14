@@ -28,20 +28,20 @@ import org.eclipse.emf.ecore.EObject;
  */
 public interface AliasList extends EObject {
 	/**
-	 * Returns the value of the '<em><b>Alias</b></em>' containment reference list.
-	 * The list contents are of type {@link org.switchyard.tools.models.switchyard1_0.spring.AliasEntry}.
-	 * <!-- begin-user-doc -->
+     * Returns the value of the '<em><b>Alias</b></em>' containment reference list.
+     * The list contents are of type {@link org.switchyard.tools.models.switchyard1_0.spring.AliasEntry}.
+     * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Alias</em>' containment reference list isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Alias</em>' containment reference list.
-	 * @see org.switchyard.tools.models.switchyard1_0.spring.SpringPackage#getAliasList_Alias()
-	 * @model containment="true"
-	 *        extendedMetaData="kind='element' name='alias' namespace='##targetNamespace'"
-	 * @generated
-	 */
+     * @return the value of the '<em>Alias</em>' containment reference list.
+     * @see org.switchyard.tools.models.switchyard1_0.spring.SpringPackage#getAliasList_Alias()
+     * @model containment="true"
+     *        extendedMetaData="kind='element' name='alias' namespace='##targetNamespace'"
+     * @generated
+     */
 	EList<AliasEntry> getAlias();
 
 } // AliasList

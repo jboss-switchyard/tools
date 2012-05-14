@@ -22,22 +22,22 @@ import org.switchyard.tools.models.switchyard1_0.spring.SyslogDataFormat;
  */
 public class SyslogDataFormatImpl extends DataFormatImpl implements SyslogDataFormat {
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	protected SyslogDataFormatImpl() {
-		super();
-	}
+        super();
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	@Override
 	protected EClass eStaticClass() {
-		return SpringPackage.eINSTANCE.getSyslogDataFormat();
-	}
+        return SpringPackage.eINSTANCE.getSyslogDataFormat();
+    }
 
 } //SyslogDataFormatImpl

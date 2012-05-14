@@ -33,133 +33,133 @@ import org.switchyard.tools.models.switchyard1_0.spring.SpringPackage;
  */
 public abstract class NoOutputDefinitionImpl extends ProcessorDefinitionImpl implements NoOutputDefinition {
 	/**
-	 * The cached value of the '{@link #getAnyAttribute1() <em>Any Attribute1</em>}' attribute list.
-	 * <!-- begin-user-doc -->
+     * The cached value of the '{@link #getAnyAttribute1() <em>Any Attribute1</em>}' attribute list.
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #getAnyAttribute1()
-	 * @generated
-	 * @ordered
-	 */
+     * @see #getAnyAttribute1()
+     * @generated
+     * @ordered
+     */
 	protected FeatureMap anyAttribute1;
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	protected NoOutputDefinitionImpl() {
-		super();
-	}
+        super();
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	@Override
 	protected EClass eStaticClass() {
-		return SpringPackage.eINSTANCE.getNoOutputDefinition();
-	}
+        return SpringPackage.eINSTANCE.getNoOutputDefinition();
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public FeatureMap getAnyAttribute1() {
-		if (anyAttribute1 == null) {
-			anyAttribute1 = new BasicFeatureMap(this, SpringPackage.NO_OUTPUT_DEFINITION__ANY_ATTRIBUTE1);
-		}
-		return anyAttribute1;
-	}
+        if (anyAttribute1 == null) {
+            anyAttribute1 = new BasicFeatureMap(this, SpringPackage.NO_OUTPUT_DEFINITION__ANY_ATTRIBUTE1);
+        }
+        return anyAttribute1;
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	@Override
 	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
-		switch (featureID) {
-			case SpringPackage.NO_OUTPUT_DEFINITION__ANY_ATTRIBUTE1:
-				return ((InternalEList<?>)getAnyAttribute1()).basicRemove(otherEnd, msgs);
-		}
-		return super.eInverseRemove(otherEnd, featureID, msgs);
-	}
+        switch (featureID) {
+            case SpringPackage.NO_OUTPUT_DEFINITION__ANY_ATTRIBUTE1:
+                return ((InternalEList<?>)getAnyAttribute1()).basicRemove(otherEnd, msgs);
+        }
+        return super.eInverseRemove(otherEnd, featureID, msgs);
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
-		switch (featureID) {
-			case SpringPackage.NO_OUTPUT_DEFINITION__ANY_ATTRIBUTE1:
-				if (coreType) return getAnyAttribute1();
-				return ((FeatureMap.Internal)getAnyAttribute1()).getWrapper();
-		}
-		return super.eGet(featureID, resolve, coreType);
-	}
+        switch (featureID) {
+            case SpringPackage.NO_OUTPUT_DEFINITION__ANY_ATTRIBUTE1:
+                if (coreType) return getAnyAttribute1();
+                return ((FeatureMap.Internal)getAnyAttribute1()).getWrapper();
+        }
+        return super.eGet(featureID, resolve, coreType);
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	@Override
 	public void eSet(int featureID, Object newValue) {
-		switch (featureID) {
-			case SpringPackage.NO_OUTPUT_DEFINITION__ANY_ATTRIBUTE1:
-				((FeatureMap.Internal)getAnyAttribute1()).set(newValue);
-				return;
-		}
-		super.eSet(featureID, newValue);
-	}
+        switch (featureID) {
+            case SpringPackage.NO_OUTPUT_DEFINITION__ANY_ATTRIBUTE1:
+                ((FeatureMap.Internal)getAnyAttribute1()).set(newValue);
+                return;
+        }
+        super.eSet(featureID, newValue);
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	@Override
 	public void eUnset(int featureID) {
-		switch (featureID) {
-			case SpringPackage.NO_OUTPUT_DEFINITION__ANY_ATTRIBUTE1:
-				getAnyAttribute1().clear();
-				return;
-		}
-		super.eUnset(featureID);
-	}
+        switch (featureID) {
+            case SpringPackage.NO_OUTPUT_DEFINITION__ANY_ATTRIBUTE1:
+                getAnyAttribute1().clear();
+                return;
+        }
+        super.eUnset(featureID);
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	@Override
 	public boolean eIsSet(int featureID) {
-		switch (featureID) {
-			case SpringPackage.NO_OUTPUT_DEFINITION__ANY_ATTRIBUTE1:
-				return anyAttribute1 != null && !anyAttribute1.isEmpty();
-		}
-		return super.eIsSet(featureID);
-	}
+        switch (featureID) {
+            case SpringPackage.NO_OUTPUT_DEFINITION__ANY_ATTRIBUTE1:
+                return anyAttribute1 != null && !anyAttribute1.isEmpty();
+        }
+        return super.eIsSet(featureID);
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	@Override
 	public String toString() {
-		if (eIsProxy()) return super.toString();
+        if (eIsProxy()) return super.toString();
 
-		StringBuffer result = new StringBuffer(super.toString());
-		result.append(" (anyAttribute1: ");
-		result.append(anyAttribute1);
-		result.append(')');
-		return result.toString();
-	}
+        StringBuffer result = new StringBuffer(super.toString());
+        result.append(" (anyAttribute1: ");
+        result.append(anyAttribute1);
+        result.append(')');
+        return result.toString();
+    }
 
 } //NoOutputDefinitionImpl

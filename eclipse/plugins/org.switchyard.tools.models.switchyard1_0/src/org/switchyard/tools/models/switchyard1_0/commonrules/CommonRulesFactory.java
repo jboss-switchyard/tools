@@ -18,29 +18,29 @@ import org.eclipse.emf.ecore.EFactory;
  */
 public interface CommonRulesFactory extends EFactory {
 	/**
-	 * The singleton instance of the factory.
-	 * <!-- begin-user-doc -->
+     * The singleton instance of the factory.
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	CommonRulesFactory eINSTANCE = org.switchyard.tools.models.switchyard1_0.commonrules.impl.CommonRulesFactoryImpl.init();
 
 	/**
-	 * Returns a new object of class '<em>Document Root</em>'.
-	 * <!-- begin-user-doc -->
+     * Returns a new object of class '<em>Document Root</em>'.
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>Document Root</em>'.
-	 * @generated
-	 */
+     * @return a new object of class '<em>Document Root</em>'.
+     * @generated
+     */
 	DocumentRoot createDocumentRoot();
 
 	/**
-	 * Returns the package supported by this factory.
-	 * <!-- begin-user-doc -->
+     * Returns the package supported by this factory.
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the package supported by this factory.
-	 * @generated
-	 */
+     * @return the package supported by this factory.
+     * @generated
+     */
 	CommonRulesPackage getCommonRulesPackage();
 
 } //CommonRulesFactory

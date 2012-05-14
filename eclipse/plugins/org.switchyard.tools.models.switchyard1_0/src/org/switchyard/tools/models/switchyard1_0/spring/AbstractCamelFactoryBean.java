@@ -26,30 +26,30 @@ package org.switchyard.tools.models.switchyard1_0.spring;
  */
 public interface AbstractCamelFactoryBean extends IdentifiedType {
 	/**
-	 * Returns the value of the '<em><b>Camel Context Id</b></em>' attribute.
-	 * <!-- begin-user-doc -->
+     * Returns the value of the '<em><b>Camel Context Id</b></em>' attribute.
+     * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Camel Context Id</em>' attribute isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Camel Context Id</em>' attribute.
-	 * @see #setCamelContextId(String)
-	 * @see org.switchyard.tools.models.switchyard1_0.spring.SpringPackage#getAbstractCamelFactoryBean_CamelContextId()
-	 * @model dataType="org.eclipse.emf.ecore.xml.type.String"
-	 *        extendedMetaData="kind='attribute' name='camelContextId'"
-	 * @generated
-	 */
+     * @return the value of the '<em>Camel Context Id</em>' attribute.
+     * @see #setCamelContextId(String)
+     * @see org.switchyard.tools.models.switchyard1_0.spring.SpringPackage#getAbstractCamelFactoryBean_CamelContextId()
+     * @model dataType="org.eclipse.emf.ecore.xml.type.String"
+     *        extendedMetaData="kind='attribute' name='camelContextId'"
+     * @generated
+     */
 	String getCamelContextId();
 
 	/**
-	 * Sets the value of the '{@link org.switchyard.tools.models.switchyard1_0.spring.AbstractCamelFactoryBean#getCamelContextId <em>Camel Context Id</em>}' attribute.
-	 * <!-- begin-user-doc -->
+     * Sets the value of the '{@link org.switchyard.tools.models.switchyard1_0.spring.AbstractCamelFactoryBean#getCamelContextId <em>Camel Context Id</em>}' attribute.
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Camel Context Id</em>' attribute.
-	 * @see #getCamelContextId()
-	 * @generated
-	 */
+     * @param value the new value of the '<em>Camel Context Id</em>' attribute.
+     * @see #getCamelContextId()
+     * @generated
+     */
 	void setCamelContextId(String value);
 
 } // AbstractCamelFactoryBean

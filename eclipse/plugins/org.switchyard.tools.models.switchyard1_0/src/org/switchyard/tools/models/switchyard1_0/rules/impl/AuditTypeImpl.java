@@ -24,22 +24,22 @@ import org.switchyard.tools.models.switchyard1_0.rules.RulesPackage;
  */
 public class AuditTypeImpl extends EObjectImpl implements AuditType {
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	protected AuditTypeImpl() {
-		super();
-	}
+        super();
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	@Override
 	protected EClass eStaticClass() {
-		return RulesPackage.Literals.AUDIT_TYPE;
-	}
+        return RulesPackage.Literals.AUDIT_TYPE;
+    }
 
 } //AuditTypeImpl

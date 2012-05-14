@@ -38,173 +38,173 @@ import org.switchyard.tools.models.switchyard1_0.spring.SpringPackage;
  */
 public class OmitFieldEntryImpl extends EObjectImpl implements OmitFieldEntry {
 	/**
-	 * The cached value of the '{@link #getField() <em>Field</em>}' attribute list.
-	 * <!-- begin-user-doc -->
+     * The cached value of the '{@link #getField() <em>Field</em>}' attribute list.
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #getField()
-	 * @generated
-	 * @ordered
-	 */
+     * @see #getField()
+     * @generated
+     * @ordered
+     */
 	protected EList<String> field;
 
 	/**
-	 * The default value of the '{@link #getClass_() <em>Class</em>}' attribute.
-	 * <!-- begin-user-doc -->
+     * The default value of the '{@link #getClass_() <em>Class</em>}' attribute.
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #getClass_()
-	 * @generated
-	 * @ordered
-	 */
+     * @see #getClass_()
+     * @generated
+     * @ordered
+     */
 	protected static final String CLASS_EDEFAULT = null;
 
 	/**
-	 * The cached value of the '{@link #getClass_() <em>Class</em>}' attribute.
-	 * <!-- begin-user-doc -->
+     * The cached value of the '{@link #getClass_() <em>Class</em>}' attribute.
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #getClass_()
-	 * @generated
-	 * @ordered
-	 */
+     * @see #getClass_()
+     * @generated
+     * @ordered
+     */
 	protected String class_ = CLASS_EDEFAULT;
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	protected OmitFieldEntryImpl() {
-		super();
-	}
+        super();
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	@Override
 	protected EClass eStaticClass() {
-		return SpringPackage.eINSTANCE.getOmitFieldEntry();
-	}
+        return SpringPackage.eINSTANCE.getOmitFieldEntry();
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public EList<String> getField() {
-		if (field == null) {
-			field = new EDataTypeEList<String>(String.class, this, SpringPackage.OMIT_FIELD_ENTRY__FIELD);
-		}
-		return field;
-	}
+        if (field == null) {
+            field = new EDataTypeEList<String>(String.class, this, SpringPackage.OMIT_FIELD_ENTRY__FIELD);
+        }
+        return field;
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public String getClass_() {
-		return class_;
-	}
+        return class_;
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public void setClass(String newClass) {
-		String oldClass = class_;
-		class_ = newClass;
-		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, SpringPackage.OMIT_FIELD_ENTRY__CLASS, oldClass, class_));
-	}
+        String oldClass = class_;
+        class_ = newClass;
+        if (eNotificationRequired())
+            eNotify(new ENotificationImpl(this, Notification.SET, SpringPackage.OMIT_FIELD_ENTRY__CLASS, oldClass, class_));
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
-		switch (featureID) {
-			case SpringPackage.OMIT_FIELD_ENTRY__FIELD:
-				return getField();
-			case SpringPackage.OMIT_FIELD_ENTRY__CLASS:
-				return getClass_();
-		}
-		return super.eGet(featureID, resolve, coreType);
-	}
+        switch (featureID) {
+            case SpringPackage.OMIT_FIELD_ENTRY__FIELD:
+                return getField();
+            case SpringPackage.OMIT_FIELD_ENTRY__CLASS:
+                return getClass_();
+        }
+        return super.eGet(featureID, resolve, coreType);
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	@SuppressWarnings("unchecked")
 	@Override
 	public void eSet(int featureID, Object newValue) {
-		switch (featureID) {
-			case SpringPackage.OMIT_FIELD_ENTRY__FIELD:
-				getField().clear();
-				getField().addAll((Collection<? extends String>)newValue);
-				return;
-			case SpringPackage.OMIT_FIELD_ENTRY__CLASS:
-				setClass((String)newValue);
-				return;
-		}
-		super.eSet(featureID, newValue);
-	}
+        switch (featureID) {
+            case SpringPackage.OMIT_FIELD_ENTRY__FIELD:
+                getField().clear();
+                getField().addAll((Collection<? extends String>)newValue);
+                return;
+            case SpringPackage.OMIT_FIELD_ENTRY__CLASS:
+                setClass((String)newValue);
+                return;
+        }
+        super.eSet(featureID, newValue);
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	@Override
 	public void eUnset(int featureID) {
-		switch (featureID) {
-			case SpringPackage.OMIT_FIELD_ENTRY__FIELD:
-				getField().clear();
-				return;
-			case SpringPackage.OMIT_FIELD_ENTRY__CLASS:
-				setClass(CLASS_EDEFAULT);
-				return;
-		}
-		super.eUnset(featureID);
-	}
+        switch (featureID) {
+            case SpringPackage.OMIT_FIELD_ENTRY__FIELD:
+                getField().clear();
+                return;
+            case SpringPackage.OMIT_FIELD_ENTRY__CLASS:
+                setClass(CLASS_EDEFAULT);
+                return;
+        }
+        super.eUnset(featureID);
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	@Override
 	public boolean eIsSet(int featureID) {
-		switch (featureID) {
-			case SpringPackage.OMIT_FIELD_ENTRY__FIELD:
-				return field != null && !field.isEmpty();
-			case SpringPackage.OMIT_FIELD_ENTRY__CLASS:
-				return CLASS_EDEFAULT == null ? class_ != null : !CLASS_EDEFAULT.equals(class_);
-		}
-		return super.eIsSet(featureID);
-	}
+        switch (featureID) {
+            case SpringPackage.OMIT_FIELD_ENTRY__FIELD:
+                return field != null && !field.isEmpty();
+            case SpringPackage.OMIT_FIELD_ENTRY__CLASS:
+                return CLASS_EDEFAULT == null ? class_ != null : !CLASS_EDEFAULT.equals(class_);
+        }
+        return super.eIsSet(featureID);
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	@Override
 	public String toString() {
-		if (eIsProxy()) return super.toString();
+        if (eIsProxy()) return super.toString();
 
-		StringBuffer result = new StringBuffer(super.toString());
-		result.append(" (field: ");
-		result.append(field);
-		result.append(", class: ");
-		result.append(class_);
-		result.append(')');
-		return result.toString();
-	}
+        StringBuffer result = new StringBuffer(super.toString());
+        result.append(" (field: ");
+        result.append(field);
+        result.append(", class: ");
+        result.append(class_);
+        result.append(')');
+        return result.toString();
+    }
 
 } //OmitFieldEntryImpl

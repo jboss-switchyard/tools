@@ -24,6 +24,7 @@ import java.util.Map.Entry;
 import javax.wsdl.Definition;
 import javax.xml.namespace.QName;
 
+import org.apache.cxf.BusFactory;
 import org.apache.cxf.binding.soap.SoapBindingConfiguration;
 import org.apache.cxf.common.WSDLConstants;
 import org.apache.cxf.databinding.AbstractDataBinding;
@@ -148,6 +149,8 @@ public class Java2WSDLOperation implements IRunnableWithProgress {
             throw new InvocationTargetException(e);
         } finally {
             Thread.currentThread().setContextClassLoader(oldLoader);
+            BusFactory.setDefaultBus(null);
+            BusFactory.setThreadDefaultBus(null);
         }
     }
 
@@ -180,7 +183,7 @@ public class Java2WSDLOperation implements IRunnableWithProgress {
                 urls.add(new File(classpathEntry.getPath().toOSString()).toURI().toURL());
             }
         }
-        return new URLClassLoader(urls.toArray(new URL[urls.size()]));
+        return new URLClassLoader(urls.toArray(new URL[urls.size()]), getClass().getClassLoader());
     }
 
     private Map<String, String> createNamepsaceMap() {

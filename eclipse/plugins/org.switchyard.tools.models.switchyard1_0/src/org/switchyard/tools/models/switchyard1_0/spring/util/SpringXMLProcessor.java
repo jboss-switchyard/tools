@@ -25,30 +25,30 @@ import org.switchyard.tools.models.switchyard1_0.spring.SpringPackage;
 public class SpringXMLProcessor extends XMLProcessor {
 
 	/**
-	 * Public constructor to instantiate the helper.
-	 * <!-- begin-user-doc -->
+     * Public constructor to instantiate the helper.
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public SpringXMLProcessor() {
-		super((EPackage.Registry.INSTANCE));
-		SpringPackage.eINSTANCE.eClass();
-	}
+        super((EPackage.Registry.INSTANCE));
+        SpringPackage.eINSTANCE.eClass();
+    }
 	
 	/**
-	 * Register for "*" and "xml" file extensions the SpringResourceFactoryImpl factory.
-	 * <!-- begin-user-doc -->
+     * Register for "*" and "xml" file extensions the SpringResourceFactoryImpl factory.
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	@Override
 	protected Map<String, Resource.Factory> getRegistrations() {
-		if (registrations == null) {
-			super.getRegistrations();
-			registrations.put(XML_EXTENSION, new SpringResourceFactoryImpl());
-			registrations.put(STAR_EXTENSION, new SpringResourceFactoryImpl());
-		}
-		return registrations;
-	}
+        if (registrations == null) {
+            super.getRegistrations();
+            registrations.put(XML_EXTENSION, new SpringResourceFactoryImpl());
+            registrations.put(STAR_EXTENSION, new SpringResourceFactoryImpl());
+        }
+        return registrations;
+    }
 
 } //SpringXMLProcessor

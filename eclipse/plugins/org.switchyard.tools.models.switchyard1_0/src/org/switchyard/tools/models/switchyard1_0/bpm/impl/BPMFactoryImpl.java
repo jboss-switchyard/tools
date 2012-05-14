@@ -25,203 +25,203 @@ import org.switchyard.tools.models.switchyard1_0.bpm.*;
  */
 public class BPMFactoryImpl extends EFactoryImpl implements BPMFactory {
 	/**
-	 * Creates the default factory implementation.
-	 * <!-- begin-user-doc -->
+     * Creates the default factory implementation.
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public static BPMFactory init() {
-		try {
-			BPMFactory theBPMFactory = (BPMFactory)EPackage.Registry.INSTANCE.getEFactory("urn:switchyard-component-bpm:config:1.0"); 
-			if (theBPMFactory != null) {
-				return theBPMFactory;
-			}
-		}
-		catch (Exception exception) {
-			EcorePlugin.INSTANCE.log(exception);
-		}
-		return new BPMFactoryImpl();
-	}
+        try {
+            BPMFactory theBPMFactory = (BPMFactory)EPackage.Registry.INSTANCE.getEFactory("urn:switchyard-component-bpm:config:1.0"); 
+            if (theBPMFactory != null) {
+                return theBPMFactory;
+            }
+        }
+        catch (Exception exception) {
+            EcorePlugin.INSTANCE.log(exception);
+        }
+        return new BPMFactoryImpl();
+    }
 
 	/**
-	 * Creates an instance of the factory.
-	 * <!-- begin-user-doc -->
+     * Creates an instance of the factory.
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public BPMFactoryImpl() {
-		super();
-	}
+        super();
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	@Override
 	public EObject create(EClass eClass) {
-		switch (eClass.getClassifierID()) {
-			case BPMPackage.ACTION_TYPE1: return createActionType1();
-			case BPMPackage.AUDIT_TYPE: return createAuditType();
-			case BPMPackage.BPM_IMPLEMENTATION_TYPE: return createBPMImplementationType();
-			case BPMPackage.DOCUMENT_ROOT: return createDocumentRoot();
-			case BPMPackage.RESOURCE_TYPE: return createResourceType();
-			case BPMPackage.TASK_HANDLER_TYPE: return createTaskHandlerType();
-			default:
-				throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier");
-		}
-	}
+        switch (eClass.getClassifierID()) {
+            case BPMPackage.ACTION_TYPE1: return createActionType1();
+            case BPMPackage.AUDIT_TYPE: return createAuditType();
+            case BPMPackage.BPM_IMPLEMENTATION_TYPE: return createBPMImplementationType();
+            case BPMPackage.DOCUMENT_ROOT: return createDocumentRoot();
+            case BPMPackage.RESOURCE_TYPE: return createResourceType();
+            case BPMPackage.TASK_HANDLER_TYPE: return createTaskHandlerType();
+            default:
+                throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier");
+        }
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	@Override
 	public Object createFromString(EDataType eDataType, String initialValue) {
-		switch (eDataType.getClassifierID()) {
-			case BPMPackage.ACTION_TYPE:
-				return createActionTypeFromString(eDataType, initialValue);
-			case BPMPackage.ACTION_TYPE_OBJECT:
-				return createActionTypeObjectFromString(eDataType, initialValue);
-			default:
-				throw new IllegalArgumentException("The datatype '" + eDataType.getName() + "' is not a valid classifier");
-		}
-	}
+        switch (eDataType.getClassifierID()) {
+            case BPMPackage.ACTION_TYPE:
+                return createActionTypeFromString(eDataType, initialValue);
+            case BPMPackage.ACTION_TYPE_OBJECT:
+                return createActionTypeObjectFromString(eDataType, initialValue);
+            default:
+                throw new IllegalArgumentException("The datatype '" + eDataType.getName() + "' is not a valid classifier");
+        }
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	@Override
 	public String convertToString(EDataType eDataType, Object instanceValue) {
-		switch (eDataType.getClassifierID()) {
-			case BPMPackage.ACTION_TYPE:
-				return convertActionTypeToString(eDataType, instanceValue);
-			case BPMPackage.ACTION_TYPE_OBJECT:
-				return convertActionTypeObjectToString(eDataType, instanceValue);
-			default:
-				throw new IllegalArgumentException("The datatype '" + eDataType.getName() + "' is not a valid classifier");
-		}
-	}
+        switch (eDataType.getClassifierID()) {
+            case BPMPackage.ACTION_TYPE:
+                return convertActionTypeToString(eDataType, instanceValue);
+            case BPMPackage.ACTION_TYPE_OBJECT:
+                return convertActionTypeObjectToString(eDataType, instanceValue);
+            default:
+                throw new IllegalArgumentException("The datatype '" + eDataType.getName() + "' is not a valid classifier");
+        }
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public ActionType1 createActionType1() {
-		ActionType1Impl actionType1 = new ActionType1Impl();
-		return actionType1;
-	}
+        ActionType1Impl actionType1 = new ActionType1Impl();
+        return actionType1;
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public AuditType createAuditType() {
-		AuditTypeImpl auditType = new AuditTypeImpl();
-		return auditType;
-	}
+        AuditTypeImpl auditType = new AuditTypeImpl();
+        return auditType;
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public BPMImplementationType createBPMImplementationType() {
-		BPMImplementationTypeImpl bpmImplementationType = new BPMImplementationTypeImpl();
-		return bpmImplementationType;
-	}
+        BPMImplementationTypeImpl bpmImplementationType = new BPMImplementationTypeImpl();
+        return bpmImplementationType;
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public DocumentRoot createDocumentRoot() {
-		DocumentRootImpl documentRoot = new DocumentRootImpl();
-		return documentRoot;
-	}
+        DocumentRootImpl documentRoot = new DocumentRootImpl();
+        return documentRoot;
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public ResourceType createResourceType() {
-		ResourceTypeImpl resourceType = new ResourceTypeImpl();
-		return resourceType;
-	}
+        ResourceTypeImpl resourceType = new ResourceTypeImpl();
+        return resourceType;
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public TaskHandlerType createTaskHandlerType() {
-		TaskHandlerTypeImpl taskHandlerType = new TaskHandlerTypeImpl();
-		return taskHandlerType;
-	}
+        TaskHandlerTypeImpl taskHandlerType = new TaskHandlerTypeImpl();
+        return taskHandlerType;
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public ActionType createActionTypeFromString(EDataType eDataType, String initialValue) {
-		ActionType result = ActionType.get(initialValue);
-		if (result == null) throw new IllegalArgumentException("The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'");
-		return result;
-	}
+        ActionType result = ActionType.get(initialValue);
+        if (result == null) throw new IllegalArgumentException("The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'");
+        return result;
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public String convertActionTypeToString(EDataType eDataType, Object instanceValue) {
-		return instanceValue == null ? null : instanceValue.toString();
-	}
+        return instanceValue == null ? null : instanceValue.toString();
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public ActionType createActionTypeObjectFromString(EDataType eDataType, String initialValue) {
-		return createActionTypeFromString(BPMPackage.Literals.ACTION_TYPE, initialValue);
-	}
+        return createActionTypeFromString(BPMPackage.Literals.ACTION_TYPE, initialValue);
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public String convertActionTypeObjectToString(EDataType eDataType, Object instanceValue) {
-		return convertActionTypeToString(BPMPackage.Literals.ACTION_TYPE, instanceValue);
-	}
+        return convertActionTypeToString(BPMPackage.Literals.ACTION_TYPE, instanceValue);
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public BPMPackage getBPMPackage() {
-		return (BPMPackage)getEPackage();
-	}
+        return (BPMPackage)getEPackage();
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @deprecated
-	 * @generated
-	 */
+     * @deprecated
+     * @generated
+     */
 	@Deprecated
 	public static BPMPackage getPackage() {
-		return BPMPackage.eINSTANCE;
-	}
+        return BPMPackage.eINSTANCE;
+    }
 
 } //BPMFactoryImpl

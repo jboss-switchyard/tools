@@ -24,22 +24,22 @@ import org.switchyard.tools.models.switchyard1_0.rules.RulesPackage;
  */
 public class ActionType1Impl extends EObjectImpl implements ActionType1 {
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	protected ActionType1Impl() {
-		super();
-	}
+        super();
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	@Override
 	protected EClass eStaticClass() {
-		return RulesPackage.Literals.ACTION_TYPE1;
-	}
+        return RulesPackage.Literals.ACTION_TYPE1;
+    }
 
 } //ActionType1Impl

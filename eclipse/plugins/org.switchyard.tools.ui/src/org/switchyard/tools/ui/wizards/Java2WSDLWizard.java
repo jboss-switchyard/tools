@@ -150,6 +150,7 @@ public class Java2WSDLWizard extends BasicNewResourceWizard {
 
         try {
             getContainer().run(false, false, op);
+            selectAndReveal(getWSDLFile());
         } catch (InvocationTargetException e) {
             e.printStackTrace();
         } catch (InterruptedException e) {

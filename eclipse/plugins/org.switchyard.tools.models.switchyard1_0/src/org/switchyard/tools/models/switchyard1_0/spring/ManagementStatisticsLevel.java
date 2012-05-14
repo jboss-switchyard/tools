@@ -23,217 +23,217 @@ import org.eclipse.emf.common.util.Enumerator;
  */
 public enum ManagementStatisticsLevel implements Enumerator {
 	/**
-	 * The '<em><b>All</b></em>' literal object.
-	 * <!-- begin-user-doc -->
+     * The '<em><b>All</b></em>' literal object.
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #ALL_VALUE
-	 * @generated
-	 * @ordered
-	 */
+     * @see #ALL_VALUE
+     * @generated
+     * @ordered
+     */
 	ALL(0, "All", "All"),
 
 	/**
-	 * The '<em><b>Routes Only</b></em>' literal object.
-	 * <!-- begin-user-doc -->
+     * The '<em><b>Routes Only</b></em>' literal object.
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #ROUTES_ONLY_VALUE
-	 * @generated
-	 * @ordered
-	 */
+     * @see #ROUTES_ONLY_VALUE
+     * @generated
+     * @ordered
+     */
 	ROUTES_ONLY(1, "RoutesOnly", "RoutesOnly"),
 
 	/**
-	 * The '<em><b>Off</b></em>' literal object.
-	 * <!-- begin-user-doc -->
+     * The '<em><b>Off</b></em>' literal object.
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #OFF_VALUE
-	 * @generated
-	 * @ordered
-	 */
+     * @see #OFF_VALUE
+     * @generated
+     * @ordered
+     */
 	OFF(2, "Off", "Off");
 
 	/**
-	 * The '<em><b>All</b></em>' literal value.
-	 * <!-- begin-user-doc -->
+     * The '<em><b>All</b></em>' literal value.
+     * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of '<em><b>All</b></em>' literal object isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @see #ALL
-	 * @model name="All"
-	 * @generated
-	 * @ordered
-	 */
+     * @see #ALL
+     * @model name="All"
+     * @generated
+     * @ordered
+     */
 	public static final int ALL_VALUE = 0;
 
 	/**
-	 * The '<em><b>Routes Only</b></em>' literal value.
-	 * <!-- begin-user-doc -->
+     * The '<em><b>Routes Only</b></em>' literal value.
+     * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of '<em><b>Routes Only</b></em>' literal object isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @see #ROUTES_ONLY
-	 * @model name="RoutesOnly"
-	 * @generated
-	 * @ordered
-	 */
+     * @see #ROUTES_ONLY
+     * @model name="RoutesOnly"
+     * @generated
+     * @ordered
+     */
 	public static final int ROUTES_ONLY_VALUE = 1;
 
 	/**
-	 * The '<em><b>Off</b></em>' literal value.
-	 * <!-- begin-user-doc -->
+     * The '<em><b>Off</b></em>' literal value.
+     * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of '<em><b>Off</b></em>' literal object isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @see #OFF
-	 * @model name="Off"
-	 * @generated
-	 * @ordered
-	 */
+     * @see #OFF
+     * @model name="Off"
+     * @generated
+     * @ordered
+     */
 	public static final int OFF_VALUE = 2;
 
 	/**
-	 * An array of all the '<em><b>Management Statistics Level</b></em>' enumerators.
-	 * <!-- begin-user-doc -->
+     * An array of all the '<em><b>Management Statistics Level</b></em>' enumerators.
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	private static final ManagementStatisticsLevel[] VALUES_ARRAY =
 		new ManagementStatisticsLevel[] {
-			ALL,
-			ROUTES_ONLY,
-			OFF,
-		};
+            ALL,
+            ROUTES_ONLY,
+            OFF,
+        };
 
 	/**
-	 * A public read-only list of all the '<em><b>Management Statistics Level</b></em>' enumerators.
-	 * <!-- begin-user-doc -->
+     * A public read-only list of all the '<em><b>Management Statistics Level</b></em>' enumerators.
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public static final List<ManagementStatisticsLevel> VALUES = Collections.unmodifiableList(Arrays.asList(VALUES_ARRAY));
 
 	/**
-	 * Returns the '<em><b>Management Statistics Level</b></em>' literal with the specified literal value.
-	 * <!-- begin-user-doc -->
+     * Returns the '<em><b>Management Statistics Level</b></em>' literal with the specified literal value.
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public static ManagementStatisticsLevel get(String literal) {
-		for (int i = 0; i < VALUES_ARRAY.length; ++i) {
-			ManagementStatisticsLevel result = VALUES_ARRAY[i];
-			if (result.toString().equals(literal)) {
-				return result;
-			}
-		}
-		return null;
-	}
+        for (int i = 0; i < VALUES_ARRAY.length; ++i) {
+            ManagementStatisticsLevel result = VALUES_ARRAY[i];
+            if (result.toString().equals(literal)) {
+                return result;
+            }
+        }
+        return null;
+    }
 
 	/**
-	 * Returns the '<em><b>Management Statistics Level</b></em>' literal with the specified name.
-	 * <!-- begin-user-doc -->
+     * Returns the '<em><b>Management Statistics Level</b></em>' literal with the specified name.
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public static ManagementStatisticsLevel getByName(String name) {
-		for (int i = 0; i < VALUES_ARRAY.length; ++i) {
-			ManagementStatisticsLevel result = VALUES_ARRAY[i];
-			if (result.getName().equals(name)) {
-				return result;
-			}
-		}
-		return null;
-	}
+        for (int i = 0; i < VALUES_ARRAY.length; ++i) {
+            ManagementStatisticsLevel result = VALUES_ARRAY[i];
+            if (result.getName().equals(name)) {
+                return result;
+            }
+        }
+        return null;
+    }
 
 	/**
-	 * Returns the '<em><b>Management Statistics Level</b></em>' literal with the specified integer value.
-	 * <!-- begin-user-doc -->
+     * Returns the '<em><b>Management Statistics Level</b></em>' literal with the specified integer value.
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public static ManagementStatisticsLevel get(int value) {
-		switch (value) {
-			case ALL_VALUE: return ALL;
-			case ROUTES_ONLY_VALUE: return ROUTES_ONLY;
-			case OFF_VALUE: return OFF;
-		}
-		return null;
-	}
+        switch (value) {
+            case ALL_VALUE: return ALL;
+            case ROUTES_ONLY_VALUE: return ROUTES_ONLY;
+            case OFF_VALUE: return OFF;
+        }
+        return null;
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	private final int value;
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	private final String name;
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	private final String literal;
 
 	/**
-	 * Only this class can construct instances.
-	 * <!-- begin-user-doc -->
+     * Only this class can construct instances.
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	private ManagementStatisticsLevel(int value, String name, String literal) {
-		this.value = value;
-		this.name = name;
-		this.literal = literal;
-	}
+        this.value = value;
+        this.name = name;
+        this.literal = literal;
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public int getValue() {
-	  return value;
-	}
+      return value;
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public String getName() {
-	  return name;
-	}
+      return name;
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public String getLiteral() {
-	  return literal;
-	}
+      return literal;
+    }
 
 	/**
-	 * Returns the literal value of the enumerator, which is its string representation.
-	 * <!-- begin-user-doc -->
+     * Returns the literal value of the enumerator, which is its string representation.
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	@Override
 	public String toString() {
-		return literal;
-	}
+        return literal;
+    }
 	
 } //ManagementStatisticsLevel

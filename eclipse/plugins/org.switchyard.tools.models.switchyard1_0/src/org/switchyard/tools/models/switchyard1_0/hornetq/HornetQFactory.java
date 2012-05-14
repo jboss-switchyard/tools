@@ -18,92 +18,92 @@ import org.eclipse.emf.ecore.EFactory;
  */
 public interface HornetQFactory extends EFactory {
 	/**
-	 * The singleton instance of the factory.
-	 * <!-- begin-user-doc -->
+     * The singleton instance of the factory.
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	HornetQFactory eINSTANCE = org.switchyard.tools.models.switchyard1_0.hornetq.impl.HornetQFactoryImpl.init();
 
 	/**
-	 * Returns a new object of class '<em>Binding Type</em>'.
-	 * <!-- begin-user-doc -->
+     * Returns a new object of class '<em>Binding Type</em>'.
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>Binding Type</em>'.
-	 * @generated
-	 */
+     * @return a new object of class '<em>Binding Type</em>'.
+     * @generated
+     */
 	BindingType createBindingType();
 
 	/**
-	 * Returns a new object of class '<em>Config Type</em>'.
-	 * <!-- begin-user-doc -->
+     * Returns a new object of class '<em>Config Type</em>'.
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>Config Type</em>'.
-	 * @generated
-	 */
+     * @return a new object of class '<em>Config Type</em>'.
+     * @generated
+     */
 	ConfigType createConfigType();
 
 	/**
-	 * Returns a new object of class '<em>Connector Type</em>'.
-	 * <!-- begin-user-doc -->
+     * Returns a new object of class '<em>Connector Type</em>'.
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>Connector Type</em>'.
-	 * @generated
-	 */
+     * @return a new object of class '<em>Connector Type</em>'.
+     * @generated
+     */
 	ConnectorType createConnectorType();
 
 	/**
-	 * Returns a new object of class '<em>Discovery Group Type</em>'.
-	 * <!-- begin-user-doc -->
+     * Returns a new object of class '<em>Discovery Group Type</em>'.
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>Discovery Group Type</em>'.
-	 * @generated
-	 */
+     * @return a new object of class '<em>Discovery Group Type</em>'.
+     * @generated
+     */
 	DiscoveryGroupType createDiscoveryGroupType();
 
 	/**
-	 * Returns a new object of class '<em>Document Root</em>'.
-	 * <!-- begin-user-doc -->
+     * Returns a new object of class '<em>Document Root</em>'.
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>Document Root</em>'.
-	 * @generated
-	 */
+     * @return a new object of class '<em>Document Root</em>'.
+     * @generated
+     */
 	DocumentRoot createDocumentRoot();
 
 	/**
-	 * Returns a new object of class '<em>Operation Selector Type</em>'.
-	 * <!-- begin-user-doc -->
+     * Returns a new object of class '<em>Operation Selector Type</em>'.
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>Operation Selector Type</em>'.
-	 * @generated
-	 */
+     * @return a new object of class '<em>Operation Selector Type</em>'.
+     * @generated
+     */
 	OperationSelectorType createOperationSelectorType();
 
 	/**
-	 * Returns a new object of class '<em>Properties Type</em>'.
-	 * <!-- begin-user-doc -->
+     * Returns a new object of class '<em>Properties Type</em>'.
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>Properties Type</em>'.
-	 * @generated
-	 */
+     * @return a new object of class '<em>Properties Type</em>'.
+     * @generated
+     */
 	PropertiesType createPropertiesType();
 
 	/**
-	 * Returns a new object of class '<em>Property Type</em>'.
-	 * <!-- begin-user-doc -->
+     * Returns a new object of class '<em>Property Type</em>'.
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>Property Type</em>'.
-	 * @generated
-	 */
+     * @return a new object of class '<em>Property Type</em>'.
+     * @generated
+     */
 	PropertyType createPropertyType();
 
 	/**
-	 * Returns the package supported by this factory.
-	 * <!-- begin-user-doc -->
+     * Returns the package supported by this factory.
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the package supported by this factory.
-	 * @generated
-	 */
+     * @return the package supported by this factory.
+     * @generated
+     */
 	HornetQPackage getHornetQPackage();
 
 } //HornetQFactory

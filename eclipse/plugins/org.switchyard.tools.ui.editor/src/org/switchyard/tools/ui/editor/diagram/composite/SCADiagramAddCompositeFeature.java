@@ -14,6 +14,7 @@ package org.switchyard.tools.ui.editor.diagram.composite;
 
 import org.eclipse.graphiti.features.IFeatureProvider;
 import org.eclipse.graphiti.features.context.IAddContext;
+import org.eclipse.graphiti.features.context.impl.AddContext;
 import org.eclipse.graphiti.features.impl.AbstractAddShapeFeature;
 import org.eclipse.graphiti.mm.algorithms.Rectangle;
 import org.eclipse.graphiti.mm.algorithms.RoundedRectangle;
@@ -26,12 +27,15 @@ import org.eclipse.graphiti.mm.pictograms.PictogramElement;
 import org.eclipse.graphiti.services.Graphiti;
 import org.eclipse.graphiti.services.IGaService;
 import org.eclipse.graphiti.services.IPeCreateService;
+import org.eclipse.soa.sca.sca1_1.model.sca.Component;
 import org.eclipse.soa.sca.sca1_1.model.sca.Composite;
+import org.eclipse.soa.sca.sca1_1.model.sca.Reference;
+import org.eclipse.soa.sca.sca1_1.model.sca.Service;
 import org.switchyard.tools.ui.editor.diagram.StyleUtil;
 
 /**
  * @author bfitzpat
- *
+ * 
  */
 public class SCADiagramAddCompositeFeature extends AbstractAddShapeFeature {
 
@@ -107,10 +111,47 @@ public class SCADiagramAddCompositeFeature extends AbstractAddShapeFeature {
         text.setForeground(manageColor(StyleUtil.BLACK));
         text.setHorizontalAlignment(Orientation.ALIGNMENT_LEFT);
         text.setVerticalAlignment(Orientation.ALIGNMENT_CENTER);
-        Font font = gaService.manageFont(getDiagram(), text.getFont().getName(), text.getFont().getSize(), false,
-                true);
+        Font font = gaService.manageFont(getDiagram(), text.getFont().getName(), text.getFont().getSize(), false, true);
         text.setFont(font);
         gaService.setLocationAndSize(text, edge + 2, edge + 2, width, font.getSize() * 2);
+
+        AddContext childContext = new AddContext(context, null);
+        childContext.setX((width - StyleUtil.COMPONENT_WIDTH) / 2 + context.getX());
+        childContext.setY(edge * 3 + context.getY());
+        childContext.setTargetContainer(containerShape);
+        for (Component component : addedComposite.getComponent()) {
+            PictogramElement pe = addGraphicalRepresentation(childContext, component);
+            if (pe == null) {
+                childContext.setY(childContext.getY() + 2 * StyleUtil.COMPOSITE_CHILD_V_SPACING);
+            } else {
+                childContext.setY(childContext.getY() + pe.getGraphicsAlgorithm().getHeight()
+                        + StyleUtil.COMPOSITE_CHILD_V_SPACING);
+            }
+        }
+
+        childContext.setX(0);
+        childContext.setY(edge * 3 + context.getY());
+        for (Service service : addedComposite.getService()) {
+            PictogramElement pe = addGraphicalRepresentation(childContext, service);
+            if (pe == null) {
+                childContext.setY(childContext.getY() + 2 * StyleUtil.COMPOSITE_CHILD_V_SPACING);
+            } else {
+                childContext.setY(childContext.getY() + pe.getGraphicsAlgorithm().getHeight()
+                        + StyleUtil.COMPOSITE_CHILD_V_SPACING);
+            }
+        }
+
+        childContext.setX(width - StyleUtil.COMPOSITE_REFERENCE_WIDTH + context.getX() + 2 * edge);
+        childContext.setY(edge * 3 + context.getY());
+        for (Reference reference : addedComposite.getReference()) {
+            PictogramElement pe = addGraphicalRepresentation(childContext, reference);
+            if (pe == null) {
+                childContext.setY(childContext.getY() + 2 * StyleUtil.COMPOSITE_CHILD_V_SPACING);
+            } else {
+                childContext.setY(childContext.getY() + pe.getGraphicsAlgorithm().getHeight()
+                        + StyleUtil.COMPOSITE_CHILD_V_SPACING);
+            }
+        }
 
         // call the layout feature
         layoutPictogramElement(containerShape);

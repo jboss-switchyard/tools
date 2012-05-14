@@ -12,25 +12,28 @@
  ******************************************************************************/
 package org.switchyard.tools.ui.editor.diagram.componentservice;
 
-import org.eclipse.emf.common.util.EList;
 import org.eclipse.graphiti.features.IFeatureProvider;
 import org.eclipse.graphiti.features.context.IAddContext;
+import org.eclipse.graphiti.features.context.impl.AddConnectionContext;
 import org.eclipse.graphiti.features.impl.AbstractAddShapeFeature;
-import org.eclipse.graphiti.mm.algorithms.Polygon;
+import org.eclipse.graphiti.mm.algorithms.Image;
 import org.eclipse.graphiti.mm.pictograms.Anchor;
-import org.eclipse.graphiti.mm.pictograms.BoxRelativeAnchor;
+import org.eclipse.graphiti.mm.pictograms.ChopboxAnchor;
 import org.eclipse.graphiti.mm.pictograms.ContainerShape;
 import org.eclipse.graphiti.mm.pictograms.PictogramElement;
 import org.eclipse.graphiti.services.Graphiti;
 import org.eclipse.graphiti.services.IGaService;
 import org.eclipse.graphiti.services.IPeCreateService;
 import org.eclipse.soa.sca.sca1_1.model.sca.Component;
+import org.eclipse.soa.sca.sca1_1.model.sca.ComponentReference;
 import org.eclipse.soa.sca.sca1_1.model.sca.ComponentService;
+import org.eclipse.soa.sca.sca1_1.model.sca.Composite;
+import org.switchyard.tools.ui.editor.ImageProvider;
 import org.switchyard.tools.ui.editor.diagram.StyleUtil;
 
 /**
  * @author bfitzpat
- *
+ * 
  */
 public class SCADiagramAddComponentServiceFeature extends AbstractAddShapeFeature {
 
@@ -57,60 +60,67 @@ public class SCADiagramAddComponentServiceFeature extends AbstractAddShapeFeatur
     @Override
     public PictogramElement add(IAddContext context) {
         ContainerShape targetContainer = context.getTargetContainer();
-        Component addedComponent = (Component) getBusinessObjectForPictogramElement(targetContainer);
+        Component component = (Component) getBusinessObjectForPictogramElement(targetContainer);
 
-        String scaType = Graphiti.getPeService().getPropertyValue(targetContainer, "sca-type");
-        if (scaType != null && !scaType.equalsIgnoreCase("component")) {
+        ComponentService service = (ComponentService) context.getNewObject();
+        if (service == null) {
+            return null;
+        }
+
+        if (service.eContainer() != component) {
+            System.err.println("Target component does not contain new service!!!");
             return null;
         }
 
         IPeCreateService peCreateService = Graphiti.getPeCreateService();
         IGaService gaService = Graphiti.getGaService();
 
-        if (addedComponent.getService().size() > 0) {
+        int anchorY = (component.getService().indexOf(service) + 1) * StyleUtil.COMPONENT_CHILD_V_SPACING;
+        int anchorX = 0;
+        final ContainerShape container = peCreateService.createContainerShape(targetContainer, true);
+        // use the image to represent the service component
+        final Image image = gaService.createImage(container, ImageProvider.IMG_16_COMPONENT_SERVICE);
+        gaService.setLocationAndSize(image, anchorX, anchorY, 16, 16);
+        // the anchor (note, box relative supports drag/drop for connections)
+        final ChopboxAnchor anchor = peCreateService.createChopboxAnchor(container);
 
-            EList<ComponentService> services = addedComponent.getService();
-            for (ComponentService componentService : services) {
+        // link 'em up
+        link(container, service);
+        link(anchor, service);
 
-                if (!anchorComponentAlreadyExists(targetContainer, componentService)) {
-                    // create a box relative anchor at middle-left
-                    final BoxRelativeAnchor boxAnchorLeft = peCreateService.createBoxRelativeAnchor(targetContainer);
-                    boxAnchorLeft.setRelativeWidth(0.0);
-                    boxAnchorLeft.setRelativeHeight(0.38); // Use golden section
+        // call the layout feature
+        layoutPictogramElement(container);
 
-                    // assign a graphics algorithm for the box relative anchor
-                    Polygon pbox = gaService.createPolygon(boxAnchorLeft, StyleUtil.SMALL_RIGHT_ARROW);
-                    pbox.setBackground(manageColor(StyleUtil.GREEN));
-                    pbox.setForeground(manageColor(StyleUtil.BRIGHT_ORANGE));
-                    pbox.setLineVisible(false);
-                    pbox.setFilled(true);
+        if (service.getName() == null) {
+            return container;
+        }
 
-                    // anchor is located on the left border of the visible
-                    // rectangle
-                    // and touches the border of the invisible rectangle
-                    gaService.setLocationAndSize(pbox, -6, 0, StyleUtil.SMALL_RIGHT_ARROW_WIDTH,
-                            StyleUtil.SMALL_RIGHT_ARROW_HEIGHT);
-                    link(boxAnchorLeft, componentService);
+        Composite composite = (Composite) component.eContainer();
+        for (Component other : composite.getComponent()) {
+            if (other == component) {
+                // we don't allow self references???
+                continue;
+            }
+            PictogramElement otherContainer = getFeatureProvider().getPictogramElementForBusinessObject(other);
+            if (otherContainer == null) {
+                continue;
+            }
+            REFERENCE_LOOP: for (ComponentReference reference : other.getReference()) {
+                if (!service.getName().equals(reference.getName())) {
+                    continue;
+                }
+                for (PictogramElement pe : getFeatureProvider().getAllPictogramElementsForBusinessObject(reference)) {
+                    if (pe instanceof Anchor && ((Anchor) pe).getOutgoingConnections().size() == 0) {
+                        AddConnectionContext addContext = new AddConnectionContext((Anchor) pe, anchor);
+                        addContext.setNewObject(reference);
+                        getFeatureProvider().addIfPossible(addContext);
+                        break REFERENCE_LOOP;
+                    }
                 }
             }
         }
 
-        // call the layout feature
-        layoutPictogramElement(targetContainer);
-
-        return targetContainer;
-    }
-
-    private boolean anchorComponentAlreadyExists(ContainerShape targetContainer, ComponentService cservice) {
-
-        EList<Anchor> anchors = targetContainer.getAnchors();
-        for (Anchor anchor : anchors) {
-            Object testObject = getBusinessObjectForPictogramElement(anchor);
-            if (testObject.equals(cservice)) {
-                return true;
-            }
-        }
-        return false;
+        return container;
     }
 
 }

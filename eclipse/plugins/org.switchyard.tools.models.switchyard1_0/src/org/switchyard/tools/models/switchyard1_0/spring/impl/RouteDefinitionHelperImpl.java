@@ -24,22 +24,22 @@ import org.switchyard.tools.models.switchyard1_0.spring.SpringPackage;
  */
 public class RouteDefinitionHelperImpl extends EObjectImpl implements RouteDefinitionHelper {
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	protected RouteDefinitionHelperImpl() {
-		super();
-	}
+        super();
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	@Override
 	protected EClass eStaticClass() {
-		return SpringPackage.eINSTANCE.getRouteDefinitionHelper();
-	}
+        return SpringPackage.eINSTANCE.getRouteDefinitionHelper();
+    }
 
 } //RouteDefinitionHelperImpl

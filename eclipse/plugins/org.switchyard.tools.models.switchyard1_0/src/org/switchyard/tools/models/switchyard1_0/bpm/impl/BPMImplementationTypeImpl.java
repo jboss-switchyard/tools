@@ -41,6 +41,11 @@ import org.switchyard.tools.models.switchyard1_0.bpm.TaskHandlerType;
  *   <li>{@link org.switchyard.tools.models.switchyard1_0.bpm.impl.BPMImplementationTypeImpl#getAudit <em>Audit</em>}</li>
  *   <li>{@link org.switchyard.tools.models.switchyard1_0.bpm.impl.BPMImplementationTypeImpl#getTaskHandler <em>Task Handler</em>}</li>
  *   <li>{@link org.switchyard.tools.models.switchyard1_0.bpm.impl.BPMImplementationTypeImpl#getResource <em>Resource</em>}</li>
+ *   <li>{@link org.switchyard.tools.models.switchyard1_0.bpm.impl.BPMImplementationTypeImpl#getProcessDefinition <em>Process Definition</em>}</li>
+ *   <li>{@link org.switchyard.tools.models.switchyard1_0.bpm.impl.BPMImplementationTypeImpl#getProcessDefinitionType <em>Process Definition Type</em>}</li>
+ *   <li>{@link org.switchyard.tools.models.switchyard1_0.bpm.impl.BPMImplementationTypeImpl#getProcessId <em>Process Id</em>}</li>
+ *   <li>{@link org.switchyard.tools.models.switchyard1_0.bpm.impl.BPMImplementationTypeImpl#getMessageContentInName <em>Message Content In Name</em>}</li>
+ *   <li>{@link org.switchyard.tools.models.switchyard1_0.bpm.impl.BPMImplementationTypeImpl#getMessageContentOutName <em>Message Content Out Name</em>}</li>
  * </ul>
  * </p>
  *
@@ -48,253 +53,532 @@ import org.switchyard.tools.models.switchyard1_0.bpm.TaskHandlerType;
  */
 public class BPMImplementationTypeImpl extends ImplementationImpl implements BPMImplementationType {
 	/**
-	 * The cached value of the '{@link #getAction() <em>Action</em>}' containment reference list.
-	 * <!-- begin-user-doc -->
+     * The cached value of the '{@link #getAction() <em>Action</em>}' containment reference list.
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #getAction()
-	 * @generated
-	 * @ordered
-	 */
+     * @see #getAction()
+     * @generated
+     * @ordered
+     */
 	protected EList<ActionType1> action;
 
 	/**
-	 * The cached value of the '{@link #getAudit() <em>Audit</em>}' containment reference.
-	 * <!-- begin-user-doc -->
+     * The cached value of the '{@link #getAudit() <em>Audit</em>}' containment reference.
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #getAudit()
-	 * @generated
-	 * @ordered
-	 */
+     * @see #getAudit()
+     * @generated
+     * @ordered
+     */
 	protected AuditType audit;
 
 	/**
-	 * The cached value of the '{@link #getTaskHandler() <em>Task Handler</em>}' containment reference list.
-	 * <!-- begin-user-doc -->
+     * The cached value of the '{@link #getTaskHandler() <em>Task Handler</em>}' containment reference list.
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #getTaskHandler()
-	 * @generated
-	 * @ordered
-	 */
+     * @see #getTaskHandler()
+     * @generated
+     * @ordered
+     */
 	protected EList<TaskHandlerType> taskHandler;
 
 	/**
-	 * The cached value of the '{@link #getResource() <em>Resource</em>}' containment reference list.
-	 * <!-- begin-user-doc -->
+     * The cached value of the '{@link #getResource() <em>Resource</em>}' containment reference list.
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #getResource()
-	 * @generated
-	 * @ordered
-	 */
+     * @see #getResource()
+     * @generated
+     * @ordered
+     */
 	protected EList<ResourceType> resource;
 
 	/**
-	 * <!-- begin-user-doc -->
+     * The default value of the '{@link #getProcessDefinition() <em>Process Definition</em>}' attribute.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @see #getProcessDefinition()
+     * @generated
+     * @ordered
+     */
+    protected static final String PROCESS_DEFINITION_EDEFAULT = null;
+
+    /**
+     * The cached value of the '{@link #getProcessDefinition() <em>Process Definition</em>}' attribute.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @see #getProcessDefinition()
+     * @generated
+     * @ordered
+     */
+    protected String processDefinition = PROCESS_DEFINITION_EDEFAULT;
+
+    /**
+     * The default value of the '{@link #getProcessDefinitionType() <em>Process Definition Type</em>}' attribute.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @see #getProcessDefinitionType()
+     * @generated
+     * @ordered
+     */
+    protected static final String PROCESS_DEFINITION_TYPE_EDEFAULT = null;
+
+    /**
+     * The cached value of the '{@link #getProcessDefinitionType() <em>Process Definition Type</em>}' attribute.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @see #getProcessDefinitionType()
+     * @generated
+     * @ordered
+     */
+    protected String processDefinitionType = PROCESS_DEFINITION_TYPE_EDEFAULT;
+
+    /**
+     * The default value of the '{@link #getProcessId() <em>Process Id</em>}' attribute.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @see #getProcessId()
+     * @generated
+     * @ordered
+     */
+    protected static final String PROCESS_ID_EDEFAULT = null;
+
+    /**
+     * The cached value of the '{@link #getProcessId() <em>Process Id</em>}' attribute.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @see #getProcessId()
+     * @generated
+     * @ordered
+     */
+    protected String processId = PROCESS_ID_EDEFAULT;
+
+    /**
+     * The default value of the '{@link #getMessageContentInName() <em>Message Content In Name</em>}' attribute.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @see #getMessageContentInName()
+     * @generated
+     * @ordered
+     */
+    protected static final String MESSAGE_CONTENT_IN_NAME_EDEFAULT = null;
+
+    /**
+     * The cached value of the '{@link #getMessageContentInName() <em>Message Content In Name</em>}' attribute.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @see #getMessageContentInName()
+     * @generated
+     * @ordered
+     */
+    protected String messageContentInName = MESSAGE_CONTENT_IN_NAME_EDEFAULT;
+
+    /**
+     * The default value of the '{@link #getMessageContentOutName() <em>Message Content Out Name</em>}' attribute.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @see #getMessageContentOutName()
+     * @generated
+     * @ordered
+     */
+    protected static final String MESSAGE_CONTENT_OUT_NAME_EDEFAULT = null;
+
+    /**
+     * The cached value of the '{@link #getMessageContentOutName() <em>Message Content Out Name</em>}' attribute.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @see #getMessageContentOutName()
+     * @generated
+     * @ordered
+     */
+    protected String messageContentOutName = MESSAGE_CONTENT_OUT_NAME_EDEFAULT;
+
+    /**
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	protected BPMImplementationTypeImpl() {
-		super();
-	}
+        super();
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	@Override
 	protected EClass eStaticClass() {
-		return BPMPackage.Literals.BPM_IMPLEMENTATION_TYPE;
-	}
+        return BPMPackage.Literals.BPM_IMPLEMENTATION_TYPE;
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public EList<ActionType1> getAction() {
-		if (action == null) {
-			action = new EObjectContainmentEList<ActionType1>(ActionType1.class, this, BPMPackage.BPM_IMPLEMENTATION_TYPE__ACTION);
-		}
-		return action;
-	}
+        if (action == null) {
+            action = new EObjectContainmentEList<ActionType1>(ActionType1.class, this, BPMPackage.BPM_IMPLEMENTATION_TYPE__ACTION);
+        }
+        return action;
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public AuditType getAudit() {
-		return audit;
-	}
+        return audit;
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public NotificationChain basicSetAudit(AuditType newAudit, NotificationChain msgs) {
-		AuditType oldAudit = audit;
-		audit = newAudit;
-		if (eNotificationRequired()) {
-			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, BPMPackage.BPM_IMPLEMENTATION_TYPE__AUDIT, oldAudit, newAudit);
-			if (msgs == null) msgs = notification; else msgs.add(notification);
-		}
-		return msgs;
-	}
+        AuditType oldAudit = audit;
+        audit = newAudit;
+        if (eNotificationRequired()) {
+            ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, BPMPackage.BPM_IMPLEMENTATION_TYPE__AUDIT, oldAudit, newAudit);
+            if (msgs == null) msgs = notification; else msgs.add(notification);
+        }
+        return msgs;
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public void setAudit(AuditType newAudit) {
-		if (newAudit != audit) {
-			NotificationChain msgs = null;
-			if (audit != null)
-				msgs = ((InternalEObject)audit).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - BPMPackage.BPM_IMPLEMENTATION_TYPE__AUDIT, null, msgs);
-			if (newAudit != null)
-				msgs = ((InternalEObject)newAudit).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - BPMPackage.BPM_IMPLEMENTATION_TYPE__AUDIT, null, msgs);
-			msgs = basicSetAudit(newAudit, msgs);
-			if (msgs != null) msgs.dispatch();
-		}
-		else if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, BPMPackage.BPM_IMPLEMENTATION_TYPE__AUDIT, newAudit, newAudit));
-	}
+        if (newAudit != audit) {
+            NotificationChain msgs = null;
+            if (audit != null)
+                msgs = ((InternalEObject)audit).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - BPMPackage.BPM_IMPLEMENTATION_TYPE__AUDIT, null, msgs);
+            if (newAudit != null)
+                msgs = ((InternalEObject)newAudit).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - BPMPackage.BPM_IMPLEMENTATION_TYPE__AUDIT, null, msgs);
+            msgs = basicSetAudit(newAudit, msgs);
+            if (msgs != null) msgs.dispatch();
+        }
+        else if (eNotificationRequired())
+            eNotify(new ENotificationImpl(this, Notification.SET, BPMPackage.BPM_IMPLEMENTATION_TYPE__AUDIT, newAudit, newAudit));
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public EList<TaskHandlerType> getTaskHandler() {
-		if (taskHandler == null) {
-			taskHandler = new EObjectContainmentEList<TaskHandlerType>(TaskHandlerType.class, this, BPMPackage.BPM_IMPLEMENTATION_TYPE__TASK_HANDLER);
-		}
-		return taskHandler;
-	}
+        if (taskHandler == null) {
+            taskHandler = new EObjectContainmentEList<TaskHandlerType>(TaskHandlerType.class, this, BPMPackage.BPM_IMPLEMENTATION_TYPE__TASK_HANDLER);
+        }
+        return taskHandler;
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public EList<ResourceType> getResource() {
-		if (resource == null) {
-			resource = new EObjectContainmentEList<ResourceType>(ResourceType.class, this, BPMPackage.BPM_IMPLEMENTATION_TYPE__RESOURCE);
-		}
-		return resource;
-	}
+        if (resource == null) {
+            resource = new EObjectContainmentEList<ResourceType>(ResourceType.class, this, BPMPackage.BPM_IMPLEMENTATION_TYPE__RESOURCE);
+        }
+        return resource;
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public String getProcessDefinition() {
+        return processDefinition;
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public void setProcessDefinition(String newProcessDefinition) {
+        String oldProcessDefinition = processDefinition;
+        processDefinition = newProcessDefinition;
+        if (eNotificationRequired())
+            eNotify(new ENotificationImpl(this, Notification.SET, BPMPackage.BPM_IMPLEMENTATION_TYPE__PROCESS_DEFINITION, oldProcessDefinition, processDefinition));
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public String getProcessDefinitionType() {
+        return processDefinitionType;
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public void setProcessDefinitionType(String newProcessDefinitionType) {
+        String oldProcessDefinitionType = processDefinitionType;
+        processDefinitionType = newProcessDefinitionType;
+        if (eNotificationRequired())
+            eNotify(new ENotificationImpl(this, Notification.SET, BPMPackage.BPM_IMPLEMENTATION_TYPE__PROCESS_DEFINITION_TYPE, oldProcessDefinitionType, processDefinitionType));
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public String getProcessId() {
+        return processId;
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public void setProcessId(String newProcessId) {
+        String oldProcessId = processId;
+        processId = newProcessId;
+        if (eNotificationRequired())
+            eNotify(new ENotificationImpl(this, Notification.SET, BPMPackage.BPM_IMPLEMENTATION_TYPE__PROCESS_ID, oldProcessId, processId));
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public String getMessageContentInName() {
+        return messageContentInName;
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public void setMessageContentInName(String newMessageContentInName) {
+        String oldMessageContentInName = messageContentInName;
+        messageContentInName = newMessageContentInName;
+        if (eNotificationRequired())
+            eNotify(new ENotificationImpl(this, Notification.SET, BPMPackage.BPM_IMPLEMENTATION_TYPE__MESSAGE_CONTENT_IN_NAME, oldMessageContentInName, messageContentInName));
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public String getMessageContentOutName() {
+        return messageContentOutName;
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public void setMessageContentOutName(String newMessageContentOutName) {
+        String oldMessageContentOutName = messageContentOutName;
+        messageContentOutName = newMessageContentOutName;
+        if (eNotificationRequired())
+            eNotify(new ENotificationImpl(this, Notification.SET, BPMPackage.BPM_IMPLEMENTATION_TYPE__MESSAGE_CONTENT_OUT_NAME, oldMessageContentOutName, messageContentOutName));
+    }
+
+    /**
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	@Override
 	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
-		switch (featureID) {
-			case BPMPackage.BPM_IMPLEMENTATION_TYPE__ACTION:
-				return ((InternalEList<?>)getAction()).basicRemove(otherEnd, msgs);
-			case BPMPackage.BPM_IMPLEMENTATION_TYPE__AUDIT:
-				return basicSetAudit(null, msgs);
-			case BPMPackage.BPM_IMPLEMENTATION_TYPE__TASK_HANDLER:
-				return ((InternalEList<?>)getTaskHandler()).basicRemove(otherEnd, msgs);
-			case BPMPackage.BPM_IMPLEMENTATION_TYPE__RESOURCE:
-				return ((InternalEList<?>)getResource()).basicRemove(otherEnd, msgs);
-		}
-		return super.eInverseRemove(otherEnd, featureID, msgs);
-	}
+        switch (featureID) {
+            case BPMPackage.BPM_IMPLEMENTATION_TYPE__ACTION:
+                return ((InternalEList<?>)getAction()).basicRemove(otherEnd, msgs);
+            case BPMPackage.BPM_IMPLEMENTATION_TYPE__AUDIT:
+                return basicSetAudit(null, msgs);
+            case BPMPackage.BPM_IMPLEMENTATION_TYPE__TASK_HANDLER:
+                return ((InternalEList<?>)getTaskHandler()).basicRemove(otherEnd, msgs);
+            case BPMPackage.BPM_IMPLEMENTATION_TYPE__RESOURCE:
+                return ((InternalEList<?>)getResource()).basicRemove(otherEnd, msgs);
+        }
+        return super.eInverseRemove(otherEnd, featureID, msgs);
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
-		switch (featureID) {
-			case BPMPackage.BPM_IMPLEMENTATION_TYPE__ACTION:
-				return getAction();
-			case BPMPackage.BPM_IMPLEMENTATION_TYPE__AUDIT:
-				return getAudit();
-			case BPMPackage.BPM_IMPLEMENTATION_TYPE__TASK_HANDLER:
-				return getTaskHandler();
-			case BPMPackage.BPM_IMPLEMENTATION_TYPE__RESOURCE:
-				return getResource();
-		}
-		return super.eGet(featureID, resolve, coreType);
-	}
+        switch (featureID) {
+            case BPMPackage.BPM_IMPLEMENTATION_TYPE__ACTION:
+                return getAction();
+            case BPMPackage.BPM_IMPLEMENTATION_TYPE__AUDIT:
+                return getAudit();
+            case BPMPackage.BPM_IMPLEMENTATION_TYPE__TASK_HANDLER:
+                return getTaskHandler();
+            case BPMPackage.BPM_IMPLEMENTATION_TYPE__RESOURCE:
+                return getResource();
+            case BPMPackage.BPM_IMPLEMENTATION_TYPE__PROCESS_DEFINITION:
+                return getProcessDefinition();
+            case BPMPackage.BPM_IMPLEMENTATION_TYPE__PROCESS_DEFINITION_TYPE:
+                return getProcessDefinitionType();
+            case BPMPackage.BPM_IMPLEMENTATION_TYPE__PROCESS_ID:
+                return getProcessId();
+            case BPMPackage.BPM_IMPLEMENTATION_TYPE__MESSAGE_CONTENT_IN_NAME:
+                return getMessageContentInName();
+            case BPMPackage.BPM_IMPLEMENTATION_TYPE__MESSAGE_CONTENT_OUT_NAME:
+                return getMessageContentOutName();
+        }
+        return super.eGet(featureID, resolve, coreType);
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	@SuppressWarnings("unchecked")
 	@Override
 	public void eSet(int featureID, Object newValue) {
-		switch (featureID) {
-			case BPMPackage.BPM_IMPLEMENTATION_TYPE__ACTION:
-				getAction().clear();
-				getAction().addAll((Collection<? extends ActionType1>)newValue);
-				return;
-			case BPMPackage.BPM_IMPLEMENTATION_TYPE__AUDIT:
-				setAudit((AuditType)newValue);
-				return;
-			case BPMPackage.BPM_IMPLEMENTATION_TYPE__TASK_HANDLER:
-				getTaskHandler().clear();
-				getTaskHandler().addAll((Collection<? extends TaskHandlerType>)newValue);
-				return;
-			case BPMPackage.BPM_IMPLEMENTATION_TYPE__RESOURCE:
-				getResource().clear();
-				getResource().addAll((Collection<? extends ResourceType>)newValue);
-				return;
-		}
-		super.eSet(featureID, newValue);
-	}
+        switch (featureID) {
+            case BPMPackage.BPM_IMPLEMENTATION_TYPE__ACTION:
+                getAction().clear();
+                getAction().addAll((Collection<? extends ActionType1>)newValue);
+                return;
+            case BPMPackage.BPM_IMPLEMENTATION_TYPE__AUDIT:
+                setAudit((AuditType)newValue);
+                return;
+            case BPMPackage.BPM_IMPLEMENTATION_TYPE__TASK_HANDLER:
+                getTaskHandler().clear();
+                getTaskHandler().addAll((Collection<? extends TaskHandlerType>)newValue);
+                return;
+            case BPMPackage.BPM_IMPLEMENTATION_TYPE__RESOURCE:
+                getResource().clear();
+                getResource().addAll((Collection<? extends ResourceType>)newValue);
+                return;
+            case BPMPackage.BPM_IMPLEMENTATION_TYPE__PROCESS_DEFINITION:
+                setProcessDefinition((String)newValue);
+                return;
+            case BPMPackage.BPM_IMPLEMENTATION_TYPE__PROCESS_DEFINITION_TYPE:
+                setProcessDefinitionType((String)newValue);
+                return;
+            case BPMPackage.BPM_IMPLEMENTATION_TYPE__PROCESS_ID:
+                setProcessId((String)newValue);
+                return;
+            case BPMPackage.BPM_IMPLEMENTATION_TYPE__MESSAGE_CONTENT_IN_NAME:
+                setMessageContentInName((String)newValue);
+                return;
+            case BPMPackage.BPM_IMPLEMENTATION_TYPE__MESSAGE_CONTENT_OUT_NAME:
+                setMessageContentOutName((String)newValue);
+                return;
+        }
+        super.eSet(featureID, newValue);
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	@Override
 	public void eUnset(int featureID) {
-		switch (featureID) {
-			case BPMPackage.BPM_IMPLEMENTATION_TYPE__ACTION:
-				getAction().clear();
-				return;
-			case BPMPackage.BPM_IMPLEMENTATION_TYPE__AUDIT:
-				setAudit((AuditType)null);
-				return;
-			case BPMPackage.BPM_IMPLEMENTATION_TYPE__TASK_HANDLER:
-				getTaskHandler().clear();
-				return;
-			case BPMPackage.BPM_IMPLEMENTATION_TYPE__RESOURCE:
-				getResource().clear();
-				return;
-		}
-		super.eUnset(featureID);
-	}
+        switch (featureID) {
+            case BPMPackage.BPM_IMPLEMENTATION_TYPE__ACTION:
+                getAction().clear();
+                return;
+            case BPMPackage.BPM_IMPLEMENTATION_TYPE__AUDIT:
+                setAudit((AuditType)null);
+                return;
+            case BPMPackage.BPM_IMPLEMENTATION_TYPE__TASK_HANDLER:
+                getTaskHandler().clear();
+                return;
+            case BPMPackage.BPM_IMPLEMENTATION_TYPE__RESOURCE:
+                getResource().clear();
+                return;
+            case BPMPackage.BPM_IMPLEMENTATION_TYPE__PROCESS_DEFINITION:
+                setProcessDefinition(PROCESS_DEFINITION_EDEFAULT);
+                return;
+            case BPMPackage.BPM_IMPLEMENTATION_TYPE__PROCESS_DEFINITION_TYPE:
+                setProcessDefinitionType(PROCESS_DEFINITION_TYPE_EDEFAULT);
+                return;
+            case BPMPackage.BPM_IMPLEMENTATION_TYPE__PROCESS_ID:
+                setProcessId(PROCESS_ID_EDEFAULT);
+                return;
+            case BPMPackage.BPM_IMPLEMENTATION_TYPE__MESSAGE_CONTENT_IN_NAME:
+                setMessageContentInName(MESSAGE_CONTENT_IN_NAME_EDEFAULT);
+                return;
+            case BPMPackage.BPM_IMPLEMENTATION_TYPE__MESSAGE_CONTENT_OUT_NAME:
+                setMessageContentOutName(MESSAGE_CONTENT_OUT_NAME_EDEFAULT);
+                return;
+        }
+        super.eUnset(featureID);
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	@Override
 	public boolean eIsSet(int featureID) {
-		switch (featureID) {
-			case BPMPackage.BPM_IMPLEMENTATION_TYPE__ACTION:
-				return action != null && !action.isEmpty();
-			case BPMPackage.BPM_IMPLEMENTATION_TYPE__AUDIT:
-				return audit != null;
-			case BPMPackage.BPM_IMPLEMENTATION_TYPE__TASK_HANDLER:
-				return taskHandler != null && !taskHandler.isEmpty();
-			case BPMPackage.BPM_IMPLEMENTATION_TYPE__RESOURCE:
-				return resource != null && !resource.isEmpty();
-		}
-		return super.eIsSet(featureID);
-	}
+        switch (featureID) {
+            case BPMPackage.BPM_IMPLEMENTATION_TYPE__ACTION:
+                return action != null && !action.isEmpty();
+            case BPMPackage.BPM_IMPLEMENTATION_TYPE__AUDIT:
+                return audit != null;
+            case BPMPackage.BPM_IMPLEMENTATION_TYPE__TASK_HANDLER:
+                return taskHandler != null && !taskHandler.isEmpty();
+            case BPMPackage.BPM_IMPLEMENTATION_TYPE__RESOURCE:
+                return resource != null && !resource.isEmpty();
+            case BPMPackage.BPM_IMPLEMENTATION_TYPE__PROCESS_DEFINITION:
+                return PROCESS_DEFINITION_EDEFAULT == null ? processDefinition != null : !PROCESS_DEFINITION_EDEFAULT.equals(processDefinition);
+            case BPMPackage.BPM_IMPLEMENTATION_TYPE__PROCESS_DEFINITION_TYPE:
+                return PROCESS_DEFINITION_TYPE_EDEFAULT == null ? processDefinitionType != null : !PROCESS_DEFINITION_TYPE_EDEFAULT.equals(processDefinitionType);
+            case BPMPackage.BPM_IMPLEMENTATION_TYPE__PROCESS_ID:
+                return PROCESS_ID_EDEFAULT == null ? processId != null : !PROCESS_ID_EDEFAULT.equals(processId);
+            case BPMPackage.BPM_IMPLEMENTATION_TYPE__MESSAGE_CONTENT_IN_NAME:
+                return MESSAGE_CONTENT_IN_NAME_EDEFAULT == null ? messageContentInName != null : !MESSAGE_CONTENT_IN_NAME_EDEFAULT.equals(messageContentInName);
+            case BPMPackage.BPM_IMPLEMENTATION_TYPE__MESSAGE_CONTENT_OUT_NAME:
+                return MESSAGE_CONTENT_OUT_NAME_EDEFAULT == null ? messageContentOutName != null : !MESSAGE_CONTENT_OUT_NAME_EDEFAULT.equals(messageContentOutName);
+        }
+        return super.eIsSet(featureID);
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    @Override
+    public String toString() {
+        if (eIsProxy()) return super.toString();
+
+        StringBuffer result = new StringBuffer(super.toString());
+        result.append(" (processDefinition: ");
+        result.append(processDefinition);
+        result.append(", processDefinitionType: ");
+        result.append(processDefinitionType);
+        result.append(", processId: ");
+        result.append(processId);
+        result.append(", messageContentInName: ");
+        result.append(messageContentInName);
+        result.append(", messageContentOutName: ");
+        result.append(messageContentOutName);
+        result.append(')');
+        return result.toString();
+    }
 
 } //BPMImplementationTypeImpl

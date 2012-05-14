@@ -77,821 +77,821 @@ import org.switchyard.tools.models.switchyard1_0.switchyard.ValidatesType;
  */
 public class DocumentRootImpl extends EObjectImpl implements DocumentRoot {
 	/**
-	 * The cached value of the '{@link #getMixed() <em>Mixed</em>}' attribute list.
-	 * <!-- begin-user-doc -->
+     * The cached value of the '{@link #getMixed() <em>Mixed</em>}' attribute list.
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #getMixed()
-	 * @generated
-	 * @ordered
-	 */
+     * @see #getMixed()
+     * @generated
+     * @ordered
+     */
 	protected FeatureMap mixed;
 
 	/**
-	 * The cached value of the '{@link #getXMLNSPrefixMap() <em>XMLNS Prefix Map</em>}' map.
-	 * <!-- begin-user-doc -->
+     * The cached value of the '{@link #getXMLNSPrefixMap() <em>XMLNS Prefix Map</em>}' map.
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #getXMLNSPrefixMap()
-	 * @generated
-	 * @ordered
-	 */
+     * @see #getXMLNSPrefixMap()
+     * @generated
+     * @ordered
+     */
 	protected EMap<String, String> xMLNSPrefixMap;
 
 	/**
-	 * The cached value of the '{@link #getXSISchemaLocation() <em>XSI Schema Location</em>}' map.
-	 * <!-- begin-user-doc -->
+     * The cached value of the '{@link #getXSISchemaLocation() <em>XSI Schema Location</em>}' map.
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #getXSISchemaLocation()
-	 * @generated
-	 * @ordered
-	 */
+     * @see #getXSISchemaLocation()
+     * @generated
+     * @ordered
+     */
 	protected EMap<String, String> xSISchemaLocation;
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	protected DocumentRootImpl() {
-		super();
-	}
+        super();
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	@Override
 	protected EClass eStaticClass() {
-		return SwitchyardPackage.Literals.DOCUMENT_ROOT;
-	}
+        return SwitchyardPackage.Literals.DOCUMENT_ROOT;
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public FeatureMap getMixed() {
-		if (mixed == null) {
-			mixed = new BasicFeatureMap(this, SwitchyardPackage.DOCUMENT_ROOT__MIXED);
-		}
-		return mixed;
-	}
+        if (mixed == null) {
+            mixed = new BasicFeatureMap(this, SwitchyardPackage.DOCUMENT_ROOT__MIXED);
+        }
+        return mixed;
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public EMap<String, String> getXMLNSPrefixMap() {
-		if (xMLNSPrefixMap == null) {
-			xMLNSPrefixMap = new EcoreEMap<String,String>(EcorePackage.Literals.ESTRING_TO_STRING_MAP_ENTRY, EStringToStringMapEntryImpl.class, this, SwitchyardPackage.DOCUMENT_ROOT__XMLNS_PREFIX_MAP);
-		}
-		return xMLNSPrefixMap;
-	}
+        if (xMLNSPrefixMap == null) {
+            xMLNSPrefixMap = new EcoreEMap<String,String>(EcorePackage.Literals.ESTRING_TO_STRING_MAP_ENTRY, EStringToStringMapEntryImpl.class, this, SwitchyardPackage.DOCUMENT_ROOT__XMLNS_PREFIX_MAP);
+        }
+        return xMLNSPrefixMap;
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public EMap<String, String> getXSISchemaLocation() {
-		if (xSISchemaLocation == null) {
-			xSISchemaLocation = new EcoreEMap<String,String>(EcorePackage.Literals.ESTRING_TO_STRING_MAP_ENTRY, EStringToStringMapEntryImpl.class, this, SwitchyardPackage.DOCUMENT_ROOT__XSI_SCHEMA_LOCATION);
-		}
-		return xSISchemaLocation;
-	}
+        if (xSISchemaLocation == null) {
+            xSISchemaLocation = new EcoreEMap<String,String>(EcorePackage.Literals.ESTRING_TO_STRING_MAP_ENTRY, EStringToStringMapEntryImpl.class, this, SwitchyardPackage.DOCUMENT_ROOT__XSI_SCHEMA_LOCATION);
+        }
+        return xSISchemaLocation;
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public ArtifactType getArtifact() {
-		return (ArtifactType)getMixed().get(SwitchyardPackage.Literals.DOCUMENT_ROOT__ARTIFACT, true);
-	}
+        return (ArtifactType)getMixed().get(SwitchyardPackage.Literals.DOCUMENT_ROOT__ARTIFACT, true);
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public NotificationChain basicSetArtifact(ArtifactType newArtifact, NotificationChain msgs) {
-		return ((FeatureMap.Internal)getMixed()).basicAdd(SwitchyardPackage.Literals.DOCUMENT_ROOT__ARTIFACT, newArtifact, msgs);
-	}
+        return ((FeatureMap.Internal)getMixed()).basicAdd(SwitchyardPackage.Literals.DOCUMENT_ROOT__ARTIFACT, newArtifact, msgs);
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public void setArtifact(ArtifactType newArtifact) {
-		((FeatureMap.Internal)getMixed()).set(SwitchyardPackage.Literals.DOCUMENT_ROOT__ARTIFACT, newArtifact);
-	}
+        ((FeatureMap.Internal)getMixed()).set(SwitchyardPackage.Literals.DOCUMENT_ROOT__ARTIFACT, newArtifact);
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public ArtifactsType getArtifacts() {
-		return (ArtifactsType)getMixed().get(SwitchyardPackage.Literals.DOCUMENT_ROOT__ARTIFACTS, true);
-	}
+        return (ArtifactsType)getMixed().get(SwitchyardPackage.Literals.DOCUMENT_ROOT__ARTIFACTS, true);
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public NotificationChain basicSetArtifacts(ArtifactsType newArtifacts, NotificationChain msgs) {
-		return ((FeatureMap.Internal)getMixed()).basicAdd(SwitchyardPackage.Literals.DOCUMENT_ROOT__ARTIFACTS, newArtifacts, msgs);
-	}
+        return ((FeatureMap.Internal)getMixed()).basicAdd(SwitchyardPackage.Literals.DOCUMENT_ROOT__ARTIFACTS, newArtifacts, msgs);
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public void setArtifacts(ArtifactsType newArtifacts) {
-		((FeatureMap.Internal)getMixed()).set(SwitchyardPackage.Literals.DOCUMENT_ROOT__ARTIFACTS, newArtifacts);
-	}
+        ((FeatureMap.Internal)getMixed()).set(SwitchyardPackage.Literals.DOCUMENT_ROOT__ARTIFACTS, newArtifacts);
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public SwitchYardBindingType getBindingSwitchyard() {
-		return (SwitchYardBindingType)getMixed().get(SwitchyardPackage.Literals.DOCUMENT_ROOT__BINDING_SWITCHYARD, true);
-	}
+        return (SwitchYardBindingType)getMixed().get(SwitchyardPackage.Literals.DOCUMENT_ROOT__BINDING_SWITCHYARD, true);
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public NotificationChain basicSetBindingSwitchyard(SwitchYardBindingType newBindingSwitchyard, NotificationChain msgs) {
-		return ((FeatureMap.Internal)getMixed()).basicAdd(SwitchyardPackage.Literals.DOCUMENT_ROOT__BINDING_SWITCHYARD, newBindingSwitchyard, msgs);
-	}
+        return ((FeatureMap.Internal)getMixed()).basicAdd(SwitchyardPackage.Literals.DOCUMENT_ROOT__BINDING_SWITCHYARD, newBindingSwitchyard, msgs);
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public ContextMapperType getContextMapper() {
-		return (ContextMapperType)getMixed().get(SwitchyardPackage.Literals.DOCUMENT_ROOT__CONTEXT_MAPPER, true);
-	}
+        return (ContextMapperType)getMixed().get(SwitchyardPackage.Literals.DOCUMENT_ROOT__CONTEXT_MAPPER, true);
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public NotificationChain basicSetContextMapper(ContextMapperType newContextMapper, NotificationChain msgs) {
-		return ((FeatureMap.Internal)getMixed()).basicAdd(SwitchyardPackage.Literals.DOCUMENT_ROOT__CONTEXT_MAPPER, newContextMapper, msgs);
-	}
+        return ((FeatureMap.Internal)getMixed()).basicAdd(SwitchyardPackage.Literals.DOCUMENT_ROOT__CONTEXT_MAPPER, newContextMapper, msgs);
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public void setContextMapper(ContextMapperType newContextMapper) {
-		((FeatureMap.Internal)getMixed()).set(SwitchyardPackage.Literals.DOCUMENT_ROOT__CONTEXT_MAPPER, newContextMapper);
-	}
+        ((FeatureMap.Internal)getMixed()).set(SwitchyardPackage.Literals.DOCUMENT_ROOT__CONTEXT_MAPPER, newContextMapper);
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public DomainType getDomain() {
-		return (DomainType)getMixed().get(SwitchyardPackage.Literals.DOCUMENT_ROOT__DOMAIN, true);
-	}
+        return (DomainType)getMixed().get(SwitchyardPackage.Literals.DOCUMENT_ROOT__DOMAIN, true);
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public NotificationChain basicSetDomain(DomainType newDomain, NotificationChain msgs) {
-		return ((FeatureMap.Internal)getMixed()).basicAdd(SwitchyardPackage.Literals.DOCUMENT_ROOT__DOMAIN, newDomain, msgs);
-	}
+        return ((FeatureMap.Internal)getMixed()).basicAdd(SwitchyardPackage.Literals.DOCUMENT_ROOT__DOMAIN, newDomain, msgs);
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public void setDomain(DomainType newDomain) {
-		((FeatureMap.Internal)getMixed()).set(SwitchyardPackage.Literals.DOCUMENT_ROOT__DOMAIN, newDomain);
-	}
+        ((FeatureMap.Internal)getMixed()).set(SwitchyardPackage.Literals.DOCUMENT_ROOT__DOMAIN, newDomain);
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public HandlerType getHandler() {
-		return (HandlerType)getMixed().get(SwitchyardPackage.Literals.DOCUMENT_ROOT__HANDLER, true);
-	}
+        return (HandlerType)getMixed().get(SwitchyardPackage.Literals.DOCUMENT_ROOT__HANDLER, true);
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public NotificationChain basicSetHandler(HandlerType newHandler, NotificationChain msgs) {
-		return ((FeatureMap.Internal)getMixed()).basicAdd(SwitchyardPackage.Literals.DOCUMENT_ROOT__HANDLER, newHandler, msgs);
-	}
+        return ((FeatureMap.Internal)getMixed()).basicAdd(SwitchyardPackage.Literals.DOCUMENT_ROOT__HANDLER, newHandler, msgs);
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public void setHandler(HandlerType newHandler) {
-		((FeatureMap.Internal)getMixed()).set(SwitchyardPackage.Literals.DOCUMENT_ROOT__HANDLER, newHandler);
-	}
+        ((FeatureMap.Internal)getMixed()).set(SwitchyardPackage.Literals.DOCUMENT_ROOT__HANDLER, newHandler);
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public HandlersType getHandlers() {
-		return (HandlersType)getMixed().get(SwitchyardPackage.Literals.DOCUMENT_ROOT__HANDLERS, true);
-	}
+        return (HandlersType)getMixed().get(SwitchyardPackage.Literals.DOCUMENT_ROOT__HANDLERS, true);
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public NotificationChain basicSetHandlers(HandlersType newHandlers, NotificationChain msgs) {
-		return ((FeatureMap.Internal)getMixed()).basicAdd(SwitchyardPackage.Literals.DOCUMENT_ROOT__HANDLERS, newHandlers, msgs);
-	}
+        return ((FeatureMap.Internal)getMixed()).basicAdd(SwitchyardPackage.Literals.DOCUMENT_ROOT__HANDLERS, newHandlers, msgs);
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public void setHandlers(HandlersType newHandlers) {
-		((FeatureMap.Internal)getMixed()).set(SwitchyardPackage.Literals.DOCUMENT_ROOT__HANDLERS, newHandlers);
-	}
+        ((FeatureMap.Internal)getMixed()).set(SwitchyardPackage.Literals.DOCUMENT_ROOT__HANDLERS, newHandlers);
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public EsbInterface getInterfaceEsb() {
-		return (EsbInterface)getMixed().get(SwitchyardPackage.Literals.DOCUMENT_ROOT__INTERFACE_ESB, true);
-	}
+        return (EsbInterface)getMixed().get(SwitchyardPackage.Literals.DOCUMENT_ROOT__INTERFACE_ESB, true);
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public NotificationChain basicSetInterfaceEsb(EsbInterface newInterfaceEsb, NotificationChain msgs) {
-		return ((FeatureMap.Internal)getMixed()).basicAdd(SwitchyardPackage.Literals.DOCUMENT_ROOT__INTERFACE_ESB, newInterfaceEsb, msgs);
-	}
+        return ((FeatureMap.Internal)getMixed()).basicAdd(SwitchyardPackage.Literals.DOCUMENT_ROOT__INTERFACE_ESB, newInterfaceEsb, msgs);
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public void setInterfaceEsb(EsbInterface newInterfaceEsb) {
-		((FeatureMap.Internal)getMixed()).set(SwitchyardPackage.Literals.DOCUMENT_ROOT__INTERFACE_ESB, newInterfaceEsb);
-	}
+        ((FeatureMap.Internal)getMixed()).set(SwitchyardPackage.Literals.DOCUMENT_ROOT__INTERFACE_ESB, newInterfaceEsb);
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public MessageComposerType getMessageComposer() {
-		return (MessageComposerType)getMixed().get(SwitchyardPackage.Literals.DOCUMENT_ROOT__MESSAGE_COMPOSER, true);
-	}
+        return (MessageComposerType)getMixed().get(SwitchyardPackage.Literals.DOCUMENT_ROOT__MESSAGE_COMPOSER, true);
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public NotificationChain basicSetMessageComposer(MessageComposerType newMessageComposer, NotificationChain msgs) {
-		return ((FeatureMap.Internal)getMixed()).basicAdd(SwitchyardPackage.Literals.DOCUMENT_ROOT__MESSAGE_COMPOSER, newMessageComposer, msgs);
-	}
+        return ((FeatureMap.Internal)getMixed()).basicAdd(SwitchyardPackage.Literals.DOCUMENT_ROOT__MESSAGE_COMPOSER, newMessageComposer, msgs);
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public void setMessageComposer(MessageComposerType newMessageComposer) {
-		((FeatureMap.Internal)getMixed()).set(SwitchyardPackage.Literals.DOCUMENT_ROOT__MESSAGE_COMPOSER, newMessageComposer);
-	}
+        ((FeatureMap.Internal)getMixed()).set(SwitchyardPackage.Literals.DOCUMENT_ROOT__MESSAGE_COMPOSER, newMessageComposer);
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public PropertiesType getProperties() {
-		return (PropertiesType)getMixed().get(SwitchyardPackage.Literals.DOCUMENT_ROOT__PROPERTIES, true);
-	}
+        return (PropertiesType)getMixed().get(SwitchyardPackage.Literals.DOCUMENT_ROOT__PROPERTIES, true);
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public NotificationChain basicSetProperties(PropertiesType newProperties, NotificationChain msgs) {
-		return ((FeatureMap.Internal)getMixed()).basicAdd(SwitchyardPackage.Literals.DOCUMENT_ROOT__PROPERTIES, newProperties, msgs);
-	}
+        return ((FeatureMap.Internal)getMixed()).basicAdd(SwitchyardPackage.Literals.DOCUMENT_ROOT__PROPERTIES, newProperties, msgs);
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public void setProperties(PropertiesType newProperties) {
-		((FeatureMap.Internal)getMixed()).set(SwitchyardPackage.Literals.DOCUMENT_ROOT__PROPERTIES, newProperties);
-	}
+        ((FeatureMap.Internal)getMixed()).set(SwitchyardPackage.Literals.DOCUMENT_ROOT__PROPERTIES, newProperties);
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public PropertyType getProperty() {
-		return (PropertyType)getMixed().get(SwitchyardPackage.Literals.DOCUMENT_ROOT__PROPERTY, true);
-	}
+        return (PropertyType)getMixed().get(SwitchyardPackage.Literals.DOCUMENT_ROOT__PROPERTY, true);
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public NotificationChain basicSetProperty(PropertyType newProperty, NotificationChain msgs) {
-		return ((FeatureMap.Internal)getMixed()).basicAdd(SwitchyardPackage.Literals.DOCUMENT_ROOT__PROPERTY, newProperty, msgs);
-	}
+        return ((FeatureMap.Internal)getMixed()).basicAdd(SwitchyardPackage.Literals.DOCUMENT_ROOT__PROPERTY, newProperty, msgs);
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public void setProperty(PropertyType newProperty) {
-		((FeatureMap.Internal)getMixed()).set(SwitchyardPackage.Literals.DOCUMENT_ROOT__PROPERTY, newProperty);
-	}
+        ((FeatureMap.Internal)getMixed()).set(SwitchyardPackage.Literals.DOCUMENT_ROOT__PROPERTY, newProperty);
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public ResourceType getResource() {
-		return (ResourceType)getMixed().get(SwitchyardPackage.Literals.DOCUMENT_ROOT__RESOURCE, true);
-	}
+        return (ResourceType)getMixed().get(SwitchyardPackage.Literals.DOCUMENT_ROOT__RESOURCE, true);
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public NotificationChain basicSetResource(ResourceType newResource, NotificationChain msgs) {
-		return ((FeatureMap.Internal)getMixed()).basicAdd(SwitchyardPackage.Literals.DOCUMENT_ROOT__RESOURCE, newResource, msgs);
-	}
+        return ((FeatureMap.Internal)getMixed()).basicAdd(SwitchyardPackage.Literals.DOCUMENT_ROOT__RESOURCE, newResource, msgs);
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public void setResource(ResourceType newResource) {
-		((FeatureMap.Internal)getMixed()).set(SwitchyardPackage.Literals.DOCUMENT_ROOT__RESOURCE, newResource);
-	}
+        ((FeatureMap.Internal)getMixed()).set(SwitchyardPackage.Literals.DOCUMENT_ROOT__RESOURCE, newResource);
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public SwitchYardType getSwitchyard() {
-		return (SwitchYardType)getMixed().get(SwitchyardPackage.Literals.DOCUMENT_ROOT__SWITCHYARD, true);
-	}
+        return (SwitchYardType)getMixed().get(SwitchyardPackage.Literals.DOCUMENT_ROOT__SWITCHYARD, true);
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public NotificationChain basicSetSwitchyard(SwitchYardType newSwitchyard, NotificationChain msgs) {
-		return ((FeatureMap.Internal)getMixed()).basicAdd(SwitchyardPackage.Literals.DOCUMENT_ROOT__SWITCHYARD, newSwitchyard, msgs);
-	}
+        return ((FeatureMap.Internal)getMixed()).basicAdd(SwitchyardPackage.Literals.DOCUMENT_ROOT__SWITCHYARD, newSwitchyard, msgs);
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public void setSwitchyard(SwitchYardType newSwitchyard) {
-		((FeatureMap.Internal)getMixed()).set(SwitchyardPackage.Literals.DOCUMENT_ROOT__SWITCHYARD, newSwitchyard);
-	}
+        ((FeatureMap.Internal)getMixed()).set(SwitchyardPackage.Literals.DOCUMENT_ROOT__SWITCHYARD, newSwitchyard);
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public TransformType getTransform() {
-		return (TransformType)getMixed().get(SwitchyardPackage.Literals.DOCUMENT_ROOT__TRANSFORM, true);
-	}
+        return (TransformType)getMixed().get(SwitchyardPackage.Literals.DOCUMENT_ROOT__TRANSFORM, true);
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public NotificationChain basicSetTransform(TransformType newTransform, NotificationChain msgs) {
-		return ((FeatureMap.Internal)getMixed()).basicAdd(SwitchyardPackage.Literals.DOCUMENT_ROOT__TRANSFORM, newTransform, msgs);
-	}
+        return ((FeatureMap.Internal)getMixed()).basicAdd(SwitchyardPackage.Literals.DOCUMENT_ROOT__TRANSFORM, newTransform, msgs);
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public TransformsType getTransforms() {
-		return (TransformsType)getMixed().get(SwitchyardPackage.Literals.DOCUMENT_ROOT__TRANSFORMS, true);
-	}
+        return (TransformsType)getMixed().get(SwitchyardPackage.Literals.DOCUMENT_ROOT__TRANSFORMS, true);
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public NotificationChain basicSetTransforms(TransformsType newTransforms, NotificationChain msgs) {
-		return ((FeatureMap.Internal)getMixed()).basicAdd(SwitchyardPackage.Literals.DOCUMENT_ROOT__TRANSFORMS, newTransforms, msgs);
-	}
+        return ((FeatureMap.Internal)getMixed()).basicAdd(SwitchyardPackage.Literals.DOCUMENT_ROOT__TRANSFORMS, newTransforms, msgs);
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public void setTransforms(TransformsType newTransforms) {
-		((FeatureMap.Internal)getMixed()).set(SwitchyardPackage.Literals.DOCUMENT_ROOT__TRANSFORMS, newTransforms);
-	}
+        ((FeatureMap.Internal)getMixed()).set(SwitchyardPackage.Literals.DOCUMENT_ROOT__TRANSFORMS, newTransforms);
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public ValidateType getValidate() {
-		return (ValidateType)getMixed().get(SwitchyardPackage.Literals.DOCUMENT_ROOT__VALIDATE, true);
-	}
+        return (ValidateType)getMixed().get(SwitchyardPackage.Literals.DOCUMENT_ROOT__VALIDATE, true);
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public NotificationChain basicSetValidate(ValidateType newValidate, NotificationChain msgs) {
-		return ((FeatureMap.Internal)getMixed()).basicAdd(SwitchyardPackage.Literals.DOCUMENT_ROOT__VALIDATE, newValidate, msgs);
-	}
+        return ((FeatureMap.Internal)getMixed()).basicAdd(SwitchyardPackage.Literals.DOCUMENT_ROOT__VALIDATE, newValidate, msgs);
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public ValidatesType getValidates() {
-		return (ValidatesType)getMixed().get(SwitchyardPackage.Literals.DOCUMENT_ROOT__VALIDATES, true);
-	}
+        return (ValidatesType)getMixed().get(SwitchyardPackage.Literals.DOCUMENT_ROOT__VALIDATES, true);
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public NotificationChain basicSetValidates(ValidatesType newValidates, NotificationChain msgs) {
-		return ((FeatureMap.Internal)getMixed()).basicAdd(SwitchyardPackage.Literals.DOCUMENT_ROOT__VALIDATES, newValidates, msgs);
-	}
+        return ((FeatureMap.Internal)getMixed()).basicAdd(SwitchyardPackage.Literals.DOCUMENT_ROOT__VALIDATES, newValidates, msgs);
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public void setValidates(ValidatesType newValidates) {
-		((FeatureMap.Internal)getMixed()).set(SwitchyardPackage.Literals.DOCUMENT_ROOT__VALIDATES, newValidates);
-	}
+        ((FeatureMap.Internal)getMixed()).set(SwitchyardPackage.Literals.DOCUMENT_ROOT__VALIDATES, newValidates);
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	@Override
 	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
-		switch (featureID) {
-			case SwitchyardPackage.DOCUMENT_ROOT__MIXED:
-				return ((InternalEList<?>)getMixed()).basicRemove(otherEnd, msgs);
-			case SwitchyardPackage.DOCUMENT_ROOT__XMLNS_PREFIX_MAP:
-				return ((InternalEList<?>)getXMLNSPrefixMap()).basicRemove(otherEnd, msgs);
-			case SwitchyardPackage.DOCUMENT_ROOT__XSI_SCHEMA_LOCATION:
-				return ((InternalEList<?>)getXSISchemaLocation()).basicRemove(otherEnd, msgs);
-			case SwitchyardPackage.DOCUMENT_ROOT__ARTIFACT:
-				return basicSetArtifact(null, msgs);
-			case SwitchyardPackage.DOCUMENT_ROOT__ARTIFACTS:
-				return basicSetArtifacts(null, msgs);
-			case SwitchyardPackage.DOCUMENT_ROOT__BINDING_SWITCHYARD:
-				return basicSetBindingSwitchyard(null, msgs);
-			case SwitchyardPackage.DOCUMENT_ROOT__CONTEXT_MAPPER:
-				return basicSetContextMapper(null, msgs);
-			case SwitchyardPackage.DOCUMENT_ROOT__DOMAIN:
-				return basicSetDomain(null, msgs);
-			case SwitchyardPackage.DOCUMENT_ROOT__HANDLER:
-				return basicSetHandler(null, msgs);
-			case SwitchyardPackage.DOCUMENT_ROOT__HANDLERS:
-				return basicSetHandlers(null, msgs);
-			case SwitchyardPackage.DOCUMENT_ROOT__INTERFACE_ESB:
-				return basicSetInterfaceEsb(null, msgs);
-			case SwitchyardPackage.DOCUMENT_ROOT__MESSAGE_COMPOSER:
-				return basicSetMessageComposer(null, msgs);
-			case SwitchyardPackage.DOCUMENT_ROOT__PROPERTIES:
-				return basicSetProperties(null, msgs);
-			case SwitchyardPackage.DOCUMENT_ROOT__PROPERTY:
-				return basicSetProperty(null, msgs);
-			case SwitchyardPackage.DOCUMENT_ROOT__RESOURCE:
-				return basicSetResource(null, msgs);
-			case SwitchyardPackage.DOCUMENT_ROOT__SWITCHYARD:
-				return basicSetSwitchyard(null, msgs);
-			case SwitchyardPackage.DOCUMENT_ROOT__TRANSFORM:
-				return basicSetTransform(null, msgs);
-			case SwitchyardPackage.DOCUMENT_ROOT__TRANSFORMS:
-				return basicSetTransforms(null, msgs);
-			case SwitchyardPackage.DOCUMENT_ROOT__VALIDATE:
-				return basicSetValidate(null, msgs);
-			case SwitchyardPackage.DOCUMENT_ROOT__VALIDATES:
-				return basicSetValidates(null, msgs);
-		}
-		return super.eInverseRemove(otherEnd, featureID, msgs);
-	}
+        switch (featureID) {
+            case SwitchyardPackage.DOCUMENT_ROOT__MIXED:
+                return ((InternalEList<?>)getMixed()).basicRemove(otherEnd, msgs);
+            case SwitchyardPackage.DOCUMENT_ROOT__XMLNS_PREFIX_MAP:
+                return ((InternalEList<?>)getXMLNSPrefixMap()).basicRemove(otherEnd, msgs);
+            case SwitchyardPackage.DOCUMENT_ROOT__XSI_SCHEMA_LOCATION:
+                return ((InternalEList<?>)getXSISchemaLocation()).basicRemove(otherEnd, msgs);
+            case SwitchyardPackage.DOCUMENT_ROOT__ARTIFACT:
+                return basicSetArtifact(null, msgs);
+            case SwitchyardPackage.DOCUMENT_ROOT__ARTIFACTS:
+                return basicSetArtifacts(null, msgs);
+            case SwitchyardPackage.DOCUMENT_ROOT__BINDING_SWITCHYARD:
+                return basicSetBindingSwitchyard(null, msgs);
+            case SwitchyardPackage.DOCUMENT_ROOT__CONTEXT_MAPPER:
+                return basicSetContextMapper(null, msgs);
+            case SwitchyardPackage.DOCUMENT_ROOT__DOMAIN:
+                return basicSetDomain(null, msgs);
+            case SwitchyardPackage.DOCUMENT_ROOT__HANDLER:
+                return basicSetHandler(null, msgs);
+            case SwitchyardPackage.DOCUMENT_ROOT__HANDLERS:
+                return basicSetHandlers(null, msgs);
+            case SwitchyardPackage.DOCUMENT_ROOT__INTERFACE_ESB:
+                return basicSetInterfaceEsb(null, msgs);
+            case SwitchyardPackage.DOCUMENT_ROOT__MESSAGE_COMPOSER:
+                return basicSetMessageComposer(null, msgs);
+            case SwitchyardPackage.DOCUMENT_ROOT__PROPERTIES:
+                return basicSetProperties(null, msgs);
+            case SwitchyardPackage.DOCUMENT_ROOT__PROPERTY:
+                return basicSetProperty(null, msgs);
+            case SwitchyardPackage.DOCUMENT_ROOT__RESOURCE:
+                return basicSetResource(null, msgs);
+            case SwitchyardPackage.DOCUMENT_ROOT__SWITCHYARD:
+                return basicSetSwitchyard(null, msgs);
+            case SwitchyardPackage.DOCUMENT_ROOT__TRANSFORM:
+                return basicSetTransform(null, msgs);
+            case SwitchyardPackage.DOCUMENT_ROOT__TRANSFORMS:
+                return basicSetTransforms(null, msgs);
+            case SwitchyardPackage.DOCUMENT_ROOT__VALIDATE:
+                return basicSetValidate(null, msgs);
+            case SwitchyardPackage.DOCUMENT_ROOT__VALIDATES:
+                return basicSetValidates(null, msgs);
+        }
+        return super.eInverseRemove(otherEnd, featureID, msgs);
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
-		switch (featureID) {
-			case SwitchyardPackage.DOCUMENT_ROOT__MIXED:
-				if (coreType) return getMixed();
-				return ((FeatureMap.Internal)getMixed()).getWrapper();
-			case SwitchyardPackage.DOCUMENT_ROOT__XMLNS_PREFIX_MAP:
-				if (coreType) return getXMLNSPrefixMap();
-				else return getXMLNSPrefixMap().map();
-			case SwitchyardPackage.DOCUMENT_ROOT__XSI_SCHEMA_LOCATION:
-				if (coreType) return getXSISchemaLocation();
-				else return getXSISchemaLocation().map();
-			case SwitchyardPackage.DOCUMENT_ROOT__ARTIFACT:
-				return getArtifact();
-			case SwitchyardPackage.DOCUMENT_ROOT__ARTIFACTS:
-				return getArtifacts();
-			case SwitchyardPackage.DOCUMENT_ROOT__BINDING_SWITCHYARD:
-				return getBindingSwitchyard();
-			case SwitchyardPackage.DOCUMENT_ROOT__CONTEXT_MAPPER:
-				return getContextMapper();
-			case SwitchyardPackage.DOCUMENT_ROOT__DOMAIN:
-				return getDomain();
-			case SwitchyardPackage.DOCUMENT_ROOT__HANDLER:
-				return getHandler();
-			case SwitchyardPackage.DOCUMENT_ROOT__HANDLERS:
-				return getHandlers();
-			case SwitchyardPackage.DOCUMENT_ROOT__INTERFACE_ESB:
-				return getInterfaceEsb();
-			case SwitchyardPackage.DOCUMENT_ROOT__MESSAGE_COMPOSER:
-				return getMessageComposer();
-			case SwitchyardPackage.DOCUMENT_ROOT__PROPERTIES:
-				return getProperties();
-			case SwitchyardPackage.DOCUMENT_ROOT__PROPERTY:
-				return getProperty();
-			case SwitchyardPackage.DOCUMENT_ROOT__RESOURCE:
-				return getResource();
-			case SwitchyardPackage.DOCUMENT_ROOT__SWITCHYARD:
-				return getSwitchyard();
-			case SwitchyardPackage.DOCUMENT_ROOT__TRANSFORM:
-				return getTransform();
-			case SwitchyardPackage.DOCUMENT_ROOT__TRANSFORMS:
-				return getTransforms();
-			case SwitchyardPackage.DOCUMENT_ROOT__VALIDATE:
-				return getValidate();
-			case SwitchyardPackage.DOCUMENT_ROOT__VALIDATES:
-				return getValidates();
-		}
-		return super.eGet(featureID, resolve, coreType);
-	}
+        switch (featureID) {
+            case SwitchyardPackage.DOCUMENT_ROOT__MIXED:
+                if (coreType) return getMixed();
+                return ((FeatureMap.Internal)getMixed()).getWrapper();
+            case SwitchyardPackage.DOCUMENT_ROOT__XMLNS_PREFIX_MAP:
+                if (coreType) return getXMLNSPrefixMap();
+                else return getXMLNSPrefixMap().map();
+            case SwitchyardPackage.DOCUMENT_ROOT__XSI_SCHEMA_LOCATION:
+                if (coreType) return getXSISchemaLocation();
+                else return getXSISchemaLocation().map();
+            case SwitchyardPackage.DOCUMENT_ROOT__ARTIFACT:
+                return getArtifact();
+            case SwitchyardPackage.DOCUMENT_ROOT__ARTIFACTS:
+                return getArtifacts();
+            case SwitchyardPackage.DOCUMENT_ROOT__BINDING_SWITCHYARD:
+                return getBindingSwitchyard();
+            case SwitchyardPackage.DOCUMENT_ROOT__CONTEXT_MAPPER:
+                return getContextMapper();
+            case SwitchyardPackage.DOCUMENT_ROOT__DOMAIN:
+                return getDomain();
+            case SwitchyardPackage.DOCUMENT_ROOT__HANDLER:
+                return getHandler();
+            case SwitchyardPackage.DOCUMENT_ROOT__HANDLERS:
+                return getHandlers();
+            case SwitchyardPackage.DOCUMENT_ROOT__INTERFACE_ESB:
+                return getInterfaceEsb();
+            case SwitchyardPackage.DOCUMENT_ROOT__MESSAGE_COMPOSER:
+                return getMessageComposer();
+            case SwitchyardPackage.DOCUMENT_ROOT__PROPERTIES:
+                return getProperties();
+            case SwitchyardPackage.DOCUMENT_ROOT__PROPERTY:
+                return getProperty();
+            case SwitchyardPackage.DOCUMENT_ROOT__RESOURCE:
+                return getResource();
+            case SwitchyardPackage.DOCUMENT_ROOT__SWITCHYARD:
+                return getSwitchyard();
+            case SwitchyardPackage.DOCUMENT_ROOT__TRANSFORM:
+                return getTransform();
+            case SwitchyardPackage.DOCUMENT_ROOT__TRANSFORMS:
+                return getTransforms();
+            case SwitchyardPackage.DOCUMENT_ROOT__VALIDATE:
+                return getValidate();
+            case SwitchyardPackage.DOCUMENT_ROOT__VALIDATES:
+                return getValidates();
+        }
+        return super.eGet(featureID, resolve, coreType);
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	@Override
 	public void eSet(int featureID, Object newValue) {
-		switch (featureID) {
-			case SwitchyardPackage.DOCUMENT_ROOT__MIXED:
-				((FeatureMap.Internal)getMixed()).set(newValue);
-				return;
-			case SwitchyardPackage.DOCUMENT_ROOT__XMLNS_PREFIX_MAP:
-				((EStructuralFeature.Setting)getXMLNSPrefixMap()).set(newValue);
-				return;
-			case SwitchyardPackage.DOCUMENT_ROOT__XSI_SCHEMA_LOCATION:
-				((EStructuralFeature.Setting)getXSISchemaLocation()).set(newValue);
-				return;
-			case SwitchyardPackage.DOCUMENT_ROOT__ARTIFACT:
-				setArtifact((ArtifactType)newValue);
-				return;
-			case SwitchyardPackage.DOCUMENT_ROOT__ARTIFACTS:
-				setArtifacts((ArtifactsType)newValue);
-				return;
-			case SwitchyardPackage.DOCUMENT_ROOT__CONTEXT_MAPPER:
-				setContextMapper((ContextMapperType)newValue);
-				return;
-			case SwitchyardPackage.DOCUMENT_ROOT__DOMAIN:
-				setDomain((DomainType)newValue);
-				return;
-			case SwitchyardPackage.DOCUMENT_ROOT__HANDLER:
-				setHandler((HandlerType)newValue);
-				return;
-			case SwitchyardPackage.DOCUMENT_ROOT__HANDLERS:
-				setHandlers((HandlersType)newValue);
-				return;
-			case SwitchyardPackage.DOCUMENT_ROOT__INTERFACE_ESB:
-				setInterfaceEsb((EsbInterface)newValue);
-				return;
-			case SwitchyardPackage.DOCUMENT_ROOT__MESSAGE_COMPOSER:
-				setMessageComposer((MessageComposerType)newValue);
-				return;
-			case SwitchyardPackage.DOCUMENT_ROOT__PROPERTIES:
-				setProperties((PropertiesType)newValue);
-				return;
-			case SwitchyardPackage.DOCUMENT_ROOT__PROPERTY:
-				setProperty((PropertyType)newValue);
-				return;
-			case SwitchyardPackage.DOCUMENT_ROOT__RESOURCE:
-				setResource((ResourceType)newValue);
-				return;
-			case SwitchyardPackage.DOCUMENT_ROOT__SWITCHYARD:
-				setSwitchyard((SwitchYardType)newValue);
-				return;
-			case SwitchyardPackage.DOCUMENT_ROOT__TRANSFORMS:
-				setTransforms((TransformsType)newValue);
-				return;
-			case SwitchyardPackage.DOCUMENT_ROOT__VALIDATES:
-				setValidates((ValidatesType)newValue);
-				return;
-		}
-		super.eSet(featureID, newValue);
-	}
+        switch (featureID) {
+            case SwitchyardPackage.DOCUMENT_ROOT__MIXED:
+                ((FeatureMap.Internal)getMixed()).set(newValue);
+                return;
+            case SwitchyardPackage.DOCUMENT_ROOT__XMLNS_PREFIX_MAP:
+                ((EStructuralFeature.Setting)getXMLNSPrefixMap()).set(newValue);
+                return;
+            case SwitchyardPackage.DOCUMENT_ROOT__XSI_SCHEMA_LOCATION:
+                ((EStructuralFeature.Setting)getXSISchemaLocation()).set(newValue);
+                return;
+            case SwitchyardPackage.DOCUMENT_ROOT__ARTIFACT:
+                setArtifact((ArtifactType)newValue);
+                return;
+            case SwitchyardPackage.DOCUMENT_ROOT__ARTIFACTS:
+                setArtifacts((ArtifactsType)newValue);
+                return;
+            case SwitchyardPackage.DOCUMENT_ROOT__CONTEXT_MAPPER:
+                setContextMapper((ContextMapperType)newValue);
+                return;
+            case SwitchyardPackage.DOCUMENT_ROOT__DOMAIN:
+                setDomain((DomainType)newValue);
+                return;
+            case SwitchyardPackage.DOCUMENT_ROOT__HANDLER:
+                setHandler((HandlerType)newValue);
+                return;
+            case SwitchyardPackage.DOCUMENT_ROOT__HANDLERS:
+                setHandlers((HandlersType)newValue);
+                return;
+            case SwitchyardPackage.DOCUMENT_ROOT__INTERFACE_ESB:
+                setInterfaceEsb((EsbInterface)newValue);
+                return;
+            case SwitchyardPackage.DOCUMENT_ROOT__MESSAGE_COMPOSER:
+                setMessageComposer((MessageComposerType)newValue);
+                return;
+            case SwitchyardPackage.DOCUMENT_ROOT__PROPERTIES:
+                setProperties((PropertiesType)newValue);
+                return;
+            case SwitchyardPackage.DOCUMENT_ROOT__PROPERTY:
+                setProperty((PropertyType)newValue);
+                return;
+            case SwitchyardPackage.DOCUMENT_ROOT__RESOURCE:
+                setResource((ResourceType)newValue);
+                return;
+            case SwitchyardPackage.DOCUMENT_ROOT__SWITCHYARD:
+                setSwitchyard((SwitchYardType)newValue);
+                return;
+            case SwitchyardPackage.DOCUMENT_ROOT__TRANSFORMS:
+                setTransforms((TransformsType)newValue);
+                return;
+            case SwitchyardPackage.DOCUMENT_ROOT__VALIDATES:
+                setValidates((ValidatesType)newValue);
+                return;
+        }
+        super.eSet(featureID, newValue);
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	@Override
 	public void eUnset(int featureID) {
-		switch (featureID) {
-			case SwitchyardPackage.DOCUMENT_ROOT__MIXED:
-				getMixed().clear();
-				return;
-			case SwitchyardPackage.DOCUMENT_ROOT__XMLNS_PREFIX_MAP:
-				getXMLNSPrefixMap().clear();
-				return;
-			case SwitchyardPackage.DOCUMENT_ROOT__XSI_SCHEMA_LOCATION:
-				getXSISchemaLocation().clear();
-				return;
-			case SwitchyardPackage.DOCUMENT_ROOT__ARTIFACT:
-				setArtifact((ArtifactType)null);
-				return;
-			case SwitchyardPackage.DOCUMENT_ROOT__ARTIFACTS:
-				setArtifacts((ArtifactsType)null);
-				return;
-			case SwitchyardPackage.DOCUMENT_ROOT__CONTEXT_MAPPER:
-				setContextMapper((ContextMapperType)null);
-				return;
-			case SwitchyardPackage.DOCUMENT_ROOT__DOMAIN:
-				setDomain((DomainType)null);
-				return;
-			case SwitchyardPackage.DOCUMENT_ROOT__HANDLER:
-				setHandler((HandlerType)null);
-				return;
-			case SwitchyardPackage.DOCUMENT_ROOT__HANDLERS:
-				setHandlers((HandlersType)null);
-				return;
-			case SwitchyardPackage.DOCUMENT_ROOT__INTERFACE_ESB:
-				setInterfaceEsb((EsbInterface)null);
-				return;
-			case SwitchyardPackage.DOCUMENT_ROOT__MESSAGE_COMPOSER:
-				setMessageComposer((MessageComposerType)null);
-				return;
-			case SwitchyardPackage.DOCUMENT_ROOT__PROPERTIES:
-				setProperties((PropertiesType)null);
-				return;
-			case SwitchyardPackage.DOCUMENT_ROOT__PROPERTY:
-				setProperty((PropertyType)null);
-				return;
-			case SwitchyardPackage.DOCUMENT_ROOT__RESOURCE:
-				setResource((ResourceType)null);
-				return;
-			case SwitchyardPackage.DOCUMENT_ROOT__SWITCHYARD:
-				setSwitchyard((SwitchYardType)null);
-				return;
-			case SwitchyardPackage.DOCUMENT_ROOT__TRANSFORMS:
-				setTransforms((TransformsType)null);
-				return;
-			case SwitchyardPackage.DOCUMENT_ROOT__VALIDATES:
-				setValidates((ValidatesType)null);
-				return;
-		}
-		super.eUnset(featureID);
-	}
+        switch (featureID) {
+            case SwitchyardPackage.DOCUMENT_ROOT__MIXED:
+                getMixed().clear();
+                return;
+            case SwitchyardPackage.DOCUMENT_ROOT__XMLNS_PREFIX_MAP:
+                getXMLNSPrefixMap().clear();
+                return;
+            case SwitchyardPackage.DOCUMENT_ROOT__XSI_SCHEMA_LOCATION:
+                getXSISchemaLocation().clear();
+                return;
+            case SwitchyardPackage.DOCUMENT_ROOT__ARTIFACT:
+                setArtifact((ArtifactType)null);
+                return;
+            case SwitchyardPackage.DOCUMENT_ROOT__ARTIFACTS:
+                setArtifacts((ArtifactsType)null);
+                return;
+            case SwitchyardPackage.DOCUMENT_ROOT__CONTEXT_MAPPER:
+                setContextMapper((ContextMapperType)null);
+                return;
+            case SwitchyardPackage.DOCUMENT_ROOT__DOMAIN:
+                setDomain((DomainType)null);
+                return;
+            case SwitchyardPackage.DOCUMENT_ROOT__HANDLER:
+                setHandler((HandlerType)null);
+                return;
+            case SwitchyardPackage.DOCUMENT_ROOT__HANDLERS:
+                setHandlers((HandlersType)null);
+                return;
+            case SwitchyardPackage.DOCUMENT_ROOT__INTERFACE_ESB:
+                setInterfaceEsb((EsbInterface)null);
+                return;
+            case SwitchyardPackage.DOCUMENT_ROOT__MESSAGE_COMPOSER:
+                setMessageComposer((MessageComposerType)null);
+                return;
+            case SwitchyardPackage.DOCUMENT_ROOT__PROPERTIES:
+                setProperties((PropertiesType)null);
+                return;
+            case SwitchyardPackage.DOCUMENT_ROOT__PROPERTY:
+                setProperty((PropertyType)null);
+                return;
+            case SwitchyardPackage.DOCUMENT_ROOT__RESOURCE:
+                setResource((ResourceType)null);
+                return;
+            case SwitchyardPackage.DOCUMENT_ROOT__SWITCHYARD:
+                setSwitchyard((SwitchYardType)null);
+                return;
+            case SwitchyardPackage.DOCUMENT_ROOT__TRANSFORMS:
+                setTransforms((TransformsType)null);
+                return;
+            case SwitchyardPackage.DOCUMENT_ROOT__VALIDATES:
+                setValidates((ValidatesType)null);
+                return;
+        }
+        super.eUnset(featureID);
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	@Override
 	public boolean eIsSet(int featureID) {
-		switch (featureID) {
-			case SwitchyardPackage.DOCUMENT_ROOT__MIXED:
-				return mixed != null && !mixed.isEmpty();
-			case SwitchyardPackage.DOCUMENT_ROOT__XMLNS_PREFIX_MAP:
-				return xMLNSPrefixMap != null && !xMLNSPrefixMap.isEmpty();
-			case SwitchyardPackage.DOCUMENT_ROOT__XSI_SCHEMA_LOCATION:
-				return xSISchemaLocation != null && !xSISchemaLocation.isEmpty();
-			case SwitchyardPackage.DOCUMENT_ROOT__ARTIFACT:
-				return getArtifact() != null;
-			case SwitchyardPackage.DOCUMENT_ROOT__ARTIFACTS:
-				return getArtifacts() != null;
-			case SwitchyardPackage.DOCUMENT_ROOT__BINDING_SWITCHYARD:
-				return getBindingSwitchyard() != null;
-			case SwitchyardPackage.DOCUMENT_ROOT__CONTEXT_MAPPER:
-				return getContextMapper() != null;
-			case SwitchyardPackage.DOCUMENT_ROOT__DOMAIN:
-				return getDomain() != null;
-			case SwitchyardPackage.DOCUMENT_ROOT__HANDLER:
-				return getHandler() != null;
-			case SwitchyardPackage.DOCUMENT_ROOT__HANDLERS:
-				return getHandlers() != null;
-			case SwitchyardPackage.DOCUMENT_ROOT__INTERFACE_ESB:
-				return getInterfaceEsb() != null;
-			case SwitchyardPackage.DOCUMENT_ROOT__MESSAGE_COMPOSER:
-				return getMessageComposer() != null;
-			case SwitchyardPackage.DOCUMENT_ROOT__PROPERTIES:
-				return getProperties() != null;
-			case SwitchyardPackage.DOCUMENT_ROOT__PROPERTY:
-				return getProperty() != null;
-			case SwitchyardPackage.DOCUMENT_ROOT__RESOURCE:
-				return getResource() != null;
-			case SwitchyardPackage.DOCUMENT_ROOT__SWITCHYARD:
-				return getSwitchyard() != null;
-			case SwitchyardPackage.DOCUMENT_ROOT__TRANSFORM:
-				return getTransform() != null;
-			case SwitchyardPackage.DOCUMENT_ROOT__TRANSFORMS:
-				return getTransforms() != null;
-			case SwitchyardPackage.DOCUMENT_ROOT__VALIDATE:
-				return getValidate() != null;
-			case SwitchyardPackage.DOCUMENT_ROOT__VALIDATES:
-				return getValidates() != null;
-		}
-		return super.eIsSet(featureID);
-	}
+        switch (featureID) {
+            case SwitchyardPackage.DOCUMENT_ROOT__MIXED:
+                return mixed != null && !mixed.isEmpty();
+            case SwitchyardPackage.DOCUMENT_ROOT__XMLNS_PREFIX_MAP:
+                return xMLNSPrefixMap != null && !xMLNSPrefixMap.isEmpty();
+            case SwitchyardPackage.DOCUMENT_ROOT__XSI_SCHEMA_LOCATION:
+                return xSISchemaLocation != null && !xSISchemaLocation.isEmpty();
+            case SwitchyardPackage.DOCUMENT_ROOT__ARTIFACT:
+                return getArtifact() != null;
+            case SwitchyardPackage.DOCUMENT_ROOT__ARTIFACTS:
+                return getArtifacts() != null;
+            case SwitchyardPackage.DOCUMENT_ROOT__BINDING_SWITCHYARD:
+                return getBindingSwitchyard() != null;
+            case SwitchyardPackage.DOCUMENT_ROOT__CONTEXT_MAPPER:
+                return getContextMapper() != null;
+            case SwitchyardPackage.DOCUMENT_ROOT__DOMAIN:
+                return getDomain() != null;
+            case SwitchyardPackage.DOCUMENT_ROOT__HANDLER:
+                return getHandler() != null;
+            case SwitchyardPackage.DOCUMENT_ROOT__HANDLERS:
+                return getHandlers() != null;
+            case SwitchyardPackage.DOCUMENT_ROOT__INTERFACE_ESB:
+                return getInterfaceEsb() != null;
+            case SwitchyardPackage.DOCUMENT_ROOT__MESSAGE_COMPOSER:
+                return getMessageComposer() != null;
+            case SwitchyardPackage.DOCUMENT_ROOT__PROPERTIES:
+                return getProperties() != null;
+            case SwitchyardPackage.DOCUMENT_ROOT__PROPERTY:
+                return getProperty() != null;
+            case SwitchyardPackage.DOCUMENT_ROOT__RESOURCE:
+                return getResource() != null;
+            case SwitchyardPackage.DOCUMENT_ROOT__SWITCHYARD:
+                return getSwitchyard() != null;
+            case SwitchyardPackage.DOCUMENT_ROOT__TRANSFORM:
+                return getTransform() != null;
+            case SwitchyardPackage.DOCUMENT_ROOT__TRANSFORMS:
+                return getTransforms() != null;
+            case SwitchyardPackage.DOCUMENT_ROOT__VALIDATE:
+                return getValidate() != null;
+            case SwitchyardPackage.DOCUMENT_ROOT__VALIDATES:
+                return getValidates() != null;
+        }
+        return super.eIsSet(featureID);
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	@Override
 	public String toString() {
-		if (eIsProxy()) return super.toString();
+        if (eIsProxy()) return super.toString();
 
-		StringBuffer result = new StringBuffer(super.toString());
-		result.append(" (mixed: ");
-		result.append(mixed);
-		result.append(')');
-		return result.toString();
-	}
+        StringBuffer result = new StringBuffer(super.toString());
+        result.append(" (mixed: ");
+        result.append(mixed);
+        result.append(')');
+        return result.toString();
+    }
 
 } //DocumentRootImpl

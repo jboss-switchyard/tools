@@ -18,38 +18,38 @@ import org.eclipse.emf.ecore.EFactory;
  */
 public interface BeanFactory extends EFactory {
 	/**
-	 * The singleton instance of the factory.
-	 * <!-- begin-user-doc -->
+     * The singleton instance of the factory.
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	BeanFactory eINSTANCE = org.switchyard.tools.models.switchyard1_0.bean.impl.BeanFactoryImpl.init();
 
 	/**
-	 * Returns a new object of class '<em>Implementation Type</em>'.
-	 * <!-- begin-user-doc -->
+     * Returns a new object of class '<em>Implementation Type</em>'.
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>Implementation Type</em>'.
-	 * @generated
-	 */
+     * @return a new object of class '<em>Implementation Type</em>'.
+     * @generated
+     */
 	BeanImplementationType createBeanImplementationType();
 
 	/**
-	 * Returns a new object of class '<em>Document Root</em>'.
-	 * <!-- begin-user-doc -->
+     * Returns a new object of class '<em>Document Root</em>'.
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>Document Root</em>'.
-	 * @generated
-	 */
+     * @return a new object of class '<em>Document Root</em>'.
+     * @generated
+     */
 	DocumentRoot createDocumentRoot();
 
 	/**
-	 * Returns the package supported by this factory.
-	 * <!-- begin-user-doc -->
+     * Returns the package supported by this factory.
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the package supported by this factory.
-	 * @generated
-	 */
+     * @return the package supported by this factory.
+     * @generated
+     */
 	BeanPackage getBeanPackage();
 
 } //BeanFactory

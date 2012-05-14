@@ -39,148 +39,148 @@ import org.switchyard.tools.models.switchyard1_0.switchyard.ValidatesType;
  */
 public class ValidatesTypeImpl extends EObjectImpl implements ValidatesType {
 	/**
-	 * The cached value of the '{@link #getValidateGroup() <em>Validate Group</em>}' attribute list.
-	 * <!-- begin-user-doc -->
+     * The cached value of the '{@link #getValidateGroup() <em>Validate Group</em>}' attribute list.
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #getValidateGroup()
-	 * @generated
-	 * @ordered
-	 */
+     * @see #getValidateGroup()
+     * @generated
+     * @ordered
+     */
 	protected FeatureMap validateGroup;
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	protected ValidatesTypeImpl() {
-		super();
-	}
+        super();
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	@Override
 	protected EClass eStaticClass() {
-		return SwitchyardPackage.Literals.VALIDATES_TYPE;
-	}
+        return SwitchyardPackage.Literals.VALIDATES_TYPE;
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public FeatureMap getValidateGroup() {
-		if (validateGroup == null) {
-			validateGroup = new BasicFeatureMap(this, SwitchyardPackage.VALIDATES_TYPE__VALIDATE_GROUP);
-		}
-		return validateGroup;
-	}
+        if (validateGroup == null) {
+            validateGroup = new BasicFeatureMap(this, SwitchyardPackage.VALIDATES_TYPE__VALIDATE_GROUP);
+        }
+        return validateGroup;
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public EList<ValidateType> getValidate() {
-		return getValidateGroup().list(SwitchyardPackage.Literals.VALIDATES_TYPE__VALIDATE);
-	}
+        return getValidateGroup().list(SwitchyardPackage.Literals.VALIDATES_TYPE__VALIDATE);
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	@Override
 	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
-		switch (featureID) {
-			case SwitchyardPackage.VALIDATES_TYPE__VALIDATE_GROUP:
-				return ((InternalEList<?>)getValidateGroup()).basicRemove(otherEnd, msgs);
-			case SwitchyardPackage.VALIDATES_TYPE__VALIDATE:
-				return ((InternalEList<?>)getValidate()).basicRemove(otherEnd, msgs);
-		}
-		return super.eInverseRemove(otherEnd, featureID, msgs);
-	}
+        switch (featureID) {
+            case SwitchyardPackage.VALIDATES_TYPE__VALIDATE_GROUP:
+                return ((InternalEList<?>)getValidateGroup()).basicRemove(otherEnd, msgs);
+            case SwitchyardPackage.VALIDATES_TYPE__VALIDATE:
+                return ((InternalEList<?>)getValidate()).basicRemove(otherEnd, msgs);
+        }
+        return super.eInverseRemove(otherEnd, featureID, msgs);
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
-		switch (featureID) {
-			case SwitchyardPackage.VALIDATES_TYPE__VALIDATE_GROUP:
-				if (coreType) return getValidateGroup();
-				return ((FeatureMap.Internal)getValidateGroup()).getWrapper();
-			case SwitchyardPackage.VALIDATES_TYPE__VALIDATE:
-				return getValidate();
-		}
-		return super.eGet(featureID, resolve, coreType);
-	}
+        switch (featureID) {
+            case SwitchyardPackage.VALIDATES_TYPE__VALIDATE_GROUP:
+                if (coreType) return getValidateGroup();
+                return ((FeatureMap.Internal)getValidateGroup()).getWrapper();
+            case SwitchyardPackage.VALIDATES_TYPE__VALIDATE:
+                return getValidate();
+        }
+        return super.eGet(featureID, resolve, coreType);
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	@Override
 	public void eSet(int featureID, Object newValue) {
-		switch (featureID) {
-			case SwitchyardPackage.VALIDATES_TYPE__VALIDATE_GROUP:
-				((FeatureMap.Internal)getValidateGroup()).set(newValue);
-				return;
-		}
-		super.eSet(featureID, newValue);
-	}
+        switch (featureID) {
+            case SwitchyardPackage.VALIDATES_TYPE__VALIDATE_GROUP:
+                ((FeatureMap.Internal)getValidateGroup()).set(newValue);
+                return;
+        }
+        super.eSet(featureID, newValue);
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	@Override
 	public void eUnset(int featureID) {
-		switch (featureID) {
-			case SwitchyardPackage.VALIDATES_TYPE__VALIDATE_GROUP:
-				getValidateGroup().clear();
-				return;
-		}
-		super.eUnset(featureID);
-	}
+        switch (featureID) {
+            case SwitchyardPackage.VALIDATES_TYPE__VALIDATE_GROUP:
+                getValidateGroup().clear();
+                return;
+        }
+        super.eUnset(featureID);
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	@Override
 	public boolean eIsSet(int featureID) {
-		switch (featureID) {
-			case SwitchyardPackage.VALIDATES_TYPE__VALIDATE_GROUP:
-				return validateGroup != null && !validateGroup.isEmpty();
-			case SwitchyardPackage.VALIDATES_TYPE__VALIDATE:
-				return !getValidate().isEmpty();
-		}
-		return super.eIsSet(featureID);
-	}
+        switch (featureID) {
+            case SwitchyardPackage.VALIDATES_TYPE__VALIDATE_GROUP:
+                return validateGroup != null && !validateGroup.isEmpty();
+            case SwitchyardPackage.VALIDATES_TYPE__VALIDATE:
+                return !getValidate().isEmpty();
+        }
+        return super.eIsSet(featureID);
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	@Override
 	public String toString() {
-		if (eIsProxy()) return super.toString();
+        if (eIsProxy()) return super.toString();
 
-		StringBuffer result = new StringBuffer(super.toString());
-		result.append(" (validateGroup: ");
-		result.append(validateGroup);
-		result.append(')');
-		return result.toString();
-	}
+        StringBuffer result = new StringBuffer(super.toString());
+        result.append(" (validateGroup: ");
+        result.append(validateGroup);
+        result.append(')');
+        return result.toString();
+    }
 
 } //ValidatesTypeImpl

@@ -48,253 +48,253 @@ import org.switchyard.tools.models.switchyard1_0.rules.RulesPackage;
  */
 public class RulesImplementationTypeImpl extends ImplementationImpl implements RulesImplementationType {
 	/**
-	 * The cached value of the '{@link #getAction() <em>Action</em>}' containment reference list.
-	 * <!-- begin-user-doc -->
+     * The cached value of the '{@link #getAction() <em>Action</em>}' containment reference list.
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #getAction()
-	 * @generated
-	 * @ordered
-	 */
+     * @see #getAction()
+     * @generated
+     * @ordered
+     */
 	protected EList<ActionType1> action;
 
 	/**
-	 * The cached value of the '{@link #getAudit() <em>Audit</em>}' containment reference.
-	 * <!-- begin-user-doc -->
+     * The cached value of the '{@link #getAudit() <em>Audit</em>}' containment reference.
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #getAudit()
-	 * @generated
-	 * @ordered
-	 */
+     * @see #getAudit()
+     * @generated
+     * @ordered
+     */
 	protected AuditType audit;
 
 	/**
-	 * The cached value of the '{@link #getChannel() <em>Channel</em>}' containment reference list.
-	 * <!-- begin-user-doc -->
+     * The cached value of the '{@link #getChannel() <em>Channel</em>}' containment reference list.
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #getChannel()
-	 * @generated
-	 * @ordered
-	 */
+     * @see #getChannel()
+     * @generated
+     * @ordered
+     */
 	protected EList<ChannelType> channel;
 
 	/**
-	 * The cached value of the '{@link #getResource() <em>Resource</em>}' containment reference list.
-	 * <!-- begin-user-doc -->
+     * The cached value of the '{@link #getResource() <em>Resource</em>}' containment reference list.
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #getResource()
-	 * @generated
-	 * @ordered
-	 */
+     * @see #getResource()
+     * @generated
+     * @ordered
+     */
 	protected EList<ResourceType> resource;
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	protected RulesImplementationTypeImpl() {
-		super();
-	}
+        super();
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	@Override
 	protected EClass eStaticClass() {
-		return RulesPackage.Literals.RULES_IMPLEMENTATION_TYPE;
-	}
+        return RulesPackage.Literals.RULES_IMPLEMENTATION_TYPE;
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public EList<ActionType1> getAction() {
-		if (action == null) {
-			action = new EObjectContainmentEList<ActionType1>(ActionType1.class, this, RulesPackage.RULES_IMPLEMENTATION_TYPE__ACTION);
-		}
-		return action;
-	}
+        if (action == null) {
+            action = new EObjectContainmentEList<ActionType1>(ActionType1.class, this, RulesPackage.RULES_IMPLEMENTATION_TYPE__ACTION);
+        }
+        return action;
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public AuditType getAudit() {
-		return audit;
-	}
+        return audit;
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public NotificationChain basicSetAudit(AuditType newAudit, NotificationChain msgs) {
-		AuditType oldAudit = audit;
-		audit = newAudit;
-		if (eNotificationRequired()) {
-			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, RulesPackage.RULES_IMPLEMENTATION_TYPE__AUDIT, oldAudit, newAudit);
-			if (msgs == null) msgs = notification; else msgs.add(notification);
-		}
-		return msgs;
-	}
+        AuditType oldAudit = audit;
+        audit = newAudit;
+        if (eNotificationRequired()) {
+            ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, RulesPackage.RULES_IMPLEMENTATION_TYPE__AUDIT, oldAudit, newAudit);
+            if (msgs == null) msgs = notification; else msgs.add(notification);
+        }
+        return msgs;
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public void setAudit(AuditType newAudit) {
-		if (newAudit != audit) {
-			NotificationChain msgs = null;
-			if (audit != null)
-				msgs = ((InternalEObject)audit).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - RulesPackage.RULES_IMPLEMENTATION_TYPE__AUDIT, null, msgs);
-			if (newAudit != null)
-				msgs = ((InternalEObject)newAudit).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - RulesPackage.RULES_IMPLEMENTATION_TYPE__AUDIT, null, msgs);
-			msgs = basicSetAudit(newAudit, msgs);
-			if (msgs != null) msgs.dispatch();
-		}
-		else if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, RulesPackage.RULES_IMPLEMENTATION_TYPE__AUDIT, newAudit, newAudit));
-	}
+        if (newAudit != audit) {
+            NotificationChain msgs = null;
+            if (audit != null)
+                msgs = ((InternalEObject)audit).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - RulesPackage.RULES_IMPLEMENTATION_TYPE__AUDIT, null, msgs);
+            if (newAudit != null)
+                msgs = ((InternalEObject)newAudit).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - RulesPackage.RULES_IMPLEMENTATION_TYPE__AUDIT, null, msgs);
+            msgs = basicSetAudit(newAudit, msgs);
+            if (msgs != null) msgs.dispatch();
+        }
+        else if (eNotificationRequired())
+            eNotify(new ENotificationImpl(this, Notification.SET, RulesPackage.RULES_IMPLEMENTATION_TYPE__AUDIT, newAudit, newAudit));
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public EList<ChannelType> getChannel() {
-		if (channel == null) {
-			channel = new EObjectContainmentEList<ChannelType>(ChannelType.class, this, RulesPackage.RULES_IMPLEMENTATION_TYPE__CHANNEL);
-		}
-		return channel;
-	}
+        if (channel == null) {
+            channel = new EObjectContainmentEList<ChannelType>(ChannelType.class, this, RulesPackage.RULES_IMPLEMENTATION_TYPE__CHANNEL);
+        }
+        return channel;
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public EList<ResourceType> getResource() {
-		if (resource == null) {
-			resource = new EObjectContainmentEList<ResourceType>(ResourceType.class, this, RulesPackage.RULES_IMPLEMENTATION_TYPE__RESOURCE);
-		}
-		return resource;
-	}
+        if (resource == null) {
+            resource = new EObjectContainmentEList<ResourceType>(ResourceType.class, this, RulesPackage.RULES_IMPLEMENTATION_TYPE__RESOURCE);
+        }
+        return resource;
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	@Override
 	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
-		switch (featureID) {
-			case RulesPackage.RULES_IMPLEMENTATION_TYPE__ACTION:
-				return ((InternalEList<?>)getAction()).basicRemove(otherEnd, msgs);
-			case RulesPackage.RULES_IMPLEMENTATION_TYPE__AUDIT:
-				return basicSetAudit(null, msgs);
-			case RulesPackage.RULES_IMPLEMENTATION_TYPE__CHANNEL:
-				return ((InternalEList<?>)getChannel()).basicRemove(otherEnd, msgs);
-			case RulesPackage.RULES_IMPLEMENTATION_TYPE__RESOURCE:
-				return ((InternalEList<?>)getResource()).basicRemove(otherEnd, msgs);
-		}
-		return super.eInverseRemove(otherEnd, featureID, msgs);
-	}
+        switch (featureID) {
+            case RulesPackage.RULES_IMPLEMENTATION_TYPE__ACTION:
+                return ((InternalEList<?>)getAction()).basicRemove(otherEnd, msgs);
+            case RulesPackage.RULES_IMPLEMENTATION_TYPE__AUDIT:
+                return basicSetAudit(null, msgs);
+            case RulesPackage.RULES_IMPLEMENTATION_TYPE__CHANNEL:
+                return ((InternalEList<?>)getChannel()).basicRemove(otherEnd, msgs);
+            case RulesPackage.RULES_IMPLEMENTATION_TYPE__RESOURCE:
+                return ((InternalEList<?>)getResource()).basicRemove(otherEnd, msgs);
+        }
+        return super.eInverseRemove(otherEnd, featureID, msgs);
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
-		switch (featureID) {
-			case RulesPackage.RULES_IMPLEMENTATION_TYPE__ACTION:
-				return getAction();
-			case RulesPackage.RULES_IMPLEMENTATION_TYPE__AUDIT:
-				return getAudit();
-			case RulesPackage.RULES_IMPLEMENTATION_TYPE__CHANNEL:
-				return getChannel();
-			case RulesPackage.RULES_IMPLEMENTATION_TYPE__RESOURCE:
-				return getResource();
-		}
-		return super.eGet(featureID, resolve, coreType);
-	}
+        switch (featureID) {
+            case RulesPackage.RULES_IMPLEMENTATION_TYPE__ACTION:
+                return getAction();
+            case RulesPackage.RULES_IMPLEMENTATION_TYPE__AUDIT:
+                return getAudit();
+            case RulesPackage.RULES_IMPLEMENTATION_TYPE__CHANNEL:
+                return getChannel();
+            case RulesPackage.RULES_IMPLEMENTATION_TYPE__RESOURCE:
+                return getResource();
+        }
+        return super.eGet(featureID, resolve, coreType);
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	@SuppressWarnings("unchecked")
 	@Override
 	public void eSet(int featureID, Object newValue) {
-		switch (featureID) {
-			case RulesPackage.RULES_IMPLEMENTATION_TYPE__ACTION:
-				getAction().clear();
-				getAction().addAll((Collection<? extends ActionType1>)newValue);
-				return;
-			case RulesPackage.RULES_IMPLEMENTATION_TYPE__AUDIT:
-				setAudit((AuditType)newValue);
-				return;
-			case RulesPackage.RULES_IMPLEMENTATION_TYPE__CHANNEL:
-				getChannel().clear();
-				getChannel().addAll((Collection<? extends ChannelType>)newValue);
-				return;
-			case RulesPackage.RULES_IMPLEMENTATION_TYPE__RESOURCE:
-				getResource().clear();
-				getResource().addAll((Collection<? extends ResourceType>)newValue);
-				return;
-		}
-		super.eSet(featureID, newValue);
-	}
+        switch (featureID) {
+            case RulesPackage.RULES_IMPLEMENTATION_TYPE__ACTION:
+                getAction().clear();
+                getAction().addAll((Collection<? extends ActionType1>)newValue);
+                return;
+            case RulesPackage.RULES_IMPLEMENTATION_TYPE__AUDIT:
+                setAudit((AuditType)newValue);
+                return;
+            case RulesPackage.RULES_IMPLEMENTATION_TYPE__CHANNEL:
+                getChannel().clear();
+                getChannel().addAll((Collection<? extends ChannelType>)newValue);
+                return;
+            case RulesPackage.RULES_IMPLEMENTATION_TYPE__RESOURCE:
+                getResource().clear();
+                getResource().addAll((Collection<? extends ResourceType>)newValue);
+                return;
+        }
+        super.eSet(featureID, newValue);
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	@Override
 	public void eUnset(int featureID) {
-		switch (featureID) {
-			case RulesPackage.RULES_IMPLEMENTATION_TYPE__ACTION:
-				getAction().clear();
-				return;
-			case RulesPackage.RULES_IMPLEMENTATION_TYPE__AUDIT:
-				setAudit((AuditType)null);
-				return;
-			case RulesPackage.RULES_IMPLEMENTATION_TYPE__CHANNEL:
-				getChannel().clear();
-				return;
-			case RulesPackage.RULES_IMPLEMENTATION_TYPE__RESOURCE:
-				getResource().clear();
-				return;
-		}
-		super.eUnset(featureID);
-	}
+        switch (featureID) {
+            case RulesPackage.RULES_IMPLEMENTATION_TYPE__ACTION:
+                getAction().clear();
+                return;
+            case RulesPackage.RULES_IMPLEMENTATION_TYPE__AUDIT:
+                setAudit((AuditType)null);
+                return;
+            case RulesPackage.RULES_IMPLEMENTATION_TYPE__CHANNEL:
+                getChannel().clear();
+                return;
+            case RulesPackage.RULES_IMPLEMENTATION_TYPE__RESOURCE:
+                getResource().clear();
+                return;
+        }
+        super.eUnset(featureID);
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	@Override
 	public boolean eIsSet(int featureID) {
-		switch (featureID) {
-			case RulesPackage.RULES_IMPLEMENTATION_TYPE__ACTION:
-				return action != null && !action.isEmpty();
-			case RulesPackage.RULES_IMPLEMENTATION_TYPE__AUDIT:
-				return audit != null;
-			case RulesPackage.RULES_IMPLEMENTATION_TYPE__CHANNEL:
-				return channel != null && !channel.isEmpty();
-			case RulesPackage.RULES_IMPLEMENTATION_TYPE__RESOURCE:
-				return resource != null && !resource.isEmpty();
-		}
-		return super.eIsSet(featureID);
-	}
+        switch (featureID) {
+            case RulesPackage.RULES_IMPLEMENTATION_TYPE__ACTION:
+                return action != null && !action.isEmpty();
+            case RulesPackage.RULES_IMPLEMENTATION_TYPE__AUDIT:
+                return audit != null;
+            case RulesPackage.RULES_IMPLEMENTATION_TYPE__CHANNEL:
+                return channel != null && !channel.isEmpty();
+            case RulesPackage.RULES_IMPLEMENTATION_TYPE__RESOURCE:
+                return resource != null && !resource.isEmpty();
+        }
+        return super.eIsSet(featureID);
+    }
 
 } //RulesImplementationTypeImpl

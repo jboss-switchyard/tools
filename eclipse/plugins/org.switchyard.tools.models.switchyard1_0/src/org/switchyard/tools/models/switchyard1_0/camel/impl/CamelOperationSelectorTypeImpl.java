@@ -24,22 +24,22 @@ import org.switchyard.tools.models.switchyard1_0.camel.CamelPackage;
  */
 public class CamelOperationSelectorTypeImpl extends OperationSelectorTypeImpl implements CamelOperationSelectorType {
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	protected CamelOperationSelectorTypeImpl() {
-		super();
-	}
+        super();
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	@Override
 	protected EClass eStaticClass() {
-		return CamelPackage.Literals.CAMEL_OPERATION_SELECTOR_TYPE;
-	}
+        return CamelPackage.Literals.CAMEL_OPERATION_SELECTOR_TYPE;
+    }
 
 } //CamelOperationSelectorTypeImpl

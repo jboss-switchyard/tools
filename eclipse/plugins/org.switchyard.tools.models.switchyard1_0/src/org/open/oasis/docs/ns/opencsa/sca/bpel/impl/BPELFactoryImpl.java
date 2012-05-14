@@ -24,87 +24,87 @@ import org.open.oasis.docs.ns.opencsa.sca.bpel.*;
  */
 public class BPELFactoryImpl extends EFactoryImpl implements BPELFactory {
 	/**
-	 * Creates the default factory implementation.
-	 * <!-- begin-user-doc -->
+     * Creates the default factory implementation.
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public static BPELFactory init() {
-		try {
-			BPELFactory theBPELFactory = (BPELFactory)EPackage.Registry.INSTANCE.getEFactory("http://docs.oasis-open.org/ns/opencsa/sca/200903"); 
-			if (theBPELFactory != null) {
-				return theBPELFactory;
-			}
-		}
-		catch (Exception exception) {
-			EcorePlugin.INSTANCE.log(exception);
-		}
-		return new BPELFactoryImpl();
-	}
+        try {
+            BPELFactory theBPELFactory = (BPELFactory)EPackage.Registry.INSTANCE.getEFactory("http://docs.oasis-open.org/ns/opencsa/sca/200903"); 
+            if (theBPELFactory != null) {
+                return theBPELFactory;
+            }
+        }
+        catch (Exception exception) {
+            EcorePlugin.INSTANCE.log(exception);
+        }
+        return new BPELFactoryImpl();
+    }
 
 	/**
-	 * Creates an instance of the factory.
-	 * <!-- begin-user-doc -->
+     * Creates an instance of the factory.
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public BPELFactoryImpl() {
-		super();
-	}
+        super();
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	@Override
 	public EObject create(EClass eClass) {
-		switch (eClass.getClassifierID()) {
-			case BPELPackage.BPEL_IMPLEMENTATION: return createBPELImplementation();
-			case BPELPackage.DOCUMENT_ROOT: return createDocumentRoot();
-			default:
-				throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier");
-		}
-	}
+        switch (eClass.getClassifierID()) {
+            case BPELPackage.BPEL_IMPLEMENTATION: return createBPELImplementation();
+            case BPELPackage.DOCUMENT_ROOT: return createDocumentRoot();
+            default:
+                throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier");
+        }
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public BPELImplementation createBPELImplementation() {
-		BPELImplementationImpl bpelImplementation = new BPELImplementationImpl();
-		return bpelImplementation;
-	}
+        BPELImplementationImpl bpelImplementation = new BPELImplementationImpl();
+        return bpelImplementation;
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public DocumentRoot createDocumentRoot() {
-		DocumentRootImpl documentRoot = new DocumentRootImpl();
-		return documentRoot;
-	}
+        DocumentRootImpl documentRoot = new DocumentRootImpl();
+        return documentRoot;
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public BPELPackage getBPELPackage() {
-		return (BPELPackage)getEPackage();
-	}
+        return (BPELPackage)getEPackage();
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @deprecated
-	 * @generated
-	 */
+     * @deprecated
+     * @generated
+     */
 	@Deprecated
 	public static BPELPackage getPackage() {
-		return BPELPackage.eINSTANCE;
-	}
+        return BPELPackage.eINSTANCE;
+    }
 
 } //BPELFactoryImpl

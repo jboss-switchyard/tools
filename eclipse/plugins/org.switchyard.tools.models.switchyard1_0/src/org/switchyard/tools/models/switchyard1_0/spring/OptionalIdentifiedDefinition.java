@@ -28,57 +28,57 @@ import org.eclipse.emf.ecore.EObject;
  */
 public interface OptionalIdentifiedDefinition extends EObject {
 	/**
-	 * Returns the value of the '<em><b>Description</b></em>' containment reference.
-	 * <!-- begin-user-doc -->
+     * Returns the value of the '<em><b>Description</b></em>' containment reference.
+     * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Description</em>' containment reference isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Description</em>' containment reference.
-	 * @see #setDescription(DescriptionDefinition)
-	 * @see org.switchyard.tools.models.switchyard1_0.spring.SpringPackage#getOptionalIdentifiedDefinition_Description()
-	 * @model containment="true"
-	 *        extendedMetaData="kind='element' name='description' namespace='##targetNamespace'"
-	 * @generated
-	 */
+     * @return the value of the '<em>Description</em>' containment reference.
+     * @see #setDescription(DescriptionDefinition)
+     * @see org.switchyard.tools.models.switchyard1_0.spring.SpringPackage#getOptionalIdentifiedDefinition_Description()
+     * @model containment="true"
+     *        extendedMetaData="kind='element' name='description' namespace='##targetNamespace'"
+     * @generated
+     */
 	DescriptionDefinition getDescription();
 
 	/**
-	 * Sets the value of the '{@link org.switchyard.tools.models.switchyard1_0.spring.OptionalIdentifiedDefinition#getDescription <em>Description</em>}' containment reference.
-	 * <!-- begin-user-doc -->
+     * Sets the value of the '{@link org.switchyard.tools.models.switchyard1_0.spring.OptionalIdentifiedDefinition#getDescription <em>Description</em>}' containment reference.
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Description</em>' containment reference.
-	 * @see #getDescription()
-	 * @generated
-	 */
+     * @param value the new value of the '<em>Description</em>' containment reference.
+     * @see #getDescription()
+     * @generated
+     */
 	void setDescription(DescriptionDefinition value);
 
 	/**
-	 * Returns the value of the '<em><b>Id</b></em>' attribute.
-	 * <!-- begin-user-doc -->
+     * Returns the value of the '<em><b>Id</b></em>' attribute.
+     * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Id</em>' attribute isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Id</em>' attribute.
-	 * @see #setId(String)
-	 * @see org.switchyard.tools.models.switchyard1_0.spring.SpringPackage#getOptionalIdentifiedDefinition_Id()
-	 * @model id="true" dataType="org.eclipse.emf.ecore.xml.type.ID"
-	 *        extendedMetaData="kind='attribute' name='id'"
-	 * @generated
-	 */
+     * @return the value of the '<em>Id</em>' attribute.
+     * @see #setId(String)
+     * @see org.switchyard.tools.models.switchyard1_0.spring.SpringPackage#getOptionalIdentifiedDefinition_Id()
+     * @model id="true" dataType="org.eclipse.emf.ecore.xml.type.ID"
+     *        extendedMetaData="kind='attribute' name='id'"
+     * @generated
+     */
 	String getId();
 
 	/**
-	 * Sets the value of the '{@link org.switchyard.tools.models.switchyard1_0.spring.OptionalIdentifiedDefinition#getId <em>Id</em>}' attribute.
-	 * <!-- begin-user-doc -->
+     * Sets the value of the '{@link org.switchyard.tools.models.switchyard1_0.spring.OptionalIdentifiedDefinition#getId <em>Id</em>}' attribute.
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Id</em>' attribute.
-	 * @see #getId()
-	 * @generated
-	 */
+     * @param value the new value of the '<em>Id</em>' attribute.
+     * @see #getId()
+     * @generated
+     */
 	void setId(String value);
 
 } // OptionalIdentifiedDefinition

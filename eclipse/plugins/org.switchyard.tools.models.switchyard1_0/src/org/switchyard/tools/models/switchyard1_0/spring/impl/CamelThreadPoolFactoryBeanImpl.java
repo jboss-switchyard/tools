@@ -22,22 +22,22 @@ import org.switchyard.tools.models.switchyard1_0.spring.SpringPackage;
  */
 public class CamelThreadPoolFactoryBeanImpl extends AbstractCamelThreadPoolFactoryBeanImpl implements CamelThreadPoolFactoryBean {
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	protected CamelThreadPoolFactoryBeanImpl() {
-		super();
-	}
+        super();
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	@Override
 	protected EClass eStaticClass() {
-		return SpringPackage.eINSTANCE.getCamelThreadPoolFactoryBean();
-	}
+        return SpringPackage.eINSTANCE.getCamelThreadPoolFactoryBean();
+    }
 
 } //CamelThreadPoolFactoryBeanImpl

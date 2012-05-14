@@ -12,23 +12,26 @@
  ******************************************************************************/
 package org.switchyard.tools.ui.editor.diagram.component.wizards;
 
-import org.eclipse.graphiti.mm.pictograms.Diagram;
+import java.util.List;
+
+import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.jface.wizard.IWizardPage;
-import org.eclipse.soa.sca.sca1_1.model.sca.Component;
+import org.eclipse.soa.sca.sca1_1.model.sca.ComponentReference;
+import org.eclipse.soa.sca.sca1_1.model.sca.ComponentService;
 import org.eclipse.soa.sca.sca1_1.model.sca.Implementation;
-import org.switchyard.tools.models.switchyard1_0.camel.CamelImplementationType;
-import org.switchyard.tools.ui.editor.diagram.internal.wizards.BaseWizard;
+import org.switchyard.tools.ui.editor.diagram.internal.wizards.LinkedWizardBase;
 
 /**
  * @author bfitzpat
- *
+ * 
  */
-public class SCADiagramAddImplementationWizard extends BaseWizard {
+public class SCADiagramAddImplementationWizard extends LinkedWizardBase implements IComponentImplementationWizard {
 
+    private Implementation _implementation;
+    private EStructuralFeature _structuralFeature;
+    private List<ComponentService> _services;
+    private List<ComponentReference> _references;
     private SCADiagramAddImplementationStartPage _startPage = null;
-    private SCADiagramAddComponentImplementationCamelPage _camelPage = null;
-    private Diagram _diagram = null;
-    private Component _component = null;
 
     /**
      * Constructor.
@@ -37,73 +40,71 @@ public class SCADiagramAddImplementationWizard extends BaseWizard {
         super();
         initPages();
         setWindowTitle("New Implementation");
-    }
-
-    /**
-     * @param component this component
-     */
-    public void setComponent(Component component) {
-        this._component = component;
-    }
-
-    /**
-     * @return the component
-     */
-    public Component getComponent() {
-        return this._component;
-    }
-
-    /**
-     * @param diagram the diagram
-     */
-    public void setDiagram(Diagram diagram) {
-        this._diagram = diagram;
-    }
-
-    /**
-     * @return the diagram
-     */
-    public Diagram getDiagram() {
-        return this._diagram;
+        setForcePreviousAndNextButtons(true);
     }
 
     private void initPages() {
         _startPage = new SCADiagramAddImplementationStartPage("start");
-        _camelPage = new SCADiagramAddComponentImplementationCamelPage(_startPage, "camel");
     }
 
     @Override
-    public boolean performFinish() {
-        if (_startPage != null && _startPage.getImplementation() != null) {
-            return true;
+    public boolean doFinish() {
+        if (_startPage == null || _startPage.getImplementationWizard() == null) {
+            return false;
         }
-        return false;
+
+        IComponentImplementationWizard wizard = _startPage.getImplementationWizard();
+        _implementation = wizard.getImplementation();
+        _structuralFeature = wizard.getFeatureForImplementation();
+        _services = wizard.getImplementationServices();
+        _references = wizard.getImplementationReferences();
+
+        return true;
     }
 
     @Override
     public void addPages() {
         addPage(_startPage);
-        addPage(_camelPage);
     }
 
-    /**
-     * @return the implementation
-     */
+    @Override
     public Implementation getImplementation() {
-        if (_startPage != null) {
-            return _startPage.getImplementation();
-        }
-        return null;
+        return _implementation;
+    }
+
+    @Override
+    public String getDisplayName() {
+        return "New Component Implementation";
+    }
+
+    @Override
+    public void setImplementation(Implementation implementation) throws ClassCastException {
+        _implementation = implementation;
+        // TODO: should probably propagate to child wizards.
+    }
+
+    @Override
+    public EStructuralFeature getFeatureForImplementation() {
+        return _structuralFeature;
+    }
+
+    @Override
+    public List<ComponentService> getImplementationServices() {
+        return _services;
+    }
+
+    @Override
+    public List<ComponentReference> getImplementationReferences() {
+        return _references;
     }
 
     @Override
     public IWizardPage getNextPage(IWizardPage page) {
-        if (page.equals(_startPage)) {
-            Implementation interfaceToTest = _startPage.getImplementation();
-            if (interfaceToTest instanceof CamelImplementationType) {
-                _camelPage.refresh();
-                return _camelPage;
+        if (page == _startPage) {
+            if (_startPage.getImplementationWizard() == null) {
+                return null;
             }
+            setNext(_startPage.getImplementationWizard());
         }
         return super.getNextPage(page);
     }

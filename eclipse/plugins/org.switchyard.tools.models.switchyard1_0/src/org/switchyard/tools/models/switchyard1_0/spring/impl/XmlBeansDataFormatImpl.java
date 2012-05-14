@@ -30,171 +30,171 @@ import org.switchyard.tools.models.switchyard1_0.spring.XmlBeansDataFormat;
  */
 public class XmlBeansDataFormatImpl extends DataFormatImpl implements XmlBeansDataFormat {
 	/**
-	 * The default value of the '{@link #isPrettyPrint() <em>Pretty Print</em>}' attribute.
-	 * <!-- begin-user-doc -->
+     * The default value of the '{@link #isPrettyPrint() <em>Pretty Print</em>}' attribute.
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #isPrettyPrint()
-	 * @generated
-	 * @ordered
-	 */
+     * @see #isPrettyPrint()
+     * @generated
+     * @ordered
+     */
 	protected static final boolean PRETTY_PRINT_EDEFAULT = false;
 
 	/**
-	 * The cached value of the '{@link #isPrettyPrint() <em>Pretty Print</em>}' attribute.
-	 * <!-- begin-user-doc -->
+     * The cached value of the '{@link #isPrettyPrint() <em>Pretty Print</em>}' attribute.
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #isPrettyPrint()
-	 * @generated
-	 * @ordered
-	 */
+     * @see #isPrettyPrint()
+     * @generated
+     * @ordered
+     */
 	protected boolean prettyPrint = PRETTY_PRINT_EDEFAULT;
 
 	/**
-	 * This is true if the Pretty Print attribute has been set.
-	 * <!-- begin-user-doc -->
+     * This is true if the Pretty Print attribute has been set.
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
+     * @generated
+     * @ordered
+     */
 	protected boolean prettyPrintESet;
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	protected XmlBeansDataFormatImpl() {
-		super();
-	}
+        super();
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	@Override
 	protected EClass eStaticClass() {
-		return SpringPackage.eINSTANCE.getXmlBeansDataFormat();
-	}
+        return SpringPackage.eINSTANCE.getXmlBeansDataFormat();
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public boolean isPrettyPrint() {
-		return prettyPrint;
-	}
+        return prettyPrint;
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public void setPrettyPrint(boolean newPrettyPrint) {
-		boolean oldPrettyPrint = prettyPrint;
-		prettyPrint = newPrettyPrint;
-		boolean oldPrettyPrintESet = prettyPrintESet;
-		prettyPrintESet = true;
-		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, SpringPackage.XML_BEANS_DATA_FORMAT__PRETTY_PRINT, oldPrettyPrint, prettyPrint, !oldPrettyPrintESet));
-	}
+        boolean oldPrettyPrint = prettyPrint;
+        prettyPrint = newPrettyPrint;
+        boolean oldPrettyPrintESet = prettyPrintESet;
+        prettyPrintESet = true;
+        if (eNotificationRequired())
+            eNotify(new ENotificationImpl(this, Notification.SET, SpringPackage.XML_BEANS_DATA_FORMAT__PRETTY_PRINT, oldPrettyPrint, prettyPrint, !oldPrettyPrintESet));
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public void unsetPrettyPrint() {
-		boolean oldPrettyPrint = prettyPrint;
-		boolean oldPrettyPrintESet = prettyPrintESet;
-		prettyPrint = PRETTY_PRINT_EDEFAULT;
-		prettyPrintESet = false;
-		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.UNSET, SpringPackage.XML_BEANS_DATA_FORMAT__PRETTY_PRINT, oldPrettyPrint, PRETTY_PRINT_EDEFAULT, oldPrettyPrintESet));
-	}
+        boolean oldPrettyPrint = prettyPrint;
+        boolean oldPrettyPrintESet = prettyPrintESet;
+        prettyPrint = PRETTY_PRINT_EDEFAULT;
+        prettyPrintESet = false;
+        if (eNotificationRequired())
+            eNotify(new ENotificationImpl(this, Notification.UNSET, SpringPackage.XML_BEANS_DATA_FORMAT__PRETTY_PRINT, oldPrettyPrint, PRETTY_PRINT_EDEFAULT, oldPrettyPrintESet));
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public boolean isSetPrettyPrint() {
-		return prettyPrintESet;
-	}
+        return prettyPrintESet;
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
-		switch (featureID) {
-			case SpringPackage.XML_BEANS_DATA_FORMAT__PRETTY_PRINT:
-				return isPrettyPrint();
-		}
-		return super.eGet(featureID, resolve, coreType);
-	}
+        switch (featureID) {
+            case SpringPackage.XML_BEANS_DATA_FORMAT__PRETTY_PRINT:
+                return isPrettyPrint();
+        }
+        return super.eGet(featureID, resolve, coreType);
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	@Override
 	public void eSet(int featureID, Object newValue) {
-		switch (featureID) {
-			case SpringPackage.XML_BEANS_DATA_FORMAT__PRETTY_PRINT:
-				setPrettyPrint((Boolean)newValue);
-				return;
-		}
-		super.eSet(featureID, newValue);
-	}
+        switch (featureID) {
+            case SpringPackage.XML_BEANS_DATA_FORMAT__PRETTY_PRINT:
+                setPrettyPrint((Boolean)newValue);
+                return;
+        }
+        super.eSet(featureID, newValue);
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	@Override
 	public void eUnset(int featureID) {
-		switch (featureID) {
-			case SpringPackage.XML_BEANS_DATA_FORMAT__PRETTY_PRINT:
-				unsetPrettyPrint();
-				return;
-		}
-		super.eUnset(featureID);
-	}
+        switch (featureID) {
+            case SpringPackage.XML_BEANS_DATA_FORMAT__PRETTY_PRINT:
+                unsetPrettyPrint();
+                return;
+        }
+        super.eUnset(featureID);
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	@Override
 	public boolean eIsSet(int featureID) {
-		switch (featureID) {
-			case SpringPackage.XML_BEANS_DATA_FORMAT__PRETTY_PRINT:
-				return isSetPrettyPrint();
-		}
-		return super.eIsSet(featureID);
-	}
+        switch (featureID) {
+            case SpringPackage.XML_BEANS_DATA_FORMAT__PRETTY_PRINT:
+                return isSetPrettyPrint();
+        }
+        return super.eIsSet(featureID);
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	@Override
 	public String toString() {
-		if (eIsProxy()) return super.toString();
+        if (eIsProxy()) return super.toString();
 
-		StringBuffer result = new StringBuffer(super.toString());
-		result.append(" (prettyPrint: ");
-		if (prettyPrintESet) result.append(prettyPrint); else result.append("<unset>");
-		result.append(')');
-		return result.toString();
-	}
+        StringBuffer result = new StringBuffer(super.toString());
+        result.append(" (prettyPrint: ");
+        if (prettyPrintESet) result.append(prettyPrint); else result.append("<unset>");
+        result.append(')');
+        return result.toString();
+    }
 
 } //XmlBeansDataFormatImpl

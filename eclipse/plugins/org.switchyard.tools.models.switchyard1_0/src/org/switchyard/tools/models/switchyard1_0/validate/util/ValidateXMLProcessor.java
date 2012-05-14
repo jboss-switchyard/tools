@@ -25,30 +25,30 @@ import org.switchyard.tools.models.switchyard1_0.validate.ValidatePackage;
 public class ValidateXMLProcessor extends XMLProcessor {
 
 	/**
-	 * Public constructor to instantiate the helper.
-	 * <!-- begin-user-doc -->
+     * Public constructor to instantiate the helper.
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public ValidateXMLProcessor() {
-		super((EPackage.Registry.INSTANCE));
-		ValidatePackage.eINSTANCE.eClass();
-	}
+        super((EPackage.Registry.INSTANCE));
+        ValidatePackage.eINSTANCE.eClass();
+    }
 	
 	/**
-	 * Register for "*" and "xml" file extensions the ValidateResourceFactoryImpl factory.
-	 * <!-- begin-user-doc -->
+     * Register for "*" and "xml" file extensions the ValidateResourceFactoryImpl factory.
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	@Override
 	protected Map<String, Resource.Factory> getRegistrations() {
-		if (registrations == null) {
-			super.getRegistrations();
-			registrations.put(XML_EXTENSION, new ValidateResourceFactoryImpl());
-			registrations.put(STAR_EXTENSION, new ValidateResourceFactoryImpl());
-		}
-		return registrations;
-	}
+        if (registrations == null) {
+            super.getRegistrations();
+            registrations.put(XML_EXTENSION, new ValidateResourceFactoryImpl());
+            registrations.put(STAR_EXTENSION, new ValidateResourceFactoryImpl());
+        }
+        return registrations;
+    }
 
 } //ValidateXMLProcessor

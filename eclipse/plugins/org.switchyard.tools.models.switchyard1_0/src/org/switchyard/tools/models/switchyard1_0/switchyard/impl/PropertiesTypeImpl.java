@@ -39,118 +39,118 @@ import org.switchyard.tools.models.switchyard1_0.switchyard.SwitchyardPackage;
  */
 public class PropertiesTypeImpl extends EObjectImpl implements PropertiesType {
 	/**
-	 * The cached value of the '{@link #getProperty() <em>Property</em>}' containment reference list.
-	 * <!-- begin-user-doc -->
+     * The cached value of the '{@link #getProperty() <em>Property</em>}' containment reference list.
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #getProperty()
-	 * @generated
-	 * @ordered
-	 */
+     * @see #getProperty()
+     * @generated
+     * @ordered
+     */
 	protected EList<PropertyType> property;
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	protected PropertiesTypeImpl() {
-		super();
-	}
+        super();
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	@Override
 	protected EClass eStaticClass() {
-		return SwitchyardPackage.Literals.PROPERTIES_TYPE;
-	}
+        return SwitchyardPackage.Literals.PROPERTIES_TYPE;
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public EList<PropertyType> getProperty() {
-		if (property == null) {
-			property = new EObjectContainmentEList<PropertyType>(PropertyType.class, this, SwitchyardPackage.PROPERTIES_TYPE__PROPERTY);
-		}
-		return property;
-	}
+        if (property == null) {
+            property = new EObjectContainmentEList<PropertyType>(PropertyType.class, this, SwitchyardPackage.PROPERTIES_TYPE__PROPERTY);
+        }
+        return property;
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	@Override
 	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
-		switch (featureID) {
-			case SwitchyardPackage.PROPERTIES_TYPE__PROPERTY:
-				return ((InternalEList<?>)getProperty()).basicRemove(otherEnd, msgs);
-		}
-		return super.eInverseRemove(otherEnd, featureID, msgs);
-	}
+        switch (featureID) {
+            case SwitchyardPackage.PROPERTIES_TYPE__PROPERTY:
+                return ((InternalEList<?>)getProperty()).basicRemove(otherEnd, msgs);
+        }
+        return super.eInverseRemove(otherEnd, featureID, msgs);
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
-		switch (featureID) {
-			case SwitchyardPackage.PROPERTIES_TYPE__PROPERTY:
-				return getProperty();
-		}
-		return super.eGet(featureID, resolve, coreType);
-	}
+        switch (featureID) {
+            case SwitchyardPackage.PROPERTIES_TYPE__PROPERTY:
+                return getProperty();
+        }
+        return super.eGet(featureID, resolve, coreType);
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	@SuppressWarnings("unchecked")
 	@Override
 	public void eSet(int featureID, Object newValue) {
-		switch (featureID) {
-			case SwitchyardPackage.PROPERTIES_TYPE__PROPERTY:
-				getProperty().clear();
-				getProperty().addAll((Collection<? extends PropertyType>)newValue);
-				return;
-		}
-		super.eSet(featureID, newValue);
-	}
+        switch (featureID) {
+            case SwitchyardPackage.PROPERTIES_TYPE__PROPERTY:
+                getProperty().clear();
+                getProperty().addAll((Collection<? extends PropertyType>)newValue);
+                return;
+        }
+        super.eSet(featureID, newValue);
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	@Override
 	public void eUnset(int featureID) {
-		switch (featureID) {
-			case SwitchyardPackage.PROPERTIES_TYPE__PROPERTY:
-				getProperty().clear();
-				return;
-		}
-		super.eUnset(featureID);
-	}
+        switch (featureID) {
+            case SwitchyardPackage.PROPERTIES_TYPE__PROPERTY:
+                getProperty().clear();
+                return;
+        }
+        super.eUnset(featureID);
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	@Override
 	public boolean eIsSet(int featureID) {
-		switch (featureID) {
-			case SwitchyardPackage.PROPERTIES_TYPE__PROPERTY:
-				return property != null && !property.isEmpty();
-		}
-		return super.eIsSet(featureID);
-	}
+        switch (featureID) {
+            case SwitchyardPackage.PROPERTIES_TYPE__PROPERTY:
+                return property != null && !property.isEmpty();
+        }
+        return super.eIsSet(featureID);
+    }
 
 } //PropertiesTypeImpl

@@ -20,7 +20,9 @@ import org.eclipse.graphiti.dt.IDiagramTypeProvider;
 import org.eclipse.graphiti.features.ICreateConnectionFeature;
 import org.eclipse.graphiti.features.ICreateFeature;
 import org.eclipse.graphiti.features.IFeatureProvider;
+import org.eclipse.graphiti.features.context.IDoubleClickContext;
 import org.eclipse.graphiti.features.context.IPictogramElementContext;
+import org.eclipse.graphiti.features.custom.ICustomFeature;
 import org.eclipse.graphiti.mm.algorithms.GraphicsAlgorithm;
 import org.eclipse.graphiti.mm.pictograms.PictogramElement;
 import org.eclipse.graphiti.palette.IPaletteCompartmentEntry;
@@ -61,10 +63,10 @@ public class SCADiagramToolBehaviorProvider extends DefaultToolBehaviorProvider 
         IFeatureProvider featureProvider = getFeatureProvider();
         Object bo = featureProvider.getBusinessObjectForPictogramElement(pe);
         if (bo instanceof Service) {
+            ArrayList<IDecorator> decorators = new ArrayList<IDecorator>();
             Service service = (Service) bo;
             if (!service.getBinding().isEmpty()) {
                 EList<Binding> bindings = service.getBinding();
-                ArrayList<IDecorator> decorators = new ArrayList<IDecorator>();
                 for (Binding binding : bindings) {
                     IDecorator imageRenderingDecorator = new ImageDecorator(ImageProvider.IMG_16_CHAIN);
                     String text = binding.getClass().getSimpleName();
@@ -80,8 +82,8 @@ public class SCADiagramToolBehaviorProvider extends DefaultToolBehaviorProvider 
                     imageRenderingDecorator.setMessage(text);
                     decorators.add(imageRenderingDecorator);
                 }
-                return decorators.toArray(new IDecorator[decorators.size()]);
             }
+            return decorators.toArray(new IDecorator[decorators.size()]);
         } else if (bo instanceof Reference) {
             Reference reference = (Reference) bo;
             if (!reference.getBinding().isEmpty()) {
@@ -235,6 +237,22 @@ public class SCADiagramToolBehaviorProvider extends DefaultToolBehaviorProvider 
         setGenericContextButtons(data, pe, CONTEXT_BUTTON_DELETE | CONTEXT_BUTTON_UPDATE);
 
         return data;
+    }
+
+    @Override
+    public ICustomFeature getDoubleClickFeature(IDoubleClickContext context) {
+        if (context.getPictogramElements() != null) {
+            PictogramElement[] elements = context.getPictogramElements();
+            if (elements.length > 0) {
+                PictogramElement firstOne = elements[0];
+                Object bo = getFeatureProvider().getBusinessObjectForPictogramElement(firstOne);
+                if (bo instanceof Component || bo instanceof Service || bo instanceof Reference
+                        || bo instanceof ComponentService || bo instanceof ComponentReference) {
+                    return new SCADiagramOpenOnDoubleClickFeature(getFeatureProvider());
+                }
+            }
+        }
+        return super.getDoubleClickFeature(context);
     }
 
 }

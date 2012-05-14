@@ -30,137 +30,137 @@ import org.switchyard.tools.models.switchyard1_0.spring.SpringPackage;
  */
 public class CsvDataFormatImpl extends DataFormatImpl implements CsvDataFormat {
 	/**
-	 * The default value of the '{@link #getDelimiter() <em>Delimiter</em>}' attribute.
-	 * <!-- begin-user-doc -->
+     * The default value of the '{@link #getDelimiter() <em>Delimiter</em>}' attribute.
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #getDelimiter()
-	 * @generated
-	 * @ordered
-	 */
+     * @see #getDelimiter()
+     * @generated
+     * @ordered
+     */
 	protected static final String DELIMITER_EDEFAULT = null;
 
 	/**
-	 * The cached value of the '{@link #getDelimiter() <em>Delimiter</em>}' attribute.
-	 * <!-- begin-user-doc -->
+     * The cached value of the '{@link #getDelimiter() <em>Delimiter</em>}' attribute.
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #getDelimiter()
-	 * @generated
-	 * @ordered
-	 */
+     * @see #getDelimiter()
+     * @generated
+     * @ordered
+     */
 	protected String delimiter = DELIMITER_EDEFAULT;
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	protected CsvDataFormatImpl() {
-		super();
-	}
+        super();
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	@Override
 	protected EClass eStaticClass() {
-		return SpringPackage.eINSTANCE.getCsvDataFormat();
-	}
+        return SpringPackage.eINSTANCE.getCsvDataFormat();
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public String getDelimiter() {
-		return delimiter;
-	}
+        return delimiter;
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public void setDelimiter(String newDelimiter) {
-		String oldDelimiter = delimiter;
-		delimiter = newDelimiter;
-		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, SpringPackage.CSV_DATA_FORMAT__DELIMITER, oldDelimiter, delimiter));
-	}
+        String oldDelimiter = delimiter;
+        delimiter = newDelimiter;
+        if (eNotificationRequired())
+            eNotify(new ENotificationImpl(this, Notification.SET, SpringPackage.CSV_DATA_FORMAT__DELIMITER, oldDelimiter, delimiter));
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
-		switch (featureID) {
-			case SpringPackage.CSV_DATA_FORMAT__DELIMITER:
-				return getDelimiter();
-		}
-		return super.eGet(featureID, resolve, coreType);
-	}
+        switch (featureID) {
+            case SpringPackage.CSV_DATA_FORMAT__DELIMITER:
+                return getDelimiter();
+        }
+        return super.eGet(featureID, resolve, coreType);
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	@Override
 	public void eSet(int featureID, Object newValue) {
-		switch (featureID) {
-			case SpringPackage.CSV_DATA_FORMAT__DELIMITER:
-				setDelimiter((String)newValue);
-				return;
-		}
-		super.eSet(featureID, newValue);
-	}
+        switch (featureID) {
+            case SpringPackage.CSV_DATA_FORMAT__DELIMITER:
+                setDelimiter((String)newValue);
+                return;
+        }
+        super.eSet(featureID, newValue);
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	@Override
 	public void eUnset(int featureID) {
-		switch (featureID) {
-			case SpringPackage.CSV_DATA_FORMAT__DELIMITER:
-				setDelimiter(DELIMITER_EDEFAULT);
-				return;
-		}
-		super.eUnset(featureID);
-	}
+        switch (featureID) {
+            case SpringPackage.CSV_DATA_FORMAT__DELIMITER:
+                setDelimiter(DELIMITER_EDEFAULT);
+                return;
+        }
+        super.eUnset(featureID);
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	@Override
 	public boolean eIsSet(int featureID) {
-		switch (featureID) {
-			case SpringPackage.CSV_DATA_FORMAT__DELIMITER:
-				return DELIMITER_EDEFAULT == null ? delimiter != null : !DELIMITER_EDEFAULT.equals(delimiter);
-		}
-		return super.eIsSet(featureID);
-	}
+        switch (featureID) {
+            case SpringPackage.CSV_DATA_FORMAT__DELIMITER:
+                return DELIMITER_EDEFAULT == null ? delimiter != null : !DELIMITER_EDEFAULT.equals(delimiter);
+        }
+        return super.eIsSet(featureID);
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	@Override
 	public String toString() {
-		if (eIsProxy()) return super.toString();
+        if (eIsProxy()) return super.toString();
 
-		StringBuffer result = new StringBuffer(super.toString());
-		result.append(" (delimiter: ");
-		result.append(delimiter);
-		result.append(')');
-		return result.toString();
-	}
+        StringBuffer result = new StringBuffer(super.toString());
+        result.append(" (delimiter: ");
+        result.append(delimiter);
+        result.append(')');
+        return result.toString();
+    }
 
 } //CsvDataFormatImpl

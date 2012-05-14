@@ -39,118 +39,118 @@ import org.switchyard.tools.models.switchyard1_0.spring.SpringPackage;
  */
 public class AliasListImpl extends EObjectImpl implements AliasList {
 	/**
-	 * The cached value of the '{@link #getAlias() <em>Alias</em>}' containment reference list.
-	 * <!-- begin-user-doc -->
+     * The cached value of the '{@link #getAlias() <em>Alias</em>}' containment reference list.
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #getAlias()
-	 * @generated
-	 * @ordered
-	 */
+     * @see #getAlias()
+     * @generated
+     * @ordered
+     */
 	protected EList<AliasEntry> alias;
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	protected AliasListImpl() {
-		super();
-	}
+        super();
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	@Override
 	protected EClass eStaticClass() {
-		return SpringPackage.eINSTANCE.getAliasList();
-	}
+        return SpringPackage.eINSTANCE.getAliasList();
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public EList<AliasEntry> getAlias() {
-		if (alias == null) {
-			alias = new EObjectContainmentEList<AliasEntry>(AliasEntry.class, this, SpringPackage.ALIAS_LIST__ALIAS);
-		}
-		return alias;
-	}
+        if (alias == null) {
+            alias = new EObjectContainmentEList<AliasEntry>(AliasEntry.class, this, SpringPackage.ALIAS_LIST__ALIAS);
+        }
+        return alias;
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	@Override
 	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
-		switch (featureID) {
-			case SpringPackage.ALIAS_LIST__ALIAS:
-				return ((InternalEList<?>)getAlias()).basicRemove(otherEnd, msgs);
-		}
-		return super.eInverseRemove(otherEnd, featureID, msgs);
-	}
+        switch (featureID) {
+            case SpringPackage.ALIAS_LIST__ALIAS:
+                return ((InternalEList<?>)getAlias()).basicRemove(otherEnd, msgs);
+        }
+        return super.eInverseRemove(otherEnd, featureID, msgs);
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
-		switch (featureID) {
-			case SpringPackage.ALIAS_LIST__ALIAS:
-				return getAlias();
-		}
-		return super.eGet(featureID, resolve, coreType);
-	}
+        switch (featureID) {
+            case SpringPackage.ALIAS_LIST__ALIAS:
+                return getAlias();
+        }
+        return super.eGet(featureID, resolve, coreType);
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	@SuppressWarnings("unchecked")
 	@Override
 	public void eSet(int featureID, Object newValue) {
-		switch (featureID) {
-			case SpringPackage.ALIAS_LIST__ALIAS:
-				getAlias().clear();
-				getAlias().addAll((Collection<? extends AliasEntry>)newValue);
-				return;
-		}
-		super.eSet(featureID, newValue);
-	}
+        switch (featureID) {
+            case SpringPackage.ALIAS_LIST__ALIAS:
+                getAlias().clear();
+                getAlias().addAll((Collection<? extends AliasEntry>)newValue);
+                return;
+        }
+        super.eSet(featureID, newValue);
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	@Override
 	public void eUnset(int featureID) {
-		switch (featureID) {
-			case SpringPackage.ALIAS_LIST__ALIAS:
-				getAlias().clear();
-				return;
-		}
-		super.eUnset(featureID);
-	}
+        switch (featureID) {
+            case SpringPackage.ALIAS_LIST__ALIAS:
+                getAlias().clear();
+                return;
+        }
+        super.eUnset(featureID);
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	@Override
 	public boolean eIsSet(int featureID) {
-		switch (featureID) {
-			case SpringPackage.ALIAS_LIST__ALIAS:
-				return alias != null && !alias.isEmpty();
-		}
-		return super.eIsSet(featureID);
-	}
+        switch (featureID) {
+            case SpringPackage.ALIAS_LIST__ALIAS:
+                return alias != null && !alias.isEmpty();
+        }
+        return super.eIsSet(featureID);
+    }
 
 } //AliasListImpl

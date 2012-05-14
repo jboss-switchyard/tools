@@ -25,30 +25,30 @@ import org.switchyard.tools.models.switchyard1_0.switchyard.SwitchyardPackage;
 public class SwitchyardXMLProcessor extends XMLProcessor {
 
 	/**
-	 * Public constructor to instantiate the helper.
-	 * <!-- begin-user-doc -->
+     * Public constructor to instantiate the helper.
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public SwitchyardXMLProcessor() {
-		super((EPackage.Registry.INSTANCE));
-		SwitchyardPackage.eINSTANCE.eClass();
-	}
+        super((EPackage.Registry.INSTANCE));
+        SwitchyardPackage.eINSTANCE.eClass();
+    }
 	
 	/**
-	 * Register for "*" and "xml" file extensions the SwitchyardResourceFactoryImpl factory.
-	 * <!-- begin-user-doc -->
+     * Register for "*" and "xml" file extensions the SwitchyardResourceFactoryImpl factory.
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	@Override
 	protected Map<String, Resource.Factory> getRegistrations() {
-		if (registrations == null) {
-			super.getRegistrations();
-			registrations.put(XML_EXTENSION, new SwitchyardResourceFactoryImpl());
-			registrations.put(STAR_EXTENSION, new SwitchyardResourceFactoryImpl());
-		}
-		return registrations;
-	}
+        if (registrations == null) {
+            super.getRegistrations();
+            registrations.put(XML_EXTENSION, new SwitchyardResourceFactoryImpl());
+            registrations.put(STAR_EXTENSION, new SwitchyardResourceFactoryImpl());
+        }
+        return registrations;
+    }
 
 } //SwitchyardXMLProcessor

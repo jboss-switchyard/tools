@@ -32,137 +32,137 @@ import org.switchyard.tools.models.switchyard1_0.clojure.ClojurePackage;
  */
 public class ClojureImplementationTypeImpl extends ImplementationImpl implements ClojureImplementationType {
 	/**
-	 * The default value of the '{@link #getScript() <em>Script</em>}' attribute.
-	 * <!-- begin-user-doc -->
+     * The default value of the '{@link #getScript() <em>Script</em>}' attribute.
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #getScript()
-	 * @generated
-	 * @ordered
-	 */
+     * @see #getScript()
+     * @generated
+     * @ordered
+     */
 	protected static final String SCRIPT_EDEFAULT = null;
 
 	/**
-	 * The cached value of the '{@link #getScript() <em>Script</em>}' attribute.
-	 * <!-- begin-user-doc -->
+     * The cached value of the '{@link #getScript() <em>Script</em>}' attribute.
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #getScript()
-	 * @generated
-	 * @ordered
-	 */
+     * @see #getScript()
+     * @generated
+     * @ordered
+     */
 	protected String script = SCRIPT_EDEFAULT;
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	protected ClojureImplementationTypeImpl() {
-		super();
-	}
+        super();
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	@Override
 	protected EClass eStaticClass() {
-		return ClojurePackage.Literals.CLOJURE_IMPLEMENTATION_TYPE;
-	}
+        return ClojurePackage.Literals.CLOJURE_IMPLEMENTATION_TYPE;
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public String getScript() {
-		return script;
-	}
+        return script;
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public void setScript(String newScript) {
-		String oldScript = script;
-		script = newScript;
-		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, ClojurePackage.CLOJURE_IMPLEMENTATION_TYPE__SCRIPT, oldScript, script));
-	}
+        String oldScript = script;
+        script = newScript;
+        if (eNotificationRequired())
+            eNotify(new ENotificationImpl(this, Notification.SET, ClojurePackage.CLOJURE_IMPLEMENTATION_TYPE__SCRIPT, oldScript, script));
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
-		switch (featureID) {
-			case ClojurePackage.CLOJURE_IMPLEMENTATION_TYPE__SCRIPT:
-				return getScript();
-		}
-		return super.eGet(featureID, resolve, coreType);
-	}
+        switch (featureID) {
+            case ClojurePackage.CLOJURE_IMPLEMENTATION_TYPE__SCRIPT:
+                return getScript();
+        }
+        return super.eGet(featureID, resolve, coreType);
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	@Override
 	public void eSet(int featureID, Object newValue) {
-		switch (featureID) {
-			case ClojurePackage.CLOJURE_IMPLEMENTATION_TYPE__SCRIPT:
-				setScript((String)newValue);
-				return;
-		}
-		super.eSet(featureID, newValue);
-	}
+        switch (featureID) {
+            case ClojurePackage.CLOJURE_IMPLEMENTATION_TYPE__SCRIPT:
+                setScript((String)newValue);
+                return;
+        }
+        super.eSet(featureID, newValue);
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	@Override
 	public void eUnset(int featureID) {
-		switch (featureID) {
-			case ClojurePackage.CLOJURE_IMPLEMENTATION_TYPE__SCRIPT:
-				setScript(SCRIPT_EDEFAULT);
-				return;
-		}
-		super.eUnset(featureID);
-	}
+        switch (featureID) {
+            case ClojurePackage.CLOJURE_IMPLEMENTATION_TYPE__SCRIPT:
+                setScript(SCRIPT_EDEFAULT);
+                return;
+        }
+        super.eUnset(featureID);
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	@Override
 	public boolean eIsSet(int featureID) {
-		switch (featureID) {
-			case ClojurePackage.CLOJURE_IMPLEMENTATION_TYPE__SCRIPT:
-				return SCRIPT_EDEFAULT == null ? script != null : !SCRIPT_EDEFAULT.equals(script);
-		}
-		return super.eIsSet(featureID);
-	}
+        switch (featureID) {
+            case ClojurePackage.CLOJURE_IMPLEMENTATION_TYPE__SCRIPT:
+                return SCRIPT_EDEFAULT == null ? script != null : !SCRIPT_EDEFAULT.equals(script);
+        }
+        return super.eIsSet(featureID);
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	@Override
 	public String toString() {
-		if (eIsProxy()) return super.toString();
+        if (eIsProxy()) return super.toString();
 
-		StringBuffer result = new StringBuffer(super.toString());
-		result.append(" (script: ");
-		result.append(script);
-		result.append(')');
-		return result.toString();
-	}
+        StringBuffer result = new StringBuffer(super.toString());
+        result.append(" (script: ");
+        result.append(script);
+        result.append(')');
+        return result.toString();
+    }
 
 } //ClojureImplementationTypeImpl

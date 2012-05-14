@@ -24,22 +24,22 @@ import org.switchyard.tools.models.switchyard1_0.transform.TransformPackage;
  */
 public class JAXBTransformTypeImpl extends TransformTypeImpl implements JAXBTransformType {
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	protected JAXBTransformTypeImpl() {
-		super();
-	}
+        super();
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	@Override
 	protected EClass eStaticClass() {
-		return TransformPackage.Literals.JAXB_TRANSFORM_TYPE;
-	}
+        return TransformPackage.Literals.JAXB_TRANSFORM_TYPE;
+    }
 
 } //JAXBTransformTypeImpl

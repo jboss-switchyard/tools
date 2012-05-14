@@ -4104,7 +4104,7 @@
       <details key="kind" value="elementOnly"/>
     </eAnnotations>
     <eStructuralFeatures xsi:type="ecore:EReference" name="endpointReference" upperBound="-1"
-        eType="ecore:EClass platform:/plugin/org.switchyard.tools.models.sca.core/model/addressing.ecore#//EndpointReferenceType"
+        eType="ecore:EClass ../../org.switchyard.tools.models.sca.core/model/addressing.ecore#//EndpointReferenceType"
         containment="true" resolveProxies="false">
       <eAnnotations source="http:///org/eclipse/emf/ecore/util/ExtendedMetaData">
         <details key="kind" value="element"/>
@@ -4127,7 +4127,7 @@
         <details key="name" value="wsdlElement"/>
       </eAnnotations>
     </eStructuralFeatures>
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="wsdlLocation" eType="ecore:EDataType platform:/plugin/org.switchyard.tools.models.sca.core/model/instance.ecore#//WsdlLocationType">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="wsdlLocation" eType="ecore:EDataType ../../org.switchyard.tools.models.sca.core/model/instance.ecore#//WsdlLocationType">
       <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
         <details key="documentation" value="&#xD;&#xA;      This attribute can be used to provide some hints on where&#xD;&#xA;      additional WSDL information for a given namespace can be&#xD;&#xA;      found in order to help with QName resolution&#xD;&#xA;      "/>
       </eAnnotations>

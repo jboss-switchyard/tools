@@ -22,22 +22,22 @@ import org.switchyard.tools.models.switchyard1_0.spring.SpringPackage;
  */
 public abstract class AbstractCamelContextFactoryBeanImpl extends IdentifiedTypeImpl implements AbstractCamelContextFactoryBean {
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	protected AbstractCamelContextFactoryBeanImpl() {
-		super();
-	}
+        super();
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	@Override
 	protected EClass eStaticClass() {
-		return SpringPackage.eINSTANCE.getAbstractCamelContextFactoryBean();
-	}
+        return SpringPackage.eINSTANCE.getAbstractCamelContextFactoryBean();
+    }
 
 } //AbstractCamelContextFactoryBeanImpl

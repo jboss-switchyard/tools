@@ -25,30 +25,30 @@ package org.switchyard.tools.models.switchyard1_0.spring;
  */
 public interface LanguageExpression extends Expression {
 	/**
-	 * Returns the value of the '<em><b>Language</b></em>' attribute.
-	 * <!-- begin-user-doc -->
+     * Returns the value of the '<em><b>Language</b></em>' attribute.
+     * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Language</em>' attribute isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Language</em>' attribute.
-	 * @see #setLanguage(String)
-	 * @see org.switchyard.tools.models.switchyard1_0.spring.SpringPackage#getLanguageExpression_Language()
-	 * @model dataType="org.eclipse.emf.ecore.xml.type.String" required="true"
-	 *        extendedMetaData="kind='attribute' name='language'"
-	 * @generated
-	 */
+     * @return the value of the '<em>Language</em>' attribute.
+     * @see #setLanguage(String)
+     * @see org.switchyard.tools.models.switchyard1_0.spring.SpringPackage#getLanguageExpression_Language()
+     * @model dataType="org.eclipse.emf.ecore.xml.type.String" required="true"
+     *        extendedMetaData="kind='attribute' name='language'"
+     * @generated
+     */
 	String getLanguage();
 
 	/**
-	 * Sets the value of the '{@link org.switchyard.tools.models.switchyard1_0.spring.LanguageExpression#getLanguage <em>Language</em>}' attribute.
-	 * <!-- begin-user-doc -->
+     * Sets the value of the '{@link org.switchyard.tools.models.switchyard1_0.spring.LanguageExpression#getLanguage <em>Language</em>}' attribute.
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Language</em>' attribute.
-	 * @see #getLanguage()
-	 * @generated
-	 */
+     * @param value the new value of the '<em>Language</em>' attribute.
+     * @see #getLanguage()
+     * @generated
+     */
 	void setLanguage(String value);
 
 } // LanguageExpression

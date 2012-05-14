@@ -32,6 +32,18 @@
 	        <propertyTab label="Main" category="SwitchyardSCA" 
 	            id="switchyard.main.tab">
 	        </propertyTab>
+        <propertyTab
+              afterTab="switchyard.main.tab"
+              category="SwitchyardSCA"
+              id="switchyard.binding.tab"
+              label="Bindings">
+        </propertyTab>
+        <propertyTab
+              afterTab="switchyard.binding.tab"
+              category="SwitchyardSCA"
+              id="switchyard.interface.tab"
+              label="Interface">
+        </propertyTab>
 	    </propertyTabs>
 	</extension>
 	 
@@ -39,10 +51,22 @@
 	    point="org.eclipse.ui.views.properties.tabbed.propertySections">
 	    <propertySections contributorId="org.switchyard.tools.ui.editor.diagram.PropertyContributor">
 	        <propertySection tab="switchyard.main.tab"            
-	         class="org.switchyard.tools.ui.editor.property.SwitchyardSCAPropertiesMain"
-	         filter="org.switchyard.tools.ui.editor.property.SwitchyardSCAPropertiesFilter"
+	         class="org.switchyard.tools.ui.editor.property.SwitchyardSCAPropertiesMainSection"
+	         filter="org.switchyard.tools.ui.editor.property.SwitchyardSCAPropertiesMainFilter"
 	         id="switchyard.main.tab.names">
 	        </propertySection>
+         <propertySection
+               class="org.switchyard.tools.ui.editor.property.SwitchyardSCAPropertiesBindingsSection"
+               filter="org.switchyard.tools.ui.editor.property.SwitchyardSCAPropertiesBindingsFilter"
+               id="switchyard.binding.tab.details"
+               tab="switchyard.binding.tab">
+         </propertySection>
+         <propertySection
+               class="org.switchyard.tools.ui.editor.property.SwitchyardSCAPropertiesInterfacesSection"
+               filter="org.switchyard.tools.ui.editor.property.SwitchyardSCAPropertiesInterfacesFilter"
+               id="switchyard.interface.tab.details"
+               tab="switchyard.interface.tab">
+         </propertySection>
 	    </propertySections>
 	</extension>
  <extension
@@ -61,6 +85,7 @@
           contributorClass="org.eclipse.graphiti.ui.editor.DiagramEditorActionBarContributor"
           default="true"
           filenames="switchyard.xml"
+          icon="icons/16/switchyard_icon_16px.png"
           id="org.switchyard.tools.ui.editor.switchyard.editor"
           name="Switchyard Visual Editor">
        <contentTypeBinding
@@ -72,6 +97,7 @@
           contributorClass="org.switchyard.tools.ui.editor.impl.MultiPageEditorContributor"
           default="true"
           filenames="switchyard.xml"
+          icon="icons/16/switchyard_icon_16px.png"
           id="org.switchyard.tools.ui.editor.switchyard.editor.multi"
           name="Switchyard Visual Multipage Editor">
        <contentTypeBinding

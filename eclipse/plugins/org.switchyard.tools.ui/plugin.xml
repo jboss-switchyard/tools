@@ -619,6 +619,48 @@
               type="org.eclipse.ui.views.properties.IPropertySource">
         </adapter>
      </factory>
+     <factory
+           adaptableType="org.eclipse.soa.sca.sca1_1.model.sca.Component"
+           class="org.switchyard.tools.ui.PlatformResourceAdapterFactory">
+        <adapter
+              type="org.eclipse.core.resources.IResource">
+        </adapter>
+     </factory>
+     <factory
+           adaptableType="org.eclipse.soa.sca.sca1_1.model.sca.Service"
+           class="org.switchyard.tools.ui.PlatformResourceAdapterFactory">
+        <adapter
+              type="org.eclipse.core.resources.IResource">
+        </adapter>
+     </factory>
+     <factory
+           adaptableType="org.eclipse.soa.sca.sca1_1.model.sca.Reference"
+           class="org.switchyard.tools.ui.PlatformResourceAdapterFactory">
+        <adapter
+              type="org.eclipse.core.resources.IResource">
+        </adapter>
+     </factory>
+     <factory
+           adaptableType="org.eclipse.soa.sca.sca1_1.model.sca.Interface"
+           class="org.switchyard.tools.ui.PlatformResourceAdapterFactory">
+        <adapter
+              type="org.eclipse.core.resources.IResource">
+        </adapter>
+     </factory>
+     <factory
+           adaptableType="org.eclipse.soa.sca.sca1_1.model.sca.ComponentService"
+           class="org.switchyard.tools.ui.PlatformResourceAdapterFactory">
+        <adapter
+              type="org.eclipse.core.resources.IResource">
+        </adapter>
+     </factory>
+     <factory
+           adaptableType="org.eclipse.soa.sca.sca1_1.model.sca.ComponentReference"
+           class="org.switchyard.tools.ui.PlatformResourceAdapterFactory">
+        <adapter
+              type="org.eclipse.core.resources.IResource">
+        </adapter>
+     </factory>
   </extension>
 
 </plugin>

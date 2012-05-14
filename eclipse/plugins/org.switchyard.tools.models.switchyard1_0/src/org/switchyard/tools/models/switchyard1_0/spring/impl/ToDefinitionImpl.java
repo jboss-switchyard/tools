@@ -38,220 +38,220 @@ import org.switchyard.tools.models.switchyard1_0.spring.ToDefinition;
  */
 public class ToDefinitionImpl extends SendDefinitionImpl implements ToDefinition {
 	/**
-	 * The default value of the '{@link #getPattern() <em>Pattern</em>}' attribute.
-	 * <!-- begin-user-doc -->
+     * The default value of the '{@link #getPattern() <em>Pattern</em>}' attribute.
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #getPattern()
-	 * @generated
-	 * @ordered
-	 */
+     * @see #getPattern()
+     * @generated
+     * @ordered
+     */
 	protected static final ExchangePattern PATTERN_EDEFAULT = ExchangePattern.IN_ONLY;
 
 	/**
-	 * The cached value of the '{@link #getPattern() <em>Pattern</em>}' attribute.
-	 * <!-- begin-user-doc -->
+     * The cached value of the '{@link #getPattern() <em>Pattern</em>}' attribute.
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #getPattern()
-	 * @generated
-	 * @ordered
-	 */
+     * @see #getPattern()
+     * @generated
+     * @ordered
+     */
 	protected ExchangePattern pattern = PATTERN_EDEFAULT;
 
 	/**
-	 * This is true if the Pattern attribute has been set.
-	 * <!-- begin-user-doc -->
+     * This is true if the Pattern attribute has been set.
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
+     * @generated
+     * @ordered
+     */
 	protected boolean patternESet;
 
 	/**
-	 * The cached value of the '{@link #getAnyAttribute3() <em>Any Attribute3</em>}' attribute list.
-	 * <!-- begin-user-doc -->
+     * The cached value of the '{@link #getAnyAttribute3() <em>Any Attribute3</em>}' attribute list.
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #getAnyAttribute3()
-	 * @generated
-	 * @ordered
-	 */
+     * @see #getAnyAttribute3()
+     * @generated
+     * @ordered
+     */
 	protected FeatureMap anyAttribute3;
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	protected ToDefinitionImpl() {
-		super();
-	}
+        super();
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	@Override
 	protected EClass eStaticClass() {
-		return SpringPackage.eINSTANCE.getToDefinition();
-	}
+        return SpringPackage.eINSTANCE.getToDefinition();
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public ExchangePattern getPattern() {
-		return pattern;
-	}
+        return pattern;
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public void setPattern(ExchangePattern newPattern) {
-		ExchangePattern oldPattern = pattern;
-		pattern = newPattern == null ? PATTERN_EDEFAULT : newPattern;
-		boolean oldPatternESet = patternESet;
-		patternESet = true;
-		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, SpringPackage.TO_DEFINITION__PATTERN, oldPattern, pattern, !oldPatternESet));
-	}
+        ExchangePattern oldPattern = pattern;
+        pattern = newPattern == null ? PATTERN_EDEFAULT : newPattern;
+        boolean oldPatternESet = patternESet;
+        patternESet = true;
+        if (eNotificationRequired())
+            eNotify(new ENotificationImpl(this, Notification.SET, SpringPackage.TO_DEFINITION__PATTERN, oldPattern, pattern, !oldPatternESet));
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public void unsetPattern() {
-		ExchangePattern oldPattern = pattern;
-		boolean oldPatternESet = patternESet;
-		pattern = PATTERN_EDEFAULT;
-		patternESet = false;
-		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.UNSET, SpringPackage.TO_DEFINITION__PATTERN, oldPattern, PATTERN_EDEFAULT, oldPatternESet));
-	}
+        ExchangePattern oldPattern = pattern;
+        boolean oldPatternESet = patternESet;
+        pattern = PATTERN_EDEFAULT;
+        patternESet = false;
+        if (eNotificationRequired())
+            eNotify(new ENotificationImpl(this, Notification.UNSET, SpringPackage.TO_DEFINITION__PATTERN, oldPattern, PATTERN_EDEFAULT, oldPatternESet));
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public boolean isSetPattern() {
-		return patternESet;
-	}
+        return patternESet;
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public FeatureMap getAnyAttribute3() {
-		if (anyAttribute3 == null) {
-			anyAttribute3 = new BasicFeatureMap(this, SpringPackage.TO_DEFINITION__ANY_ATTRIBUTE3);
-		}
-		return anyAttribute3;
-	}
+        if (anyAttribute3 == null) {
+            anyAttribute3 = new BasicFeatureMap(this, SpringPackage.TO_DEFINITION__ANY_ATTRIBUTE3);
+        }
+        return anyAttribute3;
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	@Override
 	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
-		switch (featureID) {
-			case SpringPackage.TO_DEFINITION__ANY_ATTRIBUTE3:
-				return ((InternalEList<?>)getAnyAttribute3()).basicRemove(otherEnd, msgs);
-		}
-		return super.eInverseRemove(otherEnd, featureID, msgs);
-	}
+        switch (featureID) {
+            case SpringPackage.TO_DEFINITION__ANY_ATTRIBUTE3:
+                return ((InternalEList<?>)getAnyAttribute3()).basicRemove(otherEnd, msgs);
+        }
+        return super.eInverseRemove(otherEnd, featureID, msgs);
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
-		switch (featureID) {
-			case SpringPackage.TO_DEFINITION__PATTERN:
-				return getPattern();
-			case SpringPackage.TO_DEFINITION__ANY_ATTRIBUTE3:
-				if (coreType) return getAnyAttribute3();
-				return ((FeatureMap.Internal)getAnyAttribute3()).getWrapper();
-		}
-		return super.eGet(featureID, resolve, coreType);
-	}
+        switch (featureID) {
+            case SpringPackage.TO_DEFINITION__PATTERN:
+                return getPattern();
+            case SpringPackage.TO_DEFINITION__ANY_ATTRIBUTE3:
+                if (coreType) return getAnyAttribute3();
+                return ((FeatureMap.Internal)getAnyAttribute3()).getWrapper();
+        }
+        return super.eGet(featureID, resolve, coreType);
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	@Override
 	public void eSet(int featureID, Object newValue) {
-		switch (featureID) {
-			case SpringPackage.TO_DEFINITION__PATTERN:
-				setPattern((ExchangePattern)newValue);
-				return;
-			case SpringPackage.TO_DEFINITION__ANY_ATTRIBUTE3:
-				((FeatureMap.Internal)getAnyAttribute3()).set(newValue);
-				return;
-		}
-		super.eSet(featureID, newValue);
-	}
+        switch (featureID) {
+            case SpringPackage.TO_DEFINITION__PATTERN:
+                setPattern((ExchangePattern)newValue);
+                return;
+            case SpringPackage.TO_DEFINITION__ANY_ATTRIBUTE3:
+                ((FeatureMap.Internal)getAnyAttribute3()).set(newValue);
+                return;
+        }
+        super.eSet(featureID, newValue);
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	@Override
 	public void eUnset(int featureID) {
-		switch (featureID) {
-			case SpringPackage.TO_DEFINITION__PATTERN:
-				unsetPattern();
-				return;
-			case SpringPackage.TO_DEFINITION__ANY_ATTRIBUTE3:
-				getAnyAttribute3().clear();
-				return;
-		}
-		super.eUnset(featureID);
-	}
+        switch (featureID) {
+            case SpringPackage.TO_DEFINITION__PATTERN:
+                unsetPattern();
+                return;
+            case SpringPackage.TO_DEFINITION__ANY_ATTRIBUTE3:
+                getAnyAttribute3().clear();
+                return;
+        }
+        super.eUnset(featureID);
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	@Override
 	public boolean eIsSet(int featureID) {
-		switch (featureID) {
-			case SpringPackage.TO_DEFINITION__PATTERN:
-				return isSetPattern();
-			case SpringPackage.TO_DEFINITION__ANY_ATTRIBUTE3:
-				return anyAttribute3 != null && !anyAttribute3.isEmpty();
-		}
-		return super.eIsSet(featureID);
-	}
+        switch (featureID) {
+            case SpringPackage.TO_DEFINITION__PATTERN:
+                return isSetPattern();
+            case SpringPackage.TO_DEFINITION__ANY_ATTRIBUTE3:
+                return anyAttribute3 != null && !anyAttribute3.isEmpty();
+        }
+        return super.eIsSet(featureID);
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	@Override
 	public String toString() {
-		if (eIsProxy()) return super.toString();
+        if (eIsProxy()) return super.toString();
 
-		StringBuffer result = new StringBuffer(super.toString());
-		result.append(" (pattern: ");
-		if (patternESet) result.append(pattern); else result.append("<unset>");
-		result.append(", anyAttribute3: ");
-		result.append(anyAttribute3);
-		result.append(')');
-		return result.toString();
-	}
+        StringBuffer result = new StringBuffer(super.toString());
+        result.append(" (pattern: ");
+        if (patternESet) result.append(pattern); else result.append("<unset>");
+        result.append(", anyAttribute3: ");
+        result.append(anyAttribute3);
+        result.append(')');
+        return result.toString();
+    }
 
 } //ToDefinitionImpl

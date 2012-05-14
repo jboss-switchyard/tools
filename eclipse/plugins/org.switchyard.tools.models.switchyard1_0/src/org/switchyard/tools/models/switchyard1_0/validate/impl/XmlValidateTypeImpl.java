@@ -24,22 +24,22 @@ import org.switchyard.tools.models.switchyard1_0.validate.XmlValidateType;
  */
 public class XmlValidateTypeImpl extends ValidateTypeImpl implements XmlValidateType {
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	protected XmlValidateTypeImpl() {
-		super();
-	}
+        super();
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	@Override
 	protected EClass eStaticClass() {
-		return ValidatePackage.Literals.XML_VALIDATE_TYPE;
-	}
+        return ValidatePackage.Literals.XML_VALIDATE_TYPE;
+    }
 
 } //XmlValidateTypeImpl

@@ -53,398 +53,398 @@ import org.switchyard.tools.models.switchyard1_0.rules.RulesPackage;
  */
 public class DocumentRootImpl extends EObjectImpl implements DocumentRoot {
 	/**
-	 * The cached value of the '{@link #getMixed() <em>Mixed</em>}' attribute list.
-	 * <!-- begin-user-doc -->
+     * The cached value of the '{@link #getMixed() <em>Mixed</em>}' attribute list.
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #getMixed()
-	 * @generated
-	 * @ordered
-	 */
+     * @see #getMixed()
+     * @generated
+     * @ordered
+     */
 	protected FeatureMap mixed;
 
 	/**
-	 * The cached value of the '{@link #getXMLNSPrefixMap() <em>XMLNS Prefix Map</em>}' map.
-	 * <!-- begin-user-doc -->
+     * The cached value of the '{@link #getXMLNSPrefixMap() <em>XMLNS Prefix Map</em>}' map.
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #getXMLNSPrefixMap()
-	 * @generated
-	 * @ordered
-	 */
+     * @see #getXMLNSPrefixMap()
+     * @generated
+     * @ordered
+     */
 	protected EMap<String, String> xMLNSPrefixMap;
 
 	/**
-	 * The cached value of the '{@link #getXSISchemaLocation() <em>XSI Schema Location</em>}' map.
-	 * <!-- begin-user-doc -->
+     * The cached value of the '{@link #getXSISchemaLocation() <em>XSI Schema Location</em>}' map.
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #getXSISchemaLocation()
-	 * @generated
-	 * @ordered
-	 */
+     * @see #getXSISchemaLocation()
+     * @generated
+     * @ordered
+     */
 	protected EMap<String, String> xSISchemaLocation;
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	protected DocumentRootImpl() {
-		super();
-	}
+        super();
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	@Override
 	protected EClass eStaticClass() {
-		return RulesPackage.Literals.DOCUMENT_ROOT;
-	}
+        return RulesPackage.Literals.DOCUMENT_ROOT;
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public FeatureMap getMixed() {
-		if (mixed == null) {
-			mixed = new BasicFeatureMap(this, RulesPackage.DOCUMENT_ROOT__MIXED);
-		}
-		return mixed;
-	}
+        if (mixed == null) {
+            mixed = new BasicFeatureMap(this, RulesPackage.DOCUMENT_ROOT__MIXED);
+        }
+        return mixed;
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public EMap<String, String> getXMLNSPrefixMap() {
-		if (xMLNSPrefixMap == null) {
-			xMLNSPrefixMap = new EcoreEMap<String,String>(EcorePackage.Literals.ESTRING_TO_STRING_MAP_ENTRY, EStringToStringMapEntryImpl.class, this, RulesPackage.DOCUMENT_ROOT__XMLNS_PREFIX_MAP);
-		}
-		return xMLNSPrefixMap;
-	}
+        if (xMLNSPrefixMap == null) {
+            xMLNSPrefixMap = new EcoreEMap<String,String>(EcorePackage.Literals.ESTRING_TO_STRING_MAP_ENTRY, EStringToStringMapEntryImpl.class, this, RulesPackage.DOCUMENT_ROOT__XMLNS_PREFIX_MAP);
+        }
+        return xMLNSPrefixMap;
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public EMap<String, String> getXSISchemaLocation() {
-		if (xSISchemaLocation == null) {
-			xSISchemaLocation = new EcoreEMap<String,String>(EcorePackage.Literals.ESTRING_TO_STRING_MAP_ENTRY, EStringToStringMapEntryImpl.class, this, RulesPackage.DOCUMENT_ROOT__XSI_SCHEMA_LOCATION);
-		}
-		return xSISchemaLocation;
-	}
+        if (xSISchemaLocation == null) {
+            xSISchemaLocation = new EcoreEMap<String,String>(EcorePackage.Literals.ESTRING_TO_STRING_MAP_ENTRY, EStringToStringMapEntryImpl.class, this, RulesPackage.DOCUMENT_ROOT__XSI_SCHEMA_LOCATION);
+        }
+        return xSISchemaLocation;
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public ActionType1 getAction() {
-		return (ActionType1)getMixed().get(RulesPackage.Literals.DOCUMENT_ROOT__ACTION, true);
-	}
+        return (ActionType1)getMixed().get(RulesPackage.Literals.DOCUMENT_ROOT__ACTION, true);
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public NotificationChain basicSetAction(ActionType1 newAction, NotificationChain msgs) {
-		return ((FeatureMap.Internal)getMixed()).basicAdd(RulesPackage.Literals.DOCUMENT_ROOT__ACTION, newAction, msgs);
-	}
+        return ((FeatureMap.Internal)getMixed()).basicAdd(RulesPackage.Literals.DOCUMENT_ROOT__ACTION, newAction, msgs);
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public void setAction(ActionType1 newAction) {
-		((FeatureMap.Internal)getMixed()).set(RulesPackage.Literals.DOCUMENT_ROOT__ACTION, newAction);
-	}
+        ((FeatureMap.Internal)getMixed()).set(RulesPackage.Literals.DOCUMENT_ROOT__ACTION, newAction);
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public AuditType getAudit() {
-		return (AuditType)getMixed().get(RulesPackage.Literals.DOCUMENT_ROOT__AUDIT, true);
-	}
+        return (AuditType)getMixed().get(RulesPackage.Literals.DOCUMENT_ROOT__AUDIT, true);
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public NotificationChain basicSetAudit(AuditType newAudit, NotificationChain msgs) {
-		return ((FeatureMap.Internal)getMixed()).basicAdd(RulesPackage.Literals.DOCUMENT_ROOT__AUDIT, newAudit, msgs);
-	}
+        return ((FeatureMap.Internal)getMixed()).basicAdd(RulesPackage.Literals.DOCUMENT_ROOT__AUDIT, newAudit, msgs);
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public void setAudit(AuditType newAudit) {
-		((FeatureMap.Internal)getMixed()).set(RulesPackage.Literals.DOCUMENT_ROOT__AUDIT, newAudit);
-	}
+        ((FeatureMap.Internal)getMixed()).set(RulesPackage.Literals.DOCUMENT_ROOT__AUDIT, newAudit);
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public ChannelType getChannel() {
-		return (ChannelType)getMixed().get(RulesPackage.Literals.DOCUMENT_ROOT__CHANNEL, true);
-	}
+        return (ChannelType)getMixed().get(RulesPackage.Literals.DOCUMENT_ROOT__CHANNEL, true);
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public NotificationChain basicSetChannel(ChannelType newChannel, NotificationChain msgs) {
-		return ((FeatureMap.Internal)getMixed()).basicAdd(RulesPackage.Literals.DOCUMENT_ROOT__CHANNEL, newChannel, msgs);
-	}
+        return ((FeatureMap.Internal)getMixed()).basicAdd(RulesPackage.Literals.DOCUMENT_ROOT__CHANNEL, newChannel, msgs);
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public void setChannel(ChannelType newChannel) {
-		((FeatureMap.Internal)getMixed()).set(RulesPackage.Literals.DOCUMENT_ROOT__CHANNEL, newChannel);
-	}
+        ((FeatureMap.Internal)getMixed()).set(RulesPackage.Literals.DOCUMENT_ROOT__CHANNEL, newChannel);
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public RulesImplementationType getImplementationRules() {
-		return (RulesImplementationType)getMixed().get(RulesPackage.Literals.DOCUMENT_ROOT__IMPLEMENTATION_RULES, true);
-	}
+        return (RulesImplementationType)getMixed().get(RulesPackage.Literals.DOCUMENT_ROOT__IMPLEMENTATION_RULES, true);
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public NotificationChain basicSetImplementationRules(RulesImplementationType newImplementationRules, NotificationChain msgs) {
-		return ((FeatureMap.Internal)getMixed()).basicAdd(RulesPackage.Literals.DOCUMENT_ROOT__IMPLEMENTATION_RULES, newImplementationRules, msgs);
-	}
+        return ((FeatureMap.Internal)getMixed()).basicAdd(RulesPackage.Literals.DOCUMENT_ROOT__IMPLEMENTATION_RULES, newImplementationRules, msgs);
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public void setImplementationRules(RulesImplementationType newImplementationRules) {
-		((FeatureMap.Internal)getMixed()).set(RulesPackage.Literals.DOCUMENT_ROOT__IMPLEMENTATION_RULES, newImplementationRules);
-	}
+        ((FeatureMap.Internal)getMixed()).set(RulesPackage.Literals.DOCUMENT_ROOT__IMPLEMENTATION_RULES, newImplementationRules);
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public ResourceType getResource() {
-		return (ResourceType)getMixed().get(RulesPackage.Literals.DOCUMENT_ROOT__RESOURCE, true);
-	}
+        return (ResourceType)getMixed().get(RulesPackage.Literals.DOCUMENT_ROOT__RESOURCE, true);
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public NotificationChain basicSetResource(ResourceType newResource, NotificationChain msgs) {
-		return ((FeatureMap.Internal)getMixed()).basicAdd(RulesPackage.Literals.DOCUMENT_ROOT__RESOURCE, newResource, msgs);
-	}
+        return ((FeatureMap.Internal)getMixed()).basicAdd(RulesPackage.Literals.DOCUMENT_ROOT__RESOURCE, newResource, msgs);
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public void setResource(ResourceType newResource) {
-		((FeatureMap.Internal)getMixed()).set(RulesPackage.Literals.DOCUMENT_ROOT__RESOURCE, newResource);
-	}
+        ((FeatureMap.Internal)getMixed()).set(RulesPackage.Literals.DOCUMENT_ROOT__RESOURCE, newResource);
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	@Override
 	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
-		switch (featureID) {
-			case RulesPackage.DOCUMENT_ROOT__MIXED:
-				return ((InternalEList<?>)getMixed()).basicRemove(otherEnd, msgs);
-			case RulesPackage.DOCUMENT_ROOT__XMLNS_PREFIX_MAP:
-				return ((InternalEList<?>)getXMLNSPrefixMap()).basicRemove(otherEnd, msgs);
-			case RulesPackage.DOCUMENT_ROOT__XSI_SCHEMA_LOCATION:
-				return ((InternalEList<?>)getXSISchemaLocation()).basicRemove(otherEnd, msgs);
-			case RulesPackage.DOCUMENT_ROOT__ACTION:
-				return basicSetAction(null, msgs);
-			case RulesPackage.DOCUMENT_ROOT__AUDIT:
-				return basicSetAudit(null, msgs);
-			case RulesPackage.DOCUMENT_ROOT__CHANNEL:
-				return basicSetChannel(null, msgs);
-			case RulesPackage.DOCUMENT_ROOT__IMPLEMENTATION_RULES:
-				return basicSetImplementationRules(null, msgs);
-			case RulesPackage.DOCUMENT_ROOT__RESOURCE:
-				return basicSetResource(null, msgs);
-		}
-		return super.eInverseRemove(otherEnd, featureID, msgs);
-	}
+        switch (featureID) {
+            case RulesPackage.DOCUMENT_ROOT__MIXED:
+                return ((InternalEList<?>)getMixed()).basicRemove(otherEnd, msgs);
+            case RulesPackage.DOCUMENT_ROOT__XMLNS_PREFIX_MAP:
+                return ((InternalEList<?>)getXMLNSPrefixMap()).basicRemove(otherEnd, msgs);
+            case RulesPackage.DOCUMENT_ROOT__XSI_SCHEMA_LOCATION:
+                return ((InternalEList<?>)getXSISchemaLocation()).basicRemove(otherEnd, msgs);
+            case RulesPackage.DOCUMENT_ROOT__ACTION:
+                return basicSetAction(null, msgs);
+            case RulesPackage.DOCUMENT_ROOT__AUDIT:
+                return basicSetAudit(null, msgs);
+            case RulesPackage.DOCUMENT_ROOT__CHANNEL:
+                return basicSetChannel(null, msgs);
+            case RulesPackage.DOCUMENT_ROOT__IMPLEMENTATION_RULES:
+                return basicSetImplementationRules(null, msgs);
+            case RulesPackage.DOCUMENT_ROOT__RESOURCE:
+                return basicSetResource(null, msgs);
+        }
+        return super.eInverseRemove(otherEnd, featureID, msgs);
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
-		switch (featureID) {
-			case RulesPackage.DOCUMENT_ROOT__MIXED:
-				if (coreType) return getMixed();
-				return ((FeatureMap.Internal)getMixed()).getWrapper();
-			case RulesPackage.DOCUMENT_ROOT__XMLNS_PREFIX_MAP:
-				if (coreType) return getXMLNSPrefixMap();
-				else return getXMLNSPrefixMap().map();
-			case RulesPackage.DOCUMENT_ROOT__XSI_SCHEMA_LOCATION:
-				if (coreType) return getXSISchemaLocation();
-				else return getXSISchemaLocation().map();
-			case RulesPackage.DOCUMENT_ROOT__ACTION:
-				return getAction();
-			case RulesPackage.DOCUMENT_ROOT__AUDIT:
-				return getAudit();
-			case RulesPackage.DOCUMENT_ROOT__CHANNEL:
-				return getChannel();
-			case RulesPackage.DOCUMENT_ROOT__IMPLEMENTATION_RULES:
-				return getImplementationRules();
-			case RulesPackage.DOCUMENT_ROOT__RESOURCE:
-				return getResource();
-		}
-		return super.eGet(featureID, resolve, coreType);
-	}
+        switch (featureID) {
+            case RulesPackage.DOCUMENT_ROOT__MIXED:
+                if (coreType) return getMixed();
+                return ((FeatureMap.Internal)getMixed()).getWrapper();
+            case RulesPackage.DOCUMENT_ROOT__XMLNS_PREFIX_MAP:
+                if (coreType) return getXMLNSPrefixMap();
+                else return getXMLNSPrefixMap().map();
+            case RulesPackage.DOCUMENT_ROOT__XSI_SCHEMA_LOCATION:
+                if (coreType) return getXSISchemaLocation();
+                else return getXSISchemaLocation().map();
+            case RulesPackage.DOCUMENT_ROOT__ACTION:
+                return getAction();
+            case RulesPackage.DOCUMENT_ROOT__AUDIT:
+                return getAudit();
+            case RulesPackage.DOCUMENT_ROOT__CHANNEL:
+                return getChannel();
+            case RulesPackage.DOCUMENT_ROOT__IMPLEMENTATION_RULES:
+                return getImplementationRules();
+            case RulesPackage.DOCUMENT_ROOT__RESOURCE:
+                return getResource();
+        }
+        return super.eGet(featureID, resolve, coreType);
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	@Override
 	public void eSet(int featureID, Object newValue) {
-		switch (featureID) {
-			case RulesPackage.DOCUMENT_ROOT__MIXED:
-				((FeatureMap.Internal)getMixed()).set(newValue);
-				return;
-			case RulesPackage.DOCUMENT_ROOT__XMLNS_PREFIX_MAP:
-				((EStructuralFeature.Setting)getXMLNSPrefixMap()).set(newValue);
-				return;
-			case RulesPackage.DOCUMENT_ROOT__XSI_SCHEMA_LOCATION:
-				((EStructuralFeature.Setting)getXSISchemaLocation()).set(newValue);
-				return;
-			case RulesPackage.DOCUMENT_ROOT__ACTION:
-				setAction((ActionType1)newValue);
-				return;
-			case RulesPackage.DOCUMENT_ROOT__AUDIT:
-				setAudit((AuditType)newValue);
-				return;
-			case RulesPackage.DOCUMENT_ROOT__CHANNEL:
-				setChannel((ChannelType)newValue);
-				return;
-			case RulesPackage.DOCUMENT_ROOT__IMPLEMENTATION_RULES:
-				setImplementationRules((RulesImplementationType)newValue);
-				return;
-			case RulesPackage.DOCUMENT_ROOT__RESOURCE:
-				setResource((ResourceType)newValue);
-				return;
-		}
-		super.eSet(featureID, newValue);
-	}
+        switch (featureID) {
+            case RulesPackage.DOCUMENT_ROOT__MIXED:
+                ((FeatureMap.Internal)getMixed()).set(newValue);
+                return;
+            case RulesPackage.DOCUMENT_ROOT__XMLNS_PREFIX_MAP:
+                ((EStructuralFeature.Setting)getXMLNSPrefixMap()).set(newValue);
+                return;
+            case RulesPackage.DOCUMENT_ROOT__XSI_SCHEMA_LOCATION:
+                ((EStructuralFeature.Setting)getXSISchemaLocation()).set(newValue);
+                return;
+            case RulesPackage.DOCUMENT_ROOT__ACTION:
+                setAction((ActionType1)newValue);
+                return;
+            case RulesPackage.DOCUMENT_ROOT__AUDIT:
+                setAudit((AuditType)newValue);
+                return;
+            case RulesPackage.DOCUMENT_ROOT__CHANNEL:
+                setChannel((ChannelType)newValue);
+                return;
+            case RulesPackage.DOCUMENT_ROOT__IMPLEMENTATION_RULES:
+                setImplementationRules((RulesImplementationType)newValue);
+                return;
+            case RulesPackage.DOCUMENT_ROOT__RESOURCE:
+                setResource((ResourceType)newValue);
+                return;
+        }
+        super.eSet(featureID, newValue);
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	@Override
 	public void eUnset(int featureID) {
-		switch (featureID) {
-			case RulesPackage.DOCUMENT_ROOT__MIXED:
-				getMixed().clear();
-				return;
-			case RulesPackage.DOCUMENT_ROOT__XMLNS_PREFIX_MAP:
-				getXMLNSPrefixMap().clear();
-				return;
-			case RulesPackage.DOCUMENT_ROOT__XSI_SCHEMA_LOCATION:
-				getXSISchemaLocation().clear();
-				return;
-			case RulesPackage.DOCUMENT_ROOT__ACTION:
-				setAction((ActionType1)null);
-				return;
-			case RulesPackage.DOCUMENT_ROOT__AUDIT:
-				setAudit((AuditType)null);
-				return;
-			case RulesPackage.DOCUMENT_ROOT__CHANNEL:
-				setChannel((ChannelType)null);
-				return;
-			case RulesPackage.DOCUMENT_ROOT__IMPLEMENTATION_RULES:
-				setImplementationRules((RulesImplementationType)null);
-				return;
-			case RulesPackage.DOCUMENT_ROOT__RESOURCE:
-				setResource((ResourceType)null);
-				return;
-		}
-		super.eUnset(featureID);
-	}
+        switch (featureID) {
+            case RulesPackage.DOCUMENT_ROOT__MIXED:
+                getMixed().clear();
+                return;
+            case RulesPackage.DOCUMENT_ROOT__XMLNS_PREFIX_MAP:
+                getXMLNSPrefixMap().clear();
+                return;
+            case RulesPackage.DOCUMENT_ROOT__XSI_SCHEMA_LOCATION:
+                getXSISchemaLocation().clear();
+                return;
+            case RulesPackage.DOCUMENT_ROOT__ACTION:
+                setAction((ActionType1)null);
+                return;
+            case RulesPackage.DOCUMENT_ROOT__AUDIT:
+                setAudit((AuditType)null);
+                return;
+            case RulesPackage.DOCUMENT_ROOT__CHANNEL:
+                setChannel((ChannelType)null);
+                return;
+            case RulesPackage.DOCUMENT_ROOT__IMPLEMENTATION_RULES:
+                setImplementationRules((RulesImplementationType)null);
+                return;
+            case RulesPackage.DOCUMENT_ROOT__RESOURCE:
+                setResource((ResourceType)null);
+                return;
+        }
+        super.eUnset(featureID);
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	@Override
 	public boolean eIsSet(int featureID) {
-		switch (featureID) {
-			case RulesPackage.DOCUMENT_ROOT__MIXED:
-				return mixed != null && !mixed.isEmpty();
-			case RulesPackage.DOCUMENT_ROOT__XMLNS_PREFIX_MAP:
-				return xMLNSPrefixMap != null && !xMLNSPrefixMap.isEmpty();
-			case RulesPackage.DOCUMENT_ROOT__XSI_SCHEMA_LOCATION:
-				return xSISchemaLocation != null && !xSISchemaLocation.isEmpty();
-			case RulesPackage.DOCUMENT_ROOT__ACTION:
-				return getAction() != null;
-			case RulesPackage.DOCUMENT_ROOT__AUDIT:
-				return getAudit() != null;
-			case RulesPackage.DOCUMENT_ROOT__CHANNEL:
-				return getChannel() != null;
-			case RulesPackage.DOCUMENT_ROOT__IMPLEMENTATION_RULES:
-				return getImplementationRules() != null;
-			case RulesPackage.DOCUMENT_ROOT__RESOURCE:
-				return getResource() != null;
-		}
-		return super.eIsSet(featureID);
-	}
+        switch (featureID) {
+            case RulesPackage.DOCUMENT_ROOT__MIXED:
+                return mixed != null && !mixed.isEmpty();
+            case RulesPackage.DOCUMENT_ROOT__XMLNS_PREFIX_MAP:
+                return xMLNSPrefixMap != null && !xMLNSPrefixMap.isEmpty();
+            case RulesPackage.DOCUMENT_ROOT__XSI_SCHEMA_LOCATION:
+                return xSISchemaLocation != null && !xSISchemaLocation.isEmpty();
+            case RulesPackage.DOCUMENT_ROOT__ACTION:
+                return getAction() != null;
+            case RulesPackage.DOCUMENT_ROOT__AUDIT:
+                return getAudit() != null;
+            case RulesPackage.DOCUMENT_ROOT__CHANNEL:
+                return getChannel() != null;
+            case RulesPackage.DOCUMENT_ROOT__IMPLEMENTATION_RULES:
+                return getImplementationRules() != null;
+            case RulesPackage.DOCUMENT_ROOT__RESOURCE:
+                return getResource() != null;
+        }
+        return super.eIsSet(featureID);
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	@Override
 	public String toString() {
-		if (eIsProxy()) return super.toString();
+        if (eIsProxy()) return super.toString();
 
-		StringBuffer result = new StringBuffer(super.toString());
-		result.append(" (mixed: ");
-		result.append(mixed);
-		result.append(')');
-		return result.toString();
-	}
+        StringBuffer result = new StringBuffer(super.toString());
+        result.append(" (mixed: ");
+        result.append(mixed);
+        result.append(')');
+        return result.toString();
+    }
 
 } //DocumentRootImpl

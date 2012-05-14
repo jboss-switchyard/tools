@@ -37,186 +37,186 @@ import org.switchyard.tools.models.switchyard1_0.spring.SpringPackage;
  */
 public class SetOutHeaderDefinitionImpl extends NoOutputExpressionNodeImpl implements SetOutHeaderDefinition {
 	/**
-	 * The default value of the '{@link #getHeaderName() <em>Header Name</em>}' attribute.
-	 * <!-- begin-user-doc -->
+     * The default value of the '{@link #getHeaderName() <em>Header Name</em>}' attribute.
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #getHeaderName()
-	 * @generated
-	 * @ordered
-	 */
+     * @see #getHeaderName()
+     * @generated
+     * @ordered
+     */
 	protected static final String HEADER_NAME_EDEFAULT = null;
 
 	/**
-	 * The cached value of the '{@link #getHeaderName() <em>Header Name</em>}' attribute.
-	 * <!-- begin-user-doc -->
+     * The cached value of the '{@link #getHeaderName() <em>Header Name</em>}' attribute.
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #getHeaderName()
-	 * @generated
-	 * @ordered
-	 */
+     * @see #getHeaderName()
+     * @generated
+     * @ordered
+     */
 	protected String headerName = HEADER_NAME_EDEFAULT;
 
 	/**
-	 * The cached value of the '{@link #getAnyAttribute3() <em>Any Attribute3</em>}' attribute list.
-	 * <!-- begin-user-doc -->
+     * The cached value of the '{@link #getAnyAttribute3() <em>Any Attribute3</em>}' attribute list.
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #getAnyAttribute3()
-	 * @generated
-	 * @ordered
-	 */
+     * @see #getAnyAttribute3()
+     * @generated
+     * @ordered
+     */
 	protected FeatureMap anyAttribute3;
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	protected SetOutHeaderDefinitionImpl() {
-		super();
-	}
+        super();
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	@Override
 	protected EClass eStaticClass() {
-		return SpringPackage.eINSTANCE.getSetOutHeaderDefinition();
-	}
+        return SpringPackage.eINSTANCE.getSetOutHeaderDefinition();
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public String getHeaderName() {
-		return headerName;
-	}
+        return headerName;
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public void setHeaderName(String newHeaderName) {
-		String oldHeaderName = headerName;
-		headerName = newHeaderName;
-		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, SpringPackage.SET_OUT_HEADER_DEFINITION__HEADER_NAME, oldHeaderName, headerName));
-	}
+        String oldHeaderName = headerName;
+        headerName = newHeaderName;
+        if (eNotificationRequired())
+            eNotify(new ENotificationImpl(this, Notification.SET, SpringPackage.SET_OUT_HEADER_DEFINITION__HEADER_NAME, oldHeaderName, headerName));
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public FeatureMap getAnyAttribute3() {
-		if (anyAttribute3 == null) {
-			anyAttribute3 = new BasicFeatureMap(this, SpringPackage.SET_OUT_HEADER_DEFINITION__ANY_ATTRIBUTE3);
-		}
-		return anyAttribute3;
-	}
+        if (anyAttribute3 == null) {
+            anyAttribute3 = new BasicFeatureMap(this, SpringPackage.SET_OUT_HEADER_DEFINITION__ANY_ATTRIBUTE3);
+        }
+        return anyAttribute3;
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	@Override
 	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
-		switch (featureID) {
-			case SpringPackage.SET_OUT_HEADER_DEFINITION__ANY_ATTRIBUTE3:
-				return ((InternalEList<?>)getAnyAttribute3()).basicRemove(otherEnd, msgs);
-		}
-		return super.eInverseRemove(otherEnd, featureID, msgs);
-	}
+        switch (featureID) {
+            case SpringPackage.SET_OUT_HEADER_DEFINITION__ANY_ATTRIBUTE3:
+                return ((InternalEList<?>)getAnyAttribute3()).basicRemove(otherEnd, msgs);
+        }
+        return super.eInverseRemove(otherEnd, featureID, msgs);
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
-		switch (featureID) {
-			case SpringPackage.SET_OUT_HEADER_DEFINITION__HEADER_NAME:
-				return getHeaderName();
-			case SpringPackage.SET_OUT_HEADER_DEFINITION__ANY_ATTRIBUTE3:
-				if (coreType) return getAnyAttribute3();
-				return ((FeatureMap.Internal)getAnyAttribute3()).getWrapper();
-		}
-		return super.eGet(featureID, resolve, coreType);
-	}
+        switch (featureID) {
+            case SpringPackage.SET_OUT_HEADER_DEFINITION__HEADER_NAME:
+                return getHeaderName();
+            case SpringPackage.SET_OUT_HEADER_DEFINITION__ANY_ATTRIBUTE3:
+                if (coreType) return getAnyAttribute3();
+                return ((FeatureMap.Internal)getAnyAttribute3()).getWrapper();
+        }
+        return super.eGet(featureID, resolve, coreType);
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	@Override
 	public void eSet(int featureID, Object newValue) {
-		switch (featureID) {
-			case SpringPackage.SET_OUT_HEADER_DEFINITION__HEADER_NAME:
-				setHeaderName((String)newValue);
-				return;
-			case SpringPackage.SET_OUT_HEADER_DEFINITION__ANY_ATTRIBUTE3:
-				((FeatureMap.Internal)getAnyAttribute3()).set(newValue);
-				return;
-		}
-		super.eSet(featureID, newValue);
-	}
+        switch (featureID) {
+            case SpringPackage.SET_OUT_HEADER_DEFINITION__HEADER_NAME:
+                setHeaderName((String)newValue);
+                return;
+            case SpringPackage.SET_OUT_HEADER_DEFINITION__ANY_ATTRIBUTE3:
+                ((FeatureMap.Internal)getAnyAttribute3()).set(newValue);
+                return;
+        }
+        super.eSet(featureID, newValue);
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	@Override
 	public void eUnset(int featureID) {
-		switch (featureID) {
-			case SpringPackage.SET_OUT_HEADER_DEFINITION__HEADER_NAME:
-				setHeaderName(HEADER_NAME_EDEFAULT);
-				return;
-			case SpringPackage.SET_OUT_HEADER_DEFINITION__ANY_ATTRIBUTE3:
-				getAnyAttribute3().clear();
-				return;
-		}
-		super.eUnset(featureID);
-	}
+        switch (featureID) {
+            case SpringPackage.SET_OUT_HEADER_DEFINITION__HEADER_NAME:
+                setHeaderName(HEADER_NAME_EDEFAULT);
+                return;
+            case SpringPackage.SET_OUT_HEADER_DEFINITION__ANY_ATTRIBUTE3:
+                getAnyAttribute3().clear();
+                return;
+        }
+        super.eUnset(featureID);
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	@Override
 	public boolean eIsSet(int featureID) {
-		switch (featureID) {
-			case SpringPackage.SET_OUT_HEADER_DEFINITION__HEADER_NAME:
-				return HEADER_NAME_EDEFAULT == null ? headerName != null : !HEADER_NAME_EDEFAULT.equals(headerName);
-			case SpringPackage.SET_OUT_HEADER_DEFINITION__ANY_ATTRIBUTE3:
-				return anyAttribute3 != null && !anyAttribute3.isEmpty();
-		}
-		return super.eIsSet(featureID);
-	}
+        switch (featureID) {
+            case SpringPackage.SET_OUT_HEADER_DEFINITION__HEADER_NAME:
+                return HEADER_NAME_EDEFAULT == null ? headerName != null : !HEADER_NAME_EDEFAULT.equals(headerName);
+            case SpringPackage.SET_OUT_HEADER_DEFINITION__ANY_ATTRIBUTE3:
+                return anyAttribute3 != null && !anyAttribute3.isEmpty();
+        }
+        return super.eIsSet(featureID);
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	@Override
 	public String toString() {
-		if (eIsProxy()) return super.toString();
+        if (eIsProxy()) return super.toString();
 
-		StringBuffer result = new StringBuffer(super.toString());
-		result.append(" (headerName: ");
-		result.append(headerName);
-		result.append(", anyAttribute3: ");
-		result.append(anyAttribute3);
-		result.append(')');
-		return result.toString();
-	}
+        StringBuffer result = new StringBuffer(super.toString());
+        result.append(" (headerName: ");
+        result.append(headerName);
+        result.append(", anyAttribute3: ");
+        result.append(anyAttribute3);
+        result.append(')');
+        return result.toString();
+    }
 
 } //SetOutHeaderDefinitionImpl

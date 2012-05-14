@@ -27,20 +27,20 @@ import org.eclipse.emf.ecore.util.FeatureMap;
  */
 public interface NoOutputDefinition extends ProcessorDefinition {
 	/**
-	 * Returns the value of the '<em><b>Any Attribute1</b></em>' attribute list.
-	 * The list contents are of type {@link org.eclipse.emf.ecore.util.FeatureMap.Entry}.
-	 * <!-- begin-user-doc -->
+     * Returns the value of the '<em><b>Any Attribute1</b></em>' attribute list.
+     * The list contents are of type {@link org.eclipse.emf.ecore.util.FeatureMap.Entry}.
+     * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Any Attribute1</em>' attribute list isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Any Attribute1</em>' attribute list.
-	 * @see org.switchyard.tools.models.switchyard1_0.spring.SpringPackage#getNoOutputDefinition_AnyAttribute1()
-	 * @model unique="false" dataType="org.eclipse.emf.ecore.EFeatureMapEntry" many="true"
-	 *        extendedMetaData="kind='attributeWildcard' wildcards='##other' name=':4' processing='skip'"
-	 * @generated
-	 */
+     * @return the value of the '<em>Any Attribute1</em>' attribute list.
+     * @see org.switchyard.tools.models.switchyard1_0.spring.SpringPackage#getNoOutputDefinition_AnyAttribute1()
+     * @model unique="false" dataType="org.eclipse.emf.ecore.EFeatureMapEntry" many="true"
+     *        extendedMetaData="kind='attributeWildcard' wildcards='##other' name=':4' processing='skip'"
+     * @generated
+     */
 	FeatureMap getAnyAttribute1();
 
 } // NoOutputDefinition

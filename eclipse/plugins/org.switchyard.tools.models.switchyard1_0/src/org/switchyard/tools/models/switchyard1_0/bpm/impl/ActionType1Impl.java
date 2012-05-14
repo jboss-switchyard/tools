@@ -24,22 +24,22 @@ import org.switchyard.tools.models.switchyard1_0.bpm.BPMPackage;
  */
 public class ActionType1Impl extends EObjectImpl implements ActionType1 {
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	protected ActionType1Impl() {
-		super();
-	}
+        super();
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	@Override
 	protected EClass eStaticClass() {
-		return BPMPackage.Literals.ACTION_TYPE1;
-	}
+        return BPMPackage.Literals.ACTION_TYPE1;
+    }
 
 } //ActionType1Impl

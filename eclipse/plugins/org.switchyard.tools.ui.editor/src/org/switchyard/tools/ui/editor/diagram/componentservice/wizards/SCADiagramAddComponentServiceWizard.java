@@ -82,12 +82,14 @@ public class SCADiagramAddComponentServiceWizard extends BaseWizard {
     public IWizardPage getNextPage(IWizardPage page) {
         if (page.equals(_startPage)) {
             Interface interfaceToTest = _startPage.getInterface();
-            if (interfaceToTest instanceof JavaInterface) {
-                _javaPage.refresh();
-                return _javaPage;
-            } else if (interfaceToTest instanceof WSDLPortType) {
-                _wsdlPage.refresh();
-                return _wsdlPage;
+            if (interfaceToTest != null) {
+                if (interfaceToTest instanceof JavaInterface) {
+                    _javaPage.refresh();
+                    return _javaPage;
+                } else if (interfaceToTest instanceof WSDLPortType) {
+                    _wsdlPage.refresh();
+                    return _wsdlPage;
+                }
             }
         }
         return super.getNextPage(page);

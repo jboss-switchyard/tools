@@ -179,10 +179,10 @@ public class SCADiagramAddComponentReferenceStartPage extends BaseWizardPage {
 
     private void getInterfaceTypes(List<Interface> types) {
         Interface javaInterfaceType = ScaFactory.eINSTANCE.createJavaInterface();
-        ((JavaInterface) javaInterfaceType).setInterface("uno.dos.tres");
+//        ((JavaInterface) javaInterfaceType).setInterface("uno.dos.tres");
         types.add(javaInterfaceType);
         Interface wsdlPortType = ScaFactory.eINSTANCE.createWSDLPortType();
-        ((WSDLPortType) wsdlPortType).setInterface("http://wwww.someserver.com/mywsdl.wsdl");
+//        ((WSDLPortType) wsdlPortType).setInterface("http://wwww.someserver.com/mywsdl.wsdl");
         types.add(wsdlPortType);
     }
 

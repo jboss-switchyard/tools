@@ -79,14 +79,8 @@ public class SCADiagramAddComponentServiceWSDLPage extends BaseWizardPage implem
             if (_startPage.getInterface() instanceof WSDLPortType) {
                 return false;
             }
-            
-//            if (_startPage.getInterface() instanceof WSDLPortType) {
-//                return false;
-//            } else {
-//                return true;
-//            }
         }
-        return super.getSkippable();
+        return true;
     }
 
     @Override

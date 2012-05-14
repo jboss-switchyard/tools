@@ -37,186 +37,186 @@ import org.switchyard.tools.models.switchyard1_0.spring.SpringPackage;
  */
 public class SortDefinitionImpl extends NoOutputExpressionNodeImpl implements SortDefinition {
 	/**
-	 * The default value of the '{@link #getComparatorRef() <em>Comparator Ref</em>}' attribute.
-	 * <!-- begin-user-doc -->
+     * The default value of the '{@link #getComparatorRef() <em>Comparator Ref</em>}' attribute.
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #getComparatorRef()
-	 * @generated
-	 * @ordered
-	 */
+     * @see #getComparatorRef()
+     * @generated
+     * @ordered
+     */
 	protected static final String COMPARATOR_REF_EDEFAULT = null;
 
 	/**
-	 * The cached value of the '{@link #getComparatorRef() <em>Comparator Ref</em>}' attribute.
-	 * <!-- begin-user-doc -->
+     * The cached value of the '{@link #getComparatorRef() <em>Comparator Ref</em>}' attribute.
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #getComparatorRef()
-	 * @generated
-	 * @ordered
-	 */
+     * @see #getComparatorRef()
+     * @generated
+     * @ordered
+     */
 	protected String comparatorRef = COMPARATOR_REF_EDEFAULT;
 
 	/**
-	 * The cached value of the '{@link #getAnyAttribute3() <em>Any Attribute3</em>}' attribute list.
-	 * <!-- begin-user-doc -->
+     * The cached value of the '{@link #getAnyAttribute3() <em>Any Attribute3</em>}' attribute list.
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #getAnyAttribute3()
-	 * @generated
-	 * @ordered
-	 */
+     * @see #getAnyAttribute3()
+     * @generated
+     * @ordered
+     */
 	protected FeatureMap anyAttribute3;
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	protected SortDefinitionImpl() {
-		super();
-	}
+        super();
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	@Override
 	protected EClass eStaticClass() {
-		return SpringPackage.eINSTANCE.getSortDefinition();
-	}
+        return SpringPackage.eINSTANCE.getSortDefinition();
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public String getComparatorRef() {
-		return comparatorRef;
-	}
+        return comparatorRef;
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public void setComparatorRef(String newComparatorRef) {
-		String oldComparatorRef = comparatorRef;
-		comparatorRef = newComparatorRef;
-		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, SpringPackage.SORT_DEFINITION__COMPARATOR_REF, oldComparatorRef, comparatorRef));
-	}
+        String oldComparatorRef = comparatorRef;
+        comparatorRef = newComparatorRef;
+        if (eNotificationRequired())
+            eNotify(new ENotificationImpl(this, Notification.SET, SpringPackage.SORT_DEFINITION__COMPARATOR_REF, oldComparatorRef, comparatorRef));
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public FeatureMap getAnyAttribute3() {
-		if (anyAttribute3 == null) {
-			anyAttribute3 = new BasicFeatureMap(this, SpringPackage.SORT_DEFINITION__ANY_ATTRIBUTE3);
-		}
-		return anyAttribute3;
-	}
+        if (anyAttribute3 == null) {
+            anyAttribute3 = new BasicFeatureMap(this, SpringPackage.SORT_DEFINITION__ANY_ATTRIBUTE3);
+        }
+        return anyAttribute3;
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	@Override
 	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
-		switch (featureID) {
-			case SpringPackage.SORT_DEFINITION__ANY_ATTRIBUTE3:
-				return ((InternalEList<?>)getAnyAttribute3()).basicRemove(otherEnd, msgs);
-		}
-		return super.eInverseRemove(otherEnd, featureID, msgs);
-	}
+        switch (featureID) {
+            case SpringPackage.SORT_DEFINITION__ANY_ATTRIBUTE3:
+                return ((InternalEList<?>)getAnyAttribute3()).basicRemove(otherEnd, msgs);
+        }
+        return super.eInverseRemove(otherEnd, featureID, msgs);
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
-		switch (featureID) {
-			case SpringPackage.SORT_DEFINITION__COMPARATOR_REF:
-				return getComparatorRef();
-			case SpringPackage.SORT_DEFINITION__ANY_ATTRIBUTE3:
-				if (coreType) return getAnyAttribute3();
-				return ((FeatureMap.Internal)getAnyAttribute3()).getWrapper();
-		}
-		return super.eGet(featureID, resolve, coreType);
-	}
+        switch (featureID) {
+            case SpringPackage.SORT_DEFINITION__COMPARATOR_REF:
+                return getComparatorRef();
+            case SpringPackage.SORT_DEFINITION__ANY_ATTRIBUTE3:
+                if (coreType) return getAnyAttribute3();
+                return ((FeatureMap.Internal)getAnyAttribute3()).getWrapper();
+        }
+        return super.eGet(featureID, resolve, coreType);
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	@Override
 	public void eSet(int featureID, Object newValue) {
-		switch (featureID) {
-			case SpringPackage.SORT_DEFINITION__COMPARATOR_REF:
-				setComparatorRef((String)newValue);
-				return;
-			case SpringPackage.SORT_DEFINITION__ANY_ATTRIBUTE3:
-				((FeatureMap.Internal)getAnyAttribute3()).set(newValue);
-				return;
-		}
-		super.eSet(featureID, newValue);
-	}
+        switch (featureID) {
+            case SpringPackage.SORT_DEFINITION__COMPARATOR_REF:
+                setComparatorRef((String)newValue);
+                return;
+            case SpringPackage.SORT_DEFINITION__ANY_ATTRIBUTE3:
+                ((FeatureMap.Internal)getAnyAttribute3()).set(newValue);
+                return;
+        }
+        super.eSet(featureID, newValue);
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	@Override
 	public void eUnset(int featureID) {
-		switch (featureID) {
-			case SpringPackage.SORT_DEFINITION__COMPARATOR_REF:
-				setComparatorRef(COMPARATOR_REF_EDEFAULT);
-				return;
-			case SpringPackage.SORT_DEFINITION__ANY_ATTRIBUTE3:
-				getAnyAttribute3().clear();
-				return;
-		}
-		super.eUnset(featureID);
-	}
+        switch (featureID) {
+            case SpringPackage.SORT_DEFINITION__COMPARATOR_REF:
+                setComparatorRef(COMPARATOR_REF_EDEFAULT);
+                return;
+            case SpringPackage.SORT_DEFINITION__ANY_ATTRIBUTE3:
+                getAnyAttribute3().clear();
+                return;
+        }
+        super.eUnset(featureID);
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	@Override
 	public boolean eIsSet(int featureID) {
-		switch (featureID) {
-			case SpringPackage.SORT_DEFINITION__COMPARATOR_REF:
-				return COMPARATOR_REF_EDEFAULT == null ? comparatorRef != null : !COMPARATOR_REF_EDEFAULT.equals(comparatorRef);
-			case SpringPackage.SORT_DEFINITION__ANY_ATTRIBUTE3:
-				return anyAttribute3 != null && !anyAttribute3.isEmpty();
-		}
-		return super.eIsSet(featureID);
-	}
+        switch (featureID) {
+            case SpringPackage.SORT_DEFINITION__COMPARATOR_REF:
+                return COMPARATOR_REF_EDEFAULT == null ? comparatorRef != null : !COMPARATOR_REF_EDEFAULT.equals(comparatorRef);
+            case SpringPackage.SORT_DEFINITION__ANY_ATTRIBUTE3:
+                return anyAttribute3 != null && !anyAttribute3.isEmpty();
+        }
+        return super.eIsSet(featureID);
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	@Override
 	public String toString() {
-		if (eIsProxy()) return super.toString();
+        if (eIsProxy()) return super.toString();
 
-		StringBuffer result = new StringBuffer(super.toString());
-		result.append(" (comparatorRef: ");
-		result.append(comparatorRef);
-		result.append(", anyAttribute3: ");
-		result.append(anyAttribute3);
-		result.append(')');
-		return result.toString();
-	}
+        StringBuffer result = new StringBuffer(super.toString());
+        result.append(" (comparatorRef: ");
+        result.append(comparatorRef);
+        result.append(", anyAttribute3: ");
+        result.append(anyAttribute3);
+        result.append(')');
+        return result.toString();
+    }
 
 } //SortDefinitionImpl

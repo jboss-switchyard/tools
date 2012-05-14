@@ -123,6 +123,9 @@ public final class StyleUtil {
      */
     public static final int COMPOSITE_EDGE = 10;
 
+    /** Spacing between composite children. */
+    public static final int COMPOSITE_CHILD_V_SPACING = 10;
+
     /**
      * Component rectangle width.
      */
@@ -142,6 +145,9 @@ public final class StyleUtil {
      * Component edge for the invisible rectangle.
      */
     public static final int COMPONENT_EDGE = 10;
+
+    /** Spacing between ComponentService and ComponentReference nubs. */
+    public static final int COMPONENT_CHILD_V_SPACING = 20;
 
     /**
      * Base service size width.

@@ -31,258 +31,258 @@ import org.switchyard.tools.models.switchyard1_0.spring.StreamResequencerConfig;
  */
 public class StreamResequencerConfigImpl extends ResequencerConfigImpl implements StreamResequencerConfig {
 	/**
-	 * The default value of the '{@link #getCapacity() <em>Capacity</em>}' attribute.
-	 * <!-- begin-user-doc -->
+     * The default value of the '{@link #getCapacity() <em>Capacity</em>}' attribute.
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #getCapacity()
-	 * @generated
-	 * @ordered
-	 */
+     * @see #getCapacity()
+     * @generated
+     * @ordered
+     */
 	protected static final int CAPACITY_EDEFAULT = 0;
 
 	/**
-	 * The cached value of the '{@link #getCapacity() <em>Capacity</em>}' attribute.
-	 * <!-- begin-user-doc -->
+     * The cached value of the '{@link #getCapacity() <em>Capacity</em>}' attribute.
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #getCapacity()
-	 * @generated
-	 * @ordered
-	 */
+     * @see #getCapacity()
+     * @generated
+     * @ordered
+     */
 	protected int capacity = CAPACITY_EDEFAULT;
 
 	/**
-	 * This is true if the Capacity attribute has been set.
-	 * <!-- begin-user-doc -->
+     * This is true if the Capacity attribute has been set.
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
+     * @generated
+     * @ordered
+     */
 	protected boolean capacityESet;
 
 	/**
-	 * The default value of the '{@link #getTimeout() <em>Timeout</em>}' attribute.
-	 * <!-- begin-user-doc -->
+     * The default value of the '{@link #getTimeout() <em>Timeout</em>}' attribute.
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #getTimeout()
-	 * @generated
-	 * @ordered
-	 */
+     * @see #getTimeout()
+     * @generated
+     * @ordered
+     */
 	protected static final long TIMEOUT_EDEFAULT = 0L;
 
 	/**
-	 * The cached value of the '{@link #getTimeout() <em>Timeout</em>}' attribute.
-	 * <!-- begin-user-doc -->
+     * The cached value of the '{@link #getTimeout() <em>Timeout</em>}' attribute.
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #getTimeout()
-	 * @generated
-	 * @ordered
-	 */
+     * @see #getTimeout()
+     * @generated
+     * @ordered
+     */
 	protected long timeout = TIMEOUT_EDEFAULT;
 
 	/**
-	 * This is true if the Timeout attribute has been set.
-	 * <!-- begin-user-doc -->
+     * This is true if the Timeout attribute has been set.
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
+     * @generated
+     * @ordered
+     */
 	protected boolean timeoutESet;
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	protected StreamResequencerConfigImpl() {
-		super();
-	}
+        super();
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	@Override
 	protected EClass eStaticClass() {
-		return SpringPackage.eINSTANCE.getStreamResequencerConfig();
-	}
+        return SpringPackage.eINSTANCE.getStreamResequencerConfig();
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public int getCapacity() {
-		return capacity;
-	}
+        return capacity;
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public void setCapacity(int newCapacity) {
-		int oldCapacity = capacity;
-		capacity = newCapacity;
-		boolean oldCapacityESet = capacityESet;
-		capacityESet = true;
-		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, SpringPackage.STREAM_RESEQUENCER_CONFIG__CAPACITY, oldCapacity, capacity, !oldCapacityESet));
-	}
+        int oldCapacity = capacity;
+        capacity = newCapacity;
+        boolean oldCapacityESet = capacityESet;
+        capacityESet = true;
+        if (eNotificationRequired())
+            eNotify(new ENotificationImpl(this, Notification.SET, SpringPackage.STREAM_RESEQUENCER_CONFIG__CAPACITY, oldCapacity, capacity, !oldCapacityESet));
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public void unsetCapacity() {
-		int oldCapacity = capacity;
-		boolean oldCapacityESet = capacityESet;
-		capacity = CAPACITY_EDEFAULT;
-		capacityESet = false;
-		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.UNSET, SpringPackage.STREAM_RESEQUENCER_CONFIG__CAPACITY, oldCapacity, CAPACITY_EDEFAULT, oldCapacityESet));
-	}
+        int oldCapacity = capacity;
+        boolean oldCapacityESet = capacityESet;
+        capacity = CAPACITY_EDEFAULT;
+        capacityESet = false;
+        if (eNotificationRequired())
+            eNotify(new ENotificationImpl(this, Notification.UNSET, SpringPackage.STREAM_RESEQUENCER_CONFIG__CAPACITY, oldCapacity, CAPACITY_EDEFAULT, oldCapacityESet));
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public boolean isSetCapacity() {
-		return capacityESet;
-	}
+        return capacityESet;
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public long getTimeout() {
-		return timeout;
-	}
+        return timeout;
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public void setTimeout(long newTimeout) {
-		long oldTimeout = timeout;
-		timeout = newTimeout;
-		boolean oldTimeoutESet = timeoutESet;
-		timeoutESet = true;
-		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, SpringPackage.STREAM_RESEQUENCER_CONFIG__TIMEOUT, oldTimeout, timeout, !oldTimeoutESet));
-	}
+        long oldTimeout = timeout;
+        timeout = newTimeout;
+        boolean oldTimeoutESet = timeoutESet;
+        timeoutESet = true;
+        if (eNotificationRequired())
+            eNotify(new ENotificationImpl(this, Notification.SET, SpringPackage.STREAM_RESEQUENCER_CONFIG__TIMEOUT, oldTimeout, timeout, !oldTimeoutESet));
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public void unsetTimeout() {
-		long oldTimeout = timeout;
-		boolean oldTimeoutESet = timeoutESet;
-		timeout = TIMEOUT_EDEFAULT;
-		timeoutESet = false;
-		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.UNSET, SpringPackage.STREAM_RESEQUENCER_CONFIG__TIMEOUT, oldTimeout, TIMEOUT_EDEFAULT, oldTimeoutESet));
-	}
+        long oldTimeout = timeout;
+        boolean oldTimeoutESet = timeoutESet;
+        timeout = TIMEOUT_EDEFAULT;
+        timeoutESet = false;
+        if (eNotificationRequired())
+            eNotify(new ENotificationImpl(this, Notification.UNSET, SpringPackage.STREAM_RESEQUENCER_CONFIG__TIMEOUT, oldTimeout, TIMEOUT_EDEFAULT, oldTimeoutESet));
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public boolean isSetTimeout() {
-		return timeoutESet;
-	}
+        return timeoutESet;
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
-		switch (featureID) {
-			case SpringPackage.STREAM_RESEQUENCER_CONFIG__CAPACITY:
-				return getCapacity();
-			case SpringPackage.STREAM_RESEQUENCER_CONFIG__TIMEOUT:
-				return getTimeout();
-		}
-		return super.eGet(featureID, resolve, coreType);
-	}
+        switch (featureID) {
+            case SpringPackage.STREAM_RESEQUENCER_CONFIG__CAPACITY:
+                return getCapacity();
+            case SpringPackage.STREAM_RESEQUENCER_CONFIG__TIMEOUT:
+                return getTimeout();
+        }
+        return super.eGet(featureID, resolve, coreType);
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	@Override
 	public void eSet(int featureID, Object newValue) {
-		switch (featureID) {
-			case SpringPackage.STREAM_RESEQUENCER_CONFIG__CAPACITY:
-				setCapacity((Integer)newValue);
-				return;
-			case SpringPackage.STREAM_RESEQUENCER_CONFIG__TIMEOUT:
-				setTimeout((Long)newValue);
-				return;
-		}
-		super.eSet(featureID, newValue);
-	}
+        switch (featureID) {
+            case SpringPackage.STREAM_RESEQUENCER_CONFIG__CAPACITY:
+                setCapacity((Integer)newValue);
+                return;
+            case SpringPackage.STREAM_RESEQUENCER_CONFIG__TIMEOUT:
+                setTimeout((Long)newValue);
+                return;
+        }
+        super.eSet(featureID, newValue);
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	@Override
 	public void eUnset(int featureID) {
-		switch (featureID) {
-			case SpringPackage.STREAM_RESEQUENCER_CONFIG__CAPACITY:
-				unsetCapacity();
-				return;
-			case SpringPackage.STREAM_RESEQUENCER_CONFIG__TIMEOUT:
-				unsetTimeout();
-				return;
-		}
-		super.eUnset(featureID);
-	}
+        switch (featureID) {
+            case SpringPackage.STREAM_RESEQUENCER_CONFIG__CAPACITY:
+                unsetCapacity();
+                return;
+            case SpringPackage.STREAM_RESEQUENCER_CONFIG__TIMEOUT:
+                unsetTimeout();
+                return;
+        }
+        super.eUnset(featureID);
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	@Override
 	public boolean eIsSet(int featureID) {
-		switch (featureID) {
-			case SpringPackage.STREAM_RESEQUENCER_CONFIG__CAPACITY:
-				return isSetCapacity();
-			case SpringPackage.STREAM_RESEQUENCER_CONFIG__TIMEOUT:
-				return isSetTimeout();
-		}
-		return super.eIsSet(featureID);
-	}
+        switch (featureID) {
+            case SpringPackage.STREAM_RESEQUENCER_CONFIG__CAPACITY:
+                return isSetCapacity();
+            case SpringPackage.STREAM_RESEQUENCER_CONFIG__TIMEOUT:
+                return isSetTimeout();
+        }
+        return super.eIsSet(featureID);
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	@Override
 	public String toString() {
-		if (eIsProxy()) return super.toString();
+        if (eIsProxy()) return super.toString();
 
-		StringBuffer result = new StringBuffer(super.toString());
-		result.append(" (capacity: ");
-		if (capacityESet) result.append(capacity); else result.append("<unset>");
-		result.append(", timeout: ");
-		if (timeoutESet) result.append(timeout); else result.append("<unset>");
-		result.append(')');
-		return result.toString();
-	}
+        StringBuffer result = new StringBuffer(super.toString());
+        result.append(" (capacity: ");
+        if (capacityESet) result.append(capacity); else result.append("<unset>");
+        result.append(", timeout: ");
+        if (timeoutESet) result.append(timeout); else result.append("<unset>");
+        result.append(')');
+        return result.toString();
+    }
 
 } //StreamResequencerConfigImpl

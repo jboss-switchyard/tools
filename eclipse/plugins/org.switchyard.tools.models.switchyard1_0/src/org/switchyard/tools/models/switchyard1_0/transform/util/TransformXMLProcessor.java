@@ -25,30 +25,30 @@ import org.switchyard.tools.models.switchyard1_0.transform.TransformPackage;
 public class TransformXMLProcessor extends XMLProcessor {
 
 	/**
-	 * Public constructor to instantiate the helper.
-	 * <!-- begin-user-doc -->
+     * Public constructor to instantiate the helper.
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public TransformXMLProcessor() {
-		super((EPackage.Registry.INSTANCE));
-		TransformPackage.eINSTANCE.eClass();
-	}
+        super((EPackage.Registry.INSTANCE));
+        TransformPackage.eINSTANCE.eClass();
+    }
 	
 	/**
-	 * Register for "*" and "xml" file extensions the TransformResourceFactoryImpl factory.
-	 * <!-- begin-user-doc -->
+     * Register for "*" and "xml" file extensions the TransformResourceFactoryImpl factory.
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	@Override
 	protected Map<String, Resource.Factory> getRegistrations() {
-		if (registrations == null) {
-			super.getRegistrations();
-			registrations.put(XML_EXTENSION, new TransformResourceFactoryImpl());
-			registrations.put(STAR_EXTENSION, new TransformResourceFactoryImpl());
-		}
-		return registrations;
-	}
+        if (registrations == null) {
+            super.getRegistrations();
+            registrations.put(XML_EXTENSION, new TransformResourceFactoryImpl());
+            registrations.put(STAR_EXTENSION, new TransformResourceFactoryImpl());
+        }
+        return registrations;
+    }
 
 } //TransformXMLProcessor

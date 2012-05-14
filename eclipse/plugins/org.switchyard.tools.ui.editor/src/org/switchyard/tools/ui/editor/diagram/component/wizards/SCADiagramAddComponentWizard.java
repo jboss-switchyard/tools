@@ -12,23 +12,21 @@
  ******************************************************************************/
 package org.switchyard.tools.ui.editor.diagram.component.wizards;
 
-import org.eclipse.graphiti.mm.pictograms.Diagram;
 import org.eclipse.jface.wizard.IWizardPage;
 import org.eclipse.soa.sca.sca1_1.model.sca.Component;
-import org.eclipse.soa.sca.sca1_1.model.sca.Implementation;
-import org.switchyard.tools.models.switchyard1_0.camel.CamelImplementationType;
-import org.switchyard.tools.ui.editor.diagram.internal.wizards.BaseWizard;
+import org.eclipse.soa.sca.sca1_1.model.sca.ComponentReference;
+import org.eclipse.soa.sca.sca1_1.model.sca.ComponentService;
+import org.eclipse.soa.sca.sca1_1.model.sca.ScaFactory;
+import org.switchyard.tools.ui.editor.diagram.internal.wizards.LinkedWizardBase;
 
 /**
  * @author bfitzpat
- *
+ * 
  */
-public class SCADiagramAddComponentWizard extends BaseWizard {
+public class SCADiagramAddComponentWizard extends LinkedWizardBase {
 
     private SCADiagramAddComponentStartPage _startPage = null;
-    private SCADiagramAddComponentImplementationCamelPage _camelPage = null;
-    private Diagram _diagram = null;
-    private Component _component = null;
+    private Component _component = ScaFactory.eINSTANCE.createComponent();
 
     /**
      * Constructor.
@@ -37,13 +35,7 @@ public class SCADiagramAddComponentWizard extends BaseWizard {
         super();
         initPages();
         setWindowTitle("New Component");
-    }
-
-    /**
-     * @param component the component
-     */
-    public void setComponent(Component component) {
-        this._component = component;
+        setForcePreviousAndNextButtons(true);
     }
 
     /**
@@ -53,28 +45,25 @@ public class SCADiagramAddComponentWizard extends BaseWizard {
         return this._component;
     }
 
-    /**
-     * @param diagram the diagram
-     */
-    public void setDiagram(Diagram diagram) {
-        this._diagram = diagram;
-    }
-
-    /**
-     * @return the diagram
-     */
-    public Diagram getDiagram() {
-        return this._diagram;
-    }
-
     private void initPages() {
         _startPage = new SCADiagramAddComponentStartPage("start");
-        _camelPage = new SCADiagramAddComponentImplementationCamelPage(_startPage, "camel");
     }
 
     @Override
-    public boolean performFinish() {
+    public boolean doFinish() {
         if (_startPage != null && _startPage.getComponentName() != null) {
+            _component.setName(_startPage.getComponentName());
+            IComponentImplementationWizard wizard = _startPage.getImplementationWizard();
+            if (wizard != null) {
+                _component.getImplementationGroup().set(wizard.getFeatureForImplementation(),
+                        wizard.getImplementation());
+                for (ComponentService service : wizard.getImplementationServices()) {
+                    _component.getService().add(service);
+                }
+                for (ComponentReference reference : wizard.getImplementationReferences()) {
+                    _component.getReference().add(reference);
+                }
+            }
             return true;
         }
         return false;
@@ -83,38 +72,17 @@ public class SCADiagramAddComponentWizard extends BaseWizard {
     @Override
     public void addPages() {
         addPage(_startPage);
-        addPage(_camelPage);
-    }
-
-    /**
-     * @return component name
-     */
-    public String getComponentName() {
-        if (_startPage != null) {
-            return _startPage.getComponentName();
-        }
-        return null;
-    }
-
-    /**
-     * @return selected implementation
-     */
-    public Implementation getImplementation() {
-        if (_startPage != null) {
-            return _startPage.getImplementation();
-        }
-        return null;
     }
 
     @Override
     public IWizardPage getNextPage(IWizardPage page) {
-        if (page.equals(_startPage)) {
-            Implementation interfaceToTest = _startPage.getImplementation();
-            if (interfaceToTest instanceof CamelImplementationType) {
-                _camelPage.refresh();
-                return _camelPage;
+        if (page == _startPage) {
+            if (_startPage.getImplementationWizard() == null) {
+                return null;
             }
+            setNext(_startPage.getImplementationWizard());
         }
         return super.getNextPage(page);
     }
+
 }

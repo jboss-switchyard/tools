@@ -22,22 +22,22 @@ import org.switchyard.tools.models.switchyard1_0.spring.SpringPackage;
  */
 public class CamelConsumerTemplateFactoryBeanImpl extends AbstractCamelConsumerTemplateFactoryBeanImpl implements CamelConsumerTemplateFactoryBean {
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	protected CamelConsumerTemplateFactoryBeanImpl() {
-		super();
-	}
+        super();
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	@Override
 	protected EClass eStaticClass() {
-		return SpringPackage.eINSTANCE.getCamelConsumerTemplateFactoryBean();
-	}
+        return SpringPackage.eINSTANCE.getCamelConsumerTemplateFactoryBean();
+    }
 
 } //CamelConsumerTemplateFactoryBeanImpl

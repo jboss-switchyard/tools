@@ -18,74 +18,74 @@ import org.eclipse.emf.ecore.EFactory;
  */
 public interface RulesFactory extends EFactory {
 	/**
-	 * The singleton instance of the factory.
-	 * <!-- begin-user-doc -->
+     * The singleton instance of the factory.
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	RulesFactory eINSTANCE = org.switchyard.tools.models.switchyard1_0.rules.impl.RulesFactoryImpl.init();
 
 	/**
-	 * Returns a new object of class '<em>Action Type1</em>'.
-	 * <!-- begin-user-doc -->
+     * Returns a new object of class '<em>Action Type1</em>'.
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>Action Type1</em>'.
-	 * @generated
-	 */
+     * @return a new object of class '<em>Action Type1</em>'.
+     * @generated
+     */
 	ActionType1 createActionType1();
 
 	/**
-	 * Returns a new object of class '<em>Audit Type</em>'.
-	 * <!-- begin-user-doc -->
+     * Returns a new object of class '<em>Audit Type</em>'.
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>Audit Type</em>'.
-	 * @generated
-	 */
+     * @return a new object of class '<em>Audit Type</em>'.
+     * @generated
+     */
 	AuditType createAuditType();
 
 	/**
-	 * Returns a new object of class '<em>Channel Type</em>'.
-	 * <!-- begin-user-doc -->
+     * Returns a new object of class '<em>Channel Type</em>'.
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>Channel Type</em>'.
-	 * @generated
-	 */
+     * @return a new object of class '<em>Channel Type</em>'.
+     * @generated
+     */
 	ChannelType createChannelType();
 
 	/**
-	 * Returns a new object of class '<em>Document Root</em>'.
-	 * <!-- begin-user-doc -->
+     * Returns a new object of class '<em>Document Root</em>'.
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>Document Root</em>'.
-	 * @generated
-	 */
+     * @return a new object of class '<em>Document Root</em>'.
+     * @generated
+     */
 	DocumentRoot createDocumentRoot();
 
 	/**
-	 * Returns a new object of class '<em>Resource Type</em>'.
-	 * <!-- begin-user-doc -->
+     * Returns a new object of class '<em>Resource Type</em>'.
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>Resource Type</em>'.
-	 * @generated
-	 */
+     * @return a new object of class '<em>Resource Type</em>'.
+     * @generated
+     */
 	ResourceType createResourceType();
 
 	/**
-	 * Returns a new object of class '<em>Implementation Type</em>'.
-	 * <!-- begin-user-doc -->
+     * Returns a new object of class '<em>Implementation Type</em>'.
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>Implementation Type</em>'.
-	 * @generated
-	 */
+     * @return a new object of class '<em>Implementation Type</em>'.
+     * @generated
+     */
 	RulesImplementationType createRulesImplementationType();
 
 	/**
-	 * Returns the package supported by this factory.
-	 * <!-- begin-user-doc -->
+     * Returns the package supported by this factory.
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the package supported by this factory.
-	 * @generated
-	 */
+     * @return the package supported by this factory.
+     * @generated
+     */
 	RulesPackage getRulesPackage();
 
 } //RulesFactory

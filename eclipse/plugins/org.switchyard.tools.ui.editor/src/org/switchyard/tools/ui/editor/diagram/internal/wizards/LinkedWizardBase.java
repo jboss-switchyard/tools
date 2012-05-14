@@ -86,6 +86,9 @@ public abstract class LinkedWizardBase extends BaseWizard implements ILinkedWiza
     public void setNext(ILinkedWizard next) {
         _next = next;
         if (next != null) {
+            if (next.getStartingPage() == null) {
+                next.addPages();
+            }
             _next.setPrevious(this);
         }
     }
@@ -176,7 +179,7 @@ public abstract class LinkedWizardBase extends BaseWizard implements ILinkedWiza
     @Override
     public IWizardPage getNextPage(IWizardPage page) {
         IWizardPage nextPage = super.getNextPage(page);
-        if (getNext() != null) {
+        if (nextPage == null && getNext() != null) {
             nextPage = getNext().getStartingPage();
         }
         return nextPage;

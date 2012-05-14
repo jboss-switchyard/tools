@@ -81,1616 +81,1616 @@ import org.switchyard.tools.models.switchyard1_0.spring.ZipDataFormat;
  */
 public class UnmarshalDefinitionImpl extends NoOutputDefinitionImpl implements UnmarshalDefinition {
 	/**
-	 * The cached value of the '{@link #getBindy() <em>Bindy</em>}' containment reference.
-	 * <!-- begin-user-doc -->
+     * The cached value of the '{@link #getBindy() <em>Bindy</em>}' containment reference.
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #getBindy()
-	 * @generated
-	 * @ordered
-	 */
+     * @see #getBindy()
+     * @generated
+     * @ordered
+     */
 	protected BindyDataFormat bindy;
 
 	/**
-	 * The cached value of the '{@link #getCastor() <em>Castor</em>}' containment reference.
-	 * <!-- begin-user-doc -->
+     * The cached value of the '{@link #getCastor() <em>Castor</em>}' containment reference.
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #getCastor()
-	 * @generated
-	 * @ordered
-	 */
+     * @see #getCastor()
+     * @generated
+     * @ordered
+     */
 	protected CastorDataFormat castor;
 
 	/**
-	 * The cached value of the '{@link #getCrypto() <em>Crypto</em>}' containment reference.
-	 * <!-- begin-user-doc -->
+     * The cached value of the '{@link #getCrypto() <em>Crypto</em>}' containment reference.
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #getCrypto()
-	 * @generated
-	 * @ordered
-	 */
+     * @see #getCrypto()
+     * @generated
+     * @ordered
+     */
 	protected CryptoDataFormat crypto;
 
 	/**
-	 * The cached value of the '{@link #getCsv() <em>Csv</em>}' containment reference.
-	 * <!-- begin-user-doc -->
+     * The cached value of the '{@link #getCsv() <em>Csv</em>}' containment reference.
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #getCsv()
-	 * @generated
-	 * @ordered
-	 */
+     * @see #getCsv()
+     * @generated
+     * @ordered
+     */
 	protected CsvDataFormat csv;
 
 	/**
-	 * The cached value of the '{@link #getCustom() <em>Custom</em>}' containment reference.
-	 * <!-- begin-user-doc -->
+     * The cached value of the '{@link #getCustom() <em>Custom</em>}' containment reference.
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #getCustom()
-	 * @generated
-	 * @ordered
-	 */
+     * @see #getCustom()
+     * @generated
+     * @ordered
+     */
 	protected CustomDataFormat custom;
 
 	/**
-	 * The cached value of the '{@link #getFlatpack() <em>Flatpack</em>}' containment reference.
-	 * <!-- begin-user-doc -->
+     * The cached value of the '{@link #getFlatpack() <em>Flatpack</em>}' containment reference.
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #getFlatpack()
-	 * @generated
-	 * @ordered
-	 */
+     * @see #getFlatpack()
+     * @generated
+     * @ordered
+     */
 	protected FlatpackDataFormat flatpack;
 
 	/**
-	 * The cached value of the '{@link #getGzip() <em>Gzip</em>}' containment reference.
-	 * <!-- begin-user-doc -->
+     * The cached value of the '{@link #getGzip() <em>Gzip</em>}' containment reference.
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #getGzip()
-	 * @generated
-	 * @ordered
-	 */
+     * @see #getGzip()
+     * @generated
+     * @ordered
+     */
 	protected GzipDataFormat gzip;
 
 	/**
-	 * The cached value of the '{@link #getHl7() <em>Hl7</em>}' containment reference.
-	 * <!-- begin-user-doc -->
+     * The cached value of the '{@link #getHl7() <em>Hl7</em>}' containment reference.
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #getHl7()
-	 * @generated
-	 * @ordered
-	 */
+     * @see #getHl7()
+     * @generated
+     * @ordered
+     */
 	protected Hl7DataFormat hl7;
 
 	/**
-	 * The cached value of the '{@link #getJaxb() <em>Jaxb</em>}' containment reference.
-	 * <!-- begin-user-doc -->
+     * The cached value of the '{@link #getJaxb() <em>Jaxb</em>}' containment reference.
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #getJaxb()
-	 * @generated
-	 * @ordered
-	 */
+     * @see #getJaxb()
+     * @generated
+     * @ordered
+     */
 	protected JaxbDataFormat jaxb;
 
 	/**
-	 * The cached value of the '{@link #getJibx() <em>Jibx</em>}' containment reference.
-	 * <!-- begin-user-doc -->
+     * The cached value of the '{@link #getJibx() <em>Jibx</em>}' containment reference.
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #getJibx()
-	 * @generated
-	 * @ordered
-	 */
+     * @see #getJibx()
+     * @generated
+     * @ordered
+     */
 	protected JibxDataFormat jibx;
 
 	/**
-	 * The cached value of the '{@link #getJson() <em>Json</em>}' containment reference.
-	 * <!-- begin-user-doc -->
+     * The cached value of the '{@link #getJson() <em>Json</em>}' containment reference.
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #getJson()
-	 * @generated
-	 * @ordered
-	 */
+     * @see #getJson()
+     * @generated
+     * @ordered
+     */
 	protected JsonDataFormat json;
 
 	/**
-	 * The cached value of the '{@link #getProtobuf() <em>Protobuf</em>}' containment reference.
-	 * <!-- begin-user-doc -->
+     * The cached value of the '{@link #getProtobuf() <em>Protobuf</em>}' containment reference.
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #getProtobuf()
-	 * @generated
-	 * @ordered
-	 */
+     * @see #getProtobuf()
+     * @generated
+     * @ordered
+     */
 	protected ProtobufDataFormat protobuf;
 
 	/**
-	 * The cached value of the '{@link #getRss() <em>Rss</em>}' containment reference.
-	 * <!-- begin-user-doc -->
+     * The cached value of the '{@link #getRss() <em>Rss</em>}' containment reference.
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #getRss()
-	 * @generated
-	 * @ordered
-	 */
+     * @see #getRss()
+     * @generated
+     * @ordered
+     */
 	protected RssDataFormat rss;
 
 	/**
-	 * The cached value of the '{@link #getSecureXML() <em>Secure XML</em>}' containment reference.
-	 * <!-- begin-user-doc -->
+     * The cached value of the '{@link #getSecureXML() <em>Secure XML</em>}' containment reference.
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #getSecureXML()
-	 * @generated
-	 * @ordered
-	 */
+     * @see #getSecureXML()
+     * @generated
+     * @ordered
+     */
 	protected XmlSecurityDataFormat secureXML;
 
 	/**
-	 * The cached value of the '{@link #getSerialization() <em>Serialization</em>}' containment reference.
-	 * <!-- begin-user-doc -->
+     * The cached value of the '{@link #getSerialization() <em>Serialization</em>}' containment reference.
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #getSerialization()
-	 * @generated
-	 * @ordered
-	 */
+     * @see #getSerialization()
+     * @generated
+     * @ordered
+     */
 	protected SerializationDataFormat serialization;
 
 	/**
-	 * The cached value of the '{@link #getSoapjaxb() <em>Soapjaxb</em>}' containment reference.
-	 * <!-- begin-user-doc -->
+     * The cached value of the '{@link #getSoapjaxb() <em>Soapjaxb</em>}' containment reference.
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #getSoapjaxb()
-	 * @generated
-	 * @ordered
-	 */
+     * @see #getSoapjaxb()
+     * @generated
+     * @ordered
+     */
 	protected SoapJaxbDataFormat soapjaxb;
 
 	/**
-	 * The cached value of the '{@link #getString() <em>String</em>}' containment reference.
-	 * <!-- begin-user-doc -->
+     * The cached value of the '{@link #getString() <em>String</em>}' containment reference.
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #getString()
-	 * @generated
-	 * @ordered
-	 */
+     * @see #getString()
+     * @generated
+     * @ordered
+     */
 	protected StringDataFormat string;
 
 	/**
-	 * The cached value of the '{@link #getSyslog() <em>Syslog</em>}' containment reference.
-	 * <!-- begin-user-doc -->
+     * The cached value of the '{@link #getSyslog() <em>Syslog</em>}' containment reference.
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #getSyslog()
-	 * @generated
-	 * @ordered
-	 */
+     * @see #getSyslog()
+     * @generated
+     * @ordered
+     */
 	protected SyslogDataFormat syslog;
 
 	/**
-	 * The cached value of the '{@link #getTidyMarkup() <em>Tidy Markup</em>}' containment reference.
-	 * <!-- begin-user-doc -->
+     * The cached value of the '{@link #getTidyMarkup() <em>Tidy Markup</em>}' containment reference.
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #getTidyMarkup()
-	 * @generated
-	 * @ordered
-	 */
+     * @see #getTidyMarkup()
+     * @generated
+     * @ordered
+     */
 	protected TidyMarkupDataFormat tidyMarkup;
 
 	/**
-	 * The cached value of the '{@link #getXmlBeans() <em>Xml Beans</em>}' containment reference.
-	 * <!-- begin-user-doc -->
+     * The cached value of the '{@link #getXmlBeans() <em>Xml Beans</em>}' containment reference.
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #getXmlBeans()
-	 * @generated
-	 * @ordered
-	 */
+     * @see #getXmlBeans()
+     * @generated
+     * @ordered
+     */
 	protected XmlBeansDataFormat xmlBeans;
 
 	/**
-	 * The cached value of the '{@link #getXstream() <em>Xstream</em>}' containment reference.
-	 * <!-- begin-user-doc -->
+     * The cached value of the '{@link #getXstream() <em>Xstream</em>}' containment reference.
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #getXstream()
-	 * @generated
-	 * @ordered
-	 */
+     * @see #getXstream()
+     * @generated
+     * @ordered
+     */
 	protected XStreamDataFormat xstream;
 
 	/**
-	 * The cached value of the '{@link #getZip() <em>Zip</em>}' containment reference.
-	 * <!-- begin-user-doc -->
+     * The cached value of the '{@link #getZip() <em>Zip</em>}' containment reference.
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #getZip()
-	 * @generated
-	 * @ordered
-	 */
+     * @see #getZip()
+     * @generated
+     * @ordered
+     */
 	protected ZipDataFormat zip;
 
 	/**
-	 * The default value of the '{@link #getRef() <em>Ref</em>}' attribute.
-	 * <!-- begin-user-doc -->
+     * The default value of the '{@link #getRef() <em>Ref</em>}' attribute.
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #getRef()
-	 * @generated
-	 * @ordered
-	 */
+     * @see #getRef()
+     * @generated
+     * @ordered
+     */
 	protected static final String REF_EDEFAULT = null;
 
 	/**
-	 * The cached value of the '{@link #getRef() <em>Ref</em>}' attribute.
-	 * <!-- begin-user-doc -->
+     * The cached value of the '{@link #getRef() <em>Ref</em>}' attribute.
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #getRef()
-	 * @generated
-	 * @ordered
-	 */
+     * @see #getRef()
+     * @generated
+     * @ordered
+     */
 	protected String ref = REF_EDEFAULT;
 
 	/**
-	 * The cached value of the '{@link #getAnyAttribute2() <em>Any Attribute2</em>}' attribute list.
-	 * <!-- begin-user-doc -->
+     * The cached value of the '{@link #getAnyAttribute2() <em>Any Attribute2</em>}' attribute list.
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #getAnyAttribute2()
-	 * @generated
-	 * @ordered
-	 */
+     * @see #getAnyAttribute2()
+     * @generated
+     * @ordered
+     */
 	protected FeatureMap anyAttribute2;
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	protected UnmarshalDefinitionImpl() {
-		super();
-	}
+        super();
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	@Override
 	protected EClass eStaticClass() {
-		return SpringPackage.eINSTANCE.getUnmarshalDefinition();
-	}
+        return SpringPackage.eINSTANCE.getUnmarshalDefinition();
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public BindyDataFormat getBindy() {
-		return bindy;
-	}
+        return bindy;
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public NotificationChain basicSetBindy(BindyDataFormat newBindy, NotificationChain msgs) {
-		BindyDataFormat oldBindy = bindy;
-		bindy = newBindy;
-		if (eNotificationRequired()) {
-			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, SpringPackage.UNMARSHAL_DEFINITION__BINDY, oldBindy, newBindy);
-			if (msgs == null) msgs = notification; else msgs.add(notification);
-		}
-		return msgs;
-	}
+        BindyDataFormat oldBindy = bindy;
+        bindy = newBindy;
+        if (eNotificationRequired()) {
+            ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, SpringPackage.UNMARSHAL_DEFINITION__BINDY, oldBindy, newBindy);
+            if (msgs == null) msgs = notification; else msgs.add(notification);
+        }
+        return msgs;
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public void setBindy(BindyDataFormat newBindy) {
-		if (newBindy != bindy) {
-			NotificationChain msgs = null;
-			if (bindy != null)
-				msgs = ((InternalEObject)bindy).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - SpringPackage.UNMARSHAL_DEFINITION__BINDY, null, msgs);
-			if (newBindy != null)
-				msgs = ((InternalEObject)newBindy).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - SpringPackage.UNMARSHAL_DEFINITION__BINDY, null, msgs);
-			msgs = basicSetBindy(newBindy, msgs);
-			if (msgs != null) msgs.dispatch();
-		}
-		else if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, SpringPackage.UNMARSHAL_DEFINITION__BINDY, newBindy, newBindy));
-	}
+        if (newBindy != bindy) {
+            NotificationChain msgs = null;
+            if (bindy != null)
+                msgs = ((InternalEObject)bindy).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - SpringPackage.UNMARSHAL_DEFINITION__BINDY, null, msgs);
+            if (newBindy != null)
+                msgs = ((InternalEObject)newBindy).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - SpringPackage.UNMARSHAL_DEFINITION__BINDY, null, msgs);
+            msgs = basicSetBindy(newBindy, msgs);
+            if (msgs != null) msgs.dispatch();
+        }
+        else if (eNotificationRequired())
+            eNotify(new ENotificationImpl(this, Notification.SET, SpringPackage.UNMARSHAL_DEFINITION__BINDY, newBindy, newBindy));
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public CastorDataFormat getCastor() {
-		return castor;
-	}
+        return castor;
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public NotificationChain basicSetCastor(CastorDataFormat newCastor, NotificationChain msgs) {
-		CastorDataFormat oldCastor = castor;
-		castor = newCastor;
-		if (eNotificationRequired()) {
-			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, SpringPackage.UNMARSHAL_DEFINITION__CASTOR, oldCastor, newCastor);
-			if (msgs == null) msgs = notification; else msgs.add(notification);
-		}
-		return msgs;
-	}
+        CastorDataFormat oldCastor = castor;
+        castor = newCastor;
+        if (eNotificationRequired()) {
+            ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, SpringPackage.UNMARSHAL_DEFINITION__CASTOR, oldCastor, newCastor);
+            if (msgs == null) msgs = notification; else msgs.add(notification);
+        }
+        return msgs;
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public void setCastor(CastorDataFormat newCastor) {
-		if (newCastor != castor) {
-			NotificationChain msgs = null;
-			if (castor != null)
-				msgs = ((InternalEObject)castor).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - SpringPackage.UNMARSHAL_DEFINITION__CASTOR, null, msgs);
-			if (newCastor != null)
-				msgs = ((InternalEObject)newCastor).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - SpringPackage.UNMARSHAL_DEFINITION__CASTOR, null, msgs);
-			msgs = basicSetCastor(newCastor, msgs);
-			if (msgs != null) msgs.dispatch();
-		}
-		else if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, SpringPackage.UNMARSHAL_DEFINITION__CASTOR, newCastor, newCastor));
-	}
+        if (newCastor != castor) {
+            NotificationChain msgs = null;
+            if (castor != null)
+                msgs = ((InternalEObject)castor).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - SpringPackage.UNMARSHAL_DEFINITION__CASTOR, null, msgs);
+            if (newCastor != null)
+                msgs = ((InternalEObject)newCastor).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - SpringPackage.UNMARSHAL_DEFINITION__CASTOR, null, msgs);
+            msgs = basicSetCastor(newCastor, msgs);
+            if (msgs != null) msgs.dispatch();
+        }
+        else if (eNotificationRequired())
+            eNotify(new ENotificationImpl(this, Notification.SET, SpringPackage.UNMARSHAL_DEFINITION__CASTOR, newCastor, newCastor));
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public CryptoDataFormat getCrypto() {
-		return crypto;
-	}
+        return crypto;
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public NotificationChain basicSetCrypto(CryptoDataFormat newCrypto, NotificationChain msgs) {
-		CryptoDataFormat oldCrypto = crypto;
-		crypto = newCrypto;
-		if (eNotificationRequired()) {
-			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, SpringPackage.UNMARSHAL_DEFINITION__CRYPTO, oldCrypto, newCrypto);
-			if (msgs == null) msgs = notification; else msgs.add(notification);
-		}
-		return msgs;
-	}
+        CryptoDataFormat oldCrypto = crypto;
+        crypto = newCrypto;
+        if (eNotificationRequired()) {
+            ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, SpringPackage.UNMARSHAL_DEFINITION__CRYPTO, oldCrypto, newCrypto);
+            if (msgs == null) msgs = notification; else msgs.add(notification);
+        }
+        return msgs;
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public void setCrypto(CryptoDataFormat newCrypto) {
-		if (newCrypto != crypto) {
-			NotificationChain msgs = null;
-			if (crypto != null)
-				msgs = ((InternalEObject)crypto).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - SpringPackage.UNMARSHAL_DEFINITION__CRYPTO, null, msgs);
-			if (newCrypto != null)
-				msgs = ((InternalEObject)newCrypto).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - SpringPackage.UNMARSHAL_DEFINITION__CRYPTO, null, msgs);
-			msgs = basicSetCrypto(newCrypto, msgs);
-			if (msgs != null) msgs.dispatch();
-		}
-		else if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, SpringPackage.UNMARSHAL_DEFINITION__CRYPTO, newCrypto, newCrypto));
-	}
+        if (newCrypto != crypto) {
+            NotificationChain msgs = null;
+            if (crypto != null)
+                msgs = ((InternalEObject)crypto).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - SpringPackage.UNMARSHAL_DEFINITION__CRYPTO, null, msgs);
+            if (newCrypto != null)
+                msgs = ((InternalEObject)newCrypto).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - SpringPackage.UNMARSHAL_DEFINITION__CRYPTO, null, msgs);
+            msgs = basicSetCrypto(newCrypto, msgs);
+            if (msgs != null) msgs.dispatch();
+        }
+        else if (eNotificationRequired())
+            eNotify(new ENotificationImpl(this, Notification.SET, SpringPackage.UNMARSHAL_DEFINITION__CRYPTO, newCrypto, newCrypto));
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public CsvDataFormat getCsv() {
-		return csv;
-	}
+        return csv;
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public NotificationChain basicSetCsv(CsvDataFormat newCsv, NotificationChain msgs) {
-		CsvDataFormat oldCsv = csv;
-		csv = newCsv;
-		if (eNotificationRequired()) {
-			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, SpringPackage.UNMARSHAL_DEFINITION__CSV, oldCsv, newCsv);
-			if (msgs == null) msgs = notification; else msgs.add(notification);
-		}
-		return msgs;
-	}
+        CsvDataFormat oldCsv = csv;
+        csv = newCsv;
+        if (eNotificationRequired()) {
+            ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, SpringPackage.UNMARSHAL_DEFINITION__CSV, oldCsv, newCsv);
+            if (msgs == null) msgs = notification; else msgs.add(notification);
+        }
+        return msgs;
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public void setCsv(CsvDataFormat newCsv) {
-		if (newCsv != csv) {
-			NotificationChain msgs = null;
-			if (csv != null)
-				msgs = ((InternalEObject)csv).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - SpringPackage.UNMARSHAL_DEFINITION__CSV, null, msgs);
-			if (newCsv != null)
-				msgs = ((InternalEObject)newCsv).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - SpringPackage.UNMARSHAL_DEFINITION__CSV, null, msgs);
-			msgs = basicSetCsv(newCsv, msgs);
-			if (msgs != null) msgs.dispatch();
-		}
-		else if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, SpringPackage.UNMARSHAL_DEFINITION__CSV, newCsv, newCsv));
-	}
+        if (newCsv != csv) {
+            NotificationChain msgs = null;
+            if (csv != null)
+                msgs = ((InternalEObject)csv).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - SpringPackage.UNMARSHAL_DEFINITION__CSV, null, msgs);
+            if (newCsv != null)
+                msgs = ((InternalEObject)newCsv).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - SpringPackage.UNMARSHAL_DEFINITION__CSV, null, msgs);
+            msgs = basicSetCsv(newCsv, msgs);
+            if (msgs != null) msgs.dispatch();
+        }
+        else if (eNotificationRequired())
+            eNotify(new ENotificationImpl(this, Notification.SET, SpringPackage.UNMARSHAL_DEFINITION__CSV, newCsv, newCsv));
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public CustomDataFormat getCustom() {
-		return custom;
-	}
+        return custom;
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public NotificationChain basicSetCustom(CustomDataFormat newCustom, NotificationChain msgs) {
-		CustomDataFormat oldCustom = custom;
-		custom = newCustom;
-		if (eNotificationRequired()) {
-			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, SpringPackage.UNMARSHAL_DEFINITION__CUSTOM, oldCustom, newCustom);
-			if (msgs == null) msgs = notification; else msgs.add(notification);
-		}
-		return msgs;
-	}
+        CustomDataFormat oldCustom = custom;
+        custom = newCustom;
+        if (eNotificationRequired()) {
+            ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, SpringPackage.UNMARSHAL_DEFINITION__CUSTOM, oldCustom, newCustom);
+            if (msgs == null) msgs = notification; else msgs.add(notification);
+        }
+        return msgs;
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public void setCustom(CustomDataFormat newCustom) {
-		if (newCustom != custom) {
-			NotificationChain msgs = null;
-			if (custom != null)
-				msgs = ((InternalEObject)custom).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - SpringPackage.UNMARSHAL_DEFINITION__CUSTOM, null, msgs);
-			if (newCustom != null)
-				msgs = ((InternalEObject)newCustom).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - SpringPackage.UNMARSHAL_DEFINITION__CUSTOM, null, msgs);
-			msgs = basicSetCustom(newCustom, msgs);
-			if (msgs != null) msgs.dispatch();
-		}
-		else if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, SpringPackage.UNMARSHAL_DEFINITION__CUSTOM, newCustom, newCustom));
-	}
+        if (newCustom != custom) {
+            NotificationChain msgs = null;
+            if (custom != null)
+                msgs = ((InternalEObject)custom).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - SpringPackage.UNMARSHAL_DEFINITION__CUSTOM, null, msgs);
+            if (newCustom != null)
+                msgs = ((InternalEObject)newCustom).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - SpringPackage.UNMARSHAL_DEFINITION__CUSTOM, null, msgs);
+            msgs = basicSetCustom(newCustom, msgs);
+            if (msgs != null) msgs.dispatch();
+        }
+        else if (eNotificationRequired())
+            eNotify(new ENotificationImpl(this, Notification.SET, SpringPackage.UNMARSHAL_DEFINITION__CUSTOM, newCustom, newCustom));
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public FlatpackDataFormat getFlatpack() {
-		return flatpack;
-	}
+        return flatpack;
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public NotificationChain basicSetFlatpack(FlatpackDataFormat newFlatpack, NotificationChain msgs) {
-		FlatpackDataFormat oldFlatpack = flatpack;
-		flatpack = newFlatpack;
-		if (eNotificationRequired()) {
-			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, SpringPackage.UNMARSHAL_DEFINITION__FLATPACK, oldFlatpack, newFlatpack);
-			if (msgs == null) msgs = notification; else msgs.add(notification);
-		}
-		return msgs;
-	}
+        FlatpackDataFormat oldFlatpack = flatpack;
+        flatpack = newFlatpack;
+        if (eNotificationRequired()) {
+            ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, SpringPackage.UNMARSHAL_DEFINITION__FLATPACK, oldFlatpack, newFlatpack);
+            if (msgs == null) msgs = notification; else msgs.add(notification);
+        }
+        return msgs;
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public void setFlatpack(FlatpackDataFormat newFlatpack) {
-		if (newFlatpack != flatpack) {
-			NotificationChain msgs = null;
-			if (flatpack != null)
-				msgs = ((InternalEObject)flatpack).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - SpringPackage.UNMARSHAL_DEFINITION__FLATPACK, null, msgs);
-			if (newFlatpack != null)
-				msgs = ((InternalEObject)newFlatpack).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - SpringPackage.UNMARSHAL_DEFINITION__FLATPACK, null, msgs);
-			msgs = basicSetFlatpack(newFlatpack, msgs);
-			if (msgs != null) msgs.dispatch();
-		}
-		else if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, SpringPackage.UNMARSHAL_DEFINITION__FLATPACK, newFlatpack, newFlatpack));
-	}
+        if (newFlatpack != flatpack) {
+            NotificationChain msgs = null;
+            if (flatpack != null)
+                msgs = ((InternalEObject)flatpack).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - SpringPackage.UNMARSHAL_DEFINITION__FLATPACK, null, msgs);
+            if (newFlatpack != null)
+                msgs = ((InternalEObject)newFlatpack).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - SpringPackage.UNMARSHAL_DEFINITION__FLATPACK, null, msgs);
+            msgs = basicSetFlatpack(newFlatpack, msgs);
+            if (msgs != null) msgs.dispatch();
+        }
+        else if (eNotificationRequired())
+            eNotify(new ENotificationImpl(this, Notification.SET, SpringPackage.UNMARSHAL_DEFINITION__FLATPACK, newFlatpack, newFlatpack));
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public GzipDataFormat getGzip() {
-		return gzip;
-	}
+        return gzip;
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public NotificationChain basicSetGzip(GzipDataFormat newGzip, NotificationChain msgs) {
-		GzipDataFormat oldGzip = gzip;
-		gzip = newGzip;
-		if (eNotificationRequired()) {
-			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, SpringPackage.UNMARSHAL_DEFINITION__GZIP, oldGzip, newGzip);
-			if (msgs == null) msgs = notification; else msgs.add(notification);
-		}
-		return msgs;
-	}
+        GzipDataFormat oldGzip = gzip;
+        gzip = newGzip;
+        if (eNotificationRequired()) {
+            ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, SpringPackage.UNMARSHAL_DEFINITION__GZIP, oldGzip, newGzip);
+            if (msgs == null) msgs = notification; else msgs.add(notification);
+        }
+        return msgs;
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public void setGzip(GzipDataFormat newGzip) {
-		if (newGzip != gzip) {
-			NotificationChain msgs = null;
-			if (gzip != null)
-				msgs = ((InternalEObject)gzip).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - SpringPackage.UNMARSHAL_DEFINITION__GZIP, null, msgs);
-			if (newGzip != null)
-				msgs = ((InternalEObject)newGzip).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - SpringPackage.UNMARSHAL_DEFINITION__GZIP, null, msgs);
-			msgs = basicSetGzip(newGzip, msgs);
-			if (msgs != null) msgs.dispatch();
-		}
-		else if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, SpringPackage.UNMARSHAL_DEFINITION__GZIP, newGzip, newGzip));
-	}
+        if (newGzip != gzip) {
+            NotificationChain msgs = null;
+            if (gzip != null)
+                msgs = ((InternalEObject)gzip).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - SpringPackage.UNMARSHAL_DEFINITION__GZIP, null, msgs);
+            if (newGzip != null)
+                msgs = ((InternalEObject)newGzip).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - SpringPackage.UNMARSHAL_DEFINITION__GZIP, null, msgs);
+            msgs = basicSetGzip(newGzip, msgs);
+            if (msgs != null) msgs.dispatch();
+        }
+        else if (eNotificationRequired())
+            eNotify(new ENotificationImpl(this, Notification.SET, SpringPackage.UNMARSHAL_DEFINITION__GZIP, newGzip, newGzip));
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public Hl7DataFormat getHl7() {
-		return hl7;
-	}
+        return hl7;
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public NotificationChain basicSetHl7(Hl7DataFormat newHl7, NotificationChain msgs) {
-		Hl7DataFormat oldHl7 = hl7;
-		hl7 = newHl7;
-		if (eNotificationRequired()) {
-			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, SpringPackage.UNMARSHAL_DEFINITION__HL7, oldHl7, newHl7);
-			if (msgs == null) msgs = notification; else msgs.add(notification);
-		}
-		return msgs;
-	}
+        Hl7DataFormat oldHl7 = hl7;
+        hl7 = newHl7;
+        if (eNotificationRequired()) {
+            ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, SpringPackage.UNMARSHAL_DEFINITION__HL7, oldHl7, newHl7);
+            if (msgs == null) msgs = notification; else msgs.add(notification);
+        }
+        return msgs;
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public void setHl7(Hl7DataFormat newHl7) {
-		if (newHl7 != hl7) {
-			NotificationChain msgs = null;
-			if (hl7 != null)
-				msgs = ((InternalEObject)hl7).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - SpringPackage.UNMARSHAL_DEFINITION__HL7, null, msgs);
-			if (newHl7 != null)
-				msgs = ((InternalEObject)newHl7).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - SpringPackage.UNMARSHAL_DEFINITION__HL7, null, msgs);
-			msgs = basicSetHl7(newHl7, msgs);
-			if (msgs != null) msgs.dispatch();
-		}
-		else if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, SpringPackage.UNMARSHAL_DEFINITION__HL7, newHl7, newHl7));
-	}
+        if (newHl7 != hl7) {
+            NotificationChain msgs = null;
+            if (hl7 != null)
+                msgs = ((InternalEObject)hl7).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - SpringPackage.UNMARSHAL_DEFINITION__HL7, null, msgs);
+            if (newHl7 != null)
+                msgs = ((InternalEObject)newHl7).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - SpringPackage.UNMARSHAL_DEFINITION__HL7, null, msgs);
+            msgs = basicSetHl7(newHl7, msgs);
+            if (msgs != null) msgs.dispatch();
+        }
+        else if (eNotificationRequired())
+            eNotify(new ENotificationImpl(this, Notification.SET, SpringPackage.UNMARSHAL_DEFINITION__HL7, newHl7, newHl7));
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public JaxbDataFormat getJaxb() {
-		return jaxb;
-	}
+        return jaxb;
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public NotificationChain basicSetJaxb(JaxbDataFormat newJaxb, NotificationChain msgs) {
-		JaxbDataFormat oldJaxb = jaxb;
-		jaxb = newJaxb;
-		if (eNotificationRequired()) {
-			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, SpringPackage.UNMARSHAL_DEFINITION__JAXB, oldJaxb, newJaxb);
-			if (msgs == null) msgs = notification; else msgs.add(notification);
-		}
-		return msgs;
-	}
+        JaxbDataFormat oldJaxb = jaxb;
+        jaxb = newJaxb;
+        if (eNotificationRequired()) {
+            ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, SpringPackage.UNMARSHAL_DEFINITION__JAXB, oldJaxb, newJaxb);
+            if (msgs == null) msgs = notification; else msgs.add(notification);
+        }
+        return msgs;
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public void setJaxb(JaxbDataFormat newJaxb) {
-		if (newJaxb != jaxb) {
-			NotificationChain msgs = null;
-			if (jaxb != null)
-				msgs = ((InternalEObject)jaxb).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - SpringPackage.UNMARSHAL_DEFINITION__JAXB, null, msgs);
-			if (newJaxb != null)
-				msgs = ((InternalEObject)newJaxb).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - SpringPackage.UNMARSHAL_DEFINITION__JAXB, null, msgs);
-			msgs = basicSetJaxb(newJaxb, msgs);
-			if (msgs != null) msgs.dispatch();
-		}
-		else if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, SpringPackage.UNMARSHAL_DEFINITION__JAXB, newJaxb, newJaxb));
-	}
+        if (newJaxb != jaxb) {
+            NotificationChain msgs = null;
+            if (jaxb != null)
+                msgs = ((InternalEObject)jaxb).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - SpringPackage.UNMARSHAL_DEFINITION__JAXB, null, msgs);
+            if (newJaxb != null)
+                msgs = ((InternalEObject)newJaxb).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - SpringPackage.UNMARSHAL_DEFINITION__JAXB, null, msgs);
+            msgs = basicSetJaxb(newJaxb, msgs);
+            if (msgs != null) msgs.dispatch();
+        }
+        else if (eNotificationRequired())
+            eNotify(new ENotificationImpl(this, Notification.SET, SpringPackage.UNMARSHAL_DEFINITION__JAXB, newJaxb, newJaxb));
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public JibxDataFormat getJibx() {
-		return jibx;
-	}
+        return jibx;
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public NotificationChain basicSetJibx(JibxDataFormat newJibx, NotificationChain msgs) {
-		JibxDataFormat oldJibx = jibx;
-		jibx = newJibx;
-		if (eNotificationRequired()) {
-			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, SpringPackage.UNMARSHAL_DEFINITION__JIBX, oldJibx, newJibx);
-			if (msgs == null) msgs = notification; else msgs.add(notification);
-		}
-		return msgs;
-	}
+        JibxDataFormat oldJibx = jibx;
+        jibx = newJibx;
+        if (eNotificationRequired()) {
+            ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, SpringPackage.UNMARSHAL_DEFINITION__JIBX, oldJibx, newJibx);
+            if (msgs == null) msgs = notification; else msgs.add(notification);
+        }
+        return msgs;
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public void setJibx(JibxDataFormat newJibx) {
-		if (newJibx != jibx) {
-			NotificationChain msgs = null;
-			if (jibx != null)
-				msgs = ((InternalEObject)jibx).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - SpringPackage.UNMARSHAL_DEFINITION__JIBX, null, msgs);
-			if (newJibx != null)
-				msgs = ((InternalEObject)newJibx).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - SpringPackage.UNMARSHAL_DEFINITION__JIBX, null, msgs);
-			msgs = basicSetJibx(newJibx, msgs);
-			if (msgs != null) msgs.dispatch();
-		}
-		else if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, SpringPackage.UNMARSHAL_DEFINITION__JIBX, newJibx, newJibx));
-	}
+        if (newJibx != jibx) {
+            NotificationChain msgs = null;
+            if (jibx != null)
+                msgs = ((InternalEObject)jibx).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - SpringPackage.UNMARSHAL_DEFINITION__JIBX, null, msgs);
+            if (newJibx != null)
+                msgs = ((InternalEObject)newJibx).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - SpringPackage.UNMARSHAL_DEFINITION__JIBX, null, msgs);
+            msgs = basicSetJibx(newJibx, msgs);
+            if (msgs != null) msgs.dispatch();
+        }
+        else if (eNotificationRequired())
+            eNotify(new ENotificationImpl(this, Notification.SET, SpringPackage.UNMARSHAL_DEFINITION__JIBX, newJibx, newJibx));
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public JsonDataFormat getJson() {
-		return json;
-	}
+        return json;
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public NotificationChain basicSetJson(JsonDataFormat newJson, NotificationChain msgs) {
-		JsonDataFormat oldJson = json;
-		json = newJson;
-		if (eNotificationRequired()) {
-			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, SpringPackage.UNMARSHAL_DEFINITION__JSON, oldJson, newJson);
-			if (msgs == null) msgs = notification; else msgs.add(notification);
-		}
-		return msgs;
-	}
+        JsonDataFormat oldJson = json;
+        json = newJson;
+        if (eNotificationRequired()) {
+            ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, SpringPackage.UNMARSHAL_DEFINITION__JSON, oldJson, newJson);
+            if (msgs == null) msgs = notification; else msgs.add(notification);
+        }
+        return msgs;
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public void setJson(JsonDataFormat newJson) {
-		if (newJson != json) {
-			NotificationChain msgs = null;
-			if (json != null)
-				msgs = ((InternalEObject)json).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - SpringPackage.UNMARSHAL_DEFINITION__JSON, null, msgs);
-			if (newJson != null)
-				msgs = ((InternalEObject)newJson).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - SpringPackage.UNMARSHAL_DEFINITION__JSON, null, msgs);
-			msgs = basicSetJson(newJson, msgs);
-			if (msgs != null) msgs.dispatch();
-		}
-		else if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, SpringPackage.UNMARSHAL_DEFINITION__JSON, newJson, newJson));
-	}
+        if (newJson != json) {
+            NotificationChain msgs = null;
+            if (json != null)
+                msgs = ((InternalEObject)json).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - SpringPackage.UNMARSHAL_DEFINITION__JSON, null, msgs);
+            if (newJson != null)
+                msgs = ((InternalEObject)newJson).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - SpringPackage.UNMARSHAL_DEFINITION__JSON, null, msgs);
+            msgs = basicSetJson(newJson, msgs);
+            if (msgs != null) msgs.dispatch();
+        }
+        else if (eNotificationRequired())
+            eNotify(new ENotificationImpl(this, Notification.SET, SpringPackage.UNMARSHAL_DEFINITION__JSON, newJson, newJson));
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public ProtobufDataFormat getProtobuf() {
-		return protobuf;
-	}
+        return protobuf;
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public NotificationChain basicSetProtobuf(ProtobufDataFormat newProtobuf, NotificationChain msgs) {
-		ProtobufDataFormat oldProtobuf = protobuf;
-		protobuf = newProtobuf;
-		if (eNotificationRequired()) {
-			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, SpringPackage.UNMARSHAL_DEFINITION__PROTOBUF, oldProtobuf, newProtobuf);
-			if (msgs == null) msgs = notification; else msgs.add(notification);
-		}
-		return msgs;
-	}
+        ProtobufDataFormat oldProtobuf = protobuf;
+        protobuf = newProtobuf;
+        if (eNotificationRequired()) {
+            ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, SpringPackage.UNMARSHAL_DEFINITION__PROTOBUF, oldProtobuf, newProtobuf);
+            if (msgs == null) msgs = notification; else msgs.add(notification);
+        }
+        return msgs;
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public void setProtobuf(ProtobufDataFormat newProtobuf) {
-		if (newProtobuf != protobuf) {
-			NotificationChain msgs = null;
-			if (protobuf != null)
-				msgs = ((InternalEObject)protobuf).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - SpringPackage.UNMARSHAL_DEFINITION__PROTOBUF, null, msgs);
-			if (newProtobuf != null)
-				msgs = ((InternalEObject)newProtobuf).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - SpringPackage.UNMARSHAL_DEFINITION__PROTOBUF, null, msgs);
-			msgs = basicSetProtobuf(newProtobuf, msgs);
-			if (msgs != null) msgs.dispatch();
-		}
-		else if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, SpringPackage.UNMARSHAL_DEFINITION__PROTOBUF, newProtobuf, newProtobuf));
-	}
+        if (newProtobuf != protobuf) {
+            NotificationChain msgs = null;
+            if (protobuf != null)
+                msgs = ((InternalEObject)protobuf).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - SpringPackage.UNMARSHAL_DEFINITION__PROTOBUF, null, msgs);
+            if (newProtobuf != null)
+                msgs = ((InternalEObject)newProtobuf).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - SpringPackage.UNMARSHAL_DEFINITION__PROTOBUF, null, msgs);
+            msgs = basicSetProtobuf(newProtobuf, msgs);
+            if (msgs != null) msgs.dispatch();
+        }
+        else if (eNotificationRequired())
+            eNotify(new ENotificationImpl(this, Notification.SET, SpringPackage.UNMARSHAL_DEFINITION__PROTOBUF, newProtobuf, newProtobuf));
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public RssDataFormat getRss() {
-		return rss;
-	}
+        return rss;
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public NotificationChain basicSetRss(RssDataFormat newRss, NotificationChain msgs) {
-		RssDataFormat oldRss = rss;
-		rss = newRss;
-		if (eNotificationRequired()) {
-			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, SpringPackage.UNMARSHAL_DEFINITION__RSS, oldRss, newRss);
-			if (msgs == null) msgs = notification; else msgs.add(notification);
-		}
-		return msgs;
-	}
+        RssDataFormat oldRss = rss;
+        rss = newRss;
+        if (eNotificationRequired()) {
+            ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, SpringPackage.UNMARSHAL_DEFINITION__RSS, oldRss, newRss);
+            if (msgs == null) msgs = notification; else msgs.add(notification);
+        }
+        return msgs;
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public void setRss(RssDataFormat newRss) {
-		if (newRss != rss) {
-			NotificationChain msgs = null;
-			if (rss != null)
-				msgs = ((InternalEObject)rss).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - SpringPackage.UNMARSHAL_DEFINITION__RSS, null, msgs);
-			if (newRss != null)
-				msgs = ((InternalEObject)newRss).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - SpringPackage.UNMARSHAL_DEFINITION__RSS, null, msgs);
-			msgs = basicSetRss(newRss, msgs);
-			if (msgs != null) msgs.dispatch();
-		}
-		else if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, SpringPackage.UNMARSHAL_DEFINITION__RSS, newRss, newRss));
-	}
+        if (newRss != rss) {
+            NotificationChain msgs = null;
+            if (rss != null)
+                msgs = ((InternalEObject)rss).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - SpringPackage.UNMARSHAL_DEFINITION__RSS, null, msgs);
+            if (newRss != null)
+                msgs = ((InternalEObject)newRss).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - SpringPackage.UNMARSHAL_DEFINITION__RSS, null, msgs);
+            msgs = basicSetRss(newRss, msgs);
+            if (msgs != null) msgs.dispatch();
+        }
+        else if (eNotificationRequired())
+            eNotify(new ENotificationImpl(this, Notification.SET, SpringPackage.UNMARSHAL_DEFINITION__RSS, newRss, newRss));
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public XmlSecurityDataFormat getSecureXML() {
-		return secureXML;
-	}
+        return secureXML;
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public NotificationChain basicSetSecureXML(XmlSecurityDataFormat newSecureXML, NotificationChain msgs) {
-		XmlSecurityDataFormat oldSecureXML = secureXML;
-		secureXML = newSecureXML;
-		if (eNotificationRequired()) {
-			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, SpringPackage.UNMARSHAL_DEFINITION__SECURE_XML, oldSecureXML, newSecureXML);
-			if (msgs == null) msgs = notification; else msgs.add(notification);
-		}
-		return msgs;
-	}
+        XmlSecurityDataFormat oldSecureXML = secureXML;
+        secureXML = newSecureXML;
+        if (eNotificationRequired()) {
+            ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, SpringPackage.UNMARSHAL_DEFINITION__SECURE_XML, oldSecureXML, newSecureXML);
+            if (msgs == null) msgs = notification; else msgs.add(notification);
+        }
+        return msgs;
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public void setSecureXML(XmlSecurityDataFormat newSecureXML) {
-		if (newSecureXML != secureXML) {
-			NotificationChain msgs = null;
-			if (secureXML != null)
-				msgs = ((InternalEObject)secureXML).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - SpringPackage.UNMARSHAL_DEFINITION__SECURE_XML, null, msgs);
-			if (newSecureXML != null)
-				msgs = ((InternalEObject)newSecureXML).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - SpringPackage.UNMARSHAL_DEFINITION__SECURE_XML, null, msgs);
-			msgs = basicSetSecureXML(newSecureXML, msgs);
-			if (msgs != null) msgs.dispatch();
-		}
-		else if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, SpringPackage.UNMARSHAL_DEFINITION__SECURE_XML, newSecureXML, newSecureXML));
-	}
+        if (newSecureXML != secureXML) {
+            NotificationChain msgs = null;
+            if (secureXML != null)
+                msgs = ((InternalEObject)secureXML).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - SpringPackage.UNMARSHAL_DEFINITION__SECURE_XML, null, msgs);
+            if (newSecureXML != null)
+                msgs = ((InternalEObject)newSecureXML).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - SpringPackage.UNMARSHAL_DEFINITION__SECURE_XML, null, msgs);
+            msgs = basicSetSecureXML(newSecureXML, msgs);
+            if (msgs != null) msgs.dispatch();
+        }
+        else if (eNotificationRequired())
+            eNotify(new ENotificationImpl(this, Notification.SET, SpringPackage.UNMARSHAL_DEFINITION__SECURE_XML, newSecureXML, newSecureXML));
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public SerializationDataFormat getSerialization() {
-		return serialization;
-	}
+        return serialization;
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public NotificationChain basicSetSerialization(SerializationDataFormat newSerialization, NotificationChain msgs) {
-		SerializationDataFormat oldSerialization = serialization;
-		serialization = newSerialization;
-		if (eNotificationRequired()) {
-			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, SpringPackage.UNMARSHAL_DEFINITION__SERIALIZATION, oldSerialization, newSerialization);
-			if (msgs == null) msgs = notification; else msgs.add(notification);
-		}
-		return msgs;
-	}
+        SerializationDataFormat oldSerialization = serialization;
+        serialization = newSerialization;
+        if (eNotificationRequired()) {
+            ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, SpringPackage.UNMARSHAL_DEFINITION__SERIALIZATION, oldSerialization, newSerialization);
+            if (msgs == null) msgs = notification; else msgs.add(notification);
+        }
+        return msgs;
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public void setSerialization(SerializationDataFormat newSerialization) {
-		if (newSerialization != serialization) {
-			NotificationChain msgs = null;
-			if (serialization != null)
-				msgs = ((InternalEObject)serialization).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - SpringPackage.UNMARSHAL_DEFINITION__SERIALIZATION, null, msgs);
-			if (newSerialization != null)
-				msgs = ((InternalEObject)newSerialization).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - SpringPackage.UNMARSHAL_DEFINITION__SERIALIZATION, null, msgs);
-			msgs = basicSetSerialization(newSerialization, msgs);
-			if (msgs != null) msgs.dispatch();
-		}
-		else if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, SpringPackage.UNMARSHAL_DEFINITION__SERIALIZATION, newSerialization, newSerialization));
-	}
+        if (newSerialization != serialization) {
+            NotificationChain msgs = null;
+            if (serialization != null)
+                msgs = ((InternalEObject)serialization).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - SpringPackage.UNMARSHAL_DEFINITION__SERIALIZATION, null, msgs);
+            if (newSerialization != null)
+                msgs = ((InternalEObject)newSerialization).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - SpringPackage.UNMARSHAL_DEFINITION__SERIALIZATION, null, msgs);
+            msgs = basicSetSerialization(newSerialization, msgs);
+            if (msgs != null) msgs.dispatch();
+        }
+        else if (eNotificationRequired())
+            eNotify(new ENotificationImpl(this, Notification.SET, SpringPackage.UNMARSHAL_DEFINITION__SERIALIZATION, newSerialization, newSerialization));
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public SoapJaxbDataFormat getSoapjaxb() {
-		return soapjaxb;
-	}
+        return soapjaxb;
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public NotificationChain basicSetSoapjaxb(SoapJaxbDataFormat newSoapjaxb, NotificationChain msgs) {
-		SoapJaxbDataFormat oldSoapjaxb = soapjaxb;
-		soapjaxb = newSoapjaxb;
-		if (eNotificationRequired()) {
-			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, SpringPackage.UNMARSHAL_DEFINITION__SOAPJAXB, oldSoapjaxb, newSoapjaxb);
-			if (msgs == null) msgs = notification; else msgs.add(notification);
-		}
-		return msgs;
-	}
+        SoapJaxbDataFormat oldSoapjaxb = soapjaxb;
+        soapjaxb = newSoapjaxb;
+        if (eNotificationRequired()) {
+            ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, SpringPackage.UNMARSHAL_DEFINITION__SOAPJAXB, oldSoapjaxb, newSoapjaxb);
+            if (msgs == null) msgs = notification; else msgs.add(notification);
+        }
+        return msgs;
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public void setSoapjaxb(SoapJaxbDataFormat newSoapjaxb) {
-		if (newSoapjaxb != soapjaxb) {
-			NotificationChain msgs = null;
-			if (soapjaxb != null)
-				msgs = ((InternalEObject)soapjaxb).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - SpringPackage.UNMARSHAL_DEFINITION__SOAPJAXB, null, msgs);
-			if (newSoapjaxb != null)
-				msgs = ((InternalEObject)newSoapjaxb).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - SpringPackage.UNMARSHAL_DEFINITION__SOAPJAXB, null, msgs);
-			msgs = basicSetSoapjaxb(newSoapjaxb, msgs);
-			if (msgs != null) msgs.dispatch();
-		}
-		else if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, SpringPackage.UNMARSHAL_DEFINITION__SOAPJAXB, newSoapjaxb, newSoapjaxb));
-	}
+        if (newSoapjaxb != soapjaxb) {
+            NotificationChain msgs = null;
+            if (soapjaxb != null)
+                msgs = ((InternalEObject)soapjaxb).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - SpringPackage.UNMARSHAL_DEFINITION__SOAPJAXB, null, msgs);
+            if (newSoapjaxb != null)
+                msgs = ((InternalEObject)newSoapjaxb).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - SpringPackage.UNMARSHAL_DEFINITION__SOAPJAXB, null, msgs);
+            msgs = basicSetSoapjaxb(newSoapjaxb, msgs);
+            if (msgs != null) msgs.dispatch();
+        }
+        else if (eNotificationRequired())
+            eNotify(new ENotificationImpl(this, Notification.SET, SpringPackage.UNMARSHAL_DEFINITION__SOAPJAXB, newSoapjaxb, newSoapjaxb));
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public StringDataFormat getString() {
-		return string;
-	}
+        return string;
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public NotificationChain basicSetString(StringDataFormat newString, NotificationChain msgs) {
-		StringDataFormat oldString = string;
-		string = newString;
-		if (eNotificationRequired()) {
-			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, SpringPackage.UNMARSHAL_DEFINITION__STRING, oldString, newString);
-			if (msgs == null) msgs = notification; else msgs.add(notification);
-		}
-		return msgs;
-	}
+        StringDataFormat oldString = string;
+        string = newString;
+        if (eNotificationRequired()) {
+            ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, SpringPackage.UNMARSHAL_DEFINITION__STRING, oldString, newString);
+            if (msgs == null) msgs = notification; else msgs.add(notification);
+        }
+        return msgs;
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public void setString(StringDataFormat newString) {
-		if (newString != string) {
-			NotificationChain msgs = null;
-			if (string != null)
-				msgs = ((InternalEObject)string).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - SpringPackage.UNMARSHAL_DEFINITION__STRING, null, msgs);
-			if (newString != null)
-				msgs = ((InternalEObject)newString).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - SpringPackage.UNMARSHAL_DEFINITION__STRING, null, msgs);
-			msgs = basicSetString(newString, msgs);
-			if (msgs != null) msgs.dispatch();
-		}
-		else if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, SpringPackage.UNMARSHAL_DEFINITION__STRING, newString, newString));
-	}
+        if (newString != string) {
+            NotificationChain msgs = null;
+            if (string != null)
+                msgs = ((InternalEObject)string).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - SpringPackage.UNMARSHAL_DEFINITION__STRING, null, msgs);
+            if (newString != null)
+                msgs = ((InternalEObject)newString).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - SpringPackage.UNMARSHAL_DEFINITION__STRING, null, msgs);
+            msgs = basicSetString(newString, msgs);
+            if (msgs != null) msgs.dispatch();
+        }
+        else if (eNotificationRequired())
+            eNotify(new ENotificationImpl(this, Notification.SET, SpringPackage.UNMARSHAL_DEFINITION__STRING, newString, newString));
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public SyslogDataFormat getSyslog() {
-		return syslog;
-	}
+        return syslog;
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public NotificationChain basicSetSyslog(SyslogDataFormat newSyslog, NotificationChain msgs) {
-		SyslogDataFormat oldSyslog = syslog;
-		syslog = newSyslog;
-		if (eNotificationRequired()) {
-			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, SpringPackage.UNMARSHAL_DEFINITION__SYSLOG, oldSyslog, newSyslog);
-			if (msgs == null) msgs = notification; else msgs.add(notification);
-		}
-		return msgs;
-	}
+        SyslogDataFormat oldSyslog = syslog;
+        syslog = newSyslog;
+        if (eNotificationRequired()) {
+            ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, SpringPackage.UNMARSHAL_DEFINITION__SYSLOG, oldSyslog, newSyslog);
+            if (msgs == null) msgs = notification; else msgs.add(notification);
+        }
+        return msgs;
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public void setSyslog(SyslogDataFormat newSyslog) {
-		if (newSyslog != syslog) {
-			NotificationChain msgs = null;
-			if (syslog != null)
-				msgs = ((InternalEObject)syslog).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - SpringPackage.UNMARSHAL_DEFINITION__SYSLOG, null, msgs);
-			if (newSyslog != null)
-				msgs = ((InternalEObject)newSyslog).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - SpringPackage.UNMARSHAL_DEFINITION__SYSLOG, null, msgs);
-			msgs = basicSetSyslog(newSyslog, msgs);
-			if (msgs != null) msgs.dispatch();
-		}
-		else if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, SpringPackage.UNMARSHAL_DEFINITION__SYSLOG, newSyslog, newSyslog));
-	}
+        if (newSyslog != syslog) {
+            NotificationChain msgs = null;
+            if (syslog != null)
+                msgs = ((InternalEObject)syslog).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - SpringPackage.UNMARSHAL_DEFINITION__SYSLOG, null, msgs);
+            if (newSyslog != null)
+                msgs = ((InternalEObject)newSyslog).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - SpringPackage.UNMARSHAL_DEFINITION__SYSLOG, null, msgs);
+            msgs = basicSetSyslog(newSyslog, msgs);
+            if (msgs != null) msgs.dispatch();
+        }
+        else if (eNotificationRequired())
+            eNotify(new ENotificationImpl(this, Notification.SET, SpringPackage.UNMARSHAL_DEFINITION__SYSLOG, newSyslog, newSyslog));
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public TidyMarkupDataFormat getTidyMarkup() {
-		return tidyMarkup;
-	}
+        return tidyMarkup;
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public NotificationChain basicSetTidyMarkup(TidyMarkupDataFormat newTidyMarkup, NotificationChain msgs) {
-		TidyMarkupDataFormat oldTidyMarkup = tidyMarkup;
-		tidyMarkup = newTidyMarkup;
-		if (eNotificationRequired()) {
-			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, SpringPackage.UNMARSHAL_DEFINITION__TIDY_MARKUP, oldTidyMarkup, newTidyMarkup);
-			if (msgs == null) msgs = notification; else msgs.add(notification);
-		}
-		return msgs;
-	}
+        TidyMarkupDataFormat oldTidyMarkup = tidyMarkup;
+        tidyMarkup = newTidyMarkup;
+        if (eNotificationRequired()) {
+            ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, SpringPackage.UNMARSHAL_DEFINITION__TIDY_MARKUP, oldTidyMarkup, newTidyMarkup);
+            if (msgs == null) msgs = notification; else msgs.add(notification);
+        }
+        return msgs;
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public void setTidyMarkup(TidyMarkupDataFormat newTidyMarkup) {
-		if (newTidyMarkup != tidyMarkup) {
-			NotificationChain msgs = null;
-			if (tidyMarkup != null)
-				msgs = ((InternalEObject)tidyMarkup).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - SpringPackage.UNMARSHAL_DEFINITION__TIDY_MARKUP, null, msgs);
-			if (newTidyMarkup != null)
-				msgs = ((InternalEObject)newTidyMarkup).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - SpringPackage.UNMARSHAL_DEFINITION__TIDY_MARKUP, null, msgs);
-			msgs = basicSetTidyMarkup(newTidyMarkup, msgs);
-			if (msgs != null) msgs.dispatch();
-		}
-		else if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, SpringPackage.UNMARSHAL_DEFINITION__TIDY_MARKUP, newTidyMarkup, newTidyMarkup));
-	}
+        if (newTidyMarkup != tidyMarkup) {
+            NotificationChain msgs = null;
+            if (tidyMarkup != null)
+                msgs = ((InternalEObject)tidyMarkup).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - SpringPackage.UNMARSHAL_DEFINITION__TIDY_MARKUP, null, msgs);
+            if (newTidyMarkup != null)
+                msgs = ((InternalEObject)newTidyMarkup).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - SpringPackage.UNMARSHAL_DEFINITION__TIDY_MARKUP, null, msgs);
+            msgs = basicSetTidyMarkup(newTidyMarkup, msgs);
+            if (msgs != null) msgs.dispatch();
+        }
+        else if (eNotificationRequired())
+            eNotify(new ENotificationImpl(this, Notification.SET, SpringPackage.UNMARSHAL_DEFINITION__TIDY_MARKUP, newTidyMarkup, newTidyMarkup));
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public XmlBeansDataFormat getXmlBeans() {
-		return xmlBeans;
-	}
+        return xmlBeans;
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public NotificationChain basicSetXmlBeans(XmlBeansDataFormat newXmlBeans, NotificationChain msgs) {
-		XmlBeansDataFormat oldXmlBeans = xmlBeans;
-		xmlBeans = newXmlBeans;
-		if (eNotificationRequired()) {
-			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, SpringPackage.UNMARSHAL_DEFINITION__XML_BEANS, oldXmlBeans, newXmlBeans);
-			if (msgs == null) msgs = notification; else msgs.add(notification);
-		}
-		return msgs;
-	}
+        XmlBeansDataFormat oldXmlBeans = xmlBeans;
+        xmlBeans = newXmlBeans;
+        if (eNotificationRequired()) {
+            ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, SpringPackage.UNMARSHAL_DEFINITION__XML_BEANS, oldXmlBeans, newXmlBeans);
+            if (msgs == null) msgs = notification; else msgs.add(notification);
+        }
+        return msgs;
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public void setXmlBeans(XmlBeansDataFormat newXmlBeans) {
-		if (newXmlBeans != xmlBeans) {
-			NotificationChain msgs = null;
-			if (xmlBeans != null)
-				msgs = ((InternalEObject)xmlBeans).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - SpringPackage.UNMARSHAL_DEFINITION__XML_BEANS, null, msgs);
-			if (newXmlBeans != null)
-				msgs = ((InternalEObject)newXmlBeans).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - SpringPackage.UNMARSHAL_DEFINITION__XML_BEANS, null, msgs);
-			msgs = basicSetXmlBeans(newXmlBeans, msgs);
-			if (msgs != null) msgs.dispatch();
-		}
-		else if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, SpringPackage.UNMARSHAL_DEFINITION__XML_BEANS, newXmlBeans, newXmlBeans));
-	}
+        if (newXmlBeans != xmlBeans) {
+            NotificationChain msgs = null;
+            if (xmlBeans != null)
+                msgs = ((InternalEObject)xmlBeans).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - SpringPackage.UNMARSHAL_DEFINITION__XML_BEANS, null, msgs);
+            if (newXmlBeans != null)
+                msgs = ((InternalEObject)newXmlBeans).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - SpringPackage.UNMARSHAL_DEFINITION__XML_BEANS, null, msgs);
+            msgs = basicSetXmlBeans(newXmlBeans, msgs);
+            if (msgs != null) msgs.dispatch();
+        }
+        else if (eNotificationRequired())
+            eNotify(new ENotificationImpl(this, Notification.SET, SpringPackage.UNMARSHAL_DEFINITION__XML_BEANS, newXmlBeans, newXmlBeans));
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public XStreamDataFormat getXstream() {
-		return xstream;
-	}
+        return xstream;
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public NotificationChain basicSetXstream(XStreamDataFormat newXstream, NotificationChain msgs) {
-		XStreamDataFormat oldXstream = xstream;
-		xstream = newXstream;
-		if (eNotificationRequired()) {
-			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, SpringPackage.UNMARSHAL_DEFINITION__XSTREAM, oldXstream, newXstream);
-			if (msgs == null) msgs = notification; else msgs.add(notification);
-		}
-		return msgs;
-	}
+        XStreamDataFormat oldXstream = xstream;
+        xstream = newXstream;
+        if (eNotificationRequired()) {
+            ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, SpringPackage.UNMARSHAL_DEFINITION__XSTREAM, oldXstream, newXstream);
+            if (msgs == null) msgs = notification; else msgs.add(notification);
+        }
+        return msgs;
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public void setXstream(XStreamDataFormat newXstream) {
-		if (newXstream != xstream) {
-			NotificationChain msgs = null;
-			if (xstream != null)
-				msgs = ((InternalEObject)xstream).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - SpringPackage.UNMARSHAL_DEFINITION__XSTREAM, null, msgs);
-			if (newXstream != null)
-				msgs = ((InternalEObject)newXstream).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - SpringPackage.UNMARSHAL_DEFINITION__XSTREAM, null, msgs);
-			msgs = basicSetXstream(newXstream, msgs);
-			if (msgs != null) msgs.dispatch();
-		}
-		else if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, SpringPackage.UNMARSHAL_DEFINITION__XSTREAM, newXstream, newXstream));
-	}
+        if (newXstream != xstream) {
+            NotificationChain msgs = null;
+            if (xstream != null)
+                msgs = ((InternalEObject)xstream).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - SpringPackage.UNMARSHAL_DEFINITION__XSTREAM, null, msgs);
+            if (newXstream != null)
+                msgs = ((InternalEObject)newXstream).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - SpringPackage.UNMARSHAL_DEFINITION__XSTREAM, null, msgs);
+            msgs = basicSetXstream(newXstream, msgs);
+            if (msgs != null) msgs.dispatch();
+        }
+        else if (eNotificationRequired())
+            eNotify(new ENotificationImpl(this, Notification.SET, SpringPackage.UNMARSHAL_DEFINITION__XSTREAM, newXstream, newXstream));
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public ZipDataFormat getZip() {
-		return zip;
-	}
+        return zip;
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public NotificationChain basicSetZip(ZipDataFormat newZip, NotificationChain msgs) {
-		ZipDataFormat oldZip = zip;
-		zip = newZip;
-		if (eNotificationRequired()) {
-			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, SpringPackage.UNMARSHAL_DEFINITION__ZIP, oldZip, newZip);
-			if (msgs == null) msgs = notification; else msgs.add(notification);
-		}
-		return msgs;
-	}
+        ZipDataFormat oldZip = zip;
+        zip = newZip;
+        if (eNotificationRequired()) {
+            ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, SpringPackage.UNMARSHAL_DEFINITION__ZIP, oldZip, newZip);
+            if (msgs == null) msgs = notification; else msgs.add(notification);
+        }
+        return msgs;
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public void setZip(ZipDataFormat newZip) {
-		if (newZip != zip) {
-			NotificationChain msgs = null;
-			if (zip != null)
-				msgs = ((InternalEObject)zip).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - SpringPackage.UNMARSHAL_DEFINITION__ZIP, null, msgs);
-			if (newZip != null)
-				msgs = ((InternalEObject)newZip).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - SpringPackage.UNMARSHAL_DEFINITION__ZIP, null, msgs);
-			msgs = basicSetZip(newZip, msgs);
-			if (msgs != null) msgs.dispatch();
-		}
-		else if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, SpringPackage.UNMARSHAL_DEFINITION__ZIP, newZip, newZip));
-	}
+        if (newZip != zip) {
+            NotificationChain msgs = null;
+            if (zip != null)
+                msgs = ((InternalEObject)zip).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - SpringPackage.UNMARSHAL_DEFINITION__ZIP, null, msgs);
+            if (newZip != null)
+                msgs = ((InternalEObject)newZip).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - SpringPackage.UNMARSHAL_DEFINITION__ZIP, null, msgs);
+            msgs = basicSetZip(newZip, msgs);
+            if (msgs != null) msgs.dispatch();
+        }
+        else if (eNotificationRequired())
+            eNotify(new ENotificationImpl(this, Notification.SET, SpringPackage.UNMARSHAL_DEFINITION__ZIP, newZip, newZip));
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public String getRef() {
-		return ref;
-	}
+        return ref;
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public void setRef(String newRef) {
-		String oldRef = ref;
-		ref = newRef;
-		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, SpringPackage.UNMARSHAL_DEFINITION__REF, oldRef, ref));
-	}
+        String oldRef = ref;
+        ref = newRef;
+        if (eNotificationRequired())
+            eNotify(new ENotificationImpl(this, Notification.SET, SpringPackage.UNMARSHAL_DEFINITION__REF, oldRef, ref));
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public FeatureMap getAnyAttribute2() {
-		if (anyAttribute2 == null) {
-			anyAttribute2 = new BasicFeatureMap(this, SpringPackage.UNMARSHAL_DEFINITION__ANY_ATTRIBUTE2);
-		}
-		return anyAttribute2;
-	}
+        if (anyAttribute2 == null) {
+            anyAttribute2 = new BasicFeatureMap(this, SpringPackage.UNMARSHAL_DEFINITION__ANY_ATTRIBUTE2);
+        }
+        return anyAttribute2;
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	@Override
 	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
-		switch (featureID) {
-			case SpringPackage.UNMARSHAL_DEFINITION__BINDY:
-				return basicSetBindy(null, msgs);
-			case SpringPackage.UNMARSHAL_DEFINITION__CASTOR:
-				return basicSetCastor(null, msgs);
-			case SpringPackage.UNMARSHAL_DEFINITION__CRYPTO:
-				return basicSetCrypto(null, msgs);
-			case SpringPackage.UNMARSHAL_DEFINITION__CSV:
-				return basicSetCsv(null, msgs);
-			case SpringPackage.UNMARSHAL_DEFINITION__CUSTOM:
-				return basicSetCustom(null, msgs);
-			case SpringPackage.UNMARSHAL_DEFINITION__FLATPACK:
-				return basicSetFlatpack(null, msgs);
-			case SpringPackage.UNMARSHAL_DEFINITION__GZIP:
-				return basicSetGzip(null, msgs);
-			case SpringPackage.UNMARSHAL_DEFINITION__HL7:
-				return basicSetHl7(null, msgs);
-			case SpringPackage.UNMARSHAL_DEFINITION__JAXB:
-				return basicSetJaxb(null, msgs);
-			case SpringPackage.UNMARSHAL_DEFINITION__JIBX:
-				return basicSetJibx(null, msgs);
-			case SpringPackage.UNMARSHAL_DEFINITION__JSON:
-				return basicSetJson(null, msgs);
-			case SpringPackage.UNMARSHAL_DEFINITION__PROTOBUF:
-				return basicSetProtobuf(null, msgs);
-			case SpringPackage.UNMARSHAL_DEFINITION__RSS:
-				return basicSetRss(null, msgs);
-			case SpringPackage.UNMARSHAL_DEFINITION__SECURE_XML:
-				return basicSetSecureXML(null, msgs);
-			case SpringPackage.UNMARSHAL_DEFINITION__SERIALIZATION:
-				return basicSetSerialization(null, msgs);
-			case SpringPackage.UNMARSHAL_DEFINITION__SOAPJAXB:
-				return basicSetSoapjaxb(null, msgs);
-			case SpringPackage.UNMARSHAL_DEFINITION__STRING:
-				return basicSetString(null, msgs);
-			case SpringPackage.UNMARSHAL_DEFINITION__SYSLOG:
-				return basicSetSyslog(null, msgs);
-			case SpringPackage.UNMARSHAL_DEFINITION__TIDY_MARKUP:
-				return basicSetTidyMarkup(null, msgs);
-			case SpringPackage.UNMARSHAL_DEFINITION__XML_BEANS:
-				return basicSetXmlBeans(null, msgs);
-			case SpringPackage.UNMARSHAL_DEFINITION__XSTREAM:
-				return basicSetXstream(null, msgs);
-			case SpringPackage.UNMARSHAL_DEFINITION__ZIP:
-				return basicSetZip(null, msgs);
-			case SpringPackage.UNMARSHAL_DEFINITION__ANY_ATTRIBUTE2:
-				return ((InternalEList<?>)getAnyAttribute2()).basicRemove(otherEnd, msgs);
-		}
-		return super.eInverseRemove(otherEnd, featureID, msgs);
-	}
+        switch (featureID) {
+            case SpringPackage.UNMARSHAL_DEFINITION__BINDY:
+                return basicSetBindy(null, msgs);
+            case SpringPackage.UNMARSHAL_DEFINITION__CASTOR:
+                return basicSetCastor(null, msgs);
+            case SpringPackage.UNMARSHAL_DEFINITION__CRYPTO:
+                return basicSetCrypto(null, msgs);
+            case SpringPackage.UNMARSHAL_DEFINITION__CSV:
+                return basicSetCsv(null, msgs);
+            case SpringPackage.UNMARSHAL_DEFINITION__CUSTOM:
+                return basicSetCustom(null, msgs);
+            case SpringPackage.UNMARSHAL_DEFINITION__FLATPACK:
+                return basicSetFlatpack(null, msgs);
+            case SpringPackage.UNMARSHAL_DEFINITION__GZIP:
+                return basicSetGzip(null, msgs);
+            case SpringPackage.UNMARSHAL_DEFINITION__HL7:
+                return basicSetHl7(null, msgs);
+            case SpringPackage.UNMARSHAL_DEFINITION__JAXB:
+                return basicSetJaxb(null, msgs);
+            case SpringPackage.UNMARSHAL_DEFINITION__JIBX:
+                return basicSetJibx(null, msgs);
+            case SpringPackage.UNMARSHAL_DEFINITION__JSON:
+                return basicSetJson(null, msgs);
+            case SpringPackage.UNMARSHAL_DEFINITION__PROTOBUF:
+                return basicSetProtobuf(null, msgs);
+            case SpringPackage.UNMARSHAL_DEFINITION__RSS:
+                return basicSetRss(null, msgs);
+            case SpringPackage.UNMARSHAL_DEFINITION__SECURE_XML:
+                return basicSetSecureXML(null, msgs);
+            case SpringPackage.UNMARSHAL_DEFINITION__SERIALIZATION:
+                return basicSetSerialization(null, msgs);
+            case SpringPackage.UNMARSHAL_DEFINITION__SOAPJAXB:
+                return basicSetSoapjaxb(null, msgs);
+            case SpringPackage.UNMARSHAL_DEFINITION__STRING:
+                return basicSetString(null, msgs);
+            case SpringPackage.UNMARSHAL_DEFINITION__SYSLOG:
+                return basicSetSyslog(null, msgs);
+            case SpringPackage.UNMARSHAL_DEFINITION__TIDY_MARKUP:
+                return basicSetTidyMarkup(null, msgs);
+            case SpringPackage.UNMARSHAL_DEFINITION__XML_BEANS:
+                return basicSetXmlBeans(null, msgs);
+            case SpringPackage.UNMARSHAL_DEFINITION__XSTREAM:
+                return basicSetXstream(null, msgs);
+            case SpringPackage.UNMARSHAL_DEFINITION__ZIP:
+                return basicSetZip(null, msgs);
+            case SpringPackage.UNMARSHAL_DEFINITION__ANY_ATTRIBUTE2:
+                return ((InternalEList<?>)getAnyAttribute2()).basicRemove(otherEnd, msgs);
+        }
+        return super.eInverseRemove(otherEnd, featureID, msgs);
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
-		switch (featureID) {
-			case SpringPackage.UNMARSHAL_DEFINITION__BINDY:
-				return getBindy();
-			case SpringPackage.UNMARSHAL_DEFINITION__CASTOR:
-				return getCastor();
-			case SpringPackage.UNMARSHAL_DEFINITION__CRYPTO:
-				return getCrypto();
-			case SpringPackage.UNMARSHAL_DEFINITION__CSV:
-				return getCsv();
-			case SpringPackage.UNMARSHAL_DEFINITION__CUSTOM:
-				return getCustom();
-			case SpringPackage.UNMARSHAL_DEFINITION__FLATPACK:
-				return getFlatpack();
-			case SpringPackage.UNMARSHAL_DEFINITION__GZIP:
-				return getGzip();
-			case SpringPackage.UNMARSHAL_DEFINITION__HL7:
-				return getHl7();
-			case SpringPackage.UNMARSHAL_DEFINITION__JAXB:
-				return getJaxb();
-			case SpringPackage.UNMARSHAL_DEFINITION__JIBX:
-				return getJibx();
-			case SpringPackage.UNMARSHAL_DEFINITION__JSON:
-				return getJson();
-			case SpringPackage.UNMARSHAL_DEFINITION__PROTOBUF:
-				return getProtobuf();
-			case SpringPackage.UNMARSHAL_DEFINITION__RSS:
-				return getRss();
-			case SpringPackage.UNMARSHAL_DEFINITION__SECURE_XML:
-				return getSecureXML();
-			case SpringPackage.UNMARSHAL_DEFINITION__SERIALIZATION:
-				return getSerialization();
-			case SpringPackage.UNMARSHAL_DEFINITION__SOAPJAXB:
-				return getSoapjaxb();
-			case SpringPackage.UNMARSHAL_DEFINITION__STRING:
-				return getString();
-			case SpringPackage.UNMARSHAL_DEFINITION__SYSLOG:
-				return getSyslog();
-			case SpringPackage.UNMARSHAL_DEFINITION__TIDY_MARKUP:
-				return getTidyMarkup();
-			case SpringPackage.UNMARSHAL_DEFINITION__XML_BEANS:
-				return getXmlBeans();
-			case SpringPackage.UNMARSHAL_DEFINITION__XSTREAM:
-				return getXstream();
-			case SpringPackage.UNMARSHAL_DEFINITION__ZIP:
-				return getZip();
-			case SpringPackage.UNMARSHAL_DEFINITION__REF:
-				return getRef();
-			case SpringPackage.UNMARSHAL_DEFINITION__ANY_ATTRIBUTE2:
-				if (coreType) return getAnyAttribute2();
-				return ((FeatureMap.Internal)getAnyAttribute2()).getWrapper();
-		}
-		return super.eGet(featureID, resolve, coreType);
-	}
+        switch (featureID) {
+            case SpringPackage.UNMARSHAL_DEFINITION__BINDY:
+                return getBindy();
+            case SpringPackage.UNMARSHAL_DEFINITION__CASTOR:
+                return getCastor();
+            case SpringPackage.UNMARSHAL_DEFINITION__CRYPTO:
+                return getCrypto();
+            case SpringPackage.UNMARSHAL_DEFINITION__CSV:
+                return getCsv();
+            case SpringPackage.UNMARSHAL_DEFINITION__CUSTOM:
+                return getCustom();
+            case SpringPackage.UNMARSHAL_DEFINITION__FLATPACK:
+                return getFlatpack();
+            case SpringPackage.UNMARSHAL_DEFINITION__GZIP:
+                return getGzip();
+            case SpringPackage.UNMARSHAL_DEFINITION__HL7:
+                return getHl7();
+            case SpringPackage.UNMARSHAL_DEFINITION__JAXB:
+                return getJaxb();
+            case SpringPackage.UNMARSHAL_DEFINITION__JIBX:
+                return getJibx();
+            case SpringPackage.UNMARSHAL_DEFINITION__JSON:
+                return getJson();
+            case SpringPackage.UNMARSHAL_DEFINITION__PROTOBUF:
+                return getProtobuf();
+            case SpringPackage.UNMARSHAL_DEFINITION__RSS:
+                return getRss();
+            case SpringPackage.UNMARSHAL_DEFINITION__SECURE_XML:
+                return getSecureXML();
+            case SpringPackage.UNMARSHAL_DEFINITION__SERIALIZATION:
+                return getSerialization();
+            case SpringPackage.UNMARSHAL_DEFINITION__SOAPJAXB:
+                return getSoapjaxb();
+            case SpringPackage.UNMARSHAL_DEFINITION__STRING:
+                return getString();
+            case SpringPackage.UNMARSHAL_DEFINITION__SYSLOG:
+                return getSyslog();
+            case SpringPackage.UNMARSHAL_DEFINITION__TIDY_MARKUP:
+                return getTidyMarkup();
+            case SpringPackage.UNMARSHAL_DEFINITION__XML_BEANS:
+                return getXmlBeans();
+            case SpringPackage.UNMARSHAL_DEFINITION__XSTREAM:
+                return getXstream();
+            case SpringPackage.UNMARSHAL_DEFINITION__ZIP:
+                return getZip();
+            case SpringPackage.UNMARSHAL_DEFINITION__REF:
+                return getRef();
+            case SpringPackage.UNMARSHAL_DEFINITION__ANY_ATTRIBUTE2:
+                if (coreType) return getAnyAttribute2();
+                return ((FeatureMap.Internal)getAnyAttribute2()).getWrapper();
+        }
+        return super.eGet(featureID, resolve, coreType);
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	@Override
 	public void eSet(int featureID, Object newValue) {
-		switch (featureID) {
-			case SpringPackage.UNMARSHAL_DEFINITION__BINDY:
-				setBindy((BindyDataFormat)newValue);
-				return;
-			case SpringPackage.UNMARSHAL_DEFINITION__CASTOR:
-				setCastor((CastorDataFormat)newValue);
-				return;
-			case SpringPackage.UNMARSHAL_DEFINITION__CRYPTO:
-				setCrypto((CryptoDataFormat)newValue);
-				return;
-			case SpringPackage.UNMARSHAL_DEFINITION__CSV:
-				setCsv((CsvDataFormat)newValue);
-				return;
-			case SpringPackage.UNMARSHAL_DEFINITION__CUSTOM:
-				setCustom((CustomDataFormat)newValue);
-				return;
-			case SpringPackage.UNMARSHAL_DEFINITION__FLATPACK:
-				setFlatpack((FlatpackDataFormat)newValue);
-				return;
-			case SpringPackage.UNMARSHAL_DEFINITION__GZIP:
-				setGzip((GzipDataFormat)newValue);
-				return;
-			case SpringPackage.UNMARSHAL_DEFINITION__HL7:
-				setHl7((Hl7DataFormat)newValue);
-				return;
-			case SpringPackage.UNMARSHAL_DEFINITION__JAXB:
-				setJaxb((JaxbDataFormat)newValue);
-				return;
-			case SpringPackage.UNMARSHAL_DEFINITION__JIBX:
-				setJibx((JibxDataFormat)newValue);
-				return;
-			case SpringPackage.UNMARSHAL_DEFINITION__JSON:
-				setJson((JsonDataFormat)newValue);
-				return;
-			case SpringPackage.UNMARSHAL_DEFINITION__PROTOBUF:
-				setProtobuf((ProtobufDataFormat)newValue);
-				return;
-			case SpringPackage.UNMARSHAL_DEFINITION__RSS:
-				setRss((RssDataFormat)newValue);
-				return;
-			case SpringPackage.UNMARSHAL_DEFINITION__SECURE_XML:
-				setSecureXML((XmlSecurityDataFormat)newValue);
-				return;
-			case SpringPackage.UNMARSHAL_DEFINITION__SERIALIZATION:
-				setSerialization((SerializationDataFormat)newValue);
-				return;
-			case SpringPackage.UNMARSHAL_DEFINITION__SOAPJAXB:
-				setSoapjaxb((SoapJaxbDataFormat)newValue);
-				return;
-			case SpringPackage.UNMARSHAL_DEFINITION__STRING:
-				setString((StringDataFormat)newValue);
-				return;
-			case SpringPackage.UNMARSHAL_DEFINITION__SYSLOG:
-				setSyslog((SyslogDataFormat)newValue);
-				return;
-			case SpringPackage.UNMARSHAL_DEFINITION__TIDY_MARKUP:
-				setTidyMarkup((TidyMarkupDataFormat)newValue);
-				return;
-			case SpringPackage.UNMARSHAL_DEFINITION__XML_BEANS:
-				setXmlBeans((XmlBeansDataFormat)newValue);
-				return;
-			case SpringPackage.UNMARSHAL_DEFINITION__XSTREAM:
-				setXstream((XStreamDataFormat)newValue);
-				return;
-			case SpringPackage.UNMARSHAL_DEFINITION__ZIP:
-				setZip((ZipDataFormat)newValue);
-				return;
-			case SpringPackage.UNMARSHAL_DEFINITION__REF:
-				setRef((String)newValue);
-				return;
-			case SpringPackage.UNMARSHAL_DEFINITION__ANY_ATTRIBUTE2:
-				((FeatureMap.Internal)getAnyAttribute2()).set(newValue);
-				return;
-		}
-		super.eSet(featureID, newValue);
-	}
+        switch (featureID) {
+            case SpringPackage.UNMARSHAL_DEFINITION__BINDY:
+                setBindy((BindyDataFormat)newValue);
+                return;
+            case SpringPackage.UNMARSHAL_DEFINITION__CASTOR:
+                setCastor((CastorDataFormat)newValue);
+                return;
+            case SpringPackage.UNMARSHAL_DEFINITION__CRYPTO:
+                setCrypto((CryptoDataFormat)newValue);
+                return;
+            case SpringPackage.UNMARSHAL_DEFINITION__CSV:
+                setCsv((CsvDataFormat)newValue);
+                return;
+            case SpringPackage.UNMARSHAL_DEFINITION__CUSTOM:
+                setCustom((CustomDataFormat)newValue);
+                return;
+            case SpringPackage.UNMARSHAL_DEFINITION__FLATPACK:
+                setFlatpack((FlatpackDataFormat)newValue);
+                return;
+            case SpringPackage.UNMARSHAL_DEFINITION__GZIP:
+                setGzip((GzipDataFormat)newValue);
+                return;
+            case SpringPackage.UNMARSHAL_DEFINITION__HL7:
+                setHl7((Hl7DataFormat)newValue);
+                return;
+            case SpringPackage.UNMARSHAL_DEFINITION__JAXB:
+                setJaxb((JaxbDataFormat)newValue);
+                return;
+            case SpringPackage.UNMARSHAL_DEFINITION__JIBX:
+                setJibx((JibxDataFormat)newValue);
+                return;
+            case SpringPackage.UNMARSHAL_DEFINITION__JSON:
+                setJson((JsonDataFormat)newValue);
+                return;
+            case SpringPackage.UNMARSHAL_DEFINITION__PROTOBUF:
+                setProtobuf((ProtobufDataFormat)newValue);
+                return;
+            case SpringPackage.UNMARSHAL_DEFINITION__RSS:
+                setRss((RssDataFormat)newValue);
+                return;
+            case SpringPackage.UNMARSHAL_DEFINITION__SECURE_XML:
+                setSecureXML((XmlSecurityDataFormat)newValue);
+                return;
+            case SpringPackage.UNMARSHAL_DEFINITION__SERIALIZATION:
+                setSerialization((SerializationDataFormat)newValue);
+                return;
+            case SpringPackage.UNMARSHAL_DEFINITION__SOAPJAXB:
+                setSoapjaxb((SoapJaxbDataFormat)newValue);
+                return;
+            case SpringPackage.UNMARSHAL_DEFINITION__STRING:
+                setString((StringDataFormat)newValue);
+                return;
+            case SpringPackage.UNMARSHAL_DEFINITION__SYSLOG:
+                setSyslog((SyslogDataFormat)newValue);
+                return;
+            case SpringPackage.UNMARSHAL_DEFINITION__TIDY_MARKUP:
+                setTidyMarkup((TidyMarkupDataFormat)newValue);
+                return;
+            case SpringPackage.UNMARSHAL_DEFINITION__XML_BEANS:
+                setXmlBeans((XmlBeansDataFormat)newValue);
+                return;
+            case SpringPackage.UNMARSHAL_DEFINITION__XSTREAM:
+                setXstream((XStreamDataFormat)newValue);
+                return;
+            case SpringPackage.UNMARSHAL_DEFINITION__ZIP:
+                setZip((ZipDataFormat)newValue);
+                return;
+            case SpringPackage.UNMARSHAL_DEFINITION__REF:
+                setRef((String)newValue);
+                return;
+            case SpringPackage.UNMARSHAL_DEFINITION__ANY_ATTRIBUTE2:
+                ((FeatureMap.Internal)getAnyAttribute2()).set(newValue);
+                return;
+        }
+        super.eSet(featureID, newValue);
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	@Override
 	public void eUnset(int featureID) {
-		switch (featureID) {
-			case SpringPackage.UNMARSHAL_DEFINITION__BINDY:
-				setBindy((BindyDataFormat)null);
-				return;
-			case SpringPackage.UNMARSHAL_DEFINITION__CASTOR:
-				setCastor((CastorDataFormat)null);
-				return;
-			case SpringPackage.UNMARSHAL_DEFINITION__CRYPTO:
-				setCrypto((CryptoDataFormat)null);
-				return;
-			case SpringPackage.UNMARSHAL_DEFINITION__CSV:
-				setCsv((CsvDataFormat)null);
-				return;
-			case SpringPackage.UNMARSHAL_DEFINITION__CUSTOM:
-				setCustom((CustomDataFormat)null);
-				return;
-			case SpringPackage.UNMARSHAL_DEFINITION__FLATPACK:
-				setFlatpack((FlatpackDataFormat)null);
-				return;
-			case SpringPackage.UNMARSHAL_DEFINITION__GZIP:
-				setGzip((GzipDataFormat)null);
-				return;
-			case SpringPackage.UNMARSHAL_DEFINITION__HL7:
-				setHl7((Hl7DataFormat)null);
-				return;
-			case SpringPackage.UNMARSHAL_DEFINITION__JAXB:
-				setJaxb((JaxbDataFormat)null);
-				return;
-			case SpringPackage.UNMARSHAL_DEFINITION__JIBX:
-				setJibx((JibxDataFormat)null);
-				return;
-			case SpringPackage.UNMARSHAL_DEFINITION__JSON:
-				setJson((JsonDataFormat)null);
-				return;
-			case SpringPackage.UNMARSHAL_DEFINITION__PROTOBUF:
-				setProtobuf((ProtobufDataFormat)null);
-				return;
-			case SpringPackage.UNMARSHAL_DEFINITION__RSS:
-				setRss((RssDataFormat)null);
-				return;
-			case SpringPackage.UNMARSHAL_DEFINITION__SECURE_XML:
-				setSecureXML((XmlSecurityDataFormat)null);
-				return;
-			case SpringPackage.UNMARSHAL_DEFINITION__SERIALIZATION:
-				setSerialization((SerializationDataFormat)null);
-				return;
-			case SpringPackage.UNMARSHAL_DEFINITION__SOAPJAXB:
-				setSoapjaxb((SoapJaxbDataFormat)null);
-				return;
-			case SpringPackage.UNMARSHAL_DEFINITION__STRING:
-				setString((StringDataFormat)null);
-				return;
-			case SpringPackage.UNMARSHAL_DEFINITION__SYSLOG:
-				setSyslog((SyslogDataFormat)null);
-				return;
-			case SpringPackage.UNMARSHAL_DEFINITION__TIDY_MARKUP:
-				setTidyMarkup((TidyMarkupDataFormat)null);
-				return;
-			case SpringPackage.UNMARSHAL_DEFINITION__XML_BEANS:
-				setXmlBeans((XmlBeansDataFormat)null);
-				return;
-			case SpringPackage.UNMARSHAL_DEFINITION__XSTREAM:
-				setXstream((XStreamDataFormat)null);
-				return;
-			case SpringPackage.UNMARSHAL_DEFINITION__ZIP:
-				setZip((ZipDataFormat)null);
-				return;
-			case SpringPackage.UNMARSHAL_DEFINITION__REF:
-				setRef(REF_EDEFAULT);
-				return;
-			case SpringPackage.UNMARSHAL_DEFINITION__ANY_ATTRIBUTE2:
-				getAnyAttribute2().clear();
-				return;
-		}
-		super.eUnset(featureID);
-	}
+        switch (featureID) {
+            case SpringPackage.UNMARSHAL_DEFINITION__BINDY:
+                setBindy((BindyDataFormat)null);
+                return;
+            case SpringPackage.UNMARSHAL_DEFINITION__CASTOR:
+                setCastor((CastorDataFormat)null);
+                return;
+            case SpringPackage.UNMARSHAL_DEFINITION__CRYPTO:
+                setCrypto((CryptoDataFormat)null);
+                return;
+            case SpringPackage.UNMARSHAL_DEFINITION__CSV:
+                setCsv((CsvDataFormat)null);
+                return;
+            case SpringPackage.UNMARSHAL_DEFINITION__CUSTOM:
+                setCustom((CustomDataFormat)null);
+                return;
+            case SpringPackage.UNMARSHAL_DEFINITION__FLATPACK:
+                setFlatpack((FlatpackDataFormat)null);
+                return;
+            case SpringPackage.UNMARSHAL_DEFINITION__GZIP:
+                setGzip((GzipDataFormat)null);
+                return;
+            case SpringPackage.UNMARSHAL_DEFINITION__HL7:
+                setHl7((Hl7DataFormat)null);
+                return;
+            case SpringPackage.UNMARSHAL_DEFINITION__JAXB:
+                setJaxb((JaxbDataFormat)null);
+                return;
+            case SpringPackage.UNMARSHAL_DEFINITION__JIBX:
+                setJibx((JibxDataFormat)null);
+                return;
+            case SpringPackage.UNMARSHAL_DEFINITION__JSON:
+                setJson((JsonDataFormat)null);
+                return;
+            case SpringPackage.UNMARSHAL_DEFINITION__PROTOBUF:
+                setProtobuf((ProtobufDataFormat)null);
+                return;
+            case SpringPackage.UNMARSHAL_DEFINITION__RSS:
+                setRss((RssDataFormat)null);
+                return;
+            case SpringPackage.UNMARSHAL_DEFINITION__SECURE_XML:
+                setSecureXML((XmlSecurityDataFormat)null);
+                return;
+            case SpringPackage.UNMARSHAL_DEFINITION__SERIALIZATION:
+                setSerialization((SerializationDataFormat)null);
+                return;
+            case SpringPackage.UNMARSHAL_DEFINITION__SOAPJAXB:
+                setSoapjaxb((SoapJaxbDataFormat)null);
+                return;
+            case SpringPackage.UNMARSHAL_DEFINITION__STRING:
+                setString((StringDataFormat)null);
+                return;
+            case SpringPackage.UNMARSHAL_DEFINITION__SYSLOG:
+                setSyslog((SyslogDataFormat)null);
+                return;
+            case SpringPackage.UNMARSHAL_DEFINITION__TIDY_MARKUP:
+                setTidyMarkup((TidyMarkupDataFormat)null);
+                return;
+            case SpringPackage.UNMARSHAL_DEFINITION__XML_BEANS:
+                setXmlBeans((XmlBeansDataFormat)null);
+                return;
+            case SpringPackage.UNMARSHAL_DEFINITION__XSTREAM:
+                setXstream((XStreamDataFormat)null);
+                return;
+            case SpringPackage.UNMARSHAL_DEFINITION__ZIP:
+                setZip((ZipDataFormat)null);
+                return;
+            case SpringPackage.UNMARSHAL_DEFINITION__REF:
+                setRef(REF_EDEFAULT);
+                return;
+            case SpringPackage.UNMARSHAL_DEFINITION__ANY_ATTRIBUTE2:
+                getAnyAttribute2().clear();
+                return;
+        }
+        super.eUnset(featureID);
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	@Override
 	public boolean eIsSet(int featureID) {
-		switch (featureID) {
-			case SpringPackage.UNMARSHAL_DEFINITION__BINDY:
-				return bindy != null;
-			case SpringPackage.UNMARSHAL_DEFINITION__CASTOR:
-				return castor != null;
-			case SpringPackage.UNMARSHAL_DEFINITION__CRYPTO:
-				return crypto != null;
-			case SpringPackage.UNMARSHAL_DEFINITION__CSV:
-				return csv != null;
-			case SpringPackage.UNMARSHAL_DEFINITION__CUSTOM:
-				return custom != null;
-			case SpringPackage.UNMARSHAL_DEFINITION__FLATPACK:
-				return flatpack != null;
-			case SpringPackage.UNMARSHAL_DEFINITION__GZIP:
-				return gzip != null;
-			case SpringPackage.UNMARSHAL_DEFINITION__HL7:
-				return hl7 != null;
-			case SpringPackage.UNMARSHAL_DEFINITION__JAXB:
-				return jaxb != null;
-			case SpringPackage.UNMARSHAL_DEFINITION__JIBX:
-				return jibx != null;
-			case SpringPackage.UNMARSHAL_DEFINITION__JSON:
-				return json != null;
-			case SpringPackage.UNMARSHAL_DEFINITION__PROTOBUF:
-				return protobuf != null;
-			case SpringPackage.UNMARSHAL_DEFINITION__RSS:
-				return rss != null;
-			case SpringPackage.UNMARSHAL_DEFINITION__SECURE_XML:
-				return secureXML != null;
-			case SpringPackage.UNMARSHAL_DEFINITION__SERIALIZATION:
-				return serialization != null;
-			case SpringPackage.UNMARSHAL_DEFINITION__SOAPJAXB:
-				return soapjaxb != null;
-			case SpringPackage.UNMARSHAL_DEFINITION__STRING:
-				return string != null;
-			case SpringPackage.UNMARSHAL_DEFINITION__SYSLOG:
-				return syslog != null;
-			case SpringPackage.UNMARSHAL_DEFINITION__TIDY_MARKUP:
-				return tidyMarkup != null;
-			case SpringPackage.UNMARSHAL_DEFINITION__XML_BEANS:
-				return xmlBeans != null;
-			case SpringPackage.UNMARSHAL_DEFINITION__XSTREAM:
-				return xstream != null;
-			case SpringPackage.UNMARSHAL_DEFINITION__ZIP:
-				return zip != null;
-			case SpringPackage.UNMARSHAL_DEFINITION__REF:
-				return REF_EDEFAULT == null ? ref != null : !REF_EDEFAULT.equals(ref);
-			case SpringPackage.UNMARSHAL_DEFINITION__ANY_ATTRIBUTE2:
-				return anyAttribute2 != null && !anyAttribute2.isEmpty();
-		}
-		return super.eIsSet(featureID);
-	}
+        switch (featureID) {
+            case SpringPackage.UNMARSHAL_DEFINITION__BINDY:
+                return bindy != null;
+            case SpringPackage.UNMARSHAL_DEFINITION__CASTOR:
+                return castor != null;
+            case SpringPackage.UNMARSHAL_DEFINITION__CRYPTO:
+                return crypto != null;
+            case SpringPackage.UNMARSHAL_DEFINITION__CSV:
+                return csv != null;
+            case SpringPackage.UNMARSHAL_DEFINITION__CUSTOM:
+                return custom != null;
+            case SpringPackage.UNMARSHAL_DEFINITION__FLATPACK:
+                return flatpack != null;
+            case SpringPackage.UNMARSHAL_DEFINITION__GZIP:
+                return gzip != null;
+            case SpringPackage.UNMARSHAL_DEFINITION__HL7:
+                return hl7 != null;
+            case SpringPackage.UNMARSHAL_DEFINITION__JAXB:
+                return jaxb != null;
+            case SpringPackage.UNMARSHAL_DEFINITION__JIBX:
+                return jibx != null;
+            case SpringPackage.UNMARSHAL_DEFINITION__JSON:
+                return json != null;
+            case SpringPackage.UNMARSHAL_DEFINITION__PROTOBUF:
+                return protobuf != null;
+            case SpringPackage.UNMARSHAL_DEFINITION__RSS:
+                return rss != null;
+            case SpringPackage.UNMARSHAL_DEFINITION__SECURE_XML:
+                return secureXML != null;
+            case SpringPackage.UNMARSHAL_DEFINITION__SERIALIZATION:
+                return serialization != null;
+            case SpringPackage.UNMARSHAL_DEFINITION__SOAPJAXB:
+                return soapjaxb != null;
+            case SpringPackage.UNMARSHAL_DEFINITION__STRING:
+                return string != null;
+            case SpringPackage.UNMARSHAL_DEFINITION__SYSLOG:
+                return syslog != null;
+            case SpringPackage.UNMARSHAL_DEFINITION__TIDY_MARKUP:
+                return tidyMarkup != null;
+            case SpringPackage.UNMARSHAL_DEFINITION__XML_BEANS:
+                return xmlBeans != null;
+            case SpringPackage.UNMARSHAL_DEFINITION__XSTREAM:
+                return xstream != null;
+            case SpringPackage.UNMARSHAL_DEFINITION__ZIP:
+                return zip != null;
+            case SpringPackage.UNMARSHAL_DEFINITION__REF:
+                return REF_EDEFAULT == null ? ref != null : !REF_EDEFAULT.equals(ref);
+            case SpringPackage.UNMARSHAL_DEFINITION__ANY_ATTRIBUTE2:
+                return anyAttribute2 != null && !anyAttribute2.isEmpty();
+        }
+        return super.eIsSet(featureID);
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	@Override
 	public String toString() {
-		if (eIsProxy()) return super.toString();
+        if (eIsProxy()) return super.toString();
 
-		StringBuffer result = new StringBuffer(super.toString());
-		result.append(" (ref: ");
-		result.append(ref);
-		result.append(", anyAttribute2: ");
-		result.append(anyAttribute2);
-		result.append(')');
-		return result.toString();
-	}
+        StringBuffer result = new StringBuffer(super.toString());
+        result.append(" (ref: ");
+        result.append(ref);
+        result.append(", anyAttribute2: ");
+        result.append(anyAttribute2);
+        result.append(')');
+        return result.toString();
+    }
 
 } //UnmarshalDefinitionImpl

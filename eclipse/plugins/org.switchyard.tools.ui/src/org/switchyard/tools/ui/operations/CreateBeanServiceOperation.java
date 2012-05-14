@@ -47,7 +47,20 @@ public class CreateBeanServiceOperation extends AbstractSwitchYardProjectOperati
      */
     public CreateBeanServiceOperation(NewBeanServiceClassWizardPage serviceClassPage,
             NewServiceTestClassWizardPage serviceTestClassPage, IAdaptable uiInfo) {
-        super(null, REQUIRED_COMPONENTS, true, "Creating new SwitchYard bean service.", uiInfo);
+        this(serviceClassPage, serviceTestClassPage, true, uiInfo);
+    }
+
+    /**
+     * Create a new CreateBeanServiceOperation.
+     * 
+     * @param serviceClassPage the page creating the new class.
+     * @param serviceTestClassPage the page creating the new test class.
+     * @param addServices true if the switchyard.xml file should be updated.
+     * @param uiInfo adaptable for UI Shell, may be null.
+     */
+    public CreateBeanServiceOperation(NewBeanServiceClassWizardPage serviceClassPage,
+            NewServiceTestClassWizardPage serviceTestClassPage, boolean addServices, IAdaptable uiInfo) {
+        super(null, REQUIRED_COMPONENTS, addServices, "Creating new SwitchYard bean service.", uiInfo);
         _serviceClassPage = serviceClassPage;
         _serviceTestClassPage = serviceTestClassPage;
     }
@@ -96,7 +109,8 @@ public class CreateBeanServiceOperation extends AbstractSwitchYardProjectOperati
 
     static {
         ISwitchYardComponentExtension found = null;
-        for (ISwitchYardComponentExtension extension : SwitchYardComponentExtensionManager.instance().getComponentExtensions()) {
+        for (ISwitchYardComponentExtension extension : SwitchYardComponentExtensionManager.instance()
+                .getComponentExtensions()) {
             if ("org.switchyard.components:switchyard-component-bean".equals(extension.getId())) {
                 found = extension;
                 break;

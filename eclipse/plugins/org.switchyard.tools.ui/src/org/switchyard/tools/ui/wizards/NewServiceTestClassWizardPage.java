@@ -143,7 +143,7 @@ public class NewServiceTestClassWizardPage extends NewTypeWizardPage {
      */
     public void init(IStructuredSelection selection) {
         IJavaElement elem = getInitialJavaElement(selection);
-        ICompilationUnit cu = (ICompilationUnit) elem.getAncestor(IJavaElement.COMPILATION_UNIT);
+        ICompilationUnit cu = elem == null ? null : (ICompilationUnit) elem.getAncestor(IJavaElement.COMPILATION_UNIT);
         if (cu != null) {
             elem = cu.findPrimaryType();
         }
@@ -524,7 +524,7 @@ public class NewServiceTestClassWizardPage extends NewTypeWizardPage {
                 }
                 for (ComponentServiceModel service : services) {
                     InterfaceModel interfaceModel = service.getInterface();
-                    if ("java".equals(interfaceModel.getType())) {
+                    if (interfaceModel != null && "java".equals(interfaceModel.getType())) {
                         String interfaceName = interfaceModel.getInterface();
                         if (interfaceName != null && interfaceName.length() > 0) {
                             _configuredServices.add(interfaceName);

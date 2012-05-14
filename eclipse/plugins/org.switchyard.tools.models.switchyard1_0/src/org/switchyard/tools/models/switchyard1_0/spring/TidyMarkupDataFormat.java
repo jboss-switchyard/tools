@@ -25,30 +25,30 @@ package org.switchyard.tools.models.switchyard1_0.spring;
  */
 public interface TidyMarkupDataFormat extends DataFormat {
 	/**
-	 * Returns the value of the '<em><b>Data Object Type</b></em>' attribute.
-	 * <!-- begin-user-doc -->
+     * Returns the value of the '<em><b>Data Object Type</b></em>' attribute.
+     * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Data Object Type</em>' attribute isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Data Object Type</em>' attribute.
-	 * @see #setDataObjectType(String)
-	 * @see org.switchyard.tools.models.switchyard1_0.spring.SpringPackage#getTidyMarkupDataFormat_DataObjectType()
-	 * @model dataType="org.eclipse.emf.ecore.xml.type.String"
-	 *        extendedMetaData="kind='attribute' name='dataObjectType'"
-	 * @generated
-	 */
+     * @return the value of the '<em>Data Object Type</em>' attribute.
+     * @see #setDataObjectType(String)
+     * @see org.switchyard.tools.models.switchyard1_0.spring.SpringPackage#getTidyMarkupDataFormat_DataObjectType()
+     * @model dataType="org.eclipse.emf.ecore.xml.type.String"
+     *        extendedMetaData="kind='attribute' name='dataObjectType'"
+     * @generated
+     */
 	String getDataObjectType();
 
 	/**
-	 * Sets the value of the '{@link org.switchyard.tools.models.switchyard1_0.spring.TidyMarkupDataFormat#getDataObjectType <em>Data Object Type</em>}' attribute.
-	 * <!-- begin-user-doc -->
+     * Sets the value of the '{@link org.switchyard.tools.models.switchyard1_0.spring.TidyMarkupDataFormat#getDataObjectType <em>Data Object Type</em>}' attribute.
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Data Object Type</em>' attribute.
-	 * @see #getDataObjectType()
-	 * @generated
-	 */
+     * @param value the new value of the '<em>Data Object Type</em>' attribute.
+     * @see #getDataObjectType()
+     * @generated
+     */
 	void setDataObjectType(String value);
 
 } // TidyMarkupDataFormat

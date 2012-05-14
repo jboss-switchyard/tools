@@ -25,30 +25,30 @@ import org.switchyard.tools.models.switchyard1_0.commonrules.CommonRulesPackage;
 public class CommonRulesXMLProcessor extends XMLProcessor {
 
 	/**
-	 * Public constructor to instantiate the helper.
-	 * <!-- begin-user-doc -->
+     * Public constructor to instantiate the helper.
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public CommonRulesXMLProcessor() {
-		super((EPackage.Registry.INSTANCE));
-		CommonRulesPackage.eINSTANCE.eClass();
-	}
+        super((EPackage.Registry.INSTANCE));
+        CommonRulesPackage.eINSTANCE.eClass();
+    }
 	
 	/**
-	 * Register for "*" and "xml" file extensions the CommonRulesResourceFactoryImpl factory.
-	 * <!-- begin-user-doc -->
+     * Register for "*" and "xml" file extensions the CommonRulesResourceFactoryImpl factory.
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	@Override
 	protected Map<String, Resource.Factory> getRegistrations() {
-		if (registrations == null) {
-			super.getRegistrations();
-			registrations.put(XML_EXTENSION, new CommonRulesResourceFactoryImpl());
-			registrations.put(STAR_EXTENSION, new CommonRulesResourceFactoryImpl());
-		}
-		return registrations;
-	}
+        if (registrations == null) {
+            super.getRegistrations();
+            registrations.put(XML_EXTENSION, new CommonRulesResourceFactoryImpl());
+            registrations.put(STAR_EXTENSION, new CommonRulesResourceFactoryImpl());
+        }
+        return registrations;
+    }
 
 } //CommonRulesXMLProcessor

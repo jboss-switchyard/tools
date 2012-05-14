@@ -24,76 +24,76 @@ import org.switchyard.tools.models.switchyard1_0.commonrules.*;
  */
 public class CommonRulesFactoryImpl extends EFactoryImpl implements CommonRulesFactory {
 	/**
-	 * Creates the default factory implementation.
-	 * <!-- begin-user-doc -->
+     * Creates the default factory implementation.
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public static CommonRulesFactory init() {
-		try {
-			CommonRulesFactory theCommonRulesFactory = (CommonRulesFactory)EPackage.Registry.INSTANCE.getEFactory("urn:switchyard-component-common-rules:config:1.0"); 
-			if (theCommonRulesFactory != null) {
-				return theCommonRulesFactory;
-			}
-		}
-		catch (Exception exception) {
-			EcorePlugin.INSTANCE.log(exception);
-		}
-		return new CommonRulesFactoryImpl();
-	}
+        try {
+            CommonRulesFactory theCommonRulesFactory = (CommonRulesFactory)EPackage.Registry.INSTANCE.getEFactory("urn:switchyard-component-common-rules:config:1.0"); 
+            if (theCommonRulesFactory != null) {
+                return theCommonRulesFactory;
+            }
+        }
+        catch (Exception exception) {
+            EcorePlugin.INSTANCE.log(exception);
+        }
+        return new CommonRulesFactoryImpl();
+    }
 
 	/**
-	 * Creates an instance of the factory.
-	 * <!-- begin-user-doc -->
+     * Creates an instance of the factory.
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public CommonRulesFactoryImpl() {
-		super();
-	}
+        super();
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	@Override
 	public EObject create(EClass eClass) {
-		switch (eClass.getClassifierID()) {
-			case CommonRulesPackage.DOCUMENT_ROOT: return createDocumentRoot();
-			default:
-				throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier");
-		}
-	}
+        switch (eClass.getClassifierID()) {
+            case CommonRulesPackage.DOCUMENT_ROOT: return createDocumentRoot();
+            default:
+                throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier");
+        }
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public DocumentRoot createDocumentRoot() {
-		DocumentRootImpl documentRoot = new DocumentRootImpl();
-		return documentRoot;
-	}
+        DocumentRootImpl documentRoot = new DocumentRootImpl();
+        return documentRoot;
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public CommonRulesPackage getCommonRulesPackage() {
-		return (CommonRulesPackage)getEPackage();
-	}
+        return (CommonRulesPackage)getEPackage();
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @deprecated
-	 * @generated
-	 */
+     * @deprecated
+     * @generated
+     */
 	@Deprecated
 	public static CommonRulesPackage getPackage() {
-		return CommonRulesPackage.eINSTANCE;
-	}
+        return CommonRulesPackage.eINSTANCE;
+    }
 
 } //CommonRulesFactoryImpl

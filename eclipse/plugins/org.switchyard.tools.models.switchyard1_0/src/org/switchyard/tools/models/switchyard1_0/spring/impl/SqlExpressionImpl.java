@@ -22,22 +22,22 @@ import org.switchyard.tools.models.switchyard1_0.spring.SqlExpression;
  */
 public class SqlExpressionImpl extends ExpressionImpl implements SqlExpression {
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	protected SqlExpressionImpl() {
-		super();
-	}
+        super();
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	@Override
 	protected EClass eStaticClass() {
-		return SpringPackage.eINSTANCE.getSqlExpression();
-	}
+        return SpringPackage.eINSTANCE.getSqlExpression();
+    }
 
 } //SqlExpressionImpl

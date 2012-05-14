@@ -22,22 +22,22 @@ import org.switchyard.tools.models.switchyard1_0.spring.SpringPackage;
  */
 public abstract class AbstractJsseUtilFactoryBeanImpl extends AbstractCamelFactoryBeanImpl implements AbstractJsseUtilFactoryBean {
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	protected AbstractJsseUtilFactoryBeanImpl() {
-		super();
-	}
+        super();
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	@Override
 	protected EClass eStaticClass() {
-		return SpringPackage.eINSTANCE.getAbstractJsseUtilFactoryBean();
-	}
+        return SpringPackage.eINSTANCE.getAbstractJsseUtilFactoryBean();
+    }
 
 } //AbstractJsseUtilFactoryBeanImpl

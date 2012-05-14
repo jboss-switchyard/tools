@@ -22,22 +22,22 @@ import org.switchyard.tools.models.switchyard1_0.spring.SpringPackage;
  */
 public class SecureRandomParametersFactoryBeanImpl extends AbstractSecureRandomParametersFactoryBeanImpl implements SecureRandomParametersFactoryBean {
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	protected SecureRandomParametersFactoryBeanImpl() {
-		super();
-	}
+        super();
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	@Override
 	protected EClass eStaticClass() {
-		return SpringPackage.eINSTANCE.getSecureRandomParametersFactoryBean();
-	}
+        return SpringPackage.eINSTANCE.getSecureRandomParametersFactoryBean();
+    }
 
 } //SecureRandomParametersFactoryBeanImpl

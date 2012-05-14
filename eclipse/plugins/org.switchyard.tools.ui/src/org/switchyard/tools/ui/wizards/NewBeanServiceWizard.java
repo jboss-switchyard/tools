@@ -38,11 +38,24 @@ import org.switchyard.tools.ui.operations.CreateBeanServiceOperation;
 public class NewBeanServiceWizard extends AbstractSwitchYardServiceWizard {
 
     private NewBeanServiceClassWizardPage _newClassPage;
+    private IFile _newClassFile;
+    private boolean _updateSwitchYardFile;
 
     /**
      * Create a new NewBeanServiceWizard.
      */
     public NewBeanServiceWizard() {
+        this(true);
+    }
+
+    /**
+     * Create a new NewBeanServiceWizard.
+     * 
+     * @param udpateSwitchYardFile true if the switchyard.xml file should be
+     *            updated upon completion.
+     */
+    public NewBeanServiceWizard(boolean udpateSwitchYardFile) {
+        _updateSwitchYardFile = udpateSwitchYardFile;
         setNeedsProgressMonitor(true);
     }
 
@@ -53,6 +66,13 @@ public class NewBeanServiceWizard extends AbstractSwitchYardServiceWizard {
         addPage(_newClassPage);
 
         super.addPages();
+    }
+
+    /**
+     * @return the generated class file.
+     */
+    public IFile getNewClassFile() {
+        return _newClassFile;
     }
 
     @Override
@@ -73,7 +93,7 @@ public class NewBeanServiceWizard extends AbstractSwitchYardServiceWizard {
     @Override
     public boolean performFinish() {
         final CreateBeanServiceOperation op = new CreateBeanServiceOperation(_newClassPage,
-                _newClassPage.getCreateTestClass() ? getNewServiceTestClassWizardPage() : null,
+                _newClassPage.getCreateTestClass() ? getNewServiceTestClassWizardPage() : null, _updateSwitchYardFile,
                 WorkspaceUndoUtil.getUIInfoAdapter(getShell()));
         try {
             getContainer().run(true, true, new IRunnableWithProgress() {
@@ -107,16 +127,20 @@ public class NewBeanServiceWizard extends AbstractSwitchYardServiceWizard {
 
         // reveal and open the file
         final IResource resource = _newClassPage.getModifiedResource();
-        final IResource testResource = getCreateTestClass() ? getNewServiceTestClassWizardPage().getModifiedResource() : null;
-        if (resource instanceof IFile && resource.exists()) {
-            selectAndReveal(resource);
+        if (resource instanceof IFile) {
+            _newClassFile = (IFile) resource;
+        }
+        final IResource testResource = getCreateTestClass() ? getNewServiceTestClassWizardPage().getModifiedResource()
+                : null;
+        if (_newClassFile != null && _newClassFile.exists()) {
+            selectAndReveal(_newClassFile);
             final IWorkbenchPage activePage = getWorkbench().getActiveWorkbenchWindow().getActivePage();
             if (activePage != null) {
                 getShell().getDisplay().asyncExec(new Runnable() {
                     @Override
                     public void run() {
                         try {
-                            IDE.openEditor(activePage, (IFile) resource, true);
+                            IDE.openEditor(activePage, _newClassFile, true);
                             if (testResource instanceof IFile && testResource.exists()) {
                                 IDE.openEditor(activePage, (IFile) testResource, true);
                             }

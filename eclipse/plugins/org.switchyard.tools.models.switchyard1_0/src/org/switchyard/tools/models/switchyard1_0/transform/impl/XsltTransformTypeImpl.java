@@ -24,22 +24,22 @@ import org.switchyard.tools.models.switchyard1_0.transform.XsltTransformType;
  */
 public class XsltTransformTypeImpl extends TransformTypeImpl implements XsltTransformType {
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	protected XsltTransformTypeImpl() {
-		super();
-	}
+        super();
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	@Override
 	protected EClass eStaticClass() {
-		return TransformPackage.Literals.XSLT_TRANSFORM_TYPE;
-	}
+        return TransformPackage.Literals.XSLT_TRANSFORM_TYPE;
+    }
 
 } //XsltTransformTypeImpl

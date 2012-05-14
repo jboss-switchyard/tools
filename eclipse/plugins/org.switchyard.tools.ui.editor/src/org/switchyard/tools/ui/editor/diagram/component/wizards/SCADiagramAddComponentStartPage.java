@@ -15,14 +15,12 @@ package org.switchyard.tools.ui.editor.diagram.component.wizards;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.eclipse.jface.viewers.ArrayContentProvider;
 import org.eclipse.jface.viewers.ISelectionChangedListener;
-import org.eclipse.jface.viewers.IStructuredContentProvider;
 import org.eclipse.jface.viewers.IStructuredSelection;
 import org.eclipse.jface.viewers.LabelProvider;
 import org.eclipse.jface.viewers.ListViewer;
 import org.eclipse.jface.viewers.SelectionChangedEvent;
-import org.eclipse.jface.viewers.Viewer;
-import org.eclipse.soa.sca.sca1_1.model.sca.Implementation;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.events.ModifyEvent;
 import org.eclipse.swt.events.ModifyListener;
@@ -31,10 +29,6 @@ import org.eclipse.swt.layout.GridLayout;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Label;
 import org.eclipse.swt.widgets.Text;
-import org.switchyard.tools.models.switchyard1_0.bean.BeanFactory;
-import org.switchyard.tools.models.switchyard1_0.bean.BeanImplementationType;
-import org.switchyard.tools.models.switchyard1_0.camel.CamelFactory;
-import org.switchyard.tools.models.switchyard1_0.camel.CamelImplementationType;
 import org.switchyard.tools.ui.editor.diagram.internal.wizards.BaseWizardPage;
 
 /**
@@ -46,7 +40,7 @@ public class SCADiagramAddComponentStartPage extends BaseWizardPage {
     private Text _componentNameText;
     private String _componentName = null;
     private ListViewer _listViewer;
-    private Implementation _implementation = null;
+    private IComponentImplementationWizard _wizard = null;
 
     /**
      * List width in characters.
@@ -94,48 +88,26 @@ public class SCADiagramAddComponentStartPage extends BaseWizardPage {
         data.widthHint = convertWidthInCharsToPixels(LIST_WIDTH);
         _listViewer.getList().setLayoutData(data);
         _listViewer.getList().setFont(parent.getFont());
-        ArrayList<Implementation> typeList = new ArrayList<Implementation>();
-        getInterfaceTypes(typeList);
         // Set the label provider
         _listViewer.setLabelProvider(new LabelProvider() {
             public String getText(Object element) {
-                Implementation interfaceType = (Implementation) element;
-                if (interfaceType instanceof CamelImplementationType) {
-                    return "Camel";
-                } else if (interfaceType instanceof BeanImplementationType) {
-                    return "Bean (NYI)";
-                } else {
-                    return "";
-                }
+                return ((IComponentImplementationWizard) element).getDisplayName();
             }
         });
-        _listViewer.setContentProvider(new IStructuredContentProvider() {
-            public Object[] getElements(Object inputElement) {
-                if (inputElement instanceof List<?>) {
-                    List<?> v = (List<?>) inputElement;
-                    return v.toArray();
-                }
-                return new Object[0];
-            }
-
-            public void dispose() {
-            }
-
-            public void inputChanged(Viewer viewer, Object oldInput, Object newInput) {
-            }
-        });
+        _listViewer.setContentProvider(new ArrayContentProvider());
         _listViewer.addSelectionChangedListener(new ISelectionChangedListener() {
             @Override
             public void selectionChanged(SelectionChangedEvent event) {
                 IStructuredSelection ssel = (IStructuredSelection) event.getSelection();
-                if (!ssel.isEmpty() && ssel.getFirstElement() instanceof Implementation) {
-                    _implementation = (Implementation) ssel.getFirstElement();
+                if (!ssel.isEmpty()) {
+                    _wizard = (IComponentImplementationWizard) ssel.getFirstElement();
                     handleModify();
+                    getWizard().getContainer().updateButtons();
                 }
 
             }
         });
-        _listViewer.setInput(typeList);
+        _listViewer.setInput(getImplementationWizards());
 
         setControl(composite);
 
@@ -151,10 +123,10 @@ public class SCADiagramAddComponentStartPage extends BaseWizardPage {
     }
 
     /**
-     * @return selected implementation
+     * @return the selected implementation wizard.
      */
-    public Implementation getImplementation() {
-        return this._implementation;
+    public IComponentImplementationWizard getImplementationWizard() {
+        return _wizard;
     }
 
     private void handleModify() {
@@ -175,11 +147,11 @@ public class SCADiagramAddComponentStartPage extends BaseWizardPage {
         setPageComplete(errorMessage == null);
     }
 
-    private void getInterfaceTypes(List<Implementation> types) {
-        Implementation camelImplementationType = CamelFactory.eINSTANCE.createCamelImplementationType();
-        types.add(camelImplementationType);
-        Implementation beanImplementation = BeanFactory.eINSTANCE.createBeanImplementationType();
-        types.add(beanImplementation);
+    private List<IComponentImplementationWizard> getImplementationWizards() {
+        final List<IComponentImplementationWizard> wizards = new ArrayList<IComponentImplementationWizard>(2);
+        wizards.add(new BeanImplementationWizard());
+        wizards.add(new CamelImplementationWizard());
+        return wizards;
     }
 
     // private void getImplementationTypes ( List<Implementation> types ) {

@@ -24,12 +24,13 @@ import org.eclipse.graphiti.mm.algorithms.Text;
 import org.eclipse.graphiti.mm.algorithms.styles.Orientation;
 import org.eclipse.graphiti.mm.algorithms.styles.Point;
 import org.eclipse.graphiti.mm.pictograms.PictogramElement;
+import org.eclipse.graphiti.mm.pictograms.Shape;
 import org.eclipse.graphiti.services.Graphiti;
 import org.eclipse.graphiti.services.IGaService;
 
 /**
  * @author bfitzpat
- *
+ * 
  */
 public class SCADiagramResizeCompositeReferenceFeature extends DefaultResizeShapeFeature {
 
@@ -44,9 +45,10 @@ public class SCADiagramResizeCompositeReferenceFeature extends DefaultResizeShap
     public void resizeShape(IResizeShapeContext context) {
         super.resizeShape(context);
 
+        GraphicsAlgorithm containerGA = context.getPictogramElement().getGraphicsAlgorithm();
         // Get new sizes
-        int width = context.getWidth();
-        int height = context.getHeight();
+        int width = containerGA.getWidth();
+        int height = containerGA.getHeight();
 
         // Get old sizes. They are defined by the max values for x and y on all
         // points
@@ -101,6 +103,7 @@ public class SCADiagramResizeCompositeReferenceFeature extends DefaultResizeShap
             }
         }
 
+        // TODO: move this to layout feature
         GraphicsAlgorithm textGa = findChildGA(pictogramElement.getGraphicsAlgorithm(), Text.class);
         if (textGa != null) {
             IGaService gaService = Graphiti.getGaService();
@@ -109,6 +112,9 @@ public class SCADiagramResizeCompositeReferenceFeature extends DefaultResizeShap
             text.setVerticalAlignment(Orientation.ALIGNMENT_CENTER);
             gaService.setLocationAndSize(text, left + 10, 0, right - left - 10, height);
         }
+
+        // layout composite to make sure the reference is on the edge
+        layoutPictogramElement(((Shape) pictogramElement).getContainer());
     }
 
     private GraphicsAlgorithm findChildGA(GraphicsAlgorithm parent, Class<?> gaSearchType) {

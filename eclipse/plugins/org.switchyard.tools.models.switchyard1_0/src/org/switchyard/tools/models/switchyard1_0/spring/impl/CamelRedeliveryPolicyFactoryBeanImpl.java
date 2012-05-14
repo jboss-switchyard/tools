@@ -22,22 +22,22 @@ import org.switchyard.tools.models.switchyard1_0.spring.SpringPackage;
  */
 public class CamelRedeliveryPolicyFactoryBeanImpl extends AbstractCamelRedeliveryPolicyFactoryBeanImpl implements CamelRedeliveryPolicyFactoryBean {
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	protected CamelRedeliveryPolicyFactoryBeanImpl() {
-		super();
-	}
+        super();
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	@Override
 	protected EClass eStaticClass() {
-		return SpringPackage.eINSTANCE.getCamelRedeliveryPolicyFactoryBean();
-	}
+        return SpringPackage.eINSTANCE.getCamelRedeliveryPolicyFactoryBean();
+    }
 
 } //CamelRedeliveryPolicyFactoryBeanImpl

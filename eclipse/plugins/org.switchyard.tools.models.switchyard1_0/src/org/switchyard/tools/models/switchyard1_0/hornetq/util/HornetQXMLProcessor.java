@@ -25,30 +25,30 @@ import org.switchyard.tools.models.switchyard1_0.hornetq.HornetQPackage;
 public class HornetQXMLProcessor extends XMLProcessor {
 
 	/**
-	 * Public constructor to instantiate the helper.
-	 * <!-- begin-user-doc -->
+     * Public constructor to instantiate the helper.
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public HornetQXMLProcessor() {
-		super((EPackage.Registry.INSTANCE));
-		HornetQPackage.eINSTANCE.eClass();
-	}
+        super((EPackage.Registry.INSTANCE));
+        HornetQPackage.eINSTANCE.eClass();
+    }
 	
 	/**
-	 * Register for "*" and "xml" file extensions the HornetQResourceFactoryImpl factory.
-	 * <!-- begin-user-doc -->
+     * Register for "*" and "xml" file extensions the HornetQResourceFactoryImpl factory.
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	@Override
 	protected Map<String, Resource.Factory> getRegistrations() {
-		if (registrations == null) {
-			super.getRegistrations();
-			registrations.put(XML_EXTENSION, new HornetQResourceFactoryImpl());
-			registrations.put(STAR_EXTENSION, new HornetQResourceFactoryImpl());
-		}
-		return registrations;
-	}
+        if (registrations == null) {
+            super.getRegistrations();
+            registrations.put(XML_EXTENSION, new HornetQResourceFactoryImpl());
+            registrations.put(STAR_EXTENSION, new HornetQResourceFactoryImpl());
+        }
+        return registrations;
+    }
 
 } //HornetQXMLProcessor

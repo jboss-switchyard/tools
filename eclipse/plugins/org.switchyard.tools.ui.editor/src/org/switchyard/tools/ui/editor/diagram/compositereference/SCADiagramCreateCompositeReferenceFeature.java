@@ -17,22 +17,29 @@ import java.io.IOException;
 import org.eclipse.graphiti.features.IFeatureProvider;
 import org.eclipse.graphiti.features.context.ICreateContext;
 import org.eclipse.graphiti.features.impl.AbstractCreateFeature;
+import org.eclipse.graphiti.mm.pictograms.PictogramElement;
+import org.eclipse.graphiti.mm.pictograms.Shape;
+import org.eclipse.jface.window.Window;
+import org.eclipse.jface.wizard.WizardDialog;
 import org.eclipse.soa.sca.sca1_1.model.sca.Composite;
+import org.eclipse.soa.sca.sca1_1.model.sca.Interface;
+import org.eclipse.soa.sca.sca1_1.model.sca.JavaInterface;
 import org.eclipse.soa.sca.sca1_1.model.sca.Reference;
+import org.eclipse.soa.sca.sca1_1.model.sca.ScaPackage;
+import org.eclipse.soa.sca.sca1_1.model.sca.WSDLPortType;
+import org.eclipse.swt.widgets.Shell;
+import org.eclipse.ui.PlatformUI;
 import org.switchyard.tools.ui.editor.Activator;
 import org.switchyard.tools.ui.editor.ImageProvider;
 import org.switchyard.tools.ui.editor.core.ModelHandler;
 import org.switchyard.tools.ui.editor.core.ModelHandlerLocator;
-import org.switchyard.tools.ui.editor.util.ExampleUtil;
+import org.switchyard.tools.ui.editor.diagram.compositereference.wizards.SCADiagramAddCompositeReferenceWizard;
 
 /**
  * @author bfitzpat
  *
  */
 public class SCADiagramCreateCompositeReferenceFeature extends AbstractCreateFeature {
-
-    private static final String TITLE = "Create Composite Reference";
-    private static final String USER_QUESTION = "Enter new composite reference name";
 
     /**
      * @param fp feature provider
@@ -51,25 +58,46 @@ public class SCADiagramCreateCompositeReferenceFeature extends AbstractCreateFea
 
     @Override
     public Object[] create(ICreateContext context) {
-        // ask user for EClass name
-        String newRefName = ExampleUtil.askString(TITLE, USER_QUESTION, "");
-        if (newRefName == null || newRefName.trim().length() == 0) {
-            return EMPTY;
-        }
 
         Reference newReference = null;
+        String newRefName = null;
+        Interface newInterface = null;
+        SCADiagramAddCompositeReferenceWizard wizard = new SCADiagramAddCompositeReferenceWizard();
+        Shell shell = PlatformUI.getWorkbench().getActiveWorkbenchWindow().getShell();
+        WizardDialog wizDialog = new WizardDialog(shell, wizard);
+        int rtn_code = wizDialog.open();
+        if (rtn_code == Window.OK) {
+            newRefName = wizard.getCompositeReferenceName();
+            newInterface = wizard.getInterface();
+        } else {
+            return EMPTY;
+        }
 
         try {
             ModelHandler mh = ModelHandlerLocator.getModelHandler(getDiagram().eResource());
             Object o = getBusinessObjectForPictogramElement(context.getTargetContainer());
             newReference = mh.createCompositeReference((Composite) o);
             newReference.setName(newRefName);
+            if (newInterface != null) {
+                // do something with it
+                if (newInterface instanceof JavaInterface) {
+                    newReference.getInterfaceGroup().set(ScaPackage.eINSTANCE.getDocumentRoot_InterfaceJava(),
+                            newInterface);
+                } else if (newInterface instanceof WSDLPortType) {
+                    newReference.getInterfaceGroup().set(ScaPackage.eINSTANCE.getDocumentRoot_InterfaceWsdl(),
+                            newInterface);
+                }
+            }
         } catch (IOException e) {
             Activator.logError(e);
         }
 
         // do the add
-        addGraphicalRepresentation(context, newReference);
+        PictogramElement pe = addGraphicalRepresentation(context, newReference);
+        if (pe instanceof Shape) {
+            // make sure the new reference is positioned correctly.
+            layoutPictogramElement(((Shape) pe).getContainer());
+        }
 
         // return newly created business object(s)
         return new Object[] {newReference };
@@ -77,7 +105,7 @@ public class SCADiagramCreateCompositeReferenceFeature extends AbstractCreateFea
 
     @Override
     public String getCreateImageId() {
-        return ImageProvider.IMG_16_SERVICE;
+        return ImageProvider.IMG_16_REFERENCE;
     }
 
 }

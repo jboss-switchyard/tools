@@ -24,22 +24,22 @@ import org.switchyard.tools.models.switchyard1_0.switchyard.impl.SwitchYardBindi
  */
 public class CamelDirectBindingTypeImpl extends SwitchYardBindingTypeImpl implements CamelDirectBindingType {
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	protected CamelDirectBindingTypeImpl() {
-		super();
-	}
+        super();
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	@Override
 	protected EClass eStaticClass() {
-		return CamelPackage.Literals.CAMEL_DIRECT_BINDING_TYPE;
-	}
+        return CamelPackage.Literals.CAMEL_DIRECT_BINDING_TYPE;
+    }
 
 } //CamelDirectBindingTypeImpl

@@ -12,8 +12,6 @@
  ******************************************************************************/
 package org.switchyard.tools.ui.editor.diagram.component;
 
-import java.io.IOException;
-
 import org.eclipse.graphiti.features.IFeatureProvider;
 import org.eclipse.graphiti.features.context.ICreateContext;
 import org.eclipse.graphiti.features.impl.AbstractCreateFeature;
@@ -22,15 +20,9 @@ import org.eclipse.jface.window.Window;
 import org.eclipse.jface.wizard.WizardDialog;
 import org.eclipse.soa.sca.sca1_1.model.sca.Component;
 import org.eclipse.soa.sca.sca1_1.model.sca.Composite;
-import org.eclipse.soa.sca.sca1_1.model.sca.Implementation;
 import org.eclipse.swt.widgets.Shell;
 import org.eclipse.ui.PlatformUI;
-import org.switchyard.tools.models.switchyard1_0.camel.CamelImplementationType;
-import org.switchyard.tools.models.switchyard1_0.camel.CamelPackage;
-import org.switchyard.tools.ui.editor.Activator;
 import org.switchyard.tools.ui.editor.ImageProvider;
-import org.switchyard.tools.ui.editor.core.ModelHandler;
-import org.switchyard.tools.ui.editor.core.ModelHandlerLocator;
 import org.switchyard.tools.ui.editor.diagram.component.wizards.SCADiagramAddComponentWizard;
 
 /**
@@ -65,17 +57,12 @@ public class SCADiagramCreateComponentFeature extends AbstractCreateFeature {
         Object o = getBusinessObjectForPictogramElement(context.getTargetContainer());
         Composite composite = (Composite) o;
         Component newComponent = null;
-        String newComponentName = null;
-        Implementation newImplementation = null;
         SCADiagramAddComponentWizard wizard = new SCADiagramAddComponentWizard();
-        wizard.setDiagram(getDiagram());
-        wizard.setComponent(null);
         Shell shell = PlatformUI.getWorkbench().getActiveWorkbenchWindow().getShell();
         WizardDialog wizDialog = new WizardDialog(shell, wizard);
         int rtn_code = wizDialog.open();
         if (rtn_code == Window.OK) {
-            newComponentName = wizard.getComponentName();
-            newImplementation = wizard.getImplementation();
+            newComponent = wizard.getComponent();
         } else {
             return EMPTY;
         }
@@ -87,20 +74,7 @@ public class SCADiagramCreateComponentFeature extends AbstractCreateFeature {
         // return EMPTY;
         // }
 
-        try {
-            ModelHandler mh = ModelHandlerLocator.getModelHandler(getDiagram().eResource());
-            newComponent = mh.createComponent(composite);
-            newComponent.setName(newComponentName);
-            if (newImplementation != null) {
-                // do something with it
-                if (newImplementation instanceof CamelImplementationType) {
-                    newComponent.getImplementationGroup().set(
-                            CamelPackage.eINSTANCE.getDocumentRoot_ImplementationCamel(), newImplementation);
-                }
-            }
-        } catch (IOException e) {
-            Activator.logError(e);
-        }
+        composite.getComponent().add(newComponent);
 
         // do the add
         addGraphicalRepresentation(context, newComponent);

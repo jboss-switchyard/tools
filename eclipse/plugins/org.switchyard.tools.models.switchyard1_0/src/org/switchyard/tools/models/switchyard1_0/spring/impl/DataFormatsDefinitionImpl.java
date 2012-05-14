@@ -83,618 +83,618 @@ import org.switchyard.tools.models.switchyard1_0.spring.ZipDataFormat;
  */
 public class DataFormatsDefinitionImpl extends EObjectImpl implements DataFormatsDefinition {
 	/**
-	 * The cached value of the '{@link #getGroup() <em>Group</em>}' attribute list.
-	 * <!-- begin-user-doc -->
+     * The cached value of the '{@link #getGroup() <em>Group</em>}' attribute list.
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #getGroup()
-	 * @generated
-	 * @ordered
-	 */
+     * @see #getGroup()
+     * @generated
+     * @ordered
+     */
 	protected FeatureMap group;
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	protected DataFormatsDefinitionImpl() {
-		super();
-	}
+        super();
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	@Override
 	protected EClass eStaticClass() {
-		return SpringPackage.eINSTANCE.getDataFormatsDefinition();
-	}
+        return SpringPackage.eINSTANCE.getDataFormatsDefinition();
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public FeatureMap getGroup() {
-		if (group == null) {
-			group = new BasicFeatureMap(this, SpringPackage.DATA_FORMATS_DEFINITION__GROUP);
-		}
-		return group;
-	}
+        if (group == null) {
+            group = new BasicFeatureMap(this, SpringPackage.DATA_FORMATS_DEFINITION__GROUP);
+        }
+        return group;
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public EList<BindyDataFormat> getBindy() {
-		return getGroup().list(SpringPackage.eINSTANCE.getDataFormatsDefinition_Bindy());
-	}
+        return getGroup().list(SpringPackage.eINSTANCE.getDataFormatsDefinition_Bindy());
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public EList<CastorDataFormat> getCastor() {
-		return getGroup().list(SpringPackage.eINSTANCE.getDataFormatsDefinition_Castor());
-	}
+        return getGroup().list(SpringPackage.eINSTANCE.getDataFormatsDefinition_Castor());
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public EList<CryptoDataFormat> getCrypto() {
-		return getGroup().list(SpringPackage.eINSTANCE.getDataFormatsDefinition_Crypto());
-	}
+        return getGroup().list(SpringPackage.eINSTANCE.getDataFormatsDefinition_Crypto());
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public EList<CsvDataFormat> getCsv() {
-		return getGroup().list(SpringPackage.eINSTANCE.getDataFormatsDefinition_Csv());
-	}
+        return getGroup().list(SpringPackage.eINSTANCE.getDataFormatsDefinition_Csv());
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public EList<CustomDataFormat> getCustom() {
-		return getGroup().list(SpringPackage.eINSTANCE.getDataFormatsDefinition_Custom());
-	}
+        return getGroup().list(SpringPackage.eINSTANCE.getDataFormatsDefinition_Custom());
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public EList<FlatpackDataFormat> getFlatpack() {
-		return getGroup().list(SpringPackage.eINSTANCE.getDataFormatsDefinition_Flatpack());
-	}
+        return getGroup().list(SpringPackage.eINSTANCE.getDataFormatsDefinition_Flatpack());
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public EList<GzipDataFormat> getGzip() {
-		return getGroup().list(SpringPackage.eINSTANCE.getDataFormatsDefinition_Gzip());
-	}
+        return getGroup().list(SpringPackage.eINSTANCE.getDataFormatsDefinition_Gzip());
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public EList<Hl7DataFormat> getHl7() {
-		return getGroup().list(SpringPackage.eINSTANCE.getDataFormatsDefinition_Hl7());
-	}
+        return getGroup().list(SpringPackage.eINSTANCE.getDataFormatsDefinition_Hl7());
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public EList<JaxbDataFormat> getJaxb() {
-		return getGroup().list(SpringPackage.eINSTANCE.getDataFormatsDefinition_Jaxb());
-	}
+        return getGroup().list(SpringPackage.eINSTANCE.getDataFormatsDefinition_Jaxb());
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public EList<JibxDataFormat> getJibx() {
-		return getGroup().list(SpringPackage.eINSTANCE.getDataFormatsDefinition_Jibx());
-	}
+        return getGroup().list(SpringPackage.eINSTANCE.getDataFormatsDefinition_Jibx());
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public EList<JsonDataFormat> getJson() {
-		return getGroup().list(SpringPackage.eINSTANCE.getDataFormatsDefinition_Json());
-	}
+        return getGroup().list(SpringPackage.eINSTANCE.getDataFormatsDefinition_Json());
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public EList<ProtobufDataFormat> getProtobuf() {
-		return getGroup().list(SpringPackage.eINSTANCE.getDataFormatsDefinition_Protobuf());
-	}
+        return getGroup().list(SpringPackage.eINSTANCE.getDataFormatsDefinition_Protobuf());
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public EList<RssDataFormat> getRss() {
-		return getGroup().list(SpringPackage.eINSTANCE.getDataFormatsDefinition_Rss());
-	}
+        return getGroup().list(SpringPackage.eINSTANCE.getDataFormatsDefinition_Rss());
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public EList<XmlSecurityDataFormat> getSecureXML() {
-		return getGroup().list(SpringPackage.eINSTANCE.getDataFormatsDefinition_SecureXML());
-	}
+        return getGroup().list(SpringPackage.eINSTANCE.getDataFormatsDefinition_SecureXML());
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public EList<SerializationDataFormat> getSerialization() {
-		return getGroup().list(SpringPackage.eINSTANCE.getDataFormatsDefinition_Serialization());
-	}
+        return getGroup().list(SpringPackage.eINSTANCE.getDataFormatsDefinition_Serialization());
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public EList<SoapJaxbDataFormat> getSoapjaxb() {
-		return getGroup().list(SpringPackage.eINSTANCE.getDataFormatsDefinition_Soapjaxb());
-	}
+        return getGroup().list(SpringPackage.eINSTANCE.getDataFormatsDefinition_Soapjaxb());
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public EList<StringDataFormat> getString() {
-		return getGroup().list(SpringPackage.eINSTANCE.getDataFormatsDefinition_String());
-	}
+        return getGroup().list(SpringPackage.eINSTANCE.getDataFormatsDefinition_String());
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public EList<SyslogDataFormat> getSyslog() {
-		return getGroup().list(SpringPackage.eINSTANCE.getDataFormatsDefinition_Syslog());
-	}
+        return getGroup().list(SpringPackage.eINSTANCE.getDataFormatsDefinition_Syslog());
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public EList<TidyMarkupDataFormat> getTidyMarkup() {
-		return getGroup().list(SpringPackage.eINSTANCE.getDataFormatsDefinition_TidyMarkup());
-	}
+        return getGroup().list(SpringPackage.eINSTANCE.getDataFormatsDefinition_TidyMarkup());
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public EList<XmlBeansDataFormat> getXmlBeans() {
-		return getGroup().list(SpringPackage.eINSTANCE.getDataFormatsDefinition_XmlBeans());
-	}
+        return getGroup().list(SpringPackage.eINSTANCE.getDataFormatsDefinition_XmlBeans());
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public EList<XStreamDataFormat> getXstream() {
-		return getGroup().list(SpringPackage.eINSTANCE.getDataFormatsDefinition_Xstream());
-	}
+        return getGroup().list(SpringPackage.eINSTANCE.getDataFormatsDefinition_Xstream());
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public EList<ZipDataFormat> getZip() {
-		return getGroup().list(SpringPackage.eINSTANCE.getDataFormatsDefinition_Zip());
-	}
+        return getGroup().list(SpringPackage.eINSTANCE.getDataFormatsDefinition_Zip());
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	@Override
 	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
-		switch (featureID) {
-			case SpringPackage.DATA_FORMATS_DEFINITION__GROUP:
-				return ((InternalEList<?>)getGroup()).basicRemove(otherEnd, msgs);
-			case SpringPackage.DATA_FORMATS_DEFINITION__BINDY:
-				return ((InternalEList<?>)getBindy()).basicRemove(otherEnd, msgs);
-			case SpringPackage.DATA_FORMATS_DEFINITION__CASTOR:
-				return ((InternalEList<?>)getCastor()).basicRemove(otherEnd, msgs);
-			case SpringPackage.DATA_FORMATS_DEFINITION__CRYPTO:
-				return ((InternalEList<?>)getCrypto()).basicRemove(otherEnd, msgs);
-			case SpringPackage.DATA_FORMATS_DEFINITION__CSV:
-				return ((InternalEList<?>)getCsv()).basicRemove(otherEnd, msgs);
-			case SpringPackage.DATA_FORMATS_DEFINITION__CUSTOM:
-				return ((InternalEList<?>)getCustom()).basicRemove(otherEnd, msgs);
-			case SpringPackage.DATA_FORMATS_DEFINITION__FLATPACK:
-				return ((InternalEList<?>)getFlatpack()).basicRemove(otherEnd, msgs);
-			case SpringPackage.DATA_FORMATS_DEFINITION__GZIP:
-				return ((InternalEList<?>)getGzip()).basicRemove(otherEnd, msgs);
-			case SpringPackage.DATA_FORMATS_DEFINITION__HL7:
-				return ((InternalEList<?>)getHl7()).basicRemove(otherEnd, msgs);
-			case SpringPackage.DATA_FORMATS_DEFINITION__JAXB:
-				return ((InternalEList<?>)getJaxb()).basicRemove(otherEnd, msgs);
-			case SpringPackage.DATA_FORMATS_DEFINITION__JIBX:
-				return ((InternalEList<?>)getJibx()).basicRemove(otherEnd, msgs);
-			case SpringPackage.DATA_FORMATS_DEFINITION__JSON:
-				return ((InternalEList<?>)getJson()).basicRemove(otherEnd, msgs);
-			case SpringPackage.DATA_FORMATS_DEFINITION__PROTOBUF:
-				return ((InternalEList<?>)getProtobuf()).basicRemove(otherEnd, msgs);
-			case SpringPackage.DATA_FORMATS_DEFINITION__RSS:
-				return ((InternalEList<?>)getRss()).basicRemove(otherEnd, msgs);
-			case SpringPackage.DATA_FORMATS_DEFINITION__SECURE_XML:
-				return ((InternalEList<?>)getSecureXML()).basicRemove(otherEnd, msgs);
-			case SpringPackage.DATA_FORMATS_DEFINITION__SERIALIZATION:
-				return ((InternalEList<?>)getSerialization()).basicRemove(otherEnd, msgs);
-			case SpringPackage.DATA_FORMATS_DEFINITION__SOAPJAXB:
-				return ((InternalEList<?>)getSoapjaxb()).basicRemove(otherEnd, msgs);
-			case SpringPackage.DATA_FORMATS_DEFINITION__STRING:
-				return ((InternalEList<?>)getString()).basicRemove(otherEnd, msgs);
-			case SpringPackage.DATA_FORMATS_DEFINITION__SYSLOG:
-				return ((InternalEList<?>)getSyslog()).basicRemove(otherEnd, msgs);
-			case SpringPackage.DATA_FORMATS_DEFINITION__TIDY_MARKUP:
-				return ((InternalEList<?>)getTidyMarkup()).basicRemove(otherEnd, msgs);
-			case SpringPackage.DATA_FORMATS_DEFINITION__XML_BEANS:
-				return ((InternalEList<?>)getXmlBeans()).basicRemove(otherEnd, msgs);
-			case SpringPackage.DATA_FORMATS_DEFINITION__XSTREAM:
-				return ((InternalEList<?>)getXstream()).basicRemove(otherEnd, msgs);
-			case SpringPackage.DATA_FORMATS_DEFINITION__ZIP:
-				return ((InternalEList<?>)getZip()).basicRemove(otherEnd, msgs);
-		}
-		return super.eInverseRemove(otherEnd, featureID, msgs);
-	}
+        switch (featureID) {
+            case SpringPackage.DATA_FORMATS_DEFINITION__GROUP:
+                return ((InternalEList<?>)getGroup()).basicRemove(otherEnd, msgs);
+            case SpringPackage.DATA_FORMATS_DEFINITION__BINDY:
+                return ((InternalEList<?>)getBindy()).basicRemove(otherEnd, msgs);
+            case SpringPackage.DATA_FORMATS_DEFINITION__CASTOR:
+                return ((InternalEList<?>)getCastor()).basicRemove(otherEnd, msgs);
+            case SpringPackage.DATA_FORMATS_DEFINITION__CRYPTO:
+                return ((InternalEList<?>)getCrypto()).basicRemove(otherEnd, msgs);
+            case SpringPackage.DATA_FORMATS_DEFINITION__CSV:
+                return ((InternalEList<?>)getCsv()).basicRemove(otherEnd, msgs);
+            case SpringPackage.DATA_FORMATS_DEFINITION__CUSTOM:
+                return ((InternalEList<?>)getCustom()).basicRemove(otherEnd, msgs);
+            case SpringPackage.DATA_FORMATS_DEFINITION__FLATPACK:
+                return ((InternalEList<?>)getFlatpack()).basicRemove(otherEnd, msgs);
+            case SpringPackage.DATA_FORMATS_DEFINITION__GZIP:
+                return ((InternalEList<?>)getGzip()).basicRemove(otherEnd, msgs);
+            case SpringPackage.DATA_FORMATS_DEFINITION__HL7:
+                return ((InternalEList<?>)getHl7()).basicRemove(otherEnd, msgs);
+            case SpringPackage.DATA_FORMATS_DEFINITION__JAXB:
+                return ((InternalEList<?>)getJaxb()).basicRemove(otherEnd, msgs);
+            case SpringPackage.DATA_FORMATS_DEFINITION__JIBX:
+                return ((InternalEList<?>)getJibx()).basicRemove(otherEnd, msgs);
+            case SpringPackage.DATA_FORMATS_DEFINITION__JSON:
+                return ((InternalEList<?>)getJson()).basicRemove(otherEnd, msgs);
+            case SpringPackage.DATA_FORMATS_DEFINITION__PROTOBUF:
+                return ((InternalEList<?>)getProtobuf()).basicRemove(otherEnd, msgs);
+            case SpringPackage.DATA_FORMATS_DEFINITION__RSS:
+                return ((InternalEList<?>)getRss()).basicRemove(otherEnd, msgs);
+            case SpringPackage.DATA_FORMATS_DEFINITION__SECURE_XML:
+                return ((InternalEList<?>)getSecureXML()).basicRemove(otherEnd, msgs);
+            case SpringPackage.DATA_FORMATS_DEFINITION__SERIALIZATION:
+                return ((InternalEList<?>)getSerialization()).basicRemove(otherEnd, msgs);
+            case SpringPackage.DATA_FORMATS_DEFINITION__SOAPJAXB:
+                return ((InternalEList<?>)getSoapjaxb()).basicRemove(otherEnd, msgs);
+            case SpringPackage.DATA_FORMATS_DEFINITION__STRING:
+                return ((InternalEList<?>)getString()).basicRemove(otherEnd, msgs);
+            case SpringPackage.DATA_FORMATS_DEFINITION__SYSLOG:
+                return ((InternalEList<?>)getSyslog()).basicRemove(otherEnd, msgs);
+            case SpringPackage.DATA_FORMATS_DEFINITION__TIDY_MARKUP:
+                return ((InternalEList<?>)getTidyMarkup()).basicRemove(otherEnd, msgs);
+            case SpringPackage.DATA_FORMATS_DEFINITION__XML_BEANS:
+                return ((InternalEList<?>)getXmlBeans()).basicRemove(otherEnd, msgs);
+            case SpringPackage.DATA_FORMATS_DEFINITION__XSTREAM:
+                return ((InternalEList<?>)getXstream()).basicRemove(otherEnd, msgs);
+            case SpringPackage.DATA_FORMATS_DEFINITION__ZIP:
+                return ((InternalEList<?>)getZip()).basicRemove(otherEnd, msgs);
+        }
+        return super.eInverseRemove(otherEnd, featureID, msgs);
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
-		switch (featureID) {
-			case SpringPackage.DATA_FORMATS_DEFINITION__GROUP:
-				if (coreType) return getGroup();
-				return ((FeatureMap.Internal)getGroup()).getWrapper();
-			case SpringPackage.DATA_FORMATS_DEFINITION__BINDY:
-				return getBindy();
-			case SpringPackage.DATA_FORMATS_DEFINITION__CASTOR:
-				return getCastor();
-			case SpringPackage.DATA_FORMATS_DEFINITION__CRYPTO:
-				return getCrypto();
-			case SpringPackage.DATA_FORMATS_DEFINITION__CSV:
-				return getCsv();
-			case SpringPackage.DATA_FORMATS_DEFINITION__CUSTOM:
-				return getCustom();
-			case SpringPackage.DATA_FORMATS_DEFINITION__FLATPACK:
-				return getFlatpack();
-			case SpringPackage.DATA_FORMATS_DEFINITION__GZIP:
-				return getGzip();
-			case SpringPackage.DATA_FORMATS_DEFINITION__HL7:
-				return getHl7();
-			case SpringPackage.DATA_FORMATS_DEFINITION__JAXB:
-				return getJaxb();
-			case SpringPackage.DATA_FORMATS_DEFINITION__JIBX:
-				return getJibx();
-			case SpringPackage.DATA_FORMATS_DEFINITION__JSON:
-				return getJson();
-			case SpringPackage.DATA_FORMATS_DEFINITION__PROTOBUF:
-				return getProtobuf();
-			case SpringPackage.DATA_FORMATS_DEFINITION__RSS:
-				return getRss();
-			case SpringPackage.DATA_FORMATS_DEFINITION__SECURE_XML:
-				return getSecureXML();
-			case SpringPackage.DATA_FORMATS_DEFINITION__SERIALIZATION:
-				return getSerialization();
-			case SpringPackage.DATA_FORMATS_DEFINITION__SOAPJAXB:
-				return getSoapjaxb();
-			case SpringPackage.DATA_FORMATS_DEFINITION__STRING:
-				return getString();
-			case SpringPackage.DATA_FORMATS_DEFINITION__SYSLOG:
-				return getSyslog();
-			case SpringPackage.DATA_FORMATS_DEFINITION__TIDY_MARKUP:
-				return getTidyMarkup();
-			case SpringPackage.DATA_FORMATS_DEFINITION__XML_BEANS:
-				return getXmlBeans();
-			case SpringPackage.DATA_FORMATS_DEFINITION__XSTREAM:
-				return getXstream();
-			case SpringPackage.DATA_FORMATS_DEFINITION__ZIP:
-				return getZip();
-		}
-		return super.eGet(featureID, resolve, coreType);
-	}
+        switch (featureID) {
+            case SpringPackage.DATA_FORMATS_DEFINITION__GROUP:
+                if (coreType) return getGroup();
+                return ((FeatureMap.Internal)getGroup()).getWrapper();
+            case SpringPackage.DATA_FORMATS_DEFINITION__BINDY:
+                return getBindy();
+            case SpringPackage.DATA_FORMATS_DEFINITION__CASTOR:
+                return getCastor();
+            case SpringPackage.DATA_FORMATS_DEFINITION__CRYPTO:
+                return getCrypto();
+            case SpringPackage.DATA_FORMATS_DEFINITION__CSV:
+                return getCsv();
+            case SpringPackage.DATA_FORMATS_DEFINITION__CUSTOM:
+                return getCustom();
+            case SpringPackage.DATA_FORMATS_DEFINITION__FLATPACK:
+                return getFlatpack();
+            case SpringPackage.DATA_FORMATS_DEFINITION__GZIP:
+                return getGzip();
+            case SpringPackage.DATA_FORMATS_DEFINITION__HL7:
+                return getHl7();
+            case SpringPackage.DATA_FORMATS_DEFINITION__JAXB:
+                return getJaxb();
+            case SpringPackage.DATA_FORMATS_DEFINITION__JIBX:
+                return getJibx();
+            case SpringPackage.DATA_FORMATS_DEFINITION__JSON:
+                return getJson();
+            case SpringPackage.DATA_FORMATS_DEFINITION__PROTOBUF:
+                return getProtobuf();
+            case SpringPackage.DATA_FORMATS_DEFINITION__RSS:
+                return getRss();
+            case SpringPackage.DATA_FORMATS_DEFINITION__SECURE_XML:
+                return getSecureXML();
+            case SpringPackage.DATA_FORMATS_DEFINITION__SERIALIZATION:
+                return getSerialization();
+            case SpringPackage.DATA_FORMATS_DEFINITION__SOAPJAXB:
+                return getSoapjaxb();
+            case SpringPackage.DATA_FORMATS_DEFINITION__STRING:
+                return getString();
+            case SpringPackage.DATA_FORMATS_DEFINITION__SYSLOG:
+                return getSyslog();
+            case SpringPackage.DATA_FORMATS_DEFINITION__TIDY_MARKUP:
+                return getTidyMarkup();
+            case SpringPackage.DATA_FORMATS_DEFINITION__XML_BEANS:
+                return getXmlBeans();
+            case SpringPackage.DATA_FORMATS_DEFINITION__XSTREAM:
+                return getXstream();
+            case SpringPackage.DATA_FORMATS_DEFINITION__ZIP:
+                return getZip();
+        }
+        return super.eGet(featureID, resolve, coreType);
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	@SuppressWarnings("unchecked")
 	@Override
 	public void eSet(int featureID, Object newValue) {
-		switch (featureID) {
-			case SpringPackage.DATA_FORMATS_DEFINITION__GROUP:
-				((FeatureMap.Internal)getGroup()).set(newValue);
-				return;
-			case SpringPackage.DATA_FORMATS_DEFINITION__BINDY:
-				getBindy().clear();
-				getBindy().addAll((Collection<? extends BindyDataFormat>)newValue);
-				return;
-			case SpringPackage.DATA_FORMATS_DEFINITION__CASTOR:
-				getCastor().clear();
-				getCastor().addAll((Collection<? extends CastorDataFormat>)newValue);
-				return;
-			case SpringPackage.DATA_FORMATS_DEFINITION__CRYPTO:
-				getCrypto().clear();
-				getCrypto().addAll((Collection<? extends CryptoDataFormat>)newValue);
-				return;
-			case SpringPackage.DATA_FORMATS_DEFINITION__CSV:
-				getCsv().clear();
-				getCsv().addAll((Collection<? extends CsvDataFormat>)newValue);
-				return;
-			case SpringPackage.DATA_FORMATS_DEFINITION__CUSTOM:
-				getCustom().clear();
-				getCustom().addAll((Collection<? extends CustomDataFormat>)newValue);
-				return;
-			case SpringPackage.DATA_FORMATS_DEFINITION__FLATPACK:
-				getFlatpack().clear();
-				getFlatpack().addAll((Collection<? extends FlatpackDataFormat>)newValue);
-				return;
-			case SpringPackage.DATA_FORMATS_DEFINITION__GZIP:
-				getGzip().clear();
-				getGzip().addAll((Collection<? extends GzipDataFormat>)newValue);
-				return;
-			case SpringPackage.DATA_FORMATS_DEFINITION__HL7:
-				getHl7().clear();
-				getHl7().addAll((Collection<? extends Hl7DataFormat>)newValue);
-				return;
-			case SpringPackage.DATA_FORMATS_DEFINITION__JAXB:
-				getJaxb().clear();
-				getJaxb().addAll((Collection<? extends JaxbDataFormat>)newValue);
-				return;
-			case SpringPackage.DATA_FORMATS_DEFINITION__JIBX:
-				getJibx().clear();
-				getJibx().addAll((Collection<? extends JibxDataFormat>)newValue);
-				return;
-			case SpringPackage.DATA_FORMATS_DEFINITION__JSON:
-				getJson().clear();
-				getJson().addAll((Collection<? extends JsonDataFormat>)newValue);
-				return;
-			case SpringPackage.DATA_FORMATS_DEFINITION__PROTOBUF:
-				getProtobuf().clear();
-				getProtobuf().addAll((Collection<? extends ProtobufDataFormat>)newValue);
-				return;
-			case SpringPackage.DATA_FORMATS_DEFINITION__RSS:
-				getRss().clear();
-				getRss().addAll((Collection<? extends RssDataFormat>)newValue);
-				return;
-			case SpringPackage.DATA_FORMATS_DEFINITION__SECURE_XML:
-				getSecureXML().clear();
-				getSecureXML().addAll((Collection<? extends XmlSecurityDataFormat>)newValue);
-				return;
-			case SpringPackage.DATA_FORMATS_DEFINITION__SERIALIZATION:
-				getSerialization().clear();
-				getSerialization().addAll((Collection<? extends SerializationDataFormat>)newValue);
-				return;
-			case SpringPackage.DATA_FORMATS_DEFINITION__SOAPJAXB:
-				getSoapjaxb().clear();
-				getSoapjaxb().addAll((Collection<? extends SoapJaxbDataFormat>)newValue);
-				return;
-			case SpringPackage.DATA_FORMATS_DEFINITION__STRING:
-				getString().clear();
-				getString().addAll((Collection<? extends StringDataFormat>)newValue);
-				return;
-			case SpringPackage.DATA_FORMATS_DEFINITION__SYSLOG:
-				getSyslog().clear();
-				getSyslog().addAll((Collection<? extends SyslogDataFormat>)newValue);
-				return;
-			case SpringPackage.DATA_FORMATS_DEFINITION__TIDY_MARKUP:
-				getTidyMarkup().clear();
-				getTidyMarkup().addAll((Collection<? extends TidyMarkupDataFormat>)newValue);
-				return;
-			case SpringPackage.DATA_FORMATS_DEFINITION__XML_BEANS:
-				getXmlBeans().clear();
-				getXmlBeans().addAll((Collection<? extends XmlBeansDataFormat>)newValue);
-				return;
-			case SpringPackage.DATA_FORMATS_DEFINITION__XSTREAM:
-				getXstream().clear();
-				getXstream().addAll((Collection<? extends XStreamDataFormat>)newValue);
-				return;
-			case SpringPackage.DATA_FORMATS_DEFINITION__ZIP:
-				getZip().clear();
-				getZip().addAll((Collection<? extends ZipDataFormat>)newValue);
-				return;
-		}
-		super.eSet(featureID, newValue);
-	}
+        switch (featureID) {
+            case SpringPackage.DATA_FORMATS_DEFINITION__GROUP:
+                ((FeatureMap.Internal)getGroup()).set(newValue);
+                return;
+            case SpringPackage.DATA_FORMATS_DEFINITION__BINDY:
+                getBindy().clear();
+                getBindy().addAll((Collection<? extends BindyDataFormat>)newValue);
+                return;
+            case SpringPackage.DATA_FORMATS_DEFINITION__CASTOR:
+                getCastor().clear();
+                getCastor().addAll((Collection<? extends CastorDataFormat>)newValue);
+                return;
+            case SpringPackage.DATA_FORMATS_DEFINITION__CRYPTO:
+                getCrypto().clear();
+                getCrypto().addAll((Collection<? extends CryptoDataFormat>)newValue);
+                return;
+            case SpringPackage.DATA_FORMATS_DEFINITION__CSV:
+                getCsv().clear();
+                getCsv().addAll((Collection<? extends CsvDataFormat>)newValue);
+                return;
+            case SpringPackage.DATA_FORMATS_DEFINITION__CUSTOM:
+                getCustom().clear();
+                getCustom().addAll((Collection<? extends CustomDataFormat>)newValue);
+                return;
+            case SpringPackage.DATA_FORMATS_DEFINITION__FLATPACK:
+                getFlatpack().clear();
+                getFlatpack().addAll((Collection<? extends FlatpackDataFormat>)newValue);
+                return;
+            case SpringPackage.DATA_FORMATS_DEFINITION__GZIP:
+                getGzip().clear();
+                getGzip().addAll((Collection<? extends GzipDataFormat>)newValue);
+                return;
+            case SpringPackage.DATA_FORMATS_DEFINITION__HL7:
+                getHl7().clear();
+                getHl7().addAll((Collection<? extends Hl7DataFormat>)newValue);
+                return;
+            case SpringPackage.DATA_FORMATS_DEFINITION__JAXB:
+                getJaxb().clear();
+                getJaxb().addAll((Collection<? extends JaxbDataFormat>)newValue);
+                return;
+            case SpringPackage.DATA_FORMATS_DEFINITION__JIBX:
+                getJibx().clear();
+                getJibx().addAll((Collection<? extends JibxDataFormat>)newValue);
+                return;
+            case SpringPackage.DATA_FORMATS_DEFINITION__JSON:
+                getJson().clear();
+                getJson().addAll((Collection<? extends JsonDataFormat>)newValue);
+                return;
+            case SpringPackage.DATA_FORMATS_DEFINITION__PROTOBUF:
+                getProtobuf().clear();
+                getProtobuf().addAll((Collection<? extends ProtobufDataFormat>)newValue);
+                return;
+            case SpringPackage.DATA_FORMATS_DEFINITION__RSS:
+                getRss().clear();
+                getRss().addAll((Collection<? extends RssDataFormat>)newValue);
+                return;
+            case SpringPackage.DATA_FORMATS_DEFINITION__SECURE_XML:
+                getSecureXML().clear();
+                getSecureXML().addAll((Collection<? extends XmlSecurityDataFormat>)newValue);
+                return;
+            case SpringPackage.DATA_FORMATS_DEFINITION__SERIALIZATION:
+                getSerialization().clear();
+                getSerialization().addAll((Collection<? extends SerializationDataFormat>)newValue);
+                return;
+            case SpringPackage.DATA_FORMATS_DEFINITION__SOAPJAXB:
+                getSoapjaxb().clear();
+                getSoapjaxb().addAll((Collection<? extends SoapJaxbDataFormat>)newValue);
+                return;
+            case SpringPackage.DATA_FORMATS_DEFINITION__STRING:
+                getString().clear();
+                getString().addAll((Collection<? extends StringDataFormat>)newValue);
+                return;
+            case SpringPackage.DATA_FORMATS_DEFINITION__SYSLOG:
+                getSyslog().clear();
+                getSyslog().addAll((Collection<? extends SyslogDataFormat>)newValue);
+                return;
+            case SpringPackage.DATA_FORMATS_DEFINITION__TIDY_MARKUP:
+                getTidyMarkup().clear();
+                getTidyMarkup().addAll((Collection<? extends TidyMarkupDataFormat>)newValue);
+                return;
+            case SpringPackage.DATA_FORMATS_DEFINITION__XML_BEANS:
+                getXmlBeans().clear();
+                getXmlBeans().addAll((Collection<? extends XmlBeansDataFormat>)newValue);
+                return;
+            case SpringPackage.DATA_FORMATS_DEFINITION__XSTREAM:
+                getXstream().clear();
+                getXstream().addAll((Collection<? extends XStreamDataFormat>)newValue);
+                return;
+            case SpringPackage.DATA_FORMATS_DEFINITION__ZIP:
+                getZip().clear();
+                getZip().addAll((Collection<? extends ZipDataFormat>)newValue);
+                return;
+        }
+        super.eSet(featureID, newValue);
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	@Override
 	public void eUnset(int featureID) {
-		switch (featureID) {
-			case SpringPackage.DATA_FORMATS_DEFINITION__GROUP:
-				getGroup().clear();
-				return;
-			case SpringPackage.DATA_FORMATS_DEFINITION__BINDY:
-				getBindy().clear();
-				return;
-			case SpringPackage.DATA_FORMATS_DEFINITION__CASTOR:
-				getCastor().clear();
-				return;
-			case SpringPackage.DATA_FORMATS_DEFINITION__CRYPTO:
-				getCrypto().clear();
-				return;
-			case SpringPackage.DATA_FORMATS_DEFINITION__CSV:
-				getCsv().clear();
-				return;
-			case SpringPackage.DATA_FORMATS_DEFINITION__CUSTOM:
-				getCustom().clear();
-				return;
-			case SpringPackage.DATA_FORMATS_DEFINITION__FLATPACK:
-				getFlatpack().clear();
-				return;
-			case SpringPackage.DATA_FORMATS_DEFINITION__GZIP:
-				getGzip().clear();
-				return;
-			case SpringPackage.DATA_FORMATS_DEFINITION__HL7:
-				getHl7().clear();
-				return;
-			case SpringPackage.DATA_FORMATS_DEFINITION__JAXB:
-				getJaxb().clear();
-				return;
-			case SpringPackage.DATA_FORMATS_DEFINITION__JIBX:
-				getJibx().clear();
-				return;
-			case SpringPackage.DATA_FORMATS_DEFINITION__JSON:
-				getJson().clear();
-				return;
-			case SpringPackage.DATA_FORMATS_DEFINITION__PROTOBUF:
-				getProtobuf().clear();
-				return;
-			case SpringPackage.DATA_FORMATS_DEFINITION__RSS:
-				getRss().clear();
-				return;
-			case SpringPackage.DATA_FORMATS_DEFINITION__SECURE_XML:
-				getSecureXML().clear();
-				return;
-			case SpringPackage.DATA_FORMATS_DEFINITION__SERIALIZATION:
-				getSerialization().clear();
-				return;
-			case SpringPackage.DATA_FORMATS_DEFINITION__SOAPJAXB:
-				getSoapjaxb().clear();
-				return;
-			case SpringPackage.DATA_FORMATS_DEFINITION__STRING:
-				getString().clear();
-				return;
-			case SpringPackage.DATA_FORMATS_DEFINITION__SYSLOG:
-				getSyslog().clear();
-				return;
-			case SpringPackage.DATA_FORMATS_DEFINITION__TIDY_MARKUP:
-				getTidyMarkup().clear();
-				return;
-			case SpringPackage.DATA_FORMATS_DEFINITION__XML_BEANS:
-				getXmlBeans().clear();
-				return;
-			case SpringPackage.DATA_FORMATS_DEFINITION__XSTREAM:
-				getXstream().clear();
-				return;
-			case SpringPackage.DATA_FORMATS_DEFINITION__ZIP:
-				getZip().clear();
-				return;
-		}
-		super.eUnset(featureID);
-	}
+        switch (featureID) {
+            case SpringPackage.DATA_FORMATS_DEFINITION__GROUP:
+                getGroup().clear();
+                return;
+            case SpringPackage.DATA_FORMATS_DEFINITION__BINDY:
+                getBindy().clear();
+                return;
+            case SpringPackage.DATA_FORMATS_DEFINITION__CASTOR:
+                getCastor().clear();
+                return;
+            case SpringPackage.DATA_FORMATS_DEFINITION__CRYPTO:
+                getCrypto().clear();
+                return;
+            case SpringPackage.DATA_FORMATS_DEFINITION__CSV:
+                getCsv().clear();
+                return;
+            case SpringPackage.DATA_FORMATS_DEFINITION__CUSTOM:
+                getCustom().clear();
+                return;
+            case SpringPackage.DATA_FORMATS_DEFINITION__FLATPACK:
+                getFlatpack().clear();
+                return;
+            case SpringPackage.DATA_FORMATS_DEFINITION__GZIP:
+                getGzip().clear();
+                return;
+            case SpringPackage.DATA_FORMATS_DEFINITION__HL7:
+                getHl7().clear();
+                return;
+            case SpringPackage.DATA_FORMATS_DEFINITION__JAXB:
+                getJaxb().clear();
+                return;
+            case SpringPackage.DATA_FORMATS_DEFINITION__JIBX:
+                getJibx().clear();
+                return;
+            case SpringPackage.DATA_FORMATS_DEFINITION__JSON:
+                getJson().clear();
+                return;
+            case SpringPackage.DATA_FORMATS_DEFINITION__PROTOBUF:
+                getProtobuf().clear();
+                return;
+            case SpringPackage.DATA_FORMATS_DEFINITION__RSS:
+                getRss().clear();
+                return;
+            case SpringPackage.DATA_FORMATS_DEFINITION__SECURE_XML:
+                getSecureXML().clear();
+                return;
+            case SpringPackage.DATA_FORMATS_DEFINITION__SERIALIZATION:
+                getSerialization().clear();
+                return;
+            case SpringPackage.DATA_FORMATS_DEFINITION__SOAPJAXB:
+                getSoapjaxb().clear();
+                return;
+            case SpringPackage.DATA_FORMATS_DEFINITION__STRING:
+                getString().clear();
+                return;
+            case SpringPackage.DATA_FORMATS_DEFINITION__SYSLOG:
+                getSyslog().clear();
+                return;
+            case SpringPackage.DATA_FORMATS_DEFINITION__TIDY_MARKUP:
+                getTidyMarkup().clear();
+                return;
+            case SpringPackage.DATA_FORMATS_DEFINITION__XML_BEANS:
+                getXmlBeans().clear();
+                return;
+            case SpringPackage.DATA_FORMATS_DEFINITION__XSTREAM:
+                getXstream().clear();
+                return;
+            case SpringPackage.DATA_FORMATS_DEFINITION__ZIP:
+                getZip().clear();
+                return;
+        }
+        super.eUnset(featureID);
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	@Override
 	public boolean eIsSet(int featureID) {
-		switch (featureID) {
-			case SpringPackage.DATA_FORMATS_DEFINITION__GROUP:
-				return group != null && !group.isEmpty();
-			case SpringPackage.DATA_FORMATS_DEFINITION__BINDY:
-				return !getBindy().isEmpty();
-			case SpringPackage.DATA_FORMATS_DEFINITION__CASTOR:
-				return !getCastor().isEmpty();
-			case SpringPackage.DATA_FORMATS_DEFINITION__CRYPTO:
-				return !getCrypto().isEmpty();
-			case SpringPackage.DATA_FORMATS_DEFINITION__CSV:
-				return !getCsv().isEmpty();
-			case SpringPackage.DATA_FORMATS_DEFINITION__CUSTOM:
-				return !getCustom().isEmpty();
-			case SpringPackage.DATA_FORMATS_DEFINITION__FLATPACK:
-				return !getFlatpack().isEmpty();
-			case SpringPackage.DATA_FORMATS_DEFINITION__GZIP:
-				return !getGzip().isEmpty();
-			case SpringPackage.DATA_FORMATS_DEFINITION__HL7:
-				return !getHl7().isEmpty();
-			case SpringPackage.DATA_FORMATS_DEFINITION__JAXB:
-				return !getJaxb().isEmpty();
-			case SpringPackage.DATA_FORMATS_DEFINITION__JIBX:
-				return !getJibx().isEmpty();
-			case SpringPackage.DATA_FORMATS_DEFINITION__JSON:
-				return !getJson().isEmpty();
-			case SpringPackage.DATA_FORMATS_DEFINITION__PROTOBUF:
-				return !getProtobuf().isEmpty();
-			case SpringPackage.DATA_FORMATS_DEFINITION__RSS:
-				return !getRss().isEmpty();
-			case SpringPackage.DATA_FORMATS_DEFINITION__SECURE_XML:
-				return !getSecureXML().isEmpty();
-			case SpringPackage.DATA_FORMATS_DEFINITION__SERIALIZATION:
-				return !getSerialization().isEmpty();
-			case SpringPackage.DATA_FORMATS_DEFINITION__SOAPJAXB:
-				return !getSoapjaxb().isEmpty();
-			case SpringPackage.DATA_FORMATS_DEFINITION__STRING:
-				return !getString().isEmpty();
-			case SpringPackage.DATA_FORMATS_DEFINITION__SYSLOG:
-				return !getSyslog().isEmpty();
-			case SpringPackage.DATA_FORMATS_DEFINITION__TIDY_MARKUP:
-				return !getTidyMarkup().isEmpty();
-			case SpringPackage.DATA_FORMATS_DEFINITION__XML_BEANS:
-				return !getXmlBeans().isEmpty();
-			case SpringPackage.DATA_FORMATS_DEFINITION__XSTREAM:
-				return !getXstream().isEmpty();
-			case SpringPackage.DATA_FORMATS_DEFINITION__ZIP:
-				return !getZip().isEmpty();
-		}
-		return super.eIsSet(featureID);
-	}
+        switch (featureID) {
+            case SpringPackage.DATA_FORMATS_DEFINITION__GROUP:
+                return group != null && !group.isEmpty();
+            case SpringPackage.DATA_FORMATS_DEFINITION__BINDY:
+                return !getBindy().isEmpty();
+            case SpringPackage.DATA_FORMATS_DEFINITION__CASTOR:
+                return !getCastor().isEmpty();
+            case SpringPackage.DATA_FORMATS_DEFINITION__CRYPTO:
+                return !getCrypto().isEmpty();
+            case SpringPackage.DATA_FORMATS_DEFINITION__CSV:
+                return !getCsv().isEmpty();
+            case SpringPackage.DATA_FORMATS_DEFINITION__CUSTOM:
+                return !getCustom().isEmpty();
+            case SpringPackage.DATA_FORMATS_DEFINITION__FLATPACK:
+                return !getFlatpack().isEmpty();
+            case SpringPackage.DATA_FORMATS_DEFINITION__GZIP:
+                return !getGzip().isEmpty();
+            case SpringPackage.DATA_FORMATS_DEFINITION__HL7:
+                return !getHl7().isEmpty();
+            case SpringPackage.DATA_FORMATS_DEFINITION__JAXB:
+                return !getJaxb().isEmpty();
+            case SpringPackage.DATA_FORMATS_DEFINITION__JIBX:
+                return !getJibx().isEmpty();
+            case SpringPackage.DATA_FORMATS_DEFINITION__JSON:
+                return !getJson().isEmpty();
+            case SpringPackage.DATA_FORMATS_DEFINITION__PROTOBUF:
+                return !getProtobuf().isEmpty();
+            case SpringPackage.DATA_FORMATS_DEFINITION__RSS:
+                return !getRss().isEmpty();
+            case SpringPackage.DATA_FORMATS_DEFINITION__SECURE_XML:
+                return !getSecureXML().isEmpty();
+            case SpringPackage.DATA_FORMATS_DEFINITION__SERIALIZATION:
+                return !getSerialization().isEmpty();
+            case SpringPackage.DATA_FORMATS_DEFINITION__SOAPJAXB:
+                return !getSoapjaxb().isEmpty();
+            case SpringPackage.DATA_FORMATS_DEFINITION__STRING:
+                return !getString().isEmpty();
+            case SpringPackage.DATA_FORMATS_DEFINITION__SYSLOG:
+                return !getSyslog().isEmpty();
+            case SpringPackage.DATA_FORMATS_DEFINITION__TIDY_MARKUP:
+                return !getTidyMarkup().isEmpty();
+            case SpringPackage.DATA_FORMATS_DEFINITION__XML_BEANS:
+                return !getXmlBeans().isEmpty();
+            case SpringPackage.DATA_FORMATS_DEFINITION__XSTREAM:
+                return !getXstream().isEmpty();
+            case SpringPackage.DATA_FORMATS_DEFINITION__ZIP:
+                return !getZip().isEmpty();
+        }
+        return super.eIsSet(featureID);
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	@Override
 	public String toString() {
-		if (eIsProxy()) return super.toString();
+        if (eIsProxy()) return super.toString();
 
-		StringBuffer result = new StringBuffer(super.toString());
-		result.append(" (group: ");
-		result.append(group);
-		result.append(')');
-		return result.toString();
-	}
+        StringBuffer result = new StringBuffer(super.toString());
+        result.append(" (group: ");
+        result.append(group);
+        result.append(')');
+        return result.toString();
+    }
 
 } //DataFormatsDefinitionImpl

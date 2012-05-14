@@ -24,22 +24,22 @@ import org.switchyard.tools.models.switchyard1_0.spring.SpringPackage;
  */
 public class CamelBeanPostProcessorImpl extends EObjectImpl implements CamelBeanPostProcessor {
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	protected CamelBeanPostProcessorImpl() {
-		super();
-	}
+        super();
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	@Override
 	protected EClass eStaticClass() {
-		return SpringPackage.eINSTANCE.getCamelBeanPostProcessor();
-	}
+        return SpringPackage.eINSTANCE.getCamelBeanPostProcessor();
+    }
 
 } //CamelBeanPostProcessorImpl

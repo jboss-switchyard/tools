@@ -22,22 +22,22 @@ import org.switchyard.tools.models.switchyard1_0.spring.SpringPackage;
  */
 public class RandomLoadBalancerDefinitionImpl extends LoadBalancerImpl implements RandomLoadBalancerDefinition {
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	protected RandomLoadBalancerDefinitionImpl() {
-		super();
-	}
+        super();
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	@Override
 	protected EClass eStaticClass() {
-		return SpringPackage.eINSTANCE.getRandomLoadBalancerDefinition();
-	}
+        return SpringPackage.eINSTANCE.getRandomLoadBalancerDefinition();
+    }
 
 } //RandomLoadBalancerDefinitionImpl

@@ -24,208 +24,219 @@ import org.switchyard.tools.models.switchyard1_0.camel.*;
  */
 public class CamelFactoryImpl extends EFactoryImpl implements CamelFactory {
 	/**
-	 * Creates the default factory implementation.
-	 * <!-- begin-user-doc -->
+     * Creates the default factory implementation.
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public static CamelFactory init() {
-		try {
-			CamelFactory theCamelFactory = (CamelFactory)EPackage.Registry.INSTANCE.getEFactory("urn:switchyard-component-camel:config:1.0"); 
-			if (theCamelFactory != null) {
-				return theCamelFactory;
-			}
-		}
-		catch (Exception exception) {
-			EcorePlugin.INSTANCE.log(exception);
-		}
-		return new CamelFactoryImpl();
-	}
+        try {
+            CamelFactory theCamelFactory = (CamelFactory)EPackage.Registry.INSTANCE.getEFactory("urn:switchyard-component-camel:config:1.0"); 
+            if (theCamelFactory != null) {
+                return theCamelFactory;
+            }
+        }
+        catch (Exception exception) {
+            EcorePlugin.INSTANCE.log(exception);
+        }
+        return new CamelFactoryImpl();
+    }
 
 	/**
-	 * Creates an instance of the factory.
-	 * <!-- begin-user-doc -->
+     * Creates an instance of the factory.
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public CamelFactoryImpl() {
-		super();
-	}
+        super();
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	@Override
 	public EObject create(EClass eClass) {
-		switch (eClass.getClassifierID()) {
-			case CamelPackage.CAMEL_ATOM_BINDING_TYPE: return createCamelAtomBindingType();
-			case CamelPackage.CAMEL_BINDING_TYPE: return createCamelBindingType();
-			case CamelPackage.CAMEL_DIRECT_BINDING_TYPE: return createCamelDirectBindingType();
-			case CamelPackage.CAMEL_FILE_BINDING_TYPE: return createCamelFileBindingType();
-			case CamelPackage.CAMEL_IMPLEMENTATION_TYPE: return createCamelImplementationType();
-			case CamelPackage.CAMEL_MOCK_BINDING_TYPE: return createCamelMockBindingType();
-			case CamelPackage.CAMEL_OPERATION_SELECTOR_TYPE: return createCamelOperationSelectorType();
-			case CamelPackage.CAMEL_SEDA_BINDING_TYPE: return createCamelSedaBindingType();
-			case CamelPackage.CAMEL_TIMER_BINDING_TYPE: return createCamelTimerBindingType();
-			case CamelPackage.DOCUMENT_ROOT: return createDocumentRoot();
-			case CamelPackage.FILE_CONSUMER_TYPE: return createFileConsumerType();
-			case CamelPackage.FILE_PRODUCER_TYPE: return createFileProducerType();
-			case CamelPackage.JAVA_DSL_TYPE: return createJavaDSLType();
-			default:
-				throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier");
-		}
-	}
+        switch (eClass.getClassifierID()) {
+            case CamelPackage.CAMEL_ATOM_BINDING_TYPE: return createCamelAtomBindingType();
+            case CamelPackage.CAMEL_BINDING_TYPE: return createCamelBindingType();
+            case CamelPackage.CAMEL_DIRECT_BINDING_TYPE: return createCamelDirectBindingType();
+            case CamelPackage.CAMEL_FILE_BINDING_TYPE: return createCamelFileBindingType();
+            case CamelPackage.CAMEL_IMPLEMENTATION_TYPE: return createCamelImplementationType();
+            case CamelPackage.CAMEL_MOCK_BINDING_TYPE: return createCamelMockBindingType();
+            case CamelPackage.CAMEL_OPERATION_SELECTOR_TYPE: return createCamelOperationSelectorType();
+            case CamelPackage.CAMEL_SEDA_BINDING_TYPE: return createCamelSedaBindingType();
+            case CamelPackage.CAMEL_TIMER_BINDING_TYPE: return createCamelTimerBindingType();
+            case CamelPackage.DOCUMENT_ROOT: return createDocumentRoot();
+            case CamelPackage.FILE_CONSUMER_TYPE: return createFileConsumerType();
+            case CamelPackage.FILE_PRODUCER_TYPE: return createFileProducerType();
+            case CamelPackage.JAVA_DSL_TYPE: return createJavaDSLType();
+            case CamelPackage.XMLDSL_TYPE: return createXMLDSLType();
+            default:
+                throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier");
+        }
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public CamelAtomBindingType createCamelAtomBindingType() {
-		CamelAtomBindingTypeImpl camelAtomBindingType = new CamelAtomBindingTypeImpl();
-		return camelAtomBindingType;
-	}
+        CamelAtomBindingTypeImpl camelAtomBindingType = new CamelAtomBindingTypeImpl();
+        return camelAtomBindingType;
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public CamelBindingType createCamelBindingType() {
-		CamelBindingTypeImpl camelBindingType = new CamelBindingTypeImpl();
-		return camelBindingType;
-	}
+        CamelBindingTypeImpl camelBindingType = new CamelBindingTypeImpl();
+        return camelBindingType;
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public CamelDirectBindingType createCamelDirectBindingType() {
-		CamelDirectBindingTypeImpl camelDirectBindingType = new CamelDirectBindingTypeImpl();
-		return camelDirectBindingType;
-	}
+        CamelDirectBindingTypeImpl camelDirectBindingType = new CamelDirectBindingTypeImpl();
+        return camelDirectBindingType;
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public CamelFileBindingType createCamelFileBindingType() {
-		CamelFileBindingTypeImpl camelFileBindingType = new CamelFileBindingTypeImpl();
-		return camelFileBindingType;
-	}
+        CamelFileBindingTypeImpl camelFileBindingType = new CamelFileBindingTypeImpl();
+        return camelFileBindingType;
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public CamelImplementationType createCamelImplementationType() {
-		CamelImplementationTypeImpl camelImplementationType = new CamelImplementationTypeImpl();
-		return camelImplementationType;
-	}
+        CamelImplementationTypeImpl camelImplementationType = new CamelImplementationTypeImpl();
+        return camelImplementationType;
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public CamelMockBindingType createCamelMockBindingType() {
-		CamelMockBindingTypeImpl camelMockBindingType = new CamelMockBindingTypeImpl();
-		return camelMockBindingType;
-	}
+        CamelMockBindingTypeImpl camelMockBindingType = new CamelMockBindingTypeImpl();
+        return camelMockBindingType;
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public CamelOperationSelectorType createCamelOperationSelectorType() {
-		CamelOperationSelectorTypeImpl camelOperationSelectorType = new CamelOperationSelectorTypeImpl();
-		return camelOperationSelectorType;
-	}
+        CamelOperationSelectorTypeImpl camelOperationSelectorType = new CamelOperationSelectorTypeImpl();
+        return camelOperationSelectorType;
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public CamelSedaBindingType createCamelSedaBindingType() {
-		CamelSedaBindingTypeImpl camelSedaBindingType = new CamelSedaBindingTypeImpl();
-		return camelSedaBindingType;
-	}
+        CamelSedaBindingTypeImpl camelSedaBindingType = new CamelSedaBindingTypeImpl();
+        return camelSedaBindingType;
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public CamelTimerBindingType createCamelTimerBindingType() {
-		CamelTimerBindingTypeImpl camelTimerBindingType = new CamelTimerBindingTypeImpl();
-		return camelTimerBindingType;
-	}
+        CamelTimerBindingTypeImpl camelTimerBindingType = new CamelTimerBindingTypeImpl();
+        return camelTimerBindingType;
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public DocumentRoot createDocumentRoot() {
-		DocumentRootImpl documentRoot = new DocumentRootImpl();
-		return documentRoot;
-	}
+        DocumentRootImpl documentRoot = new DocumentRootImpl();
+        return documentRoot;
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public FileConsumerType createFileConsumerType() {
-		FileConsumerTypeImpl fileConsumerType = new FileConsumerTypeImpl();
-		return fileConsumerType;
-	}
+        FileConsumerTypeImpl fileConsumerType = new FileConsumerTypeImpl();
+        return fileConsumerType;
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public FileProducerType createFileProducerType() {
-		FileProducerTypeImpl fileProducerType = new FileProducerTypeImpl();
-		return fileProducerType;
-	}
+        FileProducerTypeImpl fileProducerType = new FileProducerTypeImpl();
+        return fileProducerType;
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public JavaDSLType createJavaDSLType() {
-		JavaDSLTypeImpl javaDSLType = new JavaDSLTypeImpl();
-		return javaDSLType;
-	}
+        JavaDSLTypeImpl javaDSLType = new JavaDSLTypeImpl();
+        return javaDSLType;
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public XMLDSLType createXMLDSLType() {
+        XMLDSLTypeImpl xmldslType = new XMLDSLTypeImpl();
+        return xmldslType;
+    }
+
+    /**
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public CamelPackage getCamelPackage() {
-		return (CamelPackage)getEPackage();
-	}
+        return (CamelPackage)getEPackage();
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @deprecated
-	 * @generated
-	 */
+     * @deprecated
+     * @generated
+     */
 	@Deprecated
 	public static CamelPackage getPackage() {
-		return CamelPackage.eINSTANCE;
-	}
+        return CamelPackage.eINSTANCE;
+    }
 
 } //CamelFactoryImpl

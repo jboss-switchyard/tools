@@ -31,190 +31,190 @@ import org.switchyard.tools.models.switchyard1_0.spring.SpringPackage;
  */
 public abstract class AbstractTrustManagersParametersFactoryBeanImpl extends AbstractJsseUtilFactoryBeanImpl implements AbstractTrustManagersParametersFactoryBean {
 	/**
-	 * The default value of the '{@link #getAlgorithm() <em>Algorithm</em>}' attribute.
-	 * <!-- begin-user-doc -->
+     * The default value of the '{@link #getAlgorithm() <em>Algorithm</em>}' attribute.
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #getAlgorithm()
-	 * @generated
-	 * @ordered
-	 */
+     * @see #getAlgorithm()
+     * @generated
+     * @ordered
+     */
 	protected static final String ALGORITHM_EDEFAULT = null;
 
 	/**
-	 * The cached value of the '{@link #getAlgorithm() <em>Algorithm</em>}' attribute.
-	 * <!-- begin-user-doc -->
+     * The cached value of the '{@link #getAlgorithm() <em>Algorithm</em>}' attribute.
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #getAlgorithm()
-	 * @generated
-	 * @ordered
-	 */
+     * @see #getAlgorithm()
+     * @generated
+     * @ordered
+     */
 	protected String algorithm = ALGORITHM_EDEFAULT;
 
 	/**
-	 * The default value of the '{@link #getProvider() <em>Provider</em>}' attribute.
-	 * <!-- begin-user-doc -->
+     * The default value of the '{@link #getProvider() <em>Provider</em>}' attribute.
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #getProvider()
-	 * @generated
-	 * @ordered
-	 */
+     * @see #getProvider()
+     * @generated
+     * @ordered
+     */
 	protected static final String PROVIDER_EDEFAULT = null;
 
 	/**
-	 * The cached value of the '{@link #getProvider() <em>Provider</em>}' attribute.
-	 * <!-- begin-user-doc -->
+     * The cached value of the '{@link #getProvider() <em>Provider</em>}' attribute.
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #getProvider()
-	 * @generated
-	 * @ordered
-	 */
+     * @see #getProvider()
+     * @generated
+     * @ordered
+     */
 	protected String provider = PROVIDER_EDEFAULT;
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	protected AbstractTrustManagersParametersFactoryBeanImpl() {
-		super();
-	}
+        super();
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	@Override
 	protected EClass eStaticClass() {
-		return SpringPackage.eINSTANCE.getAbstractTrustManagersParametersFactoryBean();
-	}
+        return SpringPackage.eINSTANCE.getAbstractTrustManagersParametersFactoryBean();
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public String getAlgorithm() {
-		return algorithm;
-	}
+        return algorithm;
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public void setAlgorithm(String newAlgorithm) {
-		String oldAlgorithm = algorithm;
-		algorithm = newAlgorithm;
-		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, SpringPackage.ABSTRACT_TRUST_MANAGERS_PARAMETERS_FACTORY_BEAN__ALGORITHM, oldAlgorithm, algorithm));
-	}
+        String oldAlgorithm = algorithm;
+        algorithm = newAlgorithm;
+        if (eNotificationRequired())
+            eNotify(new ENotificationImpl(this, Notification.SET, SpringPackage.ABSTRACT_TRUST_MANAGERS_PARAMETERS_FACTORY_BEAN__ALGORITHM, oldAlgorithm, algorithm));
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public String getProvider() {
-		return provider;
-	}
+        return provider;
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public void setProvider(String newProvider) {
-		String oldProvider = provider;
-		provider = newProvider;
-		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, SpringPackage.ABSTRACT_TRUST_MANAGERS_PARAMETERS_FACTORY_BEAN__PROVIDER, oldProvider, provider));
-	}
+        String oldProvider = provider;
+        provider = newProvider;
+        if (eNotificationRequired())
+            eNotify(new ENotificationImpl(this, Notification.SET, SpringPackage.ABSTRACT_TRUST_MANAGERS_PARAMETERS_FACTORY_BEAN__PROVIDER, oldProvider, provider));
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
-		switch (featureID) {
-			case SpringPackage.ABSTRACT_TRUST_MANAGERS_PARAMETERS_FACTORY_BEAN__ALGORITHM:
-				return getAlgorithm();
-			case SpringPackage.ABSTRACT_TRUST_MANAGERS_PARAMETERS_FACTORY_BEAN__PROVIDER:
-				return getProvider();
-		}
-		return super.eGet(featureID, resolve, coreType);
-	}
+        switch (featureID) {
+            case SpringPackage.ABSTRACT_TRUST_MANAGERS_PARAMETERS_FACTORY_BEAN__ALGORITHM:
+                return getAlgorithm();
+            case SpringPackage.ABSTRACT_TRUST_MANAGERS_PARAMETERS_FACTORY_BEAN__PROVIDER:
+                return getProvider();
+        }
+        return super.eGet(featureID, resolve, coreType);
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	@Override
 	public void eSet(int featureID, Object newValue) {
-		switch (featureID) {
-			case SpringPackage.ABSTRACT_TRUST_MANAGERS_PARAMETERS_FACTORY_BEAN__ALGORITHM:
-				setAlgorithm((String)newValue);
-				return;
-			case SpringPackage.ABSTRACT_TRUST_MANAGERS_PARAMETERS_FACTORY_BEAN__PROVIDER:
-				setProvider((String)newValue);
-				return;
-		}
-		super.eSet(featureID, newValue);
-	}
+        switch (featureID) {
+            case SpringPackage.ABSTRACT_TRUST_MANAGERS_PARAMETERS_FACTORY_BEAN__ALGORITHM:
+                setAlgorithm((String)newValue);
+                return;
+            case SpringPackage.ABSTRACT_TRUST_MANAGERS_PARAMETERS_FACTORY_BEAN__PROVIDER:
+                setProvider((String)newValue);
+                return;
+        }
+        super.eSet(featureID, newValue);
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	@Override
 	public void eUnset(int featureID) {
-		switch (featureID) {
-			case SpringPackage.ABSTRACT_TRUST_MANAGERS_PARAMETERS_FACTORY_BEAN__ALGORITHM:
-				setAlgorithm(ALGORITHM_EDEFAULT);
-				return;
-			case SpringPackage.ABSTRACT_TRUST_MANAGERS_PARAMETERS_FACTORY_BEAN__PROVIDER:
-				setProvider(PROVIDER_EDEFAULT);
-				return;
-		}
-		super.eUnset(featureID);
-	}
+        switch (featureID) {
+            case SpringPackage.ABSTRACT_TRUST_MANAGERS_PARAMETERS_FACTORY_BEAN__ALGORITHM:
+                setAlgorithm(ALGORITHM_EDEFAULT);
+                return;
+            case SpringPackage.ABSTRACT_TRUST_MANAGERS_PARAMETERS_FACTORY_BEAN__PROVIDER:
+                setProvider(PROVIDER_EDEFAULT);
+                return;
+        }
+        super.eUnset(featureID);
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	@Override
 	public boolean eIsSet(int featureID) {
-		switch (featureID) {
-			case SpringPackage.ABSTRACT_TRUST_MANAGERS_PARAMETERS_FACTORY_BEAN__ALGORITHM:
-				return ALGORITHM_EDEFAULT == null ? algorithm != null : !ALGORITHM_EDEFAULT.equals(algorithm);
-			case SpringPackage.ABSTRACT_TRUST_MANAGERS_PARAMETERS_FACTORY_BEAN__PROVIDER:
-				return PROVIDER_EDEFAULT == null ? provider != null : !PROVIDER_EDEFAULT.equals(provider);
-		}
-		return super.eIsSet(featureID);
-	}
+        switch (featureID) {
+            case SpringPackage.ABSTRACT_TRUST_MANAGERS_PARAMETERS_FACTORY_BEAN__ALGORITHM:
+                return ALGORITHM_EDEFAULT == null ? algorithm != null : !ALGORITHM_EDEFAULT.equals(algorithm);
+            case SpringPackage.ABSTRACT_TRUST_MANAGERS_PARAMETERS_FACTORY_BEAN__PROVIDER:
+                return PROVIDER_EDEFAULT == null ? provider != null : !PROVIDER_EDEFAULT.equals(provider);
+        }
+        return super.eIsSet(featureID);
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	@Override
 	public String toString() {
-		if (eIsProxy()) return super.toString();
+        if (eIsProxy()) return super.toString();
 
-		StringBuffer result = new StringBuffer(super.toString());
-		result.append(" (algorithm: ");
-		result.append(algorithm);
-		result.append(", provider: ");
-		result.append(provider);
-		result.append(')');
-		return result.toString();
-	}
+        StringBuffer result = new StringBuffer(super.toString());
+        result.append(" (algorithm: ");
+        result.append(algorithm);
+        result.append(", provider: ");
+        result.append(provider);
+        result.append(')');
+        return result.toString();
+    }
 
 } //AbstractTrustManagersParametersFactoryBeanImpl

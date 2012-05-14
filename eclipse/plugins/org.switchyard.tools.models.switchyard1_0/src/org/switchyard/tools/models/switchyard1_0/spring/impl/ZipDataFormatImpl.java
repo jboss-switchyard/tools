@@ -30,171 +30,171 @@ import org.switchyard.tools.models.switchyard1_0.spring.ZipDataFormat;
  */
 public class ZipDataFormatImpl extends DataFormatImpl implements ZipDataFormat {
 	/**
-	 * The default value of the '{@link #getCompressionLevel() <em>Compression Level</em>}' attribute.
-	 * <!-- begin-user-doc -->
+     * The default value of the '{@link #getCompressionLevel() <em>Compression Level</em>}' attribute.
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #getCompressionLevel()
-	 * @generated
-	 * @ordered
-	 */
+     * @see #getCompressionLevel()
+     * @generated
+     * @ordered
+     */
 	protected static final int COMPRESSION_LEVEL_EDEFAULT = 0;
 
 	/**
-	 * The cached value of the '{@link #getCompressionLevel() <em>Compression Level</em>}' attribute.
-	 * <!-- begin-user-doc -->
+     * The cached value of the '{@link #getCompressionLevel() <em>Compression Level</em>}' attribute.
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #getCompressionLevel()
-	 * @generated
-	 * @ordered
-	 */
+     * @see #getCompressionLevel()
+     * @generated
+     * @ordered
+     */
 	protected int compressionLevel = COMPRESSION_LEVEL_EDEFAULT;
 
 	/**
-	 * This is true if the Compression Level attribute has been set.
-	 * <!-- begin-user-doc -->
+     * This is true if the Compression Level attribute has been set.
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
+     * @generated
+     * @ordered
+     */
 	protected boolean compressionLevelESet;
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	protected ZipDataFormatImpl() {
-		super();
-	}
+        super();
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	@Override
 	protected EClass eStaticClass() {
-		return SpringPackage.eINSTANCE.getZipDataFormat();
-	}
+        return SpringPackage.eINSTANCE.getZipDataFormat();
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public int getCompressionLevel() {
-		return compressionLevel;
-	}
+        return compressionLevel;
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public void setCompressionLevel(int newCompressionLevel) {
-		int oldCompressionLevel = compressionLevel;
-		compressionLevel = newCompressionLevel;
-		boolean oldCompressionLevelESet = compressionLevelESet;
-		compressionLevelESet = true;
-		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, SpringPackage.ZIP_DATA_FORMAT__COMPRESSION_LEVEL, oldCompressionLevel, compressionLevel, !oldCompressionLevelESet));
-	}
+        int oldCompressionLevel = compressionLevel;
+        compressionLevel = newCompressionLevel;
+        boolean oldCompressionLevelESet = compressionLevelESet;
+        compressionLevelESet = true;
+        if (eNotificationRequired())
+            eNotify(new ENotificationImpl(this, Notification.SET, SpringPackage.ZIP_DATA_FORMAT__COMPRESSION_LEVEL, oldCompressionLevel, compressionLevel, !oldCompressionLevelESet));
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public void unsetCompressionLevel() {
-		int oldCompressionLevel = compressionLevel;
-		boolean oldCompressionLevelESet = compressionLevelESet;
-		compressionLevel = COMPRESSION_LEVEL_EDEFAULT;
-		compressionLevelESet = false;
-		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.UNSET, SpringPackage.ZIP_DATA_FORMAT__COMPRESSION_LEVEL, oldCompressionLevel, COMPRESSION_LEVEL_EDEFAULT, oldCompressionLevelESet));
-	}
+        int oldCompressionLevel = compressionLevel;
+        boolean oldCompressionLevelESet = compressionLevelESet;
+        compressionLevel = COMPRESSION_LEVEL_EDEFAULT;
+        compressionLevelESet = false;
+        if (eNotificationRequired())
+            eNotify(new ENotificationImpl(this, Notification.UNSET, SpringPackage.ZIP_DATA_FORMAT__COMPRESSION_LEVEL, oldCompressionLevel, COMPRESSION_LEVEL_EDEFAULT, oldCompressionLevelESet));
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public boolean isSetCompressionLevel() {
-		return compressionLevelESet;
-	}
+        return compressionLevelESet;
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
-		switch (featureID) {
-			case SpringPackage.ZIP_DATA_FORMAT__COMPRESSION_LEVEL:
-				return getCompressionLevel();
-		}
-		return super.eGet(featureID, resolve, coreType);
-	}
+        switch (featureID) {
+            case SpringPackage.ZIP_DATA_FORMAT__COMPRESSION_LEVEL:
+                return getCompressionLevel();
+        }
+        return super.eGet(featureID, resolve, coreType);
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	@Override
 	public void eSet(int featureID, Object newValue) {
-		switch (featureID) {
-			case SpringPackage.ZIP_DATA_FORMAT__COMPRESSION_LEVEL:
-				setCompressionLevel((Integer)newValue);
-				return;
-		}
-		super.eSet(featureID, newValue);
-	}
+        switch (featureID) {
+            case SpringPackage.ZIP_DATA_FORMAT__COMPRESSION_LEVEL:
+                setCompressionLevel((Integer)newValue);
+                return;
+        }
+        super.eSet(featureID, newValue);
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	@Override
 	public void eUnset(int featureID) {
-		switch (featureID) {
-			case SpringPackage.ZIP_DATA_FORMAT__COMPRESSION_LEVEL:
-				unsetCompressionLevel();
-				return;
-		}
-		super.eUnset(featureID);
-	}
+        switch (featureID) {
+            case SpringPackage.ZIP_DATA_FORMAT__COMPRESSION_LEVEL:
+                unsetCompressionLevel();
+                return;
+        }
+        super.eUnset(featureID);
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	@Override
 	public boolean eIsSet(int featureID) {
-		switch (featureID) {
-			case SpringPackage.ZIP_DATA_FORMAT__COMPRESSION_LEVEL:
-				return isSetCompressionLevel();
-		}
-		return super.eIsSet(featureID);
-	}
+        switch (featureID) {
+            case SpringPackage.ZIP_DATA_FORMAT__COMPRESSION_LEVEL:
+                return isSetCompressionLevel();
+        }
+        return super.eIsSet(featureID);
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	@Override
 	public String toString() {
-		if (eIsProxy()) return super.toString();
+        if (eIsProxy()) return super.toString();
 
-		StringBuffer result = new StringBuffer(super.toString());
-		result.append(" (compressionLevel: ");
-		if (compressionLevelESet) result.append(compressionLevel); else result.append("<unset>");
-		result.append(')');
-		return result.toString();
-	}
+        StringBuffer result = new StringBuffer(super.toString());
+        result.append(" (compressionLevel: ");
+        if (compressionLevelESet) result.append(compressionLevel); else result.append("<unset>");
+        result.append(')');
+        return result.toString();
+    }
 
 } //ZipDataFormatImpl

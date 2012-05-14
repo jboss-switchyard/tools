@@ -28,172 +28,172 @@ import org.switchyard.tools.models.switchyard1_0.switchyard.SwitchYardBindingTyp
  */
 public class SOAPAdapterFactory extends AdapterFactoryImpl {
 	/**
-	 * The cached model package.
-	 * <!-- begin-user-doc -->
+     * The cached model package.
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	protected static SOAPPackage modelPackage;
 
 	/**
-	 * Creates an instance of the adapter factory.
-	 * <!-- begin-user-doc -->
+     * Creates an instance of the adapter factory.
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public SOAPAdapterFactory() {
-		if (modelPackage == null) {
-			modelPackage = SOAPPackage.eINSTANCE;
-		}
-	}
+        if (modelPackage == null) {
+            modelPackage = SOAPPackage.eINSTANCE;
+        }
+    }
 
 	/**
-	 * Returns whether this factory is applicable for the type of the object.
-	 * <!-- begin-user-doc -->
+     * Returns whether this factory is applicable for the type of the object.
+     * <!-- begin-user-doc -->
 	 * This implementation returns <code>true</code> if the object is either the model's package or is an instance object of the model.
 	 * <!-- end-user-doc -->
-	 * @return whether this factory is applicable for the type of the object.
-	 * @generated
-	 */
+     * @return whether this factory is applicable for the type of the object.
+     * @generated
+     */
 	@Override
 	public boolean isFactoryForType(Object object) {
-		if (object == modelPackage) {
-			return true;
-		}
-		if (object instanceof EObject) {
-			return ((EObject)object).eClass().getEPackage() == modelPackage;
-		}
-		return false;
-	}
+        if (object == modelPackage) {
+            return true;
+        }
+        if (object instanceof EObject) {
+            return ((EObject)object).eClass().getEPackage() == modelPackage;
+        }
+        return false;
+    }
 
 	/**
-	 * The switch that delegates to the <code>createXXX</code> methods.
-	 * <!-- begin-user-doc -->
+     * The switch that delegates to the <code>createXXX</code> methods.
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	protected SOAPSwitch<Adapter> modelSwitch =
 		new SOAPSwitch<Adapter>() {
-			@Override
-			public Adapter caseDocumentRoot(DocumentRoot object) {
-				return createDocumentRootAdapter();
-			}
-			@Override
-			public Adapter caseSOAPBindingType(SOAPBindingType object) {
-				return createSOAPBindingTypeAdapter();
-			}
-			@Override
-			public Adapter caseCommonExtensionBase(CommonExtensionBase object) {
-				return createCommonExtensionBaseAdapter();
-			}
-			@Override
-			public Adapter caseBinding(Binding object) {
-				return createBindingAdapter();
-			}
-			@Override
-			public Adapter caseSwitchYardBindingType(SwitchYardBindingType object) {
-				return createSwitchYardBindingTypeAdapter();
-			}
-			@Override
-			public Adapter defaultCase(EObject object) {
-				return createEObjectAdapter();
-			}
-		};
+            @Override
+            public Adapter caseDocumentRoot(DocumentRoot object) {
+                return createDocumentRootAdapter();
+            }
+            @Override
+            public Adapter caseSOAPBindingType(SOAPBindingType object) {
+                return createSOAPBindingTypeAdapter();
+            }
+            @Override
+            public Adapter caseCommonExtensionBase(CommonExtensionBase object) {
+                return createCommonExtensionBaseAdapter();
+            }
+            @Override
+            public Adapter caseBinding(Binding object) {
+                return createBindingAdapter();
+            }
+            @Override
+            public Adapter caseSwitchYardBindingType(SwitchYardBindingType object) {
+                return createSwitchYardBindingTypeAdapter();
+            }
+            @Override
+            public Adapter defaultCase(EObject object) {
+                return createEObjectAdapter();
+            }
+        };
 
 	/**
-	 * Creates an adapter for the <code>target</code>.
-	 * <!-- begin-user-doc -->
+     * Creates an adapter for the <code>target</code>.
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @param target the object to adapt.
-	 * @return the adapter for the <code>target</code>.
-	 * @generated
-	 */
+     * @param target the object to adapt.
+     * @return the adapter for the <code>target</code>.
+     * @generated
+     */
 	@Override
 	public Adapter createAdapter(Notifier target) {
-		return modelSwitch.doSwitch((EObject)target);
-	}
+        return modelSwitch.doSwitch((EObject)target);
+    }
 
 
 	/**
-	 * Creates a new adapter for an object of class '{@link org.switchyard.tools.models.switchyard1_0.soap.DocumentRoot <em>Document Root</em>}'.
-	 * <!-- begin-user-doc -->
+     * Creates a new adapter for an object of class '{@link org.switchyard.tools.models.switchyard1_0.soap.DocumentRoot <em>Document Root</em>}'.
+     * <!-- begin-user-doc -->
 	 * This default implementation returns null so that we can easily ignore cases;
 	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
 	 * <!-- end-user-doc -->
-	 * @return the new adapter.
-	 * @see org.switchyard.tools.models.switchyard1_0.soap.DocumentRoot
-	 * @generated
-	 */
+     * @return the new adapter.
+     * @see org.switchyard.tools.models.switchyard1_0.soap.DocumentRoot
+     * @generated
+     */
 	public Adapter createDocumentRootAdapter() {
-		return null;
-	}
+        return null;
+    }
 
 	/**
-	 * Creates a new adapter for an object of class '{@link org.switchyard.tools.models.switchyard1_0.soap.SOAPBindingType <em>Binding Type</em>}'.
-	 * <!-- begin-user-doc -->
+     * Creates a new adapter for an object of class '{@link org.switchyard.tools.models.switchyard1_0.soap.SOAPBindingType <em>Binding Type</em>}'.
+     * <!-- begin-user-doc -->
 	 * This default implementation returns null so that we can easily ignore cases;
 	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
 	 * <!-- end-user-doc -->
-	 * @return the new adapter.
-	 * @see org.switchyard.tools.models.switchyard1_0.soap.SOAPBindingType
-	 * @generated
-	 */
+     * @return the new adapter.
+     * @see org.switchyard.tools.models.switchyard1_0.soap.SOAPBindingType
+     * @generated
+     */
 	public Adapter createSOAPBindingTypeAdapter() {
-		return null;
-	}
+        return null;
+    }
 
 	/**
-	 * Creates a new adapter for an object of class '{@link org.eclipse.soa.sca.sca1_1.model.sca.CommonExtensionBase <em>Common Extension Base</em>}'.
-	 * <!-- begin-user-doc -->
+     * Creates a new adapter for an object of class '{@link org.eclipse.soa.sca.sca1_1.model.sca.CommonExtensionBase <em>Common Extension Base</em>}'.
+     * <!-- begin-user-doc -->
      * This default implementation returns null so that we can easily ignore cases;
      * it's useful to ignore a case when inheritance will catch all the cases anyway.
      * <!-- end-user-doc -->
-	 * @return the new adapter.
-	 * @see org.eclipse.soa.sca.sca1_1.model.sca.CommonExtensionBase
-	 * @generated
-	 */
+     * @return the new adapter.
+     * @see org.eclipse.soa.sca.sca1_1.model.sca.CommonExtensionBase
+     * @generated
+     */
     public Adapter createCommonExtensionBaseAdapter() {
-		return null;
-	}
+        return null;
+    }
 
     /**
-	 * Creates a new adapter for an object of class '{@link org.eclipse.soa.sca.sca1_1.model.sca.Binding <em>Binding</em>}'.
-	 * <!-- begin-user-doc -->
+     * Creates a new adapter for an object of class '{@link org.eclipse.soa.sca.sca1_1.model.sca.Binding <em>Binding</em>}'.
+     * <!-- begin-user-doc -->
      * This default implementation returns null so that we can easily ignore cases;
      * it's useful to ignore a case when inheritance will catch all the cases anyway.
      * <!-- end-user-doc -->
-	 * @return the new adapter.
-	 * @see org.eclipse.soa.sca.sca1_1.model.sca.Binding
-	 * @generated
-	 */
+     * @return the new adapter.
+     * @see org.eclipse.soa.sca.sca1_1.model.sca.Binding
+     * @generated
+     */
     public Adapter createBindingAdapter() {
-		return null;
-	}
+        return null;
+    }
 
     /**
-	 * Creates a new adapter for an object of class '{@link org.switchyard.tools.models.switchyard1_0.switchyard.SwitchYardBindingType <em>Switch Yard Binding Type</em>}'.
-	 * <!-- begin-user-doc -->
+     * Creates a new adapter for an object of class '{@link org.switchyard.tools.models.switchyard1_0.switchyard.SwitchYardBindingType <em>Switch Yard Binding Type</em>}'.
+     * <!-- begin-user-doc -->
      * This default implementation returns null so that we can easily ignore cases;
      * it's useful to ignore a case when inheritance will catch all the cases anyway.
      * <!-- end-user-doc -->
-	 * @return the new adapter.
-	 * @see org.switchyard.tools.models.switchyard1_0.switchyard.SwitchYardBindingType
-	 * @generated
-	 */
+     * @return the new adapter.
+     * @see org.switchyard.tools.models.switchyard1_0.switchyard.SwitchYardBindingType
+     * @generated
+     */
     public Adapter createSwitchYardBindingTypeAdapter() {
-		return null;
-	}
+        return null;
+    }
 
     /**
-	 * Creates a new adapter for the default case.
-	 * <!-- begin-user-doc -->
+     * Creates a new adapter for the default case.
+     * <!-- begin-user-doc -->
 	 * This default implementation returns null.
 	 * <!-- end-user-doc -->
-	 * @return the new adapter.
-	 * @generated
-	 */
+     * @return the new adapter.
+     * @generated
+     */
 	public Adapter createEObjectAdapter() {
-		return null;
-	}
+        return null;
+    }
 
 } //SOAPAdapterFactory

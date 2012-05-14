@@ -25,30 +25,30 @@ import org.switchyard.tools.models.switchyard1_0.bean.BeanPackage;
 public class BeanXMLProcessor extends XMLProcessor {
 
 	/**
-	 * Public constructor to instantiate the helper.
-	 * <!-- begin-user-doc -->
+     * Public constructor to instantiate the helper.
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public BeanXMLProcessor() {
-		super((EPackage.Registry.INSTANCE));
-		BeanPackage.eINSTANCE.eClass();
-	}
+        super((EPackage.Registry.INSTANCE));
+        BeanPackage.eINSTANCE.eClass();
+    }
 	
 	/**
-	 * Register for "*" and "xml" file extensions the BeanResourceFactoryImpl factory.
-	 * <!-- begin-user-doc -->
+     * Register for "*" and "xml" file extensions the BeanResourceFactoryImpl factory.
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	@Override
 	protected Map<String, Resource.Factory> getRegistrations() {
-		if (registrations == null) {
-			super.getRegistrations();
-			registrations.put(XML_EXTENSION, new BeanResourceFactoryImpl());
-			registrations.put(STAR_EXTENSION, new BeanResourceFactoryImpl());
-		}
-		return registrations;
-	}
+        if (registrations == null) {
+            super.getRegistrations();
+            registrations.put(XML_EXTENSION, new BeanResourceFactoryImpl());
+            registrations.put(STAR_EXTENSION, new BeanResourceFactoryImpl());
+        }
+        return registrations;
+    }
 
 } //BeanXMLProcessor

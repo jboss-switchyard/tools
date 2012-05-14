@@ -24,22 +24,22 @@ import org.switchyard.tools.models.switchyard1_0.transform.TransformPackage;
  */
 public class JsonTransformTypeImpl extends TransformTypeImpl implements JsonTransformType {
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	protected JsonTransformTypeImpl() {
-		super();
-	}
+        super();
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	@Override
 	protected EClass eStaticClass() {
-		return TransformPackage.Literals.JSON_TRANSFORM_TYPE;
-	}
+        return TransformPackage.Literals.JSON_TRANSFORM_TYPE;
+    }
 
 } //JsonTransformTypeImpl

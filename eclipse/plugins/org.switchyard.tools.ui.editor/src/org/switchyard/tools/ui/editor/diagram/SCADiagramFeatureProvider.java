@@ -49,7 +49,8 @@ import org.switchyard.tools.ui.editor.diagram.binding.SCADiagramCreateBindingFea
 import org.switchyard.tools.ui.editor.diagram.component.SCADiagramAddComponentFeature;
 import org.switchyard.tools.ui.editor.diagram.component.SCADiagramCreateComponentFeature;
 import org.switchyard.tools.ui.editor.diagram.component.SCADiagramDirectEditComponentFeature;
-import org.switchyard.tools.ui.editor.diagram.component.SCADiagramResizeComponentFeature;
+import org.switchyard.tools.ui.editor.diagram.component.SCADiagramLayoutComponentFeature;
+import org.switchyard.tools.ui.editor.diagram.component.SCADiagramUpdateComponentFeature;
 import org.switchyard.tools.ui.editor.diagram.componentreference.SCADiagramAddComponentReferenceFeature;
 import org.switchyard.tools.ui.editor.diagram.componentreference.SCADiagramCreateComponentReferenceFeature;
 import org.switchyard.tools.ui.editor.diagram.componentreference.SCADiagramCustomPromoteReferenceFeature;
@@ -59,7 +60,6 @@ import org.switchyard.tools.ui.editor.diagram.composite.SCADiagramAddCompositeFe
 import org.switchyard.tools.ui.editor.diagram.composite.SCADiagramCreateCompositeFeature;
 import org.switchyard.tools.ui.editor.diagram.composite.SCADiagramDirectEditCompositeFeature;
 import org.switchyard.tools.ui.editor.diagram.composite.SCADiagramLayoutCompositeFeature;
-import org.switchyard.tools.ui.editor.diagram.composite.SCADiagramMoveCompositeFeature;
 import org.switchyard.tools.ui.editor.diagram.composite.SCADiagramUpdateCompositeFeature;
 import org.switchyard.tools.ui.editor.diagram.compositereference.SCADiagramAddCompositeReferenceFeature;
 import org.switchyard.tools.ui.editor.diagram.compositereference.SCADiagramCreateCompositeReferenceFeature;
@@ -67,6 +67,7 @@ import org.switchyard.tools.ui.editor.diagram.compositereference.SCADiagramDirec
 import org.switchyard.tools.ui.editor.diagram.compositereference.SCADiagramLayoutCompositeReferenceFeature;
 import org.switchyard.tools.ui.editor.diagram.compositereference.SCADiagramMoveCompositeReferenceFeature;
 import org.switchyard.tools.ui.editor.diagram.compositereference.SCADiagramResizeCompositeReferenceFeature;
+import org.switchyard.tools.ui.editor.diagram.compositereference.SCADiagramUpdateCompositeReferenceFeature;
 import org.switchyard.tools.ui.editor.diagram.connections.SCADiagramAddComponentServiceLinkFeature;
 import org.switchyard.tools.ui.editor.diagram.connections.SCADiagramAddReferenceLinkFeature;
 import org.switchyard.tools.ui.editor.diagram.connections.SCADiagramCreateComponentServiceLinkFeature;
@@ -80,6 +81,7 @@ import org.switchyard.tools.ui.editor.diagram.service.SCADiagramDirectEditServic
 import org.switchyard.tools.ui.editor.diagram.service.SCADiagramLayoutServiceFeature;
 import org.switchyard.tools.ui.editor.diagram.service.SCADiagramMoveServiceFeature;
 import org.switchyard.tools.ui.editor.diagram.service.SCADiagramResizeServiceFeature;
+import org.switchyard.tools.ui.editor.diagram.service.SCADiagramUpdateServiceFeature;
 
 /**
  * @author bfitzpat
@@ -159,6 +161,15 @@ public class SCADiagramFeatureProvider extends DefaultFeatureProvider {
             if (bo instanceof Composite) {
                 return new SCADiagramUpdateCompositeFeature(this);
             }
+            if (bo instanceof Service) {
+                return new SCADiagramUpdateServiceFeature(this);
+            }
+            if (bo instanceof Reference) {
+                return new SCADiagramUpdateCompositeReferenceFeature(this);
+            }
+            if (bo instanceof Component) {
+                return new SCADiagramUpdateComponentFeature(this);
+            }
         }
         return super.getUpdateFeature(context);
     }
@@ -167,14 +178,14 @@ public class SCADiagramFeatureProvider extends DefaultFeatureProvider {
     public IMoveShapeFeature getMoveShapeFeature(IMoveShapeContext context) {
         Shape shape = context.getShape();
         Object bo = getBusinessObjectForPictogramElement(shape);
-        if (bo instanceof Composite) {
-            return new SCADiagramMoveCompositeFeature(this);
-        }
         if (bo instanceof Service) {
             return new SCADiagramMoveServiceFeature(this);
         }
         if (bo instanceof Reference) {
             return new SCADiagramMoveCompositeReferenceFeature(this);
+        }
+        if (bo instanceof ComponentReference || bo instanceof ComponentService || bo instanceof Composite) {
+            return null;
         }
         return super.getMoveShapeFeature(context);
     }
@@ -218,6 +229,9 @@ public class SCADiagramFeatureProvider extends DefaultFeatureProvider {
         if (bo instanceof Reference) {
             return new SCADiagramLayoutCompositeReferenceFeature(this);
         }
+        if (bo instanceof Component) {
+            return new SCADiagramLayoutComponentFeature(this);
+        }
         return super.getLayoutFeature(context);
     }
 
@@ -228,11 +242,11 @@ public class SCADiagramFeatureProvider extends DefaultFeatureProvider {
         if (bo instanceof Service) {
             return new SCADiagramResizeServiceFeature(this);
         }
-        if (bo instanceof Component) {
-            return new SCADiagramResizeComponentFeature(this);
-        }
         if (bo instanceof Reference) {
             return new SCADiagramResizeCompositeReferenceFeature(this);
+        }
+        if (bo instanceof ComponentReference || bo instanceof ComponentService) {
+            return null;
         }
         return super.getResizeShapeFeature(context);
     }
@@ -242,9 +256,12 @@ public class SCADiagramFeatureProvider extends DefaultFeatureProvider {
         PictogramElement[] pes = context.getPictogramElements();
         if (pes != null && pes.length == 1) {
             Object bo = getBusinessObjectForPictogramElement(pes[0]);
-            if (bo instanceof Component) {
-                return new ICustomFeature[] {new SCADiagramCustomPromoteServiceFeature(this),
-                        new SCADiagramCustomPromoteReferenceFeature(this) };
+            if (bo instanceof ComponentService) {
+                return new ICustomFeature[] {new SCADiagramCustomPromoteServiceFeature(this) };
+            } else if (bo instanceof ComponentReference) {
+                return new ICustomFeature[] {new SCADiagramCustomPromoteReferenceFeature(this) };
+            } else if (bo instanceof Composite) {
+                return new ICustomFeature[] {new AutoLayoutFeature(this) };
             }
         }
         return super.getCustomFeatures(context);

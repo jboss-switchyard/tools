@@ -13,9 +13,7 @@
 package org.switchyard.tools.ui.editor.diagram.service;
 
 import java.io.IOException;
-import java.util.ArrayList;
 
-import org.eclipse.graphiti.features.IAddFeature;
 import org.eclipse.graphiti.features.IFeatureProvider;
 import org.eclipse.graphiti.features.context.IContext;
 import org.eclipse.graphiti.features.context.ICustomContext;
@@ -26,18 +24,27 @@ import org.eclipse.graphiti.mm.pictograms.Anchor;
 import org.eclipse.graphiti.mm.pictograms.ContainerShape;
 import org.eclipse.graphiti.mm.pictograms.PictogramElement;
 import org.eclipse.graphiti.mm.pictograms.Shape;
-import org.eclipse.soa.sca.sca1_1.model.sca.Component;
+import org.eclipse.jface.window.Window;
+import org.eclipse.jface.wizard.WizardDialog;
 import org.eclipse.soa.sca.sca1_1.model.sca.ComponentService;
 import org.eclipse.soa.sca.sca1_1.model.sca.Composite;
+import org.eclipse.soa.sca.sca1_1.model.sca.Interface;
+import org.eclipse.soa.sca.sca1_1.model.sca.JavaInterface;
+import org.eclipse.soa.sca.sca1_1.model.sca.ScaPackage;
 import org.eclipse.soa.sca.sca1_1.model.sca.Service;
+import org.eclipse.soa.sca.sca1_1.model.sca.WSDLPortType;
+import org.eclipse.swt.widgets.Shell;
+import org.eclipse.ui.PlatformUI;
 import org.switchyard.tools.ui.editor.ImageProvider;
 import org.switchyard.tools.ui.editor.core.ModelHandler;
 import org.switchyard.tools.ui.editor.core.ModelHandlerLocator;
+import org.switchyard.tools.ui.editor.diagram.StyleUtil;
 import org.switchyard.tools.ui.editor.diagram.di.DIImport;
+import org.switchyard.tools.ui.editor.diagram.service.wizards.SCADiagramAddServiceInterfaceWizard;
 
 /**
  * @author bfitzpat
- *
+ * 
  */
 public class SCADiagramCustomPromoteServiceFeature extends AbstractCustomFeature {
 
@@ -55,40 +62,90 @@ public class SCADiagramCustomPromoteServiceFeature extends AbstractCustomFeature
         PictogramElement[] pes = context.getPictogramElements();
         if (pes != null && pes.length == 1) {
             Object bo = getBusinessObjectForPictogramElement(pes[0]);
-            if (bo instanceof Component) {
-                Component component = (Component) bo;
-                if (!component.getService().isEmpty()) {
-                    ComponentService cservice = component.getService().get(0);
-                    Shape[] shapes = DIImport
-                            .findShapesWithName(getFeatureProvider(), getDiagram(), cservice.getName());
-                    if (shapes != null && shapes.length > 0) {
-                        for (int i = 0; i < shapes.length; i++) {
-                            Object testObj = getFeatureProvider().getBusinessObjectForPictogramElement(shapes[i]);
-                            if (testObj instanceof Service) {
-                                Service service = (Service) testObj;
-                                service.setPromote(cservice);
-                                this._hasDoneChanges = true;
+            if (bo instanceof ComponentService) {
+                ComponentService cservice = (ComponentService) bo;
+                Shape[] shapes = DIImport.findShapesWithName(getFeatureProvider(), getDiagram(), cservice.getName());
+                if (shapes != null && shapes.length > 0) {
+                    for (int i = 0; i < shapes.length; i++) {
+                        Object testObj = getFeatureProvider().getBusinessObjectForPictogramElement(shapes[i]);
+                        if (testObj instanceof Service) {
+                            Service service = (Service) testObj;
+                            service.setPromote(cservice);
+
+                            Interface newInterface = null;
+                            SCADiagramAddServiceInterfaceWizard wizard = new SCADiagramAddServiceInterfaceWizard();
+                            if (cservice.getInterface() != null) {
+                                wizard.setInheritedInterface(cservice.getInterface());
                             }
+                            Shell shell = PlatformUI.getWorkbench().getActiveWorkbenchWindow().getShell();
+                            WizardDialog wizDialog = new WizardDialog(shell, wizard);
+                            wizDialog.setTitle("Specify Promoted Service Interface");
+                            int rtn_code = wizDialog.open();
+                            if (rtn_code == Window.OK) {
+                                newInterface = wizard.getInterface();
+                                if (newInterface != null) {
+                                    // do something with it
+                                    if (newInterface instanceof JavaInterface) {
+                                        service.getInterfaceGroup().set(
+                                                ScaPackage.eINSTANCE.getDocumentRoot_InterfaceJava(), newInterface);
+                                    } else if (newInterface instanceof WSDLPortType) {
+                                        service.getInterfaceGroup().set(
+                                                ScaPackage.eINSTANCE.getDocumentRoot_InterfaceWsdl(), newInterface);
+                                    }
+                                }
+                            }
+
+                            this._hasDoneChanges = true;
+                            break;
                         }
-                        if (!this._hasDoneChanges) {
-                            createAndConnectService(component, cservice);
-                        }
-                        getDiagramEditor().refresh();
-                    } else {
-                        createAndConnectService(component, cservice);
                     }
+                    if (!this._hasDoneChanges) {
+                        createAndConnectService(cservice, (Shape) pes[0]);
+                    }
+                    getDiagramEditor().refresh();
+                } else {
+                    createAndConnectService(cservice, (Shape) pes[0]);
+                    getDiagramEditor().refresh();
                 }
             }
         }
     }
 
-    private void createAndConnectService(Component component, ComponentService cservice) {
+    private void createAndConnectService(ComponentService cservice, Shape componentServiceShape) {
         try {
-            Composite composite = (Composite) component.eContainer();
+            Interface newInterface = null;
+            SCADiagramAddServiceInterfaceWizard wizard = new SCADiagramAddServiceInterfaceWizard();
+            if (cservice.getInterface() != null) {
+                wizard.setInheritedInterface(cservice.getInterface());
+            }
+            Shell shell = PlatformUI.getWorkbench().getActiveWorkbenchWindow().getShell();
+            WizardDialog wizDialog = new WizardDialog(shell, wizard);
+            wizDialog.setTitle("Specify Promoted Service Interface");
+            int rtn_code = wizDialog.open();
+            if (rtn_code == Window.OK) {
+                newInterface = wizard.getInterface();
+            } else {
+                this._hasDoneChanges = false;
+                return;
+            }
+
+            Composite composite = (Composite) cservice.eContainer().eContainer();
             ModelHandler handler = ModelHandlerLocator.getModelHandler(getDiagram().eResource());
             Service newService = handler.createService(composite);
+
             newService.setName(cservice.getName());
             newService.setPromote(cservice);
+
+            if (newInterface != null) {
+                // do something with it
+                if (newInterface instanceof JavaInterface) {
+                    newService.getInterfaceGroup().set(ScaPackage.eINSTANCE.getDocumentRoot_InterfaceJava(),
+                            newInterface);
+                } else if (newInterface instanceof WSDLPortType) {
+                    newService.getInterfaceGroup().set(ScaPackage.eINSTANCE.getDocumentRoot_InterfaceWsdl(),
+                            newInterface);
+                }
+            }
 
             ContainerShape cshape = (ContainerShape) getFeatureProvider().getPictogramElementForBusinessObject(
                     composite);
@@ -97,55 +154,41 @@ public class SCADiagramCustomPromoteServiceFeature extends AbstractCustomFeature
             addServiceContext.setNewObject(newService);
             addServiceContext.setTargetContainer(cshape);
             addServiceContext.setX(0);
-            addServiceContext.setY(0);
-
-            IAddFeature addServiceFeature = getFeatureProvider().getAddFeature(addServiceContext);
-            if (addServiceFeature.canAdd(addServiceContext)) {
-                Shape serviceShape = (Shape) addServiceFeature.add(addServiceContext);
-                getDiagramEditor().refresh(serviceShape);
-
-                String referencedShapeName = cservice.getName();
-                Anchor targetAnchor = null;
-                Anchor sourceAnchor = null;
-                Anchor[] anchors = DIImport
-                        .findAnchorsWithName(getFeatureProvider(), getDiagram(), referencedShapeName);
-                for (Anchor anchor : anchors) {
-                    Object anchorObj = getFeatureProvider().getBusinessObjectForPictogramElement(anchor);
-                    if (anchorObj instanceof ComponentService) {
-                        ComponentService cservice2 = (ComponentService) anchorObj;
-                        if (cservice2.getName().contentEquals(referencedShapeName)) {
-                            targetAnchor = anchor;
-                        }
-                    }
-                    if (anchorObj instanceof Service) {
-                        Service service = (Service) anchorObj;
-                        if (service.getName().contentEquals(referencedShapeName)) {
-                            sourceAnchor = anchor;
-                        }
-                    }
-                }
-                if (sourceAnchor != null && targetAnchor != null) {
-                    if (sourceAnchor.getParent() != targetAnchor.getParent()) {
-                        // now define the connection between the
-                        // componentservice and the new service shape
-                        AddConnectionContext addReferenceContext = new AddConnectionContext(sourceAnchor, targetAnchor);
-                        ArrayList<String> targetRef = new ArrayList<String>();
-                        targetRef.add(referencedShapeName);
-                        addReferenceContext.setNewObject(cservice);
-                        addReferenceContext.setTargetContainer(cshape);
-
-                        IAddFeature addConnectionFeature = getFeatureProvider().getAddFeature(addReferenceContext);
-                        if (addConnectionFeature != null && addConnectionFeature.canAdd(addReferenceContext)) {
-                            addConnectionFeature.add(addReferenceContext);
-                        }
-                    }
-                }
-
+            addServiceContext.setY(cshape.getGraphicsAlgorithm().getY() + 3 * StyleUtil.COMPOSITE_EDGE);
+            Shape serviceShape = (Shape) addGraphicalRepresentation(addServiceContext, newService);
+            if (serviceShape != null) {
+                this._hasDoneChanges = true;
+                connectService(cservice, serviceShape, componentServiceShape);
             }
-
         } catch (IOException e) {
             e.printStackTrace();
         }
+    }
+
+    private void connectService(ComponentService componentService, Shape serviceShape, Shape componentServiceShape) {
+        getDiagramEditor().refresh(serviceShape);
+
+        Anchor targetAnchor = getAnchor(componentServiceShape);
+        Anchor sourceAnchor = getAnchor(serviceShape);
+        if (sourceAnchor != null && targetAnchor != null) {
+            if (sourceAnchor.getParent() != targetAnchor.getParent()) {
+                // now define the connection between the
+                // componentservice and the new service shape
+                AddConnectionContext addReferenceContext = new AddConnectionContext(sourceAnchor, targetAnchor);
+                addReferenceContext.setNewObject(componentService);
+                addReferenceContext.setTargetContainer(serviceShape.getContainer());
+                addGraphicalRepresentation(addReferenceContext, componentService);
+            }
+        }
+
+        this._hasDoneChanges = true;
+    }
+
+    private Anchor getAnchor(Shape shape) {
+        if (shape.getAnchors().size() > 0) {
+            return shape.getAnchors().get(0);
+        }
+        return null;
     }
 
     @Override
@@ -157,13 +200,7 @@ public class SCADiagramCustomPromoteServiceFeature extends AbstractCustomFeature
     public boolean canExecute(ICustomContext context) {
         PictogramElement[] pes = context.getPictogramElements();
         if (pes != null && pes.length == 1) {
-            Object bo = getBusinessObjectForPictogramElement(pes[0]);
-            if (bo instanceof Component) {
-                Component component = (Component) bo;
-                if (!component.getService().isEmpty()) {
-                    return true;
-                }
-            }
+            return getBusinessObjectForPictogramElement(pes[0]) instanceof ComponentService;
         }
 
         return false;

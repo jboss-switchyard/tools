@@ -28,20 +28,20 @@ import org.eclipse.emf.ecore.EObject;
  */
 public interface OmitFieldList extends EObject {
 	/**
-	 * Returns the value of the '<em><b>Omit Field</b></em>' containment reference list.
-	 * The list contents are of type {@link org.switchyard.tools.models.switchyard1_0.spring.OmitFieldEntry}.
-	 * <!-- begin-user-doc -->
+     * Returns the value of the '<em><b>Omit Field</b></em>' containment reference list.
+     * The list contents are of type {@link org.switchyard.tools.models.switchyard1_0.spring.OmitFieldEntry}.
+     * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Omit Field</em>' containment reference list isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Omit Field</em>' containment reference list.
-	 * @see org.switchyard.tools.models.switchyard1_0.spring.SpringPackage#getOmitFieldList_OmitField()
-	 * @model containment="true"
-	 *        extendedMetaData="kind='element' name='omitField' namespace='##targetNamespace'"
-	 * @generated
-	 */
+     * @return the value of the '<em>Omit Field</em>' containment reference list.
+     * @see org.switchyard.tools.models.switchyard1_0.spring.SpringPackage#getOmitFieldList_OmitField()
+     * @model containment="true"
+     *        extendedMetaData="kind='element' name='omitField' namespace='##targetNamespace'"
+     * @generated
+     */
 	EList<OmitFieldEntry> getOmitField();
 
 } // OmitFieldList
