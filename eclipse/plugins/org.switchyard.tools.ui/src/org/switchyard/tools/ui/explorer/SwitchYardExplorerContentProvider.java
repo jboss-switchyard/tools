@@ -173,7 +173,14 @@ public class SwitchYardExplorerContentProvider implements ITreeContentProvider, 
 
     private static final Object PENDING = new Object();
     private ConcurrentMap<SwitchYardRootNode, Object> _pendingUpdates = new ConcurrentHashMap<SwitchYardRootNode, Object>();
-    private Job _switchYardNodeRefreshJob = new Job("Refreshing SwitchYard project configuration.") {
+    private Job _switchYardNodeRefreshJob = new SwitchYardRefreshJob();
+
+    private final class SwitchYardRefreshJob extends Job {
+        private SwitchYardRefreshJob() {
+            super("Refreshing SwitchYard project configuration.");
+            setRule(SwitchYardProjectManager.SWITCHYARD_RULE);
+        }
+
         @Override
         protected IStatus run(IProgressMonitor monitor) {
             monitor.beginTask("Refreshing SwitchYard project configuration: ", IProgressMonitor.UNKNOWN);
@@ -191,13 +198,17 @@ public class SwitchYardExplorerContentProvider implements ITreeContentProvider, 
                             switchYardNode.reload(subMontior);
                             updatedNodes.add(switchYardNode);
                         } catch (Exception e) {
-                            e.fillInStackTrace();
+                            e.printStackTrace();
                         } finally {
                             Job.getJobManager().endRule(switchYardNode.getProject());
                             subMontior.done();
                         }
                         if (monitor.isCanceled()) {
                             status = Status.CANCEL_STATUS;
+                            for (SwitchYardRootNode node : updatedNodes) {
+                                _pendingUpdates.putIfAbsent(node, PENDING);
+                            }
+                            updatedNodes.clear();
                             break;
                         }
                     }
@@ -205,27 +216,26 @@ public class SwitchYardExplorerContentProvider implements ITreeContentProvider, 
                 final TreeViewer viewer = SwitchYardExplorerContentProvider.this._viewer;
                 if (viewer == null) {
                     _pendingUpdates.clear();
-                } else {
+                } else if (updatedNodes.size() > 0) {
                     viewer.getControl().getDisplay().asyncExec(new Runnable() {
                         public void run() {
                             if (viewer.getControl().isDisposed()) {
                                 return;
                             }
-                            // refreshing individual nodes does not work
-                            // correctly. Eclipse 3.7, GTK.
-                            viewer.refresh();
+                            for (SwitchYardRootNode node : updatedNodes) {
+                                viewer.refresh(node);
+                            }
                         }
                     });
                 }
             } finally {
                 monitor.done();
             }
+            if (_pendingUpdates.size() > 0) {
+                // make sure we get rescheduled if we still have work to do
+                schedule(100);
+            }
             return status;
-        }
-
-        @Override
-        public boolean shouldSchedule() {
-            return shouldRun();
         }
 
         @Override
@@ -240,7 +250,7 @@ public class SwitchYardExplorerContentProvider implements ITreeContentProvider, 
         public void done(IJobChangeEvent event) {
             if (event.getJob().belongsTo(SwitchYardProjectManager.SWITCHYARD_PROJECT_REFRESH_JOB_FAMILY)) {
                 if (_pendingUpdates.size() > 0) {
-                    _switchYardNodeRefreshJob.schedule();
+                    _switchYardNodeRefreshJob.schedule(100);
                 }
             }
         }

@@ -36,7 +36,10 @@ import org.eclipse.core.runtime.OperationCanceledException;
 import org.eclipse.core.runtime.Path;
 import org.eclipse.core.runtime.Status;
 import org.eclipse.core.runtime.SubProgressMonitor;
+import org.eclipse.core.runtime.jobs.ISchedulingRule;
 import org.eclipse.core.runtime.jobs.Job;
+import org.eclipse.core.runtime.jobs.MultiRule;
+import org.eclipse.m2e.core.MavenPlugin;
 import org.switchyard.tools.ui.Activator;
 import org.switchyard.tools.ui.common.ISwitchYardProject;
 import org.switchyard.tools.ui.common.impl.SwitchYardProjectManager.ISwitchYardProjectListener.Type;
@@ -53,6 +56,9 @@ public final class SwitchYardProjectManager implements IResourceChangeListener, 
 
     /** Identifies the Job family for the project refresh job. */
     public static final Object SWITCHYARD_PROJECT_REFRESH_JOB_FAMILY = new Object();
+    /** A build rule to keep SwitchYard jobs from stepping on each others' toes. */
+    public static final ISchedulingRule SWITCHYARD_RULE = MultiRule.combine(new SwitchYardUpdateRule(), MavenPlugin
+            .getProjectConfigurationManager().getRule());
 
     /**
      * Listener interface for SwitchYard project updates.
@@ -216,7 +222,14 @@ public final class SwitchYardProjectManager implements IResourceChangeListener, 
     }
 
     private ConcurrentMap<SwitchYardProject, Set<Type>> _pendingUpdates = new ConcurrentHashMap<SwitchYardProject, Set<Type>>();
-    private Job _projectUpdateJob = new Job("Updating SwitchYard project meta-data.") {
+    private Job _projectUpdateJob = new UpdateMetadataJob();
+
+    private final class UpdateMetadataJob extends Job {
+        private UpdateMetadataJob() {
+            super("Updating SwitchYard project meta-data.");
+            setRule(SWITCHYARD_RULE);
+        }
+
         @Override
         protected IStatus run(IProgressMonitor monitor) {
             monitor.beginTask("Updating SwitchYard project meta-data: ", IProgressMonitor.UNKNOWN);
@@ -271,4 +284,26 @@ public final class SwitchYardProjectManager implements IResourceChangeListener, 
             return _pendingUpdates.size() > 0;
         }
     };
+
+    /**
+     * SwitchYardUpdateRule
+     * 
+     * <p/>
+     * Simple rule which prevents SwitchYard jobs from stepping on each others'
+     * toes.
+     * 
+     * @author Rob Cernich
+     */
+    private static final class SwitchYardUpdateRule implements ISchedulingRule {
+        @Override
+        public boolean contains(ISchedulingRule rule) {
+            return rule instanceof SwitchYardUpdateRule;
+        }
+
+        @Override
+        public boolean isConflicting(ISchedulingRule rule) {
+            return contains(rule);
+        }
+    }
+
 }

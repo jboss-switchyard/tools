@@ -131,8 +131,12 @@ public class SwitchYardRootNode implements ISwitchYardRootNode {
     public synchronized String getName() {
         if (_configuration == null) {
             return getProject().getName();
+        } else if (_configuration.getName() != null) {
+            return _configuration.getName();
+        } else if (_configuration.getComposite() != null) {
+            return _configuration.getComposite().getName();
         }
-        return _configuration.getName();
+        return null;
     }
 
     @Override
