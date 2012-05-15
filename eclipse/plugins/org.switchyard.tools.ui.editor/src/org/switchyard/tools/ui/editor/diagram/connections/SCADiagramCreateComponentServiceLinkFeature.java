@@ -80,8 +80,10 @@ public class SCADiagramCreateComponentServiceLinkFeature extends AbstractCreateC
     public Connection create(ICreateConnectionContext context) {
         Connection newConnection = null;
 
-        Object source = getAnchorObject(context.getSourceAnchor());
-        Object target = getAnchorObject(context.getTargetAnchor());
+        Anchor targetAnchor = context.getTargetAnchor();
+        Anchor sourceAnchor = context.getSourceAnchor();
+        Object source = getAnchorObject(sourceAnchor);
+        Object target = getAnchorObject(targetAnchor);
 
         if (source != null && target != null) {
             ComponentService componentService;
@@ -90,12 +92,15 @@ public class SCADiagramCreateComponentServiceLinkFeature extends AbstractCreateC
             if (source instanceof ComponentService) {
                 componentService = (ComponentService) source;
                 service = (Service) target;
+                // always draw from service to component
+                sourceAnchor = targetAnchor;
+                targetAnchor = context.getSourceAnchor();
             } else {
                 componentService = (ComponentService) target;
                 service = (Service) source;
             }
-            AddConnectionContext addContext = new AddConnectionContext(context.getSourceAnchor(),
-                    context.getTargetAnchor());
+            AddConnectionContext addContext = new AddConnectionContext(sourceAnchor,
+                    targetAnchor);
             service.setPromote(componentService);
             addContext.setNewObject(componentService);
             newConnection = (Connection) getFeatureProvider().addIfPossible(addContext);
