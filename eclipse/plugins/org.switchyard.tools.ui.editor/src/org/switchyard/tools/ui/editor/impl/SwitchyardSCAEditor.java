@@ -39,12 +39,14 @@ import org.eclipse.emf.ecore.xmi.XMLResource;
 import org.eclipse.emf.transaction.RecordingCommand;
 import org.eclipse.emf.transaction.TransactionalEditingDomain.Lifecycle;
 import org.eclipse.emf.transaction.impl.TransactionalEditingDomainImpl;
+import org.eclipse.gef.editparts.ZoomManager;
 import org.eclipse.graphiti.features.IFeatureProvider;
 import org.eclipse.graphiti.mm.pictograms.Diagram;
 import org.eclipse.graphiti.mm.pictograms.PictogramElement;
 import org.eclipse.graphiti.ui.editor.DiagramEditor;
 import org.eclipse.graphiti.ui.editor.DiagramEditorInput;
 import org.eclipse.graphiti.ui.internal.editor.GFPaletteRoot;
+import org.eclipse.jface.action.IAction;
 import org.eclipse.jface.viewers.ISelection;
 import org.eclipse.ui.IEditorInput;
 import org.eclipse.ui.IEditorReference;
@@ -57,6 +59,7 @@ import org.eclipse.ui.IWorkbenchPage;
 import org.eclipse.ui.IWorkbenchPart;
 import org.eclipse.ui.PartInitException;
 import org.eclipse.ui.PlatformUI;
+import org.eclipse.ui.actions.ActionFactory;
 import org.switchyard.tools.models.switchyard1_0.switchyard.util.SwitchyardResourceFactoryImpl;
 import org.switchyard.tools.models.switchyard1_0.switchyard.util.SwitchyardResourceImpl;
 import org.switchyard.tools.ui.editor.Activator;
@@ -340,6 +343,22 @@ public class SwitchyardSCAEditor extends DiagramEditor {
             }
         }
         return visibleList.toArray(new PictogramElement[visibleList.size()]);
+    }
+
+    @Override
+    @SuppressWarnings("deprecation")
+    protected void initActionRegistry(ZoomManager zoomManager) {
+        super.initActionRegistry(zoomManager);
+
+        // XXX: not sure if the following is correct or not.
+        // register common actions with the site.
+        IAction action = getActionRegistry().getAction(ActionFactory.UNDO.getId());
+        action.setActionDefinitionId(ActionFactory.UNDO.getCommandId());
+        getEditorSite().getKeyBindingService().registerAction(action);
+
+        action = getActionRegistry().getAction(ActionFactory.REDO.getId());
+        action.setActionDefinitionId(ActionFactory.REDO.getCommandId());
+        getEditorSite().getKeyBindingService().registerAction(action);
     }
 
     private void addWorkbenchListener() {

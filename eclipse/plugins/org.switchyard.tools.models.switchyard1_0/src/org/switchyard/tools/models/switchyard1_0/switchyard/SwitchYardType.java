@@ -98,7 +98,7 @@ public interface SwitchYardType extends EObject {
      * @return the value of the '<em>Composite</em>' containment reference.
      * @see #setComposite(Composite)
      * @see org.switchyard.tools.models.switchyard1_0.switchyard.SwitchyardPackage#getSwitchYardType_Composite()
-     * @model containment="true" derived="true"
+     * @model containment="true"
      *        extendedMetaData="kind='element' name='composite' namespace='http://docs.oasis-open.org/ns/opencsa/sca/200912'"
      * @generated
      */

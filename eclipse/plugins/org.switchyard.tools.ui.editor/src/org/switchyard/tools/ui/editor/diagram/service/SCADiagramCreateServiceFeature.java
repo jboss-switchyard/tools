@@ -41,11 +41,13 @@ import org.switchyard.tools.ui.editor.diagram.service.wizards.SCADiagramAddCompo
  */
 public class SCADiagramCreateServiceFeature extends AbstractCreateFeature {
 
+    private boolean _hasDoneChanges;
+
     /**
      * @param fp the feature provider
      */
     public SCADiagramCreateServiceFeature(IFeatureProvider fp) {
-        super(fp, "Service", "Create service");
+        super(fp, "Service", "Create Service");
     }
 
     @Override
@@ -54,6 +56,11 @@ public class SCADiagramCreateServiceFeature extends AbstractCreateFeature {
             return true;
         }
         return false;
+    }
+
+    @Override
+    public boolean hasDoneChanges() {
+        return _hasDoneChanges;
     }
 
     @Override
@@ -70,6 +77,7 @@ public class SCADiagramCreateServiceFeature extends AbstractCreateFeature {
             newServiceName = wizard.getCompositeServiceName();
             newInterface = wizard.getInterface();
         } else {
+            _hasDoneChanges = false;
             return EMPTY;
         }
 
@@ -101,6 +109,9 @@ public class SCADiagramCreateServiceFeature extends AbstractCreateFeature {
 
         // activate direct editing after object creation
         getFeatureProvider().getDirectEditingInfo().setActive(true);
+
+        // make sure we look like we actually did something.
+        _hasDoneChanges = true;
 
         // return newly created business object(s)
         return new Object[] {newService };
