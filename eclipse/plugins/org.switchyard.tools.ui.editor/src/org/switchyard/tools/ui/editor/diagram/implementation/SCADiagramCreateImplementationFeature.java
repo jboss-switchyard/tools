@@ -36,11 +36,18 @@ import org.switchyard.tools.ui.editor.diagram.component.wizards.SCADiagramAddImp
  */
 public class SCADiagramCreateImplementationFeature extends AbstractCreateFeature {
 
+    private boolean _hasDoneChanges;
+
     /**
      * @param fp the feature provider
      */
     public SCADiagramCreateImplementationFeature(IFeatureProvider fp) {
-        super(fp, "Implementation", "Create implementation");
+        super(fp, "Implementation", "Create Implementation");
+    }
+
+    @Override
+    public boolean hasDoneChanges() {
+        return _hasDoneChanges;
     }
 
     @Override
@@ -68,6 +75,7 @@ public class SCADiagramCreateImplementationFeature extends AbstractCreateFeature
         if (rtn_code == Window.OK) {
             newImplementation = wizard.getImplementation();
         } else {
+            _hasDoneChanges = false;
             return EMPTY;
         }
 
@@ -109,6 +117,9 @@ public class SCADiagramCreateImplementationFeature extends AbstractCreateFeature
         }
 
         getDiagramEditor().refresh(context.getTargetContainer());
+
+        // make sure we look like we actually did something.
+        _hasDoneChanges = true;
 
         // return newly created business object(s)
         return newObjects.toArray();

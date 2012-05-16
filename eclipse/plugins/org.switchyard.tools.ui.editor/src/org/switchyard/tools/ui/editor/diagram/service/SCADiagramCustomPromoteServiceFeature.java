@@ -96,22 +96,23 @@ public class SCADiagramCustomPromoteServiceFeature extends AbstractCustomFeature
                             }
 
                             this._hasDoneChanges = true;
+                            connectService(cservice, shapes[i], (Shape) pes[0]);
                             break;
                         }
                     }
                     if (!this._hasDoneChanges) {
-                        createAndConnectService(cservice, (Shape) pes[0]);
+                        createService(cservice, (Shape) pes[0]);
                     }
                     getDiagramEditor().refresh();
                 } else {
-                    createAndConnectService(cservice, (Shape) pes[0]);
+                    createService(cservice, (Shape) pes[0]);
                     getDiagramEditor().refresh();
                 }
             }
         }
     }
 
-    private void createAndConnectService(ComponentService cservice, Shape componentServiceShape) {
+    private void createService(ComponentService cservice, Shape componentServiceShape) {
         try {
             Interface newInterface = null;
             SCADiagramAddServiceInterfaceWizard wizard = new SCADiagramAddServiceInterfaceWizard();
@@ -158,7 +159,6 @@ public class SCADiagramCustomPromoteServiceFeature extends AbstractCustomFeature
             Shape serviceShape = (Shape) addGraphicalRepresentation(addServiceContext, newService);
             if (serviceShape != null) {
                 this._hasDoneChanges = true;
-                connectService(cservice, serviceShape, componentServiceShape);
             }
         } catch (IOException e) {
             e.printStackTrace();

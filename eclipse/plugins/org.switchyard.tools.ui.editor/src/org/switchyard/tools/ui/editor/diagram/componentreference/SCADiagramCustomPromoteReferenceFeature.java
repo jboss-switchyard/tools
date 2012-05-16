@@ -103,8 +103,53 @@ public class SCADiagramCustomPromoteReferenceFeature extends AbstractCustomFeatu
                         }
                     }
                     referenceShape = (Shape) getFeatureProvider().getPictogramElementForBusinessObject(targetReference);
+
                     this._hasDoneChanges = true;
-                    getDiagramEditor().refresh();
+
+                    // add the connection for the wire.
+                    if (referenceShape != null) {
+                        getDiagramEditor().refresh(referenceShape);
+
+                        String referencedShapeName = cref.getName();
+                        Anchor targetAnchor = null;
+                        Anchor sourceAnchor = null;
+                        Anchor[] anchors = DIImport.findAnchorsWithName(getFeatureProvider(), getDiagram(),
+                                referencedShapeName);
+                        for (Anchor anchor : anchors) {
+                            Object anchorObj = getFeatureProvider().getBusinessObjectForPictogramElement(anchor);
+                            if (anchorObj instanceof ComponentReference) {
+                                ComponentReference cref2 = (ComponentReference) anchorObj;
+                                if (cref2.getName().contentEquals(referencedShapeName)) {
+                                    targetAnchor = anchor;
+                                }
+                            }
+                            if (anchorObj instanceof Reference) {
+                                Reference reference = (Reference) anchorObj;
+                                if (reference.getName().contentEquals(referencedShapeName)) {
+                                    sourceAnchor = anchor;
+                                }
+                            }
+                        }
+                        if (sourceAnchor != null && targetAnchor != null) {
+                            if (sourceAnchor.getParent() != targetAnchor.getParent()) {
+                                // now define the connection between the
+                                // componentreference and the new
+                                // reference shape
+                                AddConnectionContext addReferenceContext = new AddConnectionContext(sourceAnchor,
+                                        targetAnchor);
+                                ArrayList<String> targetRef = new ArrayList<String>();
+                                targetRef.add(referencedShapeName);
+                                addReferenceContext.setNewObject(cref);
+                                addReferenceContext.setTargetContainer(cshape);
+
+                                IAddFeature addConnectionFeature = getFeatureProvider().getAddFeature(
+                                        addReferenceContext);
+                                if (addConnectionFeature != null && addConnectionFeature.canAdd(addReferenceContext)) {
+                                    addConnectionFeature.add(addReferenceContext);
+                                }
+                            }
+                        }
+                    }
                 } else {
                     try {
                         Interface newInterface = null;
@@ -156,49 +201,6 @@ public class SCADiagramCustomPromoteReferenceFeature extends AbstractCustomFeatu
                     } catch (IOException e) {
                         e.printStackTrace();
                     }
-                }
-                if (referenceShape != null) {
-                    getDiagramEditor().refresh(referenceShape);
-
-                    String referencedShapeName = cref.getName();
-                    Anchor targetAnchor = null;
-                    Anchor sourceAnchor = null;
-                    Anchor[] anchors = DIImport.findAnchorsWithName(getFeatureProvider(), getDiagram(),
-                            referencedShapeName);
-                    for (Anchor anchor : anchors) {
-                        Object anchorObj = getFeatureProvider().getBusinessObjectForPictogramElement(anchor);
-                        if (anchorObj instanceof ComponentReference) {
-                            ComponentReference cref2 = (ComponentReference) anchorObj;
-                            if (cref2.getName().contentEquals(referencedShapeName)) {
-                                targetAnchor = anchor;
-                            }
-                        }
-                        if (anchorObj instanceof Reference) {
-                            Reference reference = (Reference) anchorObj;
-                            if (reference.getName().contentEquals(referencedShapeName)) {
-                                sourceAnchor = anchor;
-                            }
-                        }
-                    }
-                    if (sourceAnchor != null && targetAnchor != null) {
-                        if (sourceAnchor.getParent() != targetAnchor.getParent()) {
-                            // now define the connection between the
-                            // componentreference and the new
-                            // reference shape
-                            AddConnectionContext addReferenceContext = new AddConnectionContext(sourceAnchor,
-                                    targetAnchor);
-                            ArrayList<String> targetRef = new ArrayList<String>();
-                            targetRef.add(referencedShapeName);
-                            addReferenceContext.setNewObject(cref);
-                            addReferenceContext.setTargetContainer(cshape);
-
-                            IAddFeature addConnectionFeature = getFeatureProvider().getAddFeature(addReferenceContext);
-                            if (addConnectionFeature != null && addConnectionFeature.canAdd(addReferenceContext)) {
-                                addConnectionFeature.add(addReferenceContext);
-                            }
-                        }
-                    }
-
                 }
             }
         }
