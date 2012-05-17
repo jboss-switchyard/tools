@@ -32,7 +32,7 @@ public class SCADiagramCreateReferenceLinkFeature extends AbstractCreateConnecti
      * @param fp the feature provider
      */
     public SCADiagramCreateReferenceLinkFeature(IFeatureProvider fp) {
-        super(fp, "Reference (dashed)", "Create Reference");
+        super(fp, "Wire Reference (dashed)", "Wire Reference");
     }
 
     @Override
