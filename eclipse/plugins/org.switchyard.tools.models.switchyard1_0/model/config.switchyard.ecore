@@ -441,7 +441,7 @@
       </eAnnotations>
     </eStructuralFeatures>
     <eStructuralFeatures xsi:type="ecore:EReference" name="composite" eType="ecore:EClass platform:/plugin/org.switchyard.tools.models.sca.sca1_1/model/sca.ecore#//Composite"
-        containment="true">
+        derived="true" containment="true">
       <eAnnotations source="http:///org/eclipse/emf/ecore/util/ExtendedMetaData">
         <details key="kind" value="element"/>
         <details key="name" value="composite"/>

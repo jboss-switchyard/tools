@@ -27,25 +27,18 @@ import org.switchyard.tools.ui.editor.util.ExampleUtil;
 
 /**
  * @author bfitzpat
- * 
+ *
  */
 public class SCADiagramCreateCompositeFeature extends AbstractCreateFeature {
 
-    private static final String TITLE = "Create Composite";
+    private static final String TITLE = "Create composite";
     private static final String USER_QUESTION = "Enter new composite name";
-
-    private boolean _hasDoneChanges;
 
     /**
      * @param fp the feature provider
      */
     public SCADiagramCreateCompositeFeature(IFeatureProvider fp) {
-        super(fp, "Composite", "Create Composite");
-    }
-
-    @Override
-    public boolean hasDoneChanges() {
-        return _hasDoneChanges;
+        super(fp, "Composite", "Create composite");
     }
 
     @Override
@@ -58,7 +51,6 @@ public class SCADiagramCreateCompositeFeature extends AbstractCreateFeature {
         // ask user for EClass name
         String newCompositeName = ExampleUtil.askString(TITLE, USER_QUESTION, "");
         if (newCompositeName == null || newCompositeName.trim().length() == 0) {
-            _hasDoneChanges = false;
             return EMPTY;
         }
 
@@ -74,9 +66,6 @@ public class SCADiagramCreateCompositeFeature extends AbstractCreateFeature {
 
         // do the add
         addGraphicalRepresentation(context, newComposite);
-
-        // make sure we look like we actually did something.
-        _hasDoneChanges = true;
 
         // return newly created business object(s)
         return new Object[] {newComposite };

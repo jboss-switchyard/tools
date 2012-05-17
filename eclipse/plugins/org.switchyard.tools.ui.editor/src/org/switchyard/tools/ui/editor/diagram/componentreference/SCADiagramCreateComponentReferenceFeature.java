@@ -40,18 +40,11 @@ import org.switchyard.tools.ui.editor.diagram.componentreference.wizards.SCADiag
  */
 public class SCADiagramCreateComponentReferenceFeature extends AbstractCreateFeature {
 
-    private boolean _hasDoneChanges;
-
     /**
      * @param fp the feature provider
      */
     public SCADiagramCreateComponentReferenceFeature(IFeatureProvider fp) {
-        super(fp, "Component Reference", "Create Component Reference");
-    }
-
-    @Override
-    public boolean hasDoneChanges() {
-        return _hasDoneChanges;
+        super(fp, "Component Reference", "Create component reference");
     }
 
     @Override
@@ -80,7 +73,6 @@ public class SCADiagramCreateComponentReferenceFeature extends AbstractCreateFea
             newClassName = wizard.getComponentReferenceName();
             newInterface = wizard.getInterface();
         } else {
-            _hasDoneChanges = false;
             return EMPTY;
         }
 
@@ -109,9 +101,6 @@ public class SCADiagramCreateComponentReferenceFeature extends AbstractCreateFea
 
         // activate direct editing after object creation
         getFeatureProvider().getDirectEditingInfo().setActive(true);
-
-        // make sure we look like we actually did something.
-        _hasDoneChanges = true;
 
         // return newly created business object(s)
         return new Object[] {newCReference };

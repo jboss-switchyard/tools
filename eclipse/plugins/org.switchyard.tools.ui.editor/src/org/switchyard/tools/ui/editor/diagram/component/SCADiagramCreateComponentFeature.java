@@ -27,22 +27,15 @@ import org.switchyard.tools.ui.editor.diagram.component.wizards.SCADiagramAddCom
 
 /**
  * @author bfitzpat
- * 
+ *
  */
 public class SCADiagramCreateComponentFeature extends AbstractCreateFeature {
-
-    private boolean _hasDoneChanges;
 
     /**
      * @param fp feature provider
      */
     public SCADiagramCreateComponentFeature(IFeatureProvider fp) {
-        super(fp, "Component", "Create Component");
-    }
-
-    @Override
-    public boolean hasDoneChanges() {
-        return _hasDoneChanges;
+        super(fp, "Component", "Create component");
     }
 
     @Override
@@ -71,8 +64,6 @@ public class SCADiagramCreateComponentFeature extends AbstractCreateFeature {
         if (rtn_code == Window.OK) {
             newComponent = wizard.getComponent();
         } else {
-            newComponent = null;
-            _hasDoneChanges = false;
             return EMPTY;
         }
         // // ask user for component name
@@ -90,9 +81,6 @@ public class SCADiagramCreateComponentFeature extends AbstractCreateFeature {
 
         // activate direct editing after object creation
         getFeatureProvider().getDirectEditingInfo().setActive(true);
-
-        // make sure we look like we actually did something.
-        _hasDoneChanges = true;
 
         // return newly created business object(s)
         return new Object[] {newComponent };

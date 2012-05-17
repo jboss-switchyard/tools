@@ -37,22 +37,15 @@ import org.switchyard.tools.ui.editor.diagram.compositereference.wizards.SCADiag
 
 /**
  * @author bfitzpat
- * 
+ *
  */
 public class SCADiagramCreateCompositeReferenceFeature extends AbstractCreateFeature {
-
-    private boolean _hasDoneChanges;
 
     /**
      * @param fp feature provider
      */
     public SCADiagramCreateCompositeReferenceFeature(IFeatureProvider fp) {
         super(fp, "Composite Reference", "Create Composite Reference");
-    }
-
-    @Override
-    public boolean hasDoneChanges() {
-        return _hasDoneChanges;
     }
 
     @Override
@@ -77,7 +70,6 @@ public class SCADiagramCreateCompositeReferenceFeature extends AbstractCreateFea
             newRefName = wizard.getCompositeReferenceName();
             newInterface = wizard.getInterface();
         } else {
-            _hasDoneChanges = false;
             return EMPTY;
         }
 
@@ -106,9 +98,6 @@ public class SCADiagramCreateCompositeReferenceFeature extends AbstractCreateFea
             // make sure the new reference is positioned correctly.
             layoutPictogramElement(((Shape) pe).getContainer());
         }
-
-        // make sure we look like we actually did something.
-        _hasDoneChanges = true;
 
         // return newly created business object(s)
         return new Object[] {newReference };

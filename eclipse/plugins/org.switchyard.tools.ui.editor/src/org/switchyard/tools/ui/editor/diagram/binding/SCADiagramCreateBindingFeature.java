@@ -30,22 +30,15 @@ import org.switchyard.tools.ui.editor.diagram.binding.wizards.SCADiagramAddBindi
 
 /**
  * @author bfitzpat
- * 
+ *
  */
 public class SCADiagramCreateBindingFeature extends AbstractCreateFeature {
-
-    private boolean _hasDoneChanges;
 
     /**
      * @param fp feature provider
      */
     public SCADiagramCreateBindingFeature(IFeatureProvider fp) {
         super(fp, "Binding", "Create binding");
-    }
-
-    @Override
-    public boolean hasDoneChanges() {
-        return _hasDoneChanges;
     }
 
     @Override
@@ -78,7 +71,6 @@ public class SCADiagramCreateBindingFeature extends AbstractCreateFeature {
         if (rtn_code == Window.OK) {
             newBinding = wizard.getBinding();
         } else {
-            _hasDoneChanges = false;
             return EMPTY;
         }
 
@@ -104,9 +96,6 @@ public class SCADiagramCreateBindingFeature extends AbstractCreateFeature {
 
         // activate direct editing after object creation
         getFeatureProvider().getDirectEditingInfo().setActive(true);
-
-        // make sure we look like we actually did something.
-        _hasDoneChanges = true;
 
         // return newly created business object(s)
         return new Object[] {newBinding };
