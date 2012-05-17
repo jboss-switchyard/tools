@@ -19,6 +19,8 @@ import org.eclipse.graphiti.features.impl.AbstractLayoutFeature;
 import org.eclipse.graphiti.mm.algorithms.GraphicsAlgorithm;
 import org.eclipse.graphiti.mm.algorithms.Rectangle;
 import org.eclipse.graphiti.mm.algorithms.RoundedRectangle;
+import org.eclipse.graphiti.mm.algorithms.Text;
+import org.eclipse.graphiti.mm.algorithms.styles.Orientation;
 import org.eclipse.graphiti.mm.pictograms.ContainerShape;
 import org.eclipse.graphiti.mm.pictograms.PictogramElement;
 import org.eclipse.graphiti.mm.pictograms.Shape;
@@ -116,6 +118,16 @@ public class SCADiagramLayoutComponentFeature extends AbstractLayoutFeature {
             }
         }
 
+        int containerWidth = containerGa.getWidth();
+        int containerHeight = containerGa.getHeight();
+        GraphicsAlgorithm gaFound = StyleUtil.findChildGA(containerGa, Text.class);
+        if (gaFound != null && gaFound instanceof Text) {
+            Text text = (Text) gaFound;
+            text.setHorizontalAlignment(Orientation.ALIGNMENT_CENTER);
+            text.setVerticalAlignment(Orientation.ALIGNMENT_CENTER);
+            gaService.setLocationAndSize(text, 5, 0, containerWidth - 15, containerHeight / 2);
+            anythingChanged = true;
+        }
         return anythingChanged;
     }
 }

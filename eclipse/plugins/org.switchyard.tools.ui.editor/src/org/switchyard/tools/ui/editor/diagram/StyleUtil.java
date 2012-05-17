@@ -14,7 +14,9 @@ package org.switchyard.tools.ui.editor.diagram;
 
 import java.util.Collection;
 
+import org.eclipse.emf.common.util.EList;
 import org.eclipse.graphiti.mm.StyleContainer;
+import org.eclipse.graphiti.mm.algorithms.GraphicsAlgorithm;
 import org.eclipse.graphiti.mm.algorithms.styles.Style;
 import org.eclipse.graphiti.mm.pictograms.Diagram;
 import org.eclipse.graphiti.services.Graphiti;
@@ -273,4 +275,24 @@ public final class StyleUtil {
         return null;
     }
 
+    /**
+     * @param parent parent GA
+     * @param gaSearchType GA type to search for
+     * @return GA or null if not found
+     */
+    public static GraphicsAlgorithm findChildGA(final GraphicsAlgorithm parent, final Class<?> gaSearchType) {
+        EList<GraphicsAlgorithm> childGAs = parent.getGraphicsAlgorithmChildren();
+        for (GraphicsAlgorithm graphicsAlgorithm : childGAs) {
+            if (graphicsAlgorithm.getClass().getCanonicalName().contentEquals(gaSearchType.getCanonicalName())) {
+                return graphicsAlgorithm;
+            } else if (graphicsAlgorithm.getClass() != gaSearchType
+                    && gaSearchType.isAssignableFrom(graphicsAlgorithm.getClass())) {
+                return graphicsAlgorithm;
+            }
+            if (graphicsAlgorithm.getGraphicsAlgorithmChildren().size() > 0) {
+                return findChildGA(graphicsAlgorithm, gaSearchType);
+            }
+        }
+        return null;
+    }
 }
