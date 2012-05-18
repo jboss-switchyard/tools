@@ -14,11 +14,12 @@ package org.switchyard.tools.ui.editor.diagram.composite;
 
 import org.eclipse.graphiti.features.IFeatureProvider;
 import org.eclipse.graphiti.features.context.IDirectEditingContext;
+import org.eclipse.graphiti.features.context.IUpdateContext;
+import org.eclipse.graphiti.features.context.impl.UpdateContext;
 import org.eclipse.graphiti.features.impl.AbstractDirectEditingFeature;
 import org.eclipse.graphiti.mm.algorithms.GraphicsAlgorithm;
 import org.eclipse.graphiti.mm.algorithms.Text;
 import org.eclipse.graphiti.mm.pictograms.PictogramElement;
-import org.eclipse.graphiti.mm.pictograms.Shape;
 import org.eclipse.soa.sca.sca1_1.model.sca.Composite;
 
 /**
@@ -126,9 +127,9 @@ public class SCADiagramDirectEditCompositeFeature extends AbstractDirectEditingF
         // Explicitly update the shape to display the new value in the diagram
         // Note, that this might not be necessary in future versions of Graphiti
         // (currently in discussion)
-
-        // we know, that pe is the Shape of the Text, so its container is the
-        // main shape of the EClass
-        updatePictogramElement(((Shape) pe).getContainer());
+        IUpdateContext updateContext = new UpdateContext(pe);
+        if (getFeatureProvider() != null) {
+            getFeatureProvider().updateIfPossible(updateContext);        
+        }
     }
 }

@@ -12,6 +12,9 @@
  ******************************************************************************/
 package org.switchyard.tools.ui.editor.property;
 
+import org.eclipse.emf.common.notify.Notification;
+import org.eclipse.emf.common.notify.impl.AdapterImpl;
+import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.transaction.RecordingCommand;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.eclipse.graphiti.features.context.IUpdateContext;
@@ -21,6 +24,7 @@ import org.eclipse.graphiti.services.Graphiti;
 import org.eclipse.graphiti.ui.platform.GFPropertySection;
 import org.eclipse.soa.sca.sca1_1.model.sca.Component;
 import org.eclipse.soa.sca.sca1_1.model.sca.Reference;
+import org.eclipse.soa.sca.sca1_1.model.sca.ScaPackage;
 import org.eclipse.soa.sca.sca1_1.model.sca.Service;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.custom.CLabel;
@@ -45,7 +49,8 @@ public class SwitchyardSCAPropertiesMainSection extends GFPropertySection implem
     private Object _businessObject;
     private boolean _inUpdate = false;
     private PictogramElement _pe = null;
-
+    private NameListener _nameListener = null;
+    
     /**
      * Constructor.
      */
@@ -147,6 +152,13 @@ public class SwitchyardSCAPropertiesMainSection extends GFPropertySection implem
             }
             _businessObject = bo;
             _pe = pe;
+            
+            if (_nameListener == null) {
+                _nameListener = new NameListener();
+            }
+            EObject eobj = (EObject) bo;
+            eobj.eAdapters().add(_nameListener);
+            
             _inUpdate = true;
             if (bo instanceof org.eclipse.soa.sca.sca1_1.model.sca.Composite) {
                 String name = ((org.eclipse.soa.sca.sca1_1.model.sca.Composite) bo).getName();
@@ -163,5 +175,21 @@ public class SwitchyardSCAPropertiesMainSection extends GFPropertySection implem
             }
             _inUpdate = false;
         }
+    }
+    
+    private final class NameListener extends AdapterImpl {
+
+        @Override
+        public void notifyChanged(Notification msg) {
+            if (msg.getFeature().equals(ScaPackage.eINSTANCE.getComposite_Name())) {
+                refresh();
+            } else if (msg.getFeature().equals(ScaPackage.eINSTANCE.getComponent_Name())) {
+                refresh();
+            } else {
+                refresh();
+            }
+            super.notifyChanged(msg);
+        }
+        
     }
 }
