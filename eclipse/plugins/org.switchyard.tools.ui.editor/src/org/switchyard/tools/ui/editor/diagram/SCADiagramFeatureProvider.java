@@ -12,6 +12,9 @@
  ******************************************************************************/
 package org.switchyard.tools.ui.editor.diagram;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import org.eclipse.graphiti.dt.IDiagramTypeProvider;
 import org.eclipse.graphiti.features.IAddFeature;
 import org.eclipse.graphiti.features.ICreateConnectionFeature;
@@ -41,6 +44,7 @@ import org.eclipse.soa.sca.sca1_1.model.sca.ComponentReference;
 import org.eclipse.soa.sca.sca1_1.model.sca.ComponentService;
 import org.eclipse.soa.sca.sca1_1.model.sca.Composite;
 import org.eclipse.soa.sca.sca1_1.model.sca.Implementation;
+import org.eclipse.soa.sca.sca1_1.model.sca.JavaInterface;
 import org.eclipse.soa.sca.sca1_1.model.sca.Reference;
 import org.eclipse.soa.sca.sca1_1.model.sca.Service;
 import org.switchyard.tools.models.switchyard1_0.switchyard.SwitchYardBindingType;
@@ -257,7 +261,12 @@ public class SCADiagramFeatureProvider extends DefaultFeatureProvider {
         if (pes != null && pes.length == 1) {
             Object bo = getBusinessObjectForPictogramElement(pes[0]);
             if (bo instanceof ComponentService) {
-                return new ICustomFeature[] {new SCADiagramCustomPromoteServiceFeature(this) };
+                final List<ICustomFeature> features = new ArrayList<ICustomFeature>(2);
+                features.add(new SCADiagramCustomPromoteServiceFeature(this));
+                if (((ComponentService) bo).getInterface() instanceof JavaInterface) {
+                    features.add(new Java2WSDLCustomFeature(this));
+                }
+                return features.toArray(new ICustomFeature[features.size()]);
             } else if (bo instanceof ComponentReference) {
                 return new ICustomFeature[] {new SCADiagramCustomPromoteReferenceFeature(this) };
             } else if (bo instanceof Composite) {
