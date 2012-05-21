@@ -6,7 +6,7 @@
  */
 package org.switchyard.tools.models.switchyard1_0.rules;
 
-import org.eclipse.emf.ecore.EObject;
+import org.switchyard.tools.models.switchyard1_0.commonrules.AuditType1;
 
 /**
  * <!-- begin-user-doc -->
@@ -18,5 +18,5 @@ import org.eclipse.emf.ecore.EObject;
  * @model extendedMetaData="name='AuditType' kind='empty'"
  * @generated
  */
-public interface AuditType extends EObject {
+public interface AuditType extends AuditType1 {
 } // AuditType

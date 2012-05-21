@@ -8,10 +8,9 @@ package org.switchyard.tools.models.switchyard1_0.bpm.impl;
 
 import org.eclipse.emf.ecore.EClass;
 
-import org.eclipse.emf.ecore.impl.EObjectImpl;
-
 import org.switchyard.tools.models.switchyard1_0.bpm.AuditType;
 import org.switchyard.tools.models.switchyard1_0.bpm.BPMPackage;
+import org.switchyard.tools.models.switchyard1_0.commonrules.impl.AuditType1Impl;
 
 /**
  * <!-- begin-user-doc -->
@@ -22,7 +21,7 @@ import org.switchyard.tools.models.switchyard1_0.bpm.BPMPackage;
  *
  * @generated
  */
-public class AuditTypeImpl extends EObjectImpl implements AuditType {
+public class AuditTypeImpl extends AuditType1Impl implements AuditType {
 	/**
      * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->

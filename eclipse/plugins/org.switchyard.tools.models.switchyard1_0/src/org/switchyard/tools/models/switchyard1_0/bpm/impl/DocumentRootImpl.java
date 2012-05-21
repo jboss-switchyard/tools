@@ -28,7 +28,10 @@ import org.switchyard.tools.models.switchyard1_0.bpm.AuditType;
 import org.switchyard.tools.models.switchyard1_0.bpm.BPMImplementationType;
 import org.switchyard.tools.models.switchyard1_0.bpm.BPMPackage;
 import org.switchyard.tools.models.switchyard1_0.bpm.DocumentRoot;
+import org.switchyard.tools.models.switchyard1_0.bpm.MappingType;
+import org.switchyard.tools.models.switchyard1_0.bpm.ParametersType;
 import org.switchyard.tools.models.switchyard1_0.bpm.ResourceType;
+import org.switchyard.tools.models.switchyard1_0.bpm.ResultsType;
 import org.switchyard.tools.models.switchyard1_0.bpm.TaskHandlerType;
 
 /**
@@ -44,7 +47,10 @@ import org.switchyard.tools.models.switchyard1_0.bpm.TaskHandlerType;
  *   <li>{@link org.switchyard.tools.models.switchyard1_0.bpm.impl.DocumentRootImpl#getAction <em>Action</em>}</li>
  *   <li>{@link org.switchyard.tools.models.switchyard1_0.bpm.impl.DocumentRootImpl#getAudit <em>Audit</em>}</li>
  *   <li>{@link org.switchyard.tools.models.switchyard1_0.bpm.impl.DocumentRootImpl#getImplementationBpm <em>Implementation Bpm</em>}</li>
+ *   <li>{@link org.switchyard.tools.models.switchyard1_0.bpm.impl.DocumentRootImpl#getMapping <em>Mapping</em>}</li>
+ *   <li>{@link org.switchyard.tools.models.switchyard1_0.bpm.impl.DocumentRootImpl#getParameters <em>Parameters</em>}</li>
  *   <li>{@link org.switchyard.tools.models.switchyard1_0.bpm.impl.DocumentRootImpl#getResource <em>Resource</em>}</li>
+ *   <li>{@link org.switchyard.tools.models.switchyard1_0.bpm.impl.DocumentRootImpl#getResults <em>Results</em>}</li>
  *   <li>{@link org.switchyard.tools.models.switchyard1_0.bpm.impl.DocumentRootImpl#getTaskHandler <em>Task Handler</em>}</li>
  * </ul>
  * </p>
@@ -220,6 +226,60 @@ public class DocumentRootImpl extends EObjectImpl implements DocumentRoot {
 
 	/**
      * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public MappingType getMapping() {
+        return (MappingType)getMixed().get(BPMPackage.Literals.DOCUMENT_ROOT__MAPPING, true);
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public NotificationChain basicSetMapping(MappingType newMapping, NotificationChain msgs) {
+        return ((FeatureMap.Internal)getMixed()).basicAdd(BPMPackage.Literals.DOCUMENT_ROOT__MAPPING, newMapping, msgs);
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public void setMapping(MappingType newMapping) {
+        ((FeatureMap.Internal)getMixed()).set(BPMPackage.Literals.DOCUMENT_ROOT__MAPPING, newMapping);
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public ParametersType getParameters() {
+        return (ParametersType)getMixed().get(BPMPackage.Literals.DOCUMENT_ROOT__PARAMETERS, true);
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public NotificationChain basicSetParameters(ParametersType newParameters, NotificationChain msgs) {
+        return ((FeatureMap.Internal)getMixed()).basicAdd(BPMPackage.Literals.DOCUMENT_ROOT__PARAMETERS, newParameters, msgs);
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public void setParameters(ParametersType newParameters) {
+        ((FeatureMap.Internal)getMixed()).set(BPMPackage.Literals.DOCUMENT_ROOT__PARAMETERS, newParameters);
+    }
+
+    /**
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
      * @generated
      */
@@ -246,6 +306,33 @@ public class DocumentRootImpl extends EObjectImpl implements DocumentRoot {
     }
 
 	/**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public ResultsType getResults() {
+        return (ResultsType)getMixed().get(BPMPackage.Literals.DOCUMENT_ROOT__RESULTS, true);
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public NotificationChain basicSetResults(ResultsType newResults, NotificationChain msgs) {
+        return ((FeatureMap.Internal)getMixed()).basicAdd(BPMPackage.Literals.DOCUMENT_ROOT__RESULTS, newResults, msgs);
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public void setResults(ResultsType newResults) {
+        ((FeatureMap.Internal)getMixed()).set(BPMPackage.Literals.DOCUMENT_ROOT__RESULTS, newResults);
+    }
+
+    /**
      * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
      * @generated
@@ -292,8 +379,14 @@ public class DocumentRootImpl extends EObjectImpl implements DocumentRoot {
                 return basicSetAudit(null, msgs);
             case BPMPackage.DOCUMENT_ROOT__IMPLEMENTATION_BPM:
                 return basicSetImplementationBpm(null, msgs);
+            case BPMPackage.DOCUMENT_ROOT__MAPPING:
+                return basicSetMapping(null, msgs);
+            case BPMPackage.DOCUMENT_ROOT__PARAMETERS:
+                return basicSetParameters(null, msgs);
             case BPMPackage.DOCUMENT_ROOT__RESOURCE:
                 return basicSetResource(null, msgs);
+            case BPMPackage.DOCUMENT_ROOT__RESULTS:
+                return basicSetResults(null, msgs);
             case BPMPackage.DOCUMENT_ROOT__TASK_HANDLER:
                 return basicSetTaskHandler(null, msgs);
         }
@@ -323,8 +416,14 @@ public class DocumentRootImpl extends EObjectImpl implements DocumentRoot {
                 return getAudit();
             case BPMPackage.DOCUMENT_ROOT__IMPLEMENTATION_BPM:
                 return getImplementationBpm();
+            case BPMPackage.DOCUMENT_ROOT__MAPPING:
+                return getMapping();
+            case BPMPackage.DOCUMENT_ROOT__PARAMETERS:
+                return getParameters();
             case BPMPackage.DOCUMENT_ROOT__RESOURCE:
                 return getResource();
+            case BPMPackage.DOCUMENT_ROOT__RESULTS:
+                return getResults();
             case BPMPackage.DOCUMENT_ROOT__TASK_HANDLER:
                 return getTaskHandler();
         }
@@ -357,8 +456,17 @@ public class DocumentRootImpl extends EObjectImpl implements DocumentRoot {
             case BPMPackage.DOCUMENT_ROOT__IMPLEMENTATION_BPM:
                 setImplementationBpm((BPMImplementationType)newValue);
                 return;
+            case BPMPackage.DOCUMENT_ROOT__MAPPING:
+                setMapping((MappingType)newValue);
+                return;
+            case BPMPackage.DOCUMENT_ROOT__PARAMETERS:
+                setParameters((ParametersType)newValue);
+                return;
             case BPMPackage.DOCUMENT_ROOT__RESOURCE:
                 setResource((ResourceType)newValue);
+                return;
+            case BPMPackage.DOCUMENT_ROOT__RESULTS:
+                setResults((ResultsType)newValue);
                 return;
             case BPMPackage.DOCUMENT_ROOT__TASK_HANDLER:
                 setTaskHandler((TaskHandlerType)newValue);
@@ -393,8 +501,17 @@ public class DocumentRootImpl extends EObjectImpl implements DocumentRoot {
             case BPMPackage.DOCUMENT_ROOT__IMPLEMENTATION_BPM:
                 setImplementationBpm((BPMImplementationType)null);
                 return;
+            case BPMPackage.DOCUMENT_ROOT__MAPPING:
+                setMapping((MappingType)null);
+                return;
+            case BPMPackage.DOCUMENT_ROOT__PARAMETERS:
+                setParameters((ParametersType)null);
+                return;
             case BPMPackage.DOCUMENT_ROOT__RESOURCE:
                 setResource((ResourceType)null);
+                return;
+            case BPMPackage.DOCUMENT_ROOT__RESULTS:
+                setResults((ResultsType)null);
                 return;
             case BPMPackage.DOCUMENT_ROOT__TASK_HANDLER:
                 setTaskHandler((TaskHandlerType)null);
@@ -423,8 +540,14 @@ public class DocumentRootImpl extends EObjectImpl implements DocumentRoot {
                 return getAudit() != null;
             case BPMPackage.DOCUMENT_ROOT__IMPLEMENTATION_BPM:
                 return getImplementationBpm() != null;
+            case BPMPackage.DOCUMENT_ROOT__MAPPING:
+                return getMapping() != null;
+            case BPMPackage.DOCUMENT_ROOT__PARAMETERS:
+                return getParameters() != null;
             case BPMPackage.DOCUMENT_ROOT__RESOURCE:
                 return getResource() != null;
+            case BPMPackage.DOCUMENT_ROOT__RESULTS:
+                return getResults() != null;
             case BPMPackage.DOCUMENT_ROOT__TASK_HANDLER:
                 return getTaskHandler() != null;
         }

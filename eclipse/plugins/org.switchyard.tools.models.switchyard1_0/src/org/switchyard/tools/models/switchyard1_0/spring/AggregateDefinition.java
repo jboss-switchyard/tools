@@ -90,10 +90,12 @@ import org.eclipse.emf.ecore.util.FeatureMap;
  *   <li>{@link org.switchyard.tools.models.switchyard1_0.spring.AggregateDefinition#isDiscardOnCompletionTimeout <em>Discard On Completion Timeout</em>}</li>
  *   <li>{@link org.switchyard.tools.models.switchyard1_0.spring.AggregateDefinition#isEagerCheckCompletion <em>Eager Check Completion</em>}</li>
  *   <li>{@link org.switchyard.tools.models.switchyard1_0.spring.AggregateDefinition#getExecutorServiceRef <em>Executor Service Ref</em>}</li>
+ *   <li>{@link org.switchyard.tools.models.switchyard1_0.spring.AggregateDefinition#isForceCompletionOnStop <em>Force Completion On Stop</em>}</li>
  *   <li>{@link org.switchyard.tools.models.switchyard1_0.spring.AggregateDefinition#isGroupExchanges <em>Group Exchanges</em>}</li>
  *   <li>{@link org.switchyard.tools.models.switchyard1_0.spring.AggregateDefinition#isIgnoreInvalidCorrelationKeys <em>Ignore Invalid Correlation Keys</em>}</li>
  *   <li>{@link org.switchyard.tools.models.switchyard1_0.spring.AggregateDefinition#isParallelProcessing <em>Parallel Processing</em>}</li>
  *   <li>{@link org.switchyard.tools.models.switchyard1_0.spring.AggregateDefinition#getStrategyRef <em>Strategy Ref</em>}</li>
+ *   <li>{@link org.switchyard.tools.models.switchyard1_0.spring.AggregateDefinition#getTimeoutCheckerExecutorServiceRef <em>Timeout Checker Executor Service Ref</em>}</li>
  *   <li>{@link org.switchyard.tools.models.switchyard1_0.spring.AggregateDefinition#getAnyAttribute1 <em>Any Attribute1</em>}</li>
  * </ul>
  * </p>
@@ -1647,6 +1649,60 @@ public interface AggregateDefinition extends ProcessorDefinition {
 	void setExecutorServiceRef(String value);
 
 	/**
+     * Returns the value of the '<em><b>Force Completion On Stop</b></em>' attribute.
+     * <!-- begin-user-doc -->
+     * <p>
+     * If the meaning of the '<em>Force Completion On Stop</em>' attribute isn't clear,
+     * there really should be more of a description here...
+     * </p>
+     * <!-- end-user-doc -->
+     * @return the value of the '<em>Force Completion On Stop</em>' attribute.
+     * @see #isSetForceCompletionOnStop()
+     * @see #unsetForceCompletionOnStop()
+     * @see #setForceCompletionOnStop(boolean)
+     * @see org.switchyard.tools.models.switchyard1_0.spring.SpringPackage#getAggregateDefinition_ForceCompletionOnStop()
+     * @model unsettable="true" dataType="org.eclipse.emf.ecore.xml.type.Boolean"
+     *        extendedMetaData="kind='attribute' name='forceCompletionOnStop'"
+     * @generated
+     */
+    boolean isForceCompletionOnStop();
+
+    /**
+     * Sets the value of the '{@link org.switchyard.tools.models.switchyard1_0.spring.AggregateDefinition#isForceCompletionOnStop <em>Force Completion On Stop</em>}' attribute.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @param value the new value of the '<em>Force Completion On Stop</em>' attribute.
+     * @see #isSetForceCompletionOnStop()
+     * @see #unsetForceCompletionOnStop()
+     * @see #isForceCompletionOnStop()
+     * @generated
+     */
+    void setForceCompletionOnStop(boolean value);
+
+    /**
+     * Unsets the value of the '{@link org.switchyard.tools.models.switchyard1_0.spring.AggregateDefinition#isForceCompletionOnStop <em>Force Completion On Stop</em>}' attribute.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @see #isSetForceCompletionOnStop()
+     * @see #isForceCompletionOnStop()
+     * @see #setForceCompletionOnStop(boolean)
+     * @generated
+     */
+    void unsetForceCompletionOnStop();
+
+    /**
+     * Returns whether the value of the '{@link org.switchyard.tools.models.switchyard1_0.spring.AggregateDefinition#isForceCompletionOnStop <em>Force Completion On Stop</em>}' attribute is set.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @return whether the value of the '<em>Force Completion On Stop</em>' attribute is set.
+     * @see #unsetForceCompletionOnStop()
+     * @see #isForceCompletionOnStop()
+     * @see #setForceCompletionOnStop(boolean)
+     * @generated
+     */
+    boolean isSetForceCompletionOnStop();
+
+    /**
      * Returns the value of the '<em><b>Group Exchanges</b></em>' attribute.
      * <!-- begin-user-doc -->
 	 * <p>
@@ -1836,6 +1892,33 @@ public interface AggregateDefinition extends ProcessorDefinition {
 	void setStrategyRef(String value);
 
 	/**
+     * Returns the value of the '<em><b>Timeout Checker Executor Service Ref</b></em>' attribute.
+     * <!-- begin-user-doc -->
+     * <p>
+     * If the meaning of the '<em>Timeout Checker Executor Service Ref</em>' attribute isn't clear,
+     * there really should be more of a description here...
+     * </p>
+     * <!-- end-user-doc -->
+     * @return the value of the '<em>Timeout Checker Executor Service Ref</em>' attribute.
+     * @see #setTimeoutCheckerExecutorServiceRef(String)
+     * @see org.switchyard.tools.models.switchyard1_0.spring.SpringPackage#getAggregateDefinition_TimeoutCheckerExecutorServiceRef()
+     * @model dataType="org.eclipse.emf.ecore.xml.type.String"
+     *        extendedMetaData="kind='attribute' name='timeoutCheckerExecutorServiceRef'"
+     * @generated
+     */
+    String getTimeoutCheckerExecutorServiceRef();
+
+    /**
+     * Sets the value of the '{@link org.switchyard.tools.models.switchyard1_0.spring.AggregateDefinition#getTimeoutCheckerExecutorServiceRef <em>Timeout Checker Executor Service Ref</em>}' attribute.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @param value the new value of the '<em>Timeout Checker Executor Service Ref</em>' attribute.
+     * @see #getTimeoutCheckerExecutorServiceRef()
+     * @generated
+     */
+    void setTimeoutCheckerExecutorServiceRef(String value);
+
+    /**
      * Returns the value of the '<em><b>Any Attribute1</b></em>' attribute list.
      * The list contents are of type {@link org.eclipse.emf.ecore.util.FeatureMap.Entry}.
      * <!-- begin-user-doc -->
@@ -1847,7 +1930,7 @@ public interface AggregateDefinition extends ProcessorDefinition {
      * @return the value of the '<em>Any Attribute1</em>' attribute list.
      * @see org.switchyard.tools.models.switchyard1_0.spring.SpringPackage#getAggregateDefinition_AnyAttribute1()
      * @model unique="false" dataType="org.eclipse.emf.ecore.EFeatureMapEntry" many="true"
-     *        extendedMetaData="kind='attributeWildcard' wildcards='##other' name=':80' processing='skip'"
+     *        extendedMetaData="kind='attributeWildcard' wildcards='##other' name=':82' processing='skip'"
      * @generated
      */
 	FeatureMap getAnyAttribute1();

@@ -33,6 +33,7 @@ import org.switchyard.tools.models.switchyard1_0.spring.Hl7DataFormat;
 import org.switchyard.tools.models.switchyard1_0.spring.JaxbDataFormat;
 import org.switchyard.tools.models.switchyard1_0.spring.JibxDataFormat;
 import org.switchyard.tools.models.switchyard1_0.spring.JsonDataFormat;
+import org.switchyard.tools.models.switchyard1_0.spring.PgpDataFormat;
 import org.switchyard.tools.models.switchyard1_0.spring.ProtobufDataFormat;
 import org.switchyard.tools.models.switchyard1_0.spring.RssDataFormat;
 import org.switchyard.tools.models.switchyard1_0.spring.SerializationDataFormat;
@@ -75,6 +76,7 @@ import org.switchyard.tools.models.switchyard1_0.spring.ZipDataFormat;
  *   <li>{@link org.switchyard.tools.models.switchyard1_0.spring.impl.DataFormatsDefinitionImpl#getTidyMarkup <em>Tidy Markup</em>}</li>
  *   <li>{@link org.switchyard.tools.models.switchyard1_0.spring.impl.DataFormatsDefinitionImpl#getXmlBeans <em>Xml Beans</em>}</li>
  *   <li>{@link org.switchyard.tools.models.switchyard1_0.spring.impl.DataFormatsDefinitionImpl#getXstream <em>Xstream</em>}</li>
+ *   <li>{@link org.switchyard.tools.models.switchyard1_0.spring.impl.DataFormatsDefinitionImpl#getPgp <em>Pgp</em>}</li>
  *   <li>{@link org.switchyard.tools.models.switchyard1_0.spring.impl.DataFormatsDefinitionImpl#getZip <em>Zip</em>}</li>
  * </ul>
  * </p>
@@ -314,6 +316,15 @@ public class DataFormatsDefinitionImpl extends EObjectImpl implements DataFormat
 
 	/**
      * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public EList<PgpDataFormat> getPgp() {
+        return getGroup().list(SpringPackage.eINSTANCE.getDataFormatsDefinition_Pgp());
+    }
+
+    /**
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
      * @generated
      */
@@ -373,6 +384,8 @@ public class DataFormatsDefinitionImpl extends EObjectImpl implements DataFormat
                 return ((InternalEList<?>)getXmlBeans()).basicRemove(otherEnd, msgs);
             case SpringPackage.DATA_FORMATS_DEFINITION__XSTREAM:
                 return ((InternalEList<?>)getXstream()).basicRemove(otherEnd, msgs);
+            case SpringPackage.DATA_FORMATS_DEFINITION__PGP:
+                return ((InternalEList<?>)getPgp()).basicRemove(otherEnd, msgs);
             case SpringPackage.DATA_FORMATS_DEFINITION__ZIP:
                 return ((InternalEList<?>)getZip()).basicRemove(otherEnd, msgs);
         }
@@ -432,6 +445,8 @@ public class DataFormatsDefinitionImpl extends EObjectImpl implements DataFormat
                 return getXmlBeans();
             case SpringPackage.DATA_FORMATS_DEFINITION__XSTREAM:
                 return getXstream();
+            case SpringPackage.DATA_FORMATS_DEFINITION__PGP:
+                return getPgp();
             case SpringPackage.DATA_FORMATS_DEFINITION__ZIP:
                 return getZip();
         }
@@ -534,6 +549,10 @@ public class DataFormatsDefinitionImpl extends EObjectImpl implements DataFormat
                 getXstream().clear();
                 getXstream().addAll((Collection<? extends XStreamDataFormat>)newValue);
                 return;
+            case SpringPackage.DATA_FORMATS_DEFINITION__PGP:
+                getPgp().clear();
+                getPgp().addAll((Collection<? extends PgpDataFormat>)newValue);
+                return;
             case SpringPackage.DATA_FORMATS_DEFINITION__ZIP:
                 getZip().clear();
                 getZip().addAll((Collection<? extends ZipDataFormat>)newValue);
@@ -616,6 +635,9 @@ public class DataFormatsDefinitionImpl extends EObjectImpl implements DataFormat
             case SpringPackage.DATA_FORMATS_DEFINITION__XSTREAM:
                 getXstream().clear();
                 return;
+            case SpringPackage.DATA_FORMATS_DEFINITION__PGP:
+                getPgp().clear();
+                return;
             case SpringPackage.DATA_FORMATS_DEFINITION__ZIP:
                 getZip().clear();
                 return;
@@ -675,6 +697,8 @@ public class DataFormatsDefinitionImpl extends EObjectImpl implements DataFormat
                 return !getXmlBeans().isEmpty();
             case SpringPackage.DATA_FORMATS_DEFINITION__XSTREAM:
                 return !getXstream().isEmpty();
+            case SpringPackage.DATA_FORMATS_DEFINITION__PGP:
+                return !getPgp().isEmpty();
             case SpringPackage.DATA_FORMATS_DEFINITION__ZIP:
                 return !getZip().isEmpty();
         }

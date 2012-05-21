@@ -16,6 +16,8 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.soa.sca.sca1_1.model.sca.CommonExtensionBase;
 import org.eclipse.soa.sca.sca1_1.model.sca.Implementation;
 import org.switchyard.tools.models.switchyard1_0.bpm.*;
+import org.switchyard.tools.models.switchyard1_0.commonrules.AuditType1;
+import org.switchyard.tools.models.switchyard1_0.commonrules.CommonImplementationType;
 
 /**
  * <!-- begin-user-doc -->
@@ -90,8 +92,20 @@ public class BPMAdapterFactory extends AdapterFactoryImpl {
                 return createDocumentRootAdapter();
             }
             @Override
+            public Adapter caseMappingType(MappingType object) {
+                return createMappingTypeAdapter();
+            }
+            @Override
+            public Adapter caseParametersType(ParametersType object) {
+                return createParametersTypeAdapter();
+            }
+            @Override
             public Adapter caseResourceType(ResourceType object) {
                 return createResourceTypeAdapter();
+            }
+            @Override
+            public Adapter caseResultsType(ResultsType object) {
+                return createResultsTypeAdapter();
             }
             @Override
             public Adapter caseTaskHandlerType(TaskHandlerType object) {
@@ -102,8 +116,24 @@ public class BPMAdapterFactory extends AdapterFactoryImpl {
                 return createCommonExtensionBaseAdapter();
             }
             @Override
+            public Adapter caseAuditType1(AuditType1 object) {
+                return createAuditType1Adapter();
+            }
+            @Override
             public Adapter caseImplementation(Implementation object) {
                 return createImplementationAdapter();
+            }
+            @Override
+            public Adapter caseCommonImplementationType(CommonImplementationType object) {
+                return createCommonImplementationTypeAdapter();
+            }
+            @Override
+            public Adapter caseCommonRules_MappingType(org.switchyard.tools.models.switchyard1_0.commonrules.MappingType object) {
+                return createCommonRules_MappingTypeAdapter();
+            }
+            @Override
+            public Adapter caseSwitchyard_ResourceType(org.switchyard.tools.models.switchyard1_0.switchyard.ResourceType object) {
+                return createSwitchyard_ResourceTypeAdapter();
             }
             @Override
             public Adapter defaultCase(EObject object) {
@@ -182,6 +212,34 @@ public class BPMAdapterFactory extends AdapterFactoryImpl {
     }
 
 	/**
+     * Creates a new adapter for an object of class '{@link org.switchyard.tools.models.switchyard1_0.bpm.MappingType <em>Mapping Type</em>}'.
+     * <!-- begin-user-doc -->
+     * This default implementation returns null so that we can easily ignore cases;
+     * it's useful to ignore a case when inheritance will catch all the cases anyway.
+     * <!-- end-user-doc -->
+     * @return the new adapter.
+     * @see org.switchyard.tools.models.switchyard1_0.bpm.MappingType
+     * @generated
+     */
+    public Adapter createMappingTypeAdapter() {
+        return null;
+    }
+
+    /**
+     * Creates a new adapter for an object of class '{@link org.switchyard.tools.models.switchyard1_0.bpm.ParametersType <em>Parameters Type</em>}'.
+     * <!-- begin-user-doc -->
+     * This default implementation returns null so that we can easily ignore cases;
+     * it's useful to ignore a case when inheritance will catch all the cases anyway.
+     * <!-- end-user-doc -->
+     * @return the new adapter.
+     * @see org.switchyard.tools.models.switchyard1_0.bpm.ParametersType
+     * @generated
+     */
+    public Adapter createParametersTypeAdapter() {
+        return null;
+    }
+
+    /**
      * Creates a new adapter for an object of class '{@link org.switchyard.tools.models.switchyard1_0.bpm.ResourceType <em>Resource Type</em>}'.
      * <!-- begin-user-doc -->
 	 * This default implementation returns null so that we can easily ignore cases;
@@ -196,6 +254,20 @@ public class BPMAdapterFactory extends AdapterFactoryImpl {
     }
 
 	/**
+     * Creates a new adapter for an object of class '{@link org.switchyard.tools.models.switchyard1_0.bpm.ResultsType <em>Results Type</em>}'.
+     * <!-- begin-user-doc -->
+     * This default implementation returns null so that we can easily ignore cases;
+     * it's useful to ignore a case when inheritance will catch all the cases anyway.
+     * <!-- end-user-doc -->
+     * @return the new adapter.
+     * @see org.switchyard.tools.models.switchyard1_0.bpm.ResultsType
+     * @generated
+     */
+    public Adapter createResultsTypeAdapter() {
+        return null;
+    }
+
+    /**
      * Creates a new adapter for an object of class '{@link org.switchyard.tools.models.switchyard1_0.bpm.TaskHandlerType <em>Task Handler Type</em>}'.
      * <!-- begin-user-doc -->
 	 * This default implementation returns null so that we can easily ignore cases;
@@ -224,6 +296,20 @@ public class BPMAdapterFactory extends AdapterFactoryImpl {
     }
 
     /**
+     * Creates a new adapter for an object of class '{@link org.switchyard.tools.models.switchyard1_0.commonrules.AuditType1 <em>Audit Type1</em>}'.
+     * <!-- begin-user-doc -->
+     * This default implementation returns null so that we can easily ignore cases;
+     * it's useful to ignore a case when inheritance will catch all the cases anyway.
+     * <!-- end-user-doc -->
+     * @return the new adapter.
+     * @see org.switchyard.tools.models.switchyard1_0.commonrules.AuditType1
+     * @generated
+     */
+    public Adapter createAuditType1Adapter() {
+        return null;
+    }
+
+    /**
      * Creates a new adapter for an object of class '{@link org.eclipse.soa.sca.sca1_1.model.sca.Implementation <em>Implementation</em>}'.
      * <!-- begin-user-doc -->
      * This default implementation returns null so that we can easily ignore cases;
@@ -234,6 +320,48 @@ public class BPMAdapterFactory extends AdapterFactoryImpl {
      * @generated
      */
     public Adapter createImplementationAdapter() {
+        return null;
+    }
+
+    /**
+     * Creates a new adapter for an object of class '{@link org.switchyard.tools.models.switchyard1_0.commonrules.CommonImplementationType <em>Common Implementation Type</em>}'.
+     * <!-- begin-user-doc -->
+     * This default implementation returns null so that we can easily ignore cases;
+     * it's useful to ignore a case when inheritance will catch all the cases anyway.
+     * <!-- end-user-doc -->
+     * @return the new adapter.
+     * @see org.switchyard.tools.models.switchyard1_0.commonrules.CommonImplementationType
+     * @generated
+     */
+    public Adapter createCommonImplementationTypeAdapter() {
+        return null;
+    }
+
+    /**
+     * Creates a new adapter for an object of class '{@link org.switchyard.tools.models.switchyard1_0.commonrules.MappingType <em>Mapping Type</em>}'.
+     * <!-- begin-user-doc -->
+     * This default implementation returns null so that we can easily ignore cases;
+     * it's useful to ignore a case when inheritance will catch all the cases anyway.
+     * <!-- end-user-doc -->
+     * @return the new adapter.
+     * @see org.switchyard.tools.models.switchyard1_0.commonrules.MappingType
+     * @generated
+     */
+    public Adapter createCommonRules_MappingTypeAdapter() {
+        return null;
+    }
+
+    /**
+     * Creates a new adapter for an object of class '{@link org.switchyard.tools.models.switchyard1_0.switchyard.ResourceType <em>Resource Type</em>}'.
+     * <!-- begin-user-doc -->
+     * This default implementation returns null so that we can easily ignore cases;
+     * it's useful to ignore a case when inheritance will catch all the cases anyway.
+     * <!-- end-user-doc -->
+     * @return the new adapter.
+     * @see org.switchyard.tools.models.switchyard1_0.switchyard.ResourceType
+     * @generated
+     */
+    public Adapter createSwitchyard_ResourceTypeAdapter() {
         return null;
     }
 

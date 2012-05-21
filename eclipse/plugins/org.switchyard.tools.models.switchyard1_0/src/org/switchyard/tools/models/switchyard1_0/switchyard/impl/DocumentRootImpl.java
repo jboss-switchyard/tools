@@ -25,13 +25,11 @@ import org.eclipse.emf.ecore.util.InternalEList;
 
 import org.switchyard.tools.models.switchyard1_0.switchyard.ArtifactType;
 import org.switchyard.tools.models.switchyard1_0.switchyard.ArtifactsType;
-import org.switchyard.tools.models.switchyard1_0.switchyard.ContextMapperType;
 import org.switchyard.tools.models.switchyard1_0.switchyard.DocumentRoot;
 import org.switchyard.tools.models.switchyard1_0.switchyard.DomainType;
 import org.switchyard.tools.models.switchyard1_0.switchyard.EsbInterface;
 import org.switchyard.tools.models.switchyard1_0.switchyard.HandlerType;
 import org.switchyard.tools.models.switchyard1_0.switchyard.HandlersType;
-import org.switchyard.tools.models.switchyard1_0.switchyard.MessageComposerType;
 import org.switchyard.tools.models.switchyard1_0.switchyard.PropertiesType;
 import org.switchyard.tools.models.switchyard1_0.switchyard.PropertyType;
 import org.switchyard.tools.models.switchyard1_0.switchyard.ResourceType;
@@ -56,12 +54,10 @@ import org.switchyard.tools.models.switchyard1_0.switchyard.ValidatesType;
  *   <li>{@link org.switchyard.tools.models.switchyard1_0.switchyard.impl.DocumentRootImpl#getArtifact <em>Artifact</em>}</li>
  *   <li>{@link org.switchyard.tools.models.switchyard1_0.switchyard.impl.DocumentRootImpl#getArtifacts <em>Artifacts</em>}</li>
  *   <li>{@link org.switchyard.tools.models.switchyard1_0.switchyard.impl.DocumentRootImpl#getBindingSwitchyard <em>Binding Switchyard</em>}</li>
- *   <li>{@link org.switchyard.tools.models.switchyard1_0.switchyard.impl.DocumentRootImpl#getContextMapper <em>Context Mapper</em>}</li>
  *   <li>{@link org.switchyard.tools.models.switchyard1_0.switchyard.impl.DocumentRootImpl#getDomain <em>Domain</em>}</li>
  *   <li>{@link org.switchyard.tools.models.switchyard1_0.switchyard.impl.DocumentRootImpl#getHandler <em>Handler</em>}</li>
  *   <li>{@link org.switchyard.tools.models.switchyard1_0.switchyard.impl.DocumentRootImpl#getHandlers <em>Handlers</em>}</li>
  *   <li>{@link org.switchyard.tools.models.switchyard1_0.switchyard.impl.DocumentRootImpl#getInterfaceEsb <em>Interface Esb</em>}</li>
- *   <li>{@link org.switchyard.tools.models.switchyard1_0.switchyard.impl.DocumentRootImpl#getMessageComposer <em>Message Composer</em>}</li>
  *   <li>{@link org.switchyard.tools.models.switchyard1_0.switchyard.impl.DocumentRootImpl#getProperties <em>Properties</em>}</li>
  *   <li>{@link org.switchyard.tools.models.switchyard1_0.switchyard.impl.DocumentRootImpl#getProperty <em>Property</em>}</li>
  *   <li>{@link org.switchyard.tools.models.switchyard1_0.switchyard.impl.DocumentRootImpl#getResource <em>Resource</em>}</li>
@@ -238,33 +234,6 @@ public class DocumentRootImpl extends EObjectImpl implements DocumentRoot {
 	 * <!-- end-user-doc -->
      * @generated
      */
-	public ContextMapperType getContextMapper() {
-        return (ContextMapperType)getMixed().get(SwitchyardPackage.Literals.DOCUMENT_ROOT__CONTEXT_MAPPER, true);
-    }
-
-	/**
-     * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-     * @generated
-     */
-	public NotificationChain basicSetContextMapper(ContextMapperType newContextMapper, NotificationChain msgs) {
-        return ((FeatureMap.Internal)getMixed()).basicAdd(SwitchyardPackage.Literals.DOCUMENT_ROOT__CONTEXT_MAPPER, newContextMapper, msgs);
-    }
-
-	/**
-     * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-     * @generated
-     */
-	public void setContextMapper(ContextMapperType newContextMapper) {
-        ((FeatureMap.Internal)getMixed()).set(SwitchyardPackage.Literals.DOCUMENT_ROOT__CONTEXT_MAPPER, newContextMapper);
-    }
-
-	/**
-     * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-     * @generated
-     */
 	public DomainType getDomain() {
         return (DomainType)getMixed().get(SwitchyardPackage.Literals.DOCUMENT_ROOT__DOMAIN, true);
     }
@@ -366,33 +335,6 @@ public class DocumentRootImpl extends EObjectImpl implements DocumentRoot {
      */
 	public void setInterfaceEsb(EsbInterface newInterfaceEsb) {
         ((FeatureMap.Internal)getMixed()).set(SwitchyardPackage.Literals.DOCUMENT_ROOT__INTERFACE_ESB, newInterfaceEsb);
-    }
-
-	/**
-     * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-     * @generated
-     */
-	public MessageComposerType getMessageComposer() {
-        return (MessageComposerType)getMixed().get(SwitchyardPackage.Literals.DOCUMENT_ROOT__MESSAGE_COMPOSER, true);
-    }
-
-	/**
-     * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-     * @generated
-     */
-	public NotificationChain basicSetMessageComposer(MessageComposerType newMessageComposer, NotificationChain msgs) {
-        return ((FeatureMap.Internal)getMixed()).basicAdd(SwitchyardPackage.Literals.DOCUMENT_ROOT__MESSAGE_COMPOSER, newMessageComposer, msgs);
-    }
-
-	/**
-     * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-     * @generated
-     */
-	public void setMessageComposer(MessageComposerType newMessageComposer) {
-        ((FeatureMap.Internal)getMixed()).set(SwitchyardPackage.Literals.DOCUMENT_ROOT__MESSAGE_COMPOSER, newMessageComposer);
     }
 
 	/**
@@ -613,8 +555,6 @@ public class DocumentRootImpl extends EObjectImpl implements DocumentRoot {
                 return basicSetArtifacts(null, msgs);
             case SwitchyardPackage.DOCUMENT_ROOT__BINDING_SWITCHYARD:
                 return basicSetBindingSwitchyard(null, msgs);
-            case SwitchyardPackage.DOCUMENT_ROOT__CONTEXT_MAPPER:
-                return basicSetContextMapper(null, msgs);
             case SwitchyardPackage.DOCUMENT_ROOT__DOMAIN:
                 return basicSetDomain(null, msgs);
             case SwitchyardPackage.DOCUMENT_ROOT__HANDLER:
@@ -623,8 +563,6 @@ public class DocumentRootImpl extends EObjectImpl implements DocumentRoot {
                 return basicSetHandlers(null, msgs);
             case SwitchyardPackage.DOCUMENT_ROOT__INTERFACE_ESB:
                 return basicSetInterfaceEsb(null, msgs);
-            case SwitchyardPackage.DOCUMENT_ROOT__MESSAGE_COMPOSER:
-                return basicSetMessageComposer(null, msgs);
             case SwitchyardPackage.DOCUMENT_ROOT__PROPERTIES:
                 return basicSetProperties(null, msgs);
             case SwitchyardPackage.DOCUMENT_ROOT__PROPERTY:
@@ -668,8 +606,6 @@ public class DocumentRootImpl extends EObjectImpl implements DocumentRoot {
                 return getArtifacts();
             case SwitchyardPackage.DOCUMENT_ROOT__BINDING_SWITCHYARD:
                 return getBindingSwitchyard();
-            case SwitchyardPackage.DOCUMENT_ROOT__CONTEXT_MAPPER:
-                return getContextMapper();
             case SwitchyardPackage.DOCUMENT_ROOT__DOMAIN:
                 return getDomain();
             case SwitchyardPackage.DOCUMENT_ROOT__HANDLER:
@@ -678,8 +614,6 @@ public class DocumentRootImpl extends EObjectImpl implements DocumentRoot {
                 return getHandlers();
             case SwitchyardPackage.DOCUMENT_ROOT__INTERFACE_ESB:
                 return getInterfaceEsb();
-            case SwitchyardPackage.DOCUMENT_ROOT__MESSAGE_COMPOSER:
-                return getMessageComposer();
             case SwitchyardPackage.DOCUMENT_ROOT__PROPERTIES:
                 return getProperties();
             case SwitchyardPackage.DOCUMENT_ROOT__PROPERTY:
@@ -723,9 +657,6 @@ public class DocumentRootImpl extends EObjectImpl implements DocumentRoot {
             case SwitchyardPackage.DOCUMENT_ROOT__ARTIFACTS:
                 setArtifacts((ArtifactsType)newValue);
                 return;
-            case SwitchyardPackage.DOCUMENT_ROOT__CONTEXT_MAPPER:
-                setContextMapper((ContextMapperType)newValue);
-                return;
             case SwitchyardPackage.DOCUMENT_ROOT__DOMAIN:
                 setDomain((DomainType)newValue);
                 return;
@@ -737,9 +668,6 @@ public class DocumentRootImpl extends EObjectImpl implements DocumentRoot {
                 return;
             case SwitchyardPackage.DOCUMENT_ROOT__INTERFACE_ESB:
                 setInterfaceEsb((EsbInterface)newValue);
-                return;
-            case SwitchyardPackage.DOCUMENT_ROOT__MESSAGE_COMPOSER:
-                setMessageComposer((MessageComposerType)newValue);
                 return;
             case SwitchyardPackage.DOCUMENT_ROOT__PROPERTIES:
                 setProperties((PropertiesType)newValue);
@@ -786,9 +714,6 @@ public class DocumentRootImpl extends EObjectImpl implements DocumentRoot {
             case SwitchyardPackage.DOCUMENT_ROOT__ARTIFACTS:
                 setArtifacts((ArtifactsType)null);
                 return;
-            case SwitchyardPackage.DOCUMENT_ROOT__CONTEXT_MAPPER:
-                setContextMapper((ContextMapperType)null);
-                return;
             case SwitchyardPackage.DOCUMENT_ROOT__DOMAIN:
                 setDomain((DomainType)null);
                 return;
@@ -800,9 +725,6 @@ public class DocumentRootImpl extends EObjectImpl implements DocumentRoot {
                 return;
             case SwitchyardPackage.DOCUMENT_ROOT__INTERFACE_ESB:
                 setInterfaceEsb((EsbInterface)null);
-                return;
-            case SwitchyardPackage.DOCUMENT_ROOT__MESSAGE_COMPOSER:
-                setMessageComposer((MessageComposerType)null);
                 return;
             case SwitchyardPackage.DOCUMENT_ROOT__PROPERTIES:
                 setProperties((PropertiesType)null);
@@ -846,8 +768,6 @@ public class DocumentRootImpl extends EObjectImpl implements DocumentRoot {
                 return getArtifacts() != null;
             case SwitchyardPackage.DOCUMENT_ROOT__BINDING_SWITCHYARD:
                 return getBindingSwitchyard() != null;
-            case SwitchyardPackage.DOCUMENT_ROOT__CONTEXT_MAPPER:
-                return getContextMapper() != null;
             case SwitchyardPackage.DOCUMENT_ROOT__DOMAIN:
                 return getDomain() != null;
             case SwitchyardPackage.DOCUMENT_ROOT__HANDLER:
@@ -856,8 +776,6 @@ public class DocumentRootImpl extends EObjectImpl implements DocumentRoot {
                 return getHandlers() != null;
             case SwitchyardPackage.DOCUMENT_ROOT__INTERFACE_ESB:
                 return getInterfaceEsb() != null;
-            case SwitchyardPackage.DOCUMENT_ROOT__MESSAGE_COMPOSER:
-                return getMessageComposer() != null;
             case SwitchyardPackage.DOCUMENT_ROOT__PROPERTIES:
                 return getProperties() != null;
             case SwitchyardPackage.DOCUMENT_ROOT__PROPERTY:

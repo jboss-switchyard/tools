@@ -8,7 +8,7 @@ package org.switchyard.tools.models.switchyard1_0.rules;
 
 import org.eclipse.emf.common.util.EList;
 
-import org.eclipse.soa.sca.sca1_1.model.sca.Implementation;
+import org.switchyard.tools.models.switchyard1_0.commonrules.CommonImplementationType;
 
 /**
  * <!-- begin-user-doc -->
@@ -22,6 +22,8 @@ import org.eclipse.soa.sca.sca1_1.model.sca.Implementation;
  *   <li>{@link org.switchyard.tools.models.switchyard1_0.rules.RulesImplementationType#getAudit <em>Audit</em>}</li>
  *   <li>{@link org.switchyard.tools.models.switchyard1_0.rules.RulesImplementationType#getChannel <em>Channel</em>}</li>
  *   <li>{@link org.switchyard.tools.models.switchyard1_0.rules.RulesImplementationType#getResource <em>Resource</em>}</li>
+ *   <li>{@link org.switchyard.tools.models.switchyard1_0.rules.RulesImplementationType#getGlobals <em>Globals</em>}</li>
+ *   <li>{@link org.switchyard.tools.models.switchyard1_0.rules.RulesImplementationType#getMessageContentName <em>Message Content Name</em>}</li>
  * </ul>
  * </p>
  *
@@ -29,7 +31,7 @@ import org.eclipse.soa.sca.sca1_1.model.sca.Implementation;
  * @model extendedMetaData="name='RulesImplementationType' kind='elementOnly'"
  * @generated
  */
-public interface RulesImplementationType extends Implementation {
+public interface RulesImplementationType extends CommonImplementationType {
 	/**
      * Returns the value of the '<em><b>Action</b></em>' containment reference list.
      * The list contents are of type {@link org.switchyard.tools.models.switchyard1_0.rules.ActionType1}.
@@ -107,5 +109,59 @@ public interface RulesImplementationType extends Implementation {
      * @generated
      */
 	EList<ResourceType> getResource();
+
+    /**
+     * Returns the value of the '<em><b>Globals</b></em>' containment reference.
+     * <!-- begin-user-doc -->
+     * <p>
+     * If the meaning of the '<em>Globals</em>' containment reference isn't clear,
+     * there really should be more of a description here...
+     * </p>
+     * <!-- end-user-doc -->
+     * @return the value of the '<em>Globals</em>' containment reference.
+     * @see #setGlobals(GlobalsType)
+     * @see org.switchyard.tools.models.switchyard1_0.rules.RulesPackage#getRulesImplementationType_Globals()
+     * @model containment="true"
+     *        extendedMetaData="kind='element' name='globals' namespace='##targetNamespace'"
+     * @generated
+     */
+    GlobalsType getGlobals();
+
+    /**
+     * Sets the value of the '{@link org.switchyard.tools.models.switchyard1_0.rules.RulesImplementationType#getGlobals <em>Globals</em>}' containment reference.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @param value the new value of the '<em>Globals</em>' containment reference.
+     * @see #getGlobals()
+     * @generated
+     */
+    void setGlobals(GlobalsType value);
+
+    /**
+     * Returns the value of the '<em><b>Message Content Name</b></em>' attribute.
+     * <!-- begin-user-doc -->
+     * <p>
+     * If the meaning of the '<em>Message Content Name</em>' attribute isn't clear,
+     * there really should be more of a description here...
+     * </p>
+     * <!-- end-user-doc -->
+     * @return the value of the '<em>Message Content Name</em>' attribute.
+     * @see #setMessageContentName(String)
+     * @see org.switchyard.tools.models.switchyard1_0.rules.RulesPackage#getRulesImplementationType_MessageContentName()
+     * @model dataType="org.eclipse.emf.ecore.xml.type.String"
+     *        extendedMetaData="name='messageContentName' kind='attribute'"
+     * @generated
+     */
+    String getMessageContentName();
+
+    /**
+     * Sets the value of the '{@link org.switchyard.tools.models.switchyard1_0.rules.RulesImplementationType#getMessageContentName <em>Message Content Name</em>}' attribute.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @param value the new value of the '<em>Message Content Name</em>' attribute.
+     * @see #getMessageContentName()
+     * @generated
+     */
+    void setMessageContentName(String value);
 
 } // RulesImplementationType

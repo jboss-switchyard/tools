@@ -498,6 +498,12 @@ public class SpringSwitch<T> extends Switch<T> {
                 if (result == null) result = defaultCase(theEObject);
                 return result;
             }
+            case SpringPackage.EXPRESSION_NODE_HELPER: {
+                ExpressionNodeHelper expressionNodeHelper = (ExpressionNodeHelper)theEObject;
+                T result = caseExpressionNodeHelper(expressionNodeHelper);
+                if (result == null) result = defaultCase(theEObject);
+                return result;
+            }
             case SpringPackage.EXPRESSION_SUB_ELEMENT_DEFINITION: {
                 ExpressionSubElementDefinition expressionSubElementDefinition = (ExpressionSubElementDefinition)theEObject;
                 T result = caseExpressionSubElementDefinition(expressionSubElementDefinition);
@@ -770,6 +776,12 @@ public class SpringSwitch<T> extends Switch<T> {
                 if (result == null) result = defaultCase(theEObject);
                 return result;
             }
+            case SpringPackage.MODEL_HELPER: {
+                ModelHelper modelHelper = (ModelHelper)theEObject;
+                T result = caseModelHelper(modelHelper);
+                if (result == null) result = defaultCase(theEObject);
+                return result;
+            }
             case SpringPackage.MULTICAST_DEFINITION: {
                 MulticastDefinition multicastDefinition = (MulticastDefinition)theEObject;
                 T result = caseMulticastDefinition(multicastDefinition);
@@ -893,6 +905,14 @@ public class SpringSwitch<T> extends Switch<T> {
                 if (result == null) result = caseOutput(pipelineDefinition);
                 if (result == null) result = caseProcessorDefinition(pipelineDefinition);
                 if (result == null) result = caseOptionalIdentifiedDefinition(pipelineDefinition);
+                if (result == null) result = defaultCase(theEObject);
+                return result;
+            }
+            case SpringPackage.PGP_DATA_FORMAT: {
+                PgpDataFormat pgpDataFormat = (PgpDataFormat)theEObject;
+                T result = casePgpDataFormat(pgpDataFormat);
+                if (result == null) result = caseDataFormat(pgpDataFormat);
+                if (result == null) result = caseIdentifiedType(pgpDataFormat);
                 if (result == null) result = defaultCase(theEObject);
                 return result;
             }
@@ -2377,6 +2397,21 @@ public class SpringSwitch<T> extends Switch<T> {
     }
 
 	/**
+     * Returns the result of interpreting the object as an instance of '<em>Expression Node Helper</em>'.
+     * <!-- begin-user-doc -->
+     * This implementation returns null;
+     * returning a non-null result will terminate the switch.
+     * <!-- end-user-doc -->
+     * @param object the target of the switch.
+     * @return the result of interpreting the object as an instance of '<em>Expression Node Helper</em>'.
+     * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+     * @generated
+     */
+    public T caseExpressionNodeHelper(ExpressionNodeHelper object) {
+        return null;
+    }
+
+    /**
      * Returns the result of interpreting the object as an instance of '<em>Expression Sub Element Definition</em>'.
      * <!-- begin-user-doc -->
 	 * This implementation returns null;
@@ -2887,6 +2922,21 @@ public class SpringSwitch<T> extends Switch<T> {
     }
 
 	/**
+     * Returns the result of interpreting the object as an instance of '<em>Model Helper</em>'.
+     * <!-- begin-user-doc -->
+     * This implementation returns null;
+     * returning a non-null result will terminate the switch.
+     * <!-- end-user-doc -->
+     * @param object the target of the switch.
+     * @return the result of interpreting the object as an instance of '<em>Model Helper</em>'.
+     * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+     * @generated
+     */
+    public T caseModelHelper(ModelHelper object) {
+        return null;
+    }
+
+    /**
      * Returns the result of interpreting the object as an instance of '<em>Multicast Definition</em>'.
      * <!-- begin-user-doc -->
 	 * This implementation returns null;
@@ -3142,6 +3192,21 @@ public class SpringSwitch<T> extends Switch<T> {
     }
 
 	/**
+     * Returns the result of interpreting the object as an instance of '<em>Pgp Data Format</em>'.
+     * <!-- begin-user-doc -->
+     * This implementation returns null;
+     * returning a non-null result will terminate the switch.
+     * <!-- end-user-doc -->
+     * @param object the target of the switch.
+     * @return the result of interpreting the object as an instance of '<em>Pgp Data Format</em>'.
+     * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+     * @generated
+     */
+    public T casePgpDataFormat(PgpDataFormat object) {
+        return null;
+    }
+
+    /**
      * Returns the result of interpreting the object as an instance of '<em>Policy Definition</em>'.
      * <!-- begin-user-doc -->
 	 * This implementation returns null;

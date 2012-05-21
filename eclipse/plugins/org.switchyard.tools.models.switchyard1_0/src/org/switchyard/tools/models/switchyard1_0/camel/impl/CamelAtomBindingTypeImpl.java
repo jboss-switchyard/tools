@@ -6,20 +6,20 @@
  */
 package org.switchyard.tools.models.switchyard1_0.camel.impl;
 
-import java.math.BigInteger;
-
 import javax.xml.datatype.XMLGregorianCalendar;
 
 import org.eclipse.emf.common.notify.Notification;
 
+import org.eclipse.emf.common.notify.NotificationChain;
 import org.eclipse.emf.ecore.EClass;
 
+import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 
 
 import org.switchyard.tools.models.switchyard1_0.camel.CamelAtomBindingType;
 import org.switchyard.tools.models.switchyard1_0.camel.CamelPackage;
-import org.switchyard.tools.models.switchyard1_0.switchyard.impl.SwitchYardBindingTypeImpl;
+import org.switchyard.tools.models.switchyard1_0.camel.ScheduledPollConsumerType;
 
 /**
  * <!-- begin-user-doc -->
@@ -35,15 +35,13 @@ import org.switchyard.tools.models.switchyard1_0.switchyard.impl.SwitchYardBindi
  *   <li>{@link org.switchyard.tools.models.switchyard1_0.camel.impl.CamelAtomBindingTypeImpl#isThrottleEntries <em>Throttle Entries</em>}</li>
  *   <li>{@link org.switchyard.tools.models.switchyard1_0.camel.impl.CamelAtomBindingTypeImpl#isFeedHeader <em>Feed Header</em>}</li>
  *   <li>{@link org.switchyard.tools.models.switchyard1_0.camel.impl.CamelAtomBindingTypeImpl#isSortEntries <em>Sort Entries</em>}</li>
- *   <li>{@link org.switchyard.tools.models.switchyard1_0.camel.impl.CamelAtomBindingTypeImpl#getConsumerDelay <em>Consumer Delay</em>}</li>
- *   <li>{@link org.switchyard.tools.models.switchyard1_0.camel.impl.CamelAtomBindingTypeImpl#getConsumerInitialDelay <em>Consumer Initial Delay</em>}</li>
- *   <li>{@link org.switchyard.tools.models.switchyard1_0.camel.impl.CamelAtomBindingTypeImpl#isConsumerUserFixedDelay <em>Consumer User Fixed Delay</em>}</li>
+ *   <li>{@link org.switchyard.tools.models.switchyard1_0.camel.impl.CamelAtomBindingTypeImpl#getConsume <em>Consume</em>}</li>
  * </ul>
  * </p>
  *
  * @generated
  */
-public class CamelAtomBindingTypeImpl extends SwitchYardBindingTypeImpl implements CamelAtomBindingType {
+public class CamelAtomBindingTypeImpl extends BaseCamelBindingImpl implements CamelAtomBindingType {
 	/**
      * The default value of the '{@link #getFeedURI() <em>Feed URI</em>}' attribute.
      * <!-- begin-user-doc -->
@@ -230,75 +228,16 @@ public class CamelAtomBindingTypeImpl extends SwitchYardBindingTypeImpl implemen
 	protected boolean sortEntriesESet;
 
 	/**
-     * The default value of the '{@link #getConsumerDelay() <em>Consumer Delay</em>}' attribute.
+     * The cached value of the '{@link #getConsume() <em>Consume</em>}' containment reference.
      * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-     * @see #getConsumerDelay()
+     * <!-- end-user-doc -->
+     * @see #getConsume()
      * @generated
      * @ordered
      */
-	protected static final BigInteger CONSUMER_DELAY_EDEFAULT = null;
+    protected ScheduledPollConsumerType consume;
 
-	/**
-     * The cached value of the '{@link #getConsumerDelay() <em>Consumer Delay</em>}' attribute.
-     * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-     * @see #getConsumerDelay()
-     * @generated
-     * @ordered
-     */
-	protected BigInteger consumerDelay = CONSUMER_DELAY_EDEFAULT;
-
-	/**
-     * The default value of the '{@link #getConsumerInitialDelay() <em>Consumer Initial Delay</em>}' attribute.
-     * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-     * @see #getConsumerInitialDelay()
-     * @generated
-     * @ordered
-     */
-	protected static final BigInteger CONSUMER_INITIAL_DELAY_EDEFAULT = null;
-
-	/**
-     * The cached value of the '{@link #getConsumerInitialDelay() <em>Consumer Initial Delay</em>}' attribute.
-     * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-     * @see #getConsumerInitialDelay()
-     * @generated
-     * @ordered
-     */
-	protected BigInteger consumerInitialDelay = CONSUMER_INITIAL_DELAY_EDEFAULT;
-
-	/**
-     * The default value of the '{@link #isConsumerUserFixedDelay() <em>Consumer User Fixed Delay</em>}' attribute.
-     * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-     * @see #isConsumerUserFixedDelay()
-     * @generated
-     * @ordered
-     */
-	protected static final boolean CONSUMER_USER_FIXED_DELAY_EDEFAULT = false;
-
-	/**
-     * The cached value of the '{@link #isConsumerUserFixedDelay() <em>Consumer User Fixed Delay</em>}' attribute.
-     * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-     * @see #isConsumerUserFixedDelay()
-     * @generated
-     * @ordered
-     */
-	protected boolean consumerUserFixedDelay = CONSUMER_USER_FIXED_DELAY_EDEFAULT;
-
-	/**
-     * This is true if the Consumer User Fixed Delay attribute has been set.
-     * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-     * @generated
-     * @ordered
-     */
-	protected boolean consumerUserFixedDelayESet;
-
-	/**
+    /**
      * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
      * @generated
@@ -591,93 +530,62 @@ public class CamelAtomBindingTypeImpl extends SwitchYardBindingTypeImpl implemen
 
 	/**
      * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
      * @generated
      */
-	public BigInteger getConsumerDelay() {
-        return consumerDelay;
+    public ScheduledPollConsumerType getConsume() {
+        return consume;
     }
 
-	/**
+    /**
      * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
      * @generated
      */
-	public void setConsumerDelay(BigInteger newConsumerDelay) {
-        BigInteger oldConsumerDelay = consumerDelay;
-        consumerDelay = newConsumerDelay;
-        if (eNotificationRequired())
-            eNotify(new ENotificationImpl(this, Notification.SET, CamelPackage.CAMEL_ATOM_BINDING_TYPE__CONSUMER_DELAY, oldConsumerDelay, consumerDelay));
+    public NotificationChain basicSetConsume(ScheduledPollConsumerType newConsume, NotificationChain msgs) {
+        ScheduledPollConsumerType oldConsume = consume;
+        consume = newConsume;
+        if (eNotificationRequired()) {
+            ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, CamelPackage.CAMEL_ATOM_BINDING_TYPE__CONSUME, oldConsume, newConsume);
+            if (msgs == null) msgs = notification; else msgs.add(notification);
+        }
+        return msgs;
     }
 
-	/**
+    /**
      * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
      * @generated
      */
-	public BigInteger getConsumerInitialDelay() {
-        return consumerInitialDelay;
+    public void setConsume(ScheduledPollConsumerType newConsume) {
+        if (newConsume != consume) {
+            NotificationChain msgs = null;
+            if (consume != null)
+                msgs = ((InternalEObject)consume).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - CamelPackage.CAMEL_ATOM_BINDING_TYPE__CONSUME, null, msgs);
+            if (newConsume != null)
+                msgs = ((InternalEObject)newConsume).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - CamelPackage.CAMEL_ATOM_BINDING_TYPE__CONSUME, null, msgs);
+            msgs = basicSetConsume(newConsume, msgs);
+            if (msgs != null) msgs.dispatch();
+        }
+        else if (eNotificationRequired())
+            eNotify(new ENotificationImpl(this, Notification.SET, CamelPackage.CAMEL_ATOM_BINDING_TYPE__CONSUME, newConsume, newConsume));
     }
 
-	/**
+    /**
      * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
      * @generated
      */
-	public void setConsumerInitialDelay(BigInteger newConsumerInitialDelay) {
-        BigInteger oldConsumerInitialDelay = consumerInitialDelay;
-        consumerInitialDelay = newConsumerInitialDelay;
-        if (eNotificationRequired())
-            eNotify(new ENotificationImpl(this, Notification.SET, CamelPackage.CAMEL_ATOM_BINDING_TYPE__CONSUMER_INITIAL_DELAY, oldConsumerInitialDelay, consumerInitialDelay));
+    @Override
+    public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
+        switch (featureID) {
+            case CamelPackage.CAMEL_ATOM_BINDING_TYPE__CONSUME:
+                return basicSetConsume(null, msgs);
+        }
+        return super.eInverseRemove(otherEnd, featureID, msgs);
     }
 
-	/**
-     * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-     * @generated
-     */
-	public boolean isConsumerUserFixedDelay() {
-        return consumerUserFixedDelay;
-    }
-
-	/**
-     * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-     * @generated
-     */
-	public void setConsumerUserFixedDelay(boolean newConsumerUserFixedDelay) {
-        boolean oldConsumerUserFixedDelay = consumerUserFixedDelay;
-        consumerUserFixedDelay = newConsumerUserFixedDelay;
-        boolean oldConsumerUserFixedDelayESet = consumerUserFixedDelayESet;
-        consumerUserFixedDelayESet = true;
-        if (eNotificationRequired())
-            eNotify(new ENotificationImpl(this, Notification.SET, CamelPackage.CAMEL_ATOM_BINDING_TYPE__CONSUMER_USER_FIXED_DELAY, oldConsumerUserFixedDelay, consumerUserFixedDelay, !oldConsumerUserFixedDelayESet));
-    }
-
-	/**
-     * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-     * @generated
-     */
-	public void unsetConsumerUserFixedDelay() {
-        boolean oldConsumerUserFixedDelay = consumerUserFixedDelay;
-        boolean oldConsumerUserFixedDelayESet = consumerUserFixedDelayESet;
-        consumerUserFixedDelay = CONSUMER_USER_FIXED_DELAY_EDEFAULT;
-        consumerUserFixedDelayESet = false;
-        if (eNotificationRequired())
-            eNotify(new ENotificationImpl(this, Notification.UNSET, CamelPackage.CAMEL_ATOM_BINDING_TYPE__CONSUMER_USER_FIXED_DELAY, oldConsumerUserFixedDelay, CONSUMER_USER_FIXED_DELAY_EDEFAULT, oldConsumerUserFixedDelayESet));
-    }
-
-	/**
-     * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-     * @generated
-     */
-	public boolean isSetConsumerUserFixedDelay() {
-        return consumerUserFixedDelayESet;
-    }
-
-	/**
+    /**
      * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
      * @generated
@@ -699,12 +607,8 @@ public class CamelAtomBindingTypeImpl extends SwitchYardBindingTypeImpl implemen
                 return isFeedHeader();
             case CamelPackage.CAMEL_ATOM_BINDING_TYPE__SORT_ENTRIES:
                 return isSortEntries();
-            case CamelPackage.CAMEL_ATOM_BINDING_TYPE__CONSUMER_DELAY:
-                return getConsumerDelay();
-            case CamelPackage.CAMEL_ATOM_BINDING_TYPE__CONSUMER_INITIAL_DELAY:
-                return getConsumerInitialDelay();
-            case CamelPackage.CAMEL_ATOM_BINDING_TYPE__CONSUMER_USER_FIXED_DELAY:
-                return isConsumerUserFixedDelay();
+            case CamelPackage.CAMEL_ATOM_BINDING_TYPE__CONSUME:
+                return getConsume();
         }
         return super.eGet(featureID, resolve, coreType);
     }
@@ -738,14 +642,8 @@ public class CamelAtomBindingTypeImpl extends SwitchYardBindingTypeImpl implemen
             case CamelPackage.CAMEL_ATOM_BINDING_TYPE__SORT_ENTRIES:
                 setSortEntries((Boolean)newValue);
                 return;
-            case CamelPackage.CAMEL_ATOM_BINDING_TYPE__CONSUMER_DELAY:
-                setConsumerDelay((BigInteger)newValue);
-                return;
-            case CamelPackage.CAMEL_ATOM_BINDING_TYPE__CONSUMER_INITIAL_DELAY:
-                setConsumerInitialDelay((BigInteger)newValue);
-                return;
-            case CamelPackage.CAMEL_ATOM_BINDING_TYPE__CONSUMER_USER_FIXED_DELAY:
-                setConsumerUserFixedDelay((Boolean)newValue);
+            case CamelPackage.CAMEL_ATOM_BINDING_TYPE__CONSUME:
+                setConsume((ScheduledPollConsumerType)newValue);
                 return;
         }
         super.eSet(featureID, newValue);
@@ -780,14 +678,8 @@ public class CamelAtomBindingTypeImpl extends SwitchYardBindingTypeImpl implemen
             case CamelPackage.CAMEL_ATOM_BINDING_TYPE__SORT_ENTRIES:
                 unsetSortEntries();
                 return;
-            case CamelPackage.CAMEL_ATOM_BINDING_TYPE__CONSUMER_DELAY:
-                setConsumerDelay(CONSUMER_DELAY_EDEFAULT);
-                return;
-            case CamelPackage.CAMEL_ATOM_BINDING_TYPE__CONSUMER_INITIAL_DELAY:
-                setConsumerInitialDelay(CONSUMER_INITIAL_DELAY_EDEFAULT);
-                return;
-            case CamelPackage.CAMEL_ATOM_BINDING_TYPE__CONSUMER_USER_FIXED_DELAY:
-                unsetConsumerUserFixedDelay();
+            case CamelPackage.CAMEL_ATOM_BINDING_TYPE__CONSUME:
+                setConsume((ScheduledPollConsumerType)null);
                 return;
         }
         super.eUnset(featureID);
@@ -815,12 +707,8 @@ public class CamelAtomBindingTypeImpl extends SwitchYardBindingTypeImpl implemen
                 return isSetFeedHeader();
             case CamelPackage.CAMEL_ATOM_BINDING_TYPE__SORT_ENTRIES:
                 return isSetSortEntries();
-            case CamelPackage.CAMEL_ATOM_BINDING_TYPE__CONSUMER_DELAY:
-                return CONSUMER_DELAY_EDEFAULT == null ? consumerDelay != null : !CONSUMER_DELAY_EDEFAULT.equals(consumerDelay);
-            case CamelPackage.CAMEL_ATOM_BINDING_TYPE__CONSUMER_INITIAL_DELAY:
-                return CONSUMER_INITIAL_DELAY_EDEFAULT == null ? consumerInitialDelay != null : !CONSUMER_INITIAL_DELAY_EDEFAULT.equals(consumerInitialDelay);
-            case CamelPackage.CAMEL_ATOM_BINDING_TYPE__CONSUMER_USER_FIXED_DELAY:
-                return isSetConsumerUserFixedDelay();
+            case CamelPackage.CAMEL_ATOM_BINDING_TYPE__CONSUME:
+                return consume != null;
         }
         return super.eIsSet(featureID);
     }
@@ -849,12 +737,6 @@ public class CamelAtomBindingTypeImpl extends SwitchYardBindingTypeImpl implemen
         if (feedHeaderESet) result.append(feedHeader); else result.append("<unset>");
         result.append(", sortEntries: ");
         if (sortEntriesESet) result.append(sortEntries); else result.append("<unset>");
-        result.append(", consumerDelay: ");
-        result.append(consumerDelay);
-        result.append(", consumerInitialDelay: ");
-        result.append(consumerInitialDelay);
-        result.append(", consumerUserFixedDelay: ");
-        if (consumerUserFixedDelayESet) result.append(consumerUserFixedDelay); else result.append("<unset>");
         result.append(')');
         return result.toString();
     }

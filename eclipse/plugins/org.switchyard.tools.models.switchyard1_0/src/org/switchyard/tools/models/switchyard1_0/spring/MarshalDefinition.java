@@ -37,6 +37,7 @@ import org.eclipse.emf.ecore.util.FeatureMap;
  *   <li>{@link org.switchyard.tools.models.switchyard1_0.spring.MarshalDefinition#getTidyMarkup <em>Tidy Markup</em>}</li>
  *   <li>{@link org.switchyard.tools.models.switchyard1_0.spring.MarshalDefinition#getXmlBeans <em>Xml Beans</em>}</li>
  *   <li>{@link org.switchyard.tools.models.switchyard1_0.spring.MarshalDefinition#getXstream <em>Xstream</em>}</li>
+ *   <li>{@link org.switchyard.tools.models.switchyard1_0.spring.MarshalDefinition#getPgp <em>Pgp</em>}</li>
  *   <li>{@link org.switchyard.tools.models.switchyard1_0.spring.MarshalDefinition#getZip <em>Zip</em>}</li>
  *   <li>{@link org.switchyard.tools.models.switchyard1_0.spring.MarshalDefinition#getRef <em>Ref</em>}</li>
  *   <li>{@link org.switchyard.tools.models.switchyard1_0.spring.MarshalDefinition#getAnyAttribute2 <em>Any Attribute2</em>}</li>
@@ -616,6 +617,33 @@ public interface MarshalDefinition extends NoOutputDefinition {
 	void setXstream(XStreamDataFormat value);
 
 	/**
+     * Returns the value of the '<em><b>Pgp</b></em>' containment reference.
+     * <!-- begin-user-doc -->
+     * <p>
+     * If the meaning of the '<em>Pgp</em>' containment reference isn't clear,
+     * there really should be more of a description here...
+     * </p>
+     * <!-- end-user-doc -->
+     * @return the value of the '<em>Pgp</em>' containment reference.
+     * @see #setPgp(PgpDataFormat)
+     * @see org.switchyard.tools.models.switchyard1_0.spring.SpringPackage#getMarshalDefinition_Pgp()
+     * @model containment="true"
+     *        extendedMetaData="kind='element' name='pgp' namespace='##targetNamespace'"
+     * @generated
+     */
+    PgpDataFormat getPgp();
+
+    /**
+     * Sets the value of the '{@link org.switchyard.tools.models.switchyard1_0.spring.MarshalDefinition#getPgp <em>Pgp</em>}' containment reference.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @param value the new value of the '<em>Pgp</em>' containment reference.
+     * @see #getPgp()
+     * @generated
+     */
+    void setPgp(PgpDataFormat value);
+
+    /**
      * Returns the value of the '<em><b>Zip</b></em>' containment reference.
      * <!-- begin-user-doc -->
 	 * <p>
@@ -681,7 +709,7 @@ public interface MarshalDefinition extends NoOutputDefinition {
      * @return the value of the '<em>Any Attribute2</em>' attribute list.
      * @see org.switchyard.tools.models.switchyard1_0.spring.SpringPackage#getMarshalDefinition_AnyAttribute2()
      * @model unique="false" dataType="org.eclipse.emf.ecore.EFeatureMapEntry" many="true"
-     *        extendedMetaData="kind='attributeWildcard' wildcards='##other' name=':28' processing='skip'"
+     *        extendedMetaData="kind='attributeWildcard' wildcards='##other' name=':29' processing='skip'"
      * @generated
      */
 	FeatureMap getAnyAttribute2();

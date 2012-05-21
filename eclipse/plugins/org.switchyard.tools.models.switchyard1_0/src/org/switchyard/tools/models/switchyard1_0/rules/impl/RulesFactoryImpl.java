@@ -65,6 +65,8 @@ public class RulesFactoryImpl extends EFactoryImpl implements RulesFactory {
             case RulesPackage.AUDIT_TYPE: return createAuditType();
             case RulesPackage.CHANNEL_TYPE: return createChannelType();
             case RulesPackage.DOCUMENT_ROOT: return createDocumentRoot();
+            case RulesPackage.GLOBALS_TYPE: return createGlobalsType();
+            case RulesPackage.MAPPING_TYPE: return createMappingType();
             case RulesPackage.RESOURCE_TYPE: return createResourceType();
             case RulesPackage.RULES_IMPLEMENTATION_TYPE: return createRulesImplementationType();
             default:
@@ -147,6 +149,26 @@ public class RulesFactoryImpl extends EFactoryImpl implements RulesFactory {
     }
 
 	/**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public GlobalsType createGlobalsType() {
+        GlobalsTypeImpl globalsType = new GlobalsTypeImpl();
+        return globalsType;
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public MappingType createMappingType() {
+        MappingTypeImpl mappingType = new MappingTypeImpl();
+        return mappingType;
+    }
+
+    /**
      * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
      * @generated

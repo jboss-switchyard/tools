@@ -126,33 +126,33 @@ public interface ThreadsDefinition extends Output {
      * @return the value of the '<em>Keep Alive Time</em>' attribute.
      * @see #isSetKeepAliveTime()
      * @see #unsetKeepAliveTime()
-     * @see #setKeepAliveTime(int)
+     * @see #setKeepAliveTime(long)
      * @see org.switchyard.tools.models.switchyard1_0.spring.SpringPackage#getThreadsDefinition_KeepAliveTime()
-     * @model unsettable="true" dataType="org.eclipse.emf.ecore.xml.type.Int"
+     * @model unsettable="true" dataType="org.eclipse.emf.ecore.xml.type.Long"
      *        extendedMetaData="kind='attribute' name='keepAliveTime'"
      * @generated
      */
-	int getKeepAliveTime();
+	long getKeepAliveTime();
 
 	/**
      * Sets the value of the '{@link org.switchyard.tools.models.switchyard1_0.spring.ThreadsDefinition#getKeepAliveTime <em>Keep Alive Time</em>}' attribute.
      * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
      * @param value the new value of the '<em>Keep Alive Time</em>' attribute.
      * @see #isSetKeepAliveTime()
      * @see #unsetKeepAliveTime()
      * @see #getKeepAliveTime()
      * @generated
      */
-	void setKeepAliveTime(int value);
+    void setKeepAliveTime(long value);
 
-	/**
+    /**
      * Unsets the value of the '{@link org.switchyard.tools.models.switchyard1_0.spring.ThreadsDefinition#getKeepAliveTime <em>Keep Alive Time</em>}' attribute.
      * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
      * @see #isSetKeepAliveTime()
      * @see #getKeepAliveTime()
-     * @see #setKeepAliveTime(int)
+     * @see #setKeepAliveTime(long)
      * @generated
      */
 	void unsetKeepAliveTime();
@@ -164,7 +164,7 @@ public interface ThreadsDefinition extends Output {
      * @return whether the value of the '<em>Keep Alive Time</em>' attribute is set.
      * @see #unsetKeepAliveTime()
      * @see #getKeepAliveTime()
-     * @see #setKeepAliveTime(int)
+     * @see #setKeepAliveTime(long)
      * @generated
      */
 	boolean isSetKeepAliveTime();

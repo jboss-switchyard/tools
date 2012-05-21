@@ -8,6 +8,8 @@ package org.switchyard.tools.models.switchyard1_0.commonrules.impl;
 
 import org.eclipse.emf.ecore.EAttribute;
 import org.eclipse.emf.ecore.EClass;
+import org.eclipse.emf.ecore.EDataType;
+import org.eclipse.emf.ecore.EEnum;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.EReference;
 
@@ -51,9 +53,17 @@ import org.switchyard.tools.models.switchyard1_0.camel.CamelPackage;
 import org.switchyard.tools.models.switchyard1_0.camel.impl.CamelPackageImpl;
 import org.switchyard.tools.models.switchyard1_0.clojure.ClojurePackage;
 import org.switchyard.tools.models.switchyard1_0.clojure.impl.ClojurePackageImpl;
+import org.switchyard.tools.models.switchyard1_0.commonrules.AuditType;
+import org.switchyard.tools.models.switchyard1_0.commonrules.AuditType1;
+import org.switchyard.tools.models.switchyard1_0.commonrules.ClockType;
+import org.switchyard.tools.models.switchyard1_0.commonrules.CommonImplementationType;
 import org.switchyard.tools.models.switchyard1_0.commonrules.CommonRulesFactory;
 import org.switchyard.tools.models.switchyard1_0.commonrules.CommonRulesPackage;
+import org.switchyard.tools.models.switchyard1_0.commonrules.ContextScope;
 import org.switchyard.tools.models.switchyard1_0.commonrules.DocumentRoot;
+import org.switchyard.tools.models.switchyard1_0.commonrules.EventProcessingType;
+import org.switchyard.tools.models.switchyard1_0.commonrules.ExpressionType;
+import org.switchyard.tools.models.switchyard1_0.commonrules.MappingType;
 import org.switchyard.tools.models.switchyard1_0.hornetq.HornetQPackage;
 import org.switchyard.tools.models.switchyard1_0.hornetq.impl.HornetQPackageImpl;
 import org.switchyard.tools.models.switchyard1_0.rules.RulesPackage;
@@ -78,12 +88,91 @@ import org.switchyard.tools.models.switchyard1_0.validate.impl.ValidatePackageIm
 public class CommonRulesPackageImpl extends EPackageImpl implements CommonRulesPackage {
 	/**
      * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    private EClass auditType1EClass = null;
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    private EClass commonImplementationTypeEClass = null;
+    /**
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
      * @generated
      */
 	private EClass documentRootEClass = null;
 
 	/**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    private EClass mappingTypeEClass = null;
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    private EEnum auditTypeEEnum = null;
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    private EEnum clockTypeEEnum = null;
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    private EEnum contextScopeEEnum = null;
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    private EEnum eventProcessingTypeEEnum = null;
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    private EEnum expressionTypeEEnum = null;
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    private EDataType auditTypeObjectEDataType = null;
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    private EDataType clockTypeObjectEDataType = null;
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    private EDataType contextScopeObjectEDataType = null;
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    private EDataType eventProcessingTypeObjectEDataType = null;
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    private EDataType expressionTypeObjectEDataType = null;
+
+    /**
      * Creates an instance of the model <b>Package</b>, registered with
      * {@link org.eclipse.emf.ecore.EPackage.Registry EPackage.Registry} by the package
      * package URI value.
@@ -192,6 +281,69 @@ public class CommonRulesPackageImpl extends EPackageImpl implements CommonRulesP
 
 	/**
      * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public EClass getAuditType1() {
+        return auditType1EClass;
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public EClass getCommonImplementationType() {
+        return commonImplementationTypeEClass;
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public EAttribute getCommonImplementationType_Agent() {
+        return (EAttribute)commonImplementationTypeEClass.getEStructuralFeatures().get(0);
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public EAttribute getCommonImplementationType_Clock() {
+        return (EAttribute)commonImplementationTypeEClass.getEStructuralFeatures().get(1);
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public EAttribute getCommonImplementationType_EventProcessing() {
+        return (EAttribute)commonImplementationTypeEClass.getEStructuralFeatures().get(2);
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public EAttribute getCommonImplementationType_MaxThreads() {
+        return (EAttribute)commonImplementationTypeEClass.getEStructuralFeatures().get(3);
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public EAttribute getCommonImplementationType_MultithreadEvaluation() {
+        return (EAttribute)commonImplementationTypeEClass.getEStructuralFeatures().get(4);
+    }
+
+    /**
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
      * @generated
      */
@@ -231,8 +383,8 @@ public class CommonRulesPackageImpl extends EPackageImpl implements CommonRulesP
 	 * <!-- end-user-doc -->
      * @generated
      */
-	public EAttribute getDocumentRoot_Audit() {
-        return (EAttribute)documentRootEClass.getEStructuralFeatures().get(3);
+	public EReference getDocumentRoot_Audit() {
+        return (EReference)documentRootEClass.getEStructuralFeatures().get(3);
     }
 
 	/**
@@ -240,29 +392,119 @@ public class CommonRulesPackageImpl extends EPackageImpl implements CommonRulesP
 	 * <!-- end-user-doc -->
      * @generated
      */
-	public EAttribute getDocumentRoot_ImplementationCommonRules() {
-        return (EAttribute)documentRootEClass.getEStructuralFeatures().get(4);
+	public EReference getDocumentRoot_ImplementationCommonRules() {
+        return (EReference)documentRootEClass.getEStructuralFeatures().get(4);
     }
 
 	/**
      * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
      * @generated
      */
-	public EAttribute getDocumentRoot_Audit1() {
-        return (EAttribute)documentRootEClass.getEStructuralFeatures().get(5);
+    public EReference getDocumentRoot_Mapping() {
+        return (EReference)documentRootEClass.getEStructuralFeatures().get(5);
     }
 
-	/**
+    /**
      * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
      * @generated
      */
-	public EAttribute getDocumentRoot_ImplementationCommonRules1() {
-        return (EAttribute)documentRootEClass.getEStructuralFeatures().get(6);
+    public EClass getMappingType() {
+        return mappingTypeEClass;
     }
 
-	/**
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public EEnum getAuditType() {
+        return auditTypeEEnum;
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public EEnum getClockType() {
+        return clockTypeEEnum;
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public EEnum getContextScope() {
+        return contextScopeEEnum;
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public EEnum getEventProcessingType() {
+        return eventProcessingTypeEEnum;
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public EEnum getExpressionType() {
+        return expressionTypeEEnum;
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public EDataType getAuditTypeObject() {
+        return auditTypeObjectEDataType;
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public EDataType getClockTypeObject() {
+        return clockTypeObjectEDataType;
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public EDataType getContextScopeObject() {
+        return contextScopeObjectEDataType;
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public EDataType getEventProcessingTypeObject() {
+        return eventProcessingTypeObjectEDataType;
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public EDataType getExpressionTypeObject() {
+        return expressionTypeObjectEDataType;
+    }
+
+    /**
      * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
      * @generated
@@ -290,14 +532,38 @@ public class CommonRulesPackageImpl extends EPackageImpl implements CommonRulesP
         isCreated = true;
 
         // Create classes and their features
+        auditType1EClass = createEClass(AUDIT_TYPE1);
+
+        commonImplementationTypeEClass = createEClass(COMMON_IMPLEMENTATION_TYPE);
+        createEAttribute(commonImplementationTypeEClass, COMMON_IMPLEMENTATION_TYPE__AGENT);
+        createEAttribute(commonImplementationTypeEClass, COMMON_IMPLEMENTATION_TYPE__CLOCK);
+        createEAttribute(commonImplementationTypeEClass, COMMON_IMPLEMENTATION_TYPE__EVENT_PROCESSING);
+        createEAttribute(commonImplementationTypeEClass, COMMON_IMPLEMENTATION_TYPE__MAX_THREADS);
+        createEAttribute(commonImplementationTypeEClass, COMMON_IMPLEMENTATION_TYPE__MULTITHREAD_EVALUATION);
+
         documentRootEClass = createEClass(DOCUMENT_ROOT);
         createEAttribute(documentRootEClass, DOCUMENT_ROOT__MIXED);
         createEReference(documentRootEClass, DOCUMENT_ROOT__XMLNS_PREFIX_MAP);
         createEReference(documentRootEClass, DOCUMENT_ROOT__XSI_SCHEMA_LOCATION);
-        createEAttribute(documentRootEClass, DOCUMENT_ROOT__AUDIT);
-        createEAttribute(documentRootEClass, DOCUMENT_ROOT__IMPLEMENTATION_COMMON_RULES);
-        createEAttribute(documentRootEClass, DOCUMENT_ROOT__AUDIT1);
-        createEAttribute(documentRootEClass, DOCUMENT_ROOT__IMPLEMENTATION_COMMON_RULES1);
+        createEReference(documentRootEClass, DOCUMENT_ROOT__AUDIT);
+        createEReference(documentRootEClass, DOCUMENT_ROOT__IMPLEMENTATION_COMMON_RULES);
+        createEReference(documentRootEClass, DOCUMENT_ROOT__MAPPING);
+
+        mappingTypeEClass = createEClass(MAPPING_TYPE);
+
+        // Create enums
+        auditTypeEEnum = createEEnum(AUDIT_TYPE);
+        clockTypeEEnum = createEEnum(CLOCK_TYPE);
+        contextScopeEEnum = createEEnum(CONTEXT_SCOPE);
+        eventProcessingTypeEEnum = createEEnum(EVENT_PROCESSING_TYPE);
+        expressionTypeEEnum = createEEnum(EXPRESSION_TYPE);
+
+        // Create data types
+        auditTypeObjectEDataType = createEDataType(AUDIT_TYPE_OBJECT);
+        clockTypeObjectEDataType = createEDataType(CLOCK_TYPE_OBJECT);
+        contextScopeObjectEDataType = createEDataType(CONTEXT_SCOPE_OBJECT);
+        eventProcessingTypeObjectEDataType = createEDataType(EVENT_PROCESSING_TYPE_OBJECT);
+        expressionTypeObjectEDataType = createEDataType(EXPRESSION_TYPE_OBJECT);
     }
 
 	/**
@@ -324,6 +590,7 @@ public class CommonRulesPackageImpl extends EPackageImpl implements CommonRulesP
         setNsURI(eNS_URI);
 
         // Obtain other dependent packages
+        ScaPackage theScaPackage = (ScaPackage)EPackage.Registry.INSTANCE.getEPackage(ScaPackage.eNS_URI);
         XMLTypePackage theXMLTypePackage = (XMLTypePackage)EPackage.Registry.INSTANCE.getEPackage(XMLTypePackage.eNS_URI);
 
         // Create type parameters
@@ -331,16 +598,56 @@ public class CommonRulesPackageImpl extends EPackageImpl implements CommonRulesP
         // Set bounds for type parameters
 
         // Add supertypes to classes
+        commonImplementationTypeEClass.getESuperTypes().add(theScaPackage.getImplementation());
 
         // Initialize classes and features; add operations and parameters
+        initEClass(auditType1EClass, AuditType1.class, "AuditType1", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+
+        initEClass(commonImplementationTypeEClass, CommonImplementationType.class, "CommonImplementationType", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+        initEAttribute(getCommonImplementationType_Agent(), theXMLTypePackage.getBoolean(), "agent", "false", 0, 1, CommonImplementationType.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+        initEAttribute(getCommonImplementationType_Clock(), this.getClockType(), "clock", "REALTIME", 0, 1, CommonImplementationType.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+        initEAttribute(getCommonImplementationType_EventProcessing(), this.getEventProcessingType(), "eventProcessing", "CLOUD", 0, 1, CommonImplementationType.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+        initEAttribute(getCommonImplementationType_MaxThreads(), theXMLTypePackage.getInt(), "maxThreads", null, 0, 1, CommonImplementationType.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+        initEAttribute(getCommonImplementationType_MultithreadEvaluation(), theXMLTypePackage.getBoolean(), "multithreadEvaluation", null, 0, 1, CommonImplementationType.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
         initEClass(documentRootEClass, DocumentRoot.class, "DocumentRoot", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
         initEAttribute(getDocumentRoot_Mixed(), ecorePackage.getEFeatureMapEntry(), "mixed", null, 0, -1, null, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
         initEReference(getDocumentRoot_XMLNSPrefixMap(), ecorePackage.getEStringToStringMapEntry(), null, "xMLNSPrefixMap", null, 0, -1, null, IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
         initEReference(getDocumentRoot_XSISchemaLocation(), ecorePackage.getEStringToStringMapEntry(), null, "xSISchemaLocation", null, 0, -1, null, IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-        initEAttribute(getDocumentRoot_Audit(), theXMLTypePackage.getAnySimpleType(), "audit", null, 0, -2, null, IS_TRANSIENT, IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, IS_DERIVED, IS_ORDERED);
-        initEAttribute(getDocumentRoot_ImplementationCommonRules(), theXMLTypePackage.getAnySimpleType(), "implementationCommonRules", null, 0, -2, null, IS_TRANSIENT, IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, IS_DERIVED, IS_ORDERED);
-        initEAttribute(getDocumentRoot_Audit1(), theXMLTypePackage.getAnySimpleType(), "audit1", null, 0, -2, null, IS_TRANSIENT, IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, IS_DERIVED, IS_ORDERED);
-        initEAttribute(getDocumentRoot_ImplementationCommonRules1(), theXMLTypePackage.getAnySimpleType(), "implementationCommonRules1", null, 0, -2, null, IS_TRANSIENT, IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, IS_DERIVED, IS_ORDERED);
+        initEReference(getDocumentRoot_Audit(), this.getAuditType1(), null, "audit", null, 0, -2, null, IS_TRANSIENT, IS_VOLATILE, !IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, IS_DERIVED, IS_ORDERED);
+        initEReference(getDocumentRoot_ImplementationCommonRules(), this.getCommonImplementationType(), null, "implementationCommonRules", null, 0, -2, null, IS_TRANSIENT, IS_VOLATILE, !IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, IS_DERIVED, IS_ORDERED);
+        initEReference(getDocumentRoot_Mapping(), this.getMappingType(), null, "mapping", null, 0, -2, null, IS_TRANSIENT, IS_VOLATILE, !IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, IS_DERIVED, IS_ORDERED);
+
+        initEClass(mappingTypeEClass, MappingType.class, "MappingType", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+
+        // Initialize enums and add enum literals
+        initEEnum(auditTypeEEnum, AuditType.class, "AuditType");
+        addEEnumLiteral(auditTypeEEnum, AuditType.CONSOLE);
+        addEEnumLiteral(auditTypeEEnum, AuditType.FILE);
+        addEEnumLiteral(auditTypeEEnum, AuditType.THREADEDFILE);
+
+        initEEnum(clockTypeEEnum, ClockType.class, "ClockType");
+        addEEnumLiteral(clockTypeEEnum, ClockType.REALTIME);
+        addEEnumLiteral(clockTypeEEnum, ClockType.PSEUDO);
+
+        initEEnum(contextScopeEEnum, ContextScope.class, "ContextScope");
+        addEEnumLiteral(contextScopeEEnum, ContextScope.IN);
+        addEEnumLiteral(contextScopeEEnum, ContextScope.OUT);
+        addEEnumLiteral(contextScopeEEnum, ContextScope.EXCHANGE);
+
+        initEEnum(eventProcessingTypeEEnum, EventProcessingType.class, "EventProcessingType");
+        addEEnumLiteral(eventProcessingTypeEEnum, EventProcessingType.CLOUD);
+        addEEnumLiteral(eventProcessingTypeEEnum, EventProcessingType.STREAM);
+
+        initEEnum(expressionTypeEEnum, ExpressionType.class, "ExpressionType");
+        addEEnumLiteral(expressionTypeEEnum, ExpressionType.MVEL);
+
+        // Initialize data types
+        initEDataType(auditTypeObjectEDataType, AuditType.class, "AuditTypeObject", IS_SERIALIZABLE, IS_GENERATED_INSTANCE_CLASS);
+        initEDataType(clockTypeObjectEDataType, ClockType.class, "ClockTypeObject", IS_SERIALIZABLE, IS_GENERATED_INSTANCE_CLASS);
+        initEDataType(contextScopeObjectEDataType, ContextScope.class, "ContextScopeObject", IS_SERIALIZABLE, IS_GENERATED_INSTANCE_CLASS);
+        initEDataType(eventProcessingTypeObjectEDataType, EventProcessingType.class, "EventProcessingTypeObject", IS_SERIALIZABLE, IS_GENERATED_INSTANCE_CLASS);
+        initEDataType(expressionTypeObjectEDataType, ExpressionType.class, "ExpressionTypeObject", IS_SERIALIZABLE, IS_GENERATED_INSTANCE_CLASS);
 
         // Create resource
         createResource(eNS_URI);
@@ -358,6 +665,94 @@ public class CommonRulesPackageImpl extends EPackageImpl implements CommonRulesP
      */
 	protected void createExtendedMetaDataAnnotations() {
         String source = "http:///org/eclipse/emf/ecore/util/ExtendedMetaData";		
+        addAnnotation
+          (auditTypeEEnum, 
+           source, 
+           new String[] {
+             "name", "auditType"
+           });		
+        addAnnotation
+          (auditType1EClass, 
+           source, 
+           new String[] {
+             "name", "AuditType",
+             "kind", "empty"
+           });		
+        addAnnotation
+          (auditTypeObjectEDataType, 
+           source, 
+           new String[] {
+             "name", "auditType:Object",
+             "baseType", "auditType"
+           });		
+        addAnnotation
+          (clockTypeEEnum, 
+           source, 
+           new String[] {
+             "name", "clockType"
+           });		
+        addAnnotation
+          (clockTypeObjectEDataType, 
+           source, 
+           new String[] {
+             "name", "clockType:Object",
+             "baseType", "clockType"
+           });		
+        addAnnotation
+          (commonImplementationTypeEClass, 
+           source, 
+           new String[] {
+             "name", "CommonImplementationType",
+             "kind", "empty"
+           });		
+        addAnnotation
+          (getCommonImplementationType_Agent(), 
+           source, 
+           new String[] {
+             "kind", "attribute",
+             "name", "agent"
+           });		
+        addAnnotation
+          (getCommonImplementationType_Clock(), 
+           source, 
+           new String[] {
+             "kind", "attribute",
+             "name", "clock"
+           });		
+        addAnnotation
+          (getCommonImplementationType_EventProcessing(), 
+           source, 
+           new String[] {
+             "kind", "attribute",
+             "name", "eventProcessing"
+           });		
+        addAnnotation
+          (getCommonImplementationType_MaxThreads(), 
+           source, 
+           new String[] {
+             "kind", "attribute",
+             "name", "maxThreads"
+           });		
+        addAnnotation
+          (getCommonImplementationType_MultithreadEvaluation(), 
+           source, 
+           new String[] {
+             "kind", "attribute",
+             "name", "multithreadEvaluation"
+           });		
+        addAnnotation
+          (contextScopeEEnum, 
+           source, 
+           new String[] {
+             "name", "contextScope"
+           });		
+        addAnnotation
+          (contextScopeObjectEDataType, 
+           source, 
+           new String[] {
+             "name", "contextScope:Object",
+             "baseType", "contextScope"
+           });		
         addAnnotation
           (documentRootEClass, 
            source, 
@@ -400,23 +795,49 @@ public class CommonRulesPackageImpl extends EPackageImpl implements CommonRulesP
            new String[] {
              "kind", "element",
              "name", "implementation.common.rules",
-             "namespace", "##targetNamespace"
+             "namespace", "##targetNamespace",
+             "affiliation", "http://docs.oasis-open.org/ns/opencsa/sca/200912#implementation"
            });		
         addAnnotation
-          (getDocumentRoot_Audit1(), 
+          (getDocumentRoot_Mapping(), 
            source, 
            new String[] {
              "kind", "element",
-             "name", "audit",
+             "name", "mapping",
              "namespace", "##targetNamespace"
            });		
         addAnnotation
-          (getDocumentRoot_ImplementationCommonRules1(), 
+          (eventProcessingTypeEEnum, 
            source, 
            new String[] {
-             "kind", "element",
-             "name", "implementation.common.rules",
-             "namespace", "##targetNamespace"
+             "name", "eventProcessingType"
+           });		
+        addAnnotation
+          (eventProcessingTypeObjectEDataType, 
+           source, 
+           new String[] {
+             "name", "eventProcessingType:Object",
+             "baseType", "eventProcessingType"
+           });		
+        addAnnotation
+          (expressionTypeEEnum, 
+           source, 
+           new String[] {
+             "name", "expressionType"
+           });		
+        addAnnotation
+          (expressionTypeObjectEDataType, 
+           source, 
+           new String[] {
+             "name", "expressionType:Object",
+             "baseType", "expressionType"
+           });		
+        addAnnotation
+          (mappingTypeEClass, 
+           source, 
+           new String[] {
+             "name", "MappingType",
+             "kind", "empty"
            });
     }
 

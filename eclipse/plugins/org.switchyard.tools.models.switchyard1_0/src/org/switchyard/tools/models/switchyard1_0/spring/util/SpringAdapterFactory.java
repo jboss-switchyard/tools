@@ -296,6 +296,10 @@ public class SpringAdapterFactory extends AdapterFactoryImpl {
                 return createExpressionNodeAdapter();
             }
             @Override
+            public Adapter caseExpressionNodeHelper(ExpressionNodeHelper object) {
+                return createExpressionNodeHelperAdapter();
+            }
+            @Override
             public Adapter caseExpressionSubElementDefinition(ExpressionSubElementDefinition object) {
                 return createExpressionSubElementDefinitionAdapter();
             }
@@ -432,6 +436,10 @@ public class SpringAdapterFactory extends AdapterFactoryImpl {
                 return createMethodCallExpressionAdapter();
             }
             @Override
+            public Adapter caseModelHelper(ModelHelper object) {
+                return createModelHelperAdapter();
+            }
+            @Override
             public Adapter caseMulticastDefinition(MulticastDefinition object) {
                 return createMulticastDefinitionAdapter();
             }
@@ -498,6 +506,10 @@ public class SpringAdapterFactory extends AdapterFactoryImpl {
             @Override
             public Adapter casePipelineDefinition(PipelineDefinition object) {
                 return createPipelineDefinitionAdapter();
+            }
+            @Override
+            public Adapter casePgpDataFormat(PgpDataFormat object) {
+                return createPgpDataFormatAdapter();
             }
             @Override
             public Adapter casePolicyDefinition(PolicyDefinition object) {
@@ -1612,6 +1624,20 @@ public class SpringAdapterFactory extends AdapterFactoryImpl {
     }
 
 	/**
+     * Creates a new adapter for an object of class '{@link org.switchyard.tools.models.switchyard1_0.spring.ExpressionNodeHelper <em>Expression Node Helper</em>}'.
+     * <!-- begin-user-doc -->
+     * This default implementation returns null so that we can easily ignore cases;
+     * it's useful to ignore a case when inheritance will catch all the cases anyway.
+     * <!-- end-user-doc -->
+     * @return the new adapter.
+     * @see org.switchyard.tools.models.switchyard1_0.spring.ExpressionNodeHelper
+     * @generated
+     */
+    public Adapter createExpressionNodeHelperAdapter() {
+        return null;
+    }
+
+    /**
      * Creates a new adapter for an object of class '{@link org.switchyard.tools.models.switchyard1_0.spring.ExpressionSubElementDefinition <em>Expression Sub Element Definition</em>}'.
      * <!-- begin-user-doc -->
 	 * This default implementation returns null so that we can easily ignore cases;
@@ -2088,6 +2114,20 @@ public class SpringAdapterFactory extends AdapterFactoryImpl {
     }
 
 	/**
+     * Creates a new adapter for an object of class '{@link org.switchyard.tools.models.switchyard1_0.spring.ModelHelper <em>Model Helper</em>}'.
+     * <!-- begin-user-doc -->
+     * This default implementation returns null so that we can easily ignore cases;
+     * it's useful to ignore a case when inheritance will catch all the cases anyway.
+     * <!-- end-user-doc -->
+     * @return the new adapter.
+     * @see org.switchyard.tools.models.switchyard1_0.spring.ModelHelper
+     * @generated
+     */
+    public Adapter createModelHelperAdapter() {
+        return null;
+    }
+
+    /**
      * Creates a new adapter for an object of class '{@link org.switchyard.tools.models.switchyard1_0.spring.MulticastDefinition <em>Multicast Definition</em>}'.
      * <!-- begin-user-doc -->
 	 * This default implementation returns null so that we can easily ignore cases;
@@ -2326,6 +2366,20 @@ public class SpringAdapterFactory extends AdapterFactoryImpl {
     }
 
 	/**
+     * Creates a new adapter for an object of class '{@link org.switchyard.tools.models.switchyard1_0.spring.PgpDataFormat <em>Pgp Data Format</em>}'.
+     * <!-- begin-user-doc -->
+     * This default implementation returns null so that we can easily ignore cases;
+     * it's useful to ignore a case when inheritance will catch all the cases anyway.
+     * <!-- end-user-doc -->
+     * @return the new adapter.
+     * @see org.switchyard.tools.models.switchyard1_0.spring.PgpDataFormat
+     * @generated
+     */
+    public Adapter createPgpDataFormatAdapter() {
+        return null;
+    }
+
+    /**
      * Creates a new adapter for an object of class '{@link org.switchyard.tools.models.switchyard1_0.spring.PolicyDefinition <em>Policy Definition</em>}'.
      * <!-- begin-user-doc -->
 	 * This default implementation returns null so that we can easily ignore cases;

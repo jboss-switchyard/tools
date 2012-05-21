@@ -75,12 +75,20 @@ public class SOAPAdapterFactory extends AdapterFactoryImpl {
 	protected SOAPSwitch<Adapter> modelSwitch =
 		new SOAPSwitch<Adapter>() {
             @Override
+            public Adapter caseContextMapperType(ContextMapperType object) {
+                return createContextMapperTypeAdapter();
+            }
+            @Override
             public Adapter caseDocumentRoot(DocumentRoot object) {
                 return createDocumentRootAdapter();
             }
             @Override
             public Adapter caseSOAPBindingType(SOAPBindingType object) {
                 return createSOAPBindingTypeAdapter();
+            }
+            @Override
+            public Adapter caseSwitchyard_ContextMapperType(org.switchyard.tools.models.switchyard1_0.switchyard.ContextMapperType object) {
+                return createSwitchyard_ContextMapperTypeAdapter();
             }
             @Override
             public Adapter caseCommonExtensionBase(CommonExtensionBase object) {
@@ -115,6 +123,20 @@ public class SOAPAdapterFactory extends AdapterFactoryImpl {
 
 
 	/**
+     * Creates a new adapter for an object of class '{@link org.switchyard.tools.models.switchyard1_0.soap.ContextMapperType <em>Context Mapper Type</em>}'.
+     * <!-- begin-user-doc -->
+     * This default implementation returns null so that we can easily ignore cases;
+     * it's useful to ignore a case when inheritance will catch all the cases anyway.
+     * <!-- end-user-doc -->
+     * @return the new adapter.
+     * @see org.switchyard.tools.models.switchyard1_0.soap.ContextMapperType
+     * @generated
+     */
+    public Adapter createContextMapperTypeAdapter() {
+        return null;
+    }
+
+    /**
      * Creates a new adapter for an object of class '{@link org.switchyard.tools.models.switchyard1_0.soap.DocumentRoot <em>Document Root</em>}'.
      * <!-- begin-user-doc -->
 	 * This default implementation returns null so that we can easily ignore cases;
@@ -143,6 +165,20 @@ public class SOAPAdapterFactory extends AdapterFactoryImpl {
     }
 
 	/**
+     * Creates a new adapter for an object of class '{@link org.switchyard.tools.models.switchyard1_0.switchyard.ContextMapperType <em>Context Mapper Type</em>}'.
+     * <!-- begin-user-doc -->
+     * This default implementation returns null so that we can easily ignore cases;
+     * it's useful to ignore a case when inheritance will catch all the cases anyway.
+     * <!-- end-user-doc -->
+     * @return the new adapter.
+     * @see org.switchyard.tools.models.switchyard1_0.switchyard.ContextMapperType
+     * @generated
+     */
+    public Adapter createSwitchyard_ContextMapperTypeAdapter() {
+        return null;
+    }
+
+    /**
      * Creates a new adapter for an object of class '{@link org.eclipse.soa.sca.sca1_1.model.sca.CommonExtensionBase <em>Common Extension Base</em>}'.
      * <!-- begin-user-doc -->
      * This default implementation returns null so that we can easily ignore cases;

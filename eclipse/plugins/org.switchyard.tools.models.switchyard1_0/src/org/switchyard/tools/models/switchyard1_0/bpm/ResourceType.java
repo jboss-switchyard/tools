@@ -6,8 +6,6 @@
  */
 package org.switchyard.tools.models.switchyard1_0.bpm;
 
-import org.eclipse.emf.ecore.EObject;
-
 /**
  * <!-- begin-user-doc -->
  * A representation of the model object '<em><b>Resource Type</b></em>'.
@@ -18,5 +16,5 @@ import org.eclipse.emf.ecore.EObject;
  * @model extendedMetaData="name='ResourceType' kind='empty'"
  * @generated
  */
-public interface ResourceType extends EObject {
+public interface ResourceType extends org.switchyard.tools.models.switchyard1_0.switchyard.ResourceType {
 } // ResourceType

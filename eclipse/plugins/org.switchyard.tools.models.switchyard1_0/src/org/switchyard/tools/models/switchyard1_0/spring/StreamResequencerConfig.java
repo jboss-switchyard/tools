@@ -16,6 +16,7 @@ package org.switchyard.tools.models.switchyard1_0.spring;
  * The following features are supported:
  * <ul>
  *   <li>{@link org.switchyard.tools.models.switchyard1_0.spring.StreamResequencerConfig#getCapacity <em>Capacity</em>}</li>
+ *   <li>{@link org.switchyard.tools.models.switchyard1_0.spring.StreamResequencerConfig#isIgnoreInvalidExchanges <em>Ignore Invalid Exchanges</em>}</li>
  *   <li>{@link org.switchyard.tools.models.switchyard1_0.spring.StreamResequencerConfig#getTimeout <em>Timeout</em>}</li>
  * </ul>
  * </p>
@@ -80,6 +81,60 @@ public interface StreamResequencerConfig extends ResequencerConfig {
 	boolean isSetCapacity();
 
 	/**
+     * Returns the value of the '<em><b>Ignore Invalid Exchanges</b></em>' attribute.
+     * <!-- begin-user-doc -->
+     * <p>
+     * If the meaning of the '<em>Ignore Invalid Exchanges</em>' attribute isn't clear,
+     * there really should be more of a description here...
+     * </p>
+     * <!-- end-user-doc -->
+     * @return the value of the '<em>Ignore Invalid Exchanges</em>' attribute.
+     * @see #isSetIgnoreInvalidExchanges()
+     * @see #unsetIgnoreInvalidExchanges()
+     * @see #setIgnoreInvalidExchanges(boolean)
+     * @see org.switchyard.tools.models.switchyard1_0.spring.SpringPackage#getStreamResequencerConfig_IgnoreInvalidExchanges()
+     * @model unsettable="true" dataType="org.eclipse.emf.ecore.xml.type.Boolean"
+     *        extendedMetaData="kind='attribute' name='ignoreInvalidExchanges'"
+     * @generated
+     */
+    boolean isIgnoreInvalidExchanges();
+
+    /**
+     * Sets the value of the '{@link org.switchyard.tools.models.switchyard1_0.spring.StreamResequencerConfig#isIgnoreInvalidExchanges <em>Ignore Invalid Exchanges</em>}' attribute.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @param value the new value of the '<em>Ignore Invalid Exchanges</em>' attribute.
+     * @see #isSetIgnoreInvalidExchanges()
+     * @see #unsetIgnoreInvalidExchanges()
+     * @see #isIgnoreInvalidExchanges()
+     * @generated
+     */
+    void setIgnoreInvalidExchanges(boolean value);
+
+    /**
+     * Unsets the value of the '{@link org.switchyard.tools.models.switchyard1_0.spring.StreamResequencerConfig#isIgnoreInvalidExchanges <em>Ignore Invalid Exchanges</em>}' attribute.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @see #isSetIgnoreInvalidExchanges()
+     * @see #isIgnoreInvalidExchanges()
+     * @see #setIgnoreInvalidExchanges(boolean)
+     * @generated
+     */
+    void unsetIgnoreInvalidExchanges();
+
+    /**
+     * Returns whether the value of the '{@link org.switchyard.tools.models.switchyard1_0.spring.StreamResequencerConfig#isIgnoreInvalidExchanges <em>Ignore Invalid Exchanges</em>}' attribute is set.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @return whether the value of the '<em>Ignore Invalid Exchanges</em>' attribute is set.
+     * @see #unsetIgnoreInvalidExchanges()
+     * @see #isIgnoreInvalidExchanges()
+     * @see #setIgnoreInvalidExchanges(boolean)
+     * @generated
+     */
+    boolean isSetIgnoreInvalidExchanges();
+
+    /**
      * Returns the value of the '<em><b>Timeout</b></em>' attribute.
      * <!-- begin-user-doc -->
 	 * <p>

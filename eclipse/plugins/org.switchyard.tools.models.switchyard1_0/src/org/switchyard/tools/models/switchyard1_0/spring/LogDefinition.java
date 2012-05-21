@@ -18,6 +18,7 @@ import org.eclipse.emf.ecore.util.FeatureMap;
  * <ul>
  *   <li>{@link org.switchyard.tools.models.switchyard1_0.spring.LogDefinition#getLoggingLevel <em>Logging Level</em>}</li>
  *   <li>{@link org.switchyard.tools.models.switchyard1_0.spring.LogDefinition#getLogName <em>Log Name</em>}</li>
+ *   <li>{@link org.switchyard.tools.models.switchyard1_0.spring.LogDefinition#getMarker <em>Marker</em>}</li>
  *   <li>{@link org.switchyard.tools.models.switchyard1_0.spring.LogDefinition#getMessage <em>Message</em>}</li>
  *   <li>{@link org.switchyard.tools.models.switchyard1_0.spring.LogDefinition#getAnyAttribute2 <em>Any Attribute2</em>}</li>
  * </ul>
@@ -113,6 +114,33 @@ public interface LogDefinition extends NoOutputDefinition {
 	void setLogName(String value);
 
 	/**
+     * Returns the value of the '<em><b>Marker</b></em>' attribute.
+     * <!-- begin-user-doc -->
+     * <p>
+     * If the meaning of the '<em>Marker</em>' attribute isn't clear,
+     * there really should be more of a description here...
+     * </p>
+     * <!-- end-user-doc -->
+     * @return the value of the '<em>Marker</em>' attribute.
+     * @see #setMarker(String)
+     * @see org.switchyard.tools.models.switchyard1_0.spring.SpringPackage#getLogDefinition_Marker()
+     * @model dataType="org.eclipse.emf.ecore.xml.type.String"
+     *        extendedMetaData="kind='attribute' name='marker'"
+     * @generated
+     */
+    String getMarker();
+
+    /**
+     * Sets the value of the '{@link org.switchyard.tools.models.switchyard1_0.spring.LogDefinition#getMarker <em>Marker</em>}' attribute.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @param value the new value of the '<em>Marker</em>' attribute.
+     * @see #getMarker()
+     * @generated
+     */
+    void setMarker(String value);
+
+    /**
      * Returns the value of the '<em><b>Message</b></em>' attribute.
      * <!-- begin-user-doc -->
 	 * <p>
@@ -151,7 +179,7 @@ public interface LogDefinition extends NoOutputDefinition {
      * @return the value of the '<em>Any Attribute2</em>' attribute list.
      * @see org.switchyard.tools.models.switchyard1_0.spring.SpringPackage#getLogDefinition_AnyAttribute2()
      * @model unique="false" dataType="org.eclipse.emf.ecore.EFeatureMapEntry" many="true"
-     *        extendedMetaData="kind='attributeWildcard' wildcards='##other' name=':8' processing='skip'"
+     *        extendedMetaData="kind='attributeWildcard' wildcards='##other' name=':9' processing='skip'"
      * @generated
      */
 	FeatureMap getAnyAttribute2();

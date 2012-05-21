@@ -1,0 +1,1586 @@
+/**
+ * <copyright>
+ * </copyright>
+ *
+ * $Id$
+ */
+package org.switchyard.tools.models.switchyard1_0.camel.impl;
+
+import org.eclipse.emf.common.notify.Notification;
+
+import org.eclipse.emf.ecore.EClass;
+
+import org.eclipse.emf.ecore.impl.ENotificationImpl;
+
+import org.switchyard.tools.models.switchyard1_0.camel.CamelJmsBindingType;
+import org.switchyard.tools.models.switchyard1_0.camel.CamelPackage;
+
+/**
+ * <!-- begin-user-doc -->
+ * An implementation of the model object '<em><b>Jms Binding Type</b></em>'.
+ * <!-- end-user-doc -->
+ * <p>
+ * The following features are implemented:
+ * <ul>
+ *   <li>{@link org.switchyard.tools.models.switchyard1_0.camel.impl.CamelJmsBindingTypeImpl#getQueue <em>Queue</em>}</li>
+ *   <li>{@link org.switchyard.tools.models.switchyard1_0.camel.impl.CamelJmsBindingTypeImpl#getTopic <em>Topic</em>}</li>
+ *   <li>{@link org.switchyard.tools.models.switchyard1_0.camel.impl.CamelJmsBindingTypeImpl#getConnectionFactory <em>Connection Factory</em>}</li>
+ *   <li>{@link org.switchyard.tools.models.switchyard1_0.camel.impl.CamelJmsBindingTypeImpl#getUsername <em>Username</em>}</li>
+ *   <li>{@link org.switchyard.tools.models.switchyard1_0.camel.impl.CamelJmsBindingTypeImpl#getPassword <em>Password</em>}</li>
+ *   <li>{@link org.switchyard.tools.models.switchyard1_0.camel.impl.CamelJmsBindingTypeImpl#getClientId <em>Client Id</em>}</li>
+ *   <li>{@link org.switchyard.tools.models.switchyard1_0.camel.impl.CamelJmsBindingTypeImpl#getDurableSubscriptionName <em>Durable Subscription Name</em>}</li>
+ *   <li>{@link org.switchyard.tools.models.switchyard1_0.camel.impl.CamelJmsBindingTypeImpl#getConcurrentConsumers <em>Concurrent Consumers</em>}</li>
+ *   <li>{@link org.switchyard.tools.models.switchyard1_0.camel.impl.CamelJmsBindingTypeImpl#getMaxConcurrentConsumers <em>Max Concurrent Consumers</em>}</li>
+ *   <li>{@link org.switchyard.tools.models.switchyard1_0.camel.impl.CamelJmsBindingTypeImpl#isDisableReplyTo <em>Disable Reply To</em>}</li>
+ *   <li>{@link org.switchyard.tools.models.switchyard1_0.camel.impl.CamelJmsBindingTypeImpl#isPreserveMessageQos <em>Preserve Message Qos</em>}</li>
+ *   <li>{@link org.switchyard.tools.models.switchyard1_0.camel.impl.CamelJmsBindingTypeImpl#isDeliveryPersistent <em>Delivery Persistent</em>}</li>
+ *   <li>{@link org.switchyard.tools.models.switchyard1_0.camel.impl.CamelJmsBindingTypeImpl#getPriority <em>Priority</em>}</li>
+ *   <li>{@link org.switchyard.tools.models.switchyard1_0.camel.impl.CamelJmsBindingTypeImpl#isExplicitQosEnabled <em>Explicit Qos Enabled</em>}</li>
+ *   <li>{@link org.switchyard.tools.models.switchyard1_0.camel.impl.CamelJmsBindingTypeImpl#getReplyTo <em>Reply To</em>}</li>
+ *   <li>{@link org.switchyard.tools.models.switchyard1_0.camel.impl.CamelJmsBindingTypeImpl#getReplyToType <em>Reply To Type</em>}</li>
+ *   <li>{@link org.switchyard.tools.models.switchyard1_0.camel.impl.CamelJmsBindingTypeImpl#getRequestTimeout <em>Request Timeout</em>}</li>
+ *   <li>{@link org.switchyard.tools.models.switchyard1_0.camel.impl.CamelJmsBindingTypeImpl#getSelector <em>Selector</em>}</li>
+ *   <li>{@link org.switchyard.tools.models.switchyard1_0.camel.impl.CamelJmsBindingTypeImpl#getTimeToLive <em>Time To Live</em>}</li>
+ *   <li>{@link org.switchyard.tools.models.switchyard1_0.camel.impl.CamelJmsBindingTypeImpl#isTransacted <em>Transacted</em>}</li>
+ *   <li>{@link org.switchyard.tools.models.switchyard1_0.camel.impl.CamelJmsBindingTypeImpl#getTransactionManager <em>Transaction Manager</em>}</li>
+ * </ul>
+ * </p>
+ *
+ * @generated
+ */
+public class CamelJmsBindingTypeImpl extends BaseCamelBindingImpl implements CamelJmsBindingType {
+    /**
+     * The default value of the '{@link #getQueue() <em>Queue</em>}' attribute.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @see #getQueue()
+     * @generated
+     * @ordered
+     */
+    protected static final String QUEUE_EDEFAULT = null;
+
+    /**
+     * The cached value of the '{@link #getQueue() <em>Queue</em>}' attribute.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @see #getQueue()
+     * @generated
+     * @ordered
+     */
+    protected String queue = QUEUE_EDEFAULT;
+
+    /**
+     * The default value of the '{@link #getTopic() <em>Topic</em>}' attribute.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @see #getTopic()
+     * @generated
+     * @ordered
+     */
+    protected static final String TOPIC_EDEFAULT = null;
+
+    /**
+     * The cached value of the '{@link #getTopic() <em>Topic</em>}' attribute.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @see #getTopic()
+     * @generated
+     * @ordered
+     */
+    protected String topic = TOPIC_EDEFAULT;
+
+    /**
+     * The default value of the '{@link #getConnectionFactory() <em>Connection Factory</em>}' attribute.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @see #getConnectionFactory()
+     * @generated
+     * @ordered
+     */
+    protected static final String CONNECTION_FACTORY_EDEFAULT = null;
+
+    /**
+     * The cached value of the '{@link #getConnectionFactory() <em>Connection Factory</em>}' attribute.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @see #getConnectionFactory()
+     * @generated
+     * @ordered
+     */
+    protected String connectionFactory = CONNECTION_FACTORY_EDEFAULT;
+
+    /**
+     * The default value of the '{@link #getUsername() <em>Username</em>}' attribute.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @see #getUsername()
+     * @generated
+     * @ordered
+     */
+    protected static final String USERNAME_EDEFAULT = null;
+
+    /**
+     * The cached value of the '{@link #getUsername() <em>Username</em>}' attribute.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @see #getUsername()
+     * @generated
+     * @ordered
+     */
+    protected String username = USERNAME_EDEFAULT;
+
+    /**
+     * The default value of the '{@link #getPassword() <em>Password</em>}' attribute.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @see #getPassword()
+     * @generated
+     * @ordered
+     */
+    protected static final String PASSWORD_EDEFAULT = null;
+
+    /**
+     * The cached value of the '{@link #getPassword() <em>Password</em>}' attribute.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @see #getPassword()
+     * @generated
+     * @ordered
+     */
+    protected String password = PASSWORD_EDEFAULT;
+
+    /**
+     * The default value of the '{@link #getClientId() <em>Client Id</em>}' attribute.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @see #getClientId()
+     * @generated
+     * @ordered
+     */
+    protected static final String CLIENT_ID_EDEFAULT = null;
+
+    /**
+     * The cached value of the '{@link #getClientId() <em>Client Id</em>}' attribute.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @see #getClientId()
+     * @generated
+     * @ordered
+     */
+    protected String clientId = CLIENT_ID_EDEFAULT;
+
+    /**
+     * The default value of the '{@link #getDurableSubscriptionName() <em>Durable Subscription Name</em>}' attribute.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @see #getDurableSubscriptionName()
+     * @generated
+     * @ordered
+     */
+    protected static final String DURABLE_SUBSCRIPTION_NAME_EDEFAULT = null;
+
+    /**
+     * The cached value of the '{@link #getDurableSubscriptionName() <em>Durable Subscription Name</em>}' attribute.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @see #getDurableSubscriptionName()
+     * @generated
+     * @ordered
+     */
+    protected String durableSubscriptionName = DURABLE_SUBSCRIPTION_NAME_EDEFAULT;
+
+    /**
+     * The default value of the '{@link #getConcurrentConsumers() <em>Concurrent Consumers</em>}' attribute.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @see #getConcurrentConsumers()
+     * @generated
+     * @ordered
+     */
+    protected static final int CONCURRENT_CONSUMERS_EDEFAULT = 0;
+
+    /**
+     * The cached value of the '{@link #getConcurrentConsumers() <em>Concurrent Consumers</em>}' attribute.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @see #getConcurrentConsumers()
+     * @generated
+     * @ordered
+     */
+    protected int concurrentConsumers = CONCURRENT_CONSUMERS_EDEFAULT;
+
+    /**
+     * This is true if the Concurrent Consumers attribute has been set.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    protected boolean concurrentConsumersESet;
+
+    /**
+     * The default value of the '{@link #getMaxConcurrentConsumers() <em>Max Concurrent Consumers</em>}' attribute.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @see #getMaxConcurrentConsumers()
+     * @generated
+     * @ordered
+     */
+    protected static final int MAX_CONCURRENT_CONSUMERS_EDEFAULT = 0;
+
+    /**
+     * The cached value of the '{@link #getMaxConcurrentConsumers() <em>Max Concurrent Consumers</em>}' attribute.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @see #getMaxConcurrentConsumers()
+     * @generated
+     * @ordered
+     */
+    protected int maxConcurrentConsumers = MAX_CONCURRENT_CONSUMERS_EDEFAULT;
+
+    /**
+     * This is true if the Max Concurrent Consumers attribute has been set.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    protected boolean maxConcurrentConsumersESet;
+
+    /**
+     * The default value of the '{@link #isDisableReplyTo() <em>Disable Reply To</em>}' attribute.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @see #isDisableReplyTo()
+     * @generated
+     * @ordered
+     */
+    protected static final boolean DISABLE_REPLY_TO_EDEFAULT = false;
+
+    /**
+     * The cached value of the '{@link #isDisableReplyTo() <em>Disable Reply To</em>}' attribute.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @see #isDisableReplyTo()
+     * @generated
+     * @ordered
+     */
+    protected boolean disableReplyTo = DISABLE_REPLY_TO_EDEFAULT;
+
+    /**
+     * This is true if the Disable Reply To attribute has been set.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    protected boolean disableReplyToESet;
+
+    /**
+     * The default value of the '{@link #isPreserveMessageQos() <em>Preserve Message Qos</em>}' attribute.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @see #isPreserveMessageQos()
+     * @generated
+     * @ordered
+     */
+    protected static final boolean PRESERVE_MESSAGE_QOS_EDEFAULT = false;
+
+    /**
+     * The cached value of the '{@link #isPreserveMessageQos() <em>Preserve Message Qos</em>}' attribute.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @see #isPreserveMessageQos()
+     * @generated
+     * @ordered
+     */
+    protected boolean preserveMessageQos = PRESERVE_MESSAGE_QOS_EDEFAULT;
+
+    /**
+     * This is true if the Preserve Message Qos attribute has been set.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    protected boolean preserveMessageQosESet;
+
+    /**
+     * The default value of the '{@link #isDeliveryPersistent() <em>Delivery Persistent</em>}' attribute.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @see #isDeliveryPersistent()
+     * @generated
+     * @ordered
+     */
+    protected static final boolean DELIVERY_PERSISTENT_EDEFAULT = false;
+
+    /**
+     * The cached value of the '{@link #isDeliveryPersistent() <em>Delivery Persistent</em>}' attribute.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @see #isDeliveryPersistent()
+     * @generated
+     * @ordered
+     */
+    protected boolean deliveryPersistent = DELIVERY_PERSISTENT_EDEFAULT;
+
+    /**
+     * This is true if the Delivery Persistent attribute has been set.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    protected boolean deliveryPersistentESet;
+
+    /**
+     * The default value of the '{@link #getPriority() <em>Priority</em>}' attribute.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @see #getPriority()
+     * @generated
+     * @ordered
+     */
+    protected static final int PRIORITY_EDEFAULT = 0;
+
+    /**
+     * The cached value of the '{@link #getPriority() <em>Priority</em>}' attribute.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @see #getPriority()
+     * @generated
+     * @ordered
+     */
+    protected int priority = PRIORITY_EDEFAULT;
+
+    /**
+     * This is true if the Priority attribute has been set.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    protected boolean priorityESet;
+
+    /**
+     * The default value of the '{@link #isExplicitQosEnabled() <em>Explicit Qos Enabled</em>}' attribute.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @see #isExplicitQosEnabled()
+     * @generated
+     * @ordered
+     */
+    protected static final boolean EXPLICIT_QOS_ENABLED_EDEFAULT = false;
+
+    /**
+     * The cached value of the '{@link #isExplicitQosEnabled() <em>Explicit Qos Enabled</em>}' attribute.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @see #isExplicitQosEnabled()
+     * @generated
+     * @ordered
+     */
+    protected boolean explicitQosEnabled = EXPLICIT_QOS_ENABLED_EDEFAULT;
+
+    /**
+     * This is true if the Explicit Qos Enabled attribute has been set.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    protected boolean explicitQosEnabledESet;
+
+    /**
+     * The default value of the '{@link #getReplyTo() <em>Reply To</em>}' attribute.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @see #getReplyTo()
+     * @generated
+     * @ordered
+     */
+    protected static final String REPLY_TO_EDEFAULT = null;
+
+    /**
+     * The cached value of the '{@link #getReplyTo() <em>Reply To</em>}' attribute.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @see #getReplyTo()
+     * @generated
+     * @ordered
+     */
+    protected String replyTo = REPLY_TO_EDEFAULT;
+
+    /**
+     * The default value of the '{@link #getReplyToType() <em>Reply To Type</em>}' attribute.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @see #getReplyToType()
+     * @generated
+     * @ordered
+     */
+    protected static final String REPLY_TO_TYPE_EDEFAULT = null;
+
+    /**
+     * The cached value of the '{@link #getReplyToType() <em>Reply To Type</em>}' attribute.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @see #getReplyToType()
+     * @generated
+     * @ordered
+     */
+    protected String replyToType = REPLY_TO_TYPE_EDEFAULT;
+
+    /**
+     * The default value of the '{@link #getRequestTimeout() <em>Request Timeout</em>}' attribute.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @see #getRequestTimeout()
+     * @generated
+     * @ordered
+     */
+    protected static final int REQUEST_TIMEOUT_EDEFAULT = 0;
+
+    /**
+     * The cached value of the '{@link #getRequestTimeout() <em>Request Timeout</em>}' attribute.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @see #getRequestTimeout()
+     * @generated
+     * @ordered
+     */
+    protected int requestTimeout = REQUEST_TIMEOUT_EDEFAULT;
+
+    /**
+     * This is true if the Request Timeout attribute has been set.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    protected boolean requestTimeoutESet;
+
+    /**
+     * The default value of the '{@link #getSelector() <em>Selector</em>}' attribute.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @see #getSelector()
+     * @generated
+     * @ordered
+     */
+    protected static final String SELECTOR_EDEFAULT = null;
+
+    /**
+     * The cached value of the '{@link #getSelector() <em>Selector</em>}' attribute.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @see #getSelector()
+     * @generated
+     * @ordered
+     */
+    protected String selector = SELECTOR_EDEFAULT;
+
+    /**
+     * The default value of the '{@link #getTimeToLive() <em>Time To Live</em>}' attribute.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @see #getTimeToLive()
+     * @generated
+     * @ordered
+     */
+    protected static final int TIME_TO_LIVE_EDEFAULT = 0;
+
+    /**
+     * The cached value of the '{@link #getTimeToLive() <em>Time To Live</em>}' attribute.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @see #getTimeToLive()
+     * @generated
+     * @ordered
+     */
+    protected int timeToLive = TIME_TO_LIVE_EDEFAULT;
+
+    /**
+     * This is true if the Time To Live attribute has been set.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    protected boolean timeToLiveESet;
+
+    /**
+     * The default value of the '{@link #isTransacted() <em>Transacted</em>}' attribute.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @see #isTransacted()
+     * @generated
+     * @ordered
+     */
+    protected static final boolean TRANSACTED_EDEFAULT = false;
+
+    /**
+     * The cached value of the '{@link #isTransacted() <em>Transacted</em>}' attribute.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @see #isTransacted()
+     * @generated
+     * @ordered
+     */
+    protected boolean transacted = TRANSACTED_EDEFAULT;
+
+    /**
+     * This is true if the Transacted attribute has been set.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    protected boolean transactedESet;
+
+    /**
+     * The default value of the '{@link #getTransactionManager() <em>Transaction Manager</em>}' attribute.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @see #getTransactionManager()
+     * @generated
+     * @ordered
+     */
+    protected static final String TRANSACTION_MANAGER_EDEFAULT = null;
+
+    /**
+     * The cached value of the '{@link #getTransactionManager() <em>Transaction Manager</em>}' attribute.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @see #getTransactionManager()
+     * @generated
+     * @ordered
+     */
+    protected String transactionManager = TRANSACTION_MANAGER_EDEFAULT;
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    protected CamelJmsBindingTypeImpl() {
+        super();
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    @Override
+    protected EClass eStaticClass() {
+        return CamelPackage.Literals.CAMEL_JMS_BINDING_TYPE;
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public String getQueue() {
+        return queue;
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public void setQueue(String newQueue) {
+        String oldQueue = queue;
+        queue = newQueue;
+        if (eNotificationRequired())
+            eNotify(new ENotificationImpl(this, Notification.SET, CamelPackage.CAMEL_JMS_BINDING_TYPE__QUEUE, oldQueue, queue));
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public String getTopic() {
+        return topic;
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public void setTopic(String newTopic) {
+        String oldTopic = topic;
+        topic = newTopic;
+        if (eNotificationRequired())
+            eNotify(new ENotificationImpl(this, Notification.SET, CamelPackage.CAMEL_JMS_BINDING_TYPE__TOPIC, oldTopic, topic));
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public String getConnectionFactory() {
+        return connectionFactory;
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public void setConnectionFactory(String newConnectionFactory) {
+        String oldConnectionFactory = connectionFactory;
+        connectionFactory = newConnectionFactory;
+        if (eNotificationRequired())
+            eNotify(new ENotificationImpl(this, Notification.SET, CamelPackage.CAMEL_JMS_BINDING_TYPE__CONNECTION_FACTORY, oldConnectionFactory, connectionFactory));
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public String getUsername() {
+        return username;
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public void setUsername(String newUsername) {
+        String oldUsername = username;
+        username = newUsername;
+        if (eNotificationRequired())
+            eNotify(new ENotificationImpl(this, Notification.SET, CamelPackage.CAMEL_JMS_BINDING_TYPE__USERNAME, oldUsername, username));
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public String getPassword() {
+        return password;
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public void setPassword(String newPassword) {
+        String oldPassword = password;
+        password = newPassword;
+        if (eNotificationRequired())
+            eNotify(new ENotificationImpl(this, Notification.SET, CamelPackage.CAMEL_JMS_BINDING_TYPE__PASSWORD, oldPassword, password));
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public String getClientId() {
+        return clientId;
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public void setClientId(String newClientId) {
+        String oldClientId = clientId;
+        clientId = newClientId;
+        if (eNotificationRequired())
+            eNotify(new ENotificationImpl(this, Notification.SET, CamelPackage.CAMEL_JMS_BINDING_TYPE__CLIENT_ID, oldClientId, clientId));
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public String getDurableSubscriptionName() {
+        return durableSubscriptionName;
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public void setDurableSubscriptionName(String newDurableSubscriptionName) {
+        String oldDurableSubscriptionName = durableSubscriptionName;
+        durableSubscriptionName = newDurableSubscriptionName;
+        if (eNotificationRequired())
+            eNotify(new ENotificationImpl(this, Notification.SET, CamelPackage.CAMEL_JMS_BINDING_TYPE__DURABLE_SUBSCRIPTION_NAME, oldDurableSubscriptionName, durableSubscriptionName));
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public int getConcurrentConsumers() {
+        return concurrentConsumers;
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public void setConcurrentConsumers(int newConcurrentConsumers) {
+        int oldConcurrentConsumers = concurrentConsumers;
+        concurrentConsumers = newConcurrentConsumers;
+        boolean oldConcurrentConsumersESet = concurrentConsumersESet;
+        concurrentConsumersESet = true;
+        if (eNotificationRequired())
+            eNotify(new ENotificationImpl(this, Notification.SET, CamelPackage.CAMEL_JMS_BINDING_TYPE__CONCURRENT_CONSUMERS, oldConcurrentConsumers, concurrentConsumers, !oldConcurrentConsumersESet));
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public void unsetConcurrentConsumers() {
+        int oldConcurrentConsumers = concurrentConsumers;
+        boolean oldConcurrentConsumersESet = concurrentConsumersESet;
+        concurrentConsumers = CONCURRENT_CONSUMERS_EDEFAULT;
+        concurrentConsumersESet = false;
+        if (eNotificationRequired())
+            eNotify(new ENotificationImpl(this, Notification.UNSET, CamelPackage.CAMEL_JMS_BINDING_TYPE__CONCURRENT_CONSUMERS, oldConcurrentConsumers, CONCURRENT_CONSUMERS_EDEFAULT, oldConcurrentConsumersESet));
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public boolean isSetConcurrentConsumers() {
+        return concurrentConsumersESet;
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public int getMaxConcurrentConsumers() {
+        return maxConcurrentConsumers;
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public void setMaxConcurrentConsumers(int newMaxConcurrentConsumers) {
+        int oldMaxConcurrentConsumers = maxConcurrentConsumers;
+        maxConcurrentConsumers = newMaxConcurrentConsumers;
+        boolean oldMaxConcurrentConsumersESet = maxConcurrentConsumersESet;
+        maxConcurrentConsumersESet = true;
+        if (eNotificationRequired())
+            eNotify(new ENotificationImpl(this, Notification.SET, CamelPackage.CAMEL_JMS_BINDING_TYPE__MAX_CONCURRENT_CONSUMERS, oldMaxConcurrentConsumers, maxConcurrentConsumers, !oldMaxConcurrentConsumersESet));
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public void unsetMaxConcurrentConsumers() {
+        int oldMaxConcurrentConsumers = maxConcurrentConsumers;
+        boolean oldMaxConcurrentConsumersESet = maxConcurrentConsumersESet;
+        maxConcurrentConsumers = MAX_CONCURRENT_CONSUMERS_EDEFAULT;
+        maxConcurrentConsumersESet = false;
+        if (eNotificationRequired())
+            eNotify(new ENotificationImpl(this, Notification.UNSET, CamelPackage.CAMEL_JMS_BINDING_TYPE__MAX_CONCURRENT_CONSUMERS, oldMaxConcurrentConsumers, MAX_CONCURRENT_CONSUMERS_EDEFAULT, oldMaxConcurrentConsumersESet));
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public boolean isSetMaxConcurrentConsumers() {
+        return maxConcurrentConsumersESet;
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public boolean isDisableReplyTo() {
+        return disableReplyTo;
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public void setDisableReplyTo(boolean newDisableReplyTo) {
+        boolean oldDisableReplyTo = disableReplyTo;
+        disableReplyTo = newDisableReplyTo;
+        boolean oldDisableReplyToESet = disableReplyToESet;
+        disableReplyToESet = true;
+        if (eNotificationRequired())
+            eNotify(new ENotificationImpl(this, Notification.SET, CamelPackage.CAMEL_JMS_BINDING_TYPE__DISABLE_REPLY_TO, oldDisableReplyTo, disableReplyTo, !oldDisableReplyToESet));
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public void unsetDisableReplyTo() {
+        boolean oldDisableReplyTo = disableReplyTo;
+        boolean oldDisableReplyToESet = disableReplyToESet;
+        disableReplyTo = DISABLE_REPLY_TO_EDEFAULT;
+        disableReplyToESet = false;
+        if (eNotificationRequired())
+            eNotify(new ENotificationImpl(this, Notification.UNSET, CamelPackage.CAMEL_JMS_BINDING_TYPE__DISABLE_REPLY_TO, oldDisableReplyTo, DISABLE_REPLY_TO_EDEFAULT, oldDisableReplyToESet));
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public boolean isSetDisableReplyTo() {
+        return disableReplyToESet;
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public boolean isPreserveMessageQos() {
+        return preserveMessageQos;
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public void setPreserveMessageQos(boolean newPreserveMessageQos) {
+        boolean oldPreserveMessageQos = preserveMessageQos;
+        preserveMessageQos = newPreserveMessageQos;
+        boolean oldPreserveMessageQosESet = preserveMessageQosESet;
+        preserveMessageQosESet = true;
+        if (eNotificationRequired())
+            eNotify(new ENotificationImpl(this, Notification.SET, CamelPackage.CAMEL_JMS_BINDING_TYPE__PRESERVE_MESSAGE_QOS, oldPreserveMessageQos, preserveMessageQos, !oldPreserveMessageQosESet));
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public void unsetPreserveMessageQos() {
+        boolean oldPreserveMessageQos = preserveMessageQos;
+        boolean oldPreserveMessageQosESet = preserveMessageQosESet;
+        preserveMessageQos = PRESERVE_MESSAGE_QOS_EDEFAULT;
+        preserveMessageQosESet = false;
+        if (eNotificationRequired())
+            eNotify(new ENotificationImpl(this, Notification.UNSET, CamelPackage.CAMEL_JMS_BINDING_TYPE__PRESERVE_MESSAGE_QOS, oldPreserveMessageQos, PRESERVE_MESSAGE_QOS_EDEFAULT, oldPreserveMessageQosESet));
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public boolean isSetPreserveMessageQos() {
+        return preserveMessageQosESet;
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public boolean isDeliveryPersistent() {
+        return deliveryPersistent;
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public void setDeliveryPersistent(boolean newDeliveryPersistent) {
+        boolean oldDeliveryPersistent = deliveryPersistent;
+        deliveryPersistent = newDeliveryPersistent;
+        boolean oldDeliveryPersistentESet = deliveryPersistentESet;
+        deliveryPersistentESet = true;
+        if (eNotificationRequired())
+            eNotify(new ENotificationImpl(this, Notification.SET, CamelPackage.CAMEL_JMS_BINDING_TYPE__DELIVERY_PERSISTENT, oldDeliveryPersistent, deliveryPersistent, !oldDeliveryPersistentESet));
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public void unsetDeliveryPersistent() {
+        boolean oldDeliveryPersistent = deliveryPersistent;
+        boolean oldDeliveryPersistentESet = deliveryPersistentESet;
+        deliveryPersistent = DELIVERY_PERSISTENT_EDEFAULT;
+        deliveryPersistentESet = false;
+        if (eNotificationRequired())
+            eNotify(new ENotificationImpl(this, Notification.UNSET, CamelPackage.CAMEL_JMS_BINDING_TYPE__DELIVERY_PERSISTENT, oldDeliveryPersistent, DELIVERY_PERSISTENT_EDEFAULT, oldDeliveryPersistentESet));
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public boolean isSetDeliveryPersistent() {
+        return deliveryPersistentESet;
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public int getPriority() {
+        return priority;
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public void setPriority(int newPriority) {
+        int oldPriority = priority;
+        priority = newPriority;
+        boolean oldPriorityESet = priorityESet;
+        priorityESet = true;
+        if (eNotificationRequired())
+            eNotify(new ENotificationImpl(this, Notification.SET, CamelPackage.CAMEL_JMS_BINDING_TYPE__PRIORITY, oldPriority, priority, !oldPriorityESet));
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public void unsetPriority() {
+        int oldPriority = priority;
+        boolean oldPriorityESet = priorityESet;
+        priority = PRIORITY_EDEFAULT;
+        priorityESet = false;
+        if (eNotificationRequired())
+            eNotify(new ENotificationImpl(this, Notification.UNSET, CamelPackage.CAMEL_JMS_BINDING_TYPE__PRIORITY, oldPriority, PRIORITY_EDEFAULT, oldPriorityESet));
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public boolean isSetPriority() {
+        return priorityESet;
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public boolean isExplicitQosEnabled() {
+        return explicitQosEnabled;
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public void setExplicitQosEnabled(boolean newExplicitQosEnabled) {
+        boolean oldExplicitQosEnabled = explicitQosEnabled;
+        explicitQosEnabled = newExplicitQosEnabled;
+        boolean oldExplicitQosEnabledESet = explicitQosEnabledESet;
+        explicitQosEnabledESet = true;
+        if (eNotificationRequired())
+            eNotify(new ENotificationImpl(this, Notification.SET, CamelPackage.CAMEL_JMS_BINDING_TYPE__EXPLICIT_QOS_ENABLED, oldExplicitQosEnabled, explicitQosEnabled, !oldExplicitQosEnabledESet));
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public void unsetExplicitQosEnabled() {
+        boolean oldExplicitQosEnabled = explicitQosEnabled;
+        boolean oldExplicitQosEnabledESet = explicitQosEnabledESet;
+        explicitQosEnabled = EXPLICIT_QOS_ENABLED_EDEFAULT;
+        explicitQosEnabledESet = false;
+        if (eNotificationRequired())
+            eNotify(new ENotificationImpl(this, Notification.UNSET, CamelPackage.CAMEL_JMS_BINDING_TYPE__EXPLICIT_QOS_ENABLED, oldExplicitQosEnabled, EXPLICIT_QOS_ENABLED_EDEFAULT, oldExplicitQosEnabledESet));
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public boolean isSetExplicitQosEnabled() {
+        return explicitQosEnabledESet;
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public String getReplyTo() {
+        return replyTo;
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public void setReplyTo(String newReplyTo) {
+        String oldReplyTo = replyTo;
+        replyTo = newReplyTo;
+        if (eNotificationRequired())
+            eNotify(new ENotificationImpl(this, Notification.SET, CamelPackage.CAMEL_JMS_BINDING_TYPE__REPLY_TO, oldReplyTo, replyTo));
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public String getReplyToType() {
+        return replyToType;
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public void setReplyToType(String newReplyToType) {
+        String oldReplyToType = replyToType;
+        replyToType = newReplyToType;
+        if (eNotificationRequired())
+            eNotify(new ENotificationImpl(this, Notification.SET, CamelPackage.CAMEL_JMS_BINDING_TYPE__REPLY_TO_TYPE, oldReplyToType, replyToType));
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public int getRequestTimeout() {
+        return requestTimeout;
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public void setRequestTimeout(int newRequestTimeout) {
+        int oldRequestTimeout = requestTimeout;
+        requestTimeout = newRequestTimeout;
+        boolean oldRequestTimeoutESet = requestTimeoutESet;
+        requestTimeoutESet = true;
+        if (eNotificationRequired())
+            eNotify(new ENotificationImpl(this, Notification.SET, CamelPackage.CAMEL_JMS_BINDING_TYPE__REQUEST_TIMEOUT, oldRequestTimeout, requestTimeout, !oldRequestTimeoutESet));
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public void unsetRequestTimeout() {
+        int oldRequestTimeout = requestTimeout;
+        boolean oldRequestTimeoutESet = requestTimeoutESet;
+        requestTimeout = REQUEST_TIMEOUT_EDEFAULT;
+        requestTimeoutESet = false;
+        if (eNotificationRequired())
+            eNotify(new ENotificationImpl(this, Notification.UNSET, CamelPackage.CAMEL_JMS_BINDING_TYPE__REQUEST_TIMEOUT, oldRequestTimeout, REQUEST_TIMEOUT_EDEFAULT, oldRequestTimeoutESet));
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public boolean isSetRequestTimeout() {
+        return requestTimeoutESet;
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public String getSelector() {
+        return selector;
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public void setSelector(String newSelector) {
+        String oldSelector = selector;
+        selector = newSelector;
+        if (eNotificationRequired())
+            eNotify(new ENotificationImpl(this, Notification.SET, CamelPackage.CAMEL_JMS_BINDING_TYPE__SELECTOR, oldSelector, selector));
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public int getTimeToLive() {
+        return timeToLive;
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public void setTimeToLive(int newTimeToLive) {
+        int oldTimeToLive = timeToLive;
+        timeToLive = newTimeToLive;
+        boolean oldTimeToLiveESet = timeToLiveESet;
+        timeToLiveESet = true;
+        if (eNotificationRequired())
+            eNotify(new ENotificationImpl(this, Notification.SET, CamelPackage.CAMEL_JMS_BINDING_TYPE__TIME_TO_LIVE, oldTimeToLive, timeToLive, !oldTimeToLiveESet));
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public void unsetTimeToLive() {
+        int oldTimeToLive = timeToLive;
+        boolean oldTimeToLiveESet = timeToLiveESet;
+        timeToLive = TIME_TO_LIVE_EDEFAULT;
+        timeToLiveESet = false;
+        if (eNotificationRequired())
+            eNotify(new ENotificationImpl(this, Notification.UNSET, CamelPackage.CAMEL_JMS_BINDING_TYPE__TIME_TO_LIVE, oldTimeToLive, TIME_TO_LIVE_EDEFAULT, oldTimeToLiveESet));
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public boolean isSetTimeToLive() {
+        return timeToLiveESet;
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public boolean isTransacted() {
+        return transacted;
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public void setTransacted(boolean newTransacted) {
+        boolean oldTransacted = transacted;
+        transacted = newTransacted;
+        boolean oldTransactedESet = transactedESet;
+        transactedESet = true;
+        if (eNotificationRequired())
+            eNotify(new ENotificationImpl(this, Notification.SET, CamelPackage.CAMEL_JMS_BINDING_TYPE__TRANSACTED, oldTransacted, transacted, !oldTransactedESet));
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public void unsetTransacted() {
+        boolean oldTransacted = transacted;
+        boolean oldTransactedESet = transactedESet;
+        transacted = TRANSACTED_EDEFAULT;
+        transactedESet = false;
+        if (eNotificationRequired())
+            eNotify(new ENotificationImpl(this, Notification.UNSET, CamelPackage.CAMEL_JMS_BINDING_TYPE__TRANSACTED, oldTransacted, TRANSACTED_EDEFAULT, oldTransactedESet));
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public boolean isSetTransacted() {
+        return transactedESet;
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public String getTransactionManager() {
+        return transactionManager;
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public void setTransactionManager(String newTransactionManager) {
+        String oldTransactionManager = transactionManager;
+        transactionManager = newTransactionManager;
+        if (eNotificationRequired())
+            eNotify(new ENotificationImpl(this, Notification.SET, CamelPackage.CAMEL_JMS_BINDING_TYPE__TRANSACTION_MANAGER, oldTransactionManager, transactionManager));
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    @Override
+    public Object eGet(int featureID, boolean resolve, boolean coreType) {
+        switch (featureID) {
+            case CamelPackage.CAMEL_JMS_BINDING_TYPE__QUEUE:
+                return getQueue();
+            case CamelPackage.CAMEL_JMS_BINDING_TYPE__TOPIC:
+                return getTopic();
+            case CamelPackage.CAMEL_JMS_BINDING_TYPE__CONNECTION_FACTORY:
+                return getConnectionFactory();
+            case CamelPackage.CAMEL_JMS_BINDING_TYPE__USERNAME:
+                return getUsername();
+            case CamelPackage.CAMEL_JMS_BINDING_TYPE__PASSWORD:
+                return getPassword();
+            case CamelPackage.CAMEL_JMS_BINDING_TYPE__CLIENT_ID:
+                return getClientId();
+            case CamelPackage.CAMEL_JMS_BINDING_TYPE__DURABLE_SUBSCRIPTION_NAME:
+                return getDurableSubscriptionName();
+            case CamelPackage.CAMEL_JMS_BINDING_TYPE__CONCURRENT_CONSUMERS:
+                return getConcurrentConsumers();
+            case CamelPackage.CAMEL_JMS_BINDING_TYPE__MAX_CONCURRENT_CONSUMERS:
+                return getMaxConcurrentConsumers();
+            case CamelPackage.CAMEL_JMS_BINDING_TYPE__DISABLE_REPLY_TO:
+                return isDisableReplyTo();
+            case CamelPackage.CAMEL_JMS_BINDING_TYPE__PRESERVE_MESSAGE_QOS:
+                return isPreserveMessageQos();
+            case CamelPackage.CAMEL_JMS_BINDING_TYPE__DELIVERY_PERSISTENT:
+                return isDeliveryPersistent();
+            case CamelPackage.CAMEL_JMS_BINDING_TYPE__PRIORITY:
+                return getPriority();
+            case CamelPackage.CAMEL_JMS_BINDING_TYPE__EXPLICIT_QOS_ENABLED:
+                return isExplicitQosEnabled();
+            case CamelPackage.CAMEL_JMS_BINDING_TYPE__REPLY_TO:
+                return getReplyTo();
+            case CamelPackage.CAMEL_JMS_BINDING_TYPE__REPLY_TO_TYPE:
+                return getReplyToType();
+            case CamelPackage.CAMEL_JMS_BINDING_TYPE__REQUEST_TIMEOUT:
+                return getRequestTimeout();
+            case CamelPackage.CAMEL_JMS_BINDING_TYPE__SELECTOR:
+                return getSelector();
+            case CamelPackage.CAMEL_JMS_BINDING_TYPE__TIME_TO_LIVE:
+                return getTimeToLive();
+            case CamelPackage.CAMEL_JMS_BINDING_TYPE__TRANSACTED:
+                return isTransacted();
+            case CamelPackage.CAMEL_JMS_BINDING_TYPE__TRANSACTION_MANAGER:
+                return getTransactionManager();
+        }
+        return super.eGet(featureID, resolve, coreType);
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    @Override
+    public void eSet(int featureID, Object newValue) {
+        switch (featureID) {
+            case CamelPackage.CAMEL_JMS_BINDING_TYPE__QUEUE:
+                setQueue((String)newValue);
+                return;
+            case CamelPackage.CAMEL_JMS_BINDING_TYPE__TOPIC:
+                setTopic((String)newValue);
+                return;
+            case CamelPackage.CAMEL_JMS_BINDING_TYPE__CONNECTION_FACTORY:
+                setConnectionFactory((String)newValue);
+                return;
+            case CamelPackage.CAMEL_JMS_BINDING_TYPE__USERNAME:
+                setUsername((String)newValue);
+                return;
+            case CamelPackage.CAMEL_JMS_BINDING_TYPE__PASSWORD:
+                setPassword((String)newValue);
+                return;
+            case CamelPackage.CAMEL_JMS_BINDING_TYPE__CLIENT_ID:
+                setClientId((String)newValue);
+                return;
+            case CamelPackage.CAMEL_JMS_BINDING_TYPE__DURABLE_SUBSCRIPTION_NAME:
+                setDurableSubscriptionName((String)newValue);
+                return;
+            case CamelPackage.CAMEL_JMS_BINDING_TYPE__CONCURRENT_CONSUMERS:
+                setConcurrentConsumers((Integer)newValue);
+                return;
+            case CamelPackage.CAMEL_JMS_BINDING_TYPE__MAX_CONCURRENT_CONSUMERS:
+                setMaxConcurrentConsumers((Integer)newValue);
+                return;
+            case CamelPackage.CAMEL_JMS_BINDING_TYPE__DISABLE_REPLY_TO:
+                setDisableReplyTo((Boolean)newValue);
+                return;
+            case CamelPackage.CAMEL_JMS_BINDING_TYPE__PRESERVE_MESSAGE_QOS:
+                setPreserveMessageQos((Boolean)newValue);
+                return;
+            case CamelPackage.CAMEL_JMS_BINDING_TYPE__DELIVERY_PERSISTENT:
+                setDeliveryPersistent((Boolean)newValue);
+                return;
+            case CamelPackage.CAMEL_JMS_BINDING_TYPE__PRIORITY:
+                setPriority((Integer)newValue);
+                return;
+            case CamelPackage.CAMEL_JMS_BINDING_TYPE__EXPLICIT_QOS_ENABLED:
+                setExplicitQosEnabled((Boolean)newValue);
+                return;
+            case CamelPackage.CAMEL_JMS_BINDING_TYPE__REPLY_TO:
+                setReplyTo((String)newValue);
+                return;
+            case CamelPackage.CAMEL_JMS_BINDING_TYPE__REPLY_TO_TYPE:
+                setReplyToType((String)newValue);
+                return;
+            case CamelPackage.CAMEL_JMS_BINDING_TYPE__REQUEST_TIMEOUT:
+                setRequestTimeout((Integer)newValue);
+                return;
+            case CamelPackage.CAMEL_JMS_BINDING_TYPE__SELECTOR:
+                setSelector((String)newValue);
+                return;
+            case CamelPackage.CAMEL_JMS_BINDING_TYPE__TIME_TO_LIVE:
+                setTimeToLive((Integer)newValue);
+                return;
+            case CamelPackage.CAMEL_JMS_BINDING_TYPE__TRANSACTED:
+                setTransacted((Boolean)newValue);
+                return;
+            case CamelPackage.CAMEL_JMS_BINDING_TYPE__TRANSACTION_MANAGER:
+                setTransactionManager((String)newValue);
+                return;
+        }
+        super.eSet(featureID, newValue);
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    @Override
+    public void eUnset(int featureID) {
+        switch (featureID) {
+            case CamelPackage.CAMEL_JMS_BINDING_TYPE__QUEUE:
+                setQueue(QUEUE_EDEFAULT);
+                return;
+            case CamelPackage.CAMEL_JMS_BINDING_TYPE__TOPIC:
+                setTopic(TOPIC_EDEFAULT);
+                return;
+            case CamelPackage.CAMEL_JMS_BINDING_TYPE__CONNECTION_FACTORY:
+                setConnectionFactory(CONNECTION_FACTORY_EDEFAULT);
+                return;
+            case CamelPackage.CAMEL_JMS_BINDING_TYPE__USERNAME:
+                setUsername(USERNAME_EDEFAULT);
+                return;
+            case CamelPackage.CAMEL_JMS_BINDING_TYPE__PASSWORD:
+                setPassword(PASSWORD_EDEFAULT);
+                return;
+            case CamelPackage.CAMEL_JMS_BINDING_TYPE__CLIENT_ID:
+                setClientId(CLIENT_ID_EDEFAULT);
+                return;
+            case CamelPackage.CAMEL_JMS_BINDING_TYPE__DURABLE_SUBSCRIPTION_NAME:
+                setDurableSubscriptionName(DURABLE_SUBSCRIPTION_NAME_EDEFAULT);
+                return;
+            case CamelPackage.CAMEL_JMS_BINDING_TYPE__CONCURRENT_CONSUMERS:
+                unsetConcurrentConsumers();
+                return;
+            case CamelPackage.CAMEL_JMS_BINDING_TYPE__MAX_CONCURRENT_CONSUMERS:
+                unsetMaxConcurrentConsumers();
+                return;
+            case CamelPackage.CAMEL_JMS_BINDING_TYPE__DISABLE_REPLY_TO:
+                unsetDisableReplyTo();
+                return;
+            case CamelPackage.CAMEL_JMS_BINDING_TYPE__PRESERVE_MESSAGE_QOS:
+                unsetPreserveMessageQos();
+                return;
+            case CamelPackage.CAMEL_JMS_BINDING_TYPE__DELIVERY_PERSISTENT:
+                unsetDeliveryPersistent();
+                return;
+            case CamelPackage.CAMEL_JMS_BINDING_TYPE__PRIORITY:
+                unsetPriority();
+                return;
+            case CamelPackage.CAMEL_JMS_BINDING_TYPE__EXPLICIT_QOS_ENABLED:
+                unsetExplicitQosEnabled();
+                return;
+            case CamelPackage.CAMEL_JMS_BINDING_TYPE__REPLY_TO:
+                setReplyTo(REPLY_TO_EDEFAULT);
+                return;
+            case CamelPackage.CAMEL_JMS_BINDING_TYPE__REPLY_TO_TYPE:
+                setReplyToType(REPLY_TO_TYPE_EDEFAULT);
+                return;
+            case CamelPackage.CAMEL_JMS_BINDING_TYPE__REQUEST_TIMEOUT:
+                unsetRequestTimeout();
+                return;
+            case CamelPackage.CAMEL_JMS_BINDING_TYPE__SELECTOR:
+                setSelector(SELECTOR_EDEFAULT);
+                return;
+            case CamelPackage.CAMEL_JMS_BINDING_TYPE__TIME_TO_LIVE:
+                unsetTimeToLive();
+                return;
+            case CamelPackage.CAMEL_JMS_BINDING_TYPE__TRANSACTED:
+                unsetTransacted();
+                return;
+            case CamelPackage.CAMEL_JMS_BINDING_TYPE__TRANSACTION_MANAGER:
+                setTransactionManager(TRANSACTION_MANAGER_EDEFAULT);
+                return;
+        }
+        super.eUnset(featureID);
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    @Override
+    public boolean eIsSet(int featureID) {
+        switch (featureID) {
+            case CamelPackage.CAMEL_JMS_BINDING_TYPE__QUEUE:
+                return QUEUE_EDEFAULT == null ? queue != null : !QUEUE_EDEFAULT.equals(queue);
+            case CamelPackage.CAMEL_JMS_BINDING_TYPE__TOPIC:
+                return TOPIC_EDEFAULT == null ? topic != null : !TOPIC_EDEFAULT.equals(topic);
+            case CamelPackage.CAMEL_JMS_BINDING_TYPE__CONNECTION_FACTORY:
+                return CONNECTION_FACTORY_EDEFAULT == null ? connectionFactory != null : !CONNECTION_FACTORY_EDEFAULT.equals(connectionFactory);
+            case CamelPackage.CAMEL_JMS_BINDING_TYPE__USERNAME:
+                return USERNAME_EDEFAULT == null ? username != null : !USERNAME_EDEFAULT.equals(username);
+            case CamelPackage.CAMEL_JMS_BINDING_TYPE__PASSWORD:
+                return PASSWORD_EDEFAULT == null ? password != null : !PASSWORD_EDEFAULT.equals(password);
+            case CamelPackage.CAMEL_JMS_BINDING_TYPE__CLIENT_ID:
+                return CLIENT_ID_EDEFAULT == null ? clientId != null : !CLIENT_ID_EDEFAULT.equals(clientId);
+            case CamelPackage.CAMEL_JMS_BINDING_TYPE__DURABLE_SUBSCRIPTION_NAME:
+                return DURABLE_SUBSCRIPTION_NAME_EDEFAULT == null ? durableSubscriptionName != null : !DURABLE_SUBSCRIPTION_NAME_EDEFAULT.equals(durableSubscriptionName);
+            case CamelPackage.CAMEL_JMS_BINDING_TYPE__CONCURRENT_CONSUMERS:
+                return isSetConcurrentConsumers();
+            case CamelPackage.CAMEL_JMS_BINDING_TYPE__MAX_CONCURRENT_CONSUMERS:
+                return isSetMaxConcurrentConsumers();
+            case CamelPackage.CAMEL_JMS_BINDING_TYPE__DISABLE_REPLY_TO:
+                return isSetDisableReplyTo();
+            case CamelPackage.CAMEL_JMS_BINDING_TYPE__PRESERVE_MESSAGE_QOS:
+                return isSetPreserveMessageQos();
+            case CamelPackage.CAMEL_JMS_BINDING_TYPE__DELIVERY_PERSISTENT:
+                return isSetDeliveryPersistent();
+            case CamelPackage.CAMEL_JMS_BINDING_TYPE__PRIORITY:
+                return isSetPriority();
+            case CamelPackage.CAMEL_JMS_BINDING_TYPE__EXPLICIT_QOS_ENABLED:
+                return isSetExplicitQosEnabled();
+            case CamelPackage.CAMEL_JMS_BINDING_TYPE__REPLY_TO:
+                return REPLY_TO_EDEFAULT == null ? replyTo != null : !REPLY_TO_EDEFAULT.equals(replyTo);
+            case CamelPackage.CAMEL_JMS_BINDING_TYPE__REPLY_TO_TYPE:
+                return REPLY_TO_TYPE_EDEFAULT == null ? replyToType != null : !REPLY_TO_TYPE_EDEFAULT.equals(replyToType);
+            case CamelPackage.CAMEL_JMS_BINDING_TYPE__REQUEST_TIMEOUT:
+                return isSetRequestTimeout();
+            case CamelPackage.CAMEL_JMS_BINDING_TYPE__SELECTOR:
+                return SELECTOR_EDEFAULT == null ? selector != null : !SELECTOR_EDEFAULT.equals(selector);
+            case CamelPackage.CAMEL_JMS_BINDING_TYPE__TIME_TO_LIVE:
+                return isSetTimeToLive();
+            case CamelPackage.CAMEL_JMS_BINDING_TYPE__TRANSACTED:
+                return isSetTransacted();
+            case CamelPackage.CAMEL_JMS_BINDING_TYPE__TRANSACTION_MANAGER:
+                return TRANSACTION_MANAGER_EDEFAULT == null ? transactionManager != null : !TRANSACTION_MANAGER_EDEFAULT.equals(transactionManager);
+        }
+        return super.eIsSet(featureID);
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    @Override
+    public String toString() {
+        if (eIsProxy()) return super.toString();
+
+        StringBuffer result = new StringBuffer(super.toString());
+        result.append(" (queue: ");
+        result.append(queue);
+        result.append(", topic: ");
+        result.append(topic);
+        result.append(", connectionFactory: ");
+        result.append(connectionFactory);
+        result.append(", username: ");
+        result.append(username);
+        result.append(", password: ");
+        result.append(password);
+        result.append(", clientId: ");
+        result.append(clientId);
+        result.append(", durableSubscriptionName: ");
+        result.append(durableSubscriptionName);
+        result.append(", concurrentConsumers: ");
+        if (concurrentConsumersESet) result.append(concurrentConsumers); else result.append("<unset>");
+        result.append(", maxConcurrentConsumers: ");
+        if (maxConcurrentConsumersESet) result.append(maxConcurrentConsumers); else result.append("<unset>");
+        result.append(", disableReplyTo: ");
+        if (disableReplyToESet) result.append(disableReplyTo); else result.append("<unset>");
+        result.append(", preserveMessageQos: ");
+        if (preserveMessageQosESet) result.append(preserveMessageQos); else result.append("<unset>");
+        result.append(", deliveryPersistent: ");
+        if (deliveryPersistentESet) result.append(deliveryPersistent); else result.append("<unset>");
+        result.append(", priority: ");
+        if (priorityESet) result.append(priority); else result.append("<unset>");
+        result.append(", explicitQosEnabled: ");
+        if (explicitQosEnabledESet) result.append(explicitQosEnabled); else result.append("<unset>");
+        result.append(", replyTo: ");
+        result.append(replyTo);
+        result.append(", replyToType: ");
+        result.append(replyToType);
+        result.append(", requestTimeout: ");
+        if (requestTimeoutESet) result.append(requestTimeout); else result.append("<unset>");
+        result.append(", selector: ");
+        result.append(selector);
+        result.append(", timeToLive: ");
+        if (timeToLiveESet) result.append(timeToLive); else result.append("<unset>");
+        result.append(", transacted: ");
+        if (transactedESet) result.append(transacted); else result.append("<unset>");
+        result.append(", transactionManager: ");
+        result.append(transactionManager);
+        result.append(')');
+        return result.toString();
+    }
+
+} //CamelJmsBindingTypeImpl

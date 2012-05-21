@@ -25,8 +25,7 @@ import org.eclipse.emf.ecore.util.FeatureMap;
  *   <li>{@link org.switchyard.tools.models.switchyard1_0.commonrules.DocumentRoot#getXSISchemaLocation <em>XSI Schema Location</em>}</li>
  *   <li>{@link org.switchyard.tools.models.switchyard1_0.commonrules.DocumentRoot#getAudit <em>Audit</em>}</li>
  *   <li>{@link org.switchyard.tools.models.switchyard1_0.commonrules.DocumentRoot#getImplementationCommonRules <em>Implementation Common Rules</em>}</li>
- *   <li>{@link org.switchyard.tools.models.switchyard1_0.commonrules.DocumentRoot#getAudit1 <em>Audit1</em>}</li>
- *   <li>{@link org.switchyard.tools.models.switchyard1_0.commonrules.DocumentRoot#getImplementationCommonRules1 <em>Implementation Common Rules1</em>}</li>
+ *   <li>{@link org.switchyard.tools.models.switchyard1_0.commonrules.DocumentRoot#getMapping <em>Mapping</em>}</li>
  * </ul>
  * </p>
  *
@@ -89,111 +88,51 @@ public interface DocumentRoot extends EObject {
 	EMap<String, String> getXSISchemaLocation();
 
 	/**
-     * Returns the value of the '<em><b>Audit</b></em>' attribute.
+     * Returns the value of the '<em><b>Audit</b></em>' containment reference.
      * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Audit</em>' attribute isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-     * @return the value of the '<em>Audit</em>' attribute.
-     * @see #setAudit(Object)
+     * @return the value of the '<em>Audit</em>' containment reference.
      * @see org.switchyard.tools.models.switchyard1_0.commonrules.CommonRulesPackage#getDocumentRoot_Audit()
-     * @model unique="false" dataType="org.eclipse.emf.ecore.xml.type.AnySimpleType" upper="-2" transient="true" volatile="true" derived="true"
+     * @model containment="true" upper="-2" transient="true" changeable="false" volatile="true" derived="true"
      *        extendedMetaData="kind='element' name='audit' namespace='##targetNamespace'"
      * @generated
      */
-	Object getAudit();
+	AuditType1 getAudit();
 
 	/**
-     * Sets the value of the '{@link org.switchyard.tools.models.switchyard1_0.commonrules.DocumentRoot#getAudit <em>Audit</em>}' attribute.
-     * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-     * @param value the new value of the '<em>Audit</em>' attribute.
-     * @see #getAudit()
-     * @generated
-     */
-	void setAudit(Object value);
-
-	/**
-     * Returns the value of the '<em><b>Implementation Common Rules</b></em>' attribute.
+     * Returns the value of the '<em><b>Implementation Common Rules</b></em>' containment reference.
      * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Implementation Common Rules</em>' attribute isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-     * @return the value of the '<em>Implementation Common Rules</em>' attribute.
-     * @see #setImplementationCommonRules(Object)
+     * @return the value of the '<em>Implementation Common Rules</em>' containment reference.
      * @see org.switchyard.tools.models.switchyard1_0.commonrules.CommonRulesPackage#getDocumentRoot_ImplementationCommonRules()
-     * @model unique="false" dataType="org.eclipse.emf.ecore.xml.type.AnySimpleType" upper="-2" transient="true" volatile="true" derived="true"
-     *        extendedMetaData="kind='element' name='implementation.common.rules' namespace='##targetNamespace'"
+     * @model containment="true" upper="-2" transient="true" changeable="false" volatile="true" derived="true"
+     *        extendedMetaData="kind='element' name='implementation.common.rules' namespace='##targetNamespace' affiliation='http://docs.oasis-open.org/ns/opencsa/sca/200912#implementation'"
      * @generated
      */
-	Object getImplementationCommonRules();
+	CommonImplementationType getImplementationCommonRules();
 
 	/**
-     * Sets the value of the '{@link org.switchyard.tools.models.switchyard1_0.commonrules.DocumentRoot#getImplementationCommonRules <em>Implementation Common Rules</em>}' attribute.
+     * Returns the value of the '<em><b>Mapping</b></em>' containment reference.
      * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-     * @param value the new value of the '<em>Implementation Common Rules</em>' attribute.
-     * @see #getImplementationCommonRules()
+     * <p>
+     * If the meaning of the '<em>Mapping</em>' containment reference isn't clear,
+     * there really should be more of a description here...
+     * </p>
+     * <!-- end-user-doc -->
+     * @return the value of the '<em>Mapping</em>' containment reference.
+     * @see org.switchyard.tools.models.switchyard1_0.commonrules.CommonRulesPackage#getDocumentRoot_Mapping()
+     * @model containment="true" upper="-2" transient="true" changeable="false" volatile="true" derived="true"
+     *        extendedMetaData="kind='element' name='mapping' namespace='##targetNamespace'"
      * @generated
      */
-	void setImplementationCommonRules(Object value);
-
-	/**
-     * Returns the value of the '<em><b>Audit1</b></em>' attribute.
-     * <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of the '<em>Audit1</em>' attribute isn't clear,
-	 * there really should be more of a description here...
-	 * </p>
-	 * <!-- end-user-doc -->
-     * @return the value of the '<em>Audit1</em>' attribute.
-     * @see #setAudit1(Object)
-     * @see org.switchyard.tools.models.switchyard1_0.commonrules.CommonRulesPackage#getDocumentRoot_Audit1()
-     * @model unique="false" dataType="org.eclipse.emf.ecore.xml.type.AnySimpleType" upper="-2" transient="true" volatile="true" derived="true"
-     *        extendedMetaData="kind='element' name='audit' namespace='##targetNamespace'"
-     * @generated
-     */
-	Object getAudit1();
-
-	/**
-     * Sets the value of the '{@link org.switchyard.tools.models.switchyard1_0.commonrules.DocumentRoot#getAudit1 <em>Audit1</em>}' attribute.
-     * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-     * @param value the new value of the '<em>Audit1</em>' attribute.
-     * @see #getAudit1()
-     * @generated
-     */
-	void setAudit1(Object value);
-
-	/**
-     * Returns the value of the '<em><b>Implementation Common Rules1</b></em>' attribute.
-     * <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of the '<em>Implementation Common Rules1</em>' attribute isn't clear,
-	 * there really should be more of a description here...
-	 * </p>
-	 * <!-- end-user-doc -->
-     * @return the value of the '<em>Implementation Common Rules1</em>' attribute.
-     * @see #setImplementationCommonRules1(Object)
-     * @see org.switchyard.tools.models.switchyard1_0.commonrules.CommonRulesPackage#getDocumentRoot_ImplementationCommonRules1()
-     * @model unique="false" dataType="org.eclipse.emf.ecore.xml.type.AnySimpleType" upper="-2" transient="true" volatile="true" derived="true"
-     *        extendedMetaData="kind='element' name='implementation.common.rules' namespace='##targetNamespace'"
-     * @generated
-     */
-	Object getImplementationCommonRules1();
-
-	/**
-     * Sets the value of the '{@link org.switchyard.tools.models.switchyard1_0.commonrules.DocumentRoot#getImplementationCommonRules1 <em>Implementation Common Rules1</em>}' attribute.
-     * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-     * @param value the new value of the '<em>Implementation Common Rules1</em>' attribute.
-     * @see #getImplementationCommonRules1()
-     * @generated
-     */
-	void setImplementationCommonRules1(Object value);
+    MappingType getMapping();
 
 } // DocumentRoot

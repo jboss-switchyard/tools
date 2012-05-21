@@ -29,6 +29,7 @@ import org.switchyard.tools.models.switchyard1_0.spring.Hl7DataFormat;
 import org.switchyard.tools.models.switchyard1_0.spring.JaxbDataFormat;
 import org.switchyard.tools.models.switchyard1_0.spring.JibxDataFormat;
 import org.switchyard.tools.models.switchyard1_0.spring.JsonDataFormat;
+import org.switchyard.tools.models.switchyard1_0.spring.PgpDataFormat;
 import org.switchyard.tools.models.switchyard1_0.spring.ProtobufDataFormat;
 import org.switchyard.tools.models.switchyard1_0.spring.RssDataFormat;
 import org.switchyard.tools.models.switchyard1_0.spring.SerializationDataFormat;
@@ -71,6 +72,7 @@ import org.switchyard.tools.models.switchyard1_0.spring.ZipDataFormat;
  *   <li>{@link org.switchyard.tools.models.switchyard1_0.spring.impl.UnmarshalDefinitionImpl#getTidyMarkup <em>Tidy Markup</em>}</li>
  *   <li>{@link org.switchyard.tools.models.switchyard1_0.spring.impl.UnmarshalDefinitionImpl#getXmlBeans <em>Xml Beans</em>}</li>
  *   <li>{@link org.switchyard.tools.models.switchyard1_0.spring.impl.UnmarshalDefinitionImpl#getXstream <em>Xstream</em>}</li>
+ *   <li>{@link org.switchyard.tools.models.switchyard1_0.spring.impl.UnmarshalDefinitionImpl#getPgp <em>Pgp</em>}</li>
  *   <li>{@link org.switchyard.tools.models.switchyard1_0.spring.impl.UnmarshalDefinitionImpl#getZip <em>Zip</em>}</li>
  *   <li>{@link org.switchyard.tools.models.switchyard1_0.spring.impl.UnmarshalDefinitionImpl#getRef <em>Ref</em>}</li>
  *   <li>{@link org.switchyard.tools.models.switchyard1_0.spring.impl.UnmarshalDefinitionImpl#getAnyAttribute2 <em>Any Attribute2</em>}</li>
@@ -291,6 +293,16 @@ public class UnmarshalDefinitionImpl extends NoOutputDefinitionImpl implements U
 	protected XStreamDataFormat xstream;
 
 	/**
+     * The cached value of the '{@link #getPgp() <em>Pgp</em>}' containment reference.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @see #getPgp()
+     * @generated
+     * @ordered
+     */
+    protected PgpDataFormat pgp;
+
+    /**
      * The cached value of the '{@link #getZip() <em>Zip</em>}' containment reference.
      * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -1254,6 +1266,49 @@ public class UnmarshalDefinitionImpl extends NoOutputDefinitionImpl implements U
 
 	/**
      * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public PgpDataFormat getPgp() {
+        return pgp;
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public NotificationChain basicSetPgp(PgpDataFormat newPgp, NotificationChain msgs) {
+        PgpDataFormat oldPgp = pgp;
+        pgp = newPgp;
+        if (eNotificationRequired()) {
+            ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, SpringPackage.UNMARSHAL_DEFINITION__PGP, oldPgp, newPgp);
+            if (msgs == null) msgs = notification; else msgs.add(notification);
+        }
+        return msgs;
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public void setPgp(PgpDataFormat newPgp) {
+        if (newPgp != pgp) {
+            NotificationChain msgs = null;
+            if (pgp != null)
+                msgs = ((InternalEObject)pgp).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - SpringPackage.UNMARSHAL_DEFINITION__PGP, null, msgs);
+            if (newPgp != null)
+                msgs = ((InternalEObject)newPgp).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - SpringPackage.UNMARSHAL_DEFINITION__PGP, null, msgs);
+            msgs = basicSetPgp(newPgp, msgs);
+            if (msgs != null) msgs.dispatch();
+        }
+        else if (eNotificationRequired())
+            eNotify(new ENotificationImpl(this, Notification.SET, SpringPackage.UNMARSHAL_DEFINITION__PGP, newPgp, newPgp));
+    }
+
+    /**
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
      * @generated
      */
@@ -1378,6 +1433,8 @@ public class UnmarshalDefinitionImpl extends NoOutputDefinitionImpl implements U
                 return basicSetXmlBeans(null, msgs);
             case SpringPackage.UNMARSHAL_DEFINITION__XSTREAM:
                 return basicSetXstream(null, msgs);
+            case SpringPackage.UNMARSHAL_DEFINITION__PGP:
+                return basicSetPgp(null, msgs);
             case SpringPackage.UNMARSHAL_DEFINITION__ZIP:
                 return basicSetZip(null, msgs);
             case SpringPackage.UNMARSHAL_DEFINITION__ANY_ATTRIBUTE2:
@@ -1436,6 +1493,8 @@ public class UnmarshalDefinitionImpl extends NoOutputDefinitionImpl implements U
                 return getXmlBeans();
             case SpringPackage.UNMARSHAL_DEFINITION__XSTREAM:
                 return getXstream();
+            case SpringPackage.UNMARSHAL_DEFINITION__PGP:
+                return getPgp();
             case SpringPackage.UNMARSHAL_DEFINITION__ZIP:
                 return getZip();
             case SpringPackage.UNMARSHAL_DEFINITION__REF:
@@ -1517,6 +1576,9 @@ public class UnmarshalDefinitionImpl extends NoOutputDefinitionImpl implements U
                 return;
             case SpringPackage.UNMARSHAL_DEFINITION__XSTREAM:
                 setXstream((XStreamDataFormat)newValue);
+                return;
+            case SpringPackage.UNMARSHAL_DEFINITION__PGP:
+                setPgp((PgpDataFormat)newValue);
                 return;
             case SpringPackage.UNMARSHAL_DEFINITION__ZIP:
                 setZip((ZipDataFormat)newValue);
@@ -1602,6 +1664,9 @@ public class UnmarshalDefinitionImpl extends NoOutputDefinitionImpl implements U
             case SpringPackage.UNMARSHAL_DEFINITION__XSTREAM:
                 setXstream((XStreamDataFormat)null);
                 return;
+            case SpringPackage.UNMARSHAL_DEFINITION__PGP:
+                setPgp((PgpDataFormat)null);
+                return;
             case SpringPackage.UNMARSHAL_DEFINITION__ZIP:
                 setZip((ZipDataFormat)null);
                 return;
@@ -1665,6 +1730,8 @@ public class UnmarshalDefinitionImpl extends NoOutputDefinitionImpl implements U
                 return xmlBeans != null;
             case SpringPackage.UNMARSHAL_DEFINITION__XSTREAM:
                 return xstream != null;
+            case SpringPackage.UNMARSHAL_DEFINITION__PGP:
+                return pgp != null;
             case SpringPackage.UNMARSHAL_DEFINITION__ZIP:
                 return zip != null;
             case SpringPackage.UNMARSHAL_DEFINITION__REF:

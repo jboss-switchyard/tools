@@ -255,22 +255,13 @@ public interface SwitchyardPackage extends EPackage {
 	int DOCUMENT_ROOT__BINDING_SWITCHYARD = 5;
 
 	/**
-     * The feature id for the '<em><b>Context Mapper</b></em>' containment reference.
-     * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-     * @generated
-     * @ordered
-     */
-	int DOCUMENT_ROOT__CONTEXT_MAPPER = 6;
-
-	/**
      * The feature id for the '<em><b>Domain</b></em>' containment reference.
      * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
      * @generated
      * @ordered
      */
-	int DOCUMENT_ROOT__DOMAIN = 7;
+	int DOCUMENT_ROOT__DOMAIN = 6;
 
 	/**
      * The feature id for the '<em><b>Handler</b></em>' containment reference.
@@ -279,7 +270,7 @@ public interface SwitchyardPackage extends EPackage {
      * @generated
      * @ordered
      */
-	int DOCUMENT_ROOT__HANDLER = 8;
+	int DOCUMENT_ROOT__HANDLER = 7;
 
 	/**
      * The feature id for the '<em><b>Handlers</b></em>' containment reference.
@@ -288,7 +279,7 @@ public interface SwitchyardPackage extends EPackage {
      * @generated
      * @ordered
      */
-	int DOCUMENT_ROOT__HANDLERS = 9;
+	int DOCUMENT_ROOT__HANDLERS = 8;
 
 	/**
      * The feature id for the '<em><b>Interface Esb</b></em>' containment reference.
@@ -297,16 +288,7 @@ public interface SwitchyardPackage extends EPackage {
      * @generated
      * @ordered
      */
-	int DOCUMENT_ROOT__INTERFACE_ESB = 10;
-
-	/**
-     * The feature id for the '<em><b>Message Composer</b></em>' containment reference.
-     * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-     * @generated
-     * @ordered
-     */
-	int DOCUMENT_ROOT__MESSAGE_COMPOSER = 11;
+	int DOCUMENT_ROOT__INTERFACE_ESB = 9;
 
 	/**
      * The feature id for the '<em><b>Properties</b></em>' containment reference.
@@ -315,7 +297,7 @@ public interface SwitchyardPackage extends EPackage {
      * @generated
      * @ordered
      */
-	int DOCUMENT_ROOT__PROPERTIES = 12;
+	int DOCUMENT_ROOT__PROPERTIES = 10;
 
 	/**
      * The feature id for the '<em><b>Property</b></em>' containment reference.
@@ -324,7 +306,7 @@ public interface SwitchyardPackage extends EPackage {
      * @generated
      * @ordered
      */
-	int DOCUMENT_ROOT__PROPERTY = 13;
+	int DOCUMENT_ROOT__PROPERTY = 11;
 
 	/**
      * The feature id for the '<em><b>Resource</b></em>' containment reference.
@@ -333,7 +315,7 @@ public interface SwitchyardPackage extends EPackage {
      * @generated
      * @ordered
      */
-	int DOCUMENT_ROOT__RESOURCE = 14;
+	int DOCUMENT_ROOT__RESOURCE = 12;
 
 	/**
      * The feature id for the '<em><b>Switchyard</b></em>' containment reference.
@@ -342,7 +324,7 @@ public interface SwitchyardPackage extends EPackage {
      * @generated
      * @ordered
      */
-	int DOCUMENT_ROOT__SWITCHYARD = 15;
+	int DOCUMENT_ROOT__SWITCHYARD = 13;
 
 	/**
      * The feature id for the '<em><b>Transform</b></em>' containment reference.
@@ -351,7 +333,7 @@ public interface SwitchyardPackage extends EPackage {
      * @generated
      * @ordered
      */
-	int DOCUMENT_ROOT__TRANSFORM = 16;
+	int DOCUMENT_ROOT__TRANSFORM = 14;
 
 	/**
      * The feature id for the '<em><b>Transforms</b></em>' containment reference.
@@ -360,7 +342,7 @@ public interface SwitchyardPackage extends EPackage {
      * @generated
      * @ordered
      */
-	int DOCUMENT_ROOT__TRANSFORMS = 17;
+	int DOCUMENT_ROOT__TRANSFORMS = 15;
 
 	/**
      * The feature id for the '<em><b>Validate</b></em>' containment reference.
@@ -369,7 +351,7 @@ public interface SwitchyardPackage extends EPackage {
      * @generated
      * @ordered
      */
-	int DOCUMENT_ROOT__VALIDATE = 18;
+	int DOCUMENT_ROOT__VALIDATE = 16;
 
 	/**
      * The feature id for the '<em><b>Validates</b></em>' containment reference.
@@ -378,7 +360,7 @@ public interface SwitchyardPackage extends EPackage {
      * @generated
      * @ordered
      */
-	int DOCUMENT_ROOT__VALIDATES = 19;
+	int DOCUMENT_ROOT__VALIDATES = 17;
 
 	/**
      * The number of structural features of the '<em>Document Root</em>' class.
@@ -387,7 +369,7 @@ public interface SwitchyardPackage extends EPackage {
      * @generated
      * @ordered
      */
-	int DOCUMENT_ROOT_FEATURE_COUNT = 20;
+	int DOCUMENT_ROOT_FEATURE_COUNT = 18;
 
 	/**
      * The meta object id for the '{@link org.switchyard.tools.models.switchyard1_0.switchyard.impl.DomainTypeImpl <em>Domain Type</em>}' class.
@@ -813,31 +795,13 @@ public interface SwitchyardPackage extends EPackage {
 	int SWITCH_YARD_BINDING_TYPE__URI = ScaPackage.BINDING__URI;
 
 	/**
-     * The feature id for the '<em><b>Context Mapper</b></em>' containment reference.
-     * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-     * @generated
-     * @ordered
-     */
-	int SWITCH_YARD_BINDING_TYPE__CONTEXT_MAPPER = ScaPackage.BINDING_FEATURE_COUNT + 0;
-
-	/**
-     * The feature id for the '<em><b>Message Composer</b></em>' containment reference.
-     * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-     * @generated
-     * @ordered
-     */
-	int SWITCH_YARD_BINDING_TYPE__MESSAGE_COMPOSER = ScaPackage.BINDING_FEATURE_COUNT + 1;
-
-	/**
      * The number of structural features of the '<em>Switch Yard Binding Type</em>' class.
      * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
      * @generated
      * @ordered
      */
-	int SWITCH_YARD_BINDING_TYPE_FEATURE_COUNT = ScaPackage.BINDING_FEATURE_COUNT + 2;
+	int SWITCH_YARD_BINDING_TYPE_FEATURE_COUNT = ScaPackage.BINDING_FEATURE_COUNT + 0;
 
 	/**
      * The meta object id for the '{@link org.switchyard.tools.models.switchyard1_0.switchyard.impl.SwitchYardTypeImpl <em>Switch Yard Type</em>}' class.
@@ -1256,17 +1220,6 @@ public interface SwitchyardPackage extends EPackage {
 	EReference getDocumentRoot_BindingSwitchyard();
 
 	/**
-     * Returns the meta object for the containment reference '{@link org.switchyard.tools.models.switchyard1_0.switchyard.DocumentRoot#getContextMapper <em>Context Mapper</em>}'.
-     * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-     * @return the meta object for the containment reference '<em>Context Mapper</em>'.
-     * @see org.switchyard.tools.models.switchyard1_0.switchyard.DocumentRoot#getContextMapper()
-     * @see #getDocumentRoot()
-     * @generated
-     */
-	EReference getDocumentRoot_ContextMapper();
-
-	/**
      * Returns the meta object for the containment reference '{@link org.switchyard.tools.models.switchyard1_0.switchyard.DocumentRoot#getDomain <em>Domain</em>}'.
      * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -1309,17 +1262,6 @@ public interface SwitchyardPackage extends EPackage {
      * @generated
      */
 	EReference getDocumentRoot_InterfaceEsb();
-
-	/**
-     * Returns the meta object for the containment reference '{@link org.switchyard.tools.models.switchyard1_0.switchyard.DocumentRoot#getMessageComposer <em>Message Composer</em>}'.
-     * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-     * @return the meta object for the containment reference '<em>Message Composer</em>'.
-     * @see org.switchyard.tools.models.switchyard1_0.switchyard.DocumentRoot#getMessageComposer()
-     * @see #getDocumentRoot()
-     * @generated
-     */
-	EReference getDocumentRoot_MessageComposer();
 
 	/**
      * Returns the meta object for the containment reference '{@link org.switchyard.tools.models.switchyard1_0.switchyard.DocumentRoot#getProperties <em>Properties</em>}'.
@@ -1652,28 +1594,6 @@ public interface SwitchyardPackage extends EPackage {
      * @generated
      */
 	EClass getSwitchYardBindingType();
-
-	/**
-     * Returns the meta object for the containment reference '{@link org.switchyard.tools.models.switchyard1_0.switchyard.SwitchYardBindingType#getContextMapper <em>Context Mapper</em>}'.
-     * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-     * @return the meta object for the containment reference '<em>Context Mapper</em>'.
-     * @see org.switchyard.tools.models.switchyard1_0.switchyard.SwitchYardBindingType#getContextMapper()
-     * @see #getSwitchYardBindingType()
-     * @generated
-     */
-	EReference getSwitchYardBindingType_ContextMapper();
-
-	/**
-     * Returns the meta object for the containment reference '{@link org.switchyard.tools.models.switchyard1_0.switchyard.SwitchYardBindingType#getMessageComposer <em>Message Composer</em>}'.
-     * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-     * @return the meta object for the containment reference '<em>Message Composer</em>'.
-     * @see org.switchyard.tools.models.switchyard1_0.switchyard.SwitchYardBindingType#getMessageComposer()
-     * @see #getSwitchYardBindingType()
-     * @generated
-     */
-	EReference getSwitchYardBindingType_MessageComposer();
 
 	/**
      * Returns the meta object for class '{@link org.switchyard.tools.models.switchyard1_0.switchyard.SwitchYardType <em>Switch Yard Type</em>}'.
@@ -2054,14 +1974,6 @@ public interface SwitchyardPackage extends EPackage {
 		EReference DOCUMENT_ROOT__BINDING_SWITCHYARD = eINSTANCE.getDocumentRoot_BindingSwitchyard();
 
 		/**
-         * The meta object literal for the '<em><b>Context Mapper</b></em>' containment reference feature.
-         * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-         * @generated
-         */
-		EReference DOCUMENT_ROOT__CONTEXT_MAPPER = eINSTANCE.getDocumentRoot_ContextMapper();
-
-		/**
          * The meta object literal for the '<em><b>Domain</b></em>' containment reference feature.
          * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
@@ -2092,14 +2004,6 @@ public interface SwitchyardPackage extends EPackage {
          * @generated
          */
 		EReference DOCUMENT_ROOT__INTERFACE_ESB = eINSTANCE.getDocumentRoot_InterfaceEsb();
-
-		/**
-         * The meta object literal for the '<em><b>Message Composer</b></em>' containment reference feature.
-         * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-         * @generated
-         */
-		EReference DOCUMENT_ROOT__MESSAGE_COMPOSER = eINSTANCE.getDocumentRoot_MessageComposer();
 
 		/**
          * The meta object literal for the '<em><b>Properties</b></em>' containment reference feature.
@@ -2366,22 +2270,6 @@ public interface SwitchyardPackage extends EPackage {
          * @generated
          */
 		EClass SWITCH_YARD_BINDING_TYPE = eINSTANCE.getSwitchYardBindingType();
-
-		/**
-         * The meta object literal for the '<em><b>Context Mapper</b></em>' containment reference feature.
-         * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-         * @generated
-         */
-		EReference SWITCH_YARD_BINDING_TYPE__CONTEXT_MAPPER = eINSTANCE.getSwitchYardBindingType_ContextMapper();
-
-		/**
-         * The meta object literal for the '<em><b>Message Composer</b></em>' containment reference feature.
-         * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-         * @generated
-         */
-		EReference SWITCH_YARD_BINDING_TYPE__MESSAGE_COMPOSER = eINSTANCE.getSwitchYardBindingType_MessageComposer();
 
 		/**
          * The meta object literal for the '{@link org.switchyard.tools.models.switchyard1_0.switchyard.impl.SwitchYardTypeImpl <em>Switch Yard Type</em>}' class.

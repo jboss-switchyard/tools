@@ -11,6 +11,8 @@ import org.eclipse.emf.ecore.EPackage;
 
 import org.eclipse.emf.ecore.util.Switch;
 
+import org.eclipse.soa.sca.sca1_1.model.sca.CommonExtensionBase;
+import org.eclipse.soa.sca.sca1_1.model.sca.Implementation;
 import org.switchyard.tools.models.switchyard1_0.commonrules.*;
 
 /**
@@ -70,9 +72,29 @@ public class CommonRulesSwitch<T> extends Switch<T> {
 	@Override
 	protected T doSwitch(int classifierID, EObject theEObject) {
         switch (classifierID) {
+            case CommonRulesPackage.AUDIT_TYPE1: {
+                AuditType1 auditType1 = (AuditType1)theEObject;
+                T result = caseAuditType1(auditType1);
+                if (result == null) result = defaultCase(theEObject);
+                return result;
+            }
+            case CommonRulesPackage.COMMON_IMPLEMENTATION_TYPE: {
+                CommonImplementationType commonImplementationType = (CommonImplementationType)theEObject;
+                T result = caseCommonImplementationType(commonImplementationType);
+                if (result == null) result = caseImplementation(commonImplementationType);
+                if (result == null) result = caseCommonExtensionBase(commonImplementationType);
+                if (result == null) result = defaultCase(theEObject);
+                return result;
+            }
             case CommonRulesPackage.DOCUMENT_ROOT: {
                 DocumentRoot documentRoot = (DocumentRoot)theEObject;
                 T result = caseDocumentRoot(documentRoot);
+                if (result == null) result = defaultCase(theEObject);
+                return result;
+            }
+            case CommonRulesPackage.MAPPING_TYPE: {
+                MappingType mappingType = (MappingType)theEObject;
+                T result = caseMappingType(mappingType);
                 if (result == null) result = defaultCase(theEObject);
                 return result;
             }
@@ -81,6 +103,36 @@ public class CommonRulesSwitch<T> extends Switch<T> {
     }
 
 	/**
+     * Returns the result of interpreting the object as an instance of '<em>Audit Type1</em>'.
+     * <!-- begin-user-doc -->
+     * This implementation returns null;
+     * returning a non-null result will terminate the switch.
+     * <!-- end-user-doc -->
+     * @param object the target of the switch.
+     * @return the result of interpreting the object as an instance of '<em>Audit Type1</em>'.
+     * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+     * @generated
+     */
+    public T caseAuditType1(AuditType1 object) {
+        return null;
+    }
+
+    /**
+     * Returns the result of interpreting the object as an instance of '<em>Common Implementation Type</em>'.
+     * <!-- begin-user-doc -->
+     * This implementation returns null;
+     * returning a non-null result will terminate the switch.
+     * <!-- end-user-doc -->
+     * @param object the target of the switch.
+     * @return the result of interpreting the object as an instance of '<em>Common Implementation Type</em>'.
+     * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+     * @generated
+     */
+    public T caseCommonImplementationType(CommonImplementationType object) {
+        return null;
+    }
+
+    /**
      * Returns the result of interpreting the object as an instance of '<em>Document Root</em>'.
      * <!-- begin-user-doc -->
 	 * This implementation returns null;
@@ -96,6 +148,51 @@ public class CommonRulesSwitch<T> extends Switch<T> {
     }
 
 	/**
+     * Returns the result of interpreting the object as an instance of '<em>Mapping Type</em>'.
+     * <!-- begin-user-doc -->
+     * This implementation returns null;
+     * returning a non-null result will terminate the switch.
+     * <!-- end-user-doc -->
+     * @param object the target of the switch.
+     * @return the result of interpreting the object as an instance of '<em>Mapping Type</em>'.
+     * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+     * @generated
+     */
+    public T caseMappingType(MappingType object) {
+        return null;
+    }
+
+    /**
+     * Returns the result of interpreting the object as an instance of '<em>Common Extension Base</em>'.
+     * <!-- begin-user-doc -->
+     * This implementation returns null;
+     * returning a non-null result will terminate the switch.
+     * <!-- end-user-doc -->
+     * @param object the target of the switch.
+     * @return the result of interpreting the object as an instance of '<em>Common Extension Base</em>'.
+     * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+     * @generated
+     */
+    public T caseCommonExtensionBase(CommonExtensionBase object) {
+        return null;
+    }
+
+    /**
+     * Returns the result of interpreting the object as an instance of '<em>Implementation</em>'.
+     * <!-- begin-user-doc -->
+     * This implementation returns null;
+     * returning a non-null result will terminate the switch.
+     * <!-- end-user-doc -->
+     * @param object the target of the switch.
+     * @return the result of interpreting the object as an instance of '<em>Implementation</em>'.
+     * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+     * @generated
+     */
+    public T caseImplementation(Implementation object) {
+        return null;
+    }
+
+    /**
      * Returns the result of interpreting the object as an instance of '<em>EObject</em>'.
      * <!-- begin-user-doc -->
 	 * This implementation returns null;

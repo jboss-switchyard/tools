@@ -31,6 +31,7 @@ import org.switchyard.tools.models.switchyard1_0.spring.SpringPackage;
  * <ul>
  *   <li>{@link org.switchyard.tools.models.switchyard1_0.spring.impl.LogDefinitionImpl#getLoggingLevel <em>Logging Level</em>}</li>
  *   <li>{@link org.switchyard.tools.models.switchyard1_0.spring.impl.LogDefinitionImpl#getLogName <em>Log Name</em>}</li>
+ *   <li>{@link org.switchyard.tools.models.switchyard1_0.spring.impl.LogDefinitionImpl#getMarker <em>Marker</em>}</li>
  *   <li>{@link org.switchyard.tools.models.switchyard1_0.spring.impl.LogDefinitionImpl#getMessage <em>Message</em>}</li>
  *   <li>{@link org.switchyard.tools.models.switchyard1_0.spring.impl.LogDefinitionImpl#getAnyAttribute2 <em>Any Attribute2</em>}</li>
  * </ul>
@@ -89,6 +90,26 @@ public class LogDefinitionImpl extends NoOutputDefinitionImpl implements LogDefi
 	protected String logName = LOG_NAME_EDEFAULT;
 
 	/**
+     * The default value of the '{@link #getMarker() <em>Marker</em>}' attribute.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @see #getMarker()
+     * @generated
+     * @ordered
+     */
+    protected static final String MARKER_EDEFAULT = null;
+
+    /**
+     * The cached value of the '{@link #getMarker() <em>Marker</em>}' attribute.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @see #getMarker()
+     * @generated
+     * @ordered
+     */
+    protected String marker = MARKER_EDEFAULT;
+
+    /**
      * The default value of the '{@link #getMessage() <em>Message</em>}' attribute.
      * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -206,6 +227,27 @@ public class LogDefinitionImpl extends NoOutputDefinitionImpl implements LogDefi
 
 	/**
      * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public String getMarker() {
+        return marker;
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public void setMarker(String newMarker) {
+        String oldMarker = marker;
+        marker = newMarker;
+        if (eNotificationRequired())
+            eNotify(new ENotificationImpl(this, Notification.SET, SpringPackage.LOG_DEFINITION__MARKER, oldMarker, marker));
+    }
+
+    /**
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
      * @generated
      */
@@ -263,6 +305,8 @@ public class LogDefinitionImpl extends NoOutputDefinitionImpl implements LogDefi
                 return getLoggingLevel();
             case SpringPackage.LOG_DEFINITION__LOG_NAME:
                 return getLogName();
+            case SpringPackage.LOG_DEFINITION__MARKER:
+                return getMarker();
             case SpringPackage.LOG_DEFINITION__MESSAGE:
                 return getMessage();
             case SpringPackage.LOG_DEFINITION__ANY_ATTRIBUTE2:
@@ -285,6 +329,9 @@ public class LogDefinitionImpl extends NoOutputDefinitionImpl implements LogDefi
                 return;
             case SpringPackage.LOG_DEFINITION__LOG_NAME:
                 setLogName((String)newValue);
+                return;
+            case SpringPackage.LOG_DEFINITION__MARKER:
+                setMarker((String)newValue);
                 return;
             case SpringPackage.LOG_DEFINITION__MESSAGE:
                 setMessage((String)newValue);
@@ -310,6 +357,9 @@ public class LogDefinitionImpl extends NoOutputDefinitionImpl implements LogDefi
             case SpringPackage.LOG_DEFINITION__LOG_NAME:
                 setLogName(LOG_NAME_EDEFAULT);
                 return;
+            case SpringPackage.LOG_DEFINITION__MARKER:
+                setMarker(MARKER_EDEFAULT);
+                return;
             case SpringPackage.LOG_DEFINITION__MESSAGE:
                 setMessage(MESSAGE_EDEFAULT);
                 return;
@@ -332,6 +382,8 @@ public class LogDefinitionImpl extends NoOutputDefinitionImpl implements LogDefi
                 return isSetLoggingLevel();
             case SpringPackage.LOG_DEFINITION__LOG_NAME:
                 return LOG_NAME_EDEFAULT == null ? logName != null : !LOG_NAME_EDEFAULT.equals(logName);
+            case SpringPackage.LOG_DEFINITION__MARKER:
+                return MARKER_EDEFAULT == null ? marker != null : !MARKER_EDEFAULT.equals(marker);
             case SpringPackage.LOG_DEFINITION__MESSAGE:
                 return MESSAGE_EDEFAULT == null ? message != null : !MESSAGE_EDEFAULT.equals(message);
             case SpringPackage.LOG_DEFINITION__ANY_ATTRIBUTE2:
@@ -354,6 +406,8 @@ public class LogDefinitionImpl extends NoOutputDefinitionImpl implements LogDefi
         if (loggingLevelESet) result.append(loggingLevel); else result.append("<unset>");
         result.append(", logName: ");
         result.append(logName);
+        result.append(", marker: ");
+        result.append(marker);
         result.append(", message: ");
         result.append(message);
         result.append(", anyAttribute2: ");

@@ -16,6 +16,7 @@ package org.switchyard.tools.models.switchyard1_0.spring;
  * The following features are supported:
  * <ul>
  *   <li>{@link org.switchyard.tools.models.switchyard1_0.spring.XmlSecurityDataFormat#getKeyCipherAlgorithm <em>Key Cipher Algorithm</em>}</li>
+ *   <li>{@link org.switchyard.tools.models.switchyard1_0.spring.XmlSecurityDataFormat#getKeyOrTrustStoreParametersId <em>Key Or Trust Store Parameters Id</em>}</li>
  *   <li>{@link org.switchyard.tools.models.switchyard1_0.spring.XmlSecurityDataFormat#getPassPhrase <em>Pass Phrase</em>}</li>
  *   <li>{@link org.switchyard.tools.models.switchyard1_0.spring.XmlSecurityDataFormat#getRecipientKeyAlias <em>Recipient Key Alias</em>}</li>
  *   <li>{@link org.switchyard.tools.models.switchyard1_0.spring.XmlSecurityDataFormat#getSecureTag <em>Secure Tag</em>}</li>
@@ -57,6 +58,33 @@ public interface XmlSecurityDataFormat extends DataFormat {
 	void setKeyCipherAlgorithm(String value);
 
 	/**
+     * Returns the value of the '<em><b>Key Or Trust Store Parameters Id</b></em>' attribute.
+     * <!-- begin-user-doc -->
+     * <p>
+     * If the meaning of the '<em>Key Or Trust Store Parameters Id</em>' attribute isn't clear,
+     * there really should be more of a description here...
+     * </p>
+     * <!-- end-user-doc -->
+     * @return the value of the '<em>Key Or Trust Store Parameters Id</em>' attribute.
+     * @see #setKeyOrTrustStoreParametersId(String)
+     * @see org.switchyard.tools.models.switchyard1_0.spring.SpringPackage#getXmlSecurityDataFormat_KeyOrTrustStoreParametersId()
+     * @model dataType="org.eclipse.emf.ecore.xml.type.String"
+     *        extendedMetaData="kind='attribute' name='keyOrTrustStoreParametersId'"
+     * @generated
+     */
+    String getKeyOrTrustStoreParametersId();
+
+    /**
+     * Sets the value of the '{@link org.switchyard.tools.models.switchyard1_0.spring.XmlSecurityDataFormat#getKeyOrTrustStoreParametersId <em>Key Or Trust Store Parameters Id</em>}' attribute.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @param value the new value of the '<em>Key Or Trust Store Parameters Id</em>' attribute.
+     * @see #getKeyOrTrustStoreParametersId()
+     * @generated
+     */
+    void setKeyOrTrustStoreParametersId(String value);
+
+    /**
      * Returns the value of the '<em><b>Pass Phrase</b></em>' attribute.
      * <!-- begin-user-doc -->
 	 * <p>

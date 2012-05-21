@@ -18,6 +18,7 @@ import org.eclipse.emf.ecore.util.FeatureMap;
  * <ul>
  *   <li>{@link org.switchyard.tools.models.switchyard1_0.spring.IdempotentConsumerDefinition#isEager <em>Eager</em>}</li>
  *   <li>{@link org.switchyard.tools.models.switchyard1_0.spring.IdempotentConsumerDefinition#getMessageIdRepositoryRef <em>Message Id Repository Ref</em>}</li>
+ *   <li>{@link org.switchyard.tools.models.switchyard1_0.spring.IdempotentConsumerDefinition#isRemoveOnFailure <em>Remove On Failure</em>}</li>
  *   <li>{@link org.switchyard.tools.models.switchyard1_0.spring.IdempotentConsumerDefinition#isSkipDuplicate <em>Skip Duplicate</em>}</li>
  *   <li>{@link org.switchyard.tools.models.switchyard1_0.spring.IdempotentConsumerDefinition#getAnyAttribute2 <em>Any Attribute2</em>}</li>
  * </ul>
@@ -110,6 +111,60 @@ public interface IdempotentConsumerDefinition extends ExpressionNode {
 	void setMessageIdRepositoryRef(String value);
 
 	/**
+     * Returns the value of the '<em><b>Remove On Failure</b></em>' attribute.
+     * <!-- begin-user-doc -->
+     * <p>
+     * If the meaning of the '<em>Remove On Failure</em>' attribute isn't clear,
+     * there really should be more of a description here...
+     * </p>
+     * <!-- end-user-doc -->
+     * @return the value of the '<em>Remove On Failure</em>' attribute.
+     * @see #isSetRemoveOnFailure()
+     * @see #unsetRemoveOnFailure()
+     * @see #setRemoveOnFailure(boolean)
+     * @see org.switchyard.tools.models.switchyard1_0.spring.SpringPackage#getIdempotentConsumerDefinition_RemoveOnFailure()
+     * @model unsettable="true" dataType="org.eclipse.emf.ecore.xml.type.Boolean"
+     *        extendedMetaData="kind='attribute' name='removeOnFailure'"
+     * @generated
+     */
+    boolean isRemoveOnFailure();
+
+    /**
+     * Sets the value of the '{@link org.switchyard.tools.models.switchyard1_0.spring.IdempotentConsumerDefinition#isRemoveOnFailure <em>Remove On Failure</em>}' attribute.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @param value the new value of the '<em>Remove On Failure</em>' attribute.
+     * @see #isSetRemoveOnFailure()
+     * @see #unsetRemoveOnFailure()
+     * @see #isRemoveOnFailure()
+     * @generated
+     */
+    void setRemoveOnFailure(boolean value);
+
+    /**
+     * Unsets the value of the '{@link org.switchyard.tools.models.switchyard1_0.spring.IdempotentConsumerDefinition#isRemoveOnFailure <em>Remove On Failure</em>}' attribute.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @see #isSetRemoveOnFailure()
+     * @see #isRemoveOnFailure()
+     * @see #setRemoveOnFailure(boolean)
+     * @generated
+     */
+    void unsetRemoveOnFailure();
+
+    /**
+     * Returns whether the value of the '{@link org.switchyard.tools.models.switchyard1_0.spring.IdempotentConsumerDefinition#isRemoveOnFailure <em>Remove On Failure</em>}' attribute is set.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @return whether the value of the '<em>Remove On Failure</em>' attribute is set.
+     * @see #unsetRemoveOnFailure()
+     * @see #isRemoveOnFailure()
+     * @see #setRemoveOnFailure(boolean)
+     * @generated
+     */
+    boolean isSetRemoveOnFailure();
+
+    /**
      * Returns the value of the '<em><b>Skip Duplicate</b></em>' attribute.
      * <!-- begin-user-doc -->
 	 * <p>
@@ -175,7 +230,7 @@ public interface IdempotentConsumerDefinition extends ExpressionNode {
      * @return the value of the '<em>Any Attribute2</em>' attribute list.
      * @see org.switchyard.tools.models.switchyard1_0.spring.SpringPackage#getIdempotentConsumerDefinition_AnyAttribute2()
      * @model unique="false" dataType="org.eclipse.emf.ecore.EFeatureMapEntry" many="true"
-     *        extendedMetaData="kind='attributeWildcard' wildcards='##other' name=':43' processing='skip'"
+     *        extendedMetaData="kind='attributeWildcard' wildcards='##other' name=':44' processing='skip'"
      * @generated
      */
 	FeatureMap getAnyAttribute2();

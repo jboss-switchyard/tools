@@ -33,6 +33,14 @@ public enum BindyType implements Enumerator {
 	CSV(0, "Csv", "Csv"),
 
 	/**
+     * The '<em><b>Fixed</b></em>' literal object.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @see #FIXED_VALUE
+     * @generated
+     * @ordered
+     */
+    FIXED(1, "Fixed", "Fixed"), /**
      * The '<em><b>Key Value</b></em>' literal object.
      * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -40,7 +48,7 @@ public enum BindyType implements Enumerator {
      * @generated
      * @ordered
      */
-	KEY_VALUE(1, "KeyValue", "KeyValue");
+	KEY_VALUE(2, "KeyValue", "KeyValue");
 
 	/**
      * The '<em><b>Csv</b></em>' literal value.
@@ -58,6 +66,21 @@ public enum BindyType implements Enumerator {
 	public static final int CSV_VALUE = 0;
 
 	/**
+     * The '<em><b>Fixed</b></em>' literal value.
+     * <!-- begin-user-doc -->
+     * <p>
+     * If the meaning of '<em><b>Fixed</b></em>' literal object isn't clear,
+     * there really should be more of a description here...
+     * </p>
+     * <!-- end-user-doc -->
+     * @see #FIXED
+     * @model name="Fixed"
+     * @generated
+     * @ordered
+     */
+    public static final int FIXED_VALUE = 1;
+
+    /**
      * The '<em><b>Key Value</b></em>' literal value.
      * <!-- begin-user-doc -->
 	 * <p>
@@ -70,7 +93,7 @@ public enum BindyType implements Enumerator {
      * @generated
      * @ordered
      */
-	public static final int KEY_VALUE_VALUE = 1;
+	public static final int KEY_VALUE_VALUE = 2;
 
 	/**
      * An array of all the '<em><b>Bindy Type</b></em>' enumerators.
@@ -81,6 +104,7 @@ public enum BindyType implements Enumerator {
 	private static final BindyType[] VALUES_ARRAY =
 		new BindyType[] {
             CSV,
+            FIXED,
             KEY_VALUE,
         };
 
@@ -133,6 +157,7 @@ public enum BindyType implements Enumerator {
 	public static BindyType get(int value) {
         switch (value) {
             case CSV_VALUE: return CSV;
+            case FIXED_VALUE: return FIXED;
             case KEY_VALUE_VALUE: return KEY_VALUE;
         }
         return null;

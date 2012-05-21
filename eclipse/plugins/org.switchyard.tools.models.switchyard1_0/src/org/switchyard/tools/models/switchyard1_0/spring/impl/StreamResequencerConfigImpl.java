@@ -23,6 +23,7 @@ import org.switchyard.tools.models.switchyard1_0.spring.StreamResequencerConfig;
  * The following features are implemented:
  * <ul>
  *   <li>{@link org.switchyard.tools.models.switchyard1_0.spring.impl.StreamResequencerConfigImpl#getCapacity <em>Capacity</em>}</li>
+ *   <li>{@link org.switchyard.tools.models.switchyard1_0.spring.impl.StreamResequencerConfigImpl#isIgnoreInvalidExchanges <em>Ignore Invalid Exchanges</em>}</li>
  *   <li>{@link org.switchyard.tools.models.switchyard1_0.spring.impl.StreamResequencerConfigImpl#getTimeout <em>Timeout</em>}</li>
  * </ul>
  * </p>
@@ -60,6 +61,35 @@ public class StreamResequencerConfigImpl extends ResequencerConfigImpl implement
 	protected boolean capacityESet;
 
 	/**
+     * The default value of the '{@link #isIgnoreInvalidExchanges() <em>Ignore Invalid Exchanges</em>}' attribute.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @see #isIgnoreInvalidExchanges()
+     * @generated
+     * @ordered
+     */
+    protected static final boolean IGNORE_INVALID_EXCHANGES_EDEFAULT = false;
+
+    /**
+     * The cached value of the '{@link #isIgnoreInvalidExchanges() <em>Ignore Invalid Exchanges</em>}' attribute.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @see #isIgnoreInvalidExchanges()
+     * @generated
+     * @ordered
+     */
+    protected boolean ignoreInvalidExchanges = IGNORE_INVALID_EXCHANGES_EDEFAULT;
+
+    /**
+     * This is true if the Ignore Invalid Exchanges attribute has been set.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    protected boolean ignoreInvalidExchangesESet;
+
+    /**
      * The default value of the '{@link #getTimeout() <em>Timeout</em>}' attribute.
      * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -155,6 +185,52 @@ public class StreamResequencerConfigImpl extends ResequencerConfigImpl implement
 
 	/**
      * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public boolean isIgnoreInvalidExchanges() {
+        return ignoreInvalidExchanges;
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public void setIgnoreInvalidExchanges(boolean newIgnoreInvalidExchanges) {
+        boolean oldIgnoreInvalidExchanges = ignoreInvalidExchanges;
+        ignoreInvalidExchanges = newIgnoreInvalidExchanges;
+        boolean oldIgnoreInvalidExchangesESet = ignoreInvalidExchangesESet;
+        ignoreInvalidExchangesESet = true;
+        if (eNotificationRequired())
+            eNotify(new ENotificationImpl(this, Notification.SET, SpringPackage.STREAM_RESEQUENCER_CONFIG__IGNORE_INVALID_EXCHANGES, oldIgnoreInvalidExchanges, ignoreInvalidExchanges, !oldIgnoreInvalidExchangesESet));
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public void unsetIgnoreInvalidExchanges() {
+        boolean oldIgnoreInvalidExchanges = ignoreInvalidExchanges;
+        boolean oldIgnoreInvalidExchangesESet = ignoreInvalidExchangesESet;
+        ignoreInvalidExchanges = IGNORE_INVALID_EXCHANGES_EDEFAULT;
+        ignoreInvalidExchangesESet = false;
+        if (eNotificationRequired())
+            eNotify(new ENotificationImpl(this, Notification.UNSET, SpringPackage.STREAM_RESEQUENCER_CONFIG__IGNORE_INVALID_EXCHANGES, oldIgnoreInvalidExchanges, IGNORE_INVALID_EXCHANGES_EDEFAULT, oldIgnoreInvalidExchangesESet));
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public boolean isSetIgnoreInvalidExchanges() {
+        return ignoreInvalidExchangesESet;
+    }
+
+    /**
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
      * @generated
      */
@@ -209,6 +285,8 @@ public class StreamResequencerConfigImpl extends ResequencerConfigImpl implement
         switch (featureID) {
             case SpringPackage.STREAM_RESEQUENCER_CONFIG__CAPACITY:
                 return getCapacity();
+            case SpringPackage.STREAM_RESEQUENCER_CONFIG__IGNORE_INVALID_EXCHANGES:
+                return isIgnoreInvalidExchanges();
             case SpringPackage.STREAM_RESEQUENCER_CONFIG__TIMEOUT:
                 return getTimeout();
         }
@@ -225,6 +303,9 @@ public class StreamResequencerConfigImpl extends ResequencerConfigImpl implement
         switch (featureID) {
             case SpringPackage.STREAM_RESEQUENCER_CONFIG__CAPACITY:
                 setCapacity((Integer)newValue);
+                return;
+            case SpringPackage.STREAM_RESEQUENCER_CONFIG__IGNORE_INVALID_EXCHANGES:
+                setIgnoreInvalidExchanges((Boolean)newValue);
                 return;
             case SpringPackage.STREAM_RESEQUENCER_CONFIG__TIMEOUT:
                 setTimeout((Long)newValue);
@@ -244,6 +325,9 @@ public class StreamResequencerConfigImpl extends ResequencerConfigImpl implement
             case SpringPackage.STREAM_RESEQUENCER_CONFIG__CAPACITY:
                 unsetCapacity();
                 return;
+            case SpringPackage.STREAM_RESEQUENCER_CONFIG__IGNORE_INVALID_EXCHANGES:
+                unsetIgnoreInvalidExchanges();
+                return;
             case SpringPackage.STREAM_RESEQUENCER_CONFIG__TIMEOUT:
                 unsetTimeout();
                 return;
@@ -261,6 +345,8 @@ public class StreamResequencerConfigImpl extends ResequencerConfigImpl implement
         switch (featureID) {
             case SpringPackage.STREAM_RESEQUENCER_CONFIG__CAPACITY:
                 return isSetCapacity();
+            case SpringPackage.STREAM_RESEQUENCER_CONFIG__IGNORE_INVALID_EXCHANGES:
+                return isSetIgnoreInvalidExchanges();
             case SpringPackage.STREAM_RESEQUENCER_CONFIG__TIMEOUT:
                 return isSetTimeout();
         }
@@ -279,6 +365,8 @@ public class StreamResequencerConfigImpl extends ResequencerConfigImpl implement
         StringBuffer result = new StringBuffer(super.toString());
         result.append(" (capacity: ");
         if (capacityESet) result.append(capacity); else result.append("<unset>");
+        result.append(", ignoreInvalidExchanges: ");
+        if (ignoreInvalidExchangesESet) result.append(ignoreInvalidExchanges); else result.append("<unset>");
         result.append(", timeout: ");
         if (timeoutESet) result.append(timeout); else result.append("<unset>");
         result.append(')');

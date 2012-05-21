@@ -21,11 +21,12 @@ import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.util.EObjectContainmentEList;
 import org.eclipse.emf.ecore.util.InternalEList;
 
-import org.eclipse.soa.sca.sca1_1.model.sca.impl.ImplementationImpl;
+import org.switchyard.tools.models.switchyard1_0.commonrules.impl.CommonImplementationTypeImpl;
 
 import org.switchyard.tools.models.switchyard1_0.rules.ActionType1;
 import org.switchyard.tools.models.switchyard1_0.rules.AuditType;
 import org.switchyard.tools.models.switchyard1_0.rules.ChannelType;
+import org.switchyard.tools.models.switchyard1_0.rules.GlobalsType;
 import org.switchyard.tools.models.switchyard1_0.rules.ResourceType;
 import org.switchyard.tools.models.switchyard1_0.rules.RulesImplementationType;
 import org.switchyard.tools.models.switchyard1_0.rules.RulesPackage;
@@ -41,12 +42,14 @@ import org.switchyard.tools.models.switchyard1_0.rules.RulesPackage;
  *   <li>{@link org.switchyard.tools.models.switchyard1_0.rules.impl.RulesImplementationTypeImpl#getAudit <em>Audit</em>}</li>
  *   <li>{@link org.switchyard.tools.models.switchyard1_0.rules.impl.RulesImplementationTypeImpl#getChannel <em>Channel</em>}</li>
  *   <li>{@link org.switchyard.tools.models.switchyard1_0.rules.impl.RulesImplementationTypeImpl#getResource <em>Resource</em>}</li>
+ *   <li>{@link org.switchyard.tools.models.switchyard1_0.rules.impl.RulesImplementationTypeImpl#getGlobals <em>Globals</em>}</li>
+ *   <li>{@link org.switchyard.tools.models.switchyard1_0.rules.impl.RulesImplementationTypeImpl#getMessageContentName <em>Message Content Name</em>}</li>
  * </ul>
  * </p>
  *
  * @generated
  */
-public class RulesImplementationTypeImpl extends ImplementationImpl implements RulesImplementationType {
+public class RulesImplementationTypeImpl extends CommonImplementationTypeImpl implements RulesImplementationType {
 	/**
      * The cached value of the '{@link #getAction() <em>Action</em>}' containment reference list.
      * <!-- begin-user-doc -->
@@ -88,6 +91,36 @@ public class RulesImplementationTypeImpl extends ImplementationImpl implements R
 	protected EList<ResourceType> resource;
 
 	/**
+     * The cached value of the '{@link #getGlobals() <em>Globals</em>}' containment reference.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @see #getGlobals()
+     * @generated
+     * @ordered
+     */
+    protected GlobalsType globals;
+
+    /**
+     * The default value of the '{@link #getMessageContentName() <em>Message Content Name</em>}' attribute.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @see #getMessageContentName()
+     * @generated
+     * @ordered
+     */
+    protected static final String MESSAGE_CONTENT_NAME_EDEFAULT = null;
+
+    /**
+     * The cached value of the '{@link #getMessageContentName() <em>Message Content Name</em>}' attribute.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @see #getMessageContentName()
+     * @generated
+     * @ordered
+     */
+    protected String messageContentName = MESSAGE_CONTENT_NAME_EDEFAULT;
+
+    /**
      * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
      * @generated
@@ -187,6 +220,70 @@ public class RulesImplementationTypeImpl extends ImplementationImpl implements R
 
 	/**
      * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public GlobalsType getGlobals() {
+        return globals;
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public NotificationChain basicSetGlobals(GlobalsType newGlobals, NotificationChain msgs) {
+        GlobalsType oldGlobals = globals;
+        globals = newGlobals;
+        if (eNotificationRequired()) {
+            ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, RulesPackage.RULES_IMPLEMENTATION_TYPE__GLOBALS, oldGlobals, newGlobals);
+            if (msgs == null) msgs = notification; else msgs.add(notification);
+        }
+        return msgs;
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public void setGlobals(GlobalsType newGlobals) {
+        if (newGlobals != globals) {
+            NotificationChain msgs = null;
+            if (globals != null)
+                msgs = ((InternalEObject)globals).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - RulesPackage.RULES_IMPLEMENTATION_TYPE__GLOBALS, null, msgs);
+            if (newGlobals != null)
+                msgs = ((InternalEObject)newGlobals).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - RulesPackage.RULES_IMPLEMENTATION_TYPE__GLOBALS, null, msgs);
+            msgs = basicSetGlobals(newGlobals, msgs);
+            if (msgs != null) msgs.dispatch();
+        }
+        else if (eNotificationRequired())
+            eNotify(new ENotificationImpl(this, Notification.SET, RulesPackage.RULES_IMPLEMENTATION_TYPE__GLOBALS, newGlobals, newGlobals));
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public String getMessageContentName() {
+        return messageContentName;
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public void setMessageContentName(String newMessageContentName) {
+        String oldMessageContentName = messageContentName;
+        messageContentName = newMessageContentName;
+        if (eNotificationRequired())
+            eNotify(new ENotificationImpl(this, Notification.SET, RulesPackage.RULES_IMPLEMENTATION_TYPE__MESSAGE_CONTENT_NAME, oldMessageContentName, messageContentName));
+    }
+
+    /**
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
      * @generated
      */
@@ -201,6 +298,8 @@ public class RulesImplementationTypeImpl extends ImplementationImpl implements R
                 return ((InternalEList<?>)getChannel()).basicRemove(otherEnd, msgs);
             case RulesPackage.RULES_IMPLEMENTATION_TYPE__RESOURCE:
                 return ((InternalEList<?>)getResource()).basicRemove(otherEnd, msgs);
+            case RulesPackage.RULES_IMPLEMENTATION_TYPE__GLOBALS:
+                return basicSetGlobals(null, msgs);
         }
         return super.eInverseRemove(otherEnd, featureID, msgs);
     }
@@ -221,6 +320,10 @@ public class RulesImplementationTypeImpl extends ImplementationImpl implements R
                 return getChannel();
             case RulesPackage.RULES_IMPLEMENTATION_TYPE__RESOURCE:
                 return getResource();
+            case RulesPackage.RULES_IMPLEMENTATION_TYPE__GLOBALS:
+                return getGlobals();
+            case RulesPackage.RULES_IMPLEMENTATION_TYPE__MESSAGE_CONTENT_NAME:
+                return getMessageContentName();
         }
         return super.eGet(featureID, resolve, coreType);
     }
@@ -249,6 +352,12 @@ public class RulesImplementationTypeImpl extends ImplementationImpl implements R
                 getResource().clear();
                 getResource().addAll((Collection<? extends ResourceType>)newValue);
                 return;
+            case RulesPackage.RULES_IMPLEMENTATION_TYPE__GLOBALS:
+                setGlobals((GlobalsType)newValue);
+                return;
+            case RulesPackage.RULES_IMPLEMENTATION_TYPE__MESSAGE_CONTENT_NAME:
+                setMessageContentName((String)newValue);
+                return;
         }
         super.eSet(featureID, newValue);
     }
@@ -273,6 +382,12 @@ public class RulesImplementationTypeImpl extends ImplementationImpl implements R
             case RulesPackage.RULES_IMPLEMENTATION_TYPE__RESOURCE:
                 getResource().clear();
                 return;
+            case RulesPackage.RULES_IMPLEMENTATION_TYPE__GLOBALS:
+                setGlobals((GlobalsType)null);
+                return;
+            case RulesPackage.RULES_IMPLEMENTATION_TYPE__MESSAGE_CONTENT_NAME:
+                setMessageContentName(MESSAGE_CONTENT_NAME_EDEFAULT);
+                return;
         }
         super.eUnset(featureID);
     }
@@ -293,8 +408,28 @@ public class RulesImplementationTypeImpl extends ImplementationImpl implements R
                 return channel != null && !channel.isEmpty();
             case RulesPackage.RULES_IMPLEMENTATION_TYPE__RESOURCE:
                 return resource != null && !resource.isEmpty();
+            case RulesPackage.RULES_IMPLEMENTATION_TYPE__GLOBALS:
+                return globals != null;
+            case RulesPackage.RULES_IMPLEMENTATION_TYPE__MESSAGE_CONTENT_NAME:
+                return MESSAGE_CONTENT_NAME_EDEFAULT == null ? messageContentName != null : !MESSAGE_CONTENT_NAME_EDEFAULT.equals(messageContentName);
         }
         return super.eIsSet(featureID);
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    @Override
+    public String toString() {
+        if (eIsProxy()) return super.toString();
+
+        StringBuffer result = new StringBuffer(super.toString());
+        result.append(" (messageContentName: ");
+        result.append(messageContentName);
+        result.append(')');
+        return result.toString();
     }
 
 } //RulesImplementationTypeImpl

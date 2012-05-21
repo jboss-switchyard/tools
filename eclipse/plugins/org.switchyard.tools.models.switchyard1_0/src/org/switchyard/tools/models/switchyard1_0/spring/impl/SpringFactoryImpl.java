@@ -111,6 +111,7 @@ public class SpringFactoryImpl extends EFactoryImpl implements SpringFactory {
             case SpringPackage.ERROR_HANDLER_DEFINITION: return createErrorHandlerDefinition();
             case SpringPackage.EXPRESSION: return createExpression();
             case SpringPackage.EXPRESSION_NODE: return createExpressionNode();
+            case SpringPackage.EXPRESSION_NODE_HELPER: return createExpressionNodeHelper();
             case SpringPackage.EXPRESSION_SUB_ELEMENT_DEFINITION: return createExpressionSubElementDefinition();
             case SpringPackage.FAILOVER_LOAD_BALANCER_DEFINITION: return createFailoverLoadBalancerDefinition();
             case SpringPackage.FILTER_DEFINITION: return createFilterDefinition();
@@ -144,6 +145,7 @@ public class SpringFactoryImpl extends EFactoryImpl implements SpringFactory {
             case SpringPackage.LOOP_DEFINITION: return createLoopDefinition();
             case SpringPackage.MARSHAL_DEFINITION: return createMarshalDefinition();
             case SpringPackage.METHOD_CALL_EXPRESSION: return createMethodCallExpression();
+            case SpringPackage.MODEL_HELPER: return createModelHelper();
             case SpringPackage.MULTICAST_DEFINITION: return createMulticastDefinition();
             case SpringPackage.MVEL_EXPRESSION: return createMvelExpression();
             case SpringPackage.NODE_FACTORY: return createNodeFactory();
@@ -158,6 +160,7 @@ public class SpringFactoryImpl extends EFactoryImpl implements SpringFactory {
             case SpringPackage.PACKAGE_SCAN_DEFINITION: return createPackageScanDefinition();
             case SpringPackage.PHP_EXPRESSION: return createPhpExpression();
             case SpringPackage.PIPELINE_DEFINITION: return createPipelineDefinition();
+            case SpringPackage.PGP_DATA_FORMAT: return createPgpDataFormat();
             case SpringPackage.POLICY_DEFINITION: return createPolicyDefinition();
             case SpringPackage.POLL_ENRICH_DEFINITION: return createPollEnrichDefinition();
             case SpringPackage.PROCESS_DEFINITION: return createProcessDefinition();
@@ -797,6 +800,16 @@ public class SpringFactoryImpl extends EFactoryImpl implements SpringFactory {
 
 	/**
      * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public ExpressionNodeHelper createExpressionNodeHelper() {
+        ExpressionNodeHelperImpl expressionNodeHelper = new ExpressionNodeHelperImpl();
+        return expressionNodeHelper;
+    }
+
+    /**
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
      * @generated
      */
@@ -1127,6 +1140,16 @@ public class SpringFactoryImpl extends EFactoryImpl implements SpringFactory {
 
 	/**
      * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public ModelHelper createModelHelper() {
+        ModelHelperImpl modelHelper = new ModelHelperImpl();
+        return modelHelper;
+    }
+
+    /**
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
      * @generated
      */
@@ -1266,6 +1289,16 @@ public class SpringFactoryImpl extends EFactoryImpl implements SpringFactory {
     }
 
 	/**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public PgpDataFormat createPgpDataFormat() {
+        PgpDataFormatImpl pgpDataFormat = new PgpDataFormatImpl();
+        return pgpDataFormat;
+    }
+
+    /**
      * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
      * @generated

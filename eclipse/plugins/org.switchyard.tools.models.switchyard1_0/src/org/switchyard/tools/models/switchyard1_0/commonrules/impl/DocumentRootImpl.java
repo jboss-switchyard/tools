@@ -23,8 +23,11 @@ import org.eclipse.emf.ecore.util.EcoreEMap;
 import org.eclipse.emf.ecore.util.FeatureMap;
 import org.eclipse.emf.ecore.util.InternalEList;
 
+import org.switchyard.tools.models.switchyard1_0.commonrules.AuditType1;
+import org.switchyard.tools.models.switchyard1_0.commonrules.CommonImplementationType;
 import org.switchyard.tools.models.switchyard1_0.commonrules.CommonRulesPackage;
 import org.switchyard.tools.models.switchyard1_0.commonrules.DocumentRoot;
+import org.switchyard.tools.models.switchyard1_0.commonrules.MappingType;
 
 /**
  * <!-- begin-user-doc -->
@@ -38,8 +41,7 @@ import org.switchyard.tools.models.switchyard1_0.commonrules.DocumentRoot;
  *   <li>{@link org.switchyard.tools.models.switchyard1_0.commonrules.impl.DocumentRootImpl#getXSISchemaLocation <em>XSI Schema Location</em>}</li>
  *   <li>{@link org.switchyard.tools.models.switchyard1_0.commonrules.impl.DocumentRootImpl#getAudit <em>Audit</em>}</li>
  *   <li>{@link org.switchyard.tools.models.switchyard1_0.commonrules.impl.DocumentRootImpl#getImplementationCommonRules <em>Implementation Common Rules</em>}</li>
- *   <li>{@link org.switchyard.tools.models.switchyard1_0.commonrules.impl.DocumentRootImpl#getAudit1 <em>Audit1</em>}</li>
- *   <li>{@link org.switchyard.tools.models.switchyard1_0.commonrules.impl.DocumentRootImpl#getImplementationCommonRules1 <em>Implementation Common Rules1</em>}</li>
+ *   <li>{@link org.switchyard.tools.models.switchyard1_0.commonrules.impl.DocumentRootImpl#getMapping <em>Mapping</em>}</li>
  * </ul>
  * </p>
  *
@@ -75,46 +77,6 @@ public class DocumentRootImpl extends EObjectImpl implements DocumentRoot {
      * @ordered
      */
 	protected EMap<String, String> xSISchemaLocation;
-
-	/**
-     * The default value of the '{@link #getAudit() <em>Audit</em>}' attribute.
-     * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-     * @see #getAudit()
-     * @generated
-     * @ordered
-     */
-	protected static final Object AUDIT_EDEFAULT = null;
-
-	/**
-     * The default value of the '{@link #getImplementationCommonRules() <em>Implementation Common Rules</em>}' attribute.
-     * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-     * @see #getImplementationCommonRules()
-     * @generated
-     * @ordered
-     */
-	protected static final Object IMPLEMENTATION_COMMON_RULES_EDEFAULT = null;
-
-	/**
-     * The default value of the '{@link #getAudit1() <em>Audit1</em>}' attribute.
-     * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-     * @see #getAudit1()
-     * @generated
-     * @ordered
-     */
-	protected static final Object AUDIT1_EDEFAULT = null;
-
-	/**
-     * The default value of the '{@link #getImplementationCommonRules1() <em>Implementation Common Rules1</em>}' attribute.
-     * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-     * @see #getImplementationCommonRules1()
-     * @generated
-     * @ordered
-     */
-	protected static final Object IMPLEMENTATION_COMMON_RULES1_EDEFAULT = null;
 
 	/**
      * <!-- begin-user-doc -->
@@ -176,74 +138,56 @@ public class DocumentRootImpl extends EObjectImpl implements DocumentRoot {
 	 * <!-- end-user-doc -->
      * @generated
      */
-	public Object getAudit() {
-        return getMixed().get(CommonRulesPackage.Literals.DOCUMENT_ROOT__AUDIT, true);
+	public AuditType1 getAudit() {
+        return (AuditType1)getMixed().get(CommonRulesPackage.Literals.DOCUMENT_ROOT__AUDIT, true);
     }
 
 	/**
      * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
      * @generated
      */
-	public void setAudit(Object newAudit) {
-        ((FeatureMap.Internal)getMixed()).set(CommonRulesPackage.Literals.DOCUMENT_ROOT__AUDIT, newAudit);
+    public NotificationChain basicSetAudit(AuditType1 newAudit, NotificationChain msgs) {
+        return ((FeatureMap.Internal)getMixed()).basicAdd(CommonRulesPackage.Literals.DOCUMENT_ROOT__AUDIT, newAudit, msgs);
     }
 
-	/**
+    /**
      * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
      * @generated
      */
-	public Object getImplementationCommonRules() {
-        return getMixed().get(CommonRulesPackage.Literals.DOCUMENT_ROOT__IMPLEMENTATION_COMMON_RULES, true);
+	public CommonImplementationType getImplementationCommonRules() {
+        return (CommonImplementationType)getMixed().get(CommonRulesPackage.Literals.DOCUMENT_ROOT__IMPLEMENTATION_COMMON_RULES, true);
     }
 
 	/**
      * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
      * @generated
      */
-	public void setImplementationCommonRules(Object newImplementationCommonRules) {
-        ((FeatureMap.Internal)getMixed()).set(CommonRulesPackage.Literals.DOCUMENT_ROOT__IMPLEMENTATION_COMMON_RULES, newImplementationCommonRules);
+    public NotificationChain basicSetImplementationCommonRules(CommonImplementationType newImplementationCommonRules, NotificationChain msgs) {
+        return ((FeatureMap.Internal)getMixed()).basicAdd(CommonRulesPackage.Literals.DOCUMENT_ROOT__IMPLEMENTATION_COMMON_RULES, newImplementationCommonRules, msgs);
     }
 
-	/**
+    /**
      * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
      * @generated
      */
-	public Object getAudit1() {
-        return getMixed().get(CommonRulesPackage.Literals.DOCUMENT_ROOT__AUDIT1, true);
+    public MappingType getMapping() {
+        return (MappingType)getMixed().get(CommonRulesPackage.Literals.DOCUMENT_ROOT__MAPPING, true);
     }
 
-	/**
+    /**
      * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
      * @generated
      */
-	public void setAudit1(Object newAudit1) {
-        ((FeatureMap.Internal)getMixed()).set(CommonRulesPackage.Literals.DOCUMENT_ROOT__AUDIT1, newAudit1);
+    public NotificationChain basicSetMapping(MappingType newMapping, NotificationChain msgs) {
+        return ((FeatureMap.Internal)getMixed()).basicAdd(CommonRulesPackage.Literals.DOCUMENT_ROOT__MAPPING, newMapping, msgs);
     }
 
-	/**
-     * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-     * @generated
-     */
-	public Object getImplementationCommonRules1() {
-        return getMixed().get(CommonRulesPackage.Literals.DOCUMENT_ROOT__IMPLEMENTATION_COMMON_RULES1, true);
-    }
-
-	/**
-     * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-     * @generated
-     */
-	public void setImplementationCommonRules1(Object newImplementationCommonRules1) {
-        ((FeatureMap.Internal)getMixed()).set(CommonRulesPackage.Literals.DOCUMENT_ROOT__IMPLEMENTATION_COMMON_RULES1, newImplementationCommonRules1);
-    }
-
-	/**
+    /**
      * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
      * @generated
@@ -257,6 +201,12 @@ public class DocumentRootImpl extends EObjectImpl implements DocumentRoot {
                 return ((InternalEList<?>)getXMLNSPrefixMap()).basicRemove(otherEnd, msgs);
             case CommonRulesPackage.DOCUMENT_ROOT__XSI_SCHEMA_LOCATION:
                 return ((InternalEList<?>)getXSISchemaLocation()).basicRemove(otherEnd, msgs);
+            case CommonRulesPackage.DOCUMENT_ROOT__AUDIT:
+                return basicSetAudit(null, msgs);
+            case CommonRulesPackage.DOCUMENT_ROOT__IMPLEMENTATION_COMMON_RULES:
+                return basicSetImplementationCommonRules(null, msgs);
+            case CommonRulesPackage.DOCUMENT_ROOT__MAPPING:
+                return basicSetMapping(null, msgs);
         }
         return super.eInverseRemove(otherEnd, featureID, msgs);
     }
@@ -282,10 +232,8 @@ public class DocumentRootImpl extends EObjectImpl implements DocumentRoot {
                 return getAudit();
             case CommonRulesPackage.DOCUMENT_ROOT__IMPLEMENTATION_COMMON_RULES:
                 return getImplementationCommonRules();
-            case CommonRulesPackage.DOCUMENT_ROOT__AUDIT1:
-                return getAudit1();
-            case CommonRulesPackage.DOCUMENT_ROOT__IMPLEMENTATION_COMMON_RULES1:
-                return getImplementationCommonRules1();
+            case CommonRulesPackage.DOCUMENT_ROOT__MAPPING:
+                return getMapping();
         }
         return super.eGet(featureID, resolve, coreType);
     }
@@ -306,18 +254,6 @@ public class DocumentRootImpl extends EObjectImpl implements DocumentRoot {
                 return;
             case CommonRulesPackage.DOCUMENT_ROOT__XSI_SCHEMA_LOCATION:
                 ((EStructuralFeature.Setting)getXSISchemaLocation()).set(newValue);
-                return;
-            case CommonRulesPackage.DOCUMENT_ROOT__AUDIT:
-                setAudit(newValue);
-                return;
-            case CommonRulesPackage.DOCUMENT_ROOT__IMPLEMENTATION_COMMON_RULES:
-                setImplementationCommonRules(newValue);
-                return;
-            case CommonRulesPackage.DOCUMENT_ROOT__AUDIT1:
-                setAudit1(newValue);
-                return;
-            case CommonRulesPackage.DOCUMENT_ROOT__IMPLEMENTATION_COMMON_RULES1:
-                setImplementationCommonRules1(newValue);
                 return;
         }
         super.eSet(featureID, newValue);
@@ -340,18 +276,6 @@ public class DocumentRootImpl extends EObjectImpl implements DocumentRoot {
             case CommonRulesPackage.DOCUMENT_ROOT__XSI_SCHEMA_LOCATION:
                 getXSISchemaLocation().clear();
                 return;
-            case CommonRulesPackage.DOCUMENT_ROOT__AUDIT:
-                setAudit(AUDIT_EDEFAULT);
-                return;
-            case CommonRulesPackage.DOCUMENT_ROOT__IMPLEMENTATION_COMMON_RULES:
-                setImplementationCommonRules(IMPLEMENTATION_COMMON_RULES_EDEFAULT);
-                return;
-            case CommonRulesPackage.DOCUMENT_ROOT__AUDIT1:
-                setAudit1(AUDIT1_EDEFAULT);
-                return;
-            case CommonRulesPackage.DOCUMENT_ROOT__IMPLEMENTATION_COMMON_RULES1:
-                setImplementationCommonRules1(IMPLEMENTATION_COMMON_RULES1_EDEFAULT);
-                return;
         }
         super.eUnset(featureID);
     }
@@ -371,13 +295,11 @@ public class DocumentRootImpl extends EObjectImpl implements DocumentRoot {
             case CommonRulesPackage.DOCUMENT_ROOT__XSI_SCHEMA_LOCATION:
                 return xSISchemaLocation != null && !xSISchemaLocation.isEmpty();
             case CommonRulesPackage.DOCUMENT_ROOT__AUDIT:
-                return AUDIT_EDEFAULT == null ? getAudit() != null : !AUDIT_EDEFAULT.equals(getAudit());
+                return getAudit() != null;
             case CommonRulesPackage.DOCUMENT_ROOT__IMPLEMENTATION_COMMON_RULES:
-                return IMPLEMENTATION_COMMON_RULES_EDEFAULT == null ? getImplementationCommonRules() != null : !IMPLEMENTATION_COMMON_RULES_EDEFAULT.equals(getImplementationCommonRules());
-            case CommonRulesPackage.DOCUMENT_ROOT__AUDIT1:
-                return AUDIT1_EDEFAULT == null ? getAudit1() != null : !AUDIT1_EDEFAULT.equals(getAudit1());
-            case CommonRulesPackage.DOCUMENT_ROOT__IMPLEMENTATION_COMMON_RULES1:
-                return IMPLEMENTATION_COMMON_RULES1_EDEFAULT == null ? getImplementationCommonRules1() != null : !IMPLEMENTATION_COMMON_RULES1_EDEFAULT.equals(getImplementationCommonRules1());
+                return getImplementationCommonRules() != null;
+            case CommonRulesPackage.DOCUMENT_ROOT__MAPPING:
+                return getMapping() != null;
         }
         return super.eIsSet(featureID);
     }

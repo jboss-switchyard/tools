@@ -162,10 +162,12 @@ import org.switchyard.tools.models.switchyard1_0.spring.WireTapDefinition;
  *   <li>{@link org.switchyard.tools.models.switchyard1_0.spring.impl.AggregateDefinitionImpl#isDiscardOnCompletionTimeout <em>Discard On Completion Timeout</em>}</li>
  *   <li>{@link org.switchyard.tools.models.switchyard1_0.spring.impl.AggregateDefinitionImpl#isEagerCheckCompletion <em>Eager Check Completion</em>}</li>
  *   <li>{@link org.switchyard.tools.models.switchyard1_0.spring.impl.AggregateDefinitionImpl#getExecutorServiceRef <em>Executor Service Ref</em>}</li>
+ *   <li>{@link org.switchyard.tools.models.switchyard1_0.spring.impl.AggregateDefinitionImpl#isForceCompletionOnStop <em>Force Completion On Stop</em>}</li>
  *   <li>{@link org.switchyard.tools.models.switchyard1_0.spring.impl.AggregateDefinitionImpl#isGroupExchanges <em>Group Exchanges</em>}</li>
  *   <li>{@link org.switchyard.tools.models.switchyard1_0.spring.impl.AggregateDefinitionImpl#isIgnoreInvalidCorrelationKeys <em>Ignore Invalid Correlation Keys</em>}</li>
  *   <li>{@link org.switchyard.tools.models.switchyard1_0.spring.impl.AggregateDefinitionImpl#isParallelProcessing <em>Parallel Processing</em>}</li>
  *   <li>{@link org.switchyard.tools.models.switchyard1_0.spring.impl.AggregateDefinitionImpl#getStrategyRef <em>Strategy Ref</em>}</li>
+ *   <li>{@link org.switchyard.tools.models.switchyard1_0.spring.impl.AggregateDefinitionImpl#getTimeoutCheckerExecutorServiceRef <em>Timeout Checker Executor Service Ref</em>}</li>
  *   <li>{@link org.switchyard.tools.models.switchyard1_0.spring.impl.AggregateDefinitionImpl#getAnyAttribute1 <em>Any Attribute1</em>}</li>
  * </ul>
  * </p>
@@ -467,6 +469,35 @@ public class AggregateDefinitionImpl extends ProcessorDefinitionImpl implements 
 	protected String executorServiceRef = EXECUTOR_SERVICE_REF_EDEFAULT;
 
 	/**
+     * The default value of the '{@link #isForceCompletionOnStop() <em>Force Completion On Stop</em>}' attribute.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @see #isForceCompletionOnStop()
+     * @generated
+     * @ordered
+     */
+    protected static final boolean FORCE_COMPLETION_ON_STOP_EDEFAULT = false;
+
+    /**
+     * The cached value of the '{@link #isForceCompletionOnStop() <em>Force Completion On Stop</em>}' attribute.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @see #isForceCompletionOnStop()
+     * @generated
+     * @ordered
+     */
+    protected boolean forceCompletionOnStop = FORCE_COMPLETION_ON_STOP_EDEFAULT;
+
+    /**
+     * This is true if the Force Completion On Stop attribute has been set.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    protected boolean forceCompletionOnStopESet;
+
+    /**
      * The default value of the '{@link #isGroupExchanges() <em>Group Exchanges</em>}' attribute.
      * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -574,6 +605,26 @@ public class AggregateDefinitionImpl extends ProcessorDefinitionImpl implements 
 	protected String strategyRef = STRATEGY_REF_EDEFAULT;
 
 	/**
+     * The default value of the '{@link #getTimeoutCheckerExecutorServiceRef() <em>Timeout Checker Executor Service Ref</em>}' attribute.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @see #getTimeoutCheckerExecutorServiceRef()
+     * @generated
+     * @ordered
+     */
+    protected static final String TIMEOUT_CHECKER_EXECUTOR_SERVICE_REF_EDEFAULT = null;
+
+    /**
+     * The cached value of the '{@link #getTimeoutCheckerExecutorServiceRef() <em>Timeout Checker Executor Service Ref</em>}' attribute.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @see #getTimeoutCheckerExecutorServiceRef()
+     * @generated
+     * @ordered
+     */
+    protected String timeoutCheckerExecutorServiceRef = TIMEOUT_CHECKER_EXECUTOR_SERVICE_REF_EDEFAULT;
+
+    /**
      * The cached value of the '{@link #getAnyAttribute1() <em>Any Attribute1</em>}' attribute list.
      * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -1674,6 +1725,52 @@ public class AggregateDefinitionImpl extends ProcessorDefinitionImpl implements 
 
 	/**
      * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public boolean isForceCompletionOnStop() {
+        return forceCompletionOnStop;
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public void setForceCompletionOnStop(boolean newForceCompletionOnStop) {
+        boolean oldForceCompletionOnStop = forceCompletionOnStop;
+        forceCompletionOnStop = newForceCompletionOnStop;
+        boolean oldForceCompletionOnStopESet = forceCompletionOnStopESet;
+        forceCompletionOnStopESet = true;
+        if (eNotificationRequired())
+            eNotify(new ENotificationImpl(this, Notification.SET, SpringPackage.AGGREGATE_DEFINITION__FORCE_COMPLETION_ON_STOP, oldForceCompletionOnStop, forceCompletionOnStop, !oldForceCompletionOnStopESet));
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public void unsetForceCompletionOnStop() {
+        boolean oldForceCompletionOnStop = forceCompletionOnStop;
+        boolean oldForceCompletionOnStopESet = forceCompletionOnStopESet;
+        forceCompletionOnStop = FORCE_COMPLETION_ON_STOP_EDEFAULT;
+        forceCompletionOnStopESet = false;
+        if (eNotificationRequired())
+            eNotify(new ENotificationImpl(this, Notification.UNSET, SpringPackage.AGGREGATE_DEFINITION__FORCE_COMPLETION_ON_STOP, oldForceCompletionOnStop, FORCE_COMPLETION_ON_STOP_EDEFAULT, oldForceCompletionOnStopESet));
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public boolean isSetForceCompletionOnStop() {
+        return forceCompletionOnStopESet;
+    }
+
+    /**
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
      * @generated
      */
@@ -1832,6 +1929,27 @@ public class AggregateDefinitionImpl extends ProcessorDefinitionImpl implements 
     }
 
 	/**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public String getTimeoutCheckerExecutorServiceRef() {
+        return timeoutCheckerExecutorServiceRef;
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public void setTimeoutCheckerExecutorServiceRef(String newTimeoutCheckerExecutorServiceRef) {
+        String oldTimeoutCheckerExecutorServiceRef = timeoutCheckerExecutorServiceRef;
+        timeoutCheckerExecutorServiceRef = newTimeoutCheckerExecutorServiceRef;
+        if (eNotificationRequired())
+            eNotify(new ENotificationImpl(this, Notification.SET, SpringPackage.AGGREGATE_DEFINITION__TIMEOUT_CHECKER_EXECUTOR_SERVICE_REF, oldTimeoutCheckerExecutorServiceRef, timeoutCheckerExecutorServiceRef));
+    }
+
+    /**
      * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
      * @generated
@@ -2136,6 +2254,8 @@ public class AggregateDefinitionImpl extends ProcessorDefinitionImpl implements 
                 return isEagerCheckCompletion();
             case SpringPackage.AGGREGATE_DEFINITION__EXECUTOR_SERVICE_REF:
                 return getExecutorServiceRef();
+            case SpringPackage.AGGREGATE_DEFINITION__FORCE_COMPLETION_ON_STOP:
+                return isForceCompletionOnStop();
             case SpringPackage.AGGREGATE_DEFINITION__GROUP_EXCHANGES:
                 return isGroupExchanges();
             case SpringPackage.AGGREGATE_DEFINITION__IGNORE_INVALID_CORRELATION_KEYS:
@@ -2144,6 +2264,8 @@ public class AggregateDefinitionImpl extends ProcessorDefinitionImpl implements 
                 return isParallelProcessing();
             case SpringPackage.AGGREGATE_DEFINITION__STRATEGY_REF:
                 return getStrategyRef();
+            case SpringPackage.AGGREGATE_DEFINITION__TIMEOUT_CHECKER_EXECUTOR_SERVICE_REF:
+                return getTimeoutCheckerExecutorServiceRef();
             case SpringPackage.AGGREGATE_DEFINITION__ANY_ATTRIBUTE1:
                 if (coreType) return getAnyAttribute1();
                 return ((FeatureMap.Internal)getAnyAttribute1()).getWrapper();
@@ -2434,6 +2556,9 @@ public class AggregateDefinitionImpl extends ProcessorDefinitionImpl implements 
             case SpringPackage.AGGREGATE_DEFINITION__EXECUTOR_SERVICE_REF:
                 setExecutorServiceRef((String)newValue);
                 return;
+            case SpringPackage.AGGREGATE_DEFINITION__FORCE_COMPLETION_ON_STOP:
+                setForceCompletionOnStop((Boolean)newValue);
+                return;
             case SpringPackage.AGGREGATE_DEFINITION__GROUP_EXCHANGES:
                 setGroupExchanges((Boolean)newValue);
                 return;
@@ -2445,6 +2570,9 @@ public class AggregateDefinitionImpl extends ProcessorDefinitionImpl implements 
                 return;
             case SpringPackage.AGGREGATE_DEFINITION__STRATEGY_REF:
                 setStrategyRef((String)newValue);
+                return;
+            case SpringPackage.AGGREGATE_DEFINITION__TIMEOUT_CHECKER_EXECUTOR_SERVICE_REF:
+                setTimeoutCheckerExecutorServiceRef((String)newValue);
                 return;
             case SpringPackage.AGGREGATE_DEFINITION__ANY_ATTRIBUTE1:
                 ((FeatureMap.Internal)getAnyAttribute1()).set(newValue);
@@ -2677,6 +2805,9 @@ public class AggregateDefinitionImpl extends ProcessorDefinitionImpl implements 
             case SpringPackage.AGGREGATE_DEFINITION__EXECUTOR_SERVICE_REF:
                 setExecutorServiceRef(EXECUTOR_SERVICE_REF_EDEFAULT);
                 return;
+            case SpringPackage.AGGREGATE_DEFINITION__FORCE_COMPLETION_ON_STOP:
+                unsetForceCompletionOnStop();
+                return;
             case SpringPackage.AGGREGATE_DEFINITION__GROUP_EXCHANGES:
                 unsetGroupExchanges();
                 return;
@@ -2688,6 +2819,9 @@ public class AggregateDefinitionImpl extends ProcessorDefinitionImpl implements 
                 return;
             case SpringPackage.AGGREGATE_DEFINITION__STRATEGY_REF:
                 setStrategyRef(STRATEGY_REF_EDEFAULT);
+                return;
+            case SpringPackage.AGGREGATE_DEFINITION__TIMEOUT_CHECKER_EXECUTOR_SERVICE_REF:
+                setTimeoutCheckerExecutorServiceRef(TIMEOUT_CHECKER_EXECUTOR_SERVICE_REF_EDEFAULT);
                 return;
             case SpringPackage.AGGREGATE_DEFINITION__ANY_ATTRIBUTE1:
                 getAnyAttribute1().clear();
@@ -2848,6 +2982,8 @@ public class AggregateDefinitionImpl extends ProcessorDefinitionImpl implements 
                 return isSetEagerCheckCompletion();
             case SpringPackage.AGGREGATE_DEFINITION__EXECUTOR_SERVICE_REF:
                 return EXECUTOR_SERVICE_REF_EDEFAULT == null ? executorServiceRef != null : !EXECUTOR_SERVICE_REF_EDEFAULT.equals(executorServiceRef);
+            case SpringPackage.AGGREGATE_DEFINITION__FORCE_COMPLETION_ON_STOP:
+                return isSetForceCompletionOnStop();
             case SpringPackage.AGGREGATE_DEFINITION__GROUP_EXCHANGES:
                 return isSetGroupExchanges();
             case SpringPackage.AGGREGATE_DEFINITION__IGNORE_INVALID_CORRELATION_KEYS:
@@ -2856,6 +2992,8 @@ public class AggregateDefinitionImpl extends ProcessorDefinitionImpl implements 
                 return isSetParallelProcessing();
             case SpringPackage.AGGREGATE_DEFINITION__STRATEGY_REF:
                 return STRATEGY_REF_EDEFAULT == null ? strategyRef != null : !STRATEGY_REF_EDEFAULT.equals(strategyRef);
+            case SpringPackage.AGGREGATE_DEFINITION__TIMEOUT_CHECKER_EXECUTOR_SERVICE_REF:
+                return TIMEOUT_CHECKER_EXECUTOR_SERVICE_REF_EDEFAULT == null ? timeoutCheckerExecutorServiceRef != null : !TIMEOUT_CHECKER_EXECUTOR_SERVICE_REF_EDEFAULT.equals(timeoutCheckerExecutorServiceRef);
             case SpringPackage.AGGREGATE_DEFINITION__ANY_ATTRIBUTE1:
                 return anyAttribute1 != null && !anyAttribute1.isEmpty();
         }
@@ -2892,6 +3030,8 @@ public class AggregateDefinitionImpl extends ProcessorDefinitionImpl implements 
         if (eagerCheckCompletionESet) result.append(eagerCheckCompletion); else result.append("<unset>");
         result.append(", executorServiceRef: ");
         result.append(executorServiceRef);
+        result.append(", forceCompletionOnStop: ");
+        if (forceCompletionOnStopESet) result.append(forceCompletionOnStop); else result.append("<unset>");
         result.append(", groupExchanges: ");
         if (groupExchangesESet) result.append(groupExchanges); else result.append("<unset>");
         result.append(", ignoreInvalidCorrelationKeys: ");
@@ -2900,6 +3040,8 @@ public class AggregateDefinitionImpl extends ProcessorDefinitionImpl implements 
         if (parallelProcessingESet) result.append(parallelProcessing); else result.append("<unset>");
         result.append(", strategyRef: ");
         result.append(strategyRef);
+        result.append(", timeoutCheckerExecutorServiceRef: ");
+        result.append(timeoutCheckerExecutorServiceRef);
         result.append(", anyAttribute1: ");
         result.append(anyAttribute1);
         result.append(')');

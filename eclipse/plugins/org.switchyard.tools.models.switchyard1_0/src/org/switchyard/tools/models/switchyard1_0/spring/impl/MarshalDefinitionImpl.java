@@ -30,6 +30,7 @@ import org.switchyard.tools.models.switchyard1_0.spring.JaxbDataFormat;
 import org.switchyard.tools.models.switchyard1_0.spring.JibxDataFormat;
 import org.switchyard.tools.models.switchyard1_0.spring.JsonDataFormat;
 import org.switchyard.tools.models.switchyard1_0.spring.MarshalDefinition;
+import org.switchyard.tools.models.switchyard1_0.spring.PgpDataFormat;
 import org.switchyard.tools.models.switchyard1_0.spring.ProtobufDataFormat;
 import org.switchyard.tools.models.switchyard1_0.spring.RssDataFormat;
 import org.switchyard.tools.models.switchyard1_0.spring.SerializationDataFormat;
@@ -71,6 +72,7 @@ import org.switchyard.tools.models.switchyard1_0.spring.ZipDataFormat;
  *   <li>{@link org.switchyard.tools.models.switchyard1_0.spring.impl.MarshalDefinitionImpl#getTidyMarkup <em>Tidy Markup</em>}</li>
  *   <li>{@link org.switchyard.tools.models.switchyard1_0.spring.impl.MarshalDefinitionImpl#getXmlBeans <em>Xml Beans</em>}</li>
  *   <li>{@link org.switchyard.tools.models.switchyard1_0.spring.impl.MarshalDefinitionImpl#getXstream <em>Xstream</em>}</li>
+ *   <li>{@link org.switchyard.tools.models.switchyard1_0.spring.impl.MarshalDefinitionImpl#getPgp <em>Pgp</em>}</li>
  *   <li>{@link org.switchyard.tools.models.switchyard1_0.spring.impl.MarshalDefinitionImpl#getZip <em>Zip</em>}</li>
  *   <li>{@link org.switchyard.tools.models.switchyard1_0.spring.impl.MarshalDefinitionImpl#getRef <em>Ref</em>}</li>
  *   <li>{@link org.switchyard.tools.models.switchyard1_0.spring.impl.MarshalDefinitionImpl#getAnyAttribute2 <em>Any Attribute2</em>}</li>
@@ -291,6 +293,16 @@ public class MarshalDefinitionImpl extends NoOutputDefinitionImpl implements Mar
 	protected XStreamDataFormat xstream;
 
 	/**
+     * The cached value of the '{@link #getPgp() <em>Pgp</em>}' containment reference.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @see #getPgp()
+     * @generated
+     * @ordered
+     */
+    protected PgpDataFormat pgp;
+
+    /**
      * The cached value of the '{@link #getZip() <em>Zip</em>}' containment reference.
      * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -1254,6 +1266,49 @@ public class MarshalDefinitionImpl extends NoOutputDefinitionImpl implements Mar
 
 	/**
      * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public PgpDataFormat getPgp() {
+        return pgp;
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public NotificationChain basicSetPgp(PgpDataFormat newPgp, NotificationChain msgs) {
+        PgpDataFormat oldPgp = pgp;
+        pgp = newPgp;
+        if (eNotificationRequired()) {
+            ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, SpringPackage.MARSHAL_DEFINITION__PGP, oldPgp, newPgp);
+            if (msgs == null) msgs = notification; else msgs.add(notification);
+        }
+        return msgs;
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public void setPgp(PgpDataFormat newPgp) {
+        if (newPgp != pgp) {
+            NotificationChain msgs = null;
+            if (pgp != null)
+                msgs = ((InternalEObject)pgp).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - SpringPackage.MARSHAL_DEFINITION__PGP, null, msgs);
+            if (newPgp != null)
+                msgs = ((InternalEObject)newPgp).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - SpringPackage.MARSHAL_DEFINITION__PGP, null, msgs);
+            msgs = basicSetPgp(newPgp, msgs);
+            if (msgs != null) msgs.dispatch();
+        }
+        else if (eNotificationRequired())
+            eNotify(new ENotificationImpl(this, Notification.SET, SpringPackage.MARSHAL_DEFINITION__PGP, newPgp, newPgp));
+    }
+
+    /**
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
      * @generated
      */
@@ -1378,6 +1433,8 @@ public class MarshalDefinitionImpl extends NoOutputDefinitionImpl implements Mar
                 return basicSetXmlBeans(null, msgs);
             case SpringPackage.MARSHAL_DEFINITION__XSTREAM:
                 return basicSetXstream(null, msgs);
+            case SpringPackage.MARSHAL_DEFINITION__PGP:
+                return basicSetPgp(null, msgs);
             case SpringPackage.MARSHAL_DEFINITION__ZIP:
                 return basicSetZip(null, msgs);
             case SpringPackage.MARSHAL_DEFINITION__ANY_ATTRIBUTE2:
@@ -1436,6 +1493,8 @@ public class MarshalDefinitionImpl extends NoOutputDefinitionImpl implements Mar
                 return getXmlBeans();
             case SpringPackage.MARSHAL_DEFINITION__XSTREAM:
                 return getXstream();
+            case SpringPackage.MARSHAL_DEFINITION__PGP:
+                return getPgp();
             case SpringPackage.MARSHAL_DEFINITION__ZIP:
                 return getZip();
             case SpringPackage.MARSHAL_DEFINITION__REF:
@@ -1517,6 +1576,9 @@ public class MarshalDefinitionImpl extends NoOutputDefinitionImpl implements Mar
                 return;
             case SpringPackage.MARSHAL_DEFINITION__XSTREAM:
                 setXstream((XStreamDataFormat)newValue);
+                return;
+            case SpringPackage.MARSHAL_DEFINITION__PGP:
+                setPgp((PgpDataFormat)newValue);
                 return;
             case SpringPackage.MARSHAL_DEFINITION__ZIP:
                 setZip((ZipDataFormat)newValue);
@@ -1602,6 +1664,9 @@ public class MarshalDefinitionImpl extends NoOutputDefinitionImpl implements Mar
             case SpringPackage.MARSHAL_DEFINITION__XSTREAM:
                 setXstream((XStreamDataFormat)null);
                 return;
+            case SpringPackage.MARSHAL_DEFINITION__PGP:
+                setPgp((PgpDataFormat)null);
+                return;
             case SpringPackage.MARSHAL_DEFINITION__ZIP:
                 setZip((ZipDataFormat)null);
                 return;
@@ -1665,6 +1730,8 @@ public class MarshalDefinitionImpl extends NoOutputDefinitionImpl implements Mar
                 return xmlBeans != null;
             case SpringPackage.MARSHAL_DEFINITION__XSTREAM:
                 return xstream != null;
+            case SpringPackage.MARSHAL_DEFINITION__PGP:
+                return pgp != null;
             case SpringPackage.MARSHAL_DEFINITION__ZIP:
                 return zip != null;
             case SpringPackage.MARSHAL_DEFINITION__REF:

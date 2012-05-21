@@ -62,6 +62,24 @@ public interface BPMFactory extends EFactory {
 	DocumentRoot createDocumentRoot();
 
 	/**
+     * Returns a new object of class '<em>Mapping Type</em>'.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @return a new object of class '<em>Mapping Type</em>'.
+     * @generated
+     */
+    MappingType createMappingType();
+
+    /**
+     * Returns a new object of class '<em>Parameters Type</em>'.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @return a new object of class '<em>Parameters Type</em>'.
+     * @generated
+     */
+    ParametersType createParametersType();
+
+    /**
      * Returns a new object of class '<em>Resource Type</em>'.
      * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -71,6 +89,15 @@ public interface BPMFactory extends EFactory {
 	ResourceType createResourceType();
 
 	/**
+     * Returns a new object of class '<em>Results Type</em>'.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @return a new object of class '<em>Results Type</em>'.
+     * @generated
+     */
+    ResultsType createResultsType();
+
+    /**
      * Returns a new object of class '<em>Task Handler Type</em>'.
      * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->

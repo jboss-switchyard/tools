@@ -493,7 +493,7 @@ public class SwitchyardPackageImpl extends EPackageImpl implements SwitchyardPac
 	 * <!-- end-user-doc -->
      * @generated
      */
-	public EReference getDocumentRoot_ContextMapper() {
+	public EReference getDocumentRoot_Domain() {
         return (EReference)documentRootEClass.getEStructuralFeatures().get(6);
     }
 
@@ -502,7 +502,7 @@ public class SwitchyardPackageImpl extends EPackageImpl implements SwitchyardPac
 	 * <!-- end-user-doc -->
      * @generated
      */
-	public EReference getDocumentRoot_Domain() {
+	public EReference getDocumentRoot_Handler() {
         return (EReference)documentRootEClass.getEStructuralFeatures().get(7);
     }
 
@@ -511,7 +511,7 @@ public class SwitchyardPackageImpl extends EPackageImpl implements SwitchyardPac
 	 * <!-- end-user-doc -->
      * @generated
      */
-	public EReference getDocumentRoot_Handler() {
+	public EReference getDocumentRoot_Handlers() {
         return (EReference)documentRootEClass.getEStructuralFeatures().get(8);
     }
 
@@ -520,7 +520,7 @@ public class SwitchyardPackageImpl extends EPackageImpl implements SwitchyardPac
 	 * <!-- end-user-doc -->
      * @generated
      */
-	public EReference getDocumentRoot_Handlers() {
+	public EReference getDocumentRoot_InterfaceEsb() {
         return (EReference)documentRootEClass.getEStructuralFeatures().get(9);
     }
 
@@ -529,7 +529,7 @@ public class SwitchyardPackageImpl extends EPackageImpl implements SwitchyardPac
 	 * <!-- end-user-doc -->
      * @generated
      */
-	public EReference getDocumentRoot_InterfaceEsb() {
+	public EReference getDocumentRoot_Properties() {
         return (EReference)documentRootEClass.getEStructuralFeatures().get(10);
     }
 
@@ -538,7 +538,7 @@ public class SwitchyardPackageImpl extends EPackageImpl implements SwitchyardPac
 	 * <!-- end-user-doc -->
      * @generated
      */
-	public EReference getDocumentRoot_MessageComposer() {
+	public EReference getDocumentRoot_Property() {
         return (EReference)documentRootEClass.getEStructuralFeatures().get(11);
     }
 
@@ -547,7 +547,7 @@ public class SwitchyardPackageImpl extends EPackageImpl implements SwitchyardPac
 	 * <!-- end-user-doc -->
      * @generated
      */
-	public EReference getDocumentRoot_Properties() {
+	public EReference getDocumentRoot_Resource() {
         return (EReference)documentRootEClass.getEStructuralFeatures().get(12);
     }
 
@@ -556,7 +556,7 @@ public class SwitchyardPackageImpl extends EPackageImpl implements SwitchyardPac
 	 * <!-- end-user-doc -->
      * @generated
      */
-	public EReference getDocumentRoot_Property() {
+	public EReference getDocumentRoot_Switchyard() {
         return (EReference)documentRootEClass.getEStructuralFeatures().get(13);
     }
 
@@ -565,7 +565,7 @@ public class SwitchyardPackageImpl extends EPackageImpl implements SwitchyardPac
 	 * <!-- end-user-doc -->
      * @generated
      */
-	public EReference getDocumentRoot_Resource() {
+	public EReference getDocumentRoot_Transform() {
         return (EReference)documentRootEClass.getEStructuralFeatures().get(14);
     }
 
@@ -574,7 +574,7 @@ public class SwitchyardPackageImpl extends EPackageImpl implements SwitchyardPac
 	 * <!-- end-user-doc -->
      * @generated
      */
-	public EReference getDocumentRoot_Switchyard() {
+	public EReference getDocumentRoot_Transforms() {
         return (EReference)documentRootEClass.getEStructuralFeatures().get(15);
     }
 
@@ -583,7 +583,7 @@ public class SwitchyardPackageImpl extends EPackageImpl implements SwitchyardPac
 	 * <!-- end-user-doc -->
      * @generated
      */
-	public EReference getDocumentRoot_Transform() {
+	public EReference getDocumentRoot_Validate() {
         return (EReference)documentRootEClass.getEStructuralFeatures().get(16);
     }
 
@@ -592,26 +592,8 @@ public class SwitchyardPackageImpl extends EPackageImpl implements SwitchyardPac
 	 * <!-- end-user-doc -->
      * @generated
      */
-	public EReference getDocumentRoot_Transforms() {
-        return (EReference)documentRootEClass.getEStructuralFeatures().get(17);
-    }
-
-	/**
-     * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-     * @generated
-     */
-	public EReference getDocumentRoot_Validate() {
-        return (EReference)documentRootEClass.getEStructuralFeatures().get(18);
-    }
-
-	/**
-     * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-     * @generated
-     */
 	public EReference getDocumentRoot_Validates() {
-        return (EReference)documentRootEClass.getEStructuralFeatures().get(19);
+        return (EReference)documentRootEClass.getEStructuralFeatures().get(17);
     }
 
 	/**
@@ -819,24 +801,6 @@ public class SwitchyardPackageImpl extends EPackageImpl implements SwitchyardPac
      */
 	public EClass getSwitchYardBindingType() {
         return switchYardBindingTypeEClass;
-    }
-
-	/**
-     * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-     * @generated
-     */
-	public EReference getSwitchYardBindingType_ContextMapper() {
-        return (EReference)switchYardBindingTypeEClass.getEStructuralFeatures().get(0);
-    }
-
-	/**
-     * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-     * @generated
-     */
-	public EReference getSwitchYardBindingType_MessageComposer() {
-        return (EReference)switchYardBindingTypeEClass.getEStructuralFeatures().get(1);
     }
 
 	/**
@@ -1059,12 +1023,10 @@ public class SwitchyardPackageImpl extends EPackageImpl implements SwitchyardPac
         createEReference(documentRootEClass, DOCUMENT_ROOT__ARTIFACT);
         createEReference(documentRootEClass, DOCUMENT_ROOT__ARTIFACTS);
         createEReference(documentRootEClass, DOCUMENT_ROOT__BINDING_SWITCHYARD);
-        createEReference(documentRootEClass, DOCUMENT_ROOT__CONTEXT_MAPPER);
         createEReference(documentRootEClass, DOCUMENT_ROOT__DOMAIN);
         createEReference(documentRootEClass, DOCUMENT_ROOT__HANDLER);
         createEReference(documentRootEClass, DOCUMENT_ROOT__HANDLERS);
         createEReference(documentRootEClass, DOCUMENT_ROOT__INTERFACE_ESB);
-        createEReference(documentRootEClass, DOCUMENT_ROOT__MESSAGE_COMPOSER);
         createEReference(documentRootEClass, DOCUMENT_ROOT__PROPERTIES);
         createEReference(documentRootEClass, DOCUMENT_ROOT__PROPERTY);
         createEReference(documentRootEClass, DOCUMENT_ROOT__RESOURCE);
@@ -1105,8 +1067,6 @@ public class SwitchyardPackageImpl extends EPackageImpl implements SwitchyardPac
         createEAttribute(resourceTypeEClass, RESOURCE_TYPE__TYPE);
 
         switchYardBindingTypeEClass = createEClass(SWITCH_YARD_BINDING_TYPE);
-        createEReference(switchYardBindingTypeEClass, SWITCH_YARD_BINDING_TYPE__CONTEXT_MAPPER);
-        createEReference(switchYardBindingTypeEClass, SWITCH_YARD_BINDING_TYPE__MESSAGE_COMPOSER);
 
         switchYardTypeEClass = createEClass(SWITCH_YARD_TYPE);
         createEAttribute(switchYardTypeEClass, SWITCH_YARD_TYPE__NAME);
@@ -1190,12 +1150,10 @@ public class SwitchyardPackageImpl extends EPackageImpl implements SwitchyardPac
         initEReference(getDocumentRoot_Artifact(), this.getArtifactType(), null, "artifact", null, 0, -2, null, IS_TRANSIENT, IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, IS_DERIVED, IS_ORDERED);
         initEReference(getDocumentRoot_Artifacts(), this.getArtifactsType(), null, "artifacts", null, 0, -2, null, IS_TRANSIENT, IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, IS_DERIVED, IS_ORDERED);
         initEReference(getDocumentRoot_BindingSwitchyard(), this.getSwitchYardBindingType(), null, "bindingSwitchyard", null, 0, -2, null, IS_TRANSIENT, IS_VOLATILE, !IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, IS_DERIVED, IS_ORDERED);
-        initEReference(getDocumentRoot_ContextMapper(), this.getContextMapperType(), null, "contextMapper", null, 0, -2, null, IS_TRANSIENT, IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, IS_DERIVED, IS_ORDERED);
         initEReference(getDocumentRoot_Domain(), this.getDomainType(), null, "domain", null, 0, -2, null, IS_TRANSIENT, IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, IS_DERIVED, IS_ORDERED);
         initEReference(getDocumentRoot_Handler(), this.getHandlerType(), null, "handler", null, 0, -2, null, IS_TRANSIENT, IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, IS_DERIVED, IS_ORDERED);
         initEReference(getDocumentRoot_Handlers(), this.getHandlersType(), null, "handlers", null, 0, -2, null, IS_TRANSIENT, IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, IS_DERIVED, IS_ORDERED);
         initEReference(getDocumentRoot_InterfaceEsb(), this.getEsbInterface(), null, "interfaceEsb", null, 0, -2, null, IS_TRANSIENT, IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, IS_DERIVED, IS_ORDERED);
-        initEReference(getDocumentRoot_MessageComposer(), this.getMessageComposerType(), null, "messageComposer", null, 0, -2, null, IS_TRANSIENT, IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, IS_DERIVED, IS_ORDERED);
         initEReference(getDocumentRoot_Properties(), this.getPropertiesType(), null, "properties", null, 0, -2, null, IS_TRANSIENT, IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, IS_DERIVED, IS_ORDERED);
         initEReference(getDocumentRoot_Property(), this.getPropertyType(), null, "property", null, 0, -2, null, IS_TRANSIENT, IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, IS_DERIVED, IS_ORDERED);
         initEReference(getDocumentRoot_Resource(), this.getResourceType(), null, "resource", null, 0, -2, null, IS_TRANSIENT, IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, IS_DERIVED, IS_ORDERED);
@@ -1236,8 +1194,6 @@ public class SwitchyardPackageImpl extends EPackageImpl implements SwitchyardPac
         initEAttribute(getResourceType_Type(), theXMLTypePackage.getNCName(), "type", null, 1, 1, ResourceType.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
         initEClass(switchYardBindingTypeEClass, SwitchYardBindingType.class, "SwitchYardBindingType", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-        initEReference(getSwitchYardBindingType_ContextMapper(), this.getContextMapperType(), null, "contextMapper", null, 0, 1, SwitchYardBindingType.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-        initEReference(getSwitchYardBindingType_MessageComposer(), this.getMessageComposerType(), null, "messageComposer", null, 0, 1, SwitchYardBindingType.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
         initEClass(switchYardTypeEClass, SwitchYardType.class, "SwitchYardType", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
         initEAttribute(getSwitchYardType_Name(), theXMLTypePackage.getString(), "name", null, 0, 1, SwitchYardType.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
@@ -1411,14 +1367,6 @@ public class SwitchyardPackageImpl extends EPackageImpl implements SwitchyardPac
              "affiliation", "http://docs.oasis-open.org/ns/opencsa/sca/200912#binding"
            });		
         addAnnotation
-          (getDocumentRoot_ContextMapper(), 
-           source, 
-           new String[] {
-             "kind", "element",
-             "name", "contextMapper",
-             "namespace", "##targetNamespace"
-           });		
-        addAnnotation
           (getDocumentRoot_Domain(), 
            source, 
            new String[] {
@@ -1450,14 +1398,6 @@ public class SwitchyardPackageImpl extends EPackageImpl implements SwitchyardPac
              "name", "interface.esb",
              "namespace", "##targetNamespace",
              "affiliation", "http://docs.oasis-open.org/ns/opencsa/sca/200912#interface"
-           });		
-        addAnnotation
-          (getDocumentRoot_MessageComposer(), 
-           source, 
-           new String[] {
-             "kind", "element",
-             "name", "messageComposer",
-             "namespace", "##targetNamespace"
            });		
         addAnnotation
           (getDocumentRoot_Properties(), 
@@ -1689,22 +1629,6 @@ public class SwitchyardPackageImpl extends EPackageImpl implements SwitchyardPac
            new String[] {
              "name", "SwitchYardBindingType",
              "kind", "elementOnly"
-           });		
-        addAnnotation
-          (getSwitchYardBindingType_ContextMapper(), 
-           source, 
-           new String[] {
-             "kind", "element",
-             "name", "contextMapper",
-             "namespace", "##targetNamespace"
-           });		
-        addAnnotation
-          (getSwitchYardBindingType_MessageComposer(), 
-           source, 
-           new String[] {
-             "kind", "element",
-             "name", "messageComposer",
-             "namespace", "##targetNamespace"
            });		
         addAnnotation
           (switchYardTypeEClass, 

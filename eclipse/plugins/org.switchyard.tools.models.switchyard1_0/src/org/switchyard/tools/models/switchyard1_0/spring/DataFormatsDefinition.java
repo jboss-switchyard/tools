@@ -42,6 +42,7 @@ import org.eclipse.emf.ecore.util.FeatureMap;
  *   <li>{@link org.switchyard.tools.models.switchyard1_0.spring.DataFormatsDefinition#getTidyMarkup <em>Tidy Markup</em>}</li>
  *   <li>{@link org.switchyard.tools.models.switchyard1_0.spring.DataFormatsDefinition#getXmlBeans <em>Xml Beans</em>}</li>
  *   <li>{@link org.switchyard.tools.models.switchyard1_0.spring.DataFormatsDefinition#getXstream <em>Xstream</em>}</li>
+ *   <li>{@link org.switchyard.tools.models.switchyard1_0.spring.DataFormatsDefinition#getPgp <em>Pgp</em>}</li>
  *   <li>{@link org.switchyard.tools.models.switchyard1_0.spring.DataFormatsDefinition#getZip <em>Zip</em>}</li>
  * </ul>
  * </p>
@@ -426,6 +427,23 @@ public interface DataFormatsDefinition extends EObject {
 	EList<XStreamDataFormat> getXstream();
 
 	/**
+     * Returns the value of the '<em><b>Pgp</b></em>' containment reference list.
+     * The list contents are of type {@link org.switchyard.tools.models.switchyard1_0.spring.PgpDataFormat}.
+     * <!-- begin-user-doc -->
+     * <p>
+     * If the meaning of the '<em>Pgp</em>' containment reference list isn't clear,
+     * there really should be more of a description here...
+     * </p>
+     * <!-- end-user-doc -->
+     * @return the value of the '<em>Pgp</em>' containment reference list.
+     * @see org.switchyard.tools.models.switchyard1_0.spring.SpringPackage#getDataFormatsDefinition_Pgp()
+     * @model containment="true" transient="true" volatile="true" derived="true"
+     *        extendedMetaData="kind='element' name='pgp' namespace='##targetNamespace' group='#group:0'"
+     * @generated
+     */
+    EList<PgpDataFormat> getPgp();
+
+    /**
      * Returns the value of the '<em><b>Zip</b></em>' containment reference list.
      * The list contents are of type {@link org.switchyard.tools.models.switchyard1_0.spring.ZipDataFormat}.
      * <!-- begin-user-doc -->

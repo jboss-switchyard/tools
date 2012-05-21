@@ -422,6 +422,15 @@ public interface SpringFactory extends EFactory {
 	ExpressionNode createExpressionNode();
 
 	/**
+     * Returns a new object of class '<em>Expression Node Helper</em>'.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @return a new object of class '<em>Expression Node Helper</em>'.
+     * @generated
+     */
+    ExpressionNodeHelper createExpressionNodeHelper();
+
+    /**
      * Returns a new object of class '<em>Expression Sub Element Definition</em>'.
      * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -719,6 +728,15 @@ public interface SpringFactory extends EFactory {
 	MethodCallExpression createMethodCallExpression();
 
 	/**
+     * Returns a new object of class '<em>Model Helper</em>'.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @return a new object of class '<em>Model Helper</em>'.
+     * @generated
+     */
+    ModelHelper createModelHelper();
+
+    /**
      * Returns a new object of class '<em>Multicast Definition</em>'.
      * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -845,6 +863,15 @@ public interface SpringFactory extends EFactory {
 	PipelineDefinition createPipelineDefinition();
 
 	/**
+     * Returns a new object of class '<em>Pgp Data Format</em>'.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @return a new object of class '<em>Pgp Data Format</em>'.
+     * @generated
+     */
+    PgpDataFormat createPgpDataFormat();
+
+    /**
      * Returns a new object of class '<em>Policy Definition</em>'.
      * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->

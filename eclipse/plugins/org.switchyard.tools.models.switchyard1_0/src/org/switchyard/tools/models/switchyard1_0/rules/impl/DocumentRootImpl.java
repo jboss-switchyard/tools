@@ -27,6 +27,8 @@ import org.switchyard.tools.models.switchyard1_0.rules.ActionType1;
 import org.switchyard.tools.models.switchyard1_0.rules.AuditType;
 import org.switchyard.tools.models.switchyard1_0.rules.ChannelType;
 import org.switchyard.tools.models.switchyard1_0.rules.DocumentRoot;
+import org.switchyard.tools.models.switchyard1_0.rules.GlobalsType;
+import org.switchyard.tools.models.switchyard1_0.rules.MappingType;
 import org.switchyard.tools.models.switchyard1_0.rules.ResourceType;
 import org.switchyard.tools.models.switchyard1_0.rules.RulesImplementationType;
 import org.switchyard.tools.models.switchyard1_0.rules.RulesPackage;
@@ -44,7 +46,9 @@ import org.switchyard.tools.models.switchyard1_0.rules.RulesPackage;
  *   <li>{@link org.switchyard.tools.models.switchyard1_0.rules.impl.DocumentRootImpl#getAction <em>Action</em>}</li>
  *   <li>{@link org.switchyard.tools.models.switchyard1_0.rules.impl.DocumentRootImpl#getAudit <em>Audit</em>}</li>
  *   <li>{@link org.switchyard.tools.models.switchyard1_0.rules.impl.DocumentRootImpl#getChannel <em>Channel</em>}</li>
+ *   <li>{@link org.switchyard.tools.models.switchyard1_0.rules.impl.DocumentRootImpl#getGlobals <em>Globals</em>}</li>
  *   <li>{@link org.switchyard.tools.models.switchyard1_0.rules.impl.DocumentRootImpl#getImplementationRules <em>Implementation Rules</em>}</li>
+ *   <li>{@link org.switchyard.tools.models.switchyard1_0.rules.impl.DocumentRootImpl#getMapping <em>Mapping</em>}</li>
  *   <li>{@link org.switchyard.tools.models.switchyard1_0.rules.impl.DocumentRootImpl#getResource <em>Resource</em>}</li>
  * </ul>
  * </p>
@@ -220,6 +224,33 @@ public class DocumentRootImpl extends EObjectImpl implements DocumentRoot {
 
 	/**
      * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public GlobalsType getGlobals() {
+        return (GlobalsType)getMixed().get(RulesPackage.Literals.DOCUMENT_ROOT__GLOBALS, true);
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public NotificationChain basicSetGlobals(GlobalsType newGlobals, NotificationChain msgs) {
+        return ((FeatureMap.Internal)getMixed()).basicAdd(RulesPackage.Literals.DOCUMENT_ROOT__GLOBALS, newGlobals, msgs);
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public void setGlobals(GlobalsType newGlobals) {
+        ((FeatureMap.Internal)getMixed()).set(RulesPackage.Literals.DOCUMENT_ROOT__GLOBALS, newGlobals);
+    }
+
+    /**
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
      * @generated
      */
@@ -246,6 +277,33 @@ public class DocumentRootImpl extends EObjectImpl implements DocumentRoot {
     }
 
 	/**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public MappingType getMapping() {
+        return (MappingType)getMixed().get(RulesPackage.Literals.DOCUMENT_ROOT__MAPPING, true);
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public NotificationChain basicSetMapping(MappingType newMapping, NotificationChain msgs) {
+        return ((FeatureMap.Internal)getMixed()).basicAdd(RulesPackage.Literals.DOCUMENT_ROOT__MAPPING, newMapping, msgs);
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public void setMapping(MappingType newMapping) {
+        ((FeatureMap.Internal)getMixed()).set(RulesPackage.Literals.DOCUMENT_ROOT__MAPPING, newMapping);
+    }
+
+    /**
      * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
      * @generated
@@ -292,8 +350,12 @@ public class DocumentRootImpl extends EObjectImpl implements DocumentRoot {
                 return basicSetAudit(null, msgs);
             case RulesPackage.DOCUMENT_ROOT__CHANNEL:
                 return basicSetChannel(null, msgs);
+            case RulesPackage.DOCUMENT_ROOT__GLOBALS:
+                return basicSetGlobals(null, msgs);
             case RulesPackage.DOCUMENT_ROOT__IMPLEMENTATION_RULES:
                 return basicSetImplementationRules(null, msgs);
+            case RulesPackage.DOCUMENT_ROOT__MAPPING:
+                return basicSetMapping(null, msgs);
             case RulesPackage.DOCUMENT_ROOT__RESOURCE:
                 return basicSetResource(null, msgs);
         }
@@ -323,8 +385,12 @@ public class DocumentRootImpl extends EObjectImpl implements DocumentRoot {
                 return getAudit();
             case RulesPackage.DOCUMENT_ROOT__CHANNEL:
                 return getChannel();
+            case RulesPackage.DOCUMENT_ROOT__GLOBALS:
+                return getGlobals();
             case RulesPackage.DOCUMENT_ROOT__IMPLEMENTATION_RULES:
                 return getImplementationRules();
+            case RulesPackage.DOCUMENT_ROOT__MAPPING:
+                return getMapping();
             case RulesPackage.DOCUMENT_ROOT__RESOURCE:
                 return getResource();
         }
@@ -357,8 +423,14 @@ public class DocumentRootImpl extends EObjectImpl implements DocumentRoot {
             case RulesPackage.DOCUMENT_ROOT__CHANNEL:
                 setChannel((ChannelType)newValue);
                 return;
+            case RulesPackage.DOCUMENT_ROOT__GLOBALS:
+                setGlobals((GlobalsType)newValue);
+                return;
             case RulesPackage.DOCUMENT_ROOT__IMPLEMENTATION_RULES:
                 setImplementationRules((RulesImplementationType)newValue);
+                return;
+            case RulesPackage.DOCUMENT_ROOT__MAPPING:
+                setMapping((MappingType)newValue);
                 return;
             case RulesPackage.DOCUMENT_ROOT__RESOURCE:
                 setResource((ResourceType)newValue);
@@ -393,8 +465,14 @@ public class DocumentRootImpl extends EObjectImpl implements DocumentRoot {
             case RulesPackage.DOCUMENT_ROOT__CHANNEL:
                 setChannel((ChannelType)null);
                 return;
+            case RulesPackage.DOCUMENT_ROOT__GLOBALS:
+                setGlobals((GlobalsType)null);
+                return;
             case RulesPackage.DOCUMENT_ROOT__IMPLEMENTATION_RULES:
                 setImplementationRules((RulesImplementationType)null);
+                return;
+            case RulesPackage.DOCUMENT_ROOT__MAPPING:
+                setMapping((MappingType)null);
                 return;
             case RulesPackage.DOCUMENT_ROOT__RESOURCE:
                 setResource((ResourceType)null);
@@ -423,8 +501,12 @@ public class DocumentRootImpl extends EObjectImpl implements DocumentRoot {
                 return getAudit() != null;
             case RulesPackage.DOCUMENT_ROOT__CHANNEL:
                 return getChannel() != null;
+            case RulesPackage.DOCUMENT_ROOT__GLOBALS:
+                return getGlobals() != null;
             case RulesPackage.DOCUMENT_ROOT__IMPLEMENTATION_RULES:
                 return getImplementationRules() != null;
+            case RulesPackage.DOCUMENT_ROOT__MAPPING:
+                return getMapping() != null;
             case RulesPackage.DOCUMENT_ROOT__RESOURCE:
                 return getResource() != null;
         }

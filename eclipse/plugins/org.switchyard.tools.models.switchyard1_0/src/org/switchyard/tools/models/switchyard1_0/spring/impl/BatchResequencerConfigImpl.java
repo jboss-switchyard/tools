@@ -25,6 +25,7 @@ import org.switchyard.tools.models.switchyard1_0.spring.SpringPackage;
  *   <li>{@link org.switchyard.tools.models.switchyard1_0.spring.impl.BatchResequencerConfigImpl#isAllowDuplicates <em>Allow Duplicates</em>}</li>
  *   <li>{@link org.switchyard.tools.models.switchyard1_0.spring.impl.BatchResequencerConfigImpl#getBatchSize <em>Batch Size</em>}</li>
  *   <li>{@link org.switchyard.tools.models.switchyard1_0.spring.impl.BatchResequencerConfigImpl#getBatchTimeout <em>Batch Timeout</em>}</li>
+ *   <li>{@link org.switchyard.tools.models.switchyard1_0.spring.impl.BatchResequencerConfigImpl#isIgnoreInvalidExchanges <em>Ignore Invalid Exchanges</em>}</li>
  *   <li>{@link org.switchyard.tools.models.switchyard1_0.spring.impl.BatchResequencerConfigImpl#isReverse <em>Reverse</em>}</li>
  * </ul>
  * </p>
@@ -120,6 +121,35 @@ public class BatchResequencerConfigImpl extends ResequencerConfigImpl implements
 	protected boolean batchTimeoutESet;
 
 	/**
+     * The default value of the '{@link #isIgnoreInvalidExchanges() <em>Ignore Invalid Exchanges</em>}' attribute.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @see #isIgnoreInvalidExchanges()
+     * @generated
+     * @ordered
+     */
+    protected static final boolean IGNORE_INVALID_EXCHANGES_EDEFAULT = false;
+
+    /**
+     * The cached value of the '{@link #isIgnoreInvalidExchanges() <em>Ignore Invalid Exchanges</em>}' attribute.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @see #isIgnoreInvalidExchanges()
+     * @generated
+     * @ordered
+     */
+    protected boolean ignoreInvalidExchanges = IGNORE_INVALID_EXCHANGES_EDEFAULT;
+
+    /**
+     * This is true if the Ignore Invalid Exchanges attribute has been set.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    protected boolean ignoreInvalidExchangesESet;
+
+    /**
      * The default value of the '{@link #isReverse() <em>Reverse</em>}' attribute.
      * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -307,6 +337,52 @@ public class BatchResequencerConfigImpl extends ResequencerConfigImpl implements
 
 	/**
      * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public boolean isIgnoreInvalidExchanges() {
+        return ignoreInvalidExchanges;
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public void setIgnoreInvalidExchanges(boolean newIgnoreInvalidExchanges) {
+        boolean oldIgnoreInvalidExchanges = ignoreInvalidExchanges;
+        ignoreInvalidExchanges = newIgnoreInvalidExchanges;
+        boolean oldIgnoreInvalidExchangesESet = ignoreInvalidExchangesESet;
+        ignoreInvalidExchangesESet = true;
+        if (eNotificationRequired())
+            eNotify(new ENotificationImpl(this, Notification.SET, SpringPackage.BATCH_RESEQUENCER_CONFIG__IGNORE_INVALID_EXCHANGES, oldIgnoreInvalidExchanges, ignoreInvalidExchanges, !oldIgnoreInvalidExchangesESet));
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public void unsetIgnoreInvalidExchanges() {
+        boolean oldIgnoreInvalidExchanges = ignoreInvalidExchanges;
+        boolean oldIgnoreInvalidExchangesESet = ignoreInvalidExchangesESet;
+        ignoreInvalidExchanges = IGNORE_INVALID_EXCHANGES_EDEFAULT;
+        ignoreInvalidExchangesESet = false;
+        if (eNotificationRequired())
+            eNotify(new ENotificationImpl(this, Notification.UNSET, SpringPackage.BATCH_RESEQUENCER_CONFIG__IGNORE_INVALID_EXCHANGES, oldIgnoreInvalidExchanges, IGNORE_INVALID_EXCHANGES_EDEFAULT, oldIgnoreInvalidExchangesESet));
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public boolean isSetIgnoreInvalidExchanges() {
+        return ignoreInvalidExchangesESet;
+    }
+
+    /**
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
      * @generated
      */
@@ -365,6 +441,8 @@ public class BatchResequencerConfigImpl extends ResequencerConfigImpl implements
                 return getBatchSize();
             case SpringPackage.BATCH_RESEQUENCER_CONFIG__BATCH_TIMEOUT:
                 return getBatchTimeout();
+            case SpringPackage.BATCH_RESEQUENCER_CONFIG__IGNORE_INVALID_EXCHANGES:
+                return isIgnoreInvalidExchanges();
             case SpringPackage.BATCH_RESEQUENCER_CONFIG__REVERSE:
                 return isReverse();
         }
@@ -387,6 +465,9 @@ public class BatchResequencerConfigImpl extends ResequencerConfigImpl implements
                 return;
             case SpringPackage.BATCH_RESEQUENCER_CONFIG__BATCH_TIMEOUT:
                 setBatchTimeout((Long)newValue);
+                return;
+            case SpringPackage.BATCH_RESEQUENCER_CONFIG__IGNORE_INVALID_EXCHANGES:
+                setIgnoreInvalidExchanges((Boolean)newValue);
                 return;
             case SpringPackage.BATCH_RESEQUENCER_CONFIG__REVERSE:
                 setReverse((Boolean)newValue);
@@ -412,6 +493,9 @@ public class BatchResequencerConfigImpl extends ResequencerConfigImpl implements
             case SpringPackage.BATCH_RESEQUENCER_CONFIG__BATCH_TIMEOUT:
                 unsetBatchTimeout();
                 return;
+            case SpringPackage.BATCH_RESEQUENCER_CONFIG__IGNORE_INVALID_EXCHANGES:
+                unsetIgnoreInvalidExchanges();
+                return;
             case SpringPackage.BATCH_RESEQUENCER_CONFIG__REVERSE:
                 unsetReverse();
                 return;
@@ -433,6 +517,8 @@ public class BatchResequencerConfigImpl extends ResequencerConfigImpl implements
                 return isSetBatchSize();
             case SpringPackage.BATCH_RESEQUENCER_CONFIG__BATCH_TIMEOUT:
                 return isSetBatchTimeout();
+            case SpringPackage.BATCH_RESEQUENCER_CONFIG__IGNORE_INVALID_EXCHANGES:
+                return isSetIgnoreInvalidExchanges();
             case SpringPackage.BATCH_RESEQUENCER_CONFIG__REVERSE:
                 return isSetReverse();
         }
@@ -455,6 +541,8 @@ public class BatchResequencerConfigImpl extends ResequencerConfigImpl implements
         if (batchSizeESet) result.append(batchSize); else result.append("<unset>");
         result.append(", batchTimeout: ");
         if (batchTimeoutESet) result.append(batchTimeout); else result.append("<unset>");
+        result.append(", ignoreInvalidExchanges: ");
+        if (ignoreInvalidExchangesESet) result.append(ignoreInvalidExchanges); else result.append("<unset>");
         result.append(", reverse: ");
         if (reverseESet) result.append(reverse); else result.append("<unset>");
         result.append(')');

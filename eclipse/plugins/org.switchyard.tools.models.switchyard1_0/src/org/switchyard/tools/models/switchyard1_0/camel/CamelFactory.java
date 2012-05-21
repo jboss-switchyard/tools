@@ -26,6 +26,15 @@ public interface CamelFactory extends EFactory {
 	CamelFactory eINSTANCE = org.switchyard.tools.models.switchyard1_0.camel.impl.CamelFactoryImpl.init();
 
 	/**
+     * Returns a new object of class '<em>Base Camel Binding</em>'.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @return a new object of class '<em>Base Camel Binding</em>'.
+     * @generated
+     */
+    BaseCamelBinding createBaseCamelBinding();
+
+    /**
      * Returns a new object of class '<em>Atom Binding Type</em>'.
      * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -62,6 +71,24 @@ public interface CamelFactory extends EFactory {
 	CamelFileBindingType createCamelFileBindingType();
 
 	/**
+     * Returns a new object of class '<em>Ftp Binding Type</em>'.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @return a new object of class '<em>Ftp Binding Type</em>'.
+     * @generated
+     */
+    CamelFtpBindingType createCamelFtpBindingType();
+
+    /**
+     * Returns a new object of class '<em>Ftps Binding Type</em>'.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @return a new object of class '<em>Ftps Binding Type</em>'.
+     * @generated
+     */
+    CamelFtpsBindingType createCamelFtpsBindingType();
+
+    /**
      * Returns a new object of class '<em>Implementation Type</em>'.
      * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -71,6 +98,15 @@ public interface CamelFactory extends EFactory {
 	CamelImplementationType createCamelImplementationType();
 
 	/**
+     * Returns a new object of class '<em>Jms Binding Type</em>'.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @return a new object of class '<em>Jms Binding Type</em>'.
+     * @generated
+     */
+    CamelJmsBindingType createCamelJmsBindingType();
+
+    /**
      * Returns a new object of class '<em>Mock Binding Type</em>'.
      * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -107,6 +143,15 @@ public interface CamelFactory extends EFactory {
 	CamelTimerBindingType createCamelTimerBindingType();
 
 	/**
+     * Returns a new object of class '<em>Sftp Binding Type</em>'.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @return a new object of class '<em>Sftp Binding Type</em>'.
+     * @generated
+     */
+    CamelSftpBindingType createCamelSftpBindingType();
+
+    /**
      * Returns a new object of class '<em>Document Root</em>'.
      * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -150,6 +195,69 @@ public interface CamelFactory extends EFactory {
      * @generated
      */
     XMLDSLType createXMLDSLType();
+
+    /**
+     * Returns a new object of class '<em>Scheduled Poll Consumer Type</em>'.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @return a new object of class '<em>Scheduled Poll Consumer Type</em>'.
+     * @generated
+     */
+    ScheduledPollConsumerType createScheduledPollConsumerType();
+
+    /**
+     * Returns a new object of class '<em>Generic File Binding Type</em>'.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @return a new object of class '<em>Generic File Binding Type</em>'.
+     * @generated
+     */
+    GenericFileBindingType createGenericFileBindingType();
+
+    /**
+     * Returns a new object of class '<em>Scheduled Batch Poll Consumer Type</em>'.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @return a new object of class '<em>Scheduled Batch Poll Consumer Type</em>'.
+     * @generated
+     */
+    ScheduledBatchPollConsumerType createScheduledBatchPollConsumerType();
+
+    /**
+     * Returns a new object of class '<em>Generic File Consumer Type</em>'.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @return a new object of class '<em>Generic File Consumer Type</em>'.
+     * @generated
+     */
+    GenericFileConsumerType createGenericFileConsumerType();
+
+    /**
+     * Returns a new object of class '<em>Generic File Producer Type</em>'.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @return a new object of class '<em>Generic File Producer Type</em>'.
+     * @generated
+     */
+    GenericFileProducerType createGenericFileProducerType();
+
+    /**
+     * Returns a new object of class '<em>Remote File Consumer Type</em>'.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @return a new object of class '<em>Remote File Consumer Type</em>'.
+     * @generated
+     */
+    RemoteFileConsumerType createRemoteFileConsumerType();
+
+    /**
+     * Returns a new object of class '<em>Remote File Producer Type</em>'.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @return a new object of class '<em>Remote File Producer Type</em>'.
+     * @generated
+     */
+    RemoteFileProducerType createRemoteFileProducerType();
 
     /**
      * Returns the package supported by this factory.

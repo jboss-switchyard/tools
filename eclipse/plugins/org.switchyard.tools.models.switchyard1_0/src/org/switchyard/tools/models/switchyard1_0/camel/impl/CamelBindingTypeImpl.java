@@ -13,7 +13,6 @@ import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.switchyard.tools.models.switchyard1_0.camel.CamelBindingType;
 import org.switchyard.tools.models.switchyard1_0.camel.CamelPackage;
-import org.switchyard.tools.models.switchyard1_0.switchyard.impl.SwitchYardBindingTypeImpl;
 
 /**
  * <!-- begin-user-doc -->
@@ -28,7 +27,7 @@ import org.switchyard.tools.models.switchyard1_0.switchyard.impl.SwitchYardBindi
  *
  * @generated
  */
-public class CamelBindingTypeImpl extends SwitchYardBindingTypeImpl implements CamelBindingType {
+public class CamelBindingTypeImpl extends BaseCamelBindingImpl implements CamelBindingType {
 	/**
      * The default value of the '{@link #getConfigURI() <em>Config URI</em>}' attribute.
      * <!-- begin-user-doc -->

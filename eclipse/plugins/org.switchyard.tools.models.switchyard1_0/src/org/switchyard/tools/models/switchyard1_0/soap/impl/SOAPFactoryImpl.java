@@ -64,6 +64,7 @@ public class SOAPFactoryImpl extends EFactoryImpl implements SOAPFactory {
 	@Override
 	public EObject create(EClass eClass) {
         switch (eClass.getClassifierID()) {
+            case SOAPPackage.CONTEXT_MAPPER_TYPE: return createContextMapperType();
             case SOAPPackage.DOCUMENT_ROOT: return createDocumentRoot();
             case SOAPPackage.SOAP_BINDING_TYPE: return createSOAPBindingType();
             default:
@@ -79,6 +80,10 @@ public class SOAPFactoryImpl extends EFactoryImpl implements SOAPFactory {
 	@Override
 	public Object createFromString(EDataType eDataType, String initialValue) {
         switch (eDataType.getClassifierID()) {
+            case SOAPPackage.SOAP_HEADERS_TYPE:
+                return createSoapHeadersTypeFromString(eDataType, initialValue);
+            case SOAPPackage.SOAP_HEADERS_TYPE_OBJECT:
+                return createSoapHeadersTypeObjectFromString(eDataType, initialValue);
             case SOAPPackage.WSDL_PORT_TYPE:
                 return createWsdlPortTypeFromString(eDataType, initialValue);
             default:
@@ -94,6 +99,10 @@ public class SOAPFactoryImpl extends EFactoryImpl implements SOAPFactory {
 	@Override
 	public String convertToString(EDataType eDataType, Object instanceValue) {
         switch (eDataType.getClassifierID()) {
+            case SOAPPackage.SOAP_HEADERS_TYPE:
+                return convertSoapHeadersTypeToString(eDataType, instanceValue);
+            case SOAPPackage.SOAP_HEADERS_TYPE_OBJECT:
+                return convertSoapHeadersTypeObjectToString(eDataType, instanceValue);
             case SOAPPackage.WSDL_PORT_TYPE:
                 return convertWsdlPortTypeToString(eDataType, instanceValue);
             default:
@@ -102,6 +111,16 @@ public class SOAPFactoryImpl extends EFactoryImpl implements SOAPFactory {
     }
 
 	/**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public ContextMapperType createContextMapperType() {
+        ContextMapperTypeImpl contextMapperType = new ContextMapperTypeImpl();
+        return contextMapperType;
+    }
+
+    /**
      * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
      * @generated
@@ -122,6 +141,44 @@ public class SOAPFactoryImpl extends EFactoryImpl implements SOAPFactory {
     }
 
 	/**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public SoapHeadersType createSoapHeadersTypeFromString(EDataType eDataType, String initialValue) {
+        SoapHeadersType result = SoapHeadersType.get(initialValue);
+        if (result == null) throw new IllegalArgumentException("The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'");
+        return result;
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public String convertSoapHeadersTypeToString(EDataType eDataType, Object instanceValue) {
+        return instanceValue == null ? null : instanceValue.toString();
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public SoapHeadersType createSoapHeadersTypeObjectFromString(EDataType eDataType, String initialValue) {
+        return createSoapHeadersTypeFromString(SOAPPackage.Literals.SOAP_HEADERS_TYPE, initialValue);
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public String convertSoapHeadersTypeObjectToString(EDataType eDataType, Object instanceValue) {
+        return convertSoapHeadersTypeToString(SOAPPackage.Literals.SOAP_HEADERS_TYPE, instanceValue);
+    }
+
+    /**
      * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
      * @generated

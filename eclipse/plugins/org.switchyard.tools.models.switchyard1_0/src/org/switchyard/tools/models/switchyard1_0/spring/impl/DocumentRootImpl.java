@@ -95,6 +95,7 @@ import org.switchyard.tools.models.switchyard1_0.spring.OnCompletionDefinition;
 import org.switchyard.tools.models.switchyard1_0.spring.OnExceptionDefinition;
 import org.switchyard.tools.models.switchyard1_0.spring.OtherwiseDefinition;
 import org.switchyard.tools.models.switchyard1_0.spring.PackageScanDefinition;
+import org.switchyard.tools.models.switchyard1_0.spring.PgpDataFormat;
 import org.switchyard.tools.models.switchyard1_0.spring.PhpExpression;
 import org.switchyard.tools.models.switchyard1_0.spring.PipelineDefinition;
 import org.switchyard.tools.models.switchyard1_0.spring.PolicyDefinition;
@@ -164,7 +165,6 @@ import org.switchyard.tools.models.switchyard1_0.spring.XStreamDataFormat;
 import org.switchyard.tools.models.switchyard1_0.spring.XmlBeansDataFormat;
 import org.switchyard.tools.models.switchyard1_0.spring.XmlSecurityDataFormat;
 import org.switchyard.tools.models.switchyard1_0.spring.ZipDataFormat;
-import org.switchyard.tools.models.switchyard1_0.spring.*;
 
 /**
  * <!-- begin-user-doc -->
@@ -241,6 +241,7 @@ import org.switchyard.tools.models.switchyard1_0.spring.*;
  *   <li>{@link org.switchyard.tools.models.switchyard1_0.spring.impl.DocumentRootImpl#getOnException <em>On Exception</em>}</li>
  *   <li>{@link org.switchyard.tools.models.switchyard1_0.spring.impl.DocumentRootImpl#getOtherwise <em>Otherwise</em>}</li>
  *   <li>{@link org.switchyard.tools.models.switchyard1_0.spring.impl.DocumentRootImpl#getPackageScan <em>Package Scan</em>}</li>
+ *   <li>{@link org.switchyard.tools.models.switchyard1_0.spring.impl.DocumentRootImpl#getPgp <em>Pgp</em>}</li>
  *   <li>{@link org.switchyard.tools.models.switchyard1_0.spring.impl.DocumentRootImpl#getPhp <em>Php</em>}</li>
  *   <li>{@link org.switchyard.tools.models.switchyard1_0.spring.impl.DocumentRootImpl#getPipeline <em>Pipeline</em>}</li>
  *   <li>{@link org.switchyard.tools.models.switchyard1_0.spring.impl.DocumentRootImpl#getPolicy <em>Policy</em>}</li>
@@ -2162,6 +2163,33 @@ public class DocumentRootImpl extends EObjectImpl implements DocumentRoot {
     }
 
 	/**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public PgpDataFormat getPgp() {
+        return (PgpDataFormat)getMixed().get(SpringPackage.eINSTANCE.getDocumentRoot_Pgp(), true);
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public NotificationChain basicSetPgp(PgpDataFormat newPgp, NotificationChain msgs) {
+        return ((FeatureMap.Internal)getMixed()).basicAdd(SpringPackage.eINSTANCE.getDocumentRoot_Pgp(), newPgp, msgs);
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public void setPgp(PgpDataFormat newPgp) {
+        ((FeatureMap.Internal)getMixed()).set(SpringPackage.eINSTANCE.getDocumentRoot_Pgp(), newPgp);
+    }
+
+    /**
      * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
      * @generated
@@ -4303,6 +4331,8 @@ public class DocumentRootImpl extends EObjectImpl implements DocumentRoot {
                 return basicSetOtherwise(null, msgs);
             case SpringPackage.DOCUMENT_ROOT__PACKAGE_SCAN:
                 return basicSetPackageScan(null, msgs);
+            case SpringPackage.DOCUMENT_ROOT__PGP:
+                return basicSetPgp(null, msgs);
             case SpringPackage.DOCUMENT_ROOT__PHP:
                 return basicSetPhp(null, msgs);
             case SpringPackage.DOCUMENT_ROOT__PIPELINE:
@@ -4602,6 +4632,8 @@ public class DocumentRootImpl extends EObjectImpl implements DocumentRoot {
                 return getOtherwise();
             case SpringPackage.DOCUMENT_ROOT__PACKAGE_SCAN:
                 return getPackageScan();
+            case SpringPackage.DOCUMENT_ROOT__PGP:
+                return getPgp();
             case SpringPackage.DOCUMENT_ROOT__PHP:
                 return getPhp();
             case SpringPackage.DOCUMENT_ROOT__PIPELINE:
@@ -4965,6 +4997,9 @@ public class DocumentRootImpl extends EObjectImpl implements DocumentRoot {
                 return;
             case SpringPackage.DOCUMENT_ROOT__PACKAGE_SCAN:
                 setPackageScan((PackageScanDefinition)newValue);
+                return;
+            case SpringPackage.DOCUMENT_ROOT__PGP:
+                setPgp((PgpDataFormat)newValue);
                 return;
             case SpringPackage.DOCUMENT_ROOT__PHP:
                 setPhp((PhpExpression)newValue);
@@ -5404,6 +5439,9 @@ public class DocumentRootImpl extends EObjectImpl implements DocumentRoot {
             case SpringPackage.DOCUMENT_ROOT__PACKAGE_SCAN:
                 setPackageScan((PackageScanDefinition)null);
                 return;
+            case SpringPackage.DOCUMENT_ROOT__PGP:
+                setPgp((PgpDataFormat)null);
+                return;
             case SpringPackage.DOCUMENT_ROOT__PHP:
                 setPhp((PhpExpression)null);
                 return;
@@ -5774,6 +5812,8 @@ public class DocumentRootImpl extends EObjectImpl implements DocumentRoot {
                 return getOtherwise() != null;
             case SpringPackage.DOCUMENT_ROOT__PACKAGE_SCAN:
                 return getPackageScan() != null;
+            case SpringPackage.DOCUMENT_ROOT__PGP:
+                return getPgp() != null;
             case SpringPackage.DOCUMENT_ROOT__PHP:
                 return getPhp() != null;
             case SpringPackage.DOCUMENT_ROOT__PIPELINE:

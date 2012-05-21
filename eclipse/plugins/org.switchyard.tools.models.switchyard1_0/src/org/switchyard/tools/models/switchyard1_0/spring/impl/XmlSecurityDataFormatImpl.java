@@ -23,6 +23,7 @@ import org.switchyard.tools.models.switchyard1_0.spring.XmlSecurityDataFormat;
  * The following features are implemented:
  * <ul>
  *   <li>{@link org.switchyard.tools.models.switchyard1_0.spring.impl.XmlSecurityDataFormatImpl#getKeyCipherAlgorithm <em>Key Cipher Algorithm</em>}</li>
+ *   <li>{@link org.switchyard.tools.models.switchyard1_0.spring.impl.XmlSecurityDataFormatImpl#getKeyOrTrustStoreParametersId <em>Key Or Trust Store Parameters Id</em>}</li>
  *   <li>{@link org.switchyard.tools.models.switchyard1_0.spring.impl.XmlSecurityDataFormatImpl#getPassPhrase <em>Pass Phrase</em>}</li>
  *   <li>{@link org.switchyard.tools.models.switchyard1_0.spring.impl.XmlSecurityDataFormatImpl#getRecipientKeyAlias <em>Recipient Key Alias</em>}</li>
  *   <li>{@link org.switchyard.tools.models.switchyard1_0.spring.impl.XmlSecurityDataFormatImpl#getSecureTag <em>Secure Tag</em>}</li>
@@ -55,6 +56,26 @@ public class XmlSecurityDataFormatImpl extends DataFormatImpl implements XmlSecu
 	protected String keyCipherAlgorithm = KEY_CIPHER_ALGORITHM_EDEFAULT;
 
 	/**
+     * The default value of the '{@link #getKeyOrTrustStoreParametersId() <em>Key Or Trust Store Parameters Id</em>}' attribute.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @see #getKeyOrTrustStoreParametersId()
+     * @generated
+     * @ordered
+     */
+    protected static final String KEY_OR_TRUST_STORE_PARAMETERS_ID_EDEFAULT = null;
+
+    /**
+     * The cached value of the '{@link #getKeyOrTrustStoreParametersId() <em>Key Or Trust Store Parameters Id</em>}' attribute.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @see #getKeyOrTrustStoreParametersId()
+     * @generated
+     * @ordered
+     */
+    protected String keyOrTrustStoreParametersId = KEY_OR_TRUST_STORE_PARAMETERS_ID_EDEFAULT;
+
+    /**
      * The default value of the '{@link #getPassPhrase() <em>Pass Phrase</em>}' attribute.
      * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -205,6 +226,27 @@ public class XmlSecurityDataFormatImpl extends DataFormatImpl implements XmlSecu
 
 	/**
      * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public String getKeyOrTrustStoreParametersId() {
+        return keyOrTrustStoreParametersId;
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public void setKeyOrTrustStoreParametersId(String newKeyOrTrustStoreParametersId) {
+        String oldKeyOrTrustStoreParametersId = keyOrTrustStoreParametersId;
+        keyOrTrustStoreParametersId = newKeyOrTrustStoreParametersId;
+        if (eNotificationRequired())
+            eNotify(new ENotificationImpl(this, Notification.SET, SpringPackage.XML_SECURITY_DATA_FORMAT__KEY_OR_TRUST_STORE_PARAMETERS_ID, oldKeyOrTrustStoreParametersId, keyOrTrustStoreParametersId));
+    }
+
+    /**
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
      * @generated
      */
@@ -343,6 +385,8 @@ public class XmlSecurityDataFormatImpl extends DataFormatImpl implements XmlSecu
         switch (featureID) {
             case SpringPackage.XML_SECURITY_DATA_FORMAT__KEY_CIPHER_ALGORITHM:
                 return getKeyCipherAlgorithm();
+            case SpringPackage.XML_SECURITY_DATA_FORMAT__KEY_OR_TRUST_STORE_PARAMETERS_ID:
+                return getKeyOrTrustStoreParametersId();
             case SpringPackage.XML_SECURITY_DATA_FORMAT__PASS_PHRASE:
                 return getPassPhrase();
             case SpringPackage.XML_SECURITY_DATA_FORMAT__RECIPIENT_KEY_ALIAS:
@@ -367,6 +411,9 @@ public class XmlSecurityDataFormatImpl extends DataFormatImpl implements XmlSecu
         switch (featureID) {
             case SpringPackage.XML_SECURITY_DATA_FORMAT__KEY_CIPHER_ALGORITHM:
                 setKeyCipherAlgorithm((String)newValue);
+                return;
+            case SpringPackage.XML_SECURITY_DATA_FORMAT__KEY_OR_TRUST_STORE_PARAMETERS_ID:
+                setKeyOrTrustStoreParametersId((String)newValue);
                 return;
             case SpringPackage.XML_SECURITY_DATA_FORMAT__PASS_PHRASE:
                 setPassPhrase((String)newValue);
@@ -398,6 +445,9 @@ public class XmlSecurityDataFormatImpl extends DataFormatImpl implements XmlSecu
             case SpringPackage.XML_SECURITY_DATA_FORMAT__KEY_CIPHER_ALGORITHM:
                 setKeyCipherAlgorithm(KEY_CIPHER_ALGORITHM_EDEFAULT);
                 return;
+            case SpringPackage.XML_SECURITY_DATA_FORMAT__KEY_OR_TRUST_STORE_PARAMETERS_ID:
+                setKeyOrTrustStoreParametersId(KEY_OR_TRUST_STORE_PARAMETERS_ID_EDEFAULT);
+                return;
             case SpringPackage.XML_SECURITY_DATA_FORMAT__PASS_PHRASE:
                 setPassPhrase(PASS_PHRASE_EDEFAULT);
                 return;
@@ -427,6 +477,8 @@ public class XmlSecurityDataFormatImpl extends DataFormatImpl implements XmlSecu
         switch (featureID) {
             case SpringPackage.XML_SECURITY_DATA_FORMAT__KEY_CIPHER_ALGORITHM:
                 return KEY_CIPHER_ALGORITHM_EDEFAULT == null ? keyCipherAlgorithm != null : !KEY_CIPHER_ALGORITHM_EDEFAULT.equals(keyCipherAlgorithm);
+            case SpringPackage.XML_SECURITY_DATA_FORMAT__KEY_OR_TRUST_STORE_PARAMETERS_ID:
+                return KEY_OR_TRUST_STORE_PARAMETERS_ID_EDEFAULT == null ? keyOrTrustStoreParametersId != null : !KEY_OR_TRUST_STORE_PARAMETERS_ID_EDEFAULT.equals(keyOrTrustStoreParametersId);
             case SpringPackage.XML_SECURITY_DATA_FORMAT__PASS_PHRASE:
                 return PASS_PHRASE_EDEFAULT == null ? passPhrase != null : !PASS_PHRASE_EDEFAULT.equals(passPhrase);
             case SpringPackage.XML_SECURITY_DATA_FORMAT__RECIPIENT_KEY_ALIAS:
@@ -453,6 +505,8 @@ public class XmlSecurityDataFormatImpl extends DataFormatImpl implements XmlSecu
         StringBuffer result = new StringBuffer(super.toString());
         result.append(" (keyCipherAlgorithm: ");
         result.append(keyCipherAlgorithm);
+        result.append(", keyOrTrustStoreParametersId: ");
+        result.append(keyOrTrustStoreParametersId);
         result.append(", passPhrase: ");
         result.append(passPhrase);
         result.append(", recipientKeyAlias: ");

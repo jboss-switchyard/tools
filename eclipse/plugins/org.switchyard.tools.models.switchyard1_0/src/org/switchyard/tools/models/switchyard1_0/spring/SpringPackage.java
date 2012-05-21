@@ -69,7 +69,7 @@ public interface SpringPackage extends EPackage {
      * @see org.switchyard.tools.models.switchyard1_0.spring.impl.SpringPackageImpl#getIdentifiedType()
      * @generated
      */
-	int IDENTIFIED_TYPE = 68;
+	int IDENTIFIED_TYPE = 69;
 
 	/**
      * The feature id for the '<em><b>Id</b></em>' attribute.
@@ -910,7 +910,7 @@ public interface SpringPackage extends EPackage {
      * @see org.switchyard.tools.models.switchyard1_0.spring.impl.SpringPackageImpl#getOptionalIdentifiedDefinition()
      * @generated
      */
-	int OPTIONAL_IDENTIFIED_DEFINITION = 101;
+	int OPTIONAL_IDENTIFIED_DEFINITION = 103;
 
 	/**
      * The feature id for the '<em><b>Description</b></em>' containment reference.
@@ -947,7 +947,7 @@ public interface SpringPackage extends EPackage {
      * @see org.switchyard.tools.models.switchyard1_0.spring.impl.SpringPackageImpl#getProcessorDefinition()
      * @generated
      */
-	int PROCESSOR_DEFINITION = 110;
+	int PROCESSOR_DEFINITION = 113;
 
 	/**
      * The feature id for the '<em><b>Description</b></em>' containment reference.
@@ -1689,13 +1689,22 @@ public interface SpringPackage extends EPackage {
 	int AGGREGATE_DEFINITION__EXECUTOR_SERVICE_REF = PROCESSOR_DEFINITION_FEATURE_COUNT + 71;
 
 	/**
+     * The feature id for the '<em><b>Force Completion On Stop</b></em>' attribute.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int AGGREGATE_DEFINITION__FORCE_COMPLETION_ON_STOP = PROCESSOR_DEFINITION_FEATURE_COUNT + 72;
+
+    /**
      * The feature id for the '<em><b>Group Exchanges</b></em>' attribute.
      * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
      * @generated
      * @ordered
      */
-	int AGGREGATE_DEFINITION__GROUP_EXCHANGES = PROCESSOR_DEFINITION_FEATURE_COUNT + 72;
+	int AGGREGATE_DEFINITION__GROUP_EXCHANGES = PROCESSOR_DEFINITION_FEATURE_COUNT + 73;
 
 	/**
      * The feature id for the '<em><b>Ignore Invalid Correlation Keys</b></em>' attribute.
@@ -1704,7 +1713,7 @@ public interface SpringPackage extends EPackage {
      * @generated
      * @ordered
      */
-	int AGGREGATE_DEFINITION__IGNORE_INVALID_CORRELATION_KEYS = PROCESSOR_DEFINITION_FEATURE_COUNT + 73;
+	int AGGREGATE_DEFINITION__IGNORE_INVALID_CORRELATION_KEYS = PROCESSOR_DEFINITION_FEATURE_COUNT + 74;
 
 	/**
      * The feature id for the '<em><b>Parallel Processing</b></em>' attribute.
@@ -1713,7 +1722,7 @@ public interface SpringPackage extends EPackage {
      * @generated
      * @ordered
      */
-	int AGGREGATE_DEFINITION__PARALLEL_PROCESSING = PROCESSOR_DEFINITION_FEATURE_COUNT + 74;
+	int AGGREGATE_DEFINITION__PARALLEL_PROCESSING = PROCESSOR_DEFINITION_FEATURE_COUNT + 75;
 
 	/**
      * The feature id for the '<em><b>Strategy Ref</b></em>' attribute.
@@ -1722,16 +1731,25 @@ public interface SpringPackage extends EPackage {
      * @generated
      * @ordered
      */
-	int AGGREGATE_DEFINITION__STRATEGY_REF = PROCESSOR_DEFINITION_FEATURE_COUNT + 75;
+	int AGGREGATE_DEFINITION__STRATEGY_REF = PROCESSOR_DEFINITION_FEATURE_COUNT + 76;
 
 	/**
+     * The feature id for the '<em><b>Timeout Checker Executor Service Ref</b></em>' attribute.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int AGGREGATE_DEFINITION__TIMEOUT_CHECKER_EXECUTOR_SERVICE_REF = PROCESSOR_DEFINITION_FEATURE_COUNT + 77;
+
+    /**
      * The feature id for the '<em><b>Any Attribute1</b></em>' attribute list.
      * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
      * @generated
      * @ordered
      */
-	int AGGREGATE_DEFINITION__ANY_ATTRIBUTE1 = PROCESSOR_DEFINITION_FEATURE_COUNT + 76;
+	int AGGREGATE_DEFINITION__ANY_ATTRIBUTE1 = PROCESSOR_DEFINITION_FEATURE_COUNT + 78;
 
 	/**
      * The number of structural features of the '<em>Aggregate Definition</em>' class.
@@ -1740,7 +1758,7 @@ public interface SpringPackage extends EPackage {
      * @generated
      * @ordered
      */
-	int AGGREGATE_DEFINITION_FEATURE_COUNT = PROCESSOR_DEFINITION_FEATURE_COUNT + 77;
+	int AGGREGATE_DEFINITION_FEATURE_COUNT = PROCESSOR_DEFINITION_FEATURE_COUNT + 79;
 
 	/**
      * The meta object id for the '{@link org.switchyard.tools.models.switchyard1_0.spring.impl.AliasEntryImpl <em>Alias Entry</em>}' class.
@@ -1815,7 +1833,7 @@ public interface SpringPackage extends EPackage {
      * @see org.switchyard.tools.models.switchyard1_0.spring.impl.SpringPackageImpl#getOutput()
      * @generated
      */
-	int OUTPUT = 103;
+	int OUTPUT = 105;
 
 	/**
      * The feature id for the '<em><b>Description</b></em>' containment reference.
@@ -3041,7 +3059,7 @@ public interface SpringPackage extends EPackage {
      * @see org.switchyard.tools.models.switchyard1_0.spring.impl.SpringPackageImpl#getResequencerConfig()
      * @generated
      */
-	int RESEQUENCER_CONFIG = 125;
+	int RESEQUENCER_CONFIG = 128;
 
 	/**
      * The number of structural features of the '<em>Resequencer Config</em>' class.
@@ -3090,13 +3108,22 @@ public interface SpringPackage extends EPackage {
 	int BATCH_RESEQUENCER_CONFIG__BATCH_TIMEOUT = RESEQUENCER_CONFIG_FEATURE_COUNT + 2;
 
 	/**
+     * The feature id for the '<em><b>Ignore Invalid Exchanges</b></em>' attribute.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int BATCH_RESEQUENCER_CONFIG__IGNORE_INVALID_EXCHANGES = RESEQUENCER_CONFIG_FEATURE_COUNT + 3;
+
+    /**
      * The feature id for the '<em><b>Reverse</b></em>' attribute.
      * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
      * @generated
      * @ordered
      */
-	int BATCH_RESEQUENCER_CONFIG__REVERSE = RESEQUENCER_CONFIG_FEATURE_COUNT + 3;
+	int BATCH_RESEQUENCER_CONFIG__REVERSE = RESEQUENCER_CONFIG_FEATURE_COUNT + 4;
 
 	/**
      * The number of structural features of the '<em>Batch Resequencer Config</em>' class.
@@ -3105,7 +3132,7 @@ public interface SpringPackage extends EPackage {
      * @generated
      * @ordered
      */
-	int BATCH_RESEQUENCER_CONFIG_FEATURE_COUNT = RESEQUENCER_CONFIG_FEATURE_COUNT + 4;
+	int BATCH_RESEQUENCER_CONFIG_FEATURE_COUNT = RESEQUENCER_CONFIG_FEATURE_COUNT + 5;
 
 	/**
      * The meta object id for the '{@link org.switchyard.tools.models.switchyard1_0.spring.impl.NoOutputDefinitionImpl <em>No Output Definition</em>}' class.
@@ -3115,7 +3142,7 @@ public interface SpringPackage extends EPackage {
      * @see org.switchyard.tools.models.switchyard1_0.spring.impl.SpringPackageImpl#getNoOutputDefinition()
      * @generated
      */
-	int NO_OUTPUT_DEFINITION = 94;
+	int NO_OUTPUT_DEFINITION = 96;
 
 	/**
      * The feature id for the '<em><b>Description</b></em>' containment reference.
@@ -4055,22 +4082,40 @@ public interface SpringPackage extends EPackage {
 	int CAMEL_PROPERTY_PLACEHOLDER_DEFINITION__ID = IDENTIFIED_TYPE__ID;
 
 	/**
+     * The feature id for the '<em><b>Fallback To Unaugmented Property</b></em>' attribute.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int CAMEL_PROPERTY_PLACEHOLDER_DEFINITION__FALLBACK_TO_UNAUGMENTED_PROPERTY = IDENTIFIED_TYPE_FEATURE_COUNT + 0;
+
+    /**
      * The feature id for the '<em><b>Location</b></em>' attribute.
      * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
      * @generated
      * @ordered
      */
-	int CAMEL_PROPERTY_PLACEHOLDER_DEFINITION__LOCATION = IDENTIFIED_TYPE_FEATURE_COUNT + 0;
+	int CAMEL_PROPERTY_PLACEHOLDER_DEFINITION__LOCATION = IDENTIFIED_TYPE_FEATURE_COUNT + 1;
 
 	/**
+     * The feature id for the '<em><b>Prefix Token</b></em>' attribute.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int CAMEL_PROPERTY_PLACEHOLDER_DEFINITION__PREFIX_TOKEN = IDENTIFIED_TYPE_FEATURE_COUNT + 2;
+
+    /**
      * The feature id for the '<em><b>Properties Parser Ref</b></em>' attribute.
      * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
      * @generated
      * @ordered
      */
-	int CAMEL_PROPERTY_PLACEHOLDER_DEFINITION__PROPERTIES_PARSER_REF = IDENTIFIED_TYPE_FEATURE_COUNT + 1;
+	int CAMEL_PROPERTY_PLACEHOLDER_DEFINITION__PROPERTIES_PARSER_REF = IDENTIFIED_TYPE_FEATURE_COUNT + 3;
 
 	/**
      * The feature id for the '<em><b>Properties Resolver Ref</b></em>' attribute.
@@ -4079,16 +4124,43 @@ public interface SpringPackage extends EPackage {
      * @generated
      * @ordered
      */
-	int CAMEL_PROPERTY_PLACEHOLDER_DEFINITION__PROPERTIES_RESOLVER_REF = IDENTIFIED_TYPE_FEATURE_COUNT + 2;
+	int CAMEL_PROPERTY_PLACEHOLDER_DEFINITION__PROPERTIES_RESOLVER_REF = IDENTIFIED_TYPE_FEATURE_COUNT + 4;
 
 	/**
+     * The feature id for the '<em><b>Property Prefix</b></em>' attribute.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int CAMEL_PROPERTY_PLACEHOLDER_DEFINITION__PROPERTY_PREFIX = IDENTIFIED_TYPE_FEATURE_COUNT + 5;
+
+    /**
+     * The feature id for the '<em><b>Property Suffix</b></em>' attribute.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int CAMEL_PROPERTY_PLACEHOLDER_DEFINITION__PROPERTY_SUFFIX = IDENTIFIED_TYPE_FEATURE_COUNT + 6;
+
+    /**
+     * The feature id for the '<em><b>Suffix Token</b></em>' attribute.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int CAMEL_PROPERTY_PLACEHOLDER_DEFINITION__SUFFIX_TOKEN = IDENTIFIED_TYPE_FEATURE_COUNT + 7;
+
+    /**
      * The number of structural features of the '<em>Camel Property Placeholder Definition</em>' class.
      * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
      * @generated
      * @ordered
      */
-	int CAMEL_PROPERTY_PLACEHOLDER_DEFINITION_FEATURE_COUNT = IDENTIFIED_TYPE_FEATURE_COUNT + 3;
+	int CAMEL_PROPERTY_PLACEHOLDER_DEFINITION_FEATURE_COUNT = IDENTIFIED_TYPE_FEATURE_COUNT + 8;
 
 	/**
      * The meta object id for the '{@link org.switchyard.tools.models.switchyard1_0.spring.impl.CamelProxyFactoryDefinitionImpl <em>Camel Proxy Factory Definition</em>}' class.
@@ -5765,22 +5837,49 @@ public interface SpringPackage extends EPackage {
 	int CSV_DATA_FORMAT__ID = DATA_FORMAT__ID;
 
 	/**
+     * The feature id for the '<em><b>Autogen Columns</b></em>' attribute.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int CSV_DATA_FORMAT__AUTOGEN_COLUMNS = DATA_FORMAT_FEATURE_COUNT + 0;
+
+    /**
+     * The feature id for the '<em><b>Config Ref</b></em>' attribute.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int CSV_DATA_FORMAT__CONFIG_REF = DATA_FORMAT_FEATURE_COUNT + 1;
+
+    /**
      * The feature id for the '<em><b>Delimiter</b></em>' attribute.
      * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
      * @generated
      * @ordered
      */
-	int CSV_DATA_FORMAT__DELIMITER = DATA_FORMAT_FEATURE_COUNT + 0;
+	int CSV_DATA_FORMAT__DELIMITER = DATA_FORMAT_FEATURE_COUNT + 2;
 
 	/**
+     * The feature id for the '<em><b>Strategy Ref</b></em>' attribute.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int CSV_DATA_FORMAT__STRATEGY_REF = DATA_FORMAT_FEATURE_COUNT + 3;
+
+    /**
      * The number of structural features of the '<em>Csv Data Format</em>' class.
      * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
      * @generated
      * @ordered
      */
-	int CSV_DATA_FORMAT_FEATURE_COUNT = DATA_FORMAT_FEATURE_COUNT + 1;
+	int CSV_DATA_FORMAT_FEATURE_COUNT = DATA_FORMAT_FEATURE_COUNT + 4;
 
 	/**
      * The meta object id for the '{@link org.switchyard.tools.models.switchyard1_0.spring.impl.CustomDataFormatImpl <em>Custom Data Format</em>}' class.
@@ -5827,7 +5926,7 @@ public interface SpringPackage extends EPackage {
      * @see org.switchyard.tools.models.switchyard1_0.spring.impl.SpringPackageImpl#getLoadBalancer()
      * @generated
      */
-	int LOAD_BALANCER = 85;
+	int LOAD_BALANCER = 86;
 
 	/**
      * The feature id for the '<em><b>Id</b></em>' attribute.
@@ -6093,13 +6192,22 @@ public interface SpringPackage extends EPackage {
 	int DATA_FORMATS_DEFINITION__XSTREAM = 21;
 
 	/**
+     * The feature id for the '<em><b>Pgp</b></em>' containment reference list.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int DATA_FORMATS_DEFINITION__PGP = 22;
+
+    /**
      * The feature id for the '<em><b>Zip</b></em>' containment reference list.
      * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
      * @generated
      * @ordered
      */
-	int DATA_FORMATS_DEFINITION__ZIP = 22;
+	int DATA_FORMATS_DEFINITION__ZIP = 23;
 
 	/**
      * The number of structural features of the '<em>Data Formats Definition</em>' class.
@@ -6108,7 +6216,7 @@ public interface SpringPackage extends EPackage {
      * @generated
      * @ordered
      */
-	int DATA_FORMATS_DEFINITION_FEATURE_COUNT = 23;
+	int DATA_FORMATS_DEFINITION_FEATURE_COUNT = 24;
 
 	/**
      * The meta object id for the '{@link org.switchyard.tools.models.switchyard1_0.spring.impl.ExpressionNodeImpl <em>Expression Node</em>}' class.
@@ -8428,13 +8536,22 @@ public interface SpringPackage extends EPackage {
 	int DOCUMENT_ROOT__PACKAGE_SCAN = 67;
 
 	/**
+     * The feature id for the '<em><b>Pgp</b></em>' containment reference.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int DOCUMENT_ROOT__PGP = 68;
+
+    /**
      * The feature id for the '<em><b>Php</b></em>' containment reference.
      * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
      * @generated
      * @ordered
      */
-	int DOCUMENT_ROOT__PHP = 68;
+	int DOCUMENT_ROOT__PHP = 69;
 
 	/**
      * The feature id for the '<em><b>Pipeline</b></em>' containment reference.
@@ -8443,7 +8560,7 @@ public interface SpringPackage extends EPackage {
      * @generated
      * @ordered
      */
-	int DOCUMENT_ROOT__PIPELINE = 69;
+	int DOCUMENT_ROOT__PIPELINE = 70;
 
 	/**
      * The feature id for the '<em><b>Policy</b></em>' containment reference.
@@ -8452,7 +8569,7 @@ public interface SpringPackage extends EPackage {
      * @generated
      * @ordered
      */
-	int DOCUMENT_ROOT__POLICY = 70;
+	int DOCUMENT_ROOT__POLICY = 71;
 
 	/**
      * The feature id for the '<em><b>Poll Enrich</b></em>' containment reference.
@@ -8461,7 +8578,7 @@ public interface SpringPackage extends EPackage {
      * @generated
      * @ordered
      */
-	int DOCUMENT_ROOT__POLL_ENRICH = 71;
+	int DOCUMENT_ROOT__POLL_ENRICH = 72;
 
 	/**
      * The feature id for the '<em><b>Process</b></em>' containment reference.
@@ -8470,7 +8587,7 @@ public interface SpringPackage extends EPackage {
      * @generated
      * @ordered
      */
-	int DOCUMENT_ROOT__PROCESS = 72;
+	int DOCUMENT_ROOT__PROCESS = 73;
 
 	/**
      * The feature id for the '<em><b>Properties</b></em>' containment reference.
@@ -8479,7 +8596,7 @@ public interface SpringPackage extends EPackage {
      * @generated
      * @ordered
      */
-	int DOCUMENT_ROOT__PROPERTIES = 73;
+	int DOCUMENT_ROOT__PROPERTIES = 74;
 
 	/**
      * The feature id for the '<em><b>Property</b></em>' containment reference.
@@ -8488,7 +8605,7 @@ public interface SpringPackage extends EPackage {
      * @generated
      * @ordered
      */
-	int DOCUMENT_ROOT__PROPERTY = 74;
+	int DOCUMENT_ROOT__PROPERTY = 75;
 
 	/**
      * The feature id for the '<em><b>Property Placeholder</b></em>' containment reference.
@@ -8497,7 +8614,7 @@ public interface SpringPackage extends EPackage {
      * @generated
      * @ordered
      */
-	int DOCUMENT_ROOT__PROPERTY_PLACEHOLDER = 75;
+	int DOCUMENT_ROOT__PROPERTY_PLACEHOLDER = 76;
 
 	/**
      * The feature id for the '<em><b>Protobuf</b></em>' containment reference.
@@ -8506,7 +8623,7 @@ public interface SpringPackage extends EPackage {
      * @generated
      * @ordered
      */
-	int DOCUMENT_ROOT__PROTOBUF = 76;
+	int DOCUMENT_ROOT__PROTOBUF = 77;
 
 	/**
      * The feature id for the '<em><b>Proxy</b></em>' containment reference.
@@ -8515,7 +8632,7 @@ public interface SpringPackage extends EPackage {
      * @generated
      * @ordered
      */
-	int DOCUMENT_ROOT__PROXY = 77;
+	int DOCUMENT_ROOT__PROXY = 78;
 
 	/**
      * The feature id for the '<em><b>Python</b></em>' containment reference.
@@ -8524,7 +8641,7 @@ public interface SpringPackage extends EPackage {
      * @generated
      * @ordered
      */
-	int DOCUMENT_ROOT__PYTHON = 78;
+	int DOCUMENT_ROOT__PYTHON = 79;
 
 	/**
      * The feature id for the '<em><b>Random</b></em>' containment reference.
@@ -8533,7 +8650,7 @@ public interface SpringPackage extends EPackage {
      * @generated
      * @ordered
      */
-	int DOCUMENT_ROOT__RANDOM = 79;
+	int DOCUMENT_ROOT__RANDOM = 80;
 
 	/**
      * The feature id for the '<em><b>Recipient List</b></em>' containment reference.
@@ -8542,7 +8659,7 @@ public interface SpringPackage extends EPackage {
      * @generated
      * @ordered
      */
-	int DOCUMENT_ROOT__RECIPIENT_LIST = 80;
+	int DOCUMENT_ROOT__RECIPIENT_LIST = 81;
 
 	/**
      * The feature id for the '<em><b>Redelivery Policy</b></em>' containment reference.
@@ -8551,7 +8668,7 @@ public interface SpringPackage extends EPackage {
      * @generated
      * @ordered
      */
-	int DOCUMENT_ROOT__REDELIVERY_POLICY = 81;
+	int DOCUMENT_ROOT__REDELIVERY_POLICY = 82;
 
 	/**
      * The feature id for the '<em><b>Redelivery Policy Profile</b></em>' containment reference.
@@ -8560,7 +8677,7 @@ public interface SpringPackage extends EPackage {
      * @generated
      * @ordered
      */
-	int DOCUMENT_ROOT__REDELIVERY_POLICY_PROFILE = 82;
+	int DOCUMENT_ROOT__REDELIVERY_POLICY_PROFILE = 83;
 
 	/**
      * The feature id for the '<em><b>Ref</b></em>' containment reference.
@@ -8569,7 +8686,7 @@ public interface SpringPackage extends EPackage {
      * @generated
      * @ordered
      */
-	int DOCUMENT_ROOT__REF = 83;
+	int DOCUMENT_ROOT__REF = 84;
 
 	/**
      * The feature id for the '<em><b>Remove Header</b></em>' containment reference.
@@ -8578,7 +8695,7 @@ public interface SpringPackage extends EPackage {
      * @generated
      * @ordered
      */
-	int DOCUMENT_ROOT__REMOVE_HEADER = 84;
+	int DOCUMENT_ROOT__REMOVE_HEADER = 85;
 
 	/**
      * The feature id for the '<em><b>Remove Headers</b></em>' containment reference.
@@ -8587,7 +8704,7 @@ public interface SpringPackage extends EPackage {
      * @generated
      * @ordered
      */
-	int DOCUMENT_ROOT__REMOVE_HEADERS = 85;
+	int DOCUMENT_ROOT__REMOVE_HEADERS = 86;
 
 	/**
      * The feature id for the '<em><b>Remove Property</b></em>' containment reference.
@@ -8596,7 +8713,7 @@ public interface SpringPackage extends EPackage {
      * @generated
      * @ordered
      */
-	int DOCUMENT_ROOT__REMOVE_PROPERTY = 86;
+	int DOCUMENT_ROOT__REMOVE_PROPERTY = 87;
 
 	/**
      * The feature id for the '<em><b>Resequence</b></em>' containment reference.
@@ -8605,7 +8722,7 @@ public interface SpringPackage extends EPackage {
      * @generated
      * @ordered
      */
-	int DOCUMENT_ROOT__RESEQUENCE = 87;
+	int DOCUMENT_ROOT__RESEQUENCE = 88;
 
 	/**
      * The feature id for the '<em><b>Rollback</b></em>' containment reference.
@@ -8614,7 +8731,7 @@ public interface SpringPackage extends EPackage {
      * @generated
      * @ordered
      */
-	int DOCUMENT_ROOT__ROLLBACK = 88;
+	int DOCUMENT_ROOT__ROLLBACK = 89;
 
 	/**
      * The feature id for the '<em><b>Round Robin</b></em>' containment reference.
@@ -8623,7 +8740,7 @@ public interface SpringPackage extends EPackage {
      * @generated
      * @ordered
      */
-	int DOCUMENT_ROOT__ROUND_ROBIN = 89;
+	int DOCUMENT_ROOT__ROUND_ROBIN = 90;
 
 	/**
      * The feature id for the '<em><b>Route</b></em>' containment reference.
@@ -8632,7 +8749,7 @@ public interface SpringPackage extends EPackage {
      * @generated
      * @ordered
      */
-	int DOCUMENT_ROOT__ROUTE = 90;
+	int DOCUMENT_ROOT__ROUTE = 91;
 
 	/**
      * The feature id for the '<em><b>Route Builder</b></em>' containment reference.
@@ -8641,7 +8758,7 @@ public interface SpringPackage extends EPackage {
      * @generated
      * @ordered
      */
-	int DOCUMENT_ROOT__ROUTE_BUILDER = 91;
+	int DOCUMENT_ROOT__ROUTE_BUILDER = 92;
 
 	/**
      * The feature id for the '<em><b>Route Context</b></em>' containment reference.
@@ -8650,7 +8767,7 @@ public interface SpringPackage extends EPackage {
      * @generated
      * @ordered
      */
-	int DOCUMENT_ROOT__ROUTE_CONTEXT = 92;
+	int DOCUMENT_ROOT__ROUTE_CONTEXT = 93;
 
 	/**
      * The feature id for the '<em><b>Route Context Ref</b></em>' containment reference.
@@ -8659,7 +8776,7 @@ public interface SpringPackage extends EPackage {
      * @generated
      * @ordered
      */
-	int DOCUMENT_ROOT__ROUTE_CONTEXT_REF = 93;
+	int DOCUMENT_ROOT__ROUTE_CONTEXT_REF = 94;
 
 	/**
      * The feature id for the '<em><b>Routes</b></em>' containment reference.
@@ -8668,7 +8785,7 @@ public interface SpringPackage extends EPackage {
      * @generated
      * @ordered
      */
-	int DOCUMENT_ROOT__ROUTES = 94;
+	int DOCUMENT_ROOT__ROUTES = 95;
 
 	/**
      * The feature id for the '<em><b>Routing Slip</b></em>' containment reference.
@@ -8677,7 +8794,7 @@ public interface SpringPackage extends EPackage {
      * @generated
      * @ordered
      */
-	int DOCUMENT_ROOT__ROUTING_SLIP = 95;
+	int DOCUMENT_ROOT__ROUTING_SLIP = 96;
 
 	/**
      * The feature id for the '<em><b>Rss</b></em>' containment reference.
@@ -8686,7 +8803,7 @@ public interface SpringPackage extends EPackage {
      * @generated
      * @ordered
      */
-	int DOCUMENT_ROOT__RSS = 96;
+	int DOCUMENT_ROOT__RSS = 97;
 
 	/**
      * The feature id for the '<em><b>Ruby</b></em>' containment reference.
@@ -8695,7 +8812,7 @@ public interface SpringPackage extends EPackage {
      * @generated
      * @ordered
      */
-	int DOCUMENT_ROOT__RUBY = 97;
+	int DOCUMENT_ROOT__RUBY = 98;
 
 	/**
      * The feature id for the '<em><b>Sample</b></em>' containment reference.
@@ -8704,7 +8821,7 @@ public interface SpringPackage extends EPackage {
      * @generated
      * @ordered
      */
-	int DOCUMENT_ROOT__SAMPLE = 98;
+	int DOCUMENT_ROOT__SAMPLE = 99;
 
 	/**
      * The feature id for the '<em><b>Secure Random Parameters</b></em>' containment reference.
@@ -8713,7 +8830,7 @@ public interface SpringPackage extends EPackage {
      * @generated
      * @ordered
      */
-	int DOCUMENT_ROOT__SECURE_RANDOM_PARAMETERS = 99;
+	int DOCUMENT_ROOT__SECURE_RANDOM_PARAMETERS = 100;
 
 	/**
      * The feature id for the '<em><b>Secure XML</b></em>' containment reference.
@@ -8722,7 +8839,7 @@ public interface SpringPackage extends EPackage {
      * @generated
      * @ordered
      */
-	int DOCUMENT_ROOT__SECURE_XML = 100;
+	int DOCUMENT_ROOT__SECURE_XML = 101;
 
 	/**
      * The feature id for the '<em><b>Serialization</b></em>' containment reference.
@@ -8731,7 +8848,7 @@ public interface SpringPackage extends EPackage {
      * @generated
      * @ordered
      */
-	int DOCUMENT_ROOT__SERIALIZATION = 101;
+	int DOCUMENT_ROOT__SERIALIZATION = 102;
 
 	/**
      * The feature id for the '<em><b>Set Body</b></em>' containment reference.
@@ -8740,7 +8857,7 @@ public interface SpringPackage extends EPackage {
      * @generated
      * @ordered
      */
-	int DOCUMENT_ROOT__SET_BODY = 102;
+	int DOCUMENT_ROOT__SET_BODY = 103;
 
 	/**
      * The feature id for the '<em><b>Set Exchange Pattern</b></em>' containment reference.
@@ -8749,7 +8866,7 @@ public interface SpringPackage extends EPackage {
      * @generated
      * @ordered
      */
-	int DOCUMENT_ROOT__SET_EXCHANGE_PATTERN = 103;
+	int DOCUMENT_ROOT__SET_EXCHANGE_PATTERN = 104;
 
 	/**
      * The feature id for the '<em><b>Set Fault Body</b></em>' containment reference.
@@ -8758,7 +8875,7 @@ public interface SpringPackage extends EPackage {
      * @generated
      * @ordered
      */
-	int DOCUMENT_ROOT__SET_FAULT_BODY = 104;
+	int DOCUMENT_ROOT__SET_FAULT_BODY = 105;
 
 	/**
      * The feature id for the '<em><b>Set Header</b></em>' containment reference.
@@ -8767,7 +8884,7 @@ public interface SpringPackage extends EPackage {
      * @generated
      * @ordered
      */
-	int DOCUMENT_ROOT__SET_HEADER = 105;
+	int DOCUMENT_ROOT__SET_HEADER = 106;
 
 	/**
      * The feature id for the '<em><b>Set Out Header</b></em>' containment reference.
@@ -8776,7 +8893,7 @@ public interface SpringPackage extends EPackage {
      * @generated
      * @ordered
      */
-	int DOCUMENT_ROOT__SET_OUT_HEADER = 106;
+	int DOCUMENT_ROOT__SET_OUT_HEADER = 107;
 
 	/**
      * The feature id for the '<em><b>Set Property</b></em>' containment reference.
@@ -8785,7 +8902,7 @@ public interface SpringPackage extends EPackage {
      * @generated
      * @ordered
      */
-	int DOCUMENT_ROOT__SET_PROPERTY = 107;
+	int DOCUMENT_ROOT__SET_PROPERTY = 108;
 
 	/**
      * The feature id for the '<em><b>Simple</b></em>' containment reference.
@@ -8794,7 +8911,7 @@ public interface SpringPackage extends EPackage {
      * @generated
      * @ordered
      */
-	int DOCUMENT_ROOT__SIMPLE = 108;
+	int DOCUMENT_ROOT__SIMPLE = 109;
 
 	/**
      * The feature id for the '<em><b>Soapjaxb</b></em>' containment reference.
@@ -8803,7 +8920,7 @@ public interface SpringPackage extends EPackage {
      * @generated
      * @ordered
      */
-	int DOCUMENT_ROOT__SOAPJAXB = 109;
+	int DOCUMENT_ROOT__SOAPJAXB = 110;
 
 	/**
      * The feature id for the '<em><b>Sort</b></em>' containment reference.
@@ -8812,7 +8929,7 @@ public interface SpringPackage extends EPackage {
      * @generated
      * @ordered
      */
-	int DOCUMENT_ROOT__SORT = 110;
+	int DOCUMENT_ROOT__SORT = 111;
 
 	/**
      * The feature id for the '<em><b>Spel</b></em>' containment reference.
@@ -8821,7 +8938,7 @@ public interface SpringPackage extends EPackage {
      * @generated
      * @ordered
      */
-	int DOCUMENT_ROOT__SPEL = 111;
+	int DOCUMENT_ROOT__SPEL = 112;
 
 	/**
      * The feature id for the '<em><b>Split</b></em>' containment reference.
@@ -8830,7 +8947,7 @@ public interface SpringPackage extends EPackage {
      * @generated
      * @ordered
      */
-	int DOCUMENT_ROOT__SPLIT = 112;
+	int DOCUMENT_ROOT__SPLIT = 113;
 
 	/**
      * The feature id for the '<em><b>Sql</b></em>' containment reference.
@@ -8839,7 +8956,7 @@ public interface SpringPackage extends EPackage {
      * @generated
      * @ordered
      */
-	int DOCUMENT_ROOT__SQL = 113;
+	int DOCUMENT_ROOT__SQL = 114;
 
 	/**
      * The feature id for the '<em><b>Ssl Context Parameters</b></em>' containment reference.
@@ -8848,7 +8965,7 @@ public interface SpringPackage extends EPackage {
      * @generated
      * @ordered
      */
-	int DOCUMENT_ROOT__SSL_CONTEXT_PARAMETERS = 114;
+	int DOCUMENT_ROOT__SSL_CONTEXT_PARAMETERS = 115;
 
 	/**
      * The feature id for the '<em><b>Sticky</b></em>' containment reference.
@@ -8857,7 +8974,7 @@ public interface SpringPackage extends EPackage {
      * @generated
      * @ordered
      */
-	int DOCUMENT_ROOT__STICKY = 115;
+	int DOCUMENT_ROOT__STICKY = 116;
 
 	/**
      * The feature id for the '<em><b>Stop</b></em>' containment reference.
@@ -8866,7 +8983,7 @@ public interface SpringPackage extends EPackage {
      * @generated
      * @ordered
      */
-	int DOCUMENT_ROOT__STOP = 116;
+	int DOCUMENT_ROOT__STOP = 117;
 
 	/**
      * The feature id for the '<em><b>Stream Resequencer Config</b></em>' containment reference.
@@ -8875,7 +8992,7 @@ public interface SpringPackage extends EPackage {
      * @generated
      * @ordered
      */
-	int DOCUMENT_ROOT__STREAM_RESEQUENCER_CONFIG = 117;
+	int DOCUMENT_ROOT__STREAM_RESEQUENCER_CONFIG = 118;
 
 	/**
      * The feature id for the '<em><b>String</b></em>' containment reference.
@@ -8884,7 +9001,7 @@ public interface SpringPackage extends EPackage {
      * @generated
      * @ordered
      */
-	int DOCUMENT_ROOT__STRING = 118;
+	int DOCUMENT_ROOT__STRING = 119;
 
 	/**
      * The feature id for the '<em><b>Syslog</b></em>' containment reference.
@@ -8893,7 +9010,7 @@ public interface SpringPackage extends EPackage {
      * @generated
      * @ordered
      */
-	int DOCUMENT_ROOT__SYSLOG = 119;
+	int DOCUMENT_ROOT__SYSLOG = 120;
 
 	/**
      * The feature id for the '<em><b>Template</b></em>' containment reference.
@@ -8902,7 +9019,7 @@ public interface SpringPackage extends EPackage {
      * @generated
      * @ordered
      */
-	int DOCUMENT_ROOT__TEMPLATE = 120;
+	int DOCUMENT_ROOT__TEMPLATE = 121;
 
 	/**
      * The feature id for the '<em><b>Thread Pool</b></em>' containment reference.
@@ -8911,7 +9028,7 @@ public interface SpringPackage extends EPackage {
      * @generated
      * @ordered
      */
-	int DOCUMENT_ROOT__THREAD_POOL = 121;
+	int DOCUMENT_ROOT__THREAD_POOL = 122;
 
 	/**
      * The feature id for the '<em><b>Thread Pool Profile</b></em>' containment reference.
@@ -8920,7 +9037,7 @@ public interface SpringPackage extends EPackage {
      * @generated
      * @ordered
      */
-	int DOCUMENT_ROOT__THREAD_POOL_PROFILE = 122;
+	int DOCUMENT_ROOT__THREAD_POOL_PROFILE = 123;
 
 	/**
      * The feature id for the '<em><b>Threads</b></em>' containment reference.
@@ -8929,7 +9046,7 @@ public interface SpringPackage extends EPackage {
      * @generated
      * @ordered
      */
-	int DOCUMENT_ROOT__THREADS = 123;
+	int DOCUMENT_ROOT__THREADS = 124;
 
 	/**
      * The feature id for the '<em><b>Throttle</b></em>' containment reference.
@@ -8938,7 +9055,7 @@ public interface SpringPackage extends EPackage {
      * @generated
      * @ordered
      */
-	int DOCUMENT_ROOT__THROTTLE = 124;
+	int DOCUMENT_ROOT__THROTTLE = 125;
 
 	/**
      * The feature id for the '<em><b>Throw Exception</b></em>' containment reference.
@@ -8947,7 +9064,7 @@ public interface SpringPackage extends EPackage {
      * @generated
      * @ordered
      */
-	int DOCUMENT_ROOT__THROW_EXCEPTION = 125;
+	int DOCUMENT_ROOT__THROW_EXCEPTION = 126;
 
 	/**
      * The feature id for the '<em><b>Tidy Markup</b></em>' containment reference.
@@ -8956,7 +9073,7 @@ public interface SpringPackage extends EPackage {
      * @generated
      * @ordered
      */
-	int DOCUMENT_ROOT__TIDY_MARKUP = 126;
+	int DOCUMENT_ROOT__TIDY_MARKUP = 127;
 
 	/**
      * The feature id for the '<em><b>To</b></em>' containment reference.
@@ -8965,7 +9082,7 @@ public interface SpringPackage extends EPackage {
      * @generated
      * @ordered
      */
-	int DOCUMENT_ROOT__TO = 127;
+	int DOCUMENT_ROOT__TO = 128;
 
 	/**
      * The feature id for the '<em><b>Tokenize</b></em>' containment reference.
@@ -8974,7 +9091,7 @@ public interface SpringPackage extends EPackage {
      * @generated
      * @ordered
      */
-	int DOCUMENT_ROOT__TOKENIZE = 128;
+	int DOCUMENT_ROOT__TOKENIZE = 129;
 
 	/**
      * The feature id for the '<em><b>Topic</b></em>' containment reference.
@@ -8983,7 +9100,7 @@ public interface SpringPackage extends EPackage {
      * @generated
      * @ordered
      */
-	int DOCUMENT_ROOT__TOPIC = 129;
+	int DOCUMENT_ROOT__TOPIC = 130;
 
 	/**
      * The feature id for the '<em><b>Transacted</b></em>' containment reference.
@@ -8992,7 +9109,7 @@ public interface SpringPackage extends EPackage {
      * @generated
      * @ordered
      */
-	int DOCUMENT_ROOT__TRANSACTED = 130;
+	int DOCUMENT_ROOT__TRANSACTED = 131;
 
 	/**
      * The feature id for the '<em><b>Transform</b></em>' containment reference.
@@ -9001,7 +9118,7 @@ public interface SpringPackage extends EPackage {
      * @generated
      * @ordered
      */
-	int DOCUMENT_ROOT__TRANSFORM = 131;
+	int DOCUMENT_ROOT__TRANSFORM = 132;
 
 	/**
      * The feature id for the '<em><b>Unmarshal</b></em>' containment reference.
@@ -9010,7 +9127,7 @@ public interface SpringPackage extends EPackage {
      * @generated
      * @ordered
      */
-	int DOCUMENT_ROOT__UNMARSHAL = 132;
+	int DOCUMENT_ROOT__UNMARSHAL = 133;
 
 	/**
      * The feature id for the '<em><b>Validate</b></em>' containment reference.
@@ -9019,7 +9136,7 @@ public interface SpringPackage extends EPackage {
      * @generated
      * @ordered
      */
-	int DOCUMENT_ROOT__VALIDATE = 133;
+	int DOCUMENT_ROOT__VALIDATE = 134;
 
 	/**
      * The feature id for the '<em><b>Weighted</b></em>' containment reference.
@@ -9028,7 +9145,7 @@ public interface SpringPackage extends EPackage {
      * @generated
      * @ordered
      */
-	int DOCUMENT_ROOT__WEIGHTED = 134;
+	int DOCUMENT_ROOT__WEIGHTED = 135;
 
 	/**
      * The feature id for the '<em><b>When</b></em>' containment reference.
@@ -9037,7 +9154,7 @@ public interface SpringPackage extends EPackage {
      * @generated
      * @ordered
      */
-	int DOCUMENT_ROOT__WHEN = 135;
+	int DOCUMENT_ROOT__WHEN = 136;
 
 	/**
      * The feature id for the '<em><b>Wire Tap</b></em>' containment reference.
@@ -9046,7 +9163,7 @@ public interface SpringPackage extends EPackage {
      * @generated
      * @ordered
      */
-	int DOCUMENT_ROOT__WIRE_TAP = 136;
+	int DOCUMENT_ROOT__WIRE_TAP = 137;
 
 	/**
      * The feature id for the '<em><b>Xml Beans</b></em>' containment reference.
@@ -9055,7 +9172,7 @@ public interface SpringPackage extends EPackage {
      * @generated
      * @ordered
      */
-	int DOCUMENT_ROOT__XML_BEANS = 137;
+	int DOCUMENT_ROOT__XML_BEANS = 138;
 
 	/**
      * The feature id for the '<em><b>Xpath</b></em>' containment reference.
@@ -9064,7 +9181,7 @@ public interface SpringPackage extends EPackage {
      * @generated
      * @ordered
      */
-	int DOCUMENT_ROOT__XPATH = 138;
+	int DOCUMENT_ROOT__XPATH = 139;
 
 	/**
      * The feature id for the '<em><b>Xquery</b></em>' containment reference.
@@ -9073,7 +9190,7 @@ public interface SpringPackage extends EPackage {
      * @generated
      * @ordered
      */
-	int DOCUMENT_ROOT__XQUERY = 139;
+	int DOCUMENT_ROOT__XQUERY = 140;
 
 	/**
      * The feature id for the '<em><b>Xstream</b></em>' containment reference.
@@ -9082,7 +9199,7 @@ public interface SpringPackage extends EPackage {
      * @generated
      * @ordered
      */
-	int DOCUMENT_ROOT__XSTREAM = 140;
+	int DOCUMENT_ROOT__XSTREAM = 141;
 
 	/**
      * The feature id for the '<em><b>Zip</b></em>' containment reference.
@@ -9091,7 +9208,7 @@ public interface SpringPackage extends EPackage {
      * @generated
      * @ordered
      */
-	int DOCUMENT_ROOT__ZIP = 141;
+	int DOCUMENT_ROOT__ZIP = 142;
 
 	/**
      * The number of structural features of the '<em>Document Root</em>' class.
@@ -9100,7 +9217,7 @@ public interface SpringPackage extends EPackage {
      * @generated
      * @ordered
      */
-	int DOCUMENT_ROOT_FEATURE_COUNT = 142;
+	int DOCUMENT_ROOT_FEATURE_COUNT = 143;
 
 	/**
      * The meta object id for the '{@link org.switchyard.tools.models.switchyard1_0.spring.impl.NoOutputExpressionNodeImpl <em>No Output Expression Node</em>}' class.
@@ -9110,7 +9227,7 @@ public interface SpringPackage extends EPackage {
      * @see org.switchyard.tools.models.switchyard1_0.spring.impl.SpringPackageImpl#getNoOutputExpressionNode()
      * @generated
      */
-	int NO_OUTPUT_EXPRESSION_NODE = 95;
+	int NO_OUTPUT_EXPRESSION_NODE = 97;
 
 	/**
      * The feature id for the '<em><b>Description</b></em>' containment reference.
@@ -10962,13 +11079,22 @@ public interface SpringPackage extends EPackage {
 	int ERROR_HANDLER_DEFINITION__RETRY_WHILE_REF = IDENTIFIED_TYPE_FEATURE_COUNT + 7;
 
 	/**
+     * The feature id for the '<em><b>Rollback Logging Level</b></em>' attribute.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int ERROR_HANDLER_DEFINITION__ROLLBACK_LOGGING_LEVEL = IDENTIFIED_TYPE_FEATURE_COUNT + 8;
+
+    /**
      * The feature id for the '<em><b>Transaction Manager Ref</b></em>' attribute.
      * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
      * @generated
      * @ordered
      */
-	int ERROR_HANDLER_DEFINITION__TRANSACTION_MANAGER_REF = IDENTIFIED_TYPE_FEATURE_COUNT + 8;
+	int ERROR_HANDLER_DEFINITION__TRANSACTION_MANAGER_REF = IDENTIFIED_TYPE_FEATURE_COUNT + 9;
 
 	/**
      * The feature id for the '<em><b>Transaction Template Ref</b></em>' attribute.
@@ -10977,7 +11103,7 @@ public interface SpringPackage extends EPackage {
      * @generated
      * @ordered
      */
-	int ERROR_HANDLER_DEFINITION__TRANSACTION_TEMPLATE_REF = IDENTIFIED_TYPE_FEATURE_COUNT + 9;
+	int ERROR_HANDLER_DEFINITION__TRANSACTION_TEMPLATE_REF = IDENTIFIED_TYPE_FEATURE_COUNT + 10;
 
 	/**
      * The feature id for the '<em><b>Type</b></em>' attribute.
@@ -10986,7 +11112,7 @@ public interface SpringPackage extends EPackage {
      * @generated
      * @ordered
      */
-	int ERROR_HANDLER_DEFINITION__TYPE = IDENTIFIED_TYPE_FEATURE_COUNT + 10;
+	int ERROR_HANDLER_DEFINITION__TYPE = IDENTIFIED_TYPE_FEATURE_COUNT + 11;
 
 	/**
      * The feature id for the '<em><b>Use Original Message</b></em>' attribute.
@@ -10995,7 +11121,7 @@ public interface SpringPackage extends EPackage {
      * @generated
      * @ordered
      */
-	int ERROR_HANDLER_DEFINITION__USE_ORIGINAL_MESSAGE = IDENTIFIED_TYPE_FEATURE_COUNT + 11;
+	int ERROR_HANDLER_DEFINITION__USE_ORIGINAL_MESSAGE = IDENTIFIED_TYPE_FEATURE_COUNT + 12;
 
 	/**
      * The number of structural features of the '<em>Error Handler Definition</em>' class.
@@ -11004,9 +11130,28 @@ public interface SpringPackage extends EPackage {
      * @generated
      * @ordered
      */
-	int ERROR_HANDLER_DEFINITION_FEATURE_COUNT = IDENTIFIED_TYPE_FEATURE_COUNT + 12;
+	int ERROR_HANDLER_DEFINITION_FEATURE_COUNT = IDENTIFIED_TYPE_FEATURE_COUNT + 13;
 
 	/**
+     * The meta object id for the '{@link org.switchyard.tools.models.switchyard1_0.spring.impl.ExpressionNodeHelperImpl <em>Expression Node Helper</em>}' class.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @see org.switchyard.tools.models.switchyard1_0.spring.impl.ExpressionNodeHelperImpl
+     * @see org.switchyard.tools.models.switchyard1_0.spring.impl.SpringPackageImpl#getExpressionNodeHelper()
+     * @generated
+     */
+    int EXPRESSION_NODE_HELPER = 56;
+
+    /**
+     * The number of structural features of the '<em>Expression Node Helper</em>' class.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int EXPRESSION_NODE_HELPER_FEATURE_COUNT = 0;
+
+    /**
      * The meta object id for the '{@link org.switchyard.tools.models.switchyard1_0.spring.impl.ExpressionSubElementDefinitionImpl <em>Expression Sub Element Definition</em>}' class.
      * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -11014,7 +11159,7 @@ public interface SpringPackage extends EPackage {
      * @see org.switchyard.tools.models.switchyard1_0.spring.impl.SpringPackageImpl#getExpressionSubElementDefinition()
      * @generated
      */
-	int EXPRESSION_SUB_ELEMENT_DEFINITION = 56;
+	int EXPRESSION_SUB_ELEMENT_DEFINITION = 57;
 
 	/**
      * The feature id for the '<em><b>Expression Definition</b></em>' containment reference.
@@ -11231,7 +11376,7 @@ public interface SpringPackage extends EPackage {
      * @see org.switchyard.tools.models.switchyard1_0.spring.impl.SpringPackageImpl#getFailoverLoadBalancerDefinition()
      * @generated
      */
-	int FAILOVER_LOAD_BALANCER_DEFINITION = 57;
+	int FAILOVER_LOAD_BALANCER_DEFINITION = 58;
 
 	/**
      * The feature id for the '<em><b>Id</b></em>' attribute.
@@ -11286,7 +11431,7 @@ public interface SpringPackage extends EPackage {
      * @see org.switchyard.tools.models.switchyard1_0.spring.impl.SpringPackageImpl#getFilterDefinition()
      * @generated
      */
-	int FILTER_DEFINITION = 58;
+	int FILTER_DEFINITION = 59;
 
 	/**
      * The feature id for the '<em><b>Description</b></em>' containment reference.
@@ -12088,7 +12233,7 @@ public interface SpringPackage extends EPackage {
      * @see org.switchyard.tools.models.switchyard1_0.spring.impl.SpringPackageImpl#getFilterParameters()
      * @generated
      */
-	int FILTER_PARAMETERS = 59;
+	int FILTER_PARAMETERS = 60;
 
 	/**
      * The feature id for the '<em><b>Include</b></em>' attribute list.
@@ -12125,7 +12270,7 @@ public interface SpringPackage extends EPackage {
      * @see org.switchyard.tools.models.switchyard1_0.spring.impl.SpringPackageImpl#getFinallyDefinition()
      * @generated
      */
-	int FINALLY_DEFINITION = 60;
+	int FINALLY_DEFINITION = 61;
 
 	/**
      * The feature id for the '<em><b>Description</b></em>' containment reference.
@@ -12729,7 +12874,7 @@ public interface SpringPackage extends EPackage {
      * @see org.switchyard.tools.models.switchyard1_0.spring.impl.SpringPackageImpl#getFlatpackDataFormat()
      * @generated
      */
-	int FLATPACK_DATA_FORMAT = 61;
+	int FLATPACK_DATA_FORMAT = 62;
 
 	/**
      * The feature id for the '<em><b>Id</b></em>' attribute.
@@ -12757,7 +12902,7 @@ public interface SpringPackage extends EPackage {
      * @see org.switchyard.tools.models.switchyard1_0.spring.impl.SpringPackageImpl#getFromDefinition()
      * @generated
      */
-	int FROM_DEFINITION = 62;
+	int FROM_DEFINITION = 63;
 
 	/**
      * The feature id for the '<em><b>Description</b></em>' containment reference.
@@ -12812,7 +12957,7 @@ public interface SpringPackage extends EPackage {
      * @see org.switchyard.tools.models.switchyard1_0.spring.impl.SpringPackageImpl#getGroovyExpression()
      * @generated
      */
-	int GROOVY_EXPRESSION = 63;
+	int GROOVY_EXPRESSION = 64;
 
 	/**
      * The feature id for the '<em><b>Value</b></em>' attribute.
@@ -12849,7 +12994,7 @@ public interface SpringPackage extends EPackage {
      * @see org.switchyard.tools.models.switchyard1_0.spring.impl.SpringPackageImpl#getGzipDataFormat()
      * @generated
      */
-	int GZIP_DATA_FORMAT = 64;
+	int GZIP_DATA_FORMAT = 65;
 
 	/**
      * The feature id for the '<em><b>Id</b></em>' attribute.
@@ -12877,7 +13022,7 @@ public interface SpringPackage extends EPackage {
      * @see org.switchyard.tools.models.switchyard1_0.spring.impl.SpringPackageImpl#getHeaderExpression()
      * @generated
      */
-	int HEADER_EXPRESSION = 65;
+	int HEADER_EXPRESSION = 66;
 
 	/**
      * The feature id for the '<em><b>Value</b></em>' attribute.
@@ -12914,7 +13059,7 @@ public interface SpringPackage extends EPackage {
      * @see org.switchyard.tools.models.switchyard1_0.spring.impl.SpringPackageImpl#getHl7DataFormat()
      * @generated
      */
-	int HL7_DATA_FORMAT = 66;
+	int HL7_DATA_FORMAT = 67;
 
 	/**
      * The feature id for the '<em><b>Id</b></em>' attribute.
@@ -12951,7 +13096,7 @@ public interface SpringPackage extends EPackage {
      * @see org.switchyard.tools.models.switchyard1_0.spring.impl.SpringPackageImpl#getIdempotentConsumerDefinition()
      * @generated
      */
-	int IDEMPOTENT_CONSUMER_DEFINITION = 67;
+	int IDEMPOTENT_CONSUMER_DEFINITION = 68;
 
 	/**
      * The feature id for the '<em><b>Description</b></em>' containment reference.
@@ -13746,13 +13891,22 @@ public interface SpringPackage extends EPackage {
 	int IDEMPOTENT_CONSUMER_DEFINITION__MESSAGE_ID_REPOSITORY_REF = EXPRESSION_NODE_FEATURE_COUNT + 1;
 
 	/**
+     * The feature id for the '<em><b>Remove On Failure</b></em>' attribute.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int IDEMPOTENT_CONSUMER_DEFINITION__REMOVE_ON_FAILURE = EXPRESSION_NODE_FEATURE_COUNT + 2;
+
+    /**
      * The feature id for the '<em><b>Skip Duplicate</b></em>' attribute.
      * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
      * @generated
      * @ordered
      */
-	int IDEMPOTENT_CONSUMER_DEFINITION__SKIP_DUPLICATE = EXPRESSION_NODE_FEATURE_COUNT + 2;
+	int IDEMPOTENT_CONSUMER_DEFINITION__SKIP_DUPLICATE = EXPRESSION_NODE_FEATURE_COUNT + 3;
 
 	/**
      * The feature id for the '<em><b>Any Attribute2</b></em>' attribute list.
@@ -13761,7 +13915,7 @@ public interface SpringPackage extends EPackage {
      * @generated
      * @ordered
      */
-	int IDEMPOTENT_CONSUMER_DEFINITION__ANY_ATTRIBUTE2 = EXPRESSION_NODE_FEATURE_COUNT + 3;
+	int IDEMPOTENT_CONSUMER_DEFINITION__ANY_ATTRIBUTE2 = EXPRESSION_NODE_FEATURE_COUNT + 4;
 
 	/**
      * The number of structural features of the '<em>Idempotent Consumer Definition</em>' class.
@@ -13770,7 +13924,7 @@ public interface SpringPackage extends EPackage {
      * @generated
      * @ordered
      */
-	int IDEMPOTENT_CONSUMER_DEFINITION_FEATURE_COUNT = EXPRESSION_NODE_FEATURE_COUNT + 4;
+	int IDEMPOTENT_CONSUMER_DEFINITION_FEATURE_COUNT = EXPRESSION_NODE_FEATURE_COUNT + 5;
 
 	/**
      * The meta object id for the '{@link org.switchyard.tools.models.switchyard1_0.spring.impl.ImplicitCollectionEntryImpl <em>Implicit Collection Entry</em>}' class.
@@ -13780,7 +13934,7 @@ public interface SpringPackage extends EPackage {
      * @see org.switchyard.tools.models.switchyard1_0.spring.impl.SpringPackageImpl#getImplicitCollectionEntry()
      * @generated
      */
-	int IMPLICIT_COLLECTION_ENTRY = 69;
+	int IMPLICIT_COLLECTION_ENTRY = 70;
 
 	/**
      * The feature id for the '<em><b>Field</b></em>' attribute list.
@@ -13817,7 +13971,7 @@ public interface SpringPackage extends EPackage {
      * @see org.switchyard.tools.models.switchyard1_0.spring.impl.SpringPackageImpl#getImplicitCollectionList()
      * @generated
      */
-	int IMPLICIT_COLLECTION_LIST = 70;
+	int IMPLICIT_COLLECTION_LIST = 71;
 
 	/**
      * The feature id for the '<em><b>Class</b></em>' containment reference list.
@@ -13845,7 +13999,7 @@ public interface SpringPackage extends EPackage {
      * @see org.switchyard.tools.models.switchyard1_0.spring.impl.SpringPackageImpl#getSendDefinition()
      * @generated
      */
-	int SEND_DEFINITION = 139;
+	int SEND_DEFINITION = 142;
 
 	/**
      * The feature id for the '<em><b>Description</b></em>' containment reference.
@@ -13936,7 +14090,7 @@ public interface SpringPackage extends EPackage {
      * @see org.switchyard.tools.models.switchyard1_0.spring.impl.SpringPackageImpl#getInOnlyDefinition()
      * @generated
      */
-	int IN_ONLY_DEFINITION = 71;
+	int IN_ONLY_DEFINITION = 72;
 
 	/**
      * The feature id for the '<em><b>Description</b></em>' containment reference.
@@ -14036,7 +14190,7 @@ public interface SpringPackage extends EPackage {
      * @see org.switchyard.tools.models.switchyard1_0.spring.impl.SpringPackageImpl#getInOutDefinition()
      * @generated
      */
-	int IN_OUT_DEFINITION = 72;
+	int IN_OUT_DEFINITION = 73;
 
 	/**
      * The feature id for the '<em><b>Description</b></em>' containment reference.
@@ -14136,7 +14290,7 @@ public interface SpringPackage extends EPackage {
      * @see org.switchyard.tools.models.switchyard1_0.spring.impl.SpringPackageImpl#getInterceptDefinition()
      * @generated
      */
-	int INTERCEPT_DEFINITION = 73;
+	int INTERCEPT_DEFINITION = 74;
 
 	/**
      * The feature id for the '<em><b>Description</b></em>' containment reference.
@@ -14740,7 +14894,7 @@ public interface SpringPackage extends EPackage {
      * @see org.switchyard.tools.models.switchyard1_0.spring.impl.SpringPackageImpl#getInterceptFromDefinition()
      * @generated
      */
-	int INTERCEPT_FROM_DEFINITION = 74;
+	int INTERCEPT_FROM_DEFINITION = 75;
 
 	/**
      * The feature id for the '<em><b>Description</b></em>' containment reference.
@@ -15362,7 +15516,7 @@ public interface SpringPackage extends EPackage {
      * @see org.switchyard.tools.models.switchyard1_0.spring.impl.SpringPackageImpl#getInterceptSendToEndpointDefinition()
      * @generated
      */
-	int INTERCEPT_SEND_TO_ENDPOINT_DEFINITION = 75;
+	int INTERCEPT_SEND_TO_ENDPOINT_DEFINITION = 76;
 
 	/**
      * The feature id for the '<em><b>Description</b></em>' containment reference.
@@ -15984,7 +16138,7 @@ public interface SpringPackage extends EPackage {
      * @see org.switchyard.tools.models.switchyard1_0.spring.impl.SpringPackageImpl#getJavaScriptExpression()
      * @generated
      */
-	int JAVA_SCRIPT_EXPRESSION = 76;
+	int JAVA_SCRIPT_EXPRESSION = 77;
 
 	/**
      * The feature id for the '<em><b>Value</b></em>' attribute.
@@ -16021,7 +16175,7 @@ public interface SpringPackage extends EPackage {
      * @see org.switchyard.tools.models.switchyard1_0.spring.impl.SpringPackageImpl#getJaxbDataFormat()
      * @generated
      */
-	int JAXB_DATA_FORMAT = 77;
+	int JAXB_DATA_FORMAT = 78;
 
 	/**
      * The feature id for the '<em><b>Id</b></em>' attribute.
@@ -16121,7 +16275,7 @@ public interface SpringPackage extends EPackage {
      * @see org.switchyard.tools.models.switchyard1_0.spring.impl.SpringPackageImpl#getJibxDataFormat()
      * @generated
      */
-	int JIBX_DATA_FORMAT = 78;
+	int JIBX_DATA_FORMAT = 79;
 
 	/**
      * The feature id for the '<em><b>Id</b></em>' attribute.
@@ -16158,7 +16312,7 @@ public interface SpringPackage extends EPackage {
      * @see org.switchyard.tools.models.switchyard1_0.spring.impl.SpringPackageImpl#getJsonDataFormat()
      * @generated
      */
-	int JSON_DATA_FORMAT = 79;
+	int JSON_DATA_FORMAT = 80;
 
 	/**
      * The feature id for the '<em><b>Id</b></em>' attribute.
@@ -16213,7 +16367,7 @@ public interface SpringPackage extends EPackage {
      * @see org.switchyard.tools.models.switchyard1_0.spring.impl.SpringPackageImpl#getJxPathExpression()
      * @generated
      */
-	int JX_PATH_EXPRESSION = 80;
+	int JX_PATH_EXPRESSION = 81;
 
 	/**
      * The feature id for the '<em><b>Value</b></em>' attribute.
@@ -16250,7 +16404,7 @@ public interface SpringPackage extends EPackage {
      * @see org.switchyard.tools.models.switchyard1_0.spring.impl.SpringPackageImpl#getKeyManagersParametersFactoryBean()
      * @generated
      */
-	int KEY_MANAGERS_PARAMETERS_FACTORY_BEAN = 81;
+	int KEY_MANAGERS_PARAMETERS_FACTORY_BEAN = 82;
 
 	/**
      * The feature id for the '<em><b>Id</b></em>' attribute.
@@ -16323,7 +16477,7 @@ public interface SpringPackage extends EPackage {
      * @see org.switchyard.tools.models.switchyard1_0.spring.impl.SpringPackageImpl#getKeyStoreParametersFactoryBean()
      * @generated
      */
-	int KEY_STORE_PARAMETERS_FACTORY_BEAN = 82;
+	int KEY_STORE_PARAMETERS_FACTORY_BEAN = 83;
 
 	/**
      * The feature id for the '<em><b>Id</b></em>' attribute.
@@ -16396,7 +16550,7 @@ public interface SpringPackage extends EPackage {
      * @see org.switchyard.tools.models.switchyard1_0.spring.impl.SpringPackageImpl#getLanguageExpression()
      * @generated
      */
-	int LANGUAGE_EXPRESSION = 83;
+	int LANGUAGE_EXPRESSION = 84;
 
 	/**
      * The feature id for the '<em><b>Value</b></em>' attribute.
@@ -16442,7 +16596,7 @@ public interface SpringPackage extends EPackage {
      * @see org.switchyard.tools.models.switchyard1_0.spring.impl.SpringPackageImpl#getLoadBalanceDefinition()
      * @generated
      */
-	int LOAD_BALANCE_DEFINITION = 84;
+	int LOAD_BALANCE_DEFINITION = 85;
 
 	/**
      * The feature id for the '<em><b>Description</b></em>' containment reference.
@@ -17109,7 +17263,7 @@ public interface SpringPackage extends EPackage {
      * @see org.switchyard.tools.models.switchyard1_0.spring.impl.SpringPackageImpl#getLogDefinition()
      * @generated
      */
-	int LOG_DEFINITION = 86;
+	int LOG_DEFINITION = 87;
 
 	/**
      * The feature id for the '<em><b>Description</b></em>' containment reference.
@@ -17175,13 +17329,22 @@ public interface SpringPackage extends EPackage {
 	int LOG_DEFINITION__LOG_NAME = NO_OUTPUT_DEFINITION_FEATURE_COUNT + 1;
 
 	/**
+     * The feature id for the '<em><b>Marker</b></em>' attribute.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int LOG_DEFINITION__MARKER = NO_OUTPUT_DEFINITION_FEATURE_COUNT + 2;
+
+    /**
      * The feature id for the '<em><b>Message</b></em>' attribute.
      * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
      * @generated
      * @ordered
      */
-	int LOG_DEFINITION__MESSAGE = NO_OUTPUT_DEFINITION_FEATURE_COUNT + 2;
+	int LOG_DEFINITION__MESSAGE = NO_OUTPUT_DEFINITION_FEATURE_COUNT + 3;
 
 	/**
      * The feature id for the '<em><b>Any Attribute2</b></em>' attribute list.
@@ -17190,7 +17353,7 @@ public interface SpringPackage extends EPackage {
      * @generated
      * @ordered
      */
-	int LOG_DEFINITION__ANY_ATTRIBUTE2 = NO_OUTPUT_DEFINITION_FEATURE_COUNT + 3;
+	int LOG_DEFINITION__ANY_ATTRIBUTE2 = NO_OUTPUT_DEFINITION_FEATURE_COUNT + 4;
 
 	/**
      * The number of structural features of the '<em>Log Definition</em>' class.
@@ -17199,7 +17362,7 @@ public interface SpringPackage extends EPackage {
      * @generated
      * @ordered
      */
-	int LOG_DEFINITION_FEATURE_COUNT = NO_OUTPUT_DEFINITION_FEATURE_COUNT + 4;
+	int LOG_DEFINITION_FEATURE_COUNT = NO_OUTPUT_DEFINITION_FEATURE_COUNT + 5;
 
 	/**
      * The meta object id for the '{@link org.switchyard.tools.models.switchyard1_0.spring.impl.LoopDefinitionImpl <em>Loop Definition</em>}' class.
@@ -17209,7 +17372,7 @@ public interface SpringPackage extends EPackage {
      * @see org.switchyard.tools.models.switchyard1_0.spring.impl.SpringPackageImpl#getLoopDefinition()
      * @generated
      */
-	int LOOP_DEFINITION = 87;
+	int LOOP_DEFINITION = 88;
 
 	/**
      * The feature id for the '<em><b>Description</b></em>' containment reference.
@@ -18020,7 +18183,7 @@ public interface SpringPackage extends EPackage {
      * @see org.switchyard.tools.models.switchyard1_0.spring.impl.SpringPackageImpl#getMarshalDefinition()
      * @generated
      */
-	int MARSHAL_DEFINITION = 88;
+	int MARSHAL_DEFINITION = 89;
 
 	/**
      * The feature id for the '<em><b>Description</b></em>' containment reference.
@@ -18257,13 +18420,22 @@ public interface SpringPackage extends EPackage {
 	int MARSHAL_DEFINITION__XSTREAM = NO_OUTPUT_DEFINITION_FEATURE_COUNT + 20;
 
 	/**
+     * The feature id for the '<em><b>Pgp</b></em>' containment reference.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int MARSHAL_DEFINITION__PGP = NO_OUTPUT_DEFINITION_FEATURE_COUNT + 21;
+
+    /**
      * The feature id for the '<em><b>Zip</b></em>' containment reference.
      * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
      * @generated
      * @ordered
      */
-	int MARSHAL_DEFINITION__ZIP = NO_OUTPUT_DEFINITION_FEATURE_COUNT + 21;
+	int MARSHAL_DEFINITION__ZIP = NO_OUTPUT_DEFINITION_FEATURE_COUNT + 22;
 
 	/**
      * The feature id for the '<em><b>Ref</b></em>' attribute.
@@ -18272,7 +18444,7 @@ public interface SpringPackage extends EPackage {
      * @generated
      * @ordered
      */
-	int MARSHAL_DEFINITION__REF = NO_OUTPUT_DEFINITION_FEATURE_COUNT + 22;
+	int MARSHAL_DEFINITION__REF = NO_OUTPUT_DEFINITION_FEATURE_COUNT + 23;
 
 	/**
      * The feature id for the '<em><b>Any Attribute2</b></em>' attribute list.
@@ -18281,7 +18453,7 @@ public interface SpringPackage extends EPackage {
      * @generated
      * @ordered
      */
-	int MARSHAL_DEFINITION__ANY_ATTRIBUTE2 = NO_OUTPUT_DEFINITION_FEATURE_COUNT + 23;
+	int MARSHAL_DEFINITION__ANY_ATTRIBUTE2 = NO_OUTPUT_DEFINITION_FEATURE_COUNT + 24;
 
 	/**
      * The number of structural features of the '<em>Marshal Definition</em>' class.
@@ -18290,7 +18462,7 @@ public interface SpringPackage extends EPackage {
      * @generated
      * @ordered
      */
-	int MARSHAL_DEFINITION_FEATURE_COUNT = NO_OUTPUT_DEFINITION_FEATURE_COUNT + 24;
+	int MARSHAL_DEFINITION_FEATURE_COUNT = NO_OUTPUT_DEFINITION_FEATURE_COUNT + 25;
 
 	/**
      * The meta object id for the '{@link org.switchyard.tools.models.switchyard1_0.spring.impl.MethodCallExpressionImpl <em>Method Call Expression</em>}' class.
@@ -18300,7 +18472,7 @@ public interface SpringPackage extends EPackage {
      * @see org.switchyard.tools.models.switchyard1_0.spring.impl.SpringPackageImpl#getMethodCallExpression()
      * @generated
      */
-	int METHOD_CALL_EXPRESSION = 89;
+	int METHOD_CALL_EXPRESSION = 90;
 
 	/**
      * The feature id for the '<em><b>Value</b></em>' attribute.
@@ -18366,6 +18538,25 @@ public interface SpringPackage extends EPackage {
 	int METHOD_CALL_EXPRESSION_FEATURE_COUNT = EXPRESSION_FEATURE_COUNT + 4;
 
 	/**
+     * The meta object id for the '{@link org.switchyard.tools.models.switchyard1_0.spring.impl.ModelHelperImpl <em>Model Helper</em>}' class.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @see org.switchyard.tools.models.switchyard1_0.spring.impl.ModelHelperImpl
+     * @see org.switchyard.tools.models.switchyard1_0.spring.impl.SpringPackageImpl#getModelHelper()
+     * @generated
+     */
+    int MODEL_HELPER = 91;
+
+    /**
+     * The number of structural features of the '<em>Model Helper</em>' class.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int MODEL_HELPER_FEATURE_COUNT = 0;
+
+    /**
      * The meta object id for the '{@link org.switchyard.tools.models.switchyard1_0.spring.impl.MulticastDefinitionImpl <em>Multicast Definition</em>}' class.
      * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -18373,7 +18564,7 @@ public interface SpringPackage extends EPackage {
      * @see org.switchyard.tools.models.switchyard1_0.spring.impl.SpringPackageImpl#getMulticastDefinition()
      * @generated
      */
-	int MULTICAST_DEFINITION = 90;
+	int MULTICAST_DEFINITION = 92;
 
 	/**
      * The feature id for the '<em><b>Description</b></em>' containment reference.
@@ -19049,7 +19240,7 @@ public interface SpringPackage extends EPackage {
      * @see org.switchyard.tools.models.switchyard1_0.spring.impl.SpringPackageImpl#getMvelExpression()
      * @generated
      */
-	int MVEL_EXPRESSION = 91;
+	int MVEL_EXPRESSION = 93;
 
 	/**
      * The feature id for the '<em><b>Value</b></em>' attribute.
@@ -19086,7 +19277,7 @@ public interface SpringPackage extends EPackage {
      * @see org.switchyard.tools.models.switchyard1_0.spring.impl.SpringPackageImpl#getNamespaceAwareExpression()
      * @generated
      */
-	int NAMESPACE_AWARE_EXPRESSION = 92;
+	int NAMESPACE_AWARE_EXPRESSION = 94;
 
 	/**
      * The feature id for the '<em><b>Value</b></em>' attribute.
@@ -19123,7 +19314,7 @@ public interface SpringPackage extends EPackage {
      * @see org.switchyard.tools.models.switchyard1_0.spring.impl.SpringPackageImpl#getNodeFactory()
      * @generated
      */
-	int NODE_FACTORY = 93;
+	int NODE_FACTORY = 95;
 
 	/**
      * The number of structural features of the '<em>Node Factory</em>' class.
@@ -19142,7 +19333,7 @@ public interface SpringPackage extends EPackage {
      * @see org.switchyard.tools.models.switchyard1_0.spring.impl.SpringPackageImpl#getOgnlExpression()
      * @generated
      */
-	int OGNL_EXPRESSION = 96;
+	int OGNL_EXPRESSION = 98;
 
 	/**
      * The feature id for the '<em><b>Value</b></em>' attribute.
@@ -19179,7 +19370,7 @@ public interface SpringPackage extends EPackage {
      * @see org.switchyard.tools.models.switchyard1_0.spring.impl.SpringPackageImpl#getOmitFieldEntry()
      * @generated
      */
-	int OMIT_FIELD_ENTRY = 97;
+	int OMIT_FIELD_ENTRY = 99;
 
 	/**
      * The feature id for the '<em><b>Field</b></em>' attribute list.
@@ -19216,7 +19407,7 @@ public interface SpringPackage extends EPackage {
      * @see org.switchyard.tools.models.switchyard1_0.spring.impl.SpringPackageImpl#getOmitFieldList()
      * @generated
      */
-	int OMIT_FIELD_LIST = 98;
+	int OMIT_FIELD_LIST = 100;
 
 	/**
      * The feature id for the '<em><b>Omit Field</b></em>' containment reference list.
@@ -19244,7 +19435,7 @@ public interface SpringPackage extends EPackage {
      * @see org.switchyard.tools.models.switchyard1_0.spring.impl.SpringPackageImpl#getOnCompletionDefinition()
      * @generated
      */
-	int ON_COMPLETION_DEFINITION = 99;
+	int ON_COMPLETION_DEFINITION = 101;
 
 	/**
      * The feature id for the '<em><b>Description</b></em>' containment reference.
@@ -19884,7 +20075,7 @@ public interface SpringPackage extends EPackage {
      * @see org.switchyard.tools.models.switchyard1_0.spring.impl.SpringPackageImpl#getOnExceptionDefinition()
      * @generated
      */
-	int ON_EXCEPTION_DEFINITION = 100;
+	int ON_EXCEPTION_DEFINITION = 102;
 
 	/**
      * The feature id for the '<em><b>Description</b></em>' containment reference.
@@ -20560,7 +20751,7 @@ public interface SpringPackage extends EPackage {
      * @see org.switchyard.tools.models.switchyard1_0.spring.impl.SpringPackageImpl#getOtherwiseDefinition()
      * @generated
      */
-	int OTHERWISE_DEFINITION = 102;
+	int OTHERWISE_DEFINITION = 104;
 
 	/**
      * The feature id for the '<em><b>Description</b></em>' containment reference.
@@ -21164,7 +21355,7 @@ public interface SpringPackage extends EPackage {
      * @see org.switchyard.tools.models.switchyard1_0.spring.impl.SpringPackageImpl#getPackageScanDefinition()
      * @generated
      */
-	int PACKAGE_SCAN_DEFINITION = 104;
+	int PACKAGE_SCAN_DEFINITION = 106;
 
 	/**
      * The feature id for the '<em><b>Package</b></em>' attribute list.
@@ -21210,7 +21401,7 @@ public interface SpringPackage extends EPackage {
      * @see org.switchyard.tools.models.switchyard1_0.spring.impl.SpringPackageImpl#getPhpExpression()
      * @generated
      */
-	int PHP_EXPRESSION = 105;
+	int PHP_EXPRESSION = 107;
 
 	/**
      * The feature id for the '<em><b>Value</b></em>' attribute.
@@ -21247,7 +21438,7 @@ public interface SpringPackage extends EPackage {
      * @see org.switchyard.tools.models.switchyard1_0.spring.impl.SpringPackageImpl#getPipelineDefinition()
      * @generated
      */
-	int PIPELINE_DEFINITION = 106;
+	int PIPELINE_DEFINITION = 108;
 
 	/**
      * The feature id for the '<em><b>Description</b></em>' containment reference.
@@ -21844,6 +22035,79 @@ public interface SpringPackage extends EPackage {
 	int PIPELINE_DEFINITION_FEATURE_COUNT = OUTPUT_FEATURE_COUNT + 1;
 
 	/**
+     * The meta object id for the '{@link org.switchyard.tools.models.switchyard1_0.spring.impl.PgpDataFormatImpl <em>Pgp Data Format</em>}' class.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @see org.switchyard.tools.models.switchyard1_0.spring.impl.PgpDataFormatImpl
+     * @see org.switchyard.tools.models.switchyard1_0.spring.impl.SpringPackageImpl#getPgpDataFormat()
+     * @generated
+     */
+    int PGP_DATA_FORMAT = 109;
+
+    /**
+     * The feature id for the '<em><b>Id</b></em>' attribute.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int PGP_DATA_FORMAT__ID = DATA_FORMAT__ID;
+
+    /**
+     * The feature id for the '<em><b>Armored</b></em>' attribute.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int PGP_DATA_FORMAT__ARMORED = DATA_FORMAT_FEATURE_COUNT + 0;
+
+    /**
+     * The feature id for the '<em><b>Integrity</b></em>' attribute.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int PGP_DATA_FORMAT__INTEGRITY = DATA_FORMAT_FEATURE_COUNT + 1;
+
+    /**
+     * The feature id for the '<em><b>Key File Name</b></em>' attribute.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int PGP_DATA_FORMAT__KEY_FILE_NAME = DATA_FORMAT_FEATURE_COUNT + 2;
+
+    /**
+     * The feature id for the '<em><b>Key Userid</b></em>' attribute.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int PGP_DATA_FORMAT__KEY_USERID = DATA_FORMAT_FEATURE_COUNT + 3;
+
+    /**
+     * The feature id for the '<em><b>Password</b></em>' attribute.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int PGP_DATA_FORMAT__PASSWORD = DATA_FORMAT_FEATURE_COUNT + 4;
+
+    /**
+     * The number of structural features of the '<em>Pgp Data Format</em>' class.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int PGP_DATA_FORMAT_FEATURE_COUNT = DATA_FORMAT_FEATURE_COUNT + 5;
+
+    /**
      * The meta object id for the '{@link org.switchyard.tools.models.switchyard1_0.spring.impl.PolicyDefinitionImpl <em>Policy Definition</em>}' class.
      * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -21851,7 +22115,7 @@ public interface SpringPackage extends EPackage {
      * @see org.switchyard.tools.models.switchyard1_0.spring.impl.SpringPackageImpl#getPolicyDefinition()
      * @generated
      */
-	int POLICY_DEFINITION = 107;
+	int POLICY_DEFINITION = 110;
 
 	/**
      * The feature id for the '<em><b>Description</b></em>' containment reference.
@@ -22464,7 +22728,7 @@ public interface SpringPackage extends EPackage {
      * @see org.switchyard.tools.models.switchyard1_0.spring.impl.SpringPackageImpl#getPollEnrichDefinition()
      * @generated
      */
-	int POLL_ENRICH_DEFINITION = 108;
+	int POLL_ENRICH_DEFINITION = 111;
 
 	/**
      * The feature id for the '<em><b>Description</b></em>' containment reference.
@@ -22573,7 +22837,7 @@ public interface SpringPackage extends EPackage {
      * @see org.switchyard.tools.models.switchyard1_0.spring.impl.SpringPackageImpl#getProcessDefinition()
      * @generated
      */
-	int PROCESS_DEFINITION = 109;
+	int PROCESS_DEFINITION = 112;
 
 	/**
      * The feature id for the '<em><b>Description</b></em>' containment reference.
@@ -22655,7 +22919,7 @@ public interface SpringPackage extends EPackage {
      * @see org.switchyard.tools.models.switchyard1_0.spring.impl.SpringPackageImpl#getProcessorDefinitionHelper()
      * @generated
      */
-	int PROCESSOR_DEFINITION_HELPER = 111;
+	int PROCESSOR_DEFINITION_HELPER = 114;
 
 	/**
      * The number of structural features of the '<em>Processor Definition Helper</em>' class.
@@ -22674,7 +22938,7 @@ public interface SpringPackage extends EPackage {
      * @see org.switchyard.tools.models.switchyard1_0.spring.impl.SpringPackageImpl#getPropertiesDefinition()
      * @generated
      */
-	int PROPERTIES_DEFINITION = 112;
+	int PROPERTIES_DEFINITION = 115;
 
 	/**
      * The feature id for the '<em><b>Property</b></em>' containment reference list.
@@ -22702,7 +22966,7 @@ public interface SpringPackage extends EPackage {
      * @see org.switchyard.tools.models.switchyard1_0.spring.impl.SpringPackageImpl#getPropertyDefinition()
      * @generated
      */
-	int PROPERTY_DEFINITION = 113;
+	int PROPERTY_DEFINITION = 116;
 
 	/**
      * The feature id for the '<em><b>Key</b></em>' attribute.
@@ -22739,7 +23003,7 @@ public interface SpringPackage extends EPackage {
      * @see org.switchyard.tools.models.switchyard1_0.spring.impl.SpringPackageImpl#getPropertyExpression()
      * @generated
      */
-	int PROPERTY_EXPRESSION = 114;
+	int PROPERTY_EXPRESSION = 117;
 
 	/**
      * The feature id for the '<em><b>Value</b></em>' attribute.
@@ -22776,7 +23040,7 @@ public interface SpringPackage extends EPackage {
      * @see org.switchyard.tools.models.switchyard1_0.spring.impl.SpringPackageImpl#getProtobufDataFormat()
      * @generated
      */
-	int PROTOBUF_DATA_FORMAT = 115;
+	int PROTOBUF_DATA_FORMAT = 118;
 
 	/**
      * The feature id for the '<em><b>Id</b></em>' attribute.
@@ -22813,7 +23077,7 @@ public interface SpringPackage extends EPackage {
      * @see org.switchyard.tools.models.switchyard1_0.spring.impl.SpringPackageImpl#getPythonExpression()
      * @generated
      */
-	int PYTHON_EXPRESSION = 116;
+	int PYTHON_EXPRESSION = 119;
 
 	/**
      * The feature id for the '<em><b>Value</b></em>' attribute.
@@ -22850,7 +23114,7 @@ public interface SpringPackage extends EPackage {
      * @see org.switchyard.tools.models.switchyard1_0.spring.impl.SpringPackageImpl#getRandomLoadBalancerDefinition()
      * @generated
      */
-	int RANDOM_LOAD_BALANCER_DEFINITION = 117;
+	int RANDOM_LOAD_BALANCER_DEFINITION = 120;
 
 	/**
      * The feature id for the '<em><b>Id</b></em>' attribute.
@@ -22878,7 +23142,7 @@ public interface SpringPackage extends EPackage {
      * @see org.switchyard.tools.models.switchyard1_0.spring.impl.SpringPackageImpl#getRecipientListDefinition()
      * @generated
      */
-	int RECIPIENT_LIST_DEFINITION = 118;
+	int RECIPIENT_LIST_DEFINITION = 121;
 
 	/**
      * The feature id for the '<em><b>Description</b></em>' containment reference.
@@ -23779,7 +24043,7 @@ public interface SpringPackage extends EPackage {
      * @see org.switchyard.tools.models.switchyard1_0.spring.impl.SpringPackageImpl#getRedeliveryPolicyDefinition()
      * @generated
      */
-	int REDELIVERY_POLICY_DEFINITION = 119;
+	int REDELIVERY_POLICY_DEFINITION = 122;
 
 	/**
      * The feature id for the '<em><b>Async Delayed Redelivery</b></em>' attribute.
@@ -23960,7 +24224,7 @@ public interface SpringPackage extends EPackage {
      * @see org.switchyard.tools.models.switchyard1_0.spring.impl.SpringPackageImpl#getRefExpression()
      * @generated
      */
-	int REF_EXPRESSION = 120;
+	int REF_EXPRESSION = 123;
 
 	/**
      * The feature id for the '<em><b>Value</b></em>' attribute.
@@ -23997,7 +24261,7 @@ public interface SpringPackage extends EPackage {
      * @see org.switchyard.tools.models.switchyard1_0.spring.impl.SpringPackageImpl#getRemoveHeaderDefinition()
      * @generated
      */
-	int REMOVE_HEADER_DEFINITION = 121;
+	int REMOVE_HEADER_DEFINITION = 124;
 
 	/**
      * The feature id for the '<em><b>Description</b></em>' containment reference.
@@ -24079,7 +24343,7 @@ public interface SpringPackage extends EPackage {
      * @see org.switchyard.tools.models.switchyard1_0.spring.impl.SpringPackageImpl#getRemoveHeadersDefinition()
      * @generated
      */
-	int REMOVE_HEADERS_DEFINITION = 122;
+	int REMOVE_HEADERS_DEFINITION = 125;
 
 	/**
      * The feature id for the '<em><b>Description</b></em>' containment reference.
@@ -24170,7 +24434,7 @@ public interface SpringPackage extends EPackage {
      * @see org.switchyard.tools.models.switchyard1_0.spring.impl.SpringPackageImpl#getRemovePropertyDefinition()
      * @generated
      */
-	int REMOVE_PROPERTY_DEFINITION = 123;
+	int REMOVE_PROPERTY_DEFINITION = 126;
 
 	/**
      * The feature id for the '<em><b>Description</b></em>' containment reference.
@@ -24252,7 +24516,7 @@ public interface SpringPackage extends EPackage {
      * @see org.switchyard.tools.models.switchyard1_0.spring.impl.SpringPackageImpl#getResequenceDefinition()
      * @generated
      */
-	int RESEQUENCE_DEFINITION = 124;
+	int RESEQUENCE_DEFINITION = 127;
 
 	/**
      * The feature id for the '<em><b>Description</b></em>' containment reference.
@@ -25063,7 +25327,7 @@ public interface SpringPackage extends EPackage {
      * @see org.switchyard.tools.models.switchyard1_0.spring.impl.SpringPackageImpl#getRollbackDefinition()
      * @generated
      */
-	int ROLLBACK_DEFINITION = 126;
+	int ROLLBACK_DEFINITION = 129;
 
 	/**
      * The feature id for the '<em><b>Description</b></em>' containment reference.
@@ -25163,7 +25427,7 @@ public interface SpringPackage extends EPackage {
      * @see org.switchyard.tools.models.switchyard1_0.spring.impl.SpringPackageImpl#getRoundRobinLoadBalancerDefinition()
      * @generated
      */
-	int ROUND_ROBIN_LOAD_BALANCER_DEFINITION = 127;
+	int ROUND_ROBIN_LOAD_BALANCER_DEFINITION = 130;
 
 	/**
      * The feature id for the '<em><b>Id</b></em>' attribute.
@@ -25191,7 +25455,7 @@ public interface SpringPackage extends EPackage {
      * @see org.switchyard.tools.models.switchyard1_0.spring.impl.SpringPackageImpl#getRouteBuilderDefinition()
      * @generated
      */
-	int ROUTE_BUILDER_DEFINITION = 128;
+	int ROUTE_BUILDER_DEFINITION = 131;
 
 	/**
      * The feature id for the '<em><b>Id</b></em>' attribute.
@@ -25228,7 +25492,7 @@ public interface SpringPackage extends EPackage {
      * @see org.switchyard.tools.models.switchyard1_0.spring.impl.SpringPackageImpl#getRouteContextRefDefinition()
      * @generated
      */
-	int ROUTE_CONTEXT_REF_DEFINITION = 129;
+	int ROUTE_CONTEXT_REF_DEFINITION = 132;
 
 	/**
      * The feature id for the '<em><b>Ref</b></em>' attribute.
@@ -25256,7 +25520,7 @@ public interface SpringPackage extends EPackage {
      * @see org.switchyard.tools.models.switchyard1_0.spring.impl.SpringPackageImpl#getRouteDefinition()
      * @generated
      */
-	int ROUTE_DEFINITION = 130;
+	int ROUTE_DEFINITION = 133;
 
 	/**
      * The feature id for the '<em><b>Description</b></em>' containment reference.
@@ -25959,7 +26223,7 @@ public interface SpringPackage extends EPackage {
      * @see org.switchyard.tools.models.switchyard1_0.spring.impl.SpringPackageImpl#getRouteDefinitionHelper()
      * @generated
      */
-	int ROUTE_DEFINITION_HELPER = 131;
+	int ROUTE_DEFINITION_HELPER = 134;
 
 	/**
      * The number of structural features of the '<em>Route Definition Helper</em>' class.
@@ -25978,7 +26242,7 @@ public interface SpringPackage extends EPackage {
      * @see org.switchyard.tools.models.switchyard1_0.spring.impl.SpringPackageImpl#getRoutesDefinition()
      * @generated
      */
-	int ROUTES_DEFINITION = 132;
+	int ROUTES_DEFINITION = 135;
 
 	/**
      * The feature id for the '<em><b>Description</b></em>' containment reference.
@@ -26024,7 +26288,7 @@ public interface SpringPackage extends EPackage {
      * @see org.switchyard.tools.models.switchyard1_0.spring.impl.SpringPackageImpl#getRoutingSlipDefinition()
      * @generated
      */
-	int ROUTING_SLIP_DEFINITION = 133;
+	int ROUTING_SLIP_DEFINITION = 136;
 
 	/**
      * The feature id for the '<em><b>Description</b></em>' containment reference.
@@ -26853,7 +27117,7 @@ public interface SpringPackage extends EPackage {
      * @see org.switchyard.tools.models.switchyard1_0.spring.impl.SpringPackageImpl#getRssDataFormat()
      * @generated
      */
-	int RSS_DATA_FORMAT = 134;
+	int RSS_DATA_FORMAT = 137;
 
 	/**
      * The feature id for the '<em><b>Id</b></em>' attribute.
@@ -26881,7 +27145,7 @@ public interface SpringPackage extends EPackage {
      * @see org.switchyard.tools.models.switchyard1_0.spring.impl.SpringPackageImpl#getRubyExpression()
      * @generated
      */
-	int RUBY_EXPRESSION = 135;
+	int RUBY_EXPRESSION = 138;
 
 	/**
      * The feature id for the '<em><b>Value</b></em>' attribute.
@@ -26918,7 +27182,7 @@ public interface SpringPackage extends EPackage {
      * @see org.switchyard.tools.models.switchyard1_0.spring.impl.SpringPackageImpl#getSamplingDefinition()
      * @generated
      */
-	int SAMPLING_DEFINITION = 136;
+	int SAMPLING_DEFINITION = 139;
 
 	/**
      * The feature id for the '<em><b>Description</b></em>' containment reference.
@@ -27549,7 +27813,7 @@ public interface SpringPackage extends EPackage {
      * @see org.switchyard.tools.models.switchyard1_0.spring.impl.SpringPackageImpl#getSecureRandomParametersFactoryBean()
      * @generated
      */
-	int SECURE_RANDOM_PARAMETERS_FACTORY_BEAN = 137;
+	int SECURE_RANDOM_PARAMETERS_FACTORY_BEAN = 140;
 
 	/**
      * The feature id for the '<em><b>Id</b></em>' attribute.
@@ -27604,7 +27868,7 @@ public interface SpringPackage extends EPackage {
      * @see org.switchyard.tools.models.switchyard1_0.spring.impl.SpringPackageImpl#getSecureSocketProtocolsParameters()
      * @generated
      */
-	int SECURE_SOCKET_PROTOCOLS_PARAMETERS = 138;
+	int SECURE_SOCKET_PROTOCOLS_PARAMETERS = 141;
 
 	/**
      * The feature id for the '<em><b>Secure Socket Protocol</b></em>' attribute list.
@@ -27632,7 +27896,7 @@ public interface SpringPackage extends EPackage {
      * @see org.switchyard.tools.models.switchyard1_0.spring.impl.SpringPackageImpl#getSerializationDataFormat()
      * @generated
      */
-	int SERIALIZATION_DATA_FORMAT = 140;
+	int SERIALIZATION_DATA_FORMAT = 143;
 
 	/**
      * The feature id for the '<em><b>Id</b></em>' attribute.
@@ -27660,7 +27924,7 @@ public interface SpringPackage extends EPackage {
      * @see org.switchyard.tools.models.switchyard1_0.spring.impl.SpringPackageImpl#getSetBodyDefinition()
      * @generated
      */
-	int SET_BODY_DEFINITION = 141;
+	int SET_BODY_DEFINITION = 144;
 
 	/**
      * The feature id for the '<em><b>Description</b></em>' containment reference.
@@ -28471,7 +28735,7 @@ public interface SpringPackage extends EPackage {
      * @see org.switchyard.tools.models.switchyard1_0.spring.impl.SpringPackageImpl#getSetExchangePatternDefinition()
      * @generated
      */
-	int SET_EXCHANGE_PATTERN_DEFINITION = 142;
+	int SET_EXCHANGE_PATTERN_DEFINITION = 145;
 
 	/**
      * The feature id for the '<em><b>Description</b></em>' containment reference.
@@ -28553,7 +28817,7 @@ public interface SpringPackage extends EPackage {
      * @see org.switchyard.tools.models.switchyard1_0.spring.impl.SpringPackageImpl#getSetFaultBodyDefinition()
      * @generated
      */
-	int SET_FAULT_BODY_DEFINITION = 143;
+	int SET_FAULT_BODY_DEFINITION = 146;
 
 	/**
      * The feature id for the '<em><b>Description</b></em>' containment reference.
@@ -29364,7 +29628,7 @@ public interface SpringPackage extends EPackage {
      * @see org.switchyard.tools.models.switchyard1_0.spring.impl.SpringPackageImpl#getSetHeaderDefinition()
      * @generated
      */
-	int SET_HEADER_DEFINITION = 144;
+	int SET_HEADER_DEFINITION = 147;
 
 	/**
      * The feature id for the '<em><b>Description</b></em>' containment reference.
@@ -30184,7 +30448,7 @@ public interface SpringPackage extends EPackage {
      * @see org.switchyard.tools.models.switchyard1_0.spring.impl.SpringPackageImpl#getSetOutHeaderDefinition()
      * @generated
      */
-	int SET_OUT_HEADER_DEFINITION = 145;
+	int SET_OUT_HEADER_DEFINITION = 148;
 
 	/**
      * The feature id for the '<em><b>Description</b></em>' containment reference.
@@ -31004,7 +31268,7 @@ public interface SpringPackage extends EPackage {
      * @see org.switchyard.tools.models.switchyard1_0.spring.impl.SpringPackageImpl#getSetPropertyDefinition()
      * @generated
      */
-	int SET_PROPERTY_DEFINITION = 146;
+	int SET_PROPERTY_DEFINITION = 149;
 
 	/**
      * The feature id for the '<em><b>Description</b></em>' containment reference.
@@ -31824,7 +32088,7 @@ public interface SpringPackage extends EPackage {
      * @see org.switchyard.tools.models.switchyard1_0.spring.impl.SpringPackageImpl#getSimpleExpression()
      * @generated
      */
-	int SIMPLE_EXPRESSION = 147;
+	int SIMPLE_EXPRESSION = 150;
 
 	/**
      * The feature id for the '<em><b>Value</b></em>' attribute.
@@ -31870,7 +32134,7 @@ public interface SpringPackage extends EPackage {
      * @see org.switchyard.tools.models.switchyard1_0.spring.impl.SpringPackageImpl#getSoapJaxbDataFormat()
      * @generated
      */
-	int SOAP_JAXB_DATA_FORMAT = 148;
+	int SOAP_JAXB_DATA_FORMAT = 151;
 
 	/**
      * The feature id for the '<em><b>Id</b></em>' attribute.
@@ -31925,7 +32189,7 @@ public interface SpringPackage extends EPackage {
      * @see org.switchyard.tools.models.switchyard1_0.spring.impl.SpringPackageImpl#getSortDefinition()
      * @generated
      */
-	int SORT_DEFINITION = 149;
+	int SORT_DEFINITION = 152;
 
 	/**
      * The feature id for the '<em><b>Description</b></em>' containment reference.
@@ -32745,7 +33009,7 @@ public interface SpringPackage extends EPackage {
      * @see org.switchyard.tools.models.switchyard1_0.spring.impl.SpringPackageImpl#getSpELExpression()
      * @generated
      */
-	int SP_EL_EXPRESSION = 150;
+	int SP_EL_EXPRESSION = 153;
 
 	/**
      * The feature id for the '<em><b>Value</b></em>' attribute.
@@ -32782,7 +33046,7 @@ public interface SpringPackage extends EPackage {
      * @see org.switchyard.tools.models.switchyard1_0.spring.impl.SpringPackageImpl#getSplitDefinition()
      * @generated
      */
-	int SPLIT_DEFINITION = 151;
+	int SPLIT_DEFINITION = 154;
 
 	/**
      * The feature id for the '<em><b>Description</b></em>' containment reference.
@@ -33656,7 +33920,7 @@ public interface SpringPackage extends EPackage {
      * @see org.switchyard.tools.models.switchyard1_0.spring.impl.SpringPackageImpl#getSqlExpression()
      * @generated
      */
-	int SQL_EXPRESSION = 152;
+	int SQL_EXPRESSION = 155;
 
 	/**
      * The feature id for the '<em><b>Value</b></em>' attribute.
@@ -33693,7 +33957,7 @@ public interface SpringPackage extends EPackage {
      * @see org.switchyard.tools.models.switchyard1_0.spring.impl.SpringPackageImpl#getSslContextClientParametersFactoryBean()
      * @generated
      */
-	int SSL_CONTEXT_CLIENT_PARAMETERS_FACTORY_BEAN = 153;
+	int SSL_CONTEXT_CLIENT_PARAMETERS_FACTORY_BEAN = 156;
 
 	/**
      * The feature id for the '<em><b>Id</b></em>' attribute.
@@ -33775,7 +34039,7 @@ public interface SpringPackage extends EPackage {
      * @see org.switchyard.tools.models.switchyard1_0.spring.impl.SpringPackageImpl#getSslContextParametersFactoryBean()
      * @generated
      */
-	int SSL_CONTEXT_PARAMETERS_FACTORY_BEAN = 154;
+	int SSL_CONTEXT_PARAMETERS_FACTORY_BEAN = 157;
 
 	/**
      * The feature id for the '<em><b>Id</b></em>' attribute.
@@ -33920,7 +34184,7 @@ public interface SpringPackage extends EPackage {
      * @see org.switchyard.tools.models.switchyard1_0.spring.impl.SpringPackageImpl#getSslContextServerParametersFactoryBean()
      * @generated
      */
-	int SSL_CONTEXT_SERVER_PARAMETERS_FACTORY_BEAN = 155;
+	int SSL_CONTEXT_SERVER_PARAMETERS_FACTORY_BEAN = 158;
 
 	/**
      * The feature id for the '<em><b>Id</b></em>' attribute.
@@ -34011,7 +34275,7 @@ public interface SpringPackage extends EPackage {
      * @see org.switchyard.tools.models.switchyard1_0.spring.impl.SpringPackageImpl#getStickyLoadBalancerDefinition()
      * @generated
      */
-	int STICKY_LOAD_BALANCER_DEFINITION = 156;
+	int STICKY_LOAD_BALANCER_DEFINITION = 159;
 
 	/**
      * The feature id for the '<em><b>Id</b></em>' attribute.
@@ -34048,7 +34312,7 @@ public interface SpringPackage extends EPackage {
      * @see org.switchyard.tools.models.switchyard1_0.spring.impl.SpringPackageImpl#getStopDefinition()
      * @generated
      */
-	int STOP_DEFINITION = 157;
+	int STOP_DEFINITION = 160;
 
 	/**
      * The feature id for the '<em><b>Description</b></em>' containment reference.
@@ -34121,7 +34385,7 @@ public interface SpringPackage extends EPackage {
      * @see org.switchyard.tools.models.switchyard1_0.spring.impl.SpringPackageImpl#getStreamResequencerConfig()
      * @generated
      */
-	int STREAM_RESEQUENCER_CONFIG = 158;
+	int STREAM_RESEQUENCER_CONFIG = 161;
 
 	/**
      * The feature id for the '<em><b>Capacity</b></em>' attribute.
@@ -34133,13 +34397,22 @@ public interface SpringPackage extends EPackage {
 	int STREAM_RESEQUENCER_CONFIG__CAPACITY = RESEQUENCER_CONFIG_FEATURE_COUNT + 0;
 
 	/**
+     * The feature id for the '<em><b>Ignore Invalid Exchanges</b></em>' attribute.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int STREAM_RESEQUENCER_CONFIG__IGNORE_INVALID_EXCHANGES = RESEQUENCER_CONFIG_FEATURE_COUNT + 1;
+
+    /**
      * The feature id for the '<em><b>Timeout</b></em>' attribute.
      * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
      * @generated
      * @ordered
      */
-	int STREAM_RESEQUENCER_CONFIG__TIMEOUT = RESEQUENCER_CONFIG_FEATURE_COUNT + 1;
+	int STREAM_RESEQUENCER_CONFIG__TIMEOUT = RESEQUENCER_CONFIG_FEATURE_COUNT + 2;
 
 	/**
      * The number of structural features of the '<em>Stream Resequencer Config</em>' class.
@@ -34148,7 +34421,7 @@ public interface SpringPackage extends EPackage {
      * @generated
      * @ordered
      */
-	int STREAM_RESEQUENCER_CONFIG_FEATURE_COUNT = RESEQUENCER_CONFIG_FEATURE_COUNT + 2;
+	int STREAM_RESEQUENCER_CONFIG_FEATURE_COUNT = RESEQUENCER_CONFIG_FEATURE_COUNT + 3;
 
 	/**
      * The meta object id for the '{@link org.switchyard.tools.models.switchyard1_0.spring.impl.StringDataFormatImpl <em>String Data Format</em>}' class.
@@ -34158,7 +34431,7 @@ public interface SpringPackage extends EPackage {
      * @see org.switchyard.tools.models.switchyard1_0.spring.impl.SpringPackageImpl#getStringDataFormat()
      * @generated
      */
-	int STRING_DATA_FORMAT = 159;
+	int STRING_DATA_FORMAT = 162;
 
 	/**
      * The feature id for the '<em><b>Id</b></em>' attribute.
@@ -34195,7 +34468,7 @@ public interface SpringPackage extends EPackage {
      * @see org.switchyard.tools.models.switchyard1_0.spring.impl.SpringPackageImpl#getSyslogDataFormat()
      * @generated
      */
-	int SYSLOG_DATA_FORMAT = 160;
+	int SYSLOG_DATA_FORMAT = 163;
 
 	/**
      * The feature id for the '<em><b>Id</b></em>' attribute.
@@ -34223,7 +34496,7 @@ public interface SpringPackage extends EPackage {
      * @see org.switchyard.tools.models.switchyard1_0.spring.impl.SpringPackageImpl#getThreadPoolProfileDefinition()
      * @generated
      */
-	int THREAD_POOL_PROFILE_DEFINITION = 161;
+	int THREAD_POOL_PROFILE_DEFINITION = 164;
 
 	/**
      * The feature id for the '<em><b>Description</b></em>' containment reference.
@@ -34323,7 +34596,7 @@ public interface SpringPackage extends EPackage {
      * @see org.switchyard.tools.models.switchyard1_0.spring.impl.SpringPackageImpl#getThreadsDefinition()
      * @generated
      */
-	int THREADS_DEFINITION = 162;
+	int THREADS_DEFINITION = 165;
 
 	/**
      * The feature id for the '<em><b>Description</b></em>' containment reference.
@@ -35008,7 +35281,7 @@ public interface SpringPackage extends EPackage {
      * @see org.switchyard.tools.models.switchyard1_0.spring.impl.SpringPackageImpl#getThrottleDefinition()
      * @generated
      */
-	int THROTTLE_DEFINITION = 163;
+	int THROTTLE_DEFINITION = 166;
 
 	/**
      * The feature id for the '<em><b>Description</b></em>' containment reference.
@@ -35846,7 +36119,7 @@ public interface SpringPackage extends EPackage {
      * @see org.switchyard.tools.models.switchyard1_0.spring.impl.SpringPackageImpl#getThrowExceptionDefinition()
      * @generated
      */
-	int THROW_EXCEPTION_DEFINITION = 164;
+	int THROW_EXCEPTION_DEFINITION = 167;
 
 	/**
      * The feature id for the '<em><b>Description</b></em>' containment reference.
@@ -35928,7 +36201,7 @@ public interface SpringPackage extends EPackage {
      * @see org.switchyard.tools.models.switchyard1_0.spring.impl.SpringPackageImpl#getTidyMarkupDataFormat()
      * @generated
      */
-	int TIDY_MARKUP_DATA_FORMAT = 165;
+	int TIDY_MARKUP_DATA_FORMAT = 168;
 
 	/**
      * The feature id for the '<em><b>Id</b></em>' attribute.
@@ -35965,7 +36238,7 @@ public interface SpringPackage extends EPackage {
      * @see org.switchyard.tools.models.switchyard1_0.spring.impl.SpringPackageImpl#getToDefinition()
      * @generated
      */
-	int TO_DEFINITION = 166;
+	int TO_DEFINITION = 169;
 
 	/**
      * The feature id for the '<em><b>Description</b></em>' containment reference.
@@ -36074,7 +36347,7 @@ public interface SpringPackage extends EPackage {
      * @see org.switchyard.tools.models.switchyard1_0.spring.impl.SpringPackageImpl#getTokenizerExpression()
      * @generated
      */
-	int TOKENIZER_EXPRESSION = 167;
+	int TOKENIZER_EXPRESSION = 170;
 
 	/**
      * The feature id for the '<em><b>Value</b></em>' attribute.
@@ -36095,22 +36368,49 @@ public interface SpringPackage extends EPackage {
 	int TOKENIZER_EXPRESSION__ID = EXPRESSION__ID;
 
 	/**
+     * The feature id for the '<em><b>End Token</b></em>' attribute.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int TOKENIZER_EXPRESSION__END_TOKEN = EXPRESSION_FEATURE_COUNT + 0;
+
+    /**
      * The feature id for the '<em><b>Header Name</b></em>' attribute.
      * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
      * @generated
      * @ordered
      */
-	int TOKENIZER_EXPRESSION__HEADER_NAME = EXPRESSION_FEATURE_COUNT + 0;
+	int TOKENIZER_EXPRESSION__HEADER_NAME = EXPRESSION_FEATURE_COUNT + 1;
 
 	/**
+     * The feature id for the '<em><b>Include Tokens</b></em>' attribute.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int TOKENIZER_EXPRESSION__INCLUDE_TOKENS = EXPRESSION_FEATURE_COUNT + 2;
+
+    /**
+     * The feature id for the '<em><b>Inherit Namespace Tag Name</b></em>' attribute.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int TOKENIZER_EXPRESSION__INHERIT_NAMESPACE_TAG_NAME = EXPRESSION_FEATURE_COUNT + 3;
+
+    /**
      * The feature id for the '<em><b>Regex</b></em>' attribute.
      * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
      * @generated
      * @ordered
      */
-	int TOKENIZER_EXPRESSION__REGEX = EXPRESSION_FEATURE_COUNT + 1;
+	int TOKENIZER_EXPRESSION__REGEX = EXPRESSION_FEATURE_COUNT + 4;
 
 	/**
      * The feature id for the '<em><b>Token</b></em>' attribute.
@@ -36119,16 +36419,25 @@ public interface SpringPackage extends EPackage {
      * @generated
      * @ordered
      */
-	int TOKENIZER_EXPRESSION__TOKEN = EXPRESSION_FEATURE_COUNT + 2;
+	int TOKENIZER_EXPRESSION__TOKEN = EXPRESSION_FEATURE_COUNT + 5;
 
 	/**
+     * The feature id for the '<em><b>Xml</b></em>' attribute.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int TOKENIZER_EXPRESSION__XML = EXPRESSION_FEATURE_COUNT + 6;
+
+    /**
      * The number of structural features of the '<em>Tokenizer Expression</em>' class.
      * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
      * @generated
      * @ordered
      */
-	int TOKENIZER_EXPRESSION_FEATURE_COUNT = EXPRESSION_FEATURE_COUNT + 3;
+	int TOKENIZER_EXPRESSION_FEATURE_COUNT = EXPRESSION_FEATURE_COUNT + 7;
 
 	/**
      * The meta object id for the '{@link org.switchyard.tools.models.switchyard1_0.spring.impl.TopicLoadBalancerDefinitionImpl <em>Topic Load Balancer Definition</em>}' class.
@@ -36138,7 +36447,7 @@ public interface SpringPackage extends EPackage {
      * @see org.switchyard.tools.models.switchyard1_0.spring.impl.SpringPackageImpl#getTopicLoadBalancerDefinition()
      * @generated
      */
-	int TOPIC_LOAD_BALANCER_DEFINITION = 168;
+	int TOPIC_LOAD_BALANCER_DEFINITION = 171;
 
 	/**
      * The feature id for the '<em><b>Id</b></em>' attribute.
@@ -36166,7 +36475,7 @@ public interface SpringPackage extends EPackage {
      * @see org.switchyard.tools.models.switchyard1_0.spring.impl.SpringPackageImpl#getTransactedDefinition()
      * @generated
      */
-	int TRANSACTED_DEFINITION = 169;
+	int TRANSACTED_DEFINITION = 172;
 
 	/**
      * The feature id for the '<em><b>Description</b></em>' containment reference.
@@ -36779,7 +37088,7 @@ public interface SpringPackage extends EPackage {
      * @see org.switchyard.tools.models.switchyard1_0.spring.impl.SpringPackageImpl#getTransformDefinition()
      * @generated
      */
-	int TRANSFORM_DEFINITION = 170;
+	int TRANSFORM_DEFINITION = 173;
 
 	/**
      * The feature id for the '<em><b>Description</b></em>' containment reference.
@@ -37590,7 +37899,7 @@ public interface SpringPackage extends EPackage {
      * @see org.switchyard.tools.models.switchyard1_0.spring.impl.SpringPackageImpl#getTrustManagersParametersFactoryBean()
      * @generated
      */
-	int TRUST_MANAGERS_PARAMETERS_FACTORY_BEAN = 171;
+	int TRUST_MANAGERS_PARAMETERS_FACTORY_BEAN = 174;
 
 	/**
      * The feature id for the '<em><b>Id</b></em>' attribute.
@@ -37654,7 +37963,7 @@ public interface SpringPackage extends EPackage {
      * @see org.switchyard.tools.models.switchyard1_0.spring.impl.SpringPackageImpl#getTryDefinition()
      * @generated
      */
-	int TRY_DEFINITION = 172;
+	int TRY_DEFINITION = 175;
 
 	/**
      * The feature id for the '<em><b>Description</b></em>' containment reference.
@@ -38258,7 +38567,7 @@ public interface SpringPackage extends EPackage {
      * @see org.switchyard.tools.models.switchyard1_0.spring.impl.SpringPackageImpl#getUnmarshalDefinition()
      * @generated
      */
-	int UNMARSHAL_DEFINITION = 173;
+	int UNMARSHAL_DEFINITION = 176;
 
 	/**
      * The feature id for the '<em><b>Description</b></em>' containment reference.
@@ -38495,13 +38804,22 @@ public interface SpringPackage extends EPackage {
 	int UNMARSHAL_DEFINITION__XSTREAM = NO_OUTPUT_DEFINITION_FEATURE_COUNT + 20;
 
 	/**
+     * The feature id for the '<em><b>Pgp</b></em>' containment reference.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int UNMARSHAL_DEFINITION__PGP = NO_OUTPUT_DEFINITION_FEATURE_COUNT + 21;
+
+    /**
      * The feature id for the '<em><b>Zip</b></em>' containment reference.
      * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
      * @generated
      * @ordered
      */
-	int UNMARSHAL_DEFINITION__ZIP = NO_OUTPUT_DEFINITION_FEATURE_COUNT + 21;
+	int UNMARSHAL_DEFINITION__ZIP = NO_OUTPUT_DEFINITION_FEATURE_COUNT + 22;
 
 	/**
      * The feature id for the '<em><b>Ref</b></em>' attribute.
@@ -38510,7 +38828,7 @@ public interface SpringPackage extends EPackage {
      * @generated
      * @ordered
      */
-	int UNMARSHAL_DEFINITION__REF = NO_OUTPUT_DEFINITION_FEATURE_COUNT + 22;
+	int UNMARSHAL_DEFINITION__REF = NO_OUTPUT_DEFINITION_FEATURE_COUNT + 23;
 
 	/**
      * The feature id for the '<em><b>Any Attribute2</b></em>' attribute list.
@@ -38519,7 +38837,7 @@ public interface SpringPackage extends EPackage {
      * @generated
      * @ordered
      */
-	int UNMARSHAL_DEFINITION__ANY_ATTRIBUTE2 = NO_OUTPUT_DEFINITION_FEATURE_COUNT + 23;
+	int UNMARSHAL_DEFINITION__ANY_ATTRIBUTE2 = NO_OUTPUT_DEFINITION_FEATURE_COUNT + 24;
 
 	/**
      * The number of structural features of the '<em>Unmarshal Definition</em>' class.
@@ -38528,7 +38846,7 @@ public interface SpringPackage extends EPackage {
      * @generated
      * @ordered
      */
-	int UNMARSHAL_DEFINITION_FEATURE_COUNT = NO_OUTPUT_DEFINITION_FEATURE_COUNT + 24;
+	int UNMARSHAL_DEFINITION_FEATURE_COUNT = NO_OUTPUT_DEFINITION_FEATURE_COUNT + 25;
 
 	/**
      * The meta object id for the '{@link org.switchyard.tools.models.switchyard1_0.spring.impl.ValidateDefinitionImpl <em>Validate Definition</em>}' class.
@@ -38538,7 +38856,7 @@ public interface SpringPackage extends EPackage {
      * @see org.switchyard.tools.models.switchyard1_0.spring.impl.SpringPackageImpl#getValidateDefinition()
      * @generated
      */
-	int VALIDATE_DEFINITION = 174;
+	int VALIDATE_DEFINITION = 177;
 
 	/**
      * The feature id for the '<em><b>Description</b></em>' containment reference.
@@ -39349,7 +39667,7 @@ public interface SpringPackage extends EPackage {
      * @see org.switchyard.tools.models.switchyard1_0.spring.impl.SpringPackageImpl#getWeightedLoadBalancerDefinition()
      * @generated
      */
-	int WEIGHTED_LOAD_BALANCER_DEFINITION = 175;
+	int WEIGHTED_LOAD_BALANCER_DEFINITION = 178;
 
 	/**
      * The feature id for the '<em><b>Id</b></em>' attribute.
@@ -39404,7 +39722,7 @@ public interface SpringPackage extends EPackage {
      * @see org.switchyard.tools.models.switchyard1_0.spring.impl.SpringPackageImpl#getWhenDefinition()
      * @generated
      */
-	int WHEN_DEFINITION = 176;
+	int WHEN_DEFINITION = 179;
 
 	/**
      * The feature id for the '<em><b>Description</b></em>' containment reference.
@@ -40206,7 +40524,7 @@ public interface SpringPackage extends EPackage {
      * @see org.switchyard.tools.models.switchyard1_0.spring.impl.SpringPackageImpl#getWireTapDefinition()
      * @generated
      */
-	int WIRE_TAP_DEFINITION = 177;
+	int WIRE_TAP_DEFINITION = 180;
 
 	/**
      * The feature id for the '<em><b>Description</b></em>' containment reference.
@@ -40351,7 +40669,7 @@ public interface SpringPackage extends EPackage {
      * @see org.switchyard.tools.models.switchyard1_0.spring.impl.SpringPackageImpl#getXmlBeansDataFormat()
      * @generated
      */
-	int XML_BEANS_DATA_FORMAT = 178;
+	int XML_BEANS_DATA_FORMAT = 181;
 
 	/**
      * The feature id for the '<em><b>Id</b></em>' attribute.
@@ -40388,7 +40706,7 @@ public interface SpringPackage extends EPackage {
      * @see org.switchyard.tools.models.switchyard1_0.spring.impl.SpringPackageImpl#getXmlSecurityDataFormat()
      * @generated
      */
-	int XML_SECURITY_DATA_FORMAT = 179;
+	int XML_SECURITY_DATA_FORMAT = 182;
 
 	/**
      * The feature id for the '<em><b>Id</b></em>' attribute.
@@ -40409,13 +40727,22 @@ public interface SpringPackage extends EPackage {
 	int XML_SECURITY_DATA_FORMAT__KEY_CIPHER_ALGORITHM = DATA_FORMAT_FEATURE_COUNT + 0;
 
 	/**
+     * The feature id for the '<em><b>Key Or Trust Store Parameters Id</b></em>' attribute.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int XML_SECURITY_DATA_FORMAT__KEY_OR_TRUST_STORE_PARAMETERS_ID = DATA_FORMAT_FEATURE_COUNT + 1;
+
+    /**
      * The feature id for the '<em><b>Pass Phrase</b></em>' attribute.
      * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
      * @generated
      * @ordered
      */
-	int XML_SECURITY_DATA_FORMAT__PASS_PHRASE = DATA_FORMAT_FEATURE_COUNT + 1;
+	int XML_SECURITY_DATA_FORMAT__PASS_PHRASE = DATA_FORMAT_FEATURE_COUNT + 2;
 
 	/**
      * The feature id for the '<em><b>Recipient Key Alias</b></em>' attribute.
@@ -40424,7 +40751,7 @@ public interface SpringPackage extends EPackage {
      * @generated
      * @ordered
      */
-	int XML_SECURITY_DATA_FORMAT__RECIPIENT_KEY_ALIAS = DATA_FORMAT_FEATURE_COUNT + 2;
+	int XML_SECURITY_DATA_FORMAT__RECIPIENT_KEY_ALIAS = DATA_FORMAT_FEATURE_COUNT + 3;
 
 	/**
      * The feature id for the '<em><b>Secure Tag</b></em>' attribute.
@@ -40433,7 +40760,7 @@ public interface SpringPackage extends EPackage {
      * @generated
      * @ordered
      */
-	int XML_SECURITY_DATA_FORMAT__SECURE_TAG = DATA_FORMAT_FEATURE_COUNT + 3;
+	int XML_SECURITY_DATA_FORMAT__SECURE_TAG = DATA_FORMAT_FEATURE_COUNT + 4;
 
 	/**
      * The feature id for the '<em><b>Secure Tag Contents</b></em>' attribute.
@@ -40442,7 +40769,7 @@ public interface SpringPackage extends EPackage {
      * @generated
      * @ordered
      */
-	int XML_SECURITY_DATA_FORMAT__SECURE_TAG_CONTENTS = DATA_FORMAT_FEATURE_COUNT + 4;
+	int XML_SECURITY_DATA_FORMAT__SECURE_TAG_CONTENTS = DATA_FORMAT_FEATURE_COUNT + 5;
 
 	/**
      * The feature id for the '<em><b>Xml Cipher Algorithm</b></em>' attribute.
@@ -40451,7 +40778,7 @@ public interface SpringPackage extends EPackage {
      * @generated
      * @ordered
      */
-	int XML_SECURITY_DATA_FORMAT__XML_CIPHER_ALGORITHM = DATA_FORMAT_FEATURE_COUNT + 5;
+	int XML_SECURITY_DATA_FORMAT__XML_CIPHER_ALGORITHM = DATA_FORMAT_FEATURE_COUNT + 6;
 
 	/**
      * The number of structural features of the '<em>Xml Security Data Format</em>' class.
@@ -40460,7 +40787,7 @@ public interface SpringPackage extends EPackage {
      * @generated
      * @ordered
      */
-	int XML_SECURITY_DATA_FORMAT_FEATURE_COUNT = DATA_FORMAT_FEATURE_COUNT + 6;
+	int XML_SECURITY_DATA_FORMAT_FEATURE_COUNT = DATA_FORMAT_FEATURE_COUNT + 7;
 
 	/**
      * The meta object id for the '{@link org.switchyard.tools.models.switchyard1_0.spring.impl.XPathExpressionImpl <em>XPath Expression</em>}' class.
@@ -40470,7 +40797,7 @@ public interface SpringPackage extends EPackage {
      * @see org.switchyard.tools.models.switchyard1_0.spring.impl.SpringPackageImpl#getXPathExpression()
      * @generated
      */
-	int XPATH_EXPRESSION = 180;
+	int XPATH_EXPRESSION = 183;
 
 	/**
      * The feature id for the '<em><b>Value</b></em>' attribute.
@@ -40491,22 +40818,58 @@ public interface SpringPackage extends EPackage {
 	int XPATH_EXPRESSION__ID = NAMESPACE_AWARE_EXPRESSION__ID;
 
 	/**
+     * The feature id for the '<em><b>Factory Ref</b></em>' attribute.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int XPATH_EXPRESSION__FACTORY_REF = NAMESPACE_AWARE_EXPRESSION_FEATURE_COUNT + 0;
+
+    /**
+     * The feature id for the '<em><b>Object Model</b></em>' attribute.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int XPATH_EXPRESSION__OBJECT_MODEL = NAMESPACE_AWARE_EXPRESSION_FEATURE_COUNT + 1;
+
+    /**
      * The feature id for the '<em><b>Result Type</b></em>' attribute.
      * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
      * @generated
      * @ordered
      */
-	int XPATH_EXPRESSION__RESULT_TYPE = NAMESPACE_AWARE_EXPRESSION_FEATURE_COUNT + 0;
+	int XPATH_EXPRESSION__RESULT_TYPE = NAMESPACE_AWARE_EXPRESSION_FEATURE_COUNT + 2;
 
 	/**
+     * The feature id for the '<em><b>Saxon</b></em>' attribute.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int XPATH_EXPRESSION__SAXON = NAMESPACE_AWARE_EXPRESSION_FEATURE_COUNT + 3;
+
+    /**
+     * The feature id for the '<em><b>Trace Namespaces</b></em>' attribute.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int XPATH_EXPRESSION__TRACE_NAMESPACES = NAMESPACE_AWARE_EXPRESSION_FEATURE_COUNT + 4;
+
+    /**
      * The number of structural features of the '<em>XPath Expression</em>' class.
      * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
      * @generated
      * @ordered
      */
-	int XPATH_EXPRESSION_FEATURE_COUNT = NAMESPACE_AWARE_EXPRESSION_FEATURE_COUNT + 1;
+	int XPATH_EXPRESSION_FEATURE_COUNT = NAMESPACE_AWARE_EXPRESSION_FEATURE_COUNT + 5;
 
 	/**
      * The meta object id for the '{@link org.switchyard.tools.models.switchyard1_0.spring.impl.XQueryExpressionImpl <em>XQuery Expression</em>}' class.
@@ -40516,7 +40879,7 @@ public interface SpringPackage extends EPackage {
      * @see org.switchyard.tools.models.switchyard1_0.spring.impl.SpringPackageImpl#getXQueryExpression()
      * @generated
      */
-	int XQUERY_EXPRESSION = 181;
+	int XQUERY_EXPRESSION = 184;
 
 	/**
      * The feature id for the '<em><b>Value</b></em>' attribute.
@@ -40562,7 +40925,7 @@ public interface SpringPackage extends EPackage {
      * @see org.switchyard.tools.models.switchyard1_0.spring.impl.SpringPackageImpl#getXStreamDataFormat()
      * @generated
      */
-	int XSTREAM_DATA_FORMAT = 182;
+	int XSTREAM_DATA_FORMAT = 185;
 
 	/**
      * The feature id for the '<em><b>Id</b></em>' attribute.
@@ -40653,7 +41016,7 @@ public interface SpringPackage extends EPackage {
      * @see org.switchyard.tools.models.switchyard1_0.spring.impl.SpringPackageImpl#getZipDataFormat()
      * @generated
      */
-	int ZIP_DATA_FORMAT = 183;
+	int ZIP_DATA_FORMAT = 186;
 
 	/**
      * The feature id for the '<em><b>Id</b></em>' attribute.
@@ -40690,7 +41053,7 @@ public interface SpringPackage extends EPackage {
      * @see org.switchyard.tools.models.switchyard1_0.spring.impl.SpringPackageImpl#getBindyType()
      * @generated
      */
-	int BINDY_TYPE = 184;
+	int BINDY_TYPE = 187;
 
 	/**
      * The meta object id for the '{@link org.switchyard.tools.models.switchyard1_0.spring.ErrorHandlerType <em>Error Handler Type</em>}' enum.
@@ -40700,7 +41063,7 @@ public interface SpringPackage extends EPackage {
      * @see org.switchyard.tools.models.switchyard1_0.spring.impl.SpringPackageImpl#getErrorHandlerType()
      * @generated
      */
-	int ERROR_HANDLER_TYPE = 185;
+	int ERROR_HANDLER_TYPE = 188;
 
 	/**
      * The meta object id for the '{@link org.switchyard.tools.models.switchyard1_0.spring.ExchangePattern <em>Exchange Pattern</em>}' enum.
@@ -40710,7 +41073,7 @@ public interface SpringPackage extends EPackage {
      * @see org.switchyard.tools.models.switchyard1_0.spring.impl.SpringPackageImpl#getExchangePattern()
      * @generated
      */
-	int EXCHANGE_PATTERN = 186;
+	int EXCHANGE_PATTERN = 189;
 
 	/**
      * The meta object id for the '{@link org.switchyard.tools.models.switchyard1_0.spring.JsonLibrary <em>Json Library</em>}' enum.
@@ -40720,7 +41083,7 @@ public interface SpringPackage extends EPackage {
      * @see org.switchyard.tools.models.switchyard1_0.spring.impl.SpringPackageImpl#getJsonLibrary()
      * @generated
      */
-	int JSON_LIBRARY = 187;
+	int JSON_LIBRARY = 190;
 
 	/**
      * The meta object id for the '{@link org.switchyard.tools.models.switchyard1_0.spring.LoggingLevel <em>Logging Level</em>}' enum.
@@ -40730,7 +41093,7 @@ public interface SpringPackage extends EPackage {
      * @see org.switchyard.tools.models.switchyard1_0.spring.impl.SpringPackageImpl#getLoggingLevel()
      * @generated
      */
-	int LOGGING_LEVEL = 188;
+	int LOGGING_LEVEL = 191;
 
 	/**
      * The meta object id for the '{@link org.switchyard.tools.models.switchyard1_0.spring.ManagementStatisticsLevel <em>Management Statistics Level</em>}' enum.
@@ -40740,7 +41103,7 @@ public interface SpringPackage extends EPackage {
      * @see org.switchyard.tools.models.switchyard1_0.spring.impl.SpringPackageImpl#getManagementStatisticsLevel()
      * @generated
      */
-	int MANAGEMENT_STATISTICS_LEVEL = 189;
+	int MANAGEMENT_STATISTICS_LEVEL = 192;
 
 	/**
      * The meta object id for the '{@link org.switchyard.tools.models.switchyard1_0.spring.ShutdownRoute <em>Shutdown Route</em>}' enum.
@@ -40750,7 +41113,7 @@ public interface SpringPackage extends EPackage {
      * @see org.switchyard.tools.models.switchyard1_0.spring.impl.SpringPackageImpl#getShutdownRoute()
      * @generated
      */
-	int SHUTDOWN_ROUTE = 190;
+	int SHUTDOWN_ROUTE = 193;
 
 	/**
      * The meta object id for the '{@link org.switchyard.tools.models.switchyard1_0.spring.ShutdownRunningTask <em>Shutdown Running Task</em>}' enum.
@@ -40760,7 +41123,7 @@ public interface SpringPackage extends EPackage {
      * @see org.switchyard.tools.models.switchyard1_0.spring.impl.SpringPackageImpl#getShutdownRunningTask()
      * @generated
      */
-	int SHUTDOWN_RUNNING_TASK = 191;
+	int SHUTDOWN_RUNNING_TASK = 194;
 
 	/**
      * The meta object id for the '{@link org.switchyard.tools.models.switchyard1_0.spring.ThreadPoolRejectedPolicy <em>Thread Pool Rejected Policy</em>}' enum.
@@ -40770,7 +41133,7 @@ public interface SpringPackage extends EPackage {
      * @see org.switchyard.tools.models.switchyard1_0.spring.impl.SpringPackageImpl#getThreadPoolRejectedPolicy()
      * @generated
      */
-	int THREAD_POOL_REJECTED_POLICY = 192;
+	int THREAD_POOL_REJECTED_POLICY = 195;
 
 	/**
      * The meta object id for the '{@link org.switchyard.tools.models.switchyard1_0.spring.WaitForTaskToComplete <em>Wait For Task To Complete</em>}' enum.
@@ -40780,7 +41143,7 @@ public interface SpringPackage extends EPackage {
      * @see org.switchyard.tools.models.switchyard1_0.spring.impl.SpringPackageImpl#getWaitForTaskToComplete()
      * @generated
      */
-	int WAIT_FOR_TASK_TO_COMPLETE = 193;
+	int WAIT_FOR_TASK_TO_COMPLETE = 196;
 
 	/**
      * The meta object id for the '<em>Bindy Type Object</em>' data type.
@@ -40790,7 +41153,7 @@ public interface SpringPackage extends EPackage {
      * @see org.switchyard.tools.models.switchyard1_0.spring.impl.SpringPackageImpl#getBindyTypeObject()
      * @generated
      */
-	int BINDY_TYPE_OBJECT = 194;
+	int BINDY_TYPE_OBJECT = 197;
 
 	/**
      * The meta object id for the '<em>Classes Type</em>' data type.
@@ -40800,7 +41163,7 @@ public interface SpringPackage extends EPackage {
      * @see org.switchyard.tools.models.switchyard1_0.spring.impl.SpringPackageImpl#getClassesType()
      * @generated
      */
-	int CLASSES_TYPE = 195;
+	int CLASSES_TYPE = 198;
 
 	/**
      * The meta object id for the '<em>Error Handler Type Object</em>' data type.
@@ -40810,7 +41173,7 @@ public interface SpringPackage extends EPackage {
      * @see org.switchyard.tools.models.switchyard1_0.spring.impl.SpringPackageImpl#getErrorHandlerTypeObject()
      * @generated
      */
-	int ERROR_HANDLER_TYPE_OBJECT = 196;
+	int ERROR_HANDLER_TYPE_OBJECT = 199;
 
 	/**
      * The meta object id for the '<em>Exchange Pattern Object</em>' data type.
@@ -40820,7 +41183,7 @@ public interface SpringPackage extends EPackage {
      * @see org.switchyard.tools.models.switchyard1_0.spring.impl.SpringPackageImpl#getExchangePatternObject()
      * @generated
      */
-	int EXCHANGE_PATTERN_OBJECT = 197;
+	int EXCHANGE_PATTERN_OBJECT = 200;
 
 	/**
      * The meta object id for the '<em>Json Library Object</em>' data type.
@@ -40830,7 +41193,7 @@ public interface SpringPackage extends EPackage {
      * @see org.switchyard.tools.models.switchyard1_0.spring.impl.SpringPackageImpl#getJsonLibraryObject()
      * @generated
      */
-	int JSON_LIBRARY_OBJECT = 198;
+	int JSON_LIBRARY_OBJECT = 201;
 
 	/**
      * The meta object id for the '<em>Logging Level Object</em>' data type.
@@ -40840,7 +41203,7 @@ public interface SpringPackage extends EPackage {
      * @see org.switchyard.tools.models.switchyard1_0.spring.impl.SpringPackageImpl#getLoggingLevelObject()
      * @generated
      */
-	int LOGGING_LEVEL_OBJECT = 199;
+	int LOGGING_LEVEL_OBJECT = 202;
 
 	/**
      * The meta object id for the '<em>Management Statistics Level Object</em>' data type.
@@ -40850,7 +41213,7 @@ public interface SpringPackage extends EPackage {
      * @see org.switchyard.tools.models.switchyard1_0.spring.impl.SpringPackageImpl#getManagementStatisticsLevelObject()
      * @generated
      */
-	int MANAGEMENT_STATISTICS_LEVEL_OBJECT = 200;
+	int MANAGEMENT_STATISTICS_LEVEL_OBJECT = 203;
 
 	/**
      * The meta object id for the '<em>Packages Type</em>' data type.
@@ -40860,7 +41223,7 @@ public interface SpringPackage extends EPackage {
      * @see org.switchyard.tools.models.switchyard1_0.spring.impl.SpringPackageImpl#getPackagesType()
      * @generated
      */
-	int PACKAGES_TYPE = 201;
+	int PACKAGES_TYPE = 204;
 
 	/**
      * The meta object id for the '<em>Packages Type1</em>' data type.
@@ -40870,7 +41233,7 @@ public interface SpringPackage extends EPackage {
      * @see org.switchyard.tools.models.switchyard1_0.spring.impl.SpringPackageImpl#getPackagesType1()
      * @generated
      */
-	int PACKAGES_TYPE1 = 202;
+	int PACKAGES_TYPE1 = 205;
 
 	/**
      * The meta object id for the '<em>Shutdown Route Object</em>' data type.
@@ -40880,7 +41243,7 @@ public interface SpringPackage extends EPackage {
      * @see org.switchyard.tools.models.switchyard1_0.spring.impl.SpringPackageImpl#getShutdownRouteObject()
      * @generated
      */
-	int SHUTDOWN_ROUTE_OBJECT = 203;
+	int SHUTDOWN_ROUTE_OBJECT = 206;
 
 	/**
      * The meta object id for the '<em>Shutdown Running Task Object</em>' data type.
@@ -40890,7 +41253,7 @@ public interface SpringPackage extends EPackage {
      * @see org.switchyard.tools.models.switchyard1_0.spring.impl.SpringPackageImpl#getShutdownRunningTaskObject()
      * @generated
      */
-	int SHUTDOWN_RUNNING_TASK_OBJECT = 204;
+	int SHUTDOWN_RUNNING_TASK_OBJECT = 207;
 
 	/**
      * The meta object id for the '<em>Thread Pool Rejected Policy Object</em>' data type.
@@ -40900,7 +41263,7 @@ public interface SpringPackage extends EPackage {
      * @see org.switchyard.tools.models.switchyard1_0.spring.impl.SpringPackageImpl#getThreadPoolRejectedPolicyObject()
      * @generated
      */
-	int THREAD_POOL_REJECTED_POLICY_OBJECT = 205;
+	int THREAD_POOL_REJECTED_POLICY_OBJECT = 208;
 
 	/**
      * The meta object id for the '<em>Wait For Task To Complete Object</em>' data type.
@@ -40910,7 +41273,7 @@ public interface SpringPackage extends EPackage {
      * @see org.switchyard.tools.models.switchyard1_0.spring.impl.SpringPackageImpl#getWaitForTaskToCompleteObject()
      * @generated
      */
-	int WAIT_FOR_TASK_TO_COMPLETE_OBJECT = 206;
+	int WAIT_FOR_TASK_TO_COMPLETE_OBJECT = 209;
 
 
 	/**
@@ -42309,6 +42672,17 @@ public interface SpringPackage extends EPackage {
 	EAttribute getAggregateDefinition_ExecutorServiceRef();
 
 	/**
+     * Returns the meta object for the attribute '{@link org.switchyard.tools.models.switchyard1_0.spring.AggregateDefinition#isForceCompletionOnStop <em>Force Completion On Stop</em>}'.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @return the meta object for the attribute '<em>Force Completion On Stop</em>'.
+     * @see org.switchyard.tools.models.switchyard1_0.spring.AggregateDefinition#isForceCompletionOnStop()
+     * @see #getAggregateDefinition()
+     * @generated
+     */
+    EAttribute getAggregateDefinition_ForceCompletionOnStop();
+
+    /**
      * Returns the meta object for the attribute '{@link org.switchyard.tools.models.switchyard1_0.spring.AggregateDefinition#isGroupExchanges <em>Group Exchanges</em>}'.
      * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -42353,6 +42727,17 @@ public interface SpringPackage extends EPackage {
 	EAttribute getAggregateDefinition_StrategyRef();
 
 	/**
+     * Returns the meta object for the attribute '{@link org.switchyard.tools.models.switchyard1_0.spring.AggregateDefinition#getTimeoutCheckerExecutorServiceRef <em>Timeout Checker Executor Service Ref</em>}'.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @return the meta object for the attribute '<em>Timeout Checker Executor Service Ref</em>'.
+     * @see org.switchyard.tools.models.switchyard1_0.spring.AggregateDefinition#getTimeoutCheckerExecutorServiceRef()
+     * @see #getAggregateDefinition()
+     * @generated
+     */
+    EAttribute getAggregateDefinition_TimeoutCheckerExecutorServiceRef();
+
+    /**
      * Returns the meta object for the attribute list '{@link org.switchyard.tools.models.switchyard1_0.spring.AggregateDefinition#getAnyAttribute1 <em>Any Attribute1</em>}'.
      * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -42514,6 +42899,17 @@ public interface SpringPackage extends EPackage {
 	EAttribute getBatchResequencerConfig_BatchTimeout();
 
 	/**
+     * Returns the meta object for the attribute '{@link org.switchyard.tools.models.switchyard1_0.spring.BatchResequencerConfig#isIgnoreInvalidExchanges <em>Ignore Invalid Exchanges</em>}'.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @return the meta object for the attribute '<em>Ignore Invalid Exchanges</em>'.
+     * @see org.switchyard.tools.models.switchyard1_0.spring.BatchResequencerConfig#isIgnoreInvalidExchanges()
+     * @see #getBatchResequencerConfig()
+     * @generated
+     */
+    EAttribute getBatchResequencerConfig_IgnoreInvalidExchanges();
+
+    /**
      * Returns the meta object for the attribute '{@link org.switchyard.tools.models.switchyard1_0.spring.BatchResequencerConfig#isReverse <em>Reverse</em>}'.
      * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -43231,6 +43627,17 @@ public interface SpringPackage extends EPackage {
 	EClass getCamelPropertyPlaceholderDefinition();
 
 	/**
+     * Returns the meta object for the attribute '{@link org.switchyard.tools.models.switchyard1_0.spring.CamelPropertyPlaceholderDefinition#isFallbackToUnaugmentedProperty <em>Fallback To Unaugmented Property</em>}'.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @return the meta object for the attribute '<em>Fallback To Unaugmented Property</em>'.
+     * @see org.switchyard.tools.models.switchyard1_0.spring.CamelPropertyPlaceholderDefinition#isFallbackToUnaugmentedProperty()
+     * @see #getCamelPropertyPlaceholderDefinition()
+     * @generated
+     */
+    EAttribute getCamelPropertyPlaceholderDefinition_FallbackToUnaugmentedProperty();
+
+    /**
      * Returns the meta object for the attribute '{@link org.switchyard.tools.models.switchyard1_0.spring.CamelPropertyPlaceholderDefinition#getLocation <em>Location</em>}'.
      * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -43242,6 +43649,17 @@ public interface SpringPackage extends EPackage {
 	EAttribute getCamelPropertyPlaceholderDefinition_Location();
 
 	/**
+     * Returns the meta object for the attribute '{@link org.switchyard.tools.models.switchyard1_0.spring.CamelPropertyPlaceholderDefinition#getPrefixToken <em>Prefix Token</em>}'.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @return the meta object for the attribute '<em>Prefix Token</em>'.
+     * @see org.switchyard.tools.models.switchyard1_0.spring.CamelPropertyPlaceholderDefinition#getPrefixToken()
+     * @see #getCamelPropertyPlaceholderDefinition()
+     * @generated
+     */
+    EAttribute getCamelPropertyPlaceholderDefinition_PrefixToken();
+
+    /**
      * Returns the meta object for the attribute '{@link org.switchyard.tools.models.switchyard1_0.spring.CamelPropertyPlaceholderDefinition#getPropertiesParserRef <em>Properties Parser Ref</em>}'.
      * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -43264,6 +43682,39 @@ public interface SpringPackage extends EPackage {
 	EAttribute getCamelPropertyPlaceholderDefinition_PropertiesResolverRef();
 
 	/**
+     * Returns the meta object for the attribute '{@link org.switchyard.tools.models.switchyard1_0.spring.CamelPropertyPlaceholderDefinition#getPropertyPrefix <em>Property Prefix</em>}'.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @return the meta object for the attribute '<em>Property Prefix</em>'.
+     * @see org.switchyard.tools.models.switchyard1_0.spring.CamelPropertyPlaceholderDefinition#getPropertyPrefix()
+     * @see #getCamelPropertyPlaceholderDefinition()
+     * @generated
+     */
+    EAttribute getCamelPropertyPlaceholderDefinition_PropertyPrefix();
+
+    /**
+     * Returns the meta object for the attribute '{@link org.switchyard.tools.models.switchyard1_0.spring.CamelPropertyPlaceholderDefinition#getPropertySuffix <em>Property Suffix</em>}'.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @return the meta object for the attribute '<em>Property Suffix</em>'.
+     * @see org.switchyard.tools.models.switchyard1_0.spring.CamelPropertyPlaceholderDefinition#getPropertySuffix()
+     * @see #getCamelPropertyPlaceholderDefinition()
+     * @generated
+     */
+    EAttribute getCamelPropertyPlaceholderDefinition_PropertySuffix();
+
+    /**
+     * Returns the meta object for the attribute '{@link org.switchyard.tools.models.switchyard1_0.spring.CamelPropertyPlaceholderDefinition#getSuffixToken <em>Suffix Token</em>}'.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @return the meta object for the attribute '<em>Suffix Token</em>'.
+     * @see org.switchyard.tools.models.switchyard1_0.spring.CamelPropertyPlaceholderDefinition#getSuffixToken()
+     * @see #getCamelPropertyPlaceholderDefinition()
+     * @generated
+     */
+    EAttribute getCamelPropertyPlaceholderDefinition_SuffixToken();
+
+    /**
      * Returns the meta object for class '{@link org.switchyard.tools.models.switchyard1_0.spring.CamelProxyFactoryDefinition <em>Camel Proxy Factory Definition</em>}'.
      * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -44501,6 +44952,28 @@ public interface SpringPackage extends EPackage {
 	EClass getCsvDataFormat();
 
 	/**
+     * Returns the meta object for the attribute '{@link org.switchyard.tools.models.switchyard1_0.spring.CsvDataFormat#isAutogenColumns <em>Autogen Columns</em>}'.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @return the meta object for the attribute '<em>Autogen Columns</em>'.
+     * @see org.switchyard.tools.models.switchyard1_0.spring.CsvDataFormat#isAutogenColumns()
+     * @see #getCsvDataFormat()
+     * @generated
+     */
+    EAttribute getCsvDataFormat_AutogenColumns();
+
+    /**
+     * Returns the meta object for the attribute '{@link org.switchyard.tools.models.switchyard1_0.spring.CsvDataFormat#getConfigRef <em>Config Ref</em>}'.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @return the meta object for the attribute '<em>Config Ref</em>'.
+     * @see org.switchyard.tools.models.switchyard1_0.spring.CsvDataFormat#getConfigRef()
+     * @see #getCsvDataFormat()
+     * @generated
+     */
+    EAttribute getCsvDataFormat_ConfigRef();
+
+    /**
      * Returns the meta object for the attribute '{@link org.switchyard.tools.models.switchyard1_0.spring.CsvDataFormat#getDelimiter <em>Delimiter</em>}'.
      * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -44512,6 +44985,17 @@ public interface SpringPackage extends EPackage {
 	EAttribute getCsvDataFormat_Delimiter();
 
 	/**
+     * Returns the meta object for the attribute '{@link org.switchyard.tools.models.switchyard1_0.spring.CsvDataFormat#getStrategyRef <em>Strategy Ref</em>}'.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @return the meta object for the attribute '<em>Strategy Ref</em>'.
+     * @see org.switchyard.tools.models.switchyard1_0.spring.CsvDataFormat#getStrategyRef()
+     * @see #getCsvDataFormat()
+     * @generated
+     */
+    EAttribute getCsvDataFormat_StrategyRef();
+
+    /**
      * Returns the meta object for class '{@link org.switchyard.tools.models.switchyard1_0.spring.CustomDataFormat <em>Custom Data Format</em>}'.
      * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -44816,6 +45300,17 @@ public interface SpringPackage extends EPackage {
 	EReference getDataFormatsDefinition_Xstream();
 
 	/**
+     * Returns the meta object for the containment reference list '{@link org.switchyard.tools.models.switchyard1_0.spring.DataFormatsDefinition#getPgp <em>Pgp</em>}'.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @return the meta object for the containment reference list '<em>Pgp</em>'.
+     * @see org.switchyard.tools.models.switchyard1_0.spring.DataFormatsDefinition#getPgp()
+     * @see #getDataFormatsDefinition()
+     * @generated
+     */
+    EReference getDataFormatsDefinition_Pgp();
+
+    /**
      * Returns the meta object for the containment reference list '{@link org.switchyard.tools.models.switchyard1_0.spring.DataFormatsDefinition#getZip <em>Zip</em>}'.
      * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -45715,6 +46210,17 @@ public interface SpringPackage extends EPackage {
 	EReference getDocumentRoot_PackageScan();
 
 	/**
+     * Returns the meta object for the containment reference '{@link org.switchyard.tools.models.switchyard1_0.spring.DocumentRoot#getPgp <em>Pgp</em>}'.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @return the meta object for the containment reference '<em>Pgp</em>'.
+     * @see org.switchyard.tools.models.switchyard1_0.spring.DocumentRoot#getPgp()
+     * @see #getDocumentRoot()
+     * @generated
+     */
+    EReference getDocumentRoot_Pgp();
+
+    /**
      * Returns the meta object for the containment reference '{@link org.switchyard.tools.models.switchyard1_0.spring.DocumentRoot#getPhp <em>Php</em>}'.
      * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -46734,6 +47240,17 @@ public interface SpringPackage extends EPackage {
 	EAttribute getErrorHandlerDefinition_RetryWhileRef();
 
 	/**
+     * Returns the meta object for the attribute '{@link org.switchyard.tools.models.switchyard1_0.spring.ErrorHandlerDefinition#getRollbackLoggingLevel <em>Rollback Logging Level</em>}'.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @return the meta object for the attribute '<em>Rollback Logging Level</em>'.
+     * @see org.switchyard.tools.models.switchyard1_0.spring.ErrorHandlerDefinition#getRollbackLoggingLevel()
+     * @see #getErrorHandlerDefinition()
+     * @generated
+     */
+    EAttribute getErrorHandlerDefinition_RollbackLoggingLevel();
+
+    /**
      * Returns the meta object for the attribute '{@link org.switchyard.tools.models.switchyard1_0.spring.ErrorHandlerDefinition#getTransactionManagerRef <em>Transaction Manager Ref</em>}'.
      * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -47722,6 +48239,16 @@ public interface SpringPackage extends EPackage {
 	EAttribute getExpressionNode_AnyAttribute1();
 
 	/**
+     * Returns the meta object for class '{@link org.switchyard.tools.models.switchyard1_0.spring.ExpressionNodeHelper <em>Expression Node Helper</em>}'.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @return the meta object for class '<em>Expression Node Helper</em>'.
+     * @see org.switchyard.tools.models.switchyard1_0.spring.ExpressionNodeHelper
+     * @generated
+     */
+    EClass getExpressionNodeHelper();
+
+    /**
      * Returns the meta object for class '{@link org.switchyard.tools.models.switchyard1_0.spring.ExpressionSubElementDefinition <em>Expression Sub Element Definition</em>}'.
      * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -48216,6 +48743,17 @@ public interface SpringPackage extends EPackage {
 	EAttribute getIdempotentConsumerDefinition_MessageIdRepositoryRef();
 
 	/**
+     * Returns the meta object for the attribute '{@link org.switchyard.tools.models.switchyard1_0.spring.IdempotentConsumerDefinition#isRemoveOnFailure <em>Remove On Failure</em>}'.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @return the meta object for the attribute '<em>Remove On Failure</em>'.
+     * @see org.switchyard.tools.models.switchyard1_0.spring.IdempotentConsumerDefinition#isRemoveOnFailure()
+     * @see #getIdempotentConsumerDefinition()
+     * @generated
+     */
+    EAttribute getIdempotentConsumerDefinition_RemoveOnFailure();
+
+    /**
      * Returns the meta object for the attribute '{@link org.switchyard.tools.models.switchyard1_0.spring.IdempotentConsumerDefinition#isSkipDuplicate <em>Skip Duplicate</em>}'.
      * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -49484,6 +50022,17 @@ public interface SpringPackage extends EPackage {
 	EAttribute getLogDefinition_LogName();
 
 	/**
+     * Returns the meta object for the attribute '{@link org.switchyard.tools.models.switchyard1_0.spring.LogDefinition#getMarker <em>Marker</em>}'.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @return the meta object for the attribute '<em>Marker</em>'.
+     * @see org.switchyard.tools.models.switchyard1_0.spring.LogDefinition#getMarker()
+     * @see #getLogDefinition()
+     * @generated
+     */
+    EAttribute getLogDefinition_Marker();
+
+    /**
      * Returns the meta object for the attribute '{@link org.switchyard.tools.models.switchyard1_0.spring.LogDefinition#getMessage <em>Message</em>}'.
      * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -49779,6 +50328,17 @@ public interface SpringPackage extends EPackage {
 	EReference getMarshalDefinition_Xstream();
 
 	/**
+     * Returns the meta object for the containment reference '{@link org.switchyard.tools.models.switchyard1_0.spring.MarshalDefinition#getPgp <em>Pgp</em>}'.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @return the meta object for the containment reference '<em>Pgp</em>'.
+     * @see org.switchyard.tools.models.switchyard1_0.spring.MarshalDefinition#getPgp()
+     * @see #getMarshalDefinition()
+     * @generated
+     */
+    EReference getMarshalDefinition_Pgp();
+
+    /**
      * Returns the meta object for the containment reference '{@link org.switchyard.tools.models.switchyard1_0.spring.MarshalDefinition#getZip <em>Zip</em>}'.
      * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -49866,6 +50426,16 @@ public interface SpringPackage extends EPackage {
 	EAttribute getMethodCallExpression_Ref();
 
 	/**
+     * Returns the meta object for class '{@link org.switchyard.tools.models.switchyard1_0.spring.ModelHelper <em>Model Helper</em>}'.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @return the meta object for class '<em>Model Helper</em>'.
+     * @see org.switchyard.tools.models.switchyard1_0.spring.ModelHelper
+     * @generated
+     */
+    EClass getModelHelper();
+
+    /**
      * Returns the meta object for class '{@link org.switchyard.tools.models.switchyard1_0.spring.MulticastDefinition <em>Multicast Definition</em>}'.
      * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -52401,6 +52971,71 @@ public interface SpringPackage extends EPackage {
 	EAttribute getPipelineDefinition_AnyAttribute2();
 
 	/**
+     * Returns the meta object for class '{@link org.switchyard.tools.models.switchyard1_0.spring.PgpDataFormat <em>Pgp Data Format</em>}'.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @return the meta object for class '<em>Pgp Data Format</em>'.
+     * @see org.switchyard.tools.models.switchyard1_0.spring.PgpDataFormat
+     * @generated
+     */
+    EClass getPgpDataFormat();
+
+    /**
+     * Returns the meta object for the attribute '{@link org.switchyard.tools.models.switchyard1_0.spring.PgpDataFormat#isArmored <em>Armored</em>}'.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @return the meta object for the attribute '<em>Armored</em>'.
+     * @see org.switchyard.tools.models.switchyard1_0.spring.PgpDataFormat#isArmored()
+     * @see #getPgpDataFormat()
+     * @generated
+     */
+    EAttribute getPgpDataFormat_Armored();
+
+    /**
+     * Returns the meta object for the attribute '{@link org.switchyard.tools.models.switchyard1_0.spring.PgpDataFormat#isIntegrity <em>Integrity</em>}'.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @return the meta object for the attribute '<em>Integrity</em>'.
+     * @see org.switchyard.tools.models.switchyard1_0.spring.PgpDataFormat#isIntegrity()
+     * @see #getPgpDataFormat()
+     * @generated
+     */
+    EAttribute getPgpDataFormat_Integrity();
+
+    /**
+     * Returns the meta object for the attribute '{@link org.switchyard.tools.models.switchyard1_0.spring.PgpDataFormat#getKeyFileName <em>Key File Name</em>}'.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @return the meta object for the attribute '<em>Key File Name</em>'.
+     * @see org.switchyard.tools.models.switchyard1_0.spring.PgpDataFormat#getKeyFileName()
+     * @see #getPgpDataFormat()
+     * @generated
+     */
+    EAttribute getPgpDataFormat_KeyFileName();
+
+    /**
+     * Returns the meta object for the attribute '{@link org.switchyard.tools.models.switchyard1_0.spring.PgpDataFormat#getKeyUserid <em>Key Userid</em>}'.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @return the meta object for the attribute '<em>Key Userid</em>'.
+     * @see org.switchyard.tools.models.switchyard1_0.spring.PgpDataFormat#getKeyUserid()
+     * @see #getPgpDataFormat()
+     * @generated
+     */
+    EAttribute getPgpDataFormat_KeyUserid();
+
+    /**
+     * Returns the meta object for the attribute '{@link org.switchyard.tools.models.switchyard1_0.spring.PgpDataFormat#getPassword <em>Password</em>}'.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @return the meta object for the attribute '<em>Password</em>'.
+     * @see org.switchyard.tools.models.switchyard1_0.spring.PgpDataFormat#getPassword()
+     * @see #getPgpDataFormat()
+     * @generated
+     */
+    EAttribute getPgpDataFormat_Password();
+
+    /**
      * Returns the meta object for class '{@link org.switchyard.tools.models.switchyard1_0.spring.PolicyDefinition <em>Policy Definition</em>}'.
      * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -55957,6 +56592,17 @@ public interface SpringPackage extends EPackage {
 	EAttribute getStreamResequencerConfig_Capacity();
 
 	/**
+     * Returns the meta object for the attribute '{@link org.switchyard.tools.models.switchyard1_0.spring.StreamResequencerConfig#isIgnoreInvalidExchanges <em>Ignore Invalid Exchanges</em>}'.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @return the meta object for the attribute '<em>Ignore Invalid Exchanges</em>'.
+     * @see org.switchyard.tools.models.switchyard1_0.spring.StreamResequencerConfig#isIgnoreInvalidExchanges()
+     * @see #getStreamResequencerConfig()
+     * @generated
+     */
+    EAttribute getStreamResequencerConfig_IgnoreInvalidExchanges();
+
+    /**
      * Returns the meta object for the attribute '{@link org.switchyard.tools.models.switchyard1_0.spring.StreamResequencerConfig#getTimeout <em>Timeout</em>}'.
      * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -56366,6 +57012,17 @@ public interface SpringPackage extends EPackage {
 	EClass getTokenizerExpression();
 
 	/**
+     * Returns the meta object for the attribute '{@link org.switchyard.tools.models.switchyard1_0.spring.TokenizerExpression#getEndToken <em>End Token</em>}'.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @return the meta object for the attribute '<em>End Token</em>'.
+     * @see org.switchyard.tools.models.switchyard1_0.spring.TokenizerExpression#getEndToken()
+     * @see #getTokenizerExpression()
+     * @generated
+     */
+    EAttribute getTokenizerExpression_EndToken();
+
+    /**
      * Returns the meta object for the attribute '{@link org.switchyard.tools.models.switchyard1_0.spring.TokenizerExpression#getHeaderName <em>Header Name</em>}'.
      * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -56377,6 +57034,28 @@ public interface SpringPackage extends EPackage {
 	EAttribute getTokenizerExpression_HeaderName();
 
 	/**
+     * Returns the meta object for the attribute '{@link org.switchyard.tools.models.switchyard1_0.spring.TokenizerExpression#isIncludeTokens <em>Include Tokens</em>}'.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @return the meta object for the attribute '<em>Include Tokens</em>'.
+     * @see org.switchyard.tools.models.switchyard1_0.spring.TokenizerExpression#isIncludeTokens()
+     * @see #getTokenizerExpression()
+     * @generated
+     */
+    EAttribute getTokenizerExpression_IncludeTokens();
+
+    /**
+     * Returns the meta object for the attribute '{@link org.switchyard.tools.models.switchyard1_0.spring.TokenizerExpression#getInheritNamespaceTagName <em>Inherit Namespace Tag Name</em>}'.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @return the meta object for the attribute '<em>Inherit Namespace Tag Name</em>'.
+     * @see org.switchyard.tools.models.switchyard1_0.spring.TokenizerExpression#getInheritNamespaceTagName()
+     * @see #getTokenizerExpression()
+     * @generated
+     */
+    EAttribute getTokenizerExpression_InheritNamespaceTagName();
+
+    /**
      * Returns the meta object for the attribute '{@link org.switchyard.tools.models.switchyard1_0.spring.TokenizerExpression#isRegex <em>Regex</em>}'.
      * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -56399,6 +57078,17 @@ public interface SpringPackage extends EPackage {
 	EAttribute getTokenizerExpression_Token();
 
 	/**
+     * Returns the meta object for the attribute '{@link org.switchyard.tools.models.switchyard1_0.spring.TokenizerExpression#isXml <em>Xml</em>}'.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @return the meta object for the attribute '<em>Xml</em>'.
+     * @see org.switchyard.tools.models.switchyard1_0.spring.TokenizerExpression#isXml()
+     * @see #getTokenizerExpression()
+     * @generated
+     */
+    EAttribute getTokenizerExpression_Xml();
+
+    /**
      * Returns the meta object for class '{@link org.switchyard.tools.models.switchyard1_0.spring.TopicLoadBalancerDefinition <em>Topic Load Balancer Definition</em>}'.
      * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -56745,6 +57435,17 @@ public interface SpringPackage extends EPackage {
 	EReference getUnmarshalDefinition_Xstream();
 
 	/**
+     * Returns the meta object for the containment reference '{@link org.switchyard.tools.models.switchyard1_0.spring.UnmarshalDefinition#getPgp <em>Pgp</em>}'.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @return the meta object for the containment reference '<em>Pgp</em>'.
+     * @see org.switchyard.tools.models.switchyard1_0.spring.UnmarshalDefinition#getPgp()
+     * @see #getUnmarshalDefinition()
+     * @generated
+     */
+    EReference getUnmarshalDefinition_Pgp();
+
+    /**
      * Returns the meta object for the containment reference '{@link org.switchyard.tools.models.switchyard1_0.spring.UnmarshalDefinition#getZip <em>Zip</em>}'.
      * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -57014,6 +57715,17 @@ public interface SpringPackage extends EPackage {
 	EAttribute getXmlSecurityDataFormat_KeyCipherAlgorithm();
 
 	/**
+     * Returns the meta object for the attribute '{@link org.switchyard.tools.models.switchyard1_0.spring.XmlSecurityDataFormat#getKeyOrTrustStoreParametersId <em>Key Or Trust Store Parameters Id</em>}'.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @return the meta object for the attribute '<em>Key Or Trust Store Parameters Id</em>'.
+     * @see org.switchyard.tools.models.switchyard1_0.spring.XmlSecurityDataFormat#getKeyOrTrustStoreParametersId()
+     * @see #getXmlSecurityDataFormat()
+     * @generated
+     */
+    EAttribute getXmlSecurityDataFormat_KeyOrTrustStoreParametersId();
+
+    /**
      * Returns the meta object for the attribute '{@link org.switchyard.tools.models.switchyard1_0.spring.XmlSecurityDataFormat#getPassPhrase <em>Pass Phrase</em>}'.
      * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -57079,6 +57791,28 @@ public interface SpringPackage extends EPackage {
 	EClass getXPathExpression();
 
 	/**
+     * Returns the meta object for the attribute '{@link org.switchyard.tools.models.switchyard1_0.spring.XPathExpression#getFactoryRef <em>Factory Ref</em>}'.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @return the meta object for the attribute '<em>Factory Ref</em>'.
+     * @see org.switchyard.tools.models.switchyard1_0.spring.XPathExpression#getFactoryRef()
+     * @see #getXPathExpression()
+     * @generated
+     */
+    EAttribute getXPathExpression_FactoryRef();
+
+    /**
+     * Returns the meta object for the attribute '{@link org.switchyard.tools.models.switchyard1_0.spring.XPathExpression#getObjectModel <em>Object Model</em>}'.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @return the meta object for the attribute '<em>Object Model</em>'.
+     * @see org.switchyard.tools.models.switchyard1_0.spring.XPathExpression#getObjectModel()
+     * @see #getXPathExpression()
+     * @generated
+     */
+    EAttribute getXPathExpression_ObjectModel();
+
+    /**
      * Returns the meta object for the attribute '{@link org.switchyard.tools.models.switchyard1_0.spring.XPathExpression#getResultType <em>Result Type</em>}'.
      * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -57090,6 +57824,28 @@ public interface SpringPackage extends EPackage {
 	EAttribute getXPathExpression_ResultType();
 
 	/**
+     * Returns the meta object for the attribute '{@link org.switchyard.tools.models.switchyard1_0.spring.XPathExpression#isSaxon <em>Saxon</em>}'.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @return the meta object for the attribute '<em>Saxon</em>'.
+     * @see org.switchyard.tools.models.switchyard1_0.spring.XPathExpression#isSaxon()
+     * @see #getXPathExpression()
+     * @generated
+     */
+    EAttribute getXPathExpression_Saxon();
+
+    /**
+     * Returns the meta object for the attribute '{@link org.switchyard.tools.models.switchyard1_0.spring.XPathExpression#isTraceNamespaces <em>Trace Namespaces</em>}'.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @return the meta object for the attribute '<em>Trace Namespaces</em>'.
+     * @see org.switchyard.tools.models.switchyard1_0.spring.XPathExpression#isTraceNamespaces()
+     * @see #getXPathExpression()
+     * @generated
+     */
+    EAttribute getXPathExpression_TraceNamespaces();
+
+    /**
      * Returns the meta object for class '{@link org.switchyard.tools.models.switchyard1_0.spring.XQueryExpression <em>XQuery Expression</em>}'.
      * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->

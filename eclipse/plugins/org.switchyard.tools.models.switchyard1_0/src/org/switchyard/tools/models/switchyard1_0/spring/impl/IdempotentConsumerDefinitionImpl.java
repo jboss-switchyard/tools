@@ -30,6 +30,7 @@ import org.switchyard.tools.models.switchyard1_0.spring.SpringPackage;
  * <ul>
  *   <li>{@link org.switchyard.tools.models.switchyard1_0.spring.impl.IdempotentConsumerDefinitionImpl#isEager <em>Eager</em>}</li>
  *   <li>{@link org.switchyard.tools.models.switchyard1_0.spring.impl.IdempotentConsumerDefinitionImpl#getMessageIdRepositoryRef <em>Message Id Repository Ref</em>}</li>
+ *   <li>{@link org.switchyard.tools.models.switchyard1_0.spring.impl.IdempotentConsumerDefinitionImpl#isRemoveOnFailure <em>Remove On Failure</em>}</li>
  *   <li>{@link org.switchyard.tools.models.switchyard1_0.spring.impl.IdempotentConsumerDefinitionImpl#isSkipDuplicate <em>Skip Duplicate</em>}</li>
  *   <li>{@link org.switchyard.tools.models.switchyard1_0.spring.impl.IdempotentConsumerDefinitionImpl#getAnyAttribute2 <em>Any Attribute2</em>}</li>
  * </ul>
@@ -88,6 +89,35 @@ public class IdempotentConsumerDefinitionImpl extends ExpressionNodeImpl impleme
 	protected String messageIdRepositoryRef = MESSAGE_ID_REPOSITORY_REF_EDEFAULT;
 
 	/**
+     * The default value of the '{@link #isRemoveOnFailure() <em>Remove On Failure</em>}' attribute.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @see #isRemoveOnFailure()
+     * @generated
+     * @ordered
+     */
+    protected static final boolean REMOVE_ON_FAILURE_EDEFAULT = false;
+
+    /**
+     * The cached value of the '{@link #isRemoveOnFailure() <em>Remove On Failure</em>}' attribute.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @see #isRemoveOnFailure()
+     * @generated
+     * @ordered
+     */
+    protected boolean removeOnFailure = REMOVE_ON_FAILURE_EDEFAULT;
+
+    /**
+     * This is true if the Remove On Failure attribute has been set.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    protected boolean removeOnFailureESet;
+
+    /**
      * The default value of the '{@link #isSkipDuplicate() <em>Skip Duplicate</em>}' attribute.
      * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -214,6 +244,52 @@ public class IdempotentConsumerDefinitionImpl extends ExpressionNodeImpl impleme
 
 	/**
      * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public boolean isRemoveOnFailure() {
+        return removeOnFailure;
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public void setRemoveOnFailure(boolean newRemoveOnFailure) {
+        boolean oldRemoveOnFailure = removeOnFailure;
+        removeOnFailure = newRemoveOnFailure;
+        boolean oldRemoveOnFailureESet = removeOnFailureESet;
+        removeOnFailureESet = true;
+        if (eNotificationRequired())
+            eNotify(new ENotificationImpl(this, Notification.SET, SpringPackage.IDEMPOTENT_CONSUMER_DEFINITION__REMOVE_ON_FAILURE, oldRemoveOnFailure, removeOnFailure, !oldRemoveOnFailureESet));
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public void unsetRemoveOnFailure() {
+        boolean oldRemoveOnFailure = removeOnFailure;
+        boolean oldRemoveOnFailureESet = removeOnFailureESet;
+        removeOnFailure = REMOVE_ON_FAILURE_EDEFAULT;
+        removeOnFailureESet = false;
+        if (eNotificationRequired())
+            eNotify(new ENotificationImpl(this, Notification.UNSET, SpringPackage.IDEMPOTENT_CONSUMER_DEFINITION__REMOVE_ON_FAILURE, oldRemoveOnFailure, REMOVE_ON_FAILURE_EDEFAULT, oldRemoveOnFailureESet));
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public boolean isSetRemoveOnFailure() {
+        return removeOnFailureESet;
+    }
+
+    /**
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
      * @generated
      */
@@ -296,6 +372,8 @@ public class IdempotentConsumerDefinitionImpl extends ExpressionNodeImpl impleme
                 return isEager();
             case SpringPackage.IDEMPOTENT_CONSUMER_DEFINITION__MESSAGE_ID_REPOSITORY_REF:
                 return getMessageIdRepositoryRef();
+            case SpringPackage.IDEMPOTENT_CONSUMER_DEFINITION__REMOVE_ON_FAILURE:
+                return isRemoveOnFailure();
             case SpringPackage.IDEMPOTENT_CONSUMER_DEFINITION__SKIP_DUPLICATE:
                 return isSkipDuplicate();
             case SpringPackage.IDEMPOTENT_CONSUMER_DEFINITION__ANY_ATTRIBUTE2:
@@ -318,6 +396,9 @@ public class IdempotentConsumerDefinitionImpl extends ExpressionNodeImpl impleme
                 return;
             case SpringPackage.IDEMPOTENT_CONSUMER_DEFINITION__MESSAGE_ID_REPOSITORY_REF:
                 setMessageIdRepositoryRef((String)newValue);
+                return;
+            case SpringPackage.IDEMPOTENT_CONSUMER_DEFINITION__REMOVE_ON_FAILURE:
+                setRemoveOnFailure((Boolean)newValue);
                 return;
             case SpringPackage.IDEMPOTENT_CONSUMER_DEFINITION__SKIP_DUPLICATE:
                 setSkipDuplicate((Boolean)newValue);
@@ -343,6 +424,9 @@ public class IdempotentConsumerDefinitionImpl extends ExpressionNodeImpl impleme
             case SpringPackage.IDEMPOTENT_CONSUMER_DEFINITION__MESSAGE_ID_REPOSITORY_REF:
                 setMessageIdRepositoryRef(MESSAGE_ID_REPOSITORY_REF_EDEFAULT);
                 return;
+            case SpringPackage.IDEMPOTENT_CONSUMER_DEFINITION__REMOVE_ON_FAILURE:
+                unsetRemoveOnFailure();
+                return;
             case SpringPackage.IDEMPOTENT_CONSUMER_DEFINITION__SKIP_DUPLICATE:
                 unsetSkipDuplicate();
                 return;
@@ -365,6 +449,8 @@ public class IdempotentConsumerDefinitionImpl extends ExpressionNodeImpl impleme
                 return isSetEager();
             case SpringPackage.IDEMPOTENT_CONSUMER_DEFINITION__MESSAGE_ID_REPOSITORY_REF:
                 return MESSAGE_ID_REPOSITORY_REF_EDEFAULT == null ? messageIdRepositoryRef != null : !MESSAGE_ID_REPOSITORY_REF_EDEFAULT.equals(messageIdRepositoryRef);
+            case SpringPackage.IDEMPOTENT_CONSUMER_DEFINITION__REMOVE_ON_FAILURE:
+                return isSetRemoveOnFailure();
             case SpringPackage.IDEMPOTENT_CONSUMER_DEFINITION__SKIP_DUPLICATE:
                 return isSetSkipDuplicate();
             case SpringPackage.IDEMPOTENT_CONSUMER_DEFINITION__ANY_ATTRIBUTE2:
@@ -387,6 +473,8 @@ public class IdempotentConsumerDefinitionImpl extends ExpressionNodeImpl impleme
         if (eagerESet) result.append(eager); else result.append("<unset>");
         result.append(", messageIdRepositoryRef: ");
         result.append(messageIdRepositoryRef);
+        result.append(", removeOnFailure: ");
+        if (removeOnFailureESet) result.append(removeOnFailure); else result.append("<unset>");
         result.append(", skipDuplicate: ");
         if (skipDuplicateESet) result.append(skipDuplicate); else result.append("<unset>");
         result.append(", anyAttribute2: ");

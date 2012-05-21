@@ -102,7 +102,7 @@ public class ThreadsDefinitionImpl extends OutputImpl implements ThreadsDefiniti
      * @generated
      * @ordered
      */
-	protected static final int KEEP_ALIVE_TIME_EDEFAULT = 0;
+	protected static final long KEEP_ALIVE_TIME_EDEFAULT = 0L;
 
 	/**
      * The cached value of the '{@link #getKeepAliveTime() <em>Keep Alive Time</em>}' attribute.
@@ -112,7 +112,7 @@ public class ThreadsDefinitionImpl extends OutputImpl implements ThreadsDefiniti
      * @generated
      * @ordered
      */
-	protected int keepAliveTime = KEEP_ALIVE_TIME_EDEFAULT;
+	protected long keepAliveTime = KEEP_ALIVE_TIME_EDEFAULT;
 
 	/**
      * This is true if the Keep Alive Time attribute has been set.
@@ -380,17 +380,17 @@ public class ThreadsDefinitionImpl extends OutputImpl implements ThreadsDefiniti
 	 * <!-- end-user-doc -->
      * @generated
      */
-	public int getKeepAliveTime() {
+	public long getKeepAliveTime() {
         return keepAliveTime;
     }
 
 	/**
      * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
      * @generated
      */
-	public void setKeepAliveTime(int newKeepAliveTime) {
-        int oldKeepAliveTime = keepAliveTime;
+    public void setKeepAliveTime(long newKeepAliveTime) {
+        long oldKeepAliveTime = keepAliveTime;
         keepAliveTime = newKeepAliveTime;
         boolean oldKeepAliveTimeESet = keepAliveTimeESet;
         keepAliveTimeESet = true;
@@ -398,13 +398,13 @@ public class ThreadsDefinitionImpl extends OutputImpl implements ThreadsDefiniti
             eNotify(new ENotificationImpl(this, Notification.SET, SpringPackage.THREADS_DEFINITION__KEEP_ALIVE_TIME, oldKeepAliveTime, keepAliveTime, !oldKeepAliveTimeESet));
     }
 
-	/**
+    /**
      * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
      * @generated
      */
 	public void unsetKeepAliveTime() {
-        int oldKeepAliveTime = keepAliveTime;
+        long oldKeepAliveTime = keepAliveTime;
         boolean oldKeepAliveTimeESet = keepAliveTimeESet;
         keepAliveTime = KEEP_ALIVE_TIME_EDEFAULT;
         keepAliveTimeESet = false;
@@ -721,7 +721,7 @@ public class ThreadsDefinitionImpl extends OutputImpl implements ThreadsDefiniti
                 setExecutorServiceRef((String)newValue);
                 return;
             case SpringPackage.THREADS_DEFINITION__KEEP_ALIVE_TIME:
-                setKeepAliveTime((Integer)newValue);
+                setKeepAliveTime((Long)newValue);
                 return;
             case SpringPackage.THREADS_DEFINITION__MAX_POOL_SIZE:
                 setMaxPoolSize((Integer)newValue);

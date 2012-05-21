@@ -170,7 +170,7 @@ public interface HornetQPackage extends EPackage {
      * @generated
      * @ordered
      */
-	int BINDING_TYPE__CONTEXT_MAPPER = SwitchyardPackage.SWITCH_YARD_BINDING_TYPE__CONTEXT_MAPPER;
+	int BINDING_TYPE__CONTEXT_MAPPER = SwitchyardPackage.SWITCH_YARD_BINDING_TYPE_FEATURE_COUNT + 0;
 
 	/**
      * The feature id for the '<em><b>Message Composer</b></em>' containment reference.
@@ -179,7 +179,7 @@ public interface HornetQPackage extends EPackage {
      * @generated
      * @ordered
      */
-	int BINDING_TYPE__MESSAGE_COMPOSER = SwitchyardPackage.SWITCH_YARD_BINDING_TYPE__MESSAGE_COMPOSER;
+	int BINDING_TYPE__MESSAGE_COMPOSER = SwitchyardPackage.SWITCH_YARD_BINDING_TYPE_FEATURE_COUNT + 1;
 
 	/**
      * The feature id for the '<em><b>Hq Operation Selector</b></em>' containment reference.
@@ -188,7 +188,7 @@ public interface HornetQPackage extends EPackage {
      * @generated
      * @ordered
      */
-	int BINDING_TYPE__HQ_OPERATION_SELECTOR = SwitchyardPackage.SWITCH_YARD_BINDING_TYPE_FEATURE_COUNT + 0;
+	int BINDING_TYPE__HQ_OPERATION_SELECTOR = SwitchyardPackage.SWITCH_YARD_BINDING_TYPE_FEATURE_COUNT + 2;
 
 	/**
      * The feature id for the '<em><b>Config</b></em>' containment reference.
@@ -197,7 +197,7 @@ public interface HornetQPackage extends EPackage {
      * @generated
      * @ordered
      */
-	int BINDING_TYPE__CONFIG = SwitchyardPackage.SWITCH_YARD_BINDING_TYPE_FEATURE_COUNT + 1;
+	int BINDING_TYPE__CONFIG = SwitchyardPackage.SWITCH_YARD_BINDING_TYPE_FEATURE_COUNT + 3;
 
 	/**
      * The number of structural features of the '<em>Binding Type</em>' class.
@@ -206,7 +206,7 @@ public interface HornetQPackage extends EPackage {
      * @generated
      * @ordered
      */
-	int BINDING_TYPE_FEATURE_COUNT = SwitchyardPackage.SWITCH_YARD_BINDING_TYPE_FEATURE_COUNT + 2;
+	int BINDING_TYPE_FEATURE_COUNT = SwitchyardPackage.SWITCH_YARD_BINDING_TYPE_FEATURE_COUNT + 4;
 
 	/**
      * The meta object id for the '{@link org.switchyard.tools.models.switchyard1_0.hornetq.impl.ConfigTypeImpl <em>Config Type</em>}' class.
@@ -830,6 +830,28 @@ public interface HornetQPackage extends EPackage {
 	EClass getBindingType();
 
 	/**
+     * Returns the meta object for the containment reference '{@link org.switchyard.tools.models.switchyard1_0.hornetq.BindingType#getContextMapper <em>Context Mapper</em>}'.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @return the meta object for the containment reference '<em>Context Mapper</em>'.
+     * @see org.switchyard.tools.models.switchyard1_0.hornetq.BindingType#getContextMapper()
+     * @see #getBindingType()
+     * @generated
+     */
+    EReference getBindingType_ContextMapper();
+
+    /**
+     * Returns the meta object for the containment reference '{@link org.switchyard.tools.models.switchyard1_0.hornetq.BindingType#getMessageComposer <em>Message Composer</em>}'.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @return the meta object for the containment reference '<em>Message Composer</em>'.
+     * @see org.switchyard.tools.models.switchyard1_0.hornetq.BindingType#getMessageComposer()
+     * @see #getBindingType()
+     * @generated
+     */
+    EReference getBindingType_MessageComposer();
+
+    /**
      * Returns the meta object for the containment reference '{@link org.switchyard.tools.models.switchyard1_0.hornetq.BindingType#getHqOperationSelector <em>Hq Operation Selector</em>}'.
      * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -1515,6 +1537,22 @@ public interface HornetQPackage extends EPackage {
 		EClass BINDING_TYPE = eINSTANCE.getBindingType();
 
 		/**
+         * The meta object literal for the '<em><b>Context Mapper</b></em>' containment reference feature.
+         * <!-- begin-user-doc -->
+         * <!-- end-user-doc -->
+         * @generated
+         */
+        EReference BINDING_TYPE__CONTEXT_MAPPER = eINSTANCE.getBindingType_ContextMapper();
+
+        /**
+         * The meta object literal for the '<em><b>Message Composer</b></em>' containment reference feature.
+         * <!-- begin-user-doc -->
+         * <!-- end-user-doc -->
+         * @generated
+         */
+        EReference BINDING_TYPE__MESSAGE_COMPOSER = eINSTANCE.getBindingType_MessageComposer();
+
+        /**
          * The meta object literal for the '<em><b>Hq Operation Selector</b></em>' containment reference feature.
          * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->

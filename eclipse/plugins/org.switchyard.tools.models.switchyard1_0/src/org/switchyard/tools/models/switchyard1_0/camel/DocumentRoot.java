@@ -27,8 +27,12 @@ import org.eclipse.emf.ecore.util.FeatureMap;
  *   <li>{@link org.switchyard.tools.models.switchyard1_0.camel.DocumentRoot#getBindingCamel <em>Binding Camel</em>}</li>
  *   <li>{@link org.switchyard.tools.models.switchyard1_0.camel.DocumentRoot#getBindingDirect <em>Binding Direct</em>}</li>
  *   <li>{@link org.switchyard.tools.models.switchyard1_0.camel.DocumentRoot#getBindingFile <em>Binding File</em>}</li>
+ *   <li>{@link org.switchyard.tools.models.switchyard1_0.camel.DocumentRoot#getBindingFtp <em>Binding Ftp</em>}</li>
+ *   <li>{@link org.switchyard.tools.models.switchyard1_0.camel.DocumentRoot#getBindingFtps <em>Binding Ftps</em>}</li>
+ *   <li>{@link org.switchyard.tools.models.switchyard1_0.camel.DocumentRoot#getBindingJms <em>Binding Jms</em>}</li>
  *   <li>{@link org.switchyard.tools.models.switchyard1_0.camel.DocumentRoot#getBindingMock <em>Binding Mock</em>}</li>
  *   <li>{@link org.switchyard.tools.models.switchyard1_0.camel.DocumentRoot#getBindingSeda <em>Binding Seda</em>}</li>
+ *   <li>{@link org.switchyard.tools.models.switchyard1_0.camel.DocumentRoot#getBindingSftp <em>Binding Sftp</em>}</li>
  *   <li>{@link org.switchyard.tools.models.switchyard1_0.camel.DocumentRoot#getBindingTimer <em>Binding Timer</em>}</li>
  *   <li>{@link org.switchyard.tools.models.switchyard1_0.camel.DocumentRoot#getImplementationCamel <em>Implementation Camel</em>}</li>
  * </ul>
@@ -201,6 +205,87 @@ public interface DocumentRoot extends EObject {
 	void setBindingFile(CamelFileBindingType value);
 
 	/**
+     * Returns the value of the '<em><b>Binding Ftp</b></em>' containment reference.
+     * <!-- begin-user-doc -->
+     * <p>
+     * If the meaning of the '<em>Binding Ftp</em>' containment reference isn't clear,
+     * there really should be more of a description here...
+     * </p>
+     * <!-- end-user-doc -->
+     * @return the value of the '<em>Binding Ftp</em>' containment reference.
+     * @see #setBindingFtp(CamelFtpBindingType)
+     * @see org.switchyard.tools.models.switchyard1_0.camel.CamelPackage#getDocumentRoot_BindingFtp()
+     * @model containment="true" upper="-2" transient="true" volatile="true" derived="true"
+     *        extendedMetaData="kind='element' name='binding.ftp' namespace='##targetNamespace' affiliation='urn:switchyard-config:switchyard:1.0#binding.switchyard'"
+     * @generated
+     */
+    CamelFtpBindingType getBindingFtp();
+
+    /**
+     * Sets the value of the '{@link org.switchyard.tools.models.switchyard1_0.camel.DocumentRoot#getBindingFtp <em>Binding Ftp</em>}' containment reference.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @param value the new value of the '<em>Binding Ftp</em>' containment reference.
+     * @see #getBindingFtp()
+     * @generated
+     */
+    void setBindingFtp(CamelFtpBindingType value);
+
+    /**
+     * Returns the value of the '<em><b>Binding Ftps</b></em>' containment reference.
+     * <!-- begin-user-doc -->
+     * <p>
+     * If the meaning of the '<em>Binding Ftps</em>' containment reference isn't clear,
+     * there really should be more of a description here...
+     * </p>
+     * <!-- end-user-doc -->
+     * @return the value of the '<em>Binding Ftps</em>' containment reference.
+     * @see #setBindingFtps(CamelFtpsBindingType)
+     * @see org.switchyard.tools.models.switchyard1_0.camel.CamelPackage#getDocumentRoot_BindingFtps()
+     * @model containment="true" upper="-2" transient="true" volatile="true" derived="true"
+     *        extendedMetaData="kind='element' name='binding.ftps' namespace='##targetNamespace' affiliation='urn:switchyard-config:switchyard:1.0#binding.switchyard'"
+     * @generated
+     */
+    CamelFtpsBindingType getBindingFtps();
+
+    /**
+     * Sets the value of the '{@link org.switchyard.tools.models.switchyard1_0.camel.DocumentRoot#getBindingFtps <em>Binding Ftps</em>}' containment reference.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @param value the new value of the '<em>Binding Ftps</em>' containment reference.
+     * @see #getBindingFtps()
+     * @generated
+     */
+    void setBindingFtps(CamelFtpsBindingType value);
+
+    /**
+     * Returns the value of the '<em><b>Binding Jms</b></em>' containment reference.
+     * <!-- begin-user-doc -->
+     * <p>
+     * If the meaning of the '<em>Binding Jms</em>' containment reference isn't clear,
+     * there really should be more of a description here...
+     * </p>
+     * <!-- end-user-doc -->
+     * @return the value of the '<em>Binding Jms</em>' containment reference.
+     * @see #setBindingJms(CamelJmsBindingType)
+     * @see org.switchyard.tools.models.switchyard1_0.camel.CamelPackage#getDocumentRoot_BindingJms()
+     * @model containment="true" upper="-2" transient="true" volatile="true" derived="true"
+     *        extendedMetaData="kind='element' name='binding.jms' namespace='##targetNamespace' affiliation='urn:switchyard-config:switchyard:1.0#binding.switchyard'"
+     * @generated
+     */
+    CamelJmsBindingType getBindingJms();
+
+    /**
+     * Sets the value of the '{@link org.switchyard.tools.models.switchyard1_0.camel.DocumentRoot#getBindingJms <em>Binding Jms</em>}' containment reference.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @param value the new value of the '<em>Binding Jms</em>' containment reference.
+     * @see #getBindingJms()
+     * @generated
+     */
+    void setBindingJms(CamelJmsBindingType value);
+
+    /**
      * Returns the value of the '<em><b>Binding Mock</b></em>' containment reference.
      * <!-- begin-user-doc -->
 	 * <p>
@@ -255,6 +340,33 @@ public interface DocumentRoot extends EObject {
 	void setBindingSeda(CamelSedaBindingType value);
 
 	/**
+     * Returns the value of the '<em><b>Binding Sftp</b></em>' containment reference.
+     * <!-- begin-user-doc -->
+     * <p>
+     * If the meaning of the '<em>Binding Sftp</em>' containment reference isn't clear,
+     * there really should be more of a description here...
+     * </p>
+     * <!-- end-user-doc -->
+     * @return the value of the '<em>Binding Sftp</em>' containment reference.
+     * @see #setBindingSftp(CamelSftpBindingType)
+     * @see org.switchyard.tools.models.switchyard1_0.camel.CamelPackage#getDocumentRoot_BindingSftp()
+     * @model containment="true" upper="-2" transient="true" volatile="true" derived="true"
+     *        extendedMetaData="kind='element' name='binding.sftp' namespace='##targetNamespace' affiliation='urn:switchyard-config:switchyard:1.0#binding.switchyard'"
+     * @generated
+     */
+    CamelSftpBindingType getBindingSftp();
+
+    /**
+     * Sets the value of the '{@link org.switchyard.tools.models.switchyard1_0.camel.DocumentRoot#getBindingSftp <em>Binding Sftp</em>}' containment reference.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @param value the new value of the '<em>Binding Sftp</em>' containment reference.
+     * @see #getBindingSftp()
+     * @generated
+     */
+    void setBindingSftp(CamelSftpBindingType value);
+
+    /**
      * Returns the value of the '<em><b>Binding Timer</b></em>' containment reference.
      * <!-- begin-user-doc -->
 	 * <p>

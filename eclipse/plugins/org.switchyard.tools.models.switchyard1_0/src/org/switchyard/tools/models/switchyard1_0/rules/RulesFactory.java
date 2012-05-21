@@ -62,6 +62,24 @@ public interface RulesFactory extends EFactory {
 	DocumentRoot createDocumentRoot();
 
 	/**
+     * Returns a new object of class '<em>Globals Type</em>'.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @return a new object of class '<em>Globals Type</em>'.
+     * @generated
+     */
+    GlobalsType createGlobalsType();
+
+    /**
+     * Returns a new object of class '<em>Mapping Type</em>'.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @return a new object of class '<em>Mapping Type</em>'.
+     * @generated
+     */
+    MappingType createMappingType();
+
+    /**
      * Returns a new object of class '<em>Resource Type</em>'.
      * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->

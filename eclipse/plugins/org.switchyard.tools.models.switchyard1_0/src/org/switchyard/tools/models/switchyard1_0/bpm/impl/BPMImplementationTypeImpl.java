@@ -21,14 +21,15 @@ import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.util.EObjectContainmentEList;
 import org.eclipse.emf.ecore.util.InternalEList;
 
-import org.eclipse.soa.sca.sca1_1.model.sca.impl.ImplementationImpl;
-
 import org.switchyard.tools.models.switchyard1_0.bpm.ActionType1;
 import org.switchyard.tools.models.switchyard1_0.bpm.AuditType;
 import org.switchyard.tools.models.switchyard1_0.bpm.BPMImplementationType;
 import org.switchyard.tools.models.switchyard1_0.bpm.BPMPackage;
+import org.switchyard.tools.models.switchyard1_0.bpm.ParametersType;
 import org.switchyard.tools.models.switchyard1_0.bpm.ResourceType;
+import org.switchyard.tools.models.switchyard1_0.bpm.ResultsType;
 import org.switchyard.tools.models.switchyard1_0.bpm.TaskHandlerType;
+import org.switchyard.tools.models.switchyard1_0.commonrules.impl.CommonImplementationTypeImpl;
 
 /**
  * <!-- begin-user-doc -->
@@ -41,6 +42,8 @@ import org.switchyard.tools.models.switchyard1_0.bpm.TaskHandlerType;
  *   <li>{@link org.switchyard.tools.models.switchyard1_0.bpm.impl.BPMImplementationTypeImpl#getAudit <em>Audit</em>}</li>
  *   <li>{@link org.switchyard.tools.models.switchyard1_0.bpm.impl.BPMImplementationTypeImpl#getTaskHandler <em>Task Handler</em>}</li>
  *   <li>{@link org.switchyard.tools.models.switchyard1_0.bpm.impl.BPMImplementationTypeImpl#getResource <em>Resource</em>}</li>
+ *   <li>{@link org.switchyard.tools.models.switchyard1_0.bpm.impl.BPMImplementationTypeImpl#getParameters <em>Parameters</em>}</li>
+ *   <li>{@link org.switchyard.tools.models.switchyard1_0.bpm.impl.BPMImplementationTypeImpl#getResults <em>Results</em>}</li>
  *   <li>{@link org.switchyard.tools.models.switchyard1_0.bpm.impl.BPMImplementationTypeImpl#getProcessDefinition <em>Process Definition</em>}</li>
  *   <li>{@link org.switchyard.tools.models.switchyard1_0.bpm.impl.BPMImplementationTypeImpl#getProcessDefinitionType <em>Process Definition Type</em>}</li>
  *   <li>{@link org.switchyard.tools.models.switchyard1_0.bpm.impl.BPMImplementationTypeImpl#getProcessId <em>Process Id</em>}</li>
@@ -51,7 +54,7 @@ import org.switchyard.tools.models.switchyard1_0.bpm.TaskHandlerType;
  *
  * @generated
  */
-public class BPMImplementationTypeImpl extends ImplementationImpl implements BPMImplementationType {
+public class BPMImplementationTypeImpl extends CommonImplementationTypeImpl implements BPMImplementationType {
 	/**
      * The cached value of the '{@link #getAction() <em>Action</em>}' containment reference list.
      * <!-- begin-user-doc -->
@@ -93,6 +96,26 @@ public class BPMImplementationTypeImpl extends ImplementationImpl implements BPM
 	protected EList<ResourceType> resource;
 
 	/**
+     * The cached value of the '{@link #getParameters() <em>Parameters</em>}' containment reference.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @see #getParameters()
+     * @generated
+     * @ordered
+     */
+    protected ParametersType parameters;
+
+    /**
+     * The cached value of the '{@link #getResults() <em>Results</em>}' containment reference.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @see #getResults()
+     * @generated
+     * @ordered
+     */
+    protected ResultsType results;
+
+    /**
      * The default value of the '{@link #getProcessDefinition() <em>Process Definition</em>}' attribute.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
@@ -120,7 +143,7 @@ public class BPMImplementationTypeImpl extends ImplementationImpl implements BPM
      * @generated
      * @ordered
      */
-    protected static final String PROCESS_DEFINITION_TYPE_EDEFAULT = null;
+    protected static final String PROCESS_DEFINITION_TYPE_EDEFAULT = "BPMN2";
 
     /**
      * The cached value of the '{@link #getProcessDefinitionType() <em>Process Definition Type</em>}' attribute.
@@ -295,6 +318,92 @@ public class BPMImplementationTypeImpl extends ImplementationImpl implements BPM
      * <!-- end-user-doc -->
      * @generated
      */
+    public ParametersType getParameters() {
+        return parameters;
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public NotificationChain basicSetParameters(ParametersType newParameters, NotificationChain msgs) {
+        ParametersType oldParameters = parameters;
+        parameters = newParameters;
+        if (eNotificationRequired()) {
+            ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, BPMPackage.BPM_IMPLEMENTATION_TYPE__PARAMETERS, oldParameters, newParameters);
+            if (msgs == null) msgs = notification; else msgs.add(notification);
+        }
+        return msgs;
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public void setParameters(ParametersType newParameters) {
+        if (newParameters != parameters) {
+            NotificationChain msgs = null;
+            if (parameters != null)
+                msgs = ((InternalEObject)parameters).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - BPMPackage.BPM_IMPLEMENTATION_TYPE__PARAMETERS, null, msgs);
+            if (newParameters != null)
+                msgs = ((InternalEObject)newParameters).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - BPMPackage.BPM_IMPLEMENTATION_TYPE__PARAMETERS, null, msgs);
+            msgs = basicSetParameters(newParameters, msgs);
+            if (msgs != null) msgs.dispatch();
+        }
+        else if (eNotificationRequired())
+            eNotify(new ENotificationImpl(this, Notification.SET, BPMPackage.BPM_IMPLEMENTATION_TYPE__PARAMETERS, newParameters, newParameters));
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public ResultsType getResults() {
+        return results;
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public NotificationChain basicSetResults(ResultsType newResults, NotificationChain msgs) {
+        ResultsType oldResults = results;
+        results = newResults;
+        if (eNotificationRequired()) {
+            ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, BPMPackage.BPM_IMPLEMENTATION_TYPE__RESULTS, oldResults, newResults);
+            if (msgs == null) msgs = notification; else msgs.add(notification);
+        }
+        return msgs;
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public void setResults(ResultsType newResults) {
+        if (newResults != results) {
+            NotificationChain msgs = null;
+            if (results != null)
+                msgs = ((InternalEObject)results).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - BPMPackage.BPM_IMPLEMENTATION_TYPE__RESULTS, null, msgs);
+            if (newResults != null)
+                msgs = ((InternalEObject)newResults).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - BPMPackage.BPM_IMPLEMENTATION_TYPE__RESULTS, null, msgs);
+            msgs = basicSetResults(newResults, msgs);
+            if (msgs != null) msgs.dispatch();
+        }
+        else if (eNotificationRequired())
+            eNotify(new ENotificationImpl(this, Notification.SET, BPMPackage.BPM_IMPLEMENTATION_TYPE__RESULTS, newResults, newResults));
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
     public String getProcessDefinition() {
         return processDefinition;
     }
@@ -411,6 +520,10 @@ public class BPMImplementationTypeImpl extends ImplementationImpl implements BPM
                 return ((InternalEList<?>)getTaskHandler()).basicRemove(otherEnd, msgs);
             case BPMPackage.BPM_IMPLEMENTATION_TYPE__RESOURCE:
                 return ((InternalEList<?>)getResource()).basicRemove(otherEnd, msgs);
+            case BPMPackage.BPM_IMPLEMENTATION_TYPE__PARAMETERS:
+                return basicSetParameters(null, msgs);
+            case BPMPackage.BPM_IMPLEMENTATION_TYPE__RESULTS:
+                return basicSetResults(null, msgs);
         }
         return super.eInverseRemove(otherEnd, featureID, msgs);
     }
@@ -431,6 +544,10 @@ public class BPMImplementationTypeImpl extends ImplementationImpl implements BPM
                 return getTaskHandler();
             case BPMPackage.BPM_IMPLEMENTATION_TYPE__RESOURCE:
                 return getResource();
+            case BPMPackage.BPM_IMPLEMENTATION_TYPE__PARAMETERS:
+                return getParameters();
+            case BPMPackage.BPM_IMPLEMENTATION_TYPE__RESULTS:
+                return getResults();
             case BPMPackage.BPM_IMPLEMENTATION_TYPE__PROCESS_DEFINITION:
                 return getProcessDefinition();
             case BPMPackage.BPM_IMPLEMENTATION_TYPE__PROCESS_DEFINITION_TYPE:
@@ -468,6 +585,12 @@ public class BPMImplementationTypeImpl extends ImplementationImpl implements BPM
             case BPMPackage.BPM_IMPLEMENTATION_TYPE__RESOURCE:
                 getResource().clear();
                 getResource().addAll((Collection<? extends ResourceType>)newValue);
+                return;
+            case BPMPackage.BPM_IMPLEMENTATION_TYPE__PARAMETERS:
+                setParameters((ParametersType)newValue);
+                return;
+            case BPMPackage.BPM_IMPLEMENTATION_TYPE__RESULTS:
+                setResults((ResultsType)newValue);
                 return;
             case BPMPackage.BPM_IMPLEMENTATION_TYPE__PROCESS_DEFINITION:
                 setProcessDefinition((String)newValue);
@@ -508,6 +631,12 @@ public class BPMImplementationTypeImpl extends ImplementationImpl implements BPM
             case BPMPackage.BPM_IMPLEMENTATION_TYPE__RESOURCE:
                 getResource().clear();
                 return;
+            case BPMPackage.BPM_IMPLEMENTATION_TYPE__PARAMETERS:
+                setParameters((ParametersType)null);
+                return;
+            case BPMPackage.BPM_IMPLEMENTATION_TYPE__RESULTS:
+                setResults((ResultsType)null);
+                return;
             case BPMPackage.BPM_IMPLEMENTATION_TYPE__PROCESS_DEFINITION:
                 setProcessDefinition(PROCESS_DEFINITION_EDEFAULT);
                 return;
@@ -543,6 +672,10 @@ public class BPMImplementationTypeImpl extends ImplementationImpl implements BPM
                 return taskHandler != null && !taskHandler.isEmpty();
             case BPMPackage.BPM_IMPLEMENTATION_TYPE__RESOURCE:
                 return resource != null && !resource.isEmpty();
+            case BPMPackage.BPM_IMPLEMENTATION_TYPE__PARAMETERS:
+                return parameters != null;
+            case BPMPackage.BPM_IMPLEMENTATION_TYPE__RESULTS:
+                return results != null;
             case BPMPackage.BPM_IMPLEMENTATION_TYPE__PROCESS_DEFINITION:
                 return PROCESS_DEFINITION_EDEFAULT == null ? processDefinition != null : !PROCESS_DEFINITION_EDEFAULT.equals(processDefinition);
             case BPMPackage.BPM_IMPLEMENTATION_TYPE__PROCESS_DEFINITION_TYPE:

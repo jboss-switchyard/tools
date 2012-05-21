@@ -6,11 +6,7 @@
  */
 package org.switchyard.tools.models.switchyard1_0.camel;
 
-import java.math.BigInteger;
-
 import javax.xml.datatype.XMLGregorianCalendar;
-
-import org.switchyard.tools.models.switchyard1_0.switchyard.SwitchYardBindingType;
 
 /**
  * <!-- begin-user-doc -->
@@ -27,9 +23,7 @@ import org.switchyard.tools.models.switchyard1_0.switchyard.SwitchYardBindingTyp
  *   <li>{@link org.switchyard.tools.models.switchyard1_0.camel.CamelAtomBindingType#isThrottleEntries <em>Throttle Entries</em>}</li>
  *   <li>{@link org.switchyard.tools.models.switchyard1_0.camel.CamelAtomBindingType#isFeedHeader <em>Feed Header</em>}</li>
  *   <li>{@link org.switchyard.tools.models.switchyard1_0.camel.CamelAtomBindingType#isSortEntries <em>Sort Entries</em>}</li>
- *   <li>{@link org.switchyard.tools.models.switchyard1_0.camel.CamelAtomBindingType#getConsumerDelay <em>Consumer Delay</em>}</li>
- *   <li>{@link org.switchyard.tools.models.switchyard1_0.camel.CamelAtomBindingType#getConsumerInitialDelay <em>Consumer Initial Delay</em>}</li>
- *   <li>{@link org.switchyard.tools.models.switchyard1_0.camel.CamelAtomBindingType#isConsumerUserFixedDelay <em>Consumer User Fixed Delay</em>}</li>
+ *   <li>{@link org.switchyard.tools.models.switchyard1_0.camel.CamelAtomBindingType#getConsume <em>Consume</em>}</li>
  * </ul>
  * </p>
  *
@@ -37,7 +31,7 @@ import org.switchyard.tools.models.switchyard1_0.switchyard.SwitchYardBindingTyp
  * @model extendedMetaData="name='CamelAtomBindingType' kind='elementOnly'"
  * @generated
  */
-public interface CamelAtomBindingType extends SwitchYardBindingType {
+public interface CamelAtomBindingType extends BaseCamelBinding {
 	/**
      * Returns the value of the '<em><b>Feed URI</b></em>' attribute.
      * <!-- begin-user-doc -->
@@ -363,111 +357,30 @@ public interface CamelAtomBindingType extends SwitchYardBindingType {
 	boolean isSetSortEntries();
 
 	/**
-     * Returns the value of the '<em><b>Consumer Delay</b></em>' attribute.
+     * Returns the value of the '<em><b>Consume</b></em>' containment reference.
      * <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of the '<em>Consumer Delay</em>' attribute isn't clear,
-	 * there really should be more of a description here...
-	 * </p>
-	 * <!-- end-user-doc -->
-     * @return the value of the '<em>Consumer Delay</em>' attribute.
-     * @see #setConsumerDelay(BigInteger)
-     * @see org.switchyard.tools.models.switchyard1_0.camel.CamelPackage#getCamelAtomBindingType_ConsumerDelay()
-     * @model dataType="org.eclipse.emf.ecore.xml.type.Integer"
-     *        extendedMetaData="kind='element' name='consumer.delay' namespace='##targetNamespace'"
+     * <p>
+     * If the meaning of the '<em>Consume</em>' containment reference isn't clear,
+     * there really should be more of a description here...
+     * </p>
+     * <!-- end-user-doc -->
+     * @return the value of the '<em>Consume</em>' containment reference.
+     * @see #setConsume(ScheduledPollConsumerType)
+     * @see org.switchyard.tools.models.switchyard1_0.camel.CamelPackage#getCamelAtomBindingType_Consume()
+     * @model containment="true"
+     *        extendedMetaData="kind='element' name='consume' namespace='##targetNamespace'"
      * @generated
      */
-	BigInteger getConsumerDelay();
+    ScheduledPollConsumerType getConsume();
 
-	/**
-     * Sets the value of the '{@link org.switchyard.tools.models.switchyard1_0.camel.CamelAtomBindingType#getConsumerDelay <em>Consumer Delay</em>}' attribute.
+    /**
+     * Sets the value of the '{@link org.switchyard.tools.models.switchyard1_0.camel.CamelAtomBindingType#getConsume <em>Consume</em>}' containment reference.
      * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-     * @param value the new value of the '<em>Consumer Delay</em>' attribute.
-     * @see #getConsumerDelay()
+     * <!-- end-user-doc -->
+     * @param value the new value of the '<em>Consume</em>' containment reference.
+     * @see #getConsume()
      * @generated
      */
-	void setConsumerDelay(BigInteger value);
-
-	/**
-     * Returns the value of the '<em><b>Consumer Initial Delay</b></em>' attribute.
-     * <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of the '<em>Consumer Initial Delay</em>' attribute isn't clear,
-	 * there really should be more of a description here...
-	 * </p>
-	 * <!-- end-user-doc -->
-     * @return the value of the '<em>Consumer Initial Delay</em>' attribute.
-     * @see #setConsumerInitialDelay(BigInteger)
-     * @see org.switchyard.tools.models.switchyard1_0.camel.CamelPackage#getCamelAtomBindingType_ConsumerInitialDelay()
-     * @model dataType="org.eclipse.emf.ecore.xml.type.Integer"
-     *        extendedMetaData="kind='element' name='consumer.initialDelay' namespace='##targetNamespace'"
-     * @generated
-     */
-	BigInteger getConsumerInitialDelay();
-
-	/**
-     * Sets the value of the '{@link org.switchyard.tools.models.switchyard1_0.camel.CamelAtomBindingType#getConsumerInitialDelay <em>Consumer Initial Delay</em>}' attribute.
-     * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-     * @param value the new value of the '<em>Consumer Initial Delay</em>' attribute.
-     * @see #getConsumerInitialDelay()
-     * @generated
-     */
-	void setConsumerInitialDelay(BigInteger value);
-
-	/**
-     * Returns the value of the '<em><b>Consumer User Fixed Delay</b></em>' attribute.
-     * <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of the '<em>Consumer User Fixed Delay</em>' attribute isn't clear,
-	 * there really should be more of a description here...
-	 * </p>
-	 * <!-- end-user-doc -->
-     * @return the value of the '<em>Consumer User Fixed Delay</em>' attribute.
-     * @see #isSetConsumerUserFixedDelay()
-     * @see #unsetConsumerUserFixedDelay()
-     * @see #setConsumerUserFixedDelay(boolean)
-     * @see org.switchyard.tools.models.switchyard1_0.camel.CamelPackage#getCamelAtomBindingType_ConsumerUserFixedDelay()
-     * @model unsettable="true" dataType="org.eclipse.emf.ecore.xml.type.Boolean"
-     *        extendedMetaData="kind='element' name='consumer.userFixedDelay' namespace='##targetNamespace'"
-     * @generated
-     */
-	boolean isConsumerUserFixedDelay();
-
-	/**
-     * Sets the value of the '{@link org.switchyard.tools.models.switchyard1_0.camel.CamelAtomBindingType#isConsumerUserFixedDelay <em>Consumer User Fixed Delay</em>}' attribute.
-     * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-     * @param value the new value of the '<em>Consumer User Fixed Delay</em>' attribute.
-     * @see #isSetConsumerUserFixedDelay()
-     * @see #unsetConsumerUserFixedDelay()
-     * @see #isConsumerUserFixedDelay()
-     * @generated
-     */
-	void setConsumerUserFixedDelay(boolean value);
-
-	/**
-     * Unsets the value of the '{@link org.switchyard.tools.models.switchyard1_0.camel.CamelAtomBindingType#isConsumerUserFixedDelay <em>Consumer User Fixed Delay</em>}' attribute.
-     * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-     * @see #isSetConsumerUserFixedDelay()
-     * @see #isConsumerUserFixedDelay()
-     * @see #setConsumerUserFixedDelay(boolean)
-     * @generated
-     */
-	void unsetConsumerUserFixedDelay();
-
-	/**
-     * Returns whether the value of the '{@link org.switchyard.tools.models.switchyard1_0.camel.CamelAtomBindingType#isConsumerUserFixedDelay <em>Consumer User Fixed Delay</em>}' attribute is set.
-     * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-     * @return whether the value of the '<em>Consumer User Fixed Delay</em>' attribute is set.
-     * @see #unsetConsumerUserFixedDelay()
-     * @see #isConsumerUserFixedDelay()
-     * @see #setConsumerUserFixedDelay(boolean)
-     * @generated
-     */
-	boolean isSetConsumerUserFixedDelay();
+    void setConsume(ScheduledPollConsumerType value);
 
 } // CamelAtomBindingType

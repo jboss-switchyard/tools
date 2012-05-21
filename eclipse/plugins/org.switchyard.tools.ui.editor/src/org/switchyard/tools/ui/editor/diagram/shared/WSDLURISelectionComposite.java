@@ -51,9 +51,9 @@ import org.eclipse.swt.widgets.Link;
 import org.eclipse.swt.widgets.Shell;
 import org.eclipse.swt.widgets.Text;
 import org.eclipse.ui.PlatformUI;
+import org.switchyard.tools.models.switchyard1_0.soap.ContextMapperType;
 import org.switchyard.tools.models.switchyard1_0.soap.SOAPBindingType;
-import org.switchyard.tools.models.switchyard1_0.switchyard.ContextMapperType;
-import org.switchyard.tools.models.switchyard1_0.switchyard.SwitchyardFactory;
+import org.switchyard.tools.models.switchyard1_0.soap.SOAPFactory;
 import org.switchyard.tools.ui.editor.impl.SwitchyardSCAEditor;
 import org.switchyard.tools.ui.editor.util.OpenFileUtil;
 
@@ -218,7 +218,7 @@ public class WSDLURISelectionComposite {
                     protected void doExecute() {
                         _binding.setWsdl(_sWSDLURI);
                         if (_binding.getContextMapper() == null) {
-                            ContextMapperType contextMapper = SwitchyardFactory.eINSTANCE.createContextMapperType();
+                            ContextMapperType contextMapper = SOAPFactory.eINSTANCE.createContextMapperType();
                             _binding.setContextMapper(contextMapper);
                         }
                         if (_bindingPort != null && _bindingPort.trim().length() > 0) {
@@ -234,7 +234,7 @@ public class WSDLURISelectionComposite {
             } else {
                 _binding.setWsdl(_sWSDLURI);
                 if (_binding.getContextMapper() == null) {
-                    ContextMapperType contextMapper = SwitchyardFactory.eINSTANCE.createContextMapperType();
+                    ContextMapperType contextMapper = SOAPFactory.eINSTANCE.createContextMapperType();
                     _binding.setContextMapper(contextMapper);
                 }
                 if (_bindingPort != null && _bindingPort.trim().length() > 0) {

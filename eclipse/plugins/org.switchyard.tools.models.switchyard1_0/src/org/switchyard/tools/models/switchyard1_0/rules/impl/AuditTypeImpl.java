@@ -8,7 +8,7 @@ package org.switchyard.tools.models.switchyard1_0.rules.impl;
 
 import org.eclipse.emf.ecore.EClass;
 
-import org.eclipse.emf.ecore.impl.EObjectImpl;
+import org.switchyard.tools.models.switchyard1_0.commonrules.impl.AuditType1Impl;
 
 import org.switchyard.tools.models.switchyard1_0.rules.AuditType;
 import org.switchyard.tools.models.switchyard1_0.rules.RulesPackage;
@@ -22,7 +22,7 @@ import org.switchyard.tools.models.switchyard1_0.rules.RulesPackage;
  *
  * @generated
  */
-public class AuditTypeImpl extends EObjectImpl implements AuditType {
+public class AuditTypeImpl extends AuditType1Impl implements AuditType {
 	/**
      * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->

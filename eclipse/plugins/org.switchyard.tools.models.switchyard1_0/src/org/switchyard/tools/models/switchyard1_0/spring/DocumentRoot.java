@@ -88,6 +88,7 @@ import org.eclipse.emf.ecore.util.FeatureMap;
  *   <li>{@link org.switchyard.tools.models.switchyard1_0.spring.DocumentRoot#getOnException <em>On Exception</em>}</li>
  *   <li>{@link org.switchyard.tools.models.switchyard1_0.spring.DocumentRoot#getOtherwise <em>Otherwise</em>}</li>
  *   <li>{@link org.switchyard.tools.models.switchyard1_0.spring.DocumentRoot#getPackageScan <em>Package Scan</em>}</li>
+ *   <li>{@link org.switchyard.tools.models.switchyard1_0.spring.DocumentRoot#getPgp <em>Pgp</em>}</li>
  *   <li>{@link org.switchyard.tools.models.switchyard1_0.spring.DocumentRoot#getPhp <em>Php</em>}</li>
  *   <li>{@link org.switchyard.tools.models.switchyard1_0.spring.DocumentRoot#getPipeline <em>Pipeline</em>}</li>
  *   <li>{@link org.switchyard.tools.models.switchyard1_0.spring.DocumentRoot#getPolicy <em>Policy</em>}</li>
@@ -1979,6 +1980,33 @@ public interface DocumentRoot extends EObject {
 	void setPackageScan(PackageScanDefinition value);
 
 	/**
+     * Returns the value of the '<em><b>Pgp</b></em>' containment reference.
+     * <!-- begin-user-doc -->
+     * <p>
+     * If the meaning of the '<em>Pgp</em>' containment reference isn't clear,
+     * there really should be more of a description here...
+     * </p>
+     * <!-- end-user-doc -->
+     * @return the value of the '<em>Pgp</em>' containment reference.
+     * @see #setPgp(PgpDataFormat)
+     * @see org.switchyard.tools.models.switchyard1_0.spring.SpringPackage#getDocumentRoot_Pgp()
+     * @model containment="true" upper="-2" transient="true" volatile="true" derived="true"
+     *        extendedMetaData="kind='element' name='pgp' namespace='##targetNamespace'"
+     * @generated
+     */
+    PgpDataFormat getPgp();
+
+    /**
+     * Sets the value of the '{@link org.switchyard.tools.models.switchyard1_0.spring.DocumentRoot#getPgp <em>Pgp</em>}' containment reference.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @param value the new value of the '<em>Pgp</em>' containment reference.
+     * @see #getPgp()
+     * @generated
+     */
+    void setPgp(PgpDataFormat value);
+
+    /**
      * Returns the value of the '<em><b>Php</b></em>' containment reference.
      * <!-- begin-user-doc -->
 	 * <p>

@@ -18,6 +18,7 @@ package org.switchyard.tools.models.switchyard1_0.spring;
  *   <li>{@link org.switchyard.tools.models.switchyard1_0.spring.BatchResequencerConfig#isAllowDuplicates <em>Allow Duplicates</em>}</li>
  *   <li>{@link org.switchyard.tools.models.switchyard1_0.spring.BatchResequencerConfig#getBatchSize <em>Batch Size</em>}</li>
  *   <li>{@link org.switchyard.tools.models.switchyard1_0.spring.BatchResequencerConfig#getBatchTimeout <em>Batch Timeout</em>}</li>
+ *   <li>{@link org.switchyard.tools.models.switchyard1_0.spring.BatchResequencerConfig#isIgnoreInvalidExchanges <em>Ignore Invalid Exchanges</em>}</li>
  *   <li>{@link org.switchyard.tools.models.switchyard1_0.spring.BatchResequencerConfig#isReverse <em>Reverse</em>}</li>
  * </ul>
  * </p>
@@ -190,6 +191,60 @@ public interface BatchResequencerConfig extends ResequencerConfig {
 	boolean isSetBatchTimeout();
 
 	/**
+     * Returns the value of the '<em><b>Ignore Invalid Exchanges</b></em>' attribute.
+     * <!-- begin-user-doc -->
+     * <p>
+     * If the meaning of the '<em>Ignore Invalid Exchanges</em>' attribute isn't clear,
+     * there really should be more of a description here...
+     * </p>
+     * <!-- end-user-doc -->
+     * @return the value of the '<em>Ignore Invalid Exchanges</em>' attribute.
+     * @see #isSetIgnoreInvalidExchanges()
+     * @see #unsetIgnoreInvalidExchanges()
+     * @see #setIgnoreInvalidExchanges(boolean)
+     * @see org.switchyard.tools.models.switchyard1_0.spring.SpringPackage#getBatchResequencerConfig_IgnoreInvalidExchanges()
+     * @model unsettable="true" dataType="org.eclipse.emf.ecore.xml.type.Boolean"
+     *        extendedMetaData="kind='attribute' name='ignoreInvalidExchanges'"
+     * @generated
+     */
+    boolean isIgnoreInvalidExchanges();
+
+    /**
+     * Sets the value of the '{@link org.switchyard.tools.models.switchyard1_0.spring.BatchResequencerConfig#isIgnoreInvalidExchanges <em>Ignore Invalid Exchanges</em>}' attribute.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @param value the new value of the '<em>Ignore Invalid Exchanges</em>' attribute.
+     * @see #isSetIgnoreInvalidExchanges()
+     * @see #unsetIgnoreInvalidExchanges()
+     * @see #isIgnoreInvalidExchanges()
+     * @generated
+     */
+    void setIgnoreInvalidExchanges(boolean value);
+
+    /**
+     * Unsets the value of the '{@link org.switchyard.tools.models.switchyard1_0.spring.BatchResequencerConfig#isIgnoreInvalidExchanges <em>Ignore Invalid Exchanges</em>}' attribute.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @see #isSetIgnoreInvalidExchanges()
+     * @see #isIgnoreInvalidExchanges()
+     * @see #setIgnoreInvalidExchanges(boolean)
+     * @generated
+     */
+    void unsetIgnoreInvalidExchanges();
+
+    /**
+     * Returns whether the value of the '{@link org.switchyard.tools.models.switchyard1_0.spring.BatchResequencerConfig#isIgnoreInvalidExchanges <em>Ignore Invalid Exchanges</em>}' attribute is set.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @return whether the value of the '<em>Ignore Invalid Exchanges</em>' attribute is set.
+     * @see #unsetIgnoreInvalidExchanges()
+     * @see #isIgnoreInvalidExchanges()
+     * @see #setIgnoreInvalidExchanges(boolean)
+     * @generated
+     */
+    boolean isSetIgnoreInvalidExchanges();
+
+    /**
      * Returns the value of the '<em><b>Reverse</b></em>' attribute.
      * <!-- begin-user-doc -->
 	 * <p>

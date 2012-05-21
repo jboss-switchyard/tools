@@ -13,6 +13,8 @@ import org.eclipse.emf.common.notify.impl.AdapterFactoryImpl;
 
 import org.eclipse.emf.ecore.EObject;
 
+import org.eclipse.soa.sca.sca1_1.model.sca.CommonExtensionBase;
+import org.eclipse.soa.sca.sca1_1.model.sca.Implementation;
 import org.switchyard.tools.models.switchyard1_0.commonrules.*;
 
 /**
@@ -72,8 +74,28 @@ public class CommonRulesAdapterFactory extends AdapterFactoryImpl {
 	protected CommonRulesSwitch<Adapter> modelSwitch =
 		new CommonRulesSwitch<Adapter>() {
             @Override
+            public Adapter caseAuditType1(AuditType1 object) {
+                return createAuditType1Adapter();
+            }
+            @Override
+            public Adapter caseCommonImplementationType(CommonImplementationType object) {
+                return createCommonImplementationTypeAdapter();
+            }
+            @Override
             public Adapter caseDocumentRoot(DocumentRoot object) {
                 return createDocumentRootAdapter();
+            }
+            @Override
+            public Adapter caseMappingType(MappingType object) {
+                return createMappingTypeAdapter();
+            }
+            @Override
+            public Adapter caseCommonExtensionBase(CommonExtensionBase object) {
+                return createCommonExtensionBaseAdapter();
+            }
+            @Override
+            public Adapter caseImplementation(Implementation object) {
+                return createImplementationAdapter();
             }
             @Override
             public Adapter defaultCase(EObject object) {
@@ -96,6 +118,34 @@ public class CommonRulesAdapterFactory extends AdapterFactoryImpl {
 
 
 	/**
+     * Creates a new adapter for an object of class '{@link org.switchyard.tools.models.switchyard1_0.commonrules.AuditType1 <em>Audit Type1</em>}'.
+     * <!-- begin-user-doc -->
+     * This default implementation returns null so that we can easily ignore cases;
+     * it's useful to ignore a case when inheritance will catch all the cases anyway.
+     * <!-- end-user-doc -->
+     * @return the new adapter.
+     * @see org.switchyard.tools.models.switchyard1_0.commonrules.AuditType1
+     * @generated
+     */
+    public Adapter createAuditType1Adapter() {
+        return null;
+    }
+
+    /**
+     * Creates a new adapter for an object of class '{@link org.switchyard.tools.models.switchyard1_0.commonrules.CommonImplementationType <em>Common Implementation Type</em>}'.
+     * <!-- begin-user-doc -->
+     * This default implementation returns null so that we can easily ignore cases;
+     * it's useful to ignore a case when inheritance will catch all the cases anyway.
+     * <!-- end-user-doc -->
+     * @return the new adapter.
+     * @see org.switchyard.tools.models.switchyard1_0.commonrules.CommonImplementationType
+     * @generated
+     */
+    public Adapter createCommonImplementationTypeAdapter() {
+        return null;
+    }
+
+    /**
      * Creates a new adapter for an object of class '{@link org.switchyard.tools.models.switchyard1_0.commonrules.DocumentRoot <em>Document Root</em>}'.
      * <!-- begin-user-doc -->
 	 * This default implementation returns null so that we can easily ignore cases;
@@ -110,6 +160,48 @@ public class CommonRulesAdapterFactory extends AdapterFactoryImpl {
     }
 
 	/**
+     * Creates a new adapter for an object of class '{@link org.switchyard.tools.models.switchyard1_0.commonrules.MappingType <em>Mapping Type</em>}'.
+     * <!-- begin-user-doc -->
+     * This default implementation returns null so that we can easily ignore cases;
+     * it's useful to ignore a case when inheritance will catch all the cases anyway.
+     * <!-- end-user-doc -->
+     * @return the new adapter.
+     * @see org.switchyard.tools.models.switchyard1_0.commonrules.MappingType
+     * @generated
+     */
+    public Adapter createMappingTypeAdapter() {
+        return null;
+    }
+
+    /**
+     * Creates a new adapter for an object of class '{@link org.eclipse.soa.sca.sca1_1.model.sca.CommonExtensionBase <em>Common Extension Base</em>}'.
+     * <!-- begin-user-doc -->
+     * This default implementation returns null so that we can easily ignore cases;
+     * it's useful to ignore a case when inheritance will catch all the cases anyway.
+     * <!-- end-user-doc -->
+     * @return the new adapter.
+     * @see org.eclipse.soa.sca.sca1_1.model.sca.CommonExtensionBase
+     * @generated
+     */
+    public Adapter createCommonExtensionBaseAdapter() {
+        return null;
+    }
+
+    /**
+     * Creates a new adapter for an object of class '{@link org.eclipse.soa.sca.sca1_1.model.sca.Implementation <em>Implementation</em>}'.
+     * <!-- begin-user-doc -->
+     * This default implementation returns null so that we can easily ignore cases;
+     * it's useful to ignore a case when inheritance will catch all the cases anyway.
+     * <!-- end-user-doc -->
+     * @return the new adapter.
+     * @see org.eclipse.soa.sca.sca1_1.model.sca.Implementation
+     * @generated
+     */
+    public Adapter createImplementationAdapter() {
+        return null;
+    }
+
+    /**
      * Creates a new adapter for the default case.
      * <!-- begin-user-doc -->
 	 * This default implementation returns null.

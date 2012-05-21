@@ -6,6 +6,7 @@
  */
 package org.switchyard.tools.models.switchyard1_0.soap;
 
+import org.switchyard.tools.models.switchyard1_0.switchyard.MessageComposerType;
 import org.switchyard.tools.models.switchyard1_0.switchyard.SwitchYardBindingType;
 
 /**
@@ -16,6 +17,8 @@ import org.switchyard.tools.models.switchyard1_0.switchyard.SwitchYardBindingTyp
  * <p>
  * The following features are supported:
  * <ul>
+ *   <li>{@link org.switchyard.tools.models.switchyard1_0.soap.SOAPBindingType#getContextMapper <em>Context Mapper</em>}</li>
+ *   <li>{@link org.switchyard.tools.models.switchyard1_0.soap.SOAPBindingType#getMessageComposer <em>Message Composer</em>}</li>
  *   <li>{@link org.switchyard.tools.models.switchyard1_0.soap.SOAPBindingType#getWsdl <em>Wsdl</em>}</li>
  *   <li>{@link org.switchyard.tools.models.switchyard1_0.soap.SOAPBindingType#getWsdlPort <em>Wsdl Port</em>}</li>
  *   <li>{@link org.switchyard.tools.models.switchyard1_0.soap.SOAPBindingType#getSocketAddr <em>Socket Addr</em>}</li>
@@ -29,6 +32,61 @@ import org.switchyard.tools.models.switchyard1_0.switchyard.SwitchYardBindingTyp
  */
 public interface SOAPBindingType extends SwitchYardBindingType {
 	/**
+     * Returns the value of the '<em><b>Context Mapper</b></em>' containment reference.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * <!-- begin-model-doc -->
+     * 
+     *                                 Specify the ContextMapper to be used.
+     *                             
+     * <!-- end-model-doc -->
+     * @return the value of the '<em>Context Mapper</em>' containment reference.
+     * @see #setContextMapper(ContextMapperType)
+     * @see org.switchyard.tools.models.switchyard1_0.soap.SOAPPackage#getSOAPBindingType_ContextMapper()
+     * @model containment="true"
+     *        extendedMetaData="kind='element' name='contextMapper' namespace='##targetNamespace'"
+     * @generated
+     */
+    ContextMapperType getContextMapper();
+
+    /**
+     * Sets the value of the '{@link org.switchyard.tools.models.switchyard1_0.soap.SOAPBindingType#getContextMapper <em>Context Mapper</em>}' containment reference.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @param value the new value of the '<em>Context Mapper</em>' containment reference.
+     * @see #getContextMapper()
+     * @generated
+     */
+    void setContextMapper(ContextMapperType value);
+
+    /**
+     * Returns the value of the '<em><b>Message Composer</b></em>' reference.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * <!-- begin-model-doc -->
+     * 
+     *                                 Specify the MessageComposer to be used.
+     *                             
+     * <!-- end-model-doc -->
+     * @return the value of the '<em>Message Composer</em>' reference.
+     * @see #setMessageComposer(MessageComposerType)
+     * @see org.switchyard.tools.models.switchyard1_0.soap.SOAPPackage#getSOAPBindingType_MessageComposer()
+     * @model extendedMetaData="kind='element' name='messageComposer' namespace='##targetNamespace'"
+     * @generated
+     */
+    MessageComposerType getMessageComposer();
+
+    /**
+     * Sets the value of the '{@link org.switchyard.tools.models.switchyard1_0.soap.SOAPBindingType#getMessageComposer <em>Message Composer</em>}' reference.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @param value the new value of the '<em>Message Composer</em>' reference.
+     * @see #getMessageComposer()
+     * @generated
+     */
+    void setMessageComposer(MessageComposerType value);
+
+    /**
      * Returns the value of the '<em><b>Wsdl</b></em>' attribute.
      * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->

@@ -23,6 +23,7 @@ package org.switchyard.tools.models.switchyard1_0.spring;
  *   <li>{@link org.switchyard.tools.models.switchyard1_0.spring.ErrorHandlerDefinition#getOnRedeliveryRef <em>On Redelivery Ref</em>}</li>
  *   <li>{@link org.switchyard.tools.models.switchyard1_0.spring.ErrorHandlerDefinition#getRedeliveryPolicyRef <em>Redelivery Policy Ref</em>}</li>
  *   <li>{@link org.switchyard.tools.models.switchyard1_0.spring.ErrorHandlerDefinition#getRetryWhileRef <em>Retry While Ref</em>}</li>
+ *   <li>{@link org.switchyard.tools.models.switchyard1_0.spring.ErrorHandlerDefinition#getRollbackLoggingLevel <em>Rollback Logging Level</em>}</li>
  *   <li>{@link org.switchyard.tools.models.switchyard1_0.spring.ErrorHandlerDefinition#getTransactionManagerRef <em>Transaction Manager Ref</em>}</li>
  *   <li>{@link org.switchyard.tools.models.switchyard1_0.spring.ErrorHandlerDefinition#getTransactionTemplateRef <em>Transaction Template Ref</em>}</li>
  *   <li>{@link org.switchyard.tools.models.switchyard1_0.spring.ErrorHandlerDefinition#getType <em>Type</em>}</li>
@@ -44,25 +45,25 @@ public interface ErrorHandlerDefinition extends IdentifiedType {
 	 * </p>
 	 * <!-- end-user-doc -->
      * @return the value of the '<em>Redelivery Policy</em>' containment reference.
-     * @see #setRedeliveryPolicy(RedeliveryPolicyDefinition)
+     * @see #setRedeliveryPolicy(CamelRedeliveryPolicyFactoryBean)
      * @see org.switchyard.tools.models.switchyard1_0.spring.SpringPackage#getErrorHandlerDefinition_RedeliveryPolicy()
      * @model containment="true"
      *        extendedMetaData="kind='element' name='redeliveryPolicy' namespace='##targetNamespace'"
      * @generated
      */
-	RedeliveryPolicyDefinition getRedeliveryPolicy();
+	CamelRedeliveryPolicyFactoryBean getRedeliveryPolicy();
 
 	/**
      * Sets the value of the '{@link org.switchyard.tools.models.switchyard1_0.spring.ErrorHandlerDefinition#getRedeliveryPolicy <em>Redelivery Policy</em>}' containment reference.
      * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
      * @param value the new value of the '<em>Redelivery Policy</em>' containment reference.
      * @see #getRedeliveryPolicy()
      * @generated
      */
-	void setRedeliveryPolicy(RedeliveryPolicyDefinition value);
+    void setRedeliveryPolicy(CamelRedeliveryPolicyFactoryBean value);
 
-	/**
+    /**
      * Returns the value of the '<em><b>Dead Letter Uri</b></em>' attribute.
      * <!-- begin-user-doc -->
 	 * <p>
@@ -282,6 +283,63 @@ public interface ErrorHandlerDefinition extends IdentifiedType {
 	void setRetryWhileRef(String value);
 
 	/**
+     * Returns the value of the '<em><b>Rollback Logging Level</b></em>' attribute.
+     * The literals are from the enumeration {@link org.switchyard.tools.models.switchyard1_0.spring.LoggingLevel}.
+     * <!-- begin-user-doc -->
+     * <p>
+     * If the meaning of the '<em>Rollback Logging Level</em>' attribute isn't clear,
+     * there really should be more of a description here...
+     * </p>
+     * <!-- end-user-doc -->
+     * @return the value of the '<em>Rollback Logging Level</em>' attribute.
+     * @see org.switchyard.tools.models.switchyard1_0.spring.LoggingLevel
+     * @see #isSetRollbackLoggingLevel()
+     * @see #unsetRollbackLoggingLevel()
+     * @see #setRollbackLoggingLevel(LoggingLevel)
+     * @see org.switchyard.tools.models.switchyard1_0.spring.SpringPackage#getErrorHandlerDefinition_RollbackLoggingLevel()
+     * @model unsettable="true"
+     *        extendedMetaData="kind='attribute' name='rollbackLoggingLevel'"
+     * @generated
+     */
+    LoggingLevel getRollbackLoggingLevel();
+
+    /**
+     * Sets the value of the '{@link org.switchyard.tools.models.switchyard1_0.spring.ErrorHandlerDefinition#getRollbackLoggingLevel <em>Rollback Logging Level</em>}' attribute.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @param value the new value of the '<em>Rollback Logging Level</em>' attribute.
+     * @see org.switchyard.tools.models.switchyard1_0.spring.LoggingLevel
+     * @see #isSetRollbackLoggingLevel()
+     * @see #unsetRollbackLoggingLevel()
+     * @see #getRollbackLoggingLevel()
+     * @generated
+     */
+    void setRollbackLoggingLevel(LoggingLevel value);
+
+    /**
+     * Unsets the value of the '{@link org.switchyard.tools.models.switchyard1_0.spring.ErrorHandlerDefinition#getRollbackLoggingLevel <em>Rollback Logging Level</em>}' attribute.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @see #isSetRollbackLoggingLevel()
+     * @see #getRollbackLoggingLevel()
+     * @see #setRollbackLoggingLevel(LoggingLevel)
+     * @generated
+     */
+    void unsetRollbackLoggingLevel();
+
+    /**
+     * Returns whether the value of the '{@link org.switchyard.tools.models.switchyard1_0.spring.ErrorHandlerDefinition#getRollbackLoggingLevel <em>Rollback Logging Level</em>}' attribute is set.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @return whether the value of the '<em>Rollback Logging Level</em>' attribute is set.
+     * @see #unsetRollbackLoggingLevel()
+     * @see #getRollbackLoggingLevel()
+     * @see #setRollbackLoggingLevel(LoggingLevel)
+     * @generated
+     */
+    boolean isSetRollbackLoggingLevel();
+
+    /**
      * Returns the value of the '<em><b>Transaction Manager Ref</b></em>' attribute.
      * <!-- begin-user-doc -->
 	 * <p>

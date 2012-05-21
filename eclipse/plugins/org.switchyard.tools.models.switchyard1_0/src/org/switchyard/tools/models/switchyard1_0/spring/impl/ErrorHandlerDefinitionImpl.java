@@ -14,10 +14,10 @@ import org.eclipse.emf.ecore.InternalEObject;
 
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 
+import org.switchyard.tools.models.switchyard1_0.spring.CamelRedeliveryPolicyFactoryBean;
 import org.switchyard.tools.models.switchyard1_0.spring.ErrorHandlerDefinition;
 import org.switchyard.tools.models.switchyard1_0.spring.ErrorHandlerType;
 import org.switchyard.tools.models.switchyard1_0.spring.LoggingLevel;
-import org.switchyard.tools.models.switchyard1_0.spring.RedeliveryPolicyDefinition;
 import org.switchyard.tools.models.switchyard1_0.spring.SpringPackage;
 
 /**
@@ -35,6 +35,7 @@ import org.switchyard.tools.models.switchyard1_0.spring.SpringPackage;
  *   <li>{@link org.switchyard.tools.models.switchyard1_0.spring.impl.ErrorHandlerDefinitionImpl#getOnRedeliveryRef <em>On Redelivery Ref</em>}</li>
  *   <li>{@link org.switchyard.tools.models.switchyard1_0.spring.impl.ErrorHandlerDefinitionImpl#getRedeliveryPolicyRef <em>Redelivery Policy Ref</em>}</li>
  *   <li>{@link org.switchyard.tools.models.switchyard1_0.spring.impl.ErrorHandlerDefinitionImpl#getRetryWhileRef <em>Retry While Ref</em>}</li>
+ *   <li>{@link org.switchyard.tools.models.switchyard1_0.spring.impl.ErrorHandlerDefinitionImpl#getRollbackLoggingLevel <em>Rollback Logging Level</em>}</li>
  *   <li>{@link org.switchyard.tools.models.switchyard1_0.spring.impl.ErrorHandlerDefinitionImpl#getTransactionManagerRef <em>Transaction Manager Ref</em>}</li>
  *   <li>{@link org.switchyard.tools.models.switchyard1_0.spring.impl.ErrorHandlerDefinitionImpl#getTransactionTemplateRef <em>Transaction Template Ref</em>}</li>
  *   <li>{@link org.switchyard.tools.models.switchyard1_0.spring.impl.ErrorHandlerDefinitionImpl#getType <em>Type</em>}</li>
@@ -53,7 +54,7 @@ public class ErrorHandlerDefinitionImpl extends IdentifiedTypeImpl implements Er
      * @generated
      * @ordered
      */
-	protected RedeliveryPolicyDefinition redeliveryPolicy;
+	protected CamelRedeliveryPolicyFactoryBean redeliveryPolicy;
 
 	/**
      * The default value of the '{@link #getDeadLetterUri() <em>Dead Letter Uri</em>}' attribute.
@@ -205,6 +206,35 @@ public class ErrorHandlerDefinitionImpl extends IdentifiedTypeImpl implements Er
 	protected String retryWhileRef = RETRY_WHILE_REF_EDEFAULT;
 
 	/**
+     * The default value of the '{@link #getRollbackLoggingLevel() <em>Rollback Logging Level</em>}' attribute.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @see #getRollbackLoggingLevel()
+     * @generated
+     * @ordered
+     */
+    protected static final LoggingLevel ROLLBACK_LOGGING_LEVEL_EDEFAULT = LoggingLevel.DEBUG;
+
+    /**
+     * The cached value of the '{@link #getRollbackLoggingLevel() <em>Rollback Logging Level</em>}' attribute.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @see #getRollbackLoggingLevel()
+     * @generated
+     * @ordered
+     */
+    protected LoggingLevel rollbackLoggingLevel = ROLLBACK_LOGGING_LEVEL_EDEFAULT;
+
+    /**
+     * This is true if the Rollback Logging Level attribute has been set.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    protected boolean rollbackLoggingLevelESet;
+
+    /**
      * The default value of the '{@link #getTransactionManagerRef() <em>Transaction Manager Ref</em>}' attribute.
      * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -326,17 +356,17 @@ public class ErrorHandlerDefinitionImpl extends IdentifiedTypeImpl implements Er
 	 * <!-- end-user-doc -->
      * @generated
      */
-	public RedeliveryPolicyDefinition getRedeliveryPolicy() {
+	public CamelRedeliveryPolicyFactoryBean getRedeliveryPolicy() {
         return redeliveryPolicy;
     }
 
 	/**
      * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
      * @generated
      */
-	public NotificationChain basicSetRedeliveryPolicy(RedeliveryPolicyDefinition newRedeliveryPolicy, NotificationChain msgs) {
-        RedeliveryPolicyDefinition oldRedeliveryPolicy = redeliveryPolicy;
+    public NotificationChain basicSetRedeliveryPolicy(CamelRedeliveryPolicyFactoryBean newRedeliveryPolicy, NotificationChain msgs) {
+        CamelRedeliveryPolicyFactoryBean oldRedeliveryPolicy = redeliveryPolicy;
         redeliveryPolicy = newRedeliveryPolicy;
         if (eNotificationRequired()) {
             ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, SpringPackage.ERROR_HANDLER_DEFINITION__REDELIVERY_POLICY, oldRedeliveryPolicy, newRedeliveryPolicy);
@@ -345,12 +375,12 @@ public class ErrorHandlerDefinitionImpl extends IdentifiedTypeImpl implements Er
         return msgs;
     }
 
-	/**
+    /**
      * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
      * @generated
      */
-	public void setRedeliveryPolicy(RedeliveryPolicyDefinition newRedeliveryPolicy) {
+    public void setRedeliveryPolicy(CamelRedeliveryPolicyFactoryBean newRedeliveryPolicy) {
         if (newRedeliveryPolicy != redeliveryPolicy) {
             NotificationChain msgs = null;
             if (redeliveryPolicy != null)
@@ -364,7 +394,7 @@ public class ErrorHandlerDefinitionImpl extends IdentifiedTypeImpl implements Er
             eNotify(new ENotificationImpl(this, Notification.SET, SpringPackage.ERROR_HANDLER_DEFINITION__REDELIVERY_POLICY, newRedeliveryPolicy, newRedeliveryPolicy));
     }
 
-	/**
+    /**
      * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
      * @generated
@@ -538,6 +568,52 @@ public class ErrorHandlerDefinitionImpl extends IdentifiedTypeImpl implements Er
 
 	/**
      * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public LoggingLevel getRollbackLoggingLevel() {
+        return rollbackLoggingLevel;
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public void setRollbackLoggingLevel(LoggingLevel newRollbackLoggingLevel) {
+        LoggingLevel oldRollbackLoggingLevel = rollbackLoggingLevel;
+        rollbackLoggingLevel = newRollbackLoggingLevel == null ? ROLLBACK_LOGGING_LEVEL_EDEFAULT : newRollbackLoggingLevel;
+        boolean oldRollbackLoggingLevelESet = rollbackLoggingLevelESet;
+        rollbackLoggingLevelESet = true;
+        if (eNotificationRequired())
+            eNotify(new ENotificationImpl(this, Notification.SET, SpringPackage.ERROR_HANDLER_DEFINITION__ROLLBACK_LOGGING_LEVEL, oldRollbackLoggingLevel, rollbackLoggingLevel, !oldRollbackLoggingLevelESet));
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public void unsetRollbackLoggingLevel() {
+        LoggingLevel oldRollbackLoggingLevel = rollbackLoggingLevel;
+        boolean oldRollbackLoggingLevelESet = rollbackLoggingLevelESet;
+        rollbackLoggingLevel = ROLLBACK_LOGGING_LEVEL_EDEFAULT;
+        rollbackLoggingLevelESet = false;
+        if (eNotificationRequired())
+            eNotify(new ENotificationImpl(this, Notification.UNSET, SpringPackage.ERROR_HANDLER_DEFINITION__ROLLBACK_LOGGING_LEVEL, oldRollbackLoggingLevel, ROLLBACK_LOGGING_LEVEL_EDEFAULT, oldRollbackLoggingLevelESet));
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public boolean isSetRollbackLoggingLevel() {
+        return rollbackLoggingLevelESet;
+    }
+
+    /**
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
      * @generated
      */
@@ -708,6 +784,8 @@ public class ErrorHandlerDefinitionImpl extends IdentifiedTypeImpl implements Er
                 return getRedeliveryPolicyRef();
             case SpringPackage.ERROR_HANDLER_DEFINITION__RETRY_WHILE_REF:
                 return getRetryWhileRef();
+            case SpringPackage.ERROR_HANDLER_DEFINITION__ROLLBACK_LOGGING_LEVEL:
+                return getRollbackLoggingLevel();
             case SpringPackage.ERROR_HANDLER_DEFINITION__TRANSACTION_MANAGER_REF:
                 return getTransactionManagerRef();
             case SpringPackage.ERROR_HANDLER_DEFINITION__TRANSACTION_TEMPLATE_REF:
@@ -729,7 +807,7 @@ public class ErrorHandlerDefinitionImpl extends IdentifiedTypeImpl implements Er
 	public void eSet(int featureID, Object newValue) {
         switch (featureID) {
             case SpringPackage.ERROR_HANDLER_DEFINITION__REDELIVERY_POLICY:
-                setRedeliveryPolicy((RedeliveryPolicyDefinition)newValue);
+                setRedeliveryPolicy((CamelRedeliveryPolicyFactoryBean)newValue);
                 return;
             case SpringPackage.ERROR_HANDLER_DEFINITION__DEAD_LETTER_URI:
                 setDeadLetterUri((String)newValue);
@@ -751,6 +829,9 @@ public class ErrorHandlerDefinitionImpl extends IdentifiedTypeImpl implements Er
                 return;
             case SpringPackage.ERROR_HANDLER_DEFINITION__RETRY_WHILE_REF:
                 setRetryWhileRef((String)newValue);
+                return;
+            case SpringPackage.ERROR_HANDLER_DEFINITION__ROLLBACK_LOGGING_LEVEL:
+                setRollbackLoggingLevel((LoggingLevel)newValue);
                 return;
             case SpringPackage.ERROR_HANDLER_DEFINITION__TRANSACTION_MANAGER_REF:
                 setTransactionManagerRef((String)newValue);
@@ -777,7 +858,7 @@ public class ErrorHandlerDefinitionImpl extends IdentifiedTypeImpl implements Er
 	public void eUnset(int featureID) {
         switch (featureID) {
             case SpringPackage.ERROR_HANDLER_DEFINITION__REDELIVERY_POLICY:
-                setRedeliveryPolicy((RedeliveryPolicyDefinition)null);
+                setRedeliveryPolicy((CamelRedeliveryPolicyFactoryBean)null);
                 return;
             case SpringPackage.ERROR_HANDLER_DEFINITION__DEAD_LETTER_URI:
                 setDeadLetterUri(DEAD_LETTER_URI_EDEFAULT);
@@ -799,6 +880,9 @@ public class ErrorHandlerDefinitionImpl extends IdentifiedTypeImpl implements Er
                 return;
             case SpringPackage.ERROR_HANDLER_DEFINITION__RETRY_WHILE_REF:
                 setRetryWhileRef(RETRY_WHILE_REF_EDEFAULT);
+                return;
+            case SpringPackage.ERROR_HANDLER_DEFINITION__ROLLBACK_LOGGING_LEVEL:
+                unsetRollbackLoggingLevel();
                 return;
             case SpringPackage.ERROR_HANDLER_DEFINITION__TRANSACTION_MANAGER_REF:
                 setTransactionManagerRef(TRANSACTION_MANAGER_REF_EDEFAULT);
@@ -840,6 +924,8 @@ public class ErrorHandlerDefinitionImpl extends IdentifiedTypeImpl implements Er
                 return REDELIVERY_POLICY_REF_EDEFAULT == null ? redeliveryPolicyRef != null : !REDELIVERY_POLICY_REF_EDEFAULT.equals(redeliveryPolicyRef);
             case SpringPackage.ERROR_HANDLER_DEFINITION__RETRY_WHILE_REF:
                 return RETRY_WHILE_REF_EDEFAULT == null ? retryWhileRef != null : !RETRY_WHILE_REF_EDEFAULT.equals(retryWhileRef);
+            case SpringPackage.ERROR_HANDLER_DEFINITION__ROLLBACK_LOGGING_LEVEL:
+                return isSetRollbackLoggingLevel();
             case SpringPackage.ERROR_HANDLER_DEFINITION__TRANSACTION_MANAGER_REF:
                 return TRANSACTION_MANAGER_REF_EDEFAULT == null ? transactionManagerRef != null : !TRANSACTION_MANAGER_REF_EDEFAULT.equals(transactionManagerRef);
             case SpringPackage.ERROR_HANDLER_DEFINITION__TRANSACTION_TEMPLATE_REF:
@@ -876,6 +962,8 @@ public class ErrorHandlerDefinitionImpl extends IdentifiedTypeImpl implements Er
         result.append(redeliveryPolicyRef);
         result.append(", retryWhileRef: ");
         result.append(retryWhileRef);
+        result.append(", rollbackLoggingLevel: ");
+        if (rollbackLoggingLevelESet) result.append(rollbackLoggingLevel); else result.append("<unset>");
         result.append(", transactionManagerRef: ");
         result.append(transactionManagerRef);
         result.append(", transactionTemplateRef: ");

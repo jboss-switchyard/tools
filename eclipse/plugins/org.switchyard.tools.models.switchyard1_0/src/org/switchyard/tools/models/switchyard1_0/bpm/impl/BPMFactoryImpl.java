@@ -65,7 +65,10 @@ public class BPMFactoryImpl extends EFactoryImpl implements BPMFactory {
             case BPMPackage.AUDIT_TYPE: return createAuditType();
             case BPMPackage.BPM_IMPLEMENTATION_TYPE: return createBPMImplementationType();
             case BPMPackage.DOCUMENT_ROOT: return createDocumentRoot();
+            case BPMPackage.MAPPING_TYPE: return createMappingType();
+            case BPMPackage.PARAMETERS_TYPE: return createParametersType();
             case BPMPackage.RESOURCE_TYPE: return createResourceType();
+            case BPMPackage.RESULTS_TYPE: return createResultsType();
             case BPMPackage.TASK_HANDLER_TYPE: return createTaskHandlerType();
             default:
                 throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier");
@@ -148,6 +151,26 @@ public class BPMFactoryImpl extends EFactoryImpl implements BPMFactory {
 
 	/**
      * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public MappingType createMappingType() {
+        MappingTypeImpl mappingType = new MappingTypeImpl();
+        return mappingType;
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public ParametersType createParametersType() {
+        ParametersTypeImpl parametersType = new ParametersTypeImpl();
+        return parametersType;
+    }
+
+    /**
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
      * @generated
      */
@@ -157,6 +180,16 @@ public class BPMFactoryImpl extends EFactoryImpl implements BPMFactory {
     }
 
 	/**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public ResultsType createResultsType() {
+        ResultsTypeImpl resultsType = new ResultsTypeImpl();
+        return resultsType;
+    }
+
+    /**
      * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
      * @generated

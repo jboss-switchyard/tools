@@ -26,6 +26,15 @@ public interface SOAPFactory extends EFactory {
 	SOAPFactory eINSTANCE = org.switchyard.tools.models.switchyard1_0.soap.impl.SOAPFactoryImpl.init();
 
 	/**
+     * Returns a new object of class '<em>Context Mapper Type</em>'.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @return a new object of class '<em>Context Mapper Type</em>'.
+     * @generated
+     */
+    ContextMapperType createContextMapperType();
+
+    /**
      * Returns a new object of class '<em>Document Root</em>'.
      * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->

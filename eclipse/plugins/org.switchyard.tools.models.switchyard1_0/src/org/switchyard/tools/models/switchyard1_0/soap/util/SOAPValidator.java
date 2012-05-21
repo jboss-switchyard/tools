@@ -101,10 +101,16 @@ public class SOAPValidator extends EObjectValidator {
 	@Override
 	protected boolean validate(int classifierID, Object value, DiagnosticChain diagnostics, Map<Object, Object> context) {
         switch (classifierID) {
+            case SOAPPackage.CONTEXT_MAPPER_TYPE:
+                return validateContextMapperType((ContextMapperType)value, diagnostics, context);
             case SOAPPackage.DOCUMENT_ROOT:
                 return validateDocumentRoot((DocumentRoot)value, diagnostics, context);
             case SOAPPackage.SOAP_BINDING_TYPE:
                 return validateSOAPBindingType((SOAPBindingType)value, diagnostics, context);
+            case SOAPPackage.SOAP_HEADERS_TYPE:
+                return validateSoapHeadersType((SoapHeadersType)value, diagnostics, context);
+            case SOAPPackage.SOAP_HEADERS_TYPE_OBJECT:
+                return validateSoapHeadersTypeObject((SoapHeadersType)value, diagnostics, context);
             case SOAPPackage.WSDL_PORT_TYPE:
                 return validateWsdlPortType((String)value, diagnostics, context);
             default:
@@ -113,6 +119,15 @@ public class SOAPValidator extends EObjectValidator {
     }
 
 	/**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public boolean validateContextMapperType(ContextMapperType contextMapperType, DiagnosticChain diagnostics, Map<Object, Object> context) {
+        return validate_EveryDefaultConstraint(contextMapperType, diagnostics, context);
+    }
+
+    /**
      * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
      * @generated
@@ -131,6 +146,24 @@ public class SOAPValidator extends EObjectValidator {
     }
 
 	/**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public boolean validateSoapHeadersType(SoapHeadersType soapHeadersType, DiagnosticChain diagnostics, Map<Object, Object> context) {
+        return true;
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public boolean validateSoapHeadersTypeObject(SoapHeadersType soapHeadersTypeObject, DiagnosticChain diagnostics, Map<Object, Object> context) {
+        return true;
+    }
+
+    /**
      * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
      * @generated

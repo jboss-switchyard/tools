@@ -27,10 +27,14 @@ import org.switchyard.tools.models.switchyard1_0.camel.CamelAtomBindingType;
 import org.switchyard.tools.models.switchyard1_0.camel.CamelBindingType;
 import org.switchyard.tools.models.switchyard1_0.camel.CamelDirectBindingType;
 import org.switchyard.tools.models.switchyard1_0.camel.CamelFileBindingType;
+import org.switchyard.tools.models.switchyard1_0.camel.CamelFtpBindingType;
+import org.switchyard.tools.models.switchyard1_0.camel.CamelFtpsBindingType;
 import org.switchyard.tools.models.switchyard1_0.camel.CamelImplementationType;
+import org.switchyard.tools.models.switchyard1_0.camel.CamelJmsBindingType;
 import org.switchyard.tools.models.switchyard1_0.camel.CamelMockBindingType;
 import org.switchyard.tools.models.switchyard1_0.camel.CamelPackage;
 import org.switchyard.tools.models.switchyard1_0.camel.CamelSedaBindingType;
+import org.switchyard.tools.models.switchyard1_0.camel.CamelSftpBindingType;
 import org.switchyard.tools.models.switchyard1_0.camel.CamelTimerBindingType;
 import org.switchyard.tools.models.switchyard1_0.camel.DocumentRoot;
 
@@ -48,8 +52,12 @@ import org.switchyard.tools.models.switchyard1_0.camel.DocumentRoot;
  *   <li>{@link org.switchyard.tools.models.switchyard1_0.camel.impl.DocumentRootImpl#getBindingCamel <em>Binding Camel</em>}</li>
  *   <li>{@link org.switchyard.tools.models.switchyard1_0.camel.impl.DocumentRootImpl#getBindingDirect <em>Binding Direct</em>}</li>
  *   <li>{@link org.switchyard.tools.models.switchyard1_0.camel.impl.DocumentRootImpl#getBindingFile <em>Binding File</em>}</li>
+ *   <li>{@link org.switchyard.tools.models.switchyard1_0.camel.impl.DocumentRootImpl#getBindingFtp <em>Binding Ftp</em>}</li>
+ *   <li>{@link org.switchyard.tools.models.switchyard1_0.camel.impl.DocumentRootImpl#getBindingFtps <em>Binding Ftps</em>}</li>
+ *   <li>{@link org.switchyard.tools.models.switchyard1_0.camel.impl.DocumentRootImpl#getBindingJms <em>Binding Jms</em>}</li>
  *   <li>{@link org.switchyard.tools.models.switchyard1_0.camel.impl.DocumentRootImpl#getBindingMock <em>Binding Mock</em>}</li>
  *   <li>{@link org.switchyard.tools.models.switchyard1_0.camel.impl.DocumentRootImpl#getBindingSeda <em>Binding Seda</em>}</li>
+ *   <li>{@link org.switchyard.tools.models.switchyard1_0.camel.impl.DocumentRootImpl#getBindingSftp <em>Binding Sftp</em>}</li>
  *   <li>{@link org.switchyard.tools.models.switchyard1_0.camel.impl.DocumentRootImpl#getBindingTimer <em>Binding Timer</em>}</li>
  *   <li>{@link org.switchyard.tools.models.switchyard1_0.camel.impl.DocumentRootImpl#getImplementationCamel <em>Implementation Camel</em>}</li>
  * </ul>
@@ -253,6 +261,87 @@ public class DocumentRootImpl extends EObjectImpl implements DocumentRoot {
 
 	/**
      * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public CamelFtpBindingType getBindingFtp() {
+        return (CamelFtpBindingType)getMixed().get(CamelPackage.Literals.DOCUMENT_ROOT__BINDING_FTP, true);
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public NotificationChain basicSetBindingFtp(CamelFtpBindingType newBindingFtp, NotificationChain msgs) {
+        return ((FeatureMap.Internal)getMixed()).basicAdd(CamelPackage.Literals.DOCUMENT_ROOT__BINDING_FTP, newBindingFtp, msgs);
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public void setBindingFtp(CamelFtpBindingType newBindingFtp) {
+        ((FeatureMap.Internal)getMixed()).set(CamelPackage.Literals.DOCUMENT_ROOT__BINDING_FTP, newBindingFtp);
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public CamelFtpsBindingType getBindingFtps() {
+        return (CamelFtpsBindingType)getMixed().get(CamelPackage.Literals.DOCUMENT_ROOT__BINDING_FTPS, true);
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public NotificationChain basicSetBindingFtps(CamelFtpsBindingType newBindingFtps, NotificationChain msgs) {
+        return ((FeatureMap.Internal)getMixed()).basicAdd(CamelPackage.Literals.DOCUMENT_ROOT__BINDING_FTPS, newBindingFtps, msgs);
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public void setBindingFtps(CamelFtpsBindingType newBindingFtps) {
+        ((FeatureMap.Internal)getMixed()).set(CamelPackage.Literals.DOCUMENT_ROOT__BINDING_FTPS, newBindingFtps);
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public CamelJmsBindingType getBindingJms() {
+        return (CamelJmsBindingType)getMixed().get(CamelPackage.Literals.DOCUMENT_ROOT__BINDING_JMS, true);
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public NotificationChain basicSetBindingJms(CamelJmsBindingType newBindingJms, NotificationChain msgs) {
+        return ((FeatureMap.Internal)getMixed()).basicAdd(CamelPackage.Literals.DOCUMENT_ROOT__BINDING_JMS, newBindingJms, msgs);
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public void setBindingJms(CamelJmsBindingType newBindingJms) {
+        ((FeatureMap.Internal)getMixed()).set(CamelPackage.Literals.DOCUMENT_ROOT__BINDING_JMS, newBindingJms);
+    }
+
+    /**
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
      * @generated
      */
@@ -306,6 +395,33 @@ public class DocumentRootImpl extends EObjectImpl implements DocumentRoot {
     }
 
 	/**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public CamelSftpBindingType getBindingSftp() {
+        return (CamelSftpBindingType)getMixed().get(CamelPackage.Literals.DOCUMENT_ROOT__BINDING_SFTP, true);
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public NotificationChain basicSetBindingSftp(CamelSftpBindingType newBindingSftp, NotificationChain msgs) {
+        return ((FeatureMap.Internal)getMixed()).basicAdd(CamelPackage.Literals.DOCUMENT_ROOT__BINDING_SFTP, newBindingSftp, msgs);
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public void setBindingSftp(CamelSftpBindingType newBindingSftp) {
+        ((FeatureMap.Internal)getMixed()).set(CamelPackage.Literals.DOCUMENT_ROOT__BINDING_SFTP, newBindingSftp);
+    }
+
+    /**
      * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
      * @generated
@@ -381,10 +497,18 @@ public class DocumentRootImpl extends EObjectImpl implements DocumentRoot {
                 return basicSetBindingDirect(null, msgs);
             case CamelPackage.DOCUMENT_ROOT__BINDING_FILE:
                 return basicSetBindingFile(null, msgs);
+            case CamelPackage.DOCUMENT_ROOT__BINDING_FTP:
+                return basicSetBindingFtp(null, msgs);
+            case CamelPackage.DOCUMENT_ROOT__BINDING_FTPS:
+                return basicSetBindingFtps(null, msgs);
+            case CamelPackage.DOCUMENT_ROOT__BINDING_JMS:
+                return basicSetBindingJms(null, msgs);
             case CamelPackage.DOCUMENT_ROOT__BINDING_MOCK:
                 return basicSetBindingMock(null, msgs);
             case CamelPackage.DOCUMENT_ROOT__BINDING_SEDA:
                 return basicSetBindingSeda(null, msgs);
+            case CamelPackage.DOCUMENT_ROOT__BINDING_SFTP:
+                return basicSetBindingSftp(null, msgs);
             case CamelPackage.DOCUMENT_ROOT__BINDING_TIMER:
                 return basicSetBindingTimer(null, msgs);
             case CamelPackage.DOCUMENT_ROOT__IMPLEMENTATION_CAMEL:
@@ -418,10 +542,18 @@ public class DocumentRootImpl extends EObjectImpl implements DocumentRoot {
                 return getBindingDirect();
             case CamelPackage.DOCUMENT_ROOT__BINDING_FILE:
                 return getBindingFile();
+            case CamelPackage.DOCUMENT_ROOT__BINDING_FTP:
+                return getBindingFtp();
+            case CamelPackage.DOCUMENT_ROOT__BINDING_FTPS:
+                return getBindingFtps();
+            case CamelPackage.DOCUMENT_ROOT__BINDING_JMS:
+                return getBindingJms();
             case CamelPackage.DOCUMENT_ROOT__BINDING_MOCK:
                 return getBindingMock();
             case CamelPackage.DOCUMENT_ROOT__BINDING_SEDA:
                 return getBindingSeda();
+            case CamelPackage.DOCUMENT_ROOT__BINDING_SFTP:
+                return getBindingSftp();
             case CamelPackage.DOCUMENT_ROOT__BINDING_TIMER:
                 return getBindingTimer();
             case CamelPackage.DOCUMENT_ROOT__IMPLEMENTATION_CAMEL:
@@ -459,11 +591,23 @@ public class DocumentRootImpl extends EObjectImpl implements DocumentRoot {
             case CamelPackage.DOCUMENT_ROOT__BINDING_FILE:
                 setBindingFile((CamelFileBindingType)newValue);
                 return;
+            case CamelPackage.DOCUMENT_ROOT__BINDING_FTP:
+                setBindingFtp((CamelFtpBindingType)newValue);
+                return;
+            case CamelPackage.DOCUMENT_ROOT__BINDING_FTPS:
+                setBindingFtps((CamelFtpsBindingType)newValue);
+                return;
+            case CamelPackage.DOCUMENT_ROOT__BINDING_JMS:
+                setBindingJms((CamelJmsBindingType)newValue);
+                return;
             case CamelPackage.DOCUMENT_ROOT__BINDING_MOCK:
                 setBindingMock((CamelMockBindingType)newValue);
                 return;
             case CamelPackage.DOCUMENT_ROOT__BINDING_SEDA:
                 setBindingSeda((CamelSedaBindingType)newValue);
+                return;
+            case CamelPackage.DOCUMENT_ROOT__BINDING_SFTP:
+                setBindingSftp((CamelSftpBindingType)newValue);
                 return;
             case CamelPackage.DOCUMENT_ROOT__BINDING_TIMER:
                 setBindingTimer((CamelTimerBindingType)newValue);
@@ -504,11 +648,23 @@ public class DocumentRootImpl extends EObjectImpl implements DocumentRoot {
             case CamelPackage.DOCUMENT_ROOT__BINDING_FILE:
                 setBindingFile((CamelFileBindingType)null);
                 return;
+            case CamelPackage.DOCUMENT_ROOT__BINDING_FTP:
+                setBindingFtp((CamelFtpBindingType)null);
+                return;
+            case CamelPackage.DOCUMENT_ROOT__BINDING_FTPS:
+                setBindingFtps((CamelFtpsBindingType)null);
+                return;
+            case CamelPackage.DOCUMENT_ROOT__BINDING_JMS:
+                setBindingJms((CamelJmsBindingType)null);
+                return;
             case CamelPackage.DOCUMENT_ROOT__BINDING_MOCK:
                 setBindingMock((CamelMockBindingType)null);
                 return;
             case CamelPackage.DOCUMENT_ROOT__BINDING_SEDA:
                 setBindingSeda((CamelSedaBindingType)null);
+                return;
+            case CamelPackage.DOCUMENT_ROOT__BINDING_SFTP:
+                setBindingSftp((CamelSftpBindingType)null);
                 return;
             case CamelPackage.DOCUMENT_ROOT__BINDING_TIMER:
                 setBindingTimer((CamelTimerBindingType)null);
@@ -542,10 +698,18 @@ public class DocumentRootImpl extends EObjectImpl implements DocumentRoot {
                 return getBindingDirect() != null;
             case CamelPackage.DOCUMENT_ROOT__BINDING_FILE:
                 return getBindingFile() != null;
+            case CamelPackage.DOCUMENT_ROOT__BINDING_FTP:
+                return getBindingFtp() != null;
+            case CamelPackage.DOCUMENT_ROOT__BINDING_FTPS:
+                return getBindingFtps() != null;
+            case CamelPackage.DOCUMENT_ROOT__BINDING_JMS:
+                return getBindingJms() != null;
             case CamelPackage.DOCUMENT_ROOT__BINDING_MOCK:
                 return getBindingMock() != null;
             case CamelPackage.DOCUMENT_ROOT__BINDING_SEDA:
                 return getBindingSeda() != null;
+            case CamelPackage.DOCUMENT_ROOT__BINDING_SFTP:
+                return getBindingSftp() != null;
             case CamelPackage.DOCUMENT_ROOT__BINDING_TIMER:
                 return getBindingTimer() != null;
             case CamelPackage.DOCUMENT_ROOT__IMPLEMENTATION_CAMEL:

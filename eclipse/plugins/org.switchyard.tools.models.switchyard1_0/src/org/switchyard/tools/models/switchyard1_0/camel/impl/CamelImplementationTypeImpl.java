@@ -40,7 +40,7 @@ import org.switchyard.tools.models.switchyard1_0.spring.RouteDefinition;
  */
 public class CamelImplementationTypeImpl extends ImplementationImpl implements CamelImplementationType {
 	/**
-     * The cached value of the '{@link #getRoute() <em>Route</em>}' containment reference.
+     * The cached value of the '{@link #getRoute() <em>Route</em>}' reference.
      * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
      * @see #getRoute()
@@ -94,41 +94,36 @@ public class CamelImplementationTypeImpl extends ImplementationImpl implements C
      * @generated
      */
 	public RouteDefinition getRoute() {
+        if (route != null && route.eIsProxy()) {
+            InternalEObject oldRoute = (InternalEObject)route;
+            route = (RouteDefinition)eResolveProxy(oldRoute);
+            if (route != oldRoute) {
+                if (eNotificationRequired())
+                    eNotify(new ENotificationImpl(this, Notification.RESOLVE, CamelPackage.CAMEL_IMPLEMENTATION_TYPE__ROUTE, oldRoute, route));
+            }
+        }
         return route;
     }
 
 	/**
      * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
      * @generated
      */
-	public NotificationChain basicSetRoute(RouteDefinition newRoute, NotificationChain msgs) {
-        RouteDefinition oldRoute = route;
-        route = newRoute;
-        if (eNotificationRequired()) {
-            ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, CamelPackage.CAMEL_IMPLEMENTATION_TYPE__ROUTE, oldRoute, newRoute);
-            if (msgs == null) msgs = notification; else msgs.add(notification);
-        }
-        return msgs;
+    public RouteDefinition basicGetRoute() {
+        return route;
     }
 
-	/**
+    /**
      * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
      * @generated
      */
 	public void setRoute(RouteDefinition newRoute) {
-        if (newRoute != route) {
-            NotificationChain msgs = null;
-            if (route != null)
-                msgs = ((InternalEObject)route).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - CamelPackage.CAMEL_IMPLEMENTATION_TYPE__ROUTE, null, msgs);
-            if (newRoute != null)
-                msgs = ((InternalEObject)newRoute).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - CamelPackage.CAMEL_IMPLEMENTATION_TYPE__ROUTE, null, msgs);
-            msgs = basicSetRoute(newRoute, msgs);
-            if (msgs != null) msgs.dispatch();
-        }
-        else if (eNotificationRequired())
-            eNotify(new ENotificationImpl(this, Notification.SET, CamelPackage.CAMEL_IMPLEMENTATION_TYPE__ROUTE, newRoute, newRoute));
+        RouteDefinition oldRoute = route;
+        route = newRoute;
+        if (eNotificationRequired())
+            eNotify(new ENotificationImpl(this, Notification.SET, CamelPackage.CAMEL_IMPLEMENTATION_TYPE__ROUTE, oldRoute, route));
     }
 
 	/**
@@ -225,8 +220,6 @@ public class CamelImplementationTypeImpl extends ImplementationImpl implements C
 	@Override
 	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
         switch (featureID) {
-            case CamelPackage.CAMEL_IMPLEMENTATION_TYPE__ROUTE:
-                return basicSetRoute(null, msgs);
             case CamelPackage.CAMEL_IMPLEMENTATION_TYPE__JAVA:
                 return basicSetJava(null, msgs);
             case CamelPackage.CAMEL_IMPLEMENTATION_TYPE__XML:
@@ -244,7 +237,8 @@ public class CamelImplementationTypeImpl extends ImplementationImpl implements C
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
         switch (featureID) {
             case CamelPackage.CAMEL_IMPLEMENTATION_TYPE__ROUTE:
-                return getRoute();
+                if (resolve) return getRoute();
+                return basicGetRoute();
             case CamelPackage.CAMEL_IMPLEMENTATION_TYPE__JAVA:
                 return getJava();
             case CamelPackage.CAMEL_IMPLEMENTATION_TYPE__XML:

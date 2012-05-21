@@ -6,8 +6,6 @@
  */
 package org.switchyard.tools.models.switchyard1_0.camel;
 
-import org.switchyard.tools.models.switchyard1_0.switchyard.SwitchYardBindingType;
-
 /**
  * <!-- begin-user-doc -->
  * A representation of the model object '<em><b>Binding Type</b></em>'.
@@ -24,7 +22,7 @@ import org.switchyard.tools.models.switchyard1_0.switchyard.SwitchYardBindingTyp
  * @model extendedMetaData="name='CamelBindingType' kind='elementOnly'"
  * @generated
  */
-public interface CamelBindingType extends SwitchYardBindingType {
+public interface CamelBindingType extends BaseCamelBinding {
 
     /**
      * Returns the value of the '<em><b>Config URI</b></em>' attribute.
@@ -37,8 +35,8 @@ public interface CamelBindingType extends SwitchYardBindingType {
      * @return the value of the '<em>Config URI</em>' attribute.
      * @see #setConfigURI(String)
      * @see org.switchyard.tools.models.switchyard1_0.camel.CamelPackage#getCamelBindingType_ConfigURI()
-     * @model dataType="org.eclipse.emf.ecore.xml.type.AnyURI" required="true"
-     *        extendedMetaData="kind='element' name='feedURI' namespace='##targetNamespace'"
+     * @model dataType="org.eclipse.emf.ecore.xml.type.AnyURI"
+     *        extendedMetaData="kind='attribute' name='configURI'"
      * @generated
      */
     String getConfigURI();

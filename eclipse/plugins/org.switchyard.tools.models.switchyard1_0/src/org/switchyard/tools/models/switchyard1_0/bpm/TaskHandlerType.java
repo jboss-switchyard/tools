@@ -7,7 +7,6 @@
 package org.switchyard.tools.models.switchyard1_0.bpm;
 
 import org.eclipse.soa.sca.sca1_1.model.sca.CommonExtensionBase;
-import org.eclipse.emf.ecore.EObject;
 
 /**
  * <!-- begin-user-doc -->
@@ -39,7 +38,7 @@ public interface TaskHandlerType extends CommonExtensionBase {
      * @return the value of the '<em>Name</em>' attribute.
      * @see #setName(String)
      * @see org.switchyard.tools.models.switchyard1_0.bpm.BPMPackage#getTaskHandlerType_Name()
-     * @model dataType="org.eclipse.emf.ecore.xml.type.NCName" required="true"
+     * @model dataType="org.eclipse.emf.ecore.xml.type.NCName"
      *        extendedMetaData="kind='attribute' name='name'"
      * @generated
      */

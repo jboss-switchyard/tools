@@ -493,6 +493,13 @@ public class SpringPackageImpl extends EPackageImpl implements SpringPackage {
 
 	/**
      * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    private EClass expressionNodeHelperEClass = null;
+
+    /**
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
      * @generated
      */
@@ -731,6 +738,13 @@ public class SpringPackageImpl extends EPackageImpl implements SpringPackage {
 
 	/**
      * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    private EClass modelHelperEClass = null;
+
+    /**
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
      * @generated
      */
@@ -849,6 +863,13 @@ public class SpringPackageImpl extends EPackageImpl implements SpringPackage {
 	private EClass pipelineDefinitionEClass = null;
 
 	/**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    private EClass pgpDataFormatEClass = null;
+
+    /**
      * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
      * @generated
@@ -2855,19 +2876,19 @@ public class SpringPackageImpl extends EPackageImpl implements SpringPackage {
 
 	/**
      * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
      * @generated
      */
-	public EAttribute getAggregateDefinition_GroupExchanges() {
+    public EAttribute getAggregateDefinition_ForceCompletionOnStop() {
         return (EAttribute)getAggregateDefinition().getEStructuralFeatures().get(72);
     }
 
-	/**
+    /**
      * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
      * @generated
      */
-	public EAttribute getAggregateDefinition_IgnoreInvalidCorrelationKeys() {
+	public EAttribute getAggregateDefinition_GroupExchanges() {
         return (EAttribute)getAggregateDefinition().getEStructuralFeatures().get(73);
     }
 
@@ -2876,7 +2897,7 @@ public class SpringPackageImpl extends EPackageImpl implements SpringPackage {
 	 * <!-- end-user-doc -->
      * @generated
      */
-	public EAttribute getAggregateDefinition_ParallelProcessing() {
+	public EAttribute getAggregateDefinition_IgnoreInvalidCorrelationKeys() {
         return (EAttribute)getAggregateDefinition().getEStructuralFeatures().get(74);
     }
 
@@ -2885,7 +2906,7 @@ public class SpringPackageImpl extends EPackageImpl implements SpringPackage {
 	 * <!-- end-user-doc -->
      * @generated
      */
-	public EAttribute getAggregateDefinition_StrategyRef() {
+	public EAttribute getAggregateDefinition_ParallelProcessing() {
         return (EAttribute)getAggregateDefinition().getEStructuralFeatures().get(75);
     }
 
@@ -2894,8 +2915,26 @@ public class SpringPackageImpl extends EPackageImpl implements SpringPackage {
 	 * <!-- end-user-doc -->
      * @generated
      */
-	public EAttribute getAggregateDefinition_AnyAttribute1() {
+	public EAttribute getAggregateDefinition_StrategyRef() {
         return (EAttribute)getAggregateDefinition().getEStructuralFeatures().get(76);
+    }
+
+	/**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public EAttribute getAggregateDefinition_TimeoutCheckerExecutorServiceRef() {
+        return (EAttribute)getAggregateDefinition().getEStructuralFeatures().get(77);
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+     * @generated
+     */
+	public EAttribute getAggregateDefinition_AnyAttribute1() {
+        return (EAttribute)getAggregateDefinition().getEStructuralFeatures().get(78);
     }
 
 	/**
@@ -3038,11 +3077,20 @@ public class SpringPackageImpl extends EPackageImpl implements SpringPackage {
 
 	/**
      * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public EAttribute getBatchResequencerConfig_IgnoreInvalidExchanges() {
+        return (EAttribute)getBatchResequencerConfig().getEStructuralFeatures().get(3);
+    }
+
+    /**
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
      * @generated
      */
 	public EAttribute getBatchResequencerConfig_Reverse() {
-        return (EAttribute)getBatchResequencerConfig().getEStructuralFeatures().get(3);
+        return (EAttribute)getBatchResequencerConfig().getEStructuralFeatures().get(4);
     }
 
 	/**
@@ -3659,20 +3707,38 @@ public class SpringPackageImpl extends EPackageImpl implements SpringPackage {
 
 	/**
      * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public EAttribute getCamelPropertyPlaceholderDefinition_FallbackToUnaugmentedProperty() {
+        return (EAttribute)getCamelPropertyPlaceholderDefinition().getEStructuralFeatures().get(0);
+    }
+
+    /**
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
      * @generated
      */
 	public EAttribute getCamelPropertyPlaceholderDefinition_Location() {
-        return (EAttribute)getCamelPropertyPlaceholderDefinition().getEStructuralFeatures().get(0);
+        return (EAttribute)getCamelPropertyPlaceholderDefinition().getEStructuralFeatures().get(1);
     }
 
 	/**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public EAttribute getCamelPropertyPlaceholderDefinition_PrefixToken() {
+        return (EAttribute)getCamelPropertyPlaceholderDefinition().getEStructuralFeatures().get(2);
+    }
+
+    /**
      * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
      * @generated
      */
 	public EAttribute getCamelPropertyPlaceholderDefinition_PropertiesParserRef() {
-        return (EAttribute)getCamelPropertyPlaceholderDefinition().getEStructuralFeatures().get(1);
+        return (EAttribute)getCamelPropertyPlaceholderDefinition().getEStructuralFeatures().get(3);
     }
 
 	/**
@@ -3681,10 +3747,37 @@ public class SpringPackageImpl extends EPackageImpl implements SpringPackage {
      * @generated
      */
 	public EAttribute getCamelPropertyPlaceholderDefinition_PropertiesResolverRef() {
-        return (EAttribute)getCamelPropertyPlaceholderDefinition().getEStructuralFeatures().get(2);
+        return (EAttribute)getCamelPropertyPlaceholderDefinition().getEStructuralFeatures().get(4);
     }
 
 	/**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public EAttribute getCamelPropertyPlaceholderDefinition_PropertyPrefix() {
+        return (EAttribute)getCamelPropertyPlaceholderDefinition().getEStructuralFeatures().get(5);
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public EAttribute getCamelPropertyPlaceholderDefinition_PropertySuffix() {
+        return (EAttribute)getCamelPropertyPlaceholderDefinition().getEStructuralFeatures().get(6);
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public EAttribute getCamelPropertyPlaceholderDefinition_SuffixToken() {
+        return (EAttribute)getCamelPropertyPlaceholderDefinition().getEStructuralFeatures().get(7);
+    }
+
+    /**
      * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
      * @generated
@@ -4763,14 +4856,41 @@ public class SpringPackageImpl extends EPackageImpl implements SpringPackage {
 
 	/**
      * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public EAttribute getCsvDataFormat_AutogenColumns() {
+        return (EAttribute)getCsvDataFormat().getEStructuralFeatures().get(0);
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public EAttribute getCsvDataFormat_ConfigRef() {
+        return (EAttribute)getCsvDataFormat().getEStructuralFeatures().get(1);
+    }
+
+    /**
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
      * @generated
      */
 	public EAttribute getCsvDataFormat_Delimiter() {
-        return (EAttribute)getCsvDataFormat().getEStructuralFeatures().get(0);
+        return (EAttribute)getCsvDataFormat().getEStructuralFeatures().get(2);
     }
 
 	/**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public EAttribute getCsvDataFormat_StrategyRef() {
+        return (EAttribute)getCsvDataFormat().getEStructuralFeatures().get(3);
+    }
+
+    /**
      * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
      * @generated
@@ -5036,11 +5156,20 @@ public class SpringPackageImpl extends EPackageImpl implements SpringPackage {
 
 	/**
      * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public EReference getDataFormatsDefinition_Pgp() {
+        return (EReference)getDataFormatsDefinition().getEStructuralFeatures().get(22);
+    }
+
+    /**
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
      * @generated
      */
 	public EReference getDataFormatsDefinition_Zip() {
-        return (EReference)getDataFormatsDefinition().getEStructuralFeatures().get(22);
+        return (EReference)getDataFormatsDefinition().getEStructuralFeatures().get(23);
     }
 
 	/**
@@ -5783,19 +5912,19 @@ public class SpringPackageImpl extends EPackageImpl implements SpringPackage {
 
 	/**
      * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
      * @generated
      */
-	public EReference getDocumentRoot_Php() {
+    public EReference getDocumentRoot_Pgp() {
         return (EReference)getDocumentRoot().getEStructuralFeatures().get(68);
     }
 
-	/**
+    /**
      * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
      * @generated
      */
-	public EReference getDocumentRoot_Pipeline() {
+	public EReference getDocumentRoot_Php() {
         return (EReference)getDocumentRoot().getEStructuralFeatures().get(69);
     }
 
@@ -5804,7 +5933,7 @@ public class SpringPackageImpl extends EPackageImpl implements SpringPackage {
 	 * <!-- end-user-doc -->
      * @generated
      */
-	public EReference getDocumentRoot_Policy() {
+	public EReference getDocumentRoot_Pipeline() {
         return (EReference)getDocumentRoot().getEStructuralFeatures().get(70);
     }
 
@@ -5813,7 +5942,7 @@ public class SpringPackageImpl extends EPackageImpl implements SpringPackage {
 	 * <!-- end-user-doc -->
      * @generated
      */
-	public EReference getDocumentRoot_PollEnrich() {
+	public EReference getDocumentRoot_Policy() {
         return (EReference)getDocumentRoot().getEStructuralFeatures().get(71);
     }
 
@@ -5822,7 +5951,7 @@ public class SpringPackageImpl extends EPackageImpl implements SpringPackage {
 	 * <!-- end-user-doc -->
      * @generated
      */
-	public EReference getDocumentRoot_Process() {
+	public EReference getDocumentRoot_PollEnrich() {
         return (EReference)getDocumentRoot().getEStructuralFeatures().get(72);
     }
 
@@ -5831,7 +5960,7 @@ public class SpringPackageImpl extends EPackageImpl implements SpringPackage {
 	 * <!-- end-user-doc -->
      * @generated
      */
-	public EReference getDocumentRoot_Properties() {
+	public EReference getDocumentRoot_Process() {
         return (EReference)getDocumentRoot().getEStructuralFeatures().get(73);
     }
 
@@ -5840,7 +5969,7 @@ public class SpringPackageImpl extends EPackageImpl implements SpringPackage {
 	 * <!-- end-user-doc -->
      * @generated
      */
-	public EReference getDocumentRoot_Property() {
+	public EReference getDocumentRoot_Properties() {
         return (EReference)getDocumentRoot().getEStructuralFeatures().get(74);
     }
 
@@ -5849,7 +5978,7 @@ public class SpringPackageImpl extends EPackageImpl implements SpringPackage {
 	 * <!-- end-user-doc -->
      * @generated
      */
-	public EReference getDocumentRoot_PropertyPlaceholder() {
+	public EReference getDocumentRoot_Property() {
         return (EReference)getDocumentRoot().getEStructuralFeatures().get(75);
     }
 
@@ -5858,7 +5987,7 @@ public class SpringPackageImpl extends EPackageImpl implements SpringPackage {
 	 * <!-- end-user-doc -->
      * @generated
      */
-	public EReference getDocumentRoot_Protobuf() {
+	public EReference getDocumentRoot_PropertyPlaceholder() {
         return (EReference)getDocumentRoot().getEStructuralFeatures().get(76);
     }
 
@@ -5867,7 +5996,7 @@ public class SpringPackageImpl extends EPackageImpl implements SpringPackage {
 	 * <!-- end-user-doc -->
      * @generated
      */
-	public EReference getDocumentRoot_Proxy() {
+	public EReference getDocumentRoot_Protobuf() {
         return (EReference)getDocumentRoot().getEStructuralFeatures().get(77);
     }
 
@@ -5876,7 +6005,7 @@ public class SpringPackageImpl extends EPackageImpl implements SpringPackage {
 	 * <!-- end-user-doc -->
      * @generated
      */
-	public EReference getDocumentRoot_Python() {
+	public EReference getDocumentRoot_Proxy() {
         return (EReference)getDocumentRoot().getEStructuralFeatures().get(78);
     }
 
@@ -5885,7 +6014,7 @@ public class SpringPackageImpl extends EPackageImpl implements SpringPackage {
 	 * <!-- end-user-doc -->
      * @generated
      */
-	public EReference getDocumentRoot_Random() {
+	public EReference getDocumentRoot_Python() {
         return (EReference)getDocumentRoot().getEStructuralFeatures().get(79);
     }
 
@@ -5894,7 +6023,7 @@ public class SpringPackageImpl extends EPackageImpl implements SpringPackage {
 	 * <!-- end-user-doc -->
      * @generated
      */
-	public EReference getDocumentRoot_RecipientList() {
+	public EReference getDocumentRoot_Random() {
         return (EReference)getDocumentRoot().getEStructuralFeatures().get(80);
     }
 
@@ -5903,7 +6032,7 @@ public class SpringPackageImpl extends EPackageImpl implements SpringPackage {
 	 * <!-- end-user-doc -->
      * @generated
      */
-	public EReference getDocumentRoot_RedeliveryPolicy() {
+	public EReference getDocumentRoot_RecipientList() {
         return (EReference)getDocumentRoot().getEStructuralFeatures().get(81);
     }
 
@@ -5912,7 +6041,7 @@ public class SpringPackageImpl extends EPackageImpl implements SpringPackage {
 	 * <!-- end-user-doc -->
      * @generated
      */
-	public EReference getDocumentRoot_RedeliveryPolicyProfile() {
+	public EReference getDocumentRoot_RedeliveryPolicy() {
         return (EReference)getDocumentRoot().getEStructuralFeatures().get(82);
     }
 
@@ -5921,7 +6050,7 @@ public class SpringPackageImpl extends EPackageImpl implements SpringPackage {
 	 * <!-- end-user-doc -->
      * @generated
      */
-	public EReference getDocumentRoot_Ref() {
+	public EReference getDocumentRoot_RedeliveryPolicyProfile() {
         return (EReference)getDocumentRoot().getEStructuralFeatures().get(83);
     }
 
@@ -5930,7 +6059,7 @@ public class SpringPackageImpl extends EPackageImpl implements SpringPackage {
 	 * <!-- end-user-doc -->
      * @generated
      */
-	public EReference getDocumentRoot_RemoveHeader() {
+	public EReference getDocumentRoot_Ref() {
         return (EReference)getDocumentRoot().getEStructuralFeatures().get(84);
     }
 
@@ -5939,7 +6068,7 @@ public class SpringPackageImpl extends EPackageImpl implements SpringPackage {
 	 * <!-- end-user-doc -->
      * @generated
      */
-	public EReference getDocumentRoot_RemoveHeaders() {
+	public EReference getDocumentRoot_RemoveHeader() {
         return (EReference)getDocumentRoot().getEStructuralFeatures().get(85);
     }
 
@@ -5948,7 +6077,7 @@ public class SpringPackageImpl extends EPackageImpl implements SpringPackage {
 	 * <!-- end-user-doc -->
      * @generated
      */
-	public EReference getDocumentRoot_RemoveProperty() {
+	public EReference getDocumentRoot_RemoveHeaders() {
         return (EReference)getDocumentRoot().getEStructuralFeatures().get(86);
     }
 
@@ -5957,7 +6086,7 @@ public class SpringPackageImpl extends EPackageImpl implements SpringPackage {
 	 * <!-- end-user-doc -->
      * @generated
      */
-	public EReference getDocumentRoot_Resequence() {
+	public EReference getDocumentRoot_RemoveProperty() {
         return (EReference)getDocumentRoot().getEStructuralFeatures().get(87);
     }
 
@@ -5966,7 +6095,7 @@ public class SpringPackageImpl extends EPackageImpl implements SpringPackage {
 	 * <!-- end-user-doc -->
      * @generated
      */
-	public EReference getDocumentRoot_Rollback() {
+	public EReference getDocumentRoot_Resequence() {
         return (EReference)getDocumentRoot().getEStructuralFeatures().get(88);
     }
 
@@ -5975,7 +6104,7 @@ public class SpringPackageImpl extends EPackageImpl implements SpringPackage {
 	 * <!-- end-user-doc -->
      * @generated
      */
-	public EReference getDocumentRoot_RoundRobin() {
+	public EReference getDocumentRoot_Rollback() {
         return (EReference)getDocumentRoot().getEStructuralFeatures().get(89);
     }
 
@@ -5984,7 +6113,7 @@ public class SpringPackageImpl extends EPackageImpl implements SpringPackage {
 	 * <!-- end-user-doc -->
      * @generated
      */
-	public EReference getDocumentRoot_Route() {
+	public EReference getDocumentRoot_RoundRobin() {
         return (EReference)getDocumentRoot().getEStructuralFeatures().get(90);
     }
 
@@ -5993,7 +6122,7 @@ public class SpringPackageImpl extends EPackageImpl implements SpringPackage {
 	 * <!-- end-user-doc -->
      * @generated
      */
-	public EReference getDocumentRoot_RouteBuilder() {
+	public EReference getDocumentRoot_Route() {
         return (EReference)getDocumentRoot().getEStructuralFeatures().get(91);
     }
 
@@ -6002,7 +6131,7 @@ public class SpringPackageImpl extends EPackageImpl implements SpringPackage {
 	 * <!-- end-user-doc -->
      * @generated
      */
-	public EReference getDocumentRoot_RouteContext() {
+	public EReference getDocumentRoot_RouteBuilder() {
         return (EReference)getDocumentRoot().getEStructuralFeatures().get(92);
     }
 
@@ -6011,7 +6140,7 @@ public class SpringPackageImpl extends EPackageImpl implements SpringPackage {
 	 * <!-- end-user-doc -->
      * @generated
      */
-	public EReference getDocumentRoot_RouteContextRef() {
+	public EReference getDocumentRoot_RouteContext() {
         return (EReference)getDocumentRoot().getEStructuralFeatures().get(93);
     }
 
@@ -6020,7 +6149,7 @@ public class SpringPackageImpl extends EPackageImpl implements SpringPackage {
 	 * <!-- end-user-doc -->
      * @generated
      */
-	public EReference getDocumentRoot_Routes() {
+	public EReference getDocumentRoot_RouteContextRef() {
         return (EReference)getDocumentRoot().getEStructuralFeatures().get(94);
     }
 
@@ -6029,7 +6158,7 @@ public class SpringPackageImpl extends EPackageImpl implements SpringPackage {
 	 * <!-- end-user-doc -->
      * @generated
      */
-	public EReference getDocumentRoot_RoutingSlip() {
+	public EReference getDocumentRoot_Routes() {
         return (EReference)getDocumentRoot().getEStructuralFeatures().get(95);
     }
 
@@ -6038,7 +6167,7 @@ public class SpringPackageImpl extends EPackageImpl implements SpringPackage {
 	 * <!-- end-user-doc -->
      * @generated
      */
-	public EReference getDocumentRoot_Rss() {
+	public EReference getDocumentRoot_RoutingSlip() {
         return (EReference)getDocumentRoot().getEStructuralFeatures().get(96);
     }
 
@@ -6047,7 +6176,7 @@ public class SpringPackageImpl extends EPackageImpl implements SpringPackage {
 	 * <!-- end-user-doc -->
      * @generated
      */
-	public EReference getDocumentRoot_Ruby() {
+	public EReference getDocumentRoot_Rss() {
         return (EReference)getDocumentRoot().getEStructuralFeatures().get(97);
     }
 
@@ -6056,7 +6185,7 @@ public class SpringPackageImpl extends EPackageImpl implements SpringPackage {
 	 * <!-- end-user-doc -->
      * @generated
      */
-	public EReference getDocumentRoot_Sample() {
+	public EReference getDocumentRoot_Ruby() {
         return (EReference)getDocumentRoot().getEStructuralFeatures().get(98);
     }
 
@@ -6065,7 +6194,7 @@ public class SpringPackageImpl extends EPackageImpl implements SpringPackage {
 	 * <!-- end-user-doc -->
      * @generated
      */
-	public EReference getDocumentRoot_SecureRandomParameters() {
+	public EReference getDocumentRoot_Sample() {
         return (EReference)getDocumentRoot().getEStructuralFeatures().get(99);
     }
 
@@ -6074,7 +6203,7 @@ public class SpringPackageImpl extends EPackageImpl implements SpringPackage {
 	 * <!-- end-user-doc -->
      * @generated
      */
-	public EReference getDocumentRoot_SecureXML() {
+	public EReference getDocumentRoot_SecureRandomParameters() {
         return (EReference)getDocumentRoot().getEStructuralFeatures().get(100);
     }
 
@@ -6083,7 +6212,7 @@ public class SpringPackageImpl extends EPackageImpl implements SpringPackage {
 	 * <!-- end-user-doc -->
      * @generated
      */
-	public EReference getDocumentRoot_Serialization() {
+	public EReference getDocumentRoot_SecureXML() {
         return (EReference)getDocumentRoot().getEStructuralFeatures().get(101);
     }
 
@@ -6092,7 +6221,7 @@ public class SpringPackageImpl extends EPackageImpl implements SpringPackage {
 	 * <!-- end-user-doc -->
      * @generated
      */
-	public EReference getDocumentRoot_SetBody() {
+	public EReference getDocumentRoot_Serialization() {
         return (EReference)getDocumentRoot().getEStructuralFeatures().get(102);
     }
 
@@ -6101,7 +6230,7 @@ public class SpringPackageImpl extends EPackageImpl implements SpringPackage {
 	 * <!-- end-user-doc -->
      * @generated
      */
-	public EReference getDocumentRoot_SetExchangePattern() {
+	public EReference getDocumentRoot_SetBody() {
         return (EReference)getDocumentRoot().getEStructuralFeatures().get(103);
     }
 
@@ -6110,7 +6239,7 @@ public class SpringPackageImpl extends EPackageImpl implements SpringPackage {
 	 * <!-- end-user-doc -->
      * @generated
      */
-	public EReference getDocumentRoot_SetFaultBody() {
+	public EReference getDocumentRoot_SetExchangePattern() {
         return (EReference)getDocumentRoot().getEStructuralFeatures().get(104);
     }
 
@@ -6119,7 +6248,7 @@ public class SpringPackageImpl extends EPackageImpl implements SpringPackage {
 	 * <!-- end-user-doc -->
      * @generated
      */
-	public EReference getDocumentRoot_SetHeader() {
+	public EReference getDocumentRoot_SetFaultBody() {
         return (EReference)getDocumentRoot().getEStructuralFeatures().get(105);
     }
 
@@ -6128,7 +6257,7 @@ public class SpringPackageImpl extends EPackageImpl implements SpringPackage {
 	 * <!-- end-user-doc -->
      * @generated
      */
-	public EReference getDocumentRoot_SetOutHeader() {
+	public EReference getDocumentRoot_SetHeader() {
         return (EReference)getDocumentRoot().getEStructuralFeatures().get(106);
     }
 
@@ -6137,7 +6266,7 @@ public class SpringPackageImpl extends EPackageImpl implements SpringPackage {
 	 * <!-- end-user-doc -->
      * @generated
      */
-	public EReference getDocumentRoot_SetProperty() {
+	public EReference getDocumentRoot_SetOutHeader() {
         return (EReference)getDocumentRoot().getEStructuralFeatures().get(107);
     }
 
@@ -6146,7 +6275,7 @@ public class SpringPackageImpl extends EPackageImpl implements SpringPackage {
 	 * <!-- end-user-doc -->
      * @generated
      */
-	public EReference getDocumentRoot_Simple() {
+	public EReference getDocumentRoot_SetProperty() {
         return (EReference)getDocumentRoot().getEStructuralFeatures().get(108);
     }
 
@@ -6155,7 +6284,7 @@ public class SpringPackageImpl extends EPackageImpl implements SpringPackage {
 	 * <!-- end-user-doc -->
      * @generated
      */
-	public EReference getDocumentRoot_Soapjaxb() {
+	public EReference getDocumentRoot_Simple() {
         return (EReference)getDocumentRoot().getEStructuralFeatures().get(109);
     }
 
@@ -6164,7 +6293,7 @@ public class SpringPackageImpl extends EPackageImpl implements SpringPackage {
 	 * <!-- end-user-doc -->
      * @generated
      */
-	public EReference getDocumentRoot_Sort() {
+	public EReference getDocumentRoot_Soapjaxb() {
         return (EReference)getDocumentRoot().getEStructuralFeatures().get(110);
     }
 
@@ -6173,7 +6302,7 @@ public class SpringPackageImpl extends EPackageImpl implements SpringPackage {
 	 * <!-- end-user-doc -->
      * @generated
      */
-	public EReference getDocumentRoot_Spel() {
+	public EReference getDocumentRoot_Sort() {
         return (EReference)getDocumentRoot().getEStructuralFeatures().get(111);
     }
 
@@ -6182,7 +6311,7 @@ public class SpringPackageImpl extends EPackageImpl implements SpringPackage {
 	 * <!-- end-user-doc -->
      * @generated
      */
-	public EReference getDocumentRoot_Split() {
+	public EReference getDocumentRoot_Spel() {
         return (EReference)getDocumentRoot().getEStructuralFeatures().get(112);
     }
 
@@ -6191,7 +6320,7 @@ public class SpringPackageImpl extends EPackageImpl implements SpringPackage {
 	 * <!-- end-user-doc -->
      * @generated
      */
-	public EReference getDocumentRoot_Sql() {
+	public EReference getDocumentRoot_Split() {
         return (EReference)getDocumentRoot().getEStructuralFeatures().get(113);
     }
 
@@ -6200,7 +6329,7 @@ public class SpringPackageImpl extends EPackageImpl implements SpringPackage {
 	 * <!-- end-user-doc -->
      * @generated
      */
-	public EReference getDocumentRoot_SslContextParameters() {
+	public EReference getDocumentRoot_Sql() {
         return (EReference)getDocumentRoot().getEStructuralFeatures().get(114);
     }
 
@@ -6209,7 +6338,7 @@ public class SpringPackageImpl extends EPackageImpl implements SpringPackage {
 	 * <!-- end-user-doc -->
      * @generated
      */
-	public EReference getDocumentRoot_Sticky() {
+	public EReference getDocumentRoot_SslContextParameters() {
         return (EReference)getDocumentRoot().getEStructuralFeatures().get(115);
     }
 
@@ -6218,7 +6347,7 @@ public class SpringPackageImpl extends EPackageImpl implements SpringPackage {
 	 * <!-- end-user-doc -->
      * @generated
      */
-	public EReference getDocumentRoot_Stop() {
+	public EReference getDocumentRoot_Sticky() {
         return (EReference)getDocumentRoot().getEStructuralFeatures().get(116);
     }
 
@@ -6227,7 +6356,7 @@ public class SpringPackageImpl extends EPackageImpl implements SpringPackage {
 	 * <!-- end-user-doc -->
      * @generated
      */
-	public EReference getDocumentRoot_StreamResequencerConfig() {
+	public EReference getDocumentRoot_Stop() {
         return (EReference)getDocumentRoot().getEStructuralFeatures().get(117);
     }
 
@@ -6236,7 +6365,7 @@ public class SpringPackageImpl extends EPackageImpl implements SpringPackage {
 	 * <!-- end-user-doc -->
      * @generated
      */
-	public EReference getDocumentRoot_String() {
+	public EReference getDocumentRoot_StreamResequencerConfig() {
         return (EReference)getDocumentRoot().getEStructuralFeatures().get(118);
     }
 
@@ -6245,7 +6374,7 @@ public class SpringPackageImpl extends EPackageImpl implements SpringPackage {
 	 * <!-- end-user-doc -->
      * @generated
      */
-	public EReference getDocumentRoot_Syslog() {
+	public EReference getDocumentRoot_String() {
         return (EReference)getDocumentRoot().getEStructuralFeatures().get(119);
     }
 
@@ -6254,7 +6383,7 @@ public class SpringPackageImpl extends EPackageImpl implements SpringPackage {
 	 * <!-- end-user-doc -->
      * @generated
      */
-	public EReference getDocumentRoot_Template() {
+	public EReference getDocumentRoot_Syslog() {
         return (EReference)getDocumentRoot().getEStructuralFeatures().get(120);
     }
 
@@ -6263,7 +6392,7 @@ public class SpringPackageImpl extends EPackageImpl implements SpringPackage {
 	 * <!-- end-user-doc -->
      * @generated
      */
-	public EReference getDocumentRoot_ThreadPool() {
+	public EReference getDocumentRoot_Template() {
         return (EReference)getDocumentRoot().getEStructuralFeatures().get(121);
     }
 
@@ -6272,7 +6401,7 @@ public class SpringPackageImpl extends EPackageImpl implements SpringPackage {
 	 * <!-- end-user-doc -->
      * @generated
      */
-	public EReference getDocumentRoot_ThreadPoolProfile() {
+	public EReference getDocumentRoot_ThreadPool() {
         return (EReference)getDocumentRoot().getEStructuralFeatures().get(122);
     }
 
@@ -6281,7 +6410,7 @@ public class SpringPackageImpl extends EPackageImpl implements SpringPackage {
 	 * <!-- end-user-doc -->
      * @generated
      */
-	public EReference getDocumentRoot_Threads() {
+	public EReference getDocumentRoot_ThreadPoolProfile() {
         return (EReference)getDocumentRoot().getEStructuralFeatures().get(123);
     }
 
@@ -6290,7 +6419,7 @@ public class SpringPackageImpl extends EPackageImpl implements SpringPackage {
 	 * <!-- end-user-doc -->
      * @generated
      */
-	public EReference getDocumentRoot_Throttle() {
+	public EReference getDocumentRoot_Threads() {
         return (EReference)getDocumentRoot().getEStructuralFeatures().get(124);
     }
 
@@ -6299,7 +6428,7 @@ public class SpringPackageImpl extends EPackageImpl implements SpringPackage {
 	 * <!-- end-user-doc -->
      * @generated
      */
-	public EReference getDocumentRoot_ThrowException() {
+	public EReference getDocumentRoot_Throttle() {
         return (EReference)getDocumentRoot().getEStructuralFeatures().get(125);
     }
 
@@ -6308,7 +6437,7 @@ public class SpringPackageImpl extends EPackageImpl implements SpringPackage {
 	 * <!-- end-user-doc -->
      * @generated
      */
-	public EReference getDocumentRoot_TidyMarkup() {
+	public EReference getDocumentRoot_ThrowException() {
         return (EReference)getDocumentRoot().getEStructuralFeatures().get(126);
     }
 
@@ -6317,7 +6446,7 @@ public class SpringPackageImpl extends EPackageImpl implements SpringPackage {
 	 * <!-- end-user-doc -->
      * @generated
      */
-	public EReference getDocumentRoot_To() {
+	public EReference getDocumentRoot_TidyMarkup() {
         return (EReference)getDocumentRoot().getEStructuralFeatures().get(127);
     }
 
@@ -6326,7 +6455,7 @@ public class SpringPackageImpl extends EPackageImpl implements SpringPackage {
 	 * <!-- end-user-doc -->
      * @generated
      */
-	public EReference getDocumentRoot_Tokenize() {
+	public EReference getDocumentRoot_To() {
         return (EReference)getDocumentRoot().getEStructuralFeatures().get(128);
     }
 
@@ -6335,7 +6464,7 @@ public class SpringPackageImpl extends EPackageImpl implements SpringPackage {
 	 * <!-- end-user-doc -->
      * @generated
      */
-	public EReference getDocumentRoot_Topic() {
+	public EReference getDocumentRoot_Tokenize() {
         return (EReference)getDocumentRoot().getEStructuralFeatures().get(129);
     }
 
@@ -6344,7 +6473,7 @@ public class SpringPackageImpl extends EPackageImpl implements SpringPackage {
 	 * <!-- end-user-doc -->
      * @generated
      */
-	public EReference getDocumentRoot_Transacted() {
+	public EReference getDocumentRoot_Topic() {
         return (EReference)getDocumentRoot().getEStructuralFeatures().get(130);
     }
 
@@ -6353,7 +6482,7 @@ public class SpringPackageImpl extends EPackageImpl implements SpringPackage {
 	 * <!-- end-user-doc -->
      * @generated
      */
-	public EReference getDocumentRoot_Transform() {
+	public EReference getDocumentRoot_Transacted() {
         return (EReference)getDocumentRoot().getEStructuralFeatures().get(131);
     }
 
@@ -6362,7 +6491,7 @@ public class SpringPackageImpl extends EPackageImpl implements SpringPackage {
 	 * <!-- end-user-doc -->
      * @generated
      */
-	public EReference getDocumentRoot_Unmarshal() {
+	public EReference getDocumentRoot_Transform() {
         return (EReference)getDocumentRoot().getEStructuralFeatures().get(132);
     }
 
@@ -6371,7 +6500,7 @@ public class SpringPackageImpl extends EPackageImpl implements SpringPackage {
 	 * <!-- end-user-doc -->
      * @generated
      */
-	public EReference getDocumentRoot_Validate() {
+	public EReference getDocumentRoot_Unmarshal() {
         return (EReference)getDocumentRoot().getEStructuralFeatures().get(133);
     }
 
@@ -6380,7 +6509,7 @@ public class SpringPackageImpl extends EPackageImpl implements SpringPackage {
 	 * <!-- end-user-doc -->
      * @generated
      */
-	public EReference getDocumentRoot_Weighted() {
+	public EReference getDocumentRoot_Validate() {
         return (EReference)getDocumentRoot().getEStructuralFeatures().get(134);
     }
 
@@ -6389,7 +6518,7 @@ public class SpringPackageImpl extends EPackageImpl implements SpringPackage {
 	 * <!-- end-user-doc -->
      * @generated
      */
-	public EReference getDocumentRoot_When() {
+	public EReference getDocumentRoot_Weighted() {
         return (EReference)getDocumentRoot().getEStructuralFeatures().get(135);
     }
 
@@ -6398,7 +6527,7 @@ public class SpringPackageImpl extends EPackageImpl implements SpringPackage {
 	 * <!-- end-user-doc -->
      * @generated
      */
-	public EReference getDocumentRoot_WireTap() {
+	public EReference getDocumentRoot_When() {
         return (EReference)getDocumentRoot().getEStructuralFeatures().get(136);
     }
 
@@ -6407,7 +6536,7 @@ public class SpringPackageImpl extends EPackageImpl implements SpringPackage {
 	 * <!-- end-user-doc -->
      * @generated
      */
-	public EReference getDocumentRoot_XmlBeans() {
+	public EReference getDocumentRoot_WireTap() {
         return (EReference)getDocumentRoot().getEStructuralFeatures().get(137);
     }
 
@@ -6416,7 +6545,7 @@ public class SpringPackageImpl extends EPackageImpl implements SpringPackage {
 	 * <!-- end-user-doc -->
      * @generated
      */
-	public EReference getDocumentRoot_Xpath() {
+	public EReference getDocumentRoot_XmlBeans() {
         return (EReference)getDocumentRoot().getEStructuralFeatures().get(138);
     }
 
@@ -6425,7 +6554,7 @@ public class SpringPackageImpl extends EPackageImpl implements SpringPackage {
 	 * <!-- end-user-doc -->
      * @generated
      */
-	public EReference getDocumentRoot_Xquery() {
+	public EReference getDocumentRoot_Xpath() {
         return (EReference)getDocumentRoot().getEStructuralFeatures().get(139);
     }
 
@@ -6434,7 +6563,7 @@ public class SpringPackageImpl extends EPackageImpl implements SpringPackage {
 	 * <!-- end-user-doc -->
      * @generated
      */
-	public EReference getDocumentRoot_Xstream() {
+	public EReference getDocumentRoot_Xquery() {
         return (EReference)getDocumentRoot().getEStructuralFeatures().get(140);
     }
 
@@ -6443,8 +6572,17 @@ public class SpringPackageImpl extends EPackageImpl implements SpringPackage {
 	 * <!-- end-user-doc -->
      * @generated
      */
-	public EReference getDocumentRoot_Zip() {
+	public EReference getDocumentRoot_Xstream() {
         return (EReference)getDocumentRoot().getEStructuralFeatures().get(141);
+    }
+
+	/**
+     * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+     * @generated
+     */
+	public EReference getDocumentRoot_Zip() {
+        return (EReference)getDocumentRoot().getEStructuralFeatures().get(142);
     }
 
 	/**
@@ -6632,19 +6770,19 @@ public class SpringPackageImpl extends EPackageImpl implements SpringPackage {
 
 	/**
      * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
      * @generated
      */
-	public EAttribute getErrorHandlerDefinition_TransactionManagerRef() {
+    public EAttribute getErrorHandlerDefinition_RollbackLoggingLevel() {
         return (EAttribute)getErrorHandlerDefinition().getEStructuralFeatures().get(8);
     }
 
-	/**
+    /**
      * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
      * @generated
      */
-	public EAttribute getErrorHandlerDefinition_TransactionTemplateRef() {
+	public EAttribute getErrorHandlerDefinition_TransactionManagerRef() {
         return (EAttribute)getErrorHandlerDefinition().getEStructuralFeatures().get(9);
     }
 
@@ -6653,7 +6791,7 @@ public class SpringPackageImpl extends EPackageImpl implements SpringPackage {
 	 * <!-- end-user-doc -->
      * @generated
      */
-	public EAttribute getErrorHandlerDefinition_Type() {
+	public EAttribute getErrorHandlerDefinition_TransactionTemplateRef() {
         return (EAttribute)getErrorHandlerDefinition().getEStructuralFeatures().get(10);
     }
 
@@ -6662,8 +6800,17 @@ public class SpringPackageImpl extends EPackageImpl implements SpringPackage {
 	 * <!-- end-user-doc -->
      * @generated
      */
-	public EAttribute getErrorHandlerDefinition_UseOriginalMessage() {
+	public EAttribute getErrorHandlerDefinition_Type() {
         return (EAttribute)getErrorHandlerDefinition().getEStructuralFeatures().get(11);
+    }
+
+	/**
+     * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+     * @generated
+     */
+	public EAttribute getErrorHandlerDefinition_UseOriginalMessage() {
+        return (EAttribute)getErrorHandlerDefinition().getEStructuralFeatures().get(12);
     }
 
 	/**
@@ -7448,12 +7595,24 @@ public class SpringPackageImpl extends EPackageImpl implements SpringPackage {
 
 	/**
      * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public EClass getExpressionNodeHelper() {
+        if (expressionNodeHelperEClass == null) {
+            expressionNodeHelperEClass = (EClass)EPackage.Registry.INSTANCE.getEPackage(SpringPackage.eNS_URI).getEClassifiers().get(63);
+        }
+        return expressionNodeHelperEClass;
+    }
+
+    /**
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
      * @generated
      */
 	public EClass getExpressionSubElementDefinition() {
         if (expressionSubElementDefinitionEClass == null) {
-            expressionSubElementDefinitionEClass = (EClass)EPackage.Registry.INSTANCE.getEPackage(SpringPackage.eNS_URI).getEClassifiers().get(63);
+            expressionSubElementDefinitionEClass = (EClass)EPackage.Registry.INSTANCE.getEPackage(SpringPackage.eNS_URI).getEClassifiers().get(64);
         }
         return expressionSubElementDefinitionEClass;
     }
@@ -7663,7 +7822,7 @@ public class SpringPackageImpl extends EPackageImpl implements SpringPackage {
      */
 	public EClass getFailoverLoadBalancerDefinition() {
         if (failoverLoadBalancerDefinitionEClass == null) {
-            failoverLoadBalancerDefinitionEClass = (EClass)EPackage.Registry.INSTANCE.getEPackage(SpringPackage.eNS_URI).getEClassifiers().get(64);
+            failoverLoadBalancerDefinitionEClass = (EClass)EPackage.Registry.INSTANCE.getEPackage(SpringPackage.eNS_URI).getEClassifiers().get(65);
         }
         return failoverLoadBalancerDefinitionEClass;
     }
@@ -7702,7 +7861,7 @@ public class SpringPackageImpl extends EPackageImpl implements SpringPackage {
      */
 	public EClass getFilterDefinition() {
         if (filterDefinitionEClass == null) {
-            filterDefinitionEClass = (EClass)EPackage.Registry.INSTANCE.getEPackage(SpringPackage.eNS_URI).getEClassifiers().get(65);
+            filterDefinitionEClass = (EClass)EPackage.Registry.INSTANCE.getEPackage(SpringPackage.eNS_URI).getEClassifiers().get(66);
         }
         return filterDefinitionEClass;
     }
@@ -7723,7 +7882,7 @@ public class SpringPackageImpl extends EPackageImpl implements SpringPackage {
      */
 	public EClass getFilterParameters() {
         if (filterParametersEClass == null) {
-            filterParametersEClass = (EClass)EPackage.Registry.INSTANCE.getEPackage(SpringPackage.eNS_URI).getEClassifiers().get(66);
+            filterParametersEClass = (EClass)EPackage.Registry.INSTANCE.getEPackage(SpringPackage.eNS_URI).getEClassifiers().get(67);
         }
         return filterParametersEClass;
     }
@@ -7753,7 +7912,7 @@ public class SpringPackageImpl extends EPackageImpl implements SpringPackage {
      */
 	public EClass getFinallyDefinition() {
         if (finallyDefinitionEClass == null) {
-            finallyDefinitionEClass = (EClass)EPackage.Registry.INSTANCE.getEPackage(SpringPackage.eNS_URI).getEClassifiers().get(67);
+            finallyDefinitionEClass = (EClass)EPackage.Registry.INSTANCE.getEPackage(SpringPackage.eNS_URI).getEClassifiers().get(68);
         }
         return finallyDefinitionEClass;
     }
@@ -7774,7 +7933,7 @@ public class SpringPackageImpl extends EPackageImpl implements SpringPackage {
      */
 	public EClass getFlatpackDataFormat() {
         if (flatpackDataFormatEClass == null) {
-            flatpackDataFormatEClass = (EClass)EPackage.Registry.INSTANCE.getEPackage(SpringPackage.eNS_URI).getEClassifiers().get(68);
+            flatpackDataFormatEClass = (EClass)EPackage.Registry.INSTANCE.getEPackage(SpringPackage.eNS_URI).getEClassifiers().get(69);
         }
         return flatpackDataFormatEClass;
     }
@@ -7786,7 +7945,7 @@ public class SpringPackageImpl extends EPackageImpl implements SpringPackage {
      */
 	public EClass getFromDefinition() {
         if (fromDefinitionEClass == null) {
-            fromDefinitionEClass = (EClass)EPackage.Registry.INSTANCE.getEPackage(SpringPackage.eNS_URI).getEClassifiers().get(69);
+            fromDefinitionEClass = (EClass)EPackage.Registry.INSTANCE.getEPackage(SpringPackage.eNS_URI).getEClassifiers().get(70);
         }
         return fromDefinitionEClass;
     }
@@ -7816,7 +7975,7 @@ public class SpringPackageImpl extends EPackageImpl implements SpringPackage {
      */
 	public EClass getGroovyExpression() {
         if (groovyExpressionEClass == null) {
-            groovyExpressionEClass = (EClass)EPackage.Registry.INSTANCE.getEPackage(SpringPackage.eNS_URI).getEClassifiers().get(70);
+            groovyExpressionEClass = (EClass)EPackage.Registry.INSTANCE.getEPackage(SpringPackage.eNS_URI).getEClassifiers().get(71);
         }
         return groovyExpressionEClass;
     }
@@ -7828,7 +7987,7 @@ public class SpringPackageImpl extends EPackageImpl implements SpringPackage {
      */
 	public EClass getGzipDataFormat() {
         if (gzipDataFormatEClass == null) {
-            gzipDataFormatEClass = (EClass)EPackage.Registry.INSTANCE.getEPackage(SpringPackage.eNS_URI).getEClassifiers().get(71);
+            gzipDataFormatEClass = (EClass)EPackage.Registry.INSTANCE.getEPackage(SpringPackage.eNS_URI).getEClassifiers().get(72);
         }
         return gzipDataFormatEClass;
     }
@@ -7840,7 +7999,7 @@ public class SpringPackageImpl extends EPackageImpl implements SpringPackage {
      */
 	public EClass getHeaderExpression() {
         if (headerExpressionEClass == null) {
-            headerExpressionEClass = (EClass)EPackage.Registry.INSTANCE.getEPackage(SpringPackage.eNS_URI).getEClassifiers().get(72);
+            headerExpressionEClass = (EClass)EPackage.Registry.INSTANCE.getEPackage(SpringPackage.eNS_URI).getEClassifiers().get(73);
         }
         return headerExpressionEClass;
     }
@@ -7852,7 +8011,7 @@ public class SpringPackageImpl extends EPackageImpl implements SpringPackage {
      */
 	public EClass getHl7DataFormat() {
         if (hl7DataFormatEClass == null) {
-            hl7DataFormatEClass = (EClass)EPackage.Registry.INSTANCE.getEPackage(SpringPackage.eNS_URI).getEClassifiers().get(73);
+            hl7DataFormatEClass = (EClass)EPackage.Registry.INSTANCE.getEPackage(SpringPackage.eNS_URI).getEClassifiers().get(74);
         }
         return hl7DataFormatEClass;
     }
@@ -7873,7 +8032,7 @@ public class SpringPackageImpl extends EPackageImpl implements SpringPackage {
      */
 	public EClass getIdempotentConsumerDefinition() {
         if (idempotentConsumerDefinitionEClass == null) {
-            idempotentConsumerDefinitionEClass = (EClass)EPackage.Registry.INSTANCE.getEPackage(SpringPackage.eNS_URI).getEClassifiers().get(74);
+            idempotentConsumerDefinitionEClass = (EClass)EPackage.Registry.INSTANCE.getEPackage(SpringPackage.eNS_URI).getEClassifiers().get(75);
         }
         return idempotentConsumerDefinitionEClass;
     }
@@ -7898,11 +8057,20 @@ public class SpringPackageImpl extends EPackageImpl implements SpringPackage {
 
 	/**
      * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public EAttribute getIdempotentConsumerDefinition_RemoveOnFailure() {
+        return (EAttribute)getIdempotentConsumerDefinition().getEStructuralFeatures().get(2);
+    }
+
+    /**
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
      * @generated
      */
 	public EAttribute getIdempotentConsumerDefinition_SkipDuplicate() {
-        return (EAttribute)getIdempotentConsumerDefinition().getEStructuralFeatures().get(2);
+        return (EAttribute)getIdempotentConsumerDefinition().getEStructuralFeatures().get(3);
     }
 
 	/**
@@ -7911,7 +8079,7 @@ public class SpringPackageImpl extends EPackageImpl implements SpringPackage {
      * @generated
      */
 	public EAttribute getIdempotentConsumerDefinition_AnyAttribute2() {
-        return (EAttribute)getIdempotentConsumerDefinition().getEStructuralFeatures().get(3);
+        return (EAttribute)getIdempotentConsumerDefinition().getEStructuralFeatures().get(4);
     }
 
 	/**
@@ -7921,7 +8089,7 @@ public class SpringPackageImpl extends EPackageImpl implements SpringPackage {
      */
 	public EClass getIdentifiedType() {
         if (identifiedTypeEClass == null) {
-            identifiedTypeEClass = (EClass)EPackage.Registry.INSTANCE.getEPackage(SpringPackage.eNS_URI).getEClassifiers().get(75);
+            identifiedTypeEClass = (EClass)EPackage.Registry.INSTANCE.getEPackage(SpringPackage.eNS_URI).getEClassifiers().get(76);
         }
         return identifiedTypeEClass;
     }
@@ -7942,7 +8110,7 @@ public class SpringPackageImpl extends EPackageImpl implements SpringPackage {
      */
 	public EClass getImplicitCollectionEntry() {
         if (implicitCollectionEntryEClass == null) {
-            implicitCollectionEntryEClass = (EClass)EPackage.Registry.INSTANCE.getEPackage(SpringPackage.eNS_URI).getEClassifiers().get(76);
+            implicitCollectionEntryEClass = (EClass)EPackage.Registry.INSTANCE.getEPackage(SpringPackage.eNS_URI).getEClassifiers().get(77);
         }
         return implicitCollectionEntryEClass;
     }
@@ -7972,7 +8140,7 @@ public class SpringPackageImpl extends EPackageImpl implements SpringPackage {
      */
 	public EClass getImplicitCollectionList() {
         if (implicitCollectionListEClass == null) {
-            implicitCollectionListEClass = (EClass)EPackage.Registry.INSTANCE.getEPackage(SpringPackage.eNS_URI).getEClassifiers().get(77);
+            implicitCollectionListEClass = (EClass)EPackage.Registry.INSTANCE.getEPackage(SpringPackage.eNS_URI).getEClassifiers().get(78);
         }
         return implicitCollectionListEClass;
     }
@@ -7993,7 +8161,7 @@ public class SpringPackageImpl extends EPackageImpl implements SpringPackage {
      */
 	public EClass getInOnlyDefinition() {
         if (inOnlyDefinitionEClass == null) {
-            inOnlyDefinitionEClass = (EClass)EPackage.Registry.INSTANCE.getEPackage(SpringPackage.eNS_URI).getEClassifiers().get(78);
+            inOnlyDefinitionEClass = (EClass)EPackage.Registry.INSTANCE.getEPackage(SpringPackage.eNS_URI).getEClassifiers().get(79);
         }
         return inOnlyDefinitionEClass;
     }
@@ -8014,7 +8182,7 @@ public class SpringPackageImpl extends EPackageImpl implements SpringPackage {
      */
 	public EClass getInOutDefinition() {
         if (inOutDefinitionEClass == null) {
-            inOutDefinitionEClass = (EClass)EPackage.Registry.INSTANCE.getEPackage(SpringPackage.eNS_URI).getEClassifiers().get(79);
+            inOutDefinitionEClass = (EClass)EPackage.Registry.INSTANCE.getEPackage(SpringPackage.eNS_URI).getEClassifiers().get(80);
         }
         return inOutDefinitionEClass;
     }
@@ -8035,7 +8203,7 @@ public class SpringPackageImpl extends EPackageImpl implements SpringPackage {
      */
 	public EClass getInterceptDefinition() {
         if (interceptDefinitionEClass == null) {
-            interceptDefinitionEClass = (EClass)EPackage.Registry.INSTANCE.getEPackage(SpringPackage.eNS_URI).getEClassifiers().get(80);
+            interceptDefinitionEClass = (EClass)EPackage.Registry.INSTANCE.getEPackage(SpringPackage.eNS_URI).getEClassifiers().get(81);
         }
         return interceptDefinitionEClass;
     }
@@ -8056,7 +8224,7 @@ public class SpringPackageImpl extends EPackageImpl implements SpringPackage {
      */
 	public EClass getInterceptFromDefinition() {
         if (interceptFromDefinitionEClass == null) {
-            interceptFromDefinitionEClass = (EClass)EPackage.Registry.INSTANCE.getEPackage(SpringPackage.eNS_URI).getEClassifiers().get(81);
+            interceptFromDefinitionEClass = (EClass)EPackage.Registry.INSTANCE.getEPackage(SpringPackage.eNS_URI).getEClassifiers().get(82);
         }
         return interceptFromDefinitionEClass;
     }
@@ -8086,7 +8254,7 @@ public class SpringPackageImpl extends EPackageImpl implements SpringPackage {
      */
 	public EClass getInterceptSendToEndpointDefinition() {
         if (interceptSendToEndpointDefinitionEClass == null) {
-            interceptSendToEndpointDefinitionEClass = (EClass)EPackage.Registry.INSTANCE.getEPackage(SpringPackage.eNS_URI).getEClassifiers().get(82);
+            interceptSendToEndpointDefinitionEClass = (EClass)EPackage.Registry.INSTANCE.getEPackage(SpringPackage.eNS_URI).getEClassifiers().get(83);
         }
         return interceptSendToEndpointDefinitionEClass;
     }
@@ -8125,7 +8293,7 @@ public class SpringPackageImpl extends EPackageImpl implements SpringPackage {
      */
 	public EClass getJavaScriptExpression() {
         if (javaScriptExpressionEClass == null) {
-            javaScriptExpressionEClass = (EClass)EPackage.Registry.INSTANCE.getEPackage(SpringPackage.eNS_URI).getEClassifiers().get(83);
+            javaScriptExpressionEClass = (EClass)EPackage.Registry.INSTANCE.getEPackage(SpringPackage.eNS_URI).getEClassifiers().get(84);
         }
         return javaScriptExpressionEClass;
     }
@@ -8137,7 +8305,7 @@ public class SpringPackageImpl extends EPackageImpl implements SpringPackage {
      */
 	public EClass getJaxbDataFormat() {
         if (jaxbDataFormatEClass == null) {
-            jaxbDataFormatEClass = (EClass)EPackage.Registry.INSTANCE.getEPackage(SpringPackage.eNS_URI).getEClassifiers().get(84);
+            jaxbDataFormatEClass = (EClass)EPackage.Registry.INSTANCE.getEPackage(SpringPackage.eNS_URI).getEClassifiers().get(85);
         }
         return jaxbDataFormatEClass;
     }
@@ -8221,7 +8389,7 @@ public class SpringPackageImpl extends EPackageImpl implements SpringPackage {
      */
 	public EClass getJibxDataFormat() {
         if (jibxDataFormatEClass == null) {
-            jibxDataFormatEClass = (EClass)EPackage.Registry.INSTANCE.getEPackage(SpringPackage.eNS_URI).getEClassifiers().get(85);
+            jibxDataFormatEClass = (EClass)EPackage.Registry.INSTANCE.getEPackage(SpringPackage.eNS_URI).getEClassifiers().get(86);
         }
         return jibxDataFormatEClass;
     }
@@ -8242,7 +8410,7 @@ public class SpringPackageImpl extends EPackageImpl implements SpringPackage {
      */
 	public EClass getJsonDataFormat() {
         if (jsonDataFormatEClass == null) {
-            jsonDataFormatEClass = (EClass)EPackage.Registry.INSTANCE.getEPackage(SpringPackage.eNS_URI).getEClassifiers().get(86);
+            jsonDataFormatEClass = (EClass)EPackage.Registry.INSTANCE.getEPackage(SpringPackage.eNS_URI).getEClassifiers().get(87);
         }
         return jsonDataFormatEClass;
     }
@@ -8281,7 +8449,7 @@ public class SpringPackageImpl extends EPackageImpl implements SpringPackage {
      */
 	public EClass getJxPathExpression() {
         if (jxPathExpressionEClass == null) {
-            jxPathExpressionEClass = (EClass)EPackage.Registry.INSTANCE.getEPackage(SpringPackage.eNS_URI).getEClassifiers().get(89);
+            jxPathExpressionEClass = (EClass)EPackage.Registry.INSTANCE.getEPackage(SpringPackage.eNS_URI).getEClassifiers().get(90);
         }
         return jxPathExpressionEClass;
     }
@@ -8293,7 +8461,7 @@ public class SpringPackageImpl extends EPackageImpl implements SpringPackage {
      */
 	public EClass getKeyManagersParametersFactoryBean() {
         if (keyManagersParametersFactoryBeanEClass == null) {
-            keyManagersParametersFactoryBeanEClass = (EClass)EPackage.Registry.INSTANCE.getEPackage(SpringPackage.eNS_URI).getEClassifiers().get(90);
+            keyManagersParametersFactoryBeanEClass = (EClass)EPackage.Registry.INSTANCE.getEPackage(SpringPackage.eNS_URI).getEClassifiers().get(91);
         }
         return keyManagersParametersFactoryBeanEClass;
     }
@@ -8314,7 +8482,7 @@ public class SpringPackageImpl extends EPackageImpl implements SpringPackage {
      */
 	public EClass getKeyStoreParametersFactoryBean() {
         if (keyStoreParametersFactoryBeanEClass == null) {
-            keyStoreParametersFactoryBeanEClass = (EClass)EPackage.Registry.INSTANCE.getEPackage(SpringPackage.eNS_URI).getEClassifiers().get(91);
+            keyStoreParametersFactoryBeanEClass = (EClass)EPackage.Registry.INSTANCE.getEPackage(SpringPackage.eNS_URI).getEClassifiers().get(92);
         }
         return keyStoreParametersFactoryBeanEClass;
     }
@@ -8326,7 +8494,7 @@ public class SpringPackageImpl extends EPackageImpl implements SpringPackage {
      */
 	public EClass getLanguageExpression() {
         if (languageExpressionEClass == null) {
-            languageExpressionEClass = (EClass)EPackage.Registry.INSTANCE.getEPackage(SpringPackage.eNS_URI).getEClassifiers().get(92);
+            languageExpressionEClass = (EClass)EPackage.Registry.INSTANCE.getEPackage(SpringPackage.eNS_URI).getEClassifiers().get(93);
         }
         return languageExpressionEClass;
     }
@@ -8347,7 +8515,7 @@ public class SpringPackageImpl extends EPackageImpl implements SpringPackage {
      */
 	public EClass getLoadBalanceDefinition() {
         if (loadBalanceDefinitionEClass == null) {
-            loadBalanceDefinitionEClass = (EClass)EPackage.Registry.INSTANCE.getEPackage(SpringPackage.eNS_URI).getEClassifiers().get(93);
+            loadBalanceDefinitionEClass = (EClass)EPackage.Registry.INSTANCE.getEPackage(SpringPackage.eNS_URI).getEClassifiers().get(94);
         }
         return loadBalanceDefinitionEClass;
     }
@@ -8971,7 +9139,7 @@ public class SpringPackageImpl extends EPackageImpl implements SpringPackage {
      */
 	public EClass getLoadBalancer() {
         if (loadBalancerEClass == null) {
-            loadBalancerEClass = (EClass)EPackage.Registry.INSTANCE.getEPackage(SpringPackage.eNS_URI).getEClassifiers().get(94);
+            loadBalancerEClass = (EClass)EPackage.Registry.INSTANCE.getEPackage(SpringPackage.eNS_URI).getEClassifiers().get(95);
         }
         return loadBalancerEClass;
     }
@@ -8983,7 +9151,7 @@ public class SpringPackageImpl extends EPackageImpl implements SpringPackage {
      */
 	public EClass getLogDefinition() {
         if (logDefinitionEClass == null) {
-            logDefinitionEClass = (EClass)EPackage.Registry.INSTANCE.getEPackage(SpringPackage.eNS_URI).getEClassifiers().get(95);
+            logDefinitionEClass = (EClass)EPackage.Registry.INSTANCE.getEPackage(SpringPackage.eNS_URI).getEClassifiers().get(96);
         }
         return logDefinitionEClass;
     }
@@ -9008,11 +9176,20 @@ public class SpringPackageImpl extends EPackageImpl implements SpringPackage {
 
 	/**
      * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public EAttribute getLogDefinition_Marker() {
+        return (EAttribute)getLogDefinition().getEStructuralFeatures().get(2);
+    }
+
+    /**
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
      * @generated
      */
 	public EAttribute getLogDefinition_Message() {
-        return (EAttribute)getLogDefinition().getEStructuralFeatures().get(2);
+        return (EAttribute)getLogDefinition().getEStructuralFeatures().get(3);
     }
 
 	/**
@@ -9021,7 +9198,7 @@ public class SpringPackageImpl extends EPackageImpl implements SpringPackage {
      * @generated
      */
 	public EAttribute getLogDefinition_AnyAttribute2() {
-        return (EAttribute)getLogDefinition().getEStructuralFeatures().get(3);
+        return (EAttribute)getLogDefinition().getEStructuralFeatures().get(4);
     }
 
 	/**
@@ -9031,7 +9208,7 @@ public class SpringPackageImpl extends EPackageImpl implements SpringPackage {
      */
 	public EClass getLoopDefinition() {
         if (loopDefinitionEClass == null) {
-            loopDefinitionEClass = (EClass)EPackage.Registry.INSTANCE.getEPackage(SpringPackage.eNS_URI).getEClassifiers().get(98);
+            loopDefinitionEClass = (EClass)EPackage.Registry.INSTANCE.getEPackage(SpringPackage.eNS_URI).getEClassifiers().get(99);
         }
         return loopDefinitionEClass;
     }
@@ -9061,7 +9238,7 @@ public class SpringPackageImpl extends EPackageImpl implements SpringPackage {
      */
 	public EClass getMarshalDefinition() {
         if (marshalDefinitionEClass == null) {
-            marshalDefinitionEClass = (EClass)EPackage.Registry.INSTANCE.getEPackage(SpringPackage.eNS_URI).getEClassifiers().get(101);
+            marshalDefinitionEClass = (EClass)EPackage.Registry.INSTANCE.getEPackage(SpringPackage.eNS_URI).getEClassifiers().get(102);
         }
         return marshalDefinitionEClass;
     }
@@ -9257,11 +9434,20 @@ public class SpringPackageImpl extends EPackageImpl implements SpringPackage {
 
 	/**
      * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public EReference getMarshalDefinition_Pgp() {
+        return (EReference)getMarshalDefinition().getEStructuralFeatures().get(21);
+    }
+
+    /**
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
      * @generated
      */
 	public EReference getMarshalDefinition_Zip() {
-        return (EReference)getMarshalDefinition().getEStructuralFeatures().get(21);
+        return (EReference)getMarshalDefinition().getEStructuralFeatures().get(22);
     }
 
 	/**
@@ -9270,7 +9456,7 @@ public class SpringPackageImpl extends EPackageImpl implements SpringPackage {
      * @generated
      */
 	public EAttribute getMarshalDefinition_Ref() {
-        return (EAttribute)getMarshalDefinition().getEStructuralFeatures().get(22);
+        return (EAttribute)getMarshalDefinition().getEStructuralFeatures().get(23);
     }
 
 	/**
@@ -9279,7 +9465,7 @@ public class SpringPackageImpl extends EPackageImpl implements SpringPackage {
      * @generated
      */
 	public EAttribute getMarshalDefinition_AnyAttribute2() {
-        return (EAttribute)getMarshalDefinition().getEStructuralFeatures().get(23);
+        return (EAttribute)getMarshalDefinition().getEStructuralFeatures().get(24);
     }
 
 	/**
@@ -9289,7 +9475,7 @@ public class SpringPackageImpl extends EPackageImpl implements SpringPackage {
      */
 	public EClass getMethodCallExpression() {
         if (methodCallExpressionEClass == null) {
-            methodCallExpressionEClass = (EClass)EPackage.Registry.INSTANCE.getEPackage(SpringPackage.eNS_URI).getEClassifiers().get(102);
+            methodCallExpressionEClass = (EClass)EPackage.Registry.INSTANCE.getEPackage(SpringPackage.eNS_URI).getEClassifiers().get(103);
         }
         return methodCallExpressionEClass;
     }
@@ -9332,12 +9518,24 @@ public class SpringPackageImpl extends EPackageImpl implements SpringPackage {
 
 	/**
      * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public EClass getModelHelper() {
+        if (modelHelperEClass == null) {
+            modelHelperEClass = (EClass)EPackage.Registry.INSTANCE.getEPackage(SpringPackage.eNS_URI).getEClassifiers().get(104);
+        }
+        return modelHelperEClass;
+    }
+
+    /**
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
      * @generated
      */
 	public EClass getMulticastDefinition() {
         if (multicastDefinitionEClass == null) {
-            multicastDefinitionEClass = (EClass)EPackage.Registry.INSTANCE.getEPackage(SpringPackage.eNS_URI).getEClassifiers().get(103);
+            multicastDefinitionEClass = (EClass)EPackage.Registry.INSTANCE.getEPackage(SpringPackage.eNS_URI).getEClassifiers().get(105);
         }
         return multicastDefinitionEClass;
     }
@@ -9430,7 +9628,7 @@ public class SpringPackageImpl extends EPackageImpl implements SpringPackage {
      */
 	public EClass getMvelExpression() {
         if (mvelExpressionEClass == null) {
-            mvelExpressionEClass = (EClass)EPackage.Registry.INSTANCE.getEPackage(SpringPackage.eNS_URI).getEClassifiers().get(104);
+            mvelExpressionEClass = (EClass)EPackage.Registry.INSTANCE.getEPackage(SpringPackage.eNS_URI).getEClassifiers().get(106);
         }
         return mvelExpressionEClass;
     }
@@ -9442,7 +9640,7 @@ public class SpringPackageImpl extends EPackageImpl implements SpringPackage {
      */
 	public EClass getNamespaceAwareExpression() {
         if (namespaceAwareExpressionEClass == null) {
-            namespaceAwareExpressionEClass = (EClass)EPackage.Registry.INSTANCE.getEPackage(SpringPackage.eNS_URI).getEClassifiers().get(105);
+            namespaceAwareExpressionEClass = (EClass)EPackage.Registry.INSTANCE.getEPackage(SpringPackage.eNS_URI).getEClassifiers().get(107);
         }
         return namespaceAwareExpressionEClass;
     }
@@ -9454,7 +9652,7 @@ public class SpringPackageImpl extends EPackageImpl implements SpringPackage {
      */
 	public EClass getNodeFactory() {
         if (nodeFactoryEClass == null) {
-            nodeFactoryEClass = (EClass)EPackage.Registry.INSTANCE.getEPackage(SpringPackage.eNS_URI).getEClassifiers().get(106);
+            nodeFactoryEClass = (EClass)EPackage.Registry.INSTANCE.getEPackage(SpringPackage.eNS_URI).getEClassifiers().get(108);
         }
         return nodeFactoryEClass;
     }
@@ -9466,7 +9664,7 @@ public class SpringPackageImpl extends EPackageImpl implements SpringPackage {
      */
 	public EClass getNoOutputDefinition() {
         if (noOutputDefinitionEClass == null) {
-            noOutputDefinitionEClass = (EClass)EPackage.Registry.INSTANCE.getEPackage(SpringPackage.eNS_URI).getEClassifiers().get(107);
+            noOutputDefinitionEClass = (EClass)EPackage.Registry.INSTANCE.getEPackage(SpringPackage.eNS_URI).getEClassifiers().get(109);
         }
         return noOutputDefinitionEClass;
     }
@@ -9487,7 +9685,7 @@ public class SpringPackageImpl extends EPackageImpl implements SpringPackage {
      */
 	public EClass getNoOutputExpressionNode() {
         if (noOutputExpressionNodeEClass == null) {
-            noOutputExpressionNodeEClass = (EClass)EPackage.Registry.INSTANCE.getEPackage(SpringPackage.eNS_URI).getEClassifiers().get(108);
+            noOutputExpressionNodeEClass = (EClass)EPackage.Registry.INSTANCE.getEPackage(SpringPackage.eNS_URI).getEClassifiers().get(110);
         }
         return noOutputExpressionNodeEClass;
     }
@@ -9508,7 +9706,7 @@ public class SpringPackageImpl extends EPackageImpl implements SpringPackage {
      */
 	public EClass getOgnlExpression() {
         if (ognlExpressionEClass == null) {
-            ognlExpressionEClass = (EClass)EPackage.Registry.INSTANCE.getEPackage(SpringPackage.eNS_URI).getEClassifiers().get(109);
+            ognlExpressionEClass = (EClass)EPackage.Registry.INSTANCE.getEPackage(SpringPackage.eNS_URI).getEClassifiers().get(111);
         }
         return ognlExpressionEClass;
     }
@@ -9520,7 +9718,7 @@ public class SpringPackageImpl extends EPackageImpl implements SpringPackage {
      */
 	public EClass getOmitFieldEntry() {
         if (omitFieldEntryEClass == null) {
-            omitFieldEntryEClass = (EClass)EPackage.Registry.INSTANCE.getEPackage(SpringPackage.eNS_URI).getEClassifiers().get(110);
+            omitFieldEntryEClass = (EClass)EPackage.Registry.INSTANCE.getEPackage(SpringPackage.eNS_URI).getEClassifiers().get(112);
         }
         return omitFieldEntryEClass;
     }
@@ -9550,7 +9748,7 @@ public class SpringPackageImpl extends EPackageImpl implements SpringPackage {
      */
 	public EClass getOmitFieldList() {
         if (omitFieldListEClass == null) {
-            omitFieldListEClass = (EClass)EPackage.Registry.INSTANCE.getEPackage(SpringPackage.eNS_URI).getEClassifiers().get(111);
+            omitFieldListEClass = (EClass)EPackage.Registry.INSTANCE.getEPackage(SpringPackage.eNS_URI).getEClassifiers().get(113);
         }
         return omitFieldListEClass;
     }
@@ -9571,7 +9769,7 @@ public class SpringPackageImpl extends EPackageImpl implements SpringPackage {
      */
 	public EClass getOnCompletionDefinition() {
         if (onCompletionDefinitionEClass == null) {
-            onCompletionDefinitionEClass = (EClass)EPackage.Registry.INSTANCE.getEPackage(SpringPackage.eNS_URI).getEClassifiers().get(112);
+            onCompletionDefinitionEClass = (EClass)EPackage.Registry.INSTANCE.getEPackage(SpringPackage.eNS_URI).getEClassifiers().get(114);
         }
         return onCompletionDefinitionEClass;
     }
@@ -10168,7 +10366,7 @@ public class SpringPackageImpl extends EPackageImpl implements SpringPackage {
      */
 	public EClass getOnExceptionDefinition() {
         if (onExceptionDefinitionEClass == null) {
-            onExceptionDefinitionEClass = (EClass)EPackage.Registry.INSTANCE.getEPackage(SpringPackage.eNS_URI).getEClassifiers().get(113);
+            onExceptionDefinitionEClass = (EClass)EPackage.Registry.INSTANCE.getEPackage(SpringPackage.eNS_URI).getEClassifiers().get(115);
         }
         return onExceptionDefinitionEClass;
     }
@@ -10801,7 +10999,7 @@ public class SpringPackageImpl extends EPackageImpl implements SpringPackage {
      */
 	public EClass getOptionalIdentifiedDefinition() {
         if (optionalIdentifiedDefinitionEClass == null) {
-            optionalIdentifiedDefinitionEClass = (EClass)EPackage.Registry.INSTANCE.getEPackage(SpringPackage.eNS_URI).getEClassifiers().get(114);
+            optionalIdentifiedDefinitionEClass = (EClass)EPackage.Registry.INSTANCE.getEPackage(SpringPackage.eNS_URI).getEClassifiers().get(116);
         }
         return optionalIdentifiedDefinitionEClass;
     }
@@ -10831,7 +11029,7 @@ public class SpringPackageImpl extends EPackageImpl implements SpringPackage {
      */
 	public EClass getOtherwiseDefinition() {
         if (otherwiseDefinitionEClass == null) {
-            otherwiseDefinitionEClass = (EClass)EPackage.Registry.INSTANCE.getEPackage(SpringPackage.eNS_URI).getEClassifiers().get(115);
+            otherwiseDefinitionEClass = (EClass)EPackage.Registry.INSTANCE.getEPackage(SpringPackage.eNS_URI).getEClassifiers().get(117);
         }
         return otherwiseDefinitionEClass;
     }
@@ -10852,7 +11050,7 @@ public class SpringPackageImpl extends EPackageImpl implements SpringPackage {
      */
 	public EClass getOutput() {
         if (outputEClass == null) {
-            outputEClass = (EClass)EPackage.Registry.INSTANCE.getEPackage(SpringPackage.eNS_URI).getEClassifiers().get(116);
+            outputEClass = (EClass)EPackage.Registry.INSTANCE.getEPackage(SpringPackage.eNS_URI).getEClassifiers().get(118);
         }
         return outputEClass;
     }
@@ -11404,7 +11602,7 @@ public class SpringPackageImpl extends EPackageImpl implements SpringPackage {
      */
 	public EClass getPackageScanDefinition() {
         if (packageScanDefinitionEClass == null) {
-            packageScanDefinitionEClass = (EClass)EPackage.Registry.INSTANCE.getEPackage(SpringPackage.eNS_URI).getEClassifiers().get(117);
+            packageScanDefinitionEClass = (EClass)EPackage.Registry.INSTANCE.getEPackage(SpringPackage.eNS_URI).getEClassifiers().get(119);
         }
         return packageScanDefinitionEClass;
     }
@@ -11443,7 +11641,7 @@ public class SpringPackageImpl extends EPackageImpl implements SpringPackage {
      */
 	public EClass getPhpExpression() {
         if (phpExpressionEClass == null) {
-            phpExpressionEClass = (EClass)EPackage.Registry.INSTANCE.getEPackage(SpringPackage.eNS_URI).getEClassifiers().get(120);
+            phpExpressionEClass = (EClass)EPackage.Registry.INSTANCE.getEPackage(SpringPackage.eNS_URI).getEClassifiers().get(122);
         }
         return phpExpressionEClass;
     }
@@ -11455,7 +11653,7 @@ public class SpringPackageImpl extends EPackageImpl implements SpringPackage {
      */
 	public EClass getPipelineDefinition() {
         if (pipelineDefinitionEClass == null) {
-            pipelineDefinitionEClass = (EClass)EPackage.Registry.INSTANCE.getEPackage(SpringPackage.eNS_URI).getEClassifiers().get(121);
+            pipelineDefinitionEClass = (EClass)EPackage.Registry.INSTANCE.getEPackage(SpringPackage.eNS_URI).getEClassifiers().get(123);
         }
         return pipelineDefinitionEClass;
     }
@@ -11471,12 +11669,69 @@ public class SpringPackageImpl extends EPackageImpl implements SpringPackage {
 
 	/**
      * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public EClass getPgpDataFormat() {
+        if (pgpDataFormatEClass == null) {
+            pgpDataFormatEClass = (EClass)EPackage.Registry.INSTANCE.getEPackage(SpringPackage.eNS_URI).getEClassifiers().get(124);
+        }
+        return pgpDataFormatEClass;
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public EAttribute getPgpDataFormat_Armored() {
+        return (EAttribute)getPgpDataFormat().getEStructuralFeatures().get(0);
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public EAttribute getPgpDataFormat_Integrity() {
+        return (EAttribute)getPgpDataFormat().getEStructuralFeatures().get(1);
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public EAttribute getPgpDataFormat_KeyFileName() {
+        return (EAttribute)getPgpDataFormat().getEStructuralFeatures().get(2);
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public EAttribute getPgpDataFormat_KeyUserid() {
+        return (EAttribute)getPgpDataFormat().getEStructuralFeatures().get(3);
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public EAttribute getPgpDataFormat_Password() {
+        return (EAttribute)getPgpDataFormat().getEStructuralFeatures().get(4);
+    }
+
+    /**
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
      * @generated
      */
 	public EClass getPolicyDefinition() {
         if (policyDefinitionEClass == null) {
-            policyDefinitionEClass = (EClass)EPackage.Registry.INSTANCE.getEPackage(SpringPackage.eNS_URI).getEClassifiers().get(122);
+            policyDefinitionEClass = (EClass)EPackage.Registry.INSTANCE.getEPackage(SpringPackage.eNS_URI).getEClassifiers().get(125);
         }
         return policyDefinitionEClass;
     }
@@ -11506,7 +11761,7 @@ public class SpringPackageImpl extends EPackageImpl implements SpringPackage {
      */
 	public EClass getPollEnrichDefinition() {
         if (pollEnrichDefinitionEClass == null) {
-            pollEnrichDefinitionEClass = (EClass)EPackage.Registry.INSTANCE.getEPackage(SpringPackage.eNS_URI).getEClassifiers().get(123);
+            pollEnrichDefinitionEClass = (EClass)EPackage.Registry.INSTANCE.getEPackage(SpringPackage.eNS_URI).getEClassifiers().get(126);
         }
         return pollEnrichDefinitionEClass;
     }
@@ -11563,7 +11818,7 @@ public class SpringPackageImpl extends EPackageImpl implements SpringPackage {
      */
 	public EClass getProcessDefinition() {
         if (processDefinitionEClass == null) {
-            processDefinitionEClass = (EClass)EPackage.Registry.INSTANCE.getEPackage(SpringPackage.eNS_URI).getEClassifiers().get(124);
+            processDefinitionEClass = (EClass)EPackage.Registry.INSTANCE.getEPackage(SpringPackage.eNS_URI).getEClassifiers().get(127);
         }
         return processDefinitionEClass;
     }
@@ -11593,7 +11848,7 @@ public class SpringPackageImpl extends EPackageImpl implements SpringPackage {
      */
 	public EClass getProcessorDefinition() {
         if (processorDefinitionEClass == null) {
-            processorDefinitionEClass = (EClass)EPackage.Registry.INSTANCE.getEPackage(SpringPackage.eNS_URI).getEClassifiers().get(125);
+            processorDefinitionEClass = (EClass)EPackage.Registry.INSTANCE.getEPackage(SpringPackage.eNS_URI).getEClassifiers().get(128);
         }
         return processorDefinitionEClass;
     }
@@ -11623,7 +11878,7 @@ public class SpringPackageImpl extends EPackageImpl implements SpringPackage {
      */
 	public EClass getProcessorDefinitionHelper() {
         if (processorDefinitionHelperEClass == null) {
-            processorDefinitionHelperEClass = (EClass)EPackage.Registry.INSTANCE.getEPackage(SpringPackage.eNS_URI).getEClassifiers().get(126);
+            processorDefinitionHelperEClass = (EClass)EPackage.Registry.INSTANCE.getEPackage(SpringPackage.eNS_URI).getEClassifiers().get(129);
         }
         return processorDefinitionHelperEClass;
     }
@@ -11635,7 +11890,7 @@ public class SpringPackageImpl extends EPackageImpl implements SpringPackage {
      */
 	public EClass getPropertiesDefinition() {
         if (propertiesDefinitionEClass == null) {
-            propertiesDefinitionEClass = (EClass)EPackage.Registry.INSTANCE.getEPackage(SpringPackage.eNS_URI).getEClassifiers().get(127);
+            propertiesDefinitionEClass = (EClass)EPackage.Registry.INSTANCE.getEPackage(SpringPackage.eNS_URI).getEClassifiers().get(130);
         }
         return propertiesDefinitionEClass;
     }
@@ -11656,7 +11911,7 @@ public class SpringPackageImpl extends EPackageImpl implements SpringPackage {
      */
 	public EClass getPropertyDefinition() {
         if (propertyDefinitionEClass == null) {
-            propertyDefinitionEClass = (EClass)EPackage.Registry.INSTANCE.getEPackage(SpringPackage.eNS_URI).getEClassifiers().get(128);
+            propertyDefinitionEClass = (EClass)EPackage.Registry.INSTANCE.getEPackage(SpringPackage.eNS_URI).getEClassifiers().get(131);
         }
         return propertyDefinitionEClass;
     }
@@ -11686,7 +11941,7 @@ public class SpringPackageImpl extends EPackageImpl implements SpringPackage {
      */
 	public EClass getPropertyExpression() {
         if (propertyExpressionEClass == null) {
-            propertyExpressionEClass = (EClass)EPackage.Registry.INSTANCE.getEPackage(SpringPackage.eNS_URI).getEClassifiers().get(129);
+            propertyExpressionEClass = (EClass)EPackage.Registry.INSTANCE.getEPackage(SpringPackage.eNS_URI).getEClassifiers().get(132);
         }
         return propertyExpressionEClass;
     }
@@ -11698,7 +11953,7 @@ public class SpringPackageImpl extends EPackageImpl implements SpringPackage {
      */
 	public EClass getProtobufDataFormat() {
         if (protobufDataFormatEClass == null) {
-            protobufDataFormatEClass = (EClass)EPackage.Registry.INSTANCE.getEPackage(SpringPackage.eNS_URI).getEClassifiers().get(130);
+            protobufDataFormatEClass = (EClass)EPackage.Registry.INSTANCE.getEPackage(SpringPackage.eNS_URI).getEClassifiers().get(133);
         }
         return protobufDataFormatEClass;
     }
@@ -11719,7 +11974,7 @@ public class SpringPackageImpl extends EPackageImpl implements SpringPackage {
      */
 	public EClass getPythonExpression() {
         if (pythonExpressionEClass == null) {
-            pythonExpressionEClass = (EClass)EPackage.Registry.INSTANCE.getEPackage(SpringPackage.eNS_URI).getEClassifiers().get(131);
+            pythonExpressionEClass = (EClass)EPackage.Registry.INSTANCE.getEPackage(SpringPackage.eNS_URI).getEClassifiers().get(134);
         }
         return pythonExpressionEClass;
     }
@@ -11731,7 +11986,7 @@ public class SpringPackageImpl extends EPackageImpl implements SpringPackage {
      */
 	public EClass getRandomLoadBalancerDefinition() {
         if (randomLoadBalancerDefinitionEClass == null) {
-            randomLoadBalancerDefinitionEClass = (EClass)EPackage.Registry.INSTANCE.getEPackage(SpringPackage.eNS_URI).getEClassifiers().get(132);
+            randomLoadBalancerDefinitionEClass = (EClass)EPackage.Registry.INSTANCE.getEPackage(SpringPackage.eNS_URI).getEClassifiers().get(135);
         }
         return randomLoadBalancerDefinitionEClass;
     }
@@ -11743,7 +11998,7 @@ public class SpringPackageImpl extends EPackageImpl implements SpringPackage {
      */
 	public EClass getRecipientListDefinition() {
         if (recipientListDefinitionEClass == null) {
-            recipientListDefinitionEClass = (EClass)EPackage.Registry.INSTANCE.getEPackage(SpringPackage.eNS_URI).getEClassifiers().get(133);
+            recipientListDefinitionEClass = (EClass)EPackage.Registry.INSTANCE.getEPackage(SpringPackage.eNS_URI).getEClassifiers().get(136);
         }
         return recipientListDefinitionEClass;
     }
@@ -11854,7 +12109,7 @@ public class SpringPackageImpl extends EPackageImpl implements SpringPackage {
      */
 	public EClass getRedeliveryPolicyDefinition() {
         if (redeliveryPolicyDefinitionEClass == null) {
-            redeliveryPolicyDefinitionEClass = (EClass)EPackage.Registry.INSTANCE.getEPackage(SpringPackage.eNS_URI).getEClassifiers().get(134);
+            redeliveryPolicyDefinitionEClass = (EClass)EPackage.Registry.INSTANCE.getEPackage(SpringPackage.eNS_URI).getEClassifiers().get(137);
         }
         return redeliveryPolicyDefinitionEClass;
     }
@@ -12028,7 +12283,7 @@ public class SpringPackageImpl extends EPackageImpl implements SpringPackage {
      */
 	public EClass getRefExpression() {
         if (refExpressionEClass == null) {
-            refExpressionEClass = (EClass)EPackage.Registry.INSTANCE.getEPackage(SpringPackage.eNS_URI).getEClassifiers().get(135);
+            refExpressionEClass = (EClass)EPackage.Registry.INSTANCE.getEPackage(SpringPackage.eNS_URI).getEClassifiers().get(138);
         }
         return refExpressionEClass;
     }
@@ -12040,7 +12295,7 @@ public class SpringPackageImpl extends EPackageImpl implements SpringPackage {
      */
 	public EClass getRemoveHeaderDefinition() {
         if (removeHeaderDefinitionEClass == null) {
-            removeHeaderDefinitionEClass = (EClass)EPackage.Registry.INSTANCE.getEPackage(SpringPackage.eNS_URI).getEClassifiers().get(136);
+            removeHeaderDefinitionEClass = (EClass)EPackage.Registry.INSTANCE.getEPackage(SpringPackage.eNS_URI).getEClassifiers().get(139);
         }
         return removeHeaderDefinitionEClass;
     }
@@ -12070,7 +12325,7 @@ public class SpringPackageImpl extends EPackageImpl implements SpringPackage {
      */
 	public EClass getRemoveHeadersDefinition() {
         if (removeHeadersDefinitionEClass == null) {
-            removeHeadersDefinitionEClass = (EClass)EPackage.Registry.INSTANCE.getEPackage(SpringPackage.eNS_URI).getEClassifiers().get(137);
+            removeHeadersDefinitionEClass = (EClass)EPackage.Registry.INSTANCE.getEPackage(SpringPackage.eNS_URI).getEClassifiers().get(140);
         }
         return removeHeadersDefinitionEClass;
     }
@@ -12109,7 +12364,7 @@ public class SpringPackageImpl extends EPackageImpl implements SpringPackage {
      */
 	public EClass getRemovePropertyDefinition() {
         if (removePropertyDefinitionEClass == null) {
-            removePropertyDefinitionEClass = (EClass)EPackage.Registry.INSTANCE.getEPackage(SpringPackage.eNS_URI).getEClassifiers().get(138);
+            removePropertyDefinitionEClass = (EClass)EPackage.Registry.INSTANCE.getEPackage(SpringPackage.eNS_URI).getEClassifiers().get(141);
         }
         return removePropertyDefinitionEClass;
     }
@@ -12139,7 +12394,7 @@ public class SpringPackageImpl extends EPackageImpl implements SpringPackage {
      */
 	public EClass getResequenceDefinition() {
         if (resequenceDefinitionEClass == null) {
-            resequenceDefinitionEClass = (EClass)EPackage.Registry.INSTANCE.getEPackage(SpringPackage.eNS_URI).getEClassifiers().get(139);
+            resequenceDefinitionEClass = (EClass)EPackage.Registry.INSTANCE.getEPackage(SpringPackage.eNS_URI).getEClassifiers().get(142);
         }
         return resequenceDefinitionEClass;
     }
@@ -12907,7 +13162,7 @@ public class SpringPackageImpl extends EPackageImpl implements SpringPackage {
      */
 	public EClass getResequencerConfig() {
         if (resequencerConfigEClass == null) {
-            resequencerConfigEClass = (EClass)EPackage.Registry.INSTANCE.getEPackage(SpringPackage.eNS_URI).getEClassifiers().get(140);
+            resequencerConfigEClass = (EClass)EPackage.Registry.INSTANCE.getEPackage(SpringPackage.eNS_URI).getEClassifiers().get(143);
         }
         return resequencerConfigEClass;
     }
@@ -12919,7 +13174,7 @@ public class SpringPackageImpl extends EPackageImpl implements SpringPackage {
      */
 	public EClass getRollbackDefinition() {
         if (rollbackDefinitionEClass == null) {
-            rollbackDefinitionEClass = (EClass)EPackage.Registry.INSTANCE.getEPackage(SpringPackage.eNS_URI).getEClassifiers().get(141);
+            rollbackDefinitionEClass = (EClass)EPackage.Registry.INSTANCE.getEPackage(SpringPackage.eNS_URI).getEClassifiers().get(144);
         }
         return rollbackDefinitionEClass;
     }
@@ -12967,7 +13222,7 @@ public class SpringPackageImpl extends EPackageImpl implements SpringPackage {
      */
 	public EClass getRoundRobinLoadBalancerDefinition() {
         if (roundRobinLoadBalancerDefinitionEClass == null) {
-            roundRobinLoadBalancerDefinitionEClass = (EClass)EPackage.Registry.INSTANCE.getEPackage(SpringPackage.eNS_URI).getEClassifiers().get(142);
+            roundRobinLoadBalancerDefinitionEClass = (EClass)EPackage.Registry.INSTANCE.getEPackage(SpringPackage.eNS_URI).getEClassifiers().get(145);
         }
         return roundRobinLoadBalancerDefinitionEClass;
     }
@@ -12979,7 +13234,7 @@ public class SpringPackageImpl extends EPackageImpl implements SpringPackage {
      */
 	public EClass getRouteBuilderDefinition() {
         if (routeBuilderDefinitionEClass == null) {
-            routeBuilderDefinitionEClass = (EClass)EPackage.Registry.INSTANCE.getEPackage(SpringPackage.eNS_URI).getEClassifiers().get(143);
+            routeBuilderDefinitionEClass = (EClass)EPackage.Registry.INSTANCE.getEPackage(SpringPackage.eNS_URI).getEClassifiers().get(146);
         }
         return routeBuilderDefinitionEClass;
     }
@@ -13000,7 +13255,7 @@ public class SpringPackageImpl extends EPackageImpl implements SpringPackage {
      */
 	public EClass getRouteContextRefDefinition() {
         if (routeContextRefDefinitionEClass == null) {
-            routeContextRefDefinitionEClass = (EClass)EPackage.Registry.INSTANCE.getEPackage(SpringPackage.eNS_URI).getEClassifiers().get(144);
+            routeContextRefDefinitionEClass = (EClass)EPackage.Registry.INSTANCE.getEPackage(SpringPackage.eNS_URI).getEClassifiers().get(147);
         }
         return routeContextRefDefinitionEClass;
     }
@@ -13021,7 +13276,7 @@ public class SpringPackageImpl extends EPackageImpl implements SpringPackage {
      */
 	public EClass getRouteDefinition() {
         if (routeDefinitionEClass == null) {
-            routeDefinitionEClass = (EClass)EPackage.Registry.INSTANCE.getEPackage(SpringPackage.eNS_URI).getEClassifiers().get(145);
+            routeDefinitionEClass = (EClass)EPackage.Registry.INSTANCE.getEPackage(SpringPackage.eNS_URI).getEClassifiers().get(148);
         }
         return routeDefinitionEClass;
     }
@@ -13681,7 +13936,7 @@ public class SpringPackageImpl extends EPackageImpl implements SpringPackage {
      */
 	public EClass getRouteDefinitionHelper() {
         if (routeDefinitionHelperEClass == null) {
-            routeDefinitionHelperEClass = (EClass)EPackage.Registry.INSTANCE.getEPackage(SpringPackage.eNS_URI).getEClassifiers().get(146);
+            routeDefinitionHelperEClass = (EClass)EPackage.Registry.INSTANCE.getEPackage(SpringPackage.eNS_URI).getEClassifiers().get(149);
         }
         return routeDefinitionHelperEClass;
     }
@@ -13693,7 +13948,7 @@ public class SpringPackageImpl extends EPackageImpl implements SpringPackage {
      */
 	public EClass getRoutesDefinition() {
         if (routesDefinitionEClass == null) {
-            routesDefinitionEClass = (EClass)EPackage.Registry.INSTANCE.getEPackage(SpringPackage.eNS_URI).getEClassifiers().get(147);
+            routesDefinitionEClass = (EClass)EPackage.Registry.INSTANCE.getEPackage(SpringPackage.eNS_URI).getEClassifiers().get(150);
         }
         return routesDefinitionEClass;
     }
@@ -13714,7 +13969,7 @@ public class SpringPackageImpl extends EPackageImpl implements SpringPackage {
      */
 	public EClass getRoutingSlipDefinition() {
         if (routingSlipDefinitionEClass == null) {
-            routingSlipDefinitionEClass = (EClass)EPackage.Registry.INSTANCE.getEPackage(SpringPackage.eNS_URI).getEClassifiers().get(148);
+            routingSlipDefinitionEClass = (EClass)EPackage.Registry.INSTANCE.getEPackage(SpringPackage.eNS_URI).getEClassifiers().get(151);
         }
         return routingSlipDefinitionEClass;
     }
@@ -13753,7 +14008,7 @@ public class SpringPackageImpl extends EPackageImpl implements SpringPackage {
      */
 	public EClass getRssDataFormat() {
         if (rssDataFormatEClass == null) {
-            rssDataFormatEClass = (EClass)EPackage.Registry.INSTANCE.getEPackage(SpringPackage.eNS_URI).getEClassifiers().get(149);
+            rssDataFormatEClass = (EClass)EPackage.Registry.INSTANCE.getEPackage(SpringPackage.eNS_URI).getEClassifiers().get(152);
         }
         return rssDataFormatEClass;
     }
@@ -13765,7 +14020,7 @@ public class SpringPackageImpl extends EPackageImpl implements SpringPackage {
      */
 	public EClass getRubyExpression() {
         if (rubyExpressionEClass == null) {
-            rubyExpressionEClass = (EClass)EPackage.Registry.INSTANCE.getEPackage(SpringPackage.eNS_URI).getEClassifiers().get(150);
+            rubyExpressionEClass = (EClass)EPackage.Registry.INSTANCE.getEPackage(SpringPackage.eNS_URI).getEClassifiers().get(153);
         }
         return rubyExpressionEClass;
     }
@@ -13777,7 +14032,7 @@ public class SpringPackageImpl extends EPackageImpl implements SpringPackage {
      */
 	public EClass getSamplingDefinition() {
         if (samplingDefinitionEClass == null) {
-            samplingDefinitionEClass = (EClass)EPackage.Registry.INSTANCE.getEPackage(SpringPackage.eNS_URI).getEClassifiers().get(151);
+            samplingDefinitionEClass = (EClass)EPackage.Registry.INSTANCE.getEPackage(SpringPackage.eNS_URI).getEClassifiers().get(154);
         }
         return samplingDefinitionEClass;
     }
@@ -13825,7 +14080,7 @@ public class SpringPackageImpl extends EPackageImpl implements SpringPackage {
      */
 	public EClass getSecureRandomParametersFactoryBean() {
         if (secureRandomParametersFactoryBeanEClass == null) {
-            secureRandomParametersFactoryBeanEClass = (EClass)EPackage.Registry.INSTANCE.getEPackage(SpringPackage.eNS_URI).getEClassifiers().get(152);
+            secureRandomParametersFactoryBeanEClass = (EClass)EPackage.Registry.INSTANCE.getEPackage(SpringPackage.eNS_URI).getEClassifiers().get(155);
         }
         return secureRandomParametersFactoryBeanEClass;
     }
@@ -13837,7 +14092,7 @@ public class SpringPackageImpl extends EPackageImpl implements SpringPackage {
      */
 	public EClass getSecureSocketProtocolsParameters() {
         if (secureSocketProtocolsParametersEClass == null) {
-            secureSocketProtocolsParametersEClass = (EClass)EPackage.Registry.INSTANCE.getEPackage(SpringPackage.eNS_URI).getEClassifiers().get(153);
+            secureSocketProtocolsParametersEClass = (EClass)EPackage.Registry.INSTANCE.getEPackage(SpringPackage.eNS_URI).getEClassifiers().get(156);
         }
         return secureSocketProtocolsParametersEClass;
     }
@@ -13858,7 +14113,7 @@ public class SpringPackageImpl extends EPackageImpl implements SpringPackage {
      */
 	public EClass getSendDefinition() {
         if (sendDefinitionEClass == null) {
-            sendDefinitionEClass = (EClass)EPackage.Registry.INSTANCE.getEPackage(SpringPackage.eNS_URI).getEClassifiers().get(154);
+            sendDefinitionEClass = (EClass)EPackage.Registry.INSTANCE.getEPackage(SpringPackage.eNS_URI).getEClassifiers().get(157);
         }
         return sendDefinitionEClass;
     }
@@ -13897,7 +14152,7 @@ public class SpringPackageImpl extends EPackageImpl implements SpringPackage {
      */
 	public EClass getSerializationDataFormat() {
         if (serializationDataFormatEClass == null) {
-            serializationDataFormatEClass = (EClass)EPackage.Registry.INSTANCE.getEPackage(SpringPackage.eNS_URI).getEClassifiers().get(155);
+            serializationDataFormatEClass = (EClass)EPackage.Registry.INSTANCE.getEPackage(SpringPackage.eNS_URI).getEClassifiers().get(158);
         }
         return serializationDataFormatEClass;
     }
@@ -13909,7 +14164,7 @@ public class SpringPackageImpl extends EPackageImpl implements SpringPackage {
      */
 	public EClass getSetBodyDefinition() {
         if (setBodyDefinitionEClass == null) {
-            setBodyDefinitionEClass = (EClass)EPackage.Registry.INSTANCE.getEPackage(SpringPackage.eNS_URI).getEClassifiers().get(156);
+            setBodyDefinitionEClass = (EClass)EPackage.Registry.INSTANCE.getEPackage(SpringPackage.eNS_URI).getEClassifiers().get(159);
         }
         return setBodyDefinitionEClass;
     }
@@ -13930,7 +14185,7 @@ public class SpringPackageImpl extends EPackageImpl implements SpringPackage {
      */
 	public EClass getSetExchangePatternDefinition() {
         if (setExchangePatternDefinitionEClass == null) {
-            setExchangePatternDefinitionEClass = (EClass)EPackage.Registry.INSTANCE.getEPackage(SpringPackage.eNS_URI).getEClassifiers().get(157);
+            setExchangePatternDefinitionEClass = (EClass)EPackage.Registry.INSTANCE.getEPackage(SpringPackage.eNS_URI).getEClassifiers().get(160);
         }
         return setExchangePatternDefinitionEClass;
     }
@@ -13960,7 +14215,7 @@ public class SpringPackageImpl extends EPackageImpl implements SpringPackage {
      */
 	public EClass getSetFaultBodyDefinition() {
         if (setFaultBodyDefinitionEClass == null) {
-            setFaultBodyDefinitionEClass = (EClass)EPackage.Registry.INSTANCE.getEPackage(SpringPackage.eNS_URI).getEClassifiers().get(158);
+            setFaultBodyDefinitionEClass = (EClass)EPackage.Registry.INSTANCE.getEPackage(SpringPackage.eNS_URI).getEClassifiers().get(161);
         }
         return setFaultBodyDefinitionEClass;
     }
@@ -13981,7 +14236,7 @@ public class SpringPackageImpl extends EPackageImpl implements SpringPackage {
      */
 	public EClass getSetHeaderDefinition() {
         if (setHeaderDefinitionEClass == null) {
-            setHeaderDefinitionEClass = (EClass)EPackage.Registry.INSTANCE.getEPackage(SpringPackage.eNS_URI).getEClassifiers().get(159);
+            setHeaderDefinitionEClass = (EClass)EPackage.Registry.INSTANCE.getEPackage(SpringPackage.eNS_URI).getEClassifiers().get(162);
         }
         return setHeaderDefinitionEClass;
     }
@@ -14011,7 +14266,7 @@ public class SpringPackageImpl extends EPackageImpl implements SpringPackage {
      */
 	public EClass getSetOutHeaderDefinition() {
         if (setOutHeaderDefinitionEClass == null) {
-            setOutHeaderDefinitionEClass = (EClass)EPackage.Registry.INSTANCE.getEPackage(SpringPackage.eNS_URI).getEClassifiers().get(160);
+            setOutHeaderDefinitionEClass = (EClass)EPackage.Registry.INSTANCE.getEPackage(SpringPackage.eNS_URI).getEClassifiers().get(163);
         }
         return setOutHeaderDefinitionEClass;
     }
@@ -14041,7 +14296,7 @@ public class SpringPackageImpl extends EPackageImpl implements SpringPackage {
      */
 	public EClass getSetPropertyDefinition() {
         if (setPropertyDefinitionEClass == null) {
-            setPropertyDefinitionEClass = (EClass)EPackage.Registry.INSTANCE.getEPackage(SpringPackage.eNS_URI).getEClassifiers().get(161);
+            setPropertyDefinitionEClass = (EClass)EPackage.Registry.INSTANCE.getEPackage(SpringPackage.eNS_URI).getEClassifiers().get(164);
         }
         return setPropertyDefinitionEClass;
     }
@@ -14071,7 +14326,7 @@ public class SpringPackageImpl extends EPackageImpl implements SpringPackage {
      */
 	public EClass getSimpleExpression() {
         if (simpleExpressionEClass == null) {
-            simpleExpressionEClass = (EClass)EPackage.Registry.INSTANCE.getEPackage(SpringPackage.eNS_URI).getEClassifiers().get(166);
+            simpleExpressionEClass = (EClass)EPackage.Registry.INSTANCE.getEPackage(SpringPackage.eNS_URI).getEClassifiers().get(169);
         }
         return simpleExpressionEClass;
     }
@@ -14092,7 +14347,7 @@ public class SpringPackageImpl extends EPackageImpl implements SpringPackage {
      */
 	public EClass getSoapJaxbDataFormat() {
         if (soapJaxbDataFormatEClass == null) {
-            soapJaxbDataFormatEClass = (EClass)EPackage.Registry.INSTANCE.getEPackage(SpringPackage.eNS_URI).getEClassifiers().get(167);
+            soapJaxbDataFormatEClass = (EClass)EPackage.Registry.INSTANCE.getEPackage(SpringPackage.eNS_URI).getEClassifiers().get(170);
         }
         return soapJaxbDataFormatEClass;
     }
@@ -14131,7 +14386,7 @@ public class SpringPackageImpl extends EPackageImpl implements SpringPackage {
      */
 	public EClass getSortDefinition() {
         if (sortDefinitionEClass == null) {
-            sortDefinitionEClass = (EClass)EPackage.Registry.INSTANCE.getEPackage(SpringPackage.eNS_URI).getEClassifiers().get(168);
+            sortDefinitionEClass = (EClass)EPackage.Registry.INSTANCE.getEPackage(SpringPackage.eNS_URI).getEClassifiers().get(171);
         }
         return sortDefinitionEClass;
     }
@@ -14161,7 +14416,7 @@ public class SpringPackageImpl extends EPackageImpl implements SpringPackage {
      */
 	public EClass getSpELExpression() {
         if (spELExpressionEClass == null) {
-            spELExpressionEClass = (EClass)EPackage.Registry.INSTANCE.getEPackage(SpringPackage.eNS_URI).getEClassifiers().get(169);
+            spELExpressionEClass = (EClass)EPackage.Registry.INSTANCE.getEPackage(SpringPackage.eNS_URI).getEClassifiers().get(172);
         }
         return spELExpressionEClass;
     }
@@ -14173,7 +14428,7 @@ public class SpringPackageImpl extends EPackageImpl implements SpringPackage {
      */
 	public EClass getSplitDefinition() {
         if (splitDefinitionEClass == null) {
-            splitDefinitionEClass = (EClass)EPackage.Registry.INSTANCE.getEPackage(SpringPackage.eNS_URI).getEClassifiers().get(170);
+            splitDefinitionEClass = (EClass)EPackage.Registry.INSTANCE.getEPackage(SpringPackage.eNS_URI).getEClassifiers().get(173);
         }
         return splitDefinitionEClass;
     }
@@ -14266,7 +14521,7 @@ public class SpringPackageImpl extends EPackageImpl implements SpringPackage {
      */
 	public EClass getSqlExpression() {
         if (sqlExpressionEClass == null) {
-            sqlExpressionEClass = (EClass)EPackage.Registry.INSTANCE.getEPackage(SpringPackage.eNS_URI).getEClassifiers().get(171);
+            sqlExpressionEClass = (EClass)EPackage.Registry.INSTANCE.getEPackage(SpringPackage.eNS_URI).getEClassifiers().get(174);
         }
         return sqlExpressionEClass;
     }
@@ -14278,7 +14533,7 @@ public class SpringPackageImpl extends EPackageImpl implements SpringPackage {
      */
 	public EClass getSslContextClientParametersFactoryBean() {
         if (sslContextClientParametersFactoryBeanEClass == null) {
-            sslContextClientParametersFactoryBeanEClass = (EClass)EPackage.Registry.INSTANCE.getEPackage(SpringPackage.eNS_URI).getEClassifiers().get(172);
+            sslContextClientParametersFactoryBeanEClass = (EClass)EPackage.Registry.INSTANCE.getEPackage(SpringPackage.eNS_URI).getEClassifiers().get(175);
         }
         return sslContextClientParametersFactoryBeanEClass;
     }
@@ -14335,7 +14590,7 @@ public class SpringPackageImpl extends EPackageImpl implements SpringPackage {
      */
 	public EClass getSslContextParametersFactoryBean() {
         if (sslContextParametersFactoryBeanEClass == null) {
-            sslContextParametersFactoryBeanEClass = (EClass)EPackage.Registry.INSTANCE.getEPackage(SpringPackage.eNS_URI).getEClassifiers().get(173);
+            sslContextParametersFactoryBeanEClass = (EClass)EPackage.Registry.INSTANCE.getEPackage(SpringPackage.eNS_URI).getEClassifiers().get(176);
         }
         return sslContextParametersFactoryBeanEClass;
     }
@@ -14455,7 +14710,7 @@ public class SpringPackageImpl extends EPackageImpl implements SpringPackage {
      */
 	public EClass getSslContextServerParametersFactoryBean() {
         if (sslContextServerParametersFactoryBeanEClass == null) {
-            sslContextServerParametersFactoryBeanEClass = (EClass)EPackage.Registry.INSTANCE.getEPackage(SpringPackage.eNS_URI).getEClassifiers().get(174);
+            sslContextServerParametersFactoryBeanEClass = (EClass)EPackage.Registry.INSTANCE.getEPackage(SpringPackage.eNS_URI).getEClassifiers().get(177);
         }
         return sslContextServerParametersFactoryBeanEClass;
     }
@@ -14521,7 +14776,7 @@ public class SpringPackageImpl extends EPackageImpl implements SpringPackage {
      */
 	public EClass getStickyLoadBalancerDefinition() {
         if (stickyLoadBalancerDefinitionEClass == null) {
-            stickyLoadBalancerDefinitionEClass = (EClass)EPackage.Registry.INSTANCE.getEPackage(SpringPackage.eNS_URI).getEClassifiers().get(175);
+            stickyLoadBalancerDefinitionEClass = (EClass)EPackage.Registry.INSTANCE.getEPackage(SpringPackage.eNS_URI).getEClassifiers().get(178);
         }
         return stickyLoadBalancerDefinitionEClass;
     }
@@ -14542,7 +14797,7 @@ public class SpringPackageImpl extends EPackageImpl implements SpringPackage {
      */
 	public EClass getStopDefinition() {
         if (stopDefinitionEClass == null) {
-            stopDefinitionEClass = (EClass)EPackage.Registry.INSTANCE.getEPackage(SpringPackage.eNS_URI).getEClassifiers().get(176);
+            stopDefinitionEClass = (EClass)EPackage.Registry.INSTANCE.getEPackage(SpringPackage.eNS_URI).getEClassifiers().get(179);
         }
         return stopDefinitionEClass;
     }
@@ -14563,7 +14818,7 @@ public class SpringPackageImpl extends EPackageImpl implements SpringPackage {
      */
 	public EClass getStreamResequencerConfig() {
         if (streamResequencerConfigEClass == null) {
-            streamResequencerConfigEClass = (EClass)EPackage.Registry.INSTANCE.getEPackage(SpringPackage.eNS_URI).getEClassifiers().get(177);
+            streamResequencerConfigEClass = (EClass)EPackage.Registry.INSTANCE.getEPackage(SpringPackage.eNS_URI).getEClassifiers().get(180);
         }
         return streamResequencerConfigEClass;
     }
@@ -14579,11 +14834,20 @@ public class SpringPackageImpl extends EPackageImpl implements SpringPackage {
 
 	/**
      * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public EAttribute getStreamResequencerConfig_IgnoreInvalidExchanges() {
+        return (EAttribute)getStreamResequencerConfig().getEStructuralFeatures().get(1);
+    }
+
+    /**
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
      * @generated
      */
 	public EAttribute getStreamResequencerConfig_Timeout() {
-        return (EAttribute)getStreamResequencerConfig().getEStructuralFeatures().get(1);
+        return (EAttribute)getStreamResequencerConfig().getEStructuralFeatures().get(2);
     }
 
 	/**
@@ -14593,7 +14857,7 @@ public class SpringPackageImpl extends EPackageImpl implements SpringPackage {
      */
 	public EClass getStringDataFormat() {
         if (stringDataFormatEClass == null) {
-            stringDataFormatEClass = (EClass)EPackage.Registry.INSTANCE.getEPackage(SpringPackage.eNS_URI).getEClassifiers().get(178);
+            stringDataFormatEClass = (EClass)EPackage.Registry.INSTANCE.getEPackage(SpringPackage.eNS_URI).getEClassifiers().get(181);
         }
         return stringDataFormatEClass;
     }
@@ -14614,7 +14878,7 @@ public class SpringPackageImpl extends EPackageImpl implements SpringPackage {
      */
 	public EClass getSyslogDataFormat() {
         if (syslogDataFormatEClass == null) {
-            syslogDataFormatEClass = (EClass)EPackage.Registry.INSTANCE.getEPackage(SpringPackage.eNS_URI).getEClassifiers().get(179);
+            syslogDataFormatEClass = (EClass)EPackage.Registry.INSTANCE.getEPackage(SpringPackage.eNS_URI).getEClassifiers().get(182);
         }
         return syslogDataFormatEClass;
     }
@@ -14626,7 +14890,7 @@ public class SpringPackageImpl extends EPackageImpl implements SpringPackage {
      */
 	public EClass getThreadPoolProfileDefinition() {
         if (threadPoolProfileDefinitionEClass == null) {
-            threadPoolProfileDefinitionEClass = (EClass)EPackage.Registry.INSTANCE.getEPackage(SpringPackage.eNS_URI).getEClassifiers().get(180);
+            threadPoolProfileDefinitionEClass = (EClass)EPackage.Registry.INSTANCE.getEPackage(SpringPackage.eNS_URI).getEClassifiers().get(183);
         }
         return threadPoolProfileDefinitionEClass;
     }
@@ -14701,7 +14965,7 @@ public class SpringPackageImpl extends EPackageImpl implements SpringPackage {
      */
 	public EClass getThreadsDefinition() {
         if (threadsDefinitionEClass == null) {
-            threadsDefinitionEClass = (EClass)EPackage.Registry.INSTANCE.getEPackage(SpringPackage.eNS_URI).getEClassifiers().get(183);
+            threadsDefinitionEClass = (EClass)EPackage.Registry.INSTANCE.getEPackage(SpringPackage.eNS_URI).getEClassifiers().get(186);
         }
         return threadsDefinitionEClass;
     }
@@ -14803,7 +15067,7 @@ public class SpringPackageImpl extends EPackageImpl implements SpringPackage {
      */
 	public EClass getThrottleDefinition() {
         if (throttleDefinitionEClass == null) {
-            throttleDefinitionEClass = (EClass)EPackage.Registry.INSTANCE.getEPackage(SpringPackage.eNS_URI).getEClassifiers().get(184);
+            throttleDefinitionEClass = (EClass)EPackage.Registry.INSTANCE.getEPackage(SpringPackage.eNS_URI).getEClassifiers().get(187);
         }
         return throttleDefinitionEClass;
     }
@@ -14860,7 +15124,7 @@ public class SpringPackageImpl extends EPackageImpl implements SpringPackage {
      */
 	public EClass getThrowExceptionDefinition() {
         if (throwExceptionDefinitionEClass == null) {
-            throwExceptionDefinitionEClass = (EClass)EPackage.Registry.INSTANCE.getEPackage(SpringPackage.eNS_URI).getEClassifiers().get(185);
+            throwExceptionDefinitionEClass = (EClass)EPackage.Registry.INSTANCE.getEPackage(SpringPackage.eNS_URI).getEClassifiers().get(188);
         }
         return throwExceptionDefinitionEClass;
     }
@@ -14890,7 +15154,7 @@ public class SpringPackageImpl extends EPackageImpl implements SpringPackage {
      */
 	public EClass getTidyMarkupDataFormat() {
         if (tidyMarkupDataFormatEClass == null) {
-            tidyMarkupDataFormatEClass = (EClass)EPackage.Registry.INSTANCE.getEPackage(SpringPackage.eNS_URI).getEClassifiers().get(186);
+            tidyMarkupDataFormatEClass = (EClass)EPackage.Registry.INSTANCE.getEPackage(SpringPackage.eNS_URI).getEClassifiers().get(189);
         }
         return tidyMarkupDataFormatEClass;
     }
@@ -14911,7 +15175,7 @@ public class SpringPackageImpl extends EPackageImpl implements SpringPackage {
      */
 	public EClass getToDefinition() {
         if (toDefinitionEClass == null) {
-            toDefinitionEClass = (EClass)EPackage.Registry.INSTANCE.getEPackage(SpringPackage.eNS_URI).getEClassifiers().get(187);
+            toDefinitionEClass = (EClass)EPackage.Registry.INSTANCE.getEPackage(SpringPackage.eNS_URI).getEClassifiers().get(190);
         }
         return toDefinitionEClass;
     }
@@ -14941,27 +15205,54 @@ public class SpringPackageImpl extends EPackageImpl implements SpringPackage {
      */
 	public EClass getTokenizerExpression() {
         if (tokenizerExpressionEClass == null) {
-            tokenizerExpressionEClass = (EClass)EPackage.Registry.INSTANCE.getEPackage(SpringPackage.eNS_URI).getEClassifiers().get(188);
+            tokenizerExpressionEClass = (EClass)EPackage.Registry.INSTANCE.getEPackage(SpringPackage.eNS_URI).getEClassifiers().get(191);
         }
         return tokenizerExpressionEClass;
     }
 
 	/**
      * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public EAttribute getTokenizerExpression_EndToken() {
+        return (EAttribute)getTokenizerExpression().getEStructuralFeatures().get(0);
+    }
+
+    /**
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
      * @generated
      */
 	public EAttribute getTokenizerExpression_HeaderName() {
-        return (EAttribute)getTokenizerExpression().getEStructuralFeatures().get(0);
+        return (EAttribute)getTokenizerExpression().getEStructuralFeatures().get(1);
     }
 
 	/**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public EAttribute getTokenizerExpression_IncludeTokens() {
+        return (EAttribute)getTokenizerExpression().getEStructuralFeatures().get(2);
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public EAttribute getTokenizerExpression_InheritNamespaceTagName() {
+        return (EAttribute)getTokenizerExpression().getEStructuralFeatures().get(3);
+    }
+
+    /**
      * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
      * @generated
      */
 	public EAttribute getTokenizerExpression_Regex() {
-        return (EAttribute)getTokenizerExpression().getEStructuralFeatures().get(1);
+        return (EAttribute)getTokenizerExpression().getEStructuralFeatures().get(4);
     }
 
 	/**
@@ -14970,17 +15261,26 @@ public class SpringPackageImpl extends EPackageImpl implements SpringPackage {
      * @generated
      */
 	public EAttribute getTokenizerExpression_Token() {
-        return (EAttribute)getTokenizerExpression().getEStructuralFeatures().get(2);
+        return (EAttribute)getTokenizerExpression().getEStructuralFeatures().get(5);
     }
 
 	/**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public EAttribute getTokenizerExpression_Xml() {
+        return (EAttribute)getTokenizerExpression().getEStructuralFeatures().get(6);
+    }
+
+    /**
      * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
      * @generated
      */
 	public EClass getTopicLoadBalancerDefinition() {
         if (topicLoadBalancerDefinitionEClass == null) {
-            topicLoadBalancerDefinitionEClass = (EClass)EPackage.Registry.INSTANCE.getEPackage(SpringPackage.eNS_URI).getEClassifiers().get(189);
+            topicLoadBalancerDefinitionEClass = (EClass)EPackage.Registry.INSTANCE.getEPackage(SpringPackage.eNS_URI).getEClassifiers().get(192);
         }
         return topicLoadBalancerDefinitionEClass;
     }
@@ -14992,7 +15292,7 @@ public class SpringPackageImpl extends EPackageImpl implements SpringPackage {
      */
 	public EClass getTransactedDefinition() {
         if (transactedDefinitionEClass == null) {
-            transactedDefinitionEClass = (EClass)EPackage.Registry.INSTANCE.getEPackage(SpringPackage.eNS_URI).getEClassifiers().get(190);
+            transactedDefinitionEClass = (EClass)EPackage.Registry.INSTANCE.getEPackage(SpringPackage.eNS_URI).getEClassifiers().get(193);
         }
         return transactedDefinitionEClass;
     }
@@ -15022,7 +15322,7 @@ public class SpringPackageImpl extends EPackageImpl implements SpringPackage {
      */
 	public EClass getTransformDefinition() {
         if (transformDefinitionEClass == null) {
-            transformDefinitionEClass = (EClass)EPackage.Registry.INSTANCE.getEPackage(SpringPackage.eNS_URI).getEClassifiers().get(191);
+            transformDefinitionEClass = (EClass)EPackage.Registry.INSTANCE.getEPackage(SpringPackage.eNS_URI).getEClassifiers().get(194);
         }
         return transformDefinitionEClass;
     }
@@ -15043,7 +15343,7 @@ public class SpringPackageImpl extends EPackageImpl implements SpringPackage {
      */
 	public EClass getTrustManagersParametersFactoryBean() {
         if (trustManagersParametersFactoryBeanEClass == null) {
-            trustManagersParametersFactoryBeanEClass = (EClass)EPackage.Registry.INSTANCE.getEPackage(SpringPackage.eNS_URI).getEClassifiers().get(192);
+            trustManagersParametersFactoryBeanEClass = (EClass)EPackage.Registry.INSTANCE.getEPackage(SpringPackage.eNS_URI).getEClassifiers().get(195);
         }
         return trustManagersParametersFactoryBeanEClass;
     }
@@ -15064,7 +15364,7 @@ public class SpringPackageImpl extends EPackageImpl implements SpringPackage {
      */
 	public EClass getTryDefinition() {
         if (tryDefinitionEClass == null) {
-            tryDefinitionEClass = (EClass)EPackage.Registry.INSTANCE.getEPackage(SpringPackage.eNS_URI).getEClassifiers().get(193);
+            tryDefinitionEClass = (EClass)EPackage.Registry.INSTANCE.getEPackage(SpringPackage.eNS_URI).getEClassifiers().get(196);
         }
         return tryDefinitionEClass;
     }
@@ -15085,7 +15385,7 @@ public class SpringPackageImpl extends EPackageImpl implements SpringPackage {
      */
 	public EClass getUnmarshalDefinition() {
         if (unmarshalDefinitionEClass == null) {
-            unmarshalDefinitionEClass = (EClass)EPackage.Registry.INSTANCE.getEPackage(SpringPackage.eNS_URI).getEClassifiers().get(194);
+            unmarshalDefinitionEClass = (EClass)EPackage.Registry.INSTANCE.getEPackage(SpringPackage.eNS_URI).getEClassifiers().get(197);
         }
         return unmarshalDefinitionEClass;
     }
@@ -15281,11 +15581,20 @@ public class SpringPackageImpl extends EPackageImpl implements SpringPackage {
 
 	/**
      * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public EReference getUnmarshalDefinition_Pgp() {
+        return (EReference)getUnmarshalDefinition().getEStructuralFeatures().get(21);
+    }
+
+    /**
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
      * @generated
      */
 	public EReference getUnmarshalDefinition_Zip() {
-        return (EReference)getUnmarshalDefinition().getEStructuralFeatures().get(21);
+        return (EReference)getUnmarshalDefinition().getEStructuralFeatures().get(22);
     }
 
 	/**
@@ -15294,7 +15603,7 @@ public class SpringPackageImpl extends EPackageImpl implements SpringPackage {
      * @generated
      */
 	public EAttribute getUnmarshalDefinition_Ref() {
-        return (EAttribute)getUnmarshalDefinition().getEStructuralFeatures().get(22);
+        return (EAttribute)getUnmarshalDefinition().getEStructuralFeatures().get(23);
     }
 
 	/**
@@ -15303,7 +15612,7 @@ public class SpringPackageImpl extends EPackageImpl implements SpringPackage {
      * @generated
      */
 	public EAttribute getUnmarshalDefinition_AnyAttribute2() {
-        return (EAttribute)getUnmarshalDefinition().getEStructuralFeatures().get(23);
+        return (EAttribute)getUnmarshalDefinition().getEStructuralFeatures().get(24);
     }
 
 	/**
@@ -15313,7 +15622,7 @@ public class SpringPackageImpl extends EPackageImpl implements SpringPackage {
      */
 	public EClass getValidateDefinition() {
         if (validateDefinitionEClass == null) {
-            validateDefinitionEClass = (EClass)EPackage.Registry.INSTANCE.getEPackage(SpringPackage.eNS_URI).getEClassifiers().get(195);
+            validateDefinitionEClass = (EClass)EPackage.Registry.INSTANCE.getEPackage(SpringPackage.eNS_URI).getEClassifiers().get(198);
         }
         return validateDefinitionEClass;
     }
@@ -15334,7 +15643,7 @@ public class SpringPackageImpl extends EPackageImpl implements SpringPackage {
      */
 	public EClass getWeightedLoadBalancerDefinition() {
         if (weightedLoadBalancerDefinitionEClass == null) {
-            weightedLoadBalancerDefinitionEClass = (EClass)EPackage.Registry.INSTANCE.getEPackage(SpringPackage.eNS_URI).getEClassifiers().get(198);
+            weightedLoadBalancerDefinitionEClass = (EClass)EPackage.Registry.INSTANCE.getEPackage(SpringPackage.eNS_URI).getEClassifiers().get(201);
         }
         return weightedLoadBalancerDefinitionEClass;
     }
@@ -15373,7 +15682,7 @@ public class SpringPackageImpl extends EPackageImpl implements SpringPackage {
      */
 	public EClass getWhenDefinition() {
         if (whenDefinitionEClass == null) {
-            whenDefinitionEClass = (EClass)EPackage.Registry.INSTANCE.getEPackage(SpringPackage.eNS_URI).getEClassifiers().get(199);
+            whenDefinitionEClass = (EClass)EPackage.Registry.INSTANCE.getEPackage(SpringPackage.eNS_URI).getEClassifiers().get(202);
         }
         return whenDefinitionEClass;
     }
@@ -15394,7 +15703,7 @@ public class SpringPackageImpl extends EPackageImpl implements SpringPackage {
      */
 	public EClass getWireTapDefinition() {
         if (wireTapDefinitionEClass == null) {
-            wireTapDefinitionEClass = (EClass)EPackage.Registry.INSTANCE.getEPackage(SpringPackage.eNS_URI).getEClassifiers().get(200);
+            wireTapDefinitionEClass = (EClass)EPackage.Registry.INSTANCE.getEPackage(SpringPackage.eNS_URI).getEClassifiers().get(203);
         }
         return wireTapDefinitionEClass;
     }
@@ -15487,7 +15796,7 @@ public class SpringPackageImpl extends EPackageImpl implements SpringPackage {
      */
 	public EClass getXmlBeansDataFormat() {
         if (xmlBeansDataFormatEClass == null) {
-            xmlBeansDataFormatEClass = (EClass)EPackage.Registry.INSTANCE.getEPackage(SpringPackage.eNS_URI).getEClassifiers().get(201);
+            xmlBeansDataFormatEClass = (EClass)EPackage.Registry.INSTANCE.getEPackage(SpringPackage.eNS_URI).getEClassifiers().get(204);
         }
         return xmlBeansDataFormatEClass;
     }
@@ -15508,7 +15817,7 @@ public class SpringPackageImpl extends EPackageImpl implements SpringPackage {
      */
 	public EClass getXmlSecurityDataFormat() {
         if (xmlSecurityDataFormatEClass == null) {
-            xmlSecurityDataFormatEClass = (EClass)EPackage.Registry.INSTANCE.getEPackage(SpringPackage.eNS_URI).getEClassifiers().get(202);
+            xmlSecurityDataFormatEClass = (EClass)EPackage.Registry.INSTANCE.getEPackage(SpringPackage.eNS_URI).getEClassifiers().get(205);
         }
         return xmlSecurityDataFormatEClass;
     }
@@ -15524,19 +15833,19 @@ public class SpringPackageImpl extends EPackageImpl implements SpringPackage {
 
 	/**
      * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
      * @generated
      */
-	public EAttribute getXmlSecurityDataFormat_PassPhrase() {
+    public EAttribute getXmlSecurityDataFormat_KeyOrTrustStoreParametersId() {
         return (EAttribute)getXmlSecurityDataFormat().getEStructuralFeatures().get(1);
     }
 
-	/**
+    /**
      * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
      * @generated
      */
-	public EAttribute getXmlSecurityDataFormat_RecipientKeyAlias() {
+	public EAttribute getXmlSecurityDataFormat_PassPhrase() {
         return (EAttribute)getXmlSecurityDataFormat().getEStructuralFeatures().get(2);
     }
 
@@ -15545,7 +15854,7 @@ public class SpringPackageImpl extends EPackageImpl implements SpringPackage {
 	 * <!-- end-user-doc -->
      * @generated
      */
-	public EAttribute getXmlSecurityDataFormat_SecureTag() {
+	public EAttribute getXmlSecurityDataFormat_RecipientKeyAlias() {
         return (EAttribute)getXmlSecurityDataFormat().getEStructuralFeatures().get(3);
     }
 
@@ -15554,7 +15863,7 @@ public class SpringPackageImpl extends EPackageImpl implements SpringPackage {
 	 * <!-- end-user-doc -->
      * @generated
      */
-	public EAttribute getXmlSecurityDataFormat_SecureTagContents() {
+	public EAttribute getXmlSecurityDataFormat_SecureTag() {
         return (EAttribute)getXmlSecurityDataFormat().getEStructuralFeatures().get(4);
     }
 
@@ -15563,8 +15872,17 @@ public class SpringPackageImpl extends EPackageImpl implements SpringPackage {
 	 * <!-- end-user-doc -->
      * @generated
      */
-	public EAttribute getXmlSecurityDataFormat_XmlCipherAlgorithm() {
+	public EAttribute getXmlSecurityDataFormat_SecureTagContents() {
         return (EAttribute)getXmlSecurityDataFormat().getEStructuralFeatures().get(5);
+    }
+
+	/**
+     * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+     * @generated
+     */
+	public EAttribute getXmlSecurityDataFormat_XmlCipherAlgorithm() {
+        return (EAttribute)getXmlSecurityDataFormat().getEStructuralFeatures().get(6);
     }
 
 	/**
@@ -15574,28 +15892,64 @@ public class SpringPackageImpl extends EPackageImpl implements SpringPackage {
      */
 	public EClass getXPathExpression() {
         if (xPathExpressionEClass == null) {
-            xPathExpressionEClass = (EClass)EPackage.Registry.INSTANCE.getEPackage(SpringPackage.eNS_URI).getEClassifiers().get(203);
+            xPathExpressionEClass = (EClass)EPackage.Registry.INSTANCE.getEPackage(SpringPackage.eNS_URI).getEClassifiers().get(206);
         }
         return xPathExpressionEClass;
     }
 
 	/**
      * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public EAttribute getXPathExpression_FactoryRef() {
+        return (EAttribute)getXPathExpression().getEStructuralFeatures().get(0);
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public EAttribute getXPathExpression_ObjectModel() {
+        return (EAttribute)getXPathExpression().getEStructuralFeatures().get(1);
+    }
+
+    /**
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
      * @generated
      */
 	public EAttribute getXPathExpression_ResultType() {
-        return (EAttribute)getXPathExpression().getEStructuralFeatures().get(0);
+        return (EAttribute)getXPathExpression().getEStructuralFeatures().get(2);
     }
 
 	/**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public EAttribute getXPathExpression_Saxon() {
+        return (EAttribute)getXPathExpression().getEStructuralFeatures().get(3);
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public EAttribute getXPathExpression_TraceNamespaces() {
+        return (EAttribute)getXPathExpression().getEStructuralFeatures().get(4);
+    }
+
+    /**
      * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
      * @generated
      */
 	public EClass getXQueryExpression() {
         if (xQueryExpressionEClass == null) {
-            xQueryExpressionEClass = (EClass)EPackage.Registry.INSTANCE.getEPackage(SpringPackage.eNS_URI).getEClassifiers().get(204);
+            xQueryExpressionEClass = (EClass)EPackage.Registry.INSTANCE.getEPackage(SpringPackage.eNS_URI).getEClassifiers().get(207);
         }
         return xQueryExpressionEClass;
     }
@@ -15616,7 +15970,7 @@ public class SpringPackageImpl extends EPackageImpl implements SpringPackage {
      */
 	public EClass getXStreamDataFormat() {
         if (xStreamDataFormatEClass == null) {
-            xStreamDataFormatEClass = (EClass)EPackage.Registry.INSTANCE.getEPackage(SpringPackage.eNS_URI).getEClassifiers().get(205);
+            xStreamDataFormatEClass = (EClass)EPackage.Registry.INSTANCE.getEPackage(SpringPackage.eNS_URI).getEClassifiers().get(208);
         }
         return xStreamDataFormatEClass;
     }
@@ -15691,7 +16045,7 @@ public class SpringPackageImpl extends EPackageImpl implements SpringPackage {
      */
 	public EClass getZipDataFormat() {
         if (zipDataFormatEClass == null) {
-            zipDataFormatEClass = (EClass)EPackage.Registry.INSTANCE.getEPackage(SpringPackage.eNS_URI).getEClassifiers().get(206);
+            zipDataFormatEClass = (EClass)EPackage.Registry.INSTANCE.getEPackage(SpringPackage.eNS_URI).getEClassifiers().get(209);
         }
         return zipDataFormatEClass;
     }
@@ -15748,7 +16102,7 @@ public class SpringPackageImpl extends EPackageImpl implements SpringPackage {
      */
 	public EEnum getJsonLibrary() {
         if (jsonLibraryEEnum == null) {
-            jsonLibraryEEnum = (EEnum)EPackage.Registry.INSTANCE.getEPackage(SpringPackage.eNS_URI).getEClassifiers().get(87);
+            jsonLibraryEEnum = (EEnum)EPackage.Registry.INSTANCE.getEPackage(SpringPackage.eNS_URI).getEClassifiers().get(88);
         }
         return jsonLibraryEEnum;
     }
@@ -15760,7 +16114,7 @@ public class SpringPackageImpl extends EPackageImpl implements SpringPackage {
      */
 	public EEnum getLoggingLevel() {
         if (loggingLevelEEnum == null) {
-            loggingLevelEEnum = (EEnum)EPackage.Registry.INSTANCE.getEPackage(SpringPackage.eNS_URI).getEClassifiers().get(96);
+            loggingLevelEEnum = (EEnum)EPackage.Registry.INSTANCE.getEPackage(SpringPackage.eNS_URI).getEClassifiers().get(97);
         }
         return loggingLevelEEnum;
     }
@@ -15772,7 +16126,7 @@ public class SpringPackageImpl extends EPackageImpl implements SpringPackage {
      */
 	public EEnum getManagementStatisticsLevel() {
         if (managementStatisticsLevelEEnum == null) {
-            managementStatisticsLevelEEnum = (EEnum)EPackage.Registry.INSTANCE.getEPackage(SpringPackage.eNS_URI).getEClassifiers().get(99);
+            managementStatisticsLevelEEnum = (EEnum)EPackage.Registry.INSTANCE.getEPackage(SpringPackage.eNS_URI).getEClassifiers().get(100);
         }
         return managementStatisticsLevelEEnum;
     }
@@ -15784,7 +16138,7 @@ public class SpringPackageImpl extends EPackageImpl implements SpringPackage {
      */
 	public EEnum getShutdownRoute() {
         if (shutdownRouteEEnum == null) {
-            shutdownRouteEEnum = (EEnum)EPackage.Registry.INSTANCE.getEPackage(SpringPackage.eNS_URI).getEClassifiers().get(162);
+            shutdownRouteEEnum = (EEnum)EPackage.Registry.INSTANCE.getEPackage(SpringPackage.eNS_URI).getEClassifiers().get(165);
         }
         return shutdownRouteEEnum;
     }
@@ -15796,7 +16150,7 @@ public class SpringPackageImpl extends EPackageImpl implements SpringPackage {
      */
 	public EEnum getShutdownRunningTask() {
         if (shutdownRunningTaskEEnum == null) {
-            shutdownRunningTaskEEnum = (EEnum)EPackage.Registry.INSTANCE.getEPackage(SpringPackage.eNS_URI).getEClassifiers().get(164);
+            shutdownRunningTaskEEnum = (EEnum)EPackage.Registry.INSTANCE.getEPackage(SpringPackage.eNS_URI).getEClassifiers().get(167);
         }
         return shutdownRunningTaskEEnum;
     }
@@ -15808,7 +16162,7 @@ public class SpringPackageImpl extends EPackageImpl implements SpringPackage {
      */
 	public EEnum getThreadPoolRejectedPolicy() {
         if (threadPoolRejectedPolicyEEnum == null) {
-            threadPoolRejectedPolicyEEnum = (EEnum)EPackage.Registry.INSTANCE.getEPackage(SpringPackage.eNS_URI).getEClassifiers().get(181);
+            threadPoolRejectedPolicyEEnum = (EEnum)EPackage.Registry.INSTANCE.getEPackage(SpringPackage.eNS_URI).getEClassifiers().get(184);
         }
         return threadPoolRejectedPolicyEEnum;
     }
@@ -15820,7 +16174,7 @@ public class SpringPackageImpl extends EPackageImpl implements SpringPackage {
      */
 	public EEnum getWaitForTaskToComplete() {
         if (waitForTaskToCompleteEEnum == null) {
-            waitForTaskToCompleteEEnum = (EEnum)EPackage.Registry.INSTANCE.getEPackage(SpringPackage.eNS_URI).getEClassifiers().get(196);
+            waitForTaskToCompleteEEnum = (EEnum)EPackage.Registry.INSTANCE.getEPackage(SpringPackage.eNS_URI).getEClassifiers().get(199);
         }
         return waitForTaskToCompleteEEnum;
     }
@@ -15880,7 +16234,7 @@ public class SpringPackageImpl extends EPackageImpl implements SpringPackage {
      */
 	public EDataType getJsonLibraryObject() {
         if (jsonLibraryObjectEDataType == null) {
-            jsonLibraryObjectEDataType = (EDataType)EPackage.Registry.INSTANCE.getEPackage(SpringPackage.eNS_URI).getEClassifiers().get(88);
+            jsonLibraryObjectEDataType = (EDataType)EPackage.Registry.INSTANCE.getEPackage(SpringPackage.eNS_URI).getEClassifiers().get(89);
         }
         return jsonLibraryObjectEDataType;
     }
@@ -15892,7 +16246,7 @@ public class SpringPackageImpl extends EPackageImpl implements SpringPackage {
      */
 	public EDataType getLoggingLevelObject() {
         if (loggingLevelObjectEDataType == null) {
-            loggingLevelObjectEDataType = (EDataType)EPackage.Registry.INSTANCE.getEPackage(SpringPackage.eNS_URI).getEClassifiers().get(97);
+            loggingLevelObjectEDataType = (EDataType)EPackage.Registry.INSTANCE.getEPackage(SpringPackage.eNS_URI).getEClassifiers().get(98);
         }
         return loggingLevelObjectEDataType;
     }
@@ -15904,7 +16258,7 @@ public class SpringPackageImpl extends EPackageImpl implements SpringPackage {
      */
 	public EDataType getManagementStatisticsLevelObject() {
         if (managementStatisticsLevelObjectEDataType == null) {
-            managementStatisticsLevelObjectEDataType = (EDataType)EPackage.Registry.INSTANCE.getEPackage(SpringPackage.eNS_URI).getEClassifiers().get(100);
+            managementStatisticsLevelObjectEDataType = (EDataType)EPackage.Registry.INSTANCE.getEPackage(SpringPackage.eNS_URI).getEClassifiers().get(101);
         }
         return managementStatisticsLevelObjectEDataType;
     }
@@ -15916,7 +16270,7 @@ public class SpringPackageImpl extends EPackageImpl implements SpringPackage {
      */
 	public EDataType getPackagesType() {
         if (packagesTypeEDataType == null) {
-            packagesTypeEDataType = (EDataType)EPackage.Registry.INSTANCE.getEPackage(SpringPackage.eNS_URI).getEClassifiers().get(118);
+            packagesTypeEDataType = (EDataType)EPackage.Registry.INSTANCE.getEPackage(SpringPackage.eNS_URI).getEClassifiers().get(120);
         }
         return packagesTypeEDataType;
     }
@@ -15928,7 +16282,7 @@ public class SpringPackageImpl extends EPackageImpl implements SpringPackage {
      */
 	public EDataType getPackagesType1() {
         if (packagesType1EDataType == null) {
-            packagesType1EDataType = (EDataType)EPackage.Registry.INSTANCE.getEPackage(SpringPackage.eNS_URI).getEClassifiers().get(119);
+            packagesType1EDataType = (EDataType)EPackage.Registry.INSTANCE.getEPackage(SpringPackage.eNS_URI).getEClassifiers().get(121);
         }
         return packagesType1EDataType;
     }
@@ -15940,7 +16294,7 @@ public class SpringPackageImpl extends EPackageImpl implements SpringPackage {
      */
 	public EDataType getShutdownRouteObject() {
         if (shutdownRouteObjectEDataType == null) {
-            shutdownRouteObjectEDataType = (EDataType)EPackage.Registry.INSTANCE.getEPackage(SpringPackage.eNS_URI).getEClassifiers().get(163);
+            shutdownRouteObjectEDataType = (EDataType)EPackage.Registry.INSTANCE.getEPackage(SpringPackage.eNS_URI).getEClassifiers().get(166);
         }
         return shutdownRouteObjectEDataType;
     }
@@ -15952,7 +16306,7 @@ public class SpringPackageImpl extends EPackageImpl implements SpringPackage {
      */
 	public EDataType getShutdownRunningTaskObject() {
         if (shutdownRunningTaskObjectEDataType == null) {
-            shutdownRunningTaskObjectEDataType = (EDataType)EPackage.Registry.INSTANCE.getEPackage(SpringPackage.eNS_URI).getEClassifiers().get(165);
+            shutdownRunningTaskObjectEDataType = (EDataType)EPackage.Registry.INSTANCE.getEPackage(SpringPackage.eNS_URI).getEClassifiers().get(168);
         }
         return shutdownRunningTaskObjectEDataType;
     }
@@ -15964,7 +16318,7 @@ public class SpringPackageImpl extends EPackageImpl implements SpringPackage {
      */
 	public EDataType getThreadPoolRejectedPolicyObject() {
         if (threadPoolRejectedPolicyObjectEDataType == null) {
-            threadPoolRejectedPolicyObjectEDataType = (EDataType)EPackage.Registry.INSTANCE.getEPackage(SpringPackage.eNS_URI).getEClassifiers().get(182);
+            threadPoolRejectedPolicyObjectEDataType = (EDataType)EPackage.Registry.INSTANCE.getEPackage(SpringPackage.eNS_URI).getEClassifiers().get(185);
         }
         return threadPoolRejectedPolicyObjectEDataType;
     }
@@ -15976,7 +16330,7 @@ public class SpringPackageImpl extends EPackageImpl implements SpringPackage {
      */
 	public EDataType getWaitForTaskToCompleteObject() {
         if (waitForTaskToCompleteObjectEDataType == null) {
-            waitForTaskToCompleteObjectEDataType = (EDataType)EPackage.Registry.INSTANCE.getEPackage(SpringPackage.eNS_URI).getEClassifiers().get(197);
+            waitForTaskToCompleteObjectEDataType = (EDataType)EPackage.Registry.INSTANCE.getEPackage(SpringPackage.eNS_URI).getEClassifiers().get(200);
         }
         return waitForTaskToCompleteObjectEDataType;
     }

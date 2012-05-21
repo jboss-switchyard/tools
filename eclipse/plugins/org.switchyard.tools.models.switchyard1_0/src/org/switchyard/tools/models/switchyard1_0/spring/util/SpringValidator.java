@@ -216,6 +216,8 @@ public class SpringValidator extends EObjectValidator {
                 return validateExpression((Expression)value, diagnostics, context);
             case SpringPackage.EXPRESSION_NODE:
                 return validateExpressionNode((ExpressionNode)value, diagnostics, context);
+            case SpringPackage.EXPRESSION_NODE_HELPER:
+                return validateExpressionNodeHelper((ExpressionNodeHelper)value, diagnostics, context);
             case SpringPackage.EXPRESSION_SUB_ELEMENT_DEFINITION:
                 return validateExpressionSubElementDefinition((ExpressionSubElementDefinition)value, diagnostics, context);
             case SpringPackage.FAILOVER_LOAD_BALANCER_DEFINITION:
@@ -284,6 +286,8 @@ public class SpringValidator extends EObjectValidator {
                 return validateMarshalDefinition((MarshalDefinition)value, diagnostics, context);
             case SpringPackage.METHOD_CALL_EXPRESSION:
                 return validateMethodCallExpression((MethodCallExpression)value, diagnostics, context);
+            case SpringPackage.MODEL_HELPER:
+                return validateModelHelper((ModelHelper)value, diagnostics, context);
             case SpringPackage.MULTICAST_DEFINITION:
                 return validateMulticastDefinition((MulticastDefinition)value, diagnostics, context);
             case SpringPackage.MVEL_EXPRESSION:
@@ -318,6 +322,8 @@ public class SpringValidator extends EObjectValidator {
                 return validatePhpExpression((PhpExpression)value, diagnostics, context);
             case SpringPackage.PIPELINE_DEFINITION:
                 return validatePipelineDefinition((PipelineDefinition)value, diagnostics, context);
+            case SpringPackage.PGP_DATA_FORMAT:
+                return validatePgpDataFormat((PgpDataFormat)value, diagnostics, context);
             case SpringPackage.POLICY_DEFINITION:
                 return validatePolicyDefinition((PolicyDefinition)value, diagnostics, context);
             case SpringPackage.POLL_ENRICH_DEFINITION:
@@ -1029,6 +1035,15 @@ public class SpringValidator extends EObjectValidator {
 
 	/**
      * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public boolean validateExpressionNodeHelper(ExpressionNodeHelper expressionNodeHelper, DiagnosticChain diagnostics, Map<Object, Object> context) {
+        return validate_EveryDefaultConstraint(expressionNodeHelper, diagnostics, context);
+    }
+
+    /**
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
      * @generated
      */
@@ -1335,6 +1350,15 @@ public class SpringValidator extends EObjectValidator {
 
 	/**
      * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public boolean validateModelHelper(ModelHelper modelHelper, DiagnosticChain diagnostics, Map<Object, Object> context) {
+        return validate_EveryDefaultConstraint(modelHelper, diagnostics, context);
+    }
+
+    /**
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
      * @generated
      */
@@ -1487,6 +1511,15 @@ public class SpringValidator extends EObjectValidator {
     }
 
 	/**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public boolean validatePgpDataFormat(PgpDataFormat pgpDataFormat, DiagnosticChain diagnostics, Map<Object, Object> context) {
+        return validate_EveryDefaultConstraint(pgpDataFormat, diagnostics, context);
+    }
+
+    /**
      * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
      * @generated
