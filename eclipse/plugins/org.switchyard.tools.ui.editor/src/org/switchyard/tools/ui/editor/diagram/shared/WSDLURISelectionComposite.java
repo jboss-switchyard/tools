@@ -75,9 +75,9 @@ public class WSDLURISelectionComposite {
     private Interface _interface = null;
     private SOAPBindingType _binding = null;
     private String _errorMessage = null;
-    private Text _mWSDLPortText;
-    private Label _portLabel;
-    private String _bindingPort = null;
+    private Text _mWSDLSocketText;
+    private Label _socketLabel;
+    private String _bindingSocket = null;
     private GridData _rootGridData = null;
     private boolean _canEdit = true;
     private boolean _inUpdate = false;
@@ -167,22 +167,22 @@ public class WSDLURISelectionComposite {
             }
         });
 
-        _portLabel = new Label(_panel, SWT.NONE);
-        _portLabel.setText("Port:");
-        _mWSDLPortText = new Text(_panel, SWT.BORDER);
-        _mWSDLPortText.addModifyListener(new ModifyListener() {
+        _socketLabel = new Label(_panel, SWT.NONE);
+        _socketLabel.setText("Socket:");
+        _mWSDLSocketText = new Text(_panel, SWT.BORDER);
+        _mWSDLSocketText.addModifyListener(new ModifyListener() {
             public void modifyText(ModifyEvent e) {
                 if (!_inUpdate) {
-                    _bindingPort = _mWSDLPortText.getText().trim();
+                    _bindingSocket = _mWSDLSocketText.getText().trim();
                     handleModify();
-                    fireChangedEvent(_mWSDLPortText);
+                    fireChangedEvent(_mWSDLSocketText);
                 }
             }
         });
 
         GridData portGD = new GridData(GridData.FILL_HORIZONTAL);
         portGD.horizontalSpan = 2;
-        _mWSDLPortText.setLayoutData(portGD);
+        _mWSDLSocketText.setLayoutData(portGD);
 
         setVisibilityOfPortControls(this._binding != null);
 
@@ -191,8 +191,8 @@ public class WSDLURISelectionComposite {
     }
 
     private void setVisibilityOfPortControls(boolean flag) {
-        _portLabel.setVisible(flag);
-        _mWSDLPortText.setVisible(flag);
+        _socketLabel.setVisible(flag);
+        _mWSDLSocketText.setVisible(flag);
     }
 
     private void handleModify() {
@@ -221,13 +221,8 @@ public class WSDLURISelectionComposite {
                             ContextMapperType contextMapper = SOAPFactory.eINSTANCE.createContextMapperType();
                             _binding.setContextMapper(contextMapper);
                         }
-                        if (_bindingPort != null && _bindingPort.trim().length() > 0) {
-                            try {
-                                Integer.parseInt(_bindingPort);
-                                _binding.setSocketAddr(_bindingPort);
-                            } catch (NumberFormatException nfe) {
-                                _binding.setSocketAddr(null);
-                            }
+                        if (_bindingSocket != null && _bindingSocket.trim().length() > 0) {
+                            _binding.setSocketAddr(_bindingSocket);
                         }
                     }
                 });
@@ -237,13 +232,8 @@ public class WSDLURISelectionComposite {
                     ContextMapperType contextMapper = SOAPFactory.eINSTANCE.createContextMapperType();
                     _binding.setContextMapper(contextMapper);
                 }
-                if (_bindingPort != null && _bindingPort.trim().length() > 0) {
-                    try {
-                        Integer.parseInt(_bindingPort);
-                        _binding.setSocketAddr(_bindingPort);
-                    } catch (NumberFormatException nfe) {
-                        _binding.setSocketAddr(null);
-                    }
+                if (_bindingSocket != null && _bindingSocket.trim().length() > 0) {
+                    _binding.setSocketAddr(_bindingSocket);
                 }
             }
         }
@@ -266,13 +256,26 @@ public class WSDLURISelectionComposite {
             }
         }
 
-        String portString = _bindingPort;
+        String portString = _bindingSocket;
         if (portString != null && portString.trim().length() > 0) {
-            try {
-                Integer.parseInt(_bindingPort);
-            } catch (NumberFormatException nfe) {
-                _errorMessage = "Port must be a valid integer";
+            int pos = portString.indexOf(':');
+            if (pos == -1) {
+                _errorMessage = "Socket string should match one of these patterns: localhost:8080, 0.0.0.0:8080, or :8080";
+            } else {
+                String left = portString.substring(0, pos).trim();
+                if (left.length() > 0 && !left.matches("^([a-zA-Z0-9]|[a-zA-Z0-9][a-zA-Z0-9\\-]{0,61}[a-zA-Z0-9])(\\.([a-zA-Z0-9]|[a-zA-Z0-9][a-zA-Z0-9\\-]{0,61}[a-zA-Z0-9]))*$")) {
+                    _errorMessage = "Socket string should match one of these patterns: localhost:8080, 0.0.0.0:8080, or :8080";
+                    return;
+                }
+                String right = portString.substring(pos+1, portString.length()).trim();
+                try {
+                    Integer.parseInt(right);
+                } catch (NumberFormatException nfe) {
+                    _errorMessage = "The port number right of the : must be a valid integer.";
+                }
             }
+        } else {
+            _errorMessage = "No socket specified";
         }
     }
 
@@ -371,15 +374,16 @@ public class WSDLURISelectionComposite {
     public void setcBinding(SOAPBindingType switchYardBindingType) {
         this._binding = switchYardBindingType;
         _sWSDLURI = _binding.getWsdl();
-        _bindingPort = _binding.getSocketAddr();
+        _bindingSocket = _binding.getSocketAddr();
         if (_mWSDLInterfaceURIText != null && !_mWSDLInterfaceURIText.isDisposed()) {
             _inUpdate = true;
             _mWSDLInterfaceURIText.setText(_binding.getWsdl());
             _inUpdate = false;
         }
-        if (_mWSDLPortText != null && !_mWSDLPortText.isDisposed()) {
+        if (_mWSDLSocketText != null && !_mWSDLSocketText.isDisposed()) {
             _inUpdate = true;
-            _mWSDLPortText.setText(_binding.getSocketAddr());
+            _bindingSocket = _binding.getSocketAddr();
+            _mWSDLSocketText.setText(_bindingSocket);
             _inUpdate = false;
         }
         setVisibilityOfPortControls(this._binding != null);
@@ -389,7 +393,7 @@ public class WSDLURISelectionComposite {
      * @return string port
      */
     public String getsBindingPort() {
-        return _bindingPort;
+        return _bindingSocket;
     }
 
     /**

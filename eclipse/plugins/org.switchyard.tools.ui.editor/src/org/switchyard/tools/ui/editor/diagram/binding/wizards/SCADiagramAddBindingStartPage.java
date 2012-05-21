@@ -154,7 +154,7 @@ public class SCADiagramAddBindingStartPage extends WizardPage {
     private void getBindingTypes(List<SwitchYardBindingType> types) {
         SwitchYardBindingType soapBindingType = SOAPFactory.eINSTANCE.createSOAPBindingType();
         ((SOAPBindingType) soapBindingType).setWsdl("MyService.wsdl");
-        ((SOAPBindingType) soapBindingType).setSocketAddr("18001");
+        ((SOAPBindingType) soapBindingType).setSocketAddr(":18001");
         types.add(soapBindingType);
     }
 
