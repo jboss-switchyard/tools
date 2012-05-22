@@ -261,10 +261,11 @@ public class SCADiagramFeatureProvider extends DefaultFeatureProvider {
         if (pes != null && pes.length == 1) {
             Object bo = getBusinessObjectForPictogramElement(pes[0]);
             if (bo instanceof ComponentService) {
-                final List<ICustomFeature> features = new ArrayList<ICustomFeature>(2);
+                final List<ICustomFeature> features = new ArrayList<ICustomFeature>(3);
                 features.add(new SCADiagramCustomPromoteServiceFeature(this));
                 if (((ComponentService) bo).getInterface() instanceof JavaInterface) {
                     features.add(new Java2WSDLCustomFeature(this));
+                    features.add(new CreateServiceTestCustomFeature(this));
                 }
                 return features.toArray(new ICustomFeature[features.size()]);
             } else if (bo instanceof ComponentReference) {
