@@ -256,26 +256,28 @@ public class WSDLURISelectionComposite {
             }
         }
 
-        String portString = _bindingSocket;
-        if (portString != null && portString.trim().length() > 0) {
-            int pos = portString.indexOf(':');
-            if (pos == -1) {
-                _errorMessage = "Socket string should match one of these patterns: localhost:8080, 0.0.0.0:8080, or :8080";
-            } else {
-                String left = portString.substring(0, pos).trim();
-                if (left.length() > 0 && !left.matches("^([a-zA-Z0-9]|[a-zA-Z0-9][a-zA-Z0-9\\-]{0,61}[a-zA-Z0-9])(\\.([a-zA-Z0-9]|[a-zA-Z0-9][a-zA-Z0-9\\-]{0,61}[a-zA-Z0-9]))*$")) {
+        if (getBinding() != null) {
+            String portString = _bindingSocket;
+            if (portString != null && portString.trim().length() > 0) {
+                int pos = portString.indexOf(':');
+                if (pos == -1) {
                     _errorMessage = "Socket string should match one of these patterns: localhost:8080, 0.0.0.0:8080, or :8080";
-                    return;
+                } else {
+                    String left = portString.substring(0, pos).trim();
+                    if (left.length() > 0 && !left.matches("^([a-zA-Z0-9]|[a-zA-Z0-9][a-zA-Z0-9\\-]{0,61}[a-zA-Z0-9])(\\.([a-zA-Z0-9]|[a-zA-Z0-9][a-zA-Z0-9\\-]{0,61}[a-zA-Z0-9]))*$")) {
+                        _errorMessage = "Socket string should match one of these patterns: localhost:8080, 0.0.0.0:8080, or :8080";
+                        return;
+                    }
+                    String right = portString.substring(pos+1, portString.length()).trim();
+                    try {
+                        Integer.parseInt(right);
+                    } catch (NumberFormatException nfe) {
+                        _errorMessage = "The port number right of the : must be a valid integer.";
+                    }
                 }
-                String right = portString.substring(pos+1, portString.length()).trim();
-                try {
-                    Integer.parseInt(right);
-                } catch (NumberFormatException nfe) {
-                    _errorMessage = "The port number right of the : must be a valid integer.";
-                }
+            } else if (portString == null || portString.trim().isEmpty()) {
+                _errorMessage = "No socket specified";
             }
-        } else {
-            _errorMessage = "No socket specified";
         }
     }
 
