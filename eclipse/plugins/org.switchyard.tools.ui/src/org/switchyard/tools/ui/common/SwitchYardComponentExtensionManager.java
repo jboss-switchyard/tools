@@ -143,6 +143,7 @@ public final class SwitchYardComponentExtensionManager {
         for (IConfigurationElement dependencyElement : dependencyElements) {
             String artifactId = parseArtifactId(dependencyElement);
             String groupId = parseGroupId(dependencyElement);
+            String scope = parseScope(dependencyElement);
             if (artifactId == null || artifactId.length() == 0 || groupId == null || groupId.length() == 0) {
                 Activator
                         .getDefault()
@@ -152,7 +153,7 @@ public final class SwitchYardComponentExtensionManager {
                                         + element.getContributor().getName()));
                 continue;
             }
-            dependencies.add(M2EUtils.createSwitchYardDependency(groupId, artifactId));
+            dependencies.add(M2EUtils.createSwitchYardDependency(groupId, artifactId, scope));
         }
         return dependencies;
     }
@@ -183,6 +184,21 @@ public final class SwitchYardComponentExtensionManager {
             return null;
         }
         return artifactIds[0].getValue().trim();
+    }
+
+    private String parseScope(IConfigurationElement element) {
+        IConfigurationElement[] scopes = element.getChildren("scope");
+        if (scopes.length != 1) {
+            Activator
+                    .getDefault()
+                    .getLog()
+                    .log(new Status(Status.ERROR, Activator.PLUGIN_ID,
+                            "Only one \"scope\" element may be specified in a \"dependency\" for a switchYardComponent extension: plugin="
+                                    + element.getContributor().getName()));
+            return null;
+        }
+        String scope = scopes[0].getValue().trim();
+        return scope.length() == 0 ? null : scope;
     }
 
     private static final class SwitchYardComponentExtension implements ISwitchYardComponentExtension {

@@ -113,9 +113,20 @@ public final class M2EUtils {
      * @return a new Dependency
      */
     public static Dependency createSwitchYardDependency(String groupId, String artifactId) {
+        return createSwitchYardDependency(groupId, artifactId, null);
+    }
+
+    /**
+     * @param groupId the groupId
+     * @param artifactId the artifactId
+     * @param scope the scope
+     * @return a new Dependency
+     */
+    public static Dependency createSwitchYardDependency(String groupId, String artifactId, String scope) {
         Dependency dependency = new Dependency();
         dependency.setArtifactId(artifactId);
         dependency.setGroupId(groupId);
+        dependency.setScope(scope);
         return dependency;
     }
 

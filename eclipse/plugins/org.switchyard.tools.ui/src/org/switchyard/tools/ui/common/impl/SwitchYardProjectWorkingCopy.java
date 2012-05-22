@@ -253,16 +253,13 @@ public class SwitchYardProjectWorkingCopy implements ISwitchYardProjectWorkingCo
                         new ByteArrayInputStream(baos.toByteArray()), true, true, subMonitor);
                 subMonitor.done();
 
-                // make sure the project gets refreshed
-                MavenPlugin.getMavenProjectRegistry().refresh(
-                        new MavenUpdateRequest(getProject(), MavenPlugin.getMavenConfiguration().isOffline(), false));
-
                 // update ourselves
                 if (_configurationChanged) {
                     // need to update maven project configuration; refreshes the
                     // project too.
                     new UpdateConfigurationJob(new IProject[] {getProject() }).schedule();
                 } else {
+                    // make sure the project gets refreshed
                     MavenPlugin.getMavenProjectRegistry()
                             .refresh(
                                     new MavenUpdateRequest(getProject(), MavenPlugin.getMavenConfiguration()
@@ -344,7 +341,14 @@ public class SwitchYardProjectWorkingCopy implements ISwitchYardProjectWorkingCo
         if (_addedComponents.size() > 0) {
             final String versionString = getRawVersionString();
             for (ISwitchYardComponentExtension component : _addedComponents.values()) {
-                for (Dependency dependency : component.getDependencies()) {
+                COMPONENT_DEPENDENCIES : for (Dependency dependency : component.getDependencies()) {
+                    // crude, but effective
+                    for (Iterator<Dependency> it = model.getDependencies().iterator(); it.hasNext();) {
+                        if (it.next().getManagementKey().equals(dependency.getManagementKey())) {
+                            // skip this dependency as it already exists.
+                            continue COMPONENT_DEPENDENCIES;
+                        }
+                    }
                     dependency = dependency.clone();
                     dependency.setVersion(versionString);
                     model.getDependencies().add(dependency);

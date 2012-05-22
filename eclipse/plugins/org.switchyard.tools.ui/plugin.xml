@@ -492,11 +492,20 @@
         </dependency>
         <dependency>
            <groupId>org.switchyard</groupId>
+           <artifactId>switchyard-transform</artifactId>
+        </dependency>
+        <dependency>
+           <groupId>org.switchyard</groupId>
+           <artifactId>switchyard-validate</artifactId>
+        </dependency>
+        <dependency>
+           <groupId>org.switchyard</groupId>
            <artifactId>switchyard-plugin</artifactId>
         </dependency>
         <dependency>
            <groupId>org.switchyard</groupId>
            <artifactId>switchyard-test</artifactId>
+           <scope>test</scope>
         </dependency>
      </component>
      <component

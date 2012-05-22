@@ -91,10 +91,12 @@
             <sequence>
                <element ref="artifactId"/>
                <element ref="groupId"/>
+               <element ref="scope"/>
             </sequence>
             <sequence>
                <element ref="groupId"/>
                <element ref="artifactId"/>
+               <element ref="scope"/>
             </sequence>
          </choice>
       </complexType>
@@ -112,6 +114,14 @@
       <annotation>
          <documentation>
             The Maven groupId for the dependency.
+         </documentation>
+      </annotation>
+   </element>
+
+   <element name="scope" type="string">
+      <annotation>
+         <documentation>
+            The Maven scope for the dependency.
          </documentation>
       </annotation>
    </element>
