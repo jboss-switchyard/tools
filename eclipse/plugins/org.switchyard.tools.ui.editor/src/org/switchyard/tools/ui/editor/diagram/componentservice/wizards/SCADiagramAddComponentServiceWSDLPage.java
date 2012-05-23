@@ -61,7 +61,7 @@ public class SCADiagramAddComponentServiceWSDLPage extends BaseWizardPage implem
         });
         _uriComposite.createContents(parent, SWT.NONE);
 
-        setControl(_uriComposite.getcPanel());
+        setControl(_uriComposite.getPanel());
 
         setErrorMessage(null);
     }
@@ -86,7 +86,7 @@ public class SCADiagramAddComponentServiceWSDLPage extends BaseWizardPage implem
     @Override
     public void refresh() {
         if (_startPage != null && _startPage.getInterface() instanceof WSDLPortType) {
-            if (_uriComposite != null && _uriComposite.getcPanel() != null) {
+            if (_uriComposite != null && _uriComposite.getPanel() != null) {
                 _uriComposite.setInterface(_startPage.getInterface());
             }
         }

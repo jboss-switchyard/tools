@@ -12,16 +12,11 @@
  ******************************************************************************/
 package org.switchyard.tools.ui.editor.property;
 
-import java.util.HashMap;
-
 import org.eclipse.graphiti.mm.pictograms.PictogramElement;
 import org.eclipse.graphiti.services.Graphiti;
 import org.eclipse.graphiti.ui.platform.GFPropertySection;
-import org.eclipse.soa.sca.sca1_1.model.sca.ComponentReference;
-import org.eclipse.soa.sca.sca1_1.model.sca.ComponentService;
-import org.eclipse.soa.sca.sca1_1.model.sca.Interface;
-import org.eclipse.soa.sca.sca1_1.model.sca.Reference;
-import org.eclipse.soa.sca.sca1_1.model.sca.Service;
+import org.eclipse.soa.sca.sca1_1.model.sca.Component;
+import org.eclipse.soa.sca.sca1_1.model.sca.Implementation;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.ui.part.PageBook;
@@ -29,28 +24,25 @@ import org.eclipse.ui.views.properties.tabbed.ITabbedPropertyConstants;
 import org.eclipse.ui.views.properties.tabbed.TabbedPropertySheetPage;
 import org.eclipse.ui.views.properties.tabbed.TabbedPropertySheetWidgetFactory;
 import org.switchyard.tools.ui.editor.diagram.shared.AbstractSwitchyardComposite;
-import org.switchyard.tools.ui.editor.diagram.shared.IInterfaceComposite;
-import org.switchyard.tools.ui.editor.property.adapters.InterfaceCompositeAdapter;
+import org.switchyard.tools.ui.editor.diagram.shared.IImplementationComposite;
+import org.switchyard.tools.ui.editor.property.adapters.ImplementationCompositeAdapter;
 
 /**
  * @author bfitzpat
  * 
  */
-public class SwitchyardSCAPropertiesInterfacesSection extends GFPropertySection implements ITabbedPropertyConstants {
+public class SwitchyardSCAPropertiesImplementationSection extends GFPropertySection implements ITabbedPropertyConstants {
 
-    private Interface _interface;
+    private Implementation _implementation;
 
-    private HashMap<Interface, IInterfaceComposite> _modelComposites = null;
-    
     private PageBook _composite;
     private Composite _blank = null;
     
     /**
      * Constructor.
      */
-    public SwitchyardSCAPropertiesInterfacesSection() {
+    public SwitchyardSCAPropertiesImplementationSection() {
         super();
-        _modelComposites = new HashMap<Interface, IInterfaceComposite>();
     }
 
     /*
@@ -78,40 +70,27 @@ public class SwitchyardSCAPropertiesInterfacesSection extends GFPropertySection 
         PictogramElement pe = getSelectedPictogramElement();
         if (pe != null) {
             Object bo = Graphiti.getLinkService().getBusinessObjectForLinkedPictogramElement(pe);
-            _interface = null;
+            _implementation = null;
 
             // the filter assured, that it is a Service or Reference
             if (bo == null) {
                 return;
             }
-            if (bo instanceof Service) {
-                Service service = (Service) bo;
-                _interface = service.getInterface();
-            } else if (bo instanceof Reference) {
-                Reference reference = (Reference) bo;
-                _interface = reference.getInterface();
-            } else if (bo instanceof ComponentService) {
-                ComponentService service = (ComponentService) bo;
-                _interface = service.getInterface();
-            } else if (bo instanceof ComponentReference) {
-                ComponentReference ref = (ComponentReference) bo;
-                _interface = ref.getInterface();
+            if (bo instanceof Component) {
+                Component component = (Component) bo;
+                _implementation = component.getImplementation();
             }
             
-            if (_interface != null) {
-                if (_modelComposites.get(_interface) == null) {
-                    TabbedPropertySheetWidgetFactory factory = getWidgetFactory();
-                    IInterfaceComposite composite = 
-                            (IInterfaceComposite) InterfaceCompositeAdapter.adaptModelToComposite(_interface);
-                    if (composite != null) {
-                        ((AbstractSwitchyardComposite) composite).createContents(_composite, SWT.NONE);
-                        factory.adapt(((AbstractSwitchyardComposite) composite).getPanel());
-                        _modelComposites.put(_interface, composite);
-                    }
-                }
-                IInterfaceComposite composite = (IInterfaceComposite) _modelComposites.get(_interface);
+            if (_implementation != null) {
+                TabbedPropertySheetWidgetFactory factory = getWidgetFactory();
+                IImplementationComposite composite = 
+                        (IImplementationComposite) ImplementationCompositeAdapter.adaptModelToComposite(_implementation);
                 if (composite != null) {
-                    composite.setInterface(_interface);
+                    ((AbstractSwitchyardComposite) composite).createContents(_composite, SWT.NONE);
+                    factory.adapt(((AbstractSwitchyardComposite) composite).getPanel());
+                }
+                if (composite != null) {
+                    composite.setImplementation(_implementation);
                     _composite.showPage(((AbstractSwitchyardComposite)composite).getPanel());
                     _composite.redraw();
                 } else {

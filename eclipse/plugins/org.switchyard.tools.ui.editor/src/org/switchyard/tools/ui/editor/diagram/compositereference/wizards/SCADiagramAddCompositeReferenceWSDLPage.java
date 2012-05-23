@@ -63,7 +63,7 @@ public class SCADiagramAddCompositeReferenceWSDLPage extends BaseWizardPage impl
         });
         _uriComposite.createContents(parent, SWT.NONE);
 
-        setControl(_uriComposite.getcPanel());
+        setControl(_uriComposite.getPanel());
 
         setErrorMessage(null);
     }
@@ -88,7 +88,7 @@ public class SCADiagramAddCompositeReferenceWSDLPage extends BaseWizardPage impl
     @Override
     public void refresh() {
         if (_startPage != null && getInterfaceFromStartPage() instanceof WSDLPortType) {
-            if (_uriComposite != null && _uriComposite.getcPanel() != null) {
+            if (_uriComposite != null && _uriComposite.getPanel() != null) {
                 _uriComposite.setInterface(getInterfaceFromStartPage());
             }
         }

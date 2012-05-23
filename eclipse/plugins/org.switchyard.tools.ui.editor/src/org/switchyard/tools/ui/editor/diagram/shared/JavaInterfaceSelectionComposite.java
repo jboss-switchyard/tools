@@ -12,12 +12,8 @@
  ******************************************************************************/
 package org.switchyard.tools.ui.editor.diagram.shared;
 
-import javax.swing.event.ChangeEvent;
-import javax.swing.event.ChangeListener;
-
 import org.eclipse.core.resources.IFile;
 import org.eclipse.core.resources.IProject;
-import org.eclipse.core.runtime.ListenerList;
 import org.eclipse.emf.transaction.RecordingCommand;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.eclipse.jdt.core.IJavaElement;
@@ -63,20 +59,13 @@ import org.switchyard.tools.ui.editor.impl.SwitchyardSCAEditor;
  * 
  */
 @SuppressWarnings("restriction")
-public class JavaInterfaceSelectionComposite {
-
-    // change listeners
-    private ListenerList _changeListeners;
+public class JavaInterfaceSelectionComposite extends AbstractSwitchyardComposite implements IInterfaceComposite {
 
     private Composite _panel;
     private Interface _interface = null;
-    private String _errorMessage = null;
-    private String _interfaceClassName = null;
-    private GridData _rootGridData = null;
     private Link _newClassLink;
     private Text _mClassText;
     private Button _browseClassBtn;
-    private boolean _canEdit = true;
     private boolean _inUpdate = false;
 
     /**
@@ -96,8 +85,8 @@ public class JavaInterfaceSelectionComposite {
         GridLayout gl = new GridLayout();
         gl.numColumns = 3;
         _panel.setLayout(gl);
-        if (_rootGridData != null) {
-            _panel.setLayoutData(_rootGridData);
+        if (getRootGridData() != null) {
+            _panel.setLayoutData(getRootGridData());
         }
 
         _newClassLink = new Link(_panel, SWT.NONE);
@@ -302,7 +291,7 @@ public class JavaInterfaceSelectionComposite {
     }
 
     private void handleModify() {
-        _interfaceClassName = _mClassText.getText().trim();
+        final String interfaceClassName = _mClassText.getText().trim();
         validate();
         if (_interface instanceof JavaInterface) {
             if (_mClassText != null && !_mClassText.isDisposed() && _mClassText.isEnabled()) {
@@ -311,25 +300,25 @@ public class JavaInterfaceSelectionComposite {
                     domain.getCommandStack().execute(new RecordingCommand(domain) {
                         @Override
                         protected void doExecute() {
-                            ((JavaInterface) _interface).setInterface(_interfaceClassName);
+                            ((JavaInterface) _interface).setInterface(interfaceClassName);
                         }
                     });
                 } else {
-                    ((JavaInterface) _interface).setInterface(_interfaceClassName);
+                    ((JavaInterface) _interface).setInterface(interfaceClassName);
                 }
             }
         }
     }
 
-    private void validate() {
-        _errorMessage = null;
+    protected void validate() {
+        setErrorMessage(null);
         // test to make sure class is valid
         String className = _mClassText.getText();
 
         if (className == null || className.trim().length() == 0) {
-            _errorMessage = "No Class specified";
+            setErrorMessage("No Class specified");
         } else if (className.trim().length() < className.length()) {
-            _errorMessage = "No spaces allowed in class name";
+            setErrorMessage("No spaces allowed in class name");
         }
     }
 
@@ -358,90 +347,25 @@ public class JavaInterfaceSelectionComposite {
     }
 
     /**
-     * @return string error message
-     */
-    public String getErrorMessage() {
-        return _errorMessage;
-    }
-
-    /**
-     * If we changed, fire a changed event.
-     * 
-     * @param source
-     */
-    private void fireChangedEvent(Object source) {
-        ChangeEvent e = new ChangeEvent(source);
-        // inform any listeners of the resize event
-        if (this._changeListeners != null && !this._changeListeners.isEmpty()) {
-            Object[] listeners = this._changeListeners.getListeners();
-            for (int i = 0; i < listeners.length; ++i) {
-                ((ChangeListener) listeners[i]).stateChanged(e);
-            }
-        }
-    }
-
-    /**
-     * Add a change listener.
-     * 
-     * @param listener new listener
-     */
-    public void addChangeListener(ChangeListener listener) {
-        if (this._changeListeners == null) {
-            this._changeListeners = new ListenerList();
-        }
-        this._changeListeners.add(listener);
-    }
-
-    /**
-     * Remove a change listener.
-     * 
-     * @param listener to remove
-     */
-    public void removeChangeListener(ChangeListener listener) {
-        this._changeListeners.remove(listener);
-    }
-
-    /**
      * @return panel
      */
-    public Composite getcPanel() {
+    public Composite getPanel() {
         return _panel;
-    }
-
-    /**
-     * @return String for camel class
-     */
-    public String getInterfaceClassName() {
-        return this._interfaceClassName;
-    }
-
-    /**
-     * @param rootGridData the _rootGridData to set
-     */
-    public void setRootGridData(GridData rootGridData) {
-        this._rootGridData = rootGridData;
-    }
-
-    /**
-     * @return flag
-     */
-    public boolean canEdit() {
-        return _canEdit;
     }
 
     /**
      * @param canEdit flag
      */
     public void setCanEdit(boolean canEdit) {
-        this._canEdit = canEdit;
+        super.setCanEdit(canEdit);
         if (this._mClassText != null && !this._mClassText.isDisposed()) {
-            this._mClassText.setEnabled(_canEdit);
+            this._mClassText.setEnabled(canEdit());
         }
         if (this._newClassLink != null && !this._newClassLink.isDisposed()) {
-            this._newClassLink.setEnabled(_canEdit);
+            this._newClassLink.setEnabled(canEdit());
         }
         if (this._browseClassBtn != null && !this._browseClassBtn.isDisposed()) {
-            this._browseClassBtn.setEnabled(_canEdit);
+            this._browseClassBtn.setEnabled(canEdit());
         }
     }
 }

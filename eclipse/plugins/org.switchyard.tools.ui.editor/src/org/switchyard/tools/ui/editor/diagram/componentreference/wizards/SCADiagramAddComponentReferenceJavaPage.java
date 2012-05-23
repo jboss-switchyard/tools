@@ -54,14 +54,7 @@ public class SCADiagramAddComponentReferenceJavaPage extends BaseWizardPage impl
         }
         _javaInterfaceComposite.createContents(parent, SWT.NONE);
 
-        setControl(_javaInterfaceComposite.getcPanel());
-    }
-
-    /**
-     * @return java interface string
-     */
-    public String getJavaInterfaceString() {
-        return _javaInterfaceComposite.getInterfaceClassName();
+        setControl(_javaInterfaceComposite.getPanel());
     }
 
     @Override

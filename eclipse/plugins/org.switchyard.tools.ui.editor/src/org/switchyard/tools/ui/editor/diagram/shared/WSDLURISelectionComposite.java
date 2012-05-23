@@ -14,16 +14,12 @@ package org.switchyard.tools.ui.editor.diagram.shared;
 
 import java.net.URI;
 
-import javax.swing.event.ChangeEvent;
-import javax.swing.event.ChangeListener;
-
 import org.eclipse.core.resources.IFile;
 import org.eclipse.core.resources.IFolder;
 import org.eclipse.core.resources.IProject;
 import org.eclipse.core.resources.IResource;
 import org.eclipse.core.resources.ResourcesPlugin;
 import org.eclipse.core.runtime.IPath;
-import org.eclipse.core.runtime.ListenerList;
 import org.eclipse.emf.transaction.RecordingCommand;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.eclipse.jdt.core.IJavaElement;
@@ -35,6 +31,7 @@ import org.eclipse.jface.viewers.IStructuredSelection;
 import org.eclipse.jface.viewers.StructuredSelection;
 import org.eclipse.jface.window.Window;
 import org.eclipse.jface.wizard.WizardDialog;
+import org.eclipse.soa.sca.sca1_1.model.sca.Binding;
 import org.eclipse.soa.sca.sca1_1.model.sca.Interface;
 import org.eclipse.soa.sca.sca1_1.model.sca.WSDLPortType;
 import org.eclipse.swt.SWT;
@@ -62,26 +59,19 @@ import org.switchyard.tools.ui.editor.util.OpenFileUtil;
  * 
  */
 @SuppressWarnings("restriction")
-public class WSDLURISelectionComposite {
+public class WSDLURISelectionComposite extends AbstractSwitchyardComposite implements IBindingComposite, IInterfaceComposite {
 
     private static final String WSDL = "wsdl";
-
-    // change listeners
-    private ListenerList _changeListeners;
 
     private Composite _panel;
     private Text _mWSDLInterfaceURIText;
     private String _sWSDLURI = null;
     private Interface _interface = null;
     private SOAPBindingType _binding = null;
-    private String _errorMessage = null;
     private Text _mWSDLSocketText;
     private Label _socketLabel;
     private String _bindingSocket = null;
-    private GridData _rootGridData = null;
-    private boolean _canEdit = true;
     private boolean _inUpdate = false;
-    private boolean _openOnCreate = false;
 
     private Button _browseBtnWorkspace;
     private Button _browseBtnFile;
@@ -104,14 +94,14 @@ public class WSDLURISelectionComposite {
         GridLayout gl = new GridLayout();
         gl.numColumns = 3;
         _panel.setLayout(gl);
-        if (_rootGridData != null) {
-            _panel.setLayoutData(_rootGridData);
+        if (getRootGridData() != null) {
+            _panel.setLayoutData(getRootGridData());
         }
 
         _newWSDLLink = new Link(_panel, SWT.NONE);
         String message = "<a>WSDL URI:</a>";
         _newWSDLLink.setText(message);
-        _newWSDLLink.setEnabled(_canEdit);
+        _newWSDLLink.setEnabled(canEdit());
         // link.setSize(400, 100);
         _newWSDLLink.addSelectionListener(new SelectionAdapter() {
             @Override
@@ -125,7 +115,7 @@ public class WSDLURISelectionComposite {
                     IResource wsdlFile = project.findMember(wsdlPath);
                     OpenFileUtil.openFile(wsdlFile);
                 } else {
-                    String result = getPathToNewWSDL(_panel.getShell(), wsdlPath, _openOnCreate);
+                    String result = getPathToNewWSDL(_panel.getShell(), wsdlPath, openOnCreate());
                     if (result != null) {
                         _mWSDLInterfaceURIText.setText(result);
                         handleModify();
@@ -138,7 +128,7 @@ public class WSDLURISelectionComposite {
         if (_interface != null && _interface instanceof WSDLPortType) {
             _mWSDLInterfaceURIText.setText(((WSDLPortType) _interface).getInterface());
         }
-        _mWSDLInterfaceURIText.setEnabled(_canEdit);
+        _mWSDLInterfaceURIText.setEnabled(canEdit());
         _mWSDLInterfaceURIText.addModifyListener(new ModifyListener() {
             public void modifyText(ModifyEvent e) {
                 if (!_inUpdate) {
@@ -153,7 +143,7 @@ public class WSDLURISelectionComposite {
 
         _browseBtnWorkspace = new Button(_panel, SWT.PUSH);
         _browseBtnWorkspace.setText("Workspace...");
-        _browseBtnWorkspace.setEnabled(_canEdit);
+        _browseBtnWorkspace.setEnabled(canEdit());
         GridData btnGD = new GridData();
         _browseBtnWorkspace.setLayoutData(btnGD);
         _browseBtnWorkspace.addSelectionListener(new SelectionAdapter() {
@@ -240,19 +230,19 @@ public class WSDLURISelectionComposite {
         validate();
     }
 
-    private void validate() {
-        this._errorMessage = null;
+    protected void validate() {
+        setErrorMessage(null);
         String uriString = _mWSDLInterfaceURIText.getText();
 
         if (uriString == null || uriString.trim().length() == 0) {
-            _errorMessage = "No uri specified";
+            setErrorMessage("No uri specified");
         } else if (uriString.trim().length() < uriString.length()) {
-            _errorMessage = "No spaces allowed in uri";
+            setErrorMessage("No spaces allowed in uri");
         } else {
             try {
                 URI.create(uriString);
             } catch (IllegalArgumentException e) {
-                _errorMessage = "Invalid URI";
+                setErrorMessage("Invalid URI");
             }
         }
 
@@ -261,22 +251,22 @@ public class WSDLURISelectionComposite {
             if (portString != null && portString.trim().length() > 0) {
                 int pos = portString.indexOf(':');
                 if (pos == -1) {
-                    _errorMessage = "Socket string should match one of these patterns: localhost:8080, 0.0.0.0:8080, or :8080";
+                    setErrorMessage("Socket string should match one of these patterns: localhost:8080, 0.0.0.0:8080, or :8080");
                 } else {
                     String left = portString.substring(0, pos).trim();
                     if (left.length() > 0 && !left.matches("^([a-zA-Z0-9]|[a-zA-Z0-9][a-zA-Z0-9\\-]{0,61}[a-zA-Z0-9])(\\.([a-zA-Z0-9]|[a-zA-Z0-9][a-zA-Z0-9\\-]{0,61}[a-zA-Z0-9]))*$")) {
-                        _errorMessage = "Socket string should match one of these patterns: localhost:8080, 0.0.0.0:8080, or :8080";
+                        setErrorMessage("Socket string should match one of these patterns: localhost:8080, 0.0.0.0:8080, or :8080");
                         return;
                     }
                     String right = portString.substring(pos+1, portString.length()).trim();
                     try {
                         Integer.parseInt(right);
                     } catch (NumberFormatException nfe) {
-                        _errorMessage = "The port number right of the : must be a valid integer.";
+                        setErrorMessage("The port number right of the : must be a valid integer.");
                     }
                 }
-            } else if (portString == null || portString.trim().isEmpty()) {
-                _errorMessage = "No socket specified";
+            } else {
+                setErrorMessage("No socket specified");
             }
         }
     }
@@ -298,7 +288,7 @@ public class WSDLURISelectionComposite {
     /**
      * @return SOAP Binding
      */
-    public SOAPBindingType getBinding() {
+    public Binding getBinding() {
         return _binding;
     }
 
@@ -307,7 +297,7 @@ public class WSDLURISelectionComposite {
      */
     public void setInterface(Interface cInterface) {
         this._interface = cInterface;
-        if (_mWSDLInterfaceURIText != null && !_mWSDLInterfaceURIText.isDisposed()) {
+        if (cInterface instanceof WSDLPortType && _mWSDLInterfaceURIText != null && !_mWSDLInterfaceURIText.isDisposed()) {
             WSDLPortType wPortType = (WSDLPortType) this._interface;
             _inUpdate = true;
             if (wPortType.getInterface() != null) {
@@ -320,75 +310,35 @@ public class WSDLURISelectionComposite {
     }
 
     /**
-     * @return string error message
-     */
-    public String getErrorMessage() {
-        return _errorMessage;
-    }
-
-    /**
-     * If we changed, fire a changed event.
-     * 
-     * @param source
-     */
-    private void fireChangedEvent(Object source) {
-        ChangeEvent e = new ChangeEvent(source);
-        // inform any listeners of the resize event
-        if (this._changeListeners != null) {
-            Object[] listeners = this._changeListeners.getListeners();
-            for (int i = 0; i < listeners.length; ++i) {
-                ((ChangeListener) listeners[i]).stateChanged(e);
-            }
-        }
-    }
-
-    /**
-     * Add a change listener.
-     * 
-     * @param listener new listener
-     */
-    public void addChangeListener(ChangeListener listener) {
-        if (this._changeListeners == null) {
-            this._changeListeners = new ListenerList();
-        }
-        this._changeListeners.add(listener);
-    }
-
-    /**
-     * Remove a change listener.
-     * 
-     * @param listener to remove
-     */
-    public void removeChangeListener(ChangeListener listener) {
-        this._changeListeners.remove(listener);
-    }
-
-    /**
      * @return panel
      */
-    public Composite getcPanel() {
+    public Composite getPanel() {
         return _panel;
     }
 
     /**
      * @param switchYardBindingType binding
      */
-    public void setcBinding(SOAPBindingType switchYardBindingType) {
-        this._binding = switchYardBindingType;
-        _sWSDLURI = _binding.getWsdl();
-        _bindingSocket = _binding.getSocketAddr();
-        if (_mWSDLInterfaceURIText != null && !_mWSDLInterfaceURIText.isDisposed()) {
-            _inUpdate = true;
-            _mWSDLInterfaceURIText.setText(_binding.getWsdl());
-            _inUpdate = false;
-        }
-        if (_mWSDLSocketText != null && !_mWSDLSocketText.isDisposed()) {
-            _inUpdate = true;
+    public void setBinding(Binding switchYardBindingType) {
+        if (switchYardBindingType instanceof SOAPBindingType) {
+            this._binding = (SOAPBindingType) switchYardBindingType;
+            _sWSDLURI = _binding.getWsdl();
             _bindingSocket = _binding.getSocketAddr();
-            _mWSDLSocketText.setText(_bindingSocket);
-            _inUpdate = false;
+            if (_mWSDLInterfaceURIText != null && !_mWSDLInterfaceURIText.isDisposed()) {
+                _inUpdate = true;
+                _mWSDLInterfaceURIText.setText(_binding.getWsdl());
+                _inUpdate = false;
+            }
+            if (_mWSDLSocketText != null && !_mWSDLSocketText.isDisposed()) {
+                _inUpdate = true;
+                _bindingSocket = _binding.getSocketAddr();
+                if (_bindingSocket != null) {
+                    _mWSDLSocketText.setText(_bindingSocket);
+                }
+                _inUpdate = false;
+            }
+            setVisibilityOfPortControls(this._binding != null);
         }
-        setVisibilityOfPortControls(this._binding != null);
     }
 
     /**
@@ -396,20 +346,6 @@ public class WSDLURISelectionComposite {
      */
     public String getsBindingPort() {
         return _bindingSocket;
-    }
-
-    /**
-     * @param flag open on create? true/false
-     */
-    public void setOpenOnCreate(boolean flag) {
-        this._openOnCreate = flag;
-    }
-
-    /**
-     * @param rootGridData the _rootGridData to set
-     */
-    public void setRootGridData(GridData rootGridData) {
-        this._rootGridData = rootGridData;
     }
 
     private static String selectResourceFromWorkspace(Shell shell, final String extension) {
@@ -489,28 +425,21 @@ public class WSDLURISelectionComposite {
     }
 
     /**
-     * @return flag
-     */
-    public boolean canEdit() {
-        return _canEdit;
-    }
-
-    /**
      * @param canEdit flag
      */
     public void setCanEdit(boolean canEdit) {
-        this._canEdit = canEdit;
+        super.setCanEdit(canEdit);
         if (this._mWSDLInterfaceURIText != null && !this._mWSDLInterfaceURIText.isDisposed()) {
-            this._mWSDLInterfaceURIText.setEnabled(_canEdit);
+            this._mWSDLInterfaceURIText.setEnabled(canEdit());
         }
         if (this._newWSDLLink != null && !this._newWSDLLink.isDisposed()) {
-            this._newWSDLLink.setEnabled(_canEdit);
+            this._newWSDLLink.setEnabled(canEdit());
         }
         if (this._browseBtnFile != null && !this._browseBtnFile.isDisposed()) {
-            this._browseBtnFile.setEnabled(_canEdit);
+            this._browseBtnFile.setEnabled(canEdit());
         }
         if (this._browseBtnWorkspace != null && !this._browseBtnWorkspace.isDisposed()) {
-            this._browseBtnWorkspace.setEnabled(_canEdit);
+            this._browseBtnWorkspace.setEnabled(canEdit());
         }
     }
 

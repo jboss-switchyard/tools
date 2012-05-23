@@ -60,7 +60,7 @@ import org.eclipse.wst.xml.core.internal.contentmodel.util.NamespaceInfo;
  * @author bfitzpat
  * 
  */
-@SuppressWarnings("restriction")
+@SuppressWarnings({"restriction", "deprecation" })
 public class NewWSDLFileWizard extends NewWSDLWizard {
 
     private static final String DOT_WSDL = ".wsdl"; //$NON-NLS-1$
@@ -88,7 +88,6 @@ public class NewWSDLFileWizard extends NewWSDLWizard {
      * org.eclipse.ui.wizards.newresource.BasicNewFileResourceWizard#performFinish
      * ()
      */
-    @SuppressWarnings("deprecation")
     @Override
     public boolean performFinish() {
         if (_filePage != null) {

@@ -50,7 +50,7 @@ public class SCADiagramAddBindingSOAPPage extends BaseWizardPage implements IRef
     public void createControl(Composite parent) {
         _uriComposite = new WSDLURISelectionComposite();
         if (_startPage != null && _startPage.getBinding() != null && _startPage.getBinding() instanceof SOAPBindingType) {
-            _uriComposite.setcBinding((SOAPBindingType) _startPage.getBinding());
+            _uriComposite.setBinding((SOAPBindingType) _startPage.getBinding());
         }
         _uriComposite.addChangeListener(new ChangeListener() {
             @Override
@@ -61,7 +61,7 @@ public class SCADiagramAddBindingSOAPPage extends BaseWizardPage implements IRef
         });
         _uriComposite.createContents(parent, SWT.NONE);
 
-        setControl(_uriComposite.getcPanel());
+        setControl(_uriComposite.getPanel());
 
         setErrorMessage(null);
     }
@@ -91,8 +91,8 @@ public class SCADiagramAddBindingSOAPPage extends BaseWizardPage implements IRef
     @Override
     public void refresh() {
         if (_startPage != null && _startPage.getBinding() instanceof SOAPBindingType) {
-            if (_uriComposite != null && _uriComposite.getcPanel() != null) {
-                _uriComposite.setcBinding((SOAPBindingType) _startPage.getBinding());
+            if (_uriComposite != null && _uriComposite.getPanel() != null) {
+                _uriComposite.setBinding((SOAPBindingType) _startPage.getBinding());
             }
         }
     }

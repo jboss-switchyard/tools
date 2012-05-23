@@ -12,9 +12,6 @@
  ******************************************************************************/
 package org.switchyard.tools.ui.editor.diagram.shared;
 
-import javax.swing.event.ChangeEvent;
-import javax.swing.event.ChangeListener;
-
 import org.eclipse.core.resources.IFile;
 import org.eclipse.core.resources.IFolder;
 import org.eclipse.core.resources.IProject;
@@ -23,7 +20,6 @@ import org.eclipse.core.resources.ResourcesPlugin;
 import org.eclipse.core.runtime.CoreException;
 import org.eclipse.core.runtime.IPath;
 import org.eclipse.core.runtime.IProgressMonitor;
-import org.eclipse.core.runtime.ListenerList;
 import org.eclipse.jdt.core.IJavaElement;
 import org.eclipse.jdt.core.IJavaProject;
 import org.eclipse.jdt.core.IPackageFragment;
@@ -45,6 +41,7 @@ import org.eclipse.jface.viewers.IStructuredSelection;
 import org.eclipse.jface.viewers.StructuredSelection;
 import org.eclipse.jface.window.Window;
 import org.eclipse.jface.wizard.WizardDialog;
+import org.eclipse.soa.sca.sca1_1.model.sca.Implementation;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.events.ModifyEvent;
 import org.eclipse.swt.events.ModifyListener;
@@ -72,17 +69,12 @@ import org.switchyard.tools.ui.editor.impl.SwitchyardSCAEditor;
  * 
  */
 @SuppressWarnings("restriction")
-public class CamelRouteSelectionComposite {
-
-    // change listeners
-    private ListenerList _changeListeners;
+public class CamelRouteSelectionComposite extends AbstractSwitchyardComposite implements IImplementationComposite {
 
     private Composite _panel;
     private CamelImplementationType _implementation = null;
-    private String _errorMessage = null;
     private String _camelRouteFilePath = null;
     private String _routeClassName = null;
-    private GridData _rootGridData = null;
     private Button _optBtnXML;
     private Button _optBtnClass;
     private Link _newClassLink;
@@ -91,6 +83,7 @@ public class CamelRouteSelectionComposite {
     private Link _newXMLLink;
     private Button _browseXMLBtn;
     private Text _mXMLText;
+    private boolean _inUpdate = false;
 
     /**
      * Constructor.
@@ -106,12 +99,10 @@ public class CamelRouteSelectionComposite {
     public void createContents(Composite parent, int style) {
 
         _panel = new Composite(parent, SWT.NONE);
-        GridLayout gl = new GridLayout();
-        gl.numColumns = 3;
-        _panel.setLayout(gl);
-        if (_rootGridData != null) {
-            _panel.setLayoutData(_rootGridData);
-        }
+        _panel.setLayout(new GridLayout(3, false));
+//        if (getRootGridData() != null) {
+//            _panel.setLayoutData(getRootGridData());
+//        }
 
         _optBtnXML = new Button(_panel, SWT.RADIO);
         GridData optBtnXMLGD = new GridData(GridData.FILL_HORIZONTAL);
@@ -148,8 +139,10 @@ public class CamelRouteSelectionComposite {
         _mXMLText = new Text(_panel, SWT.BORDER);
         _mXMLText.addModifyListener(new ModifyListener() {
             public void modifyText(ModifyEvent e) {
-                handleModify();
-                fireChangedEvent(_mXMLText);
+                if (!_inUpdate) {
+                    handleModify();
+                    fireChangedEvent(_mXMLText);
+                }
             }
         });
         GridData uriGDXML = new GridData(GridData.FILL_HORIZONTAL);
@@ -402,31 +395,33 @@ public class CamelRouteSelectionComposite {
         if (_implementation == null) {
             return;
         }
-        if (_mXMLText != null && !_mXMLText.isDisposed() && _mXMLText.isEnabled()) {
-            // handle xml file path
-            XMLDSLType xmltype = _implementation.getXml();
-            if (xmltype == null) {
-                xmltype = CamelFactory.eINSTANCE.createXMLDSLType();
-                _implementation.setXml(xmltype);
+        if (!_inUpdate) {
+            if (_mXMLText != null && !_mXMLText.isDisposed() && _mXMLText.isEnabled()) {
+                // handle xml file path
+                XMLDSLType xmltype = _implementation.getXml();
+                if (xmltype == null) {
+                    xmltype = CamelFactory.eINSTANCE.createXMLDSLType();
+                    _implementation.setXml(xmltype);
+                }
+                // camelImpl.getXml().eSet(CamelPackage.eINSTANCE.getXMLDSLType().getEStructuralFeature(CamelPackage.XMLDSL_TYPE__PATH),
+                // _mXMLText.getText());
+                xmltype.setPath(_mXMLText.getText());
+                _implementation.setJava(null);
+            } else if (_mClassText != null && !_mClassText.isDisposed() && _mClassText.isEnabled()) {
+                // handle java class name
+                JavaDSLType javatype = _implementation.getJava();
+                if (javatype == null) {
+                    javatype = CamelFactory.eINSTANCE.createJavaDSLType();
+                    _implementation.setJava(javatype);
+                }
+                javatype.setClass(_mClassText.getText());
+                _implementation.setXml(null);
             }
-            // camelImpl.getXml().eSet(CamelPackage.eINSTANCE.getXMLDSLType().getEStructuralFeature(CamelPackage.XMLDSL_TYPE__PATH),
-            // _mXMLText.getText());
-            xmltype.setPath(_mXMLText.getText());
-            _implementation.setJava(null);
-        } else if (_mClassText != null && !_mClassText.isDisposed() && _mClassText.isEnabled()) {
-            // handle java class name
-            JavaDSLType javatype = _implementation.getJava();
-            if (javatype == null) {
-                javatype = CamelFactory.eINSTANCE.createJavaDSLType();
-                _implementation.setJava(javatype);
-            }
-            javatype.setClass(_mClassText.getText());
-            _implementation.setXml(null);
         }
     }
 
-    private void validate() {
-        _errorMessage = null;
+    protected void validate() {
+        setErrorMessage(null);
         boolean classControlsSelected = _optBtnClass.getSelection();
 
         if (classControlsSelected) {
@@ -434,17 +429,17 @@ public class CamelRouteSelectionComposite {
             String className = _mClassText.getText();
 
             if (className == null || className.trim().length() == 0) {
-                _errorMessage = "No Class specified";
+                setErrorMessage("No Class specified");
             } else if (className.trim().length() < className.length()) {
-                _errorMessage = "No spaces allowed in class name";
+                setErrorMessage("No spaces allowed in class name");
             }
         } else {
             String routeFileName = _mXMLText.getText();
 
             if (routeFileName == null || routeFileName.trim().length() == 0) {
-                _errorMessage = "No Route file specified";
+                setErrorMessage("No Route file specified");
             } else if (routeFileName.trim().length() < routeFileName.length()) {
-                _errorMessage = "No spaces allowed in Route file name/path";
+                setErrorMessage("No spaces allowed in Route file name/path");
             }
         }
     }
@@ -452,74 +447,34 @@ public class CamelRouteSelectionComposite {
     /**
      * @return interface
      */
-    public CamelImplementationType getImplementation() {
+    public Implementation getImplementation() {
         return _implementation;
     }
 
     /**
-     * @param cImplementation implementation coming in
+     * @param impl implementation coming in
      */
-    public void setImplementation(CamelImplementationType cImplementation) {
-        _implementation = cImplementation;
-        if (_implementation != null && _mClassText != null) {
-            if (_implementation.getJava() != null) {
-                this._mClassText.setText(_implementation.getJava().getClass_());
-            } else if (_implementation.getXml() != null) {
-                this._mXMLText.setText(_implementation.getXml().getPath());
-            } else {
-                handleModify();
+    public void setImplementation(Implementation impl) {
+        if (impl instanceof CamelImplementationType) {
+            _implementation = (CamelImplementationType) impl;
+            _inUpdate = true;
+            if (_implementation != null && _mClassText != null) {
+                if (_implementation.getJava() != null) {
+                    this._mClassText.setText(_implementation.getJava().getClass_());
+                } else if (_implementation.getXml() != null) {
+                    this._mXMLText.setText(_implementation.getXml().getPath());
+                } else {
+                    handleModify();
+                }
             }
+            _inUpdate = false;
         }
-    }
-
-    /**
-     * @return string error message
-     */
-    public String getErrorMessage() {
-        return _errorMessage;
-    }
-
-    /**
-     * If we changed, fire a changed event.
-     * 
-     * @param source
-     */
-    private void fireChangedEvent(Object source) {
-        ChangeEvent e = new ChangeEvent(source);
-        // inform any listeners of the change event
-        if (this._changeListeners != null && !this._changeListeners.isEmpty()) {
-            Object[] listeners = this._changeListeners.getListeners();
-            for (int i = 0; i < listeners.length; ++i) {
-                ((ChangeListener) listeners[i]).stateChanged(e);
-            }
-        }
-    }
-
-    /**
-     * Add a change listener.
-     * 
-     * @param listener new listener
-     */
-    public void addChangeListener(ChangeListener listener) {
-        if (this._changeListeners == null) {
-            this._changeListeners = new ListenerList();
-        }
-        this._changeListeners.add(listener);
-    }
-
-    /**
-     * Remove a change listener.
-     * 
-     * @param listener to remove
-     */
-    public void removeChangeListener(ChangeListener listener) {
-        this._changeListeners.remove(listener);
     }
 
     /**
      * @return panel
      */
-    public Composite getcPanel() {
+    public Composite getPanel() {
         return _panel;
     }
 
@@ -535,13 +490,6 @@ public class CamelRouteSelectionComposite {
      */
     public String getCamelRouteClass() {
         return this._routeClassName;
-    }
-
-    /**
-     * @param rootGridData the _rootGridData to set
-     */
-    public void setRootGridData(GridData rootGridData) {
-        this._rootGridData = rootGridData;
     }
 
     private static String selectResourceFromWorkspace(Shell shell, final String extension) {

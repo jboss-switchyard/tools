@@ -23,6 +23,8 @@ import org.eclipse.graphiti.mm.pictograms.PictogramElement;
 import org.eclipse.graphiti.services.Graphiti;
 import org.eclipse.graphiti.ui.platform.GFPropertySection;
 import org.eclipse.soa.sca.sca1_1.model.sca.Component;
+import org.eclipse.soa.sca.sca1_1.model.sca.ComponentReference;
+import org.eclipse.soa.sca.sca1_1.model.sca.ComponentService;
 import org.eclipse.soa.sca.sca1_1.model.sca.Reference;
 import org.eclipse.soa.sca.sca1_1.model.sca.ScaPackage;
 import org.eclipse.soa.sca.sca1_1.model.sca.Service;
@@ -67,8 +69,6 @@ public class SwitchyardSCAPropertiesMainSection extends GFPropertySection implem
         FormData data;
 
         _nameText = factory.createText(composite, ""); //$NON-NLS-1$
-//        _nameText.setEditable(false);
-//        _nameText.setBackground(factory.getColors().getInactiveBackground());
         data = new FormData();
         data.left = new FormAttachment(0, STANDARD_LABEL_WIDTH);
         data.right = new FormAttachment(100, 0);
@@ -128,6 +128,22 @@ public class SwitchyardSCAPropertiesMainSection extends GFPropertySection implem
                     reference.setName(value.trim());
                 }
             });
+        } else if (bo instanceof ComponentService) {
+            final ComponentService cservice = (ComponentService) bo;
+            domain.getCommandStack().execute(new RecordingCommand(domain) {
+                @Override
+                protected void doExecute() {
+                    cservice.setName(value.trim());
+                }
+            });
+        } else if (bo instanceof ComponentReference) {
+            final ComponentReference creference = (ComponentReference) bo;
+            domain.getCommandStack().execute(new RecordingCommand(domain) {
+                @Override
+                protected void doExecute() {
+                    creference.setName(value.trim());
+                }
+            });
         }
         if (_pe != null) {
             IUpdateContext updateContext = new UpdateContext(_pe);
@@ -171,6 +187,12 @@ public class SwitchyardSCAPropertiesMainSection extends GFPropertySection implem
                 _nameText.setText(name == null ? "" : name); //$NON-NLS-1$
             } else if (bo instanceof Reference) {
                 String name = ((Reference) bo).getName();
+                _nameText.setText(name == null ? "" : name); //$NON-NLS-1$
+            } else if (bo instanceof ComponentService) {
+                String name = ((ComponentService) bo).getName();
+                _nameText.setText(name == null ? "" : name); //$NON-NLS-1$
+            } else if (bo instanceof ComponentReference) {
+                String name = ((ComponentReference) bo).getName();
                 _nameText.setText(name == null ? "" : name); //$NON-NLS-1$
             }
             _inUpdate = false;

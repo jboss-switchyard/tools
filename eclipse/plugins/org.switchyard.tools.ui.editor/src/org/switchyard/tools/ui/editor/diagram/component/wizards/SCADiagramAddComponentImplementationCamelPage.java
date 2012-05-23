@@ -59,7 +59,7 @@ public class SCADiagramAddComponentImplementationCamelPage extends WizardPage {
         _camelComposite.setImplementation(_implementation);
         _camelComposite.createContents(parent, SWT.NONE);
 
-        setControl(_camelComposite.getcPanel());
+        setControl(_camelComposite.getPanel());
     }
 
     /**

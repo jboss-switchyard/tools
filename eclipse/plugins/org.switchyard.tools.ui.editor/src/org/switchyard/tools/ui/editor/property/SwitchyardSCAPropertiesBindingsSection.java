@@ -12,7 +12,7 @@
  ******************************************************************************/
 package org.switchyard.tools.ui.editor.property;
 
-import java.beans.PropertyChangeEvent;
+import java.util.HashMap;
 
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.graphiti.mm.pictograms.PictogramElement;
@@ -24,21 +24,31 @@ import org.eclipse.jface.viewers.IStructuredSelection;
 import org.eclipse.jface.viewers.LabelProvider;
 import org.eclipse.jface.viewers.ListViewer;
 import org.eclipse.jface.viewers.SelectionChangedEvent;
+import org.eclipse.jface.viewers.StructuredSelection;
 import org.eclipse.jface.viewers.Viewer;
 import org.eclipse.soa.sca.sca1_1.model.sca.Binding;
 import org.eclipse.soa.sca.sca1_1.model.sca.Reference;
 import org.eclipse.soa.sca.sca1_1.model.sca.Service;
 import org.eclipse.swt.SWT;
+import org.eclipse.swt.custom.SashForm;
+import org.eclipse.swt.events.SelectionEvent;
+import org.eclipse.swt.events.SelectionListener;
+import org.eclipse.swt.layout.FillLayout;
 import org.eclipse.swt.layout.GridData;
 import org.eclipse.swt.layout.GridLayout;
+import org.eclipse.swt.widgets.Button;
 import org.eclipse.swt.widgets.Composite;
-import org.eclipse.ui.part.PageBook;
+import org.eclipse.ui.forms.widgets.ExpandableComposite;
+import org.eclipse.ui.forms.widgets.FormToolkit;
+import org.eclipse.ui.forms.widgets.Section;
 import org.eclipse.ui.views.properties.tabbed.ITabbedPropertyConstants;
 import org.eclipse.ui.views.properties.tabbed.TabbedPropertySheetPage;
 import org.eclipse.ui.views.properties.tabbed.TabbedPropertySheetWidgetFactory;
 import org.switchyard.tools.models.switchyard1_0.soap.SOAPBindingType;
 import org.switchyard.tools.models.switchyard1_0.switchyard.SwitchYardBindingType;
-import org.switchyard.tools.ui.editor.diagram.shared.WSDLURISelectionComposite;
+import org.switchyard.tools.ui.editor.diagram.shared.AbstractSwitchyardComposite;
+import org.switchyard.tools.ui.editor.diagram.shared.IBindingComposite;
+import org.switchyard.tools.ui.editor.property.adapters.BindingCompositeAdapter;
 
 /**
  * @author bfitzpat
@@ -47,16 +57,24 @@ import org.switchyard.tools.ui.editor.diagram.shared.WSDLURISelectionComposite;
 public class SwitchyardSCAPropertiesBindingsSection extends GFPropertySection implements ITabbedPropertyConstants {
 
     private Binding _binding;
-    private PageBook _compositeRight;
     private ListViewer _listViewer;
-    private WSDLURISelectionComposite _wsdlComposite = null;
-    private Composite _blank = null;
+//    private Composite _blank = null;
+    private HashMap<Binding, IBindingComposite> _modelComposites = null;
+    private FormToolkit _toolkit = null;
+    private SashForm _sashForm;
+    private Section _tableSection;
+    private Composite _tableComposite;
+    private Section _detailSection;
+    private Button _addButton;
+    private Button _removeButton;
+    private Object _targetBO;
 
     /**
      * Constructor.
      */
     public SwitchyardSCAPropertiesBindingsSection() {
         super();
+        _modelComposites = new HashMap<Binding, IBindingComposite>();
     }
 
     /*
@@ -71,90 +89,119 @@ public class SwitchyardSCAPropertiesBindingsSection extends GFPropertySection im
     public void createControls(Composite parent, TabbedPropertySheetPage tabbedPropertySheetPage) {
         super.createControls(parent, tabbedPropertySheetPage);
 
-        TabbedPropertySheetWidgetFactory factory = getWidgetFactory();
-        Composite composite = factory.createFlatFormComposite(parent);
-        composite.setLayout(new GridLayout(3, false));
+        parent.setLayout(new GridLayout(3, false));
+        _toolkit = this.getWidgetFactory();
+        _sashForm = new SashForm(parent, SWT.NONE);
+        _sashForm.setLayoutData(new GridData(SWT.FILL, SWT.TOP, true, false, 3, 1));
 
-        Composite compositeLeft = factory.createFlatFormComposite(composite);
-        GridData leftGD = new GridData(SWT.FILL, SWT.FILL, true, true);
-        compositeLeft.setLayoutData(leftGD);
-        compositeLeft.setLayout(new GridLayout());
+        _tableSection = _toolkit.createSection(_sashForm, ExpandableComposite.TITLE_BAR);
+        _tableSection.setText("Bindings List");
 
-        factory.createLabel(compositeLeft, "Bindings:");
-        _listViewer = new ListViewer(compositeLeft, SWT.SINGLE | SWT.H_SCROLL | SWT.V_SCROLL | SWT.BORDER);
-        GridData lvGD = new GridData(SWT.FILL, SWT.FILL, true, true);
-        _listViewer.getControl().setLayoutData(lvGD);
+        _tableComposite = _toolkit.createComposite(_tableSection, SWT.NONE);
+        _tableSection.setClient(_tableComposite);
+        _tableComposite.setLayout(new GridLayout(3, false));
+        createTableAndButtons(_tableComposite, SWT.NONE);
 
-        Composite separator = factory.createCompositeSeparator(composite);
-        GridData sepGD = new GridData(SWT.FILL, SWT.FILL, false, true);
-        sepGD.widthHint = 1;
-        separator.setLayoutData(sepGD);
+        _detailSection = _toolkit.createSection(_sashForm, ExpandableComposite.TITLE_BAR);
+        _detailSection.setExpanded(true);
+        _detailSection.setText("Binding Details");
 
-        _compositeRight = new PageBook(composite, SWT.NONE);
-        GridData rightGD = new GridData(SWT.FILL, SWT.FILL, true, true);
-        _compositeRight.setLayoutData(rightGD);
-        _compositeRight.setLayout(new GridLayout());
-        factory.adapt(_compositeRight);
+        _sashForm.setWeights(new int[]{25,75});
+//        _blank = getWidgetFactory().createFlatFormComposite(_detailSection);
+//        _blank.setLayout(new FillLayout());
+    }
 
-        createWSDLInterfaceComposite(_compositeRight);
+    private void handleSelectListItem() {
+        if (_removeButton != null && !_removeButton.isDisposed()) {
+            _removeButton.setEnabled(_binding != null);
+        }
+        if (_binding != null && _binding instanceof SOAPBindingType) {
+            if (_modelComposites.get(_binding) == null) {
+                TabbedPropertySheetWidgetFactory factory = getWidgetFactory();
 
-        // _soapControlsPage = factory.createFlatFormComposite(_compositeRight);
-        // _soapControlsPage.setLayout(new GridLayout(2, false));
-        // GridData soapGD = new GridData(GridData.FILL_BOTH |
-        // GridData.GRAB_HORIZONTAL | GridData.GRAB_VERTICAL);
-        // soapGD.verticalSpan = 3;
-        // _soapControlsPage.setLayoutData(soapGD);
-        // factory.createLabel(_soapControlsPage, "WSDL Path:");
-        // _wsdlText = factory.createText(_soapControlsPage, "");
-        // GridData wsdlGD = new GridData(GridData.FILL_HORIZONTAL);
-        // _wsdlText.setLayoutData(wsdlGD);
-        // // createLabelAndTextField(soapControlsPage, "WSDL Path:");
-        // _wsdlText.addModifyListener(new ModifyListener() {
-        // @SuppressWarnings("restriction")
-        // @Override
-        // public void modifyText(ModifyEvent e) {
-        // if (_binding != null && _binding instanceof SOAPBindingType) {
-        // final SOAPBindingType soapBinding = (SOAPBindingType) _binding;
-        // if (!soapBinding.getWsdl().contentEquals(_wsdlText.getText().trim()))
-        // {
-        // TransactionalEditingDomain domain =
-        // SwitchyardSCAEditor.getActiveEditor().getEditingDomain();
-        // domain.getCommandStack().execute(new RecordingCommand(domain) {
-        // @Override
-        // protected void doExecute() {
-        // soapBinding.setWsdl(_wsdlText.getText().trim());
-        // }
-        // });
-        // }
-        // }
-        // }
-        // });
-        // factory.createLabel(_soapControlsPage, "Port:");
-        // _portText = factory.createText(_soapControlsPage, "");
-        // GridData portGD = new GridData(GridData.FILL_HORIZONTAL);
-        // _portText.setLayoutData(portGD);
-        // // _portText = createLabelAndTextField(soapControlsPage, "Port:");
-        // _portText.addModifyListener(new ModifyListener() {
-        // @SuppressWarnings("restriction")
-        // @Override
-        // public void modifyText(ModifyEvent e) {
-        // if (_binding != null && _binding instanceof SOAPBindingType) {
-        // final SOAPBindingType soapBinding = (SOAPBindingType) _binding;
-        // if
-        // (!soapBinding.getSocketAddr().contentEquals(_portText.getText().trim()))
-        // {
-        // TransactionalEditingDomain domain =
-        // SwitchyardSCAEditor.getActiveEditor().getEditingDomain();
-        // domain.getCommandStack().execute(new RecordingCommand(domain) {
-        // @Override
-        // protected void doExecute() {
-        // soapBinding.setSocketAddr(_portText.getText().trim());
-        // }
-        // });
-        // }
-        // }
-        // }
-        // });
+                IBindingComposite composite = (IBindingComposite) BindingCompositeAdapter
+                        .adaptModelToComposite(_binding);
+                if (composite != null) {
+                    ((AbstractSwitchyardComposite) composite).setOpenOnCreate(true);
+                    ((AbstractSwitchyardComposite) composite).createContents(_detailSection, SWT.NONE);
+                    factory.adapt(((AbstractSwitchyardComposite) composite).getPanel());
+                    _modelComposites.put(_binding, composite);
+                }
+            }
+            IBindingComposite composite = (IBindingComposite) _modelComposites.get(_binding);
+            if (composite != null) {
+                composite.setBinding(_binding);
+                _detailSection.setExpanded(true);
+                _detailSection.setClient(((AbstractSwitchyardComposite)composite).getPanel());
+            } else {
+                _detailSection.setExpanded(false);
+            }
+        } else {
+            _detailSection.setExpanded(false);
+        }
+        _detailSection.layout();
+    }
+
+    @Override
+    public void refresh() {
+        _binding = null;
+        PictogramElement pe = getSelectedPictogramElement();
+        if (pe != null) {
+            _targetBO = Graphiti.getLinkService().getBusinessObjectForLinkedPictogramElement(pe);
+            // the filter assured, that it is a Service or Reference
+            if (_targetBO == null) {
+                return;
+            }
+            EList<Binding> bindings = null;
+            if (_targetBO instanceof Service) {
+                Service service = (Service) _targetBO;
+                bindings = service.getBinding();
+            } else if (_targetBO instanceof Reference) {
+                Reference reference = (Reference) _targetBO;
+               bindings = reference.getBinding();
+            }
+            if (bindings != null) {
+                _listViewer.setInput(bindings);
+                if (bindings.size() > 0) {
+                    _listViewer.setSelection(new StructuredSelection(bindings.get(0)));
+                } else {
+                    _detailSection.setExpanded(false);
+                }
+            }
+        }
+    }
+
+    private void createTableAndButtons(Composite parent, int style) {
+
+        GridData gridData;
+        
+        boolean showButtons = false;
+
+        // //////////////////////////////////////////////////////////
+        // Create a composite to hold the buttons and table
+        // //////////////////////////////////////////////////////////
+        Composite tableAndButtonsComposite = _toolkit.createComposite(parent, SWT.NONE);
+        gridData = new GridData(SWT.FILL, SWT.TOP, true, true, 3, 1);
+        gridData.verticalIndent = -5;
+        tableAndButtonsComposite.setLayoutData(gridData);
+        tableAndButtonsComposite.setLayout(new GridLayout(3, false));
+
+        // //////////////////////////////////////////////////////////
+        // Create button section for add/remove/up/down buttons
+        // //////////////////////////////////////////////////////////
+        Composite buttonsComposite = _toolkit.createComposite(tableAndButtonsComposite);
+        buttonsComposite.setLayoutData(new GridData(SWT.LEFT, SWT.TOP, false, false, 1, 1));
+        buttonsComposite.setLayout(new FillLayout(SWT.VERTICAL));
+
+        int span = 2;
+        if (!showButtons) {
+            span = 3;
+        }
+        _listViewer = new ListViewer(tableAndButtonsComposite, SWT.SINGLE | SWT.H_SCROLL | SWT.V_SCROLL | SWT.BORDER);
+        gridData = new GridData(SWT.FILL, SWT.TOP, true, true, span, 1);
+        gridData.widthHint = 100;
+        gridData.heightHint = 100;
+        _listViewer.getList().setLayoutData(gridData);
 
         _listViewer.setLabelProvider(new LabelProvider() {
             public String getText(Object element) {
@@ -193,55 +240,35 @@ public class SwitchyardSCAPropertiesBindingsSection extends GFPropertySection im
             }
         });
 
-        _blank = factory.createFlatFormComposite(_compositeRight);
-        _compositeRight.showPage(_blank);
-    }
-
-    private void createWSDLInterfaceComposite(Composite parent) {
-        TabbedPropertySheetWidgetFactory factory = getWidgetFactory();
-        _wsdlComposite = new WSDLURISelectionComposite();
-        GridData wsdlGD = new GridData(SWT.FILL, SWT.FILL, true, true);
-        _wsdlComposite.setRootGridData(wsdlGD);
-        _wsdlComposite.setOpenOnCreate(true);
-        _wsdlComposite.createContents(parent, SWT.NONE);
-        factory.adapt(_wsdlComposite.getcPanel());
-    }
-
-    private void handleSelectListItem() {
-        if (_binding != null && _binding instanceof SOAPBindingType) {
-            SOAPBindingType soapBinding = (SOAPBindingType) _binding;
-            _wsdlComposite.setcBinding(soapBinding);
-            _compositeRight.showPage(_wsdlComposite.getcPanel());
-        } else {
-            _compositeRight.showPage(_blank);
+        if (showButtons) {
+            _addButton = _toolkit.createButton(buttonsComposite, "Add", SWT.PUSH);
+            _addButton.addSelectionListener(new SelectionListener(){
+    
+                @Override
+                public void widgetSelected(SelectionEvent e) {
+                    // add new binding
+                }
+    
+                @Override
+                public void widgetDefaultSelected(SelectionEvent e) {
+                    widgetSelected(e);
+                }
+             });
+            _removeButton = _toolkit.createButton(buttonsComposite, "Remove", SWT.PUSH);
+            _removeButton.setEnabled(false);
+            _removeButton.addSelectionListener(new SelectionListener(){
+    
+                @Override
+                public void widgetSelected(SelectionEvent e) {
+                    // remove old binding
+                }
+    
+                @Override
+                public void widgetDefaultSelected(SelectionEvent e) {
+                    widgetSelected(e);
+                }
+             });
         }
     }
 
-    @Override
-    public void refresh() {
-        _binding = null;
-        PictogramElement pe = getSelectedPictogramElement();
-        if (pe != null) {
-            Object bo = Graphiti.getLinkService().getBusinessObjectForLinkedPictogramElement(pe);
-            // the filter assured, that it is a Service or Reference
-            if (bo == null) {
-                return;
-            }
-            if (bo instanceof Service) {
-                Service service = (Service) bo;
-                EList<Binding> bindings = service.getBinding();
-                _listViewer.setInput(bindings);
-            } else if (bo instanceof Reference) {
-                Reference reference = (Reference) bo;
-                EList<Binding> bindings = reference.getBinding();
-                _listViewer.setInput(bindings);
-            }
-            handleSelectListItem();
-        }
-    }
-
-    @Override
-    public void propertyChange(PropertyChangeEvent evt) {
-        System.out.println(evt.toString());
-    }
 }

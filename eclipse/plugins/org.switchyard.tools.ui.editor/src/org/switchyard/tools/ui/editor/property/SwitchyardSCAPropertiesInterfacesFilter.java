@@ -16,6 +16,8 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.graphiti.mm.pictograms.PictogramElement;
 import org.eclipse.graphiti.services.Graphiti;
 import org.eclipse.graphiti.ui.platform.AbstractPropertySectionFilter;
+import org.eclipse.soa.sca.sca1_1.model.sca.ComponentReference;
+import org.eclipse.soa.sca.sca1_1.model.sca.ComponentService;
 import org.eclipse.soa.sca.sca1_1.model.sca.Reference;
 import org.eclipse.soa.sca.sca1_1.model.sca.Service;
 
@@ -31,6 +33,10 @@ public class SwitchyardSCAPropertiesInterfacesFilter extends AbstractPropertySec
         if (bo instanceof Service) {
             return true;
         } else if (bo instanceof Reference) {
+            return true;
+        } else if (bo instanceof ComponentService) {
+            return true;
+        } else if (bo instanceof ComponentReference) {
             return true;
         }
         return false;

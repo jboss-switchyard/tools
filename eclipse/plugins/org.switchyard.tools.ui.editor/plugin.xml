@@ -44,6 +44,12 @@
               id="switchyard.interface.tab"
               label="Interface">
         </propertyTab>
+        <propertyTab
+              afterTab="switchyard.implementation.tab"
+              category="SwitchyardSCA"
+              id="switchyard.implementation.tab"
+              label="Implementation">
+        </propertyTab>
 	    </propertyTabs>
 	</extension>
 	 
@@ -66,6 +72,12 @@
                filter="org.switchyard.tools.ui.editor.property.SwitchyardSCAPropertiesInterfacesFilter"
                id="switchyard.interface.tab.details"
                tab="switchyard.interface.tab">
+         </propertySection>
+         <propertySection
+               class="org.switchyard.tools.ui.editor.property.SwitchyardSCAPropertiesImplementationSection"
+               filter="org.switchyard.tools.ui.editor.property.SwitchyardSCAPropertiesImplementationsFilter"
+               id="switchyard.implementation.tab.details"
+               tab="switchyard.implementation.tab">
          </propertySection>
 	    </propertySections>
 	</extension>
