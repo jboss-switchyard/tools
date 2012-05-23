@@ -81,7 +81,7 @@ public class SCADiagramLayoutCompositeReferenceFeature extends AbstractLayoutFea
             Text text = (Text) gaFound;
             text.setHorizontalAlignment(Orientation.ALIGNMENT_CENTER);
             text.setVerticalAlignment(Orientation.ALIGNMENT_CENTER);
-            gaService.setLocationAndSize(text, 5, 0, containerWidth - 15, containerHeight / 2);
+            gaService.setLocationAndSize(text, 5, containerHeight / 4, containerWidth - 15, containerHeight / 2);
             anythingChanged = true;
         }
 
