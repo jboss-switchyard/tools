@@ -19,6 +19,7 @@ import org.eclipse.graphiti.dt.IDiagramTypeProvider;
 import org.eclipse.graphiti.features.IAddFeature;
 import org.eclipse.graphiti.features.ICreateConnectionFeature;
 import org.eclipse.graphiti.features.ICreateFeature;
+import org.eclipse.graphiti.features.IDeleteFeature;
 import org.eclipse.graphiti.features.IDirectEditingFeature;
 import org.eclipse.graphiti.features.IFeature;
 import org.eclipse.graphiti.features.ILayoutFeature;
@@ -27,6 +28,7 @@ import org.eclipse.graphiti.features.IResizeShapeFeature;
 import org.eclipse.graphiti.features.IUpdateFeature;
 import org.eclipse.graphiti.features.context.IAddContext;
 import org.eclipse.graphiti.features.context.ICustomContext;
+import org.eclipse.graphiti.features.context.IDeleteContext;
 import org.eclipse.graphiti.features.context.IDirectEditingContext;
 import org.eclipse.graphiti.features.context.ILayoutContext;
 import org.eclipse.graphiti.features.context.IMoveShapeContext;
@@ -62,6 +64,7 @@ import org.switchyard.tools.ui.editor.diagram.componentservice.SCADiagramAddComp
 import org.switchyard.tools.ui.editor.diagram.componentservice.SCADiagramCreateComponentServiceFeature;
 import org.switchyard.tools.ui.editor.diagram.composite.SCADiagramAddCompositeFeature;
 import org.switchyard.tools.ui.editor.diagram.composite.SCADiagramCreateCompositeFeature;
+import org.switchyard.tools.ui.editor.diagram.composite.SCADiagramDeleteCompositeFeature;
 import org.switchyard.tools.ui.editor.diagram.composite.SCADiagramDirectEditCompositeFeature;
 import org.switchyard.tools.ui.editor.diagram.composite.SCADiagramLayoutCompositeFeature;
 import org.switchyard.tools.ui.editor.diagram.composite.SCADiagramUpdateCompositeFeature;
@@ -275,6 +278,18 @@ public class SCADiagramFeatureProvider extends DefaultFeatureProvider {
             }
         }
         return super.getCustomFeatures(context);
+    }
+
+    @Override
+    public IDeleteFeature getDeleteFeature(IDeleteContext context) {
+        PictogramElement pe = context.getPictogramElement();
+        if (pe != null) {
+            Object bo = getBusinessObjectForPictogramElement(pe);
+            if (bo instanceof Composite) {
+                return new SCADiagramDeleteCompositeFeature(this);
+            }
+        }
+        return super.getDeleteFeature(context);
     }
 
 }

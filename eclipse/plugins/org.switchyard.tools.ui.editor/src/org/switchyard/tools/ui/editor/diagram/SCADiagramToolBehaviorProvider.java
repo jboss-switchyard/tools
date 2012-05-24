@@ -275,7 +275,10 @@ public class SCADiagramToolBehaviorProvider extends DefaultToolBehaviorProvider 
             ObjectCreationToolEntry objectCreationToolEntry = new ObjectCreationToolEntry(cf.getCreateName(),
                     cf.getCreateDescription(), cf.getCreateImageId(), cf.getCreateLargeImageId(), cf);
             if (cf.getCreateName().contains("Composite")) {
-                compositeEntry.addToolEntry(objectCreationToolEntry);
+                // remove the "Composite" item from the palette
+                if (!cf.getName().contentEquals("Composite")) {
+                    compositeEntry.addToolEntry(objectCreationToolEntry);
+                }
             } else if (cf.getCreateName().contains("Component")) {
                 componentEntry.addToolEntry(objectCreationToolEntry);
             } else if (cf.getCreateName().contains("Service")) {
@@ -301,11 +304,14 @@ public class SCADiagramToolBehaviorProvider extends DefaultToolBehaviorProvider 
 
         IContextButtonPadData data = super.getContextButtonPad(context);
         PictogramElement pe = context.getPictogramElement();
-
-        // 1. set the generic context buttons
-        // note, that we do not add 'remove' (just as an example)
-        setGenericContextButtons(data, pe, CONTEXT_BUTTON_DELETE | CONTEXT_BUTTON_UPDATE);
-
+        Object bo = getFeatureProvider().getBusinessObjectForPictogramElement(pe);
+        
+        if (bo instanceof Composite) {
+            setGenericContextButtons(data, pe, CONTEXT_BUTTON_UPDATE); // just update, no delete
+        } else {
+            setGenericContextButtons(data, pe, CONTEXT_BUTTON_DELETE | CONTEXT_BUTTON_UPDATE);
+        }
+        
         return data;
     }
 
