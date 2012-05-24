@@ -12,27 +12,43 @@
   <name>SwitchYard: Eclipse M2E Extensions Plugin Tests</name>
   <description>Test plugin for SwitchYard's Eclipse m2e extension plugin.</description>
 
+  <dependencies>
+    <dependency>
+      <groupId>org.switchyard.quickstarts</groupId>
+      <artifactId>switchyard-quickstart-bean-service</artifactId>
+      <version>${version.switchyard.runtime}</version>
+    </dependency>
+    <dependency>
+      <groupId>org.switchyard.quickstarts.demos</groupId>
+      <artifactId>switchyard-quickstart-demo-helpdesk</artifactId>
+      <version>${version.switchyard.runtime}</version>
+    </dependency>
+    <dependency>
+      <groupId>xmlunit</groupId>
+      <artifactId>xmlunit</artifactId>
+    </dependency>
+  </dependencies>
+
   <build>
     <plugins>
       <plugin>
         <groupId>org.apache.maven.plugins</groupId>
         <artifactId>maven-dependency-plugin</artifactId>
+        <configuration>
+          <stripVersion>true</stripVersion>
+          <excludeTransitive>true</excludeTransitive>
+          <excludeScope>system</excludeScope>
+        </configuration>
         <executions>
           <execution>
             <id>copy-xmlunit</id>
             <phase>process-sources</phase>
             <goals>
-              <goal>copy</goal>
+              <goal>copy-dependencies</goal>
             </goals>
             <configuration>
-              <stripVersion>true</stripVersion>
               <outputDirectory>lib</outputDirectory>
-              <artifactItems>
-                <artifactItem>
-                  <groupId>xmlunit</groupId>
-                  <artifactId>xmlunit</artifactId>
-                </artifactItem>
-              </artifactItems>
+              <includeArtifactIds>xmlunit</includeArtifactIds>
             </configuration>
           </execution>
           <execution>
@@ -43,21 +59,16 @@
             </goals>
             <configuration>
               <includes>**/*.java</includes>
+              <includeClassifiers>sources</includeClassifiers>
               <artifactItems>
                 <artifactItem>
                   <groupId>org.switchyard.quickstarts</groupId>
                   <artifactId>switchyard-quickstart-bean-service</artifactId>
-                  <version>${version.switchyard.runtime}</version>
-                  <classifier>sources</classifier>
-                  <type>jar</type>
                   <outputDirectory>test-data/projects/bean-service/src/main/java</outputDirectory>
                 </artifactItem>
                 <artifactItem>
                   <groupId>org.switchyard.quickstarts.demos</groupId>
                   <artifactId>switchyard-quickstart-demo-helpdesk</artifactId>
-                  <version>${version.switchyard.runtime}</version>
-                  <classifier>sources</classifier>
-                  <type>jar</type>
                   <outputDirectory>test-data/projects/helpdesk/src/main/java</outputDirectory>
                 </artifactItem>
               </artifactItems>
@@ -71,21 +82,16 @@
             </goals>
             <configuration>
               <excludes>**/*.java</excludes>
+              <includeClassifiers>sources</includeClassifiers>
               <artifactItems>
                 <artifactItem>
                   <groupId>org.switchyard.quickstarts</groupId>
                   <artifactId>switchyard-quickstart-bean-service</artifactId>
-                  <version>${version.switchyard.runtime}</version>
-                  <classifier>sources</classifier>
-                  <type>jar</type>
                   <outputDirectory>test-data/projects/bean-service/src/main/resources</outputDirectory>
                 </artifactItem>
                 <artifactItem>
                   <groupId>org.switchyard.quickstarts.demos</groupId>
                   <artifactId>switchyard-quickstart-demo-helpdesk</artifactId>
-                  <version>${version.switchyard.runtime}</version>
-                  <classifier>sources</classifier>
-                  <type>jar</type>
                   <outputDirectory>test-data/projects/helpdesk/src/main/resources</outputDirectory>
                 </artifactItem>
               </artifactItems>
@@ -102,7 +108,6 @@
                 <artifactItem>
                   <groupId>org.switchyard.quickstarts</groupId>
                   <artifactId>switchyard-quickstart-bean-service</artifactId>
-                  <version>${version.switchyard.runtime}</version>
                   <type>pom</type>
                   <outputDirectory>test-data/projects/bean-service</outputDirectory>
                   <destFileName>pom.xml</destFileName>
@@ -110,7 +115,6 @@
                 <artifactItem>
                   <groupId>org.switchyard.quickstarts.demos</groupId>
                   <artifactId>switchyard-quickstart-demo-helpdesk</artifactId>
-                  <version>${version.switchyard.runtime}</version>
                   <type>pom</type>
                   <outputDirectory>test-data/projects/helpdesk</outputDirectory>
                   <destFileName>pom.xml</destFileName>
@@ -130,15 +134,11 @@
                 <artifactItem>
                   <groupId>org.switchyard.quickstarts</groupId>
                   <artifactId>switchyard-quickstart-bean-service</artifactId>
-                  <version>${version.switchyard.runtime}</version>
-                  <type>jar</type>
                   <outputDirectory>test-data/validation/bean-service</outputDirectory>
                 </artifactItem>
                 <artifactItem>
                   <groupId>org.switchyard.quickstarts.demos</groupId>
                   <artifactId>switchyard-quickstart-demo-helpdesk</artifactId>
-                  <version>${version.switchyard.runtime}</version>
-                  <type>jar</type>
                   <outputDirectory>test-data/validation/helpdesk</outputDirectory>
                 </artifactItem>
               </artifactItems>
@@ -149,7 +149,6 @@
       <plugin>
         <groupId>org.apache.maven.plugins</groupId>
         <artifactId>maven-clean-plugin</artifactId>
-        <version>2.4.1</version>
         <configuration>
           <filesets>
             <fileset>

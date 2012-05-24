@@ -7,12 +7,22 @@
   <version>0.0.1-SNAPSHOT</version>
   <name>test.project.group:CreateSwitchYardProjectTest</name>
   <properties>
-    <switchyard.version>0.2.0</switchyard.version>
+    <switchyard.version>0.5.0-SNAPSHOT</switchyard.version>
   </properties>
   <dependencies>
     <dependency>
       <groupId>org.switchyard</groupId>
       <artifactId>switchyard-api</artifactId>
+      <version>${switchyard.version}</version>
+    </dependency>
+    <dependency>
+      <groupId>org.switchyard</groupId>
+      <artifactId>switchyard-transform</artifactId>
+      <version>${switchyard.version}</version>
+    </dependency>
+    <dependency>
+      <groupId>org.switchyard</groupId>
+      <artifactId>switchyard-validate</artifactId>
       <version>${switchyard.version}</version>
     </dependency>
     <dependency>
@@ -24,6 +34,7 @@
       <groupId>org.switchyard</groupId>
       <artifactId>switchyard-test</artifactId>
       <version>${switchyard.version}</version>
+      <scope>test</scope>
     </dependency>
     <dependency>
       <groupId>org.switchyard.components</groupId>

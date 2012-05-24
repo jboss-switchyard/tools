@@ -27,7 +27,6 @@ import org.eclipse.core.resources.ResourcesPlugin;
 import org.eclipse.core.runtime.CoreException;
 import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.core.runtime.NullProgressMonitor;
-import org.eclipse.core.runtime.jobs.Job;
 import org.eclipse.jface.viewers.StructuredSelection;
 import org.eclipse.m2e.tests.common.AbstractMavenProjectTestCase;
 import org.eclipse.wst.common.project.facet.core.IFacetedProject;
@@ -72,7 +71,7 @@ public class CreateSwitchYardProjectTest extends AbstractMavenProjectTestCase {
         String packageName = "test.package_name";
         String groupId = "test.project.group";
         String version = "0.0.1-SNAPSHOT";
-        String runtimeVersion = "0.2.0";
+        String runtimeVersion = "0.5.0-SNAPSHOT";
 
         assertTrue("Project already exists.", !newProjectHandle.exists());
 
@@ -221,8 +220,9 @@ public class CreateSwitchYardProjectTest extends AbstractMavenProjectTestCase {
     }
 
     private void waitForJobs() throws Exception {
-        Job.getJobManager().join(ResourcesPlugin.FAMILY_MANUAL_BUILD, null);
-        Job.getJobManager().join(ResourcesPlugin.FAMILY_AUTO_BUILD, null);
+        waitForJobsToComplete();
+//        Job.getJobManager().join(ResourcesPlugin.FAMILY_MANUAL_BUILD, null);
+//        Job.getJobManager().join(ResourcesPlugin.FAMILY_AUTO_BUILD, null);
     }
 
 }
