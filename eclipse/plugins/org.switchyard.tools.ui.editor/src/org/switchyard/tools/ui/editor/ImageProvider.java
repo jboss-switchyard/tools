@@ -18,6 +18,7 @@ import org.eclipse.soa.sca.sca1_1.model.sca.ComponentReference;
 import org.eclipse.soa.sca.sca1_1.model.sca.ComponentService;
 import org.eclipse.soa.sca.sca1_1.model.sca.Composite;
 import org.eclipse.soa.sca.sca1_1.model.sca.Implementation;
+import org.eclipse.soa.sca.sca1_1.model.sca.Interface;
 import org.eclipse.soa.sca.sca1_1.model.sca.Reference;
 import org.eclipse.soa.sca.sca1_1.model.sca.Service;
 
@@ -64,6 +65,12 @@ public class ImageProvider extends AbstractImageProvider {
     /** Image for Plus. **/
     public static final String IMG_16_PLUS = PREFIX + "plus" + DOT16;
 
+    /** Image for Interface. **/
+    public static final String IMG_16_INTERFACE = PREFIX + Interface.class.getSimpleName().toLowerCase() + DOT16;
+
+    /** Image for Interface override. **/
+    public static final String IMG_16_INTERFACE_OVERRIDE = PREFIX + Interface.class.getSimpleName().toLowerCase() + "plus" + DOT16;
+
     @Override
     protected void addAvailableImages() {
         addImageFilePath(IMG_16_COMPOSITE, ICONS_16 + "Composite.gif");
@@ -76,6 +83,8 @@ public class ImageProvider extends AbstractImageProvider {
         addImageFilePath(IMG_16_CHAIN, ICONS_16 + "chain_small.png");
         addImageFilePath(IMG_16_PLUS, ICONS_16 + "plus.png");
         addImageFilePath(IMG_16_IMPLEMENTATION_TYPE, ICONS_16 + "ImplementationType.gif");
+        addImageFilePath(IMG_16_INTERFACE, ICONS_16 + "interface.gif");
+        addImageFilePath(IMG_16_INTERFACE_OVERRIDE, ICONS_16 + "interface_override.gif");
     }
 
 }

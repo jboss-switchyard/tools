@@ -13,6 +13,7 @@
 package org.switchyard.tools.ui.editor.diagram;
 
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
 
 import org.eclipse.emf.common.util.EList;
@@ -24,6 +25,8 @@ import org.eclipse.graphiti.features.context.IDoubleClickContext;
 import org.eclipse.graphiti.features.context.IPictogramElementContext;
 import org.eclipse.graphiti.features.custom.ICustomFeature;
 import org.eclipse.graphiti.mm.algorithms.GraphicsAlgorithm;
+import org.eclipse.graphiti.mm.algorithms.Polygon;
+import org.eclipse.graphiti.mm.algorithms.styles.Point;
 import org.eclipse.graphiti.mm.pictograms.PictogramElement;
 import org.eclipse.graphiti.palette.IPaletteCompartmentEntry;
 import org.eclipse.graphiti.palette.impl.ConnectionCreationToolEntry;
@@ -39,6 +42,7 @@ import org.eclipse.soa.sca.sca1_1.model.sca.ComponentReference;
 import org.eclipse.soa.sca.sca1_1.model.sca.ComponentService;
 import org.eclipse.soa.sca.sca1_1.model.sca.Composite;
 import org.eclipse.soa.sca.sca1_1.model.sca.Implementation;
+import org.eclipse.soa.sca.sca1_1.model.sca.Interface;
 import org.eclipse.soa.sca.sca1_1.model.sca.Reference;
 import org.eclipse.soa.sca.sca1_1.model.sca.Service;
 import org.switchyard.tools.models.switchyard1_0.hornetq.BindingType;
@@ -56,6 +60,32 @@ public class SCADiagramToolBehaviorProvider extends DefaultToolBehaviorProvider 
      */
     public SCADiagramToolBehaviorProvider(IDiagramTypeProvider diagramTypeProvider) {
         super(diagramTypeProvider);
+    }
+
+    /**
+     * @param pe incoming pictogram element
+     * @return point with x/y
+     */
+    public Location getDecoratorLocationUpperRight(PictogramElement pe) {
+        GraphicsAlgorithm ga = pe.getGraphicsAlgorithm();
+        int x = 4;
+        int y = 4;
+        EList<GraphicsAlgorithm> gaChildren = ga.getGraphicsAlgorithmChildren();
+        for (Object gaChild : gaChildren.toArray()) {
+            if (gaChild instanceof Polygon) {
+                Polygon poly = (Polygon) gaChild;
+                EList<Point> points = poly.getPoints();
+                for (Iterator<Point> iterator = points.iterator(); iterator.hasNext();) {
+                    Point point = (Point) iterator.next();
+                    if (point.getY() < y && point.getX() > x) {
+                        x = point.getX();
+                    }
+                }
+                break;
+            }
+
+        }
+        return new Location(x, y);
     }
 
     @Override
@@ -83,12 +113,27 @@ public class SCADiagramToolBehaviorProvider extends DefaultToolBehaviorProvider 
                     decorators.add(imageRenderingDecorator);
                 }
             }
+            if (!(service.getInterface() == null)) {
+                ImageDecorator imageRenderingDecorator = new ImageDecorator(ImageProvider.IMG_16_INTERFACE_OVERRIDE);
+                Interface intfc = service.getInterface();
+                imageRenderingDecorator.setMessage("Interface:\n" + intfc.eClass().getInstanceTypeName());
+                Location loc = getDecoratorLocationUpperRight(pe);
+                imageRenderingDecorator.setX(loc.getX() - 10);
+                decorators.add(imageRenderingDecorator);
+            } else if (service.getPromote() != null && service.getPromote().getInterface() != null) {
+                ImageDecorator imageRenderingDecorator = new ImageDecorator(ImageProvider.IMG_16_INTERFACE);
+                Interface intfc = service.getPromote().getInterface();
+                Location loc = getDecoratorLocationUpperRight(pe);
+                imageRenderingDecorator.setX(loc.getX() - 10);
+                imageRenderingDecorator.setMessage("Interface (Inherited):\n" + intfc.eClass().getInstanceTypeName());
+                decorators.add(imageRenderingDecorator);
+            }
             return decorators.toArray(new IDecorator[decorators.size()]);
         } else if (bo instanceof Reference) {
             Reference reference = (Reference) bo;
+            ArrayList<IDecorator> decorators = new ArrayList<IDecorator>();
             if (!reference.getBinding().isEmpty()) {
                 EList<Binding> bindings = reference.getBinding();
-                ArrayList<IDecorator> decorators = new ArrayList<IDecorator>();
                 for (Binding binding : bindings) {
                     IDecorator imageRenderingDecorator = new ImageDecorator(ImageProvider.IMG_16_CHAIN);
                     String text = binding.getClass().getSimpleName();
@@ -104,8 +149,33 @@ public class SCADiagramToolBehaviorProvider extends DefaultToolBehaviorProvider 
                     imageRenderingDecorator.setMessage(text);
                     decorators.add(imageRenderingDecorator);
                 }
-                return decorators.toArray(new IDecorator[decorators.size()]);
             }
+            if (!(reference.getInterface() == null)) {
+                ImageDecorator imageRenderingDecorator = new ImageDecorator(ImageProvider.IMG_16_INTERFACE_OVERRIDE);
+                Interface intfc = reference.getInterface();
+                Location loc = getDecoratorLocationUpperRight(pe);
+                imageRenderingDecorator.setX(loc.getX() - 10);
+                imageRenderingDecorator.setMessage("Interface:\n" + intfc.eClass().getInstanceTypeName());
+                decorators.add(imageRenderingDecorator);
+            } else if (reference.getPromote() != null) {
+                EList<ComponentReference> references = reference.getPromote();
+                boolean hasInterface = false;
+                for (Iterator<ComponentReference> iterator = references.iterator(); iterator.hasNext();) {
+                    ComponentReference componentReference = (ComponentReference) iterator.next();
+                    if (componentReference.getInterface() != null) {
+                        hasInterface = true;
+                        break;
+                    }
+                }
+                if (hasInterface) {
+                    ImageDecorator imageRenderingDecorator = new ImageDecorator(ImageProvider.IMG_16_INTERFACE);
+                    imageRenderingDecorator.setMessage("Inherited Interface(s)");
+                    Location loc = getDecoratorLocationUpperRight(pe);
+                    imageRenderingDecorator.setX(loc.getX() - 10);
+                    decorators.add(imageRenderingDecorator);
+                }
+            }
+            return decorators.toArray(new IDecorator[decorators.size()]);
 
         } else if (bo instanceof Component) {
             Component component = (Component) bo;
@@ -253,6 +323,35 @@ public class SCADiagramToolBehaviorProvider extends DefaultToolBehaviorProvider 
             }
         }
         return super.getDoubleClickFeature(context);
+    }
+
+    private class Location {
+        private int _x = 0;
+        private int _y = 0;
+
+        /**
+         * @param locx x coord
+         * @param locy y coord
+         */
+        public Location(int locx, int locy) {
+            _x = locx;
+            _y = locy;
+        }
+
+        /**
+         * @return x coord
+         */
+        public int getX() {
+            return _x;
+        }
+        
+        /**
+         * @return y coord
+         */
+        @SuppressWarnings("unused")
+        public int getY() {
+            return _y;
+        }
     }
 
 }
