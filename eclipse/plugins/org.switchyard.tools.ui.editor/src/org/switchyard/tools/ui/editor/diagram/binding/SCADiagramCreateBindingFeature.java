@@ -12,20 +12,22 @@
  ******************************************************************************/
 package org.switchyard.tools.ui.editor.diagram.binding;
 
+import java.io.IOException;
+
+import org.eclipse.emf.ecore.EObject;
 import org.eclipse.graphiti.features.IFeatureProvider;
 import org.eclipse.graphiti.features.context.ICreateContext;
 import org.eclipse.graphiti.features.impl.AbstractCreateFeature;
 import org.eclipse.graphiti.mm.pictograms.ContainerShape;
 import org.eclipse.jface.window.Window;
 import org.eclipse.jface.wizard.WizardDialog;
+import org.eclipse.soa.sca.sca1_1.model.sca.Binding;
 import org.eclipse.soa.sca.sca1_1.model.sca.Reference;
 import org.eclipse.soa.sca.sca1_1.model.sca.Service;
 import org.eclipse.swt.widgets.Shell;
 import org.eclipse.ui.PlatformUI;
-import org.switchyard.tools.models.switchyard1_0.soap.SOAPBindingType;
-import org.switchyard.tools.models.switchyard1_0.soap.SOAPPackage;
-import org.switchyard.tools.models.switchyard1_0.switchyard.SwitchYardBindingType;
 import org.switchyard.tools.ui.editor.ImageProvider;
+import org.switchyard.tools.ui.editor.core.ModelHandler;
 import org.switchyard.tools.ui.editor.diagram.binding.wizards.SCADiagramAddBindingWizard;
 
 /**
@@ -70,8 +72,11 @@ public class SCADiagramCreateBindingFeature extends AbstractCreateFeature {
     @Override
     public Object[] create(ICreateContext context) {
 
-        SwitchYardBindingType newBinding = null;
-        SCADiagramAddBindingWizard wizard = new SCADiagramAddBindingWizard();
+        ContainerShape targetContainer = context.getTargetContainer();
+        Object targetBO = getBusinessObjectForPictogramElement(targetContainer);
+
+        Binding newBinding = null;
+        SCADiagramAddBindingWizard wizard = new SCADiagramAddBindingWizard((EObject) targetBO);
         Shell shell = PlatformUI.getWorkbench().getActiveWorkbenchWindow().getShell();
         WizardDialog wizDialog = new WizardDialog(shell, wizard);
         int rtn_code = wizDialog.open();
@@ -82,21 +87,11 @@ public class SCADiagramCreateBindingFeature extends AbstractCreateFeature {
             return EMPTY;
         }
 
-        ContainerShape targetContainer = context.getTargetContainer();
-        Object targetBO = getBusinessObjectForPictogramElement(targetContainer);
-        if (newBinding != null) {
-            if (targetBO instanceof Service) {
-                if (newBinding instanceof SOAPBindingType) {
-                    ((Service) targetBO).getBindingGroup().add(SOAPPackage.eINSTANCE.getDocumentRoot_BindingSoap(),
-                            newBinding);
-                }
-            } else if (targetBO instanceof Reference) {
-                if (newBinding instanceof SOAPBindingType) {
-                    ((Reference) targetBO).getBindingGroup().add(SOAPPackage.eINSTANCE.getDocumentRoot_BindingSoap(),
-                            newBinding);
-                }
-            }
-
+        try {
+            ModelHandler mh = ModelHandler.getInstance((EObject) targetBO);
+            mh.addBindingToSource(targetBO, newBinding);
+        } catch (IOException e) {
+            e.printStackTrace();
         }
 
         // do the add

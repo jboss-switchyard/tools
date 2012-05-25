@@ -30,10 +30,12 @@ import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.emf.ecore.util.BasicExtendedMetaData;
 import org.eclipse.emf.ecore.util.ExtendedMetaData;
+import org.eclipse.emf.ecore.util.FeatureMap;
 import org.eclipse.emf.ecore.xmi.XMLResource;
 import org.eclipse.emf.transaction.RecordingCommand;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.eclipse.emf.transaction.util.TransactionUtil;
+import org.eclipse.soa.sca.sca1_1.model.sca.Binding;
 import org.eclipse.soa.sca.sca1_1.model.sca.Component;
 import org.eclipse.soa.sca.sca1_1.model.sca.ComponentReference;
 import org.eclipse.soa.sca.sca1_1.model.sca.ComponentService;
@@ -45,10 +47,18 @@ import org.eclipse.soa.sca.sca1_1.model.sca.Service;
 import org.open.oasis.docs.ns.opencsa.sca.bpel.BPELPackage;
 import org.switchyard.tools.models.switchyard1_0.bean.BeanPackage;
 import org.switchyard.tools.models.switchyard1_0.bpm.BPMPackage;
+import org.switchyard.tools.models.switchyard1_0.camel.CamelAtomBindingType;
 import org.switchyard.tools.models.switchyard1_0.camel.CamelBindingType;
+import org.switchyard.tools.models.switchyard1_0.camel.CamelDirectBindingType;
 import org.switchyard.tools.models.switchyard1_0.camel.CamelFactory;
+import org.switchyard.tools.models.switchyard1_0.camel.CamelFileBindingType;
+import org.switchyard.tools.models.switchyard1_0.camel.CamelFtpBindingType;
+import org.switchyard.tools.models.switchyard1_0.camel.CamelFtpsBindingType;
 import org.switchyard.tools.models.switchyard1_0.camel.CamelImplementationType;
+import org.switchyard.tools.models.switchyard1_0.camel.CamelJmsBindingType;
 import org.switchyard.tools.models.switchyard1_0.camel.CamelPackage;
+import org.switchyard.tools.models.switchyard1_0.camel.CamelSedaBindingType;
+import org.switchyard.tools.models.switchyard1_0.camel.CamelTimerBindingType;
 import org.switchyard.tools.models.switchyard1_0.camel.JavaDSLType;
 import org.switchyard.tools.models.switchyard1_0.camel.XMLDSLType;
 import org.switchyard.tools.models.switchyard1_0.clojure.ClojurePackage;
@@ -77,7 +87,7 @@ import org.switchyard.tools.ui.editor.Activator;
  */
 /**
  * @author bfitzpat
- *
+ * 
  */
 public class ModelHandler {
 
@@ -165,7 +175,7 @@ public class ModelHandler {
     public SwitchyardResourceImpl getResource() {
         return _resource;
     }
-    
+
     /**
      * @param resource resource
      */
@@ -427,6 +437,7 @@ public class ModelHandler {
 
     /**
      * List all instances of a class in the resource.
+     * 
      * @param class1 class to search for
      * @param <T> class
      * @return list to return
@@ -447,6 +458,7 @@ public class ModelHandler {
     /**
      * General-purpose factory method that sets appropriate default values for
      * new objects.
+     * 
      * @param eClass to create
      * @return class instance
      */
@@ -461,7 +473,7 @@ public class ModelHandler {
 
     /**
      * @param clazz the class from the Switchyard factory to create
-     * @param <T> the class 
+     * @param <T> the class
      * @return the class instance
      */
     @SuppressWarnings("unchecked")
@@ -481,8 +493,8 @@ public class ModelHandler {
     }
 
     /**
-    * @param clazz the class from the Camel factory to create
-     * @param <T> the class 
+     * @param clazz the class from the Camel factory to create
+     * @param <T> the class
      * @return the class instance
      */
     @SuppressWarnings("unchecked")
@@ -500,9 +512,10 @@ public class ModelHandler {
 
         return (T) newObject;
     }
+
     /**
      * @param clazz the class from the SOAP factory to create
-     * @param <T> the class 
+     * @param <T> the class
      * @return the class instance
      */
     @SuppressWarnings("unchecked")
@@ -523,7 +536,7 @@ public class ModelHandler {
 
     /**
      * @param clazz the class from the SCA factory to create
-     * @param <T> the class 
+     * @param <T> the class
      * @return the class instance
      */
     @SuppressWarnings("unchecked")
@@ -544,7 +557,7 @@ public class ModelHandler {
 
     /**
      * @param clazz the class from the Spring factory to create
-     * @param <T> the class 
+     * @param <T> the class
      * @return the class instance
      */
     @SuppressWarnings("unchecked")
@@ -564,33 +577,102 @@ public class ModelHandler {
     }
 
     /**
+     * @param sourceBO source business object (service or reference)
+     * @param binding binding to add
+     */
+    public void addBindingToSource(Object sourceBO, Binding binding) {
+        if (binding != null && sourceBO != null) {
+            FeatureMap bindingGroup = null;
+            if (sourceBO instanceof Service) {
+                bindingGroup = ((Service) sourceBO).getBindingGroup();
+            } else if (sourceBO instanceof Reference) {
+                bindingGroup = ((Reference) sourceBO).getBindingGroup();
+            }
+            if (binding instanceof SOAPBindingType) {
+                bindingGroup.add(SOAPPackage.eINSTANCE.getDocumentRoot_BindingSoap(), binding);
+            } else if (binding instanceof CamelBindingType) {
+                bindingGroup.add(CamelPackage.eINSTANCE.getDocumentRoot_BindingCamel(), binding);
+            } else if (binding instanceof CamelDirectBindingType) {
+                bindingGroup.add(CamelPackage.eINSTANCE.getDocumentRoot_BindingDirect(), binding);
+            } else if (binding instanceof CamelSedaBindingType) {
+                bindingGroup.add(CamelPackage.eINSTANCE.getDocumentRoot_BindingSeda(), binding);
+            } else if (binding instanceof CamelTimerBindingType) {
+                bindingGroup.add(CamelPackage.eINSTANCE.getDocumentRoot_BindingTimer(), binding);
+            } else if (binding instanceof CamelAtomBindingType) {
+                bindingGroup.add(CamelPackage.eINSTANCE.getDocumentRoot_BindingAtom(), binding);
+            } else if (binding instanceof CamelJmsBindingType) {
+                bindingGroup.add(CamelPackage.eINSTANCE.getDocumentRoot_BindingJms(), binding);
+            } else if (binding instanceof CamelFileBindingType) {
+                bindingGroup.add(CamelPackage.eINSTANCE.getDocumentRoot_BindingFile(), binding);
+            } else if (binding instanceof CamelFtpBindingType) {
+                bindingGroup.add(CamelPackage.eINSTANCE.getDocumentRoot_BindingFtp(), binding);
+            } else if (binding instanceof CamelFtpsBindingType) {
+                bindingGroup.add(CamelPackage.eINSTANCE.getDocumentRoot_BindingFtps(), binding);
+            }
+        }
+    }
+
+    /**
+     * @return list of supported binding types
+     */
+    public List<Binding> getSupportedBindingTypes() {
+        ArrayList<Binding> typeList = new ArrayList<Binding>();
+
+        Binding soapBindingType = SOAPFactory.eINSTANCE.createSOAPBindingType();
+        ((SOAPBindingType) soapBindingType).setWsdl("MyService.wsdl");
+        ((SOAPBindingType) soapBindingType).setSocketAddr(":18001");
+        typeList.add(soapBindingType);
+
+        Binding camelFileType = CamelFactory.eINSTANCE.createCamelFileBindingType();
+        ((CamelFileBindingType) camelFileType).setDirectory("my/directory");
+        typeList.add(camelFileType);
+
+        return typeList;
+    }
+
+    /**
+     * @param binding binding to check
+     * @return String label
+     */
+    public String getLabelForBindingType(Binding binding) {
+        if (binding instanceof SOAPBindingType) {
+            return "SOAP";
+        } else  if (binding instanceof CamelFileBindingType) {
+            return "Camel File";
+        } else {
+            return "Unsupported (" + binding.eClass().getClass().getName() + ")";
+        }
+
+    }
+
+    /**
      * @param newObject the object to initialize from
      */
     public void initialize(EObject newObject) {
         // not used currently, brought over from the BPMN2 editor
         return;
-//        if (newObject != null) {
-//            // if (newObject.eClass().getEPackage() == Bpmn2Package.eINSTANCE) {
-//            // // Set appropriate default values for the object features here
-//            // switch (newObject.eClass().getClassifierID()) {
-//            // case Bpmn2Package.ITEM_DEFINITION:
-//            // ((ItemDefinition)newObject).setItemKind(ItemKind.INFORMATION);
-//            // }
-//            // }
-//
-//            // if the object has an "id", assign it now.
-//            // String id = ModelUtil.setID(newObject,resource);
-//            // also set a default name
-//            // EStructuralFeature feature =
-//            // newObject.eClass().getEStructuralFeature("name");
-//            // if (feature!=null) {
-//            // if (id!=null)
-//            // newObject.eSet(feature, ModelUtil.toDisplayName(id));
-//            // else
-//            // newObject.eSet(feature,
-//            // "New "+ModelUtil.toDisplayName(newObject.eClass().getName()));
-//            // }
-//        }
+        // if (newObject != null) {
+        // // if (newObject.eClass().getEPackage() == Bpmn2Package.eINSTANCE) {
+        // // // Set appropriate default values for the object features here
+        // // switch (newObject.eClass().getClassifierID()) {
+        // // case Bpmn2Package.ITEM_DEFINITION:
+        // // ((ItemDefinition)newObject).setItemKind(ItemKind.INFORMATION);
+        // // }
+        // // }
+        //
+        // // if the object has an "id", assign it now.
+        // // String id = ModelUtil.setID(newObject,resource);
+        // // also set a default name
+        // // EStructuralFeature feature =
+        // // newObject.eClass().getEStructuralFeature("name");
+        // // if (feature!=null) {
+        // // if (id!=null)
+        // // newObject.eSet(feature, ModelUtil.toDisplayName(id));
+        // // else
+        // // newObject.eSet(feature,
+        // // "New "+ModelUtil.toDisplayName(newObject.eClass().getName()));
+        // // }
+        // }
     }
 
 }

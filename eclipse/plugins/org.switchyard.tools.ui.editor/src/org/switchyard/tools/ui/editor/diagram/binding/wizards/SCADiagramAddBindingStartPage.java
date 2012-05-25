@@ -12,7 +12,6 @@
  ******************************************************************************/
 package org.switchyard.tools.ui.editor.diagram.binding.wizards;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import org.eclipse.jface.viewers.ISelectionChangedListener;
@@ -23,14 +22,15 @@ import org.eclipse.jface.viewers.ListViewer;
 import org.eclipse.jface.viewers.SelectionChangedEvent;
 import org.eclipse.jface.viewers.Viewer;
 import org.eclipse.jface.wizard.WizardPage;
+import org.eclipse.soa.sca.sca1_1.model.sca.Binding;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.layout.GridData;
 import org.eclipse.swt.layout.GridLayout;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Label;
-import org.switchyard.tools.models.switchyard1_0.soap.SOAPBindingType;
-import org.switchyard.tools.models.switchyard1_0.soap.SOAPFactory;
 import org.switchyard.tools.models.switchyard1_0.switchyard.SwitchYardBindingType;
+import org.switchyard.tools.ui.editor.core.ModelHandler;
+import org.switchyard.tools.ui.editor.impl.SwitchyardSCAEditor;
 
 /**
  * @author bfitzpat
@@ -77,17 +77,14 @@ public class SCADiagramAddBindingStartPage extends WizardPage {
         data.widthHint = convertWidthInCharsToPixels(LIST_WIDTH);
         _listViewer.getList().setLayoutData(data);
         _listViewer.getList().setFont(parent.getFont());
-        ArrayList<SwitchYardBindingType> typeList = new ArrayList<SwitchYardBindingType>();
-        getBindingTypes(typeList);
+
+        final ModelHandler mh = SwitchyardSCAEditor.getActiveEditor().getModelHandler();
+        List<Binding> typeList = mh.getSupportedBindingTypes();
         // Set the label provider
         _listViewer.setLabelProvider(new LabelProvider() {
             public String getText(Object element) {
-                SwitchYardBindingType interfaceType = (SwitchYardBindingType) element;
-                if (interfaceType instanceof SOAPBindingType) {
-                    return "SOAP";
-                } else {
-                    return "";
-                }
+                Binding binding = (Binding) element;
+                return mh.getLabelForBindingType(binding);
             }
         });
         _listViewer.setContentProvider(new IStructuredContentProvider() {
@@ -127,7 +124,7 @@ public class SCADiagramAddBindingStartPage extends WizardPage {
     /**
      * @return updated binding
      */
-    public SwitchYardBindingType getBinding() {
+    public Binding getBinding() {
         return this._binding;
     }
 
@@ -139,54 +136,9 @@ public class SCADiagramAddBindingStartPage extends WizardPage {
         String errorMessage = null;
         if (_binding == null) {
             errorMessage = "Please select a binding type.";
-        // String cpName = mBindingName.getText();
-        //
-        // if (cpName == null || cpName.trim().length() == 0) {
-        // errorMessage = "No name specified";
-        // }
-        // else if (cpName.trim().length() < cpName.length() ) {
-        // errorMessage = "No spaces allowed in name";
         }
         setErrorMessage(errorMessage);
         setPageComplete(errorMessage == null);
     }
-
-    private void getBindingTypes(List<SwitchYardBindingType> types) {
-        SwitchYardBindingType soapBindingType = SOAPFactory.eINSTANCE.createSOAPBindingType();
-        ((SOAPBindingType) soapBindingType).setWsdl("MyService.wsdl");
-        ((SOAPBindingType) soapBindingType).setSocketAddr(":18001");
-        types.add(soapBindingType);
-    }
-
-    // private void getImplementationTypes ( List<Implementation> types ) {
-    //
-    // Implementation beanImplementation =
-    // BeanFactory.eINSTANCE.createBeanImplementationType();
-    // types.add(beanImplementation);
-    //
-    // Implementation soapImplementation =
-    // SOAPFactory.eINSTANCE.createSOAPBindingType().eClass();
-    // types.add(soapImplementation);
-    //
-    // EClass implementationTypeEClass = null;
-    // EList<EClass> superTypes =
-    // BeanFactory.eINSTANCE.createBeanImplementationType().eClass().getEAllSuperTypes();
-    // for (EClass eClass : superTypes) {
-    // if (eClass.getName().contentEquals(Implementation.class.getSimpleName()))
-    // {
-    // implementationTypeEClass = eClass;
-    // break;
-    // }
-    // }
-    // for (EClassifier eclassifier :
-    // implementationTypeEClass.getEPackage().getEClassifiers() ) {
-    // if (eclassifier instanceof EClass) {
-    // EClass eclass = (EClass)eclassifier;
-    // if (eclass.getESuperTypes().contains(implementationTypeEClass)) {
-    // types.add(eclass);
-    // }
-    // }
-    // }
-    // }
 
 }

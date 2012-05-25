@@ -12,8 +12,6 @@
  ******************************************************************************/
 package org.switchyard.tools.ui.editor.property;
 
-import java.util.HashMap;
-
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.graphiti.mm.pictograms.PictogramElement;
 import org.eclipse.graphiti.services.Graphiti;
@@ -44,10 +42,10 @@ import org.eclipse.ui.forms.widgets.Section;
 import org.eclipse.ui.views.properties.tabbed.ITabbedPropertyConstants;
 import org.eclipse.ui.views.properties.tabbed.TabbedPropertySheetPage;
 import org.eclipse.ui.views.properties.tabbed.TabbedPropertySheetWidgetFactory;
-import org.switchyard.tools.models.switchyard1_0.soap.SOAPBindingType;
-import org.switchyard.tools.models.switchyard1_0.switchyard.SwitchYardBindingType;
+import org.switchyard.tools.ui.editor.core.ModelHandler;
 import org.switchyard.tools.ui.editor.diagram.shared.AbstractSwitchyardComposite;
 import org.switchyard.tools.ui.editor.diagram.shared.IBindingComposite;
+import org.switchyard.tools.ui.editor.impl.SwitchyardSCAEditor;
 import org.switchyard.tools.ui.editor.property.adapters.BindingCompositeAdapter;
 
 /**
@@ -58,8 +56,6 @@ public class SwitchyardSCAPropertiesBindingsSection extends GFPropertySection im
 
     private Binding _binding;
     private ListViewer _listViewer;
-//    private Composite _blank = null;
-    private HashMap<Binding, IBindingComposite> _modelComposites = null;
     private FormToolkit _toolkit = null;
     private SashForm _sashForm;
     private Section _tableSection;
@@ -68,13 +64,13 @@ public class SwitchyardSCAPropertiesBindingsSection extends GFPropertySection im
     private Button _addButton;
     private Button _removeButton;
     private Object _targetBO;
+    private ModelHandler _modelHandler = SwitchyardSCAEditor.getActiveEditor().getModelHandler();
 
     /**
      * Constructor.
      */
     public SwitchyardSCAPropertiesBindingsSection() {
         super();
-        _modelComposites = new HashMap<Binding, IBindingComposite>();
     }
 
     /*
@@ -95,51 +91,52 @@ public class SwitchyardSCAPropertiesBindingsSection extends GFPropertySection im
         _sashForm.setLayoutData(new GridData(SWT.FILL, SWT.TOP, true, false, 3, 1));
 
         _tableSection = _toolkit.createSection(_sashForm, ExpandableComposite.TITLE_BAR);
+        _tableSection.setLayout(new FillLayout());
         _tableSection.setText("Bindings List");
 
         _tableComposite = _toolkit.createComposite(_tableSection, SWT.NONE);
+        _tableComposite.setLayout(new FillLayout());
         _tableSection.setClient(_tableComposite);
         _tableComposite.setLayout(new GridLayout(3, false));
         createTableAndButtons(_tableComposite, SWT.NONE);
 
         _detailSection = _toolkit.createSection(_sashForm, ExpandableComposite.TITLE_BAR);
+        _detailSection.setLayout(new FillLayout());
         _detailSection.setExpanded(true);
         _detailSection.setText("Binding Details");
 
         _sashForm.setWeights(new int[]{25,75});
-//        _blank = getWidgetFactory().createFlatFormComposite(_detailSection);
-//        _blank.setLayout(new FillLayout());
     }
 
     private void handleSelectListItem() {
         if (_removeButton != null && !_removeButton.isDisposed()) {
             _removeButton.setEnabled(_binding != null);
         }
-        if (_binding != null && _binding instanceof SOAPBindingType) {
-            if (_modelComposites.get(_binding) == null) {
-                TabbedPropertySheetWidgetFactory factory = getWidgetFactory();
-
-                IBindingComposite composite = (IBindingComposite) BindingCompositeAdapter
-                        .adaptModelToComposite(_binding);
-                if (composite != null) {
-                    ((AbstractSwitchyardComposite) composite).setOpenOnCreate(true);
-                    ((AbstractSwitchyardComposite) composite).createContents(_detailSection, SWT.NONE);
-                    factory.adapt(((AbstractSwitchyardComposite) composite).getPanel());
-                    _modelComposites.put(_binding, composite);
+        if (_binding != null) {
+            TabbedPropertySheetWidgetFactory factory = getWidgetFactory();
+            IBindingComposite composite = (IBindingComposite) BindingCompositeAdapter
+                    .adaptModelToComposite(_binding);
+            if (composite != null) {
+                if (_detailSection.getClient() != null) {
+                    _detailSection.getClient().setVisible(false);
+                }
+                ((AbstractSwitchyardComposite) composite).setOpenOnCreate(true);
+                ((AbstractSwitchyardComposite) composite).createContents(_detailSection, SWT.NONE);
+                ((AbstractSwitchyardComposite) composite).setRootGridData(new GridData(SWT.FILL, SWT.FILL, true, true));
+                factory.adapt(((AbstractSwitchyardComposite) composite).getPanel());
+                composite.setBinding(_binding);
+                _detailSection.setClient(((AbstractSwitchyardComposite)composite).getPanel());
+                _detailSection.setExpanded(true);
+            } else {
+                if (_detailSection.getClient() != null) {
+                    _detailSection.getClient().setVisible(false);
                 }
             }
-            IBindingComposite composite = (IBindingComposite) _modelComposites.get(_binding);
-            if (composite != null) {
-                composite.setBinding(_binding);
-                _detailSection.setExpanded(true);
-                _detailSection.setClient(((AbstractSwitchyardComposite)composite).getPanel());
-            } else {
-                _detailSection.setExpanded(false);
-            }
         } else {
-            _detailSection.setExpanded(false);
+            if (_detailSection.getClient() != null) {
+                _detailSection.getClient().setVisible(false);
+            }
         }
-        _detailSection.layout();
     }
 
     @Override
@@ -205,12 +202,8 @@ public class SwitchyardSCAPropertiesBindingsSection extends GFPropertySection im
 
         _listViewer.setLabelProvider(new LabelProvider() {
             public String getText(Object element) {
-                SwitchYardBindingType interfaceType = (SwitchYardBindingType) element;
-                if (interfaceType instanceof SOAPBindingType) {
-                    return "SOAP";
-                } else {
-                    return "";
-                }
+                Binding binding = (Binding) element;
+                return _modelHandler.getLabelForBindingType(binding);
             }
         });
         _listViewer.setContentProvider(new IStructuredContentProvider() {
@@ -232,8 +225,8 @@ public class SwitchyardSCAPropertiesBindingsSection extends GFPropertySection im
             @Override
             public void selectionChanged(SelectionChangedEvent event) {
                 IStructuredSelection ssel = (IStructuredSelection) event.getSelection();
-                if (!ssel.isEmpty() && ssel.getFirstElement() instanceof SwitchYardBindingType) {
-                    _binding = (SwitchYardBindingType) ssel.getFirstElement();
+                if (!ssel.isEmpty() && ssel.getFirstElement() instanceof Binding) {
+                    _binding = (Binding) ssel.getFirstElement();
                     handleSelectListItem();
                 }
 
@@ -270,5 +263,4 @@ public class SwitchyardSCAPropertiesBindingsSection extends GFPropertySection im
              });
         }
     }
-
 }

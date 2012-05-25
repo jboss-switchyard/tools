@@ -12,10 +12,12 @@
  ******************************************************************************/
 package org.switchyard.tools.ui.editor.diagram.binding.wizards;
 
+import org.eclipse.emf.ecore.EObject;
 import org.eclipse.jface.wizard.IWizardPage;
 import org.eclipse.jface.wizard.Wizard;
+import org.eclipse.soa.sca.sca1_1.model.sca.Binding;
+import org.switchyard.tools.models.switchyard1_0.camel.CamelFileBindingType;
 import org.switchyard.tools.models.switchyard1_0.soap.SOAPBindingType;
-import org.switchyard.tools.models.switchyard1_0.switchyard.SwitchYardBindingType;
 
 /**
  * @author bfitzpat
@@ -25,12 +27,15 @@ public class SCADiagramAddBindingWizard extends Wizard {
 
     private SCADiagramAddBindingStartPage _startPage = null;
     private SCADiagramAddBindingSOAPPage _soapPage = null;
+    private SCADiagramAddBindingCamelFilePage _camelFilePage = null;
+    private EObject _parent;
 
     /**
-     * No-arg constructor.
+     * @param parent Parent object (Service or Reference)
      */
-    public SCADiagramAddBindingWizard() {
+    public SCADiagramAddBindingWizard(EObject parent) {
         super();
+        this._parent = parent;
         initPages();
         setWindowTitle("New Binding");
     }
@@ -38,6 +43,7 @@ public class SCADiagramAddBindingWizard extends Wizard {
     private void initPages() {
         _startPage = new SCADiagramAddBindingStartPage("start");
         _soapPage = new SCADiagramAddBindingSOAPPage(_startPage, "soap");
+        _camelFilePage = new SCADiagramAddBindingCamelFilePage(_startPage, "camelFile");
     }
 
     @Override
@@ -52,12 +58,13 @@ public class SCADiagramAddBindingWizard extends Wizard {
     public void addPages() {
         addPage(_startPage);
         addPage(_soapPage);
+        addPage(_camelFilePage);
     }
 
     /**
      * @return selected binding
      */
-    public SwitchYardBindingType getBinding() {
+    public Binding getBinding() {
         if (_startPage != null) {
             return _startPage.getBinding();
         }
@@ -67,12 +74,24 @@ public class SCADiagramAddBindingWizard extends Wizard {
     @Override
     public IWizardPage getNextPage(IWizardPage page) {
         if (page.equals(_startPage)) {
-            SwitchYardBindingType bindingToTest = _startPage.getBinding();
+            Binding bindingToTest = _startPage.getBinding();
             if (bindingToTest instanceof SOAPBindingType) {
                 _soapPage.refresh();
                 return _soapPage;
+            } else if (bindingToTest instanceof CamelFileBindingType) {
+                _camelFilePage.refresh();
+                return _camelFilePage;
+            } else {
+                return null;
             }
         }
         return super.getNextPage(page);
+    }
+    
+    /**
+     * @return parent EObject (Service or Reference)
+     */
+    public EObject getParentObject() {
+        return this._parent;
     }
 }
