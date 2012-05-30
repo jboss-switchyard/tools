@@ -661,6 +661,33 @@ public class SwitchyardPackageImpl extends EPackageImpl implements SwitchyardPac
 
 	/**
      * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public EAttribute getEsbInterface_InputType() {
+        return (EAttribute)esbInterfaceEClass.getEStructuralFeatures().get(0);
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public EAttribute getEsbInterface_OutputType() {
+        return (EAttribute)esbInterfaceEClass.getEStructuralFeatures().get(1);
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public EAttribute getEsbInterface_FaultType() {
+        return (EAttribute)esbInterfaceEClass.getEStructuralFeatures().get(2);
+    }
+
+    /**
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
      * @generated
      */
@@ -1044,6 +1071,9 @@ public class SwitchyardPackageImpl extends EPackageImpl implements SwitchyardPac
         createEAttribute(domainTypeEClass, DOMAIN_TYPE__NAME);
 
         esbInterfaceEClass = createEClass(ESB_INTERFACE);
+        createEAttribute(esbInterfaceEClass, ESB_INTERFACE__INPUT_TYPE);
+        createEAttribute(esbInterfaceEClass, ESB_INTERFACE__OUTPUT_TYPE);
+        createEAttribute(esbInterfaceEClass, ESB_INTERFACE__FAULT_TYPE);
 
         handlersTypeEClass = createEClass(HANDLERS_TYPE);
         createEReference(handlersTypeEClass, HANDLERS_TYPE__HANDLER);
@@ -1171,6 +1201,9 @@ public class SwitchyardPackageImpl extends EPackageImpl implements SwitchyardPac
         initEAttribute(getDomainType_Name(), theXMLTypePackage.getString(), "name", null, 0, 1, DomainType.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
         initEClass(esbInterfaceEClass, EsbInterface.class, "EsbInterface", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+        initEAttribute(getEsbInterface_InputType(), theXMLTypePackage.getString(), "inputType", null, 0, 1, EsbInterface.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+        initEAttribute(getEsbInterface_OutputType(), theXMLTypePackage.getString(), "outputType", null, 0, 1, EsbInterface.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+        initEAttribute(getEsbInterface_FaultType(), theXMLTypePackage.getString(), "faultType", null, 0, 1, EsbInterface.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
         initEClass(handlersTypeEClass, HandlersType.class, "HandlersType", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
         initEReference(getHandlersType_Handler(), this.getHandlerType(), null, "handler", null, 0, -1, HandlersType.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
@@ -1515,6 +1548,27 @@ public class SwitchyardPackageImpl extends EPackageImpl implements SwitchyardPac
            new String[] {
              "name", "EsbInterface",
              "kind", "empty"
+           });		
+        addAnnotation
+          (getEsbInterface_InputType(), 
+           source, 
+           new String[] {
+             "kind", "attribute",
+             "name", "inputType"
+           });		
+        addAnnotation
+          (getEsbInterface_OutputType(), 
+           source, 
+           new String[] {
+             "kind", "attribute",
+             "name", "outputType"
+           });		
+        addAnnotation
+          (getEsbInterface_FaultType(), 
+           source, 
+           new String[] {
+             "kind", "attribute",
+             "name", "faultType"
            });		
         addAnnotation
           (handlersTypeEClass, 

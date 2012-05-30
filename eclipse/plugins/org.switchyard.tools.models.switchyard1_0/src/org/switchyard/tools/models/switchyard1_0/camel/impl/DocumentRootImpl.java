@@ -32,6 +32,8 @@ import org.switchyard.tools.models.switchyard1_0.camel.CamelFtpsBindingType;
 import org.switchyard.tools.models.switchyard1_0.camel.CamelImplementationType;
 import org.switchyard.tools.models.switchyard1_0.camel.CamelJmsBindingType;
 import org.switchyard.tools.models.switchyard1_0.camel.CamelMockBindingType;
+import org.switchyard.tools.models.switchyard1_0.camel.CamelNettyTcpBindingType;
+import org.switchyard.tools.models.switchyard1_0.camel.CamelNettyUdpBindingType;
 import org.switchyard.tools.models.switchyard1_0.camel.CamelPackage;
 import org.switchyard.tools.models.switchyard1_0.camel.CamelSedaBindingType;
 import org.switchyard.tools.models.switchyard1_0.camel.CamelSftpBindingType;
@@ -60,6 +62,8 @@ import org.switchyard.tools.models.switchyard1_0.camel.DocumentRoot;
  *   <li>{@link org.switchyard.tools.models.switchyard1_0.camel.impl.DocumentRootImpl#getBindingSftp <em>Binding Sftp</em>}</li>
  *   <li>{@link org.switchyard.tools.models.switchyard1_0.camel.impl.DocumentRootImpl#getBindingTimer <em>Binding Timer</em>}</li>
  *   <li>{@link org.switchyard.tools.models.switchyard1_0.camel.impl.DocumentRootImpl#getImplementationCamel <em>Implementation Camel</em>}</li>
+ *   <li>{@link org.switchyard.tools.models.switchyard1_0.camel.impl.DocumentRootImpl#getBindingNettyUDP <em>Binding Netty UDP</em>}</li>
+ *   <li>{@link org.switchyard.tools.models.switchyard1_0.camel.impl.DocumentRootImpl#getBindingNettyTCP <em>Binding Netty TCP</em>}</li>
  * </ul>
  * </p>
  *
@@ -477,6 +481,60 @@ public class DocumentRootImpl extends EObjectImpl implements DocumentRoot {
 
 	/**
      * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public CamelNettyUdpBindingType getBindingNettyUDP() {
+        return (CamelNettyUdpBindingType)getMixed().get(CamelPackage.Literals.DOCUMENT_ROOT__BINDING_NETTY_UDP, true);
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public NotificationChain basicSetBindingNettyUDP(CamelNettyUdpBindingType newBindingNettyUDP, NotificationChain msgs) {
+        return ((FeatureMap.Internal)getMixed()).basicAdd(CamelPackage.Literals.DOCUMENT_ROOT__BINDING_NETTY_UDP, newBindingNettyUDP, msgs);
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public void setBindingNettyUDP(CamelNettyUdpBindingType newBindingNettyUDP) {
+        ((FeatureMap.Internal)getMixed()).set(CamelPackage.Literals.DOCUMENT_ROOT__BINDING_NETTY_UDP, newBindingNettyUDP);
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public CamelNettyTcpBindingType getBindingNettyTCP() {
+        return (CamelNettyTcpBindingType)getMixed().get(CamelPackage.Literals.DOCUMENT_ROOT__BINDING_NETTY_TCP, true);
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public NotificationChain basicSetBindingNettyTCP(CamelNettyTcpBindingType newBindingNettyTCP, NotificationChain msgs) {
+        return ((FeatureMap.Internal)getMixed()).basicAdd(CamelPackage.Literals.DOCUMENT_ROOT__BINDING_NETTY_TCP, newBindingNettyTCP, msgs);
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public void setBindingNettyTCP(CamelNettyTcpBindingType newBindingNettyTCP) {
+        ((FeatureMap.Internal)getMixed()).set(CamelPackage.Literals.DOCUMENT_ROOT__BINDING_NETTY_TCP, newBindingNettyTCP);
+    }
+
+    /**
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
      * @generated
      */
@@ -513,6 +571,10 @@ public class DocumentRootImpl extends EObjectImpl implements DocumentRoot {
                 return basicSetBindingTimer(null, msgs);
             case CamelPackage.DOCUMENT_ROOT__IMPLEMENTATION_CAMEL:
                 return basicSetImplementationCamel(null, msgs);
+            case CamelPackage.DOCUMENT_ROOT__BINDING_NETTY_UDP:
+                return basicSetBindingNettyUDP(null, msgs);
+            case CamelPackage.DOCUMENT_ROOT__BINDING_NETTY_TCP:
+                return basicSetBindingNettyTCP(null, msgs);
         }
         return super.eInverseRemove(otherEnd, featureID, msgs);
     }
@@ -558,6 +620,10 @@ public class DocumentRootImpl extends EObjectImpl implements DocumentRoot {
                 return getBindingTimer();
             case CamelPackage.DOCUMENT_ROOT__IMPLEMENTATION_CAMEL:
                 return getImplementationCamel();
+            case CamelPackage.DOCUMENT_ROOT__BINDING_NETTY_UDP:
+                return getBindingNettyUDP();
+            case CamelPackage.DOCUMENT_ROOT__BINDING_NETTY_TCP:
+                return getBindingNettyTCP();
         }
         return super.eGet(featureID, resolve, coreType);
     }
@@ -614,6 +680,12 @@ public class DocumentRootImpl extends EObjectImpl implements DocumentRoot {
                 return;
             case CamelPackage.DOCUMENT_ROOT__IMPLEMENTATION_CAMEL:
                 setImplementationCamel((CamelImplementationType)newValue);
+                return;
+            case CamelPackage.DOCUMENT_ROOT__BINDING_NETTY_UDP:
+                setBindingNettyUDP((CamelNettyUdpBindingType)newValue);
+                return;
+            case CamelPackage.DOCUMENT_ROOT__BINDING_NETTY_TCP:
+                setBindingNettyTCP((CamelNettyTcpBindingType)newValue);
                 return;
         }
         super.eSet(featureID, newValue);
@@ -672,6 +744,12 @@ public class DocumentRootImpl extends EObjectImpl implements DocumentRoot {
             case CamelPackage.DOCUMENT_ROOT__IMPLEMENTATION_CAMEL:
                 setImplementationCamel((CamelImplementationType)null);
                 return;
+            case CamelPackage.DOCUMENT_ROOT__BINDING_NETTY_UDP:
+                setBindingNettyUDP((CamelNettyUdpBindingType)null);
+                return;
+            case CamelPackage.DOCUMENT_ROOT__BINDING_NETTY_TCP:
+                setBindingNettyTCP((CamelNettyTcpBindingType)null);
+                return;
         }
         super.eUnset(featureID);
     }
@@ -714,6 +792,10 @@ public class DocumentRootImpl extends EObjectImpl implements DocumentRoot {
                 return getBindingTimer() != null;
             case CamelPackage.DOCUMENT_ROOT__IMPLEMENTATION_CAMEL:
                 return getImplementationCamel() != null;
+            case CamelPackage.DOCUMENT_ROOT__BINDING_NETTY_UDP:
+                return getBindingNettyUDP() != null;
+            case CamelPackage.DOCUMENT_ROOT__BINDING_NETTY_TCP:
+                return getBindingNettyTCP() != null;
         }
         return super.eIsSet(featureID);
     }

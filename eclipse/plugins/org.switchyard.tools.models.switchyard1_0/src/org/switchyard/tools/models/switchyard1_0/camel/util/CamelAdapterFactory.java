@@ -115,6 +115,18 @@ public class CamelAdapterFactory extends AdapterFactoryImpl {
                 return createCamelJmsBindingTypeAdapter();
             }
             @Override
+            public Adapter caseCamelNettyBindingType(CamelNettyBindingType object) {
+                return createCamelNettyBindingTypeAdapter();
+            }
+            @Override
+            public Adapter caseCamelNettyUdpBindingType(CamelNettyUdpBindingType object) {
+                return createCamelNettyUdpBindingTypeAdapter();
+            }
+            @Override
+            public Adapter caseCamelNettyTcpBindingType(CamelNettyTcpBindingType object) {
+                return createCamelNettyTcpBindingTypeAdapter();
+            }
+            @Override
             public Adapter caseCamelMockBindingType(CamelMockBindingType object) {
                 return createCamelMockBindingTypeAdapter();
             }
@@ -349,6 +361,48 @@ public class CamelAdapterFactory extends AdapterFactoryImpl {
      * @generated
      */
     public Adapter createCamelJmsBindingTypeAdapter() {
+        return null;
+    }
+
+    /**
+     * Creates a new adapter for an object of class '{@link org.switchyard.tools.models.switchyard1_0.camel.CamelNettyBindingType <em>Netty Binding Type</em>}'.
+     * <!-- begin-user-doc -->
+     * This default implementation returns null so that we can easily ignore cases;
+     * it's useful to ignore a case when inheritance will catch all the cases anyway.
+     * <!-- end-user-doc -->
+     * @return the new adapter.
+     * @see org.switchyard.tools.models.switchyard1_0.camel.CamelNettyBindingType
+     * @generated
+     */
+    public Adapter createCamelNettyBindingTypeAdapter() {
+        return null;
+    }
+
+    /**
+     * Creates a new adapter for an object of class '{@link org.switchyard.tools.models.switchyard1_0.camel.CamelNettyUdpBindingType <em>Netty Udp Binding Type</em>}'.
+     * <!-- begin-user-doc -->
+     * This default implementation returns null so that we can easily ignore cases;
+     * it's useful to ignore a case when inheritance will catch all the cases anyway.
+     * <!-- end-user-doc -->
+     * @return the new adapter.
+     * @see org.switchyard.tools.models.switchyard1_0.camel.CamelNettyUdpBindingType
+     * @generated
+     */
+    public Adapter createCamelNettyUdpBindingTypeAdapter() {
+        return null;
+    }
+
+    /**
+     * Creates a new adapter for an object of class '{@link org.switchyard.tools.models.switchyard1_0.camel.CamelNettyTcpBindingType <em>Netty Tcp Binding Type</em>}'.
+     * <!-- begin-user-doc -->
+     * This default implementation returns null so that we can easily ignore cases;
+     * it's useful to ignore a case when inheritance will catch all the cases anyway.
+     * <!-- end-user-doc -->
+     * @return the new adapter.
+     * @see org.switchyard.tools.models.switchyard1_0.camel.CamelNettyTcpBindingType
+     * @generated
+     */
+    public Adapter createCamelNettyTcpBindingTypeAdapter() {
         return null;
     }
 

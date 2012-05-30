@@ -107,6 +107,33 @@ public interface CamelFactory extends EFactory {
     CamelJmsBindingType createCamelJmsBindingType();
 
     /**
+     * Returns a new object of class '<em>Netty Binding Type</em>'.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @return a new object of class '<em>Netty Binding Type</em>'.
+     * @generated
+     */
+    CamelNettyBindingType createCamelNettyBindingType();
+
+    /**
+     * Returns a new object of class '<em>Netty Udp Binding Type</em>'.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @return a new object of class '<em>Netty Udp Binding Type</em>'.
+     * @generated
+     */
+    CamelNettyUdpBindingType createCamelNettyUdpBindingType();
+
+    /**
+     * Returns a new object of class '<em>Netty Tcp Binding Type</em>'.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @return a new object of class '<em>Netty Tcp Binding Type</em>'.
+     * @generated
+     */
+    CamelNettyTcpBindingType createCamelNettyTcpBindingType();
+
+    /**
      * Returns a new object of class '<em>Mock Binding Type</em>'.
      * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->

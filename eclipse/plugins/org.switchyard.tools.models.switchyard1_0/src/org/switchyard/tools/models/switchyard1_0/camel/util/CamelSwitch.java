@@ -169,6 +169,38 @@ public class CamelSwitch<T> extends Switch<T> {
                 if (result == null) result = defaultCase(theEObject);
                 return result;
             }
+            case CamelPackage.CAMEL_NETTY_BINDING_TYPE: {
+                CamelNettyBindingType camelNettyBindingType = (CamelNettyBindingType)theEObject;
+                T result = caseCamelNettyBindingType(camelNettyBindingType);
+                if (result == null) result = caseBaseCamelBinding(camelNettyBindingType);
+                if (result == null) result = caseSwitchYardBindingType(camelNettyBindingType);
+                if (result == null) result = caseBinding(camelNettyBindingType);
+                if (result == null) result = caseCommonExtensionBase(camelNettyBindingType);
+                if (result == null) result = defaultCase(theEObject);
+                return result;
+            }
+            case CamelPackage.CAMEL_NETTY_UDP_BINDING_TYPE: {
+                CamelNettyUdpBindingType camelNettyUdpBindingType = (CamelNettyUdpBindingType)theEObject;
+                T result = caseCamelNettyUdpBindingType(camelNettyUdpBindingType);
+                if (result == null) result = caseCamelNettyBindingType(camelNettyUdpBindingType);
+                if (result == null) result = caseBaseCamelBinding(camelNettyUdpBindingType);
+                if (result == null) result = caseSwitchYardBindingType(camelNettyUdpBindingType);
+                if (result == null) result = caseBinding(camelNettyUdpBindingType);
+                if (result == null) result = caseCommonExtensionBase(camelNettyUdpBindingType);
+                if (result == null) result = defaultCase(theEObject);
+                return result;
+            }
+            case CamelPackage.CAMEL_NETTY_TCP_BINDING_TYPE: {
+                CamelNettyTcpBindingType camelNettyTcpBindingType = (CamelNettyTcpBindingType)theEObject;
+                T result = caseCamelNettyTcpBindingType(camelNettyTcpBindingType);
+                if (result == null) result = caseCamelNettyBindingType(camelNettyTcpBindingType);
+                if (result == null) result = caseBaseCamelBinding(camelNettyTcpBindingType);
+                if (result == null) result = caseSwitchYardBindingType(camelNettyTcpBindingType);
+                if (result == null) result = caseBinding(camelNettyTcpBindingType);
+                if (result == null) result = caseCommonExtensionBase(camelNettyTcpBindingType);
+                if (result == null) result = defaultCase(theEObject);
+                return result;
+            }
             case CamelPackage.CAMEL_MOCK_BINDING_TYPE: {
                 CamelMockBindingType camelMockBindingType = (CamelMockBindingType)theEObject;
                 T result = caseCamelMockBindingType(camelMockBindingType);
@@ -449,6 +481,51 @@ public class CamelSwitch<T> extends Switch<T> {
      * @generated
      */
     public T caseCamelJmsBindingType(CamelJmsBindingType object) {
+        return null;
+    }
+
+    /**
+     * Returns the result of interpreting the object as an instance of '<em>Netty Binding Type</em>'.
+     * <!-- begin-user-doc -->
+     * This implementation returns null;
+     * returning a non-null result will terminate the switch.
+     * <!-- end-user-doc -->
+     * @param object the target of the switch.
+     * @return the result of interpreting the object as an instance of '<em>Netty Binding Type</em>'.
+     * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+     * @generated
+     */
+    public T caseCamelNettyBindingType(CamelNettyBindingType object) {
+        return null;
+    }
+
+    /**
+     * Returns the result of interpreting the object as an instance of '<em>Netty Udp Binding Type</em>'.
+     * <!-- begin-user-doc -->
+     * This implementation returns null;
+     * returning a non-null result will terminate the switch.
+     * <!-- end-user-doc -->
+     * @param object the target of the switch.
+     * @return the result of interpreting the object as an instance of '<em>Netty Udp Binding Type</em>'.
+     * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+     * @generated
+     */
+    public T caseCamelNettyUdpBindingType(CamelNettyUdpBindingType object) {
+        return null;
+    }
+
+    /**
+     * Returns the result of interpreting the object as an instance of '<em>Netty Tcp Binding Type</em>'.
+     * <!-- begin-user-doc -->
+     * This implementation returns null;
+     * returning a non-null result will terminate the switch.
+     * <!-- end-user-doc -->
+     * @param object the target of the switch.
+     * @return the result of interpreting the object as an instance of '<em>Netty Tcp Binding Type</em>'.
+     * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+     * @generated
+     */
+    public T caseCamelNettyTcpBindingType(CamelNettyTcpBindingType object) {
         return null;
     }
 

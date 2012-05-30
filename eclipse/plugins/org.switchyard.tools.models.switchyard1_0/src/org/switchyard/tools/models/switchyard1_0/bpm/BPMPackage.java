@@ -339,13 +339,22 @@ public interface BPMPackage extends EPackage {
     int BPM_IMPLEMENTATION_TYPE__MESSAGE_CONTENT_OUT_NAME = CommonRulesPackage.COMMON_IMPLEMENTATION_TYPE_FEATURE_COUNT + 10;
 
     /**
+     * The feature id for the '<em><b>Persistent</b></em>' attribute.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int BPM_IMPLEMENTATION_TYPE__PERSISTENT = CommonRulesPackage.COMMON_IMPLEMENTATION_TYPE_FEATURE_COUNT + 11;
+
+    /**
      * The number of structural features of the '<em>Implementation Type</em>' class.
      * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
      * @generated
      * @ordered
      */
-	int BPM_IMPLEMENTATION_TYPE_FEATURE_COUNT = CommonRulesPackage.COMMON_IMPLEMENTATION_TYPE_FEATURE_COUNT + 11;
+	int BPM_IMPLEMENTATION_TYPE_FEATURE_COUNT = CommonRulesPackage.COMMON_IMPLEMENTATION_TYPE_FEATURE_COUNT + 12;
 
 	/**
      * The meta object id for the '{@link org.switchyard.tools.models.switchyard1_0.bpm.impl.DocumentRootImpl <em>Document Root</em>}' class.
@@ -874,6 +883,17 @@ public interface BPMPackage extends EPackage {
     EAttribute getBPMImplementationType_MessageContentOutName();
 
     /**
+     * Returns the meta object for the attribute '{@link org.switchyard.tools.models.switchyard1_0.bpm.BPMImplementationType#isPersistent <em>Persistent</em>}'.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @return the meta object for the attribute '<em>Persistent</em>'.
+     * @see org.switchyard.tools.models.switchyard1_0.bpm.BPMImplementationType#isPersistent()
+     * @see #getBPMImplementationType()
+     * @generated
+     */
+    EAttribute getBPMImplementationType_Persistent();
+
+    /**
      * Returns the meta object for class '{@link org.switchyard.tools.models.switchyard1_0.bpm.DocumentRoot <em>Document Root</em>}'.
      * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -1283,6 +1303,14 @@ public interface BPMPackage extends EPackage {
          * @generated
          */
         EAttribute BPM_IMPLEMENTATION_TYPE__MESSAGE_CONTENT_OUT_NAME = eINSTANCE.getBPMImplementationType_MessageContentOutName();
+
+        /**
+         * The meta object literal for the '<em><b>Persistent</b></em>' attribute feature.
+         * <!-- begin-user-doc -->
+         * <!-- end-user-doc -->
+         * @generated
+         */
+        EAttribute BPM_IMPLEMENTATION_TYPE__PERSISTENT = eINSTANCE.getBPMImplementationType_Persistent();
 
         /**
          * The meta object literal for the '{@link org.switchyard.tools.models.switchyard1_0.bpm.impl.DocumentRootImpl <em>Document Root</em>}' class.

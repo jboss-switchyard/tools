@@ -49,6 +49,7 @@ import org.switchyard.tools.models.switchyard1_0.commonrules.impl.CommonImplemen
  *   <li>{@link org.switchyard.tools.models.switchyard1_0.bpm.impl.BPMImplementationTypeImpl#getProcessId <em>Process Id</em>}</li>
  *   <li>{@link org.switchyard.tools.models.switchyard1_0.bpm.impl.BPMImplementationTypeImpl#getMessageContentInName <em>Message Content In Name</em>}</li>
  *   <li>{@link org.switchyard.tools.models.switchyard1_0.bpm.impl.BPMImplementationTypeImpl#getMessageContentOutName <em>Message Content Out Name</em>}</li>
+ *   <li>{@link org.switchyard.tools.models.switchyard1_0.bpm.impl.BPMImplementationTypeImpl#isPersistent <em>Persistent</em>}</li>
  * </ul>
  * </p>
  *
@@ -214,6 +215,26 @@ public class BPMImplementationTypeImpl extends CommonImplementationTypeImpl impl
      * @ordered
      */
     protected String messageContentOutName = MESSAGE_CONTENT_OUT_NAME_EDEFAULT;
+
+    /**
+     * The default value of the '{@link #isPersistent() <em>Persistent</em>}' attribute.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @see #isPersistent()
+     * @generated
+     * @ordered
+     */
+    protected static final boolean PERSISTENT_EDEFAULT = false;
+
+    /**
+     * The cached value of the '{@link #isPersistent() <em>Persistent</em>}' attribute.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @see #isPersistent()
+     * @generated
+     * @ordered
+     */
+    protected boolean persistent = PERSISTENT_EDEFAULT;
 
     /**
      * <!-- begin-user-doc -->
@@ -506,6 +527,27 @@ public class BPMImplementationTypeImpl extends CommonImplementationTypeImpl impl
 
     /**
      * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public boolean isPersistent() {
+        return persistent;
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public void setPersistent(boolean newPersistent) {
+        boolean oldPersistent = persistent;
+        persistent = newPersistent;
+        if (eNotificationRequired())
+            eNotify(new ENotificationImpl(this, Notification.SET, BPMPackage.BPM_IMPLEMENTATION_TYPE__PERSISTENT, oldPersistent, persistent));
+    }
+
+    /**
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
      * @generated
      */
@@ -558,6 +600,8 @@ public class BPMImplementationTypeImpl extends CommonImplementationTypeImpl impl
                 return getMessageContentInName();
             case BPMPackage.BPM_IMPLEMENTATION_TYPE__MESSAGE_CONTENT_OUT_NAME:
                 return getMessageContentOutName();
+            case BPMPackage.BPM_IMPLEMENTATION_TYPE__PERSISTENT:
+                return isPersistent();
         }
         return super.eGet(featureID, resolve, coreType);
     }
@@ -607,6 +651,9 @@ public class BPMImplementationTypeImpl extends CommonImplementationTypeImpl impl
             case BPMPackage.BPM_IMPLEMENTATION_TYPE__MESSAGE_CONTENT_OUT_NAME:
                 setMessageContentOutName((String)newValue);
                 return;
+            case BPMPackage.BPM_IMPLEMENTATION_TYPE__PERSISTENT:
+                setPersistent((Boolean)newValue);
+                return;
         }
         super.eSet(featureID, newValue);
     }
@@ -652,6 +699,9 @@ public class BPMImplementationTypeImpl extends CommonImplementationTypeImpl impl
             case BPMPackage.BPM_IMPLEMENTATION_TYPE__MESSAGE_CONTENT_OUT_NAME:
                 setMessageContentOutName(MESSAGE_CONTENT_OUT_NAME_EDEFAULT);
                 return;
+            case BPMPackage.BPM_IMPLEMENTATION_TYPE__PERSISTENT:
+                setPersistent(PERSISTENT_EDEFAULT);
+                return;
         }
         super.eUnset(featureID);
     }
@@ -686,6 +736,8 @@ public class BPMImplementationTypeImpl extends CommonImplementationTypeImpl impl
                 return MESSAGE_CONTENT_IN_NAME_EDEFAULT == null ? messageContentInName != null : !MESSAGE_CONTENT_IN_NAME_EDEFAULT.equals(messageContentInName);
             case BPMPackage.BPM_IMPLEMENTATION_TYPE__MESSAGE_CONTENT_OUT_NAME:
                 return MESSAGE_CONTENT_OUT_NAME_EDEFAULT == null ? messageContentOutName != null : !MESSAGE_CONTENT_OUT_NAME_EDEFAULT.equals(messageContentOutName);
+            case BPMPackage.BPM_IMPLEMENTATION_TYPE__PERSISTENT:
+                return persistent != PERSISTENT_EDEFAULT;
         }
         return super.eIsSet(featureID);
     }
@@ -710,6 +762,8 @@ public class BPMImplementationTypeImpl extends CommonImplementationTypeImpl impl
         result.append(messageContentInName);
         result.append(", messageContentOutName: ");
         result.append(messageContentOutName);
+        result.append(", persistent: ");
+        result.append(persistent);
         result.append(')');
         return result.toString();
     }

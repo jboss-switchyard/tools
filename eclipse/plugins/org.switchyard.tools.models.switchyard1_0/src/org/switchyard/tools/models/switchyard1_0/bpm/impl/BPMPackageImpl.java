@@ -425,6 +425,15 @@ public class BPMPackageImpl extends EPackageImpl implements BPMPackage {
 
     /**
      * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public EAttribute getBPMImplementationType_Persistent() {
+        return (EAttribute)bpmImplementationTypeEClass.getEStructuralFeatures().get(11);
+    }
+
+    /**
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
      * @generated
      */
@@ -677,6 +686,7 @@ public class BPMPackageImpl extends EPackageImpl implements BPMPackage {
         createEAttribute(bpmImplementationTypeEClass, BPM_IMPLEMENTATION_TYPE__PROCESS_ID);
         createEAttribute(bpmImplementationTypeEClass, BPM_IMPLEMENTATION_TYPE__MESSAGE_CONTENT_IN_NAME);
         createEAttribute(bpmImplementationTypeEClass, BPM_IMPLEMENTATION_TYPE__MESSAGE_CONTENT_OUT_NAME);
+        createEAttribute(bpmImplementationTypeEClass, BPM_IMPLEMENTATION_TYPE__PERSISTENT);
 
         documentRootEClass = createEClass(DOCUMENT_ROOT);
         createEAttribute(documentRootEClass, DOCUMENT_ROOT__MIXED);
@@ -775,6 +785,7 @@ public class BPMPackageImpl extends EPackageImpl implements BPMPackage {
         initEAttribute(getBPMImplementationType_ProcessId(), theXMLTypePackage.getString(), "processId", null, 1, 1, BPMImplementationType.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
         initEAttribute(getBPMImplementationType_MessageContentInName(), theXMLTypePackage.getString(), "messageContentInName", null, 0, 1, BPMImplementationType.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
         initEAttribute(getBPMImplementationType_MessageContentOutName(), theXMLTypePackage.getString(), "messageContentOutName", null, 0, 1, BPMImplementationType.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+        initEAttribute(getBPMImplementationType_Persistent(), theXMLTypePackage.getBoolean(), "persistent", "false", 0, 1, BPMImplementationType.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
         initEClass(documentRootEClass, DocumentRoot.class, "DocumentRoot", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
         initEAttribute(getDocumentRoot_Mixed(), ecorePackage.getEFeatureMapEntry(), "mixed", null, 0, -1, null, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
@@ -964,6 +975,13 @@ public class BPMPackageImpl extends EPackageImpl implements BPMPackage {
            source, 
            new String[] {
              "name", "messageContentOutName",
+             "kind", "attribute"
+           });		
+        addAnnotation
+          (getBPMImplementationType_Persistent(), 
+           source, 
+           new String[] {
+             "name", "persistent",
              "kind", "attribute"
            });		
         addAnnotation

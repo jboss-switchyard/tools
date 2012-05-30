@@ -60,6 +60,9 @@ import org.switchyard.tools.models.switchyard1_0.camel.CamelFtpsBindingType;
 import org.switchyard.tools.models.switchyard1_0.camel.CamelImplementationType;
 import org.switchyard.tools.models.switchyard1_0.camel.CamelJmsBindingType;
 import org.switchyard.tools.models.switchyard1_0.camel.CamelMockBindingType;
+import org.switchyard.tools.models.switchyard1_0.camel.CamelNettyBindingType;
+import org.switchyard.tools.models.switchyard1_0.camel.CamelNettyTcpBindingType;
+import org.switchyard.tools.models.switchyard1_0.camel.CamelNettyUdpBindingType;
 import org.switchyard.tools.models.switchyard1_0.camel.CamelOperationSelectorType;
 import org.switchyard.tools.models.switchyard1_0.camel.CamelPackage;
 import org.switchyard.tools.models.switchyard1_0.camel.CamelRemoteBindingType;
@@ -167,6 +170,27 @@ public class CamelPackageImpl extends EPackageImpl implements CamelPackage {
      * @generated
      */
     private EClass camelJmsBindingTypeEClass = null;
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    private EClass camelNettyBindingTypeEClass = null;
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    private EClass camelNettyUdpBindingTypeEClass = null;
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    private EClass camelNettyTcpBindingTypeEClass = null;
 
     /**
      * <!-- begin-user-doc -->
@@ -948,6 +972,168 @@ public class CamelPackageImpl extends EPackageImpl implements CamelPackage {
 
     /**
      * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public EClass getCamelNettyBindingType() {
+        return camelNettyBindingTypeEClass;
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public EAttribute getCamelNettyBindingType_Host() {
+        return (EAttribute)camelNettyBindingTypeEClass.getEStructuralFeatures().get(0);
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public EAttribute getCamelNettyBindingType_Port() {
+        return (EAttribute)camelNettyBindingTypeEClass.getEStructuralFeatures().get(1);
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public EAttribute getCamelNettyBindingType_ReceiveBufferSize() {
+        return (EAttribute)camelNettyBindingTypeEClass.getEStructuralFeatures().get(2);
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public EAttribute getCamelNettyBindingType_SendBufferSize() {
+        return (EAttribute)camelNettyBindingTypeEClass.getEStructuralFeatures().get(3);
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public EAttribute getCamelNettyBindingType_ReuseAddress() {
+        return (EAttribute)camelNettyBindingTypeEClass.getEStructuralFeatures().get(4);
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public EAttribute getCamelNettyBindingType_Encoders() {
+        return (EAttribute)camelNettyBindingTypeEClass.getEStructuralFeatures().get(5);
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public EAttribute getCamelNettyBindingType_Decoders() {
+        return (EAttribute)camelNettyBindingTypeEClass.getEStructuralFeatures().get(6);
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public EAttribute getCamelNettyBindingType_AllowDefaultCodec() {
+        return (EAttribute)camelNettyBindingTypeEClass.getEStructuralFeatures().get(7);
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public EAttribute getCamelNettyBindingType_WorkerCount() {
+        return (EAttribute)camelNettyBindingTypeEClass.getEStructuralFeatures().get(8);
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public EAttribute getCamelNettyBindingType_Sync() {
+        return (EAttribute)camelNettyBindingTypeEClass.getEStructuralFeatures().get(9);
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public EAttribute getCamelNettyBindingType_Disconnect() {
+        return (EAttribute)camelNettyBindingTypeEClass.getEStructuralFeatures().get(10);
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public EClass getCamelNettyUdpBindingType() {
+        return camelNettyUdpBindingTypeEClass;
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public EAttribute getCamelNettyUdpBindingType_Broadcast() {
+        return (EAttribute)camelNettyUdpBindingTypeEClass.getEStructuralFeatures().get(0);
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public EClass getCamelNettyTcpBindingType() {
+        return camelNettyTcpBindingTypeEClass;
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public EAttribute getCamelNettyTcpBindingType_Textline() {
+        return (EAttribute)camelNettyTcpBindingTypeEClass.getEStructuralFeatures().get(0);
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public EAttribute getCamelNettyTcpBindingType_TcpNoDelay() {
+        return (EAttribute)camelNettyTcpBindingTypeEClass.getEStructuralFeatures().get(1);
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public EAttribute getCamelNettyTcpBindingType_KeepAlive() {
+        return (EAttribute)camelNettyTcpBindingTypeEClass.getEStructuralFeatures().get(2);
+    }
+
+    /**
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
      * @generated
      */
@@ -1379,6 +1565,24 @@ public class CamelPackageImpl extends EPackageImpl implements CamelPackage {
     }
 
 	/**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public EReference getDocumentRoot_BindingNettyUDP() {
+        return (EReference)documentRootEClass.getEStructuralFeatures().get(15);
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public EReference getDocumentRoot_BindingNettyTCP() {
+        return (EReference)documentRootEClass.getEStructuralFeatures().get(16);
+    }
+
+    /**
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @generated
@@ -2104,6 +2308,27 @@ public class CamelPackageImpl extends EPackageImpl implements CamelPackage {
         createEAttribute(camelJmsBindingTypeEClass, CAMEL_JMS_BINDING_TYPE__TRANSACTED);
         createEAttribute(camelJmsBindingTypeEClass, CAMEL_JMS_BINDING_TYPE__TRANSACTION_MANAGER);
 
+        camelNettyBindingTypeEClass = createEClass(CAMEL_NETTY_BINDING_TYPE);
+        createEAttribute(camelNettyBindingTypeEClass, CAMEL_NETTY_BINDING_TYPE__HOST);
+        createEAttribute(camelNettyBindingTypeEClass, CAMEL_NETTY_BINDING_TYPE__PORT);
+        createEAttribute(camelNettyBindingTypeEClass, CAMEL_NETTY_BINDING_TYPE__RECEIVE_BUFFER_SIZE);
+        createEAttribute(camelNettyBindingTypeEClass, CAMEL_NETTY_BINDING_TYPE__SEND_BUFFER_SIZE);
+        createEAttribute(camelNettyBindingTypeEClass, CAMEL_NETTY_BINDING_TYPE__REUSE_ADDRESS);
+        createEAttribute(camelNettyBindingTypeEClass, CAMEL_NETTY_BINDING_TYPE__ENCODERS);
+        createEAttribute(camelNettyBindingTypeEClass, CAMEL_NETTY_BINDING_TYPE__DECODERS);
+        createEAttribute(camelNettyBindingTypeEClass, CAMEL_NETTY_BINDING_TYPE__ALLOW_DEFAULT_CODEC);
+        createEAttribute(camelNettyBindingTypeEClass, CAMEL_NETTY_BINDING_TYPE__WORKER_COUNT);
+        createEAttribute(camelNettyBindingTypeEClass, CAMEL_NETTY_BINDING_TYPE__SYNC);
+        createEAttribute(camelNettyBindingTypeEClass, CAMEL_NETTY_BINDING_TYPE__DISCONNECT);
+
+        camelNettyUdpBindingTypeEClass = createEClass(CAMEL_NETTY_UDP_BINDING_TYPE);
+        createEAttribute(camelNettyUdpBindingTypeEClass, CAMEL_NETTY_UDP_BINDING_TYPE__BROADCAST);
+
+        camelNettyTcpBindingTypeEClass = createEClass(CAMEL_NETTY_TCP_BINDING_TYPE);
+        createEAttribute(camelNettyTcpBindingTypeEClass, CAMEL_NETTY_TCP_BINDING_TYPE__TEXTLINE);
+        createEAttribute(camelNettyTcpBindingTypeEClass, CAMEL_NETTY_TCP_BINDING_TYPE__TCP_NO_DELAY);
+        createEAttribute(camelNettyTcpBindingTypeEClass, CAMEL_NETTY_TCP_BINDING_TYPE__KEEP_ALIVE);
+
         camelMockBindingTypeEClass = createEClass(CAMEL_MOCK_BINDING_TYPE);
         createEReference(camelMockBindingTypeEClass, CAMEL_MOCK_BINDING_TYPE__CONTEXT_MAPPER);
         createEReference(camelMockBindingTypeEClass, CAMEL_MOCK_BINDING_TYPE__MESSAGE_COMPOSER);
@@ -2157,6 +2382,8 @@ public class CamelPackageImpl extends EPackageImpl implements CamelPackage {
         createEReference(documentRootEClass, DOCUMENT_ROOT__BINDING_SFTP);
         createEReference(documentRootEClass, DOCUMENT_ROOT__BINDING_TIMER);
         createEReference(documentRootEClass, DOCUMENT_ROOT__IMPLEMENTATION_CAMEL);
+        createEReference(documentRootEClass, DOCUMENT_ROOT__BINDING_NETTY_UDP);
+        createEReference(documentRootEClass, DOCUMENT_ROOT__BINDING_NETTY_TCP);
 
         camelRemoteBindingTypeEClass = createEClass(CAMEL_REMOTE_BINDING_TYPE);
         createEAttribute(camelRemoteBindingTypeEClass, CAMEL_REMOTE_BINDING_TYPE__HOST);
@@ -2288,6 +2515,9 @@ public class CamelPackageImpl extends EPackageImpl implements CamelPackage {
         camelFtpsBindingTypeEClass.getESuperTypes().add(this.getCamelFtpBindingType());
         camelImplementationTypeEClass.getESuperTypes().add(theScaPackage.getImplementation());
         camelJmsBindingTypeEClass.getESuperTypes().add(this.getBaseCamelBinding());
+        camelNettyBindingTypeEClass.getESuperTypes().add(this.getBaseCamelBinding());
+        camelNettyUdpBindingTypeEClass.getESuperTypes().add(this.getCamelNettyBindingType());
+        camelNettyTcpBindingTypeEClass.getESuperTypes().add(this.getCamelNettyBindingType());
         camelMockBindingTypeEClass.getESuperTypes().add(theSwitchyardPackage.getSwitchYardBindingType());
         camelOperationSelectorTypeEClass.getESuperTypes().add(theScaPackage.getOperationSelectorType());
         camelSedaBindingTypeEClass.getESuperTypes().add(theSwitchyardPackage.getSwitchYardBindingType());
@@ -2371,6 +2601,27 @@ public class CamelPackageImpl extends EPackageImpl implements CamelPackage {
         initEAttribute(getCamelJmsBindingType_Transacted(), theXMLTypePackage.getBoolean(), "transacted", null, 0, 1, CamelJmsBindingType.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
         initEAttribute(getCamelJmsBindingType_TransactionManager(), theXMLTypePackage.getString(), "transactionManager", null, 0, 1, CamelJmsBindingType.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
+        initEClass(camelNettyBindingTypeEClass, CamelNettyBindingType.class, "CamelNettyBindingType", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+        initEAttribute(getCamelNettyBindingType_Host(), theXMLTypePackage.getString(), "host", null, 1, 1, CamelNettyBindingType.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+        initEAttribute(getCamelNettyBindingType_Port(), theXMLTypePackage.getInt(), "port", null, 1, 1, CamelNettyBindingType.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+        initEAttribute(getCamelNettyBindingType_ReceiveBufferSize(), theXMLTypePackage.getLong(), "receiveBufferSize", null, 0, 1, CamelNettyBindingType.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+        initEAttribute(getCamelNettyBindingType_SendBufferSize(), theXMLTypePackage.getLong(), "sendBufferSize", null, 0, 1, CamelNettyBindingType.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+        initEAttribute(getCamelNettyBindingType_ReuseAddress(), theXMLTypePackage.getBoolean(), "reuseAddress", null, 0, 1, CamelNettyBindingType.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+        initEAttribute(getCamelNettyBindingType_Encoders(), theXMLTypePackage.getString(), "encoders", null, 0, 1, CamelNettyBindingType.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+        initEAttribute(getCamelNettyBindingType_Decoders(), theXMLTypePackage.getString(), "decoders", null, 0, 1, CamelNettyBindingType.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+        initEAttribute(getCamelNettyBindingType_AllowDefaultCodec(), theXMLTypePackage.getBoolean(), "allowDefaultCodec", null, 0, 1, CamelNettyBindingType.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+        initEAttribute(getCamelNettyBindingType_WorkerCount(), theXMLTypePackage.getInt(), "workerCount", null, 0, 1, CamelNettyBindingType.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+        initEAttribute(getCamelNettyBindingType_Sync(), theXMLTypePackage.getBoolean(), "sync", null, 0, 1, CamelNettyBindingType.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+        initEAttribute(getCamelNettyBindingType_Disconnect(), theXMLTypePackage.getBoolean(), "disconnect", null, 0, 1, CamelNettyBindingType.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+        initEClass(camelNettyUdpBindingTypeEClass, CamelNettyUdpBindingType.class, "CamelNettyUdpBindingType", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+        initEAttribute(getCamelNettyUdpBindingType_Broadcast(), theXMLTypePackage.getBoolean(), "broadcast", null, 0, 1, CamelNettyUdpBindingType.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+        initEClass(camelNettyTcpBindingTypeEClass, CamelNettyTcpBindingType.class, "CamelNettyTcpBindingType", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+        initEAttribute(getCamelNettyTcpBindingType_Textline(), theXMLTypePackage.getBoolean(), "textline", null, 0, 1, CamelNettyTcpBindingType.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+        initEAttribute(getCamelNettyTcpBindingType_TcpNoDelay(), theXMLTypePackage.getBoolean(), "tcpNoDelay", null, 0, 1, CamelNettyTcpBindingType.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+        initEAttribute(getCamelNettyTcpBindingType_KeepAlive(), theXMLTypePackage.getBoolean(), "keepAlive", null, 0, 1, CamelNettyTcpBindingType.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
         initEClass(camelMockBindingTypeEClass, CamelMockBindingType.class, "CamelMockBindingType", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
         initEReference(getCamelMockBindingType_ContextMapper(), theSwitchyardPackage.getContextMapperType(), null, "contextMapper", null, 0, 1, CamelMockBindingType.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
         initEReference(getCamelMockBindingType_MessageComposer(), theSwitchyardPackage.getMessageComposerType(), null, "messageComposer", null, 0, 1, CamelMockBindingType.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
@@ -2424,6 +2675,8 @@ public class CamelPackageImpl extends EPackageImpl implements CamelPackage {
         initEReference(getDocumentRoot_BindingSftp(), this.getCamelSftpBindingType(), null, "bindingSftp", null, 0, -2, null, IS_TRANSIENT, IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, IS_DERIVED, IS_ORDERED);
         initEReference(getDocumentRoot_BindingTimer(), this.getCamelTimerBindingType(), null, "bindingTimer", null, 0, -2, null, IS_TRANSIENT, IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, IS_DERIVED, IS_ORDERED);
         initEReference(getDocumentRoot_ImplementationCamel(), this.getCamelImplementationType(), null, "implementationCamel", null, 0, -2, null, IS_TRANSIENT, IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, IS_DERIVED, IS_ORDERED);
+        initEReference(getDocumentRoot_BindingNettyUDP(), this.getCamelNettyUdpBindingType(), null, "bindingNettyUDP", null, 0, -2, null, IS_TRANSIENT, IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, IS_DERIVED, IS_ORDERED);
+        initEReference(getDocumentRoot_BindingNettyTCP(), this.getCamelNettyTcpBindingType(), null, "bindingNettyTCP", null, 0, -2, null, IS_TRANSIENT, IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, IS_DERIVED, IS_ORDERED);
 
         initEClass(camelRemoteBindingTypeEClass, CamelRemoteBindingType.class, "CamelRemoteBindingType", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
         initEAttribute(getCamelRemoteBindingType_Host(), theXMLTypePackage.getString(), "host", null, 0, 1, CamelRemoteBindingType.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
@@ -2997,6 +3250,147 @@ public class CamelPackageImpl extends EPackageImpl implements CamelPackage {
              "namespace", "##targetNamespace"
            });		
         addAnnotation
+          (camelNettyBindingTypeEClass, 
+           source, 
+           new String[] {
+             "name", "CamelNettyBindingType",
+             "kind", "elementOnly"
+           });		
+        addAnnotation
+          (getCamelNettyBindingType_Host(), 
+           source, 
+           new String[] {
+             "kind", "element",
+             "name", "host",
+             "namespace", "##targetNamespace"
+           });		
+        addAnnotation
+          (getCamelNettyBindingType_Port(), 
+           source, 
+           new String[] {
+             "kind", "element",
+             "name", "port",
+             "namespace", "##targetNamespace"
+           });		
+        addAnnotation
+          (getCamelNettyBindingType_ReceiveBufferSize(), 
+           source, 
+           new String[] {
+             "kind", "element",
+             "name", "receiveBufferSize",
+             "namespace", "##targetNamespace"
+           });		
+        addAnnotation
+          (getCamelNettyBindingType_SendBufferSize(), 
+           source, 
+           new String[] {
+             "kind", "element",
+             "name", "sendBufferSize",
+             "namespace", "##targetNamespace"
+           });		
+        addAnnotation
+          (getCamelNettyBindingType_ReuseAddress(), 
+           source, 
+           new String[] {
+             "kind", "element",
+             "name", "reuseAddress",
+             "namespace", "##targetNamespace"
+           });		
+        addAnnotation
+          (getCamelNettyBindingType_Encoders(), 
+           source, 
+           new String[] {
+             "kind", "element",
+             "name", "encoders",
+             "namespace", "##targetNamespace"
+           });		
+        addAnnotation
+          (getCamelNettyBindingType_Decoders(), 
+           source, 
+           new String[] {
+             "kind", "element",
+             "name", "decoders",
+             "namespace", "##targetNamespace"
+           });		
+        addAnnotation
+          (getCamelNettyBindingType_AllowDefaultCodec(), 
+           source, 
+           new String[] {
+             "kind", "element",
+             "name", "allowDefaultCodec",
+             "namespace", "##targetNamespace"
+           });		
+        addAnnotation
+          (getCamelNettyBindingType_WorkerCount(), 
+           source, 
+           new String[] {
+             "kind", "element",
+             "name", "workerCount",
+             "namespace", "##targetNamespace"
+           });		
+        addAnnotation
+          (getCamelNettyBindingType_Sync(), 
+           source, 
+           new String[] {
+             "kind", "element",
+             "name", "sync",
+             "namespace", "##targetNamespace"
+           });		
+        addAnnotation
+          (getCamelNettyBindingType_Disconnect(), 
+           source, 
+           new String[] {
+             "kind", "element",
+             "name", "disconnect",
+             "namespace", "##targetNamespace"
+           });		
+        addAnnotation
+          (camelNettyUdpBindingTypeEClass, 
+           source, 
+           new String[] {
+             "name", "CamelNettyUdpBindingType",
+             "kind", "elementOnly"
+           });		
+        addAnnotation
+          (getCamelNettyUdpBindingType_Broadcast(), 
+           source, 
+           new String[] {
+             "kind", "element",
+             "name", "broadcast",
+             "namespace", "##targetNamespace"
+           });		
+        addAnnotation
+          (camelNettyTcpBindingTypeEClass, 
+           source, 
+           new String[] {
+             "name", "CamelNettyTcpBindingType",
+             "kind", "elementOnly"
+           });		
+        addAnnotation
+          (getCamelNettyTcpBindingType_Textline(), 
+           source, 
+           new String[] {
+             "kind", "element",
+             "name", "textline",
+             "namespace", "##targetNamespace"
+           });		
+        addAnnotation
+          (getCamelNettyTcpBindingType_TcpNoDelay(), 
+           source, 
+           new String[] {
+             "kind", "element",
+             "name", "tcpNoDelay",
+             "namespace", "##targetNamespace"
+           });		
+        addAnnotation
+          (getCamelNettyTcpBindingType_KeepAlive(), 
+           source, 
+           new String[] {
+             "kind", "element",
+             "name", "keepAlive",
+             "namespace", "##targetNamespace"
+           });		
+        addAnnotation
           (camelMockBindingTypeEClass, 
            source, 
            new String[] {
@@ -3380,6 +3774,24 @@ public class CamelPackageImpl extends EPackageImpl implements CamelPackage {
              "name", "implementation.camel",
              "namespace", "##targetNamespace",
              "affiliation", "http://docs.oasis-open.org/ns/opencsa/sca/200912#implementation"
+           });		
+        addAnnotation
+          (getDocumentRoot_BindingNettyUDP(), 
+           source, 
+           new String[] {
+             "kind", "element",
+             "name", "binding.netty-udp",
+             "namespace", "##targetNamespace",
+             "affiliation", "urn:switchyard-config:switchyard:1.0#binding.switchyard"
+           });		
+        addAnnotation
+          (getDocumentRoot_BindingNettyTCP(), 
+           source, 
+           new String[] {
+             "kind", "element",
+             "name", "binding.netty-tcp",
+             "namespace", "##targetNamespace",
+             "affiliation", "urn:switchyard-config:switchyard:1.0#binding.switchyard"
            });		
         addAnnotation
           (camelRemoteBindingTypeEClass, 

@@ -70,6 +70,9 @@ public class CamelFactoryImpl extends EFactoryImpl implements CamelFactory {
             case CamelPackage.CAMEL_FTPS_BINDING_TYPE: return createCamelFtpsBindingType();
             case CamelPackage.CAMEL_IMPLEMENTATION_TYPE: return createCamelImplementationType();
             case CamelPackage.CAMEL_JMS_BINDING_TYPE: return createCamelJmsBindingType();
+            case CamelPackage.CAMEL_NETTY_BINDING_TYPE: return createCamelNettyBindingType();
+            case CamelPackage.CAMEL_NETTY_UDP_BINDING_TYPE: return createCamelNettyUdpBindingType();
+            case CamelPackage.CAMEL_NETTY_TCP_BINDING_TYPE: return createCamelNettyTcpBindingType();
             case CamelPackage.CAMEL_MOCK_BINDING_TYPE: return createCamelMockBindingType();
             case CamelPackage.CAMEL_OPERATION_SELECTOR_TYPE: return createCamelOperationSelectorType();
             case CamelPackage.CAMEL_SEDA_BINDING_TYPE: return createCamelSedaBindingType();
@@ -214,6 +217,36 @@ public class CamelFactoryImpl extends EFactoryImpl implements CamelFactory {
     public CamelJmsBindingType createCamelJmsBindingType() {
         CamelJmsBindingTypeImpl camelJmsBindingType = new CamelJmsBindingTypeImpl();
         return camelJmsBindingType;
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public CamelNettyBindingType createCamelNettyBindingType() {
+        CamelNettyBindingTypeImpl camelNettyBindingType = new CamelNettyBindingTypeImpl();
+        return camelNettyBindingType;
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public CamelNettyUdpBindingType createCamelNettyUdpBindingType() {
+        CamelNettyUdpBindingTypeImpl camelNettyUdpBindingType = new CamelNettyUdpBindingTypeImpl();
+        return camelNettyUdpBindingType;
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public CamelNettyTcpBindingType createCamelNettyTcpBindingType() {
+        CamelNettyTcpBindingTypeImpl camelNettyTcpBindingType = new CamelNettyTcpBindingTypeImpl();
+        return camelNettyTcpBindingType;
     }
 
     /**

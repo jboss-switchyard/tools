@@ -491,13 +491,40 @@ public interface SwitchyardPackage extends EPackage {
 	int ESB_INTERFACE__REQUIRES = ScaPackage.INTERFACE__REQUIRES;
 
 	/**
+     * The feature id for the '<em><b>Input Type</b></em>' attribute.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int ESB_INTERFACE__INPUT_TYPE = ScaPackage.INTERFACE_FEATURE_COUNT + 0;
+
+    /**
+     * The feature id for the '<em><b>Output Type</b></em>' attribute.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int ESB_INTERFACE__OUTPUT_TYPE = ScaPackage.INTERFACE_FEATURE_COUNT + 1;
+
+    /**
+     * The feature id for the '<em><b>Fault Type</b></em>' attribute.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int ESB_INTERFACE__FAULT_TYPE = ScaPackage.INTERFACE_FEATURE_COUNT + 2;
+
+    /**
      * The number of structural features of the '<em>Esb Interface</em>' class.
      * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
      * @generated
      * @ordered
      */
-	int ESB_INTERFACE_FEATURE_COUNT = ScaPackage.INTERFACE_FEATURE_COUNT + 0;
+	int ESB_INTERFACE_FEATURE_COUNT = ScaPackage.INTERFACE_FEATURE_COUNT + 3;
 
 	/**
      * The meta object id for the '{@link org.switchyard.tools.models.switchyard1_0.switchyard.impl.HandlersTypeImpl <em>Handlers Type</em>}' class.
@@ -1427,6 +1454,39 @@ public interface SwitchyardPackage extends EPackage {
 	EClass getEsbInterface();
 
 	/**
+     * Returns the meta object for the attribute '{@link org.switchyard.tools.models.switchyard1_0.switchyard.EsbInterface#getInputType <em>Input Type</em>}'.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @return the meta object for the attribute '<em>Input Type</em>'.
+     * @see org.switchyard.tools.models.switchyard1_0.switchyard.EsbInterface#getInputType()
+     * @see #getEsbInterface()
+     * @generated
+     */
+    EAttribute getEsbInterface_InputType();
+
+    /**
+     * Returns the meta object for the attribute '{@link org.switchyard.tools.models.switchyard1_0.switchyard.EsbInterface#getOutputType <em>Output Type</em>}'.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @return the meta object for the attribute '<em>Output Type</em>'.
+     * @see org.switchyard.tools.models.switchyard1_0.switchyard.EsbInterface#getOutputType()
+     * @see #getEsbInterface()
+     * @generated
+     */
+    EAttribute getEsbInterface_OutputType();
+
+    /**
+     * Returns the meta object for the attribute '{@link org.switchyard.tools.models.switchyard1_0.switchyard.EsbInterface#getFaultType <em>Fault Type</em>}'.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @return the meta object for the attribute '<em>Fault Type</em>'.
+     * @see org.switchyard.tools.models.switchyard1_0.switchyard.EsbInterface#getFaultType()
+     * @see #getEsbInterface()
+     * @generated
+     */
+    EAttribute getEsbInterface_FaultType();
+
+    /**
      * Returns the meta object for class '{@link org.switchyard.tools.models.switchyard1_0.switchyard.HandlersType <em>Handlers Type</em>}'.
      * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -2130,6 +2190,30 @@ public interface SwitchyardPackage extends EPackage {
 		EClass ESB_INTERFACE = eINSTANCE.getEsbInterface();
 
 		/**
+         * The meta object literal for the '<em><b>Input Type</b></em>' attribute feature.
+         * <!-- begin-user-doc -->
+         * <!-- end-user-doc -->
+         * @generated
+         */
+        EAttribute ESB_INTERFACE__INPUT_TYPE = eINSTANCE.getEsbInterface_InputType();
+
+        /**
+         * The meta object literal for the '<em><b>Output Type</b></em>' attribute feature.
+         * <!-- begin-user-doc -->
+         * <!-- end-user-doc -->
+         * @generated
+         */
+        EAttribute ESB_INTERFACE__OUTPUT_TYPE = eINSTANCE.getEsbInterface_OutputType();
+
+        /**
+         * The meta object literal for the '<em><b>Fault Type</b></em>' attribute feature.
+         * <!-- begin-user-doc -->
+         * <!-- end-user-doc -->
+         * @generated
+         */
+        EAttribute ESB_INTERFACE__FAULT_TYPE = eINSTANCE.getEsbInterface_FaultType();
+
+        /**
          * The meta object literal for the '{@link org.switchyard.tools.models.switchyard1_0.switchyard.impl.HandlersTypeImpl <em>Handlers Type</em>}' class.
          * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->

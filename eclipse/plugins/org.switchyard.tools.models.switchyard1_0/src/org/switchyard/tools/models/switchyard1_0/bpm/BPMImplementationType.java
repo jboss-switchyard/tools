@@ -29,6 +29,7 @@ import org.switchyard.tools.models.switchyard1_0.commonrules.CommonImplementatio
  *   <li>{@link org.switchyard.tools.models.switchyard1_0.bpm.BPMImplementationType#getProcessId <em>Process Id</em>}</li>
  *   <li>{@link org.switchyard.tools.models.switchyard1_0.bpm.BPMImplementationType#getMessageContentInName <em>Message Content In Name</em>}</li>
  *   <li>{@link org.switchyard.tools.models.switchyard1_0.bpm.BPMImplementationType#getMessageContentOutName <em>Message Content Out Name</em>}</li>
+ *   <li>{@link org.switchyard.tools.models.switchyard1_0.bpm.BPMImplementationType#isPersistent <em>Persistent</em>}</li>
  * </ul>
  * </p>
  *
@@ -304,5 +305,33 @@ public interface BPMImplementationType extends CommonImplementationType {
      * @generated
      */
     void setMessageContentOutName(String value);
+
+    /**
+     * Returns the value of the '<em><b>Persistent</b></em>' attribute.
+     * The default value is <code>"false"</code>.
+     * <!-- begin-user-doc -->
+     * <p>
+     * If the meaning of the '<em>Persistent</em>' attribute isn't clear,
+     * there really should be more of a description here...
+     * </p>
+     * <!-- end-user-doc -->
+     * @return the value of the '<em>Persistent</em>' attribute.
+     * @see #setPersistent(boolean)
+     * @see org.switchyard.tools.models.switchyard1_0.bpm.BPMPackage#getBPMImplementationType_Persistent()
+     * @model default="false" dataType="org.eclipse.emf.ecore.xml.type.Boolean"
+     *        extendedMetaData="name='persistent' kind='attribute'"
+     * @generated
+     */
+    boolean isPersistent();
+
+    /**
+     * Sets the value of the '{@link org.switchyard.tools.models.switchyard1_0.bpm.BPMImplementationType#isPersistent <em>Persistent</em>}' attribute.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @param value the new value of the '<em>Persistent</em>' attribute.
+     * @see #isPersistent()
+     * @generated
+     */
+    void setPersistent(boolean value);
 
 } // BPMImplementationType
