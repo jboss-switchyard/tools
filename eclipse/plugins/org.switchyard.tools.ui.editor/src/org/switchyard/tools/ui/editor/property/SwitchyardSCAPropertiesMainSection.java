@@ -12,11 +12,17 @@
  ******************************************************************************/
 package org.switchyard.tools.ui.editor.property;
 
+import org.eclipse.emf.common.command.Command;
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.impl.AdapterImpl;
 import org.eclipse.emf.ecore.EObject;
+import org.eclipse.emf.transaction.NotificationFilter;
 import org.eclipse.emf.transaction.RecordingCommand;
+import org.eclipse.emf.transaction.ResourceSetChangeEvent;
+import org.eclipse.emf.transaction.ResourceSetListener;
+import org.eclipse.emf.transaction.RollbackException;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
+import org.eclipse.emf.transaction.impl.TransactionalEditingDomainImpl;
 import org.eclipse.graphiti.features.context.IUpdateContext;
 import org.eclipse.graphiti.features.context.impl.UpdateContext;
 import org.eclipse.graphiti.mm.pictograms.PictogramElement;
@@ -30,8 +36,10 @@ import org.eclipse.soa.sca.sca1_1.model.sca.ScaPackage;
 import org.eclipse.soa.sca.sca1_1.model.sca.Service;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.custom.CLabel;
-import org.eclipse.swt.events.ModifyEvent;
-import org.eclipse.swt.events.ModifyListener;
+import org.eclipse.swt.events.FocusEvent;
+import org.eclipse.swt.events.FocusListener;
+import org.eclipse.swt.events.KeyEvent;
+import org.eclipse.swt.events.KeyListener;
 import org.eclipse.swt.layout.FormAttachment;
 import org.eclipse.swt.layout.FormData;
 import org.eclipse.swt.widgets.Composite;
@@ -45,19 +53,35 @@ import org.switchyard.tools.ui.editor.impl.SwitchyardSCAEditor;
  * @author bfitzpat
  * 
  */
-public class SwitchyardSCAPropertiesMainSection extends GFPropertySection implements ITabbedPropertyConstants {
+public class SwitchyardSCAPropertiesMainSection extends GFPropertySection implements ITabbedPropertyConstants,
+        ResourceSetListener {
 
     private Text _nameText;
     private Object _businessObject;
     private boolean _inUpdate = false;
     private PictogramElement _pe = null;
     private NameListener _nameListener = null;
-    
+    private TransactionalEditingDomain _domain = null;
+
     /**
      * Constructor.
      */
     public SwitchyardSCAPropertiesMainSection() {
         super();
+    }
+
+    @SuppressWarnings("restriction")
+    private void addDomainListener() {
+        if (_domain == null) {
+            _domain = (TransactionalEditingDomainImpl) SwitchyardSCAEditor.getActiveEditor().getEditingDomain();
+            _domain.addResourceSetListener(this);
+        }
+    }
+
+    private void removeDomainListener() {
+        if (_domain != null) {
+            _domain.removeResourceSetListener(this);
+        }
     }
 
     @Override
@@ -74,10 +98,52 @@ public class SwitchyardSCAPropertiesMainSection extends GFPropertySection implem
         data.right = new FormAttachment(100, 0);
         data.top = new FormAttachment(0, VSPACE);
         _nameText.setLayoutData(data);
-        _nameText.addModifyListener(new ModifyListener() {
+
+        _nameText.addFocusListener(new FocusListener() {
             @Override
-            public void modifyText(ModifyEvent e) {
+            public void focusGained(FocusEvent e) {
+                // ignore
+            }
+
+            @Override
+            public void focusLost(FocusEvent e) {
                 if (_businessObject != null && !_inUpdate) {
+                    updateObjectName(_businessObject, _nameText.getText().trim());
+                }
+            }
+        });
+
+        _nameText.addKeyListener(new KeyListener() {
+            @Override
+            public void keyPressed(KeyEvent e) {
+                // ignore
+            }
+
+            @Override
+            public void keyReleased(KeyEvent e) {
+                if (e.keyCode == SWT.ESC) {
+                    _inUpdate = true;
+                    if (_businessObject instanceof org.eclipse.soa.sca.sca1_1.model.sca.Composite) {
+                        String name = ((org.eclipse.soa.sca.sca1_1.model.sca.Composite) _businessObject).getName();
+                        _nameText.setText(name == null ? "" : name); //$NON-NLS-1$
+                    } else if (_businessObject instanceof Component) {
+                        String name = ((Component) _businessObject).getName();
+                        _nameText.setText(name == null ? "" : name); //$NON-NLS-1$
+                    } else if (_businessObject instanceof Service) {
+                        String name = ((Service) _businessObject).getName();
+                        _nameText.setText(name == null ? "" : name); //$NON-NLS-1$
+                    } else if (_businessObject instanceof Reference) {
+                        String name = ((Reference) _businessObject).getName();
+                        _nameText.setText(name == null ? "" : name); //$NON-NLS-1$
+                    } else if (_businessObject instanceof ComponentService) {
+                        String name = ((ComponentService) _businessObject).getName();
+                        _nameText.setText(name == null ? "" : name); //$NON-NLS-1$
+                    } else if (_businessObject instanceof ComponentReference) {
+                        String name = ((ComponentReference) _businessObject).getName();
+                        _nameText.setText(name == null ? "" : name); //$NON-NLS-1$
+                    }
+                    _inUpdate = false;
+                } else if (e.keyCode == SWT.CR) {
                     updateObjectName(_businessObject, _nameText.getText().trim());
                 }
             }
@@ -89,15 +155,15 @@ public class SwitchyardSCAPropertiesMainSection extends GFPropertySection implem
         data.right = new FormAttachment(_nameText, -HSPACE);
         data.top = new FormAttachment(_nameText, 0, SWT.CENTER);
         valueLabel.setLayoutData(data);
+
+        addDomainListener();
     }
 
     @SuppressWarnings("restriction")
     private void updateObjectName(final Object bo, final String value) {
-        TransactionalEditingDomain domain = SwitchyardSCAEditor.getActiveEditor().getEditingDomain();
         if (bo instanceof org.eclipse.soa.sca.sca1_1.model.sca.Composite) {
-            final org.eclipse.soa.sca.sca1_1.model.sca.Composite composite = 
-                    (org.eclipse.soa.sca.sca1_1.model.sca.Composite) bo;
-            domain.getCommandStack().execute(new RecordingCommand(domain) {
+            final org.eclipse.soa.sca.sca1_1.model.sca.Composite composite = (org.eclipse.soa.sca.sca1_1.model.sca.Composite) bo;
+            _domain.getCommandStack().execute(new RecordingCommand(_domain) {
                 @Override
                 protected void doExecute() {
                     composite.setName(value.trim());
@@ -105,7 +171,7 @@ public class SwitchyardSCAPropertiesMainSection extends GFPropertySection implem
             });
         } else if (bo instanceof Component) {
             final Component component = (Component) bo;
-            domain.getCommandStack().execute(new RecordingCommand(domain) {
+            _domain.getCommandStack().execute(new RecordingCommand(_domain) {
                 @Override
                 protected void doExecute() {
                     component.setName(value.trim());
@@ -114,7 +180,7 @@ public class SwitchyardSCAPropertiesMainSection extends GFPropertySection implem
             getDiagramEditor().refresh(_pe);
         } else if (bo instanceof Service) {
             final Service service = (Service) bo;
-            domain.getCommandStack().execute(new RecordingCommand(domain) {
+            _domain.getCommandStack().execute(new RecordingCommand(_domain) {
                 @Override
                 protected void doExecute() {
                     service.setName(value.trim());
@@ -122,7 +188,7 @@ public class SwitchyardSCAPropertiesMainSection extends GFPropertySection implem
             });
         } else if (bo instanceof Reference) {
             final Reference reference = (Reference) bo;
-            domain.getCommandStack().execute(new RecordingCommand(domain) {
+            _domain.getCommandStack().execute(new RecordingCommand(_domain) {
                 @Override
                 protected void doExecute() {
                     reference.setName(value.trim());
@@ -130,7 +196,7 @@ public class SwitchyardSCAPropertiesMainSection extends GFPropertySection implem
             });
         } else if (bo instanceof ComponentService) {
             final ComponentService cservice = (ComponentService) bo;
-            domain.getCommandStack().execute(new RecordingCommand(domain) {
+            _domain.getCommandStack().execute(new RecordingCommand(_domain) {
                 @Override
                 protected void doExecute() {
                     cservice.setName(value.trim());
@@ -138,7 +204,7 @@ public class SwitchyardSCAPropertiesMainSection extends GFPropertySection implem
             });
         } else if (bo instanceof ComponentReference) {
             final ComponentReference creference = (ComponentReference) bo;
-            domain.getCommandStack().execute(new RecordingCommand(domain) {
+            _domain.getCommandStack().execute(new RecordingCommand(_domain) {
                 @Override
                 protected void doExecute() {
                     creference.setName(value.trim());
@@ -149,7 +215,8 @@ public class SwitchyardSCAPropertiesMainSection extends GFPropertySection implem
             IUpdateContext updateContext = new UpdateContext(_pe);
             if (SwitchyardSCAEditor.getActiveEditor().getDiagramTypeProvider() != null) {
                 if (SwitchyardSCAEditor.getActiveEditor().getDiagramTypeProvider().getFeatureProvider() != null) {
-                    SwitchyardSCAEditor.getActiveEditor().getDiagramTypeProvider().getFeatureProvider().updateIfPossible(updateContext);        
+                    SwitchyardSCAEditor.getActiveEditor().getDiagramTypeProvider().getFeatureProvider()
+                            .updateIfPossible(updateContext);
                 }
             }
         }
@@ -168,13 +235,13 @@ public class SwitchyardSCAPropertiesMainSection extends GFPropertySection implem
             }
             _businessObject = bo;
             _pe = pe;
-            
+
             if (_nameListener == null) {
                 _nameListener = new NameListener();
             }
             EObject eobj = (EObject) bo;
             eobj.eAdapters().add(_nameListener);
-            
+
             _inUpdate = true;
             if (bo instanceof org.eclipse.soa.sca.sca1_1.model.sca.Composite) {
                 String name = ((org.eclipse.soa.sca.sca1_1.model.sca.Composite) bo).getName();
@@ -198,7 +265,7 @@ public class SwitchyardSCAPropertiesMainSection extends GFPropertySection implem
             _inUpdate = false;
         }
     }
-    
+
     private final class NameListener extends AdapterImpl {
 
         @Override
@@ -212,6 +279,78 @@ public class SwitchyardSCAPropertiesMainSection extends GFPropertySection implem
             }
             super.notifyChanged(msg);
         }
-        
+
+    }
+
+    /*
+     * (non-Javadoc)
+     * 
+     * @see
+     * org.eclipse.emf.transaction.ResourceSetListener#transactionAboutToCommit
+     * (org.eclipse.emf.transaction.ResourceSetChangeEvent)
+     */
+    @Override
+    public Command transactionAboutToCommit(ResourceSetChangeEvent event) throws RollbackException {
+        return null;
+    }
+
+    /*
+     * (non-Javadoc)
+     * 
+     * @see
+     * org.eclipse.emf.transaction.ResourceSetListener#isAggregatePrecommitListener
+     * ()
+     */
+    @Override
+    public boolean isAggregatePrecommitListener() {
+        return false;
+    }
+
+    /*
+     * (non-Javadoc)
+     * 
+     * @see org.eclipse.emf.transaction.ResourceSetListener#isPrecommitOnly()
+     */
+    @Override
+    public boolean isPrecommitOnly() {
+        return false;
+    }
+
+    /*
+     * (non-Javadoc)
+     * 
+     * @see org.eclipse.emf.transaction.ResourceSetListener#isPostcommitOnly()
+     */
+    @Override
+    public boolean isPostcommitOnly() {
+        return false;
+    }
+
+    /*
+     * (non-Javadoc)
+     * 
+     * @see
+     * org.eclipse.emf.transaction.ResourceSetListener#resourceSetChanged(org
+     * .eclipse.emf.transaction.ResourceSetChangeEvent)
+     */
+    @Override
+    public void resourceSetChanged(ResourceSetChangeEvent event) {
+        refresh();
+    }
+
+    /*
+     * (non-Javadoc)
+     * 
+     * @see org.eclipse.emf.transaction.ResourceSetListener#getFilter()
+     */
+    @Override
+    public NotificationFilter getFilter() {
+        return null;
+    }
+
+    @Override
+    public void dispose() {
+        removeDomainListener();
+        super.dispose();
     }
 }
