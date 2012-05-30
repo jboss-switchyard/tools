@@ -36,27 +36,34 @@ import org.eclipse.swt.widgets.TabFolder;
 import org.eclipse.swt.widgets.TabItem;
 import org.eclipse.swt.widgets.Text;
 import org.switchyard.tools.models.switchyard1_0.camel.CamelFactory;
-import org.switchyard.tools.models.switchyard1_0.camel.CamelFileBindingType;
+import org.switchyard.tools.models.switchyard1_0.camel.CamelFtpBindingType;
 import org.switchyard.tools.ui.editor.impl.SwitchyardSCAEditor;
 
 /**
  * @author bfitzpat
  * 
  */
-public class CamelFileConsumerComposite extends AbstractSwitchyardComposite implements IBindingComposite {
+public class CamelFTPConsumerComposite extends AbstractSwitchyardComposite implements IBindingComposite {
 
     private Composite _panel;
-    private CamelFileBindingType _binding = null;
+    private CamelFtpBindingType _binding = null;
     private boolean _inUpdate = false;
+
+    private Text _hostText;
+    private Text _portText;
+    private Text _usernameText;
+    private Text _pwdText;
+    private Button _binaryButton;
     private Text _directoryText;
-    private Text _fileNameText;
     private Button _autoCreateButton;
-    private Text _includeText;
-    private Text _excludeText;
+    private Text _fileNameText;
+    private Button _deleteButton;
+    private Button _recursiveButton;
     private Text _preMoveText;
     private Text _moveText;
     private Text _moveFailedText;
-    private Text _maxMessagesPerPollText;
+    private Text _includeText;
+    private Text _excludeText;
     private Text _delayText;
 
     @Override
@@ -66,15 +73,12 @@ public class CamelFileConsumerComposite extends AbstractSwitchyardComposite impl
 
     @Override
     public void setBinding(Binding impl) {
-        if (impl instanceof CamelFileBindingType) {
-            this._binding = (CamelFileBindingType) impl;
+        if (impl instanceof CamelFtpBindingType) {
+            this._binding = (CamelFtpBindingType) impl;
             _inUpdate = true;
             if (this._binding.getConsume() != null) {
                 if (this._binding.getConsume().getDelay() != null) {
                     _delayText.setText(this._binding.getConsume().getDelay().toString());
-                }
-                if (this._binding.getConsume().getMaxMessagesPerPoll() != null) {
-                    _maxMessagesPerPollText.setText(this._binding.getConsume().getMaxMessagesPerPoll().toString());
                 }
                 if (this._binding.getConsume().getExclude() != null) {
                     _excludeText.setText(this._binding.getConsume().getExclude());
@@ -91,6 +95,12 @@ public class CamelFileConsumerComposite extends AbstractSwitchyardComposite impl
                 if (this._binding.getConsume().getPreMove() != null) {
                     _preMoveText.setText(this._binding.getConsume().getPreMove());
                 }
+                if (this._binding.getConsume().isDelete()) {
+                    _deleteButton.setSelection(this._binding.getConsume().isDelete());
+                }
+                if (this._binding.getConsume().isRecursive()) {
+                    _recursiveButton.setSelection(this._binding.getConsume().isRecursive());
+                }
             }
             if (this._binding.getDirectory() != null) {
                 _directoryText.setText(this._binding.getDirectory());
@@ -100,6 +110,21 @@ public class CamelFileConsumerComposite extends AbstractSwitchyardComposite impl
             }
             if (this._binding.isAutoCreate()) {
                 _autoCreateButton.setSelection(this._binding.isAutoCreate());
+            }
+            if (this._binding.getHost() != null) {
+                _hostText.setText(this._binding.getHost());
+            }
+            if (this._binding.isSetPort()) {
+                _portText.setText(Integer.toString(this._binding.getPort()));
+            }
+            if (this._binding.getUsername() != null) {
+                _usernameText.setText(this._binding.getUsername());
+            }
+            if (this._binding.getPassword() != null) {
+                _pwdText.setText(this._binding.getPassword());
+            }
+            if (this._binding.isBinary()) {
+                _binaryButton.setSelection(this._binding.isBinary());
             }
             _inUpdate = false;
             validate();
@@ -120,11 +145,11 @@ public class CamelFileConsumerComposite extends AbstractSwitchyardComposite impl
                 } catch (NumberFormatException nfe) {
                     setErrorMessage("Delay value must be a valid number.");
                 }
-            } else if (!_maxMessagesPerPollText.getText().trim().isEmpty()) {
+            } else if (!_portText.getText().trim().isEmpty()) {
                 try {
-                    new BigInteger(_maxMessagesPerPollText.getText().trim());
+                    new Integer(_portText.getText().trim());
                 } catch (NumberFormatException nfe) {
-                    setErrorMessage("Max Messages per Poll value must be a valid number.");
+                    setErrorMessage("Port value must be a valid number.");
                 }
             }
         }
@@ -150,6 +175,18 @@ public class CamelFileConsumerComposite extends AbstractSwitchyardComposite impl
         GridLayout gl = new GridLayout(1, false);
         composite.setLayout(gl);
 
+        Group ftpGroup = new Group(composite, SWT.NONE);
+        ftpGroup.setLayoutData(new GridData(SWT.FILL, SWT.FILL, true, true));
+        ftpGroup.setLayout(new GridLayout(2, false));
+        ftpGroup.setText("FTP Options");
+
+        _hostText = createLabelAndText(ftpGroup, "Host");
+        _portText = createLabelAndText(ftpGroup, "Port (Default 21)");
+        _usernameText = createLabelAndText(ftpGroup, "User Name");
+        _pwdText = createLabelAndText(ftpGroup, "Password");
+        _pwdText.setEchoChar('*');
+        _binaryButton = createCheckbox(ftpGroup, "Use Binary Transfer Mode");
+
         Group fileGroup = new Group(composite, SWT.NONE);
         fileGroup.setLayoutData(new GridData(SWT.FILL, SWT.FILL, true, true));
         fileGroup.setLayout(new GridLayout(2, false));
@@ -157,10 +194,11 @@ public class CamelFileConsumerComposite extends AbstractSwitchyardComposite impl
 
         _directoryText = createLabelAndText(fileGroup, "Directory*");
         _fileNameText = createLabelAndText(fileGroup, "File Name");
-
         _autoCreateButton = createCheckbox(fileGroup, "Auto Create Missing Directories in File Path");
         _includeText = createLabelAndText(fileGroup, "Include");
         _excludeText = createLabelAndText(fileGroup, "Exclude");
+        _deleteButton = createCheckbox(fileGroup, "Delete Files Once Processed");
+        _recursiveButton = createCheckbox(fileGroup, "Process Sub-Directories Recursively");
 
         Group moveGroup = new Group(composite, SWT.NONE);
         moveGroup.setLayoutData(new GridData(SWT.FILL, SWT.FILL, true, true));
@@ -176,7 +214,6 @@ public class CamelFileConsumerComposite extends AbstractSwitchyardComposite impl
         pollGroup.setLayout(new GridLayout(2, false));
         pollGroup.setText("Poll Options");
 
-        _maxMessagesPerPollText = createLabelAndText(pollGroup, "Max Messages Per Poll (Default 0)");
         _delayText = createLabelAndText(pollGroup, "Delay Between Polls (MS) (Default 500)");
 
         return composite;
@@ -232,30 +269,6 @@ public class CamelFileConsumerComposite extends AbstractSwitchyardComposite impl
         return newButton;
     }
 
-    private class ConsumeRecordingCommand extends RecordingCommand {
-        
-        private CamelFileBindingType _innerBinding;
-        private String _featureId;
-        private Object _value;
-
-        public ConsumeRecordingCommand(TransactionalEditingDomain domain, CamelFileBindingType binding, String featureId,
-                Object value) {
-            super(domain);
-            this._innerBinding = binding;
-            this._featureId = featureId;
-            this._value = value;
-        }
-
-        @Override
-        protected void doExecute() {
-            if (_innerBinding.getConsume() == null) {
-                _innerBinding.setConsume(CamelFactory.eINSTANCE.createFileConsumerType());
-            }
-            setFeatureValue(_innerBinding.getConsume(), _featureId, _value);
-        }
-
-    }
-
     private void setFeatureValue(EObject eObject, String featureId, Object value) {
         EClass eClass = eObject.eClass();
         for (int i = 0, size = eClass.getFeatureCount(); i < size; ++i) {
@@ -269,14 +282,38 @@ public class CamelFileConsumerComposite extends AbstractSwitchyardComposite impl
         }
     }
 
-    private class BindingRecordingCommand extends RecordingCommand {
-        
-        private CamelFileBindingType _innerBinding;
+    private class ConsumeRecordingCommand extends RecordingCommand {
+
+        private CamelFtpBindingType _innerBinding;
         private String _featureId;
         private Object _value;
 
-        public BindingRecordingCommand(TransactionalEditingDomain domain, CamelFileBindingType binding, String featureId,
-                Object value) {
+        public ConsumeRecordingCommand(TransactionalEditingDomain domain, CamelFtpBindingType binding,
+                String featureId, Object value) {
+            super(domain);
+            this._innerBinding = binding;
+            this._featureId = featureId;
+            this._value = value;
+        }
+
+        @Override
+        protected void doExecute() {
+            if (_innerBinding.getConsume() == null) {
+                _innerBinding.setConsume(CamelFactory.eINSTANCE.createRemoteFileConsumerType());
+            }
+            setFeatureValue(_innerBinding.getConsume(), _featureId, _value);
+        }
+
+    }
+
+    private class BindingRecordingCommand extends RecordingCommand {
+
+        private CamelFtpBindingType _innerBinding;
+        private String _featureId;
+        private Object _value;
+
+        public BindingRecordingCommand(TransactionalEditingDomain domain, CamelFtpBindingType binding,
+                String featureId, Object value) {
             super(domain);
             this._innerBinding = binding;
             this._featureId = featureId;
@@ -290,6 +327,109 @@ public class CamelFileConsumerComposite extends AbstractSwitchyardComposite impl
 
     }
 
+    private void handleConsumer(final Control control, final TransactionalEditingDomain domain) {
+        if (control.equals(_delayText)) {
+            if (domain != null) {
+                try {
+                    ConsumeRecordingCommand command = new ConsumeRecordingCommand(domain, _binding, "delay",
+                            new BigInteger(_delayText.getText().trim()));
+                    domain.getCommandStack().execute(command);
+                } catch (NumberFormatException nfe) {
+                    // do nothing
+                    nfe.fillInStackTrace();
+                }
+            } else {
+                if (_binding.getConsume() == null) {
+                    _binding.setConsume(CamelFactory.eINSTANCE.createRemoteFileConsumerType());
+                }
+                try {
+                    setFeatureValue(_binding.getConsume(), "delay", new BigInteger(_delayText.getText().trim()));
+                } catch (NumberFormatException nfe) {
+                    // do nothing
+                    nfe.fillInStackTrace();
+                }
+            }
+        } else if (control.equals(_deleteButton)) {
+            if (domain != null) {
+                ConsumeRecordingCommand command = new ConsumeRecordingCommand(domain, _binding, "delete", new Boolean(
+                        _deleteButton.getSelection()));
+                domain.getCommandStack().execute(command);
+            } else {
+                if (_binding.getConsume() == null) {
+                    _binding.setConsume(CamelFactory.eINSTANCE.createRemoteFileConsumerType());
+                }
+                _binding.getConsume().setDelete(_deleteButton.getSelection());
+            }
+        } else if (control.equals(_recursiveButton)) {
+            if (domain != null) {
+                ConsumeRecordingCommand command = new ConsumeRecordingCommand(domain, _binding, "recursive",
+                        new Boolean(_recursiveButton.getSelection()));
+                domain.getCommandStack().execute(command);
+            } else {
+                if (_binding.getConsume() == null) {
+                    _binding.setConsume(CamelFactory.eINSTANCE.createRemoteFileConsumerType());
+                }
+                _binding.getConsume().setRecursive(_recursiveButton.getSelection());
+            }
+        } else if (control.equals(_excludeText)) {
+            if (domain != null) {
+                ConsumeRecordingCommand command = new ConsumeRecordingCommand(domain, _binding, "exclude", _excludeText
+                        .getText().trim());
+                domain.getCommandStack().execute(command);
+            } else {
+                if (_binding.getConsume() == null) {
+                    _binding.setConsume(CamelFactory.eINSTANCE.createRemoteFileConsumerType());
+                }
+                _binding.getConsume().setExclude(_excludeText.getText().trim());
+            }
+        } else if (control.equals(_includeText)) {
+            if (domain != null) {
+                ConsumeRecordingCommand command = new ConsumeRecordingCommand(domain, _binding, "include", _includeText
+                        .getText().trim());
+                domain.getCommandStack().execute(command);
+            } else {
+                if (_binding.getConsume() == null) {
+                    _binding.setConsume(CamelFactory.eINSTANCE.createRemoteFileConsumerType());
+                }
+                _binding.getConsume().setInclude(_includeText.getText().trim());
+            }
+        } else if (control.equals(_moveFailedText)) {
+            if (domain != null) {
+                ConsumeRecordingCommand command = new ConsumeRecordingCommand(domain, _binding, "moveFailed",
+                        _moveFailedText.getText().trim());
+                domain.getCommandStack().execute(command);
+            } else {
+                if (_binding.getConsume() == null) {
+                    _binding.setConsume(CamelFactory.eINSTANCE.createRemoteFileConsumerType());
+                }
+                _binding.getConsume().setMoveFailed(_moveText.getText().trim());
+            }
+        } else if (control.equals(_moveText)) {
+            if (domain != null) {
+                ConsumeRecordingCommand command = new ConsumeRecordingCommand(domain, _binding, "move", _moveFailedText
+                        .getText().trim());
+                domain.getCommandStack().execute(command);
+            } else {
+                if (_binding.getConsume() == null) {
+                    _binding.setConsume(CamelFactory.eINSTANCE.createRemoteFileConsumerType());
+                }
+                _binding.getConsume().setMove(_moveText.getText().trim());
+            }
+        } else if (control.equals(_preMoveText)) {
+            if (domain != null) {
+                ConsumeRecordingCommand command = new ConsumeRecordingCommand(domain, _binding, "preMove", _preMoveText
+                        .getText().trim());
+                domain.getCommandStack().execute(command);
+            } else {
+                if (_binding.getConsume() == null) {
+                    _binding.setConsume(CamelFactory.eINSTANCE.createRemoteFileConsumerType());
+                }
+                _binding.getConsume().setPreMove(_preMoveText.getText().trim());
+            }
+
+        }
+    }
+
     @SuppressWarnings("restriction")
     private void handleModify(final Control control) {
         TransactionalEditingDomain domain = null;
@@ -298,126 +438,79 @@ public class CamelFileConsumerComposite extends AbstractSwitchyardComposite impl
         }
         if (control.equals(_directoryText)) {
             if (domain != null) {
-                BindingRecordingCommand command = new BindingRecordingCommand(
-                        domain, _binding, "directory", _directoryText.getText().trim());
+                BindingRecordingCommand command = new BindingRecordingCommand(domain, _binding, "directory",
+                        _directoryText.getText().trim());
                 domain.getCommandStack().execute(command);
             } else {
                 _binding.setDirectory(_directoryText.getText().trim());
             }
         } else if (control.equals(_fileNameText)) {
             if (domain != null) {
-                BindingRecordingCommand command = new BindingRecordingCommand(
-                        domain, _binding, "fileName", _fileNameText.getText().trim());
+                BindingRecordingCommand command = new BindingRecordingCommand(domain, _binding, "fileName",
+                        _fileNameText.getText().trim());
                 domain.getCommandStack().execute(command);
             } else {
                 _binding.setFileName(_fileNameText.getText().trim());
             }
         } else if (control.equals(_autoCreateButton)) {
             if (domain != null) {
-                BindingRecordingCommand command = new BindingRecordingCommand(
-                        domain, _binding, "autoCreate", new Boolean(_autoCreateButton.getSelection()));
+                BindingRecordingCommand command = new BindingRecordingCommand(domain, _binding, "autoCreate",
+                        new Boolean(_autoCreateButton.getSelection()));
                 domain.getCommandStack().execute(command);
             } else {
                 _binding.setAutoCreate(_autoCreateButton.getSelection());
             }
-        } else if (control.equals(_delayText)) {
+        } else if (control.equals(_hostText)) {
             if (domain != null) {
-                try {
-                    ConsumeRecordingCommand command = new ConsumeRecordingCommand(
-                        domain, _binding, "delay", new BigInteger(_delayText.getText().trim()));
-                    domain.getCommandStack().execute(command);
-                } catch (NumberFormatException nfe) {
-                    // do nothing
-                    nfe.fillInStackTrace();
-                }
-            } else {
-                if (_binding.getConsume() == null) {
-                    _binding.setConsume(CamelFactory.eINSTANCE.createFileConsumerType());
-                }
-                try {
-                    _binding.getConsume().setDelay(new BigInteger(_delayText.getText().trim()));
-                } catch (NumberFormatException nfe) {
-                    // do nothing
-                    nfe.fillInStackTrace();
-                }
-            }
-        } else if (control.equals(_excludeText)) {
-            if (domain != null) {
-                ConsumeRecordingCommand command = new ConsumeRecordingCommand(
-                        domain, _binding, "exclude", _excludeText.getText().trim());
+                BindingRecordingCommand command = new BindingRecordingCommand(domain, _binding, "host", _hostText
+                        .getText().trim());
                 domain.getCommandStack().execute(command);
             } else {
-                if (_binding.getConsume() == null) {
-                    _binding.setConsume(CamelFactory.eINSTANCE.createFileConsumerType());
-                }
-                _binding.getConsume().setExclude(_excludeText.getText().trim());
+                _binding.setHost(_hostText.getText().trim());
             }
-        } else if (control.equals(_includeText)) {
+        } else if (control.equals(_usernameText)) {
             if (domain != null) {
-                ConsumeRecordingCommand command = new ConsumeRecordingCommand(
-                        domain, _binding, "include", _includeText.getText().trim());
+                BindingRecordingCommand command = new BindingRecordingCommand(domain, _binding, "username",
+                        _usernameText.getText().trim());
                 domain.getCommandStack().execute(command);
             } else {
-                if (_binding.getConsume() == null) {
-                    _binding.setConsume(CamelFactory.eINSTANCE.createFileConsumerType());
-                }
-                _binding.getConsume().setInclude(_includeText.getText().trim());
+                _binding.setUsername(_usernameText.getText().trim());
             }
-        } else if (control.equals(_maxMessagesPerPollText)) {
+        } else if (control.equals(_pwdText)) {
+            if (domain != null) {
+                BindingRecordingCommand command = new BindingRecordingCommand(domain, _binding, "password", _pwdText
+                        .getText().trim());
+                domain.getCommandStack().execute(command);
+            } else {
+                _binding.setPassword(_pwdText.getText().trim());
+            }
+        } else if (control.equals(_binaryButton)) {
+            if (domain != null) {
+                BindingRecordingCommand command = new BindingRecordingCommand(domain, _binding, "binary", new Boolean(
+                        _binaryButton.getSelection()));
+                domain.getCommandStack().execute(command);
+            } else {
+                _binding.setBinary(_binaryButton.getSelection());
+            }
+        } else if (control.equals(_portText)) {
             if (domain != null) {
                 try {
-                    BindingRecordingCommand command = new BindingRecordingCommand(
-                            domain, _binding, "maxMessagesPerPoll", 
-                            new BigInteger(_maxMessagesPerPollText.getText().trim()));
+                    BindingRecordingCommand command = new BindingRecordingCommand(domain, _binding, "port",
+                            new Integer(_portText.getText().trim()));
                     domain.getCommandStack().execute(command);
                 } catch (NumberFormatException nfe) {
                     nfe.fillInStackTrace();
                 }
             } else {
-                if (_binding.getConsume() == null) {
-                    _binding.setConsume(CamelFactory.eINSTANCE.createFileConsumerType());
-                }
                 try {
-                    _binding.getConsume().setMaxMessagesPerPoll(new BigInteger(_maxMessagesPerPollText.getText().trim()));
+                    int port = Integer.parseInt(_portText.getText().trim());
+                    _binding.setPort(port);
                 } catch (NumberFormatException nfe) {
-                    // do nothing
                     nfe.fillInStackTrace();
                 }
             }
-        } else if (control.equals(_moveFailedText)) {
-            if (domain != null) {
-                ConsumeRecordingCommand command = new ConsumeRecordingCommand(
-                        domain, _binding, "moveFailed", _moveFailedText.getText().trim());
-                domain.getCommandStack().execute(command);
-            } else {
-                if (_binding.getConsume() == null) {
-                    _binding.setConsume(CamelFactory.eINSTANCE.createFileConsumerType());
-                }
-                _binding.getConsume().setMoveFailed(_moveFailedText.getText().trim());
-            }
-        } else if (control.equals(_moveText)) {
-            if (domain != null) {
-                ConsumeRecordingCommand command = new ConsumeRecordingCommand(
-                        domain, _binding, "move", _moveFailedText.getText().trim());
-                domain.getCommandStack().execute(command);
-            } else {
-                if (_binding.getConsume() == null) {
-                    _binding.setConsume(CamelFactory.eINSTANCE.createFileConsumerType());
-                }
-                _binding.getConsume().setMove(_moveText.getText().trim());
-            }
-        } else if (control.equals(_preMoveText)) {
-            if (domain != null) {
-                ConsumeRecordingCommand command = new ConsumeRecordingCommand(
-                        domain, _binding, "preMove", _preMoveText.getText().trim());
-                domain.getCommandStack().execute(command);
-            } else {
-                if (_binding.getConsume() == null) {
-                    _binding.setConsume(CamelFactory.eINSTANCE.createFileConsumerType());
-                }
-                _binding.getConsume().setPreMove(_preMoveText.getText().trim());
-            }
-
+        } else {
+            handleConsumer(control, domain);
         }
     }
 }

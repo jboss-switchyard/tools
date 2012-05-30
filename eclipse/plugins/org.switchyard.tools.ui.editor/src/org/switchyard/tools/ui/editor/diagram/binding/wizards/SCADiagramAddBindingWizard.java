@@ -17,6 +17,7 @@ import org.eclipse.jface.wizard.IWizardPage;
 import org.eclipse.jface.wizard.Wizard;
 import org.eclipse.soa.sca.sca1_1.model.sca.Binding;
 import org.switchyard.tools.models.switchyard1_0.camel.CamelFileBindingType;
+import org.switchyard.tools.models.switchyard1_0.camel.CamelFtpBindingType;
 import org.switchyard.tools.models.switchyard1_0.soap.SOAPBindingType;
 
 /**
@@ -28,6 +29,7 @@ public class SCADiagramAddBindingWizard extends Wizard {
     private SCADiagramAddBindingStartPage _startPage = null;
     private SCADiagramAddBindingSOAPPage _soapPage = null;
     private SCADiagramAddBindingCamelFilePage _camelFilePage = null;
+    private AddBindingCamelFTPPage _camelFTPPage = null;
     private EObject _parent;
 
     /**
@@ -44,6 +46,7 @@ public class SCADiagramAddBindingWizard extends Wizard {
         _startPage = new SCADiagramAddBindingStartPage("start");
         _soapPage = new SCADiagramAddBindingSOAPPage(_startPage, "soap");
         _camelFilePage = new SCADiagramAddBindingCamelFilePage(_startPage, "camelFile");
+        _camelFTPPage = new AddBindingCamelFTPPage(_startPage, "camelFTP");
     }
 
     @Override
@@ -59,6 +62,7 @@ public class SCADiagramAddBindingWizard extends Wizard {
         addPage(_startPage);
         addPage(_soapPage);
         addPage(_camelFilePage);
+        addPage(_camelFTPPage);
     }
 
     /**
@@ -78,14 +82,15 @@ public class SCADiagramAddBindingWizard extends Wizard {
             if (bindingToTest instanceof SOAPBindingType) {
                 _soapPage.refresh();
                 return _soapPage;
+            } else if (bindingToTest instanceof CamelFtpBindingType) {
+                _camelFTPPage.refresh();
+                return _camelFTPPage;
             } else if (bindingToTest instanceof CamelFileBindingType) {
                 _camelFilePage.refresh();
                 return _camelFilePage;
-            } else {
-                return null;
             }
         }
-        return super.getNextPage(page);
+        return null;
     }
     
     /**

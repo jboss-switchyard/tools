@@ -18,8 +18,11 @@ import org.eclipse.soa.sca.sca1_1.model.sca.Service;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.layout.GridData;
 import org.switchyard.tools.models.switchyard1_0.camel.CamelFileBindingType;
+import org.switchyard.tools.models.switchyard1_0.camel.CamelFtpBindingType;
 import org.switchyard.tools.models.switchyard1_0.soap.SOAPBindingType;
 import org.switchyard.tools.ui.editor.diagram.shared.AbstractSwitchyardComposite;
+import org.switchyard.tools.ui.editor.diagram.shared.CamelFTPConsumerComposite;
+import org.switchyard.tools.ui.editor.diagram.shared.CamelFTPProducerComposite;
 import org.switchyard.tools.ui.editor.diagram.shared.CamelFileConsumerComposite;
 import org.switchyard.tools.ui.editor.diagram.shared.CamelFileProducerComposite;
 import org.switchyard.tools.ui.editor.diagram.shared.WSDLURISelectionComposite;
@@ -52,6 +55,17 @@ public final class BindingCompositeAdapter {
                 composite.setRootGridData(wsdlGD);
             } else if (binding.eContainer() instanceof Reference) {
                 composite = new CamelFileProducerComposite();
+                GridData wsdlGD = new GridData(SWT.FILL, SWT.FILL, true, true);
+                composite.setRootGridData(wsdlGD);
+            }
+        } else if (object instanceof CamelFtpBindingType) {
+            CamelFtpBindingType binding = (CamelFtpBindingType) object;
+            if (binding.eContainer() instanceof Service) {
+                composite = new CamelFTPConsumerComposite();
+                GridData wsdlGD = new GridData(SWT.FILL, SWT.FILL, true, true);
+                composite.setRootGridData(wsdlGD);
+            } else if (binding.eContainer() instanceof Reference) {
+                composite = new CamelFTPProducerComposite();
                 GridData wsdlGD = new GridData(SWT.FILL, SWT.FILL, true, true);
                 composite.setRootGridData(wsdlGD);
             }

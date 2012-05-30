@@ -627,6 +627,10 @@ public class ModelHandler {
         ((CamelFileBindingType) camelFileType).setDirectory("my/directory");
         typeList.add(camelFileType);
 
+        Binding camelFTPType = CamelFactory.eINSTANCE.createCamelFtpBindingType();
+        ((CamelFtpBindingType) camelFTPType).setDirectory("my/directory");
+        typeList.add(camelFTPType);
+
         return typeList;
     }
 
@@ -638,7 +642,9 @@ public class ModelHandler {
         if (binding instanceof SOAPBindingType) {
             return "SOAP";
         } else  if (binding instanceof CamelFileBindingType) {
-            return "Camel File";
+            return "File";
+        } else  if (binding instanceof CamelFtpBindingType) {
+            return "FTP";
         } else {
             return "Unsupported (" + binding.eClass().getClass().getName() + ")";
         }

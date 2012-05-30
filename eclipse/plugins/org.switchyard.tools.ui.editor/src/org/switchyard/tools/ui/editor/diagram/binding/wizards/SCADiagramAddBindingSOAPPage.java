@@ -85,7 +85,7 @@ public class SCADiagramAddBindingSOAPPage extends BaseWizardPage implements IRef
         if (this._startPage != null && this._startPage.getBinding() != null && _startPage.getBinding() instanceof SOAPBindingType) {
            return false;
         }
-        return super.getSkippable();
+        return true;
     }
 
     @Override

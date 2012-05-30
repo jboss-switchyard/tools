@@ -16,9 +16,13 @@ import javax.swing.event.ChangeEvent;
 import javax.swing.event.ChangeListener;
 
 import org.eclipse.core.runtime.ListenerList;
+import org.eclipse.swt.SWT;
 import org.eclipse.swt.layout.GridData;
+import org.eclipse.swt.widgets.Button;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Control;
+import org.eclipse.swt.widgets.Label;
+import org.eclipse.swt.widgets.Text;
 
 /**
  * @author bfitzpat
@@ -167,5 +171,29 @@ public abstract class AbstractSwitchyardComposite {
             }
             k.dispose();
         }
+    }
+
+    /**
+     * @param parent parent composite
+     * @param label string for label
+     * @return reference to created Button
+     */
+    protected Button createCheckbox(Composite parent, String label) {
+        Button newButton = new Button(parent, SWT.CHECK | SWT.LEFT);
+        newButton.setText(label);
+        newButton.setLayoutData(new GridData(SWT.FILL, SWT.NONE, true, false, 2, 1));
+        return newButton;
+    }
+
+    /**
+     * @param parent parent composite
+     * @param label string to put in label
+     * @return reference to created Text control
+     */
+    protected Text createLabelAndText(Composite parent, String label) {
+        new Label(parent, SWT.NONE).setText(label);
+        Text newText = new Text(parent, SWT.BORDER);
+        newText.setLayoutData(new GridData(SWT.FILL, SWT.NONE, true, false));
+        return newText;
     }
 }

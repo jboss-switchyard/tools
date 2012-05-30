@@ -18,35 +18,35 @@ import javax.swing.event.ChangeListener;
 import org.eclipse.soa.sca.sca1_1.model.sca.Reference;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.widgets.Composite;
-import org.switchyard.tools.models.switchyard1_0.camel.CamelFileBindingType;
+import org.switchyard.tools.models.switchyard1_0.camel.CamelFtpBindingType;
 import org.switchyard.tools.ui.editor.diagram.internal.wizards.BaseWizardPage;
 import org.switchyard.tools.ui.editor.diagram.internal.wizards.IRefreshablePage;
-import org.switchyard.tools.ui.editor.diagram.shared.CamelFileConsumerComposite;
-import org.switchyard.tools.ui.editor.diagram.shared.CamelFileProducerComposite;
+import org.switchyard.tools.ui.editor.diagram.shared.CamelFTPConsumerComposite;
+import org.switchyard.tools.ui.editor.diagram.shared.CamelFTPProducerComposite;
 
 /**
  * @author bfitzpat
  * 
  */
-public class SCADiagramAddBindingCamelFilePage extends BaseWizardPage implements IRefreshablePage {
+public class AddBindingCamelFTPPage extends BaseWizardPage implements IRefreshablePage {
 
     private SCADiagramAddBindingStartPage _startPage = null;
-    private CamelFileConsumerComposite _consumerComposite = null;
-    private CamelFileProducerComposite _producerComposite = null;
+    private CamelFTPConsumerComposite _consumerComposite = null;
+    private CamelFTPProducerComposite _producerComposite = null;
 
     /**
      * @param start Start page reference
      * @param pageName String for name
      */
-    public SCADiagramAddBindingCamelFilePage(SCADiagramAddBindingStartPage start, String pageName) {
+    public AddBindingCamelFTPPage(SCADiagramAddBindingStartPage start, String pageName) {
         this(pageName);
         this._startPage = start;
     }
 
-    protected SCADiagramAddBindingCamelFilePage(String pageName) {
+    protected AddBindingCamelFTPPage(String pageName) {
         super(pageName);
-        setTitle("Specify File Binding Details");
-        setDescription("Specify pertinent details for your File Binding.");
+        setTitle("Specify FTP Binding Details");
+        setDescription("Specify pertinent details for your FTP Binding.");
     }
 
     @Override
@@ -60,9 +60,9 @@ public class SCADiagramAddBindingCamelFilePage extends BaseWizardPage implements
         }
         
         if (showConsumer) {
-            _consumerComposite = new CamelFileConsumerComposite();
-            if (_startPage != null && _startPage.getBinding() != null && _startPage.getBinding() instanceof CamelFileBindingType) {
-                _consumerComposite.setBinding((CamelFileBindingType) _startPage.getBinding());
+            _consumerComposite = new CamelFTPConsumerComposite();
+            if (_startPage != null && _startPage.getBinding() != null && _startPage.getBinding() instanceof CamelFtpBindingType) {
+                _consumerComposite.setBinding((CamelFtpBindingType) _startPage.getBinding());
             }
             _consumerComposite.addChangeListener(new ChangeListener() {
                 @Override
@@ -75,9 +75,9 @@ public class SCADiagramAddBindingCamelFilePage extends BaseWizardPage implements
     
             setControl(_consumerComposite.getPanel());
         } else {
-            _producerComposite = new CamelFileProducerComposite();
-            if (_startPage != null && _startPage.getBinding() != null && _startPage.getBinding() instanceof CamelFileBindingType) {
-                _producerComposite.setBinding((CamelFileBindingType) _startPage.getBinding());
+            _producerComposite = new CamelFTPProducerComposite();
+            if (_startPage != null && _startPage.getBinding() != null && _startPage.getBinding() instanceof CamelFtpBindingType) {
+                _producerComposite.setBinding((CamelFtpBindingType) _startPage.getBinding());
             }
             _producerComposite.addChangeListener(new ChangeListener() {
                 @Override
@@ -97,7 +97,7 @@ public class SCADiagramAddBindingCamelFilePage extends BaseWizardPage implements
     @Override
     public boolean getSkippable() {
         if (this._startPage != null && this._startPage.getBinding() != null
-                && _startPage.getBinding() instanceof CamelFileBindingType) {
+                && _startPage.getBinding() instanceof CamelFtpBindingType) {
             return false;
         }
         return true;
@@ -105,7 +105,7 @@ public class SCADiagramAddBindingCamelFilePage extends BaseWizardPage implements
 
     @Override
     public void refresh() {
-        if (_startPage != null && _startPage.getBinding() instanceof CamelFileBindingType) {
+        if (_startPage != null && _startPage.getBinding() instanceof CamelFtpBindingType) {
             if (_consumerComposite != null && _consumerComposite.getPanel() != null) {
                 _consumerComposite.setBinding(_startPage.getBinding());
             } else if (_producerComposite != null && _producerComposite.getPanel() != null) {
