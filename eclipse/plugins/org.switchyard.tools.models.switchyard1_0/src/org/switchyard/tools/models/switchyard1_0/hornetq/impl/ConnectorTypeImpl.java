@@ -42,136 +42,136 @@ import org.switchyard.tools.models.switchyard1_0.hornetq.PropertiesType;
  * @generated
  */
 public class ConnectorTypeImpl extends EObjectImpl implements ConnectorType {
-	/**
+    /**
      * The default value of the '{@link #getFactoryClass() <em>Factory Class</em>}' attribute.
      * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
      * @see #getFactoryClass()
      * @generated
      * @ordered
      */
-	protected static final String FACTORY_CLASS_EDEFAULT = null;
+    protected static final String FACTORY_CLASS_EDEFAULT = null;
 
-	/**
+    /**
      * The cached value of the '{@link #getFactoryClass() <em>Factory Class</em>}' attribute.
      * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
      * @see #getFactoryClass()
      * @generated
      * @ordered
      */
-	protected String factoryClass = FACTORY_CLASS_EDEFAULT;
+    protected String factoryClass = FACTORY_CLASS_EDEFAULT;
 
-	/**
+    /**
      * The cached value of the '{@link #getProperties() <em>Properties</em>}' containment reference list.
      * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
      * @see #getProperties()
      * @generated
      * @ordered
      */
-	protected EList<PropertiesType> properties;
+    protected EList<PropertiesType> properties;
 
-	/**
+    /**
      * The default value of the '{@link #getName() <em>Name</em>}' attribute.
      * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
      * @see #getName()
      * @generated
      * @ordered
      */
-	protected static final String NAME_EDEFAULT = null;
+    protected static final String NAME_EDEFAULT = null;
 
-	/**
+    /**
      * The cached value of the '{@link #getName() <em>Name</em>}' attribute.
      * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
      * @see #getName()
      * @generated
      * @ordered
      */
-	protected String name = NAME_EDEFAULT;
+    protected String name = NAME_EDEFAULT;
 
-	/**
+    /**
      * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
      * @generated
      */
-	protected ConnectorTypeImpl() {
+    protected ConnectorTypeImpl() {
         super();
     }
 
-	/**
+    /**
      * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
      * @generated
      */
-	@Override
-	protected EClass eStaticClass() {
+    @Override
+    protected EClass eStaticClass() {
         return HornetQPackage.Literals.CONNECTOR_TYPE;
     }
 
-	/**
+    /**
      * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
      * @generated
      */
-	public String getFactoryClass() {
+    public String getFactoryClass() {
         return factoryClass;
     }
 
-	/**
+    /**
      * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
      * @generated
      */
-	public void setFactoryClass(String newFactoryClass) {
+    public void setFactoryClass(String newFactoryClass) {
         String oldFactoryClass = factoryClass;
         factoryClass = newFactoryClass;
         if (eNotificationRequired())
             eNotify(new ENotificationImpl(this, Notification.SET, HornetQPackage.CONNECTOR_TYPE__FACTORY_CLASS, oldFactoryClass, factoryClass));
     }
 
-	/**
+    /**
      * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
      * @generated
      */
-	public EList<PropertiesType> getProperties() {
+    public EList<PropertiesType> getProperties() {
         if (properties == null) {
             properties = new EObjectContainmentEList<PropertiesType>(PropertiesType.class, this, HornetQPackage.CONNECTOR_TYPE__PROPERTIES);
         }
         return properties;
     }
 
-	/**
+    /**
      * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
      * @generated
      */
-	public String getName() {
+    public String getName() {
         return name;
     }
 
-	/**
+    /**
      * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
      * @generated
      */
-	public void setName(String newName) {
+    public void setName(String newName) {
         String oldName = name;
         name = newName;
         if (eNotificationRequired())
             eNotify(new ENotificationImpl(this, Notification.SET, HornetQPackage.CONNECTOR_TYPE__NAME, oldName, name));
     }
 
-	/**
+    /**
      * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
      * @generated
      */
-	@Override
-	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
+    @Override
+    public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
         switch (featureID) {
             case HornetQPackage.CONNECTOR_TYPE__PROPERTIES:
                 return ((InternalEList<?>)getProperties()).basicRemove(otherEnd, msgs);
@@ -179,13 +179,13 @@ public class ConnectorTypeImpl extends EObjectImpl implements ConnectorType {
         return super.eInverseRemove(otherEnd, featureID, msgs);
     }
 
-	/**
+    /**
      * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
      * @generated
      */
-	@Override
-	public Object eGet(int featureID, boolean resolve, boolean coreType) {
+    @Override
+    public Object eGet(int featureID, boolean resolve, boolean coreType) {
         switch (featureID) {
             case HornetQPackage.CONNECTOR_TYPE__FACTORY_CLASS:
                 return getFactoryClass();
@@ -197,14 +197,14 @@ public class ConnectorTypeImpl extends EObjectImpl implements ConnectorType {
         return super.eGet(featureID, resolve, coreType);
     }
 
-	/**
+    /**
      * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
      * @generated
      */
-	@SuppressWarnings("unchecked")
-	@Override
-	public void eSet(int featureID, Object newValue) {
+    @SuppressWarnings("unchecked")
+    @Override
+    public void eSet(int featureID, Object newValue) {
         switch (featureID) {
             case HornetQPackage.CONNECTOR_TYPE__FACTORY_CLASS:
                 setFactoryClass((String)newValue);
@@ -220,13 +220,13 @@ public class ConnectorTypeImpl extends EObjectImpl implements ConnectorType {
         super.eSet(featureID, newValue);
     }
 
-	/**
+    /**
      * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
      * @generated
      */
-	@Override
-	public void eUnset(int featureID) {
+    @Override
+    public void eUnset(int featureID) {
         switch (featureID) {
             case HornetQPackage.CONNECTOR_TYPE__FACTORY_CLASS:
                 setFactoryClass(FACTORY_CLASS_EDEFAULT);
@@ -241,13 +241,13 @@ public class ConnectorTypeImpl extends EObjectImpl implements ConnectorType {
         super.eUnset(featureID);
     }
 
-	/**
+    /**
      * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
      * @generated
      */
-	@Override
-	public boolean eIsSet(int featureID) {
+    @Override
+    public boolean eIsSet(int featureID) {
         switch (featureID) {
             case HornetQPackage.CONNECTOR_TYPE__FACTORY_CLASS:
                 return FACTORY_CLASS_EDEFAULT == null ? factoryClass != null : !FACTORY_CLASS_EDEFAULT.equals(factoryClass);
@@ -259,13 +259,13 @@ public class ConnectorTypeImpl extends EObjectImpl implements ConnectorType {
         return super.eIsSet(featureID);
     }
 
-	/**
+    /**
      * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
      * @generated
      */
-	@Override
-	public String toString() {
+    @Override
+    public String toString() {
         if (eIsProxy()) return super.toString();
 
         StringBuffer result = new StringBuffer(super.toString());

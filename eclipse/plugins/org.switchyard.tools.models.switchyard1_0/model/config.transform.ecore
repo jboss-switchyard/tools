@@ -159,6 +159,10 @@
       <details key="name" value="SmooksTransformType"/>
       <details key="kind" value="empty"/>
     </eAnnotations>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="type" lowerBound="1" eType="#//SmooksTransformType"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="config" lowerBound="1"
+        eType="ecore:EDataType http://www.eclipse.org/emf/2003/XMLType#//String"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="reportPath" eType="ecore:EDataType http://www.eclipse.org/emf/2003/XMLType#//String"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EDataType" name="SmooksTransformTypeObject" instanceClassName="org.eclipse.emf.common.util.Enumerator">
     <eAnnotations source="http:///org/eclipse/emf/ecore/util/ExtendedMetaData">
@@ -174,5 +178,8 @@
       <details key="name" value="XsltTransformType"/>
       <details key="kind" value="empty"/>
     </eAnnotations>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="xsltFile" lowerBound="1"
+        eType="ecore:EDataType http://www.eclipse.org/emf/2003/XMLType#//String"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="failOnWarning" eType="ecore:EDataType http://www.eclipse.org/emf/2003/XMLType#//String"/>
   </eClassifiers>
 </ecore:EPackage>

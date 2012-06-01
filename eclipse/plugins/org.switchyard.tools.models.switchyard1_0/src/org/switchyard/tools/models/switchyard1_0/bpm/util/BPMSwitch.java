@@ -107,6 +107,7 @@ public class BPMSwitch<T> extends Switch<T> {
                 MappingType mappingType = (MappingType)theEObject;
                 T result = caseMappingType(mappingType);
                 if (result == null) result = caseCommonRules_MappingType(mappingType);
+                if (result == null) result = caseCommonExtensionBase(mappingType);
                 if (result == null) result = defaultCase(theEObject);
                 return result;
             }

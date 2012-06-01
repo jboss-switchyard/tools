@@ -30,7 +30,7 @@ import org.switchyard.tools.models.switchyard1_0.switchyard.SwitchYardBindingTyp
  * @generated
  */
 public interface BindingType extends SwitchYardBindingType {
-	/**
+    /**
      * Returns the value of the '<em><b>Context Mapper</b></em>' containment reference.
      * <!-- begin-user-doc -->
      * <p>
@@ -87,38 +87,38 @@ public interface BindingType extends SwitchYardBindingType {
     /**
      * Returns the value of the '<em><b>Hq Operation Selector</b></em>' containment reference.
      * <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of the '<em>Hq Operation Selector</em>' containment reference isn't clear,
-	 * there really should be more of a description here...
-	 * </p>
-	 * <!-- end-user-doc -->
+     * <p>
+     * If the meaning of the '<em>Hq Operation Selector</em>' containment reference isn't clear,
+     * there really should be more of a description here...
+     * </p>
+     * <!-- end-user-doc -->
      * @return the value of the '<em>Hq Operation Selector</em>' containment reference.
-     * @see #setHqOperationSelector(OperationSelectorType)
+     * @see #setHqOperationSelector(hqOperationSelectorType)
      * @see org.switchyard.tools.models.switchyard1_0.hornetq.HornetQPackage#getBindingType_HqOperationSelector()
      * @model containment="true"
      *        extendedMetaData="kind='element' name='operationSelector' namespace='##targetNamespace'"
      * @generated
      */
-	OperationSelectorType getHqOperationSelector();
+    hqOperationSelectorType getHqOperationSelector();
 
-	/**
+    /**
      * Sets the value of the '{@link org.switchyard.tools.models.switchyard1_0.hornetq.BindingType#getHqOperationSelector <em>Hq Operation Selector</em>}' containment reference.
      * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
      * @param value the new value of the '<em>Hq Operation Selector</em>' containment reference.
      * @see #getHqOperationSelector()
      * @generated
      */
-	void setHqOperationSelector(OperationSelectorType value);
+    void setHqOperationSelector(hqOperationSelectorType value);
 
-	/**
+    /**
      * Returns the value of the '<em><b>Config</b></em>' containment reference.
      * <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of the '<em>Config</em>' containment reference isn't clear,
-	 * there really should be more of a description here...
-	 * </p>
-	 * <!-- end-user-doc -->
+     * <p>
+     * If the meaning of the '<em>Config</em>' containment reference isn't clear,
+     * there really should be more of a description here...
+     * </p>
+     * <!-- end-user-doc -->
      * @return the value of the '<em>Config</em>' containment reference.
      * @see #setConfig(ConfigType)
      * @see org.switchyard.tools.models.switchyard1_0.hornetq.HornetQPackage#getBindingType_Config()
@@ -126,16 +126,16 @@ public interface BindingType extends SwitchYardBindingType {
      *        extendedMetaData="kind='element' name='config' namespace='##targetNamespace'"
      * @generated
      */
-	ConfigType getConfig();
+    ConfigType getConfig();
 
-	/**
+    /**
      * Sets the value of the '{@link org.switchyard.tools.models.switchyard1_0.hornetq.BindingType#getConfig <em>Config</em>}' containment reference.
      * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
      * @param value the new value of the '<em>Config</em>' containment reference.
      * @see #getConfig()
      * @generated
      */
-	void setConfig(ConfigType value);
+    void setConfig(ConfigType value);
 
 } // BindingType

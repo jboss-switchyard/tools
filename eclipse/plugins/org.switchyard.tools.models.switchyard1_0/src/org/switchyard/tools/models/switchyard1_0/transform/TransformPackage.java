@@ -303,13 +303,40 @@ public interface TransformPackage extends EPackage {
 	int SMOOKS_TRANSFORM_TYPE1__TO = SwitchyardPackage.TRANSFORM_TYPE__TO;
 
 	/**
+     * The feature id for the '<em><b>Type</b></em>' attribute.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int SMOOKS_TRANSFORM_TYPE1__TYPE = SwitchyardPackage.TRANSFORM_TYPE_FEATURE_COUNT + 0;
+
+    /**
+     * The feature id for the '<em><b>Config</b></em>' attribute.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int SMOOKS_TRANSFORM_TYPE1__CONFIG = SwitchyardPackage.TRANSFORM_TYPE_FEATURE_COUNT + 1;
+
+    /**
+     * The feature id for the '<em><b>Report Path</b></em>' attribute.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int SMOOKS_TRANSFORM_TYPE1__REPORT_PATH = SwitchyardPackage.TRANSFORM_TYPE_FEATURE_COUNT + 2;
+
+    /**
      * The number of structural features of the '<em>Smooks Transform Type1</em>' class.
      * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
      * @generated
      * @ordered
      */
-	int SMOOKS_TRANSFORM_TYPE1_FEATURE_COUNT = SwitchyardPackage.TRANSFORM_TYPE_FEATURE_COUNT + 0;
+	int SMOOKS_TRANSFORM_TYPE1_FEATURE_COUNT = SwitchyardPackage.TRANSFORM_TYPE_FEATURE_COUNT + 3;
 
 	/**
      * The meta object id for the '{@link org.switchyard.tools.models.switchyard1_0.transform.impl.XsltTransformTypeImpl <em>Xslt Transform Type</em>}' class.
@@ -340,13 +367,31 @@ public interface TransformPackage extends EPackage {
 	int XSLT_TRANSFORM_TYPE__TO = SwitchyardPackage.TRANSFORM_TYPE__TO;
 
 	/**
+     * The feature id for the '<em><b>Xslt File</b></em>' attribute.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int XSLT_TRANSFORM_TYPE__XSLT_FILE = SwitchyardPackage.TRANSFORM_TYPE_FEATURE_COUNT + 0;
+
+    /**
+     * The feature id for the '<em><b>Fail On Warning</b></em>' attribute.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int XSLT_TRANSFORM_TYPE__FAIL_ON_WARNING = SwitchyardPackage.TRANSFORM_TYPE_FEATURE_COUNT + 1;
+
+    /**
      * The number of structural features of the '<em>Xslt Transform Type</em>' class.
      * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
      * @generated
      * @ordered
      */
-	int XSLT_TRANSFORM_TYPE_FEATURE_COUNT = SwitchyardPackage.TRANSFORM_TYPE_FEATURE_COUNT + 0;
+	int XSLT_TRANSFORM_TYPE_FEATURE_COUNT = SwitchyardPackage.TRANSFORM_TYPE_FEATURE_COUNT + 2;
 
 	/**
      * The meta object id for the '{@link org.switchyard.tools.models.switchyard1_0.transform.JavaTransformType <em>Java Transform Type</em>}' enum.
@@ -539,6 +584,39 @@ public interface TransformPackage extends EPackage {
 	EClass getSmooksTransformType1();
 
 	/**
+     * Returns the meta object for the attribute '{@link org.switchyard.tools.models.switchyard1_0.transform.SmooksTransformType1#getType <em>Type</em>}'.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @return the meta object for the attribute '<em>Type</em>'.
+     * @see org.switchyard.tools.models.switchyard1_0.transform.SmooksTransformType1#getType()
+     * @see #getSmooksTransformType1()
+     * @generated
+     */
+    EAttribute getSmooksTransformType1_Type();
+
+    /**
+     * Returns the meta object for the attribute '{@link org.switchyard.tools.models.switchyard1_0.transform.SmooksTransformType1#getConfig <em>Config</em>}'.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @return the meta object for the attribute '<em>Config</em>'.
+     * @see org.switchyard.tools.models.switchyard1_0.transform.SmooksTransformType1#getConfig()
+     * @see #getSmooksTransformType1()
+     * @generated
+     */
+    EAttribute getSmooksTransformType1_Config();
+
+    /**
+     * Returns the meta object for the attribute '{@link org.switchyard.tools.models.switchyard1_0.transform.SmooksTransformType1#getReportPath <em>Report Path</em>}'.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @return the meta object for the attribute '<em>Report Path</em>'.
+     * @see org.switchyard.tools.models.switchyard1_0.transform.SmooksTransformType1#getReportPath()
+     * @see #getSmooksTransformType1()
+     * @generated
+     */
+    EAttribute getSmooksTransformType1_ReportPath();
+
+    /**
      * Returns the meta object for class '{@link org.switchyard.tools.models.switchyard1_0.transform.XsltTransformType <em>Xslt Transform Type</em>}'.
      * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -549,6 +627,28 @@ public interface TransformPackage extends EPackage {
 	EClass getXsltTransformType();
 
 	/**
+     * Returns the meta object for the attribute '{@link org.switchyard.tools.models.switchyard1_0.transform.XsltTransformType#getXsltFile <em>Xslt File</em>}'.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @return the meta object for the attribute '<em>Xslt File</em>'.
+     * @see org.switchyard.tools.models.switchyard1_0.transform.XsltTransformType#getXsltFile()
+     * @see #getXsltTransformType()
+     * @generated
+     */
+    EAttribute getXsltTransformType_XsltFile();
+
+    /**
+     * Returns the meta object for the attribute '{@link org.switchyard.tools.models.switchyard1_0.transform.XsltTransformType#getFailOnWarning <em>Fail On Warning</em>}'.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @return the meta object for the attribute '<em>Fail On Warning</em>'.
+     * @see org.switchyard.tools.models.switchyard1_0.transform.XsltTransformType#getFailOnWarning()
+     * @see #getXsltTransformType()
+     * @generated
+     */
+    EAttribute getXsltTransformType_FailOnWarning();
+
+    /**
      * Returns the meta object for enum '{@link org.switchyard.tools.models.switchyard1_0.transform.JavaTransformType <em>Java Transform Type</em>}'.
      * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -737,6 +837,30 @@ public interface TransformPackage extends EPackage {
 		EClass SMOOKS_TRANSFORM_TYPE1 = eINSTANCE.getSmooksTransformType1();
 
 		/**
+         * The meta object literal for the '<em><b>Type</b></em>' attribute feature.
+         * <!-- begin-user-doc -->
+         * <!-- end-user-doc -->
+         * @generated
+         */
+        EAttribute SMOOKS_TRANSFORM_TYPE1__TYPE = eINSTANCE.getSmooksTransformType1_Type();
+
+        /**
+         * The meta object literal for the '<em><b>Config</b></em>' attribute feature.
+         * <!-- begin-user-doc -->
+         * <!-- end-user-doc -->
+         * @generated
+         */
+        EAttribute SMOOKS_TRANSFORM_TYPE1__CONFIG = eINSTANCE.getSmooksTransformType1_Config();
+
+        /**
+         * The meta object literal for the '<em><b>Report Path</b></em>' attribute feature.
+         * <!-- begin-user-doc -->
+         * <!-- end-user-doc -->
+         * @generated
+         */
+        EAttribute SMOOKS_TRANSFORM_TYPE1__REPORT_PATH = eINSTANCE.getSmooksTransformType1_ReportPath();
+
+        /**
          * The meta object literal for the '{@link org.switchyard.tools.models.switchyard1_0.transform.impl.XsltTransformTypeImpl <em>Xslt Transform Type</em>}' class.
          * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
@@ -747,6 +871,22 @@ public interface TransformPackage extends EPackage {
 		EClass XSLT_TRANSFORM_TYPE = eINSTANCE.getXsltTransformType();
 
 		/**
+         * The meta object literal for the '<em><b>Xslt File</b></em>' attribute feature.
+         * <!-- begin-user-doc -->
+         * <!-- end-user-doc -->
+         * @generated
+         */
+        EAttribute XSLT_TRANSFORM_TYPE__XSLT_FILE = eINSTANCE.getXsltTransformType_XsltFile();
+
+        /**
+         * The meta object literal for the '<em><b>Fail On Warning</b></em>' attribute feature.
+         * <!-- begin-user-doc -->
+         * <!-- end-user-doc -->
+         * @generated
+         */
+        EAttribute XSLT_TRANSFORM_TYPE__FAIL_ON_WARNING = eINSTANCE.getXsltTransformType_FailOnWarning();
+
+        /**
          * The meta object literal for the '{@link org.switchyard.tools.models.switchyard1_0.transform.JavaTransformType <em>Java Transform Type</em>}' enum.
          * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->

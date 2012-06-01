@@ -266,13 +266,67 @@ public interface CommonRulesPackage extends EPackage {
     int MAPPING_TYPE = 3;
 
     /**
+     * The feature id for the '<em><b>Documentation</b></em>' containment reference list.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int MAPPING_TYPE__DOCUMENTATION = ScaPackage.COMMON_EXTENSION_BASE__DOCUMENTATION;
+
+    /**
+     * The feature id for the '<em><b>Any Attribute</b></em>' attribute list.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int MAPPING_TYPE__ANY_ATTRIBUTE = ScaPackage.COMMON_EXTENSION_BASE__ANY_ATTRIBUTE;
+
+    /**
+     * The feature id for the '<em><b>Context Scope</b></em>' attribute.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int MAPPING_TYPE__CONTEXT_SCOPE = ScaPackage.COMMON_EXTENSION_BASE_FEATURE_COUNT + 0;
+
+    /**
+     * The feature id for the '<em><b>Expression</b></em>' attribute.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int MAPPING_TYPE__EXPRESSION = ScaPackage.COMMON_EXTENSION_BASE_FEATURE_COUNT + 1;
+
+    /**
+     * The feature id for the '<em><b>Expression Type</b></em>' attribute.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int MAPPING_TYPE__EXPRESSION_TYPE = ScaPackage.COMMON_EXTENSION_BASE_FEATURE_COUNT + 2;
+
+    /**
+     * The feature id for the '<em><b>Variable</b></em>' attribute.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int MAPPING_TYPE__VARIABLE = ScaPackage.COMMON_EXTENSION_BASE_FEATURE_COUNT + 3;
+
+    /**
      * The number of structural features of the '<em>Mapping Type</em>' class.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @generated
      * @ordered
      */
-    int MAPPING_TYPE_FEATURE_COUNT = 0;
+    int MAPPING_TYPE_FEATURE_COUNT = ScaPackage.COMMON_EXTENSION_BASE_FEATURE_COUNT + 4;
 
     /**
      * The meta object id for the '{@link org.switchyard.tools.models.switchyard1_0.commonrules.AuditType <em>Audit Type</em>}' enum.
@@ -537,6 +591,50 @@ public interface CommonRulesPackage extends EPackage {
     EClass getMappingType();
 
     /**
+     * Returns the meta object for the attribute '{@link org.switchyard.tools.models.switchyard1_0.commonrules.MappingType#getContextScope <em>Context Scope</em>}'.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @return the meta object for the attribute '<em>Context Scope</em>'.
+     * @see org.switchyard.tools.models.switchyard1_0.commonrules.MappingType#getContextScope()
+     * @see #getMappingType()
+     * @generated
+     */
+    EAttribute getMappingType_ContextScope();
+
+    /**
+     * Returns the meta object for the attribute '{@link org.switchyard.tools.models.switchyard1_0.commonrules.MappingType#getExpression <em>Expression</em>}'.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @return the meta object for the attribute '<em>Expression</em>'.
+     * @see org.switchyard.tools.models.switchyard1_0.commonrules.MappingType#getExpression()
+     * @see #getMappingType()
+     * @generated
+     */
+    EAttribute getMappingType_Expression();
+
+    /**
+     * Returns the meta object for the attribute '{@link org.switchyard.tools.models.switchyard1_0.commonrules.MappingType#getExpressionType <em>Expression Type</em>}'.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @return the meta object for the attribute '<em>Expression Type</em>'.
+     * @see org.switchyard.tools.models.switchyard1_0.commonrules.MappingType#getExpressionType()
+     * @see #getMappingType()
+     * @generated
+     */
+    EAttribute getMappingType_ExpressionType();
+
+    /**
+     * Returns the meta object for the attribute '{@link org.switchyard.tools.models.switchyard1_0.commonrules.MappingType#getVariable <em>Variable</em>}'.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @return the meta object for the attribute '<em>Variable</em>'.
+     * @see org.switchyard.tools.models.switchyard1_0.commonrules.MappingType#getVariable()
+     * @see #getMappingType()
+     * @generated
+     */
+    EAttribute getMappingType_Variable();
+
+    /**
      * Returns the meta object for enum '{@link org.switchyard.tools.models.switchyard1_0.commonrules.AuditType <em>Audit Type</em>}'.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
@@ -795,6 +893,38 @@ public interface CommonRulesPackage extends EPackage {
          * @generated
          */
         EClass MAPPING_TYPE = eINSTANCE.getMappingType();
+
+        /**
+         * The meta object literal for the '<em><b>Context Scope</b></em>' attribute feature.
+         * <!-- begin-user-doc -->
+         * <!-- end-user-doc -->
+         * @generated
+         */
+        EAttribute MAPPING_TYPE__CONTEXT_SCOPE = eINSTANCE.getMappingType_ContextScope();
+
+        /**
+         * The meta object literal for the '<em><b>Expression</b></em>' attribute feature.
+         * <!-- begin-user-doc -->
+         * <!-- end-user-doc -->
+         * @generated
+         */
+        EAttribute MAPPING_TYPE__EXPRESSION = eINSTANCE.getMappingType_Expression();
+
+        /**
+         * The meta object literal for the '<em><b>Expression Type</b></em>' attribute feature.
+         * <!-- begin-user-doc -->
+         * <!-- end-user-doc -->
+         * @generated
+         */
+        EAttribute MAPPING_TYPE__EXPRESSION_TYPE = eINSTANCE.getMappingType_ExpressionType();
+
+        /**
+         * The meta object literal for the '<em><b>Variable</b></em>' attribute feature.
+         * <!-- begin-user-doc -->
+         * <!-- end-user-doc -->
+         * @generated
+         */
+        EAttribute MAPPING_TYPE__VARIABLE = eINSTANCE.getMappingType_Variable();
 
         /**
          * The meta object literal for the '{@link org.switchyard.tools.models.switchyard1_0.commonrules.AuditType <em>Audit Type</em>}' enum.

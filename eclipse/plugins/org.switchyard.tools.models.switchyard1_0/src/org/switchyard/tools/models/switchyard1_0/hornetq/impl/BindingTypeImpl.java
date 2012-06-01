@@ -14,13 +14,14 @@ import org.eclipse.emf.ecore.InternalEObject;
 
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 
-
 import org.switchyard.tools.models.switchyard1_0.hornetq.BindingType;
 import org.switchyard.tools.models.switchyard1_0.hornetq.ConfigType;
 import org.switchyard.tools.models.switchyard1_0.hornetq.HornetQPackage;
-import org.switchyard.tools.models.switchyard1_0.hornetq.OperationSelectorType;
+import org.switchyard.tools.models.switchyard1_0.hornetq.hqOperationSelectorType;
+
 import org.switchyard.tools.models.switchyard1_0.switchyard.ContextMapperType;
 import org.switchyard.tools.models.switchyard1_0.switchyard.MessageComposerType;
+
 import org.switchyard.tools.models.switchyard1_0.switchyard.impl.SwitchYardBindingTypeImpl;
 
 /**
@@ -40,7 +41,7 @@ import org.switchyard.tools.models.switchyard1_0.switchyard.impl.SwitchYardBindi
  * @generated
  */
 public class BindingTypeImpl extends SwitchYardBindingTypeImpl implements BindingType {
-	/**
+    /**
      * The cached value of the '{@link #getContextMapper() <em>Context Mapper</em>}' containment reference.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
@@ -63,43 +64,43 @@ public class BindingTypeImpl extends SwitchYardBindingTypeImpl implements Bindin
     /**
      * The cached value of the '{@link #getHqOperationSelector() <em>Hq Operation Selector</em>}' containment reference.
      * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
      * @see #getHqOperationSelector()
      * @generated
      * @ordered
      */
-	protected OperationSelectorType hqOperationSelector;
+    protected hqOperationSelectorType hqOperationSelector;
 
-	/**
+    /**
      * The cached value of the '{@link #getConfig() <em>Config</em>}' containment reference.
      * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
      * @see #getConfig()
      * @generated
      * @ordered
      */
-	protected ConfigType config;
+    protected ConfigType config;
 
-	/**
+    /**
      * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
      * @generated
      */
-	protected BindingTypeImpl() {
+    protected BindingTypeImpl() {
         super();
     }
 
-	/**
+    /**
      * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
      * @generated
      */
-	@Override
-	protected EClass eStaticClass() {
+    @Override
+    protected EClass eStaticClass() {
         return HornetQPackage.Literals.BINDING_TYPE;
     }
 
-	/**
+    /**
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @generated
@@ -187,20 +188,20 @@ public class BindingTypeImpl extends SwitchYardBindingTypeImpl implements Bindin
 
     /**
      * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
      * @generated
      */
-	public OperationSelectorType getHqOperationSelector() {
+    public hqOperationSelectorType getHqOperationSelector() {
         return hqOperationSelector;
     }
 
-	/**
+    /**
      * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
      * @generated
      */
-	public NotificationChain basicSetHqOperationSelector(OperationSelectorType newHqOperationSelector, NotificationChain msgs) {
-        OperationSelectorType oldHqOperationSelector = hqOperationSelector;
+    public NotificationChain basicSetHqOperationSelector(hqOperationSelectorType newHqOperationSelector, NotificationChain msgs) {
+        hqOperationSelectorType oldHqOperationSelector = hqOperationSelector;
         hqOperationSelector = newHqOperationSelector;
         if (eNotificationRequired()) {
             ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, HornetQPackage.BINDING_TYPE__HQ_OPERATION_SELECTOR, oldHqOperationSelector, newHqOperationSelector);
@@ -209,12 +210,12 @@ public class BindingTypeImpl extends SwitchYardBindingTypeImpl implements Bindin
         return msgs;
     }
 
-	/**
+    /**
      * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
      * @generated
      */
-	public void setHqOperationSelector(OperationSelectorType newHqOperationSelector) {
+    public void setHqOperationSelector(hqOperationSelectorType newHqOperationSelector) {
         if (newHqOperationSelector != hqOperationSelector) {
             NotificationChain msgs = null;
             if (hqOperationSelector != null)
@@ -228,21 +229,21 @@ public class BindingTypeImpl extends SwitchYardBindingTypeImpl implements Bindin
             eNotify(new ENotificationImpl(this, Notification.SET, HornetQPackage.BINDING_TYPE__HQ_OPERATION_SELECTOR, newHqOperationSelector, newHqOperationSelector));
     }
 
-	/**
+    /**
      * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
      * @generated
      */
-	public ConfigType getConfig() {
+    public ConfigType getConfig() {
         return config;
     }
 
-	/**
+    /**
      * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
      * @generated
      */
-	public NotificationChain basicSetConfig(ConfigType newConfig, NotificationChain msgs) {
+    public NotificationChain basicSetConfig(ConfigType newConfig, NotificationChain msgs) {
         ConfigType oldConfig = config;
         config = newConfig;
         if (eNotificationRequired()) {
@@ -252,12 +253,12 @@ public class BindingTypeImpl extends SwitchYardBindingTypeImpl implements Bindin
         return msgs;
     }
 
-	/**
+    /**
      * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
      * @generated
      */
-	public void setConfig(ConfigType newConfig) {
+    public void setConfig(ConfigType newConfig) {
         if (newConfig != config) {
             NotificationChain msgs = null;
             if (config != null)
@@ -271,13 +272,13 @@ public class BindingTypeImpl extends SwitchYardBindingTypeImpl implements Bindin
             eNotify(new ENotificationImpl(this, Notification.SET, HornetQPackage.BINDING_TYPE__CONFIG, newConfig, newConfig));
     }
 
-	/**
+    /**
      * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
      * @generated
      */
-	@Override
-	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
+    @Override
+    public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
         switch (featureID) {
             case HornetQPackage.BINDING_TYPE__CONTEXT_MAPPER:
                 return basicSetContextMapper(null, msgs);
@@ -291,13 +292,13 @@ public class BindingTypeImpl extends SwitchYardBindingTypeImpl implements Bindin
         return super.eInverseRemove(otherEnd, featureID, msgs);
     }
 
-	/**
+    /**
      * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
      * @generated
      */
-	@Override
-	public Object eGet(int featureID, boolean resolve, boolean coreType) {
+    @Override
+    public Object eGet(int featureID, boolean resolve, boolean coreType) {
         switch (featureID) {
             case HornetQPackage.BINDING_TYPE__CONTEXT_MAPPER:
                 return getContextMapper();
@@ -311,13 +312,13 @@ public class BindingTypeImpl extends SwitchYardBindingTypeImpl implements Bindin
         return super.eGet(featureID, resolve, coreType);
     }
 
-	/**
+    /**
      * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
      * @generated
      */
-	@Override
-	public void eSet(int featureID, Object newValue) {
+    @Override
+    public void eSet(int featureID, Object newValue) {
         switch (featureID) {
             case HornetQPackage.BINDING_TYPE__CONTEXT_MAPPER:
                 setContextMapper((ContextMapperType)newValue);
@@ -326,7 +327,7 @@ public class BindingTypeImpl extends SwitchYardBindingTypeImpl implements Bindin
                 setMessageComposer((MessageComposerType)newValue);
                 return;
             case HornetQPackage.BINDING_TYPE__HQ_OPERATION_SELECTOR:
-                setHqOperationSelector((OperationSelectorType)newValue);
+                setHqOperationSelector((hqOperationSelectorType)newValue);
                 return;
             case HornetQPackage.BINDING_TYPE__CONFIG:
                 setConfig((ConfigType)newValue);
@@ -335,13 +336,13 @@ public class BindingTypeImpl extends SwitchYardBindingTypeImpl implements Bindin
         super.eSet(featureID, newValue);
     }
 
-	/**
+    /**
      * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
      * @generated
      */
-	@Override
-	public void eUnset(int featureID) {
+    @Override
+    public void eUnset(int featureID) {
         switch (featureID) {
             case HornetQPackage.BINDING_TYPE__CONTEXT_MAPPER:
                 setContextMapper((ContextMapperType)null);
@@ -350,7 +351,7 @@ public class BindingTypeImpl extends SwitchYardBindingTypeImpl implements Bindin
                 setMessageComposer((MessageComposerType)null);
                 return;
             case HornetQPackage.BINDING_TYPE__HQ_OPERATION_SELECTOR:
-                setHqOperationSelector((OperationSelectorType)null);
+                setHqOperationSelector((hqOperationSelectorType)null);
                 return;
             case HornetQPackage.BINDING_TYPE__CONFIG:
                 setConfig((ConfigType)null);
@@ -359,13 +360,13 @@ public class BindingTypeImpl extends SwitchYardBindingTypeImpl implements Bindin
         super.eUnset(featureID);
     }
 
-	/**
+    /**
      * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
      * @generated
      */
-	@Override
-	public boolean eIsSet(int featureID) {
+    @Override
+    public boolean eIsSet(int featureID) {
         switch (featureID) {
             case HornetQPackage.BINDING_TYPE__CONTEXT_MAPPER:
                 return contextMapper != null;

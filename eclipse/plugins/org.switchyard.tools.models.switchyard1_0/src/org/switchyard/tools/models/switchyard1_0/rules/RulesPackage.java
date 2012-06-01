@@ -396,6 +396,60 @@ public interface RulesPackage extends EPackage {
     int MAPPING_TYPE = 5;
 
     /**
+     * The feature id for the '<em><b>Documentation</b></em>' containment reference list.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int MAPPING_TYPE__DOCUMENTATION = CommonRulesPackage.MAPPING_TYPE__DOCUMENTATION;
+
+    /**
+     * The feature id for the '<em><b>Any Attribute</b></em>' attribute list.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int MAPPING_TYPE__ANY_ATTRIBUTE = CommonRulesPackage.MAPPING_TYPE__ANY_ATTRIBUTE;
+
+    /**
+     * The feature id for the '<em><b>Context Scope</b></em>' attribute.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int MAPPING_TYPE__CONTEXT_SCOPE = CommonRulesPackage.MAPPING_TYPE__CONTEXT_SCOPE;
+
+    /**
+     * The feature id for the '<em><b>Expression</b></em>' attribute.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int MAPPING_TYPE__EXPRESSION = CommonRulesPackage.MAPPING_TYPE__EXPRESSION;
+
+    /**
+     * The feature id for the '<em><b>Expression Type</b></em>' attribute.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int MAPPING_TYPE__EXPRESSION_TYPE = CommonRulesPackage.MAPPING_TYPE__EXPRESSION_TYPE;
+
+    /**
+     * The feature id for the '<em><b>Variable</b></em>' attribute.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int MAPPING_TYPE__VARIABLE = CommonRulesPackage.MAPPING_TYPE__VARIABLE;
+
+    /**
      * The number of structural features of the '<em>Mapping Type</em>' class.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->

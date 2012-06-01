@@ -95,6 +95,7 @@ public class CommonRulesSwitch<T> extends Switch<T> {
             case CommonRulesPackage.MAPPING_TYPE: {
                 MappingType mappingType = (MappingType)theEObject;
                 T result = caseMappingType(mappingType);
+                if (result == null) result = caseCommonExtensionBase(mappingType);
                 if (result == null) result = defaultCase(theEObject);
                 return result;
             }

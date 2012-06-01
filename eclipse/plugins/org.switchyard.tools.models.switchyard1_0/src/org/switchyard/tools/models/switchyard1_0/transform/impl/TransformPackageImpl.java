@@ -390,6 +390,33 @@ public class TransformPackageImpl extends EPackageImpl implements TransformPacka
 
 	/**
      * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public EAttribute getSmooksTransformType1_Type() {
+        return (EAttribute)smooksTransformType1EClass.getEStructuralFeatures().get(0);
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public EAttribute getSmooksTransformType1_Config() {
+        return (EAttribute)smooksTransformType1EClass.getEStructuralFeatures().get(1);
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public EAttribute getSmooksTransformType1_ReportPath() {
+        return (EAttribute)smooksTransformType1EClass.getEStructuralFeatures().get(2);
+    }
+
+    /**
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
      * @generated
      */
@@ -398,6 +425,24 @@ public class TransformPackageImpl extends EPackageImpl implements TransformPacka
     }
 
 	/**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public EAttribute getXsltTransformType_XsltFile() {
+        return (EAttribute)xsltTransformTypeEClass.getEStructuralFeatures().get(0);
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public EAttribute getXsltTransformType_FailOnWarning() {
+        return (EAttribute)xsltTransformTypeEClass.getEStructuralFeatures().get(1);
+    }
+
+    /**
      * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
      * @generated
@@ -479,8 +524,13 @@ public class TransformPackageImpl extends EPackageImpl implements TransformPacka
         jsonTransformTypeEClass = createEClass(JSON_TRANSFORM_TYPE);
 
         smooksTransformType1EClass = createEClass(SMOOKS_TRANSFORM_TYPE1);
+        createEAttribute(smooksTransformType1EClass, SMOOKS_TRANSFORM_TYPE1__TYPE);
+        createEAttribute(smooksTransformType1EClass, SMOOKS_TRANSFORM_TYPE1__CONFIG);
+        createEAttribute(smooksTransformType1EClass, SMOOKS_TRANSFORM_TYPE1__REPORT_PATH);
 
         xsltTransformTypeEClass = createEClass(XSLT_TRANSFORM_TYPE);
+        createEAttribute(xsltTransformTypeEClass, XSLT_TRANSFORM_TYPE__XSLT_FILE);
+        createEAttribute(xsltTransformTypeEClass, XSLT_TRANSFORM_TYPE__FAIL_ON_WARNING);
 
         // Create enums
         javaTransformTypeEEnum = createEEnum(JAVA_TRANSFORM_TYPE);
@@ -548,8 +598,13 @@ public class TransformPackageImpl extends EPackageImpl implements TransformPacka
         initEClass(jsonTransformTypeEClass, JsonTransformType.class, "JsonTransformType", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 
         initEClass(smooksTransformType1EClass, SmooksTransformType1.class, "SmooksTransformType1", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+        initEAttribute(getSmooksTransformType1_Type(), this.getSmooksTransformType(), "type", null, 1, 1, SmooksTransformType1.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+        initEAttribute(getSmooksTransformType1_Config(), theXMLTypePackage.getString(), "config", null, 1, 1, SmooksTransformType1.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+        initEAttribute(getSmooksTransformType1_ReportPath(), theXMLTypePackage.getString(), "reportPath", null, 0, 1, SmooksTransformType1.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
         initEClass(xsltTransformTypeEClass, XsltTransformType.class, "XsltTransformType", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+        initEAttribute(getXsltTransformType_XsltFile(), theXMLTypePackage.getString(), "xsltFile", null, 1, 1, XsltTransformType.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+        initEAttribute(getXsltTransformType_FailOnWarning(), theXMLTypePackage.getString(), "failOnWarning", null, 0, 1, XsltTransformType.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
         // Initialize enums and add enum literals
         initEEnum(javaTransformTypeEEnum, JavaTransformType.class, "JavaTransformType");

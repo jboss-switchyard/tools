@@ -419,6 +419,42 @@ public class CommonRulesPackageImpl extends EPackageImpl implements CommonRulesP
      * <!-- end-user-doc -->
      * @generated
      */
+    public EAttribute getMappingType_ContextScope() {
+        return (EAttribute)mappingTypeEClass.getEStructuralFeatures().get(0);
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public EAttribute getMappingType_Expression() {
+        return (EAttribute)mappingTypeEClass.getEStructuralFeatures().get(1);
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public EAttribute getMappingType_ExpressionType() {
+        return (EAttribute)mappingTypeEClass.getEStructuralFeatures().get(2);
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public EAttribute getMappingType_Variable() {
+        return (EAttribute)mappingTypeEClass.getEStructuralFeatures().get(3);
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
     public EEnum getAuditType() {
         return auditTypeEEnum;
     }
@@ -550,6 +586,10 @@ public class CommonRulesPackageImpl extends EPackageImpl implements CommonRulesP
         createEReference(documentRootEClass, DOCUMENT_ROOT__MAPPING);
 
         mappingTypeEClass = createEClass(MAPPING_TYPE);
+        createEAttribute(mappingTypeEClass, MAPPING_TYPE__CONTEXT_SCOPE);
+        createEAttribute(mappingTypeEClass, MAPPING_TYPE__EXPRESSION);
+        createEAttribute(mappingTypeEClass, MAPPING_TYPE__EXPRESSION_TYPE);
+        createEAttribute(mappingTypeEClass, MAPPING_TYPE__VARIABLE);
 
         // Create enums
         auditTypeEEnum = createEEnum(AUDIT_TYPE);
@@ -599,6 +639,7 @@ public class CommonRulesPackageImpl extends EPackageImpl implements CommonRulesP
 
         // Add supertypes to classes
         commonImplementationTypeEClass.getESuperTypes().add(theScaPackage.getImplementation());
+        mappingTypeEClass.getESuperTypes().add(theScaPackage.getCommonExtensionBase());
 
         // Initialize classes and features; add operations and parameters
         initEClass(auditType1EClass, AuditType1.class, "AuditType1", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
@@ -619,6 +660,10 @@ public class CommonRulesPackageImpl extends EPackageImpl implements CommonRulesP
         initEReference(getDocumentRoot_Mapping(), this.getMappingType(), null, "mapping", null, 0, -2, null, IS_TRANSIENT, IS_VOLATILE, !IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, IS_DERIVED, IS_ORDERED);
 
         initEClass(mappingTypeEClass, MappingType.class, "MappingType", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+        initEAttribute(getMappingType_ContextScope(), this.getContextScope(), "contextScope", "IN", 0, 1, MappingType.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+        initEAttribute(getMappingType_Expression(), theXMLTypePackage.getString(), "expression", "", 1, 1, MappingType.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+        initEAttribute(getMappingType_ExpressionType(), this.getExpressionType(), "expressionType", "MVEL", 0, 1, MappingType.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+        initEAttribute(getMappingType_Variable(), theXMLTypePackage.getNCName(), "variable", null, 0, 1, MappingType.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
         // Initialize enums and add enum literals
         initEEnum(auditTypeEEnum, AuditType.class, "AuditType");
@@ -838,6 +883,34 @@ public class CommonRulesPackageImpl extends EPackageImpl implements CommonRulesP
            new String[] {
              "name", "MappingType",
              "kind", "empty"
+           });		
+        addAnnotation
+          (getMappingType_ContextScope(), 
+           source, 
+           new String[] {
+             "kind", "attribute",
+             "name", "contextScope"
+           });		
+        addAnnotation
+          (getMappingType_Expression(), 
+           source, 
+           new String[] {
+             "kind", "attribute",
+             "name", "expression"
+           });		
+        addAnnotation
+          (getMappingType_ExpressionType(), 
+           source, 
+           new String[] {
+             "kind", "attribute",
+             "name", "expressionType"
+           });		
+        addAnnotation
+          (getMappingType_Variable(), 
+           source, 
+           new String[] {
+             "kind", "attribute",
+             "name", "variable"
            });
     }
 

@@ -17,42 +17,30 @@ import org.eclipse.emf.ecore.xml.type.XMLTypePackage;
 
 import org.eclipse.soa.sca.sca1_1.model.sca.ScaPackage;
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 import org.open.oasis.docs.ns.opencsa.sca.bpel.BPELPackage;
 
 import org.open.oasis.docs.ns.opencsa.sca.bpel.impl.BPELPackageImpl;
+
 import org.switchyard.tools.models.switchyard1_0.bean.BeanPackage;
+
 import org.switchyard.tools.models.switchyard1_0.bean.impl.BeanPackageImpl;
+
 import org.switchyard.tools.models.switchyard1_0.bpm.BPMPackage;
+
 import org.switchyard.tools.models.switchyard1_0.bpm.impl.BPMPackageImpl;
+
 import org.switchyard.tools.models.switchyard1_0.camel.CamelPackage;
+
 import org.switchyard.tools.models.switchyard1_0.camel.impl.CamelPackageImpl;
+
 import org.switchyard.tools.models.switchyard1_0.clojure.ClojurePackage;
+
 import org.switchyard.tools.models.switchyard1_0.clojure.impl.ClojurePackageImpl;
+
 import org.switchyard.tools.models.switchyard1_0.commonrules.CommonRulesPackage;
+
 import org.switchyard.tools.models.switchyard1_0.commonrules.impl.CommonRulesPackageImpl;
+
 import org.switchyard.tools.models.switchyard1_0.hornetq.BindingType;
 import org.switchyard.tools.models.switchyard1_0.hornetq.ConfigType;
 import org.switchyard.tools.models.switchyard1_0.hornetq.ConnectorType;
@@ -60,20 +48,32 @@ import org.switchyard.tools.models.switchyard1_0.hornetq.DiscoveryGroupType;
 import org.switchyard.tools.models.switchyard1_0.hornetq.DocumentRoot;
 import org.switchyard.tools.models.switchyard1_0.hornetq.HornetQFactory;
 import org.switchyard.tools.models.switchyard1_0.hornetq.HornetQPackage;
-import org.switchyard.tools.models.switchyard1_0.hornetq.OperationSelectorType;
 import org.switchyard.tools.models.switchyard1_0.hornetq.PropertiesType;
 import org.switchyard.tools.models.switchyard1_0.hornetq.PropertyType;
+import org.switchyard.tools.models.switchyard1_0.hornetq.hqOperationSelectorType;
+
 import org.switchyard.tools.models.switchyard1_0.rules.RulesPackage;
+
 import org.switchyard.tools.models.switchyard1_0.rules.impl.RulesPackageImpl;
+
 import org.switchyard.tools.models.switchyard1_0.soap.SOAPPackage;
+
 import org.switchyard.tools.models.switchyard1_0.soap.impl.SOAPPackageImpl;
+
 import org.switchyard.tools.models.switchyard1_0.spring.SpringPackage;
+
 import org.switchyard.tools.models.switchyard1_0.spring.impl.SpringPackageImpl;
+
 import org.switchyard.tools.models.switchyard1_0.switchyard.SwitchyardPackage;
+
 import org.switchyard.tools.models.switchyard1_0.switchyard.impl.SwitchyardPackageImpl;
+
 import org.switchyard.tools.models.switchyard1_0.transform.TransformPackage;
+
 import org.switchyard.tools.models.switchyard1_0.transform.impl.TransformPackageImpl;
+
 import org.switchyard.tools.models.switchyard1_0.validate.ValidatePackage;
+
 import org.switchyard.tools.models.switchyard1_0.validate.impl.ValidatePackageImpl;
 
 /**
@@ -83,63 +83,63 @@ import org.switchyard.tools.models.switchyard1_0.validate.impl.ValidatePackageIm
  * @generated
  */
 public class HornetQPackageImpl extends EPackageImpl implements HornetQPackage {
-	/**
+    /**
      * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
      * @generated
      */
-	private EClass bindingTypeEClass = null;
+    private EClass bindingTypeEClass = null;
 
-	/**
+    /**
      * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
      * @generated
      */
-	private EClass configTypeEClass = null;
+    private EClass configTypeEClass = null;
 
-	/**
+    /**
      * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
      * @generated
      */
-	private EClass connectorTypeEClass = null;
+    private EClass connectorTypeEClass = null;
 
-	/**
+    /**
      * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
      * @generated
      */
-	private EClass discoveryGroupTypeEClass = null;
+    private EClass discoveryGroupTypeEClass = null;
 
-	/**
+    /**
      * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
      * @generated
      */
-	private EClass documentRootEClass = null;
+    private EClass documentRootEClass = null;
 
-	/**
+    /**
      * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
      * @generated
      */
-	private EClass operationSelectorTypeEClass = null;
+    private EClass hqOperationSelectorTypeEClass = null;
 
-	/**
+    /**
      * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
      * @generated
      */
-	private EClass propertiesTypeEClass = null;
+    private EClass propertiesTypeEClass = null;
 
-	/**
+    /**
      * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
      * @generated
      */
-	private EClass propertyTypeEClass = null;
+    private EClass propertyTypeEClass = null;
 
-	/**
+    /**
      * Creates an instance of the model <b>Package</b>, registered with
      * {@link org.eclipse.emf.ecore.EPackage.Registry EPackage.Registry} by the package
      * package URI value.
@@ -148,36 +148,36 @@ public class HornetQPackageImpl extends EPackageImpl implements HornetQPackage {
      * initialization of the package, or returns the registered package,
      * if one already exists.
      * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
      * @see org.eclipse.emf.ecore.EPackage.Registry
      * @see org.switchyard.tools.models.switchyard1_0.hornetq.HornetQPackage#eNS_URI
      * @see #init()
      * @generated
      */
-	private HornetQPackageImpl() {
+    private HornetQPackageImpl() {
         super(eNS_URI, HornetQFactory.eINSTANCE);
     }
 
-	/**
+    /**
      * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
      * @generated
      */
-	private static boolean isInited = false;
+    private static boolean isInited = false;
 
-	/**
+    /**
      * Creates, registers, and initializes the <b>Package</b> for this model, and for any others upon which it depends.
      * 
      * <p>This method is used to initialize {@link HornetQPackage#eINSTANCE} when that field is accessed.
      * Clients should not invoke it directly. Instead, they should simply access that field to obtain the package.
      * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
      * @see #eNS_URI
      * @see #createPackageContents()
      * @see #initializePackageContents()
      * @generated
      */
-	public static HornetQPackage init() {
+    public static HornetQPackage init() {
         if (isInited) return (HornetQPackage)EPackage.Registry.INSTANCE.getEPackage(HornetQPackage.eNS_URI);
 
         // Obtain or create and register package
@@ -246,16 +246,16 @@ public class HornetQPackageImpl extends EPackageImpl implements HornetQPackage {
         return theHornetQPackage;
     }
 
-	/**
+    /**
      * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
      * @generated
      */
-	public EClass getBindingType() {
+    public EClass getBindingType() {
         return bindingTypeEClass;
     }
 
-	/**
+    /**
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @generated
@@ -275,568 +275,577 @@ public class HornetQPackageImpl extends EPackageImpl implements HornetQPackage {
 
     /**
      * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
      * @generated
      */
-	public EReference getBindingType_HqOperationSelector() {
+    public EReference getBindingType_HqOperationSelector() {
         return (EReference)bindingTypeEClass.getEStructuralFeatures().get(2);
     }
 
-	/**
+    /**
      * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
      * @generated
      */
-	public EReference getBindingType_Config() {
+    public EReference getBindingType_Config() {
         return (EReference)bindingTypeEClass.getEStructuralFeatures().get(3);
     }
 
-	/**
+    /**
      * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
      * @generated
      */
-	public EClass getConfigType() {
+    public EClass getConfigType() {
         return configTypeEClass;
     }
 
-	/**
+    /**
      * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
      * @generated
      */
-	public EAttribute getConfigType_AckBatchSize() {
+    public EAttribute getConfigType_AckBatchSize() {
         return (EAttribute)configTypeEClass.getEStructuralFeatures().get(0);
     }
 
-	/**
+    /**
      * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
      * @generated
      */
-	public EAttribute getConfigType_AutoGroup() {
+    public EAttribute getConfigType_AutoGroup() {
         return (EAttribute)configTypeEClass.getEStructuralFeatures().get(1);
     }
 
-	/**
+    /**
      * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
      * @generated
      */
-	public EAttribute getConfigType_BlockOnAcknowledge() {
+    public EAttribute getConfigType_BlockOnAcknowledge() {
         return (EAttribute)configTypeEClass.getEStructuralFeatures().get(2);
     }
 
-	/**
+    /**
      * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
      * @generated
      */
-	public EAttribute getConfigType_BlockOnDurableSend() {
+    public EAttribute getConfigType_BlockOnDurableSend() {
         return (EAttribute)configTypeEClass.getEStructuralFeatures().get(3);
     }
 
-	/**
+    /**
      * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
      * @generated
      */
-	public EAttribute getConfigType_BlockOnNonDurableSend() {
+    public EAttribute getConfigType_BlockOnNonDurableSend() {
         return (EAttribute)configTypeEClass.getEStructuralFeatures().get(4);
     }
 
-	/**
+    /**
      * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
      * @generated
      */
-	public EAttribute getConfigType_CacheLargeMessagesOnConsumer() {
+    public EAttribute getConfigType_CacheLargeMessagesOnConsumer() {
         return (EAttribute)configTypeEClass.getEStructuralFeatures().get(5);
     }
 
-	/**
+    /**
      * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
      * @generated
      */
-	public EAttribute getConfigType_CallTimeout() {
+    public EAttribute getConfigType_CallTimeout() {
         return (EAttribute)configTypeEClass.getEStructuralFeatures().get(6);
     }
 
-	/**
+    /**
      * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
      * @generated
      */
-	public EAttribute getConfigType_ClientFailureCheckPeriod() {
+    public EAttribute getConfigType_ClientFailureCheckPeriod() {
         return (EAttribute)configTypeEClass.getEStructuralFeatures().get(7);
     }
 
-	/**
+    /**
      * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
      * @generated
      */
-	public EAttribute getConfigType_CompressLargeMessages() {
+    public EAttribute getConfigType_CompressLargeMessages() {
         return (EAttribute)configTypeEClass.getEStructuralFeatures().get(8);
     }
 
-	/**
+    /**
      * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
      * @generated
      */
-	public EAttribute getConfigType_ConnectionLoadBalancingPolicyClassName() {
+    public EAttribute getConfigType_ConnectionLoadBalancingPolicyClassName() {
         return (EAttribute)configTypeEClass.getEStructuralFeatures().get(9);
     }
 
-	/**
+    /**
      * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
      * @generated
      */
-	public EAttribute getConfigType_ConnectionTTL() {
+    public EAttribute getConfigType_ConnectionTTL() {
         return (EAttribute)configTypeEClass.getEStructuralFeatures().get(10);
     }
 
-	/**
+    /**
      * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
      * @generated
      */
-	public EAttribute getConfigType_ConfirmationWindowSize() {
+    public EAttribute getConfigType_ConfirmationWindowSize() {
         return (EAttribute)configTypeEClass.getEStructuralFeatures().get(11);
     }
 
-	/**
+    /**
      * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
      * @generated
      */
-	public EReference getConfigType_Connector() {
+    public EReference getConfigType_Connector() {
         return (EReference)configTypeEClass.getEStructuralFeatures().get(12);
     }
 
-	/**
+    /**
      * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
      * @generated
      */
-	public EAttribute getConfigType_ConsumerMaxRate() {
+    public EAttribute getConfigType_ConsumerMaxRate() {
         return (EAttribute)configTypeEClass.getEStructuralFeatures().get(13);
     }
 
-	/**
+    /**
      * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
      * @generated
      */
-	public EAttribute getConfigType_ConsumerWindowSize() {
+    public EAttribute getConfigType_ConsumerWindowSize() {
         return (EAttribute)configTypeEClass.getEStructuralFeatures().get(14);
     }
 
-	/**
+    /**
      * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
      * @generated
      */
-	public EAttribute getConfigType_DisableFinalizeCheck() {
+    public EAttribute getConfigType_DisableFinalizeCheck() {
         return (EAttribute)configTypeEClass.getEStructuralFeatures().get(15);
     }
 
-	/**
+    /**
      * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
      * @generated
      */
-	public EReference getConfigType_DiscoveryGroup() {
+    public EReference getConfigType_DiscoveryGroup() {
         return (EReference)configTypeEClass.getEStructuralFeatures().get(16);
     }
 
-	/**
+    /**
      * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
      * @generated
      */
-	public EAttribute getConfigType_FailoverOnInitialConnection() {
+    public EAttribute getConfigType_FailoverOnInitialConnection() {
         return (EAttribute)configTypeEClass.getEStructuralFeatures().get(17);
     }
 
-	/**
+    /**
      * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
      * @generated
      */
-	public EAttribute getConfigType_GroupID() {
+    public EAttribute getConfigType_GroupID() {
         return (EAttribute)configTypeEClass.getEStructuralFeatures().get(18);
     }
 
-	/**
+    /**
      * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
      * @generated
      */
-	public EAttribute getConfigType_InitialMessagePacketSize() {
+    public EAttribute getConfigType_InitialMessagePacketSize() {
         return (EAttribute)configTypeEClass.getEStructuralFeatures().get(19);
     }
 
-	/**
+    /**
      * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
      * @generated
      */
-	public EAttribute getConfigType_InitialReconnectAttempts() {
+    public EAttribute getConfigType_InitialReconnectAttempts() {
         return (EAttribute)configTypeEClass.getEStructuralFeatures().get(20);
     }
 
-	/**
+    /**
      * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
      * @generated
      */
-	public EAttribute getConfigType_MaxRetryInterval() {
+    public EAttribute getConfigType_MaxRetryInterval() {
         return (EAttribute)configTypeEClass.getEStructuralFeatures().get(21);
     }
 
-	/**
+    /**
      * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
      * @generated
      */
-	public EAttribute getConfigType_MinLargeMessageSize() {
+    public EAttribute getConfigType_MinLargeMessageSize() {
         return (EAttribute)configTypeEClass.getEStructuralFeatures().get(22);
     }
 
-	/**
+    /**
      * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
      * @generated
      */
-	public EAttribute getConfigType_PreAcknowledge() {
+    public EAttribute getConfigType_PreAcknowledge() {
         return (EAttribute)configTypeEClass.getEStructuralFeatures().get(23);
     }
 
-	/**
+    /**
      * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
      * @generated
      */
-	public EAttribute getConfigType_ProducerMaxRate() {
+    public EAttribute getConfigType_ProducerMaxRate() {
         return (EAttribute)configTypeEClass.getEStructuralFeatures().get(24);
     }
 
-	/**
+    /**
      * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
      * @generated
      */
-	public EAttribute getConfigType_ProducerWindowSize() {
+    public EAttribute getConfigType_ProducerWindowSize() {
         return (EAttribute)configTypeEClass.getEStructuralFeatures().get(25);
     }
 
-	/**
+    /**
      * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
      * @generated
      */
-	public EAttribute getConfigType_Queue() {
+    public EAttribute getConfigType_Queue() {
         return (EAttribute)configTypeEClass.getEStructuralFeatures().get(26);
     }
 
-	/**
+    /**
      * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
      * @generated
      */
-	public EAttribute getConfigType_ReconnectAttempts() {
+    public EAttribute getConfigType_ReconnectAttempts() {
         return (EAttribute)configTypeEClass.getEStructuralFeatures().get(27);
     }
 
-	/**
+    /**
      * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
      * @generated
      */
-	public EAttribute getConfigType_RetryInterval() {
+    public EAttribute getConfigType_RetryInterval() {
         return (EAttribute)configTypeEClass.getEStructuralFeatures().get(28);
     }
 
-	/**
+    /**
      * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
      * @generated
      */
-	public EAttribute getConfigType_RetryIntervalMultiplier() {
+    public EAttribute getConfigType_RetryIntervalMultiplier() {
         return (EAttribute)configTypeEClass.getEStructuralFeatures().get(29);
     }
 
-	/**
+    /**
      * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
      * @generated
      */
-	public EAttribute getConfigType_ScheduledThreadPoolMaxSize() {
+    public EAttribute getConfigType_ScheduledThreadPoolMaxSize() {
         return (EAttribute)configTypeEClass.getEStructuralFeatures().get(30);
     }
 
-	/**
+    /**
      * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
      * @generated
      */
-	public EAttribute getConfigType_ThreadPoolMaxSize() {
+    public EAttribute getConfigType_ThreadPoolMaxSize() {
         return (EAttribute)configTypeEClass.getEStructuralFeatures().get(31);
     }
 
-	/**
+    /**
      * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
      * @generated
      */
-	public EAttribute getConfigType_UseGlobalPools() {
+    public EAttribute getConfigType_UseGlobalPools() {
         return (EAttribute)configTypeEClass.getEStructuralFeatures().get(32);
     }
 
-	/**
+    /**
      * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
      * @generated
      */
-	public EAttribute getConfigType_UseHA() {
+    public EAttribute getConfigType_UseHA() {
         return (EAttribute)configTypeEClass.getEStructuralFeatures().get(33);
     }
 
-	/**
+    /**
      * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
      * @generated
      */
-	public EAttribute getConfigType_XaSession() {
+    public EAttribute getConfigType_XaSession() {
         return (EAttribute)configTypeEClass.getEStructuralFeatures().get(34);
     }
 
-	/**
+    /**
      * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
      * @generated
      */
-	public EClass getConnectorType() {
+    public EClass getConnectorType() {
         return connectorTypeEClass;
     }
 
-	/**
+    /**
      * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
      * @generated
      */
-	public EAttribute getConnectorType_FactoryClass() {
+    public EAttribute getConnectorType_FactoryClass() {
         return (EAttribute)connectorTypeEClass.getEStructuralFeatures().get(0);
     }
 
-	/**
+    /**
      * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
      * @generated
      */
-	public EReference getConnectorType_Properties() {
+    public EReference getConnectorType_Properties() {
         return (EReference)connectorTypeEClass.getEStructuralFeatures().get(1);
     }
 
-	/**
+    /**
      * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
      * @generated
      */
-	public EAttribute getConnectorType_Name() {
+    public EAttribute getConnectorType_Name() {
         return (EAttribute)connectorTypeEClass.getEStructuralFeatures().get(2);
     }
 
-	/**
+    /**
      * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
      * @generated
      */
-	public EClass getDiscoveryGroupType() {
+    public EClass getDiscoveryGroupType() {
         return discoveryGroupTypeEClass;
     }
 
-	/**
+    /**
      * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
      * @generated
      */
-	public EAttribute getDiscoveryGroupType_LocalBindAddress() {
+    public EAttribute getDiscoveryGroupType_LocalBindAddress() {
         return (EAttribute)discoveryGroupTypeEClass.getEStructuralFeatures().get(0);
     }
 
-	/**
+    /**
      * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
      * @generated
      */
-	public EAttribute getDiscoveryGroupType_GroupAddress() {
+    public EAttribute getDiscoveryGroupType_GroupAddress() {
         return (EAttribute)discoveryGroupTypeEClass.getEStructuralFeatures().get(1);
     }
 
-	/**
+    /**
      * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
      * @generated
      */
-	public EAttribute getDiscoveryGroupType_GroupPort() {
+    public EAttribute getDiscoveryGroupType_GroupPort() {
         return (EAttribute)discoveryGroupTypeEClass.getEStructuralFeatures().get(2);
     }
 
-	/**
+    /**
      * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
      * @generated
      */
-	public EAttribute getDiscoveryGroupType_RefreshTimeout() {
+    public EAttribute getDiscoveryGroupType_RefreshTimeout() {
         return (EAttribute)discoveryGroupTypeEClass.getEStructuralFeatures().get(3);
     }
 
-	/**
+    /**
      * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
      * @generated
      */
-	public EAttribute getDiscoveryGroupType_InitialWaitTimeout() {
+    public EAttribute getDiscoveryGroupType_InitialWaitTimeout() {
         return (EAttribute)discoveryGroupTypeEClass.getEStructuralFeatures().get(4);
     }
 
-	/**
+    /**
      * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
      * @generated
      */
-	public EClass getDocumentRoot() {
+    public EClass getDocumentRoot() {
         return documentRootEClass;
     }
 
-	/**
+    /**
      * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
      * @generated
      */
-	public EAttribute getDocumentRoot_Mixed() {
+    public EAttribute getDocumentRoot_Mixed() {
         return (EAttribute)documentRootEClass.getEStructuralFeatures().get(0);
     }
 
-	/**
+    /**
      * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
      * @generated
      */
-	public EReference getDocumentRoot_XMLNSPrefixMap() {
+    public EReference getDocumentRoot_XMLNSPrefixMap() {
         return (EReference)documentRootEClass.getEStructuralFeatures().get(1);
     }
 
-	/**
+    /**
      * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
      * @generated
      */
-	public EReference getDocumentRoot_XSISchemaLocation() {
+    public EReference getDocumentRoot_XSISchemaLocation() {
         return (EReference)documentRootEClass.getEStructuralFeatures().get(2);
     }
 
-	/**
+    /**
      * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
      * @generated
      */
-	public EReference getDocumentRoot_BindingHornetq() {
+    public EReference getDocumentRoot_BindingHornetq() {
         return (EReference)documentRootEClass.getEStructuralFeatures().get(3);
     }
 
-	/**
+    /**
      * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
      * @generated
      */
-	public EReference getDocumentRoot_Config() {
+    public EReference getDocumentRoot_Config() {
         return (EReference)documentRootEClass.getEStructuralFeatures().get(4);
     }
 
-	/**
+    /**
      * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
      * @generated
      */
-	public EClass getOperationSelectorType() {
-        return operationSelectorTypeEClass;
+    public EClass gethqOperationSelectorType() {
+        return hqOperationSelectorTypeEClass;
     }
 
-	/**
+    /**
      * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
      * @generated
      */
-	public EClass getPropertiesType() {
+    public EAttribute gethqOperationSelectorType_OperationName() {
+        return (EAttribute)hqOperationSelectorTypeEClass.getEStructuralFeatures().get(0);
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public EClass getPropertiesType() {
         return propertiesTypeEClass;
     }
 
-	/**
+    /**
      * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
      * @generated
      */
-	public EReference getPropertiesType_Property() {
+    public EReference getPropertiesType_Property() {
         return (EReference)propertiesTypeEClass.getEStructuralFeatures().get(0);
     }
 
-	/**
+    /**
      * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
      * @generated
      */
-	public EClass getPropertyType() {
+    public EClass getPropertyType() {
         return propertyTypeEClass;
     }
 
-	/**
+    /**
      * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
      * @generated
      */
-	public EAttribute getPropertyType_Name() {
+    public EAttribute getPropertyType_Name() {
         return (EAttribute)propertyTypeEClass.getEStructuralFeatures().get(0);
     }
 
-	/**
+    /**
      * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
      * @generated
      */
-	public EAttribute getPropertyType_Value() {
+    public EAttribute getPropertyType_Value() {
         return (EAttribute)propertyTypeEClass.getEStructuralFeatures().get(1);
     }
 
-	/**
+    /**
      * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
      * @generated
      */
-	public HornetQFactory getHornetQFactory() {
+    public HornetQFactory getHornetQFactory() {
         return (HornetQFactory)getEFactoryInstance();
     }
 
-	/**
+    /**
      * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
      * @generated
      */
-	private boolean isCreated = false;
+    private boolean isCreated = false;
 
-	/**
+    /**
      * Creates the meta-model objects for the package.  This method is
      * guarded to have no affect on any invocation but its first.
      * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
      * @generated
      */
-	public void createPackageContents() {
+    public void createPackageContents() {
         if (isCreated) return;
         isCreated = true;
 
@@ -903,7 +912,8 @@ public class HornetQPackageImpl extends EPackageImpl implements HornetQPackage {
         createEReference(documentRootEClass, DOCUMENT_ROOT__BINDING_HORNETQ);
         createEReference(documentRootEClass, DOCUMENT_ROOT__CONFIG);
 
-        operationSelectorTypeEClass = createEClass(OPERATION_SELECTOR_TYPE);
+        hqOperationSelectorTypeEClass = createEClass(HQ_OPERATION_SELECTOR_TYPE);
+        createEAttribute(hqOperationSelectorTypeEClass, HQ_OPERATION_SELECTOR_TYPE__OPERATION_NAME);
 
         propertiesTypeEClass = createEClass(PROPERTIES_TYPE);
         createEReference(propertiesTypeEClass, PROPERTIES_TYPE__PROPERTY);
@@ -913,21 +923,21 @@ public class HornetQPackageImpl extends EPackageImpl implements HornetQPackage {
         createEAttribute(propertyTypeEClass, PROPERTY_TYPE__VALUE);
     }
 
-	/**
+    /**
      * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
      * @generated
      */
-	private boolean isInitialized = false;
+    private boolean isInitialized = false;
 
-	/**
+    /**
      * Complete the initialization of the package and its meta-model.  This
      * method is guarded to have no affect on any invocation but its first.
      * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
      * @generated
      */
-	public void initializePackageContents() {
+    public void initializePackageContents() {
         if (isInitialized) return;
         isInitialized = true;
 
@@ -947,13 +957,13 @@ public class HornetQPackageImpl extends EPackageImpl implements HornetQPackage {
 
         // Add supertypes to classes
         bindingTypeEClass.getESuperTypes().add(theSwitchyardPackage.getSwitchYardBindingType());
-        operationSelectorTypeEClass.getESuperTypes().add(theScaPackage.getOperationSelectorType());
+        hqOperationSelectorTypeEClass.getESuperTypes().add(theScaPackage.getOperationSelectorType());
 
         // Initialize classes and features; add operations and parameters
         initEClass(bindingTypeEClass, BindingType.class, "BindingType", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
         initEReference(getBindingType_ContextMapper(), theSwitchyardPackage.getContextMapperType(), null, "contextMapper", null, 0, 1, BindingType.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
         initEReference(getBindingType_MessageComposer(), theSwitchyardPackage.getMessageComposerType(), null, "messageComposer", null, 0, 1, BindingType.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-        initEReference(getBindingType_HqOperationSelector(), this.getOperationSelectorType(), null, "hqOperationSelector", null, 0, 1, BindingType.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+        initEReference(getBindingType_HqOperationSelector(), this.gethqOperationSelectorType(), null, "hqOperationSelector", null, 0, 1, BindingType.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
         initEReference(getBindingType_Config(), this.getConfigType(), null, "config", null, 1, 1, BindingType.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
         initEClass(configTypeEClass, ConfigType.class, "ConfigType", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
@@ -1012,7 +1022,8 @@ public class HornetQPackageImpl extends EPackageImpl implements HornetQPackage {
         initEReference(getDocumentRoot_BindingHornetq(), this.getBindingType(), null, "bindingHornetq", null, 0, -2, null, IS_TRANSIENT, IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, IS_DERIVED, IS_ORDERED);
         initEReference(getDocumentRoot_Config(), this.getConfigType(), null, "config", null, 0, -2, null, IS_TRANSIENT, IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, IS_DERIVED, IS_ORDERED);
 
-        initEClass(operationSelectorTypeEClass, OperationSelectorType.class, "OperationSelectorType", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+        initEClass(hqOperationSelectorTypeEClass, hqOperationSelectorType.class, "hqOperationSelectorType", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+        initEAttribute(gethqOperationSelectorType_OperationName(), theXMLTypePackage.getString(), "operationName", null, 0, 1, hqOperationSelectorType.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
         initEClass(propertiesTypeEClass, PropertiesType.class, "PropertiesType", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
         initEReference(getPropertiesType_Property(), this.getPropertyType(), null, "property", null, 0, -1, PropertiesType.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
@@ -1029,13 +1040,13 @@ public class HornetQPackageImpl extends EPackageImpl implements HornetQPackage {
         createExtendedMetaDataAnnotations();
     }
 
-	/**
+    /**
      * Initializes the annotations for <b>http:///org/eclipse/emf/ecore/util/ExtendedMetaData</b>.
      * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
      * @generated
      */
-	protected void createExtendedMetaDataAnnotations() {
+    protected void createExtendedMetaDataAnnotations() {
         String source = "http:///org/eclipse/emf/ecore/util/ExtendedMetaData";		
         addAnnotation
           (bindingTypeEClass, 
@@ -1486,7 +1497,7 @@ public class HornetQPackageImpl extends EPackageImpl implements HornetQPackage {
              "namespace", "##targetNamespace"
            });		
         addAnnotation
-          (operationSelectorTypeEClass, 
+          (hqOperationSelectorTypeEClass, 
            source, 
            new String[] {
              "name", "OperationSelectorType",
