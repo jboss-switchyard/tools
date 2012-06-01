@@ -34,6 +34,118 @@
               </artifactItems>
             </configuration>
           </execution>
+          <execution>
+            <id>unpack-test-configuration-files</id>
+            <phase>generate-test-resources</phase>
+            <goals>
+              <goal>unpack</goal>
+            </goals>
+            <configuration>
+              <includes>META-INF/switchyard.xml</includes>
+              <artifactItems>
+                <artifactItem>
+                  <groupId>org.switchyard.quickstarts</groupId>
+                  <artifactId>switchyard-quickstart-bean-service</artifactId>
+                  <outputDirectory>test-data/quickstart-configs/bean-service</outputDirectory>
+                </artifactItem>
+                <artifactItem>
+                  <groupId>org.switchyard.quickstarts</groupId>
+                  <artifactId>switchyard-quickstart-bpm-service</artifactId>
+                  <outputDirectory>test-data/quickstart-configs/bpm-service</outputDirectory>
+                </artifactItem>
+                <artifactItem>
+                  <groupId>org.switchyard.quickstarts</groupId>
+                  <artifactId>switchyard-quickstart-bpel-service-say-hello</artifactId>
+                  <outputDirectory>test-data/quickstart-configs/bpel-service/say_hello</outputDirectory>
+                </artifactItem>
+                <artifactItem>
+                  <groupId>org.switchyard.quickstarts</groupId>
+                  <artifactId>switchyard-quickstart-camel-binding</artifactId>
+                  <outputDirectory>test-data/quickstart-configs/camel-binding</outputDirectory>
+                </artifactItem>
+                <artifactItem>
+                  <groupId>org.switchyard.quickstarts</groupId>
+                  <artifactId>switchyard-quickstart-camel-ftp-binding</artifactId>
+                  <outputDirectory>test-data/quickstart-configs/camel-ftp-binding</outputDirectory>
+                </artifactItem>
+                <artifactItem>
+                  <groupId>org.switchyard.quickstarts</groupId>
+                  <artifactId>switchyard-quickstart-camel-jms-binding</artifactId>
+                  <outputDirectory>test-data/quickstart-configs/camel-jms-binding</outputDirectory>
+                </artifactItem>
+<!--                 <artifactItem> -->
+<!--                   <groupId>org.switchyard.quickstarts</groupId> -->
+<!--                   <artifactId>switchyard-quickstart-camel-netty-binding</artifactId> -->
+<!--                   <outputDirectory>test-data/quickstart-configs/camel-netty-binding</outputDirectory> -->
+<!--                 </artifactItem> -->
+                <artifactItem>
+                  <groupId>org.switchyard.quickstarts</groupId>
+                  <artifactId>switchyard-quickstart-camel-rest-binding</artifactId>
+                  <outputDirectory>test-data/quickstart-configs/camel-rest-binding</outputDirectory>
+                </artifactItem>
+                <artifactItem>
+                  <groupId>org.switchyard.quickstarts</groupId>
+                  <artifactId>switchyard-quickstart-camel-service</artifactId>
+                  <outputDirectory>test-data/quickstart-configs/camel-service</outputDirectory>
+                </artifactItem>
+                <artifactItem>
+                  <groupId>org.switchyard.quickstarts</groupId>
+                  <artifactId>switchyard-quickstart-camel-soap-proxy</artifactId>
+                  <outputDirectory>test-data/quickstart-configs/camel-soap-proxy</outputDirectory>
+                </artifactItem>
+                <artifactItem>
+                  <groupId>org.switchyard.quickstarts.demos</groupId>
+                  <artifactId>switchyard-quickstart-demo-helpdesk</artifactId>
+                  <outputDirectory>test-data/quickstart-configs/demos/helpdesk</outputDirectory>
+                </artifactItem>
+<!--                 <artifactItem> -->
+<!--                   <groupId>org.switchyard.quickstarts.demos</groupId> -->
+<!--                   <artifactId>switchyard-quickstart-demo-orders</artifactId> -->
+<!--                   <outputDirectory>test-data/quickstart-configs/demos/orders</outputDirectory> -->
+<!--                 </artifactItem> -->
+                <artifactItem>
+                  <groupId>org.switchyard.quickstarts</groupId>
+                  <artifactId>switchyard-quickstart-hornetq-binding</artifactId>
+                  <outputDirectory>test-data/quickstart-configs/hornetq-binding</outputDirectory>
+                </artifactItem>
+                <artifactItem>
+                  <groupId>org.switchyard.quickstarts</groupId>
+                  <artifactId>switchyard-quickstart-rules-camel-cbr</artifactId>
+                  <outputDirectory>test-data/quickstart-configs/rules-camel-cbr</outputDirectory>
+                </artifactItem>
+                <artifactItem>
+                  <groupId>org.switchyard.quickstarts</groupId>
+                  <artifactId>switchyard-quickstart-rules-interview</artifactId>
+                  <outputDirectory>test-data/quickstart-configs/rules-interview</outputDirectory>
+                </artifactItem>
+                <artifactItem>
+                  <groupId>org.switchyard.quickstarts</groupId>
+                  <artifactId>switchyard-quickstart-rules-interview-agent</artifactId>
+                  <outputDirectory>test-data/quickstart-configs/rules-interview-agent</outputDirectory>
+                </artifactItem>
+                <artifactItem>
+                  <groupId>org.switchyard.quickstarts</groupId>
+                  <artifactId>switchyard-quickstart-transform-jaxb</artifactId>
+                  <outputDirectory>test-data/quickstart-configs/transform-jaxb</outputDirectory>
+                </artifactItem>
+                <artifactItem>
+                  <groupId>org.switchyard.quickstarts</groupId>
+                  <artifactId>switchyard-quickstart-transform-json</artifactId>
+                  <outputDirectory>test-data/quickstart-configs/transform-json</outputDirectory>
+                </artifactItem>
+                <artifactItem>
+                  <groupId>org.switchyard.quickstarts</groupId>
+                  <artifactId>switchyard-quickstart-transform-smooks</artifactId>
+                  <outputDirectory>test-data/quickstart-configs/transform-smooks</outputDirectory>
+                </artifactItem>
+                <artifactItem>
+                  <groupId>org.switchyard.quickstarts</groupId>
+                  <artifactId>switchyard-quickstart-transform-xslt</artifactId>
+                  <outputDirectory>test-data/quickstart-configs/transform-xslt</outputDirectory>
+                </artifactItem>
+              </artifactItems>
+            </configuration>
+          </execution>
         </executions>
       </plugin>
       <plugin>
@@ -42,6 +154,12 @@
         <version>2.4.1</version>
         <configuration>
           <filesets>
+            <fileset>
+              <directory>test-data/quickstart-configs</directory>
+              <includes>
+                <include>**/*</include>
+              </includes>
+            </fileset>
             <fileset>
               <directory>lib</directory>
               <includes>
