@@ -697,6 +697,13 @@ public class ScaPackageImpl extends EPackageImpl implements ScaPackage {
 
 	/**
      * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    private EClass extendableTypeEClass = null;
+
+    /**
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
      * @generated
      */
@@ -6121,6 +6128,18 @@ public class ScaPackageImpl extends EPackageImpl implements ScaPackage {
     }
 
 	/**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public EClass getExtendableType() {
+        if (extendableTypeEClass == null) {
+            extendableTypeEClass = (EClass)EPackage.Registry.INSTANCE.getEPackage(ScaPackage.eNS_URI).getEClassifiers().get(122);
+        }
+        return extendableTypeEClass;
+    }
+
+    /**
      * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
      * @generated

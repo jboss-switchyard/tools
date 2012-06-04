@@ -42,169 +42,169 @@ import org.eclipse.soa.sca.sca1_1.model.sca.ScaPackage;
  */
 public class CommonExtensionBaseImpl extends EObjectImpl implements CommonExtensionBase {
 	/**
-	 * The cached value of the '{@link #getDocumentation() <em>Documentation</em>}' containment reference list.
-	 * <!-- begin-user-doc -->
+     * The cached value of the '{@link #getDocumentation() <em>Documentation</em>}' containment reference list.
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #getDocumentation()
-	 * @generated
-	 * @ordered
-	 */
+     * @see #getDocumentation()
+     * @generated
+     * @ordered
+     */
 	protected EList<Documentation> documentation;
 
 	/**
-	 * The cached value of the '{@link #getAnyAttribute() <em>Any Attribute</em>}' attribute list.
-	 * <!-- begin-user-doc -->
+     * The cached value of the '{@link #getAnyAttribute() <em>Any Attribute</em>}' attribute list.
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #getAnyAttribute()
-	 * @generated
-	 * @ordered
-	 */
+     * @see #getAnyAttribute()
+     * @generated
+     * @ordered
+     */
 	protected FeatureMap anyAttribute;
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	protected CommonExtensionBaseImpl() {
-		super();
-	}
+        super();
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	@Override
 	protected EClass eStaticClass() {
-		return ScaPackage.eINSTANCE.getCommonExtensionBase();
-	}
+        return ScaPackage.eINSTANCE.getCommonExtensionBase();
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public EList<Documentation> getDocumentation() {
-		if (documentation == null) {
-			documentation = new EObjectContainmentEList<Documentation>(Documentation.class, this, ScaPackage.COMMON_EXTENSION_BASE__DOCUMENTATION);
-		}
-		return documentation;
-	}
+        if (documentation == null) {
+            documentation = new EObjectContainmentEList<Documentation>(Documentation.class, this, ScaPackage.COMMON_EXTENSION_BASE__DOCUMENTATION);
+        }
+        return documentation;
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public FeatureMap getAnyAttribute() {
-		if (anyAttribute == null) {
-			anyAttribute = new BasicFeatureMap(this, ScaPackage.COMMON_EXTENSION_BASE__ANY_ATTRIBUTE);
-		}
-		return anyAttribute;
-	}
+        if (anyAttribute == null) {
+            anyAttribute = new BasicFeatureMap(this, ScaPackage.COMMON_EXTENSION_BASE__ANY_ATTRIBUTE);
+        }
+        return anyAttribute;
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	@Override
 	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
-		switch (featureID) {
-			case ScaPackage.COMMON_EXTENSION_BASE__DOCUMENTATION:
-				return ((InternalEList<?>)getDocumentation()).basicRemove(otherEnd, msgs);
-			case ScaPackage.COMMON_EXTENSION_BASE__ANY_ATTRIBUTE:
-				return ((InternalEList<?>)getAnyAttribute()).basicRemove(otherEnd, msgs);
-		}
-		return super.eInverseRemove(otherEnd, featureID, msgs);
-	}
+        switch (featureID) {
+            case ScaPackage.COMMON_EXTENSION_BASE__DOCUMENTATION:
+                return ((InternalEList<?>)getDocumentation()).basicRemove(otherEnd, msgs);
+            case ScaPackage.COMMON_EXTENSION_BASE__ANY_ATTRIBUTE:
+                return ((InternalEList<?>)getAnyAttribute()).basicRemove(otherEnd, msgs);
+        }
+        return super.eInverseRemove(otherEnd, featureID, msgs);
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
-		switch (featureID) {
-			case ScaPackage.COMMON_EXTENSION_BASE__DOCUMENTATION:
-				return getDocumentation();
-			case ScaPackage.COMMON_EXTENSION_BASE__ANY_ATTRIBUTE:
-				if (coreType) return getAnyAttribute();
-				return ((FeatureMap.Internal)getAnyAttribute()).getWrapper();
-		}
-		return super.eGet(featureID, resolve, coreType);
-	}
+        switch (featureID) {
+            case ScaPackage.COMMON_EXTENSION_BASE__DOCUMENTATION:
+                return getDocumentation();
+            case ScaPackage.COMMON_EXTENSION_BASE__ANY_ATTRIBUTE:
+                if (coreType) return getAnyAttribute();
+                return ((FeatureMap.Internal)getAnyAttribute()).getWrapper();
+        }
+        return super.eGet(featureID, resolve, coreType);
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	@SuppressWarnings("unchecked")
 	@Override
 	public void eSet(int featureID, Object newValue) {
-		switch (featureID) {
-			case ScaPackage.COMMON_EXTENSION_BASE__DOCUMENTATION:
-				getDocumentation().clear();
-				getDocumentation().addAll((Collection<? extends Documentation>)newValue);
-				return;
-			case ScaPackage.COMMON_EXTENSION_BASE__ANY_ATTRIBUTE:
-				((FeatureMap.Internal)getAnyAttribute()).set(newValue);
-				return;
-		}
-		super.eSet(featureID, newValue);
-	}
+        switch (featureID) {
+            case ScaPackage.COMMON_EXTENSION_BASE__DOCUMENTATION:
+                getDocumentation().clear();
+                getDocumentation().addAll((Collection<? extends Documentation>)newValue);
+                return;
+            case ScaPackage.COMMON_EXTENSION_BASE__ANY_ATTRIBUTE:
+                ((FeatureMap.Internal)getAnyAttribute()).set(newValue);
+                return;
+        }
+        super.eSet(featureID, newValue);
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	@Override
 	public void eUnset(int featureID) {
-		switch (featureID) {
-			case ScaPackage.COMMON_EXTENSION_BASE__DOCUMENTATION:
-				getDocumentation().clear();
-				return;
-			case ScaPackage.COMMON_EXTENSION_BASE__ANY_ATTRIBUTE:
-				getAnyAttribute().clear();
-				return;
-		}
-		super.eUnset(featureID);
-	}
+        switch (featureID) {
+            case ScaPackage.COMMON_EXTENSION_BASE__DOCUMENTATION:
+                getDocumentation().clear();
+                return;
+            case ScaPackage.COMMON_EXTENSION_BASE__ANY_ATTRIBUTE:
+                getAnyAttribute().clear();
+                return;
+        }
+        super.eUnset(featureID);
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	@Override
 	public boolean eIsSet(int featureID) {
-		switch (featureID) {
-			case ScaPackage.COMMON_EXTENSION_BASE__DOCUMENTATION:
-				return documentation != null && !documentation.isEmpty();
-			case ScaPackage.COMMON_EXTENSION_BASE__ANY_ATTRIBUTE:
-				return anyAttribute != null && !anyAttribute.isEmpty();
-		}
-		return super.eIsSet(featureID);
-	}
+        switch (featureID) {
+            case ScaPackage.COMMON_EXTENSION_BASE__DOCUMENTATION:
+                return documentation != null && !documentation.isEmpty();
+            case ScaPackage.COMMON_EXTENSION_BASE__ANY_ATTRIBUTE:
+                return anyAttribute != null && !anyAttribute.isEmpty();
+        }
+        return super.eIsSet(featureID);
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	@Override
 	public String toString() {
-		if (eIsProxy()) return super.toString();
+        if (eIsProxy()) return super.toString();
 
-		StringBuffer result = new StringBuffer(super.toString());
-		result.append(" (anyAttribute: ");
-		result.append(anyAttribute);
-		result.append(')');
-		return result.toString();
-	}
+        StringBuffer result = new StringBuffer(super.toString());
+        result.append(" (anyAttribute: ");
+        result.append(anyAttribute);
+        result.append(')');
+        return result.toString();
+    }
 
 } //CommonExtensionBaseImpl

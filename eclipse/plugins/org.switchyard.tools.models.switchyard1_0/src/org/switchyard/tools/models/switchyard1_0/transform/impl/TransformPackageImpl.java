@@ -372,6 +372,15 @@ public class TransformPackageImpl extends EPackageImpl implements TransformPacka
 
 	/**
      * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public EAttribute getJAXBTransformType_ContextPath() {
+        return (EAttribute)jaxbTransformTypeEClass.getEStructuralFeatures().get(0);
+    }
+
+    /**
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
      * @generated
      */
@@ -520,6 +529,7 @@ public class TransformPackageImpl extends EPackageImpl implements TransformPacka
         createEAttribute(javaTransformType1EClass, JAVA_TRANSFORM_TYPE1__CLASS);
 
         jaxbTransformTypeEClass = createEClass(JAXB_TRANSFORM_TYPE);
+        createEAttribute(jaxbTransformTypeEClass, JAXB_TRANSFORM_TYPE__CONTEXT_PATH);
 
         jsonTransformTypeEClass = createEClass(JSON_TRANSFORM_TYPE);
 
@@ -594,6 +604,7 @@ public class TransformPackageImpl extends EPackageImpl implements TransformPacka
         initEAttribute(getJavaTransformType1_Class(), theXMLTypePackage.getNCName(), "class", null, 0, 1, JavaTransformType1.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
         initEClass(jaxbTransformTypeEClass, JAXBTransformType.class, "JAXBTransformType", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+        initEAttribute(getJAXBTransformType_ContextPath(), theXMLTypePackage.getString(), "contextPath", null, 0, 1, JAXBTransformType.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
         initEClass(jsonTransformTypeEClass, JsonTransformType.class, "JsonTransformType", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 

@@ -25,7 +25,8 @@ import org.switchyard.tools.models.switchyard1_0.switchyard.SwitchYardBindingTyp
  * </p>
  *
  * @see org.switchyard.tools.models.switchyard1_0.camel.CamelPackage#getBaseCamelBinding()
- * @model extendedMetaData="name='BaseCamelBinding' kind='elementOnly'"
+ * @model abstract="true"
+ *        extendedMetaData="name='BaseCamelBinding' kind='elementOnly'"
  * @generated
  */
 public interface BaseCamelBinding extends SwitchYardBindingType {

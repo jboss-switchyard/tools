@@ -27,57 +27,57 @@ import javax.xml.namespace.QName;
  */
 public interface CExport extends Export {
 	/**
-	 * Returns the value of the '<em><b>Name</b></em>' attribute.
-	 * <!-- begin-user-doc -->
+     * Returns the value of the '<em><b>Name</b></em>' attribute.
+     * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Name</em>' attribute isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Name</em>' attribute.
-	 * @see #setName(QName)
-	 * @see org.eclipse.soa.sca.sca1_1.model.sca.ScaPackage#getCExport_Name()
-	 * @model dataType="org.eclipse.emf.ecore.xml.type.QName" required="true"
-	 *        extendedMetaData="kind='attribute' name='name'"
-	 * @generated
-	 */
+     * @return the value of the '<em>Name</em>' attribute.
+     * @see #setName(QName)
+     * @see org.eclipse.soa.sca.sca1_1.model.sca.ScaPackage#getCExport_Name()
+     * @model dataType="org.eclipse.emf.ecore.xml.type.QName" required="true"
+     *        extendedMetaData="kind='attribute' name='name'"
+     * @generated
+     */
 	QName getName();
 
 	/**
-	 * Sets the value of the '{@link org.eclipse.soa.sca.sca1_1.model.sca.CExport#getName <em>Name</em>}' attribute.
-	 * <!-- begin-user-doc -->
+     * Sets the value of the '{@link org.eclipse.soa.sca.sca1_1.model.sca.CExport#getName <em>Name</em>}' attribute.
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Name</em>' attribute.
-	 * @see #getName()
-	 * @generated
-	 */
+     * @param value the new value of the '<em>Name</em>' attribute.
+     * @see #getName()
+     * @generated
+     */
 	void setName(QName value);
 
 	/**
-	 * Returns the value of the '<em><b>Path</b></em>' attribute.
-	 * <!-- begin-user-doc -->
+     * Returns the value of the '<em><b>Path</b></em>' attribute.
+     * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Path</em>' attribute isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Path</em>' attribute.
-	 * @see #setPath(String)
-	 * @see org.eclipse.soa.sca.sca1_1.model.sca.ScaPackage#getCExport_Path()
-	 * @model dataType="org.eclipse.emf.ecore.xml.type.String"
-	 *        extendedMetaData="kind='attribute' name='path'"
-	 * @generated
-	 */
+     * @return the value of the '<em>Path</em>' attribute.
+     * @see #setPath(String)
+     * @see org.eclipse.soa.sca.sca1_1.model.sca.ScaPackage#getCExport_Path()
+     * @model dataType="org.eclipse.emf.ecore.xml.type.String"
+     *        extendedMetaData="kind='attribute' name='path'"
+     * @generated
+     */
 	String getPath();
 
 	/**
-	 * Sets the value of the '{@link org.eclipse.soa.sca.sca1_1.model.sca.CExport#getPath <em>Path</em>}' attribute.
-	 * <!-- begin-user-doc -->
+     * Sets the value of the '{@link org.eclipse.soa.sca.sca1_1.model.sca.CExport#getPath <em>Path</em>}' attribute.
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Path</em>' attribute.
-	 * @see #getPath()
-	 * @generated
-	 */
+     * @param value the new value of the '<em>Path</em>' attribute.
+     * @see #getPath()
+     * @generated
+     */
 	void setPath(String value);
 
 } // CExport

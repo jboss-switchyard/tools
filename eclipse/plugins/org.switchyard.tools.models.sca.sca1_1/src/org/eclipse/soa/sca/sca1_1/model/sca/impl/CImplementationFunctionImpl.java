@@ -41,447 +41,447 @@ import org.eclipse.soa.sca.sca1_1.model.sca.ScaPackage;
  */
 public class CImplementationFunctionImpl extends EObjectImpl implements CImplementationFunction {
 	/**
-	 * The default value of the '{@link #isAllowsPassByReference() <em>Allows Pass By Reference</em>}' attribute.
-	 * <!-- begin-user-doc -->
+     * The default value of the '{@link #isAllowsPassByReference() <em>Allows Pass By Reference</em>}' attribute.
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #isAllowsPassByReference()
-	 * @generated
-	 * @ordered
-	 */
+     * @see #isAllowsPassByReference()
+     * @generated
+     * @ordered
+     */
 	protected static final boolean ALLOWS_PASS_BY_REFERENCE_EDEFAULT = false;
 
 	/**
-	 * The cached value of the '{@link #isAllowsPassByReference() <em>Allows Pass By Reference</em>}' attribute.
-	 * <!-- begin-user-doc -->
+     * The cached value of the '{@link #isAllowsPassByReference() <em>Allows Pass By Reference</em>}' attribute.
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #isAllowsPassByReference()
-	 * @generated
-	 * @ordered
-	 */
+     * @see #isAllowsPassByReference()
+     * @generated
+     * @ordered
+     */
 	protected boolean allowsPassByReference = ALLOWS_PASS_BY_REFERENCE_EDEFAULT;
 
 	/**
-	 * This is true if the Allows Pass By Reference attribute has been set.
-	 * <!-- begin-user-doc -->
+     * This is true if the Allows Pass By Reference attribute has been set.
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
+     * @generated
+     * @ordered
+     */
 	protected boolean allowsPassByReferenceESet;
 
 	/**
-	 * The default value of the '{@link #isDestoy() <em>Destoy</em>}' attribute.
-	 * <!-- begin-user-doc -->
+     * The default value of the '{@link #isDestoy() <em>Destoy</em>}' attribute.
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #isDestoy()
-	 * @generated
-	 * @ordered
-	 */
+     * @see #isDestoy()
+     * @generated
+     * @ordered
+     */
 	protected static final boolean DESTOY_EDEFAULT = false;
 
 	/**
-	 * The cached value of the '{@link #isDestoy() <em>Destoy</em>}' attribute.
-	 * <!-- begin-user-doc -->
+     * The cached value of the '{@link #isDestoy() <em>Destoy</em>}' attribute.
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #isDestoy()
-	 * @generated
-	 * @ordered
-	 */
+     * @see #isDestoy()
+     * @generated
+     * @ordered
+     */
 	protected boolean destoy = DESTOY_EDEFAULT;
 
 	/**
-	 * This is true if the Destoy attribute has been set.
-	 * <!-- begin-user-doc -->
+     * This is true if the Destoy attribute has been set.
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
+     * @generated
+     * @ordered
+     */
 	protected boolean destoyESet;
 
 	/**
-	 * The default value of the '{@link #isInit() <em>Init</em>}' attribute.
-	 * <!-- begin-user-doc -->
+     * The default value of the '{@link #isInit() <em>Init</em>}' attribute.
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #isInit()
-	 * @generated
-	 * @ordered
-	 */
+     * @see #isInit()
+     * @generated
+     * @ordered
+     */
 	protected static final boolean INIT_EDEFAULT = false;
 
 	/**
-	 * The cached value of the '{@link #isInit() <em>Init</em>}' attribute.
-	 * <!-- begin-user-doc -->
+     * The cached value of the '{@link #isInit() <em>Init</em>}' attribute.
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #isInit()
-	 * @generated
-	 * @ordered
-	 */
+     * @see #isInit()
+     * @generated
+     * @ordered
+     */
 	protected boolean init = INIT_EDEFAULT;
 
 	/**
-	 * This is true if the Init attribute has been set.
-	 * <!-- begin-user-doc -->
+     * This is true if the Init attribute has been set.
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
+     * @generated
+     * @ordered
+     */
 	protected boolean initESet;
 
 	/**
-	 * The default value of the '{@link #getName() <em>Name</em>}' attribute.
-	 * <!-- begin-user-doc -->
+     * The default value of the '{@link #getName() <em>Name</em>}' attribute.
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #getName()
-	 * @generated
-	 * @ordered
-	 */
+     * @see #getName()
+     * @generated
+     * @ordered
+     */
 	protected static final String NAME_EDEFAULT = null;
 
 	/**
-	 * The cached value of the '{@link #getName() <em>Name</em>}' attribute.
-	 * <!-- begin-user-doc -->
+     * The cached value of the '{@link #getName() <em>Name</em>}' attribute.
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #getName()
-	 * @generated
-	 * @ordered
-	 */
+     * @see #getName()
+     * @generated
+     * @ordered
+     */
 	protected String name = NAME_EDEFAULT;
 
 	/**
-	 * The cached value of the '{@link #getAnyAttribute() <em>Any Attribute</em>}' attribute list.
-	 * <!-- begin-user-doc -->
+     * The cached value of the '{@link #getAnyAttribute() <em>Any Attribute</em>}' attribute list.
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #getAnyAttribute()
-	 * @generated
-	 * @ordered
-	 */
+     * @see #getAnyAttribute()
+     * @generated
+     * @ordered
+     */
 	protected FeatureMap anyAttribute;
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	protected CImplementationFunctionImpl() {
-		super();
-	}
+        super();
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	@Override
 	protected EClass eStaticClass() {
-		return ScaPackage.eINSTANCE.getCImplementationFunction();
-	}
+        return ScaPackage.eINSTANCE.getCImplementationFunction();
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public boolean isAllowsPassByReference() {
-		return allowsPassByReference;
-	}
+        return allowsPassByReference;
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public void setAllowsPassByReference(boolean newAllowsPassByReference) {
-		boolean oldAllowsPassByReference = allowsPassByReference;
-		allowsPassByReference = newAllowsPassByReference;
-		boolean oldAllowsPassByReferenceESet = allowsPassByReferenceESet;
-		allowsPassByReferenceESet = true;
-		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, ScaPackage.CIMPLEMENTATION_FUNCTION__ALLOWS_PASS_BY_REFERENCE, oldAllowsPassByReference, allowsPassByReference, !oldAllowsPassByReferenceESet));
-	}
+        boolean oldAllowsPassByReference = allowsPassByReference;
+        allowsPassByReference = newAllowsPassByReference;
+        boolean oldAllowsPassByReferenceESet = allowsPassByReferenceESet;
+        allowsPassByReferenceESet = true;
+        if (eNotificationRequired())
+            eNotify(new ENotificationImpl(this, Notification.SET, ScaPackage.CIMPLEMENTATION_FUNCTION__ALLOWS_PASS_BY_REFERENCE, oldAllowsPassByReference, allowsPassByReference, !oldAllowsPassByReferenceESet));
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public void unsetAllowsPassByReference() {
-		boolean oldAllowsPassByReference = allowsPassByReference;
-		boolean oldAllowsPassByReferenceESet = allowsPassByReferenceESet;
-		allowsPassByReference = ALLOWS_PASS_BY_REFERENCE_EDEFAULT;
-		allowsPassByReferenceESet = false;
-		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.UNSET, ScaPackage.CIMPLEMENTATION_FUNCTION__ALLOWS_PASS_BY_REFERENCE, oldAllowsPassByReference, ALLOWS_PASS_BY_REFERENCE_EDEFAULT, oldAllowsPassByReferenceESet));
-	}
+        boolean oldAllowsPassByReference = allowsPassByReference;
+        boolean oldAllowsPassByReferenceESet = allowsPassByReferenceESet;
+        allowsPassByReference = ALLOWS_PASS_BY_REFERENCE_EDEFAULT;
+        allowsPassByReferenceESet = false;
+        if (eNotificationRequired())
+            eNotify(new ENotificationImpl(this, Notification.UNSET, ScaPackage.CIMPLEMENTATION_FUNCTION__ALLOWS_PASS_BY_REFERENCE, oldAllowsPassByReference, ALLOWS_PASS_BY_REFERENCE_EDEFAULT, oldAllowsPassByReferenceESet));
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public boolean isSetAllowsPassByReference() {
-		return allowsPassByReferenceESet;
-	}
+        return allowsPassByReferenceESet;
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public boolean isDestoy() {
-		return destoy;
-	}
+        return destoy;
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public void setDestoy(boolean newDestoy) {
-		boolean oldDestoy = destoy;
-		destoy = newDestoy;
-		boolean oldDestoyESet = destoyESet;
-		destoyESet = true;
-		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, ScaPackage.CIMPLEMENTATION_FUNCTION__DESTOY, oldDestoy, destoy, !oldDestoyESet));
-	}
+        boolean oldDestoy = destoy;
+        destoy = newDestoy;
+        boolean oldDestoyESet = destoyESet;
+        destoyESet = true;
+        if (eNotificationRequired())
+            eNotify(new ENotificationImpl(this, Notification.SET, ScaPackage.CIMPLEMENTATION_FUNCTION__DESTOY, oldDestoy, destoy, !oldDestoyESet));
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public void unsetDestoy() {
-		boolean oldDestoy = destoy;
-		boolean oldDestoyESet = destoyESet;
-		destoy = DESTOY_EDEFAULT;
-		destoyESet = false;
-		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.UNSET, ScaPackage.CIMPLEMENTATION_FUNCTION__DESTOY, oldDestoy, DESTOY_EDEFAULT, oldDestoyESet));
-	}
+        boolean oldDestoy = destoy;
+        boolean oldDestoyESet = destoyESet;
+        destoy = DESTOY_EDEFAULT;
+        destoyESet = false;
+        if (eNotificationRequired())
+            eNotify(new ENotificationImpl(this, Notification.UNSET, ScaPackage.CIMPLEMENTATION_FUNCTION__DESTOY, oldDestoy, DESTOY_EDEFAULT, oldDestoyESet));
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public boolean isSetDestoy() {
-		return destoyESet;
-	}
+        return destoyESet;
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public boolean isInit() {
-		return init;
-	}
+        return init;
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public void setInit(boolean newInit) {
-		boolean oldInit = init;
-		init = newInit;
-		boolean oldInitESet = initESet;
-		initESet = true;
-		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, ScaPackage.CIMPLEMENTATION_FUNCTION__INIT, oldInit, init, !oldInitESet));
-	}
+        boolean oldInit = init;
+        init = newInit;
+        boolean oldInitESet = initESet;
+        initESet = true;
+        if (eNotificationRequired())
+            eNotify(new ENotificationImpl(this, Notification.SET, ScaPackage.CIMPLEMENTATION_FUNCTION__INIT, oldInit, init, !oldInitESet));
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public void unsetInit() {
-		boolean oldInit = init;
-		boolean oldInitESet = initESet;
-		init = INIT_EDEFAULT;
-		initESet = false;
-		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.UNSET, ScaPackage.CIMPLEMENTATION_FUNCTION__INIT, oldInit, INIT_EDEFAULT, oldInitESet));
-	}
+        boolean oldInit = init;
+        boolean oldInitESet = initESet;
+        init = INIT_EDEFAULT;
+        initESet = false;
+        if (eNotificationRequired())
+            eNotify(new ENotificationImpl(this, Notification.UNSET, ScaPackage.CIMPLEMENTATION_FUNCTION__INIT, oldInit, INIT_EDEFAULT, oldInitESet));
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public boolean isSetInit() {
-		return initESet;
-	}
+        return initESet;
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public String getName() {
-		return name;
-	}
+        return name;
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public void setName(String newName) {
-		String oldName = name;
-		name = newName;
-		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, ScaPackage.CIMPLEMENTATION_FUNCTION__NAME, oldName, name));
-	}
+        String oldName = name;
+        name = newName;
+        if (eNotificationRequired())
+            eNotify(new ENotificationImpl(this, Notification.SET, ScaPackage.CIMPLEMENTATION_FUNCTION__NAME, oldName, name));
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public FeatureMap getAnyAttribute() {
-		if (anyAttribute == null) {
-			anyAttribute = new BasicFeatureMap(this, ScaPackage.CIMPLEMENTATION_FUNCTION__ANY_ATTRIBUTE);
-		}
-		return anyAttribute;
-	}
+        if (anyAttribute == null) {
+            anyAttribute = new BasicFeatureMap(this, ScaPackage.CIMPLEMENTATION_FUNCTION__ANY_ATTRIBUTE);
+        }
+        return anyAttribute;
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	@Override
 	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
-		switch (featureID) {
-			case ScaPackage.CIMPLEMENTATION_FUNCTION__ANY_ATTRIBUTE:
-				return ((InternalEList<?>)getAnyAttribute()).basicRemove(otherEnd, msgs);
-		}
-		return super.eInverseRemove(otherEnd, featureID, msgs);
-	}
+        switch (featureID) {
+            case ScaPackage.CIMPLEMENTATION_FUNCTION__ANY_ATTRIBUTE:
+                return ((InternalEList<?>)getAnyAttribute()).basicRemove(otherEnd, msgs);
+        }
+        return super.eInverseRemove(otherEnd, featureID, msgs);
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
-		switch (featureID) {
-			case ScaPackage.CIMPLEMENTATION_FUNCTION__ALLOWS_PASS_BY_REFERENCE:
-				return isAllowsPassByReference();
-			case ScaPackage.CIMPLEMENTATION_FUNCTION__DESTOY:
-				return isDestoy();
-			case ScaPackage.CIMPLEMENTATION_FUNCTION__INIT:
-				return isInit();
-			case ScaPackage.CIMPLEMENTATION_FUNCTION__NAME:
-				return getName();
-			case ScaPackage.CIMPLEMENTATION_FUNCTION__ANY_ATTRIBUTE:
-				if (coreType) return getAnyAttribute();
-				return ((FeatureMap.Internal)getAnyAttribute()).getWrapper();
-		}
-		return super.eGet(featureID, resolve, coreType);
-	}
+        switch (featureID) {
+            case ScaPackage.CIMPLEMENTATION_FUNCTION__ALLOWS_PASS_BY_REFERENCE:
+                return isAllowsPassByReference();
+            case ScaPackage.CIMPLEMENTATION_FUNCTION__DESTOY:
+                return isDestoy();
+            case ScaPackage.CIMPLEMENTATION_FUNCTION__INIT:
+                return isInit();
+            case ScaPackage.CIMPLEMENTATION_FUNCTION__NAME:
+                return getName();
+            case ScaPackage.CIMPLEMENTATION_FUNCTION__ANY_ATTRIBUTE:
+                if (coreType) return getAnyAttribute();
+                return ((FeatureMap.Internal)getAnyAttribute()).getWrapper();
+        }
+        return super.eGet(featureID, resolve, coreType);
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	@Override
 	public void eSet(int featureID, Object newValue) {
-		switch (featureID) {
-			case ScaPackage.CIMPLEMENTATION_FUNCTION__ALLOWS_PASS_BY_REFERENCE:
-				setAllowsPassByReference((Boolean)newValue);
-				return;
-			case ScaPackage.CIMPLEMENTATION_FUNCTION__DESTOY:
-				setDestoy((Boolean)newValue);
-				return;
-			case ScaPackage.CIMPLEMENTATION_FUNCTION__INIT:
-				setInit((Boolean)newValue);
-				return;
-			case ScaPackage.CIMPLEMENTATION_FUNCTION__NAME:
-				setName((String)newValue);
-				return;
-			case ScaPackage.CIMPLEMENTATION_FUNCTION__ANY_ATTRIBUTE:
-				((FeatureMap.Internal)getAnyAttribute()).set(newValue);
-				return;
-		}
-		super.eSet(featureID, newValue);
-	}
+        switch (featureID) {
+            case ScaPackage.CIMPLEMENTATION_FUNCTION__ALLOWS_PASS_BY_REFERENCE:
+                setAllowsPassByReference((Boolean)newValue);
+                return;
+            case ScaPackage.CIMPLEMENTATION_FUNCTION__DESTOY:
+                setDestoy((Boolean)newValue);
+                return;
+            case ScaPackage.CIMPLEMENTATION_FUNCTION__INIT:
+                setInit((Boolean)newValue);
+                return;
+            case ScaPackage.CIMPLEMENTATION_FUNCTION__NAME:
+                setName((String)newValue);
+                return;
+            case ScaPackage.CIMPLEMENTATION_FUNCTION__ANY_ATTRIBUTE:
+                ((FeatureMap.Internal)getAnyAttribute()).set(newValue);
+                return;
+        }
+        super.eSet(featureID, newValue);
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	@Override
 	public void eUnset(int featureID) {
-		switch (featureID) {
-			case ScaPackage.CIMPLEMENTATION_FUNCTION__ALLOWS_PASS_BY_REFERENCE:
-				unsetAllowsPassByReference();
-				return;
-			case ScaPackage.CIMPLEMENTATION_FUNCTION__DESTOY:
-				unsetDestoy();
-				return;
-			case ScaPackage.CIMPLEMENTATION_FUNCTION__INIT:
-				unsetInit();
-				return;
-			case ScaPackage.CIMPLEMENTATION_FUNCTION__NAME:
-				setName(NAME_EDEFAULT);
-				return;
-			case ScaPackage.CIMPLEMENTATION_FUNCTION__ANY_ATTRIBUTE:
-				getAnyAttribute().clear();
-				return;
-		}
-		super.eUnset(featureID);
-	}
+        switch (featureID) {
+            case ScaPackage.CIMPLEMENTATION_FUNCTION__ALLOWS_PASS_BY_REFERENCE:
+                unsetAllowsPassByReference();
+                return;
+            case ScaPackage.CIMPLEMENTATION_FUNCTION__DESTOY:
+                unsetDestoy();
+                return;
+            case ScaPackage.CIMPLEMENTATION_FUNCTION__INIT:
+                unsetInit();
+                return;
+            case ScaPackage.CIMPLEMENTATION_FUNCTION__NAME:
+                setName(NAME_EDEFAULT);
+                return;
+            case ScaPackage.CIMPLEMENTATION_FUNCTION__ANY_ATTRIBUTE:
+                getAnyAttribute().clear();
+                return;
+        }
+        super.eUnset(featureID);
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	@Override
 	public boolean eIsSet(int featureID) {
-		switch (featureID) {
-			case ScaPackage.CIMPLEMENTATION_FUNCTION__ALLOWS_PASS_BY_REFERENCE:
-				return isSetAllowsPassByReference();
-			case ScaPackage.CIMPLEMENTATION_FUNCTION__DESTOY:
-				return isSetDestoy();
-			case ScaPackage.CIMPLEMENTATION_FUNCTION__INIT:
-				return isSetInit();
-			case ScaPackage.CIMPLEMENTATION_FUNCTION__NAME:
-				return NAME_EDEFAULT == null ? name != null : !NAME_EDEFAULT.equals(name);
-			case ScaPackage.CIMPLEMENTATION_FUNCTION__ANY_ATTRIBUTE:
-				return anyAttribute != null && !anyAttribute.isEmpty();
-		}
-		return super.eIsSet(featureID);
-	}
+        switch (featureID) {
+            case ScaPackage.CIMPLEMENTATION_FUNCTION__ALLOWS_PASS_BY_REFERENCE:
+                return isSetAllowsPassByReference();
+            case ScaPackage.CIMPLEMENTATION_FUNCTION__DESTOY:
+                return isSetDestoy();
+            case ScaPackage.CIMPLEMENTATION_FUNCTION__INIT:
+                return isSetInit();
+            case ScaPackage.CIMPLEMENTATION_FUNCTION__NAME:
+                return NAME_EDEFAULT == null ? name != null : !NAME_EDEFAULT.equals(name);
+            case ScaPackage.CIMPLEMENTATION_FUNCTION__ANY_ATTRIBUTE:
+                return anyAttribute != null && !anyAttribute.isEmpty();
+        }
+        return super.eIsSet(featureID);
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	@Override
 	public String toString() {
-		if (eIsProxy()) return super.toString();
+        if (eIsProxy()) return super.toString();
 
-		StringBuffer result = new StringBuffer(super.toString());
-		result.append(" (allowsPassByReference: ");
-		if (allowsPassByReferenceESet) result.append(allowsPassByReference); else result.append("<unset>");
-		result.append(", destoy: ");
-		if (destoyESet) result.append(destoy); else result.append("<unset>");
-		result.append(", init: ");
-		if (initESet) result.append(init); else result.append("<unset>");
-		result.append(", name: ");
-		result.append(name);
-		result.append(", anyAttribute: ");
-		result.append(anyAttribute);
-		result.append(')');
-		return result.toString();
-	}
+        StringBuffer result = new StringBuffer(super.toString());
+        result.append(" (allowsPassByReference: ");
+        if (allowsPassByReferenceESet) result.append(allowsPassByReference); else result.append("<unset>");
+        result.append(", destoy: ");
+        if (destoyESet) result.append(destoy); else result.append("<unset>");
+        result.append(", init: ");
+        if (initESet) result.append(init); else result.append("<unset>");
+        result.append(", name: ");
+        result.append(name);
+        result.append(", anyAttribute: ");
+        result.append(anyAttribute);
+        result.append(')');
+        return result.toString();
+    }
 
 } //CImplementationFunctionImpl

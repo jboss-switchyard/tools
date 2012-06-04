@@ -14,9 +14,9 @@ import org.eclipse.emf.ecore.util.Switch;
 import org.eclipse.soa.sca.sca1_1.model.sca.Binding;
 import org.eclipse.soa.sca.sca1_1.model.sca.CommonExtensionBase;
 import org.eclipse.soa.sca.sca1_1.model.sca.OperationSelectorType;
+import org.eclipse.soa.sca.sca1_1.model.sca.ExtendableType;
 
 import org.switchyard.tools.models.switchyard1_0.hornetq.*;
-
 import org.switchyard.tools.models.switchyard1_0.switchyard.SwitchYardBindingType;
 
 /**
@@ -82,6 +82,7 @@ public class HornetQSwitch<T> extends Switch<T> {
                 if (result == null) result = caseSwitchYardBindingType(bindingType);
                 if (result == null) result = caseBinding(bindingType);
                 if (result == null) result = caseCommonExtensionBase(bindingType);
+                if (result == null) result = caseExtendableType(bindingType);
                 if (result == null) result = defaultCase(theEObject);
                 return result;
             }
@@ -264,6 +265,21 @@ public class HornetQSwitch<T> extends Switch<T> {
      * @generated
      */
     public T caseCommonExtensionBase(CommonExtensionBase object) {
+        return null;
+    }
+
+    /**
+     * Returns the result of interpreting the object as an instance of '<em>Extendable Type</em>'.
+     * <!-- begin-user-doc -->
+     * This implementation returns null;
+     * returning a non-null result will terminate the switch.
+     * <!-- end-user-doc -->
+     * @param object the target of the switch.
+     * @return the result of interpreting the object as an instance of '<em>Extendable Type</em>'.
+     * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+     * @generated
+     */
+    public T caseExtendableType(ExtendableType object) {
         return null;
     }
 

@@ -10,6 +10,7 @@ import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.NotificationChain;
 
 import org.eclipse.emf.ecore.EClass;
+import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.ecore.InternalEObject;
 
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
@@ -38,7 +39,7 @@ import org.switchyard.tools.models.switchyard1_0.switchyard.impl.SwitchYardBindi
  *
  * @generated
  */
-public class BaseCamelBindingImpl extends SwitchYardBindingTypeImpl implements BaseCamelBinding {
+public abstract class BaseCamelBindingImpl extends SwitchYardBindingTypeImpl implements BaseCamelBinding {
     /**
      * The cached value of the '{@link #getContextMapper() <em>Context Mapper</em>}' reference.
      * <!-- begin-user-doc -->

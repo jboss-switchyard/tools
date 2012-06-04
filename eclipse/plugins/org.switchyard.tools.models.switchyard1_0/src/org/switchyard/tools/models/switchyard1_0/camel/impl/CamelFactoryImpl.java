@@ -61,7 +61,6 @@ public class CamelFactoryImpl extends EFactoryImpl implements CamelFactory {
 	@Override
 	public EObject create(EClass eClass) {
         switch (eClass.getClassifierID()) {
-            case CamelPackage.BASE_CAMEL_BINDING: return createBaseCamelBinding();
             case CamelPackage.CAMEL_ATOM_BINDING_TYPE: return createCamelAtomBindingType();
             case CamelPackage.CAMEL_BINDING_TYPE: return createCamelBindingType();
             case CamelPackage.CAMEL_DIRECT_BINDING_TYPE: return createCamelDirectBindingType();
@@ -70,7 +69,6 @@ public class CamelFactoryImpl extends EFactoryImpl implements CamelFactory {
             case CamelPackage.CAMEL_FTPS_BINDING_TYPE: return createCamelFtpsBindingType();
             case CamelPackage.CAMEL_IMPLEMENTATION_TYPE: return createCamelImplementationType();
             case CamelPackage.CAMEL_JMS_BINDING_TYPE: return createCamelJmsBindingType();
-            case CamelPackage.CAMEL_NETTY_BINDING_TYPE: return createCamelNettyBindingType();
             case CamelPackage.CAMEL_NETTY_UDP_BINDING_TYPE: return createCamelNettyUdpBindingType();
             case CamelPackage.CAMEL_NETTY_TCP_BINDING_TYPE: return createCamelNettyTcpBindingType();
             case CamelPackage.CAMEL_MOCK_BINDING_TYPE: return createCamelMockBindingType();
@@ -127,16 +125,6 @@ public class CamelFactoryImpl extends EFactoryImpl implements CamelFactory {
             default:
                 throw new IllegalArgumentException("The datatype '" + eDataType.getName() + "' is not a valid classifier");
         }
-    }
-
-    /**
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    public BaseCamelBinding createBaseCamelBinding() {
-        BaseCamelBindingImpl baseCamelBinding = new BaseCamelBindingImpl();
-        return baseCamelBinding;
     }
 
     /**
@@ -217,16 +205,6 @@ public class CamelFactoryImpl extends EFactoryImpl implements CamelFactory {
     public CamelJmsBindingType createCamelJmsBindingType() {
         CamelJmsBindingTypeImpl camelJmsBindingType = new CamelJmsBindingTypeImpl();
         return camelJmsBindingType;
-    }
-
-    /**
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    public CamelNettyBindingType createCamelNettyBindingType() {
-        CamelNettyBindingTypeImpl camelNettyBindingType = new CamelNettyBindingTypeImpl();
-        return camelNettyBindingType;
     }
 
     /**

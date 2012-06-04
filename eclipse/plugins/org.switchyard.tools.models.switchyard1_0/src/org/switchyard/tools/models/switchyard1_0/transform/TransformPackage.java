@@ -229,13 +229,22 @@ public interface TransformPackage extends EPackage {
 	int JAXB_TRANSFORM_TYPE__TO = SwitchyardPackage.TRANSFORM_TYPE__TO;
 
 	/**
+     * The feature id for the '<em><b>Context Path</b></em>' attribute.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int JAXB_TRANSFORM_TYPE__CONTEXT_PATH = SwitchyardPackage.TRANSFORM_TYPE_FEATURE_COUNT + 0;
+
+    /**
      * The number of structural features of the '<em>JAXB Transform Type</em>' class.
      * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
      * @generated
      * @ordered
      */
-	int JAXB_TRANSFORM_TYPE_FEATURE_COUNT = SwitchyardPackage.TRANSFORM_TYPE_FEATURE_COUNT + 0;
+	int JAXB_TRANSFORM_TYPE_FEATURE_COUNT = SwitchyardPackage.TRANSFORM_TYPE_FEATURE_COUNT + 1;
 
 	/**
      * The meta object id for the '{@link org.switchyard.tools.models.switchyard1_0.transform.impl.JsonTransformTypeImpl <em>Json Transform Type</em>}' class.
@@ -564,6 +573,17 @@ public interface TransformPackage extends EPackage {
 	EClass getJAXBTransformType();
 
 	/**
+     * Returns the meta object for the attribute '{@link org.switchyard.tools.models.switchyard1_0.transform.JAXBTransformType#getContextPath <em>Context Path</em>}'.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @return the meta object for the attribute '<em>Context Path</em>'.
+     * @see org.switchyard.tools.models.switchyard1_0.transform.JAXBTransformType#getContextPath()
+     * @see #getJAXBTransformType()
+     * @generated
+     */
+    EAttribute getJAXBTransformType_ContextPath();
+
+    /**
      * Returns the meta object for class '{@link org.switchyard.tools.models.switchyard1_0.transform.JsonTransformType <em>Json Transform Type</em>}'.
      * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -817,6 +837,14 @@ public interface TransformPackage extends EPackage {
 		EClass JAXB_TRANSFORM_TYPE = eINSTANCE.getJAXBTransformType();
 
 		/**
+         * The meta object literal for the '<em><b>Context Path</b></em>' attribute feature.
+         * <!-- begin-user-doc -->
+         * <!-- end-user-doc -->
+         * @generated
+         */
+        EAttribute JAXB_TRANSFORM_TYPE__CONTEXT_PATH = eINSTANCE.getJAXBTransformType_ContextPath();
+
+        /**
          * The meta object literal for the '{@link org.switchyard.tools.models.switchyard1_0.transform.impl.JsonTransformTypeImpl <em>Json Transform Type</em>}' class.
          * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->

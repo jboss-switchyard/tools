@@ -26,15 +26,6 @@ public interface CamelFactory extends EFactory {
 	CamelFactory eINSTANCE = org.switchyard.tools.models.switchyard1_0.camel.impl.CamelFactoryImpl.init();
 
 	/**
-     * Returns a new object of class '<em>Base Camel Binding</em>'.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @return a new object of class '<em>Base Camel Binding</em>'.
-     * @generated
-     */
-    BaseCamelBinding createBaseCamelBinding();
-
-    /**
      * Returns a new object of class '<em>Atom Binding Type</em>'.
      * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -105,15 +96,6 @@ public interface CamelFactory extends EFactory {
      * @generated
      */
     CamelJmsBindingType createCamelJmsBindingType();
-
-    /**
-     * Returns a new object of class '<em>Netty Binding Type</em>'.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @return a new object of class '<em>Netty Binding Type</em>'.
-     * @generated
-     */
-    CamelNettyBindingType createCamelNettyBindingType();
 
     /**
      * Returns a new object of class '<em>Netty Udp Binding Type</em>'.

@@ -16,23 +16,24 @@ import javax.swing.event.ChangeEvent;
 import javax.swing.event.ChangeListener;
 
 import org.eclipse.jface.wizard.WizardPage;
+import org.eclipse.soa.sca.sca1_1.model.sca.ComponentService;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.widgets.Composite;
 import org.switchyard.tools.models.switchyard1_0.camel.CamelImplementationType;
-import org.switchyard.tools.ui.editor.diagram.shared.CamelRouteSelectionComposite;
+import org.switchyard.tools.ui.editor.diagram.shared.CamelXMLRouteComposite;
 
 /**
  * @author bfitzpat
  * 
  */
-public class SCADiagramAddComponentImplementationCamelPage extends WizardPage {
+public class CamelXMLRouteImplementationPage extends WizardPage {
 
-    private CamelRouteSelectionComposite _camelComposite = null;
+    private CamelXMLRouteComposite _camelComposite = null;
     private CamelImplementationType _implementation;
 
-    protected SCADiagramAddComponentImplementationCamelPage(String pageName) {
+    protected CamelXMLRouteImplementationPage(String pageName) {
         super(pageName);
-        setTitle("Camel Implementation Details");
+        setTitle("Camel XML Route Details");
         setDescription("Specify the details for the Camel route.");
         // we don't validate until the control is created
         setPageComplete(false);
@@ -48,7 +49,7 @@ public class SCADiagramAddComponentImplementationCamelPage extends WizardPage {
 
     @Override
     public void createControl(Composite parent) {
-        _camelComposite = new CamelRouteSelectionComposite();
+        _camelComposite = new CamelXMLRouteComposite();
         _camelComposite.addChangeListener(new ChangeListener() {
             @Override
             public void stateChanged(ChangeEvent arg0) {
@@ -63,17 +64,10 @@ public class SCADiagramAddComponentImplementationCamelPage extends WizardPage {
     }
 
     /**
-     * @return String for camel route
+     * @return the component service that may be associated with the route.
      */
-    public String getCamelRouteXMLFile() {
-        return _camelComposite.getCamelRouteString();
-    }
-
-    /**
-     * @return String for camel route class name
-     */
-    public String getCamelRouteClassName() {
-        return _camelComposite.getCamelRouteClass();
+    public ComponentService getService() {
+        return _camelComposite.getService();
     }
 
 }

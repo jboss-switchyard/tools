@@ -31,111 +31,111 @@ import org.eclipse.soa.sca.sca1_1.model.sca.Service;
  */
 public class ServiceImpl extends ContractImpl implements Service {
 	/**
-	 * The cached value of the '{@link #getPromote() <em>Promote</em>}' reference.
-	 * <!-- begin-user-doc -->
+     * The cached value of the '{@link #getPromote() <em>Promote</em>}' reference.
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #getPromote()
-	 * @generated
-	 * @ordered
-	 */
+     * @see #getPromote()
+     * @generated
+     * @ordered
+     */
 	protected ComponentService promote;
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	protected ServiceImpl() {
-		super();
-	}
+        super();
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	@Override
 	protected EClass eStaticClass() {
-		return ScaPackage.eINSTANCE.getService();
-	}
+        return ScaPackage.eINSTANCE.getService();
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public ComponentService getPromote() {
-		return promote;
-	}
+        return promote;
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public void setPromote(ComponentService newPromote) {
-		ComponentService oldPromote = promote;
-		promote = newPromote;
-		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, ScaPackage.SERVICE__PROMOTE, oldPromote, promote));
-	}
+        ComponentService oldPromote = promote;
+        promote = newPromote;
+        if (eNotificationRequired())
+            eNotify(new ENotificationImpl(this, Notification.SET, ScaPackage.SERVICE__PROMOTE, oldPromote, promote));
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
-		switch (featureID) {
-			case ScaPackage.SERVICE__PROMOTE:
-				return getPromote();
-		}
-		return super.eGet(featureID, resolve, coreType);
-	}
+        switch (featureID) {
+            case ScaPackage.SERVICE__PROMOTE:
+                return getPromote();
+        }
+        return super.eGet(featureID, resolve, coreType);
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	@Override
 	public void eSet(int featureID, Object newValue) {
-		switch (featureID) {
-			case ScaPackage.SERVICE__PROMOTE:
-				setPromote((ComponentService)newValue);
-				return;
-		}
-		super.eSet(featureID, newValue);
-	}
+        switch (featureID) {
+            case ScaPackage.SERVICE__PROMOTE:
+                setPromote((ComponentService)newValue);
+                return;
+        }
+        super.eSet(featureID, newValue);
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	@Override
 	public void eUnset(int featureID) {
-		switch (featureID) {
-			case ScaPackage.SERVICE__PROMOTE:
-				setPromote((ComponentService)null);
-				return;
-		}
-		super.eUnset(featureID);
-	}
+        switch (featureID) {
+            case ScaPackage.SERVICE__PROMOTE:
+                setPromote((ComponentService)null);
+                return;
+        }
+        super.eUnset(featureID);
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	@Override
 	public boolean eIsSet(int featureID) {
-		switch (featureID) {
-			case ScaPackage.SERVICE__PROMOTE:
-				return promote != null;
-		}
-		return super.eIsSet(featureID);
-	}
+        switch (featureID) {
+            case ScaPackage.SERVICE__PROMOTE:
+                return promote != null;
+        }
+        return super.eIsSet(featureID);
+    }
 
 } //ServiceImpl

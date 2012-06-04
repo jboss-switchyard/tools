@@ -43,444 +43,444 @@ import org.eclipse.soa.sca.sca1_1.model.sca.Wire;
  */
 public class WireImpl extends CommonExtensionBaseImpl implements Wire {
 	/**
-	 * The cached value of the '{@link #getAny() <em>Any</em>}' attribute list.
-	 * <!-- begin-user-doc -->
+     * The cached value of the '{@link #getAny() <em>Any</em>}' attribute list.
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #getAny()
-	 * @generated
-	 * @ordered
-	 */
+     * @see #getAny()
+     * @generated
+     * @ordered
+     */
 	protected FeatureMap any;
 
 	/**
-	 * The default value of the '{@link #isReplace() <em>Replace</em>}' attribute.
-	 * <!-- begin-user-doc -->
+     * The default value of the '{@link #isReplace() <em>Replace</em>}' attribute.
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #isReplace()
-	 * @generated
-	 * @ordered
-	 */
+     * @see #isReplace()
+     * @generated
+     * @ordered
+     */
 	protected static final boolean REPLACE_EDEFAULT = false;
 
 	/**
-	 * The cached value of the '{@link #isReplace() <em>Replace</em>}' attribute.
-	 * <!-- begin-user-doc -->
+     * The cached value of the '{@link #isReplace() <em>Replace</em>}' attribute.
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #isReplace()
-	 * @generated
-	 * @ordered
-	 */
+     * @see #isReplace()
+     * @generated
+     * @ordered
+     */
 	protected boolean replace = REPLACE_EDEFAULT;
 
 	/**
-	 * This is true if the Replace attribute has been set.
-	 * <!-- begin-user-doc -->
+     * This is true if the Replace attribute has been set.
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
+     * @generated
+     * @ordered
+     */
 	protected boolean replaceESet;
 
 	/**
-	 * The default value of the '{@link #getSource() <em>Source</em>}' attribute.
-	 * <!-- begin-user-doc -->
+     * The default value of the '{@link #getSource() <em>Source</em>}' attribute.
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #getSource()
-	 * @generated
-	 * @ordered
-	 */
+     * @see #getSource()
+     * @generated
+     * @ordered
+     */
 	protected static final String SOURCE_EDEFAULT = null;
 
 	/**
-	 * The cached value of the '{@link #getSource() <em>Source</em>}' attribute.
-	 * <!-- begin-user-doc -->
+     * The cached value of the '{@link #getSource() <em>Source</em>}' attribute.
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #getSource()
-	 * @generated
-	 * @ordered
-	 */
+     * @see #getSource()
+     * @generated
+     * @ordered
+     */
 	protected String source = SOURCE_EDEFAULT;
 
 	/**
-	 * The default value of the '{@link #getTarget() <em>Target</em>}' attribute.
-	 * <!-- begin-user-doc -->
+     * The default value of the '{@link #getTarget() <em>Target</em>}' attribute.
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #getTarget()
-	 * @generated
-	 * @ordered
-	 */
+     * @see #getTarget()
+     * @generated
+     * @ordered
+     */
 	protected static final String TARGET_EDEFAULT = null;
 
 	/**
-	 * The cached value of the '{@link #getTarget() <em>Target</em>}' attribute.
-	 * <!-- begin-user-doc -->
+     * The cached value of the '{@link #getTarget() <em>Target</em>}' attribute.
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #getTarget()
-	 * @generated
-	 * @ordered
-	 */
+     * @see #getTarget()
+     * @generated
+     * @ordered
+     */
 	protected String target = TARGET_EDEFAULT;
 
 	/**
-	 * The cached value of the '{@link #getSource2() <em>Source2</em>}' reference.
-	 * <!-- begin-user-doc -->
+     * The cached value of the '{@link #getSource2() <em>Source2</em>}' reference.
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #getSource2()
-	 * @generated
-	 * @ordered
-	 */
+     * @see #getSource2()
+     * @generated
+     * @ordered
+     */
 	protected ComponentReference source2;
 
 	/**
-	 * The cached value of the '{@link #getTarget2() <em>Target2</em>}' reference.
-	 * <!-- begin-user-doc -->
+     * The cached value of the '{@link #getTarget2() <em>Target2</em>}' reference.
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #getTarget2()
-	 * @generated
-	 * @ordered
-	 */
+     * @see #getTarget2()
+     * @generated
+     * @ordered
+     */
 	protected ComponentService target2;
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	protected WireImpl() {
-		super();
-	}
+        super();
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	@Override
 	protected EClass eStaticClass() {
-		return ScaPackage.eINSTANCE.getWire();
-	}
+        return ScaPackage.eINSTANCE.getWire();
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public FeatureMap getAny() {
-		if (any == null) {
-			any = new BasicFeatureMap(this, ScaPackage.WIRE__ANY);
-		}
-		return any;
-	}
+        if (any == null) {
+            any = new BasicFeatureMap(this, ScaPackage.WIRE__ANY);
+        }
+        return any;
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public boolean isReplace() {
-		return replace;
-	}
+        return replace;
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public void setReplace(boolean newReplace) {
-		boolean oldReplace = replace;
-		replace = newReplace;
-		boolean oldReplaceESet = replaceESet;
-		replaceESet = true;
-		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, ScaPackage.WIRE__REPLACE, oldReplace, replace, !oldReplaceESet));
-	}
+        boolean oldReplace = replace;
+        replace = newReplace;
+        boolean oldReplaceESet = replaceESet;
+        replaceESet = true;
+        if (eNotificationRequired())
+            eNotify(new ENotificationImpl(this, Notification.SET, ScaPackage.WIRE__REPLACE, oldReplace, replace, !oldReplaceESet));
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public void unsetReplace() {
-		boolean oldReplace = replace;
-		boolean oldReplaceESet = replaceESet;
-		replace = REPLACE_EDEFAULT;
-		replaceESet = false;
-		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.UNSET, ScaPackage.WIRE__REPLACE, oldReplace, REPLACE_EDEFAULT, oldReplaceESet));
-	}
+        boolean oldReplace = replace;
+        boolean oldReplaceESet = replaceESet;
+        replace = REPLACE_EDEFAULT;
+        replaceESet = false;
+        if (eNotificationRequired())
+            eNotify(new ENotificationImpl(this, Notification.UNSET, ScaPackage.WIRE__REPLACE, oldReplace, REPLACE_EDEFAULT, oldReplaceESet));
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public boolean isSetReplace() {
-		return replaceESet;
-	}
+        return replaceESet;
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public String getSource() {
-		return source;
-	}
+        return source;
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public void setSource(String newSource) {
-		String oldSource = source;
-		source = newSource;
-		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, ScaPackage.WIRE__SOURCE, oldSource, source));
-	}
+        String oldSource = source;
+        source = newSource;
+        if (eNotificationRequired())
+            eNotify(new ENotificationImpl(this, Notification.SET, ScaPackage.WIRE__SOURCE, oldSource, source));
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public String getTarget() {
-		return target;
-	}
+        return target;
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public void setTarget(String newTarget) {
-		String oldTarget = target;
-		target = newTarget;
-		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, ScaPackage.WIRE__TARGET, oldTarget, target));
-	}
+        String oldTarget = target;
+        target = newTarget;
+        if (eNotificationRequired())
+            eNotify(new ENotificationImpl(this, Notification.SET, ScaPackage.WIRE__TARGET, oldTarget, target));
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public ComponentReference getSource2() {
-		if (source2 != null && source2.eIsProxy()) {
-			InternalEObject oldSource2 = (InternalEObject)source2;
-			source2 = (ComponentReference)eResolveProxy(oldSource2);
-			if (source2 != oldSource2) {
-				if (eNotificationRequired())
-					eNotify(new ENotificationImpl(this, Notification.RESOLVE, ScaPackage.WIRE__SOURCE2, oldSource2, source2));
-			}
-		}
-		return source2;
-	}
+        if (source2 != null && source2.eIsProxy()) {
+            InternalEObject oldSource2 = (InternalEObject)source2;
+            source2 = (ComponentReference)eResolveProxy(oldSource2);
+            if (source2 != oldSource2) {
+                if (eNotificationRequired())
+                    eNotify(new ENotificationImpl(this, Notification.RESOLVE, ScaPackage.WIRE__SOURCE2, oldSource2, source2));
+            }
+        }
+        return source2;
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public ComponentReference basicGetSource2() {
-		return source2;
-	}
+        return source2;
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public void setSource2(ComponentReference newSource2) {
-		ComponentReference oldSource2 = source2;
-		source2 = newSource2;
-		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, ScaPackage.WIRE__SOURCE2, oldSource2, source2));
-	}
+        ComponentReference oldSource2 = source2;
+        source2 = newSource2;
+        if (eNotificationRequired())
+            eNotify(new ENotificationImpl(this, Notification.SET, ScaPackage.WIRE__SOURCE2, oldSource2, source2));
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public ComponentService getTarget2() {
-		if (target2 != null && target2.eIsProxy()) {
-			InternalEObject oldTarget2 = (InternalEObject)target2;
-			target2 = (ComponentService)eResolveProxy(oldTarget2);
-			if (target2 != oldTarget2) {
-				if (eNotificationRequired())
-					eNotify(new ENotificationImpl(this, Notification.RESOLVE, ScaPackage.WIRE__TARGET2, oldTarget2, target2));
-			}
-		}
-		return target2;
-	}
+        if (target2 != null && target2.eIsProxy()) {
+            InternalEObject oldTarget2 = (InternalEObject)target2;
+            target2 = (ComponentService)eResolveProxy(oldTarget2);
+            if (target2 != oldTarget2) {
+                if (eNotificationRequired())
+                    eNotify(new ENotificationImpl(this, Notification.RESOLVE, ScaPackage.WIRE__TARGET2, oldTarget2, target2));
+            }
+        }
+        return target2;
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public ComponentService basicGetTarget2() {
-		return target2;
-	}
+        return target2;
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public void setTarget2(ComponentService newTarget2) {
-		ComponentService oldTarget2 = target2;
-		target2 = newTarget2;
-		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, ScaPackage.WIRE__TARGET2, oldTarget2, target2));
-	}
+        ComponentService oldTarget2 = target2;
+        target2 = newTarget2;
+        if (eNotificationRequired())
+            eNotify(new ENotificationImpl(this, Notification.SET, ScaPackage.WIRE__TARGET2, oldTarget2, target2));
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	@Override
 	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
-		switch (featureID) {
-			case ScaPackage.WIRE__ANY:
-				return ((InternalEList<?>)getAny()).basicRemove(otherEnd, msgs);
-		}
-		return super.eInverseRemove(otherEnd, featureID, msgs);
-	}
+        switch (featureID) {
+            case ScaPackage.WIRE__ANY:
+                return ((InternalEList<?>)getAny()).basicRemove(otherEnd, msgs);
+        }
+        return super.eInverseRemove(otherEnd, featureID, msgs);
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
-		switch (featureID) {
-			case ScaPackage.WIRE__ANY:
-				if (coreType) return getAny();
-				return ((FeatureMap.Internal)getAny()).getWrapper();
-			case ScaPackage.WIRE__REPLACE:
-				return isReplace();
-			case ScaPackage.WIRE__SOURCE:
-				return getSource();
-			case ScaPackage.WIRE__TARGET:
-				return getTarget();
-			case ScaPackage.WIRE__SOURCE2:
-				if (resolve) return getSource2();
-				return basicGetSource2();
-			case ScaPackage.WIRE__TARGET2:
-				if (resolve) return getTarget2();
-				return basicGetTarget2();
-		}
-		return super.eGet(featureID, resolve, coreType);
-	}
+        switch (featureID) {
+            case ScaPackage.WIRE__ANY:
+                if (coreType) return getAny();
+                return ((FeatureMap.Internal)getAny()).getWrapper();
+            case ScaPackage.WIRE__REPLACE:
+                return isReplace();
+            case ScaPackage.WIRE__SOURCE:
+                return getSource();
+            case ScaPackage.WIRE__TARGET:
+                return getTarget();
+            case ScaPackage.WIRE__SOURCE2:
+                if (resolve) return getSource2();
+                return basicGetSource2();
+            case ScaPackage.WIRE__TARGET2:
+                if (resolve) return getTarget2();
+                return basicGetTarget2();
+        }
+        return super.eGet(featureID, resolve, coreType);
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	@Override
 	public void eSet(int featureID, Object newValue) {
-		switch (featureID) {
-			case ScaPackage.WIRE__ANY:
-				((FeatureMap.Internal)getAny()).set(newValue);
-				return;
-			case ScaPackage.WIRE__REPLACE:
-				setReplace((Boolean)newValue);
-				return;
-			case ScaPackage.WIRE__SOURCE:
-				setSource((String)newValue);
-				return;
-			case ScaPackage.WIRE__TARGET:
-				setTarget((String)newValue);
-				return;
-			case ScaPackage.WIRE__SOURCE2:
-				setSource2((ComponentReference)newValue);
-				return;
-			case ScaPackage.WIRE__TARGET2:
-				setTarget2((ComponentService)newValue);
-				return;
-		}
-		super.eSet(featureID, newValue);
-	}
+        switch (featureID) {
+            case ScaPackage.WIRE__ANY:
+                ((FeatureMap.Internal)getAny()).set(newValue);
+                return;
+            case ScaPackage.WIRE__REPLACE:
+                setReplace((Boolean)newValue);
+                return;
+            case ScaPackage.WIRE__SOURCE:
+                setSource((String)newValue);
+                return;
+            case ScaPackage.WIRE__TARGET:
+                setTarget((String)newValue);
+                return;
+            case ScaPackage.WIRE__SOURCE2:
+                setSource2((ComponentReference)newValue);
+                return;
+            case ScaPackage.WIRE__TARGET2:
+                setTarget2((ComponentService)newValue);
+                return;
+        }
+        super.eSet(featureID, newValue);
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	@Override
 	public void eUnset(int featureID) {
-		switch (featureID) {
-			case ScaPackage.WIRE__ANY:
-				getAny().clear();
-				return;
-			case ScaPackage.WIRE__REPLACE:
-				unsetReplace();
-				return;
-			case ScaPackage.WIRE__SOURCE:
-				setSource(SOURCE_EDEFAULT);
-				return;
-			case ScaPackage.WIRE__TARGET:
-				setTarget(TARGET_EDEFAULT);
-				return;
-			case ScaPackage.WIRE__SOURCE2:
-				setSource2((ComponentReference)null);
-				return;
-			case ScaPackage.WIRE__TARGET2:
-				setTarget2((ComponentService)null);
-				return;
-		}
-		super.eUnset(featureID);
-	}
+        switch (featureID) {
+            case ScaPackage.WIRE__ANY:
+                getAny().clear();
+                return;
+            case ScaPackage.WIRE__REPLACE:
+                unsetReplace();
+                return;
+            case ScaPackage.WIRE__SOURCE:
+                setSource(SOURCE_EDEFAULT);
+                return;
+            case ScaPackage.WIRE__TARGET:
+                setTarget(TARGET_EDEFAULT);
+                return;
+            case ScaPackage.WIRE__SOURCE2:
+                setSource2((ComponentReference)null);
+                return;
+            case ScaPackage.WIRE__TARGET2:
+                setTarget2((ComponentService)null);
+                return;
+        }
+        super.eUnset(featureID);
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	@Override
 	public boolean eIsSet(int featureID) {
-		switch (featureID) {
-			case ScaPackage.WIRE__ANY:
-				return any != null && !any.isEmpty();
-			case ScaPackage.WIRE__REPLACE:
-				return isSetReplace();
-			case ScaPackage.WIRE__SOURCE:
-				return SOURCE_EDEFAULT == null ? source != null : !SOURCE_EDEFAULT.equals(source);
-			case ScaPackage.WIRE__TARGET:
-				return TARGET_EDEFAULT == null ? target != null : !TARGET_EDEFAULT.equals(target);
-			case ScaPackage.WIRE__SOURCE2:
-				return source2 != null;
-			case ScaPackage.WIRE__TARGET2:
-				return target2 != null;
-		}
-		return super.eIsSet(featureID);
-	}
+        switch (featureID) {
+            case ScaPackage.WIRE__ANY:
+                return any != null && !any.isEmpty();
+            case ScaPackage.WIRE__REPLACE:
+                return isSetReplace();
+            case ScaPackage.WIRE__SOURCE:
+                return SOURCE_EDEFAULT == null ? source != null : !SOURCE_EDEFAULT.equals(source);
+            case ScaPackage.WIRE__TARGET:
+                return TARGET_EDEFAULT == null ? target != null : !TARGET_EDEFAULT.equals(target);
+            case ScaPackage.WIRE__SOURCE2:
+                return source2 != null;
+            case ScaPackage.WIRE__TARGET2:
+                return target2 != null;
+        }
+        return super.eIsSet(featureID);
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	@Override
 	public String toString() {
-		if (eIsProxy()) return super.toString();
+        if (eIsProxy()) return super.toString();
 
-		StringBuffer result = new StringBuffer(super.toString());
-		result.append(" (any: ");
-		result.append(any);
-		result.append(", replace: ");
-		if (replaceESet) result.append(replace); else result.append("<unset>");
-		result.append(", source: ");
-		result.append(source);
-		result.append(", target: ");
-		result.append(target);
-		result.append(')');
-		return result.toString();
-	}
+        StringBuffer result = new StringBuffer(super.toString());
+        result.append(" (any: ");
+        result.append(any);
+        result.append(", replace: ");
+        if (replaceESet) result.append(replace); else result.append("<unset>");
+        result.append(", source: ");
+        result.append(source);
+        result.append(", target: ");
+        result.append(target);
+        result.append(')');
+        return result.toString();
+    }
 
 } //WireImpl

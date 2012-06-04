@@ -149,2155 +149,2155 @@ import org.eclipse.soa.sca.sca1_1.model.sca.WireFormatType;
  */
 public class DocumentRootImpl extends EObjectImpl implements DocumentRoot {
 	/**
-	 * The cached value of the '{@link #getMixed() <em>Mixed</em>}' attribute list.
-	 * <!-- begin-user-doc -->
+     * The cached value of the '{@link #getMixed() <em>Mixed</em>}' attribute list.
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #getMixed()
-	 * @generated
-	 * @ordered
-	 */
+     * @see #getMixed()
+     * @generated
+     * @ordered
+     */
 	protected FeatureMap mixed;
 
 	/**
-	 * The cached value of the '{@link #getXMLNSPrefixMap() <em>XMLNS Prefix Map</em>}' map.
-	 * <!-- begin-user-doc -->
+     * The cached value of the '{@link #getXMLNSPrefixMap() <em>XMLNS Prefix Map</em>}' map.
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #getXMLNSPrefixMap()
-	 * @generated
-	 * @ordered
-	 */
+     * @see #getXMLNSPrefixMap()
+     * @generated
+     * @ordered
+     */
 	protected EMap<String, String> xMLNSPrefixMap;
 
 	/**
-	 * The cached value of the '{@link #getXSISchemaLocation() <em>XSI Schema Location</em>}' map.
-	 * <!-- begin-user-doc -->
+     * The cached value of the '{@link #getXSISchemaLocation() <em>XSI Schema Location</em>}' map.
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #getXSISchemaLocation()
-	 * @generated
-	 * @ordered
-	 */
+     * @see #getXSISchemaLocation()
+     * @generated
+     * @ordered
+     */
 	protected EMap<String, String> xSISchemaLocation;
 
 	/**
-	 * The default value of the '{@link #getCallback1() <em>Callback1</em>}' attribute.
-	 * <!-- begin-user-doc -->
+     * The default value of the '{@link #getCallback1() <em>Callback1</em>}' attribute.
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #getCallback1()
-	 * @generated
-	 * @ordered
-	 */
+     * @see #getCallback1()
+     * @generated
+     * @ordered
+     */
 	protected static final String CALLBACK1_EDEFAULT = null;
 
 	/**
-	 * The cached value of the '{@link #getCallback1() <em>Callback1</em>}' attribute.
-	 * <!-- begin-user-doc -->
+     * The cached value of the '{@link #getCallback1() <em>Callback1</em>}' attribute.
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #getCallback1()
-	 * @generated
-	 * @ordered
-	 */
+     * @see #getCallback1()
+     * @generated
+     * @ordered
+     */
 	protected String callback1 = CALLBACK1_EDEFAULT;
 
 	/**
-	 * The default value of the '{@link #getRequires() <em>Requires</em>}' attribute.
-	 * <!-- begin-user-doc -->
+     * The default value of the '{@link #getRequires() <em>Requires</em>}' attribute.
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #getRequires()
-	 * @generated
-	 * @ordered
-	 */
+     * @see #getRequires()
+     * @generated
+     * @ordered
+     */
 	protected static final List<QName> REQUIRES_EDEFAULT = null;
 
 	/**
-	 * The cached value of the '{@link #getRequires() <em>Requires</em>}' attribute.
-	 * <!-- begin-user-doc -->
+     * The cached value of the '{@link #getRequires() <em>Requires</em>}' attribute.
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #getRequires()
-	 * @generated
-	 * @ordered
-	 */
+     * @see #getRequires()
+     * @generated
+     * @ordered
+     */
 	protected List<QName> requires = REQUIRES_EDEFAULT;
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	protected DocumentRootImpl() {
-		super();
-	}
+        super();
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	@Override
 	protected EClass eStaticClass() {
-		return ScaPackage.eINSTANCE.getDocumentRoot();
-	}
+        return ScaPackage.eINSTANCE.getDocumentRoot();
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public FeatureMap getMixed() {
-		if (mixed == null) {
-			mixed = new BasicFeatureMap(this, ScaPackage.DOCUMENT_ROOT__MIXED);
-		}
-		return mixed;
-	}
+        if (mixed == null) {
+            mixed = new BasicFeatureMap(this, ScaPackage.DOCUMENT_ROOT__MIXED);
+        }
+        return mixed;
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public EMap<String, String> getXMLNSPrefixMap() {
-		if (xMLNSPrefixMap == null) {
-			xMLNSPrefixMap = new EcoreEMap<String,String>(EcorePackage.Literals.ESTRING_TO_STRING_MAP_ENTRY, EStringToStringMapEntryImpl.class, this, ScaPackage.DOCUMENT_ROOT__XMLNS_PREFIX_MAP);
-		}
-		return xMLNSPrefixMap;
-	}
+        if (xMLNSPrefixMap == null) {
+            xMLNSPrefixMap = new EcoreEMap<String,String>(EcorePackage.Literals.ESTRING_TO_STRING_MAP_ENTRY, EStringToStringMapEntryImpl.class, this, ScaPackage.DOCUMENT_ROOT__XMLNS_PREFIX_MAP);
+        }
+        return xMLNSPrefixMap;
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public EMap<String, String> getXSISchemaLocation() {
-		if (xSISchemaLocation == null) {
-			xSISchemaLocation = new EcoreEMap<String,String>(EcorePackage.Literals.ESTRING_TO_STRING_MAP_ENTRY, EStringToStringMapEntryImpl.class, this, ScaPackage.DOCUMENT_ROOT__XSI_SCHEMA_LOCATION);
-		}
-		return xSISchemaLocation;
-	}
+        if (xSISchemaLocation == null) {
+            xSISchemaLocation = new EcoreEMap<String,String>(EcorePackage.Literals.ESTRING_TO_STRING_MAP_ENTRY, EStringToStringMapEntryImpl.class, this, ScaPackage.DOCUMENT_ROOT__XSI_SCHEMA_LOCATION);
+        }
+        return xSISchemaLocation;
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public Binding getBinding() {
-		return (Binding)getMixed().get(ScaPackage.eINSTANCE.getDocumentRoot_Binding(), true);
-	}
+        return (Binding)getMixed().get(ScaPackage.eINSTANCE.getDocumentRoot_Binding(), true);
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public NotificationChain basicSetBinding(Binding newBinding, NotificationChain msgs) {
-		return ((FeatureMap.Internal)getMixed()).basicAdd(ScaPackage.eINSTANCE.getDocumentRoot_Binding(), newBinding, msgs);
-	}
+        return ((FeatureMap.Internal)getMixed()).basicAdd(ScaPackage.eINSTANCE.getDocumentRoot_Binding(), newBinding, msgs);
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public EJBSessionBeanBinding getBindingEjb() {
-		return (EJBSessionBeanBinding)getMixed().get(ScaPackage.eINSTANCE.getDocumentRoot_BindingEjb(), true);
-	}
+        return (EJBSessionBeanBinding)getMixed().get(ScaPackage.eINSTANCE.getDocumentRoot_BindingEjb(), true);
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public NotificationChain basicSetBindingEjb(EJBSessionBeanBinding newBindingEjb, NotificationChain msgs) {
-		return ((FeatureMap.Internal)getMixed()).basicAdd(ScaPackage.eINSTANCE.getDocumentRoot_BindingEjb(), newBindingEjb, msgs);
-	}
+        return ((FeatureMap.Internal)getMixed()).basicAdd(ScaPackage.eINSTANCE.getDocumentRoot_BindingEjb(), newBindingEjb, msgs);
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public void setBindingEjb(EJBSessionBeanBinding newBindingEjb) {
-		((FeatureMap.Internal)getMixed()).set(ScaPackage.eINSTANCE.getDocumentRoot_BindingEjb(), newBindingEjb);
-	}
+        ((FeatureMap.Internal)getMixed()).set(ScaPackage.eINSTANCE.getDocumentRoot_BindingEjb(), newBindingEjb);
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public JCABinding getBindingJca() {
-		return (JCABinding)getMixed().get(ScaPackage.eINSTANCE.getDocumentRoot_BindingJca(), true);
-	}
+        return (JCABinding)getMixed().get(ScaPackage.eINSTANCE.getDocumentRoot_BindingJca(), true);
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public NotificationChain basicSetBindingJca(JCABinding newBindingJca, NotificationChain msgs) {
-		return ((FeatureMap.Internal)getMixed()).basicAdd(ScaPackage.eINSTANCE.getDocumentRoot_BindingJca(), newBindingJca, msgs);
-	}
+        return ((FeatureMap.Internal)getMixed()).basicAdd(ScaPackage.eINSTANCE.getDocumentRoot_BindingJca(), newBindingJca, msgs);
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public void setBindingJca(JCABinding newBindingJca) {
-		((FeatureMap.Internal)getMixed()).set(ScaPackage.eINSTANCE.getDocumentRoot_BindingJca(), newBindingJca);
-	}
+        ((FeatureMap.Internal)getMixed()).set(ScaPackage.eINSTANCE.getDocumentRoot_BindingJca(), newBindingJca);
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public JMSBinding getBindingJms() {
-		return (JMSBinding)getMixed().get(ScaPackage.eINSTANCE.getDocumentRoot_BindingJms(), true);
-	}
+        return (JMSBinding)getMixed().get(ScaPackage.eINSTANCE.getDocumentRoot_BindingJms(), true);
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public NotificationChain basicSetBindingJms(JMSBinding newBindingJms, NotificationChain msgs) {
-		return ((FeatureMap.Internal)getMixed()).basicAdd(ScaPackage.eINSTANCE.getDocumentRoot_BindingJms(), newBindingJms, msgs);
-	}
+        return ((FeatureMap.Internal)getMixed()).basicAdd(ScaPackage.eINSTANCE.getDocumentRoot_BindingJms(), newBindingJms, msgs);
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public void setBindingJms(JMSBinding newBindingJms) {
-		((FeatureMap.Internal)getMixed()).set(ScaPackage.eINSTANCE.getDocumentRoot_BindingJms(), newBindingJms);
-	}
+        ((FeatureMap.Internal)getMixed()).set(ScaPackage.eINSTANCE.getDocumentRoot_BindingJms(), newBindingJms);
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public SCABinding getBindingSca() {
-		return (SCABinding)getMixed().get(ScaPackage.eINSTANCE.getDocumentRoot_BindingSca(), true);
-	}
+        return (SCABinding)getMixed().get(ScaPackage.eINSTANCE.getDocumentRoot_BindingSca(), true);
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public NotificationChain basicSetBindingSca(SCABinding newBindingSca, NotificationChain msgs) {
-		return ((FeatureMap.Internal)getMixed()).basicAdd(ScaPackage.eINSTANCE.getDocumentRoot_BindingSca(), newBindingSca, msgs);
-	}
+        return ((FeatureMap.Internal)getMixed()).basicAdd(ScaPackage.eINSTANCE.getDocumentRoot_BindingSca(), newBindingSca, msgs);
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public void setBindingSca(SCABinding newBindingSca) {
-		((FeatureMap.Internal)getMixed()).set(ScaPackage.eINSTANCE.getDocumentRoot_BindingSca(), newBindingSca);
-	}
+        ((FeatureMap.Internal)getMixed()).set(ScaPackage.eINSTANCE.getDocumentRoot_BindingSca(), newBindingSca);
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public WebServiceBinding getBindingWs() {
-		return (WebServiceBinding)getMixed().get(ScaPackage.eINSTANCE.getDocumentRoot_BindingWs(), true);
-	}
+        return (WebServiceBinding)getMixed().get(ScaPackage.eINSTANCE.getDocumentRoot_BindingWs(), true);
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public NotificationChain basicSetBindingWs(WebServiceBinding newBindingWs, NotificationChain msgs) {
-		return ((FeatureMap.Internal)getMixed()).basicAdd(ScaPackage.eINSTANCE.getDocumentRoot_BindingWs(), newBindingWs, msgs);
-	}
+        return ((FeatureMap.Internal)getMixed()).basicAdd(ScaPackage.eINSTANCE.getDocumentRoot_BindingWs(), newBindingWs, msgs);
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public void setBindingWs(WebServiceBinding newBindingWs) {
-		((FeatureMap.Internal)getMixed()).set(ScaPackage.eINSTANCE.getDocumentRoot_BindingWs(), newBindingWs);
-	}
+        ((FeatureMap.Internal)getMixed()).set(ScaPackage.eINSTANCE.getDocumentRoot_BindingWs(), newBindingWs);
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public BindingType getBindingType() {
-		return (BindingType)getMixed().get(ScaPackage.eINSTANCE.getDocumentRoot_BindingType(), true);
-	}
+        return (BindingType)getMixed().get(ScaPackage.eINSTANCE.getDocumentRoot_BindingType(), true);
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public NotificationChain basicSetBindingType(BindingType newBindingType, NotificationChain msgs) {
-		return ((FeatureMap.Internal)getMixed()).basicAdd(ScaPackage.eINSTANCE.getDocumentRoot_BindingType(), newBindingType, msgs);
-	}
+        return ((FeatureMap.Internal)getMixed()).basicAdd(ScaPackage.eINSTANCE.getDocumentRoot_BindingType(), newBindingType, msgs);
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public void setBindingType(BindingType newBindingType) {
-		((FeatureMap.Internal)getMixed()).set(ScaPackage.eINSTANCE.getDocumentRoot_BindingType(), newBindingType);
-	}
+        ((FeatureMap.Internal)getMixed()).set(ScaPackage.eINSTANCE.getDocumentRoot_BindingType(), newBindingType);
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public Callback getCallback() {
-		return (Callback)getMixed().get(ScaPackage.eINSTANCE.getDocumentRoot_Callback(), true);
-	}
+        return (Callback)getMixed().get(ScaPackage.eINSTANCE.getDocumentRoot_Callback(), true);
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public NotificationChain basicSetCallback(Callback newCallback, NotificationChain msgs) {
-		return ((FeatureMap.Internal)getMixed()).basicAdd(ScaPackage.eINSTANCE.getDocumentRoot_Callback(), newCallback, msgs);
-	}
+        return ((FeatureMap.Internal)getMixed()).basicAdd(ScaPackage.eINSTANCE.getDocumentRoot_Callback(), newCallback, msgs);
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public void setCallback(Callback newCallback) {
-		((FeatureMap.Internal)getMixed()).set(ScaPackage.eINSTANCE.getDocumentRoot_Callback(), newCallback);
-	}
+        ((FeatureMap.Internal)getMixed()).set(ScaPackage.eINSTANCE.getDocumentRoot_Callback(), newCallback);
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public ComponentType getComponentType() {
-		return (ComponentType)getMixed().get(ScaPackage.eINSTANCE.getDocumentRoot_ComponentType(), true);
-	}
+        return (ComponentType)getMixed().get(ScaPackage.eINSTANCE.getDocumentRoot_ComponentType(), true);
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public NotificationChain basicSetComponentType(ComponentType newComponentType, NotificationChain msgs) {
-		return ((FeatureMap.Internal)getMixed()).basicAdd(ScaPackage.eINSTANCE.getDocumentRoot_ComponentType(), newComponentType, msgs);
-	}
+        return ((FeatureMap.Internal)getMixed()).basicAdd(ScaPackage.eINSTANCE.getDocumentRoot_ComponentType(), newComponentType, msgs);
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public void setComponentType(ComponentType newComponentType) {
-		((FeatureMap.Internal)getMixed()).set(ScaPackage.eINSTANCE.getDocumentRoot_ComponentType(), newComponentType);
-	}
+        ((FeatureMap.Internal)getMixed()).set(ScaPackage.eINSTANCE.getDocumentRoot_ComponentType(), newComponentType);
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public Composite getComposite() {
-		return (Composite)getMixed().get(ScaPackage.eINSTANCE.getDocumentRoot_Composite(), true);
-	}
+        return (Composite)getMixed().get(ScaPackage.eINSTANCE.getDocumentRoot_Composite(), true);
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public NotificationChain basicSetComposite(Composite newComposite, NotificationChain msgs) {
-		return ((FeatureMap.Internal)getMixed()).basicAdd(ScaPackage.eINSTANCE.getDocumentRoot_Composite(), newComposite, msgs);
-	}
+        return ((FeatureMap.Internal)getMixed()).basicAdd(ScaPackage.eINSTANCE.getDocumentRoot_Composite(), newComposite, msgs);
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public void setComposite(Composite newComposite) {
-		((FeatureMap.Internal)getMixed()).set(ScaPackage.eINSTANCE.getDocumentRoot_Composite(), newComposite);
-	}
+        ((FeatureMap.Internal)getMixed()).set(ScaPackage.eINSTANCE.getDocumentRoot_Composite(), newComposite);
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public ConstrainingType getConstrainingType() {
-		return (ConstrainingType)getMixed().get(ScaPackage.eINSTANCE.getDocumentRoot_ConstrainingType(), true);
-	}
+        return (ConstrainingType)getMixed().get(ScaPackage.eINSTANCE.getDocumentRoot_ConstrainingType(), true);
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public NotificationChain basicSetConstrainingType(ConstrainingType newConstrainingType, NotificationChain msgs) {
-		return ((FeatureMap.Internal)getMixed()).basicAdd(ScaPackage.eINSTANCE.getDocumentRoot_ConstrainingType(), newConstrainingType, msgs);
-	}
+        return ((FeatureMap.Internal)getMixed()).basicAdd(ScaPackage.eINSTANCE.getDocumentRoot_ConstrainingType(), newConstrainingType, msgs);
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public void setConstrainingType(ConstrainingType newConstrainingType) {
-		((FeatureMap.Internal)getMixed()).set(ScaPackage.eINSTANCE.getDocumentRoot_ConstrainingType(), newConstrainingType);
-	}
+        ((FeatureMap.Internal)getMixed()).set(ScaPackage.eINSTANCE.getDocumentRoot_ConstrainingType(), newConstrainingType);
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public ContributionType getContribution() {
-		return (ContributionType)getMixed().get(ScaPackage.eINSTANCE.getDocumentRoot_Contribution(), true);
-	}
+        return (ContributionType)getMixed().get(ScaPackage.eINSTANCE.getDocumentRoot_Contribution(), true);
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public NotificationChain basicSetContribution(ContributionType newContribution, NotificationChain msgs) {
-		return ((FeatureMap.Internal)getMixed()).basicAdd(ScaPackage.eINSTANCE.getDocumentRoot_Contribution(), newContribution, msgs);
-	}
+        return ((FeatureMap.Internal)getMixed()).basicAdd(ScaPackage.eINSTANCE.getDocumentRoot_Contribution(), newContribution, msgs);
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public void setContribution(ContributionType newContribution) {
-		((FeatureMap.Internal)getMixed()).set(ScaPackage.eINSTANCE.getDocumentRoot_Contribution(), newContribution);
-	}
+        ((FeatureMap.Internal)getMixed()).set(ScaPackage.eINSTANCE.getDocumentRoot_Contribution(), newContribution);
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public TDefinitions getDefinitions() {
-		return (TDefinitions)getMixed().get(ScaPackage.eINSTANCE.getDocumentRoot_Definitions(), true);
-	}
+        return (TDefinitions)getMixed().get(ScaPackage.eINSTANCE.getDocumentRoot_Definitions(), true);
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public NotificationChain basicSetDefinitions(TDefinitions newDefinitions, NotificationChain msgs) {
-		return ((FeatureMap.Internal)getMixed()).basicAdd(ScaPackage.eINSTANCE.getDocumentRoot_Definitions(), newDefinitions, msgs);
-	}
+        return ((FeatureMap.Internal)getMixed()).basicAdd(ScaPackage.eINSTANCE.getDocumentRoot_Definitions(), newDefinitions, msgs);
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public void setDefinitions(TDefinitions newDefinitions) {
-		((FeatureMap.Internal)getMixed()).set(ScaPackage.eINSTANCE.getDocumentRoot_Definitions(), newDefinitions);
-	}
+        ((FeatureMap.Internal)getMixed()).set(ScaPackage.eINSTANCE.getDocumentRoot_Definitions(), newDefinitions);
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public Documentation getDocumentation() {
-		return (Documentation)getMixed().get(ScaPackage.eINSTANCE.getDocumentRoot_Documentation(), true);
-	}
+        return (Documentation)getMixed().get(ScaPackage.eINSTANCE.getDocumentRoot_Documentation(), true);
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public NotificationChain basicSetDocumentation(Documentation newDocumentation, NotificationChain msgs) {
-		return ((FeatureMap.Internal)getMixed()).basicAdd(ScaPackage.eINSTANCE.getDocumentRoot_Documentation(), newDocumentation, msgs);
-	}
+        return ((FeatureMap.Internal)getMixed()).basicAdd(ScaPackage.eINSTANCE.getDocumentRoot_Documentation(), newDocumentation, msgs);
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public void setDocumentation(Documentation newDocumentation) {
-		((FeatureMap.Internal)getMixed()).set(ScaPackage.eINSTANCE.getDocumentRoot_Documentation(), newDocumentation);
-	}
+        ((FeatureMap.Internal)getMixed()).set(ScaPackage.eINSTANCE.getDocumentRoot_Documentation(), newDocumentation);
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public ExportType getExport() {
-		return (ExportType)getMixed().get(ScaPackage.eINSTANCE.getDocumentRoot_Export(), true);
-	}
+        return (ExportType)getMixed().get(ScaPackage.eINSTANCE.getDocumentRoot_Export(), true);
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public NotificationChain basicSetExport(ExportType newExport, NotificationChain msgs) {
-		return ((FeatureMap.Internal)getMixed()).basicAdd(ScaPackage.eINSTANCE.getDocumentRoot_Export(), newExport, msgs);
-	}
+        return ((FeatureMap.Internal)getMixed()).basicAdd(ScaPackage.eINSTANCE.getDocumentRoot_Export(), newExport, msgs);
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public void setExport(ExportType newExport) {
-		((FeatureMap.Internal)getMixed()).set(ScaPackage.eINSTANCE.getDocumentRoot_Export(), newExport);
-	}
+        ((FeatureMap.Internal)getMixed()).set(ScaPackage.eINSTANCE.getDocumentRoot_Export(), newExport);
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public Export getExportBase() {
-		return (Export)getMixed().get(ScaPackage.eINSTANCE.getDocumentRoot_ExportBase(), true);
-	}
+        return (Export)getMixed().get(ScaPackage.eINSTANCE.getDocumentRoot_ExportBase(), true);
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public NotificationChain basicSetExportBase(Export newExportBase, NotificationChain msgs) {
-		return ((FeatureMap.Internal)getMixed()).basicAdd(ScaPackage.eINSTANCE.getDocumentRoot_ExportBase(), newExportBase, msgs);
-	}
+        return ((FeatureMap.Internal)getMixed()).basicAdd(ScaPackage.eINSTANCE.getDocumentRoot_ExportBase(), newExportBase, msgs);
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public CExport getExportC() {
-		return (CExport)getMixed().get(ScaPackage.eINSTANCE.getDocumentRoot_ExportC(), true);
-	}
+        return (CExport)getMixed().get(ScaPackage.eINSTANCE.getDocumentRoot_ExportC(), true);
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public NotificationChain basicSetExportC(CExport newExportC, NotificationChain msgs) {
-		return ((FeatureMap.Internal)getMixed()).basicAdd(ScaPackage.eINSTANCE.getDocumentRoot_ExportC(), newExportC, msgs);
-	}
+        return ((FeatureMap.Internal)getMixed()).basicAdd(ScaPackage.eINSTANCE.getDocumentRoot_ExportC(), newExportC, msgs);
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public void setExportC(CExport newExportC) {
-		((FeatureMap.Internal)getMixed()).set(ScaPackage.eINSTANCE.getDocumentRoot_ExportC(), newExportC);
-	}
+        ((FeatureMap.Internal)getMixed()).set(ScaPackage.eINSTANCE.getDocumentRoot_ExportC(), newExportC);
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public CPPExport getExportCpp() {
-		return (CPPExport)getMixed().get(ScaPackage.eINSTANCE.getDocumentRoot_ExportCpp(), true);
-	}
+        return (CPPExport)getMixed().get(ScaPackage.eINSTANCE.getDocumentRoot_ExportCpp(), true);
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public NotificationChain basicSetExportCpp(CPPExport newExportCpp, NotificationChain msgs) {
-		return ((FeatureMap.Internal)getMixed()).basicAdd(ScaPackage.eINSTANCE.getDocumentRoot_ExportCpp(), newExportCpp, msgs);
-	}
+        return ((FeatureMap.Internal)getMixed()).basicAdd(ScaPackage.eINSTANCE.getDocumentRoot_ExportCpp(), newExportCpp, msgs);
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public void setExportCpp(CPPExport newExportCpp) {
-		((FeatureMap.Internal)getMixed()).set(ScaPackage.eINSTANCE.getDocumentRoot_ExportCpp(), newExportCpp);
-	}
+        ((FeatureMap.Internal)getMixed()).set(ScaPackage.eINSTANCE.getDocumentRoot_ExportCpp(), newExportCpp);
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public JavaExportType getExportJava() {
-		return (JavaExportType)getMixed().get(ScaPackage.eINSTANCE.getDocumentRoot_ExportJava(), true);
-	}
+        return (JavaExportType)getMixed().get(ScaPackage.eINSTANCE.getDocumentRoot_ExportJava(), true);
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public NotificationChain basicSetExportJava(JavaExportType newExportJava, NotificationChain msgs) {
-		return ((FeatureMap.Internal)getMixed()).basicAdd(ScaPackage.eINSTANCE.getDocumentRoot_ExportJava(), newExportJava, msgs);
-	}
+        return ((FeatureMap.Internal)getMixed()).basicAdd(ScaPackage.eINSTANCE.getDocumentRoot_ExportJava(), newExportJava, msgs);
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public void setExportJava(JavaExportType newExportJava) {
-		((FeatureMap.Internal)getMixed()).set(ScaPackage.eINSTANCE.getDocumentRoot_ExportJava(), newExportJava);
-	}
+        ((FeatureMap.Internal)getMixed()).set(ScaPackage.eINSTANCE.getDocumentRoot_ExportJava(), newExportJava);
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public Implementation getImplementation() {
-		return (Implementation)getMixed().get(ScaPackage.eINSTANCE.getDocumentRoot_Implementation(), true);
-	}
+        return (Implementation)getMixed().get(ScaPackage.eINSTANCE.getDocumentRoot_Implementation(), true);
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public NotificationChain basicSetImplementation(Implementation newImplementation, NotificationChain msgs) {
-		return ((FeatureMap.Internal)getMixed()).basicAdd(ScaPackage.eINSTANCE.getDocumentRoot_Implementation(), newImplementation, msgs);
-	}
+        return ((FeatureMap.Internal)getMixed()).basicAdd(ScaPackage.eINSTANCE.getDocumentRoot_Implementation(), newImplementation, msgs);
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public BPELImplementation getImplementationBpel() {
-		return (BPELImplementation)getMixed().get(ScaPackage.eINSTANCE.getDocumentRoot_ImplementationBpel(), true);
-	}
+        return (BPELImplementation)getMixed().get(ScaPackage.eINSTANCE.getDocumentRoot_ImplementationBpel(), true);
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public NotificationChain basicSetImplementationBpel(BPELImplementation newImplementationBpel, NotificationChain msgs) {
-		return ((FeatureMap.Internal)getMixed()).basicAdd(ScaPackage.eINSTANCE.getDocumentRoot_ImplementationBpel(), newImplementationBpel, msgs);
-	}
+        return ((FeatureMap.Internal)getMixed()).basicAdd(ScaPackage.eINSTANCE.getDocumentRoot_ImplementationBpel(), newImplementationBpel, msgs);
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public void setImplementationBpel(BPELImplementation newImplementationBpel) {
-		((FeatureMap.Internal)getMixed()).set(ScaPackage.eINSTANCE.getDocumentRoot_ImplementationBpel(), newImplementationBpel);
-	}
+        ((FeatureMap.Internal)getMixed()).set(ScaPackage.eINSTANCE.getDocumentRoot_ImplementationBpel(), newImplementationBpel);
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public CImplementation getImplementationC() {
-		return (CImplementation)getMixed().get(ScaPackage.eINSTANCE.getDocumentRoot_ImplementationC(), true);
-	}
+        return (CImplementation)getMixed().get(ScaPackage.eINSTANCE.getDocumentRoot_ImplementationC(), true);
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public NotificationChain basicSetImplementationC(CImplementation newImplementationC, NotificationChain msgs) {
-		return ((FeatureMap.Internal)getMixed()).basicAdd(ScaPackage.eINSTANCE.getDocumentRoot_ImplementationC(), newImplementationC, msgs);
-	}
+        return ((FeatureMap.Internal)getMixed()).basicAdd(ScaPackage.eINSTANCE.getDocumentRoot_ImplementationC(), newImplementationC, msgs);
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public void setImplementationC(CImplementation newImplementationC) {
-		((FeatureMap.Internal)getMixed()).set(ScaPackage.eINSTANCE.getDocumentRoot_ImplementationC(), newImplementationC);
-	}
+        ((FeatureMap.Internal)getMixed()).set(ScaPackage.eINSTANCE.getDocumentRoot_ImplementationC(), newImplementationC);
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public SCAImplementation getImplementationComposite() {
-		return (SCAImplementation)getMixed().get(ScaPackage.eINSTANCE.getDocumentRoot_ImplementationComposite(), true);
-	}
+        return (SCAImplementation)getMixed().get(ScaPackage.eINSTANCE.getDocumentRoot_ImplementationComposite(), true);
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public NotificationChain basicSetImplementationComposite(SCAImplementation newImplementationComposite, NotificationChain msgs) {
-		return ((FeatureMap.Internal)getMixed()).basicAdd(ScaPackage.eINSTANCE.getDocumentRoot_ImplementationComposite(), newImplementationComposite, msgs);
-	}
+        return ((FeatureMap.Internal)getMixed()).basicAdd(ScaPackage.eINSTANCE.getDocumentRoot_ImplementationComposite(), newImplementationComposite, msgs);
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public void setImplementationComposite(SCAImplementation newImplementationComposite) {
-		((FeatureMap.Internal)getMixed()).set(ScaPackage.eINSTANCE.getDocumentRoot_ImplementationComposite(), newImplementationComposite);
-	}
+        ((FeatureMap.Internal)getMixed()).set(ScaPackage.eINSTANCE.getDocumentRoot_ImplementationComposite(), newImplementationComposite);
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public CPPImplementation getImplementationCpp() {
-		return (CPPImplementation)getMixed().get(ScaPackage.eINSTANCE.getDocumentRoot_ImplementationCpp(), true);
-	}
+        return (CPPImplementation)getMixed().get(ScaPackage.eINSTANCE.getDocumentRoot_ImplementationCpp(), true);
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public NotificationChain basicSetImplementationCpp(CPPImplementation newImplementationCpp, NotificationChain msgs) {
-		return ((FeatureMap.Internal)getMixed()).basicAdd(ScaPackage.eINSTANCE.getDocumentRoot_ImplementationCpp(), newImplementationCpp, msgs);
-	}
+        return ((FeatureMap.Internal)getMixed()).basicAdd(ScaPackage.eINSTANCE.getDocumentRoot_ImplementationCpp(), newImplementationCpp, msgs);
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public void setImplementationCpp(CPPImplementation newImplementationCpp) {
-		((FeatureMap.Internal)getMixed()).set(ScaPackage.eINSTANCE.getDocumentRoot_ImplementationCpp(), newImplementationCpp);
-	}
+        ((FeatureMap.Internal)getMixed()).set(ScaPackage.eINSTANCE.getDocumentRoot_ImplementationCpp(), newImplementationCpp);
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public EJBImplementation getImplementationEjb() {
-		return (EJBImplementation)getMixed().get(ScaPackage.eINSTANCE.getDocumentRoot_ImplementationEjb(), true);
-	}
+        return (EJBImplementation)getMixed().get(ScaPackage.eINSTANCE.getDocumentRoot_ImplementationEjb(), true);
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public NotificationChain basicSetImplementationEjb(EJBImplementation newImplementationEjb, NotificationChain msgs) {
-		return ((FeatureMap.Internal)getMixed()).basicAdd(ScaPackage.eINSTANCE.getDocumentRoot_ImplementationEjb(), newImplementationEjb, msgs);
-	}
+        return ((FeatureMap.Internal)getMixed()).basicAdd(ScaPackage.eINSTANCE.getDocumentRoot_ImplementationEjb(), newImplementationEjb, msgs);
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public void setImplementationEjb(EJBImplementation newImplementationEjb) {
-		((FeatureMap.Internal)getMixed()).set(ScaPackage.eINSTANCE.getDocumentRoot_ImplementationEjb(), newImplementationEjb);
-	}
+        ((FeatureMap.Internal)getMixed()).set(ScaPackage.eINSTANCE.getDocumentRoot_ImplementationEjb(), newImplementationEjb);
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public JavaImplementation getImplementationJava() {
-		return (JavaImplementation)getMixed().get(ScaPackage.eINSTANCE.getDocumentRoot_ImplementationJava(), true);
-	}
+        return (JavaImplementation)getMixed().get(ScaPackage.eINSTANCE.getDocumentRoot_ImplementationJava(), true);
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public NotificationChain basicSetImplementationJava(JavaImplementation newImplementationJava, NotificationChain msgs) {
-		return ((FeatureMap.Internal)getMixed()).basicAdd(ScaPackage.eINSTANCE.getDocumentRoot_ImplementationJava(), newImplementationJava, msgs);
-	}
+        return ((FeatureMap.Internal)getMixed()).basicAdd(ScaPackage.eINSTANCE.getDocumentRoot_ImplementationJava(), newImplementationJava, msgs);
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public void setImplementationJava(JavaImplementation newImplementationJava) {
-		((FeatureMap.Internal)getMixed()).set(ScaPackage.eINSTANCE.getDocumentRoot_ImplementationJava(), newImplementationJava);
-	}
+        ((FeatureMap.Internal)getMixed()).set(ScaPackage.eINSTANCE.getDocumentRoot_ImplementationJava(), newImplementationJava);
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public JEEImplementation getImplementationJee() {
-		return (JEEImplementation)getMixed().get(ScaPackage.eINSTANCE.getDocumentRoot_ImplementationJee(), true);
-	}
+        return (JEEImplementation)getMixed().get(ScaPackage.eINSTANCE.getDocumentRoot_ImplementationJee(), true);
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public NotificationChain basicSetImplementationJee(JEEImplementation newImplementationJee, NotificationChain msgs) {
-		return ((FeatureMap.Internal)getMixed()).basicAdd(ScaPackage.eINSTANCE.getDocumentRoot_ImplementationJee(), newImplementationJee, msgs);
-	}
+        return ((FeatureMap.Internal)getMixed()).basicAdd(ScaPackage.eINSTANCE.getDocumentRoot_ImplementationJee(), newImplementationJee, msgs);
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public void setImplementationJee(JEEImplementation newImplementationJee) {
-		((FeatureMap.Internal)getMixed()).set(ScaPackage.eINSTANCE.getDocumentRoot_ImplementationJee(), newImplementationJee);
-	}
+        ((FeatureMap.Internal)getMixed()).set(ScaPackage.eINSTANCE.getDocumentRoot_ImplementationJee(), newImplementationJee);
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public SpringImplementation getImplementationSpring() {
-		return (SpringImplementation)getMixed().get(ScaPackage.eINSTANCE.getDocumentRoot_ImplementationSpring(), true);
-	}
+        return (SpringImplementation)getMixed().get(ScaPackage.eINSTANCE.getDocumentRoot_ImplementationSpring(), true);
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public NotificationChain basicSetImplementationSpring(SpringImplementation newImplementationSpring, NotificationChain msgs) {
-		return ((FeatureMap.Internal)getMixed()).basicAdd(ScaPackage.eINSTANCE.getDocumentRoot_ImplementationSpring(), newImplementationSpring, msgs);
-	}
+        return ((FeatureMap.Internal)getMixed()).basicAdd(ScaPackage.eINSTANCE.getDocumentRoot_ImplementationSpring(), newImplementationSpring, msgs);
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public void setImplementationSpring(SpringImplementation newImplementationSpring) {
-		((FeatureMap.Internal)getMixed()).set(ScaPackage.eINSTANCE.getDocumentRoot_ImplementationSpring(), newImplementationSpring);
-	}
+        ((FeatureMap.Internal)getMixed()).set(ScaPackage.eINSTANCE.getDocumentRoot_ImplementationSpring(), newImplementationSpring);
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public WebImplementation getImplementationWeb() {
-		return (WebImplementation)getMixed().get(ScaPackage.eINSTANCE.getDocumentRoot_ImplementationWeb(), true);
-	}
+        return (WebImplementation)getMixed().get(ScaPackage.eINSTANCE.getDocumentRoot_ImplementationWeb(), true);
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public NotificationChain basicSetImplementationWeb(WebImplementation newImplementationWeb, NotificationChain msgs) {
-		return ((FeatureMap.Internal)getMixed()).basicAdd(ScaPackage.eINSTANCE.getDocumentRoot_ImplementationWeb(), newImplementationWeb, msgs);
-	}
+        return ((FeatureMap.Internal)getMixed()).basicAdd(ScaPackage.eINSTANCE.getDocumentRoot_ImplementationWeb(), newImplementationWeb, msgs);
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public void setImplementationWeb(WebImplementation newImplementationWeb) {
-		((FeatureMap.Internal)getMixed()).set(ScaPackage.eINSTANCE.getDocumentRoot_ImplementationWeb(), newImplementationWeb);
-	}
+        ((FeatureMap.Internal)getMixed()).set(ScaPackage.eINSTANCE.getDocumentRoot_ImplementationWeb(), newImplementationWeb);
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public ImplementationType getImplementationType() {
-		return (ImplementationType)getMixed().get(ScaPackage.eINSTANCE.getDocumentRoot_ImplementationType(), true);
-	}
+        return (ImplementationType)getMixed().get(ScaPackage.eINSTANCE.getDocumentRoot_ImplementationType(), true);
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public NotificationChain basicSetImplementationType(ImplementationType newImplementationType, NotificationChain msgs) {
-		return ((FeatureMap.Internal)getMixed()).basicAdd(ScaPackage.eINSTANCE.getDocumentRoot_ImplementationType(), newImplementationType, msgs);
-	}
+        return ((FeatureMap.Internal)getMixed()).basicAdd(ScaPackage.eINSTANCE.getDocumentRoot_ImplementationType(), newImplementationType, msgs);
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public void setImplementationType(ImplementationType newImplementationType) {
-		((FeatureMap.Internal)getMixed()).set(ScaPackage.eINSTANCE.getDocumentRoot_ImplementationType(), newImplementationType);
-	}
+        ((FeatureMap.Internal)getMixed()).set(ScaPackage.eINSTANCE.getDocumentRoot_ImplementationType(), newImplementationType);
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public ImportType getImport() {
-		return (ImportType)getMixed().get(ScaPackage.eINSTANCE.getDocumentRoot_Import(), true);
-	}
+        return (ImportType)getMixed().get(ScaPackage.eINSTANCE.getDocumentRoot_Import(), true);
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public NotificationChain basicSetImport(ImportType newImport, NotificationChain msgs) {
-		return ((FeatureMap.Internal)getMixed()).basicAdd(ScaPackage.eINSTANCE.getDocumentRoot_Import(), newImport, msgs);
-	}
+        return ((FeatureMap.Internal)getMixed()).basicAdd(ScaPackage.eINSTANCE.getDocumentRoot_Import(), newImport, msgs);
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public void setImport(ImportType newImport) {
-		((FeatureMap.Internal)getMixed()).set(ScaPackage.eINSTANCE.getDocumentRoot_Import(), newImport);
-	}
+        ((FeatureMap.Internal)getMixed()).set(ScaPackage.eINSTANCE.getDocumentRoot_Import(), newImport);
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public Import getImportBase() {
-		return (Import)getMixed().get(ScaPackage.eINSTANCE.getDocumentRoot_ImportBase(), true);
-	}
+        return (Import)getMixed().get(ScaPackage.eINSTANCE.getDocumentRoot_ImportBase(), true);
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public NotificationChain basicSetImportBase(Import newImportBase, NotificationChain msgs) {
-		return ((FeatureMap.Internal)getMixed()).basicAdd(ScaPackage.eINSTANCE.getDocumentRoot_ImportBase(), newImportBase, msgs);
-	}
+        return ((FeatureMap.Internal)getMixed()).basicAdd(ScaPackage.eINSTANCE.getDocumentRoot_ImportBase(), newImportBase, msgs);
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public CImport getImportC() {
-		return (CImport)getMixed().get(ScaPackage.eINSTANCE.getDocumentRoot_ImportC(), true);
-	}
+        return (CImport)getMixed().get(ScaPackage.eINSTANCE.getDocumentRoot_ImportC(), true);
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public NotificationChain basicSetImportC(CImport newImportC, NotificationChain msgs) {
-		return ((FeatureMap.Internal)getMixed()).basicAdd(ScaPackage.eINSTANCE.getDocumentRoot_ImportC(), newImportC, msgs);
-	}
+        return ((FeatureMap.Internal)getMixed()).basicAdd(ScaPackage.eINSTANCE.getDocumentRoot_ImportC(), newImportC, msgs);
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public void setImportC(CImport newImportC) {
-		((FeatureMap.Internal)getMixed()).set(ScaPackage.eINSTANCE.getDocumentRoot_ImportC(), newImportC);
-	}
+        ((FeatureMap.Internal)getMixed()).set(ScaPackage.eINSTANCE.getDocumentRoot_ImportC(), newImportC);
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public CPPImport getImportCpp() {
-		return (CPPImport)getMixed().get(ScaPackage.eINSTANCE.getDocumentRoot_ImportCpp(), true);
-	}
+        return (CPPImport)getMixed().get(ScaPackage.eINSTANCE.getDocumentRoot_ImportCpp(), true);
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public NotificationChain basicSetImportCpp(CPPImport newImportCpp, NotificationChain msgs) {
-		return ((FeatureMap.Internal)getMixed()).basicAdd(ScaPackage.eINSTANCE.getDocumentRoot_ImportCpp(), newImportCpp, msgs);
-	}
+        return ((FeatureMap.Internal)getMixed()).basicAdd(ScaPackage.eINSTANCE.getDocumentRoot_ImportCpp(), newImportCpp, msgs);
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public void setImportCpp(CPPImport newImportCpp) {
-		((FeatureMap.Internal)getMixed()).set(ScaPackage.eINSTANCE.getDocumentRoot_ImportCpp(), newImportCpp);
-	}
+        ((FeatureMap.Internal)getMixed()).set(ScaPackage.eINSTANCE.getDocumentRoot_ImportCpp(), newImportCpp);
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public JavaImportType getImportJava() {
-		return (JavaImportType)getMixed().get(ScaPackage.eINSTANCE.getDocumentRoot_ImportJava(), true);
-	}
+        return (JavaImportType)getMixed().get(ScaPackage.eINSTANCE.getDocumentRoot_ImportJava(), true);
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public NotificationChain basicSetImportJava(JavaImportType newImportJava, NotificationChain msgs) {
-		return ((FeatureMap.Internal)getMixed()).basicAdd(ScaPackage.eINSTANCE.getDocumentRoot_ImportJava(), newImportJava, msgs);
-	}
+        return ((FeatureMap.Internal)getMixed()).basicAdd(ScaPackage.eINSTANCE.getDocumentRoot_ImportJava(), newImportJava, msgs);
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public void setImportJava(JavaImportType newImportJava) {
-		((FeatureMap.Internal)getMixed()).set(ScaPackage.eINSTANCE.getDocumentRoot_ImportJava(), newImportJava);
-	}
+        ((FeatureMap.Internal)getMixed()).set(ScaPackage.eINSTANCE.getDocumentRoot_ImportJava(), newImportJava);
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public Include getInclude() {
-		return (Include)getMixed().get(ScaPackage.eINSTANCE.getDocumentRoot_Include(), true);
-	}
+        return (Include)getMixed().get(ScaPackage.eINSTANCE.getDocumentRoot_Include(), true);
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public NotificationChain basicSetInclude(Include newInclude, NotificationChain msgs) {
-		return ((FeatureMap.Internal)getMixed()).basicAdd(ScaPackage.eINSTANCE.getDocumentRoot_Include(), newInclude, msgs);
-	}
+        return ((FeatureMap.Internal)getMixed()).basicAdd(ScaPackage.eINSTANCE.getDocumentRoot_Include(), newInclude, msgs);
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public void setInclude(Include newInclude) {
-		((FeatureMap.Internal)getMixed()).set(ScaPackage.eINSTANCE.getDocumentRoot_Include(), newInclude);
-	}
+        ((FeatureMap.Internal)getMixed()).set(ScaPackage.eINSTANCE.getDocumentRoot_Include(), newInclude);
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public Intent getIntent() {
-		return (Intent)getMixed().get(ScaPackage.eINSTANCE.getDocumentRoot_Intent(), true);
-	}
+        return (Intent)getMixed().get(ScaPackage.eINSTANCE.getDocumentRoot_Intent(), true);
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public NotificationChain basicSetIntent(Intent newIntent, NotificationChain msgs) {
-		return ((FeatureMap.Internal)getMixed()).basicAdd(ScaPackage.eINSTANCE.getDocumentRoot_Intent(), newIntent, msgs);
-	}
+        return ((FeatureMap.Internal)getMixed()).basicAdd(ScaPackage.eINSTANCE.getDocumentRoot_Intent(), newIntent, msgs);
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public void setIntent(Intent newIntent) {
-		((FeatureMap.Internal)getMixed()).set(ScaPackage.eINSTANCE.getDocumentRoot_Intent(), newIntent);
-	}
+        ((FeatureMap.Internal)getMixed()).set(ScaPackage.eINSTANCE.getDocumentRoot_Intent(), newIntent);
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public Interface getInterface() {
-		return (Interface)getMixed().get(ScaPackage.eINSTANCE.getDocumentRoot_Interface(), true);
-	}
+        return (Interface)getMixed().get(ScaPackage.eINSTANCE.getDocumentRoot_Interface(), true);
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public NotificationChain basicSetInterface(Interface newInterface, NotificationChain msgs) {
-		return ((FeatureMap.Internal)getMixed()).basicAdd(ScaPackage.eINSTANCE.getDocumentRoot_Interface(), newInterface, msgs);
-	}
+        return ((FeatureMap.Internal)getMixed()).basicAdd(ScaPackage.eINSTANCE.getDocumentRoot_Interface(), newInterface, msgs);
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public CInterface getInterfaceC() {
-		return (CInterface)getMixed().get(ScaPackage.eINSTANCE.getDocumentRoot_InterfaceC(), true);
-	}
+        return (CInterface)getMixed().get(ScaPackage.eINSTANCE.getDocumentRoot_InterfaceC(), true);
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public NotificationChain basicSetInterfaceC(CInterface newInterfaceC, NotificationChain msgs) {
-		return ((FeatureMap.Internal)getMixed()).basicAdd(ScaPackage.eINSTANCE.getDocumentRoot_InterfaceC(), newInterfaceC, msgs);
-	}
+        return ((FeatureMap.Internal)getMixed()).basicAdd(ScaPackage.eINSTANCE.getDocumentRoot_InterfaceC(), newInterfaceC, msgs);
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public void setInterfaceC(CInterface newInterfaceC) {
-		((FeatureMap.Internal)getMixed()).set(ScaPackage.eINSTANCE.getDocumentRoot_InterfaceC(), newInterfaceC);
-	}
+        ((FeatureMap.Internal)getMixed()).set(ScaPackage.eINSTANCE.getDocumentRoot_InterfaceC(), newInterfaceC);
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public CPPInterface getInterfaceCpp() {
-		return (CPPInterface)getMixed().get(ScaPackage.eINSTANCE.getDocumentRoot_InterfaceCpp(), true);
-	}
+        return (CPPInterface)getMixed().get(ScaPackage.eINSTANCE.getDocumentRoot_InterfaceCpp(), true);
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public NotificationChain basicSetInterfaceCpp(CPPInterface newInterfaceCpp, NotificationChain msgs) {
-		return ((FeatureMap.Internal)getMixed()).basicAdd(ScaPackage.eINSTANCE.getDocumentRoot_InterfaceCpp(), newInterfaceCpp, msgs);
-	}
+        return ((FeatureMap.Internal)getMixed()).basicAdd(ScaPackage.eINSTANCE.getDocumentRoot_InterfaceCpp(), newInterfaceCpp, msgs);
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public void setInterfaceCpp(CPPInterface newInterfaceCpp) {
-		((FeatureMap.Internal)getMixed()).set(ScaPackage.eINSTANCE.getDocumentRoot_InterfaceCpp(), newInterfaceCpp);
-	}
+        ((FeatureMap.Internal)getMixed()).set(ScaPackage.eINSTANCE.getDocumentRoot_InterfaceCpp(), newInterfaceCpp);
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public JavaInterface getInterfaceJava() {
-		return (JavaInterface)getMixed().get(ScaPackage.eINSTANCE.getDocumentRoot_InterfaceJava(), true);
-	}
+        return (JavaInterface)getMixed().get(ScaPackage.eINSTANCE.getDocumentRoot_InterfaceJava(), true);
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public NotificationChain basicSetInterfaceJava(JavaInterface newInterfaceJava, NotificationChain msgs) {
-		return ((FeatureMap.Internal)getMixed()).basicAdd(ScaPackage.eINSTANCE.getDocumentRoot_InterfaceJava(), newInterfaceJava, msgs);
-	}
+        return ((FeatureMap.Internal)getMixed()).basicAdd(ScaPackage.eINSTANCE.getDocumentRoot_InterfaceJava(), newInterfaceJava, msgs);
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public void setInterfaceJava(JavaInterface newInterfaceJava) {
-		((FeatureMap.Internal)getMixed()).set(ScaPackage.eINSTANCE.getDocumentRoot_InterfaceJava(), newInterfaceJava);
-	}
+        ((FeatureMap.Internal)getMixed()).set(ScaPackage.eINSTANCE.getDocumentRoot_InterfaceJava(), newInterfaceJava);
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public WSDLPortType getInterfaceWsdl() {
-		return (WSDLPortType)getMixed().get(ScaPackage.eINSTANCE.getDocumentRoot_InterfaceWsdl(), true);
-	}
+        return (WSDLPortType)getMixed().get(ScaPackage.eINSTANCE.getDocumentRoot_InterfaceWsdl(), true);
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public NotificationChain basicSetInterfaceWsdl(WSDLPortType newInterfaceWsdl, NotificationChain msgs) {
-		return ((FeatureMap.Internal)getMixed()).basicAdd(ScaPackage.eINSTANCE.getDocumentRoot_InterfaceWsdl(), newInterfaceWsdl, msgs);
-	}
+        return ((FeatureMap.Internal)getMixed()).basicAdd(ScaPackage.eINSTANCE.getDocumentRoot_InterfaceWsdl(), newInterfaceWsdl, msgs);
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public void setInterfaceWsdl(WSDLPortType newInterfaceWsdl) {
-		((FeatureMap.Internal)getMixed()).set(ScaPackage.eINSTANCE.getDocumentRoot_InterfaceWsdl(), newInterfaceWsdl);
-	}
+        ((FeatureMap.Internal)getMixed()).set(ScaPackage.eINSTANCE.getDocumentRoot_InterfaceWsdl(), newInterfaceWsdl);
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public OperationSelectorType getOperationSelector() {
-		return (OperationSelectorType)getMixed().get(ScaPackage.eINSTANCE.getDocumentRoot_OperationSelector(), true);
-	}
+        return (OperationSelectorType)getMixed().get(ScaPackage.eINSTANCE.getDocumentRoot_OperationSelector(), true);
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public NotificationChain basicSetOperationSelector(OperationSelectorType newOperationSelector, NotificationChain msgs) {
-		return ((FeatureMap.Internal)getMixed()).basicAdd(ScaPackage.eINSTANCE.getDocumentRoot_OperationSelector(), newOperationSelector, msgs);
-	}
+        return ((FeatureMap.Internal)getMixed()).basicAdd(ScaPackage.eINSTANCE.getDocumentRoot_OperationSelector(), newOperationSelector, msgs);
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public OperationSelectorType getOperationSelectorJmsDefault() {
-		return (OperationSelectorType)getMixed().get(ScaPackage.eINSTANCE.getDocumentRoot_OperationSelectorJmsDefault(), true);
-	}
+        return (OperationSelectorType)getMixed().get(ScaPackage.eINSTANCE.getDocumentRoot_OperationSelectorJmsDefault(), true);
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public NotificationChain basicSetOperationSelectorJmsDefault(OperationSelectorType newOperationSelectorJmsDefault, NotificationChain msgs) {
-		return ((FeatureMap.Internal)getMixed()).basicAdd(ScaPackage.eINSTANCE.getDocumentRoot_OperationSelectorJmsDefault(), newOperationSelectorJmsDefault, msgs);
-	}
+        return ((FeatureMap.Internal)getMixed()).basicAdd(ScaPackage.eINSTANCE.getDocumentRoot_OperationSelectorJmsDefault(), newOperationSelectorJmsDefault, msgs);
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public void setOperationSelectorJmsDefault(OperationSelectorType newOperationSelectorJmsDefault) {
-		((FeatureMap.Internal)getMixed()).set(ScaPackage.eINSTANCE.getDocumentRoot_OperationSelectorJmsDefault(), newOperationSelectorJmsDefault);
-	}
+        ((FeatureMap.Internal)getMixed()).set(ScaPackage.eINSTANCE.getDocumentRoot_OperationSelectorJmsDefault(), newOperationSelectorJmsDefault);
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public PolicySet getPolicySet() {
-		return (PolicySet)getMixed().get(ScaPackage.eINSTANCE.getDocumentRoot_PolicySet(), true);
-	}
+        return (PolicySet)getMixed().get(ScaPackage.eINSTANCE.getDocumentRoot_PolicySet(), true);
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public NotificationChain basicSetPolicySet(PolicySet newPolicySet, NotificationChain msgs) {
-		return ((FeatureMap.Internal)getMixed()).basicAdd(ScaPackage.eINSTANCE.getDocumentRoot_PolicySet(), newPolicySet, msgs);
-	}
+        return ((FeatureMap.Internal)getMixed()).basicAdd(ScaPackage.eINSTANCE.getDocumentRoot_PolicySet(), newPolicySet, msgs);
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public void setPolicySet(PolicySet newPolicySet) {
-		((FeatureMap.Internal)getMixed()).set(ScaPackage.eINSTANCE.getDocumentRoot_PolicySet(), newPolicySet);
-	}
+        ((FeatureMap.Internal)getMixed()).set(ScaPackage.eINSTANCE.getDocumentRoot_PolicySet(), newPolicySet);
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public PolicySetAttachment getPolicySetAttachment() {
-		return (PolicySetAttachment)getMixed().get(ScaPackage.eINSTANCE.getDocumentRoot_PolicySetAttachment(), true);
-	}
+        return (PolicySetAttachment)getMixed().get(ScaPackage.eINSTANCE.getDocumentRoot_PolicySetAttachment(), true);
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public NotificationChain basicSetPolicySetAttachment(PolicySetAttachment newPolicySetAttachment, NotificationChain msgs) {
-		return ((FeatureMap.Internal)getMixed()).basicAdd(ScaPackage.eINSTANCE.getDocumentRoot_PolicySetAttachment(), newPolicySetAttachment, msgs);
-	}
+        return ((FeatureMap.Internal)getMixed()).basicAdd(ScaPackage.eINSTANCE.getDocumentRoot_PolicySetAttachment(), newPolicySetAttachment, msgs);
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public void setPolicySetAttachment(PolicySetAttachment newPolicySetAttachment) {
-		((FeatureMap.Internal)getMixed()).set(ScaPackage.eINSTANCE.getDocumentRoot_PolicySetAttachment(), newPolicySetAttachment);
-	}
+        ((FeatureMap.Internal)getMixed()).set(ScaPackage.eINSTANCE.getDocumentRoot_PolicySetAttachment(), newPolicySetAttachment);
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public ValueType getValue() {
-		return (ValueType)getMixed().get(ScaPackage.eINSTANCE.getDocumentRoot_Value(), true);
-	}
+        return (ValueType)getMixed().get(ScaPackage.eINSTANCE.getDocumentRoot_Value(), true);
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public NotificationChain basicSetValue(ValueType newValue, NotificationChain msgs) {
-		return ((FeatureMap.Internal)getMixed()).basicAdd(ScaPackage.eINSTANCE.getDocumentRoot_Value(), newValue, msgs);
-	}
+        return ((FeatureMap.Internal)getMixed()).basicAdd(ScaPackage.eINSTANCE.getDocumentRoot_Value(), newValue, msgs);
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public void setValue(ValueType newValue) {
-		((FeatureMap.Internal)getMixed()).set(ScaPackage.eINSTANCE.getDocumentRoot_Value(), newValue);
-	}
+        ((FeatureMap.Internal)getMixed()).set(ScaPackage.eINSTANCE.getDocumentRoot_Value(), newValue);
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public WireFormatType getWireFormat() {
-		return (WireFormatType)getMixed().get(ScaPackage.eINSTANCE.getDocumentRoot_WireFormat(), true);
-	}
+        return (WireFormatType)getMixed().get(ScaPackage.eINSTANCE.getDocumentRoot_WireFormat(), true);
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public NotificationChain basicSetWireFormat(WireFormatType newWireFormat, NotificationChain msgs) {
-		return ((FeatureMap.Internal)getMixed()).basicAdd(ScaPackage.eINSTANCE.getDocumentRoot_WireFormat(), newWireFormat, msgs);
-	}
+        return ((FeatureMap.Internal)getMixed()).basicAdd(ScaPackage.eINSTANCE.getDocumentRoot_WireFormat(), newWireFormat, msgs);
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public WireFormatType getWireFormatJmsDefault() {
-		return (WireFormatType)getMixed().get(ScaPackage.eINSTANCE.getDocumentRoot_WireFormatJmsDefault(), true);
-	}
+        return (WireFormatType)getMixed().get(ScaPackage.eINSTANCE.getDocumentRoot_WireFormatJmsDefault(), true);
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public NotificationChain basicSetWireFormatJmsDefault(WireFormatType newWireFormatJmsDefault, NotificationChain msgs) {
-		return ((FeatureMap.Internal)getMixed()).basicAdd(ScaPackage.eINSTANCE.getDocumentRoot_WireFormatJmsDefault(), newWireFormatJmsDefault, msgs);
-	}
+        return ((FeatureMap.Internal)getMixed()).basicAdd(ScaPackage.eINSTANCE.getDocumentRoot_WireFormatJmsDefault(), newWireFormatJmsDefault, msgs);
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public void setWireFormatJmsDefault(WireFormatType newWireFormatJmsDefault) {
-		((FeatureMap.Internal)getMixed()).set(ScaPackage.eINSTANCE.getDocumentRoot_WireFormatJmsDefault(), newWireFormatJmsDefault);
-	}
+        ((FeatureMap.Internal)getMixed()).set(ScaPackage.eINSTANCE.getDocumentRoot_WireFormatJmsDefault(), newWireFormatJmsDefault);
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public WSCallbackType getWSCallback() {
-		return (WSCallbackType)getMixed().get(ScaPackage.eINSTANCE.getDocumentRoot_WSCallback(), true);
-	}
+        return (WSCallbackType)getMixed().get(ScaPackage.eINSTANCE.getDocumentRoot_WSCallback(), true);
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public NotificationChain basicSetWSCallback(WSCallbackType newWSCallback, NotificationChain msgs) {
-		return ((FeatureMap.Internal)getMixed()).basicAdd(ScaPackage.eINSTANCE.getDocumentRoot_WSCallback(), newWSCallback, msgs);
-	}
+        return ((FeatureMap.Internal)getMixed()).basicAdd(ScaPackage.eINSTANCE.getDocumentRoot_WSCallback(), newWSCallback, msgs);
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public void setWSCallback(WSCallbackType newWSCallback) {
-		((FeatureMap.Internal)getMixed()).set(ScaPackage.eINSTANCE.getDocumentRoot_WSCallback(), newWSCallback);
-	}
+        ((FeatureMap.Internal)getMixed()).set(ScaPackage.eINSTANCE.getDocumentRoot_WSCallback(), newWSCallback);
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public String getCallback1() {
-		return callback1;
-	}
+        return callback1;
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public void setCallback1(String newCallback1) {
-		String oldCallback1 = callback1;
-		callback1 = newCallback1;
-		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, ScaPackage.DOCUMENT_ROOT__CALLBACK1, oldCallback1, callback1));
-	}
+        String oldCallback1 = callback1;
+        callback1 = newCallback1;
+        if (eNotificationRequired())
+            eNotify(new ENotificationImpl(this, Notification.SET, ScaPackage.DOCUMENT_ROOT__CALLBACK1, oldCallback1, callback1));
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public List<QName> getRequires() {
-		return requires;
-	}
+        return requires;
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public void setRequires(List<QName> newRequires) {
-		List<QName> oldRequires = requires;
-		requires = newRequires;
-		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, ScaPackage.DOCUMENT_ROOT__REQUIRES, oldRequires, requires));
-	}
+        List<QName> oldRequires = requires;
+        requires = newRequires;
+        if (eNotificationRequired())
+            eNotify(new ENotificationImpl(this, Notification.SET, ScaPackage.DOCUMENT_ROOT__REQUIRES, oldRequires, requires));
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	@Override
 	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
-		switch (featureID) {
-			case ScaPackage.DOCUMENT_ROOT__MIXED:
-				return ((InternalEList<?>)getMixed()).basicRemove(otherEnd, msgs);
-			case ScaPackage.DOCUMENT_ROOT__XMLNS_PREFIX_MAP:
-				return ((InternalEList<?>)getXMLNSPrefixMap()).basicRemove(otherEnd, msgs);
-			case ScaPackage.DOCUMENT_ROOT__XSI_SCHEMA_LOCATION:
-				return ((InternalEList<?>)getXSISchemaLocation()).basicRemove(otherEnd, msgs);
-			case ScaPackage.DOCUMENT_ROOT__BINDING:
-				return basicSetBinding(null, msgs);
-			case ScaPackage.DOCUMENT_ROOT__BINDING_EJB:
-				return basicSetBindingEjb(null, msgs);
-			case ScaPackage.DOCUMENT_ROOT__BINDING_JCA:
-				return basicSetBindingJca(null, msgs);
-			case ScaPackage.DOCUMENT_ROOT__BINDING_JMS:
-				return basicSetBindingJms(null, msgs);
-			case ScaPackage.DOCUMENT_ROOT__BINDING_SCA:
-				return basicSetBindingSca(null, msgs);
-			case ScaPackage.DOCUMENT_ROOT__BINDING_WS:
-				return basicSetBindingWs(null, msgs);
-			case ScaPackage.DOCUMENT_ROOT__BINDING_TYPE:
-				return basicSetBindingType(null, msgs);
-			case ScaPackage.DOCUMENT_ROOT__CALLBACK:
-				return basicSetCallback(null, msgs);
-			case ScaPackage.DOCUMENT_ROOT__COMPONENT_TYPE:
-				return basicSetComponentType(null, msgs);
-			case ScaPackage.DOCUMENT_ROOT__COMPOSITE:
-				return basicSetComposite(null, msgs);
-			case ScaPackage.DOCUMENT_ROOT__CONSTRAINING_TYPE:
-				return basicSetConstrainingType(null, msgs);
-			case ScaPackage.DOCUMENT_ROOT__CONTRIBUTION:
-				return basicSetContribution(null, msgs);
-			case ScaPackage.DOCUMENT_ROOT__DEFINITIONS:
-				return basicSetDefinitions(null, msgs);
-			case ScaPackage.DOCUMENT_ROOT__DOCUMENTATION:
-				return basicSetDocumentation(null, msgs);
-			case ScaPackage.DOCUMENT_ROOT__EXPORT:
-				return basicSetExport(null, msgs);
-			case ScaPackage.DOCUMENT_ROOT__EXPORT_BASE:
-				return basicSetExportBase(null, msgs);
-			case ScaPackage.DOCUMENT_ROOT__EXPORT_C:
-				return basicSetExportC(null, msgs);
-			case ScaPackage.DOCUMENT_ROOT__EXPORT_CPP:
-				return basicSetExportCpp(null, msgs);
-			case ScaPackage.DOCUMENT_ROOT__EXPORT_JAVA:
-				return basicSetExportJava(null, msgs);
-			case ScaPackage.DOCUMENT_ROOT__IMPLEMENTATION:
-				return basicSetImplementation(null, msgs);
-			case ScaPackage.DOCUMENT_ROOT__IMPLEMENTATION_BPEL:
-				return basicSetImplementationBpel(null, msgs);
-			case ScaPackage.DOCUMENT_ROOT__IMPLEMENTATION_C:
-				return basicSetImplementationC(null, msgs);
-			case ScaPackage.DOCUMENT_ROOT__IMPLEMENTATION_COMPOSITE:
-				return basicSetImplementationComposite(null, msgs);
-			case ScaPackage.DOCUMENT_ROOT__IMPLEMENTATION_CPP:
-				return basicSetImplementationCpp(null, msgs);
-			case ScaPackage.DOCUMENT_ROOT__IMPLEMENTATION_EJB:
-				return basicSetImplementationEjb(null, msgs);
-			case ScaPackage.DOCUMENT_ROOT__IMPLEMENTATION_JAVA:
-				return basicSetImplementationJava(null, msgs);
-			case ScaPackage.DOCUMENT_ROOT__IMPLEMENTATION_JEE:
-				return basicSetImplementationJee(null, msgs);
-			case ScaPackage.DOCUMENT_ROOT__IMPLEMENTATION_SPRING:
-				return basicSetImplementationSpring(null, msgs);
-			case ScaPackage.DOCUMENT_ROOT__IMPLEMENTATION_WEB:
-				return basicSetImplementationWeb(null, msgs);
-			case ScaPackage.DOCUMENT_ROOT__IMPLEMENTATION_TYPE:
-				return basicSetImplementationType(null, msgs);
-			case ScaPackage.DOCUMENT_ROOT__IMPORT:
-				return basicSetImport(null, msgs);
-			case ScaPackage.DOCUMENT_ROOT__IMPORT_BASE:
-				return basicSetImportBase(null, msgs);
-			case ScaPackage.DOCUMENT_ROOT__IMPORT_C:
-				return basicSetImportC(null, msgs);
-			case ScaPackage.DOCUMENT_ROOT__IMPORT_CPP:
-				return basicSetImportCpp(null, msgs);
-			case ScaPackage.DOCUMENT_ROOT__IMPORT_JAVA:
-				return basicSetImportJava(null, msgs);
-			case ScaPackage.DOCUMENT_ROOT__INCLUDE:
-				return basicSetInclude(null, msgs);
-			case ScaPackage.DOCUMENT_ROOT__INTENT:
-				return basicSetIntent(null, msgs);
-			case ScaPackage.DOCUMENT_ROOT__INTERFACE:
-				return basicSetInterface(null, msgs);
-			case ScaPackage.DOCUMENT_ROOT__INTERFACE_C:
-				return basicSetInterfaceC(null, msgs);
-			case ScaPackage.DOCUMENT_ROOT__INTERFACE_CPP:
-				return basicSetInterfaceCpp(null, msgs);
-			case ScaPackage.DOCUMENT_ROOT__INTERFACE_JAVA:
-				return basicSetInterfaceJava(null, msgs);
-			case ScaPackage.DOCUMENT_ROOT__INTERFACE_WSDL:
-				return basicSetInterfaceWsdl(null, msgs);
-			case ScaPackage.DOCUMENT_ROOT__OPERATION_SELECTOR:
-				return basicSetOperationSelector(null, msgs);
-			case ScaPackage.DOCUMENT_ROOT__OPERATION_SELECTOR_JMS_DEFAULT:
-				return basicSetOperationSelectorJmsDefault(null, msgs);
-			case ScaPackage.DOCUMENT_ROOT__POLICY_SET:
-				return basicSetPolicySet(null, msgs);
-			case ScaPackage.DOCUMENT_ROOT__POLICY_SET_ATTACHMENT:
-				return basicSetPolicySetAttachment(null, msgs);
-			case ScaPackage.DOCUMENT_ROOT__VALUE:
-				return basicSetValue(null, msgs);
-			case ScaPackage.DOCUMENT_ROOT__WIRE_FORMAT:
-				return basicSetWireFormat(null, msgs);
-			case ScaPackage.DOCUMENT_ROOT__WIRE_FORMAT_JMS_DEFAULT:
-				return basicSetWireFormatJmsDefault(null, msgs);
-			case ScaPackage.DOCUMENT_ROOT__WS_CALLBACK:
-				return basicSetWSCallback(null, msgs);
-		}
-		return super.eInverseRemove(otherEnd, featureID, msgs);
-	}
+        switch (featureID) {
+            case ScaPackage.DOCUMENT_ROOT__MIXED:
+                return ((InternalEList<?>)getMixed()).basicRemove(otherEnd, msgs);
+            case ScaPackage.DOCUMENT_ROOT__XMLNS_PREFIX_MAP:
+                return ((InternalEList<?>)getXMLNSPrefixMap()).basicRemove(otherEnd, msgs);
+            case ScaPackage.DOCUMENT_ROOT__XSI_SCHEMA_LOCATION:
+                return ((InternalEList<?>)getXSISchemaLocation()).basicRemove(otherEnd, msgs);
+            case ScaPackage.DOCUMENT_ROOT__BINDING:
+                return basicSetBinding(null, msgs);
+            case ScaPackage.DOCUMENT_ROOT__BINDING_EJB:
+                return basicSetBindingEjb(null, msgs);
+            case ScaPackage.DOCUMENT_ROOT__BINDING_JCA:
+                return basicSetBindingJca(null, msgs);
+            case ScaPackage.DOCUMENT_ROOT__BINDING_JMS:
+                return basicSetBindingJms(null, msgs);
+            case ScaPackage.DOCUMENT_ROOT__BINDING_SCA:
+                return basicSetBindingSca(null, msgs);
+            case ScaPackage.DOCUMENT_ROOT__BINDING_WS:
+                return basicSetBindingWs(null, msgs);
+            case ScaPackage.DOCUMENT_ROOT__BINDING_TYPE:
+                return basicSetBindingType(null, msgs);
+            case ScaPackage.DOCUMENT_ROOT__CALLBACK:
+                return basicSetCallback(null, msgs);
+            case ScaPackage.DOCUMENT_ROOT__COMPONENT_TYPE:
+                return basicSetComponentType(null, msgs);
+            case ScaPackage.DOCUMENT_ROOT__COMPOSITE:
+                return basicSetComposite(null, msgs);
+            case ScaPackage.DOCUMENT_ROOT__CONSTRAINING_TYPE:
+                return basicSetConstrainingType(null, msgs);
+            case ScaPackage.DOCUMENT_ROOT__CONTRIBUTION:
+                return basicSetContribution(null, msgs);
+            case ScaPackage.DOCUMENT_ROOT__DEFINITIONS:
+                return basicSetDefinitions(null, msgs);
+            case ScaPackage.DOCUMENT_ROOT__DOCUMENTATION:
+                return basicSetDocumentation(null, msgs);
+            case ScaPackage.DOCUMENT_ROOT__EXPORT:
+                return basicSetExport(null, msgs);
+            case ScaPackage.DOCUMENT_ROOT__EXPORT_BASE:
+                return basicSetExportBase(null, msgs);
+            case ScaPackage.DOCUMENT_ROOT__EXPORT_C:
+                return basicSetExportC(null, msgs);
+            case ScaPackage.DOCUMENT_ROOT__EXPORT_CPP:
+                return basicSetExportCpp(null, msgs);
+            case ScaPackage.DOCUMENT_ROOT__EXPORT_JAVA:
+                return basicSetExportJava(null, msgs);
+            case ScaPackage.DOCUMENT_ROOT__IMPLEMENTATION:
+                return basicSetImplementation(null, msgs);
+            case ScaPackage.DOCUMENT_ROOT__IMPLEMENTATION_BPEL:
+                return basicSetImplementationBpel(null, msgs);
+            case ScaPackage.DOCUMENT_ROOT__IMPLEMENTATION_C:
+                return basicSetImplementationC(null, msgs);
+            case ScaPackage.DOCUMENT_ROOT__IMPLEMENTATION_COMPOSITE:
+                return basicSetImplementationComposite(null, msgs);
+            case ScaPackage.DOCUMENT_ROOT__IMPLEMENTATION_CPP:
+                return basicSetImplementationCpp(null, msgs);
+            case ScaPackage.DOCUMENT_ROOT__IMPLEMENTATION_EJB:
+                return basicSetImplementationEjb(null, msgs);
+            case ScaPackage.DOCUMENT_ROOT__IMPLEMENTATION_JAVA:
+                return basicSetImplementationJava(null, msgs);
+            case ScaPackage.DOCUMENT_ROOT__IMPLEMENTATION_JEE:
+                return basicSetImplementationJee(null, msgs);
+            case ScaPackage.DOCUMENT_ROOT__IMPLEMENTATION_SPRING:
+                return basicSetImplementationSpring(null, msgs);
+            case ScaPackage.DOCUMENT_ROOT__IMPLEMENTATION_WEB:
+                return basicSetImplementationWeb(null, msgs);
+            case ScaPackage.DOCUMENT_ROOT__IMPLEMENTATION_TYPE:
+                return basicSetImplementationType(null, msgs);
+            case ScaPackage.DOCUMENT_ROOT__IMPORT:
+                return basicSetImport(null, msgs);
+            case ScaPackage.DOCUMENT_ROOT__IMPORT_BASE:
+                return basicSetImportBase(null, msgs);
+            case ScaPackage.DOCUMENT_ROOT__IMPORT_C:
+                return basicSetImportC(null, msgs);
+            case ScaPackage.DOCUMENT_ROOT__IMPORT_CPP:
+                return basicSetImportCpp(null, msgs);
+            case ScaPackage.DOCUMENT_ROOT__IMPORT_JAVA:
+                return basicSetImportJava(null, msgs);
+            case ScaPackage.DOCUMENT_ROOT__INCLUDE:
+                return basicSetInclude(null, msgs);
+            case ScaPackage.DOCUMENT_ROOT__INTENT:
+                return basicSetIntent(null, msgs);
+            case ScaPackage.DOCUMENT_ROOT__INTERFACE:
+                return basicSetInterface(null, msgs);
+            case ScaPackage.DOCUMENT_ROOT__INTERFACE_C:
+                return basicSetInterfaceC(null, msgs);
+            case ScaPackage.DOCUMENT_ROOT__INTERFACE_CPP:
+                return basicSetInterfaceCpp(null, msgs);
+            case ScaPackage.DOCUMENT_ROOT__INTERFACE_JAVA:
+                return basicSetInterfaceJava(null, msgs);
+            case ScaPackage.DOCUMENT_ROOT__INTERFACE_WSDL:
+                return basicSetInterfaceWsdl(null, msgs);
+            case ScaPackage.DOCUMENT_ROOT__OPERATION_SELECTOR:
+                return basicSetOperationSelector(null, msgs);
+            case ScaPackage.DOCUMENT_ROOT__OPERATION_SELECTOR_JMS_DEFAULT:
+                return basicSetOperationSelectorJmsDefault(null, msgs);
+            case ScaPackage.DOCUMENT_ROOT__POLICY_SET:
+                return basicSetPolicySet(null, msgs);
+            case ScaPackage.DOCUMENT_ROOT__POLICY_SET_ATTACHMENT:
+                return basicSetPolicySetAttachment(null, msgs);
+            case ScaPackage.DOCUMENT_ROOT__VALUE:
+                return basicSetValue(null, msgs);
+            case ScaPackage.DOCUMENT_ROOT__WIRE_FORMAT:
+                return basicSetWireFormat(null, msgs);
+            case ScaPackage.DOCUMENT_ROOT__WIRE_FORMAT_JMS_DEFAULT:
+                return basicSetWireFormatJmsDefault(null, msgs);
+            case ScaPackage.DOCUMENT_ROOT__WS_CALLBACK:
+                return basicSetWSCallback(null, msgs);
+        }
+        return super.eInverseRemove(otherEnd, featureID, msgs);
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
-		switch (featureID) {
-			case ScaPackage.DOCUMENT_ROOT__MIXED:
-				if (coreType) return getMixed();
-				return ((FeatureMap.Internal)getMixed()).getWrapper();
-			case ScaPackage.DOCUMENT_ROOT__XMLNS_PREFIX_MAP:
-				if (coreType) return getXMLNSPrefixMap();
-				else return getXMLNSPrefixMap().map();
-			case ScaPackage.DOCUMENT_ROOT__XSI_SCHEMA_LOCATION:
-				if (coreType) return getXSISchemaLocation();
-				else return getXSISchemaLocation().map();
-			case ScaPackage.DOCUMENT_ROOT__BINDING:
-				return getBinding();
-			case ScaPackage.DOCUMENT_ROOT__BINDING_EJB:
-				return getBindingEjb();
-			case ScaPackage.DOCUMENT_ROOT__BINDING_JCA:
-				return getBindingJca();
-			case ScaPackage.DOCUMENT_ROOT__BINDING_JMS:
-				return getBindingJms();
-			case ScaPackage.DOCUMENT_ROOT__BINDING_SCA:
-				return getBindingSca();
-			case ScaPackage.DOCUMENT_ROOT__BINDING_WS:
-				return getBindingWs();
-			case ScaPackage.DOCUMENT_ROOT__BINDING_TYPE:
-				return getBindingType();
-			case ScaPackage.DOCUMENT_ROOT__CALLBACK:
-				return getCallback();
-			case ScaPackage.DOCUMENT_ROOT__COMPONENT_TYPE:
-				return getComponentType();
-			case ScaPackage.DOCUMENT_ROOT__COMPOSITE:
-				return getComposite();
-			case ScaPackage.DOCUMENT_ROOT__CONSTRAINING_TYPE:
-				return getConstrainingType();
-			case ScaPackage.DOCUMENT_ROOT__CONTRIBUTION:
-				return getContribution();
-			case ScaPackage.DOCUMENT_ROOT__DEFINITIONS:
-				return getDefinitions();
-			case ScaPackage.DOCUMENT_ROOT__DOCUMENTATION:
-				return getDocumentation();
-			case ScaPackage.DOCUMENT_ROOT__EXPORT:
-				return getExport();
-			case ScaPackage.DOCUMENT_ROOT__EXPORT_BASE:
-				return getExportBase();
-			case ScaPackage.DOCUMENT_ROOT__EXPORT_C:
-				return getExportC();
-			case ScaPackage.DOCUMENT_ROOT__EXPORT_CPP:
-				return getExportCpp();
-			case ScaPackage.DOCUMENT_ROOT__EXPORT_JAVA:
-				return getExportJava();
-			case ScaPackage.DOCUMENT_ROOT__IMPLEMENTATION:
-				return getImplementation();
-			case ScaPackage.DOCUMENT_ROOT__IMPLEMENTATION_BPEL:
-				return getImplementationBpel();
-			case ScaPackage.DOCUMENT_ROOT__IMPLEMENTATION_C:
-				return getImplementationC();
-			case ScaPackage.DOCUMENT_ROOT__IMPLEMENTATION_COMPOSITE:
-				return getImplementationComposite();
-			case ScaPackage.DOCUMENT_ROOT__IMPLEMENTATION_CPP:
-				return getImplementationCpp();
-			case ScaPackage.DOCUMENT_ROOT__IMPLEMENTATION_EJB:
-				return getImplementationEjb();
-			case ScaPackage.DOCUMENT_ROOT__IMPLEMENTATION_JAVA:
-				return getImplementationJava();
-			case ScaPackage.DOCUMENT_ROOT__IMPLEMENTATION_JEE:
-				return getImplementationJee();
-			case ScaPackage.DOCUMENT_ROOT__IMPLEMENTATION_SPRING:
-				return getImplementationSpring();
-			case ScaPackage.DOCUMENT_ROOT__IMPLEMENTATION_WEB:
-				return getImplementationWeb();
-			case ScaPackage.DOCUMENT_ROOT__IMPLEMENTATION_TYPE:
-				return getImplementationType();
-			case ScaPackage.DOCUMENT_ROOT__IMPORT:
-				return getImport();
-			case ScaPackage.DOCUMENT_ROOT__IMPORT_BASE:
-				return getImportBase();
-			case ScaPackage.DOCUMENT_ROOT__IMPORT_C:
-				return getImportC();
-			case ScaPackage.DOCUMENT_ROOT__IMPORT_CPP:
-				return getImportCpp();
-			case ScaPackage.DOCUMENT_ROOT__IMPORT_JAVA:
-				return getImportJava();
-			case ScaPackage.DOCUMENT_ROOT__INCLUDE:
-				return getInclude();
-			case ScaPackage.DOCUMENT_ROOT__INTENT:
-				return getIntent();
-			case ScaPackage.DOCUMENT_ROOT__INTERFACE:
-				return getInterface();
-			case ScaPackage.DOCUMENT_ROOT__INTERFACE_C:
-				return getInterfaceC();
-			case ScaPackage.DOCUMENT_ROOT__INTERFACE_CPP:
-				return getInterfaceCpp();
-			case ScaPackage.DOCUMENT_ROOT__INTERFACE_JAVA:
-				return getInterfaceJava();
-			case ScaPackage.DOCUMENT_ROOT__INTERFACE_WSDL:
-				return getInterfaceWsdl();
-			case ScaPackage.DOCUMENT_ROOT__OPERATION_SELECTOR:
-				return getOperationSelector();
-			case ScaPackage.DOCUMENT_ROOT__OPERATION_SELECTOR_JMS_DEFAULT:
-				return getOperationSelectorJmsDefault();
-			case ScaPackage.DOCUMENT_ROOT__POLICY_SET:
-				return getPolicySet();
-			case ScaPackage.DOCUMENT_ROOT__POLICY_SET_ATTACHMENT:
-				return getPolicySetAttachment();
-			case ScaPackage.DOCUMENT_ROOT__VALUE:
-				return getValue();
-			case ScaPackage.DOCUMENT_ROOT__WIRE_FORMAT:
-				return getWireFormat();
-			case ScaPackage.DOCUMENT_ROOT__WIRE_FORMAT_JMS_DEFAULT:
-				return getWireFormatJmsDefault();
-			case ScaPackage.DOCUMENT_ROOT__WS_CALLBACK:
-				return getWSCallback();
-			case ScaPackage.DOCUMENT_ROOT__CALLBACK1:
-				return getCallback1();
-			case ScaPackage.DOCUMENT_ROOT__REQUIRES:
-				return getRequires();
-		}
-		return super.eGet(featureID, resolve, coreType);
-	}
+        switch (featureID) {
+            case ScaPackage.DOCUMENT_ROOT__MIXED:
+                if (coreType) return getMixed();
+                return ((FeatureMap.Internal)getMixed()).getWrapper();
+            case ScaPackage.DOCUMENT_ROOT__XMLNS_PREFIX_MAP:
+                if (coreType) return getXMLNSPrefixMap();
+                else return getXMLNSPrefixMap().map();
+            case ScaPackage.DOCUMENT_ROOT__XSI_SCHEMA_LOCATION:
+                if (coreType) return getXSISchemaLocation();
+                else return getXSISchemaLocation().map();
+            case ScaPackage.DOCUMENT_ROOT__BINDING:
+                return getBinding();
+            case ScaPackage.DOCUMENT_ROOT__BINDING_EJB:
+                return getBindingEjb();
+            case ScaPackage.DOCUMENT_ROOT__BINDING_JCA:
+                return getBindingJca();
+            case ScaPackage.DOCUMENT_ROOT__BINDING_JMS:
+                return getBindingJms();
+            case ScaPackage.DOCUMENT_ROOT__BINDING_SCA:
+                return getBindingSca();
+            case ScaPackage.DOCUMENT_ROOT__BINDING_WS:
+                return getBindingWs();
+            case ScaPackage.DOCUMENT_ROOT__BINDING_TYPE:
+                return getBindingType();
+            case ScaPackage.DOCUMENT_ROOT__CALLBACK:
+                return getCallback();
+            case ScaPackage.DOCUMENT_ROOT__COMPONENT_TYPE:
+                return getComponentType();
+            case ScaPackage.DOCUMENT_ROOT__COMPOSITE:
+                return getComposite();
+            case ScaPackage.DOCUMENT_ROOT__CONSTRAINING_TYPE:
+                return getConstrainingType();
+            case ScaPackage.DOCUMENT_ROOT__CONTRIBUTION:
+                return getContribution();
+            case ScaPackage.DOCUMENT_ROOT__DEFINITIONS:
+                return getDefinitions();
+            case ScaPackage.DOCUMENT_ROOT__DOCUMENTATION:
+                return getDocumentation();
+            case ScaPackage.DOCUMENT_ROOT__EXPORT:
+                return getExport();
+            case ScaPackage.DOCUMENT_ROOT__EXPORT_BASE:
+                return getExportBase();
+            case ScaPackage.DOCUMENT_ROOT__EXPORT_C:
+                return getExportC();
+            case ScaPackage.DOCUMENT_ROOT__EXPORT_CPP:
+                return getExportCpp();
+            case ScaPackage.DOCUMENT_ROOT__EXPORT_JAVA:
+                return getExportJava();
+            case ScaPackage.DOCUMENT_ROOT__IMPLEMENTATION:
+                return getImplementation();
+            case ScaPackage.DOCUMENT_ROOT__IMPLEMENTATION_BPEL:
+                return getImplementationBpel();
+            case ScaPackage.DOCUMENT_ROOT__IMPLEMENTATION_C:
+                return getImplementationC();
+            case ScaPackage.DOCUMENT_ROOT__IMPLEMENTATION_COMPOSITE:
+                return getImplementationComposite();
+            case ScaPackage.DOCUMENT_ROOT__IMPLEMENTATION_CPP:
+                return getImplementationCpp();
+            case ScaPackage.DOCUMENT_ROOT__IMPLEMENTATION_EJB:
+                return getImplementationEjb();
+            case ScaPackage.DOCUMENT_ROOT__IMPLEMENTATION_JAVA:
+                return getImplementationJava();
+            case ScaPackage.DOCUMENT_ROOT__IMPLEMENTATION_JEE:
+                return getImplementationJee();
+            case ScaPackage.DOCUMENT_ROOT__IMPLEMENTATION_SPRING:
+                return getImplementationSpring();
+            case ScaPackage.DOCUMENT_ROOT__IMPLEMENTATION_WEB:
+                return getImplementationWeb();
+            case ScaPackage.DOCUMENT_ROOT__IMPLEMENTATION_TYPE:
+                return getImplementationType();
+            case ScaPackage.DOCUMENT_ROOT__IMPORT:
+                return getImport();
+            case ScaPackage.DOCUMENT_ROOT__IMPORT_BASE:
+                return getImportBase();
+            case ScaPackage.DOCUMENT_ROOT__IMPORT_C:
+                return getImportC();
+            case ScaPackage.DOCUMENT_ROOT__IMPORT_CPP:
+                return getImportCpp();
+            case ScaPackage.DOCUMENT_ROOT__IMPORT_JAVA:
+                return getImportJava();
+            case ScaPackage.DOCUMENT_ROOT__INCLUDE:
+                return getInclude();
+            case ScaPackage.DOCUMENT_ROOT__INTENT:
+                return getIntent();
+            case ScaPackage.DOCUMENT_ROOT__INTERFACE:
+                return getInterface();
+            case ScaPackage.DOCUMENT_ROOT__INTERFACE_C:
+                return getInterfaceC();
+            case ScaPackage.DOCUMENT_ROOT__INTERFACE_CPP:
+                return getInterfaceCpp();
+            case ScaPackage.DOCUMENT_ROOT__INTERFACE_JAVA:
+                return getInterfaceJava();
+            case ScaPackage.DOCUMENT_ROOT__INTERFACE_WSDL:
+                return getInterfaceWsdl();
+            case ScaPackage.DOCUMENT_ROOT__OPERATION_SELECTOR:
+                return getOperationSelector();
+            case ScaPackage.DOCUMENT_ROOT__OPERATION_SELECTOR_JMS_DEFAULT:
+                return getOperationSelectorJmsDefault();
+            case ScaPackage.DOCUMENT_ROOT__POLICY_SET:
+                return getPolicySet();
+            case ScaPackage.DOCUMENT_ROOT__POLICY_SET_ATTACHMENT:
+                return getPolicySetAttachment();
+            case ScaPackage.DOCUMENT_ROOT__VALUE:
+                return getValue();
+            case ScaPackage.DOCUMENT_ROOT__WIRE_FORMAT:
+                return getWireFormat();
+            case ScaPackage.DOCUMENT_ROOT__WIRE_FORMAT_JMS_DEFAULT:
+                return getWireFormatJmsDefault();
+            case ScaPackage.DOCUMENT_ROOT__WS_CALLBACK:
+                return getWSCallback();
+            case ScaPackage.DOCUMENT_ROOT__CALLBACK1:
+                return getCallback1();
+            case ScaPackage.DOCUMENT_ROOT__REQUIRES:
+                return getRequires();
+        }
+        return super.eGet(featureID, resolve, coreType);
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	@SuppressWarnings("unchecked")
 	@Override
 	public void eSet(int featureID, Object newValue) {
-		switch (featureID) {
-			case ScaPackage.DOCUMENT_ROOT__MIXED:
-				((FeatureMap.Internal)getMixed()).set(newValue);
-				return;
-			case ScaPackage.DOCUMENT_ROOT__XMLNS_PREFIX_MAP:
-				((EStructuralFeature.Setting)getXMLNSPrefixMap()).set(newValue);
-				return;
-			case ScaPackage.DOCUMENT_ROOT__XSI_SCHEMA_LOCATION:
-				((EStructuralFeature.Setting)getXSISchemaLocation()).set(newValue);
-				return;
-			case ScaPackage.DOCUMENT_ROOT__BINDING_EJB:
-				setBindingEjb((EJBSessionBeanBinding)newValue);
-				return;
-			case ScaPackage.DOCUMENT_ROOT__BINDING_JCA:
-				setBindingJca((JCABinding)newValue);
-				return;
-			case ScaPackage.DOCUMENT_ROOT__BINDING_JMS:
-				setBindingJms((JMSBinding)newValue);
-				return;
-			case ScaPackage.DOCUMENT_ROOT__BINDING_SCA:
-				setBindingSca((SCABinding)newValue);
-				return;
-			case ScaPackage.DOCUMENT_ROOT__BINDING_WS:
-				setBindingWs((WebServiceBinding)newValue);
-				return;
-			case ScaPackage.DOCUMENT_ROOT__BINDING_TYPE:
-				setBindingType((BindingType)newValue);
-				return;
-			case ScaPackage.DOCUMENT_ROOT__CALLBACK:
-				setCallback((Callback)newValue);
-				return;
-			case ScaPackage.DOCUMENT_ROOT__COMPONENT_TYPE:
-				setComponentType((ComponentType)newValue);
-				return;
-			case ScaPackage.DOCUMENT_ROOT__COMPOSITE:
-				setComposite((Composite)newValue);
-				return;
-			case ScaPackage.DOCUMENT_ROOT__CONSTRAINING_TYPE:
-				setConstrainingType((ConstrainingType)newValue);
-				return;
-			case ScaPackage.DOCUMENT_ROOT__CONTRIBUTION:
-				setContribution((ContributionType)newValue);
-				return;
-			case ScaPackage.DOCUMENT_ROOT__DEFINITIONS:
-				setDefinitions((TDefinitions)newValue);
-				return;
-			case ScaPackage.DOCUMENT_ROOT__DOCUMENTATION:
-				setDocumentation((Documentation)newValue);
-				return;
-			case ScaPackage.DOCUMENT_ROOT__EXPORT:
-				setExport((ExportType)newValue);
-				return;
-			case ScaPackage.DOCUMENT_ROOT__EXPORT_C:
-				setExportC((CExport)newValue);
-				return;
-			case ScaPackage.DOCUMENT_ROOT__EXPORT_CPP:
-				setExportCpp((CPPExport)newValue);
-				return;
-			case ScaPackage.DOCUMENT_ROOT__EXPORT_JAVA:
-				setExportJava((JavaExportType)newValue);
-				return;
-			case ScaPackage.DOCUMENT_ROOT__IMPLEMENTATION_BPEL:
-				setImplementationBpel((BPELImplementation)newValue);
-				return;
-			case ScaPackage.DOCUMENT_ROOT__IMPLEMENTATION_C:
-				setImplementationC((CImplementation)newValue);
-				return;
-			case ScaPackage.DOCUMENT_ROOT__IMPLEMENTATION_COMPOSITE:
-				setImplementationComposite((SCAImplementation)newValue);
-				return;
-			case ScaPackage.DOCUMENT_ROOT__IMPLEMENTATION_CPP:
-				setImplementationCpp((CPPImplementation)newValue);
-				return;
-			case ScaPackage.DOCUMENT_ROOT__IMPLEMENTATION_EJB:
-				setImplementationEjb((EJBImplementation)newValue);
-				return;
-			case ScaPackage.DOCUMENT_ROOT__IMPLEMENTATION_JAVA:
-				setImplementationJava((JavaImplementation)newValue);
-				return;
-			case ScaPackage.DOCUMENT_ROOT__IMPLEMENTATION_JEE:
-				setImplementationJee((JEEImplementation)newValue);
-				return;
-			case ScaPackage.DOCUMENT_ROOT__IMPLEMENTATION_SPRING:
-				setImplementationSpring((SpringImplementation)newValue);
-				return;
-			case ScaPackage.DOCUMENT_ROOT__IMPLEMENTATION_WEB:
-				setImplementationWeb((WebImplementation)newValue);
-				return;
-			case ScaPackage.DOCUMENT_ROOT__IMPLEMENTATION_TYPE:
-				setImplementationType((ImplementationType)newValue);
-				return;
-			case ScaPackage.DOCUMENT_ROOT__IMPORT:
-				setImport((ImportType)newValue);
-				return;
-			case ScaPackage.DOCUMENT_ROOT__IMPORT_C:
-				setImportC((CImport)newValue);
-				return;
-			case ScaPackage.DOCUMENT_ROOT__IMPORT_CPP:
-				setImportCpp((CPPImport)newValue);
-				return;
-			case ScaPackage.DOCUMENT_ROOT__IMPORT_JAVA:
-				setImportJava((JavaImportType)newValue);
-				return;
-			case ScaPackage.DOCUMENT_ROOT__INCLUDE:
-				setInclude((Include)newValue);
-				return;
-			case ScaPackage.DOCUMENT_ROOT__INTENT:
-				setIntent((Intent)newValue);
-				return;
-			case ScaPackage.DOCUMENT_ROOT__INTERFACE_C:
-				setInterfaceC((CInterface)newValue);
-				return;
-			case ScaPackage.DOCUMENT_ROOT__INTERFACE_CPP:
-				setInterfaceCpp((CPPInterface)newValue);
-				return;
-			case ScaPackage.DOCUMENT_ROOT__INTERFACE_JAVA:
-				setInterfaceJava((JavaInterface)newValue);
-				return;
-			case ScaPackage.DOCUMENT_ROOT__INTERFACE_WSDL:
-				setInterfaceWsdl((WSDLPortType)newValue);
-				return;
-			case ScaPackage.DOCUMENT_ROOT__OPERATION_SELECTOR_JMS_DEFAULT:
-				setOperationSelectorJmsDefault((OperationSelectorType)newValue);
-				return;
-			case ScaPackage.DOCUMENT_ROOT__POLICY_SET:
-				setPolicySet((PolicySet)newValue);
-				return;
-			case ScaPackage.DOCUMENT_ROOT__POLICY_SET_ATTACHMENT:
-				setPolicySetAttachment((PolicySetAttachment)newValue);
-				return;
-			case ScaPackage.DOCUMENT_ROOT__VALUE:
-				setValue((ValueType)newValue);
-				return;
-			case ScaPackage.DOCUMENT_ROOT__WIRE_FORMAT_JMS_DEFAULT:
-				setWireFormatJmsDefault((WireFormatType)newValue);
-				return;
-			case ScaPackage.DOCUMENT_ROOT__WS_CALLBACK:
-				setWSCallback((WSCallbackType)newValue);
-				return;
-			case ScaPackage.DOCUMENT_ROOT__CALLBACK1:
-				setCallback1((String)newValue);
-				return;
-			case ScaPackage.DOCUMENT_ROOT__REQUIRES:
-				setRequires((List<QName>)newValue);
-				return;
-		}
-		super.eSet(featureID, newValue);
-	}
+        switch (featureID) {
+            case ScaPackage.DOCUMENT_ROOT__MIXED:
+                ((FeatureMap.Internal)getMixed()).set(newValue);
+                return;
+            case ScaPackage.DOCUMENT_ROOT__XMLNS_PREFIX_MAP:
+                ((EStructuralFeature.Setting)getXMLNSPrefixMap()).set(newValue);
+                return;
+            case ScaPackage.DOCUMENT_ROOT__XSI_SCHEMA_LOCATION:
+                ((EStructuralFeature.Setting)getXSISchemaLocation()).set(newValue);
+                return;
+            case ScaPackage.DOCUMENT_ROOT__BINDING_EJB:
+                setBindingEjb((EJBSessionBeanBinding)newValue);
+                return;
+            case ScaPackage.DOCUMENT_ROOT__BINDING_JCA:
+                setBindingJca((JCABinding)newValue);
+                return;
+            case ScaPackage.DOCUMENT_ROOT__BINDING_JMS:
+                setBindingJms((JMSBinding)newValue);
+                return;
+            case ScaPackage.DOCUMENT_ROOT__BINDING_SCA:
+                setBindingSca((SCABinding)newValue);
+                return;
+            case ScaPackage.DOCUMENT_ROOT__BINDING_WS:
+                setBindingWs((WebServiceBinding)newValue);
+                return;
+            case ScaPackage.DOCUMENT_ROOT__BINDING_TYPE:
+                setBindingType((BindingType)newValue);
+                return;
+            case ScaPackage.DOCUMENT_ROOT__CALLBACK:
+                setCallback((Callback)newValue);
+                return;
+            case ScaPackage.DOCUMENT_ROOT__COMPONENT_TYPE:
+                setComponentType((ComponentType)newValue);
+                return;
+            case ScaPackage.DOCUMENT_ROOT__COMPOSITE:
+                setComposite((Composite)newValue);
+                return;
+            case ScaPackage.DOCUMENT_ROOT__CONSTRAINING_TYPE:
+                setConstrainingType((ConstrainingType)newValue);
+                return;
+            case ScaPackage.DOCUMENT_ROOT__CONTRIBUTION:
+                setContribution((ContributionType)newValue);
+                return;
+            case ScaPackage.DOCUMENT_ROOT__DEFINITIONS:
+                setDefinitions((TDefinitions)newValue);
+                return;
+            case ScaPackage.DOCUMENT_ROOT__DOCUMENTATION:
+                setDocumentation((Documentation)newValue);
+                return;
+            case ScaPackage.DOCUMENT_ROOT__EXPORT:
+                setExport((ExportType)newValue);
+                return;
+            case ScaPackage.DOCUMENT_ROOT__EXPORT_C:
+                setExportC((CExport)newValue);
+                return;
+            case ScaPackage.DOCUMENT_ROOT__EXPORT_CPP:
+                setExportCpp((CPPExport)newValue);
+                return;
+            case ScaPackage.DOCUMENT_ROOT__EXPORT_JAVA:
+                setExportJava((JavaExportType)newValue);
+                return;
+            case ScaPackage.DOCUMENT_ROOT__IMPLEMENTATION_BPEL:
+                setImplementationBpel((BPELImplementation)newValue);
+                return;
+            case ScaPackage.DOCUMENT_ROOT__IMPLEMENTATION_C:
+                setImplementationC((CImplementation)newValue);
+                return;
+            case ScaPackage.DOCUMENT_ROOT__IMPLEMENTATION_COMPOSITE:
+                setImplementationComposite((SCAImplementation)newValue);
+                return;
+            case ScaPackage.DOCUMENT_ROOT__IMPLEMENTATION_CPP:
+                setImplementationCpp((CPPImplementation)newValue);
+                return;
+            case ScaPackage.DOCUMENT_ROOT__IMPLEMENTATION_EJB:
+                setImplementationEjb((EJBImplementation)newValue);
+                return;
+            case ScaPackage.DOCUMENT_ROOT__IMPLEMENTATION_JAVA:
+                setImplementationJava((JavaImplementation)newValue);
+                return;
+            case ScaPackage.DOCUMENT_ROOT__IMPLEMENTATION_JEE:
+                setImplementationJee((JEEImplementation)newValue);
+                return;
+            case ScaPackage.DOCUMENT_ROOT__IMPLEMENTATION_SPRING:
+                setImplementationSpring((SpringImplementation)newValue);
+                return;
+            case ScaPackage.DOCUMENT_ROOT__IMPLEMENTATION_WEB:
+                setImplementationWeb((WebImplementation)newValue);
+                return;
+            case ScaPackage.DOCUMENT_ROOT__IMPLEMENTATION_TYPE:
+                setImplementationType((ImplementationType)newValue);
+                return;
+            case ScaPackage.DOCUMENT_ROOT__IMPORT:
+                setImport((ImportType)newValue);
+                return;
+            case ScaPackage.DOCUMENT_ROOT__IMPORT_C:
+                setImportC((CImport)newValue);
+                return;
+            case ScaPackage.DOCUMENT_ROOT__IMPORT_CPP:
+                setImportCpp((CPPImport)newValue);
+                return;
+            case ScaPackage.DOCUMENT_ROOT__IMPORT_JAVA:
+                setImportJava((JavaImportType)newValue);
+                return;
+            case ScaPackage.DOCUMENT_ROOT__INCLUDE:
+                setInclude((Include)newValue);
+                return;
+            case ScaPackage.DOCUMENT_ROOT__INTENT:
+                setIntent((Intent)newValue);
+                return;
+            case ScaPackage.DOCUMENT_ROOT__INTERFACE_C:
+                setInterfaceC((CInterface)newValue);
+                return;
+            case ScaPackage.DOCUMENT_ROOT__INTERFACE_CPP:
+                setInterfaceCpp((CPPInterface)newValue);
+                return;
+            case ScaPackage.DOCUMENT_ROOT__INTERFACE_JAVA:
+                setInterfaceJava((JavaInterface)newValue);
+                return;
+            case ScaPackage.DOCUMENT_ROOT__INTERFACE_WSDL:
+                setInterfaceWsdl((WSDLPortType)newValue);
+                return;
+            case ScaPackage.DOCUMENT_ROOT__OPERATION_SELECTOR_JMS_DEFAULT:
+                setOperationSelectorJmsDefault((OperationSelectorType)newValue);
+                return;
+            case ScaPackage.DOCUMENT_ROOT__POLICY_SET:
+                setPolicySet((PolicySet)newValue);
+                return;
+            case ScaPackage.DOCUMENT_ROOT__POLICY_SET_ATTACHMENT:
+                setPolicySetAttachment((PolicySetAttachment)newValue);
+                return;
+            case ScaPackage.DOCUMENT_ROOT__VALUE:
+                setValue((ValueType)newValue);
+                return;
+            case ScaPackage.DOCUMENT_ROOT__WIRE_FORMAT_JMS_DEFAULT:
+                setWireFormatJmsDefault((WireFormatType)newValue);
+                return;
+            case ScaPackage.DOCUMENT_ROOT__WS_CALLBACK:
+                setWSCallback((WSCallbackType)newValue);
+                return;
+            case ScaPackage.DOCUMENT_ROOT__CALLBACK1:
+                setCallback1((String)newValue);
+                return;
+            case ScaPackage.DOCUMENT_ROOT__REQUIRES:
+                setRequires((List<QName>)newValue);
+                return;
+        }
+        super.eSet(featureID, newValue);
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	@Override
 	public void eUnset(int featureID) {
-		switch (featureID) {
-			case ScaPackage.DOCUMENT_ROOT__MIXED:
-				getMixed().clear();
-				return;
-			case ScaPackage.DOCUMENT_ROOT__XMLNS_PREFIX_MAP:
-				getXMLNSPrefixMap().clear();
-				return;
-			case ScaPackage.DOCUMENT_ROOT__XSI_SCHEMA_LOCATION:
-				getXSISchemaLocation().clear();
-				return;
-			case ScaPackage.DOCUMENT_ROOT__BINDING_EJB:
-				setBindingEjb((EJBSessionBeanBinding)null);
-				return;
-			case ScaPackage.DOCUMENT_ROOT__BINDING_JCA:
-				setBindingJca((JCABinding)null);
-				return;
-			case ScaPackage.DOCUMENT_ROOT__BINDING_JMS:
-				setBindingJms((JMSBinding)null);
-				return;
-			case ScaPackage.DOCUMENT_ROOT__BINDING_SCA:
-				setBindingSca((SCABinding)null);
-				return;
-			case ScaPackage.DOCUMENT_ROOT__BINDING_WS:
-				setBindingWs((WebServiceBinding)null);
-				return;
-			case ScaPackage.DOCUMENT_ROOT__BINDING_TYPE:
-				setBindingType((BindingType)null);
-				return;
-			case ScaPackage.DOCUMENT_ROOT__CALLBACK:
-				setCallback((Callback)null);
-				return;
-			case ScaPackage.DOCUMENT_ROOT__COMPONENT_TYPE:
-				setComponentType((ComponentType)null);
-				return;
-			case ScaPackage.DOCUMENT_ROOT__COMPOSITE:
-				setComposite((Composite)null);
-				return;
-			case ScaPackage.DOCUMENT_ROOT__CONSTRAINING_TYPE:
-				setConstrainingType((ConstrainingType)null);
-				return;
-			case ScaPackage.DOCUMENT_ROOT__CONTRIBUTION:
-				setContribution((ContributionType)null);
-				return;
-			case ScaPackage.DOCUMENT_ROOT__DEFINITIONS:
-				setDefinitions((TDefinitions)null);
-				return;
-			case ScaPackage.DOCUMENT_ROOT__DOCUMENTATION:
-				setDocumentation((Documentation)null);
-				return;
-			case ScaPackage.DOCUMENT_ROOT__EXPORT:
-				setExport((ExportType)null);
-				return;
-			case ScaPackage.DOCUMENT_ROOT__EXPORT_C:
-				setExportC((CExport)null);
-				return;
-			case ScaPackage.DOCUMENT_ROOT__EXPORT_CPP:
-				setExportCpp((CPPExport)null);
-				return;
-			case ScaPackage.DOCUMENT_ROOT__EXPORT_JAVA:
-				setExportJava((JavaExportType)null);
-				return;
-			case ScaPackage.DOCUMENT_ROOT__IMPLEMENTATION_BPEL:
-				setImplementationBpel((BPELImplementation)null);
-				return;
-			case ScaPackage.DOCUMENT_ROOT__IMPLEMENTATION_C:
-				setImplementationC((CImplementation)null);
-				return;
-			case ScaPackage.DOCUMENT_ROOT__IMPLEMENTATION_COMPOSITE:
-				setImplementationComposite((SCAImplementation)null);
-				return;
-			case ScaPackage.DOCUMENT_ROOT__IMPLEMENTATION_CPP:
-				setImplementationCpp((CPPImplementation)null);
-				return;
-			case ScaPackage.DOCUMENT_ROOT__IMPLEMENTATION_EJB:
-				setImplementationEjb((EJBImplementation)null);
-				return;
-			case ScaPackage.DOCUMENT_ROOT__IMPLEMENTATION_JAVA:
-				setImplementationJava((JavaImplementation)null);
-				return;
-			case ScaPackage.DOCUMENT_ROOT__IMPLEMENTATION_JEE:
-				setImplementationJee((JEEImplementation)null);
-				return;
-			case ScaPackage.DOCUMENT_ROOT__IMPLEMENTATION_SPRING:
-				setImplementationSpring((SpringImplementation)null);
-				return;
-			case ScaPackage.DOCUMENT_ROOT__IMPLEMENTATION_WEB:
-				setImplementationWeb((WebImplementation)null);
-				return;
-			case ScaPackage.DOCUMENT_ROOT__IMPLEMENTATION_TYPE:
-				setImplementationType((ImplementationType)null);
-				return;
-			case ScaPackage.DOCUMENT_ROOT__IMPORT:
-				setImport((ImportType)null);
-				return;
-			case ScaPackage.DOCUMENT_ROOT__IMPORT_C:
-				setImportC((CImport)null);
-				return;
-			case ScaPackage.DOCUMENT_ROOT__IMPORT_CPP:
-				setImportCpp((CPPImport)null);
-				return;
-			case ScaPackage.DOCUMENT_ROOT__IMPORT_JAVA:
-				setImportJava((JavaImportType)null);
-				return;
-			case ScaPackage.DOCUMENT_ROOT__INCLUDE:
-				setInclude((Include)null);
-				return;
-			case ScaPackage.DOCUMENT_ROOT__INTENT:
-				setIntent((Intent)null);
-				return;
-			case ScaPackage.DOCUMENT_ROOT__INTERFACE_C:
-				setInterfaceC((CInterface)null);
-				return;
-			case ScaPackage.DOCUMENT_ROOT__INTERFACE_CPP:
-				setInterfaceCpp((CPPInterface)null);
-				return;
-			case ScaPackage.DOCUMENT_ROOT__INTERFACE_JAVA:
-				setInterfaceJava((JavaInterface)null);
-				return;
-			case ScaPackage.DOCUMENT_ROOT__INTERFACE_WSDL:
-				setInterfaceWsdl((WSDLPortType)null);
-				return;
-			case ScaPackage.DOCUMENT_ROOT__OPERATION_SELECTOR_JMS_DEFAULT:
-				setOperationSelectorJmsDefault((OperationSelectorType)null);
-				return;
-			case ScaPackage.DOCUMENT_ROOT__POLICY_SET:
-				setPolicySet((PolicySet)null);
-				return;
-			case ScaPackage.DOCUMENT_ROOT__POLICY_SET_ATTACHMENT:
-				setPolicySetAttachment((PolicySetAttachment)null);
-				return;
-			case ScaPackage.DOCUMENT_ROOT__VALUE:
-				setValue((ValueType)null);
-				return;
-			case ScaPackage.DOCUMENT_ROOT__WIRE_FORMAT_JMS_DEFAULT:
-				setWireFormatJmsDefault((WireFormatType)null);
-				return;
-			case ScaPackage.DOCUMENT_ROOT__WS_CALLBACK:
-				setWSCallback((WSCallbackType)null);
-				return;
-			case ScaPackage.DOCUMENT_ROOT__CALLBACK1:
-				setCallback1(CALLBACK1_EDEFAULT);
-				return;
-			case ScaPackage.DOCUMENT_ROOT__REQUIRES:
-				setRequires(REQUIRES_EDEFAULT);
-				return;
-		}
-		super.eUnset(featureID);
-	}
+        switch (featureID) {
+            case ScaPackage.DOCUMENT_ROOT__MIXED:
+                getMixed().clear();
+                return;
+            case ScaPackage.DOCUMENT_ROOT__XMLNS_PREFIX_MAP:
+                getXMLNSPrefixMap().clear();
+                return;
+            case ScaPackage.DOCUMENT_ROOT__XSI_SCHEMA_LOCATION:
+                getXSISchemaLocation().clear();
+                return;
+            case ScaPackage.DOCUMENT_ROOT__BINDING_EJB:
+                setBindingEjb((EJBSessionBeanBinding)null);
+                return;
+            case ScaPackage.DOCUMENT_ROOT__BINDING_JCA:
+                setBindingJca((JCABinding)null);
+                return;
+            case ScaPackage.DOCUMENT_ROOT__BINDING_JMS:
+                setBindingJms((JMSBinding)null);
+                return;
+            case ScaPackage.DOCUMENT_ROOT__BINDING_SCA:
+                setBindingSca((SCABinding)null);
+                return;
+            case ScaPackage.DOCUMENT_ROOT__BINDING_WS:
+                setBindingWs((WebServiceBinding)null);
+                return;
+            case ScaPackage.DOCUMENT_ROOT__BINDING_TYPE:
+                setBindingType((BindingType)null);
+                return;
+            case ScaPackage.DOCUMENT_ROOT__CALLBACK:
+                setCallback((Callback)null);
+                return;
+            case ScaPackage.DOCUMENT_ROOT__COMPONENT_TYPE:
+                setComponentType((ComponentType)null);
+                return;
+            case ScaPackage.DOCUMENT_ROOT__COMPOSITE:
+                setComposite((Composite)null);
+                return;
+            case ScaPackage.DOCUMENT_ROOT__CONSTRAINING_TYPE:
+                setConstrainingType((ConstrainingType)null);
+                return;
+            case ScaPackage.DOCUMENT_ROOT__CONTRIBUTION:
+                setContribution((ContributionType)null);
+                return;
+            case ScaPackage.DOCUMENT_ROOT__DEFINITIONS:
+                setDefinitions((TDefinitions)null);
+                return;
+            case ScaPackage.DOCUMENT_ROOT__DOCUMENTATION:
+                setDocumentation((Documentation)null);
+                return;
+            case ScaPackage.DOCUMENT_ROOT__EXPORT:
+                setExport((ExportType)null);
+                return;
+            case ScaPackage.DOCUMENT_ROOT__EXPORT_C:
+                setExportC((CExport)null);
+                return;
+            case ScaPackage.DOCUMENT_ROOT__EXPORT_CPP:
+                setExportCpp((CPPExport)null);
+                return;
+            case ScaPackage.DOCUMENT_ROOT__EXPORT_JAVA:
+                setExportJava((JavaExportType)null);
+                return;
+            case ScaPackage.DOCUMENT_ROOT__IMPLEMENTATION_BPEL:
+                setImplementationBpel((BPELImplementation)null);
+                return;
+            case ScaPackage.DOCUMENT_ROOT__IMPLEMENTATION_C:
+                setImplementationC((CImplementation)null);
+                return;
+            case ScaPackage.DOCUMENT_ROOT__IMPLEMENTATION_COMPOSITE:
+                setImplementationComposite((SCAImplementation)null);
+                return;
+            case ScaPackage.DOCUMENT_ROOT__IMPLEMENTATION_CPP:
+                setImplementationCpp((CPPImplementation)null);
+                return;
+            case ScaPackage.DOCUMENT_ROOT__IMPLEMENTATION_EJB:
+                setImplementationEjb((EJBImplementation)null);
+                return;
+            case ScaPackage.DOCUMENT_ROOT__IMPLEMENTATION_JAVA:
+                setImplementationJava((JavaImplementation)null);
+                return;
+            case ScaPackage.DOCUMENT_ROOT__IMPLEMENTATION_JEE:
+                setImplementationJee((JEEImplementation)null);
+                return;
+            case ScaPackage.DOCUMENT_ROOT__IMPLEMENTATION_SPRING:
+                setImplementationSpring((SpringImplementation)null);
+                return;
+            case ScaPackage.DOCUMENT_ROOT__IMPLEMENTATION_WEB:
+                setImplementationWeb((WebImplementation)null);
+                return;
+            case ScaPackage.DOCUMENT_ROOT__IMPLEMENTATION_TYPE:
+                setImplementationType((ImplementationType)null);
+                return;
+            case ScaPackage.DOCUMENT_ROOT__IMPORT:
+                setImport((ImportType)null);
+                return;
+            case ScaPackage.DOCUMENT_ROOT__IMPORT_C:
+                setImportC((CImport)null);
+                return;
+            case ScaPackage.DOCUMENT_ROOT__IMPORT_CPP:
+                setImportCpp((CPPImport)null);
+                return;
+            case ScaPackage.DOCUMENT_ROOT__IMPORT_JAVA:
+                setImportJava((JavaImportType)null);
+                return;
+            case ScaPackage.DOCUMENT_ROOT__INCLUDE:
+                setInclude((Include)null);
+                return;
+            case ScaPackage.DOCUMENT_ROOT__INTENT:
+                setIntent((Intent)null);
+                return;
+            case ScaPackage.DOCUMENT_ROOT__INTERFACE_C:
+                setInterfaceC((CInterface)null);
+                return;
+            case ScaPackage.DOCUMENT_ROOT__INTERFACE_CPP:
+                setInterfaceCpp((CPPInterface)null);
+                return;
+            case ScaPackage.DOCUMENT_ROOT__INTERFACE_JAVA:
+                setInterfaceJava((JavaInterface)null);
+                return;
+            case ScaPackage.DOCUMENT_ROOT__INTERFACE_WSDL:
+                setInterfaceWsdl((WSDLPortType)null);
+                return;
+            case ScaPackage.DOCUMENT_ROOT__OPERATION_SELECTOR_JMS_DEFAULT:
+                setOperationSelectorJmsDefault((OperationSelectorType)null);
+                return;
+            case ScaPackage.DOCUMENT_ROOT__POLICY_SET:
+                setPolicySet((PolicySet)null);
+                return;
+            case ScaPackage.DOCUMENT_ROOT__POLICY_SET_ATTACHMENT:
+                setPolicySetAttachment((PolicySetAttachment)null);
+                return;
+            case ScaPackage.DOCUMENT_ROOT__VALUE:
+                setValue((ValueType)null);
+                return;
+            case ScaPackage.DOCUMENT_ROOT__WIRE_FORMAT_JMS_DEFAULT:
+                setWireFormatJmsDefault((WireFormatType)null);
+                return;
+            case ScaPackage.DOCUMENT_ROOT__WS_CALLBACK:
+                setWSCallback((WSCallbackType)null);
+                return;
+            case ScaPackage.DOCUMENT_ROOT__CALLBACK1:
+                setCallback1(CALLBACK1_EDEFAULT);
+                return;
+            case ScaPackage.DOCUMENT_ROOT__REQUIRES:
+                setRequires(REQUIRES_EDEFAULT);
+                return;
+        }
+        super.eUnset(featureID);
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	@Override
 	public boolean eIsSet(int featureID) {
-		switch (featureID) {
-			case ScaPackage.DOCUMENT_ROOT__MIXED:
-				return mixed != null && !mixed.isEmpty();
-			case ScaPackage.DOCUMENT_ROOT__XMLNS_PREFIX_MAP:
-				return xMLNSPrefixMap != null && !xMLNSPrefixMap.isEmpty();
-			case ScaPackage.DOCUMENT_ROOT__XSI_SCHEMA_LOCATION:
-				return xSISchemaLocation != null && !xSISchemaLocation.isEmpty();
-			case ScaPackage.DOCUMENT_ROOT__BINDING:
-				return getBinding() != null;
-			case ScaPackage.DOCUMENT_ROOT__BINDING_EJB:
-				return getBindingEjb() != null;
-			case ScaPackage.DOCUMENT_ROOT__BINDING_JCA:
-				return getBindingJca() != null;
-			case ScaPackage.DOCUMENT_ROOT__BINDING_JMS:
-				return getBindingJms() != null;
-			case ScaPackage.DOCUMENT_ROOT__BINDING_SCA:
-				return getBindingSca() != null;
-			case ScaPackage.DOCUMENT_ROOT__BINDING_WS:
-				return getBindingWs() != null;
-			case ScaPackage.DOCUMENT_ROOT__BINDING_TYPE:
-				return getBindingType() != null;
-			case ScaPackage.DOCUMENT_ROOT__CALLBACK:
-				return getCallback() != null;
-			case ScaPackage.DOCUMENT_ROOT__COMPONENT_TYPE:
-				return getComponentType() != null;
-			case ScaPackage.DOCUMENT_ROOT__COMPOSITE:
-				return getComposite() != null;
-			case ScaPackage.DOCUMENT_ROOT__CONSTRAINING_TYPE:
-				return getConstrainingType() != null;
-			case ScaPackage.DOCUMENT_ROOT__CONTRIBUTION:
-				return getContribution() != null;
-			case ScaPackage.DOCUMENT_ROOT__DEFINITIONS:
-				return getDefinitions() != null;
-			case ScaPackage.DOCUMENT_ROOT__DOCUMENTATION:
-				return getDocumentation() != null;
-			case ScaPackage.DOCUMENT_ROOT__EXPORT:
-				return getExport() != null;
-			case ScaPackage.DOCUMENT_ROOT__EXPORT_BASE:
-				return getExportBase() != null;
-			case ScaPackage.DOCUMENT_ROOT__EXPORT_C:
-				return getExportC() != null;
-			case ScaPackage.DOCUMENT_ROOT__EXPORT_CPP:
-				return getExportCpp() != null;
-			case ScaPackage.DOCUMENT_ROOT__EXPORT_JAVA:
-				return getExportJava() != null;
-			case ScaPackage.DOCUMENT_ROOT__IMPLEMENTATION:
-				return getImplementation() != null;
-			case ScaPackage.DOCUMENT_ROOT__IMPLEMENTATION_BPEL:
-				return getImplementationBpel() != null;
-			case ScaPackage.DOCUMENT_ROOT__IMPLEMENTATION_C:
-				return getImplementationC() != null;
-			case ScaPackage.DOCUMENT_ROOT__IMPLEMENTATION_COMPOSITE:
-				return getImplementationComposite() != null;
-			case ScaPackage.DOCUMENT_ROOT__IMPLEMENTATION_CPP:
-				return getImplementationCpp() != null;
-			case ScaPackage.DOCUMENT_ROOT__IMPLEMENTATION_EJB:
-				return getImplementationEjb() != null;
-			case ScaPackage.DOCUMENT_ROOT__IMPLEMENTATION_JAVA:
-				return getImplementationJava() != null;
-			case ScaPackage.DOCUMENT_ROOT__IMPLEMENTATION_JEE:
-				return getImplementationJee() != null;
-			case ScaPackage.DOCUMENT_ROOT__IMPLEMENTATION_SPRING:
-				return getImplementationSpring() != null;
-			case ScaPackage.DOCUMENT_ROOT__IMPLEMENTATION_WEB:
-				return getImplementationWeb() != null;
-			case ScaPackage.DOCUMENT_ROOT__IMPLEMENTATION_TYPE:
-				return getImplementationType() != null;
-			case ScaPackage.DOCUMENT_ROOT__IMPORT:
-				return getImport() != null;
-			case ScaPackage.DOCUMENT_ROOT__IMPORT_BASE:
-				return getImportBase() != null;
-			case ScaPackage.DOCUMENT_ROOT__IMPORT_C:
-				return getImportC() != null;
-			case ScaPackage.DOCUMENT_ROOT__IMPORT_CPP:
-				return getImportCpp() != null;
-			case ScaPackage.DOCUMENT_ROOT__IMPORT_JAVA:
-				return getImportJava() != null;
-			case ScaPackage.DOCUMENT_ROOT__INCLUDE:
-				return getInclude() != null;
-			case ScaPackage.DOCUMENT_ROOT__INTENT:
-				return getIntent() != null;
-			case ScaPackage.DOCUMENT_ROOT__INTERFACE:
-				return getInterface() != null;
-			case ScaPackage.DOCUMENT_ROOT__INTERFACE_C:
-				return getInterfaceC() != null;
-			case ScaPackage.DOCUMENT_ROOT__INTERFACE_CPP:
-				return getInterfaceCpp() != null;
-			case ScaPackage.DOCUMENT_ROOT__INTERFACE_JAVA:
-				return getInterfaceJava() != null;
-			case ScaPackage.DOCUMENT_ROOT__INTERFACE_WSDL:
-				return getInterfaceWsdl() != null;
-			case ScaPackage.DOCUMENT_ROOT__OPERATION_SELECTOR:
-				return getOperationSelector() != null;
-			case ScaPackage.DOCUMENT_ROOT__OPERATION_SELECTOR_JMS_DEFAULT:
-				return getOperationSelectorJmsDefault() != null;
-			case ScaPackage.DOCUMENT_ROOT__POLICY_SET:
-				return getPolicySet() != null;
-			case ScaPackage.DOCUMENT_ROOT__POLICY_SET_ATTACHMENT:
-				return getPolicySetAttachment() != null;
-			case ScaPackage.DOCUMENT_ROOT__VALUE:
-				return getValue() != null;
-			case ScaPackage.DOCUMENT_ROOT__WIRE_FORMAT:
-				return getWireFormat() != null;
-			case ScaPackage.DOCUMENT_ROOT__WIRE_FORMAT_JMS_DEFAULT:
-				return getWireFormatJmsDefault() != null;
-			case ScaPackage.DOCUMENT_ROOT__WS_CALLBACK:
-				return getWSCallback() != null;
-			case ScaPackage.DOCUMENT_ROOT__CALLBACK1:
-				return CALLBACK1_EDEFAULT == null ? callback1 != null : !CALLBACK1_EDEFAULT.equals(callback1);
-			case ScaPackage.DOCUMENT_ROOT__REQUIRES:
-				return REQUIRES_EDEFAULT == null ? requires != null : !REQUIRES_EDEFAULT.equals(requires);
-		}
-		return super.eIsSet(featureID);
-	}
+        switch (featureID) {
+            case ScaPackage.DOCUMENT_ROOT__MIXED:
+                return mixed != null && !mixed.isEmpty();
+            case ScaPackage.DOCUMENT_ROOT__XMLNS_PREFIX_MAP:
+                return xMLNSPrefixMap != null && !xMLNSPrefixMap.isEmpty();
+            case ScaPackage.DOCUMENT_ROOT__XSI_SCHEMA_LOCATION:
+                return xSISchemaLocation != null && !xSISchemaLocation.isEmpty();
+            case ScaPackage.DOCUMENT_ROOT__BINDING:
+                return getBinding() != null;
+            case ScaPackage.DOCUMENT_ROOT__BINDING_EJB:
+                return getBindingEjb() != null;
+            case ScaPackage.DOCUMENT_ROOT__BINDING_JCA:
+                return getBindingJca() != null;
+            case ScaPackage.DOCUMENT_ROOT__BINDING_JMS:
+                return getBindingJms() != null;
+            case ScaPackage.DOCUMENT_ROOT__BINDING_SCA:
+                return getBindingSca() != null;
+            case ScaPackage.DOCUMENT_ROOT__BINDING_WS:
+                return getBindingWs() != null;
+            case ScaPackage.DOCUMENT_ROOT__BINDING_TYPE:
+                return getBindingType() != null;
+            case ScaPackage.DOCUMENT_ROOT__CALLBACK:
+                return getCallback() != null;
+            case ScaPackage.DOCUMENT_ROOT__COMPONENT_TYPE:
+                return getComponentType() != null;
+            case ScaPackage.DOCUMENT_ROOT__COMPOSITE:
+                return getComposite() != null;
+            case ScaPackage.DOCUMENT_ROOT__CONSTRAINING_TYPE:
+                return getConstrainingType() != null;
+            case ScaPackage.DOCUMENT_ROOT__CONTRIBUTION:
+                return getContribution() != null;
+            case ScaPackage.DOCUMENT_ROOT__DEFINITIONS:
+                return getDefinitions() != null;
+            case ScaPackage.DOCUMENT_ROOT__DOCUMENTATION:
+                return getDocumentation() != null;
+            case ScaPackage.DOCUMENT_ROOT__EXPORT:
+                return getExport() != null;
+            case ScaPackage.DOCUMENT_ROOT__EXPORT_BASE:
+                return getExportBase() != null;
+            case ScaPackage.DOCUMENT_ROOT__EXPORT_C:
+                return getExportC() != null;
+            case ScaPackage.DOCUMENT_ROOT__EXPORT_CPP:
+                return getExportCpp() != null;
+            case ScaPackage.DOCUMENT_ROOT__EXPORT_JAVA:
+                return getExportJava() != null;
+            case ScaPackage.DOCUMENT_ROOT__IMPLEMENTATION:
+                return getImplementation() != null;
+            case ScaPackage.DOCUMENT_ROOT__IMPLEMENTATION_BPEL:
+                return getImplementationBpel() != null;
+            case ScaPackage.DOCUMENT_ROOT__IMPLEMENTATION_C:
+                return getImplementationC() != null;
+            case ScaPackage.DOCUMENT_ROOT__IMPLEMENTATION_COMPOSITE:
+                return getImplementationComposite() != null;
+            case ScaPackage.DOCUMENT_ROOT__IMPLEMENTATION_CPP:
+                return getImplementationCpp() != null;
+            case ScaPackage.DOCUMENT_ROOT__IMPLEMENTATION_EJB:
+                return getImplementationEjb() != null;
+            case ScaPackage.DOCUMENT_ROOT__IMPLEMENTATION_JAVA:
+                return getImplementationJava() != null;
+            case ScaPackage.DOCUMENT_ROOT__IMPLEMENTATION_JEE:
+                return getImplementationJee() != null;
+            case ScaPackage.DOCUMENT_ROOT__IMPLEMENTATION_SPRING:
+                return getImplementationSpring() != null;
+            case ScaPackage.DOCUMENT_ROOT__IMPLEMENTATION_WEB:
+                return getImplementationWeb() != null;
+            case ScaPackage.DOCUMENT_ROOT__IMPLEMENTATION_TYPE:
+                return getImplementationType() != null;
+            case ScaPackage.DOCUMENT_ROOT__IMPORT:
+                return getImport() != null;
+            case ScaPackage.DOCUMENT_ROOT__IMPORT_BASE:
+                return getImportBase() != null;
+            case ScaPackage.DOCUMENT_ROOT__IMPORT_C:
+                return getImportC() != null;
+            case ScaPackage.DOCUMENT_ROOT__IMPORT_CPP:
+                return getImportCpp() != null;
+            case ScaPackage.DOCUMENT_ROOT__IMPORT_JAVA:
+                return getImportJava() != null;
+            case ScaPackage.DOCUMENT_ROOT__INCLUDE:
+                return getInclude() != null;
+            case ScaPackage.DOCUMENT_ROOT__INTENT:
+                return getIntent() != null;
+            case ScaPackage.DOCUMENT_ROOT__INTERFACE:
+                return getInterface() != null;
+            case ScaPackage.DOCUMENT_ROOT__INTERFACE_C:
+                return getInterfaceC() != null;
+            case ScaPackage.DOCUMENT_ROOT__INTERFACE_CPP:
+                return getInterfaceCpp() != null;
+            case ScaPackage.DOCUMENT_ROOT__INTERFACE_JAVA:
+                return getInterfaceJava() != null;
+            case ScaPackage.DOCUMENT_ROOT__INTERFACE_WSDL:
+                return getInterfaceWsdl() != null;
+            case ScaPackage.DOCUMENT_ROOT__OPERATION_SELECTOR:
+                return getOperationSelector() != null;
+            case ScaPackage.DOCUMENT_ROOT__OPERATION_SELECTOR_JMS_DEFAULT:
+                return getOperationSelectorJmsDefault() != null;
+            case ScaPackage.DOCUMENT_ROOT__POLICY_SET:
+                return getPolicySet() != null;
+            case ScaPackage.DOCUMENT_ROOT__POLICY_SET_ATTACHMENT:
+                return getPolicySetAttachment() != null;
+            case ScaPackage.DOCUMENT_ROOT__VALUE:
+                return getValue() != null;
+            case ScaPackage.DOCUMENT_ROOT__WIRE_FORMAT:
+                return getWireFormat() != null;
+            case ScaPackage.DOCUMENT_ROOT__WIRE_FORMAT_JMS_DEFAULT:
+                return getWireFormatJmsDefault() != null;
+            case ScaPackage.DOCUMENT_ROOT__WS_CALLBACK:
+                return getWSCallback() != null;
+            case ScaPackage.DOCUMENT_ROOT__CALLBACK1:
+                return CALLBACK1_EDEFAULT == null ? callback1 != null : !CALLBACK1_EDEFAULT.equals(callback1);
+            case ScaPackage.DOCUMENT_ROOT__REQUIRES:
+                return REQUIRES_EDEFAULT == null ? requires != null : !REQUIRES_EDEFAULT.equals(requires);
+        }
+        return super.eIsSet(featureID);
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	@Override
 	public String toString() {
-		if (eIsProxy()) return super.toString();
+        if (eIsProxy()) return super.toString();
 
-		StringBuffer result = new StringBuffer(super.toString());
-		result.append(" (mixed: ");
-		result.append(mixed);
-		result.append(", callback1: ");
-		result.append(callback1);
-		result.append(", requires: ");
-		result.append(requires);
-		result.append(')');
-		return result.toString();
-	}
+        StringBuffer result = new StringBuffer(super.toString());
+        result.append(" (mixed: ");
+        result.append(mixed);
+        result.append(", callback1: ");
+        result.append(callback1);
+        result.append(", requires: ");
+        result.append(requires);
+        result.append(')');
+        return result.toString();
+    }
 
 } //DocumentRootImpl

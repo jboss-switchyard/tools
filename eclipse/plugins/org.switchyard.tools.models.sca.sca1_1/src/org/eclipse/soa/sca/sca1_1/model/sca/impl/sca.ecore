@@ -54,7 +54,7 @@
       </eAnnotations>
     </eStructuralFeatures>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="Binding" abstract="true" eSuperTypes="#//CommonExtensionBase">
+  <eClassifiers xsi:type="ecore:EClass" name="Binding" abstract="true" eSuperTypes="#//CommonExtensionBase #//ExtendableType">
     <eAnnotations source="http:///org/eclipse/emf/ecore/util/ExtendedMetaData">
       <details key="name" value="Binding"/>
       <details key="kind" value="elementOnly"/>
@@ -2177,7 +2177,7 @@
       </eAnnotations>
     </eStructuralFeatures>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="Implementation" abstract="true" eSuperTypes="#//CommonExtensionBase">
+  <eClassifiers xsi:type="ecore:EClass" name="Implementation" abstract="true" eSuperTypes="#//CommonExtensionBase #//ExtendableType">
     <eAnnotations source="http:///org/eclipse/emf/ecore/util/ExtendedMetaData">
       <details key="name" value="Implementation"/>
       <details key="kind" value="elementOnly"/>
@@ -2516,7 +2516,7 @@
       </eAnnotations>
     </eStructuralFeatures>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="Interface" abstract="true" eSuperTypes="#//CommonExtensionBase">
+  <eClassifiers xsi:type="ecore:EClass" name="Interface" abstract="true" eSuperTypes="#//CommonExtensionBase #//ExtendableType">
     <eAnnotations source="http:///org/eclipse/emf/ecore/util/ExtendedMetaData">
       <details key="name" value="Interface"/>
       <details key="kind" value="elementOnly"/>
@@ -4263,5 +4263,12 @@
         <details key="processing" value="lax"/>
       </eAnnotations>
     </eStructuralFeatures>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="ExtendableType" abstract="true" interface="true">
+    <eAnnotations source="http:///org/eclipse/emf/ecore/util/ExtendedMetaData">
+      <details key="name" value="ExtendableType"/>
+      <details key="kind" value="empty"/>
+    </eAnnotations>
+    <eOperations name="getDocumentFeature" eType="ecore:EClass http://www.eclipse.org/emf/2002/Ecore#//EStructuralFeature"/>
   </eClassifiers>
 </ecore:EPackage>

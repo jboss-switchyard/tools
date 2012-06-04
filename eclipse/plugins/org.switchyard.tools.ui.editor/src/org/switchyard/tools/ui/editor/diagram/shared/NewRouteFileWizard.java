@@ -14,18 +14,27 @@ package org.switchyard.tools.ui.editor.diagram.shared;
 
 import java.io.IOException;
 import java.io.InputStream;
+import java.util.EnumSet;
 
 import org.eclipse.core.resources.IFile;
 import org.eclipse.core.resources.IFolder;
-import org.eclipse.core.resources.IResource;
+import org.eclipse.core.resources.ResourcesPlugin;
 import org.eclipse.core.runtime.CoreException;
 import org.eclipse.core.runtime.FileLocator;
 import org.eclipse.core.runtime.IStatus;
 import org.eclipse.core.runtime.Path;
 import org.eclipse.core.runtime.Status;
-import org.eclipse.jdt.core.IJavaElement;
-import org.eclipse.jdt.core.IPackageFragmentRoot;
+import org.eclipse.jdt.core.IJavaProject;
+import org.eclipse.jdt.core.JavaCore;
+import org.eclipse.jface.viewers.ISelectionChangedListener;
 import org.eclipse.jface.viewers.IStructuredSelection;
+import org.eclipse.jface.viewers.SelectionChangedEvent;
+import org.eclipse.soa.sca.sca1_1.model.sca.ComponentService;
+import org.eclipse.soa.sca.sca1_1.model.sca.Interface;
+import org.eclipse.soa.sca.sca1_1.model.sca.ScaFactory;
+import org.eclipse.swt.SWT;
+import org.eclipse.swt.layout.GridData;
+import org.eclipse.swt.layout.GridLayout;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.ui.IWorkbench;
 import org.eclipse.ui.IWorkbenchPage;
@@ -35,6 +44,8 @@ import org.eclipse.ui.dialogs.WizardNewFileCreationPage;
 import org.eclipse.ui.ide.IDE;
 import org.eclipse.ui.wizards.newresource.BasicNewFileResourceWizard;
 import org.switchyard.tools.ui.editor.Activator;
+import org.switchyard.tools.ui.editor.diagram.shared.InterfaceControl.InterfaceType;
+import org.switchyard.tools.ui.editor.util.JavaUtil;
 
 /**
  * @author bfitzpat
@@ -42,8 +53,10 @@ import org.switchyard.tools.ui.editor.Activator;
  */
 class NewRouteFileWizard extends BasicNewFileResourceWizard {
 
+    private RouteFileCreationPage _page;
     private boolean _openFileAfterCreate = false;
     private String _createdFilePath = null;
+    private ComponentService _service;
 
     /*
      * (non-Javadoc)
@@ -54,31 +67,13 @@ class NewRouteFileWizard extends BasicNewFileResourceWizard {
      */
     @Override
     public boolean performFinish() {
-        RouteFileCreationPage filePage = (RouteFileCreationPage) getPage("newFilePage1");
-        if (filePage != null) {
-            IFile file = filePage.createNewFile();
+        if (_page != null) {
+            IFile file = _page.createNewFile();
             if (file == null) {
                 return false;
             }
 
-            if (getSelection().getFirstElement() instanceof IPackageFragmentRoot) {
-                IPackageFragmentRoot root = (IPackageFragmentRoot) getSelection().getFirstElement();
-                IResource resource = root.getResource();
-                if (resource == null) {
-                    IJavaElement element = root.getParent();
-                    resource = element.getResource();
-                }
-                if (resource instanceof IFile) {
-                    resource = ((IFile)resource).getParent();
-                }
-                if (resource instanceof IFolder) {
-                    IFolder folder = (IFolder) resource;
-                    IFolder parent = (IFolder) folder.getParent();
-                    _createdFilePath = file.getProjectRelativePath().makeRelativeTo(parent.getProjectRelativePath()).toPortableString();
-                }
-            } else {
-                _createdFilePath = file.getProjectRelativePath().toPortableString();
-            }
+            _createdFilePath = JavaUtil.getJavaPathForResource(file).toString();
 
             try {
                 InputStream inputStream = FileLocator.openStream(Activator.getDefault().getBundle(), new Path(
@@ -113,6 +108,10 @@ class NewRouteFileWizard extends BasicNewFileResourceWizard {
         return false;
     }
 
+    public ComponentService getService() {
+        return _service;
+    }
+
     public String getCreatedFilePath() {
         return _createdFilePath;
     }
@@ -129,19 +128,16 @@ class NewRouteFileWizard extends BasicNewFileResourceWizard {
      */
     @Override
     public void addPages() {
-        RouteFileCreationPage filePage = new RouteFileCreationPage("newFilePage1", getSelection());
-        // WizardNewFileCreationPage filePage = (WizardNewFileCreationPage)
-        // getPage("newFilePage1");
-        if (filePage != null) {
-            filePage.setTitle("Route File");
-            filePage.setDescription("Create a new Camel Route file resource.");
-            filePage.setFileName("route.xml");
-            if (this._createdFilePath != null) {
-                filePage.setFileName(_createdFilePath);
+        _page = new RouteFileCreationPage("newFilePage1", getSelection());
+        if (_page != null) {
+            _page.setTitle("Route File");
+            _page.setDescription("Create a new Camel Route file resource.");
+            _page.setFileName("route.xml");
+            if (_createdFilePath != null) {
+                _page.setFileName(_createdFilePath);
             }
         }
-        // super.addPages();
-        addPage(filePage);
+        addPage(_page);
     }
 
     /*
@@ -154,10 +150,12 @@ class NewRouteFileWizard extends BasicNewFileResourceWizard {
     @Override
     public void init(IWorkbench workbench, IStructuredSelection currentSelection) {
         super.init(workbench, currentSelection);
-        setWindowTitle("New Route File");
+        setWindowTitle("New Camel XML Route File");
     }
 
     private class RouteFileCreationPage extends WizardNewFileCreationPage {
+
+        private InterfaceControl _interfaceControl;
 
         public RouteFileCreationPage(String pageName, IStructuredSelection selection) {
             super(pageName, selection);
@@ -165,7 +163,35 @@ class NewRouteFileWizard extends BasicNewFileResourceWizard {
 
         @Override
         protected void createAdvancedControls(Composite parent) {
-            // empty - no controls
+            Composite contents = new Composite(parent, SWT.NONE);
+            contents.setLayout(new GridLayout(3, false));
+            contents.setLayoutData(new GridData(GridData.FILL_HORIZONTAL));
+
+            _interfaceControl = new InterfaceControl(getJavaProject(), EnumSet.of(InterfaceType.Java,
+                    InterfaceType.WSDL));
+            _interfaceControl.createControl(contents, 3);
+            _interfaceControl.addSelectionChangedListener(new ISelectionChangedListener() {
+                @Override
+                public void selectionChanged(SelectionChangedEvent event) {
+                    setPageComplete(validatePage());
+                }
+            });
+        }
+
+        @Override
+        protected boolean validatePage() {
+            if (super.validatePage()) {
+                IStatus status = _interfaceControl.getStatus();
+                if (status.getSeverity() < Status.ERROR) {
+                    if (!status.isOK()) {
+                        setMessage(status.getMessage(), status.getSeverity() == IStatus.WARNING ? WARNING : INFORMATION);
+                    }
+                    return true;
+                }
+                setErrorMessage(status.getMessage());
+                return false;
+            }
+            return false;
         }
 
         @Override
@@ -175,7 +201,23 @@ class NewRouteFileWizard extends BasicNewFileResourceWizard {
 
         @Override
         protected void createLinkTarget() {
-            // empty
+            IStructuredSelection selection = (IStructuredSelection) _interfaceControl.getSelection();
+            if (selection.isEmpty()) {
+                _service = null;
+                return;
+            }
+            Interface intf = (Interface) selection.getFirstElement();
+            _service = ScaFactory.eINSTANCE.createComponentService();
+            _service.setName(InterfaceControl.getSimpleServiceInterfaceName(intf));
+            _service.getInterfaceGroup().set(intf.getDocumentFeature(), intf);
+        }
+
+        private IJavaProject getJavaProject() {
+            IFolder folder = ResourcesPlugin.getWorkspace().getRoot().getFolder(getContainerFullPath());
+            if (folder == null) {
+                return null;
+            }
+            return JavaCore.create(folder.getProject());
         }
 
     }

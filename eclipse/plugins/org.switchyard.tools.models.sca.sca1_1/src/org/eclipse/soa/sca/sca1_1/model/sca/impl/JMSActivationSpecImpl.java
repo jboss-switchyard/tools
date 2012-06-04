@@ -44,272 +44,272 @@ import org.eclipse.soa.sca.sca1_1.model.sca.ScaPackage;
  */
 public class JMSActivationSpecImpl extends EObjectImpl implements JMSActivationSpec {
 	/**
-	 * The cached value of the '{@link #getProperty() <em>Property</em>}' containment reference list.
-	 * <!-- begin-user-doc -->
+     * The cached value of the '{@link #getProperty() <em>Property</em>}' containment reference list.
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #getProperty()
-	 * @generated
-	 * @ordered
-	 */
+     * @see #getProperty()
+     * @generated
+     * @ordered
+     */
 	protected EList<BindingProperty> property;
 
 	/**
-	 * The default value of the '{@link #getCreate() <em>Create</em>}' attribute.
-	 * <!-- begin-user-doc -->
+     * The default value of the '{@link #getCreate() <em>Create</em>}' attribute.
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #getCreate()
-	 * @generated
-	 * @ordered
-	 */
+     * @see #getCreate()
+     * @generated
+     * @ordered
+     */
 	protected static final JMSCreateResource CREATE_EDEFAULT = JMSCreateResource.IF_NOT_EXIST;
 
 	/**
-	 * The cached value of the '{@link #getCreate() <em>Create</em>}' attribute.
-	 * <!-- begin-user-doc -->
+     * The cached value of the '{@link #getCreate() <em>Create</em>}' attribute.
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #getCreate()
-	 * @generated
-	 * @ordered
-	 */
+     * @see #getCreate()
+     * @generated
+     * @ordered
+     */
 	protected JMSCreateResource create = CREATE_EDEFAULT;
 
 	/**
-	 * This is true if the Create attribute has been set.
-	 * <!-- begin-user-doc -->
+     * This is true if the Create attribute has been set.
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
+     * @generated
+     * @ordered
+     */
 	protected boolean createESet;
 
 	/**
-	 * The default value of the '{@link #getJndiName() <em>Jndi Name</em>}' attribute.
-	 * <!-- begin-user-doc -->
+     * The default value of the '{@link #getJndiName() <em>Jndi Name</em>}' attribute.
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #getJndiName()
-	 * @generated
-	 * @ordered
-	 */
+     * @see #getJndiName()
+     * @generated
+     * @ordered
+     */
 	protected static final String JNDI_NAME_EDEFAULT = null;
 
 	/**
-	 * The cached value of the '{@link #getJndiName() <em>Jndi Name</em>}' attribute.
-	 * <!-- begin-user-doc -->
+     * The cached value of the '{@link #getJndiName() <em>Jndi Name</em>}' attribute.
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #getJndiName()
-	 * @generated
-	 * @ordered
-	 */
+     * @see #getJndiName()
+     * @generated
+     * @ordered
+     */
 	protected String jndiName = JNDI_NAME_EDEFAULT;
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	protected JMSActivationSpecImpl() {
-		super();
-	}
+        super();
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	@Override
 	protected EClass eStaticClass() {
-		return ScaPackage.eINSTANCE.getJMSActivationSpec();
-	}
+        return ScaPackage.eINSTANCE.getJMSActivationSpec();
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public EList<BindingProperty> getProperty() {
-		if (property == null) {
-			property = new EObjectContainmentEList<BindingProperty>(BindingProperty.class, this, ScaPackage.JMS_ACTIVATION_SPEC__PROPERTY);
-		}
-		return property;
-	}
+        if (property == null) {
+            property = new EObjectContainmentEList<BindingProperty>(BindingProperty.class, this, ScaPackage.JMS_ACTIVATION_SPEC__PROPERTY);
+        }
+        return property;
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public JMSCreateResource getCreate() {
-		return create;
-	}
+        return create;
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public void setCreate(JMSCreateResource newCreate) {
-		JMSCreateResource oldCreate = create;
-		create = newCreate == null ? CREATE_EDEFAULT : newCreate;
-		boolean oldCreateESet = createESet;
-		createESet = true;
-		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, ScaPackage.JMS_ACTIVATION_SPEC__CREATE, oldCreate, create, !oldCreateESet));
-	}
+        JMSCreateResource oldCreate = create;
+        create = newCreate == null ? CREATE_EDEFAULT : newCreate;
+        boolean oldCreateESet = createESet;
+        createESet = true;
+        if (eNotificationRequired())
+            eNotify(new ENotificationImpl(this, Notification.SET, ScaPackage.JMS_ACTIVATION_SPEC__CREATE, oldCreate, create, !oldCreateESet));
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public void unsetCreate() {
-		JMSCreateResource oldCreate = create;
-		boolean oldCreateESet = createESet;
-		create = CREATE_EDEFAULT;
-		createESet = false;
-		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.UNSET, ScaPackage.JMS_ACTIVATION_SPEC__CREATE, oldCreate, CREATE_EDEFAULT, oldCreateESet));
-	}
+        JMSCreateResource oldCreate = create;
+        boolean oldCreateESet = createESet;
+        create = CREATE_EDEFAULT;
+        createESet = false;
+        if (eNotificationRequired())
+            eNotify(new ENotificationImpl(this, Notification.UNSET, ScaPackage.JMS_ACTIVATION_SPEC__CREATE, oldCreate, CREATE_EDEFAULT, oldCreateESet));
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public boolean isSetCreate() {
-		return createESet;
-	}
+        return createESet;
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public String getJndiName() {
-		return jndiName;
-	}
+        return jndiName;
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public void setJndiName(String newJndiName) {
-		String oldJndiName = jndiName;
-		jndiName = newJndiName;
-		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, ScaPackage.JMS_ACTIVATION_SPEC__JNDI_NAME, oldJndiName, jndiName));
-	}
+        String oldJndiName = jndiName;
+        jndiName = newJndiName;
+        if (eNotificationRequired())
+            eNotify(new ENotificationImpl(this, Notification.SET, ScaPackage.JMS_ACTIVATION_SPEC__JNDI_NAME, oldJndiName, jndiName));
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	@Override
 	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
-		switch (featureID) {
-			case ScaPackage.JMS_ACTIVATION_SPEC__PROPERTY:
-				return ((InternalEList<?>)getProperty()).basicRemove(otherEnd, msgs);
-		}
-		return super.eInverseRemove(otherEnd, featureID, msgs);
-	}
+        switch (featureID) {
+            case ScaPackage.JMS_ACTIVATION_SPEC__PROPERTY:
+                return ((InternalEList<?>)getProperty()).basicRemove(otherEnd, msgs);
+        }
+        return super.eInverseRemove(otherEnd, featureID, msgs);
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
-		switch (featureID) {
-			case ScaPackage.JMS_ACTIVATION_SPEC__PROPERTY:
-				return getProperty();
-			case ScaPackage.JMS_ACTIVATION_SPEC__CREATE:
-				return getCreate();
-			case ScaPackage.JMS_ACTIVATION_SPEC__JNDI_NAME:
-				return getJndiName();
-		}
-		return super.eGet(featureID, resolve, coreType);
-	}
+        switch (featureID) {
+            case ScaPackage.JMS_ACTIVATION_SPEC__PROPERTY:
+                return getProperty();
+            case ScaPackage.JMS_ACTIVATION_SPEC__CREATE:
+                return getCreate();
+            case ScaPackage.JMS_ACTIVATION_SPEC__JNDI_NAME:
+                return getJndiName();
+        }
+        return super.eGet(featureID, resolve, coreType);
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	@SuppressWarnings("unchecked")
 	@Override
 	public void eSet(int featureID, Object newValue) {
-		switch (featureID) {
-			case ScaPackage.JMS_ACTIVATION_SPEC__PROPERTY:
-				getProperty().clear();
-				getProperty().addAll((Collection<? extends BindingProperty>)newValue);
-				return;
-			case ScaPackage.JMS_ACTIVATION_SPEC__CREATE:
-				setCreate((JMSCreateResource)newValue);
-				return;
-			case ScaPackage.JMS_ACTIVATION_SPEC__JNDI_NAME:
-				setJndiName((String)newValue);
-				return;
-		}
-		super.eSet(featureID, newValue);
-	}
+        switch (featureID) {
+            case ScaPackage.JMS_ACTIVATION_SPEC__PROPERTY:
+                getProperty().clear();
+                getProperty().addAll((Collection<? extends BindingProperty>)newValue);
+                return;
+            case ScaPackage.JMS_ACTIVATION_SPEC__CREATE:
+                setCreate((JMSCreateResource)newValue);
+                return;
+            case ScaPackage.JMS_ACTIVATION_SPEC__JNDI_NAME:
+                setJndiName((String)newValue);
+                return;
+        }
+        super.eSet(featureID, newValue);
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	@Override
 	public void eUnset(int featureID) {
-		switch (featureID) {
-			case ScaPackage.JMS_ACTIVATION_SPEC__PROPERTY:
-				getProperty().clear();
-				return;
-			case ScaPackage.JMS_ACTIVATION_SPEC__CREATE:
-				unsetCreate();
-				return;
-			case ScaPackage.JMS_ACTIVATION_SPEC__JNDI_NAME:
-				setJndiName(JNDI_NAME_EDEFAULT);
-				return;
-		}
-		super.eUnset(featureID);
-	}
+        switch (featureID) {
+            case ScaPackage.JMS_ACTIVATION_SPEC__PROPERTY:
+                getProperty().clear();
+                return;
+            case ScaPackage.JMS_ACTIVATION_SPEC__CREATE:
+                unsetCreate();
+                return;
+            case ScaPackage.JMS_ACTIVATION_SPEC__JNDI_NAME:
+                setJndiName(JNDI_NAME_EDEFAULT);
+                return;
+        }
+        super.eUnset(featureID);
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	@Override
 	public boolean eIsSet(int featureID) {
-		switch (featureID) {
-			case ScaPackage.JMS_ACTIVATION_SPEC__PROPERTY:
-				return property != null && !property.isEmpty();
-			case ScaPackage.JMS_ACTIVATION_SPEC__CREATE:
-				return isSetCreate();
-			case ScaPackage.JMS_ACTIVATION_SPEC__JNDI_NAME:
-				return JNDI_NAME_EDEFAULT == null ? jndiName != null : !JNDI_NAME_EDEFAULT.equals(jndiName);
-		}
-		return super.eIsSet(featureID);
-	}
+        switch (featureID) {
+            case ScaPackage.JMS_ACTIVATION_SPEC__PROPERTY:
+                return property != null && !property.isEmpty();
+            case ScaPackage.JMS_ACTIVATION_SPEC__CREATE:
+                return isSetCreate();
+            case ScaPackage.JMS_ACTIVATION_SPEC__JNDI_NAME:
+                return JNDI_NAME_EDEFAULT == null ? jndiName != null : !JNDI_NAME_EDEFAULT.equals(jndiName);
+        }
+        return super.eIsSet(featureID);
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	@Override
 	public String toString() {
-		if (eIsProxy()) return super.toString();
+        if (eIsProxy()) return super.toString();
 
-		StringBuffer result = new StringBuffer(super.toString());
-		result.append(" (create: ");
-		if (createESet) result.append(create); else result.append("<unset>");
-		result.append(", jndiName: ");
-		result.append(jndiName);
-		result.append(')');
-		return result.toString();
-	}
+        StringBuffer result = new StringBuffer(super.toString());
+        result.append(" (create: ");
+        if (createESet) result.append(create); else result.append("<unset>");
+        result.append(", jndiName: ");
+        result.append(jndiName);
+        result.append(')');
+        return result.toString();
+    }
 
 } //JMSActivationSpecImpl

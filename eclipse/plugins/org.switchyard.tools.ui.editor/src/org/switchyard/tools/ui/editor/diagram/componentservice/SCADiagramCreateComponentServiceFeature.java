@@ -46,7 +46,7 @@ public class SCADiagramCreateComponentServiceFeature extends AbstractCreateFeatu
      * @param fp the feature provider
      */
     public SCADiagramCreateComponentServiceFeature(IFeatureProvider fp) {
-        super(fp, "Component Service", "Create Component Service");
+        super(fp, "Service", "Create Component Service");
     }
 
     @Override

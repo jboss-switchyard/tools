@@ -46,359 +46,359 @@ import org.eclipse.soa.sca.sca1_1.model.sca.TypeType;
  */
 public class JMSDestinationImpl extends EObjectImpl implements JMSDestination {
 	/**
-	 * The cached value of the '{@link #getProperty() <em>Property</em>}' containment reference list.
-	 * <!-- begin-user-doc -->
+     * The cached value of the '{@link #getProperty() <em>Property</em>}' containment reference list.
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #getProperty()
-	 * @generated
-	 * @ordered
-	 */
+     * @see #getProperty()
+     * @generated
+     * @ordered
+     */
 	protected EList<BindingProperty> property;
 
 	/**
-	 * The default value of the '{@link #getCreate() <em>Create</em>}' attribute.
-	 * <!-- begin-user-doc -->
+     * The default value of the '{@link #getCreate() <em>Create</em>}' attribute.
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #getCreate()
-	 * @generated
-	 * @ordered
-	 */
+     * @see #getCreate()
+     * @generated
+     * @ordered
+     */
 	protected static final JMSCreateResource CREATE_EDEFAULT = JMSCreateResource.IF_NOT_EXIST;
 
 	/**
-	 * The cached value of the '{@link #getCreate() <em>Create</em>}' attribute.
-	 * <!-- begin-user-doc -->
+     * The cached value of the '{@link #getCreate() <em>Create</em>}' attribute.
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #getCreate()
-	 * @generated
-	 * @ordered
-	 */
+     * @see #getCreate()
+     * @generated
+     * @ordered
+     */
 	protected JMSCreateResource create = CREATE_EDEFAULT;
 
 	/**
-	 * This is true if the Create attribute has been set.
-	 * <!-- begin-user-doc -->
+     * This is true if the Create attribute has been set.
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
+     * @generated
+     * @ordered
+     */
 	protected boolean createESet;
 
 	/**
-	 * The default value of the '{@link #getJndiName() <em>Jndi Name</em>}' attribute.
-	 * <!-- begin-user-doc -->
+     * The default value of the '{@link #getJndiName() <em>Jndi Name</em>}' attribute.
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #getJndiName()
-	 * @generated
-	 * @ordered
-	 */
+     * @see #getJndiName()
+     * @generated
+     * @ordered
+     */
 	protected static final String JNDI_NAME_EDEFAULT = null;
 
 	/**
-	 * The cached value of the '{@link #getJndiName() <em>Jndi Name</em>}' attribute.
-	 * <!-- begin-user-doc -->
+     * The cached value of the '{@link #getJndiName() <em>Jndi Name</em>}' attribute.
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #getJndiName()
-	 * @generated
-	 * @ordered
-	 */
+     * @see #getJndiName()
+     * @generated
+     * @ordered
+     */
 	protected String jndiName = JNDI_NAME_EDEFAULT;
 
 	/**
-	 * The default value of the '{@link #getType() <em>Type</em>}' attribute.
-	 * <!-- begin-user-doc -->
+     * The default value of the '{@link #getType() <em>Type</em>}' attribute.
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #getType()
-	 * @generated
-	 * @ordered
-	 */
+     * @see #getType()
+     * @generated
+     * @ordered
+     */
 	protected static final TypeType TYPE_EDEFAULT = TypeType.QUEUE;
 
 	/**
-	 * The cached value of the '{@link #getType() <em>Type</em>}' attribute.
-	 * <!-- begin-user-doc -->
+     * The cached value of the '{@link #getType() <em>Type</em>}' attribute.
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #getType()
-	 * @generated
-	 * @ordered
-	 */
+     * @see #getType()
+     * @generated
+     * @ordered
+     */
 	protected TypeType type = TYPE_EDEFAULT;
 
 	/**
-	 * This is true if the Type attribute has been set.
-	 * <!-- begin-user-doc -->
+     * This is true if the Type attribute has been set.
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
+     * @generated
+     * @ordered
+     */
 	protected boolean typeESet;
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	protected JMSDestinationImpl() {
-		super();
-	}
+        super();
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	@Override
 	protected EClass eStaticClass() {
-		return ScaPackage.eINSTANCE.getJMSDestination();
-	}
+        return ScaPackage.eINSTANCE.getJMSDestination();
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public EList<BindingProperty> getProperty() {
-		if (property == null) {
-			property = new EObjectContainmentEList<BindingProperty>(BindingProperty.class, this, ScaPackage.JMS_DESTINATION__PROPERTY);
-		}
-		return property;
-	}
+        if (property == null) {
+            property = new EObjectContainmentEList<BindingProperty>(BindingProperty.class, this, ScaPackage.JMS_DESTINATION__PROPERTY);
+        }
+        return property;
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public JMSCreateResource getCreate() {
-		return create;
-	}
+        return create;
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public void setCreate(JMSCreateResource newCreate) {
-		JMSCreateResource oldCreate = create;
-		create = newCreate == null ? CREATE_EDEFAULT : newCreate;
-		boolean oldCreateESet = createESet;
-		createESet = true;
-		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, ScaPackage.JMS_DESTINATION__CREATE, oldCreate, create, !oldCreateESet));
-	}
+        JMSCreateResource oldCreate = create;
+        create = newCreate == null ? CREATE_EDEFAULT : newCreate;
+        boolean oldCreateESet = createESet;
+        createESet = true;
+        if (eNotificationRequired())
+            eNotify(new ENotificationImpl(this, Notification.SET, ScaPackage.JMS_DESTINATION__CREATE, oldCreate, create, !oldCreateESet));
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public void unsetCreate() {
-		JMSCreateResource oldCreate = create;
-		boolean oldCreateESet = createESet;
-		create = CREATE_EDEFAULT;
-		createESet = false;
-		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.UNSET, ScaPackage.JMS_DESTINATION__CREATE, oldCreate, CREATE_EDEFAULT, oldCreateESet));
-	}
+        JMSCreateResource oldCreate = create;
+        boolean oldCreateESet = createESet;
+        create = CREATE_EDEFAULT;
+        createESet = false;
+        if (eNotificationRequired())
+            eNotify(new ENotificationImpl(this, Notification.UNSET, ScaPackage.JMS_DESTINATION__CREATE, oldCreate, CREATE_EDEFAULT, oldCreateESet));
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public boolean isSetCreate() {
-		return createESet;
-	}
+        return createESet;
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public String getJndiName() {
-		return jndiName;
-	}
+        return jndiName;
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public void setJndiName(String newJndiName) {
-		String oldJndiName = jndiName;
-		jndiName = newJndiName;
-		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, ScaPackage.JMS_DESTINATION__JNDI_NAME, oldJndiName, jndiName));
-	}
+        String oldJndiName = jndiName;
+        jndiName = newJndiName;
+        if (eNotificationRequired())
+            eNotify(new ENotificationImpl(this, Notification.SET, ScaPackage.JMS_DESTINATION__JNDI_NAME, oldJndiName, jndiName));
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public TypeType getType() {
-		return type;
-	}
+        return type;
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public void setType(TypeType newType) {
-		TypeType oldType = type;
-		type = newType == null ? TYPE_EDEFAULT : newType;
-		boolean oldTypeESet = typeESet;
-		typeESet = true;
-		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, ScaPackage.JMS_DESTINATION__TYPE, oldType, type, !oldTypeESet));
-	}
+        TypeType oldType = type;
+        type = newType == null ? TYPE_EDEFAULT : newType;
+        boolean oldTypeESet = typeESet;
+        typeESet = true;
+        if (eNotificationRequired())
+            eNotify(new ENotificationImpl(this, Notification.SET, ScaPackage.JMS_DESTINATION__TYPE, oldType, type, !oldTypeESet));
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public void unsetType() {
-		TypeType oldType = type;
-		boolean oldTypeESet = typeESet;
-		type = TYPE_EDEFAULT;
-		typeESet = false;
-		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.UNSET, ScaPackage.JMS_DESTINATION__TYPE, oldType, TYPE_EDEFAULT, oldTypeESet));
-	}
+        TypeType oldType = type;
+        boolean oldTypeESet = typeESet;
+        type = TYPE_EDEFAULT;
+        typeESet = false;
+        if (eNotificationRequired())
+            eNotify(new ENotificationImpl(this, Notification.UNSET, ScaPackage.JMS_DESTINATION__TYPE, oldType, TYPE_EDEFAULT, oldTypeESet));
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public boolean isSetType() {
-		return typeESet;
-	}
+        return typeESet;
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	@Override
 	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
-		switch (featureID) {
-			case ScaPackage.JMS_DESTINATION__PROPERTY:
-				return ((InternalEList<?>)getProperty()).basicRemove(otherEnd, msgs);
-		}
-		return super.eInverseRemove(otherEnd, featureID, msgs);
-	}
+        switch (featureID) {
+            case ScaPackage.JMS_DESTINATION__PROPERTY:
+                return ((InternalEList<?>)getProperty()).basicRemove(otherEnd, msgs);
+        }
+        return super.eInverseRemove(otherEnd, featureID, msgs);
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
-		switch (featureID) {
-			case ScaPackage.JMS_DESTINATION__PROPERTY:
-				return getProperty();
-			case ScaPackage.JMS_DESTINATION__CREATE:
-				return getCreate();
-			case ScaPackage.JMS_DESTINATION__JNDI_NAME:
-				return getJndiName();
-			case ScaPackage.JMS_DESTINATION__TYPE:
-				return getType();
-		}
-		return super.eGet(featureID, resolve, coreType);
-	}
+        switch (featureID) {
+            case ScaPackage.JMS_DESTINATION__PROPERTY:
+                return getProperty();
+            case ScaPackage.JMS_DESTINATION__CREATE:
+                return getCreate();
+            case ScaPackage.JMS_DESTINATION__JNDI_NAME:
+                return getJndiName();
+            case ScaPackage.JMS_DESTINATION__TYPE:
+                return getType();
+        }
+        return super.eGet(featureID, resolve, coreType);
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	@SuppressWarnings("unchecked")
 	@Override
 	public void eSet(int featureID, Object newValue) {
-		switch (featureID) {
-			case ScaPackage.JMS_DESTINATION__PROPERTY:
-				getProperty().clear();
-				getProperty().addAll((Collection<? extends BindingProperty>)newValue);
-				return;
-			case ScaPackage.JMS_DESTINATION__CREATE:
-				setCreate((JMSCreateResource)newValue);
-				return;
-			case ScaPackage.JMS_DESTINATION__JNDI_NAME:
-				setJndiName((String)newValue);
-				return;
-			case ScaPackage.JMS_DESTINATION__TYPE:
-				setType((TypeType)newValue);
-				return;
-		}
-		super.eSet(featureID, newValue);
-	}
+        switch (featureID) {
+            case ScaPackage.JMS_DESTINATION__PROPERTY:
+                getProperty().clear();
+                getProperty().addAll((Collection<? extends BindingProperty>)newValue);
+                return;
+            case ScaPackage.JMS_DESTINATION__CREATE:
+                setCreate((JMSCreateResource)newValue);
+                return;
+            case ScaPackage.JMS_DESTINATION__JNDI_NAME:
+                setJndiName((String)newValue);
+                return;
+            case ScaPackage.JMS_DESTINATION__TYPE:
+                setType((TypeType)newValue);
+                return;
+        }
+        super.eSet(featureID, newValue);
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	@Override
 	public void eUnset(int featureID) {
-		switch (featureID) {
-			case ScaPackage.JMS_DESTINATION__PROPERTY:
-				getProperty().clear();
-				return;
-			case ScaPackage.JMS_DESTINATION__CREATE:
-				unsetCreate();
-				return;
-			case ScaPackage.JMS_DESTINATION__JNDI_NAME:
-				setJndiName(JNDI_NAME_EDEFAULT);
-				return;
-			case ScaPackage.JMS_DESTINATION__TYPE:
-				unsetType();
-				return;
-		}
-		super.eUnset(featureID);
-	}
+        switch (featureID) {
+            case ScaPackage.JMS_DESTINATION__PROPERTY:
+                getProperty().clear();
+                return;
+            case ScaPackage.JMS_DESTINATION__CREATE:
+                unsetCreate();
+                return;
+            case ScaPackage.JMS_DESTINATION__JNDI_NAME:
+                setJndiName(JNDI_NAME_EDEFAULT);
+                return;
+            case ScaPackage.JMS_DESTINATION__TYPE:
+                unsetType();
+                return;
+        }
+        super.eUnset(featureID);
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	@Override
 	public boolean eIsSet(int featureID) {
-		switch (featureID) {
-			case ScaPackage.JMS_DESTINATION__PROPERTY:
-				return property != null && !property.isEmpty();
-			case ScaPackage.JMS_DESTINATION__CREATE:
-				return isSetCreate();
-			case ScaPackage.JMS_DESTINATION__JNDI_NAME:
-				return JNDI_NAME_EDEFAULT == null ? jndiName != null : !JNDI_NAME_EDEFAULT.equals(jndiName);
-			case ScaPackage.JMS_DESTINATION__TYPE:
-				return isSetType();
-		}
-		return super.eIsSet(featureID);
-	}
+        switch (featureID) {
+            case ScaPackage.JMS_DESTINATION__PROPERTY:
+                return property != null && !property.isEmpty();
+            case ScaPackage.JMS_DESTINATION__CREATE:
+                return isSetCreate();
+            case ScaPackage.JMS_DESTINATION__JNDI_NAME:
+                return JNDI_NAME_EDEFAULT == null ? jndiName != null : !JNDI_NAME_EDEFAULT.equals(jndiName);
+            case ScaPackage.JMS_DESTINATION__TYPE:
+                return isSetType();
+        }
+        return super.eIsSet(featureID);
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	@Override
 	public String toString() {
-		if (eIsProxy()) return super.toString();
+        if (eIsProxy()) return super.toString();
 
-		StringBuffer result = new StringBuffer(super.toString());
-		result.append(" (create: ");
-		if (createESet) result.append(create); else result.append("<unset>");
-		result.append(", jndiName: ");
-		result.append(jndiName);
-		result.append(", type: ");
-		if (typeESet) result.append(type); else result.append("<unset>");
-		result.append(')');
-		return result.toString();
-	}
+        StringBuffer result = new StringBuffer(super.toString());
+        result.append(" (create: ");
+        if (createESet) result.append(create); else result.append("<unset>");
+        result.append(", jndiName: ");
+        result.append(jndiName);
+        result.append(", type: ");
+        if (typeESet) result.append(type); else result.append("<unset>");
+        result.append(')');
+        return result.toString();
+    }
 
 } //JMSDestinationImpl

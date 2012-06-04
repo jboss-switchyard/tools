@@ -3,7 +3,7 @@
     xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
     xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" name="camel"
     nsURI="urn:switchyard-component-camel:config:1.0" nsPrefix="camel">
-  <eClassifiers xsi:type="ecore:EClass" name="BaseCamelBinding" eSuperTypes="config.switchyard.ecore#//SwitchYardBindingType">
+  <eClassifiers xsi:type="ecore:EClass" name="BaseCamelBinding" abstract="true" eSuperTypes="config.switchyard.ecore#//SwitchYardBindingType">
     <eAnnotations source="http:///org/eclipse/emf/ecore/util/ExtendedMetaData">
       <details key="name" value="BaseCamelBinding"/>
       <details key="kind" value="elementOnly"/>
@@ -440,7 +440,8 @@
       </eAnnotations>
     </eStructuralFeatures>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="CamelNettyBindingType" eSuperTypes="#//BaseCamelBinding">
+  <eClassifiers xsi:type="ecore:EClass" name="CamelNettyBindingType" abstract="true"
+      eSuperTypes="#//BaseCamelBinding">
     <eAnnotations source="http:///org/eclipse/emf/ecore/util/ExtendedMetaData">
       <details key="name" value="CamelNettyBindingType"/>
       <details key="kind" value="elementOnly"/>

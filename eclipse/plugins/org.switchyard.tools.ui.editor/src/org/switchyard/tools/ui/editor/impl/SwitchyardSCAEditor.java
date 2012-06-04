@@ -336,7 +336,10 @@ public class SwitchyardSCAEditor extends DiagramEditor {
     protected PictogramElement[] getPictogramElementsForSelection() {
         // filter out invisible elements when setting selection
         ArrayList<PictogramElement> visibleList = new ArrayList<PictogramElement>();
-        PictogramElement[] pictogramElements = getSelectedPictogramElements();
+        PictogramElement[] pictogramElements = super.getPictogramElementsForSelection();
+        if (pictogramElements == null) {
+            return null;
+        }
         for (PictogramElement pe : pictogramElements) {
             if (pe.isVisible()) {
                 visibleList.add(pe);

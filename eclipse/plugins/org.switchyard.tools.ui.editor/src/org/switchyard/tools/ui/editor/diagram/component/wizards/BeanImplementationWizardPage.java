@@ -44,17 +44,18 @@ import org.eclipse.ui.IWorkbench;
 import org.eclipse.ui.PlatformUI;
 import org.eclipse.ui.dialogs.SelectionDialog;
 import org.switchyard.tools.ui.editor.impl.SwitchyardSCAEditor;
+import org.switchyard.tools.ui.editor.util.JavaUtil;
 import org.switchyard.tools.ui.wizards.NewBeanServiceWizard;
 
 /**
- * BeanComponentWizardPage
+ * BeanImplementationWizardPage
  * 
  * <p/>
  * Collects information for a bean component implementation.
  * 
  * @author Rob Cernich
  */
-public class BeanComponentWizardPage extends WizardPage {
+public class BeanImplementationWizardPage extends WizardPage {
 
     private Link _newBeanLink;
     private Text _beanClassText;
@@ -63,11 +64,11 @@ public class BeanComponentWizardPage extends WizardPage {
     private IType _beanClass;
 
     /**
-     * Create a new BeanComponentWizardPage.
+     * Create a new BeanImplementationWizardPage.
      * 
      * @param pageName the page name.
      */
-    public BeanComponentWizardPage(String pageName) {
+    public BeanImplementationWizardPage(String pageName) {
         super(pageName);
         setTitle("Bean Implementation Details");
         setDescription("Select an implementation class.");
@@ -169,8 +170,8 @@ public class BeanComponentWizardPage extends WizardPage {
     private void openNewBeanWizard() {
         NewBeanServiceWizard wizard = new NewBeanServiceWizard(false);
         SwitchyardSCAEditor editor = SwitchyardSCAEditor.getActiveEditor();
-        IStructuredSelection selection = _project == null ? StructuredSelection.EMPTY : new StructuredSelection(
-                _project);
+        IJavaElement element = JavaUtil.getInitialPackageForProject(_project);
+        IStructuredSelection selection = element == null ? StructuredSelection.EMPTY : new StructuredSelection(element);
         IWorkbench workbench = editor == null ? PlatformUI.getWorkbench() : editor.getEditorSite().getWorkbenchWindow()
                 .getWorkbench();
         wizard.init(workbench, selection);

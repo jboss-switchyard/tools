@@ -13,6 +13,7 @@ import org.eclipse.emf.ecore.util.Switch;
 
 import org.eclipse.soa.sca.sca1_1.model.sca.Binding;
 import org.eclipse.soa.sca.sca1_1.model.sca.CommonExtensionBase;
+import org.eclipse.soa.sca.sca1_1.model.sca.ExtendableType;
 import org.eclipse.soa.sca.sca1_1.model.sca.Implementation;
 import org.eclipse.soa.sca.sca1_1.model.sca.OperationSelectorType;
 
@@ -83,6 +84,7 @@ public class CamelSwitch<T> extends Switch<T> {
                 if (result == null) result = caseSwitchYardBindingType(baseCamelBinding);
                 if (result == null) result = caseBinding(baseCamelBinding);
                 if (result == null) result = caseCommonExtensionBase(baseCamelBinding);
+                if (result == null) result = caseExtendableType(baseCamelBinding);
                 if (result == null) result = defaultCase(theEObject);
                 return result;
             }
@@ -93,6 +95,7 @@ public class CamelSwitch<T> extends Switch<T> {
                 if (result == null) result = caseSwitchYardBindingType(camelAtomBindingType);
                 if (result == null) result = caseBinding(camelAtomBindingType);
                 if (result == null) result = caseCommonExtensionBase(camelAtomBindingType);
+                if (result == null) result = caseExtendableType(camelAtomBindingType);
                 if (result == null) result = defaultCase(theEObject);
                 return result;
             }
@@ -103,6 +106,7 @@ public class CamelSwitch<T> extends Switch<T> {
                 if (result == null) result = caseSwitchYardBindingType(camelBindingType);
                 if (result == null) result = caseBinding(camelBindingType);
                 if (result == null) result = caseCommonExtensionBase(camelBindingType);
+                if (result == null) result = caseExtendableType(camelBindingType);
                 if (result == null) result = defaultCase(theEObject);
                 return result;
             }
@@ -112,6 +116,7 @@ public class CamelSwitch<T> extends Switch<T> {
                 if (result == null) result = caseSwitchYardBindingType(camelDirectBindingType);
                 if (result == null) result = caseBinding(camelDirectBindingType);
                 if (result == null) result = caseCommonExtensionBase(camelDirectBindingType);
+                if (result == null) result = caseExtendableType(camelDirectBindingType);
                 if (result == null) result = defaultCase(theEObject);
                 return result;
             }
@@ -123,6 +128,7 @@ public class CamelSwitch<T> extends Switch<T> {
                 if (result == null) result = caseSwitchYardBindingType(camelFileBindingType);
                 if (result == null) result = caseBinding(camelFileBindingType);
                 if (result == null) result = caseCommonExtensionBase(camelFileBindingType);
+                if (result == null) result = caseExtendableType(camelFileBindingType);
                 if (result == null) result = defaultCase(theEObject);
                 return result;
             }
@@ -135,6 +141,7 @@ public class CamelSwitch<T> extends Switch<T> {
                 if (result == null) result = caseSwitchYardBindingType(camelFtpBindingType);
                 if (result == null) result = caseBinding(camelFtpBindingType);
                 if (result == null) result = caseCommonExtensionBase(camelFtpBindingType);
+                if (result == null) result = caseExtendableType(camelFtpBindingType);
                 if (result == null) result = defaultCase(theEObject);
                 return result;
             }
@@ -148,6 +155,7 @@ public class CamelSwitch<T> extends Switch<T> {
                 if (result == null) result = caseSwitchYardBindingType(camelFtpsBindingType);
                 if (result == null) result = caseBinding(camelFtpsBindingType);
                 if (result == null) result = caseCommonExtensionBase(camelFtpsBindingType);
+                if (result == null) result = caseExtendableType(camelFtpsBindingType);
                 if (result == null) result = defaultCase(theEObject);
                 return result;
             }
@@ -156,6 +164,7 @@ public class CamelSwitch<T> extends Switch<T> {
                 T result = caseCamelImplementationType(camelImplementationType);
                 if (result == null) result = caseImplementation(camelImplementationType);
                 if (result == null) result = caseCommonExtensionBase(camelImplementationType);
+                if (result == null) result = caseExtendableType(camelImplementationType);
                 if (result == null) result = defaultCase(theEObject);
                 return result;
             }
@@ -166,6 +175,7 @@ public class CamelSwitch<T> extends Switch<T> {
                 if (result == null) result = caseSwitchYardBindingType(camelJmsBindingType);
                 if (result == null) result = caseBinding(camelJmsBindingType);
                 if (result == null) result = caseCommonExtensionBase(camelJmsBindingType);
+                if (result == null) result = caseExtendableType(camelJmsBindingType);
                 if (result == null) result = defaultCase(theEObject);
                 return result;
             }
@@ -176,6 +186,7 @@ public class CamelSwitch<T> extends Switch<T> {
                 if (result == null) result = caseSwitchYardBindingType(camelNettyBindingType);
                 if (result == null) result = caseBinding(camelNettyBindingType);
                 if (result == null) result = caseCommonExtensionBase(camelNettyBindingType);
+                if (result == null) result = caseExtendableType(camelNettyBindingType);
                 if (result == null) result = defaultCase(theEObject);
                 return result;
             }
@@ -187,6 +198,7 @@ public class CamelSwitch<T> extends Switch<T> {
                 if (result == null) result = caseSwitchYardBindingType(camelNettyUdpBindingType);
                 if (result == null) result = caseBinding(camelNettyUdpBindingType);
                 if (result == null) result = caseCommonExtensionBase(camelNettyUdpBindingType);
+                if (result == null) result = caseExtendableType(camelNettyUdpBindingType);
                 if (result == null) result = defaultCase(theEObject);
                 return result;
             }
@@ -198,6 +210,7 @@ public class CamelSwitch<T> extends Switch<T> {
                 if (result == null) result = caseSwitchYardBindingType(camelNettyTcpBindingType);
                 if (result == null) result = caseBinding(camelNettyTcpBindingType);
                 if (result == null) result = caseCommonExtensionBase(camelNettyTcpBindingType);
+                if (result == null) result = caseExtendableType(camelNettyTcpBindingType);
                 if (result == null) result = defaultCase(theEObject);
                 return result;
             }
@@ -207,6 +220,7 @@ public class CamelSwitch<T> extends Switch<T> {
                 if (result == null) result = caseSwitchYardBindingType(camelMockBindingType);
                 if (result == null) result = caseBinding(camelMockBindingType);
                 if (result == null) result = caseCommonExtensionBase(camelMockBindingType);
+                if (result == null) result = caseExtendableType(camelMockBindingType);
                 if (result == null) result = defaultCase(theEObject);
                 return result;
             }
@@ -223,6 +237,7 @@ public class CamelSwitch<T> extends Switch<T> {
                 if (result == null) result = caseSwitchYardBindingType(camelSedaBindingType);
                 if (result == null) result = caseBinding(camelSedaBindingType);
                 if (result == null) result = caseCommonExtensionBase(camelSedaBindingType);
+                if (result == null) result = caseExtendableType(camelSedaBindingType);
                 if (result == null) result = defaultCase(theEObject);
                 return result;
             }
@@ -232,6 +247,7 @@ public class CamelSwitch<T> extends Switch<T> {
                 if (result == null) result = caseSwitchYardBindingType(camelTimerBindingType);
                 if (result == null) result = caseBinding(camelTimerBindingType);
                 if (result == null) result = caseCommonExtensionBase(camelTimerBindingType);
+                if (result == null) result = caseExtendableType(camelTimerBindingType);
                 if (result == null) result = defaultCase(theEObject);
                 return result;
             }
@@ -244,6 +260,7 @@ public class CamelSwitch<T> extends Switch<T> {
                 if (result == null) result = caseSwitchYardBindingType(camelSftpBindingType);
                 if (result == null) result = caseBinding(camelSftpBindingType);
                 if (result == null) result = caseCommonExtensionBase(camelSftpBindingType);
+                if (result == null) result = caseExtendableType(camelSftpBindingType);
                 if (result == null) result = defaultCase(theEObject);
                 return result;
             }
@@ -261,6 +278,7 @@ public class CamelSwitch<T> extends Switch<T> {
                 if (result == null) result = caseSwitchYardBindingType(camelRemoteBindingType);
                 if (result == null) result = caseBinding(camelRemoteBindingType);
                 if (result == null) result = caseCommonExtensionBase(camelRemoteBindingType);
+                if (result == null) result = caseExtendableType(camelRemoteBindingType);
                 if (result == null) result = defaultCase(theEObject);
                 return result;
             }
@@ -305,6 +323,7 @@ public class CamelSwitch<T> extends Switch<T> {
                 if (result == null) result = caseSwitchYardBindingType(genericFileBindingType);
                 if (result == null) result = caseBinding(genericFileBindingType);
                 if (result == null) result = caseCommonExtensionBase(genericFileBindingType);
+                if (result == null) result = caseExtendableType(genericFileBindingType);
                 if (result == null) result = defaultCase(theEObject);
                 return result;
             }
@@ -815,6 +834,21 @@ public class CamelSwitch<T> extends Switch<T> {
     }
 
 	/**
+     * Returns the result of interpreting the object as an instance of '<em>Extendable Type</em>'.
+     * <!-- begin-user-doc -->
+     * This implementation returns null;
+     * returning a non-null result will terminate the switch.
+     * <!-- end-user-doc -->
+     * @param object the target of the switch.
+     * @return the result of interpreting the object as an instance of '<em>Extendable Type</em>'.
+     * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+     * @generated
+     */
+    public T caseExtendableType(ExtendableType object) {
+        return null;
+    }
+
+    /**
      * Returns the result of interpreting the object as an instance of '<em>Binding</em>'.
      * <!-- begin-user-doc -->
 	 * This implementation returns null;

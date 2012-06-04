@@ -137,7 +137,7 @@ public class NewBeanServiceClassWizardPage extends NewTypeWizardPage {
                 setTypeName(simpleServiceInterfaceName + "Impl", true);
             }
         }
-        _createTestClassButton.setSelection(true);
+        _createTestClassButton.setSelection(false);
         doStatusUpdate();
     }
 

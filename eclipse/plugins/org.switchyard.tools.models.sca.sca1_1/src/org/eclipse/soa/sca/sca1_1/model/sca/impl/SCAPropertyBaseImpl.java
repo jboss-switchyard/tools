@@ -44,262 +44,262 @@ import org.eclipse.soa.sca.sca1_1.model.sca.ScaPackage;
  */
 public class SCAPropertyBaseImpl extends EObjectImpl implements SCAPropertyBase {
 	/**
-	 * The cached value of the '{@link #getMixed() <em>Mixed</em>}' attribute list.
-	 * <!-- begin-user-doc -->
+     * The cached value of the '{@link #getMixed() <em>Mixed</em>}' attribute list.
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #getMixed()
-	 * @generated
-	 * @ordered
-	 */
+     * @see #getMixed()
+     * @generated
+     * @ordered
+     */
 	protected FeatureMap mixed;
 
 	/**
-	 * The default value of the '{@link #getPolicySets() <em>Policy Sets</em>}' attribute.
-	 * <!-- begin-user-doc -->
+     * The default value of the '{@link #getPolicySets() <em>Policy Sets</em>}' attribute.
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #getPolicySets()
-	 * @generated
-	 * @ordered
-	 */
+     * @see #getPolicySets()
+     * @generated
+     * @ordered
+     */
 	protected static final List<QName> POLICY_SETS_EDEFAULT = null;
 
 	/**
-	 * The cached value of the '{@link #getPolicySets() <em>Policy Sets</em>}' attribute.
-	 * <!-- begin-user-doc -->
+     * The cached value of the '{@link #getPolicySets() <em>Policy Sets</em>}' attribute.
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #getPolicySets()
-	 * @generated
-	 * @ordered
-	 */
+     * @see #getPolicySets()
+     * @generated
+     * @ordered
+     */
 	protected List<QName> policySets = POLICY_SETS_EDEFAULT;
 
 	/**
-	 * The default value of the '{@link #getRequires() <em>Requires</em>}' attribute.
-	 * <!-- begin-user-doc -->
+     * The default value of the '{@link #getRequires() <em>Requires</em>}' attribute.
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #getRequires()
-	 * @generated
-	 * @ordered
-	 */
+     * @see #getRequires()
+     * @generated
+     * @ordered
+     */
 	protected static final List<QName> REQUIRES_EDEFAULT = null;
 
 	/**
-	 * The cached value of the '{@link #getRequires() <em>Requires</em>}' attribute.
-	 * <!-- begin-user-doc -->
+     * The cached value of the '{@link #getRequires() <em>Requires</em>}' attribute.
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #getRequires()
-	 * @generated
-	 * @ordered
-	 */
+     * @see #getRequires()
+     * @generated
+     * @ordered
+     */
 	protected List<QName> requires = REQUIRES_EDEFAULT;
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	protected SCAPropertyBaseImpl() {
-		super();
-	}
+        super();
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	@Override
 	protected EClass eStaticClass() {
-		return ScaPackage.eINSTANCE.getSCAPropertyBase();
-	}
+        return ScaPackage.eINSTANCE.getSCAPropertyBase();
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public FeatureMap getMixed() {
-		if (mixed == null) {
-			mixed = new BasicFeatureMap(this, ScaPackage.SCA_PROPERTY_BASE__MIXED);
-		}
-		return mixed;
-	}
+        if (mixed == null) {
+            mixed = new BasicFeatureMap(this, ScaPackage.SCA_PROPERTY_BASE__MIXED);
+        }
+        return mixed;
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public FeatureMap getAny() {
-		return (FeatureMap)getMixed().<FeatureMap.Entry>list(ScaPackage.eINSTANCE.getSCAPropertyBase_Any());
-	}
+        return (FeatureMap)getMixed().<FeatureMap.Entry>list(ScaPackage.eINSTANCE.getSCAPropertyBase_Any());
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public List<QName> getPolicySets() {
-		return policySets;
-	}
+        return policySets;
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public void setPolicySets(List<QName> newPolicySets) {
-		List<QName> oldPolicySets = policySets;
-		policySets = newPolicySets;
-		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, ScaPackage.SCA_PROPERTY_BASE__POLICY_SETS, oldPolicySets, policySets));
-	}
+        List<QName> oldPolicySets = policySets;
+        policySets = newPolicySets;
+        if (eNotificationRequired())
+            eNotify(new ENotificationImpl(this, Notification.SET, ScaPackage.SCA_PROPERTY_BASE__POLICY_SETS, oldPolicySets, policySets));
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public List<QName> getRequires() {
-		return requires;
-	}
+        return requires;
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public void setRequires(List<QName> newRequires) {
-		List<QName> oldRequires = requires;
-		requires = newRequires;
-		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, ScaPackage.SCA_PROPERTY_BASE__REQUIRES, oldRequires, requires));
-	}
+        List<QName> oldRequires = requires;
+        requires = newRequires;
+        if (eNotificationRequired())
+            eNotify(new ENotificationImpl(this, Notification.SET, ScaPackage.SCA_PROPERTY_BASE__REQUIRES, oldRequires, requires));
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	@Override
 	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
-		switch (featureID) {
-			case ScaPackage.SCA_PROPERTY_BASE__MIXED:
-				return ((InternalEList<?>)getMixed()).basicRemove(otherEnd, msgs);
-			case ScaPackage.SCA_PROPERTY_BASE__ANY:
-				return ((InternalEList<?>)getAny()).basicRemove(otherEnd, msgs);
-		}
-		return super.eInverseRemove(otherEnd, featureID, msgs);
-	}
+        switch (featureID) {
+            case ScaPackage.SCA_PROPERTY_BASE__MIXED:
+                return ((InternalEList<?>)getMixed()).basicRemove(otherEnd, msgs);
+            case ScaPackage.SCA_PROPERTY_BASE__ANY:
+                return ((InternalEList<?>)getAny()).basicRemove(otherEnd, msgs);
+        }
+        return super.eInverseRemove(otherEnd, featureID, msgs);
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
-		switch (featureID) {
-			case ScaPackage.SCA_PROPERTY_BASE__MIXED:
-				if (coreType) return getMixed();
-				return ((FeatureMap.Internal)getMixed()).getWrapper();
-			case ScaPackage.SCA_PROPERTY_BASE__ANY:
-				if (coreType) return getAny();
-				return ((FeatureMap.Internal)getAny()).getWrapper();
-			case ScaPackage.SCA_PROPERTY_BASE__POLICY_SETS:
-				return getPolicySets();
-			case ScaPackage.SCA_PROPERTY_BASE__REQUIRES:
-				return getRequires();
-		}
-		return super.eGet(featureID, resolve, coreType);
-	}
+        switch (featureID) {
+            case ScaPackage.SCA_PROPERTY_BASE__MIXED:
+                if (coreType) return getMixed();
+                return ((FeatureMap.Internal)getMixed()).getWrapper();
+            case ScaPackage.SCA_PROPERTY_BASE__ANY:
+                if (coreType) return getAny();
+                return ((FeatureMap.Internal)getAny()).getWrapper();
+            case ScaPackage.SCA_PROPERTY_BASE__POLICY_SETS:
+                return getPolicySets();
+            case ScaPackage.SCA_PROPERTY_BASE__REQUIRES:
+                return getRequires();
+        }
+        return super.eGet(featureID, resolve, coreType);
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	@SuppressWarnings("unchecked")
 	@Override
 	public void eSet(int featureID, Object newValue) {
-		switch (featureID) {
-			case ScaPackage.SCA_PROPERTY_BASE__MIXED:
-				((FeatureMap.Internal)getMixed()).set(newValue);
-				return;
-			case ScaPackage.SCA_PROPERTY_BASE__ANY:
-				((FeatureMap.Internal)getAny()).set(newValue);
-				return;
-			case ScaPackage.SCA_PROPERTY_BASE__POLICY_SETS:
-				setPolicySets((List<QName>)newValue);
-				return;
-			case ScaPackage.SCA_PROPERTY_BASE__REQUIRES:
-				setRequires((List<QName>)newValue);
-				return;
-		}
-		super.eSet(featureID, newValue);
-	}
+        switch (featureID) {
+            case ScaPackage.SCA_PROPERTY_BASE__MIXED:
+                ((FeatureMap.Internal)getMixed()).set(newValue);
+                return;
+            case ScaPackage.SCA_PROPERTY_BASE__ANY:
+                ((FeatureMap.Internal)getAny()).set(newValue);
+                return;
+            case ScaPackage.SCA_PROPERTY_BASE__POLICY_SETS:
+                setPolicySets((List<QName>)newValue);
+                return;
+            case ScaPackage.SCA_PROPERTY_BASE__REQUIRES:
+                setRequires((List<QName>)newValue);
+                return;
+        }
+        super.eSet(featureID, newValue);
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	@Override
 	public void eUnset(int featureID) {
-		switch (featureID) {
-			case ScaPackage.SCA_PROPERTY_BASE__MIXED:
-				getMixed().clear();
-				return;
-			case ScaPackage.SCA_PROPERTY_BASE__ANY:
-				getAny().clear();
-				return;
-			case ScaPackage.SCA_PROPERTY_BASE__POLICY_SETS:
-				setPolicySets(POLICY_SETS_EDEFAULT);
-				return;
-			case ScaPackage.SCA_PROPERTY_BASE__REQUIRES:
-				setRequires(REQUIRES_EDEFAULT);
-				return;
-		}
-		super.eUnset(featureID);
-	}
+        switch (featureID) {
+            case ScaPackage.SCA_PROPERTY_BASE__MIXED:
+                getMixed().clear();
+                return;
+            case ScaPackage.SCA_PROPERTY_BASE__ANY:
+                getAny().clear();
+                return;
+            case ScaPackage.SCA_PROPERTY_BASE__POLICY_SETS:
+                setPolicySets(POLICY_SETS_EDEFAULT);
+                return;
+            case ScaPackage.SCA_PROPERTY_BASE__REQUIRES:
+                setRequires(REQUIRES_EDEFAULT);
+                return;
+        }
+        super.eUnset(featureID);
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	@Override
 	public boolean eIsSet(int featureID) {
-		switch (featureID) {
-			case ScaPackage.SCA_PROPERTY_BASE__MIXED:
-				return mixed != null && !mixed.isEmpty();
-			case ScaPackage.SCA_PROPERTY_BASE__ANY:
-				return !getAny().isEmpty();
-			case ScaPackage.SCA_PROPERTY_BASE__POLICY_SETS:
-				return POLICY_SETS_EDEFAULT == null ? policySets != null : !POLICY_SETS_EDEFAULT.equals(policySets);
-			case ScaPackage.SCA_PROPERTY_BASE__REQUIRES:
-				return REQUIRES_EDEFAULT == null ? requires != null : !REQUIRES_EDEFAULT.equals(requires);
-		}
-		return super.eIsSet(featureID);
-	}
+        switch (featureID) {
+            case ScaPackage.SCA_PROPERTY_BASE__MIXED:
+                return mixed != null && !mixed.isEmpty();
+            case ScaPackage.SCA_PROPERTY_BASE__ANY:
+                return !getAny().isEmpty();
+            case ScaPackage.SCA_PROPERTY_BASE__POLICY_SETS:
+                return POLICY_SETS_EDEFAULT == null ? policySets != null : !POLICY_SETS_EDEFAULT.equals(policySets);
+            case ScaPackage.SCA_PROPERTY_BASE__REQUIRES:
+                return REQUIRES_EDEFAULT == null ? requires != null : !REQUIRES_EDEFAULT.equals(requires);
+        }
+        return super.eIsSet(featureID);
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	@Override
 	public String toString() {
-		if (eIsProxy()) return super.toString();
+        if (eIsProxy()) return super.toString();
 
-		StringBuffer result = new StringBuffer(super.toString());
-		result.append(" (mixed: ");
-		result.append(mixed);
-		result.append(", policySets: ");
-		result.append(policySets);
-		result.append(", requires: ");
-		result.append(requires);
-		result.append(')');
-		return result.toString();
-	}
+        StringBuffer result = new StringBuffer(super.toString());
+        result.append(" (mixed: ");
+        result.append(mixed);
+        result.append(", policySets: ");
+        result.append(policySets);
+        result.append(", requires: ");
+        result.append(requires);
+        result.append(')');
+        return result.toString();
+    }
 
 } //SCAPropertyBaseImpl

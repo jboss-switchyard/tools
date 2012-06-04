@@ -17,7 +17,8 @@ import org.switchyard.tools.models.switchyard1_0.bean.BeanImplementationType;
 import org.switchyard.tools.models.switchyard1_0.camel.CamelImplementationType;
 import org.switchyard.tools.ui.editor.diagram.shared.AbstractSwitchyardComposite;
 import org.switchyard.tools.ui.editor.diagram.shared.BeanImplementationComposite;
-import org.switchyard.tools.ui.editor.diagram.shared.CamelRouteSelectionComposite;
+import org.switchyard.tools.ui.editor.diagram.shared.CamelJavaRouteComposite;
+import org.switchyard.tools.ui.editor.diagram.shared.CamelXMLRouteComposite;
 
 /**
  * @author bfitzpat
@@ -36,7 +37,11 @@ public final class ImplementationCompositeAdapter {
     public static AbstractSwitchyardComposite adaptModelToComposite(EObject object) {
         AbstractSwitchyardComposite composite = null;
         if (object instanceof CamelImplementationType) {
-            composite = new CamelRouteSelectionComposite();
+            if (((CamelImplementationType)object).getJava() == null) {
+                composite = new CamelXMLRouteComposite();
+            } else {
+                composite = new CamelJavaRouteComposite();
+            }
         } else if (object instanceof BeanImplementationType) {
             composite = new BeanImplementationComposite();
         }

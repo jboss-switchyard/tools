@@ -48,299 +48,299 @@ import org.eclipse.soa.sca.sca1_1.model.sca.ScaPackage;
  */
 public class CallbackImpl extends CommonExtensionBaseImpl implements Callback {
 	/**
-	 * The cached value of the '{@link #getGroup() <em>Group</em>}' attribute list.
-	 * <!-- begin-user-doc -->
+     * The cached value of the '{@link #getGroup() <em>Group</em>}' attribute list.
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #getGroup()
-	 * @generated
-	 * @ordered
-	 */
+     * @see #getGroup()
+     * @generated
+     * @ordered
+     */
 	protected FeatureMap group;
 
 	/**
-	 * The default value of the '{@link #getPolicySets() <em>Policy Sets</em>}' attribute.
-	 * <!-- begin-user-doc -->
+     * The default value of the '{@link #getPolicySets() <em>Policy Sets</em>}' attribute.
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #getPolicySets()
-	 * @generated
-	 * @ordered
-	 */
+     * @see #getPolicySets()
+     * @generated
+     * @ordered
+     */
 	protected static final List<QName> POLICY_SETS_EDEFAULT = null;
 
 	/**
-	 * The cached value of the '{@link #getPolicySets() <em>Policy Sets</em>}' attribute.
-	 * <!-- begin-user-doc -->
+     * The cached value of the '{@link #getPolicySets() <em>Policy Sets</em>}' attribute.
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #getPolicySets()
-	 * @generated
-	 * @ordered
-	 */
+     * @see #getPolicySets()
+     * @generated
+     * @ordered
+     */
 	protected List<QName> policySets = POLICY_SETS_EDEFAULT;
 
 	/**
-	 * The default value of the '{@link #getRequires() <em>Requires</em>}' attribute.
-	 * <!-- begin-user-doc -->
+     * The default value of the '{@link #getRequires() <em>Requires</em>}' attribute.
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #getRequires()
-	 * @generated
-	 * @ordered
-	 */
+     * @see #getRequires()
+     * @generated
+     * @ordered
+     */
 	protected static final List<QName> REQUIRES_EDEFAULT = null;
 
 	/**
-	 * The cached value of the '{@link #getRequires() <em>Requires</em>}' attribute.
-	 * <!-- begin-user-doc -->
+     * The cached value of the '{@link #getRequires() <em>Requires</em>}' attribute.
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #getRequires()
-	 * @generated
-	 * @ordered
-	 */
+     * @see #getRequires()
+     * @generated
+     * @ordered
+     */
 	protected List<QName> requires = REQUIRES_EDEFAULT;
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	protected CallbackImpl() {
-		super();
-	}
+        super();
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	@Override
 	protected EClass eStaticClass() {
-		return ScaPackage.eINSTANCE.getCallback();
-	}
+        return ScaPackage.eINSTANCE.getCallback();
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public FeatureMap getGroup() {
-		if (group == null) {
-			group = new BasicFeatureMap(this, ScaPackage.CALLBACK__GROUP);
-		}
-		return group;
-	}
+        if (group == null) {
+            group = new BasicFeatureMap(this, ScaPackage.CALLBACK__GROUP);
+        }
+        return group;
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public FeatureMap getBindingGroup() {
-		return (FeatureMap)getGroup().<FeatureMap.Entry>list(ScaPackage.eINSTANCE.getCallback_BindingGroup());
-	}
+        return (FeatureMap)getGroup().<FeatureMap.Entry>list(ScaPackage.eINSTANCE.getCallback_BindingGroup());
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public EList<Binding> getBinding() {
-		return getBindingGroup().list(ScaPackage.eINSTANCE.getCallback_Binding());
-	}
+        return getBindingGroup().list(ScaPackage.eINSTANCE.getCallback_Binding());
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public FeatureMap getAny() {
-		return (FeatureMap)getGroup().<FeatureMap.Entry>list(ScaPackage.eINSTANCE.getCallback_Any());
-	}
+        return (FeatureMap)getGroup().<FeatureMap.Entry>list(ScaPackage.eINSTANCE.getCallback_Any());
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public List<QName> getPolicySets() {
-		return policySets;
-	}
+        return policySets;
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public void setPolicySets(List<QName> newPolicySets) {
-		List<QName> oldPolicySets = policySets;
-		policySets = newPolicySets;
-		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, ScaPackage.CALLBACK__POLICY_SETS, oldPolicySets, policySets));
-	}
+        List<QName> oldPolicySets = policySets;
+        policySets = newPolicySets;
+        if (eNotificationRequired())
+            eNotify(new ENotificationImpl(this, Notification.SET, ScaPackage.CALLBACK__POLICY_SETS, oldPolicySets, policySets));
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public List<QName> getRequires() {
-		return requires;
-	}
+        return requires;
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public void setRequires(List<QName> newRequires) {
-		List<QName> oldRequires = requires;
-		requires = newRequires;
-		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, ScaPackage.CALLBACK__REQUIRES, oldRequires, requires));
-	}
+        List<QName> oldRequires = requires;
+        requires = newRequires;
+        if (eNotificationRequired())
+            eNotify(new ENotificationImpl(this, Notification.SET, ScaPackage.CALLBACK__REQUIRES, oldRequires, requires));
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	@Override
 	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
-		switch (featureID) {
-			case ScaPackage.CALLBACK__GROUP:
-				return ((InternalEList<?>)getGroup()).basicRemove(otherEnd, msgs);
-			case ScaPackage.CALLBACK__BINDING_GROUP:
-				return ((InternalEList<?>)getBindingGroup()).basicRemove(otherEnd, msgs);
-			case ScaPackage.CALLBACK__BINDING:
-				return ((InternalEList<?>)getBinding()).basicRemove(otherEnd, msgs);
-			case ScaPackage.CALLBACK__ANY:
-				return ((InternalEList<?>)getAny()).basicRemove(otherEnd, msgs);
-		}
-		return super.eInverseRemove(otherEnd, featureID, msgs);
-	}
+        switch (featureID) {
+            case ScaPackage.CALLBACK__GROUP:
+                return ((InternalEList<?>)getGroup()).basicRemove(otherEnd, msgs);
+            case ScaPackage.CALLBACK__BINDING_GROUP:
+                return ((InternalEList<?>)getBindingGroup()).basicRemove(otherEnd, msgs);
+            case ScaPackage.CALLBACK__BINDING:
+                return ((InternalEList<?>)getBinding()).basicRemove(otherEnd, msgs);
+            case ScaPackage.CALLBACK__ANY:
+                return ((InternalEList<?>)getAny()).basicRemove(otherEnd, msgs);
+        }
+        return super.eInverseRemove(otherEnd, featureID, msgs);
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
-		switch (featureID) {
-			case ScaPackage.CALLBACK__GROUP:
-				if (coreType) return getGroup();
-				return ((FeatureMap.Internal)getGroup()).getWrapper();
-			case ScaPackage.CALLBACK__BINDING_GROUP:
-				if (coreType) return getBindingGroup();
-				return ((FeatureMap.Internal)getBindingGroup()).getWrapper();
-			case ScaPackage.CALLBACK__BINDING:
-				return getBinding();
-			case ScaPackage.CALLBACK__ANY:
-				if (coreType) return getAny();
-				return ((FeatureMap.Internal)getAny()).getWrapper();
-			case ScaPackage.CALLBACK__POLICY_SETS:
-				return getPolicySets();
-			case ScaPackage.CALLBACK__REQUIRES:
-				return getRequires();
-		}
-		return super.eGet(featureID, resolve, coreType);
-	}
+        switch (featureID) {
+            case ScaPackage.CALLBACK__GROUP:
+                if (coreType) return getGroup();
+                return ((FeatureMap.Internal)getGroup()).getWrapper();
+            case ScaPackage.CALLBACK__BINDING_GROUP:
+                if (coreType) return getBindingGroup();
+                return ((FeatureMap.Internal)getBindingGroup()).getWrapper();
+            case ScaPackage.CALLBACK__BINDING:
+                return getBinding();
+            case ScaPackage.CALLBACK__ANY:
+                if (coreType) return getAny();
+                return ((FeatureMap.Internal)getAny()).getWrapper();
+            case ScaPackage.CALLBACK__POLICY_SETS:
+                return getPolicySets();
+            case ScaPackage.CALLBACK__REQUIRES:
+                return getRequires();
+        }
+        return super.eGet(featureID, resolve, coreType);
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	@SuppressWarnings("unchecked")
 	@Override
 	public void eSet(int featureID, Object newValue) {
-		switch (featureID) {
-			case ScaPackage.CALLBACK__GROUP:
-				((FeatureMap.Internal)getGroup()).set(newValue);
-				return;
-			case ScaPackage.CALLBACK__BINDING_GROUP:
-				((FeatureMap.Internal)getBindingGroup()).set(newValue);
-				return;
-			case ScaPackage.CALLBACK__ANY:
-				((FeatureMap.Internal)getAny()).set(newValue);
-				return;
-			case ScaPackage.CALLBACK__POLICY_SETS:
-				setPolicySets((List<QName>)newValue);
-				return;
-			case ScaPackage.CALLBACK__REQUIRES:
-				setRequires((List<QName>)newValue);
-				return;
-		}
-		super.eSet(featureID, newValue);
-	}
+        switch (featureID) {
+            case ScaPackage.CALLBACK__GROUP:
+                ((FeatureMap.Internal)getGroup()).set(newValue);
+                return;
+            case ScaPackage.CALLBACK__BINDING_GROUP:
+                ((FeatureMap.Internal)getBindingGroup()).set(newValue);
+                return;
+            case ScaPackage.CALLBACK__ANY:
+                ((FeatureMap.Internal)getAny()).set(newValue);
+                return;
+            case ScaPackage.CALLBACK__POLICY_SETS:
+                setPolicySets((List<QName>)newValue);
+                return;
+            case ScaPackage.CALLBACK__REQUIRES:
+                setRequires((List<QName>)newValue);
+                return;
+        }
+        super.eSet(featureID, newValue);
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	@Override
 	public void eUnset(int featureID) {
-		switch (featureID) {
-			case ScaPackage.CALLBACK__GROUP:
-				getGroup().clear();
-				return;
-			case ScaPackage.CALLBACK__BINDING_GROUP:
-				getBindingGroup().clear();
-				return;
-			case ScaPackage.CALLBACK__ANY:
-				getAny().clear();
-				return;
-			case ScaPackage.CALLBACK__POLICY_SETS:
-				setPolicySets(POLICY_SETS_EDEFAULT);
-				return;
-			case ScaPackage.CALLBACK__REQUIRES:
-				setRequires(REQUIRES_EDEFAULT);
-				return;
-		}
-		super.eUnset(featureID);
-	}
+        switch (featureID) {
+            case ScaPackage.CALLBACK__GROUP:
+                getGroup().clear();
+                return;
+            case ScaPackage.CALLBACK__BINDING_GROUP:
+                getBindingGroup().clear();
+                return;
+            case ScaPackage.CALLBACK__ANY:
+                getAny().clear();
+                return;
+            case ScaPackage.CALLBACK__POLICY_SETS:
+                setPolicySets(POLICY_SETS_EDEFAULT);
+                return;
+            case ScaPackage.CALLBACK__REQUIRES:
+                setRequires(REQUIRES_EDEFAULT);
+                return;
+        }
+        super.eUnset(featureID);
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	@Override
 	public boolean eIsSet(int featureID) {
-		switch (featureID) {
-			case ScaPackage.CALLBACK__GROUP:
-				return group != null && !group.isEmpty();
-			case ScaPackage.CALLBACK__BINDING_GROUP:
-				return !getBindingGroup().isEmpty();
-			case ScaPackage.CALLBACK__BINDING:
-				return !getBinding().isEmpty();
-			case ScaPackage.CALLBACK__ANY:
-				return !getAny().isEmpty();
-			case ScaPackage.CALLBACK__POLICY_SETS:
-				return POLICY_SETS_EDEFAULT == null ? policySets != null : !POLICY_SETS_EDEFAULT.equals(policySets);
-			case ScaPackage.CALLBACK__REQUIRES:
-				return REQUIRES_EDEFAULT == null ? requires != null : !REQUIRES_EDEFAULT.equals(requires);
-		}
-		return super.eIsSet(featureID);
-	}
+        switch (featureID) {
+            case ScaPackage.CALLBACK__GROUP:
+                return group != null && !group.isEmpty();
+            case ScaPackage.CALLBACK__BINDING_GROUP:
+                return !getBindingGroup().isEmpty();
+            case ScaPackage.CALLBACK__BINDING:
+                return !getBinding().isEmpty();
+            case ScaPackage.CALLBACK__ANY:
+                return !getAny().isEmpty();
+            case ScaPackage.CALLBACK__POLICY_SETS:
+                return POLICY_SETS_EDEFAULT == null ? policySets != null : !POLICY_SETS_EDEFAULT.equals(policySets);
+            case ScaPackage.CALLBACK__REQUIRES:
+                return REQUIRES_EDEFAULT == null ? requires != null : !REQUIRES_EDEFAULT.equals(requires);
+        }
+        return super.eIsSet(featureID);
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	@Override
 	public String toString() {
-		if (eIsProxy()) return super.toString();
+        if (eIsProxy()) return super.toString();
 
-		StringBuffer result = new StringBuffer(super.toString());
-		result.append(" (group: ");
-		result.append(group);
-		result.append(", policySets: ");
-		result.append(policySets);
-		result.append(", requires: ");
-		result.append(requires);
-		result.append(')');
-		return result.toString();
-	}
+        StringBuffer result = new StringBuffer(super.toString());
+        result.append(" (group: ");
+        result.append(group);
+        result.append(", policySets: ");
+        result.append(policySets);
+        result.append(", requires: ");
+        result.append(requires);
+        result.append(')');
+        return result.toString();
+    }
 
 } //CallbackImpl

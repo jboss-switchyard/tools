@@ -9,6 +9,7 @@ package org.switchyard.tools.models.switchyard1_0.camel.impl;
 import org.eclipse.emf.common.notify.Notification;
 
 import org.eclipse.emf.ecore.EClass;
+import org.eclipse.emf.ecore.EStructuralFeature;
 
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 
@@ -1581,6 +1582,11 @@ public class CamelJmsBindingTypeImpl extends BaseCamelBindingImpl implements Cam
         result.append(transactionManager);
         result.append(')');
         return result.toString();
+    }
+
+    @Override
+    public EStructuralFeature getDocumentFeature() {
+        return CamelPackage.eINSTANCE.getDocumentRoot_BindingJms();
     }
 
 } //CamelJmsBindingTypeImpl

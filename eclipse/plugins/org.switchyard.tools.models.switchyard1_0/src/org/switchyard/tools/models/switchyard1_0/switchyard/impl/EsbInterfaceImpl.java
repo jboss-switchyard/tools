@@ -8,6 +8,7 @@ package org.switchyard.tools.models.switchyard1_0.switchyard.impl;
 
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.ecore.EClass;
+import org.eclipse.emf.ecore.EStructuralFeature;
 
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.soa.sca.sca1_1.model.sca.impl.InterfaceImpl;
@@ -264,6 +265,11 @@ public class EsbInterfaceImpl extends InterfaceImpl implements EsbInterface {
         result.append(faultType);
         result.append(')');
         return result.toString();
+    }
+
+    @Override
+    public EStructuralFeature getDocumentFeature() {
+        return SwitchyardPackage.eINSTANCE.getDocumentRoot_InterfaceEsb();
     }
 
 } //EsbInterfaceImpl

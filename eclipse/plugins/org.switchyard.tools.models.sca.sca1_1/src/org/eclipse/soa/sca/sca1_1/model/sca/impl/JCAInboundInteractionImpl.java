@@ -46,259 +46,259 @@ import org.eclipse.soa.sca.sca1_1.model.sca.ScaPackage;
  */
 public class JCAInboundInteractionImpl extends EObjectImpl implements JCAInboundInteraction {
 	/**
-	 * The default value of the '{@link #getListener() <em>Listener</em>}' attribute.
-	 * <!-- begin-user-doc -->
+     * The default value of the '{@link #getListener() <em>Listener</em>}' attribute.
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #getListener()
-	 * @generated
-	 * @ordered
-	 */
+     * @see #getListener()
+     * @generated
+     * @ordered
+     */
 	protected static final String LISTENER_EDEFAULT = null;
 
 	/**
-	 * The cached value of the '{@link #getListener() <em>Listener</em>}' attribute.
-	 * <!-- begin-user-doc -->
+     * The cached value of the '{@link #getListener() <em>Listener</em>}' attribute.
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #getListener()
-	 * @generated
-	 * @ordered
-	 */
+     * @see #getListener()
+     * @generated
+     * @ordered
+     */
 	protected String listener = LISTENER_EDEFAULT;
 
 	/**
-	 * The cached value of the '{@link #getInboundOperation() <em>Inbound Operation</em>}' containment reference list.
-	 * <!-- begin-user-doc -->
+     * The cached value of the '{@link #getInboundOperation() <em>Inbound Operation</em>}' containment reference list.
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #getInboundOperation()
-	 * @generated
-	 * @ordered
-	 */
+     * @see #getInboundOperation()
+     * @generated
+     * @ordered
+     */
 	protected EList<InboundOperation> inboundOperation;
 
 	/**
-	 * The cached value of the '{@link #getAny() <em>Any</em>}' attribute list.
-	 * <!-- begin-user-doc -->
+     * The cached value of the '{@link #getAny() <em>Any</em>}' attribute list.
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #getAny()
-	 * @generated
-	 * @ordered
-	 */
+     * @see #getAny()
+     * @generated
+     * @ordered
+     */
 	protected FeatureMap any;
 
 	/**
-	 * The cached value of the '{@link #getAnyAttribute() <em>Any Attribute</em>}' attribute list.
-	 * <!-- begin-user-doc -->
+     * The cached value of the '{@link #getAnyAttribute() <em>Any Attribute</em>}' attribute list.
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #getAnyAttribute()
-	 * @generated
-	 * @ordered
-	 */
+     * @see #getAnyAttribute()
+     * @generated
+     * @ordered
+     */
 	protected FeatureMap anyAttribute;
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	protected JCAInboundInteractionImpl() {
-		super();
-	}
+        super();
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	@Override
 	protected EClass eStaticClass() {
-		return ScaPackage.eINSTANCE.getJCAInboundInteraction();
-	}
+        return ScaPackage.eINSTANCE.getJCAInboundInteraction();
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public String getListener() {
-		return listener;
-	}
+        return listener;
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public void setListener(String newListener) {
-		String oldListener = listener;
-		listener = newListener;
-		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, ScaPackage.JCA_INBOUND_INTERACTION__LISTENER, oldListener, listener));
-	}
+        String oldListener = listener;
+        listener = newListener;
+        if (eNotificationRequired())
+            eNotify(new ENotificationImpl(this, Notification.SET, ScaPackage.JCA_INBOUND_INTERACTION__LISTENER, oldListener, listener));
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public EList<InboundOperation> getInboundOperation() {
-		if (inboundOperation == null) {
-			inboundOperation = new EObjectContainmentEList<InboundOperation>(InboundOperation.class, this, ScaPackage.JCA_INBOUND_INTERACTION__INBOUND_OPERATION);
-		}
-		return inboundOperation;
-	}
+        if (inboundOperation == null) {
+            inboundOperation = new EObjectContainmentEList<InboundOperation>(InboundOperation.class, this, ScaPackage.JCA_INBOUND_INTERACTION__INBOUND_OPERATION);
+        }
+        return inboundOperation;
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public FeatureMap getAny() {
-		if (any == null) {
-			any = new BasicFeatureMap(this, ScaPackage.JCA_INBOUND_INTERACTION__ANY);
-		}
-		return any;
-	}
+        if (any == null) {
+            any = new BasicFeatureMap(this, ScaPackage.JCA_INBOUND_INTERACTION__ANY);
+        }
+        return any;
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public FeatureMap getAnyAttribute() {
-		if (anyAttribute == null) {
-			anyAttribute = new BasicFeatureMap(this, ScaPackage.JCA_INBOUND_INTERACTION__ANY_ATTRIBUTE);
-		}
-		return anyAttribute;
-	}
+        if (anyAttribute == null) {
+            anyAttribute = new BasicFeatureMap(this, ScaPackage.JCA_INBOUND_INTERACTION__ANY_ATTRIBUTE);
+        }
+        return anyAttribute;
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	@Override
 	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
-		switch (featureID) {
-			case ScaPackage.JCA_INBOUND_INTERACTION__INBOUND_OPERATION:
-				return ((InternalEList<?>)getInboundOperation()).basicRemove(otherEnd, msgs);
-			case ScaPackage.JCA_INBOUND_INTERACTION__ANY:
-				return ((InternalEList<?>)getAny()).basicRemove(otherEnd, msgs);
-			case ScaPackage.JCA_INBOUND_INTERACTION__ANY_ATTRIBUTE:
-				return ((InternalEList<?>)getAnyAttribute()).basicRemove(otherEnd, msgs);
-		}
-		return super.eInverseRemove(otherEnd, featureID, msgs);
-	}
+        switch (featureID) {
+            case ScaPackage.JCA_INBOUND_INTERACTION__INBOUND_OPERATION:
+                return ((InternalEList<?>)getInboundOperation()).basicRemove(otherEnd, msgs);
+            case ScaPackage.JCA_INBOUND_INTERACTION__ANY:
+                return ((InternalEList<?>)getAny()).basicRemove(otherEnd, msgs);
+            case ScaPackage.JCA_INBOUND_INTERACTION__ANY_ATTRIBUTE:
+                return ((InternalEList<?>)getAnyAttribute()).basicRemove(otherEnd, msgs);
+        }
+        return super.eInverseRemove(otherEnd, featureID, msgs);
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
-		switch (featureID) {
-			case ScaPackage.JCA_INBOUND_INTERACTION__LISTENER:
-				return getListener();
-			case ScaPackage.JCA_INBOUND_INTERACTION__INBOUND_OPERATION:
-				return getInboundOperation();
-			case ScaPackage.JCA_INBOUND_INTERACTION__ANY:
-				if (coreType) return getAny();
-				return ((FeatureMap.Internal)getAny()).getWrapper();
-			case ScaPackage.JCA_INBOUND_INTERACTION__ANY_ATTRIBUTE:
-				if (coreType) return getAnyAttribute();
-				return ((FeatureMap.Internal)getAnyAttribute()).getWrapper();
-		}
-		return super.eGet(featureID, resolve, coreType);
-	}
+        switch (featureID) {
+            case ScaPackage.JCA_INBOUND_INTERACTION__LISTENER:
+                return getListener();
+            case ScaPackage.JCA_INBOUND_INTERACTION__INBOUND_OPERATION:
+                return getInboundOperation();
+            case ScaPackage.JCA_INBOUND_INTERACTION__ANY:
+                if (coreType) return getAny();
+                return ((FeatureMap.Internal)getAny()).getWrapper();
+            case ScaPackage.JCA_INBOUND_INTERACTION__ANY_ATTRIBUTE:
+                if (coreType) return getAnyAttribute();
+                return ((FeatureMap.Internal)getAnyAttribute()).getWrapper();
+        }
+        return super.eGet(featureID, resolve, coreType);
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	@SuppressWarnings("unchecked")
 	@Override
 	public void eSet(int featureID, Object newValue) {
-		switch (featureID) {
-			case ScaPackage.JCA_INBOUND_INTERACTION__LISTENER:
-				setListener((String)newValue);
-				return;
-			case ScaPackage.JCA_INBOUND_INTERACTION__INBOUND_OPERATION:
-				getInboundOperation().clear();
-				getInboundOperation().addAll((Collection<? extends InboundOperation>)newValue);
-				return;
-			case ScaPackage.JCA_INBOUND_INTERACTION__ANY:
-				((FeatureMap.Internal)getAny()).set(newValue);
-				return;
-			case ScaPackage.JCA_INBOUND_INTERACTION__ANY_ATTRIBUTE:
-				((FeatureMap.Internal)getAnyAttribute()).set(newValue);
-				return;
-		}
-		super.eSet(featureID, newValue);
-	}
+        switch (featureID) {
+            case ScaPackage.JCA_INBOUND_INTERACTION__LISTENER:
+                setListener((String)newValue);
+                return;
+            case ScaPackage.JCA_INBOUND_INTERACTION__INBOUND_OPERATION:
+                getInboundOperation().clear();
+                getInboundOperation().addAll((Collection<? extends InboundOperation>)newValue);
+                return;
+            case ScaPackage.JCA_INBOUND_INTERACTION__ANY:
+                ((FeatureMap.Internal)getAny()).set(newValue);
+                return;
+            case ScaPackage.JCA_INBOUND_INTERACTION__ANY_ATTRIBUTE:
+                ((FeatureMap.Internal)getAnyAttribute()).set(newValue);
+                return;
+        }
+        super.eSet(featureID, newValue);
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	@Override
 	public void eUnset(int featureID) {
-		switch (featureID) {
-			case ScaPackage.JCA_INBOUND_INTERACTION__LISTENER:
-				setListener(LISTENER_EDEFAULT);
-				return;
-			case ScaPackage.JCA_INBOUND_INTERACTION__INBOUND_OPERATION:
-				getInboundOperation().clear();
-				return;
-			case ScaPackage.JCA_INBOUND_INTERACTION__ANY:
-				getAny().clear();
-				return;
-			case ScaPackage.JCA_INBOUND_INTERACTION__ANY_ATTRIBUTE:
-				getAnyAttribute().clear();
-				return;
-		}
-		super.eUnset(featureID);
-	}
+        switch (featureID) {
+            case ScaPackage.JCA_INBOUND_INTERACTION__LISTENER:
+                setListener(LISTENER_EDEFAULT);
+                return;
+            case ScaPackage.JCA_INBOUND_INTERACTION__INBOUND_OPERATION:
+                getInboundOperation().clear();
+                return;
+            case ScaPackage.JCA_INBOUND_INTERACTION__ANY:
+                getAny().clear();
+                return;
+            case ScaPackage.JCA_INBOUND_INTERACTION__ANY_ATTRIBUTE:
+                getAnyAttribute().clear();
+                return;
+        }
+        super.eUnset(featureID);
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	@Override
 	public boolean eIsSet(int featureID) {
-		switch (featureID) {
-			case ScaPackage.JCA_INBOUND_INTERACTION__LISTENER:
-				return LISTENER_EDEFAULT == null ? listener != null : !LISTENER_EDEFAULT.equals(listener);
-			case ScaPackage.JCA_INBOUND_INTERACTION__INBOUND_OPERATION:
-				return inboundOperation != null && !inboundOperation.isEmpty();
-			case ScaPackage.JCA_INBOUND_INTERACTION__ANY:
-				return any != null && !any.isEmpty();
-			case ScaPackage.JCA_INBOUND_INTERACTION__ANY_ATTRIBUTE:
-				return anyAttribute != null && !anyAttribute.isEmpty();
-		}
-		return super.eIsSet(featureID);
-	}
+        switch (featureID) {
+            case ScaPackage.JCA_INBOUND_INTERACTION__LISTENER:
+                return LISTENER_EDEFAULT == null ? listener != null : !LISTENER_EDEFAULT.equals(listener);
+            case ScaPackage.JCA_INBOUND_INTERACTION__INBOUND_OPERATION:
+                return inboundOperation != null && !inboundOperation.isEmpty();
+            case ScaPackage.JCA_INBOUND_INTERACTION__ANY:
+                return any != null && !any.isEmpty();
+            case ScaPackage.JCA_INBOUND_INTERACTION__ANY_ATTRIBUTE:
+                return anyAttribute != null && !anyAttribute.isEmpty();
+        }
+        return super.eIsSet(featureID);
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	@Override
 	public String toString() {
-		if (eIsProxy()) return super.toString();
+        if (eIsProxy()) return super.toString();
 
-		StringBuffer result = new StringBuffer(super.toString());
-		result.append(" (listener: ");
-		result.append(listener);
-		result.append(", any: ");
-		result.append(any);
-		result.append(", anyAttribute: ");
-		result.append(anyAttribute);
-		result.append(')');
-		return result.toString();
-	}
+        StringBuffer result = new StringBuffer(super.toString());
+        result.append(" (listener: ");
+        result.append(listener);
+        result.append(", any: ");
+        result.append(any);
+        result.append(", anyAttribute: ");
+        result.append(anyAttribute);
+        result.append(')');
+        return result.toString();
+    }
 
 } //JCAInboundInteractionImpl

@@ -26,57 +26,57 @@ package org.eclipse.soa.sca.sca1_1.model.sca;
  */
 public interface JavaImportType extends Import {
 	/**
-	 * Returns the value of the '<em><b>Location</b></em>' attribute.
-	 * <!-- begin-user-doc -->
+     * Returns the value of the '<em><b>Location</b></em>' attribute.
+     * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Location</em>' attribute isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Location</em>' attribute.
-	 * @see #setLocation(String)
-	 * @see org.eclipse.soa.sca.sca1_1.model.sca.ScaPackage#getJavaImportType_Location()
-	 * @model dataType="org.eclipse.emf.ecore.xml.type.AnyURI"
-	 *        extendedMetaData="kind='attribute' name='location'"
-	 * @generated
-	 */
+     * @return the value of the '<em>Location</em>' attribute.
+     * @see #setLocation(String)
+     * @see org.eclipse.soa.sca.sca1_1.model.sca.ScaPackage#getJavaImportType_Location()
+     * @model dataType="org.eclipse.emf.ecore.xml.type.AnyURI"
+     *        extendedMetaData="kind='attribute' name='location'"
+     * @generated
+     */
 	String getLocation();
 
 	/**
-	 * Sets the value of the '{@link org.eclipse.soa.sca.sca1_1.model.sca.JavaImportType#getLocation <em>Location</em>}' attribute.
-	 * <!-- begin-user-doc -->
+     * Sets the value of the '{@link org.eclipse.soa.sca.sca1_1.model.sca.JavaImportType#getLocation <em>Location</em>}' attribute.
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Location</em>' attribute.
-	 * @see #getLocation()
-	 * @generated
-	 */
+     * @param value the new value of the '<em>Location</em>' attribute.
+     * @see #getLocation()
+     * @generated
+     */
 	void setLocation(String value);
 
 	/**
-	 * Returns the value of the '<em><b>Package</b></em>' attribute.
-	 * <!-- begin-user-doc -->
+     * Returns the value of the '<em><b>Package</b></em>' attribute.
+     * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Package</em>' attribute isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Package</em>' attribute.
-	 * @see #setPackage(String)
-	 * @see org.eclipse.soa.sca.sca1_1.model.sca.ScaPackage#getJavaImportType_Package()
-	 * @model dataType="org.eclipse.emf.ecore.xml.type.String" required="true"
-	 *        extendedMetaData="kind='attribute' name='package'"
-	 * @generated
-	 */
+     * @return the value of the '<em>Package</em>' attribute.
+     * @see #setPackage(String)
+     * @see org.eclipse.soa.sca.sca1_1.model.sca.ScaPackage#getJavaImportType_Package()
+     * @model dataType="org.eclipse.emf.ecore.xml.type.String" required="true"
+     *        extendedMetaData="kind='attribute' name='package'"
+     * @generated
+     */
 	String getPackage();
 
 	/**
-	 * Sets the value of the '{@link org.eclipse.soa.sca.sca1_1.model.sca.JavaImportType#getPackage <em>Package</em>}' attribute.
-	 * <!-- begin-user-doc -->
+     * Sets the value of the '{@link org.eclipse.soa.sca.sca1_1.model.sca.JavaImportType#getPackage <em>Package</em>}' attribute.
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Package</em>' attribute.
-	 * @see #getPackage()
-	 * @generated
-	 */
+     * @param value the new value of the '<em>Package</em>' attribute.
+     * @see #getPackage()
+     * @generated
+     */
 	void setPackage(String value);
 
 } // JavaImportType

@@ -36,7 +36,7 @@ public interface hqOperationSelectorType extends OperationSelectorType {
      * @return the value of the '<em>Operation Name</em>' attribute.
      * @see #setOperationName(String)
      * @see org.switchyard.tools.models.switchyard1_0.hornetq.HornetQPackage#gethqOperationSelectorType_OperationName()
-     * @model dataType="org.eclipse.emf.ecore.xml.type.String"
+     * @model dataType="org.eclipse.emf.ecore.xml.type.String" required="true"
      * @generated
      */
     String getOperationName();

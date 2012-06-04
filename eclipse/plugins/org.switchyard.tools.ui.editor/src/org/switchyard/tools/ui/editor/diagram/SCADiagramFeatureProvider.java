@@ -13,6 +13,7 @@
 package org.switchyard.tools.ui.editor.diagram;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 import org.eclipse.graphiti.dt.IDiagramTypeProvider;
@@ -52,8 +53,12 @@ import org.eclipse.soa.sca.sca1_1.model.sca.Service;
 import org.switchyard.tools.models.switchyard1_0.switchyard.SwitchYardBindingType;
 import org.switchyard.tools.ui.editor.diagram.binding.SCADiagramAddBindingFeature;
 import org.switchyard.tools.ui.editor.diagram.binding.SCADiagramCreateBindingFeature;
+import org.switchyard.tools.ui.editor.diagram.component.BaseComponentFactory;
+import org.switchyard.tools.ui.editor.diagram.component.BeanComponentFactory;
+import org.switchyard.tools.ui.editor.diagram.component.CamelXMLComponentFactory;
+import org.switchyard.tools.ui.editor.diagram.component.CamelJavaComponentFactory;
+import org.switchyard.tools.ui.editor.diagram.component.CreateComponentFeature;
 import org.switchyard.tools.ui.editor.diagram.component.SCADiagramAddComponentFeature;
-import org.switchyard.tools.ui.editor.diagram.component.SCADiagramCreateComponentFeature;
 import org.switchyard.tools.ui.editor.diagram.component.SCADiagramDirectEditComponentFeature;
 import org.switchyard.tools.ui.editor.diagram.component.SCADiagramLayoutComponentFeature;
 import org.switchyard.tools.ui.editor.diagram.component.SCADiagramUpdateComponentFeature;
@@ -63,7 +68,6 @@ import org.switchyard.tools.ui.editor.diagram.componentreference.SCADiagramCusto
 import org.switchyard.tools.ui.editor.diagram.componentservice.SCADiagramAddComponentServiceFeature;
 import org.switchyard.tools.ui.editor.diagram.componentservice.SCADiagramCreateComponentServiceFeature;
 import org.switchyard.tools.ui.editor.diagram.composite.SCADiagramAddCompositeFeature;
-import org.switchyard.tools.ui.editor.diagram.composite.SCADiagramCreateCompositeFeature;
 import org.switchyard.tools.ui.editor.diagram.composite.SCADiagramDeleteCompositeFeature;
 import org.switchyard.tools.ui.editor.diagram.composite.SCADiagramDirectEditCompositeFeature;
 import org.switchyard.tools.ui.editor.diagram.composite.SCADiagramLayoutCompositeFeature;
@@ -79,8 +83,11 @@ import org.switchyard.tools.ui.editor.diagram.connections.SCADiagramAddComponent
 import org.switchyard.tools.ui.editor.diagram.connections.SCADiagramAddReferenceLinkFeature;
 import org.switchyard.tools.ui.editor.diagram.connections.SCADiagramCreateComponentServiceLinkFeature;
 import org.switchyard.tools.ui.editor.diagram.connections.SCADiagramCreateReferenceLinkFeature;
+import org.switchyard.tools.ui.editor.diagram.implementation.BeanImplementationFactory;
+import org.switchyard.tools.ui.editor.diagram.implementation.CamelXMLImplementationFactory;
+import org.switchyard.tools.ui.editor.diagram.implementation.CamelJavaImplementationFactory;
+import org.switchyard.tools.ui.editor.diagram.implementation.CreateImplementationFeature;
 import org.switchyard.tools.ui.editor.diagram.implementation.SCADiagramAddImplementationFeature;
-import org.switchyard.tools.ui.editor.diagram.implementation.SCADiagramCreateImplementationFeature;
 import org.switchyard.tools.ui.editor.diagram.service.SCADiagramAddServiceFeature;
 import org.switchyard.tools.ui.editor.diagram.service.SCADiagramCreateServiceFeature;
 import org.switchyard.tools.ui.editor.diagram.service.SCADiagramCustomPromoteServiceFeature;
@@ -147,11 +154,59 @@ public class SCADiagramFeatureProvider extends DefaultFeatureProvider {
 
     @Override
     public ICreateFeature[] getCreateFeatures() {
-        return new ICreateFeature[] {new SCADiagramCreateCompositeFeature(this),
-                new SCADiagramCreateComponentFeature(this), new SCADiagramCreateServiceFeature(this),
-                new SCADiagramCreateComponentServiceFeature(this), new SCADiagramCreateComponentReferenceFeature(this),
-                new SCADiagramCreateCompositeReferenceFeature(this), new SCADiagramCreateBindingFeature(this),
-                new SCADiagramCreateImplementationFeature(this) };
+        List<ICreateFeature> features = new ArrayList<ICreateFeature>();
+        features.addAll(getCreateCompositeFeatures());
+        features.addAll(getCreateComponentFeatures());
+        features.addAll(getCreateImplementationFeatures());
+        features.addAll(getCreateBindingFeatures());
+        return features.toArray(new ICreateFeature[features.size()]);
+    }
+
+    /* package */List<ICreateFeature> getCreateComponentFeatures() {
+        List<ICreateFeature> features = new ArrayList<ICreateFeature>(5);
+        // component types
+        features.add(new CreateComponentFeature(this, new BaseComponentFactory(), "Abstract",
+                "Create a simple component with no implementation, services or references."));
+        features.add(new CreateComponentFeature(this, new CamelJavaComponentFactory(), "Camel (Java)",
+                "Create a component implemented as a Java based Camel route."));
+        features.add(new CreateComponentFeature(this, new CamelXMLComponentFactory(), "Camel (XML)",
+                "Create a component implemented as an XML based Camel route."));
+        features.add(new CreateComponentFeature(this, new BeanComponentFactory(), "Bean",
+                "Create a component with a Java Bean (CDI) implementation."));
+
+        // services & references
+        features.add(new SCADiagramCreateComponentServiceFeature(this));
+        features.add(new SCADiagramCreateComponentReferenceFeature(this));
+
+        return features;
+    }
+
+    /* package */List<ICreateFeature> getCreateCompositeFeatures() {
+        List<ICreateFeature> features = new ArrayList<ICreateFeature>(2);
+        features.add(new SCADiagramCreateServiceFeature(this));
+        features.add(new SCADiagramCreateCompositeReferenceFeature(this));
+        return features;
+    }
+
+    /* package */List<ICreateFeature> getCreateImplementationFeatures() {
+        List<ICreateFeature> features = new ArrayList<ICreateFeature>(2);
+        features.add(new CreateImplementationFeature(this, new CamelJavaImplementationFactory(), "Camel (Java)",
+                "An implementation using a Java based Camel route."));
+        features.add(new CreateImplementationFeature(this, new CamelXMLImplementationFactory(), "Camel (XML)",
+                "An implementation using an XML based Camel route."));
+        features.add(new CreateImplementationFeature(this, new BeanImplementationFactory(), "Bean",
+                "An implementation using a Java Bean (CDI)."));
+        return features;
+    }
+
+    /* package */List<ICreateFeature> getCreateBindingFeatures() {
+        List<ICreateFeature> features = new ArrayList<ICreateFeature>(1);
+        features.add(new SCADiagramCreateBindingFeature(this));
+        return features;
+    }
+
+    /* package */List<ICreateFeature> getCreateOtherFeatures() {
+        return Collections.emptyList();
     }
 
     @Override

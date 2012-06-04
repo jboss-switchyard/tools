@@ -47,446 +47,446 @@ import org.eclipse.soa.sca.sca1_1.model.sca.ScaPackage;
  */
 public class JMSHeadersImpl extends EObjectImpl implements JMSHeaders {
 	/**
-	 * The cached value of the '{@link #getProperty() <em>Property</em>}' containment reference list.
-	 * <!-- begin-user-doc -->
+     * The cached value of the '{@link #getProperty() <em>Property</em>}' containment reference list.
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #getProperty()
-	 * @generated
-	 * @ordered
-	 */
+     * @see #getProperty()
+     * @generated
+     * @ordered
+     */
 	protected EList<BindingProperty> property;
 
 	/**
-	 * The default value of the '{@link #getDeliveryMode() <em>Delivery Mode</em>}' attribute.
-	 * <!-- begin-user-doc -->
+     * The default value of the '{@link #getDeliveryMode() <em>Delivery Mode</em>}' attribute.
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #getDeliveryMode()
-	 * @generated
-	 * @ordered
-	 */
+     * @see #getDeliveryMode()
+     * @generated
+     * @ordered
+     */
 	protected static final DeliveryModeType DELIVERY_MODE_EDEFAULT = DeliveryModeType.PERSISTENT;
 
 	/**
-	 * The cached value of the '{@link #getDeliveryMode() <em>Delivery Mode</em>}' attribute.
-	 * <!-- begin-user-doc -->
+     * The cached value of the '{@link #getDeliveryMode() <em>Delivery Mode</em>}' attribute.
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #getDeliveryMode()
-	 * @generated
-	 * @ordered
-	 */
+     * @see #getDeliveryMode()
+     * @generated
+     * @ordered
+     */
 	protected DeliveryModeType deliveryMode = DELIVERY_MODE_EDEFAULT;
 
 	/**
-	 * This is true if the Delivery Mode attribute has been set.
-	 * <!-- begin-user-doc -->
+     * This is true if the Delivery Mode attribute has been set.
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
+     * @generated
+     * @ordered
+     */
 	protected boolean deliveryModeESet;
 
 	/**
-	 * The default value of the '{@link #getPriority() <em>Priority</em>}' attribute.
-	 * <!-- begin-user-doc -->
+     * The default value of the '{@link #getPriority() <em>Priority</em>}' attribute.
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #getPriority()
-	 * @generated
-	 * @ordered
-	 */
+     * @see #getPriority()
+     * @generated
+     * @ordered
+     */
 	protected static final PriorityType PRIORITY_EDEFAULT = PriorityType._0;
 
 	/**
-	 * The cached value of the '{@link #getPriority() <em>Priority</em>}' attribute.
-	 * <!-- begin-user-doc -->
+     * The cached value of the '{@link #getPriority() <em>Priority</em>}' attribute.
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #getPriority()
-	 * @generated
-	 * @ordered
-	 */
+     * @see #getPriority()
+     * @generated
+     * @ordered
+     */
 	protected PriorityType priority = PRIORITY_EDEFAULT;
 
 	/**
-	 * This is true if the Priority attribute has been set.
-	 * <!-- begin-user-doc -->
+     * This is true if the Priority attribute has been set.
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
+     * @generated
+     * @ordered
+     */
 	protected boolean priorityESet;
 
 	/**
-	 * The default value of the '{@link #getTimeToLive() <em>Time To Live</em>}' attribute.
-	 * <!-- begin-user-doc -->
+     * The default value of the '{@link #getTimeToLive() <em>Time To Live</em>}' attribute.
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #getTimeToLive()
-	 * @generated
-	 * @ordered
-	 */
+     * @see #getTimeToLive()
+     * @generated
+     * @ordered
+     */
 	protected static final long TIME_TO_LIVE_EDEFAULT = 0L;
 
 	/**
-	 * The cached value of the '{@link #getTimeToLive() <em>Time To Live</em>}' attribute.
-	 * <!-- begin-user-doc -->
+     * The cached value of the '{@link #getTimeToLive() <em>Time To Live</em>}' attribute.
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #getTimeToLive()
-	 * @generated
-	 * @ordered
-	 */
+     * @see #getTimeToLive()
+     * @generated
+     * @ordered
+     */
 	protected long timeToLive = TIME_TO_LIVE_EDEFAULT;
 
 	/**
-	 * This is true if the Time To Live attribute has been set.
-	 * <!-- begin-user-doc -->
+     * This is true if the Time To Live attribute has been set.
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
+     * @generated
+     * @ordered
+     */
 	protected boolean timeToLiveESet;
 
 	/**
-	 * The default value of the '{@link #getType() <em>Type</em>}' attribute.
-	 * <!-- begin-user-doc -->
+     * The default value of the '{@link #getType() <em>Type</em>}' attribute.
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #getType()
-	 * @generated
-	 * @ordered
-	 */
+     * @see #getType()
+     * @generated
+     * @ordered
+     */
 	protected static final String TYPE_EDEFAULT = null;
 
 	/**
-	 * The cached value of the '{@link #getType() <em>Type</em>}' attribute.
-	 * <!-- begin-user-doc -->
+     * The cached value of the '{@link #getType() <em>Type</em>}' attribute.
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #getType()
-	 * @generated
-	 * @ordered
-	 */
+     * @see #getType()
+     * @generated
+     * @ordered
+     */
 	protected String type = TYPE_EDEFAULT;
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	protected JMSHeadersImpl() {
-		super();
-	}
+        super();
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	@Override
 	protected EClass eStaticClass() {
-		return ScaPackage.eINSTANCE.getJMSHeaders();
-	}
+        return ScaPackage.eINSTANCE.getJMSHeaders();
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public EList<BindingProperty> getProperty() {
-		if (property == null) {
-			property = new EObjectContainmentEList<BindingProperty>(BindingProperty.class, this, ScaPackage.JMS_HEADERS__PROPERTY);
-		}
-		return property;
-	}
+        if (property == null) {
+            property = new EObjectContainmentEList<BindingProperty>(BindingProperty.class, this, ScaPackage.JMS_HEADERS__PROPERTY);
+        }
+        return property;
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public DeliveryModeType getDeliveryMode() {
-		return deliveryMode;
-	}
+        return deliveryMode;
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public void setDeliveryMode(DeliveryModeType newDeliveryMode) {
-		DeliveryModeType oldDeliveryMode = deliveryMode;
-		deliveryMode = newDeliveryMode == null ? DELIVERY_MODE_EDEFAULT : newDeliveryMode;
-		boolean oldDeliveryModeESet = deliveryModeESet;
-		deliveryModeESet = true;
-		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, ScaPackage.JMS_HEADERS__DELIVERY_MODE, oldDeliveryMode, deliveryMode, !oldDeliveryModeESet));
-	}
+        DeliveryModeType oldDeliveryMode = deliveryMode;
+        deliveryMode = newDeliveryMode == null ? DELIVERY_MODE_EDEFAULT : newDeliveryMode;
+        boolean oldDeliveryModeESet = deliveryModeESet;
+        deliveryModeESet = true;
+        if (eNotificationRequired())
+            eNotify(new ENotificationImpl(this, Notification.SET, ScaPackage.JMS_HEADERS__DELIVERY_MODE, oldDeliveryMode, deliveryMode, !oldDeliveryModeESet));
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public void unsetDeliveryMode() {
-		DeliveryModeType oldDeliveryMode = deliveryMode;
-		boolean oldDeliveryModeESet = deliveryModeESet;
-		deliveryMode = DELIVERY_MODE_EDEFAULT;
-		deliveryModeESet = false;
-		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.UNSET, ScaPackage.JMS_HEADERS__DELIVERY_MODE, oldDeliveryMode, DELIVERY_MODE_EDEFAULT, oldDeliveryModeESet));
-	}
+        DeliveryModeType oldDeliveryMode = deliveryMode;
+        boolean oldDeliveryModeESet = deliveryModeESet;
+        deliveryMode = DELIVERY_MODE_EDEFAULT;
+        deliveryModeESet = false;
+        if (eNotificationRequired())
+            eNotify(new ENotificationImpl(this, Notification.UNSET, ScaPackage.JMS_HEADERS__DELIVERY_MODE, oldDeliveryMode, DELIVERY_MODE_EDEFAULT, oldDeliveryModeESet));
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public boolean isSetDeliveryMode() {
-		return deliveryModeESet;
-	}
+        return deliveryModeESet;
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public PriorityType getPriority() {
-		return priority;
-	}
+        return priority;
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public void setPriority(PriorityType newPriority) {
-		PriorityType oldPriority = priority;
-		priority = newPriority == null ? PRIORITY_EDEFAULT : newPriority;
-		boolean oldPriorityESet = priorityESet;
-		priorityESet = true;
-		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, ScaPackage.JMS_HEADERS__PRIORITY, oldPriority, priority, !oldPriorityESet));
-	}
+        PriorityType oldPriority = priority;
+        priority = newPriority == null ? PRIORITY_EDEFAULT : newPriority;
+        boolean oldPriorityESet = priorityESet;
+        priorityESet = true;
+        if (eNotificationRequired())
+            eNotify(new ENotificationImpl(this, Notification.SET, ScaPackage.JMS_HEADERS__PRIORITY, oldPriority, priority, !oldPriorityESet));
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public void unsetPriority() {
-		PriorityType oldPriority = priority;
-		boolean oldPriorityESet = priorityESet;
-		priority = PRIORITY_EDEFAULT;
-		priorityESet = false;
-		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.UNSET, ScaPackage.JMS_HEADERS__PRIORITY, oldPriority, PRIORITY_EDEFAULT, oldPriorityESet));
-	}
+        PriorityType oldPriority = priority;
+        boolean oldPriorityESet = priorityESet;
+        priority = PRIORITY_EDEFAULT;
+        priorityESet = false;
+        if (eNotificationRequired())
+            eNotify(new ENotificationImpl(this, Notification.UNSET, ScaPackage.JMS_HEADERS__PRIORITY, oldPriority, PRIORITY_EDEFAULT, oldPriorityESet));
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public boolean isSetPriority() {
-		return priorityESet;
-	}
+        return priorityESet;
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public long getTimeToLive() {
-		return timeToLive;
-	}
+        return timeToLive;
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public void setTimeToLive(long newTimeToLive) {
-		long oldTimeToLive = timeToLive;
-		timeToLive = newTimeToLive;
-		boolean oldTimeToLiveESet = timeToLiveESet;
-		timeToLiveESet = true;
-		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, ScaPackage.JMS_HEADERS__TIME_TO_LIVE, oldTimeToLive, timeToLive, !oldTimeToLiveESet));
-	}
+        long oldTimeToLive = timeToLive;
+        timeToLive = newTimeToLive;
+        boolean oldTimeToLiveESet = timeToLiveESet;
+        timeToLiveESet = true;
+        if (eNotificationRequired())
+            eNotify(new ENotificationImpl(this, Notification.SET, ScaPackage.JMS_HEADERS__TIME_TO_LIVE, oldTimeToLive, timeToLive, !oldTimeToLiveESet));
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public void unsetTimeToLive() {
-		long oldTimeToLive = timeToLive;
-		boolean oldTimeToLiveESet = timeToLiveESet;
-		timeToLive = TIME_TO_LIVE_EDEFAULT;
-		timeToLiveESet = false;
-		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.UNSET, ScaPackage.JMS_HEADERS__TIME_TO_LIVE, oldTimeToLive, TIME_TO_LIVE_EDEFAULT, oldTimeToLiveESet));
-	}
+        long oldTimeToLive = timeToLive;
+        boolean oldTimeToLiveESet = timeToLiveESet;
+        timeToLive = TIME_TO_LIVE_EDEFAULT;
+        timeToLiveESet = false;
+        if (eNotificationRequired())
+            eNotify(new ENotificationImpl(this, Notification.UNSET, ScaPackage.JMS_HEADERS__TIME_TO_LIVE, oldTimeToLive, TIME_TO_LIVE_EDEFAULT, oldTimeToLiveESet));
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public boolean isSetTimeToLive() {
-		return timeToLiveESet;
-	}
+        return timeToLiveESet;
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public String getType() {
-		return type;
-	}
+        return type;
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public void setType(String newType) {
-		String oldType = type;
-		type = newType;
-		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, ScaPackage.JMS_HEADERS__TYPE, oldType, type));
-	}
+        String oldType = type;
+        type = newType;
+        if (eNotificationRequired())
+            eNotify(new ENotificationImpl(this, Notification.SET, ScaPackage.JMS_HEADERS__TYPE, oldType, type));
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	@Override
 	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
-		switch (featureID) {
-			case ScaPackage.JMS_HEADERS__PROPERTY:
-				return ((InternalEList<?>)getProperty()).basicRemove(otherEnd, msgs);
-		}
-		return super.eInverseRemove(otherEnd, featureID, msgs);
-	}
+        switch (featureID) {
+            case ScaPackage.JMS_HEADERS__PROPERTY:
+                return ((InternalEList<?>)getProperty()).basicRemove(otherEnd, msgs);
+        }
+        return super.eInverseRemove(otherEnd, featureID, msgs);
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
-		switch (featureID) {
-			case ScaPackage.JMS_HEADERS__PROPERTY:
-				return getProperty();
-			case ScaPackage.JMS_HEADERS__DELIVERY_MODE:
-				return getDeliveryMode();
-			case ScaPackage.JMS_HEADERS__PRIORITY:
-				return getPriority();
-			case ScaPackage.JMS_HEADERS__TIME_TO_LIVE:
-				return getTimeToLive();
-			case ScaPackage.JMS_HEADERS__TYPE:
-				return getType();
-		}
-		return super.eGet(featureID, resolve, coreType);
-	}
+        switch (featureID) {
+            case ScaPackage.JMS_HEADERS__PROPERTY:
+                return getProperty();
+            case ScaPackage.JMS_HEADERS__DELIVERY_MODE:
+                return getDeliveryMode();
+            case ScaPackage.JMS_HEADERS__PRIORITY:
+                return getPriority();
+            case ScaPackage.JMS_HEADERS__TIME_TO_LIVE:
+                return getTimeToLive();
+            case ScaPackage.JMS_HEADERS__TYPE:
+                return getType();
+        }
+        return super.eGet(featureID, resolve, coreType);
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	@SuppressWarnings("unchecked")
 	@Override
 	public void eSet(int featureID, Object newValue) {
-		switch (featureID) {
-			case ScaPackage.JMS_HEADERS__PROPERTY:
-				getProperty().clear();
-				getProperty().addAll((Collection<? extends BindingProperty>)newValue);
-				return;
-			case ScaPackage.JMS_HEADERS__DELIVERY_MODE:
-				setDeliveryMode((DeliveryModeType)newValue);
-				return;
-			case ScaPackage.JMS_HEADERS__PRIORITY:
-				setPriority((PriorityType)newValue);
-				return;
-			case ScaPackage.JMS_HEADERS__TIME_TO_LIVE:
-				setTimeToLive((Long)newValue);
-				return;
-			case ScaPackage.JMS_HEADERS__TYPE:
-				setType((String)newValue);
-				return;
-		}
-		super.eSet(featureID, newValue);
-	}
+        switch (featureID) {
+            case ScaPackage.JMS_HEADERS__PROPERTY:
+                getProperty().clear();
+                getProperty().addAll((Collection<? extends BindingProperty>)newValue);
+                return;
+            case ScaPackage.JMS_HEADERS__DELIVERY_MODE:
+                setDeliveryMode((DeliveryModeType)newValue);
+                return;
+            case ScaPackage.JMS_HEADERS__PRIORITY:
+                setPriority((PriorityType)newValue);
+                return;
+            case ScaPackage.JMS_HEADERS__TIME_TO_LIVE:
+                setTimeToLive((Long)newValue);
+                return;
+            case ScaPackage.JMS_HEADERS__TYPE:
+                setType((String)newValue);
+                return;
+        }
+        super.eSet(featureID, newValue);
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	@Override
 	public void eUnset(int featureID) {
-		switch (featureID) {
-			case ScaPackage.JMS_HEADERS__PROPERTY:
-				getProperty().clear();
-				return;
-			case ScaPackage.JMS_HEADERS__DELIVERY_MODE:
-				unsetDeliveryMode();
-				return;
-			case ScaPackage.JMS_HEADERS__PRIORITY:
-				unsetPriority();
-				return;
-			case ScaPackage.JMS_HEADERS__TIME_TO_LIVE:
-				unsetTimeToLive();
-				return;
-			case ScaPackage.JMS_HEADERS__TYPE:
-				setType(TYPE_EDEFAULT);
-				return;
-		}
-		super.eUnset(featureID);
-	}
+        switch (featureID) {
+            case ScaPackage.JMS_HEADERS__PROPERTY:
+                getProperty().clear();
+                return;
+            case ScaPackage.JMS_HEADERS__DELIVERY_MODE:
+                unsetDeliveryMode();
+                return;
+            case ScaPackage.JMS_HEADERS__PRIORITY:
+                unsetPriority();
+                return;
+            case ScaPackage.JMS_HEADERS__TIME_TO_LIVE:
+                unsetTimeToLive();
+                return;
+            case ScaPackage.JMS_HEADERS__TYPE:
+                setType(TYPE_EDEFAULT);
+                return;
+        }
+        super.eUnset(featureID);
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	@Override
 	public boolean eIsSet(int featureID) {
-		switch (featureID) {
-			case ScaPackage.JMS_HEADERS__PROPERTY:
-				return property != null && !property.isEmpty();
-			case ScaPackage.JMS_HEADERS__DELIVERY_MODE:
-				return isSetDeliveryMode();
-			case ScaPackage.JMS_HEADERS__PRIORITY:
-				return isSetPriority();
-			case ScaPackage.JMS_HEADERS__TIME_TO_LIVE:
-				return isSetTimeToLive();
-			case ScaPackage.JMS_HEADERS__TYPE:
-				return TYPE_EDEFAULT == null ? type != null : !TYPE_EDEFAULT.equals(type);
-		}
-		return super.eIsSet(featureID);
-	}
+        switch (featureID) {
+            case ScaPackage.JMS_HEADERS__PROPERTY:
+                return property != null && !property.isEmpty();
+            case ScaPackage.JMS_HEADERS__DELIVERY_MODE:
+                return isSetDeliveryMode();
+            case ScaPackage.JMS_HEADERS__PRIORITY:
+                return isSetPriority();
+            case ScaPackage.JMS_HEADERS__TIME_TO_LIVE:
+                return isSetTimeToLive();
+            case ScaPackage.JMS_HEADERS__TYPE:
+                return TYPE_EDEFAULT == null ? type != null : !TYPE_EDEFAULT.equals(type);
+        }
+        return super.eIsSet(featureID);
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	@Override
 	public String toString() {
-		if (eIsProxy()) return super.toString();
+        if (eIsProxy()) return super.toString();
 
-		StringBuffer result = new StringBuffer(super.toString());
-		result.append(" (deliveryMode: ");
-		if (deliveryModeESet) result.append(deliveryMode); else result.append("<unset>");
-		result.append(", priority: ");
-		if (priorityESet) result.append(priority); else result.append("<unset>");
-		result.append(", timeToLive: ");
-		if (timeToLiveESet) result.append(timeToLive); else result.append("<unset>");
-		result.append(", type: ");
-		result.append(type);
-		result.append(')');
-		return result.toString();
-	}
+        StringBuffer result = new StringBuffer(super.toString());
+        result.append(" (deliveryMode: ");
+        if (deliveryModeESet) result.append(deliveryMode); else result.append("<unset>");
+        result.append(", priority: ");
+        if (priorityESet) result.append(priority); else result.append("<unset>");
+        result.append(", timeToLive: ");
+        if (timeToLiveESet) result.append(timeToLive); else result.append("<unset>");
+        result.append(", type: ");
+        result.append(type);
+        result.append(')');
+        return result.toString();
+    }
 
 } //JMSHeadersImpl

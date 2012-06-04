@@ -11,6 +11,7 @@ import java.math.BigInteger;
 import org.eclipse.emf.common.notify.Notification;
 
 import org.eclipse.emf.ecore.EClass;
+import org.eclipse.emf.ecore.EStructuralFeature;
 
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 
@@ -501,6 +502,11 @@ public class GenericFileBindingTypeImpl extends BaseCamelBindingImpl implements 
         result.append(charset);
         result.append(')');
         return result.toString();
+    }
+
+    @Override
+    public EStructuralFeature getDocumentFeature() {
+        return CamelPackage.eINSTANCE.getDocumentRoot_BindingFile();
     }
 
 } //GenericFileBindingTypeImpl

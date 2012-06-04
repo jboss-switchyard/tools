@@ -47,7 +47,7 @@ public class SCADiagramCreateCompositeReferenceFeature extends AbstractCreateFea
      * @param fp feature provider
      */
     public SCADiagramCreateCompositeReferenceFeature(IFeatureProvider fp) {
-        super(fp, "Composite Reference", "Create Composite Reference");
+        super(fp, "Reference", "Create Composite Reference");
     }
 
     @Override

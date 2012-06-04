@@ -30,7 +30,8 @@ package org.switchyard.tools.models.switchyard1_0.camel;
  * </p>
  *
  * @see org.switchyard.tools.models.switchyard1_0.camel.CamelPackage#getCamelNettyBindingType()
- * @model extendedMetaData="name='CamelNettyBindingType' kind='elementOnly'"
+ * @model abstract="true"
+ *        extendedMetaData="name='CamelNettyBindingType' kind='elementOnly'"
  * @generated
  */
 public interface CamelNettyBindingType extends BaseCamelBinding {

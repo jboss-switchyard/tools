@@ -22,22 +22,22 @@ import org.eclipse.soa.sca.sca1_1.model.sca.ScaPackage;
  */
 public class ConstrainingPropertyImpl extends PropertyImpl implements ConstrainingProperty {
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	protected ConstrainingPropertyImpl() {
-		super();
-	}
+        super();
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	@Override
 	protected EClass eStaticClass() {
-		return ScaPackage.eINSTANCE.getConstrainingProperty();
-	}
+        return ScaPackage.eINSTANCE.getConstrainingProperty();
+    }
 
 } //ConstrainingPropertyImpl

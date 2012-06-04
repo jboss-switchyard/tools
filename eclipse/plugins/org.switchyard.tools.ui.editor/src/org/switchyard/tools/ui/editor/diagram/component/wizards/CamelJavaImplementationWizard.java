@@ -13,73 +13,69 @@ package org.switchyard.tools.ui.editor.diagram.component.wizards;
 import java.util.Collections;
 import java.util.List;
 
-import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.soa.sca.sca1_1.model.sca.ComponentReference;
 import org.eclipse.soa.sca.sca1_1.model.sca.ComponentService;
-import org.eclipse.soa.sca.sca1_1.model.sca.Implementation;
 import org.switchyard.tools.models.switchyard1_0.camel.CamelFactory;
 import org.switchyard.tools.models.switchyard1_0.camel.CamelImplementationType;
-import org.switchyard.tools.models.switchyard1_0.camel.CamelPackage;
 import org.switchyard.tools.ui.editor.diagram.internal.wizards.LinkedWizardBase;
 
 /**
- * CamelImplementationWizard
+ * CamelJavaImplementationWizard
  * 
  * <p/>
- * Wizard providing support for creating/configuring Camel implementation types.
+ * Wizard providing support for creating/configuring Camel java implementation
+ * types.
  * 
  * @author Rob Cernich
  */
-public class CamelImplementationWizard extends LinkedWizardBase implements IComponentImplementationWizard {
+public class CamelJavaImplementationWizard extends LinkedWizardBase implements IImplementationWizard {
 
     private CamelImplementationType _implementation = CamelFactory.eINSTANCE.createCamelImplementationType();
-    private SCADiagramAddComponentImplementationCamelPage _page;
+    private CamelJavaRouteImplementationPage _page;
+    private List<ComponentService> _services;
+    private List<ComponentReference> _references;
 
     @Override
     public void addPages() {
-        _page = new SCADiagramAddComponentImplementationCamelPage(
-                SCADiagramAddComponentImplementationCamelPage.class.getCanonicalName());
+        _page = new CamelJavaRouteImplementationPage(CamelJavaRouteImplementationPage.class.getCanonicalName());
         _page.init(_implementation);
         addPage(_page);
     }
 
+    /**
+     * @return the new camel implementation.
+     */
     @Override
-    public String getDisplayName() {
-        return "Camel";
-    }
-
-    @Override
-    public Implementation getImplementation() {
+    public CamelImplementationType getImplementation() {
         return _implementation;
     }
 
-    @Override
-    public void setImplementation(Implementation implementation) {
-        _implementation = (CamelImplementationType) implementation;
-    }
-
-    @Override
-    public EStructuralFeature getFeatureForImplementation() {
-        return CamelPackage.eINSTANCE.getDocumentRoot_ImplementationCamel();
-    }
-
+    /**
+     * @return the services implemented by the bean.
+     */
     @Override
     public List<ComponentService> getImplementationServices() {
-        // TODO: look at the specified xml or java class for service
-        // definitions.
-        return Collections.emptyList();
+        return _services;
     }
 
+    /**
+     * @return the services referenced by the bean.
+     */
     @Override
     public List<ComponentReference> getImplementationReferences() {
-        // TODO: check the route for "switchyard:/..." references.
-        return Collections.emptyList();
+        return _references;
     }
 
     @Override
     public boolean doFinish() {
-        // nothing really to do here since the page operates directly on the new
-        // implementation.
+        ComponentService service = _page.getService();
+        if (service == null) {
+            _services = Collections.emptyList();
+        } else {
+            _services = Collections.singletonList(service);
+        }
+        // TODO: _page.getReferences()
+        _references = Collections.emptyList();
         return true;
     }
 

@@ -121,6 +121,7 @@
       <details key="name" value="JAXBTransformType"/>
       <details key="kind" value="empty"/>
     </eAnnotations>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="contextPath" eType="ecore:EDataType http://www.eclipse.org/emf/2003/XMLType#//String"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="JsonTransformType" eSuperTypes="config.switchyard.ecore#//TransformType">
     <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">

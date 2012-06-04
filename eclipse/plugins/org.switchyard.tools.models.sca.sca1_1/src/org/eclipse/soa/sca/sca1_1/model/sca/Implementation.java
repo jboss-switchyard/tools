@@ -28,59 +28,59 @@ import javax.xml.namespace.QName;
  *        extendedMetaData="name='Implementation' kind='elementOnly'"
  * @generated
  */
-public interface Implementation extends CommonExtensionBase {
+public interface Implementation extends CommonExtensionBase, ExtendableType {
 	/**
-	 * Returns the value of the '<em><b>Policy Sets</b></em>' attribute.
-	 * <!-- begin-user-doc -->
+     * Returns the value of the '<em><b>Policy Sets</b></em>' attribute.
+     * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Policy Sets</em>' attribute isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Policy Sets</em>' attribute.
-	 * @see #setPolicySets(List)
-	 * @see org.eclipse.soa.sca.sca1_1.model.sca.ScaPackage#getImplementation_PolicySets()
-	 * @model dataType="org.eclipse.soa.sca.sca1_1.model.sca.ListOfQNames" many="false"
-	 *        extendedMetaData="kind='attribute' name='policySets'"
-	 * @generated
-	 */
+     * @return the value of the '<em>Policy Sets</em>' attribute.
+     * @see #setPolicySets(List)
+     * @see org.eclipse.soa.sca.sca1_1.model.sca.ScaPackage#getImplementation_PolicySets()
+     * @model dataType="org.eclipse.soa.sca.sca1_1.model.sca.ListOfQNames" many="false"
+     *        extendedMetaData="kind='attribute' name='policySets'"
+     * @generated
+     */
 	List<QName> getPolicySets();
 
 	/**
-	 * Sets the value of the '{@link org.eclipse.soa.sca.sca1_1.model.sca.Implementation#getPolicySets <em>Policy Sets</em>}' attribute.
-	 * <!-- begin-user-doc -->
+     * Sets the value of the '{@link org.eclipse.soa.sca.sca1_1.model.sca.Implementation#getPolicySets <em>Policy Sets</em>}' attribute.
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Policy Sets</em>' attribute.
-	 * @see #getPolicySets()
-	 * @generated
-	 */
+     * @param value the new value of the '<em>Policy Sets</em>' attribute.
+     * @see #getPolicySets()
+     * @generated
+     */
 	void setPolicySets(List<QName> value);
 
 	/**
-	 * Returns the value of the '<em><b>Requires</b></em>' attribute.
-	 * <!-- begin-user-doc -->
+     * Returns the value of the '<em><b>Requires</b></em>' attribute.
+     * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Requires</em>' attribute isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Requires</em>' attribute.
-	 * @see #setRequires(List)
-	 * @see org.eclipse.soa.sca.sca1_1.model.sca.ScaPackage#getImplementation_Requires()
-	 * @model dataType="org.eclipse.soa.sca.sca1_1.model.sca.ListOfQNames" many="false"
-	 *        extendedMetaData="kind='attribute' name='requires'"
-	 * @generated
-	 */
+     * @return the value of the '<em>Requires</em>' attribute.
+     * @see #setRequires(List)
+     * @see org.eclipse.soa.sca.sca1_1.model.sca.ScaPackage#getImplementation_Requires()
+     * @model dataType="org.eclipse.soa.sca.sca1_1.model.sca.ListOfQNames" many="false"
+     *        extendedMetaData="kind='attribute' name='requires'"
+     * @generated
+     */
 	List<QName> getRequires();
 
 	/**
-	 * Sets the value of the '{@link org.eclipse.soa.sca.sca1_1.model.sca.Implementation#getRequires <em>Requires</em>}' attribute.
-	 * <!-- begin-user-doc -->
+     * Sets the value of the '{@link org.eclipse.soa.sca.sca1_1.model.sca.Implementation#getRequires <em>Requires</em>}' attribute.
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Requires</em>' attribute.
-	 * @see #getRequires()
-	 * @generated
-	 */
+     * @param value the new value of the '<em>Requires</em>' attribute.
+     * @see #getRequires()
+     * @generated
+     */
 	void setRequires(List<QName> value);
 
 } // Implementation

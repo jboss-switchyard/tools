@@ -79,6 +79,7 @@ public class ScaSwitch<T> extends Switch<T> {
                 Binding binding = (Binding)theEObject;
                 T result = caseBinding(binding);
                 if (result == null) result = caseCommonExtensionBase(binding);
+                if (result == null) result = caseExtendableType(binding);
                 if (result == null) result = defaultCase(theEObject);
                 return result;
             }
@@ -100,6 +101,7 @@ public class ScaSwitch<T> extends Switch<T> {
                 T result = caseBPELImplementation(bpelImplementation);
                 if (result == null) result = caseImplementation(bpelImplementation);
                 if (result == null) result = caseCommonExtensionBase(bpelImplementation);
+                if (result == null) result = caseExtendableType(bpelImplementation);
                 if (result == null) result = defaultCase(theEObject);
                 return result;
             }
@@ -129,6 +131,7 @@ public class ScaSwitch<T> extends Switch<T> {
                 T result = caseCImplementation(cImplementation);
                 if (result == null) result = caseImplementation(cImplementation);
                 if (result == null) result = caseCommonExtensionBase(cImplementation);
+                if (result == null) result = caseExtendableType(cImplementation);
                 if (result == null) result = defaultCase(theEObject);
                 return result;
             }
@@ -151,6 +154,7 @@ public class ScaSwitch<T> extends Switch<T> {
                 T result = caseCInterface(cInterface);
                 if (result == null) result = caseInterface(cInterface);
                 if (result == null) result = caseCommonExtensionBase(cInterface);
+                if (result == null) result = caseExtendableType(cInterface);
                 if (result == null) result = defaultCase(theEObject);
                 return result;
             }
@@ -284,6 +288,7 @@ public class ScaSwitch<T> extends Switch<T> {
                 T result = caseCPPImplementation(cppImplementation);
                 if (result == null) result = caseImplementation(cppImplementation);
                 if (result == null) result = caseCommonExtensionBase(cppImplementation);
+                if (result == null) result = caseExtendableType(cppImplementation);
                 if (result == null) result = defaultCase(theEObject);
                 return result;
             }
@@ -306,6 +311,7 @@ public class ScaSwitch<T> extends Switch<T> {
                 T result = caseCPPInterface(cppInterface);
                 if (result == null) result = caseInterface(cppInterface);
                 if (result == null) result = caseCommonExtensionBase(cppInterface);
+                if (result == null) result = caseExtendableType(cppInterface);
                 if (result == null) result = defaultCase(theEObject);
                 return result;
             }
@@ -333,6 +339,7 @@ public class ScaSwitch<T> extends Switch<T> {
                 T result = caseEJBImplementation(ejbImplementation);
                 if (result == null) result = caseImplementation(ejbImplementation);
                 if (result == null) result = caseCommonExtensionBase(ejbImplementation);
+                if (result == null) result = caseExtendableType(ejbImplementation);
                 if (result == null) result = defaultCase(theEObject);
                 return result;
             }
@@ -341,6 +348,7 @@ public class ScaSwitch<T> extends Switch<T> {
                 T result = caseEJBSessionBeanBinding(ejbSessionBeanBinding);
                 if (result == null) result = caseBinding(ejbSessionBeanBinding);
                 if (result == null) result = caseCommonExtensionBase(ejbSessionBeanBinding);
+                if (result == null) result = caseExtendableType(ejbSessionBeanBinding);
                 if (result == null) result = defaultCase(theEObject);
                 return result;
             }
@@ -363,6 +371,7 @@ public class ScaSwitch<T> extends Switch<T> {
                 Implementation implementation = (Implementation)theEObject;
                 T result = caseImplementation(implementation);
                 if (result == null) result = caseCommonExtensionBase(implementation);
+                if (result == null) result = caseExtendableType(implementation);
                 if (result == null) result = defaultCase(theEObject);
                 return result;
             }
@@ -429,6 +438,7 @@ public class ScaSwitch<T> extends Switch<T> {
                 Interface interface_ = (Interface)theEObject;
                 T result = caseInterface(interface_);
                 if (result == null) result = caseCommonExtensionBase(interface_);
+                if (result == null) result = caseExtendableType(interface_);
                 if (result == null) result = defaultCase(theEObject);
                 return result;
             }
@@ -445,6 +455,7 @@ public class ScaSwitch<T> extends Switch<T> {
                 T result = caseJavaImplementation(javaImplementation);
                 if (result == null) result = caseImplementation(javaImplementation);
                 if (result == null) result = caseCommonExtensionBase(javaImplementation);
+                if (result == null) result = caseExtendableType(javaImplementation);
                 if (result == null) result = defaultCase(theEObject);
                 return result;
             }
@@ -461,6 +472,7 @@ public class ScaSwitch<T> extends Switch<T> {
                 T result = caseJavaInterface(javaInterface);
                 if (result == null) result = caseInterface(javaInterface);
                 if (result == null) result = caseCommonExtensionBase(javaInterface);
+                if (result == null) result = caseExtendableType(javaInterface);
                 if (result == null) result = defaultCase(theEObject);
                 return result;
             }
@@ -469,6 +481,7 @@ public class ScaSwitch<T> extends Switch<T> {
                 T result = caseJCABinding(jcaBinding);
                 if (result == null) result = caseBinding(jcaBinding);
                 if (result == null) result = caseCommonExtensionBase(jcaBinding);
+                if (result == null) result = caseExtendableType(jcaBinding);
                 if (result == null) result = defaultCase(theEObject);
                 return result;
             }
@@ -501,6 +514,7 @@ public class ScaSwitch<T> extends Switch<T> {
                 T result = caseJEEImplementation(jeeImplementation);
                 if (result == null) result = caseImplementation(jeeImplementation);
                 if (result == null) result = caseCommonExtensionBase(jeeImplementation);
+                if (result == null) result = caseExtendableType(jeeImplementation);
                 if (result == null) result = defaultCase(theEObject);
                 return result;
             }
@@ -515,6 +529,7 @@ public class ScaSwitch<T> extends Switch<T> {
                 T result = caseJMSBinding(jmsBinding);
                 if (result == null) result = caseBinding(jmsBinding);
                 if (result == null) result = caseCommonExtensionBase(jmsBinding);
+                if (result == null) result = caseExtendableType(jmsBinding);
                 if (result == null) result = defaultCase(theEObject);
                 return result;
             }
@@ -629,6 +644,7 @@ public class ScaSwitch<T> extends Switch<T> {
                 T result = caseSCABinding(scaBinding);
                 if (result == null) result = caseBinding(scaBinding);
                 if (result == null) result = caseCommonExtensionBase(scaBinding);
+                if (result == null) result = caseExtendableType(scaBinding);
                 if (result == null) result = defaultCase(theEObject);
                 return result;
             }
@@ -637,6 +653,7 @@ public class ScaSwitch<T> extends Switch<T> {
                 T result = caseSCAImplementation(scaImplementation);
                 if (result == null) result = caseImplementation(scaImplementation);
                 if (result == null) result = caseCommonExtensionBase(scaImplementation);
+                if (result == null) result = caseExtendableType(scaImplementation);
                 if (result == null) result = defaultCase(theEObject);
                 return result;
             }
@@ -659,6 +676,7 @@ public class ScaSwitch<T> extends Switch<T> {
                 T result = caseSpringImplementation(springImplementation);
                 if (result == null) result = caseImplementation(springImplementation);
                 if (result == null) result = caseCommonExtensionBase(springImplementation);
+                if (result == null) result = caseExtendableType(springImplementation);
                 if (result == null) result = defaultCase(theEObject);
                 return result;
             }
@@ -680,6 +698,7 @@ public class ScaSwitch<T> extends Switch<T> {
                 T result = caseWebImplementation(webImplementation);
                 if (result == null) result = caseImplementation(webImplementation);
                 if (result == null) result = caseCommonExtensionBase(webImplementation);
+                if (result == null) result = caseExtendableType(webImplementation);
                 if (result == null) result = defaultCase(theEObject);
                 return result;
             }
@@ -688,6 +707,7 @@ public class ScaSwitch<T> extends Switch<T> {
                 T result = caseWebServiceBinding(webServiceBinding);
                 if (result == null) result = caseBinding(webServiceBinding);
                 if (result == null) result = caseCommonExtensionBase(webServiceBinding);
+                if (result == null) result = caseExtendableType(webServiceBinding);
                 if (result == null) result = defaultCase(theEObject);
                 return result;
             }
@@ -715,6 +735,13 @@ public class ScaSwitch<T> extends Switch<T> {
                 T result = caseWSDLPortType(wsdlPortType);
                 if (result == null) result = caseInterface(wsdlPortType);
                 if (result == null) result = caseCommonExtensionBase(wsdlPortType);
+                if (result == null) result = caseExtendableType(wsdlPortType);
+                if (result == null) result = defaultCase(theEObject);
+                return result;
+            }
+            case ScaPackage.EXTENDABLE_TYPE: {
+                ExtendableType extendableType = (ExtendableType)theEObject;
+                T result = caseExtendableType(extendableType);
                 if (result == null) result = defaultCase(theEObject);
                 return result;
             }
@@ -2118,6 +2145,21 @@ public class ScaSwitch<T> extends Switch<T> {
     }
 
 	/**
+     * Returns the result of interpreting the object as an instance of '<em>Extendable Type</em>'.
+     * <!-- begin-user-doc -->
+     * This implementation returns null;
+     * returning a non-null result will terminate the switch.
+     * <!-- end-user-doc -->
+     * @param object the target of the switch.
+     * @return the result of interpreting the object as an instance of '<em>Extendable Type</em>'.
+     * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+     * @generated
+     */
+    public T caseExtendableType(ExtendableType object) {
+        return null;
+    }
+
+    /**
      * Returns the result of interpreting the object as an instance of '<em>EObject</em>'.
      * <!-- begin-user-doc -->
 	 * This implementation returns null;

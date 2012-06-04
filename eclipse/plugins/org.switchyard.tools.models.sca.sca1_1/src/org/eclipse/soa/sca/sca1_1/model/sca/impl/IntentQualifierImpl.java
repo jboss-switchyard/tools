@@ -33,277 +33,277 @@ import org.eclipse.soa.sca.sca1_1.model.sca.ScaPackage;
  */
 public class IntentQualifierImpl extends EObjectImpl implements IntentQualifier {
 	/**
-	 * The default value of the '{@link #getDescription() <em>Description</em>}' attribute.
-	 * <!-- begin-user-doc -->
+     * The default value of the '{@link #getDescription() <em>Description</em>}' attribute.
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #getDescription()
-	 * @generated
-	 * @ordered
-	 */
+     * @see #getDescription()
+     * @generated
+     * @ordered
+     */
 	protected static final String DESCRIPTION_EDEFAULT = null;
 
 	/**
-	 * The cached value of the '{@link #getDescription() <em>Description</em>}' attribute.
-	 * <!-- begin-user-doc -->
+     * The cached value of the '{@link #getDescription() <em>Description</em>}' attribute.
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #getDescription()
-	 * @generated
-	 * @ordered
-	 */
+     * @see #getDescription()
+     * @generated
+     * @ordered
+     */
 	protected String description = DESCRIPTION_EDEFAULT;
 
 	/**
-	 * The default value of the '{@link #isDefault() <em>Default</em>}' attribute.
-	 * <!-- begin-user-doc -->
+     * The default value of the '{@link #isDefault() <em>Default</em>}' attribute.
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #isDefault()
-	 * @generated
-	 * @ordered
-	 */
+     * @see #isDefault()
+     * @generated
+     * @ordered
+     */
 	protected static final boolean DEFAULT_EDEFAULT = false;
 
 	/**
-	 * The cached value of the '{@link #isDefault() <em>Default</em>}' attribute.
-	 * <!-- begin-user-doc -->
+     * The cached value of the '{@link #isDefault() <em>Default</em>}' attribute.
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #isDefault()
-	 * @generated
-	 * @ordered
-	 */
+     * @see #isDefault()
+     * @generated
+     * @ordered
+     */
 	protected boolean default_ = DEFAULT_EDEFAULT;
 
 	/**
-	 * This is true if the Default attribute has been set.
-	 * <!-- begin-user-doc -->
+     * This is true if the Default attribute has been set.
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
+     * @generated
+     * @ordered
+     */
 	protected boolean defaultESet;
 
 	/**
-	 * The default value of the '{@link #getName() <em>Name</em>}' attribute.
-	 * <!-- begin-user-doc -->
+     * The default value of the '{@link #getName() <em>Name</em>}' attribute.
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #getName()
-	 * @generated
-	 * @ordered
-	 */
+     * @see #getName()
+     * @generated
+     * @ordered
+     */
 	protected static final String NAME_EDEFAULT = null;
 
 	/**
-	 * The cached value of the '{@link #getName() <em>Name</em>}' attribute.
-	 * <!-- begin-user-doc -->
+     * The cached value of the '{@link #getName() <em>Name</em>}' attribute.
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #getName()
-	 * @generated
-	 * @ordered
-	 */
+     * @see #getName()
+     * @generated
+     * @ordered
+     */
 	protected String name = NAME_EDEFAULT;
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	protected IntentQualifierImpl() {
-		super();
-	}
+        super();
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	@Override
 	protected EClass eStaticClass() {
-		return ScaPackage.eINSTANCE.getIntentQualifier();
-	}
+        return ScaPackage.eINSTANCE.getIntentQualifier();
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public String getDescription() {
-		return description;
-	}
+        return description;
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public void setDescription(String newDescription) {
-		String oldDescription = description;
-		description = newDescription;
-		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, ScaPackage.INTENT_QUALIFIER__DESCRIPTION, oldDescription, description));
-	}
+        String oldDescription = description;
+        description = newDescription;
+        if (eNotificationRequired())
+            eNotify(new ENotificationImpl(this, Notification.SET, ScaPackage.INTENT_QUALIFIER__DESCRIPTION, oldDescription, description));
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public boolean isDefault() {
-		return default_;
-	}
+        return default_;
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public void setDefault(boolean newDefault) {
-		boolean oldDefault = default_;
-		default_ = newDefault;
-		boolean oldDefaultESet = defaultESet;
-		defaultESet = true;
-		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, ScaPackage.INTENT_QUALIFIER__DEFAULT, oldDefault, default_, !oldDefaultESet));
-	}
+        boolean oldDefault = default_;
+        default_ = newDefault;
+        boolean oldDefaultESet = defaultESet;
+        defaultESet = true;
+        if (eNotificationRequired())
+            eNotify(new ENotificationImpl(this, Notification.SET, ScaPackage.INTENT_QUALIFIER__DEFAULT, oldDefault, default_, !oldDefaultESet));
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public void unsetDefault() {
-		boolean oldDefault = default_;
-		boolean oldDefaultESet = defaultESet;
-		default_ = DEFAULT_EDEFAULT;
-		defaultESet = false;
-		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.UNSET, ScaPackage.INTENT_QUALIFIER__DEFAULT, oldDefault, DEFAULT_EDEFAULT, oldDefaultESet));
-	}
+        boolean oldDefault = default_;
+        boolean oldDefaultESet = defaultESet;
+        default_ = DEFAULT_EDEFAULT;
+        defaultESet = false;
+        if (eNotificationRequired())
+            eNotify(new ENotificationImpl(this, Notification.UNSET, ScaPackage.INTENT_QUALIFIER__DEFAULT, oldDefault, DEFAULT_EDEFAULT, oldDefaultESet));
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public boolean isSetDefault() {
-		return defaultESet;
-	}
+        return defaultESet;
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public String getName() {
-		return name;
-	}
+        return name;
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public void setName(String newName) {
-		String oldName = name;
-		name = newName;
-		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, ScaPackage.INTENT_QUALIFIER__NAME, oldName, name));
-	}
+        String oldName = name;
+        name = newName;
+        if (eNotificationRequired())
+            eNotify(new ENotificationImpl(this, Notification.SET, ScaPackage.INTENT_QUALIFIER__NAME, oldName, name));
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
-		switch (featureID) {
-			case ScaPackage.INTENT_QUALIFIER__DESCRIPTION:
-				return getDescription();
-			case ScaPackage.INTENT_QUALIFIER__DEFAULT:
-				return isDefault();
-			case ScaPackage.INTENT_QUALIFIER__NAME:
-				return getName();
-		}
-		return super.eGet(featureID, resolve, coreType);
-	}
+        switch (featureID) {
+            case ScaPackage.INTENT_QUALIFIER__DESCRIPTION:
+                return getDescription();
+            case ScaPackage.INTENT_QUALIFIER__DEFAULT:
+                return isDefault();
+            case ScaPackage.INTENT_QUALIFIER__NAME:
+                return getName();
+        }
+        return super.eGet(featureID, resolve, coreType);
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	@Override
 	public void eSet(int featureID, Object newValue) {
-		switch (featureID) {
-			case ScaPackage.INTENT_QUALIFIER__DESCRIPTION:
-				setDescription((String)newValue);
-				return;
-			case ScaPackage.INTENT_QUALIFIER__DEFAULT:
-				setDefault((Boolean)newValue);
-				return;
-			case ScaPackage.INTENT_QUALIFIER__NAME:
-				setName((String)newValue);
-				return;
-		}
-		super.eSet(featureID, newValue);
-	}
+        switch (featureID) {
+            case ScaPackage.INTENT_QUALIFIER__DESCRIPTION:
+                setDescription((String)newValue);
+                return;
+            case ScaPackage.INTENT_QUALIFIER__DEFAULT:
+                setDefault((Boolean)newValue);
+                return;
+            case ScaPackage.INTENT_QUALIFIER__NAME:
+                setName((String)newValue);
+                return;
+        }
+        super.eSet(featureID, newValue);
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	@Override
 	public void eUnset(int featureID) {
-		switch (featureID) {
-			case ScaPackage.INTENT_QUALIFIER__DESCRIPTION:
-				setDescription(DESCRIPTION_EDEFAULT);
-				return;
-			case ScaPackage.INTENT_QUALIFIER__DEFAULT:
-				unsetDefault();
-				return;
-			case ScaPackage.INTENT_QUALIFIER__NAME:
-				setName(NAME_EDEFAULT);
-				return;
-		}
-		super.eUnset(featureID);
-	}
+        switch (featureID) {
+            case ScaPackage.INTENT_QUALIFIER__DESCRIPTION:
+                setDescription(DESCRIPTION_EDEFAULT);
+                return;
+            case ScaPackage.INTENT_QUALIFIER__DEFAULT:
+                unsetDefault();
+                return;
+            case ScaPackage.INTENT_QUALIFIER__NAME:
+                setName(NAME_EDEFAULT);
+                return;
+        }
+        super.eUnset(featureID);
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	@Override
 	public boolean eIsSet(int featureID) {
-		switch (featureID) {
-			case ScaPackage.INTENT_QUALIFIER__DESCRIPTION:
-				return DESCRIPTION_EDEFAULT == null ? description != null : !DESCRIPTION_EDEFAULT.equals(description);
-			case ScaPackage.INTENT_QUALIFIER__DEFAULT:
-				return isSetDefault();
-			case ScaPackage.INTENT_QUALIFIER__NAME:
-				return NAME_EDEFAULT == null ? name != null : !NAME_EDEFAULT.equals(name);
-		}
-		return super.eIsSet(featureID);
-	}
+        switch (featureID) {
+            case ScaPackage.INTENT_QUALIFIER__DESCRIPTION:
+                return DESCRIPTION_EDEFAULT == null ? description != null : !DESCRIPTION_EDEFAULT.equals(description);
+            case ScaPackage.INTENT_QUALIFIER__DEFAULT:
+                return isSetDefault();
+            case ScaPackage.INTENT_QUALIFIER__NAME:
+                return NAME_EDEFAULT == null ? name != null : !NAME_EDEFAULT.equals(name);
+        }
+        return super.eIsSet(featureID);
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	@Override
 	public String toString() {
-		if (eIsProxy()) return super.toString();
+        if (eIsProxy()) return super.toString();
 
-		StringBuffer result = new StringBuffer(super.toString());
-		result.append(" (description: ");
-		result.append(description);
-		result.append(", default: ");
-		if (defaultESet) result.append(default_); else result.append("<unset>");
-		result.append(", name: ");
-		result.append(name);
-		result.append(')');
-		return result.toString();
-	}
+        StringBuffer result = new StringBuffer(super.toString());
+        result.append(" (description: ");
+        result.append(description);
+        result.append(", default: ");
+        if (defaultESet) result.append(default_); else result.append("<unset>");
+        result.append(", name: ");
+        result.append(name);
+        result.append(')');
+        return result.toString();
+    }
 
 } //IntentQualifierImpl

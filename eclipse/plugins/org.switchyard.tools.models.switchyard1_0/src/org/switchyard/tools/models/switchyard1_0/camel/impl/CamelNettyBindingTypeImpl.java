@@ -38,7 +38,7 @@ import org.switchyard.tools.models.switchyard1_0.camel.CamelPackage;
  *
  * @generated
  */
-public class CamelNettyBindingTypeImpl extends BaseCamelBindingImpl implements CamelNettyBindingType {
+public abstract class CamelNettyBindingTypeImpl extends BaseCamelBindingImpl implements CamelNettyBindingType {
     /**
      * The default value of the '{@link #getHost() <em>Host</em>}' attribute.
      * <!-- begin-user-doc -->

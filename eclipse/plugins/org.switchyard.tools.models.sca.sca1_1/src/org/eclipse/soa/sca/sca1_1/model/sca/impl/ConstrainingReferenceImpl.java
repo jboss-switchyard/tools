@@ -22,22 +22,22 @@ import org.eclipse.soa.sca.sca1_1.model.sca.ScaPackage;
  */
 public class ConstrainingReferenceImpl extends ComponentReferenceImpl implements ConstrainingReference {
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	protected ConstrainingReferenceImpl() {
-		super();
-	}
+        super();
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	@Override
 	protected EClass eStaticClass() {
-		return ScaPackage.eINSTANCE.getConstrainingReference();
-	}
+        return ScaPackage.eINSTANCE.getConstrainingReference();
+    }
 
 } //ConstrainingReferenceImpl

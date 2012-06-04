@@ -22,22 +22,22 @@ import org.eclipse.soa.sca.sca1_1.model.sca.ScaPackage;
  */
 public class ComponentTypeReferenceImpl extends ComponentReferenceImpl implements ComponentTypeReference {
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	protected ComponentTypeReferenceImpl() {
-		super();
-	}
+        super();
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	@Override
 	protected EClass eStaticClass() {
-		return ScaPackage.eINSTANCE.getComponentTypeReference();
-	}
+        return ScaPackage.eINSTANCE.getComponentTypeReference();
+    }
 
 } //ComponentTypeReferenceImpl

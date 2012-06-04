@@ -23,190 +23,190 @@ import org.eclipse.emf.common.util.Enumerator;
  */
 public enum CPPImplementationScope implements Enumerator {
 	/**
-	 * The '<em><b>Stateless</b></em>' literal object.
-	 * <!-- begin-user-doc -->
+     * The '<em><b>Stateless</b></em>' literal object.
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #STATELESS_VALUE
-	 * @generated
-	 * @ordered
-	 */
+     * @see #STATELESS_VALUE
+     * @generated
+     * @ordered
+     */
 	STATELESS(0, "stateless", "stateless"),
 
 	/**
-	 * The '<em><b>Composite</b></em>' literal object.
-	 * <!-- begin-user-doc -->
+     * The '<em><b>Composite</b></em>' literal object.
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #COMPOSITE_VALUE
-	 * @generated
-	 * @ordered
-	 */
+     * @see #COMPOSITE_VALUE
+     * @generated
+     * @ordered
+     */
 	COMPOSITE(1, "composite", "composite");
 
 	/**
-	 * The '<em><b>Stateless</b></em>' literal value.
-	 * <!-- begin-user-doc -->
+     * The '<em><b>Stateless</b></em>' literal value.
+     * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of '<em><b>Stateless</b></em>' literal object isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @see #STATELESS
-	 * @model name="stateless"
-	 * @generated
-	 * @ordered
-	 */
+     * @see #STATELESS
+     * @model name="stateless"
+     * @generated
+     * @ordered
+     */
 	public static final int STATELESS_VALUE = 0;
 
 	/**
-	 * The '<em><b>Composite</b></em>' literal value.
-	 * <!-- begin-user-doc -->
+     * The '<em><b>Composite</b></em>' literal value.
+     * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of '<em><b>Composite</b></em>' literal object isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @see #COMPOSITE
-	 * @model name="composite"
-	 * @generated
-	 * @ordered
-	 */
+     * @see #COMPOSITE
+     * @model name="composite"
+     * @generated
+     * @ordered
+     */
 	public static final int COMPOSITE_VALUE = 1;
 
 	/**
-	 * An array of all the '<em><b>CPP Implementation Scope</b></em>' enumerators.
-	 * <!-- begin-user-doc -->
+     * An array of all the '<em><b>CPP Implementation Scope</b></em>' enumerators.
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	private static final CPPImplementationScope[] VALUES_ARRAY =
 		new CPPImplementationScope[] {
-			STATELESS,
-			COMPOSITE,
-		};
+            STATELESS,
+            COMPOSITE,
+        };
 
 	/**
-	 * A public read-only list of all the '<em><b>CPP Implementation Scope</b></em>' enumerators.
-	 * <!-- begin-user-doc -->
+     * A public read-only list of all the '<em><b>CPP Implementation Scope</b></em>' enumerators.
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public static final List<CPPImplementationScope> VALUES = Collections.unmodifiableList(Arrays.asList(VALUES_ARRAY));
 
 	/**
-	 * Returns the '<em><b>CPP Implementation Scope</b></em>' literal with the specified literal value.
-	 * <!-- begin-user-doc -->
+     * Returns the '<em><b>CPP Implementation Scope</b></em>' literal with the specified literal value.
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public static CPPImplementationScope get(String literal) {
-		for (int i = 0; i < VALUES_ARRAY.length; ++i) {
-			CPPImplementationScope result = VALUES_ARRAY[i];
-			if (result.toString().equals(literal)) {
-				return result;
-			}
-		}
-		return null;
-	}
+        for (int i = 0; i < VALUES_ARRAY.length; ++i) {
+            CPPImplementationScope result = VALUES_ARRAY[i];
+            if (result.toString().equals(literal)) {
+                return result;
+            }
+        }
+        return null;
+    }
 
 	/**
-	 * Returns the '<em><b>CPP Implementation Scope</b></em>' literal with the specified name.
-	 * <!-- begin-user-doc -->
+     * Returns the '<em><b>CPP Implementation Scope</b></em>' literal with the specified name.
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public static CPPImplementationScope getByName(String name) {
-		for (int i = 0; i < VALUES_ARRAY.length; ++i) {
-			CPPImplementationScope result = VALUES_ARRAY[i];
-			if (result.getName().equals(name)) {
-				return result;
-			}
-		}
-		return null;
-	}
+        for (int i = 0; i < VALUES_ARRAY.length; ++i) {
+            CPPImplementationScope result = VALUES_ARRAY[i];
+            if (result.getName().equals(name)) {
+                return result;
+            }
+        }
+        return null;
+    }
 
 	/**
-	 * Returns the '<em><b>CPP Implementation Scope</b></em>' literal with the specified integer value.
-	 * <!-- begin-user-doc -->
+     * Returns the '<em><b>CPP Implementation Scope</b></em>' literal with the specified integer value.
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public static CPPImplementationScope get(int value) {
-		switch (value) {
-			case STATELESS_VALUE: return STATELESS;
-			case COMPOSITE_VALUE: return COMPOSITE;
-		}
-		return null;
-	}
+        switch (value) {
+            case STATELESS_VALUE: return STATELESS;
+            case COMPOSITE_VALUE: return COMPOSITE;
+        }
+        return null;
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	private final int value;
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	private final String name;
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	private final String literal;
 
 	/**
-	 * Only this class can construct instances.
-	 * <!-- begin-user-doc -->
+     * Only this class can construct instances.
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	private CPPImplementationScope(int value, String name, String literal) {
-		this.value = value;
-		this.name = name;
-		this.literal = literal;
-	}
+        this.value = value;
+        this.name = name;
+        this.literal = literal;
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public int getValue() {
-	  return value;
-	}
+      return value;
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public String getName() {
-	  return name;
-	}
+      return name;
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public String getLiteral() {
-	  return literal;
-	}
+      return literal;
+    }
 
 	/**
-	 * Returns the literal value of the enumerator, which is its string representation.
-	 * <!-- begin-user-doc -->
+     * Returns the literal value of the enumerator, which is its string representation.
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	@Override
 	public String toString() {
-		return literal;
-	}
+        return literal;
+    }
 	
 } //CPPImplementationScope

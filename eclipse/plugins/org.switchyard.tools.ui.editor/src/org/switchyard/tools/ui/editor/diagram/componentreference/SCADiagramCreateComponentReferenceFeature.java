@@ -46,7 +46,7 @@ public class SCADiagramCreateComponentReferenceFeature extends AbstractCreateFea
      * @param fp the feature provider
      */
     public SCADiagramCreateComponentReferenceFeature(IFeatureProvider fp) {
-        super(fp, "Component Reference", "Create Component Reference");
+        super(fp, "Reference", "Create Component Reference");
     }
 
     @Override

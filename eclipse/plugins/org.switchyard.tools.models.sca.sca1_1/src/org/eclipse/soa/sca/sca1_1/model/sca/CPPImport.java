@@ -27,57 +27,57 @@ import javax.xml.namespace.QName;
  */
 public interface CPPImport extends Import {
 	/**
-	 * Returns the value of the '<em><b>Location</b></em>' attribute.
-	 * <!-- begin-user-doc -->
+     * Returns the value of the '<em><b>Location</b></em>' attribute.
+     * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Location</em>' attribute isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Location</em>' attribute.
-	 * @see #setLocation(String)
-	 * @see org.eclipse.soa.sca.sca1_1.model.sca.ScaPackage#getCPPImport_Location()
-	 * @model dataType="org.eclipse.emf.ecore.xml.type.String" required="true"
-	 *        extendedMetaData="kind='attribute' name='location'"
-	 * @generated
-	 */
+     * @return the value of the '<em>Location</em>' attribute.
+     * @see #setLocation(String)
+     * @see org.eclipse.soa.sca.sca1_1.model.sca.ScaPackage#getCPPImport_Location()
+     * @model dataType="org.eclipse.emf.ecore.xml.type.String" required="true"
+     *        extendedMetaData="kind='attribute' name='location'"
+     * @generated
+     */
 	String getLocation();
 
 	/**
-	 * Sets the value of the '{@link org.eclipse.soa.sca.sca1_1.model.sca.CPPImport#getLocation <em>Location</em>}' attribute.
-	 * <!-- begin-user-doc -->
+     * Sets the value of the '{@link org.eclipse.soa.sca.sca1_1.model.sca.CPPImport#getLocation <em>Location</em>}' attribute.
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Location</em>' attribute.
-	 * @see #getLocation()
-	 * @generated
-	 */
+     * @param value the new value of the '<em>Location</em>' attribute.
+     * @see #getLocation()
+     * @generated
+     */
 	void setLocation(String value);
 
 	/**
-	 * Returns the value of the '<em><b>Name</b></em>' attribute.
-	 * <!-- begin-user-doc -->
+     * Returns the value of the '<em><b>Name</b></em>' attribute.
+     * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Name</em>' attribute isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Name</em>' attribute.
-	 * @see #setName(QName)
-	 * @see org.eclipse.soa.sca.sca1_1.model.sca.ScaPackage#getCPPImport_Name()
-	 * @model dataType="org.eclipse.emf.ecore.xml.type.QName" required="true"
-	 *        extendedMetaData="kind='attribute' name='name'"
-	 * @generated
-	 */
+     * @return the value of the '<em>Name</em>' attribute.
+     * @see #setName(QName)
+     * @see org.eclipse.soa.sca.sca1_1.model.sca.ScaPackage#getCPPImport_Name()
+     * @model dataType="org.eclipse.emf.ecore.xml.type.QName" required="true"
+     *        extendedMetaData="kind='attribute' name='name'"
+     * @generated
+     */
 	QName getName();
 
 	/**
-	 * Sets the value of the '{@link org.eclipse.soa.sca.sca1_1.model.sca.CPPImport#getName <em>Name</em>}' attribute.
-	 * <!-- begin-user-doc -->
+     * Sets the value of the '{@link org.eclipse.soa.sca.sca1_1.model.sca.CPPImport#getName <em>Name</em>}' attribute.
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Name</em>' attribute.
-	 * @see #getName()
-	 * @generated
-	 */
+     * @param value the new value of the '<em>Name</em>' attribute.
+     * @see #getName()
+     * @generated
+     */
 	void setName(QName value);
 
 } // CPPImport

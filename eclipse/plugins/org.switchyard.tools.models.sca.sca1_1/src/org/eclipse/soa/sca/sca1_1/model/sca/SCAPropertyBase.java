@@ -34,91 +34,91 @@ import org.eclipse.emf.ecore.util.FeatureMap;
  */
 public interface SCAPropertyBase extends EObject {
 	/**
-	 * Returns the value of the '<em><b>Mixed</b></em>' attribute list.
-	 * The list contents are of type {@link org.eclipse.emf.ecore.util.FeatureMap.Entry}.
-	 * <!-- begin-user-doc -->
+     * Returns the value of the '<em><b>Mixed</b></em>' attribute list.
+     * The list contents are of type {@link org.eclipse.emf.ecore.util.FeatureMap.Entry}.
+     * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Mixed</em>' attribute list isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Mixed</em>' attribute list.
-	 * @see org.eclipse.soa.sca.sca1_1.model.sca.ScaPackage#getSCAPropertyBase_Mixed()
-	 * @model unique="false" dataType="org.eclipse.emf.ecore.EFeatureMapEntry" many="true"
-	 *        extendedMetaData="kind='elementWildcard' name=':mixed'"
-	 * @generated
-	 */
+     * @return the value of the '<em>Mixed</em>' attribute list.
+     * @see org.eclipse.soa.sca.sca1_1.model.sca.ScaPackage#getSCAPropertyBase_Mixed()
+     * @model unique="false" dataType="org.eclipse.emf.ecore.EFeatureMapEntry" many="true"
+     *        extendedMetaData="kind='elementWildcard' name=':mixed'"
+     * @generated
+     */
 	FeatureMap getMixed();
 
 	/**
-	 * Returns the value of the '<em><b>Any</b></em>' attribute list.
-	 * The list contents are of type {@link org.eclipse.emf.ecore.util.FeatureMap.Entry}.
-	 * <!-- begin-user-doc -->
+     * Returns the value of the '<em><b>Any</b></em>' attribute list.
+     * The list contents are of type {@link org.eclipse.emf.ecore.util.FeatureMap.Entry}.
+     * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Any</em>' attribute list isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Any</em>' attribute list.
-	 * @see org.eclipse.soa.sca.sca1_1.model.sca.ScaPackage#getSCAPropertyBase_Any()
-	 * @model unique="false" dataType="org.eclipse.emf.ecore.EFeatureMapEntry" many="true" transient="true" volatile="true" derived="true"
-	 *        extendedMetaData="kind='elementWildcard' wildcards='##any' name=':1' processing='lax'"
-	 * @generated
-	 */
+     * @return the value of the '<em>Any</em>' attribute list.
+     * @see org.eclipse.soa.sca.sca1_1.model.sca.ScaPackage#getSCAPropertyBase_Any()
+     * @model unique="false" dataType="org.eclipse.emf.ecore.EFeatureMapEntry" many="true" transient="true" volatile="true" derived="true"
+     *        extendedMetaData="kind='elementWildcard' wildcards='##any' name=':1' processing='lax'"
+     * @generated
+     */
 	FeatureMap getAny();
 
 	/**
-	 * Returns the value of the '<em><b>Policy Sets</b></em>' attribute.
-	 * <!-- begin-user-doc -->
+     * Returns the value of the '<em><b>Policy Sets</b></em>' attribute.
+     * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Policy Sets</em>' attribute isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Policy Sets</em>' attribute.
-	 * @see #setPolicySets(List)
-	 * @see org.eclipse.soa.sca.sca1_1.model.sca.ScaPackage#getSCAPropertyBase_PolicySets()
-	 * @model dataType="org.eclipse.soa.sca.sca1_1.model.sca.ListOfQNames" many="false"
-	 *        extendedMetaData="kind='attribute' name='policySets'"
-	 * @generated
-	 */
+     * @return the value of the '<em>Policy Sets</em>' attribute.
+     * @see #setPolicySets(List)
+     * @see org.eclipse.soa.sca.sca1_1.model.sca.ScaPackage#getSCAPropertyBase_PolicySets()
+     * @model dataType="org.eclipse.soa.sca.sca1_1.model.sca.ListOfQNames" many="false"
+     *        extendedMetaData="kind='attribute' name='policySets'"
+     * @generated
+     */
 	List<QName> getPolicySets();
 
 	/**
-	 * Sets the value of the '{@link org.eclipse.soa.sca.sca1_1.model.sca.SCAPropertyBase#getPolicySets <em>Policy Sets</em>}' attribute.
-	 * <!-- begin-user-doc -->
+     * Sets the value of the '{@link org.eclipse.soa.sca.sca1_1.model.sca.SCAPropertyBase#getPolicySets <em>Policy Sets</em>}' attribute.
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Policy Sets</em>' attribute.
-	 * @see #getPolicySets()
-	 * @generated
-	 */
+     * @param value the new value of the '<em>Policy Sets</em>' attribute.
+     * @see #getPolicySets()
+     * @generated
+     */
 	void setPolicySets(List<QName> value);
 
 	/**
-	 * Returns the value of the '<em><b>Requires</b></em>' attribute.
-	 * <!-- begin-user-doc -->
+     * Returns the value of the '<em><b>Requires</b></em>' attribute.
+     * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Requires</em>' attribute isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Requires</em>' attribute.
-	 * @see #setRequires(List)
-	 * @see org.eclipse.soa.sca.sca1_1.model.sca.ScaPackage#getSCAPropertyBase_Requires()
-	 * @model dataType="org.eclipse.soa.sca.sca1_1.model.sca.ListOfQNames" many="false"
-	 *        extendedMetaData="kind='attribute' name='requires'"
-	 * @generated
-	 */
+     * @return the value of the '<em>Requires</em>' attribute.
+     * @see #setRequires(List)
+     * @see org.eclipse.soa.sca.sca1_1.model.sca.ScaPackage#getSCAPropertyBase_Requires()
+     * @model dataType="org.eclipse.soa.sca.sca1_1.model.sca.ListOfQNames" many="false"
+     *        extendedMetaData="kind='attribute' name='requires'"
+     * @generated
+     */
 	List<QName> getRequires();
 
 	/**
-	 * Sets the value of the '{@link org.eclipse.soa.sca.sca1_1.model.sca.SCAPropertyBase#getRequires <em>Requires</em>}' attribute.
-	 * <!-- begin-user-doc -->
+     * Sets the value of the '{@link org.eclipse.soa.sca.sca1_1.model.sca.SCAPropertyBase#getRequires <em>Requires</em>}' attribute.
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Requires</em>' attribute.
-	 * @see #getRequires()
-	 * @generated
-	 */
+     * @param value the new value of the '<em>Requires</em>' attribute.
+     * @see #getRequires()
+     * @generated
+     */
 	void setRequires(List<QName> value);
 
 } // SCAPropertyBase

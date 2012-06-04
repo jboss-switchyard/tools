@@ -22,22 +22,22 @@ import org.eclipse.soa.sca.sca1_1.model.sca.ScaPackage;
  */
 public class ConstrainingServiceImpl extends ComponentServiceImpl implements ConstrainingService {
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	protected ConstrainingServiceImpl() {
-		super();
-	}
+        super();
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	@Override
 	protected EClass eStaticClass() {
-		return ScaPackage.eINSTANCE.getConstrainingService();
-	}
+        return ScaPackage.eINSTANCE.getConstrainingService();
+    }
 
 } //ConstrainingServiceImpl

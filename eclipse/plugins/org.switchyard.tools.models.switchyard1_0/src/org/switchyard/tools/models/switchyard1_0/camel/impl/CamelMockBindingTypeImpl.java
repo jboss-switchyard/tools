@@ -11,6 +11,7 @@ import java.math.BigInteger;
 import org.eclipse.emf.common.notify.Notification;
 
 import org.eclipse.emf.ecore.EClass;
+import org.eclipse.emf.ecore.EStructuralFeature;
 
 import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
@@ -376,6 +377,11 @@ public class CamelMockBindingTypeImpl extends SwitchYardBindingTypeImpl implemen
         result.append(reportGroup);
         result.append(')');
         return result.toString();
+    }
+
+    @Override
+    public EStructuralFeature getDocumentFeature() {
+        return CamelPackage.eINSTANCE.getDocumentRoot_BindingMock();
     }
 
 } //CamelMockBindingTypeImpl

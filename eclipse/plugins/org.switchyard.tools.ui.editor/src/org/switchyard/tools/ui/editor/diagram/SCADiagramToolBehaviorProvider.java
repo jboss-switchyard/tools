@@ -250,48 +250,42 @@ public class SCADiagramToolBehaviorProvider extends DefaultToolBehaviorProvider 
 
         // add new compartment for composites
         PaletteCompartmentEntry compositeEntry = new PaletteCompartmentEntry("Composites", null);
+        for (ICreateFeature cf : ((SCADiagramFeatureProvider) getFeatureProvider()).getCreateCompositeFeatures()) {
+            compositeEntry.addToolEntry(new ObjectCreationToolEntry(cf.getCreateName(), cf.getCreateDescription(), cf
+                    .getCreateImageId(), cf.getCreateLargeImageId(), cf));
+        }
         ret.add(compositeEntry);
 
         // add new compartment for components
         PaletteCompartmentEntry componentEntry = new PaletteCompartmentEntry("Components", null);
+        for (ICreateFeature cf : ((SCADiagramFeatureProvider) getFeatureProvider()).getCreateComponentFeatures()) {
+            componentEntry.addToolEntry(new ObjectCreationToolEntry(cf.getCreateName(), cf.getCreateDescription(), cf
+                    .getCreateImageId(), cf.getCreateLargeImageId(), cf));
+        }
         ret.add(componentEntry);
 
         // add new compartment for components
         PaletteCompartmentEntry bindingsEntry = new PaletteCompartmentEntry("Bindings", null);
+        for (ICreateFeature cf : ((SCADiagramFeatureProvider) getFeatureProvider()).getCreateBindingFeatures()) {
+            bindingsEntry.addToolEntry(new ObjectCreationToolEntry(cf.getCreateName(), cf.getCreateDescription(), cf
+                    .getCreateImageId(), cf.getCreateLargeImageId(), cf));
+        }
         ret.add(bindingsEntry);
 
         // add new compartment for components
         PaletteCompartmentEntry implementationsEntry = new PaletteCompartmentEntry("Implementations", null);
+        for (ICreateFeature cf : ((SCADiagramFeatureProvider) getFeatureProvider()).getCreateImplementationFeatures()) {
+            implementationsEntry.addToolEntry(new ObjectCreationToolEntry(cf.getCreateName(),
+                    cf.getCreateDescription(), cf.getCreateImageId(), cf.getCreateLargeImageId(), cf));
+        }
         ret.add(implementationsEntry);
 
         // add new compartment for anything else
         PaletteCompartmentEntry miscEntry = new PaletteCompartmentEntry("Other", null);
-
-        // add all create-features to the new stack-entry
-        IFeatureProvider featureProvider = getFeatureProvider();
-
-        ICreateFeature[] createFeatures = featureProvider.getCreateFeatures();
-        for (ICreateFeature cf : createFeatures) {
-            ObjectCreationToolEntry objectCreationToolEntry = new ObjectCreationToolEntry(cf.getCreateName(),
-                    cf.getCreateDescription(), cf.getCreateImageId(), cf.getCreateLargeImageId(), cf);
-            if (cf.getCreateName().contains("Composite")) {
-                // remove the "Composite" item from the palette
-                if (!cf.getName().contentEquals("Composite")) {
-                    compositeEntry.addToolEntry(objectCreationToolEntry);
-                }
-            } else if (cf.getCreateName().contains("Component")) {
-                componentEntry.addToolEntry(objectCreationToolEntry);
-            } else if (cf.getCreateName().contains("Service")) {
-                compositeEntry.addToolEntry(objectCreationToolEntry);
-            } else if (cf.getCreateName().contains("Binding")) {
-                bindingsEntry.addToolEntry(objectCreationToolEntry);
-            } else if (cf.getCreateName().contains("Implementation")) {
-                implementationsEntry.addToolEntry(objectCreationToolEntry);
-            } else {
-                miscEntry.addToolEntry(objectCreationToolEntry);
-            }
+        for (ICreateFeature cf : ((SCADiagramFeatureProvider) getFeatureProvider()).getCreateOtherFeatures()) {
+            miscEntry.addToolEntry(new ObjectCreationToolEntry(cf.getCreateName(), cf.getCreateDescription(), cf
+                    .getCreateImageId(), cf.getCreateLargeImageId(), cf));
         }
-
         if (!miscEntry.getToolEntries().isEmpty()) {
             ret.add(miscEntry);
         }
@@ -305,13 +299,16 @@ public class SCADiagramToolBehaviorProvider extends DefaultToolBehaviorProvider 
         IContextButtonPadData data = super.getContextButtonPad(context);
         PictogramElement pe = context.getPictogramElement();
         Object bo = getFeatureProvider().getBusinessObjectForPictogramElement(pe);
-        
+
         if (bo instanceof Composite) {
-            setGenericContextButtons(data, pe, CONTEXT_BUTTON_UPDATE); // just update, no delete
+            setGenericContextButtons(data, pe, CONTEXT_BUTTON_UPDATE); // just
+                                                                       // update,
+                                                                       // no
+                                                                       // delete
         } else {
             setGenericContextButtons(data, pe, CONTEXT_BUTTON_DELETE | CONTEXT_BUTTON_UPDATE);
         }
-        
+
         return data;
     }
 
@@ -350,7 +347,7 @@ public class SCADiagramToolBehaviorProvider extends DefaultToolBehaviorProvider 
         public int getX() {
             return _x;
         }
-        
+
         /**
          * @return y coord
          */
