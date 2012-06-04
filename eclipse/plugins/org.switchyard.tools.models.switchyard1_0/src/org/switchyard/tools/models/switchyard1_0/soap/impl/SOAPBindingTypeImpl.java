@@ -7,18 +7,18 @@
 package org.switchyard.tools.models.switchyard1_0.soap.impl;
 
 import org.eclipse.emf.common.notify.Notification;
-
 import org.eclipse.emf.common.notify.NotificationChain;
-import org.eclipse.emf.ecore.EClass;
 
+import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
+
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 
-
 import org.switchyard.tools.models.switchyard1_0.soap.ContextMapperType;
+import org.switchyard.tools.models.switchyard1_0.soap.MessageComposerType;
 import org.switchyard.tools.models.switchyard1_0.soap.SOAPBindingType;
 import org.switchyard.tools.models.switchyard1_0.soap.SOAPPackage;
-import org.switchyard.tools.models.switchyard1_0.switchyard.MessageComposerType;
+
 import org.switchyard.tools.models.switchyard1_0.switchyard.impl.SwitchYardBindingTypeImpl;
 
 /**
@@ -40,7 +40,7 @@ import org.switchyard.tools.models.switchyard1_0.switchyard.impl.SwitchYardBindi
  * @generated
  */
 public class SOAPBindingTypeImpl extends SwitchYardBindingTypeImpl implements SOAPBindingType {
-	/**
+    /**
      * The cached value of the '{@link #getContextMapper() <em>Context Mapper</em>}' containment reference.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
@@ -63,103 +63,103 @@ public class SOAPBindingTypeImpl extends SwitchYardBindingTypeImpl implements SO
     /**
      * The default value of the '{@link #getWsdl() <em>Wsdl</em>}' attribute.
      * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
      * @see #getWsdl()
      * @generated
      * @ordered
      */
-	protected static final String WSDL_EDEFAULT = null;
+    protected static final String WSDL_EDEFAULT = null;
 
-	/**
+    /**
      * The cached value of the '{@link #getWsdl() <em>Wsdl</em>}' attribute.
      * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
      * @see #getWsdl()
      * @generated
      * @ordered
      */
-	protected String wsdl = WSDL_EDEFAULT;
+    protected String wsdl = WSDL_EDEFAULT;
 
-	/**
+    /**
      * The default value of the '{@link #getWsdlPort() <em>Wsdl Port</em>}' attribute.
      * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
      * @see #getWsdlPort()
      * @generated
      * @ordered
      */
-	protected static final String WSDL_PORT_EDEFAULT = null;
+    protected static final String WSDL_PORT_EDEFAULT = null;
 
-	/**
+    /**
      * The cached value of the '{@link #getWsdlPort() <em>Wsdl Port</em>}' attribute.
      * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
      * @see #getWsdlPort()
      * @generated
      * @ordered
      */
-	protected String wsdlPort = WSDL_PORT_EDEFAULT;
+    protected String wsdlPort = WSDL_PORT_EDEFAULT;
 
-	/**
+    /**
      * The default value of the '{@link #getSocketAddr() <em>Socket Addr</em>}' attribute.
      * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
      * @see #getSocketAddr()
      * @generated
      * @ordered
      */
-	protected static final String SOCKET_ADDR_EDEFAULT = null;
+    protected static final String SOCKET_ADDR_EDEFAULT = null;
 
-	/**
+    /**
      * The cached value of the '{@link #getSocketAddr() <em>Socket Addr</em>}' attribute.
      * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
      * @see #getSocketAddr()
      * @generated
      * @ordered
      */
-	protected String socketAddr = SOCKET_ADDR_EDEFAULT;
+    protected String socketAddr = SOCKET_ADDR_EDEFAULT;
 
-	/**
+    /**
      * The default value of the '{@link #getContextPath() <em>Context Path</em>}' attribute.
      * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
      * @see #getContextPath()
      * @generated
      * @ordered
      */
-	protected static final String CONTEXT_PATH_EDEFAULT = null;
+    protected static final String CONTEXT_PATH_EDEFAULT = null;
 
-	/**
+    /**
      * The cached value of the '{@link #getContextPath() <em>Context Path</em>}' attribute.
      * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
      * @see #getContextPath()
      * @generated
      * @ordered
      */
-	protected String contextPath = CONTEXT_PATH_EDEFAULT;
+    protected String contextPath = CONTEXT_PATH_EDEFAULT;
 
-	/**
+    /**
      * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
      * @generated
      */
-	protected SOAPBindingTypeImpl() {
+    protected SOAPBindingTypeImpl() {
         super();
     }
 
-	/**
+    /**
      * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
      * @generated
      */
-	@Override
-	protected EClass eStaticClass() {
+    @Override
+    protected EClass eStaticClass() {
         return SOAPPackage.Literals.SOAP_BINDING_TYPE;
     }
 
-	/**
+    /**
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @generated
@@ -242,89 +242,89 @@ public class SOAPBindingTypeImpl extends SwitchYardBindingTypeImpl implements SO
 
     /**
      * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
      * @generated
      */
-	public String getWsdl() {
+    public String getWsdl() {
         return wsdl;
     }
 
-	/**
+    /**
      * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
      * @generated
      */
-	public void setWsdl(String newWsdl) {
+    public void setWsdl(String newWsdl) {
         String oldWsdl = wsdl;
         wsdl = newWsdl;
         if (eNotificationRequired())
             eNotify(new ENotificationImpl(this, Notification.SET, SOAPPackage.SOAP_BINDING_TYPE__WSDL, oldWsdl, wsdl));
     }
 
-	/**
+    /**
      * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
      * @generated
      */
-	public String getWsdlPort() {
+    public String getWsdlPort() {
         return wsdlPort;
     }
 
-	/**
+    /**
      * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
      * @generated
      */
-	public void setWsdlPort(String newWsdlPort) {
+    public void setWsdlPort(String newWsdlPort) {
         String oldWsdlPort = wsdlPort;
         wsdlPort = newWsdlPort;
         if (eNotificationRequired())
             eNotify(new ENotificationImpl(this, Notification.SET, SOAPPackage.SOAP_BINDING_TYPE__WSDL_PORT, oldWsdlPort, wsdlPort));
     }
 
-	/**
+    /**
      * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
      * @generated
      */
-	public String getSocketAddr() {
+    public String getSocketAddr() {
         return socketAddr;
     }
 
-	/**
+    /**
      * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
      * @generated
      */
-	public void setSocketAddr(String newSocketAddr) {
+    public void setSocketAddr(String newSocketAddr) {
         String oldSocketAddr = socketAddr;
         socketAddr = newSocketAddr;
         if (eNotificationRequired())
             eNotify(new ENotificationImpl(this, Notification.SET, SOAPPackage.SOAP_BINDING_TYPE__SOCKET_ADDR, oldSocketAddr, socketAddr));
     }
 
-	/**
+    /**
      * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
      * @generated
      */
-	public String getContextPath() {
+    public String getContextPath() {
         return contextPath;
     }
 
-	/**
+    /**
      * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
      * @generated
      */
-	public void setContextPath(String newContextPath) {
+    public void setContextPath(String newContextPath) {
         String oldContextPath = contextPath;
         contextPath = newContextPath;
         if (eNotificationRequired())
             eNotify(new ENotificationImpl(this, Notification.SET, SOAPPackage.SOAP_BINDING_TYPE__CONTEXT_PATH, oldContextPath, contextPath));
     }
 
-	/**
+    /**
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @generated
@@ -340,11 +340,11 @@ public class SOAPBindingTypeImpl extends SwitchYardBindingTypeImpl implements SO
 
     /**
      * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
      * @generated
      */
-	@Override
-	public Object eGet(int featureID, boolean resolve, boolean coreType) {
+    @Override
+    public Object eGet(int featureID, boolean resolve, boolean coreType) {
         switch (featureID) {
             case SOAPPackage.SOAP_BINDING_TYPE__CONTEXT_MAPPER:
                 return getContextMapper();
@@ -363,13 +363,13 @@ public class SOAPBindingTypeImpl extends SwitchYardBindingTypeImpl implements SO
         return super.eGet(featureID, resolve, coreType);
     }
 
-	/**
+    /**
      * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
      * @generated
      */
-	@Override
-	public void eSet(int featureID, Object newValue) {
+    @Override
+    public void eSet(int featureID, Object newValue) {
         switch (featureID) {
             case SOAPPackage.SOAP_BINDING_TYPE__CONTEXT_MAPPER:
                 setContextMapper((ContextMapperType)newValue);
@@ -393,13 +393,13 @@ public class SOAPBindingTypeImpl extends SwitchYardBindingTypeImpl implements SO
         super.eSet(featureID, newValue);
     }
 
-	/**
+    /**
      * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
      * @generated
      */
-	@Override
-	public void eUnset(int featureID) {
+    @Override
+    public void eUnset(int featureID) {
         switch (featureID) {
             case SOAPPackage.SOAP_BINDING_TYPE__CONTEXT_MAPPER:
                 setContextMapper((ContextMapperType)null);
@@ -423,13 +423,13 @@ public class SOAPBindingTypeImpl extends SwitchYardBindingTypeImpl implements SO
         super.eUnset(featureID);
     }
 
-	/**
+    /**
      * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
      * @generated
      */
-	@Override
-	public boolean eIsSet(int featureID) {
+    @Override
+    public boolean eIsSet(int featureID) {
         switch (featureID) {
             case SOAPPackage.SOAP_BINDING_TYPE__CONTEXT_MAPPER:
                 return contextMapper != null;
@@ -447,13 +447,13 @@ public class SOAPBindingTypeImpl extends SwitchYardBindingTypeImpl implements SO
         return super.eIsSet(featureID);
     }
 
-	/**
+    /**
      * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
      * @generated
      */
-	@Override
-	public String toString() {
+    @Override
+    public String toString() {
         if (eIsProxy()) return super.toString();
 
         StringBuffer result = new StringBuffer(super.toString());

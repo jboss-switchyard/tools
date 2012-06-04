@@ -27,13 +27,13 @@ import org.switchyard.tools.models.switchyard1_0.soap.*;
  * @generated
  */
 public class SOAPFactoryImpl extends EFactoryImpl implements SOAPFactory {
-	/**
+    /**
      * Creates the default factory implementation.
      * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
      * @generated
      */
-	public static SOAPFactory init() {
+    public static SOAPFactory init() {
         try {
             SOAPFactory theSOAPFactory = (SOAPFactory)EPackage.Registry.INSTANCE.getEFactory("urn:switchyard-component-soap:config:1.0"); 
             if (theSOAPFactory != null) {
@@ -46,25 +46,26 @@ public class SOAPFactoryImpl extends EFactoryImpl implements SOAPFactory {
         return new SOAPFactoryImpl();
     }
 
-	/**
+    /**
      * Creates an instance of the factory.
      * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
      * @generated
      */
-	public SOAPFactoryImpl() {
+    public SOAPFactoryImpl() {
         super();
     }
 
-	/**
+    /**
      * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
      * @generated
      */
-	@Override
-	public EObject create(EClass eClass) {
+    @Override
+    public EObject create(EClass eClass) {
         switch (eClass.getClassifierID()) {
             case SOAPPackage.CONTEXT_MAPPER_TYPE: return createContextMapperType();
+            case SOAPPackage.MESSAGE_COMPOSER_TYPE: return createMessageComposerType();
             case SOAPPackage.DOCUMENT_ROOT: return createDocumentRoot();
             case SOAPPackage.SOAP_BINDING_TYPE: return createSOAPBindingType();
             default:
@@ -72,13 +73,13 @@ public class SOAPFactoryImpl extends EFactoryImpl implements SOAPFactory {
         }
     }
 
-	/**
+    /**
      * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
      * @generated
      */
-	@Override
-	public Object createFromString(EDataType eDataType, String initialValue) {
+    @Override
+    public Object createFromString(EDataType eDataType, String initialValue) {
         switch (eDataType.getClassifierID()) {
             case SOAPPackage.SOAP_HEADERS_TYPE:
                 return createSoapHeadersTypeFromString(eDataType, initialValue);
@@ -91,13 +92,13 @@ public class SOAPFactoryImpl extends EFactoryImpl implements SOAPFactory {
         }
     }
 
-	/**
+    /**
      * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
      * @generated
      */
-	@Override
-	public String convertToString(EDataType eDataType, Object instanceValue) {
+    @Override
+    public String convertToString(EDataType eDataType, Object instanceValue) {
         switch (eDataType.getClassifierID()) {
             case SOAPPackage.SOAP_HEADERS_TYPE:
                 return convertSoapHeadersTypeToString(eDataType, instanceValue);
@@ -110,7 +111,7 @@ public class SOAPFactoryImpl extends EFactoryImpl implements SOAPFactory {
         }
     }
 
-	/**
+    /**
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @generated
@@ -122,25 +123,35 @@ public class SOAPFactoryImpl extends EFactoryImpl implements SOAPFactory {
 
     /**
      * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
      * @generated
      */
-	public DocumentRoot createDocumentRoot() {
+    public MessageComposerType createMessageComposerType() {
+        MessageComposerTypeImpl messageComposerType = new MessageComposerTypeImpl();
+        return messageComposerType;
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public DocumentRoot createDocumentRoot() {
         DocumentRootImpl documentRoot = new DocumentRootImpl();
         return documentRoot;
     }
 
-	/**
+    /**
      * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
      * @generated
      */
-	public SOAPBindingType createSOAPBindingType() {
+    public SOAPBindingType createSOAPBindingType() {
         SOAPBindingTypeImpl soapBindingType = new SOAPBindingTypeImpl();
         return soapBindingType;
     }
 
-	/**
+    /**
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @generated
@@ -180,39 +191,39 @@ public class SOAPFactoryImpl extends EFactoryImpl implements SOAPFactory {
 
     /**
      * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
      * @generated
      */
-	public String createWsdlPortTypeFromString(EDataType eDataType, String initialValue) {
+    public String createWsdlPortTypeFromString(EDataType eDataType, String initialValue) {
         return (String)XMLTypeFactory.eINSTANCE.createFromString(XMLTypePackage.Literals.STRING, initialValue);
     }
 
-	/**
+    /**
      * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
      * @generated
      */
-	public String convertWsdlPortTypeToString(EDataType eDataType, Object instanceValue) {
+    public String convertWsdlPortTypeToString(EDataType eDataType, Object instanceValue) {
         return XMLTypeFactory.eINSTANCE.convertToString(XMLTypePackage.Literals.STRING, instanceValue);
     }
 
-	/**
+    /**
      * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
      * @generated
      */
-	public SOAPPackage getSOAPPackage() {
+    public SOAPPackage getSOAPPackage() {
         return (SOAPPackage)getEPackage();
     }
 
-	/**
+    /**
      * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
      * @deprecated
      * @generated
      */
-	@Deprecated
-	public static SOAPPackage getPackage() {
+    @Deprecated
+    public static SOAPPackage getPackage() {
         return SOAPPackage.eINSTANCE;
     }
 

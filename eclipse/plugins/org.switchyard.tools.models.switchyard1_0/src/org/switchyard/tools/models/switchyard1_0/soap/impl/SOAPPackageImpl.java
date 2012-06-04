@@ -20,61 +20,62 @@ import org.eclipse.emf.ecore.xml.type.XMLTypePackage;
 
 import org.eclipse.soa.sca.sca1_1.model.sca.ScaPackage;
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 import org.open.oasis.docs.ns.opencsa.sca.bpel.BPELPackage;
 
 import org.open.oasis.docs.ns.opencsa.sca.bpel.impl.BPELPackageImpl;
+
 import org.switchyard.tools.models.switchyard1_0.bean.BeanPackage;
+
 import org.switchyard.tools.models.switchyard1_0.bean.impl.BeanPackageImpl;
+
 import org.switchyard.tools.models.switchyard1_0.bpm.BPMPackage;
+
 import org.switchyard.tools.models.switchyard1_0.bpm.impl.BPMPackageImpl;
+
 import org.switchyard.tools.models.switchyard1_0.camel.CamelPackage;
+
 import org.switchyard.tools.models.switchyard1_0.camel.impl.CamelPackageImpl;
+
 import org.switchyard.tools.models.switchyard1_0.clojure.ClojurePackage;
+
 import org.switchyard.tools.models.switchyard1_0.clojure.impl.ClojurePackageImpl;
+
 import org.switchyard.tools.models.switchyard1_0.commonrules.CommonRulesPackage;
+
 import org.switchyard.tools.models.switchyard1_0.commonrules.impl.CommonRulesPackageImpl;
+
 import org.switchyard.tools.models.switchyard1_0.hornetq.HornetQPackage;
+
 import org.switchyard.tools.models.switchyard1_0.hornetq.impl.HornetQPackageImpl;
+
 import org.switchyard.tools.models.switchyard1_0.rules.RulesPackage;
+
 import org.switchyard.tools.models.switchyard1_0.rules.impl.RulesPackageImpl;
+
 import org.switchyard.tools.models.switchyard1_0.soap.ContextMapperType;
 import org.switchyard.tools.models.switchyard1_0.soap.DocumentRoot;
+import org.switchyard.tools.models.switchyard1_0.soap.MessageComposerType;
 import org.switchyard.tools.models.switchyard1_0.soap.SOAPBindingType;
 import org.switchyard.tools.models.switchyard1_0.soap.SOAPFactory;
 import org.switchyard.tools.models.switchyard1_0.soap.SOAPPackage;
 import org.switchyard.tools.models.switchyard1_0.soap.SoapHeadersType;
+
 import org.switchyard.tools.models.switchyard1_0.soap.util.SOAPValidator;
+
 import org.switchyard.tools.models.switchyard1_0.spring.SpringPackage;
+
 import org.switchyard.tools.models.switchyard1_0.spring.impl.SpringPackageImpl;
+
 import org.switchyard.tools.models.switchyard1_0.switchyard.SwitchyardPackage;
+
 import org.switchyard.tools.models.switchyard1_0.switchyard.impl.SwitchyardPackageImpl;
+
 import org.switchyard.tools.models.switchyard1_0.transform.TransformPackage;
+
 import org.switchyard.tools.models.switchyard1_0.transform.impl.TransformPackageImpl;
+
 import org.switchyard.tools.models.switchyard1_0.validate.ValidatePackage;
+
 import org.switchyard.tools.models.switchyard1_0.validate.impl.ValidatePackageImpl;
 
 /**
@@ -84,7 +85,7 @@ import org.switchyard.tools.models.switchyard1_0.validate.impl.ValidatePackageIm
  * @generated
  */
 public class SOAPPackageImpl extends EPackageImpl implements SOAPPackage {
-	/**
+    /**
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @generated
@@ -93,19 +94,26 @@ public class SOAPPackageImpl extends EPackageImpl implements SOAPPackage {
 
     /**
      * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
      * @generated
      */
-	private EClass documentRootEClass = null;
+    private EClass messageComposerTypeEClass = null;
 
-	/**
+    /**
      * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
      * @generated
      */
-	private EClass soapBindingTypeEClass = null;
+    private EClass documentRootEClass = null;
 
-	/**
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    private EClass soapBindingTypeEClass = null;
+
+    /**
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @generated
@@ -121,12 +129,12 @@ public class SOAPPackageImpl extends EPackageImpl implements SOAPPackage {
 
     /**
      * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
      * @generated
      */
-	private EDataType wsdlPortTypeEDataType = null;
+    private EDataType wsdlPortTypeEDataType = null;
 
-	/**
+    /**
      * Creates an instance of the model <b>Package</b>, registered with
      * {@link org.eclipse.emf.ecore.EPackage.Registry EPackage.Registry} by the package
      * package URI value.
@@ -135,36 +143,36 @@ public class SOAPPackageImpl extends EPackageImpl implements SOAPPackage {
      * initialization of the package, or returns the registered package,
      * if one already exists.
      * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
      * @see org.eclipse.emf.ecore.EPackage.Registry
      * @see org.switchyard.tools.models.switchyard1_0.soap.SOAPPackage#eNS_URI
      * @see #init()
      * @generated
      */
-	private SOAPPackageImpl() {
+    private SOAPPackageImpl() {
         super(eNS_URI, SOAPFactory.eINSTANCE);
     }
 
-	/**
+    /**
      * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
      * @generated
      */
-	private static boolean isInited = false;
+    private static boolean isInited = false;
 
-	/**
+    /**
      * Creates, registers, and initializes the <b>Package</b> for this model, and for any others upon which it depends.
      * 
      * <p>This method is used to initialize {@link SOAPPackage#eINSTANCE} when that field is accessed.
      * Clients should not invoke it directly. Instead, they should simply access that field to obtain the package.
      * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
      * @see #eNS_URI
      * @see #createPackageContents()
      * @see #initializePackageContents()
      * @generated
      */
-	public static SOAPPackage init() {
+    public static SOAPPackage init() {
         if (isInited) return (SOAPPackage)EPackage.Registry.INSTANCE.getEPackage(SOAPPackage.eNS_URI);
 
         // Obtain or create and register package
@@ -242,7 +250,7 @@ public class SOAPPackageImpl extends EPackageImpl implements SOAPPackage {
         return theSOAPPackage;
     }
 
-	/**
+    /**
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @generated
@@ -262,59 +270,77 @@ public class SOAPPackageImpl extends EPackageImpl implements SOAPPackage {
 
     /**
      * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
      * @generated
      */
-	public EClass getDocumentRoot() {
+    public EClass getMessageComposerType() {
+        return messageComposerTypeEClass;
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public EAttribute getMessageComposerType_Unwrapped() {
+        return (EAttribute)messageComposerTypeEClass.getEStructuralFeatures().get(0);
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public EClass getDocumentRoot() {
         return documentRootEClass;
     }
 
-	/**
+    /**
      * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
      * @generated
      */
-	public EAttribute getDocumentRoot_Mixed() {
+    public EAttribute getDocumentRoot_Mixed() {
         return (EAttribute)documentRootEClass.getEStructuralFeatures().get(0);
     }
 
-	/**
+    /**
      * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
      * @generated
      */
-	public EReference getDocumentRoot_XMLNSPrefixMap() {
+    public EReference getDocumentRoot_XMLNSPrefixMap() {
         return (EReference)documentRootEClass.getEStructuralFeatures().get(1);
     }
 
-	/**
+    /**
      * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
      * @generated
      */
-	public EReference getDocumentRoot_XSISchemaLocation() {
+    public EReference getDocumentRoot_XSISchemaLocation() {
         return (EReference)documentRootEClass.getEStructuralFeatures().get(2);
     }
 
-	/**
+    /**
      * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
      * @generated
      */
-	public EReference getDocumentRoot_BindingSoap() {
+    public EReference getDocumentRoot_BindingSoap() {
         return (EReference)documentRootEClass.getEStructuralFeatures().get(3);
     }
 
-	/**
+    /**
      * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
      * @generated
      */
-	public EClass getSOAPBindingType() {
+    public EClass getSOAPBindingType() {
         return soapBindingTypeEClass;
     }
 
-	/**
+    /**
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @generated
@@ -334,41 +360,41 @@ public class SOAPPackageImpl extends EPackageImpl implements SOAPPackage {
 
     /**
      * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
      * @generated
      */
-	public EAttribute getSOAPBindingType_Wsdl() {
+    public EAttribute getSOAPBindingType_Wsdl() {
         return (EAttribute)soapBindingTypeEClass.getEStructuralFeatures().get(2);
     }
 
-	/**
+    /**
      * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
      * @generated
      */
-	public EAttribute getSOAPBindingType_WsdlPort() {
+    public EAttribute getSOAPBindingType_WsdlPort() {
         return (EAttribute)soapBindingTypeEClass.getEStructuralFeatures().get(3);
     }
 
-	/**
+    /**
      * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
      * @generated
      */
-	public EAttribute getSOAPBindingType_SocketAddr() {
+    public EAttribute getSOAPBindingType_SocketAddr() {
         return (EAttribute)soapBindingTypeEClass.getEStructuralFeatures().get(4);
     }
 
-	/**
+    /**
      * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
      * @generated
      */
-	public EAttribute getSOAPBindingType_ContextPath() {
+    public EAttribute getSOAPBindingType_ContextPath() {
         return (EAttribute)soapBindingTypeEClass.getEStructuralFeatures().get(5);
     }
 
-	/**
+    /**
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @generated
@@ -388,43 +414,46 @@ public class SOAPPackageImpl extends EPackageImpl implements SOAPPackage {
 
     /**
      * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
      * @generated
      */
-	public EDataType getWsdlPortType() {
+    public EDataType getWsdlPortType() {
         return wsdlPortTypeEDataType;
     }
 
-	/**
+    /**
      * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
      * @generated
      */
-	public SOAPFactory getSOAPFactory() {
+    public SOAPFactory getSOAPFactory() {
         return (SOAPFactory)getEFactoryInstance();
     }
 
-	/**
+    /**
      * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
      * @generated
      */
-	private boolean isCreated = false;
+    private boolean isCreated = false;
 
-	/**
+    /**
      * Creates the meta-model objects for the package.  This method is
      * guarded to have no affect on any invocation but its first.
      * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
      * @generated
      */
-	public void createPackageContents() {
+    public void createPackageContents() {
         if (isCreated) return;
         isCreated = true;
 
         // Create classes and their features
         contextMapperTypeEClass = createEClass(CONTEXT_MAPPER_TYPE);
         createEAttribute(contextMapperTypeEClass, CONTEXT_MAPPER_TYPE__SOAP_HEADERS_TYPE);
+
+        messageComposerTypeEClass = createEClass(MESSAGE_COMPOSER_TYPE);
+        createEAttribute(messageComposerTypeEClass, MESSAGE_COMPOSER_TYPE__UNWRAPPED);
 
         documentRootEClass = createEClass(DOCUMENT_ROOT);
         createEAttribute(documentRootEClass, DOCUMENT_ROOT__MIXED);
@@ -448,21 +477,21 @@ public class SOAPPackageImpl extends EPackageImpl implements SOAPPackage {
         wsdlPortTypeEDataType = createEDataType(WSDL_PORT_TYPE);
     }
 
-	/**
+    /**
      * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
      * @generated
      */
-	private boolean isInitialized = false;
+    private boolean isInitialized = false;
 
-	/**
+    /**
      * Complete the initialization of the package and its meta-model.  This
      * method is guarded to have no affect on any invocation but its first.
      * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
      * @generated
      */
-	public void initializePackageContents() {
+    public void initializePackageContents() {
         if (isInitialized) return;
         isInitialized = true;
 
@@ -481,11 +510,15 @@ public class SOAPPackageImpl extends EPackageImpl implements SOAPPackage {
 
         // Add supertypes to classes
         contextMapperTypeEClass.getESuperTypes().add(theSwitchyardPackage.getContextMapperType());
+        messageComposerTypeEClass.getESuperTypes().add(theSwitchyardPackage.getMessageComposerType());
         soapBindingTypeEClass.getESuperTypes().add(theSwitchyardPackage.getSwitchYardBindingType());
 
         // Initialize classes and features; add operations and parameters
         initEClass(contextMapperTypeEClass, ContextMapperType.class, "ContextMapperType", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
         initEAttribute(getContextMapperType_SoapHeadersType(), this.getSoapHeadersType(), "soapHeadersType", null, 0, 1, ContextMapperType.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+        initEClass(messageComposerTypeEClass, MessageComposerType.class, "MessageComposerType", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+        initEAttribute(getMessageComposerType_Unwrapped(), theXMLTypePackage.getBoolean(), "unwrapped", null, 0, 1, MessageComposerType.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
         initEClass(documentRootEClass, DocumentRoot.class, "DocumentRoot", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
         initEAttribute(getDocumentRoot_Mixed(), ecorePackage.getEFeatureMapEntry(), "mixed", null, 0, -1, null, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
@@ -495,7 +528,7 @@ public class SOAPPackageImpl extends EPackageImpl implements SOAPPackage {
 
         initEClass(soapBindingTypeEClass, SOAPBindingType.class, "SOAPBindingType", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
         initEReference(getSOAPBindingType_ContextMapper(), this.getContextMapperType(), null, "contextMapper", null, 0, 1, SOAPBindingType.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-        initEReference(getSOAPBindingType_MessageComposer(), theSwitchyardPackage.getMessageComposerType(), null, "messageComposer", null, 0, 1, SOAPBindingType.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+        initEReference(getSOAPBindingType_MessageComposer(), this.getMessageComposerType(), null, "messageComposer", null, 0, 1, SOAPBindingType.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
         initEAttribute(getSOAPBindingType_Wsdl(), theXMLTypePackage.getAnyURI(), "wsdl", null, 1, 1, SOAPBindingType.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
         initEAttribute(getSOAPBindingType_WsdlPort(), this.getWsdlPortType(), "wsdlPort", null, 0, 1, SOAPBindingType.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
         initEAttribute(getSOAPBindingType_SocketAddr(), theXMLTypePackage.getString(), "socketAddr", null, 0, 1, SOAPBindingType.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
@@ -520,13 +553,13 @@ public class SOAPPackageImpl extends EPackageImpl implements SOAPPackage {
         createExtendedMetaDataAnnotations();
     }
 
-	/**
+    /**
      * Initializes the annotations for <b>http:///org/eclipse/emf/ecore/util/ExtendedMetaData</b>.
      * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
      * @generated
      */
-	protected void createExtendedMetaDataAnnotations() {
+    protected void createExtendedMetaDataAnnotations() {
         String source = "http:///org/eclipse/emf/ecore/util/ExtendedMetaData";		
         addAnnotation
           (contextMapperTypeEClass, 
@@ -541,6 +574,20 @@ public class SOAPPackageImpl extends EPackageImpl implements SOAPPackage {
            new String[] {
              "kind", "attribute",
              "name", "soapHeadersType"
+           });		
+        addAnnotation
+          (messageComposerTypeEClass, 
+           source, 
+           new String[] {
+             "name", "MessageComposerType",
+             "kind", "empty"
+           });		
+        addAnnotation
+          (getMessageComposerType_Unwrapped(), 
+           source, 
+           new String[] {
+             "kind", "attribute",
+             "name", "unwrapped"
            });		
         addAnnotation
           (documentRootEClass, 

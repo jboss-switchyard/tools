@@ -103,6 +103,8 @@ public class SOAPValidator extends EObjectValidator {
         switch (classifierID) {
             case SOAPPackage.CONTEXT_MAPPER_TYPE:
                 return validateContextMapperType((ContextMapperType)value, diagnostics, context);
+            case SOAPPackage.MESSAGE_COMPOSER_TYPE:
+                return validateMessageComposerType((MessageComposerType)value, diagnostics, context);
             case SOAPPackage.DOCUMENT_ROOT:
                 return validateDocumentRoot((DocumentRoot)value, diagnostics, context);
             case SOAPPackage.SOAP_BINDING_TYPE:
@@ -125,6 +127,15 @@ public class SOAPValidator extends EObjectValidator {
      */
     public boolean validateContextMapperType(ContextMapperType contextMapperType, DiagnosticChain diagnostics, Map<Object, Object> context) {
         return validate_EveryDefaultConstraint(contextMapperType, diagnostics, context);
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public boolean validateMessageComposerType(MessageComposerType messageComposerType, DiagnosticChain diagnostics, Map<Object, Object> context) {
+        return validate_EveryDefaultConstraint(messageComposerType, diagnostics, context);
     }
 
     /**

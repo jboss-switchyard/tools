@@ -17,15 +17,15 @@ import org.eclipse.emf.ecore.EFactory;
  * @generated
  */
 public interface SOAPFactory extends EFactory {
-	/**
+    /**
      * The singleton instance of the factory.
      * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
      * @generated
      */
-	SOAPFactory eINSTANCE = org.switchyard.tools.models.switchyard1_0.soap.impl.SOAPFactoryImpl.init();
+    SOAPFactory eINSTANCE = org.switchyard.tools.models.switchyard1_0.soap.impl.SOAPFactoryImpl.init();
 
-	/**
+    /**
      * Returns a new object of class '<em>Context Mapper Type</em>'.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
@@ -35,30 +35,39 @@ public interface SOAPFactory extends EFactory {
     ContextMapperType createContextMapperType();
 
     /**
+     * Returns a new object of class '<em>Message Composer Type</em>'.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @return a new object of class '<em>Message Composer Type</em>'.
+     * @generated
+     */
+    MessageComposerType createMessageComposerType();
+
+    /**
      * Returns a new object of class '<em>Document Root</em>'.
      * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
      * @return a new object of class '<em>Document Root</em>'.
      * @generated
      */
-	DocumentRoot createDocumentRoot();
+    DocumentRoot createDocumentRoot();
 
-	/**
+    /**
      * Returns a new object of class '<em>Binding Type</em>'.
      * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
      * @return a new object of class '<em>Binding Type</em>'.
      * @generated
      */
-	SOAPBindingType createSOAPBindingType();
+    SOAPBindingType createSOAPBindingType();
 
-	/**
+    /**
      * Returns the package supported by this factory.
      * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
      * @return the package supported by this factory.
      * @generated
      */
-	SOAPPackage getSOAPPackage();
+    SOAPPackage getSOAPPackage();
 
 } //SOAPFactory

@@ -80,6 +80,13 @@ public class SOAPSwitch<T> extends Switch<T> {
                 if (result == null) result = defaultCase(theEObject);
                 return result;
             }
+            case SOAPPackage.MESSAGE_COMPOSER_TYPE: {
+                MessageComposerType messageComposerType = (MessageComposerType)theEObject;
+                T result = caseMessageComposerType(messageComposerType);
+                if (result == null) result = caseSwitchyard_MessageComposerType(messageComposerType);
+                if (result == null) result = defaultCase(theEObject);
+                return result;
+            }
             case SOAPPackage.DOCUMENT_ROOT: {
                 DocumentRoot documentRoot = (DocumentRoot)theEObject;
                 T result = caseDocumentRoot(documentRoot);
@@ -111,6 +118,21 @@ public class SOAPSwitch<T> extends Switch<T> {
      * @generated
      */
     public T caseContextMapperType(ContextMapperType object) {
+        return null;
+    }
+
+    /**
+     * Returns the result of interpreting the object as an instance of '<em>Message Composer Type</em>'.
+     * <!-- begin-user-doc -->
+     * This implementation returns null;
+     * returning a non-null result will terminate the switch.
+     * <!-- end-user-doc -->
+     * @param object the target of the switch.
+     * @return the result of interpreting the object as an instance of '<em>Message Composer Type</em>'.
+     * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+     * @generated
+     */
+    public T caseMessageComposerType(MessageComposerType object) {
         return null;
     }
 
@@ -156,6 +178,21 @@ public class SOAPSwitch<T> extends Switch<T> {
      * @generated
      */
     public T caseSwitchyard_ContextMapperType(org.switchyard.tools.models.switchyard1_0.switchyard.ContextMapperType object) {
+        return null;
+    }
+
+    /**
+     * Returns the result of interpreting the object as an instance of '<em>Message Composer Type</em>'.
+     * <!-- begin-user-doc -->
+     * This implementation returns null;
+     * returning a non-null result will terminate the switch.
+     * <!-- end-user-doc -->
+     * @param object the target of the switch.
+     * @return the result of interpreting the object as an instance of '<em>Message Composer Type</em>'.
+     * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+     * @generated
+     */
+    public T caseSwitchyard_MessageComposerType(org.switchyard.tools.models.switchyard1_0.switchyard.MessageComposerType object) {
         return null;
     }
 
