@@ -56,13 +56,16 @@ import org.switchyard.tools.models.switchyard1_0.camel.CamelFtpBindingType;
 import org.switchyard.tools.models.switchyard1_0.camel.CamelFtpsBindingType;
 import org.switchyard.tools.models.switchyard1_0.camel.CamelImplementationType;
 import org.switchyard.tools.models.switchyard1_0.camel.CamelJmsBindingType;
+import org.switchyard.tools.models.switchyard1_0.camel.CamelNettyBindingType;
 import org.switchyard.tools.models.switchyard1_0.camel.CamelPackage;
 import org.switchyard.tools.models.switchyard1_0.camel.CamelSedaBindingType;
+import org.switchyard.tools.models.switchyard1_0.camel.CamelSftpBindingType;
 import org.switchyard.tools.models.switchyard1_0.camel.CamelTimerBindingType;
 import org.switchyard.tools.models.switchyard1_0.camel.JavaDSLType;
 import org.switchyard.tools.models.switchyard1_0.camel.XMLDSLType;
 import org.switchyard.tools.models.switchyard1_0.clojure.ClojurePackage;
 import org.switchyard.tools.models.switchyard1_0.commonrules.CommonRulesPackage;
+import org.switchyard.tools.models.switchyard1_0.hornetq.BindingType;
 import org.switchyard.tools.models.switchyard1_0.hornetq.HornetQPackage;
 import org.switchyard.tools.models.switchyard1_0.rules.RulesPackage;
 import org.switchyard.tools.models.switchyard1_0.soap.SOAPBindingType;
@@ -75,9 +78,16 @@ import org.switchyard.tools.models.switchyard1_0.switchyard.DocumentRoot;
 import org.switchyard.tools.models.switchyard1_0.switchyard.SwitchYardType;
 import org.switchyard.tools.models.switchyard1_0.switchyard.SwitchyardFactory;
 import org.switchyard.tools.models.switchyard1_0.switchyard.SwitchyardPackage;
+import org.switchyard.tools.models.switchyard1_0.switchyard.TransformType;
 import org.switchyard.tools.models.switchyard1_0.switchyard.util.SwitchyardResourceFactoryImpl;
 import org.switchyard.tools.models.switchyard1_0.switchyard.util.SwitchyardResourceImpl;
+import org.switchyard.tools.models.switchyard1_0.transform.JAXBTransformType;
+import org.switchyard.tools.models.switchyard1_0.transform.JavaTransformType1;
+import org.switchyard.tools.models.switchyard1_0.transform.JsonTransformType;
+import org.switchyard.tools.models.switchyard1_0.transform.SmooksTransformType1;
+import org.switchyard.tools.models.switchyard1_0.transform.TransformFactory;
 import org.switchyard.tools.models.switchyard1_0.transform.TransformPackage;
+import org.switchyard.tools.models.switchyard1_0.transform.XsltTransformType;
 import org.switchyard.tools.models.switchyard1_0.validate.ValidatePackage;
 import org.switchyard.tools.ui.editor.Activator;
 
@@ -633,6 +643,45 @@ public class ModelHandler {
 
         return typeList;
     }
+    
+    /**
+     * @return list of supported transform types
+     */
+    public List<TransformType> getSupportedTransformTypes() {
+        ArrayList<TransformType> typeList = new ArrayList<TransformType>();
+        
+        TransformType jaxbType = TransformFactory.eINSTANCE.createJAXBTransformType();
+        typeList.add(jaxbType);
+        
+        TransformType xsltType = TransformFactory.eINSTANCE.createXsltTransformType();
+        typeList.add(xsltType);
+
+        TransformType smooksType = TransformFactory.eINSTANCE.createSmooksTransformType1();
+        typeList.add(smooksType);
+
+        return typeList;
+    }
+
+    /**
+     * @param transform transform to check
+     * @return String label
+     */
+    public String getLabelForTransformType(TransformType transform) {
+        if (transform instanceof JAXBTransformType) {
+            return "JAXB";
+        } else if (transform instanceof XsltTransformType) {
+                return "XSLT";
+        } else if (transform instanceof JavaTransformType1) {
+            return "Java";
+        } else if (transform instanceof JsonTransformType) {
+            return "JSON";
+        } else if (transform instanceof SmooksTransformType1) {
+            return "Smooks";
+        } else {
+            return "Unsupported (" + transform.eClass().getClass().getName() + ")";
+        }
+
+    }
 
     /**
      * @param binding binding to check
@@ -641,10 +690,28 @@ public class ModelHandler {
     public String getLabelForBindingType(Binding binding) {
         if (binding instanceof SOAPBindingType) {
             return "SOAP";
+        } else  if (binding instanceof BindingType) {
+            return "HornetQ";
+        } else  if (binding instanceof CamelBindingType) {
+            return "Camel";
         } else  if (binding instanceof CamelFileBindingType) {
             return "File";
+        } else  if (binding instanceof CamelSftpBindingType) {
+            return "SFTP";
         } else  if (binding instanceof CamelFtpBindingType) {
             return "FTP";
+        } else  if (binding instanceof CamelNettyBindingType) {
+            return "Netty";
+        } else  if (binding instanceof CamelJmsBindingType) {
+            return "JMS";
+        } else  if (binding instanceof CamelAtomBindingType) {
+            return "Atom";
+        } else  if (binding instanceof CamelDirectBindingType) {
+            return "Direct";
+        } else  if (binding instanceof CamelSedaBindingType) {
+            return "Seda";
+        } else  if (binding instanceof CamelTimerBindingType) {
+            return "Timer";
         } else {
             return "Unsupported (" + binding.eClass().getClass().getName() + ")";
         }

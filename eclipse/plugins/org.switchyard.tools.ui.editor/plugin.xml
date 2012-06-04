@@ -50,6 +50,12 @@
               id="switchyard.implementation.tab"
               label="Implementation">
         </propertyTab>
+        <propertyTab
+              afterTab="switchyard.transform.tab"
+              category="SwitchyardSCA"
+              id="switchyard.transform.tab"
+              label="Transforms">
+        </propertyTab>
 	    </propertyTabs>
 	</extension>
 	 
@@ -78,6 +84,12 @@
                filter="org.switchyard.tools.ui.editor.property.SwitchyardSCAPropertiesImplementationsFilter"
                id="switchyard.implementation.tab.details"
                tab="switchyard.implementation.tab">
+         </propertySection>
+         <propertySection
+               class="org.switchyard.tools.ui.editor.property.TransformPropertySection"
+               filter="org.switchyard.tools.ui.editor.property.TransformPropertyFilter"
+               id="switchyard.transform.tab.details"
+               tab="switchyard.transform.tab">
          </propertySection>
 	    </propertySections>
 	</extension>
