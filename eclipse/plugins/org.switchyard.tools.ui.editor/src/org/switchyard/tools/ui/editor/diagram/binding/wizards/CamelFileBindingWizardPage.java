@@ -15,12 +15,12 @@ package org.switchyard.tools.ui.editor.diagram.binding.wizards;
 import javax.swing.event.ChangeEvent;
 import javax.swing.event.ChangeListener;
 
-import org.eclipse.soa.sca.sca1_1.model.sca.Reference;
+import org.eclipse.jface.wizard.WizardPage;
+import org.eclipse.soa.sca.sca1_1.model.sca.Binding;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.widgets.Composite;
+import org.switchyard.tools.models.switchyard1_0.camel.CamelFactory;
 import org.switchyard.tools.models.switchyard1_0.camel.CamelFileBindingType;
-import org.switchyard.tools.ui.editor.diagram.internal.wizards.BaseWizardPage;
-import org.switchyard.tools.ui.editor.diagram.internal.wizards.IRefreshablePage;
 import org.switchyard.tools.ui.editor.diagram.shared.CamelFileConsumerComposite;
 import org.switchyard.tools.ui.editor.diagram.shared.CamelFileProducerComposite;
 
@@ -28,42 +28,36 @@ import org.switchyard.tools.ui.editor.diagram.shared.CamelFileProducerComposite;
  * @author bfitzpat
  * 
  */
-public class SCADiagramAddBindingCamelFilePage extends BaseWizardPage implements IRefreshablePage {
+public class CamelFileBindingWizardPage extends WizardPage {
 
-    private SCADiagramAddBindingStartPage _startPage = null;
     private CamelFileConsumerComposite _consumerComposite = null;
     private CamelFileProducerComposite _producerComposite = null;
+    private CamelFileBindingType _binding = CamelFactory.eINSTANCE.createCamelFileBindingType();
+    private boolean _showConsumer;
 
     /**
-     * @param start Start page reference
      * @param pageName String for name
      */
-    public SCADiagramAddBindingCamelFilePage(SCADiagramAddBindingStartPage start, String pageName) {
-        this(pageName);
-        this._startPage = start;
-    }
-
-    protected SCADiagramAddBindingCamelFilePage(String pageName) {
+    public CamelFileBindingWizardPage(String pageName) {
         super(pageName);
         setTitle("Specify File Binding Details");
         setDescription("Specify pertinent details for your File Binding.");
     }
 
+    /**
+     * Must be called prior to creating the control.
+     * 
+     * @param showConsumer true to show consumer details; false to show producer
+     *            details.
+     */
+    public void setShowConsumer(boolean showConsumer) {
+        _showConsumer = showConsumer;
+    }
+
     @Override
     public void createControl(Composite parent) {
-        
-        boolean showConsumer = true;
-        if (getWizard() instanceof SCADiagramAddBindingWizard) {
-            if (((SCADiagramAddBindingWizard)getWizard()).getParentObject() instanceof Reference) {
-                showConsumer = false;
-            }
-        }
-        
-        if (showConsumer) {
+        if (_showConsumer) {
             _consumerComposite = new CamelFileConsumerComposite();
-            if (_startPage != null && _startPage.getBinding() != null && _startPage.getBinding() instanceof CamelFileBindingType) {
-                _consumerComposite.setBinding((CamelFileBindingType) _startPage.getBinding());
-            }
             _consumerComposite.addChangeListener(new ChangeListener() {
                 @Override
                 public void stateChanged(ChangeEvent arg0) {
@@ -72,13 +66,11 @@ public class SCADiagramAddBindingCamelFilePage extends BaseWizardPage implements
                 }
             });
             _consumerComposite.createContents(parent, SWT.NONE);
-    
+            _consumerComposite.setBinding(_binding);
+
             setControl(_consumerComposite.getPanel());
         } else {
             _producerComposite = new CamelFileProducerComposite();
-            if (_startPage != null && _startPage.getBinding() != null && _startPage.getBinding() instanceof CamelFileBindingType) {
-                _producerComposite.setBinding((CamelFileBindingType) _startPage.getBinding());
-            }
             _producerComposite.addChangeListener(new ChangeListener() {
                 @Override
                 public void stateChanged(ChangeEvent arg0) {
@@ -87,30 +79,19 @@ public class SCADiagramAddBindingCamelFilePage extends BaseWizardPage implements
                 }
             });
             _producerComposite.createContents(parent, SWT.NONE);
-    
+            _producerComposite.setBinding(_binding);
+
             setControl(_producerComposite.getPanel());
         }
 
         setErrorMessage(null);
     }
 
-    @Override
-    public boolean getSkippable() {
-        if (this._startPage != null && this._startPage.getBinding() != null
-                && _startPage.getBinding() instanceof CamelFileBindingType) {
-            return false;
-        }
-        return true;
+    /**
+     * @return the binding being edited.
+     */
+    public Binding getBinding() {
+        return _binding;
     }
 
-    @Override
-    public void refresh() {
-        if (_startPage != null && _startPage.getBinding() instanceof CamelFileBindingType) {
-            if (_consumerComposite != null && _consumerComposite.getPanel() != null) {
-                _consumerComposite.setBinding(_startPage.getBinding());
-            } else if (_producerComposite != null && _producerComposite.getPanel() != null) {
-                _producerComposite.setBinding(_startPage.getBinding());
-            }
-        }
-    }
 }

@@ -15,32 +15,27 @@ package org.switchyard.tools.ui.editor.diagram.binding.wizards;
 import javax.swing.event.ChangeEvent;
 import javax.swing.event.ChangeListener;
 
+import org.eclipse.jface.wizard.WizardPage;
+import org.eclipse.soa.sca.sca1_1.model.sca.Binding;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.widgets.Composite;
 import org.switchyard.tools.models.switchyard1_0.soap.SOAPBindingType;
-import org.switchyard.tools.ui.editor.diagram.internal.wizards.BaseWizardPage;
-import org.switchyard.tools.ui.editor.diagram.internal.wizards.IRefreshablePage;
+import org.switchyard.tools.models.switchyard1_0.soap.SOAPFactory;
 import org.switchyard.tools.ui.editor.diagram.shared.WSDLURISelectionComposite;
 
 /**
  * @author bfitzpat
- *
+ * 
  */
-public class SCADiagramAddBindingSOAPPage extends BaseWizardPage implements IRefreshablePage {
+public class SOAPBindingWizardPage extends WizardPage {
 
-    private SCADiagramAddBindingStartPage _startPage = null;
+    private SOAPBindingType _binding = SOAPFactory.eINSTANCE.createSOAPBindingType();
     private WSDLURISelectionComposite _uriComposite = null;
 
     /**
-     * @param start Start page reference
      * @param pageName String for name
      */
-    public SCADiagramAddBindingSOAPPage(SCADiagramAddBindingStartPage start, String pageName) {
-        this(pageName);
-        this._startPage = start;
-    }
-
-    protected SCADiagramAddBindingSOAPPage(String pageName) {
+    public SOAPBindingWizardPage(String pageName) {
         super(pageName);
         setTitle("Specify SOAP Binding Details");
         setDescription("Specify pertinent details for your SOAP Binding.");
@@ -49,9 +44,6 @@ public class SCADiagramAddBindingSOAPPage extends BaseWizardPage implements IRef
     @Override
     public void createControl(Composite parent) {
         _uriComposite = new WSDLURISelectionComposite();
-        if (_startPage != null && _startPage.getBinding() != null && _startPage.getBinding() instanceof SOAPBindingType) {
-            _uriComposite.setBinding((SOAPBindingType) _startPage.getBinding());
-        }
         _uriComposite.addChangeListener(new ChangeListener() {
             @Override
             public void stateChanged(ChangeEvent arg0) {
@@ -60,6 +52,7 @@ public class SCADiagramAddBindingSOAPPage extends BaseWizardPage implements IRef
             }
         });
         _uriComposite.createContents(parent, SWT.NONE);
+        _uriComposite.setBinding(_binding);
 
         setControl(_uriComposite.getPanel());
 
@@ -67,33 +60,10 @@ public class SCADiagramAddBindingSOAPPage extends BaseWizardPage implements IRef
     }
 
     /**
-     * @return String for URI
+     * @return the binding being edited.
      */
-    public String getBindingURI() {
-        return this._uriComposite.getWSDLURI();
+    public Binding getBinding() {
+        return _uriComposite.getBinding();
     }
 
-    /**
-     * @return String for port #
-     */
-    public String getBindingPort() {
-        return this._uriComposite.getsBindingPort();
-    }
-
-    @Override
-    public boolean getSkippable() {
-        if (this._startPage != null && this._startPage.getBinding() != null && _startPage.getBinding() instanceof SOAPBindingType) {
-           return false;
-        }
-        return true;
-    }
-
-    @Override
-    public void refresh() {
-        if (_startPage != null && _startPage.getBinding() instanceof SOAPBindingType) {
-            if (_uriComposite != null && _uriComposite.getPanel() != null) {
-                _uriComposite.setBinding((SOAPBindingType) _startPage.getBinding());
-            }
-        }
-    }
 }

@@ -144,10 +144,12 @@ public class SOAPFactoryImpl extends EFactoryImpl implements SOAPFactory {
     /**
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @generated
+     * @generated NOT
      */
     public SOAPBindingType createSOAPBindingType() {
         SOAPBindingTypeImpl soapBindingType = new SOAPBindingTypeImpl();
+        soapBindingType.setWsdl("MyService.wsdl");
+        soapBindingType.setSocketAddr(":18001");
         return soapBindingType;
     }
 

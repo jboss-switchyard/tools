@@ -15,12 +15,12 @@ package org.switchyard.tools.ui.editor.diagram.binding.wizards;
 import javax.swing.event.ChangeEvent;
 import javax.swing.event.ChangeListener;
 
-import org.eclipse.soa.sca.sca1_1.model.sca.Reference;
+import org.eclipse.jface.wizard.WizardPage;
+import org.eclipse.soa.sca.sca1_1.model.sca.Binding;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.widgets.Composite;
+import org.switchyard.tools.models.switchyard1_0.camel.CamelFactory;
 import org.switchyard.tools.models.switchyard1_0.camel.CamelFtpBindingType;
-import org.switchyard.tools.ui.editor.diagram.internal.wizards.BaseWizardPage;
-import org.switchyard.tools.ui.editor.diagram.internal.wizards.IRefreshablePage;
 import org.switchyard.tools.ui.editor.diagram.shared.CamelFTPConsumerComposite;
 import org.switchyard.tools.ui.editor.diagram.shared.CamelFTPProducerComposite;
 
@@ -28,42 +28,36 @@ import org.switchyard.tools.ui.editor.diagram.shared.CamelFTPProducerComposite;
  * @author bfitzpat
  * 
  */
-public class AddBindingCamelFTPPage extends BaseWizardPage implements IRefreshablePage {
+public class CamelFTPBindingWizardPage extends WizardPage {
 
-    private SCADiagramAddBindingStartPage _startPage = null;
     private CamelFTPConsumerComposite _consumerComposite = null;
     private CamelFTPProducerComposite _producerComposite = null;
+    private CamelFtpBindingType _binding = CamelFactory.eINSTANCE.createCamelFtpBindingType();
+    private boolean _showConsumer;
 
     /**
-     * @param start Start page reference
      * @param pageName String for name
      */
-    public AddBindingCamelFTPPage(SCADiagramAddBindingStartPage start, String pageName) {
-        this(pageName);
-        this._startPage = start;
-    }
-
-    protected AddBindingCamelFTPPage(String pageName) {
+    public CamelFTPBindingWizardPage(String pageName) {
         super(pageName);
         setTitle("Specify FTP Binding Details");
         setDescription("Specify pertinent details for your FTP Binding.");
     }
 
+    /**
+     * Must be called prior to creating the control.
+     * 
+     * @param showConsumer true to show consumer details; false to show producer
+     *            details.
+     */
+    public void setShowConsumer(boolean showConsumer) {
+        _showConsumer = showConsumer;
+    }
+
     @Override
     public void createControl(Composite parent) {
-        
-        boolean showConsumer = true;
-        if (getWizard() instanceof SCADiagramAddBindingWizard) {
-            if (((SCADiagramAddBindingWizard)getWizard()).getParentObject() instanceof Reference) {
-                showConsumer = false;
-            }
-        }
-        
-        if (showConsumer) {
+        if (_showConsumer) {
             _consumerComposite = new CamelFTPConsumerComposite();
-            if (_startPage != null && _startPage.getBinding() != null && _startPage.getBinding() instanceof CamelFtpBindingType) {
-                _consumerComposite.setBinding((CamelFtpBindingType) _startPage.getBinding());
-            }
             _consumerComposite.addChangeListener(new ChangeListener() {
                 @Override
                 public void stateChanged(ChangeEvent arg0) {
@@ -72,13 +66,11 @@ public class AddBindingCamelFTPPage extends BaseWizardPage implements IRefreshab
                 }
             });
             _consumerComposite.createContents(parent, SWT.NONE);
-    
+            _consumerComposite.setBinding(_binding);
+
             setControl(_consumerComposite.getPanel());
         } else {
             _producerComposite = new CamelFTPProducerComposite();
-            if (_startPage != null && _startPage.getBinding() != null && _startPage.getBinding() instanceof CamelFtpBindingType) {
-                _producerComposite.setBinding((CamelFtpBindingType) _startPage.getBinding());
-            }
             _producerComposite.addChangeListener(new ChangeListener() {
                 @Override
                 public void stateChanged(ChangeEvent arg0) {
@@ -87,30 +79,19 @@ public class AddBindingCamelFTPPage extends BaseWizardPage implements IRefreshab
                 }
             });
             _producerComposite.createContents(parent, SWT.NONE);
-    
+            _producerComposite.setBinding(_binding);
+
             setControl(_producerComposite.getPanel());
         }
 
         setErrorMessage(null);
     }
 
-    @Override
-    public boolean getSkippable() {
-        if (this._startPage != null && this._startPage.getBinding() != null
-                && _startPage.getBinding() instanceof CamelFtpBindingType) {
-            return false;
-        }
-        return true;
+    /**
+     * @return the binding being edited.
+     */
+    public Binding getBinding() {
+        return _binding;
     }
 
-    @Override
-    public void refresh() {
-        if (_startPage != null && _startPage.getBinding() instanceof CamelFtpBindingType) {
-            if (_consumerComposite != null && _consumerComposite.getPanel() != null) {
-                _consumerComposite.setBinding(_startPage.getBinding());
-            } else if (_producerComposite != null && _producerComposite.getPanel() != null) {
-                _producerComposite.setBinding(_startPage.getBinding());
-            }
-        }
-    }
 }

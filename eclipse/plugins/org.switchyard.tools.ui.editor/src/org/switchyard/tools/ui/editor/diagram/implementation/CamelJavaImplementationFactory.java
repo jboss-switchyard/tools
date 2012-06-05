@@ -24,7 +24,7 @@ import org.switchyard.tools.ui.editor.diagram.component.wizards.IImplementationW
 public class CamelJavaImplementationFactory extends BaseImplementationFactory {
 
     @Override
-    protected IImplementationWizard createImplementationWizard() {
+    protected IImplementationWizard createTypeWizard() {
         return new CamelJavaImplementationWizard();
     }
 

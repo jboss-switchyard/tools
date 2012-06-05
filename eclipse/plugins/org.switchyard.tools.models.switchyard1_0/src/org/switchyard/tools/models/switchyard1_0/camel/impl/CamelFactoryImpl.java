@@ -160,20 +160,22 @@ public class CamelFactoryImpl extends EFactoryImpl implements CamelFactory {
 	/**
      * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-     * @generated
+     * @generated NOT
      */
 	public CamelFileBindingType createCamelFileBindingType() {
         CamelFileBindingTypeImpl camelFileBindingType = new CamelFileBindingTypeImpl();
+        camelFileBindingType.setDirectory("my/directory");
         return camelFileBindingType;
     }
 
 	/**
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @generated
+     * @generated NOT
      */
     public CamelFtpBindingType createCamelFtpBindingType() {
         CamelFtpBindingTypeImpl camelFtpBindingType = new CamelFtpBindingTypeImpl();
+        camelFtpBindingType.setDirectory("my/directory");
         return camelFtpBindingType;
     }
 

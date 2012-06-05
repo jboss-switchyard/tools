@@ -51,12 +51,15 @@ import org.eclipse.soa.sca.sca1_1.model.sca.JavaInterface;
 import org.eclipse.soa.sca.sca1_1.model.sca.Reference;
 import org.eclipse.soa.sca.sca1_1.model.sca.Service;
 import org.switchyard.tools.models.switchyard1_0.switchyard.SwitchYardBindingType;
+import org.switchyard.tools.ui.editor.diagram.binding.CamelFTPBindingFactory;
+import org.switchyard.tools.ui.editor.diagram.binding.CamelFileBindingFactory;
+import org.switchyard.tools.ui.editor.diagram.binding.CreateBindingFeature;
 import org.switchyard.tools.ui.editor.diagram.binding.SCADiagramAddBindingFeature;
-import org.switchyard.tools.ui.editor.diagram.binding.SCADiagramCreateBindingFeature;
+import org.switchyard.tools.ui.editor.diagram.binding.SOAPBindingFactory;
 import org.switchyard.tools.ui.editor.diagram.component.BaseComponentFactory;
 import org.switchyard.tools.ui.editor.diagram.component.BeanComponentFactory;
-import org.switchyard.tools.ui.editor.diagram.component.CamelXMLComponentFactory;
 import org.switchyard.tools.ui.editor.diagram.component.CamelJavaComponentFactory;
+import org.switchyard.tools.ui.editor.diagram.component.CamelXMLComponentFactory;
 import org.switchyard.tools.ui.editor.diagram.component.CreateComponentFeature;
 import org.switchyard.tools.ui.editor.diagram.component.SCADiagramAddComponentFeature;
 import org.switchyard.tools.ui.editor.diagram.component.SCADiagramDirectEditComponentFeature;
@@ -84,8 +87,8 @@ import org.switchyard.tools.ui.editor.diagram.connections.SCADiagramAddReference
 import org.switchyard.tools.ui.editor.diagram.connections.SCADiagramCreateComponentServiceLinkFeature;
 import org.switchyard.tools.ui.editor.diagram.connections.SCADiagramCreateReferenceLinkFeature;
 import org.switchyard.tools.ui.editor.diagram.implementation.BeanImplementationFactory;
-import org.switchyard.tools.ui.editor.diagram.implementation.CamelXMLImplementationFactory;
 import org.switchyard.tools.ui.editor.diagram.implementation.CamelJavaImplementationFactory;
+import org.switchyard.tools.ui.editor.diagram.implementation.CamelXMLImplementationFactory;
 import org.switchyard.tools.ui.editor.diagram.implementation.CreateImplementationFeature;
 import org.switchyard.tools.ui.editor.diagram.implementation.SCADiagramAddImplementationFeature;
 import org.switchyard.tools.ui.editor.diagram.service.SCADiagramAddServiceFeature;
@@ -201,7 +204,10 @@ public class SCADiagramFeatureProvider extends DefaultFeatureProvider {
 
     /* package */List<ICreateFeature> getCreateBindingFeatures() {
         List<ICreateFeature> features = new ArrayList<ICreateFeature>(1);
-        features.add(new SCADiagramCreateBindingFeature(this));
+        features.add(new CreateBindingFeature(this, new SOAPBindingFactory(), "SOAP", "A SOAP based endpoint."));
+        features.add(new CreateBindingFeature(this, new CamelFileBindingFactory(), "File",
+                "A Camel File based endpoint."));
+        features.add(new CreateBindingFeature(this, new CamelFTPBindingFactory(), "FTP", "A Camel FTP based endpoint."));
         return features;
     }
 

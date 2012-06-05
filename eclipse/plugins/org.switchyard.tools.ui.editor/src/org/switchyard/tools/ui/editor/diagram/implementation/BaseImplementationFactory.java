@@ -12,13 +12,12 @@ package org.switchyard.tools.ui.editor.diagram.implementation;
 
 import java.util.List;
 
-import org.eclipse.jface.wizard.WizardDialog;
 import org.eclipse.soa.sca.sca1_1.model.sca.Component;
 import org.eclipse.soa.sca.sca1_1.model.sca.ComponentReference;
 import org.eclipse.soa.sca.sca1_1.model.sca.ComponentService;
 import org.eclipse.soa.sca.sca1_1.model.sca.Implementation;
-import org.eclipse.swt.widgets.Shell;
 import org.switchyard.tools.ui.editor.diagram.component.wizards.IImplementationWizard;
+import org.switchyard.tools.ui.editor.diagram.shared.BaseTypeFactory;
 
 /**
  * BaseImplementationFactory
@@ -28,26 +27,11 @@ import org.switchyard.tools.ui.editor.diagram.component.wizards.IImplementationW
  * 
  * @author Rob Cernich
  */
-public abstract class BaseImplementationFactory implements IImplementationTypeFactory {
+public abstract class BaseImplementationFactory extends
+        BaseTypeFactory<Implementation, Component, IImplementationWizard> implements IImplementationTypeFactory {
 
     private List<ComponentService> _services;
     private List<ComponentReference> _references;
-
-    @Override
-    public Implementation createType(Shell shell, Component container) {
-        final IImplementationWizard wizard = createImplementationWizard();
-        final WizardDialog dialog = new WizardDialog(shell, wizard);
-        // TODO: add initialization to wizard.
-        // wizard.init(container);
-        if (dialog.open() == WizardDialog.OK) {
-            _services = wizard.getImplementationServices();
-            _references = wizard.getImplementationReferences();
-            return wizard.getImplementation();
-        }
-        _services = null;
-        _references = null;
-        return null;
-    }
 
     @Override
     public List<ComponentService> getImplementationServices() {
@@ -59,8 +43,11 @@ public abstract class BaseImplementationFactory implements IImplementationTypeFa
         return _references;
     }
 
-    /**
-     * @return a new wizard instance.
-     */
-    protected abstract IImplementationWizard createImplementationWizard();
+    @Override
+    protected Implementation wizardComplete(IImplementationWizard wizard) {
+        _services = wizard.getImplementationServices();
+        _references = wizard.getImplementationReferences();
+        return super.wizardComplete(wizard);
+    }
+
 }

@@ -13,6 +13,7 @@ package org.switchyard.tools.ui.editor.diagram.component.wizards;
 import java.util.Collections;
 import java.util.List;
 
+import org.eclipse.soa.sca.sca1_1.model.sca.Component;
 import org.eclipse.soa.sca.sca1_1.model.sca.ComponentReference;
 import org.eclipse.soa.sca.sca1_1.model.sca.ComponentService;
 import org.eclipse.soa.sca.sca1_1.model.sca.Implementation;
@@ -43,10 +44,15 @@ public class CamelXMLImplementationWizard extends LinkedWizardBase implements II
         addPage(_page);
     }
 
+    @Override
+    public void init(Component container) {
+        // TODO: implement me
+    }
+
     /**
      * @return the new camel implementation.
      */
-    public Implementation getImplementation() {
+    public Implementation getCreatedObject() {
         return _implementation;
     }
 

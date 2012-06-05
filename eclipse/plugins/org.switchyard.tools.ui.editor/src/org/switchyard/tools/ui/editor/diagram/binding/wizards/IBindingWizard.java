@@ -8,23 +8,20 @@
  * Contributors:
  *     JBoss by Red Hat - Initial implementation.
  ************************************************************************************/
-package org.switchyard.tools.ui.editor.diagram.implementation;
+package org.switchyard.tools.ui.editor.diagram.binding.wizards;
 
-import org.switchyard.tools.ui.editor.diagram.component.wizards.BeanImplementationWizard;
-import org.switchyard.tools.ui.editor.diagram.component.wizards.IImplementationWizard;
+import org.eclipse.soa.sca.sca1_1.model.sca.Binding;
+import org.eclipse.soa.sca.sca1_1.model.sca.Contract;
+import org.switchyard.tools.ui.editor.diagram.shared.ITypeWizard;
 
 /**
- * BeanImplementationFactory
+ * IBindingWizard
  * 
  * <p/>
- * Factory for creating BeanImplementation types.
+ * Base interface for binding wizards.
  * 
  * @author Rob Cernich
  */
-public class BeanImplementationFactory extends BaseImplementationFactory {
+public interface IBindingWizard extends ITypeWizard<Binding, Contract> {
 
-    @Override
-    protected IImplementationWizard createTypeWizard() {
-        return new BeanImplementationWizard();
-    }
 }

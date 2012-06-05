@@ -13,6 +13,7 @@ package org.switchyard.tools.ui.editor.diagram.component.wizards;
 import java.util.List;
 
 import org.eclipse.jdt.core.IType;
+import org.eclipse.soa.sca.sca1_1.model.sca.Component;
 import org.eclipse.soa.sca.sca1_1.model.sca.ComponentReference;
 import org.eclipse.soa.sca.sca1_1.model.sca.ComponentService;
 import org.eclipse.soa.sca.sca1_1.model.sca.Implementation;
@@ -43,7 +44,12 @@ public class BeanImplementationWizard extends LinkedWizardBase implements IImple
     }
 
     @Override
-    public Implementation getImplementation() {
+    public void init(Component container) {
+        // TODO: implement me
+    }
+
+    @Override
+    public Implementation getCreatedObject() {
         return _implementation;
     }
 

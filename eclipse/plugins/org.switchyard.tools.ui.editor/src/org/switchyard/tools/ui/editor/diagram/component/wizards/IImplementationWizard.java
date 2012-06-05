@@ -12,10 +12,11 @@ package org.switchyard.tools.ui.editor.diagram.component.wizards;
 
 import java.util.List;
 
-import org.eclipse.jface.wizard.IWizard;
+import org.eclipse.soa.sca.sca1_1.model.sca.Component;
 import org.eclipse.soa.sca.sca1_1.model.sca.ComponentReference;
 import org.eclipse.soa.sca.sca1_1.model.sca.ComponentService;
 import org.eclipse.soa.sca.sca1_1.model.sca.Implementation;
+import org.switchyard.tools.ui.editor.diagram.shared.ITypeWizard;
 
 /**
  * IImplementationWizard
@@ -25,12 +26,7 @@ import org.eclipse.soa.sca.sca1_1.model.sca.Implementation;
  * 
  * @author Rob Cernich
  */
-public interface IImplementationWizard extends IWizard {
-
-    /**
-     * @return the new implementation.
-     */
-    public Implementation getImplementation();
+public interface IImplementationWizard extends ITypeWizard<Implementation, Component> {
 
     /**
      * @return the services implemented by the implementation.
