@@ -177,7 +177,9 @@ public class SwitchyardSCAPropertiesMainSection extends GFPropertySection implem
                     component.setName(value.trim());
                 }
             });
-            getDiagramEditor().refresh(_pe);
+            if (_pe != null && getDiagramEditor() != null) {
+                getDiagramEditor().refresh(_pe);
+            }
         } else if (bo instanceof Service) {
             final Service service = (Service) bo;
             _domain.getCommandStack().execute(new RecordingCommand(_domain) {
