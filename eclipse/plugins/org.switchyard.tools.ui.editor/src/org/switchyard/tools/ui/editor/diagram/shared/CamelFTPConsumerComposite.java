@@ -19,7 +19,9 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.transaction.RecordingCommand;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
+import org.eclipse.graphiti.mm.pictograms.PictogramElement;
 import org.eclipse.soa.sca.sca1_1.model.sca.Binding;
+import org.eclipse.soa.sca.sca1_1.model.sca.Service;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.events.ModifyEvent;
 import org.eclipse.swt.events.ModifyListener;
@@ -29,6 +31,7 @@ import org.eclipse.swt.layout.FillLayout;
 import org.eclipse.swt.layout.GridData;
 import org.eclipse.swt.layout.GridLayout;
 import org.eclipse.swt.widgets.Button;
+import org.eclipse.swt.widgets.Combo;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Control;
 import org.eclipse.swt.widgets.Group;
@@ -37,7 +40,9 @@ import org.eclipse.swt.widgets.TabItem;
 import org.eclipse.swt.widgets.Text;
 import org.switchyard.tools.models.switchyard1_0.camel.CamelFactory;
 import org.switchyard.tools.models.switchyard1_0.camel.CamelFtpBindingType;
+import org.switchyard.tools.models.switchyard1_0.camel.CamelOperationSelectorType;
 import org.switchyard.tools.ui.editor.impl.SwitchyardSCAEditor;
+import org.switchyard.tools.ui.editor.util.InterfaceOpsUtil;
 
 /**
  * @author bfitzpat
@@ -65,6 +70,8 @@ public class CamelFTPConsumerComposite extends AbstractSwitchyardComposite imple
     private Text _includeText;
     private Text _excludeText;
     private Text _delayText;
+    private Combo _operationSelectionCombo;
+    private Object _targetObj = null;
 
     @Override
     public Binding getBinding() {
@@ -126,10 +133,17 @@ public class CamelFTPConsumerComposite extends AbstractSwitchyardComposite imple
             if (this._binding.isBinary()) {
                 _binaryButton.setSelection(this._binding.isBinary());
             }
+            populateOperationCombo();
+            if (this._binding.getCamelOperationSelector() != null) {
+                CamelOperationSelectorType camelOpSelector = (CamelOperationSelectorType) this._binding
+                        .getCamelOperationSelector();
+                _operationSelectionCombo.setText(camelOpSelector.getOperationName());
+            }
             _inUpdate = false;
             validate();
         } else {
             this._binding = null;
+            populateOperationCombo();
         }
     }
 
@@ -200,6 +214,13 @@ public class CamelFTPConsumerComposite extends AbstractSwitchyardComposite imple
         _deleteButton = createCheckbox(fileGroup, "Delete Files Once Processed");
         _recursiveButton = createCheckbox(fileGroup, "Process Sub-Directories Recursively");
 
+        Group opGroup = new Group(composite, SWT.NONE);
+        opGroup.setLayoutData(new GridData(SWT.FILL, SWT.FILL, true, true));
+        opGroup.setLayout(new GridLayout(2, false));
+        opGroup.setText("Operation Options");
+        _operationSelectionCombo = createLabelAndCombo(opGroup, "Operation");
+        populateOperationCombo();
+
         Group moveGroup = new Group(composite, SWT.NONE);
         moveGroup.setLayoutData(new GridData(SWT.FILL, SWT.FILL, true, true));
         moveGroup.setLayout(new GridLayout(2, false));
@@ -224,6 +245,33 @@ public class CamelFTPConsumerComposite extends AbstractSwitchyardComposite imple
         return this._panel;
     }
 
+    private void populateOperationCombo() {
+        if (_operationSelectionCombo != null && !_operationSelectionCombo.isDisposed()) {
+            _operationSelectionCombo.removeAll();
+            _operationSelectionCombo.clearSelection();
+
+            if (_targetObj == null) {
+                @SuppressWarnings("restriction")
+                PictogramElement[] pes = 
+                        SwitchyardSCAEditor.getActiveEditor().getSelectedPictogramElements();
+                if (pes.length > 0) {
+                    @SuppressWarnings("restriction")
+                    Object bo = SwitchyardSCAEditor.getActiveEditor().
+                        getDiagramTypeProvider().getFeatureProvider().
+                           getBusinessObjectForPictogramElement(pes[0]);
+                    if (bo instanceof Service) {
+                        _targetObj = bo;
+                    }
+                }
+            }
+            if (_targetObj != null && _targetObj instanceof Service) {
+                String[] operations = InterfaceOpsUtil.gatherOperations((Service) _targetObj);
+                for (int i = 0; i < operations.length; i++) {
+                    _operationSelectionCombo.add(operations[i]);
+                }
+            }
+        }
+    }
     /**
      * @param parent parent composite
      * @param label string to put in label
@@ -242,6 +290,31 @@ public class CamelFTPConsumerComposite extends AbstractSwitchyardComposite imple
             }
         });
         return newText;
+    }
+
+    /**
+     * @param parent parent composite
+     * @param label string to put in label
+     * @return reference to created Text control
+     */
+    protected Combo createLabelAndCombo(Composite parent, String label) {
+        Combo combo = super.createLabelAndCombo(parent, label);
+        combo.addSelectionListener(new SelectionListener() {
+            @Override
+            public void widgetSelected(SelectionEvent e) {
+                if (!_inUpdate) {
+                    validate();
+                    handleModify((Control) e.getSource());
+                    fireChangedEvent((Control) e.getSource());
+                }
+            }
+
+            @Override
+            public void widgetDefaultSelected(SelectionEvent e) {
+                widgetSelected(e);
+            }
+        });
+        return combo;
     }
 
     /**
@@ -426,7 +499,26 @@ public class CamelFTPConsumerComposite extends AbstractSwitchyardComposite imple
                 }
                 _binding.getConsume().setPreMove(_preMoveText.getText().trim());
             }
-
+        } else if (control.equals(_operationSelectionCombo)) {
+            if (domain != null) {
+                domain.getCommandStack().execute(new RecordingCommand(domain) {
+                    @Override
+                    protected void doExecute() {
+                        if (_binding.getOperationSelector() == null) {
+                            _binding.setCamelOperationSelector(CamelFactory.eINSTANCE
+                                    .createCamelOperationSelectorType());
+                        }
+                        ((CamelOperationSelectorType) _binding.getCamelOperationSelector())
+                                .setOperationName(_operationSelectionCombo.getText().trim());
+                    }
+                });
+            } else {
+                if (_binding.getOperationSelector() == null) {
+                    _binding.setCamelOperationSelector(CamelFactory.eINSTANCE.createCamelOperationSelectorType());
+                }
+                ((CamelOperationSelectorType) _binding.getCamelOperationSelector())
+                        .setOperationName(_operationSelectionCombo.getText().trim());
+            }
         }
     }
 
@@ -512,5 +604,12 @@ public class CamelFTPConsumerComposite extends AbstractSwitchyardComposite imple
         } else {
             handleConsumer(control, domain);
         }
+    }
+
+    /**
+     * @param target Passed in what we're dropping on
+     */
+    public void setTargetObject(Object target) {
+        this._targetObj = target;
     }
 }

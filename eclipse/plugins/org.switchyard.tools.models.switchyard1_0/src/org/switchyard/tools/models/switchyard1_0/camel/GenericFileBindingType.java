@@ -26,7 +26,8 @@ import java.math.BigInteger;
  * </p>
  *
  * @see org.switchyard.tools.models.switchyard1_0.camel.CamelPackage#getGenericFileBindingType()
- * @model extendedMetaData="name='GenericFileBindingType' kind='elementOnly'"
+ * @model abstract="true"
+ *        extendedMetaData="name='GenericFileBindingType' kind='elementOnly'"
  * @generated
  */
 public interface GenericFileBindingType extends BaseCamelBinding {

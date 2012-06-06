@@ -215,15 +215,6 @@ public interface CamelFactory extends EFactory {
     ScheduledPollConsumerType createScheduledPollConsumerType();
 
     /**
-     * Returns a new object of class '<em>Generic File Binding Type</em>'.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @return a new object of class '<em>Generic File Binding Type</em>'.
-     * @generated
-     */
-    GenericFileBindingType createGenericFileBindingType();
-
-    /**
      * Returns a new object of class '<em>Scheduled Batch Poll Consumer Type</em>'.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->

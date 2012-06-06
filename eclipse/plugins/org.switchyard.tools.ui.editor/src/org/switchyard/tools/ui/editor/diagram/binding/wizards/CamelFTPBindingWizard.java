@@ -27,6 +27,7 @@ public class CamelFTPBindingWizard extends LinkedWizardBase implements IBindingW
 
     private boolean _showConsumer;
     private CamelFTPBindingWizardPage _page;
+    private Contract _container;
 
     @Override
     public void addPages() {
@@ -44,6 +45,7 @@ public class CamelFTPBindingWizard extends LinkedWizardBase implements IBindingW
     public void init(Contract container) {
         // FIXME init
         _showConsumer = container instanceof Service;
+        _container = container;
     }
 
     @Override
@@ -52,4 +54,10 @@ public class CamelFTPBindingWizard extends LinkedWizardBase implements IBindingW
         return true;
     }
 
+    /**
+     * @return Target container
+     */
+    public Contract getTargetContainer() {
+        return _container;
+    }
 }

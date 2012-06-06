@@ -1184,7 +1184,8 @@
       </eAnnotations>
     </eStructuralFeatures>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="GenericFileBindingType" eSuperTypes="#//BaseCamelBinding">
+  <eClassifiers xsi:type="ecore:EClass" name="GenericFileBindingType" abstract="true"
+      eSuperTypes="#//BaseCamelBinding">
     <eAnnotations source="http:///org/eclipse/emf/ecore/util/ExtendedMetaData">
       <details key="name" value="GenericFileBindingType"/>
       <details key="kind" value="elementOnly"/>

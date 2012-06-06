@@ -643,16 +643,16 @@ public class ModelHandler {
 
         return typeList;
     }
-    
+
     /**
      * @return list of supported transform types
      */
     public List<TransformType> getSupportedTransformTypes() {
         ArrayList<TransformType> typeList = new ArrayList<TransformType>();
-        
+
         TransformType jaxbType = TransformFactory.eINSTANCE.createJAXBTransformType();
         typeList.add(jaxbType);
-        
+
         TransformType xsltType = TransformFactory.eINSTANCE.createXsltTransformType();
         typeList.add(xsltType);
 
@@ -670,7 +670,7 @@ public class ModelHandler {
         if (transform instanceof JAXBTransformType) {
             return "JAXB";
         } else if (transform instanceof XsltTransformType) {
-                return "XSLT";
+            return "XSLT";
         } else if (transform instanceof JavaTransformType1) {
             return "Java";
         } else if (transform instanceof JsonTransformType) {
@@ -690,27 +690,27 @@ public class ModelHandler {
     public String getLabelForBindingType(Binding binding) {
         if (binding instanceof SOAPBindingType) {
             return "SOAP";
-        } else  if (binding instanceof BindingType) {
+        } else if (binding instanceof BindingType) {
             return "HornetQ";
-        } else  if (binding instanceof CamelBindingType) {
+        } else if (binding instanceof CamelBindingType) {
             return "Camel";
-        } else  if (binding instanceof CamelFileBindingType) {
+        } else if (binding instanceof CamelFileBindingType) {
             return "File";
-        } else  if (binding instanceof CamelSftpBindingType) {
+        } else if (binding instanceof CamelSftpBindingType) {
             return "SFTP";
-        } else  if (binding instanceof CamelFtpBindingType) {
+        } else if (binding instanceof CamelFtpBindingType) {
             return "FTP";
-        } else  if (binding instanceof CamelNettyBindingType) {
+        } else if (binding instanceof CamelNettyBindingType) {
             return "Netty";
-        } else  if (binding instanceof CamelJmsBindingType) {
+        } else if (binding instanceof CamelJmsBindingType) {
             return "JMS";
-        } else  if (binding instanceof CamelAtomBindingType) {
+        } else if (binding instanceof CamelAtomBindingType) {
             return "Atom";
-        } else  if (binding instanceof CamelDirectBindingType) {
+        } else if (binding instanceof CamelDirectBindingType) {
             return "Direct";
-        } else  if (binding instanceof CamelSedaBindingType) {
+        } else if (binding instanceof CamelSedaBindingType) {
             return "Seda";
-        } else  if (binding instanceof CamelTimerBindingType) {
+        } else if (binding instanceof CamelTimerBindingType) {
             return "Timer";
         } else {
             return "Unsupported (" + binding.eClass().getClass().getName() + ")";
@@ -747,5 +747,4 @@ public class ModelHandler {
         // // }
         // }
     }
-
 }

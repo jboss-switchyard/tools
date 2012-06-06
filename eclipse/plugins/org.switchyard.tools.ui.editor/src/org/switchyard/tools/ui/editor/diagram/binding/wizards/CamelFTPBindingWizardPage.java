@@ -17,6 +17,7 @@ import javax.swing.event.ChangeListener;
 
 import org.eclipse.jface.wizard.WizardPage;
 import org.eclipse.soa.sca.sca1_1.model.sca.Binding;
+import org.eclipse.soa.sca.sca1_1.model.sca.Contract;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.widgets.Composite;
 import org.switchyard.tools.models.switchyard1_0.camel.CamelFactory;
@@ -34,6 +35,7 @@ public class CamelFTPBindingWizardPage extends WizardPage {
     private CamelFTPProducerComposite _producerComposite = null;
     private CamelFtpBindingType _binding = CamelFactory.eINSTANCE.createCamelFtpBindingType();
     private boolean _showConsumer;
+    private Contract _targetContainer;
 
     /**
      * @param pageName String for name
@@ -56,6 +58,7 @@ public class CamelFTPBindingWizardPage extends WizardPage {
 
     @Override
     public void createControl(Composite parent) {
+        _targetContainer = ((CamelFTPBindingWizard)getWizard()).getTargetContainer();
         if (_showConsumer) {
             _consumerComposite = new CamelFTPConsumerComposite();
             _consumerComposite.addChangeListener(new ChangeListener() {
@@ -66,6 +69,7 @@ public class CamelFTPBindingWizardPage extends WizardPage {
                 }
             });
             _consumerComposite.createContents(parent, SWT.NONE);
+            _consumerComposite.setTargetObject(_targetContainer);
             _consumerComposite.setBinding(_binding);
 
             setControl(_consumerComposite.getPanel());

@@ -27,6 +27,7 @@ public class CamelFileBindingWizard extends LinkedWizardBase implements IBinding
 
     private boolean _showConsumer;
     private CamelFileBindingWizardPage _page;
+    private Contract _container;
 
     @Override
     public void addPages() {
@@ -44,6 +45,14 @@ public class CamelFileBindingWizard extends LinkedWizardBase implements IBinding
     public void init(Contract container) {
         // FIXME init
         _showConsumer = container instanceof Service;
+        _container = container;
+    }
+    
+    /**
+     * @return Target container
+     */
+    public Contract getTargetContainer() {
+        return _container;
     }
 
     @Override

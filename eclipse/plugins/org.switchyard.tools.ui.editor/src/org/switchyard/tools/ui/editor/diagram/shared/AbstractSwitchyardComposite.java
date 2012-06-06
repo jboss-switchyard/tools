@@ -19,6 +19,7 @@ import org.eclipse.core.runtime.ListenerList;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.layout.GridData;
 import org.eclipse.swt.widgets.Button;
+import org.eclipse.swt.widgets.Combo;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Control;
 import org.eclipse.swt.widgets.Label;
@@ -195,5 +196,17 @@ public abstract class AbstractSwitchyardComposite {
         Text newText = new Text(parent, SWT.BORDER);
         newText.setLayoutData(new GridData(SWT.FILL, SWT.NONE, true, false));
         return newText;
+    }
+
+    /**
+     * @param parent parent composite
+     * @param label string to put in label
+     * @return reference to created Text control
+     */
+    protected Combo createLabelAndCombo(Composite parent, String label) {
+        new Label(parent, SWT.NONE).setText(label);
+        Combo combo = new Combo(parent, SWT.BORDER | SWT.DROP_DOWN);
+        combo.setLayoutData(new GridData(SWT.FILL, SWT.NONE, true, false));
+        return combo;
     }
 }

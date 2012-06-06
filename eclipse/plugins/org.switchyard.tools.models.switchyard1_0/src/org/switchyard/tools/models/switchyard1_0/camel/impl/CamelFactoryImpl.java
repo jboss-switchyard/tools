@@ -82,7 +82,6 @@ public class CamelFactoryImpl extends EFactoryImpl implements CamelFactory {
             case CamelPackage.JAVA_DSL_TYPE: return createJavaDSLType();
             case CamelPackage.XMLDSL_TYPE: return createXMLDSLType();
             case CamelPackage.SCHEDULED_POLL_CONSUMER_TYPE: return createScheduledPollConsumerType();
-            case CamelPackage.GENERIC_FILE_BINDING_TYPE: return createGenericFileBindingType();
             case CamelPackage.SCHEDULED_BATCH_POLL_CONSUMER_TYPE: return createScheduledBatchPollConsumerType();
             case CamelPackage.GENERIC_FILE_CONSUMER_TYPE: return createGenericFileConsumerType();
             case CamelPackage.GENERIC_FILE_PRODUCER_TYPE: return createGenericFileProducerType();
@@ -337,16 +336,6 @@ public class CamelFactoryImpl extends EFactoryImpl implements CamelFactory {
     public ScheduledPollConsumerType createScheduledPollConsumerType() {
         ScheduledPollConsumerTypeImpl scheduledPollConsumerType = new ScheduledPollConsumerTypeImpl();
         return scheduledPollConsumerType;
-    }
-
-    /**
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    public GenericFileBindingType createGenericFileBindingType() {
-        GenericFileBindingTypeImpl genericFileBindingType = new GenericFileBindingTypeImpl();
-        return genericFileBindingType;
     }
 
     /**
