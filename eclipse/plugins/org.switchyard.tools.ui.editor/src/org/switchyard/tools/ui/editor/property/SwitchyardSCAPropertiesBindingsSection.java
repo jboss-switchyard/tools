@@ -12,7 +12,17 @@
  ******************************************************************************/
 package org.switchyard.tools.ui.editor.property;
 
+import org.eclipse.emf.common.command.Command;
 import org.eclipse.emf.common.util.EList;
+import org.eclipse.emf.ecore.EObject;
+import org.eclipse.emf.ecore.EStructuralFeature;
+import org.eclipse.emf.transaction.NotificationFilter;
+import org.eclipse.emf.transaction.RecordingCommand;
+import org.eclipse.emf.transaction.ResourceSetChangeEvent;
+import org.eclipse.emf.transaction.ResourceSetListener;
+import org.eclipse.emf.transaction.RollbackException;
+import org.eclipse.emf.transaction.TransactionalEditingDomain;
+import org.eclipse.emf.transaction.impl.TransactionalEditingDomainImpl;
 import org.eclipse.graphiti.mm.pictograms.PictogramElement;
 import org.eclipse.graphiti.services.Graphiti;
 import org.eclipse.graphiti.ui.platform.GFPropertySection;
@@ -52,7 +62,7 @@ import org.switchyard.tools.ui.editor.property.adapters.BindingCompositeAdapter;
  * @author bfitzpat
  * 
  */
-public class SwitchyardSCAPropertiesBindingsSection extends GFPropertySection implements ITabbedPropertyConstants {
+public class SwitchyardSCAPropertiesBindingsSection extends GFPropertySection implements ITabbedPropertyConstants, ResourceSetListener {
 
     private Binding _binding;
     private ListViewer _listViewer;
@@ -61,10 +71,11 @@ public class SwitchyardSCAPropertiesBindingsSection extends GFPropertySection im
     private Section _tableSection;
     private Composite _tableComposite;
     private Section _detailSection;
-    private Button _addButton;
+//    private Button _addButton;
     private Button _removeButton;
     private Object _targetBO;
     private ModelHandler _modelHandler = SwitchyardSCAEditor.getActiveEditor().getModelHandler();
+    private TransactionalEditingDomain _domain = null;
 
     /**
      * Constructor.
@@ -84,7 +95,7 @@ public class SwitchyardSCAPropertiesBindingsSection extends GFPropertySection im
     @Override
     public void createControls(Composite parent, TabbedPropertySheetPage tabbedPropertySheetPage) {
         super.createControls(parent, tabbedPropertySheetPage);
-
+                
         parent.setLayout(new GridLayout(3, false));
         _toolkit = this.getWidgetFactory();
         _sashForm = new SashForm(parent, SWT.NONE);
@@ -106,6 +117,7 @@ public class SwitchyardSCAPropertiesBindingsSection extends GFPropertySection im
         _detailSection.setText("Binding Details");
 
         _sashForm.setWeights(new int[]{25,75});
+        addDomainListener();
     }
 
     private void handleSelectListItem() {
@@ -172,7 +184,7 @@ public class SwitchyardSCAPropertiesBindingsSection extends GFPropertySection im
 
         GridData gridData;
         
-        boolean showButtons = false;
+        boolean showButtons = true;
 
         // //////////////////////////////////////////////////////////
         // Create a composite to hold the buttons and table
@@ -234,19 +246,20 @@ public class SwitchyardSCAPropertiesBindingsSection extends GFPropertySection im
         });
 
         if (showButtons) {
-            _addButton = _toolkit.createButton(buttonsComposite, "Add", SWT.PUSH);
-            _addButton.addSelectionListener(new SelectionListener(){
-    
-                @Override
-                public void widgetSelected(SelectionEvent e) {
-                    // add new binding
-                }
-    
-                @Override
-                public void widgetDefaultSelected(SelectionEvent e) {
-                    widgetSelected(e);
-                }
-             });
+//            _addButton = _toolkit.createButton(buttonsComposite, "Add", SWT.PUSH);
+//            _addButton.addSelectionListener(new SelectionListener(){
+//    
+//                @Override
+//                public void widgetSelected(SelectionEvent e) {
+//                    // add new binding
+////                    addBinding();
+//                }
+//    
+//                @Override
+//                public void widgetDefaultSelected(SelectionEvent e) {
+//                    widgetSelected(e);
+//                }
+//             });
             _removeButton = _toolkit.createButton(buttonsComposite, "Remove", SWT.PUSH);
             _removeButton.setEnabled(false);
             _removeButton.addSelectionListener(new SelectionListener(){
@@ -254,6 +267,8 @@ public class SwitchyardSCAPropertiesBindingsSection extends GFPropertySection im
                 @Override
                 public void widgetSelected(SelectionEvent e) {
                     // remove old binding
+                    IStructuredSelection ssel = (IStructuredSelection) _listViewer.getSelection();
+                    removeBinding((Binding) ssel.getFirstElement());
                 }
     
                 @Override
@@ -262,5 +277,84 @@ public class SwitchyardSCAPropertiesBindingsSection extends GFPropertySection im
                 }
              });
         }
+    }
+
+    private void removeBinding(final Binding selected) {
+        if (selected != null && _domain != null) {
+            _domain.getCommandStack().execute(new RecordingCommand(_domain) {
+                @Override
+                protected void doExecute() {
+                    if (_targetBO instanceof Service) {
+                        Service svc = (Service) _targetBO;
+                        int index = svc.getBinding().indexOf(selected);
+                        EStructuralFeature feature = svc.eClass().getEStructuralFeature("binding");
+                        removeListItem(svc, feature, index);
+                    } else if (_targetBO instanceof Reference) {
+                        Reference refs = (Reference) _targetBO;
+                        int index = refs.getBinding().indexOf(selected);
+                        EStructuralFeature feature = refs.eClass().getEStructuralFeature("binding");
+                        removeListItem(refs, feature, index);
+                    }
+
+                }
+            });
+            refresh();
+        }
+    }
+
+    private Object removeListItem(EObject object, EStructuralFeature feature, int index) {
+        @SuppressWarnings("unchecked")
+        EList<EObject> list = (EList<EObject>) object.eGet(feature);
+        return list.remove(index);
+    }
+
+    @Override
+    public NotificationFilter getFilter() {
+        return null;
+    }
+
+    @Override
+    public boolean isAggregatePrecommitListener() {
+        return false;
+    }
+
+    @Override
+    public boolean isPostcommitOnly() {
+        return false;
+    }
+
+    @Override
+    public boolean isPrecommitOnly() {
+        return false;
+    }
+
+    @Override
+    public void resourceSetChanged(ResourceSetChangeEvent arg0) {
+        refresh();
+    }
+
+    @Override
+    public Command transactionAboutToCommit(ResourceSetChangeEvent arg0) throws RollbackException {
+        return null;
+    }
+
+    @SuppressWarnings("restriction")
+    private void addDomainListener() {
+        if (_domain == null) {
+            _domain = (TransactionalEditingDomainImpl) SwitchyardSCAEditor.getActiveEditor().getEditingDomain();
+            _domain.addResourceSetListener(this);
+        }
+    }
+
+    private void removeDomainListener() {
+        if (_domain != null) {
+            _domain.removeResourceSetListener(this);
+        }
+    }
+
+    @Override
+    public void dispose() {
+        removeDomainListener();
+        super.dispose();
     }
 }
