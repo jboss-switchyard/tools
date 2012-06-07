@@ -18,6 +18,7 @@ import java.util.Iterator;
 
 import org.eclipse.core.resources.IFile;
 import org.eclipse.core.resources.IFolder;
+import org.eclipse.core.resources.IProject;
 import org.eclipse.core.runtime.CoreException;
 import org.eclipse.core.runtime.IPath;
 import org.eclipse.core.runtime.IProgressMonitor;
@@ -89,6 +90,7 @@ public class SwitchyardSCAEditor extends DiagramEditor {
     private URI _diagramUri;
 
     private IFile _modelFile;
+    private IFile _targetModelFile;
     private IFile _diagramFile;
 
     private IWorkbenchListener _workbenchListener;
@@ -177,6 +179,7 @@ public class SwitchyardSCAEditor extends DiagramEditor {
         try {
             if (input instanceof IFileEditorInput) {
                 _modelFile = ((IFileEditorInput) input).getFile();
+                
                 // loadPreferences(modelFile.getProject());
 
                 input = createNewDiagramEditorInput();
@@ -469,6 +472,25 @@ public class SwitchyardSCAEditor extends DiagramEditor {
      */
     public IFile getModelFile() {
         return _modelFile;
+    }
+
+    /**
+     * @return target model file
+     */
+    public IFile getTargetModelFile() {
+        if (_targetModelFile == null) {
+            IPath targetPath = new Path("target/classes/META-INF/switchyard.xml");
+            try {
+                _modelFile.getProject().refreshLocal(IProject.DEPTH_INFINITE, null);
+                IFile target = _modelFile.getProject().getFile(targetPath);
+                if (target != null) {
+                    _targetModelFile = target;
+                }
+            } catch (CoreException e) {
+                e.fillInStackTrace();
+            }
+        }
+        return _targetModelFile;
     }
 
     /**

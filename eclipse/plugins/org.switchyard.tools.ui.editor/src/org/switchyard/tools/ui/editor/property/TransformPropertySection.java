@@ -12,10 +12,21 @@
  ******************************************************************************/
 package org.switchyard.tools.ui.editor.property;
 
+import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Map;
+
+import org.eclipse.core.resources.IFile;
 import org.eclipse.emf.common.command.Command;
 import org.eclipse.emf.common.util.EList;
+import org.eclipse.emf.common.util.URI;
+import org.eclipse.emf.common.util.WrappedException;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EStructuralFeature;
+import org.eclipse.emf.ecore.resource.Resource;
+import org.eclipse.emf.ecore.resource.ResourceSet;
+import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
 import org.eclipse.emf.ecore.util.FeatureMap;
 import org.eclipse.emf.transaction.NotificationFilter;
 import org.eclipse.emf.transaction.RecordingCommand;
@@ -48,6 +59,7 @@ import org.eclipse.swt.layout.GridData;
 import org.eclipse.swt.layout.GridLayout;
 import org.eclipse.swt.widgets.Button;
 import org.eclipse.swt.widgets.Composite;
+import org.eclipse.swt.widgets.Label;
 import org.eclipse.swt.widgets.Shell;
 import org.eclipse.swt.widgets.Table;
 import org.eclipse.swt.widgets.TableColumn;
@@ -57,9 +69,14 @@ import org.eclipse.ui.forms.widgets.FormToolkit;
 import org.eclipse.ui.forms.widgets.Section;
 import org.eclipse.ui.views.properties.tabbed.ITabbedPropertyConstants;
 import org.eclipse.ui.views.properties.tabbed.TabbedPropertySheetPage;
+import org.switchyard.tools.models.switchyard1_0.switchyard.DocumentRoot;
 import org.switchyard.tools.models.switchyard1_0.switchyard.SwitchYardType;
+import org.switchyard.tools.models.switchyard1_0.switchyard.SwitchyardFactory;
+import org.switchyard.tools.models.switchyard1_0.switchyard.SwitchyardPackage;
 import org.switchyard.tools.models.switchyard1_0.switchyard.TransformType;
 import org.switchyard.tools.models.switchyard1_0.switchyard.TransformsType;
+import org.switchyard.tools.models.switchyard1_0.switchyard.util.SwitchyardResourceFactoryImpl;
+import org.switchyard.tools.models.switchyard1_0.switchyard.util.SwitchyardResourceImpl;
 import org.switchyard.tools.models.switchyard1_0.transform.JAXBTransformType;
 import org.switchyard.tools.models.switchyard1_0.transform.JavaTransformType1;
 import org.switchyard.tools.models.switchyard1_0.transform.JsonTransformType;
@@ -125,20 +142,96 @@ public class TransformPropertySection extends GFPropertySection implements ITabb
 
     private void handleSelectListItem() {
         if (_removeButton != null && !_removeButton.isDisposed()) {
-            _removeButton.setEnabled(_transformer != null);
+            URI _modelUri = URI.createPlatformResourceURI(SwitchyardSCAEditor.getActiveEditor().getModelFile().getFullPath().toString(), true);
+            if (_transformer.eResource().getURI().equals(_modelUri)) {
+                _removeButton.setEnabled(_transformer != null);
+            } else {
+                _removeButton.setEnabled(false);
+            }
         }
     }
 
     @Override
     public void refresh() {
         SwitchYardType switchYardRoot = _modelHandler.getRootSwitchYard();
+        TransformsType transforms = null;
+        _tableViewer.setInput(null);
         if (switchYardRoot.getTransforms() != null) {
-            TransformsType transforms = switchYardRoot.getTransforms();
-            _tableViewer.setInput(transforms.getTransform());
-        } else {
-            _tableViewer.setInput(null);
+            transforms = switchYardRoot.getTransforms();
         }
+        TransformsType targetTransforms = getTransformsFromTarget();
+        List<TransformType> combined = new ArrayList<TransformType>();
+        if (transforms != null) {
+            combined.addAll(transforms.getTransform());
+        }
+        if (targetTransforms != null) {
+            for (TransformType targetTransformType : targetTransforms.getTransform()) {
+                for (TransformType srcTransformType : transforms.getTransform()) {
+                    boolean toMatch = srcTransformType.getTo().equals(targetTransformType.getTo());
+                    boolean fromMatch = srcTransformType.getFrom().equals(targetTransformType.getFrom());
+                    boolean classMatch = srcTransformType.getClass().equals(targetTransformType.getClass());
+                    // if this came from the source, don't re-add
+                    if (!toMatch && !fromMatch && !classMatch) {
+                        // make sure we haven't added it already
+                        if (!combined.contains(targetTransformType)) {
+                            combined.add(targetTransformType);
+                        }
+                    } else {
+                        // we found a match, so stop comparing
+                        break;
+                    }
+                }
+            }
+        }
+        _tableViewer.setInput(combined);
     }
+    
+    private TransformsType getTransformsFromTarget() {
+        IFile target = SwitchyardSCAEditor.getActiveEditor().getTargetModelFile();
+        if (target != null) {
+            try {
+                SwitchYardType switchyard = loadModelFile(target);
+                return switchyard.getTransforms();
+            } catch (IOException e) {
+                e.fillInStackTrace();
+            }
+        }
+        return null;
+    }
+    
+    private SwitchYardType loadModelFile(IFile file) throws IOException {
+        SwitchyardPackage.eINSTANCE.eClass();
+        
+        Resource.Factory.Registry reg = Resource.Factory.Registry.INSTANCE;
+        Map<String, Object> m = reg.getExtensionToFactoryMap();
+        m.put("xml", new SwitchyardResourceFactoryImpl());
+
+        // Obtain a new resource set
+        ResourceSet resourceSet = new ResourceSetImpl();
+        ModelHandler.registerPackages(resourceSet);
+
+        URI modelUri = URI.createPlatformResourceURI(file.getFullPath().toString(), true);
+        // Get the resource
+        Resource resource = null;
+        try {
+            resource = (SwitchyardResourceImpl) resourceSet.getResource(modelUri, true);
+        } catch (WrappedException we) {
+            resource = (SwitchyardResourceImpl) resourceSet.getResource(modelUri, true);
+        } catch (Exception e) {
+            resource = (SwitchyardResourceImpl) resourceSet.getResource(modelUri, true);
+        }
+        
+        if (resource != null) {
+            DocumentRoot docroot = (DocumentRoot) resource.getContents().get(0);
+            
+            if (docroot != null) {
+                SwitchYardType switchyard = docroot.getSwitchyard();
+                return switchyard;
+            }
+        }
+        return null;
+    }
+
 
     private void createTableAndButtons(Composite parent, int style) {
 
@@ -155,7 +248,7 @@ public class TransformPropertySection extends GFPropertySection implements ITabb
         buttonsComposite.setLayout(new FillLayout(SWT.VERTICAL));
         
         Composite tableComposite = _toolkit.createComposite(tableAndButtonsComposite);
-        gridData = new GridData(SWT.FILL, SWT.TOP, true, true, 2, 1);
+        gridData = new GridData(SWT.FILL, SWT.FILL, true, true, 2, 1);
         gridData.widthHint = 100;
         gridData.heightHint = 100;
         tableComposite.setLayoutData(gridData);
@@ -164,7 +257,7 @@ public class TransformPropertySection extends GFPropertySection implements ITabb
 
         _tableViewer = new TableViewer(tableComposite, SWT.SINGLE | SWT.H_SCROLL | SWT.V_SCROLL | SWT.BORDER
                 | SWT.FULL_SELECTION);
-        gridData = new GridData(SWT.FILL, SWT.TOP, true, true, 2, 1);
+        gridData = new GridData(SWT.FILL, SWT.FILL, true, true, 2, 1);
         gridData.widthHint = 100;
         gridData.heightHint = 100;
         _tableViewer.getTable().setLayoutData(gridData);
@@ -224,6 +317,11 @@ public class TransformPropertySection extends GFPropertySection implements ITabb
             }
         });
 
+        Label legend = new Label(tableAndButtonsComposite, SWT.NONE);
+        legend.setText("* = Generated Transform");
+        gridData = new GridData(SWT.RIGHT, SWT.TOP, true, true, 2, 1);
+        legend.setLayoutData(gridData);
+
         _addButton = _toolkit.createButton(buttonsComposite, "Add", SWT.PUSH);
         _addButton.addSelectionListener(new SelectionListener() {
             @Override
@@ -273,6 +371,10 @@ public class TransformPropertySection extends GFPropertySection implements ITabb
                     protected void doExecute() {
                         SwitchYardType switchYardRoot = _modelHandler.getRootSwitchYard();
                         TransformsType transforms = switchYardRoot.getTransforms();
+                        if (transforms == null) {
+                            switchYardRoot.setTransforms(SwitchyardFactory.eINSTANCE.createTransformsType());
+                            transforms = switchYardRoot.getTransforms();
+                        }
                         FeatureMap transformGroup = transforms.getTransformGroup();
                         if (transform instanceof JAXBTransformType) {
                             transformGroup.add(TransformPackage.eINSTANCE.getDocumentRoot_TransformJaxb(), transform);
@@ -314,7 +416,11 @@ public class TransformPropertySection extends GFPropertySection implements ITabb
             if (inputElement instanceof EList<?>) {
                 EList<?> v = (EList<?>) inputElement;
                 return v.toArray();
+            } else if (inputElement instanceof List<?>) {
+                List<?> v = (List<?>) inputElement;
+                return v.toArray();
             }
+
             return new Object[0];
         }
 

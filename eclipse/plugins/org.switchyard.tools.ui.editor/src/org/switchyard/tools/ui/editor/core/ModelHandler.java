@@ -90,6 +90,7 @@ import org.switchyard.tools.models.switchyard1_0.transform.TransformPackage;
 import org.switchyard.tools.models.switchyard1_0.transform.XsltTransformType;
 import org.switchyard.tools.models.switchyard1_0.validate.ValidatePackage;
 import org.switchyard.tools.ui.editor.Activator;
+import org.switchyard.tools.ui.editor.impl.SwitchyardSCAEditor;
 
 /**
  * @author bfitzpat
@@ -667,20 +668,23 @@ public class ModelHandler {
      * @return String label
      */
     public String getLabelForTransformType(TransformType transform) {
+        String label = "Unsupported (" + transform.eClass().getClass().getName() + ")";
         if (transform instanceof JAXBTransformType) {
-            return "JAXB";
+            label = "JAXB";
         } else if (transform instanceof XsltTransformType) {
-            return "XSLT";
+            label =  "XSLT";
         } else if (transform instanceof JavaTransformType1) {
-            return "Java";
+            label =  "Java";
         } else if (transform instanceof JsonTransformType) {
-            return "JSON";
+            label =  "JSON";
         } else if (transform instanceof SmooksTransformType1) {
-            return "Smooks";
-        } else {
-            return "Unsupported (" + transform.eClass().getClass().getName() + ")";
+            label =  "Smooks";
         }
-
+        URI _modelUri = URI.createPlatformResourceURI(SwitchyardSCAEditor.getActiveEditor().getModelFile().getFullPath().toString(), true);
+        if (transform.eResource() != null && !transform.eResource().getURI().toString().equals(_modelUri.toString())) {
+            label = label + '*';
+        }
+        return label;
     }
 
     /**
