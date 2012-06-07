@@ -166,19 +166,26 @@ public class TransformPropertySection extends GFPropertySection implements ITabb
         }
         if (targetTransforms != null) {
             for (TransformType targetTransformType : targetTransforms.getTransform()) {
-                for (TransformType srcTransformType : transforms.getTransform()) {
-                    boolean toMatch = srcTransformType.getTo().equals(targetTransformType.getTo());
-                    boolean fromMatch = srcTransformType.getFrom().equals(targetTransformType.getFrom());
-                    boolean classMatch = srcTransformType.getClass().equals(targetTransformType.getClass());
-                    // if this came from the source, don't re-add
-                    if (!toMatch && !fromMatch && !classMatch) {
-                        // make sure we haven't added it already
-                        if (!combined.contains(targetTransformType)) {
-                            combined.add(targetTransformType);
+                if (transforms != null && transforms.getTransform().size() > 0) {
+                    for (TransformType srcTransformType : transforms.getTransform()) {
+                        boolean toMatch = srcTransformType.getTo().equals(targetTransformType.getTo());
+                        boolean fromMatch = srcTransformType.getFrom().equals(targetTransformType.getFrom());
+                        boolean classMatch = srcTransformType.getClass().equals(targetTransformType.getClass());
+                        // if this came from the source, don't re-add
+                        if (!toMatch && !fromMatch && !classMatch) {
+                            // make sure we haven't added it already
+                            if (!combined.contains(targetTransformType)) {
+                                combined.add(targetTransformType);
+                            }
+                        } else {
+                            // we found a match, so stop comparing
+                            break;
                         }
-                    } else {
-                        // we found a match, so stop comparing
-                        break;
+                    }
+                } else {
+                    // make sure we haven't added it already
+                    if (!combined.contains(targetTransformType)) {
+                        combined.add(targetTransformType);
                     }
                 }
             }
@@ -267,7 +274,7 @@ public class TransformPropertySection extends GFPropertySection implements ITabb
         // Add the to column
         TableColumn tc1 = new TableColumn(table, SWT.LEFT);
         tc1.setText("To");
-        tableLayout.setColumnData(tc1,  new ColumnWeightData(33));
+        tableLayout.setColumnData(tc1,  new ColumnWeightData(45));
         tc1.addSelectionListener(new SelectionAdapter() {
             public void widgetSelected(SelectionEvent event) {
                 ((ColumnViewerSorter) _tableViewer.getSorter()).doSort(ColumnConst.COLUMN_TO);
@@ -278,7 +285,7 @@ public class TransformPropertySection extends GFPropertySection implements ITabb
         // Add the from column
         TableColumn tc2 = new TableColumn(table, SWT.LEFT);
         tc2.setText("From");
-        tableLayout.setColumnData(tc2,  new ColumnWeightData(33));
+        tableLayout.setColumnData(tc2,  new ColumnWeightData(45));
         tc2.addSelectionListener(new SelectionAdapter() {
             public void widgetSelected(SelectionEvent event) {
                 ((ColumnViewerSorter) _tableViewer.getSorter()).doSort(ColumnConst.COLUMN_FROM);
@@ -289,7 +296,7 @@ public class TransformPropertySection extends GFPropertySection implements ITabb
         // Add the type column
         TableColumn tc3 = new TableColumn(table, SWT.LEFT);
         tc3.setText("Type");
-        tableLayout.setColumnData(tc3,  new ColumnWeightData(33));
+        tableLayout.setColumnData(tc3,  new ColumnWeightData(10));
         tc3.addSelectionListener(new SelectionAdapter() {
             public void widgetSelected(SelectionEvent event) {
                 ((ColumnViewerSorter) _tableViewer.getSorter()).doSort(ColumnConst.COLUMN_TYPE);
