@@ -14,13 +14,10 @@ package org.switchyard.tools.ui.editor.transform.wizards;
 
 import org.eclipse.core.resources.IFile;
 import org.eclipse.core.resources.IProject;
-import org.eclipse.core.runtime.IPath;
-import org.eclipse.core.runtime.Path;
 import org.eclipse.emf.transaction.RecordingCommand;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
-import org.eclipse.jdt.core.IJavaElement;
 import org.eclipse.jdt.core.IJavaProject;
-import org.eclipse.jdt.core.IPackageFragment;
+import org.eclipse.jdt.core.IType;
 import org.eclipse.jdt.core.JavaCore;
 import org.eclipse.jdt.core.JavaModelException;
 import org.eclipse.jface.viewers.ISelection;
@@ -33,26 +30,26 @@ import org.eclipse.swt.widgets.Control;
 import org.eclipse.swt.widgets.Text;
 import org.eclipse.ui.PlatformUI;
 import org.switchyard.tools.models.switchyard1_0.switchyard.TransformType;
-import org.switchyard.tools.models.switchyard1_0.transform.JAXBTransformType;
+import org.switchyard.tools.models.switchyard1_0.transform.JavaTransformType1;
 import org.switchyard.tools.ui.editor.impl.SwitchyardSCAEditor;
 
 /**
  * @author bfitzpat
  * 
  */
-public class JAXBTransformComposite extends BaseTransformComposite {
+public class JavaTransformComposite extends BaseTransformComposite {
 
-    private Text _contextPathText;
+    private Text _classText;
 
     @Override
     public void createContents(Composite parent, int style) {
         super.createContents(parent, style);
-        _contextPathText = createLabelAndText(getPanel(), "Context Path");
-        _contextPathText.addModifyListener(new ModifyListener() {
+        _classText = createLabelAndText(getPanel(), "Class");
+        _classText.addModifyListener(new ModifyListener() {
             public void modifyText(ModifyEvent e) {
                 if (!inUpdate()) {
-                    handleModify(_contextPathText);
-                    fireChangedEvent(_contextPathText);
+                    handleModify(_classText);
+                    fireChangedEvent(_classText);
                 }
             }
         });
@@ -62,10 +59,12 @@ public class JAXBTransformComposite extends BaseTransformComposite {
         super.validate();
         if (getErrorMessage() == null) {
             // check to see if context path is valid Java class
-            if (!_contextPathText.getText().trim().isEmpty()) {
+            if (_classText.getText().trim().isEmpty()) {
+                setErrorMessage("Java transform class must be specified.");
+            } else {
                 try {
-                    if (canFindPackage(_contextPathText.getText().trim()) == null) {
-                        setErrorMessage("Package specified as context path must exist in project.");
+                    if (canFindClass(_classText.getText().trim()) == null) {
+                        setErrorMessage("Class specified must exist in project.");
                     }
                 } catch (JavaModelException e) {
                     e.fillInStackTrace();
@@ -74,7 +73,7 @@ public class JAXBTransformComposite extends BaseTransformComposite {
         }
     }
     
-    private IPackageFragment canFindPackage(String packagename) throws JavaModelException {
+    private IType canFindClass(String classname) throws JavaModelException {
         IProject project = null;
         ISelection selection = PlatformUI.getWorkbench().getActiveWorkbenchWindow().getSelectionService()
                 .getSelection();
@@ -88,13 +87,11 @@ public class JAXBTransformComposite extends BaseTransformComposite {
         if (selectionToPass == StructuredSelection.EMPTY) {
             project = SwitchyardSCAEditor.getActiveEditor().getModelFile().getProject();
         }
-        if (project != null && packagename != null) { //$NON-NLS-1$
+        if (project != null && classname != null) { //$NON-NLS-1$
             IJavaProject javaProject = JavaCore.create(project);
-            String packageNameForPath = packagename.replace('.', '/');
-            IPath packagePath = new Path(packageNameForPath);
-            IJavaElement javaEl = javaProject.findElement(packagePath);
-            if (javaEl != null && javaEl instanceof IPackageFragment) {
-                return (IPackageFragment) javaEl;
+            IType superType = javaProject.findType(classname);
+            if (superType != null) {
+                return superType;
             }
         }
         return null;
@@ -107,16 +104,16 @@ public class JAXBTransformComposite extends BaseTransformComposite {
         if (getTransform().eContainer() != null) {
             domain = SwitchyardSCAEditor.getActiveEditor().getEditingDomain();
         }
-        if (control.equals(_contextPathText)) {
+        if (control.equals(_classText)) {
             if (domain != null) {
                 domain.getCommandStack().execute(new RecordingCommand(domain) {
                     @Override
                     protected void doExecute() {
-                        ((JAXBTransformType) getTransform()).setContextPath(_contextPathText.getText().trim());
+                        ((JavaTransformType1) getTransform()).setClass(_classText.getText().trim());
                     }
                 });
             } else {
-                ((JAXBTransformType) getTransform()).setContextPath(_contextPathText.getText().trim());
+                ((JavaTransformType1) getTransform()).setClass(_classText.getText().trim());
             }
         } else {
             super.handleModify(control);
@@ -130,9 +127,9 @@ public class JAXBTransformComposite extends BaseTransformComposite {
     public void setTransform(TransformType transform) {
         super.setTransform(transform);
         setInUpdate(true);
-        JAXBTransformType jaxbTransform = (JAXBTransformType) getTransform();
-        if (_contextPathText != null && !_contextPathText.isDisposed() && jaxbTransform.getContextPath() != null) {
-            _contextPathText.setText(jaxbTransform.getContextPath());
+        JavaTransformType1 javaTransform = (JavaTransformType1) getTransform();
+        if (_classText != null && !_classText.isDisposed() && javaTransform.getClass_() != null) {
+            _classText.setText(javaTransform.getClass_());
         }
         setInUpdate(false);
     }

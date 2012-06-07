@@ -172,7 +172,7 @@ public class TransformPropertySection extends GFPropertySection implements ITabb
                         boolean fromMatch = srcTransformType.getFrom().equals(targetTransformType.getFrom());
                         boolean classMatch = srcTransformType.getClass().equals(targetTransformType.getClass());
                         // if this came from the source, don't re-add
-                        if (!toMatch && !fromMatch && !classMatch) {
+                        if (!toMatch || !fromMatch || !classMatch) {
                             // make sure we haven't added it already
                             if (!combined.contains(targetTransformType)) {
                                 combined.add(targetTransformType);

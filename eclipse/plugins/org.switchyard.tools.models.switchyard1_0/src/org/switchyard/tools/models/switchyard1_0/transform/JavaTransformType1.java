@@ -42,7 +42,8 @@ public interface JavaTransformType1 extends TransformType {
      * @return the value of the '<em>Class</em>' attribute.
      * @see #setClass(String)
      * @see org.switchyard.tools.models.switchyard1_0.transform.TransformPackage#getJavaTransformType1_Class()
-     * @model dataType="org.eclipse.emf.ecore.xml.type.NCName"
+     * @model dataType="org.eclipse.emf.ecore.xml.type.String" required="true"
+     *        extendedMetaData="kind='attribute' name='class'"
      * @generated
      */
 	String getClass_();

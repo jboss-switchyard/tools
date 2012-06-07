@@ -15,6 +15,8 @@ package org.switchyard.tools.ui.editor.transform.wizards;
 import org.eclipse.jface.wizard.IWizardPage;
 import org.switchyard.tools.models.switchyard1_0.switchyard.TransformType;
 import org.switchyard.tools.models.switchyard1_0.transform.JAXBTransformType;
+import org.switchyard.tools.models.switchyard1_0.transform.JavaTransformType1;
+import org.switchyard.tools.models.switchyard1_0.transform.JsonTransformType;
 import org.switchyard.tools.models.switchyard1_0.transform.SmooksTransformType1;
 import org.switchyard.tools.models.switchyard1_0.transform.XsltTransformType;
 import org.switchyard.tools.ui.editor.diagram.internal.wizards.BaseWizard;
@@ -29,6 +31,8 @@ public class AddTransformWizard extends BaseWizard {
     private AddTransformWizardJAXBPage _jaxbPage = null;
     private AddTransformWizardXSLTPage _xsltPage = null;
     private AddTransformWizardSmooksPage _smooksPage = null;
+    private AddTransformWizardJSONPage _jsonPage = null;
+    private AddTransformWizardJavaPage _javaPage = null;
 
     /**
      * Opens the add transform wizard.
@@ -44,6 +48,9 @@ public class AddTransformWizard extends BaseWizard {
         _jaxbPage = new AddTransformWizardJAXBPage(_startPage, "jaxb");
         _xsltPage = new AddTransformWizardXSLTPage(_startPage, "xslt");
         _smooksPage = new AddTransformWizardSmooksPage(_startPage, "smooks");
+        _jsonPage = new AddTransformWizardJSONPage(_startPage, "json");
+        _javaPage = new AddTransformWizardJavaPage(_startPage, "java");
+        
     }
 
     @Override
@@ -60,6 +67,8 @@ public class AddTransformWizard extends BaseWizard {
         addPage(_jaxbPage);
         addPage(_xsltPage);
         addPage(_smooksPage);
+        addPage(_jsonPage);
+        addPage(_javaPage);
     }
 
     /**
@@ -85,6 +94,12 @@ public class AddTransformWizard extends BaseWizard {
             } else if (transformToTest instanceof SmooksTransformType1) {
                 _smooksPage.refresh();
                 return _smooksPage;
+            } else if (transformToTest instanceof JsonTransformType) {
+                _jsonPage.refresh();
+                return _jsonPage;
+            } else if (transformToTest instanceof JavaTransformType1) {
+                _javaPage.refresh();
+                return _javaPage;
             }
         }
         return null;

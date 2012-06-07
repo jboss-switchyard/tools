@@ -601,7 +601,7 @@ public class TransformPackageImpl extends EPackageImpl implements TransformPacka
         initEReference(getDocumentRoot_TransformXslt(), this.getXsltTransformType(), null, "transformXslt", null, 0, -2, null, IS_TRANSIENT, IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, IS_DERIVED, IS_ORDERED);
 
         initEClass(javaTransformType1EClass, JavaTransformType1.class, "JavaTransformType1", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-        initEAttribute(getJavaTransformType1_Class(), theXMLTypePackage.getNCName(), "class", null, 0, 1, JavaTransformType1.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+        initEAttribute(getJavaTransformType1_Class(), theXMLTypePackage.getString(), "class", null, 1, 1, JavaTransformType1.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
         initEClass(jaxbTransformTypeEClass, JAXBTransformType.class, "JAXBTransformType", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
         initEAttribute(getJAXBTransformType_ContextPath(), theXMLTypePackage.getString(), "contextPath", null, 0, 1, JAXBTransformType.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
@@ -732,6 +732,13 @@ public class TransformPackageImpl extends EPackageImpl implements TransformPacka
            new String[] {
              "name", "JavaTransformType",
              "kind", "empty"
+           });		
+        addAnnotation
+          (getJavaTransformType1_Class(), 
+           source, 
+           new String[] {
+             "kind", "attribute",
+             "name", "class"
            });		
         addAnnotation
           (javaTransformTypeObjectEDataType, 
