@@ -37,6 +37,7 @@ import org.eclipse.emf.ecore.util.FeatureMap;
  *   <li>{@link org.switchyard.tools.models.switchyard1_0.camel.DocumentRoot#getImplementationCamel <em>Implementation Camel</em>}</li>
  *   <li>{@link org.switchyard.tools.models.switchyard1_0.camel.DocumentRoot#getBindingNettyUDP <em>Binding Netty UDP</em>}</li>
  *   <li>{@link org.switchyard.tools.models.switchyard1_0.camel.DocumentRoot#getBindingNettyTCP <em>Binding Netty TCP</em>}</li>
+ *   <li>{@link org.switchyard.tools.models.switchyard1_0.camel.DocumentRoot#getBindingQuartz <em>Binding Quartz</em>}</li>
  * </ul>
  * </p>
  *
@@ -475,5 +476,32 @@ public interface DocumentRoot extends EObject {
      * @generated
      */
     void setBindingNettyTCP(CamelNettyTcpBindingType value);
+
+    /**
+     * Returns the value of the '<em><b>Binding Quartz</b></em>' containment reference.
+     * <!-- begin-user-doc -->
+     * <p>
+     * If the meaning of the '<em>Binding Quartz</em>' containment reference isn't clear,
+     * there really should be more of a description here...
+     * </p>
+     * <!-- end-user-doc -->
+     * @return the value of the '<em>Binding Quartz</em>' containment reference.
+     * @see #setBindingQuartz(CamelQuartzBindingType)
+     * @see org.switchyard.tools.models.switchyard1_0.camel.CamelPackage#getDocumentRoot_BindingQuartz()
+     * @model containment="true" upper="-2" transient="true" volatile="true" derived="true"
+     *        extendedMetaData="kind='element' name='binding.quartz' namespace='##targetNamespace' affiliation='urn:switchyard-config:switchyard:1.0#binding.switchyard'"
+     * @generated
+     */
+    CamelQuartzBindingType getBindingQuartz();
+
+    /**
+     * Sets the value of the '{@link org.switchyard.tools.models.switchyard1_0.camel.DocumentRoot#getBindingQuartz <em>Binding Quartz</em>}' containment reference.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @param value the new value of the '<em>Binding Quartz</em>' containment reference.
+     * @see #getBindingQuartz()
+     * @generated
+     */
+    void setBindingQuartz(CamelQuartzBindingType value);
 
 } // DocumentRoot

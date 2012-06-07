@@ -364,6 +364,17 @@ public class CamelSwitch<T> extends Switch<T> {
                 if (result == null) result = defaultCase(theEObject);
                 return result;
             }
+            case CamelPackage.CAMEL_QUARTZ_BINDING_TYPE: {
+                CamelQuartzBindingType camelQuartzBindingType = (CamelQuartzBindingType)theEObject;
+                T result = caseCamelQuartzBindingType(camelQuartzBindingType);
+                if (result == null) result = caseBaseCamelBinding(camelQuartzBindingType);
+                if (result == null) result = caseSwitchYardBindingType(camelQuartzBindingType);
+                if (result == null) result = caseBinding(camelQuartzBindingType);
+                if (result == null) result = caseCommonExtensionBase(camelQuartzBindingType);
+                if (result == null) result = caseExtendableType(camelQuartzBindingType);
+                if (result == null) result = defaultCase(theEObject);
+                return result;
+            }
             default: return defaultCase(theEObject);
         }
     }
@@ -815,6 +826,21 @@ public class CamelSwitch<T> extends Switch<T> {
      * @generated
      */
     public T caseRemoteFileProducerType(RemoteFileProducerType object) {
+        return null;
+    }
+
+    /**
+     * Returns the result of interpreting the object as an instance of '<em>Quartz Binding Type</em>'.
+     * <!-- begin-user-doc -->
+     * This implementation returns null;
+     * returning a non-null result will terminate the switch.
+     * <!-- end-user-doc -->
+     * @param object the target of the switch.
+     * @return the result of interpreting the object as an instance of '<em>Quartz Binding Type</em>'.
+     * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+     * @generated
+     */
+    public T caseCamelQuartzBindingType(CamelQuartzBindingType object) {
         return null;
     }
 

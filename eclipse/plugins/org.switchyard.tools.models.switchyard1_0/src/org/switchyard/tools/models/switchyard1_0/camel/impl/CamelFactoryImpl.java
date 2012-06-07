@@ -87,6 +87,7 @@ public class CamelFactoryImpl extends EFactoryImpl implements CamelFactory {
             case CamelPackage.GENERIC_FILE_PRODUCER_TYPE: return createGenericFileProducerType();
             case CamelPackage.REMOTE_FILE_CONSUMER_TYPE: return createRemoteFileConsumerType();
             case CamelPackage.REMOTE_FILE_PRODUCER_TYPE: return createRemoteFileProducerType();
+            case CamelPackage.CAMEL_QUARTZ_BINDING_TYPE: return createCamelQuartzBindingType();
             default:
                 throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier");
         }
@@ -386,6 +387,16 @@ public class CamelFactoryImpl extends EFactoryImpl implements CamelFactory {
     public RemoteFileProducerType createRemoteFileProducerType() {
         RemoteFileProducerTypeImpl remoteFileProducerType = new RemoteFileProducerTypeImpl();
         return remoteFileProducerType;
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public CamelQuartzBindingType createCamelQuartzBindingType() {
+        CamelQuartzBindingTypeImpl camelQuartzBindingType = new CamelQuartzBindingTypeImpl();
+        return camelQuartzBindingType;
     }
 
     /**

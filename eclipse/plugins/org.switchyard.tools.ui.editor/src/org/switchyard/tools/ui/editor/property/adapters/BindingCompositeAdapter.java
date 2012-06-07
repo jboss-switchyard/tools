@@ -19,12 +19,14 @@ import org.eclipse.swt.SWT;
 import org.eclipse.swt.layout.GridData;
 import org.switchyard.tools.models.switchyard1_0.camel.CamelFileBindingType;
 import org.switchyard.tools.models.switchyard1_0.camel.CamelFtpBindingType;
+import org.switchyard.tools.models.switchyard1_0.camel.CamelQuartzBindingType;
 import org.switchyard.tools.models.switchyard1_0.soap.SOAPBindingType;
 import org.switchyard.tools.ui.editor.diagram.shared.AbstractSwitchyardComposite;
 import org.switchyard.tools.ui.editor.diagram.shared.CamelFTPConsumerComposite;
 import org.switchyard.tools.ui.editor.diagram.shared.CamelFTPProducerComposite;
 import org.switchyard.tools.ui.editor.diagram.shared.CamelFileConsumerComposite;
 import org.switchyard.tools.ui.editor.diagram.shared.CamelFileProducerComposite;
+import org.switchyard.tools.ui.editor.diagram.shared.CamelQuartzComposite;
 import org.switchyard.tools.ui.editor.diagram.shared.WSDLURISelectionComposite;
 
 /**
@@ -69,6 +71,10 @@ public final class BindingCompositeAdapter {
                 GridData wsdlGD = new GridData(SWT.FILL, SWT.FILL, true, true);
                 composite.setRootGridData(wsdlGD);
             }
+        } else if (object instanceof CamelQuartzBindingType) {
+            composite = new CamelQuartzComposite();
+            GridData wsdlGD = new GridData(SWT.FILL, SWT.FILL, true, true);
+            composite.setRootGridData(wsdlGD);
         }
         if (composite != null) {
             return composite;

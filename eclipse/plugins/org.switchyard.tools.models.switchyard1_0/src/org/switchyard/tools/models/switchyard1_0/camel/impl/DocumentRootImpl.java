@@ -35,6 +35,7 @@ import org.switchyard.tools.models.switchyard1_0.camel.CamelMockBindingType;
 import org.switchyard.tools.models.switchyard1_0.camel.CamelNettyTcpBindingType;
 import org.switchyard.tools.models.switchyard1_0.camel.CamelNettyUdpBindingType;
 import org.switchyard.tools.models.switchyard1_0.camel.CamelPackage;
+import org.switchyard.tools.models.switchyard1_0.camel.CamelQuartzBindingType;
 import org.switchyard.tools.models.switchyard1_0.camel.CamelSedaBindingType;
 import org.switchyard.tools.models.switchyard1_0.camel.CamelSftpBindingType;
 import org.switchyard.tools.models.switchyard1_0.camel.CamelTimerBindingType;
@@ -64,6 +65,7 @@ import org.switchyard.tools.models.switchyard1_0.camel.DocumentRoot;
  *   <li>{@link org.switchyard.tools.models.switchyard1_0.camel.impl.DocumentRootImpl#getImplementationCamel <em>Implementation Camel</em>}</li>
  *   <li>{@link org.switchyard.tools.models.switchyard1_0.camel.impl.DocumentRootImpl#getBindingNettyUDP <em>Binding Netty UDP</em>}</li>
  *   <li>{@link org.switchyard.tools.models.switchyard1_0.camel.impl.DocumentRootImpl#getBindingNettyTCP <em>Binding Netty TCP</em>}</li>
+ *   <li>{@link org.switchyard.tools.models.switchyard1_0.camel.impl.DocumentRootImpl#getBindingQuartz <em>Binding Quartz</em>}</li>
  * </ul>
  * </p>
  *
@@ -535,6 +537,33 @@ public class DocumentRootImpl extends EObjectImpl implements DocumentRoot {
 
     /**
      * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public CamelQuartzBindingType getBindingQuartz() {
+        return (CamelQuartzBindingType)getMixed().get(CamelPackage.Literals.DOCUMENT_ROOT__BINDING_QUARTZ, true);
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public NotificationChain basicSetBindingQuartz(CamelQuartzBindingType newBindingQuartz, NotificationChain msgs) {
+        return ((FeatureMap.Internal)getMixed()).basicAdd(CamelPackage.Literals.DOCUMENT_ROOT__BINDING_QUARTZ, newBindingQuartz, msgs);
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public void setBindingQuartz(CamelQuartzBindingType newBindingQuartz) {
+        ((FeatureMap.Internal)getMixed()).set(CamelPackage.Literals.DOCUMENT_ROOT__BINDING_QUARTZ, newBindingQuartz);
+    }
+
+    /**
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
      * @generated
      */
@@ -575,6 +604,8 @@ public class DocumentRootImpl extends EObjectImpl implements DocumentRoot {
                 return basicSetBindingNettyUDP(null, msgs);
             case CamelPackage.DOCUMENT_ROOT__BINDING_NETTY_TCP:
                 return basicSetBindingNettyTCP(null, msgs);
+            case CamelPackage.DOCUMENT_ROOT__BINDING_QUARTZ:
+                return basicSetBindingQuartz(null, msgs);
         }
         return super.eInverseRemove(otherEnd, featureID, msgs);
     }
@@ -624,6 +655,8 @@ public class DocumentRootImpl extends EObjectImpl implements DocumentRoot {
                 return getBindingNettyUDP();
             case CamelPackage.DOCUMENT_ROOT__BINDING_NETTY_TCP:
                 return getBindingNettyTCP();
+            case CamelPackage.DOCUMENT_ROOT__BINDING_QUARTZ:
+                return getBindingQuartz();
         }
         return super.eGet(featureID, resolve, coreType);
     }
@@ -686,6 +719,9 @@ public class DocumentRootImpl extends EObjectImpl implements DocumentRoot {
                 return;
             case CamelPackage.DOCUMENT_ROOT__BINDING_NETTY_TCP:
                 setBindingNettyTCP((CamelNettyTcpBindingType)newValue);
+                return;
+            case CamelPackage.DOCUMENT_ROOT__BINDING_QUARTZ:
+                setBindingQuartz((CamelQuartzBindingType)newValue);
                 return;
         }
         super.eSet(featureID, newValue);
@@ -750,6 +786,9 @@ public class DocumentRootImpl extends EObjectImpl implements DocumentRoot {
             case CamelPackage.DOCUMENT_ROOT__BINDING_NETTY_TCP:
                 setBindingNettyTCP((CamelNettyTcpBindingType)null);
                 return;
+            case CamelPackage.DOCUMENT_ROOT__BINDING_QUARTZ:
+                setBindingQuartz((CamelQuartzBindingType)null);
+                return;
         }
         super.eUnset(featureID);
     }
@@ -796,6 +835,8 @@ public class DocumentRootImpl extends EObjectImpl implements DocumentRoot {
                 return getBindingNettyUDP() != null;
             case CamelPackage.DOCUMENT_ROOT__BINDING_NETTY_TCP:
                 return getBindingNettyTCP() != null;
+            case CamelPackage.DOCUMENT_ROOT__BINDING_QUARTZ:
+                return getBindingQuartz() != null;
         }
         return super.eIsSet(featureID);
     }

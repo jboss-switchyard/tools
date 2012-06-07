@@ -260,6 +260,15 @@ public interface CamelFactory extends EFactory {
     RemoteFileProducerType createRemoteFileProducerType();
 
     /**
+     * Returns a new object of class '<em>Quartz Binding Type</em>'.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @return a new object of class '<em>Quartz Binding Type</em>'.
+     * @generated
+     */
+    CamelQuartzBindingType createCamelQuartzBindingType();
+
+    /**
      * Returns the package supported by this factory.
      * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->

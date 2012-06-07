@@ -200,6 +200,10 @@ public class CamelAdapterFactory extends AdapterFactoryImpl {
                 return createRemoteFileProducerTypeAdapter();
             }
             @Override
+            public Adapter caseCamelQuartzBindingType(CamelQuartzBindingType object) {
+                return createCamelQuartzBindingTypeAdapter();
+            }
+            @Override
             public Adapter caseCommonExtensionBase(CommonExtensionBase object) {
                 return createCommonExtensionBaseAdapter();
             }
@@ -660,6 +664,20 @@ public class CamelAdapterFactory extends AdapterFactoryImpl {
      * @generated
      */
     public Adapter createRemoteFileProducerTypeAdapter() {
+        return null;
+    }
+
+    /**
+     * Creates a new adapter for an object of class '{@link org.switchyard.tools.models.switchyard1_0.camel.CamelQuartzBindingType <em>Quartz Binding Type</em>}'.
+     * <!-- begin-user-doc -->
+     * This default implementation returns null so that we can easily ignore cases;
+     * it's useful to ignore a case when inheritance will catch all the cases anyway.
+     * <!-- end-user-doc -->
+     * @return the new adapter.
+     * @see org.switchyard.tools.models.switchyard1_0.camel.CamelQuartzBindingType
+     * @generated
+     */
+    public Adapter createCamelQuartzBindingTypeAdapter() {
         return null;
     }
 

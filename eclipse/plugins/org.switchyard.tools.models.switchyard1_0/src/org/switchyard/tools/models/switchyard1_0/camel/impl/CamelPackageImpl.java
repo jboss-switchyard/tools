@@ -65,6 +65,7 @@ import org.switchyard.tools.models.switchyard1_0.camel.CamelNettyTcpBindingType;
 import org.switchyard.tools.models.switchyard1_0.camel.CamelNettyUdpBindingType;
 import org.switchyard.tools.models.switchyard1_0.camel.CamelOperationSelectorType;
 import org.switchyard.tools.models.switchyard1_0.camel.CamelPackage;
+import org.switchyard.tools.models.switchyard1_0.camel.CamelQuartzBindingType;
 import org.switchyard.tools.models.switchyard1_0.camel.CamelRemoteBindingType;
 import org.switchyard.tools.models.switchyard1_0.camel.CamelSedaBindingType;
 import org.switchyard.tools.models.switchyard1_0.camel.CamelSftpBindingType;
@@ -317,6 +318,13 @@ public class CamelPackageImpl extends EPackageImpl implements CamelPackage {
      * @generated
      */
     private EClass remoteFileProducerTypeEClass = null;
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    private EClass camelQuartzBindingTypeEClass = null;
 
     /**
      * <!-- begin-user-doc -->
@@ -1587,6 +1595,15 @@ public class CamelPackageImpl extends EPackageImpl implements CamelPackage {
      * <!-- end-user-doc -->
      * @generated
      */
+    public EReference getDocumentRoot_BindingQuartz() {
+        return (EReference)documentRootEClass.getEStructuralFeatures().get(17);
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
     public EClass getCamelRemoteBindingType() {
         return camelRemoteBindingTypeEClass;
     }
@@ -2199,6 +2216,60 @@ public class CamelPackageImpl extends EPackageImpl implements CamelPackage {
      * <!-- end-user-doc -->
      * @generated
      */
+    public EClass getCamelQuartzBindingType() {
+        return camelQuartzBindingTypeEClass;
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public EAttribute getCamelQuartzBindingType_CamelBindingName() {
+        return (EAttribute)camelQuartzBindingTypeEClass.getEStructuralFeatures().get(0);
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public EAttribute getCamelQuartzBindingType_Cron() {
+        return (EAttribute)camelQuartzBindingTypeEClass.getEStructuralFeatures().get(1);
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public EAttribute getCamelQuartzBindingType_Stateful() {
+        return (EAttribute)camelQuartzBindingTypeEClass.getEStructuralFeatures().get(2);
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public EAttribute getCamelQuartzBindingType_StartTime() {
+        return (EAttribute)camelQuartzBindingTypeEClass.getEStructuralFeatures().get(3);
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public EAttribute getCamelQuartzBindingType_EndTime() {
+        return (EAttribute)camelQuartzBindingTypeEClass.getEStructuralFeatures().get(4);
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
     public EEnum getTimeUnit() {
         return timeUnitEEnum;
     }
@@ -2384,6 +2455,7 @@ public class CamelPackageImpl extends EPackageImpl implements CamelPackage {
         createEReference(documentRootEClass, DOCUMENT_ROOT__IMPLEMENTATION_CAMEL);
         createEReference(documentRootEClass, DOCUMENT_ROOT__BINDING_NETTY_UDP);
         createEReference(documentRootEClass, DOCUMENT_ROOT__BINDING_NETTY_TCP);
+        createEReference(documentRootEClass, DOCUMENT_ROOT__BINDING_QUARTZ);
 
         camelRemoteBindingTypeEClass = createEClass(CAMEL_REMOTE_BINDING_TYPE);
         createEAttribute(camelRemoteBindingTypeEClass, CAMEL_REMOTE_BINDING_TYPE__HOST);
@@ -2465,6 +2537,13 @@ public class CamelPackageImpl extends EPackageImpl implements CamelPackage {
 
         remoteFileProducerTypeEClass = createEClass(REMOTE_FILE_PRODUCER_TYPE);
 
+        camelQuartzBindingTypeEClass = createEClass(CAMEL_QUARTZ_BINDING_TYPE);
+        createEAttribute(camelQuartzBindingTypeEClass, CAMEL_QUARTZ_BINDING_TYPE__CAMEL_BINDING_NAME);
+        createEAttribute(camelQuartzBindingTypeEClass, CAMEL_QUARTZ_BINDING_TYPE__CRON);
+        createEAttribute(camelQuartzBindingTypeEClass, CAMEL_QUARTZ_BINDING_TYPE__STATEFUL);
+        createEAttribute(camelQuartzBindingTypeEClass, CAMEL_QUARTZ_BINDING_TYPE__START_TIME);
+        createEAttribute(camelQuartzBindingTypeEClass, CAMEL_QUARTZ_BINDING_TYPE__END_TIME);
+
         // Create enums
         timeUnitEEnum = createEEnum(TIME_UNIT);
 
@@ -2531,6 +2610,7 @@ public class CamelPackageImpl extends EPackageImpl implements CamelPackage {
         genericFileConsumerTypeEClass.getESuperTypes().add(this.getScheduledBatchPollConsumerType());
         remoteFileConsumerTypeEClass.getESuperTypes().add(this.getGenericFileConsumerType());
         remoteFileProducerTypeEClass.getESuperTypes().add(this.getGenericFileProducerType());
+        camelQuartzBindingTypeEClass.getESuperTypes().add(this.getBaseCamelBinding());
 
         // Initialize classes and features; add operations and parameters
         initEClass(baseCamelBindingEClass, BaseCamelBinding.class, "BaseCamelBinding", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
@@ -2677,6 +2757,7 @@ public class CamelPackageImpl extends EPackageImpl implements CamelPackage {
         initEReference(getDocumentRoot_ImplementationCamel(), this.getCamelImplementationType(), null, "implementationCamel", null, 0, -2, null, IS_TRANSIENT, IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, IS_DERIVED, IS_ORDERED);
         initEReference(getDocumentRoot_BindingNettyUDP(), this.getCamelNettyUdpBindingType(), null, "bindingNettyUDP", null, 0, -2, null, IS_TRANSIENT, IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, IS_DERIVED, IS_ORDERED);
         initEReference(getDocumentRoot_BindingNettyTCP(), this.getCamelNettyTcpBindingType(), null, "bindingNettyTCP", null, 0, -2, null, IS_TRANSIENT, IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, IS_DERIVED, IS_ORDERED);
+        initEReference(getDocumentRoot_BindingQuartz(), this.getCamelQuartzBindingType(), null, "bindingQuartz", null, 0, -2, null, IS_TRANSIENT, IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, IS_DERIVED, IS_ORDERED);
 
         initEClass(camelRemoteBindingTypeEClass, CamelRemoteBindingType.class, "CamelRemoteBindingType", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
         initEAttribute(getCamelRemoteBindingType_Host(), theXMLTypePackage.getString(), "host", null, 0, 1, CamelRemoteBindingType.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
@@ -2757,6 +2838,13 @@ public class CamelPackageImpl extends EPackageImpl implements CamelPackage {
         initEClass(remoteFileConsumerTypeEClass, RemoteFileConsumerType.class, "RemoteFileConsumerType", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 
         initEClass(remoteFileProducerTypeEClass, RemoteFileProducerType.class, "RemoteFileProducerType", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+
+        initEClass(camelQuartzBindingTypeEClass, CamelQuartzBindingType.class, "CamelQuartzBindingType", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+        initEAttribute(getCamelQuartzBindingType_CamelBindingName(), theXMLTypePackage.getString(), "camelBindingName", null, 1, 1, CamelQuartzBindingType.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+        initEAttribute(getCamelQuartzBindingType_Cron(), theXMLTypePackage.getString(), "cron", null, 1, 1, CamelQuartzBindingType.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+        initEAttribute(getCamelQuartzBindingType_Stateful(), theXMLTypePackage.getBoolean(), "stateful", null, 0, 1, CamelQuartzBindingType.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+        initEAttribute(getCamelQuartzBindingType_StartTime(), theXMLTypePackage.getDateTime(), "startTime", null, 0, 1, CamelQuartzBindingType.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+        initEAttribute(getCamelQuartzBindingType_EndTime(), theXMLTypePackage.getDateTime(), "endTime", null, 0, 1, CamelQuartzBindingType.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
         // Initialize enums and add enum literals
         initEEnum(timeUnitEEnum, TimeUnit.class, "TimeUnit");
@@ -3794,6 +3882,15 @@ public class CamelPackageImpl extends EPackageImpl implements CamelPackage {
              "affiliation", "urn:switchyard-config:switchyard:1.0#binding.switchyard"
            });		
         addAnnotation
+          (getDocumentRoot_BindingQuartz(), 
+           source, 
+           new String[] {
+             "kind", "element",
+             "name", "binding.quartz",
+             "namespace", "##targetNamespace",
+             "affiliation", "urn:switchyard-config:switchyard:1.0#binding.switchyard"
+           });		
+        addAnnotation
           (camelRemoteBindingTypeEClass, 
            source, 
            new String[] {
@@ -4335,6 +4432,53 @@ public class CamelPackageImpl extends EPackageImpl implements CamelPackage {
            new String[] {
              "name", "RemoteFileProducerType",
              "kind", "elementOnly"
+           });		
+        addAnnotation
+          (camelQuartzBindingTypeEClass, 
+           source, 
+           new String[] {
+             "name", "CamelQuartzBindingType",
+             "kind", "elementOnly"
+           });		
+        addAnnotation
+          (getCamelQuartzBindingType_CamelBindingName(), 
+           source, 
+           new String[] {
+             "kind", "element",
+             "name", "name",
+             "namespace", "##targetNamespace"
+           });		
+        addAnnotation
+          (getCamelQuartzBindingType_Cron(), 
+           source, 
+           new String[] {
+             "kind", "element",
+             "name", "cron",
+             "namespace", "##targetNamespace"
+           });		
+        addAnnotation
+          (getCamelQuartzBindingType_Stateful(), 
+           source, 
+           new String[] {
+             "kind", "element",
+             "name", "stateful",
+             "namespace", "##targetNamespace"
+           });		
+        addAnnotation
+          (getCamelQuartzBindingType_StartTime(), 
+           source, 
+           new String[] {
+             "kind", "element",
+             "name", "trigger.startTime",
+             "namespace", "##targetNamespace"
+           });		
+        addAnnotation
+          (getCamelQuartzBindingType_EndTime(), 
+           source, 
+           new String[] {
+             "kind", "element",
+             "name", "trigger.endTime",
+             "namespace", "##targetNamespace"
            });
     }
 

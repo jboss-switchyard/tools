@@ -4388,13 +4388,22 @@ public interface CamelPackage extends EPackage {
     int DOCUMENT_ROOT__BINDING_NETTY_TCP = 16;
 
     /**
+     * The feature id for the '<em><b>Binding Quartz</b></em>' containment reference.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int DOCUMENT_ROOT__BINDING_QUARTZ = 17;
+
+    /**
      * The number of structural features of the '<em>Document Root</em>' class.
      * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
      * @generated
      * @ordered
      */
-	int DOCUMENT_ROOT_FEATURE_COUNT = 17;
+	int DOCUMENT_ROOT_FEATURE_COUNT = 18;
 
 	/**
      * The meta object id for the '{@link org.switchyard.tools.models.switchyard1_0.camel.impl.ScheduledPollConsumerTypeImpl <em>Scheduled Poll Consumer Type</em>}' class.
@@ -5624,6 +5633,187 @@ public interface CamelPackage extends EPackage {
     int REMOTE_FILE_PRODUCER_TYPE_FEATURE_COUNT = GENERIC_FILE_PRODUCER_TYPE_FEATURE_COUNT + 0;
 
     /**
+     * The meta object id for the '{@link org.switchyard.tools.models.switchyard1_0.camel.impl.CamelQuartzBindingTypeImpl <em>Quartz Binding Type</em>}' class.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @see org.switchyard.tools.models.switchyard1_0.camel.impl.CamelQuartzBindingTypeImpl
+     * @see org.switchyard.tools.models.switchyard1_0.camel.impl.CamelPackageImpl#getCamelQuartzBindingType()
+     * @generated
+     */
+    int CAMEL_QUARTZ_BINDING_TYPE = 30;
+
+    /**
+     * The feature id for the '<em><b>Documentation</b></em>' containment reference list.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int CAMEL_QUARTZ_BINDING_TYPE__DOCUMENTATION = BASE_CAMEL_BINDING__DOCUMENTATION;
+
+    /**
+     * The feature id for the '<em><b>Any Attribute</b></em>' attribute list.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int CAMEL_QUARTZ_BINDING_TYPE__ANY_ATTRIBUTE = BASE_CAMEL_BINDING__ANY_ATTRIBUTE;
+
+    /**
+     * The feature id for the '<em><b>Wire Format Group</b></em>' attribute list.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int CAMEL_QUARTZ_BINDING_TYPE__WIRE_FORMAT_GROUP = BASE_CAMEL_BINDING__WIRE_FORMAT_GROUP;
+
+    /**
+     * The feature id for the '<em><b>Wire Format</b></em>' containment reference.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int CAMEL_QUARTZ_BINDING_TYPE__WIRE_FORMAT = BASE_CAMEL_BINDING__WIRE_FORMAT;
+
+    /**
+     * The feature id for the '<em><b>Operation Selector Group</b></em>' attribute list.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int CAMEL_QUARTZ_BINDING_TYPE__OPERATION_SELECTOR_GROUP = BASE_CAMEL_BINDING__OPERATION_SELECTOR_GROUP;
+
+    /**
+     * The feature id for the '<em><b>Operation Selector</b></em>' containment reference.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int CAMEL_QUARTZ_BINDING_TYPE__OPERATION_SELECTOR = BASE_CAMEL_BINDING__OPERATION_SELECTOR;
+
+    /**
+     * The feature id for the '<em><b>Name</b></em>' attribute.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int CAMEL_QUARTZ_BINDING_TYPE__NAME = BASE_CAMEL_BINDING__NAME;
+
+    /**
+     * The feature id for the '<em><b>Policy Sets</b></em>' attribute.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int CAMEL_QUARTZ_BINDING_TYPE__POLICY_SETS = BASE_CAMEL_BINDING__POLICY_SETS;
+
+    /**
+     * The feature id for the '<em><b>Requires</b></em>' attribute.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int CAMEL_QUARTZ_BINDING_TYPE__REQUIRES = BASE_CAMEL_BINDING__REQUIRES;
+
+    /**
+     * The feature id for the '<em><b>Uri</b></em>' attribute.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int CAMEL_QUARTZ_BINDING_TYPE__URI = BASE_CAMEL_BINDING__URI;
+
+    /**
+     * The feature id for the '<em><b>Context Mapper</b></em>' reference.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int CAMEL_QUARTZ_BINDING_TYPE__CONTEXT_MAPPER = BASE_CAMEL_BINDING__CONTEXT_MAPPER;
+
+    /**
+     * The feature id for the '<em><b>Message Composer</b></em>' reference.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int CAMEL_QUARTZ_BINDING_TYPE__MESSAGE_COMPOSER = BASE_CAMEL_BINDING__MESSAGE_COMPOSER;
+
+    /**
+     * The feature id for the '<em><b>Camel Operation Selector</b></em>' containment reference.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int CAMEL_QUARTZ_BINDING_TYPE__CAMEL_OPERATION_SELECTOR = BASE_CAMEL_BINDING__CAMEL_OPERATION_SELECTOR;
+
+    /**
+     * The feature id for the '<em><b>Camel Binding Name</b></em>' attribute.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int CAMEL_QUARTZ_BINDING_TYPE__CAMEL_BINDING_NAME = BASE_CAMEL_BINDING_FEATURE_COUNT + 0;
+
+    /**
+     * The feature id for the '<em><b>Cron</b></em>' attribute.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int CAMEL_QUARTZ_BINDING_TYPE__CRON = BASE_CAMEL_BINDING_FEATURE_COUNT + 1;
+
+    /**
+     * The feature id for the '<em><b>Stateful</b></em>' attribute.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int CAMEL_QUARTZ_BINDING_TYPE__STATEFUL = BASE_CAMEL_BINDING_FEATURE_COUNT + 2;
+
+    /**
+     * The feature id for the '<em><b>Start Time</b></em>' attribute.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int CAMEL_QUARTZ_BINDING_TYPE__START_TIME = BASE_CAMEL_BINDING_FEATURE_COUNT + 3;
+
+    /**
+     * The feature id for the '<em><b>End Time</b></em>' attribute.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int CAMEL_QUARTZ_BINDING_TYPE__END_TIME = BASE_CAMEL_BINDING_FEATURE_COUNT + 4;
+
+    /**
+     * The number of structural features of the '<em>Quartz Binding Type</em>' class.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int CAMEL_QUARTZ_BINDING_TYPE_FEATURE_COUNT = BASE_CAMEL_BINDING_FEATURE_COUNT + 5;
+
+    /**
      * The meta object id for the '{@link org.switchyard.tools.models.switchyard1_0.camel.TimeUnit <em>Time Unit</em>}' enum.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
@@ -5631,7 +5821,7 @@ public interface CamelPackage extends EPackage {
      * @see org.switchyard.tools.models.switchyard1_0.camel.impl.CamelPackageImpl#getTimeUnit()
      * @generated
      */
-    int TIME_UNIT = 30;
+    int TIME_UNIT = 31;
 
     /**
      * The meta object id for the '<em>Time Unit Object</em>' data type.
@@ -5641,7 +5831,7 @@ public interface CamelPackage extends EPackage {
      * @see org.switchyard.tools.models.switchyard1_0.camel.impl.CamelPackageImpl#getTimeUnitObject()
      * @generated
      */
-    int TIME_UNIT_OBJECT = 31;
+    int TIME_UNIT_OBJECT = 32;
 
 
     /**
@@ -7024,6 +7214,17 @@ public interface CamelPackage extends EPackage {
     EReference getDocumentRoot_BindingNettyTCP();
 
     /**
+     * Returns the meta object for the containment reference '{@link org.switchyard.tools.models.switchyard1_0.camel.DocumentRoot#getBindingQuartz <em>Binding Quartz</em>}'.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @return the meta object for the containment reference '<em>Binding Quartz</em>'.
+     * @see org.switchyard.tools.models.switchyard1_0.camel.DocumentRoot#getBindingQuartz()
+     * @see #getDocumentRoot()
+     * @generated
+     */
+    EReference getDocumentRoot_BindingQuartz();
+
+    /**
      * Returns the meta object for class '{@link org.switchyard.tools.models.switchyard1_0.camel.CamelRemoteBindingType <em>Remote Binding Type</em>}'.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
@@ -7758,6 +7959,71 @@ public interface CamelPackage extends EPackage {
      * @generated
      */
     EClass getRemoteFileProducerType();
+
+    /**
+     * Returns the meta object for class '{@link org.switchyard.tools.models.switchyard1_0.camel.CamelQuartzBindingType <em>Quartz Binding Type</em>}'.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @return the meta object for class '<em>Quartz Binding Type</em>'.
+     * @see org.switchyard.tools.models.switchyard1_0.camel.CamelQuartzBindingType
+     * @generated
+     */
+    EClass getCamelQuartzBindingType();
+
+    /**
+     * Returns the meta object for the attribute '{@link org.switchyard.tools.models.switchyard1_0.camel.CamelQuartzBindingType#getCamelBindingName <em>Camel Binding Name</em>}'.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @return the meta object for the attribute '<em>Camel Binding Name</em>'.
+     * @see org.switchyard.tools.models.switchyard1_0.camel.CamelQuartzBindingType#getCamelBindingName()
+     * @see #getCamelQuartzBindingType()
+     * @generated
+     */
+    EAttribute getCamelQuartzBindingType_CamelBindingName();
+
+    /**
+     * Returns the meta object for the attribute '{@link org.switchyard.tools.models.switchyard1_0.camel.CamelQuartzBindingType#getCron <em>Cron</em>}'.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @return the meta object for the attribute '<em>Cron</em>'.
+     * @see org.switchyard.tools.models.switchyard1_0.camel.CamelQuartzBindingType#getCron()
+     * @see #getCamelQuartzBindingType()
+     * @generated
+     */
+    EAttribute getCamelQuartzBindingType_Cron();
+
+    /**
+     * Returns the meta object for the attribute '{@link org.switchyard.tools.models.switchyard1_0.camel.CamelQuartzBindingType#isStateful <em>Stateful</em>}'.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @return the meta object for the attribute '<em>Stateful</em>'.
+     * @see org.switchyard.tools.models.switchyard1_0.camel.CamelQuartzBindingType#isStateful()
+     * @see #getCamelQuartzBindingType()
+     * @generated
+     */
+    EAttribute getCamelQuartzBindingType_Stateful();
+
+    /**
+     * Returns the meta object for the attribute '{@link org.switchyard.tools.models.switchyard1_0.camel.CamelQuartzBindingType#getStartTime <em>Start Time</em>}'.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @return the meta object for the attribute '<em>Start Time</em>'.
+     * @see org.switchyard.tools.models.switchyard1_0.camel.CamelQuartzBindingType#getStartTime()
+     * @see #getCamelQuartzBindingType()
+     * @generated
+     */
+    EAttribute getCamelQuartzBindingType_StartTime();
+
+    /**
+     * Returns the meta object for the attribute '{@link org.switchyard.tools.models.switchyard1_0.camel.CamelQuartzBindingType#getEndTime <em>End Time</em>}'.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @return the meta object for the attribute '<em>End Time</em>'.
+     * @see org.switchyard.tools.models.switchyard1_0.camel.CamelQuartzBindingType#getEndTime()
+     * @see #getCamelQuartzBindingType()
+     * @generated
+     */
+    EAttribute getCamelQuartzBindingType_EndTime();
 
     /**
      * Returns the meta object for enum '{@link org.switchyard.tools.models.switchyard1_0.camel.TimeUnit <em>Time Unit</em>}'.
@@ -8856,6 +9122,14 @@ public interface CamelPackage extends EPackage {
         EReference DOCUMENT_ROOT__BINDING_NETTY_TCP = eINSTANCE.getDocumentRoot_BindingNettyTCP();
 
         /**
+         * The meta object literal for the '<em><b>Binding Quartz</b></em>' containment reference feature.
+         * <!-- begin-user-doc -->
+         * <!-- end-user-doc -->
+         * @generated
+         */
+        EReference DOCUMENT_ROOT__BINDING_QUARTZ = eINSTANCE.getDocumentRoot_BindingQuartz();
+
+        /**
          * The meta object literal for the '{@link org.switchyard.tools.models.switchyard1_0.camel.impl.CamelRemoteBindingTypeImpl <em>Remote Binding Type</em>}' class.
          * <!-- begin-user-doc -->
          * <!-- end-user-doc -->
@@ -9422,6 +9696,56 @@ public interface CamelPackage extends EPackage {
          * @generated
          */
         EClass REMOTE_FILE_PRODUCER_TYPE = eINSTANCE.getRemoteFileProducerType();
+
+        /**
+         * The meta object literal for the '{@link org.switchyard.tools.models.switchyard1_0.camel.impl.CamelQuartzBindingTypeImpl <em>Quartz Binding Type</em>}' class.
+         * <!-- begin-user-doc -->
+         * <!-- end-user-doc -->
+         * @see org.switchyard.tools.models.switchyard1_0.camel.impl.CamelQuartzBindingTypeImpl
+         * @see org.switchyard.tools.models.switchyard1_0.camel.impl.CamelPackageImpl#getCamelQuartzBindingType()
+         * @generated
+         */
+        EClass CAMEL_QUARTZ_BINDING_TYPE = eINSTANCE.getCamelQuartzBindingType();
+
+        /**
+         * The meta object literal for the '<em><b>Camel Binding Name</b></em>' attribute feature.
+         * <!-- begin-user-doc -->
+         * <!-- end-user-doc -->
+         * @generated
+         */
+        EAttribute CAMEL_QUARTZ_BINDING_TYPE__CAMEL_BINDING_NAME = eINSTANCE.getCamelQuartzBindingType_CamelBindingName();
+
+        /**
+         * The meta object literal for the '<em><b>Cron</b></em>' attribute feature.
+         * <!-- begin-user-doc -->
+         * <!-- end-user-doc -->
+         * @generated
+         */
+        EAttribute CAMEL_QUARTZ_BINDING_TYPE__CRON = eINSTANCE.getCamelQuartzBindingType_Cron();
+
+        /**
+         * The meta object literal for the '<em><b>Stateful</b></em>' attribute feature.
+         * <!-- begin-user-doc -->
+         * <!-- end-user-doc -->
+         * @generated
+         */
+        EAttribute CAMEL_QUARTZ_BINDING_TYPE__STATEFUL = eINSTANCE.getCamelQuartzBindingType_Stateful();
+
+        /**
+         * The meta object literal for the '<em><b>Start Time</b></em>' attribute feature.
+         * <!-- begin-user-doc -->
+         * <!-- end-user-doc -->
+         * @generated
+         */
+        EAttribute CAMEL_QUARTZ_BINDING_TYPE__START_TIME = eINSTANCE.getCamelQuartzBindingType_StartTime();
+
+        /**
+         * The meta object literal for the '<em><b>End Time</b></em>' attribute feature.
+         * <!-- begin-user-doc -->
+         * <!-- end-user-doc -->
+         * @generated
+         */
+        EAttribute CAMEL_QUARTZ_BINDING_TYPE__END_TIME = eINSTANCE.getCamelQuartzBindingType_EndTime();
 
         /**
          * The meta object literal for the '{@link org.switchyard.tools.models.switchyard1_0.camel.TimeUnit <em>Time Unit</em>}' enum.

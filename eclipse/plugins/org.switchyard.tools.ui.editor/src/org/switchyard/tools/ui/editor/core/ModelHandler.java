@@ -58,6 +58,7 @@ import org.switchyard.tools.models.switchyard1_0.camel.CamelImplementationType;
 import org.switchyard.tools.models.switchyard1_0.camel.CamelJmsBindingType;
 import org.switchyard.tools.models.switchyard1_0.camel.CamelNettyBindingType;
 import org.switchyard.tools.models.switchyard1_0.camel.CamelPackage;
+import org.switchyard.tools.models.switchyard1_0.camel.CamelQuartzBindingType;
 import org.switchyard.tools.models.switchyard1_0.camel.CamelSedaBindingType;
 import org.switchyard.tools.models.switchyard1_0.camel.CamelSftpBindingType;
 import org.switchyard.tools.models.switchyard1_0.camel.CamelTimerBindingType;
@@ -700,6 +701,8 @@ public class ModelHandler {
             return "Camel";
         } else if (binding instanceof CamelFileBindingType) {
             return "File";
+        } else if (binding instanceof CamelQuartzBindingType) {
+            return "Scheduler";
         } else if (binding instanceof CamelSftpBindingType) {
             return "SFTP";
         } else if (binding instanceof CamelFtpBindingType) {
