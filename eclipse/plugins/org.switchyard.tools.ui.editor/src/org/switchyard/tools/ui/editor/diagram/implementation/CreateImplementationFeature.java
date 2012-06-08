@@ -63,27 +63,32 @@ public class CreateImplementationFeature extends CreateTypeFeature<Implementatio
     @Override
     protected Object[] updateContainer(ICreateContext context, Implementation newObject) {
         final List<Object> added = new ArrayList<Object>(3);
-        final IImplementationTypeFactory factory = (IImplementationTypeFactory) getFactory();
         final Component component = getContainerObject(context);
+
         // add the implementation
         component.getImplementationGroup().set(newObject.getDocumentFeature(), newObject);
         added.add(newObject);
 
-        // add any new services
-        final List<ComponentService> services = factory.getImplementationServices();
-        if (services != null) {
-            for (ComponentService service : services) {
-                component.getService().add(service);
-                added.add(service);
+        final IImplementationTypeFactory factory = (IImplementationTypeFactory) getFactory();
+        if (component.getService().size() == 0) {
+            // add any new services
+            final List<ComponentService> services = factory.getImplementationServices();
+            if (services != null) {
+                for (ComponentService service : services) {
+                    component.getService().add(service);
+                    added.add(service);
+                }
             }
         }
 
-        // add any new references
-        final List<ComponentReference> references = factory.getImplementationReferences();
-        if (references != null) {
-            for (ComponentReference reference : references) {
-                component.getReference().add(reference);
-                added.add(reference);
+        if (component.getReference().size() == 0) {
+            // add any new references
+            final List<ComponentReference> references = factory.getImplementationReferences();
+            if (references != null) {
+                for (ComponentReference reference : references) {
+                    component.getReference().add(reference);
+                    added.add(reference);
+                }
             }
         }
 
