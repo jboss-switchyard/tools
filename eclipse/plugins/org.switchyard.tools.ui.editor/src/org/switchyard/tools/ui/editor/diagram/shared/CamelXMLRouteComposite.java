@@ -39,6 +39,7 @@ import org.eclipse.ui.PlatformUI;
 import org.switchyard.tools.models.switchyard1_0.camel.CamelFactory;
 import org.switchyard.tools.models.switchyard1_0.camel.CamelImplementationType;
 import org.switchyard.tools.models.switchyard1_0.camel.XMLDSLType;
+import org.switchyard.tools.ui.editor.diagram.component.wizards.NewCamelXMLRouteCompenentWizard;
 import org.switchyard.tools.ui.editor.impl.SwitchyardSCAEditor;
 import org.switchyard.tools.ui.editor.util.JavaUtil;
 
@@ -222,7 +223,7 @@ public class CamelXMLRouteComposite extends AbstractSwitchyardComposite implemen
     }
 
     private String getPathToNewXML(String defaultName) {
-        NewRouteFileWizard newWizard = new NewRouteFileWizard(false);
+        NewCamelXMLRouteCompenentWizard newWizard = new NewCamelXMLRouteCompenentWizard(false);
         IFile modelFile = SwitchyardSCAEditor.getActiveEditor().getModelFile();
         IStructuredSelection selectionToPass = StructuredSelection.EMPTY;
         if (modelFile != null) {

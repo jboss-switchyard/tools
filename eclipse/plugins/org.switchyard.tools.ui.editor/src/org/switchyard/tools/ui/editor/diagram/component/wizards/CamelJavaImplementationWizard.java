@@ -33,7 +33,7 @@ public class CamelJavaImplementationWizard extends LinkedWizardBase implements I
 
     private CamelImplementationType _implementation = CamelFactory.eINSTANCE.createCamelImplementationType();
     private CamelJavaRouteImplementationPage _page;
-    private List<ComponentService> _services;
+    private ComponentService _service;
     private List<ComponentReference> _references;
 
     @Override
@@ -48,25 +48,16 @@ public class CamelJavaImplementationWizard extends LinkedWizardBase implements I
         // TODO: implement me
     }
 
-    /**
-     * @return the new camel implementation.
-     */
     @Override
     public CamelImplementationType getCreatedObject() {
         return _implementation;
     }
 
-    /**
-     * @return the services implemented by the bean.
-     */
     @Override
-    public List<ComponentService> getImplementationServices() {
-        return _services;
+    public ComponentService getImplementedService() {
+        return _service;
     }
 
-    /**
-     * @return the services referenced by the bean.
-     */
     @Override
     public List<ComponentReference> getImplementationReferences() {
         return _references;
@@ -74,12 +65,7 @@ public class CamelJavaImplementationWizard extends LinkedWizardBase implements I
 
     @Override
     public boolean doFinish() {
-        ComponentService service = _page.getService();
-        if (service == null) {
-            _services = Collections.emptyList();
-        } else {
-            _services = Collections.singletonList(service);
-        }
+        _service = _page.getService();
         // TODO: _page.getReferences()
         _references = Collections.emptyList();
         return true;

@@ -8,7 +8,7 @@
  * Contributors:
  *     JBoss by Red Hat - Initial implementation.
  ************************************************************************************/
-package org.switchyard.tools.ui.editor.diagram.shared;
+package org.switchyard.tools.ui.editor.diagram.component.wizards;
 
 import java.util.EnumSet;
 
@@ -28,6 +28,7 @@ import org.eclipse.soa.sca.sca1_1.model.sca.ScaPackage;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.layout.GridLayout;
 import org.eclipse.swt.widgets.Composite;
+import org.switchyard.tools.ui.editor.diagram.shared.ContractControl;
 import org.switchyard.tools.ui.editor.diagram.shared.InterfaceControl.InterfaceType;
 
 /**
@@ -73,6 +74,7 @@ public class NewCamelRouteClassWizardPage extends NewClassWizardPage {
         if (getTypeName().length() == 0) {
             setTypeName("CamelServiceRoute", true);
         }
+        setSuperClass("org.apache.camel.builder.RouteBuilder", false);
 
         doStatusUpdate();
     }

@@ -19,6 +19,7 @@ import org.eclipse.soa.sca.sca1_1.model.sca.Composite;
 import org.eclipse.soa.sca.sca1_1.model.sca.Implementation;
 import org.eclipse.soa.sca.sca1_1.model.sca.ScaFactory;
 import org.eclipse.swt.widgets.Shell;
+import org.switchyard.tools.ui.editor.diagram.component.wizards.IComponentWizard;
 import org.switchyard.tools.ui.editor.diagram.implementation.IImplementationTypeFactory;
 
 /**
@@ -26,6 +27,10 @@ import org.switchyard.tools.ui.editor.diagram.implementation.IImplementationType
  * 
  * <p/>
  * Factory for creating a new component based on an implementation factory.
+ * 
+ * @deprecated when creating components, we no longer allow the user to select
+ *             an existing implementation. Should that change, this class is
+ *             around to support it.
  * 
  * @author Rob Cernich
  */
@@ -57,11 +62,9 @@ public class ComponentWithImplementationFactory extends BaseComponentFactory {
         component.getImplementationGroup().set(implementation.getDocumentFeature(), implementation);
 
         // add any new services
-        final List<ComponentService> services = _delegate.getImplementationServices();
-        if (services != null) {
-            for (ComponentService service : services) {
-                component.getService().add(service);
-            }
+        final ComponentService service = _delegate.getImplementedService();
+        if (service != null) {
+            component.getService().add(service);
         }
 
         // add any new references
@@ -73,6 +76,11 @@ public class ComponentWithImplementationFactory extends BaseComponentFactory {
         }
 
         return component;
+    }
+
+    @Override
+    protected IComponentWizard createTypeWizard() {
+        return null;
     }
 
 }

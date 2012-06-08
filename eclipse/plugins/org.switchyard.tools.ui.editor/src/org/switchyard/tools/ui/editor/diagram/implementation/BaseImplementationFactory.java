@@ -30,12 +30,12 @@ import org.switchyard.tools.ui.editor.diagram.shared.BaseTypeFactory;
 public abstract class BaseImplementationFactory extends
         BaseTypeFactory<Implementation, Component, IImplementationWizard> implements IImplementationTypeFactory {
 
-    private List<ComponentService> _services;
+    private ComponentService _service;
     private List<ComponentReference> _references;
 
     @Override
-    public List<ComponentService> getImplementationServices() {
-        return _services;
+    public ComponentService getImplementedService() {
+        return _service;
     }
 
     @Override
@@ -45,7 +45,7 @@ public abstract class BaseImplementationFactory extends
 
     @Override
     protected Implementation wizardComplete(IImplementationWizard wizard) {
-        _services = wizard.getImplementationServices();
+        _service = wizard.getImplementedService();
         _references = wizard.getImplementationReferences();
         return super.wizardComplete(wizard);
     }

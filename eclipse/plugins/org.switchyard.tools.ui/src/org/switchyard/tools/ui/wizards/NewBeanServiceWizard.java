@@ -19,6 +19,7 @@ import org.eclipse.core.runtime.CoreException;
 import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.core.runtime.Status;
 import org.eclipse.jdt.core.IJavaProject;
+import org.eclipse.jdt.core.IType;
 import org.eclipse.jface.dialogs.MessageDialog;
 import org.eclipse.jface.operation.IRunnableWithProgress;
 import org.eclipse.ui.IWorkbenchPage;
@@ -40,12 +41,13 @@ public class NewBeanServiceWizard extends AbstractSwitchYardServiceWizard {
     private NewBeanServiceClassWizardPage _newClassPage;
     private IFile _newClassFile;
     private boolean _updateSwitchYardFile;
+    private boolean _openAfterCreate;
 
     /**
      * Create a new NewBeanServiceWizard.
      */
     public NewBeanServiceWizard() {
-        this(true);
+        this(true, true);
     }
 
     /**
@@ -53,9 +55,12 @@ public class NewBeanServiceWizard extends AbstractSwitchYardServiceWizard {
      * 
      * @param udpateSwitchYardFile true if the switchyard.xml file should be
      *            updated upon completion.
+     * @param openAfterCreate true if the new file should be opened in an
+     *            editor.
      */
-    public NewBeanServiceWizard(boolean udpateSwitchYardFile) {
+    public NewBeanServiceWizard(boolean udpateSwitchYardFile, boolean openAfterCreate) {
         _updateSwitchYardFile = udpateSwitchYardFile;
+        _openAfterCreate = openAfterCreate;
         setNeedsProgressMonitor(true);
     }
 
@@ -73,6 +78,13 @@ public class NewBeanServiceWizard extends AbstractSwitchYardServiceWizard {
      */
     public IFile getNewClassFile() {
         return _newClassFile;
+    }
+
+    /**
+     * @return the generated class.
+     */
+    public IType getNewClass() {
+        return _newClassPage.getCreatedType();
     }
 
     @Override
@@ -134,6 +146,9 @@ public class NewBeanServiceWizard extends AbstractSwitchYardServiceWizard {
                 : null;
         if (_newClassFile != null && _newClassFile.exists()) {
             selectAndReveal(_newClassFile);
+            if (!_openAfterCreate) {
+                return true;
+            }
             final IWorkbenchPage activePage = getWorkbench().getActiveWorkbenchWindow().getActivePage();
             if (activePage != null) {
                 getShell().getDisplay().asyncExec(new Runnable() {

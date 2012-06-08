@@ -13,7 +13,8 @@ package org.switchyard.tools.ui.editor.diagram.component;
 import org.eclipse.soa.sca.sca1_1.model.sca.Composite;
 import org.eclipse.soa.sca.sca1_1.model.sca.Implementation;
 import org.switchyard.tools.models.switchyard1_0.bean.BeanImplementationType;
-import org.switchyard.tools.ui.editor.diagram.implementation.BeanImplementationFactory;
+import org.switchyard.tools.ui.editor.diagram.component.wizards.IComponentWizard;
+import org.switchyard.tools.ui.editor.diagram.component.wizards.NewBeanComponentWizard;
 
 /**
  * BeanComponentFactory
@@ -23,13 +24,11 @@ import org.switchyard.tools.ui.editor.diagram.implementation.BeanImplementationF
  * 
  * @author Rob Cernich
  */
-public class BeanComponentFactory extends ComponentWithImplementationFactory {
+public class BeanComponentFactory extends BaseComponentFactory {
 
-    /**
-     * Create a new BeanComponentFactory.
-     */
-    public BeanComponentFactory() {
-        super(new BeanImplementationFactory());
+    @Override
+    protected IComponentWizard createTypeWizard() {
+        return new NewBeanComponentWizard(true);
     }
 
     @Override

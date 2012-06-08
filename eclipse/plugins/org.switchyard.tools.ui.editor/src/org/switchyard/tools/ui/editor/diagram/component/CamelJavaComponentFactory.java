@@ -13,7 +13,8 @@ package org.switchyard.tools.ui.editor.diagram.component;
 import org.eclipse.soa.sca.sca1_1.model.sca.Composite;
 import org.eclipse.soa.sca.sca1_1.model.sca.Implementation;
 import org.switchyard.tools.models.switchyard1_0.camel.CamelImplementationType;
-import org.switchyard.tools.ui.editor.diagram.implementation.CamelJavaImplementationFactory;
+import org.switchyard.tools.ui.editor.diagram.component.wizards.IComponentWizard;
+import org.switchyard.tools.ui.editor.diagram.component.wizards.NewCamelJavaRouteComponentWizard;
 
 /**
  * BeanComponentFactory
@@ -23,13 +24,11 @@ import org.switchyard.tools.ui.editor.diagram.implementation.CamelJavaImplementa
  * 
  * @author Rob Cernich
  */
-public class CamelJavaComponentFactory extends ComponentWithImplementationFactory {
+public class CamelJavaComponentFactory extends BaseComponentFactory {
 
-    /**
-     * Create a new BeanComponentFactory.
-     */
-    public CamelJavaComponentFactory() {
-        super(new CamelJavaImplementationFactory());
+    @Override
+    protected IComponentWizard createTypeWizard() {
+        return new NewCamelJavaRouteComponentWizard();
     }
 
     @Override

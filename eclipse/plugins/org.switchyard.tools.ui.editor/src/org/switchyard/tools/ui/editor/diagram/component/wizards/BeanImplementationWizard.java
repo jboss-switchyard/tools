@@ -34,7 +34,7 @@ public class BeanImplementationWizard extends LinkedWizardBase implements IImple
 
     private BeanImplementationType _implementation;
     private BeanImplementationWizardPage _page;
-    private List<ComponentService> _services;
+    private ComponentService _service;
     private List<ComponentReference> _references;
 
     @Override
@@ -54,8 +54,8 @@ public class BeanImplementationWizard extends LinkedWizardBase implements IImple
     }
 
     @Override
-    public List<ComponentService> getImplementationServices() {
-        return _services;
+    public ComponentService getImplementedService() {
+        return _service;
     }
 
     @Override
@@ -74,7 +74,10 @@ public class BeanImplementationWizard extends LinkedWizardBase implements IImple
 
         // see if there are any services on the class
         final JavaTypeScanner scanner = new JavaTypeScanner(type);
-        _services = scanner.getServices();
+        List<ComponentService> services = scanner.getServices();
+        if (services != null && services.size() > 0) {
+            _service = services.get(0);
+        }
         _references = scanner.getReferences();
 
         return true;

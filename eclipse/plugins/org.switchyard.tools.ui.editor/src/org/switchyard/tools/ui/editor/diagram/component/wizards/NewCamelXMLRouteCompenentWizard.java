@@ -10,16 +10,23 @@
  *
  * @author bfitzpat
  ******************************************************************************/
-package org.switchyard.tools.ui.editor.diagram.shared;
+package org.switchyard.tools.ui.editor.diagram.component.wizards;
 
 import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
+import java.util.Collections;
+import java.util.List;
 
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.resource.Resource;
+import org.eclipse.soa.sca.sca1_1.model.sca.ComponentReference;
+import org.eclipse.soa.sca.sca1_1.model.sca.Implementation;
 import org.eclipse.ui.dialogs.WizardNewFileCreationPage;
+import org.switchyard.tools.models.switchyard1_0.camel.CamelFactory;
+import org.switchyard.tools.models.switchyard1_0.camel.CamelImplementationType;
+import org.switchyard.tools.models.switchyard1_0.camel.XMLDSLType;
 import org.switchyard.tools.models.switchyard1_0.spring.DocumentRoot;
 import org.switchyard.tools.models.switchyard1_0.spring.FromDefinition;
 import org.switchyard.tools.models.switchyard1_0.spring.LogDefinition;
@@ -27,14 +34,26 @@ import org.switchyard.tools.models.switchyard1_0.spring.RouteDefinition;
 import org.switchyard.tools.models.switchyard1_0.spring.SpringFactory;
 import org.switchyard.tools.models.switchyard1_0.spring.util.SpringResourceFactoryImpl;
 import org.switchyard.tools.ui.editor.Activator;
+import org.switchyard.tools.ui.editor.diagram.shared.BaseNewServiceFileWizard;
 
 /**
- * @author bfitzpat
+ * NewCamelXMLRouteCompenentWizard
  * 
+ * <p/>
+ * Creates a new Camel implementation based on an XML route definition.
+ * 
+ * @author bfitzpat
+ * @author Rob Cernich
  */
-class NewRouteFileWizard extends BaseNewServiceFileWizard {
+public class NewCamelXMLRouteCompenentWizard extends BaseNewServiceFileWizard {
 
-    NewRouteFileWizard(boolean openAfterCreate) {
+    /**
+     * Create a new NewCamelXMLRouteCompenentWizard.
+     * 
+     * @param openAfterCreate true if the resource should be opened after
+     *            creation.
+     */
+    public NewCamelXMLRouteCompenentWizard(boolean openAfterCreate) {
         super(openAfterCreate, "xml");
         setWindowTitle("New Camel XML Route File");
     }
@@ -48,6 +67,22 @@ class NewRouteFileWizard extends BaseNewServiceFileWizard {
         page.setDescription("Create a new Camel Route file resource.");
         page.setFileName("route.xml");
 
+    }
+
+    @Override
+    protected Implementation createImplementation() {
+        XMLDSLType xmlType = CamelFactory.eINSTANCE.createXMLDSLType();
+        xmlType.setPath(getCreatedFilePath());
+
+        CamelImplementationType implementation = CamelFactory.eINSTANCE.createCamelImplementationType();
+        implementation.setXml(xmlType);
+
+        return implementation;
+    }
+
+    @Override
+    protected List<ComponentReference> createReferences() {
+        return Collections.emptyList();
     }
 
     @Override

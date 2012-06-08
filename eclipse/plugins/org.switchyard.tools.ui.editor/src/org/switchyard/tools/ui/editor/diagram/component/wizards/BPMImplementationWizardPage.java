@@ -22,7 +22,6 @@ import org.eclipse.jface.viewers.IStructuredSelection;
 import org.eclipse.jface.viewers.StructuredSelection;
 import org.eclipse.jface.wizard.WizardDialog;
 import org.eclipse.jface.wizard.WizardPage;
-import org.eclipse.soa.sca.sca1_1.model.sca.Component;
 import org.eclipse.soa.sca.sca1_1.model.sca.ComponentService;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.events.ModifyEvent;
@@ -114,7 +113,7 @@ public class BPMImplementationWizardPage extends WizardPage {
         _newBPMNLink.addSelectionListener(new SelectionAdapter() {
             @Override
             public void widgetSelected(SelectionEvent event) {
-                openNewBeanWizard();
+                openNewWizard();
             }
 
         });
@@ -177,8 +176,8 @@ public class BPMImplementationWizardPage extends WizardPage {
         }
     }
 
-    private void openNewBeanWizard() {
-        NewBPMServiceComponentWizard wizard = new NewBPMServiceComponentWizard();
+    private void openNewWizard() {
+        NewBPMComponentWizard wizard = new NewBPMComponentWizard(false);
         SwitchyardSCAEditor editor = SwitchyardSCAEditor.getActiveEditor();
         IResource resource = JavaUtil.getFirstResourceRoot(_project);
         IStructuredSelection selection = resource == null ? StructuredSelection.EMPTY : new StructuredSelection(
@@ -188,14 +187,8 @@ public class BPMImplementationWizardPage extends WizardPage {
         wizard.init(workbench, selection);
         WizardDialog dialog = new WizardDialog(getShell(), wizard);
         if (dialog.open() == WizardDialog.OK) {
-            Component component = wizard.getBPMServiceComponent();
-            _implementation = (BPMImplementationType) component.getImplementation();
-            if (component.getService().size() > 0) {
-                // there should be only one; take the first, regardless.
-                _service = component.getService().get(0);
-            } else {
-                _service = null;
-            }
+            _implementation = (BPMImplementationType) wizard.getCreatedObject().getImplementation();
+            _service = wizard.getService();
             _bpmnFileText.setText(_implementation.getProcessDefinition());
         }
     }

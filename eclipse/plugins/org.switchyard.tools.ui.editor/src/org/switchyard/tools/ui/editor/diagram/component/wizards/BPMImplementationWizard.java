@@ -32,7 +32,7 @@ public class BPMImplementationWizard extends LinkedWizardBase implements IImplem
 
     private BPMImplementationType _implementation;
     private BPMImplementationWizardPage _page;
-    private List<ComponentService> _services;
+    private ComponentService _service;
 
     @Override
     public void addPages() {
@@ -51,8 +51,8 @@ public class BPMImplementationWizard extends LinkedWizardBase implements IImplem
     }
 
     @Override
-    public List<ComponentService> getImplementationServices() {
-        return _services;
+    public ComponentService getImplementedService() {
+        return _service;
     }
 
     @Override
@@ -63,11 +63,7 @@ public class BPMImplementationWizard extends LinkedWizardBase implements IImplem
     @Override
     public boolean doFinish() {
         _implementation = _page.getImplementation();
-        if (_page.getService() == null) {
-            _services = Collections.emptyList();
-        } else {
-            _services = Collections.singletonList(_page.getService());
-        }
+        _service = _page.getService();
         return true;
     }
 

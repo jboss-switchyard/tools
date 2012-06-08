@@ -15,7 +15,8 @@ import org.eclipse.core.runtime.Path;
 import org.eclipse.soa.sca.sca1_1.model.sca.Composite;
 import org.eclipse.soa.sca.sca1_1.model.sca.Implementation;
 import org.switchyard.tools.models.switchyard1_0.camel.CamelImplementationType;
-import org.switchyard.tools.ui.editor.diagram.implementation.CamelXMLImplementationFactory;
+import org.switchyard.tools.ui.editor.diagram.component.wizards.IComponentWizard;
+import org.switchyard.tools.ui.editor.diagram.component.wizards.NewCamelXMLRouteCompenentWizard;
 
 /**
  * CamelXMLComponentFactory
@@ -25,13 +26,11 @@ import org.switchyard.tools.ui.editor.diagram.implementation.CamelXMLImplementat
  * 
  * @author Rob Cernich
  */
-public class CamelXMLComponentFactory extends ComponentWithImplementationFactory {
+public class CamelXMLComponentFactory extends BaseComponentFactory {
 
-    /**
-     * Create a new CamelXMLComponentFactory.
-     */
-    public CamelXMLComponentFactory() {
-        super(new CamelXMLImplementationFactory());
+    @Override
+    protected IComponentWizard createTypeWizard() {
+        return new NewCamelXMLRouteCompenentWizard(true);
     }
 
     @Override

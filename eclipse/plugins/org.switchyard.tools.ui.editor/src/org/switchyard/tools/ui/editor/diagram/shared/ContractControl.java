@@ -31,7 +31,6 @@ import org.eclipse.swt.SWT;
 import org.eclipse.swt.events.ModifyEvent;
 import org.eclipse.swt.events.ModifyListener;
 import org.eclipse.swt.layout.GridData;
-import org.eclipse.swt.layout.GridLayout;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Label;
 import org.eclipse.swt.widgets.Text;
@@ -76,12 +75,8 @@ public class ContractControl implements ISelectionProvider {
      * @param numColumns the number of colums in the layout.
      */
     public void createControl(Composite parent, int numColumns) {
-        Composite contents = new Composite(parent, SWT.NONE);
-        contents.setLayout(new GridLayout(numColumns, false));
-        contents.setLayoutData(new GridData(GridData.FILL_HORIZONTAL));
-
         _interfaceControl = new InterfaceControl(_project, EnumSet.of(InterfaceType.Java, InterfaceType.WSDL));
-        _interfaceControl.createControl(contents, numColumns);
+        _interfaceControl.createControl(parent, numColumns);
         _interfaceControl.addSelectionChangedListener(new ISelectionChangedListener() {
             @Override
             public void selectionChanged(SelectionChangedEvent event) {
@@ -106,10 +101,10 @@ public class ContractControl implements ISelectionProvider {
             }
         });
 
-        Label label = new Label(contents, SWT.NONE);
+        Label label = new Label(parent, SWT.NONE);
         label.setText("Name:");
 
-        _serviceNameText = new Text(contents, SWT.SINGLE | SWT.BORDER);
+        _serviceNameText = new Text(parent, SWT.SINGLE | SWT.BORDER);
         _serviceNameText.setLayoutData(new GridData(SWT.FILL, SWT.CENTER, true, false, numColumns - 2, 1));
         _serviceNameText.addModifyListener(new ModifyListener() {
             @Override
@@ -120,13 +115,16 @@ public class ContractControl implements ISelectionProvider {
             }
         });
         // spacer
-        new Label(contents, SWT.NONE);
+        new Label(parent, SWT.NONE);
     }
 
     /**
      * @return the current validation status of the control.
      */
     public IStatus getStatus() {
+        if (_interfaceControl == null) {
+            return Status.OK_STATUS;
+        }
         IStatus status = _interfaceControl.getStatus();
         if (status.getSeverity() != IStatus.ERROR) {
             // validate service name
@@ -142,7 +140,9 @@ public class ContractControl implements ISelectionProvider {
      */
     public void setProject(IJavaProject project) {
         _project = project;
-        _interfaceControl.setProject(_project);
+        if (_interfaceControl != null) {
+            _interfaceControl.setProject(_project);
+        }
     }
 
     /**

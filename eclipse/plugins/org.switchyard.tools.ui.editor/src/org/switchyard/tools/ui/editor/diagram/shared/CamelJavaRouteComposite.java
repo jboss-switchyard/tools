@@ -12,6 +12,8 @@
  ******************************************************************************/
 package org.switchyard.tools.ui.editor.diagram.shared;
 
+import java.util.List;
+
 import org.eclipse.core.resources.IFile;
 import org.eclipse.core.resources.IProject;
 import org.eclipse.jdt.core.IJavaElement;
@@ -23,12 +25,13 @@ import org.eclipse.jdt.core.search.IJavaSearchScope;
 import org.eclipse.jdt.core.search.SearchEngine;
 import org.eclipse.jdt.ui.IJavaElementSearchConstants;
 import org.eclipse.jdt.ui.JavaUI;
-import org.eclipse.jdt.ui.actions.OpenNewClassWizardAction;
 import org.eclipse.jface.dialogs.IDialogConstants;
 import org.eclipse.jface.dialogs.ProgressMonitorDialog;
 import org.eclipse.jface.viewers.ISelection;
 import org.eclipse.jface.viewers.IStructuredSelection;
 import org.eclipse.jface.viewers.StructuredSelection;
+import org.eclipse.jface.wizard.WizardDialog;
+import org.eclipse.soa.sca.sca1_1.model.sca.Component;
 import org.eclipse.soa.sca.sca1_1.model.sca.ComponentService;
 import org.eclipse.soa.sca.sca1_1.model.sca.Implementation;
 import org.eclipse.swt.SWT;
@@ -49,6 +52,7 @@ import org.eclipse.ui.dialogs.SelectionDialog;
 import org.switchyard.tools.models.switchyard1_0.camel.CamelFactory;
 import org.switchyard.tools.models.switchyard1_0.camel.CamelImplementationType;
 import org.switchyard.tools.models.switchyard1_0.camel.JavaDSLType;
+import org.switchyard.tools.ui.editor.diagram.component.wizards.NewCamelJavaRouteComponentWizard;
 import org.switchyard.tools.ui.editor.impl.SwitchyardSCAEditor;
 import org.switchyard.tools.ui.editor.util.JavaUtil;
 
@@ -239,26 +243,20 @@ public class CamelJavaRouteComposite extends AbstractSwitchyardComposite impleme
             javaProject = JavaCore.create(project);
         }
         IJavaElement element = JavaUtil.getInitialPackageForProject(javaProject);
-        IStructuredSelection selectionToPass = element == null ? StructuredSelection.EMPTY : new StructuredSelection(element);
+        IStructuredSelection selectionToPass = element == null ? StructuredSelection.EMPTY : new StructuredSelection(
+                element);
 
-        OpenNewClassWizardAction action = new OpenNewClassWizardAction();
-        action.setSelection(selectionToPass);
-        action.setOpenEditorOnFinish(false);
-
-        NewCamelRouteClassWizardPage page = new NewCamelRouteClassWizardPage();
-        page.init(selectionToPass);
-        page.setSuperClass("org.apache.camel.builder.RouteBuilder", false);
-        action.setConfiguredWizardPage(page);
-
-        action.run();
-
-        IJavaElement createdElement = action.getCreatedElement();
-        if (createdElement != null && createdElement instanceof IType) {
-            IType stype = (IType) createdElement;
-            String name = stype.getFullyQualifiedName();
-            if (name != null) {
-                _service = page.getService();
-                return name;
+        NewCamelJavaRouteComponentWizard wizard = new NewCamelJavaRouteComponentWizard(false);
+        WizardDialog dialog = new WizardDialog(_panel.getShell(), wizard);
+        wizard.init(PlatformUI.getWorkbench(), selectionToPass);
+        if (dialog.open() == WizardDialog.OK) {
+            Component component = wizard.getCreatedObject();
+            if (component != null) {
+                List<ComponentService> services = component.getService();
+                if (services != null && services.size() > 0) {
+                    _service = services.get(0);
+                }
+                return ((CamelImplementationType) component.getImplementation()).getJava().getClass_();
             }
         }
         return null;

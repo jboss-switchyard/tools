@@ -168,7 +168,7 @@ public class BeanImplementationWizardPage extends WizardPage {
     }
 
     private void openNewBeanWizard() {
-        NewBeanServiceWizard wizard = new NewBeanServiceWizard(false);
+        NewBeanServiceWizard wizard = new NewBeanServiceWizard(false, false);
         SwitchyardSCAEditor editor = SwitchyardSCAEditor.getActiveEditor();
         IJavaElement element = JavaUtil.getInitialPackageForProject(_project);
         IStructuredSelection selection = element == null ? StructuredSelection.EMPTY : new StructuredSelection(element);

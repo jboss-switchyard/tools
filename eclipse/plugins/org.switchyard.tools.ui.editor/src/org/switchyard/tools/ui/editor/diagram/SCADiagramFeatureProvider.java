@@ -59,8 +59,8 @@ import org.switchyard.tools.ui.editor.diagram.binding.CamelQuartzBindingFactory;
 import org.switchyard.tools.ui.editor.diagram.binding.CreateBindingFeature;
 import org.switchyard.tools.ui.editor.diagram.binding.SCADiagramAddBindingFeature;
 import org.switchyard.tools.ui.editor.diagram.binding.SOAPBindingFactory;
+import org.switchyard.tools.ui.editor.diagram.component.AbstractComponentFactory;
 import org.switchyard.tools.ui.editor.diagram.component.BPMComponentFactory;
-import org.switchyard.tools.ui.editor.diagram.component.BaseComponentFactory;
 import org.switchyard.tools.ui.editor.diagram.component.BeanComponentFactory;
 import org.switchyard.tools.ui.editor.diagram.component.CamelJavaComponentFactory;
 import org.switchyard.tools.ui.editor.diagram.component.CamelXMLComponentFactory;
@@ -173,7 +173,7 @@ public class SCADiagramFeatureProvider extends DefaultFeatureProvider {
     /* package */List<ICreateFeature> getCreateComponentFeatures() {
         List<ICreateFeature> features = new ArrayList<ICreateFeature>(5);
         // component types
-        features.add(new CreateComponentFeature(this, new BaseComponentFactory(), "Abstract",
+        features.add(new CreateComponentFeature(this, new AbstractComponentFactory(), "Abstract",
                 "Create a simple component with no implementation, services or references."));
         features.add(new CreateComponentFeature(this, new CamelJavaComponentFactory(), "Camel (Java)",
                 "Create a component implemented as a Java based Camel route."));

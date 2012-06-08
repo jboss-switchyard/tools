@@ -29,9 +29,9 @@ import org.switchyard.tools.ui.editor.diagram.shared.ITypeFactory;
 public interface IImplementationTypeFactory extends ITypeFactory<Implementation, Component> {
 
     /**
-     * @return any services implemented by the implementation.
+     * @return any service implemented by the implementation.
      */
-    public List<ComponentService> getImplementationServices();
+    public ComponentService getImplementedService();
 
     /**
      * @return any services referenced by the implementation.

@@ -72,12 +72,10 @@ public class CreateImplementationFeature extends CreateTypeFeature<Implementatio
         final IImplementationTypeFactory factory = (IImplementationTypeFactory) getFactory();
         if (component.getService().size() == 0) {
             // add any new services
-            final List<ComponentService> services = factory.getImplementationServices();
-            if (services != null) {
-                for (ComponentService service : services) {
-                    component.getService().add(service);
-                    added.add(service);
-                }
+            final ComponentService service = factory.getImplementedService();
+            if (service != null) {
+                component.getService().add(service);
+                added.add(service);
             }
         }
 

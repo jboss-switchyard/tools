@@ -13,13 +13,15 @@ package org.switchyard.tools.ui.editor.diagram.component.wizards;
 import java.io.ByteArrayInputStream;
 import java.io.InputStream;
 import java.io.UnsupportedEncodingException;
+import java.util.Collections;
+import java.util.List;
 
 import org.eclipse.core.resources.ResourcesPlugin;
 import org.eclipse.jdt.core.JavaCore;
 import org.eclipse.jdt.core.JavaModelException;
 import org.eclipse.jface.wizard.IWizardPage;
-import org.eclipse.soa.sca.sca1_1.model.sca.Component;
-import org.eclipse.soa.sca.sca1_1.model.sca.ScaFactory;
+import org.eclipse.soa.sca.sca1_1.model.sca.ComponentReference;
+import org.eclipse.soa.sca.sca1_1.model.sca.Implementation;
 import org.eclipse.ui.INewWizard;
 import org.eclipse.ui.dialogs.WizardNewFileCreationPage;
 import org.switchyard.tools.models.switchyard1_0.bpm.AuditType;
@@ -30,7 +32,7 @@ import org.switchyard.tools.models.switchyard1_0.commonrules.CommonRulesPackage;
 import org.switchyard.tools.ui.editor.diagram.shared.BaseNewServiceFileWizard;
 
 /**
- * NewBPMServiceComponentWizard
+ * NewBPMComponentWizard
  * 
  * <p/>
  * Wizard for collecting data necessary for creating new BPM services
@@ -38,9 +40,8 @@ import org.switchyard.tools.ui.editor.diagram.shared.BaseNewServiceFileWizard;
  * 
  * @author Rob Cernich
  */
-public class NewBPMServiceComponentWizard extends BaseNewServiceFileWizard implements INewWizard {
+public class NewBPMComponentWizard extends BaseNewServiceFileWizard implements INewWizard {
 
-    private Component _component;
     private BPMImplementationType _implementation;
     private NewBPMProcessDetailsWizardPage _processPage;
 
@@ -48,10 +49,13 @@ public class NewBPMServiceComponentWizard extends BaseNewServiceFileWizard imple
     // private NewBPMExtraResourcesWizardPage _resourcesPage;
 
     /**
-     * Create a new NewBPMServiceComponentWizard.
+     * Create a new NewBPMComponentWizard.
+     * 
+     * @param openAfterCreate true if the new file should be opened in an
+     *            editor.
      */
-    public NewBPMServiceComponentWizard() {
-        super(false, "bpmn");
+    public NewBPMComponentWizard(boolean openAfterCreate) {
+        super(openAfterCreate, "bpmn");
     }
 
     @Override
@@ -73,13 +77,6 @@ public class NewBPMServiceComponentWizard extends BaseNewServiceFileWizard imple
         // _resourcesPage = new
         // NewBPMExtraResourcesWizardPage(NewBPMExtraResourcesWizardPage.class.getCanonicalName());
         // addPage(_processPage);
-    }
-
-    /**
-     * @return the new component
-     */
-    public Component getBPMServiceComponent() {
-        return _component;
     }
 
     @Override
@@ -115,11 +112,48 @@ public class NewBPMServiceComponentWizard extends BaseNewServiceFileWizard imple
 
         _implementation.setProcessDefinition(getCreatedFilePath());
 
-        _component = ScaFactory.eINSTANCE.createComponent();
-        _component.getImplementationGroup().set(_implementation.getDocumentFeature(), _implementation);
-        _component.getService().add(getService());
-
         return true;
+    }
+
+    @Override
+    protected Implementation createImplementation() {
+        return _implementation;
+    }
+
+    @Override
+    protected List<ComponentReference> createReferences() {
+        return Collections.emptyList();
+    }
+
+    @Override
+    public boolean canFinish() {
+        _processPage.update(getJavaProject(), getFileCreationPage().getFileName(), getService());
+
+        // TODO: don't validate optional pages, i.e. actions and resources
+        // for (IWizardPage page : getPages()) {
+        // if (!page.isPageComplete()
+        // && ((page == _actionsPage && _processPage.isActionConfigEnabled())
+        // || (page == _resourcesPage && _processPage
+        // .isResourceConfigEnabled()))) {
+        // return false;
+        // }
+        // }
+        // return true;
+        return super.canFinish();
+    }
+
+    @Override
+    public IWizardPage getNextPage(IWizardPage page) {
+        final IWizardPage nextPage = super.getNextPage(page);
+        // TODO: enablement for action and resources
+        // if (nextPage == _actionsPage &&
+        // !_processPage.isActionConfigEnabled()) {
+        // return getNextPage(nextPage);
+        // } else if (nextPage == _resourcesPage &&
+        // !_processPage.isResourceConfigEnabled()) {
+        // return getNextPage(nextPage);
+        // }
+        return nextPage;
     }
 
     @Override
@@ -189,37 +223,6 @@ public class NewBPMServiceComponentWizard extends BaseNewServiceFileWizard imple
             // something better than nothing
             return new ByteArrayInputStream(buf.toString().getBytes());
         }
-    }
-
-    @Override
-    public boolean canFinish() {
-        _processPage.update(getJavaProject(), getFileCreationPage().getFileName(), getService());
-
-        // TODO: don't validate optional pages, i.e. actions and resources
-        // for (IWizardPage page : getPages()) {
-        // if (!page.isPageComplete()
-        // && ((page == _actionsPage && _processPage.isActionConfigEnabled())
-        // || (page == _resourcesPage && _processPage
-        // .isResourceConfigEnabled()))) {
-        // return false;
-        // }
-        // }
-        // return true;
-        return super.canFinish();
-    }
-
-    @Override
-    public IWizardPage getNextPage(IWizardPage page) {
-        final IWizardPage nextPage = super.getNextPage(page);
-        // TODO: enablement for action and resources
-        // if (nextPage == _actionsPage &&
-        // !_processPage.isActionConfigEnabled()) {
-        // return getNextPage(nextPage);
-        // } else if (nextPage == _resourcesPage &&
-        // !_processPage.isResourceConfigEnabled()) {
-        // return getNextPage(nextPage);
-        // }
-        return nextPage;
     }
 
 }

@@ -16,8 +16,9 @@ import java.util.Set;
 import org.eclipse.soa.sca.sca1_1.model.sca.Component;
 import org.eclipse.soa.sca.sca1_1.model.sca.Composite;
 import org.eclipse.soa.sca.sca1_1.model.sca.Implementation;
-import org.eclipse.soa.sca.sca1_1.model.sca.ScaFactory;
 import org.eclipse.swt.widgets.Shell;
+import org.switchyard.tools.ui.editor.diagram.component.wizards.IComponentWizard;
+import org.switchyard.tools.ui.editor.diagram.shared.BaseTypeFactory;
 import org.switchyard.tools.ui.editor.diagram.shared.ITypeFactory;
 
 /**
@@ -28,13 +29,18 @@ import org.switchyard.tools.ui.editor.diagram.shared.ITypeFactory;
  * 
  * @author Rob Cernich
  */
-public class BaseComponentFactory implements ITypeFactory<Component, Composite> {
+public abstract class BaseComponentFactory extends BaseTypeFactory<Component, Composite, IComponentWizard> implements
+        ITypeFactory<Component, Composite> {
 
     @Override
     public Component createType(Shell shell, Composite container) {
         // create the component
-        final Component component = ScaFactory.eINSTANCE.createComponent();
-        component.setName(getComponentName(null, container));
+        final Component component = super.createType(shell, container);
+        if (component.getName() == null) {
+            component.setName(getComponentName(component.getImplementation(), container));
+        } else {
+            component.setName(makeUniqueComponentName(component.getName(), container));
+        }
 
         return component;
     }
