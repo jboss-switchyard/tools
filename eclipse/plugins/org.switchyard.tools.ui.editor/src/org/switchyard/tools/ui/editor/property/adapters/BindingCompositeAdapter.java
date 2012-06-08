@@ -19,6 +19,8 @@ import org.eclipse.swt.SWT;
 import org.eclipse.swt.layout.GridData;
 import org.switchyard.tools.models.switchyard1_0.camel.CamelFileBindingType;
 import org.switchyard.tools.models.switchyard1_0.camel.CamelFtpBindingType;
+import org.switchyard.tools.models.switchyard1_0.camel.CamelNettyTcpBindingType;
+import org.switchyard.tools.models.switchyard1_0.camel.CamelNettyUdpBindingType;
 import org.switchyard.tools.models.switchyard1_0.camel.CamelQuartzBindingType;
 import org.switchyard.tools.models.switchyard1_0.soap.SOAPBindingType;
 import org.switchyard.tools.ui.editor.diagram.shared.AbstractSwitchyardComposite;
@@ -26,6 +28,8 @@ import org.switchyard.tools.ui.editor.diagram.shared.CamelFTPConsumerComposite;
 import org.switchyard.tools.ui.editor.diagram.shared.CamelFTPProducerComposite;
 import org.switchyard.tools.ui.editor.diagram.shared.CamelFileConsumerComposite;
 import org.switchyard.tools.ui.editor.diagram.shared.CamelFileProducerComposite;
+import org.switchyard.tools.ui.editor.diagram.shared.CamelNettyTCPComposite;
+import org.switchyard.tools.ui.editor.diagram.shared.CamelNettyUDPComposite;
 import org.switchyard.tools.ui.editor.diagram.shared.CamelQuartzComposite;
 import org.switchyard.tools.ui.editor.diagram.shared.WSDLURISelectionComposite;
 
@@ -73,6 +77,14 @@ public final class BindingCompositeAdapter {
             }
         } else if (object instanceof CamelQuartzBindingType) {
             composite = new CamelQuartzComposite();
+            GridData wsdlGD = new GridData(SWT.FILL, SWT.FILL, true, true);
+            composite.setRootGridData(wsdlGD);
+        } else if (object instanceof CamelNettyTcpBindingType) {
+            composite = new CamelNettyTCPComposite();
+            GridData wsdlGD = new GridData(SWT.FILL, SWT.FILL, true, true);
+            composite.setRootGridData(wsdlGD);
+        } else if (object instanceof CamelNettyUdpBindingType) {
+            composite = new CamelNettyUDPComposite();
             GridData wsdlGD = new GridData(SWT.FILL, SWT.FILL, true, true);
             composite.setRootGridData(wsdlGD);
         }

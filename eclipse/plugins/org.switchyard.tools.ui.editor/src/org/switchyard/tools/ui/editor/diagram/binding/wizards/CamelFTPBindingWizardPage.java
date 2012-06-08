@@ -69,10 +69,11 @@ public class CamelFTPBindingWizardPage extends WizardPage {
                 }
             });
             _consumerComposite.createContents(parent, SWT.NONE);
+            setControl(_consumerComposite.getPanel());
             _consumerComposite.setTargetObject(_targetContainer);
             _consumerComposite.setBinding(_binding);
+            setPageComplete(_consumerComposite.getErrorMessage() == null);
 
-            setControl(_consumerComposite.getPanel());
         } else {
             _producerComposite = new CamelFTPProducerComposite();
             _producerComposite.addChangeListener(new ChangeListener() {
@@ -83,9 +84,10 @@ public class CamelFTPBindingWizardPage extends WizardPage {
                 }
             });
             _producerComposite.createContents(parent, SWT.NONE);
-            _producerComposite.setBinding(_binding);
-
             setControl(_producerComposite.getPanel());
+            _producerComposite.setBinding(_binding);
+            setPageComplete(_producerComposite.getErrorMessage() == null);
+
         }
 
         setErrorMessage(null);

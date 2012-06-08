@@ -53,6 +53,8 @@ import org.eclipse.soa.sca.sca1_1.model.sca.Service;
 import org.switchyard.tools.models.switchyard1_0.switchyard.SwitchYardBindingType;
 import org.switchyard.tools.ui.editor.diagram.binding.CamelFTPBindingFactory;
 import org.switchyard.tools.ui.editor.diagram.binding.CamelFileBindingFactory;
+import org.switchyard.tools.ui.editor.diagram.binding.CamelNettyTCPBindingFactory;
+import org.switchyard.tools.ui.editor.diagram.binding.CamelNettyUDPBindingFactory;
 import org.switchyard.tools.ui.editor.diagram.binding.CamelQuartzBindingFactory;
 import org.switchyard.tools.ui.editor.diagram.binding.CreateBindingFeature;
 import org.switchyard.tools.ui.editor.diagram.binding.SCADiagramAddBindingFeature;
@@ -211,12 +213,16 @@ public class SCADiagramFeatureProvider extends DefaultFeatureProvider {
 
     /* package */List<ICreateFeature> getCreateBindingFeatures() {
         List<ICreateFeature> features = new ArrayList<ICreateFeature>(1);
-        features.add(new CreateBindingFeature(this, new SOAPBindingFactory(), "SOAP", "A SOAP based endpoint."));
         features.add(new CreateBindingFeature(this, new CamelFileBindingFactory(), "File",
                 "A Camel File based endpoint."));
         features.add(new CreateBindingFeature(this, new CamelFTPBindingFactory(), "FTP", "A Camel FTP based endpoint."));
+        features.add(new CreateBindingFeature(this, new CamelNettyTCPBindingFactory(), "Netty TCP",
+                "A Camel Netty TCP based endpoint."));
+        features.add(new CreateBindingFeature(this, new CamelNettyUDPBindingFactory(), "Netty UDP",
+                "A Camel Netty UDP based endpoint."));
         features.add(new CreateBindingFeature(this, new CamelQuartzBindingFactory(), "Scheduling",
                 "A Camel Scheduling based endpoint."));
+        features.add(new CreateBindingFeature(this, new SOAPBindingFactory(), "SOAP", "A SOAP based endpoint."));
         return features;
     }
 

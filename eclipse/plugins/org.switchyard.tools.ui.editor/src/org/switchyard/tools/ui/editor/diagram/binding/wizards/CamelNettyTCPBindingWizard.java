@@ -22,14 +22,14 @@ import org.switchyard.tools.ui.editor.diagram.internal.wizards.LinkedWizardBase;
  * 
  * @author bfitzpat
  */
-public class CamelQuartzBindingWizard extends LinkedWizardBase implements IBindingWizard {
+public class CamelNettyTCPBindingWizard extends LinkedWizardBase implements IBindingWizard {
 
-    private CamelQuartzBindingWizardPage _page;
+    private CamelNettyTCPBindingWizardPage _page;
     private Contract _container;
 
     @Override
     public void addPages() {
-        _page = new CamelQuartzBindingWizardPage(CamelQuartzBindingWizardPage.class.getCanonicalName());
+        _page = new CamelNettyTCPBindingWizardPage(CamelNettyTCPBindingWizardPage.class.getCanonicalName());
         addPage(_page);
     }
 

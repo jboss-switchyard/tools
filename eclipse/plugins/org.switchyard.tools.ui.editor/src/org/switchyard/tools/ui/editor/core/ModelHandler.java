@@ -56,7 +56,8 @@ import org.switchyard.tools.models.switchyard1_0.camel.CamelFtpBindingType;
 import org.switchyard.tools.models.switchyard1_0.camel.CamelFtpsBindingType;
 import org.switchyard.tools.models.switchyard1_0.camel.CamelImplementationType;
 import org.switchyard.tools.models.switchyard1_0.camel.CamelJmsBindingType;
-import org.switchyard.tools.models.switchyard1_0.camel.CamelNettyBindingType;
+import org.switchyard.tools.models.switchyard1_0.camel.CamelNettyTcpBindingType;
+import org.switchyard.tools.models.switchyard1_0.camel.CamelNettyUdpBindingType;
 import org.switchyard.tools.models.switchyard1_0.camel.CamelPackage;
 import org.switchyard.tools.models.switchyard1_0.camel.CamelQuartzBindingType;
 import org.switchyard.tools.models.switchyard1_0.camel.CamelSedaBindingType;
@@ -712,8 +713,10 @@ public class ModelHandler {
             return "SFTP";
         } else if (binding instanceof CamelFtpBindingType) {
             return "FTP";
-        } else if (binding instanceof CamelNettyBindingType) {
-            return "Netty";
+        } else if (binding instanceof CamelNettyTcpBindingType) {
+            return "Netty TCP";
+        } else if (binding instanceof CamelNettyUdpBindingType) {
+            return "Netty UDP";
         } else if (binding instanceof CamelJmsBindingType) {
             return "JMS";
         } else if (binding instanceof CamelAtomBindingType) {

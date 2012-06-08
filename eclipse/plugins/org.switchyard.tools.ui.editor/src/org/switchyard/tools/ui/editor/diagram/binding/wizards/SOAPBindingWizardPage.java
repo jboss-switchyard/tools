@@ -55,7 +55,7 @@ public class SOAPBindingWizardPage extends WizardPage {
         _uriComposite.setBinding(_binding);
 
         setControl(_uriComposite.getPanel());
-
+        setPageComplete(_uriComposite.getErrorMessage() == null);
         setErrorMessage(null);
     }
 

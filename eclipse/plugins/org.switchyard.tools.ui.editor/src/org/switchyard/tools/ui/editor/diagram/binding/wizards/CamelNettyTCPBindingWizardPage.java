@@ -21,46 +21,45 @@ import org.eclipse.soa.sca.sca1_1.model.sca.Contract;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.widgets.Composite;
 import org.switchyard.tools.models.switchyard1_0.camel.CamelFactory;
-import org.switchyard.tools.models.switchyard1_0.camel.CamelQuartzBindingType;
-import org.switchyard.tools.ui.editor.diagram.shared.CamelQuartzComposite;
+import org.switchyard.tools.models.switchyard1_0.camel.CamelNettyTcpBindingType;
+import org.switchyard.tools.ui.editor.diagram.shared.CamelNettyTCPComposite;
 
 /**
  * @author bfitzpat
  * 
  */
-public class CamelQuartzBindingWizardPage extends WizardPage {
+public class CamelNettyTCPBindingWizardPage extends WizardPage {
 
-    private CamelQuartzComposite _quartzComposite = null;
-    private CamelQuartzBindingType _binding = CamelFactory.eINSTANCE.createCamelQuartzBindingType();
+    private CamelNettyTCPComposite _nettyTCPComposite = null;
+    private CamelNettyTcpBindingType _binding = CamelFactory.eINSTANCE.createCamelNettyTcpBindingType();
     private Contract _targetContainer;
 
     /**
      * @param pageName String for name
      */
-    public CamelQuartzBindingWizardPage(String pageName) {
+    public CamelNettyTCPBindingWizardPage(String pageName) {
         super(pageName);
-        setTitle("Specify Scheduling Binding Details");
-        setDescription("Specify pertinent details for your Scheduling Binding.");
+        setTitle("Specify Netty TCP Binding Details");
+        setDescription("Specify pertinent details for your Netty TCP Binding.");
     }
 
     @Override
     public void createControl(Composite parent) {
-        _targetContainer = ((CamelQuartzBindingWizard)getWizard()).getTargetContainer();
-        _quartzComposite = new CamelQuartzComposite();
-        _quartzComposite.addChangeListener(new ChangeListener() {
+        _targetContainer = ((CamelNettyTCPBindingWizard)getWizard()).getTargetContainer();
+        _nettyTCPComposite = new CamelNettyTCPComposite();
+        _nettyTCPComposite.addChangeListener(new ChangeListener() {
             @Override
             public void stateChanged(ChangeEvent arg0) {
-                setErrorMessage(_quartzComposite.getErrorMessage());
-                setPageComplete(_quartzComposite.getErrorMessage() == null);
+                setErrorMessage(_nettyTCPComposite.getErrorMessage());
+                setPageComplete(_nettyTCPComposite.getErrorMessage() == null);
             }
         });
-        _quartzComposite.createContents(parent, SWT.NONE);
-        _quartzComposite.setTargetObject(_targetContainer);
-        _quartzComposite.setBinding(_binding);
+        _nettyTCPComposite.createContents(parent, SWT.NONE);
+        _nettyTCPComposite.setTargetObject(_targetContainer);
+        _nettyTCPComposite.setBinding(_binding);
 
-        setControl(_quartzComposite.getPanel());
-        setPageComplete(_quartzComposite.getErrorMessage() == null);
-
+        setControl(_nettyTCPComposite.getPanel());
+        setPageComplete(_nettyTCPComposite.getErrorMessage() == null);
         setErrorMessage(null);
     }
 

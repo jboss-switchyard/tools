@@ -153,7 +153,6 @@ public class SwitchyardSCAPropertiesBindingsSection extends GFPropertySection im
 
     @Override
     public void refresh() {
-        _binding = null;
         PictogramElement pe = getSelectedPictogramElement();
         if (pe != null) {
             _targetBO = Graphiti.getLinkService().getBusinessObjectForLinkedPictogramElement(pe);
