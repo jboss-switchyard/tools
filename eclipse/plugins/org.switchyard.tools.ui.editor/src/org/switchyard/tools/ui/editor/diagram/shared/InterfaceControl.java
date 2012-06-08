@@ -188,7 +188,7 @@ public class InterfaceControl implements ISelectionProvider {
         label = new Label(parent, SWT.NONE);
 
         _newLink = new Link(parent, SWT.NONE);
-        _newLink.setText("<a>Service Interface:</a>");
+        _newLink.setText("<a>Interface:</a>");
         _newLink.addSelectionListener(new SelectionAdapter() {
             @Override
             public void widgetSelected(SelectionEvent event) {
@@ -235,6 +235,16 @@ public class InterfaceControl implements ISelectionProvider {
      */
     public void setProject(IJavaProject project) {
         _project = project;
+    }
+
+    /**
+     * @return the interface being edited.
+     */
+    public Interface getInterface() {
+        if (_adapter == null) {
+            return null;
+        }
+        return _adapter.getInterface();
     }
 
     @Override

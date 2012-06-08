@@ -205,11 +205,11 @@ public class CamelXMLRouteComposite extends AbstractSwitchyardComposite implemen
                 javaProject = JavaCore.create(modelFile.getProject());
             }
         }
-        FindResourceDialog dialog = null;
+        ClasspathResourceSelectionDialog dialog = null;
         if (javaProject == null) {
-            dialog = new FindResourceDialog(shell, ResourcesPlugin.getWorkspace().getRoot());
+            dialog = new ClasspathResourceSelectionDialog(shell, ResourcesPlugin.getWorkspace().getRoot(), "xml");
         } else {
-            dialog = new FindResourceDialog(shell, javaProject.getProject());
+            dialog = new ClasspathResourceSelectionDialog(shell, javaProject.getProject(), "xml");
         }
         dialog.setTitle("Select Route XML File from Project");
         dialog.setInitialPattern("*.xml");
@@ -222,7 +222,7 @@ public class CamelXMLRouteComposite extends AbstractSwitchyardComposite implemen
     }
 
     private String getPathToNewXML(String defaultName) {
-        NewRouteFileWizard newWizard = new NewRouteFileWizard();
+        NewRouteFileWizard newWizard = new NewRouteFileWizard(false);
         IFile modelFile = SwitchyardSCAEditor.getActiveEditor().getModelFile();
         IStructuredSelection selectionToPass = StructuredSelection.EMPTY;
         if (modelFile != null) {

@@ -15,18 +15,15 @@ package org.switchyard.tools.ui.editor.diagram.shared;
 import java.net.URI;
 
 import org.eclipse.core.resources.IFile;
-import org.eclipse.core.resources.IFolder;
 import org.eclipse.core.resources.IProject;
 import org.eclipse.core.resources.IResource;
 import org.eclipse.core.resources.ResourcesPlugin;
 import org.eclipse.core.runtime.IPath;
 import org.eclipse.emf.transaction.RecordingCommand;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
-import org.eclipse.jdt.core.IJavaElement;
 import org.eclipse.jdt.core.IJavaProject;
 import org.eclipse.jdt.core.IPackageFragmentRoot;
 import org.eclipse.jdt.core.JavaCore;
-import org.eclipse.jdt.core.JavaModelException;
 import org.eclipse.jface.viewers.IStructuredSelection;
 import org.eclipse.jface.viewers.StructuredSelection;
 import org.eclipse.jface.window.Window;
@@ -52,6 +49,7 @@ import org.switchyard.tools.models.switchyard1_0.soap.ContextMapperType;
 import org.switchyard.tools.models.switchyard1_0.soap.SOAPBindingType;
 import org.switchyard.tools.models.switchyard1_0.soap.SOAPFactory;
 import org.switchyard.tools.ui.editor.impl.SwitchyardSCAEditor;
+import org.switchyard.tools.ui.editor.util.JavaUtil;
 import org.switchyard.tools.ui.editor.util.OpenFileUtil;
 
 /**
@@ -59,7 +57,8 @@ import org.switchyard.tools.ui.editor.util.OpenFileUtil;
  * 
  */
 @SuppressWarnings("restriction")
-public class WSDLURISelectionComposite extends AbstractSwitchyardComposite implements IBindingComposite, IInterfaceComposite {
+public class WSDLURISelectionComposite extends AbstractSwitchyardComposite implements IBindingComposite,
+        IInterfaceComposite {
 
     private static final String WSDL = "wsdl";
 
@@ -254,11 +253,12 @@ public class WSDLURISelectionComposite extends AbstractSwitchyardComposite imple
                     setErrorMessage("Socket string should match one of these patterns: localhost:8080, 0.0.0.0:8080, or :8080");
                 } else {
                     String left = portString.substring(0, pos).trim();
-                    if (left.length() > 0 && !left.matches("^([a-zA-Z0-9]|[a-zA-Z0-9][a-zA-Z0-9\\-]{0,61}[a-zA-Z0-9])(\\.([a-zA-Z0-9]|[a-zA-Z0-9][a-zA-Z0-9\\-]{0,61}[a-zA-Z0-9]))*$")) {
+                    if (left.length() > 0
+                            && !left.matches("^([a-zA-Z0-9]|[a-zA-Z0-9][a-zA-Z0-9\\-]{0,61}[a-zA-Z0-9])(\\.([a-zA-Z0-9]|[a-zA-Z0-9][a-zA-Z0-9\\-]{0,61}[a-zA-Z0-9]))*$")) {
                         setErrorMessage("Socket string should match one of these patterns: localhost:8080, 0.0.0.0:8080, or :8080");
                         return;
                     }
-                    String right = portString.substring(pos+1, portString.length()).trim();
+                    String right = portString.substring(pos + 1, portString.length()).trim();
                     try {
                         Integer.parseInt(right);
                     } catch (NumberFormatException nfe) {
@@ -297,7 +297,8 @@ public class WSDLURISelectionComposite extends AbstractSwitchyardComposite imple
      */
     public void setInterface(Interface cInterface) {
         this._interface = cInterface;
-        if (cInterface instanceof WSDLPortType && _mWSDLInterfaceURIText != null && !_mWSDLInterfaceURIText.isDisposed()) {
+        if (cInterface instanceof WSDLPortType && _mWSDLInterfaceURIText != null
+                && !_mWSDLInterfaceURIText.isDisposed()) {
             WSDLPortType wPortType = (WSDLPortType) this._interface;
             _inUpdate = true;
             if (wPortType.getInterface() != null) {
@@ -357,11 +358,11 @@ public class WSDLURISelectionComposite extends AbstractSwitchyardComposite imple
                 javaProject = JavaCore.create(modelFile.getProject());
             }
         }
-        FindResourceDialog dialog = null;
+        ClasspathResourceSelectionDialog dialog = null;
         if (javaProject == null) {
-            dialog = new FindResourceDialog(shell, ResourcesPlugin.getWorkspace().getRoot());
+            dialog = new ClasspathResourceSelectionDialog(shell, ResourcesPlugin.getWorkspace().getRoot(), extension);
         } else {
-            dialog = new FindResourceDialog(shell, javaProject.getProject());
+            dialog = new ClasspathResourceSelectionDialog(shell, javaProject.getProject(), extension);
         }
         dialog.setTitle("Select WSDL from Project");
         dialog.setInitialPattern("*.wsdl");
@@ -370,35 +371,7 @@ public class WSDLURISelectionComposite extends AbstractSwitchyardComposite imple
         if (result == null || result.length == 0 || !(result[0] instanceof IResource)) {
             return null;
         }
-        IJavaElement element = JavaCore.create((IResource) result[0]);
-        IResource resource = null;
-        if (element != null && element.exists()) {
-            try {
-                resource = element.getCorrespondingResource();
-            } catch (JavaModelException e) {
-                e.fillInStackTrace();
-            }
-        } else {
-            resource = ((IResource) result[0]);
-        }
-        IPackageFragmentRoot root = javaProject.getPackageFragmentRoot(modelFile);
-        IResource pkgresource = root.getResource();
-        if (pkgresource == null) {
-            IJavaElement parent = root.getParent();
-            pkgresource = parent.getResource();
-        }
-        if (resource instanceof IFile) {
-            pkgresource = ((IFile) resource).getParent();
-        }
-        if (pkgresource instanceof IFolder) {
-            IFolder folder = (IFolder) pkgresource;
-            IFolder parent = (IFolder) folder.getParent();
-            IPath outpath  = resource.getProjectRelativePath()
-                    .makeRelativeTo(parent.getProjectRelativePath());
-            return outpath.toPortableString();
-        }
-
-        return null;
+        return JavaUtil.getJavaPathForResource((IResource) result[0]).toString();
     }
 
     private static String getPathToNewWSDL(final Shell shell, final IPath path, boolean _openWhenFinish) {

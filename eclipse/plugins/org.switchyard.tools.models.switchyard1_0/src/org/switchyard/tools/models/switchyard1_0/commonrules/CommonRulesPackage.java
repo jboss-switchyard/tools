@@ -73,13 +73,58 @@ public interface CommonRulesPackage extends EPackage {
     int AUDIT_TYPE1 = 0;
 
     /**
+     * The feature id for the '<em><b>Documentation</b></em>' containment reference list.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int AUDIT_TYPE1__DOCUMENTATION = ScaPackage.COMMON_EXTENSION_BASE__DOCUMENTATION;
+
+    /**
+     * The feature id for the '<em><b>Any Attribute</b></em>' attribute list.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int AUDIT_TYPE1__ANY_ATTRIBUTE = ScaPackage.COMMON_EXTENSION_BASE__ANY_ATTRIBUTE;
+
+    /**
+     * The feature id for the '<em><b>Interval</b></em>' attribute.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int AUDIT_TYPE1__INTERVAL = ScaPackage.COMMON_EXTENSION_BASE_FEATURE_COUNT + 0;
+
+    /**
+     * The feature id for the '<em><b>Log</b></em>' attribute.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int AUDIT_TYPE1__LOG = ScaPackage.COMMON_EXTENSION_BASE_FEATURE_COUNT + 1;
+
+    /**
+     * The feature id for the '<em><b>Type</b></em>' attribute.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int AUDIT_TYPE1__TYPE = ScaPackage.COMMON_EXTENSION_BASE_FEATURE_COUNT + 2;
+
+    /**
      * The number of structural features of the '<em>Audit Type1</em>' class.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @generated
      * @ordered
      */
-    int AUDIT_TYPE1_FEATURE_COUNT = 0;
+    int AUDIT_TYPE1_FEATURE_COUNT = ScaPackage.COMMON_EXTENSION_BASE_FEATURE_COUNT + 3;
 
     /**
      * The meta object id for the '{@link org.switchyard.tools.models.switchyard1_0.commonrules.impl.CommonImplementationTypeImpl <em>Common Implementation Type</em>}' class.
@@ -440,6 +485,39 @@ public interface CommonRulesPackage extends EPackage {
     EClass getAuditType1();
 
     /**
+     * Returns the meta object for the attribute '{@link org.switchyard.tools.models.switchyard1_0.commonrules.AuditType1#getInterval <em>Interval</em>}'.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @return the meta object for the attribute '<em>Interval</em>'.
+     * @see org.switchyard.tools.models.switchyard1_0.commonrules.AuditType1#getInterval()
+     * @see #getAuditType1()
+     * @generated
+     */
+    EAttribute getAuditType1_Interval();
+
+    /**
+     * Returns the meta object for the attribute '{@link org.switchyard.tools.models.switchyard1_0.commonrules.AuditType1#getLog <em>Log</em>}'.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @return the meta object for the attribute '<em>Log</em>'.
+     * @see org.switchyard.tools.models.switchyard1_0.commonrules.AuditType1#getLog()
+     * @see #getAuditType1()
+     * @generated
+     */
+    EAttribute getAuditType1_Log();
+
+    /**
+     * Returns the meta object for the attribute '{@link org.switchyard.tools.models.switchyard1_0.commonrules.AuditType1#getType <em>Type</em>}'.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @return the meta object for the attribute '<em>Type</em>'.
+     * @see org.switchyard.tools.models.switchyard1_0.commonrules.AuditType1#getType()
+     * @see #getAuditType1()
+     * @generated
+     */
+    EAttribute getAuditType1_Type();
+
+    /**
      * Returns the meta object for class '{@link org.switchyard.tools.models.switchyard1_0.commonrules.CommonImplementationType <em>Common Implementation Type</em>}'.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
@@ -775,6 +853,30 @@ public interface CommonRulesPackage extends EPackage {
          * @generated
          */
         EClass AUDIT_TYPE1 = eINSTANCE.getAuditType1();
+
+        /**
+         * The meta object literal for the '<em><b>Interval</b></em>' attribute feature.
+         * <!-- begin-user-doc -->
+         * <!-- end-user-doc -->
+         * @generated
+         */
+        EAttribute AUDIT_TYPE1__INTERVAL = eINSTANCE.getAuditType1_Interval();
+
+        /**
+         * The meta object literal for the '<em><b>Log</b></em>' attribute feature.
+         * <!-- begin-user-doc -->
+         * <!-- end-user-doc -->
+         * @generated
+         */
+        EAttribute AUDIT_TYPE1__LOG = eINSTANCE.getAuditType1_Log();
+
+        /**
+         * The meta object literal for the '<em><b>Type</b></em>' attribute feature.
+         * <!-- begin-user-doc -->
+         * <!-- end-user-doc -->
+         * @generated
+         */
+        EAttribute AUDIT_TYPE1__TYPE = eINSTANCE.getAuditType1_Type();
 
         /**
          * The meta object literal for the '{@link org.switchyard.tools.models.switchyard1_0.commonrules.impl.CommonImplementationTypeImpl <em>Common Implementation Type</em>}' class.

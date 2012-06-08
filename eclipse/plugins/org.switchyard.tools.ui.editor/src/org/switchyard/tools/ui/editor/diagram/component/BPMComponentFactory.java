@@ -10,40 +10,36 @@
  ************************************************************************************/
 package org.switchyard.tools.ui.editor.diagram.component;
 
+import org.eclipse.core.runtime.Path;
 import org.eclipse.soa.sca.sca1_1.model.sca.Composite;
 import org.eclipse.soa.sca.sca1_1.model.sca.Implementation;
-import org.switchyard.tools.models.switchyard1_0.bean.BeanImplementationType;
-import org.switchyard.tools.ui.editor.diagram.implementation.BeanImplementationFactory;
+import org.switchyard.tools.models.switchyard1_0.bpm.BPMImplementationType;
+import org.switchyard.tools.ui.editor.diagram.implementation.BPMImplementationFactory;
 
 /**
- * BeanComponentFactory
+ * BPMComponentFactory
  * 
  * <p/>
- * Factory for creating a new component based on a Bean implementation.
+ * Factory for creating a new component based on a BPM implementation.
  * 
  * @author Rob Cernich
  */
-public class BeanComponentFactory extends ComponentWithImplementationFactory {
+public class BPMComponentFactory extends ComponentWithImplementationFactory {
 
     /**
      * Create a new BeanComponentFactory.
      */
-    public BeanComponentFactory() {
-        super(new BeanImplementationFactory());
+    public BPMComponentFactory() {
+        super(new BPMImplementationFactory());
     }
 
     @Override
     protected String getComponentName(Implementation implementation, Composite container) {
-        return makeUniqueComponentName(getTypeName((BeanImplementationType) implementation), container);
+        return makeUniqueComponentName(getTypeName((BPMImplementationType) implementation), container);
     }
 
-    private String getTypeName(BeanImplementationType implementation) {
-        final String name = implementation.getClass_();
-        final int index = name.lastIndexOf('.');
-        if (index < 0) {
-            return name;
-        }
-        return name.substring(index + 1);
+    private String getTypeName(BPMImplementationType implementation) {
+        return new Path(implementation.getProcessDefinition()).removeFileExtension().lastSegment();
     }
 
 }

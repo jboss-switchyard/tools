@@ -254,6 +254,7 @@ public interface BPMImplementationType extends CommonImplementationType {
 
     /**
      * Returns the value of the '<em><b>Message Content In Name</b></em>' attribute.
+     * The default value is <code>"messsageContentIn"</code>.
      * <!-- begin-user-doc -->
      * <p>
      * If the meaning of the '<em>Message Content In Name</em>' attribute isn't clear,
@@ -263,7 +264,7 @@ public interface BPMImplementationType extends CommonImplementationType {
      * @return the value of the '<em>Message Content In Name</em>' attribute.
      * @see #setMessageContentInName(String)
      * @see org.switchyard.tools.models.switchyard1_0.bpm.BPMPackage#getBPMImplementationType_MessageContentInName()
-     * @model dataType="org.eclipse.emf.ecore.xml.type.String"
+     * @model default="messsageContentIn" dataType="org.eclipse.emf.ecore.xml.type.String"
      *        extendedMetaData="name='messageContentInName' kind='attribute'"
      * @generated
      */
@@ -281,6 +282,7 @@ public interface BPMImplementationType extends CommonImplementationType {
 
     /**
      * Returns the value of the '<em><b>Message Content Out Name</b></em>' attribute.
+     * The default value is <code>"messageContentOut"</code>.
      * <!-- begin-user-doc -->
      * <p>
      * If the meaning of the '<em>Message Content Out Name</em>' attribute isn't clear,
@@ -290,7 +292,7 @@ public interface BPMImplementationType extends CommonImplementationType {
      * @return the value of the '<em>Message Content Out Name</em>' attribute.
      * @see #setMessageContentOutName(String)
      * @see org.switchyard.tools.models.switchyard1_0.bpm.BPMPackage#getBPMImplementationType_MessageContentOutName()
-     * @model dataType="org.eclipse.emf.ecore.xml.type.String"
+     * @model default="messageContentOut" dataType="org.eclipse.emf.ecore.xml.type.String"
      *        extendedMetaData="name='messageContentOutName' kind='attribute'"
      * @generated
      */

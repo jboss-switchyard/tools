@@ -86,6 +86,7 @@ public class BPMSwitch<T> extends Switch<T> {
                 AuditType auditType = (AuditType)theEObject;
                 T result = caseAuditType(auditType);
                 if (result == null) result = caseAuditType1(auditType);
+                if (result == null) result = caseCommonExtensionBase(auditType);
                 if (result == null) result = defaultCase(theEObject);
                 return result;
             }

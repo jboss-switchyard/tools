@@ -76,6 +76,7 @@ public class CommonRulesSwitch<T> extends Switch<T> {
             case CommonRulesPackage.AUDIT_TYPE1: {
                 AuditType1 auditType1 = (AuditType1)theEObject;
                 T result = caseAuditType1(auditType1);
+                if (result == null) result = caseCommonExtensionBase(auditType1);
                 if (result == null) result = defaultCase(theEObject);
                 return result;
             }

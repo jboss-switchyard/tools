@@ -57,6 +57,7 @@ import org.switchyard.tools.ui.editor.diagram.binding.CamelQuartzBindingFactory;
 import org.switchyard.tools.ui.editor.diagram.binding.CreateBindingFeature;
 import org.switchyard.tools.ui.editor.diagram.binding.SCADiagramAddBindingFeature;
 import org.switchyard.tools.ui.editor.diagram.binding.SOAPBindingFactory;
+import org.switchyard.tools.ui.editor.diagram.component.BPMComponentFactory;
 import org.switchyard.tools.ui.editor.diagram.component.BaseComponentFactory;
 import org.switchyard.tools.ui.editor.diagram.component.BeanComponentFactory;
 import org.switchyard.tools.ui.editor.diagram.component.CamelJavaComponentFactory;
@@ -87,6 +88,7 @@ import org.switchyard.tools.ui.editor.diagram.connections.SCADiagramAddComponent
 import org.switchyard.tools.ui.editor.diagram.connections.SCADiagramAddReferenceLinkFeature;
 import org.switchyard.tools.ui.editor.diagram.connections.SCADiagramCreateComponentServiceLinkFeature;
 import org.switchyard.tools.ui.editor.diagram.connections.SCADiagramCreateReferenceLinkFeature;
+import org.switchyard.tools.ui.editor.diagram.implementation.BPMImplementationFactory;
 import org.switchyard.tools.ui.editor.diagram.implementation.BeanImplementationFactory;
 import org.switchyard.tools.ui.editor.diagram.implementation.CamelJavaImplementationFactory;
 import org.switchyard.tools.ui.editor.diagram.implementation.CamelXMLImplementationFactory;
@@ -177,6 +179,8 @@ public class SCADiagramFeatureProvider extends DefaultFeatureProvider {
                 "Create a component implemented as an XML based Camel route."));
         features.add(new CreateComponentFeature(this, new BeanComponentFactory(), "Bean",
                 "Create a component with a Java Bean (CDI) implementation."));
+        features.add(new CreateComponentFeature(this, new BPMComponentFactory(), "Process (BPMN)",
+                "Create a component implemented as a BPMN process."));
 
         // services & references
         features.add(new SCADiagramCreateComponentServiceFeature(this));
@@ -200,6 +204,8 @@ public class SCADiagramFeatureProvider extends DefaultFeatureProvider {
                 "An implementation using an XML based Camel route."));
         features.add(new CreateImplementationFeature(this, new BeanImplementationFactory(), "Bean",
                 "An implementation using a Java Bean (CDI)."));
+        features.add(new CreateImplementationFeature(this, new BPMImplementationFactory(), "Process (BPMN)",
+                "An implementation using a BPMN process."));
         return features;
     }
 

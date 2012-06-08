@@ -18,18 +18,12 @@ import java.util.HashMap;
 import java.util.Map;
 
 import org.eclipse.core.resources.IContainer;
-import org.eclipse.core.resources.IProject;
 import org.eclipse.core.resources.IResource;
-import org.eclipse.core.resources.ResourcesPlugin;
-import org.eclipse.core.runtime.CoreException;
 import org.eclipse.core.runtime.IStatus;
 import org.eclipse.core.runtime.Status;
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
-import org.eclipse.jdt.core.IJavaModel;
-import org.eclipse.jdt.core.IJavaProject;
-import org.eclipse.jdt.core.JavaCore;
 import org.eclipse.jface.viewers.ArrayContentProvider;
 import org.eclipse.jface.viewers.DoubleClickEvent;
 import org.eclipse.jface.viewers.IDoubleClickListener;
@@ -46,7 +40,6 @@ import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Control;
 import org.eclipse.swt.widgets.Label;
 import org.eclipse.swt.widgets.Shell;
-import org.eclipse.ui.dialogs.FilteredResourcesSelectionDialog;
 import org.eclipse.wst.wsdl.Definition;
 import org.eclipse.wst.wsdl.PortType;
 import org.eclipse.wst.wsdl.util.WSDLResourceImpl;
@@ -58,9 +51,8 @@ import org.switchyard.tools.ui.editor.Activator;
  * @author bfitzpat
  * @author Rob Cernich
  */
-public class WSDLPortTypeSelectionDialog extends FilteredResourcesSelectionDialog {
+public class WSDLPortTypeSelectionDialog extends ClasspathResourceSelectionDialog {
 
-    private IJavaModel _fJavaModel;
     private ListViewer _portTypesList;
     private Map<IResource, Definition> _wsdlDefinitions = new HashMap<IResource, Definition>();
     private PortType _result;
@@ -72,8 +64,7 @@ public class WSDLPortTypeSelectionDialog extends FilteredResourcesSelectionDialo
      * @param container the root container
      */
     public WSDLPortTypeSelectionDialog(Shell parentShell, IContainer container) {
-        super(parentShell, false, container, IResource.FILE);
-        _fJavaModel = JavaCore.create(ResourcesPlugin.getWorkspace().getRoot());
+        super(parentShell, container);
         setTitle("Select WSDL file and portType");
     }
 
@@ -82,11 +73,6 @@ public class WSDLPortTypeSelectionDialog extends FilteredResourcesSelectionDialo
      */
     public PortType getSelectedPortType() {
         return _result;
-    }
-
-    @Override
-    protected ItemsFilter createFilter() {
-        return new WSDLFileResourceFilter();
     }
 
     @Override
@@ -183,70 +169,6 @@ public class WSDLPortTypeSelectionDialog extends FilteredResourcesSelectionDialo
         // stash away the portType
         final StructuredSelection selection = (StructuredSelection) _portTypesList.getSelection();
         _result = (PortType) selection.getFirstElement();
-    }
-
-    private class WSDLFileResourceFilter extends ResourceFilter {
-
-        /*
-         * (non-Javadoc)
-         * 
-         * @see org.eclipse.ui.dialogs.FilteredResourcesSelectionDialog.
-         * ResourceFilter#matchItem(java.lang.Object)
-         */
-        @Override
-        public boolean matchItem(Object item) {
-            IResource resource = (IResource) item;
-            return super.matchItem(item) && "wsdl".equals(resource.getFullPath().getFileExtension())
-                    && select(resource);
-        }
-
-        private boolean isParentOnClassPath(IJavaProject javaProject, IResource resource) {
-            boolean flag = false;
-            while (!flag && resource.getParent() != null) {
-                flag = javaProject.isOnClasspath(resource);
-                if (!flag) {
-                    resource = resource.getParent();
-                } else {
-                    return flag;
-                }
-            }
-            return flag;
-        }
-
-        /**
-         * This is the orignal <code>select</code> method. Since
-         * <code>GotoResourceDialog</code> needs to extend
-         * <code>FilteredResourcesSelectionDialog</code> result of this method
-         * must be combined with the <code>matchItem</code> method from super
-         * class (<code>ResourceFilter</code>).
-         * 
-         * @param resource A resource
-         * @return <code>true</code> if item matches against given conditions
-         *         <code>false</code> otherwise
-         */
-        private boolean select(IResource resource) {
-            IProject project = resource.getProject();
-            IJavaProject javaProject = JavaCore.create(project);
-            try {
-                return (javaProject != null && isParentOnClassPath(javaProject, resource))
-                        || (project.getNature(JavaCore.NATURE_ID) != null && _fJavaModel.contains(resource));
-            } catch (CoreException e) {
-                return false;
-            }
-        }
-
-        /*
-         * (non-Javadoc)
-         * 
-         * @see org.eclipse.ui.dialogs.FilteredResourcesSelectionDialog.
-         * ResourceFilter
-         * #equalsFilter(org.eclipse.ui.dialogs.FilteredItemsSelectionDialog
-         * .ItemsFilter)
-         */
-        @Override
-        public boolean equalsFilter(ItemsFilter filter) {
-            return filter instanceof WSDLFileResourceFilter && super.equalsFilter(filter);
-        }
     }
 
 }

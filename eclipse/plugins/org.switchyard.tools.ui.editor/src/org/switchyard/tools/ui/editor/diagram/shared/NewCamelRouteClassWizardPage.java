@@ -24,8 +24,7 @@ import org.eclipse.jface.viewers.ISelectionChangedListener;
 import org.eclipse.jface.viewers.IStructuredSelection;
 import org.eclipse.jface.viewers.SelectionChangedEvent;
 import org.eclipse.soa.sca.sca1_1.model.sca.ComponentService;
-import org.eclipse.soa.sca.sca1_1.model.sca.Interface;
-import org.eclipse.soa.sca.sca1_1.model.sca.ScaFactory;
+import org.eclipse.soa.sca.sca1_1.model.sca.ScaPackage;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.layout.GridLayout;
 import org.eclipse.swt.widgets.Composite;
@@ -42,7 +41,7 @@ public class NewCamelRouteClassWizardPage extends NewClassWizardPage {
 
     private static final String SERVICE_INTERFACE = "SERVICE_INTERFACE";
 
-    private InterfaceControl _serviceInterfaceControl;
+    private ContractControl _serviceInterfaceControl;
     private IStatus _serviceInterfaceStatus;
 
     /**
@@ -54,8 +53,8 @@ public class NewCamelRouteClassWizardPage extends NewClassWizardPage {
         setTitle("New Camel Route Service");
         setDescription("Create a new service implementation based on a Camel route definition.");
 
-        _serviceInterfaceControl = new InterfaceControl(getJavaProject(), EnumSet.of(InterfaceType.Java,
-                InterfaceType.WSDL));
+        _serviceInterfaceControl = new ContractControl(ScaPackage.eINSTANCE.getComponentService(), getJavaProject(),
+                EnumSet.of(InterfaceType.Java, InterfaceType.WSDL));
         _serviceInterfaceControl.addSelectionChangedListener(new ISelectionChangedListener() {
             @Override
             public void selectionChanged(SelectionChangedEvent event) {
@@ -183,15 +182,7 @@ public class NewCamelRouteClassWizardPage extends NewClassWizardPage {
      * @return the selected service.
      */
     public ComponentService getService() {
-        IStructuredSelection selection = (IStructuredSelection) _serviceInterfaceControl.getSelection();
-        if (selection.isEmpty()) {
-            return null;
-        }
-        Interface intf = (Interface) selection.getFirstElement();
-        ComponentService service = ScaFactory.eINSTANCE.createComponentService();
-        service.setName(InterfaceControl.getSimpleServiceInterfaceName(intf));
-        service.getInterfaceGroup().set(intf.getDocumentFeature(), intf);
-        return service;
+        return (ComponentService) _serviceInterfaceControl.getContract();
     }
 
     private void createServiceInterfaceControls(Composite composite, int nColumns) {

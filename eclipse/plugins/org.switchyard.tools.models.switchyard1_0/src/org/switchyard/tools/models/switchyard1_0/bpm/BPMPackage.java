@@ -140,6 +140,51 @@ public interface BPMPackage extends EPackage {
 	int AUDIT_TYPE = 1;
 
 	/**
+     * The feature id for the '<em><b>Documentation</b></em>' containment reference list.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int AUDIT_TYPE__DOCUMENTATION = CommonRulesPackage.AUDIT_TYPE1__DOCUMENTATION;
+
+    /**
+     * The feature id for the '<em><b>Any Attribute</b></em>' attribute list.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int AUDIT_TYPE__ANY_ATTRIBUTE = CommonRulesPackage.AUDIT_TYPE1__ANY_ATTRIBUTE;
+
+    /**
+     * The feature id for the '<em><b>Interval</b></em>' attribute.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int AUDIT_TYPE__INTERVAL = CommonRulesPackage.AUDIT_TYPE1__INTERVAL;
+
+    /**
+     * The feature id for the '<em><b>Log</b></em>' attribute.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int AUDIT_TYPE__LOG = CommonRulesPackage.AUDIT_TYPE1__LOG;
+
+    /**
+     * The feature id for the '<em><b>Type</b></em>' attribute.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int AUDIT_TYPE__TYPE = CommonRulesPackage.AUDIT_TYPE1__TYPE;
+
+    /**
      * The number of structural features of the '<em>Audit Type</em>' class.
      * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->

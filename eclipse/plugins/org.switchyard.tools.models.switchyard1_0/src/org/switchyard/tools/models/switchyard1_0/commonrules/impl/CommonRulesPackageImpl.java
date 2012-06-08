@@ -293,6 +293,33 @@ public class CommonRulesPackageImpl extends EPackageImpl implements CommonRulesP
      * <!-- end-user-doc -->
      * @generated
      */
+    public EAttribute getAuditType1_Interval() {
+        return (EAttribute)auditType1EClass.getEStructuralFeatures().get(0);
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public EAttribute getAuditType1_Log() {
+        return (EAttribute)auditType1EClass.getEStructuralFeatures().get(1);
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public EAttribute getAuditType1_Type() {
+        return (EAttribute)auditType1EClass.getEStructuralFeatures().get(2);
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
     public EClass getCommonImplementationType() {
         return commonImplementationTypeEClass;
     }
@@ -569,6 +596,9 @@ public class CommonRulesPackageImpl extends EPackageImpl implements CommonRulesP
 
         // Create classes and their features
         auditType1EClass = createEClass(AUDIT_TYPE1);
+        createEAttribute(auditType1EClass, AUDIT_TYPE1__INTERVAL);
+        createEAttribute(auditType1EClass, AUDIT_TYPE1__LOG);
+        createEAttribute(auditType1EClass, AUDIT_TYPE1__TYPE);
 
         commonImplementationTypeEClass = createEClass(COMMON_IMPLEMENTATION_TYPE);
         createEAttribute(commonImplementationTypeEClass, COMMON_IMPLEMENTATION_TYPE__AGENT);
@@ -638,11 +668,15 @@ public class CommonRulesPackageImpl extends EPackageImpl implements CommonRulesP
         // Set bounds for type parameters
 
         // Add supertypes to classes
+        auditType1EClass.getESuperTypes().add(theScaPackage.getCommonExtensionBase());
         commonImplementationTypeEClass.getESuperTypes().add(theScaPackage.getImplementation());
         mappingTypeEClass.getESuperTypes().add(theScaPackage.getCommonExtensionBase());
 
         // Initialize classes and features; add operations and parameters
         initEClass(auditType1EClass, AuditType1.class, "AuditType1", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+        initEAttribute(getAuditType1_Interval(), theXMLTypePackage.getInt(), "interval", "1000", 0, 1, AuditType1.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+        initEAttribute(getAuditType1_Log(), theXMLTypePackage.getString(), "log", "event", 0, 1, AuditType1.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+        initEAttribute(getAuditType1_Type(), this.getAuditType(), "type", "THREADED_FILE", 0, 1, AuditType1.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
         initEClass(commonImplementationTypeEClass, CommonImplementationType.class, "CommonImplementationType", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
         initEAttribute(getCommonImplementationType_Agent(), theXMLTypePackage.getBoolean(), "agent", "false", 0, 1, CommonImplementationType.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
@@ -722,6 +756,27 @@ public class CommonRulesPackageImpl extends EPackageImpl implements CommonRulesP
            new String[] {
              "name", "AuditType",
              "kind", "empty"
+           });		
+        addAnnotation
+          (getAuditType1_Interval(), 
+           source, 
+           new String[] {
+             "kind", "attribute",
+             "name", "interval"
+           });		
+        addAnnotation
+          (getAuditType1_Log(), 
+           source, 
+           new String[] {
+             "kind", "attribute",
+             "name", "log"
+           });		
+        addAnnotation
+          (getAuditType1_Type(), 
+           source, 
+           new String[] {
+             "kind", "attribute",
+             "name", "type"
            });		
         addAnnotation
           (auditTypeObjectEDataType, 

@@ -185,7 +185,7 @@ public class BPMImplementationTypeImpl extends CommonImplementationTypeImpl impl
      * @generated
      * @ordered
      */
-    protected static final String MESSAGE_CONTENT_IN_NAME_EDEFAULT = null;
+    protected static final String MESSAGE_CONTENT_IN_NAME_EDEFAULT = "messsageContentIn";
 
     /**
      * The cached value of the '{@link #getMessageContentInName() <em>Message Content In Name</em>}' attribute.
@@ -205,7 +205,7 @@ public class BPMImplementationTypeImpl extends CommonImplementationTypeImpl impl
      * @generated
      * @ordered
      */
-    protected static final String MESSAGE_CONTENT_OUT_NAME_EDEFAULT = null;
+    protected static final String MESSAGE_CONTENT_OUT_NAME_EDEFAULT = "messageContentOut";
 
     /**
      * The cached value of the '{@link #getMessageContentOutName() <em>Message Content Out Name</em>}' attribute.
