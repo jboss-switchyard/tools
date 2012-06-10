@@ -271,18 +271,29 @@ public class InterfaceControl implements ISelectionProvider {
             return;
         }
         Object obj = ((IStructuredSelection) selection).getFirstElement();
+        if (obj instanceof Interface) {
+            init((Interface) obj);
+        }
+    }
+
+    /**
+     * Initializes the controls with the information in the specified interface.
+     * The specified interface object will not be modified.
+     * 
+     * @param intf the interface whose details should be used to initialize the
+     *            controls
+     */
+    public void init(Interface intf) {
         if (_javaRadio == null) {
-            if (obj instanceof Interface) {
-                _interface = (Interface) obj;
-                return;
-            }
+            _interface = intf;
+            return;
         }
         final Button radio;
-        if (obj instanceof JavaInterface) {
+        if (intf instanceof JavaInterface) {
             radio = _javaRadio;
-        } else if (obj instanceof WSDLPortType) {
+        } else if (intf instanceof WSDLPortType) {
             radio = _wsdlRadio;
-        } else if (obj instanceof EsbInterface) {
+        } else if (intf instanceof EsbInterface) {
             radio = _esbRadio;
         } else {
             radio = null;
@@ -291,8 +302,9 @@ public class InterfaceControl implements ISelectionProvider {
             return;
         }
         IInterfaceControlAdapter adapter = (IInterfaceControlAdapter) radio.getData();
-        adapter.init((Interface) obj);
+        adapter.init(intf);
         radio.setSelection(true);
+        updateAdapter(adapter);
     }
 
     private void fireSelectionChanged() {
@@ -320,7 +332,7 @@ public class InterfaceControl implements ISelectionProvider {
                 updateAdapter((IInterfaceControlAdapter) _esbRadio.getData());
             }
         } else {
-            setSelection(new StructuredSelection(_interface));
+            init(_interface);
         }
     }
 

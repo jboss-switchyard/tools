@@ -12,27 +12,18 @@
  ******************************************************************************/
 package org.switchyard.tools.ui.editor.diagram.componentreference;
 
-import java.io.IOException;
-
 import org.eclipse.graphiti.features.IFeatureProvider;
 import org.eclipse.graphiti.features.context.ICreateContext;
 import org.eclipse.graphiti.features.impl.AbstractCreateFeature;
-import org.eclipse.graphiti.mm.pictograms.ContainerShape;
 import org.eclipse.jface.window.Window;
 import org.eclipse.jface.wizard.WizardDialog;
 import org.eclipse.soa.sca.sca1_1.model.sca.Component;
 import org.eclipse.soa.sca.sca1_1.model.sca.ComponentReference;
-import org.eclipse.soa.sca.sca1_1.model.sca.Interface;
-import org.eclipse.soa.sca.sca1_1.model.sca.JavaInterface;
 import org.eclipse.soa.sca.sca1_1.model.sca.ScaPackage;
-import org.eclipse.soa.sca.sca1_1.model.sca.WSDLPortType;
 import org.eclipse.swt.widgets.Shell;
 import org.eclipse.ui.PlatformUI;
-import org.switchyard.tools.ui.editor.Activator;
 import org.switchyard.tools.ui.editor.ImageProvider;
-import org.switchyard.tools.ui.editor.core.ModelHandler;
-import org.switchyard.tools.ui.editor.core.ModelHandlerLocator;
-import org.switchyard.tools.ui.editor.diagram.componentreference.wizards.SCADiagramAddComponentReferenceWizard;
+import org.switchyard.tools.ui.editor.diagram.shared.BaseNewContractWizard;
 
 /**
  * @author bfitzpat
@@ -56,56 +47,30 @@ public class SCADiagramCreateComponentReferenceFeature extends AbstractCreateFea
 
     @Override
     public boolean canCreate(ICreateContext context) {
-        ContainerShape targetContainer = context.getTargetContainer();
-        // check if user wants to add to a Component
-        if (targetContainer instanceof Component) {
-            return true;
-        }
-        if (getBusinessObjectForPictogramElement(targetContainer) instanceof Component) {
-            return true;
-        }
-        return false;
+        return getBusinessObjectForPictogramElement(context.getTargetContainer()) instanceof Component;
     }
 
     @Override
     public Object[] create(ICreateContext context) {
-
-        String newClassName = null;
-        Interface newInterface = null;
-        SCADiagramAddComponentReferenceWizard wizard = new SCADiagramAddComponentReferenceWizard();
+        ComponentReference newReference = null;
+        Component component = (Component) getBusinessObjectForPictogramElement(context.getTargetContainer());
+        BaseNewContractWizard wizard = new BaseNewContractWizard("New Reference",
+                "Specify details for the new reference.", ScaPackage.eINSTANCE.getComponentReference());
         Shell shell = PlatformUI.getWorkbench().getActiveWorkbenchWindow().getShell();
         WizardDialog wizDialog = new WizardDialog(shell, wizard);
+        wizard.init(component);
         int rtn_code = wizDialog.open();
         if (rtn_code == Window.OK) {
-            newClassName = wizard.getComponentReferenceName();
-            newInterface = wizard.getInterface();
+            newReference = (ComponentReference) wizard.getContract();
         } else {
             _hasDoneChanges = false;
             return EMPTY;
         }
 
-        ComponentReference newCReference = null;
+        component.getReference().add(newReference);
 
-        try {
-            ModelHandler mh = ModelHandlerLocator.getModelHandler(getDiagram().eResource());
-            Object o = getBusinessObjectForPictogramElement(context.getTargetContainer());
-            newCReference = mh.createComponentReference((Component) o);
-            newCReference.setName(newClassName);
-            if (newInterface != null) {
-                // do something with it
-                if (newInterface instanceof JavaInterface) {
-                    newCReference.getInterfaceGroup().set(ScaPackage.eINSTANCE.getDocumentRoot_InterfaceJava(),
-                            newInterface);
-                } else if (newInterface instanceof WSDLPortType) {
-                    newCReference.getInterfaceGroup().set(ScaPackage.eINSTANCE.getDocumentRoot_InterfaceWsdl(),
-                            newInterface);
-                }
-            }
-        } catch (IOException e) {
-            Activator.logError(e);
-        }
         // do the add
-        addGraphicalRepresentation(context, newCReference);
+        addGraphicalRepresentation(context, newReference);
 
         // activate direct editing after object creation
         getFeatureProvider().getDirectEditingInfo().setActive(true);
@@ -114,7 +79,7 @@ public class SCADiagramCreateComponentReferenceFeature extends AbstractCreateFea
         _hasDoneChanges = true;
 
         // return newly created business object(s)
-        return new Object[] {newCReference };
+        return new Object[] {newReference };
     }
 
     @Override

@@ -47,7 +47,6 @@ import org.switchyard.tools.ui.editor.diagram.shared.InterfaceControl.InterfaceT
  */
 public class ContractControl implements ISelectionProvider {
 
-    private IJavaProject _project;
     private Contract _service;
     private InterfaceControl _interfaceControl;
     private String _oldServiceName;
@@ -66,6 +65,7 @@ public class ContractControl implements ISelectionProvider {
             throw new IllegalArgumentException("contractType must extend Contract: " + contractType.getName());
         }
         _service = (Contract) contractType.getEPackage().getEFactoryInstance().create(contractType);
+        _interfaceControl = new InterfaceControl(null, EnumSet.of(InterfaceType.Java, InterfaceType.WSDL));
     }
 
     /**
@@ -75,15 +75,13 @@ public class ContractControl implements ISelectionProvider {
      * @param numColumns the number of colums in the layout.
      */
     public void createControl(Composite parent, int numColumns) {
-        _interfaceControl = new InterfaceControl(_project, EnumSet.of(InterfaceType.Java, InterfaceType.WSDL));
         _interfaceControl.createControl(parent, numColumns);
         _interfaceControl.addSelectionChangedListener(new ISelectionChangedListener() {
             @Override
             public void selectionChanged(SelectionChangedEvent event) {
                 Interface intf = _interfaceControl.getInterface();
-                if (intf == null) {
-                    _service.getInterfaceGroup().clear();
-                } else {
+                _service.getInterfaceGroup().clear();
+                if (intf != null) {
                     _service.getInterfaceGroup().set(intf.getDocumentFeature(), intf);
                     String newName = InterfaceControl.getSimpleServiceInterfaceName(intf);
                     String currentName = _serviceNameText.getText();
@@ -116,15 +114,40 @@ public class ContractControl implements ISelectionProvider {
         });
         // spacer
         new Label(parent, SWT.NONE);
+
+        // init controls
+        if (_service != null && _service.getName() != null) {
+            _serviceNameText.setText(_service.getName());
+        }
+        // init data (interface control will have created the interface by now.
+        Interface intf = _interfaceControl.getInterface();
+        if (intf != null) {
+            _service.getInterfaceGroup().clear();
+            _service.getInterfaceGroup().set(intf.getDocumentFeature(), intf);
+        }
+    }
+
+    /**
+     * This initializes the controls using the details within the specified
+     * contract. The contract passed in is not edited directly.
+     * 
+     * @param contract initialize control with details from an existing
+     *            contract.
+     */
+    public void init(Contract contract) {
+        if (_serviceNameText == null) {
+            _service.setName(contract.getName());
+        } else if (contract.getName() != null) {
+            _serviceNameText.setText(contract.getName());
+        }
+        _interfaceControl.init(contract.getInterface());
+        _oldServiceName = InterfaceControl.getSimpleServiceInterfaceName(contract.getInterface());
     }
 
     /**
      * @return the current validation status of the control.
      */
     public IStatus getStatus() {
-        if (_interfaceControl == null) {
-            return Status.OK_STATUS;
-        }
         IStatus status = _interfaceControl.getStatus();
         if (status.getSeverity() != IStatus.ERROR) {
             // validate service name
@@ -139,10 +162,7 @@ public class ContractControl implements ISelectionProvider {
      * @param project the project containing the resources.
      */
     public void setProject(IJavaProject project) {
-        _project = project;
-        if (_interfaceControl != null) {
-            _interfaceControl.setProject(_project);
-        }
+        _interfaceControl.setProject(project);
     }
 
     /**

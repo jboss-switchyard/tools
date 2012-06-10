@@ -12,8 +12,6 @@
  ******************************************************************************/
 package org.switchyard.tools.ui.editor.diagram.service;
 
-import java.io.IOException;
-
 import org.eclipse.graphiti.features.IFeatureProvider;
 import org.eclipse.graphiti.features.context.ICreateContext;
 import org.eclipse.graphiti.features.impl.AbstractCreateFeature;
@@ -22,18 +20,12 @@ import org.eclipse.graphiti.mm.pictograms.Shape;
 import org.eclipse.jface.window.Window;
 import org.eclipse.jface.wizard.WizardDialog;
 import org.eclipse.soa.sca.sca1_1.model.sca.Composite;
-import org.eclipse.soa.sca.sca1_1.model.sca.Interface;
-import org.eclipse.soa.sca.sca1_1.model.sca.JavaInterface;
 import org.eclipse.soa.sca.sca1_1.model.sca.ScaPackage;
 import org.eclipse.soa.sca.sca1_1.model.sca.Service;
-import org.eclipse.soa.sca.sca1_1.model.sca.WSDLPortType;
 import org.eclipse.swt.widgets.Shell;
 import org.eclipse.ui.PlatformUI;
-import org.switchyard.tools.ui.editor.Activator;
 import org.switchyard.tools.ui.editor.ImageProvider;
-import org.switchyard.tools.ui.editor.core.ModelHandler;
-import org.switchyard.tools.ui.editor.core.ModelHandlerLocator;
-import org.switchyard.tools.ui.editor.diagram.service.wizards.SCADiagramAddCompositeServiceWizard;
+import org.switchyard.tools.ui.editor.diagram.shared.BaseNewContractWizard;
 
 /**
  * @author bfitzpat
@@ -66,39 +58,21 @@ public class SCADiagramCreateServiceFeature extends AbstractCreateFeature {
     @Override
     public Object[] create(ICreateContext context) {
         Service newService = null;
-
-        String newServiceName = null;
-        Interface newInterface = null;
-        SCADiagramAddCompositeServiceWizard wizard = new SCADiagramAddCompositeServiceWizard();
+        Composite composite = (Composite) getBusinessObjectForPictogramElement(context.getTargetContainer());
+        BaseNewContractWizard wizard = new BaseNewContractWizard("New Service", "Specify details for the new service.",
+                ScaPackage.eINSTANCE.getService());
         Shell shell = PlatformUI.getWorkbench().getActiveWorkbenchWindow().getShell();
         WizardDialog wizDialog = new WizardDialog(shell, wizard);
+        wizard.init(composite);
         int rtn_code = wizDialog.open();
         if (rtn_code == Window.OK) {
-            newServiceName = wizard.getCompositeServiceName();
-            newInterface = wizard.getInterface();
+            newService = (Service) wizard.getContract();
         } else {
             _hasDoneChanges = false;
             return EMPTY;
         }
 
-        try {
-            ModelHandler mh = ModelHandlerLocator.getModelHandler(getDiagram().eResource());
-            Object o = getBusinessObjectForPictogramElement(context.getTargetContainer());
-            newService = mh.createService((Composite) o);
-            newService.setName(newServiceName);
-            if (newInterface != null) {
-                // do something with it
-                if (newInterface instanceof JavaInterface) {
-                    newService.getInterfaceGroup().set(ScaPackage.eINSTANCE.getDocumentRoot_InterfaceJava(),
-                            newInterface);
-                } else if (newInterface instanceof WSDLPortType) {
-                    newService.getInterfaceGroup().set(ScaPackage.eINSTANCE.getDocumentRoot_InterfaceWsdl(),
-                            newInterface);
-                }
-            }
-        } catch (IOException e) {
-            Activator.logError(e);
-        }
+        composite.getService().add(newService);
 
         // do the add
         PictogramElement pe = addGraphicalRepresentation(context, newService);
