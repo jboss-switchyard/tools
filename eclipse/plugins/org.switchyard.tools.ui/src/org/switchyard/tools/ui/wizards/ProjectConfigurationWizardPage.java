@@ -174,7 +174,10 @@ public class ProjectConfigurationWizardPage extends WizardPage implements ILayou
 
     private void initRuntimeVersionsList() {
         List<Version> versions = _settingsGroup.getAvailableVersions();
-        if (versions != null && versions.size() > 0) {
+        if (versions == null || versions.size() == 0) {
+            _settingsGroup.getRuntimeVersionsList().setSelection(
+                    new StructuredSelection(NewSwitchYardProjectWizard.DEFAULT_RUNTIME_VERSION));
+        } else {
             // TODO: allow use of preferred version or allow association of
             // server runtime version.
             _settingsGroup.getRuntimeVersionsList().setSelection(new StructuredSelection(versions.get(0)), true);

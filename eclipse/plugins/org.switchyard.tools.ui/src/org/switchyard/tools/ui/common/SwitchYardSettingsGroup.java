@@ -13,6 +13,7 @@ package org.switchyard.tools.ui.common;
 import static org.switchyard.tools.ui.M2EUtils.resolveSwitchYardVersionRange;
 
 import java.lang.reflect.InvocationTargetException;
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.Comparator;
@@ -40,6 +41,8 @@ import org.eclipse.jface.viewers.StructuredViewer;
 import org.eclipse.jface.viewers.Viewer;
 import org.eclipse.jface.viewers.ViewerFilter;
 import org.eclipse.swt.SWT;
+import org.eclipse.swt.events.ModifyEvent;
+import org.eclipse.swt.events.ModifyListener;
 import org.eclipse.swt.events.SelectionAdapter;
 import org.eclipse.swt.events.SelectionEvent;
 import org.eclipse.swt.layout.GridData;
@@ -49,6 +52,7 @@ import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Group;
 import org.eclipse.swt.widgets.Label;
 import org.eclipse.swt.widgets.Text;
+import org.sonatype.aether.util.version.GenericVersionScheme;
 import org.sonatype.aether.version.Version;
 import org.switchyard.tools.ui.Activator;
 
@@ -87,7 +91,7 @@ public class SwitchYardSettingsGroup {
         Label label = new Label(runtimeControls, SWT.NONE);
         label.setText("Runtime Version:");
 
-        _runtimeVersionsList = new ComboViewer(runtimeControls, SWT.DROP_DOWN | SWT.READ_ONLY);
+        _runtimeVersionsList = new VersionComboViewer(runtimeControls);
         _runtimeVersionsList.getCombo().setLayoutData(new GridData(GridData.FILL_HORIZONTAL));
         _runtimeVersionsList.setLabelProvider(new LabelProvider());
         _runtimeVersionsList.setContentProvider(ArrayContentProvider.getInstance());
@@ -275,4 +279,42 @@ public class SwitchYardSettingsGroup {
         _componentsTable.setAllChecked(false);
     }
 
+    private final class VersionComboViewer extends ComboViewer {
+        private VersionComboViewer(Composite parent) {
+            super(parent, SWT.DROP_DOWN);
+            getCombo().addModifyListener(new ModifyListener() {
+                @Override
+                public void modifyText(ModifyEvent e) {
+                    SelectionChangedEvent event = new SelectionChangedEvent(VersionComboViewer.this, getSelection());
+                    fireSelectionChanged(event);
+                }
+            });
+        }
+
+        @Override
+        protected List<?> getSelectionFromWidget() {
+            if (getCombo().getSelectionIndex() < 0) {
+                List<Version> selected = new ArrayList<Version>();
+                try {
+                    selected.add(new GenericVersionScheme().parseVersion(getCombo().getText()));
+                } catch (Exception e) {
+                    e.fillInStackTrace();
+                }
+                return selected;
+            }
+            return super.getSelectionFromWidget();
+        }
+
+        @Override
+        protected void setSelectionToWidget(ISelection selection, boolean reveal) {
+            if (!selection.isEmpty() && _availableVersions != null) {
+                Object obj = ((IStructuredSelection) selection).getFirstElement();
+                if (!_availableVersions.contains(obj)) {
+                    getCombo().setText(obj.toString());
+                    return;
+                }
+            }
+            super.setSelectionToWidget(selection, reveal);
+        }
+    }
 }

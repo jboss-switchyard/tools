@@ -45,9 +45,10 @@ import org.switchyard.tools.ui.operations.CreateSwitchYardProjectOperation.NewSw
 public class NewSwitchYardProjectWizard extends Wizard implements INewWizard {
 
     // TODO: use preferences
+    /** The default runtime version. */
+    public static final String DEFAULT_RUNTIME_VERSION = "0.5.0-SNAPSHOT";
     private static final String DEFAULT_PROJECT_NAME = "switchyard-example";
     private static final String DEFAULT_PROJECT_VERSION = "0.0.1-SNAPSHOT";
-    private static final String DEFAULT_RUNTIME_VERSION = "0.3.0-SNAPSHOT";
 
     private WizardNewProjectCreationPage _newProjectPage;
     private ProjectConfigurationWizardPage _configurationPage;
