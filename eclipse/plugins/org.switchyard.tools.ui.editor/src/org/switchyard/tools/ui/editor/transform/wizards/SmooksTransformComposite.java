@@ -15,8 +15,8 @@ package org.switchyard.tools.ui.editor.transform.wizards;
 import org.eclipse.emf.transaction.RecordingCommand;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.eclipse.swt.SWT;
-import org.eclipse.swt.events.ModifyEvent;
-import org.eclipse.swt.events.ModifyListener;
+import org.eclipse.swt.events.FocusEvent;
+import org.eclipse.swt.events.KeyEvent;
 import org.eclipse.swt.events.SelectionEvent;
 import org.eclipse.swt.events.SelectionListener;
 import org.eclipse.swt.widgets.Combo;
@@ -45,24 +45,7 @@ public class SmooksTransformComposite extends BaseTransformComposite {
         super.createContents(parent, style);
 
         _configText = createLabelAndText(getPanel(), "Config");
-        _configText.addModifyListener(new ModifyListener() {
-            public void modifyText(ModifyEvent e) {
-                if (!inUpdate()) {
-                    handleModify(_configText);
-                    fireChangedEvent(_configText);
-                }
-            }
-        });
-
         _reportPathText = createLabelAndText(getPanel(), "Report Path");
-        _reportPathText.addModifyListener(new ModifyListener() {
-            public void modifyText(ModifyEvent e) {
-                if (!inUpdate()) {
-                    handleModify(_reportPathText);
-                    fireChangedEvent(_reportPathText);
-                }
-            }
-        });
 
         new Label(getPanel(), SWT.NONE).setText("Smooks Transform Type");
         _smooksTypeCombo = new Combo(getPanel(), SWT.DROP_DOWN | SWT.READ_ONLY);
@@ -90,7 +73,7 @@ public class SmooksTransformComposite extends BaseTransformComposite {
         });
     }
 
-    protected void validate() {
+    protected boolean validate() {
         super.validate();
         if (getErrorMessage() == null) {
             if (_configText != null && !_configText.isDisposed()) {
@@ -100,6 +83,7 @@ public class SmooksTransformComposite extends BaseTransformComposite {
                 }
             }
         }
+        return (getErrorMessage() == null);
     }
 
     @SuppressWarnings("restriction")
@@ -170,5 +154,41 @@ public class SmooksTransformComposite extends BaseTransformComposite {
             _smooksTypeCombo.select(smooksTransform.getType().ordinal());
         }
         setInUpdate(false);
+    }
+
+    @Override
+    public void focusLost(FocusEvent e) {
+        if (getTransform() != null && !inUpdate()) {
+            validate();
+            handleModify((Control) e.getSource());
+            fireChangedEvent((Control) e.getSource());
+        }
+    }
+
+    @Override
+    public void keyReleased(KeyEvent e) {
+        if (e.keyCode == SWT.ESC) {
+            // cancel out and return to original value
+            setInUpdate(true);
+            if (getTransform() != null) {
+                Control control = (Control) e.getSource();
+                SmooksTransformType1 smooksTransform = (SmooksTransformType1) getTransform();
+                if (control.equals(_configText)) {
+                    _configText.setText(smooksTransform.getConfig());
+                } else if (control.equals(_reportPathText)) {
+                    _reportPathText.setText(smooksTransform.getReportPath());
+                } else if (control.equals(_smooksTypeCombo)) { 
+                    _smooksTypeCombo.select(smooksTransform.getType().ordinal());
+                }
+            }
+            setInUpdate(false);
+        } else if (e.keyCode == SWT.CR) {
+            // accept change
+            if (getTransform() != null && !inUpdate()) {
+                validate();
+                handleModify((Control) e.getSource());
+                fireChangedEvent((Control) e.getSource());
+            }
+        }
     }
 }

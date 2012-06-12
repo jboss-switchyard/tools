@@ -17,6 +17,14 @@ import javax.swing.event.ChangeListener;
 
 import org.eclipse.core.runtime.ListenerList;
 import org.eclipse.swt.SWT;
+import org.eclipse.swt.events.FocusEvent;
+import org.eclipse.swt.events.FocusListener;
+import org.eclipse.swt.events.KeyEvent;
+import org.eclipse.swt.events.KeyListener;
+import org.eclipse.swt.events.ModifyEvent;
+import org.eclipse.swt.events.ModifyListener;
+import org.eclipse.swt.events.SelectionEvent;
+import org.eclipse.swt.events.SelectionListener;
 import org.eclipse.swt.layout.GridData;
 import org.eclipse.swt.widgets.Button;
 import org.eclipse.swt.widgets.Combo;
@@ -29,12 +37,15 @@ import org.eclipse.swt.widgets.Text;
  * @author bfitzpat
  * 
  */
-public abstract class AbstractSwitchyardComposite {
+public abstract class AbstractSwitchyardComposite implements FocusListener, KeyListener, ModifyListener,
+        SelectionListener {
 
     private boolean _canEdit = true;
     private String _errorMessage = null;
     private GridData _rootGridData = null;
     private boolean _openOnCreate = false;
+    private boolean _hasChanged = false;
+    private boolean _inUpdate = false;
 
     // change listeners
     private ListenerList _changeListeners;
@@ -46,13 +57,23 @@ public abstract class AbstractSwitchyardComposite {
         // empty
     }
 
-    abstract protected void validate();
-    
+    abstract protected boolean validate();
+
+    protected boolean hasChanged() {
+        return _hasChanged;
+    }
+
+    protected void setHasChanged(boolean flag) {
+        this._inUpdate = flag;
+    }
+
     /**
      * @param parent Composite parent
      * @param style any style bits
      */
     abstract public void createContents(Composite parent, int style);
+    
+    abstract protected void handleModify(final Control control);
 
     /**
      * @return panel
@@ -130,7 +151,7 @@ public abstract class AbstractSwitchyardComposite {
     public void setRootGridData(GridData rootGridData) {
         this._rootGridData = rootGridData;
     }
-    
+
     /**
      * @return GridData or null
      */
@@ -144,14 +165,14 @@ public abstract class AbstractSwitchyardComposite {
     public void setOpenOnCreate(boolean flag) {
         this._openOnCreate = flag;
     }
-    
+
     /**
-     * @return true/false 
+     * @return true/false
      */
     public boolean openOnCreate() {
         return this._openOnCreate;
     }
-    
+
     /**
      * Dispose of the composite widgets.
      */
@@ -168,7 +189,7 @@ public abstract class AbstractSwitchyardComposite {
         Control[] kids = parent.getChildren();
         for (Control k : kids) {
             if (k instanceof Composite) {
-                disposeChildWidgets((Composite)k);
+                disposeChildWidgets((Composite) k);
             }
             k.dispose();
         }
@@ -183,6 +204,8 @@ public abstract class AbstractSwitchyardComposite {
         Button newButton = new Button(parent, SWT.CHECK | SWT.LEFT);
         newButton.setText(label);
         newButton.setLayoutData(new GridData(SWT.FILL, SWT.NONE, true, false, 2, 1));
+        newButton.addFocusListener(this);
+        newButton.addSelectionListener(this);
         return newButton;
     }
 
@@ -195,6 +218,9 @@ public abstract class AbstractSwitchyardComposite {
         new Label(parent, SWT.NONE).setText(label);
         Text newText = new Text(parent, SWT.BORDER);
         newText.setLayoutData(new GridData(SWT.FILL, SWT.NONE, true, false));
+        newText.addFocusListener(this);
+        newText.addKeyListener(this);
+        newText.addModifyListener(this);
         return newText;
     }
 
@@ -207,6 +233,59 @@ public abstract class AbstractSwitchyardComposite {
         new Label(parent, SWT.NONE).setText(label);
         Combo combo = new Combo(parent, SWT.BORDER | SWT.DROP_DOWN);
         combo.setLayoutData(new GridData(SWT.FILL, SWT.NONE, true, false));
+        combo.addFocusListener(this);
+        combo.addSelectionListener(this);
         return combo;
+    }
+
+    @Override
+    public void focusGained(FocusEvent e) {
+        // ignore
+    }
+
+    @Override
+    public void focusLost(FocusEvent e) {
+        // ignore
+    }
+
+    @Override
+    public void keyPressed(KeyEvent e) {
+        // ignore
+    }
+
+    @Override
+    public void keyReleased(KeyEvent e) {
+        // if (e.keyCode == SWT.ESC) {
+        // // cancel out and return to original value
+        // } else if (e.keyCode == SWT.CR) {
+        // // accept change
+        // }
+    }
+
+    protected boolean inUpdate() {
+        return _inUpdate;
+    }
+
+    protected void setInUpdate(boolean inUpdate) {
+        this._inUpdate = inUpdate;
+    }
+
+    @Override
+    public void modifyText(ModifyEvent e) {
+        if (!inUpdate()) {
+            _hasChanged = true;
+        }
+    }
+
+    @Override
+    public void widgetSelected(SelectionEvent e) {
+        if (!inUpdate()) {
+            _hasChanged = true;
+        }
+    }
+
+    @Override
+    public void widgetDefaultSelected(SelectionEvent e) {
+        widgetSelected(e);
     }
 }

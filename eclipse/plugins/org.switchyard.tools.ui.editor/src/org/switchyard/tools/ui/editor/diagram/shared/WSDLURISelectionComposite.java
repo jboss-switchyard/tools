@@ -32,6 +32,8 @@ import org.eclipse.soa.sca.sca1_1.model.sca.Binding;
 import org.eclipse.soa.sca.sca1_1.model.sca.Interface;
 import org.eclipse.soa.sca.sca1_1.model.sca.WSDLPortType;
 import org.eclipse.swt.SWT;
+import org.eclipse.swt.events.FocusEvent;
+import org.eclipse.swt.events.FocusListener;
 import org.eclipse.swt.events.ModifyEvent;
 import org.eclipse.swt.events.ModifyListener;
 import org.eclipse.swt.events.SelectionAdapter;
@@ -40,6 +42,7 @@ import org.eclipse.swt.layout.GridData;
 import org.eclipse.swt.layout.GridLayout;
 import org.eclipse.swt.widgets.Button;
 import org.eclipse.swt.widgets.Composite;
+import org.eclipse.swt.widgets.Control;
 import org.eclipse.swt.widgets.Label;
 import org.eclipse.swt.widgets.Link;
 import org.eclipse.swt.widgets.Shell;
@@ -70,7 +73,6 @@ public class WSDLURISelectionComposite extends AbstractSwitchyardComposite imple
     private Text _mWSDLSocketText;
     private Label _socketLabel;
     private String _bindingSocket = null;
-    private boolean _inUpdate = false;
 
     private Button _browseBtnWorkspace;
     private Button _browseBtnFile;
@@ -117,7 +119,8 @@ public class WSDLURISelectionComposite extends AbstractSwitchyardComposite imple
                     String result = getPathToNewWSDL(_panel.getShell(), wsdlPath, openOnCreate());
                     if (result != null) {
                         _mWSDLInterfaceURIText.setText(result);
-                        handleModify();
+                        setHasChanged(true);
+                        handleModify(_newWSDLLink);
                         fireChangedEvent(_newWSDLLink);
                     }
                 }
@@ -128,14 +131,22 @@ public class WSDLURISelectionComposite extends AbstractSwitchyardComposite imple
             _mWSDLInterfaceURIText.setText(((WSDLPortType) _interface).getInterface());
         }
         _mWSDLInterfaceURIText.setEnabled(canEdit());
-        _mWSDLInterfaceURIText.addModifyListener(new ModifyListener() {
-            public void modifyText(ModifyEvent e) {
-                if (!_inUpdate) {
-                    handleModify();
+        _mWSDLInterfaceURIText.addFocusListener(new FocusListener() {
+            @Override
+            public void focusGained(FocusEvent e) {
+                // ignore
+            }
+
+            @Override
+            public void focusLost(FocusEvent e) {
+                if (!inUpdate()) {
+                    setHasChanged(true);
+                    handleModify(_mWSDLInterfaceURIText);
                     fireChangedEvent(_mWSDLInterfaceURIText);
                 }
             }
         });
+
         GridData uriGD = new GridData(GridData.FILL_HORIZONTAL);
         // uriGD.horizontalSpan = 2;
         _mWSDLInterfaceURIText.setLayoutData(uriGD);
@@ -150,7 +161,8 @@ public class WSDLURISelectionComposite extends AbstractSwitchyardComposite imple
                 String result = selectResourceFromWorkspace(_panel.getShell(), WSDL);
                 if (result != null) {
                     _mWSDLInterfaceURIText.setText(result);
-                    handleModify();
+                    setHasChanged(true);
+                    handleModify(_browseBtnWorkspace);
                     fireChangedEvent(_browseBtnWorkspace);
                 }
             }
@@ -161,9 +173,10 @@ public class WSDLURISelectionComposite extends AbstractSwitchyardComposite imple
         _mWSDLSocketText = new Text(_panel, SWT.BORDER);
         _mWSDLSocketText.addModifyListener(new ModifyListener() {
             public void modifyText(ModifyEvent e) {
-                if (!_inUpdate) {
+                if (!inUpdate()) {
                     _bindingSocket = _mWSDLSocketText.getText().trim();
-                    handleModify();
+                    setHasChanged(true);
+                    handleModify(_mWSDLSocketText);
                     fireChangedEvent(_mWSDLSocketText);
                 }
             }
@@ -184,7 +197,7 @@ public class WSDLURISelectionComposite extends AbstractSwitchyardComposite imple
         _mWSDLSocketText.setVisible(flag);
     }
 
-    private void handleModify() {
+    protected void handleModify(Control control) {
         _sWSDLURI = _mWSDLInterfaceURIText.getText().trim();
         if (_interface != null && _interface instanceof WSDLPortType) {
             if (_interface.eContainer() != null) {
@@ -227,9 +240,10 @@ public class WSDLURISelectionComposite extends AbstractSwitchyardComposite imple
             }
         }
         validate();
+        setHasChanged(false);
     }
 
-    protected void validate() {
+    protected boolean validate() {
         setErrorMessage(null);
         String uriString = _mWSDLInterfaceURIText.getText();
 
@@ -256,7 +270,6 @@ public class WSDLURISelectionComposite extends AbstractSwitchyardComposite imple
                     if (left.length() > 0
                             && !left.matches("^([a-zA-Z0-9]|[a-zA-Z0-9][a-zA-Z0-9\\-]{0,61}[a-zA-Z0-9])(\\.([a-zA-Z0-9]|[a-zA-Z0-9][a-zA-Z0-9\\-]{0,61}[a-zA-Z0-9]))*$")) {
                         setErrorMessage("Socket string should match one of these patterns: localhost:8080, 0.0.0.0:8080, or :8080");
-                        return;
                     }
                     String right = portString.substring(pos + 1, portString.length()).trim();
                     try {
@@ -269,6 +282,7 @@ public class WSDLURISelectionComposite extends AbstractSwitchyardComposite imple
                 setErrorMessage("No socket specified");
             }
         }
+        return (getErrorMessage() == null);
     }
 
     /**
@@ -300,13 +314,13 @@ public class WSDLURISelectionComposite extends AbstractSwitchyardComposite imple
         if (cInterface instanceof WSDLPortType && _mWSDLInterfaceURIText != null
                 && !_mWSDLInterfaceURIText.isDisposed()) {
             WSDLPortType wPortType = (WSDLPortType) this._interface;
-            _inUpdate = true;
+            setInUpdate(true);
             if (wPortType.getInterface() != null) {
                 _mWSDLInterfaceURIText.setText(wPortType.getInterface());
             } else {
                 _mWSDLInterfaceURIText.setText("MyService.wsdl");
             }
-            _inUpdate = false;
+            setInUpdate(false);
         }
     }
 
@@ -324,21 +338,19 @@ public class WSDLURISelectionComposite extends AbstractSwitchyardComposite imple
         if (switchYardBindingType instanceof SOAPBindingType) {
             this._binding = (SOAPBindingType) switchYardBindingType;
             _sWSDLURI = _binding.getWsdl();
+            setInUpdate(true);
             _bindingSocket = _binding.getSocketAddr();
             if (_mWSDLInterfaceURIText != null && !_mWSDLInterfaceURIText.isDisposed()) {
-                _inUpdate = true;
                 _mWSDLInterfaceURIText.setText(_binding.getWsdl());
-                _inUpdate = false;
             }
             if (_mWSDLSocketText != null && !_mWSDLSocketText.isDisposed()) {
-                _inUpdate = true;
                 _bindingSocket = _binding.getSocketAddr();
                 if (_bindingSocket != null) {
                     _mWSDLSocketText.setText(_bindingSocket);
                 }
-                _inUpdate = false;
             }
             setVisibilityOfPortControls(this._binding != null);
+            setInUpdate(false);
         }
     }
 
@@ -415,5 +427,4 @@ public class WSDLURISelectionComposite extends AbstractSwitchyardComposite imple
             this._browseBtnWorkspace.setEnabled(canEdit());
         }
     }
-
 }

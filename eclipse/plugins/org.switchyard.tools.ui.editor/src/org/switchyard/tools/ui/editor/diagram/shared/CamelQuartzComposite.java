@@ -28,8 +28,8 @@ import org.eclipse.graphiti.mm.pictograms.PictogramElement;
 import org.eclipse.soa.sca.sca1_1.model.sca.Binding;
 import org.eclipse.soa.sca.sca1_1.model.sca.Service;
 import org.eclipse.swt.SWT;
-import org.eclipse.swt.events.ModifyEvent;
-import org.eclipse.swt.events.ModifyListener;
+import org.eclipse.swt.events.FocusEvent;
+import org.eclipse.swt.events.KeyEvent;
 import org.eclipse.swt.events.SelectionEvent;
 import org.eclipse.swt.events.SelectionListener;
 import org.eclipse.swt.layout.FillLayout;
@@ -106,16 +106,14 @@ public class CamelQuartzComposite extends AbstractSwitchyardComposite implements
     }
 
     @Override
-    protected void validate() {
+    protected boolean validate() {
         setErrorMessage(null);
         if (getBinding() != null) {
             if (_nameText.getText().trim().isEmpty()) {
                 setErrorMessage("Name may not be empty.");
-                return;
             }
             if (_cronText.getText().trim().isEmpty()) {
                 setErrorMessage("Cron may not be empty.");
-                return;
             }
             if (!_startTimeText.getText().trim().isEmpty()) {
                 SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss");
@@ -123,7 +121,6 @@ public class CamelQuartzComposite extends AbstractSwitchyardComposite implements
                     sdf.parse(_startTimeText.getText().trim());
                 } catch (ParseException pe) {
                     setErrorMessage("Start time must match the format yyyy-MM-ddTHH:mm:ss");
-                    return;
                 }
             }
             if (!_endTimeText.getText().trim().isEmpty()) {
@@ -132,10 +129,10 @@ public class CamelQuartzComposite extends AbstractSwitchyardComposite implements
                     sdf.parse(_endTimeText.getText().trim());
                 } catch (ParseException pe) {
                     setErrorMessage("End time must match the format yyyy-MM-ddTHH:mm:ss");
-                    return;
                 }
             }
         }
+        return (getErrorMessage() == null);
     }
 
     @Override
@@ -207,26 +204,6 @@ public class CamelQuartzComposite extends AbstractSwitchyardComposite implements
     @Override
     public Composite getPanel() {
         return this._panel;
-    }
-
-    /**
-     * @param parent parent composite
-     * @param label string to put in label
-     * @return reference to created Text control
-     */
-    protected Text createLabelAndText(Composite parent, String label) {
-        Text newText = super.createLabelAndText(parent, label);
-        newText.addModifyListener(new ModifyListener() {
-            @Override
-            public void modifyText(ModifyEvent e) {
-                if (!_inUpdate) {
-                    validate();
-                    handleModify((Control) e.getSource());
-                    fireChangedEvent((Control) e.getSource());
-                }
-            }
-        });
-        return newText;
     }
 
     /**
@@ -314,7 +291,7 @@ public class CamelQuartzComposite extends AbstractSwitchyardComposite implements
     }
 
     @SuppressWarnings("restriction")
-    private void handleModify(final Control control) {
+    protected void handleModify(final Control control) {
         TransactionalEditingDomain domain = null;
         if (_binding.eContainer() != null) {
             domain = SwitchyardSCAEditor.getActiveEditor().getEditingDomain();
@@ -423,5 +400,49 @@ public class CamelQuartzComposite extends AbstractSwitchyardComposite implements
      */
     public void setTargetObject(Object target) {
         this._targetObj = target;
+    }
+
+    @Override
+    public void focusLost(FocusEvent e) {
+        if (_binding != null && !_inUpdate && hasChanged()) {
+            validate();
+            handleModify((Control) e.getSource());
+            fireChangedEvent((Control) e.getSource());
+        }
+    }
+
+    @Override
+    public void keyReleased(KeyEvent e) {
+        if (e.keyCode == SWT.ESC) {
+            // cancel out and return to original value
+            _inUpdate = true;
+            if (_binding != null) {
+                Control control = (Control) e.getSource();
+                if (control.equals(_nameText)) {
+                    _nameText.setText(this._binding.getCamelBindingName());
+                } else if (control.equals(_cronText)) {
+                    _cronText.setText(this._binding.getCron());
+                } else if (control.equals(_endTimeText)) {
+                    _startTimeText.setText(this._binding.getEndTime().toString());
+                } else if (control.equals(_startTimeText)) {
+                    _startTimeText.setText(this._binding.getStartTime().toString());
+                } else if (control.equals(_operationSelectionCombo)) {
+                    if (this._binding.getCamelOperationSelector() != null) {
+                        populateOperationCombo();
+                        CamelOperationSelectorType camelOpSelector = (CamelOperationSelectorType) this._binding
+                                .getCamelOperationSelector();
+                        _operationSelectionCombo.setText(camelOpSelector.getOperationName());
+                    }
+                }
+            }
+            _inUpdate = false;
+        } else if (e.keyCode == SWT.CR) {
+            // accept change
+            if (_binding != null && !_inUpdate) {
+                validate();
+                handleModify((Control) e.getSource());
+                fireChangedEvent((Control) e.getSource());
+            }
+        }
     }
 }

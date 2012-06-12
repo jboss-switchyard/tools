@@ -26,8 +26,9 @@ import org.eclipse.jdt.core.JavaModelException;
 import org.eclipse.jface.viewers.ISelection;
 import org.eclipse.jface.viewers.IStructuredSelection;
 import org.eclipse.jface.viewers.StructuredSelection;
-import org.eclipse.swt.events.ModifyEvent;
-import org.eclipse.swt.events.ModifyListener;
+import org.eclipse.swt.SWT;
+import org.eclipse.swt.events.FocusEvent;
+import org.eclipse.swt.events.KeyEvent;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Control;
 import org.eclipse.swt.widgets.Text;
@@ -48,17 +49,9 @@ public class JAXBTransformComposite extends BaseTransformComposite {
     public void createContents(Composite parent, int style) {
         super.createContents(parent, style);
         _contextPathText = createLabelAndText(getPanel(), "Context Path");
-        _contextPathText.addModifyListener(new ModifyListener() {
-            public void modifyText(ModifyEvent e) {
-                if (!inUpdate()) {
-                    handleModify(_contextPathText);
-                    fireChangedEvent(_contextPathText);
-                }
-            }
-        });
     }
 
-    protected void validate() {
+    protected boolean validate() {
         super.validate();
         if (getErrorMessage() == null) {
             // check to see if context path is valid Java class
@@ -72,6 +65,7 @@ public class JAXBTransformComposite extends BaseTransformComposite {
                 }
             }
         }
+        return (getErrorMessage() == null);
     }
     
     private IPackageFragment canFindPackage(String packagename) throws JavaModelException {
@@ -135,5 +129,37 @@ public class JAXBTransformComposite extends BaseTransformComposite {
             _contextPathText.setText(jaxbTransform.getContextPath());
         }
         setInUpdate(false);
+    }
+
+    @Override
+    public void focusLost(FocusEvent e) {
+        if (getTransform() != null && !inUpdate()) {
+            validate();
+            handleModify((Control) e.getSource());
+            fireChangedEvent((Control) e.getSource());
+        }
+    }
+
+    @Override
+    public void keyReleased(KeyEvent e) {
+        if (e.keyCode == SWT.ESC) {
+            // cancel out and return to original value
+            setInUpdate(true);
+            if (getTransform() != null) {
+                Control control = (Control) e.getSource();
+                JAXBTransformType jaxbTransform = (JAXBTransformType) getTransform();
+                if (control.equals(_contextPathText)) {
+                    _contextPathText.setText(jaxbTransform.getContextPath());
+                }
+            }
+            setInUpdate(false);
+        } else if (e.keyCode == SWT.CR) {
+            // accept change
+            if (getTransform() != null && !inUpdate()) {
+                validate();
+                handleModify((Control) e.getSource());
+                fireChangedEvent((Control) e.getSource());
+            }
+        }
     }
 }

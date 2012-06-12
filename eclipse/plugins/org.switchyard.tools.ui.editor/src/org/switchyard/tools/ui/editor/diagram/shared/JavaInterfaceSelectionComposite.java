@@ -38,14 +38,15 @@ import org.eclipse.jface.viewers.StructuredSelection;
 import org.eclipse.soa.sca.sca1_1.model.sca.Interface;
 import org.eclipse.soa.sca.sca1_1.model.sca.JavaInterface;
 import org.eclipse.swt.SWT;
-import org.eclipse.swt.events.ModifyEvent;
-import org.eclipse.swt.events.ModifyListener;
+import org.eclipse.swt.events.FocusEvent;
+import org.eclipse.swt.events.FocusListener;
 import org.eclipse.swt.events.SelectionAdapter;
 import org.eclipse.swt.events.SelectionEvent;
 import org.eclipse.swt.layout.GridData;
 import org.eclipse.swt.layout.GridLayout;
 import org.eclipse.swt.widgets.Button;
 import org.eclipse.swt.widgets.Composite;
+import org.eclipse.swt.widgets.Control;
 import org.eclipse.swt.widgets.Link;
 import org.eclipse.swt.widgets.Shell;
 import org.eclipse.swt.widgets.Text;
@@ -66,7 +67,6 @@ public class JavaInterfaceSelectionComposite extends AbstractSwitchyardComposite
     private Link _newClassLink;
     private Text _mClassText;
     private Button _browseClassBtn;
-    private boolean _inUpdate = false;
 
     /**
      * Constructor.
@@ -103,7 +103,7 @@ public class JavaInterfaceSelectionComposite extends AbstractSwitchyardComposite
                             String className = handleCreateJavaClass();
                             if (className != null) {
                                 _mClassText.setText(className);
-                                handleModify();
+                                handleModify(_mClassText);
                                 fireChangedEvent(_newClassLink);
                             }
                             return;
@@ -117,14 +117,21 @@ public class JavaInterfaceSelectionComposite extends AbstractSwitchyardComposite
             }
         });
         _mClassText = new Text(_panel, SWT.BORDER);
-        _mClassText.addModifyListener(new ModifyListener() {
-            public void modifyText(ModifyEvent e) {
-                if (!_inUpdate) {
-                    handleModify();
+        _mClassText.addFocusListener(new FocusListener() {
+            @Override
+            public void focusGained(FocusEvent e) {
+                // ignore
+            }
+
+            @Override
+            public void focusLost(FocusEvent e) {
+                if (!inUpdate()) {
+                    handleModify(_mClassText);
                     fireChangedEvent(_mClassText);
                 }
             }
         });
+
         GridData uriGD = new GridData(GridData.FILL_HORIZONTAL);
         _mClassText.setLayoutData(uriGD);
 
@@ -138,7 +145,7 @@ public class JavaInterfaceSelectionComposite extends AbstractSwitchyardComposite
                     IType selected = selectType(_panel.getShell(), null, null);
                     if (selected != null) {
                         _mClassText.setText(selected.getFullyQualifiedName());
-                        handleModify();
+                        handleModify(_mClassText);
                         fireChangedEvent(_browseClassBtn);
                     }
                 } catch (JavaModelException e1) {
@@ -290,7 +297,7 @@ public class JavaInterfaceSelectionComposite extends AbstractSwitchyardComposite
         return null;
     }
 
-    private void handleModify() {
+    protected void handleModify(Control control) {
         final String interfaceClassName = _mClassText.getText().trim();
         validate();
         if (_interface instanceof JavaInterface) {
@@ -310,7 +317,7 @@ public class JavaInterfaceSelectionComposite extends AbstractSwitchyardComposite
         }
     }
 
-    protected void validate() {
+    protected boolean validate() {
         setErrorMessage(null);
         // test to make sure class is valid
         String className = _mClassText.getText();
@@ -320,6 +327,7 @@ public class JavaInterfaceSelectionComposite extends AbstractSwitchyardComposite
         } else if (className.trim().length() < className.length()) {
             setErrorMessage("No spaces allowed in class name");
         }
+        return (getErrorMessage() == null);
     }
 
     /**
@@ -336,13 +344,13 @@ public class JavaInterfaceSelectionComposite extends AbstractSwitchyardComposite
         this._interface = cInterface;
         if (this._interface != null && this._interface instanceof JavaInterface) {
             JavaInterface javaIntfc = (JavaInterface) this._interface;
-            _inUpdate = true;
+            setInUpdate(true);
             if (javaIntfc.getInterface() != null) {
                 this._mClassText.setText(javaIntfc.getInterface());
             } else {
                 this._mClassText.setText("org.example.IServiceInterface");
             }
-            _inUpdate = false;
+            setInUpdate(false);
         }
     }
 

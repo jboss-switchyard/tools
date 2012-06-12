@@ -16,10 +16,8 @@ import org.eclipse.emf.transaction.RecordingCommand;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.eclipse.soa.sca.sca1_1.model.sca.Binding;
 import org.eclipse.swt.SWT;
-import org.eclipse.swt.events.ModifyEvent;
-import org.eclipse.swt.events.ModifyListener;
-import org.eclipse.swt.events.SelectionEvent;
-import org.eclipse.swt.events.SelectionListener;
+import org.eclipse.swt.events.FocusEvent;
+import org.eclipse.swt.events.KeyEvent;
 import org.eclipse.swt.layout.FillLayout;
 import org.eclipse.swt.layout.GridData;
 import org.eclipse.swt.layout.GridLayout;
@@ -42,8 +40,6 @@ public class CamelFTPProducerComposite extends AbstractSwitchyardComposite imple
 
     private Composite _panel;
     private CamelFtpBindingType _binding = null;
-    private boolean _inUpdate = false;
-
     private Text _hostText;
     private Text _portText;
     private Text _usernameText;
@@ -64,7 +60,7 @@ public class CamelFTPProducerComposite extends AbstractSwitchyardComposite imple
     public void setBinding(Binding impl) {
         if (impl instanceof CamelFtpBindingType) {
             this._binding = (CamelFtpBindingType) impl;
-            _inUpdate = true;
+            setInUpdate(true);
             if (this._binding.getProduce() != null) {
                 if (this._binding.getProduce().getFileExist() != null) {
                     _fileExistText.setText(this._binding.getProduce().getFileExist());
@@ -97,7 +93,7 @@ public class CamelFTPProducerComposite extends AbstractSwitchyardComposite imple
             if (this._binding.isBinary()) {
                 _binaryButton.setSelection(this._binding.isBinary());
             }
-            _inUpdate = false;
+            setInUpdate(false);
             validate();
         } else {
             this._binding = null;
@@ -105,7 +101,7 @@ public class CamelFTPProducerComposite extends AbstractSwitchyardComposite imple
     }
 
     @Override
-    protected void validate() {
+    protected boolean validate() {
         setErrorMessage(null);
         if (getBinding() != null) {
             if (_directoryText.getText().trim().isEmpty()) {
@@ -118,6 +114,7 @@ public class CamelFTPProducerComposite extends AbstractSwitchyardComposite imple
                 }
             }
         }
+        return (getErrorMessage() == null);
     }
 
     @Override
@@ -171,54 +168,8 @@ public class CamelFTPProducerComposite extends AbstractSwitchyardComposite imple
         return this._panel;
     }
 
-    /**
-     * @param parent parent composite
-     * @param label string to put in label
-     * @return reference to created Text control
-     */
-    protected Text createLabelAndText(Composite parent, String label) {
-        Text newText = super.createLabelAndText(parent, label);
-        newText.addModifyListener(new ModifyListener() {
-            @Override
-            public void modifyText(ModifyEvent e) {
-                if (!_inUpdate) {
-                    validate();
-                    handleModify((Control) e.getSource());
-                    fireChangedEvent((Control) e.getSource());
-                }
-            }
-        });
-        return newText;
-    }
-
-    /**
-     * @param parent parent composite
-     * @param label string for label
-     * @return reference to created Button
-     */
-    protected Button createCheckbox(Composite parent, String label) {
-        Button newButton = super.createCheckbox(parent, label);
-        newButton.addSelectionListener(new SelectionListener() {
-            @Override
-            public void widgetSelected(SelectionEvent e) {
-                if (!_inUpdate) {
-                    handleModify((Control) e.getSource());
-                    validate();
-                    fireChangedEvent((Control) e.getSource());
-                }
-            }
-
-            @Override
-            public void widgetDefaultSelected(SelectionEvent e) {
-                widgetSelected(e);
-            }
-        });
-        return newButton;
-    }
-
-
     @SuppressWarnings("restriction")
-    private void handleModify(final Control control) {
+    protected void handleModify(final Control control) {
         TransactionalEditingDomain domain = null;
         if (_binding.eContainer() != null) {
             domain = SwitchyardSCAEditor.getActiveEditor().getEditingDomain();
@@ -356,5 +307,70 @@ public class CamelFTPProducerComposite extends AbstractSwitchyardComposite imple
                 _binding.getProduce().setTempPrefix(_tempPrefixText.getText().trim());
             }
         }
+        setHasChanged(false);
     }
+
+    @Override
+    public void focusLost(FocusEvent e) {
+        if (_binding != null && !inUpdate() && hasChanged()) {
+            validate();
+            handleModify((Control) e.getSource());
+            fireChangedEvent((Control) e.getSource());
+        }
+    }
+
+    @Override
+    public void keyReleased(KeyEvent e) {
+        if (e.keyCode == SWT.ESC) {
+            // cancel out and return to original value
+            setInUpdate(true);
+            if (_binding != null) {
+                Control control = (Control) e.getSource();
+                if (control.equals(_directoryText)) {
+                    _directoryText.setText(this._binding.getDirectory());
+                } else if (control.equals(_fileNameText)) {
+                    _fileNameText.setText(this._binding.getFileName());
+                } else if (control.equals(_autoCreateButton)) {
+                    _autoCreateButton.setSelection(this._binding.isAutoCreate());
+                } else if (control.equals(_hostText)) {
+                    _hostText.setText(this._binding.getHost());
+                } else if (control.equals(_portText)) {
+                    _portText.setText(Integer.toString(this._binding.getPort()));
+                } else if (control.equals(_usernameText)) {
+                    _usernameText.setText(this._binding.getUsername());
+                } else if (control.equals(_pwdText)) {
+                    _pwdText.setText(this._binding.getPassword());
+                } else if (control.equals(_binaryButton)) {
+                    _binaryButton.setSelection(this._binding.isBinary());
+                } else if (this._binding.getProduce() != null) {
+                    if (control.equals(_fileExistText)) {
+                        _fileExistText.setText(this._binding.getProduce().getFileExist());
+                    } else if (control.equals(_tempPrefixText)) {
+                        _tempPrefixText.setText(this._binding.getProduce().getTempPrefix());
+                    }
+                }
+            }
+            setInUpdate(false);
+        } else if (e.keyCode == SWT.CR) {
+            // accept change
+            if (_binding != null && !inUpdate() && hasChanged()) {
+                validate();
+                handleModify((Control) e.getSource());
+                fireChangedEvent((Control) e.getSource());
+            }
+        } else if (e.keyCode == SWT.TAB) {
+            if (_binding != null && !inUpdate() && hasChanged()) {
+                boolean flag = validate();
+                if (flag) {
+                    handleModify((Control) e.getSource());
+                }
+                fireChangedEvent((Control) e.getSource());
+            }
+        }
+    }
+
+    protected boolean hasChanged(Control control) {
+        return false;
+    }
+
 }

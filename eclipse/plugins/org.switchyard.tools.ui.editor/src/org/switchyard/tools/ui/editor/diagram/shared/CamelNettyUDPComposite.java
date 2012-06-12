@@ -21,10 +21,8 @@ import org.eclipse.graphiti.mm.pictograms.PictogramElement;
 import org.eclipse.soa.sca.sca1_1.model.sca.Binding;
 import org.eclipse.soa.sca.sca1_1.model.sca.Service;
 import org.eclipse.swt.SWT;
-import org.eclipse.swt.events.ModifyEvent;
-import org.eclipse.swt.events.ModifyListener;
-import org.eclipse.swt.events.SelectionEvent;
-import org.eclipse.swt.events.SelectionListener;
+import org.eclipse.swt.events.FocusEvent;
+import org.eclipse.swt.events.KeyEvent;
 import org.eclipse.swt.layout.FillLayout;
 import org.eclipse.swt.layout.GridData;
 import org.eclipse.swt.layout.GridLayout;
@@ -50,7 +48,6 @@ public class CamelNettyUDPComposite extends AbstractSwitchyardComposite implemen
 
     private Composite _panel;
     private CamelNettyUdpBindingType _binding = null;
-    private boolean _inUpdate = false;
     private Text _hostText;
     private Text _portText;
     private Text _sendBufferSizeText;
@@ -69,7 +66,7 @@ public class CamelNettyUDPComposite extends AbstractSwitchyardComposite implemen
     public void setBinding(Binding impl) {
         if (impl instanceof CamelNettyUdpBindingType) {
             this._binding = (CamelNettyUdpBindingType) impl;
-            _inUpdate = true;
+            setInUpdate(true);
             if (this._binding.getHost() != null) {
                 _hostText.setText(this._binding.getHost());
             }
@@ -90,7 +87,7 @@ public class CamelNettyUDPComposite extends AbstractSwitchyardComposite implemen
                         .getCamelOperationSelector();
                 _operationSelectionCombo.setText(camelOpSelector.getOperationName());
             }
-            _inUpdate = false;
+            setInUpdate(false);
             validate();
         } else {
             this._binding = null;
@@ -99,16 +96,14 @@ public class CamelNettyUDPComposite extends AbstractSwitchyardComposite implemen
     }
 
     @Override
-    protected void validate() {
+    protected boolean validate() {
         setErrorMessage(null);
         if (getBinding() != null) {
             if (_hostText.getText().trim().isEmpty()) {
                 setErrorMessage("Host may not be empty.");
-                return;
             }
             if (_portText.getText().trim().isEmpty()) {
                 setErrorMessage("Port may not be empty.");
-                return;
             } else {
                 try {
                     Integer.parseInt(_portText.getText().trim());
@@ -131,6 +126,7 @@ public class CamelNettyUDPComposite extends AbstractSwitchyardComposite implemen
                 }
             }
         }
+        return (getErrorMessage() == null);
     }
 
     @Override
@@ -206,76 +202,6 @@ public class CamelNettyUDPComposite extends AbstractSwitchyardComposite implemen
         return this._panel;
     }
 
-    /**
-     * @param parent parent composite
-     * @param label string to put in label
-     * @return reference to created Text control
-     */
-    protected Text createLabelAndText(Composite parent, String label) {
-        Text newText = super.createLabelAndText(parent, label);
-        newText.addModifyListener(new ModifyListener() {
-            @Override
-            public void modifyText(ModifyEvent e) {
-                if (!_inUpdate) {
-                    validate();
-                    handleModify((Control) e.getSource());
-                    fireChangedEvent((Control) e.getSource());
-                }
-            }
-        });
-        return newText;
-    }
-
-    /**
-     * @param parent parent composite
-     * @param label string to put in label
-     * @return reference to created Text control
-     */
-    protected Combo createLabelAndCombo(Composite parent, String label) {
-        Combo combo = super.createLabelAndCombo(parent, label);
-        combo.addSelectionListener(new SelectionListener() {
-            @Override
-            public void widgetSelected(SelectionEvent e) {
-                if (!_inUpdate) {
-                    validate();
-                    handleModify((Control) e.getSource());
-                    fireChangedEvent((Control) e.getSource());
-                }
-            }
-
-            @Override
-            public void widgetDefaultSelected(SelectionEvent e) {
-                widgetSelected(e);
-            }
-        });
-        return combo;
-    }
-
-    /**
-     * @param parent parent composite
-     * @param label string for label
-     * @return reference to created Button
-     */
-    protected Button createCheckbox(Composite parent, String label) {
-        Button newButton = super.createCheckbox(parent, label);
-        newButton.addSelectionListener(new SelectionListener() {
-            @Override
-            public void widgetSelected(SelectionEvent e) {
-                if (!_inUpdate) {
-                    handleModify((Control) e.getSource());
-                    validate();
-                    fireChangedEvent((Control) e.getSource());
-                }
-            }
-
-            @Override
-            public void widgetDefaultSelected(SelectionEvent e) {
-                widgetSelected(e);
-            }
-        });
-        return newButton;
-    }
-
     private void setFeatureValue(EObject eObject, String featureId, Object value) {
         EClass eClass = eObject.eClass();
         for (int i = 0, size = eClass.getFeatureCount(); i < size; ++i) {
@@ -311,7 +237,7 @@ public class CamelNettyUDPComposite extends AbstractSwitchyardComposite implemen
     }
 
     @SuppressWarnings("restriction")
-    private void handleModify(final Control control) {
+    protected void handleModify(final Control control) {
         TransactionalEditingDomain domain = null;
         if (_binding.eContainer() != null) {
             domain = SwitchyardSCAEditor.getActiveEditor().getEditingDomain();
@@ -409,6 +335,7 @@ public class CamelNettyUDPComposite extends AbstractSwitchyardComposite implemen
                         .setOperationName(_operationSelectionCombo.getText().trim());
             }
         }
+        setHasChanged(false);
     }
 
     /**
@@ -416,5 +343,61 @@ public class CamelNettyUDPComposite extends AbstractSwitchyardComposite implemen
      */
     public void setTargetObject(Object target) {
         this._targetObj = target;
+    }
+
+    @Override
+    public void focusLost(FocusEvent e) {
+        if (_binding != null && !inUpdate() && hasChanged()) {
+            validate();
+            handleModify((Control) e.getSource());
+            fireChangedEvent((Control) e.getSource());
+        }
+    }
+
+    @Override
+    public void keyReleased(KeyEvent e) {
+        if (e.keyCode == SWT.ESC) {
+            // cancel out and return to original value
+            setInUpdate(true);
+            if (_binding != null) {
+                Control control = (Control) e.getSource();
+                if (control.equals(_hostText)) {
+                    _hostText.setText(this._binding.getHost());
+                } else if (control.equals(_portText)) {
+                    _portText.setText(Integer.toString(this._binding.getPort()));
+                } else if (control.equals(_receiveBufferSizeText)) {
+                    _receiveBufferSizeText.setText(Long.toString(this._binding.getReceiveBufferSize()));
+                } else if (control.equals(_sendBufferSizeText)) {
+                    _sendBufferSizeText.setText(Long.toString(this._binding.getSendBufferSize()));
+                } else if (control.equals(_broadcastCheckbox)) {
+                    _broadcastCheckbox.setSelection(this._binding.isBroadcast());
+                } else if (control.equals(_syncCheckbox)) {
+                    _syncCheckbox.setSelection(this._binding.isSync());
+                } else if (control.equals(_operationSelectionCombo)) {
+                    if (this._binding.getCamelOperationSelector() != null) {
+                        populateOperationCombo();
+                        CamelOperationSelectorType camelOpSelector = (CamelOperationSelectorType) this._binding
+                                .getCamelOperationSelector();
+                        _operationSelectionCombo.setText(camelOpSelector.getOperationName());
+                    }
+                }
+            }
+            setInUpdate(false);
+        } else if (e.keyCode == SWT.CR) {
+            // accept change
+            if (_binding != null && !inUpdate() && hasChanged()) {
+                validate();
+                handleModify((Control) e.getSource());
+                fireChangedEvent((Control) e.getSource());
+            }
+        } else if (e.keyCode == SWT.TAB) {
+            if (_binding != null && !inUpdate() && hasChanged()) {
+                boolean flag = validate();
+                if (flag) {
+                    handleModify((Control) e.getSource());
+                }
+                fireChangedEvent((Control) e.getSource());
+            }
+        }
     }
 }

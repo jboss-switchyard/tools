@@ -24,14 +24,15 @@ import org.eclipse.jface.wizard.WizardDialog;
 import org.eclipse.soa.sca.sca1_1.model.sca.ComponentService;
 import org.eclipse.soa.sca.sca1_1.model.sca.Implementation;
 import org.eclipse.swt.SWT;
-import org.eclipse.swt.events.ModifyEvent;
-import org.eclipse.swt.events.ModifyListener;
+import org.eclipse.swt.events.FocusEvent;
+import org.eclipse.swt.events.FocusListener;
 import org.eclipse.swt.events.SelectionAdapter;
 import org.eclipse.swt.events.SelectionEvent;
 import org.eclipse.swt.layout.GridData;
 import org.eclipse.swt.layout.GridLayout;
 import org.eclipse.swt.widgets.Button;
 import org.eclipse.swt.widgets.Composite;
+import org.eclipse.swt.widgets.Control;
 import org.eclipse.swt.widgets.Link;
 import org.eclipse.swt.widgets.Shell;
 import org.eclipse.swt.widgets.Text;
@@ -56,7 +57,6 @@ public class CamelXMLRouteComposite extends AbstractSwitchyardComposite implemen
     private Link _newXMLLink;
     private Button _browseXMLBtn;
     private Text _mXMLText;
-    private boolean _inUpdate = false;
 
     /**
      * Constructor.
@@ -83,20 +83,27 @@ public class CamelXMLRouteComposite extends AbstractSwitchyardComposite implemen
                 String path = getPathToNewXML(_mXMLText.getText());
                 if (path != null) {
                     _mXMLText.setText(path);
-                    handleModify();
+                    handleModify(_newXMLLink);
                     fireChangedEvent(_newXMLLink);
                 }
             }
         });
         _mXMLText = new Text(_panel, SWT.BORDER);
-        _mXMLText.addModifyListener(new ModifyListener() {
-            public void modifyText(ModifyEvent e) {
-                if (!_inUpdate) {
-                    handleModify();
+        _mXMLText.addFocusListener(new FocusListener() {
+            @Override
+            public void focusGained(FocusEvent e) {
+                // ignore
+            }
+
+            @Override
+            public void focusLost(FocusEvent e) {
+                if (!inUpdate()) {
+                    handleModify(_mXMLText);
                     fireChangedEvent(_mXMLText);
                 }
             }
         });
+
         GridData uriGDXML = new GridData(GridData.FILL_HORIZONTAL);
         _mXMLText.setLayoutData(uriGDXML);
 
@@ -109,7 +116,7 @@ public class CamelXMLRouteComposite extends AbstractSwitchyardComposite implemen
                 String path = selectResourceFromWorkspace(_panel.getShell(), "xml");
                 if (path != null) {
                     _mXMLText.setText(path);
-                    handleModify();
+                    handleModify(_browseXMLBtn);
                     fireChangedEvent(_browseXMLBtn);
                 }
             }
@@ -120,10 +127,10 @@ public class CamelXMLRouteComposite extends AbstractSwitchyardComposite implemen
         validate();
     }
 
-    private void handleModify() {
+    protected void handleModify(Control control) {
         _camelRouteFilePath = _mXMLText.getText().trim();
         validate();
-        if (!_inUpdate) {
+        if (!inUpdate()) {
             if (_mXMLText != null && !_mXMLText.isDisposed()) {
                 if (_implementation == null) {
                     _implementation = CamelFactory.eINSTANCE.createCamelImplementationType();
@@ -138,9 +145,10 @@ public class CamelXMLRouteComposite extends AbstractSwitchyardComposite implemen
                 _implementation.setJava(null);
             }
         }
+        setHasChanged(false);
     }
 
-    protected void validate() {
+    protected boolean validate() {
         setErrorMessage(null);
 
         String routeFileName = _mXMLText.getText();
@@ -150,6 +158,7 @@ public class CamelXMLRouteComposite extends AbstractSwitchyardComposite implemen
         } else if (routeFileName.trim().length() < routeFileName.length()) {
             setErrorMessage("No spaces allowed in Route file name/path");
         }
+        return (getErrorMessage() == null);
     }
 
     /**
@@ -165,15 +174,15 @@ public class CamelXMLRouteComposite extends AbstractSwitchyardComposite implemen
     public void setImplementation(Implementation impl) {
         if (impl instanceof CamelImplementationType) {
             _implementation = (CamelImplementationType) impl;
-            _inUpdate = true;
+            setInUpdate(true);
             if (_implementation != null && _mXMLText != null) {
                 if (_implementation.getXml() != null) {
                     _mXMLText.setText(_implementation.getXml().getPath());
                 } else {
-                    handleModify();
+                    handleModify(_mXMLText);
                 }
             }
-            _inUpdate = false;
+            setInUpdate(false);
         }
     }
 
@@ -246,5 +255,4 @@ public class CamelXMLRouteComposite extends AbstractSwitchyardComposite implemen
         }
         return null;
     }
-
 }

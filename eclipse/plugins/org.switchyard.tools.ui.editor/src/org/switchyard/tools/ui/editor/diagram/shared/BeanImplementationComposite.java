@@ -37,6 +37,7 @@ import org.eclipse.swt.layout.GridData;
 import org.eclipse.swt.layout.GridLayout;
 import org.eclipse.swt.widgets.Button;
 import org.eclipse.swt.widgets.Composite;
+import org.eclipse.swt.widgets.Control;
 import org.eclipse.swt.widgets.Display;
 import org.eclipse.swt.widgets.Link;
 import org.eclipse.swt.widgets.Text;
@@ -60,7 +61,6 @@ public class BeanImplementationComposite extends AbstractSwitchyardComposite imp
     private Button _browseBeanButton;
     private IJavaProject _project;
     private IType _beanClass;
-    private boolean _inUpdate = false;
 
     /**
      * Constructor.
@@ -93,8 +93,8 @@ public class BeanImplementationComposite extends AbstractSwitchyardComposite imp
         _beanClassText.addModifyListener(new ModifyListener() {
             @Override
             public void modifyText(ModifyEvent event) {
-                if (!_inUpdate) {
-                    handleModify();
+                if (!inUpdate()) {
+                    handleModify((Control)event.getSource());
                 }
             }
 
@@ -112,7 +112,7 @@ public class BeanImplementationComposite extends AbstractSwitchyardComposite imp
     }
 
     @SuppressWarnings("restriction")
-    private void handleModify() {
+    protected void handleModify(Control control) {
         final String implementationClassText = _beanClassText.getText().trim();
         validate();
         if (_implementation instanceof BeanImplementationType) {
@@ -130,13 +130,15 @@ public class BeanImplementationComposite extends AbstractSwitchyardComposite imp
                 }
             }
         }
+        setHasChanged(false);
     }
     
-    protected void validate() {
+    protected boolean validate() {
         setErrorMessage(null);
         if (_beanClass == null) {
             setErrorMessage("Please select a bean class.");
         }
+        return (getErrorMessage() == null);
     }
 
     /**
@@ -153,11 +155,11 @@ public class BeanImplementationComposite extends AbstractSwitchyardComposite imp
         this._implementation = impl;
         if (this._implementation != null && this._implementation instanceof BeanImplementationType) {
             BeanImplementationType beanImpl = (BeanImplementationType) this._implementation;
-            _inUpdate = true;
+            setInUpdate(true);
             if (beanImpl.getClass_() != null) {
                 this._beanClassText.setText(beanImpl.getClass_());
             }
-            _inUpdate = false;
+            setInUpdate(false);
         }
     }
 
@@ -183,7 +185,7 @@ public class BeanImplementationComposite extends AbstractSwitchyardComposite imp
                 if (result.length > 0 && result[0] instanceof IType) {
                     _beanClass = (IType) result[0];
                     _beanClassText.setText(((IType) result[0]).getFullyQualifiedName());
-                    handleModify();
+                    handleModify(_beanClassText);
                 }
             }
         } catch (JavaModelException e) {
@@ -207,7 +209,7 @@ public class BeanImplementationComposite extends AbstractSwitchyardComposite imp
                 if (type != null) {
                     _beanClass = type;
                     _beanClassText.setText(type.getFullyQualifiedName());
-                    handleModify();
+                    handleModify(_beanClassText);
                 }
             }
         }

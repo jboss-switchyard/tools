@@ -153,6 +153,11 @@ public class SwitchyardSCAPropertiesBindingsSection extends GFPropertySection im
 
     @Override
     public void refresh() {
+        StructuredSelection ssel = (StructuredSelection) _listViewer.getSelection();
+        Binding stashBinding = null;
+        if (!ssel.isEmpty()) {
+            stashBinding = (Binding) ssel.getFirstElement();
+        }
         PictogramElement pe = getSelectedPictogramElement();
         if (pe != null) {
             _targetBO = Graphiti.getLinkService().getBusinessObjectForLinkedPictogramElement(pe);
@@ -171,7 +176,11 @@ public class SwitchyardSCAPropertiesBindingsSection extends GFPropertySection im
             if (bindings != null) {
                 _listViewer.setInput(bindings);
                 if (bindings.size() > 0) {
-                    _listViewer.setSelection(new StructuredSelection(bindings.get(0)));
+                    if (stashBinding !=  null) {
+                        _listViewer.setSelection(new StructuredSelection(stashBinding), true);
+                    } else {
+                        _listViewer.setSelection(new StructuredSelection(bindings.get(0)));
+                    }
                 } else {
                     _detailSection.setExpanded(false);
                 }

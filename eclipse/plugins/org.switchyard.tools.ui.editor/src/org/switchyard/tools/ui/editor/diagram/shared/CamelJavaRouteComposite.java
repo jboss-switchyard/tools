@@ -43,6 +43,7 @@ import org.eclipse.swt.layout.GridData;
 import org.eclipse.swt.layout.GridLayout;
 import org.eclipse.swt.widgets.Button;
 import org.eclipse.swt.widgets.Composite;
+import org.eclipse.swt.widgets.Control;
 import org.eclipse.swt.widgets.Link;
 import org.eclipse.swt.widgets.Shell;
 import org.eclipse.swt.widgets.Text;
@@ -69,7 +70,6 @@ public class CamelJavaRouteComposite extends AbstractSwitchyardComposite impleme
     private Link _newClassLink;
     private Text _mClassText;
     private Button _browseClassBtn;
-    private boolean _inUpdate = false;
 
     /**
      * Constructor.
@@ -101,7 +101,7 @@ public class CamelJavaRouteComposite extends AbstractSwitchyardComposite impleme
                             String className = handleCreateJavaClass();
                             if (className != null) {
                                 _mClassText.setText(className);
-                                handleModify();
+                                handleModify(_mClassText);
                                 fireChangedEvent(_newClassLink);
                             }
                             return;
@@ -117,7 +117,7 @@ public class CamelJavaRouteComposite extends AbstractSwitchyardComposite impleme
         _mClassText = new Text(_panel, SWT.BORDER | SWT.READ_ONLY);
         _mClassText.addModifyListener(new ModifyListener() {
             public void modifyText(ModifyEvent e) {
-                handleModify();
+                handleModify(_mClassText);
                 fireChangedEvent(_mClassText);
             }
         });
@@ -262,10 +262,10 @@ public class CamelJavaRouteComposite extends AbstractSwitchyardComposite impleme
         return null;
     }
 
-    private void handleModify() {
+    protected void handleModify(Control control) {
         _routeClassName = _mClassText.getText().trim();
         validate();
-        if (!_inUpdate) {
+        if (!inUpdate()) {
             if (_mClassText != null && !_mClassText.isDisposed()) {
                 if (_implementation == null) {
                     _implementation = CamelFactory.eINSTANCE.createCamelImplementationType();
@@ -280,9 +280,10 @@ public class CamelJavaRouteComposite extends AbstractSwitchyardComposite impleme
                 _implementation.setXml(null);
             }
         }
+        setHasChanged(false);
     }
 
-    protected void validate() {
+    protected boolean validate() {
         setErrorMessage(null);
 
         // test to make sure class is valid
@@ -293,6 +294,7 @@ public class CamelJavaRouteComposite extends AbstractSwitchyardComposite impleme
         } else if (className.trim().length() < className.length()) {
             setErrorMessage("No spaces allowed in class name");
         }
+        return (getErrorMessage() == null);
     }
 
     /**
@@ -308,15 +310,15 @@ public class CamelJavaRouteComposite extends AbstractSwitchyardComposite impleme
     public void setImplementation(Implementation impl) {
         if (impl instanceof CamelImplementationType) {
             _implementation = (CamelImplementationType) impl;
-            _inUpdate = true;
+            setInUpdate(true);
             if (_implementation != null && _mClassText != null) {
                 if (_implementation.getJava() != null) {
                     this._mClassText.setText(_implementation.getJava().getClass_());
                 } else {
-                    handleModify();
+                    handleModify(_mClassText);
                 }
             }
-            _inUpdate = false;
+            setInUpdate(false);
         }
     }
 
@@ -340,5 +342,4 @@ public class CamelJavaRouteComposite extends AbstractSwitchyardComposite impleme
     public String getCamelRouteClass() {
         return this._routeClassName;
     }
-
 }

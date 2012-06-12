@@ -14,6 +14,9 @@ package org.switchyard.tools.ui.editor.transform.wizards;
 
 import org.eclipse.emf.transaction.RecordingCommand;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
+import org.eclipse.swt.SWT;
+import org.eclipse.swt.events.FocusEvent;
+import org.eclipse.swt.events.KeyEvent;
 import org.eclipse.swt.events.ModifyEvent;
 import org.eclipse.swt.events.ModifyListener;
 import org.eclipse.swt.events.SelectionEvent;
@@ -64,7 +67,7 @@ public class XSLTTransformComposite extends BaseTransformComposite {
         });
     }
 
-    protected void validate() {
+    protected boolean validate() {
         super.validate();
         if (getErrorMessage() == null) {
             if (_xsltFileText != null && !_xsltFileText.isDisposed()) {
@@ -74,6 +77,7 @@ public class XSLTTransformComposite extends BaseTransformComposite {
                 }
             }
         }
+        return (getErrorMessage() == null);
     }
 
     @SuppressWarnings("restriction")
@@ -127,5 +131,40 @@ public class XSLTTransformComposite extends BaseTransformComposite {
             _xsltFileText.setText(xsltTransform.getXsltFile());
         }
         setInUpdate(false);
+    }
+
+    @Override
+    public void focusLost(FocusEvent e) {
+        if (getTransform() != null && !inUpdate()) {
+            validate();
+            handleModify((Control) e.getSource());
+            fireChangedEvent((Control) e.getSource());
+        }
+    }
+
+    @Override
+    public void keyReleased(KeyEvent e) {
+        if (e.keyCode == SWT.ESC) {
+            // cancel out and return to original value
+            setInUpdate(true);
+            if (getTransform() != null) {
+                Control control = (Control) e.getSource();
+                XsltTransformType xsltTransform = (XsltTransformType) getTransform();
+                if (control.equals(_xsltFileText)) {
+                    _xsltFileText.setText(xsltTransform.getXsltFile());
+                } else if (control.equals(_failOnWarningText)) { 
+                    boolean value = Boolean.parseBoolean(xsltTransform.getFailOnWarning());                        
+                    _failOnWarningText.setSelection(value);
+                }
+            }
+            setInUpdate(false);
+        } else if (e.keyCode == SWT.CR) {
+            // accept change
+            if (getTransform() != null && !inUpdate()) {
+                validate();
+                handleModify((Control) e.getSource());
+                fireChangedEvent((Control) e.getSource());
+            }
+        }
     }
 }

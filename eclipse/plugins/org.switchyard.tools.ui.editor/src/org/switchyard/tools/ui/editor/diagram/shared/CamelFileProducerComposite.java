@@ -16,10 +16,8 @@ import org.eclipse.emf.transaction.RecordingCommand;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.eclipse.soa.sca.sca1_1.model.sca.Binding;
 import org.eclipse.swt.SWT;
-import org.eclipse.swt.events.ModifyEvent;
-import org.eclipse.swt.events.ModifyListener;
-import org.eclipse.swt.events.SelectionEvent;
-import org.eclipse.swt.events.SelectionListener;
+import org.eclipse.swt.events.FocusEvent;
+import org.eclipse.swt.events.KeyEvent;
 import org.eclipse.swt.layout.FillLayout;
 import org.eclipse.swt.layout.GridData;
 import org.eclipse.swt.layout.GridLayout;
@@ -42,7 +40,6 @@ public class CamelFileProducerComposite extends AbstractSwitchyardComposite impl
 
     private Composite _panel;
     private CamelFileBindingType _binding = null;
-    private boolean _inUpdate = false;
     private Text _directoryText;
     private Text _fileNameText;
     private Button _autoCreateButton;
@@ -58,7 +55,7 @@ public class CamelFileProducerComposite extends AbstractSwitchyardComposite impl
     public void setBinding(Binding impl) {
         if (impl instanceof CamelFileBindingType) {
             this._binding = (CamelFileBindingType) impl;
-            _inUpdate = true;
+            setInUpdate(true);
             if (this._binding.getProduce() != null) {
                 if (this._binding.getProduce().getFileExist() != null) {
                     _fileExistText.setText(this._binding.getProduce().getFileExist());
@@ -76,7 +73,7 @@ public class CamelFileProducerComposite extends AbstractSwitchyardComposite impl
             if (this._binding.isAutoCreate()) {
                 _autoCreateButton.setSelection(this._binding.isAutoCreate());
             }
-            _inUpdate = false;
+            setInUpdate(false);
             validate();
         } else {
             this._binding = null;
@@ -84,13 +81,14 @@ public class CamelFileProducerComposite extends AbstractSwitchyardComposite impl
     }
 
     @Override
-    protected void validate() {
+    protected boolean validate() {
         setErrorMessage(null);
         if (getBinding() != null) {
             if (_directoryText.getText().trim().isEmpty()) {
                 setErrorMessage("Directory may not be empty.");
             }
         }
+        return (getErrorMessage() == null);
     }
 
     @Override
@@ -132,53 +130,8 @@ public class CamelFileProducerComposite extends AbstractSwitchyardComposite impl
         return this._panel;
     }
 
-    /**
-     * @param parent parent composite
-     * @param label string to put in label
-     * @return reference to created Text control
-     */
-    protected Text createLabelAndText(Composite parent, String label) {
-        Text newText = super.createLabelAndText(parent, label);
-        newText.addModifyListener(new ModifyListener() {
-            @Override
-            public void modifyText(ModifyEvent e) {
-                if (!_inUpdate) {
-                    validate();
-                    handleModify((Control) e.getSource());
-                    fireChangedEvent((Control) e.getSource());
-                }
-            }
-        });
-        return newText;
-    }
-
-    /**
-     * @param parent parent composite
-     * @param label string for label
-     * @return reference to created Button
-     */
-    protected Button createCheckbox(Composite parent, String label) {
-        Button newButton = super.createCheckbox(parent, label);
-        newButton.addSelectionListener(new SelectionListener() {
-            @Override
-            public void widgetSelected(SelectionEvent e) {
-                if (!_inUpdate) {
-                    handleModify((Control) e.getSource());
-                    validate();
-                    fireChangedEvent((Control) e.getSource());
-                }
-            }
-
-            @Override
-            public void widgetDefaultSelected(SelectionEvent e) {
-                widgetSelected(e);
-            }
-        });
-        return newButton;
-    }
-
     @SuppressWarnings("restriction")
-    private void handleModify(final Control control) {
+    protected void handleModify(final Control control) {
         TransactionalEditingDomain domain = null;
         if (_binding.eContainer() != null) {
             domain = SwitchyardSCAEditor.getActiveEditor().getEditingDomain();
@@ -250,7 +203,56 @@ public class CamelFileProducerComposite extends AbstractSwitchyardComposite impl
                 }
                 _binding.getProduce().setTempPrefix(_tempPrefixText.getText().trim());
             }
+        }
+        setHasChanged(false);
+    }
 
+    @Override
+    public void focusLost(FocusEvent e) {
+        if (_binding != null && !inUpdate() && hasChanged()) {
+            validate();
+            handleModify((Control) e.getSource());
+            fireChangedEvent((Control) e.getSource());
+        }
+    }
+
+    @Override
+    public void keyReleased(KeyEvent e) {
+        if (e.keyCode == SWT.ESC) {
+            // cancel out and return to original value
+            setInUpdate(true);
+            if (_binding != null) {
+                Control control = (Control) e.getSource();
+                if (control.equals(_directoryText)) {
+                    _directoryText.setText(this._binding.getDirectory());
+                } else if (control.equals(_fileNameText)) {
+                    _fileNameText.setText(this._binding.getFileName());
+                } else if (control.equals(_autoCreateButton)) {
+                    _autoCreateButton.setSelection(this._binding.isAutoCreate());
+                } else if (this._binding.getProduce() != null) {
+                    if (control.equals(_fileExistText)) {
+                        _fileExistText.setText(this._binding.getProduce().getFileExist());
+                    } else if (control.equals(_tempPrefixText)) {
+                        _tempPrefixText.setText(this._binding.getProduce().getTempPrefix());
+                    }
+                }
+            }
+            setInUpdate(false);
+        } else if (e.keyCode == SWT.CR) {
+            // accept change
+            if (_binding != null && !inUpdate() && hasChanged()) {
+                validate();
+                handleModify((Control) e.getSource());
+                fireChangedEvent((Control) e.getSource());
+            }
+        } else if (e.keyCode == SWT.TAB) {
+            if (_binding != null && !inUpdate() && hasChanged()) {
+                boolean flag = validate();
+                if (flag) {
+                    handleModify((Control) e.getSource());
+                }
+                fireChangedEvent((Control) e.getSource());
+            }
         }
     }
 }
