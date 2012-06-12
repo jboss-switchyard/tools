@@ -48,7 +48,7 @@ public class NewContractWizardPage extends WizardPage {
     public NewContractWizardPage(String pageName, String title, String description, EClass contractType) {
         super(pageName, title, null);
         setDescription(description);
-        _contractControl = new ContractControl(contractType, null, EnumSet.of(InterfaceType.Java, InterfaceType.WSDL));
+        _contractControl = new ContractControl(contractType, null, EnumSet.of(InterfaceType.Java, InterfaceType.WSDL, InterfaceType.ESB));
     }
 
     @Override

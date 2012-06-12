@@ -55,7 +55,7 @@ public class NewCamelRouteClassWizardPage extends NewClassWizardPage {
         setDescription("Create a new service implementation based on a Camel route definition.");
 
         _serviceInterfaceControl = new ContractControl(ScaPackage.eINSTANCE.getComponentService(), getJavaProject(),
-                EnumSet.of(InterfaceType.Java, InterfaceType.WSDL));
+                EnumSet.of(InterfaceType.Java, InterfaceType.WSDL, InterfaceType.ESB));
         _serviceInterfaceControl.addSelectionChangedListener(new ISelectionChangedListener() {
             @Override
             public void selectionChanged(SelectionChangedEvent event) {

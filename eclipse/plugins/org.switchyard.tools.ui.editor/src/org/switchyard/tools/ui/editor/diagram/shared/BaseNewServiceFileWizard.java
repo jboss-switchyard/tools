@@ -269,7 +269,7 @@ public abstract class BaseNewServiceFileWizard extends BasicNewFileResourceWizar
             contents.setLayoutData(new GridData(GridData.FILL_HORIZONTAL));
 
             _contractControl = new ContractControl(ScaPackage.eINSTANCE.getComponentService(), getJavaProject(),
-                    EnumSet.of(InterfaceType.Java, InterfaceType.WSDL));
+                    EnumSet.of(InterfaceType.Java, InterfaceType.WSDL, InterfaceType.ESB));
             _contractControl.createControl(contents, 3);
             _contractControl.addSelectionChangedListener(new ISelectionChangedListener() {
                 @Override

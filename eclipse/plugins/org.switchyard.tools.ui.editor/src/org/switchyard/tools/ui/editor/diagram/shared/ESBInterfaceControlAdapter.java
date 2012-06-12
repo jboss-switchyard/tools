@@ -13,6 +13,7 @@ package org.switchyard.tools.ui.editor.diagram.shared;
 import org.eclipse.core.runtime.IStatus;
 import org.eclipse.core.runtime.Status;
 import org.eclipse.jdt.core.IJavaProject;
+import org.eclipse.jface.window.Window;
 import org.eclipse.soa.sca.sca1_1.model.sca.Interface;
 import org.eclipse.swt.widgets.Shell;
 import org.switchyard.tools.models.switchyard1_0.switchyard.EsbInterface;
@@ -20,10 +21,10 @@ import org.switchyard.tools.models.switchyard1_0.switchyard.SwitchyardFactory;
 import org.switchyard.tools.ui.editor.Activator;
 
 /**
- * JavaInterfaceControlAdapter
+ * EsbInterfaceControlAdapter
  * 
  * <p/>
- * Control adapter supporting Java interfaces.
+ * Control adapter supporting Esb interfaces.
  * 
  * @author Rob Cernich
  */
@@ -32,7 +33,7 @@ public class ESBInterfaceControlAdapter implements IInterfaceControlAdapter {
     private EsbInterface _interface;
 
     /**
-     * Create a new JavaInterfaceControlAdapter.
+     * Create a new EsbInterfaceControlAdapter.
      * 
      */
     public ESBInterfaceControlAdapter() {
@@ -46,10 +47,30 @@ public class ESBInterfaceControlAdapter implements IInterfaceControlAdapter {
 
     @Override
     public void init(Interface intf) {
+        if (intf instanceof EsbInterface) {
+            final EsbInterface esbIntfc = (EsbInterface) intf;
+            _interface.setFaultType(esbIntfc.getFaultType());
+            _interface.setInputType(esbIntfc.getInputType());
+            _interface.setOutputType(esbIntfc.getOutputType());
+        }
     }
 
     @Override
     public boolean browse(Shell shell, IJavaProject project) {
+        ESBInterfaceInputDialog dialog = new ESBInterfaceInputDialog(shell);
+        int rtn_code = dialog.open();
+        if (rtn_code == Window.OK) {
+            if (dialog.getFaultType() != null && !dialog.getFaultType().trim().isEmpty()) {
+                _interface.setFaultType(dialog.getFaultType());
+            }
+            if (dialog.getOutputType() != null && !dialog.getOutputType().trim().isEmpty()) {
+                _interface.setOutputType(dialog.getOutputType());
+            }
+            if (dialog.getInputType() != null && !dialog.getInputType().trim().isEmpty()) {
+                _interface.setInputType(dialog.getInputType());
+            }
+            return true;
+        }
         return false;
     }
 
@@ -60,12 +81,41 @@ public class ESBInterfaceControlAdapter implements IInterfaceControlAdapter {
 
     @Override
     public String getText() {
-        return "";
+        if (_interface == null) {
+            return "";
+        } else if (_interface.getInputType() == null && _interface.getOutputType() == null && _interface.getFaultType() == null) {
+            return "";
+        }
+        // (void | outputType) esbOperation(inputType) throws faultType
+        String renderText = "";
+        if (_interface.getOutputType() != null) {
+            renderText = "(" + _interface.getOutputType() + ") ";
+        } else {
+            renderText = "(void) ";
+        }
+        renderText = renderText + "esbOperation(";
+        if (_interface.getInputType() != null) {
+            renderText = renderText + _interface.getInputType() + ")";
+        } else {
+            renderText = renderText + ")";
+        }
+        if (_interface.getFaultType() != null) {
+            renderText = renderText + " throws " + _interface.getFaultType();
+        }
+        return renderText;
     }
 
     @Override
     public IStatus validate(IJavaProject project) {
-        return new Status(Status.ERROR, Activator.PLUGIN_ID, "ESB interface not supported (yet).");
+        if (_interface.getInputType() == null) {
+            return new Status(Status.ERROR, Activator.PLUGIN_ID, "Please specify an input type for the ESB interface.");
+        }
+        
+        if (_interface.getFaultType() != null && _interface.getOutputType() == null) {
+            return new Status(Status.ERROR, Activator.PLUGIN_ID, "Specifying a fault type also requires the output type for the ESB interface.");
+        }
+        
+        return Status.OK_STATUS;
     }
 
 }

@@ -15,7 +15,9 @@ package org.switchyard.tools.ui.editor.property.adapters;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.soa.sca.sca1_1.model.sca.JavaInterface;
 import org.eclipse.soa.sca.sca1_1.model.sca.WSDLPortType;
+import org.switchyard.tools.models.switchyard1_0.switchyard.EsbInterface;
 import org.switchyard.tools.ui.editor.diagram.shared.AbstractSwitchyardComposite;
+import org.switchyard.tools.ui.editor.diagram.shared.ESBInterfaceSelectionComposite;
 import org.switchyard.tools.ui.editor.diagram.shared.JavaInterfaceSelectionComposite;
 import org.switchyard.tools.ui.editor.diagram.shared.WSDLURISelectionComposite;
 
@@ -39,6 +41,8 @@ public final class InterfaceCompositeAdapter {
             composite = new JavaInterfaceSelectionComposite();
         } else if (object instanceof WSDLPortType) {
             composite = new WSDLURISelectionComposite();
+        } else if (object instanceof EsbInterface) {
+            composite = new ESBInterfaceSelectionComposite();
         }
         if (composite != null) {
             return composite;

@@ -65,7 +65,7 @@ public class ContractControl implements ISelectionProvider {
             throw new IllegalArgumentException("contractType must extend Contract: " + contractType.getName());
         }
         _service = (Contract) contractType.getEPackage().getEFactoryInstance().create(contractType);
-        _interfaceControl = new InterfaceControl(null, EnumSet.of(InterfaceType.Java, InterfaceType.WSDL));
+        _interfaceControl = new InterfaceControl(null, EnumSet.of(InterfaceType.Java, InterfaceType.WSDL, InterfaceType.ESB));
     }
 
     /**

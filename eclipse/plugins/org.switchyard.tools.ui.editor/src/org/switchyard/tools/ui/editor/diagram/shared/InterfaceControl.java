@@ -299,6 +299,7 @@ public class InterfaceControl implements ISelectionProvider {
             radio = null;
         }
         if (radio == null) {
+            _text.setText("");
             return;
         }
         IInterfaceControlAdapter adapter = (IInterfaceControlAdapter) radio.getData();
