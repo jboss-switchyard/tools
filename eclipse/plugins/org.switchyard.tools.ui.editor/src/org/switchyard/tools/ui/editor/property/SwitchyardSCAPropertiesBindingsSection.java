@@ -174,7 +174,7 @@ public class SwitchyardSCAPropertiesBindingsSection extends GFPropertySection im
                 Reference reference = (Reference) _targetBO;
                bindings = reference.getBinding();
             }
-            if (bindings != null) {
+            if (bindings != null && _listViewer != null && !_listViewer.getList().isDisposed()) {
                 _listViewer.setInput(bindings);
                 if (bindings.size() > 0) {
                     if (stashBinding !=  null) {

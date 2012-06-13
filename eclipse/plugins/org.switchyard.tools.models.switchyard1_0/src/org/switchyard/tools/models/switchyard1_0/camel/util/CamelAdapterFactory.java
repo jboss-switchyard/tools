@@ -204,6 +204,10 @@ public class CamelAdapterFactory extends AdapterFactoryImpl {
                 return createCamelQuartzBindingTypeAdapter();
             }
             @Override
+            public Adapter caseCamelSqlBindingType(CamelSqlBindingType object) {
+                return createCamelSqlBindingTypeAdapter();
+            }
+            @Override
             public Adapter caseCommonExtensionBase(CommonExtensionBase object) {
                 return createCommonExtensionBaseAdapter();
             }
@@ -678,6 +682,20 @@ public class CamelAdapterFactory extends AdapterFactoryImpl {
      * @generated
      */
     public Adapter createCamelQuartzBindingTypeAdapter() {
+        return null;
+    }
+
+    /**
+     * Creates a new adapter for an object of class '{@link org.switchyard.tools.models.switchyard1_0.camel.CamelSqlBindingType <em>Sql Binding Type</em>}'.
+     * <!-- begin-user-doc -->
+     * This default implementation returns null so that we can easily ignore cases;
+     * it's useful to ignore a case when inheritance will catch all the cases anyway.
+     * <!-- end-user-doc -->
+     * @return the new adapter.
+     * @see org.switchyard.tools.models.switchyard1_0.camel.CamelSqlBindingType
+     * @generated
+     */
+    public Adapter createCamelSqlBindingTypeAdapter() {
         return null;
     }
 

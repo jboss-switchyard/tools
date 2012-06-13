@@ -269,6 +269,15 @@ public interface CamelFactory extends EFactory {
     CamelQuartzBindingType createCamelQuartzBindingType();
 
     /**
+     * Returns a new object of class '<em>Sql Binding Type</em>'.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @return a new object of class '<em>Sql Binding Type</em>'.
+     * @generated
+     */
+    CamelSqlBindingType createCamelSqlBindingType();
+
+    /**
      * Returns the package supported by this factory.
      * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->

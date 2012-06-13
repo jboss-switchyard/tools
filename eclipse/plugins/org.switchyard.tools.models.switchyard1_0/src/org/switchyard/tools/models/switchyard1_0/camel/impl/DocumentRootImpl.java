@@ -38,6 +38,7 @@ import org.switchyard.tools.models.switchyard1_0.camel.CamelPackage;
 import org.switchyard.tools.models.switchyard1_0.camel.CamelQuartzBindingType;
 import org.switchyard.tools.models.switchyard1_0.camel.CamelSedaBindingType;
 import org.switchyard.tools.models.switchyard1_0.camel.CamelSftpBindingType;
+import org.switchyard.tools.models.switchyard1_0.camel.CamelSqlBindingType;
 import org.switchyard.tools.models.switchyard1_0.camel.CamelTimerBindingType;
 import org.switchyard.tools.models.switchyard1_0.camel.DocumentRoot;
 
@@ -66,6 +67,7 @@ import org.switchyard.tools.models.switchyard1_0.camel.DocumentRoot;
  *   <li>{@link org.switchyard.tools.models.switchyard1_0.camel.impl.DocumentRootImpl#getBindingNettyUDP <em>Binding Netty UDP</em>}</li>
  *   <li>{@link org.switchyard.tools.models.switchyard1_0.camel.impl.DocumentRootImpl#getBindingNettyTCP <em>Binding Netty TCP</em>}</li>
  *   <li>{@link org.switchyard.tools.models.switchyard1_0.camel.impl.DocumentRootImpl#getBindingQuartz <em>Binding Quartz</em>}</li>
+ *   <li>{@link org.switchyard.tools.models.switchyard1_0.camel.impl.DocumentRootImpl#getBindingSql <em>Binding Sql</em>}</li>
  * </ul>
  * </p>
  *
@@ -564,6 +566,33 @@ public class DocumentRootImpl extends EObjectImpl implements DocumentRoot {
 
     /**
      * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public CamelSqlBindingType getBindingSql() {
+        return (CamelSqlBindingType)getMixed().get(CamelPackage.Literals.DOCUMENT_ROOT__BINDING_SQL, true);
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public NotificationChain basicSetBindingSql(CamelSqlBindingType newBindingSql, NotificationChain msgs) {
+        return ((FeatureMap.Internal)getMixed()).basicAdd(CamelPackage.Literals.DOCUMENT_ROOT__BINDING_SQL, newBindingSql, msgs);
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public void setBindingSql(CamelSqlBindingType newBindingSql) {
+        ((FeatureMap.Internal)getMixed()).set(CamelPackage.Literals.DOCUMENT_ROOT__BINDING_SQL, newBindingSql);
+    }
+
+    /**
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
      * @generated
      */
@@ -606,6 +635,8 @@ public class DocumentRootImpl extends EObjectImpl implements DocumentRoot {
                 return basicSetBindingNettyTCP(null, msgs);
             case CamelPackage.DOCUMENT_ROOT__BINDING_QUARTZ:
                 return basicSetBindingQuartz(null, msgs);
+            case CamelPackage.DOCUMENT_ROOT__BINDING_SQL:
+                return basicSetBindingSql(null, msgs);
         }
         return super.eInverseRemove(otherEnd, featureID, msgs);
     }
@@ -657,6 +688,8 @@ public class DocumentRootImpl extends EObjectImpl implements DocumentRoot {
                 return getBindingNettyTCP();
             case CamelPackage.DOCUMENT_ROOT__BINDING_QUARTZ:
                 return getBindingQuartz();
+            case CamelPackage.DOCUMENT_ROOT__BINDING_SQL:
+                return getBindingSql();
         }
         return super.eGet(featureID, resolve, coreType);
     }
@@ -722,6 +755,9 @@ public class DocumentRootImpl extends EObjectImpl implements DocumentRoot {
                 return;
             case CamelPackage.DOCUMENT_ROOT__BINDING_QUARTZ:
                 setBindingQuartz((CamelQuartzBindingType)newValue);
+                return;
+            case CamelPackage.DOCUMENT_ROOT__BINDING_SQL:
+                setBindingSql((CamelSqlBindingType)newValue);
                 return;
         }
         super.eSet(featureID, newValue);
@@ -789,6 +825,9 @@ public class DocumentRootImpl extends EObjectImpl implements DocumentRoot {
             case CamelPackage.DOCUMENT_ROOT__BINDING_QUARTZ:
                 setBindingQuartz((CamelQuartzBindingType)null);
                 return;
+            case CamelPackage.DOCUMENT_ROOT__BINDING_SQL:
+                setBindingSql((CamelSqlBindingType)null);
+                return;
         }
         super.eUnset(featureID);
     }
@@ -837,6 +876,8 @@ public class DocumentRootImpl extends EObjectImpl implements DocumentRoot {
                 return getBindingNettyTCP() != null;
             case CamelPackage.DOCUMENT_ROOT__BINDING_QUARTZ:
                 return getBindingQuartz() != null;
+            case CamelPackage.DOCUMENT_ROOT__BINDING_SQL:
+                return getBindingSql() != null;
         }
         return super.eIsSet(featureID);
     }

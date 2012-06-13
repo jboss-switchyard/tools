@@ -38,6 +38,7 @@ import org.eclipse.emf.ecore.util.FeatureMap;
  *   <li>{@link org.switchyard.tools.models.switchyard1_0.camel.DocumentRoot#getBindingNettyUDP <em>Binding Netty UDP</em>}</li>
  *   <li>{@link org.switchyard.tools.models.switchyard1_0.camel.DocumentRoot#getBindingNettyTCP <em>Binding Netty TCP</em>}</li>
  *   <li>{@link org.switchyard.tools.models.switchyard1_0.camel.DocumentRoot#getBindingQuartz <em>Binding Quartz</em>}</li>
+ *   <li>{@link org.switchyard.tools.models.switchyard1_0.camel.DocumentRoot#getBindingSql <em>Binding Sql</em>}</li>
  * </ul>
  * </p>
  *
@@ -503,5 +504,32 @@ public interface DocumentRoot extends EObject {
      * @generated
      */
     void setBindingQuartz(CamelQuartzBindingType value);
+
+    /**
+     * Returns the value of the '<em><b>Binding Sql</b></em>' containment reference.
+     * <!-- begin-user-doc -->
+     * <p>
+     * If the meaning of the '<em>Binding Sql</em>' containment reference isn't clear,
+     * there really should be more of a description here...
+     * </p>
+     * <!-- end-user-doc -->
+     * @return the value of the '<em>Binding Sql</em>' containment reference.
+     * @see #setBindingSql(CamelSqlBindingType)
+     * @see org.switchyard.tools.models.switchyard1_0.camel.CamelPackage#getDocumentRoot_BindingSql()
+     * @model containment="true" upper="-2" transient="true" volatile="true" derived="true"
+     *        extendedMetaData="kind='element' name='binding.sql' namespace='##targetNamespace' affiliation='urn:switchyard-config:switchyard:1.0#binding.switchyard'"
+     * @generated
+     */
+    CamelSqlBindingType getBindingSql();
+
+    /**
+     * Sets the value of the '{@link org.switchyard.tools.models.switchyard1_0.camel.DocumentRoot#getBindingSql <em>Binding Sql</em>}' containment reference.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @param value the new value of the '<em>Binding Sql</em>' containment reference.
+     * @see #getBindingSql()
+     * @generated
+     */
+    void setBindingSql(CamelSqlBindingType value);
 
 } // DocumentRoot

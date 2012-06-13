@@ -57,8 +57,6 @@ import org.switchyard.tools.ui.editor.util.OpenFileUtil;
 @SuppressWarnings("restriction")
 public class WSDLURISelectionComposite extends AbstractSwitchyardComposite implements IInterfaceComposite {
 
-    private static final String WSDL = "wsdl";
-
     private Composite _panel;
     private Text _mWSDLInterfaceURIText;
     private String _sWSDLURI = null;
@@ -264,31 +262,6 @@ public class WSDLURISelectionComposite extends AbstractSwitchyardComposite imple
             }
         }
         return null;
-    }
-
-    private String selectResourceFromWorkspace(Shell shell, final String extension) {
-
-        IFile modelFile = SwitchyardSCAEditor.getActiveEditor().getModelFile();
-        IJavaProject javaProject = null;
-        if (modelFile != null) {
-            if (modelFile.getProject() != null) { //$NON-NLS-1$
-                javaProject = JavaCore.create(modelFile.getProject());
-            }
-        }
-        ClasspathResourceSelectionDialog dialog = null;
-        if (javaProject == null) {
-            dialog = new ClasspathResourceSelectionDialog(shell, ResourcesPlugin.getWorkspace().getRoot(), extension);
-        } else {
-            dialog = new ClasspathResourceSelectionDialog(shell, javaProject.getProject(), extension);
-        }
-        dialog.setTitle("Select WSDL from Project");
-        dialog.setInitialPattern("*.wsdl");
-        dialog.open();
-        Object[] result = dialog.getResult();
-        if (result == null || result.length == 0 || !(result[0] instanceof IResource)) {
-            return null;
-        }
-        return JavaUtil.getJavaPathForResource((IResource) result[0]).toString();
     }
 
     private static String getPathToNewWSDL(final Shell shell, final IPath path, boolean _openWhenFinish) {

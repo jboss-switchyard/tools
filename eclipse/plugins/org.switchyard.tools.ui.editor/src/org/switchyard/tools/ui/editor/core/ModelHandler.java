@@ -62,6 +62,7 @@ import org.switchyard.tools.models.switchyard1_0.camel.CamelPackage;
 import org.switchyard.tools.models.switchyard1_0.camel.CamelQuartzBindingType;
 import org.switchyard.tools.models.switchyard1_0.camel.CamelSedaBindingType;
 import org.switchyard.tools.models.switchyard1_0.camel.CamelSftpBindingType;
+import org.switchyard.tools.models.switchyard1_0.camel.CamelSqlBindingType;
 import org.switchyard.tools.models.switchyard1_0.camel.CamelTimerBindingType;
 import org.switchyard.tools.models.switchyard1_0.camel.JavaDSLType;
 import org.switchyard.tools.models.switchyard1_0.camel.XMLDSLType;
@@ -626,28 +627,6 @@ public class ModelHandler {
     }
 
     /**
-     * @return list of supported binding types
-     */
-    public List<Binding> getSupportedBindingTypes() {
-        ArrayList<Binding> typeList = new ArrayList<Binding>();
-
-        Binding soapBindingType = SOAPFactory.eINSTANCE.createSOAPBindingType();
-        ((SOAPBindingType) soapBindingType).setWsdl("MyService.wsdl");
-        ((SOAPBindingType) soapBindingType).setSocketAddr(":18001");
-        typeList.add(soapBindingType);
-
-        Binding camelFileType = CamelFactory.eINSTANCE.createCamelFileBindingType();
-        ((CamelFileBindingType) camelFileType).setDirectory("my/directory");
-        typeList.add(camelFileType);
-
-        Binding camelFTPType = CamelFactory.eINSTANCE.createCamelFtpBindingType();
-        ((CamelFtpBindingType) camelFTPType).setDirectory("my/directory");
-        typeList.add(camelFTPType);
-
-        return typeList;
-    }
-
-    /**
      * @return list of supported transform types
      */
     public List<TransformType> getSupportedTransformTypes() {
@@ -727,6 +706,8 @@ public class ModelHandler {
             return "Seda";
         } else if (binding instanceof CamelTimerBindingType) {
             return "Timer";
+        } else if (binding instanceof CamelSqlBindingType) {
+            return "SQL";
         } else {
             return "Unsupported (" + binding.eClass().getClass().getName() + ")";
         }
