@@ -200,6 +200,13 @@ public class Java2WSDLOperation implements IRunnableWithProgress {
         }
 
         @Override
+        public Boolean hasOutMessage(Method m) {
+            Boolean defaultValue = _default.hasOutMessage(m);
+            // if the return type is a void, there is no "out" message.
+            return (defaultValue == null || defaultValue) && !void.class.isAssignableFrom(m.getReturnType());
+        }
+
+        @Override
         public QName getInParameterName(OperationInfo op, Method method, int paramNumber) {
             QName name = _default.getInParameterName(op, method, paramNumber);
             if (name == null || !name.getLocalPart().matches("arg\\d*")) {
