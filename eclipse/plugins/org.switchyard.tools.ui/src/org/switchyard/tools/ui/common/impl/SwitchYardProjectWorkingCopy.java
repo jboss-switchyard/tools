@@ -36,7 +36,6 @@ import org.eclipse.core.runtime.Status;
 import org.eclipse.core.runtime.SubProgressMonitor;
 import org.eclipse.m2e.core.MavenPlugin;
 import org.eclipse.m2e.core.internal.IMavenConstants;
-import org.eclipse.m2e.core.project.MavenUpdateRequest;
 import org.switchyard.config.model.switchyard.SwitchYardModel;
 import org.switchyard.tools.ui.Activator;
 import org.switchyard.tools.ui.common.ISwitchYardComponentExtension;
@@ -60,7 +59,6 @@ public class SwitchYardProjectWorkingCopy implements ISwitchYardProjectWorkingCo
     private Map<String, ISwitchYardComponentExtension> _removedComponents = new LinkedHashMap<String, ISwitchYardComponentExtension>();
     private Set<ISwitchYardComponentExtension> _mergedComponents = new LinkedHashSet<ISwitchYardComponentExtension>();
     private volatile String _newVersion;
-    private boolean _configurationChanged;
 
     /**
      * Create a new SwitchYardProjectWorkingCopy.
@@ -231,9 +229,6 @@ public class SwitchYardProjectWorkingCopy implements ISwitchYardProjectWorkingCo
     @Override
     public void commit(IProgressMonitor monitor) throws CoreException {
         synchronized (_switchYardProject) {
-
-            _configurationChanged = false;
-
             if (!isModified()) {
                 monitor.done();
                 return;
@@ -252,23 +247,6 @@ public class SwitchYardProjectWorkingCopy implements ISwitchYardProjectWorkingCo
                 getProject().getFile(IMavenConstants.POM_FILE_NAME).setContents(
                         new ByteArrayInputStream(baos.toByteArray()), true, true, subMonitor);
                 subMonitor.done();
-
-                // update ourselves
-                if (_configurationChanged) {
-                    // need to update maven project configuration; refreshes the
-                    // project too.
-                    new UpdateConfigurationJob(new IProject[] {getProject() }).schedule();
-                } else {
-                    // make sure the project gets refreshed
-                    MavenPlugin.getMavenProjectRegistry()
-                            .refresh(
-                                    new MavenUpdateRequest(getProject(), MavenPlugin.getMavenConfiguration()
-                                            .isOffline(), false));
-                }
-
-                subMonitor = new SubProgressMonitor(monitor, 100, SubProgressMonitor.PREPEND_MAIN_LABEL_TO_SUBTASK);
-                load(subMonitor);
-
             }
             subMonitor.done();
             monitor.done();
@@ -341,7 +319,7 @@ public class SwitchYardProjectWorkingCopy implements ISwitchYardProjectWorkingCo
         if (_addedComponents.size() > 0) {
             final String versionString = getRawVersionString();
             for (ISwitchYardComponentExtension component : _addedComponents.values()) {
-                COMPONENT_DEPENDENCIES : for (Dependency dependency : component.getDependencies()) {
+                COMPONENT_DEPENDENCIES: for (Dependency dependency : component.getDependencies()) {
                     // crude, but effective
                     for (Iterator<Dependency> it = model.getDependencies().iterator(); it.hasNext();) {
                         if (it.next().getManagementKey().equals(dependency.getManagementKey())) {
@@ -362,7 +340,6 @@ public class SwitchYardProjectWorkingCopy implements ISwitchYardProjectWorkingCo
         if (_switchYardProject.getPlugin().updateScannerClasses(collectScanners(_addedComponents.values()),
                 collectScanners(_removedComponents.values()))) {
             modelUpdated = true;
-            _configurationChanged = true;
         }
         monitor.worked(10);
 

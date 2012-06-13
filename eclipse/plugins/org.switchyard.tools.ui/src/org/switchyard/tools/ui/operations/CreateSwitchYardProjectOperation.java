@@ -52,9 +52,6 @@ import org.eclipse.m2e.core.project.IProjectConfigurationManager;
 import org.eclipse.ui.ide.undo.CreateFileOperation;
 import org.eclipse.ui.ide.undo.CreateFolderOperation;
 import org.eclipse.ui.ide.undo.CreateProjectOperation;
-import org.eclipse.wst.common.project.facet.core.IFacetedProject;
-import org.eclipse.wst.common.project.facet.core.IFacetedProjectWorkingCopy;
-import org.eclipse.wst.common.project.facet.core.ProjectFacetsManager;
 import org.switchyard.config.OutputKey;
 import org.switchyard.config.model.composite.CompositeModel;
 import org.switchyard.config.model.composite.v1.V1CompositeModel;
@@ -62,7 +59,6 @@ import org.switchyard.config.model.switchyard.SwitchYardModel;
 import org.switchyard.tools.ui.Activator;
 import org.switchyard.tools.ui.M2EUtils;
 import org.switchyard.tools.ui.common.ISwitchYardComponentExtension;
-import org.switchyard.tools.ui.facets.ISwitchYardFacetConstants;
 
 /**
  * CreateSwitchYardProjectOperation
@@ -334,24 +330,8 @@ public class CreateSwitchYardProjectOperation implements IWorkspaceRunnable {
             }
 
             // attach project facets
-            try {
-                monitor.subTask("Configuring project facets.");
-                subMonitor = new SubProgressMonitor(monitor, 50, SubProgressMonitor.PREPEND_MAIN_LABEL_TO_SUBTASK);
-                final IFacetedProject facetedProject = ProjectFacetsManager.create(
-                        _projectMetatData.getNewProjectHandle(), true, subMonitor);
-                subMonitor.done();
-                subMonitor.setTaskName("");
-
-                subMonitor = new SubProgressMonitor(monitor, 50, SubProgressMonitor.PREPEND_MAIN_LABEL_TO_SUBTASK);
-                final IFacetedProjectWorkingCopy fpwc = facetedProject.createWorkingCopy();
-                fpwc.setSelectedPreset(ISwitchYardFacetConstants.SWITCHYARD_JAR_PRESET_ID);
-                fpwc.commitChanges(subMonitor);
-            } catch (Exception e) {
-                mergeStatus(status, "Error configuring project facets.", e);
-            } finally {
-                subMonitor.done();
-                subMonitor.setTaskName("");
-            }
+            // no longer necessary as maven configurator for switchyard will add
+            // facets
 
             if (!status.isOK()) {
                 throw new CoreException(status);

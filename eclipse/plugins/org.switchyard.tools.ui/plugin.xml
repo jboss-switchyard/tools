@@ -446,6 +446,9 @@
               <or>
                   <instanceof
                           value="org.eclipse.core.resources.IWorkspaceRoot" />
+                  <instanceof value="org.eclipse.core.resources.IProject"/>
+                  <instanceof
+                          value="org.switchyard.tools.ui.explorer.ISwitchYardNode"/>
                   <and>
                       <instanceof value="java.util.Collection"/>
                       <count value="0" />

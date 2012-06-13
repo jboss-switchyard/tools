@@ -145,7 +145,7 @@ public class SwitchYardExplorerContentProvider implements ITreeContentProvider, 
         if (!_cache.containsKey(project.getProject()) || (types.size() == 1 && types.contains(Type.POM))) {
             return;
         } else if (types.contains(Type.REMOVED)) {
-            SwitchYardRootNode node = _cache.remove(project);
+            SwitchYardRootNode node = _cache.remove(project.getProject());
             _pendingUpdates.remove(node);
             node.dispose();
             return;
@@ -178,7 +178,8 @@ public class SwitchYardExplorerContentProvider implements ITreeContentProvider, 
     private final class SwitchYardRefreshJob extends Job {
         private SwitchYardRefreshJob() {
             super("Refreshing SwitchYard project configuration.");
-            setRule(SwitchYardProjectManager.SWITCHYARD_RULE);
+            // we don't want this to get in the way of build or maven jobs.
+            setPriority(DECORATE);
         }
 
         @Override
@@ -205,10 +206,6 @@ public class SwitchYardExplorerContentProvider implements ITreeContentProvider, 
                         }
                         if (monitor.isCanceled()) {
                             status = Status.CANCEL_STATUS;
-                            for (SwitchYardRootNode node : updatedNodes) {
-                                _pendingUpdates.putIfAbsent(node, PENDING);
-                            }
-                            updatedNodes.clear();
                             break;
                         }
                     }

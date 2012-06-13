@@ -47,13 +47,16 @@ import org.eclipse.core.resources.IProject;
 import org.eclipse.core.runtime.CoreException;
 import org.eclipse.core.runtime.IPath;
 import org.eclipse.core.runtime.IProgressMonitor;
+import org.eclipse.core.runtime.NullProgressMonitor;
 import org.eclipse.core.runtime.Path;
 import org.eclipse.core.runtime.Status;
 import org.eclipse.core.runtime.SubProgressMonitor;
 import org.eclipse.m2e.core.MavenPlugin;
-import org.eclipse.m2e.core.internal.IMavenConstants;
+import org.eclipse.m2e.core.project.IMavenProjectChangedListener;
 import org.eclipse.m2e.core.project.IMavenProjectFacade;
+import org.eclipse.m2e.core.project.MavenProjectChangedEvent;
 import org.eclipse.m2e.core.project.MavenProjectUtils;
+import org.eclipse.m2e.core.project.MavenUpdateRequest;
 import org.switchyard.config.model.ModelPuller;
 import org.switchyard.config.model.switchyard.SwitchYardModel;
 import org.switchyard.tools.ui.Activator;
@@ -71,11 +74,10 @@ import org.switchyard.tools.ui.common.impl.SwitchYardProjectManager.ISwitchYardP
  * 
  * @author Rob Cernich
  */
-@SuppressWarnings("restriction")
-public class SwitchYardProject implements ISwitchYardProject {
+public class SwitchYardProject implements ISwitchYardProject, IMavenProjectChangedListener {
 
     private IProject _project;
-    private volatile MavenProject _mavenProject;
+    private volatile IMavenProjectFacade _mavenProjectFacade;
     private volatile String _version;
     private volatile String _versionPropertyKey;
     private volatile String _rawVersionString;
@@ -84,9 +86,9 @@ public class SwitchYardProject implements ISwitchYardProject {
     private volatile SwitchYardConfigurePlugin _plugin;
     private volatile IFile _switchYardConfigurationFile;
     private Set<SwitchYardProjectWorkingCopy> _workingCopies = new HashSet<SwitchYardProjectWorkingCopy>();
-    private long _lastPomTimestamp;
     private long _lastOutputTimestamp;
     private final SwitchYardProjectManager _manager;
+    private boolean _inLoad;
 
     /**
      * Create a new SwitchYardProject.
@@ -97,10 +99,8 @@ public class SwitchYardProject implements ISwitchYardProject {
     /* package */SwitchYardProject(SwitchYardProjectManager manager, IProject project) {
         _manager = manager;
         _project = project;
-        IMavenProjectFacade mavenProjectFacade = MavenPlugin.getMavenProjectRegistry().getProject(project);
-        if (mavenProjectFacade != null && !mavenProjectFacade.isStale()) {
-            _mavenProject = mavenProjectFacade.getMavenProject();
-        }
+        _mavenProjectFacade = MavenPlugin.getMavenProjectRegistry().getProject(project);
+        MavenPlugin.getMavenProjectRegistry().addMavenProjectChangedListener(this);
         init();
     }
 
@@ -111,7 +111,7 @@ public class SwitchYardProject implements ISwitchYardProject {
 
     @Override
     public MavenProject getMavenProject() {
-        return _mavenProject;
+        return _mavenProjectFacade == null ? null : _mavenProjectFacade.getMavenProject();
     }
 
     @Override
@@ -178,15 +178,18 @@ public class SwitchYardProject implements ISwitchYardProject {
 
     @Override
     public boolean needsLoading() {
-        return _mavenProject == null;
+        // add a check for the configuration file. it may be that the maven
+        // project was loaded after we initialized.
+        return getMavenProject() == null || _switchYardConfigurationFile == null;
     }
 
     @Override
     public synchronized void load(IProgressMonitor monitor) {
-        final IFile pomFile = _project.getFile(IMavenConstants.POM_FILE_NAME);
-        final long pomTimestamp = pomFile.getLocalTimeStamp();
-        if (_mavenProject != null && pomTimestamp <= _lastPomTimestamp) {
-            final long outputTimestamp = getOutputSwitchYardConfigurationFile().getLocalTimeStamp();
+        if (!needsLoading()) {
+            if (getOutputSwitchYardConfigurationFile() == null) {
+                return;
+            }
+            final long outputTimestamp = getOutputSwitchYardConfigurationFile().getModificationStamp();
             if (outputTimestamp > _lastOutputTimestamp) {
                 _manager.notify(this, EnumSet.of(Type.CONFIG));
                 _lastOutputTimestamp = outputTimestamp;
@@ -200,15 +203,30 @@ public class SwitchYardProject implements ISwitchYardProject {
         try {
             final IFile oldOutputFile = getOutputSwitchYardConfigurationFile();
 
-            // reload the project
-            _mavenProject = MavenPlugin.getMaven().readProject(pomFile.getLocation().toFile(), subMonitor);
-            _lastPomTimestamp = pomTimestamp;
+            if (_mavenProjectFacade == null) {
+                _mavenProjectFacade = MavenPlugin.getMavenProjectRegistry().getProject(_project);
+                if (_mavenProjectFacade == null) {
+                    _inLoad = true;
+                    try {
+                        MavenPlugin.getMavenProjectRegistry()
+                                .refresh(
+                                        new MavenUpdateRequest(_project, MavenPlugin.getMavenConfiguration()
+                                                .isOffline(), false), subMonitor);
+                    } finally {
+                        _inLoad = false;
+                    }
+                }
+            }
+            if (_mavenProjectFacade.getMavenProject() == null) {
+                // reload the project
+                _mavenProjectFacade.getMavenProject(subMonitor);
+            }
             subMonitor.done();
 
             init();
 
             final IFile newOutputFile = getOutputSwitchYardConfigurationFile();
-            final long outputTimestamp = newOutputFile == null ? 0L : newOutputFile.getLocalTimeStamp();
+            final long outputTimestamp = newOutputFile == null ? 0L : newOutputFile.getModificationStamp();
             if (outputTimestamp > _lastOutputTimestamp || (oldOutputFile == null && newOutputFile != null)
                     || oldOutputFile.equals(newOutputFile)) {
                 types = EnumSet.of(Type.POM, Type.CONFIG);
@@ -230,6 +248,29 @@ public class SwitchYardProject implements ISwitchYardProject {
     }
 
     @Override
+    public synchronized void mavenProjectChanged(MavenProjectChangedEvent[] events, IProgressMonitor monitor) {
+        if (events == null) {
+            return;
+        }
+        for (MavenProjectChangedEvent event : events) {
+            if (_project.equals(event.getSource().getProject())) {
+                if (event.getMavenProject() != null) {
+                    if (event.getMavenProject().getMavenProject() != null) {
+                        _mavenProjectFacade = event.getMavenProject();
+                        if (!_inLoad && getMavenProject() != null) {
+                            // if it's null, don't reload
+                            init();
+                            // send out any events if any configuration changed
+                            load(new NullProgressMonitor());
+                        }
+                    }
+                }
+                return;
+            }
+        }
+    }
+
+    @Override
     public synchronized ISwitchYardProjectWorkingCopy createWorkingCopy() {
         SwitchYardProjectWorkingCopy workingCopy = new SwitchYardProjectWorkingCopy(this);
         _workingCopies.add(workingCopy);
@@ -238,6 +279,12 @@ public class SwitchYardProject implements ISwitchYardProject {
 
     protected SwitchYardConfigurePlugin getPlugin() {
         return _plugin;
+    }
+
+    /* package */
+    synchronized void dispose() {
+        MavenPlugin.getMavenProjectRegistry().removeMavenProjectChangedListener(this);
+        _mavenProjectFacade = null;
     }
 
     /* package */
@@ -254,13 +301,14 @@ public class SwitchYardProject implements ISwitchYardProject {
         _plugin = new SwitchYardConfigurePlugin();
         _switchYardConfigurationFile = null;
 
-        if (_mavenProject == null) {
+        MavenProject mavenProject = getMavenProject();
+        if (mavenProject == null) {
             return;
         }
 
-        _version = readSwitchYardVersion();
-        _versionPropertyKey = readSwitchYardVersionPropertyKey();
-        _rawVersionString = readRawVersionString();
+        _version = readSwitchYardVersion(mavenProject);
+        _versionPropertyKey = readSwitchYardVersionPropertyKey(mavenProject);
+        _rawVersionString = readRawVersionString(mavenProject);
         if (_rawVersionString == null) {
             _usingDependencyManagement = true;
         } else if (_rawVersionString == UNKNOWN_VERSION_STRING) {
@@ -272,9 +320,9 @@ public class SwitchYardProject implements ISwitchYardProject {
                 _rawVersionString = null;
             }
         }
-        _components = readComponents();
+        _components = readComponents(mavenProject);
 
-        for (IPath resourceLocation : MavenProjectUtils.getResourceLocations(_project, _mavenProject.getResources())) {
+        for (IPath resourceLocation : MavenProjectUtils.getResourceLocations(_project, mavenProject.getResources())) {
             IFile temp = _project.getFolder(resourceLocation).getFile("META-INF/switchyard.xml");
             if (_switchYardConfigurationFile == null) {
                 _switchYardConfigurationFile = temp;
@@ -286,8 +334,8 @@ public class SwitchYardProject implements ISwitchYardProject {
         }
     }
 
-    private String readSwitchYardVersion() {
-        for (Dependency dependency : _mavenProject.getDependencies()) {
+    private String readSwitchYardVersion(MavenProject mavenProject) {
+        for (Dependency dependency : mavenProject.getDependencies()) {
             if (SWITCHYARD_CORE_GROUP_ID.equals(dependency.getGroupId()) && dependency.getVersion() != null) {
                 return dependency.getVersion();
             }
@@ -300,22 +348,22 @@ public class SwitchYardProject implements ISwitchYardProject {
     }
 
     private Plugin getSwitchYardPlugin() {
-        if (_mavenProject == null) {
+        if (getMavenProject() == null) {
             return null;
         }
-        return _mavenProject.getPlugin(SWITCHYARD_PLUGIN_KEY);
+        return getMavenProject().getPlugin(SWITCHYARD_PLUGIN_KEY);
     }
 
-    private String readRawVersionString() {
-        if (_mavenProject.getDependencyManagement() != null) {
-            for (Dependency dependency : _mavenProject.getDependencyManagement().getDependencies()) {
+    private String readRawVersionString(MavenProject mavenProject) {
+        if (mavenProject.getDependencyManagement() != null) {
+            for (Dependency dependency : mavenProject.getDependencyManagement().getDependencies()) {
                 if (SWITCHYARD_CORE_GROUP_ID.equals(dependency.getGroupId())) {
                     // using dependency management
                     return null;
                 }
             }
         }
-        for (Dependency dependency : _mavenProject.getOriginalModel().getDependencies()) {
+        for (Dependency dependency : mavenProject.getOriginalModel().getDependencies()) {
             if (SWITCHYARD_CORE_GROUP_ID.equals(dependency.getGroupId())) {
                 return dependency.getVersion();
             }
@@ -323,11 +371,11 @@ public class SwitchYardProject implements ISwitchYardProject {
         return UNKNOWN_VERSION_STRING;
     }
 
-    private Set<ISwitchYardComponentExtension> readComponents() {
+    private Set<ISwitchYardComponentExtension> readComponents(MavenProject mavenProject) {
         Collection<ISwitchYardComponentExtension> extensions = SwitchYardComponentExtensionManager.instance()
                 .getComponentExtensions();
         Set<ISwitchYardComponentExtension> retVal = new LinkedHashSet<ISwitchYardComponentExtension>(extensions.size());
-        Set<String> dependencyKeys = createDependencyKeySet(_mavenProject.getDependencies());
+        Set<String> dependencyKeys = createDependencyKeySet(mavenProject.getDependencies());
         Set<String> pluginScanners = _plugin.getScannerClasses();
         ExtensionsLoop: for (ISwitchYardComponentExtension extension : extensions) {
             if (extension.getScannerClassName() != null && !pluginScanners.contains(extension.getScannerClassName())) {
@@ -343,9 +391,9 @@ public class SwitchYardProject implements ISwitchYardProject {
         return retVal;
     }
 
-    private String readSwitchYardVersionPropertyKey() {
+    private String readSwitchYardVersionPropertyKey(MavenProject mavenProject) {
         boolean foundComponent = false;
-        for (Dependency dependency : _mavenProject.getOriginalModel().getDependencies()) {
+        for (Dependency dependency : mavenProject.getOriginalModel().getDependencies()) {
             if (SWITCHYARD_CORE_GROUP_ID.equals(dependency.getGroupId())) {
                 String dependencyVersion = dependency.getVersion();
                 if (dependencyVersion == null || !dependencyVersion.startsWith("${") || dependencyVersion.length() < 4) {
@@ -355,8 +403,8 @@ public class SwitchYardProject implements ISwitchYardProject {
                 return dependencyVersion.substring(2, dependencyVersion.length() - 1);
             }
         }
-        if (_mavenProject.getOriginalModel().getDependencyManagement() != null) {
-            for (Dependency dependency : _mavenProject.getOriginalModel().getDependencyManagement().getDependencies()) {
+        if (mavenProject.getOriginalModel().getDependencyManagement() != null) {
+            for (Dependency dependency : mavenProject.getOriginalModel().getDependencyManagement().getDependencies()) {
                 if (SWITCHYARD_CORE_GROUP_ID.equals(dependency.getGroupId())) {
                     String dependencyVersion = dependency.getVersion();
                     if (dependencyVersion == null || !dependencyVersion.startsWith("${")
@@ -432,10 +480,11 @@ public class SwitchYardProject implements ISwitchYardProject {
         }
 
         public Plugin getOriginalPlugin() {
-            if (_mavenProject == null) {
+            MavenProject mavenProject = getMavenProject();
+            if (mavenProject == null) {
                 return null;
             }
-            final Model originalModel = _mavenProject.getOriginalModel();
+            final Model originalModel = mavenProject.getOriginalModel();
             if (originalModel == null) {
                 return null;
             }
@@ -567,7 +616,7 @@ public class SwitchYardProject implements ISwitchYardProject {
         }
 
         private void installSwitchYardPlugin(boolean createExecution, Set<String> scanners) {
-            Model model = _mavenProject.getOriginalModel();
+            Model model = getMavenProject().getOriginalModel();
             Build build = model.getBuild();
             if (build == null) {
                 build = new Build();
@@ -577,14 +626,15 @@ public class SwitchYardProject implements ISwitchYardProject {
         }
 
         private void setDefaultOutputFile() {
-            if (_mavenProject == null) {
+            MavenProject mavenProject = getMavenProject();
+            if (mavenProject == null) {
                 return;
             }
             _outputFile = _project
                     .getWorkspace()
                     .getRoot()
                     .getFileForLocation(
-                            new Path(_mavenProject.getBuild().getOutputDirectory()).append(META_INF).append(
+                            new Path(mavenProject.getBuild().getOutputDirectory()).append(META_INF).append(
                                     SWITCHYARD_XML));
         }
     }

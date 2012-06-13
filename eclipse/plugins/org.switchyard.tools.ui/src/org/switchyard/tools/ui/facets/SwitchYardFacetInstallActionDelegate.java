@@ -21,6 +21,7 @@ import org.eclipse.wst.common.frameworks.datamodel.IDataModel;
 import org.eclipse.wst.common.project.facet.core.IDelegate;
 import org.eclipse.wst.common.project.facet.core.IFacetedProjectWorkingCopy;
 import org.eclipse.wst.common.project.facet.core.IProjectFacetVersion;
+import org.maven.ide.eclipse.wtp.WTPProjectsUtil;
 import org.sonatype.aether.version.Version;
 import org.switchyard.tools.ui.Activator;
 import org.switchyard.tools.ui.common.ISwitchYardComponentExtension;
@@ -45,7 +46,7 @@ public class SwitchYardFacetInstallActionDelegate implements IDelegate {
         IDataModel dataModel = (IDataModel) config;
 
         // TODO: get selected components
-        ISwitchYardProjectWorkingCopy workingCopy;
+        final ISwitchYardProjectWorkingCopy workingCopy;
         ISwitchYardProject switchYardProject = (ISwitchYardProject) dataModel
                 .getProperty(ISwitchYardFacetConstants.SWITCHYARD_PROJECT);
         if (switchYardProject == null) {
@@ -75,7 +76,9 @@ public class SwitchYardFacetInstallActionDelegate implements IDelegate {
         new AbstractSwitchYardProjectOperation(workingCopy, false, "Installing SwitchYard Facet", null) {
             @Override
             protected void execute(IProgressMonitor monitor) throws CoreException {
-                // nothing extra
+                // make sure test folders get removed, save initiating a maven
+                // project update
+                WTPProjectsUtil.removeTestFolderLinks(getProject(), workingCopy.getMavenProject(), monitor, "/");
             }
 
             @Override

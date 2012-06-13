@@ -17,6 +17,8 @@ import org.eclipse.m2e.core.lifecyclemapping.model.IPluginExecutionMetadata;
 import org.eclipse.m2e.core.project.IMavenProjectFacade;
 import org.eclipse.m2e.core.project.configurator.AbstractBuildParticipant;
 import org.eclipse.m2e.core.project.configurator.AbstractProjectConfigurator;
+import org.eclipse.m2e.core.project.configurator.ILifecycleMappingConfiguration;
+import org.eclipse.m2e.core.project.configurator.MojoExecutionKey;
 import org.eclipse.m2e.core.project.configurator.ProjectConfigurationRequest;
 import org.eclipse.wst.common.project.facet.core.IFacetedProject;
 import org.eclipse.wst.common.project.facet.core.IFacetedProjectWorkingCopy;
@@ -79,6 +81,14 @@ public class SwitchYardProjectConfigurator extends AbstractProjectConfigurator {
             }
         }
         return null;
+    }
+
+    @Override
+    public boolean hasConfigurationChanged(IMavenProjectFacade newFacade,
+            ILifecycleMappingConfiguration oldProjectConfiguration, MojoExecutionKey key, IProgressMonitor monitor) {
+        // since we simply invoke the maven plugin directly, we don't need to
+        // configure anything if the configuration changes
+        return false;
     }
 
     static {

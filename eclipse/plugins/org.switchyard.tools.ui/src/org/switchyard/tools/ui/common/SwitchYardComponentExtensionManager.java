@@ -188,14 +188,16 @@ public final class SwitchYardComponentExtensionManager {
 
     private String parseScope(IConfigurationElement element) {
         IConfigurationElement[] scopes = element.getChildren("scope");
-        if (scopes.length != 1) {
+        if (scopes.length == 0) {
+            return null;
+        } else if (scopes.length != 1) {
             Activator
                     .getDefault()
                     .getLog()
                     .log(new Status(Status.ERROR, Activator.PLUGIN_ID,
                             "Only one \"scope\" element may be specified in a \"dependency\" for a switchYardComponent extension: plugin="
                                     + element.getContributor().getName()));
-            return null;
+            // we'll fall through and return the first element's value
         }
         String scope = scopes[0].getValue().trim();
         return scope.length() == 0 ? null : scope;

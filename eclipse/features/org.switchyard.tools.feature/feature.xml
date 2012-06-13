@@ -29,6 +29,7 @@
       <import feature="org.eclipse.wst.xml_core.feature" version="3.3.0" match="greaterOrEqual"/>
       <import feature="org.eclipse.wst.xml_ui.feature" version="3.3.0" match="greaterOrEqual"/>
       <import feature="org.eclipse.emf" version="2.6.0" match="greaterOrEqual"/>
+      <import feature="org.maven.ide.eclipse.wtp.feature" version="0.14.0" match="greaterOrEqual"/>
       <import plugin="javax.wsdl" version="1.6.2" match="equivalent"/>
    </requires>
 

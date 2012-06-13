@@ -33,13 +33,9 @@ import org.eclipse.core.runtime.CoreException;
 import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.core.runtime.IStatus;
 import org.eclipse.core.runtime.OperationCanceledException;
-import org.eclipse.core.runtime.Path;
 import org.eclipse.core.runtime.Status;
 import org.eclipse.core.runtime.SubProgressMonitor;
-import org.eclipse.core.runtime.jobs.ISchedulingRule;
 import org.eclipse.core.runtime.jobs.Job;
-import org.eclipse.core.runtime.jobs.MultiRule;
-import org.eclipse.m2e.core.MavenPlugin;
 import org.switchyard.tools.ui.Activator;
 import org.switchyard.tools.ui.common.ISwitchYardProject;
 import org.switchyard.tools.ui.common.impl.SwitchYardProjectManager.ISwitchYardProjectListener.Type;
@@ -56,9 +52,6 @@ public final class SwitchYardProjectManager implements IResourceChangeListener, 
 
     /** Identifies the Job family for the project refresh job. */
     public static final Object SWITCHYARD_PROJECT_REFRESH_JOB_FAMILY = new Object();
-    /** A build rule to keep SwitchYard jobs from stepping on each others' toes. */
-    public static final ISchedulingRule SWITCHYARD_RULE = MultiRule.combine(new SwitchYardUpdateRule(), MavenPlugin
-            .getProjectConfigurationManager().getRule());
 
     /**
      * Listener interface for SwitchYard project updates.
@@ -116,7 +109,9 @@ public final class SwitchYardProjectManager implements IResourceChangeListener, 
         }
         SwitchYardProject switchYardProject = new SwitchYardProject(this, project);
         _cache.put(project, switchYardProject);
-        scheduleRefresh(switchYardProject, EnumSet.of(Type.POM, Type.CONFIG));
+        if (switchYardProject.needsLoading()) {
+            scheduleRefresh(switchYardProject, EnumSet.of(Type.POM, Type.CONFIG));
+        }
         return switchYardProject;
     }
 
@@ -139,18 +134,15 @@ public final class SwitchYardProjectManager implements IResourceChangeListener, 
             return false;
         }
         if (delta.getKind() == IResourceDelta.REMOVED
-                || (delta.getFlags() & IResourceDelta.OPEN) == IResourceDelta.OPEN) {
+                || ((delta.getFlags() & IResourceDelta.OPEN) == IResourceDelta.OPEN && !project.isOpen())) {
             SwitchYardProject syp = _cache.remove(project);
             _pendingUpdates.remove(syp);
             notify(syp, EnumSet.of(Type.REMOVED));
+            syp.dispose();
             return false;
         }
         SwitchYardProject switchYardProject = _cache.get(project);
         Set<Type> updateTypes = EnumSet.noneOf(Type.class);
-        if (delta.findMember(new Path("pom.xml")) != null
-                || switchYardProject.getOutputSwitchYardConfigurationFile() == null) {
-            updateTypes.add(Type.POM);
-        }
         if (switchYardProject.getOutputSwitchYardConfigurationFile() != null
                 && delta.findMember(switchYardProject.getOutputSwitchYardConfigurationFile().getProjectRelativePath()) != null) {
             updateTypes.add(Type.CONFIG);
@@ -214,7 +206,9 @@ public final class SwitchYardProjectManager implements IResourceChangeListener, 
     private void scheduleRefresh(SwitchYardProject switchYardProject, Set<Type> updateTypes) {
         Set<Type> existing = _pendingUpdates.putIfAbsent(switchYardProject, updateTypes);
         if (existing == null) {
-            _projectUpdateJob.schedule(100);
+            // we schedule it out a bit in case the maven subsystem takes care
+            // of loading the project for us.
+            _projectUpdateJob.schedule(1000);
         } else {
             updateTypes.addAll(existing);
             _pendingUpdates.put(switchYardProject, updateTypes);
@@ -227,7 +221,9 @@ public final class SwitchYardProjectManager implements IResourceChangeListener, 
     private final class UpdateMetadataJob extends Job {
         private UpdateMetadataJob() {
             super("Updating SwitchYard project meta-data.");
-            setRule(SWITCHYARD_RULE);
+            // we want this to be lower priority, in the hopes the maven
+            // subsystem will do all the work, making this a short runner.
+            setPriority(BUILD);
         }
 
         @Override
@@ -284,26 +280,5 @@ public final class SwitchYardProjectManager implements IResourceChangeListener, 
             return _pendingUpdates.size() > 0;
         }
     };
-
-    /**
-     * SwitchYardUpdateRule
-     * 
-     * <p/>
-     * Simple rule which prevents SwitchYard jobs from stepping on each others'
-     * toes.
-     * 
-     * @author Rob Cernich
-     */
-    private static final class SwitchYardUpdateRule implements ISchedulingRule {
-        @Override
-        public boolean contains(ISchedulingRule rule) {
-            return rule instanceof SwitchYardUpdateRule;
-        }
-
-        @Override
-        public boolean isConflicting(ISchedulingRule rule) {
-            return contains(rule);
-        }
-    }
 
 }
