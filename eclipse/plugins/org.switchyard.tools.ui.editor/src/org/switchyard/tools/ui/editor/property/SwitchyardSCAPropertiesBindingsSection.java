@@ -23,6 +23,7 @@ import org.eclipse.emf.transaction.ResourceSetListener;
 import org.eclipse.emf.transaction.RollbackException;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.eclipse.emf.transaction.impl.TransactionalEditingDomainImpl;
+import org.eclipse.graphiti.dt.IDiagramTypeProvider;
 import org.eclipse.graphiti.mm.pictograms.PictogramElement;
 import org.eclipse.graphiti.services.Graphiti;
 import org.eclipse.graphiti.ui.platform.GFPropertySection;
@@ -277,6 +278,7 @@ public class SwitchyardSCAPropertiesBindingsSection extends GFPropertySection im
                     // remove old binding
                     IStructuredSelection ssel = (IStructuredSelection) _listViewer.getSelection();
                     removeBinding((Binding) ssel.getFirstElement());
+                    refreshDiagram();
                 }
     
                 @Override
@@ -287,6 +289,19 @@ public class SwitchyardSCAPropertiesBindingsSection extends GFPropertySection im
         }
     }
 
+    private void refreshDiagram() {
+        PictogramElement pe = getSelectedPictogramElement();
+        if (pe != null) {
+            @SuppressWarnings("restriction")
+            IDiagramTypeProvider diagramTypeProvider = SwitchyardSCAEditor.getActiveEditor().getDiagramTypeProvider();
+            if (diagramTypeProvider != null) {
+                if (diagramTypeProvider.getDiagramEditor() != null) {
+                    diagramTypeProvider.getDiagramEditor().refresh(pe);
+                }
+            }
+        }
+    }
+    
     private void removeBinding(final Binding selected) {
         if (selected != null && _domain != null) {
             _domain.getCommandStack().execute(new RecordingCommand(_domain) {

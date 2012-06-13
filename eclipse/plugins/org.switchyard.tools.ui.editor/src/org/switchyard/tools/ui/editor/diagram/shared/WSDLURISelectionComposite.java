@@ -19,6 +19,7 @@ import org.eclipse.core.resources.IProject;
 import org.eclipse.core.resources.IResource;
 import org.eclipse.core.resources.ResourcesPlugin;
 import org.eclipse.core.runtime.IPath;
+import org.eclipse.core.runtime.Path;
 import org.eclipse.emf.transaction.RecordingCommand;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.eclipse.jdt.core.IJavaProject;
@@ -28,14 +29,11 @@ import org.eclipse.jface.viewers.IStructuredSelection;
 import org.eclipse.jface.viewers.StructuredSelection;
 import org.eclipse.jface.window.Window;
 import org.eclipse.jface.wizard.WizardDialog;
-import org.eclipse.soa.sca.sca1_1.model.sca.Binding;
 import org.eclipse.soa.sca.sca1_1.model.sca.Interface;
 import org.eclipse.soa.sca.sca1_1.model.sca.WSDLPortType;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.events.FocusEvent;
 import org.eclipse.swt.events.FocusListener;
-import org.eclipse.swt.events.ModifyEvent;
-import org.eclipse.swt.events.ModifyListener;
 import org.eclipse.swt.events.SelectionAdapter;
 import org.eclipse.swt.events.SelectionEvent;
 import org.eclipse.swt.layout.GridData;
@@ -43,14 +41,11 @@ import org.eclipse.swt.layout.GridLayout;
 import org.eclipse.swt.widgets.Button;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Control;
-import org.eclipse.swt.widgets.Label;
 import org.eclipse.swt.widgets.Link;
 import org.eclipse.swt.widgets.Shell;
 import org.eclipse.swt.widgets.Text;
 import org.eclipse.ui.PlatformUI;
-import org.switchyard.tools.models.switchyard1_0.soap.ContextMapperType;
-import org.switchyard.tools.models.switchyard1_0.soap.SOAPBindingType;
-import org.switchyard.tools.models.switchyard1_0.soap.SOAPFactory;
+import org.eclipse.wst.wsdl.PortType;
 import org.switchyard.tools.ui.editor.impl.SwitchyardSCAEditor;
 import org.switchyard.tools.ui.editor.util.JavaUtil;
 import org.switchyard.tools.ui.editor.util.OpenFileUtil;
@@ -60,19 +55,14 @@ import org.switchyard.tools.ui.editor.util.OpenFileUtil;
  * 
  */
 @SuppressWarnings("restriction")
-public class WSDLURISelectionComposite extends AbstractSwitchyardComposite implements IBindingComposite,
-        IInterfaceComposite {
+public class WSDLURISelectionComposite extends AbstractSwitchyardComposite implements IInterfaceComposite {
 
     private static final String WSDL = "wsdl";
 
     private Composite _panel;
     private Text _mWSDLInterfaceURIText;
     private String _sWSDLURI = null;
-    private Interface _interface = null;
-    private SOAPBindingType _binding = null;
-    private Text _mWSDLSocketText;
-    private Label _socketLabel;
-    private String _bindingSocket = null;
+    private WSDLPortType _interface = null;
 
     private Button _browseBtnWorkspace;
     private Button _browseBtnFile;
@@ -108,6 +98,9 @@ public class WSDLURISelectionComposite extends AbstractSwitchyardComposite imple
             @Override
             public void widgetSelected(SelectionEvent e) {
                 String oldResult = _mWSDLInterfaceURIText.getText().trim();
+                if (oldResult.indexOf('#') > -1) {
+                    oldResult = oldResult.substring(0, oldResult.indexOf('#'));
+                }
                 IFile modelFile = SwitchyardSCAEditor.getActiveEditor().getModelFile();
                 IPath wsdlPath = modelFile.getParent().getParent().getProjectRelativePath();
                 wsdlPath = wsdlPath.append(oldResult);
@@ -158,43 +151,21 @@ public class WSDLURISelectionComposite extends AbstractSwitchyardComposite imple
         _browseBtnWorkspace.setLayoutData(btnGD);
         _browseBtnWorkspace.addSelectionListener(new SelectionAdapter() {
             public void widgetSelected(final SelectionEvent e) {
-                String result = selectResourceFromWorkspace(_panel.getShell(), WSDL);
+                IFile modelFile = SwitchyardSCAEditor.getActiveEditor().getModelFile();
+                IJavaProject javaProject = null;
+                if (modelFile != null) {
+                    if (modelFile.getProject() != null) { //$NON-NLS-1$
+                        javaProject = JavaCore.create(modelFile.getProject());
+                    }
+                }
+                PortType result = browse(_panel.getShell(), javaProject);
                 if (result != null) {
-                    _mWSDLInterfaceURIText.setText(result);
                     setHasChanged(true);
                     handleModify(_browseBtnWorkspace);
                     fireChangedEvent(_browseBtnWorkspace);
                 }
             }
         });
-
-        _socketLabel = new Label(_panel, SWT.NONE);
-        _socketLabel.setText("Socket:");
-        _mWSDLSocketText = new Text(_panel, SWT.BORDER);
-        _mWSDLSocketText.addModifyListener(new ModifyListener() {
-            public void modifyText(ModifyEvent e) {
-                if (!inUpdate()) {
-                    _bindingSocket = _mWSDLSocketText.getText().trim();
-                    setHasChanged(true);
-                    handleModify(_mWSDLSocketText);
-                    fireChangedEvent(_mWSDLSocketText);
-                }
-            }
-        });
-
-        GridData portGD = new GridData(GridData.FILL_HORIZONTAL);
-        portGD.horizontalSpan = 2;
-        _mWSDLSocketText.setLayoutData(portGD);
-
-        setVisibilityOfPortControls(this._binding != null);
-
-        // _mWSDLInterfaceURIText.setText("MyService.wsdl");
-        // _sWSDLURI = _mWSDLInterfaceURIText.getText();
-    }
-
-    private void setVisibilityOfPortControls(boolean flag) {
-        _socketLabel.setVisible(flag);
-        _mWSDLSocketText.setVisible(flag);
     }
 
     protected void handleModify(Control control) {
@@ -211,32 +182,6 @@ public class WSDLURISelectionComposite extends AbstractSwitchyardComposite imple
 
             } else {
                 ((WSDLPortType) _interface).setInterface(_sWSDLURI);
-            }
-        } else if (_binding != null) {
-            if (_binding.eContainer() != null) {
-                TransactionalEditingDomain domain = SwitchyardSCAEditor.getActiveEditor().getEditingDomain();
-                domain.getCommandStack().execute(new RecordingCommand(domain) {
-                    @Override
-                    protected void doExecute() {
-                        _binding.setWsdl(_sWSDLURI);
-                        if (_binding.getContextMapper() == null) {
-                            ContextMapperType contextMapper = SOAPFactory.eINSTANCE.createContextMapperType();
-                            _binding.setContextMapper(contextMapper);
-                        }
-                        if (_bindingSocket != null && _bindingSocket.trim().length() > 0) {
-                            _binding.setSocketAddr(_bindingSocket);
-                        }
-                    }
-                });
-            } else {
-                _binding.setWsdl(_sWSDLURI);
-                if (_binding.getContextMapper() == null) {
-                    ContextMapperType contextMapper = SOAPFactory.eINSTANCE.createContextMapperType();
-                    _binding.setContextMapper(contextMapper);
-                }
-                if (_bindingSocket != null && _bindingSocket.trim().length() > 0) {
-                    _binding.setSocketAddr(_bindingSocket);
-                }
             }
         }
         validate();
@@ -259,29 +204,6 @@ public class WSDLURISelectionComposite extends AbstractSwitchyardComposite imple
             }
         }
 
-        if (getBinding() != null) {
-            String portString = _bindingSocket;
-            if (portString != null && portString.trim().length() > 0) {
-                int pos = portString.indexOf(':');
-                if (pos == -1) {
-                    setErrorMessage("Socket string should match one of these patterns: localhost:8080, 0.0.0.0:8080, or :8080");
-                } else {
-                    String left = portString.substring(0, pos).trim();
-                    if (left.length() > 0
-                            && !left.matches("^([a-zA-Z0-9]|[a-zA-Z0-9][a-zA-Z0-9\\-]{0,61}[a-zA-Z0-9])(\\.([a-zA-Z0-9]|[a-zA-Z0-9][a-zA-Z0-9\\-]{0,61}[a-zA-Z0-9]))*$")) {
-                        setErrorMessage("Socket string should match one of these patterns: localhost:8080, 0.0.0.0:8080, or :8080");
-                    }
-                    String right = portString.substring(pos + 1, portString.length()).trim();
-                    try {
-                        Integer.parseInt(right);
-                    } catch (NumberFormatException nfe) {
-                        setErrorMessage("The port number right of the : must be a valid integer.");
-                    }
-                }
-            } else {
-                setErrorMessage("No socket specified");
-            }
-        }
         return (getErrorMessage() == null);
     }
 
@@ -300,25 +222,17 @@ public class WSDLURISelectionComposite extends AbstractSwitchyardComposite imple
     }
 
     /**
-     * @return SOAP Binding
-     */
-    public Binding getBinding() {
-        return _binding;
-    }
-
-    /**
      * @param cInterface interface
      */
     public void setInterface(Interface cInterface) {
-        this._interface = cInterface;
         if (cInterface instanceof WSDLPortType && _mWSDLInterfaceURIText != null
                 && !_mWSDLInterfaceURIText.isDisposed()) {
-            WSDLPortType wPortType = (WSDLPortType) this._interface;
+            this._interface = (WSDLPortType) cInterface;
             setInUpdate(true);
-            if (wPortType.getInterface() != null) {
-                _mWSDLInterfaceURIText.setText(wPortType.getInterface());
+            if (_interface.getInterface() != null) {
+                _mWSDLInterfaceURIText.setText(_interface.getInterface());
             } else {
-                _mWSDLInterfaceURIText.setText("MyService.wsdl");
+                _mWSDLInterfaceURIText.setText("MyService.wsdl#wsdl.porttype(MyPortType)");
             }
             setInUpdate(false);
         }
@@ -332,36 +246,27 @@ public class WSDLURISelectionComposite extends AbstractSwitchyardComposite imple
     }
 
     /**
-     * @param switchYardBindingType binding
+     * @param shell Shell for dialog
+     * @param project java project to use for resolving classpaths
+     * @return PortType result
      */
-    public void setBinding(Binding switchYardBindingType) {
-        if (switchYardBindingType instanceof SOAPBindingType) {
-            this._binding = (SOAPBindingType) switchYardBindingType;
-            _sWSDLURI = _binding.getWsdl();
-            setInUpdate(true);
-            _bindingSocket = _binding.getSocketAddr();
-            if (_mWSDLInterfaceURIText != null && !_mWSDLInterfaceURIText.isDisposed()) {
-                _mWSDLInterfaceURIText.setText(_binding.getWsdl());
+    public PortType browse(Shell shell, IJavaProject project) {
+        WSDLPortTypeSelectionDialog dialog = new WSDLPortTypeSelectionDialog(shell, project == null ? ResourcesPlugin
+                .getWorkspace().getRoot() : project.getProject());
+        dialog.setInitialPattern("*.wsdl");
+        if (dialog.open() == WSDLPortTypeSelectionDialog.OK) {
+            PortType result = dialog.getSelectedPortType();
+            if (result != null) {
+//                _interface.setInterface(getInterfaceURL(project, result));
+                _sWSDLURI = getInterfaceURL(project, result);
+                _mWSDLInterfaceURIText.setText(_sWSDLURI);
+                return result;
             }
-            if (_mWSDLSocketText != null && !_mWSDLSocketText.isDisposed()) {
-                _bindingSocket = _binding.getSocketAddr();
-                if (_bindingSocket != null) {
-                    _mWSDLSocketText.setText(_bindingSocket);
-                }
-            }
-            setVisibilityOfPortControls(this._binding != null);
-            setInUpdate(false);
         }
+        return null;
     }
 
-    /**
-     * @return string port
-     */
-    public String getsBindingPort() {
-        return _bindingSocket;
-    }
-
-    private static String selectResourceFromWorkspace(Shell shell, final String extension) {
+    private String selectResourceFromWorkspace(Shell shell, final String extension) {
 
         IFile modelFile = SwitchyardSCAEditor.getActiveEditor().getModelFile();
         IJavaProject javaProject = null;
@@ -426,5 +331,12 @@ public class WSDLURISelectionComposite extends AbstractSwitchyardComposite imple
         if (this._browseBtnWorkspace != null && !this._browseBtnWorkspace.isDisposed()) {
             this._browseBtnWorkspace.setEnabled(canEdit());
         }
+    }
+
+    private String getInterfaceURL(IJavaProject project, PortType portType) {
+        IPath filePath = new Path(portType.eResource().getURI().toPlatformString(true));
+        IResource resource = project.getProject().getWorkspace().getRoot().getFile(filePath);
+        filePath = JavaUtil.getJavaPathForResource(resource);
+        return filePath.toString() + "#wsdl.porttype(" + portType.getQName().getLocalPart() + ")";
     }
 }

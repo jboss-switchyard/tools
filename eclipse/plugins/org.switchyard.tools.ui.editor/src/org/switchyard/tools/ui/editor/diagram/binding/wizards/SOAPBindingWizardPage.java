@@ -21,7 +21,7 @@ import org.eclipse.swt.SWT;
 import org.eclipse.swt.widgets.Composite;
 import org.switchyard.tools.models.switchyard1_0.soap.SOAPBindingType;
 import org.switchyard.tools.models.switchyard1_0.soap.SOAPFactory;
-import org.switchyard.tools.ui.editor.diagram.shared.WSDLURISelectionComposite;
+import org.switchyard.tools.ui.editor.diagram.shared.SOAPBindingComposite;
 
 /**
  * @author bfitzpat
@@ -30,7 +30,7 @@ import org.switchyard.tools.ui.editor.diagram.shared.WSDLURISelectionComposite;
 public class SOAPBindingWizardPage extends WizardPage {
 
     private SOAPBindingType _binding = SOAPFactory.eINSTANCE.createSOAPBindingType();
-    private WSDLURISelectionComposite _uriComposite = null;
+    private SOAPBindingComposite _soapComposite = null;
 
     /**
      * @param pageName String for name
@@ -43,19 +43,19 @@ public class SOAPBindingWizardPage extends WizardPage {
 
     @Override
     public void createControl(Composite parent) {
-        _uriComposite = new WSDLURISelectionComposite();
-        _uriComposite.addChangeListener(new ChangeListener() {
+        _soapComposite = new SOAPBindingComposite();
+        _soapComposite.addChangeListener(new ChangeListener() {
             @Override
             public void stateChanged(ChangeEvent arg0) {
-                setErrorMessage(_uriComposite.getErrorMessage());
-                setPageComplete(_uriComposite.getErrorMessage() == null);
+                setErrorMessage(_soapComposite.getErrorMessage());
+                setPageComplete(_soapComposite.getErrorMessage() == null);
             }
         });
-        _uriComposite.createContents(parent, SWT.NONE);
-        _uriComposite.setBinding(_binding);
+        _soapComposite.createContents(parent, SWT.NONE);
+        _soapComposite.setBinding(_binding);
 
-        setControl(_uriComposite.getPanel());
-        setPageComplete(_uriComposite.getErrorMessage() == null);
+        setControl(_soapComposite.getPanel());
+        setPageComplete(_soapComposite.getErrorMessage() == null);
         setErrorMessage(null);
     }
 
@@ -63,7 +63,7 @@ public class SOAPBindingWizardPage extends WizardPage {
      * @return the binding being edited.
      */
     public Binding getBinding() {
-        return _uriComposite.getBinding();
+        return _soapComposite.getBinding();
     }
 
 }

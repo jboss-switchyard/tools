@@ -59,7 +59,7 @@ public interface SOAPBindingType extends SwitchYardBindingType {
     void setContextMapper(ContextMapperType value);
 
     /**
-     * Returns the value of the '<em><b>Message Composer</b></em>' reference.
+     * Returns the value of the '<em><b>Message Composer</b></em>' containment reference.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * <!-- begin-model-doc -->
@@ -67,19 +67,20 @@ public interface SOAPBindingType extends SwitchYardBindingType {
      *                                 Specify the MessageComposer to be used.
      *                             
      * <!-- end-model-doc -->
-     * @return the value of the '<em>Message Composer</em>' reference.
+     * @return the value of the '<em>Message Composer</em>' containment reference.
      * @see #setMessageComposer(MessageComposerType)
      * @see org.switchyard.tools.models.switchyard1_0.soap.SOAPPackage#getSOAPBindingType_MessageComposer()
-     * @model extendedMetaData="kind='element' name='messageComposer' namespace='##targetNamespace'"
+     * @model containment="true"
+     *        extendedMetaData="kind='element' name='messageComposer' namespace='##targetNamespace'"
      * @generated
      */
     MessageComposerType getMessageComposer();
 
     /**
-     * Sets the value of the '{@link org.switchyard.tools.models.switchyard1_0.soap.SOAPBindingType#getMessageComposer <em>Message Composer</em>}' reference.
+     * Sets the value of the '{@link org.switchyard.tools.models.switchyard1_0.soap.SOAPBindingType#getMessageComposer <em>Message Composer</em>}' containment reference.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @param value the new value of the '<em>Message Composer</em>' reference.
+     * @param value the new value of the '<em>Message Composer</em>' containment reference.
      * @see #getMessageComposer()
      * @generated
      */

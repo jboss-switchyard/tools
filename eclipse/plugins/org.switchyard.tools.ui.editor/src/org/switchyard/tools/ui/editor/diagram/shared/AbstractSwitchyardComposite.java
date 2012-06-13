@@ -72,7 +72,7 @@ public abstract class AbstractSwitchyardComposite implements FocusListener, KeyL
      * @param style any style bits
      */
     abstract public void createContents(Composite parent, int style);
-    
+
     abstract protected void handleModify(final Control control);
 
     /**
@@ -215,7 +215,9 @@ public abstract class AbstractSwitchyardComposite implements FocusListener, KeyL
      * @return reference to created Text control
      */
     protected Text createLabelAndText(Composite parent, String label) {
-        new Label(parent, SWT.NONE).setText(label);
+        if (label != null && !label.trim().isEmpty()) {
+            new Label(parent, SWT.NONE).setText(label);
+        }
         Text newText = new Text(parent, SWT.BORDER);
         newText.setLayoutData(new GridData(SWT.FILL, SWT.NONE, true, false));
         newText.addFocusListener(this);
@@ -230,8 +232,21 @@ public abstract class AbstractSwitchyardComposite implements FocusListener, KeyL
      * @return reference to created Text control
      */
     protected Combo createLabelAndCombo(Composite parent, String label) {
-        new Label(parent, SWT.NONE).setText(label);
+        if (label != null && !label.trim().isEmpty()) {
+            new Label(parent, SWT.NONE).setText(label);
+        }
         Combo combo = new Combo(parent, SWT.BORDER | SWT.DROP_DOWN);
+        combo.setLayoutData(new GridData(SWT.FILL, SWT.NONE, true, false));
+        combo.addFocusListener(this);
+        combo.addSelectionListener(this);
+        return combo;
+    }
+
+    protected Combo createLabelAndCombo(Composite parent, String label, boolean readOnly) {
+        if (label != null && !label.trim().isEmpty()) {
+            new Label(parent, SWT.NONE).setText(label);
+        }
+        Combo combo = new Combo(parent, SWT.BORDER | SWT.DROP_DOWN | SWT.READ_ONLY);
         combo.setLayoutData(new GridData(SWT.FILL, SWT.NONE, true, false));
         combo.addFocusListener(this);
         combo.addSelectionListener(this);

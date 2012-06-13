@@ -31,7 +31,7 @@ import org.switchyard.tools.ui.editor.diagram.shared.CamelFileProducerComposite;
 import org.switchyard.tools.ui.editor.diagram.shared.CamelNettyTCPComposite;
 import org.switchyard.tools.ui.editor.diagram.shared.CamelNettyUDPComposite;
 import org.switchyard.tools.ui.editor.diagram.shared.CamelQuartzComposite;
-import org.switchyard.tools.ui.editor.diagram.shared.WSDLURISelectionComposite;
+import org.switchyard.tools.ui.editor.diagram.shared.SOAPBindingComposite;
 
 /**
  * @author bfitzpat
@@ -50,7 +50,7 @@ public final class BindingCompositeAdapter {
     public static AbstractSwitchyardComposite adaptModelToComposite(EObject object) {
         AbstractSwitchyardComposite composite = null;
         if (object instanceof SOAPBindingType) {
-            composite = new WSDLURISelectionComposite();
+            composite = new SOAPBindingComposite();
             GridData wsdlGD = new GridData(SWT.FILL, SWT.FILL, true, true);
             composite.setRootGridData(wsdlGD);
         } else if (object instanceof CamelFileBindingType) {

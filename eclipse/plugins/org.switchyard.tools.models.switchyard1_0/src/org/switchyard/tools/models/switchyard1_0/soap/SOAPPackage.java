@@ -338,7 +338,7 @@ public interface SOAPPackage extends EPackage {
     int SOAP_BINDING_TYPE__CONTEXT_MAPPER = SwitchyardPackage.SWITCH_YARD_BINDING_TYPE_FEATURE_COUNT + 0;
 
     /**
-     * The feature id for the '<em><b>Message Composer</b></em>' reference.
+     * The feature id for the '<em><b>Message Composer</b></em>' containment reference.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @generated
@@ -540,10 +540,10 @@ public interface SOAPPackage extends EPackage {
     EReference getSOAPBindingType_ContextMapper();
 
     /**
-     * Returns the meta object for the reference '{@link org.switchyard.tools.models.switchyard1_0.soap.SOAPBindingType#getMessageComposer <em>Message Composer</em>}'.
+     * Returns the meta object for the containment reference '{@link org.switchyard.tools.models.switchyard1_0.soap.SOAPBindingType#getMessageComposer <em>Message Composer</em>}'.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @return the meta object for the reference '<em>Message Composer</em>'.
+     * @return the meta object for the containment reference '<em>Message Composer</em>'.
      * @see org.switchyard.tools.models.switchyard1_0.soap.SOAPBindingType#getMessageComposer()
      * @see #getSOAPBindingType()
      * @generated
@@ -747,7 +747,7 @@ public interface SOAPPackage extends EPackage {
         EReference SOAP_BINDING_TYPE__CONTEXT_MAPPER = eINSTANCE.getSOAPBindingType_ContextMapper();
 
         /**
-         * The meta object literal for the '<em><b>Message Composer</b></em>' reference feature.
+         * The meta object literal for the '<em><b>Message Composer</b></em>' containment reference feature.
          * <!-- begin-user-doc -->
          * <!-- end-user-doc -->
          * @generated
