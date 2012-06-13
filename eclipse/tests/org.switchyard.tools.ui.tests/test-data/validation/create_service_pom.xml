@@ -77,8 +77,6 @@
         <configuration>
           <scannerClassNames>
             <param>org.switchyard.transform.config.model.TransformSwitchYardScanner</param>
-            <param>org.switchyard.component.bpm.config.model.BPMSwitchYardScanner</param>
-            <param>org.switchyard.component.bean.config.model.BeanSwitchYardScanner</param>
           </scannerClassNames>
         </configuration>
       </plugin>

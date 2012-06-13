@@ -511,10 +511,15 @@
            <scope>test</scope>
         </dependency>
      </component>
+     <!--
      <component
            id="org.switchyard.components:switchyard-component-bean"
            name="Bean"
            scannerClass="org.switchyard.component.bean.config.model.BeanSwitchYardScanner">
+     -->
+     <component
+           id="org.switchyard.components:switchyard-component-bean"
+           name="Bean">
         <description>
            Provides support for Java based service implementations.
         </description>
@@ -534,10 +539,15 @@
            <artifactId>switchyard-component-bpel</artifactId>
         </dependency>
      </component>
+     <!--
      <component
            id="org.switchyard.components:switchyard-component-bpm"
            name="BPM (jBPM)"
            scannerClass="org.switchyard.component.bpm.config.model.BPMSwitchYardScanner">
+     -->
+     <component
+           id="org.switchyard.components:switchyard-component-bpm"
+           name="BPM (jBPM)">
         <description>
            Provides support for BPM based service implementations.
         </description>
@@ -546,10 +556,15 @@
            <artifactId>switchyard-component-bpm</artifactId>
         </dependency>
      </component>
+     <!--
      <component
            id="org.switchyard.components:switchyard-component-camel"
            name="Camel"
            scannerClass="org.switchyard.component.camel.config.model.RouteScanner">
+     -->
+     <component
+           id="org.switchyard.components:switchyard-component-camel"
+           name="Camel">
         <description>
            Provides support for Camel based service implementations and Camel based gateways.
         </description>
@@ -580,10 +595,15 @@
            <artifactId>switchyard-component-hornetq</artifactId>
         </dependency>
      </component>
+     <!--
      <component
            id="org.switchyard.components:switchyard-component-rules"
            name="Rules (Drools)"
            scannerClass="org.switchyard.component.rules.config.model.RulesSwitchYardScanner">
+     -->
+     <component
+           id="org.switchyard.components:switchyard-component-rules"
+           name="Rules (Drools)">
         <description>
            Provides support for Drools based service implementations.
         </description>
