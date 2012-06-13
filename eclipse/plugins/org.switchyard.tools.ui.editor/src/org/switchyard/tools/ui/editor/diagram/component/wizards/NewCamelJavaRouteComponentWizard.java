@@ -31,7 +31,7 @@ import org.eclipse.ui.PlatformUI;
 import org.switchyard.tools.models.switchyard1_0.camel.CamelFactory;
 import org.switchyard.tools.models.switchyard1_0.camel.CamelImplementationType;
 import org.switchyard.tools.models.switchyard1_0.camel.JavaDSLType;
-import org.switchyard.tools.ui.editor.util.JavaUtil;
+import org.switchyard.tools.ui.JavaUtil;
 
 /**
  * NewCamelJavaRouteComponentWizard

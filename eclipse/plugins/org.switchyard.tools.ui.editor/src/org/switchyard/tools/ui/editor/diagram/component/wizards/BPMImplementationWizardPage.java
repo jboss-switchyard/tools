@@ -39,9 +39,9 @@ import org.eclipse.ui.PlatformUI;
 import org.eclipse.ui.dialogs.SelectionDialog;
 import org.switchyard.tools.models.switchyard1_0.bpm.BPMFactory;
 import org.switchyard.tools.models.switchyard1_0.bpm.BPMImplementationType;
+import org.switchyard.tools.ui.JavaUtil;
 import org.switchyard.tools.ui.editor.diagram.shared.ClasspathResourceSelectionDialog;
 import org.switchyard.tools.ui.editor.impl.SwitchyardSCAEditor;
-import org.switchyard.tools.ui.editor.util.JavaUtil;
 
 /**
  * BPMImplementationWizardPage

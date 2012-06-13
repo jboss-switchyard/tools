@@ -12,31 +12,29 @@ package org.switchyard.tools.ui.wizards;
 
 import java.lang.reflect.InvocationTargetException;
 
-import org.apache.maven.model.Resource;
-import org.apache.maven.project.MavenProject;
 import org.eclipse.core.resources.IContainer;
 import org.eclipse.core.resources.IFile;
-import org.eclipse.core.resources.IProject;
 import org.eclipse.core.resources.IResource;
 import org.eclipse.core.resources.ResourcesPlugin;
 import org.eclipse.core.runtime.CoreException;
-import org.eclipse.core.runtime.IPath;
 import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.core.runtime.IStatus;
 import org.eclipse.core.runtime.Status;
 import org.eclipse.jdt.core.ICompilationUnit;
 import org.eclipse.jdt.core.IJavaElement;
+import org.eclipse.jdt.core.IJavaProject;
 import org.eclipse.jdt.core.IType;
+import org.eclipse.jdt.core.JavaCore;
 import org.eclipse.jface.dialogs.ErrorDialog;
 import org.eclipse.jface.operation.IRunnableWithProgress;
 import org.eclipse.jface.viewers.IStructuredSelection;
 import org.eclipse.jface.viewers.StructuredSelection;
-import org.eclipse.m2e.core.project.MavenProjectUtils;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.ui.dialogs.WizardNewFileCreationPage;
 import org.eclipse.ui.wizards.newresource.BasicNewResourceWizard;
 import org.switchyard.tools.cxf.Java2WSDLOptions;
 import org.switchyard.tools.ui.Activator;
+import org.switchyard.tools.ui.JavaUtil;
 import org.switchyard.tools.ui.common.ISwitchYardProject;
 import org.switchyard.tools.ui.explorer.IComponentNode;
 import org.switchyard.tools.ui.explorer.IComponentReference;
@@ -171,50 +169,29 @@ public class Java2WSDLWizard extends BasicNewResourceWizard {
                 return;
             } else if (selected instanceof IFile) {
                 IFile file = (IFile) selected;
-                _filePage.setContainerFullPath(file.getParent().getFullPath());
-                _filePage.setFileName(getBaseFileName(file.getName()));
+                IJavaElement javaElement = JavaCore.create(file);
+                if (javaElement == null) {
+                    _filePage.setContainerFullPath(file.getParent().getFullPath());
+                    _filePage.setFileName(getBaseFileName(file.getName()));
+                } else {
+                    setFilePageDefaultsForJavaElement(javaElement);
+                    if (_filePage.getName() == null) {
+                        _filePage.setFileName(getBaseFileName(file.getName()));
+                    }
+                }
                 return;
             } else if (selected instanceof IJavaElement) {
-                IJavaElement ije = (IJavaElement) selected;
-                IResource javaResource = ije.getResource();
-                if (javaResource != null) {
-                    if (javaResource.getType() == IResource.FILE) {
-                        _filePage.setContainerFullPath(javaResource.getParent().getFullPath());
-                    } else {
-                        _filePage.setContainerFullPath(javaResource.getFullPath());
-                    }
-                }
-                int elementType = ije.getElementType();
-                if (elementType == IJavaElement.TYPE) {
-                    _filePage.setFileName(ije.getElementName());
-                } else if (elementType == IJavaElement.COMPILATION_UNIT) {
-                    IType primaryType = ((ICompilationUnit) ije).findPrimaryType();
-                    if (primaryType == null) {
-                        getBaseFileName(ije.getElementName());
-                    } else {
-                        _filePage.setFileName(primaryType.getElementName());
-                    }
-                }
+                setFilePageDefaultsForJavaElement((IJavaElement) selected);
+                return;
             } else if (selected instanceof ISwitchYardNode) {
                 ISwitchYardNode switchYardNode = (ISwitchYardNode) selected;
                 ISwitchYardProject switchYardProject = switchYardNode.getRoot().getSwitchYardProject();
-                MavenProject mavenProject = switchYardProject.getMavenProject();
-                if (mavenProject == null) {
+                IJavaProject javaProject = JavaCore.create(switchYardProject.getProject());
+                IResource root = JavaUtil.getFirstResourceRoot(javaProject);
+                if (root == null) {
                     _filePage.setContainerFullPath(switchYardProject.getProject().getFullPath());
                 } else {
-                    IPath path = null;
-                    IProject project = switchYardProject.getProject();
-                    for (Resource resource : mavenProject.getResources()) {
-                        path = MavenProjectUtils.getProjectRelativePath(project, resource.getDirectory());
-                        if (path != null) {
-                            path = project.getFullPath().append(path);
-                            break;
-                        }
-                    }
-                    if (path == null) {
-                        path = project.getFullPath();
-                    }
-                    _filePage.setContainerFullPath(path);
+                    _filePage.setContainerFullPath(root.getFullPath());
                 }
                 if (switchYardNode instanceof IServiceNode || switchYardNode instanceof IReferenceNode
                         || switchYardNode instanceof IComponentNode || switchYardNode instanceof IComponentService
@@ -222,6 +199,39 @@ public class Java2WSDLWizard extends BasicNewResourceWizard {
                     _filePage.setFileName(switchYardNode.getName());
                 }
                 return;
+            }
+        }
+    }
+
+    private void setFilePageDefaultsForJavaElement(IJavaElement javaElement) {
+        IResource root;
+        switch (javaElement.getElementType()) {
+        case IJavaElement.PACKAGE_FRAGMENT:
+        case IJavaElement.PACKAGE_FRAGMENT_ROOT:
+            root = javaElement.getResource();
+            break;
+        default:
+            root = JavaUtil.getFirstResourceRoot(javaElement.getJavaProject());
+            if (root == null) {
+                root = javaElement.getResource();
+                if (root.getType() == IResource.FILE) {
+                    root = root.getParent();
+                }
+            }
+            break;
+        }
+        if (root != null) {
+            _filePage.setContainerFullPath(root.getFullPath());
+        }
+        int elementType = javaElement.getElementType();
+        if (elementType == IJavaElement.TYPE) {
+            _filePage.setFileName(javaElement.getElementName());
+        } else if (elementType == IJavaElement.COMPILATION_UNIT) {
+            IType primaryType = ((ICompilationUnit) javaElement).findPrimaryType();
+            if (primaryType == null) {
+                getBaseFileName(javaElement.getElementName());
+            } else {
+                _filePage.setFileName(primaryType.getElementName());
             }
         }
     }

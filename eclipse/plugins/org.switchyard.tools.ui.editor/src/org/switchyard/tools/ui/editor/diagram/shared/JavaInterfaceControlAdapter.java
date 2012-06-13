@@ -30,9 +30,9 @@ import org.eclipse.soa.sca.sca1_1.model.sca.ScaFactory;
 import org.eclipse.swt.widgets.Shell;
 import org.eclipse.ui.PlatformUI;
 import org.eclipse.ui.dialogs.SelectionDialog;
+import org.switchyard.tools.ui.JavaUtil;
 import org.switchyard.tools.ui.SwitchYardModelUtils;
 import org.switchyard.tools.ui.editor.Activator;
-import org.switchyard.tools.ui.editor.util.JavaUtil;
 
 /**
  * JavaInterfaceControlAdapter

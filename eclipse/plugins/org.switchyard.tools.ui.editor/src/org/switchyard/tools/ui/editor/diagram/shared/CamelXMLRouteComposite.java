@@ -40,9 +40,9 @@ import org.eclipse.ui.PlatformUI;
 import org.switchyard.tools.models.switchyard1_0.camel.CamelFactory;
 import org.switchyard.tools.models.switchyard1_0.camel.CamelImplementationType;
 import org.switchyard.tools.models.switchyard1_0.camel.XMLDSLType;
+import org.switchyard.tools.ui.JavaUtil;
 import org.switchyard.tools.ui.editor.diagram.component.wizards.NewCamelXMLRouteCompenentWizard;
 import org.switchyard.tools.ui.editor.impl.SwitchyardSCAEditor;
-import org.switchyard.tools.ui.editor.util.JavaUtil;
 
 /**
  * @author bfitzpat

@@ -43,8 +43,8 @@ import org.eclipse.swt.widgets.Text;
 import org.eclipse.ui.IWorkbench;
 import org.eclipse.ui.PlatformUI;
 import org.eclipse.ui.dialogs.SelectionDialog;
+import org.switchyard.tools.ui.JavaUtil;
 import org.switchyard.tools.ui.editor.impl.SwitchyardSCAEditor;
-import org.switchyard.tools.ui.editor.util.JavaUtil;
 import org.switchyard.tools.ui.wizards.NewBeanServiceWizard;
 
 /**

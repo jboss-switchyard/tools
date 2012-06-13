@@ -33,7 +33,7 @@ import org.eclipse.swt.widgets.Label;
 import org.eclipse.swt.widgets.Text;
 import org.switchyard.tools.models.switchyard1_0.bpm.AuditType;
 import org.switchyard.tools.models.switchyard1_0.bpm.BPMFactory;
-import org.switchyard.tools.ui.editor.util.JavaUtil;
+import org.switchyard.tools.ui.JavaUtil;
 
 /**
  * NewBPMProcessDetailsWizardPage

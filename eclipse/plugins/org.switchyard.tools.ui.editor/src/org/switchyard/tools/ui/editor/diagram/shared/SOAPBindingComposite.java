@@ -53,9 +53,9 @@ import org.switchyard.tools.models.switchyard1_0.soap.MessageComposerType;
 import org.switchyard.tools.models.switchyard1_0.soap.SOAPBindingType;
 import org.switchyard.tools.models.switchyard1_0.soap.SOAPFactory;
 import org.switchyard.tools.models.switchyard1_0.soap.SoapHeadersType;
+import org.switchyard.tools.ui.JavaUtil;
 import org.switchyard.tools.ui.editor.core.ModelHandler;
 import org.switchyard.tools.ui.editor.impl.SwitchyardSCAEditor;
-import org.switchyard.tools.ui.editor.util.JavaUtil;
 import org.switchyard.tools.ui.editor.util.OpenFileUtil;
 
 /**

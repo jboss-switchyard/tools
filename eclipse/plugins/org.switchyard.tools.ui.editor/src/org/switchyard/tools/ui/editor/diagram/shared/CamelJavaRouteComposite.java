@@ -53,9 +53,9 @@ import org.eclipse.ui.dialogs.SelectionDialog;
 import org.switchyard.tools.models.switchyard1_0.camel.CamelFactory;
 import org.switchyard.tools.models.switchyard1_0.camel.CamelImplementationType;
 import org.switchyard.tools.models.switchyard1_0.camel.JavaDSLType;
+import org.switchyard.tools.ui.JavaUtil;
 import org.switchyard.tools.ui.editor.diagram.component.wizards.NewCamelJavaRouteComponentWizard;
 import org.switchyard.tools.ui.editor.impl.SwitchyardSCAEditor;
-import org.switchyard.tools.ui.editor.util.JavaUtil;
 
 /**
  * @author bfitzpat

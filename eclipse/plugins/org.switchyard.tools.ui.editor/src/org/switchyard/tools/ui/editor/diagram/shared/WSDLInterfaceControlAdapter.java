@@ -35,9 +35,9 @@ import org.eclipse.ui.PlatformUI;
 import org.eclipse.wst.wsdl.Definition;
 import org.eclipse.wst.wsdl.PortType;
 import org.eclipse.wst.wsdl.util.WSDLResourceImpl;
+import org.switchyard.tools.ui.JavaUtil;
 import org.switchyard.tools.ui.SwitchYardModelUtils;
 import org.switchyard.tools.ui.editor.Activator;
-import org.switchyard.tools.ui.editor.util.JavaUtil;
 
 /**
  * JavaInterfaceControlAdapter
