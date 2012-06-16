@@ -1,0 +1,140 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.4"?>
+<plugin>
+   <extension
+         point="org.eclipse.bpmn2.modeler.runtime">
+
+		<propertyTab
+			id="org.switchyard.tools.ui.bpmn2.switchYardServiceTask.tab"
+			replaceTab="bpmn2.jbpm.customTask.tab"
+			class="org.switchyard.tools.ui.bpmn2.SwitchYardServiceTaskPropertySection"
+			label="SwitchYard Service Task">
+		</propertyTab>
+
+      <customTask
+            description="This task represents the invocation of a SwitchYard service."
+            featureContainer="org.switchyard.tools.ui.bpmn2.SwitchYardServiceTaskFeatureContainer"
+            id="org.switchyard.tools.ui.bpmn2.switchYardServiceTask"
+            name="SwitchYard Service"
+            runtimeId="org.jboss.runtime.jbpm5"
+            type="Task">
+
+			<property
+         name="taskName"
+         value="SwitchYard Service">
+			</property>
+			<property
+         name="icon"
+         value="org.switchyard.tools.ui.editor.SwitchYard.16">
+			</property>
+
+			<property name="ioSpecification">
+				<value>
+					<property name="dataInputs">
+						<value>
+							<property
+             description="The name of the SwitchYard service to be invoked."
+             name="name"
+             value="ServiceName"/>
+						</value>
+					</property>
+					<property name="dataInputs">
+						<value>
+							<property
+             description="The name of the operation to be invoked on the SwitchYard service."
+             name="name"
+             value="ServiceOperationName"/>
+						</value>
+					</property>
+					<property name="dataInputs">
+						<value>
+							<property
+             description="The name of the property holding the input message to be passed to the SwitchYard service (default: messageContentIn)"
+             name="name"
+             value="MessageContentInName"/>
+						</value>
+					</property>
+					<property name="dataInputs">
+						<value>
+							<property
+             description="The name of the property to which the output message from the SwitchYard service will be stored (default: messageContentOut)"
+             name="name"
+             value="MessageContentOutName"/>
+						</value>
+					</property>
+					<property name="dataInputs">
+						<value>
+							<property
+             description="This is used to store the input message to be passed to the SwitchYard servce.  It must match the &quot;MessageContentInName&quot; property."
+             name="name"
+             value="messageContentIn"/>
+						</value>
+					</property>
+					<property name="dataOutputs">
+						<value>
+							<property
+             description="This is used to store the output message from the SwitchYard servce.  It must match the &quot;MessageContentOutName&quot; property."
+             name="name"
+             value="messageContentOut"/>
+						</value>
+					</property>
+
+					<property name="inputSets">
+						<value>
+							<property name="dataInputRefs" ref="ioSpecification/dataInputs#0"/>
+							<property name="dataInputRefs" ref="ioSpecification/dataInputs#1"/>
+							<property name="dataInputRefs" ref="ioSpecification/dataInputs#2"/>
+							<property name="dataInputRefs" ref="ioSpecification/dataInputs#3"/>
+							<property name="dataInputRefs" ref="ioSpecification/dataInputs#4"/>
+						</value>
+					</property>
+					<property name="outputSets">
+						<value>
+							<property name="dataOutputRefs" ref="ioSpecification/dataOutputs#0"/>
+						</value>
+					</property>
+				</value>
+			</property>
+			<property name="dataInputAssociations">
+				<value>
+					<property name="targetRef" ref="ioSpecification/dataInputs#0"/>
+				</value>
+			</property>
+			<property name="dataInputAssociations">
+				<value>
+					<property name="targetRef" ref="ioSpecification/dataInputs#1"/>
+				</value>
+			</property>
+			<property name="dataInputAssociations">
+				<value>
+					<property name="targetRef" ref="ioSpecification/dataInputs#2"/>
+				</value>
+			</property>
+			<property name="dataInputAssociations">
+				<value>
+					<property name="targetRef" ref="ioSpecification/dataInputs#3"/>
+				</value>
+			</property>
+			<property name="dataInputAssociations">
+				<value>
+					<property name="targetRef" ref="ioSpecification/dataInputs#4"/>
+				</value>
+			</property>
+			<property name="dataOutputAssociations">
+				<value>
+					<property name="sourceRef" ref="ioSpecification/dataOutputs#0"/>
+				</value>
+			</property>
+      </customTask>
+   </extension>
+   <!-- This could be fragile.  We do this to make sure the SwitchYard images are loaded for use in the BPMN2 Editor. -->
+   <!-- Make sure class is null so it doesn't hork up the real diagram provider. -->
+	<extension point="org.eclipse.graphiti.ui.diagramTypeProviders">
+		<diagramTypeProvider
+			description="This is the editor for the BPMN2 diagram"
+			id="org.eclipse.bpmn2.modeler.ui.diagram.MainBPMNDiagramType" name="BPMN2 Editor">
+			<imageProvider id="org.switchyard.tools.ui.editor.ImageProvider"/>
+		</diagramTypeProvider>
+	</extension>
+
+</plugin>

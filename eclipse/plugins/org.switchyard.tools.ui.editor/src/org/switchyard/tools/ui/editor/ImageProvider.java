@@ -71,6 +71,9 @@ public class ImageProvider extends AbstractImageProvider {
     /** Image for Interface override. **/
     public static final String IMG_16_INTERFACE_OVERRIDE = PREFIX + Interface.class.getSimpleName().toLowerCase() + "plus" + DOT16;
 
+    /** Image for SwitchYard override. **/
+    public static final String IMG_16_SWITCHYARD = PREFIX + "SwitchYard" + DOT16;
+
     @Override
     protected void addAvailableImages() {
         addImageFilePath(IMG_16_COMPOSITE, ICONS_16 + "Composite.gif");
@@ -85,6 +88,7 @@ public class ImageProvider extends AbstractImageProvider {
         addImageFilePath(IMG_16_IMPLEMENTATION_TYPE, ICONS_16 + "ImplementationType.gif");
         addImageFilePath(IMG_16_INTERFACE, ICONS_16 + "interface.gif");
         addImageFilePath(IMG_16_INTERFACE_OVERRIDE, ICONS_16 + "interface_override.gif");
+        addImageFilePath(IMG_16_SWITCHYARD, ICONS_16 + "switchyard_icon_16px.png");
     }
 
 }
