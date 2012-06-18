@@ -66,6 +66,7 @@ public class CreateImplementationFeature extends CreateTypeFeature<Implementatio
         final Component component = getContainerObject(context);
 
         // add the implementation
+        component.getImplementationGroup().clear();
         component.getImplementationGroup().set(newObject.getDocumentFeature(), newObject);
         added.add(newObject);
 
