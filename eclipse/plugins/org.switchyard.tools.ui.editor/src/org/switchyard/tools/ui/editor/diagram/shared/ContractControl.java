@@ -48,6 +48,7 @@ import org.switchyard.tools.ui.editor.diagram.shared.InterfaceControl.InterfaceT
 public class ContractControl implements ISelectionProvider {
 
     private Contract _service;
+    private boolean _enabled = true;
     private InterfaceControl _interfaceControl;
     private String _oldServiceName;
     private Text _serviceNameText;
@@ -65,7 +66,8 @@ public class ContractControl implements ISelectionProvider {
             throw new IllegalArgumentException("contractType must extend Contract: " + contractType.getName());
         }
         _service = (Contract) contractType.getEPackage().getEFactoryInstance().create(contractType);
-        _interfaceControl = new InterfaceControl(null, EnumSet.of(InterfaceType.Java, InterfaceType.WSDL, InterfaceType.ESB));
+        _interfaceControl = new InterfaceControl(null, EnumSet.of(InterfaceType.Java, InterfaceType.WSDL,
+                InterfaceType.ESB));
     }
 
     /**
@@ -125,6 +127,27 @@ public class ContractControl implements ISelectionProvider {
             _service.getInterfaceGroup().clear();
             _service.getInterfaceGroup().set(intf.getDocumentFeature(), intf);
         }
+        // make sure we're enabled correctly.
+        setEnabled(_enabled);
+    }
+
+    /**
+     * @return the enablement state of the controls.
+     */
+    public boolean getEnabled() {
+        return _enabled;
+    }
+
+    /**
+     * @param enabled the enablement state of the controls.
+     */
+    public void setEnabled(boolean enabled) {
+        _enabled = enabled;
+        if (_serviceNameText == null) {
+            return;
+        }
+        _serviceNameText.setEnabled(_enabled);
+        _interfaceControl.setEnabled(_enabled);
     }
 
     /**
@@ -135,6 +158,9 @@ public class ContractControl implements ISelectionProvider {
      *            contract.
      */
     public void init(Contract contract) {
+        if (contract == null) {
+            return;
+        }
         if (_serviceNameText == null) {
             _service.setName(contract.getName());
         } else if (contract.getName() != null) {
@@ -148,6 +174,10 @@ public class ContractControl implements ISelectionProvider {
      * @return the current validation status of the control.
      */
     public IStatus getStatus() {
+        if (!_enabled) {
+            return Status.OK_STATUS;
+        }
+
         IStatus status = _interfaceControl.getStatus();
         if (status.getSeverity() != IStatus.ERROR) {
             // validate service name

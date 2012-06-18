@@ -41,12 +41,19 @@ public class CamelXMLImplementationWizard extends LinkedWizardBase implements II
     public void addPages() {
         _page = new CamelXMLRouteImplementationPage(CamelXMLRouteImplementationPage.class.getCanonicalName());
         _page.init(_implementation);
+        _page.forceServiceInterfaceType(_service);
         addPage(_page);
     }
 
     @Override
     public void init(Component container) {
-        // TODO: implement me
+        if (container == null || container.getService() == null) {
+            return;
+        }
+        for (ComponentService service : container.getService()) {
+            _service = service;
+            return;
+        }
     }
 
     @Override

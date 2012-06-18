@@ -24,6 +24,7 @@ import org.eclipse.jface.viewers.ISelectionChangedListener;
 import org.eclipse.jface.viewers.IStructuredSelection;
 import org.eclipse.jface.viewers.SelectionChangedEvent;
 import org.eclipse.soa.sca.sca1_1.model.sca.ComponentService;
+import org.eclipse.soa.sca.sca1_1.model.sca.Contract;
 import org.eclipse.soa.sca.sca1_1.model.sca.ScaPackage;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.layout.GridLayout;
@@ -41,6 +42,7 @@ import org.switchyard.tools.ui.editor.diagram.shared.InterfaceControl.InterfaceT
 public class NewCamelRouteClassWizardPage extends NewClassWizardPage {
 
     private static final String SERVICE_INTERFACE = "SERVICE_INTERFACE";
+    private static final String CLASS_NAME_DEFAULT = "CamelServiceRoute";
 
     private ContractControl _serviceInterfaceControl;
     private IStatus _serviceInterfaceStatus;
@@ -72,11 +74,27 @@ public class NewCamelRouteClassWizardPage extends NewClassWizardPage {
         setModifiers(Flags.AccPublic, false);
         setMethodStubSelection(false, false, false, false);
         if (getTypeName().length() == 0) {
-            setTypeName("CamelServiceRoute", true);
+            setTypeName(CLASS_NAME_DEFAULT, true);
         }
         setSuperClass("org.apache.camel.builder.RouteBuilder", false);
 
         doStatusUpdate();
+    }
+
+    /**
+     * Forces the bean to implement the specified interface.
+     * 
+     * @param serviceInterface the service interface type.
+     */
+    public void forceServiceInterfaceType(Contract serviceInterface) {
+        if (serviceInterface == null) {
+            return;
+        }
+        _serviceInterfaceControl.init(serviceInterface);
+        _serviceInterfaceControl.setEnabled(false);
+        if (getTypeName().length() == 0 || getTypeName().equals(CLASS_NAME_DEFAULT)) {
+            setTypeName("" + serviceInterface.getName() + "Route", true);
+        }
     }
 
     @Override

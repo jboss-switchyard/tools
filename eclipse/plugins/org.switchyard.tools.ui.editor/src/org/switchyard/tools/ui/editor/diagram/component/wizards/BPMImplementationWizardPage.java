@@ -22,6 +22,7 @@ import org.eclipse.jface.viewers.IStructuredSelection;
 import org.eclipse.jface.viewers.StructuredSelection;
 import org.eclipse.jface.wizard.WizardDialog;
 import org.eclipse.jface.wizard.WizardPage;
+import org.eclipse.soa.sca.sca1_1.model.sca.Component;
 import org.eclipse.soa.sca.sca1_1.model.sca.ComponentService;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.events.ModifyEvent;
@@ -53,6 +54,7 @@ import org.switchyard.tools.ui.editor.impl.SwitchyardSCAEditor;
  */
 public class BPMImplementationWizardPage extends WizardPage {
 
+    private ComponentService _serviceInterface;
     private Link _newBPMNLink;
     private Text _bpmnFileText;
     private Button _browseBPMNButton;
@@ -101,6 +103,22 @@ public class BPMImplementationWizardPage extends WizardPage {
      */
     public ComponentService getService() {
         return _service;
+    }
+
+    /**
+     * Initialize controls based on the target component (e.g. service interface
+     * details).
+     * 
+     * @param component the containing component.
+     */
+    public void init(Component component) {
+        if (component == null || component.getService() == null) {
+            return;
+        }
+        for (ComponentService service : component.getService()) {
+            _serviceInterface = service;
+            return;
+        }
     }
 
     @Override
@@ -186,6 +204,7 @@ public class BPMImplementationWizardPage extends WizardPage {
         IWorkbench workbench = editor == null ? PlatformUI.getWorkbench() : editor.getEditorSite().getWorkbenchWindow()
                 .getWorkbench();
         wizard.init(workbench, selection);
+        wizard.forceServiceInterfaceType(_serviceInterface);
         WizardDialog dialog = new WizardDialog(getShell(), wizard);
         if (dialog.open() == WizardDialog.OK) {
             _implementation = (BPMImplementationType) wizard.getCreatedObject().getImplementation();

@@ -34,18 +34,20 @@ public class BeanImplementationWizard extends LinkedWizardBase implements IImple
 
     private BeanImplementationType _implementation;
     private BeanImplementationWizardPage _page;
+    private Component _component;
     private ComponentService _service;
     private List<ComponentReference> _references;
 
     @Override
     public void addPages() {
         _page = new BeanImplementationWizardPage(BeanImplementationWizardPage.class.getCanonicalName());
+        _page.setComponent(_component);
         addPage(_page);
     }
 
     @Override
     public void init(Component container) {
-        // TODO: implement me
+        _component = container;
     }
 
     @Override

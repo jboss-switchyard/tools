@@ -185,7 +185,7 @@ public class BPMImplementationTypeImpl extends CommonImplementationTypeImpl impl
      * @generated
      * @ordered
      */
-    protected static final String MESSAGE_CONTENT_IN_NAME_EDEFAULT = "messsageContentIn";
+    protected static final String MESSAGE_CONTENT_IN_NAME_EDEFAULT = "messageContentIn";
 
     /**
      * The cached value of the '{@link #getMessageContentInName() <em>Message Content In Name</em>}' attribute.

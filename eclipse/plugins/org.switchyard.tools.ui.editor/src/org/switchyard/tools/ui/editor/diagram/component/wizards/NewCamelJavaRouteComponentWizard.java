@@ -25,6 +25,7 @@ import org.eclipse.jface.viewers.StructuredSelection;
 import org.eclipse.soa.sca.sca1_1.model.sca.Component;
 import org.eclipse.soa.sca.sca1_1.model.sca.ComponentService;
 import org.eclipse.soa.sca.sca1_1.model.sca.Composite;
+import org.eclipse.soa.sca.sca1_1.model.sca.Contract;
 import org.eclipse.soa.sca.sca1_1.model.sca.ScaFactory;
 import org.eclipse.ui.IWorkbench;
 import org.eclipse.ui.PlatformUI;
@@ -44,6 +45,7 @@ import org.switchyard.tools.ui.JavaUtil;
 @SuppressWarnings("restriction")
 public class NewCamelJavaRouteComponentWizard extends NewClassCreationWizard implements IComponentWizard {
 
+    private Contract _serviceInterface;
     private Component _component;
 
     /**
@@ -103,6 +105,16 @@ public class NewCamelJavaRouteComponentWizard extends NewClassCreationWizard imp
         init(getWorkbench() == null ? PlatformUI.getWorkbench() : getWorkbench(), selection);
     }
 
+    /**
+     * Must be invoked before the dialog is opened.
+     * 
+     * @param serviceInterface the interface; may be null, indicating any
+     *            interface is OK.
+     */
+    public void forceServiceInterfaceType(Contract serviceInterface) {
+        _serviceInterface = serviceInterface;
+    }
+
     @Override
     public void addPages() {
         super.addPages();
@@ -110,6 +122,7 @@ public class NewCamelJavaRouteComponentWizard extends NewClassCreationWizard imp
         // initialize the page
         NewCamelRouteClassWizardPage page = getCamelRouteClassPage();
         page.init(getSelection());
+        page.forceServiceInterfaceType(_serviceInterface);
     }
 
     @Override

@@ -21,6 +21,7 @@ import org.eclipse.jface.viewers.IStructuredSelection;
 import org.eclipse.jface.viewers.StructuredSelection;
 import org.eclipse.jface.window.Window;
 import org.eclipse.jface.wizard.WizardDialog;
+import org.eclipse.soa.sca.sca1_1.model.sca.Component;
 import org.eclipse.soa.sca.sca1_1.model.sca.ComponentService;
 import org.eclipse.soa.sca.sca1_1.model.sca.Implementation;
 import org.eclipse.swt.SWT;
@@ -125,6 +126,14 @@ public class CamelXMLRouteComposite extends AbstractSwitchyardComposite implemen
         _camelRouteFilePath = _mXMLText.getText();
 
         validate();
+    }
+
+    /**
+     * @param serviceInterface the interface; may be null, indicating any
+     *            interface is OK.
+     */
+    public void forceServiceInterfaceType(ComponentService serviceInterface) {
+        _service = serviceInterface;
     }
 
     protected void handleModify(Control control) {
@@ -247,6 +256,7 @@ public class CamelXMLRouteComposite extends AbstractSwitchyardComposite implemen
             }
         }
         newWizard.init(PlatformUI.getWorkbench(), selectionToPass);
+        newWizard.forceServiceInterfaceType(getComponentContract());
         newWizard.setCreatedFilePath(defaultName);
         WizardDialog dialog = new WizardDialog(_panel.getShell(), newWizard);
         if (dialog.open() == Window.OK) {
@@ -254,5 +264,18 @@ public class CamelXMLRouteComposite extends AbstractSwitchyardComposite implemen
             return newWizard.getCreatedFilePath();
         }
         return null;
+    }
+
+    private ComponentService getComponentContract() {
+        if (_implementation != null && _implementation.eContainer() instanceof Component) {
+            Component component = (Component) _implementation.eContainer();
+            if (component.getService() != null) {
+                for (ComponentService service : component.getService()) {
+                    _service = service;
+                    break;
+                }
+            }
+        }
+        return _service;
     }
 }

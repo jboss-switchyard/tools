@@ -126,19 +126,42 @@ public class NewBeanServiceClassWizardPage extends NewTypeWizardPage {
         initTypePage(elem);
         List<String> superInterfaces = getSuperInterfaces();
         if (superInterfaces.size() > 0) {
-            _serviceInterfaceDialogField.setText(superInterfaces.get(0));
-            superInterfaces.remove(0);
-            setSuperInterfaces(superInterfaces, getPackageFragmentRoot() != null);
+            initServiceInterface(superInterfaces.get(0));
         }
         setModifiers(Flags.AccPublic, false);
-        if (getTypeName().length() == 0) {
-            String simpleServiceInterfaceName = getSimpleServiceInterfaceName();
-            if (simpleServiceInterfaceName.length() > 0) {
-                setTypeName(simpleServiceInterfaceName + "Impl", true);
-            }
-        }
+        initTypeNameFromServiceInterface(getSimpleServiceInterfaceName());
         _createTestClassButton.setSelection(false);
         doStatusUpdate();
+    }
+
+    /**
+     * Forces the bean to implement the specified interface.
+     * 
+     * @param serviceInterface the service interface type.
+     */
+    public void forceServiceInterfaceType(IType serviceInterface) {
+        if (serviceInterface == null) {
+            return;
+        }
+        initServiceInterface(serviceInterface.getFullyQualifiedName());
+        _serviceInterfaceDialogField.setEnabled(false);
+        initTypeNameFromServiceInterface(getSimpleServiceInterfaceName());
+    }
+
+    private void initServiceInterface(String interfaceName) {
+        _serviceInterfaceDialogField.setText(interfaceName);
+        List<String> superInterfaces = getSuperInterfaces();
+        if (superInterfaces != null && superInterfaces.remove(interfaceName)) {
+            setSuperInterfaces(superInterfaces, getPackageFragmentRoot() != null);
+        }
+    }
+
+    private void initTypeNameFromServiceInterface(String interfaceName) {
+        if (getTypeName().length() == 0) {
+            if (interfaceName != null && interfaceName.length() > 0) {
+                setTypeName(interfaceName + "Bean", true);
+            }
+        }
     }
 
     @Override

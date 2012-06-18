@@ -78,7 +78,11 @@ public class NewBPMComponentWizard extends BaseNewServiceFileWizard implements I
         WizardNewFileCreationPage page = getFileCreationPage();
         page.setTitle("New SwitchYard BPMN File");
         page.setDescription("Create a new SwitchYard BPMN file.");
-        page.setFileName("ProcessComponent.bpmn");
+        if (getService() == null) {
+            page.setFileName("ProcessComponent.bpmn");
+        } else {
+            page.setFileName("" + getService().getName() + "Process.bpmn");
+        }
 
         _processPage = new NewBPMProcessDetailsWizardPage(NewBPMProcessDetailsWizardPage.class.getCanonicalName());
         addPage(_processPage);

@@ -30,6 +30,7 @@ import org.switchyard.tools.ui.editor.diagram.internal.wizards.LinkedWizardBase;
  */
 public class BPMImplementationWizard extends LinkedWizardBase implements IImplementationWizard {
 
+    private Component _component;
     private BPMImplementationType _implementation;
     private BPMImplementationWizardPage _page;
     private ComponentService _service;
@@ -37,12 +38,13 @@ public class BPMImplementationWizard extends LinkedWizardBase implements IImplem
     @Override
     public void addPages() {
         _page = new BPMImplementationWizardPage(BPMImplementationWizardPage.class.getCanonicalName());
+        _page.init(_component);
         addPage(_page);
     }
 
     @Override
     public void init(Component container) {
-        // TODO: implement me
+        _component = container;
     }
 
     @Override

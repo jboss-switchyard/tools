@@ -65,8 +65,11 @@ public class NewCamelXMLRouteCompenentWizard extends BaseNewServiceFileWizard {
         WizardNewFileCreationPage page = getFileCreationPage();
         page.setTitle("Route File");
         page.setDescription("Create a new Camel Route file resource.");
-        page.setFileName("route.xml");
-
+        if (getService() == null) {
+            page.setFileName("route.xml");
+        } else {
+            page.setFileName("" + getService().getName() + "Route.xml");
+        }
     }
 
     @Override

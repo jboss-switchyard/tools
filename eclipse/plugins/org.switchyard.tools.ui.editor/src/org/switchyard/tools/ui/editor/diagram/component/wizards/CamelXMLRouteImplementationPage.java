@@ -28,6 +28,7 @@ import org.switchyard.tools.ui.editor.diagram.shared.CamelXMLRouteComposite;
  */
 public class CamelXMLRouteImplementationPage extends WizardPage {
 
+    private ComponentService _serviceInterface;
     private CamelXMLRouteComposite _camelComposite = null;
     private CamelImplementationType _implementation;
 
@@ -47,6 +48,16 @@ public class CamelXMLRouteImplementationPage extends WizardPage {
         _implementation = implementation;
     }
 
+    /**
+     * Must be invoked before the dialog is opened.
+     * 
+     * @param serviceInterface the interface; may be null, indicating any
+     *            interface is OK.
+     */
+    public void forceServiceInterfaceType(ComponentService serviceInterface) {
+        _serviceInterface = serviceInterface;
+    }
+
     @Override
     public void createControl(Composite parent) {
         _camelComposite = new CamelXMLRouteComposite();
@@ -58,6 +69,7 @@ public class CamelXMLRouteImplementationPage extends WizardPage {
             }
         });
         _camelComposite.setImplementation(_implementation);
+        _camelComposite.forceServiceInterfaceType(_serviceInterface);
         _camelComposite.createContents(parent, SWT.NONE);
 
         setControl(_camelComposite.getPanel());

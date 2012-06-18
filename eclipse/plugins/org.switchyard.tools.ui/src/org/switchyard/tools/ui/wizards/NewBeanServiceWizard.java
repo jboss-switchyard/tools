@@ -39,6 +39,7 @@ import org.switchyard.tools.ui.operations.CreateBeanServiceOperation;
 public class NewBeanServiceWizard extends AbstractSwitchYardServiceWizard {
 
     private NewBeanServiceClassWizardPage _newClassPage;
+    private IType _serviceInterface;
     private IFile _newClassFile;
     private boolean _updateSwitchYardFile;
     private boolean _openAfterCreate;
@@ -68,9 +69,22 @@ public class NewBeanServiceWizard extends AbstractSwitchYardServiceWizard {
     public void addPages() {
         _newClassPage = new NewBeanServiceClassWizardPage();
         _newClassPage.init(selection);
+        if (_serviceInterface != null) {
+            _newClassPage.forceServiceInterfaceType(_serviceInterface);
+        }
         addPage(_newClassPage);
 
         super.addPages();
+    }
+
+    /**
+     * Must be invoked before the dialog is opened.
+     * 
+     * @param serviceInterface the interface type; may be null, indicating any
+     *            interface is OK.
+     */
+    public void forceServiceInterfaceType(IType serviceInterface) {
+        _serviceInterface = serviceInterface;
     }
 
     /**

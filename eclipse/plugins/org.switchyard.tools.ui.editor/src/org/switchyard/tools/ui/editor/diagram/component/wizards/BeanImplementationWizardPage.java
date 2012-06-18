@@ -29,6 +29,10 @@ import org.eclipse.jface.viewers.IStructuredSelection;
 import org.eclipse.jface.viewers.StructuredSelection;
 import org.eclipse.jface.wizard.WizardDialog;
 import org.eclipse.jface.wizard.WizardPage;
+import org.eclipse.soa.sca.sca1_1.model.sca.Component;
+import org.eclipse.soa.sca.sca1_1.model.sca.ComponentService;
+import org.eclipse.soa.sca.sca1_1.model.sca.Interface;
+import org.eclipse.soa.sca.sca1_1.model.sca.JavaInterface;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.events.ModifyEvent;
 import org.eclipse.swt.events.ModifyListener;
@@ -62,6 +66,7 @@ public class BeanImplementationWizardPage extends WizardPage {
     private Button _browseBeanButton;
     private IJavaProject _project;
     private IType _beanClass;
+    private IType _serviceInterface;
 
     /**
      * Create a new BeanImplementationWizardPage.
@@ -89,6 +94,28 @@ public class BeanImplementationWizardPage extends WizardPage {
                     }
                 }
             }
+        }
+    }
+
+    /**
+     * @param component the existing component to which the implementation will
+     *            be set; may be null.
+     */
+    public void setComponent(Component component) {
+        _serviceInterface = null;
+        if (_project == null || component == null || component.getService() == null) {
+            return;
+        }
+        for (ComponentService service : component.getService()) {
+            Interface intf = service.getInterface();
+            if (intf instanceof JavaInterface && ((JavaInterface) intf).getInterface() != null) {
+                try {
+                    _serviceInterface = _project.findType(((JavaInterface) intf).getInterface());
+                } catch (JavaModelException e) {
+                    e.fillInStackTrace();
+                }
+            }
+            return;
         }
     }
 
@@ -150,11 +177,21 @@ public class BeanImplementationWizardPage extends WizardPage {
         if (_project == null) {
             scope = SearchEngine.createWorkspaceScope();
         } else {
-            scope = SearchEngine.createJavaSearchScope(new IJavaElement[] {_project });
+            if (_serviceInterface == null) {
+                scope = SearchEngine.createJavaSearchScope(new IJavaElement[] {_project });
+            } else {
+                try {
+                    scope = SearchEngine.createStrictHierarchyScope(_project, _serviceInterface, true, false, null);
+                } catch (JavaModelException e) {
+                    // fallback to any type
+                    scope = SearchEngine.createJavaSearchScope(new IJavaElement[] {_project });
+                }
+            }
         }
+
         try {
             SelectionDialog dialog = JavaUI.createTypeDialog(getShell(), getContainer(), scope,
-                    IJavaElementSearchConstants.CONSIDER_CLASSES, false);
+                    IJavaElementSearchConstants.CONSIDER_CLASSES, false, "*Bean");
             if (dialog.open() == SelectionDialog.OK) {
                 Object[] result = dialog.getResult();
                 if (result.length > 0 && result[0] instanceof IType) {
@@ -175,6 +212,7 @@ public class BeanImplementationWizardPage extends WizardPage {
         IWorkbench workbench = editor == null ? PlatformUI.getWorkbench() : editor.getEditorSite().getWorkbenchWindow()
                 .getWorkbench();
         wizard.init(workbench, selection);
+        wizard.forceServiceInterfaceType(_serviceInterface);
         WizardDialog dialog = new WizardDialog(getShell(), wizard);
         if (dialog.open() == WizardDialog.OK) {
             ICompilationUnit icu = JavaCore.createCompilationUnitFrom(wizard.getNewClassFile());
@@ -187,4 +225,5 @@ public class BeanImplementationWizardPage extends WizardPage {
             }
         }
     }
+
 }

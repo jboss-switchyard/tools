@@ -151,6 +151,14 @@ public class CamelJavaRouteComposite extends AbstractSwitchyardComposite impleme
     }
 
     /**
+     * @param serviceInterface the interface; may be null, indicating any
+     *            interface is OK.
+     */
+    public void forceServiceInterfaceType(ComponentService serviceInterface) {
+        _service = serviceInterface;
+    }
+
+    /**
      * @param shell Shell for the window
      * @param superTypeName supertype to search for
      * @param project project to look in
@@ -249,6 +257,7 @@ public class CamelJavaRouteComposite extends AbstractSwitchyardComposite impleme
         NewCamelJavaRouteComponentWizard wizard = new NewCamelJavaRouteComponentWizard(false);
         WizardDialog dialog = new WizardDialog(_panel.getShell(), wizard);
         wizard.init(PlatformUI.getWorkbench(), selectionToPass);
+        wizard.forceServiceInterfaceType(getComponentContract());
         if (dialog.open() == WizardDialog.OK) {
             Component component = wizard.getCreatedObject();
             if (component != null) {
@@ -341,5 +350,18 @@ public class CamelJavaRouteComposite extends AbstractSwitchyardComposite impleme
      */
     public String getCamelRouteClass() {
         return this._routeClassName;
+    }
+
+    private ComponentService getComponentContract() {
+        if (_implementation != null && _implementation.eContainer() instanceof Component) {
+            Component component = (Component) _implementation.eContainer();
+            if (component.getService() != null) {
+                for (ComponentService service : component.getService()) {
+                    _service = service;
+                    break;
+                }
+            }
+        }
+        return _service;
     }
 }

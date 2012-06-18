@@ -53,6 +53,7 @@ import org.switchyard.tools.ui.editor.Activator;
  */
 public class InterfaceControl implements ISelectionProvider {
 
+    private boolean _enabled = true;
     private Button _javaRadio;
     private Button _wsdlRadio;
     private Button _esbRadio;
@@ -154,7 +155,6 @@ public class InterfaceControl implements ISelectionProvider {
         _javaRadio = new Button(group, SWT.RADIO);
         _javaRadio.setText("Java");
         _javaRadio.setData(new JavaInterfaceControlAdapter());
-        _javaRadio.setEnabled(_supportedTypes.contains(InterfaceType.Java));
         _javaRadio.addSelectionListener(new SelectionAdapter() {
             @Override
             public void widgetSelected(SelectionEvent event) {
@@ -165,7 +165,6 @@ public class InterfaceControl implements ISelectionProvider {
         _wsdlRadio = new Button(group, SWT.RADIO);
         _wsdlRadio.setText("WSDL");
         _wsdlRadio.setData(new WSDLInterfaceControlAdapter());
-        _wsdlRadio.setEnabled(_supportedTypes.contains(InterfaceType.WSDL));
         _wsdlRadio.addSelectionListener(new SelectionAdapter() {
             @Override
             public void widgetSelected(SelectionEvent event) {
@@ -176,7 +175,6 @@ public class InterfaceControl implements ISelectionProvider {
         _esbRadio = new Button(group, SWT.RADIO);
         _esbRadio.setText("ESB");
         _esbRadio.setData(new ESBInterfaceControlAdapter());
-        _esbRadio.setEnabled(_supportedTypes.contains(InterfaceType.ESB));
         _esbRadio.addSelectionListener(new SelectionAdapter() {
             @Override
             public void widgetSelected(SelectionEvent event) {
@@ -218,6 +216,31 @@ public class InterfaceControl implements ISelectionProvider {
         });
 
         initControls();
+        setEnabled(_enabled);
+    }
+
+    /**
+     * @return the enablement state of the controls.
+     */
+    public boolean getEnabled() {
+        return _enabled;
+    }
+
+    /**
+     * @param enabled the enablement state of the controls.
+     */
+    public void setEnabled(boolean enabled) {
+        _enabled = enabled;
+        if (_newLink == null) {
+            return;
+        }
+        _newLink.setEnabled(_enabled);
+        _text.setEnabled(_enabled);
+        _browseButton.setEnabled(_enabled);
+
+        _javaRadio.setEnabled(_enabled && _supportedTypes.contains(InterfaceType.Java));
+        _wsdlRadio.setEnabled(_enabled && _supportedTypes.contains(InterfaceType.WSDL));
+        _esbRadio.setEnabled(_enabled && _supportedTypes.contains(InterfaceType.ESB));
     }
 
     /**

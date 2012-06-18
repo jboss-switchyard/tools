@@ -174,6 +174,16 @@ public abstract class BaseNewServiceFileWizard extends BasicNewFileResourceWizar
     }
 
     /**
+     * Must be invoked before the dialog is opened.
+     * 
+     * @param serviceInterface the interface; may be null, indicating any
+     *            interface is OK.
+     */
+    public void forceServiceInterfaceType(ComponentService serviceInterface) {
+        _service = serviceInterface;
+    }
+
+    /**
      * @return the service specified by the user.
      */
     public ComponentService getService() {
@@ -277,6 +287,12 @@ public abstract class BaseNewServiceFileWizard extends BasicNewFileResourceWizar
                     setPageComplete(validatePage());
                 }
             });
+
+            if (_service != null) {
+                _contractControl.init(_service);
+                _contractControl.setEnabled(false);
+            }
+            // get the new instance
             _service = (ComponentService) _contractControl.getContract();
         }
 
