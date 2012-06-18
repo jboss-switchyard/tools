@@ -49,33 +49,9 @@
 					<property name="dataInputs">
 						<value>
 							<property
-             description="The name of the property holding the input message to be passed to the SwitchYard service (default: messageContentIn)"
-             name="name"
-             value="MessageContentInName"/>
-						</value>
-					</property>
-					<property name="dataInputs">
-						<value>
-							<property
-             description="The name of the property to which the output message from the SwitchYard service will be stored (default: messageContentOut)"
-             name="name"
-             value="MessageContentOutName"/>
-						</value>
-					</property>
-					<property name="dataInputs">
-						<value>
-							<property
              description="This is used to store the input message to be passed to the SwitchYard servce.  It must match the &quot;MessageContentInName&quot; property."
              name="name"
              value="messageContentIn"/>
-						</value>
-					</property>
-					<property name="dataOutputs">
-						<value>
-							<property
-             description="This is used to store the output message from the SwitchYard servce.  It must match the &quot;MessageContentOutName&quot; property."
-             name="name"
-             value="messageContentOut"/>
 						</value>
 					</property>
 
@@ -84,13 +60,6 @@
 							<property name="dataInputRefs" ref="ioSpecification/dataInputs#0"/>
 							<property name="dataInputRefs" ref="ioSpecification/dataInputs#1"/>
 							<property name="dataInputRefs" ref="ioSpecification/dataInputs#2"/>
-							<property name="dataInputRefs" ref="ioSpecification/dataInputs#3"/>
-							<property name="dataInputRefs" ref="ioSpecification/dataInputs#4"/>
-						</value>
-					</property>
-					<property name="outputSets">
-						<value>
-							<property name="dataOutputRefs" ref="ioSpecification/dataOutputs#0"/>
 						</value>
 					</property>
 				</value>
@@ -108,21 +77,6 @@
 			<property name="dataInputAssociations">
 				<value>
 					<property name="targetRef" ref="ioSpecification/dataInputs#2"/>
-				</value>
-			</property>
-			<property name="dataInputAssociations">
-				<value>
-					<property name="targetRef" ref="ioSpecification/dataInputs#3"/>
-				</value>
-			</property>
-			<property name="dataInputAssociations">
-				<value>
-					<property name="targetRef" ref="ioSpecification/dataInputs#4"/>
-				</value>
-			</property>
-			<property name="dataOutputAssociations">
-				<value>
-					<property name="sourceRef" ref="ioSpecification/dataOutputs#0"/>
 				</value>
 			</property>
       </customTask>

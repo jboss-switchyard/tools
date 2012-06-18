@@ -109,10 +109,6 @@ public class SwitchYardServiceTaskFeatureContainer extends JbpmCustomTaskFeature
                     addInputAssignment(resource, inputAssociation, input, "SomeSwitchYardService");
                 } else if ("ServiceOperationName".equals(input.getName())) {
                     addInputAssignment(resource, inputAssociation, input, "someServiceOperation");
-                } else if ("MessageContentInName".equals(input.getName())) {
-                    addInputAssignment(resource, inputAssociation, input, "messageContentIn");
-                } else if ("MessageContentOutName".equals(input.getName())) {
-                    addInputAssignment(resource, inputAssociation, input, "messageContentOut");
                 } else if ("messageContentIn".equals(input.getName())) {
                     // do nothing
                     inputAssociation.getTargetRef();
