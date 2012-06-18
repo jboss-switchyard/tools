@@ -29,12 +29,8 @@ import org.eclipse.graphiti.mm.pictograms.PictogramElement;
 import org.eclipse.graphiti.services.Graphiti;
 import org.eclipse.graphiti.ui.platform.GFPropertySection;
 import org.eclipse.soa.sca.sca1_1.model.sca.Component;
-import org.eclipse.soa.sca.sca1_1.model.sca.ComponentReference;
-import org.eclipse.soa.sca.sca1_1.model.sca.ComponentService;
 import org.eclipse.soa.sca.sca1_1.model.sca.Contract;
-import org.eclipse.soa.sca.sca1_1.model.sca.Reference;
 import org.eclipse.soa.sca.sca1_1.model.sca.ScaPackage;
-import org.eclipse.soa.sca.sca1_1.model.sca.Service;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.custom.CLabel;
 import org.eclipse.swt.events.FocusEvent;
@@ -130,17 +126,8 @@ public class SwitchyardSCAPropertiesMainSection extends GFPropertySection implem
                     } else if (_businessObject instanceof Component) {
                         String name = ((Component) _businessObject).getName();
                         _nameText.setText(name == null ? "" : name); //$NON-NLS-1$
-                    } else if (_businessObject instanceof Service) {
-                        String name = ((Service) _businessObject).getName();
-                        _nameText.setText(name == null ? "" : name); //$NON-NLS-1$
-                    } else if (_businessObject instanceof Reference) {
-                        String name = ((Reference) _businessObject).getName();
-                        _nameText.setText(name == null ? "" : name); //$NON-NLS-1$
-                    } else if (_businessObject instanceof ComponentService) {
-                        String name = ((ComponentService) _businessObject).getName();
-                        _nameText.setText(name == null ? "" : name); //$NON-NLS-1$
-                    } else if (_businessObject instanceof ComponentReference) {
-                        String name = ((ComponentReference) _businessObject).getName();
+                    } else if (_businessObject instanceof Contract) {
+                        String name = ((Contract) _businessObject).getName();
                         _nameText.setText(name == null ? "" : name); //$NON-NLS-1$
                     }
                     _inUpdate = false;
@@ -185,9 +172,6 @@ public class SwitchyardSCAPropertiesMainSection extends GFPropertySection implem
                     }
                 });
             }
-            if (_pe != null && getDiagramEditor() != null) {
-                getDiagramEditor().refresh(_pe);
-            }
         } else if (bo instanceof Contract) {
             final Contract contract = (Contract) bo;
             if (!contract.getName().contentEquals(value.trim())) {
@@ -215,6 +199,7 @@ public class SwitchyardSCAPropertiesMainSection extends GFPropertySection implem
     public void refresh() {
         PictogramElement pe = getSelectedPictogramElement();
         if (pe != null) {
+            _inUpdate = true;
             _pe = null;
             _businessObject = null;
             Object bo = Graphiti.getLinkService().getBusinessObjectForLinkedPictogramElement(pe);
@@ -238,17 +223,8 @@ public class SwitchyardSCAPropertiesMainSection extends GFPropertySection implem
             } else if (bo instanceof Component) {
                 String name = ((Component) bo).getName();
                 _nameText.setText(name == null ? "" : name); //$NON-NLS-1$
-            } else if (bo instanceof Service) {
-                String name = ((Service) bo).getName();
-                _nameText.setText(name == null ? "" : name); //$NON-NLS-1$
-            } else if (bo instanceof Reference) {
-                String name = ((Reference) bo).getName();
-                _nameText.setText(name == null ? "" : name); //$NON-NLS-1$
-            } else if (bo instanceof ComponentService) {
-                String name = ((ComponentService) bo).getName();
-                _nameText.setText(name == null ? "" : name); //$NON-NLS-1$
-            } else if (bo instanceof ComponentReference) {
-                String name = ((ComponentReference) bo).getName();
+            } else if (bo instanceof Contract) {
+                String name = ((Contract) bo).getName();
                 _nameText.setText(name == null ? "" : name); //$NON-NLS-1$
             }
             _inUpdate = false;
@@ -341,5 +317,11 @@ public class SwitchyardSCAPropertiesMainSection extends GFPropertySection implem
     public void dispose() {
         removeDomainListener();
         super.dispose();
+    }
+
+    @Override
+    public void aboutToBeHidden() {
+        _inUpdate = true;
+        super.aboutToBeHidden();
     }
 }

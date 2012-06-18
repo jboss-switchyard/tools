@@ -71,6 +71,8 @@ import org.switchyard.tools.models.switchyard1_0.commonrules.CommonRulesPackage;
 import org.switchyard.tools.models.switchyard1_0.commonrules.impl.CommonRulesPackageImpl;
 import org.switchyard.tools.models.switchyard1_0.hornetq.HornetQPackage;
 import org.switchyard.tools.models.switchyard1_0.hornetq.impl.HornetQPackageImpl;
+import org.switchyard.tools.models.switchyard1_0.jca.JcaPackage;
+import org.switchyard.tools.models.switchyard1_0.jca.impl.JcaPackageImpl;
 import org.switchyard.tools.models.switchyard1_0.rules.RulesPackage;
 import org.switchyard.tools.models.switchyard1_0.rules.impl.RulesPackageImpl;
 import org.switchyard.tools.models.switchyard1_0.soap.SOAPPackage;
@@ -1630,6 +1632,7 @@ public class SpringPackageImpl extends EPackageImpl implements SpringPackage {
         TransformPackageImpl theTransformPackage = (TransformPackageImpl)(EPackage.Registry.INSTANCE.getEPackage(TransformPackage.eNS_URI) instanceof TransformPackageImpl ? EPackage.Registry.INSTANCE.getEPackage(TransformPackage.eNS_URI) : TransformPackage.eINSTANCE);
         ValidatePackageImpl theValidatePackage = (ValidatePackageImpl)(EPackage.Registry.INSTANCE.getEPackage(ValidatePackage.eNS_URI) instanceof ValidatePackageImpl ? EPackage.Registry.INSTANCE.getEPackage(ValidatePackage.eNS_URI) : ValidatePackage.eINSTANCE);
         CamelPackageImpl theCamelPackage = (CamelPackageImpl)(EPackage.Registry.INSTANCE.getEPackage(CamelPackage.eNS_URI) instanceof CamelPackageImpl ? EPackage.Registry.INSTANCE.getEPackage(CamelPackage.eNS_URI) : CamelPackage.eINSTANCE);
+        JcaPackageImpl theJcaPackage = (JcaPackageImpl)(EPackage.Registry.INSTANCE.getEPackage(JcaPackage.eNS_URI) instanceof JcaPackageImpl ? EPackage.Registry.INSTANCE.getEPackage(JcaPackage.eNS_URI) : JcaPackage.eINSTANCE);
 
         // Load packages
         theSpringPackage.loadPackage();
@@ -1647,6 +1650,7 @@ public class SpringPackageImpl extends EPackageImpl implements SpringPackage {
         theTransformPackage.createPackageContents();
         theValidatePackage.createPackageContents();
         theCamelPackage.createPackageContents();
+        theJcaPackage.createPackageContents();
 
         // Initialize created meta-data
         theBeanPackage.initializePackageContents();
@@ -1661,6 +1665,7 @@ public class SpringPackageImpl extends EPackageImpl implements SpringPackage {
         theTransformPackage.initializePackageContents();
         theValidatePackage.initializePackageContents();
         theCamelPackage.initializePackageContents();
+        theJcaPackage.initializePackageContents();
 
         // Fix loaded packages
         theSpringPackage.fixPackageContents();

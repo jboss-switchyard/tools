@@ -55,6 +55,8 @@ import org.switchyard.tools.models.switchyard1_0.commonrules.CommonRulesPackage;
 import org.switchyard.tools.models.switchyard1_0.commonrules.impl.CommonRulesPackageImpl;
 import org.switchyard.tools.models.switchyard1_0.hornetq.HornetQPackage;
 import org.switchyard.tools.models.switchyard1_0.hornetq.impl.HornetQPackageImpl;
+import org.switchyard.tools.models.switchyard1_0.jca.JcaPackage;
+import org.switchyard.tools.models.switchyard1_0.jca.impl.JcaPackageImpl;
 import org.switchyard.tools.models.switchyard1_0.rules.RulesPackage;
 import org.switchyard.tools.models.switchyard1_0.rules.impl.RulesPackageImpl;
 import org.switchyard.tools.models.switchyard1_0.soap.SOAPPackage;
@@ -175,6 +177,7 @@ public class ValidatePackageImpl extends EPackageImpl implements ValidatePackage
         SOAPPackageImpl theSOAPPackage = (SOAPPackageImpl)(EPackage.Registry.INSTANCE.getEPackage(SOAPPackage.eNS_URI) instanceof SOAPPackageImpl ? EPackage.Registry.INSTANCE.getEPackage(SOAPPackage.eNS_URI) : SOAPPackage.eINSTANCE);
         TransformPackageImpl theTransformPackage = (TransformPackageImpl)(EPackage.Registry.INSTANCE.getEPackage(TransformPackage.eNS_URI) instanceof TransformPackageImpl ? EPackage.Registry.INSTANCE.getEPackage(TransformPackage.eNS_URI) : TransformPackage.eINSTANCE);
         CamelPackageImpl theCamelPackage = (CamelPackageImpl)(EPackage.Registry.INSTANCE.getEPackage(CamelPackage.eNS_URI) instanceof CamelPackageImpl ? EPackage.Registry.INSTANCE.getEPackage(CamelPackage.eNS_URI) : CamelPackage.eINSTANCE);
+        JcaPackageImpl theJcaPackage = (JcaPackageImpl)(EPackage.Registry.INSTANCE.getEPackage(JcaPackage.eNS_URI) instanceof JcaPackageImpl ? EPackage.Registry.INSTANCE.getEPackage(JcaPackage.eNS_URI) : JcaPackage.eINSTANCE);
         SpringPackageImpl theSpringPackage = (SpringPackageImpl)(EPackage.Registry.INSTANCE.getEPackage(SpringPackage.eNS_URI) instanceof SpringPackageImpl ? EPackage.Registry.INSTANCE.getEPackage(SpringPackage.eNS_URI) : SpringPackage.eINSTANCE);
 
         // Load packages
@@ -193,6 +196,7 @@ public class ValidatePackageImpl extends EPackageImpl implements ValidatePackage
         theSOAPPackage.createPackageContents();
         theTransformPackage.createPackageContents();
         theCamelPackage.createPackageContents();
+        theJcaPackage.createPackageContents();
 
         // Initialize created meta-data
         theValidatePackage.initializePackageContents();
@@ -207,6 +211,7 @@ public class ValidatePackageImpl extends EPackageImpl implements ValidatePackage
         theSOAPPackage.initializePackageContents();
         theTransformPackage.initializePackageContents();
         theCamelPackage.initializePackageContents();
+        theJcaPackage.initializePackageContents();
 
         // Fix loaded packages
         theSpringPackage.fixPackageContents();

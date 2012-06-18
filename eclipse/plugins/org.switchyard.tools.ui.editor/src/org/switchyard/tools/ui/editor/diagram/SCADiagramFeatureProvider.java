@@ -60,6 +60,7 @@ import org.switchyard.tools.ui.editor.diagram.binding.CamelNettyUDPBindingFactor
 import org.switchyard.tools.ui.editor.diagram.binding.CamelQuartzBindingFactory;
 import org.switchyard.tools.ui.editor.diagram.binding.CamelSqlBindingFactory;
 import org.switchyard.tools.ui.editor.diagram.binding.CreateBindingFeature;
+import org.switchyard.tools.ui.editor.diagram.binding.JCABindingFactory;
 import org.switchyard.tools.ui.editor.diagram.binding.SCADiagramAddBindingFeature;
 import org.switchyard.tools.ui.editor.diagram.binding.SOAPBindingFactory;
 import org.switchyard.tools.ui.editor.diagram.component.AbstractComponentFactory;
@@ -238,6 +239,8 @@ public class SCADiagramFeatureProvider extends DefaultFeatureProvider {
         features.add(new CreateBindingFeature(this, new CamelFileBindingFactory(), "File",
                 "A Camel File based endpoint."));
         features.add(new CreateBindingFeature(this, new CamelFTPBindingFactory(), "FTP", "A Camel FTP based endpoint."));
+        features.add(new CreateBindingFeature(this, new JCABindingFactory(), "JCA", 
+                "A JCA based endpoint."));
         features.add(new CreateBindingFeature(this, new CamelJmsBindingFactory(), "JMS", "A Camel JMS based endpoint."));
         features.add(new CreateBindingFeature(this, new CamelNettyTCPBindingFactory(), "Netty TCP",
                 "A Camel Netty TCP based endpoint."));
