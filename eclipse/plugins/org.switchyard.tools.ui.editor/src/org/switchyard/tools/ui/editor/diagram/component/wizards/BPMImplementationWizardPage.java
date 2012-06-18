@@ -164,6 +164,7 @@ public class BPMImplementationWizardPage extends WizardPage {
                 String bpmnFilePath = JavaUtil.getJavaPathForResource(bpmnFile).toString();
                 _implementation = BPMFactory.eINSTANCE.createBPMImplementationType();
                 _implementation.setProcessDefinition(bpmnFilePath);
+                _implementation.getTaskHandler().add(NewBPMComponentWizard.createSwitchYardServiceTaskHandler());
                 // TODO: see if we can get the processId
                 // _implementation.setProcessId(processId);
 
