@@ -76,7 +76,7 @@ public class ESBInterfaceControlAdapter implements IInterfaceControlAdapter {
 
     @Override
     public boolean open(Shell shell, IJavaProject project) {
-        return false;
+        return browse(shell, project);
     }
 
     @Override
