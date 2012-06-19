@@ -31,6 +31,7 @@ import org.eclipse.graphiti.ui.platform.GFPropertySection;
 import org.eclipse.soa.sca.sca1_1.model.sca.Component;
 import org.eclipse.soa.sca.sca1_1.model.sca.ComponentReference;
 import org.eclipse.soa.sca.sca1_1.model.sca.ComponentService;
+import org.eclipse.soa.sca.sca1_1.model.sca.Contract;
 import org.eclipse.soa.sca.sca1_1.model.sca.Reference;
 import org.eclipse.soa.sca.sca1_1.model.sca.ScaPackage;
 import org.eclipse.soa.sca.sca1_1.model.sca.Service;
@@ -161,59 +162,45 @@ public class SwitchyardSCAPropertiesMainSection extends GFPropertySection implem
 
     @SuppressWarnings("restriction")
     private void updateObjectName(final Object bo, final String value) {
+        boolean changed = false;
         if (bo instanceof org.eclipse.soa.sca.sca1_1.model.sca.Composite) {
             final org.eclipse.soa.sca.sca1_1.model.sca.Composite composite = (org.eclipse.soa.sca.sca1_1.model.sca.Composite) bo;
-            _domain.getCommandStack().execute(new RecordingCommand(_domain) {
-                @Override
-                protected void doExecute() {
-                    composite.setName(value.trim());
-                }
-            });
+            if (!composite.getName().contentEquals(value.trim())) {
+                changed = true;
+                _domain.getCommandStack().execute(new RecordingCommand(_domain) {
+                    @Override
+                    protected void doExecute() {
+                        composite.setName(value.trim());
+                    }
+                });
+            }
         } else if (bo instanceof Component) {
             final Component component = (Component) bo;
-            _domain.getCommandStack().execute(new RecordingCommand(_domain) {
-                @Override
-                protected void doExecute() {
-                    component.setName(value.trim());
-                }
-            });
+            if (!component.getName().contentEquals(value.trim())) {
+                changed = true;
+                _domain.getCommandStack().execute(new RecordingCommand(_domain) {
+                    @Override
+                    protected void doExecute() {
+                        component.setName(value.trim());
+                    }
+                });
+            }
             if (_pe != null && getDiagramEditor() != null) {
                 getDiagramEditor().refresh(_pe);
             }
-        } else if (bo instanceof Service) {
-            final Service service = (Service) bo;
-            _domain.getCommandStack().execute(new RecordingCommand(_domain) {
-                @Override
-                protected void doExecute() {
-                    service.setName(value.trim());
-                }
-            });
-        } else if (bo instanceof Reference) {
-            final Reference reference = (Reference) bo;
-            _domain.getCommandStack().execute(new RecordingCommand(_domain) {
-                @Override
-                protected void doExecute() {
-                    reference.setName(value.trim());
-                }
-            });
-        } else if (bo instanceof ComponentService) {
-            final ComponentService cservice = (ComponentService) bo;
-            _domain.getCommandStack().execute(new RecordingCommand(_domain) {
-                @Override
-                protected void doExecute() {
-                    cservice.setName(value.trim());
-                }
-            });
-        } else if (bo instanceof ComponentReference) {
-            final ComponentReference creference = (ComponentReference) bo;
-            _domain.getCommandStack().execute(new RecordingCommand(_domain) {
-                @Override
-                protected void doExecute() {
-                    creference.setName(value.trim());
-                }
-            });
+        } else if (bo instanceof Contract) {
+            final Contract contract = (Contract) bo;
+            if (!contract.getName().contentEquals(value.trim())) {
+                changed = true;
+                _domain.getCommandStack().execute(new RecordingCommand(_domain) {
+                    @Override
+                    protected void doExecute() {
+                        contract.setName(value.trim());
+                    }
+                });
+            }
         }
-        if (_pe != null) {
+        if (_pe != null && changed) {
             IUpdateContext updateContext = new UpdateContext(_pe);
             if (SwitchyardSCAEditor.getActiveEditor().getDiagramTypeProvider() != null) {
                 if (SwitchyardSCAEditor.getActiveEditor().getDiagramTypeProvider().getFeatureProvider() != null) {
