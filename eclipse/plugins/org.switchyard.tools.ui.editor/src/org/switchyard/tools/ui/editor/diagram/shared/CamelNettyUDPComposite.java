@@ -23,6 +23,7 @@ import org.eclipse.soa.sca.sca1_1.model.sca.Service;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.events.FocusEvent;
 import org.eclipse.swt.events.KeyEvent;
+import org.eclipse.swt.events.SelectionEvent;
 import org.eclipse.swt.layout.FillLayout;
 import org.eclipse.swt.layout.GridData;
 import org.eclipse.swt.layout.GridLayout;
@@ -398,6 +399,15 @@ public class CamelNettyUDPComposite extends AbstractSwitchyardComposite implemen
                 }
                 fireChangedEvent((Control) e.getSource());
             }
+        }
+    }
+
+    @Override
+    public void widgetSelected(SelectionEvent e) {
+        if (!inUpdate()) {
+            setHasChanged(true);
+            handleModify((Control)e.getSource());
+            fireChangedEvent((Control)e.getSource());
         }
     }
 }

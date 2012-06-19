@@ -47,7 +47,7 @@ import org.eclipse.swt.widgets.Link;
 import org.eclipse.swt.widgets.Shell;
 import org.eclipse.swt.widgets.Text;
 import org.eclipse.ui.PlatformUI;
-import org.eclipse.wst.wsdl.PortType;
+import org.eclipse.wst.wsdl.Port;
 import org.switchyard.tools.models.switchyard1_0.soap.ContextMapperType;
 import org.switchyard.tools.models.switchyard1_0.soap.MessageComposerType;
 import org.switchyard.tools.models.switchyard1_0.soap.SOAPBindingType;
@@ -296,18 +296,18 @@ public class SOAPBindingComposite extends AbstractSwitchyardComposite implements
                     }
                 }
             } else if (control.equals(_portNameText)) {
-                final String wsdlPort = _portNameText.getText().trim();
+                final String wsdlPort = _portNameText.getText();
                 if (domain != null) {
                     domain.getCommandStack().execute(new RecordingCommand(domain) {
                         @Override
                         protected void doExecute() {
-                            if (wsdlPort != null && wsdlPort.trim().length() > 0) {
+                            if (wsdlPort != null) {
                                 _binding.setWsdlPort(wsdlPort);
                             }
                         }
                     });
                 } else {
-                    if (wsdlPort != null && wsdlPort.trim().length() > 0) {
+                    if (wsdlPort != null) {
                         _binding.setWsdlPort(wsdlPort);
                     }
                 }
@@ -409,6 +409,7 @@ public class SOAPBindingComposite extends AbstractSwitchyardComposite implements
                     this._contextPathText.setText(_binding.getContextPath());
                 } else {
                     this._contextPathText.setText(_modelHandler.getRootSwitchYard().getName());
+                    _binding.setContextPath(_modelHandler.getRootSwitchYard().getName());
                 }
             }
             if (_unwrappedPayloadCheckbox != null && !_unwrappedPayloadCheckbox.isDisposed()) {
@@ -439,12 +440,12 @@ public class SOAPBindingComposite extends AbstractSwitchyardComposite implements
      * @param project java project to use for resolving classpaths
      * @return PortType result
      */
-    public PortType browse(Shell shell, IJavaProject project) {
-        WSDLPortTypeSelectionDialog dialog = new WSDLPortTypeSelectionDialog(shell, project == null ? ResourcesPlugin
+    public Port browse(Shell shell, IJavaProject project) {
+        WSDLPortSelectionDialog dialog = new WSDLPortSelectionDialog(shell, project == null ? ResourcesPlugin
                 .getWorkspace().getRoot() : project.getProject());
         dialog.setInitialPattern("*.wsdl");
         if (dialog.open() == WSDLPortTypeSelectionDialog.OK) {
-            PortType result = dialog.getSelectedPortType();
+            Port result = dialog.getSelectedPort();
             if (result != null) {
                 return result;
             }
@@ -461,12 +462,15 @@ public class SOAPBindingComposite extends AbstractSwitchyardComposite implements
                 javaProject = JavaCore.create(modelFile.getProject());
             }
         }
-        PortType portType = browse(shell, javaProject);
-        this._portNameText.setText(portType.getQName().getLocalPart());
-        IPath filePath = new Path(portType.eResource().getURI().toPlatformString(true));
-        IResource resource = javaProject.getProject().getWorkspace().getRoot().getFile(filePath);
-        filePath = JavaUtil.getJavaPathForResource(resource);
-        return filePath.toString();
+        Port port = browse(shell, javaProject);
+        if (port != null) {
+            this._portNameText.setText(port.getName());
+            IPath filePath = new Path(port.eResource().getURI().toPlatformString(true));
+            IResource resource = javaProject.getProject().getWorkspace().getRoot().getFile(filePath);
+            filePath = JavaUtil.getJavaPathForResource(resource);
+            return filePath.toString();
+        }
+        return null;
     }
 
     private static String getPathToNewWSDL(final Shell shell, final IPath path, boolean _openWhenFinish) {
@@ -545,6 +549,15 @@ public class SOAPBindingComposite extends AbstractSwitchyardComposite implements
                     break;
                 }
             }
+        }
+    }
+
+    @Override
+    public void widgetSelected(SelectionEvent e) {
+        if (!inUpdate()) {
+            setHasChanged(true);
+            handleModify((Control)e.getSource());
+            fireChangedEvent((Control)e.getSource());
         }
     }
 }
