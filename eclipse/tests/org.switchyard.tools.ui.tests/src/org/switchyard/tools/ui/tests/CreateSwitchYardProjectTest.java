@@ -32,11 +32,11 @@ import org.eclipse.m2e.tests.common.AbstractMavenProjectTestCase;
 import org.eclipse.wst.common.project.facet.core.IFacetedProject;
 import org.eclipse.wst.common.project.facet.core.ProjectFacetsManager;
 import org.switchyard.tools.ui.common.SwitchYardComponentExtensionManager;
+import org.switchyard.tools.ui.editor.components.bean.CreateBeanServiceOperation;
+import org.switchyard.tools.ui.editor.components.bean.NewBeanServiceClassWizardPage;
 import org.switchyard.tools.ui.operations.AbstractSwitchYardProjectOperation;
-import org.switchyard.tools.ui.operations.CreateBeanServiceOperation;
 import org.switchyard.tools.ui.operations.CreateSwitchYardProjectOperation;
 import org.switchyard.tools.ui.operations.CreateSwitchYardProjectOperation.NewSwitchYardProjectMetaData;
-import org.switchyard.tools.ui.wizards.NewBeanServiceClassWizardPage;
 import org.switchyard.tools.ui.wizards.NewServiceTestClassWizardPage;
 
 /**

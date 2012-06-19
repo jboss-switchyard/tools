@@ -8,8 +8,9 @@
  * Contributors:
  *     JBoss by Red Hat - Initial implementation.
  ************************************************************************************/
-package org.switchyard.tools.ui.wizards;
+package org.switchyard.tools.ui.editor.components.bean;
 
+import java.util.EnumSet;
 import java.util.List;
 
 import org.eclipse.core.resources.IResource;
@@ -20,44 +21,32 @@ import org.eclipse.core.runtime.SubProgressMonitor;
 import org.eclipse.jdt.core.Flags;
 import org.eclipse.jdt.core.ICompilationUnit;
 import org.eclipse.jdt.core.IJavaElement;
-import org.eclipse.jdt.core.IJavaProject;
-import org.eclipse.jdt.core.IPackageFragmentRoot;
 import org.eclipse.jdt.core.IType;
 import org.eclipse.jdt.core.JavaCore;
-import org.eclipse.jdt.core.dom.ParameterizedType;
-import org.eclipse.jdt.core.dom.Type;
-import org.eclipse.jdt.core.search.IJavaSearchConstants;
-import org.eclipse.jdt.core.search.IJavaSearchScope;
-import org.eclipse.jdt.core.search.SearchEngine;
-import org.eclipse.jdt.internal.corext.refactoring.StubTypeContext;
-import org.eclipse.jdt.internal.corext.refactoring.TypeContextChecker;
-import org.eclipse.jdt.internal.corext.util.JavaModelUtil;
-import org.eclipse.jdt.internal.ui.dialogs.FilteredTypesSelectionDialog;
-import org.eclipse.jdt.internal.ui.dialogs.StatusInfo;
-import org.eclipse.jdt.internal.ui.dialogs.TextFieldNavigationHandler;
-import org.eclipse.jdt.internal.ui.refactoring.contentassist.CompletionContextRequestor;
-import org.eclipse.jdt.internal.ui.refactoring.contentassist.ControlContentAssistHelper;
-import org.eclipse.jdt.internal.ui.refactoring.contentassist.JavaTypeCompletionProcessor;
-import org.eclipse.jdt.internal.ui.wizards.SuperInterfaceSelectionDialog;
 import org.eclipse.jdt.internal.ui.wizards.dialogfields.DialogField;
 import org.eclipse.jdt.internal.ui.wizards.dialogfields.IDialogFieldListener;
-import org.eclipse.jdt.internal.ui.wizards.dialogfields.IStringButtonAdapter;
-import org.eclipse.jdt.internal.ui.wizards.dialogfields.LayoutUtil;
 import org.eclipse.jdt.internal.ui.wizards.dialogfields.SelectionButtonDialogField;
-import org.eclipse.jdt.internal.ui.wizards.dialogfields.StringButtonDialogField;
 import org.eclipse.jdt.ui.wizards.NewTypeWizardPage;
 import org.eclipse.jface.dialogs.Dialog;
+import org.eclipse.jface.viewers.ISelectionChangedListener;
 import org.eclipse.jface.viewers.IStructuredSelection;
+import org.eclipse.jface.viewers.SelectionChangedEvent;
 import org.eclipse.jface.viewers.StructuredSelection;
-import org.eclipse.jface.window.Window;
 import org.eclipse.jface.wizard.IWizard;
+import org.eclipse.soa.sca.sca1_1.model.sca.ComponentService;
+import org.eclipse.soa.sca.sca1_1.model.sca.Interface;
+import org.eclipse.soa.sca.sca1_1.model.sca.JavaInterface;
+import org.eclipse.soa.sca.sca1_1.model.sca.ScaFactory;
+import org.eclipse.soa.sca.sca1_1.model.sca.ScaPackage;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.layout.GridLayout;
 import org.eclipse.swt.widgets.Composite;
-import org.eclipse.swt.widgets.Text;
 import org.switchyard.config.model.composite.ComponentReferenceModel;
 import org.switchyard.config.model.composite.InterfaceModel;
+import org.switchyard.tools.ui.JavaUtil;
 import org.switchyard.tools.ui.SwitchYardModelUtils;
+import org.switchyard.tools.ui.editor.diagram.shared.ContractControl;
+import org.switchyard.tools.ui.editor.diagram.shared.InterfaceControl.InterfaceType;
 import org.switchyard.tools.ui.explorer.ISwitchYardNode;
 import org.switchyard.tools.ui.explorer.impl.ComponentReference;
 
@@ -73,10 +62,10 @@ public class NewBeanServiceClassWizardPage extends NewTypeWizardPage {
 
     private static final String SERVICE_INTERFACE = "SERVICE_INTERFACE";
 
-    private StringButtonDialogField _serviceInterfaceDialogField;
+    private ContractControl _serviceInterfaceControl;
     private SelectionButtonDialogField _createTestClassButton;
-    private StubTypeContext _serviceInterfaceStubTypeContext;
-    private StatusInfo _serviceInterfaceStatus;
+    private IStatus _serviceInterfaceStatus;
+    private String _oldTypeName;
 
     /**
      * Create a new NewBeanServiceClassWizardPage.
@@ -87,21 +76,14 @@ public class NewBeanServiceClassWizardPage extends NewTypeWizardPage {
         setTitle("New Bean Service Class");
         setDescription("Create a new Bean service implementation class.");
 
-        _serviceInterfaceDialogField = new StringButtonDialogField(new IStringButtonAdapter() {
+        _serviceInterfaceControl = new ContractControl(ScaPackage.eINSTANCE.getComponentService(), getJavaProject(),
+                EnumSet.of(InterfaceType.Java));
+        _serviceInterfaceControl.addSelectionChangedListener(new ISelectionChangedListener() {
             @Override
-            public void changeControlPressed(DialogField field) {
-                browseServiceInterface();
-            }
-        });
-        _serviceInterfaceDialogField.setDialogFieldListener(new IDialogFieldListener() {
-            @Override
-            public void dialogFieldChanged(DialogField field) {
-                serviceInterfaceChanged();
+            public void selectionChanged(SelectionChangedEvent event) {
                 handleFieldChanged(SERVICE_INTERFACE);
             }
         });
-        _serviceInterfaceDialogField.setLabelText("Service Interface:");
-        _serviceInterfaceDialogField.setButtonLabel("Browse...");
 
         _createTestClassButton = new SelectionButtonDialogField(SWT.CHECK);
         _createTestClassButton.setLabelText("Create test class");
@@ -129,7 +111,6 @@ public class NewBeanServiceClassWizardPage extends NewTypeWizardPage {
             initServiceInterface(superInterfaces.get(0));
         }
         setModifiers(Flags.AccPublic, false);
-        initTypeNameFromServiceInterface(getSimpleServiceInterfaceName());
         _createTestClassButton.setSelection(false);
         doStatusUpdate();
     }
@@ -139,28 +120,27 @@ public class NewBeanServiceClassWizardPage extends NewTypeWizardPage {
      * 
      * @param serviceInterface the service interface type.
      */
-    public void forceServiceInterfaceType(IType serviceInterface) {
+    public void forceServiceInterfaceType(ComponentService serviceInterface) {
         if (serviceInterface == null) {
             return;
         }
-        initServiceInterface(serviceInterface.getFullyQualifiedName());
-        _serviceInterfaceDialogField.setEnabled(false);
-        initTypeNameFromServiceInterface(getSimpleServiceInterfaceName());
+        _serviceInterfaceControl.init(serviceInterface);
+        _serviceInterfaceControl.setEnabled(false);
+
+        serviceInterfaceChanged();
     }
 
     private void initServiceInterface(String interfaceName) {
-        _serviceInterfaceDialogField.setText(interfaceName);
+        if (interfaceName == null || interfaceName.length() == 0) {
+            return;
+        }
+        JavaInterface javaInterface = ScaFactory.eINSTANCE.createJavaInterface();
+        javaInterface.setInterface(interfaceName);
+        _serviceInterfaceControl.setInterface(javaInterface);
+        serviceInterfaceChanged();
         List<String> superInterfaces = getSuperInterfaces();
         if (superInterfaces != null && superInterfaces.remove(interfaceName)) {
             setSuperInterfaces(superInterfaces, getPackageFragmentRoot() != null);
-        }
-    }
-
-    private void initTypeNameFromServiceInterface(String interfaceName) {
-        if (getTypeName().length() == 0) {
-            if (interfaceName != null && interfaceName.length() > 0) {
-                setTypeName(interfaceName + "Bean", true);
-            }
         }
     }
 
@@ -185,11 +165,13 @@ public class NewBeanServiceClassWizardPage extends NewTypeWizardPage {
         createSeparator(composite, nColumns);
 
         createTypeNameControls(composite, nColumns);
+        createSeparator(composite, nColumns);
         createServiceInterfaceControls(composite, nColumns);
 
-        DialogField.createEmptySpace(composite);
-        _createTestClassButton.doFillIntoGrid(composite, nColumns - 1);
-        _createTestClassButton.setEnabled(true);
+        // createSeparator(composite, nColumns);
+        // DialogField.createEmptySpace(composite);
+        // _createTestClassButton.doFillIntoGrid(composite, nColumns - 1);
+        // _createTestClassButton.setEnabled(true);
 
         createSeparator(composite, nColumns);
 
@@ -220,9 +202,10 @@ public class NewBeanServiceClassWizardPage extends NewTypeWizardPage {
     public List<String> getSuperInterfaces() {
         // add the service interface to the list
         List<String> result = super.getSuperInterfaces();
-        String serviceInterfaceName = getServiceInterface();
-        if (serviceInterfaceName != null && serviceInterfaceName.length() > 0) {
-            result.add(0, serviceInterfaceName);
+        JavaInterface serviceInterface = getServiceInterface();
+        if (serviceInterface != null && serviceInterface.getInterface() != null
+                && serviceInterface.getInterface().length() > 0) {
+            result.add(0, serviceInterface.getInterface());
         }
         return result;
     }
@@ -238,9 +221,9 @@ public class NewBeanServiceClassWizardPage extends NewTypeWizardPage {
     @Override
     public void setSuperInterfaces(List<String> interfacesNames, boolean canBeModified) {
         // remove the service name from the list
-        String serviceInterfaceName = getServiceInterface();
-        if (serviceInterfaceName != null) {
-            interfacesNames.remove(serviceInterfaceName);
+        JavaInterface serviceInterface = getServiceInterface();
+        if (serviceInterface != null && serviceInterface.getInterface() != null) {
+            interfacesNames.remove(serviceInterface.getInterface());
         }
         super.setSuperInterfaces(interfacesNames, canBeModified);
     }
@@ -249,8 +232,15 @@ public class NewBeanServiceClassWizardPage extends NewTypeWizardPage {
     protected String constructCUContent(ICompilationUnit cu, String typeContent, String lineDelimiter)
             throws CoreException {
         // add annotations to the basic type.
-        return super.constructCUContent(cu, "@Service(" + getSimpleServiceInterfaceName() + ".class)" + typeContent,
-                lineDelimiter);
+        final String simpleServiceInterfaceName = getSimpleServiceInterfaceName(getServiceInterface());
+        final String serviceAnnotation;
+        if (simpleServiceInterfaceName == null || simpleServiceInterfaceName.equals(getServiceName())) {
+            serviceAnnotation = "@Service(" + simpleServiceInterfaceName + ".class)" + lineDelimiter;
+        } else {
+            serviceAnnotation = "@Service(value=" + simpleServiceInterfaceName + ".class, name=\"" + getServiceName()
+                    + "\")" + lineDelimiter;
+        }
+        return super.constructCUContent(cu, serviceAnnotation + typeContent, lineDelimiter);
     }
 
     @Override
@@ -279,7 +269,8 @@ public class NewBeanServiceClassWizardPage extends NewTypeWizardPage {
                     }
                 }
             }
-            selection = new StructuredSelection(((ISwitchYardNode) selection.getFirstElement()).getRoot().getProject());
+            return JavaUtil.getInitialJavaElementForResource(((ISwitchYardNode) selection.getFirstElement()).getRoot()
+                    .getProject());
         }
         return super.getInitialJavaElement(selection);
     }
@@ -299,7 +290,10 @@ public class NewBeanServiceClassWizardPage extends NewTypeWizardPage {
     protected void handleFieldChanged(String fieldName) {
         super.handleFieldChanged(fieldName);
 
-        if (fieldName == CONTAINER) {
+        if (fieldName == SERVICE_INTERFACE) {
+            serviceInterfaceChanged();
+        } else if (fieldName == CONTAINER) {
+            _serviceInterfaceControl.setProject(getJavaProject());
             serviceInterfaceChanged();
         }
         doStatusUpdate();
@@ -330,8 +324,12 @@ public class NewBeanServiceClassWizardPage extends NewTypeWizardPage {
     /**
      * @return the selected service interface.
      */
-    public String getServiceInterface() {
-        return _serviceInterfaceDialogField.getText();
+    public JavaInterface getServiceInterface() {
+        Interface intf = _serviceInterfaceControl.getContract().getInterface();
+        if (intf instanceof JavaInterface) {
+            return (JavaInterface) intf;
+        }
+        return null;
     }
 
     private void createTestClassChanged() {
@@ -342,98 +340,54 @@ public class NewBeanServiceClassWizardPage extends NewTypeWizardPage {
         doStatusUpdate();
     }
 
-    /**
-     * TODO: consider allowing the creation of a new interface, including from
-     * wsdl or other sources.
-     */
-    private void browseServiceInterface() {
-        IJavaProject project = getJavaProject();
-        if (project == null) {
-            return;
-        }
-
-        IJavaElement[] elements = new IJavaElement[] {project };
-        IJavaSearchScope scope = SearchEngine.createJavaSearchScope(elements);
-
-        FilteredTypesSelectionDialog dialog = new FilteredTypesSelectionDialog(getShell(), false, getWizard()
-                .getContainer(), scope, IJavaSearchConstants.INTERFACE);
-        dialog.setTitle("Service Interface Selection");
-        dialog.setMessage("Choose a type:");
-        dialog.setInitialPattern(getServiceInterface());
-
-        if (dialog.open() == Window.OK) {
-            _serviceInterfaceDialogField.setText(SuperInterfaceSelectionDialog.getNameWithTypeParameters((IType) dialog
-                    .getFirstResult()));
-            // remove the service interface from the list of interfaces
-            setSuperInterfaces(getSuperInterfaces(), getPackageFragmentRoot() != null);
-        }
-    }
-
     private void createServiceInterfaceControls(Composite composite, int nColumns) {
-        _serviceInterfaceDialogField.doFillIntoGrid(composite, nColumns);
-        Text text = _serviceInterfaceDialogField.getTextControl(null);
-        LayoutUtil.setWidthHint(text, getMaxFieldWidth());
-
-        JavaTypeCompletionProcessor superClassCompletionProcessor = new JavaTypeCompletionProcessor(false, false, true);
-        superClassCompletionProcessor.setCompletionContextRequestor(new CompletionContextRequestor() {
-            @Override
-            public StubTypeContext getStubTypeContext() {
-                return getServiceInterfaceStubTypeContext();
-            }
-        });
-
-        ControlContentAssistHelper.createTextContentAssistant(text, superClassCompletionProcessor);
-        TextFieldNavigationHandler.install(text);
+        _serviceInterfaceControl.createControl(composite, nColumns);
     }
 
     private void serviceInterfaceChanged() {
-        _serviceInterfaceStatus = new StatusInfo();
-        IPackageFragmentRoot root = getPackageFragmentRoot();
-        _serviceInterfaceDialogField.enableButton(root != null);
+        _serviceInterfaceControl.setProject(getJavaProject());
+        
+        _serviceInterfaceStatus = _serviceInterfaceControl.getStatus();
 
-        _serviceInterfaceStubTypeContext = null;
+        setSuperInterfaces(super.getSuperInterfaces(), true);
 
-        String serviceInterfaceName = getServiceInterface();
-        if (serviceInterfaceName.length() == 0) {
-            _serviceInterfaceStatus.setError("A service interface must be specified.");
-        } else if (root == null) {
-            _serviceInterfaceStatus.setError(""); //$NON-NLS-1$
-        } else {
-            Type type = TypeContextChecker.parseSuperInterface(serviceInterfaceName);
-            if (type == null) {
-                _serviceInterfaceStatus.setError("Service interface type is invalid.");
-            } else if (type instanceof ParameterizedType && !JavaModelUtil.is50OrHigher(root.getJavaProject())) {
-                _serviceInterfaceStatus
-                        .setError("Service interface cannot be parameterized unless source level is 1.5");
-            }
+        String newName = createDefaultClassName();
+        if (updateDefault(_oldTypeName, newName, getTypeName())) {
+            setTypeName(newName, true);
         }
-        if (!_serviceInterfaceStatus.isError()) {
-            setSuperInterfaces(super.getSuperInterfaces(), true);
-        }
+        _oldTypeName = newName;
     }
 
-    private StubTypeContext getServiceInterfaceStubTypeContext() {
-        if (_serviceInterfaceStubTypeContext == null) {
-            String typeName = getTypeName();
-            if (typeName == null || typeName.length() == 0) {
-                typeName = JavaTypeCompletionProcessor.DUMMY_CLASS_NAME;
-            }
-            _serviceInterfaceStubTypeContext = TypeContextChecker.createSuperInterfaceStubTypeContext(typeName, null,
-                    getPackageFragment());
+    private String getSimpleServiceInterfaceName(Interface serviceInterface) {
+        if (serviceInterface == null || !(serviceInterface instanceof JavaInterface)
+                || ((JavaInterface) serviceInterface).getInterface() == null) {
+            return "";
         }
-        return _serviceInterfaceStubTypeContext;
-    }
-
-    /**
-     * @return the simple (unqualified) name for the service interface
-     */
-    public String getSimpleServiceInterfaceName() {
-        String serviceInterfaceName = getServiceInterface();
+        String serviceInterfaceName = ((JavaInterface) serviceInterface).getInterface();
         int lastDotIndex = serviceInterfaceName.lastIndexOf('.');
         if (lastDotIndex > 0) {
             return serviceInterfaceName.substring(lastDotIndex + 1);
         }
         return serviceInterfaceName;
+    }
+
+    private String getServiceName() {
+        return _serviceInterfaceControl.getContract().getName();
+    }
+
+    private String createDefaultClassName() {
+        String serviceName = getServiceName();
+        if (serviceName == null) {
+            return "";
+        }
+        return serviceName + "Bean";
+    }
+
+    private boolean updateDefault(String oldValue, String newValue, String currentValue) {
+        return currentValue == null
+                || currentValue.length() == 0
+                || (!currentValue.equals(newValue) && (oldValue == null || oldValue.length() == 0 || oldValue
+                        .equals(currentValue)));
     }
 
 }

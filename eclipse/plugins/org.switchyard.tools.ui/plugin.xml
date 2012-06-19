@@ -21,15 +21,6 @@
       </wizard>
       <wizard
             category="org.switchyard.tools.ui"
-            class="org.switchyard.tools.ui.wizards.NewBeanServiceWizard"
-            descriptionImage="icons/switchyard_logo_200px.png"
-            icon="icons/switchyard_icon_16px.png"
-            id="org.switchyard.tools.ui.wizards.NewBeanServiceWizard"
-            name="SwitchYard Bean Component">
-         <description>Create a new SwitchYard Bean service.</description>
-      </wizard>
-      <wizard
-            category="org.switchyard.tools.ui"
             class="org.switchyard.tools.ui.wizards.NewServiceTestClassWizard"
             descriptionImage="icons/switchyard_logo_200px.png"
             icon="icons/switchyard_icon_16px.png"
@@ -369,7 +360,7 @@
        <commonWizard
              menuGroupId="switchyard.group"
              type="new"
-             wizardId="org.switchyard.tools.ui.wizards.NewBeanServiceWizard">
+             wizardId="org.switchyard.tools.ui.editor.components.bean.NewBeanServiceWizard">
           <enablement>
              <or>
                 <instanceof

@@ -10,7 +10,6 @@
  ************************************************************************************/
 package org.switchyard.tools.ui.editor.diagram.shared;
 
-import java.util.EnumSet;
 import java.util.LinkedHashSet;
 import java.util.Set;
 
@@ -66,18 +65,7 @@ public class ContractControl implements ISelectionProvider {
             throw new IllegalArgumentException("contractType must extend Contract: " + contractType.getName());
         }
         _service = (Contract) contractType.getEPackage().getEFactoryInstance().create(contractType);
-        _interfaceControl = new InterfaceControl(null, EnumSet.of(InterfaceType.Java, InterfaceType.WSDL,
-                InterfaceType.ESB));
-    }
-
-    /**
-     * Create the controls for editing a Contract's details.
-     * 
-     * @param parent the parent composite.
-     * @param numColumns the number of colums in the layout.
-     */
-    public void createControl(Composite parent, int numColumns) {
-        _interfaceControl.createControl(parent, numColumns);
+        _interfaceControl = new InterfaceControl(null, supportedTypes);
         _interfaceControl.addSelectionChangedListener(new ISelectionChangedListener() {
             @Override
             public void selectionChanged(SelectionChangedEvent event) {
@@ -86,10 +74,13 @@ public class ContractControl implements ISelectionProvider {
                 if (intf != null) {
                     _service.getInterfaceGroup().set(intf.getDocumentFeature(), intf);
                     String newName = InterfaceControl.getSimpleServiceInterfaceName(intf);
-                    String currentName = _serviceNameText.getText();
-                    if (_oldServiceName == null || _oldServiceName.length() == 0 || currentName.length() == 0
-                            || _oldServiceName.equals(currentName)) {
-                        _serviceNameText.setText(newName == null ? "" : newName);
+                    String currentName = _service.getName();
+                    if (updateDefault(_oldServiceName, newName, currentName)) {
+                        if (_serviceNameText == null) {
+                            _service.setName(newName);
+                        } else {
+                            _serviceNameText.setText(newName == null ? "" : newName);
+                        }
                         // we don't want to fire two change notices, so update
                         // the old name and return
                         _oldServiceName = newName;
@@ -100,6 +91,16 @@ public class ContractControl implements ISelectionProvider {
                 }
             }
         });
+    }
+
+    /**
+     * Create the controls for editing a Contract's details.
+     * 
+     * @param parent the parent composite.
+     * @param numColumns the number of colums in the layout.
+     */
+    public void createControl(Composite parent, int numColumns) {
+        _interfaceControl.createControl(parent, numColumns);
 
         Label label = new Label(parent, SWT.NONE);
         label.setText("Name:");
@@ -167,7 +168,18 @@ public class ContractControl implements ISelectionProvider {
             _serviceNameText.setText(contract.getName());
         }
         _interfaceControl.init(contract.getInterface());
-        _oldServiceName = InterfaceControl.getSimpleServiceInterfaceName(contract.getInterface());
+    }
+
+    /**
+     * Note, this method copies the details from the inteface being set.
+     * 
+     * @param intf the interface to use for the contract
+     */
+    public void setInterface(Interface intf) {
+        if (intf == null) {
+            return;
+        }
+        _interfaceControl.init(intf);
     }
 
     /**
@@ -241,6 +253,13 @@ public class ContractControl implements ISelectionProvider {
                 e.printStackTrace();
             }
         }
+    }
+
+    private boolean updateDefault(String oldValue, String newValue, String currentValue) {
+        return currentValue == null
+                || currentValue.length() == 0
+                || (!currentValue.equals(newValue) && (oldValue == null || oldValue.length() == 0 || oldValue
+                        .equals(currentValue)));
     }
 
 }

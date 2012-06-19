@@ -48,8 +48,8 @@ import org.eclipse.ui.IWorkbench;
 import org.eclipse.ui.PlatformUI;
 import org.eclipse.ui.dialogs.SelectionDialog;
 import org.switchyard.tools.ui.JavaUtil;
+import org.switchyard.tools.ui.editor.components.bean.NewBeanServiceWizard;
 import org.switchyard.tools.ui.editor.impl.SwitchyardSCAEditor;
-import org.switchyard.tools.ui.wizards.NewBeanServiceWizard;
 
 /**
  * BeanImplementationWizardPage
@@ -66,7 +66,8 @@ public class BeanImplementationWizardPage extends WizardPage {
     private Button _browseBeanButton;
     private IJavaProject _project;
     private IType _beanClass;
-    private IType _serviceInterface;
+    private ComponentService _serviceInterface;
+    private IType _serviceInterfaceType;
 
     /**
      * Create a new BeanImplementationWizardPage.
@@ -107,10 +108,11 @@ public class BeanImplementationWizardPage extends WizardPage {
             return;
         }
         for (ComponentService service : component.getService()) {
+            _serviceInterface = service;
             Interface intf = service.getInterface();
             if (intf instanceof JavaInterface && ((JavaInterface) intf).getInterface() != null) {
                 try {
-                    _serviceInterface = _project.findType(((JavaInterface) intf).getInterface());
+                    _serviceInterfaceType = _project.findType(((JavaInterface) intf).getInterface());
                 } catch (JavaModelException e) {
                     e.fillInStackTrace();
                 }
@@ -181,7 +183,7 @@ public class BeanImplementationWizardPage extends WizardPage {
                 scope = SearchEngine.createJavaSearchScope(new IJavaElement[] {_project });
             } else {
                 try {
-                    scope = SearchEngine.createStrictHierarchyScope(_project, _serviceInterface, true, false, null);
+                    scope = SearchEngine.createStrictHierarchyScope(_project, _serviceInterfaceType, true, false, null);
                 } catch (JavaModelException e) {
                     // fallback to any type
                     scope = SearchEngine.createJavaSearchScope(new IJavaElement[] {_project });

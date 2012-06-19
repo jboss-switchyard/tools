@@ -8,7 +8,7 @@
  * Contributors:
  *     JBoss by Red Hat - Initial implementation.
  ************************************************************************************/
-package org.switchyard.tools.ui.operations;
+package org.switchyard.tools.ui.editor.components.bean;
 
 import java.util.Collection;
 import java.util.Collections;
@@ -22,7 +22,7 @@ import org.eclipse.core.runtime.SubProgressMonitor;
 import org.switchyard.tools.ui.Activator;
 import org.switchyard.tools.ui.common.ISwitchYardComponentExtension;
 import org.switchyard.tools.ui.common.SwitchYardComponentExtensionManager;
-import org.switchyard.tools.ui.wizards.NewBeanServiceClassWizardPage;
+import org.switchyard.tools.ui.operations.AbstractSwitchYardProjectOperation;
 import org.switchyard.tools.ui.wizards.NewServiceTestClassWizardPage;
 
 /**

@@ -8,7 +8,7 @@
  * Contributors:
  *     JBoss by Red Hat - Initial implementation.
  ************************************************************************************/
-package org.switchyard.tools.ui.wizards;
+package org.switchyard.tools.ui.editor.components.bean;
 
 import java.lang.reflect.InvocationTargetException;
 
@@ -22,12 +22,14 @@ import org.eclipse.jdt.core.IJavaProject;
 import org.eclipse.jdt.core.IType;
 import org.eclipse.jface.dialogs.MessageDialog;
 import org.eclipse.jface.operation.IRunnableWithProgress;
+import org.eclipse.soa.sca.sca1_1.model.sca.ComponentService;
+import org.eclipse.soa.sca.sca1_1.model.sca.JavaInterface;
 import org.eclipse.ui.IWorkbenchPage;
 import org.eclipse.ui.PartInitException;
 import org.eclipse.ui.ide.IDE;
 import org.eclipse.ui.ide.undo.WorkspaceUndoUtil;
 import org.switchyard.tools.ui.Activator;
-import org.switchyard.tools.ui.operations.CreateBeanServiceOperation;
+import org.switchyard.tools.ui.wizards.AbstractSwitchYardServiceWizard;
 
 /**
  * NewBeanServiceWizard.
@@ -39,7 +41,7 @@ import org.switchyard.tools.ui.operations.CreateBeanServiceOperation;
 public class NewBeanServiceWizard extends AbstractSwitchYardServiceWizard {
 
     private NewBeanServiceClassWizardPage _newClassPage;
-    private IType _serviceInterface;
+    private ComponentService _serviceInterface;
     private IFile _newClassFile;
     private boolean _updateSwitchYardFile;
     private boolean _openAfterCreate;
@@ -83,7 +85,7 @@ public class NewBeanServiceWizard extends AbstractSwitchYardServiceWizard {
      * @param serviceInterface the interface type; may be null, indicating any
      *            interface is OK.
      */
-    public void forceServiceInterfaceType(IType serviceInterface) {
+    public void forceServiceInterfaceType(ComponentService serviceInterface) {
         _serviceInterface = serviceInterface;
     }
 
@@ -103,7 +105,8 @@ public class NewBeanServiceWizard extends AbstractSwitchYardServiceWizard {
 
     @Override
     protected String getServiceInterfaceName() {
-        return _newClassPage.getServiceInterface();
+        JavaInterface serviceInterface = _newClassPage.getServiceInterface();
+        return serviceInterface == null ? null : serviceInterface.getInterface();
     }
 
     @Override

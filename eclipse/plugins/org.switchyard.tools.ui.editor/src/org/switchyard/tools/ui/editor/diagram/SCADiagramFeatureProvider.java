@@ -28,6 +28,7 @@ import org.eclipse.graphiti.features.IMoveShapeFeature;
 import org.eclipse.graphiti.features.IResizeShapeFeature;
 import org.eclipse.graphiti.features.IUpdateFeature;
 import org.eclipse.graphiti.features.context.IAddContext;
+import org.eclipse.graphiti.features.context.ICreateContext;
 import org.eclipse.graphiti.features.context.ICustomContext;
 import org.eclipse.graphiti.features.context.IDeleteContext;
 import org.eclipse.graphiti.features.context.IDirectEditingContext;
@@ -206,7 +207,26 @@ public class SCADiagramFeatureProvider extends DefaultFeatureProvider {
         features.add(new CreateImplementationFeature(this, new CamelXMLImplementationFactory(), "Camel (XML)",
                 "An implementation using an XML based Camel route."));
         features.add(new CreateImplementationFeature(this, new BeanImplementationFactory(), "Bean",
-                "An implementation using a Java Bean (CDI)."));
+                "An implementation using a Java Bean (CDI).") {
+            @Override
+            public boolean canCreate(ICreateContext context) {
+                if (super.canCreate(context)) {
+                    Component component = (Component) getBusinessObjectForPictogramElement(context.getTargetContainer());
+                    if (component.getService() == null) {
+                        // no service contract defined
+                        return true;
+                    }
+                    for (ComponentService service : component.getService()) {
+                        // only allow this if the component has a java contract
+                        // defined
+                        return service.getInterface() == null || service.getInterface() instanceof JavaInterface;
+                    }
+                    // no service contract defined
+                    return true;
+                }
+                return false;
+            }
+        });
         features.add(new CreateImplementationFeature(this, new BPMImplementationFactory(), "Process (BPMN)",
                 "An implementation using a BPMN process."));
         return features;
@@ -216,18 +236,15 @@ public class SCADiagramFeatureProvider extends DefaultFeatureProvider {
         List<ICreateFeature> features = new ArrayList<ICreateFeature>(1);
         features.add(new CreateBindingFeature(this, new CamelFileBindingFactory(), "File",
                 "A Camel File based endpoint."));
-        features.add(new CreateBindingFeature(this, new CamelFTPBindingFactory(), "FTP", 
-                "A Camel FTP based endpoint."));
+        features.add(new CreateBindingFeature(this, new CamelFTPBindingFactory(), "FTP", "A Camel FTP based endpoint."));
         features.add(new CreateBindingFeature(this, new CamelNettyTCPBindingFactory(), "Netty TCP",
                 "A Camel Netty TCP based endpoint."));
         features.add(new CreateBindingFeature(this, new CamelNettyUDPBindingFactory(), "Netty UDP",
                 "A Camel Netty UDP based endpoint."));
         features.add(new CreateBindingFeature(this, new CamelQuartzBindingFactory(), "Scheduling",
                 "A Camel Scheduling based endpoint."));
-        features.add(new CreateBindingFeature(this, new SOAPBindingFactory(), "SOAP", 
-                "A SOAP based endpoint."));
-        features.add(new CreateBindingFeature(this, new CamelSqlBindingFactory(), "SQL", 
-                "A Camel SQL based endpoint."));
+        features.add(new CreateBindingFeature(this, new SOAPBindingFactory(), "SOAP", "A SOAP based endpoint."));
+        features.add(new CreateBindingFeature(this, new CamelSqlBindingFactory(), "SQL", "A Camel SQL based endpoint."));
         return features;
     }
 

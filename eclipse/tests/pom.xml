@@ -33,7 +33,8 @@
             <include>**/*Test.java</include>
           </includes>
           <argLine>${tycho.test.jvmArgs}</argLine>
-          <appArgLine>-pluginCustomization ${basedir}/plugin_customization.ini</appArgLine>
+          <product>org.eclipse.platform.ide</product>
+          <appArgLine>-pluginCustomization ${basedir}/plugin_customization.ini -consoleLog</appArgLine>
           <forkedProcessTimeoutInSeconds>1200</forkedProcessTimeoutInSeconds>
         </configuration>
       </plugin>

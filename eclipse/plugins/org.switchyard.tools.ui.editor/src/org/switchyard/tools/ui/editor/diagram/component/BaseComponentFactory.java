@@ -36,10 +36,12 @@ public abstract class BaseComponentFactory extends BaseTypeFactory<Component, Co
     public Component createType(Shell shell, Composite container) {
         // create the component
         final Component component = super.createType(shell, container);
-        if (component.getName() == null) {
-            component.setName(getComponentName(component.getImplementation(), container));
-        } else {
-            component.setName(makeUniqueComponentName(component.getName(), container));
+        if (component != null) {
+            if (component.getName() == null) {
+                component.setName(getComponentName(component.getImplementation(), container));
+            } else {
+                component.setName(makeUniqueComponentName(component.getName(), container));
+            }
         }
 
         return component;

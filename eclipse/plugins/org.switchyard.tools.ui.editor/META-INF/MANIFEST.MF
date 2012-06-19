@@ -41,6 +41,7 @@ Require-Bundle: org.eclipse.graphiti,
 Bundle-RequiredExecutionEnvironment: JavaSE-1.6
 Bundle-ActivationPolicy: lazy
 Export-Package: org.switchyard.tools.ui.editor,
+ org.switchyard.tools.ui.editor.components.bean,
  org.switchyard.tools.ui.editor.core,
  org.switchyard.tools.ui.editor.diagram,
  org.switchyard.tools.ui.editor.diagram.binding,

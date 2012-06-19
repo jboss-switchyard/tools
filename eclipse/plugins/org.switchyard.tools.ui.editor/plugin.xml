@@ -152,4 +152,16 @@
 			id="org.switchyard.tools.ui.editor.ImageProvider">
 		</imageProvider>
 	</extension>
+ <extension
+       point="org.eclipse.ui.newWizards">
+      <wizard
+            category="org.switchyard.tools.ui"
+            class="org.switchyard.tools.ui.editor.components.bean.NewBeanServiceWizard"
+            descriptionImage="icons/switchyard_logo_200px.png"
+            icon="icons/16/switchyard_icon_16px.png"
+            id="org.switchyard.tools.ui.editor.components.bean.NewBeanServiceWizard"
+            name="SwitchYard Bean Component">
+         <description>Create a new SwitchYard Bean service.</description>
+      </wizard>
+ </extension>
 </plugin>

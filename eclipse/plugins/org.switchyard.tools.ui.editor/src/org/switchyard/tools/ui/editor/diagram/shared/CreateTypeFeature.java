@@ -70,6 +70,7 @@ public abstract class CreateTypeFeature<T extends EObject, C extends EObject> ex
 
     @Override
     public Object[] create(ICreateContext context) {
+        _hasDoneChanges = false;
         final T newObject = _factory.createType(getShell(), getContainerObject(context));
         if (newObject == null) {
             return null;
