@@ -173,12 +173,12 @@ public class CreateSwitchYardProjectTest extends AbstractMavenProjectTestCase {
         assertXMLFilesMatch("bean service creation failed", pomFile, "test-data/validation/create_service_pom.xml");
 
         IFile testServiceImplFile = newProjectHandle.getFolder("src/main/java")
-                .getFolder(packageName.replace('.', '/')).getFile("TestServiceImpl.java");
+                .getFolder(packageName.replace('.', '/')).getFile("TestServiceBean.java");
         IFile testServiceTestFile = newProjectHandle.getFolder("src/test/java")
                 .getFolder(packageName.replace('.', '/')).getFile("TestServiceTest.java");
 
-        assertTrue("TestServiceImpl missing after bean service creation", testServiceImplFile.exists());
-        assertTrue("TestServiceImpl file is out of sync after bean service creation",
+        assertTrue("TestServiceBean missing after bean service creation", testServiceImplFile.exists());
+        assertTrue("TestServiceBean file is out of sync after bean service creation",
                 testServiceImplFile.isSynchronized(IFile.DEPTH_ZERO));
 
         assertTrue("testServiceTestFile missing after bean service creation", testServiceTestFile.exists());
