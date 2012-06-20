@@ -164,6 +164,7 @@ public class InterfaceControl implements ISelectionProvider {
 
         _javaRadio = new Button(group, SWT.RADIO);
         _javaRadio.setText("Java");
+        _javaRadio.setData(_adapters.get(ScaPackage.eINSTANCE.getJavaInterface()));
         _javaRadio.addSelectionListener(new SelectionAdapter() {
             @Override
             public void widgetSelected(SelectionEvent event) {
@@ -173,6 +174,7 @@ public class InterfaceControl implements ISelectionProvider {
 
         _wsdlRadio = new Button(group, SWT.RADIO);
         _wsdlRadio.setText("WSDL");
+        _wsdlRadio.setData(_adapters.get(ScaPackage.eINSTANCE.getWSDLPortType()));
         _wsdlRadio.addSelectionListener(new SelectionAdapter() {
             @Override
             public void widgetSelected(SelectionEvent event) {
@@ -182,6 +184,7 @@ public class InterfaceControl implements ISelectionProvider {
 
         _esbRadio = new Button(group, SWT.RADIO);
         _esbRadio.setText("ESB");
+        _esbRadio.setData(_adapters.get(SwitchyardPackage.eINSTANCE.getEsbInterface()));
         _esbRadio.addSelectionListener(new SelectionAdapter() {
             @Override
             public void widgetSelected(SelectionEvent event) {
@@ -376,7 +379,9 @@ public class InterfaceControl implements ISelectionProvider {
 
     private void updateAdapter(IInterfaceControlAdapter adapter) {
         _adapter = adapter;
-        _text.setText(adapter.getText());
+        if (adapter != null && adapter.getText() != null) {
+            _text.setText(adapter.getText());
+        }
     }
 
     private void handleBrowse() {
