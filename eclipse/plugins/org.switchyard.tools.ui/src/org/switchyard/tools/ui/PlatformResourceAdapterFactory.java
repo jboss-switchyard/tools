@@ -31,6 +31,8 @@ import org.switchyard.tools.models.switchyard1_0.bean.BeanImplementationType;
 import org.switchyard.tools.models.switchyard1_0.bpm.BPMImplementationType;
 import org.switchyard.tools.models.switchyard1_0.camel.CamelImplementationType;
 import org.switchyard.tools.models.switchyard1_0.clojure.ClojureImplementationType;
+import org.switchyard.tools.models.switchyard1_0.rules.ResourceType;
+import org.switchyard.tools.models.switchyard1_0.rules.RulesImplementationType;
 
 /**
  * PlatformResourceAdapterFactory
@@ -66,6 +68,10 @@ public class PlatformResourceAdapterFactory implements IAdapterFactory {
             } else if (impl instanceof BPMImplementationType) {
                 return SwitchYardModelUtils.getJavaResource(project,
                         ((BPMImplementationType) impl).getProcessDefinition());
+            } else if (impl instanceof RulesImplementationType) {
+                for (ResourceType resource : ((RulesImplementationType) impl).getResource()) {
+                    return SwitchYardModelUtils.getJavaResource(project, resource.getLocation());
+                }
             } else if (impl instanceof CamelImplementationType) {
                 CamelImplementationType camelImpl = (CamelImplementationType) impl;
                 if (camelImpl.getJava() != null) {

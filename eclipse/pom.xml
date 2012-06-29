@@ -45,6 +45,17 @@
       </releases>
     </repository>
     <repository>
+      <id>jbosstools-nightly</id>
+      <url>http://download.jboss.org/jbosstools/updates/nightly/core/trunk/</url>
+      <layout>p2</layout>
+      <snapshots>
+        <enabled>true</enabled>
+      </snapshots>
+      <releases>
+        <enabled>true</enabled>
+      </releases>
+    </repository>
+    <repository>
       <id>graphiti-update-site</id>
       <url>http://download.eclipse.org/graphiti/updates/0.8.2/</url>
       <layout>p2</layout>

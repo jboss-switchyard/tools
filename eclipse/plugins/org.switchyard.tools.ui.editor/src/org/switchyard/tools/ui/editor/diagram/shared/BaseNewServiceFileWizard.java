@@ -20,6 +20,7 @@ import org.eclipse.core.resources.IFile;
 import org.eclipse.core.resources.IFolder;
 import org.eclipse.core.resources.IResource;
 import org.eclipse.core.resources.ResourcesPlugin;
+import org.eclipse.core.runtime.IPath;
 import org.eclipse.core.runtime.IStatus;
 import org.eclipse.core.runtime.Path;
 import org.eclipse.core.runtime.Status;
@@ -128,7 +129,7 @@ public abstract class BaseNewServiceFileWizard extends BasicNewFileResourceWizar
             List<ComponentReference> references = createReferences();
 
             _component = ScaFactory.eINSTANCE.createComponent();
-            _component.setName(getComponentName(file));
+            _component.setName(getComponentName(file.getFullPath()));
             _component.getService().add(_service);
             _component.getImplementationGroup().set(implementation.getDocumentFeature(), implementation);
             if (references != null) {
@@ -237,8 +238,8 @@ public abstract class BaseNewServiceFileWizard extends BasicNewFileResourceWizar
      * 
      * @return an appropriate name for the component.
      */
-    protected String getComponentName(IFile newFile) {
-        String fileName = newFile.getFullPath().removeFileExtension().lastSegment().toString();
+    protected String getComponentName(IPath newFile) {
+        String fileName = newFile.removeFileExtension().lastSegment().toString();
         if (fileName.length() > 0) {
             return fileName.substring(0, 1).toUpperCase() + fileName.substring(1);
         }

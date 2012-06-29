@@ -52,6 +52,8 @@ import org.eclipse.soa.sca.sca1_1.model.sca.JavaInterface;
 import org.eclipse.soa.sca.sca1_1.model.sca.Reference;
 import org.eclipse.soa.sca.sca1_1.model.sca.Service;
 import org.switchyard.tools.models.switchyard1_0.switchyard.SwitchYardBindingType;
+import org.switchyard.tools.ui.editor.components.rules.RulesComponentFactory;
+import org.switchyard.tools.ui.editor.components.rules.RulesImplementationFactory;
 import org.switchyard.tools.ui.editor.diagram.binding.CamelFTPBindingFactory;
 import org.switchyard.tools.ui.editor.diagram.binding.CamelFileBindingFactory;
 import org.switchyard.tools.ui.editor.diagram.binding.CamelJmsBindingFactory;
@@ -187,6 +189,8 @@ public class SCADiagramFeatureProvider extends DefaultFeatureProvider {
                 "Create a component with a Java Bean (CDI) implementation."));
         features.add(new CreateComponentFeature(this, new BPMComponentFactory(), "Process (BPMN)",
                 "Create a component implemented as a BPMN process."));
+        features.add(new CreateComponentFeature(this, new RulesComponentFactory(), "Rules (DRL)",
+                "Create a component implemented using rules."));
 
         // services & references
         features.add(new SCADiagramCreateComponentServiceFeature(this));
@@ -231,6 +235,8 @@ public class SCADiagramFeatureProvider extends DefaultFeatureProvider {
         });
         features.add(new CreateImplementationFeature(this, new BPMImplementationFactory(), "Process (BPMN)",
                 "An implementation using a BPMN process."));
+        features.add(new CreateImplementationFeature(this, new RulesImplementationFactory(), "Rules (DRL)",
+                "An implementation using rules."));
         return features;
     }
 
