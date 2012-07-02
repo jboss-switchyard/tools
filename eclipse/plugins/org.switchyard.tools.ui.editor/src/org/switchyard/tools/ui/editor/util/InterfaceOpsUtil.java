@@ -17,10 +17,9 @@ import java.util.Collection;
 import java.util.List;
 import java.util.Map;
 
-import org.eclipse.core.resources.IFile;
 import org.eclipse.core.resources.IProject;
 import org.eclipse.core.resources.IResource;
-import org.eclipse.core.runtime.IPath;
+import org.eclipse.core.runtime.Platform;
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
@@ -39,7 +38,6 @@ import org.eclipse.wst.wsdl.Definition;
 import org.eclipse.wst.wsdl.Operation;
 import org.eclipse.wst.wsdl.PortType;
 import org.eclipse.wst.wsdl.util.WSDLResourceImpl;
-import org.switchyard.tools.ui.editor.impl.SwitchyardSCAEditor;
 
 /**
  * @author bfitzpat
@@ -58,38 +56,28 @@ public final class InterfaceOpsUtil {
     private static String[] getOperationsForWSDLInterface(WSDLPortType intfc) {
         ArrayList<String> list = new ArrayList<String>();
         list.add("");
-        IFile modelFile = SwitchyardSCAEditor.getActiveEditor().getModelFile();
-        IProject project = modelFile.getProject();
+        final IResource wsdlfile = (IResource) Platform.getAdapterManager().loadAdapter(intfc, 
+                IResource.class.getCanonicalName());
+
         String wsdlToFind = intfc.getInterface();
-        String wsdlPathStr = null;
-        int indexOfHash = wsdlToFind.indexOf('#');
-        if (indexOfHash > -1) {
-            wsdlPathStr = wsdlToFind.substring(0, indexOfHash);
-        } else {
-            wsdlPathStr = wsdlToFind;
-        }
         String portBreak = "#wsdl.porttype(";
         int portStart = wsdlToFind.indexOf(portBreak) + portBreak.length();
         int portEnd = wsdlToFind.lastIndexOf(')');
         String portTypeStr = wsdlToFind.substring(portStart, portEnd);
-        IPath wsdlPath = modelFile.getParent().getParent().getProjectRelativePath();
-        wsdlPath = wsdlPath.removeLastSegments(1);
-        wsdlPath = wsdlPath.append(wsdlPathStr);
-        if (project.exists(wsdlPath)) {
-            final IResource wsdlFile = project.findMember(wsdlPath);
-            final Definition[] holder = new Definition[1];
-            BusyIndicator.showWhile(Display.getCurrent(), new Runnable() {
-                public void run() {
-                    try {
-                        ResourceSet resourceSet = new ResourceSetImpl();
-                        WSDLResourceImpl resource = (WSDLResourceImpl) resourceSet.getResource(
-                                URI.createPlatformResourceURI(wsdlFile.getFullPath().toString(), true), true);
-                        holder[0] = resource.getDefinition();
-                    } catch (Exception e) {
-                        e.printStackTrace();
-                    }
+        final Definition[] holder = new Definition[1];
+        BusyIndicator.showWhile(Display.getCurrent(), new Runnable() {
+            public void run() {
+                try {
+                    ResourceSet resourceSet = new ResourceSetImpl();
+                    WSDLResourceImpl resource = (WSDLResourceImpl) resourceSet.getResource(
+                            URI.createPlatformResourceURI(wsdlfile.getFullPath().toString(), true), true);
+                    holder[0] = resource.getDefinition();
+                } catch (Exception e) {
+                    e.printStackTrace();
                 }
-            });
+            }
+        });
+        if (holder != null && holder.length == 1 && holder[0] != null) {
             Definition definition = holder[0];
             @SuppressWarnings("unchecked")
             Map<?, PortType> portTypes = definition.getPortTypes();
@@ -115,8 +103,9 @@ public final class InterfaceOpsUtil {
     private static String[] getOperationsForJavaInterface(JavaInterface intfc) {
         ArrayList<String> list = new ArrayList<String>();
         list.add("");
-        IFile modelFile = SwitchyardSCAEditor.getActiveEditor().getModelFile();
-        IProject project = modelFile.getProject();
+        final IResource javafile = (IResource) Platform.getAdapterManager().loadAdapter(intfc, 
+                IResource.class.getCanonicalName());
+        IProject project = javafile.getProject();
         String classToFind = intfc.getInterface();
         IJavaProject javaProject = JavaCore.create(project);
         try {

@@ -409,7 +409,7 @@ public class SOAPBindingComposite extends AbstractSwitchyardComposite implements
                     this._contextPathText.setText(_binding.getContextPath());
                 } else {
                     this._contextPathText.setText(_modelHandler.getRootSwitchYard().getName());
-                    _binding.setContextPath(_modelHandler.getRootSwitchYard().getName());
+                    handleModify(_contextPathText);
                 }
             }
             if (_unwrappedPayloadCheckbox != null && !_unwrappedPayloadCheckbox.isDisposed()) {
