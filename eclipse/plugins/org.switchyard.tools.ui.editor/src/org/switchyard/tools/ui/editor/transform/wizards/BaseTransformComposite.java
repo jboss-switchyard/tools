@@ -20,12 +20,13 @@ import org.eclipse.swt.SWT;
 import org.eclipse.swt.events.FocusEvent;
 import org.eclipse.swt.events.KeyEvent;
 import org.eclipse.swt.layout.GridLayout;
+import org.eclipse.swt.widgets.Combo;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Control;
-import org.eclipse.swt.widgets.Text;
 import org.switchyard.tools.models.switchyard1_0.switchyard.TransformType;
 import org.switchyard.tools.ui.editor.diagram.shared.AbstractSwitchyardComposite;
 import org.switchyard.tools.ui.editor.impl.SwitchyardSCAEditor;
+import org.switchyard.tools.ui.editor.util.TransformTypesUtil;
 
 /**
  * @author bfitzpat
@@ -35,8 +36,9 @@ public class BaseTransformComposite extends AbstractSwitchyardComposite {
 
     private Composite _panel;
     private TransformType _transform;
-    private Text _toText;
-    private Text _fromText;
+    private Combo _toText;
+    private Combo _fromText;
+    private TransformTypesUtil _typesUtil = new TransformTypesUtil();
 
     @Override
     protected boolean validate() {
@@ -76,8 +78,8 @@ public class BaseTransformComposite extends AbstractSwitchyardComposite {
         if (getRootGridData() != null) {
             _panel.setLayoutData(getRootGridData());
         }
-        _toText = createLabelAndText(_panel, "To");
-        _fromText = createLabelAndText(_panel, "From");
+        _fromText = createLabelAndCombo(_panel, "From");
+        _toText = createLabelAndCombo(_panel, "To");
     }
 
     @Override
@@ -90,6 +92,19 @@ public class BaseTransformComposite extends AbstractSwitchyardComposite {
      */
     public void setTransform(TransformType transform) {
         setInUpdate(true);
+        try {
+            String[] types = _typesUtil.getTypesAsStringsForConfig();
+            if (_fromText != null && _toText != null) {
+                _fromText.removeAll();
+                _toText.removeAll();
+                for (int i = 0; i < types.length; i++) {
+                    _fromText.add(types[i]);
+                    _toText.add(types[i]);
+                }
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
         this._transform = transform;
         if (_toText != null && !_toText.isDisposed() && transform.getTo() != null) {
             _toText.setText(transform.getTo());

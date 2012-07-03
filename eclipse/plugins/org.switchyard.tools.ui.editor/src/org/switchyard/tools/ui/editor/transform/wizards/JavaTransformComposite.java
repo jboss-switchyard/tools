@@ -16,20 +16,32 @@ import org.eclipse.core.resources.IFile;
 import org.eclipse.core.resources.IProject;
 import org.eclipse.emf.transaction.RecordingCommand;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
+import org.eclipse.jdt.core.IJavaElement;
 import org.eclipse.jdt.core.IJavaProject;
 import org.eclipse.jdt.core.IType;
 import org.eclipse.jdt.core.JavaCore;
 import org.eclipse.jdt.core.JavaModelException;
+import org.eclipse.jdt.core.search.IJavaSearchScope;
+import org.eclipse.jdt.core.search.SearchEngine;
+import org.eclipse.jdt.ui.IJavaElementSearchConstants;
+import org.eclipse.jdt.ui.JavaUI;
 import org.eclipse.jface.viewers.ISelection;
 import org.eclipse.jface.viewers.IStructuredSelection;
 import org.eclipse.jface.viewers.StructuredSelection;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.events.FocusEvent;
 import org.eclipse.swt.events.KeyEvent;
+import org.eclipse.swt.events.SelectionAdapter;
+import org.eclipse.swt.events.SelectionEvent;
+import org.eclipse.swt.layout.GridData;
+import org.eclipse.swt.layout.GridLayout;
+import org.eclipse.swt.widgets.Button;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Control;
+import org.eclipse.swt.widgets.Display;
 import org.eclipse.swt.widgets.Text;
 import org.eclipse.ui.PlatformUI;
+import org.eclipse.ui.dialogs.SelectionDialog;
 import org.switchyard.tools.models.switchyard1_0.switchyard.TransformType;
 import org.switchyard.tools.models.switchyard1_0.transform.JavaTransformType1;
 import org.switchyard.tools.ui.editor.impl.SwitchyardSCAEditor;
@@ -41,11 +53,30 @@ import org.switchyard.tools.ui.editor.impl.SwitchyardSCAEditor;
 public class JavaTransformComposite extends BaseTransformComposite {
 
     private Text _classText;
+    private Button _browseButton;
 
     @Override
     public void createContents(Composite parent, int style) {
         super.createContents(parent, style);
-        _classText = createLabelAndText(getPanel(), "Class");
+        Composite inner = new Composite(getPanel(), SWT.NONE);
+        GridData innerGD = new GridData(SWT.FILL, SWT.NULL, true, false, 2, 1);
+        innerGD.horizontalIndent = -5;
+        innerGD.verticalIndent = -5;
+        inner.setLayoutData(innerGD);
+        inner.setLayout(new GridLayout(3, false));
+        _classText = createLabelAndText(inner, "Class");
+
+        _browseButton = new Button(inner, SWT.PUSH);
+        _browseButton.setText("Browse...");
+        _browseButton.addSelectionListener(new SelectionAdapter() {
+            @Override
+            public void widgetSelected(SelectionEvent e) {
+                handleBrowse();
+                validate();
+                fireChangedEvent(_browseButton);
+            }
+
+        });
     }
 
     protected boolean validate() {
@@ -66,7 +97,7 @@ public class JavaTransformComposite extends BaseTransformComposite {
         }
         return (getErrorMessage() == null);
     }
-    
+
     private IType canFindClass(String classname) throws JavaModelException {
         IProject project = null;
         ISelection selection = PlatformUI.getWorkbench().getActiveWorkbenchWindow().getSelectionService()
@@ -90,7 +121,6 @@ public class JavaTransformComposite extends BaseTransformComposite {
         }
         return null;
     }
-
 
     @SuppressWarnings("restriction")
     protected void handleModify(final Control control) {
@@ -157,6 +187,31 @@ public class JavaTransformComposite extends BaseTransformComposite {
                 handleModify((Control) e.getSource());
                 fireChangedEvent((Control) e.getSource());
             }
+        }
+    }
+
+    private void handleBrowse() {
+        IJavaSearchScope scope = null;
+        IProject project = SwitchyardSCAEditor.getActiveEditor().getModelFile().getProject();
+        IJavaProject javaProject = JavaCore.create(project);
+        if (javaProject == null) {
+            scope = SearchEngine.createWorkspaceScope();
+        } else {
+            scope = SearchEngine.createJavaSearchScope(new IJavaElement[] {javaProject });
+        }
+        try {
+            SelectionDialog dialog = JavaUI.createTypeDialog(Display.getCurrent().getActiveShell(), null, scope,
+                    IJavaElementSearchConstants.CONSIDER_CLASSES, false);
+            if (dialog.open() == SelectionDialog.OK) {
+                Object[] result = dialog.getResult();
+                if (result.length > 0 && result[0] instanceof IType) {
+                    IType clazz = (IType) result[0];
+                    _classText.setText(clazz.getFullyQualifiedName());
+                    handleModify(_classText);
+                }
+            }
+        } catch (JavaModelException e) {
+            e.printStackTrace();
         }
     }
 }

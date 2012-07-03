@@ -167,20 +167,19 @@ public class TransformPropertySection extends GFPropertySection implements ITabb
         if (targetTransforms != null) {
             for (TransformType targetTransformType : targetTransforms.getTransform()) {
                 if (transforms != null && transforms.getTransform().size() > 0) {
+                    boolean foundMatch = false;
                     for (TransformType srcTransformType : transforms.getTransform()) {
-                        boolean toMatch = srcTransformType.getTo().equals(targetTransformType.getTo());
-                        boolean fromMatch = srcTransformType.getFrom().equals(targetTransformType.getFrom());
-                        boolean classMatch = srcTransformType.getClass().equals(targetTransformType.getClass());
-                        // if this came from the source, don't re-add
-                        if (!toMatch || !fromMatch || !classMatch) {
-                            // make sure we haven't added it already
-                            if (!combined.contains(targetTransformType)) {
-                                combined.add(targetTransformType);
-                            }
-                        } else {
-                            // we found a match, so stop comparing
+                        boolean testToMatch = srcTransformType.getTo().equals(targetTransformType.getTo());
+                        boolean testFromMatch = srcTransformType.getFrom().equals(targetTransformType.getFrom());
+                        boolean testClassMatch = srcTransformType.getClass().equals(targetTransformType.getClass());
+                        if (testToMatch && testFromMatch && testClassMatch) {
+                            foundMatch = true;
                             break;
                         }
+                    }
+                    // if this came from the source, don't re-add
+                    if (!foundMatch) {
+                        combined.add(targetTransformType);
                     }
                 } else {
                     // make sure we haven't added it already
@@ -271,17 +270,6 @@ public class TransformPropertySection extends GFPropertySection implements ITabb
 
         Table table = _tableViewer.getTable();
 
-        // Add the to column
-        TableColumn tc1 = new TableColumn(table, SWT.LEFT);
-        tc1.setText("To");
-        tableLayout.setColumnData(tc1,  new ColumnWeightData(45));
-        tc1.addSelectionListener(new SelectionAdapter() {
-            public void widgetSelected(SelectionEvent event) {
-                ((ColumnViewerSorter) _tableViewer.getSorter()).doSort(ColumnConst.COLUMN_TO);
-                _tableViewer.refresh();
-            }
-        });
-
         // Add the from column
         TableColumn tc2 = new TableColumn(table, SWT.LEFT);
         tc2.setText("From");
@@ -289,6 +277,17 @@ public class TransformPropertySection extends GFPropertySection implements ITabb
         tc2.addSelectionListener(new SelectionAdapter() {
             public void widgetSelected(SelectionEvent event) {
                 ((ColumnViewerSorter) _tableViewer.getSorter()).doSort(ColumnConst.COLUMN_FROM);
+                _tableViewer.refresh();
+            }
+        });
+
+        // Add the to column
+        TableColumn tc1 = new TableColumn(table, SWT.LEFT);
+        tc1.setText("To");
+        tableLayout.setColumnData(tc1,  new ColumnWeightData(45));
+        tc1.addSelectionListener(new SelectionAdapter() {
+            public void widgetSelected(SelectionEvent event) {
+                ((ColumnViewerSorter) _tableViewer.getSorter()).doSort(ColumnConst.COLUMN_TO);
                 _tableViewer.refresh();
             }
         });
