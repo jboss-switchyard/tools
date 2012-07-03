@@ -25,6 +25,7 @@ import org.switchyard.tools.ui.editor.diagram.internal.wizards.LinkedWizardBase;
 public class SOAPBindingWizard extends LinkedWizardBase implements IBindingWizard {
 
     private SOAPBindingWizardPage _page;
+    private Contract _container;
 
     @Override
     public void addPages() {
@@ -40,7 +41,7 @@ public class SOAPBindingWizard extends LinkedWizardBase implements IBindingWizar
     @Override
     public void init(Contract container) {
         // FIXME init
-
+        _container = container;
     }
 
     @Override
@@ -49,4 +50,10 @@ public class SOAPBindingWizard extends LinkedWizardBase implements IBindingWizar
         return true;
     }
 
+    /**
+     * @return Target container
+     */
+    public Contract getTargetContainer() {
+        return _container;
+    }
 }

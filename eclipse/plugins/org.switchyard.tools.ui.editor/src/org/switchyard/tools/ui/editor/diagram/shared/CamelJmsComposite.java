@@ -111,7 +111,9 @@ public class CamelJmsComposite extends AbstractSwitchyardComposite implements IB
                 _operationSelectionCombo.setText(camelOpSelector.getOperationName());
             }
             if (this._binding.getConnectionFactory() == null || this._binding.getConnectionFactory().trim().isEmpty()) {
-                _binding.setConnectionFactory("#ConnectionFactory");
+                _connectionFactoryText.setText("#ConnectionFactory");
+                handleModify(_connectionFactoryText);
+//                _binding.setConnectionFactory("#ConnectionFactory");
             }
             _inUpdate = false;
             validate();

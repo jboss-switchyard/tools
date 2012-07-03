@@ -274,21 +274,21 @@ public class CamelFileConsumerComposite extends AbstractSwitchyardComposite impl
 
     private class BindingRecordingCommand extends RecordingCommand {
         
-        private CamelFileBindingType _innerBinding;
+        private EObject _inner;
         private String _featureId;
         private Object _value;
 
-        public BindingRecordingCommand(TransactionalEditingDomain domain, CamelFileBindingType binding, String featureId,
+        public BindingRecordingCommand(TransactionalEditingDomain domain, EObject eobj, String featureId,
                 Object value) {
             super(domain);
-            this._innerBinding = binding;
+            this._inner = eobj;
             this._featureId = featureId;
             this._value = value;
         }
 
         @Override
         protected void doExecute() {
-            setFeatureValue(_innerBinding, _featureId, _value);
+            setFeatureValue(_inner, _featureId, _value);
         }
 
     }
@@ -367,25 +367,21 @@ public class CamelFileConsumerComposite extends AbstractSwitchyardComposite impl
                 _binding.getConsume().setInclude(_includeText.getText().trim());
             }
         } else if (control.equals(_maxMessagesPerPollText)) {
-            if (domain != null) {
-                try {
-                    BindingRecordingCommand command = new BindingRecordingCommand(
+            try {
+                final BigInteger max = new BigInteger(_maxMessagesPerPollText.getText().trim());
+                if (domain != null) {
+                    ConsumeRecordingCommand command = new ConsumeRecordingCommand(
                             domain, _binding, "maxMessagesPerPoll", 
-                            new BigInteger(_maxMessagesPerPollText.getText().trim()));
+                            max);
                     domain.getCommandStack().execute(command);
-                } catch (NumberFormatException nfe) {
-                    nfe.fillInStackTrace();
+                } else {
+                    if (_binding.getConsume() == null) {
+                        _binding.setConsume(CamelFactory.eINSTANCE.createFileConsumerType());
+                    }
+                    _binding.getConsume().setMaxMessagesPerPoll(max);
                 }
-            } else {
-                if (_binding.getConsume() == null) {
-                    _binding.setConsume(CamelFactory.eINSTANCE.createFileConsumerType());
-                }
-                try {
-                    _binding.getConsume().setMaxMessagesPerPoll(new BigInteger(_maxMessagesPerPollText.getText().trim()));
-                } catch (NumberFormatException nfe) {
-                    // do nothing
-                    nfe.fillInStackTrace();
-                }
+            } catch (NumberFormatException nfe) {
+                nfe.printStackTrace();
             }
         } else if (control.equals(_moveFailedText)) {
             if (domain != null) {
@@ -401,7 +397,7 @@ public class CamelFileConsumerComposite extends AbstractSwitchyardComposite impl
         } else if (control.equals(_moveText)) {
             if (domain != null) {
                 ConsumeRecordingCommand command = new ConsumeRecordingCommand(
-                        domain, _binding, "move", _moveFailedText.getText().trim());
+                        domain, _binding, "move", _moveText.getText().trim());
                 domain.getCommandStack().execute(command);
             } else {
                 if (_binding.getConsume() == null) {

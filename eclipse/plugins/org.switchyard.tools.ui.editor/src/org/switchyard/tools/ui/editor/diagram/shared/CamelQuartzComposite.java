@@ -97,6 +97,7 @@ public class CamelQuartzComposite extends AbstractSwitchyardComposite implements
             _inUpdate = false;
             if (this._binding.getCamelBindingName() == null || this._binding.getCamelBindingName().trim().isEmpty()) {
                 _nameText.setText(SwitchyardSCAEditor.getActiveEditor().getModelHandler().getRootSwitchYard().getComposite().getName());
+                handleModify(_nameText);
             }
             validate();
         } else {

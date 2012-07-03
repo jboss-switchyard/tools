@@ -33,6 +33,7 @@ import org.eclipse.jface.viewers.StructuredSelection;
 import org.eclipse.jface.window.Window;
 import org.eclipse.jface.wizard.WizardDialog;
 import org.eclipse.soa.sca.sca1_1.model.sca.Binding;
+import org.eclipse.soa.sca.sca1_1.model.sca.Service;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.events.FocusEvent;
 import org.eclipse.swt.events.SelectionAdapter;
@@ -81,6 +82,7 @@ public class SOAPBindingComposite extends AbstractSwitchyardComposite implements
     private Button _browseBtnFile;
     private Link _newWSDLLink;
     private ModelHandler _modelHandler = SwitchyardSCAEditor.getActiveEditor().getModelHandler();
+    private EObject _targetObj;
 
     /**
      * Constructor.
@@ -160,18 +162,20 @@ public class SOAPBindingComposite extends AbstractSwitchyardComposite implements
         pnGD.horizontalSpan = 2;
         _portNameText.setLayoutData(pnGD);
 
-        _contextPathText = createLabelAndText(_panel, "Context Path");
-        _contextPathText.setEnabled(canEdit());
-        GridData cpGD = new GridData(GridData.FILL_HORIZONTAL);
-        cpGD.horizontalSpan = 2;
-        _contextPathText.setLayoutData(cpGD);
+        if (_targetObj != null && _targetObj instanceof Service) {
+            _contextPathText = createLabelAndText(_panel, "Context Path");
+            _contextPathText.setEnabled(canEdit());
+            GridData cpGD = new GridData(GridData.FILL_HORIZONTAL);
+            cpGD.horizontalSpan = 2;
+            _contextPathText.setLayoutData(cpGD);
         
-        _mWSDLSocketText = createLabelAndText(_panel, "Server Port");
-        _mWSDLSocketText.setEnabled(canEdit());
-
-        GridData portGD = new GridData(GridData.FILL_HORIZONTAL);
-        portGD.horizontalSpan = 2;
-        _mWSDLSocketText.setLayoutData(portGD);
+            _mWSDLSocketText = createLabelAndText(_panel, "Server Port");
+            _mWSDLSocketText.setEnabled(canEdit());
+    
+            GridData portGD = new GridData(GridData.FILL_HORIZONTAL);
+            portGD.horizontalSpan = 2;
+            _mWSDLSocketText.setLayoutData(portGD);
+        }
 
         _unwrappedPayloadCheckbox = createCheckbox(_panel, "Unwrapped Payload");
         GridData upChxGD = new GridData(GridData.FILL_HORIZONTAL);
@@ -203,7 +207,7 @@ public class SOAPBindingComposite extends AbstractSwitchyardComposite implements
                         @Override
                         protected void doExecute() {
                             _binding.setWsdl(_sWSDLURI);
-                            if (_binding.getContextMapper() == null) {
+                            if (_binding.getContextMapper() == null && _targetObj instanceof Service) {
                                 ContextMapperType contextMapper = SOAPFactory.eINSTANCE.createContextMapperType();
                                 _binding.setContextMapper(contextMapper);
                             }
@@ -214,7 +218,7 @@ public class SOAPBindingComposite extends AbstractSwitchyardComposite implements
                     });
                 } else {
                     _binding.setWsdl(_sWSDLURI);
-                    if (_binding.getContextMapper() == null) {
+                    if (_binding.getContextMapper() == null && _targetObj instanceof Service) {
                         ContextMapperType contextMapper = SOAPFactory.eINSTANCE.createContextMapperType();
                         _binding.setContextMapper(contextMapper);
                     }
@@ -285,12 +289,20 @@ public class SOAPBindingComposite extends AbstractSwitchyardComposite implements
                     domain.getCommandStack().execute(new RecordingCommand(domain) {
                         @Override
                         protected void doExecute() {
+                            if (_binding.getContextMapper() == null && _targetObj instanceof Service) {
+                                ContextMapperType contextMapper = SOAPFactory.eINSTANCE.createContextMapperType();
+                                _binding.setContextMapper(contextMapper);
+                            }
                             if (contextPath != null && contextPath.trim().length() > 0) {
                                 _binding.setContextPath(contextPath);
                             }
                         }
                     });
                 } else {
+                    if (_binding.getContextMapper() == null && _targetObj instanceof Service) {
+                        ContextMapperType contextMapper = SOAPFactory.eINSTANCE.createContextMapperType();
+                        _binding.setContextMapper(contextMapper);
+                    }
                     if (contextPath != null && contextPath.trim().length() > 0) {
                         _binding.setContextPath(contextPath);
                     }
@@ -333,7 +345,7 @@ public class SOAPBindingComposite extends AbstractSwitchyardComposite implements
             }
         }
 
-        if (getBinding() != null) {
+        if (getBinding() != null && _mWSDLSocketText != null) {
             String portString = _bindingSocket;
             if (portString != null && portString.trim().length() > 0) {
                 int pos = portString.indexOf(':');
@@ -559,5 +571,12 @@ public class SOAPBindingComposite extends AbstractSwitchyardComposite implements
             handleModify((Control)e.getSource());
             fireChangedEvent((Control)e.getSource());
         }
+    }
+    
+    /**
+     * @param target EObject target
+     */
+    public void setTargetObject(EObject target) {
+        this._targetObj = target;
     }
 }

@@ -57,9 +57,13 @@ public final class BindingCompositeAdapter {
     public static AbstractSwitchyardComposite adaptModelToComposite(EObject object) {
         AbstractSwitchyardComposite composite = null;
         if (object instanceof SOAPBindingType) {
+            SOAPBindingType binding = (SOAPBindingType) object;
             composite = new SOAPBindingComposite();
             GridData wsdlGD = new GridData(SWT.FILL, SWT.FILL, true, true);
             composite.setRootGridData(wsdlGD);
+            if (binding.eContainer() !=  null) {
+                ((SOAPBindingComposite)composite).setTargetObject(binding.eContainer());
+            }
         } else if (object instanceof CamelFileBindingType) {
             CamelFileBindingType binding = (CamelFileBindingType) object;
             if (binding.eContainer() instanceof Service) {

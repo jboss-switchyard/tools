@@ -17,6 +17,8 @@ import javax.swing.event.ChangeListener;
 
 import org.eclipse.jface.wizard.WizardPage;
 import org.eclipse.soa.sca.sca1_1.model.sca.Binding;
+import org.eclipse.soa.sca.sca1_1.model.sca.Contract;
+import org.eclipse.soa.sca.sca1_1.model.sca.Reference;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.widgets.Composite;
 import org.switchyard.tools.models.switchyard1_0.soap.SOAPBindingType;
@@ -31,6 +33,7 @@ public class SOAPBindingWizardPage extends WizardPage {
 
     private SOAPBindingType _binding = SOAPFactory.eINSTANCE.createSOAPBindingType();
     private SOAPBindingComposite _soapComposite = null;
+    private Contract _targetContainer;
 
     /**
      * @param pageName String for name
@@ -43,7 +46,12 @@ public class SOAPBindingWizardPage extends WizardPage {
 
     @Override
     public void createControl(Composite parent) {
+        _targetContainer = ((SOAPBindingWizard)getWizard()).getTargetContainer();
+        if (_targetContainer instanceof Reference) {
+            _binding.setSocketAddr(null);
+        }
         _soapComposite = new SOAPBindingComposite();
+        _soapComposite.setTargetObject(_targetContainer);
         _soapComposite.addChangeListener(new ChangeListener() {
             @Override
             public void stateChanged(ChangeEvent arg0) {

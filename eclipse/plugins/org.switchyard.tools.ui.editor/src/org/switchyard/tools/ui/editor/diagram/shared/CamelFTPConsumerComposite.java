@@ -411,7 +411,7 @@ public class CamelFTPConsumerComposite extends AbstractSwitchyardComposite imple
             }
         } else if (control.equals(_moveText)) {
             if (domain != null) {
-                ConsumeRecordingCommand command = new ConsumeRecordingCommand(domain, _binding, "move", _moveFailedText
+                ConsumeRecordingCommand command = new ConsumeRecordingCommand(domain, _binding, "move", _moveText
                         .getText().trim());
                 domain.getCommandStack().execute(command);
             } else {
