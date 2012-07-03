@@ -32,6 +32,7 @@ import org.switchyard.tools.models.switchyard1_0.spring.FromDefinition;
 import org.switchyard.tools.models.switchyard1_0.spring.LogDefinition;
 import org.switchyard.tools.models.switchyard1_0.spring.RouteDefinition;
 import org.switchyard.tools.models.switchyard1_0.spring.SpringFactory;
+import org.switchyard.tools.models.switchyard1_0.spring.SpringPackage;
 import org.switchyard.tools.models.switchyard1_0.spring.util.SpringResourceFactoryImpl;
 import org.switchyard.tools.ui.editor.Activator;
 import org.switchyard.tools.ui.editor.diagram.shared.BaseNewServiceFileWizard;
@@ -104,6 +105,8 @@ public class NewCamelXMLRouteCompenentWizard extends BaseNewServiceFileWizard {
             doc.setRoute(route);
             route.getFrom().add(from);
             route.getLog().add(log);
+
+            doc.getXMLNSPrefixMap().put("", SpringPackage.eNS_URI);
 
             Resource routeResource = new SpringResourceFactoryImpl().createResource(URI.createGenericURI("temp",
                     "temp", null));
