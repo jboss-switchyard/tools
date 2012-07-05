@@ -28,7 +28,7 @@ public class CamelJavaComponentFactory extends BaseComponentFactory {
 
     @Override
     protected IComponentWizard createTypeWizard() {
-        return new NewCamelJavaRouteComponentWizard();
+        return new NewCamelJavaRouteComponentWizard(false);
     }
 
     @Override

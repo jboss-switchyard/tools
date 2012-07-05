@@ -30,7 +30,7 @@ public class RulesComponentFactory extends BaseComponentFactory {
 
     @Override
     protected IComponentWizard createTypeWizard() {
-        return new NewRulesComponentWizard(true);
+        return new NewRulesComponentWizard(false);
     }
 
     @Override

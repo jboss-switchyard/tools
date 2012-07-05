@@ -30,7 +30,7 @@ public class CamelXMLComponentFactory extends BaseComponentFactory {
 
     @Override
     protected IComponentWizard createTypeWizard() {
-        return new NewCamelXMLRouteCompenentWizard(true);
+        return new NewCamelXMLRouteCompenentWizard(false);
     }
 
     @Override

@@ -29,7 +29,7 @@ public class BPMComponentFactory extends BaseComponentFactory {
 
     @Override
     protected IComponentWizard createTypeWizard() {
-        return new NewBPMComponentWizard(true);
+        return new NewBPMComponentWizard(false);
     }
 
     @Override

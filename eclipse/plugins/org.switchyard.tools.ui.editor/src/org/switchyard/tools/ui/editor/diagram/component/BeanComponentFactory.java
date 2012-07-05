@@ -28,7 +28,7 @@ public class BeanComponentFactory extends BaseComponentFactory {
 
     @Override
     protected IComponentWizard createTypeWizard() {
-        return new NewBeanComponentWizard(true);
+        return new NewBeanComponentWizard(false);
     }
 
     @Override
