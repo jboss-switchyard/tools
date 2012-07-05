@@ -36,6 +36,7 @@ import org.eclipse.soa.sca.sca1_1.model.sca.Binding;
 import org.eclipse.soa.sca.sca1_1.model.sca.Service;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.events.FocusEvent;
+import org.eclipse.swt.events.KeyEvent;
 import org.eclipse.swt.events.SelectionAdapter;
 import org.eclipse.swt.events.SelectionEvent;
 import org.eclipse.swt.layout.GridData;
@@ -578,5 +579,49 @@ public class SOAPBindingComposite extends AbstractSwitchyardComposite implements
      */
     public void setTargetObject(EObject target) {
         this._targetObj = target;
+    }
+
+    @Override
+    public void keyReleased(KeyEvent e) {
+        if (e.keyCode == SWT.ESC) {
+            // cancel out and return to original value
+            setInUpdate(true);
+            if (_binding != null) {
+                Control control = (Control) e.getSource();
+                 if (control.equals(_contextPathText)) {
+                     _contextPathText.setText(_binding.getContextPath());
+                } else if (control.equals(_mWSDLSocketText)) {
+                    _bindingSocket = _binding.getSocketAddr();
+                    if (_bindingSocket != null) {
+                        _mWSDLSocketText.setText(_bindingSocket);
+                    }
+                } else if (control.equals(_mWSDLURIText)) {
+                    _mWSDLURIText.setText(_binding.getWsdl());
+                } else if (control.equals(_portNameText)) {
+                    String portName = _binding.getWsdlPort();
+                    if (portName != null) {
+                        _portNameText.setText(portName);
+                    }
+                } else if (control.equals(_unwrappedPayloadCheckbox)) {
+                    if (_binding.getMessageComposer() != null && _binding.getMessageComposer() instanceof MessageComposerType) {
+                        MessageComposerType mct = (MessageComposerType) _binding.getMessageComposer();
+                        _unwrappedPayloadCheckbox.setSelection(mct.isUnwrapped());
+                    }
+                } else if (control.equals(_contextMappingCombo)) {
+                    int index = _binding.getContextMapper().getSoapHeadersType().getValue();
+                    if (_contextMappingCombo != null && !_contextMappingCombo.isDisposed()) {
+                        _contextMappingCombo.select(index);
+                    }
+                }
+            }
+            setInUpdate(false);
+        } else if (e.keyCode == SWT.CR) {
+            // accept change
+            if (_binding != null && !inUpdate() && hasChanged()) {
+                validate();
+                handleModify((Control) e.getSource());
+                fireChangedEvent((Control) e.getSource());
+            }
+        }
     }
 }

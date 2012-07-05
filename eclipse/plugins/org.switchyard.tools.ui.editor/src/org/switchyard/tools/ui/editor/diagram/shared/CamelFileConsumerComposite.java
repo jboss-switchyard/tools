@@ -26,6 +26,7 @@ import org.eclipse.swt.SWT;
 import org.eclipse.swt.events.FocusEvent;
 import org.eclipse.swt.events.KeyEvent;
 import org.eclipse.swt.events.SelectionEvent;
+import org.eclipse.swt.events.SelectionListener;
 import org.eclipse.swt.layout.FillLayout;
 import org.eclipse.swt.layout.GridData;
 import org.eclipse.swt.layout.GridLayout;
@@ -235,6 +236,56 @@ public class CamelFileConsumerComposite extends AbstractSwitchyardComposite impl
         return this._panel;
     }
 
+    /**
+     * @param parent parent composite
+     * @param label string to put in label
+     * @return reference to created Text control
+     */
+    protected Combo createLabelAndCombo(Composite parent, String label) {
+        Combo combo = super.createLabelAndCombo(parent, label);
+        combo.addSelectionListener(new SelectionListener() {
+            @Override
+            public void widgetSelected(SelectionEvent e) {
+                if (!inUpdate()) {
+                    validate();
+                    handleModify((Control) e.getSource());
+                    fireChangedEvent((Control) e.getSource());
+                }
+            }
+
+            @Override
+            public void widgetDefaultSelected(SelectionEvent e) {
+                widgetSelected(e);
+            }
+        });
+        return combo;
+    }
+
+    /**
+     * @param parent parent composite
+     * @param label string for label
+     * @return reference to created Button
+     */
+    protected Button createCheckbox(Composite parent, String label) {
+        Button newButton = super.createCheckbox(parent, label);
+        newButton.addSelectionListener(new SelectionListener() {
+            @Override
+            public void widgetSelected(SelectionEvent e) {
+                if (!inUpdate()) {
+                    handleModify((Control) e.getSource());
+                    validate();
+                    fireChangedEvent((Control) e.getSource());
+                }
+            }
+
+            @Override
+            public void widgetDefaultSelected(SelectionEvent e) {
+                widgetSelected(e);
+            }
+        });
+        return newButton;
+    }
+
     private class ConsumeRecordingCommand extends RecordingCommand {
         
         private CamelFileBindingType _innerBinding;
@@ -437,7 +488,7 @@ public class CamelFileConsumerComposite extends AbstractSwitchyardComposite impl
                         .setOperationName(_operationSelectionCombo.getText().trim());
             }
         }
-        setHasChanged(false);
+//        setHasChanged(false);
     }
     
     /**
@@ -500,14 +551,6 @@ public class CamelFileConsumerComposite extends AbstractSwitchyardComposite impl
             if (_binding != null && !inUpdate() && hasChanged()) {
                 validate();
                 handleModify((Control) e.getSource());
-                fireChangedEvent((Control) e.getSource());
-            }
-        } else if (e.keyCode == SWT.TAB) {
-            if (_binding != null && !inUpdate() && hasChanged()) {
-                boolean flag = validate();
-                if (flag) {
-                    handleModify((Control) e.getSource());
-                }
                 fireChangedEvent((Control) e.getSource());
             }
         }

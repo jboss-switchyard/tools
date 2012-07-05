@@ -405,14 +405,6 @@ public class JCABindingOutboundComposite extends AbstractSwitchyardComposite imp
                 handleModify((Control) e.getSource());
                 fireChangedEvent((Control) e.getSource());
             }
-        } else if (e.keyCode == SWT.TAB) {
-            if (_binding != null && !inUpdate() && hasChanged()) {
-                boolean flag = validate();
-                if (flag) {
-                    handleModify((Control) e.getSource());
-                }
-                fireChangedEvent((Control) e.getSource());
-            }
         }
     }
 
