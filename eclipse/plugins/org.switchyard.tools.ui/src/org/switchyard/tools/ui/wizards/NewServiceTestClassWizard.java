@@ -20,6 +20,7 @@ import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.core.runtime.Status;
 import org.eclipse.jface.dialogs.MessageDialog;
 import org.eclipse.jface.operation.IRunnableWithProgress;
+import org.eclipse.soa.sca.sca1_1.model.sca.Contract;
 import org.eclipse.ui.IWorkbenchPage;
 import org.eclipse.ui.PartInitException;
 import org.eclipse.ui.ide.IDE;
@@ -37,7 +38,7 @@ import org.switchyard.tools.ui.operations.CreateServiceTestOperation;
  */
 public class NewServiceTestClassWizard extends BasicNewResourceWizard {
 
-    private NewServiceTestClassWizardPage _newClassPage;
+    private NewServiceTestClassWizardPage _newClassPage = new NewServiceTestClassWizardPage();
 
     /**
      * Create a new NewServiceTestClassWizard.
@@ -48,9 +49,15 @@ public class NewServiceTestClassWizard extends BasicNewResourceWizard {
 
     @Override
     public void addPages() {
-        _newClassPage = new NewServiceTestClassWizardPage();
         _newClassPage.init(selection);
         addPage(_newClassPage);
+    }
+
+    /**
+     * @param contract contract for which the test is being created.
+     */
+    public void forceServiceContract(Contract contract) {
+        _newClassPage.setServiceContract(contract, false);
     }
 
     @Override

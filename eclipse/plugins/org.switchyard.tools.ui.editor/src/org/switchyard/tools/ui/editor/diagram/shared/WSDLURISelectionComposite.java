@@ -47,8 +47,10 @@ import org.eclipse.swt.widgets.Text;
 import org.eclipse.ui.PlatformUI;
 import org.eclipse.wst.wsdl.PortType;
 import org.switchyard.tools.ui.JavaUtil;
+import org.switchyard.tools.ui.common.WSDLPortTypeSelectionDialog;
 import org.switchyard.tools.ui.editor.impl.SwitchyardSCAEditor;
 import org.switchyard.tools.ui.editor.util.OpenFileUtil;
+import org.switchyard.tools.ui.wizards.NewWSDLFileWizard;
 
 /**
  * @author bfitzpat

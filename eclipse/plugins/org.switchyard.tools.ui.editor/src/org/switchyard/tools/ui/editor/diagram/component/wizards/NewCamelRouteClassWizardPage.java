@@ -29,8 +29,8 @@ import org.eclipse.soa.sca.sca1_1.model.sca.ScaPackage;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.layout.GridLayout;
 import org.eclipse.swt.widgets.Composite;
-import org.switchyard.tools.ui.editor.diagram.shared.ContractControl;
-import org.switchyard.tools.ui.editor.diagram.shared.InterfaceControl.InterfaceType;
+import org.switchyard.tools.ui.common.ContractControl;
+import org.switchyard.tools.ui.common.InterfaceControl.InterfaceType;
 
 /**
  * NewCamelRouteClassWizardPage

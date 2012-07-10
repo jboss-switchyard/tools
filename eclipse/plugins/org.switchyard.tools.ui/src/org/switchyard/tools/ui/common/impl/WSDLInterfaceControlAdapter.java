@@ -8,7 +8,7 @@
  * Contributors:
  *     JBoss by Red Hat - Initial implementation.
  ************************************************************************************/
-package org.switchyard.tools.ui.editor.diagram.shared;
+package org.switchyard.tools.ui.common.impl;
 
 import java.util.List;
 
@@ -37,7 +37,10 @@ import org.eclipse.wst.wsdl.PortType;
 import org.eclipse.wst.wsdl.util.WSDLResourceImpl;
 import org.switchyard.tools.ui.JavaUtil;
 import org.switchyard.tools.ui.SwitchYardModelUtils;
-import org.switchyard.tools.ui.editor.Activator;
+import org.switchyard.tools.ui.Activator;
+import org.switchyard.tools.ui.common.IInterfaceControlAdapter;
+import org.switchyard.tools.ui.common.WSDLPortTypeSelectionDialog;
+import org.switchyard.tools.ui.wizards.NewWSDLFileWizard;
 
 /**
  * JavaInterfaceControlAdapter

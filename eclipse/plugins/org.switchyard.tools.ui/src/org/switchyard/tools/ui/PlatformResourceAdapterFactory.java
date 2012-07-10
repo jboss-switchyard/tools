@@ -138,8 +138,13 @@ public class PlatformResourceAdapterFactory implements IAdapterFactory {
 
     /**
      * I'm sure there's a better way than this...
+     * 
+     * @param obj the EObject to resolve
+     * 
+     * @return the containing project; may be null if the object is not an
+     *         EObject or is not contained within a workspace resource.
      */
-    private IProject getContainingProject(Object obj) {
+    public static IProject getContainingProject(Object obj) {
         if (!(obj instanceof EObject)) {
             return null;
         }

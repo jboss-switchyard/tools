@@ -37,7 +37,7 @@ import org.switchyard.tools.models.switchyard1_0.transform.SmooksTransformType;
 import org.switchyard.tools.models.switchyard1_0.transform.SmooksTransformType1;
 import org.switchyard.tools.models.switchyard1_0.transform.TransformPackage;
 import org.switchyard.tools.ui.JavaUtil;
-import org.switchyard.tools.ui.editor.diagram.shared.ClasspathResourceSelectionDialog;
+import org.switchyard.tools.ui.common.ClasspathResourceSelectionDialog;
 import org.switchyard.tools.ui.editor.impl.SwitchyardSCAEditor;
 
 /**

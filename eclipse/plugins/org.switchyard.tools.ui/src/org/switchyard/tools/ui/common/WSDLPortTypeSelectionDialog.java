@@ -10,7 +10,7 @@
  *
  * @author bfitzpat
  ******************************************************************************/
-package org.switchyard.tools.ui.editor.diagram.shared;
+package org.switchyard.tools.ui.common;
 
 import java.util.Collection;
 import java.util.Collections;
@@ -43,7 +43,7 @@ import org.eclipse.swt.widgets.Shell;
 import org.eclipse.wst.wsdl.Definition;
 import org.eclipse.wst.wsdl.PortType;
 import org.eclipse.wst.wsdl.util.WSDLResourceImpl;
-import org.switchyard.tools.ui.editor.Activator;
+import org.switchyard.tools.ui.Activator;
 
 /**
  * Allows user to select a portType from available project WSDL files.

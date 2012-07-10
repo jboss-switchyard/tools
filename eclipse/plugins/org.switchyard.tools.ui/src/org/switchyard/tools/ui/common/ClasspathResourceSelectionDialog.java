@@ -10,7 +10,7 @@
  *
  * @author bfitzpat
  ******************************************************************************/
-package org.switchyard.tools.ui.editor.diagram.shared;
+package org.switchyard.tools.ui.common;
 
 import java.util.Collections;
 import java.util.Set;

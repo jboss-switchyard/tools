@@ -12,6 +12,8 @@ package org.switchyard.tools.ui;
 
 import java.net.URI;
 
+import javax.xml.namespace.QName;
+
 import org.eclipse.core.resources.IFile;
 import org.eclipse.core.resources.IProject;
 import org.eclipse.core.resources.IResource;
@@ -21,6 +23,10 @@ import org.eclipse.jdt.core.IPackageFragmentRoot;
 import org.eclipse.jdt.core.IType;
 import org.eclipse.jdt.core.JavaCore;
 import org.eclipse.jdt.core.JavaModelException;
+import org.eclipse.soa.sca.sca1_1.model.sca.Interface;
+import org.eclipse.soa.sca.sca1_1.model.sca.JavaInterface;
+import org.eclipse.soa.sca.sca1_1.model.sca.WSDLPortType;
+import org.switchyard.common.type.Classes;
 import org.switchyard.component.bean.config.model.BeanComponentImplementationModel;
 import org.switchyard.component.bpel.config.model.BPELComponentImplementationModel;
 import org.switchyard.component.bpm.config.model.BPMComponentImplementationModel;
@@ -31,6 +37,14 @@ import org.switchyard.config.model.composite.ComponentImplementationModel;
 import org.switchyard.config.model.composite.InterfaceModel;
 import org.switchyard.config.model.switchyard.SwitchYardModel;
 import org.switchyard.config.model.switchyard.v1.V1SwitchYardModel;
+import org.switchyard.extensions.wsdl.WSDLService;
+import org.switchyard.metadata.InOnlyOperation;
+import org.switchyard.metadata.InOnlyService;
+import org.switchyard.metadata.InOutOperation;
+import org.switchyard.metadata.InOutService;
+import org.switchyard.metadata.ServiceInterface;
+import org.switchyard.metadata.java.JavaService;
+import org.switchyard.tools.models.switchyard1_0.switchyard.EsbInterface;
 import org.switchyard.tools.ui.common.ISwitchYardProject;
 import org.switchyard.tools.ui.common.impl.SwitchYardProjectManager;
 
@@ -207,6 +221,42 @@ public final class SwitchYardModelUtils {
             return null;
         }
         return null;
+    }
+
+    /**
+     * Returns the ServiceInterface declared by the Interface type. Uses thread
+     * class loader to resolve the Java type or WSDL file. The caller is
+     * responsible for setting up the thread context classloader so the types
+     * may be resolved correctly.
+     * 
+     * @param intf the service interface.
+     * 
+     * @return the resulting ServiceInterface.
+     * 
+     * @throws Exception if something goes wrong or the Interface type is not
+     *             supported.
+     */
+    public static ServiceInterface getServiceInterface(Interface intf) throws Exception {
+        if (intf instanceof JavaInterface) {
+            JavaInterface javaIntfc = (JavaInterface) intf;
+            return JavaService.fromClass(Classes.forName(javaIntfc.getInterface()));
+        } else if (intf instanceof WSDLPortType) {
+            WSDLPortType wsdlIntfc = (WSDLPortType) intf;
+            return WSDLService.fromWSDL(wsdlIntfc.getInterface());
+        } else if (intf instanceof EsbInterface) {
+            EsbInterface esbIntfc = (EsbInterface) intf;
+            if (esbIntfc.getOutputType() == null) {
+                return new InOnlyService(new InOnlyOperation(ServiceInterface.DEFAULT_OPERATION, new QName(
+                        esbIntfc.getInputType())));
+            } else {
+                return new InOutService(new InOutOperation(ServiceInterface.DEFAULT_OPERATION, new QName(
+                        esbIntfc.getInputType()), new QName(esbIntfc.getOutputType()), new QName(
+                        esbIntfc.getFaultType())));
+            }
+        }
+        throw new IllegalArgumentException("Interface type is not supported: "
+                + (intf == null ? "null" : intf.eClass().getInstanceTypeName()));
+
     }
 
     private static IFile getSwitchYardConfigurationFile(IProject project) {

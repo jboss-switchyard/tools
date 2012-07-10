@@ -8,7 +8,7 @@
  * Contributors:
  *     JBoss by Red Hat - Initial implementation.
  ************************************************************************************/
-package org.switchyard.tools.ui.editor.components.bean;
+package org.switchyard.tools.ui.wizards;
 
 import java.util.EnumSet;
 import java.util.List;
@@ -34,6 +34,7 @@ import org.eclipse.jface.viewers.SelectionChangedEvent;
 import org.eclipse.jface.viewers.StructuredSelection;
 import org.eclipse.jface.wizard.IWizard;
 import org.eclipse.soa.sca.sca1_1.model.sca.ComponentService;
+import org.eclipse.soa.sca.sca1_1.model.sca.Contract;
 import org.eclipse.soa.sca.sca1_1.model.sca.Interface;
 import org.eclipse.soa.sca.sca1_1.model.sca.JavaInterface;
 import org.eclipse.soa.sca.sca1_1.model.sca.ScaFactory;
@@ -45,8 +46,8 @@ import org.switchyard.config.model.composite.ComponentReferenceModel;
 import org.switchyard.config.model.composite.InterfaceModel;
 import org.switchyard.tools.ui.JavaUtil;
 import org.switchyard.tools.ui.SwitchYardModelUtils;
-import org.switchyard.tools.ui.editor.diagram.shared.ContractControl;
-import org.switchyard.tools.ui.editor.diagram.shared.InterfaceControl.InterfaceType;
+import org.switchyard.tools.ui.common.ContractControl;
+import org.switchyard.tools.ui.common.InterfaceControl.InterfaceType;
 import org.switchyard.tools.ui.explorer.ISwitchYardNode;
 import org.switchyard.tools.ui.explorer.impl.ComponentReference;
 
@@ -322,10 +323,14 @@ public class NewBeanServiceClassWizardPage extends NewTypeWizardPage {
     }
 
     /**
-     * @return the selected service interface.
+     * @return the specified service contract.
      */
-    public JavaInterface getServiceInterface() {
-        Interface intf = _serviceInterfaceControl.getContract().getInterface();
+    public Contract getServiceContract() {
+        return _serviceInterfaceControl.getContract();
+    }
+
+    private JavaInterface getServiceInterface() {
+        Interface intf = getServiceContract().getInterface();
         if (intf instanceof JavaInterface) {
             return (JavaInterface) intf;
         }
@@ -346,7 +351,7 @@ public class NewBeanServiceClassWizardPage extends NewTypeWizardPage {
 
     private void serviceInterfaceChanged() {
         _serviceInterfaceControl.setProject(getJavaProject());
-        
+
         _serviceInterfaceStatus = _serviceInterfaceControl.getStatus();
 
         setSuperInterfaces(super.getSuperInterfaces(), true);

@@ -10,7 +10,7 @@
  *
  * @author bfitzpat
  ******************************************************************************/
-package org.switchyard.tools.ui.editor.diagram.shared;
+package org.switchyard.tools.ui.wizards;
 
 import java.io.IOException;
 import java.util.Iterator;
@@ -25,7 +25,6 @@ import org.eclipse.core.resources.IResource;
 import org.eclipse.core.runtime.IPath;
 import org.eclipse.core.runtime.IStatus;
 import org.eclipse.core.runtime.Path;
-import org.eclipse.core.runtime.Preferences;
 import org.eclipse.core.runtime.Status;
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.resource.ResourceSet;
@@ -36,7 +35,6 @@ import org.eclipse.jface.preference.IPreferenceStore;
 import org.eclipse.jface.viewers.IStructuredSelection;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.ui.IWorkbench;
-import org.eclipse.wst.sse.core.internal.encoding.CommonEncodingPreferenceNames;
 import org.eclipse.wst.wsdl.Binding;
 import org.eclipse.wst.wsdl.Port;
 import org.eclipse.wst.wsdl.Service;
@@ -53,14 +51,13 @@ import org.eclipse.wst.wsdl.ui.internal.wizards.NewWSDLWizard;
 import org.eclipse.wst.wsdl.ui.internal.wizards.WSDLNewFileOptionsPage;
 import org.eclipse.wst.wsdl.ui.internal.wizards.WSDLNewFilePage;
 import org.eclipse.wst.wsdl.util.WSDLResourceImpl;
-import org.eclipse.wst.xml.core.internal.XMLCorePlugin;
 import org.eclipse.wst.xml.core.internal.contentmodel.util.NamespaceInfo;
 
 /**
  * @author bfitzpat
  * 
  */
-@SuppressWarnings({"restriction", "deprecation" })
+@SuppressWarnings({"restriction" })
 public class NewWSDLFileWizard extends NewWSDLWizard {
 
     private static final String DOT_WSDL = ".wsdl"; //$NON-NLS-1$
@@ -96,12 +93,7 @@ public class NewWSDLFileWizard extends NewWSDLWizard {
                 return false;
             }
 
-            Preferences preference = XMLCorePlugin.getDefault().getPluginPreferences();
-            String charSet = preference.getString(CommonEncodingPreferenceNames.OUTPUT_CODESET);
-            if (charSet == null || charSet.trim().equals("")) { //$NON-NLS-1$
-                charSet = "UTF-8"; //$NON-NLS-1$
-            }
-
+            String charSet = "UTF-8"; //$NON-NLS-1$
             String wsdlPrefix = "wsdl"; //$NON-NLS-1$
             Vector<?> namespaces = _optionsPage.getNamespaceInfo();
 

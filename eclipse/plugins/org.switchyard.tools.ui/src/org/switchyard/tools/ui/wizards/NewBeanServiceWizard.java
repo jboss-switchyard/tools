@@ -8,7 +8,7 @@
  * Contributors:
  *     JBoss by Red Hat - Initial implementation.
  ************************************************************************************/
-package org.switchyard.tools.ui.editor.components.bean;
+package org.switchyard.tools.ui.wizards;
 
 import java.lang.reflect.InvocationTargetException;
 
@@ -23,13 +23,13 @@ import org.eclipse.jdt.core.IType;
 import org.eclipse.jface.dialogs.MessageDialog;
 import org.eclipse.jface.operation.IRunnableWithProgress;
 import org.eclipse.soa.sca.sca1_1.model.sca.ComponentService;
-import org.eclipse.soa.sca.sca1_1.model.sca.JavaInterface;
+import org.eclipse.soa.sca.sca1_1.model.sca.Contract;
 import org.eclipse.ui.IWorkbenchPage;
 import org.eclipse.ui.PartInitException;
 import org.eclipse.ui.ide.IDE;
 import org.eclipse.ui.ide.undo.WorkspaceUndoUtil;
 import org.switchyard.tools.ui.Activator;
-import org.switchyard.tools.ui.wizards.AbstractSwitchYardServiceWizard;
+import org.switchyard.tools.ui.operations.CreateBeanServiceOperation;
 
 /**
  * NewBeanServiceWizard.
@@ -104,9 +104,8 @@ public class NewBeanServiceWizard extends AbstractSwitchYardServiceWizard {
     }
 
     @Override
-    protected String getServiceInterfaceName() {
-        JavaInterface serviceInterface = _newClassPage.getServiceInterface();
-        return serviceInterface == null ? null : serviceInterface.getInterface();
+    protected Contract getServiceContract() {
+        return _newClassPage.getServiceContract();
     }
 
     @Override

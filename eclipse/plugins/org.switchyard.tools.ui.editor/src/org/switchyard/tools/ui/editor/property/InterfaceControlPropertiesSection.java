@@ -34,8 +34,8 @@ import org.eclipse.swt.layout.GridLayout;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.ui.views.properties.tabbed.ITabbedPropertyConstants;
 import org.eclipse.ui.views.properties.tabbed.TabbedPropertySheetPage;
-import org.switchyard.tools.ui.editor.diagram.shared.InterfaceControl;
-import org.switchyard.tools.ui.editor.diagram.shared.InterfaceControl.InterfaceType;
+import org.switchyard.tools.ui.common.InterfaceControl;
+import org.switchyard.tools.ui.common.InterfaceControl.InterfaceType;
 import org.switchyard.tools.ui.editor.impl.SwitchyardSCAEditor;
 
 /**

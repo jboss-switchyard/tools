@@ -8,7 +8,7 @@
  * Contributors:
  *     JBoss by Red Hat - Initial implementation.
  ************************************************************************************/
-package org.switchyard.tools.ui.editor.diagram.shared;
+package org.switchyard.tools.ui.common;
 
 import java.util.EnumSet;
 import java.util.HashMap;
@@ -44,9 +44,11 @@ import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Label;
 import org.eclipse.swt.widgets.Link;
 import org.eclipse.swt.widgets.Text;
-import org.switchyard.tools.models.switchyard1_0.switchyard.EsbInterface;
 import org.switchyard.tools.models.switchyard1_0.switchyard.SwitchyardPackage;
-import org.switchyard.tools.ui.editor.Activator;
+import org.switchyard.tools.ui.Activator;
+import org.switchyard.tools.ui.common.impl.ESBInterfaceControlAdapter;
+import org.switchyard.tools.ui.common.impl.JavaInterfaceControlAdapter;
+import org.switchyard.tools.ui.common.impl.WSDLInterfaceControlAdapter;
 
 /**
  * InterfaceControl
@@ -80,11 +82,23 @@ public class InterfaceControl implements ISelectionProvider {
      */
     public enum InterfaceType {
         /** Java interface. */
-        Java,
+        Java(ScaPackage.eINSTANCE.getJavaInterface()),
         /** WSDL portType interface. */
-        WSDL,
+        WSDL(ScaPackage.eINSTANCE.getWSDLPortType()),
         /** Generic ESB interface. */
-        ESB
+        ESB(SwitchyardPackage.eINSTANCE.getEsbInterface());
+        
+        /**
+         * @return the EClass supported by the type.
+         */
+        public EClass eClass() {
+            return _eClass;
+        }
+        
+        private EClass _eClass;
+        private InterfaceType(EClass eClass) {
+            _eClass = eClass;
+        }
     }
 
     /**
@@ -143,9 +157,9 @@ public class InterfaceControl implements ISelectionProvider {
         _project = project;
         _supportedTypes = supportedTypes;
 
-        _adapters.put(ScaPackage.eINSTANCE.getJavaInterface(), new JavaInterfaceControlAdapter());
-        _adapters.put(ScaPackage.eINSTANCE.getWSDLPortType(), new WSDLInterfaceControlAdapter());
-        _adapters.put(SwitchyardPackage.eINSTANCE.getEsbInterface(), new ESBInterfaceControlAdapter());
+        _adapters.put(InterfaceType.Java.eClass(), new JavaInterfaceControlAdapter());
+        _adapters.put(InterfaceType.WSDL.eClass(), new WSDLInterfaceControlAdapter());
+        _adapters.put(InterfaceType.ESB.eClass(), new ESBInterfaceControlAdapter());
     }
 
     /**
@@ -164,31 +178,28 @@ public class InterfaceControl implements ISelectionProvider {
 
         _javaRadio = new Button(group, SWT.RADIO);
         _javaRadio.setText("Java");
-        _javaRadio.setData(_adapters.get(ScaPackage.eINSTANCE.getJavaInterface()));
         _javaRadio.addSelectionListener(new SelectionAdapter() {
             @Override
             public void widgetSelected(SelectionEvent event) {
-                updateAdapter((IInterfaceControlAdapter) _javaRadio.getData());
+                updateAdapter(_adapters.get(InterfaceType.Java.eClass()));
             }
         });
 
         _wsdlRadio = new Button(group, SWT.RADIO);
         _wsdlRadio.setText("WSDL");
-        _wsdlRadio.setData(_adapters.get(ScaPackage.eINSTANCE.getWSDLPortType()));
         _wsdlRadio.addSelectionListener(new SelectionAdapter() {
             @Override
             public void widgetSelected(SelectionEvent event) {
-                updateAdapter((IInterfaceControlAdapter) _wsdlRadio.getData());
+                updateAdapter(_adapters.get(InterfaceType.WSDL.eClass()));
             }
         });
 
         _esbRadio = new Button(group, SWT.RADIO);
         _esbRadio.setText("ESB");
-        _esbRadio.setData(_adapters.get(SwitchyardPackage.eINSTANCE.getEsbInterface()));
         _esbRadio.addSelectionListener(new SelectionAdapter() {
             @Override
             public void widgetSelected(SelectionEvent event) {
-                updateAdapter((IInterfaceControlAdapter) _esbRadio.getData());
+                updateAdapter(_adapters.get(InterfaceType.ESB.eClass()));
             }
         });
 
@@ -225,7 +236,7 @@ public class InterfaceControl implements ISelectionProvider {
             }
         });
 
-        initControls();
+        init(_interface);
         setEnabled(_enabled);
     }
 
@@ -317,25 +328,22 @@ public class InterfaceControl implements ISelectionProvider {
      *            controls
      */
     public void init(Interface intf) {
-        if (intf == null) {
-            return;
-        }
-
         _interface = intf;
-
-        IInterfaceControlAdapter adapter = _adapters.get(intf.eClass());
-        adapter.init(_interface);
+        IInterfaceControlAdapter adapter = getAdapter(intf);
+        if (adapter != null) {
+            adapter.init(_interface);
+        }
         if (_javaRadio == null) {
             _adapter = adapter;
             fireSelectionChanged();
             return;
         }
         final Button radio;
-        if (intf instanceof JavaInterface) {
+        if (adapter instanceof JavaInterfaceControlAdapter) {
             radio = _javaRadio;
-        } else if (intf instanceof WSDLPortType) {
+        } else if (adapter instanceof WSDLInterfaceControlAdapter) {
             radio = _wsdlRadio;
-        } else if (intf instanceof EsbInterface) {
+        } else if (adapter instanceof ESBInterfaceControlAdapter) {
             radio = _esbRadio;
         } else {
             radio = null;
@@ -360,21 +368,17 @@ public class InterfaceControl implements ISelectionProvider {
         }
     }
 
-    private void initControls() {
-        if (_interface == null) {
+    private IInterfaceControlAdapter getAdapter(Interface intf) {
+        if (intf == null) {
             if (_supportedTypes.contains(InterfaceType.Java)) {
-                _javaRadio.setSelection(true);
-                updateAdapter(_adapters.get(ScaPackage.eINSTANCE.getJavaInterface()));
+                return _adapters.get(InterfaceType.Java.eClass());
             } else if (_supportedTypes.contains(InterfaceType.WSDL)) {
-                _wsdlRadio.setSelection(true);
-                updateAdapter(_adapters.get(ScaPackage.eINSTANCE.getWSDLPortType()));
+                return _adapters.get(InterfaceType.WSDL.eClass());
             } else if (_supportedTypes.contains(InterfaceType.ESB)) {
-                _esbRadio.setSelection(true);
-                updateAdapter(_adapters.get(SwitchyardPackage.eINSTANCE.getEsbInterface()));
+                return _adapters.get(InterfaceType.ESB.eClass());
             }
-        } else {
-            init(_interface);
         }
+        return _adapters.get(intf.eClass());
     }
 
     private void updateAdapter(IInterfaceControlAdapter adapter) {

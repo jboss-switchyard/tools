@@ -8,7 +8,7 @@
  * Contributors:
  *     JBoss by Red Hat - Initial implementation.
  ************************************************************************************/
-package org.switchyard.tools.ui.editor.diagram.shared;
+package org.switchyard.tools.ui.common;
 
 import java.util.LinkedHashSet;
 import java.util.Set;
@@ -33,8 +33,8 @@ import org.eclipse.swt.layout.GridData;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Label;
 import org.eclipse.swt.widgets.Text;
-import org.switchyard.tools.ui.editor.Activator;
-import org.switchyard.tools.ui.editor.diagram.shared.InterfaceControl.InterfaceType;
+import org.switchyard.tools.ui.Activator;
+import org.switchyard.tools.ui.common.InterfaceControl.InterfaceType;
 
 /**
  * ContractControl

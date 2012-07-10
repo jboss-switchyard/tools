@@ -10,13 +10,18 @@
  ************************************************************************************/
 package org.switchyard.tools.ui.wizards;
 
+import org.eclipse.jdt.core.IJavaElement;
 import org.eclipse.jdt.core.IJavaProject;
 import org.eclipse.jdt.core.IPackageFragment;
 import org.eclipse.jdt.core.IType;
 import org.eclipse.jdt.core.JavaModelException;
 import org.eclipse.jface.viewers.StructuredSelection;
 import org.eclipse.jface.wizard.IWizardPage;
+import org.eclipse.soa.sca.sca1_1.model.sca.Contract;
+import org.eclipse.soa.sca.sca1_1.model.sca.Interface;
+import org.eclipse.soa.sca.sca1_1.model.sca.JavaInterface;
 import org.eclipse.ui.wizards.newresource.BasicNewResourceWizard;
+import org.switchyard.tools.ui.JavaUtil;
 
 /**
  * AbstractSwitchYardServiceWizard.
@@ -30,7 +35,9 @@ public abstract class AbstractSwitchYardServiceWizard extends BasicNewResourceWi
 
     private NewServiceTestClassWizardPage _newTestClassPage;
     private boolean _initNewTestClassPage = true;
-    private String _serviceInterfaceName;
+    private Contract _serviceContract;
+    private String _serviceName;
+    private String _serviceInterfaceType;
     private String _testTypeName;
     private IPackageFragment _testPackageFragment;
 
@@ -59,9 +66,7 @@ public abstract class AbstractSwitchYardServiceWizard extends BasicNewResourceWi
                 return false;
             }
         }
-        return !getCreateTestClass()
-                || (_newTestClassPage.isPageComplete() && _serviceInterfaceName != null && _serviceInterfaceName
-                        .equals(_newTestClassPage.getServiceInterface()));
+        return !getCreateTestClass() || (_newTestClassPage.isPageComplete() && _serviceContract != null);
     }
 
     @Override
@@ -73,9 +78,12 @@ public abstract class AbstractSwitchYardServiceWizard extends BasicNewResourceWi
         if (!getCreateTestClass()) {
             return null;
         }
-        if (_initNewTestClassPage || !_serviceInterfaceName.equals(getServiceInterfaceName())
+        _serviceContract = getServiceContract();
+        if (_initNewTestClassPage || !_serviceName.equals(_serviceContract.getName())
+                || !_serviceInterfaceType.equals(getServiceInterfaceType())
                 || !getJavaProject().equals(_newTestClassPage.getJavaProject())) {
-            _serviceInterfaceName = getServiceInterfaceName();
+            _serviceName = _serviceContract.getName();
+            _serviceInterfaceType = getServiceInterfaceType();
             _initNewTestClassPage = false;
 
             IPackageFragment origTestPackageFragment = _newTestClassPage.getPackageFragment();
@@ -84,10 +92,10 @@ public abstract class AbstractSwitchYardServiceWizard extends BasicNewResourceWi
             _newTestClassPage.init(javaProject == null ? StructuredSelection.EMPTY : new StructuredSelection(
                     javaProject));
             // initialize interface name
-            _newTestClassPage.setServiceInterface(_serviceInterfaceName, false);
+            _newTestClassPage.setServiceContract(_serviceContract, false);
             // update type name
             if (_testTypeName == null || _testTypeName.equals(_newTestClassPage.getTypeName())) {
-                _testTypeName = getSimpleServiceInterfaceName() + "Test";
+                _testTypeName = _serviceName + "Test";
                 _newTestClassPage.setTypeName(_testTypeName, true);
             }
             // update package name
@@ -115,9 +123,9 @@ public abstract class AbstractSwitchYardServiceWizard extends BasicNewResourceWi
     }
 
     /**
-     * @return the name of the currently selected service interface.
+     * @return the contract to be implemented.
      */
-    protected abstract String getServiceInterfaceName();
+    protected abstract Contract getServiceContract();
 
     /**
      * @return the Java project in which the new object will be created.
@@ -130,14 +138,13 @@ public abstract class AbstractSwitchYardServiceWizard extends BasicNewResourceWi
     protected abstract boolean getCreateTestClass();
 
     /**
-     * @return the simple (unqualified) name for the service interface
+     * @return the java type name, or an empty string.
      */
-    private String getSimpleServiceInterfaceName() {
-        int lastDotIndex = _serviceInterfaceName.lastIndexOf('.');
-        if (lastDotIndex > 0) {
-            return _serviceInterfaceName.substring(lastDotIndex + 1);
+    private String getServiceInterfaceType() {
+        if (_serviceContract.getInterface() instanceof JavaInterface) {
+            return ((JavaInterface) _serviceContract.getInterface()).getInterface();
         }
-        return _serviceInterfaceName;
+        return "";
     }
 
     private IPackageFragment getPackageFragment() {
@@ -145,12 +152,21 @@ public abstract class AbstractSwitchYardServiceWizard extends BasicNewResourceWi
         if (project == null) {
             return null;
         }
-        try {
-            IType serviceType = project.findType(_serviceInterfaceName);
-            return serviceType == null ? null : serviceType.getPackageFragment();
-        } catch (JavaModelException e) {
-            return null;
+        Interface intf = _serviceContract.getInterface();
+        if (intf instanceof JavaInterface && ((JavaInterface) intf).getInterface() != null) {
+            try {
+                IType serviceType = project.findType(((JavaInterface) intf).getInterface());
+                return serviceType == null ? null : serviceType.getPackageFragment();
+            } catch (JavaModelException e) {
+                return null;
+            }
+        } else {
+            IJavaElement possiblePackage = JavaUtil.getInitialPackageForProject(project);
+            if (possiblePackage.getElementType() == IJavaElement.PACKAGE_FRAGMENT) {
+                return (IPackageFragment) possiblePackage;
+            }
         }
+        return null;
     }
 
 }

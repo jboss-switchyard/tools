@@ -22,9 +22,10 @@ import org.eclipse.jface.viewers.IStructuredSelection;
 import org.eclipse.jface.viewers.StructuredSelection;
 import org.eclipse.jface.wizard.WizardDialog;
 import org.eclipse.soa.sca.sca1_1.model.sca.ComponentService;
+import org.eclipse.soa.sca.sca1_1.model.sca.Contract;
 import org.eclipse.soa.sca.sca1_1.model.sca.Interface;
-import org.eclipse.soa.sca.sca1_1.model.sca.JavaInterface;
 import org.eclipse.ui.PlatformUI;
+import org.switchyard.tools.ui.PlatformResourceAdapterFactory;
 import org.switchyard.tools.ui.wizards.NewServiceTestClassWizard;
 
 /**
@@ -61,12 +62,7 @@ public class CreateServiceTestCustomFeature extends AbstractCustomFeature implem
         if (!(bo instanceof ComponentService)) {
             return false;
         }
-        final Interface intf = ((ComponentService) bo).getInterface();
-        if (!(intf instanceof JavaInterface)) {
-            return false;
-        }
-        final String javaIntf = ((JavaInterface) intf).getInterface();
-        return javaIntf != null && javaIntf.length() > 0;
+        return true;
     }
 
     @Override
@@ -87,20 +83,22 @@ public class CreateServiceTestCustomFeature extends AbstractCustomFeature implem
 
     @Override
     public void execute(ICustomContext context) {
-        final Object bo = getBusinessObjectForPictogramElement(context.getPictogramElements()[0]);
-        final JavaInterface javaIntf = (JavaInterface) ((ComponentService) bo).getInterface();
+        final Contract contract = (Contract) getBusinessObjectForPictogramElement(context.getPictogramElements()[0]);
         final NewServiceTestClassWizard wizard = new NewServiceTestClassWizard();
         final WizardDialog dialog = new WizardDialog(PlatformUI.getWorkbench().getActiveWorkbenchWindow().getShell(),
                 wizard);
-        wizard.init(PlatformUI.getWorkbench(), getResourceForInterface(javaIntf));
+        wizard.init(PlatformUI.getWorkbench(), getResourceForInterface(contract.getInterface()));
+        wizard.forceServiceContract(contract);
         dialog.open();
     }
 
-    private IStructuredSelection getResourceForInterface(JavaInterface javaIntf) {
-        final IResource file = (IResource) Platform.getAdapterManager().loadAdapter(javaIntf,
-                IResource.class.getCanonicalName());
+    private IStructuredSelection getResourceForInterface(Interface intf) {
+        IResource file = (IResource) Platform.getAdapterManager().loadAdapter(intf, IResource.class.getCanonicalName());
         if (file == null) {
-            return StructuredSelection.EMPTY;
+            file = PlatformResourceAdapterFactory.getContainingProject(intf);
+            if (file == null) {
+                return StructuredSelection.EMPTY;
+            }
         }
         return new StructuredSelection(file);
     }

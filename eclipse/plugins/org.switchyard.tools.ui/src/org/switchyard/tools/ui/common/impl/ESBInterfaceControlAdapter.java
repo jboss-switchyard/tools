@@ -8,7 +8,7 @@
  * Contributors:
  *     JBoss by Red Hat - Initial implementation.
  ************************************************************************************/
-package org.switchyard.tools.ui.editor.diagram.shared;
+package org.switchyard.tools.ui.common.impl;
 
 import org.eclipse.core.runtime.IStatus;
 import org.eclipse.core.runtime.Status;
@@ -18,7 +18,9 @@ import org.eclipse.soa.sca.sca1_1.model.sca.Interface;
 import org.eclipse.swt.widgets.Shell;
 import org.switchyard.tools.models.switchyard1_0.switchyard.EsbInterface;
 import org.switchyard.tools.models.switchyard1_0.switchyard.SwitchyardFactory;
-import org.switchyard.tools.ui.editor.Activator;
+import org.switchyard.tools.ui.Activator;
+import org.switchyard.tools.ui.common.ESBInterfaceInputDialog;
+import org.switchyard.tools.ui.common.IInterfaceControlAdapter;
 
 /**
  * EsbInterfaceControlAdapter
@@ -52,6 +54,10 @@ public class ESBInterfaceControlAdapter implements IInterfaceControlAdapter {
             _interface.setFaultType(esbIntfc.getFaultType());
             _interface.setInputType(esbIntfc.getInputType());
             _interface.setOutputType(esbIntfc.getOutputType());
+        } else {
+            _interface.setFaultType(null);
+            _interface.setInputType(null);
+            _interface.setOutputType(null);
         }
     }
 

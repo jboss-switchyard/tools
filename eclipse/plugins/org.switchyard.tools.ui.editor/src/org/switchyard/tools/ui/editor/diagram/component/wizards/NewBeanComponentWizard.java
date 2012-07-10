@@ -29,8 +29,8 @@ import org.eclipse.ui.PlatformUI;
 import org.switchyard.tools.models.switchyard1_0.bean.BeanFactory;
 import org.switchyard.tools.models.switchyard1_0.bean.BeanImplementationType;
 import org.switchyard.tools.ui.JavaUtil;
-import org.switchyard.tools.ui.editor.components.bean.NewBeanServiceWizard;
 import org.switchyard.tools.ui.editor.util.JavaTypeScanner;
+import org.switchyard.tools.ui.wizards.NewBeanServiceWizard;
 
 /**
  * NewBeanComponentWizard

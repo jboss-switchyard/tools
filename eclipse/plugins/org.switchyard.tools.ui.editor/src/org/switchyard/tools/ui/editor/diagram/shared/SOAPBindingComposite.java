@@ -59,6 +59,7 @@ import org.switchyard.tools.ui.JavaUtil;
 import org.switchyard.tools.ui.editor.core.ModelHandler;
 import org.switchyard.tools.ui.editor.impl.SwitchyardSCAEditor;
 import org.switchyard.tools.ui.editor.util.OpenFileUtil;
+import org.switchyard.tools.ui.wizards.NewWSDLFileWizard;
 
 /**
  * @author bfitzpat
@@ -457,7 +458,7 @@ public class SOAPBindingComposite extends AbstractSwitchyardComposite implements
         WSDLPortSelectionDialog dialog = new WSDLPortSelectionDialog(shell, project == null ? ResourcesPlugin
                 .getWorkspace().getRoot() : project.getProject());
         dialog.setInitialPattern("*.wsdl");
-        if (dialog.open() == WSDLPortTypeSelectionDialog.OK) {
+        if (dialog.open() == WSDLPortSelectionDialog.OK) {
             Port result = dialog.getSelectedPort();
             if (result != null) {
                 return result;

@@ -45,8 +45,8 @@ import org.eclipse.ui.IWorkbench;
 import org.eclipse.ui.PlatformUI;
 import org.eclipse.ui.dialogs.SelectionDialog;
 import org.switchyard.tools.models.switchyard1_0.bean.BeanImplementationType;
-import org.switchyard.tools.ui.editor.components.bean.NewBeanServiceWizard;
 import org.switchyard.tools.ui.editor.impl.SwitchyardSCAEditor;
+import org.switchyard.tools.ui.wizards.NewBeanServiceWizard;
 
 /**
  * @author bfitzpat

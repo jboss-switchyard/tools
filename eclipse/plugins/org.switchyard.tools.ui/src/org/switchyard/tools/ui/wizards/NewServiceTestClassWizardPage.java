@@ -13,12 +13,16 @@ package org.switchyard.tools.ui.wizards;
 import static org.switchyard.tools.ui.M2EUtils.getSwitchYardOutputFile;
 
 import java.io.File;
-import java.io.IOException;
 import java.util.Arrays;
-import java.util.Collection;
 import java.util.Collections;
+import java.util.HashMap;
 import java.util.HashSet;
-import java.util.List;
+import java.util.Map;
+import java.util.Set;
+import java.util.TreeMap;
+
+import javax.xml.XMLConstants;
+import javax.xml.namespace.QName;
 
 import org.eclipse.core.resources.IProject;
 import org.eclipse.core.resources.IResource;
@@ -26,10 +30,14 @@ import org.eclipse.core.runtime.CoreException;
 import org.eclipse.core.runtime.IPath;
 import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.core.runtime.IStatus;
-import org.eclipse.core.runtime.MultiStatus;
 import org.eclipse.core.runtime.NullProgressMonitor;
 import org.eclipse.core.runtime.Status;
 import org.eclipse.core.runtime.SubProgressMonitor;
+import org.eclipse.emf.common.util.URI;
+import org.eclipse.emf.ecore.resource.Resource;
+import org.eclipse.emf.ecore.resource.ResourceSet;
+import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
+import org.eclipse.jdt.core.BindingKey;
 import org.eclipse.jdt.core.Flags;
 import org.eclipse.jdt.core.ICompilationUnit;
 import org.eclipse.jdt.core.IJavaElement;
@@ -37,58 +45,35 @@ import org.eclipse.jdt.core.IJavaProject;
 import org.eclipse.jdt.core.IPackageFragmentRoot;
 import org.eclipse.jdt.core.IType;
 import org.eclipse.jdt.core.JavaCore;
-import org.eclipse.jdt.core.JavaModelException;
-import org.eclipse.jdt.core.WorkingCopyOwner;
-import org.eclipse.jdt.core.dom.AST;
-import org.eclipse.jdt.core.dom.ASTNode;
-import org.eclipse.jdt.core.dom.CompilationUnit;
-import org.eclipse.jdt.core.dom.IMethodBinding;
-import org.eclipse.jdt.core.dom.ITypeBinding;
-import org.eclipse.jdt.core.dom.Name;
-import org.eclipse.jdt.core.dom.NodeFinder;
-import org.eclipse.jdt.core.dom.ParameterizedType;
-import org.eclipse.jdt.core.dom.Type;
-import org.eclipse.jdt.core.search.IJavaSearchConstants;
-import org.eclipse.jdt.core.search.IJavaSearchScope;
-import org.eclipse.jdt.core.search.SearchEngine;
-import org.eclipse.jdt.internal.corext.refactoring.StubTypeContext;
-import org.eclipse.jdt.internal.corext.refactoring.TypeContextChecker;
-import org.eclipse.jdt.internal.corext.refactoring.util.RefactoringASTParser;
-import org.eclipse.jdt.internal.corext.util.JavaModelUtil;
-import org.eclipse.jdt.internal.ui.dialogs.FilteredTypesSelectionDialog;
+import org.eclipse.jdt.core.Signature;
 import org.eclipse.jdt.internal.ui.dialogs.StatusInfo;
-import org.eclipse.jdt.internal.ui.dialogs.TextFieldNavigationHandler;
-import org.eclipse.jdt.internal.ui.refactoring.contentassist.CompletionContextRequestor;
-import org.eclipse.jdt.internal.ui.refactoring.contentassist.ControlContentAssistHelper;
-import org.eclipse.jdt.internal.ui.refactoring.contentassist.JavaTypeCompletionProcessor;
-import org.eclipse.jdt.internal.ui.wizards.SuperInterfaceSelectionDialog;
+import org.eclipse.jdt.internal.ui.wizards.dialogfields.ComboDialogField;
 import org.eclipse.jdt.internal.ui.wizards.dialogfields.DialogField;
 import org.eclipse.jdt.internal.ui.wizards.dialogfields.IDialogFieldListener;
-import org.eclipse.jdt.internal.ui.wizards.dialogfields.IStringButtonAdapter;
-import org.eclipse.jdt.internal.ui.wizards.dialogfields.LayoutUtil;
-import org.eclipse.jdt.internal.ui.wizards.dialogfields.StringButtonDialogField;
 import org.eclipse.jdt.ui.CodeGeneration;
-import org.eclipse.jdt.ui.dialogs.TypeSelectionExtension;
 import org.eclipse.jdt.ui.wizards.NewTypeWizardPage;
 import org.eclipse.jface.dialogs.Dialog;
 import org.eclipse.jface.viewers.IStructuredSelection;
 import org.eclipse.jface.viewers.StructuredSelection;
-import org.eclipse.jface.window.Window;
 import org.eclipse.m2e.core.MavenPlugin;
 import org.eclipse.m2e.core.project.IMavenProjectFacade;
+import org.eclipse.m2e.core.project.MavenProjectUtils;
+import org.eclipse.soa.sca.sca1_1.model.sca.Component;
+import org.eclipse.soa.sca.sca1_1.model.sca.Contract;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.layout.GridLayout;
 import org.eclipse.swt.widgets.Composite;
-import org.eclipse.swt.widgets.Text;
-import org.eclipse.ui.dialogs.ISelectionStatusValidator;
-import org.switchyard.config.model.ModelPuller;
-import org.switchyard.config.model.composite.ComponentModel;
 import org.switchyard.config.model.composite.ComponentServiceModel;
-import org.switchyard.config.model.composite.CompositeModel;
 import org.switchyard.config.model.composite.InterfaceModel;
-import org.switchyard.config.model.switchyard.SwitchYardModel;
+import org.switchyard.metadata.ServiceInterface;
+import org.switchyard.metadata.ServiceOperation;
+import org.switchyard.tools.models.switchyard1_0.switchyard.DocumentRoot;
+import org.switchyard.tools.models.switchyard1_0.switchyard.SwitchYardType;
+import org.switchyard.tools.models.switchyard1_0.switchyard.util.SwitchyardResourceFactoryImpl;
 import org.switchyard.tools.ui.Activator;
+import org.switchyard.tools.ui.JavaUtil;
 import org.switchyard.tools.ui.SwitchYardModelUtils;
+import org.switchyard.tools.ui.common.InterfaceControl;
 import org.switchyard.tools.ui.explorer.ISwitchYardNode;
 import org.switchyard.tools.ui.explorer.impl.ComponentService;
 
@@ -104,13 +89,16 @@ public class NewServiceTestClassWizardPage extends NewTypeWizardPage {
 
     private static final String SERVICE_INTERFACE = "SERVICE_INTERFACE";
 
-    private StringButtonDialogField _serviceInterfaceDialogField;
-    private StubTypeContext _serviceInterfaceStubTypeContext;
+    private ComboDialogField _serviceDialogField;
+    private InterfaceControl _interfaceControl;
     private StatusInfo _serviceInterfaceStatus;
     private StatusInfo _rootStatus;
-    private Collection<String> _configuredServices;
+    private Map<String, Contract> _configuredServices;
+    private Map<File, Map<String, Contract>> _servicesCache = new HashMap<File, Map<String, Contract>>();
+    private Set<Resource> _loadedResources = new HashSet<Resource>();
     private IMavenProjectFacade _mavenProjectFacade;
     private IProject _project;
+    private String _oldTypeName;
 
     /**
      * Create a new NewServiceTestClassWizardPage.
@@ -121,21 +109,15 @@ public class NewServiceTestClassWizardPage extends NewTypeWizardPage {
         setTitle("New Service Test Class");
         setDescription("Create a new service test class.");
 
-        _serviceInterfaceDialogField = new StringButtonDialogField(new IStringButtonAdapter() {
-            @Override
-            public void changeControlPressed(DialogField field) {
-                browseServiceInterface();
-            }
-        });
-        _serviceInterfaceDialogField.setDialogFieldListener(new IDialogFieldListener() {
+        _serviceDialogField = new ComboDialogField(SWT.DROP_DOWN | SWT.READ_ONLY);
+        _serviceDialogField.setDialogFieldListener(new IDialogFieldListener() {
             @Override
             public void dialogFieldChanged(DialogField field) {
-                serviceInterfaceChanged();
                 handleFieldChanged(SERVICE_INTERFACE);
             }
         });
-        _serviceInterfaceDialogField.setLabelText("Service Interface:");
-        _serviceInterfaceDialogField.setButtonLabel("Browse...");
+        _serviceDialogField.setLabelText("Service:");
+        _interfaceControl = new InterfaceControl(getJavaProject());
     }
 
     /**
@@ -149,17 +131,12 @@ public class NewServiceTestClassWizardPage extends NewTypeWizardPage {
         }
         initContainerPage(getInitialContainerElement(selection, elem));
         initTypePage(elem);
-        List<String> superInterfaces = getSuperInterfaces();
-        if (superInterfaces.size() > 0) {
-            _serviceInterfaceDialogField.setText(superInterfaces.get(0));
-            superInterfaces.remove(0);
-            setSuperInterfaces(superInterfaces, getPackageFragmentRoot() != null);
-        }
         setModifiers(Flags.AccPublic, false);
         if (getTypeName().length() == 0) {
             String simpleServiceInterfaceName = getSimpleServiceInterfaceName();
             if (simpleServiceInterfaceName.length() > 0) {
-                setTypeName(simpleServiceInterfaceName + "Test", true);
+                _oldTypeName = createDefaultClassName();
+                setTypeName(_oldTypeName, true);
             }
         }
         if (_mavenProjectFacade != null) {
@@ -169,6 +146,7 @@ public class NewServiceTestClassWizardPage extends NewTypeWizardPage {
                         true);
             }
         }
+        setSuperInterfaces(Collections.<String> emptyList(), false);
         doStatusUpdate();
     }
 
@@ -193,6 +171,9 @@ public class NewServiceTestClassWizardPage extends NewTypeWizardPage {
         createSeparator(composite, nColumns);
 
         createTypeNameControls(composite, nColumns);
+
+        createSeparator(composite, nColumns);
+
         createServiceInterfaceControls(composite, nColumns);
 
         createSeparator(composite, nColumns);
@@ -218,14 +199,47 @@ public class NewServiceTestClassWizardPage extends NewTypeWizardPage {
     }
 
     /**
-     * Set the service interface name.
+     * Set the service contract.
      * 
-     * @param serviceInterfaceName the service interface name.
+     * @param serviceContract the service contract.
      * @param canBeModified true if the user can modify the value.
      */
-    public void setServiceInterface(String serviceInterfaceName, boolean canBeModified) {
-        _serviceInterfaceDialogField.setText(serviceInterfaceName);
-        _serviceInterfaceDialogField.setEnabled(canBeModified);
+    public void setServiceContract(Contract serviceContract, boolean canBeModified) {
+        if (canBeModified) {
+            if (!_serviceDialogField.isEnabled()) {
+                // if we're going from disabled to enabled, make sure the
+                // current list is loaded.
+                loadConfiguredServices();
+                if (_configuredServices.size() == 0 && serviceContract.getName() != null) {
+                    _configuredServices = Collections.singletonMap(serviceContract.getName(), serviceContract);
+                }
+                updateServicesList();
+            }
+        } else {
+            if (serviceContract.getName() != null) {
+                _configuredServices = Collections.singletonMap(serviceContract.getName(), serviceContract);
+            } else {
+                _configuredServices = Collections.emptyMap();
+            }
+            _serviceDialogField.setEnabled(false);
+            updateServicesList();
+        }
+        _serviceDialogField.selectItem(serviceContract.getName());
+    }
+
+    @Override
+    public void dispose() {
+        super.dispose();
+
+        _configuredServices = Collections.emptyMap();
+        for (Map<String, Contract> configuredServices : _servicesCache.values()) {
+            configuredServices.clear();
+        }
+        _servicesCache.clear();
+        for (Resource resource : _loadedResources) {
+            resource.unload();
+        }
+        _loadedResources.clear();
     }
 
     @Override
@@ -242,7 +256,8 @@ public class NewServiceTestClassWizardPage extends NewTypeWizardPage {
                     }
                 }
             }
-            selection = new StructuredSelection(((ISwitchYardNode) selection.getFirstElement()).getRoot().getProject());
+            return JavaUtil.getInitialJavaElementForResource(((ISwitchYardNode) selection.getFirstElement()).getRoot()
+                    .getProject());
         }
         return super.getInitialJavaElement(selection);
     }
@@ -286,24 +301,23 @@ public class NewServiceTestClassWizardPage extends NewTypeWizardPage {
                         + imports.addImport("org.switchyard.test.Invoker") + " service;", null, false,
                 new SubProgressMonitor(monitor, 1));
 
-        ICompilationUnit cu = type.getCompilationUnit();
-        ITypeBinding serviceTypeBinding = resolveServiceType(cu);
+        ServiceInterface serviceTypeBinding = resolveServiceType();
         if (serviceTypeBinding == null) {
             return;
         }
 
-        createTestMethodsForType(type, serviceTypeBinding, cu, imports, lineDelimiter, monitor);
+        createTestMethodsForType(type, serviceTypeBinding, type.getCompilationUnit(), imports, lineDelimiter, monitor);
 
         if (monitor != null) {
             monitor.done();
         }
     }
 
-    private void createTestMethodsForType(IType type, ITypeBinding interfaceType, ICompilationUnit cu,
+    private void createTestMethodsForType(IType type, ServiceInterface interfaceType, ICompilationUnit cu,
             ImportsManager imports, String lineDelimiter, IProgressMonitor monitor) throws CoreException {
         String typeName = type.getFullyQualifiedName();
-        for (IMethodBinding method : interfaceType.getDeclaredMethods()) {
-            if ("void".equals(method.getReturnType().getName())) {
+        for (ServiceOperation method : interfaceType.getOperations()) {
+            if (method.getOutputType() == null || "void".equals(method.getOutputType())) {
                 type.createMethod(createInOnlyTestMethodContents(method, typeName, cu, imports, lineDelimiter), null,
                         false, new SubProgressMonitor(monitor, 1));
             } else {
@@ -311,39 +325,6 @@ public class NewServiceTestClassWizardPage extends NewTypeWizardPage {
                         false, new SubProgressMonitor(monitor, 1));
             }
         }
-        for (ITypeBinding parentType : interfaceType.getInterfaces()) {
-            createTestMethodsForType(type, parentType, cu, imports, lineDelimiter, monitor);
-        }
-    }
-
-    private ITypeBinding resolveServiceType(ICompilationUnit cu) {
-        StubTypeContext stc = getServiceInterfaceStubTypeContext();
-        try {
-            ICompilationUnit wc = cu.getWorkingCopy(new WorkingCopyOwner() {/* subclass */
-            }, new NullProgressMonitor());
-            try {
-                String serviceInterfaceName = getServiceInterface();
-                wc.getBuffer().setContents(stc.getBeforeString() + serviceInterfaceName + stc.getAfterString());
-                CompilationUnit compilationUnit = new RefactoringASTParser(AST.JLS3).parse(wc, true);
-                ASTNode type = NodeFinder.perform(compilationUnit, stc.getBeforeString().length(),
-                        serviceInterfaceName.length());
-                if (type instanceof Type) {
-                    return ((Type) type).resolveBinding();
-                } else if (type instanceof Name) {
-                    ASTNode parent = type.getParent();
-                    if (parent instanceof Type) {
-                        return ((Type) parent).resolveBinding();
-                    }
-                }
-            } catch (JavaModelException e) {
-                return null;
-            } finally {
-                wc.discardWorkingCopy();
-            }
-        } catch (JavaModelException e) {
-            return null;
-        }
-        return null;
     }
 
     private String getTestMethodName(String name) {
@@ -357,21 +338,25 @@ public class NewServiceTestClassWizardPage extends NewTypeWizardPage {
         return sb;
     }
 
-    private String createInOutTestMethodContents(IMethodBinding method, String typeName, ICompilationUnit cu,
+    private String createInOutTestMethodContents(ServiceOperation method, String typeName, ICompilationUnit cu,
             ImportsManager imports, String lineDelimiter) {
         String methodName = method.getName();
         String testMethodName = getTestMethodName(methodName);
-        ITypeBinding returnTypeBinding = method.getReturnType();
+        BindingKey returnTypeBinding = getBindingForQName(method.getOutputType());
         String resultType;
         String contentCastType;
 
-        StringBuffer body = getBodyStart(lineDelimiter);
+        StringBuffer body = getBodyStart(method, imports, lineDelimiter);
         if (returnTypeBinding.isParameterizedType()) {
-            resultType = imports.addImport(returnTypeBinding);
-            contentCastType = imports.addImport(returnTypeBinding.getErasure());
+            String signature = returnTypeBinding.toSignature();
+            resultType = imports.addImport(Signature.toString(signature));
+            for (String parameterType : returnTypeBinding.getTypeArguments()) {
+                imports.addImport(Signature.toString(parameterType));
+            }
+            contentCastType = imports.addImport(Signature.toString(Signature.getTypeErasure(signature)));
             body.append("@SuppressWarnings(\"unchecked\")").append(lineDelimiter);
         } else {
-            resultType = imports.addImport(returnTypeBinding);
+            resultType = imports.addImport(Signature.toString(returnTypeBinding.toSignature()));
             contentCastType = resultType;
         }
         body.append(resultType).append(" result = service.operation(\"").append(methodName)
@@ -390,12 +375,12 @@ public class NewServiceTestClassWizardPage extends NewTypeWizardPage {
         return sb.toString();
     }
 
-    private String createInOnlyTestMethodContents(IMethodBinding method, String typeName, ICompilationUnit cu,
+    private String createInOnlyTestMethodContents(ServiceOperation method, String typeName, ICompilationUnit cu,
             ImportsManager imports, String lineDelimiter) {
         String methodName = method.getName();
         String testMethodName = getTestMethodName(methodName);
 
-        StringBuffer body = getBodyStart(lineDelimiter);
+        StringBuffer body = getBodyStart(method, imports, lineDelimiter);
         body.append("service.operation(\"").append(methodName).append("\").sendInOnly(message);").append(lineDelimiter)
                 .append(lineDelimiter);
         body.append(getBodyEnd(imports, lineDelimiter));
@@ -411,10 +396,12 @@ public class NewServiceTestClassWizardPage extends NewTypeWizardPage {
         return sb.toString();
     }
 
-    private StringBuffer getBodyStart(String lineDelimiter) {
+    private StringBuffer getBodyStart(ServiceOperation method, ImportsManager imports, String lineDelimiter) {
+        BindingKey parameterType = getBindingForQName(method.getInputType());
         StringBuffer sb = new StringBuffer();
         sb.append("// initialize your test message").append(lineDelimiter);
-        sb.append("Object message = null;").append(lineDelimiter);
+        sb.append(parameterType == null ? "Object" : imports.addImport(Signature.toString(parameterType.toSignature())))
+                .append(" message = null;").append(lineDelimiter);
         return sb;
     }
 
@@ -426,13 +413,23 @@ public class NewServiceTestClassWizardPage extends NewTypeWizardPage {
         return sb;
     }
 
+    private BindingKey getBindingForQName(QName typeName) {
+        String typeString = Object.class.getCanonicalName();
+        if (typeName.getNamespaceURI() == XMLConstants.NULL_NS_URI && typeName.getLocalPart() != null
+                && typeName.getLocalPart().startsWith("java:")) {
+            typeString = typeName.getLocalPart().substring(5);
+        }
+        return new BindingKey(BindingKey.createTypeBindingKey(typeString));
+    }
+
     @Override
     protected void handleFieldChanged(String fieldName) {
         super.handleFieldChanged(fieldName);
 
         if (fieldName == CONTAINER) {
-            serviceInterfaceChanged();
             checkPackageRoot();
+        } else if (fieldName == SERVICE_INTERFACE) {
+            serviceInterfaceChanged();
         }
         doStatusUpdate();
     }
@@ -456,15 +453,18 @@ public class NewServiceTestClassWizardPage extends NewTypeWizardPage {
                 _project = newProject.getProject();
                 updateMavenProjectFacade();
                 loadConfiguredServices();
+                updateServicesList();
             }
         } else if (newProject == null) {
             _project = null;
-            _configuredServices = Collections.emptySet();
+            _configuredServices = Collections.emptyMap();
             updateMavenProjectFacade();
+            updateServicesList();
         } else if (!_project.equals(newProject.getProject())) {
             _project = newProject.getProject();
             updateMavenProjectFacade();
             loadConfiguredServices();
+            updateServicesList();
         }
         return super.containerChanged();
     }
@@ -488,9 +488,24 @@ public class NewServiceTestClassWizardPage extends NewTypeWizardPage {
         _mavenProjectFacade = MavenPlugin.getMavenProjectRegistry().create(_project, new NullProgressMonitor());
     }
 
+    private void updateServicesList() {
+        Set<String> services = _configuredServices.keySet();
+        String serviceInterfaceName = getSimpleServiceInterfaceName();
+        _serviceDialogField.setItems(services.toArray(new String[services.size()]));
+        if (serviceInterfaceName != null && serviceInterfaceName.length() > 0) {
+            _serviceDialogField.selectItem(serviceInterfaceName);
+        } else if (_serviceDialogField.getSelectionIndex() < 0 && services.size() > 0) {
+            _serviceDialogField.selectItem(0);
+        }
+    }
+
     private void loadConfiguredServices() {
+        if (!_serviceDialogField.isEnabled()) {
+            // don't reload if the user can't modify
+            return;
+        }
+        _configuredServices = Collections.emptyMap();
         if (_mavenProjectFacade == null) {
-            _configuredServices = Collections.emptySet();
             return;
         }
         File switchYardOutputFile;
@@ -501,39 +516,49 @@ public class NewServiceTestClassWizardPage extends NewTypeWizardPage {
             switchYardOutputFile = null;
         }
         if (switchYardOutputFile == null) {
-            _configuredServices = Collections.emptySet();
             return;
         }
+        if (_servicesCache.containsKey(switchYardOutputFile)) {
+            _configuredServices = _servicesCache.get(switchYardOutputFile);
+            return;
+        }
+
+        Resource resource = null;
         try {
-            SwitchYardModel switchYardModel = new ModelPuller<SwitchYardModel>().pull(switchYardOutputFile);
-            CompositeModel composite = switchYardModel.getComposite();
+            ResourceSet rs = new ResourceSetImpl();
+            rs.getResourceFactoryRegistry().getExtensionToFactoryMap().put("*", new SwitchyardResourceFactoryImpl());
+            resource = rs.getResource(URI.createPlatformResourceURI(
+                    MavenProjectUtils.getFullPath(_mavenProjectFacade.getProject(), switchYardOutputFile).toString(),
+                    true), true);
+            if (resource == null || resource.getContents().size() == 0
+                    || !(resource.getContents().get(0) instanceof DocumentRoot)) {
+                return;
+            }
+            DocumentRoot document = (DocumentRoot) resource.getContents().get(0);
+            SwitchYardType switchYard = document.getSwitchyard();
+            org.eclipse.soa.sca.sca1_1.model.sca.Composite composite = switchYard.getComposite();
             if (composite == null) {
-                _configuredServices = Collections.emptySet();
                 return;
             }
-            List<ComponentModel> components = composite.getComponents();
-            if (components == null) {
-                _configuredServices = Collections.emptySet();
-                return;
-            }
-            _configuredServices = new HashSet<String>();
-            for (ComponentModel component : components) {
-                List<ComponentServiceModel> services = component.getServices();
-                if (services == null) {
-                    continue;
+            _configuredServices = new TreeMap<String, Contract>();
+            // services first. any like-named component services will overwrite
+            for (Contract contract : composite.getService()) {
+                if (contract.getName() != null) {
+                    _configuredServices.put(contract.getName(), contract);
                 }
-                for (ComponentServiceModel service : services) {
-                    InterfaceModel interfaceModel = service.getInterface();
-                    if (interfaceModel != null && "java".equals(interfaceModel.getType())) {
-                        String interfaceName = interfaceModel.getInterface();
-                        if (interfaceName != null && interfaceName.length() > 0) {
-                            _configuredServices.add(interfaceName);
-                        }
+            }
+            for (Component component : composite.getComponent()) {
+                for (Contract contract : component.getService()) {
+                    if (contract.getName() != null) {
+                        _configuredServices.put(contract.getName(), contract);
                     }
                 }
             }
-        } catch (IOException e) {
-            _configuredServices = Collections.emptySet();
+        } finally {
+            _servicesCache.put(switchYardOutputFile, _configuredServices);
+            if (resource != null) {
+                _loadedResources.add(resource);
+            }
         }
     }
 
@@ -545,122 +570,83 @@ public class NewServiceTestClassWizardPage extends NewTypeWizardPage {
         updateStatus(status);
     }
 
-    /**
-     * @return the selected service interface.
-     */
-    public String getServiceInterface() {
-        return _serviceInterfaceDialogField.getText();
+    private Contract getServiceContract() {
+        String serviceName = getSimpleServiceInterfaceName();
+        if (serviceName == null || serviceName.length() == 0 || !_configuredServices.containsKey(serviceName)) {
+            return null;
+        }
+        return _configuredServices.get(serviceName);
     }
 
-    /**
-     * TODO: consider allowing the creation of a new interface, including from
-     * wsdl or other sources.
-     */
-    private void browseServiceInterface() {
-        IJavaProject project = getJavaProject();
-        if (project == null) {
-            return;
+    private String getSimpleServiceInterfaceName() {
+        int selection = _serviceDialogField.getSelectionIndex();
+        String[] items = _serviceDialogField.getItems();
+        if (selection < 0 || selection > items.length) {
+            return "";
         }
-
-        IJavaElement[] elements = new IJavaElement[] {project };
-        IJavaSearchScope scope = SearchEngine.createJavaSearchScope(elements);
-
-        FilteredTypesSelectionDialog dialog = new FilteredTypesSelectionDialog(getShell(), false, getWizard()
-                .getContainer(), scope, IJavaSearchConstants.INTERFACE, new TypeSelectionExtension() {
-            @Override
-            public ISelectionStatusValidator getSelectionValidator() {
-                return new SelectionStatusValidator();
-            }
-
-        });
-        dialog.setTitle("Service Interface Selection");
-        dialog.setMessage("Choose a type:");
-        dialog.setInitialPattern(getServiceInterface());
-
-        if (dialog.open() == Window.OK) {
-            _serviceInterfaceDialogField.setText(SuperInterfaceSelectionDialog.getNameWithTypeParameters((IType) dialog
-                    .getFirstResult()));
-            // remove the service interface from the list of interfaces
-            setSuperInterfaces(getSuperInterfaces(), getPackageFragmentRoot() != null);
-        }
+        return items[selection];
     }
 
     private void createServiceInterfaceControls(Composite composite, int nColumns) {
-        _serviceInterfaceDialogField.doFillIntoGrid(composite, nColumns);
-        Text text = _serviceInterfaceDialogField.getTextControl(null);
-        LayoutUtil.setWidthHint(text, getMaxFieldWidth());
-
-        JavaTypeCompletionProcessor superClassCompletionProcessor = new JavaTypeCompletionProcessor(false, false, true);
-        superClassCompletionProcessor.setCompletionContextRequestor(new CompletionContextRequestor() {
-            @Override
-            public StubTypeContext getStubTypeContext() {
-                return getServiceInterfaceStubTypeContext();
-            }
-        });
-
-        ControlContentAssistHelper.createTextContentAssistant(text, superClassCompletionProcessor);
-        TextFieldNavigationHandler.install(text);
+        _serviceDialogField.doFillIntoGrid(composite, nColumns);
+        _interfaceControl.createControl(composite, nColumns);
+        _interfaceControl.setEnabled(false);
+        serviceInterfaceChanged();
     }
 
     private void serviceInterfaceChanged() {
         _serviceInterfaceStatus = new StatusInfo();
         IPackageFragmentRoot root = getPackageFragmentRoot();
-        _serviceInterfaceDialogField.enableButton(root != null);
+        _serviceDialogField.setEnabled(root != null);
 
-        _serviceInterfaceStubTypeContext = null;
+        Contract contract = getServiceContract();
+        if (contract == null) {
+            _serviceInterfaceStatus.setError("A service must be specified.");
+        } else if (contract.getInterface() == null) {
+            _serviceInterfaceStatus.setError("Selected service does not define any interface.");
+        }
+        _interfaceControl.init(contract == null ? null : contract.getInterface());
 
-        String serviceInterfaceName = getServiceInterface();
-        if (serviceInterfaceName.length() == 0) {
-            _serviceInterfaceStatus.setError("A service interface must be specified.");
-        } else if (root == null) {
-            _serviceInterfaceStatus.setError(""); //$NON-NLS-1$
-        } else {
-            Type type = TypeContextChecker.parseSuperInterface(serviceInterfaceName);
-            if (type == null) {
-                _serviceInterfaceStatus.setError("Service interface type is invalid.");
-            } else if (type instanceof ParameterizedType && !JavaModelUtil.is50OrHigher(root.getJavaProject())) {
-                _serviceInterfaceStatus
-                        .setError("Service interface cannot be parameterized unless source level is 1.5");
-            } else if (_serviceInterfaceDialogField.isEnabled() && !_configuredServices.contains(serviceInterfaceName)) {
-                _serviceInterfaceStatus.setWarning(serviceInterfaceName + " is not used as a SwitchYard service.");
+        String newName = createDefaultClassName();
+        if (updateDefault(_oldTypeName, newName, getTypeName())) {
+            setTypeName(newName, true);
+        }
+        _oldTypeName = newName;
+    }
+
+    private String createDefaultClassName() {
+        String serviceName = getSimpleServiceInterfaceName();
+        if (serviceName == null) {
+            return "";
+        }
+        return serviceName + "Test";
+    }
+
+    private ServiceInterface resolveServiceType() throws CoreException {
+        final Contract contract = getServiceContract();
+        if (contract == null || contract.getInterface() == null) {
+            return null;
+        }
+        try {
+            final ClassLoader oldTCCL = Thread.currentThread().getContextClassLoader();
+            final ClassLoader classLoader = JavaUtil.getProjectClassLoader(getJavaProject(), null);
+            Thread.currentThread().setContextClassLoader(classLoader);
+            try {
+                return SwitchYardModelUtils.getServiceInterface(contract.getInterface());
+            } finally {
+                Thread.currentThread().setContextClassLoader(oldTCCL);
             }
+        } catch (Exception e) {
+            throw new CoreException(new Status(Status.ERROR, Activator.PLUGIN_ID, "Error resolving service interface.",
+                    e));
         }
     }
 
-    private StubTypeContext getServiceInterfaceStubTypeContext() {
-        if (_serviceInterfaceStubTypeContext == null) {
-            String typeName = getTypeName();
-            if (typeName == null || typeName.length() == 0) {
-                typeName = JavaTypeCompletionProcessor.DUMMY_CLASS_NAME;
-            }
-            _serviceInterfaceStubTypeContext = TypeContextChecker.createSuperInterfaceStubTypeContext(typeName, null,
-                    getPackageFragment());
-        }
-        return _serviceInterfaceStubTypeContext;
-    }
-
-    private String getSimpleServiceInterfaceName() {
-        String serviceInterfaceName = getServiceInterface();
-        int lastDotIndex = serviceInterfaceName.lastIndexOf('.');
-        if (lastDotIndex > 0) {
-            return serviceInterfaceName.substring(lastDotIndex + 1);
-        }
-        return serviceInterfaceName;
-    }
-
-    private class SelectionStatusValidator implements ISelectionStatusValidator {
-        @Override
-        public IStatus validate(Object[] selection) {
-            MultiStatus status = new MultiStatus(Activator.PLUGIN_ID, 0, "", null);
-            for (int index = 0, count = selection.length; index < count; ++index) {
-                IType type = (IType) selection[index];
-                if (!_configuredServices.contains(type.getFullyQualifiedName())) {
-                    status.add(new Status(Status.ERROR, Activator.PLUGIN_ID, type.getFullyQualifiedName()
-                            + " is not used as a SwitchYard service interface."));
-                }
-            }
-            return status;
-        }
+    private boolean updateDefault(String oldValue, String newValue, String currentValue) {
+        return currentValue == null
+                || currentValue.length() == 0
+                || (!currentValue.equals(newValue) && (oldValue == null || oldValue.length() == 0 || oldValue
+                        .equals(currentValue)));
     }
 
 }
