@@ -7,7 +7,7 @@
   <version>0.0.1-SNAPSHOT</version>
   <name>test.project.group:CreateSwitchYardProjectTest</name>
   <properties>
-    <switchyard.version>0.5.0-SNAPSHOT</switchyard.version>
+    <switchyard.version>0.5.0.Final</switchyard.version>
   </properties>
   <dependencies>
     <dependency>

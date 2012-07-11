@@ -71,7 +71,7 @@ public class CreateSwitchYardProjectTest extends AbstractMavenProjectTestCase {
         String packageName = "test.package_name";
         String groupId = "test.project.group";
         String version = "0.0.1-SNAPSHOT";
-        String runtimeVersion = "0.5.0-SNAPSHOT";
+        String runtimeVersion = "0.5.0.Final";
 
         assertTrue("Project already exists.", !newProjectHandle.exists());
 

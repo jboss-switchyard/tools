@@ -198,7 +198,7 @@ public final class TransformTypesUtil {
                 runtimeServices.add(serviceInterface);
             }
          }
-         for (ComponentReference reference: component.getReference()) {
+         for (ComponentReference reference : component.getReference()) {
              if (reference.getInterface() != null) {
                  if (reference.getInterface() instanceof JavaInterface) {
                      JavaInterface javaIntfc = (JavaInterface) reference.getInterface();
