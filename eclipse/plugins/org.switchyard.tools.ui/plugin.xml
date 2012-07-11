@@ -591,6 +591,21 @@
            <artifactId>switchyard-component-hornetq</artifactId>
         </dependency>
      </component>
+     <component
+           id="org.switchyard.components:switchyard-component-jca"
+           name="JCA">
+        <description>
+           Provides support for JCA based gateways.
+        </description>
+        <dependency>
+           <groupId>
+              org.switchyard.components
+           </groupId>
+           <artifactId>
+              switchyard-component-jca
+           </artifactId>
+        </dependency>
+     </component>
      <!--
      <component
            id="org.switchyard.components:switchyard-component-rules"

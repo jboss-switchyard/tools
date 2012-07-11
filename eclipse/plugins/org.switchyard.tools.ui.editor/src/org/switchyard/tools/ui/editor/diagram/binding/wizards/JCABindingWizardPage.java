@@ -66,6 +66,8 @@ public class JCABindingWizardPage extends WizardPage {
             setControl(_jcaInComposite.getPanel());
             setPageComplete(_jcaInComposite.getErrorMessage() == null);
         } else if (_targetContainer instanceof Reference) {
+            setTitle("Specify JCA Outbound Binding Details");
+            setDescription("Specify pertinent details for your JCA Outbound Binding. Resource adapters may require unique properties.");
             _jcaOutComposite = new JCABindingOutboundComposite();
             _jcaOutComposite.addChangeListener(new ChangeListener() {
                 @Override

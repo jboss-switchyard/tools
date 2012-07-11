@@ -184,7 +184,7 @@ public class JCABindingOutboundComposite extends AbstractSwitchyardComposite imp
         _propsList.addChangeListener(new ChangeListener(){
             @Override
             public void stateChanged(ChangeEvent e) {
-                if (_binding != null && !inUpdate() && hasChanged()) {
+                if (!inUpdate() && hasChanged()) {
                     validate();
                     handleModify(_propsList);
                     fireChangedEvent(_propsList);
@@ -275,36 +275,36 @@ public class JCABindingOutboundComposite extends AbstractSwitchyardComposite imp
                 }
                 setFeatureValue(_binding.getOutboundConnection().getConnection(), "jndiName", _connectionJNDINameText.getText().trim());
             }
-        } else if (control.equals(_propsList)) {
-            final EList<Property> properties = _propsList.getSelection();
-            if (_binding.eContainer() != null && domain != null) {
-                domain.getCommandStack().execute(new RecordingCommand(domain) {
-                    @Override
-                    protected void doExecute() {
-                        if (_binding.getOutboundInteraction() == null) {
-                            JCAOutboundInteraction outbound = JcaFactory.eINSTANCE.createJCAOutboundInteraction();
-                            setFeatureValue(_binding, "outboundInteraction", outbound);
-                        }
-                        if (_binding.getOutboundInteraction().getProcessor() == null) {
-                            Processor processor = JcaFactory.eINSTANCE.createProcessor();
-                            setFeatureValue(_binding.getOutboundInteraction(), "processor", processor);
-                        }
-                        _binding.getOutboundInteraction().getProcessor().getProperty().clear();
-                        _binding.getOutboundInteraction().getProcessor().getProperty().addAll(properties);
-                    }
-                });
-            } else {
-                if (_binding.getOutboundInteraction() == null) {
-                    JCAOutboundInteraction outbound = JcaFactory.eINSTANCE.createJCAOutboundInteraction();
-                    setFeatureValue(_binding, "outboundInteraction", outbound);
-                }
-                if (_binding.getOutboundInteraction().getProcessor() == null) {
-                    Processor processor = JcaFactory.eINSTANCE.createProcessor();
-                    setFeatureValue(_binding.getOutboundInteraction(), "processor", processor);
-                }
-                _binding.getOutboundInteraction().getProcessor().getProperty().clear();
-                _binding.getOutboundInteraction().getProcessor().getProperty().addAll(properties);
-            }
+//        } else if (control.equals(_propsList)) {
+//            final EList<Property> properties = _propsList.getSelection();
+//            if (_binding.eContainer() != null && domain != null) {
+//                domain.getCommandStack().execute(new RecordingCommand(domain) {
+//                    @Override
+//                    protected void doExecute() {
+//                        if (_binding.getOutboundInteraction() == null) {
+//                            JCAOutboundInteraction outbound = JcaFactory.eINSTANCE.createJCAOutboundInteraction();
+//                            setFeatureValue(_binding, "outboundInteraction", outbound);
+//                        }
+//                        if (_binding.getOutboundInteraction().getProcessor() == null) {
+//                            Processor processor = JcaFactory.eINSTANCE.createProcessor();
+//                            setFeatureValue(_binding.getOutboundInteraction(), "processor", processor);
+//                        }
+//                        _binding.getOutboundInteraction().getProcessor().getProperty().clear();
+//                        _binding.getOutboundInteraction().getProcessor().getProperty().addAll(properties);
+//                    }
+//                });
+//            } else {
+//                if (_binding.getOutboundInteraction() == null) {
+//                    JCAOutboundInteraction outbound = JcaFactory.eINSTANCE.createJCAOutboundInteraction();
+//                    setFeatureValue(_binding, "outboundInteraction", outbound);
+//                }
+//                if (_binding.getOutboundInteraction().getProcessor() == null) {
+//                    Processor processor = JcaFactory.eINSTANCE.createProcessor();
+//                    setFeatureValue(_binding.getOutboundInteraction(), "processor", processor);
+//                }
+//                _binding.getOutboundInteraction().getProcessor().getProperty().clear();
+//                _binding.getOutboundInteraction().getProcessor().getProperty().addAll(properties);
+//            }
         } else if (control.equals(_processorMappingTypeCombo)) {
             if (_binding.eContainer() != null && domain != null) {
                 domain.getCommandStack().execute(new RecordingCommand(domain) {
@@ -364,7 +364,7 @@ public class JCABindingOutboundComposite extends AbstractSwitchyardComposite imp
             if (destination != null) {
                 Property prop = JcaFactory.eINSTANCE.createProperty();
                 prop.setName("destination");
-                prop.setValue("queue");
+                prop.setValue(destination);
                 interaction.getProcessor().getProperty().add(prop);
             }
             

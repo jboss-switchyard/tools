@@ -445,6 +445,7 @@ public abstract class JCAPropertyTable extends Composite implements ICellModifie
                     getTreeViewer().refresh(true);
                 }
             }
+            fireChangedEvent(this);
             // validate();
         }
     }

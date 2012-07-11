@@ -117,6 +117,7 @@ public class JCAProcessorPropertyTable extends JCAPropertyTable {
                     Processor processor = binding.getOutboundInteraction().getProcessor();
                     processor.getProperty().add(newProperty);
                 }
+                fireChangedEvent(this);
             }
         }
     }
