@@ -14,16 +14,6 @@
 
   <dependencies>
     <dependency>
-      <groupId>org.switchyard.quickstarts</groupId>
-      <artifactId>switchyard-quickstart-bean-service</artifactId>
-      <version>${version.switchyard.runtime}</version>
-    </dependency>
-    <dependency>
-      <groupId>org.switchyard.quickstarts.demos</groupId>
-      <artifactId>switchyard-quickstart-demo-helpdesk</artifactId>
-      <version>${version.switchyard.runtime}</version>
-    </dependency>
-    <dependency>
       <groupId>xmlunit</groupId>
       <artifactId>xmlunit</artifactId>
     </dependency>
@@ -64,11 +54,13 @@
                 <artifactItem>
                   <groupId>org.switchyard.quickstarts</groupId>
                   <artifactId>switchyard-quickstart-bean-service</artifactId>
+                  <version>${version.switchyard.runtime}</version>
                   <outputDirectory>test-data/projects/bean-service/src/main/java</outputDirectory>
                 </artifactItem>
                 <artifactItem>
                   <groupId>org.switchyard.quickstarts.demos</groupId>
                   <artifactId>switchyard-quickstart-demo-helpdesk</artifactId>
+                  <version>${version.switchyard.runtime}</version>
                   <outputDirectory>test-data/projects/helpdesk/src/main/java</outputDirectory>
                 </artifactItem>
               </artifactItems>
@@ -87,11 +79,13 @@
                 <artifactItem>
                   <groupId>org.switchyard.quickstarts</groupId>
                   <artifactId>switchyard-quickstart-bean-service</artifactId>
+                  <version>${version.switchyard.runtime}</version>
                   <outputDirectory>test-data/projects/bean-service/src/main/resources</outputDirectory>
                 </artifactItem>
                 <artifactItem>
                   <groupId>org.switchyard.quickstarts.demos</groupId>
                   <artifactId>switchyard-quickstart-demo-helpdesk</artifactId>
+                  <version>${version.switchyard.runtime}</version>
                   <outputDirectory>test-data/projects/helpdesk/src/main/resources</outputDirectory>
                 </artifactItem>
               </artifactItems>
@@ -108,6 +102,7 @@
                 <artifactItem>
                   <groupId>org.switchyard.quickstarts</groupId>
                   <artifactId>switchyard-quickstart-bean-service</artifactId>
+                  <version>${version.switchyard.runtime}</version>
                   <type>pom</type>
                   <outputDirectory>test-data/projects/bean-service</outputDirectory>
                   <destFileName>pom.xml</destFileName>
@@ -115,6 +110,7 @@
                 <artifactItem>
                   <groupId>org.switchyard.quickstarts.demos</groupId>
                   <artifactId>switchyard-quickstart-demo-helpdesk</artifactId>
+                  <version>${version.switchyard.runtime}</version>
                   <type>pom</type>
                   <outputDirectory>test-data/projects/helpdesk</outputDirectory>
                   <destFileName>pom.xml</destFileName>
@@ -134,11 +130,13 @@
                 <artifactItem>
                   <groupId>org.switchyard.quickstarts</groupId>
                   <artifactId>switchyard-quickstart-bean-service</artifactId>
+                  <version>${version.switchyard.runtime}</version>
                   <outputDirectory>test-data/validation/bean-service</outputDirectory>
                 </artifactItem>
                 <artifactItem>
                   <groupId>org.switchyard.quickstarts.demos</groupId>
                   <artifactId>switchyard-quickstart-demo-helpdesk</artifactId>
+                  <version>${version.switchyard.runtime}</version>
                   <outputDirectory>test-data/validation/helpdesk</outputDirectory>
                 </artifactItem>
               </artifactItems>

@@ -12,90 +12,6 @@
   <name>SwitchYard: Eclipse Tools Core Plugin</name>
   <description>Provides core SwitchYard functionality for use by Eclipse plugins.</description>
 
-  <dependencies>
-    <!-- Core -->
-    <dependency>
-      <groupId>org.switchyard</groupId>
-      <artifactId>switchyard-api</artifactId>
-      <version>${version.switchyard.runtime}</version>
-    </dependency>
-    <dependency>
-    	<groupId>org.switchyard</groupId>
-    	<artifactId>switchyard-extensions-wsdl</artifactId>
-    	<version>${version.switchyard.runtime}</version>
-    </dependency>
-    <dependency>
-      <groupId>org.switchyard</groupId>
-      <artifactId>switchyard-common</artifactId>
-      <version>${version.switchyard.runtime}</version>
-    </dependency>
-    <dependency>
-      <groupId>org.switchyard</groupId>
-      <artifactId>switchyard-config</artifactId>
-      <version>${version.switchyard.runtime}</version>
-    </dependency>
-    <dependency>
-      <groupId>org.switchyard</groupId>
-      <artifactId>switchyard-transform</artifactId>
-      <version>${version.switchyard.runtime}</version>
-    </dependency>
-    <dependency>
-      <groupId>org.switchyard</groupId>
-      <artifactId>switchyard-validate</artifactId>
-      <version>${version.switchyard.runtime}</version>
-    </dependency>
-    <!-- Components -->
-    <dependency>
-      <groupId>org.switchyard.components</groupId>
-      <artifactId>switchyard-component-bean</artifactId>
-      <version>${version.switchyard.runtime}</version>
-    </dependency>
-    <dependency>
-      <groupId>org.switchyard.components</groupId>
-      <artifactId>switchyard-component-bpel</artifactId>
-      <version>${version.switchyard.runtime}</version>
-    </dependency>
-    <dependency>
-      <groupId>org.switchyard.components</groupId>
-      <artifactId>switchyard-component-bpm</artifactId>
-      <version>${version.switchyard.runtime}</version>
-    </dependency>
-    <dependency>
-      <groupId>org.switchyard.components</groupId>
-      <artifactId>switchyard-component-camel</artifactId>
-      <version>${version.switchyard.runtime}</version>
-    </dependency>
-    <dependency>
-      <groupId>org.switchyard.components</groupId>
-      <artifactId>switchyard-component-clojure</artifactId>
-      <version>${version.switchyard.runtime}</version>
-    </dependency>
-    <dependency>
-      <groupId>org.switchyard.components</groupId>
-      <artifactId>switchyard-component-common-rules</artifactId>
-      <version>${version.switchyard.runtime}</version>
-    </dependency>
-    <dependency>
-      <groupId>org.switchyard.components</groupId>
-      <artifactId>switchyard-component-hornetq</artifactId>
-      <version>${version.switchyard.runtime}</version>
-    </dependency>
-    <dependency>
-      <groupId>org.switchyard.components</groupId>
-      <artifactId>switchyard-component-rules</artifactId>
-      <version>${version.switchyard.runtime}</version>
-    </dependency>
-    <dependency>
-      <groupId>org.switchyard.components</groupId>
-      <artifactId>switchyard-component-soap</artifactId>
-      <version>${version.switchyard.runtime}</version>
-    </dependency>
-    <dependency>
-      <groupId>org.apache.camel</groupId>
-      <artifactId>camel-core</artifactId>
-    </dependency>
-  </dependencies>
-
   <build>
     <plugins>
       <plugin>
@@ -106,13 +22,94 @@
             <id>copy-switchyard-core</id>
             <phase>process-sources</phase>
             <goals>
-              <goal>copy-dependencies</goal>
+              <goal>copy</goal>
             </goals>
             <configuration>
               <stripVersion>true</stripVersion>
-              <excludeTransitive>true</excludeTransitive>
-              <excludeScope>system</excludeScope>
               <outputDirectory>lib</outputDirectory>
+              <artifactItems>
+                <!-- Core -->
+                <artifactItem>
+                  <groupId>org.switchyard</groupId>
+                  <artifactId>switchyard-api</artifactId>
+                  <version>${version.switchyard.runtime}</version>
+                </artifactItem>
+                <artifactItem>
+                  <groupId>org.switchyard</groupId>
+                  <artifactId>switchyard-extensions-wsdl</artifactId>
+                  <version>${version.switchyard.runtime}</version>
+                </artifactItem>
+                <artifactItem>
+                  <groupId>org.switchyard</groupId>
+                  <artifactId>switchyard-common</artifactId>
+                  <version>${version.switchyard.runtime}</version>
+                </artifactItem>
+                <artifactItem>
+                  <groupId>org.switchyard</groupId>
+                  <artifactId>switchyard-config</artifactId>
+                  <version>${version.switchyard.runtime}</version>
+                </artifactItem>
+                <artifactItem>
+                  <groupId>org.switchyard</groupId>
+                  <artifactId>switchyard-transform</artifactId>
+                  <version>${version.switchyard.runtime}</version>
+                </artifactItem>
+                <artifactItem>
+                  <groupId>org.switchyard</groupId>
+                  <artifactId>switchyard-validate</artifactId>
+                  <version>${version.switchyard.runtime}</version>
+                </artifactItem>
+                <!-- Components -->
+                <artifactItem>
+                  <groupId>org.switchyard.components</groupId>
+                  <artifactId>switchyard-component-bean</artifactId>
+                  <version>${version.switchyard.runtime}</version>
+                </artifactItem>
+                <artifactItem>
+                  <groupId>org.switchyard.components</groupId>
+                  <artifactId>switchyard-component-bpel</artifactId>
+                  <version>${version.switchyard.runtime}</version>
+                </artifactItem>
+                <artifactItem>
+                  <groupId>org.switchyard.components</groupId>
+                  <artifactId>switchyard-component-bpm</artifactId>
+                  <version>${version.switchyard.runtime}</version>
+                </artifactItem>
+                <artifactItem>
+                  <groupId>org.switchyard.components</groupId>
+                  <artifactId>switchyard-component-camel</artifactId>
+                  <version>${version.switchyard.runtime}</version>
+                </artifactItem>
+                <artifactItem>
+                  <groupId>org.switchyard.components</groupId>
+                  <artifactId>switchyard-component-clojure</artifactId>
+                  <version>${version.switchyard.runtime}</version>
+                </artifactItem>
+                <artifactItem>
+                  <groupId>org.switchyard.components</groupId>
+                  <artifactId>switchyard-component-common-rules</artifactId>
+                  <version>${version.switchyard.runtime}</version>
+                </artifactItem>
+                <artifactItem>
+                  <groupId>org.switchyard.components</groupId>
+                  <artifactId>switchyard-component-hornetq</artifactId>
+                  <version>${version.switchyard.runtime}</version>
+                </artifactItem>
+                <artifactItem>
+                  <groupId>org.switchyard.components</groupId>
+                  <artifactId>switchyard-component-rules</artifactId>
+                  <version>${version.switchyard.runtime}</version>
+                </artifactItem>
+                <artifactItem>
+                  <groupId>org.switchyard.components</groupId>
+                  <artifactId>switchyard-component-soap</artifactId>
+                  <version>${version.switchyard.runtime}</version>
+                </artifactItem>
+                <artifactItem>
+                  <groupId>org.apache.camel</groupId>
+                  <artifactId>camel-core</artifactId>
+                </artifactItem>
+              </artifactItems>
             </configuration>
           </execution>
         </executions>
