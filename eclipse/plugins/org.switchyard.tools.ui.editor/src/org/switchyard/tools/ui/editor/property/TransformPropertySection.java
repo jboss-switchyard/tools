@@ -541,14 +541,14 @@ public class TransformPropertySection extends GFPropertySection implements ITabb
     }
 
     /**
-     * This class contains constants for the PlayerTable application
+     * This class contains constants for the table
      */
 
     final class ColumnConst {
         // Column constants
-        public static final int COLUMN_TO = 0;
+        public static final int COLUMN_TO = 1;
 
-        public static final int COLUMN_FROM = 1;
+        public static final int COLUMN_FROM = 0;
         
         public static final int COLUMN_TYPE = 2;
 
