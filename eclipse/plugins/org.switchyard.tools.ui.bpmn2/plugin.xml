@@ -62,6 +62,8 @@
 							<property name="dataInputRefs" ref="ioSpecification/dataInputs#2"/>
 						</value>
 					</property>
+					<property name="outputSets">
+					</property>
 				</value>
 			</property>
 			<property name="dataInputAssociations">
