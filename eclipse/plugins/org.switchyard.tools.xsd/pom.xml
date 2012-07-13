@@ -25,7 +25,7 @@
             <id>unpack-schema-resources</id>
             <phase>generate-resources</phase>
             <goals>
-              <goal>unpack-dependencies</goal>
+              <goal>unpack</goal>
             </goals>
             <configuration>
               <outputDirectory>schema</outputDirectory>
