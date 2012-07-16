@@ -45,8 +45,8 @@
       </releases>
     </repository>
     <repository>
-      <id>jbosstools-nightly</id>
-      <url>http://download.jboss.org/jbosstools/updates/nightly/core/trunk/</url>
+      <id>jbosstools-stable-indigo</id>
+      <url>http://download.jboss.org/jbosstools/updates/stable/indigo/</url>
       <layout>p2</layout>
       <snapshots>
         <enabled>true</enabled>
@@ -92,6 +92,30 @@
     <repository>
       <id>bpel-editor-update-site</id>
       <url>http://download.eclipse.org/bpel/site/</url>
+      <layout>p2</layout>
+      <snapshots>
+        <enabled>true</enabled>
+      </snapshots>
+      <releases>
+        <enabled>true</enabled>
+      </releases>
+    </repository>
+    <!-- provides ...emf.validation.ocl -->
+    <repository>
+      <id>emf-update-site</id>
+      <url>http://download.eclipse.org/modeling/emf/updates/releases/</url>
+      <layout>p2</layout>
+      <snapshots>
+        <enabled>true</enabled>
+      </snapshots>
+      <releases>
+        <enabled>true</enabled>
+      </releases>
+    </repository>
+    <!-- provides ..emf.ocl -->
+    <repository>
+      <id>mdt-update-site</id>
+      <url>http://download.eclipse.org/modeling/mdt/updates/</url>
       <layout>p2</layout>
       <snapshots>
         <enabled>true</enabled>
