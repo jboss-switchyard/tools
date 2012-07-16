@@ -4,7 +4,7 @@
   <parent>
     <groupId>org.switchyard.tools</groupId>
     <artifactId>switchyard-tools-eclipse-plugins</artifactId>
-    <version>0.5.0-SNAPSHOT</version>
+    <version>0.6.0-SNAPSHOT</version>
     <relativePath>../pom.xml</relativePath>
   </parent>
   <artifactId>org.switchyard.tools.cxf</artifactId>
@@ -43,22 +43,22 @@
       <dependency>
         <groupId>org.apache.cxf</groupId>
         <artifactId>cxf-tools-java2ws</artifactId>
-        <version>2.4.6</version>
+        <version>${version.cxf}</version>
       </dependency>
       <dependency>
         <artifactId>cxf-api</artifactId>
         <groupId>org.apache.cxf</groupId>
-        <version>2.4.6</version>
+        <version>${version.cxf}</version>
       </dependency>
       <dependency>
         <artifactId>cxf-rt-frontend-jaxws</artifactId>
         <groupId>org.apache.cxf</groupId>
-        <version>2.4.6</version>
+        <version>${version.cxf}</version>
       </dependency>
       <dependency>
         <artifactId>cxf-rt-bindings-soap</artifactId>
         <groupId>org.apache.cxf</groupId>
-        <version>2.4.6</version>
+        <version>${version.cxf}</version>
       </dependency>
     </dependencies>
   </dependencyManagement>
