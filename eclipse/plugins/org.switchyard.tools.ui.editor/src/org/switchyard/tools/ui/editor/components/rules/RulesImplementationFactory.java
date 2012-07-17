@@ -10,8 +10,8 @@
  ************************************************************************************/
 package org.switchyard.tools.ui.editor.components.rules;
 
-import org.switchyard.tools.ui.editor.diagram.component.wizards.IImplementationWizard;
 import org.switchyard.tools.ui.editor.diagram.implementation.BaseImplementationFactory;
+import org.switchyard.tools.ui.editor.diagram.implementation.IImplementationWizard;
 
 /**
  * RulesImplementationFactory

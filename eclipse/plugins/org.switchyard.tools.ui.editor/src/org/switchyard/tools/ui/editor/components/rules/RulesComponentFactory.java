@@ -16,7 +16,7 @@ import org.eclipse.soa.sca.sca1_1.model.sca.Implementation;
 import org.switchyard.tools.models.switchyard1_0.rules.ResourceType;
 import org.switchyard.tools.models.switchyard1_0.rules.RulesImplementationType;
 import org.switchyard.tools.ui.editor.diagram.component.BaseComponentFactory;
-import org.switchyard.tools.ui.editor.diagram.component.wizards.IComponentWizard;
+import org.switchyard.tools.ui.editor.diagram.component.IComponentWizard;
 
 /**
  * RulesComponentFactory

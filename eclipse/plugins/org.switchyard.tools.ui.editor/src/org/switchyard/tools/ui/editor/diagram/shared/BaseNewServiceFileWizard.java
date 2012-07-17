@@ -52,7 +52,7 @@ import org.switchyard.tools.ui.JavaUtil;
 import org.switchyard.tools.ui.common.ContractControl;
 import org.switchyard.tools.ui.common.InterfaceControl.InterfaceType;
 import org.switchyard.tools.ui.editor.Activator;
-import org.switchyard.tools.ui.editor.diagram.component.wizards.IComponentWizard;
+import org.switchyard.tools.ui.editor.diagram.component.IComponentWizard;
 
 /**
  * BaseNewServiceFileWizard

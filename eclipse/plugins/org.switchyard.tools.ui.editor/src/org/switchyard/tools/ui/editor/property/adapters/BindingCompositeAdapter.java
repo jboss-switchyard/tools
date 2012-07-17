@@ -26,19 +26,19 @@ import org.switchyard.tools.models.switchyard1_0.camel.CamelQuartzBindingType;
 import org.switchyard.tools.models.switchyard1_0.camel.CamelSqlBindingType;
 import org.switchyard.tools.models.switchyard1_0.jca.JCABinding;
 import org.switchyard.tools.models.switchyard1_0.soap.SOAPBindingType;
+import org.switchyard.tools.ui.editor.components.camel.file.CamelFileConsumerComposite;
+import org.switchyard.tools.ui.editor.components.camel.file.CamelFileProducerComposite;
+import org.switchyard.tools.ui.editor.components.camel.ftp.CamelFTPConsumerComposite;
+import org.switchyard.tools.ui.editor.components.camel.ftp.CamelFTPProducerComposite;
+import org.switchyard.tools.ui.editor.components.camel.jms.CamelJmsComposite;
+import org.switchyard.tools.ui.editor.components.camel.netty.CamelNettyTCPComposite;
+import org.switchyard.tools.ui.editor.components.camel.netty.CamelNettyUDPComposite;
+import org.switchyard.tools.ui.editor.components.camel.quartz.CamelQuartzComposite;
+import org.switchyard.tools.ui.editor.components.camel.sql.CamelSQLComposite;
+import org.switchyard.tools.ui.editor.components.jca.JCABindingInboundComposite;
+import org.switchyard.tools.ui.editor.components.jca.JCABindingOutboundComposite;
+import org.switchyard.tools.ui.editor.components.soap.SOAPBindingComposite;
 import org.switchyard.tools.ui.editor.diagram.shared.AbstractSwitchyardComposite;
-import org.switchyard.tools.ui.editor.diagram.shared.CamelFTPConsumerComposite;
-import org.switchyard.tools.ui.editor.diagram.shared.CamelFTPProducerComposite;
-import org.switchyard.tools.ui.editor.diagram.shared.CamelFileConsumerComposite;
-import org.switchyard.tools.ui.editor.diagram.shared.CamelFileProducerComposite;
-import org.switchyard.tools.ui.editor.diagram.shared.CamelJmsComposite;
-import org.switchyard.tools.ui.editor.diagram.shared.CamelNettyTCPComposite;
-import org.switchyard.tools.ui.editor.diagram.shared.CamelNettyUDPComposite;
-import org.switchyard.tools.ui.editor.diagram.shared.CamelQuartzComposite;
-import org.switchyard.tools.ui.editor.diagram.shared.CamelSQLComposite;
-import org.switchyard.tools.ui.editor.diagram.shared.JCABindingInboundComposite;
-import org.switchyard.tools.ui.editor.diagram.shared.JCABindingOutboundComposite;
-import org.switchyard.tools.ui.editor.diagram.shared.SOAPBindingComposite;
 
 /**
  * @author bfitzpat

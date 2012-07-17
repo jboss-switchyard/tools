@@ -18,7 +18,7 @@ import org.eclipse.soa.sca.sca1_1.model.sca.ComponentReference;
 import org.eclipse.soa.sca.sca1_1.model.sca.ComponentService;
 import org.eclipse.soa.sca.sca1_1.model.sca.Implementation;
 import org.switchyard.tools.models.switchyard1_0.rules.RulesImplementationType;
-import org.switchyard.tools.ui.editor.diagram.component.wizards.IImplementationWizard;
+import org.switchyard.tools.ui.editor.diagram.implementation.IImplementationWizard;
 import org.switchyard.tools.ui.editor.diagram.internal.wizards.LinkedWizardBase;
 
 /**

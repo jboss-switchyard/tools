@@ -14,7 +14,6 @@ import org.eclipse.soa.sca.sca1_1.model.sca.Component;
 import org.eclipse.soa.sca.sca1_1.model.sca.Composite;
 import org.eclipse.soa.sca.sca1_1.model.sca.ScaFactory;
 import org.eclipse.swt.widgets.Shell;
-import org.switchyard.tools.ui.editor.diagram.component.wizards.IComponentWizard;
 
 /**
  * AbstractComponentFactory

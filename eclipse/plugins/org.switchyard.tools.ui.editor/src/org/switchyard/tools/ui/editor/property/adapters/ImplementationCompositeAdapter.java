@@ -15,10 +15,10 @@ package org.switchyard.tools.ui.editor.property.adapters;
 import org.eclipse.emf.ecore.EObject;
 import org.switchyard.tools.models.switchyard1_0.bean.BeanImplementationType;
 import org.switchyard.tools.models.switchyard1_0.camel.CamelImplementationType;
+import org.switchyard.tools.ui.editor.components.bean.BeanImplementationComposite;
+import org.switchyard.tools.ui.editor.components.camel.java.CamelJavaRouteComposite;
+import org.switchyard.tools.ui.editor.components.camel.xml.CamelXMLRouteComposite;
 import org.switchyard.tools.ui.editor.diagram.shared.AbstractSwitchyardComposite;
-import org.switchyard.tools.ui.editor.diagram.shared.BeanImplementationComposite;
-import org.switchyard.tools.ui.editor.diagram.shared.CamelJavaRouteComposite;
-import org.switchyard.tools.ui.editor.diagram.shared.CamelXMLRouteComposite;
 
 /**
  * @author bfitzpat
