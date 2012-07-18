@@ -19,6 +19,7 @@
   <foreignModel>component.camel.ecore</foreignModel>
   <foreignModel>camel-spring.ecore</foreignModel>
   <foreignModel>component.jca.ecore</foreignModel>
+  <foreignModel>component.resteasy.ecore</foreignModel>
   <genPackages prefix="Bean" basePackage="org.switchyard.tools.models.switchyard1_0"
       disposableProviderFactory="true" contentTypeIdentifier="" fileExtensions=""
       ecorePackage="component.bean.ecore#/">
@@ -629,6 +630,7 @@
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference component.camel.ecore#//DocumentRoot/bindingNettyUDP"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference component.camel.ecore#//DocumentRoot/bindingNettyTCP"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference component.camel.ecore#//DocumentRoot/bindingQuartz"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference component.camel.ecore#//DocumentRoot/bindingSql"/>
     </genClasses>
     <genClasses image="false" ecoreClass="component.camel.ecore#//CamelRemoteBindingType">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute component.camel.ecore#//CamelRemoteBindingType/host"/>
@@ -713,115 +715,11 @@
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute component.camel.ecore#//CamelQuartzBindingType/startTime"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute component.camel.ecore#//CamelQuartzBindingType/endTime"/>
     </genClasses>
-  </genPackages>
-  <genPackages prefix="Jca" basePackage="org.switchyard.tools.models.switchyard1_0"
-      disposableProviderFactory="true" fileExtensions="" ecorePackage="component.jca.ecore#/">
-    <genEnums typeSafeEnumCompatible="false" ecoreEnum="component.jca.ecore#//JCACreateResource">
-      <genEnumLiterals ecoreEnumLiteral="component.jca.ecore#//JCACreateResource/always"/>
-      <genEnumLiterals ecoreEnumLiteral="component.jca.ecore#//JCACreateResource/never"/>
-      <genEnumLiterals ecoreEnumLiteral="component.jca.ecore#//JCACreateResource/ifNotExist"/>
-    </genEnums>
-    <genEnums typeSafeEnumCompatible="false" ecoreEnum="component.jca.ecore#//ResAuth">
-      <genEnumLiterals ecoreEnumLiteral="component.jca.ecore#//ResAuth/container"/>
-      <genEnumLiterals ecoreEnumLiteral="component.jca.ecore#//ResAuth/application"/>
-    </genEnums>
-    <genDataTypes ecoreDataType="component.jca.ecore#//JCACreateResourceObject"/>
-    <genDataTypes ecoreDataType="component.jca.ecore#//ResAuthObject"/>
-    <genClasses ecoreClass="component.jca.ecore#//ActivationSpec">
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference component.jca.ecore#//ActivationSpec/property"/>
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EAttribute component.jca.ecore#//ActivationSpec/any"/>
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute component.jca.ecore#//ActivationSpec/create"/>
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute component.jca.ecore#//ActivationSpec/jndiName"/>
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute component.jca.ecore#//ActivationSpec/type"/>
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EAttribute component.jca.ecore#//ActivationSpec/anyAttribute"/>
-    </genClasses>
-    <genClasses ecoreClass="component.jca.ecore#//Connection">
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference component.jca.ecore#//Connection/property"/>
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EAttribute component.jca.ecore#//Connection/any"/>
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute component.jca.ecore#//Connection/create"/>
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute component.jca.ecore#//Connection/jndiName"/>
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute component.jca.ecore#//Connection/type"/>
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EAttribute component.jca.ecore#//Connection/anyAttribute"/>
-    </genClasses>
-    <genClasses ecoreClass="component.jca.ecore#//ConnectionSpec">
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference component.jca.ecore#//ConnectionSpec/property"/>
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EAttribute component.jca.ecore#//ConnectionSpec/any"/>
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute component.jca.ecore#//ConnectionSpec/type"/>
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EAttribute component.jca.ecore#//ConnectionSpec/anyAttribute"/>
-    </genClasses>
-    <genClasses ecoreClass="component.jca.ecore#//DocumentRoot">
-      <genFeatures property="None" notify="false" createChild="false" ecoreFeature="ecore:EAttribute component.jca.ecore#//DocumentRoot/mixed"/>
-      <genFeatures property="None" notify="false" createChild="false" ecoreFeature="ecore:EReference component.jca.ecore#//DocumentRoot/xMLNSPrefixMap"/>
-      <genFeatures property="None" notify="false" createChild="false" ecoreFeature="ecore:EReference component.jca.ecore#//DocumentRoot/xSISchemaLocation"/>
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference component.jca.ecore#//DocumentRoot/bindingJca"/>
-    </genClasses>
-    <genClasses ecoreClass="component.jca.ecore#//InboundOperation">
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EAttribute component.jca.ecore#//InboundOperation/any"/>
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute component.jca.ecore#//InboundOperation/name"/>
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute component.jca.ecore#//InboundOperation/selectedOperation"/>
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EAttribute component.jca.ecore#//InboundOperation/anyAttribute"/>
-    </genClasses>
-    <genClasses ecoreClass="component.jca.ecore#//InteractionSpec">
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference component.jca.ecore#//InteractionSpec/property"/>
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EAttribute component.jca.ecore#//InteractionSpec/any"/>
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute component.jca.ecore#//InteractionSpec/type"/>
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EAttribute component.jca.ecore#//InteractionSpec/anyAttribute"/>
-    </genClasses>
-    <genClasses ecoreClass="component.jca.ecore#//JCABinding">
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute component.jca.ecore#//JCABinding/contextMapper"/>
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute component.jca.ecore#//JCABinding/messageComposer"/>
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference component.jca.ecore#//JCABinding/outboundConnection"/>
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference component.jca.ecore#//JCABinding/inboundConnection"/>
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference component.jca.ecore#//JCABinding/outboundInteraction"/>
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference component.jca.ecore#//JCABinding/inboundInteraction"/>
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference component.jca.ecore#//JCABinding/property"/>
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute component.jca.ecore#//JCABinding/extensions"/>
-    </genClasses>
-    <genClasses ecoreClass="component.jca.ecore#//JCAInboundConnection">
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference component.jca.ecore#//JCAInboundConnection/resourceAdapter"/>
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference component.jca.ecore#//JCAInboundConnection/activationSpec"/>
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EAttribute component.jca.ecore#//JCAInboundConnection/any"/>
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EAttribute component.jca.ecore#//JCAInboundConnection/anyAttribute"/>
-    </genClasses>
-    <genClasses ecoreClass="component.jca.ecore#//JCAInboundInteraction">
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute component.jca.ecore#//JCAInboundInteraction/listener"/>
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference component.jca.ecore#//JCAInboundInteraction/inboundOperation"/>
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute component.jca.ecore#//JCAInboundInteraction/endpointClass"/>
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute component.jca.ecore#//JCAInboundInteraction/transacted"/>
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EAttribute component.jca.ecore#//JCAInboundInteraction/any"/>
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EAttribute component.jca.ecore#//JCAInboundInteraction/anyAttribute"/>
-    </genClasses>
-    <genClasses ecoreClass="component.jca.ecore#//JCAOutboundConnection">
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference component.jca.ecore#//JCAOutboundConnection/resourceAdapter"/>
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference component.jca.ecore#//JCAOutboundConnection/connection"/>
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute component.jca.ecore#//JCAOutboundConnection/resAuth"/>
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EAttribute component.jca.ecore#//JCAOutboundConnection/any"/>
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute component.jca.ecore#//JCAOutboundConnection/managed"/>
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EAttribute component.jca.ecore#//JCAOutboundConnection/anyAttribute"/>
-    </genClasses>
-    <genClasses ecoreClass="component.jca.ecore#//JCAOutboundInteraction">
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference component.jca.ecore#//JCAOutboundInteraction/connectionSpec"/>
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference component.jca.ecore#//JCAOutboundInteraction/interactionSpec"/>
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference component.jca.ecore#//JCAOutboundInteraction/operation"/>
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EAttribute component.jca.ecore#//JCAOutboundInteraction/any"/>
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EAttribute component.jca.ecore#//JCAOutboundInteraction/anyAttribute"/>
-    </genClasses>
-    <genClasses ecoreClass="component.jca.ecore#//Operation">
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference component.jca.ecore#//Operation/interactionSpec"/>
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EAttribute component.jca.ecore#//Operation/any"/>
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute component.jca.ecore#//Operation/name"/>
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EAttribute component.jca.ecore#//Operation/anyAttribute"/>
-    </genClasses>
-    <genClasses ecoreClass="component.jca.ecore#//Property">
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute component.jca.ecore#//Property/name"/>
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute component.jca.ecore#//Property/value"/>
-    </genClasses>
-    <genClasses ecoreClass="component.jca.ecore#//ResourceAdapter">
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference component.jca.ecore#//ResourceAdapter/property"/>
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EAttribute component.jca.ecore#//ResourceAdapter/any"/>
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute component.jca.ecore#//ResourceAdapter/name"/>
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute component.jca.ecore#//ResourceAdapter/type"/>
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EAttribute component.jca.ecore#//ResourceAdapter/anyAttribute"/>
+    <genClasses ecoreClass="component.camel.ecore#//CamelSqlBindingType">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute component.camel.ecore#//CamelSqlBindingType/query"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute component.camel.ecore#//CamelSqlBindingType/dataSourceRef"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute component.camel.ecore#//CamelSqlBindingType/batch"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute component.camel.ecore#//CamelSqlBindingType/placeholder"/>
     </genClasses>
   </genPackages>
   <genPackages prefix="Spring" basePackage="org.switchyard.tools.models.switchyard1_0"
@@ -2576,6 +2474,145 @@
     </genClasses>
     <genClasses ecoreClass="camel-spring.ecore#//ZipDataFormat">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute camel-spring.ecore#//ZipDataFormat/compressionLevel"/>
+    </genClasses>
+  </genPackages>
+  <genPackages prefix="Jca" basePackage="org.switchyard.tools.models.switchyard1_0"
+      disposableProviderFactory="true" fileExtensions="" ecorePackage="component.jca.ecore#/">
+    <genEnums typeSafeEnumCompatible="false" ecoreEnum="component.jca.ecore#//JCACreateResource">
+      <genEnumLiterals ecoreEnumLiteral="component.jca.ecore#//JCACreateResource/always"/>
+      <genEnumLiterals ecoreEnumLiteral="component.jca.ecore#//JCACreateResource/never"/>
+      <genEnumLiterals ecoreEnumLiteral="component.jca.ecore#//JCACreateResource/ifNotExist"/>
+    </genEnums>
+    <genEnums typeSafeEnumCompatible="false" ecoreEnum="component.jca.ecore#//ResAuth">
+      <genEnumLiterals ecoreEnumLiteral="component.jca.ecore#//ResAuth/container"/>
+      <genEnumLiterals ecoreEnumLiteral="component.jca.ecore#//ResAuth/application"/>
+    </genEnums>
+    <genDataTypes ecoreDataType="component.jca.ecore#//JCACreateResourceObject"/>
+    <genDataTypes ecoreDataType="component.jca.ecore#//ResAuthObject"/>
+    <genClasses ecoreClass="component.jca.ecore#//ActivationSpec">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference component.jca.ecore#//ActivationSpec/property"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EAttribute component.jca.ecore#//ActivationSpec/any"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute component.jca.ecore#//ActivationSpec/create"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute component.jca.ecore#//ActivationSpec/jndiName"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute component.jca.ecore#//ActivationSpec/type"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EAttribute component.jca.ecore#//ActivationSpec/anyAttribute"/>
+    </genClasses>
+    <genClasses ecoreClass="component.jca.ecore#//Connection">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference component.jca.ecore#//Connection/property"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EAttribute component.jca.ecore#//Connection/any"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute component.jca.ecore#//Connection/create"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute component.jca.ecore#//Connection/jndiName"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute component.jca.ecore#//Connection/type"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EAttribute component.jca.ecore#//Connection/anyAttribute"/>
+    </genClasses>
+    <genClasses ecoreClass="component.jca.ecore#//ConnectionSpec">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference component.jca.ecore#//ConnectionSpec/property"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EAttribute component.jca.ecore#//ConnectionSpec/any"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute component.jca.ecore#//ConnectionSpec/type"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EAttribute component.jca.ecore#//ConnectionSpec/anyAttribute"/>
+    </genClasses>
+    <genClasses ecoreClass="component.jca.ecore#//DocumentRoot">
+      <genFeatures property="None" notify="false" createChild="false" ecoreFeature="ecore:EAttribute component.jca.ecore#//DocumentRoot/mixed"/>
+      <genFeatures property="None" notify="false" createChild="false" ecoreFeature="ecore:EReference component.jca.ecore#//DocumentRoot/xMLNSPrefixMap"/>
+      <genFeatures property="None" notify="false" createChild="false" ecoreFeature="ecore:EReference component.jca.ecore#//DocumentRoot/xSISchemaLocation"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference component.jca.ecore#//DocumentRoot/bindingJca"/>
+    </genClasses>
+    <genClasses ecoreClass="component.jca.ecore#//InboundOperation">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EAttribute component.jca.ecore#//InboundOperation/any"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute component.jca.ecore#//InboundOperation/name"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute component.jca.ecore#//InboundOperation/selectedOperation"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EAttribute component.jca.ecore#//InboundOperation/anyAttribute"/>
+    </genClasses>
+    <genClasses ecoreClass="component.jca.ecore#//InteractionSpec">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference component.jca.ecore#//InteractionSpec/property"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EAttribute component.jca.ecore#//InteractionSpec/any"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute component.jca.ecore#//InteractionSpec/type"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EAttribute component.jca.ecore#//InteractionSpec/anyAttribute"/>
+    </genClasses>
+    <genClasses ecoreClass="component.jca.ecore#//JCABinding">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute component.jca.ecore#//JCABinding/jndiURL"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute component.jca.ecore#//JCABinding/initialContextFactory"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EReference component.jca.ecore#//JCABinding/contextMapper"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EReference component.jca.ecore#//JCABinding/messageComposer"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference component.jca.ecore#//JCABinding/outboundConnection"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference component.jca.ecore#//JCABinding/inboundConnection"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference component.jca.ecore#//JCABinding/inboundInteraction"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference component.jca.ecore#//JCABinding/outboundInteraction"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference component.jca.ecore#//JCABinding/property"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute component.jca.ecore#//JCABinding/extensions"/>
+    </genClasses>
+    <genClasses ecoreClass="component.jca.ecore#//JCAInboundConnection">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference component.jca.ecore#//JCAInboundConnection/resourceAdapter"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference component.jca.ecore#//JCAInboundConnection/activationSpec"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EAttribute component.jca.ecore#//JCAInboundConnection/any"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EAttribute component.jca.ecore#//JCAInboundConnection/anyAttribute"/>
+    </genClasses>
+    <genClasses ecoreClass="component.jca.ecore#//JCAInboundInteraction">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute component.jca.ecore#//JCAInboundInteraction/listener"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference component.jca.ecore#//JCAInboundInteraction/inboundOperation"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference component.jca.ecore#//JCAInboundInteraction/endpoint"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute component.jca.ecore#//JCAInboundInteraction/transacted"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EAttribute component.jca.ecore#//JCAInboundInteraction/any"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EAttribute component.jca.ecore#//JCAInboundInteraction/anyAttribute"/>
+    </genClasses>
+    <genClasses ecoreClass="component.jca.ecore#//JCAOutboundConnection">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference component.jca.ecore#//JCAOutboundConnection/resourceAdapter"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference component.jca.ecore#//JCAOutboundConnection/connection"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute component.jca.ecore#//JCAOutboundConnection/resAuth"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EAttribute component.jca.ecore#//JCAOutboundConnection/any"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute component.jca.ecore#//JCAOutboundConnection/managed"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EAttribute component.jca.ecore#//JCAOutboundConnection/anyAttribute"/>
+    </genClasses>
+    <genClasses ecoreClass="component.jca.ecore#//JCAOutboundInteraction">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference component.jca.ecore#//JCAOutboundInteraction/connectionSpec"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference component.jca.ecore#//JCAOutboundInteraction/interactionSpec"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference component.jca.ecore#//JCAOutboundInteraction/operation"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference component.jca.ecore#//JCAOutboundInteraction/processor"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EAttribute component.jca.ecore#//JCAOutboundInteraction/any"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EAttribute component.jca.ecore#//JCAOutboundInteraction/anyAttribute"/>
+    </genClasses>
+    <genClasses ecoreClass="component.jca.ecore#//Operation">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference component.jca.ecore#//Operation/interactionSpec"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EAttribute component.jca.ecore#//Operation/any"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute component.jca.ecore#//Operation/name"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EAttribute component.jca.ecore#//Operation/anyAttribute"/>
+    </genClasses>
+    <genClasses ecoreClass="component.jca.ecore#//Property">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute component.jca.ecore#//Property/name"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute component.jca.ecore#//Property/value"/>
+    </genClasses>
+    <genClasses ecoreClass="component.jca.ecore#//ResourceAdapter">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference component.jca.ecore#//ResourceAdapter/property"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EAttribute component.jca.ecore#//ResourceAdapter/any"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute component.jca.ecore#//ResourceAdapter/name"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute component.jca.ecore#//ResourceAdapter/type"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EAttribute component.jca.ecore#//ResourceAdapter/anyAttribute"/>
+    </genClasses>
+    <genClasses ecoreClass="component.jca.ecore#//Processor">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference component.jca.ecore#//Processor/property"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EAttribute component.jca.ecore#//Processor/any"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute component.jca.ecore#//Processor/type"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EAttribute component.jca.ecore#//Processor/anyAttribute"/>
+    </genClasses>
+    <genClasses ecoreClass="component.jca.ecore#//Endpoint">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference component.jca.ecore#//Endpoint/property"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EAttribute component.jca.ecore#//Endpoint/any"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute component.jca.ecore#//Endpoint/type"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EAttribute component.jca.ecore#//Endpoint/anyAttribute"/>
+    </genClasses>
+  </genPackages>
+  <genPackages prefix="Resteasy" basePackage="org.switchyard.tools.models.switchyard1_0"
+      resource="XML" disposableProviderFactory="true" ecorePackage="component.resteasy.ecore#/">
+    <genClasses ecoreClass="component.resteasy.ecore#//RESTBindingType">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute component.resteasy.ecore#//RESTBindingType/interfaces"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute component.resteasy.ecore#//RESTBindingType/address"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute component.resteasy.ecore#//RESTBindingType/contextPath"/>
+    </genClasses>
+    <genClasses ecoreClass="component.resteasy.ecore#//DocumentRoot">
+      <genFeatures property="None" notify="false" createChild="false" ecoreFeature="ecore:EAttribute component.resteasy.ecore#//DocumentRoot/mixed"/>
+      <genFeatures property="None" notify="false" createChild="false" ecoreFeature="ecore:EReference component.resteasy.ecore#//DocumentRoot/xMLNSPrefixMap"/>
+      <genFeatures property="None" notify="false" createChild="false" ecoreFeature="ecore:EReference component.resteasy.ecore#//DocumentRoot/xSISchemaLocation"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference component.resteasy.ecore#//DocumentRoot/bindingREST"/>
     </genClasses>
   </genPackages>
 </genmodel:GenModel>

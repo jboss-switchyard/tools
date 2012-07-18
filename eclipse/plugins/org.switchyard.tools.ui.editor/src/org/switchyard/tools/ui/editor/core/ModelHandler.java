@@ -71,6 +71,7 @@ import org.switchyard.tools.models.switchyard1_0.commonrules.CommonRulesPackage;
 import org.switchyard.tools.models.switchyard1_0.hornetq.BindingType;
 import org.switchyard.tools.models.switchyard1_0.hornetq.HornetQPackage;
 import org.switchyard.tools.models.switchyard1_0.jca.JCABinding;
+import org.switchyard.tools.models.switchyard1_0.resteasy.RESTBindingType;
 import org.switchyard.tools.models.switchyard1_0.rules.RulesPackage;
 import org.switchyard.tools.models.switchyard1_0.soap.SOAPBindingType;
 import org.switchyard.tools.models.switchyard1_0.soap.SOAPFactory;
@@ -711,6 +712,8 @@ public class ModelHandler {
             return "SQL";
         } else if (binding instanceof JCABinding) {
             return "JCA";
+        } else if (binding instanceof RESTBindingType) {
+            return "RESTeasy";
         } else {
             return "Unsupported (" + binding.eClass().getClass().getName() + ")";
         }

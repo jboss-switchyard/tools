@@ -25,6 +25,7 @@ import org.switchyard.tools.models.switchyard1_0.camel.CamelNettyUdpBindingType;
 import org.switchyard.tools.models.switchyard1_0.camel.CamelQuartzBindingType;
 import org.switchyard.tools.models.switchyard1_0.camel.CamelSqlBindingType;
 import org.switchyard.tools.models.switchyard1_0.jca.JCABinding;
+import org.switchyard.tools.models.switchyard1_0.resteasy.RESTBindingType;
 import org.switchyard.tools.models.switchyard1_0.soap.SOAPBindingType;
 import org.switchyard.tools.ui.editor.components.camel.file.CamelFileConsumerComposite;
 import org.switchyard.tools.ui.editor.components.camel.file.CamelFileProducerComposite;
@@ -37,6 +38,7 @@ import org.switchyard.tools.ui.editor.components.camel.quartz.CamelQuartzComposi
 import org.switchyard.tools.ui.editor.components.camel.sql.CamelSQLComposite;
 import org.switchyard.tools.ui.editor.components.jca.JCABindingInboundComposite;
 import org.switchyard.tools.ui.editor.components.jca.JCABindingOutboundComposite;
+import org.switchyard.tools.ui.editor.components.resteasy.ResteasyBindingComposite;
 import org.switchyard.tools.ui.editor.components.soap.SOAPBindingComposite;
 import org.switchyard.tools.ui.editor.diagram.shared.AbstractSwitchyardComposite;
 
@@ -107,6 +109,11 @@ public final class BindingCompositeAdapter {
             GridData wsdlGD = new GridData(SWT.FILL, SWT.FILL, true, true);
             composite.setRootGridData(wsdlGD);
             ((CamelJmsComposite) composite).setTargetObject(object.eContainer());
+        } else if (object instanceof RESTBindingType) {
+            composite = new ResteasyBindingComposite();
+            GridData wsdlGD = new GridData(SWT.FILL, SWT.FILL, true, true);
+            composite.setRootGridData(wsdlGD);
+            ((ResteasyBindingComposite) composite).setTargetObject(object.eContainer());
         } else if (object instanceof JCABinding) {
             JCABinding binding = (JCABinding) object;
             if (binding.eContainer() instanceof Service) {

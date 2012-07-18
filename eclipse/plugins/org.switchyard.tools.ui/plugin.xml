@@ -615,6 +615,21 @@
            </artifactId>
         </dependency>
      </component>
+     <component
+           id="org.switchyard.components:switchyard-component-resteasy"
+           name="RESTeasy">
+        <description>
+           Provides support for RESTeasy based gateways.
+        </description>
+        <dependency>
+           <groupId>
+              org.switchyard.components
+           </groupId>
+           <artifactId>
+              switchyard-component-common-rest
+           </artifactId>
+        </dependency>
+     </component>
      <!--
      <component
            id="org.switchyard.components:switchyard-component-rules"

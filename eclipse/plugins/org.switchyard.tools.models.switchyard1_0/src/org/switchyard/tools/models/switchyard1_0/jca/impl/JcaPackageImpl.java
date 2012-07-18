@@ -68,6 +68,8 @@ import org.switchyard.tools.models.switchyard1_0.jca.Property;
 import org.switchyard.tools.models.switchyard1_0.jca.ResAuth;
 import org.switchyard.tools.models.switchyard1_0.jca.ResourceAdapter;
 
+import org.switchyard.tools.models.switchyard1_0.resteasy.ResteasyPackage;
+import org.switchyard.tools.models.switchyard1_0.resteasy.impl.ResteasyPackageImpl;
 import org.switchyard.tools.models.switchyard1_0.rules.RulesPackage;
 
 import org.switchyard.tools.models.switchyard1_0.rules.impl.RulesPackageImpl;
@@ -303,6 +305,7 @@ public class JcaPackageImpl extends EPackageImpl implements JcaPackage {
         ValidatePackageImpl theValidatePackage = (ValidatePackageImpl)(EPackage.Registry.INSTANCE.getEPackage(ValidatePackage.eNS_URI) instanceof ValidatePackageImpl ? EPackage.Registry.INSTANCE.getEPackage(ValidatePackage.eNS_URI) : ValidatePackage.eINSTANCE);
         CamelPackageImpl theCamelPackage = (CamelPackageImpl)(EPackage.Registry.INSTANCE.getEPackage(CamelPackage.eNS_URI) instanceof CamelPackageImpl ? EPackage.Registry.INSTANCE.getEPackage(CamelPackage.eNS_URI) : CamelPackage.eINSTANCE);
         SpringPackageImpl theSpringPackage = (SpringPackageImpl)(EPackage.Registry.INSTANCE.getEPackage(SpringPackage.eNS_URI) instanceof SpringPackageImpl ? EPackage.Registry.INSTANCE.getEPackage(SpringPackage.eNS_URI) : SpringPackage.eINSTANCE);
+        ResteasyPackageImpl theResteasyPackage = (ResteasyPackageImpl)(EPackage.Registry.INSTANCE.getEPackage(ResteasyPackage.eNS_URI) instanceof ResteasyPackageImpl ? EPackage.Registry.INSTANCE.getEPackage(ResteasyPackage.eNS_URI) : ResteasyPackage.eINSTANCE);
 
         // Load packages
         theSpringPackage.loadPackage();
@@ -321,6 +324,7 @@ public class JcaPackageImpl extends EPackageImpl implements JcaPackage {
         theTransformPackage.createPackageContents();
         theValidatePackage.createPackageContents();
         theCamelPackage.createPackageContents();
+        theResteasyPackage.createPackageContents();
 
         // Initialize created meta-data
         theJcaPackage.initializePackageContents();
@@ -336,6 +340,7 @@ public class JcaPackageImpl extends EPackageImpl implements JcaPackage {
         theTransformPackage.initializePackageContents();
         theValidatePackage.initializePackageContents();
         theCamelPackage.initializePackageContents();
+        theResteasyPackage.initializePackageContents();
 
         // Fix loaded packages
         theSpringPackage.fixPackageContents();

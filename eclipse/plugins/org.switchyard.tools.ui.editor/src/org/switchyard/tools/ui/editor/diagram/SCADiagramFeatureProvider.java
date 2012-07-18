@@ -69,6 +69,7 @@ import org.switchyard.tools.ui.editor.components.camel.sql.CamelSqlBindingFactor
 import org.switchyard.tools.ui.editor.components.camel.xml.CamelXMLComponentFactory;
 import org.switchyard.tools.ui.editor.components.camel.xml.CamelXMLImplementationFactory;
 import org.switchyard.tools.ui.editor.components.jca.JCABindingFactory;
+import org.switchyard.tools.ui.editor.components.resteasy.ResteasyBindingFactory;
 import org.switchyard.tools.ui.editor.components.rules.RulesComponentFactory;
 import org.switchyard.tools.ui.editor.components.rules.RulesImplementationFactory;
 import org.switchyard.tools.ui.editor.components.soap.SOAPBindingFactory;
@@ -252,6 +253,8 @@ public class SCADiagramFeatureProvider extends DefaultFeatureProvider {
                 "A Camel Netty TCP based endpoint."));
         features.add(new CreateBindingFeature(this, new CamelNettyUDPBindingFactory(), "Netty UDP",
                 "A Camel Netty UDP based endpoint."));
+        features.add(new CreateBindingFeature(this, new ResteasyBindingFactory(), "RESTeasy",
+                "A RESTeasy based endpoint."));
         features.add(new CreateBindingFeature(this, new CamelQuartzBindingFactory(), "Scheduling",
                 "A Camel Scheduling based endpoint."));
         features.add(new CreateBindingFeature(this, new SOAPBindingFactory(), "SOAP", "A SOAP based endpoint."));
