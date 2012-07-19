@@ -38,7 +38,7 @@ public class ContextMapperTypeImpl extends org.switchyard.tools.models.switchyar
      * @generated
      * @ordered
      */
-    protected static final SoapHeadersType SOAP_HEADERS_TYPE_EDEFAULT = SoapHeadersType.CONFIG;
+    protected static final SoapHeadersType SOAP_HEADERS_TYPE_EDEFAULT = SoapHeadersType.VALUE;
 
     /**
      * The cached value of the '{@link #getSoapHeadersType() <em>Soap Headers Type</em>}' attribute.

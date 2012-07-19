@@ -79,7 +79,7 @@ public class SOAPBindingComposite extends AbstractSwitchyardComposite implements
     private SOAPBindingType _binding = null;
     private Text _mWSDLSocketText;
     private String _bindingSocket = null;
-    private Combo _contextMappingCombo = null;
+    private Combo _soapHeadersTypeCombo = null;
     private Text _contextPathText = null;
     private Button _unwrappedPayloadCheckbox = null;
     private Text _portNameText = null;
@@ -145,7 +145,7 @@ public class SOAPBindingComposite extends AbstractSwitchyardComposite implements
         _mWSDLURIText.setLayoutData(uriGD);
 
         _browseBtnWorkspace = new Button(_panel, SWT.PUSH);
-        _browseBtnWorkspace.setText("Workspace...");
+        _browseBtnWorkspace.setText("Browse...");
         _browseBtnWorkspace.setEnabled(canEdit());
         GridData btnGD = new GridData();
         _browseBtnWorkspace.setLayoutData(btnGD);
@@ -187,15 +187,15 @@ public class SOAPBindingComposite extends AbstractSwitchyardComposite implements
         upChxGD.horizontalSpan = 3;
         _unwrappedPayloadCheckbox.setLayoutData(upChxGD);
        
-        _contextMappingCombo = createLabelAndCombo(_panel, "Context Mapping", true);
+        _soapHeadersTypeCombo = createLabelAndCombo(_panel, "SOAP Headers Type", true);
         GridData cmcGD = new GridData(GridData.FILL_HORIZONTAL);
         cmcGD.horizontalSpan = 2;
-        _contextMappingCombo.setLayoutData(cmcGD);
+        _soapHeadersTypeCombo.setLayoutData(cmcGD);
         
         for (int i = 0; i < SoapHeadersType.values().length; i++) {
-            _contextMappingCombo.add(SoapHeadersType.get(i).getLiteral(), i);
+            _soapHeadersTypeCombo.add(SoapHeadersType.get(i).getLiteral(), i);
         }
-        _contextMappingCombo.select(SoapHeadersType.VALUE_VALUE);
+        _soapHeadersTypeCombo.select(SoapHeadersType.VALUE_VALUE);
     }
 
     protected void handleModify(Control control) {
@@ -247,8 +247,8 @@ public class SOAPBindingComposite extends AbstractSwitchyardComposite implements
                         _binding.setSocketAddr(_bindingSocket);
                     }
                 }
-            } else if (control.equals(_contextMappingCombo)) {
-                final SoapHeadersType mapperValue = SoapHeadersType.getByName(_contextMappingCombo.getText());
+            } else if (control.equals(_soapHeadersTypeCombo)) {
+                final SoapHeadersType mapperValue = SoapHeadersType.getByName(_soapHeadersTypeCombo.getText());
                 if (domain != null) {
                     domain.getCommandStack().execute(new RecordingCommand(domain) {
                         @Override
@@ -437,8 +437,8 @@ public class SOAPBindingComposite extends AbstractSwitchyardComposite implements
             }
             if (_binding.getContextMapper() != null) {
                 int index = _binding.getContextMapper().getSoapHeadersType().getValue();
-                if (_contextMappingCombo != null && !_contextMappingCombo.isDisposed()) {
-                    _contextMappingCombo.select(index);
+                if (_soapHeadersTypeCombo != null && !_soapHeadersTypeCombo.isDisposed()) {
+                    _soapHeadersTypeCombo.select(index);
                 }
             }
             setInUpdate(false);
@@ -542,8 +542,8 @@ public class SOAPBindingComposite extends AbstractSwitchyardComposite implements
         if (this._unwrappedPayloadCheckbox != null && !this._unwrappedPayloadCheckbox.isDisposed()) {
             this._unwrappedPayloadCheckbox.setEnabled(canEdit());
         }
-        if (this._contextMappingCombo != null && !this._contextMappingCombo.isDisposed()) {
-            this._contextMappingCombo.setEnabled(canEdit());
+        if (this._soapHeadersTypeCombo != null && !this._soapHeadersTypeCombo.isDisposed()) {
+            this._soapHeadersTypeCombo.setEnabled(canEdit());
         }
     }
 
@@ -611,10 +611,10 @@ public class SOAPBindingComposite extends AbstractSwitchyardComposite implements
                         MessageComposerType mct = (MessageComposerType) _binding.getMessageComposer();
                         _unwrappedPayloadCheckbox.setSelection(mct.isUnwrapped());
                     }
-                } else if (control.equals(_contextMappingCombo)) {
+                } else if (control.equals(_soapHeadersTypeCombo)) {
                     int index = _binding.getContextMapper().getSoapHeadersType().getValue();
-                    if (_contextMappingCombo != null && !_contextMappingCombo.isDisposed()) {
-                        _contextMappingCombo.select(index);
+                    if (_soapHeadersTypeCombo != null && !_soapHeadersTypeCombo.isDisposed()) {
+                        _soapHeadersTypeCombo.select(index);
                     }
                 }
             }
