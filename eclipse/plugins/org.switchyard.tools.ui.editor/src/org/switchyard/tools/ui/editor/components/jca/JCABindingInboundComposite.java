@@ -24,9 +24,11 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.transaction.RecordingCommand;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
+import org.eclipse.graphiti.mm.pictograms.PictogramElement;
 import org.eclipse.jdt.core.IJavaProject;
 import org.eclipse.jdt.core.JavaCore;
 import org.eclipse.soa.sca.sca1_1.model.sca.Binding;
+import org.eclipse.soa.sca.sca1_1.model.sca.Service;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.events.FocusEvent;
 import org.eclipse.swt.events.KeyEvent;
@@ -56,6 +58,7 @@ import org.switchyard.tools.ui.common.ClasspathResourceSelectionDialog;
 import org.switchyard.tools.ui.editor.diagram.shared.AbstractSwitchyardComposite;
 import org.switchyard.tools.ui.editor.diagram.shared.IBindingComposite;
 import org.switchyard.tools.ui.editor.impl.SwitchyardSCAEditor;
+import org.switchyard.tools.ui.editor.util.InterfaceOpsUtil;
 
 /**
  * @author bfitzpat
@@ -71,6 +74,8 @@ public class JCABindingInboundComposite extends AbstractSwitchyardComposite impl
     private Combo _endpointMappingTypeCombo;
     private Object _targetObj = null;
     private Button _transactedButton;
+    private Combo _operationSelectionCombo;
+
     private enum ENDPOINT_MAPPING_TYPE {
         JMSENDPOINT, CCIENDPOINT
     }
@@ -103,10 +108,19 @@ public class JCABindingInboundComposite extends AbstractSwitchyardComposite impl
                     if (interaction.getEndpoint() != null) {
                         String className = interaction.getEndpoint().getType();
                         className = className.substring(className.lastIndexOf('.') + 1);
-                        _endpointMappingTypeCombo.setText(className);
+                        if (className.equalsIgnoreCase("jmsendpoint")) {
+                            _endpointMappingTypeCombo.select(ENDPOINT_MAPPING_TYPE.JMSENDPOINT.ordinal());
+                        } else if (className.equalsIgnoreCase("cciendpoint")) {
+                            _endpointMappingTypeCombo.select(ENDPOINT_MAPPING_TYPE.CCIENDPOINT.ordinal());
+                        }
                     }
                     if (interaction.isTransacted()) {
                         _transactedButton.setSelection(interaction.isTransacted());
+                    }
+                    populateOperationCombo();
+                    if (interaction.getInboundOperation() != null && interaction.getInboundOperation().size() > 0) {
+                        InboundOperation inboundOp = (InboundOperation) interaction.getInboundOperation().get(0);
+                        _operationSelectionCombo.setText(inboundOp.getSelectedOperation());
                     }
                 }
             }
@@ -207,6 +221,13 @@ public class JCABindingInboundComposite extends AbstractSwitchyardComposite impl
 
         _transactedButton = createCheckbox(inboundInteractionGroup, "Transacted");
         
+        Group opGroup = new Group(inboundInteractionGroup, SWT.NONE);
+        GridData opGroupGD = new GridData(SWT.FILL, SWT.FILL, true, true, 2, 1);
+        opGroup.setLayoutData(opGroupGD);
+        opGroup.setLayout(new GridLayout(2, false));
+        opGroup.setText("Inbound Operation Options");
+        _operationSelectionCombo = createLabelAndCombo(opGroup, "Operation");
+        populateOperationCombo();
 
         return composite;
     }
@@ -294,6 +315,33 @@ public class JCABindingInboundComposite extends AbstractSwitchyardComposite impl
                 }
                 setFeatureValue(_binding.getInboundInteraction(), "transacted", Boolean.valueOf(_transactedButton.getSelection()));
             }
+        } else if (control.equals(_operationSelectionCombo)) {
+            if (_binding.eContainer() != null && domain != null) {
+                domain.getCommandStack().execute(new RecordingCommand(domain) {
+                    @Override
+                    protected void doExecute() {
+                        if (_binding.getInboundInteraction() == null) {
+                            JCAInboundInteraction interaction = JcaFactory.eINSTANCE.createJCAInboundInteraction();
+                            setFeatureValue(_binding, "inboundInteraction", interaction);
+                        }
+                        if (_binding.getInboundInteraction().getInboundOperation() == null || _binding.getInboundInteraction().getInboundOperation().size() == 0) {
+                            _binding.getInboundInteraction().getInboundOperation().add(JcaFactory.eINSTANCE.createInboundOperation());
+                        }
+                        setFeatureValue(_binding.getInboundInteraction().getInboundOperation().get(0), "name", _operationSelectionCombo.getText().trim());
+                        setFeatureValue(_binding.getInboundInteraction().getInboundOperation().get(0), "selectedOperation", _operationSelectionCombo.getText().trim());
+                    }
+                });
+            } else {
+                if (_binding.getInboundInteraction() == null) {
+                    JCAInboundInteraction interaction = JcaFactory.eINSTANCE.createJCAInboundInteraction();
+                    setFeatureValue(_binding, "inboundInteraction", interaction);
+                }
+                if (_binding.getInboundInteraction().getInboundOperation() == null || _binding.getInboundInteraction().getInboundOperation().size() == 0) {
+                    _binding.getInboundInteraction().getInboundOperation().add(JcaFactory.eINSTANCE.createInboundOperation());
+                }
+                setFeatureValue(_binding.getInboundInteraction().getInboundOperation().get(0), "name", _operationSelectionCombo.getText().trim());
+                setFeatureValue(_binding.getInboundInteraction().getInboundOperation().get(0), "selectedOperation", _operationSelectionCombo.getText().trim());
+            }
         }
         setHasChanged(false);
     }
@@ -306,18 +354,18 @@ public class JCABindingInboundComposite extends AbstractSwitchyardComposite impl
         JCAInboundInteraction interaction = _binding.getInboundInteraction();
         ENDPOINT_MAPPING_TYPE type = (ENDPOINT_MAPPING_TYPE) _endpointMappingTypeCombo.getData(_endpointMappingTypeCombo.getText());
         String listener = null;
-        String inboundOpName = null;
+//        String inboundOpName = null;
         String endpointClass = null;
         boolean foundEndpoint = true;
         switch (type) {
             case JMSENDPOINT:
                 listener = "javax.jms.MessageListener";
-                inboundOpName = "onMessage";
+//                inboundOpName = "onMessage";
                 endpointClass = "org.switchyard.component.jca.endpoint.JMSEndpoint";
                 break;
             case CCIENDPOINT:
                 listener = "javax.resource.cci.MessageListener";
-                inboundOpName = "onMessage";
+//                inboundOpName = "onMessage";
                 endpointClass = "org.switchyard.component.jca.endpoint.CCIEndpoint";
                 break;
             default:
@@ -336,8 +384,8 @@ public class JCABindingInboundComposite extends AbstractSwitchyardComposite impl
             } else {
                 operation = interaction.getInboundOperation().get(0);
             }
-            operation.setName(inboundOpName);
-            operation.setSelectedOperation(inboundOpName);
+//            operation.setName(inboundOpName);
+//            operation.setSelectedOperation(inboundOpName);
             if (interaction.getEndpoint() == null) {
                 Endpoint endpoint = JcaFactory.eINSTANCE.createEndpoint();
                 endpoint.setType(endpointClass);
@@ -376,6 +424,15 @@ public class JCABindingInboundComposite extends AbstractSwitchyardComposite impl
                 Control control = (Control) e.getSource();
                  if (control.equals(_resourceAdapterText)) {
                      _resourceAdapterText.setText(_binding.getInboundConnection().getResourceAdapter().getName());
+                 } else if (control.equals(_operationSelectionCombo)) {
+                    if (this._binding.getInboundInteraction() != null
+                            && this._binding.getInboundInteraction().getInboundOperation() != null
+                            && this._binding.getInboundInteraction().getInboundOperation().size() > 0) {
+                         populateOperationCombo();
+                         InboundOperation camelOpSelector = (InboundOperation) this._binding
+                                 .getInboundInteraction().getInboundOperation().get(0);
+                         _operationSelectionCombo.setText(camelOpSelector.getName());
+                     }
                 }
             }
             setInUpdate(false);
@@ -406,5 +463,33 @@ public class JCABindingInboundComposite extends AbstractSwitchyardComposite impl
             }
         }
         return null;
+    }
+
+    private void populateOperationCombo() {
+        if (_operationSelectionCombo != null && !_operationSelectionCombo.isDisposed()) {
+            _operationSelectionCombo.removeAll();
+            _operationSelectionCombo.clearSelection();
+
+            if (_targetObj == null) {
+                @SuppressWarnings("restriction")
+                PictogramElement[] pes = 
+                        SwitchyardSCAEditor.getActiveEditor().getSelectedPictogramElements();
+                if (pes.length > 0) {
+                    @SuppressWarnings("restriction")
+                    Object bo = SwitchyardSCAEditor.getActiveEditor().
+                        getDiagramTypeProvider().getFeatureProvider().
+                           getBusinessObjectForPictogramElement(pes[0]);
+                    if (bo instanceof Service) {
+                        _targetObj = bo;
+                    }
+                }
+            }
+            if (_targetObj != null && _targetObj instanceof Service) {
+                String[] operations = InterfaceOpsUtil.gatherOperations((Service) _targetObj);
+                for (int i = 0; i < operations.length; i++) {
+                    _operationSelectionCombo.add(operations[i]);
+                }
+            }
+        }
     }
 }

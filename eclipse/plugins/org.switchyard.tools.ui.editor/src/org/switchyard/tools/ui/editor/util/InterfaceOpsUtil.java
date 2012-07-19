@@ -105,20 +105,22 @@ public final class InterfaceOpsUtil {
         list.add("");
         final IResource javafile = (IResource) Platform.getAdapterManager().loadAdapter(intfc, 
                 IResource.class.getCanonicalName());
-        IProject project = javafile.getProject();
-        String classToFind = intfc.getInterface();
-        IJavaProject javaProject = JavaCore.create(project);
-        try {
-            IType findType = javaProject.findType(classToFind);
-            if (findType != null) {
-                IMethod[] methods = findType.getMethods();
-                for (int i = 0; i < methods.length; i++) {
-                    IMethod method = methods[i];
-                    list.add(method.getElementName());
+        if (javafile != null && javafile.getProject() != null) {
+            IProject project = javafile.getProject();
+            String classToFind = intfc.getInterface();
+            IJavaProject javaProject = JavaCore.create(project);
+            try {
+                IType findType = javaProject.findType(classToFind);
+                if (findType != null) {
+                    IMethod[] methods = findType.getMethods();
+                    for (int i = 0; i < methods.length; i++) {
+                        IMethod method = methods[i];
+                        list.add(method.getElementName());
+                    }
                 }
+            } catch (JavaModelException e1) {
+                e1.fillInStackTrace();
             }
-        } catch (JavaModelException e1) {
-            e1.fillInStackTrace();
         }
         return list.toArray(new String[list.size()]);
     }
