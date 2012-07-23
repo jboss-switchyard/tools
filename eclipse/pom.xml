@@ -57,7 +57,7 @@
     </repository>
     <repository>
       <id>graphiti-update-site</id>
-      <url>http://download.eclipse.org/graphiti/updates/0.8.2/</url>
+      <url>http://download.eclipse.org/graphiti/updates/0.9.0/</url>
       <layout>p2</layout>
       <snapshots>
         <enabled>true</enabled>
@@ -69,7 +69,7 @@
     <!-- The following provide dependencies required by the bpmn2 plugin. -->
     <repository>
       <id>bpmn2-model-update-site</id>
-      <url>https://hudson.eclipse.org/hudson/job/bpmn2-nightly/ws/org.eclipse.bpmn2.site/target/site</url>
+      <url>https://hudson.eclipse.org/hudson/job/bpmn2-nightly/lastSuccessfulBuild/artifact/org.eclipse.bpmn2.site/target/site/</url>
       <layout>p2</layout>
       <snapshots>
         <enabled>true</enabled>
@@ -114,8 +114,8 @@
     </repository>
     <!-- provides ..emf.ocl -->
     <repository>
-      <id>mdt-update-site</id>
-      <url>http://download.eclipse.org/modeling/mdt/updates/</url>
+      <id>mdt-ocl-update-site</id>
+      <url>http://download.eclipse.org/modeling/mdt/ocl/updates/</url>
       <layout>p2</layout>
       <snapshots>
         <enabled>true</enabled>

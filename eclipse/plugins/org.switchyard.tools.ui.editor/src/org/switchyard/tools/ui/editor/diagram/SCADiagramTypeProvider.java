@@ -39,4 +39,14 @@ public class SCADiagramTypeProvider extends AbstractDiagramTypeProvider {
         return _toolBehaviorProviders;
     }
 
+    @Override
+    public boolean isAutoUpdateAtStartup() {
+        return true;
+    }
+
+    @Override
+    public boolean isAutoUpdateAtReset() {
+        return true;
+    }
+
 }

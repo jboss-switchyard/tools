@@ -40,6 +40,7 @@ import org.eclipse.graphiti.features.context.IUpdateContext;
 import org.eclipse.graphiti.features.context.impl.AddConnectionContext;
 import org.eclipse.graphiti.features.custom.ICustomFeature;
 import org.eclipse.graphiti.mm.pictograms.ContainerShape;
+import org.eclipse.graphiti.mm.pictograms.Diagram;
 import org.eclipse.graphiti.mm.pictograms.PictogramElement;
 import org.eclipse.graphiti.mm.pictograms.Shape;
 import org.eclipse.graphiti.ui.features.DefaultFeatureProvider;
@@ -245,8 +246,7 @@ public class SCADiagramFeatureProvider extends DefaultFeatureProvider {
         features.add(new CreateBindingFeature(this, new CamelFileBindingFactory(), "File",
                 "A Camel File based endpoint."));
         features.add(new CreateBindingFeature(this, new CamelFTPBindingFactory(), "FTP", "A Camel FTP based endpoint."));
-        features.add(new CreateBindingFeature(this, new JCABindingFactory(), "JCA", 
-                "A JCA based endpoint."));
+        features.add(new CreateBindingFeature(this, new JCABindingFactory(), "JCA", "A JCA based endpoint."));
         features.add(new CreateBindingFeature(this, new CamelJmsBindingFactory(), "JMS", "A Camel JMS based endpoint."));
         features.add(new CreateBindingFeature(this, new CamelNettyTCPBindingFactory(), "Netty TCP",
                 "A Camel Netty TCP based endpoint."));
@@ -272,7 +272,9 @@ public class SCADiagramFeatureProvider extends DefaultFeatureProvider {
     @Override
     public IUpdateFeature getUpdateFeature(IUpdateContext context) {
         PictogramElement pictogramElement = context.getPictogramElement();
-        if (pictogramElement instanceof ContainerShape) {
+        if (pictogramElement instanceof Diagram) {
+            return new UpdateDiagramFeature(this);
+        } else if (pictogramElement instanceof ContainerShape) {
             Object bo = getBusinessObjectForPictogramElement(pictogramElement);
             if (bo instanceof Composite) {
                 return new SCADiagramUpdateCompositeFeature(this);

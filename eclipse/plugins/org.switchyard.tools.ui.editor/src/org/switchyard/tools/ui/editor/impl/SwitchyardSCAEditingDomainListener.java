@@ -33,7 +33,6 @@ public class SwitchyardSCAEditingDomainListener extends TransactionalEditingDoma
      */
     public SwitchyardSCAEditingDomainListener(SwitchyardSCAEditor switchyardSCAEditor) {
         super();
-        @SuppressWarnings("restriction")
         TransactionalEditingDomain editingDomain = switchyardSCAEditor.getEditingDomain();
         TransactionalCommandStack stack = (TransactionalCommandStack) editingDomain.getCommandStack();
         stack.setExceptionHandler(this);

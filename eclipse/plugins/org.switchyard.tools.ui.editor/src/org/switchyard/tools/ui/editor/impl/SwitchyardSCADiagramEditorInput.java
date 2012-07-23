@@ -32,7 +32,7 @@ public final class SwitchyardSCADiagramEditorInput extends DiagramEditorInput {
      * @param providerId editor provider id
      */
     SwitchyardSCADiagramEditorInput(URI diagramUri, TransactionalEditingDomain domain, String providerId) {
-        super(diagramUri, domain, providerId);
+        super(diagramUri, providerId);
         this._domain = domain;
     }
 

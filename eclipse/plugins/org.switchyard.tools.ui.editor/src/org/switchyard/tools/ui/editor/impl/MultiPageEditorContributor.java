@@ -12,19 +12,12 @@
  ******************************************************************************/
 package org.switchyard.tools.ui.editor.impl;
 
-import org.eclipse.jface.action.Action;
+import org.eclipse.gef.ui.actions.ActionRegistry;
+import org.eclipse.graphiti.ui.editor.DiagramEditor;
 import org.eclipse.jface.action.IAction;
-import org.eclipse.jface.action.IMenuManager;
-import org.eclipse.jface.action.IToolBarManager;
-import org.eclipse.jface.action.MenuManager;
-import org.eclipse.jface.action.Separator;
-import org.eclipse.jface.dialogs.MessageDialog;
 import org.eclipse.ui.IActionBars;
 import org.eclipse.ui.IEditorPart;
-import org.eclipse.ui.IWorkbenchActionConstants;
-import org.eclipse.ui.PlatformUI;
 import org.eclipse.ui.actions.ActionFactory;
-import org.eclipse.ui.ide.IDE;
 import org.eclipse.ui.ide.IDEActionFactory;
 import org.eclipse.ui.part.MultiPageEditorActionBarContributor;
 import org.eclipse.ui.texteditor.ITextEditor;
@@ -38,14 +31,12 @@ import org.eclipse.ui.texteditor.ITextEditorActionConstants;
  */
 public class MultiPageEditorContributor extends MultiPageEditorActionBarContributor {
     private IEditorPart _activeEditorPart;
-    private Action _sampleAction;
 
     /**
      * Creates a multi-page contributor.
      */
     public MultiPageEditorContributor() {
         super();
-        createActions();
     }
 
     /**
@@ -53,8 +44,14 @@ public class MultiPageEditorContributor extends MultiPageEditorActionBarContribu
      * 
      * @return IAction or null if editor is null.
      */
-    protected IAction getAction(ITextEditor editor, String actionID) {
-        return (editor == null ? null : editor.getAction(actionID));
+    protected IAction getAction(IEditorPart editor, String actionID) {
+        if (editor instanceof ITextEditor) {
+            return ((ITextEditor) editor).getAction(actionID);
+        } else if (editor instanceof DiagramEditor) {
+            ActionRegistry registry = (ActionRegistry) ((DiagramEditor) editor).getAdapter(ActionRegistry.class);
+            return registry == null ? null : registry.getAction(actionID);
+        }
+        return null;
     }
 
     /*
@@ -71,59 +68,26 @@ public class MultiPageEditorContributor extends MultiPageEditorActionBarContribu
 
         IActionBars actionBars = getActionBars();
         if (actionBars != null) {
-
-            ITextEditor editor = (part instanceof ITextEditor) ? (ITextEditor) part : null;
-
             actionBars.setGlobalActionHandler(ActionFactory.DELETE.getId(),
-                    getAction(editor, ITextEditorActionConstants.DELETE));
+                    getAction(part, ITextEditorActionConstants.DELETE));
             actionBars.setGlobalActionHandler(ActionFactory.UNDO.getId(),
-                    getAction(editor, ITextEditorActionConstants.UNDO));
+                    getAction(part, ITextEditorActionConstants.UNDO));
             actionBars.setGlobalActionHandler(ActionFactory.REDO.getId(),
-                    getAction(editor, ITextEditorActionConstants.REDO));
+                    getAction(part, ITextEditorActionConstants.REDO));
             actionBars.setGlobalActionHandler(ActionFactory.CUT.getId(),
-                    getAction(editor, ITextEditorActionConstants.CUT));
+                    getAction(part, ITextEditorActionConstants.CUT));
             actionBars.setGlobalActionHandler(ActionFactory.COPY.getId(),
-                    getAction(editor, ITextEditorActionConstants.COPY));
+                    getAction(part, ITextEditorActionConstants.COPY));
             actionBars.setGlobalActionHandler(ActionFactory.PASTE.getId(),
-                    getAction(editor, ITextEditorActionConstants.PASTE));
+                    getAction(part, ITextEditorActionConstants.PASTE));
             actionBars.setGlobalActionHandler(ActionFactory.SELECT_ALL.getId(),
-                    getAction(editor, ITextEditorActionConstants.SELECT_ALL));
+                    getAction(part, ITextEditorActionConstants.SELECT_ALL));
             actionBars.setGlobalActionHandler(ActionFactory.FIND.getId(),
-                    getAction(editor, ITextEditorActionConstants.FIND));
+                    getAction(part, ITextEditorActionConstants.FIND));
             actionBars.setGlobalActionHandler(IDEActionFactory.BOOKMARK.getId(),
-                    getAction(editor, IDEActionFactory.BOOKMARK.getId()));
+                    getAction(part, IDEActionFactory.BOOKMARK.getId()));
             actionBars.updateActionBars();
         }
     }
 
-    private void createActions() {
-        _sampleAction = new Action() {
-            public void run() {
-                MessageDialog.openInformation(null, "Switchyard SCA Editor", "Sample Action Executed");
-            }
-        };
-        _sampleAction.setText("Sample Action");
-        _sampleAction.setToolTipText("Sample Action tool tip");
-        _sampleAction.setImageDescriptor(PlatformUI.getWorkbench().getSharedImages()
-                .getImageDescriptor(IDE.SharedImages.IMG_OBJS_TASK_TSK));
-    }
-
-    /* (non-Javadoc)
-     * @see org.eclipse.ui.part.EditorActionBarContributor#contributeToMenu(org.eclipse.jface.action.IMenuManager)
-     */
-    @Override
-    public void contributeToMenu(IMenuManager manager) {
-        IMenuManager menu = new MenuManager("Editor &Menu");
-        manager.prependToGroup(IWorkbenchActionConstants.MB_ADDITIONS, menu);
-        menu.add(_sampleAction);
-    }
-
-    /* (non-Javadoc)
-     * @see org.eclipse.ui.part.EditorActionBarContributor#contributeToToolBar(org.eclipse.jface.action.IToolBarManager)
-     */
-    @Override
-    public void contributeToToolBar(IToolBarManager manager) {
-        manager.add(new Separator());
-        manager.add(_sampleAction);
-    }
 }

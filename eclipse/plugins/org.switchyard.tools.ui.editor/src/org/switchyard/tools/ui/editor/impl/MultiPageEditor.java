@@ -172,11 +172,10 @@ public class MultiPageEditor extends MultiPageEditorPart implements IResourceCha
             registry.registerAction(action);
         }
 
-        @SuppressWarnings("restriction")
         @Override
         protected ContextMenuProvider createContextMenuProvider() {
             return new DiagramEditorContextMenuProvider(getGraphicalViewer(), getActionRegistry(),
-                    getConfigurationProvider()) {
+                    getDiagramTypeProvider()) {
                 @Override
                 public void buildContextMenu(IMenuManager manager) {
                     super.buildContextMenu(manager);

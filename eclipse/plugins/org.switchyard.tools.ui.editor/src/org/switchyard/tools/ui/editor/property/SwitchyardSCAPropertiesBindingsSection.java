@@ -292,11 +292,10 @@ public class SwitchyardSCAPropertiesBindingsSection extends GFPropertySection im
     private void refreshDiagram() {
         PictogramElement pe = getSelectedPictogramElement();
         if (pe != null) {
-            @SuppressWarnings("restriction")
             IDiagramTypeProvider diagramTypeProvider = SwitchyardSCAEditor.getActiveEditor().getDiagramTypeProvider();
             if (diagramTypeProvider != null) {
                 if (diagramTypeProvider.getDiagramEditor() != null) {
-                    diagramTypeProvider.getDiagramEditor().refresh(pe);
+                    diagramTypeProvider.getDiagramEditor().refreshRenderingDecorators(pe);
                 }
             }
         }
