@@ -52,6 +52,7 @@ import org.eclipse.ui.IWorkbenchPart;
 import org.eclipse.ui.PartInitException;
 import org.eclipse.ui.actions.ActionFactory;
 import org.switchyard.tools.models.switchyard1_0.switchyard.util.SwitchyardResourceFactoryImpl;
+import org.switchyard.tools.models.switchyard1_0.switchyard.util.SwitchyardResourceImpl;
 import org.switchyard.tools.ui.editor.Activator;
 import org.switchyard.tools.ui.editor.core.ModelHandler;
 import org.switchyard.tools.ui.editor.core.ModelHandlerLocator;
@@ -181,6 +182,11 @@ public class SwitchyardSCAEditor extends DiagramEditor {
 
                 // get the diagram url
                 _diagramUri = convertModelURIToDiagramURI(modelUri);
+
+                _modelHandler = ModelHandlerLocator.createModelHandler(_modelUri,
+                        (SwitchyardResourceImpl) switchYardResource);
+                ModelHandlerLocator.put(_diagramUri, _modelHandler);
+
                 // make sure the correct resource type gets created (not sure if
                 // this is necessary)
                 final Resource diagramResource = getEditingDomain().getResourceSet().createResource(_diagramUri,
