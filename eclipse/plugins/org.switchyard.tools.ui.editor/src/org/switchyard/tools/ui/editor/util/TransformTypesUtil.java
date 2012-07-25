@@ -15,6 +15,7 @@ package org.switchyard.tools.ui.editor.util;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
@@ -38,11 +39,12 @@ import org.switchyard.metadata.ServiceOperation;
 import org.switchyard.tools.models.switchyard1_0.switchyard.DocumentRoot;
 import org.switchyard.tools.models.switchyard1_0.switchyard.SwitchYardType;
 import org.switchyard.tools.models.switchyard1_0.switchyard.SwitchyardPackage;
+import org.switchyard.tools.models.switchyard1_0.switchyard.TransformType;
 import org.switchyard.tools.models.switchyard1_0.switchyard.util.SwitchyardResourceFactoryImpl;
 import org.switchyard.tools.models.switchyard1_0.switchyard.util.SwitchyardResourceImpl;
+import org.switchyard.tools.models.switchyard1_0.transform.TransformFactory;
 import org.switchyard.tools.ui.JavaUtil;
 import org.switchyard.tools.ui.SwitchYardModelUtils;
-import org.switchyard.tools.ui.editor.core.ModelHandler;
 import org.switchyard.tools.ui.editor.impl.SwitchyardSCAEditor;
 
 /**
@@ -161,7 +163,7 @@ public final class TransformTypesUtil {
 
         // Obtain a new resource set
         ResourceSet resourceSet = new ResourceSetImpl();
-        ModelHandler.registerPackages(resourceSet);
+        SwitchyardSCAEditor.registerPackages(resourceSet);
 
         URI modelUri = URI.createPlatformResourceURI(file.getFullPath().toString(), true);
         // Get the resource
@@ -185,4 +187,26 @@ public final class TransformTypesUtil {
         return null;
     }
 
+    /**
+     * @return list of supported transform types
+     */
+    public static List<TransformType> getSupportedTransformTypes() {
+        ArrayList<TransformType> typeList = new ArrayList<TransformType>();
+
+        TransformType jaxbType = TransformFactory.eINSTANCE.createJAXBTransformType();
+        typeList.add(jaxbType);
+
+        TransformType xsltType = TransformFactory.eINSTANCE.createXsltTransformType();
+        typeList.add(xsltType);
+
+        TransformType smooksType = TransformFactory.eINSTANCE.createSmooksTransformType1();
+        typeList.add(smooksType);
+
+        TransformType jsonType = TransformFactory.eINSTANCE.createJsonTransformType();
+        typeList.add(jsonType);
+
+        TransformType javaType = TransformFactory.eINSTANCE.createJavaTransformType1();
+        typeList.add(javaType);
+        return typeList;
+    }
 }

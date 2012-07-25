@@ -44,6 +44,7 @@ import org.eclipse.graphiti.ui.editor.DiagramEditor;
 import org.eclipse.graphiti.ui.internal.services.GraphitiUiInternal;
 import org.eclipse.jface.action.IAction;
 import org.eclipse.jface.viewers.ISelection;
+import org.eclipse.soa.sca.sca1_1.model.sca.ScaPackage;
 import org.eclipse.ui.IEditorInput;
 import org.eclipse.ui.IEditorReference;
 import org.eclipse.ui.IEditorSite;
@@ -51,11 +52,20 @@ import org.eclipse.ui.IWorkbenchPage;
 import org.eclipse.ui.IWorkbenchPart;
 import org.eclipse.ui.PartInitException;
 import org.eclipse.ui.actions.ActionFactory;
+import org.open.oasis.docs.ns.opencsa.sca.bpel.BPELPackage;
+import org.switchyard.tools.models.switchyard1_0.bean.BeanPackage;
+import org.switchyard.tools.models.switchyard1_0.bpm.BPMPackage;
+import org.switchyard.tools.models.switchyard1_0.camel.CamelPackage;
+import org.switchyard.tools.models.switchyard1_0.clojure.ClojurePackage;
+import org.switchyard.tools.models.switchyard1_0.commonrules.CommonRulesPackage;
+import org.switchyard.tools.models.switchyard1_0.hornetq.HornetQPackage;
+import org.switchyard.tools.models.switchyard1_0.rules.RulesPackage;
+import org.switchyard.tools.models.switchyard1_0.soap.SOAPPackage;
+import org.switchyard.tools.models.switchyard1_0.switchyard.SwitchyardPackage;
 import org.switchyard.tools.models.switchyard1_0.switchyard.util.SwitchyardResourceFactoryImpl;
-import org.switchyard.tools.models.switchyard1_0.switchyard.util.SwitchyardResourceImpl;
+import org.switchyard.tools.models.switchyard1_0.transform.TransformPackage;
+import org.switchyard.tools.models.switchyard1_0.validate.ValidatePackage;
 import org.switchyard.tools.ui.editor.Activator;
-import org.switchyard.tools.ui.editor.core.ModelHandler;
-import org.switchyard.tools.ui.editor.core.ModelHandlerLocator;
 
 /**
  * @author bfitzpat
@@ -74,7 +84,6 @@ public class SwitchyardSCAEditor extends DiagramEditor {
      */
     public static final String CONTRIBUTOR_ID = "org.switchyard.tools.ui.editor.diagram.PropertyContributor";
 
-    private ModelHandler _modelHandler;
     private URI _modelUri;
     private URI _diagramUri;
 
@@ -183,10 +192,6 @@ public class SwitchyardSCAEditor extends DiagramEditor {
                 // get the diagram url
                 _diagramUri = convertModelURIToDiagramURI(modelUri);
 
-                _modelHandler = ModelHandlerLocator.createModelHandler(_modelUri,
-                        (SwitchyardResourceImpl) switchYardResource);
-                ModelHandlerLocator.put(_diagramUri, _modelHandler);
-
                 // make sure the correct resource type gets created (not sure if
                 // this is necessary)
                 final Resource diagramResource = getEditingDomain().getResourceSet().createResource(_diagramUri,
@@ -257,7 +262,7 @@ public class SwitchyardSCAEditor extends DiagramEditor {
                         .put(Resource.Factory.Registry.DEFAULT_EXTENSION, new SwitchyardResourceFactoryImpl());
 
                 // Register the package to make it available during loading.
-                ModelHandler.registerPackages(resourceSet);
+                registerPackages(resourceSet);
 
                 _editorAdapter = new SwitchyardSCAEditorAdapter();
                 resourceSet.eAdapters().add(_editorAdapter);
@@ -326,7 +331,6 @@ public class SwitchyardSCAEditor extends DiagramEditor {
         }
 
         super.dispose();
-        ModelHandlerLocator.releaseModel(_modelUri);
         // get rid of temp files and folders, button only if the workbench is
         // being shut down.
         // when the workbench is restarted, we need to have those temp files
@@ -365,9 +369,22 @@ public class SwitchyardSCAEditor extends DiagramEditor {
     }
 
     /**
-     * @return Model Handler instance
+     * @param resourceSet register all the EMF packages for the SY resource set
      */
-    public ModelHandler getModelHandler() {
-        return _modelHandler;
+    public static void registerPackages(ResourceSet resourceSet) {
+        resourceSet.getPackageRegistry().put("http://docs.oasis-open.org/ns/opencsa/sca/200912", ScaPackage.eINSTANCE);
+        resourceSet.getPackageRegistry().put("urn:switchyard-config:switchyard:1.0", SwitchyardPackage.eINSTANCE);
+        resourceSet.getPackageRegistry().put("urn:switchyard-config:transform:1.0", TransformPackage.eINSTANCE);
+        resourceSet.getPackageRegistry().put("urn:switchyard-component-bean:config:1.0", BeanPackage.eINSTANCE);
+        resourceSet.getPackageRegistry().put("urn:switchyard-config:validate:1.0", ValidatePackage.eINSTANCE);
+        resourceSet.getPackageRegistry().put("urn:switchyard-component-soap:config:1.0", SOAPPackage.eINSTANCE);
+        resourceSet.getPackageRegistry().put("urn:switchyard-component-rules:config:1.0", RulesPackage.eINSTANCE);
+        resourceSet.getPackageRegistry().put("urn:switchyard-component-hornetq:config:1.0", HornetQPackage.eINSTANCE);
+        resourceSet.getPackageRegistry().put("urn:switchyard-component-common-rules:config:1.0",
+                CommonRulesPackage.eINSTANCE);
+        resourceSet.getPackageRegistry().put("urn:switchyard-component-clojure:config:1.0", ClojurePackage.eINSTANCE);
+        resourceSet.getPackageRegistry().put("urn:switchyard-component-camel:config:1.0", CamelPackage.eINSTANCE);
+        resourceSet.getPackageRegistry().put("urn:switchyard-component-bpm:config:1.0", BPMPackage.eINSTANCE);
+        resourceSet.getPackageRegistry().put("http://docs.oasis-open.org/ns/opencsa/sca/200903", BPELPackage.eINSTANCE);
     }
 }

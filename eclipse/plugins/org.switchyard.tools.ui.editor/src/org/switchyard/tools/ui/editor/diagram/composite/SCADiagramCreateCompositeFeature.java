@@ -12,17 +12,13 @@
  ******************************************************************************/
 package org.switchyard.tools.ui.editor.diagram.composite;
 
-import java.io.IOException;
-
 import org.eclipse.graphiti.features.IFeatureProvider;
 import org.eclipse.graphiti.features.context.ICreateContext;
 import org.eclipse.graphiti.features.impl.AbstractCreateFeature;
 import org.eclipse.graphiti.mm.pictograms.Diagram;
 import org.eclipse.soa.sca.sca1_1.model.sca.Composite;
-import org.switchyard.tools.ui.editor.Activator;
+import org.eclipse.soa.sca.sca1_1.model.sca.ScaFactory;
 import org.switchyard.tools.ui.editor.ImageProvider;
-import org.switchyard.tools.ui.editor.core.ModelHandler;
-import org.switchyard.tools.ui.editor.core.ModelHandlerLocator;
 import org.switchyard.tools.ui.editor.util.ExampleUtil;
 
 /**
@@ -62,15 +58,8 @@ public class SCADiagramCreateCompositeFeature extends AbstractCreateFeature {
             return EMPTY;
         }
 
-        Composite newComposite = null;
-
-        try {
-            ModelHandler mh = ModelHandlerLocator.getModelHandler(getDiagram().eResource());
-            newComposite = mh.createComposite();
-            newComposite.setName(newCompositeName);
-        } catch (IOException e) {
-            Activator.logError(e);
-        }
+        Composite newComposite = ScaFactory.eINSTANCE.createComposite();
+        newComposite.setName(newCompositeName);
 
         // do the add
         addGraphicalRepresentation(context, newComposite);

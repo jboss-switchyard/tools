@@ -26,6 +26,7 @@ import org.eclipse.emf.transaction.RecordingCommand;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.eclipse.graphiti.mm.pictograms.PictogramElement;
 import org.eclipse.soa.sca.sca1_1.model.sca.Binding;
+import org.eclipse.soa.sca.sca1_1.model.sca.Contract;
 import org.eclipse.soa.sca.sca1_1.model.sca.Service;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.events.FocusEvent;
@@ -98,8 +99,14 @@ public class CamelQuartzComposite extends AbstractSwitchyardComposite implements
             }
             _inUpdate = false;
             if (this._binding.getCamelBindingName() == null || this._binding.getCamelBindingName().trim().isEmpty()) {
-                _nameText.setText(SwitchyardSCAEditor.getActiveEditor().getModelHandler().getRootSwitchYard().getComposite().getName());
-                handleModify(_nameText);
+                if (_targetObj != null && _targetObj instanceof Contract) {
+                    Contract contract = (Contract) _targetObj;
+                    if (contract.eContainer() != null && contract.eContainer() instanceof org.eclipse.soa.sca.sca1_1.model.sca.Composite) {
+                        org.eclipse.soa.sca.sca1_1.model.sca.Composite composite = (org.eclipse.soa.sca.sca1_1.model.sca.Composite) contract.eContainer();
+                        _nameText.setText(composite.getName());
+                        handleModify(_nameText);
+                    }
+                }
             }
             validate();
         } else {
@@ -184,10 +191,8 @@ public class CamelQuartzComposite extends AbstractSwitchyardComposite implements
             _operationSelectionCombo.clearSelection();
 
             if (_targetObj == null) {
-                @SuppressWarnings("restriction")
                 PictogramElement[] pes = SwitchyardSCAEditor.getActiveEditor().getSelectedPictogramElements();
                 if (pes.length > 0) {
-                    @SuppressWarnings("restriction")
                     Object bo = SwitchyardSCAEditor.getActiveEditor().getDiagramTypeProvider().getFeatureProvider()
                             .getBusinessObjectForPictogramElement(pes[0]);
                     if (bo instanceof Service) {
@@ -293,7 +298,6 @@ public class CamelQuartzComposite extends AbstractSwitchyardComposite implements
 
     }
 
-    @SuppressWarnings("restriction")
     protected void handleModify(final Control control) {
         TransactionalEditingDomain domain = null;
         if (_binding.eContainer() != null) {

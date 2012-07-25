@@ -28,8 +28,8 @@ import org.eclipse.swt.layout.GridLayout;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Label;
 import org.switchyard.tools.models.switchyard1_0.switchyard.TransformType;
-import org.switchyard.tools.ui.editor.core.ModelHandler;
-import org.switchyard.tools.ui.editor.impl.SwitchyardSCAEditor;
+import org.switchyard.tools.ui.editor.property.adapters.LabelAdapter;
+import org.switchyard.tools.ui.editor.util.TransformTypesUtil;
 
 /**
  * @author bfitzpat
@@ -77,13 +77,12 @@ public class AddTransformWizardStartPage extends WizardPage {
         _listViewer.getList().setLayoutData(data);
         _listViewer.getList().setFont(parent.getFont());
 
-        final ModelHandler mh = SwitchyardSCAEditor.getActiveEditor().getModelHandler();
-        List<TransformType> typeList = mh.getSupportedTransformTypes();
+        List<TransformType> typeList = TransformTypesUtil.getSupportedTransformTypes();
         // Set the label provider
         _listViewer.setLabelProvider(new LabelProvider() {
             public String getText(Object element) {
                 TransformType transform = (TransformType) element;
-                return mh.getLabelForTransformType(transform);
+                return LabelAdapter.getLabel(transform);
             }
         });
         _listViewer.setContentProvider(new IStructuredContentProvider() {

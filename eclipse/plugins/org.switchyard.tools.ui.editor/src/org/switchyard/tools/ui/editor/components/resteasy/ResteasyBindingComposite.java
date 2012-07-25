@@ -21,6 +21,7 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.transaction.RecordingCommand;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.eclipse.soa.sca.sca1_1.model.sca.Binding;
+import org.eclipse.soa.sca.sca1_1.model.sca.Contract;
 import org.eclipse.soa.sca.sca1_1.model.sca.Reference;
 import org.eclipse.soa.sca.sca1_1.model.sca.Service;
 import org.eclipse.swt.SWT;
@@ -34,7 +35,7 @@ import org.eclipse.swt.widgets.Control;
 import org.eclipse.swt.widgets.Label;
 import org.eclipse.swt.widgets.Text;
 import org.switchyard.tools.models.switchyard1_0.resteasy.RESTBindingType;
-import org.switchyard.tools.ui.editor.core.ModelHandler;
+import org.switchyard.tools.models.switchyard1_0.switchyard.SwitchYardType;
 import org.switchyard.tools.ui.editor.diagram.shared.AbstractSwitchyardComposite;
 import org.switchyard.tools.ui.editor.diagram.shared.IBindingComposite;
 import org.switchyard.tools.ui.editor.impl.SwitchyardSCAEditor;
@@ -43,7 +44,6 @@ import org.switchyard.tools.ui.editor.impl.SwitchyardSCAEditor;
  * @author bfitzpat
  * 
  */
-@SuppressWarnings("restriction")
 public class ResteasyBindingComposite extends AbstractSwitchyardComposite implements IBindingComposite {
 
     private Composite _panel;
@@ -51,7 +51,6 @@ public class ResteasyBindingComposite extends AbstractSwitchyardComposite implem
     private Text _contextPathText = null;
     private DelimitedStringList _interfacesList = null;
     private RESTBindingType _binding = null;
-    private ModelHandler _modelHandler = SwitchyardSCAEditor.getActiveEditor().getModelHandler();
     private EObject _targetObj;
 
     /**
@@ -223,8 +222,17 @@ public class ResteasyBindingComposite extends AbstractSwitchyardComposite implem
                 if (_binding.getContextPath() != null) {
                     this._contextPathText.setText(_binding.getContextPath());
                 } else {
-                    this._contextPathText.setText(_modelHandler.getRootSwitchYard().getName());
-                    handleModify(_contextPathText);
+                    if (_targetObj != null && _targetObj instanceof Contract) {
+                        Contract contract = (Contract) _targetObj;
+                        if (contract.eContainer() != null && contract.eContainer() instanceof org.eclipse.soa.sca.sca1_1.model.sca.Composite) {
+                            org.eclipse.soa.sca.sca1_1.model.sca.Composite composite = (org.eclipse.soa.sca.sca1_1.model.sca.Composite) contract.eContainer();
+                            if (composite.eContainer() != null && composite.eContainer() instanceof SwitchYardType) {
+                                SwitchYardType rootSwitchYard = (SwitchYardType) composite.eContainer();
+                                this._contextPathText.setText(rootSwitchYard.getName());
+                                handleModify(_contextPathText);
+                            }
+                        }
+                    }
                 }
             }
             if (_interfacesList != null && !_interfacesList.isDisposed()) {

@@ -35,6 +35,8 @@ import org.eclipse.emf.transaction.ResourceSetListener;
 import org.eclipse.emf.transaction.RollbackException;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.eclipse.emf.transaction.impl.TransactionalEditingDomainImpl;
+import org.eclipse.graphiti.mm.pictograms.PictogramElement;
+import org.eclipse.graphiti.services.Graphiti;
 import org.eclipse.graphiti.ui.platform.GFPropertySection;
 import org.eclipse.jface.layout.TableColumnLayout;
 import org.eclipse.jface.viewers.ColumnWeightData;
@@ -83,8 +85,8 @@ import org.switchyard.tools.models.switchyard1_0.transform.JsonTransformType;
 import org.switchyard.tools.models.switchyard1_0.transform.SmooksTransformType1;
 import org.switchyard.tools.models.switchyard1_0.transform.TransformPackage;
 import org.switchyard.tools.models.switchyard1_0.transform.XsltTransformType;
-import org.switchyard.tools.ui.editor.core.ModelHandler;
 import org.switchyard.tools.ui.editor.impl.SwitchyardSCAEditor;
+import org.switchyard.tools.ui.editor.property.adapters.LabelAdapter;
 import org.switchyard.tools.ui.editor.transform.wizards.AddTransformWizard;
 
 /**
@@ -101,7 +103,6 @@ public class TransformPropertySection extends GFPropertySection implements ITabb
     private Composite _tableComposite;
     private Button _addButton;
     private Button _removeButton;
-    private ModelHandler _modelHandler = SwitchyardSCAEditor.getActiveEditor().getModelHandler();
     private TransactionalEditingDomain _domain = null;
 
     /**
@@ -151,9 +152,27 @@ public class TransformPropertySection extends GFPropertySection implements ITabb
         }
     }
 
+    private SwitchYardType getSwitchYardRoot() {
+        PictogramElement pe = getSelectedPictogramElement();
+        if (pe != null) {
+            EObject targetBO = Graphiti.getLinkService().getBusinessObjectForLinkedPictogramElement(pe);
+            // the filter assured, that it is a Composite
+            if (targetBO != null) {
+                org.eclipse.soa.sca.sca1_1.model.sca.Composite composite = 
+                        (org.eclipse.soa.sca.sca1_1.model.sca.Composite) targetBO;
+                if (composite.eContainer() != null && composite.eContainer() instanceof SwitchYardType) {
+                    SwitchYardType rootSwitchYard = (SwitchYardType) composite.eContainer();
+                    return rootSwitchYard;
+                }                
+            }
+            
+        }
+        return null;
+     }
+    
     @Override
     public void refresh() {
-        SwitchYardType switchYardRoot = _modelHandler.getRootSwitchYard();
+        SwitchYardType switchYardRoot = getSwitchYardRoot();
         TransformsType transforms = null;
         _tableViewer.setInput(null);
         if (switchYardRoot.getTransforms() != null) {
@@ -214,7 +233,7 @@ public class TransformPropertySection extends GFPropertySection implements ITabb
 
         // Obtain a new resource set
         ResourceSet resourceSet = new ResourceSetImpl();
-        ModelHandler.registerPackages(resourceSet);
+        SwitchyardSCAEditor.registerPackages(resourceSet);
 
         URI modelUri = URI.createPlatformResourceURI(file.getFullPath().toString(), true);
         // Get the resource
@@ -375,7 +394,7 @@ public class TransformPropertySection extends GFPropertySection implements ITabb
                 _domain.getCommandStack().execute(new RecordingCommand(_domain) {
                     @Override
                     protected void doExecute() {
-                        SwitchYardType switchYardRoot = _modelHandler.getRootSwitchYard();
+                        SwitchYardType switchYardRoot = getSwitchYardRoot();
                         TransformsType transforms = switchYardRoot.getTransforms();
                         if (transforms == null) {
                             switchYardRoot.setTransforms(SwitchyardFactory.eINSTANCE.createTransformsType());
@@ -406,7 +425,7 @@ public class TransformPropertySection extends GFPropertySection implements ITabb
             _domain.getCommandStack().execute(new RecordingCommand(_domain) {
                 @Override
                 protected void doExecute() {
-                    SwitchYardType switchYardRoot = _modelHandler.getRootSwitchYard();
+                    SwitchYardType switchYardRoot = getSwitchYardRoot();
                     TransformsType transforms = switchYardRoot.getTransforms();
                     int index = transforms.getTransform().indexOf(selected);
                     EStructuralFeature feature = transforms.eClass().getEStructuralFeature("transform");
@@ -469,7 +488,7 @@ public class TransformPropertySection extends GFPropertySection implements ITabb
                 } else if (columnIndex == ColumnConst.COLUMN_FROM) {
                     return transform.getFrom();
                 } else if (columnIndex == ColumnConst.COLUMN_TYPE) {
-                    return _modelHandler.getLabelForTransformType(transform);
+                    return LabelAdapter.getLabel(transform);
                 }
             }
             return null;
@@ -525,8 +544,8 @@ public class TransformPropertySection extends GFPropertySection implements ITabb
                 rc = getComparator().compare(p1.getFrom(), p2.getFrom());
                 break;
             case ColumnConst.COLUMN_TYPE:
-                String type1 = _modelHandler.getLabelForTransformType(p1);
-                String type2 = _modelHandler.getLabelForTransformType(p2);
+                String type1 = LabelAdapter.getLabel(p1);
+                String type2 = LabelAdapter.getLabel(p2);
                 rc = getComparator().compare(type1, type2);
                 break;
             }
@@ -587,7 +606,6 @@ public class TransformPropertySection extends GFPropertySection implements ITabb
         return null;
     }
 
-    @SuppressWarnings("restriction")
     private void addDomainListener() {
         if (_domain == null) {
             _domain = (TransactionalEditingDomainImpl) SwitchyardSCAEditor.getActiveEditor().getEditingDomain();

@@ -22,7 +22,7 @@ import org.eclipse.graphiti.mm.algorithms.Text;
 import org.eclipse.graphiti.mm.pictograms.ContainerShape;
 import org.eclipse.graphiti.mm.pictograms.PictogramElement;
 import org.eclipse.soa.sca.sca1_1.model.sca.Service;
-import org.switchyard.tools.ui.editor.diagram.di.DIImport;
+import org.switchyard.tools.ui.editor.util.GraphitiUtil;
 
 /**
  * @author bfitzpat
@@ -104,7 +104,7 @@ public class SCADiagramUpdateServiceFeature extends AbstractUpdateFeature {
         // Set name in pictogram model
         if (pictogramElement instanceof ContainerShape) {
             GraphicsAlgorithm ga = pictogramElement.getGraphicsAlgorithm();
-            Text text = (Text) DIImport.findChildGA(ga, Text.class);
+            Text text = (Text) GraphitiUtil.findChildGA(ga, Text.class);
             if (text != null) {
                 text.setValue(businessName);
                 return true;

@@ -52,11 +52,11 @@ import org.eclipse.ui.forms.widgets.Section;
 import org.eclipse.ui.views.properties.tabbed.ITabbedPropertyConstants;
 import org.eclipse.ui.views.properties.tabbed.TabbedPropertySheetPage;
 import org.eclipse.ui.views.properties.tabbed.TabbedPropertySheetWidgetFactory;
-import org.switchyard.tools.ui.editor.core.ModelHandler;
 import org.switchyard.tools.ui.editor.diagram.shared.AbstractSwitchyardComposite;
 import org.switchyard.tools.ui.editor.diagram.shared.IBindingComposite;
 import org.switchyard.tools.ui.editor.impl.SwitchyardSCAEditor;
 import org.switchyard.tools.ui.editor.property.adapters.BindingCompositeAdapter;
+import org.switchyard.tools.ui.editor.property.adapters.LabelAdapter;
 
 /**
  * @author bfitzpat
@@ -75,7 +75,6 @@ public class SwitchyardSCAPropertiesBindingsSection extends GFPropertySection im
     // private Button _addButton;
     private Button _removeButton;
     private Object _targetBO;
-    private ModelHandler _modelHandler = SwitchyardSCAEditor.getActiveEditor().getModelHandler();
     private TransactionalEditingDomain _domain = null;
 
     /**
@@ -223,7 +222,7 @@ public class SwitchyardSCAPropertiesBindingsSection extends GFPropertySection im
         _listViewer.setLabelProvider(new LabelProvider() {
             public String getText(Object element) {
                 Binding binding = (Binding) element;
-                return _modelHandler.getLabelForBindingType(binding);
+                return LabelAdapter.getLabel(binding);
             }
         });
         _listViewer.setContentProvider(new IStructuredContentProvider() {
@@ -347,7 +346,6 @@ public class SwitchyardSCAPropertiesBindingsSection extends GFPropertySection im
         return null;
     }
 
-    @SuppressWarnings("restriction")
     private void addDomainListener() {
         if (_domain == null) {
             _domain = (TransactionalEditingDomainImpl) SwitchyardSCAEditor.getActiveEditor().getEditingDomain();

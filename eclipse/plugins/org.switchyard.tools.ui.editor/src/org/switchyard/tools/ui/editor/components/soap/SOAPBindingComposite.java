@@ -33,6 +33,7 @@ import org.eclipse.jface.viewers.StructuredSelection;
 import org.eclipse.jface.window.Window;
 import org.eclipse.jface.wizard.WizardDialog;
 import org.eclipse.soa.sca.sca1_1.model.sca.Binding;
+import org.eclipse.soa.sca.sca1_1.model.sca.Contract;
 import org.eclipse.soa.sca.sca1_1.model.sca.Service;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.events.FocusEvent;
@@ -55,8 +56,8 @@ import org.switchyard.tools.models.switchyard1_0.soap.MessageComposerType;
 import org.switchyard.tools.models.switchyard1_0.soap.SOAPBindingType;
 import org.switchyard.tools.models.switchyard1_0.soap.SOAPFactory;
 import org.switchyard.tools.models.switchyard1_0.soap.SoapHeadersType;
+import org.switchyard.tools.models.switchyard1_0.switchyard.SwitchYardType;
 import org.switchyard.tools.ui.JavaUtil;
-import org.switchyard.tools.ui.editor.core.ModelHandler;
 import org.switchyard.tools.ui.editor.diagram.shared.AbstractSwitchyardComposite;
 import org.switchyard.tools.ui.editor.diagram.shared.IBindingComposite;
 import org.switchyard.tools.ui.editor.diagram.shared.WSDLPortSelectionDialog;
@@ -68,7 +69,6 @@ import org.switchyard.tools.ui.wizards.NewWSDLFileWizard;
  * @author bfitzpat
  * 
  */
-@SuppressWarnings("restriction")
 public class SOAPBindingComposite extends AbstractSwitchyardComposite implements IBindingComposite {
 
     private static final String WSDL = "wsdl";
@@ -86,7 +86,6 @@ public class SOAPBindingComposite extends AbstractSwitchyardComposite implements
     private Button _browseBtnWorkspace;
     private Button _browseBtnFile;
     private Link _newWSDLLink;
-    private ModelHandler _modelHandler = SwitchyardSCAEditor.getActiveEditor().getModelHandler();
     private EObject _targetObj;
 
     /**
@@ -425,8 +424,17 @@ public class SOAPBindingComposite extends AbstractSwitchyardComposite implements
                 if (_binding.getContextPath() != null) {
                     this._contextPathText.setText(_binding.getContextPath());
                 } else {
-                    this._contextPathText.setText(_modelHandler.getRootSwitchYard().getName());
-                    handleModify(_contextPathText);
+                    if (_targetObj != null && _targetObj instanceof Contract) {
+                        Contract contract = (Contract) _targetObj;
+                        if (contract.eContainer() != null && contract.eContainer() instanceof org.eclipse.soa.sca.sca1_1.model.sca.Composite) {
+                            org.eclipse.soa.sca.sca1_1.model.sca.Composite composite = (org.eclipse.soa.sca.sca1_1.model.sca.Composite) contract.eContainer();
+                            if (composite.eContainer() != null && composite.eContainer() instanceof SwitchYardType) {
+                                SwitchYardType rootSwitchYard = (SwitchYardType) composite.eContainer();
+                                this._contextPathText.setText(rootSwitchYard.getName());
+                                handleModify(_contextPathText);
+                            }
+                        }
+                    }
                 }
             }
             if (_unwrappedPayloadCheckbox != null && !_unwrappedPayloadCheckbox.isDisposed()) {
