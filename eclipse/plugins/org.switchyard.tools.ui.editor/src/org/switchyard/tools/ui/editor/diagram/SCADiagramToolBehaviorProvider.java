@@ -235,50 +235,35 @@ public class SCADiagramToolBehaviorProvider extends DefaultToolBehaviorProvider 
     public IPaletteCompartmentEntry[] getPalette() {
         List<IPaletteCompartmentEntry> ret = new ArrayList<IPaletteCompartmentEntry>();
 
-        // add connections
-        PaletteCompartmentEntry connectionsEntry = new PaletteCompartmentEntry("Connections", null);
-        ret.add(connectionsEntry);
-
-        // add all create-connection-features to the new stack-entry
-        ICreateConnectionFeature[] createConnectionFeatures = getFeatureProvider().getCreateConnectionFeatures();
-        for (ICreateConnectionFeature cf : createConnectionFeatures) {
-            ConnectionCreationToolEntry connectionCreationToolEntry = new ConnectionCreationToolEntry(
-                    cf.getCreateName(), cf.getCreateDescription(), cf.getCreateImageId(), cf.getCreateLargeImageId());
-            connectionCreationToolEntry.addCreateConnectionFeature(cf);
-            connectionsEntry.addToolEntry(connectionCreationToolEntry);
-        }
-
-        // add new compartment for composites
-        PaletteCompartmentEntry compositeEntry = new PaletteCompartmentEntry("Composites", null);
-        for (ICreateFeature cf : ((SCADiagramFeatureProvider) getFeatureProvider()).getCreateCompositeFeatures()) {
+        // add new compartment for generic entries
+        PaletteCompartmentEntry compositeEntry = new PaletteCompartmentEntry("Generic", null);
+        for (ICreateFeature cf : ((SCADiagramFeatureProvider) getFeatureProvider()).getCreateGenericFeatures()) {
             compositeEntry.addToolEntry(new ObjectCreationToolEntry(cf.getCreateName(), cf.getCreateDescription(), cf
                     .getCreateImageId(), cf.getCreateLargeImageId(), cf));
         }
+        for (ICreateConnectionFeature cf : getFeatureProvider().getCreateConnectionFeatures()) {
+            ConnectionCreationToolEntry connectionCreationToolEntry = new ConnectionCreationToolEntry(
+                    cf.getCreateName(), cf.getCreateDescription(), cf.getCreateImageId(), cf.getCreateLargeImageId());
+            connectionCreationToolEntry.addCreateConnectionFeature(cf);
+            compositeEntry.addToolEntry(connectionCreationToolEntry);
+        }
         ret.add(compositeEntry);
 
-        // add new compartment for components
-        PaletteCompartmentEntry componentEntry = new PaletteCompartmentEntry("Components", null);
+        // add new compartment for component/implementation types
+        PaletteCompartmentEntry componentEntry = new PaletteCompartmentEntry("Implementations", null);
         for (ICreateFeature cf : ((SCADiagramFeatureProvider) getFeatureProvider()).getCreateComponentFeatures()) {
             componentEntry.addToolEntry(new ObjectCreationToolEntry(cf.getCreateName(), cf.getCreateDescription(), cf
                     .getCreateImageId(), cf.getCreateLargeImageId(), cf));
         }
         ret.add(componentEntry);
 
-        // add new compartment for components
+        // add new compartment for bindings
         PaletteCompartmentEntry bindingsEntry = new PaletteCompartmentEntry("Bindings", null);
         for (ICreateFeature cf : ((SCADiagramFeatureProvider) getFeatureProvider()).getCreateBindingFeatures()) {
             bindingsEntry.addToolEntry(new ObjectCreationToolEntry(cf.getCreateName(), cf.getCreateDescription(), cf
                     .getCreateImageId(), cf.getCreateLargeImageId(), cf));
         }
         ret.add(bindingsEntry);
-
-        // add new compartment for components
-        PaletteCompartmentEntry implementationsEntry = new PaletteCompartmentEntry("Implementations", null);
-        for (ICreateFeature cf : ((SCADiagramFeatureProvider) getFeatureProvider()).getCreateImplementationFeatures()) {
-            implementationsEntry.addToolEntry(new ObjectCreationToolEntry(cf.getCreateName(),
-                    cf.getCreateDescription(), cf.getCreateImageId(), cf.getCreateLargeImageId(), cf));
-        }
-        ret.add(implementationsEntry);
 
         // add new compartment for anything else
         PaletteCompartmentEntry miscEntry = new PaletteCompartmentEntry("Other", null);

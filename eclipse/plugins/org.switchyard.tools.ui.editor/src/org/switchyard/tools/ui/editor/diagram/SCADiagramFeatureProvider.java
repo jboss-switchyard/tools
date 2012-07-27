@@ -114,6 +114,8 @@ import org.switchyard.tools.ui.editor.diagram.service.SCADiagramLayoutServiceFea
 import org.switchyard.tools.ui.editor.diagram.service.SCADiagramMoveServiceFeature;
 import org.switchyard.tools.ui.editor.diagram.service.SCADiagramResizeServiceFeature;
 import org.switchyard.tools.ui.editor.diagram.service.SCADiagramUpdateServiceFeature;
+import org.switchyard.tools.ui.editor.diagram.shared.CompositeCreateConnectionFeature;
+import org.switchyard.tools.ui.editor.diagram.shared.CompositeCreateFeature;
 
 /**
  * @author bfitzpat
@@ -173,9 +175,8 @@ public class SCADiagramFeatureProvider extends DefaultFeatureProvider {
     @Override
     public ICreateFeature[] getCreateFeatures() {
         List<ICreateFeature> features = new ArrayList<ICreateFeature>();
-        features.addAll(getCreateCompositeFeatures());
+        features.addAll(getCreateGenericFeatures());
         features.addAll(getCreateComponentFeatures());
-        features.addAll(getCreateImplementationFeatures());
         features.addAll(getCreateBindingFeatures());
         return features.toArray(new ICreateFeature[features.size()]);
     }
@@ -183,69 +184,71 @@ public class SCADiagramFeatureProvider extends DefaultFeatureProvider {
     /* package */List<ICreateFeature> getCreateComponentFeatures() {
         List<ICreateFeature> features = new ArrayList<ICreateFeature>(5);
         // component types
-        features.add(new CreateComponentFeature(this, new AbstractComponentFactory(), "Abstract",
+        features.add(new CompositeCreateFeature(this, "Camel (Java)",
+                "A Java based Camel route component/implementation", new CreateComponentFeature(this,
+                        new CamelJavaComponentFactory(), "Camel (Java)",
+                        "Create a component implemented as a Java based Camel route."),
+                new CreateImplementationFeature(this, new CamelJavaImplementationFactory(), "Camel (Java)",
+                        "An implementation using a Java based Camel route.")));
+        features.add(new CompositeCreateFeature(this, "Camel (XML)",
+                "An XML based Camel route component/implementation.", new CreateComponentFeature(this,
+                        new CamelXMLComponentFactory(), "Camel (XML)",
+                        "Create a component implemented as an XML based Camel route."),
+                new CreateImplementationFeature(this, new CamelXMLImplementationFactory(), "Camel (XML)",
+                        "An implementation using an XML based Camel route.")));
+        features.add(new CompositeCreateFeature(this, "Bean", "A Java Bean (CDI)  based component/implementation.",
+                new CreateComponentFeature(this, new BeanComponentFactory(), "Bean",
+                        "Create a component with a Java Bean (CDI) implementation."), new CreateImplementationFeature(
+                        this, new BeanImplementationFactory(), "Bean", "An implementation using a Java Bean (CDI).") {
+                    @Override
+                    public boolean canCreate(ICreateContext context) {
+                        if (super.canCreate(context)) {
+                            Component component = (Component) getBusinessObjectForPictogramElement(context
+                                    .getTargetContainer());
+                            if (component.getService() == null) {
+                                // no service contract defined
+                                return true;
+                            }
+                            for (ComponentService service : component.getService()) {
+                                // only allow this if the component has a java
+                                // contract
+                                // defined
+                                return service.getInterface() == null
+                                        || service.getInterface() instanceof JavaInterface;
+                            }
+                            // no service contract defined
+                            return true;
+                        }
+                        return false;
+                    }
+                }));
+        features.add(new CompositeCreateFeature(this, "Process (BPMN)",
+                "A BPMN process based component/implementation.", new CreateComponentFeature(this,
+                        new BPMComponentFactory(), "Process (BPMN)",
+                        "Create a component implemented as a BPMN process."), new CreateImplementationFeature(this,
+                        new BPMImplementationFactory(), "Process (BPMN)", "An implementation using a BPMN process.")));
+        features.add(new CompositeCreateFeature(this, "Rules (DRL)", "A rules based component/implementation.",
+                new CreateComponentFeature(this, new RulesComponentFactory(), "Rules (DRL)",
+                        "Create a component implemented using rules."), new CreateImplementationFeature(this,
+                        new RulesImplementationFactory(), "Rules (DRL)", "An implementation using rules.")));
+
+        return features;
+    }
+
+    /* package */List<ICreateFeature> getCreateGenericFeatures() {
+        List<ICreateFeature> features = new ArrayList<ICreateFeature>(3);
+        features.add(new CreateComponentFeature(this, new AbstractComponentFactory(), "Component",
                 "Create a simple component with no implementation, services or references."));
-        features.add(new CreateComponentFeature(this, new CamelJavaComponentFactory(), "Camel (Java)",
-                "Create a component implemented as a Java based Camel route."));
-        features.add(new CreateComponentFeature(this, new CamelXMLComponentFactory(), "Camel (XML)",
-                "Create a component implemented as an XML based Camel route."));
-        features.add(new CreateComponentFeature(this, new BeanComponentFactory(), "Bean",
-                "Create a component with a Java Bean (CDI) implementation."));
-        features.add(new CreateComponentFeature(this, new BPMComponentFactory(), "Process (BPMN)",
-                "Create a component implemented as a BPMN process."));
-        features.add(new CreateComponentFeature(this, new RulesComponentFactory(), "Rules (DRL)",
-                "Create a component implemented using rules."));
-
-        // services & references
-        features.add(new SCADiagramCreateComponentServiceFeature(this));
-        features.add(new SCADiagramCreateComponentReferenceFeature(this));
-
-        return features;
-    }
-
-    /* package */List<ICreateFeature> getCreateCompositeFeatures() {
-        List<ICreateFeature> features = new ArrayList<ICreateFeature>(2);
-        features.add(new SCADiagramCreateServiceFeature(this));
-        features.add(new SCADiagramCreateCompositeReferenceFeature(this));
-        return features;
-    }
-
-    /* package */List<ICreateFeature> getCreateImplementationFeatures() {
-        List<ICreateFeature> features = new ArrayList<ICreateFeature>(2);
-        features.add(new CreateImplementationFeature(this, new CamelJavaImplementationFactory(), "Camel (Java)",
-                "An implementation using a Java based Camel route."));
-        features.add(new CreateImplementationFeature(this, new CamelXMLImplementationFactory(), "Camel (XML)",
-                "An implementation using an XML based Camel route."));
-        features.add(new CreateImplementationFeature(this, new BeanImplementationFactory(), "Bean",
-                "An implementation using a Java Bean (CDI).") {
-            @Override
-            public boolean canCreate(ICreateContext context) {
-                if (super.canCreate(context)) {
-                    Component component = (Component) getBusinessObjectForPictogramElement(context.getTargetContainer());
-                    if (component.getService() == null) {
-                        // no service contract defined
-                        return true;
-                    }
-                    for (ComponentService service : component.getService()) {
-                        // only allow this if the component has a java contract
-                        // defined
-                        return service.getInterface() == null || service.getInterface() instanceof JavaInterface;
-                    }
-                    // no service contract defined
-                    return true;
-                }
-                return false;
-            }
-        });
-        features.add(new CreateImplementationFeature(this, new BPMImplementationFactory(), "Process (BPMN)",
-                "An implementation using a BPMN process."));
-        features.add(new CreateImplementationFeature(this, new RulesImplementationFactory(), "Rules (DRL)",
-                "An implementation using rules."));
+        features.add(new CompositeCreateFeature(this, "Service", "Create a new service",
+                new SCADiagramCreateServiceFeature(this), new SCADiagramCreateComponentServiceFeature(this)));
+        features.add(new CompositeCreateFeature(this, "Reference", "Create a new reference",
+                new SCADiagramCreateCompositeReferenceFeature(this),
+                new SCADiagramCreateComponentReferenceFeature(this)));
         return features;
     }
 
     /* package */List<ICreateFeature> getCreateBindingFeatures() {
-        List<ICreateFeature> features = new ArrayList<ICreateFeature>(1);
+        List<ICreateFeature> features = new ArrayList<ICreateFeature>(10);
         features.add(new CreateBindingFeature(this, new CamelFileBindingFactory(), "File",
                 "A Camel File based endpoint."));
         features.add(new CreateBindingFeature(this, new CamelFTPBindingFactory(), "FTP", "A Camel FTP based endpoint."));
@@ -270,8 +273,9 @@ public class SCADiagramFeatureProvider extends DefaultFeatureProvider {
 
     @Override
     public ICreateConnectionFeature[] getCreateConnectionFeatures() {
-        return new ICreateConnectionFeature[] {new SCADiagramCreateReferenceLinkFeature(this),
-                new SCADiagramCreateComponentServiceLinkFeature(this) };
+        return new ICreateConnectionFeature[] {new CompositeCreateConnectionFeature(this, "Promote",
+                "Promote a component service/reference", new SCADiagramCreateReferenceLinkFeature(this),
+                new SCADiagramCreateComponentServiceLinkFeature(this)) };
     }
 
     @Override
