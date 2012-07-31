@@ -12,23 +12,40 @@
  ******************************************************************************/
 package org.switchyard.tools.ui.editor.diagram.component;
 
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+
+import org.eclipse.emf.ecore.EObject;
 import org.eclipse.graphiti.features.IFeatureProvider;
 import org.eclipse.graphiti.features.IReason;
+import org.eclipse.graphiti.features.IRemoveFeature;
+import org.eclipse.graphiti.features.IUpdateFeature;
+import org.eclipse.graphiti.features.context.IRemoveContext;
 import org.eclipse.graphiti.features.context.IUpdateContext;
+import org.eclipse.graphiti.features.context.impl.AddContext;
+import org.eclipse.graphiti.features.context.impl.RemoveContext;
+import org.eclipse.graphiti.features.context.impl.UpdateContext;
 import org.eclipse.graphiti.features.impl.AbstractUpdateFeature;
 import org.eclipse.graphiti.features.impl.Reason;
-import org.eclipse.graphiti.mm.algorithms.GraphicsAlgorithm;
 import org.eclipse.graphiti.mm.algorithms.Text;
 import org.eclipse.graphiti.mm.pictograms.ContainerShape;
 import org.eclipse.graphiti.mm.pictograms.PictogramElement;
+import org.eclipse.graphiti.mm.pictograms.Shape;
+import org.eclipse.graphiti.services.Graphiti;
 import org.eclipse.soa.sca.sca1_1.model.sca.Component;
+import org.eclipse.soa.sca.sca1_1.model.sca.ComponentReference;
+import org.eclipse.soa.sca.sca1_1.model.sca.ComponentService;
+import org.switchyard.tools.ui.editor.diagram.StyleUtil;
 import org.switchyard.tools.ui.editor.util.GraphitiUtil;
 
 /**
  * @author bfitzpat
- *
+ * 
  */
 public class SCADiagramUpdateComponentFeature extends AbstractUpdateFeature {
+
+    private boolean _hasDoneChanges;
 
     /**
      * @param fp the feature provider
@@ -44,73 +61,150 @@ public class SCADiagramUpdateComponentFeature extends AbstractUpdateFeature {
         return (bo instanceof Component);
     }
 
-    private Text findText(GraphicsAlgorithm root) {
-        for (GraphicsAlgorithm ga : root.getGraphicsAlgorithmChildren()) {
-            if (ga instanceof Text) {
-                Text text = (Text) ga;
-                return text;
-            }
-            if (ga.getGraphicsAlgorithmChildren().size() > 0) {
-                return findText(ga);
-            }
-        }
-        return null;
-    }
-
     @Override
     public IReason updateNeeded(IUpdateContext context) {
         // retrieve name from pictogram model
         String pictogramName = null;
         PictogramElement pictogramElement = context.getPictogramElement();
-        if (pictogramElement instanceof ContainerShape) {
-            ContainerShape cs = (ContainerShape) pictogramElement;
-            Text foundText = findText(cs.getGraphicsAlgorithm());
-            if (foundText != null) {
-                pictogramName = foundText.getValue();
-            }
+        Text foundText = GraphitiUtil.findChildGA(pictogramElement.getGraphicsAlgorithm(), Text.class);
+        if (foundText != null) {
+            pictogramName = foundText.getValue();
         }
 
         // retrieve name from business model
         String businessName = null;
-        Object bo = getBusinessObjectForPictogramElement(pictogramElement);
-        if (bo instanceof Component) {
-            Component eClass = (Component) bo;
-            businessName = eClass.getName();
+        Component component = (Component) getBusinessObjectForPictogramElement(pictogramElement);
+        businessName = component.getName();
 
-            // update needed, if names are different
-            boolean updateNameNeeded = ((pictogramName == null && businessName != null) || (pictogramName != null && !pictogramName
-                    .contentEquals(businessName)));
-            if (updateNameNeeded) {
-                return Reason.createTrueReason("Component name is out of date");
-            } else {
-                return Reason.createFalseReason();
-            }
+        // update needed, if names are different
+        boolean updateNameNeeded = pictogramName == null ? businessName != null : !pictogramName.equals(businessName);
+        if (updateNameNeeded) {
+            return Reason.createTrueReason("Component name is out of date");
         }
 
-        return Reason.createFalseReason();
+        if (getMissingChildren(component, (ContainerShape) pictogramElement).size() > 0) {
+            return Reason.createTrueReason("Add missing services and references");
+        }
+
+        return childrenNeedUpdating(component, (ContainerShape) pictogramElement);
     }
 
     @Override
     public boolean update(IUpdateContext context) {
         // retrieve name from business model
-        String businessName = null;
         PictogramElement pictogramElement = context.getPictogramElement();
-        Object bo = getBusinessObjectForPictogramElement(pictogramElement);
-        if (bo instanceof Component) {
-            Component eClass = (Component) bo;
-            businessName = eClass.getName();
+        Component component = (Component) getBusinessObjectForPictogramElement(pictogramElement);
+        String businessName = component.getName();
+
+        Text text = GraphitiUtil.findChildGA(pictogramElement.getGraphicsAlgorithm(), Text.class);
+        if (text != null && !text.getValue().equals(businessName)) {
+            text.setValue(businessName);
+            _hasDoneChanges = true;
         }
 
-        // Set name in pictogram model
-        if (pictogramElement instanceof ContainerShape) {
-            GraphicsAlgorithm ga = pictogramElement.getGraphicsAlgorithm();
-            Text text = (Text) GraphitiUtil.findChildGA(ga, Text.class);
-            if (text != null) {
-                text.setValue(businessName);
-                return true;
-            }
+        // update child shapes
+        _hasDoneChanges = updateChildren(component, (ContainerShape) pictogramElement) || _hasDoneChanges;
+
+        // add missing shapes
+        if (addMissingChildren(component, (ContainerShape) pictogramElement)) {
+            _hasDoneChanges = true;
+            layoutPictogramElement(pictogramElement);
         }
-        return false;
+
+        return _hasDoneChanges;
     }
 
+    @Override
+    public boolean hasDoneChanges() {
+        return _hasDoneChanges;
+    }
+
+    private boolean updateChildren(Component component, ContainerShape containerShape) {
+        boolean changed = false;
+        List<EObject> children = component.eContents();
+        for (Shape shape : new ArrayList<Shape>(containerShape.getChildren())) {
+            if (children.contains(getBusinessObjectForPictogramElement(shape))) {
+                UpdateContext updateContext = new UpdateContext(shape);
+                IUpdateFeature updateFeature = getFeatureProvider().getUpdateFeature(updateContext);
+                if (updateFeature != null && updateFeature.canUpdate(updateContext)
+                        && updateFeature.updateNeeded(updateContext).toBoolean()) {
+                    changed = updateFeature.update(updateContext) || changed;
+                }
+            } else {
+                IRemoveContext removeContext = new RemoveContext(shape);
+                final IRemoveFeature removeFeature = getFeatureProvider().getRemoveFeature(removeContext);
+                if (removeFeature != null && removeFeature.canRemove(removeContext)) {
+                    removeFeature.remove(removeContext);
+                    changed = removeFeature.hasDoneChanges() || changed;
+                }
+            }
+        }
+        return changed;
+    }
+
+    private boolean addMissingChildren(Component component, ContainerShape containerShape) {
+        boolean changed = false;
+
+        AddContext addServiceContext = new AddContext();
+        addServiceContext.setX(0);
+        addServiceContext.setY(36 + StyleUtil.COMPONENT_CHILD_V_SPACING
+                * getChildShapeCount(containerShape, ComponentService.class));
+        addServiceContext.setTargetContainer(containerShape);
+
+        AddContext addReferenceContext = new AddContext();
+        addReferenceContext.setX(containerShape.getGraphicsAlgorithm().getWidth()
+                - StyleUtil.COMPONENT_INVISIBLE_RECT_RIGHT);
+        addReferenceContext.setY(16 + StyleUtil.COMPONENT_CHILD_V_SPACING
+                * getChildShapeCount(containerShape, ComponentReference.class));
+        addReferenceContext.setTargetContainer(containerShape);
+
+        for (EObject missingChild : getMissingChildren(component, containerShape)) {
+            if (missingChild instanceof ComponentService) {
+                changed = addGraphicalRepresentation(addServiceContext, missingChild) != null || changed;
+                addServiceContext.setY(addServiceContext.getY() + StyleUtil.COMPONENT_CHILD_V_SPACING);
+            } else if (missingChild instanceof ComponentReference) {
+                changed = addGraphicalRepresentation(addReferenceContext, missingChild) != null || changed;
+                addReferenceContext.setY(addReferenceContext.getY() + StyleUtil.COMPONENT_CHILD_V_SPACING);
+            }
+        }
+        return changed;
+    }
+
+    private int getChildShapeCount(ContainerShape containerShape, Class<?> boType) {
+        int count = 0;
+        for (Shape shape : containerShape.getChildren()) {
+            if (boType.isInstance(getBusinessObjectForPictogramElement(shape))) {
+                ++count;
+            }
+        }
+        return count;
+    }
+
+    private List<EObject> getMissingChildren(Component component, ContainerShape containerShape) {
+        List<EObject> children = new ArrayList<EObject>();
+        children.addAll(component.getService());
+        children.addAll(component.getReference());
+
+        for (Shape shape : containerShape.getChildren()) {
+            children.removeAll(Arrays.asList(Graphiti.getLinkService().getBusinessObjectForLinkedPictogramElement(shape)));
+        }
+
+        return children;
+    }
+
+    private IReason childrenNeedUpdating(Component component, ContainerShape containerShape) {
+        List<EObject> children = component.eContents();
+        for (Shape shape : containerShape.getChildren()) {
+            if (children.contains(getBusinessObjectForPictogramElement(shape))) {
+                UpdateContext updateContext = new UpdateContext(shape);
+                IUpdateFeature updateFeature = getFeatureProvider().getUpdateFeature(updateContext);
+                if (updateFeature != null && updateFeature.updateNeeded(updateContext).toBoolean()) {
+                    return Reason.createTrueReason();
+                }
+            } else {
+                return Reason.createTrueReason();
+            }
+        }
+        return Reason.createFalseReason();
+    }
 }

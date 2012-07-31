@@ -28,6 +28,7 @@ import org.eclipse.soa.sca.sca1_1.model.sca.Component;
 import org.eclipse.soa.sca.sca1_1.model.sca.ComponentReference;
 import org.eclipse.soa.sca.sca1_1.model.sca.ComponentService;
 import org.eclipse.soa.sca.sca1_1.model.sca.Composite;
+import org.eclipse.soa.sca.sca1_1.model.sca.Service;
 import org.switchyard.tools.ui.editor.ImageProvider;
 import org.switchyard.tools.ui.editor.diagram.StyleUtil;
 
@@ -91,11 +92,24 @@ public class SCADiagramAddComponentServiceFeature extends AbstractAddShapeFeatur
         // call the layout feature
         layoutPictogramElement(container);
 
+        Composite composite = (Composite) component.eContainer();
+        for (Service compositeService : composite.getService()) {
+            if (compositeService.getPromote() == service) {
+                for (PictogramElement pe : getFeatureProvider().getAllPictogramElementsForBusinessObject(
+                        compositeService)) {
+                    if (pe instanceof Anchor) {
+                        AddConnectionContext addContext = new AddConnectionContext((Anchor) pe, anchor);
+                        addContext.setNewObject(service);
+                        getFeatureProvider().addIfPossible(addContext);
+                    }
+                }
+            }
+        }
+
         if (service.getName() == null) {
             return container;
         }
 
-        Composite composite = (Composite) component.eContainer();
         for (Component other : composite.getComponent()) {
             if (other == component) {
                 // we don't allow self references???

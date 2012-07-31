@@ -12,16 +12,18 @@
  ******************************************************************************/
 package org.switchyard.tools.ui.editor.impl;
 
+import java.util.Iterator;
+
 import org.eclipse.gef.ui.actions.ActionRegistry;
+import org.eclipse.gef.ui.actions.UpdateAction;
 import org.eclipse.graphiti.ui.editor.DiagramEditor;
+import org.eclipse.graphiti.ui.editor.DiagramEditorActionBarContributor;
 import org.eclipse.jface.action.IAction;
 import org.eclipse.ui.IActionBars;
 import org.eclipse.ui.IEditorPart;
-import org.eclipse.ui.actions.ActionFactory;
-import org.eclipse.ui.ide.IDEActionFactory;
 import org.eclipse.ui.part.MultiPageEditorActionBarContributor;
 import org.eclipse.ui.texteditor.ITextEditor;
-import org.eclipse.ui.texteditor.ITextEditorActionConstants;
+import org.eclipse.wst.xml.ui.internal.tabletree.SourcePageActionContributor;
 
 /**
  * Manages the installation/deinstallation of global actions for multi-page
@@ -29,65 +31,99 @@ import org.eclipse.ui.texteditor.ITextEditorActionConstants;
  * editor. Multi-page contributor replaces the contributors for the individual
  * editors in the multi-page editor.
  */
+@SuppressWarnings("restriction")
 public class MultiPageEditorContributor extends MultiPageEditorActionBarContributor {
+
+    private DiagramEditorActionBarContributor _designActionBarContributor;
+    private SourcePageActionContributor _sourceActionBarContributor;
     private IEditorPart _activeEditorPart;
+    private IEditorPart _activeEditorPage;
 
     /**
      * Creates a multi-page contributor.
      */
     public MultiPageEditorContributor() {
         super();
+        _designActionBarContributor = new DiagramEditorActionBarContributor() {
+            @Override
+            public void setActiveEditor(IEditorPart editor) {
+                if (editor == null) {
+                    if (_activeEditorPage instanceof DiagramEditor) {
+                        // disable diagram actions
+                        updateActionEnablement((DiagramEditor) _activeEditorPage, false);
+                    }
+                    return;
+                }
+                if (editor instanceof DiagramEditor) {
+                    // enable diagram actions
+                    updateActionEnablement((DiagramEditor) editor, true);
+                }
+                super.setActiveEditor(editor);
+            }
+
+            private void updateActionEnablement(DiagramEditor editor, boolean enabled) {
+                ActionRegistry registry = (ActionRegistry) editor.getAdapter(ActionRegistry.class);
+                if (registry != null) {
+                    for (Iterator<?> it = registry.getActions(); it.hasNext();) {
+                        IAction action = (IAction) it.next();
+                        action.setEnabled(enabled);
+                        if (enabled && action instanceof UpdateAction) {
+                            ((UpdateAction) action).update();
+                        }
+                    }
+                }
+            }
+        };
+        _sourceActionBarContributor = new SourcePageActionContributor();
     }
 
-    /**
-     * Returns the action registed with the given text editor.
-     * 
-     * @return IAction or null if editor is null.
-     */
-    protected IAction getAction(IEditorPart editor, String actionID) {
-        if (editor instanceof ITextEditor) {
-            return ((ITextEditor) editor).getAction(actionID);
-        } else if (editor instanceof DiagramEditor) {
-            ActionRegistry registry = (ActionRegistry) ((DiagramEditor) editor).getAdapter(ActionRegistry.class);
-            return registry == null ? null : registry.getAction(actionID);
-        }
-        return null;
-    }
-
-    /*
-     * (non-JavaDoc) Method declared in
-     * AbstractMultiPageEditorActionBarContributor.
-     */
     @Override
-    public void setActivePage(IEditorPart part) {
-        if (_activeEditorPart == part) {
-            return;
-        }
+    public void init(IActionBars bars) {
+        super.init(bars);
 
+        if (bars != null) {
+            _designActionBarContributor.init(bars, getPage());
+            _sourceActionBarContributor.init(bars, getPage());
+        }
+    }
+
+    @Override
+    public void dispose() {
+        _designActionBarContributor.dispose();
+        _sourceActionBarContributor.dispose();
+        _activeEditorPart = null;
+        super.dispose();
+    }
+
+    @Override
+    public void setActiveEditor(IEditorPart part) {
         _activeEditorPart = part;
 
-        IActionBars actionBars = getActionBars();
-        if (actionBars != null) {
-            actionBars.setGlobalActionHandler(ActionFactory.DELETE.getId(),
-                    getAction(part, ITextEditorActionConstants.DELETE));
-            actionBars.setGlobalActionHandler(ActionFactory.UNDO.getId(),
-                    getAction(part, ITextEditorActionConstants.UNDO));
-            actionBars.setGlobalActionHandler(ActionFactory.REDO.getId(),
-                    getAction(part, ITextEditorActionConstants.REDO));
-            actionBars.setGlobalActionHandler(ActionFactory.CUT.getId(),
-                    getAction(part, ITextEditorActionConstants.CUT));
-            actionBars.setGlobalActionHandler(ActionFactory.COPY.getId(),
-                    getAction(part, ITextEditorActionConstants.COPY));
-            actionBars.setGlobalActionHandler(ActionFactory.PASTE.getId(),
-                    getAction(part, ITextEditorActionConstants.PASTE));
-            actionBars.setGlobalActionHandler(ActionFactory.SELECT_ALL.getId(),
-                    getAction(part, ITextEditorActionConstants.SELECT_ALL));
-            actionBars.setGlobalActionHandler(ActionFactory.FIND.getId(),
-                    getAction(part, ITextEditorActionConstants.FIND));
-            actionBars.setGlobalActionHandler(IDEActionFactory.BOOKMARK.getId(),
-                    getAction(part, IDEActionFactory.BOOKMARK.getId()));
-            actionBars.updateActionBars();
+        super.setActiveEditor(part);
+    }
+
+    @Override
+    public void setActivePage(IEditorPart activeEditor) {
+        if (_activeEditorPart != null) {
+            // order is important here. make sure the active contributor is
+            // last.
+            if (activeEditor instanceof ITextEditor) {
+                _designActionBarContributor.setActiveEditor(null);
+                _sourceActionBarContributor.setActiveEditor(activeEditor);
+                _sourceActionBarContributor.setViewerSpecificContributionsEnabled(true);
+            } else {
+                _sourceActionBarContributor.setActiveEditor(null);
+                _sourceActionBarContributor.setViewerSpecificContributionsEnabled(false);
+                _designActionBarContributor.setActiveEditor(activeEditor);
+            }
         }
+
+        IActionBars bars = getActionBars();
+        if (bars != null) {
+            // update menu bar and tool bar
+            bars.updateActionBars();
+        }
+        _activeEditorPage = activeEditor;
     }
 
 }

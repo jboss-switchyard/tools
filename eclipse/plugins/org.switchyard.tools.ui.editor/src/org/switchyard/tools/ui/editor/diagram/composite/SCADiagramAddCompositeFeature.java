@@ -16,6 +16,7 @@ import org.eclipse.graphiti.features.IFeatureProvider;
 import org.eclipse.graphiti.features.context.IAddContext;
 import org.eclipse.graphiti.features.context.impl.AddContext;
 import org.eclipse.graphiti.features.impl.AbstractAddShapeFeature;
+import org.eclipse.graphiti.mm.algorithms.GraphicsAlgorithm;
 import org.eclipse.graphiti.mm.algorithms.Rectangle;
 import org.eclipse.graphiti.mm.algorithms.RoundedRectangle;
 import org.eclipse.graphiti.mm.algorithms.Text;
@@ -24,6 +25,7 @@ import org.eclipse.graphiti.mm.algorithms.styles.Orientation;
 import org.eclipse.graphiti.mm.pictograms.ContainerShape;
 import org.eclipse.graphiti.mm.pictograms.Diagram;
 import org.eclipse.graphiti.mm.pictograms.PictogramElement;
+import org.eclipse.graphiti.mm.pictograms.Shape;
 import org.eclipse.graphiti.services.Graphiti;
 import org.eclipse.graphiti.services.IGaService;
 import org.eclipse.graphiti.services.IPeCreateService;
@@ -115,7 +117,7 @@ public class SCADiagramAddCompositeFeature extends AbstractAddShapeFeature {
         text.setFont(font);
         gaService.setLocationAndSize(text, edge + 2, edge + 2, width, font.getSize() * 2);
 
-        AddContext childContext = new AddContext(context, null);
+        AddContext childContext = createComponentAddContext(getFeatureProvider(), containerShape);
         childContext.setX((width - StyleUtil.COMPONENT_WIDTH) / 2 + context.getX());
         childContext.setY(edge * 3 + context.getY());
         childContext.setTargetContainer(containerShape);
@@ -129,8 +131,7 @@ public class SCADiagramAddCompositeFeature extends AbstractAddShapeFeature {
             }
         }
 
-        childContext.setX(0);
-        childContext.setY(edge * 3 + context.getY());
+        childContext = createServiceAddContext(getFeatureProvider(), containerShape);
         for (Service service : addedComposite.getService()) {
             PictogramElement pe = addGraphicalRepresentation(childContext, service);
             if (pe == null) {
@@ -141,8 +142,7 @@ public class SCADiagramAddCompositeFeature extends AbstractAddShapeFeature {
             }
         }
 
-        childContext.setX(width - StyleUtil.COMPOSITE_REFERENCE_WIDTH + context.getX() + 2 * edge);
-        childContext.setY(edge * 3 + context.getY());
+        childContext = createReferenceAddContext(getFeatureProvider(), containerShape);
         for (Reference reference : addedComposite.getReference()) {
             PictogramElement pe = addGraphicalRepresentation(childContext, reference);
             if (pe == null) {
@@ -158,6 +158,84 @@ public class SCADiagramAddCompositeFeature extends AbstractAddShapeFeature {
 
         return containerShape;
 
+    }
+
+    /**
+     * Create an AddContext for adding a new component to a Composite shape.
+     * 
+     * @param featureProvider the feature provider.
+     * @param compositeContainer the shape representing the Composite.
+     * 
+     * @return a new AddContext.
+     */
+    public static AddContext createComponentAddContext(IFeatureProvider featureProvider,
+            ContainerShape compositeContainer) {
+        GraphicsAlgorithm ga = compositeContainer.getGraphicsAlgorithm();
+        int width = ga.getWidth() - StyleUtil.COMPOSITE_INVISIBLE_RECT_RIGHT;
+
+        AddContext context = new AddContext();
+        context.setX((width - StyleUtil.COMPONENT_WIDTH) / 2 + ga.getX());
+        context.setY(Math.max(StyleUtil.COMPOSITE_EDGE * 3 + ga.getY(),
+                getMaxYForChildShapeCount(featureProvider, compositeContainer, Component.class)));
+        context.setTargetContainer(compositeContainer);
+
+        return context;
+    }
+
+    /**
+     * Create an AddContext for adding a new service to a Composite shape.
+     * 
+     * @param featureProvider the feature provider.
+     * @param compositeContainer the shape representing the Composite.
+     * 
+     * @return a new AddContext.
+     */
+    public static AddContext createServiceAddContext(IFeatureProvider featureProvider, ContainerShape compositeContainer) {
+        GraphicsAlgorithm ga = compositeContainer.getGraphicsAlgorithm();
+
+        AddContext context = new AddContext();
+        context.setX(ga.getX());
+        context.setY(Math.max(StyleUtil.COMPOSITE_EDGE * 3 + ga.getY(),
+                getMaxYForChildShapeCount(featureProvider, compositeContainer, Service.class)));
+        context.setTargetContainer(compositeContainer);
+
+        return context;
+    }
+
+    /**
+     * Create an AddContext for adding a new reference to a Composite shape.
+     * 
+     * @param featureProvider the feature provider.
+     * @param compositeContainer the shape representing the Composite.
+     * 
+     * @return a new AddContext.
+     */
+    public static AddContext createReferenceAddContext(IFeatureProvider featureProvider,
+            ContainerShape compositeContainer) {
+        GraphicsAlgorithm ga = compositeContainer.getGraphicsAlgorithm();
+        int width = ga.getWidth() - StyleUtil.COMPOSITE_INVISIBLE_RECT_RIGHT;
+
+        AddContext context = new AddContext();
+        context.setX(width - StyleUtil.COMPOSITE_REFERENCE_WIDTH + context.getX() + 2 * StyleUtil.COMPOSITE_EDGE);
+        context.setY(Math.max(StyleUtil.COMPOSITE_EDGE * 3 + ga.getY(),
+                getMaxYForChildShapeCount(featureProvider, compositeContainer, Reference.class)));
+        context.setTargetContainer(compositeContainer);
+
+        return context;
+    }
+
+    private static int getMaxYForChildShapeCount(IFeatureProvider featureProvider, ContainerShape containerShape,
+            Class<?> boType) {
+        int maxY = 0;
+        for (Shape shape : containerShape.getChildren()) {
+            if (boType.isInstance(featureProvider.getBusinessObjectForPictogramElement(shape))) {
+                maxY = Math.max(shape.getGraphicsAlgorithm().getHeight() + shape.getGraphicsAlgorithm().getY(), maxY);
+            }
+        }
+        if (maxY > 0) {
+            maxY += StyleUtil.COMPOSITE_CHILD_V_SPACING;
+        }
+        return maxY;
     }
 
 }

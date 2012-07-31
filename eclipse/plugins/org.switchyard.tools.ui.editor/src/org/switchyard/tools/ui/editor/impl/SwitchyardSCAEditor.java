@@ -32,7 +32,6 @@ import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.emf.transaction.RecordingCommand;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.eclipse.emf.workspace.util.WorkspaceSynchronizer;
-import org.eclipse.gef.editparts.ZoomManager;
 import org.eclipse.graphiti.mm.pictograms.Diagram;
 import org.eclipse.graphiti.mm.pictograms.PictogramElement;
 import org.eclipse.graphiti.mm.pictograms.PictogramLink;
@@ -42,7 +41,6 @@ import org.eclipse.graphiti.ui.editor.DefaultPersistencyBehavior;
 import org.eclipse.graphiti.ui.editor.DefaultUpdateBehavior;
 import org.eclipse.graphiti.ui.editor.DiagramEditor;
 import org.eclipse.graphiti.ui.internal.services.GraphitiUiInternal;
-import org.eclipse.jface.action.IAction;
 import org.eclipse.jface.viewers.ISelection;
 import org.eclipse.soa.sca.sca1_1.model.sca.ScaPackage;
 import org.eclipse.ui.IEditorInput;
@@ -51,7 +49,6 @@ import org.eclipse.ui.IEditorSite;
 import org.eclipse.ui.IWorkbenchPage;
 import org.eclipse.ui.IWorkbenchPart;
 import org.eclipse.ui.PartInitException;
-import org.eclipse.ui.actions.ActionFactory;
 import org.open.oasis.docs.ns.opencsa.sca.bpel.BPELPackage;
 import org.switchyard.tools.models.switchyard1_0.bean.BeanPackage;
 import org.switchyard.tools.models.switchyard1_0.bpm.BPMPackage;
@@ -215,24 +212,38 @@ public class SwitchyardSCAEditor extends DiagramEditor {
                     final Diagram newDiagram = diagram;
                     getEditingDomain().getCommandStack().execute(new RecordingCommand(getEditingDomain()) {
                         @Override
+                        public String getLabel() {
+                            return "Create Diagram";
+                        }
+
+                        @Override
                         protected void doExecute() {
                             diagramResource.getContents().add(newDiagram);
                         }
                     });
+                } else {
+                    final Diagram finalDiagram = diagram;
+                    // clean out links that can't be resolved
+                    getEditingDomain().getCommandStack().execute(new RecordingCommand(getEditingDomain()) {
+                        @Override
+                        public String getLabel() {
+                            return "Remove Dangling References";
+                        }
+
+                        @Override
+                        protected void doExecute() {
+                            for (PictogramLink link : finalDiagram.getPictogramLinks()) {
+                                for (EObject object : new ArrayList<EObject>(link.getBusinessObjects())) {
+                                    if (object.eContainer() == null) {
+                                        link.getBusinessObjects().remove(object);
+                                    }
+                                }
+                            }
+                        }
+                    });
                 }
 
-                // nuke the existing diagram
-                final Diagram finalDiagram = diagram;
-                getEditingDomain().getCommandStack().execute(new RecordingCommand(getEditingDomain()) {
-                    @Override
-                    protected void doExecute() {
-                        finalDiagram.getChildren().clear();
-                        finalDiagram.getAnchors().clear();
-                        finalDiagram.getConnections().clear();
-                        finalDiagram.getPictogramLinks().clear();
-                        finalDiagram.getPictogramLinks().add(finalDiagram.getLink());
-                    }
-                });
+                // won't allow undo of any previous actions
                 getEditingDomain().getCommandStack().flush();
                 return diagram;
             }
@@ -293,24 +304,9 @@ public class SwitchyardSCAEditor extends DiagramEditor {
     }
 
     @Override
-    protected void initActionRegistry(ZoomManager zoomManager) {
-        super.initActionRegistry(zoomManager);
-
-        // XXX: not sure if the following is correct or not.
-        // register common actions with the site.
-        IAction action = getActionRegistry().getAction(ActionFactory.UNDO.getId());
-        action.setActionDefinitionId(ActionFactory.UNDO.getCommandId());
-        // getEditorSite().getKeyBindingService().registerAction(action);
-
-        action = getActionRegistry().getAction(ActionFactory.REDO.getId());
-        action.setActionDefinitionId(ActionFactory.REDO.getCommandId());
-        // getEditorSite().getKeyBindingService().registerAction(action);
-    }
-
-    @Override
     public void selectionChanged(IWorkbenchPart part, ISelection selection) {
-        if (part == SwitchyardSCAEditor.this) {
-            setActiveEditor(SwitchyardSCAEditor.this);
+        if (part == this) {
+            setActiveEditor(this);
         }
         super.selectionChanged(part, selection);
     }

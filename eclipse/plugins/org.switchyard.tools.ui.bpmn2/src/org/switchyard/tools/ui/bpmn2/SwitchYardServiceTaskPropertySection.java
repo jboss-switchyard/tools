@@ -18,7 +18,7 @@ import org.eclipse.bpmn2.modeler.core.utils.BusinessObjectUtil;
 import org.eclipse.bpmn2.modeler.core.utils.ModelUtil;
 import org.eclipse.bpmn2.modeler.runtime.jboss.jbpm5.property.JbpmCustomTaskPropertySection;
 import org.eclipse.bpmn2.modeler.ui.editor.BPMN2Editor;
-import org.eclipse.bpmn2.modeler.ui.property.AbstractBpmn2PropertiesComposite;
+import org.eclipse.bpmn2.modeler.ui.property.AbstractDetailComposite;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.jface.viewers.ISelection;
@@ -60,7 +60,7 @@ public class SwitchYardServiceTaskPropertySection extends JbpmCustomTaskProperty
     }
 
     @Override
-    protected AbstractBpmn2PropertiesComposite createSectionRoot() {
+    protected AbstractDetailComposite createSectionRoot() {
         return new SwitchYardServiceTaskPropertiesComposite(this);
     }
 

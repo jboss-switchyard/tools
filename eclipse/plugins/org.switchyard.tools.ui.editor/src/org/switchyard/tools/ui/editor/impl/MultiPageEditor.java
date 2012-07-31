@@ -37,6 +37,7 @@ import org.eclipse.ui.IEditorPart;
 import org.eclipse.ui.IEditorSite;
 import org.eclipse.ui.IFileEditorInput;
 import org.eclipse.ui.IWorkbenchPage;
+import org.eclipse.ui.IWorkbenchPart;
 import org.eclipse.ui.PartInitException;
 import org.eclipse.ui.ide.IDE;
 import org.eclipse.ui.part.EditorPart;
@@ -133,8 +134,26 @@ public class MultiPageEditor extends MultiPageEditorPart implements IResourceCha
     }
 
     /**
+     * Get the diagramEditor.
+     * 
+     * @return the diagramEditor.
+     */
+    public SwitchyardSCAEditor getDiagramEditor() {
+        return _diagramEditor;
+    }
+
+    /**
+     * Get the sourceViewer.
+     * 
+     * @return the sourceViewer.
+     */
+    public StructuredTextEditor getSourceViewer() {
+        return _sourceViewer;
+    }
+
+    /**
      * @author bfitzpat
-     *
+     * 
      */
     public class DesignEditor extends SwitchyardSCAEditor {
 
@@ -185,11 +204,21 @@ public class MultiPageEditor extends MultiPageEditorPart implements IResourceCha
                 }
             };
         }
+
+        @Override
+        public void selectionChanged(IWorkbenchPart part, ISelection selection) {
+            super.selectionChanged(part, selection);
+            // GraphicalEditor doesn't seem to account for multi page editors.
+            if (!this.equals(getSite().getPage().getActiveEditor())
+                    && this.equals(MultiPageEditor.this.getActiveEditor())) {
+                updateActions(getSelectionActions());
+            }
+        }
     }
 
     /**
      * @author bfitzpat
-     *
+     * 
      */
     public class SourceViewer extends StructuredTextEditor {
 
@@ -376,8 +405,8 @@ public class MultiPageEditor extends MultiPageEditorPart implements IResourceCha
                 int type = node.getNodeType();
                 if (type == 1) {
                     // node type = element
-                    //Element elem = (Element) node;
-                    //TODO: Somehow map the element back to a pictogram
+                    // Element elem = (Element) node;
+                    // TODO: Somehow map the element back to a pictogram
                     return getNewSelection(node.getParentNode());
                 } else if (type == 2) {
                     // node type = attribute
@@ -413,9 +442,10 @@ public class MultiPageEditor extends MultiPageEditorPart implements IResourceCha
     @Override
     protected void pageChange(int newPageIndex) {
         super.pageChange(newPageIndex);
-//        if (newPageIndex > 0 && newPageIndex == _tabFolder.getItemCount() - 1) {
-//            // TODO: sync source viewer's DOM with model
-//        }
+        // if (newPageIndex > 0 && newPageIndex == _tabFolder.getItemCount() -
+        // 1) {
+        // // TODO: sync source viewer's DOM with model
+        // }
     }
 
     /*
