@@ -91,7 +91,7 @@ public class JCAProcessorPropertyTable extends JCAPropertyTable {
                             
                             if (binding.getOutboundInteraction() == null) {
                                 JCAOutboundInteraction outbound = JcaFactory.eINSTANCE.createJCAOutboundInteraction();
-                                setFeatureValue(binding, "inboundConnection", outbound);
+                                setFeatureValue(binding, "outboundInteraction", outbound);
                             }
                             if (binding.getOutboundInteraction().getProcessor() == null) {
                                 Processor processor = JcaFactory.eINSTANCE.createProcessor();
