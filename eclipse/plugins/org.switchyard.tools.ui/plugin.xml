@@ -626,7 +626,7 @@
               org.switchyard.components
            </groupId>
            <artifactId>
-              switchyard-component-common-rest
+              switchyard-component-resteasy
            </artifactId>
         </dependency>
      </component>
