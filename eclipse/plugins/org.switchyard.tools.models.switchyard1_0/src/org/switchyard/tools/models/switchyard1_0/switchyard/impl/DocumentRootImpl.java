@@ -6,23 +6,19 @@
  */
 package org.switchyard.tools.models.switchyard1_0.switchyard.impl;
 
+import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.NotificationChain;
-
 import org.eclipse.emf.common.util.EMap;
-
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.ecore.EcorePackage;
 import org.eclipse.emf.ecore.InternalEObject;
-
 import org.eclipse.emf.ecore.impl.EObjectImpl;
 import org.eclipse.emf.ecore.impl.EStringToStringMapEntryImpl;
-
 import org.eclipse.emf.ecore.util.BasicFeatureMap;
 import org.eclipse.emf.ecore.util.EcoreEMap;
 import org.eclipse.emf.ecore.util.FeatureMap;
 import org.eclipse.emf.ecore.util.InternalEList;
-
 import org.switchyard.tools.models.switchyard1_0.switchyard.ArtifactType;
 import org.switchyard.tools.models.switchyard1_0.switchyard.ArtifactsType;
 import org.switchyard.tools.models.switchyard1_0.switchyard.DocumentRoot;
@@ -136,11 +132,27 @@ public class DocumentRootImpl extends EObjectImpl implements DocumentRoot {
 	/**
      * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-     * @generated
+     * @generated NOT
      */
-	public EMap<String, String> getXMLNSPrefixMap() {
+	@SuppressWarnings("serial")
+    public EMap<String, String> getXMLNSPrefixMap() {
         if (xMLNSPrefixMap == null) {
-            xMLNSPrefixMap = new EcoreEMap<String,String>(EcorePackage.Literals.ESTRING_TO_STRING_MAP_ENTRY, EStringToStringMapEntryImpl.class, this, SwitchyardPackage.DOCUMENT_ROOT__XMLNS_PREFIX_MAP);
+            xMLNSPrefixMap = new EcoreEMap<String, String>(EcorePackage.Literals.ESTRING_TO_STRING_MAP_ENTRY,
+                    EStringToStringMapEntryImpl.class, null) {
+                {
+                    initializeDelegateEList();
+                }
+
+                @Override
+                protected void initializeDelegateEList() {
+                    delegateEList = new DelegateEObjectContainmentEList<Entry<String, String>>(entryClass,
+                            DocumentRootImpl.this, SwitchyardPackage.DOCUMENT_ROOT__XMLNS_PREFIX_MAP) {
+                        @Override
+                        protected void dispatchNotification(Notification notification) {
+                        }
+                    };
+                }
+            };
         }
         return xMLNSPrefixMap;
     }
