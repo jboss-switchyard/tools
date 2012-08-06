@@ -12,6 +12,7 @@
  ******************************************************************************/
 package org.switchyard.tools.ui.editor.transform.wizards;
 
+import org.eclipse.emf.ecore.EObject;
 import org.eclipse.jface.wizard.IWizardPage;
 import org.switchyard.tools.models.switchyard1_0.switchyard.TransformType;
 import org.switchyard.tools.models.switchyard1_0.transform.JAXBTransformType;
@@ -23,7 +24,7 @@ import org.switchyard.tools.ui.editor.diagram.internal.wizards.BaseWizard;
 
 /**
  * @author bfitzpat
- *
+ * 
  */
 public class AddTransformWizard extends BaseWizard {
 
@@ -34,6 +35,9 @@ public class AddTransformWizard extends BaseWizard {
     private AddTransformWizardJSONPage _jsonPage = null;
     private AddTransformWizardJavaPage _javaPage = null;
 
+    private EObject _fromObject = null;
+    private EObject _toObject = null;
+
     /**
      * Opens the add transform wizard.
      */
@@ -43,6 +47,24 @@ public class AddTransformWizard extends BaseWizard {
         setWindowTitle("New Transformer");
     }
 
+    /**
+     * @param from object coming from
+     * @param to object going to
+     */
+    public AddTransformWizard(EObject from, EObject to) {
+        this();
+        initializeFromAndTo(from, to);
+    }
+
+    /**
+     * @param from object coming from
+     * @param to object going to
+     */
+    public void initializeFromAndTo(EObject from, EObject to) {
+        this._fromObject = from;
+        this._toObject = to;
+    }
+
     private void initPages() {
         _startPage = new AddTransformWizardStartPage("start");
         _jaxbPage = new AddTransformWizardJAXBPage(_startPage, "jaxb");
@@ -50,7 +72,7 @@ public class AddTransformWizard extends BaseWizard {
         _smooksPage = new AddTransformWizardSmooksPage(_startPage, "smooks");
         _jsonPage = new AddTransformWizardJSONPage(_startPage, "json");
         _javaPage = new AddTransformWizardJavaPage(_startPage, "java");
-        
+
     }
 
     @Override
@@ -104,5 +126,19 @@ public class AddTransformWizard extends BaseWizard {
         }
         return null;
     }
-    
+
+    /**
+     * @return from object
+     */
+    public EObject getFrom() {
+        return _fromObject;
+    }
+
+    /**
+     * @return to object
+     */
+    public EObject getTo() {
+        return _toObject;
+    }
+
 }

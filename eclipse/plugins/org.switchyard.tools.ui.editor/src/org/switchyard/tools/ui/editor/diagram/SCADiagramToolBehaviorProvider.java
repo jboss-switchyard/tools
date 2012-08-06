@@ -25,20 +25,24 @@ import org.eclipse.graphiti.dt.IDiagramTypeProvider;
 import org.eclipse.graphiti.features.ICreateConnectionFeature;
 import org.eclipse.graphiti.features.ICreateFeature;
 import org.eclipse.graphiti.features.IFeatureProvider;
+import org.eclipse.graphiti.features.context.ICustomContext;
 import org.eclipse.graphiti.features.context.IDoubleClickContext;
 import org.eclipse.graphiti.features.context.IPictogramElementContext;
 import org.eclipse.graphiti.features.custom.ICustomFeature;
 import org.eclipse.graphiti.mm.algorithms.GraphicsAlgorithm;
 import org.eclipse.graphiti.mm.algorithms.Polygon;
 import org.eclipse.graphiti.mm.algorithms.styles.Point;
+import org.eclipse.graphiti.mm.pictograms.Connection;
 import org.eclipse.graphiti.mm.pictograms.PictogramElement;
 import org.eclipse.graphiti.palette.IPaletteCompartmentEntry;
 import org.eclipse.graphiti.palette.impl.ConnectionCreationToolEntry;
 import org.eclipse.graphiti.palette.impl.ObjectCreationToolEntry;
 import org.eclipse.graphiti.palette.impl.PaletteCompartmentEntry;
 import org.eclipse.graphiti.platform.IPlatformImageConstants;
+import org.eclipse.graphiti.tb.ContextMenuEntry;
 import org.eclipse.graphiti.tb.DefaultToolBehaviorProvider;
 import org.eclipse.graphiti.tb.IContextButtonPadData;
+import org.eclipse.graphiti.tb.IContextMenuEntry;
 import org.eclipse.graphiti.tb.IDecorator;
 import org.eclipse.graphiti.tb.IImageDecorator;
 import org.eclipse.graphiti.tb.ImageDecorator;
@@ -55,6 +59,7 @@ import org.switchyard.tools.models.switchyard1_0.hornetq.BindingType;
 import org.switchyard.tools.models.switchyard1_0.soap.SOAPBindingType;
 import org.switchyard.tools.ui.editor.ImageProvider;
 import org.switchyard.tools.ui.validation.ValidationStatusAdapter;
+import org.switchyard.tools.ui.editor.diagram.connections.CustomAddTransformFeature;
 
 /**
  * @author bfitzpat
@@ -67,6 +72,28 @@ public class SCADiagramToolBehaviorProvider extends DefaultToolBehaviorProvider 
      */
     public SCADiagramToolBehaviorProvider(IDiagramTypeProvider diagramTypeProvider) {
         super(diagramTypeProvider);
+    }
+
+    /**
+     * @see org.eclipse.graphiti.tb.DefaultToolBehaviorProvider#getContextMenu(org.eclipse.graphiti.features.context.ICustomContext)
+     * @param context incoming context
+     * @return menu entries
+     */
+    public IContextMenuEntry[] getContextMenu(ICustomContext context) {
+        List<IContextMenuEntry> menuList = new ArrayList<IContextMenuEntry>();
+        if (context.getPictogramElements() != null) {
+            for (PictogramElement pictogramElement : context.getPictogramElements()) {
+                if (pictogramElement instanceof Connection) {
+                    ContextMenuEntry addTransformMenu = new ContextMenuEntry(new CustomAddTransformFeature(getFeatureProvider()), context);
+                    addTransformMenu.setText("Add Transformer");
+                    addTransformMenu.setSubmenu(false);
+                }
+            }
+            if (menuList.size() > 0) {
+                return menuList.toArray(new IContextMenuEntry[menuList.size()]);
+            }
+        }
+        return super.getContextMenu(context);
     }
 
     /**

@@ -12,12 +12,36 @@
  ******************************************************************************/
 package org.switchyard.tools.ui.editor.transform.wizards;
 
+import org.eclipse.swt.widgets.Composite;
+import org.eclipse.swt.widgets.Control;
+import org.switchyard.tools.models.switchyard1_0.switchyard.TransformType;
 
 /**
  * @author bfitzpat
  * 
  */
 public class JSONTransformComposite extends BaseTransformComposite {
+
+    @Override
+    public void createContents(Composite parent, int style) {
+        super.createContents(parent, style);
+    }
+
+    @Override
+    public void setTransform(TransformType transform) {
+        super.setTransform(transform);
+        addObservableListeners();
+    }
+
+    @Override
+    protected void handleModify(Control control) {
+        super.handleModify(control);
+    }
+
+    @Override
+    protected void handleUndo(Control control) {
+        super.handleUndo(control);
+    }
 
     @Override
     protected boolean validate() {

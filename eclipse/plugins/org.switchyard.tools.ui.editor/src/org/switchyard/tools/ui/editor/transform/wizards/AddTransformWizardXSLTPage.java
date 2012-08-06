@@ -15,6 +15,7 @@ package org.switchyard.tools.ui.editor.transform.wizards;
 import javax.swing.event.ChangeEvent;
 import javax.swing.event.ChangeListener;
 
+import org.eclipse.jface.dialogs.DialogPage;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.widgets.Composite;
 import org.switchyard.tools.models.switchyard1_0.transform.XsltTransformType;
@@ -55,10 +56,12 @@ public class AddTransformWizardXSLTPage extends BaseWizardPage implements IRefre
         _xsltComposite.addChangeListener(new ChangeListener() {
             @Override
             public void stateChanged(ChangeEvent arg0) {
+                setMessage(_xsltComposite.getWarningMessage(), DialogPage.WARNING);
                 setErrorMessage(_xsltComposite.getErrorMessage());
                 setPageComplete(_xsltComposite.getErrorMessage() == null);
             }
         });
+        _xsltComposite.setWizardPage(this);
         _xsltComposite.createContents(parent, SWT.NONE);
 
         setControl(_xsltComposite.getPanel());
@@ -80,7 +83,10 @@ public class AddTransformWizardXSLTPage extends BaseWizardPage implements IRefre
         if (_startPage != null && _startPage.getTransform() instanceof XsltTransformType) {
             if (_xsltComposite != null && _xsltComposite.getPanel() != null) {
                 _xsltComposite.setTransform((XsltTransformType) _startPage.getTransform());
+                _xsltComposite.setFromObject(((AddTransformWizard)getWizard()).getFrom());
+                _xsltComposite.setToObject(((AddTransformWizard)getWizard()).getTo());
                 _xsltComposite.validate();
+                setMessage(_xsltComposite.getWarningMessage(), DialogPage.WARNING);
                 setPageComplete(_xsltComposite.getErrorMessage() == null);
                 setErrorMessage(null);
             }

@@ -15,6 +15,7 @@ package org.switchyard.tools.ui.editor.transform.wizards;
 import javax.swing.event.ChangeEvent;
 import javax.swing.event.ChangeListener;
 
+import org.eclipse.jface.dialogs.DialogPage;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.widgets.Composite;
 import org.switchyard.tools.models.switchyard1_0.transform.JsonTransformType;
@@ -55,10 +56,12 @@ public class AddTransformWizardJSONPage extends BaseWizardPage implements IRefre
         _jsonComposite.addChangeListener(new ChangeListener() {
             @Override
             public void stateChanged(ChangeEvent arg0) {
+                setMessage(_jsonComposite.getWarningMessage(), DialogPage.WARNING);
                 setErrorMessage(_jsonComposite.getErrorMessage());
                 setPageComplete(_jsonComposite.getErrorMessage() == null);
             }
         });
+        _jsonComposite.setWizardPage(this);
         _jsonComposite.createContents(parent, SWT.NONE);
 
         setControl(_jsonComposite.getPanel());
@@ -80,7 +83,10 @@ public class AddTransformWizardJSONPage extends BaseWizardPage implements IRefre
         if (_startPage != null && _startPage.getTransform() instanceof JsonTransformType) {
             if (_jsonComposite != null && _jsonComposite.getPanel() != null) {
                 _jsonComposite.setTransform((JsonTransformType) _startPage.getTransform());
+                _jsonComposite.setFromObject(((AddTransformWizard)getWizard()).getFrom());
+                _jsonComposite.setToObject(((AddTransformWizard)getWizard()).getTo());
                 _jsonComposite.validate();
+                setMessage(_jsonComposite.getWarningMessage(), DialogPage.WARNING);
                 setPageComplete(_jsonComposite.getErrorMessage() == null);
                 setErrorMessage(null);
             }

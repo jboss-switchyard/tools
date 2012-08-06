@@ -12,25 +12,12 @@
  ******************************************************************************/
 package org.switchyard.tools.ui.editor.transform.wizards;
 
-import org.eclipse.core.resources.IFile;
-import org.eclipse.core.resources.IProject;
-import org.eclipse.core.runtime.IPath;
-import org.eclipse.core.runtime.Path;
-import org.eclipse.jdt.core.IJavaElement;
-import org.eclipse.jdt.core.IJavaProject;
-import org.eclipse.jdt.core.IPackageFragment;
-import org.eclipse.jdt.core.JavaCore;
 import org.eclipse.jdt.core.JavaModelException;
-import org.eclipse.jface.viewers.ISelection;
-import org.eclipse.jface.viewers.IStructuredSelection;
-import org.eclipse.jface.viewers.StructuredSelection;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Control;
 import org.eclipse.swt.widgets.Text;
-import org.eclipse.ui.PlatformUI;
 import org.switchyard.tools.models.switchyard1_0.switchyard.TransformType;
 import org.switchyard.tools.models.switchyard1_0.transform.JAXBTransformType;
-import org.switchyard.tools.ui.editor.impl.SwitchyardSCAEditor;
 
 /**
  * @author bfitzpat
@@ -63,33 +50,6 @@ public class JAXBTransformComposite extends BaseTransformComposite {
         return (getErrorMessage() == null);
     }
     
-    private IPackageFragment canFindPackage(String packagename) throws JavaModelException {
-        IProject project = null;
-        ISelection selection = PlatformUI.getWorkbench().getActiveWorkbenchWindow().getSelectionService()
-                .getSelection();
-        IStructuredSelection selectionToPass = StructuredSelection.EMPTY;
-        if (selection instanceof IStructuredSelection) {
-            selectionToPass = (IStructuredSelection) selection;
-            if (selectionToPass.getFirstElement() instanceof IFile) {
-                project = ((IFile) selectionToPass.getFirstElement()).getProject();
-            }
-        }
-        if (selectionToPass == StructuredSelection.EMPTY) {
-            project = SwitchyardSCAEditor.getActiveEditor().getModelFile().getProject();
-        }
-        if (project != null && packagename != null) { //$NON-NLS-1$
-            IJavaProject javaProject = JavaCore.create(project);
-            String packageNameForPath = packagename.replace('.', '/');
-            IPath packagePath = new Path(packageNameForPath);
-            IJavaElement javaEl = javaProject.findElement(packagePath);
-            if (javaEl != null && javaEl instanceof IPackageFragment) {
-                return (IPackageFragment) javaEl;
-            }
-        }
-        return null;
-    }
-
-
     protected void handleModify(final Control control) {
         if (control.equals(_contextPathText)) {
             updateFeature((JAXBTransformType) getTransform(), "contextPath", _contextPathText.getText().trim());

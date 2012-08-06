@@ -41,6 +41,7 @@ import org.eclipse.graphiti.features.context.IResizeShapeContext;
 import org.eclipse.graphiti.features.context.IUpdateContext;
 import org.eclipse.graphiti.features.context.impl.AddConnectionContext;
 import org.eclipse.graphiti.features.custom.ICustomFeature;
+import org.eclipse.graphiti.mm.pictograms.Connection;
 import org.eclipse.graphiti.mm.pictograms.ContainerShape;
 import org.eclipse.graphiti.mm.pictograms.Diagram;
 import org.eclipse.graphiti.mm.pictograms.PictogramElement;
@@ -100,6 +101,7 @@ import org.switchyard.tools.ui.editor.diagram.compositereference.SCADiagramLayou
 import org.switchyard.tools.ui.editor.diagram.compositereference.SCADiagramMoveCompositeReferenceFeature;
 import org.switchyard.tools.ui.editor.diagram.compositereference.SCADiagramResizeCompositeReferenceFeature;
 import org.switchyard.tools.ui.editor.diagram.compositereference.SCADiagramUpdateCompositeReferenceFeature;
+import org.switchyard.tools.ui.editor.diagram.connections.CustomAddTransformFeature;
 import org.switchyard.tools.ui.editor.diagram.connections.SCADiagramAddComponentServiceLinkFeature;
 import org.switchyard.tools.ui.editor.diagram.connections.SCADiagramAddReferenceLinkFeature;
 import org.switchyard.tools.ui.editor.diagram.connections.SCADiagramCreateComponentServiceLinkFeature;
@@ -380,7 +382,7 @@ public class SCADiagramFeatureProvider extends DefaultFeatureProvider {
 
     @Override
     public ICustomFeature[] getCustomFeatures(ICustomContext context) {
-        final List<ICustomFeature> features = new ArrayList<ICustomFeature>(3);
+        List<ICustomFeature> features = new ArrayList<ICustomFeature>();
         PictogramElement[] pes = context.getPictogramElements();
         if (pes != null && pes.length == 1) {
             Object bo = getBusinessObjectForPictogramElement(pes[0]);
@@ -390,10 +392,17 @@ public class SCADiagramFeatureProvider extends DefaultFeatureProvider {
                     features.add(new Java2WSDLCustomFeature(this));
                     features.add(new CreateServiceTestCustomFeature(this));
                 }
+                // features.add(new PropertiesDialogFeature(this));
             } else if (bo instanceof ComponentReference) {
                 features.add(new SCADiagramCustomPromoteReferenceFeature(this));
             } else if (bo instanceof Composite) {
                 features.add(new AutoLayoutFeature(this));
+            }
+            // if (bo != null) {
+            //  features.add(new PropertiesDialogFeature(this));
+            // }
+            if (pes[0] instanceof Connection) {
+                features.add(new CustomAddTransformFeature(this));
             }
         }
         features.add(new ValidateModelFeature(this));

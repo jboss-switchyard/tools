@@ -210,23 +210,25 @@ public class SwitchyardSCAPropertiesMainSection extends GFPropertySection implem
                     }
                     _businessObject = bo;
                     _pe = pe;
-        
+
                     if (_nameListener == null) {
                         _nameListener = new NameListener();
                     }
                     EObject eobj = (EObject) bo;
                     eobj.eAdapters().add(_nameListener);
-        
+
                     _inUpdate = true;
-                    if (bo instanceof org.eclipse.soa.sca.sca1_1.model.sca.Composite) {
-                        String name = ((org.eclipse.soa.sca.sca1_1.model.sca.Composite) bo).getName();
-                        _nameText.setText(name == null ? "" : name); //$NON-NLS-1$
-                    } else if (bo instanceof Component) {
-                        String name = ((Component) bo).getName();
-                        _nameText.setText(name == null ? "" : name); //$NON-NLS-1$
-                    } else if (bo instanceof Contract) {
-                        String name = ((Contract) bo).getName();
-                        _nameText.setText(name == null ? "" : name); //$NON-NLS-1$
+                    if (_nameText != null && !_nameText.isDisposed()) {
+                        if (bo instanceof org.eclipse.soa.sca.sca1_1.model.sca.Composite) {
+                            String name = ((org.eclipse.soa.sca.sca1_1.model.sca.Composite) bo).getName();
+                            _nameText.setText(name == null ? "" : name); //$NON-NLS-1$
+                        } else if (bo instanceof Component) {
+                            String name = ((Component) bo).getName();
+                            _nameText.setText(name == null ? "" : name); //$NON-NLS-1$
+                        } else if (bo instanceof Contract) {
+                            String name = ((Contract) bo).getName();
+                            _nameText.setText(name == null ? "" : name); //$NON-NLS-1$
+                        }
                     }
                     _inUpdate = false;
                 }

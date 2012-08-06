@@ -117,7 +117,7 @@ public class SOAPBindingComposite extends AbstractSYBindingComposite {
         Composite composite = new Composite(tabFolder, SWT.NONE);
         GridLayout gl = new GridLayout(3, false);
         composite.setLayout(gl);
-        
+
         _newWSDLLink = new Link(composite, SWT.NONE);
         String message = "<a>WSDL URI</a>";
         _newWSDLLink.setText(message);
@@ -181,10 +181,10 @@ public class SOAPBindingComposite extends AbstractSYBindingComposite {
             GridData cpGD = new GridData(GridData.FILL_HORIZONTAL);
             cpGD.horizontalSpan = 2;
             _contextPathText.setLayoutData(cpGD);
-        
+
             _mWSDLSocketText = createLabelAndText(composite, "Server Port");
             _mWSDLSocketText.setEnabled(canEdit());
-    
+
             GridData portGD = new GridData(GridData.FILL_HORIZONTAL);
             portGD.horizontalSpan = 2;
             _mWSDLSocketText.setLayoutData(portGD);
@@ -194,45 +194,41 @@ public class SOAPBindingComposite extends AbstractSYBindingComposite {
         GridData upChxGD = new GridData(GridData.FILL_HORIZONTAL);
         upChxGD.horizontalSpan = 3;
         _unwrappedPayloadCheckbox.setLayoutData(upChxGD);
-       
+
         _soapHeadersTypeCombo = createLabelAndCombo(composite, "SOAP Headers Type", true);
         GridData cmcGD = new GridData(GridData.FILL_HORIZONTAL);
         cmcGD.horizontalSpan = 2;
         _soapHeadersTypeCombo.setLayoutData(cmcGD);
-        
+
         for (int i = 0; i < SoapHeadersType.values().length; i++) {
             _soapHeadersTypeCombo.add(SoapHeadersType.get(i).getLiteral(), i);
         }
         _soapHeadersTypeCombo.select(SoapHeadersType.VALUE_VALUE);
-        
+
         return composite;
     }
-    
+
     protected MessageComposerType createMessageComposer() {
-        MessageComposerType messageComposer = 
-                SOAPFactory.eINSTANCE.createMessageComposerType();
+        MessageComposerType messageComposer = SOAPFactory.eINSTANCE.createMessageComposerType();
         return messageComposer;
     }
 
     protected ContextMapperType createContextMapper() {
-        ContextMapperType contextMapper = 
-                SOAPFactory.eINSTANCE.createContextMapperType();
+        ContextMapperType contextMapper = SOAPFactory.eINSTANCE.createContextMapperType();
         return contextMapper;
     }
-    
+
     protected void handleModify(Control control) {
         if (_binding != null) {
             if (control.equals(_mWSDLURIText)) {
                 _sWSDLURI = _mWSDLURIText.getText().trim();
                 String wsdlPort = _portNameText.getText().trim();
-                updateFeature(_binding, new String[] {"wsdl", "wsdlPort"},
-                        new Object[]{_sWSDLURI, wsdlPort});
+                updateFeature(_binding, new String[] {"wsdl", "wsdlPort" }, new Object[] {_sWSDLURI, wsdlPort });
             } else if (control.equals(_mWSDLSocketText)) {
                 _bindingSocket = _mWSDLSocketText.getText().trim();
                 updateFeature(_binding, "socketAddr", _bindingSocket);
             } else if (control.equals(_soapHeadersTypeCombo)) {
-                final SoapHeadersType mapperValue = 
-                        SoapHeadersType.getByName(_soapHeadersTypeCombo.getText());
+                final SoapHeadersType mapperValue = SoapHeadersType.getByName(_soapHeadersTypeCombo.getText());
                 updateContextMapperFeature("soapHeadersType", mapperValue);
             } else if (control.equals(_unwrappedPayloadCheckbox)) {
                 _unwrappedPayloadCheckbox.setData("unwrapped");
@@ -255,28 +251,29 @@ public class SOAPBindingComposite extends AbstractSYBindingComposite {
         if (_binding != null) {
             if (control.equals(_contextPathText)) {
                 _contextPathText.setText(_binding.getContextPath());
-           } else if (control.equals(_mWSDLSocketText)) {
-               _bindingSocket = _binding.getSocketAddr();
-               if (_bindingSocket != null) {
-                   _mWSDLSocketText.setText(_bindingSocket);
-               }
-           } else if (control.equals(_mWSDLURIText)) {
-               _mWSDLURIText.setText(_binding.getWsdl());
-           } else if (control.equals(_portNameText)) {
-               String portName = _binding.getWsdlPort();
-               if (portName != null) {
-                   _portNameText.setText(portName);
-               }
-           } else if (control.equals(_unwrappedPayloadCheckbox)) {
-               if (_binding.getMessageComposer() != null && _binding.getMessageComposer() instanceof MessageComposerType) {
-                   MessageComposerType mct = (MessageComposerType) _binding.getMessageComposer();
-                   _unwrappedPayloadCheckbox.setSelection(mct.isUnwrapped());
-               }
-           } else if (control.equals(_soapHeadersTypeCombo)) {
-               int index = _binding.getSoapContextMapper().getSoapHeadersType().getValue();
-               if (_soapHeadersTypeCombo != null && !_soapHeadersTypeCombo.isDisposed()) {
-                   _soapHeadersTypeCombo.select(index);
-               }
+            } else if (control.equals(_mWSDLSocketText)) {
+                _bindingSocket = _binding.getSocketAddr();
+                if (_bindingSocket != null) {
+                    _mWSDLSocketText.setText(_bindingSocket);
+                }
+            } else if (control.equals(_mWSDLURIText)) {
+                _mWSDLURIText.setText(_binding.getWsdl());
+            } else if (control.equals(_portNameText)) {
+                String portName = _binding.getWsdlPort();
+                if (portName != null) {
+                    _portNameText.setText(portName);
+                }
+            } else if (control.equals(_unwrappedPayloadCheckbox)) {
+                if (_binding.getMessageComposer() != null
+                        && _binding.getMessageComposer() instanceof MessageComposerType) {
+                    MessageComposerType mct = (MessageComposerType) _binding.getMessageComposer();
+                    _unwrappedPayloadCheckbox.setSelection(mct.isUnwrapped());
+                }
+            } else if (control.equals(_soapHeadersTypeCombo)) {
+                int index = _binding.getSoapContextMapper().getSoapHeadersType().getValue();
+                if (_soapHeadersTypeCombo != null && !_soapHeadersTypeCombo.isDisposed()) {
+                    _soapHeadersTypeCombo.select(index);
+                }
             } else {
                 super.handleUndo(control);
             }
@@ -323,9 +320,9 @@ public class SOAPBindingComposite extends AbstractSYBindingComposite {
                 setErrorMessage("No socket specified");
             }
         }
-        
+
         super.validateTabs();
-        
+
         return (getErrorMessage() == null);
     }
 
@@ -380,8 +377,10 @@ public class SOAPBindingComposite extends AbstractSYBindingComposite {
                 } else {
                     if (getTargetObject() != null && getTargetObject() instanceof Contract) {
                         Contract contract = (Contract) getTargetObject();
-                        if (contract.eContainer() != null && contract.eContainer() instanceof org.eclipse.soa.sca.sca1_1.model.sca.Composite) {
-                            org.eclipse.soa.sca.sca1_1.model.sca.Composite composite = (org.eclipse.soa.sca.sca1_1.model.sca.Composite) contract.eContainer();
+                        if (contract.eContainer() != null
+                                && contract.eContainer() instanceof org.eclipse.soa.sca.sca1_1.model.sca.Composite) {
+                            org.eclipse.soa.sca.sca1_1.model.sca.Composite composite = (org.eclipse.soa.sca.sca1_1.model.sca.Composite) contract
+                                    .eContainer();
                             if (composite.eContainer() != null && composite.eContainer() instanceof SwitchYardType) {
                                 SwitchYardType rootSwitchYard = (SwitchYardType) composite.eContainer();
                                 this._contextPathText.setText(rootSwitchYard.getName());
@@ -392,9 +391,12 @@ public class SOAPBindingComposite extends AbstractSYBindingComposite {
                 }
             }
             if (_unwrappedPayloadCheckbox != null && !_unwrappedPayloadCheckbox.isDisposed()) {
-                if (_binding.getMessageComposer() != null && _binding.getMessageComposer() instanceof MessageComposerType) {
+                if (_binding.getMessageComposer() != null
+                        && _binding.getMessageComposer() instanceof MessageComposerType) {
                     MessageComposerType mct = (MessageComposerType) _binding.getMessageComposer();
                     _unwrappedPayloadCheckbox.setSelection(mct.isUnwrapped());
+                } else {
+                    _unwrappedPayloadCheckbox.setSelection(false);
                 }
             }
             if (_binding.getContextMapper() != null) {
@@ -403,6 +405,8 @@ public class SOAPBindingComposite extends AbstractSYBindingComposite {
                 if (_soapHeadersTypeCombo != null && !_soapHeadersTypeCombo.isDisposed()) {
                     _soapHeadersTypeCombo.select(index);
                 }
+            } else {
+                _soapHeadersTypeCombo.select(SoapHeadersType.VALUE_VALUE);
             }
             super.setTabsBinding(_binding);
             setInUpdate(false);

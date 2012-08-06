@@ -292,14 +292,8 @@ public abstract class AbstractSYBindingComposite extends AbstractSwitchyardCompo
             }
             if (binding.getContextMapper() != null) {
                 setTextValue(_includesText, binding.getContextMapper().getIncludes());
-            }
-            if (binding.getContextMapper() != null) {
                 setTextValue(_includesNSText, binding.getContextMapper().getIncludeNamespaces());
-            }
-            if (binding.getContextMapper() != null) {
                 setTextValue(_excludesText, binding.getContextMapper().getExcludes());
-            }
-            if (binding.getContextMapper() != null) {
                 setTextValue(_excludesNSText, binding.getContextMapper().getExcludeNamespaces());
             }
         }
@@ -310,7 +304,6 @@ public abstract class AbstractSYBindingComposite extends AbstractSwitchyardCompo
      * @return true/false if tab is valid or not
      */
     public boolean validateTabs() {
-
         String cmClass = _mapperClassText.getText().trim();
         boolean regexEnabled = true;
         if (cmClass != null && cmClass.length() > 0) {

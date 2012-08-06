@@ -15,6 +15,7 @@ package org.switchyard.tools.ui.editor.transform.wizards;
 import javax.swing.event.ChangeEvent;
 import javax.swing.event.ChangeListener;
 
+import org.eclipse.jface.dialogs.DialogPage;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.widgets.Composite;
 import org.switchyard.tools.models.switchyard1_0.transform.SmooksTransformType1;
@@ -55,10 +56,12 @@ public class AddTransformWizardSmooksPage extends BaseWizardPage implements IRef
         _smooksComposite.addChangeListener(new ChangeListener() {
             @Override
             public void stateChanged(ChangeEvent arg0) {
+                setMessage(_smooksComposite.getWarningMessage(), DialogPage.WARNING);
                 setErrorMessage(_smooksComposite.getErrorMessage());
                 setPageComplete(_smooksComposite.getErrorMessage() == null);
             }
         });
+        _smooksComposite.setWizardPage(this);
         _smooksComposite.createContents(parent, SWT.NONE);
 
         setControl(_smooksComposite.getPanel());
@@ -80,7 +83,10 @@ public class AddTransformWizardSmooksPage extends BaseWizardPage implements IRef
         if (_startPage != null && _startPage.getTransform() instanceof SmooksTransformType1) {
             if (_smooksComposite != null && _smooksComposite.getPanel() != null) {
                 _smooksComposite.setTransform((SmooksTransformType1) _startPage.getTransform());
+                _smooksComposite.setFromObject(((AddTransformWizard)getWizard()).getFrom());
+                _smooksComposite.setToObject(((AddTransformWizard)getWizard()).getTo());
                 _smooksComposite.validate();
+                setMessage(_smooksComposite.getWarningMessage(), DialogPage.WARNING);
                 setPageComplete(_smooksComposite.getErrorMessage() == null);
                 setErrorMessage(null);
             }

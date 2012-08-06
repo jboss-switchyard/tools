@@ -20,6 +20,7 @@ import java.util.StringTokenizer;
 import javax.swing.event.ChangeEvent;
 import javax.swing.event.ChangeListener;
 
+import org.eclipse.core.databinding.observable.IObservable;
 import org.eclipse.core.databinding.observable.value.IValueChangeListener;
 import org.eclipse.core.databinding.observable.value.ValueChangeEvent;
 import org.eclipse.core.runtime.ListenerList;
@@ -68,11 +69,12 @@ public abstract class AbstractSwitchyardComposite implements FocusListener, KeyL
     private boolean _openOnCreate = false;
     private boolean _hasChanged = false;
     private boolean _inUpdate = false;
-    private ArrayList<Control> _observables = new ArrayList<Control>();
+    private ArrayList<Control> _observableControls = new ArrayList<Control>();
     private Control _comboTextChanged = null;
     private TextValueChangeListener _textValueChangeListener = null;
     private ComboValueChangeListener _comboValueChangeListener = null;
     private ButtonValueChangeListener _buttonValueChangeListener = null;
+    private ArrayList<IObservable> _observables = null;
     private boolean _observersAdded = false;
 
     // change listeners
@@ -232,7 +234,7 @@ public abstract class AbstractSwitchyardComposite implements FocusListener, KeyL
         Button newButton = new Button(parent, SWT.CHECK | SWT.LEFT);
         newButton.setText(label);
         newButton.setLayoutData(new GridData(SWT.FILL, SWT.NONE, true, false, 2, 1));
-        _observables.add(newButton);
+        _observableControls.add(newButton);
 
         return newButton;
     }
@@ -263,7 +265,7 @@ public abstract class AbstractSwitchyardComposite implements FocusListener, KeyL
         newText.addKeyListener(this);
         addEnterNextListener(newText);
 
-        _observables.add(newText);
+        _observableControls.add(newText);
 
         return newText;
     }
@@ -274,12 +276,12 @@ public abstract class AbstractSwitchyardComposite implements FocusListener, KeyL
         handleModify(control);
         fireChangedEvent(this);
     }
-    
+
     class TextValueChangeListener implements IValueChangeListener {
         @Override
         public void handleValueChange(final ValueChangeEvent e) {
             if (!inUpdate() && e.diff != null) {
-                System.out.println(e.diff);
+                System.out.println("TextValueChanged: " + e.diff);
                 SWTVetoableValueDecorator decorator = (SWTVetoableValueDecorator) e.getSource();
                 handleChange((Control) decorator.getWidget());
                 ErrorUtils.showErrorMessage(null);
@@ -291,7 +293,7 @@ public abstract class AbstractSwitchyardComposite implements FocusListener, KeyL
         @Override
         public void handleValueChange(final ValueChangeEvent e) {
             if (!inUpdate() && e.diff != null) {
-                System.out.println(e.diff);
+                System.out.println("ComboValueChanged: " + e.diff);
                 SWTObservableValueDecorator decorator = (SWTObservableValueDecorator) e.getSource();
                 handleChange((Control) decorator.getWidget());
                 ErrorUtils.showErrorMessage(null);
@@ -304,7 +306,7 @@ public abstract class AbstractSwitchyardComposite implements FocusListener, KeyL
         public void handleValueChange(final ValueChangeEvent e) {
             if (!inUpdate() && e.diff != null) {
                 if (!inUpdate() && e.diff != null) {
-                    System.out.println(e.diff);
+                    System.out.println("ButtonValueChanged: " + e.diff);
                     SWTObservableValueDecorator decorator = (SWTObservableValueDecorator) e.getSource();
                     handleChange((Control) decorator.getWidget());
                 }
@@ -313,9 +315,22 @@ public abstract class AbstractSwitchyardComposite implements FocusListener, KeyL
     }
 
     protected void addObservableListeners() {
-        if (_observersAdded) {
+        addObservableListeners(false);
+    }
+
+    protected void addObservableListeners(boolean reset) {
+        if (_observersAdded && !reset) {
             return;
         }
+
+        if (reset && _observables != null && _observables.size() > 0) {
+            for (int i = 0; i < _observables.size(); i++) {
+                _observables.get(i).dispose();
+            }
+            _observables.clear();
+        }
+        _observables = new ArrayList<IObservable>();
+
         if (_textValueChangeListener == null) {
             _textValueChangeListener = new TextValueChangeListener();
         }
@@ -325,27 +340,16 @@ public abstract class AbstractSwitchyardComposite implements FocusListener, KeyL
         if (_buttonValueChangeListener == null) {
             _buttonValueChangeListener = new ButtonValueChangeListener();
         }
-        Iterator<Control> iter = _observables.iterator();
+        Iterator<Control> iter = _observableControls.iterator();
         while (iter.hasNext()) {
             Control ctrl = iter.next();
             if (ctrl instanceof Text) {
                 Text newText = (Text) ctrl;
 
                 ISWTObservableValue focusObserver = SWTObservables.observeText(newText, SWT.FocusOut);
-                focusObserver.removeValueChangeListener(_textValueChangeListener);
+                _observables.add(focusObserver);
+                // focusObserver.removeValueChangeListener(_textValueChangeListener);
                 focusObserver.addValueChangeListener(_textValueChangeListener);
-//                focusObserver.addValueChangeListener(new IValueChangeListener() {
-//                    @Override
-//                    public void handleValueChange(final ValueChangeEvent e) {
-//                        if (!inUpdate() && e.diff != null) {
-//                            System.out.println(e.diff);
-//                            SWTVetoableValueDecorator decorator = (SWTVetoableValueDecorator) e.getSource();
-//                            handleChange((Control) decorator.getWidget());
-//                            ErrorUtils.showErrorMessage(null);
-//                        }
-//                    }
-//                });
-
             } else if (ctrl instanceof Combo) {
                 final Combo newCombo = (Combo) ctrl;
                 if ((newCombo.getStyle() & SWT.READ_ONLY) == 0) {
@@ -364,6 +368,12 @@ public abstract class AbstractSwitchyardComposite implements FocusListener, KeyL
                             }
                         }
                     });
+                    newCombo.addModifyListener(new ModifyListener() {
+                        @Override
+                        public void modifyText(ModifyEvent arg0) {
+                            AbstractSwitchyardComposite.this._comboTextChanged = (Control) arg0.widget;
+                        }
+                    });
                     newCombo.addFocusListener(new FocusListener() {
                         @Override
                         public void focusGained(FocusEvent e) {
@@ -380,35 +390,17 @@ public abstract class AbstractSwitchyardComposite implements FocusListener, KeyL
                     });
                 }
 
-                ISWTObservableValue selectionObserver = SWTObservables.observeSingleSelectionIndex(newCombo);
-                selectionObserver.removeValueChangeListener(_comboValueChangeListener);
+                ISWTObservableValue selectionObserver = SWTObservables.observeSelection(newCombo);
+                _observables.add(selectionObserver);
+                // selectionObserver.removeValueChangeListener(_comboValueChangeListener);
                 selectionObserver.addValueChangeListener(_comboValueChangeListener);
-//                selectionObserver.addValueChangeListener(new IValueChangeListener() {
-//                    @Override
-//                    public void handleValueChange(final ValueChangeEvent e) {
-//                        System.out.println(e.diff);
-//                        if (!inUpdate() && e.diff != null) {
-//                            SWTObservableValueDecorator decorator = (SWTObservableValueDecorator) e.getSource();
-//                            handleChange((Control) decorator.getWidget());
-//                            ErrorUtils.showErrorMessage(null);
-//                        }
-//                    }
-//                });
+
             } else if (ctrl instanceof Button) {
                 Button newButton = (Button) ctrl;
                 ISWTObservableValue buttonObserver = SWTObservables.observeSelection(newButton);
-                buttonObserver.removeValueChangeListener(_buttonValueChangeListener);
+                _observables.add(buttonObserver);
+                // buttonObserver.removeValueChangeListener(_buttonValueChangeListener);
                 buttonObserver.addValueChangeListener(_buttonValueChangeListener);
-//                buttonObserver.addValueChangeListener(new IValueChangeListener() {
-//                    @Override
-//                    public void handleValueChange(final ValueChangeEvent e) {
-//                        if (!inUpdate() && e.diff != null) {
-//                            System.out.println(e.diff);
-//                            SWTObservableValueDecorator decorator = (SWTObservableValueDecorator) e.getSource();
-//                            handleChange((Control) decorator.getWidget());
-//                        }
-//                    }
-//                });
             }
         }
         _observersAdded = true;
@@ -436,7 +428,7 @@ public abstract class AbstractSwitchyardComposite implements FocusListener, KeyL
         if (!readOnly) {
             addEnterNextListener(combo);
         }
-        _observables.add(combo);
+        _observableControls.add(combo);
 
         return combo;
     }
