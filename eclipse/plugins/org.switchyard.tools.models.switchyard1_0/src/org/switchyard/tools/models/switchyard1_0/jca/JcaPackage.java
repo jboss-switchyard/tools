@@ -530,6 +530,24 @@ public interface JcaPackage extends EPackage {
     int JCA_BINDING__URI = SwitchyardPackage.SWITCH_YARD_BINDING_TYPE__URI;
 
     /**
+     * The feature id for the '<em><b>Context Mapper</b></em>' containment reference.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int JCA_BINDING__CONTEXT_MAPPER = SwitchyardPackage.SWITCH_YARD_BINDING_TYPE__CONTEXT_MAPPER;
+
+    /**
+     * The feature id for the '<em><b>Message Composer</b></em>' containment reference.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int JCA_BINDING__MESSAGE_COMPOSER = SwitchyardPackage.SWITCH_YARD_BINDING_TYPE__MESSAGE_COMPOSER;
+
+    /**
      * The feature id for the '<em><b>Jndi URL</b></em>' attribute.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
@@ -548,31 +566,13 @@ public interface JcaPackage extends EPackage {
     int JCA_BINDING__INITIAL_CONTEXT_FACTORY = SwitchyardPackage.SWITCH_YARD_BINDING_TYPE_FEATURE_COUNT + 1;
 
     /**
-     * The feature id for the '<em><b>Context Mapper</b></em>' reference.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     * @ordered
-     */
-    int JCA_BINDING__CONTEXT_MAPPER = SwitchyardPackage.SWITCH_YARD_BINDING_TYPE_FEATURE_COUNT + 2;
-
-    /**
-     * The feature id for the '<em><b>Message Composer</b></em>' reference.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     * @ordered
-     */
-    int JCA_BINDING__MESSAGE_COMPOSER = SwitchyardPackage.SWITCH_YARD_BINDING_TYPE_FEATURE_COUNT + 3;
-
-    /**
      * The feature id for the '<em><b>Outbound Connection</b></em>' containment reference.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @generated
      * @ordered
      */
-    int JCA_BINDING__OUTBOUND_CONNECTION = SwitchyardPackage.SWITCH_YARD_BINDING_TYPE_FEATURE_COUNT + 4;
+    int JCA_BINDING__OUTBOUND_CONNECTION = SwitchyardPackage.SWITCH_YARD_BINDING_TYPE_FEATURE_COUNT + 2;
 
     /**
      * The feature id for the '<em><b>Inbound Connection</b></em>' containment reference.
@@ -581,7 +581,7 @@ public interface JcaPackage extends EPackage {
      * @generated
      * @ordered
      */
-    int JCA_BINDING__INBOUND_CONNECTION = SwitchyardPackage.SWITCH_YARD_BINDING_TYPE_FEATURE_COUNT + 5;
+    int JCA_BINDING__INBOUND_CONNECTION = SwitchyardPackage.SWITCH_YARD_BINDING_TYPE_FEATURE_COUNT + 3;
 
     /**
      * The feature id for the '<em><b>Inbound Interaction</b></em>' containment reference.
@@ -590,7 +590,7 @@ public interface JcaPackage extends EPackage {
      * @generated
      * @ordered
      */
-    int JCA_BINDING__INBOUND_INTERACTION = SwitchyardPackage.SWITCH_YARD_BINDING_TYPE_FEATURE_COUNT + 6;
+    int JCA_BINDING__INBOUND_INTERACTION = SwitchyardPackage.SWITCH_YARD_BINDING_TYPE_FEATURE_COUNT + 4;
 
     /**
      * The feature id for the '<em><b>Outbound Interaction</b></em>' containment reference.
@@ -599,7 +599,7 @@ public interface JcaPackage extends EPackage {
      * @generated
      * @ordered
      */
-    int JCA_BINDING__OUTBOUND_INTERACTION = SwitchyardPackage.SWITCH_YARD_BINDING_TYPE_FEATURE_COUNT + 7;
+    int JCA_BINDING__OUTBOUND_INTERACTION = SwitchyardPackage.SWITCH_YARD_BINDING_TYPE_FEATURE_COUNT + 5;
 
     /**
      * The feature id for the '<em><b>Property</b></em>' containment reference list.
@@ -608,7 +608,7 @@ public interface JcaPackage extends EPackage {
      * @generated
      * @ordered
      */
-    int JCA_BINDING__PROPERTY = SwitchyardPackage.SWITCH_YARD_BINDING_TYPE_FEATURE_COUNT + 8;
+    int JCA_BINDING__PROPERTY = SwitchyardPackage.SWITCH_YARD_BINDING_TYPE_FEATURE_COUNT + 6;
 
     /**
      * The feature id for the '<em><b>Extensions</b></em>' attribute.
@@ -617,7 +617,7 @@ public interface JcaPackage extends EPackage {
      * @generated
      * @ordered
      */
-    int JCA_BINDING__EXTENSIONS = SwitchyardPackage.SWITCH_YARD_BINDING_TYPE_FEATURE_COUNT + 9;
+    int JCA_BINDING__EXTENSIONS = SwitchyardPackage.SWITCH_YARD_BINDING_TYPE_FEATURE_COUNT + 7;
 
     /**
      * The number of structural features of the '<em>JCA Binding</em>' class.
@@ -626,7 +626,7 @@ public interface JcaPackage extends EPackage {
      * @generated
      * @ordered
      */
-    int JCA_BINDING_FEATURE_COUNT = SwitchyardPackage.SWITCH_YARD_BINDING_TYPE_FEATURE_COUNT + 10;
+    int JCA_BINDING_FEATURE_COUNT = SwitchyardPackage.SWITCH_YARD_BINDING_TYPE_FEATURE_COUNT + 8;
 
     /**
      * The meta object id for the '{@link org.switchyard.tools.models.switchyard1_0.jca.impl.JCAInboundConnectionImpl <em>JCA Inbound Connection</em>}' class.
@@ -1610,28 +1610,6 @@ public interface JcaPackage extends EPackage {
     EAttribute getJCABinding_InitialContextFactory();
 
     /**
-     * Returns the meta object for the reference '{@link org.switchyard.tools.models.switchyard1_0.jca.JCABinding#getContextMapper <em>Context Mapper</em>}'.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @return the meta object for the reference '<em>Context Mapper</em>'.
-     * @see org.switchyard.tools.models.switchyard1_0.jca.JCABinding#getContextMapper()
-     * @see #getJCABinding()
-     * @generated
-     */
-    EReference getJCABinding_ContextMapper();
-
-    /**
-     * Returns the meta object for the reference '{@link org.switchyard.tools.models.switchyard1_0.jca.JCABinding#getMessageComposer <em>Message Composer</em>}'.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @return the meta object for the reference '<em>Message Composer</em>'.
-     * @see org.switchyard.tools.models.switchyard1_0.jca.JCABinding#getMessageComposer()
-     * @see #getJCABinding()
-     * @generated
-     */
-    EReference getJCABinding_MessageComposer();
-
-    /**
      * Returns the meta object for the containment reference '{@link org.switchyard.tools.models.switchyard1_0.jca.JCABinding#getOutboundConnection <em>Outbound Connection</em>}'.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
@@ -2613,22 +2591,6 @@ public interface JcaPackage extends EPackage {
          * @generated
          */
         EAttribute JCA_BINDING__INITIAL_CONTEXT_FACTORY = eINSTANCE.getJCABinding_InitialContextFactory();
-
-        /**
-         * The meta object literal for the '<em><b>Context Mapper</b></em>' reference feature.
-         * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
-         * @generated
-         */
-        EReference JCA_BINDING__CONTEXT_MAPPER = eINSTANCE.getJCABinding_ContextMapper();
-
-        /**
-         * The meta object literal for the '<em><b>Message Composer</b></em>' reference feature.
-         * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
-         * @generated
-         */
-        EReference JCA_BINDING__MESSAGE_COMPOSER = eINSTANCE.getJCABinding_MessageComposer();
 
         /**
          * The meta object literal for the '<em><b>Outbound Connection</b></em>' containment reference feature.

@@ -20,11 +20,6 @@ import org.eclipse.core.resources.IResource;
 import org.eclipse.core.resources.ResourcesPlugin;
 import org.eclipse.core.runtime.IPath;
 import org.eclipse.core.runtime.Path;
-import org.eclipse.emf.ecore.EClass;
-import org.eclipse.emf.ecore.EObject;
-import org.eclipse.emf.ecore.EStructuralFeature;
-import org.eclipse.emf.transaction.RecordingCommand;
-import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.eclipse.jdt.core.IJavaProject;
 import org.eclipse.jdt.core.IPackageFragmentRoot;
 import org.eclipse.jdt.core.JavaCore;
@@ -36,8 +31,6 @@ import org.eclipse.soa.sca.sca1_1.model.sca.Binding;
 import org.eclipse.soa.sca.sca1_1.model.sca.Contract;
 import org.eclipse.soa.sca.sca1_1.model.sca.Service;
 import org.eclipse.swt.SWT;
-import org.eclipse.swt.events.FocusEvent;
-import org.eclipse.swt.events.KeyEvent;
 import org.eclipse.swt.events.SelectionAdapter;
 import org.eclipse.swt.events.SelectionEvent;
 import org.eclipse.swt.layout.GridData;
@@ -48,6 +41,8 @@ import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Control;
 import org.eclipse.swt.widgets.Link;
 import org.eclipse.swt.widgets.Shell;
+import org.eclipse.swt.widgets.TabFolder;
+import org.eclipse.swt.widgets.TabItem;
 import org.eclipse.swt.widgets.Text;
 import org.eclipse.ui.PlatformUI;
 import org.eclipse.wst.wsdl.Port;
@@ -58,8 +53,7 @@ import org.switchyard.tools.models.switchyard1_0.soap.SOAPFactory;
 import org.switchyard.tools.models.switchyard1_0.soap.SoapHeadersType;
 import org.switchyard.tools.models.switchyard1_0.switchyard.SwitchYardType;
 import org.switchyard.tools.ui.JavaUtil;
-import org.switchyard.tools.ui.editor.diagram.shared.AbstractSwitchyardComposite;
-import org.switchyard.tools.ui.editor.diagram.shared.IBindingComposite;
+import org.switchyard.tools.ui.editor.diagram.binding.AbstractSYBindingComposite;
 import org.switchyard.tools.ui.editor.diagram.shared.WSDLPortSelectionDialog;
 import org.switchyard.tools.ui.editor.impl.SwitchyardSCAEditor;
 import org.switchyard.tools.ui.editor.util.OpenFileUtil;
@@ -69,7 +63,7 @@ import org.switchyard.tools.ui.wizards.NewWSDLFileWizard;
  * @author bfitzpat
  * 
  */
-public class SOAPBindingComposite extends AbstractSwitchyardComposite implements IBindingComposite {
+public class SOAPBindingComposite extends AbstractSYBindingComposite {
 
     private static final String WSDL = "wsdl";
 
@@ -86,7 +80,7 @@ public class SOAPBindingComposite extends AbstractSwitchyardComposite implements
     private Button _browseBtnWorkspace;
     private Button _browseBtnFile;
     private Link _newWSDLLink;
-    private EObject _targetObj;
+    private TabFolder _tabFolder;
 
     /**
      * Constructor.
@@ -103,13 +97,28 @@ public class SOAPBindingComposite extends AbstractSwitchyardComposite implements
 
         _panel = new Composite(parent, style);
         GridLayout gl = new GridLayout();
-        gl.numColumns = 3;
+        gl.numColumns = 1;
         _panel.setLayout(gl);
         if (getRootGridData() != null) {
             _panel.setLayoutData(getRootGridData());
         }
 
-        _newWSDLLink = new Link(_panel, SWT.NONE);
+        _tabFolder = new TabFolder(_panel, SWT.NONE);
+        _tabFolder.setLayoutData(new GridData(SWT.FILL, SWT.FILL, true, true));
+
+        TabItem one = new TabItem(_tabFolder, SWT.NONE);
+        one.setText("Consumer");
+        one.setControl(getSOAPTabControl(_tabFolder));
+
+        addTabs(_tabFolder);
+    }
+
+    private Control getSOAPTabControl(TabFolder tabFolder) {
+        Composite composite = new Composite(tabFolder, SWT.NONE);
+        GridLayout gl = new GridLayout(3, false);
+        composite.setLayout(gl);
+        
+        _newWSDLLink = new Link(composite, SWT.NONE);
         String message = "<a>WSDL URI</a>";
         _newWSDLLink.setText(message);
         _newWSDLLink.setEnabled(canEdit());
@@ -136,14 +145,14 @@ public class SOAPBindingComposite extends AbstractSwitchyardComposite implements
                 }
             }
         });
-        _mWSDLURIText = createLabelAndText(_panel, null);
+        _mWSDLURIText = createLabelAndText(composite, null);
         _mWSDLURIText.setEnabled(canEdit());
 
         GridData uriGD = new GridData(GridData.FILL_HORIZONTAL);
         // uriGD.horizontalSpan = 2;
         _mWSDLURIText.setLayoutData(uriGD);
 
-        _browseBtnWorkspace = new Button(_panel, SWT.PUSH);
+        _browseBtnWorkspace = new Button(composite, SWT.PUSH);
         _browseBtnWorkspace.setText("Browse...");
         _browseBtnWorkspace.setEnabled(canEdit());
         GridData btnGD = new GridData();
@@ -160,20 +169,20 @@ public class SOAPBindingComposite extends AbstractSwitchyardComposite implements
             }
         });
 
-        _portNameText = createLabelAndText(_panel, "WSDL Port");
+        _portNameText = createLabelAndText(composite, "WSDL Port");
         _portNameText.setEnabled(canEdit());
         GridData pnGD = new GridData(GridData.FILL_HORIZONTAL);
         pnGD.horizontalSpan = 2;
         _portNameText.setLayoutData(pnGD);
 
-        if (_targetObj != null && _targetObj instanceof Service) {
-            _contextPathText = createLabelAndText(_panel, "Context Path");
+        if (getTargetObject() != null && getTargetObject() instanceof Service) {
+            _contextPathText = createLabelAndText(composite, "Context Path");
             _contextPathText.setEnabled(canEdit());
             GridData cpGD = new GridData(GridData.FILL_HORIZONTAL);
             cpGD.horizontalSpan = 2;
             _contextPathText.setLayoutData(cpGD);
         
-            _mWSDLSocketText = createLabelAndText(_panel, "Server Port");
+            _mWSDLSocketText = createLabelAndText(composite, "Server Port");
             _mWSDLSocketText.setEnabled(canEdit());
     
             GridData portGD = new GridData(GridData.FILL_HORIZONTAL);
@@ -181,12 +190,12 @@ public class SOAPBindingComposite extends AbstractSwitchyardComposite implements
             _mWSDLSocketText.setLayoutData(portGD);
         }
 
-        _unwrappedPayloadCheckbox = createCheckbox(_panel, "Unwrapped Payload");
+        _unwrappedPayloadCheckbox = createCheckbox(composite, "Unwrapped Payload");
         GridData upChxGD = new GridData(GridData.FILL_HORIZONTAL);
         upChxGD.horizontalSpan = 3;
         _unwrappedPayloadCheckbox.setLayoutData(upChxGD);
        
-        _soapHeadersTypeCombo = createLabelAndCombo(_panel, "SOAP Headers Type", true);
+        _soapHeadersTypeCombo = createLabelAndCombo(composite, "SOAP Headers Type", true);
         GridData cmcGD = new GridData(GridData.FILL_HORIZONTAL);
         cmcGD.horizontalSpan = 2;
         _soapHeadersTypeCombo.setLayoutData(cmcGD);
@@ -195,141 +204,83 @@ public class SOAPBindingComposite extends AbstractSwitchyardComposite implements
             _soapHeadersTypeCombo.add(SoapHeadersType.get(i).getLiteral(), i);
         }
         _soapHeadersTypeCombo.select(SoapHeadersType.VALUE_VALUE);
+        
+        return composite;
+    }
+    
+    protected MessageComposerType createMessageComposer() {
+        MessageComposerType messageComposer = 
+                SOAPFactory.eINSTANCE.createMessageComposerType();
+        return messageComposer;
     }
 
+    protected ContextMapperType createContextMapper() {
+        ContextMapperType contextMapper = 
+                SOAPFactory.eINSTANCE.createContextMapperType();
+        return contextMapper;
+    }
+    
     protected void handleModify(Control control) {
-        TransactionalEditingDomain domain = null;
         if (_binding != null) {
-            if (_binding.eContainer() != null) {
-                domain = SwitchyardSCAEditor.getActiveEditor().getEditingDomain();
-            }
             if (control.equals(_mWSDLURIText)) {
                 _sWSDLURI = _mWSDLURIText.getText().trim();
-                final String wsdlPort = _portNameText.getText().trim();
-                if (domain != null) {
-                    domain.getCommandStack().execute(new RecordingCommand(domain) {
-                        @Override
-                        protected void doExecute() {
-                            _binding.setWsdl(_sWSDLURI);
-                            if (_binding.getContextMapper() == null && _targetObj instanceof Service) {
-                                ContextMapperType contextMapper = SOAPFactory.eINSTANCE.createContextMapperType();
-                                _binding.setContextMapper(contextMapper);
-                            }
-                            if (wsdlPort != null && wsdlPort.trim().length() > 0) {
-                                _binding.setWsdlPort(wsdlPort);
-                            }
-                        }
-                    });
-                } else {
-                    _binding.setWsdl(_sWSDLURI);
-                    if (_binding.getContextMapper() == null && _targetObj instanceof Service) {
-                        ContextMapperType contextMapper = SOAPFactory.eINSTANCE.createContextMapperType();
-                        _binding.setContextMapper(contextMapper);
-                    }
-                    if (wsdlPort != null && wsdlPort.trim().length() > 0) {
-                        _binding.setWsdlPort(wsdlPort);
-                    }
-                }
+                String wsdlPort = _portNameText.getText().trim();
+                updateFeature(_binding, new String[] {"wsdl", "wsdlPort"},
+                        new Object[]{_sWSDLURI, wsdlPort});
             } else if (control.equals(_mWSDLSocketText)) {
                 _bindingSocket = _mWSDLSocketText.getText().trim();
-                if (domain != null) {
-                    domain.getCommandStack().execute(new RecordingCommand(domain) {
-                        @Override
-                        protected void doExecute() {
-                            if (_bindingSocket != null && _bindingSocket.trim().length() > 0) {
-                                _binding.setSocketAddr(_bindingSocket);
-                            }
-                        }
-                    });
-                } else {
-                    if (_bindingSocket != null && _bindingSocket.trim().length() > 0) {
-                        _binding.setSocketAddr(_bindingSocket);
-                    }
-                }
+                updateFeature(_binding, "socketAddr", _bindingSocket);
             } else if (control.equals(_soapHeadersTypeCombo)) {
-                final SoapHeadersType mapperValue = SoapHeadersType.getByName(_soapHeadersTypeCombo.getText());
-                if (domain != null) {
-                    domain.getCommandStack().execute(new RecordingCommand(domain) {
-                        @Override
-                        protected void doExecute() {
-                            if (_binding.getContextMapper() == null) {
-                                ContextMapperType contextMapper = SOAPFactory.eINSTANCE.createContextMapperType();
-                                _binding.setContextMapper(contextMapper);
-                            }
-                            _binding.getContextMapper().setSoapHeadersType(mapperValue);
-                        }
-                    });
-                } else {
-                    if (_binding.getContextMapper() == null) {
-                        ContextMapperType contextMapper = SOAPFactory.eINSTANCE.createContextMapperType();
-                        _binding.setContextMapper(contextMapper);
-                    }
-                    _binding.getContextMapper().setSoapHeadersType(mapperValue);
-                }
+                final SoapHeadersType mapperValue = 
+                        SoapHeadersType.getByName(_soapHeadersTypeCombo.getText());
+                updateContextMapperFeature("soapHeadersType", mapperValue);
             } else if (control.equals(_unwrappedPayloadCheckbox)) {
-                if (domain != null) {
-                    domain.getCommandStack().execute(new RecordingCommand(domain) {
-                        @Override
-                        protected void doExecute() {
-                            if (_binding.getMessageComposer() == null) {
-                                MessageComposerType messageComposer = SOAPFactory.eINSTANCE.createMessageComposerType();
-                                setFeatureValue(_binding, "messageComposer", messageComposer);
-                            }
-                            setFeatureValue(_binding.getMessageComposer(), "unwrapped", _unwrappedPayloadCheckbox.getSelection());
-//                            _binding.getMessageComposer().setUnwrapped(_unwrappedPayloadCheckbox.getSelection());
-                        }
-                    });
-                } else {
-                    if (_binding.getMessageComposer() == null) {
-                        MessageComposerType messageComposer = SOAPFactory.eINSTANCE.createMessageComposerType();
-                        setFeatureValue(_binding, "messageComposer", messageComposer);
-                    }
-                    setFeatureValue(_binding.getMessageComposer(), "unwrapped", _unwrappedPayloadCheckbox.getSelection());
-//                    _binding.getMessageComposer().setUnwrapped(_unwrappedPayloadCheckbox.getSelection());
-                }
+                _unwrappedPayloadCheckbox.setData("unwrapped");
+                updateMessageComposerFeature(_unwrappedPayloadCheckbox);
             } else if (control.equals(_contextPathText)) {
                 final String contextPath = _contextPathText.getText().trim();
-                if (domain != null) {
-                    domain.getCommandStack().execute(new RecordingCommand(domain) {
-                        @Override
-                        protected void doExecute() {
-                            if (_binding.getContextMapper() == null && _targetObj instanceof Service) {
-                                ContextMapperType contextMapper = SOAPFactory.eINSTANCE.createContextMapperType();
-                                _binding.setContextMapper(contextMapper);
-                            }
-                            if (contextPath != null && contextPath.trim().length() > 0) {
-                                _binding.setContextPath(contextPath);
-                            }
-                        }
-                    });
-                } else {
-                    if (_binding.getContextMapper() == null && _targetObj instanceof Service) {
-                        ContextMapperType contextMapper = SOAPFactory.eINSTANCE.createContextMapperType();
-                        _binding.setContextMapper(contextMapper);
-                    }
-                    if (contextPath != null && contextPath.trim().length() > 0) {
-                        _binding.setContextPath(contextPath);
-                    }
-                }
+                updateFeature(_binding, "contextPath", contextPath);
             } else if (control.equals(_portNameText)) {
                 final String wsdlPort = _portNameText.getText();
-                if (domain != null) {
-                    domain.getCommandStack().execute(new RecordingCommand(domain) {
-                        @Override
-                        protected void doExecute() {
-                            if (wsdlPort != null) {
-                                _binding.setWsdlPort(wsdlPort);
-                            }
-                        }
-                    });
-                } else {
-                    if (wsdlPort != null) {
-                        _binding.setWsdlPort(wsdlPort);
-                    }
-                }
+                updateFeature(_binding, "wsdlPort", wsdlPort);
+            } else {
+                super.handleModify(control);
             }
         }
         validate();
+        setHasChanged(false);
+    }
+
+    protected void handleUndo(Control control) {
+        if (_binding != null) {
+            if (control.equals(_contextPathText)) {
+                _contextPathText.setText(_binding.getContextPath());
+           } else if (control.equals(_mWSDLSocketText)) {
+               _bindingSocket = _binding.getSocketAddr();
+               if (_bindingSocket != null) {
+                   _mWSDLSocketText.setText(_bindingSocket);
+               }
+           } else if (control.equals(_mWSDLURIText)) {
+               _mWSDLURIText.setText(_binding.getWsdl());
+           } else if (control.equals(_portNameText)) {
+               String portName = _binding.getWsdlPort();
+               if (portName != null) {
+                   _portNameText.setText(portName);
+               }
+           } else if (control.equals(_unwrappedPayloadCheckbox)) {
+               if (_binding.getMessageComposer() != null && _binding.getMessageComposer() instanceof MessageComposerType) {
+                   MessageComposerType mct = (MessageComposerType) _binding.getMessageComposer();
+                   _unwrappedPayloadCheckbox.setSelection(mct.isUnwrapped());
+               }
+           } else if (control.equals(_soapHeadersTypeCombo)) {
+               int index = _binding.getSoapContextMapper().getSoapHeadersType().getValue();
+               if (_soapHeadersTypeCombo != null && !_soapHeadersTypeCombo.isDisposed()) {
+                   _soapHeadersTypeCombo.select(index);
+               }
+            } else {
+                super.handleUndo(control);
+            }
+        }
         setHasChanged(false);
     }
 
@@ -372,6 +323,9 @@ public class SOAPBindingComposite extends AbstractSwitchyardComposite implements
                 setErrorMessage("No socket specified");
             }
         }
+        
+        super.validateTabs();
+        
         return (getErrorMessage() == null);
     }
 
@@ -424,8 +378,8 @@ public class SOAPBindingComposite extends AbstractSwitchyardComposite implements
                 if (_binding.getContextPath() != null) {
                     this._contextPathText.setText(_binding.getContextPath());
                 } else {
-                    if (_targetObj != null && _targetObj instanceof Contract) {
-                        Contract contract = (Contract) _targetObj;
+                    if (getTargetObject() != null && getTargetObject() instanceof Contract) {
+                        Contract contract = (Contract) getTargetObject();
                         if (contract.eContainer() != null && contract.eContainer() instanceof org.eclipse.soa.sca.sca1_1.model.sca.Composite) {
                             org.eclipse.soa.sca.sca1_1.model.sca.Composite composite = (org.eclipse.soa.sca.sca1_1.model.sca.Composite) contract.eContainer();
                             if (composite.eContainer() != null && composite.eContainer() instanceof SwitchYardType) {
@@ -444,13 +398,17 @@ public class SOAPBindingComposite extends AbstractSwitchyardComposite implements
                 }
             }
             if (_binding.getContextMapper() != null) {
-                int index = _binding.getContextMapper().getSoapHeadersType().getValue();
+                ContextMapperType mapper = (ContextMapperType) _binding.getContextMapper();
+                int index = mapper.getSoapHeadersType().getValue();
                 if (_soapHeadersTypeCombo != null && !_soapHeadersTypeCombo.isDisposed()) {
                     _soapHeadersTypeCombo.select(index);
                 }
             }
+            super.setTabsBinding(_binding);
             setInUpdate(false);
+            validate();
         }
+        addObservableListeners();
     }
 
     /**
@@ -526,114 +484,15 @@ public class SOAPBindingComposite extends AbstractSwitchyardComposite implements
      */
     public void setCanEdit(boolean canEdit) {
         super.setCanEdit(canEdit);
-        if (this._mWSDLURIText != null && !this._mWSDLURIText.isDisposed()) {
-            this._mWSDLURIText.setEnabled(canEdit());
-        }
-        if (this._newWSDLLink != null && !this._newWSDLLink.isDisposed()) {
-            this._newWSDLLink.setEnabled(canEdit());
-        }
-        if (this._browseBtnFile != null && !this._browseBtnFile.isDisposed()) {
-            this._browseBtnFile.setEnabled(canEdit());
-        }
-        if (this._browseBtnWorkspace != null && !this._browseBtnWorkspace.isDisposed()) {
-            this._browseBtnWorkspace.setEnabled(canEdit());
-        }
-        if (this._portNameText != null && !this._portNameText.isDisposed()) {
-            this._portNameText.setEnabled(canEdit());
-        }
-        if (this._contextPathText != null && !this._contextPathText.isDisposed()) {
-            this._contextPathText.setEnabled(canEdit());
-        }
-        if (this._mWSDLSocketText != null && !this._mWSDLSocketText.isDisposed()) {
-            this._mWSDLSocketText.setEnabled(canEdit());
-        }
-        if (this._unwrappedPayloadCheckbox != null && !this._unwrappedPayloadCheckbox.isDisposed()) {
-            this._unwrappedPayloadCheckbox.setEnabled(canEdit());
-        }
-        if (this._soapHeadersTypeCombo != null && !this._soapHeadersTypeCombo.isDisposed()) {
-            this._soapHeadersTypeCombo.setEnabled(canEdit());
-        }
+        updateControlEditable(_mWSDLURIText);
+        updateControlEditable(_newWSDLLink);
+        updateControlEditable(_browseBtnFile);
+        updateControlEditable(_browseBtnWorkspace);
+        updateControlEditable(_portNameText);
+        updateControlEditable(_contextPathText);
+        updateControlEditable(_mWSDLSocketText);
+        updateControlEditable(_unwrappedPayloadCheckbox);
+        updateControlEditable(_soapHeadersTypeCombo);
     }
 
-    @Override
-    public void focusLost(FocusEvent e) {
-        if (!inUpdate()) {
-            setHasChanged(true);
-            handleModify((Control)e.getSource());
-            fireChangedEvent((Control)e.getSource());
-        }
-    }
-
-    private void setFeatureValue(EObject eObject, String featureId, Object value) {
-        EClass eClass = eObject.eClass();
-        for (int i = 0, size = eClass.getFeatureCount(); i < size; ++i) {
-            EStructuralFeature eStructuralFeature = eClass.getEStructuralFeature(i);
-            if (eStructuralFeature.isChangeable()) {
-                if (eStructuralFeature.getName().equalsIgnoreCase(featureId)) {
-                    eObject.eSet(eStructuralFeature, value);
-                    break;
-                }
-            }
-        }
-    }
-
-    @Override
-    public void widgetSelected(SelectionEvent e) {
-        if (!inUpdate()) {
-            setHasChanged(true);
-            handleModify((Control)e.getSource());
-            fireChangedEvent((Control)e.getSource());
-        }
-    }
-    
-    /**
-     * @param target EObject target
-     */
-    public void setTargetObject(EObject target) {
-        this._targetObj = target;
-    }
-
-    @Override
-    public void keyReleased(KeyEvent e) {
-        if (e.keyCode == SWT.ESC) {
-            // cancel out and return to original value
-            setInUpdate(true);
-            if (_binding != null) {
-                Control control = (Control) e.getSource();
-                 if (control.equals(_contextPathText)) {
-                     _contextPathText.setText(_binding.getContextPath());
-                } else if (control.equals(_mWSDLSocketText)) {
-                    _bindingSocket = _binding.getSocketAddr();
-                    if (_bindingSocket != null) {
-                        _mWSDLSocketText.setText(_bindingSocket);
-                    }
-                } else if (control.equals(_mWSDLURIText)) {
-                    _mWSDLURIText.setText(_binding.getWsdl());
-                } else if (control.equals(_portNameText)) {
-                    String portName = _binding.getWsdlPort();
-                    if (portName != null) {
-                        _portNameText.setText(portName);
-                    }
-                } else if (control.equals(_unwrappedPayloadCheckbox)) {
-                    if (_binding.getMessageComposer() != null && _binding.getMessageComposer() instanceof MessageComposerType) {
-                        MessageComposerType mct = (MessageComposerType) _binding.getMessageComposer();
-                        _unwrappedPayloadCheckbox.setSelection(mct.isUnwrapped());
-                    }
-                } else if (control.equals(_soapHeadersTypeCombo)) {
-                    int index = _binding.getContextMapper().getSoapHeadersType().getValue();
-                    if (_soapHeadersTypeCombo != null && !_soapHeadersTypeCombo.isDisposed()) {
-                        _soapHeadersTypeCombo.select(index);
-                    }
-                }
-            }
-            setInUpdate(false);
-        } else if (e.keyCode == SWT.CR) {
-            // accept change
-            if (_binding != null && !inUpdate() && hasChanged()) {
-                validate();
-                handleModify((Control) e.getSource());
-                fireChangedEvent((Control) e.getSource());
-            }
-        }
-    }
 }

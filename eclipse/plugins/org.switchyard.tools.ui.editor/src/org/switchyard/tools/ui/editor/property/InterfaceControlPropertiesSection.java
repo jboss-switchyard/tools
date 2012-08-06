@@ -116,7 +116,6 @@ public class InterfaceControlPropertiesSection extends GFPropertySection impleme
         _inUpdate = false;
     }
 
-    @SuppressWarnings("restriction")
     private void addDomainListener() {
         if (_domain == null) {
             _domain = (TransactionalEditingDomainImpl) SwitchyardSCAEditor.getActiveEditor().getEditingDomain();

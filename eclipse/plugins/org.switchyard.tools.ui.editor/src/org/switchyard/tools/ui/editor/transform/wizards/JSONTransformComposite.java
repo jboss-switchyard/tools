@@ -19,4 +19,9 @@ package org.switchyard.tools.ui.editor.transform.wizards;
  */
 public class JSONTransformComposite extends BaseTransformComposite {
 
+    @Override
+    protected boolean validate() {
+        return super.validate();
+    }
+
 }

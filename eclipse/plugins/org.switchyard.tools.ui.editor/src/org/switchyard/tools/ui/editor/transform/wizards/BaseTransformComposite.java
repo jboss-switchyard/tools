@@ -12,20 +12,20 @@
  ******************************************************************************/
 package org.switchyard.tools.ui.editor.transform.wizards;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import javax.xml.namespace.QName;
 
-import org.eclipse.emf.transaction.RecordingCommand;
-import org.eclipse.emf.transaction.TransactionalEditingDomain;
+import org.eclipse.emf.ecore.EObject;
 import org.eclipse.swt.SWT;
-import org.eclipse.swt.events.FocusEvent;
-import org.eclipse.swt.events.KeyEvent;
 import org.eclipse.swt.layout.GridLayout;
 import org.eclipse.swt.widgets.Combo;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Control;
 import org.switchyard.tools.models.switchyard1_0.switchyard.TransformType;
 import org.switchyard.tools.ui.editor.diagram.shared.AbstractSwitchyardComposite;
-import org.switchyard.tools.ui.editor.impl.SwitchyardSCAEditor;
+import org.switchyard.tools.ui.editor.diagram.shared.ModelOperation;
 import org.switchyard.tools.ui.editor.util.TransformTypesUtil;
 
 /**
@@ -106,12 +106,8 @@ public class BaseTransformComposite extends AbstractSwitchyardComposite {
             e.printStackTrace();
         }
         this._transform = transform;
-        if (_toText != null && !_toText.isDisposed() && transform.getTo() != null) {
-            _toText.setText(transform.getTo());
-        }
-        if (_fromText != null && !_fromText.isDisposed() && transform.getFrom() != null) {
-            _fromText.setText(transform.getFrom());
-        }
+        setTextValue(_toText, transform.getTo());
+        setTextValue(_fromText, transform.getTo());
         setInUpdate(false);
     }
 
@@ -122,68 +118,34 @@ public class BaseTransformComposite extends AbstractSwitchyardComposite {
         return this._transform;
     }
 
-    @SuppressWarnings("restriction")
     protected void handleModify(final Control control) {
-        TransactionalEditingDomain domain = null;
-        if (_transform.eContainer() != null) {
-            domain = SwitchyardSCAEditor.getActiveEditor().getEditingDomain();
-        }
         if (control.equals(_toText)) {
-            if (domain != null) {
-                domain.getCommandStack().execute(new RecordingCommand(domain) {
-                    @Override
-                    protected void doExecute() {
-                        _transform.setTo(_toText.getText().trim());
-                    }
-                });
-            } else {
-                _transform.setTo(_toText.getText().trim());
-            }
+            updateFeature(_transform, "to", _toText.getText().trim());
         } else if (control.equals(_fromText)) {
-            if (domain != null) {
-                domain.getCommandStack().execute(new RecordingCommand(domain) {
-                    @Override
-                    protected void doExecute() {
-                        _transform.setFrom(_fromText.getText().trim());
-                    }
-                });
-            } else {
-                _transform.setFrom(_fromText.getText().trim());
-            }
+            updateFeature(_transform, "from", _fromText.getText().trim());
         }
         validate();
     }
 
-    @Override
-    public void focusLost(FocusEvent e) {
-        if (_transform != null && !inUpdate()) {
-            validate();
-            handleModify((Control) e.getSource());
-            fireChangedEvent((Control) e.getSource());
+    protected void handleUndo(Control control) {
+        setInUpdate(true);
+        if (_transform != null) {
+            if (control.equals(_fromText)) {
+                _fromText.setText(this._transform.getFrom());
+            } else if (control.equals(_toText)) {
+                _toText.setText(this._transform.getTo());
+            }
         }
+        setInUpdate(false);
     }
 
-    @Override
-    public void keyReleased(KeyEvent e) {
-        if (e.keyCode == SWT.ESC) {
-            // cancel out and return to original value
-            setInUpdate(true);
-            if (_transform != null) {
-                Control control = (Control) e.getSource();
-                if (control.equals(_fromText)) {
-                    _fromText.setText(this._transform.getFrom());
-                } else if (control.equals(_toText)) {
-                    _toText.setText(this._transform.getTo());
-                }
-            }
-            setInUpdate(false);
-        } else if (e.keyCode == SWT.CR) {
-            // accept change
-            if (_transform != null && !inUpdate()) {
-                validate();
-                handleModify((Control) e.getSource());
-                fireChangedEvent((Control) e.getSource());
-            }
-        }
+    protected void wrapOperation(final List<ModelOperation> ops) {
+        wrapOperation(this._transform, ops);
+    }
+
+    protected void updateFeature(EObject eObject, String featureId, Object value) {
+        ArrayList<ModelOperation> ops = new ArrayList<ModelOperation>();
+        ops.add(new BasicEObjectOperation(eObject, featureId, value));
+        wrapOperation(ops);
     }
 }

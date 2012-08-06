@@ -429,7 +429,6 @@ public abstract class JCAPropertyTable extends Composite implements ICellModifie
             if (getTargetObject() instanceof JCABinding) {
                 final JCABinding binding = (JCABinding) getTargetObject();
                 if (binding.eContainer() != null) {
-                    @SuppressWarnings("restriction")
                     TransactionalEditingDomain domain = SwitchyardSCAEditor.getActiveEditor().getEditingDomain();
                     domain.getCommandStack().execute(new RecordingCommand(domain) {
                         @Override

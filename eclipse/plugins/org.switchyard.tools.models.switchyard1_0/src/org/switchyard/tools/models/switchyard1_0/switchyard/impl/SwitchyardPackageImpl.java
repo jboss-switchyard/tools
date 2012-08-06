@@ -842,6 +842,24 @@ public class SwitchyardPackageImpl extends EPackageImpl implements SwitchyardPac
 
 	/**
      * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public EReference getSwitchYardBindingType_ContextMapper() {
+        return (EReference)switchYardBindingTypeEClass.getEStructuralFeatures().get(0);
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public EReference getSwitchYardBindingType_MessageComposer() {
+        return (EReference)switchYardBindingTypeEClass.getEStructuralFeatures().get(1);
+    }
+
+    /**
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
      * @generated
      */
@@ -1107,6 +1125,8 @@ public class SwitchyardPackageImpl extends EPackageImpl implements SwitchyardPac
         createEAttribute(resourceTypeEClass, RESOURCE_TYPE__TYPE);
 
         switchYardBindingTypeEClass = createEClass(SWITCH_YARD_BINDING_TYPE);
+        createEReference(switchYardBindingTypeEClass, SWITCH_YARD_BINDING_TYPE__CONTEXT_MAPPER);
+        createEReference(switchYardBindingTypeEClass, SWITCH_YARD_BINDING_TYPE__MESSAGE_COMPOSER);
 
         switchYardTypeEClass = createEClass(SWITCH_YARD_TYPE);
         createEAttribute(switchYardTypeEClass, SWITCH_YARD_TYPE__NAME);
@@ -1237,6 +1257,8 @@ public class SwitchyardPackageImpl extends EPackageImpl implements SwitchyardPac
         initEAttribute(getResourceType_Type(), theXMLTypePackage.getNCName(), "type", null, 1, 1, ResourceType.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
         initEClass(switchYardBindingTypeEClass, SwitchYardBindingType.class, "SwitchYardBindingType", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+        initEReference(getSwitchYardBindingType_ContextMapper(), this.getContextMapperType(), null, "contextMapper", null, 0, 1, SwitchYardBindingType.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+        initEReference(getSwitchYardBindingType_MessageComposer(), this.getMessageComposerType(), null, "messageComposer", null, 0, 1, SwitchYardBindingType.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
         initEClass(switchYardTypeEClass, SwitchYardType.class, "SwitchYardType", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
         initEAttribute(getSwitchYardType_Name(), theXMLTypePackage.getString(), "name", null, 0, 1, SwitchYardType.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
@@ -1693,6 +1715,22 @@ public class SwitchyardPackageImpl extends EPackageImpl implements SwitchyardPac
            new String[] {
              "name", "SwitchYardBindingType",
              "kind", "elementOnly"
+           });		
+        addAnnotation
+          (getSwitchYardBindingType_ContextMapper(), 
+           source, 
+           new String[] {
+             "name", "contextMapper",
+             "kind", "element",
+             "namespace", "##targetNamespace"
+           });		
+        addAnnotation
+          (getSwitchYardBindingType_MessageComposer(), 
+           source, 
+           new String[] {
+             "name", "messageComposer",
+             "kind", "element",
+             "namespace", "##targetNamespace"
            });		
         addAnnotation
           (switchYardTypeEClass, 

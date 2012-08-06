@@ -13,6 +13,7 @@ import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 
 import org.switchyard.tools.models.switchyard1_0.soap.ContextMapperType;
+import org.switchyard.tools.models.switchyard1_0.soap.SOAPFactory;
 import org.switchyard.tools.models.switchyard1_0.soap.SOAPPackage;
 import org.switchyard.tools.models.switchyard1_0.soap.SoapHeadersType;
 
@@ -38,7 +39,7 @@ public class ContextMapperTypeImpl extends org.switchyard.tools.models.switchyar
      * @generated
      * @ordered
      */
-    protected static final SoapHeadersType SOAP_HEADERS_TYPE_EDEFAULT = SoapHeadersType.VALUE;
+    protected static final SoapHeadersType SOAP_HEADERS_TYPE_EDEFAULT = SoapHeadersType.CONFIG;
 
     /**
      * The cached value of the '{@link #getSoapHeadersType() <em>Soap Headers Type</em>}' attribute.

@@ -355,7 +355,7 @@ public class SOAPPackageImpl extends EPackageImpl implements SOAPPackage {
      * <!-- end-user-doc -->
      * @generated
      */
-    public EReference getSOAPBindingType_ContextMapper() {
+    public EReference getSOAPBindingType_SoapContextMapper() {
         return (EReference)soapBindingTypeEClass.getEStructuralFeatures().get(0);
     }
 
@@ -364,7 +364,7 @@ public class SOAPPackageImpl extends EPackageImpl implements SOAPPackage {
      * <!-- end-user-doc -->
      * @generated
      */
-    public EReference getSOAPBindingType_MessageComposer() {
+    public EReference getSOAPBindingType_SoapMessageComposer() {
         return (EReference)soapBindingTypeEClass.getEStructuralFeatures().get(1);
     }
 
@@ -472,8 +472,8 @@ public class SOAPPackageImpl extends EPackageImpl implements SOAPPackage {
         createEReference(documentRootEClass, DOCUMENT_ROOT__BINDING_SOAP);
 
         soapBindingTypeEClass = createEClass(SOAP_BINDING_TYPE);
-        createEReference(soapBindingTypeEClass, SOAP_BINDING_TYPE__CONTEXT_MAPPER);
-        createEReference(soapBindingTypeEClass, SOAP_BINDING_TYPE__MESSAGE_COMPOSER);
+        createEReference(soapBindingTypeEClass, SOAP_BINDING_TYPE__SOAP_CONTEXT_MAPPER);
+        createEReference(soapBindingTypeEClass, SOAP_BINDING_TYPE__SOAP_MESSAGE_COMPOSER);
         createEAttribute(soapBindingTypeEClass, SOAP_BINDING_TYPE__WSDL);
         createEAttribute(soapBindingTypeEClass, SOAP_BINDING_TYPE__WSDL_PORT);
         createEAttribute(soapBindingTypeEClass, SOAP_BINDING_TYPE__SOCKET_ADDR);
@@ -525,7 +525,7 @@ public class SOAPPackageImpl extends EPackageImpl implements SOAPPackage {
 
         // Initialize classes and features; add operations and parameters
         initEClass(contextMapperTypeEClass, ContextMapperType.class, "ContextMapperType", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-        initEAttribute(getContextMapperType_SoapHeadersType(), this.getSoapHeadersType(), "soapHeadersType", null, 0, 1, ContextMapperType.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+        initEAttribute(getContextMapperType_SoapHeadersType(), this.getSoapHeadersType(), "soapHeadersType", "", 0, 1, ContextMapperType.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
         initEClass(messageComposerTypeEClass, MessageComposerType.class, "MessageComposerType", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
         initEAttribute(getMessageComposerType_Unwrapped(), theXMLTypePackage.getBoolean(), "unwrapped", null, 0, 1, MessageComposerType.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
@@ -537,8 +537,8 @@ public class SOAPPackageImpl extends EPackageImpl implements SOAPPackage {
         initEReference(getDocumentRoot_BindingSoap(), this.getSOAPBindingType(), null, "bindingSoap", null, 0, -2, null, IS_TRANSIENT, IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, IS_DERIVED, IS_ORDERED);
 
         initEClass(soapBindingTypeEClass, SOAPBindingType.class, "SOAPBindingType", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-        initEReference(getSOAPBindingType_ContextMapper(), this.getContextMapperType(), null, "contextMapper", null, 0, 1, SOAPBindingType.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-        initEReference(getSOAPBindingType_MessageComposer(), this.getMessageComposerType(), null, "messageComposer", null, 0, 1, SOAPBindingType.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+        initEReference(getSOAPBindingType_SoapContextMapper(), this.getContextMapperType(), null, "soapContextMapper", null, 0, 1, SOAPBindingType.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+        initEReference(getSOAPBindingType_SoapMessageComposer(), this.getMessageComposerType(), null, "soapMessageComposer", null, 0, 1, SOAPBindingType.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
         initEAttribute(getSOAPBindingType_Wsdl(), theXMLTypePackage.getAnyURI(), "wsdl", null, 1, 1, SOAPBindingType.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
         initEAttribute(getSOAPBindingType_WsdlPort(), this.getWsdlPortType(), "wsdlPort", null, 0, 1, SOAPBindingType.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
         initEAttribute(getSOAPBindingType_SocketAddr(), theXMLTypePackage.getString(), "socketAddr", null, 0, 1, SOAPBindingType.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
@@ -644,7 +644,7 @@ public class SOAPPackageImpl extends EPackageImpl implements SOAPPackage {
              "kind", "elementOnly"
            });			
         addAnnotation
-          (getSOAPBindingType_ContextMapper(), 
+          (getSOAPBindingType_SoapContextMapper(), 
            source, 
            new String[] {
              "kind", "element",
@@ -652,7 +652,7 @@ public class SOAPPackageImpl extends EPackageImpl implements SOAPPackage {
              "namespace", "##targetNamespace"
            });			
         addAnnotation
-          (getSOAPBindingType_MessageComposer(), 
+          (getSOAPBindingType_SoapMessageComposer(), 
            source, 
            new String[] {
              "kind", "element",

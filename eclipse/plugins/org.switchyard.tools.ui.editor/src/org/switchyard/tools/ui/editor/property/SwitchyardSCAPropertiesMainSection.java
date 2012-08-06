@@ -40,6 +40,7 @@ import org.eclipse.swt.events.KeyListener;
 import org.eclipse.swt.layout.FormAttachment;
 import org.eclipse.swt.layout.FormData;
 import org.eclipse.swt.widgets.Composite;
+import org.eclipse.swt.widgets.Display;
 import org.eclipse.swt.widgets.Text;
 import org.eclipse.ui.views.properties.tabbed.ITabbedPropertyConstants;
 import org.eclipse.ui.views.properties.tabbed.TabbedPropertySheetPage;
@@ -67,7 +68,6 @@ public class SwitchyardSCAPropertiesMainSection extends GFPropertySection implem
         super();
     }
 
-    @SuppressWarnings("restriction")
     private void addDomainListener() {
         if (_domain == null) {
             _domain = (TransactionalEditingDomainImpl) SwitchyardSCAEditor.getActiveEditor().getEditingDomain();
@@ -147,7 +147,6 @@ public class SwitchyardSCAPropertiesMainSection extends GFPropertySection implem
         addDomainListener();
     }
 
-    @SuppressWarnings("restriction")
     private void updateObjectName(final Object bo, final String value) {
         boolean changed = false;
         if (bo instanceof org.eclipse.soa.sca.sca1_1.model.sca.Composite) {
@@ -197,38 +196,42 @@ public class SwitchyardSCAPropertiesMainSection extends GFPropertySection implem
 
     @Override
     public void refresh() {
-        PictogramElement pe = getSelectedPictogramElement();
-        if (pe != null) {
-            _inUpdate = true;
-            _pe = null;
-            _businessObject = null;
-            Object bo = Graphiti.getLinkService().getBusinessObjectForLinkedPictogramElement(pe);
-            // the filter assured, that it is a EClass
-            if (bo == null) {
-                return;
+        Display.getDefault().asyncExec(new Runnable() {
+            public void run() {
+                PictogramElement pe = getSelectedPictogramElement();
+                if (pe != null) {
+                    _inUpdate = true;
+                    _pe = null;
+                    _businessObject = null;
+                    Object bo = Graphiti.getLinkService().getBusinessObjectForLinkedPictogramElement(pe);
+                    // the filter assured, that it is a EClass
+                    if (bo == null) {
+                        return;
+                    }
+                    _businessObject = bo;
+                    _pe = pe;
+        
+                    if (_nameListener == null) {
+                        _nameListener = new NameListener();
+                    }
+                    EObject eobj = (EObject) bo;
+                    eobj.eAdapters().add(_nameListener);
+        
+                    _inUpdate = true;
+                    if (bo instanceof org.eclipse.soa.sca.sca1_1.model.sca.Composite) {
+                        String name = ((org.eclipse.soa.sca.sca1_1.model.sca.Composite) bo).getName();
+                        _nameText.setText(name == null ? "" : name); //$NON-NLS-1$
+                    } else if (bo instanceof Component) {
+                        String name = ((Component) bo).getName();
+                        _nameText.setText(name == null ? "" : name); //$NON-NLS-1$
+                    } else if (bo instanceof Contract) {
+                        String name = ((Contract) bo).getName();
+                        _nameText.setText(name == null ? "" : name); //$NON-NLS-1$
+                    }
+                    _inUpdate = false;
+                }
             }
-            _businessObject = bo;
-            _pe = pe;
-
-            if (_nameListener == null) {
-                _nameListener = new NameListener();
-            }
-            EObject eobj = (EObject) bo;
-            eobj.eAdapters().add(_nameListener);
-
-            _inUpdate = true;
-            if (bo instanceof org.eclipse.soa.sca.sca1_1.model.sca.Composite) {
-                String name = ((org.eclipse.soa.sca.sca1_1.model.sca.Composite) bo).getName();
-                _nameText.setText(name == null ? "" : name); //$NON-NLS-1$
-            } else if (bo instanceof Component) {
-                String name = ((Component) bo).getName();
-                _nameText.setText(name == null ? "" : name); //$NON-NLS-1$
-            } else if (bo instanceof Contract) {
-                String name = ((Contract) bo).getName();
-                _nameText.setText(name == null ? "" : name); //$NON-NLS-1$
-            }
-            _inUpdate = false;
-        }
+        });
     }
 
     private final class NameListener extends AdapterImpl {

@@ -479,26 +479,8 @@ public class CamelPackageImpl extends EPackageImpl implements CamelPackage {
      * <!-- end-user-doc -->
      * @generated
      */
-    public EReference getBaseCamelBinding_ContextMapper() {
-        return (EReference)baseCamelBindingEClass.getEStructuralFeatures().get(0);
-    }
-
-    /**
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    public EReference getBaseCamelBinding_MessageComposer() {
-        return (EReference)baseCamelBindingEClass.getEStructuralFeatures().get(1);
-    }
-
-    /**
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
     public EReference getBaseCamelBinding_CamelOperationSelector() {
-        return (EReference)baseCamelBindingEClass.getEStructuralFeatures().get(2);
+        return (EReference)baseCamelBindingEClass.getEStructuralFeatures().get(0);
     }
 
     /**
@@ -614,26 +596,8 @@ public class CamelPackageImpl extends EPackageImpl implements CamelPackage {
      * <!-- end-user-doc -->
      * @generated
      */
-    public EReference getCamelDirectBindingType_ContextMapper() {
-        return (EReference)camelDirectBindingTypeEClass.getEStructuralFeatures().get(0);
-    }
-
-    /**
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    public EReference getCamelDirectBindingType_MessageComposer() {
-        return (EReference)camelDirectBindingTypeEClass.getEStructuralFeatures().get(1);
-    }
-
-    /**
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
     public EAttribute getCamelDirectBindingType_NameElement() {
-        return (EAttribute)camelDirectBindingTypeEClass.getEStructuralFeatures().get(2);
+        return (EAttribute)camelDirectBindingTypeEClass.getEStructuralFeatures().get(0);
     }
 
     /**
@@ -1172,26 +1136,8 @@ public class CamelPackageImpl extends EPackageImpl implements CamelPackage {
      * <!-- end-user-doc -->
      * @generated
      */
-    public EReference getCamelMockBindingType_ContextMapper() {
-        return (EReference)camelMockBindingTypeEClass.getEStructuralFeatures().get(0);
-    }
-
-    /**
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    public EReference getCamelMockBindingType_MessageComposer() {
-        return (EReference)camelMockBindingTypeEClass.getEStructuralFeatures().get(1);
-    }
-
-    /**
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
     public EAttribute getCamelMockBindingType_NameElement() {
-        return (EAttribute)camelMockBindingTypeEClass.getEStructuralFeatures().get(2);
+        return (EAttribute)camelMockBindingTypeEClass.getEStructuralFeatures().get(0);
     }
 
     /**
@@ -1200,7 +1146,7 @@ public class CamelPackageImpl extends EPackageImpl implements CamelPackage {
      * @generated
      */
 	public EAttribute getCamelMockBindingType_ReportGroup() {
-        return (EAttribute)camelMockBindingTypeEClass.getEStructuralFeatures().get(3);
+        return (EAttribute)camelMockBindingTypeEClass.getEStructuralFeatures().get(1);
     }
 
 	/**
@@ -1244,26 +1190,8 @@ public class CamelPackageImpl extends EPackageImpl implements CamelPackage {
      * <!-- end-user-doc -->
      * @generated
      */
-    public EReference getCamelSedaBindingType_ContextMapper() {
-        return (EReference)camelSedaBindingTypeEClass.getEStructuralFeatures().get(0);
-    }
-
-    /**
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    public EReference getCamelSedaBindingType_MessageComposer() {
-        return (EReference)camelSedaBindingTypeEClass.getEStructuralFeatures().get(1);
-    }
-
-    /**
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
     public EAttribute getCamelSedaBindingType_NameElement() {
-        return (EAttribute)camelSedaBindingTypeEClass.getEStructuralFeatures().get(2);
+        return (EAttribute)camelSedaBindingTypeEClass.getEStructuralFeatures().get(0);
     }
 
     /**
@@ -1272,7 +1200,7 @@ public class CamelPackageImpl extends EPackageImpl implements CamelPackage {
      * @generated
      */
 	public EAttribute getCamelSedaBindingType_Size() {
-        return (EAttribute)camelSedaBindingTypeEClass.getEStructuralFeatures().get(3);
+        return (EAttribute)camelSedaBindingTypeEClass.getEStructuralFeatures().get(1);
     }
 
 	/**
@@ -1281,7 +1209,7 @@ public class CamelPackageImpl extends EPackageImpl implements CamelPackage {
      * @generated
      */
 	public EAttribute getCamelSedaBindingType_ConcurrentConsumers() {
-        return (EAttribute)camelSedaBindingTypeEClass.getEStructuralFeatures().get(4);
+        return (EAttribute)camelSedaBindingTypeEClass.getEStructuralFeatures().get(2);
     }
 
 	/**
@@ -1290,7 +1218,7 @@ public class CamelPackageImpl extends EPackageImpl implements CamelPackage {
      * @generated
      */
 	public EAttribute getCamelSedaBindingType_WaitForTaskToComplete() {
-        return (EAttribute)camelSedaBindingTypeEClass.getEStructuralFeatures().get(5);
+        return (EAttribute)camelSedaBindingTypeEClass.getEStructuralFeatures().get(3);
     }
 
 	/**
@@ -1299,7 +1227,7 @@ public class CamelPackageImpl extends EPackageImpl implements CamelPackage {
      * @generated
      */
 	public EAttribute getCamelSedaBindingType_Timeout() {
-        return (EAttribute)camelSedaBindingTypeEClass.getEStructuralFeatures().get(6);
+        return (EAttribute)camelSedaBindingTypeEClass.getEStructuralFeatures().get(4);
     }
 
 	/**
@@ -1308,7 +1236,7 @@ public class CamelPackageImpl extends EPackageImpl implements CamelPackage {
      * @generated
      */
 	public EAttribute getCamelSedaBindingType_MultipleConsumers() {
-        return (EAttribute)camelSedaBindingTypeEClass.getEStructuralFeatures().get(7);
+        return (EAttribute)camelSedaBindingTypeEClass.getEStructuralFeatures().get(5);
     }
 
 	/**
@@ -1317,7 +1245,7 @@ public class CamelPackageImpl extends EPackageImpl implements CamelPackage {
      * @generated
      */
 	public EAttribute getCamelSedaBindingType_LimitConcurrentConsumers() {
-        return (EAttribute)camelSedaBindingTypeEClass.getEStructuralFeatures().get(8);
+        return (EAttribute)camelSedaBindingTypeEClass.getEStructuralFeatures().get(6);
     }
 
 	/**
@@ -1334,26 +1262,8 @@ public class CamelPackageImpl extends EPackageImpl implements CamelPackage {
      * <!-- end-user-doc -->
      * @generated
      */
-    public EReference getCamelTimerBindingType_ContextMapper() {
-        return (EReference)camelTimerBindingTypeEClass.getEStructuralFeatures().get(0);
-    }
-
-    /**
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    public EReference getCamelTimerBindingType_MessageComposer() {
-        return (EReference)camelTimerBindingTypeEClass.getEStructuralFeatures().get(1);
-    }
-
-    /**
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
     public EAttribute getCamelTimerBindingType_NameElement() {
-        return (EAttribute)camelTimerBindingTypeEClass.getEStructuralFeatures().get(2);
+        return (EAttribute)camelTimerBindingTypeEClass.getEStructuralFeatures().get(0);
     }
 
     /**
@@ -1362,7 +1272,7 @@ public class CamelPackageImpl extends EPackageImpl implements CamelPackage {
      * @generated
      */
 	public EAttribute getCamelTimerBindingType_Time() {
-        return (EAttribute)camelTimerBindingTypeEClass.getEStructuralFeatures().get(3);
+        return (EAttribute)camelTimerBindingTypeEClass.getEStructuralFeatures().get(1);
     }
 
 	/**
@@ -1371,7 +1281,7 @@ public class CamelPackageImpl extends EPackageImpl implements CamelPackage {
      * @generated
      */
 	public EAttribute getCamelTimerBindingType_Pattern() {
-        return (EAttribute)camelTimerBindingTypeEClass.getEStructuralFeatures().get(4);
+        return (EAttribute)camelTimerBindingTypeEClass.getEStructuralFeatures().get(2);
     }
 
 	/**
@@ -1380,7 +1290,7 @@ public class CamelPackageImpl extends EPackageImpl implements CamelPackage {
      * @generated
      */
 	public EAttribute getCamelTimerBindingType_Period() {
-        return (EAttribute)camelTimerBindingTypeEClass.getEStructuralFeatures().get(5);
+        return (EAttribute)camelTimerBindingTypeEClass.getEStructuralFeatures().get(3);
     }
 
 	/**
@@ -1389,7 +1299,7 @@ public class CamelPackageImpl extends EPackageImpl implements CamelPackage {
      * @generated
      */
 	public EAttribute getCamelTimerBindingType_Delay() {
-        return (EAttribute)camelTimerBindingTypeEClass.getEStructuralFeatures().get(6);
+        return (EAttribute)camelTimerBindingTypeEClass.getEStructuralFeatures().get(4);
     }
 
 	/**
@@ -1398,7 +1308,7 @@ public class CamelPackageImpl extends EPackageImpl implements CamelPackage {
      * @generated
      */
 	public EAttribute getCamelTimerBindingType_FixedRate() {
-        return (EAttribute)camelTimerBindingTypeEClass.getEStructuralFeatures().get(7);
+        return (EAttribute)camelTimerBindingTypeEClass.getEStructuralFeatures().get(5);
     }
 
 	/**
@@ -1407,7 +1317,7 @@ public class CamelPackageImpl extends EPackageImpl implements CamelPackage {
      * @generated
      */
 	public EAttribute getCamelTimerBindingType_Daemon() {
-        return (EAttribute)camelTimerBindingTypeEClass.getEStructuralFeatures().get(8);
+        return (EAttribute)camelTimerBindingTypeEClass.getEStructuralFeatures().get(6);
     }
 
 	/**
@@ -2384,8 +2294,6 @@ public class CamelPackageImpl extends EPackageImpl implements CamelPackage {
 
         // Create classes and their features
         baseCamelBindingEClass = createEClass(BASE_CAMEL_BINDING);
-        createEReference(baseCamelBindingEClass, BASE_CAMEL_BINDING__CONTEXT_MAPPER);
-        createEReference(baseCamelBindingEClass, BASE_CAMEL_BINDING__MESSAGE_COMPOSER);
         createEReference(baseCamelBindingEClass, BASE_CAMEL_BINDING__CAMEL_OPERATION_SELECTOR);
 
         camelAtomBindingTypeEClass = createEClass(CAMEL_ATOM_BINDING_TYPE);
@@ -2402,8 +2310,6 @@ public class CamelPackageImpl extends EPackageImpl implements CamelPackage {
         createEAttribute(camelBindingTypeEClass, CAMEL_BINDING_TYPE__CONFIG_URI);
 
         camelDirectBindingTypeEClass = createEClass(CAMEL_DIRECT_BINDING_TYPE);
-        createEReference(camelDirectBindingTypeEClass, CAMEL_DIRECT_BINDING_TYPE__CONTEXT_MAPPER);
-        createEReference(camelDirectBindingTypeEClass, CAMEL_DIRECT_BINDING_TYPE__MESSAGE_COMPOSER);
         createEAttribute(camelDirectBindingTypeEClass, CAMEL_DIRECT_BINDING_TYPE__NAME_ELEMENT);
 
         camelFileBindingTypeEClass = createEClass(CAMEL_FILE_BINDING_TYPE);
@@ -2473,8 +2379,6 @@ public class CamelPackageImpl extends EPackageImpl implements CamelPackage {
         createEAttribute(camelNettyTcpBindingTypeEClass, CAMEL_NETTY_TCP_BINDING_TYPE__KEEP_ALIVE);
 
         camelMockBindingTypeEClass = createEClass(CAMEL_MOCK_BINDING_TYPE);
-        createEReference(camelMockBindingTypeEClass, CAMEL_MOCK_BINDING_TYPE__CONTEXT_MAPPER);
-        createEReference(camelMockBindingTypeEClass, CAMEL_MOCK_BINDING_TYPE__MESSAGE_COMPOSER);
         createEAttribute(camelMockBindingTypeEClass, CAMEL_MOCK_BINDING_TYPE__NAME_ELEMENT);
         createEAttribute(camelMockBindingTypeEClass, CAMEL_MOCK_BINDING_TYPE__REPORT_GROUP);
 
@@ -2483,8 +2387,6 @@ public class CamelPackageImpl extends EPackageImpl implements CamelPackage {
         createEAttribute(camelOperationSelectorTypeEClass, CAMEL_OPERATION_SELECTOR_TYPE__OPERATION_NAME);
 
         camelSedaBindingTypeEClass = createEClass(CAMEL_SEDA_BINDING_TYPE);
-        createEReference(camelSedaBindingTypeEClass, CAMEL_SEDA_BINDING_TYPE__CONTEXT_MAPPER);
-        createEReference(camelSedaBindingTypeEClass, CAMEL_SEDA_BINDING_TYPE__MESSAGE_COMPOSER);
         createEAttribute(camelSedaBindingTypeEClass, CAMEL_SEDA_BINDING_TYPE__NAME_ELEMENT);
         createEAttribute(camelSedaBindingTypeEClass, CAMEL_SEDA_BINDING_TYPE__SIZE);
         createEAttribute(camelSedaBindingTypeEClass, CAMEL_SEDA_BINDING_TYPE__CONCURRENT_CONSUMERS);
@@ -2494,8 +2396,6 @@ public class CamelPackageImpl extends EPackageImpl implements CamelPackage {
         createEAttribute(camelSedaBindingTypeEClass, CAMEL_SEDA_BINDING_TYPE__LIMIT_CONCURRENT_CONSUMERS);
 
         camelTimerBindingTypeEClass = createEClass(CAMEL_TIMER_BINDING_TYPE);
-        createEReference(camelTimerBindingTypeEClass, CAMEL_TIMER_BINDING_TYPE__CONTEXT_MAPPER);
-        createEReference(camelTimerBindingTypeEClass, CAMEL_TIMER_BINDING_TYPE__MESSAGE_COMPOSER);
         createEAttribute(camelTimerBindingTypeEClass, CAMEL_TIMER_BINDING_TYPE__NAME_ELEMENT);
         createEAttribute(camelTimerBindingTypeEClass, CAMEL_TIMER_BINDING_TYPE__TIME);
         createEAttribute(camelTimerBindingTypeEClass, CAMEL_TIMER_BINDING_TYPE__PATTERN);
@@ -2694,8 +2594,6 @@ public class CamelPackageImpl extends EPackageImpl implements CamelPackage {
 
         // Initialize classes and features; add operations and parameters
         initEClass(baseCamelBindingEClass, BaseCamelBinding.class, "BaseCamelBinding", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-        initEReference(getBaseCamelBinding_ContextMapper(), theSwitchyardPackage.getContextMapperType(), null, "contextMapper", null, 0, 1, BaseCamelBinding.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-        initEReference(getBaseCamelBinding_MessageComposer(), theSwitchyardPackage.getMessageComposerType(), null, "messageComposer", null, 0, 1, BaseCamelBinding.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
         initEReference(getBaseCamelBinding_CamelOperationSelector(), this.getCamelOperationSelectorType(), null, "camelOperationSelector", null, 0, 1, BaseCamelBinding.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
         initEClass(camelAtomBindingTypeEClass, CamelAtomBindingType.class, "CamelAtomBindingType", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
@@ -2712,8 +2610,6 @@ public class CamelPackageImpl extends EPackageImpl implements CamelPackage {
         initEAttribute(getCamelBindingType_ConfigURI(), theXMLTypePackage.getAnyURI(), "configURI", null, 0, 1, CamelBindingType.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
         initEClass(camelDirectBindingTypeEClass, CamelDirectBindingType.class, "CamelDirectBindingType", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-        initEReference(getCamelDirectBindingType_ContextMapper(), theSwitchyardPackage.getContextMapperType(), null, "contextMapper", null, 0, 1, CamelDirectBindingType.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-        initEReference(getCamelDirectBindingType_MessageComposer(), theSwitchyardPackage.getMessageComposerType(), null, "messageComposer", null, 0, 1, CamelDirectBindingType.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
         initEAttribute(getCamelDirectBindingType_NameElement(), theXMLTypePackage.getString(), "nameElement", null, 1, 1, CamelDirectBindingType.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
         initEClass(camelFileBindingTypeEClass, CamelFileBindingType.class, "CamelFileBindingType", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
@@ -2783,8 +2679,6 @@ public class CamelPackageImpl extends EPackageImpl implements CamelPackage {
         initEAttribute(getCamelNettyTcpBindingType_KeepAlive(), theXMLTypePackage.getBoolean(), "keepAlive", null, 0, 1, CamelNettyTcpBindingType.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
         initEClass(camelMockBindingTypeEClass, CamelMockBindingType.class, "CamelMockBindingType", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-        initEReference(getCamelMockBindingType_ContextMapper(), theSwitchyardPackage.getContextMapperType(), null, "contextMapper", null, 0, 1, CamelMockBindingType.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-        initEReference(getCamelMockBindingType_MessageComposer(), theSwitchyardPackage.getMessageComposerType(), null, "messageComposer", null, 0, 1, CamelMockBindingType.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
         initEAttribute(getCamelMockBindingType_NameElement(), theXMLTypePackage.getString(), "nameElement", null, 1, 1, CamelMockBindingType.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
         initEAttribute(getCamelMockBindingType_ReportGroup(), theXMLTypePackage.getInteger(), "reportGroup", null, 1, 1, CamelMockBindingType.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
@@ -2793,8 +2687,6 @@ public class CamelPackageImpl extends EPackageImpl implements CamelPackage {
         initEAttribute(getCamelOperationSelectorType_OperationName(), theXMLTypePackage.getString(), "operationName", null, 1, 1, CamelOperationSelectorType.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
         initEClass(camelSedaBindingTypeEClass, CamelSedaBindingType.class, "CamelSedaBindingType", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-        initEReference(getCamelSedaBindingType_ContextMapper(), theSwitchyardPackage.getContextMapperType(), null, "contextMapper", null, 0, 1, CamelSedaBindingType.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-        initEReference(getCamelSedaBindingType_MessageComposer(), theSwitchyardPackage.getMessageComposerType(), null, "messageComposer", null, 0, 1, CamelSedaBindingType.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
         initEAttribute(getCamelSedaBindingType_NameElement(), theXMLTypePackage.getString(), "nameElement", null, 1, 1, CamelSedaBindingType.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
         initEAttribute(getCamelSedaBindingType_Size(), theXMLTypePackage.getInteger(), "size", null, 1, 1, CamelSedaBindingType.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
         initEAttribute(getCamelSedaBindingType_ConcurrentConsumers(), theXMLTypePackage.getInteger(), "concurrentConsumers", null, 1, 1, CamelSedaBindingType.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
@@ -2804,8 +2696,6 @@ public class CamelPackageImpl extends EPackageImpl implements CamelPackage {
         initEAttribute(getCamelSedaBindingType_LimitConcurrentConsumers(), theXMLTypePackage.getBoolean(), "limitConcurrentConsumers", null, 1, 1, CamelSedaBindingType.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
         initEClass(camelTimerBindingTypeEClass, CamelTimerBindingType.class, "CamelTimerBindingType", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-        initEReference(getCamelTimerBindingType_ContextMapper(), theSwitchyardPackage.getContextMapperType(), null, "contextMapper", null, 0, 1, CamelTimerBindingType.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-        initEReference(getCamelTimerBindingType_MessageComposer(), theSwitchyardPackage.getMessageComposerType(), null, "messageComposer", null, 0, 1, CamelTimerBindingType.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
         initEAttribute(getCamelTimerBindingType_NameElement(), theXMLTypePackage.getString(), "nameElement", null, 1, 1, CamelTimerBindingType.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
         initEAttribute(getCamelTimerBindingType_Time(), theXMLTypePackage.getDateTime(), "time", null, 0, 1, CamelTimerBindingType.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
         initEAttribute(getCamelTimerBindingType_Pattern(), theXMLTypePackage.getString(), "pattern", null, 0, 1, CamelTimerBindingType.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
@@ -2970,22 +2860,6 @@ public class CamelPackageImpl extends EPackageImpl implements CamelPackage {
              "kind", "elementOnly"
            });		
         addAnnotation
-          (getBaseCamelBinding_ContextMapper(), 
-           source, 
-           new String[] {
-             "kind", "element",
-             "name", "contextMapper",
-             "namespace", "##targetNamespace"
-           });		
-        addAnnotation
-          (getBaseCamelBinding_MessageComposer(), 
-           source, 
-           new String[] {
-             "kind", "element",
-             "name", "messageComposer",
-             "namespace", "##targetNamespace"
-           });		
-        addAnnotation
           (getBaseCamelBinding_CamelOperationSelector(), 
            source, 
            new String[] {
@@ -3084,22 +2958,6 @@ public class CamelPackageImpl extends EPackageImpl implements CamelPackage {
            new String[] {
              "name", "CamelDirectBindingType",
              "kind", "elementOnly"
-           });		
-        addAnnotation
-          (getCamelDirectBindingType_ContextMapper(), 
-           source, 
-           new String[] {
-             "kind", "element",
-             "name", "contextMapper",
-             "namespace", "##targetNamespace"
-           });		
-        addAnnotation
-          (getCamelDirectBindingType_MessageComposer(), 
-           source, 
-           new String[] {
-             "kind", "element",
-             "name", "messageComposer",
-             "namespace", "##targetNamespace"
            });		
         addAnnotation
           (getCamelDirectBindingType_NameElement(), 
@@ -3573,22 +3431,6 @@ public class CamelPackageImpl extends EPackageImpl implements CamelPackage {
              "kind", "elementOnly"
            });		
         addAnnotation
-          (getCamelMockBindingType_ContextMapper(), 
-           source, 
-           new String[] {
-             "kind", "element",
-             "name", "contextMapper",
-             "namespace", "##targetNamespace"
-           });		
-        addAnnotation
-          (getCamelMockBindingType_MessageComposer(), 
-           source, 
-           new String[] {
-             "kind", "element",
-             "name", "messageComposer",
-             "namespace", "##targetNamespace"
-           });		
-        addAnnotation
           (getCamelMockBindingType_NameElement(), 
            source, 
            new String[] {
@@ -3631,22 +3473,6 @@ public class CamelPackageImpl extends EPackageImpl implements CamelPackage {
            new String[] {
              "name", "CamelSedaBindingType",
              "kind", "elementOnly"
-           });		
-        addAnnotation
-          (getCamelSedaBindingType_ContextMapper(), 
-           source, 
-           new String[] {
-             "kind", "element",
-             "name", "contextMapper",
-             "namespace", "##targetNamespace"
-           });		
-        addAnnotation
-          (getCamelSedaBindingType_MessageComposer(), 
-           source, 
-           new String[] {
-             "kind", "element",
-             "name", "messageComposer",
-             "namespace", "##targetNamespace"
            });		
         addAnnotation
           (getCamelSedaBindingType_NameElement(), 
@@ -3710,22 +3536,6 @@ public class CamelPackageImpl extends EPackageImpl implements CamelPackage {
            new String[] {
              "name", "CamelTimerBindingType",
              "kind", "elementOnly"
-           });		
-        addAnnotation
-          (getCamelTimerBindingType_ContextMapper(), 
-           source, 
-           new String[] {
-             "kind", "element",
-             "name", "contextMapper",
-             "namespace", "##targetNamespace"
-           });		
-        addAnnotation
-          (getCamelTimerBindingType_MessageComposer(), 
-           source, 
-           new String[] {
-             "kind", "element",
-             "name", "messageComposer",
-             "namespace", "##targetNamespace"
            });		
         addAnnotation
           (getCamelTimerBindingType_NameElement(), 

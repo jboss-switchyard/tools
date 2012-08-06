@@ -12,18 +12,12 @@
  ******************************************************************************/
 package org.switchyard.tools.ui.editor.components.camel.netty;
 
-import org.eclipse.emf.ecore.EClass;
-import org.eclipse.emf.ecore.EObject;
-import org.eclipse.emf.ecore.EStructuralFeature;
-import org.eclipse.emf.transaction.RecordingCommand;
-import org.eclipse.emf.transaction.TransactionalEditingDomain;
+import java.util.ArrayList;
+
 import org.eclipse.graphiti.mm.pictograms.PictogramElement;
 import org.eclipse.soa.sca.sca1_1.model.sca.Binding;
 import org.eclipse.soa.sca.sca1_1.model.sca.Service;
 import org.eclipse.swt.SWT;
-import org.eclipse.swt.events.FocusEvent;
-import org.eclipse.swt.events.KeyEvent;
-import org.eclipse.swt.events.SelectionEvent;
 import org.eclipse.swt.layout.FillLayout;
 import org.eclipse.swt.layout.GridData;
 import org.eclipse.swt.layout.GridLayout;
@@ -38,8 +32,8 @@ import org.eclipse.swt.widgets.Text;
 import org.switchyard.tools.models.switchyard1_0.camel.CamelFactory;
 import org.switchyard.tools.models.switchyard1_0.camel.CamelNettyTcpBindingType;
 import org.switchyard.tools.models.switchyard1_0.camel.CamelOperationSelectorType;
-import org.switchyard.tools.ui.editor.diagram.shared.AbstractSwitchyardComposite;
-import org.switchyard.tools.ui.editor.diagram.shared.IBindingComposite;
+import org.switchyard.tools.ui.editor.diagram.binding.AbstractSYBindingComposite;
+import org.switchyard.tools.ui.editor.diagram.shared.ModelOperation;
 import org.switchyard.tools.ui.editor.impl.SwitchyardSCAEditor;
 import org.switchyard.tools.ui.editor.util.InterfaceOpsUtil;
 
@@ -47,7 +41,7 @@ import org.switchyard.tools.ui.editor.util.InterfaceOpsUtil;
  * @author bfitzpat
  * 
  */
-public class CamelNettyTCPComposite extends AbstractSwitchyardComposite implements IBindingComposite {
+public class CamelNettyTCPComposite extends AbstractSYBindingComposite {
 
     private Composite _panel;
     private CamelNettyTcpBindingType _binding = null;
@@ -58,7 +52,7 @@ public class CamelNettyTCPComposite extends AbstractSwitchyardComposite implemen
     private Button _syncCheckbox;
     private Button _keepAliveCheckbox;
     private Combo _operationSelectionCombo;
-    private Object _targetObj = null;
+    private TabFolder _tabFolder;
 
     @Override
     public Binding getBinding() {
@@ -88,14 +82,16 @@ public class CamelNettyTCPComposite extends AbstractSwitchyardComposite implemen
             if (this._binding.getCamelOperationSelector() != null) {
                 CamelOperationSelectorType camelOpSelector = (CamelOperationSelectorType) this._binding
                         .getCamelOperationSelector();
-                _operationSelectionCombo.setText(camelOpSelector.getOperationName());
+                setTextValue(_operationSelectionCombo, camelOpSelector.getOperationName());
             }
+            super.setTabsBinding(_binding);
             setInUpdate(false);
             validate();
         } else {
             this._binding = null;
             populateOperationCombo();
         }
+        addObservableListeners();
     }
 
     @Override
@@ -111,7 +107,7 @@ public class CamelNettyTCPComposite extends AbstractSwitchyardComposite implemen
                 return false;
             } else {
                 try {
-                    Integer.parseInt(_portText.getText().trim());
+                    Integer.valueOf(_portText.getText().trim());
                 } catch (NumberFormatException nfe) {
                     setErrorMessage("Port must be a valid number.");
                     return false;
@@ -119,7 +115,7 @@ public class CamelNettyTCPComposite extends AbstractSwitchyardComposite implemen
             }
             if (!_sendBufferSizeText.getText().trim().isEmpty()) {
                 try {
-                    Long.parseLong(_portText.getText().trim());
+                    Long.valueOf(_sendBufferSizeText.getText().trim());
                 } catch (NumberFormatException nfe) {
                     setErrorMessage("Send Buffer Size must be a valid number.");
                     return false;
@@ -127,13 +123,14 @@ public class CamelNettyTCPComposite extends AbstractSwitchyardComposite implemen
             }
             if (!_receiveBufferSizeText.getText().trim().isEmpty()) {
                 try {
-                    Long.parseLong(_receiveBufferSizeText.getText().trim());
+                    Long.valueOf(_receiveBufferSizeText.getText().trim());
                 } catch (NumberFormatException nfe) {
                     setErrorMessage("Receive Buffer Size must be a valid number.");
                     return false;
                 }
             }
         }
+        super.validateTabs();
         return (getErrorMessage() == null);
     }
 
@@ -145,11 +142,13 @@ public class CamelNettyTCPComposite extends AbstractSwitchyardComposite implemen
             _panel.setLayoutData(getRootGridData());
         }
 
-        TabFolder tabFolder = new TabFolder(_panel, SWT.NONE);
+        _tabFolder = new TabFolder(_panel, SWT.NONE);
 
-        TabItem one = new TabItem(tabFolder, SWT.NONE);
+        TabItem one = new TabItem(_tabFolder, SWT.NONE);
         one.setText("Netty TCP Gateway");
-        one.setControl(getSchedulerTabControl(tabFolder));
+        one.setControl(getSchedulerTabControl(_tabFolder));
+        
+        addTabs(_tabFolder);
     }
 
     private Control getSchedulerTabControl(TabFolder tabFolder) {
@@ -184,20 +183,18 @@ public class CamelNettyTCPComposite extends AbstractSwitchyardComposite implemen
             _operationSelectionCombo.removeAll();
             _operationSelectionCombo.clearSelection();
 
-            if (_targetObj == null) {
-                @SuppressWarnings("restriction")
+            if (getTargetObject() == null) {
                 PictogramElement[] pes = SwitchyardSCAEditor.getActiveEditor().getSelectedPictogramElements();
                 if (pes.length > 0) {
-                    @SuppressWarnings("restriction")
                     Object bo = SwitchyardSCAEditor.getActiveEditor().getDiagramTypeProvider().getFeatureProvider()
                             .getBusinessObjectForPictogramElement(pes[0]);
                     if (bo instanceof Service) {
-                        _targetObj = bo;
+                        setTargetObject(bo);
                     }
                 }
             }
-            if (_targetObj != null && _targetObj instanceof Service) {
-                String[] operations = InterfaceOpsUtil.gatherOperations((Service) _targetObj);
+            if (getTargetObject() != null && getTargetObject() instanceof Service) {
+                String[] operations = InterfaceOpsUtil.gatherOperations((Service) getTargetObject());
                 for (int i = 0; i < operations.length; i++) {
                     _operationSelectionCombo.add(operations[i]);
                 }
@@ -210,206 +207,96 @@ public class CamelNettyTCPComposite extends AbstractSwitchyardComposite implemen
         return this._panel;
     }
 
-    private void setFeatureValue(EObject eObject, String featureId, Object value) {
-        EClass eClass = eObject.eClass();
-        for (int i = 0, size = eClass.getFeatureCount(); i < size; ++i) {
-            EStructuralFeature eStructuralFeature = eClass.getEStructuralFeature(i);
-            if (eStructuralFeature.isChangeable()) {
-                if (eStructuralFeature.getName().equalsIgnoreCase(featureId)) {
-                    eObject.eSet(eStructuralFeature, value);
-                    break;
-                }
-            }
-        }
-    }
-
-    private class BindingRecordingCommand extends RecordingCommand {
-
-        private CamelNettyTcpBindingType _innerBinding;
-        private String _featureId;
-        private Object _value;
-
-        public BindingRecordingCommand(TransactionalEditingDomain domain, CamelNettyTcpBindingType binding,
-                String featureId, Object value) {
-            super(domain);
-            this._innerBinding = binding;
-            this._featureId = featureId;
-            this._value = value;
-        }
-
+    class CamelOperationSelectorOp extends ModelOperation {
         @Override
-        protected void doExecute() {
-            setFeatureValue(_innerBinding, _featureId, _value);
+        public void run() throws Exception {
+            if (_binding.getOperationSelector() == null) {
+                setFeatureValue(_binding, "camelOperationSelector", CamelFactory.eINSTANCE.createCamelOperationSelectorType());
+            }
         }
-
     }
 
-    @SuppressWarnings("restriction")
+    protected void updateCamelOperationSelectorFeature(String featureId, Object value) {
+        ArrayList<ModelOperation> ops = new ArrayList<ModelOperation>();
+        ops.add(new CamelOperationSelectorOp());
+        ops.add(new BasicOperation("camelOperationSelector", featureId, value));
+        wrapOperation(ops);
+    }
+
     protected void handleModify(final Control control) {
-        TransactionalEditingDomain domain = null;
-        if (_binding.eContainer() != null) {
-            domain = SwitchyardSCAEditor.getActiveEditor().getEditingDomain();
-        }
         if (control.equals(_hostText)) {
-            if (domain != null) {
-                BindingRecordingCommand command = new BindingRecordingCommand(domain, _binding, "host",
-                        _hostText.getText().trim());
-                domain.getCommandStack().execute(command);
-            } else {
-                _binding.setHost(_hostText.getText().trim());
-            }
+            updateFeature(_binding, "host", _hostText.getText().trim());
         } else if (control.equals(_portText)) {
             int portInt = -1;
             try {
-                portInt = Integer.parseInt(_portText.getText().trim());
+                portInt = Integer.valueOf(_portText.getText().trim());
+                if (portInt > -1) {
+                    updateFeature(_binding, "port", portInt);
+                }
             } catch (NumberFormatException nfe) {
                 // ignore
                 nfe.fillInStackTrace();
-            }
-            if (portInt > -1) {
-                if (domain != null) {
-                    BindingRecordingCommand command = new BindingRecordingCommand(domain, _binding, "port", portInt);
-                    domain.getCommandStack().execute(command);
-                } else {
-                    _binding.setPort(portInt);
-                }
             }
         } else if (control.equals(_sendBufferSizeText)) {
             long sendSizeLong = -1;
             try {
-                sendSizeLong = Long.parseLong(_sendBufferSizeText.getText().trim());
+                sendSizeLong = Long.valueOf(_sendBufferSizeText.getText().trim());
+                if (sendSizeLong > -1) {
+                    updateFeature(_binding, "sendBufferSize", sendSizeLong);
+                }
             } catch (NumberFormatException nfe) {
                 // ignore
                 nfe.fillInStackTrace();
-            }
-            if (sendSizeLong > -1) {
-                if (domain != null) {
-                    BindingRecordingCommand command = new BindingRecordingCommand(domain, _binding, "sendBufferSize", sendSizeLong);
-                    domain.getCommandStack().execute(command);
-                } else {
-                    _binding.setSendBufferSize(sendSizeLong);
-                }
             }
         } else if (control.equals(_receiveBufferSizeText)) {
             long receiveSizeLong = -1;
             try {
-                receiveSizeLong = Long.parseLong(_receiveBufferSizeText.getText().trim());
+                receiveSizeLong = Long.valueOf(_receiveBufferSizeText.getText().trim());
+                if (receiveSizeLong > -1) {
+                    updateFeature(_binding, "receiveBufferSize", receiveSizeLong);
+                }
             } catch (NumberFormatException nfe) {
                 // ignore
                 nfe.fillInStackTrace();
             }
-            if (receiveSizeLong > -1) {
-                if (domain != null) {
-                    BindingRecordingCommand command = new BindingRecordingCommand(domain, _binding, "receiveBufferSize", receiveSizeLong);
-                    domain.getCommandStack().execute(command);
-                } else {
-                    _binding.setReceiveBufferSize(receiveSizeLong);
-                }
-            }
         } else if (control.equals(_syncCheckbox)) {
-            if (domain != null) {
-                BindingRecordingCommand command = new BindingRecordingCommand(domain, _binding, "sync",
-                        _syncCheckbox.getSelection());
-                domain.getCommandStack().execute(command);
-            } else {
-                _binding.setSync(_syncCheckbox.getSelection());
-            }
+            boolean value = _syncCheckbox.getSelection();
+            updateFeature(_binding, "sync", value);
         } else if (control.equals(_keepAliveCheckbox)) {
-            if (domain != null) {
-                BindingRecordingCommand command = new BindingRecordingCommand(domain, _binding, "keepAlive",
-                        _keepAliveCheckbox.getSelection());
-                domain.getCommandStack().execute(command);
-            } else {
-                _binding.setKeepAlive(_keepAliveCheckbox.getSelection());
-            }
+            boolean value = _keepAliveCheckbox.getSelection();
+            updateFeature(_binding, "keepAlive", value);
         } else if (control.equals(_operationSelectionCombo)) {
-            if (domain != null) {
-                domain.getCommandStack().execute(new RecordingCommand(domain) {
-                    @Override
-                    protected void doExecute() {
-                        if (_binding.getOperationSelector() == null) {
-                            _binding.setCamelOperationSelector(CamelFactory.eINSTANCE
-                                    .createCamelOperationSelectorType());
-                        }
-                        ((CamelOperationSelectorType) _binding.getCamelOperationSelector())
-                                .setOperationName(_operationSelectionCombo.getText().trim());
-                    }
-                });
-            } else {
-                if (_binding.getOperationSelector() == null) {
-                    _binding.setCamelOperationSelector(CamelFactory.eINSTANCE.createCamelOperationSelectorType());
-                }
-                ((CamelOperationSelectorType) _binding.getCamelOperationSelector())
-                        .setOperationName(_operationSelectionCombo.getText().trim());
-            }
+            updateCamelOperationSelectorFeature("operationName", _operationSelectionCombo.getText().trim());
         }
+        super.handleModify(control);
         setHasChanged(false);
     }
 
-    /**
-     * @param target Passed in what we're dropping on
-     */
-    public void setTargetObject(Object target) {
-        this._targetObj = target;
-    }
-
-    @Override
-    public void focusLost(FocusEvent e) {
-        if (_binding != null && !inUpdate() && hasChanged()) {
-            validate();
-            handleModify((Control) e.getSource());
-            fireChangedEvent((Control) e.getSource());
-        } else {
-            validate();
-            fireChangedEvent((Control) e.getSource());
-        }
-    }
-
-    @Override
-    public void keyReleased(KeyEvent e) {
-        if (e.keyCode == SWT.ESC) {
-            // cancel out and return to original value
-            setInUpdate(true);
-            if (_binding != null) {
-                Control control = (Control) e.getSource();
-                if (control.equals(_hostText)) {
-                    _hostText.setText(this._binding.getHost());
-                } else if (control.equals(_portText)) {
-                    _portText.setText(Integer.toString(this._binding.getPort()));
-                } else if (control.equals(_receiveBufferSizeText)) {
-                    _receiveBufferSizeText.setText(Long.toString(this._binding.getReceiveBufferSize()));
-                } else if (control.equals(_sendBufferSizeText)) {
-                    _sendBufferSizeText.setText(Long.toString(this._binding.getSendBufferSize()));
-                } else if (control.equals(_keepAliveCheckbox)) {
-                    _keepAliveCheckbox.setSelection(this._binding.isKeepAlive());
-                } else if (control.equals(_syncCheckbox)) {
-                    _syncCheckbox.setSelection(this._binding.isSync());
-                } else if (control.equals(_operationSelectionCombo)) {
-                    if (this._binding.getCamelOperationSelector() != null) {
-                        populateOperationCombo();
-                        CamelOperationSelectorType camelOpSelector = (CamelOperationSelectorType) this._binding
-                                .getCamelOperationSelector();
-                        _operationSelectionCombo.setText(camelOpSelector.getOperationName());
-                    }
+    protected void handleUndo(Control control) {
+        if (_binding != null) {
+            if (control.equals(_hostText)) {
+                _hostText.setText(this._binding.getHost());
+            } else if (control.equals(_portText)) {
+                _portText.setText(Integer.toString(this._binding.getPort()));
+            } else if (control.equals(_receiveBufferSizeText)) {
+                _receiveBufferSizeText.setText(Long.toString(this._binding.getReceiveBufferSize()));
+            } else if (control.equals(_sendBufferSizeText)) {
+                _sendBufferSizeText.setText(Long.toString(this._binding.getSendBufferSize()));
+            } else if (control.equals(_keepAliveCheckbox)) {
+                _keepAliveCheckbox.setSelection(this._binding.isKeepAlive());
+            } else if (control.equals(_syncCheckbox)) {
+                _syncCheckbox.setSelection(this._binding.isSync());
+            } else if (control.equals(_operationSelectionCombo)) {
+                if (this._binding.getCamelOperationSelector() != null) {
+                    populateOperationCombo();
+                    CamelOperationSelectorType camelOpSelector = (CamelOperationSelectorType) this._binding
+                            .getCamelOperationSelector();
+                    setTextValue(_operationSelectionCombo, camelOpSelector.getOperationName());
                 }
-            }
-            setInUpdate(false);
-        } else if (e.keyCode == SWT.CR) {
-            // accept change
-            if (_binding != null && !inUpdate() && hasChanged()) {
-                validate();
-                handleModify((Control) e.getSource());
-                fireChangedEvent((Control) e.getSource());
+            } else {
+                super.handleUndo(control);
             }
         }
-    }
-
-    @Override
-    public void widgetSelected(SelectionEvent e) {
-        if (!inUpdate()) {
-            setHasChanged(true);
-            handleModify((Control)e.getSource());
-            fireChangedEvent((Control)e.getSource());
-        }
+        setHasChanged(false);
     }
 }

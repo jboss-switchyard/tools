@@ -13,19 +13,12 @@
 package org.switchyard.tools.ui.editor.components.camel.ftp;
 
 import java.math.BigInteger;
+import java.util.ArrayList;
 
-import org.eclipse.emf.ecore.EClass;
-import org.eclipse.emf.ecore.EObject;
-import org.eclipse.emf.ecore.EStructuralFeature;
-import org.eclipse.emf.transaction.RecordingCommand;
-import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.eclipse.graphiti.mm.pictograms.PictogramElement;
 import org.eclipse.soa.sca.sca1_1.model.sca.Binding;
 import org.eclipse.soa.sca.sca1_1.model.sca.Service;
 import org.eclipse.swt.SWT;
-import org.eclipse.swt.events.FocusEvent;
-import org.eclipse.swt.events.KeyEvent;
-import org.eclipse.swt.events.SelectionEvent;
 import org.eclipse.swt.layout.FillLayout;
 import org.eclipse.swt.layout.GridData;
 import org.eclipse.swt.layout.GridLayout;
@@ -40,8 +33,8 @@ import org.eclipse.swt.widgets.Text;
 import org.switchyard.tools.models.switchyard1_0.camel.CamelFactory;
 import org.switchyard.tools.models.switchyard1_0.camel.CamelFtpBindingType;
 import org.switchyard.tools.models.switchyard1_0.camel.CamelOperationSelectorType;
-import org.switchyard.tools.ui.editor.diagram.shared.AbstractSwitchyardComposite;
-import org.switchyard.tools.ui.editor.diagram.shared.IBindingComposite;
+import org.switchyard.tools.ui.editor.diagram.binding.AbstractSYBindingComposite;
+import org.switchyard.tools.ui.editor.diagram.shared.ModelOperation;
 import org.switchyard.tools.ui.editor.impl.SwitchyardSCAEditor;
 import org.switchyard.tools.ui.editor.util.InterfaceOpsUtil;
 
@@ -49,7 +42,7 @@ import org.switchyard.tools.ui.editor.util.InterfaceOpsUtil;
  * @author bfitzpat
  * 
  */
-public class CamelFTPConsumerComposite extends AbstractSwitchyardComposite implements IBindingComposite {
+public class CamelFTPConsumerComposite extends AbstractSYBindingComposite {
 
     private Composite _panel;
     private CamelFtpBindingType _binding = null;
@@ -70,7 +63,7 @@ public class CamelFTPConsumerComposite extends AbstractSwitchyardComposite imple
     private Text _excludeText;
     private Text _delayText;
     private Combo _operationSelectionCombo;
-    private Object _targetObj = null;
+    private TabFolder _tabFolder;
 
     @Override
     public Binding getBinding() {
@@ -133,17 +126,19 @@ public class CamelFTPConsumerComposite extends AbstractSwitchyardComposite imple
                 _binaryButton.setSelection(this._binding.isBinary());
             }
             populateOperationCombo();
-            if (this._binding.getCamelOperationSelector() != null) {
+            if (this._binding.getCamelOperationSelector() != null && this._binding.getCamelOperationSelector().getOperationName() != null) {
                 CamelOperationSelectorType camelOpSelector = (CamelOperationSelectorType) this._binding
                         .getCamelOperationSelector();
-                _operationSelectionCombo.setText(camelOpSelector.getOperationName());
+                setTextValue(_operationSelectionCombo, camelOpSelector.getOperationName());
             }
+            super.setTabsBinding(_binding);
             setInUpdate(false);
             validate();
         } else {
             this._binding = null;
             populateOperationCombo();
         }
+        addObservableListeners();
     }
 
     @Override
@@ -169,6 +164,7 @@ public class CamelFTPConsumerComposite extends AbstractSwitchyardComposite imple
                 }
             }
         }
+        super.validateTabs();
         return (getErrorMessage() == null);
     }
 
@@ -180,11 +176,13 @@ public class CamelFTPConsumerComposite extends AbstractSwitchyardComposite imple
             _panel.setLayoutData(getRootGridData());
         }
 
-        TabFolder tabFolder = new TabFolder(_panel, SWT.NONE);
+        _tabFolder = new TabFolder(_panel, SWT.NONE);
 
-        TabItem one = new TabItem(tabFolder, SWT.NONE);
+        TabItem one = new TabItem(_tabFolder, SWT.NONE);
         one.setText("Consumer");
-        one.setControl(getConsumerTabControl(tabFolder));
+        one.setControl(getConsumerTabControl(_tabFolder));
+
+        addTabs(_tabFolder);
     }
 
     private Control getConsumerTabControl(TabFolder tabFolder) {
@@ -253,22 +251,20 @@ public class CamelFTPConsumerComposite extends AbstractSwitchyardComposite imple
             _operationSelectionCombo.removeAll();
             _operationSelectionCombo.clearSelection();
 
-            if (_targetObj == null) {
-                @SuppressWarnings("restriction")
+            if (getTargetObject() == null) {
                 PictogramElement[] pes = 
                         SwitchyardSCAEditor.getActiveEditor().getSelectedPictogramElements();
                 if (pes.length > 0) {
-                    @SuppressWarnings("restriction")
                     Object bo = SwitchyardSCAEditor.getActiveEditor().
                         getDiagramTypeProvider().getFeatureProvider().
                            getBusinessObjectForPictogramElement(pes[0]);
                     if (bo instanceof Service) {
-                        _targetObj = bo;
+                        setTargetObject(bo);
                     }
                 }
             }
-            if (_targetObj != null && _targetObj instanceof Service) {
-                String[] operations = InterfaceOpsUtil.gatherOperations((Service) _targetObj);
+            if (getTargetObject() != null && getTargetObject() instanceof Service) {
+                String[] operations = InterfaceOpsUtil.gatherOperations((Service) getTargetObject());
                 for (int i = 0; i < operations.length; i++) {
                     _operationSelectionCombo.add(operations[i]);
                 }
@@ -276,354 +272,140 @@ public class CamelFTPConsumerComposite extends AbstractSwitchyardComposite imple
         }
     }
 
-    private void setFeatureValue(EObject eObject, String featureId, Object value) {
-        EClass eClass = eObject.eClass();
-        for (int i = 0, size = eClass.getFeatureCount(); i < size; ++i) {
-            EStructuralFeature eStructuralFeature = eClass.getEStructuralFeature(i);
-            if (eStructuralFeature.isChangeable()) {
-                if (eStructuralFeature.getName().equalsIgnoreCase(featureId)) {
-                    eObject.eSet(eStructuralFeature, value);
-                    break;
-                }
+    class ConsumeOp extends ModelOperation {
+        @Override
+        public void run() throws Exception {
+            if (_binding != null && _binding.getConsume() == null) {
+                setFeatureValue(_binding, "consume", CamelFactory.eINSTANCE.createRemoteFileConsumerType());
             }
         }
     }
 
-    private class ConsumeRecordingCommand extends RecordingCommand {
-
-        private CamelFtpBindingType _innerBinding;
-        private String _featureId;
-        private Object _value;
-
-        public ConsumeRecordingCommand(TransactionalEditingDomain domain, CamelFtpBindingType binding,
-                String featureId, Object value) {
-            super(domain);
-            this._innerBinding = binding;
-            this._featureId = featureId;
-            this._value = value;
-        }
-
+    class CamelOperationSelectorOp extends ModelOperation {
         @Override
-        protected void doExecute() {
-            if (_innerBinding.getConsume() == null) {
-                _innerBinding.setConsume(CamelFactory.eINSTANCE.createRemoteFileConsumerType());
+        public void run() throws Exception {
+            if (_binding.getOperationSelector() == null) {
+                setFeatureValue(_binding, "camelOperationSelector", CamelFactory.eINSTANCE.createCamelOperationSelectorType());
             }
-            setFeatureValue(_innerBinding.getConsume(), _featureId, _value);
         }
-
     }
 
-    private class BindingRecordingCommand extends RecordingCommand {
-
-        private CamelFtpBindingType _innerBinding;
-        private String _featureId;
-        private Object _value;
-
-        public BindingRecordingCommand(TransactionalEditingDomain domain, CamelFtpBindingType binding,
-                String featureId, Object value) {
-            super(domain);
-            this._innerBinding = binding;
-            this._featureId = featureId;
-            this._value = value;
-        }
-
-        @Override
-        protected void doExecute() {
-            setFeatureValue(_innerBinding, _featureId, _value);
-        }
-
+    protected void updateConsumeFeature(String featureId, Object value) {
+        ArrayList<ModelOperation> ops = new ArrayList<ModelOperation>();
+        ops.add(new ConsumeOp());
+        ops.add(new BasicOperation("consume", featureId, value));
+        wrapOperation(ops);
     }
 
-    private void handleConsumer(final Control control, final TransactionalEditingDomain domain) {
+    protected void updateCamelOperationSelectorFeature(String featureId, Object value) {
+        ArrayList<ModelOperation> ops = new ArrayList<ModelOperation>();
+        ops.add(new CamelOperationSelectorOp());
+        ops.add(new BasicOperation("camelOperationSelector", featureId, value));
+        wrapOperation(ops);
+    }
+
+    private void handleConsumer(Control control) {
         if (control.equals(_delayText)) {
-            if (domain != null) {
-                try {
-                    ConsumeRecordingCommand command = new ConsumeRecordingCommand(domain, _binding, "delay",
-                            new BigInteger(_delayText.getText().trim()));
-                    domain.getCommandStack().execute(command);
-                } catch (NumberFormatException nfe) {
-                    // do nothing
-                    nfe.fillInStackTrace();
-                }
-            } else {
-                if (_binding.getConsume() == null) {
-                    _binding.setConsume(CamelFactory.eINSTANCE.createRemoteFileConsumerType());
-                }
-                try {
-                    setFeatureValue(_binding.getConsume(), "delay", new BigInteger(_delayText.getText().trim()));
-                } catch (NumberFormatException nfe) {
-                    // do nothing
-                    nfe.fillInStackTrace();
-                }
+            try {
+                updateConsumeFeature("delay", new BigInteger(_delayText.getText().trim()));
+            } catch (NumberFormatException nfe) {
+                // do nothing
+                nfe.fillInStackTrace();
             }
         } else if (control.equals(_deleteButton)) {
-            if (domain != null) {
-                ConsumeRecordingCommand command = new ConsumeRecordingCommand(domain, _binding, "delete", new Boolean(
-                        _deleteButton.getSelection()));
-                domain.getCommandStack().execute(command);
-            } else {
-                if (_binding.getConsume() == null) {
-                    _binding.setConsume(CamelFactory.eINSTANCE.createRemoteFileConsumerType());
-                }
-                _binding.getConsume().setDelete(_deleteButton.getSelection());
-            }
+            updateConsumeFeature("delete", new Boolean(_deleteButton.getSelection()));
         } else if (control.equals(_recursiveButton)) {
-            if (domain != null) {
-                ConsumeRecordingCommand command = new ConsumeRecordingCommand(domain, _binding, "recursive",
-                        new Boolean(_recursiveButton.getSelection()));
-                domain.getCommandStack().execute(command);
-            } else {
-                if (_binding.getConsume() == null) {
-                    _binding.setConsume(CamelFactory.eINSTANCE.createRemoteFileConsumerType());
-                }
-                _binding.getConsume().setRecursive(_recursiveButton.getSelection());
-            }
+            updateConsumeFeature("recursive", new Boolean(_recursiveButton.getSelection()));
         } else if (control.equals(_excludeText)) {
-            if (domain != null) {
-                ConsumeRecordingCommand command = new ConsumeRecordingCommand(domain, _binding, "exclude", _excludeText
-                        .getText().trim());
-                domain.getCommandStack().execute(command);
-            } else {
-                if (_binding.getConsume() == null) {
-                    _binding.setConsume(CamelFactory.eINSTANCE.createRemoteFileConsumerType());
-                }
-                _binding.getConsume().setExclude(_excludeText.getText().trim());
-            }
+            updateConsumeFeature("exclude", _excludeText.getText().trim());
         } else if (control.equals(_includeText)) {
-            if (domain != null) {
-                ConsumeRecordingCommand command = new ConsumeRecordingCommand(domain, _binding, "include", _includeText
-                        .getText().trim());
-                domain.getCommandStack().execute(command);
-            } else {
-                if (_binding.getConsume() == null) {
-                    _binding.setConsume(CamelFactory.eINSTANCE.createRemoteFileConsumerType());
-                }
-                _binding.getConsume().setInclude(_includeText.getText().trim());
-            }
+            updateConsumeFeature("include", _includeText.getText().trim());
         } else if (control.equals(_moveFailedText)) {
-            if (domain != null) {
-                ConsumeRecordingCommand command = new ConsumeRecordingCommand(domain, _binding, "moveFailed",
-                        _moveFailedText.getText().trim());
-                domain.getCommandStack().execute(command);
-            } else {
-                if (_binding.getConsume() == null) {
-                    _binding.setConsume(CamelFactory.eINSTANCE.createRemoteFileConsumerType());
-                }
-                _binding.getConsume().setMoveFailed(_moveText.getText().trim());
-            }
+            updateConsumeFeature("moveFailed", _moveFailedText.getText().trim());
         } else if (control.equals(_moveText)) {
-            if (domain != null) {
-                ConsumeRecordingCommand command = new ConsumeRecordingCommand(domain, _binding, "move", _moveText
-                        .getText().trim());
-                domain.getCommandStack().execute(command);
-            } else {
-                if (_binding.getConsume() == null) {
-                    _binding.setConsume(CamelFactory.eINSTANCE.createRemoteFileConsumerType());
-                }
-                _binding.getConsume().setMove(_moveText.getText().trim());
-            }
+            updateConsumeFeature("move", _moveText.getText().trim());
         } else if (control.equals(_preMoveText)) {
-            if (domain != null) {
-                ConsumeRecordingCommand command = new ConsumeRecordingCommand(domain, _binding, "preMove", _preMoveText
-                        .getText().trim());
-                domain.getCommandStack().execute(command);
-            } else {
-                if (_binding.getConsume() == null) {
-                    _binding.setConsume(CamelFactory.eINSTANCE.createRemoteFileConsumerType());
-                }
-                _binding.getConsume().setPreMove(_preMoveText.getText().trim());
-            }
+            updateConsumeFeature("preMove", _preMoveText.getText().trim());
         } else if (control.equals(_operationSelectionCombo)) {
-            if (domain != null) {
-                domain.getCommandStack().execute(new RecordingCommand(domain) {
-                    @Override
-                    protected void doExecute() {
-                        if (_binding.getOperationSelector() == null) {
-                            _binding.setCamelOperationSelector(CamelFactory.eINSTANCE
-                                    .createCamelOperationSelectorType());
-                        }
-                        ((CamelOperationSelectorType) _binding.getCamelOperationSelector())
-                                .setOperationName(_operationSelectionCombo.getText().trim());
-                    }
-                });
-            } else {
-                if (_binding.getOperationSelector() == null) {
-                    _binding.setCamelOperationSelector(CamelFactory.eINSTANCE.createCamelOperationSelectorType());
-                }
-                ((CamelOperationSelectorType) _binding.getCamelOperationSelector())
-                        .setOperationName(_operationSelectionCombo.getText().trim());
-            }
+            updateCamelOperationSelectorFeature("operationName", _operationSelectionCombo.getText().trim());
         }
     }
 
-    @SuppressWarnings("restriction")
-    protected void handleModify(final Control control) {
-        TransactionalEditingDomain domain = null;
-        if (_binding.eContainer() != null) {
-            domain = SwitchyardSCAEditor.getActiveEditor().getEditingDomain();
-        }
+    protected void handleModify(Control control) {
         if (control.equals(_directoryText)) {
-            if (domain != null) {
-                BindingRecordingCommand command = new BindingRecordingCommand(domain, _binding, "directory",
-                        _directoryText.getText().trim());
-                domain.getCommandStack().execute(command);
-            } else {
-                _binding.setDirectory(_directoryText.getText().trim());
-            }
+            updateFeature(_binding, "directory", _directoryText.getText().trim());
         } else if (control.equals(_fileNameText)) {
-            if (domain != null) {
-                BindingRecordingCommand command = new BindingRecordingCommand(domain, _binding, "fileName",
-                        _fileNameText.getText().trim());
-                domain.getCommandStack().execute(command);
-            } else {
-                _binding.setFileName(_fileNameText.getText().trim());
-            }
+            updateFeature(_binding, "fileName", _fileNameText.getText().trim());
         } else if (control.equals(_autoCreateButton)) {
-            if (domain != null) {
-                BindingRecordingCommand command = new BindingRecordingCommand(domain, _binding, "autoCreate",
-                        new Boolean(_autoCreateButton.getSelection()));
-                domain.getCommandStack().execute(command);
-            } else {
-                _binding.setAutoCreate(_autoCreateButton.getSelection());
-            }
+            updateFeature(_binding, "autoCreate", new Boolean(_autoCreateButton.getSelection()));
         } else if (control.equals(_hostText)) {
-            if (domain != null) {
-                BindingRecordingCommand command = new BindingRecordingCommand(domain, _binding, "host", _hostText
-                        .getText().trim());
-                domain.getCommandStack().execute(command);
-            } else {
-                _binding.setHost(_hostText.getText().trim());
-            }
+            updateFeature(_binding, "host", _hostText.getText().trim());
         } else if (control.equals(_usernameText)) {
-            if (domain != null) {
-                BindingRecordingCommand command = new BindingRecordingCommand(domain, _binding, "username",
-                        _usernameText.getText().trim());
-                domain.getCommandStack().execute(command);
-            } else {
-                _binding.setUsername(_usernameText.getText().trim());
-            }
+            updateFeature(_binding, "username", _usernameText.getText().trim());
         } else if (control.equals(_pwdText)) {
-            if (domain != null) {
-                BindingRecordingCommand command = new BindingRecordingCommand(domain, _binding, "password", _pwdText
-                        .getText().trim());
-                domain.getCommandStack().execute(command);
-            } else {
-                _binding.setPassword(_pwdText.getText().trim());
-            }
+            updateFeature(_binding, "password", _pwdText.getText().trim());
         } else if (control.equals(_binaryButton)) {
-            if (domain != null) {
-                BindingRecordingCommand command = new BindingRecordingCommand(domain, _binding, "binary", new Boolean(
-                        _binaryButton.getSelection()));
-                domain.getCommandStack().execute(command);
-            } else {
-                _binding.setBinary(_binaryButton.getSelection());
-            }
+            updateFeature(_binding, "binary", new Boolean(_binaryButton.getSelection()));
         } else if (control.equals(_portText)) {
-            if (domain != null) {
-                try {
-                    BindingRecordingCommand command = new BindingRecordingCommand(domain, _binding, "port",
-                            new Integer(_portText.getText().trim()));
-                    domain.getCommandStack().execute(command);
-                } catch (NumberFormatException nfe) {
-                    nfe.fillInStackTrace();
-                }
-            } else {
-                try {
-                    int port = Integer.parseInt(_portText.getText().trim());
-                    _binding.setPort(port);
-                } catch (NumberFormatException nfe) {
-                    nfe.fillInStackTrace();
-                }
+            try {
+                int port = Integer.parseInt(_portText.getText().trim());
+                updateFeature(_binding, "port", port);
+            } catch (NumberFormatException nfe) {
+                nfe.fillInStackTrace();
             }
-        } else {
-            handleConsumer(control, domain);
         }
+        handleConsumer(control);
+        super.handleModify(control);
         setHasChanged(false);
     }
 
-    /**
-     * @param target Passed in what we're dropping on
-     */
-    public void setTargetObject(Object target) {
-        this._targetObj = target;
-    }
-
-    @Override
-    public void focusLost(FocusEvent e) {
-        if (_binding != null && !inUpdate() && hasChanged()) {
-            validate();
-            handleModify((Control) e.getSource());
-            fireChangedEvent((Control) e.getSource());
-        }
-    }
-
-    @Override
-    public void keyReleased(KeyEvent e) {
-        if (e.keyCode == SWT.ESC) {
-            // cancel out and return to original value
-            setInUpdate(true);
-            if (_binding != null) {
-                Control control = (Control) e.getSource();
-                if (control.equals(_directoryText)) {
-                    _directoryText.setText(this._binding.getDirectory());
-                } else if (control.equals(_fileNameText)) {
-                    _fileNameText.setText(this._binding.getFileName());
-                } else if (control.equals(_autoCreateButton)) {
-                    _autoCreateButton.setSelection(this._binding.isAutoCreate());
-                } else if (control.equals(_hostText)) {
-                    _hostText.setText(this._binding.getHost());
-                } else if (control.equals(_portText)) {
-                    _portText.setText(Integer.toString(this._binding.getPort()));
-                } else if (control.equals(_usernameText)) {
-                    _usernameText.setText(this._binding.getUsername());
-                } else if (control.equals(_pwdText)) {
-                    _pwdText.setText(this._binding.getPassword());
-                } else if (control.equals(_binaryButton)) {
-                    _binaryButton.setSelection(this._binding.isBinary());
-                } else if (control.equals(_operationSelectionCombo)) {
-                    if (this._binding.getCamelOperationSelector() != null) {
-                        populateOperationCombo();
-                        CamelOperationSelectorType camelOpSelector = (CamelOperationSelectorType) this._binding
-                                .getCamelOperationSelector();
-                        _operationSelectionCombo.setText(camelOpSelector.getOperationName());
-                    }
-                } else if (this._binding.getConsume() != null) {
-                    if (control.equals(_delayText)) {
-                        _delayText.setText(this._binding.getConsume().getDelay().toString());
-                    } else if (control.equals(_excludeText)) {
-                        _excludeText.setText(this._binding.getConsume().getExclude());
-                    } else if (control.equals(_includeText)) {
-                        _includeText.setText(this._binding.getConsume().getInclude());
-                    } else if (control.equals(_moveFailedText)) {
-                        _moveFailedText.setText(this._binding.getConsume().getMoveFailed());
-                    } else if (control.equals(_moveText)) {
-                        _moveText.setText(this._binding.getConsume().getMove());
-                    } else if (control.equals(_preMoveText)) {
-                        _preMoveText.setText(this._binding.getConsume().getPreMove());
-                    } else if (control.equals(_deleteButton)) {
-                        _deleteButton.setSelection(this._binding.getConsume().isDelete());
-                    } else if (control.equals(_recursiveButton)) {
-                        _recursiveButton.setSelection(this._binding.getConsume().isRecursive());
-                    }
+    protected void handleUndo(Control control) {
+        if (_binding != null) {
+            if (control.equals(_directoryText)) {
+                _directoryText.setText(this._binding.getDirectory());
+            } else if (control.equals(_fileNameText)) {
+                _fileNameText.setText(this._binding.getFileName());
+            } else if (control.equals(_autoCreateButton)) {
+                _autoCreateButton.setSelection(this._binding.isAutoCreate());
+            } else if (control.equals(_hostText)) {
+                _hostText.setText(this._binding.getHost());
+            } else if (control.equals(_portText)) {
+                _portText.setText(Integer.toString(this._binding.getPort()));
+            } else if (control.equals(_usernameText)) {
+                _usernameText.setText(this._binding.getUsername());
+            } else if (control.equals(_pwdText)) {
+                _pwdText.setText(this._binding.getPassword());
+            } else if (control.equals(_binaryButton)) {
+                _binaryButton.setSelection(this._binding.isBinary());
+            } else if (control.equals(_operationSelectionCombo)) {
+                if (this._binding.getCamelOperationSelector() != null) {
+                    populateOperationCombo();
+                    CamelOperationSelectorType camelOpSelector = (CamelOperationSelectorType) this._binding
+                            .getCamelOperationSelector();
+                    setTextValue(_operationSelectionCombo, camelOpSelector.getOperationName());
                 }
-            }
-            setInUpdate(false);
-        } else if (e.keyCode == SWT.CR) {
-            // accept change
-            if (_binding != null && !inUpdate() && hasChanged()) {
-                validate();
-                handleModify((Control) e.getSource());
-                fireChangedEvent((Control) e.getSource());
+            } else if (this._binding.getConsume() != null) {
+                if (control.equals(_delayText)) {
+                    _delayText.setText(this._binding.getConsume().getDelay().toString());
+                } else if (control.equals(_excludeText)) {
+                    _excludeText.setText(this._binding.getConsume().getExclude());
+                } else if (control.equals(_includeText)) {
+                    _includeText.setText(this._binding.getConsume().getInclude());
+                } else if (control.equals(_moveFailedText)) {
+                    _moveFailedText.setText(this._binding.getConsume().getMoveFailed());
+                } else if (control.equals(_moveText)) {
+                    _moveText.setText(this._binding.getConsume().getMove());
+                } else if (control.equals(_preMoveText)) {
+                    _preMoveText.setText(this._binding.getConsume().getPreMove());
+                } else if (control.equals(_deleteButton)) {
+                    _deleteButton.setSelection(this._binding.getConsume().isDelete());
+                } else if (control.equals(_recursiveButton)) {
+                    _recursiveButton.setSelection(this._binding.getConsume().isRecursive());
+                }
+            } else {
+                super.handleUndo(control);
             }
         }
-    }
-
-    @Override
-    public void widgetSelected(SelectionEvent e) {
-        if (!inUpdate()) {
-            setHasChanged(true);
-            handleModify((Control)e.getSource());
-            fireChangedEvent((Control)e.getSource());
-        }
+        setHasChanged(false);
     }
 }

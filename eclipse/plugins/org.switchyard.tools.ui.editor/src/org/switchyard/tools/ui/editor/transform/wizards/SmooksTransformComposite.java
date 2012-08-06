@@ -15,13 +15,9 @@ package org.switchyard.tools.ui.editor.transform.wizards;
 import org.eclipse.core.resources.IFile;
 import org.eclipse.core.resources.IResource;
 import org.eclipse.core.resources.ResourcesPlugin;
-import org.eclipse.emf.transaction.RecordingCommand;
-import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.eclipse.jdt.core.IJavaProject;
 import org.eclipse.jdt.core.JavaCore;
 import org.eclipse.swt.SWT;
-import org.eclipse.swt.events.FocusEvent;
-import org.eclipse.swt.events.KeyEvent;
 import org.eclipse.swt.events.SelectionAdapter;
 import org.eclipse.swt.events.SelectionEvent;
 import org.eclipse.swt.layout.GridData;
@@ -35,7 +31,6 @@ import org.eclipse.swt.widgets.Text;
 import org.switchyard.tools.models.switchyard1_0.switchyard.TransformType;
 import org.switchyard.tools.models.switchyard1_0.transform.SmooksTransformType;
 import org.switchyard.tools.models.switchyard1_0.transform.SmooksTransformType1;
-import org.switchyard.tools.models.switchyard1_0.transform.TransformPackage;
 import org.switchyard.tools.ui.JavaUtil;
 import org.switchyard.tools.ui.common.ClasspathResourceSelectionDialog;
 import org.switchyard.tools.ui.editor.impl.SwitchyardSCAEditor;
@@ -91,21 +86,6 @@ public class SmooksTransformComposite extends BaseTransformComposite {
         _smooksTypeCombo.add("JAVA2XML", 2);
         _smooksTypeCombo.setData("JAVA2XML", SmooksTransformType.JAVA2XML);
         _smooksTypeCombo.select(0);
-//        _smooksTypeCombo.addSelectionListener(new SelectionListener() {
-//
-//            @Override
-//            public void widgetSelected(SelectionEvent e) {
-//                if (!inUpdate()) {
-//                    handleModify(_smooksTypeCombo);
-//                    fireChangedEvent(_smooksTypeCombo);
-//                }
-//            }
-//
-//            @Override
-//            public void widgetDefaultSelected(SelectionEvent e) {
-//                widgetSelected(e);
-//            }
-//        });
     }
 
     protected boolean validate() {
@@ -121,57 +101,36 @@ public class SmooksTransformComposite extends BaseTransformComposite {
         return (getErrorMessage() == null);
     }
 
-    @SuppressWarnings("restriction")
     protected void handleModify(final Control control) {
-        TransactionalEditingDomain domain = null;
-        if (getTransform().eContainer() != null) {
-            domain = SwitchyardSCAEditor.getActiveEditor().getEditingDomain();
-        }
         if (control.equals(_configText)) {
-            if (domain != null) {
-                domain.getCommandStack().execute(new RecordingCommand(domain) {
-                    @Override
-                    protected void doExecute() {
-                        ((SmooksTransformType1) getTransform()).setConfig(_configText.getText().trim());
-                    }
-                });
-            } else {
-                ((SmooksTransformType1) getTransform()).setConfig(_configText.getText().trim());
-            }
+            updateFeature((SmooksTransformType1) getTransform(), "config", _configText.getText().trim());
         } else if (control.equals(_reportPathText)) {
-            if (domain != null) {
-                domain.getCommandStack().execute(new RecordingCommand(domain) {
-                    @Override
-                    protected void doExecute() {
-                        ((SmooksTransformType1) getTransform()).setReportPath(_reportPathText.getText().trim());
-                    }
-                });
-            } else {
-                ((SmooksTransformType1) getTransform()).setReportPath(_reportPathText.getText().trim());
-            }
+            updateFeature((SmooksTransformType1) getTransform(), "reportPath", _reportPathText.getText().trim());
         } else if (control.equals(_smooksTypeCombo)) {
-            if (domain != null) {
-                domain.getCommandStack().execute(new RecordingCommand(domain) {
-                    @Override
-                    protected void doExecute() {
-                        SmooksTransformType selectedType = (SmooksTransformType) _smooksTypeCombo
-                                .getData(_smooksTypeCombo.getText());
-                        SmooksTransformType1 smooksTransform = (SmooksTransformType1) getTransform();
-                        smooksTransform.eSet(TransformPackage.eINSTANCE.getSmooksTransformType1_Type(), selectedType);
-                    }
-                });
-            } else {
-                SmooksTransformType selectedType = (SmooksTransformType) _smooksTypeCombo.getData(_smooksTypeCombo
-                        .getText());
-                SmooksTransformType1 smooksTransform = (SmooksTransformType1) getTransform();
-                smooksTransform.eSet(TransformPackage.eINSTANCE.getSmooksTransformType1_Type(), selectedType);
-            }
+            SmooksTransformType selectedType = (SmooksTransformType) _smooksTypeCombo.getData(_smooksTypeCombo
+                    .getText());
+            updateFeature((SmooksTransformType1) getTransform(), "type", selectedType);
         } else {
             super.handleModify(control);
         }
         validate();
     }
 
+    protected void handleUndo(Control control) {
+        super.handleUndo(control);
+        setInUpdate(true);
+        if (getTransform() != null) {
+            SmooksTransformType1 smooksTransform = (SmooksTransformType1) getTransform();
+            if (control.equals(_configText)) {
+                _configText.setText(smooksTransform.getConfig());
+            } else if (control.equals(_reportPathText)) {
+                _reportPathText.setText(smooksTransform.getReportPath());
+            } else if (control.equals(_smooksTypeCombo)) { 
+                _smooksTypeCombo.select(smooksTransform.getType().ordinal());
+            }
+        }
+        setInUpdate(false);
+    }    
     /**
      * @param transform incoming transform type
      */
@@ -189,46 +148,10 @@ public class SmooksTransformComposite extends BaseTransformComposite {
             _smooksTypeCombo.select(smooksTransform.getType().ordinal());
         }
         setInUpdate(false);
-    }
-
-    @Override
-    public void focusLost(FocusEvent e) {
-        if (getTransform() != null && !inUpdate()) {
-            validate();
-            handleModify((Control) e.getSource());
-            fireChangedEvent((Control) e.getSource());
-        }
-    }
-
-    @Override
-    public void keyReleased(KeyEvent e) {
-        if (e.keyCode == SWT.ESC) {
-            // cancel out and return to original value
-            setInUpdate(true);
-            if (getTransform() != null) {
-                Control control = (Control) e.getSource();
-                SmooksTransformType1 smooksTransform = (SmooksTransformType1) getTransform();
-                if (control.equals(_configText)) {
-                    _configText.setText(smooksTransform.getConfig());
-                } else if (control.equals(_reportPathText)) {
-                    _reportPathText.setText(smooksTransform.getReportPath());
-                } else if (control.equals(_smooksTypeCombo)) { 
-                    _smooksTypeCombo.select(smooksTransform.getType().ordinal());
-                }
-            }
-            setInUpdate(false);
-        } else if (e.keyCode == SWT.CR) {
-            // accept change
-            if (getTransform() != null && !inUpdate()) {
-                validate();
-                handleModify((Control) e.getSource());
-                fireChangedEvent((Control) e.getSource());
-            }
-        }
+        addObservableListeners();
     }
 
     private void handleBrowse() {
-
         IFile modelFile = SwitchyardSCAEditor.getActiveEditor().getModelFile();
         IJavaProject javaProject = null;
         if (modelFile != null) {

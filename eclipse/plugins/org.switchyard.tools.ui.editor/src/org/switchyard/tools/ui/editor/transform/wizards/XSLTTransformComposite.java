@@ -15,13 +15,9 @@ package org.switchyard.tools.ui.editor.transform.wizards;
 import org.eclipse.core.resources.IFile;
 import org.eclipse.core.resources.IResource;
 import org.eclipse.core.resources.ResourcesPlugin;
-import org.eclipse.emf.transaction.RecordingCommand;
-import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.eclipse.jdt.core.IJavaProject;
 import org.eclipse.jdt.core.JavaCore;
 import org.eclipse.swt.SWT;
-import org.eclipse.swt.events.FocusEvent;
-import org.eclipse.swt.events.KeyEvent;
 import org.eclipse.swt.events.ModifyEvent;
 import org.eclipse.swt.events.ModifyListener;
 import org.eclipse.swt.events.SelectionAdapter;
@@ -111,41 +107,32 @@ public class XSLTTransformComposite extends BaseTransformComposite {
         return (getErrorMessage() == null);
     }
 
-    @SuppressWarnings("restriction")
     protected void handleModify(final Control control) {
-        TransactionalEditingDomain domain = null;
-        if (getTransform().eContainer() != null) {
-            domain = SwitchyardSCAEditor.getActiveEditor().getEditingDomain();
-        }
         if (control.equals(_failOnWarningText)) {
-            if (domain != null) {
-                domain.getCommandStack().execute(new RecordingCommand(domain) {
-                    @Override
-                    protected void doExecute() {
-                        String value = Boolean.toString(_failOnWarningText.getSelection());                        
-                        ((XsltTransformType) getTransform()).setFailOnWarning(value);
-                    }
-                });
-            } else {
-                String value = Boolean.toString(_failOnWarningText.getSelection());                        
-                ((XsltTransformType) getTransform()).setFailOnWarning(value);
-            }
+            String value = Boolean.toString(_failOnWarningText.getSelection());                        
+            updateFeature((XsltTransformType) getTransform(), "failOnWarning", value);
         } else if (control.equals(_xsltFileText)) {
-                if (domain != null) {
-                    domain.getCommandStack().execute(new RecordingCommand(domain) {
-                        @Override
-                        protected void doExecute() {
-                            ((XsltTransformType) getTransform()).setXsltFile(_xsltFileText.getText().trim());
-                        }
-                    });
-                } else {
-                    ((XsltTransformType) getTransform()).setXsltFile(_xsltFileText.getText().trim());
-                }
+            updateFeature((XsltTransformType) getTransform(), "xsltFile", _xsltFileText.getText().trim());
         } else {
             super.handleModify(control);
         }
         validate();
     }
+
+    protected void handleUndo(Control control) {
+        super.handleUndo(control);
+        setInUpdate(true);
+        if (getTransform() != null) {
+            XsltTransformType xsltTransform = (XsltTransformType) getTransform();
+            if (control.equals(_xsltFileText)) {
+                _xsltFileText.setText(xsltTransform.getXsltFile());
+            } else if (control.equals(_failOnWarningText)) { 
+                boolean value = Boolean.parseBoolean(xsltTransform.getFailOnWarning());                        
+                _failOnWarningText.setSelection(value);
+            }
+        }
+        setInUpdate(false);
+    }    
 
     /**
      * @param transform incoming transform type
@@ -162,41 +149,7 @@ public class XSLTTransformComposite extends BaseTransformComposite {
             _xsltFileText.setText(xsltTransform.getXsltFile());
         }
         setInUpdate(false);
-    }
-
-    @Override
-    public void focusLost(FocusEvent e) {
-        if (getTransform() != null && !inUpdate()) {
-            validate();
-            handleModify((Control) e.getSource());
-            fireChangedEvent((Control) e.getSource());
-        }
-    }
-
-    @Override
-    public void keyReleased(KeyEvent e) {
-        if (e.keyCode == SWT.ESC) {
-            // cancel out and return to original value
-            setInUpdate(true);
-            if (getTransform() != null) {
-                Control control = (Control) e.getSource();
-                XsltTransformType xsltTransform = (XsltTransformType) getTransform();
-                if (control.equals(_xsltFileText)) {
-                    _xsltFileText.setText(xsltTransform.getXsltFile());
-                } else if (control.equals(_failOnWarningText)) { 
-                    boolean value = Boolean.parseBoolean(xsltTransform.getFailOnWarning());                        
-                    _failOnWarningText.setSelection(value);
-                }
-            }
-            setInUpdate(false);
-        } else if (e.keyCode == SWT.CR) {
-            // accept change
-            if (getTransform() != null && !inUpdate()) {
-                validate();
-                handleModify((Control) e.getSource());
-                fireChangedEvent((Control) e.getSource());
-            }
-        }
+        addObservableListeners();
     }
 
     private void handleBrowse() {

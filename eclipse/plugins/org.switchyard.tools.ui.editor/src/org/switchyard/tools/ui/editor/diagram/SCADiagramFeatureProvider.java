@@ -390,11 +390,14 @@ public class SCADiagramFeatureProvider extends DefaultFeatureProvider {
                     features.add(new Java2WSDLCustomFeature(this));
                     features.add(new CreateServiceTestCustomFeature(this));
                 }
+//                features.add(new PropertiesDialogFeature(this));
                 return features.toArray(new ICustomFeature[features.size()]);
             } else if (bo instanceof ComponentReference) {
-                return new ICustomFeature[] {new SCADiagramCustomPromoteReferenceFeature(this) };
+                return new ICustomFeature[] {new SCADiagramCustomPromoteReferenceFeature(this) }; //, new PropertiesDialogFeature(this) };
             } else if (bo instanceof Composite) {
-                return new ICustomFeature[] {new AutoLayoutFeature(this) };
+                return new ICustomFeature[] {new AutoLayoutFeature(this) }; //, new PropertiesDialogFeature(this) };
+//            } else if (bo != null) {
+//                return new ICustomFeature[] {new PropertiesDialogFeature(this) };
             }
         }
         return super.getCustomFeatures(context);

@@ -12,18 +12,12 @@
  ******************************************************************************/
 package org.switchyard.tools.ui.editor.components.camel.sql;
 
-import org.eclipse.emf.ecore.EClass;
-import org.eclipse.emf.ecore.EObject;
-import org.eclipse.emf.ecore.EStructuralFeature;
-import org.eclipse.emf.transaction.RecordingCommand;
-import org.eclipse.emf.transaction.TransactionalEditingDomain;
+import java.util.ArrayList;
+
 import org.eclipse.graphiti.mm.pictograms.PictogramElement;
 import org.eclipse.soa.sca.sca1_1.model.sca.Binding;
 import org.eclipse.soa.sca.sca1_1.model.sca.Service;
 import org.eclipse.swt.SWT;
-import org.eclipse.swt.events.FocusEvent;
-import org.eclipse.swt.events.KeyEvent;
-import org.eclipse.swt.events.SelectionEvent;
 import org.eclipse.swt.layout.FillLayout;
 import org.eclipse.swt.layout.GridData;
 import org.eclipse.swt.layout.GridLayout;
@@ -38,8 +32,8 @@ import org.eclipse.swt.widgets.Text;
 import org.switchyard.tools.models.switchyard1_0.camel.CamelFactory;
 import org.switchyard.tools.models.switchyard1_0.camel.CamelOperationSelectorType;
 import org.switchyard.tools.models.switchyard1_0.camel.CamelSqlBindingType;
-import org.switchyard.tools.ui.editor.diagram.shared.AbstractSwitchyardComposite;
-import org.switchyard.tools.ui.editor.diagram.shared.IBindingComposite;
+import org.switchyard.tools.ui.editor.diagram.binding.AbstractSYBindingComposite;
+import org.switchyard.tools.ui.editor.diagram.shared.ModelOperation;
 import org.switchyard.tools.ui.editor.impl.SwitchyardSCAEditor;
 import org.switchyard.tools.ui.editor.util.InterfaceOpsUtil;
 
@@ -47,7 +41,7 @@ import org.switchyard.tools.ui.editor.util.InterfaceOpsUtil;
  * @author bfitzpat
  * 
  */
-public class CamelSQLComposite extends AbstractSwitchyardComposite implements IBindingComposite {
+public class CamelSQLComposite extends AbstractSYBindingComposite {
 
     private Composite _panel;
     private CamelSqlBindingType _binding = null;
@@ -56,7 +50,7 @@ public class CamelSQLComposite extends AbstractSwitchyardComposite implements IB
     private Text _placeholderText;
     private Button _batchCheckbox;
     private Combo _operationSelectionCombo;
-    private Object _targetObj = null;
+    private TabFolder _tabFolder;
 
     @Override
     public Binding getBinding() {
@@ -82,14 +76,16 @@ public class CamelSQLComposite extends AbstractSwitchyardComposite implements IB
             if (this._binding.getCamelOperationSelector() != null) {
                 CamelOperationSelectorType camelOpSelector = (CamelOperationSelectorType) this._binding
                         .getCamelOperationSelector();
-                _operationSelectionCombo.setText(camelOpSelector.getOperationName());
+                setTextValue(_operationSelectionCombo, camelOpSelector.getOperationName());
             }
+            super.setTabsBinding(_binding);
             setInUpdate(false);
             validate();
         } else {
             this._binding = null;
             populateOperationCombo();
         }
+        addObservableListeners();
     }
 
     @Override
@@ -105,6 +101,7 @@ public class CamelSQLComposite extends AbstractSwitchyardComposite implements IB
                 return false;
             }
         }
+        super.validateTabs();
         return (getErrorMessage() == null);
     }
 
@@ -116,11 +113,13 @@ public class CamelSQLComposite extends AbstractSwitchyardComposite implements IB
             _panel.setLayoutData(getRootGridData());
         }
 
-        TabFolder tabFolder = new TabFolder(_panel, SWT.NONE);
+        _tabFolder = new TabFolder(_panel, SWT.NONE);
 
-        TabItem one = new TabItem(tabFolder, SWT.NONE);
+        TabItem one = new TabItem(_tabFolder, SWT.NONE);
         one.setText("SQL Gateway");
-        one.setControl(getSQLTabControl(tabFolder));
+        one.setControl(getSQLTabControl(_tabFolder));
+
+        addTabs(_tabFolder);
     }
 
     private Control getSQLTabControl(TabFolder tabFolder) {
@@ -153,20 +152,18 @@ public class CamelSQLComposite extends AbstractSwitchyardComposite implements IB
             _operationSelectionCombo.removeAll();
             _operationSelectionCombo.clearSelection();
 
-            if (_targetObj == null) {
-                @SuppressWarnings("restriction")
+            if (getTargetObject() == null) {
                 PictogramElement[] pes = SwitchyardSCAEditor.getActiveEditor().getSelectedPictogramElements();
                 if (pes.length > 0) {
-                    @SuppressWarnings("restriction")
                     Object bo = SwitchyardSCAEditor.getActiveEditor().getDiagramTypeProvider().getFeatureProvider()
                             .getBusinessObjectForPictogramElement(pes[0]);
                     if (bo instanceof Service) {
-                        _targetObj = bo;
+                        setTargetObject(bo);
                     }
                 }
             }
-            if (_targetObj != null && _targetObj instanceof Service) {
-                String[] operations = InterfaceOpsUtil.gatherOperations((Service) _targetObj);
+            if (getTargetObject() != null && getTargetObject() instanceof Service) {
+                String[] operations = InterfaceOpsUtil.gatherOperations((Service) getTargetObject());
                 for (int i = 0; i < operations.length; i++) {
                     _operationSelectionCombo.add(operations[i]);
                 }
@@ -179,162 +176,62 @@ public class CamelSQLComposite extends AbstractSwitchyardComposite implements IB
         return this._panel;
     }
 
-    private void setFeatureValue(EObject eObject, String featureId, Object value) {
-        EClass eClass = eObject.eClass();
-        for (int i = 0, size = eClass.getFeatureCount(); i < size; ++i) {
-            EStructuralFeature eStructuralFeature = eClass.getEStructuralFeature(i);
-            if (eStructuralFeature.isChangeable()) {
-                if (eStructuralFeature.getName().equalsIgnoreCase(featureId)) {
-                    eObject.eSet(eStructuralFeature, value);
-                    break;
-                }
-            }
-        }
-    }
-
-    private class BindingRecordingCommand extends RecordingCommand {
-
-        private CamelSqlBindingType _innerBinding;
-        private String _featureId;
-        private Object _value;
-
-        public BindingRecordingCommand(TransactionalEditingDomain domain, CamelSqlBindingType binding,
-                String featureId, Object value) {
-            super(domain);
-            this._innerBinding = binding;
-            this._featureId = featureId;
-            this._value = value;
-        }
-
+    class CamelOperationSelectorOp extends ModelOperation {
         @Override
-        protected void doExecute() {
-            setFeatureValue(_innerBinding, _featureId, _value);
+        public void run() throws Exception {
+            if (_binding.getOperationSelector() == null) {
+                setFeatureValue(_binding, "camelOperationSelector", CamelFactory.eINSTANCE.createCamelOperationSelectorType());
+            }
         }
-
     }
 
-    @SuppressWarnings("restriction")
+    protected void updateCamelOperationSelectorFeature(String featureId, Object value) {
+        ArrayList<ModelOperation> ops = new ArrayList<ModelOperation>();
+        ops.add(new CamelOperationSelectorOp());
+        ops.add(new BasicOperation("camelOperationSelector", featureId, value));
+        wrapOperation(ops);
+    }
+
     protected void handleModify(final Control control) {
-        TransactionalEditingDomain domain = null;
-        if (_binding.eContainer() != null) {
-            domain = SwitchyardSCAEditor.getActiveEditor().getEditingDomain();
-        }
         if (control.equals(_queryText)) {
-            if (domain != null) {
-                BindingRecordingCommand command = new BindingRecordingCommand(domain, _binding, "query",
-                        _queryText.getText().trim());
-                domain.getCommandStack().execute(command);
-            } else {
-                _binding.setQuery(_queryText.getText().trim());
-            }
+            updateFeature(_binding, "query", _queryText.getText().trim());
         } else if (control.equals(_dataSourceRefText)) {
-            if (domain != null) {
-                BindingRecordingCommand command = new BindingRecordingCommand(domain, _binding, "dataSourceRef", 
-                    _dataSourceRefText.getText().trim());
-                domain.getCommandStack().execute(command);
-            } else {
-                _binding.setDataSourceRef(_dataSourceRefText.getText().trim());
-            }
+            updateFeature(_binding, "dataSourceRef", _dataSourceRefText.getText().trim());
         } else if (control.equals(_placeholderText)) {
-            if (domain != null) {
-                BindingRecordingCommand command = new BindingRecordingCommand(domain, _binding, "placeholder", 
-                    _placeholderText.getText().trim());
-                domain.getCommandStack().execute(command);
-            } else {
-                _binding.setPlaceholder(_placeholderText.getText().trim());
-            }
+            updateFeature(_binding, "placeholder", _placeholderText.getText().trim());
         } else if (control.equals(_batchCheckbox)) {
-            if (domain != null) {
-                BindingRecordingCommand command = new BindingRecordingCommand(domain, _binding, "batch",
-                        _batchCheckbox.getSelection());
-                domain.getCommandStack().execute(command);
-            } else {
-                _binding.setBatch(_batchCheckbox.getSelection());
-            }
+            boolean value = _batchCheckbox.getSelection();
+            updateFeature(_binding, "batch", value);
         } else if (control.equals(_operationSelectionCombo)) {
-            if (domain != null) {
-                domain.getCommandStack().execute(new RecordingCommand(domain) {
-                    @Override
-                    protected void doExecute() {
-                        if (_binding.getOperationSelector() == null) {
-                            _binding.setCamelOperationSelector(CamelFactory.eINSTANCE
-                                    .createCamelOperationSelectorType());
-                        }
-                        ((CamelOperationSelectorType) _binding.getCamelOperationSelector())
-                                .setOperationName(_operationSelectionCombo.getText().trim());
-                    }
-                });
-            } else {
-                if (_binding.getOperationSelector() == null) {
-                    _binding.setCamelOperationSelector(CamelFactory.eINSTANCE.createCamelOperationSelectorType());
+            updateCamelOperationSelectorFeature("operationName", _operationSelectionCombo.getText().trim());
+        }
+        super.handleModify(control);
+        validate();
+        setHasChanged(false);
+    }
+
+    protected void handleUndo(Control control) {
+        if (_binding != null) {
+            if (control.equals(_queryText)) {
+                _queryText.setText(this._binding.getQuery());
+            } else if (control.equals(_dataSourceRefText)) {
+                _dataSourceRefText.setText(this._binding.getDataSourceRef());
+            } else if (control.equals(_placeholderText)) {
+                _placeholderText.setText(this._binding.getPlaceholder());
+            } else if (control.equals(_batchCheckbox)) {
+                _batchCheckbox.setSelection(this._binding.isBatch());
+            } else if (control.equals(_operationSelectionCombo)) {
+                if (this._binding.getCamelOperationSelector() != null) {
+                    populateOperationCombo();
+                    CamelOperationSelectorType camelOpSelector = (CamelOperationSelectorType) this._binding
+                            .getCamelOperationSelector();
+                    setTextValue(_operationSelectionCombo, camelOpSelector.getOperationName());
                 }
-                ((CamelOperationSelectorType) _binding.getCamelOperationSelector())
-                        .setOperationName(_operationSelectionCombo.getText().trim());
+            } else {
+                super.handleUndo(control);
             }
         }
         setHasChanged(false);
     }
-
-    /**
-     * @param target Passed in what we're dropping on
-     */
-    public void setTargetObject(Object target) {
-        this._targetObj = target;
-    }
-
-    @Override
-    public void focusLost(FocusEvent e) {
-        if (_binding != null && !inUpdate() && hasChanged()) {
-            validate();
-            handleModify((Control) e.getSource());
-            fireChangedEvent((Control) e.getSource());
-        } else {
-            validate();
-            fireChangedEvent((Control) e.getSource());
-        }
-    }
-
-    @Override
-    public void keyReleased(KeyEvent e) {
-        if (e.keyCode == SWT.ESC) {
-            // cancel out and return to original value
-            setInUpdate(true);
-            if (_binding != null) {
-                Control control = (Control) e.getSource();
-                if (control.equals(_queryText)) {
-                    _queryText.setText(this._binding.getQuery());
-                } else if (control.equals(_dataSourceRefText)) {
-                    _dataSourceRefText.setText(this._binding.getDataSourceRef());
-                } else if (control.equals(_placeholderText)) {
-                    _placeholderText.setText(this._binding.getPlaceholder());
-                } else if (control.equals(_batchCheckbox)) {
-                    _batchCheckbox.setSelection(this._binding.isBatch());
-                } else if (control.equals(_operationSelectionCombo)) {
-                    if (this._binding.getCamelOperationSelector() != null) {
-                        populateOperationCombo();
-                        CamelOperationSelectorType camelOpSelector = (CamelOperationSelectorType) this._binding
-                                .getCamelOperationSelector();
-                        _operationSelectionCombo.setText(camelOpSelector.getOperationName());
-                    }
-                }
-            }
-            setInUpdate(false);
-        } else if (e.keyCode == SWT.CR) {
-            // accept change
-            if (_binding != null && !inUpdate() && hasChanged()) {
-                validate();
-                handleModify((Control) e.getSource());
-                fireChangedEvent((Control) e.getSource());
-            }
-        }
-    }
-
-    @Override
-    public void widgetSelected(SelectionEvent e) {
-        if (!inUpdate()) {
-            setHasChanged(true);
-            handleModify((Control)e.getSource());
-            fireChangedEvent((Control)e.getSource());
-        }
-    }
+    
 }

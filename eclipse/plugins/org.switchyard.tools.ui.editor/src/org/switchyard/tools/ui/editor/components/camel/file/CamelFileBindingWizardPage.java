@@ -69,9 +69,10 @@ public class CamelFileBindingWizardPage extends WizardPage {
             _consumerComposite.createContents(parent, SWT.NONE);
             _consumerComposite.setTargetObject(_targetContainer);
             _consumerComposite.setBinding(_binding);
-            setPageComplete(_consumerComposite.getErrorMessage() == null);
 
             setControl(_consumerComposite.getPanel());
+            setPageComplete(_consumerComposite.getErrorMessage() == null);
+
         } else {
             _producerComposite = new CamelFileProducerComposite();
             _producerComposite.addChangeListener(new ChangeListener() {

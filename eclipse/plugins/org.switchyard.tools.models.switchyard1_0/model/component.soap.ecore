@@ -8,7 +8,8 @@
       <details key="name" value="ContextMapperType"/>
       <details key="kind" value="empty"/>
     </eAnnotations>
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="soapHeadersType" eType="#//SoapHeadersType">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="soapHeadersType" eType="#//SoapHeadersType"
+        defaultValueLiteral="">
       <eAnnotations source="http:///org/eclipse/emf/ecore/util/ExtendedMetaData">
         <details key="kind" value="attribute"/>
         <details key="name" value="soapHeadersType"/>
@@ -71,7 +72,7 @@
       <details key="name" value="SOAPBindingType"/>
       <details key="kind" value="elementOnly"/>
     </eAnnotations>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="contextMapper" eType="#//ContextMapperType"
+    <eStructuralFeatures xsi:type="ecore:EReference" name="soapContextMapper" eType="#//ContextMapperType"
         containment="true" resolveProxies="false">
       <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
         <details key="documentation" value="&#xA;                                Specify the ContextMapper to be used.&#xA;                            "/>
@@ -82,7 +83,7 @@
         <details key="namespace" value="##targetNamespace"/>
       </eAnnotations>
     </eStructuralFeatures>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="messageComposer" eType="#//MessageComposerType"
+    <eStructuralFeatures xsi:type="ecore:EReference" name="soapMessageComposer" eType="#//MessageComposerType"
         containment="true">
       <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
         <details key="documentation" value="&#xA;                                Specify the MessageComposer to be used.&#xA;                            "/>

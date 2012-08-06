@@ -12,6 +12,8 @@
  ******************************************************************************/
 package org.switchyard.tools.ui.editor.components.jca;
 
+import java.util.ArrayList;
+
 import javax.swing.event.ChangeEvent;
 import javax.swing.event.ChangeListener;
 
@@ -19,19 +21,12 @@ import org.eclipse.core.resources.IFile;
 import org.eclipse.core.resources.IResource;
 import org.eclipse.core.resources.ResourcesPlugin;
 import org.eclipse.emf.common.util.EList;
-import org.eclipse.emf.ecore.EClass;
-import org.eclipse.emf.ecore.EObject;
-import org.eclipse.emf.ecore.EStructuralFeature;
-import org.eclipse.emf.transaction.RecordingCommand;
-import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.eclipse.graphiti.mm.pictograms.PictogramElement;
 import org.eclipse.jdt.core.IJavaProject;
 import org.eclipse.jdt.core.JavaCore;
 import org.eclipse.soa.sca.sca1_1.model.sca.Binding;
 import org.eclipse.soa.sca.sca1_1.model.sca.Service;
 import org.eclipse.swt.SWT;
-import org.eclipse.swt.events.FocusEvent;
-import org.eclipse.swt.events.KeyEvent;
 import org.eclipse.swt.events.SelectionAdapter;
 import org.eclipse.swt.events.SelectionEvent;
 import org.eclipse.swt.layout.FillLayout;
@@ -55,8 +50,8 @@ import org.switchyard.tools.models.switchyard1_0.jca.JcaFactory;
 import org.switchyard.tools.models.switchyard1_0.jca.Property;
 import org.switchyard.tools.models.switchyard1_0.jca.ResourceAdapter;
 import org.switchyard.tools.ui.common.ClasspathResourceSelectionDialog;
-import org.switchyard.tools.ui.editor.diagram.shared.AbstractSwitchyardComposite;
-import org.switchyard.tools.ui.editor.diagram.shared.IBindingComposite;
+import org.switchyard.tools.ui.editor.diagram.binding.AbstractSYBindingComposite;
+import org.switchyard.tools.ui.editor.diagram.shared.ModelOperation;
 import org.switchyard.tools.ui.editor.impl.SwitchyardSCAEditor;
 import org.switchyard.tools.ui.editor.util.InterfaceOpsUtil;
 
@@ -64,7 +59,7 @@ import org.switchyard.tools.ui.editor.util.InterfaceOpsUtil;
  * @author bfitzpat
  * 
  */
-public class JCABindingInboundComposite extends AbstractSwitchyardComposite implements IBindingComposite {
+public class JCABindingInboundComposite extends AbstractSYBindingComposite {
 
     private Composite _panel;
     private JCABinding _binding = null;
@@ -72,9 +67,9 @@ public class JCABindingInboundComposite extends AbstractSwitchyardComposite impl
     private Button _browseResourceAdapterButton;
     private JCAPropertyTable _propsList;
     private Combo _endpointMappingTypeCombo;
-    private Object _targetObj = null;
     private Button _transactedButton;
     private Combo _operationSelectionCombo;
+    private TabFolder _tabFolder;
 
     private enum ENDPOINT_MAPPING_TYPE {
         JMSENDPOINT, CCIENDPOINT
@@ -97,8 +92,7 @@ public class JCABindingInboundComposite extends AbstractSwitchyardComposite impl
                     this._resourceAdapterText.setText(inbound.getResourceAdapter().getName());
                 }
 
-                if (inbound.getActivationSpec() != null
-                        && inbound.getActivationSpec().getProperty().size() > 0) {
+                if (inbound.getActivationSpec() != null && inbound.getActivationSpec().getProperty().size() > 0) {
                     EList<Property> properties = inbound.getActivationSpec().getProperty();
                     _propsList.setSelection(properties);
                 }
@@ -120,15 +114,17 @@ public class JCABindingInboundComposite extends AbstractSwitchyardComposite impl
                     populateOperationCombo();
                     if (interaction.getInboundOperation() != null && interaction.getInboundOperation().size() > 0) {
                         InboundOperation inboundOp = (InboundOperation) interaction.getInboundOperation().get(0);
-                        _operationSelectionCombo.setText(inboundOp.getSelectedOperation());
+                        setTextValue(_operationSelectionCombo, inboundOp.getSelectedOperation());
                     }
                 }
             }
+            super.setTabsBinding(_binding);
             setInUpdate(false);
             validate();
         } else {
             this._binding = null;
         }
+        addObservableListeners();
     }
 
     @Override
@@ -140,6 +136,7 @@ public class JCABindingInboundComposite extends AbstractSwitchyardComposite impl
             } else if (_endpointMappingTypeCombo.getSelectionIndex() == -1) {
                 setErrorMessage("You must select an endpoint mapping type.");
             }
+            super.validateTabs();
         }
         return (getErrorMessage() == null);
     }
@@ -152,11 +149,13 @@ public class JCABindingInboundComposite extends AbstractSwitchyardComposite impl
             _panel.setLayoutData(getRootGridData());
         }
 
-        TabFolder tabFolder = new TabFolder(_panel, SWT.NONE);
+        _tabFolder = new TabFolder(_panel, SWT.NONE);
 
-        TabItem one = new TabItem(tabFolder, SWT.NONE);
+        TabItem one = new TabItem(_tabFolder, SWT.NONE);
         one.setText("JCA Inbound Gateway");
-        one.setControl(getJCATabControl(tabFolder));
+        one.setControl(getJCATabControl(_tabFolder));
+
+        addTabs(_tabFolder);
     }
 
     private Control getJCATabControl(TabFolder tabFolder) {
@@ -197,7 +196,7 @@ public class JCABindingInboundComposite extends AbstractSwitchyardComposite impl
 
         _propsList = new JCAActivationSpecPropertyTable(activationPropsGroup, SWT.NONE);
         _propsList.setLayoutData(new GridData(SWT.FILL, SWT.FILL, true, true, 1, 4));
-        _propsList.addChangeListener(new ChangeListener(){
+        _propsList.addChangeListener(new ChangeListener() {
             @Override
             public void stateChanged(ChangeEvent e) {
                 if (_binding != null && !inUpdate() && hasChanged()) {
@@ -220,7 +219,7 @@ public class JCABindingInboundComposite extends AbstractSwitchyardComposite impl
         _endpointMappingTypeCombo.setData("CCI Endpoint", ENDPOINT_MAPPING_TYPE.CCIENDPOINT);
 
         _transactedButton = createCheckbox(inboundInteractionGroup, "Transacted");
-        
+
         Group opGroup = new Group(inboundInteractionGroup, SWT.NONE);
         GridData opGroupGD = new GridData(SWT.FILL, SWT.FILL, true, true, 2, 1);
         opGroup.setLayoutData(opGroupGD);
@@ -237,211 +236,196 @@ public class JCABindingInboundComposite extends AbstractSwitchyardComposite impl
         return this._panel;
     }
 
-    private void setFeatureValue(EObject eObject, String featureId, Object value) {
-        EClass eClass = eObject.eClass();
-        for (int i = 0, size = eClass.getFeatureCount(); i < size; ++i) {
-            EStructuralFeature eStructuralFeature = eClass.getEStructuralFeature(i);
-            if (eStructuralFeature.isChangeable()) {
-                if (eStructuralFeature.getName().equalsIgnoreCase(featureId)) {
-                    eObject.eSet(eStructuralFeature, value);
-                    break;
-                }
+    class InboundConnectionOp extends ModelOperation {
+        @Override
+        public void run() throws Exception {
+            if (_binding != null && _binding.getInboundConnection() == null) {
+                JCAInboundConnection inbound = JcaFactory.eINSTANCE.createJCAInboundConnection();
+                setFeatureValue(_binding, "inboundConnection", inbound);
             }
         }
     }
 
-    @SuppressWarnings("restriction")
-    protected void handleModify(final Control control) {
-        TransactionalEditingDomain domain = null;
-        if (_binding.eContainer() != null) {
-            domain = SwitchyardSCAEditor.getActiveEditor().getEditingDomain();
-        }
-        if (control.equals(_resourceAdapterText) || control.equals(_browseResourceAdapterButton)) {
-            if (_binding.eContainer() != null && domain != null) {
-                domain.getCommandStack().execute(new RecordingCommand(domain) {
-                    @Override
-                    protected void doExecute() {
-                        if (_binding.getInboundConnection() == null) {
-                            JCAInboundConnection inbound = JcaFactory.eINSTANCE.createJCAInboundConnection();
-                            setFeatureValue(_binding, "inboundConnection", inbound);
-                        }
-                        if (_binding.getInboundConnection().getResourceAdapter() == null) {
-                            ResourceAdapter resAdapter = JcaFactory.eINSTANCE.createResourceAdapter();
-                            resAdapter.setType("javax.resource.spi.ResourceAdapter");
-                            setFeatureValue(_binding.getInboundConnection(), "resourceAdapter", resAdapter);
-                        }
-                        setFeatureValue(_binding.getInboundConnection().getResourceAdapter(), "name", _resourceAdapterText.getText().trim());
-                    }
-                });
-            } else {
-                if (_binding.getInboundConnection() == null) {
-                    JCAInboundConnection inbound = JcaFactory.eINSTANCE.createJCAInboundConnection();
-                    setFeatureValue(_binding, "inboundConnection", inbound);
-                }
-                if (_binding.getInboundConnection().getResourceAdapter() == null) {
-                    ResourceAdapter resAdapter = JcaFactory.eINSTANCE.createResourceAdapter();
-                    resAdapter.setType("javax.resource.spi.ResourceAdapter");
-                    setFeatureValue(_binding.getInboundConnection(), "resourceAdapter", resAdapter);
-                }
-                setFeatureValue(_binding.getInboundConnection().getResourceAdapter(), "name", _resourceAdapterText.getText().trim());
-            }
-        } else if (control.equals(_endpointMappingTypeCombo)) {
-            if (_binding.eContainer() != null && domain != null) {
-                domain.getCommandStack().execute(new RecordingCommand(domain) {
-                    @Override
-                    protected void doExecute() {
-                        handleUpdateEndpoint();
-                    }
-                });
-            } else {
-                handleUpdateEndpoint();
-            }
-        } else if (control.equals(_transactedButton)) {
-            if (_binding.eContainer() != null && domain != null) {
-                domain.getCommandStack().execute(new RecordingCommand(domain) {
-                    @Override
-                    protected void doExecute() {
-                        if (_binding.getInboundInteraction() == null) {
-                            JCAInboundInteraction interaction = JcaFactory.eINSTANCE.createJCAInboundInteraction();
-                            setFeatureValue(_binding, "inboundInteraction", interaction);
-                        }
-                        setFeatureValue(_binding.getInboundInteraction(), "transacted", Boolean.valueOf(_transactedButton.getSelection()));
-                    }
-                });
-            } else {
-                if (_binding.getInboundInteraction() == null) {
-                    JCAInboundInteraction interaction = JcaFactory.eINSTANCE.createJCAInboundInteraction();
-                    setFeatureValue(_binding, "inboundInteraction", interaction);
-                }
-                setFeatureValue(_binding.getInboundInteraction(), "transacted", Boolean.valueOf(_transactedButton.getSelection()));
-            }
-        } else if (control.equals(_operationSelectionCombo)) {
-            if (_binding.eContainer() != null && domain != null) {
-                domain.getCommandStack().execute(new RecordingCommand(domain) {
-                    @Override
-                    protected void doExecute() {
-                        if (_binding.getInboundInteraction() == null) {
-                            JCAInboundInteraction interaction = JcaFactory.eINSTANCE.createJCAInboundInteraction();
-                            setFeatureValue(_binding, "inboundInteraction", interaction);
-                        }
-                        if (_binding.getInboundInteraction().getInboundOperation() == null || _binding.getInboundInteraction().getInboundOperation().size() == 0) {
-                            _binding.getInboundInteraction().getInboundOperation().add(JcaFactory.eINSTANCE.createInboundOperation());
-                        }
-                        setFeatureValue(_binding.getInboundInteraction().getInboundOperation().get(0), "name", _operationSelectionCombo.getText().trim());
-                        setFeatureValue(_binding.getInboundInteraction().getInboundOperation().get(0), "selectedOperation", _operationSelectionCombo.getText().trim());
-                    }
-                });
-            } else {
-                if (_binding.getInboundInteraction() == null) {
-                    JCAInboundInteraction interaction = JcaFactory.eINSTANCE.createJCAInboundInteraction();
-                    setFeatureValue(_binding, "inboundInteraction", interaction);
-                }
-                if (_binding.getInboundInteraction().getInboundOperation() == null || _binding.getInboundInteraction().getInboundOperation().size() == 0) {
-                    _binding.getInboundInteraction().getInboundOperation().add(JcaFactory.eINSTANCE.createInboundOperation());
-                }
-                setFeatureValue(_binding.getInboundInteraction().getInboundOperation().get(0), "name", _operationSelectionCombo.getText().trim());
-                setFeatureValue(_binding.getInboundInteraction().getInboundOperation().get(0), "selectedOperation", _operationSelectionCombo.getText().trim());
+    class InboundInteractionOp extends ModelOperation {
+        @Override
+        public void run() throws Exception {
+            if (_binding != null && _binding.getInboundInteraction() == null) {
+                JCAInboundInteraction interaction = JcaFactory.eINSTANCE.createJCAInboundInteraction();
+                setFeatureValue(_binding, "inboundInteraction", interaction);
             }
         }
-        setHasChanged(false);
     }
 
-    private void handleUpdateEndpoint() {
-        if (_binding.getInboundInteraction() == null) {
-            JCAInboundInteraction interaction = JcaFactory.eINSTANCE.createJCAInboundInteraction();
-            setFeatureValue(_binding, "inboundInteraction", interaction);
+    class InboundOperationOp extends ModelOperation {
+        @Override
+        public void run() throws Exception {
+            if (_binding != null && _binding.getInboundInteraction() != null
+                    && _binding.getInboundInteraction().getInboundOperation() == null
+                    || _binding.getInboundInteraction().getInboundOperation().size() == 0) {
+                InboundOperation inboundOp = JcaFactory.eINSTANCE.createInboundOperation();
+                _binding.getInboundInteraction().getInboundOperation().add(inboundOp);
+            }
         }
-        JCAInboundInteraction interaction = _binding.getInboundInteraction();
-        ENDPOINT_MAPPING_TYPE type = (ENDPOINT_MAPPING_TYPE) _endpointMappingTypeCombo.getData(_endpointMappingTypeCombo.getText());
-        String listener = null;
-//        String inboundOpName = null;
-        String endpointClass = null;
-        boolean foundEndpoint = true;
-        switch (type) {
+    }
+
+    class UpdateInboundOperationOp extends ModelOperation {
+        
+        private String _localFeature;
+        private Object _localValue;
+
+        public UpdateInboundOperationOp(String featureId, Object value) {
+            _localFeature = featureId;
+            _localValue = value;
+        }
+        
+        @Override
+        public void run() throws Exception {
+            if (_binding != null && _binding.getInboundInteraction() != null
+                    && _binding.getInboundInteraction().getInboundOperation() == null
+                    || _binding.getInboundInteraction().getInboundOperation().size() == 1) {
+                InboundOperation inboundOp = _binding.getInboundInteraction().getInboundOperation().get(0);
+                setFeatureValue(inboundOp, _localFeature, _localValue);
+            }
+        }
+    }
+
+    class ResourceAdapterOp extends ModelOperation {
+        @Override
+        public void run() throws Exception {
+            if (_binding != null && _binding.getInboundConnection() != null
+                    && _binding.getInboundConnection().getResourceAdapter() == null) {
+                ResourceAdapter resAdapter = JcaFactory.eINSTANCE.createResourceAdapter();
+                resAdapter.setType("javax.resource.spi.ResourceAdapter");
+                setFeatureValue(_binding.getInboundConnection(), "resourceAdapter", resAdapter);
+            }
+        }
+    }
+
+    class EndpointOp extends ModelOperation {
+        @Override
+        public void run() throws Exception {
+            JCAInboundInteraction interaction = _binding.getInboundInteraction();
+            ENDPOINT_MAPPING_TYPE type = (ENDPOINT_MAPPING_TYPE) _endpointMappingTypeCombo
+                    .getData(_endpointMappingTypeCombo.getText());
+            String listener = null;
+            // String inboundOpName = null;
+            String endpointClass = null;
+            boolean foundEndpoint = true;
+            switch (type) {
             case JMSENDPOINT:
                 listener = "javax.jms.MessageListener";
-//                inboundOpName = "onMessage";
+                // inboundOpName = "onMessage";
                 endpointClass = "org.switchyard.component.jca.endpoint.JMSEndpoint";
                 break;
             case CCIENDPOINT:
                 listener = "javax.resource.cci.MessageListener";
-//                inboundOpName = "onMessage";
+                // inboundOpName = "onMessage";
                 endpointClass = "org.switchyard.component.jca.endpoint.CCIEndpoint";
                 break;
             default:
                 foundEndpoint = false;
                 break;
-        }
-        
-        if (foundEndpoint) {
-            
-            interaction.setListener(listener);
-            
-            InboundOperation operation = null;
-            if (interaction.getInboundOperation().isEmpty()) {
-                operation = JcaFactory.eINSTANCE.createInboundOperation();
-                interaction.getInboundOperation().add(operation);
-            } else {
-                operation = interaction.getInboundOperation().get(0);
             }
-//            operation.setName(inboundOpName);
-//            operation.setSelectedOperation(inboundOpName);
-            if (interaction.getEndpoint() == null) {
-                Endpoint endpoint = JcaFactory.eINSTANCE.createEndpoint();
-                endpoint.setType(endpointClass);
-                setFeatureValue(interaction, "endpoint", endpoint);
-            } else {
-                interaction.getEndpoint().setType(endpointClass);
-            }
-        }
-    }
-    
-    /**
-     * @param target Passed in what we're dropping on
-     */
-    public void setTargetObject(Object target) {
-        this._targetObj = target;
-    }
 
-    @Override
-    public void focusLost(FocusEvent e) {
-        if (_binding != null && !inUpdate() && hasChanged()) {
-            validate();
-            handleModify((Control) e.getSource());
-            fireChangedEvent((Control) e.getSource());
-        } else {
-            validate();
-            fireChangedEvent((Control) e.getSource());
-        }
-    }
-
-    @Override
-    public void keyReleased(KeyEvent e) {
-        if (e.keyCode == SWT.ESC) {
-            // cancel out and return to original value
-            setInUpdate(true);
-            if (_binding != null) {
-                Control control = (Control) e.getSource();
-                 if (control.equals(_resourceAdapterText)) {
-                     _resourceAdapterText.setText(_binding.getInboundConnection().getResourceAdapter().getName());
-                 } else if (control.equals(_operationSelectionCombo)) {
-                    if (this._binding.getInboundInteraction() != null
-                            && this._binding.getInboundInteraction().getInboundOperation() != null
-                            && this._binding.getInboundInteraction().getInboundOperation().size() > 0) {
-                         populateOperationCombo();
-                         InboundOperation camelOpSelector = (InboundOperation) this._binding
-                                 .getInboundInteraction().getInboundOperation().get(0);
-                         _operationSelectionCombo.setText(camelOpSelector.getName());
-                     }
+            if (foundEndpoint) {
+                interaction.setListener(listener);
+                InboundOperation operation = null;
+                if (interaction.getInboundOperation().isEmpty()) {
+                    operation = JcaFactory.eINSTANCE.createInboundOperation();
+                    interaction.getInboundOperation().add(operation);
+                } else {
+                    operation = interaction.getInboundOperation().get(0);
+                }
+                if (interaction.getEndpoint() == null) {
+                    Endpoint endpoint = JcaFactory.eINSTANCE.createEndpoint();
+                    endpoint.setType(endpointClass);
+                    setFeatureValue(interaction, "endpoint", endpoint);
+                } else {
+                    interaction.getEndpoint().setType(endpointClass);
                 }
             }
-            setInUpdate(false);
-        } else if (e.keyCode == SWT.CR) {
-            // accept change
-            if (_binding != null && !inUpdate() && hasChanged()) {
-                validate();
-                handleModify((Control) e.getSource());
-                fireChangedEvent((Control) e.getSource());
+        }
+    }
+
+    protected void updateInboundConnectionFeature(String featureId, Object value) {
+        ArrayList<ModelOperation> ops = new ArrayList<ModelOperation>();
+        ops.add(new InboundConnectionOp());
+        ops.add(new BasicOperation("inboundConnection", featureId, value));
+        wrapOperation(ops);
+    }
+
+    protected void updateInboundInteractionFeature(String featureId, Object value) {
+        ArrayList<ModelOperation> ops = new ArrayList<ModelOperation>();
+        ops.add(new InboundInteractionOp());
+        ops.add(new BasicOperation("inboundInteraction", featureId, value));
+        wrapOperation(ops);
+    }
+
+    protected void updateInboundOperationFeature(String featureId, Object value) {
+        ArrayList<ModelOperation> ops = new ArrayList<ModelOperation>();
+        ops.add(new InboundInteractionOp());
+        ops.add(new InboundOperationOp());
+        ops.add(new UpdateInboundOperationOp(featureId, value));
+        wrapOperation(ops);
+    }
+
+    protected void updateInboundOperationFeature(String[] featureId, Object[] value) {
+        if (featureId != null && featureId.length > 0 && value != null && value.length > 0
+                && featureId.length == value.length) {
+            for (int i = 0; i < featureId.length; i++) {
+                updateInboundOperationFeature(featureId[i], value[i]);
+            }
+        }
+    }
+
+    protected void updateInboundConnectionResourceAdapterFeature(String featureId, Object value) {
+        ArrayList<ModelOperation> ops = new ArrayList<ModelOperation>();
+        ops.add(new InboundConnectionOp());
+        ops.add(new ResourceAdapterOp());
+        ops.add(new BasicOperation("inboundConnection/resourceAdapter", featureId, value));
+        wrapOperation(ops);
+    }
+
+    protected void updateEndpoint() {
+        ArrayList<ModelOperation> ops = new ArrayList<ModelOperation>();
+        ops.add(new InboundInteractionOp());
+        ops.add(new EndpointOp());
+        wrapOperation(ops);
+    }
+
+    protected void handleModify(final Control control) {
+        if (control.equals(_resourceAdapterText) || control.equals(_browseResourceAdapterButton)) {
+            updateInboundConnectionResourceAdapterFeature("name", _resourceAdapterText.getText().trim());
+        } else if (control.equals(_endpointMappingTypeCombo)) {
+            updateEndpoint();
+        } else if (control.equals(_transactedButton)) {
+            updateInboundInteractionFeature("transacted", Boolean.valueOf(_transactedButton.getSelection()));
+        } else if (control.equals(_operationSelectionCombo)) {
+            String value = _operationSelectionCombo.getText().trim();
+            updateInboundOperationFeature("name", value);
+            updateInboundOperationFeature("selectedOperation", value);
+        } else {
+            super.handleModify(control);
+        }
+        validate();
+        setHasChanged(false);
+    }
+
+    protected void handleUndo(Control control) {
+        if (_binding != null) {
+            if (control.equals(_resourceAdapterText)) {
+                _resourceAdapterText.setText(_binding.getInboundConnection().getResourceAdapter().getName());
+            } else if (control.equals(_operationSelectionCombo)) {
+                if (this._binding.getInboundInteraction() != null
+                        && this._binding.getInboundInteraction().getInboundOperation() != null
+                        && this._binding.getInboundInteraction().getInboundOperation().size() > 0) {
+                    populateOperationCombo();
+                    InboundOperation camelOpSelector = (InboundOperation) this._binding.getInboundInteraction()
+                            .getInboundOperation().get(0);
+                    _operationSelectionCombo.setText(camelOpSelector.getName());
+                }
+            } else {
+                super.handleUndo(control);
             }
         }
     }
@@ -452,8 +436,8 @@ public class JCABindingInboundComposite extends AbstractSwitchyardComposite impl
      * @return PortType result
      */
     public IResource browse(Shell shell, IJavaProject project) {
-        ClasspathResourceSelectionDialog dialog = new ClasspathResourceSelectionDialog(shell, project == null ? ResourcesPlugin
-                .getWorkspace().getRoot() : project.getProject());
+        ClasspathResourceSelectionDialog dialog = new ClasspathResourceSelectionDialog(shell,
+                project == null ? ResourcesPlugin.getWorkspace().getRoot() : project.getProject());
         dialog.setInitialPattern("*.jar,*.rar");
         if (dialog.open() == ClasspathResourceSelectionDialog.OK) {
             IResource result = (IResource) dialog.getFirstResult();
@@ -470,22 +454,18 @@ public class JCABindingInboundComposite extends AbstractSwitchyardComposite impl
             _operationSelectionCombo.removeAll();
             _operationSelectionCombo.clearSelection();
 
-            if (_targetObj == null) {
-                @SuppressWarnings("restriction")
-                PictogramElement[] pes = 
-                        SwitchyardSCAEditor.getActiveEditor().getSelectedPictogramElements();
+            if (getTargetObject() == null) {
+                PictogramElement[] pes = SwitchyardSCAEditor.getActiveEditor().getSelectedPictogramElements();
                 if (pes.length > 0) {
-                    @SuppressWarnings("restriction")
-                    Object bo = SwitchyardSCAEditor.getActiveEditor().
-                        getDiagramTypeProvider().getFeatureProvider().
-                           getBusinessObjectForPictogramElement(pes[0]);
+                    Object bo = SwitchyardSCAEditor.getActiveEditor().getDiagramTypeProvider().getFeatureProvider()
+                            .getBusinessObjectForPictogramElement(pes[0]);
                     if (bo instanceof Service) {
-                        _targetObj = bo;
+                        setTargetObject(bo);
                     }
                 }
             }
-            if (_targetObj != null && _targetObj instanceof Service) {
-                String[] operations = InterfaceOpsUtil.gatherOperations((Service) _targetObj);
+            if (getTargetObject() != null && getTargetObject() instanceof Service) {
+                String[] operations = InterfaceOpsUtil.gatherOperations((Service) getTargetObject());
                 for (int i = 0; i < operations.length; i++) {
                     _operationSelectionCombo.add(operations[i]);
                 }

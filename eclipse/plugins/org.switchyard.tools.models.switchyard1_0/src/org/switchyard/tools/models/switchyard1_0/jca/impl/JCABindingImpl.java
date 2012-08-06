@@ -44,8 +44,6 @@ import org.switchyard.tools.models.switchyard1_0.switchyard.impl.SwitchYardBindi
  * <ul>
  *   <li>{@link org.switchyard.tools.models.switchyard1_0.jca.impl.JCABindingImpl#getJndiURL <em>Jndi URL</em>}</li>
  *   <li>{@link org.switchyard.tools.models.switchyard1_0.jca.impl.JCABindingImpl#getInitialContextFactory <em>Initial Context Factory</em>}</li>
- *   <li>{@link org.switchyard.tools.models.switchyard1_0.jca.impl.JCABindingImpl#getContextMapper <em>Context Mapper</em>}</li>
- *   <li>{@link org.switchyard.tools.models.switchyard1_0.jca.impl.JCABindingImpl#getMessageComposer <em>Message Composer</em>}</li>
  *   <li>{@link org.switchyard.tools.models.switchyard1_0.jca.impl.JCABindingImpl#getOutboundConnection <em>Outbound Connection</em>}</li>
  *   <li>{@link org.switchyard.tools.models.switchyard1_0.jca.impl.JCABindingImpl#getInboundConnection <em>Inbound Connection</em>}</li>
  *   <li>{@link org.switchyard.tools.models.switchyard1_0.jca.impl.JCABindingImpl#getInboundInteraction <em>Inbound Interaction</em>}</li>
@@ -97,26 +95,6 @@ public class JCABindingImpl extends SwitchYardBindingTypeImpl implements JCABind
      * @ordered
      */
     protected String initialContextFactory = INITIAL_CONTEXT_FACTORY_EDEFAULT;
-
-    /**
-     * The cached value of the '{@link #getContextMapper() <em>Context Mapper</em>}' reference.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @see #getContextMapper()
-     * @generated
-     * @ordered
-     */
-    protected ContextMapperType contextMapper;
-
-    /**
-     * The cached value of the '{@link #getMessageComposer() <em>Message Composer</em>}' reference.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @see #getMessageComposer()
-     * @generated
-     * @ordered
-     */
-    protected MessageComposerType messageComposer;
 
     /**
      * The cached value of the '{@link #getOutboundConnection() <em>Outbound Connection</em>}' containment reference.
@@ -247,82 +225,6 @@ public class JCABindingImpl extends SwitchYardBindingTypeImpl implements JCABind
         initialContextFactory = newInitialContextFactory;
         if (eNotificationRequired())
             eNotify(new ENotificationImpl(this, Notification.SET, JcaPackage.JCA_BINDING__INITIAL_CONTEXT_FACTORY, oldInitialContextFactory, initialContextFactory));
-    }
-
-    /**
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    public ContextMapperType getContextMapper() {
-        if (contextMapper != null && contextMapper.eIsProxy()) {
-            InternalEObject oldContextMapper = (InternalEObject)contextMapper;
-            contextMapper = (ContextMapperType)eResolveProxy(oldContextMapper);
-            if (contextMapper != oldContextMapper) {
-                if (eNotificationRequired())
-                    eNotify(new ENotificationImpl(this, Notification.RESOLVE, JcaPackage.JCA_BINDING__CONTEXT_MAPPER, oldContextMapper, contextMapper));
-            }
-        }
-        return contextMapper;
-    }
-
-    /**
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    public ContextMapperType basicGetContextMapper() {
-        return contextMapper;
-    }
-
-    /**
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    public void setContextMapper(ContextMapperType newContextMapper) {
-        ContextMapperType oldContextMapper = contextMapper;
-        contextMapper = newContextMapper;
-        if (eNotificationRequired())
-            eNotify(new ENotificationImpl(this, Notification.SET, JcaPackage.JCA_BINDING__CONTEXT_MAPPER, oldContextMapper, contextMapper));
-    }
-
-    /**
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    public MessageComposerType getMessageComposer() {
-        if (messageComposer != null && messageComposer.eIsProxy()) {
-            InternalEObject oldMessageComposer = (InternalEObject)messageComposer;
-            messageComposer = (MessageComposerType)eResolveProxy(oldMessageComposer);
-            if (messageComposer != oldMessageComposer) {
-                if (eNotificationRequired())
-                    eNotify(new ENotificationImpl(this, Notification.RESOLVE, JcaPackage.JCA_BINDING__MESSAGE_COMPOSER, oldMessageComposer, messageComposer));
-            }
-        }
-        return messageComposer;
-    }
-
-    /**
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    public MessageComposerType basicGetMessageComposer() {
-        return messageComposer;
-    }
-
-    /**
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    public void setMessageComposer(MessageComposerType newMessageComposer) {
-        MessageComposerType oldMessageComposer = messageComposer;
-        messageComposer = newMessageComposer;
-        if (eNotificationRequired())
-            eNotify(new ENotificationImpl(this, Notification.SET, JcaPackage.JCA_BINDING__MESSAGE_COMPOSER, oldMessageComposer, messageComposer));
     }
 
     /**
@@ -564,12 +466,6 @@ public class JCABindingImpl extends SwitchYardBindingTypeImpl implements JCABind
                 return getJndiURL();
             case JcaPackage.JCA_BINDING__INITIAL_CONTEXT_FACTORY:
                 return getInitialContextFactory();
-            case JcaPackage.JCA_BINDING__CONTEXT_MAPPER:
-                if (resolve) return getContextMapper();
-                return basicGetContextMapper();
-            case JcaPackage.JCA_BINDING__MESSAGE_COMPOSER:
-                if (resolve) return getMessageComposer();
-                return basicGetMessageComposer();
             case JcaPackage.JCA_BINDING__OUTBOUND_CONNECTION:
                 return getOutboundConnection();
             case JcaPackage.JCA_BINDING__INBOUND_CONNECTION:
@@ -600,12 +496,6 @@ public class JCABindingImpl extends SwitchYardBindingTypeImpl implements JCABind
                 return;
             case JcaPackage.JCA_BINDING__INITIAL_CONTEXT_FACTORY:
                 setInitialContextFactory((String)newValue);
-                return;
-            case JcaPackage.JCA_BINDING__CONTEXT_MAPPER:
-                setContextMapper((ContextMapperType)newValue);
-                return;
-            case JcaPackage.JCA_BINDING__MESSAGE_COMPOSER:
-                setMessageComposer((MessageComposerType)newValue);
                 return;
             case JcaPackage.JCA_BINDING__OUTBOUND_CONNECTION:
                 setOutboundConnection((JCAOutboundConnection)newValue);
@@ -644,12 +534,6 @@ public class JCABindingImpl extends SwitchYardBindingTypeImpl implements JCABind
             case JcaPackage.JCA_BINDING__INITIAL_CONTEXT_FACTORY:
                 setInitialContextFactory(INITIAL_CONTEXT_FACTORY_EDEFAULT);
                 return;
-            case JcaPackage.JCA_BINDING__CONTEXT_MAPPER:
-                setContextMapper((ContextMapperType)null);
-                return;
-            case JcaPackage.JCA_BINDING__MESSAGE_COMPOSER:
-                setMessageComposer((MessageComposerType)null);
-                return;
             case JcaPackage.JCA_BINDING__OUTBOUND_CONNECTION:
                 setOutboundConnection((JCAOutboundConnection)null);
                 return;
@@ -684,10 +568,6 @@ public class JCABindingImpl extends SwitchYardBindingTypeImpl implements JCABind
                 return JNDI_URL_EDEFAULT == null ? jndiURL != null : !JNDI_URL_EDEFAULT.equals(jndiURL);
             case JcaPackage.JCA_BINDING__INITIAL_CONTEXT_FACTORY:
                 return INITIAL_CONTEXT_FACTORY_EDEFAULT == null ? initialContextFactory != null : !INITIAL_CONTEXT_FACTORY_EDEFAULT.equals(initialContextFactory);
-            case JcaPackage.JCA_BINDING__CONTEXT_MAPPER:
-                return contextMapper != null;
-            case JcaPackage.JCA_BINDING__MESSAGE_COMPOSER:
-                return messageComposer != null;
             case JcaPackage.JCA_BINDING__OUTBOUND_CONNECTION:
                 return outboundConnection != null;
             case JcaPackage.JCA_BINDING__INBOUND_CONNECTION:

@@ -116,7 +116,6 @@ public class ESBInterfaceSelectionComposite extends AbstractSwitchyardComposite 
         return (getErrorMessage() == null);
     }
 
-    @SuppressWarnings("restriction")
     @Override
     protected void handleModify(Control control) {
         validate();

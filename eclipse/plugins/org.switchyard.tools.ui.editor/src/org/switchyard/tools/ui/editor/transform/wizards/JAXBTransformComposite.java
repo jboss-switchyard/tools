@@ -16,8 +16,6 @@ import org.eclipse.core.resources.IFile;
 import org.eclipse.core.resources.IProject;
 import org.eclipse.core.runtime.IPath;
 import org.eclipse.core.runtime.Path;
-import org.eclipse.emf.transaction.RecordingCommand;
-import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.eclipse.jdt.core.IJavaElement;
 import org.eclipse.jdt.core.IJavaProject;
 import org.eclipse.jdt.core.IPackageFragment;
@@ -26,9 +24,6 @@ import org.eclipse.jdt.core.JavaModelException;
 import org.eclipse.jface.viewers.ISelection;
 import org.eclipse.jface.viewers.IStructuredSelection;
 import org.eclipse.jface.viewers.StructuredSelection;
-import org.eclipse.swt.SWT;
-import org.eclipse.swt.events.FocusEvent;
-import org.eclipse.swt.events.KeyEvent;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Control;
 import org.eclipse.swt.widgets.Text;
@@ -95,28 +90,26 @@ public class JAXBTransformComposite extends BaseTransformComposite {
     }
 
 
-    @SuppressWarnings("restriction")
     protected void handleModify(final Control control) {
-        TransactionalEditingDomain domain = null;
-        if (getTransform().eContainer() != null) {
-            domain = SwitchyardSCAEditor.getActiveEditor().getEditingDomain();
-        }
         if (control.equals(_contextPathText)) {
-            if (domain != null) {
-                domain.getCommandStack().execute(new RecordingCommand(domain) {
-                    @Override
-                    protected void doExecute() {
-                        ((JAXBTransformType) getTransform()).setContextPath(_contextPathText.getText().trim());
-                    }
-                });
-            } else {
-                ((JAXBTransformType) getTransform()).setContextPath(_contextPathText.getText().trim());
-            }
+            updateFeature((JAXBTransformType) getTransform(), "contextPath", _contextPathText.getText().trim());
         } else {
             super.handleModify(control);
         }
         validate();
     }
+
+    protected void handleUndo(Control control) {
+        super.handleUndo(control);
+        setInUpdate(true);
+        if (getTransform() != null) {
+            JAXBTransformType jaxbTransform = (JAXBTransformType) getTransform();
+            if (control.equals(_contextPathText)) {
+                _contextPathText.setText(jaxbTransform.getContextPath());
+            }
+        }
+        setInUpdate(false);
+    }    
 
     /**
      * @param transform incoming transform type
@@ -129,37 +122,7 @@ public class JAXBTransformComposite extends BaseTransformComposite {
             _contextPathText.setText(jaxbTransform.getContextPath());
         }
         setInUpdate(false);
+        addObservableListeners();
     }
 
-    @Override
-    public void focusLost(FocusEvent e) {
-        if (getTransform() != null && !inUpdate()) {
-            validate();
-            handleModify((Control) e.getSource());
-            fireChangedEvent((Control) e.getSource());
-        }
-    }
-
-    @Override
-    public void keyReleased(KeyEvent e) {
-        if (e.keyCode == SWT.ESC) {
-            // cancel out and return to original value
-            setInUpdate(true);
-            if (getTransform() != null) {
-                Control control = (Control) e.getSource();
-                JAXBTransformType jaxbTransform = (JAXBTransformType) getTransform();
-                if (control.equals(_contextPathText)) {
-                    _contextPathText.setText(jaxbTransform.getContextPath());
-                }
-            }
-            setInUpdate(false);
-        } else if (e.keyCode == SWT.CR) {
-            // accept change
-            if (getTransform() != null && !inUpdate()) {
-                validate();
-                handleModify((Control) e.getSource());
-                fireChangedEvent((Control) e.getSource());
-            }
-        }
-    }
 }

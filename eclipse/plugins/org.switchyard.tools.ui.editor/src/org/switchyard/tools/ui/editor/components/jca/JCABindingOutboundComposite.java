@@ -12,6 +12,8 @@
  ******************************************************************************/
 package org.switchyard.tools.ui.editor.components.jca;
 
+import java.util.ArrayList;
+
 import javax.swing.event.ChangeEvent;
 import javax.swing.event.ChangeListener;
 
@@ -19,17 +21,10 @@ import org.eclipse.core.resources.IFile;
 import org.eclipse.core.resources.IResource;
 import org.eclipse.core.resources.ResourcesPlugin;
 import org.eclipse.emf.common.util.EList;
-import org.eclipse.emf.ecore.EClass;
-import org.eclipse.emf.ecore.EObject;
-import org.eclipse.emf.ecore.EStructuralFeature;
-import org.eclipse.emf.transaction.RecordingCommand;
-import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.eclipse.jdt.core.IJavaProject;
 import org.eclipse.jdt.core.JavaCore;
 import org.eclipse.soa.sca.sca1_1.model.sca.Binding;
 import org.eclipse.swt.SWT;
-import org.eclipse.swt.events.FocusEvent;
-import org.eclipse.swt.events.KeyEvent;
 import org.eclipse.swt.events.SelectionAdapter;
 import org.eclipse.swt.events.SelectionEvent;
 import org.eclipse.swt.layout.FillLayout;
@@ -53,19 +48,18 @@ import org.switchyard.tools.models.switchyard1_0.jca.Processor;
 import org.switchyard.tools.models.switchyard1_0.jca.Property;
 import org.switchyard.tools.models.switchyard1_0.jca.ResourceAdapter;
 import org.switchyard.tools.ui.common.ClasspathResourceSelectionDialog;
-import org.switchyard.tools.ui.editor.diagram.shared.AbstractSwitchyardComposite;
-import org.switchyard.tools.ui.editor.diagram.shared.IBindingComposite;
+import org.switchyard.tools.ui.editor.diagram.binding.AbstractSYBindingComposite;
+import org.switchyard.tools.ui.editor.diagram.shared.ModelOperation;
 import org.switchyard.tools.ui.editor.impl.SwitchyardSCAEditor;
 
 /**
  * @author bfitzpat
  * 
  */
-public class JCABindingOutboundComposite extends AbstractSwitchyardComposite implements IBindingComposite {
+public class JCABindingOutboundComposite extends AbstractSYBindingComposite {
 
     private Composite _panel;
     private JCABinding _binding = null;
-    private Object _targetObj = null;
     private Text _resourceAdapterText;
     private Text _connectionJNDINameText;
     private Button _browseResourceAdapterButton;
@@ -74,6 +68,7 @@ public class JCABindingOutboundComposite extends AbstractSwitchyardComposite imp
     private enum ENDPOINT_MAPPING_TYPE {
         JMSPROCESSOR, CCIPROCESSOR
     }
+    private TabFolder _tabFolder;
 
     @Override
     public Binding getBinding() {
@@ -107,16 +102,22 @@ public class JCABindingOutboundComposite extends AbstractSwitchyardComposite imp
                     }
                 }
             }
+            super.setTabsBinding(_binding);
             setInUpdate(false);
-            validate();
         } else {
             this._binding = null;
         }
+        validate();
+        addObservableListeners();
     }
 
     @Override
     protected boolean validate() {
-        return true;
+        setErrorMessage(null);
+        if (getBinding() != null) {
+            super.validateTabs();
+        }
+        return (getErrorMessage() == null);
     }
 
     @Override
@@ -126,11 +127,13 @@ public class JCABindingOutboundComposite extends AbstractSwitchyardComposite imp
         if (getRootGridData() != null) {
             _panel.setLayoutData(getRootGridData());
         }
-        TabFolder tabFolder = new TabFolder(_panel, SWT.NONE);
+        _tabFolder = new TabFolder(_panel, SWT.NONE);
 
-        TabItem one = new TabItem(tabFolder, SWT.NONE);
+        TabItem one = new TabItem(_tabFolder, SWT.NONE);
         one.setText("JCA Outbound Binding");
-        one.setControl(getJCATabControl(tabFolder));
+        one.setControl(getJCATabControl(_tabFolder));
+
+        addTabs(_tabFolder);
     }
 
     private Control getJCATabControl(TabFolder tabFolder) {
@@ -177,13 +180,13 @@ public class JCABindingOutboundComposite extends AbstractSwitchyardComposite imp
         _processorMappingTypeCombo.add("CCIProcessor", ENDPOINT_MAPPING_TYPE.CCIPROCESSOR.ordinal());
         _processorMappingTypeCombo.setData("CCIProcessor", ENDPOINT_MAPPING_TYPE.CCIPROCESSOR);
 
-      Group activationPropsGroup = new Group(outboundInteractionGroup, SWT.NONE);
-      activationPropsGroup.setText("Processor Properties");
-      activationPropsGroup.setLayoutData(new GridData(SWT.FILL, SWT.FILL, true, false, 3, 1));
-      activationPropsGroup.setLayout(new GridLayout(1, false));
+        Group activationPropsGroup = new Group(outboundInteractionGroup, SWT.NONE);
+        activationPropsGroup.setText("Processor Properties");
+        activationPropsGroup.setLayoutData(new GridData(SWT.FILL, SWT.FILL, true, false, 3, 1));
+        activationPropsGroup.setLayout(new GridLayout(1, false));
 
-      _propsList = new JCAProcessorPropertyTable(activationPropsGroup, SWT.NONE);
-      _propsList.setLayoutData(new GridData(SWT.FILL, SWT.FILL, true, true, 1, 4));
+        _propsList = new JCAProcessorPropertyTable(activationPropsGroup, SWT.NONE);
+        _propsList.setLayoutData(new GridData(SWT.FILL, SWT.FILL, true, true, 1, 4));
         _propsList.addChangeListener(new ChangeListener(){
             @Override
             public void stateChanged(ChangeEvent e) {
@@ -194,7 +197,7 @@ public class JCABindingOutboundComposite extends AbstractSwitchyardComposite imp
                 }
             }
         });
-        
+
         return composite;
     }
 
@@ -203,210 +206,137 @@ public class JCABindingOutboundComposite extends AbstractSwitchyardComposite imp
         return this._panel;
     }
 
-    private void setFeatureValue(EObject eObject, String featureId, Object value) {
-        EClass eClass = eObject.eClass();
-        for (int i = 0, size = eClass.getFeatureCount(); i < size; ++i) {
-            EStructuralFeature eStructuralFeature = eClass.getEStructuralFeature(i);
-            if (eStructuralFeature.isChangeable()) {
-                if (eStructuralFeature.getName().equalsIgnoreCase(featureId)) {
-                    eObject.eSet(eStructuralFeature, value);
-                    break;
-                }
+    class OutboundInteractionOp extends ModelOperation {
+        @Override
+        public void run() throws Exception {
+            if (_binding != null && _binding.getOutboundInteraction() == null) {
+                JCAOutboundInteraction interaction = JcaFactory.eINSTANCE.createJCAOutboundInteraction();
+                setFeatureValue(_binding, "outboundInteraction", interaction);
+            }
+        }
+    }
+    
+    class OutboundConnectionOp extends ModelOperation {
+        @Override
+        public void run() throws Exception {
+            if (_binding != null && _binding.getOutboundConnection() == null) {
+                JCAOutboundConnection outbound = JcaFactory.eINSTANCE.createJCAOutboundConnection();
+                setFeatureValue(_binding, "outboundConnection", outbound);
             }
         }
     }
 
-    @SuppressWarnings("restriction")
-    protected void handleModify(final Control control) {
-        TransactionalEditingDomain domain = null;
-        if (_binding.eContainer() != null) {
-            domain = SwitchyardSCAEditor.getActiveEditor().getEditingDomain();
+    class ResourceAdapterOp extends ModelOperation {
+        @Override
+        public void run() throws Exception {
+            if (_binding != null && _binding.getOutboundConnection() != null
+                    && _binding.getOutboundConnection().getResourceAdapter() == null) {
+                ResourceAdapter resAdapter = JcaFactory.eINSTANCE.createResourceAdapter();
+                resAdapter.setType("javax.resource.spi.ResourceAdapter");
+                setFeatureValue(_binding.getOutboundConnection(), "resourceAdapter", resAdapter);
+            }
         }
+    }
+
+    class ConnectionOp extends ModelOperation {
+        @Override
+        public void run() throws Exception {
+            if (_binding != null && _binding.getOutboundConnection() != null
+                    && _binding.getOutboundConnection().getConnection() == null) {
+                Connection outConnection = JcaFactory.eINSTANCE.createConnection();
+                setFeatureValue(_binding.getOutboundConnection(), "connection", outConnection);
+            }
+        }
+    }
+    
+    class UpdateProcessorOp extends ModelOperation {
+        @Override
+        public void run() throws Exception {
+            JCAOutboundInteraction interaction = _binding.getOutboundInteraction();
+            ENDPOINT_MAPPING_TYPE type = (ENDPOINT_MAPPING_TYPE) _processorMappingTypeCombo.getData(_processorMappingTypeCombo.getText());
+            String destination = null;
+            String processorClass = null;
+            boolean foundProcessor = true;
+            switch (type) {
+                case JMSPROCESSOR:
+                    destination = "TestQueue";
+                    processorClass = "org.switchyard.component.jca.processor.JMSProcessor";
+                    break;
+                case CCIPROCESSOR:
+                    processorClass = "org.switchyard.component.jca.processor.CCIProcessor";
+                    break;
+                default:
+                    foundProcessor = false;
+                    break;
+            }
+            
+            if (foundProcessor) {
+                if (interaction.getProcessor() == null) {
+                    Processor processor = JcaFactory.eINSTANCE.createProcessor();
+                    interaction.setProcessor(processor);
+                }
+                setFeatureValue(interaction.getProcessor(), "type", processorClass);
+                
+                if (!interaction.getProcessor().getProperty().isEmpty()) {
+                    interaction.getProcessor().getProperty().clear();
+                }
+                if (destination != null) {
+                    Property prop = JcaFactory.eINSTANCE.createProperty();
+                    prop.setName("destination");
+                    prop.setValue(destination);
+                    interaction.getProcessor().getProperty().add(prop);
+                }
+                
+                EList<Property> properties = interaction.getProcessor().getProperty();
+                _propsList.setSelection(properties);
+            }
+        }
+    }
+
+    protected void updateOutboundConnectionResourceAdapterFeature(String featureId, Object value) {
+        ArrayList<ModelOperation> ops = new ArrayList<ModelOperation>();
+        ops.add(new OutboundConnectionOp());
+        ops.add(new ResourceAdapterOp());
+        ops.add(new BasicOperation("outboundConnection/resourceAdapter", featureId, value));
+        wrapOperation(ops);
+    }
+
+    protected void updateOutboundConnectionConnectionFeature(String featureId, Object value) {
+        ArrayList<ModelOperation> ops = new ArrayList<ModelOperation>();
+        ops.add(new OutboundConnectionOp());
+        ops.add(new ConnectionOp());
+        ops.add(new BasicOperation("outboundConnection/connection", featureId, value));
+        wrapOperation(ops);
+    }
+    
+    protected void updateProcessorFeature() {
+        ArrayList<ModelOperation> ops = new ArrayList<ModelOperation>();
+        ops.add(new OutboundInteractionOp());
+        ops.add(new UpdateProcessorOp());
+        wrapOperation(ops);
+    }
+
+    protected void handleModify(final Control control) {
         if (control.equals(_resourceAdapterText) || control.equals(_browseResourceAdapterButton)) {
-            if (_binding.eContainer() != null && domain != null) {
-                domain.getCommandStack().execute(new RecordingCommand(domain) {
-                    @Override
-                    protected void doExecute() {
-                        if (_binding.getOutboundConnection() == null) {
-                            JCAOutboundConnection outbound = JcaFactory.eINSTANCE.createJCAOutboundConnection();
-                            setFeatureValue(_binding, "outboundConnection", outbound);
-                        }
-                        if (_binding.getOutboundConnection().getResourceAdapter() == null) {
-                            ResourceAdapter resAdapter = JcaFactory.eINSTANCE.createResourceAdapter();
-                            resAdapter.setType("javax.resource.spi.ResourceAdapter");
-                            setFeatureValue(_binding.getOutboundConnection(), "resourceAdapter", resAdapter);
-                        }
-                        setFeatureValue(_binding.getOutboundConnection().getResourceAdapter(), "name", _resourceAdapterText.getText().trim());
-                    }
-                });
-            } else {
-                if (_binding.getOutboundConnection() == null) {
-                    JCAOutboundConnection outbound = JcaFactory.eINSTANCE.createJCAOutboundConnection();
-                    setFeatureValue(_binding, "outboundConnection", outbound);
-                }
-                if (_binding.getOutboundConnection().getResourceAdapter() == null) {
-                    ResourceAdapter resAdapter = JcaFactory.eINSTANCE.createResourceAdapter();
-                    resAdapter.setType("javax.resource.spi.ResourceAdapter");
-                    setFeatureValue(_binding.getOutboundConnection(), "resourceAdapter", resAdapter);
-                }
-                setFeatureValue(_binding.getOutboundConnection().getResourceAdapter(), "name", _resourceAdapterText.getText().trim());
-            }
+            updateOutboundConnectionResourceAdapterFeature("name", _resourceAdapterText.getText().trim());
         } else if (control.equals(_connectionJNDINameText)) {
-            if (_binding.eContainer() != null && domain != null) {
-                domain.getCommandStack().execute(new RecordingCommand(domain) {
-                    @Override
-                    protected void doExecute() {
-                        if (_binding.getOutboundConnection() == null) {
-                            JCAOutboundConnection outbound = JcaFactory.eINSTANCE.createJCAOutboundConnection();
-                            setFeatureValue(_binding, "outboundConnection", outbound);
-                        }
-                        if (_binding.getOutboundConnection().getConnection() == null) {
-                            Connection outConnection = JcaFactory.eINSTANCE.createConnection();
-                            setFeatureValue(_binding.getOutboundConnection(), "connection", outConnection);
-                        }
-                        setFeatureValue(_binding.getOutboundConnection().getConnection(), "jndiName", _connectionJNDINameText.getText().trim());
-                    }
-                });
-            } else {
-                if (_binding.getOutboundConnection() == null) {
-                    JCAOutboundConnection outbound = JcaFactory.eINSTANCE.createJCAOutboundConnection();
-                    setFeatureValue(_binding, "outboundConnection", outbound);
-                }
-                if (_binding.getOutboundConnection().getConnection() == null) {
-                    Connection outConnection = JcaFactory.eINSTANCE.createConnection();
-                    setFeatureValue(_binding.getOutboundConnection(), "connection", outConnection);
-                }
-                setFeatureValue(_binding.getOutboundConnection().getConnection(), "jndiName", _connectionJNDINameText.getText().trim());
-            }
-//        } else if (control.equals(_propsList)) {
-//            final EList<Property> properties = _propsList.getSelection();
-//            if (_binding.eContainer() != null && domain != null) {
-//                domain.getCommandStack().execute(new RecordingCommand(domain) {
-//                    @Override
-//                    protected void doExecute() {
-//                        if (_binding.getOutboundInteraction() == null) {
-//                            JCAOutboundInteraction outbound = JcaFactory.eINSTANCE.createJCAOutboundInteraction();
-//                            setFeatureValue(_binding, "outboundInteraction", outbound);
-//                        }
-//                        if (_binding.getOutboundInteraction().getProcessor() == null) {
-//                            Processor processor = JcaFactory.eINSTANCE.createProcessor();
-//                            setFeatureValue(_binding.getOutboundInteraction(), "processor", processor);
-//                        }
-//                        _binding.getOutboundInteraction().getProcessor().getProperty().clear();
-//                        _binding.getOutboundInteraction().getProcessor().getProperty().addAll(properties);
-//                    }
-//                });
-//            } else {
-//                if (_binding.getOutboundInteraction() == null) {
-//                    JCAOutboundInteraction outbound = JcaFactory.eINSTANCE.createJCAOutboundInteraction();
-//                    setFeatureValue(_binding, "outboundInteraction", outbound);
-//                }
-//                if (_binding.getOutboundInteraction().getProcessor() == null) {
-//                    Processor processor = JcaFactory.eINSTANCE.createProcessor();
-//                    setFeatureValue(_binding.getOutboundInteraction(), "processor", processor);
-//                }
-//                _binding.getOutboundInteraction().getProcessor().getProperty().clear();
-//                _binding.getOutboundInteraction().getProcessor().getProperty().addAll(properties);
-//            }
+            updateOutboundConnectionConnectionFeature("jndiName", _connectionJNDINameText.getText().trim());
         } else if (control.equals(_processorMappingTypeCombo)) {
-            if (_binding.eContainer() != null && domain != null) {
-                domain.getCommandStack().execute(new RecordingCommand(domain) {
-                    @Override
-                    protected void doExecute() {
-                        handleUpdateProcessor();
-                    }
-                });
-            } else {
-                handleUpdateProcessor();
-            }
+            updateProcessorFeature();
+        } else {
+            super.handleModify(control);
         }
         setHasChanged(false);
     }
 
-    /**
-     * @param target Passed in what we're dropping on
-     */
-    public void setTargetObject(Object target) {
-        this._targetObj = target;
-    }
-
-    private void handleUpdateProcessor() {
-        if (_binding.getOutboundInteraction() == null) {
-            JCAOutboundInteraction interaction = JcaFactory.eINSTANCE.createJCAOutboundInteraction();
-            setFeatureValue(_binding, "outboundInteraction", interaction);
-        }
-        JCAOutboundInteraction interaction = _binding.getOutboundInteraction();
-        ENDPOINT_MAPPING_TYPE type = (ENDPOINT_MAPPING_TYPE) _processorMappingTypeCombo.getData(_processorMappingTypeCombo.getText());
-        String destination = null;
-        String processorClass = null;
-        boolean foundProcessor = true;
-        switch (type) {
-            case JMSPROCESSOR:
-                destination = "TestQueue";
-                processorClass = "org.switchyard.component.jca.processor.JMSProcessor";
-                break;
-            case CCIPROCESSOR:
-                processorClass = "org.switchyard.component.jca.processor.CCIProcessor";
-                break;
-            default:
-                foundProcessor = false;
-                break;
-        }
-        
-        if (foundProcessor) {
-            
-            if (interaction.getProcessor() == null) {
-                Processor processor = JcaFactory.eINSTANCE.createProcessor();
-                interaction.setProcessor(processor);
-            }
-            setFeatureValue(interaction.getProcessor(), "type", processorClass);
-            
-            if (!interaction.getProcessor().getProperty().isEmpty()) {
-                interaction.getProcessor().getProperty().clear();
-            }
-            if (destination != null) {
-                Property prop = JcaFactory.eINSTANCE.createProperty();
-                prop.setName("destination");
-                prop.setValue(destination);
-                interaction.getProcessor().getProperty().add(prop);
-            }
-            
-            EList<Property> properties = interaction.getProcessor().getProperty();
-            _propsList.setSelection(properties);
-        }
-    }
-
-
-    @Override
-    public void focusLost(FocusEvent e) {
-        if (_binding != null && !inUpdate() && hasChanged()) {
-            validate();
-            handleModify((Control) e.getSource());
-            fireChangedEvent((Control) e.getSource());
-        } else {
-            validate();
-            fireChangedEvent((Control) e.getSource());
-        }
-    }
-
-    @Override
-    public void keyReleased(KeyEvent e) {
-        if (e.keyCode == SWT.ESC) {
-            // cancel out and return to original value
-            setInUpdate(true);
+    protected void handleUndo(Control control) {
+        if (_binding != null) {
             if (_binding != null) {
-                Control control = (Control) e.getSource();
                  if (control.equals(_resourceAdapterText)) {
                      _resourceAdapterText.setText(_binding.getInboundConnection().getResourceAdapter().getName());
                 }
-            }
-            setInUpdate(false);
-        } else if (e.keyCode == SWT.CR) {
-            // accept change
-            if (_binding != null && !inUpdate() && hasChanged()) {
-                validate();
-                handleModify((Control) e.getSource());
-                fireChangedEvent((Control) e.getSource());
+            } else {
+                super.handleUndo(control);
             }
         }
     }

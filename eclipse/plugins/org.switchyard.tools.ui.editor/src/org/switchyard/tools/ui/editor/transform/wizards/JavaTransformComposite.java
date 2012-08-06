@@ -14,8 +14,6 @@ package org.switchyard.tools.ui.editor.transform.wizards;
 
 import org.eclipse.core.resources.IFile;
 import org.eclipse.core.resources.IProject;
-import org.eclipse.emf.transaction.RecordingCommand;
-import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.eclipse.jdt.core.IJavaElement;
 import org.eclipse.jdt.core.IJavaProject;
 import org.eclipse.jdt.core.IType;
@@ -29,8 +27,6 @@ import org.eclipse.jface.viewers.ISelection;
 import org.eclipse.jface.viewers.IStructuredSelection;
 import org.eclipse.jface.viewers.StructuredSelection;
 import org.eclipse.swt.SWT;
-import org.eclipse.swt.events.FocusEvent;
-import org.eclipse.swt.events.KeyEvent;
 import org.eclipse.swt.events.SelectionAdapter;
 import org.eclipse.swt.events.SelectionEvent;
 import org.eclipse.swt.layout.GridData;
@@ -122,29 +118,28 @@ public class JavaTransformComposite extends BaseTransformComposite {
         return null;
     }
 
-    @SuppressWarnings("restriction")
     protected void handleModify(final Control control) {
-        TransactionalEditingDomain domain = null;
-        if (getTransform().eContainer() != null) {
-            domain = SwitchyardSCAEditor.getActiveEditor().getEditingDomain();
-        }
+        super.handleModify(control);
         if (control.equals(_classText)) {
-            if (domain != null) {
-                domain.getCommandStack().execute(new RecordingCommand(domain) {
-                    @Override
-                    protected void doExecute() {
-                        ((JavaTransformType1) getTransform()).setClass(_classText.getText().trim());
-                    }
-                });
-            } else {
-                ((JavaTransformType1) getTransform()).setClass(_classText.getText().trim());
-            }
+            updateFeature((JavaTransformType1) getTransform(), "class", _classText.getText().trim());
         } else {
             super.handleModify(control);
         }
         validate();
     }
 
+    protected void handleUndo(Control control) {
+        super.handleUndo(control);
+        setInUpdate(true);
+        if (getTransform() != null) {
+            JavaTransformType1 javaTransform = (JavaTransformType1) getTransform();
+            if (control.equals(_classText)) {
+                _classText.setText(javaTransform.getClass_());
+            }
+        }
+        setInUpdate(false);
+    }    
+    
     /**
      * @param transform incoming transform type
      */
@@ -152,42 +147,9 @@ public class JavaTransformComposite extends BaseTransformComposite {
         super.setTransform(transform);
         setInUpdate(true);
         JavaTransformType1 javaTransform = (JavaTransformType1) getTransform();
-        if (_classText != null && !_classText.isDisposed() && javaTransform.getClass_() != null) {
-            _classText.setText(javaTransform.getClass_());
-        }
+        setTextValue(_classText, javaTransform.getClass_());
         setInUpdate(false);
-    }
-
-    @Override
-    public void focusLost(FocusEvent e) {
-        if (getTransform() != null && !inUpdate()) {
-            validate();
-            handleModify((Control) e.getSource());
-            fireChangedEvent((Control) e.getSource());
-        }
-    }
-
-    @Override
-    public void keyReleased(KeyEvent e) {
-        if (e.keyCode == SWT.ESC) {
-            // cancel out and return to original value
-            setInUpdate(true);
-            if (getTransform() != null) {
-                Control control = (Control) e.getSource();
-                JavaTransformType1 javaTransform = (JavaTransformType1) getTransform();
-                if (control.equals(_classText)) {
-                    _classText.setText(javaTransform.getClass_());
-                }
-            }
-            setInUpdate(false);
-        } else if (e.keyCode == SWT.CR) {
-            // accept change
-            if (getTransform() != null && !inUpdate()) {
-                validate();
-                handleModify((Control) e.getSource());
-                fireChangedEvent((Control) e.getSource());
-            }
-        }
+        addObservableListeners();
     }
 
     private void handleBrowse() {

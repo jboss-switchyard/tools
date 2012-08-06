@@ -53,7 +53,6 @@ public class JCAActivationSpecPropertyTable extends JCAPropertyTable {
                 final JCABinding binding = (JCABinding) getTargetObject();
                 final ActivationSpec actSpec = binding.getInboundConnection().getActivationSpec();
                 if (toRemove.eContainer() != null) {
-                    @SuppressWarnings("restriction")
                     TransactionalEditingDomain domain = SwitchyardSCAEditor.getActiveEditor().getEditingDomain();
                     domain.getCommandStack().execute(new RecordingCommand(domain) {
                         @Override
@@ -80,7 +79,6 @@ public class JCAActivationSpecPropertyTable extends JCAPropertyTable {
             if (getTargetObject() instanceof JCABinding) {
                 final JCABinding binding = (JCABinding) getTargetObject();
                 if (getTargetObject().eContainer() != null) {
-                    @SuppressWarnings("restriction")
                     TransactionalEditingDomain domain = SwitchyardSCAEditor.getActiveEditor().getEditingDomain();
                     domain.getCommandStack().execute(new RecordingCommand(domain) {
                         @Override

@@ -12,13 +12,10 @@
  ******************************************************************************/
 package org.switchyard.tools.ui.editor.components.camel.ftp;
 
-import org.eclipse.emf.transaction.RecordingCommand;
-import org.eclipse.emf.transaction.TransactionalEditingDomain;
+import java.util.ArrayList;
+
 import org.eclipse.soa.sca.sca1_1.model.sca.Binding;
 import org.eclipse.swt.SWT;
-import org.eclipse.swt.events.FocusEvent;
-import org.eclipse.swt.events.KeyEvent;
-import org.eclipse.swt.events.SelectionEvent;
 import org.eclipse.swt.layout.FillLayout;
 import org.eclipse.swt.layout.GridData;
 import org.eclipse.swt.layout.GridLayout;
@@ -31,15 +28,14 @@ import org.eclipse.swt.widgets.TabItem;
 import org.eclipse.swt.widgets.Text;
 import org.switchyard.tools.models.switchyard1_0.camel.CamelFactory;
 import org.switchyard.tools.models.switchyard1_0.camel.CamelFtpBindingType;
-import org.switchyard.tools.ui.editor.diagram.shared.AbstractSwitchyardComposite;
-import org.switchyard.tools.ui.editor.diagram.shared.IBindingComposite;
-import org.switchyard.tools.ui.editor.impl.SwitchyardSCAEditor;
+import org.switchyard.tools.ui.editor.diagram.binding.AbstractSYBindingComposite;
+import org.switchyard.tools.ui.editor.diagram.shared.ModelOperation;
 
 /**
  * @author bfitzpat
  * 
  */
-public class CamelFTPProducerComposite extends AbstractSwitchyardComposite implements IBindingComposite {
+public class CamelFTPProducerComposite extends AbstractSYBindingComposite {
 
     private Composite _panel;
     private CamelFtpBindingType _binding = null;
@@ -53,6 +49,7 @@ public class CamelFTPProducerComposite extends AbstractSwitchyardComposite imple
     private Text _fileNameText;
     private Text _fileExistText;
     private Text _tempPrefixText;
+    private TabFolder _tabFolder;
 
     @Override
     public Binding getBinding() {
@@ -96,11 +93,13 @@ public class CamelFTPProducerComposite extends AbstractSwitchyardComposite imple
             if (this._binding.isBinary()) {
                 _binaryButton.setSelection(this._binding.isBinary());
             }
+            super.setTabsBinding(_binding);
             setInUpdate(false);
             validate();
         } else {
             this._binding = null;
         }
+        addObservableListeners();
     }
 
     @Override
@@ -117,6 +116,7 @@ public class CamelFTPProducerComposite extends AbstractSwitchyardComposite imple
                 }
             }
         }
+        super.validateTabs();
         return (getErrorMessage() == null);
     }
 
@@ -128,11 +128,13 @@ public class CamelFTPProducerComposite extends AbstractSwitchyardComposite imple
             _panel.setLayoutData(getRootGridData());
         }
 
-        TabFolder tabFolder = new TabFolder(_panel, SWT.NONE);
+        _tabFolder = new TabFolder(_panel, SWT.NONE);
 
-        TabItem one = new TabItem(tabFolder, SWT.NONE);
+        TabItem one = new TabItem(_tabFolder, SWT.NONE);
         one.setText("Producer");
-        one.setControl(getConsumerTabControl(tabFolder));
+        one.setControl(getConsumerTabControl(_tabFolder));
+
+        addTabs(_tabFolder);
     }
 
     private Control getConsumerTabControl(TabFolder tabFolder) {
@@ -171,205 +173,84 @@ public class CamelFTPProducerComposite extends AbstractSwitchyardComposite imple
         return this._panel;
     }
 
-    @SuppressWarnings("restriction")
-    protected void handleModify(final Control control) {
-        TransactionalEditingDomain domain = null;
-        if (_binding.eContainer() != null) {
-            domain = SwitchyardSCAEditor.getActiveEditor().getEditingDomain();
+    class ProduceOp extends ModelOperation {
+        @Override
+        public void run() throws Exception {
+            if (_binding != null && _binding.getProduce() == null) {
+                setFeatureValue(_binding, "produce", CamelFactory.eINSTANCE.createRemoteFileProducerType());
+            }
         }
+    }
+
+    protected void updateProduceFeature(String featureId, Object value) {
+        ArrayList<ModelOperation> ops = new ArrayList<ModelOperation>();
+        ops.add(new ProduceOp());
+        ops.add(new BasicOperation("produce", featureId, value));
+        wrapOperation(ops);
+    }
+    
+    protected void handleModify(final Control control) {
         if (control.equals(_directoryText)) {
-            if (domain != null) {
-                domain.getCommandStack().execute(new RecordingCommand(domain) {
-                    @Override
-                    protected void doExecute() {
-                        _binding.setDirectory(_directoryText.getText().trim());
-                    }
-                });
-            } else {
-                _binding.setDirectory(_directoryText.getText().trim());
-            }
+            updateFeature(_binding, "directory", _directoryText.getText().trim());
         } else if (control.equals(_fileNameText)) {
-            if (domain != null) {
-                domain.getCommandStack().execute(new RecordingCommand(domain) {
-                    @Override
-                    protected void doExecute() {
-                        _binding.setFileName(_fileNameText.getText().trim());
-                    }
-                });
-            } else {
-                _binding.setFileName(_fileNameText.getText().trim());
-            }
+            updateFeature(_binding, "fileName", _fileNameText.getText().trim());
         } else if (control.equals(_autoCreateButton)) {
-            if (domain != null) {
-                domain.getCommandStack().execute(new RecordingCommand(domain) {
-                    @Override
-                    protected void doExecute() {
-                        _binding.setAutoCreate(_autoCreateButton.getSelection());
-                    }
-                });
-            } else {
-                _binding.setAutoCreate(_autoCreateButton.getSelection());
-            }
+            updateFeature(_binding, "autoCreate", new Boolean(_autoCreateButton.getSelection()));
         } else if (control.equals(_hostText)) {
-            if (domain != null) {
-                domain.getCommandStack().execute(new RecordingCommand(domain) {
-                    @Override
-                    protected void doExecute() {
-                        _binding.setHost(_hostText.getText().trim());
-                    }
-                });
-            } else {
-                _binding.setHost(_hostText.getText().trim());
-            }
+            updateFeature(_binding, "host", _hostText.getText().trim());
         } else if (control.equals(_usernameText)) {
-            if (domain != null) {
-                domain.getCommandStack().execute(new RecordingCommand(domain) {
-                    @Override
-                    protected void doExecute() {
-                        _binding.setUsername(_usernameText.getText().trim());
-                    }
-                });
-            } else {
-                _binding.setUsername(_usernameText.getText().trim());
-            }
+            updateFeature(_binding, "username", _usernameText.getText().trim());
         } else if (control.equals(_pwdText)) {
-            if (domain != null) {
-                domain.getCommandStack().execute(new RecordingCommand(domain) {
-                    @Override
-                    protected void doExecute() {
-                        _binding.setPassword(_pwdText.getText().trim());
-                    }
-                });
-            } else {
-                _binding.setPassword(_pwdText.getText().trim());
-            }
+            updateFeature(_binding, "password", _pwdText.getText().trim());
         } else if (control.equals(_binaryButton)) {
-            if (domain != null) {
-                domain.getCommandStack().execute(new RecordingCommand(domain) {
-                    @Override
-                    protected void doExecute() {
-                        _binding.setBinary(_binaryButton.getSelection());
-                    }
-                });
-            } else {
-                _binding.setBinary(_binaryButton.getSelection());
-            }
+            updateFeature(_binding, "binary", new Boolean(_binaryButton.getSelection()));
         } else if (control.equals(_portText)) {
-            if (domain != null) {
-                domain.getCommandStack().execute(new RecordingCommand(domain) {
-                    @Override
-                    protected void doExecute() {
-                        try {
-                            int port = Integer.parseInt(_portText.getText().trim());
-                            _binding.setPort(port);
-                        } catch (NumberFormatException nfe) {
-                            nfe.fillInStackTrace();
-                        }
-                    }
-                });
-            } else {
-                try {
-                    int port = Integer.parseInt(_portText.getText().trim());
-                    _binding.setPort(port);
-                } catch (NumberFormatException nfe) {
-                    nfe.fillInStackTrace();
-                }
+            try {
+                int port = Integer.parseInt(_portText.getText().trim());
+                updateFeature(_binding, "port", port);
+            } catch (NumberFormatException nfe) {
+                nfe.fillInStackTrace();
             }
         } else if (control.equals(_fileExistText)) {
-            if (domain != null) {
-                domain.getCommandStack().execute(new RecordingCommand(domain) {
-                    @Override
-                    protected void doExecute() {
-                        if (_binding.getProduce() == null) {
-                            _binding.setProduce(CamelFactory.eINSTANCE.createRemoteFileProducerType());
-                        }
-                        _binding.getProduce().setFileExist(_fileExistText.getText().trim());
-                    }
-                });
-            } else {
-                if (_binding.getProduce() == null) {
-                    _binding.setProduce(CamelFactory.eINSTANCE.createRemoteFileProducerType());
-                }
-                _binding.getProduce().setFileExist(_fileExistText.getText().trim());
-            }
+            updateProduceFeature("fileExist", _fileExistText.getText().trim());
         } else if (control.equals(_tempPrefixText)) {
-            if (domain != null) {
-                domain.getCommandStack().execute(new RecordingCommand(domain) {
-                    @Override
-                    protected void doExecute() {
-                        if (_binding.getProduce() == null) {
-                            _binding.setProduce(CamelFactory.eINSTANCE.createRemoteFileProducerType());
-                        }
-                        _binding.getProduce().setTempPrefix(_tempPrefixText.getText().trim());
-                    }
-                });
-            } else {
-                if (_binding.getProduce() == null) {
-                    _binding.setProduce(CamelFactory.eINSTANCE.createRemoteFileProducerType());
+            updateProduceFeature("tempPrefix", _tempPrefixText.getText().trim());
+        } else {
+            super.handleModify(control);
+        }
+        validate();
+        setHasChanged(false);
+    }
+    
+    protected void handleUndo(Control control) {
+        if (_binding != null) {
+            if (control.equals(_directoryText)) {
+                _directoryText.setText(this._binding.getDirectory());
+            } else if (control.equals(_fileNameText)) {
+                _fileNameText.setText(this._binding.getFileName());
+            } else if (control.equals(_autoCreateButton)) {
+                _autoCreateButton.setSelection(this._binding.isAutoCreate());
+            } else if (control.equals(_hostText)) {
+                _hostText.setText(this._binding.getHost());
+            } else if (control.equals(_portText)) {
+                _portText.setText(Integer.toString(this._binding.getPort()));
+            } else if (control.equals(_usernameText)) {
+                _usernameText.setText(this._binding.getUsername());
+            } else if (control.equals(_pwdText)) {
+                _pwdText.setText(this._binding.getPassword());
+            } else if (control.equals(_binaryButton)) {
+                _binaryButton.setSelection(this._binding.isBinary());
+            } else if (this._binding.getProduce() != null) {
+                if (control.equals(_fileExistText)) {
+                    _fileExistText.setText(this._binding.getProduce().getFileExist());
+                } else if (control.equals(_tempPrefixText)) {
+                    _tempPrefixText.setText(this._binding.getProduce().getTempPrefix());
                 }
-                _binding.getProduce().setTempPrefix(_tempPrefixText.getText().trim());
+            } else {
+                super.handleUndo(control);
             }
         }
         setHasChanged(false);
     }
-
-    @Override
-    public void focusLost(FocusEvent e) {
-        if (_binding != null && !inUpdate() && hasChanged()) {
-            validate();
-            handleModify((Control) e.getSource());
-            fireChangedEvent((Control) e.getSource());
-        }
-    }
-
-    @Override
-    public void keyReleased(KeyEvent e) {
-        if (e.keyCode == SWT.ESC) {
-            // cancel out and return to original value
-            setInUpdate(true);
-            if (_binding != null) {
-                Control control = (Control) e.getSource();
-                if (control.equals(_directoryText)) {
-                    _directoryText.setText(this._binding.getDirectory());
-                } else if (control.equals(_fileNameText)) {
-                    _fileNameText.setText(this._binding.getFileName());
-                } else if (control.equals(_autoCreateButton)) {
-                    _autoCreateButton.setSelection(this._binding.isAutoCreate());
-                } else if (control.equals(_hostText)) {
-                    _hostText.setText(this._binding.getHost());
-                } else if (control.equals(_portText)) {
-                    _portText.setText(Integer.toString(this._binding.getPort()));
-                } else if (control.equals(_usernameText)) {
-                    _usernameText.setText(this._binding.getUsername());
-                } else if (control.equals(_pwdText)) {
-                    _pwdText.setText(this._binding.getPassword());
-                } else if (control.equals(_binaryButton)) {
-                    _binaryButton.setSelection(this._binding.isBinary());
-                } else if (this._binding.getProduce() != null) {
-                    if (control.equals(_fileExistText)) {
-                        _fileExistText.setText(this._binding.getProduce().getFileExist());
-                    } else if (control.equals(_tempPrefixText)) {
-                        _tempPrefixText.setText(this._binding.getProduce().getTempPrefix());
-                    }
-                }
-            }
-            setInUpdate(false);
-        } else if (e.keyCode == SWT.CR) {
-            // accept change
-            if (_binding != null && !inUpdate() && hasChanged()) {
-                validate();
-                handleModify((Control) e.getSource());
-                fireChangedEvent((Control) e.getSource());
-            }
-        }
-    }
-
-    @Override
-    public void widgetSelected(SelectionEvent e) {
-        if (!inUpdate()) {
-            setHasChanged(true);
-            handleModify((Control)e.getSource());
-            fireChangedEvent((Control)e.getSource());
-        }
-    }
+    
 }

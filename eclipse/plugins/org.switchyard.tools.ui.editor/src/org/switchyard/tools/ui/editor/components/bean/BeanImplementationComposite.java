@@ -12,8 +12,6 @@
  ******************************************************************************/
 package org.switchyard.tools.ui.editor.components.bean;
 
-import org.eclipse.emf.transaction.RecordingCommand;
-import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.eclipse.jdt.core.ICompilationUnit;
 import org.eclipse.jdt.core.IJavaElement;
 import org.eclipse.jdt.core.IJavaProject;
@@ -113,23 +111,12 @@ public class BeanImplementationComposite extends AbstractSwitchyardComposite imp
         });
     }
 
-    @SuppressWarnings("restriction")
     protected void handleModify(Control control) {
         final String implementationClassText = _beanClassText.getText().trim();
         validate();
         if (_implementation instanceof BeanImplementationType) {
             if (_beanClassText != null && !_beanClassText.isDisposed() && _beanClassText.isEnabled()) {
-                if (_implementation.eContainer() != null) {
-                    TransactionalEditingDomain domain = SwitchyardSCAEditor.getActiveEditor().getEditingDomain();
-                    domain.getCommandStack().execute(new RecordingCommand(domain) {
-                        @Override
-                        protected void doExecute() {
-                            ((BeanImplementationType) _implementation).setClass(implementationClassText);
-                        }
-                    });
-                } else {
-                    ((BeanImplementationType) _implementation).setClass(implementationClassText);
-                }
+                updateFeature((BeanImplementationType) _implementation, "class", implementationClassText);
             }
         }
         setHasChanged(false);
@@ -163,6 +150,7 @@ public class BeanImplementationComposite extends AbstractSwitchyardComposite imp
             }
             setInUpdate(false);
         }
+        addObservableListeners();
     }
 
     /**

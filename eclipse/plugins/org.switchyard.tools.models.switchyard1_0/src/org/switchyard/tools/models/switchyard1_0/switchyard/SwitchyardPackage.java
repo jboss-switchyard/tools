@@ -822,13 +822,31 @@ public interface SwitchyardPackage extends EPackage {
 	int SWITCH_YARD_BINDING_TYPE__URI = ScaPackage.BINDING__URI;
 
 	/**
+     * The feature id for the '<em><b>Context Mapper</b></em>' containment reference.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int SWITCH_YARD_BINDING_TYPE__CONTEXT_MAPPER = ScaPackage.BINDING_FEATURE_COUNT + 0;
+
+    /**
+     * The feature id for the '<em><b>Message Composer</b></em>' containment reference.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int SWITCH_YARD_BINDING_TYPE__MESSAGE_COMPOSER = ScaPackage.BINDING_FEATURE_COUNT + 1;
+
+    /**
      * The number of structural features of the '<em>Switch Yard Binding Type</em>' class.
      * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
      * @generated
      * @ordered
      */
-	int SWITCH_YARD_BINDING_TYPE_FEATURE_COUNT = ScaPackage.BINDING_FEATURE_COUNT + 0;
+	int SWITCH_YARD_BINDING_TYPE_FEATURE_COUNT = ScaPackage.BINDING_FEATURE_COUNT + 2;
 
 	/**
      * The meta object id for the '{@link org.switchyard.tools.models.switchyard1_0.switchyard.impl.SwitchYardTypeImpl <em>Switch Yard Type</em>}' class.
@@ -1656,6 +1674,28 @@ public interface SwitchyardPackage extends EPackage {
 	EClass getSwitchYardBindingType();
 
 	/**
+     * Returns the meta object for the containment reference '{@link org.switchyard.tools.models.switchyard1_0.switchyard.SwitchYardBindingType#getContextMapper <em>Context Mapper</em>}'.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @return the meta object for the containment reference '<em>Context Mapper</em>'.
+     * @see org.switchyard.tools.models.switchyard1_0.switchyard.SwitchYardBindingType#getContextMapper()
+     * @see #getSwitchYardBindingType()
+     * @generated
+     */
+    EReference getSwitchYardBindingType_ContextMapper();
+
+    /**
+     * Returns the meta object for the containment reference '{@link org.switchyard.tools.models.switchyard1_0.switchyard.SwitchYardBindingType#getMessageComposer <em>Message Composer</em>}'.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @return the meta object for the containment reference '<em>Message Composer</em>'.
+     * @see org.switchyard.tools.models.switchyard1_0.switchyard.SwitchYardBindingType#getMessageComposer()
+     * @see #getSwitchYardBindingType()
+     * @generated
+     */
+    EReference getSwitchYardBindingType_MessageComposer();
+
+    /**
      * Returns the meta object for class '{@link org.switchyard.tools.models.switchyard1_0.switchyard.SwitchYardType <em>Switch Yard Type</em>}'.
      * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -2356,6 +2396,22 @@ public interface SwitchyardPackage extends EPackage {
 		EClass SWITCH_YARD_BINDING_TYPE = eINSTANCE.getSwitchYardBindingType();
 
 		/**
+         * The meta object literal for the '<em><b>Context Mapper</b></em>' containment reference feature.
+         * <!-- begin-user-doc -->
+         * <!-- end-user-doc -->
+         * @generated
+         */
+        EReference SWITCH_YARD_BINDING_TYPE__CONTEXT_MAPPER = eINSTANCE.getSwitchYardBindingType_ContextMapper();
+
+        /**
+         * The meta object literal for the '<em><b>Message Composer</b></em>' containment reference feature.
+         * <!-- begin-user-doc -->
+         * <!-- end-user-doc -->
+         * @generated
+         */
+        EReference SWITCH_YARD_BINDING_TYPE__MESSAGE_COMPOSER = eINSTANCE.getSwitchYardBindingType_MessageComposer();
+
+        /**
          * The meta object literal for the '{@link org.switchyard.tools.models.switchyard1_0.switchyard.impl.SwitchYardTypeImpl <em>Switch Yard Type</em>}' class.
          * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->

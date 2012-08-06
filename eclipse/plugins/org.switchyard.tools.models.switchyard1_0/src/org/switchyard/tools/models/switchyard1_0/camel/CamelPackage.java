@@ -166,22 +166,22 @@ public interface CamelPackage extends EPackage {
     int BASE_CAMEL_BINDING__URI = SwitchyardPackage.SWITCH_YARD_BINDING_TYPE__URI;
 
     /**
-     * The feature id for the '<em><b>Context Mapper</b></em>' reference.
+     * The feature id for the '<em><b>Context Mapper</b></em>' containment reference.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @generated
      * @ordered
      */
-    int BASE_CAMEL_BINDING__CONTEXT_MAPPER = SwitchyardPackage.SWITCH_YARD_BINDING_TYPE_FEATURE_COUNT + 0;
+    int BASE_CAMEL_BINDING__CONTEXT_MAPPER = SwitchyardPackage.SWITCH_YARD_BINDING_TYPE__CONTEXT_MAPPER;
 
     /**
-     * The feature id for the '<em><b>Message Composer</b></em>' reference.
+     * The feature id for the '<em><b>Message Composer</b></em>' containment reference.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @generated
      * @ordered
      */
-    int BASE_CAMEL_BINDING__MESSAGE_COMPOSER = SwitchyardPackage.SWITCH_YARD_BINDING_TYPE_FEATURE_COUNT + 1;
+    int BASE_CAMEL_BINDING__MESSAGE_COMPOSER = SwitchyardPackage.SWITCH_YARD_BINDING_TYPE__MESSAGE_COMPOSER;
 
     /**
      * The feature id for the '<em><b>Camel Operation Selector</b></em>' containment reference.
@@ -190,7 +190,7 @@ public interface CamelPackage extends EPackage {
      * @generated
      * @ordered
      */
-    int BASE_CAMEL_BINDING__CAMEL_OPERATION_SELECTOR = SwitchyardPackage.SWITCH_YARD_BINDING_TYPE_FEATURE_COUNT + 2;
+    int BASE_CAMEL_BINDING__CAMEL_OPERATION_SELECTOR = SwitchyardPackage.SWITCH_YARD_BINDING_TYPE_FEATURE_COUNT + 0;
 
     /**
      * The number of structural features of the '<em>Base Camel Binding</em>' class.
@@ -199,7 +199,7 @@ public interface CamelPackage extends EPackage {
      * @generated
      * @ordered
      */
-    int BASE_CAMEL_BINDING_FEATURE_COUNT = SwitchyardPackage.SWITCH_YARD_BINDING_TYPE_FEATURE_COUNT + 3;
+    int BASE_CAMEL_BINDING_FEATURE_COUNT = SwitchyardPackage.SWITCH_YARD_BINDING_TYPE_FEATURE_COUNT + 1;
 
     /**
      * The meta object id for the '{@link org.switchyard.tools.models.switchyard1_0.camel.impl.CamelAtomBindingTypeImpl <em>Atom Binding Type</em>}' class.
@@ -302,7 +302,7 @@ public interface CamelPackage extends EPackage {
 	int CAMEL_ATOM_BINDING_TYPE__URI = BASE_CAMEL_BINDING__URI;
 
 	/**
-     * The feature id for the '<em><b>Context Mapper</b></em>' reference.
+     * The feature id for the '<em><b>Context Mapper</b></em>' containment reference.
      * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
      * @generated
@@ -311,7 +311,7 @@ public interface CamelPackage extends EPackage {
 	int CAMEL_ATOM_BINDING_TYPE__CONTEXT_MAPPER = BASE_CAMEL_BINDING__CONTEXT_MAPPER;
 
 	/**
-     * The feature id for the '<em><b>Message Composer</b></em>' reference.
+     * The feature id for the '<em><b>Message Composer</b></em>' containment reference.
      * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
      * @generated
@@ -510,7 +510,7 @@ public interface CamelPackage extends EPackage {
 	int CAMEL_BINDING_TYPE__URI = BASE_CAMEL_BINDING__URI;
 
 	/**
-     * The feature id for the '<em><b>Context Mapper</b></em>' reference.
+     * The feature id for the '<em><b>Context Mapper</b></em>' containment reference.
      * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
      * @generated
@@ -519,7 +519,7 @@ public interface CamelPackage extends EPackage {
 	int CAMEL_BINDING_TYPE__CONTEXT_MAPPER = BASE_CAMEL_BINDING__CONTEXT_MAPPER;
 
 	/**
-     * The feature id for the '<em><b>Message Composer</b></em>' reference.
+     * The feature id for the '<em><b>Message Composer</b></em>' containment reference.
      * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
      * @generated
@@ -655,22 +655,22 @@ public interface CamelPackage extends EPackage {
 	int CAMEL_DIRECT_BINDING_TYPE__URI = SwitchyardPackage.SWITCH_YARD_BINDING_TYPE__URI;
 
 	/**
-     * The feature id for the '<em><b>Context Mapper</b></em>' reference.
+     * The feature id for the '<em><b>Context Mapper</b></em>' containment reference.
      * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
      * @generated
      * @ordered
      */
-	int CAMEL_DIRECT_BINDING_TYPE__CONTEXT_MAPPER = SwitchyardPackage.SWITCH_YARD_BINDING_TYPE_FEATURE_COUNT + 0;
+	int CAMEL_DIRECT_BINDING_TYPE__CONTEXT_MAPPER = SwitchyardPackage.SWITCH_YARD_BINDING_TYPE__CONTEXT_MAPPER;
 
 	/**
-     * The feature id for the '<em><b>Message Composer</b></em>' reference.
+     * The feature id for the '<em><b>Message Composer</b></em>' containment reference.
      * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
      * @generated
      * @ordered
      */
-	int CAMEL_DIRECT_BINDING_TYPE__MESSAGE_COMPOSER = SwitchyardPackage.SWITCH_YARD_BINDING_TYPE_FEATURE_COUNT + 1;
+	int CAMEL_DIRECT_BINDING_TYPE__MESSAGE_COMPOSER = SwitchyardPackage.SWITCH_YARD_BINDING_TYPE__MESSAGE_COMPOSER;
 
 	/**
      * The feature id for the '<em><b>Name Element</b></em>' attribute.
@@ -679,7 +679,7 @@ public interface CamelPackage extends EPackage {
      * @generated
      * @ordered
      */
-    int CAMEL_DIRECT_BINDING_TYPE__NAME_ELEMENT = SwitchyardPackage.SWITCH_YARD_BINDING_TYPE_FEATURE_COUNT + 2;
+    int CAMEL_DIRECT_BINDING_TYPE__NAME_ELEMENT = SwitchyardPackage.SWITCH_YARD_BINDING_TYPE_FEATURE_COUNT + 0;
 
     /**
      * The number of structural features of the '<em>Direct Binding Type</em>' class.
@@ -688,7 +688,7 @@ public interface CamelPackage extends EPackage {
      * @generated
      * @ordered
      */
-	int CAMEL_DIRECT_BINDING_TYPE_FEATURE_COUNT = SwitchyardPackage.SWITCH_YARD_BINDING_TYPE_FEATURE_COUNT + 3;
+	int CAMEL_DIRECT_BINDING_TYPE_FEATURE_COUNT = SwitchyardPackage.SWITCH_YARD_BINDING_TYPE_FEATURE_COUNT + 1;
 
 	/**
      * The meta object id for the '{@link org.switchyard.tools.models.switchyard1_0.camel.impl.GenericFileBindingTypeImpl <em>Generic File Binding Type</em>}' class.
@@ -791,7 +791,7 @@ public interface CamelPackage extends EPackage {
     int GENERIC_FILE_BINDING_TYPE__URI = BASE_CAMEL_BINDING__URI;
 
     /**
-     * The feature id for the '<em><b>Context Mapper</b></em>' reference.
+     * The feature id for the '<em><b>Context Mapper</b></em>' containment reference.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @generated
@@ -800,7 +800,7 @@ public interface CamelPackage extends EPackage {
     int GENERIC_FILE_BINDING_TYPE__CONTEXT_MAPPER = BASE_CAMEL_BINDING__CONTEXT_MAPPER;
 
     /**
-     * The feature id for the '<em><b>Message Composer</b></em>' reference.
+     * The feature id for the '<em><b>Message Composer</b></em>' containment reference.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @generated
@@ -981,7 +981,7 @@ public interface CamelPackage extends EPackage {
 	int CAMEL_FILE_BINDING_TYPE__URI = GENERIC_FILE_BINDING_TYPE__URI;
 
 	/**
-     * The feature id for the '<em><b>Context Mapper</b></em>' reference.
+     * The feature id for the '<em><b>Context Mapper</b></em>' containment reference.
      * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
      * @generated
@@ -990,7 +990,7 @@ public interface CamelPackage extends EPackage {
 	int CAMEL_FILE_BINDING_TYPE__CONTEXT_MAPPER = GENERIC_FILE_BINDING_TYPE__CONTEXT_MAPPER;
 
 	/**
-     * The feature id for the '<em><b>Message Composer</b></em>' reference.
+     * The feature id for the '<em><b>Message Composer</b></em>' containment reference.
      * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
      * @generated
@@ -1189,7 +1189,7 @@ public interface CamelPackage extends EPackage {
     int CAMEL_REMOTE_BINDING_TYPE__URI = GENERIC_FILE_BINDING_TYPE__URI;
 
     /**
-     * The feature id for the '<em><b>Context Mapper</b></em>' reference.
+     * The feature id for the '<em><b>Context Mapper</b></em>' containment reference.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @generated
@@ -1198,7 +1198,7 @@ public interface CamelPackage extends EPackage {
     int CAMEL_REMOTE_BINDING_TYPE__CONTEXT_MAPPER = GENERIC_FILE_BINDING_TYPE__CONTEXT_MAPPER;
 
     /**
-     * The feature id for the '<em><b>Message Composer</b></em>' reference.
+     * The feature id for the '<em><b>Message Composer</b></em>' containment reference.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @generated
@@ -1505,7 +1505,7 @@ public interface CamelPackage extends EPackage {
     int CAMEL_FTP_BINDING_TYPE__URI = CAMEL_REMOTE_BINDING_TYPE__URI;
 
     /**
-     * The feature id for the '<em><b>Context Mapper</b></em>' reference.
+     * The feature id for the '<em><b>Context Mapper</b></em>' containment reference.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @generated
@@ -1514,7 +1514,7 @@ public interface CamelPackage extends EPackage {
     int CAMEL_FTP_BINDING_TYPE__CONTEXT_MAPPER = CAMEL_REMOTE_BINDING_TYPE__CONTEXT_MAPPER;
 
     /**
-     * The feature id for the '<em><b>Message Composer</b></em>' reference.
+     * The feature id for the '<em><b>Message Composer</b></em>' containment reference.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @generated
@@ -1857,7 +1857,7 @@ public interface CamelPackage extends EPackage {
     int CAMEL_FTPS_BINDING_TYPE__URI = CAMEL_FTP_BINDING_TYPE__URI;
 
     /**
-     * The feature id for the '<em><b>Context Mapper</b></em>' reference.
+     * The feature id for the '<em><b>Context Mapper</b></em>' containment reference.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @generated
@@ -1866,7 +1866,7 @@ public interface CamelPackage extends EPackage {
     int CAMEL_FTPS_BINDING_TYPE__CONTEXT_MAPPER = CAMEL_FTP_BINDING_TYPE__CONTEXT_MAPPER;
 
     /**
-     * The feature id for the '<em><b>Message Composer</b></em>' reference.
+     * The feature id for the '<em><b>Message Composer</b></em>' containment reference.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @generated
@@ -2336,7 +2336,7 @@ public interface CamelPackage extends EPackage {
     int CAMEL_JMS_BINDING_TYPE__URI = BASE_CAMEL_BINDING__URI;
 
     /**
-     * The feature id for the '<em><b>Context Mapper</b></em>' reference.
+     * The feature id for the '<em><b>Context Mapper</b></em>' containment reference.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @generated
@@ -2345,7 +2345,7 @@ public interface CamelPackage extends EPackage {
     int CAMEL_JMS_BINDING_TYPE__CONTEXT_MAPPER = BASE_CAMEL_BINDING__CONTEXT_MAPPER;
 
     /**
-     * The feature id for the '<em><b>Message Composer</b></em>' reference.
+     * The feature id for the '<em><b>Message Composer</b></em>' containment reference.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @generated
@@ -2661,7 +2661,7 @@ public interface CamelPackage extends EPackage {
     int CAMEL_NETTY_BINDING_TYPE__URI = BASE_CAMEL_BINDING__URI;
 
     /**
-     * The feature id for the '<em><b>Context Mapper</b></em>' reference.
+     * The feature id for the '<em><b>Context Mapper</b></em>' containment reference.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @generated
@@ -2670,7 +2670,7 @@ public interface CamelPackage extends EPackage {
     int CAMEL_NETTY_BINDING_TYPE__CONTEXT_MAPPER = BASE_CAMEL_BINDING__CONTEXT_MAPPER;
 
     /**
-     * The feature id for the '<em><b>Message Composer</b></em>' reference.
+     * The feature id for the '<em><b>Message Composer</b></em>' containment reference.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @generated
@@ -2896,7 +2896,7 @@ public interface CamelPackage extends EPackage {
     int CAMEL_NETTY_UDP_BINDING_TYPE__URI = CAMEL_NETTY_BINDING_TYPE__URI;
 
     /**
-     * The feature id for the '<em><b>Context Mapper</b></em>' reference.
+     * The feature id for the '<em><b>Context Mapper</b></em>' containment reference.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @generated
@@ -2905,7 +2905,7 @@ public interface CamelPackage extends EPackage {
     int CAMEL_NETTY_UDP_BINDING_TYPE__CONTEXT_MAPPER = CAMEL_NETTY_BINDING_TYPE__CONTEXT_MAPPER;
 
     /**
-     * The feature id for the '<em><b>Message Composer</b></em>' reference.
+     * The feature id for the '<em><b>Message Composer</b></em>' containment reference.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @generated
@@ -3140,7 +3140,7 @@ public interface CamelPackage extends EPackage {
     int CAMEL_NETTY_TCP_BINDING_TYPE__URI = CAMEL_NETTY_BINDING_TYPE__URI;
 
     /**
-     * The feature id for the '<em><b>Context Mapper</b></em>' reference.
+     * The feature id for the '<em><b>Context Mapper</b></em>' containment reference.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @generated
@@ -3149,7 +3149,7 @@ public interface CamelPackage extends EPackage {
     int CAMEL_NETTY_TCP_BINDING_TYPE__CONTEXT_MAPPER = CAMEL_NETTY_BINDING_TYPE__CONTEXT_MAPPER;
 
     /**
-     * The feature id for the '<em><b>Message Composer</b></em>' reference.
+     * The feature id for the '<em><b>Message Composer</b></em>' containment reference.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @generated
@@ -3402,22 +3402,22 @@ public interface CamelPackage extends EPackage {
 	int CAMEL_MOCK_BINDING_TYPE__URI = SwitchyardPackage.SWITCH_YARD_BINDING_TYPE__URI;
 
 	/**
-     * The feature id for the '<em><b>Context Mapper</b></em>' reference.
+     * The feature id for the '<em><b>Context Mapper</b></em>' containment reference.
      * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
      * @generated
      * @ordered
      */
-	int CAMEL_MOCK_BINDING_TYPE__CONTEXT_MAPPER = SwitchyardPackage.SWITCH_YARD_BINDING_TYPE_FEATURE_COUNT + 0;
+	int CAMEL_MOCK_BINDING_TYPE__CONTEXT_MAPPER = SwitchyardPackage.SWITCH_YARD_BINDING_TYPE__CONTEXT_MAPPER;
 
 	/**
-     * The feature id for the '<em><b>Message Composer</b></em>' reference.
+     * The feature id for the '<em><b>Message Composer</b></em>' containment reference.
      * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
      * @generated
      * @ordered
      */
-	int CAMEL_MOCK_BINDING_TYPE__MESSAGE_COMPOSER = SwitchyardPackage.SWITCH_YARD_BINDING_TYPE_FEATURE_COUNT + 1;
+	int CAMEL_MOCK_BINDING_TYPE__MESSAGE_COMPOSER = SwitchyardPackage.SWITCH_YARD_BINDING_TYPE__MESSAGE_COMPOSER;
 
 	/**
      * The feature id for the '<em><b>Name Element</b></em>' attribute.
@@ -3426,7 +3426,7 @@ public interface CamelPackage extends EPackage {
      * @generated
      * @ordered
      */
-    int CAMEL_MOCK_BINDING_TYPE__NAME_ELEMENT = SwitchyardPackage.SWITCH_YARD_BINDING_TYPE_FEATURE_COUNT + 2;
+    int CAMEL_MOCK_BINDING_TYPE__NAME_ELEMENT = SwitchyardPackage.SWITCH_YARD_BINDING_TYPE_FEATURE_COUNT + 0;
 
     /**
      * The feature id for the '<em><b>Report Group</b></em>' attribute.
@@ -3435,7 +3435,7 @@ public interface CamelPackage extends EPackage {
      * @generated
      * @ordered
      */
-	int CAMEL_MOCK_BINDING_TYPE__REPORT_GROUP = SwitchyardPackage.SWITCH_YARD_BINDING_TYPE_FEATURE_COUNT + 3;
+	int CAMEL_MOCK_BINDING_TYPE__REPORT_GROUP = SwitchyardPackage.SWITCH_YARD_BINDING_TYPE_FEATURE_COUNT + 1;
 
 	/**
      * The number of structural features of the '<em>Mock Binding Type</em>' class.
@@ -3444,7 +3444,7 @@ public interface CamelPackage extends EPackage {
      * @generated
      * @ordered
      */
-	int CAMEL_MOCK_BINDING_TYPE_FEATURE_COUNT = SwitchyardPackage.SWITCH_YARD_BINDING_TYPE_FEATURE_COUNT + 4;
+	int CAMEL_MOCK_BINDING_TYPE_FEATURE_COUNT = SwitchyardPackage.SWITCH_YARD_BINDING_TYPE_FEATURE_COUNT + 2;
 
 	/**
      * The meta object id for the '{@link org.switchyard.tools.models.switchyard1_0.camel.impl.CamelOperationSelectorTypeImpl <em>Operation Selector Type</em>}' class.
@@ -3602,22 +3602,22 @@ public interface CamelPackage extends EPackage {
 	int CAMEL_SEDA_BINDING_TYPE__URI = SwitchyardPackage.SWITCH_YARD_BINDING_TYPE__URI;
 
 	/**
-     * The feature id for the '<em><b>Context Mapper</b></em>' reference.
+     * The feature id for the '<em><b>Context Mapper</b></em>' containment reference.
      * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
      * @generated
      * @ordered
      */
-	int CAMEL_SEDA_BINDING_TYPE__CONTEXT_MAPPER = SwitchyardPackage.SWITCH_YARD_BINDING_TYPE_FEATURE_COUNT + 0;
+	int CAMEL_SEDA_BINDING_TYPE__CONTEXT_MAPPER = SwitchyardPackage.SWITCH_YARD_BINDING_TYPE__CONTEXT_MAPPER;
 
 	/**
-     * The feature id for the '<em><b>Message Composer</b></em>' reference.
+     * The feature id for the '<em><b>Message Composer</b></em>' containment reference.
      * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
      * @generated
      * @ordered
      */
-	int CAMEL_SEDA_BINDING_TYPE__MESSAGE_COMPOSER = SwitchyardPackage.SWITCH_YARD_BINDING_TYPE_FEATURE_COUNT + 1;
+	int CAMEL_SEDA_BINDING_TYPE__MESSAGE_COMPOSER = SwitchyardPackage.SWITCH_YARD_BINDING_TYPE__MESSAGE_COMPOSER;
 
 	/**
      * The feature id for the '<em><b>Name Element</b></em>' attribute.
@@ -3626,7 +3626,7 @@ public interface CamelPackage extends EPackage {
      * @generated
      * @ordered
      */
-    int CAMEL_SEDA_BINDING_TYPE__NAME_ELEMENT = SwitchyardPackage.SWITCH_YARD_BINDING_TYPE_FEATURE_COUNT + 2;
+    int CAMEL_SEDA_BINDING_TYPE__NAME_ELEMENT = SwitchyardPackage.SWITCH_YARD_BINDING_TYPE_FEATURE_COUNT + 0;
 
     /**
      * The feature id for the '<em><b>Size</b></em>' attribute.
@@ -3635,7 +3635,7 @@ public interface CamelPackage extends EPackage {
      * @generated
      * @ordered
      */
-	int CAMEL_SEDA_BINDING_TYPE__SIZE = SwitchyardPackage.SWITCH_YARD_BINDING_TYPE_FEATURE_COUNT + 3;
+	int CAMEL_SEDA_BINDING_TYPE__SIZE = SwitchyardPackage.SWITCH_YARD_BINDING_TYPE_FEATURE_COUNT + 1;
 
 	/**
      * The feature id for the '<em><b>Concurrent Consumers</b></em>' attribute.
@@ -3644,7 +3644,7 @@ public interface CamelPackage extends EPackage {
      * @generated
      * @ordered
      */
-	int CAMEL_SEDA_BINDING_TYPE__CONCURRENT_CONSUMERS = SwitchyardPackage.SWITCH_YARD_BINDING_TYPE_FEATURE_COUNT + 4;
+	int CAMEL_SEDA_BINDING_TYPE__CONCURRENT_CONSUMERS = SwitchyardPackage.SWITCH_YARD_BINDING_TYPE_FEATURE_COUNT + 2;
 
 	/**
      * The feature id for the '<em><b>Wait For Task To Complete</b></em>' attribute.
@@ -3653,7 +3653,7 @@ public interface CamelPackage extends EPackage {
      * @generated
      * @ordered
      */
-	int CAMEL_SEDA_BINDING_TYPE__WAIT_FOR_TASK_TO_COMPLETE = SwitchyardPackage.SWITCH_YARD_BINDING_TYPE_FEATURE_COUNT + 5;
+	int CAMEL_SEDA_BINDING_TYPE__WAIT_FOR_TASK_TO_COMPLETE = SwitchyardPackage.SWITCH_YARD_BINDING_TYPE_FEATURE_COUNT + 3;
 
 	/**
      * The feature id for the '<em><b>Timeout</b></em>' attribute.
@@ -3662,7 +3662,7 @@ public interface CamelPackage extends EPackage {
      * @generated
      * @ordered
      */
-	int CAMEL_SEDA_BINDING_TYPE__TIMEOUT = SwitchyardPackage.SWITCH_YARD_BINDING_TYPE_FEATURE_COUNT + 6;
+	int CAMEL_SEDA_BINDING_TYPE__TIMEOUT = SwitchyardPackage.SWITCH_YARD_BINDING_TYPE_FEATURE_COUNT + 4;
 
 	/**
      * The feature id for the '<em><b>Multiple Consumers</b></em>' attribute.
@@ -3671,7 +3671,7 @@ public interface CamelPackage extends EPackage {
      * @generated
      * @ordered
      */
-	int CAMEL_SEDA_BINDING_TYPE__MULTIPLE_CONSUMERS = SwitchyardPackage.SWITCH_YARD_BINDING_TYPE_FEATURE_COUNT + 7;
+	int CAMEL_SEDA_BINDING_TYPE__MULTIPLE_CONSUMERS = SwitchyardPackage.SWITCH_YARD_BINDING_TYPE_FEATURE_COUNT + 5;
 
 	/**
      * The feature id for the '<em><b>Limit Concurrent Consumers</b></em>' attribute.
@@ -3680,7 +3680,7 @@ public interface CamelPackage extends EPackage {
      * @generated
      * @ordered
      */
-	int CAMEL_SEDA_BINDING_TYPE__LIMIT_CONCURRENT_CONSUMERS = SwitchyardPackage.SWITCH_YARD_BINDING_TYPE_FEATURE_COUNT + 8;
+	int CAMEL_SEDA_BINDING_TYPE__LIMIT_CONCURRENT_CONSUMERS = SwitchyardPackage.SWITCH_YARD_BINDING_TYPE_FEATURE_COUNT + 6;
 
 	/**
      * The number of structural features of the '<em>Seda Binding Type</em>' class.
@@ -3689,7 +3689,7 @@ public interface CamelPackage extends EPackage {
      * @generated
      * @ordered
      */
-	int CAMEL_SEDA_BINDING_TYPE_FEATURE_COUNT = SwitchyardPackage.SWITCH_YARD_BINDING_TYPE_FEATURE_COUNT + 9;
+	int CAMEL_SEDA_BINDING_TYPE_FEATURE_COUNT = SwitchyardPackage.SWITCH_YARD_BINDING_TYPE_FEATURE_COUNT + 7;
 
 	/**
      * The meta object id for the '{@link org.switchyard.tools.models.switchyard1_0.camel.impl.CamelTimerBindingTypeImpl <em>Timer Binding Type</em>}' class.
@@ -3792,22 +3792,22 @@ public interface CamelPackage extends EPackage {
 	int CAMEL_TIMER_BINDING_TYPE__URI = SwitchyardPackage.SWITCH_YARD_BINDING_TYPE__URI;
 
 	/**
-     * The feature id for the '<em><b>Context Mapper</b></em>' reference.
+     * The feature id for the '<em><b>Context Mapper</b></em>' containment reference.
      * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
      * @generated
      * @ordered
      */
-	int CAMEL_TIMER_BINDING_TYPE__CONTEXT_MAPPER = SwitchyardPackage.SWITCH_YARD_BINDING_TYPE_FEATURE_COUNT + 0;
+	int CAMEL_TIMER_BINDING_TYPE__CONTEXT_MAPPER = SwitchyardPackage.SWITCH_YARD_BINDING_TYPE__CONTEXT_MAPPER;
 
 	/**
-     * The feature id for the '<em><b>Message Composer</b></em>' reference.
+     * The feature id for the '<em><b>Message Composer</b></em>' containment reference.
      * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
      * @generated
      * @ordered
      */
-	int CAMEL_TIMER_BINDING_TYPE__MESSAGE_COMPOSER = SwitchyardPackage.SWITCH_YARD_BINDING_TYPE_FEATURE_COUNT + 1;
+	int CAMEL_TIMER_BINDING_TYPE__MESSAGE_COMPOSER = SwitchyardPackage.SWITCH_YARD_BINDING_TYPE__MESSAGE_COMPOSER;
 
 	/**
      * The feature id for the '<em><b>Name Element</b></em>' attribute.
@@ -3816,7 +3816,7 @@ public interface CamelPackage extends EPackage {
      * @generated
      * @ordered
      */
-    int CAMEL_TIMER_BINDING_TYPE__NAME_ELEMENT = SwitchyardPackage.SWITCH_YARD_BINDING_TYPE_FEATURE_COUNT + 2;
+    int CAMEL_TIMER_BINDING_TYPE__NAME_ELEMENT = SwitchyardPackage.SWITCH_YARD_BINDING_TYPE_FEATURE_COUNT + 0;
 
     /**
      * The feature id for the '<em><b>Time</b></em>' attribute.
@@ -3825,7 +3825,7 @@ public interface CamelPackage extends EPackage {
      * @generated
      * @ordered
      */
-	int CAMEL_TIMER_BINDING_TYPE__TIME = SwitchyardPackage.SWITCH_YARD_BINDING_TYPE_FEATURE_COUNT + 3;
+	int CAMEL_TIMER_BINDING_TYPE__TIME = SwitchyardPackage.SWITCH_YARD_BINDING_TYPE_FEATURE_COUNT + 1;
 
 	/**
      * The feature id for the '<em><b>Pattern</b></em>' attribute.
@@ -3834,7 +3834,7 @@ public interface CamelPackage extends EPackage {
      * @generated
      * @ordered
      */
-	int CAMEL_TIMER_BINDING_TYPE__PATTERN = SwitchyardPackage.SWITCH_YARD_BINDING_TYPE_FEATURE_COUNT + 4;
+	int CAMEL_TIMER_BINDING_TYPE__PATTERN = SwitchyardPackage.SWITCH_YARD_BINDING_TYPE_FEATURE_COUNT + 2;
 
 	/**
      * The feature id for the '<em><b>Period</b></em>' attribute.
@@ -3843,7 +3843,7 @@ public interface CamelPackage extends EPackage {
      * @generated
      * @ordered
      */
-	int CAMEL_TIMER_BINDING_TYPE__PERIOD = SwitchyardPackage.SWITCH_YARD_BINDING_TYPE_FEATURE_COUNT + 5;
+	int CAMEL_TIMER_BINDING_TYPE__PERIOD = SwitchyardPackage.SWITCH_YARD_BINDING_TYPE_FEATURE_COUNT + 3;
 
 	/**
      * The feature id for the '<em><b>Delay</b></em>' attribute.
@@ -3852,7 +3852,7 @@ public interface CamelPackage extends EPackage {
      * @generated
      * @ordered
      */
-	int CAMEL_TIMER_BINDING_TYPE__DELAY = SwitchyardPackage.SWITCH_YARD_BINDING_TYPE_FEATURE_COUNT + 6;
+	int CAMEL_TIMER_BINDING_TYPE__DELAY = SwitchyardPackage.SWITCH_YARD_BINDING_TYPE_FEATURE_COUNT + 4;
 
 	/**
      * The feature id for the '<em><b>Fixed Rate</b></em>' attribute.
@@ -3861,7 +3861,7 @@ public interface CamelPackage extends EPackage {
      * @generated
      * @ordered
      */
-	int CAMEL_TIMER_BINDING_TYPE__FIXED_RATE = SwitchyardPackage.SWITCH_YARD_BINDING_TYPE_FEATURE_COUNT + 7;
+	int CAMEL_TIMER_BINDING_TYPE__FIXED_RATE = SwitchyardPackage.SWITCH_YARD_BINDING_TYPE_FEATURE_COUNT + 5;
 
 	/**
      * The feature id for the '<em><b>Daemon</b></em>' attribute.
@@ -3870,7 +3870,7 @@ public interface CamelPackage extends EPackage {
      * @generated
      * @ordered
      */
-	int CAMEL_TIMER_BINDING_TYPE__DAEMON = SwitchyardPackage.SWITCH_YARD_BINDING_TYPE_FEATURE_COUNT + 8;
+	int CAMEL_TIMER_BINDING_TYPE__DAEMON = SwitchyardPackage.SWITCH_YARD_BINDING_TYPE_FEATURE_COUNT + 6;
 
 	/**
      * The number of structural features of the '<em>Timer Binding Type</em>' class.
@@ -3879,7 +3879,7 @@ public interface CamelPackage extends EPackage {
      * @generated
      * @ordered
      */
-	int CAMEL_TIMER_BINDING_TYPE_FEATURE_COUNT = SwitchyardPackage.SWITCH_YARD_BINDING_TYPE_FEATURE_COUNT + 9;
+	int CAMEL_TIMER_BINDING_TYPE_FEATURE_COUNT = SwitchyardPackage.SWITCH_YARD_BINDING_TYPE_FEATURE_COUNT + 7;
 
 	/**
      * The meta object id for the '{@link org.switchyard.tools.models.switchyard1_0.camel.impl.CamelSftpBindingTypeImpl <em>Sftp Binding Type</em>}' class.
@@ -3982,7 +3982,7 @@ public interface CamelPackage extends EPackage {
     int CAMEL_SFTP_BINDING_TYPE__URI = CAMEL_REMOTE_BINDING_TYPE__URI;
 
     /**
-     * The feature id for the '<em><b>Context Mapper</b></em>' reference.
+     * The feature id for the '<em><b>Context Mapper</b></em>' containment reference.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @generated
@@ -3991,7 +3991,7 @@ public interface CamelPackage extends EPackage {
     int CAMEL_SFTP_BINDING_TYPE__CONTEXT_MAPPER = CAMEL_REMOTE_BINDING_TYPE__CONTEXT_MAPPER;
 
     /**
-     * The feature id for the '<em><b>Message Composer</b></em>' reference.
+     * The feature id for the '<em><b>Message Composer</b></em>' containment reference.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @generated
@@ -5742,7 +5742,7 @@ public interface CamelPackage extends EPackage {
     int CAMEL_QUARTZ_BINDING_TYPE__URI = BASE_CAMEL_BINDING__URI;
 
     /**
-     * The feature id for the '<em><b>Context Mapper</b></em>' reference.
+     * The feature id for the '<em><b>Context Mapper</b></em>' containment reference.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @generated
@@ -5751,7 +5751,7 @@ public interface CamelPackage extends EPackage {
     int CAMEL_QUARTZ_BINDING_TYPE__CONTEXT_MAPPER = BASE_CAMEL_BINDING__CONTEXT_MAPPER;
 
     /**
-     * The feature id for the '<em><b>Message Composer</b></em>' reference.
+     * The feature id for the '<em><b>Message Composer</b></em>' containment reference.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @generated
@@ -5923,7 +5923,7 @@ public interface CamelPackage extends EPackage {
     int CAMEL_SQL_BINDING_TYPE__URI = BASE_CAMEL_BINDING__URI;
 
     /**
-     * The feature id for the '<em><b>Context Mapper</b></em>' reference.
+     * The feature id for the '<em><b>Context Mapper</b></em>' containment reference.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @generated
@@ -5932,7 +5932,7 @@ public interface CamelPackage extends EPackage {
     int CAMEL_SQL_BINDING_TYPE__CONTEXT_MAPPER = BASE_CAMEL_BINDING__CONTEXT_MAPPER;
 
     /**
-     * The feature id for the '<em><b>Message Composer</b></em>' reference.
+     * The feature id for the '<em><b>Message Composer</b></em>' containment reference.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @generated
@@ -6024,28 +6024,6 @@ public interface CamelPackage extends EPackage {
      * @generated
      */
     EClass getBaseCamelBinding();
-
-    /**
-     * Returns the meta object for the reference '{@link org.switchyard.tools.models.switchyard1_0.camel.BaseCamelBinding#getContextMapper <em>Context Mapper</em>}'.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @return the meta object for the reference '<em>Context Mapper</em>'.
-     * @see org.switchyard.tools.models.switchyard1_0.camel.BaseCamelBinding#getContextMapper()
-     * @see #getBaseCamelBinding()
-     * @generated
-     */
-    EReference getBaseCamelBinding_ContextMapper();
-
-    /**
-     * Returns the meta object for the reference '{@link org.switchyard.tools.models.switchyard1_0.camel.BaseCamelBinding#getMessageComposer <em>Message Composer</em>}'.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @return the meta object for the reference '<em>Message Composer</em>'.
-     * @see org.switchyard.tools.models.switchyard1_0.camel.BaseCamelBinding#getMessageComposer()
-     * @see #getBaseCamelBinding()
-     * @generated
-     */
-    EReference getBaseCamelBinding_MessageComposer();
 
     /**
      * Returns the meta object for the containment reference '{@link org.switchyard.tools.models.switchyard1_0.camel.BaseCamelBinding#getCamelOperationSelector <em>Camel Operation Selector</em>}'.
@@ -6188,28 +6166,6 @@ public interface CamelPackage extends EPackage {
 	EClass getCamelDirectBindingType();
 
 	/**
-     * Returns the meta object for the reference '{@link org.switchyard.tools.models.switchyard1_0.camel.CamelDirectBindingType#getContextMapper <em>Context Mapper</em>}'.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @return the meta object for the reference '<em>Context Mapper</em>'.
-     * @see org.switchyard.tools.models.switchyard1_0.camel.CamelDirectBindingType#getContextMapper()
-     * @see #getCamelDirectBindingType()
-     * @generated
-     */
-    EReference getCamelDirectBindingType_ContextMapper();
-
-    /**
-     * Returns the meta object for the reference '{@link org.switchyard.tools.models.switchyard1_0.camel.CamelDirectBindingType#getMessageComposer <em>Message Composer</em>}'.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @return the meta object for the reference '<em>Message Composer</em>'.
-     * @see org.switchyard.tools.models.switchyard1_0.camel.CamelDirectBindingType#getMessageComposer()
-     * @see #getCamelDirectBindingType()
-     * @generated
-     */
-    EReference getCamelDirectBindingType_MessageComposer();
-
-    /**
      * Returns the meta object for the attribute '{@link org.switchyard.tools.models.switchyard1_0.camel.CamelDirectBindingType#getNameElement <em>Name Element</em>}'.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
@@ -6861,28 +6817,6 @@ public interface CamelPackage extends EPackage {
 	EClass getCamelMockBindingType();
 
 	/**
-     * Returns the meta object for the reference '{@link org.switchyard.tools.models.switchyard1_0.camel.CamelMockBindingType#getContextMapper <em>Context Mapper</em>}'.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @return the meta object for the reference '<em>Context Mapper</em>'.
-     * @see org.switchyard.tools.models.switchyard1_0.camel.CamelMockBindingType#getContextMapper()
-     * @see #getCamelMockBindingType()
-     * @generated
-     */
-    EReference getCamelMockBindingType_ContextMapper();
-
-    /**
-     * Returns the meta object for the reference '{@link org.switchyard.tools.models.switchyard1_0.camel.CamelMockBindingType#getMessageComposer <em>Message Composer</em>}'.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @return the meta object for the reference '<em>Message Composer</em>'.
-     * @see org.switchyard.tools.models.switchyard1_0.camel.CamelMockBindingType#getMessageComposer()
-     * @see #getCamelMockBindingType()
-     * @generated
-     */
-    EReference getCamelMockBindingType_MessageComposer();
-
-    /**
      * Returns the meta object for the attribute '{@link org.switchyard.tools.models.switchyard1_0.camel.CamelMockBindingType#getNameElement <em>Name Element</em>}'.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
@@ -6947,28 +6881,6 @@ public interface CamelPackage extends EPackage {
 	EClass getCamelSedaBindingType();
 
 	/**
-     * Returns the meta object for the reference '{@link org.switchyard.tools.models.switchyard1_0.camel.CamelSedaBindingType#getContextMapper <em>Context Mapper</em>}'.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @return the meta object for the reference '<em>Context Mapper</em>'.
-     * @see org.switchyard.tools.models.switchyard1_0.camel.CamelSedaBindingType#getContextMapper()
-     * @see #getCamelSedaBindingType()
-     * @generated
-     */
-    EReference getCamelSedaBindingType_ContextMapper();
-
-    /**
-     * Returns the meta object for the reference '{@link org.switchyard.tools.models.switchyard1_0.camel.CamelSedaBindingType#getMessageComposer <em>Message Composer</em>}'.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @return the meta object for the reference '<em>Message Composer</em>'.
-     * @see org.switchyard.tools.models.switchyard1_0.camel.CamelSedaBindingType#getMessageComposer()
-     * @see #getCamelSedaBindingType()
-     * @generated
-     */
-    EReference getCamelSedaBindingType_MessageComposer();
-
-    /**
      * Returns the meta object for the attribute '{@link org.switchyard.tools.models.switchyard1_0.camel.CamelSedaBindingType#getNameElement <em>Name Element</em>}'.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
@@ -7056,28 +6968,6 @@ public interface CamelPackage extends EPackage {
 	EClass getCamelTimerBindingType();
 
 	/**
-     * Returns the meta object for the reference '{@link org.switchyard.tools.models.switchyard1_0.camel.CamelTimerBindingType#getContextMapper <em>Context Mapper</em>}'.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @return the meta object for the reference '<em>Context Mapper</em>'.
-     * @see org.switchyard.tools.models.switchyard1_0.camel.CamelTimerBindingType#getContextMapper()
-     * @see #getCamelTimerBindingType()
-     * @generated
-     */
-    EReference getCamelTimerBindingType_ContextMapper();
-
-    /**
-     * Returns the meta object for the reference '{@link org.switchyard.tools.models.switchyard1_0.camel.CamelTimerBindingType#getMessageComposer <em>Message Composer</em>}'.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @return the meta object for the reference '<em>Message Composer</em>'.
-     * @see org.switchyard.tools.models.switchyard1_0.camel.CamelTimerBindingType#getMessageComposer()
-     * @see #getCamelTimerBindingType()
-     * @generated
-     */
-    EReference getCamelTimerBindingType_MessageComposer();
-
-    /**
      * Returns the meta object for the attribute '{@link org.switchyard.tools.models.switchyard1_0.camel.CamelTimerBindingType#getNameElement <em>Name Element</em>}'.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
@@ -8326,22 +8216,6 @@ public interface CamelPackage extends EPackage {
         EClass BASE_CAMEL_BINDING = eINSTANCE.getBaseCamelBinding();
 
         /**
-         * The meta object literal for the '<em><b>Context Mapper</b></em>' reference feature.
-         * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
-         * @generated
-         */
-        EReference BASE_CAMEL_BINDING__CONTEXT_MAPPER = eINSTANCE.getBaseCamelBinding_ContextMapper();
-
-        /**
-         * The meta object literal for the '<em><b>Message Composer</b></em>' reference feature.
-         * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
-         * @generated
-         */
-        EReference BASE_CAMEL_BINDING__MESSAGE_COMPOSER = eINSTANCE.getBaseCamelBinding_MessageComposer();
-
-        /**
          * The meta object literal for the '<em><b>Camel Operation Selector</b></em>' containment reference feature.
          * <!-- begin-user-doc -->
          * <!-- end-user-doc -->
@@ -8452,22 +8326,6 @@ public interface CamelPackage extends EPackage {
 		EClass CAMEL_DIRECT_BINDING_TYPE = eINSTANCE.getCamelDirectBindingType();
 
 		/**
-         * The meta object literal for the '<em><b>Context Mapper</b></em>' reference feature.
-         * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
-         * @generated
-         */
-        EReference CAMEL_DIRECT_BINDING_TYPE__CONTEXT_MAPPER = eINSTANCE.getCamelDirectBindingType_ContextMapper();
-
-        /**
-         * The meta object literal for the '<em><b>Message Composer</b></em>' reference feature.
-         * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
-         * @generated
-         */
-        EReference CAMEL_DIRECT_BINDING_TYPE__MESSAGE_COMPOSER = eINSTANCE.getCamelDirectBindingType_MessageComposer();
-
-        /**
          * The meta object literal for the '<em><b>Name Element</b></em>' attribute feature.
          * <!-- begin-user-doc -->
          * <!-- end-user-doc -->
@@ -8966,22 +8824,6 @@ public interface CamelPackage extends EPackage {
 		EClass CAMEL_MOCK_BINDING_TYPE = eINSTANCE.getCamelMockBindingType();
 
 		/**
-         * The meta object literal for the '<em><b>Context Mapper</b></em>' reference feature.
-         * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
-         * @generated
-         */
-        EReference CAMEL_MOCK_BINDING_TYPE__CONTEXT_MAPPER = eINSTANCE.getCamelMockBindingType_ContextMapper();
-
-        /**
-         * The meta object literal for the '<em><b>Message Composer</b></em>' reference feature.
-         * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
-         * @generated
-         */
-        EReference CAMEL_MOCK_BINDING_TYPE__MESSAGE_COMPOSER = eINSTANCE.getCamelMockBindingType_MessageComposer();
-
-        /**
          * The meta object literal for the '<em><b>Name Element</b></em>' attribute feature.
          * <!-- begin-user-doc -->
          * <!-- end-user-doc -->
@@ -9034,22 +8876,6 @@ public interface CamelPackage extends EPackage {
 		EClass CAMEL_SEDA_BINDING_TYPE = eINSTANCE.getCamelSedaBindingType();
 
 		/**
-         * The meta object literal for the '<em><b>Context Mapper</b></em>' reference feature.
-         * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
-         * @generated
-         */
-        EReference CAMEL_SEDA_BINDING_TYPE__CONTEXT_MAPPER = eINSTANCE.getCamelSedaBindingType_ContextMapper();
-
-        /**
-         * The meta object literal for the '<em><b>Message Composer</b></em>' reference feature.
-         * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
-         * @generated
-         */
-        EReference CAMEL_SEDA_BINDING_TYPE__MESSAGE_COMPOSER = eINSTANCE.getCamelSedaBindingType_MessageComposer();
-
-        /**
          * The meta object literal for the '<em><b>Name Element</b></em>' attribute feature.
          * <!-- begin-user-doc -->
          * <!-- end-user-doc -->
@@ -9116,22 +8942,6 @@ public interface CamelPackage extends EPackage {
 		EClass CAMEL_TIMER_BINDING_TYPE = eINSTANCE.getCamelTimerBindingType();
 
 		/**
-         * The meta object literal for the '<em><b>Context Mapper</b></em>' reference feature.
-         * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
-         * @generated
-         */
-        EReference CAMEL_TIMER_BINDING_TYPE__CONTEXT_MAPPER = eINSTANCE.getCamelTimerBindingType_ContextMapper();
-
-        /**
-         * The meta object literal for the '<em><b>Message Composer</b></em>' reference feature.
-         * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
-         * @generated
-         */
-        EReference CAMEL_TIMER_BINDING_TYPE__MESSAGE_COMPOSER = eINSTANCE.getCamelTimerBindingType_MessageComposer();
-
-        /**
          * The meta object literal for the '<em><b>Name Element</b></em>' attribute feature.
          * <!-- begin-user-doc -->
          * <!-- end-user-doc -->

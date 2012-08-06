@@ -692,7 +692,7 @@ public class JcaPackageImpl extends EPackageImpl implements JcaPackage {
      * <!-- end-user-doc -->
      * @generated
      */
-    public EReference getJCABinding_ContextMapper() {
+    public EReference getJCABinding_OutboundConnection() {
         return (EReference)jcaBindingEClass.getEStructuralFeatures().get(2);
     }
 
@@ -701,7 +701,7 @@ public class JcaPackageImpl extends EPackageImpl implements JcaPackage {
      * <!-- end-user-doc -->
      * @generated
      */
-    public EReference getJCABinding_MessageComposer() {
+    public EReference getJCABinding_InboundConnection() {
         return (EReference)jcaBindingEClass.getEStructuralFeatures().get(3);
     }
 
@@ -710,7 +710,7 @@ public class JcaPackageImpl extends EPackageImpl implements JcaPackage {
      * <!-- end-user-doc -->
      * @generated
      */
-    public EReference getJCABinding_OutboundConnection() {
+    public EReference getJCABinding_InboundInteraction() {
         return (EReference)jcaBindingEClass.getEStructuralFeatures().get(4);
     }
 
@@ -719,7 +719,7 @@ public class JcaPackageImpl extends EPackageImpl implements JcaPackage {
      * <!-- end-user-doc -->
      * @generated
      */
-    public EReference getJCABinding_InboundConnection() {
+    public EReference getJCABinding_OutboundInteraction() {
         return (EReference)jcaBindingEClass.getEStructuralFeatures().get(5);
     }
 
@@ -728,7 +728,7 @@ public class JcaPackageImpl extends EPackageImpl implements JcaPackage {
      * <!-- end-user-doc -->
      * @generated
      */
-    public EReference getJCABinding_InboundInteraction() {
+    public EReference getJCABinding_Property() {
         return (EReference)jcaBindingEClass.getEStructuralFeatures().get(6);
     }
 
@@ -737,26 +737,8 @@ public class JcaPackageImpl extends EPackageImpl implements JcaPackage {
      * <!-- end-user-doc -->
      * @generated
      */
-    public EReference getJCABinding_OutboundInteraction() {
-        return (EReference)jcaBindingEClass.getEStructuralFeatures().get(7);
-    }
-
-    /**
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    public EReference getJCABinding_Property() {
-        return (EReference)jcaBindingEClass.getEStructuralFeatures().get(8);
-    }
-
-    /**
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
     public EAttribute getJCABinding_Extensions() {
-        return (EAttribute)jcaBindingEClass.getEStructuralFeatures().get(9);
+        return (EAttribute)jcaBindingEClass.getEStructuralFeatures().get(7);
     }
 
     /**
@@ -1316,8 +1298,6 @@ public class JcaPackageImpl extends EPackageImpl implements JcaPackage {
         jcaBindingEClass = createEClass(JCA_BINDING);
         createEAttribute(jcaBindingEClass, JCA_BINDING__JNDI_URL);
         createEAttribute(jcaBindingEClass, JCA_BINDING__INITIAL_CONTEXT_FACTORY);
-        createEReference(jcaBindingEClass, JCA_BINDING__CONTEXT_MAPPER);
-        createEReference(jcaBindingEClass, JCA_BINDING__MESSAGE_COMPOSER);
         createEReference(jcaBindingEClass, JCA_BINDING__OUTBOUND_CONNECTION);
         createEReference(jcaBindingEClass, JCA_BINDING__INBOUND_CONNECTION);
         createEReference(jcaBindingEClass, JCA_BINDING__INBOUND_INTERACTION);
@@ -1471,8 +1451,6 @@ public class JcaPackageImpl extends EPackageImpl implements JcaPackage {
         initEClass(jcaBindingEClass, JCABinding.class, "JCABinding", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
         initEAttribute(getJCABinding_JndiURL(), theXMLTypePackage.getAnyURI(), "jndiURL", null, 0, 1, JCABinding.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
         initEAttribute(getJCABinding_InitialContextFactory(), theXMLTypePackage.getAnyURI(), "initialContextFactory", null, 0, 1, JCABinding.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-        initEReference(getJCABinding_ContextMapper(), theSwitchyardPackage.getContextMapperType(), null, "contextMapper", null, 0, 1, JCABinding.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-        initEReference(getJCABinding_MessageComposer(), theSwitchyardPackage.getMessageComposerType(), null, "messageComposer", null, 0, 1, JCABinding.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
         initEReference(getJCABinding_OutboundConnection(), this.getJCAOutboundConnection(), null, "outboundConnection", null, 0, 1, JCABinding.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
         initEReference(getJCABinding_InboundConnection(), this.getJCAInboundConnection(), null, "inboundConnection", null, 0, 1, JCABinding.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
         initEReference(getJCABinding_InboundInteraction(), this.getJCAInboundInteraction(), null, "inboundInteraction", null, 0, 1, JCABinding.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
@@ -1853,22 +1831,6 @@ public class JcaPackageImpl extends EPackageImpl implements JcaPackage {
            new String[] {
              "kind", "attribute",
              "name", "initialContextFactory"
-           });		
-        addAnnotation
-          (getJCABinding_ContextMapper(), 
-           source, 
-           new String[] {
-             "kind", "element",
-             "name", "contextMapper",
-             "namespace", "##targetNamespace"
-           });		
-        addAnnotation
-          (getJCABinding_MessageComposer(), 
-           source, 
-           new String[] {
-             "kind", "element",
-             "name", "messageComposer",
-             "namespace", "##targetNamespace"
            });		
         addAnnotation
           (getJCABinding_OutboundConnection(), 

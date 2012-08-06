@@ -29,8 +29,8 @@ import org.switchyard.tools.models.switchyard1_0.switchyard.impl.SwitchYardBindi
  * <p>
  * The following features are implemented:
  * <ul>
- *   <li>{@link org.switchyard.tools.models.switchyard1_0.soap.impl.SOAPBindingTypeImpl#getContextMapper <em>Context Mapper</em>}</li>
- *   <li>{@link org.switchyard.tools.models.switchyard1_0.soap.impl.SOAPBindingTypeImpl#getMessageComposer <em>Message Composer</em>}</li>
+ *   <li>{@link org.switchyard.tools.models.switchyard1_0.soap.impl.SOAPBindingTypeImpl#getSoapContextMapper <em>Soap Context Mapper</em>}</li>
+ *   <li>{@link org.switchyard.tools.models.switchyard1_0.soap.impl.SOAPBindingTypeImpl#getSoapMessageComposer <em>Soap Message Composer</em>}</li>
  *   <li>{@link org.switchyard.tools.models.switchyard1_0.soap.impl.SOAPBindingTypeImpl#getWsdl <em>Wsdl</em>}</li>
  *   <li>{@link org.switchyard.tools.models.switchyard1_0.soap.impl.SOAPBindingTypeImpl#getWsdlPort <em>Wsdl Port</em>}</li>
  *   <li>{@link org.switchyard.tools.models.switchyard1_0.soap.impl.SOAPBindingTypeImpl#getSocketAddr <em>Socket Addr</em>}</li>
@@ -42,24 +42,24 @@ import org.switchyard.tools.models.switchyard1_0.switchyard.impl.SwitchYardBindi
  */
 public class SOAPBindingTypeImpl extends SwitchYardBindingTypeImpl implements SOAPBindingType {
     /**
-     * The cached value of the '{@link #getContextMapper() <em>Context Mapper</em>}' containment reference.
+     * The cached value of the '{@link #getSoapContextMapper() <em>Soap Context Mapper</em>}' containment reference.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @see #getContextMapper()
+     * @see #getSoapContextMapper()
      * @generated
      * @ordered
      */
-    protected ContextMapperType contextMapper;
+    protected ContextMapperType soapContextMapper;
 
     /**
-     * The cached value of the '{@link #getMessageComposer() <em>Message Composer</em>}' containment reference.
+     * The cached value of the '{@link #getSoapMessageComposer() <em>Soap Message Composer</em>}' containment reference.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @see #getMessageComposer()
+     * @see #getSoapMessageComposer()
      * @generated
      * @ordered
      */
-    protected MessageComposerType messageComposer;
+    protected MessageComposerType soapMessageComposer;
 
     /**
      * The default value of the '{@link #getWsdl() <em>Wsdl</em>}' attribute.
@@ -165,8 +165,8 @@ public class SOAPBindingTypeImpl extends SwitchYardBindingTypeImpl implements SO
      * <!-- end-user-doc -->
      * @generated
      */
-    public ContextMapperType getContextMapper() {
-        return contextMapper;
+    public ContextMapperType getSoapContextMapper() {
+        return soapContextMapper;
     }
 
     /**
@@ -174,11 +174,11 @@ public class SOAPBindingTypeImpl extends SwitchYardBindingTypeImpl implements SO
      * <!-- end-user-doc -->
      * @generated
      */
-    public NotificationChain basicSetContextMapper(ContextMapperType newContextMapper, NotificationChain msgs) {
-        ContextMapperType oldContextMapper = contextMapper;
-        contextMapper = newContextMapper;
+    public NotificationChain basicSetSoapContextMapper(ContextMapperType newSoapContextMapper, NotificationChain msgs) {
+        ContextMapperType oldSoapContextMapper = soapContextMapper;
+        soapContextMapper = newSoapContextMapper;
         if (eNotificationRequired()) {
-            ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, SOAPPackage.SOAP_BINDING_TYPE__CONTEXT_MAPPER, oldContextMapper, newContextMapper);
+            ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, SOAPPackage.SOAP_BINDING_TYPE__SOAP_CONTEXT_MAPPER, oldSoapContextMapper, newSoapContextMapper);
             if (msgs == null) msgs = notification; else msgs.add(notification);
         }
         return msgs;
@@ -189,18 +189,18 @@ public class SOAPBindingTypeImpl extends SwitchYardBindingTypeImpl implements SO
      * <!-- end-user-doc -->
      * @generated
      */
-    public void setContextMapper(ContextMapperType newContextMapper) {
-        if (newContextMapper != contextMapper) {
+    public void setSoapContextMapper(ContextMapperType newSoapContextMapper) {
+        if (newSoapContextMapper != soapContextMapper) {
             NotificationChain msgs = null;
-            if (contextMapper != null)
-                msgs = ((InternalEObject)contextMapper).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - SOAPPackage.SOAP_BINDING_TYPE__CONTEXT_MAPPER, null, msgs);
-            if (newContextMapper != null)
-                msgs = ((InternalEObject)newContextMapper).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - SOAPPackage.SOAP_BINDING_TYPE__CONTEXT_MAPPER, null, msgs);
-            msgs = basicSetContextMapper(newContextMapper, msgs);
+            if (soapContextMapper != null)
+                msgs = ((InternalEObject)soapContextMapper).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - SOAPPackage.SOAP_BINDING_TYPE__SOAP_CONTEXT_MAPPER, null, msgs);
+            if (newSoapContextMapper != null)
+                msgs = ((InternalEObject)newSoapContextMapper).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - SOAPPackage.SOAP_BINDING_TYPE__SOAP_CONTEXT_MAPPER, null, msgs);
+            msgs = basicSetSoapContextMapper(newSoapContextMapper, msgs);
             if (msgs != null) msgs.dispatch();
         }
         else if (eNotificationRequired())
-            eNotify(new ENotificationImpl(this, Notification.SET, SOAPPackage.SOAP_BINDING_TYPE__CONTEXT_MAPPER, newContextMapper, newContextMapper));
+            eNotify(new ENotificationImpl(this, Notification.SET, SOAPPackage.SOAP_BINDING_TYPE__SOAP_CONTEXT_MAPPER, newSoapContextMapper, newSoapContextMapper));
     }
 
     /**
@@ -208,8 +208,8 @@ public class SOAPBindingTypeImpl extends SwitchYardBindingTypeImpl implements SO
      * <!-- end-user-doc -->
      * @generated
      */
-    public MessageComposerType getMessageComposer() {
-        return messageComposer;
+    public MessageComposerType getSoapMessageComposer() {
+        return soapMessageComposer;
     }
 
     /**
@@ -217,11 +217,11 @@ public class SOAPBindingTypeImpl extends SwitchYardBindingTypeImpl implements SO
      * <!-- end-user-doc -->
      * @generated
      */
-    public NotificationChain basicSetMessageComposer(MessageComposerType newMessageComposer, NotificationChain msgs) {
-        MessageComposerType oldMessageComposer = messageComposer;
-        messageComposer = newMessageComposer;
+    public NotificationChain basicSetSoapMessageComposer(MessageComposerType newSoapMessageComposer, NotificationChain msgs) {
+        MessageComposerType oldSoapMessageComposer = soapMessageComposer;
+        soapMessageComposer = newSoapMessageComposer;
         if (eNotificationRequired()) {
-            ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, SOAPPackage.SOAP_BINDING_TYPE__MESSAGE_COMPOSER, oldMessageComposer, newMessageComposer);
+            ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, SOAPPackage.SOAP_BINDING_TYPE__SOAP_MESSAGE_COMPOSER, oldSoapMessageComposer, newSoapMessageComposer);
             if (msgs == null) msgs = notification; else msgs.add(notification);
         }
         return msgs;
@@ -232,18 +232,18 @@ public class SOAPBindingTypeImpl extends SwitchYardBindingTypeImpl implements SO
      * <!-- end-user-doc -->
      * @generated
      */
-    public void setMessageComposer(MessageComposerType newMessageComposer) {
-        if (newMessageComposer != messageComposer) {
+    public void setSoapMessageComposer(MessageComposerType newSoapMessageComposer) {
+        if (newSoapMessageComposer != soapMessageComposer) {
             NotificationChain msgs = null;
-            if (messageComposer != null)
-                msgs = ((InternalEObject)messageComposer).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - SOAPPackage.SOAP_BINDING_TYPE__MESSAGE_COMPOSER, null, msgs);
-            if (newMessageComposer != null)
-                msgs = ((InternalEObject)newMessageComposer).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - SOAPPackage.SOAP_BINDING_TYPE__MESSAGE_COMPOSER, null, msgs);
-            msgs = basicSetMessageComposer(newMessageComposer, msgs);
+            if (soapMessageComposer != null)
+                msgs = ((InternalEObject)soapMessageComposer).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - SOAPPackage.SOAP_BINDING_TYPE__SOAP_MESSAGE_COMPOSER, null, msgs);
+            if (newSoapMessageComposer != null)
+                msgs = ((InternalEObject)newSoapMessageComposer).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - SOAPPackage.SOAP_BINDING_TYPE__SOAP_MESSAGE_COMPOSER, null, msgs);
+            msgs = basicSetSoapMessageComposer(newSoapMessageComposer, msgs);
             if (msgs != null) msgs.dispatch();
         }
         else if (eNotificationRequired())
-            eNotify(new ENotificationImpl(this, Notification.SET, SOAPPackage.SOAP_BINDING_TYPE__MESSAGE_COMPOSER, newMessageComposer, newMessageComposer));
+            eNotify(new ENotificationImpl(this, Notification.SET, SOAPPackage.SOAP_BINDING_TYPE__SOAP_MESSAGE_COMPOSER, newSoapMessageComposer, newSoapMessageComposer));
     }
 
     /**
@@ -338,10 +338,10 @@ public class SOAPBindingTypeImpl extends SwitchYardBindingTypeImpl implements SO
     @Override
     public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
         switch (featureID) {
-            case SOAPPackage.SOAP_BINDING_TYPE__CONTEXT_MAPPER:
-                return basicSetContextMapper(null, msgs);
-            case SOAPPackage.SOAP_BINDING_TYPE__MESSAGE_COMPOSER:
-                return basicSetMessageComposer(null, msgs);
+            case SOAPPackage.SOAP_BINDING_TYPE__SOAP_CONTEXT_MAPPER:
+                return basicSetSoapContextMapper(null, msgs);
+            case SOAPPackage.SOAP_BINDING_TYPE__SOAP_MESSAGE_COMPOSER:
+                return basicSetSoapMessageComposer(null, msgs);
         }
         return super.eInverseRemove(otherEnd, featureID, msgs);
     }
@@ -354,10 +354,10 @@ public class SOAPBindingTypeImpl extends SwitchYardBindingTypeImpl implements SO
     @Override
     public Object eGet(int featureID, boolean resolve, boolean coreType) {
         switch (featureID) {
-            case SOAPPackage.SOAP_BINDING_TYPE__CONTEXT_MAPPER:
-                return getContextMapper();
-            case SOAPPackage.SOAP_BINDING_TYPE__MESSAGE_COMPOSER:
-                return getMessageComposer();
+            case SOAPPackage.SOAP_BINDING_TYPE__SOAP_CONTEXT_MAPPER:
+                return getSoapContextMapper();
+            case SOAPPackage.SOAP_BINDING_TYPE__SOAP_MESSAGE_COMPOSER:
+                return getSoapMessageComposer();
             case SOAPPackage.SOAP_BINDING_TYPE__WSDL:
                 return getWsdl();
             case SOAPPackage.SOAP_BINDING_TYPE__WSDL_PORT:
@@ -378,11 +378,11 @@ public class SOAPBindingTypeImpl extends SwitchYardBindingTypeImpl implements SO
     @Override
     public void eSet(int featureID, Object newValue) {
         switch (featureID) {
-            case SOAPPackage.SOAP_BINDING_TYPE__CONTEXT_MAPPER:
-                setContextMapper((ContextMapperType)newValue);
+            case SOAPPackage.SOAP_BINDING_TYPE__SOAP_CONTEXT_MAPPER:
+                setSoapContextMapper((ContextMapperType)newValue);
                 return;
-            case SOAPPackage.SOAP_BINDING_TYPE__MESSAGE_COMPOSER:
-                setMessageComposer((MessageComposerType)newValue);
+            case SOAPPackage.SOAP_BINDING_TYPE__SOAP_MESSAGE_COMPOSER:
+                setSoapMessageComposer((MessageComposerType)newValue);
                 return;
             case SOAPPackage.SOAP_BINDING_TYPE__WSDL:
                 setWsdl((String)newValue);
@@ -408,11 +408,11 @@ public class SOAPBindingTypeImpl extends SwitchYardBindingTypeImpl implements SO
     @Override
     public void eUnset(int featureID) {
         switch (featureID) {
-            case SOAPPackage.SOAP_BINDING_TYPE__CONTEXT_MAPPER:
-                setContextMapper((ContextMapperType)null);
+            case SOAPPackage.SOAP_BINDING_TYPE__SOAP_CONTEXT_MAPPER:
+                setSoapContextMapper((ContextMapperType)null);
                 return;
-            case SOAPPackage.SOAP_BINDING_TYPE__MESSAGE_COMPOSER:
-                setMessageComposer((MessageComposerType)null);
+            case SOAPPackage.SOAP_BINDING_TYPE__SOAP_MESSAGE_COMPOSER:
+                setSoapMessageComposer((MessageComposerType)null);
                 return;
             case SOAPPackage.SOAP_BINDING_TYPE__WSDL:
                 setWsdl(WSDL_EDEFAULT);
@@ -438,10 +438,10 @@ public class SOAPBindingTypeImpl extends SwitchYardBindingTypeImpl implements SO
     @Override
     public boolean eIsSet(int featureID) {
         switch (featureID) {
-            case SOAPPackage.SOAP_BINDING_TYPE__CONTEXT_MAPPER:
-                return contextMapper != null;
-            case SOAPPackage.SOAP_BINDING_TYPE__MESSAGE_COMPOSER:
-                return messageComposer != null;
+            case SOAPPackage.SOAP_BINDING_TYPE__SOAP_CONTEXT_MAPPER:
+                return soapContextMapper != null;
+            case SOAPPackage.SOAP_BINDING_TYPE__SOAP_MESSAGE_COMPOSER:
+                return soapMessageComposer != null;
             case SOAPPackage.SOAP_BINDING_TYPE__WSDL:
                 return WSDL_EDEFAULT == null ? wsdl != null : !WSDL_EDEFAULT.equals(wsdl);
             case SOAPPackage.SOAP_BINDING_TYPE__WSDL_PORT:

@@ -46,6 +46,7 @@ import org.eclipse.swt.layout.GridData;
 import org.eclipse.swt.layout.GridLayout;
 import org.eclipse.swt.widgets.Button;
 import org.eclipse.swt.widgets.Composite;
+import org.eclipse.swt.widgets.Display;
 import org.eclipse.ui.forms.widgets.ExpandableComposite;
 import org.eclipse.ui.forms.widgets.FormToolkit;
 import org.eclipse.ui.forms.widgets.Section;
@@ -65,7 +66,7 @@ import org.switchyard.tools.ui.editor.property.adapters.LabelAdapter;
 public class SwitchyardSCAPropertiesBindingsSection extends GFPropertySection implements ITabbedPropertyConstants,
         ResourceSetListener {
 
-    private Binding _binding;
+    private Binding _binding = null;
     private ListViewer _listViewer;
     private FormToolkit _toolkit = null;
     private SashForm _sashForm;
@@ -152,39 +153,54 @@ public class SwitchyardSCAPropertiesBindingsSection extends GFPropertySection im
 
     @Override
     public void refresh() {
-        StructuredSelection ssel = (StructuredSelection) _listViewer.getSelection();
-        Binding stashBinding = null;
-        if (!ssel.isEmpty()) {
-            stashBinding = (Binding) ssel.getFirstElement();
-        }
-        PictogramElement pe = getSelectedPictogramElement();
-        if (pe != null) {
-            _targetBO = Graphiti.getLinkService().getBusinessObjectForLinkedPictogramElement(pe);
-            // the filter assured, that it is a Service or Reference
-            if (_targetBO == null) {
-                return;
-            }
-            EList<Binding> bindings = null;
-            if (_targetBO instanceof Service) {
-                Service service = (Service) _targetBO;
-                bindings = service.getBinding();
-            } else if (_targetBO instanceof Reference) {
-                Reference reference = (Reference) _targetBO;
-                bindings = reference.getBinding();
-            }
-            if (bindings != null && _listViewer != null && !_listViewer.getList().isDisposed()) {
-                _listViewer.setInput(bindings);
-                if (bindings.size() > 0) {
-                    if (stashBinding != null) {
-                        _listViewer.setSelection(new StructuredSelection(stashBinding), true);
-                    } else {
-                        _listViewer.setSelection(new StructuredSelection(bindings.get(0)));
+
+        Display.getDefault().asyncExec(new Runnable() {
+            public void run() {
+                PictogramElement pe = getSelectedPictogramElement();
+                if (pe != null) {
+                    Object newTarget = Graphiti.getLinkService().getBusinessObjectForLinkedPictogramElement(pe);
+                    // the filter assured, that it is a Service or Reference
+                    if (newTarget == null) {
+                        return;
                     }
-                } else {
-                    _detailSection.setExpanded(false);
+                    if (_targetBO == null) {
+                        _targetBO = newTarget;
+                    } else if (_targetBO != newTarget) {
+                        _targetBO = newTarget;
+                    }
+                }                
+                
+                StructuredSelection ssel = (StructuredSelection) _listViewer.getSelection();
+                if (!ssel.isEmpty()) {
+                    Binding test = (Binding) ssel.getFirstElement();
+                    if (test.eContainer() != _targetBO) {
+                        _binding = null;
+                    } else {
+                        _binding = test;
+                    }
+                }
+                EList<Binding> bindings = null;
+                if (_targetBO instanceof Service) {
+                    Service service = (Service) _targetBO;
+                    bindings = service.getBinding();
+                } else if (_targetBO instanceof Reference) {
+                    Reference reference = (Reference) _targetBO;
+                    bindings = reference.getBinding();
+                }
+                if (bindings != null && _listViewer != null && !_listViewer.getList().isDisposed()) {
+                    _listViewer.setInput(bindings);
+                    if (bindings.size() > 0) {
+                        if (_binding != null) {
+                            _listViewer.setSelection(new StructuredSelection(_binding), true);
+                        } else {
+                            _listViewer.setSelection(new StructuredSelection(bindings.get(0)));
+                        }
+                    } else {
+                        _detailSection.setExpanded(false);
+                    }
                 }
             }
-        }
+        });
     }
 
     private void createTableAndButtons(Composite parent, int style) {

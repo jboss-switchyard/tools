@@ -56,7 +56,6 @@ import org.switchyard.tools.ui.wizards.NewWSDLFileWizard;
  * @author bfitzpat
  * 
  */
-@SuppressWarnings("restriction")
 public class WSDLURISelectionComposite extends AbstractSwitchyardComposite implements IInterfaceComposite {
 
     private Composite _panel;
