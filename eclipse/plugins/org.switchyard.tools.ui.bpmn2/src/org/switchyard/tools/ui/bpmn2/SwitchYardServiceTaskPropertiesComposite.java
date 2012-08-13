@@ -10,7 +10,7 @@
  ************************************************************************************/
 package org.switchyard.tools.ui.bpmn2;
 
-import org.eclipse.bpmn2.modeler.runtime.jboss.jbpm5.property.JbpmCustomTaskPropertiesComposite;
+import org.eclipse.bpmn2.modeler.runtime.jboss.jbpm5.property.JbpmCustomTaskDetailComposite;
 import org.eclipse.bpmn2.modeler.ui.property.AbstractBpmn2PropertySection;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.swt.widgets.Composite;
@@ -23,7 +23,7 @@ import org.eclipse.swt.widgets.Composite;
  * 
  * @author Rob Cernich
  */
-public class SwitchYardServiceTaskPropertiesComposite extends JbpmCustomTaskPropertiesComposite {
+public class SwitchYardServiceTaskPropertiesComposite extends JbpmCustomTaskDetailComposite {
 
     /**
      * Create a new SwitchYardServiceTaskPropertiesComposite.
