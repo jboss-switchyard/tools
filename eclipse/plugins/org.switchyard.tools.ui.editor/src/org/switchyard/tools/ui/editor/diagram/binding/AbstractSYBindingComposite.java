@@ -21,6 +21,7 @@ import org.eclipse.core.resources.IFile;
 import org.eclipse.core.resources.IProject;
 import org.eclipse.core.resources.IResource;
 import org.eclipse.emf.ecore.EObject;
+import org.eclipse.gef.editparts.AbstractGraphicalEditPart;
 import org.eclipse.jdt.core.IJavaElement;
 import org.eclipse.jdt.core.IJavaProject;
 import org.eclipse.jdt.core.IPackageFragment;
@@ -98,7 +99,7 @@ public abstract class AbstractSYBindingComposite extends AbstractSwitchyardCompo
     public void addTabs(final TabFolder tabFolder) {
         _tabFolder = tabFolder;
         createComposerTab(_tabFolder);
-//        createAdvancedTab(_tabFolder);
+        // createAdvancedTab(_tabFolder);
 
         _tabFolder.addSelectionListener(new SelectionListener() {
             @Override
@@ -112,7 +113,7 @@ public abstract class AbstractSYBindingComposite extends AbstractSwitchyardCompo
             }
         });
     }
-    
+
     protected void resetSelectedTab() {
         if (_tabFolder != null) {
             _tabFolder.setSelection(getSelectedTabIndex());
@@ -139,12 +140,12 @@ public abstract class AbstractSYBindingComposite extends AbstractSwitchyardCompo
         Composite composite = new Composite(tabFolder, SWT.NONE);
         GridLayout gl = new GridLayout(3, false);
         composite.setLayout(gl);
-        
+
         // add controls
-        
+
         return composite;
     }
-    
+
     /**
      * @param tabFolder folder to add new tab to
      * @return composite for tab
@@ -289,16 +290,16 @@ public abstract class AbstractSYBindingComposite extends AbstractSwitchyardCompo
             if (binding.getMessageComposer() != null && binding.getMessageComposer().getClass_() != null) {
                 setTextValue(_composerClassText, binding.getMessageComposer().getClass_());
             }
-            if (binding.getContextMapper() != null && binding.getContextMapper().getIncludes() != null) {
+            if (binding.getContextMapper() != null) {
                 setTextValue(_includesText, binding.getContextMapper().getIncludes());
             }
-            if (binding.getContextMapper() != null && binding.getContextMapper().getIncludeNamespaces() != null) {
+            if (binding.getContextMapper() != null) {
                 setTextValue(_includesNSText, binding.getContextMapper().getIncludeNamespaces());
             }
-            if (binding.getContextMapper() != null && binding.getContextMapper().getExcludes() != null) {
+            if (binding.getContextMapper() != null) {
                 setTextValue(_excludesText, binding.getContextMapper().getExcludes());
             }
-            if (binding.getContextMapper() != null && binding.getContextMapper().getExcludeNamespaces() != null) {
+            if (binding.getContextMapper() != null) {
                 setTextValue(_excludesNSText, binding.getContextMapper().getExcludeNamespaces());
             }
         }
@@ -309,6 +310,16 @@ public abstract class AbstractSYBindingComposite extends AbstractSwitchyardCompo
      * @return true/false if tab is valid or not
      */
     public boolean validateTabs() {
+
+        String cmClass = _mapperClassText.getText().trim();
+        boolean regexEnabled = true;
+        if (cmClass != null && cmClass.length() > 0) {
+            regexEnabled = cmClassSupportsRegEx(cmClass);
+        }
+        _includesText.setEnabled(regexEnabled);
+        _includesNSText.setEnabled(regexEnabled);
+        _excludesText.setEnabled(regexEnabled);
+        _excludesNSText.setEnabled(regexEnabled);
 
         String includesMsg = validateRegExField(_includesText);
         if (includesMsg != null) {
@@ -411,6 +422,17 @@ public abstract class AbstractSYBindingComposite extends AbstractSwitchyardCompo
         wrapOperation(ops);
     }
 
+    protected void updateContextMapperFeatureClearRegex(String featureId, Object value) {
+        ArrayList<ModelOperation> ops = new ArrayList<ModelOperation>();
+        ops.add(new ContextMapperOp());
+        ops.add(new BasicOperation("contextMapper", featureId, value));
+        ops.add(new BasicOperation("contextMapper", "includes", null));
+        ops.add(new BasicOperation("contextMapper", "includeNamespaces", null));
+        ops.add(new BasicOperation("contextMapper", "excludes", null));
+        ops.add(new BasicOperation("contextMapper", "excludeNamespaces", null));
+        wrapOperation(ops);
+    }
+
     protected void updateMessageComposerFeature(String featureId, Object value) {
         ArrayList<ModelOperation> ops = new ArrayList<ModelOperation>();
         ops.add(new MessageComposerOp());
@@ -420,7 +442,18 @@ public abstract class AbstractSYBindingComposite extends AbstractSwitchyardCompo
 
     protected void updateContextMapperFeature(Text control) {
         String value = control.getText().trim();
-        updateContextMapperFeature((String) control.getData(), value);
+        boolean regexSupported = cmClassSupportsRegEx(value);
+        if (!regexSupported && control == _mapperClassText) {
+            updateContextMapperFeatureClearRegex((String) control.getData(), value);
+            setInUpdate(true);
+            _includesText.setText("");
+            _excludesText.setText("");
+            _includesNSText.setText("");
+            _excludesNSText.setText("");
+            setInUpdate(false);
+        } else {
+            updateContextMapperFeature((String) control.getData(), value);
+        }
     }
 
     protected void undoContextMapperFeature(Text control) {
@@ -485,6 +518,25 @@ public abstract class AbstractSYBindingComposite extends AbstractSwitchyardCompo
         }
     }
 
+    private boolean cmClassSupportsRegEx(String classname) {
+        try {
+            IType cmClassType = canFindClass(classname);
+            if (cmClassType != null) {
+                String[] interfaces = cmClassType.getSuperInterfaceNames();
+                if (interfaces != null) {
+                    for (int i = 0; i < interfaces.length; i++) {
+                        if (interfaces[i].contains("RegexContextMapper")) {
+                            return true;
+                        }
+                    }
+                }
+            }
+        } catch (JavaModelException e) {
+            e.fillInStackTrace();
+        }
+        return false;
+    }
+
     private IType canFindClass(String classname) throws JavaModelException {
         IProject project = null;
         ISelection selection = PlatformUI.getWorkbench().getActiveWorkbenchWindow().getSelectionService()
@@ -494,6 +546,8 @@ public abstract class AbstractSYBindingComposite extends AbstractSwitchyardCompo
             selectionToPass = (IStructuredSelection) selection;
             if (selectionToPass.getFirstElement() instanceof IFile) {
                 project = ((IFile) selectionToPass.getFirstElement()).getProject();
+            } else if (selectionToPass.getFirstElement() instanceof AbstractGraphicalEditPart) {
+                project = SwitchyardSCAEditor.getActiveEditor().getModelFile().getProject();
             }
         }
         if (selectionToPass == StructuredSelection.EMPTY) {

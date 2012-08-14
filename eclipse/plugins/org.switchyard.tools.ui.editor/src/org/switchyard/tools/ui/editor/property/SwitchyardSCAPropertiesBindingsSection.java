@@ -77,6 +77,7 @@ public class SwitchyardSCAPropertiesBindingsSection extends GFPropertySection im
     private Button _removeButton;
     private Object _targetBO;
     private TransactionalEditingDomain _domain = null;
+    private IBindingComposite _composite = null;
 
     /**
      * Constructor.
@@ -121,27 +122,37 @@ public class SwitchyardSCAPropertiesBindingsSection extends GFPropertySection im
         addDomainListener();
     }
 
-    private void handleSelectListItem() {
+    private void handleSelectListItem(boolean justRefresh) {
         if (_removeButton != null && !_removeButton.isDisposed()) {
             _removeButton.setEnabled(_binding != null);
         }
         if (_binding != null) {
-            TabbedPropertySheetWidgetFactory factory = getWidgetFactory();
-            IBindingComposite composite = (IBindingComposite) BindingCompositeAdapter.adaptModelToComposite(_binding);
-            if (composite != null) {
-                if (_detailSection.getClient() != null) {
-                    _detailSection.getClient().setVisible(false);
+            if (justRefresh) {
+                if (_composite != null) {
+                    _composite.setBinding(_binding);
+                    _detailSection.setClient(((AbstractSwitchyardComposite) _composite).getPanel());
+                    _detailSection.setExpanded(true);
                 }
-                ((AbstractSwitchyardComposite) composite).setOpenOnCreate(true);
-                ((AbstractSwitchyardComposite) composite).createContents(_detailSection, SWT.NONE);
-                ((AbstractSwitchyardComposite) composite).setRootGridData(new GridData(SWT.FILL, SWT.FILL, true, true));
-                factory.adapt(((AbstractSwitchyardComposite) composite).getPanel());
-                composite.setBinding(_binding);
-                _detailSection.setClient(((AbstractSwitchyardComposite) composite).getPanel());
-                _detailSection.setExpanded(true);
             } else {
-                if (_detailSection.getClient() != null) {
-                    _detailSection.getClient().setVisible(false);
+                TabbedPropertySheetWidgetFactory factory = getWidgetFactory();
+                IBindingComposite composite = (IBindingComposite) BindingCompositeAdapter.adaptModelToComposite(_binding);
+                if (composite != null) {
+                    if (_detailSection.getClient() != null) {
+                        _detailSection.getClient().setVisible(false);
+                    }
+                    ((AbstractSwitchyardComposite) composite).setOpenOnCreate(true);
+                    ((AbstractSwitchyardComposite) composite).createContents(_detailSection, SWT.NONE);
+                    ((AbstractSwitchyardComposite) composite).setRootGridData(new GridData(SWT.FILL, SWT.FILL, true, true));
+                    factory.adapt(((AbstractSwitchyardComposite) composite).getPanel());
+                    _composite = composite;
+                    composite.setBinding(_binding);
+                    _detailSection.setClient(((AbstractSwitchyardComposite) composite).getPanel());
+                    _detailSection.setExpanded(true);
+                } else {
+                    _composite = null;
+                    if (_detailSection.getClient() != null) {
+                        _detailSection.getClient().setVisible(false);
+                    }
                 }
             }
         } else {
@@ -261,8 +272,19 @@ public class SwitchyardSCAPropertiesBindingsSection extends GFPropertySection im
             public void selectionChanged(SelectionChangedEvent event) {
                 IStructuredSelection ssel = (IStructuredSelection) event.getSelection();
                 if (!ssel.isEmpty() && ssel.getFirstElement() instanceof Binding) {
-                    _binding = (Binding) ssel.getFirstElement();
-                    handleSelectListItem();
+                    boolean justRefresh = true;
+                    Binding testBinding = (Binding) ssel.getFirstElement();
+                    IBindingComposite testcomposite = 
+                            (IBindingComposite) BindingCompositeAdapter.adaptModelToComposite(testBinding);
+                    if (_composite == null) {
+                        justRefresh = false;
+                    } else if (!(_composite.getClass().getName().equalsIgnoreCase(testcomposite.getClass().getName()))) {
+                        justRefresh = false;
+                    }
+                    _binding = testBinding;
+                    _detailSection.setRedraw(false);
+                    handleSelectListItem(justRefresh);
+                    _detailSection.setRedraw(true);
                 }
 
             }

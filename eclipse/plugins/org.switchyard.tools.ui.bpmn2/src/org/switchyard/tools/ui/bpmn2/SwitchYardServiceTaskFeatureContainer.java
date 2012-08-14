@@ -95,8 +95,8 @@ public class SwitchYardServiceTaskFeatureContainer extends JbpmCustomTaskFeature
         }
 
         @Override
-        public Task createFlowElement(ICreateContext context) {
-            Task task = super.createFlowElement(context);
+        public Task createBusinessObject(ICreateContext context) {
+            Task task = super.createBusinessObject(context);
 
             Resource resource = ((EObject) getBusinessObjectForPictogramElement(context.getTargetContainer()))
                     .eResource();
