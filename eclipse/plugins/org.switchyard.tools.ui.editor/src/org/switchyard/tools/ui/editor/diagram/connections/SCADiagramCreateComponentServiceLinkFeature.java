@@ -65,7 +65,7 @@ public class SCADiagramCreateComponentServiceLinkFeature extends AbstractCreateC
         if (getAnchorObject(context.getSourceAnchor()) != null) {
             return true;
         }
-        return true;
+        return false;
 
     }
 

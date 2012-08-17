@@ -380,27 +380,24 @@ public class SCADiagramFeatureProvider extends DefaultFeatureProvider {
 
     @Override
     public ICustomFeature[] getCustomFeatures(ICustomContext context) {
+        final List<ICustomFeature> features = new ArrayList<ICustomFeature>(3);
         PictogramElement[] pes = context.getPictogramElements();
         if (pes != null && pes.length == 1) {
             Object bo = getBusinessObjectForPictogramElement(pes[0]);
             if (bo instanceof ComponentService) {
-                final List<ICustomFeature> features = new ArrayList<ICustomFeature>(3);
                 features.add(new SCADiagramCustomPromoteServiceFeature(this));
                 if (((ComponentService) bo).getInterface() instanceof JavaInterface) {
                     features.add(new Java2WSDLCustomFeature(this));
                     features.add(new CreateServiceTestCustomFeature(this));
                 }
-//                features.add(new PropertiesDialogFeature(this));
-                return features.toArray(new ICustomFeature[features.size()]);
             } else if (bo instanceof ComponentReference) {
-                return new ICustomFeature[] {new SCADiagramCustomPromoteReferenceFeature(this) }; //, new PropertiesDialogFeature(this) };
+                features.add(new SCADiagramCustomPromoteReferenceFeature(this));
             } else if (bo instanceof Composite) {
-                return new ICustomFeature[] {new AutoLayoutFeature(this) }; //, new PropertiesDialogFeature(this) };
-//            } else if (bo != null) {
-//                return new ICustomFeature[] {new PropertiesDialogFeature(this) };
+                features.add(new AutoLayoutFeature(this));
             }
         }
-        return super.getCustomFeatures(context);
+        features.add(new ValidateModelFeature(this));
+        return features.toArray(new ICustomFeature[features.size()]);
     }
 
     @Override

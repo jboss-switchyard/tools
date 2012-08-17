@@ -40,6 +40,7 @@ import org.eclipse.ui.IWorkbenchPage;
 import org.eclipse.ui.IWorkbenchPart;
 import org.eclipse.ui.PartInitException;
 import org.eclipse.ui.ide.IDE;
+import org.eclipse.ui.ide.IGotoMarker;
 import org.eclipse.ui.part.EditorPart;
 import org.eclipse.ui.part.FileEditorInput;
 import org.eclipse.ui.part.MultiPageEditorPart;
@@ -53,7 +54,7 @@ import org.w3c.dom.Node;
  * @author bfitzpat
  * 
  */
-public class MultiPageEditor extends MultiPageEditorPart implements IResourceChangeListener {
+public class MultiPageEditor extends MultiPageEditorPart implements IResourceChangeListener, IGotoMarker {
 
     /** The text editor used in page 0. */
     private SwitchyardSCAEditor _diagramEditor;
@@ -86,9 +87,12 @@ public class MultiPageEditor extends MultiPageEditorPart implements IResourceCha
      * 
      * @param marker Marker to look for
      */
+    @Override
     public void gotoMarker(IMarker marker) {
-        setActivePage(0);
-        IDE.gotoMarker(getEditor(0), marker);
+        if (getActivePage() < 0) {
+            setActivePage(0);
+        }
+        IDE.gotoMarker(getEditor(getActivePage()), marker);
     }
 
     /*

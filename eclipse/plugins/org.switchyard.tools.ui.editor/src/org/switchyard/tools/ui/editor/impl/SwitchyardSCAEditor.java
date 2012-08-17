@@ -14,12 +14,25 @@ package org.switchyard.tools.ui.editor.impl;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Collections;
+import java.util.HashSet;
 import java.util.Iterator;
+import java.util.LinkedHashSet;
+import java.util.List;
+import java.util.Set;
 
 import org.eclipse.core.resources.IFile;
+import org.eclipse.core.resources.IMarker;
+import org.eclipse.core.resources.IMarkerDelta;
 import org.eclipse.core.resources.IProject;
+import org.eclipse.core.resources.IResource;
+import org.eclipse.core.resources.IResourceChangeEvent;
+import org.eclipse.core.resources.IResourceChangeListener;
+import org.eclipse.core.resources.IResourceDelta;
 import org.eclipse.core.runtime.CoreException;
 import org.eclipse.core.runtime.IPath;
+import org.eclipse.core.runtime.IStatus;
 import org.eclipse.core.runtime.Path;
 import org.eclipse.core.runtime.Status;
 import org.eclipse.emf.common.notify.Adapter;
@@ -27,10 +40,19 @@ import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.Notifier;
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EObject;
+import org.eclipse.emf.ecore.EValidator;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.ResourceSet;
+import org.eclipse.emf.ecore.util.EcoreUtil;
+import org.eclipse.emf.edit.ui.util.EditUIMarkerHelper;
 import org.eclipse.emf.transaction.RecordingCommand;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
+import org.eclipse.emf.validation.marker.MarkerUtil;
+import org.eclipse.emf.validation.model.ConstraintStatus;
+import org.eclipse.emf.validation.model.IModelConstraint;
+import org.eclipse.emf.validation.service.ConstraintFactory;
+import org.eclipse.emf.validation.service.ConstraintRegistry;
+import org.eclipse.emf.validation.service.IConstraintDescriptor;
 import org.eclipse.emf.workspace.util.WorkspaceSynchronizer;
 import org.eclipse.graphiti.mm.pictograms.Diagram;
 import org.eclipse.graphiti.mm.pictograms.PictogramElement;
@@ -49,6 +71,7 @@ import org.eclipse.ui.IEditorSite;
 import org.eclipse.ui.IWorkbenchPage;
 import org.eclipse.ui.IWorkbenchPart;
 import org.eclipse.ui.PartInitException;
+import org.eclipse.ui.ide.IGotoMarker;
 import org.open.oasis.docs.ns.opencsa.sca.bpel.BPELPackage;
 import org.switchyard.tools.models.switchyard1_0.bean.BeanPackage;
 import org.switchyard.tools.models.switchyard1_0.bpm.BPMPackage;
@@ -59,17 +82,19 @@ import org.switchyard.tools.models.switchyard1_0.hornetq.HornetQPackage;
 import org.switchyard.tools.models.switchyard1_0.rules.RulesPackage;
 import org.switchyard.tools.models.switchyard1_0.soap.SOAPPackage;
 import org.switchyard.tools.models.switchyard1_0.switchyard.SwitchyardPackage;
-import org.switchyard.tools.models.switchyard1_0.switchyard.util.SwitchyardResourceFactoryImpl;
 import org.switchyard.tools.models.switchyard1_0.transform.TransformPackage;
 import org.switchyard.tools.models.switchyard1_0.validate.ValidatePackage;
 import org.switchyard.tools.ui.editor.Activator;
+import org.switchyard.tools.ui.validation.SwitchYardProjectValidator;
+import org.switchyard.tools.ui.validation.ValidationStatusAdapter;
+import org.switchyard.tools.ui.validation.ValidationStatusAdapterFactory;
 
 /**
  * @author bfitzpat
  * 
  */
 @SuppressWarnings("restriction")
-public class SwitchyardSCAEditor extends DiagramEditor {
+public class SwitchyardSCAEditor extends DiagramEditor implements IGotoMarker {
 
     /**
      * Editor ID.
@@ -87,6 +112,7 @@ public class SwitchyardSCAEditor extends DiagramEditor {
     private IFile _modelFile;
     private IFile _targetModelFile;
     private IFile _diagramFile;
+    private IResourceChangeListener _workspaceListener;
 
     private static SwitchyardSCAEditor activeEditor;
 
@@ -173,8 +199,8 @@ public class SwitchyardSCAEditor extends DiagramEditor {
                 _modelUri = modelUri;
 
                 // load switchyard.xml
-                Resource switchYardResource = getEditingDomain().getResourceSet().createResource(modelUri,
-                        "org.switchyard.tools.ui.editor.content-type.xml");
+                final Resource switchYardResource = getEditingDomain().getResourceSet().createResource(
+                        modelUri.trimFragment(), "org.switchyard.tools.ui.editor.content-type.xml");
 
                 _modelFile = WorkspaceSynchronizer.getFile(switchYardResource);
 
@@ -184,6 +210,14 @@ public class SwitchyardSCAEditor extends DiagramEditor {
                     ErrorUtils.showErrorWithLogging(new Status(Status.ERROR, Activator.PLUGIN_ID,
                             "Could not load file: " + modelUri + ".  " + e.getLocalizedMessage()));
                     return null;
+                }
+
+                // read in the markers
+                try {
+                    loadValidationStatus(Arrays.asList(_modelFile.findMarkers(
+                            SwitchYardProjectValidator.SWITCHYARD_MARKER_ID, true, IResource.DEPTH_ZERO)));
+                } catch (CoreException e) {
+                    Activator.logStatus(e.getStatus());
                 }
 
                 // get the diagram url
@@ -234,20 +268,93 @@ public class SwitchyardSCAEditor extends DiagramEditor {
                         protected void doExecute() {
                             for (PictogramLink link : finalDiagram.getPictogramLinks()) {
                                 for (EObject object : new ArrayList<EObject>(link.getBusinessObjects())) {
-                                    if (object.eContainer() == null) {
+                                    if (object.eContainer() == null && object.eResource() == null) {
                                         link.getBusinessObjects().remove(object);
                                     }
                                 }
                             }
+                            // make sure the diagram is linked to the switchyard
+                            // model
+                            PictogramLink diagramLink = finalDiagram.getLink();
+                            if (diagramLink == null) {
+                                diagramLink = PictogramsFactory.eINSTANCE.createPictogramLink();
+                                diagramLink.setPictogramElement(finalDiagram);
+                                finalDiagram.getPictogramLinks().add(diagramLink);
+                            }
+                            diagramLink.getBusinessObjects().addAll(switchYardResource.getContents());
                         }
                     });
                 }
 
                 // won't allow undo of any previous actions
                 getEditingDomain().getCommandStack().flush();
+
+                addWorkspaceListener();
+
                 return diagram;
             }
         };
+    }
+
+    private Set<EObject> loadValidationStatus(List<IMarker> markers) {
+        if (markers == null) {
+            return Collections.emptySet();
+        }
+        Set<EObject> touched = new LinkedHashSet<EObject>();
+        for (IMarker marker : markers) {
+            final EObject markedObject = getTargetObject(marker);
+            if (markedObject == null) {
+                continue;
+            }
+            ValidationStatusAdapter statusAdapter = (ValidationStatusAdapter) EcoreUtil.getRegisteredAdapter(
+                    markedObject, ValidationStatusAdapter.class);
+            statusAdapter.addValidationStatus(convertMarker(marker, markedObject));
+            touched.add(markedObject);
+        }
+        return touched;
+    }
+
+    private EObject getTargetObject(IMarker marker) {
+        final String uriString = marker.getAttribute(EValidator.URI_ATTRIBUTE, null);
+        final URI uri = uriString == null ? null : URI.createURI(uriString);
+        if (uri == null) {
+            return null;
+        }
+        return getEditingDomain().getResourceSet().getEObject(uri, false);
+    }
+
+    @SuppressWarnings("unchecked")
+    private IStatus convertMarker(IMarker marker, EObject target) {
+        final String message = marker.getAttribute(IMarker.MESSAGE, "");
+        final String constraintId = marker.getAttribute(MarkerUtil.RULE_ATTRIBUTE, null);
+        final IConstraintDescriptor icd = constraintId == null ? null : ConstraintRegistry.getInstance().getDescriptor(
+                constraintId);
+        final IModelConstraint imc = icd == null ? null : ConstraintFactory.getInstance().newConstraint(icd);
+        if (imc == null) {
+            final int severity;
+            switch (marker.getAttribute(IMarker.SEVERITY, -1)) {
+            case IMarker.SEVERITY_INFO:
+                severity = IStatus.INFO;
+                break;
+            case IMarker.SEVERITY_WARNING:
+                severity = IStatus.WARNING;
+                break;
+            case IMarker.SEVERITY_ERROR:
+                severity = IStatus.ERROR;
+                break;
+            default:
+                severity = IStatus.OK;
+            }
+            return new Status(severity, Activator.PLUGIN_ID, message);
+        }
+        List<?> locus = new EditUIMarkerHelper().getTargetObjects(getEditingDomain(), marker);
+        for (Iterator<?> it = locus.iterator(); it.hasNext();) {
+            if (!(it.next() instanceof EObject)) {
+                it.remove();
+            }
+        }
+        return new ConstraintStatus(imc, target, message, locus == null ? null : new LinkedHashSet<EObject>(
+                (List<? extends EObject>) locus));
     }
 
     private URI convertModelURIToDiagramURI(URI modelUri) {
@@ -262,21 +369,16 @@ public class SwitchyardSCAEditor extends DiagramEditor {
         return new DefaultUpdateBehavior(this) {
             @Override
             protected void initializeEditingDomain(TransactionalEditingDomain domain) {
-                super.initializeEditingDomain(domain);
-
                 ResourceSet resourceSet = domain.getResourceSet();
-                // ExtendedMetaData extendedMetaData = new
-                // BasicExtendedMetaData(resourceSet.getPackageRegistry());
-                // resourceSet.getLoadOptions().put(XMLResource.OPTION_EXTENDED_META_DATA,
-                // extendedMetaData);
-                resourceSet.getResourceFactoryRegistry().getExtensionToFactoryMap()
-                        .put(Resource.Factory.Registry.DEFAULT_EXTENSION, new SwitchyardResourceFactoryImpl());
 
-                // Register the package to make it available during loading.
-                registerPackages(resourceSet);
+                // add the adapter factory for tracking validation status
+                resourceSet.getAdapterFactories().add(new ValidationStatusAdapterFactory());
 
+                // add the editor adapter
                 _editorAdapter = new SwitchyardSCAEditorAdapter();
                 resourceSet.eAdapters().add(_editorAdapter);
+
+                super.initializeEditingDomain(domain);
             }
 
             @Override
@@ -326,6 +428,8 @@ public class SwitchyardSCAEditor extends DiagramEditor {
             setActiveEditor(null);
         }
 
+        removeWorkspaceListener();
+
         super.dispose();
         // get rid of temp files and folders, button only if the workbench is
         // being shut down.
@@ -336,6 +440,20 @@ public class SwitchyardSCAEditor extends DiagramEditor {
         // }
         // removeWorkbenchListener();
         // getPreferences().dispose();
+    }
+
+    @Override
+    public void gotoMarker(IMarker marker) {
+        final EObject target = getTargetObject(marker);
+        if (target == null) {
+            return;
+        }
+        final PictogramElement pe = getDiagramTypeProvider().getFeatureProvider().getPictogramElementForBusinessObject(
+                target);
+        if (pe == null) {
+            return;
+        }
+        selectPictogramElements(new PictogramElement[] {pe });
     }
 
     /**
@@ -364,6 +482,75 @@ public class SwitchyardSCAEditor extends DiagramEditor {
         return _targetModelFile;
     }
 
+    private void addWorkspaceListener() {
+        if (_workspaceListener == null) {
+            _workspaceListener = new IResourceChangeListener() {
+                @Override
+                public void resourceChanged(IResourceChangeEvent event) {
+                    final IResourceDelta modelFileDelta = event.getDelta().findMember(_modelFile.getFullPath());
+                    if (modelFileDelta == null) {
+                        return;
+                    }
+                    final IMarkerDelta[] markerDeltas = modelFileDelta.getMarkerDeltas();
+                    if (markerDeltas == null || markerDeltas.length == 0) {
+                        return;
+                    }
+
+                    final List<IMarker> newMarkers = new ArrayList<IMarker>();
+                    final Set<String> deletedMarkers = new HashSet<String>();
+                    for (IMarkerDelta markerDelta : markerDeltas) {
+                        switch (markerDelta.getKind()) {
+                        case IResourceDelta.ADDED:
+                            newMarkers.add(markerDelta.getMarker());
+                            break;
+                        case IResourceDelta.CHANGED:
+                            newMarkers.add(markerDelta.getMarker());
+                            // fall through
+                        case IResourceDelta.REMOVED:
+                            final String uri = markerDelta.getAttribute(EValidator.URI_ATTRIBUTE, null);
+                            if (uri != null) {
+                                deletedMarkers.add(uri);
+                            }
+                        }
+                    }
+
+                    final Set<EObject> updatedObjects = new LinkedHashSet<EObject>();
+                    for (String uri : deletedMarkers) {
+                        final EObject eobject = getEditingDomain().getResourceSet().getEObject(URI.createURI(uri),
+                                false);
+                        if (eobject == null) {
+                            continue;
+                        }
+                        final ValidationStatusAdapter adapter = (ValidationStatusAdapter) EcoreUtil
+                                .getRegisteredAdapter(eobject, ValidationStatusAdapter.class);
+                        if (adapter == null) {
+                            continue;
+                        }
+                        adapter.clearValidationStatus();
+                        updatedObjects.add(eobject);
+                    }
+                    updatedObjects.addAll(loadValidationStatus(newMarkers));
+                    getEditorSite().getShell().getDisplay().asyncExec(new Runnable() {
+                        public void run() {
+                            for (EObject eobject : updatedObjects) {
+                                PictogramElement pe = getDiagramTypeProvider().getFeatureProvider()
+                                        .getPictogramElementForBusinessObject(eobject);
+                                if (pe != null) {
+                                    getRefreshBehavior().refreshRenderingDecorators(pe);
+                                }
+                            }
+                        }
+                    });
+                }
+            };
+        }
+        _modelFile.getWorkspace().addResourceChangeListener(_workspaceListener, IResourceChangeEvent.POST_BUILD);
+    }
+
+    private void removeWorkspaceListener() {
+        _modelFile.getWorkspace().removeResourceChangeListener(_workspaceListener);
+    }
+
     /**
      * @param resourceSet register all the EMF packages for the SY resource set
      */
@@ -383,4 +570,5 @@ public class SwitchyardSCAEditor extends DiagramEditor {
         resourceSet.getPackageRegistry().put("urn:switchyard-component-bpm:config:1.0", BPMPackage.eINSTANCE);
         resourceSet.getPackageRegistry().put("http://docs.oasis-open.org/ns/opencsa/sca/200903", BPELPackage.eINSTANCE);
     }
+
 }

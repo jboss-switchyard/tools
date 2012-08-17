@@ -30,7 +30,9 @@ Require-Bundle: org.eclipse.ui,
  org.eclipse.wst.wsdl;bundle-version="1.2.0",
  org.eclipse.wst.wsdl.ui;bundle-version="1.2.0",
  org.eclipse.wst.xml.core;bundle-version="1.1.0",
- org.eclipse.wst.xml.ui;bundle-version="1.1.0"
+ org.eclipse.wst.xml.ui;bundle-version="1.1.0",
+ org.eclipse.wst.validation,
+ org.eclipse.emf.validation
 Bundle-RequiredExecutionEnvironment: JavaSE-1.6
 Bundle-ActivationPolicy: lazy
 Export-Package: org.switchyard.tools.ui,
@@ -42,4 +44,5 @@ Export-Package: org.switchyard.tools.ui,
  org.switchyard.tools.ui.facets,
  org.switchyard.tools.ui.operations,
  org.switchyard.tools.ui.properties,
+ org.switchyard.tools.ui.validation,
  org.switchyard.tools.ui.wizards

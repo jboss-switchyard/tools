@@ -86,5 +86,29 @@
             class="org.switchyard.tools.models.switchyard1_0.validate.ValidatePackage"
             genModel="model/switchyard_1.0.genmodel"/>
    </extension>
+   <extension
+         point="org.eclipse.emf.ecore.content_parser">
+      <parser
+            class="org.switchyard.tools.models.switchyard1_0.switchyard.util.SwitchyardResourceFactoryImpl"
+            contentTypeIdentifier="org.switchyard.tools.ui.editor.content-type.xml">
+      </parser>
+   </extension>
 
+    <extension
+         point="org.eclipse.core.contenttype.contentTypes">
+      <content-type
+            base-type="org.eclipse.core.runtime.xml"
+            id="org.switchyard.tools.ui.editor.content-type.xml"
+            name="SwitchYard 1.0 XML File"
+            priority="normal">
+         <describer
+               class="org.eclipse.core.runtime.content.XMLRootElementContentDescriber2"
+               plugin="org.eclipse.emf.ecore.xmi">
+            <parameter
+                  name="element"
+                  value="{urn:switchyard-config:switchyard:1.0}*">
+            </parameter>
+         </describer>
+      </content-type>
+ </extension>
 </plugin>

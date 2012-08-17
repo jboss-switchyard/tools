@@ -16,7 +16,11 @@ import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 
+import org.eclipse.core.runtime.IStatus;
 import org.eclipse.emf.common.util.EList;
+import org.eclipse.emf.ecore.EObject;
+import org.eclipse.emf.ecore.InternalEObject;
+import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.graphiti.dt.IDiagramTypeProvider;
 import org.eclipse.graphiti.features.ICreateConnectionFeature;
 import org.eclipse.graphiti.features.ICreateFeature;
@@ -32,9 +36,11 @@ import org.eclipse.graphiti.palette.IPaletteCompartmentEntry;
 import org.eclipse.graphiti.palette.impl.ConnectionCreationToolEntry;
 import org.eclipse.graphiti.palette.impl.ObjectCreationToolEntry;
 import org.eclipse.graphiti.palette.impl.PaletteCompartmentEntry;
+import org.eclipse.graphiti.platform.IPlatformImageConstants;
 import org.eclipse.graphiti.tb.DefaultToolBehaviorProvider;
 import org.eclipse.graphiti.tb.IContextButtonPadData;
 import org.eclipse.graphiti.tb.IDecorator;
+import org.eclipse.graphiti.tb.IImageDecorator;
 import org.eclipse.graphiti.tb.ImageDecorator;
 import org.eclipse.soa.sca.sca1_1.model.sca.Binding;
 import org.eclipse.soa.sca.sca1_1.model.sca.Component;
@@ -48,6 +54,7 @@ import org.eclipse.soa.sca.sca1_1.model.sca.Service;
 import org.switchyard.tools.models.switchyard1_0.hornetq.BindingType;
 import org.switchyard.tools.models.switchyard1_0.soap.SOAPBindingType;
 import org.switchyard.tools.ui.editor.ImageProvider;
+import org.switchyard.tools.ui.validation.ValidationStatusAdapter;
 
 /**
  * @author bfitzpat
@@ -90,10 +97,10 @@ public class SCADiagramToolBehaviorProvider extends DefaultToolBehaviorProvider 
 
     @Override
     public IDecorator[] getDecorators(PictogramElement pe) {
+        List<IDecorator> decorators = new ArrayList<IDecorator>();
         IFeatureProvider featureProvider = getFeatureProvider();
         Object bo = featureProvider.getBusinessObjectForPictogramElement(pe);
         if (bo instanceof Service) {
-            ArrayList<IDecorator> decorators = new ArrayList<IDecorator>();
             Service service = (Service) bo;
             if (!service.getBinding().isEmpty()) {
                 EList<Binding> bindings = service.getBinding();
@@ -128,10 +135,8 @@ public class SCADiagramToolBehaviorProvider extends DefaultToolBehaviorProvider 
                 imageRenderingDecorator.setMessage("Interface (Inherited):\n" + intfc.eClass().getInstanceTypeName());
                 decorators.add(imageRenderingDecorator);
             }
-            return decorators.toArray(new IDecorator[decorators.size()]);
         } else if (bo instanceof Reference) {
             Reference reference = (Reference) bo;
-            ArrayList<IDecorator> decorators = new ArrayList<IDecorator>();
             if (!reference.getBinding().isEmpty()) {
                 EList<Binding> bindings = reference.getBinding();
                 for (Binding binding : bindings) {
@@ -175,22 +180,48 @@ public class SCADiagramToolBehaviorProvider extends DefaultToolBehaviorProvider 
                     decorators.add(imageRenderingDecorator);
                 }
             }
-            return decorators.toArray(new IDecorator[decorators.size()]);
-
         } else if (bo instanceof Component) {
             Component component = (Component) bo;
             if (component.getImplementation() != null) {
-                ArrayList<IDecorator> decorators = new ArrayList<IDecorator>();
                 Implementation implementation = component.getImplementation();
                 String text = implementation.getClass().getSimpleName();
                 IDecorator imageRenderingDecorator = new ImageDecorator(ImageProvider.IMG_16_IMPLEMENTATION_TYPE);
                 imageRenderingDecorator.setMessage(text);
                 decorators.add(imageRenderingDecorator);
-                return decorators.toArray(new IDecorator[decorators.size()]);
             }
         }
 
-        return super.getDecorators(pe);
+        ValidationStatusAdapter statusAdapter = (ValidationStatusAdapter) EcoreUtil.getRegisteredAdapter((EObject) bo,
+                ValidationStatusAdapter.class);
+        if (statusAdapter != null) {
+            final IImageDecorator decorator;
+            final IStatus status = statusAdapter.getValidationStatus();
+            switch (status.getSeverity()) {
+            case IStatus.INFO:
+                decorator = new ImageDecorator(IPlatformImageConstants.IMG_ECLIPSE_INFORMATION_TSK);
+                break;
+            case IStatus.WARNING:
+                decorator = new ImageDecorator(IPlatformImageConstants.IMG_ECLIPSE_WARNING_TSK);
+                break;
+            case IStatus.ERROR:
+                decorator = new ImageDecorator(IPlatformImageConstants.IMG_ECLIPSE_ERROR_TSK);
+                break;
+            default:
+                decorator = null;
+                break;
+            }
+            if (decorator != null) {
+                GraphicsAlgorithm ga = getSelectionBorder(pe);
+                if (ga == null) {
+                    ga = pe.getGraphicsAlgorithm();
+                }
+                decorator.setX(ga.getWidth() - 10);
+                decorator.setY(ga.getHeight() - 10);
+                decorator.setMessage(status.getMessage());
+                decorators.add(decorator);
+            }
+        }
+        return decorators.toArray(new IDecorator[decorators.size()]);
     }
 
     @Override
@@ -311,6 +342,31 @@ public class SCADiagramToolBehaviorProvider extends DefaultToolBehaviorProvider 
             }
         }
         return super.getDoubleClickFeature(context);
+    }
+
+    @Override
+    public boolean equalsBusinessObjects(Object o1, Object o2) {
+        // we don't want to use EcoreUtil.equals() as the parent does.
+        // null check
+        if (o1 == null) {
+            return o2 == null;
+        } else if (o2 == null) {
+            return false;
+        }
+
+        if (o1 instanceof EObject && o2 instanceof EObject) {
+            EObject eo1 = (EObject) o1;
+            EObject eo2 = (EObject) o2;
+            // proxy check
+            if (eo1.eIsProxy()) {
+                return eo2.eIsProxy()
+                        && ((InternalEObject) eo1).eProxyURI().equals(((InternalEObject) eo2).eProxyURI());
+            } else if (eo2.eIsProxy()) {
+                return false;
+            }
+            return eo1 == eo2;
+        }
+        return false;
     }
 
     private class Location {
