@@ -31,11 +31,14 @@ import org.switchyard.tools.models.switchyard1_0.jca.JCABinding;
 import org.switchyard.tools.models.switchyard1_0.resteasy.RESTBindingType;
 import org.switchyard.tools.models.switchyard1_0.soap.SOAPBindingType;
 import org.switchyard.tools.models.switchyard1_0.switchyard.TransformType;
+import org.switchyard.tools.models.switchyard1_0.switchyard.ValidateType;
 import org.switchyard.tools.models.switchyard1_0.transform.JAXBTransformType;
 import org.switchyard.tools.models.switchyard1_0.transform.JavaTransformType1;
 import org.switchyard.tools.models.switchyard1_0.transform.JsonTransformType;
 import org.switchyard.tools.models.switchyard1_0.transform.SmooksTransformType1;
 import org.switchyard.tools.models.switchyard1_0.transform.XsltTransformType;
+import org.switchyard.tools.models.switchyard1_0.validate.JavaValidateType;
+import org.switchyard.tools.models.switchyard1_0.validate.XmlValidateType;
 import org.switchyard.tools.ui.editor.impl.SwitchyardSCAEditor;
 
 /**
@@ -59,6 +62,8 @@ public final class LabelAdapter {
             return getLabelForBindingType((Binding) objectForLabel);
         } else if (objectForLabel instanceof TransformType) {
             return getLabelForTransformType((TransformType) objectForLabel);
+        } else if (objectForLabel instanceof ValidateType) {
+            return getLabelForValidatorType((ValidateType) objectForLabel);
         }
         return objectForLabel.toString();
     }
@@ -128,6 +133,25 @@ public final class LabelAdapter {
         URI _modelUri = URI.createPlatformResourceURI(SwitchyardSCAEditor.getActiveEditor().getModelFile()
                 .getFullPath().toString(), true);
         if (transform.eResource() != null && !transform.eResource().getURI().toString().equals(_modelUri.toString())) {
+            label = label + '*';
+        }
+        return label;
+    }
+
+    /**
+     * @param validator transform to check
+     * @return String label
+     */
+    private static String getLabelForValidatorType(ValidateType validator) {
+        String label = "Unsupported (" + validator.eClass().getClass().getName() + ")";
+        if (validator instanceof XmlValidateType) {
+            label = "XML";
+        } else if (validator instanceof JavaValidateType) {
+            label = "Java";
+        }
+        URI _modelUri = URI.createPlatformResourceURI(SwitchyardSCAEditor.getActiveEditor().getModelFile()
+                .getFullPath().toString(), true);
+        if (validator.eResource() != null && !validator.eResource().getURI().toString().equals(_modelUri.toString())) {
             label = label + '*';
         }
         return label;

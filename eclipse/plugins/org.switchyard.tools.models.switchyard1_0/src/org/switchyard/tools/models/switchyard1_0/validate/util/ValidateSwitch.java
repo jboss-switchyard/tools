@@ -29,146 +29,146 @@ import org.switchyard.tools.models.switchyard1_0.validate.*;
  */
 public class ValidateSwitch<T> extends Switch<T> {
 	/**
-     * The cached model package
-     * <!-- begin-user-doc -->
+	 * The cached model package
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
 	protected static ValidatePackage modelPackage;
 
 	/**
-     * Creates an instance of the switch.
-     * <!-- begin-user-doc -->
+	 * Creates an instance of the switch.
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
 	public ValidateSwitch() {
-        if (modelPackage == null) {
-            modelPackage = ValidatePackage.eINSTANCE;
-        }
-    }
+		if (modelPackage == null) {
+			modelPackage = ValidatePackage.eINSTANCE;
+		}
+	}
 
 	/**
-     * Checks whether this is a switch for the given package.
-     * <!-- begin-user-doc -->
+	 * Checks whether this is a switch for the given package.
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-     * @parameter ePackage the package in question.
-     * @return whether this is a switch for the given package.
-     * @generated
-     */
+	 * @parameter ePackage the package in question.
+	 * @return whether this is a switch for the given package.
+	 * @generated
+	 */
 	@Override
 	protected boolean isSwitchFor(EPackage ePackage) {
-        return ePackage == modelPackage;
-    }
+		return ePackage == modelPackage;
+	}
 
 	/**
-     * Calls <code>caseXXX</code> for each class of the model until one returns a non null result; it yields that result.
-     * <!-- begin-user-doc -->
+	 * Calls <code>caseXXX</code> for each class of the model until one returns a non null result; it yields that result.
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-     * @return the first non-null result returned by a <code>caseXXX</code> call.
-     * @generated
-     */
+	 * @return the first non-null result returned by a <code>caseXXX</code> call.
+	 * @generated
+	 */
 	@Override
 	protected T doSwitch(int classifierID, EObject theEObject) {
-        switch (classifierID) {
-            case ValidatePackage.DOCUMENT_ROOT: {
-                DocumentRoot documentRoot = (DocumentRoot)theEObject;
-                T result = caseDocumentRoot(documentRoot);
-                if (result == null) result = defaultCase(theEObject);
-                return result;
-            }
-            case ValidatePackage.JAVA_VALIDATE_TYPE: {
-                JavaValidateType javaValidateType = (JavaValidateType)theEObject;
-                T result = caseJavaValidateType(javaValidateType);
-                if (result == null) result = caseValidateType(javaValidateType);
-                if (result == null) result = defaultCase(theEObject);
-                return result;
-            }
-            case ValidatePackage.XML_VALIDATE_TYPE: {
-                XmlValidateType xmlValidateType = (XmlValidateType)theEObject;
-                T result = caseXmlValidateType(xmlValidateType);
-                if (result == null) result = caseValidateType(xmlValidateType);
-                if (result == null) result = defaultCase(theEObject);
-                return result;
-            }
-            default: return defaultCase(theEObject);
-        }
-    }
+		switch (classifierID) {
+			case ValidatePackage.DOCUMENT_ROOT: {
+				DocumentRoot documentRoot = (DocumentRoot)theEObject;
+				T result = caseDocumentRoot(documentRoot);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case ValidatePackage.JAVA_VALIDATE_TYPE: {
+				JavaValidateType javaValidateType = (JavaValidateType)theEObject;
+				T result = caseJavaValidateType(javaValidateType);
+				if (result == null) result = caseValidateType(javaValidateType);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case ValidatePackage.XML_VALIDATE_TYPE: {
+				XmlValidateType xmlValidateType = (XmlValidateType)theEObject;
+				T result = caseXmlValidateType(xmlValidateType);
+				if (result == null) result = caseValidateType(xmlValidateType);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			default: return defaultCase(theEObject);
+		}
+	}
 
 	/**
-     * Returns the result of interpreting the object as an instance of '<em>Document Root</em>'.
-     * <!-- begin-user-doc -->
+	 * Returns the result of interpreting the object as an instance of '<em>Document Root</em>'.
+	 * <!-- begin-user-doc -->
 	 * This implementation returns null;
 	 * returning a non-null result will terminate the switch.
 	 * <!-- end-user-doc -->
-     * @param object the target of the switch.
-     * @return the result of interpreting the object as an instance of '<em>Document Root</em>'.
-     * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
-     * @generated
-     */
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Document Root</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
 	public T caseDocumentRoot(DocumentRoot object) {
-        return null;
-    }
+		return null;
+	}
 
 	/**
-     * Returns the result of interpreting the object as an instance of '<em>Java Validate Type</em>'.
-     * <!-- begin-user-doc -->
+	 * Returns the result of interpreting the object as an instance of '<em>Java Validate Type</em>'.
+	 * <!-- begin-user-doc -->
 	 * This implementation returns null;
 	 * returning a non-null result will terminate the switch.
 	 * <!-- end-user-doc -->
-     * @param object the target of the switch.
-     * @return the result of interpreting the object as an instance of '<em>Java Validate Type</em>'.
-     * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
-     * @generated
-     */
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Java Validate Type</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
 	public T caseJavaValidateType(JavaValidateType object) {
-        return null;
-    }
+		return null;
+	}
 
 	/**
-     * Returns the result of interpreting the object as an instance of '<em>Xml Validate Type</em>'.
-     * <!-- begin-user-doc -->
+	 * Returns the result of interpreting the object as an instance of '<em>Xml Validate Type</em>'.
+	 * <!-- begin-user-doc -->
 	 * This implementation returns null;
 	 * returning a non-null result will terminate the switch.
 	 * <!-- end-user-doc -->
-     * @param object the target of the switch.
-     * @return the result of interpreting the object as an instance of '<em>Xml Validate Type</em>'.
-     * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
-     * @generated
-     */
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Xml Validate Type</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
 	public T caseXmlValidateType(XmlValidateType object) {
-        return null;
-    }
+		return null;
+	}
 
 	/**
-     * Returns the result of interpreting the object as an instance of '<em>Validate Type</em>'.
-     * <!-- begin-user-doc -->
+	 * Returns the result of interpreting the object as an instance of '<em>Validate Type</em>'.
+	 * <!-- begin-user-doc -->
      * This implementation returns null;
      * returning a non-null result will terminate the switch.
      * <!-- end-user-doc -->
-     * @param object the target of the switch.
-     * @return the result of interpreting the object as an instance of '<em>Validate Type</em>'.
-     * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
-     * @generated
-     */
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Validate Type</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
     public T caseValidateType(ValidateType object) {
-        return null;
-    }
+		return null;
+	}
 
     /**
-     * Returns the result of interpreting the object as an instance of '<em>EObject</em>'.
-     * <!-- begin-user-doc -->
+	 * Returns the result of interpreting the object as an instance of '<em>EObject</em>'.
+	 * <!-- begin-user-doc -->
 	 * This implementation returns null;
 	 * returning a non-null result will terminate the switch, but this is the last case anyway.
 	 * <!-- end-user-doc -->
-     * @param object the target of the switch.
-     * @return the result of interpreting the object as an instance of '<em>EObject</em>'.
-     * @see #doSwitch(org.eclipse.emf.ecore.EObject)
-     * @generated
-     */
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>EObject</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject)
+	 * @generated
+	 */
 	@Override
 	public T defaultCase(EObject object) {
-        return null;
-    }
+		return null;
+	}
 
 } //ValidateSwitch

@@ -56,6 +56,12 @@
               id="switchyard.transform.tab"
               label="Transforms">
         </propertyTab>
+        <propertyTab
+              afterTab="switchyard.validate.tab"
+              category="SwitchyardSCA"
+              id="switchyard.validate.tab"
+              label="Validators">
+        </propertyTab>
 	    </propertyTabs>
 	</extension>
 	 
@@ -90,6 +96,12 @@
                filter="org.switchyard.tools.ui.editor.property.TransformPropertyFilter"
                id="switchyard.transform.tab.details"
                tab="switchyard.transform.tab">
+         </propertySection>
+         <propertySection
+               class="org.switchyard.tools.ui.editor.property.ValidatorPropertySection"
+               filter="org.switchyard.tools.ui.editor.property.ValidatorPropertyFilter"
+               id="switchyard.validate.tab.details"
+               tab="switchyard.validate.tab">
          </propertySection>
 	    </propertySections>
 	</extension>
