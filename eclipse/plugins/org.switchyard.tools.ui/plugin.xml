@@ -617,7 +617,7 @@
      </component>
      <component
            id="org.switchyard.components:switchyard-component-resteasy"
-           name="RESTeasy">
+           name="REST">
         <description>
            Provides support for RESTeasy based gateways.
         </description>

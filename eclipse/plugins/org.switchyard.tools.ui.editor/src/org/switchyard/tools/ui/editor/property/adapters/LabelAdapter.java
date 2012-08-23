@@ -106,7 +106,7 @@ public final class LabelAdapter {
         } else if (binding instanceof JCABinding) {
             return "JCA";
         } else if (binding instanceof RESTBindingType) {
-            return "RESTeasy";
+            return "REST";
         } else {
             return "Unsupported (" + binding.eClass().getClass().getName() + ")";
         }

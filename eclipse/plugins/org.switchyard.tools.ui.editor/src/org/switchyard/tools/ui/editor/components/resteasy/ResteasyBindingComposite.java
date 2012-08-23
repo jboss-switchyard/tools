@@ -64,7 +64,7 @@ public class ResteasyBindingComposite extends AbstractSYBindingComposite {
         _tabFolder = new TabFolder(_panel, SWT.NONE);
 
         TabItem one = new TabItem(_tabFolder, SWT.NONE);
-        one.setText("RESTeasy");
+        one.setText("REST");
         one.setControl(getResteasyControl(_tabFolder));
 
         addTabs(_tabFolder);
@@ -78,7 +78,7 @@ public class ResteasyBindingComposite extends AbstractSYBindingComposite {
         Group resteasyGroup = new Group(composite, SWT.NONE);
         resteasyGroup.setLayoutData(new GridData(SWT.FILL, SWT.FILL, true, true));
         resteasyGroup.setLayout(new GridLayout(2, false));
-        resteasyGroup.setText("RESTeasy Options");
+        resteasyGroup.setText("REST Options");
 
         Label interfacesLabel = new Label(resteasyGroup, SWT.NULL);
         interfacesLabel.setText("RESTful Interfaces");
@@ -156,7 +156,7 @@ public class ResteasyBindingComposite extends AbstractSYBindingComposite {
 
         String delimited = _interfacesList.getSelection();
         if (delimited.trim().length() == 0) {
-            setErrorMessage("At least one Java interface or abstract/empty classe with REST annotations must be specified.");
+            setErrorMessage("At least one Java interface or abstract/empty class with REST annotations must be specified.");
         }
 
         super.validateTabs();

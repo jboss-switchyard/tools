@@ -38,8 +38,8 @@ public class ResteasyBindingWizardPage extends WizardPage {
      */
     public ResteasyBindingWizardPage(String pageName) {
         super(pageName);
-        setTitle("Specify RESTEasy Binding Details");
-        setDescription("Specify pertinent details for your RESTEasy Binding.");
+        setTitle("Specify REST Binding Details");
+        setDescription("Specify pertinent details for your REST Binding.");
     }
 
     @Override
