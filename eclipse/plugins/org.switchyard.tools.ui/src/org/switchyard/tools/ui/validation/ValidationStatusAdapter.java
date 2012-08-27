@@ -11,12 +11,16 @@
 package org.switchyard.tools.ui.validation;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.eclipse.core.runtime.IStatus;
 import org.eclipse.core.runtime.MultiStatus;
 import org.eclipse.core.runtime.Status;
 import org.eclipse.emf.common.notify.impl.AdapterImpl;
+import org.eclipse.emf.ecore.EObject;
+import org.eclipse.emf.validation.model.IConstraintStatus;
 import org.switchyard.tools.ui.Activator;
 
 /**
@@ -28,6 +32,7 @@ import org.switchyard.tools.ui.Activator;
 public class ValidationStatusAdapter extends AdapterImpl {
 
     private List<IStatus> _validationStatus = new ArrayList<IStatus>();
+    private Map<EObject, List<IStatus>> _connectionStatus = new HashMap<EObject, List<IStatus>>();
 
     @Override
     public boolean isAdapterForType(Object type) {
@@ -38,13 +43,16 @@ public class ValidationStatusAdapter extends AdapterImpl {
      * @return the validation status for the target object.
      */
     public IStatus getValidationStatus() {
-        switch (_validationStatus.size()) {
-        case 0:
-            return Status.OK_STATUS;
-        case 1:
-            return _validationStatus.get(0);
-        }
-        return new MultiStatusWithMessage(_validationStatus.toArray(new IStatus[_validationStatus.size()]));
+        return createStatus(_validationStatus);
+    }
+
+    /**
+     * @param target the target of the connection from this object.
+     * 
+     * @return the validation status for the connection.
+     */
+    public IStatus getConnectionStatus(EObject target) {
+        return createStatus(_connectionStatus.get(target));
     }
 
     /**
@@ -52,13 +60,46 @@ public class ValidationStatusAdapter extends AdapterImpl {
      */
     public void clearValidationStatus() {
         _validationStatus.clear();
+        _connectionStatus.clear();
     }
 
     /**
      * @param status the status to add/associate with the target.
      */
     public void addValidationStatus(IStatus status) {
+        if (ValidationProblem.isConnectionProblem(status.getCode())) {
+            if (status instanceof IConstraintStatus) {
+                for (EObject other : ((IConstraintStatus) status).getResultLocus()) {
+                    if (other != getTarget()) {
+                        addConnectionStatus(other, status);
+                        return;
+                    }
+                }
+            }
+        }
         _validationStatus.add(status);
+    }
+
+    private void addConnectionStatus(EObject target, IStatus status) {
+        List<IStatus> statuses = _connectionStatus.get(target);
+        if (statuses == null) {
+            statuses = new ArrayList<IStatus>();
+            _connectionStatus.put(target, statuses);
+        }
+        statuses.add(status);
+    }
+
+    private IStatus createStatus(List<? extends IStatus> statuses) {
+        if (statuses == null) {
+            return Status.OK_STATUS;
+        }
+        switch (statuses.size()) {
+        case 0:
+            return Status.OK_STATUS;
+        case 1:
+            return statuses.get(0);
+        }
+        return new MultiStatusWithMessage(statuses.toArray(new IStatus[statuses.size()]));
     }
 
     private static class MultiStatusWithMessage extends MultiStatus {

@@ -408,14 +408,12 @@ public class ComponentReferenceImpl extends ContractImpl implements ComponentRef
         }
         final String name = getName();
         if (name == null) {
-            System.err.println("ComponentReference id = "+name);
             id = null;
         } else if (compName == null) {
             id = "ComponentReference::" + name;
         } else {
             id = "ComponentReference:" + compName + ":" + name;
         }
-        System.err.println("ComponentReference id = "+id);
         return id;
 	}
 

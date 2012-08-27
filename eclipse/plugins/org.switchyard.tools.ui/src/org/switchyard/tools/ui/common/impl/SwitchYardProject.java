@@ -189,11 +189,7 @@ public class SwitchYardProject implements ISwitchYardProject, IMavenProjectChang
             if (getOutputSwitchYardConfigurationFile() == null) {
                 return;
             }
-            final long outputTimestamp = getOutputSwitchYardConfigurationFile().getModificationStamp();
-            if (outputTimestamp > _lastOutputTimestamp) {
-                _manager.notify(this, EnumSet.of(Type.CONFIG));
-                _lastOutputTimestamp = outputTimestamp;
-            }
+            _lastOutputTimestamp = getOutputSwitchYardConfigurationFile().getModificationStamp();
             return;
         }
         monitor.beginTask("Loading Maven configuration for SwitchYard project.", 100);

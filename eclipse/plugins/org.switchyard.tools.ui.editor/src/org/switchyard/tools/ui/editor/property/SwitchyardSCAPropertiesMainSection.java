@@ -26,6 +26,7 @@ import org.eclipse.emf.transaction.impl.TransactionalEditingDomainImpl;
 import org.eclipse.graphiti.features.context.IUpdateContext;
 import org.eclipse.graphiti.features.context.impl.UpdateContext;
 import org.eclipse.graphiti.mm.pictograms.PictogramElement;
+import org.eclipse.graphiti.notification.INotificationService;
 import org.eclipse.graphiti.services.Graphiti;
 import org.eclipse.graphiti.ui.platform.GFPropertySection;
 import org.eclipse.soa.sca.sca1_1.model.sca.Component;
@@ -157,6 +158,11 @@ public class SwitchyardSCAPropertiesMainSection extends GFPropertySection implem
                     @Override
                     protected void doExecute() {
                         composite.setName(value.trim());
+                        SwitchyardSCAEditor editor = SwitchyardSCAEditor.getEditor(composite);
+                        INotificationService notificationService = editor.getDiagramTypeProvider()
+                                .getNotificationService();
+                        notificationService.updatePictogramElements(notificationService
+                                .calculateRelatedPictogramElements(new Object[] {composite }));
                     }
                 });
             }
@@ -168,6 +174,11 @@ public class SwitchyardSCAPropertiesMainSection extends GFPropertySection implem
                     @Override
                     protected void doExecute() {
                         component.setName(value.trim());
+                        SwitchyardSCAEditor editor = SwitchyardSCAEditor.getEditor(component);
+                        INotificationService notificationService = editor.getDiagramTypeProvider()
+                                .getNotificationService();
+                        notificationService.updatePictogramElements(notificationService
+                                .calculateRelatedPictogramElements(new Object[] {component }));
                     }
                 });
             }
@@ -179,6 +190,11 @@ public class SwitchyardSCAPropertiesMainSection extends GFPropertySection implem
                     @Override
                     protected void doExecute() {
                         contract.setName(value.trim());
+                        SwitchyardSCAEditor editor = SwitchyardSCAEditor.getEditor(contract);
+                        INotificationService notificationService = editor.getDiagramTypeProvider()
+                                .getNotificationService();
+                        notificationService.updatePictogramElements(notificationService
+                                .calculateRelatedPictogramElements(new Object[] {contract }));
                     }
                 });
             }

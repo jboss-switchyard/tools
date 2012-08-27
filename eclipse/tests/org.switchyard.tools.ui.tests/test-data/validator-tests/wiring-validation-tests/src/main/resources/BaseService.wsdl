@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<wsdl:definitions name="BaseService" targetNamespace="urn:org.switchyard.tools.tests:wiring-validation-tests:0.0.1-SNAPSHOT" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:tns="urn:org.switchyard.tools.tests:wiring-validation-tests:0.0.1-SNAPSHOT" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/">
+  <wsdl:types>
+<xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:tns="urn:org.switchyard.tools.tests:wiring-validation-tests:0.0.1-SNAPSHOT" attributeFormDefault="unqualified" elementFormDefault="qualified" targetNamespace="urn:org.switchyard.tools.tests:wiring-validation-tests:0.0.1-SNAPSHOT">
+  <xsd:element name="testInOnlyMethod" type="tns:testInOnlyMethod"/>
+  <xsd:complexType name="testInOnlyMethod">
+    <xsd:sequence>
+      <xsd:element minOccurs="0" name="string" type="xsd:string"/>
+    </xsd:sequence>
+  </xsd:complexType>
+  <xsd:element name="testInOutMethod" type="tns:testInOutMethod"/>
+  <xsd:complexType name="testInOutMethod">
+    <xsd:sequence>
+      <xsd:element minOccurs="0" name="string" type="xsd:string"/>
+    </xsd:sequence>
+  </xsd:complexType>
+  <xsd:element name="testInOutMethodResponse" type="tns:testInOutMethodResponse"/>
+  <xsd:complexType name="testInOutMethodResponse">
+    <xsd:sequence>
+      <xsd:element name="return" type="xsd:int"/>
+    </xsd:sequence>
+  </xsd:complexType>
+  <xsd:element name="testMissingOperation">
+  	<xsd:complexType>
+  		<xsd:sequence>
+  			<xsd:element name="in" type="xsd:string"></xsd:element>
+  		</xsd:sequence>
+  	</xsd:complexType>
+  </xsd:element>
+  <xsd:element name="testMissingOperationResponse">
+  	<xsd:complexType>
+  		<xsd:sequence>
+  			<xsd:element name="out" type="xsd:string"></xsd:element>
+  		</xsd:sequence>
+  	</xsd:complexType>
+  </xsd:element>
+</xsd:schema>
+  </wsdl:types>
+  <wsdl:message name="testInOutMethodResponse">
+    <wsdl:part name="parameters" element="tns:testInOutMethodResponse">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="testInOnlyMethod">
+    <wsdl:part name="parameters" element="tns:testInOnlyMethod">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="testInOutMethod">
+    <wsdl:part name="parameters" element="tns:testInOutMethod">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="testMissingOperationRequest">
+  	<wsdl:part name="parameters" element="tns:testMissingOperation"></wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="testMissingOperationResponse">
+  	<wsdl:part name="parameters" element="tns:testMissingOperationResponse"></wsdl:part>
+  </wsdl:message>
+  <wsdl:portType name="BaseServicePortType">
+    <wsdl:operation name="testInOnlyMethod">
+      <wsdl:input name="testInOnlyMethod" message="tns:testInOnlyMethod">
+    </wsdl:input>
+    </wsdl:operation>
+    <wsdl:operation name="testInOutMethod">
+      <wsdl:input name="testInOutMethod" message="tns:testInOutMethod">
+    </wsdl:input>
+      <wsdl:output name="testInOutMethodResponse" message="tns:testInOutMethodResponse">
+    </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="testMissingOperation">
+    	<wsdl:input message="tns:testMissingOperationRequest"></wsdl:input>
+    	<wsdl:output message="tns:testMissingOperationResponse"></wsdl:output>
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="BaseServiceSoapBinding"
+  	type="tns:BaseServicePortType">
+  	<soap:binding style="document"
+  		transport="http://schemas.xmlsoap.org/soap/http" />
+  	<wsdl:operation name="testInOnlyMethod">
+  		<soap:operation soapAction="testInOnlyMethod"
+  			style="document" />
+  		<wsdl:input name="testInOnlyMethod">
+  			<soap:body use="literal" />
+  		</wsdl:input>
+  	</wsdl:operation>
+  	<wsdl:operation name="testInOutMethod">
+  		<soap:operation soapAction="testInOutMethod" style="document" />
+  		<wsdl:input name="testInOutMethod">
+  			<soap:body use="literal" />
+  		</wsdl:input>
+  		<wsdl:output name="testInOutMethodResponse">
+  			<soap:body use="literal" />
+  		</wsdl:output>
+  	</wsdl:operation>
+  	<wsdl:operation name="testMissingOperation">
+  		<soap:operation
+  			soapAction="testMissingOperation" />
+  		<wsdl:input>
+  			<soap:body use="literal" />
+  		</wsdl:input>
+  		<wsdl:output>
+  			<soap:body use="literal" />
+  		</wsdl:output>
+  	</wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="BaseService">
+    <wsdl:port name="BaseServicePort" binding="tns:BaseServiceSoapBinding">
+      <soap:address location="http://localhost:8080/wiring-validation-tests/BaseService"/>
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>

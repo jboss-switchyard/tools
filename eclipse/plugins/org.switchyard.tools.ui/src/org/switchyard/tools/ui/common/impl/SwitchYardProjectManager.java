@@ -48,7 +48,7 @@ import org.switchyard.tools.ui.common.impl.SwitchYardProjectManager.ISwitchYardP
  * 
  * @author Rob Cernich
  */
-public final class SwitchYardProjectManager implements IResourceChangeListener, IResourceDeltaVisitor {
+public final class SwitchYardProjectManager {
 
     /** Identifies the Job family for the project refresh job. */
     public static final Object SWITCHYARD_PROJECT_REFRESH_JOB_FAMILY = new Object();
@@ -88,12 +88,42 @@ public final class SwitchYardProjectManager implements IResourceChangeListener, 
     private static final SwitchYardProjectManager INSTANCE = new SwitchYardProjectManager();
     private Map<IProject, SwitchYardProject> _cache = new HashMap<IProject, SwitchYardProject>();
     private Set<ISwitchYardProjectListener> _listeners = new LinkedHashSet<ISwitchYardProjectListener>();
+    private IResourceDeltaVisitor _configFileChangedVisitor = new ConfigFileChangedResourceDeltaVisitor();
+    private IResourceDeltaVisitor _projectDeletedVisitor = new ProjectDeletedResourceDeltaVisitor();
 
     /**
      * Create a new SwitchYardProjectManager.
      */
     private SwitchYardProjectManager() {
-        ResourcesPlugin.getWorkspace().addResourceChangeListener(this);
+        ResourcesPlugin.getWorkspace().addResourceChangeListener(new IResourceChangeListener() {
+            @Override
+            public void resourceChanged(IResourceChangeEvent event) {
+                final IResourceDelta delta = event.getDelta();
+                if (delta == null) {
+                    return;
+                }
+                try {
+                    delta.accept(_projectDeletedVisitor);
+                } catch (CoreException e) {
+                    Activator.getDefault().getLog().log(e.getStatus());
+                }
+            }
+        });
+
+        ResourcesPlugin.getWorkspace().addResourceChangeListener(new IResourceChangeListener() {
+            @Override
+            public void resourceChanged(IResourceChangeEvent event) {
+                final IResourceDelta delta = event.getDelta();
+                if (delta == null) {
+                    return;
+                }
+                try {
+                    delta.accept(_configFileChangedVisitor);
+                } catch (CoreException e) {
+                    Activator.getDefault().getLog().log(e.getStatus());
+                }
+            }
+        }, IResourceChangeEvent.POST_BUILD);
     }
 
     /**
@@ -113,44 +143,6 @@ public final class SwitchYardProjectManager implements IResourceChangeListener, 
             scheduleRefresh(switchYardProject, EnumSet.of(Type.POM, Type.CONFIG));
         }
         return switchYardProject;
-    }
-
-    @Override
-    public boolean visit(IResourceDelta delta) throws CoreException {
-        final IResource resource = delta.getResource();
-        if (resource == null) {
-            return false;
-        }
-        switch (resource.getType()) {
-        case IResource.ROOT:
-            return true;
-        case IResource.PROJECT:
-            break;
-        default:
-            return false;
-        }
-        IProject project = (IProject) resource;
-        if (!_cache.containsKey(project)) {
-            return false;
-        }
-        if (delta.getKind() == IResourceDelta.REMOVED
-                || ((delta.getFlags() & IResourceDelta.OPEN) == IResourceDelta.OPEN && !project.isOpen())) {
-            SwitchYardProject syp = _cache.remove(project);
-            _pendingUpdates.remove(syp);
-            notify(syp, EnumSet.of(Type.REMOVED));
-            syp.dispose();
-            return false;
-        }
-        SwitchYardProject switchYardProject = _cache.get(project);
-        Set<Type> updateTypes = EnumSet.noneOf(Type.class);
-        if (switchYardProject.getOutputSwitchYardConfigurationFile() != null
-                && delta.findMember(switchYardProject.getOutputSwitchYardConfigurationFile().getProjectRelativePath()) != null) {
-            updateTypes.add(Type.CONFIG);
-        }
-        if (updateTypes.size() > 0) {
-            scheduleRefresh(switchYardProject, updateTypes);
-        }
-        return false;
     }
 
     /**
@@ -178,19 +170,6 @@ public final class SwitchYardProjectManager implements IResourceChangeListener, 
             } catch (Exception e) {
                 e.fillInStackTrace();
             }
-        }
-    }
-
-    @Override
-    public void resourceChanged(IResourceChangeEvent event) {
-        final IResourceDelta delta = event.getDelta();
-        if (delta == null) {
-            return;
-        }
-        try {
-            delta.accept(this);
-        } catch (CoreException e) {
-            Activator.getDefault().getLog().log(e.getStatus());
         }
     }
 
@@ -237,7 +216,6 @@ public final class SwitchYardProjectManager implements IResourceChangeListener, 
                         SwitchYardProject switchYardProject = entry.getKey();
                         monitor.subTask(switchYardProject.getProject().getName());
                         SubProgressMonitor subMontior = new SubProgressMonitor(monitor, 100);
-                        getJobManager().beginRule(switchYardProject.getProject(), monitor);
                         try {
                             it.remove();
                             Set<Type> updateTypes = entry.getValue();
@@ -254,7 +232,6 @@ public final class SwitchYardProjectManager implements IResourceChangeListener, 
                                             "Error loading SwitchYard project meta-data: "
                                                     + switchYardProject.getProject(), e));
                         } finally {
-                            getJobManager().endRule(switchYardProject.getProject());
                             subMontior.done();
                         }
                         if (monitor.isCanceled()) {
@@ -280,5 +257,65 @@ public final class SwitchYardProjectManager implements IResourceChangeListener, 
             return _pendingUpdates.size() > 0;
         }
     };
+
+    private final class ConfigFileChangedResourceDeltaVisitor implements IResourceDeltaVisitor {
+        @Override
+        public boolean visit(IResourceDelta delta) throws CoreException {
+            final IResource resource = delta.getResource();
+            if (resource == null) {
+                return false;
+            }
+            switch (resource.getType()) {
+            case IResource.ROOT:
+                return true;
+            case IResource.PROJECT:
+                break;
+            default:
+                return false;
+            }
+            IProject project = (IProject) resource;
+            if (!_cache.containsKey(project)) {
+                return false;
+            }
+            SwitchYardProject switchYardProject = _cache.get(project);
+            if (switchYardProject.getOutputSwitchYardConfigurationFile() != null
+                    && delta.findMember(switchYardProject.getOutputSwitchYardConfigurationFile()
+                            .getProjectRelativePath()) != null) {
+                SwitchYardProjectManager.this.notify(switchYardProject, EnumSet.of(Type.CONFIG));
+            }
+            return false;
+        }
+    }
+
+    private final class ProjectDeletedResourceDeltaVisitor implements IResourceDeltaVisitor {
+        @Override
+        public boolean visit(IResourceDelta delta) throws CoreException {
+            final IResource resource = delta.getResource();
+            if (resource == null) {
+                return false;
+            }
+            switch (resource.getType()) {
+            case IResource.ROOT:
+                return true;
+            case IResource.PROJECT:
+                break;
+            default:
+                return false;
+            }
+            IProject project = (IProject) resource;
+            if (!_cache.containsKey(project)) {
+                return false;
+            }
+            if (delta.getKind() == IResourceDelta.REMOVED
+                    || ((delta.getFlags() & IResourceDelta.OPEN) == IResourceDelta.OPEN && !project.isOpen())) {
+                SwitchYardProject syp = _cache.remove(project);
+                _pendingUpdates.remove(syp);
+                SwitchYardProjectManager.this.notify(syp, EnumSet.of(Type.REMOVED));
+                syp.dispose();
+                return false;
+            }
+            return false;
+        }
+    }
 
 }

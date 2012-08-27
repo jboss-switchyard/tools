@@ -99,11 +99,13 @@ public class SCADiagramCreateComponentServiceLinkFeature extends AbstractCreateC
                 componentService = (ComponentService) target;
                 service = (Service) source;
             }
-            AddConnectionContext addContext = new AddConnectionContext(sourceAnchor,
-                    targetAnchor);
+            AddConnectionContext addContext = new AddConnectionContext(sourceAnchor, targetAnchor);
             service.setPromote(componentService);
             addContext.setNewObject(componentService);
             newConnection = (Connection) getFeatureProvider().addIfPossible(addContext);
+            if (newConnection != null) {
+                updatePictogramElement(newConnection);
+            }
         }
 
         return newConnection;

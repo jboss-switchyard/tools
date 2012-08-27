@@ -19,6 +19,7 @@ import org.eclipse.core.resources.IResourceDelta;
 import org.eclipse.core.runtime.CoreException;
 import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.core.runtime.IStatus;
+import org.eclipse.core.runtime.NullProgressMonitor;
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EValidator;
@@ -36,7 +37,12 @@ import org.eclipse.wst.validation.ValidationEvent;
 import org.eclipse.wst.validation.ValidationResult;
 import org.eclipse.wst.validation.ValidationState;
 import org.eclipse.wst.validation.ValidatorMessage;
+import org.switchyard.tools.models.switchyard1_0.switchyard.DocumentRoot;
+import org.switchyard.tools.models.switchyard1_0.switchyard.SwitchYardType;
+import org.switchyard.tools.models.switchyard1_0.switchyard.util.SwitchyardResourceFactoryImpl;
 import org.switchyard.tools.ui.Activator;
+import org.switchyard.tools.ui.common.ISwitchYardProject;
+import org.switchyard.tools.ui.common.impl.SwitchYardProjectManager;
 
 /**
  * SwitchYardProjectValidator
@@ -49,31 +55,83 @@ public class SwitchYardProjectValidator extends AbstractValidator {
     /** ID for SwitchYard specific problem markers. */
     public static final String SWITCHYARD_MARKER_ID = "org.switchyard.tools.ui.problemMarker";
 
+    /**
+     * Get the SwitchYard model object from the resource.
+     * 
+     * @param resource the resource
+     * @return the SwitchYard model in the resource; null if not present
+     */
+    public static SwitchYardType getSwitchYard(Resource resource) {
+        if (resource == null || resource.getContents().isEmpty()) {
+            return null;
+        }
+        EObject docroot = resource.getContents().get(0);
+        if (docroot instanceof DocumentRoot) {
+            return ((DocumentRoot) docroot).getSwitchyard();
+        } else if (docroot instanceof SwitchYardType) {
+            return (SwitchYardType) docroot;
+        }
+        return null;
+    }
+
     @Override
     public ValidationResult validate(ValidationEvent event, ValidationState state, IProgressMonitor monitor) {
+        ValidationResult result = new ValidationResult();
+
         if ((event.getKind() & IResourceDelta.REMOVED) != 0 || event.getResource().isDerived(IResource.CHECK_ANCESTORS)) {
-            return new ValidationResult();
+            return result;
+        }
+
+        ISwitchYardProject switchYardProject = SwitchYardProjectManager.instance().getSwitchYardProject(
+                event.getResource().getProject());
+        if (switchYardProject.needsLoading()) {
+            switchYardProject.load(new NullProgressMonitor());
+        }
+        IResource switchYardOutput = switchYardProject.getOutputSwitchYardConfigurationFile();
+        if (event.getResource().equals(switchYardProject.getSwitchYardConfigurationFile())) {
+            if (switchYardOutput == null) {
+                // couldn't locate the output file, so just validate the input.
+                switchYardOutput = event.getResource();
+            } else {
+                result.setDependsOn(new IResource[] {switchYardOutput });
+                if (!switchYardOutput.exists()
+                        || switchYardOutput.getModificationStamp() < event.getResource().getModificationStamp()
+                        || (event.getDependsOn() != null && (event.getDependsOn().getKind() & IResourceDelta.REMOVED) != 0)) {
+                    // prevent a build until the output file is updated
+                    return result;
+                }
+            }
+        } else {
+            switchYardOutput = event.getResource();
         }
 
         ResourceSet rs = new ResourceSetImpl();
         Resource resource = rs.createResource(
-                URI.createPlatformResourceURI(event.getResource().getFullPath().toString(), false),
-                "org.switchyard.tools.ui.editor.content-type.xml");
+                URI.createPlatformResourceURI(switchYardOutput.getFullPath().toString(), false),
+                SwitchyardResourceFactoryImpl.CONTENT_TYPE);
         try {
             resource.load(null);
         } catch (IOException e) {
             e.printStackTrace();
         }
-        ValidationResult result = new ValidationResult();
-        if (resource.getContents().isEmpty()) {
-            ValidatorMessage message = ValidatorMessage.create("Invalid switchyard.xml file", event.getResource());
-            message.setType(SWITCHYARD_MARKER_ID);
-            result.add(message);
-        } else {
-            IBatchValidator validator = ModelValidationService.getInstance().newValidator(EvaluationMode.BATCH);
-            processStatus(validator.validate(resource.getContents(), monitor), event.getResource(), result);
+        try {
+            if (resource.getContents().isEmpty()) {
+                ValidatorMessage message = ValidatorMessage.create("Invalid switchyard.xml file", event.getResource());
+                message.setType(SWITCHYARD_MARKER_ID);
+                result.add(message);
+            } else {
+                if (!switchYardOutput.equals(event.getResource())) {
+                    // fake the validation logic out so it points to the source
+                    // resource
+                    resource.setURI(URI.createPlatformResourceURI(event.getResource().getFullPath().toString(), false));
+                }
+                IBatchValidator validator = ModelValidationService.getInstance().newValidator(EvaluationMode.BATCH);
+                processStatus(validator.validate(resource.getContents(), monitor), event.getResource(), result);
+            }
+            return result;
+        } finally {
+            resource.unload();
         }
-        return result;
     }
 
     private void processStatus(IStatus status, IResource resource, ValidationResult result) {
@@ -105,6 +163,7 @@ public class SwitchYardProjectValidator extends AbstractValidator {
             IConstraintStatus ics = (IConstraintStatus) status;
             message.setAttribute(EValidator.URI_ATTRIBUTE, EcoreUtil.getURI(ics.getTarget()).toString());
             message.setAttribute(MarkerUtil.RULE_ATTRIBUTE, ics.getConstraint().getDescriptor().getId());
+            message.setAttribute(ValidationProblem.PROBLEM_CODE, ics.getCode());
             if (ics.getResultLocus().size() > 0) {
                 StringBuffer relatedUris = new StringBuffer();
                 for (EObject eobject : ics.getResultLocus()) {
@@ -124,7 +183,7 @@ public class SwitchYardProjectValidator extends AbstractValidator {
     public void clean(IProject project, ValidationState state, IProgressMonitor monitor) {
         super.clean(project, state, monitor);
         try {
-            project.deleteMarkers(SWITCHYARD_MARKER_ID, false, IProject.DEPTH_INFINITE);
+            project.deleteMarkers(SWITCHYARD_MARKER_ID, true, IProject.DEPTH_INFINITE);
         } catch (CoreException e) {
             Activator.getDefault().getLog().log(e.getStatus());
         }

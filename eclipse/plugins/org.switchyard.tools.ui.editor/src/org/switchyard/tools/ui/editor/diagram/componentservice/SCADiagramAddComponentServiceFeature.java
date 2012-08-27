@@ -14,10 +14,8 @@ package org.switchyard.tools.ui.editor.diagram.componentservice;
 
 import org.eclipse.graphiti.features.IFeatureProvider;
 import org.eclipse.graphiti.features.context.IAddContext;
-import org.eclipse.graphiti.features.context.impl.AddConnectionContext;
 import org.eclipse.graphiti.features.impl.AbstractAddShapeFeature;
 import org.eclipse.graphiti.mm.algorithms.Image;
-import org.eclipse.graphiti.mm.pictograms.Anchor;
 import org.eclipse.graphiti.mm.pictograms.ChopboxAnchor;
 import org.eclipse.graphiti.mm.pictograms.ContainerShape;
 import org.eclipse.graphiti.mm.pictograms.PictogramElement;
@@ -25,10 +23,7 @@ import org.eclipse.graphiti.services.Graphiti;
 import org.eclipse.graphiti.services.IGaService;
 import org.eclipse.graphiti.services.IPeCreateService;
 import org.eclipse.soa.sca.sca1_1.model.sca.Component;
-import org.eclipse.soa.sca.sca1_1.model.sca.ComponentReference;
 import org.eclipse.soa.sca.sca1_1.model.sca.ComponentService;
-import org.eclipse.soa.sca.sca1_1.model.sca.Composite;
-import org.eclipse.soa.sca.sca1_1.model.sca.Service;
 import org.switchyard.tools.ui.editor.ImageProvider;
 import org.switchyard.tools.ui.editor.diagram.StyleUtil;
 
@@ -92,47 +87,8 @@ public class SCADiagramAddComponentServiceFeature extends AbstractAddShapeFeatur
         // call the layout feature
         layoutPictogramElement(container);
 
-        Composite composite = (Composite) component.eContainer();
-        for (Service compositeService : composite.getService()) {
-            if (compositeService.getPromote() == service) {
-                for (PictogramElement pe : getFeatureProvider().getAllPictogramElementsForBusinessObject(
-                        compositeService)) {
-                    if (pe instanceof Anchor) {
-                        AddConnectionContext addContext = new AddConnectionContext((Anchor) pe, anchor);
-                        addContext.setNewObject(service);
-                        getFeatureProvider().addIfPossible(addContext);
-                    }
-                }
-            }
-        }
-
-        if (service.getName() == null) {
-            return container;
-        }
-
-        for (Component other : composite.getComponent()) {
-            if (other == component) {
-                // we don't allow self references???
-                continue;
-            }
-            PictogramElement otherContainer = getFeatureProvider().getPictogramElementForBusinessObject(other);
-            if (otherContainer == null) {
-                continue;
-            }
-            REFERENCE_LOOP: for (ComponentReference reference : other.getReference()) {
-                if (!service.getName().equals(reference.getName())) {
-                    continue;
-                }
-                for (PictogramElement pe : getFeatureProvider().getAllPictogramElementsForBusinessObject(reference)) {
-                    if (pe instanceof Anchor && ((Anchor) pe).getOutgoingConnections().size() == 0) {
-                        AddConnectionContext addContext = new AddConnectionContext((Anchor) pe, anchor);
-                        addContext.setNewObject(reference);
-                        getFeatureProvider().addIfPossible(addContext);
-                        break REFERENCE_LOOP;
-                    }
-                }
-            }
-        }
+        // make sure the connections get updated
+        updatePictogramElement(container);
 
         return container;
     }

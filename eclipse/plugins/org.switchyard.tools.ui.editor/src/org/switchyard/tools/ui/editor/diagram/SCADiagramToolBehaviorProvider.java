@@ -33,6 +33,7 @@ import org.eclipse.graphiti.mm.algorithms.GraphicsAlgorithm;
 import org.eclipse.graphiti.mm.algorithms.Polygon;
 import org.eclipse.graphiti.mm.algorithms.styles.Point;
 import org.eclipse.graphiti.mm.pictograms.Connection;
+import org.eclipse.graphiti.mm.pictograms.ConnectionDecorator;
 import org.eclipse.graphiti.mm.pictograms.PictogramElement;
 import org.eclipse.graphiti.palette.IPaletteCompartmentEntry;
 import org.eclipse.graphiti.palette.impl.ConnectionCreationToolEntry;
@@ -58,8 +59,8 @@ import org.eclipse.soa.sca.sca1_1.model.sca.Service;
 import org.switchyard.tools.models.switchyard1_0.hornetq.BindingType;
 import org.switchyard.tools.models.switchyard1_0.soap.SOAPBindingType;
 import org.switchyard.tools.ui.editor.ImageProvider;
-import org.switchyard.tools.ui.validation.ValidationStatusAdapter;
 import org.switchyard.tools.ui.editor.diagram.connections.CustomAddTransformFeature;
+import org.switchyard.tools.ui.validation.ValidationStatusAdapter;
 
 /**
  * @author bfitzpat
@@ -124,9 +125,15 @@ public class SCADiagramToolBehaviorProvider extends DefaultToolBehaviorProvider 
 
     @Override
     public IDecorator[] getDecorators(PictogramElement pe) {
-        List<IDecorator> decorators = new ArrayList<IDecorator>();
+        if (pe instanceof ConnectionDecorator) {
+            return getDecoratorsForConnection((ConnectionDecorator) pe);
+        }
         IFeatureProvider featureProvider = getFeatureProvider();
         Object bo = featureProvider.getBusinessObjectForPictogramElement(pe);
+        if (bo == null) {
+            return super.getDecorators(pe);
+        }
+        List<IDecorator> decorators = new ArrayList<IDecorator>();
         if (bo instanceof Service) {
             Service service = (Service) bo;
             if (!service.getBinding().isEmpty()) {
@@ -221,22 +228,7 @@ public class SCADiagramToolBehaviorProvider extends DefaultToolBehaviorProvider 
         ValidationStatusAdapter statusAdapter = (ValidationStatusAdapter) EcoreUtil.getRegisteredAdapter((EObject) bo,
                 ValidationStatusAdapter.class);
         if (statusAdapter != null) {
-            final IImageDecorator decorator;
-            final IStatus status = statusAdapter.getValidationStatus();
-            switch (status.getSeverity()) {
-            case IStatus.INFO:
-                decorator = new ImageDecorator(IPlatformImageConstants.IMG_ECLIPSE_INFORMATION_TSK);
-                break;
-            case IStatus.WARNING:
-                decorator = new ImageDecorator(IPlatformImageConstants.IMG_ECLIPSE_WARNING_TSK);
-                break;
-            case IStatus.ERROR:
-                decorator = new ImageDecorator(IPlatformImageConstants.IMG_ECLIPSE_ERROR_TSK);
-                break;
-            default:
-                decorator = null;
-                break;
-            }
+            final IImageDecorator decorator = createDecorator(statusAdapter.getValidationStatus());
             if (decorator != null) {
                 GraphicsAlgorithm ga = getSelectionBorder(pe);
                 if (ga == null) {
@@ -244,11 +236,55 @@ public class SCADiagramToolBehaviorProvider extends DefaultToolBehaviorProvider 
                 }
                 decorator.setX(ga.getWidth() - 10);
                 decorator.setY(ga.getHeight() - 10);
-                decorator.setMessage(status.getMessage());
                 decorators.add(decorator);
             }
         }
         return decorators.toArray(new IDecorator[decorators.size()]);
+    }
+
+    private IDecorator[] getDecoratorsForConnection(ConnectionDecorator pe) {
+        if (pe.getConnection() == null || pe.getConnection().getStart() == null || pe.getConnection().getEnd() == null) {
+            return super.getDecorators(pe);
+        }
+        Object sourceBO = getFeatureProvider().getBusinessObjectForPictogramElement(pe.getConnection().getStart());
+        Object targetBO = getFeatureProvider().getBusinessObjectForPictogramElement(pe.getConnection().getEnd());
+        if (sourceBO == null || targetBO == null) {
+            return super.getDecorators(pe);
+        }
+        ValidationStatusAdapter statusAdapter = (ValidationStatusAdapter) EcoreUtil.getRegisteredAdapter(
+                (EObject) sourceBO, ValidationStatusAdapter.class);
+        if (statusAdapter == null) {
+            return super.getDecorators(pe);
+        }
+        final IImageDecorator decorator = createDecorator(statusAdapter.getConnectionStatus((EObject) targetBO));
+        if (decorator != null) {
+            decorator.setX(0);
+            decorator.setY(0);
+            return new IDecorator[] {decorator };
+        }
+        return super.getDecorators(pe);
+    }
+
+    private IImageDecorator createDecorator(IStatus status) {
+        final IImageDecorator decorator;
+        switch (status.getSeverity()) {
+        case IStatus.INFO:
+            decorator = new ImageDecorator(IPlatformImageConstants.IMG_ECLIPSE_INFORMATION_TSK);
+            break;
+        case IStatus.WARNING:
+            decorator = new ImageDecorator(IPlatformImageConstants.IMG_ECLIPSE_WARNING_TSK);
+            break;
+        case IStatus.ERROR:
+            decorator = new ImageDecorator(IPlatformImageConstants.IMG_ECLIPSE_ERROR_TSK);
+            break;
+        default:
+            decorator = null;
+            break;
+        }
+        if (decorator != null) {
+            decorator.setMessage(status.getMessage());
+        }
+        return decorator;
     }
 
     @Override

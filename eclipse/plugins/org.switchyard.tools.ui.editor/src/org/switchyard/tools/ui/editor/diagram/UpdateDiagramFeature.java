@@ -10,15 +10,20 @@
  ************************************************************************************/
 package org.switchyard.tools.ui.editor.diagram;
 
+import java.util.ArrayList;
+
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.graphiti.features.IFeatureProvider;
 import org.eclipse.graphiti.features.IReason;
+import org.eclipse.graphiti.features.IUpdateFeature;
 import org.eclipse.graphiti.features.context.IUpdateContext;
 import org.eclipse.graphiti.features.context.impl.AddContext;
 import org.eclipse.graphiti.features.context.impl.CustomContext;
+import org.eclipse.graphiti.features.context.impl.UpdateContext;
 import org.eclipse.graphiti.features.custom.ICustomFeature;
 import org.eclipse.graphiti.features.impl.DefaultUpdateDiagramFeature;
 import org.eclipse.graphiti.features.impl.Reason;
+import org.eclipse.graphiti.mm.pictograms.Connection;
 import org.eclipse.graphiti.mm.pictograms.Diagram;
 import org.eclipse.graphiti.mm.pictograms.PictogramElement;
 import org.eclipse.soa.sca.sca1_1.model.sca.Composite;
@@ -66,6 +71,9 @@ public class UpdateDiagramFeature extends DefaultUpdateDiagramFeature {
                 }
             }
         }
+        // parent doesn't actually update connections, so update them ourselves
+        // we do this last because model updates may have removed connections.
+        updateConnections(context);
         return retVal;
     }
 
@@ -112,4 +120,16 @@ public class UpdateDiagramFeature extends DefaultUpdateDiagramFeature {
         }
     }
 
+    private void updateConnections(IUpdateContext context) {
+        for (Connection connection : new ArrayList<Connection>(
+                ((Diagram) context.getPictogramElement()).getConnections())) {
+            UpdateContext updateContext = new UpdateContext(connection);
+            IUpdateFeature updateFeature = getFeatureProvider().getUpdateFeature(updateContext);
+            if (updateFeature != null && updateFeature.canUpdate(updateContext)
+                    && updateFeature.updateNeeded(updateContext).toBoolean()) {
+                updateFeature.update(updateContext);
+                _hasDoneChanges = _hasDoneChanges || updateFeature.hasDoneChanges();
+            }
+        }
+    }
 }

@@ -49,17 +49,24 @@ import org.eclipse.emf.transaction.RecordingCommand;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.eclipse.emf.validation.marker.MarkerUtil;
 import org.eclipse.emf.validation.model.ConstraintStatus;
+import org.eclipse.emf.validation.model.IConstraintStatus;
 import org.eclipse.emf.validation.model.IModelConstraint;
 import org.eclipse.emf.validation.service.ConstraintFactory;
 import org.eclipse.emf.validation.service.ConstraintRegistry;
 import org.eclipse.emf.validation.service.IConstraintDescriptor;
+import org.eclipse.emf.validation.service.ModelValidationService;
 import org.eclipse.emf.workspace.util.WorkspaceSynchronizer;
+import org.eclipse.graphiti.mm.pictograms.Anchor;
+import org.eclipse.graphiti.mm.pictograms.AnchorContainer;
+import org.eclipse.graphiti.mm.pictograms.Connection;
+import org.eclipse.graphiti.mm.pictograms.ConnectionDecorator;
 import org.eclipse.graphiti.mm.pictograms.Diagram;
 import org.eclipse.graphiti.mm.pictograms.PictogramElement;
 import org.eclipse.graphiti.mm.pictograms.PictogramLink;
 import org.eclipse.graphiti.mm.pictograms.PictogramsFactory;
 import org.eclipse.graphiti.services.Graphiti;
 import org.eclipse.graphiti.ui.editor.DefaultPersistencyBehavior;
+import org.eclipse.graphiti.ui.editor.DefaultRefreshBehavior;
 import org.eclipse.graphiti.ui.editor.DefaultUpdateBehavior;
 import org.eclipse.graphiti.ui.editor.DiagramEditor;
 import org.eclipse.graphiti.ui.internal.services.GraphitiUiInternal;
@@ -82,10 +89,12 @@ import org.switchyard.tools.models.switchyard1_0.hornetq.HornetQPackage;
 import org.switchyard.tools.models.switchyard1_0.rules.RulesPackage;
 import org.switchyard.tools.models.switchyard1_0.soap.SOAPPackage;
 import org.switchyard.tools.models.switchyard1_0.switchyard.SwitchyardPackage;
+import org.switchyard.tools.models.switchyard1_0.switchyard.util.SwitchyardResourceFactoryImpl;
 import org.switchyard.tools.models.switchyard1_0.transform.TransformPackage;
 import org.switchyard.tools.models.switchyard1_0.validate.ValidatePackage;
 import org.switchyard.tools.ui.editor.Activator;
 import org.switchyard.tools.ui.validation.SwitchYardProjectValidator;
+import org.switchyard.tools.ui.validation.ValidationProblem;
 import org.switchyard.tools.ui.validation.ValidationStatusAdapter;
 import org.switchyard.tools.ui.validation.ValidationStatusAdapterFactory;
 
@@ -200,7 +209,7 @@ public class SwitchyardSCAEditor extends DiagramEditor implements IGotoMarker {
 
                 // load switchyard.xml
                 final Resource switchYardResource = getEditingDomain().getResourceSet().createResource(
-                        modelUri.trimFragment(), "org.switchyard.tools.ui.editor.content-type.xml");
+                        modelUri.trimFragment(), SwitchyardResourceFactoryImpl.CONTENT_TYPE);
 
                 _modelFile = WorkspaceSynchronizer.getFile(switchYardResource);
 
@@ -300,6 +309,10 @@ public class SwitchyardSCAEditor extends DiagramEditor implements IGotoMarker {
         if (markers == null) {
             return Collections.emptySet();
         }
+        // make sure the validator constraints have been loaded otherwise
+        // connection errors will show up on the source figure instead of the
+        // connection
+        ModelValidationService.getInstance().loadXmlConstraintDeclarations();
         Set<EObject> touched = new LinkedHashSet<EObject>();
         for (IMarker marker : markers) {
             final EObject markedObject = getTargetObject(marker);
@@ -330,22 +343,23 @@ public class SwitchyardSCAEditor extends DiagramEditor implements IGotoMarker {
         final IConstraintDescriptor icd = constraintId == null ? null : ConstraintRegistry.getInstance().getDescriptor(
                 constraintId);
         final IModelConstraint imc = icd == null ? null : ConstraintFactory.getInstance().newConstraint(icd);
+        final int severity;
+        switch (marker.getAttribute(IMarker.SEVERITY, -1)) {
+        case IMarker.SEVERITY_INFO:
+            severity = IStatus.INFO;
+            break;
+        case IMarker.SEVERITY_WARNING:
+            severity = IStatus.WARNING;
+            break;
+        case IMarker.SEVERITY_ERROR:
+            severity = IStatus.ERROR;
+            break;
+        default:
+            severity = IStatus.OK;
+        }
+        final int code = marker.getAttribute(ValidationProblem.PROBLEM_CODE, 0);
         if (imc == null) {
-            final int severity;
-            switch (marker.getAttribute(IMarker.SEVERITY, -1)) {
-            case IMarker.SEVERITY_INFO:
-                severity = IStatus.INFO;
-                break;
-            case IMarker.SEVERITY_WARNING:
-                severity = IStatus.WARNING;
-                break;
-            case IMarker.SEVERITY_ERROR:
-                severity = IStatus.ERROR;
-                break;
-            default:
-                severity = IStatus.OK;
-            }
-            return new Status(severity, Activator.PLUGIN_ID, message);
+            return new Status(severity, Activator.PLUGIN_ID, code, message, null);
         }
         List<?> locus = new EditUIMarkerHelper().getTargetObjects(getEditingDomain(), marker);
         for (Iterator<?> it = locus.iterator(); it.hasNext();) {
@@ -353,8 +367,8 @@ public class SwitchyardSCAEditor extends DiagramEditor implements IGotoMarker {
                 it.remove();
             }
         }
-        return new ConstraintStatus(imc, target, message, locus == null ? null : new LinkedHashSet<EObject>(
-                (List<? extends EObject>) locus));
+        return new ConstraintStatus(imc, target, severity, code, message, locus == null ? null
+                : new LinkedHashSet<EObject>((List<? extends EObject>) locus));
     }
 
     private URI convertModelURIToDiagramURI(URI modelUri) {
@@ -385,6 +399,25 @@ public class SwitchyardSCAEditor extends DiagramEditor implements IGotoMarker {
             public void dispose() {
                 getEditingDomain().getResourceSet().eAdapters().remove(_editorAdapter);
                 super.dispose();
+            }
+        };
+    }
+
+    @Override
+    protected DefaultRefreshBehavior createRefreshBehavior() {
+        return new DefaultRefreshBehavior(this) {
+            @Override
+            public void refreshRenderingDecorators(PictogramElement pe) {
+                super.refreshRenderingDecorators(pe);
+                if (pe instanceof AnchorContainer) {
+                    for (Anchor anchor : ((AnchorContainer) pe).getAnchors()) {
+                        for (Connection connection : anchor.getOutgoingConnections()) {
+                            for (ConnectionDecorator decorator : connection.getConnectionDecorators()) {
+                                super.refreshRenderingDecorators(decorator);
+                            }
+                        }
+                    }
+                }
             }
         };
     }
@@ -452,6 +485,25 @@ public class SwitchyardSCAEditor extends DiagramEditor implements IGotoMarker {
                 target);
         if (pe == null) {
             return;
+        }
+        final IStatus status = convertMarker(marker, target);
+        if (pe instanceof AnchorContainer && status instanceof IConstraintStatus) {
+            if (ValidationProblem.isConnectionProblem(((IConstraintStatus) status).getCode())) {
+                for (EObject other : ((IConstraintStatus) status).getResultLocus()) {
+                    if (other == target) {
+                        continue;
+                    }
+                    for (Anchor anchor : ((AnchorContainer) pe).getAnchors()) {
+                        for (Connection connection : anchor.getOutgoingConnections()) {
+                            if (getDiagramTypeProvider().getFeatureProvider().getBusinessObjectForPictogramElement(
+                                    connection.getEnd()) == other) {
+                                selectPictogramElements(new PictogramElement[] {connection });
+                                return;
+                            }
+                        }
+                    }
+                }
+            }
         }
         selectPictogramElements(new PictogramElement[] {pe });
     }

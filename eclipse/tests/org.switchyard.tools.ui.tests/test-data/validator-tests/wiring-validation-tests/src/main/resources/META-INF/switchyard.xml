@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<switchyard xmlns="urn:switchyard-config:switchyard:1.0" xmlns:bean="urn:switchyard-component-bean:config:1.0" xmlns:sca="http://docs.oasis-open.org/ns/opencsa/sca/200912" name="validation-tests" targetNamespace="urn:org.switchyard.tools.tests:wiring-validation-tests:0.0.1-SNAPSHOT">
+  <sca:composite name="validation-tests" targetNamespace="urn:org.switchyard.tools.tests:wiring-validation-tests:0.0.1-SNAPSHOT">
+    <sca:component name="BaseServiceBean">
+      <bean:implementation.bean class="org.switchyard.tools.tests.wiring_validation_tests.BaseServiceBean"/>
+      <sca:service name="BaseService">
+        <sca:interface.java interface="org.switchyard.tools.tests.wiring_validation_tests.BaseService"/>
+      </sca:service>
+    </sca:component>
+    <sca:service name="BaseServicePortType" promote="BaseServiceBean/BaseService">
+      <sca:interface.wsdl interface="BaseService.wsdl#wsdl.porttype(BaseServicePortType)"/>
+    </sca:service>
+    <sca:component name="AmbiguousReference">
+      <sca:reference name="ExtendedService">
+        <sca:interface.java interface="org.switchyard.tools.tests.wiring_validation_tests.ExtendedService"/>
+      </sca:reference>
+    </sca:component>
+    <sca:reference name="BaseReference" multiplicity="0..1" promote="AmbiguousReference/ExtendedService Component1/BaseReference">
+      <sca:interface.java interface="org.switchyard.tools.tests.wiring_validation_tests.BaseService"/>
+    </sca:reference>
+    <sca:component name="AllOk">
+      <sca:reference name="BaseService">
+        <sca:interface.java interface="org.switchyard.tools.tests.wiring_validation_tests.BaseService"/>
+      </sca:reference>
+    </sca:component>
+    <sca:component name="Component">
+      <sca:service name="ExtendedService">
+        <sca:interface.java interface="org.switchyard.tools.tests.wiring_validation_tests.ExtendedService"/>
+      </sca:service>
+    </sca:component>
+    <sca:component name="Component1">
+      <sca:reference name="BaseReference">
+        <sca:interface.java interface="org.switchyard.tools.tests.wiring_validation_tests.BaseService"/>
+      </sca:reference>
+    </sca:component>
+    <sca:component name="Component2">
+      <sca:service name="ExtendedService">
+        <sca:interface.java interface="org.switchyard.tools.tests.wiring_validation_tests.ExtendedService"/>
+      </sca:service>
+    </sca:component>
+    <sca:component name="Component3">
+      <sca:reference name="UnresolvedReference">
+        <sca:interface.java interface="org.switchyard.tools.tests.wiring_validation_tests.BaseService"/>
+      </sca:reference>
+      <sca:reference name="BaseService">
+        <sca:interface.java interface="org.switchyard.tools.tests.wiring_validation_tests.IncompatibleService"/>
+      </sca:reference>
+      <sca:service name="UresolvableInterface">
+        <sca:interface.java interface="org.switchyard.tools.tests.wiring_validation_tests.UresolvableInterface"/>
+      </sca:service>
+    </sca:component>
+    <sca:service name="UnboundService">
+      <sca:interface.java interface="org.switchyard.tools.tests.wiring_validation_tests.BaseService"/>
+    </sca:service>
+  </sca:composite>
+</switchyard>

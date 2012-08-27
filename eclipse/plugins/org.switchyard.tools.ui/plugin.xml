@@ -731,7 +731,7 @@
   </extension>
   <extension
         id="projectValidator"
-        name="SwitchYard Project Validator"
+        name="SwitchYard Configuration Validator"
         point="org.eclipse.wst.validation.validatorV2">
      <validator
            class="org.switchyard.tools.ui.validation.SwitchYardProjectValidator"
@@ -777,6 +777,12 @@
      <super
            type="org.eclipse.emf.validation.problem">
      </super>
+     <super
+           type="org.eclipse.wst.validation.problemmarker">
+     </super>
+     <super
+           type="org.eclipse.wst.validation.problemmarker2">
+     </super>
   </extension>
 
   <!-- Validation Extensions -->
@@ -808,28 +814,18 @@
        <constraints
              categories="org.switchyard.tools.validationCategory/sca">
           <constraint
-                class="org.switchyard.tools.ui.validation.UniqueServiceNameConstraint"
-                id="org.switchyard.tools.validation.constraint.service/uniqueness"
+                class="org.switchyard.tools.ui.validation.ServiceWiringConstraints"
+                id="org.switchyard.tools.validation.constraint.service/wiring"
                 isEnabledByDefault="true"
                 lang="Java"
                 mode="Batch"
-                name="Unique Service Names"
-                severity="ERROR"
-                statusCode="1">
+                name="Service Wiring Constraints"
+                statusCode="0">
              <message>
-                The name, "{0}" must be unique among services, references and component services.
+                Service wiring constraints.
              </message>
-             <description>
-                All service, reference and component service names must be unique.  (A service name may be identical to the name of the component service it promotes.)
-             </description>
              <target
-                   class="ComponentService">
-             </target>
-             <target
-                   class="Service">
-             </target>
-             <target
-                   class="Reference">
+                   class="Contract">
              </target>
           </constraint>
           <constraint
@@ -838,9 +834,9 @@
                 isEnabledByDefault="true"
                 lang="Java"
                 mode="Batch"
-                name="Service Interface"
+                name="Service Interface Not Defined"
                 severity="ERROR"
-                statusCode="1">
+                statusCode="1001">
              <message>
                 No interface is defined for the service/reference.
              </message>

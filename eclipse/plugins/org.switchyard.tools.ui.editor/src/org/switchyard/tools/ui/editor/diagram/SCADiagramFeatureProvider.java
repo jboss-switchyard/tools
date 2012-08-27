@@ -87,8 +87,10 @@ import org.switchyard.tools.ui.editor.diagram.component.SCADiagramUpdateComponen
 import org.switchyard.tools.ui.editor.diagram.componentreference.SCADiagramAddComponentReferenceFeature;
 import org.switchyard.tools.ui.editor.diagram.componentreference.SCADiagramCreateComponentReferenceFeature;
 import org.switchyard.tools.ui.editor.diagram.componentreference.SCADiagramCustomPromoteReferenceFeature;
+import org.switchyard.tools.ui.editor.diagram.componentreference.UpdateComponentReferenceFeature;
 import org.switchyard.tools.ui.editor.diagram.componentservice.SCADiagramAddComponentServiceFeature;
 import org.switchyard.tools.ui.editor.diagram.componentservice.SCADiagramCreateComponentServiceFeature;
+import org.switchyard.tools.ui.editor.diagram.componentservice.UpdateComponentServiceFeature;
 import org.switchyard.tools.ui.editor.diagram.composite.SCADiagramAddCompositeFeature;
 import org.switchyard.tools.ui.editor.diagram.composite.SCADiagramDeleteCompositeFeature;
 import org.switchyard.tools.ui.editor.diagram.composite.SCADiagramDirectEditCompositeFeature;
@@ -289,16 +291,19 @@ public class SCADiagramFeatureProvider extends DefaultFeatureProvider {
             Object bo = getBusinessObjectForPictogramElement(pictogramElement);
             if (bo instanceof Composite) {
                 return new SCADiagramUpdateCompositeFeature(this);
-            }
-            if (bo instanceof Service) {
+            } else if (bo instanceof Service) {
                 return new SCADiagramUpdateServiceFeature(this);
-            }
-            if (bo instanceof Reference) {
+            } else if (bo instanceof Reference) {
                 return new SCADiagramUpdateCompositeReferenceFeature(this);
-            }
-            if (bo instanceof Component) {
+            } else if (bo instanceof Component) {
                 return new SCADiagramUpdateComponentFeature(this);
+            } else if (bo instanceof ComponentService) {
+                return new UpdateComponentServiceFeature(this);
+            } else if (bo instanceof ComponentReference) {
+                return new UpdateComponentReferenceFeature(this);
             }
+        } else if (pictogramElement instanceof Connection) {
+            return new UpdateConnectionFeature(this);
         }
         return super.getUpdateFeature(context);
     }
@@ -399,7 +404,7 @@ public class SCADiagramFeatureProvider extends DefaultFeatureProvider {
                 features.add(new AutoLayoutFeature(this));
             }
             // if (bo != null) {
-            //  features.add(new PropertiesDialogFeature(this));
+            // features.add(new PropertiesDialogFeature(this));
             // }
             if (pes[0] instanceof Connection) {
                 features.add(new CustomAddTransformFeature(this));

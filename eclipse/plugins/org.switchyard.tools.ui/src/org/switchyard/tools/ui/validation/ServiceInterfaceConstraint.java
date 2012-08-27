@@ -32,12 +32,10 @@ public class ServiceInterfaceConstraint extends AbstractModelConstraint {
 
         // In the case of batch mode.
         if (eType == EMFEventType.NULL) {
-            System.err.println("Batch: " + getClass().getSimpleName() + ": " + eObj);
             if (eObj instanceof Contract) {
                 return validate(ctx, (Contract) eObj);
             }
-        } else { // In the case of live mode.
-            System.err.println("Live: " + getClass().getSimpleName() + ": " + eObj + ": " + ctx.getFeatureNewValue());
+            // } else { // In the case of live mode.
         }
 
         return ctx.createSuccessStatus();

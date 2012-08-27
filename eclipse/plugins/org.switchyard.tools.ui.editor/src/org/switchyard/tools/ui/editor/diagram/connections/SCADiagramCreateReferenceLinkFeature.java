@@ -105,6 +105,10 @@ public class SCADiagramCreateReferenceLinkFeature extends AbstractCreateConnecti
             newConnection = (Connection) getFeatureProvider().addIfPossible(addContext);
         }
 
+        if (newConnection != null) {
+            updatePictogramElement(newConnection);
+        }
+
         return newConnection;
     }
 

@@ -22,7 +22,11 @@ import org.eclipse.emf.ecore.xmi.XMLResource;
  * @generated
  */
 public class SwitchyardResourceFactoryImpl extends ResourceFactoryImpl {
-	/**
+
+    /** The Content type identifier for switchyard.xml files. */
+    public static final String CONTENT_TYPE = "org.switchyard.tools.ui.editor.content-type.xml";
+
+    /**
      * Creates an instance of the resource factory.
      * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->

@@ -14,10 +14,8 @@ package org.switchyard.tools.ui.editor.diagram.componentreference;
 
 import org.eclipse.graphiti.features.IFeatureProvider;
 import org.eclipse.graphiti.features.context.IAddContext;
-import org.eclipse.graphiti.features.context.impl.AddConnectionContext;
 import org.eclipse.graphiti.features.impl.AbstractAddShapeFeature;
 import org.eclipse.graphiti.mm.algorithms.Image;
-import org.eclipse.graphiti.mm.pictograms.Anchor;
 import org.eclipse.graphiti.mm.pictograms.ChopboxAnchor;
 import org.eclipse.graphiti.mm.pictograms.ContainerShape;
 import org.eclipse.graphiti.mm.pictograms.PictogramElement;
@@ -26,8 +24,6 @@ import org.eclipse.graphiti.services.IGaService;
 import org.eclipse.graphiti.services.IPeCreateService;
 import org.eclipse.soa.sca.sca1_1.model.sca.Component;
 import org.eclipse.soa.sca.sca1_1.model.sca.ComponentReference;
-import org.eclipse.soa.sca.sca1_1.model.sca.ComponentService;
-import org.eclipse.soa.sca.sca1_1.model.sca.Composite;
 import org.switchyard.tools.ui.editor.ImageProvider;
 import org.switchyard.tools.ui.editor.diagram.StyleUtil;
 
@@ -91,34 +87,7 @@ public class SCADiagramAddComponentReferenceFeature extends AbstractAddShapeFeat
         // call the layout feature
         layoutPictogramElement(container);
 
-        if (reference.getName() == null) {
-            return container;
-        }
-
-        Composite composite = (Composite) component.eContainer();
-        for (Component other : composite.getComponent()) {
-            if (other == component) {
-                // we don't allow self references???
-                continue;
-            }
-            PictogramElement otherContainer = getFeatureProvider().getPictogramElementForBusinessObject(other);
-            if (otherContainer == null) {
-                continue;
-            }
-            SERVICE_LOOP: for (ComponentService service : other.getService()) {
-                if (!reference.getName().equals(service.getName())) {
-                    continue;
-                }
-                for (PictogramElement pe : getFeatureProvider().getAllPictogramElementsForBusinessObject(service)) {
-                    if (pe instanceof Anchor) {
-                        AddConnectionContext addContext = new AddConnectionContext(anchor, (Anchor) pe);
-                        addContext.setNewObject(reference);
-                        getFeatureProvider().addIfPossible(addContext);
-                        break SERVICE_LOOP;
-                    }
-                }
-            }
-        }
+        updatePictogramElement(container);
 
         return container;
     }

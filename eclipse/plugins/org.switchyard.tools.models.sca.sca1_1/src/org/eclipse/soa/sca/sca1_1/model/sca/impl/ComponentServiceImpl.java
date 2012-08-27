@@ -69,14 +69,12 @@ public class ComponentServiceImpl extends ContractImpl implements ComponentServi
 	    }
 	    final String name = getName();
 	    if (name == null) {
-	        System.err.println("ComponentService id = "+name);
 	        id = null;
 	    } else if (compName == null) {
 	        id = "ComponentService:" + name;
 	    } else {
 	        id = "ComponentService:" + compName + ":" + name;
 	    }
-        System.err.println("ComponentService id = "+id);
         return id;
 	}
 
