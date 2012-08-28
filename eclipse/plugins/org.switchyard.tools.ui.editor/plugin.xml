@@ -62,6 +62,27 @@
               id="switchyard.validate.tab"
               label="Validators">
         </propertyTab>
+        <propertyTab
+              afterTab="switchyard.interaction.policy.tab"
+              category="SwitchyardSCA"
+              id="switchyard.interaction.policy.tab"
+              indented="true"
+              label="Interaction Policy">
+        </propertyTab>
+        <propertyTab
+              afterTab="switchyard.implementation.policy.tab"
+              category="SwitchyardSCA"
+              id="switchyard.implementation.policy.tab"
+              indented="true"
+              label="Implementation Policy">
+        </propertyTab>
+        <propertyTab
+              afterTab="switchyard.security.policy.tab"
+              category="SwitchyardSCA"
+              id="switchyard.security.policy.tab"
+              indented="true"
+              label="Security Policy">
+        </propertyTab>
 	    </propertyTabs>
 	</extension>
 	 
@@ -102,6 +123,24 @@
                filter="org.switchyard.tools.ui.editor.property.ValidatorPropertyFilter"
                id="switchyard.validate.tab.details"
                tab="switchyard.validate.tab">
+         </propertySection>
+         <propertySection
+               class="org.switchyard.tools.ui.editor.property.InteractionPolicyPropertySection"
+               filter="org.switchyard.tools.ui.editor.property.InteractionPolicyPropertyFilter"
+               id="switchyard.interaction.policy.tab.details"
+               tab="switchyard.interaction.policy.tab">
+         </propertySection>
+         <propertySection
+               class="org.switchyard.tools.ui.editor.property.ImplementationPolicyPropertySection"
+               filter="org.switchyard.tools.ui.editor.property.ImplementationPolicyPropertyFilter"
+               id="switchyard.implementation.policy.tab.details"
+               tab="switchyard.implementation.policy.tab">
+         </propertySection>
+         <propertySection
+               class="org.switchyard.tools.ui.editor.property.SecurityPolicyPropertySection"
+               filter="org.switchyard.tools.ui.editor.property.SecurityPolicyPropertyFilter"
+               id="switchyard.security.policy.tab.details"
+               tab="switchyard.security.policy.tab">
          </propertySection>
 	    </propertySections>
 	</extension>
