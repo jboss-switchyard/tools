@@ -22,21 +22,32 @@
       <sca:reference name="BaseService">
         <sca:interface.java interface="org.switchyard.tools.tests.wiring_validation_tests.BaseService"/>
       </sca:reference>
+      <sca:service name="InheritedService">
+        <sca:interface.java interface="org.switchyard.tools.tests.wiring_validation_tests.BaseService"/>
+      </sca:service>
     </sca:component>
     <sca:component name="Component">
       <sca:service name="ExtendedService">
         <sca:interface.java interface="org.switchyard.tools.tests.wiring_validation_tests.ExtendedService"/>
       </sca:service>
+      <sca:reference name="InheritedReference">
+        <sca:interface.java interface="org.switchyard.tools.tests.wiring_validation_tests.BaseService"/>
+      </sca:reference>
     </sca:component>
     <sca:component name="Component1">
       <sca:reference name="BaseReference">
         <sca:interface.java interface="org.switchyard.tools.tests.wiring_validation_tests.BaseService"/>
       </sca:reference>
+      <sca:service name="MissingInterface">
+      </sca:service>
     </sca:component>
     <sca:component name="Component2">
       <sca:service name="ExtendedService">
         <sca:interface.java interface="org.switchyard.tools.tests.wiring_validation_tests.ExtendedService"/>
       </sca:service>
+      <sca:reference name="InheritedReference">
+        <sca:interface.java interface="org.switchyard.tools.tests.wiring_validation_tests.ExtendedService"/>
+      </sca:reference>
     </sca:component>
     <sca:component name="Component3">
       <sca:reference name="UnresolvedReference">
@@ -52,5 +63,8 @@
     <sca:service name="UnboundService">
       <sca:interface.java interface="org.switchyard.tools.tests.wiring_validation_tests.BaseService"/>
     </sca:service>
+    <sca:service name="InheritedService" promote="AllOk/InheritedService"/>
+    <sca:reference name="InheritedReference" multiplicity="0..1" promote="Component/InheritedReference Component2/InheritedReference"/>
+    <sca:reference name="UnusedReference" multiplicity="0..1"/>
   </sca:composite>
 </switchyard>

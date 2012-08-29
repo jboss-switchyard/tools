@@ -19,6 +19,9 @@ public final class GraphitiUtil {
      * @return found GA
      */
     public static <T extends GraphicsAlgorithm> T findChildGA(GraphicsAlgorithm parent, Class<T> gaSearchType) {
+        if (parent == null) {
+            return null;
+        }
         EList<GraphicsAlgorithm> childGAs = parent.getGraphicsAlgorithmChildren();
         for (GraphicsAlgorithm graphicsAlgorithm : childGAs) {
             if (graphicsAlgorithm.getClass().getCanonicalName().contentEquals(gaSearchType.getCanonicalName())) {

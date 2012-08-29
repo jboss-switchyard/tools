@@ -38,6 +38,7 @@ import org.eclipse.core.runtime.Status;
 import org.eclipse.emf.common.notify.Adapter;
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.Notifier;
+import org.eclipse.emf.common.util.Diagnostic;
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EValidator;
@@ -65,6 +66,7 @@ import org.eclipse.graphiti.mm.pictograms.PictogramElement;
 import org.eclipse.graphiti.mm.pictograms.PictogramLink;
 import org.eclipse.graphiti.mm.pictograms.PictogramsFactory;
 import org.eclipse.graphiti.services.Graphiti;
+import org.eclipse.graphiti.ui.editor.DefaultMarkerBehavior;
 import org.eclipse.graphiti.ui.editor.DefaultPersistencyBehavior;
 import org.eclipse.graphiti.ui.editor.DefaultRefreshBehavior;
 import org.eclipse.graphiti.ui.editor.DefaultUpdateBehavior;
@@ -213,12 +215,15 @@ public class SwitchyardSCAEditor extends DiagramEditor implements IGotoMarker {
 
                 _modelFile = WorkspaceSynchronizer.getFile(switchYardResource);
 
+                if (_modelFile == null || !_modelFile.exists()) {
+                    return null;
+                }
+
                 try {
                     switchYardResource.load(getEditingDomain().getResourceSet().getLoadOptions());
                 } catch (IOException e) {
                     ErrorUtils.showErrorWithLogging(new Status(Status.ERROR, Activator.PLUGIN_ID,
-                            "Could not load file: " + modelUri + ".  " + e.getLocalizedMessage()));
-                    return null;
+                            "Error loading file: " + _modelFile.getName() + ".  " + e.getLocalizedMessage(), e));
                 }
 
                 // read in the markers
@@ -423,6 +428,17 @@ public class SwitchyardSCAEditor extends DiagramEditor implements IGotoMarker {
     }
 
     @Override
+    protected DefaultMarkerBehavior createMarkerBehavior() {
+        return new DefaultMarkerBehavior(this) {
+            @Override
+            public Diagnostic analyzeResourceProblems(Resource resource, Exception exception) {
+                // we have an external validator that creates problem markers
+                return Diagnostic.OK_INSTANCE;
+            }
+        };
+    }
+
+    @Override
     protected PictogramElement[] getPictogramElementsForSelection() {
         // filter out invisible elements when setting selection
         ArrayList<PictogramElement> visibleList = new ArrayList<PictogramElement>();
@@ -600,7 +616,9 @@ public class SwitchyardSCAEditor extends DiagramEditor implements IGotoMarker {
     }
 
     private void removeWorkspaceListener() {
-        _modelFile.getWorkspace().removeResourceChangeListener(_workspaceListener);
+        if (_workspaceListener != null) {
+            _modelFile.getWorkspace().removeResourceChangeListener(_workspaceListener);
+        }
     }
 
     /**

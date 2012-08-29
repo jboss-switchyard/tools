@@ -32,6 +32,8 @@ import java.util.EnumSet;
 import java.util.HashSet;
 import java.util.LinkedHashSet;
 import java.util.Set;
+import java.util.concurrent.locks.ReadWriteLock;
+import java.util.concurrent.locks.ReentrantReadWriteLock;
 
 import javax.xml.namespace.QName;
 
@@ -76,7 +78,7 @@ import org.switchyard.tools.ui.common.impl.SwitchYardProjectManager.ISwitchYardP
  */
 public class SwitchYardProject implements ISwitchYardProject, IMavenProjectChangedListener {
 
-    private IProject _project;
+    private final IProject _project;
     private volatile IMavenProjectFacade _mavenProjectFacade;
     private volatile String _version;
     private volatile String _versionPropertyKey;
@@ -88,7 +90,7 @@ public class SwitchYardProject implements ISwitchYardProject, IMavenProjectChang
     private Set<SwitchYardProjectWorkingCopy> _workingCopies = new HashSet<SwitchYardProjectWorkingCopy>();
     private long _lastOutputTimestamp;
     private final SwitchYardProjectManager _manager;
-    private boolean _inLoad;
+    private ReadWriteLock _loadLock = new ReentrantReadWriteLock();
 
     /**
      * Create a new SwitchYardProject.
@@ -100,8 +102,8 @@ public class SwitchYardProject implements ISwitchYardProject, IMavenProjectChang
         _manager = manager;
         _project = project;
         _mavenProjectFacade = MavenPlugin.getMavenProjectRegistry().getProject(project);
-        MavenPlugin.getMavenProjectRegistry().addMavenProjectChangedListener(this);
         init();
+        MavenPlugin.getMavenProjectRegistry().addMavenProjectChangedListener(this);
     }
 
     @Override
@@ -111,7 +113,12 @@ public class SwitchYardProject implements ISwitchYardProject, IMavenProjectChang
 
     @Override
     public MavenProject getMavenProject() {
-        return _mavenProjectFacade == null ? null : _mavenProjectFacade.getMavenProject();
+        readLock();
+        try {
+            return _mavenProjectFacade == null ? null : _mavenProjectFacade.getMavenProject();
+        } finally {
+            readUnlock();
+        }
     }
 
     @Override
@@ -178,13 +185,18 @@ public class SwitchYardProject implements ISwitchYardProject, IMavenProjectChang
 
     @Override
     public boolean needsLoading() {
-        // add a check for the configuration file. it may be that the maven
-        // project was loaded after we initialized.
-        return getMavenProject() == null || _switchYardConfigurationFile == null;
+        readLock();
+        try {
+            // add a check for the configuration file. it may be that the maven
+            // project was loaded after we initialized.
+            return getMavenProject() == null || _switchYardConfigurationFile == null;
+        } finally {
+            readUnlock();
+        }
     }
 
     @Override
-    public synchronized void load(IProgressMonitor monitor) {
+    public void load(IProgressMonitor monitor) {
         if (!needsLoading()) {
             if (getOutputSwitchYardConfigurationFile() == null) {
                 return;
@@ -196,68 +208,73 @@ public class SwitchYardProject implements ISwitchYardProject, IMavenProjectChang
         monitor.worked(10);
         SubProgressMonitor subMonitor = new SubProgressMonitor(monitor, 75);
         Set<Type> types;
-        try {
-            final IFile oldOutputFile = getOutputSwitchYardConfigurationFile();
+        if (_loadLock.writeLock().tryLock()) {
+            try {
+                try {
+                    final IFile oldOutputFile = getOutputSwitchYardConfigurationFile();
 
-            if (_mavenProjectFacade == null) {
-                _mavenProjectFacade = MavenPlugin.getMavenProjectRegistry().getProject(_project);
-                if (_mavenProjectFacade == null) {
-                    _inLoad = true;
-                    try {
-                        MavenPlugin.getMavenProjectRegistry()
-                                .refresh(
-                                        new MavenUpdateRequest(_project, MavenPlugin.getMavenConfiguration()
-                                                .isOffline(), false), subMonitor);
-                    } finally {
-                        _inLoad = false;
+                    if (_mavenProjectFacade == null) {
+                        _mavenProjectFacade = MavenPlugin.getMavenProjectRegistry().getProject(_project);
+                        if (_mavenProjectFacade == null) {
+                            MavenPlugin.getMavenProjectRegistry().refresh(
+                                    new MavenUpdateRequest(_project, MavenPlugin.getMavenConfiguration().isOffline(),
+                                            false), subMonitor);
+                            // we'll get loaded through mavenProjectChanged()
+                            return;
+                        }
                     }
+                    if (_mavenProjectFacade.getMavenProject() == null) {
+                        // reload the project
+                        _mavenProjectFacade.getMavenProject(subMonitor);
+                    }
+                    subMonitor.done();
+
+                    init();
+
+                    final IFile newOutputFile = getOutputSwitchYardConfigurationFile();
+                    final long outputTimestamp = newOutputFile == null ? 0L : newOutputFile.getModificationStamp();
+                    if (outputTimestamp > _lastOutputTimestamp || (oldOutputFile == null && newOutputFile != null)
+                            || oldOutputFile.equals(newOutputFile)) {
+                        types = EnumSet.of(Type.POM, Type.CONFIG);
+                    } else {
+                        types = EnumSet.of(Type.POM);
+                    }
+                } catch (CoreException e) {
+                    Activator.getDefault().getLog().log(e.getStatus());
+                    types = Collections.emptySet();
                 }
-            }
-            if (_mavenProjectFacade.getMavenProject() == null) {
-                // reload the project
-                _mavenProjectFacade.getMavenProject(subMonitor);
-            }
-            subMonitor.done();
 
-            init();
+                for (SwitchYardProjectWorkingCopy workingCopy : _workingCopies) {
+                    workingCopy.reloaded();
+                }
 
-            final IFile newOutputFile = getOutputSwitchYardConfigurationFile();
-            final long outputTimestamp = newOutputFile == null ? 0L : newOutputFile.getModificationStamp();
-            if (outputTimestamp > _lastOutputTimestamp || (oldOutputFile == null && newOutputFile != null)
-                    || oldOutputFile.equals(newOutputFile)) {
-                types = EnumSet.of(Type.POM, Type.CONFIG);
-            } else {
-                types = EnumSet.of(Type.POM);
+                _manager.notify(this, types);
+            } finally {
+                _loadLock.writeLock().unlock();
             }
-        } catch (CoreException e) {
-            Activator.getDefault().getLog().log(e.getStatus());
-            types = Collections.emptySet();
+        } else {
+            // somebody else is loading, so just wait for them to finish
+            _loadLock.writeLock().lock();
+            _loadLock.writeLock().unlock();
         }
-
-        for (SwitchYardProjectWorkingCopy workingCopy : _workingCopies) {
-            workingCopy.reloaded();
-        }
-
-        _manager.notify(this, types);
 
         monitor.done();
     }
 
     @Override
-    public synchronized void mavenProjectChanged(MavenProjectChangedEvent[] events, IProgressMonitor monitor) {
+    public void mavenProjectChanged(MavenProjectChangedEvent[] events, IProgressMonitor monitor) {
         if (events == null) {
             return;
         }
         for (MavenProjectChangedEvent event : events) {
             if (_project.equals(event.getSource().getProject())) {
-                if (event.getMavenProject() != null) {
-                    if (event.getMavenProject().getMavenProject() != null) {
-                        _mavenProjectFacade = event.getMavenProject();
-                        if (!_inLoad && getMavenProject() != null) {
-                            // if it's null, don't reload
-                            init();
-                            // send out any events if any configuration changed
+                if (event.getMavenProject() != null && event.getMavenProject().getMavenProject() != null) {
+                    if (_loadLock.writeLock().tryLock()) {
+                        try {
+                            // reload the model
                             load(new NullProgressMonitor());
+                        } finally {
+                            _loadLock.writeLock().unlock();
                         }
                     }
                 }
@@ -267,10 +284,15 @@ public class SwitchYardProject implements ISwitchYardProject, IMavenProjectChang
     }
 
     @Override
-    public synchronized ISwitchYardProjectWorkingCopy createWorkingCopy() {
-        SwitchYardProjectWorkingCopy workingCopy = new SwitchYardProjectWorkingCopy(this);
-        _workingCopies.add(workingCopy);
-        return workingCopy;
+    public ISwitchYardProjectWorkingCopy createWorkingCopy() {
+        readLock();
+        try {
+            SwitchYardProjectWorkingCopy workingCopy = new SwitchYardProjectWorkingCopy(this);
+            _workingCopies.add(workingCopy);
+            return workingCopy;
+        } finally {
+            readUnlock();
+        }
     }
 
     protected SwitchYardConfigurePlugin getPlugin() {
@@ -278,17 +300,35 @@ public class SwitchYardProject implements ISwitchYardProject, IMavenProjectChang
     }
 
     /* package */
-    synchronized void dispose() {
+    void dispose() {
         MavenPlugin.getMavenProjectRegistry().removeMavenProjectChangedListener(this);
-        _mavenProjectFacade = null;
+        _loadLock.writeLock().lock();
+        try {
+            _mavenProjectFacade = null;
+        } finally {
+            _loadLock.writeLock().unlock();
+        }
     }
 
     /* package */
-    synchronized void disposed(SwitchYardProjectWorkingCopy workingCopy) {
-        _workingCopies.remove(workingCopy);
+    void disposed(SwitchYardProjectWorkingCopy workingCopy) {
+        readLock();
+        try {
+            _workingCopies.remove(workingCopy);
+        } finally {
+            readUnlock();
+        }
     }
 
-    private synchronized void init() {
+    void readLock() {
+        _loadLock.readLock().lock();
+    }
+    
+    void readUnlock() {
+        _loadLock.readLock().unlock();
+    }
+
+    private void init() {
         _version = null;
         _versionPropertyKey = SWITCHYARD_VERSION;
         _components = Collections.emptySet();

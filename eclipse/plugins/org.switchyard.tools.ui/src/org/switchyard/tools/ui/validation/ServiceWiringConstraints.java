@@ -303,7 +303,8 @@ public class ServiceWiringConstraints extends AbstractModelConstraint {
         final Set<Contract> contracts = names.get(name);
         boolean dupd = false;
         for (Contract other : contracts) {
-            if (other == contract || (other instanceof Service && ((Service) other).getPromote() == contract)) {
+            if (other == contract || (other instanceof Service && ((Service) other).getPromote() == contract)
+                    || (contract instanceof Service && ((Service) contract).getPromote() == other)) {
                 // not a duplicate if it's us or if it's the service promoting
                 // this component service.
                 continue;

@@ -14,14 +14,12 @@ package org.switchyard.tools.ui.editor.diagram.service;
 
 import org.eclipse.graphiti.features.IFeatureProvider;
 import org.eclipse.graphiti.features.context.IAddContext;
-import org.eclipse.graphiti.features.context.impl.AddConnectionContext;
 import org.eclipse.graphiti.features.impl.AbstractAddShapeFeature;
 import org.eclipse.graphiti.mm.algorithms.Polygon;
 import org.eclipse.graphiti.mm.algorithms.Rectangle;
 import org.eclipse.graphiti.mm.algorithms.Text;
 import org.eclipse.graphiti.mm.algorithms.styles.Font;
 import org.eclipse.graphiti.mm.algorithms.styles.Orientation;
-import org.eclipse.graphiti.mm.pictograms.Anchor;
 import org.eclipse.graphiti.mm.pictograms.ChopboxAnchor;
 import org.eclipse.graphiti.mm.pictograms.ContainerShape;
 import org.eclipse.graphiti.mm.pictograms.PictogramElement;
@@ -114,18 +112,8 @@ public class SCADiagramAddServiceFeature extends AbstractAddShapeFeature {
         text.setVerticalAlignment(Orientation.ALIGNMENT_CENTER);
         gaService.setLocationAndSize(text, left + 10, 0, right - left - 10, height);
 
-        if (addedService.getPromote() == null) {
-            return containerShape;
-        }
-
-        for (PictogramElement pe : getFeatureProvider().getAllPictogramElementsForBusinessObject(
-                addedService.getPromote())) {
-            if (pe instanceof Anchor) {
-                AddConnectionContext addContext = new AddConnectionContext(anchor, (Anchor) pe);
-                addContext.setNewObject(addedService.getPromote());
-                getFeatureProvider().addIfPossible(addContext);
-            }
-        }
+        layoutPictogramElement(containerShape);
+        updatePictogramElement(containerShape);
 
         return containerShape;
 

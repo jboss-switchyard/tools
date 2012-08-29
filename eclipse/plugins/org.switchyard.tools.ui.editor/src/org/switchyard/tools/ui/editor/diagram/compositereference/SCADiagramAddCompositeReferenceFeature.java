@@ -14,21 +14,18 @@ package org.switchyard.tools.ui.editor.diagram.compositereference;
 
 import org.eclipse.graphiti.features.IFeatureProvider;
 import org.eclipse.graphiti.features.context.IAddContext;
-import org.eclipse.graphiti.features.context.impl.AddConnectionContext;
 import org.eclipse.graphiti.features.impl.AbstractAddShapeFeature;
 import org.eclipse.graphiti.mm.algorithms.Polygon;
 import org.eclipse.graphiti.mm.algorithms.Rectangle;
 import org.eclipse.graphiti.mm.algorithms.Text;
 import org.eclipse.graphiti.mm.algorithms.styles.Font;
 import org.eclipse.graphiti.mm.algorithms.styles.Orientation;
-import org.eclipse.graphiti.mm.pictograms.Anchor;
 import org.eclipse.graphiti.mm.pictograms.ChopboxAnchor;
 import org.eclipse.graphiti.mm.pictograms.ContainerShape;
 import org.eclipse.graphiti.mm.pictograms.PictogramElement;
 import org.eclipse.graphiti.services.Graphiti;
 import org.eclipse.graphiti.services.IGaService;
 import org.eclipse.graphiti.services.IPeCreateService;
-import org.eclipse.soa.sca.sca1_1.model.sca.ComponentReference;
 import org.eclipse.soa.sca.sca1_1.model.sca.Composite;
 import org.eclipse.soa.sca.sca1_1.model.sca.Reference;
 import org.switchyard.tools.ui.editor.diagram.StyleUtil;
@@ -116,20 +113,8 @@ public class SCADiagramAddCompositeReferenceFeature extends AbstractAddShapeFeat
         text.setVerticalAlignment(Orientation.ALIGNMENT_CENTER);
         gaService.setLocationAndSize(text, left + 10, 0, right - left - 10, height);
 
-        if (addedReference.getPromote() == null) {
-            return containerShape;
-        }
-
-        for (ComponentReference promotedReference : addedReference.getPromote()) {
-            for (PictogramElement pe : getFeatureProvider().getAllPictogramElementsForBusinessObject(promotedReference)) {
-                if (pe instanceof Anchor) {
-                    AddConnectionContext addContext = new AddConnectionContext((Anchor) pe, anchor);
-                    addContext.setNewObject(addedReference);
-                    getFeatureProvider().addIfPossible(addContext);
-                    break;
-                }
-            }
-        }
+        layoutPictogramElement(containerShape);
+        updatePictogramElement(containerShape);
 
         return containerShape;
 

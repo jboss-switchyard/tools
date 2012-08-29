@@ -133,7 +133,8 @@ public class SwitchYardProjectWorkingCopy implements ISwitchYardProjectWorkingCo
 
     /* package */
     void reloaded() {
-        synchronized (_switchYardProject) {
+        _switchYardProject.readLock();
+        try {
             _mavenProject = _switchYardProject.getMavenProject();
             _mergedComponents.clear();
             _mergedComponents.addAll(_switchYardProject.getComponents());
@@ -153,6 +154,8 @@ public class SwitchYardProjectWorkingCopy implements ISwitchYardProjectWorkingCo
                 }
                 _mergedComponents.add(component);
             }
+        } finally {
+            _switchYardProject.readUnlock();
         }
     }
 
@@ -175,7 +178,8 @@ public class SwitchYardProjectWorkingCopy implements ISwitchYardProjectWorkingCo
 
     @Override
     public void addComponent(ISwitchYardComponentExtension component) {
-        synchronized (_switchYardProject) {
+        _switchYardProject.readLock();
+        try {
             _removedComponents.remove(component.getId());
             _mergedComponents.add(component);
             if (_addedComponents.containsKey(component.getId())
@@ -184,21 +188,27 @@ public class SwitchYardProjectWorkingCopy implements ISwitchYardProjectWorkingCo
                 return;
             }
             _addedComponents.put(component.getId(), component);
+        } finally {
+            _switchYardProject.readUnlock();
         }
     }
 
     @Override
     public void addComponents(Collection<ISwitchYardComponentExtension> components) {
-        synchronized (_switchYardProject) {
+        _switchYardProject.readLock();
+        try {
             for (ISwitchYardComponentExtension component : components) {
                 addComponent(component);
             }
+        } finally {
+            _switchYardProject.readUnlock();
         }
     }
 
     @Override
     public void removeComponent(ISwitchYardComponentExtension component) {
-        synchronized (_switchYardProject) {
+        _switchYardProject.readLock();
+        try {
             _addedComponents.remove(component.getId());
             _mergedComponents.remove(component);
             if (_removedComponents.containsKey(component.getId())
@@ -207,28 +217,37 @@ public class SwitchYardProjectWorkingCopy implements ISwitchYardProjectWorkingCo
                 return;
             }
             _removedComponents.put(component.getId(), component);
+        } finally {
+            _switchYardProject.readUnlock();
         }
     }
 
     @Override
     public void removeComponents(Collection<ISwitchYardComponentExtension> components) {
-        synchronized (_switchYardProject) {
+        _switchYardProject.readLock();
+        try {
             for (ISwitchYardComponentExtension component : components) {
                 removeComponent(component);
             }
+        } finally {
+            _switchYardProject.readUnlock();
         }
     }
 
     @Override
     public boolean isModified() {
-        synchronized (_switchYardProject) {
+        _switchYardProject.readLock();
+        try {
             return _newVersion != null || !_removedComponents.isEmpty() || !_addedComponents.isEmpty();
+        } finally {
+            _switchYardProject.readUnlock();
         }
     }
 
     @Override
     public void commit(IProgressMonitor monitor) throws CoreException {
-        synchronized (_switchYardProject) {
+        _switchYardProject.readLock();
+        try {
             if (!isModified()) {
                 monitor.done();
                 return;
@@ -250,17 +269,22 @@ public class SwitchYardProjectWorkingCopy implements ISwitchYardProjectWorkingCo
             }
             subMonitor.done();
             monitor.done();
+        } finally {
+            _switchYardProject.readUnlock();
         }
     }
 
     @Override
     public void revert() {
-        synchronized (_switchYardProject) {
+        _switchYardProject.readLock();
+        try {
             _newVersion = null;
             _addedComponents.clear();
             _removedComponents.clear();
             _mergedComponents.clear();
             _mergedComponents.addAll(_switchYardProject.getComponents());
+        } finally {
+            _switchYardProject.readUnlock();
         }
     }
 

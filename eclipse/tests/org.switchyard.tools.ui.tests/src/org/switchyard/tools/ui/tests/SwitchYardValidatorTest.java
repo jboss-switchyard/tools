@@ -66,8 +66,8 @@ public class SwitchYardValidatorTest extends AbstractMavenProjectTestCase {
                 break;
             }
         }
-        assertEquals("Expecting 11 errors: " + WorkspaceHelpers.toString(markers), 11, errorCount);
-        assertEquals("Expecting 2 warnings: " + WorkspaceHelpers.toString(markers), 2, warningCount);
+        assertEquals("Expecting 13 errors: " + WorkspaceHelpers.toString(markers), 13, errorCount);
+        assertEquals("Expecting 3 warnings: " + WorkspaceHelpers.toString(markers), 3, warningCount);
         assertEquals("Expecting 0 infos: " + WorkspaceHelpers.toString(markers), 0, infoCount);
         assertEquals("Unexpected marker severity (not info, warning, error): " + WorkspaceHelpers.toString(markers), 0,
                 unknownCount);

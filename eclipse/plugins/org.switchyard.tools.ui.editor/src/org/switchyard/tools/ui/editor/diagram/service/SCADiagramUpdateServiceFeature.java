@@ -12,23 +12,36 @@
  ******************************************************************************/
 package org.switchyard.tools.ui.editor.diagram.service;
 
+import java.util.ArrayList;
+import java.util.LinkedHashSet;
+import java.util.Set;
+
 import org.eclipse.graphiti.features.IFeatureProvider;
 import org.eclipse.graphiti.features.IReason;
+import org.eclipse.graphiti.features.IRemoveFeature;
 import org.eclipse.graphiti.features.context.IUpdateContext;
+import org.eclipse.graphiti.features.context.impl.AddConnectionContext;
+import org.eclipse.graphiti.features.context.impl.RemoveContext;
 import org.eclipse.graphiti.features.impl.AbstractUpdateFeature;
 import org.eclipse.graphiti.features.impl.Reason;
-import org.eclipse.graphiti.mm.algorithms.GraphicsAlgorithm;
 import org.eclipse.graphiti.mm.algorithms.Text;
+import org.eclipse.graphiti.mm.pictograms.Anchor;
+import org.eclipse.graphiti.mm.pictograms.AnchorContainer;
+import org.eclipse.graphiti.mm.pictograms.Connection;
 import org.eclipse.graphiti.mm.pictograms.ContainerShape;
 import org.eclipse.graphiti.mm.pictograms.PictogramElement;
+import org.eclipse.soa.sca.sca1_1.model.sca.ComponentService;
+import org.eclipse.soa.sca.sca1_1.model.sca.Contract;
 import org.eclipse.soa.sca.sca1_1.model.sca.Service;
 import org.switchyard.tools.ui.editor.util.GraphitiUtil;
 
 /**
  * @author bfitzpat
- *
+ * 
  */
 public class SCADiagramUpdateServiceFeature extends AbstractUpdateFeature {
+
+    private boolean _hasDoneChanges;
 
     /**
      * @param fp the feature provider
@@ -40,51 +53,44 @@ public class SCADiagramUpdateServiceFeature extends AbstractUpdateFeature {
     @Override
     public boolean canUpdate(IUpdateContext context) {
         // return true, if linked business object is a Service
-        Object bo = getBusinessObjectForPictogramElement(context.getPictogramElement());
-        return (bo instanceof Service);
-    }
-
-    private Text findText(GraphicsAlgorithm root) {
-        for (GraphicsAlgorithm ga : root.getGraphicsAlgorithmChildren()) {
-            if (ga instanceof Text) {
-                Text text = (Text) ga;
-                return text;
-            }
-            if (ga.getGraphicsAlgorithmChildren().size() > 0) {
-                return findText(ga);
-            }
-        }
-        return null;
+        PictogramElement pe = context.getPictogramElement();
+        Object bo = getBusinessObjectForPictogramElement(pe);
+        return bo instanceof Service && pe instanceof ContainerShape;
     }
 
     @Override
     public IReason updateNeeded(IUpdateContext context) {
+        if (!canUpdate(context)) {
+            return Reason.createFalseReason();
+        }
+
+        ContainerShape cs = (ContainerShape) context.getPictogramElement();
+        Service service = (Service) getBusinessObjectForPictogramElement(cs);
+
         // retrieve name from pictogram model
         String pictogramName = null;
-        PictogramElement pictogramElement = context.getPictogramElement();
-        if (pictogramElement instanceof ContainerShape) {
-            ContainerShape cs = (ContainerShape) pictogramElement;
-            Text foundText = findText(cs.getGraphicsAlgorithm());
-            if (foundText != null) {
-                pictogramName = foundText.getValue();
-            }
+        Text foundText = GraphitiUtil.findChildGA(cs.getGraphicsAlgorithm(), Text.class);
+        if (foundText != null) {
+            pictogramName = foundText.getValue();
         }
 
         // retrieve name from business model
-        String businessName = null;
-        Object bo = getBusinessObjectForPictogramElement(pictogramElement);
-        if (bo instanceof Service) {
-            Service eClass = (Service) bo;
-            businessName = eClass.getName();
+        String businessName = service.getName();
+        // update needed, if names are different
+        boolean updateNameNeeded = ((pictogramName == null && businessName != null) || (pictogramName != null && !pictogramName
+                .contentEquals(businessName)));
+        if (updateNameNeeded) {
+            return Reason.createTrueReason("Service name is out of date");
+        }
 
-            // update needed, if names are different
-            boolean updateNameNeeded = ((pictogramName == null && businessName != null) || (pictogramName != null && !pictogramName
-                    .contentEquals(businessName)));
-            if (updateNameNeeded) {
-                return Reason.createTrueReason("Service name is out of date");
-            } else {
-                return Reason.createFalseReason();
-            }
+        // check the wiring
+        final Set<Contract> existingConnections = getExistingConnections(cs);
+        if (service.getPromote() != null && !existingConnections.remove(service.getPromote())) {
+            return Reason.createTrueReason("Update connections.");
+        }
+
+        if (existingConnections.size() > 0) {
+            return Reason.createTrueReason("Update connections.");
         }
 
         return Reason.createFalseReason();
@@ -92,25 +98,72 @@ public class SCADiagramUpdateServiceFeature extends AbstractUpdateFeature {
 
     @Override
     public boolean update(IUpdateContext context) {
+        _hasDoneChanges = false;
+
         // retrieve name from business model
-        String businessName = null;
-        PictogramElement pictogramElement = context.getPictogramElement();
-        Object bo = getBusinessObjectForPictogramElement(pictogramElement);
-        if (bo instanceof Service) {
-            Service eClass = (Service) bo;
-            businessName = eClass.getName();
-        }
+        ContainerShape cs = (ContainerShape) context.getPictogramElement();
+        Service service = (Service) getBusinessObjectForPictogramElement(cs);
 
         // Set name in pictogram model
-        if (pictogramElement instanceof ContainerShape) {
-            GraphicsAlgorithm ga = pictogramElement.getGraphicsAlgorithm();
-            Text text = (Text) GraphitiUtil.findChildGA(ga, Text.class);
-            if (text != null) {
-                text.setValue(businessName);
-                return true;
+        String pictogramName = null;
+        Text foundText = GraphitiUtil.findChildGA(cs.getGraphicsAlgorithm(), Text.class);
+        if (foundText != null) {
+            pictogramName = foundText.getValue();
+        }
+        String businessName = service.getName();
+        boolean updateNameNeeded = ((pictogramName == null && businessName != null) || (pictogramName != null && !pictogramName
+                .contentEquals(businessName)));
+        if (updateNameNeeded) {
+            foundText.setValue(businessName);
+            _hasDoneChanges = true;
+        }
+
+        // update the wires
+        final Set<Contract> existingConnections = getExistingConnections(cs);
+        final Anchor anchor = cs.getAnchors().get(0);
+        final ComponentService promotedService = service.getPromote();
+        if (promotedService != null && !existingConnections.remove(promotedService)) {
+            for (PictogramElement pe : getFeatureProvider().getAllPictogramElementsForBusinessObject(promotedService)) {
+                if (pe instanceof Anchor) {
+                    AddConnectionContext addContext = new AddConnectionContext(anchor, (Anchor) pe);
+                    addContext.setNewObject(promotedService);
+                    updatePictogramElement(getFeatureProvider().addIfPossible(addContext));
+                    _hasDoneChanges = true;
+                    break;
+                }
             }
         }
-        return false;
+
+        for (Connection connection : new ArrayList<Connection>(anchor.getOutgoingConnections())) {
+            Object bo = getBusinessObjectForPictogramElement(connection.getEnd());
+            if (existingConnections.remove(bo)) {
+                RemoveContext removeContext = new RemoveContext(connection);
+                IRemoveFeature removeFeature = getFeatureProvider().getRemoveFeature(removeContext);
+                if (removeFeature.canExecute(removeContext)) {
+                    removeFeature.execute(removeContext);
+                    _hasDoneChanges = _hasDoneChanges || removeFeature.hasDoneChanges();
+                }
+            }
+        }
+
+        return _hasDoneChanges;
     }
 
+    @Override
+    public boolean hasDoneChanges() {
+        return _hasDoneChanges;
+    }
+
+    private Set<Contract> getExistingConnections(AnchorContainer container) {
+        Set<Contract> existingConnections = new LinkedHashSet<Contract>();
+        for (Anchor anchor : container.getAnchors()) {
+            for (Connection connection : anchor.getOutgoingConnections()) {
+                Object bo = getBusinessObjectForPictogramElement(connection.getEnd());
+                if (bo instanceof Contract) {
+                    existingConnections.add((Contract) bo);
+                }
+            }
+        }
+        return existingConnections;
+    }
 }

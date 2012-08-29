@@ -10,12 +10,19 @@
  ************************************************************************************/
 package org.switchyard.tools.ui.validation;
 
+import java.util.List;
+
 import org.eclipse.core.runtime.IStatus;
 import org.eclipse.emf.ecore.EObject;
+import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.emf.validation.AbstractModelConstraint;
 import org.eclipse.emf.validation.EMFEventType;
 import org.eclipse.emf.validation.IValidationContext;
+import org.eclipse.soa.sca.sca1_1.model.sca.ComponentReference;
 import org.eclipse.soa.sca.sca1_1.model.sca.Contract;
+import org.eclipse.soa.sca.sca1_1.model.sca.Interface;
+import org.eclipse.soa.sca.sca1_1.model.sca.Reference;
+import org.eclipse.soa.sca.sca1_1.model.sca.Service;
 
 /**
  * ServiceInterfaceConstraint
@@ -43,6 +50,22 @@ public class ServiceInterfaceConstraint extends AbstractModelConstraint {
 
     private IStatus validate(IValidationContext ctx, Contract contract) {
         if (contract.getInterface() == null) {
+            if (contract instanceof Service) {
+                // service can inherit from the component service it is
+                // promoting.
+                return ctx.createSuccessStatus();
+            } else if (contract instanceof Reference) {
+                List<ComponentReference> promotions = ((Reference) contract).getPromote();
+                if (promotions != null && promotions.size() > 1) {
+                    Interface baseInterface = promotions.get(0).getInterface();
+                    for (ComponentReference promotedReference : promotions) {
+                        if (!EcoreUtil.equals(baseInterface, promotedReference.getInterface())) {
+                            return ctx.createFailureStatus();
+                        }
+                    }
+                }
+                return ctx.createSuccessStatus();
+            }
             return ctx.createFailureStatus();
         }
         return ctx.createSuccessStatus();
