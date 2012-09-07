@@ -24,11 +24,11 @@ package org.switchyard.tools.models.switchyard1_0.camel;
  *   <li>{@link org.switchyard.tools.models.switchyard1_0.camel.CamelJmsBindingType#getDurableSubscriptionName <em>Durable Subscription Name</em>}</li>
  *   <li>{@link org.switchyard.tools.models.switchyard1_0.camel.CamelJmsBindingType#getConcurrentConsumers <em>Concurrent Consumers</em>}</li>
  *   <li>{@link org.switchyard.tools.models.switchyard1_0.camel.CamelJmsBindingType#getMaxConcurrentConsumers <em>Max Concurrent Consumers</em>}</li>
- *   <li>{@link org.switchyard.tools.models.switchyard1_0.camel.CamelJmsBindingType#isDisableReplyTo <em>Disable Reply To</em>}</li>
- *   <li>{@link org.switchyard.tools.models.switchyard1_0.camel.CamelJmsBindingType#isPreserveMessageQos <em>Preserve Message Qos</em>}</li>
- *   <li>{@link org.switchyard.tools.models.switchyard1_0.camel.CamelJmsBindingType#isDeliveryPersistent <em>Delivery Persistent</em>}</li>
+ *   <li>{@link org.switchyard.tools.models.switchyard1_0.camel.CamelJmsBindingType#getDisableReplyTo <em>Disable Reply To</em>}</li>
+ *   <li>{@link org.switchyard.tools.models.switchyard1_0.camel.CamelJmsBindingType#getPreserveMessageQos <em>Preserve Message Qos</em>}</li>
+ *   <li>{@link org.switchyard.tools.models.switchyard1_0.camel.CamelJmsBindingType#getDeliveryPersistent <em>Delivery Persistent</em>}</li>
  *   <li>{@link org.switchyard.tools.models.switchyard1_0.camel.CamelJmsBindingType#getPriority <em>Priority</em>}</li>
- *   <li>{@link org.switchyard.tools.models.switchyard1_0.camel.CamelJmsBindingType#isExplicitQosEnabled <em>Explicit Qos Enabled</em>}</li>
+ *   <li>{@link org.switchyard.tools.models.switchyard1_0.camel.CamelJmsBindingType#getExplicitQosEnabled <em>Explicit Qos Enabled</em>}</li>
  *   <li>{@link org.switchyard.tools.models.switchyard1_0.camel.CamelJmsBindingType#getReplyTo <em>Reply To</em>}</li>
  *   <li>{@link org.switchyard.tools.models.switchyard1_0.camel.CamelJmsBindingType#getReplyToType <em>Reply To Type</em>}</li>
  *   <li>{@link org.switchyard.tools.models.switchyard1_0.camel.CamelJmsBindingType#getRequestTimeout <em>Request Timeout</em>}</li>
@@ -352,45 +352,45 @@ public interface CamelJmsBindingType extends BaseCamelBinding {
      * @return the value of the '<em>Disable Reply To</em>' attribute.
      * @see #isSetDisableReplyTo()
      * @see #unsetDisableReplyTo()
-     * @see #setDisableReplyTo(boolean)
+     * @see #setDisableReplyTo(Boolean)
      * @see org.switchyard.tools.models.switchyard1_0.camel.CamelPackage#getCamelJmsBindingType_DisableReplyTo()
-     * @model unsettable="true" dataType="org.eclipse.emf.ecore.xml.type.Boolean"
+     * @model unsettable="true" dataType="org.eclipse.emf.ecore.xml.type.BooleanObject"
      *        extendedMetaData="kind='element' name='disableReplyTo' namespace='##targetNamespace'"
      * @generated
      */
-    boolean isDisableReplyTo();
+    Boolean getDisableReplyTo();
 
     /**
-     * Sets the value of the '{@link org.switchyard.tools.models.switchyard1_0.camel.CamelJmsBindingType#isDisableReplyTo <em>Disable Reply To</em>}' attribute.
+     * Sets the value of the '{@link org.switchyard.tools.models.switchyard1_0.camel.CamelJmsBindingType#getDisableReplyTo <em>Disable Reply To</em>}' attribute.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @param value the new value of the '<em>Disable Reply To</em>' attribute.
      * @see #isSetDisableReplyTo()
      * @see #unsetDisableReplyTo()
-     * @see #isDisableReplyTo()
+     * @see #getDisableReplyTo()
      * @generated
      */
-    void setDisableReplyTo(boolean value);
+    void setDisableReplyTo(Boolean value);
 
     /**
-     * Unsets the value of the '{@link org.switchyard.tools.models.switchyard1_0.camel.CamelJmsBindingType#isDisableReplyTo <em>Disable Reply To</em>}' attribute.
+     * Unsets the value of the '{@link org.switchyard.tools.models.switchyard1_0.camel.CamelJmsBindingType#getDisableReplyTo <em>Disable Reply To</em>}' attribute.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @see #isSetDisableReplyTo()
-     * @see #isDisableReplyTo()
-     * @see #setDisableReplyTo(boolean)
+     * @see #getDisableReplyTo()
+     * @see #setDisableReplyTo(Boolean)
      * @generated
      */
     void unsetDisableReplyTo();
 
     /**
-     * Returns whether the value of the '{@link org.switchyard.tools.models.switchyard1_0.camel.CamelJmsBindingType#isDisableReplyTo <em>Disable Reply To</em>}' attribute is set.
+     * Returns whether the value of the '{@link org.switchyard.tools.models.switchyard1_0.camel.CamelJmsBindingType#getDisableReplyTo <em>Disable Reply To</em>}' attribute is set.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @return whether the value of the '<em>Disable Reply To</em>' attribute is set.
      * @see #unsetDisableReplyTo()
-     * @see #isDisableReplyTo()
-     * @see #setDisableReplyTo(boolean)
+     * @see #getDisableReplyTo()
+     * @see #setDisableReplyTo(Boolean)
      * @generated
      */
     boolean isSetDisableReplyTo();
@@ -406,45 +406,45 @@ public interface CamelJmsBindingType extends BaseCamelBinding {
      * @return the value of the '<em>Preserve Message Qos</em>' attribute.
      * @see #isSetPreserveMessageQos()
      * @see #unsetPreserveMessageQos()
-     * @see #setPreserveMessageQos(boolean)
+     * @see #setPreserveMessageQos(Boolean)
      * @see org.switchyard.tools.models.switchyard1_0.camel.CamelPackage#getCamelJmsBindingType_PreserveMessageQos()
-     * @model unsettable="true" dataType="org.eclipse.emf.ecore.xml.type.Boolean"
+     * @model unsettable="true" dataType="org.eclipse.emf.ecore.xml.type.BooleanObject"
      *        extendedMetaData="kind='element' name='preserveMessageQos' namespace='##targetNamespace'"
      * @generated
      */
-    boolean isPreserveMessageQos();
+    Boolean getPreserveMessageQos();
 
     /**
-     * Sets the value of the '{@link org.switchyard.tools.models.switchyard1_0.camel.CamelJmsBindingType#isPreserveMessageQos <em>Preserve Message Qos</em>}' attribute.
+     * Sets the value of the '{@link org.switchyard.tools.models.switchyard1_0.camel.CamelJmsBindingType#getPreserveMessageQos <em>Preserve Message Qos</em>}' attribute.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @param value the new value of the '<em>Preserve Message Qos</em>' attribute.
      * @see #isSetPreserveMessageQos()
      * @see #unsetPreserveMessageQos()
-     * @see #isPreserveMessageQos()
+     * @see #getPreserveMessageQos()
      * @generated
      */
-    void setPreserveMessageQos(boolean value);
+    void setPreserveMessageQos(Boolean value);
 
     /**
-     * Unsets the value of the '{@link org.switchyard.tools.models.switchyard1_0.camel.CamelJmsBindingType#isPreserveMessageQos <em>Preserve Message Qos</em>}' attribute.
+     * Unsets the value of the '{@link org.switchyard.tools.models.switchyard1_0.camel.CamelJmsBindingType#getPreserveMessageQos <em>Preserve Message Qos</em>}' attribute.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @see #isSetPreserveMessageQos()
-     * @see #isPreserveMessageQos()
-     * @see #setPreserveMessageQos(boolean)
+     * @see #getPreserveMessageQos()
+     * @see #setPreserveMessageQos(Boolean)
      * @generated
      */
     void unsetPreserveMessageQos();
 
     /**
-     * Returns whether the value of the '{@link org.switchyard.tools.models.switchyard1_0.camel.CamelJmsBindingType#isPreserveMessageQos <em>Preserve Message Qos</em>}' attribute is set.
+     * Returns whether the value of the '{@link org.switchyard.tools.models.switchyard1_0.camel.CamelJmsBindingType#getPreserveMessageQos <em>Preserve Message Qos</em>}' attribute is set.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @return whether the value of the '<em>Preserve Message Qos</em>' attribute is set.
      * @see #unsetPreserveMessageQos()
-     * @see #isPreserveMessageQos()
-     * @see #setPreserveMessageQos(boolean)
+     * @see #getPreserveMessageQos()
+     * @see #setPreserveMessageQos(Boolean)
      * @generated
      */
     boolean isSetPreserveMessageQos();
@@ -460,45 +460,45 @@ public interface CamelJmsBindingType extends BaseCamelBinding {
      * @return the value of the '<em>Delivery Persistent</em>' attribute.
      * @see #isSetDeliveryPersistent()
      * @see #unsetDeliveryPersistent()
-     * @see #setDeliveryPersistent(boolean)
+     * @see #setDeliveryPersistent(Boolean)
      * @see org.switchyard.tools.models.switchyard1_0.camel.CamelPackage#getCamelJmsBindingType_DeliveryPersistent()
-     * @model unsettable="true" dataType="org.eclipse.emf.ecore.xml.type.Boolean"
+     * @model unsettable="true" dataType="org.eclipse.emf.ecore.xml.type.BooleanObject"
      *        extendedMetaData="kind='element' name='deliveryPersistent' namespace='##targetNamespace'"
      * @generated
      */
-    boolean isDeliveryPersistent();
+    Boolean getDeliveryPersistent();
 
     /**
-     * Sets the value of the '{@link org.switchyard.tools.models.switchyard1_0.camel.CamelJmsBindingType#isDeliveryPersistent <em>Delivery Persistent</em>}' attribute.
+     * Sets the value of the '{@link org.switchyard.tools.models.switchyard1_0.camel.CamelJmsBindingType#getDeliveryPersistent <em>Delivery Persistent</em>}' attribute.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @param value the new value of the '<em>Delivery Persistent</em>' attribute.
      * @see #isSetDeliveryPersistent()
      * @see #unsetDeliveryPersistent()
-     * @see #isDeliveryPersistent()
+     * @see #getDeliveryPersistent()
      * @generated
      */
-    void setDeliveryPersistent(boolean value);
+    void setDeliveryPersistent(Boolean value);
 
     /**
-     * Unsets the value of the '{@link org.switchyard.tools.models.switchyard1_0.camel.CamelJmsBindingType#isDeliveryPersistent <em>Delivery Persistent</em>}' attribute.
+     * Unsets the value of the '{@link org.switchyard.tools.models.switchyard1_0.camel.CamelJmsBindingType#getDeliveryPersistent <em>Delivery Persistent</em>}' attribute.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @see #isSetDeliveryPersistent()
-     * @see #isDeliveryPersistent()
-     * @see #setDeliveryPersistent(boolean)
+     * @see #getDeliveryPersistent()
+     * @see #setDeliveryPersistent(Boolean)
      * @generated
      */
     void unsetDeliveryPersistent();
 
     /**
-     * Returns whether the value of the '{@link org.switchyard.tools.models.switchyard1_0.camel.CamelJmsBindingType#isDeliveryPersistent <em>Delivery Persistent</em>}' attribute is set.
+     * Returns whether the value of the '{@link org.switchyard.tools.models.switchyard1_0.camel.CamelJmsBindingType#getDeliveryPersistent <em>Delivery Persistent</em>}' attribute is set.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @return whether the value of the '<em>Delivery Persistent</em>' attribute is set.
      * @see #unsetDeliveryPersistent()
-     * @see #isDeliveryPersistent()
-     * @see #setDeliveryPersistent(boolean)
+     * @see #getDeliveryPersistent()
+     * @see #setDeliveryPersistent(Boolean)
      * @generated
      */
     boolean isSetDeliveryPersistent();
@@ -514,13 +514,13 @@ public interface CamelJmsBindingType extends BaseCamelBinding {
      * @return the value of the '<em>Priority</em>' attribute.
      * @see #isSetPriority()
      * @see #unsetPriority()
-     * @see #setPriority(int)
+     * @see #setPriority(Integer)
      * @see org.switchyard.tools.models.switchyard1_0.camel.CamelPackage#getCamelJmsBindingType_Priority()
-     * @model unsettable="true" dataType="org.eclipse.emf.ecore.xml.type.Int"
+     * @model unsettable="true" dataType="org.eclipse.emf.ecore.xml.type.IntObject"
      *        extendedMetaData="kind='element' name='priority' namespace='##targetNamespace'"
      * @generated
      */
-    int getPriority();
+    Integer getPriority();
 
     /**
      * Sets the value of the '{@link org.switchyard.tools.models.switchyard1_0.camel.CamelJmsBindingType#getPriority <em>Priority</em>}' attribute.
@@ -532,7 +532,7 @@ public interface CamelJmsBindingType extends BaseCamelBinding {
      * @see #getPriority()
      * @generated
      */
-    void setPriority(int value);
+    void setPriority(Integer value);
 
     /**
      * Unsets the value of the '{@link org.switchyard.tools.models.switchyard1_0.camel.CamelJmsBindingType#getPriority <em>Priority</em>}' attribute.
@@ -540,7 +540,7 @@ public interface CamelJmsBindingType extends BaseCamelBinding {
      * <!-- end-user-doc -->
      * @see #isSetPriority()
      * @see #getPriority()
-     * @see #setPriority(int)
+     * @see #setPriority(Integer)
      * @generated
      */
     void unsetPriority();
@@ -552,7 +552,7 @@ public interface CamelJmsBindingType extends BaseCamelBinding {
      * @return whether the value of the '<em>Priority</em>' attribute is set.
      * @see #unsetPriority()
      * @see #getPriority()
-     * @see #setPriority(int)
+     * @see #setPriority(Integer)
      * @generated
      */
     boolean isSetPriority();
@@ -568,45 +568,45 @@ public interface CamelJmsBindingType extends BaseCamelBinding {
      * @return the value of the '<em>Explicit Qos Enabled</em>' attribute.
      * @see #isSetExplicitQosEnabled()
      * @see #unsetExplicitQosEnabled()
-     * @see #setExplicitQosEnabled(boolean)
+     * @see #setExplicitQosEnabled(Boolean)
      * @see org.switchyard.tools.models.switchyard1_0.camel.CamelPackage#getCamelJmsBindingType_ExplicitQosEnabled()
-     * @model unsettable="true" dataType="org.eclipse.emf.ecore.xml.type.Boolean"
+     * @model unsettable="true" dataType="org.eclipse.emf.ecore.xml.type.BooleanObject"
      *        extendedMetaData="kind='element' name='explicitQosEnabled' namespace='##targetNamespace'"
      * @generated
      */
-    boolean isExplicitQosEnabled();
+    Boolean getExplicitQosEnabled();
 
     /**
-     * Sets the value of the '{@link org.switchyard.tools.models.switchyard1_0.camel.CamelJmsBindingType#isExplicitQosEnabled <em>Explicit Qos Enabled</em>}' attribute.
+     * Sets the value of the '{@link org.switchyard.tools.models.switchyard1_0.camel.CamelJmsBindingType#getExplicitQosEnabled <em>Explicit Qos Enabled</em>}' attribute.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @param value the new value of the '<em>Explicit Qos Enabled</em>' attribute.
      * @see #isSetExplicitQosEnabled()
      * @see #unsetExplicitQosEnabled()
-     * @see #isExplicitQosEnabled()
+     * @see #getExplicitQosEnabled()
      * @generated
      */
-    void setExplicitQosEnabled(boolean value);
+    void setExplicitQosEnabled(Boolean value);
 
     /**
-     * Unsets the value of the '{@link org.switchyard.tools.models.switchyard1_0.camel.CamelJmsBindingType#isExplicitQosEnabled <em>Explicit Qos Enabled</em>}' attribute.
+     * Unsets the value of the '{@link org.switchyard.tools.models.switchyard1_0.camel.CamelJmsBindingType#getExplicitQosEnabled <em>Explicit Qos Enabled</em>}' attribute.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @see #isSetExplicitQosEnabled()
-     * @see #isExplicitQosEnabled()
-     * @see #setExplicitQosEnabled(boolean)
+     * @see #getExplicitQosEnabled()
+     * @see #setExplicitQosEnabled(Boolean)
      * @generated
      */
     void unsetExplicitQosEnabled();
 
     /**
-     * Returns whether the value of the '{@link org.switchyard.tools.models.switchyard1_0.camel.CamelJmsBindingType#isExplicitQosEnabled <em>Explicit Qos Enabled</em>}' attribute is set.
+     * Returns whether the value of the '{@link org.switchyard.tools.models.switchyard1_0.camel.CamelJmsBindingType#getExplicitQosEnabled <em>Explicit Qos Enabled</em>}' attribute is set.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @return whether the value of the '<em>Explicit Qos Enabled</em>' attribute is set.
      * @see #unsetExplicitQosEnabled()
-     * @see #isExplicitQosEnabled()
-     * @see #setExplicitQosEnabled(boolean)
+     * @see #getExplicitQosEnabled()
+     * @see #setExplicitQosEnabled(Boolean)
      * @generated
      */
     boolean isSetExplicitQosEnabled();
@@ -676,13 +676,13 @@ public interface CamelJmsBindingType extends BaseCamelBinding {
      * @return the value of the '<em>Request Timeout</em>' attribute.
      * @see #isSetRequestTimeout()
      * @see #unsetRequestTimeout()
-     * @see #setRequestTimeout(int)
+     * @see #setRequestTimeout(Integer)
      * @see org.switchyard.tools.models.switchyard1_0.camel.CamelPackage#getCamelJmsBindingType_RequestTimeout()
-     * @model unsettable="true" dataType="org.eclipse.emf.ecore.xml.type.Int"
+     * @model unsettable="true" dataType="org.eclipse.emf.ecore.xml.type.IntObject"
      *        extendedMetaData="kind='element' name='requestTimeout' namespace='##targetNamespace'"
      * @generated
      */
-    int getRequestTimeout();
+    Integer getRequestTimeout();
 
     /**
      * Sets the value of the '{@link org.switchyard.tools.models.switchyard1_0.camel.CamelJmsBindingType#getRequestTimeout <em>Request Timeout</em>}' attribute.
@@ -694,7 +694,7 @@ public interface CamelJmsBindingType extends BaseCamelBinding {
      * @see #getRequestTimeout()
      * @generated
      */
-    void setRequestTimeout(int value);
+    void setRequestTimeout(Integer value);
 
     /**
      * Unsets the value of the '{@link org.switchyard.tools.models.switchyard1_0.camel.CamelJmsBindingType#getRequestTimeout <em>Request Timeout</em>}' attribute.
@@ -702,7 +702,7 @@ public interface CamelJmsBindingType extends BaseCamelBinding {
      * <!-- end-user-doc -->
      * @see #isSetRequestTimeout()
      * @see #getRequestTimeout()
-     * @see #setRequestTimeout(int)
+     * @see #setRequestTimeout(Integer)
      * @generated
      */
     void unsetRequestTimeout();
@@ -714,7 +714,7 @@ public interface CamelJmsBindingType extends BaseCamelBinding {
      * @return whether the value of the '<em>Request Timeout</em>' attribute is set.
      * @see #unsetRequestTimeout()
      * @see #getRequestTimeout()
-     * @see #setRequestTimeout(int)
+     * @see #setRequestTimeout(Integer)
      * @generated
      */
     boolean isSetRequestTimeout();
@@ -757,13 +757,13 @@ public interface CamelJmsBindingType extends BaseCamelBinding {
      * @return the value of the '<em>Time To Live</em>' attribute.
      * @see #isSetTimeToLive()
      * @see #unsetTimeToLive()
-     * @see #setTimeToLive(int)
+     * @see #setTimeToLive(Integer)
      * @see org.switchyard.tools.models.switchyard1_0.camel.CamelPackage#getCamelJmsBindingType_TimeToLive()
-     * @model unsettable="true" dataType="org.eclipse.emf.ecore.xml.type.Int"
+     * @model unsettable="true" dataType="org.eclipse.emf.ecore.xml.type.IntObject"
      *        extendedMetaData="kind='element' name='timeToLive' namespace='##targetNamespace'"
      * @generated
      */
-    int getTimeToLive();
+    Integer getTimeToLive();
 
     /**
      * Sets the value of the '{@link org.switchyard.tools.models.switchyard1_0.camel.CamelJmsBindingType#getTimeToLive <em>Time To Live</em>}' attribute.
@@ -775,7 +775,7 @@ public interface CamelJmsBindingType extends BaseCamelBinding {
      * @see #getTimeToLive()
      * @generated
      */
-    void setTimeToLive(int value);
+    void setTimeToLive(Integer value);
 
     /**
      * Unsets the value of the '{@link org.switchyard.tools.models.switchyard1_0.camel.CamelJmsBindingType#getTimeToLive <em>Time To Live</em>}' attribute.
@@ -783,7 +783,7 @@ public interface CamelJmsBindingType extends BaseCamelBinding {
      * <!-- end-user-doc -->
      * @see #isSetTimeToLive()
      * @see #getTimeToLive()
-     * @see #setTimeToLive(int)
+     * @see #setTimeToLive(Integer)
      * @generated
      */
     void unsetTimeToLive();
@@ -795,7 +795,7 @@ public interface CamelJmsBindingType extends BaseCamelBinding {
      * @return whether the value of the '<em>Time To Live</em>' attribute is set.
      * @see #unsetTimeToLive()
      * @see #getTimeToLive()
-     * @see #setTimeToLive(int)
+     * @see #setTimeToLive(Integer)
      * @generated
      */
     boolean isSetTimeToLive();

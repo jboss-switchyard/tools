@@ -19,8 +19,8 @@ import org.eclipse.emf.ecore.EObject;
  *   <li>{@link org.switchyard.tools.models.switchyard1_0.camel.GenericFileProducerType#getFileExist <em>File Exist</em>}</li>
  *   <li>{@link org.switchyard.tools.models.switchyard1_0.camel.GenericFileProducerType#getTempPrefix <em>Temp Prefix</em>}</li>
  *   <li>{@link org.switchyard.tools.models.switchyard1_0.camel.GenericFileProducerType#getTempFileName <em>Temp File Name</em>}</li>
- *   <li>{@link org.switchyard.tools.models.switchyard1_0.camel.GenericFileProducerType#isKeepLastModified <em>Keep Last Modified</em>}</li>
- *   <li>{@link org.switchyard.tools.models.switchyard1_0.camel.GenericFileProducerType#isEagerDeleteTargetFile <em>Eager Delete Target File</em>}</li>
+ *   <li>{@link org.switchyard.tools.models.switchyard1_0.camel.GenericFileProducerType#getKeepLastModified <em>Keep Last Modified</em>}</li>
+ *   <li>{@link org.switchyard.tools.models.switchyard1_0.camel.GenericFileProducerType#getEagerDeleteTargetFile <em>Eager Delete Target File</em>}</li>
  *   <li>{@link org.switchyard.tools.models.switchyard1_0.camel.GenericFileProducerType#getDoneFileName <em>Done File Name</em>}</li>
  * </ul>
  * </p>
@@ -122,45 +122,45 @@ public interface GenericFileProducerType extends EObject {
      * @return the value of the '<em>Keep Last Modified</em>' attribute.
      * @see #isSetKeepLastModified()
      * @see #unsetKeepLastModified()
-     * @see #setKeepLastModified(boolean)
+     * @see #setKeepLastModified(Boolean)
      * @see org.switchyard.tools.models.switchyard1_0.camel.CamelPackage#getGenericFileProducerType_KeepLastModified()
-     * @model unsettable="true" dataType="org.eclipse.emf.ecore.xml.type.Boolean"
+     * @model unsettable="true" dataType="org.eclipse.emf.ecore.xml.type.BooleanObject"
      *        extendedMetaData="kind='element' name='keepLastModified' namespace='##targetNamespace'"
      * @generated
      */
-    boolean isKeepLastModified();
+    Boolean getKeepLastModified();
 
     /**
-     * Sets the value of the '{@link org.switchyard.tools.models.switchyard1_0.camel.GenericFileProducerType#isKeepLastModified <em>Keep Last Modified</em>}' attribute.
+     * Sets the value of the '{@link org.switchyard.tools.models.switchyard1_0.camel.GenericFileProducerType#getKeepLastModified <em>Keep Last Modified</em>}' attribute.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @param value the new value of the '<em>Keep Last Modified</em>' attribute.
      * @see #isSetKeepLastModified()
      * @see #unsetKeepLastModified()
-     * @see #isKeepLastModified()
+     * @see #getKeepLastModified()
      * @generated
      */
-    void setKeepLastModified(boolean value);
+    void setKeepLastModified(Boolean value);
 
     /**
-     * Unsets the value of the '{@link org.switchyard.tools.models.switchyard1_0.camel.GenericFileProducerType#isKeepLastModified <em>Keep Last Modified</em>}' attribute.
+     * Unsets the value of the '{@link org.switchyard.tools.models.switchyard1_0.camel.GenericFileProducerType#getKeepLastModified <em>Keep Last Modified</em>}' attribute.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @see #isSetKeepLastModified()
-     * @see #isKeepLastModified()
-     * @see #setKeepLastModified(boolean)
+     * @see #getKeepLastModified()
+     * @see #setKeepLastModified(Boolean)
      * @generated
      */
     void unsetKeepLastModified();
 
     /**
-     * Returns whether the value of the '{@link org.switchyard.tools.models.switchyard1_0.camel.GenericFileProducerType#isKeepLastModified <em>Keep Last Modified</em>}' attribute is set.
+     * Returns whether the value of the '{@link org.switchyard.tools.models.switchyard1_0.camel.GenericFileProducerType#getKeepLastModified <em>Keep Last Modified</em>}' attribute is set.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @return whether the value of the '<em>Keep Last Modified</em>' attribute is set.
      * @see #unsetKeepLastModified()
-     * @see #isKeepLastModified()
-     * @see #setKeepLastModified(boolean)
+     * @see #getKeepLastModified()
+     * @see #setKeepLastModified(Boolean)
      * @generated
      */
     boolean isSetKeepLastModified();
@@ -176,45 +176,45 @@ public interface GenericFileProducerType extends EObject {
      * @return the value of the '<em>Eager Delete Target File</em>' attribute.
      * @see #isSetEagerDeleteTargetFile()
      * @see #unsetEagerDeleteTargetFile()
-     * @see #setEagerDeleteTargetFile(boolean)
+     * @see #setEagerDeleteTargetFile(Boolean)
      * @see org.switchyard.tools.models.switchyard1_0.camel.CamelPackage#getGenericFileProducerType_EagerDeleteTargetFile()
-     * @model unsettable="true" dataType="org.eclipse.emf.ecore.xml.type.Boolean"
+     * @model unsettable="true" dataType="org.eclipse.emf.ecore.xml.type.BooleanObject"
      *        extendedMetaData="kind='element' name='eagerDeleteTargetFile' namespace='##targetNamespace'"
      * @generated
      */
-    boolean isEagerDeleteTargetFile();
+    Boolean getEagerDeleteTargetFile();
 
     /**
-     * Sets the value of the '{@link org.switchyard.tools.models.switchyard1_0.camel.GenericFileProducerType#isEagerDeleteTargetFile <em>Eager Delete Target File</em>}' attribute.
+     * Sets the value of the '{@link org.switchyard.tools.models.switchyard1_0.camel.GenericFileProducerType#getEagerDeleteTargetFile <em>Eager Delete Target File</em>}' attribute.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @param value the new value of the '<em>Eager Delete Target File</em>' attribute.
      * @see #isSetEagerDeleteTargetFile()
      * @see #unsetEagerDeleteTargetFile()
-     * @see #isEagerDeleteTargetFile()
+     * @see #getEagerDeleteTargetFile()
      * @generated
      */
-    void setEagerDeleteTargetFile(boolean value);
+    void setEagerDeleteTargetFile(Boolean value);
 
     /**
-     * Unsets the value of the '{@link org.switchyard.tools.models.switchyard1_0.camel.GenericFileProducerType#isEagerDeleteTargetFile <em>Eager Delete Target File</em>}' attribute.
+     * Unsets the value of the '{@link org.switchyard.tools.models.switchyard1_0.camel.GenericFileProducerType#getEagerDeleteTargetFile <em>Eager Delete Target File</em>}' attribute.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @see #isSetEagerDeleteTargetFile()
-     * @see #isEagerDeleteTargetFile()
-     * @see #setEagerDeleteTargetFile(boolean)
+     * @see #getEagerDeleteTargetFile()
+     * @see #setEagerDeleteTargetFile(Boolean)
      * @generated
      */
     void unsetEagerDeleteTargetFile();
 
     /**
-     * Returns whether the value of the '{@link org.switchyard.tools.models.switchyard1_0.camel.GenericFileProducerType#isEagerDeleteTargetFile <em>Eager Delete Target File</em>}' attribute is set.
+     * Returns whether the value of the '{@link org.switchyard.tools.models.switchyard1_0.camel.GenericFileProducerType#getEagerDeleteTargetFile <em>Eager Delete Target File</em>}' attribute is set.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @return whether the value of the '<em>Eager Delete Target File</em>' attribute is set.
      * @see #unsetEagerDeleteTargetFile()
-     * @see #isEagerDeleteTargetFile()
-     * @see #setEagerDeleteTargetFile(boolean)
+     * @see #getEagerDeleteTargetFile()
+     * @see #setEagerDeleteTargetFile(Boolean)
      * @generated
      */
     boolean isSetEagerDeleteTargetFile();

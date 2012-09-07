@@ -16,6 +16,7 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 import javax.xml.datatype.XMLGregorianCalendar;
 
@@ -57,6 +58,7 @@ public class CamelQuartzComposite extends AbstractSYBindingComposite {
     private Text _endTimeText;
     private Combo _operationSelectionCombo;
     private TabFolder _tabFolder;
+    private List<String> _advancedPropsFilterList;
 
     @Override
     public Binding getBinding() {
@@ -270,7 +272,7 @@ public class CamelQuartzComposite extends AbstractSYBindingComposite {
             } else if (control.equals(_cronText)) {
                 _cronText.setText(this._binding.getCron());
             } else if (control.equals(_endTimeText)) {
-                _startTimeText.setText(this._binding.getEndTime().toString());
+                _endTimeText.setText(this._binding.getEndTime().toString());
             } else if (control.equals(_startTimeText)) {
                 _startTimeText.setText(this._binding.getStartTime().toString());
             } else if (control.equals(_operationSelectionCombo)) {
@@ -285,5 +287,14 @@ public class CamelQuartzComposite extends AbstractSYBindingComposite {
             }
         }
         setHasChanged(false);
+    }
+
+    @Override
+    protected List<String> getAdvancedPropertiesFilterList() {
+        if (_advancedPropsFilterList == null) {
+            _advancedPropsFilterList = new ArrayList<String>();
+            _advancedPropsFilterList.add("stateful");
+        }
+        return _advancedPropsFilterList;
     }
 }

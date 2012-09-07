@@ -13,6 +13,7 @@
 package org.switchyard.tools.ui.editor.diagram.binding;
 
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
 import java.util.regex.Pattern;
 import java.util.regex.PatternSyntaxException;
@@ -20,7 +21,9 @@ import java.util.regex.PatternSyntaxException;
 import org.eclipse.core.resources.IFile;
 import org.eclipse.core.resources.IProject;
 import org.eclipse.core.resources.IResource;
+import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EObject;
+import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.gef.editparts.AbstractGraphicalEditPart;
 import org.eclipse.jdt.core.IJavaElement;
 import org.eclipse.jdt.core.IJavaProject;
@@ -92,6 +95,7 @@ public abstract class AbstractSYBindingComposite extends AbstractSwitchyardCompo
     private Object _targetObj = null;
     private TabFolder _tabFolder;
     private static int _selectedTab = 0;
+    private AdvancedBindingPropertyTable _advPropsTable;
 
     /**
      * @param tabFolder folder to add tabs to
@@ -99,7 +103,7 @@ public abstract class AbstractSYBindingComposite extends AbstractSwitchyardCompo
     public void addTabs(final TabFolder tabFolder) {
         _tabFolder = tabFolder;
         createComposerTab(_tabFolder);
-        // createAdvancedTab(_tabFolder);
+        createAdvancedTab(_tabFolder);
 
         _tabFolder.addSelectionListener(new SelectionListener() {
             @Override
@@ -131,19 +135,63 @@ public abstract class AbstractSYBindingComposite extends AbstractSwitchyardCompo
     }
 
     protected void createAdvancedTab(TabFolder tabFolder) {
-        TabItem advanced = new TabItem(tabFolder, SWT.NONE);
-        advanced.setText("Advanced");
-        advanced.setControl(getAdvancedTabControl(tabFolder));
+        if (getAdvancedPropertiesFilterList() != null) {
+            TabItem advanced = new TabItem(tabFolder, SWT.NONE);
+            advanced.setText("Advanced");
+            advanced.setControl(getAdvancedTabControl(tabFolder));
+        }
     }
 
-    protected Control getAdvancedTabControl(TabFolder tabFolder) {
-        Composite composite = new Composite(tabFolder, SWT.NONE);
-        GridLayout gl = new GridLayout(3, false);
+    protected Control getAdvancedTabControl(Composite parent) {
+        Composite composite = new Composite(parent, SWT.NONE);
+        GridLayout gl = new GridLayout(1, false);
         composite.setLayout(gl);
 
-        // add controls
+        _advPropsTable = new AdvancedBindingPropertyTable(composite, SWT.NONE);        
+        GridData gd = new GridData(SWT.FILL, SWT.FILL, true, true);
+        _advPropsTable.setLayoutData(gd);
 
         return composite;
+    }
+
+    protected List<String> getAdvancedPropertiesFilterList() {
+        return null;
+    }
+    
+    private List<PropertyObject> processFeatures(EObject eobj) {
+        List<PropertyObject> properties = new ArrayList<PropertyObject>();
+        
+        EList<EStructuralFeature> features = eobj.eClass().getEAllStructuralFeatures();
+        Iterator<EStructuralFeature> iter = features.iterator();
+        while (iter.hasNext()) {
+            EStructuralFeature feature = iter.next();
+            String name = feature.getName();
+            
+            if (getAdvancedPropertiesFilterList() != null) {
+                if (getAdvancedPropertiesFilterList().contains(name)) {
+                    properties.add(new PropertyObject(eobj, name));
+                }
+            } else {
+                properties.add(new PropertyObject(eobj, name));
+            }
+            
+            Object featureObj = eobj.eGet(feature);
+            if (featureObj != null && featureObj instanceof EObject) {
+                EObject innerEObj = (EObject) featureObj;
+                List<PropertyObject> innerList = processFeatures(innerEObj);
+                properties.addAll(innerList);
+            }
+        }
+        
+        return properties;
+    }
+
+    protected void getAdvancedProperties(Binding switchYardBindingType) {
+        List<PropertyObject> properties = processFeatures(switchYardBindingType);
+        if (_advPropsTable != null && !_advPropsTable.isDisposed()) {
+            _advPropsTable.setTargetObject(switchYardBindingType);
+            _advPropsTable.getTreeViewer().setInput(properties);
+        }
     }
 
     /**
@@ -296,6 +344,7 @@ public abstract class AbstractSYBindingComposite extends AbstractSwitchyardCompo
                 setTextValue(_excludesText, binding.getContextMapper().getExcludes());
                 setTextValue(_excludesNSText, binding.getContextMapper().getExcludeNamespaces());
             }
+            getAdvancedProperties(switchYardBindingType);
         }
         resetSelectedTab();
     }

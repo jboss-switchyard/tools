@@ -13,6 +13,7 @@
 package org.switchyard.tools.ui.editor.components.resteasy;
 
 import java.net.URI;
+import java.util.List;
 
 import javax.swing.event.ChangeEvent;
 import javax.swing.event.ChangeListener;
@@ -48,6 +49,7 @@ public class ResteasyBindingComposite extends AbstractSYBindingComposite {
     private DelimitedStringList _interfacesList = null;
     private RESTBindingType _binding = null;
     private TabFolder _tabFolder;
+    private List<String> _advancedPropsFilterList;
 
     /**
      * @param parent composite parent
@@ -248,4 +250,8 @@ public class ResteasyBindingComposite extends AbstractSYBindingComposite {
         setHasChanged(false);
     }
 
+    @Override
+    protected List<String> getAdvancedPropertiesFilterList() {
+        return _advancedPropsFilterList;
+    }
 }

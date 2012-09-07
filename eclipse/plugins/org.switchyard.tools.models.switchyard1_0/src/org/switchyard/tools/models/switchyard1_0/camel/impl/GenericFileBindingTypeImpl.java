@@ -28,7 +28,7 @@ import org.switchyard.tools.models.switchyard1_0.camel.GenericFileBindingType;
  *   <li>{@link org.switchyard.tools.models.switchyard1_0.camel.impl.GenericFileBindingTypeImpl#isAutoCreate <em>Auto Create</em>}</li>
  *   <li>{@link org.switchyard.tools.models.switchyard1_0.camel.impl.GenericFileBindingTypeImpl#getBufferSize <em>Buffer Size</em>}</li>
  *   <li>{@link org.switchyard.tools.models.switchyard1_0.camel.impl.GenericFileBindingTypeImpl#getFileName <em>File Name</em>}</li>
- *   <li>{@link org.switchyard.tools.models.switchyard1_0.camel.impl.GenericFileBindingTypeImpl#isFlatten <em>Flatten</em>}</li>
+ *   <li>{@link org.switchyard.tools.models.switchyard1_0.camel.impl.GenericFileBindingTypeImpl#getFlatten <em>Flatten</em>}</li>
  *   <li>{@link org.switchyard.tools.models.switchyard1_0.camel.impl.GenericFileBindingTypeImpl#getCharset <em>Charset</em>}</li>
  * </ul>
  * </p>
@@ -106,6 +106,15 @@ public abstract class GenericFileBindingTypeImpl extends BaseCamelBindingImpl im
     protected BigInteger bufferSize = BUFFER_SIZE_EDEFAULT;
 
     /**
+     * This is true if the Buffer Size attribute has been set.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    protected boolean bufferSizeESet;
+
+    /**
      * The default value of the '{@link #getFileName() <em>File Name</em>}' attribute.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
@@ -126,24 +135,24 @@ public abstract class GenericFileBindingTypeImpl extends BaseCamelBindingImpl im
     protected String fileName = FILE_NAME_EDEFAULT;
 
     /**
-     * The default value of the '{@link #isFlatten() <em>Flatten</em>}' attribute.
+     * The default value of the '{@link #getFlatten() <em>Flatten</em>}' attribute.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @see #isFlatten()
+     * @see #getFlatten()
      * @generated
      * @ordered
      */
-    protected static final boolean FLATTEN_EDEFAULT = false;
+    protected static final Boolean FLATTEN_EDEFAULT = null;
 
     /**
-     * The cached value of the '{@link #isFlatten() <em>Flatten</em>}' attribute.
+     * The cached value of the '{@link #getFlatten() <em>Flatten</em>}' attribute.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @see #isFlatten()
+     * @see #getFlatten()
      * @generated
      * @ordered
      */
-    protected boolean flatten = FLATTEN_EDEFAULT;
+    protected Boolean flatten = FLATTEN_EDEFAULT;
 
     /**
      * This is true if the Flatten attribute has been set.
@@ -277,8 +286,33 @@ public abstract class GenericFileBindingTypeImpl extends BaseCamelBindingImpl im
     public void setBufferSize(BigInteger newBufferSize) {
         BigInteger oldBufferSize = bufferSize;
         bufferSize = newBufferSize;
+        boolean oldBufferSizeESet = bufferSizeESet;
+        bufferSizeESet = true;
         if (eNotificationRequired())
-            eNotify(new ENotificationImpl(this, Notification.SET, CamelPackage.GENERIC_FILE_BINDING_TYPE__BUFFER_SIZE, oldBufferSize, bufferSize));
+            eNotify(new ENotificationImpl(this, Notification.SET, CamelPackage.GENERIC_FILE_BINDING_TYPE__BUFFER_SIZE, oldBufferSize, bufferSize, !oldBufferSizeESet));
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public void unsetBufferSize() {
+        BigInteger oldBufferSize = bufferSize;
+        boolean oldBufferSizeESet = bufferSizeESet;
+        bufferSize = BUFFER_SIZE_EDEFAULT;
+        bufferSizeESet = false;
+        if (eNotificationRequired())
+            eNotify(new ENotificationImpl(this, Notification.UNSET, CamelPackage.GENERIC_FILE_BINDING_TYPE__BUFFER_SIZE, oldBufferSize, BUFFER_SIZE_EDEFAULT, oldBufferSizeESet));
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public boolean isSetBufferSize() {
+        return bufferSizeESet;
     }
 
     /**
@@ -307,7 +341,7 @@ public abstract class GenericFileBindingTypeImpl extends BaseCamelBindingImpl im
      * <!-- end-user-doc -->
      * @generated
      */
-    public boolean isFlatten() {
+    public Boolean getFlatten() {
         return flatten;
     }
 
@@ -316,8 +350,8 @@ public abstract class GenericFileBindingTypeImpl extends BaseCamelBindingImpl im
      * <!-- end-user-doc -->
      * @generated
      */
-    public void setFlatten(boolean newFlatten) {
-        boolean oldFlatten = flatten;
+    public void setFlatten(Boolean newFlatten) {
+        Boolean oldFlatten = flatten;
         flatten = newFlatten;
         boolean oldFlattenESet = flattenESet;
         flattenESet = true;
@@ -331,7 +365,7 @@ public abstract class GenericFileBindingTypeImpl extends BaseCamelBindingImpl im
      * @generated
      */
     public void unsetFlatten() {
-        boolean oldFlatten = flatten;
+        Boolean oldFlatten = flatten;
         boolean oldFlattenESet = flattenESet;
         flatten = FLATTEN_EDEFAULT;
         flattenESet = false;
@@ -386,7 +420,7 @@ public abstract class GenericFileBindingTypeImpl extends BaseCamelBindingImpl im
             case CamelPackage.GENERIC_FILE_BINDING_TYPE__FILE_NAME:
                 return getFileName();
             case CamelPackage.GENERIC_FILE_BINDING_TYPE__FLATTEN:
-                return isFlatten();
+                return getFlatten();
             case CamelPackage.GENERIC_FILE_BINDING_TYPE__CHARSET:
                 return getCharset();
         }
@@ -438,7 +472,7 @@ public abstract class GenericFileBindingTypeImpl extends BaseCamelBindingImpl im
                 unsetAutoCreate();
                 return;
             case CamelPackage.GENERIC_FILE_BINDING_TYPE__BUFFER_SIZE:
-                setBufferSize(BUFFER_SIZE_EDEFAULT);
+                unsetBufferSize();
                 return;
             case CamelPackage.GENERIC_FILE_BINDING_TYPE__FILE_NAME:
                 setFileName(FILE_NAME_EDEFAULT);
@@ -466,7 +500,7 @@ public abstract class GenericFileBindingTypeImpl extends BaseCamelBindingImpl im
             case CamelPackage.GENERIC_FILE_BINDING_TYPE__AUTO_CREATE:
                 return isSetAutoCreate();
             case CamelPackage.GENERIC_FILE_BINDING_TYPE__BUFFER_SIZE:
-                return BUFFER_SIZE_EDEFAULT == null ? bufferSize != null : !BUFFER_SIZE_EDEFAULT.equals(bufferSize);
+                return isSetBufferSize();
             case CamelPackage.GENERIC_FILE_BINDING_TYPE__FILE_NAME:
                 return FILE_NAME_EDEFAULT == null ? fileName != null : !FILE_NAME_EDEFAULT.equals(fileName);
             case CamelPackage.GENERIC_FILE_BINDING_TYPE__FLATTEN:
@@ -492,7 +526,7 @@ public abstract class GenericFileBindingTypeImpl extends BaseCamelBindingImpl im
         result.append(", autoCreate: ");
         if (autoCreateESet) result.append(autoCreate); else result.append("<unset>");
         result.append(", bufferSize: ");
-        result.append(bufferSize);
+        if (bufferSizeESet) result.append(bufferSize); else result.append("<unset>");
         result.append(", fileName: ");
         result.append(fileName);
         result.append(", flatten: ");

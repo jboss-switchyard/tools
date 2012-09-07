@@ -14,6 +14,7 @@ package org.switchyard.tools.ui.editor.components.camel.ftp;
 
 import java.math.BigInteger;
 import java.util.ArrayList;
+import java.util.List;
 
 import org.eclipse.graphiti.mm.pictograms.PictogramElement;
 import org.eclipse.soa.sca.sca1_1.model.sca.Binding;
@@ -64,6 +65,7 @@ public class CamelFTPConsumerComposite extends AbstractSYBindingComposite {
     private Text _delayText;
     private Combo _operationSelectionCombo;
     private TabFolder _tabFolder;
+    private List<String> _advancedPropsFilterList;
 
     @Override
     public Binding getBinding() {
@@ -94,11 +96,11 @@ public class CamelFTPConsumerComposite extends AbstractSYBindingComposite {
                 if (this._binding.getConsume().getPreMove() != null) {
                     _preMoveText.setText(this._binding.getConsume().getPreMove());
                 }
-                if (this._binding.getConsume().isDelete()) {
-                    _deleteButton.setSelection(this._binding.getConsume().isDelete());
+                if (this._binding.getConsume().getDelete() != null) {
+                    _deleteButton.setSelection(this._binding.getConsume().getDelete());
                 }
-                if (this._binding.getConsume().isRecursive()) {
-                    _recursiveButton.setSelection(this._binding.getConsume().isRecursive());
+                if (this._binding.getConsume().getRecursive() != null) {
+                    _recursiveButton.setSelection(this._binding.getConsume().getRecursive());
                 }
             }
             if (this._binding.getDirectory() != null) {
@@ -398,14 +400,48 @@ public class CamelFTPConsumerComposite extends AbstractSYBindingComposite {
                 } else if (control.equals(_preMoveText)) {
                     _preMoveText.setText(this._binding.getConsume().getPreMove());
                 } else if (control.equals(_deleteButton)) {
-                    _deleteButton.setSelection(this._binding.getConsume().isDelete());
+                    _deleteButton.setSelection(this._binding.getConsume().getDelete());
                 } else if (control.equals(_recursiveButton)) {
-                    _recursiveButton.setSelection(this._binding.getConsume().isRecursive());
+                    _recursiveButton.setSelection(this._binding.getConsume().getRecursive());
                 }
             } else {
                 super.handleUndo(control);
             }
         }
         setHasChanged(false);
+    }
+
+    @Override
+    protected List<String> getAdvancedPropertiesFilterList() {
+        if (_advancedPropsFilterList == null) {
+            _advancedPropsFilterList = new ArrayList<String>();
+            _advancedPropsFilterList.add("passiveMode");
+            _advancedPropsFilterList.add("timeout");
+            _advancedPropsFilterList.add("soTimeout");
+            _advancedPropsFilterList.add("siteCommand");
+            _advancedPropsFilterList.add("connectTimeout");
+            _advancedPropsFilterList.add("disconnect");
+            _advancedPropsFilterList.add("maximumReconnectAttempts");
+            _advancedPropsFilterList.add("reconnectDelay");
+            _advancedPropsFilterList.add("separator");
+            _advancedPropsFilterList.add("stepWise");
+            _advancedPropsFilterList.add("throwExceptionOnConnectFailed");
+            _advancedPropsFilterList.add("noop");
+            _advancedPropsFilterList.add("idempotent");
+            _advancedPropsFilterList.add("idempotentRepository");
+            _advancedPropsFilterList.add("inProgressRepository");
+            _advancedPropsFilterList.add("filter");
+            _advancedPropsFilterList.add("sorter");
+            _advancedPropsFilterList.add("sortBy");
+            _advancedPropsFilterList.add("readLock");
+            _advancedPropsFilterList.add("readLockTimeout");
+            _advancedPropsFilterList.add("readLockCheckInterval");
+            _advancedPropsFilterList.add("exclusiveReadLockStrategy");
+            _advancedPropsFilterList.add("processStrategy");
+            _advancedPropsFilterList.add("startingDirectoryMustExist");
+            _advancedPropsFilterList.add("directoryMustExist");
+            _advancedPropsFilterList.add("doneFileName");
+        }
+        return _advancedPropsFilterList;
     }
 }

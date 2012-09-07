@@ -18,74 +18,74 @@ import org.eclipse.emf.ecore.EFactory;
  */
 public interface PolicyFactory extends EFactory {
 	/**
-	 * The singleton instance of the factory.
-	 * <!-- begin-user-doc -->
+     * The singleton instance of the factory.
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	PolicyFactory eINSTANCE = org.eclipse.soa.sca.core.model.policy.impl.PolicyFactoryImpl.init();
 
 	/**
-	 * Returns a new object of class '<em>Applies To Type</em>'.
-	 * <!-- begin-user-doc -->
+     * Returns a new object of class '<em>Applies To Type</em>'.
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>Applies To Type</em>'.
-	 * @generated
-	 */
+     * @return a new object of class '<em>Applies To Type</em>'.
+     * @generated
+     */
 	AppliesToType createAppliesToType();
 
 	/**
-	 * Returns a new object of class '<em>Document Root</em>'.
-	 * <!-- begin-user-doc -->
+     * Returns a new object of class '<em>Document Root</em>'.
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>Document Root</em>'.
-	 * @generated
-	 */
+     * @return a new object of class '<em>Document Root</em>'.
+     * @generated
+     */
 	DocumentRoot createDocumentRoot();
 
 	/**
-	 * Returns a new object of class '<em>Operator Content Type</em>'.
-	 * <!-- begin-user-doc -->
+     * Returns a new object of class '<em>Operator Content Type</em>'.
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>Operator Content Type</em>'.
-	 * @generated
-	 */
+     * @return a new object of class '<em>Operator Content Type</em>'.
+     * @generated
+     */
 	OperatorContentType createOperatorContentType();
 
 	/**
-	 * Returns a new object of class '<em>Attachment Type</em>'.
-	 * <!-- begin-user-doc -->
+     * Returns a new object of class '<em>Attachment Type</em>'.
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>Attachment Type</em>'.
-	 * @generated
-	 */
+     * @return a new object of class '<em>Attachment Type</em>'.
+     * @generated
+     */
 	PolicyAttachmentType createPolicyAttachmentType();
 
 	/**
-	 * Returns a new object of class '<em>Reference Type</em>'.
-	 * <!-- begin-user-doc -->
+     * Returns a new object of class '<em>Reference Type</em>'.
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>Reference Type</em>'.
-	 * @generated
-	 */
+     * @return a new object of class '<em>Reference Type</em>'.
+     * @generated
+     */
 	PolicyReferenceType createPolicyReferenceType();
 
 	/**
-	 * Returns a new object of class '<em>Type</em>'.
-	 * <!-- begin-user-doc -->
+     * Returns a new object of class '<em>Type</em>'.
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>Type</em>'.
-	 * @generated
-	 */
+     * @return a new object of class '<em>Type</em>'.
+     * @generated
+     */
 	PolicyType createPolicyType();
 
 	/**
-	 * Returns the package supported by this factory.
-	 * <!-- begin-user-doc -->
+     * Returns the package supported by this factory.
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the package supported by this factory.
-	 * @generated
-	 */
+     * @return the package supported by this factory.
+     * @generated
+     */
 	PolicyPackage getPolicyPackage();
 
 } //PolicyFactory

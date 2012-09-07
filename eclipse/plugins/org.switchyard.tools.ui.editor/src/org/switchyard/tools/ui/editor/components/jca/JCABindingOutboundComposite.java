@@ -13,6 +13,7 @@
 package org.switchyard.tools.ui.editor.components.jca;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import javax.swing.event.ChangeEvent;
 import javax.swing.event.ChangeListener;
@@ -69,6 +70,7 @@ public class JCABindingOutboundComposite extends AbstractSYBindingComposite {
         JMSPROCESSOR, CCIPROCESSOR
     }
     private TabFolder _tabFolder;
+    private List<String> _advancedPropsFilterList;
 
     @Override
     public Binding getBinding() {
@@ -358,5 +360,15 @@ public class JCABindingOutboundComposite extends AbstractSYBindingComposite {
             }
         }
         return null;
+    }
+
+    @Override
+    protected List<String> getAdvancedPropertiesFilterList() {
+        if (_advancedPropsFilterList == null) {
+            _advancedPropsFilterList = new ArrayList<String>();
+            _advancedPropsFilterList.add("resAuth");
+            _advancedPropsFilterList.add("managed");
+        }
+        return _advancedPropsFilterList;
     }
 }

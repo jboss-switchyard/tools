@@ -52,6 +52,13 @@ public class CamelFTPBindingWizardPage extends WizardPage {
      */
     public void setShowConsumer(boolean showConsumer) {
         _showConsumer = showConsumer;
+        if (_binding != null) {
+            if (_showConsumer) {
+                _binding.setConsume(CamelFactory.eINSTANCE.createRemoteFileConsumerType());
+            } else {
+                _binding.setProduce(CamelFactory.eINSTANCE.createRemoteFileProducerType());
+            }
+        }
     }
 
     @Override

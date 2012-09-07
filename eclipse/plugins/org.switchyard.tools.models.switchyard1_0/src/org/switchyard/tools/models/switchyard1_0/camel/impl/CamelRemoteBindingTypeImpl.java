@@ -32,12 +32,12 @@ import org.switchyard.tools.models.switchyard1_0.camel.RemoteFileProducerType;
  *   <li>{@link org.switchyard.tools.models.switchyard1_0.camel.impl.CamelRemoteBindingTypeImpl#getPassword <em>Password</em>}</li>
  *   <li>{@link org.switchyard.tools.models.switchyard1_0.camel.impl.CamelRemoteBindingTypeImpl#isBinary <em>Binary</em>}</li>
  *   <li>{@link org.switchyard.tools.models.switchyard1_0.camel.impl.CamelRemoteBindingTypeImpl#getConnectTimeout <em>Connect Timeout</em>}</li>
- *   <li>{@link org.switchyard.tools.models.switchyard1_0.camel.impl.CamelRemoteBindingTypeImpl#isDisconnect <em>Disconnect</em>}</li>
+ *   <li>{@link org.switchyard.tools.models.switchyard1_0.camel.impl.CamelRemoteBindingTypeImpl#getDisconnect <em>Disconnect</em>}</li>
  *   <li>{@link org.switchyard.tools.models.switchyard1_0.camel.impl.CamelRemoteBindingTypeImpl#getMaximumReconnectAttempts <em>Maximum Reconnect Attempts</em>}</li>
  *   <li>{@link org.switchyard.tools.models.switchyard1_0.camel.impl.CamelRemoteBindingTypeImpl#getReconnectDelay <em>Reconnect Delay</em>}</li>
  *   <li>{@link org.switchyard.tools.models.switchyard1_0.camel.impl.CamelRemoteBindingTypeImpl#getSeparator <em>Separator</em>}</li>
- *   <li>{@link org.switchyard.tools.models.switchyard1_0.camel.impl.CamelRemoteBindingTypeImpl#isStepwise <em>Stepwise</em>}</li>
- *   <li>{@link org.switchyard.tools.models.switchyard1_0.camel.impl.CamelRemoteBindingTypeImpl#isThrowExceptionOnConnectFailed <em>Throw Exception On Connect Failed</em>}</li>
+ *   <li>{@link org.switchyard.tools.models.switchyard1_0.camel.impl.CamelRemoteBindingTypeImpl#getStepwise <em>Stepwise</em>}</li>
+ *   <li>{@link org.switchyard.tools.models.switchyard1_0.camel.impl.CamelRemoteBindingTypeImpl#getThrowExceptionOnConnectFailed <em>Throw Exception On Connect Failed</em>}</li>
  *   <li>{@link org.switchyard.tools.models.switchyard1_0.camel.impl.CamelRemoteBindingTypeImpl#getConsume <em>Consume</em>}</li>
  *   <li>{@link org.switchyard.tools.models.switchyard1_0.camel.impl.CamelRemoteBindingTypeImpl#getProduce <em>Produce</em>}</li>
  * </ul>
@@ -172,7 +172,7 @@ public abstract class CamelRemoteBindingTypeImpl extends GenericFileBindingTypeI
      * @generated
      * @ordered
      */
-    protected static final int CONNECT_TIMEOUT_EDEFAULT = 0;
+    protected static final Integer CONNECT_TIMEOUT_EDEFAULT = null;
 
     /**
      * The cached value of the '{@link #getConnectTimeout() <em>Connect Timeout</em>}' attribute.
@@ -182,7 +182,7 @@ public abstract class CamelRemoteBindingTypeImpl extends GenericFileBindingTypeI
      * @generated
      * @ordered
      */
-    protected int connectTimeout = CONNECT_TIMEOUT_EDEFAULT;
+    protected Integer connectTimeout = CONNECT_TIMEOUT_EDEFAULT;
 
     /**
      * This is true if the Connect Timeout attribute has been set.
@@ -194,24 +194,24 @@ public abstract class CamelRemoteBindingTypeImpl extends GenericFileBindingTypeI
     protected boolean connectTimeoutESet;
 
     /**
-     * The default value of the '{@link #isDisconnect() <em>Disconnect</em>}' attribute.
+     * The default value of the '{@link #getDisconnect() <em>Disconnect</em>}' attribute.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @see #isDisconnect()
+     * @see #getDisconnect()
      * @generated
      * @ordered
      */
-    protected static final boolean DISCONNECT_EDEFAULT = false;
+    protected static final Boolean DISCONNECT_EDEFAULT = null;
 
     /**
-     * The cached value of the '{@link #isDisconnect() <em>Disconnect</em>}' attribute.
+     * The cached value of the '{@link #getDisconnect() <em>Disconnect</em>}' attribute.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @see #isDisconnect()
+     * @see #getDisconnect()
      * @generated
      * @ordered
      */
-    protected boolean disconnect = DISCONNECT_EDEFAULT;
+    protected Boolean disconnect = DISCONNECT_EDEFAULT;
 
     /**
      * This is true if the Disconnect attribute has been set.
@@ -230,7 +230,7 @@ public abstract class CamelRemoteBindingTypeImpl extends GenericFileBindingTypeI
      * @generated
      * @ordered
      */
-    protected static final int MAXIMUM_RECONNECT_ATTEMPTS_EDEFAULT = 0;
+    protected static final Integer MAXIMUM_RECONNECT_ATTEMPTS_EDEFAULT = null;
 
     /**
      * The cached value of the '{@link #getMaximumReconnectAttempts() <em>Maximum Reconnect Attempts</em>}' attribute.
@@ -240,7 +240,7 @@ public abstract class CamelRemoteBindingTypeImpl extends GenericFileBindingTypeI
      * @generated
      * @ordered
      */
-    protected int maximumReconnectAttempts = MAXIMUM_RECONNECT_ATTEMPTS_EDEFAULT;
+    protected Integer maximumReconnectAttempts = MAXIMUM_RECONNECT_ATTEMPTS_EDEFAULT;
 
     /**
      * This is true if the Maximum Reconnect Attempts attribute has been set.
@@ -259,7 +259,7 @@ public abstract class CamelRemoteBindingTypeImpl extends GenericFileBindingTypeI
      * @generated
      * @ordered
      */
-    protected static final int RECONNECT_DELAY_EDEFAULT = 0;
+    protected static final Integer RECONNECT_DELAY_EDEFAULT = null;
 
     /**
      * The cached value of the '{@link #getReconnectDelay() <em>Reconnect Delay</em>}' attribute.
@@ -269,7 +269,7 @@ public abstract class CamelRemoteBindingTypeImpl extends GenericFileBindingTypeI
      * @generated
      * @ordered
      */
-    protected int reconnectDelay = RECONNECT_DELAY_EDEFAULT;
+    protected Integer reconnectDelay = RECONNECT_DELAY_EDEFAULT;
 
     /**
      * This is true if the Reconnect Delay attribute has been set.
@@ -301,24 +301,24 @@ public abstract class CamelRemoteBindingTypeImpl extends GenericFileBindingTypeI
     protected String separator = SEPARATOR_EDEFAULT;
 
     /**
-     * The default value of the '{@link #isStepwise() <em>Stepwise</em>}' attribute.
+     * The default value of the '{@link #getStepwise() <em>Stepwise</em>}' attribute.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @see #isStepwise()
+     * @see #getStepwise()
      * @generated
      * @ordered
      */
-    protected static final boolean STEPWISE_EDEFAULT = false;
+    protected static final Boolean STEPWISE_EDEFAULT = null;
 
     /**
-     * The cached value of the '{@link #isStepwise() <em>Stepwise</em>}' attribute.
+     * The cached value of the '{@link #getStepwise() <em>Stepwise</em>}' attribute.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @see #isStepwise()
+     * @see #getStepwise()
      * @generated
      * @ordered
      */
-    protected boolean stepwise = STEPWISE_EDEFAULT;
+    protected Boolean stepwise = STEPWISE_EDEFAULT;
 
     /**
      * This is true if the Stepwise attribute has been set.
@@ -330,24 +330,24 @@ public abstract class CamelRemoteBindingTypeImpl extends GenericFileBindingTypeI
     protected boolean stepwiseESet;
 
     /**
-     * The default value of the '{@link #isThrowExceptionOnConnectFailed() <em>Throw Exception On Connect Failed</em>}' attribute.
+     * The default value of the '{@link #getThrowExceptionOnConnectFailed() <em>Throw Exception On Connect Failed</em>}' attribute.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @see #isThrowExceptionOnConnectFailed()
+     * @see #getThrowExceptionOnConnectFailed()
      * @generated
      * @ordered
      */
-    protected static final boolean THROW_EXCEPTION_ON_CONNECT_FAILED_EDEFAULT = false;
+    protected static final Boolean THROW_EXCEPTION_ON_CONNECT_FAILED_EDEFAULT = null;
 
     /**
-     * The cached value of the '{@link #isThrowExceptionOnConnectFailed() <em>Throw Exception On Connect Failed</em>}' attribute.
+     * The cached value of the '{@link #getThrowExceptionOnConnectFailed() <em>Throw Exception On Connect Failed</em>}' attribute.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @see #isThrowExceptionOnConnectFailed()
+     * @see #getThrowExceptionOnConnectFailed()
      * @generated
      * @ordered
      */
-    protected boolean throwExceptionOnConnectFailed = THROW_EXCEPTION_ON_CONNECT_FAILED_EDEFAULT;
+    protected Boolean throwExceptionOnConnectFailed = THROW_EXCEPTION_ON_CONNECT_FAILED_EDEFAULT;
 
     /**
      * This is true if the Throw Exception On Connect Failed attribute has been set.
@@ -557,7 +557,7 @@ public abstract class CamelRemoteBindingTypeImpl extends GenericFileBindingTypeI
      * <!-- end-user-doc -->
      * @generated
      */
-    public int getConnectTimeout() {
+    public Integer getConnectTimeout() {
         return connectTimeout;
     }
 
@@ -566,8 +566,8 @@ public abstract class CamelRemoteBindingTypeImpl extends GenericFileBindingTypeI
      * <!-- end-user-doc -->
      * @generated
      */
-    public void setConnectTimeout(int newConnectTimeout) {
-        int oldConnectTimeout = connectTimeout;
+    public void setConnectTimeout(Integer newConnectTimeout) {
+        Integer oldConnectTimeout = connectTimeout;
         connectTimeout = newConnectTimeout;
         boolean oldConnectTimeoutESet = connectTimeoutESet;
         connectTimeoutESet = true;
@@ -581,7 +581,7 @@ public abstract class CamelRemoteBindingTypeImpl extends GenericFileBindingTypeI
      * @generated
      */
     public void unsetConnectTimeout() {
-        int oldConnectTimeout = connectTimeout;
+        Integer oldConnectTimeout = connectTimeout;
         boolean oldConnectTimeoutESet = connectTimeoutESet;
         connectTimeout = CONNECT_TIMEOUT_EDEFAULT;
         connectTimeoutESet = false;
@@ -603,7 +603,7 @@ public abstract class CamelRemoteBindingTypeImpl extends GenericFileBindingTypeI
      * <!-- end-user-doc -->
      * @generated
      */
-    public boolean isDisconnect() {
+    public Boolean getDisconnect() {
         return disconnect;
     }
 
@@ -612,8 +612,8 @@ public abstract class CamelRemoteBindingTypeImpl extends GenericFileBindingTypeI
      * <!-- end-user-doc -->
      * @generated
      */
-    public void setDisconnect(boolean newDisconnect) {
-        boolean oldDisconnect = disconnect;
+    public void setDisconnect(Boolean newDisconnect) {
+        Boolean oldDisconnect = disconnect;
         disconnect = newDisconnect;
         boolean oldDisconnectESet = disconnectESet;
         disconnectESet = true;
@@ -627,7 +627,7 @@ public abstract class CamelRemoteBindingTypeImpl extends GenericFileBindingTypeI
      * @generated
      */
     public void unsetDisconnect() {
-        boolean oldDisconnect = disconnect;
+        Boolean oldDisconnect = disconnect;
         boolean oldDisconnectESet = disconnectESet;
         disconnect = DISCONNECT_EDEFAULT;
         disconnectESet = false;
@@ -649,7 +649,7 @@ public abstract class CamelRemoteBindingTypeImpl extends GenericFileBindingTypeI
      * <!-- end-user-doc -->
      * @generated
      */
-    public int getMaximumReconnectAttempts() {
+    public Integer getMaximumReconnectAttempts() {
         return maximumReconnectAttempts;
     }
 
@@ -658,8 +658,8 @@ public abstract class CamelRemoteBindingTypeImpl extends GenericFileBindingTypeI
      * <!-- end-user-doc -->
      * @generated
      */
-    public void setMaximumReconnectAttempts(int newMaximumReconnectAttempts) {
-        int oldMaximumReconnectAttempts = maximumReconnectAttempts;
+    public void setMaximumReconnectAttempts(Integer newMaximumReconnectAttempts) {
+        Integer oldMaximumReconnectAttempts = maximumReconnectAttempts;
         maximumReconnectAttempts = newMaximumReconnectAttempts;
         boolean oldMaximumReconnectAttemptsESet = maximumReconnectAttemptsESet;
         maximumReconnectAttemptsESet = true;
@@ -673,7 +673,7 @@ public abstract class CamelRemoteBindingTypeImpl extends GenericFileBindingTypeI
      * @generated
      */
     public void unsetMaximumReconnectAttempts() {
-        int oldMaximumReconnectAttempts = maximumReconnectAttempts;
+        Integer oldMaximumReconnectAttempts = maximumReconnectAttempts;
         boolean oldMaximumReconnectAttemptsESet = maximumReconnectAttemptsESet;
         maximumReconnectAttempts = MAXIMUM_RECONNECT_ATTEMPTS_EDEFAULT;
         maximumReconnectAttemptsESet = false;
@@ -695,7 +695,7 @@ public abstract class CamelRemoteBindingTypeImpl extends GenericFileBindingTypeI
      * <!-- end-user-doc -->
      * @generated
      */
-    public int getReconnectDelay() {
+    public Integer getReconnectDelay() {
         return reconnectDelay;
     }
 
@@ -704,8 +704,8 @@ public abstract class CamelRemoteBindingTypeImpl extends GenericFileBindingTypeI
      * <!-- end-user-doc -->
      * @generated
      */
-    public void setReconnectDelay(int newReconnectDelay) {
-        int oldReconnectDelay = reconnectDelay;
+    public void setReconnectDelay(Integer newReconnectDelay) {
+        Integer oldReconnectDelay = reconnectDelay;
         reconnectDelay = newReconnectDelay;
         boolean oldReconnectDelayESet = reconnectDelayESet;
         reconnectDelayESet = true;
@@ -719,7 +719,7 @@ public abstract class CamelRemoteBindingTypeImpl extends GenericFileBindingTypeI
      * @generated
      */
     public void unsetReconnectDelay() {
-        int oldReconnectDelay = reconnectDelay;
+        Integer oldReconnectDelay = reconnectDelay;
         boolean oldReconnectDelayESet = reconnectDelayESet;
         reconnectDelay = RECONNECT_DELAY_EDEFAULT;
         reconnectDelayESet = false;
@@ -762,7 +762,7 @@ public abstract class CamelRemoteBindingTypeImpl extends GenericFileBindingTypeI
      * <!-- end-user-doc -->
      * @generated
      */
-    public boolean isStepwise() {
+    public Boolean getStepwise() {
         return stepwise;
     }
 
@@ -771,8 +771,8 @@ public abstract class CamelRemoteBindingTypeImpl extends GenericFileBindingTypeI
      * <!-- end-user-doc -->
      * @generated
      */
-    public void setStepwise(boolean newStepwise) {
-        boolean oldStepwise = stepwise;
+    public void setStepwise(Boolean newStepwise) {
+        Boolean oldStepwise = stepwise;
         stepwise = newStepwise;
         boolean oldStepwiseESet = stepwiseESet;
         stepwiseESet = true;
@@ -786,7 +786,7 @@ public abstract class CamelRemoteBindingTypeImpl extends GenericFileBindingTypeI
      * @generated
      */
     public void unsetStepwise() {
-        boolean oldStepwise = stepwise;
+        Boolean oldStepwise = stepwise;
         boolean oldStepwiseESet = stepwiseESet;
         stepwise = STEPWISE_EDEFAULT;
         stepwiseESet = false;
@@ -808,7 +808,7 @@ public abstract class CamelRemoteBindingTypeImpl extends GenericFileBindingTypeI
      * <!-- end-user-doc -->
      * @generated
      */
-    public boolean isThrowExceptionOnConnectFailed() {
+    public Boolean getThrowExceptionOnConnectFailed() {
         return throwExceptionOnConnectFailed;
     }
 
@@ -817,8 +817,8 @@ public abstract class CamelRemoteBindingTypeImpl extends GenericFileBindingTypeI
      * <!-- end-user-doc -->
      * @generated
      */
-    public void setThrowExceptionOnConnectFailed(boolean newThrowExceptionOnConnectFailed) {
-        boolean oldThrowExceptionOnConnectFailed = throwExceptionOnConnectFailed;
+    public void setThrowExceptionOnConnectFailed(Boolean newThrowExceptionOnConnectFailed) {
+        Boolean oldThrowExceptionOnConnectFailed = throwExceptionOnConnectFailed;
         throwExceptionOnConnectFailed = newThrowExceptionOnConnectFailed;
         boolean oldThrowExceptionOnConnectFailedESet = throwExceptionOnConnectFailedESet;
         throwExceptionOnConnectFailedESet = true;
@@ -832,7 +832,7 @@ public abstract class CamelRemoteBindingTypeImpl extends GenericFileBindingTypeI
      * @generated
      */
     public void unsetThrowExceptionOnConnectFailed() {
-        boolean oldThrowExceptionOnConnectFailed = throwExceptionOnConnectFailed;
+        Boolean oldThrowExceptionOnConnectFailed = throwExceptionOnConnectFailed;
         boolean oldThrowExceptionOnConnectFailedESet = throwExceptionOnConnectFailedESet;
         throwExceptionOnConnectFailed = THROW_EXCEPTION_ON_CONNECT_FAILED_EDEFAULT;
         throwExceptionOnConnectFailedESet = false;
@@ -972,7 +972,7 @@ public abstract class CamelRemoteBindingTypeImpl extends GenericFileBindingTypeI
             case CamelPackage.CAMEL_REMOTE_BINDING_TYPE__CONNECT_TIMEOUT:
                 return getConnectTimeout();
             case CamelPackage.CAMEL_REMOTE_BINDING_TYPE__DISCONNECT:
-                return isDisconnect();
+                return getDisconnect();
             case CamelPackage.CAMEL_REMOTE_BINDING_TYPE__MAXIMUM_RECONNECT_ATTEMPTS:
                 return getMaximumReconnectAttempts();
             case CamelPackage.CAMEL_REMOTE_BINDING_TYPE__RECONNECT_DELAY:
@@ -980,9 +980,9 @@ public abstract class CamelRemoteBindingTypeImpl extends GenericFileBindingTypeI
             case CamelPackage.CAMEL_REMOTE_BINDING_TYPE__SEPARATOR:
                 return getSeparator();
             case CamelPackage.CAMEL_REMOTE_BINDING_TYPE__STEPWISE:
-                return isStepwise();
+                return getStepwise();
             case CamelPackage.CAMEL_REMOTE_BINDING_TYPE__THROW_EXCEPTION_ON_CONNECT_FAILED:
-                return isThrowExceptionOnConnectFailed();
+                return getThrowExceptionOnConnectFailed();
             case CamelPackage.CAMEL_REMOTE_BINDING_TYPE__CONSUME:
                 return getConsume();
             case CamelPackage.CAMEL_REMOTE_BINDING_TYPE__PRODUCE:

@@ -18,7 +18,7 @@ import javax.xml.datatype.XMLGregorianCalendar;
  * <ul>
  *   <li>{@link org.switchyard.tools.models.switchyard1_0.camel.CamelQuartzBindingType#getCamelBindingName <em>Camel Binding Name</em>}</li>
  *   <li>{@link org.switchyard.tools.models.switchyard1_0.camel.CamelQuartzBindingType#getCron <em>Cron</em>}</li>
- *   <li>{@link org.switchyard.tools.models.switchyard1_0.camel.CamelQuartzBindingType#isStateful <em>Stateful</em>}</li>
+ *   <li>{@link org.switchyard.tools.models.switchyard1_0.camel.CamelQuartzBindingType#getStateful <em>Stateful</em>}</li>
  *   <li>{@link org.switchyard.tools.models.switchyard1_0.camel.CamelQuartzBindingType#getStartTime <em>Start Time</em>}</li>
  *   <li>{@link org.switchyard.tools.models.switchyard1_0.camel.CamelQuartzBindingType#getEndTime <em>End Time</em>}</li>
  * </ul>
@@ -92,23 +92,50 @@ public interface CamelQuartzBindingType extends BaseCamelBinding {
      * </p>
      * <!-- end-user-doc -->
      * @return the value of the '<em>Stateful</em>' attribute.
-     * @see #setStateful(boolean)
+     * @see #isSetStateful()
+     * @see #unsetStateful()
+     * @see #setStateful(Boolean)
      * @see org.switchyard.tools.models.switchyard1_0.camel.CamelPackage#getCamelQuartzBindingType_Stateful()
-     * @model dataType="org.eclipse.emf.ecore.xml.type.Boolean"
+     * @model unsettable="true" dataType="org.eclipse.emf.ecore.xml.type.BooleanObject"
      *        extendedMetaData="kind='element' name='stateful' namespace='##targetNamespace'"
      * @generated
      */
-    boolean isStateful();
+    Boolean getStateful();
 
     /**
-     * Sets the value of the '{@link org.switchyard.tools.models.switchyard1_0.camel.CamelQuartzBindingType#isStateful <em>Stateful</em>}' attribute.
+     * Sets the value of the '{@link org.switchyard.tools.models.switchyard1_0.camel.CamelQuartzBindingType#getStateful <em>Stateful</em>}' attribute.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @param value the new value of the '<em>Stateful</em>' attribute.
-     * @see #isStateful()
+     * @see #isSetStateful()
+     * @see #unsetStateful()
+     * @see #getStateful()
      * @generated
      */
-    void setStateful(boolean value);
+    void setStateful(Boolean value);
+
+    /**
+     * Unsets the value of the '{@link org.switchyard.tools.models.switchyard1_0.camel.CamelQuartzBindingType#getStateful <em>Stateful</em>}' attribute.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @see #isSetStateful()
+     * @see #getStateful()
+     * @see #setStateful(Boolean)
+     * @generated
+     */
+    void unsetStateful();
+
+    /**
+     * Returns whether the value of the '{@link org.switchyard.tools.models.switchyard1_0.camel.CamelQuartzBindingType#getStateful <em>Stateful</em>}' attribute is set.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @return whether the value of the '<em>Stateful</em>' attribute is set.
+     * @see #unsetStateful()
+     * @see #getStateful()
+     * @see #setStateful(Boolean)
+     * @generated
+     */
+    boolean isSetStateful();
 
     /**
      * Returns the value of the '<em><b>Start Time</b></em>' attribute.

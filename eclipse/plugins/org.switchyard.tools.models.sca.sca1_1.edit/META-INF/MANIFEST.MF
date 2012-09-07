@@ -1,0 +1,16 @@
+Manifest-Version: 1.0
+Bundle-ManifestVersion: 2
+Bundle-Name: %pluginName
+Bundle-SymbolicName: org.switchyard.tools.models.sca.sca1_1.edit;singleton:=true
+Bundle-Version: 0.6.0.qualifier
+Bundle-ClassPath: .
+Bundle-Activator: org.eclipse.soa.sca.sca1_1.model.sca.provider.ScaEditPlugin$Implementation
+Bundle-Vendor: %providerName
+Bundle-Localization: plugin
+Bundle-RequiredExecutionEnvironment: JavaSE-1.6
+Export-Package: org.eclipse.soa.sca.sca1_1.model.sca.provider
+Require-Bundle: org.eclipse.core.runtime,
+ org.switchyard.tools.models.sca.sca1_1;visibility:=reexport,
+ org.switchyard.tools.models.sca.core;visibility:=reexport,
+ org.eclipse.emf.edit;visibility:=reexport
+Bundle-ActivationPolicy: lazy

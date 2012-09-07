@@ -16,15 +16,15 @@ import java.math.BigInteger;
  * <p>
  * The following features are supported:
  * <ul>
- *   <li>{@link org.switchyard.tools.models.switchyard1_0.camel.GenericFileConsumerType#isDelete <em>Delete</em>}</li>
- *   <li>{@link org.switchyard.tools.models.switchyard1_0.camel.GenericFileConsumerType#isRecursive <em>Recursive</em>}</li>
- *   <li>{@link org.switchyard.tools.models.switchyard1_0.camel.GenericFileConsumerType#isNoop <em>Noop</em>}</li>
+ *   <li>{@link org.switchyard.tools.models.switchyard1_0.camel.GenericFileConsumerType#getDelete <em>Delete</em>}</li>
+ *   <li>{@link org.switchyard.tools.models.switchyard1_0.camel.GenericFileConsumerType#getRecursive <em>Recursive</em>}</li>
+ *   <li>{@link org.switchyard.tools.models.switchyard1_0.camel.GenericFileConsumerType#getNoop <em>Noop</em>}</li>
  *   <li>{@link org.switchyard.tools.models.switchyard1_0.camel.GenericFileConsumerType#getPreMove <em>Pre Move</em>}</li>
  *   <li>{@link org.switchyard.tools.models.switchyard1_0.camel.GenericFileConsumerType#getMove <em>Move</em>}</li>
  *   <li>{@link org.switchyard.tools.models.switchyard1_0.camel.GenericFileConsumerType#getMoveFailed <em>Move Failed</em>}</li>
  *   <li>{@link org.switchyard.tools.models.switchyard1_0.camel.GenericFileConsumerType#getInclude <em>Include</em>}</li>
  *   <li>{@link org.switchyard.tools.models.switchyard1_0.camel.GenericFileConsumerType#getExclude <em>Exclude</em>}</li>
- *   <li>{@link org.switchyard.tools.models.switchyard1_0.camel.GenericFileConsumerType#isIdempotent <em>Idempotent</em>}</li>
+ *   <li>{@link org.switchyard.tools.models.switchyard1_0.camel.GenericFileConsumerType#getIdempotent <em>Idempotent</em>}</li>
  *   <li>{@link org.switchyard.tools.models.switchyard1_0.camel.GenericFileConsumerType#getIdempotentRepository <em>Idempotent Repository</em>}</li>
  *   <li>{@link org.switchyard.tools.models.switchyard1_0.camel.GenericFileConsumerType#getInProgressRepository <em>In Progress Repository</em>}</li>
  *   <li>{@link org.switchyard.tools.models.switchyard1_0.camel.GenericFileConsumerType#getFilter <em>Filter</em>}</li>
@@ -35,8 +35,8 @@ import java.math.BigInteger;
  *   <li>{@link org.switchyard.tools.models.switchyard1_0.camel.GenericFileConsumerType#getReadLockCheckInterval <em>Read Lock Check Interval</em>}</li>
  *   <li>{@link org.switchyard.tools.models.switchyard1_0.camel.GenericFileConsumerType#getExclusiveReadLockStrategy <em>Exclusive Read Lock Strategy</em>}</li>
  *   <li>{@link org.switchyard.tools.models.switchyard1_0.camel.GenericFileConsumerType#getProcessStrategy <em>Process Strategy</em>}</li>
- *   <li>{@link org.switchyard.tools.models.switchyard1_0.camel.GenericFileConsumerType#isStartingDirectoryMustExist <em>Starting Directory Must Exist</em>}</li>
- *   <li>{@link org.switchyard.tools.models.switchyard1_0.camel.GenericFileConsumerType#isDirectoryMustExist <em>Directory Must Exist</em>}</li>
+ *   <li>{@link org.switchyard.tools.models.switchyard1_0.camel.GenericFileConsumerType#getStartingDirectoryMustExist <em>Starting Directory Must Exist</em>}</li>
+ *   <li>{@link org.switchyard.tools.models.switchyard1_0.camel.GenericFileConsumerType#getDirectoryMustExist <em>Directory Must Exist</em>}</li>
  *   <li>{@link org.switchyard.tools.models.switchyard1_0.camel.GenericFileConsumerType#getDoneFileName <em>Done File Name</em>}</li>
  * </ul>
  * </p>
@@ -57,45 +57,45 @@ public interface GenericFileConsumerType extends ScheduledBatchPollConsumerType 
      * @return the value of the '<em>Delete</em>' attribute.
      * @see #isSetDelete()
      * @see #unsetDelete()
-     * @see #setDelete(boolean)
+     * @see #setDelete(Boolean)
      * @see org.switchyard.tools.models.switchyard1_0.camel.CamelPackage#getGenericFileConsumerType_Delete()
-     * @model unsettable="true" dataType="org.eclipse.emf.ecore.xml.type.Boolean"
+     * @model unsettable="true" dataType="org.eclipse.emf.ecore.xml.type.BooleanObject"
      *        extendedMetaData="kind='element' name='delete' namespace='##targetNamespace'"
      * @generated
      */
-    boolean isDelete();
+    Boolean getDelete();
 
     /**
-     * Sets the value of the '{@link org.switchyard.tools.models.switchyard1_0.camel.GenericFileConsumerType#isDelete <em>Delete</em>}' attribute.
+     * Sets the value of the '{@link org.switchyard.tools.models.switchyard1_0.camel.GenericFileConsumerType#getDelete <em>Delete</em>}' attribute.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @param value the new value of the '<em>Delete</em>' attribute.
      * @see #isSetDelete()
      * @see #unsetDelete()
-     * @see #isDelete()
+     * @see #getDelete()
      * @generated
      */
-    void setDelete(boolean value);
+    void setDelete(Boolean value);
 
     /**
-     * Unsets the value of the '{@link org.switchyard.tools.models.switchyard1_0.camel.GenericFileConsumerType#isDelete <em>Delete</em>}' attribute.
+     * Unsets the value of the '{@link org.switchyard.tools.models.switchyard1_0.camel.GenericFileConsumerType#getDelete <em>Delete</em>}' attribute.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @see #isSetDelete()
-     * @see #isDelete()
-     * @see #setDelete(boolean)
+     * @see #getDelete()
+     * @see #setDelete(Boolean)
      * @generated
      */
     void unsetDelete();
 
     /**
-     * Returns whether the value of the '{@link org.switchyard.tools.models.switchyard1_0.camel.GenericFileConsumerType#isDelete <em>Delete</em>}' attribute is set.
+     * Returns whether the value of the '{@link org.switchyard.tools.models.switchyard1_0.camel.GenericFileConsumerType#getDelete <em>Delete</em>}' attribute is set.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @return whether the value of the '<em>Delete</em>' attribute is set.
      * @see #unsetDelete()
-     * @see #isDelete()
-     * @see #setDelete(boolean)
+     * @see #getDelete()
+     * @see #setDelete(Boolean)
      * @generated
      */
     boolean isSetDelete();
@@ -111,45 +111,45 @@ public interface GenericFileConsumerType extends ScheduledBatchPollConsumerType 
      * @return the value of the '<em>Recursive</em>' attribute.
      * @see #isSetRecursive()
      * @see #unsetRecursive()
-     * @see #setRecursive(boolean)
+     * @see #setRecursive(Boolean)
      * @see org.switchyard.tools.models.switchyard1_0.camel.CamelPackage#getGenericFileConsumerType_Recursive()
-     * @model unsettable="true" dataType="org.eclipse.emf.ecore.xml.type.Boolean"
+     * @model unsettable="true" dataType="org.eclipse.emf.ecore.xml.type.BooleanObject"
      *        extendedMetaData="kind='element' name='recursive' namespace='##targetNamespace'"
      * @generated
      */
-    boolean isRecursive();
+    Boolean getRecursive();
 
     /**
-     * Sets the value of the '{@link org.switchyard.tools.models.switchyard1_0.camel.GenericFileConsumerType#isRecursive <em>Recursive</em>}' attribute.
+     * Sets the value of the '{@link org.switchyard.tools.models.switchyard1_0.camel.GenericFileConsumerType#getRecursive <em>Recursive</em>}' attribute.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @param value the new value of the '<em>Recursive</em>' attribute.
      * @see #isSetRecursive()
      * @see #unsetRecursive()
-     * @see #isRecursive()
+     * @see #getRecursive()
      * @generated
      */
-    void setRecursive(boolean value);
+    void setRecursive(Boolean value);
 
     /**
-     * Unsets the value of the '{@link org.switchyard.tools.models.switchyard1_0.camel.GenericFileConsumerType#isRecursive <em>Recursive</em>}' attribute.
+     * Unsets the value of the '{@link org.switchyard.tools.models.switchyard1_0.camel.GenericFileConsumerType#getRecursive <em>Recursive</em>}' attribute.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @see #isSetRecursive()
-     * @see #isRecursive()
-     * @see #setRecursive(boolean)
+     * @see #getRecursive()
+     * @see #setRecursive(Boolean)
      * @generated
      */
     void unsetRecursive();
 
     /**
-     * Returns whether the value of the '{@link org.switchyard.tools.models.switchyard1_0.camel.GenericFileConsumerType#isRecursive <em>Recursive</em>}' attribute is set.
+     * Returns whether the value of the '{@link org.switchyard.tools.models.switchyard1_0.camel.GenericFileConsumerType#getRecursive <em>Recursive</em>}' attribute is set.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @return whether the value of the '<em>Recursive</em>' attribute is set.
      * @see #unsetRecursive()
-     * @see #isRecursive()
-     * @see #setRecursive(boolean)
+     * @see #getRecursive()
+     * @see #setRecursive(Boolean)
      * @generated
      */
     boolean isSetRecursive();
@@ -165,45 +165,45 @@ public interface GenericFileConsumerType extends ScheduledBatchPollConsumerType 
      * @return the value of the '<em>Noop</em>' attribute.
      * @see #isSetNoop()
      * @see #unsetNoop()
-     * @see #setNoop(boolean)
+     * @see #setNoop(Boolean)
      * @see org.switchyard.tools.models.switchyard1_0.camel.CamelPackage#getGenericFileConsumerType_Noop()
-     * @model unsettable="true" dataType="org.eclipse.emf.ecore.xml.type.Boolean"
+     * @model unsettable="true" dataType="org.eclipse.emf.ecore.xml.type.BooleanObject"
      *        extendedMetaData="kind='element' name='noop' namespace='##targetNamespace'"
      * @generated
      */
-    boolean isNoop();
+    Boolean getNoop();
 
     /**
-     * Sets the value of the '{@link org.switchyard.tools.models.switchyard1_0.camel.GenericFileConsumerType#isNoop <em>Noop</em>}' attribute.
+     * Sets the value of the '{@link org.switchyard.tools.models.switchyard1_0.camel.GenericFileConsumerType#getNoop <em>Noop</em>}' attribute.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @param value the new value of the '<em>Noop</em>' attribute.
      * @see #isSetNoop()
      * @see #unsetNoop()
-     * @see #isNoop()
+     * @see #getNoop()
      * @generated
      */
-    void setNoop(boolean value);
+    void setNoop(Boolean value);
 
     /**
-     * Unsets the value of the '{@link org.switchyard.tools.models.switchyard1_0.camel.GenericFileConsumerType#isNoop <em>Noop</em>}' attribute.
+     * Unsets the value of the '{@link org.switchyard.tools.models.switchyard1_0.camel.GenericFileConsumerType#getNoop <em>Noop</em>}' attribute.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @see #isSetNoop()
-     * @see #isNoop()
-     * @see #setNoop(boolean)
+     * @see #getNoop()
+     * @see #setNoop(Boolean)
      * @generated
      */
     void unsetNoop();
 
     /**
-     * Returns whether the value of the '{@link org.switchyard.tools.models.switchyard1_0.camel.GenericFileConsumerType#isNoop <em>Noop</em>}' attribute is set.
+     * Returns whether the value of the '{@link org.switchyard.tools.models.switchyard1_0.camel.GenericFileConsumerType#getNoop <em>Noop</em>}' attribute is set.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @return whether the value of the '<em>Noop</em>' attribute is set.
      * @see #unsetNoop()
-     * @see #isNoop()
-     * @see #setNoop(boolean)
+     * @see #getNoop()
+     * @see #setNoop(Boolean)
      * @generated
      */
     boolean isSetNoop();
@@ -298,9 +298,11 @@ public interface GenericFileConsumerType extends ScheduledBatchPollConsumerType 
      * </p>
      * <!-- end-user-doc -->
      * @return the value of the '<em>Include</em>' attribute.
+     * @see #isSetInclude()
+     * @see #unsetInclude()
      * @see #setInclude(String)
      * @see org.switchyard.tools.models.switchyard1_0.camel.CamelPackage#getGenericFileConsumerType_Include()
-     * @model dataType="org.eclipse.emf.ecore.xml.type.String"
+     * @model unsettable="true" dataType="org.eclipse.emf.ecore.xml.type.String"
      *        extendedMetaData="kind='element' name='include' namespace='##targetNamespace'"
      * @generated
      */
@@ -311,10 +313,35 @@ public interface GenericFileConsumerType extends ScheduledBatchPollConsumerType 
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @param value the new value of the '<em>Include</em>' attribute.
+     * @see #isSetInclude()
+     * @see #unsetInclude()
      * @see #getInclude()
      * @generated
      */
     void setInclude(String value);
+
+    /**
+     * Unsets the value of the '{@link org.switchyard.tools.models.switchyard1_0.camel.GenericFileConsumerType#getInclude <em>Include</em>}' attribute.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @see #isSetInclude()
+     * @see #getInclude()
+     * @see #setInclude(String)
+     * @generated
+     */
+    void unsetInclude();
+
+    /**
+     * Returns whether the value of the '{@link org.switchyard.tools.models.switchyard1_0.camel.GenericFileConsumerType#getInclude <em>Include</em>}' attribute is set.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @return whether the value of the '<em>Include</em>' attribute is set.
+     * @see #unsetInclude()
+     * @see #getInclude()
+     * @see #setInclude(String)
+     * @generated
+     */
+    boolean isSetInclude();
 
     /**
      * Returns the value of the '<em><b>Exclude</b></em>' attribute.
@@ -325,9 +352,11 @@ public interface GenericFileConsumerType extends ScheduledBatchPollConsumerType 
      * </p>
      * <!-- end-user-doc -->
      * @return the value of the '<em>Exclude</em>' attribute.
+     * @see #isSetExclude()
+     * @see #unsetExclude()
      * @see #setExclude(String)
      * @see org.switchyard.tools.models.switchyard1_0.camel.CamelPackage#getGenericFileConsumerType_Exclude()
-     * @model dataType="org.eclipse.emf.ecore.xml.type.String"
+     * @model unsettable="true" dataType="org.eclipse.emf.ecore.xml.type.String"
      *        extendedMetaData="kind='element' name='exclude' namespace='##targetNamespace'"
      * @generated
      */
@@ -338,10 +367,35 @@ public interface GenericFileConsumerType extends ScheduledBatchPollConsumerType 
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @param value the new value of the '<em>Exclude</em>' attribute.
+     * @see #isSetExclude()
+     * @see #unsetExclude()
      * @see #getExclude()
      * @generated
      */
     void setExclude(String value);
+
+    /**
+     * Unsets the value of the '{@link org.switchyard.tools.models.switchyard1_0.camel.GenericFileConsumerType#getExclude <em>Exclude</em>}' attribute.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @see #isSetExclude()
+     * @see #getExclude()
+     * @see #setExclude(String)
+     * @generated
+     */
+    void unsetExclude();
+
+    /**
+     * Returns whether the value of the '{@link org.switchyard.tools.models.switchyard1_0.camel.GenericFileConsumerType#getExclude <em>Exclude</em>}' attribute is set.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @return whether the value of the '<em>Exclude</em>' attribute is set.
+     * @see #unsetExclude()
+     * @see #getExclude()
+     * @see #setExclude(String)
+     * @generated
+     */
+    boolean isSetExclude();
 
     /**
      * Returns the value of the '<em><b>Idempotent</b></em>' attribute.
@@ -354,45 +408,45 @@ public interface GenericFileConsumerType extends ScheduledBatchPollConsumerType 
      * @return the value of the '<em>Idempotent</em>' attribute.
      * @see #isSetIdempotent()
      * @see #unsetIdempotent()
-     * @see #setIdempotent(boolean)
+     * @see #setIdempotent(Boolean)
      * @see org.switchyard.tools.models.switchyard1_0.camel.CamelPackage#getGenericFileConsumerType_Idempotent()
-     * @model unsettable="true" dataType="org.eclipse.emf.ecore.xml.type.Boolean"
+     * @model unsettable="true" dataType="org.eclipse.emf.ecore.xml.type.BooleanObject"
      *        extendedMetaData="kind='element' name='idempotent' namespace='##targetNamespace'"
      * @generated
      */
-    boolean isIdempotent();
+    Boolean getIdempotent();
 
     /**
-     * Sets the value of the '{@link org.switchyard.tools.models.switchyard1_0.camel.GenericFileConsumerType#isIdempotent <em>Idempotent</em>}' attribute.
+     * Sets the value of the '{@link org.switchyard.tools.models.switchyard1_0.camel.GenericFileConsumerType#getIdempotent <em>Idempotent</em>}' attribute.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @param value the new value of the '<em>Idempotent</em>' attribute.
      * @see #isSetIdempotent()
      * @see #unsetIdempotent()
-     * @see #isIdempotent()
+     * @see #getIdempotent()
      * @generated
      */
-    void setIdempotent(boolean value);
+    void setIdempotent(Boolean value);
 
     /**
-     * Unsets the value of the '{@link org.switchyard.tools.models.switchyard1_0.camel.GenericFileConsumerType#isIdempotent <em>Idempotent</em>}' attribute.
+     * Unsets the value of the '{@link org.switchyard.tools.models.switchyard1_0.camel.GenericFileConsumerType#getIdempotent <em>Idempotent</em>}' attribute.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @see #isSetIdempotent()
-     * @see #isIdempotent()
-     * @see #setIdempotent(boolean)
+     * @see #getIdempotent()
+     * @see #setIdempotent(Boolean)
      * @generated
      */
     void unsetIdempotent();
 
     /**
-     * Returns whether the value of the '{@link org.switchyard.tools.models.switchyard1_0.camel.GenericFileConsumerType#isIdempotent <em>Idempotent</em>}' attribute is set.
+     * Returns whether the value of the '{@link org.switchyard.tools.models.switchyard1_0.camel.GenericFileConsumerType#getIdempotent <em>Idempotent</em>}' attribute is set.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @return whether the value of the '<em>Idempotent</em>' attribute is set.
      * @see #unsetIdempotent()
-     * @see #isIdempotent()
-     * @see #setIdempotent(boolean)
+     * @see #getIdempotent()
+     * @see #setIdempotent(Boolean)
      * @generated
      */
     boolean isSetIdempotent();
@@ -406,9 +460,11 @@ public interface GenericFileConsumerType extends ScheduledBatchPollConsumerType 
      * </p>
      * <!-- end-user-doc -->
      * @return the value of the '<em>Idempotent Repository</em>' attribute.
+     * @see #isSetIdempotentRepository()
+     * @see #unsetIdempotentRepository()
      * @see #setIdempotentRepository(String)
      * @see org.switchyard.tools.models.switchyard1_0.camel.CamelPackage#getGenericFileConsumerType_IdempotentRepository()
-     * @model dataType="org.eclipse.emf.ecore.xml.type.String"
+     * @model unsettable="true" dataType="org.eclipse.emf.ecore.xml.type.String"
      *        extendedMetaData="kind='element' name='idempotentRepository' namespace='##targetNamespace'"
      * @generated
      */
@@ -419,10 +475,35 @@ public interface GenericFileConsumerType extends ScheduledBatchPollConsumerType 
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @param value the new value of the '<em>Idempotent Repository</em>' attribute.
+     * @see #isSetIdempotentRepository()
+     * @see #unsetIdempotentRepository()
      * @see #getIdempotentRepository()
      * @generated
      */
     void setIdempotentRepository(String value);
+
+    /**
+     * Unsets the value of the '{@link org.switchyard.tools.models.switchyard1_0.camel.GenericFileConsumerType#getIdempotentRepository <em>Idempotent Repository</em>}' attribute.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @see #isSetIdempotentRepository()
+     * @see #getIdempotentRepository()
+     * @see #setIdempotentRepository(String)
+     * @generated
+     */
+    void unsetIdempotentRepository();
+
+    /**
+     * Returns whether the value of the '{@link org.switchyard.tools.models.switchyard1_0.camel.GenericFileConsumerType#getIdempotentRepository <em>Idempotent Repository</em>}' attribute is set.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @return whether the value of the '<em>Idempotent Repository</em>' attribute is set.
+     * @see #unsetIdempotentRepository()
+     * @see #getIdempotentRepository()
+     * @see #setIdempotentRepository(String)
+     * @generated
+     */
+    boolean isSetIdempotentRepository();
 
     /**
      * Returns the value of the '<em><b>In Progress Repository</b></em>' attribute.
@@ -433,9 +514,11 @@ public interface GenericFileConsumerType extends ScheduledBatchPollConsumerType 
      * </p>
      * <!-- end-user-doc -->
      * @return the value of the '<em>In Progress Repository</em>' attribute.
+     * @see #isSetInProgressRepository()
+     * @see #unsetInProgressRepository()
      * @see #setInProgressRepository(String)
      * @see org.switchyard.tools.models.switchyard1_0.camel.CamelPackage#getGenericFileConsumerType_InProgressRepository()
-     * @model dataType="org.eclipse.emf.ecore.xml.type.String"
+     * @model unsettable="true" dataType="org.eclipse.emf.ecore.xml.type.String"
      *        extendedMetaData="kind='element' name='inProgressRepository' namespace='##targetNamespace'"
      * @generated
      */
@@ -446,10 +529,35 @@ public interface GenericFileConsumerType extends ScheduledBatchPollConsumerType 
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @param value the new value of the '<em>In Progress Repository</em>' attribute.
+     * @see #isSetInProgressRepository()
+     * @see #unsetInProgressRepository()
      * @see #getInProgressRepository()
      * @generated
      */
     void setInProgressRepository(String value);
+
+    /**
+     * Unsets the value of the '{@link org.switchyard.tools.models.switchyard1_0.camel.GenericFileConsumerType#getInProgressRepository <em>In Progress Repository</em>}' attribute.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @see #isSetInProgressRepository()
+     * @see #getInProgressRepository()
+     * @see #setInProgressRepository(String)
+     * @generated
+     */
+    void unsetInProgressRepository();
+
+    /**
+     * Returns whether the value of the '{@link org.switchyard.tools.models.switchyard1_0.camel.GenericFileConsumerType#getInProgressRepository <em>In Progress Repository</em>}' attribute is set.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @return whether the value of the '<em>In Progress Repository</em>' attribute is set.
+     * @see #unsetInProgressRepository()
+     * @see #getInProgressRepository()
+     * @see #setInProgressRepository(String)
+     * @generated
+     */
+    boolean isSetInProgressRepository();
 
     /**
      * Returns the value of the '<em><b>Filter</b></em>' attribute.
@@ -460,9 +568,11 @@ public interface GenericFileConsumerType extends ScheduledBatchPollConsumerType 
      * </p>
      * <!-- end-user-doc -->
      * @return the value of the '<em>Filter</em>' attribute.
+     * @see #isSetFilter()
+     * @see #unsetFilter()
      * @see #setFilter(String)
      * @see org.switchyard.tools.models.switchyard1_0.camel.CamelPackage#getGenericFileConsumerType_Filter()
-     * @model dataType="org.eclipse.emf.ecore.xml.type.String"
+     * @model unsettable="true" dataType="org.eclipse.emf.ecore.xml.type.String"
      *        extendedMetaData="kind='element' name='filter' namespace='##targetNamespace'"
      * @generated
      */
@@ -473,10 +583,35 @@ public interface GenericFileConsumerType extends ScheduledBatchPollConsumerType 
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @param value the new value of the '<em>Filter</em>' attribute.
+     * @see #isSetFilter()
+     * @see #unsetFilter()
      * @see #getFilter()
      * @generated
      */
     void setFilter(String value);
+
+    /**
+     * Unsets the value of the '{@link org.switchyard.tools.models.switchyard1_0.camel.GenericFileConsumerType#getFilter <em>Filter</em>}' attribute.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @see #isSetFilter()
+     * @see #getFilter()
+     * @see #setFilter(String)
+     * @generated
+     */
+    void unsetFilter();
+
+    /**
+     * Returns whether the value of the '{@link org.switchyard.tools.models.switchyard1_0.camel.GenericFileConsumerType#getFilter <em>Filter</em>}' attribute is set.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @return whether the value of the '<em>Filter</em>' attribute is set.
+     * @see #unsetFilter()
+     * @see #getFilter()
+     * @see #setFilter(String)
+     * @generated
+     */
+    boolean isSetFilter();
 
     /**
      * Returns the value of the '<em><b>Sorter</b></em>' attribute.
@@ -487,9 +622,11 @@ public interface GenericFileConsumerType extends ScheduledBatchPollConsumerType 
      * </p>
      * <!-- end-user-doc -->
      * @return the value of the '<em>Sorter</em>' attribute.
+     * @see #isSetSorter()
+     * @see #unsetSorter()
      * @see #setSorter(String)
      * @see org.switchyard.tools.models.switchyard1_0.camel.CamelPackage#getGenericFileConsumerType_Sorter()
-     * @model dataType="org.eclipse.emf.ecore.xml.type.String"
+     * @model unsettable="true" dataType="org.eclipse.emf.ecore.xml.type.String"
      *        extendedMetaData="kind='element' name='sorter' namespace='##targetNamespace'"
      * @generated
      */
@@ -500,10 +637,35 @@ public interface GenericFileConsumerType extends ScheduledBatchPollConsumerType 
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @param value the new value of the '<em>Sorter</em>' attribute.
+     * @see #isSetSorter()
+     * @see #unsetSorter()
      * @see #getSorter()
      * @generated
      */
     void setSorter(String value);
+
+    /**
+     * Unsets the value of the '{@link org.switchyard.tools.models.switchyard1_0.camel.GenericFileConsumerType#getSorter <em>Sorter</em>}' attribute.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @see #isSetSorter()
+     * @see #getSorter()
+     * @see #setSorter(String)
+     * @generated
+     */
+    void unsetSorter();
+
+    /**
+     * Returns whether the value of the '{@link org.switchyard.tools.models.switchyard1_0.camel.GenericFileConsumerType#getSorter <em>Sorter</em>}' attribute is set.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @return whether the value of the '<em>Sorter</em>' attribute is set.
+     * @see #unsetSorter()
+     * @see #getSorter()
+     * @see #setSorter(String)
+     * @generated
+     */
+    boolean isSetSorter();
 
     /**
      * Returns the value of the '<em><b>Sort By</b></em>' attribute.
@@ -514,9 +676,11 @@ public interface GenericFileConsumerType extends ScheduledBatchPollConsumerType 
      * </p>
      * <!-- end-user-doc -->
      * @return the value of the '<em>Sort By</em>' attribute.
+     * @see #isSetSortBy()
+     * @see #unsetSortBy()
      * @see #setSortBy(String)
      * @see org.switchyard.tools.models.switchyard1_0.camel.CamelPackage#getGenericFileConsumerType_SortBy()
-     * @model dataType="org.eclipse.emf.ecore.xml.type.String"
+     * @model unsettable="true" dataType="org.eclipse.emf.ecore.xml.type.String"
      *        extendedMetaData="kind='element' name='sortBy' namespace='##targetNamespace'"
      * @generated
      */
@@ -527,10 +691,35 @@ public interface GenericFileConsumerType extends ScheduledBatchPollConsumerType 
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @param value the new value of the '<em>Sort By</em>' attribute.
+     * @see #isSetSortBy()
+     * @see #unsetSortBy()
      * @see #getSortBy()
      * @generated
      */
     void setSortBy(String value);
+
+    /**
+     * Unsets the value of the '{@link org.switchyard.tools.models.switchyard1_0.camel.GenericFileConsumerType#getSortBy <em>Sort By</em>}' attribute.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @see #isSetSortBy()
+     * @see #getSortBy()
+     * @see #setSortBy(String)
+     * @generated
+     */
+    void unsetSortBy();
+
+    /**
+     * Returns whether the value of the '{@link org.switchyard.tools.models.switchyard1_0.camel.GenericFileConsumerType#getSortBy <em>Sort By</em>}' attribute is set.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @return whether the value of the '<em>Sort By</em>' attribute is set.
+     * @see #unsetSortBy()
+     * @see #getSortBy()
+     * @see #setSortBy(String)
+     * @generated
+     */
+    boolean isSetSortBy();
 
     /**
      * Returns the value of the '<em><b>Read Lock</b></em>' attribute.
@@ -541,9 +730,11 @@ public interface GenericFileConsumerType extends ScheduledBatchPollConsumerType 
      * </p>
      * <!-- end-user-doc -->
      * @return the value of the '<em>Read Lock</em>' attribute.
+     * @see #isSetReadLock()
+     * @see #unsetReadLock()
      * @see #setReadLock(String)
      * @see org.switchyard.tools.models.switchyard1_0.camel.CamelPackage#getGenericFileConsumerType_ReadLock()
-     * @model dataType="org.eclipse.emf.ecore.xml.type.String"
+     * @model unsettable="true" dataType="org.eclipse.emf.ecore.xml.type.String"
      *        extendedMetaData="kind='element' name='readLock' namespace='##targetNamespace'"
      * @generated
      */
@@ -554,10 +745,35 @@ public interface GenericFileConsumerType extends ScheduledBatchPollConsumerType 
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @param value the new value of the '<em>Read Lock</em>' attribute.
+     * @see #isSetReadLock()
+     * @see #unsetReadLock()
      * @see #getReadLock()
      * @generated
      */
     void setReadLock(String value);
+
+    /**
+     * Unsets the value of the '{@link org.switchyard.tools.models.switchyard1_0.camel.GenericFileConsumerType#getReadLock <em>Read Lock</em>}' attribute.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @see #isSetReadLock()
+     * @see #getReadLock()
+     * @see #setReadLock(String)
+     * @generated
+     */
+    void unsetReadLock();
+
+    /**
+     * Returns whether the value of the '{@link org.switchyard.tools.models.switchyard1_0.camel.GenericFileConsumerType#getReadLock <em>Read Lock</em>}' attribute is set.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @return whether the value of the '<em>Read Lock</em>' attribute is set.
+     * @see #unsetReadLock()
+     * @see #getReadLock()
+     * @see #setReadLock(String)
+     * @generated
+     */
+    boolean isSetReadLock();
 
     /**
      * Returns the value of the '<em><b>Read Lock Timeout</b></em>' attribute.
@@ -570,13 +786,13 @@ public interface GenericFileConsumerType extends ScheduledBatchPollConsumerType 
      * @return the value of the '<em>Read Lock Timeout</em>' attribute.
      * @see #isSetReadLockTimeout()
      * @see #unsetReadLockTimeout()
-     * @see #setReadLockTimeout(long)
+     * @see #setReadLockTimeout(Long)
      * @see org.switchyard.tools.models.switchyard1_0.camel.CamelPackage#getGenericFileConsumerType_ReadLockTimeout()
-     * @model unsettable="true" dataType="org.eclipse.emf.ecore.xml.type.Long"
+     * @model unsettable="true" dataType="org.eclipse.emf.ecore.xml.type.LongObject"
      *        extendedMetaData="kind='element' name='readLockTimeout' namespace='##targetNamespace'"
      * @generated
      */
-    long getReadLockTimeout();
+    Long getReadLockTimeout();
 
     /**
      * Sets the value of the '{@link org.switchyard.tools.models.switchyard1_0.camel.GenericFileConsumerType#getReadLockTimeout <em>Read Lock Timeout</em>}' attribute.
@@ -588,7 +804,7 @@ public interface GenericFileConsumerType extends ScheduledBatchPollConsumerType 
      * @see #getReadLockTimeout()
      * @generated
      */
-    void setReadLockTimeout(long value);
+    void setReadLockTimeout(Long value);
 
     /**
      * Unsets the value of the '{@link org.switchyard.tools.models.switchyard1_0.camel.GenericFileConsumerType#getReadLockTimeout <em>Read Lock Timeout</em>}' attribute.
@@ -596,7 +812,7 @@ public interface GenericFileConsumerType extends ScheduledBatchPollConsumerType 
      * <!-- end-user-doc -->
      * @see #isSetReadLockTimeout()
      * @see #getReadLockTimeout()
-     * @see #setReadLockTimeout(long)
+     * @see #setReadLockTimeout(Long)
      * @generated
      */
     void unsetReadLockTimeout();
@@ -608,7 +824,7 @@ public interface GenericFileConsumerType extends ScheduledBatchPollConsumerType 
      * @return whether the value of the '<em>Read Lock Timeout</em>' attribute is set.
      * @see #unsetReadLockTimeout()
      * @see #getReadLockTimeout()
-     * @see #setReadLockTimeout(long)
+     * @see #setReadLockTimeout(Long)
      * @generated
      */
     boolean isSetReadLockTimeout();
@@ -622,9 +838,11 @@ public interface GenericFileConsumerType extends ScheduledBatchPollConsumerType 
      * </p>
      * <!-- end-user-doc -->
      * @return the value of the '<em>Read Lock Check Interval</em>' attribute.
+     * @see #isSetReadLockCheckInterval()
+     * @see #unsetReadLockCheckInterval()
      * @see #setReadLockCheckInterval(BigInteger)
      * @see org.switchyard.tools.models.switchyard1_0.camel.CamelPackage#getGenericFileConsumerType_ReadLockCheckInterval()
-     * @model dataType="org.eclipse.emf.ecore.xml.type.Integer"
+     * @model unsettable="true" dataType="org.eclipse.emf.ecore.xml.type.Integer"
      *        extendedMetaData="kind='element' name='readLockCheckInterval' namespace='##targetNamespace'"
      * @generated
      */
@@ -635,10 +853,35 @@ public interface GenericFileConsumerType extends ScheduledBatchPollConsumerType 
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @param value the new value of the '<em>Read Lock Check Interval</em>' attribute.
+     * @see #isSetReadLockCheckInterval()
+     * @see #unsetReadLockCheckInterval()
      * @see #getReadLockCheckInterval()
      * @generated
      */
     void setReadLockCheckInterval(BigInteger value);
+
+    /**
+     * Unsets the value of the '{@link org.switchyard.tools.models.switchyard1_0.camel.GenericFileConsumerType#getReadLockCheckInterval <em>Read Lock Check Interval</em>}' attribute.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @see #isSetReadLockCheckInterval()
+     * @see #getReadLockCheckInterval()
+     * @see #setReadLockCheckInterval(BigInteger)
+     * @generated
+     */
+    void unsetReadLockCheckInterval();
+
+    /**
+     * Returns whether the value of the '{@link org.switchyard.tools.models.switchyard1_0.camel.GenericFileConsumerType#getReadLockCheckInterval <em>Read Lock Check Interval</em>}' attribute is set.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @return whether the value of the '<em>Read Lock Check Interval</em>' attribute is set.
+     * @see #unsetReadLockCheckInterval()
+     * @see #getReadLockCheckInterval()
+     * @see #setReadLockCheckInterval(BigInteger)
+     * @generated
+     */
+    boolean isSetReadLockCheckInterval();
 
     /**
      * Returns the value of the '<em><b>Exclusive Read Lock Strategy</b></em>' attribute.
@@ -649,9 +892,11 @@ public interface GenericFileConsumerType extends ScheduledBatchPollConsumerType 
      * </p>
      * <!-- end-user-doc -->
      * @return the value of the '<em>Exclusive Read Lock Strategy</em>' attribute.
+     * @see #isSetExclusiveReadLockStrategy()
+     * @see #unsetExclusiveReadLockStrategy()
      * @see #setExclusiveReadLockStrategy(String)
      * @see org.switchyard.tools.models.switchyard1_0.camel.CamelPackage#getGenericFileConsumerType_ExclusiveReadLockStrategy()
-     * @model dataType="org.eclipse.emf.ecore.xml.type.String"
+     * @model unsettable="true" dataType="org.eclipse.emf.ecore.xml.type.String"
      *        extendedMetaData="kind='element' name='exclusiveReadLockStrategy' namespace='##targetNamespace'"
      * @generated
      */
@@ -662,10 +907,35 @@ public interface GenericFileConsumerType extends ScheduledBatchPollConsumerType 
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @param value the new value of the '<em>Exclusive Read Lock Strategy</em>' attribute.
+     * @see #isSetExclusiveReadLockStrategy()
+     * @see #unsetExclusiveReadLockStrategy()
      * @see #getExclusiveReadLockStrategy()
      * @generated
      */
     void setExclusiveReadLockStrategy(String value);
+
+    /**
+     * Unsets the value of the '{@link org.switchyard.tools.models.switchyard1_0.camel.GenericFileConsumerType#getExclusiveReadLockStrategy <em>Exclusive Read Lock Strategy</em>}' attribute.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @see #isSetExclusiveReadLockStrategy()
+     * @see #getExclusiveReadLockStrategy()
+     * @see #setExclusiveReadLockStrategy(String)
+     * @generated
+     */
+    void unsetExclusiveReadLockStrategy();
+
+    /**
+     * Returns whether the value of the '{@link org.switchyard.tools.models.switchyard1_0.camel.GenericFileConsumerType#getExclusiveReadLockStrategy <em>Exclusive Read Lock Strategy</em>}' attribute is set.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @return whether the value of the '<em>Exclusive Read Lock Strategy</em>' attribute is set.
+     * @see #unsetExclusiveReadLockStrategy()
+     * @see #getExclusiveReadLockStrategy()
+     * @see #setExclusiveReadLockStrategy(String)
+     * @generated
+     */
+    boolean isSetExclusiveReadLockStrategy();
 
     /**
      * Returns the value of the '<em><b>Process Strategy</b></em>' attribute.
@@ -676,9 +946,11 @@ public interface GenericFileConsumerType extends ScheduledBatchPollConsumerType 
      * </p>
      * <!-- end-user-doc -->
      * @return the value of the '<em>Process Strategy</em>' attribute.
+     * @see #isSetProcessStrategy()
+     * @see #unsetProcessStrategy()
      * @see #setProcessStrategy(String)
      * @see org.switchyard.tools.models.switchyard1_0.camel.CamelPackage#getGenericFileConsumerType_ProcessStrategy()
-     * @model dataType="org.eclipse.emf.ecore.xml.type.String"
+     * @model unsettable="true" dataType="org.eclipse.emf.ecore.xml.type.String"
      *        extendedMetaData="kind='element' name='processStrategy' namespace='##targetNamespace'"
      * @generated
      */
@@ -689,10 +961,35 @@ public interface GenericFileConsumerType extends ScheduledBatchPollConsumerType 
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @param value the new value of the '<em>Process Strategy</em>' attribute.
+     * @see #isSetProcessStrategy()
+     * @see #unsetProcessStrategy()
      * @see #getProcessStrategy()
      * @generated
      */
     void setProcessStrategy(String value);
+
+    /**
+     * Unsets the value of the '{@link org.switchyard.tools.models.switchyard1_0.camel.GenericFileConsumerType#getProcessStrategy <em>Process Strategy</em>}' attribute.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @see #isSetProcessStrategy()
+     * @see #getProcessStrategy()
+     * @see #setProcessStrategy(String)
+     * @generated
+     */
+    void unsetProcessStrategy();
+
+    /**
+     * Returns whether the value of the '{@link org.switchyard.tools.models.switchyard1_0.camel.GenericFileConsumerType#getProcessStrategy <em>Process Strategy</em>}' attribute is set.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @return whether the value of the '<em>Process Strategy</em>' attribute is set.
+     * @see #unsetProcessStrategy()
+     * @see #getProcessStrategy()
+     * @see #setProcessStrategy(String)
+     * @generated
+     */
+    boolean isSetProcessStrategy();
 
     /**
      * Returns the value of the '<em><b>Starting Directory Must Exist</b></em>' attribute.
@@ -705,45 +1002,45 @@ public interface GenericFileConsumerType extends ScheduledBatchPollConsumerType 
      * @return the value of the '<em>Starting Directory Must Exist</em>' attribute.
      * @see #isSetStartingDirectoryMustExist()
      * @see #unsetStartingDirectoryMustExist()
-     * @see #setStartingDirectoryMustExist(boolean)
+     * @see #setStartingDirectoryMustExist(Boolean)
      * @see org.switchyard.tools.models.switchyard1_0.camel.CamelPackage#getGenericFileConsumerType_StartingDirectoryMustExist()
-     * @model unsettable="true" dataType="org.eclipse.emf.ecore.xml.type.Boolean"
+     * @model unsettable="true" dataType="org.eclipse.emf.ecore.xml.type.BooleanObject"
      *        extendedMetaData="kind='element' name='startingDirectoryMustExist' namespace='##targetNamespace'"
      * @generated
      */
-    boolean isStartingDirectoryMustExist();
+    Boolean getStartingDirectoryMustExist();
 
     /**
-     * Sets the value of the '{@link org.switchyard.tools.models.switchyard1_0.camel.GenericFileConsumerType#isStartingDirectoryMustExist <em>Starting Directory Must Exist</em>}' attribute.
+     * Sets the value of the '{@link org.switchyard.tools.models.switchyard1_0.camel.GenericFileConsumerType#getStartingDirectoryMustExist <em>Starting Directory Must Exist</em>}' attribute.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @param value the new value of the '<em>Starting Directory Must Exist</em>' attribute.
      * @see #isSetStartingDirectoryMustExist()
      * @see #unsetStartingDirectoryMustExist()
-     * @see #isStartingDirectoryMustExist()
+     * @see #getStartingDirectoryMustExist()
      * @generated
      */
-    void setStartingDirectoryMustExist(boolean value);
+    void setStartingDirectoryMustExist(Boolean value);
 
     /**
-     * Unsets the value of the '{@link org.switchyard.tools.models.switchyard1_0.camel.GenericFileConsumerType#isStartingDirectoryMustExist <em>Starting Directory Must Exist</em>}' attribute.
+     * Unsets the value of the '{@link org.switchyard.tools.models.switchyard1_0.camel.GenericFileConsumerType#getStartingDirectoryMustExist <em>Starting Directory Must Exist</em>}' attribute.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @see #isSetStartingDirectoryMustExist()
-     * @see #isStartingDirectoryMustExist()
-     * @see #setStartingDirectoryMustExist(boolean)
+     * @see #getStartingDirectoryMustExist()
+     * @see #setStartingDirectoryMustExist(Boolean)
      * @generated
      */
     void unsetStartingDirectoryMustExist();
 
     /**
-     * Returns whether the value of the '{@link org.switchyard.tools.models.switchyard1_0.camel.GenericFileConsumerType#isStartingDirectoryMustExist <em>Starting Directory Must Exist</em>}' attribute is set.
+     * Returns whether the value of the '{@link org.switchyard.tools.models.switchyard1_0.camel.GenericFileConsumerType#getStartingDirectoryMustExist <em>Starting Directory Must Exist</em>}' attribute is set.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @return whether the value of the '<em>Starting Directory Must Exist</em>' attribute is set.
      * @see #unsetStartingDirectoryMustExist()
-     * @see #isStartingDirectoryMustExist()
-     * @see #setStartingDirectoryMustExist(boolean)
+     * @see #getStartingDirectoryMustExist()
+     * @see #setStartingDirectoryMustExist(Boolean)
      * @generated
      */
     boolean isSetStartingDirectoryMustExist();
@@ -759,45 +1056,45 @@ public interface GenericFileConsumerType extends ScheduledBatchPollConsumerType 
      * @return the value of the '<em>Directory Must Exist</em>' attribute.
      * @see #isSetDirectoryMustExist()
      * @see #unsetDirectoryMustExist()
-     * @see #setDirectoryMustExist(boolean)
+     * @see #setDirectoryMustExist(Boolean)
      * @see org.switchyard.tools.models.switchyard1_0.camel.CamelPackage#getGenericFileConsumerType_DirectoryMustExist()
-     * @model unsettable="true" dataType="org.eclipse.emf.ecore.xml.type.Boolean"
+     * @model unsettable="true" dataType="org.eclipse.emf.ecore.xml.type.BooleanObject"
      *        extendedMetaData="kind='element' name='directoryMustExist' namespace='##targetNamespace'"
      * @generated
      */
-    boolean isDirectoryMustExist();
+    Boolean getDirectoryMustExist();
 
     /**
-     * Sets the value of the '{@link org.switchyard.tools.models.switchyard1_0.camel.GenericFileConsumerType#isDirectoryMustExist <em>Directory Must Exist</em>}' attribute.
+     * Sets the value of the '{@link org.switchyard.tools.models.switchyard1_0.camel.GenericFileConsumerType#getDirectoryMustExist <em>Directory Must Exist</em>}' attribute.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @param value the new value of the '<em>Directory Must Exist</em>' attribute.
      * @see #isSetDirectoryMustExist()
      * @see #unsetDirectoryMustExist()
-     * @see #isDirectoryMustExist()
+     * @see #getDirectoryMustExist()
      * @generated
      */
-    void setDirectoryMustExist(boolean value);
+    void setDirectoryMustExist(Boolean value);
 
     /**
-     * Unsets the value of the '{@link org.switchyard.tools.models.switchyard1_0.camel.GenericFileConsumerType#isDirectoryMustExist <em>Directory Must Exist</em>}' attribute.
+     * Unsets the value of the '{@link org.switchyard.tools.models.switchyard1_0.camel.GenericFileConsumerType#getDirectoryMustExist <em>Directory Must Exist</em>}' attribute.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @see #isSetDirectoryMustExist()
-     * @see #isDirectoryMustExist()
-     * @see #setDirectoryMustExist(boolean)
+     * @see #getDirectoryMustExist()
+     * @see #setDirectoryMustExist(Boolean)
      * @generated
      */
     void unsetDirectoryMustExist();
 
     /**
-     * Returns whether the value of the '{@link org.switchyard.tools.models.switchyard1_0.camel.GenericFileConsumerType#isDirectoryMustExist <em>Directory Must Exist</em>}' attribute is set.
+     * Returns whether the value of the '{@link org.switchyard.tools.models.switchyard1_0.camel.GenericFileConsumerType#getDirectoryMustExist <em>Directory Must Exist</em>}' attribute is set.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @return whether the value of the '<em>Directory Must Exist</em>' attribute is set.
      * @see #unsetDirectoryMustExist()
-     * @see #isDirectoryMustExist()
-     * @see #setDirectoryMustExist(boolean)
+     * @see #getDirectoryMustExist()
+     * @see #setDirectoryMustExist(Boolean)
      * @generated
      */
     boolean isSetDirectoryMustExist();
@@ -811,9 +1108,11 @@ public interface GenericFileConsumerType extends ScheduledBatchPollConsumerType 
      * </p>
      * <!-- end-user-doc -->
      * @return the value of the '<em>Done File Name</em>' attribute.
+     * @see #isSetDoneFileName()
+     * @see #unsetDoneFileName()
      * @see #setDoneFileName(String)
      * @see org.switchyard.tools.models.switchyard1_0.camel.CamelPackage#getGenericFileConsumerType_DoneFileName()
-     * @model dataType="org.eclipse.emf.ecore.xml.type.String"
+     * @model unsettable="true" dataType="org.eclipse.emf.ecore.xml.type.String"
      *        extendedMetaData="kind='element' name='doneFileName' namespace='##targetNamespace'"
      * @generated
      */
@@ -824,9 +1123,34 @@ public interface GenericFileConsumerType extends ScheduledBatchPollConsumerType 
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @param value the new value of the '<em>Done File Name</em>' attribute.
+     * @see #isSetDoneFileName()
+     * @see #unsetDoneFileName()
      * @see #getDoneFileName()
      * @generated
      */
     void setDoneFileName(String value);
+
+    /**
+     * Unsets the value of the '{@link org.switchyard.tools.models.switchyard1_0.camel.GenericFileConsumerType#getDoneFileName <em>Done File Name</em>}' attribute.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @see #isSetDoneFileName()
+     * @see #getDoneFileName()
+     * @see #setDoneFileName(String)
+     * @generated
+     */
+    void unsetDoneFileName();
+
+    /**
+     * Returns whether the value of the '{@link org.switchyard.tools.models.switchyard1_0.camel.GenericFileConsumerType#getDoneFileName <em>Done File Name</em>}' attribute is set.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @return whether the value of the '<em>Done File Name</em>' attribute is set.
+     * @see #unsetDoneFileName()
+     * @see #getDoneFileName()
+     * @see #setDoneFileName(String)
+     * @generated
+     */
+    boolean isSetDoneFileName();
 
 } // GenericFileConsumerType

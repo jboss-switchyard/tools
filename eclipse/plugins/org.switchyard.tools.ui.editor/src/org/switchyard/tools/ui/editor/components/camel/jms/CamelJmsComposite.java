@@ -13,6 +13,7 @@
 package org.switchyard.tools.ui.editor.components.camel.jms;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import org.eclipse.graphiti.mm.pictograms.PictogramElement;
 import org.eclipse.soa.sca.sca1_1.model.sca.Binding;
@@ -60,6 +61,7 @@ public class CamelJmsComposite extends AbstractSYBindingComposite {
     private Text _transactionManagerText;
     private Button _transactedButton;
     private TabFolder _tabFolder;
+    private List<String> _advancedPropsFilterList;
 
     @Override
     public Binding getBinding() {
@@ -81,7 +83,8 @@ public class CamelJmsComposite extends AbstractSYBindingComposite {
             if (this._binding.getConcurrentConsumers() > 0) {
                 _concurrentConsumersText.setText(Integer.toString(this._binding.getConcurrentConsumers()));
             }
-            if (_requestTimeOutText != null && this._binding.getRequestTimeout() > 0
+            if (_requestTimeOutText != null && this._binding.getRequestTimeout() != null 
+                    && this._binding.getRequestTimeout().intValue() > 0
                     && this._binding.getRequestTimeout() != 2000) {
                 _requestTimeOutText.setText(Integer.toString(this._binding.getRequestTimeout()));
             }
@@ -394,4 +397,24 @@ public class CamelJmsComposite extends AbstractSYBindingComposite {
         setHasChanged(false);
     }
 
+    @Override
+    protected List<String> getAdvancedPropertiesFilterList() {
+        if (_advancedPropsFilterList == null) {
+            _advancedPropsFilterList = new ArrayList<String>();
+            _advancedPropsFilterList.add("username");
+            _advancedPropsFilterList.add("password");
+            _advancedPropsFilterList.add("clientId");
+            _advancedPropsFilterList.add("durableSubscriptionName");
+            _advancedPropsFilterList.add("disableReplyTo");
+            _advancedPropsFilterList.add("preserveMessageQos");
+            _advancedPropsFilterList.add("deliveryPersistent");
+            _advancedPropsFilterList.add("priority");
+            _advancedPropsFilterList.add("explicitQosEnabled");
+            _advancedPropsFilterList.add("replyToType");
+            _advancedPropsFilterList.add("requestTimeout");
+            _advancedPropsFilterList.add("selector");
+            _advancedPropsFilterList.add("timeToLive");
+        }
+        return _advancedPropsFilterList;
+    }
 }

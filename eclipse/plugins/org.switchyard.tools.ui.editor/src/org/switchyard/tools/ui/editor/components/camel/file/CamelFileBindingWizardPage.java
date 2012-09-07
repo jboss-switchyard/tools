@@ -52,6 +52,13 @@ public class CamelFileBindingWizardPage extends WizardPage {
      */
     public void setShowConsumer(boolean showConsumer) {
         _showConsumer = showConsumer;
+        if (_binding != null) {
+            if (_showConsumer) {
+                _binding.setConsume(CamelFactory.eINSTANCE.createFileConsumerType());
+            } else {
+                _binding.setProduce(CamelFactory.eINSTANCE.createFileProducerType());
+            }
+        }
     }
 
     @Override

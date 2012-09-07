@@ -24,15 +24,15 @@ import org.switchyard.tools.models.switchyard1_0.camel.GenericFileConsumerType;
  * <p>
  * The following features are implemented:
  * <ul>
- *   <li>{@link org.switchyard.tools.models.switchyard1_0.camel.impl.GenericFileConsumerTypeImpl#isDelete <em>Delete</em>}</li>
- *   <li>{@link org.switchyard.tools.models.switchyard1_0.camel.impl.GenericFileConsumerTypeImpl#isRecursive <em>Recursive</em>}</li>
- *   <li>{@link org.switchyard.tools.models.switchyard1_0.camel.impl.GenericFileConsumerTypeImpl#isNoop <em>Noop</em>}</li>
+ *   <li>{@link org.switchyard.tools.models.switchyard1_0.camel.impl.GenericFileConsumerTypeImpl#getDelete <em>Delete</em>}</li>
+ *   <li>{@link org.switchyard.tools.models.switchyard1_0.camel.impl.GenericFileConsumerTypeImpl#getRecursive <em>Recursive</em>}</li>
+ *   <li>{@link org.switchyard.tools.models.switchyard1_0.camel.impl.GenericFileConsumerTypeImpl#getNoop <em>Noop</em>}</li>
  *   <li>{@link org.switchyard.tools.models.switchyard1_0.camel.impl.GenericFileConsumerTypeImpl#getPreMove <em>Pre Move</em>}</li>
  *   <li>{@link org.switchyard.tools.models.switchyard1_0.camel.impl.GenericFileConsumerTypeImpl#getMove <em>Move</em>}</li>
  *   <li>{@link org.switchyard.tools.models.switchyard1_0.camel.impl.GenericFileConsumerTypeImpl#getMoveFailed <em>Move Failed</em>}</li>
  *   <li>{@link org.switchyard.tools.models.switchyard1_0.camel.impl.GenericFileConsumerTypeImpl#getInclude <em>Include</em>}</li>
  *   <li>{@link org.switchyard.tools.models.switchyard1_0.camel.impl.GenericFileConsumerTypeImpl#getExclude <em>Exclude</em>}</li>
- *   <li>{@link org.switchyard.tools.models.switchyard1_0.camel.impl.GenericFileConsumerTypeImpl#isIdempotent <em>Idempotent</em>}</li>
+ *   <li>{@link org.switchyard.tools.models.switchyard1_0.camel.impl.GenericFileConsumerTypeImpl#getIdempotent <em>Idempotent</em>}</li>
  *   <li>{@link org.switchyard.tools.models.switchyard1_0.camel.impl.GenericFileConsumerTypeImpl#getIdempotentRepository <em>Idempotent Repository</em>}</li>
  *   <li>{@link org.switchyard.tools.models.switchyard1_0.camel.impl.GenericFileConsumerTypeImpl#getInProgressRepository <em>In Progress Repository</em>}</li>
  *   <li>{@link org.switchyard.tools.models.switchyard1_0.camel.impl.GenericFileConsumerTypeImpl#getFilter <em>Filter</em>}</li>
@@ -43,8 +43,8 @@ import org.switchyard.tools.models.switchyard1_0.camel.GenericFileConsumerType;
  *   <li>{@link org.switchyard.tools.models.switchyard1_0.camel.impl.GenericFileConsumerTypeImpl#getReadLockCheckInterval <em>Read Lock Check Interval</em>}</li>
  *   <li>{@link org.switchyard.tools.models.switchyard1_0.camel.impl.GenericFileConsumerTypeImpl#getExclusiveReadLockStrategy <em>Exclusive Read Lock Strategy</em>}</li>
  *   <li>{@link org.switchyard.tools.models.switchyard1_0.camel.impl.GenericFileConsumerTypeImpl#getProcessStrategy <em>Process Strategy</em>}</li>
- *   <li>{@link org.switchyard.tools.models.switchyard1_0.camel.impl.GenericFileConsumerTypeImpl#isStartingDirectoryMustExist <em>Starting Directory Must Exist</em>}</li>
- *   <li>{@link org.switchyard.tools.models.switchyard1_0.camel.impl.GenericFileConsumerTypeImpl#isDirectoryMustExist <em>Directory Must Exist</em>}</li>
+ *   <li>{@link org.switchyard.tools.models.switchyard1_0.camel.impl.GenericFileConsumerTypeImpl#getStartingDirectoryMustExist <em>Starting Directory Must Exist</em>}</li>
+ *   <li>{@link org.switchyard.tools.models.switchyard1_0.camel.impl.GenericFileConsumerTypeImpl#getDirectoryMustExist <em>Directory Must Exist</em>}</li>
  *   <li>{@link org.switchyard.tools.models.switchyard1_0.camel.impl.GenericFileConsumerTypeImpl#getDoneFileName <em>Done File Name</em>}</li>
  * </ul>
  * </p>
@@ -53,24 +53,24 @@ import org.switchyard.tools.models.switchyard1_0.camel.GenericFileConsumerType;
  */
 public class GenericFileConsumerTypeImpl extends ScheduledBatchPollConsumerTypeImpl implements GenericFileConsumerType {
     /**
-     * The default value of the '{@link #isDelete() <em>Delete</em>}' attribute.
+     * The default value of the '{@link #getDelete() <em>Delete</em>}' attribute.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @see #isDelete()
+     * @see #getDelete()
      * @generated
      * @ordered
      */
-    protected static final boolean DELETE_EDEFAULT = false;
+    protected static final Boolean DELETE_EDEFAULT = null;
 
     /**
-     * The cached value of the '{@link #isDelete() <em>Delete</em>}' attribute.
+     * The cached value of the '{@link #getDelete() <em>Delete</em>}' attribute.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @see #isDelete()
+     * @see #getDelete()
      * @generated
      * @ordered
      */
-    protected boolean delete = DELETE_EDEFAULT;
+    protected Boolean delete = DELETE_EDEFAULT;
 
     /**
      * This is true if the Delete attribute has been set.
@@ -82,24 +82,24 @@ public class GenericFileConsumerTypeImpl extends ScheduledBatchPollConsumerTypeI
     protected boolean deleteESet;
 
     /**
-     * The default value of the '{@link #isRecursive() <em>Recursive</em>}' attribute.
+     * The default value of the '{@link #getRecursive() <em>Recursive</em>}' attribute.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @see #isRecursive()
+     * @see #getRecursive()
      * @generated
      * @ordered
      */
-    protected static final boolean RECURSIVE_EDEFAULT = false;
+    protected static final Boolean RECURSIVE_EDEFAULT = null;
 
     /**
-     * The cached value of the '{@link #isRecursive() <em>Recursive</em>}' attribute.
+     * The cached value of the '{@link #getRecursive() <em>Recursive</em>}' attribute.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @see #isRecursive()
+     * @see #getRecursive()
      * @generated
      * @ordered
      */
-    protected boolean recursive = RECURSIVE_EDEFAULT;
+    protected Boolean recursive = RECURSIVE_EDEFAULT;
 
     /**
      * This is true if the Recursive attribute has been set.
@@ -111,24 +111,24 @@ public class GenericFileConsumerTypeImpl extends ScheduledBatchPollConsumerTypeI
     protected boolean recursiveESet;
 
     /**
-     * The default value of the '{@link #isNoop() <em>Noop</em>}' attribute.
+     * The default value of the '{@link #getNoop() <em>Noop</em>}' attribute.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @see #isNoop()
+     * @see #getNoop()
      * @generated
      * @ordered
      */
-    protected static final boolean NOOP_EDEFAULT = false;
+    protected static final Boolean NOOP_EDEFAULT = null;
 
     /**
-     * The cached value of the '{@link #isNoop() <em>Noop</em>}' attribute.
+     * The cached value of the '{@link #getNoop() <em>Noop</em>}' attribute.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @see #isNoop()
+     * @see #getNoop()
      * @generated
      * @ordered
      */
-    protected boolean noop = NOOP_EDEFAULT;
+    protected Boolean noop = NOOP_EDEFAULT;
 
     /**
      * This is true if the Noop attribute has been set.
@@ -220,6 +220,15 @@ public class GenericFileConsumerTypeImpl extends ScheduledBatchPollConsumerTypeI
     protected String include = INCLUDE_EDEFAULT;
 
     /**
+     * This is true if the Include attribute has been set.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    protected boolean includeESet;
+
+    /**
      * The default value of the '{@link #getExclude() <em>Exclude</em>}' attribute.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
@@ -240,24 +249,33 @@ public class GenericFileConsumerTypeImpl extends ScheduledBatchPollConsumerTypeI
     protected String exclude = EXCLUDE_EDEFAULT;
 
     /**
-     * The default value of the '{@link #isIdempotent() <em>Idempotent</em>}' attribute.
+     * This is true if the Exclude attribute has been set.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @see #isIdempotent()
      * @generated
      * @ordered
      */
-    protected static final boolean IDEMPOTENT_EDEFAULT = false;
+    protected boolean excludeESet;
 
     /**
-     * The cached value of the '{@link #isIdempotent() <em>Idempotent</em>}' attribute.
+     * The default value of the '{@link #getIdempotent() <em>Idempotent</em>}' attribute.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @see #isIdempotent()
+     * @see #getIdempotent()
      * @generated
      * @ordered
      */
-    protected boolean idempotent = IDEMPOTENT_EDEFAULT;
+    protected static final Boolean IDEMPOTENT_EDEFAULT = null;
+
+    /**
+     * The cached value of the '{@link #getIdempotent() <em>Idempotent</em>}' attribute.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @see #getIdempotent()
+     * @generated
+     * @ordered
+     */
+    protected Boolean idempotent = IDEMPOTENT_EDEFAULT;
 
     /**
      * This is true if the Idempotent attribute has been set.
@@ -289,6 +307,15 @@ public class GenericFileConsumerTypeImpl extends ScheduledBatchPollConsumerTypeI
     protected String idempotentRepository = IDEMPOTENT_REPOSITORY_EDEFAULT;
 
     /**
+     * This is true if the Idempotent Repository attribute has been set.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    protected boolean idempotentRepositoryESet;
+
+    /**
      * The default value of the '{@link #getInProgressRepository() <em>In Progress Repository</em>}' attribute.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
@@ -307,6 +334,15 @@ public class GenericFileConsumerTypeImpl extends ScheduledBatchPollConsumerTypeI
      * @ordered
      */
     protected String inProgressRepository = IN_PROGRESS_REPOSITORY_EDEFAULT;
+
+    /**
+     * This is true if the In Progress Repository attribute has been set.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    protected boolean inProgressRepositoryESet;
 
     /**
      * The default value of the '{@link #getFilter() <em>Filter</em>}' attribute.
@@ -329,6 +365,15 @@ public class GenericFileConsumerTypeImpl extends ScheduledBatchPollConsumerTypeI
     protected String filter = FILTER_EDEFAULT;
 
     /**
+     * This is true if the Filter attribute has been set.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    protected boolean filterESet;
+
+    /**
      * The default value of the '{@link #getSorter() <em>Sorter</em>}' attribute.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
@@ -347,6 +392,15 @@ public class GenericFileConsumerTypeImpl extends ScheduledBatchPollConsumerTypeI
      * @ordered
      */
     protected String sorter = SORTER_EDEFAULT;
+
+    /**
+     * This is true if the Sorter attribute has been set.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    protected boolean sorterESet;
 
     /**
      * The default value of the '{@link #getSortBy() <em>Sort By</em>}' attribute.
@@ -369,6 +423,15 @@ public class GenericFileConsumerTypeImpl extends ScheduledBatchPollConsumerTypeI
     protected String sortBy = SORT_BY_EDEFAULT;
 
     /**
+     * This is true if the Sort By attribute has been set.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    protected boolean sortByESet;
+
+    /**
      * The default value of the '{@link #getReadLock() <em>Read Lock</em>}' attribute.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
@@ -389,6 +452,15 @@ public class GenericFileConsumerTypeImpl extends ScheduledBatchPollConsumerTypeI
     protected String readLock = READ_LOCK_EDEFAULT;
 
     /**
+     * This is true if the Read Lock attribute has been set.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    protected boolean readLockESet;
+
+    /**
      * The default value of the '{@link #getReadLockTimeout() <em>Read Lock Timeout</em>}' attribute.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
@@ -396,7 +468,7 @@ public class GenericFileConsumerTypeImpl extends ScheduledBatchPollConsumerTypeI
      * @generated
      * @ordered
      */
-    protected static final long READ_LOCK_TIMEOUT_EDEFAULT = 0L;
+    protected static final Long READ_LOCK_TIMEOUT_EDEFAULT = null;
 
     /**
      * The cached value of the '{@link #getReadLockTimeout() <em>Read Lock Timeout</em>}' attribute.
@@ -406,7 +478,7 @@ public class GenericFileConsumerTypeImpl extends ScheduledBatchPollConsumerTypeI
      * @generated
      * @ordered
      */
-    protected long readLockTimeout = READ_LOCK_TIMEOUT_EDEFAULT;
+    protected Long readLockTimeout = READ_LOCK_TIMEOUT_EDEFAULT;
 
     /**
      * This is true if the Read Lock Timeout attribute has been set.
@@ -438,6 +510,15 @@ public class GenericFileConsumerTypeImpl extends ScheduledBatchPollConsumerTypeI
     protected BigInteger readLockCheckInterval = READ_LOCK_CHECK_INTERVAL_EDEFAULT;
 
     /**
+     * This is true if the Read Lock Check Interval attribute has been set.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    protected boolean readLockCheckIntervalESet;
+
+    /**
      * The default value of the '{@link #getExclusiveReadLockStrategy() <em>Exclusive Read Lock Strategy</em>}' attribute.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
@@ -456,6 +537,15 @@ public class GenericFileConsumerTypeImpl extends ScheduledBatchPollConsumerTypeI
      * @ordered
      */
     protected String exclusiveReadLockStrategy = EXCLUSIVE_READ_LOCK_STRATEGY_EDEFAULT;
+
+    /**
+     * This is true if the Exclusive Read Lock Strategy attribute has been set.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    protected boolean exclusiveReadLockStrategyESet;
 
     /**
      * The default value of the '{@link #getProcessStrategy() <em>Process Strategy</em>}' attribute.
@@ -478,24 +568,33 @@ public class GenericFileConsumerTypeImpl extends ScheduledBatchPollConsumerTypeI
     protected String processStrategy = PROCESS_STRATEGY_EDEFAULT;
 
     /**
-     * The default value of the '{@link #isStartingDirectoryMustExist() <em>Starting Directory Must Exist</em>}' attribute.
+     * This is true if the Process Strategy attribute has been set.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @see #isStartingDirectoryMustExist()
      * @generated
      * @ordered
      */
-    protected static final boolean STARTING_DIRECTORY_MUST_EXIST_EDEFAULT = false;
+    protected boolean processStrategyESet;
 
     /**
-     * The cached value of the '{@link #isStartingDirectoryMustExist() <em>Starting Directory Must Exist</em>}' attribute.
+     * The default value of the '{@link #getStartingDirectoryMustExist() <em>Starting Directory Must Exist</em>}' attribute.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @see #isStartingDirectoryMustExist()
+     * @see #getStartingDirectoryMustExist()
      * @generated
      * @ordered
      */
-    protected boolean startingDirectoryMustExist = STARTING_DIRECTORY_MUST_EXIST_EDEFAULT;
+    protected static final Boolean STARTING_DIRECTORY_MUST_EXIST_EDEFAULT = null;
+
+    /**
+     * The cached value of the '{@link #getStartingDirectoryMustExist() <em>Starting Directory Must Exist</em>}' attribute.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @see #getStartingDirectoryMustExist()
+     * @generated
+     * @ordered
+     */
+    protected Boolean startingDirectoryMustExist = STARTING_DIRECTORY_MUST_EXIST_EDEFAULT;
 
     /**
      * This is true if the Starting Directory Must Exist attribute has been set.
@@ -507,24 +606,24 @@ public class GenericFileConsumerTypeImpl extends ScheduledBatchPollConsumerTypeI
     protected boolean startingDirectoryMustExistESet;
 
     /**
-     * The default value of the '{@link #isDirectoryMustExist() <em>Directory Must Exist</em>}' attribute.
+     * The default value of the '{@link #getDirectoryMustExist() <em>Directory Must Exist</em>}' attribute.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @see #isDirectoryMustExist()
+     * @see #getDirectoryMustExist()
      * @generated
      * @ordered
      */
-    protected static final boolean DIRECTORY_MUST_EXIST_EDEFAULT = false;
+    protected static final Boolean DIRECTORY_MUST_EXIST_EDEFAULT = null;
 
     /**
-     * The cached value of the '{@link #isDirectoryMustExist() <em>Directory Must Exist</em>}' attribute.
+     * The cached value of the '{@link #getDirectoryMustExist() <em>Directory Must Exist</em>}' attribute.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @see #isDirectoryMustExist()
+     * @see #getDirectoryMustExist()
      * @generated
      * @ordered
      */
-    protected boolean directoryMustExist = DIRECTORY_MUST_EXIST_EDEFAULT;
+    protected Boolean directoryMustExist = DIRECTORY_MUST_EXIST_EDEFAULT;
 
     /**
      * This is true if the Directory Must Exist attribute has been set.
@@ -556,6 +655,15 @@ public class GenericFileConsumerTypeImpl extends ScheduledBatchPollConsumerTypeI
     protected String doneFileName = DONE_FILE_NAME_EDEFAULT;
 
     /**
+     * This is true if the Done File Name attribute has been set.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    protected boolean doneFileNameESet;
+
+    /**
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @generated
@@ -579,7 +687,7 @@ public class GenericFileConsumerTypeImpl extends ScheduledBatchPollConsumerTypeI
      * <!-- end-user-doc -->
      * @generated
      */
-    public boolean isDelete() {
+    public Boolean getDelete() {
         return delete;
     }
 
@@ -588,8 +696,8 @@ public class GenericFileConsumerTypeImpl extends ScheduledBatchPollConsumerTypeI
      * <!-- end-user-doc -->
      * @generated
      */
-    public void setDelete(boolean newDelete) {
-        boolean oldDelete = delete;
+    public void setDelete(Boolean newDelete) {
+        Boolean oldDelete = delete;
         delete = newDelete;
         boolean oldDeleteESet = deleteESet;
         deleteESet = true;
@@ -603,7 +711,7 @@ public class GenericFileConsumerTypeImpl extends ScheduledBatchPollConsumerTypeI
      * @generated
      */
     public void unsetDelete() {
-        boolean oldDelete = delete;
+        Boolean oldDelete = delete;
         boolean oldDeleteESet = deleteESet;
         delete = DELETE_EDEFAULT;
         deleteESet = false;
@@ -625,7 +733,7 @@ public class GenericFileConsumerTypeImpl extends ScheduledBatchPollConsumerTypeI
      * <!-- end-user-doc -->
      * @generated
      */
-    public boolean isRecursive() {
+    public Boolean getRecursive() {
         return recursive;
     }
 
@@ -634,8 +742,8 @@ public class GenericFileConsumerTypeImpl extends ScheduledBatchPollConsumerTypeI
      * <!-- end-user-doc -->
      * @generated
      */
-    public void setRecursive(boolean newRecursive) {
-        boolean oldRecursive = recursive;
+    public void setRecursive(Boolean newRecursive) {
+        Boolean oldRecursive = recursive;
         recursive = newRecursive;
         boolean oldRecursiveESet = recursiveESet;
         recursiveESet = true;
@@ -649,7 +757,7 @@ public class GenericFileConsumerTypeImpl extends ScheduledBatchPollConsumerTypeI
      * @generated
      */
     public void unsetRecursive() {
-        boolean oldRecursive = recursive;
+        Boolean oldRecursive = recursive;
         boolean oldRecursiveESet = recursiveESet;
         recursive = RECURSIVE_EDEFAULT;
         recursiveESet = false;
@@ -671,7 +779,7 @@ public class GenericFileConsumerTypeImpl extends ScheduledBatchPollConsumerTypeI
      * <!-- end-user-doc -->
      * @generated
      */
-    public boolean isNoop() {
+    public Boolean getNoop() {
         return noop;
     }
 
@@ -680,8 +788,8 @@ public class GenericFileConsumerTypeImpl extends ScheduledBatchPollConsumerTypeI
      * <!-- end-user-doc -->
      * @generated
      */
-    public void setNoop(boolean newNoop) {
-        boolean oldNoop = noop;
+    public void setNoop(Boolean newNoop) {
+        Boolean oldNoop = noop;
         noop = newNoop;
         boolean oldNoopESet = noopESet;
         noopESet = true;
@@ -695,7 +803,7 @@ public class GenericFileConsumerTypeImpl extends ScheduledBatchPollConsumerTypeI
      * @generated
      */
     public void unsetNoop() {
-        boolean oldNoop = noop;
+        Boolean oldNoop = noop;
         boolean oldNoopESet = noopESet;
         noop = NOOP_EDEFAULT;
         noopESet = false;
@@ -792,8 +900,33 @@ public class GenericFileConsumerTypeImpl extends ScheduledBatchPollConsumerTypeI
     public void setInclude(String newInclude) {
         String oldInclude = include;
         include = newInclude;
+        boolean oldIncludeESet = includeESet;
+        includeESet = true;
         if (eNotificationRequired())
-            eNotify(new ENotificationImpl(this, Notification.SET, CamelPackage.GENERIC_FILE_CONSUMER_TYPE__INCLUDE, oldInclude, include));
+            eNotify(new ENotificationImpl(this, Notification.SET, CamelPackage.GENERIC_FILE_CONSUMER_TYPE__INCLUDE, oldInclude, include, !oldIncludeESet));
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public void unsetInclude() {
+        String oldInclude = include;
+        boolean oldIncludeESet = includeESet;
+        include = INCLUDE_EDEFAULT;
+        includeESet = false;
+        if (eNotificationRequired())
+            eNotify(new ENotificationImpl(this, Notification.UNSET, CamelPackage.GENERIC_FILE_CONSUMER_TYPE__INCLUDE, oldInclude, INCLUDE_EDEFAULT, oldIncludeESet));
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public boolean isSetInclude() {
+        return includeESet;
     }
 
     /**
@@ -813,8 +946,10 @@ public class GenericFileConsumerTypeImpl extends ScheduledBatchPollConsumerTypeI
     public void setExclude(String newExclude) {
         String oldExclude = exclude;
         exclude = newExclude;
+        boolean oldExcludeESet = excludeESet;
+        excludeESet = true;
         if (eNotificationRequired())
-            eNotify(new ENotificationImpl(this, Notification.SET, CamelPackage.GENERIC_FILE_CONSUMER_TYPE__EXCLUDE, oldExclude, exclude));
+            eNotify(new ENotificationImpl(this, Notification.SET, CamelPackage.GENERIC_FILE_CONSUMER_TYPE__EXCLUDE, oldExclude, exclude, !oldExcludeESet));
     }
 
     /**
@@ -822,7 +957,30 @@ public class GenericFileConsumerTypeImpl extends ScheduledBatchPollConsumerTypeI
      * <!-- end-user-doc -->
      * @generated
      */
-    public boolean isIdempotent() {
+    public void unsetExclude() {
+        String oldExclude = exclude;
+        boolean oldExcludeESet = excludeESet;
+        exclude = EXCLUDE_EDEFAULT;
+        excludeESet = false;
+        if (eNotificationRequired())
+            eNotify(new ENotificationImpl(this, Notification.UNSET, CamelPackage.GENERIC_FILE_CONSUMER_TYPE__EXCLUDE, oldExclude, EXCLUDE_EDEFAULT, oldExcludeESet));
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public boolean isSetExclude() {
+        return excludeESet;
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public Boolean getIdempotent() {
         return idempotent;
     }
 
@@ -831,8 +989,8 @@ public class GenericFileConsumerTypeImpl extends ScheduledBatchPollConsumerTypeI
      * <!-- end-user-doc -->
      * @generated
      */
-    public void setIdempotent(boolean newIdempotent) {
-        boolean oldIdempotent = idempotent;
+    public void setIdempotent(Boolean newIdempotent) {
+        Boolean oldIdempotent = idempotent;
         idempotent = newIdempotent;
         boolean oldIdempotentESet = idempotentESet;
         idempotentESet = true;
@@ -846,7 +1004,7 @@ public class GenericFileConsumerTypeImpl extends ScheduledBatchPollConsumerTypeI
      * @generated
      */
     public void unsetIdempotent() {
-        boolean oldIdempotent = idempotent;
+        Boolean oldIdempotent = idempotent;
         boolean oldIdempotentESet = idempotentESet;
         idempotent = IDEMPOTENT_EDEFAULT;
         idempotentESet = false;
@@ -880,8 +1038,33 @@ public class GenericFileConsumerTypeImpl extends ScheduledBatchPollConsumerTypeI
     public void setIdempotentRepository(String newIdempotentRepository) {
         String oldIdempotentRepository = idempotentRepository;
         idempotentRepository = newIdempotentRepository;
+        boolean oldIdempotentRepositoryESet = idempotentRepositoryESet;
+        idempotentRepositoryESet = true;
         if (eNotificationRequired())
-            eNotify(new ENotificationImpl(this, Notification.SET, CamelPackage.GENERIC_FILE_CONSUMER_TYPE__IDEMPOTENT_REPOSITORY, oldIdempotentRepository, idempotentRepository));
+            eNotify(new ENotificationImpl(this, Notification.SET, CamelPackage.GENERIC_FILE_CONSUMER_TYPE__IDEMPOTENT_REPOSITORY, oldIdempotentRepository, idempotentRepository, !oldIdempotentRepositoryESet));
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public void unsetIdempotentRepository() {
+        String oldIdempotentRepository = idempotentRepository;
+        boolean oldIdempotentRepositoryESet = idempotentRepositoryESet;
+        idempotentRepository = IDEMPOTENT_REPOSITORY_EDEFAULT;
+        idempotentRepositoryESet = false;
+        if (eNotificationRequired())
+            eNotify(new ENotificationImpl(this, Notification.UNSET, CamelPackage.GENERIC_FILE_CONSUMER_TYPE__IDEMPOTENT_REPOSITORY, oldIdempotentRepository, IDEMPOTENT_REPOSITORY_EDEFAULT, oldIdempotentRepositoryESet));
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public boolean isSetIdempotentRepository() {
+        return idempotentRepositoryESet;
     }
 
     /**
@@ -901,8 +1084,33 @@ public class GenericFileConsumerTypeImpl extends ScheduledBatchPollConsumerTypeI
     public void setInProgressRepository(String newInProgressRepository) {
         String oldInProgressRepository = inProgressRepository;
         inProgressRepository = newInProgressRepository;
+        boolean oldInProgressRepositoryESet = inProgressRepositoryESet;
+        inProgressRepositoryESet = true;
         if (eNotificationRequired())
-            eNotify(new ENotificationImpl(this, Notification.SET, CamelPackage.GENERIC_FILE_CONSUMER_TYPE__IN_PROGRESS_REPOSITORY, oldInProgressRepository, inProgressRepository));
+            eNotify(new ENotificationImpl(this, Notification.SET, CamelPackage.GENERIC_FILE_CONSUMER_TYPE__IN_PROGRESS_REPOSITORY, oldInProgressRepository, inProgressRepository, !oldInProgressRepositoryESet));
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public void unsetInProgressRepository() {
+        String oldInProgressRepository = inProgressRepository;
+        boolean oldInProgressRepositoryESet = inProgressRepositoryESet;
+        inProgressRepository = IN_PROGRESS_REPOSITORY_EDEFAULT;
+        inProgressRepositoryESet = false;
+        if (eNotificationRequired())
+            eNotify(new ENotificationImpl(this, Notification.UNSET, CamelPackage.GENERIC_FILE_CONSUMER_TYPE__IN_PROGRESS_REPOSITORY, oldInProgressRepository, IN_PROGRESS_REPOSITORY_EDEFAULT, oldInProgressRepositoryESet));
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public boolean isSetInProgressRepository() {
+        return inProgressRepositoryESet;
     }
 
     /**
@@ -922,8 +1130,33 @@ public class GenericFileConsumerTypeImpl extends ScheduledBatchPollConsumerTypeI
     public void setFilter(String newFilter) {
         String oldFilter = filter;
         filter = newFilter;
+        boolean oldFilterESet = filterESet;
+        filterESet = true;
         if (eNotificationRequired())
-            eNotify(new ENotificationImpl(this, Notification.SET, CamelPackage.GENERIC_FILE_CONSUMER_TYPE__FILTER, oldFilter, filter));
+            eNotify(new ENotificationImpl(this, Notification.SET, CamelPackage.GENERIC_FILE_CONSUMER_TYPE__FILTER, oldFilter, filter, !oldFilterESet));
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public void unsetFilter() {
+        String oldFilter = filter;
+        boolean oldFilterESet = filterESet;
+        filter = FILTER_EDEFAULT;
+        filterESet = false;
+        if (eNotificationRequired())
+            eNotify(new ENotificationImpl(this, Notification.UNSET, CamelPackage.GENERIC_FILE_CONSUMER_TYPE__FILTER, oldFilter, FILTER_EDEFAULT, oldFilterESet));
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public boolean isSetFilter() {
+        return filterESet;
     }
 
     /**
@@ -943,8 +1176,33 @@ public class GenericFileConsumerTypeImpl extends ScheduledBatchPollConsumerTypeI
     public void setSorter(String newSorter) {
         String oldSorter = sorter;
         sorter = newSorter;
+        boolean oldSorterESet = sorterESet;
+        sorterESet = true;
         if (eNotificationRequired())
-            eNotify(new ENotificationImpl(this, Notification.SET, CamelPackage.GENERIC_FILE_CONSUMER_TYPE__SORTER, oldSorter, sorter));
+            eNotify(new ENotificationImpl(this, Notification.SET, CamelPackage.GENERIC_FILE_CONSUMER_TYPE__SORTER, oldSorter, sorter, !oldSorterESet));
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public void unsetSorter() {
+        String oldSorter = sorter;
+        boolean oldSorterESet = sorterESet;
+        sorter = SORTER_EDEFAULT;
+        sorterESet = false;
+        if (eNotificationRequired())
+            eNotify(new ENotificationImpl(this, Notification.UNSET, CamelPackage.GENERIC_FILE_CONSUMER_TYPE__SORTER, oldSorter, SORTER_EDEFAULT, oldSorterESet));
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public boolean isSetSorter() {
+        return sorterESet;
     }
 
     /**
@@ -964,8 +1222,33 @@ public class GenericFileConsumerTypeImpl extends ScheduledBatchPollConsumerTypeI
     public void setSortBy(String newSortBy) {
         String oldSortBy = sortBy;
         sortBy = newSortBy;
+        boolean oldSortByESet = sortByESet;
+        sortByESet = true;
         if (eNotificationRequired())
-            eNotify(new ENotificationImpl(this, Notification.SET, CamelPackage.GENERIC_FILE_CONSUMER_TYPE__SORT_BY, oldSortBy, sortBy));
+            eNotify(new ENotificationImpl(this, Notification.SET, CamelPackage.GENERIC_FILE_CONSUMER_TYPE__SORT_BY, oldSortBy, sortBy, !oldSortByESet));
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public void unsetSortBy() {
+        String oldSortBy = sortBy;
+        boolean oldSortByESet = sortByESet;
+        sortBy = SORT_BY_EDEFAULT;
+        sortByESet = false;
+        if (eNotificationRequired())
+            eNotify(new ENotificationImpl(this, Notification.UNSET, CamelPackage.GENERIC_FILE_CONSUMER_TYPE__SORT_BY, oldSortBy, SORT_BY_EDEFAULT, oldSortByESet));
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public boolean isSetSortBy() {
+        return sortByESet;
     }
 
     /**
@@ -985,8 +1268,10 @@ public class GenericFileConsumerTypeImpl extends ScheduledBatchPollConsumerTypeI
     public void setReadLock(String newReadLock) {
         String oldReadLock = readLock;
         readLock = newReadLock;
+        boolean oldReadLockESet = readLockESet;
+        readLockESet = true;
         if (eNotificationRequired())
-            eNotify(new ENotificationImpl(this, Notification.SET, CamelPackage.GENERIC_FILE_CONSUMER_TYPE__READ_LOCK, oldReadLock, readLock));
+            eNotify(new ENotificationImpl(this, Notification.SET, CamelPackage.GENERIC_FILE_CONSUMER_TYPE__READ_LOCK, oldReadLock, readLock, !oldReadLockESet));
     }
 
     /**
@@ -994,7 +1279,30 @@ public class GenericFileConsumerTypeImpl extends ScheduledBatchPollConsumerTypeI
      * <!-- end-user-doc -->
      * @generated
      */
-    public long getReadLockTimeout() {
+    public void unsetReadLock() {
+        String oldReadLock = readLock;
+        boolean oldReadLockESet = readLockESet;
+        readLock = READ_LOCK_EDEFAULT;
+        readLockESet = false;
+        if (eNotificationRequired())
+            eNotify(new ENotificationImpl(this, Notification.UNSET, CamelPackage.GENERIC_FILE_CONSUMER_TYPE__READ_LOCK, oldReadLock, READ_LOCK_EDEFAULT, oldReadLockESet));
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public boolean isSetReadLock() {
+        return readLockESet;
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public Long getReadLockTimeout() {
         return readLockTimeout;
     }
 
@@ -1003,8 +1311,8 @@ public class GenericFileConsumerTypeImpl extends ScheduledBatchPollConsumerTypeI
      * <!-- end-user-doc -->
      * @generated
      */
-    public void setReadLockTimeout(long newReadLockTimeout) {
-        long oldReadLockTimeout = readLockTimeout;
+    public void setReadLockTimeout(Long newReadLockTimeout) {
+        Long oldReadLockTimeout = readLockTimeout;
         readLockTimeout = newReadLockTimeout;
         boolean oldReadLockTimeoutESet = readLockTimeoutESet;
         readLockTimeoutESet = true;
@@ -1018,7 +1326,7 @@ public class GenericFileConsumerTypeImpl extends ScheduledBatchPollConsumerTypeI
      * @generated
      */
     public void unsetReadLockTimeout() {
-        long oldReadLockTimeout = readLockTimeout;
+        Long oldReadLockTimeout = readLockTimeout;
         boolean oldReadLockTimeoutESet = readLockTimeoutESet;
         readLockTimeout = READ_LOCK_TIMEOUT_EDEFAULT;
         readLockTimeoutESet = false;
@@ -1052,8 +1360,33 @@ public class GenericFileConsumerTypeImpl extends ScheduledBatchPollConsumerTypeI
     public void setReadLockCheckInterval(BigInteger newReadLockCheckInterval) {
         BigInteger oldReadLockCheckInterval = readLockCheckInterval;
         readLockCheckInterval = newReadLockCheckInterval;
+        boolean oldReadLockCheckIntervalESet = readLockCheckIntervalESet;
+        readLockCheckIntervalESet = true;
         if (eNotificationRequired())
-            eNotify(new ENotificationImpl(this, Notification.SET, CamelPackage.GENERIC_FILE_CONSUMER_TYPE__READ_LOCK_CHECK_INTERVAL, oldReadLockCheckInterval, readLockCheckInterval));
+            eNotify(new ENotificationImpl(this, Notification.SET, CamelPackage.GENERIC_FILE_CONSUMER_TYPE__READ_LOCK_CHECK_INTERVAL, oldReadLockCheckInterval, readLockCheckInterval, !oldReadLockCheckIntervalESet));
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public void unsetReadLockCheckInterval() {
+        BigInteger oldReadLockCheckInterval = readLockCheckInterval;
+        boolean oldReadLockCheckIntervalESet = readLockCheckIntervalESet;
+        readLockCheckInterval = READ_LOCK_CHECK_INTERVAL_EDEFAULT;
+        readLockCheckIntervalESet = false;
+        if (eNotificationRequired())
+            eNotify(new ENotificationImpl(this, Notification.UNSET, CamelPackage.GENERIC_FILE_CONSUMER_TYPE__READ_LOCK_CHECK_INTERVAL, oldReadLockCheckInterval, READ_LOCK_CHECK_INTERVAL_EDEFAULT, oldReadLockCheckIntervalESet));
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public boolean isSetReadLockCheckInterval() {
+        return readLockCheckIntervalESet;
     }
 
     /**
@@ -1073,8 +1406,33 @@ public class GenericFileConsumerTypeImpl extends ScheduledBatchPollConsumerTypeI
     public void setExclusiveReadLockStrategy(String newExclusiveReadLockStrategy) {
         String oldExclusiveReadLockStrategy = exclusiveReadLockStrategy;
         exclusiveReadLockStrategy = newExclusiveReadLockStrategy;
+        boolean oldExclusiveReadLockStrategyESet = exclusiveReadLockStrategyESet;
+        exclusiveReadLockStrategyESet = true;
         if (eNotificationRequired())
-            eNotify(new ENotificationImpl(this, Notification.SET, CamelPackage.GENERIC_FILE_CONSUMER_TYPE__EXCLUSIVE_READ_LOCK_STRATEGY, oldExclusiveReadLockStrategy, exclusiveReadLockStrategy));
+            eNotify(new ENotificationImpl(this, Notification.SET, CamelPackage.GENERIC_FILE_CONSUMER_TYPE__EXCLUSIVE_READ_LOCK_STRATEGY, oldExclusiveReadLockStrategy, exclusiveReadLockStrategy, !oldExclusiveReadLockStrategyESet));
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public void unsetExclusiveReadLockStrategy() {
+        String oldExclusiveReadLockStrategy = exclusiveReadLockStrategy;
+        boolean oldExclusiveReadLockStrategyESet = exclusiveReadLockStrategyESet;
+        exclusiveReadLockStrategy = EXCLUSIVE_READ_LOCK_STRATEGY_EDEFAULT;
+        exclusiveReadLockStrategyESet = false;
+        if (eNotificationRequired())
+            eNotify(new ENotificationImpl(this, Notification.UNSET, CamelPackage.GENERIC_FILE_CONSUMER_TYPE__EXCLUSIVE_READ_LOCK_STRATEGY, oldExclusiveReadLockStrategy, EXCLUSIVE_READ_LOCK_STRATEGY_EDEFAULT, oldExclusiveReadLockStrategyESet));
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public boolean isSetExclusiveReadLockStrategy() {
+        return exclusiveReadLockStrategyESet;
     }
 
     /**
@@ -1094,8 +1452,10 @@ public class GenericFileConsumerTypeImpl extends ScheduledBatchPollConsumerTypeI
     public void setProcessStrategy(String newProcessStrategy) {
         String oldProcessStrategy = processStrategy;
         processStrategy = newProcessStrategy;
+        boolean oldProcessStrategyESet = processStrategyESet;
+        processStrategyESet = true;
         if (eNotificationRequired())
-            eNotify(new ENotificationImpl(this, Notification.SET, CamelPackage.GENERIC_FILE_CONSUMER_TYPE__PROCESS_STRATEGY, oldProcessStrategy, processStrategy));
+            eNotify(new ENotificationImpl(this, Notification.SET, CamelPackage.GENERIC_FILE_CONSUMER_TYPE__PROCESS_STRATEGY, oldProcessStrategy, processStrategy, !oldProcessStrategyESet));
     }
 
     /**
@@ -1103,7 +1463,30 @@ public class GenericFileConsumerTypeImpl extends ScheduledBatchPollConsumerTypeI
      * <!-- end-user-doc -->
      * @generated
      */
-    public boolean isStartingDirectoryMustExist() {
+    public void unsetProcessStrategy() {
+        String oldProcessStrategy = processStrategy;
+        boolean oldProcessStrategyESet = processStrategyESet;
+        processStrategy = PROCESS_STRATEGY_EDEFAULT;
+        processStrategyESet = false;
+        if (eNotificationRequired())
+            eNotify(new ENotificationImpl(this, Notification.UNSET, CamelPackage.GENERIC_FILE_CONSUMER_TYPE__PROCESS_STRATEGY, oldProcessStrategy, PROCESS_STRATEGY_EDEFAULT, oldProcessStrategyESet));
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public boolean isSetProcessStrategy() {
+        return processStrategyESet;
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public Boolean getStartingDirectoryMustExist() {
         return startingDirectoryMustExist;
     }
 
@@ -1112,8 +1495,8 @@ public class GenericFileConsumerTypeImpl extends ScheduledBatchPollConsumerTypeI
      * <!-- end-user-doc -->
      * @generated
      */
-    public void setStartingDirectoryMustExist(boolean newStartingDirectoryMustExist) {
-        boolean oldStartingDirectoryMustExist = startingDirectoryMustExist;
+    public void setStartingDirectoryMustExist(Boolean newStartingDirectoryMustExist) {
+        Boolean oldStartingDirectoryMustExist = startingDirectoryMustExist;
         startingDirectoryMustExist = newStartingDirectoryMustExist;
         boolean oldStartingDirectoryMustExistESet = startingDirectoryMustExistESet;
         startingDirectoryMustExistESet = true;
@@ -1127,7 +1510,7 @@ public class GenericFileConsumerTypeImpl extends ScheduledBatchPollConsumerTypeI
      * @generated
      */
     public void unsetStartingDirectoryMustExist() {
-        boolean oldStartingDirectoryMustExist = startingDirectoryMustExist;
+        Boolean oldStartingDirectoryMustExist = startingDirectoryMustExist;
         boolean oldStartingDirectoryMustExistESet = startingDirectoryMustExistESet;
         startingDirectoryMustExist = STARTING_DIRECTORY_MUST_EXIST_EDEFAULT;
         startingDirectoryMustExistESet = false;
@@ -1149,7 +1532,7 @@ public class GenericFileConsumerTypeImpl extends ScheduledBatchPollConsumerTypeI
      * <!-- end-user-doc -->
      * @generated
      */
-    public boolean isDirectoryMustExist() {
+    public Boolean getDirectoryMustExist() {
         return directoryMustExist;
     }
 
@@ -1158,8 +1541,8 @@ public class GenericFileConsumerTypeImpl extends ScheduledBatchPollConsumerTypeI
      * <!-- end-user-doc -->
      * @generated
      */
-    public void setDirectoryMustExist(boolean newDirectoryMustExist) {
-        boolean oldDirectoryMustExist = directoryMustExist;
+    public void setDirectoryMustExist(Boolean newDirectoryMustExist) {
+        Boolean oldDirectoryMustExist = directoryMustExist;
         directoryMustExist = newDirectoryMustExist;
         boolean oldDirectoryMustExistESet = directoryMustExistESet;
         directoryMustExistESet = true;
@@ -1173,7 +1556,7 @@ public class GenericFileConsumerTypeImpl extends ScheduledBatchPollConsumerTypeI
      * @generated
      */
     public void unsetDirectoryMustExist() {
-        boolean oldDirectoryMustExist = directoryMustExist;
+        Boolean oldDirectoryMustExist = directoryMustExist;
         boolean oldDirectoryMustExistESet = directoryMustExistESet;
         directoryMustExist = DIRECTORY_MUST_EXIST_EDEFAULT;
         directoryMustExistESet = false;
@@ -1207,8 +1590,33 @@ public class GenericFileConsumerTypeImpl extends ScheduledBatchPollConsumerTypeI
     public void setDoneFileName(String newDoneFileName) {
         String oldDoneFileName = doneFileName;
         doneFileName = newDoneFileName;
+        boolean oldDoneFileNameESet = doneFileNameESet;
+        doneFileNameESet = true;
         if (eNotificationRequired())
-            eNotify(new ENotificationImpl(this, Notification.SET, CamelPackage.GENERIC_FILE_CONSUMER_TYPE__DONE_FILE_NAME, oldDoneFileName, doneFileName));
+            eNotify(new ENotificationImpl(this, Notification.SET, CamelPackage.GENERIC_FILE_CONSUMER_TYPE__DONE_FILE_NAME, oldDoneFileName, doneFileName, !oldDoneFileNameESet));
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public void unsetDoneFileName() {
+        String oldDoneFileName = doneFileName;
+        boolean oldDoneFileNameESet = doneFileNameESet;
+        doneFileName = DONE_FILE_NAME_EDEFAULT;
+        doneFileNameESet = false;
+        if (eNotificationRequired())
+            eNotify(new ENotificationImpl(this, Notification.UNSET, CamelPackage.GENERIC_FILE_CONSUMER_TYPE__DONE_FILE_NAME, oldDoneFileName, DONE_FILE_NAME_EDEFAULT, oldDoneFileNameESet));
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public boolean isSetDoneFileName() {
+        return doneFileNameESet;
     }
 
     /**
@@ -1220,11 +1628,11 @@ public class GenericFileConsumerTypeImpl extends ScheduledBatchPollConsumerTypeI
     public Object eGet(int featureID, boolean resolve, boolean coreType) {
         switch (featureID) {
             case CamelPackage.GENERIC_FILE_CONSUMER_TYPE__DELETE:
-                return isDelete();
+                return getDelete();
             case CamelPackage.GENERIC_FILE_CONSUMER_TYPE__RECURSIVE:
-                return isRecursive();
+                return getRecursive();
             case CamelPackage.GENERIC_FILE_CONSUMER_TYPE__NOOP:
-                return isNoop();
+                return getNoop();
             case CamelPackage.GENERIC_FILE_CONSUMER_TYPE__PRE_MOVE:
                 return getPreMove();
             case CamelPackage.GENERIC_FILE_CONSUMER_TYPE__MOVE:
@@ -1236,7 +1644,7 @@ public class GenericFileConsumerTypeImpl extends ScheduledBatchPollConsumerTypeI
             case CamelPackage.GENERIC_FILE_CONSUMER_TYPE__EXCLUDE:
                 return getExclude();
             case CamelPackage.GENERIC_FILE_CONSUMER_TYPE__IDEMPOTENT:
-                return isIdempotent();
+                return getIdempotent();
             case CamelPackage.GENERIC_FILE_CONSUMER_TYPE__IDEMPOTENT_REPOSITORY:
                 return getIdempotentRepository();
             case CamelPackage.GENERIC_FILE_CONSUMER_TYPE__IN_PROGRESS_REPOSITORY:
@@ -1258,9 +1666,9 @@ public class GenericFileConsumerTypeImpl extends ScheduledBatchPollConsumerTypeI
             case CamelPackage.GENERIC_FILE_CONSUMER_TYPE__PROCESS_STRATEGY:
                 return getProcessStrategy();
             case CamelPackage.GENERIC_FILE_CONSUMER_TYPE__STARTING_DIRECTORY_MUST_EXIST:
-                return isStartingDirectoryMustExist();
+                return getStartingDirectoryMustExist();
             case CamelPackage.GENERIC_FILE_CONSUMER_TYPE__DIRECTORY_MUST_EXIST:
-                return isDirectoryMustExist();
+                return getDirectoryMustExist();
             case CamelPackage.GENERIC_FILE_CONSUMER_TYPE__DONE_FILE_NAME:
                 return getDoneFileName();
         }
@@ -1372,43 +1780,43 @@ public class GenericFileConsumerTypeImpl extends ScheduledBatchPollConsumerTypeI
                 setMoveFailed(MOVE_FAILED_EDEFAULT);
                 return;
             case CamelPackage.GENERIC_FILE_CONSUMER_TYPE__INCLUDE:
-                setInclude(INCLUDE_EDEFAULT);
+                unsetInclude();
                 return;
             case CamelPackage.GENERIC_FILE_CONSUMER_TYPE__EXCLUDE:
-                setExclude(EXCLUDE_EDEFAULT);
+                unsetExclude();
                 return;
             case CamelPackage.GENERIC_FILE_CONSUMER_TYPE__IDEMPOTENT:
                 unsetIdempotent();
                 return;
             case CamelPackage.GENERIC_FILE_CONSUMER_TYPE__IDEMPOTENT_REPOSITORY:
-                setIdempotentRepository(IDEMPOTENT_REPOSITORY_EDEFAULT);
+                unsetIdempotentRepository();
                 return;
             case CamelPackage.GENERIC_FILE_CONSUMER_TYPE__IN_PROGRESS_REPOSITORY:
-                setInProgressRepository(IN_PROGRESS_REPOSITORY_EDEFAULT);
+                unsetInProgressRepository();
                 return;
             case CamelPackage.GENERIC_FILE_CONSUMER_TYPE__FILTER:
-                setFilter(FILTER_EDEFAULT);
+                unsetFilter();
                 return;
             case CamelPackage.GENERIC_FILE_CONSUMER_TYPE__SORTER:
-                setSorter(SORTER_EDEFAULT);
+                unsetSorter();
                 return;
             case CamelPackage.GENERIC_FILE_CONSUMER_TYPE__SORT_BY:
-                setSortBy(SORT_BY_EDEFAULT);
+                unsetSortBy();
                 return;
             case CamelPackage.GENERIC_FILE_CONSUMER_TYPE__READ_LOCK:
-                setReadLock(READ_LOCK_EDEFAULT);
+                unsetReadLock();
                 return;
             case CamelPackage.GENERIC_FILE_CONSUMER_TYPE__READ_LOCK_TIMEOUT:
                 unsetReadLockTimeout();
                 return;
             case CamelPackage.GENERIC_FILE_CONSUMER_TYPE__READ_LOCK_CHECK_INTERVAL:
-                setReadLockCheckInterval(READ_LOCK_CHECK_INTERVAL_EDEFAULT);
+                unsetReadLockCheckInterval();
                 return;
             case CamelPackage.GENERIC_FILE_CONSUMER_TYPE__EXCLUSIVE_READ_LOCK_STRATEGY:
-                setExclusiveReadLockStrategy(EXCLUSIVE_READ_LOCK_STRATEGY_EDEFAULT);
+                unsetExclusiveReadLockStrategy();
                 return;
             case CamelPackage.GENERIC_FILE_CONSUMER_TYPE__PROCESS_STRATEGY:
-                setProcessStrategy(PROCESS_STRATEGY_EDEFAULT);
+                unsetProcessStrategy();
                 return;
             case CamelPackage.GENERIC_FILE_CONSUMER_TYPE__STARTING_DIRECTORY_MUST_EXIST:
                 unsetStartingDirectoryMustExist();
@@ -1417,7 +1825,7 @@ public class GenericFileConsumerTypeImpl extends ScheduledBatchPollConsumerTypeI
                 unsetDirectoryMustExist();
                 return;
             case CamelPackage.GENERIC_FILE_CONSUMER_TYPE__DONE_FILE_NAME:
-                setDoneFileName(DONE_FILE_NAME_EDEFAULT);
+                unsetDoneFileName();
                 return;
         }
         super.eUnset(featureID);
@@ -1444,37 +1852,37 @@ public class GenericFileConsumerTypeImpl extends ScheduledBatchPollConsumerTypeI
             case CamelPackage.GENERIC_FILE_CONSUMER_TYPE__MOVE_FAILED:
                 return MOVE_FAILED_EDEFAULT == null ? moveFailed != null : !MOVE_FAILED_EDEFAULT.equals(moveFailed);
             case CamelPackage.GENERIC_FILE_CONSUMER_TYPE__INCLUDE:
-                return INCLUDE_EDEFAULT == null ? include != null : !INCLUDE_EDEFAULT.equals(include);
+                return isSetInclude();
             case CamelPackage.GENERIC_FILE_CONSUMER_TYPE__EXCLUDE:
-                return EXCLUDE_EDEFAULT == null ? exclude != null : !EXCLUDE_EDEFAULT.equals(exclude);
+                return isSetExclude();
             case CamelPackage.GENERIC_FILE_CONSUMER_TYPE__IDEMPOTENT:
                 return isSetIdempotent();
             case CamelPackage.GENERIC_FILE_CONSUMER_TYPE__IDEMPOTENT_REPOSITORY:
-                return IDEMPOTENT_REPOSITORY_EDEFAULT == null ? idempotentRepository != null : !IDEMPOTENT_REPOSITORY_EDEFAULT.equals(idempotentRepository);
+                return isSetIdempotentRepository();
             case CamelPackage.GENERIC_FILE_CONSUMER_TYPE__IN_PROGRESS_REPOSITORY:
-                return IN_PROGRESS_REPOSITORY_EDEFAULT == null ? inProgressRepository != null : !IN_PROGRESS_REPOSITORY_EDEFAULT.equals(inProgressRepository);
+                return isSetInProgressRepository();
             case CamelPackage.GENERIC_FILE_CONSUMER_TYPE__FILTER:
-                return FILTER_EDEFAULT == null ? filter != null : !FILTER_EDEFAULT.equals(filter);
+                return isSetFilter();
             case CamelPackage.GENERIC_FILE_CONSUMER_TYPE__SORTER:
-                return SORTER_EDEFAULT == null ? sorter != null : !SORTER_EDEFAULT.equals(sorter);
+                return isSetSorter();
             case CamelPackage.GENERIC_FILE_CONSUMER_TYPE__SORT_BY:
-                return SORT_BY_EDEFAULT == null ? sortBy != null : !SORT_BY_EDEFAULT.equals(sortBy);
+                return isSetSortBy();
             case CamelPackage.GENERIC_FILE_CONSUMER_TYPE__READ_LOCK:
-                return READ_LOCK_EDEFAULT == null ? readLock != null : !READ_LOCK_EDEFAULT.equals(readLock);
+                return isSetReadLock();
             case CamelPackage.GENERIC_FILE_CONSUMER_TYPE__READ_LOCK_TIMEOUT:
                 return isSetReadLockTimeout();
             case CamelPackage.GENERIC_FILE_CONSUMER_TYPE__READ_LOCK_CHECK_INTERVAL:
-                return READ_LOCK_CHECK_INTERVAL_EDEFAULT == null ? readLockCheckInterval != null : !READ_LOCK_CHECK_INTERVAL_EDEFAULT.equals(readLockCheckInterval);
+                return isSetReadLockCheckInterval();
             case CamelPackage.GENERIC_FILE_CONSUMER_TYPE__EXCLUSIVE_READ_LOCK_STRATEGY:
-                return EXCLUSIVE_READ_LOCK_STRATEGY_EDEFAULT == null ? exclusiveReadLockStrategy != null : !EXCLUSIVE_READ_LOCK_STRATEGY_EDEFAULT.equals(exclusiveReadLockStrategy);
+                return isSetExclusiveReadLockStrategy();
             case CamelPackage.GENERIC_FILE_CONSUMER_TYPE__PROCESS_STRATEGY:
-                return PROCESS_STRATEGY_EDEFAULT == null ? processStrategy != null : !PROCESS_STRATEGY_EDEFAULT.equals(processStrategy);
+                return isSetProcessStrategy();
             case CamelPackage.GENERIC_FILE_CONSUMER_TYPE__STARTING_DIRECTORY_MUST_EXIST:
                 return isSetStartingDirectoryMustExist();
             case CamelPackage.GENERIC_FILE_CONSUMER_TYPE__DIRECTORY_MUST_EXIST:
                 return isSetDirectoryMustExist();
             case CamelPackage.GENERIC_FILE_CONSUMER_TYPE__DONE_FILE_NAME:
-                return DONE_FILE_NAME_EDEFAULT == null ? doneFileName != null : !DONE_FILE_NAME_EDEFAULT.equals(doneFileName);
+                return isSetDoneFileName();
         }
         return super.eIsSet(featureID);
     }
@@ -1502,37 +1910,37 @@ public class GenericFileConsumerTypeImpl extends ScheduledBatchPollConsumerTypeI
         result.append(", moveFailed: ");
         result.append(moveFailed);
         result.append(", include: ");
-        result.append(include);
+        if (includeESet) result.append(include); else result.append("<unset>");
         result.append(", exclude: ");
-        result.append(exclude);
+        if (excludeESet) result.append(exclude); else result.append("<unset>");
         result.append(", idempotent: ");
         if (idempotentESet) result.append(idempotent); else result.append("<unset>");
         result.append(", idempotentRepository: ");
-        result.append(idempotentRepository);
+        if (idempotentRepositoryESet) result.append(idempotentRepository); else result.append("<unset>");
         result.append(", inProgressRepository: ");
-        result.append(inProgressRepository);
+        if (inProgressRepositoryESet) result.append(inProgressRepository); else result.append("<unset>");
         result.append(", filter: ");
-        result.append(filter);
+        if (filterESet) result.append(filter); else result.append("<unset>");
         result.append(", sorter: ");
-        result.append(sorter);
+        if (sorterESet) result.append(sorter); else result.append("<unset>");
         result.append(", sortBy: ");
-        result.append(sortBy);
+        if (sortByESet) result.append(sortBy); else result.append("<unset>");
         result.append(", readLock: ");
-        result.append(readLock);
+        if (readLockESet) result.append(readLock); else result.append("<unset>");
         result.append(", readLockTimeout: ");
         if (readLockTimeoutESet) result.append(readLockTimeout); else result.append("<unset>");
         result.append(", readLockCheckInterval: ");
-        result.append(readLockCheckInterval);
+        if (readLockCheckIntervalESet) result.append(readLockCheckInterval); else result.append("<unset>");
         result.append(", exclusiveReadLockStrategy: ");
-        result.append(exclusiveReadLockStrategy);
+        if (exclusiveReadLockStrategyESet) result.append(exclusiveReadLockStrategy); else result.append("<unset>");
         result.append(", processStrategy: ");
-        result.append(processStrategy);
+        if (processStrategyESet) result.append(processStrategy); else result.append("<unset>");
         result.append(", startingDirectoryMustExist: ");
         if (startingDirectoryMustExistESet) result.append(startingDirectoryMustExist); else result.append("<unset>");
         result.append(", directoryMustExist: ");
         if (directoryMustExistESet) result.append(directoryMustExist); else result.append("<unset>");
         result.append(", doneFileName: ");
-        result.append(doneFileName);
+        if (doneFileNameESet) result.append(doneFileName); else result.append("<unset>");
         result.append(')');
         return result.toString();
     }

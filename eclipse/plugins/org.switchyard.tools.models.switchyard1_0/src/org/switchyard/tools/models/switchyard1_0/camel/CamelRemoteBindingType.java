@@ -21,12 +21,12 @@ package org.switchyard.tools.models.switchyard1_0.camel;
  *   <li>{@link org.switchyard.tools.models.switchyard1_0.camel.CamelRemoteBindingType#getPassword <em>Password</em>}</li>
  *   <li>{@link org.switchyard.tools.models.switchyard1_0.camel.CamelRemoteBindingType#isBinary <em>Binary</em>}</li>
  *   <li>{@link org.switchyard.tools.models.switchyard1_0.camel.CamelRemoteBindingType#getConnectTimeout <em>Connect Timeout</em>}</li>
- *   <li>{@link org.switchyard.tools.models.switchyard1_0.camel.CamelRemoteBindingType#isDisconnect <em>Disconnect</em>}</li>
+ *   <li>{@link org.switchyard.tools.models.switchyard1_0.camel.CamelRemoteBindingType#getDisconnect <em>Disconnect</em>}</li>
  *   <li>{@link org.switchyard.tools.models.switchyard1_0.camel.CamelRemoteBindingType#getMaximumReconnectAttempts <em>Maximum Reconnect Attempts</em>}</li>
  *   <li>{@link org.switchyard.tools.models.switchyard1_0.camel.CamelRemoteBindingType#getReconnectDelay <em>Reconnect Delay</em>}</li>
  *   <li>{@link org.switchyard.tools.models.switchyard1_0.camel.CamelRemoteBindingType#getSeparator <em>Separator</em>}</li>
- *   <li>{@link org.switchyard.tools.models.switchyard1_0.camel.CamelRemoteBindingType#isStepwise <em>Stepwise</em>}</li>
- *   <li>{@link org.switchyard.tools.models.switchyard1_0.camel.CamelRemoteBindingType#isThrowExceptionOnConnectFailed <em>Throw Exception On Connect Failed</em>}</li>
+ *   <li>{@link org.switchyard.tools.models.switchyard1_0.camel.CamelRemoteBindingType#getStepwise <em>Stepwise</em>}</li>
+ *   <li>{@link org.switchyard.tools.models.switchyard1_0.camel.CamelRemoteBindingType#getThrowExceptionOnConnectFailed <em>Throw Exception On Connect Failed</em>}</li>
  *   <li>{@link org.switchyard.tools.models.switchyard1_0.camel.CamelRemoteBindingType#getConsume <em>Consume</em>}</li>
  *   <li>{@link org.switchyard.tools.models.switchyard1_0.camel.CamelRemoteBindingType#getProduce <em>Produce</em>}</li>
  * </ul>
@@ -238,13 +238,13 @@ public interface CamelRemoteBindingType extends GenericFileBindingType {
      * @return the value of the '<em>Connect Timeout</em>' attribute.
      * @see #isSetConnectTimeout()
      * @see #unsetConnectTimeout()
-     * @see #setConnectTimeout(int)
+     * @see #setConnectTimeout(Integer)
      * @see org.switchyard.tools.models.switchyard1_0.camel.CamelPackage#getCamelRemoteBindingType_ConnectTimeout()
-     * @model unsettable="true" dataType="org.eclipse.emf.ecore.xml.type.Int"
+     * @model unsettable="true" dataType="org.eclipse.emf.ecore.xml.type.IntObject"
      *        extendedMetaData="kind='element' name='connectTimeout' namespace='##targetNamespace'"
      * @generated
      */
-    int getConnectTimeout();
+    Integer getConnectTimeout();
 
     /**
      * Sets the value of the '{@link org.switchyard.tools.models.switchyard1_0.camel.CamelRemoteBindingType#getConnectTimeout <em>Connect Timeout</em>}' attribute.
@@ -256,7 +256,7 @@ public interface CamelRemoteBindingType extends GenericFileBindingType {
      * @see #getConnectTimeout()
      * @generated
      */
-    void setConnectTimeout(int value);
+    void setConnectTimeout(Integer value);
 
     /**
      * Unsets the value of the '{@link org.switchyard.tools.models.switchyard1_0.camel.CamelRemoteBindingType#getConnectTimeout <em>Connect Timeout</em>}' attribute.
@@ -264,7 +264,7 @@ public interface CamelRemoteBindingType extends GenericFileBindingType {
      * <!-- end-user-doc -->
      * @see #isSetConnectTimeout()
      * @see #getConnectTimeout()
-     * @see #setConnectTimeout(int)
+     * @see #setConnectTimeout(Integer)
      * @generated
      */
     void unsetConnectTimeout();
@@ -276,7 +276,7 @@ public interface CamelRemoteBindingType extends GenericFileBindingType {
      * @return whether the value of the '<em>Connect Timeout</em>' attribute is set.
      * @see #unsetConnectTimeout()
      * @see #getConnectTimeout()
-     * @see #setConnectTimeout(int)
+     * @see #setConnectTimeout(Integer)
      * @generated
      */
     boolean isSetConnectTimeout();
@@ -292,45 +292,45 @@ public interface CamelRemoteBindingType extends GenericFileBindingType {
      * @return the value of the '<em>Disconnect</em>' attribute.
      * @see #isSetDisconnect()
      * @see #unsetDisconnect()
-     * @see #setDisconnect(boolean)
+     * @see #setDisconnect(Boolean)
      * @see org.switchyard.tools.models.switchyard1_0.camel.CamelPackage#getCamelRemoteBindingType_Disconnect()
-     * @model unsettable="true" dataType="org.eclipse.emf.ecore.xml.type.Boolean"
+     * @model unsettable="true" dataType="org.eclipse.emf.ecore.xml.type.BooleanObject"
      *        extendedMetaData="kind='element' name='disconnect' namespace='##targetNamespace'"
      * @generated
      */
-    boolean isDisconnect();
+    Boolean getDisconnect();
 
     /**
-     * Sets the value of the '{@link org.switchyard.tools.models.switchyard1_0.camel.CamelRemoteBindingType#isDisconnect <em>Disconnect</em>}' attribute.
+     * Sets the value of the '{@link org.switchyard.tools.models.switchyard1_0.camel.CamelRemoteBindingType#getDisconnect <em>Disconnect</em>}' attribute.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @param value the new value of the '<em>Disconnect</em>' attribute.
      * @see #isSetDisconnect()
      * @see #unsetDisconnect()
-     * @see #isDisconnect()
+     * @see #getDisconnect()
      * @generated
      */
-    void setDisconnect(boolean value);
+    void setDisconnect(Boolean value);
 
     /**
-     * Unsets the value of the '{@link org.switchyard.tools.models.switchyard1_0.camel.CamelRemoteBindingType#isDisconnect <em>Disconnect</em>}' attribute.
+     * Unsets the value of the '{@link org.switchyard.tools.models.switchyard1_0.camel.CamelRemoteBindingType#getDisconnect <em>Disconnect</em>}' attribute.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @see #isSetDisconnect()
-     * @see #isDisconnect()
-     * @see #setDisconnect(boolean)
+     * @see #getDisconnect()
+     * @see #setDisconnect(Boolean)
      * @generated
      */
     void unsetDisconnect();
 
     /**
-     * Returns whether the value of the '{@link org.switchyard.tools.models.switchyard1_0.camel.CamelRemoteBindingType#isDisconnect <em>Disconnect</em>}' attribute is set.
+     * Returns whether the value of the '{@link org.switchyard.tools.models.switchyard1_0.camel.CamelRemoteBindingType#getDisconnect <em>Disconnect</em>}' attribute is set.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @return whether the value of the '<em>Disconnect</em>' attribute is set.
      * @see #unsetDisconnect()
-     * @see #isDisconnect()
-     * @see #setDisconnect(boolean)
+     * @see #getDisconnect()
+     * @see #setDisconnect(Boolean)
      * @generated
      */
     boolean isSetDisconnect();
@@ -346,13 +346,13 @@ public interface CamelRemoteBindingType extends GenericFileBindingType {
      * @return the value of the '<em>Maximum Reconnect Attempts</em>' attribute.
      * @see #isSetMaximumReconnectAttempts()
      * @see #unsetMaximumReconnectAttempts()
-     * @see #setMaximumReconnectAttempts(int)
+     * @see #setMaximumReconnectAttempts(Integer)
      * @see org.switchyard.tools.models.switchyard1_0.camel.CamelPackage#getCamelRemoteBindingType_MaximumReconnectAttempts()
-     * @model unsettable="true" dataType="org.eclipse.emf.ecore.xml.type.Int"
+     * @model unsettable="true" dataType="org.eclipse.emf.ecore.xml.type.IntObject"
      *        extendedMetaData="kind='element' name='maximumReconnectAttempts' namespace='##targetNamespace'"
      * @generated
      */
-    int getMaximumReconnectAttempts();
+    Integer getMaximumReconnectAttempts();
 
     /**
      * Sets the value of the '{@link org.switchyard.tools.models.switchyard1_0.camel.CamelRemoteBindingType#getMaximumReconnectAttempts <em>Maximum Reconnect Attempts</em>}' attribute.
@@ -364,7 +364,7 @@ public interface CamelRemoteBindingType extends GenericFileBindingType {
      * @see #getMaximumReconnectAttempts()
      * @generated
      */
-    void setMaximumReconnectAttempts(int value);
+    void setMaximumReconnectAttempts(Integer value);
 
     /**
      * Unsets the value of the '{@link org.switchyard.tools.models.switchyard1_0.camel.CamelRemoteBindingType#getMaximumReconnectAttempts <em>Maximum Reconnect Attempts</em>}' attribute.
@@ -372,7 +372,7 @@ public interface CamelRemoteBindingType extends GenericFileBindingType {
      * <!-- end-user-doc -->
      * @see #isSetMaximumReconnectAttempts()
      * @see #getMaximumReconnectAttempts()
-     * @see #setMaximumReconnectAttempts(int)
+     * @see #setMaximumReconnectAttempts(Integer)
      * @generated
      */
     void unsetMaximumReconnectAttempts();
@@ -384,7 +384,7 @@ public interface CamelRemoteBindingType extends GenericFileBindingType {
      * @return whether the value of the '<em>Maximum Reconnect Attempts</em>' attribute is set.
      * @see #unsetMaximumReconnectAttempts()
      * @see #getMaximumReconnectAttempts()
-     * @see #setMaximumReconnectAttempts(int)
+     * @see #setMaximumReconnectAttempts(Integer)
      * @generated
      */
     boolean isSetMaximumReconnectAttempts();
@@ -400,13 +400,13 @@ public interface CamelRemoteBindingType extends GenericFileBindingType {
      * @return the value of the '<em>Reconnect Delay</em>' attribute.
      * @see #isSetReconnectDelay()
      * @see #unsetReconnectDelay()
-     * @see #setReconnectDelay(int)
+     * @see #setReconnectDelay(Integer)
      * @see org.switchyard.tools.models.switchyard1_0.camel.CamelPackage#getCamelRemoteBindingType_ReconnectDelay()
-     * @model unsettable="true" dataType="org.eclipse.emf.ecore.xml.type.Int"
+     * @model unsettable="true" dataType="org.eclipse.emf.ecore.xml.type.IntObject"
      *        extendedMetaData="kind='element' name='reconnectDelay' namespace='##targetNamespace'"
      * @generated
      */
-    int getReconnectDelay();
+    Integer getReconnectDelay();
 
     /**
      * Sets the value of the '{@link org.switchyard.tools.models.switchyard1_0.camel.CamelRemoteBindingType#getReconnectDelay <em>Reconnect Delay</em>}' attribute.
@@ -418,7 +418,7 @@ public interface CamelRemoteBindingType extends GenericFileBindingType {
      * @see #getReconnectDelay()
      * @generated
      */
-    void setReconnectDelay(int value);
+    void setReconnectDelay(Integer value);
 
     /**
      * Unsets the value of the '{@link org.switchyard.tools.models.switchyard1_0.camel.CamelRemoteBindingType#getReconnectDelay <em>Reconnect Delay</em>}' attribute.
@@ -426,7 +426,7 @@ public interface CamelRemoteBindingType extends GenericFileBindingType {
      * <!-- end-user-doc -->
      * @see #isSetReconnectDelay()
      * @see #getReconnectDelay()
-     * @see #setReconnectDelay(int)
+     * @see #setReconnectDelay(Integer)
      * @generated
      */
     void unsetReconnectDelay();
@@ -438,7 +438,7 @@ public interface CamelRemoteBindingType extends GenericFileBindingType {
      * @return whether the value of the '<em>Reconnect Delay</em>' attribute is set.
      * @see #unsetReconnectDelay()
      * @see #getReconnectDelay()
-     * @see #setReconnectDelay(int)
+     * @see #setReconnectDelay(Integer)
      * @generated
      */
     boolean isSetReconnectDelay();
@@ -481,45 +481,45 @@ public interface CamelRemoteBindingType extends GenericFileBindingType {
      * @return the value of the '<em>Stepwise</em>' attribute.
      * @see #isSetStepwise()
      * @see #unsetStepwise()
-     * @see #setStepwise(boolean)
+     * @see #setStepwise(Boolean)
      * @see org.switchyard.tools.models.switchyard1_0.camel.CamelPackage#getCamelRemoteBindingType_Stepwise()
-     * @model unsettable="true" dataType="org.eclipse.emf.ecore.xml.type.Boolean"
+     * @model unsettable="true" dataType="org.eclipse.emf.ecore.xml.type.BooleanObject"
      *        extendedMetaData="kind='element' name='stepwise' namespace='##targetNamespace'"
      * @generated
      */
-    boolean isStepwise();
+    Boolean getStepwise();
 
     /**
-     * Sets the value of the '{@link org.switchyard.tools.models.switchyard1_0.camel.CamelRemoteBindingType#isStepwise <em>Stepwise</em>}' attribute.
+     * Sets the value of the '{@link org.switchyard.tools.models.switchyard1_0.camel.CamelRemoteBindingType#getStepwise <em>Stepwise</em>}' attribute.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @param value the new value of the '<em>Stepwise</em>' attribute.
      * @see #isSetStepwise()
      * @see #unsetStepwise()
-     * @see #isStepwise()
+     * @see #getStepwise()
      * @generated
      */
-    void setStepwise(boolean value);
+    void setStepwise(Boolean value);
 
     /**
-     * Unsets the value of the '{@link org.switchyard.tools.models.switchyard1_0.camel.CamelRemoteBindingType#isStepwise <em>Stepwise</em>}' attribute.
+     * Unsets the value of the '{@link org.switchyard.tools.models.switchyard1_0.camel.CamelRemoteBindingType#getStepwise <em>Stepwise</em>}' attribute.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @see #isSetStepwise()
-     * @see #isStepwise()
-     * @see #setStepwise(boolean)
+     * @see #getStepwise()
+     * @see #setStepwise(Boolean)
      * @generated
      */
     void unsetStepwise();
 
     /**
-     * Returns whether the value of the '{@link org.switchyard.tools.models.switchyard1_0.camel.CamelRemoteBindingType#isStepwise <em>Stepwise</em>}' attribute is set.
+     * Returns whether the value of the '{@link org.switchyard.tools.models.switchyard1_0.camel.CamelRemoteBindingType#getStepwise <em>Stepwise</em>}' attribute is set.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @return whether the value of the '<em>Stepwise</em>' attribute is set.
      * @see #unsetStepwise()
-     * @see #isStepwise()
-     * @see #setStepwise(boolean)
+     * @see #getStepwise()
+     * @see #setStepwise(Boolean)
      * @generated
      */
     boolean isSetStepwise();
@@ -535,45 +535,45 @@ public interface CamelRemoteBindingType extends GenericFileBindingType {
      * @return the value of the '<em>Throw Exception On Connect Failed</em>' attribute.
      * @see #isSetThrowExceptionOnConnectFailed()
      * @see #unsetThrowExceptionOnConnectFailed()
-     * @see #setThrowExceptionOnConnectFailed(boolean)
+     * @see #setThrowExceptionOnConnectFailed(Boolean)
      * @see org.switchyard.tools.models.switchyard1_0.camel.CamelPackage#getCamelRemoteBindingType_ThrowExceptionOnConnectFailed()
-     * @model unsettable="true" dataType="org.eclipse.emf.ecore.xml.type.Boolean"
+     * @model unsettable="true" dataType="org.eclipse.emf.ecore.xml.type.BooleanObject"
      *        extendedMetaData="kind='element' name='throwExceptionOnConnectFailed' namespace='##targetNamespace'"
      * @generated
      */
-    boolean isThrowExceptionOnConnectFailed();
+    Boolean getThrowExceptionOnConnectFailed();
 
     /**
-     * Sets the value of the '{@link org.switchyard.tools.models.switchyard1_0.camel.CamelRemoteBindingType#isThrowExceptionOnConnectFailed <em>Throw Exception On Connect Failed</em>}' attribute.
+     * Sets the value of the '{@link org.switchyard.tools.models.switchyard1_0.camel.CamelRemoteBindingType#getThrowExceptionOnConnectFailed <em>Throw Exception On Connect Failed</em>}' attribute.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @param value the new value of the '<em>Throw Exception On Connect Failed</em>' attribute.
      * @see #isSetThrowExceptionOnConnectFailed()
      * @see #unsetThrowExceptionOnConnectFailed()
-     * @see #isThrowExceptionOnConnectFailed()
+     * @see #getThrowExceptionOnConnectFailed()
      * @generated
      */
-    void setThrowExceptionOnConnectFailed(boolean value);
+    void setThrowExceptionOnConnectFailed(Boolean value);
 
     /**
-     * Unsets the value of the '{@link org.switchyard.tools.models.switchyard1_0.camel.CamelRemoteBindingType#isThrowExceptionOnConnectFailed <em>Throw Exception On Connect Failed</em>}' attribute.
+     * Unsets the value of the '{@link org.switchyard.tools.models.switchyard1_0.camel.CamelRemoteBindingType#getThrowExceptionOnConnectFailed <em>Throw Exception On Connect Failed</em>}' attribute.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @see #isSetThrowExceptionOnConnectFailed()
-     * @see #isThrowExceptionOnConnectFailed()
-     * @see #setThrowExceptionOnConnectFailed(boolean)
+     * @see #getThrowExceptionOnConnectFailed()
+     * @see #setThrowExceptionOnConnectFailed(Boolean)
      * @generated
      */
     void unsetThrowExceptionOnConnectFailed();
 
     /**
-     * Returns whether the value of the '{@link org.switchyard.tools.models.switchyard1_0.camel.CamelRemoteBindingType#isThrowExceptionOnConnectFailed <em>Throw Exception On Connect Failed</em>}' attribute is set.
+     * Returns whether the value of the '{@link org.switchyard.tools.models.switchyard1_0.camel.CamelRemoteBindingType#getThrowExceptionOnConnectFailed <em>Throw Exception On Connect Failed</em>}' attribute is set.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @return whether the value of the '<em>Throw Exception On Connect Failed</em>' attribute is set.
      * @see #unsetThrowExceptionOnConnectFailed()
-     * @see #isThrowExceptionOnConnectFailed()
-     * @see #setThrowExceptionOnConnectFailed(boolean)
+     * @see #getThrowExceptionOnConnectFailed()
+     * @see #setThrowExceptionOnConnectFailed(Boolean)
      * @generated
      */
     boolean isSetThrowExceptionOnConnectFailed();

@@ -83,7 +83,12 @@
               indented="true"
               label="Security Policy">
         </propertyTab>
-	    </propertyTabs>
+<!--       <propertyTab
+            afterTab="switchyard.advanced.tab"
+            category="SwitchyardSCA"
+               id="switchyard.advanced.tab"
+            label="Advanced"/> -->
+  	    </propertyTabs>
 	</extension>
 	 
 	<extension
@@ -141,6 +146,12 @@
                filter="org.switchyard.tools.ui.editor.property.SecurityPolicyPropertyFilter"
                id="switchyard.security.policy.tab.details"
                tab="switchyard.security.policy.tab">
+         </propertySection>
+        <propertySection
+               class="org.switchyard.tools.ui.editor.property.SwitchyardAdvancedPropertySection"
+               id="switchyard.advanced.section"
+               filter="org.switchyard.tools.ui.editor.property.SwitchyardSCAPropertiesMainFilter"
+               tab="switchyard.advanced.tab">
          </propertySection>
 	    </propertySections>
 	</extension>

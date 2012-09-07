@@ -6219,11 +6219,11 @@ public interface CamelPackage extends EPackage {
     EClass getCamelFtpBindingType();
 
     /**
-     * Returns the meta object for the attribute '{@link org.switchyard.tools.models.switchyard1_0.camel.CamelFtpBindingType#isPassiveMode <em>Passive Mode</em>}'.
+     * Returns the meta object for the attribute '{@link org.switchyard.tools.models.switchyard1_0.camel.CamelFtpBindingType#getPassiveMode <em>Passive Mode</em>}'.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @return the meta object for the attribute '<em>Passive Mode</em>'.
-     * @see org.switchyard.tools.models.switchyard1_0.camel.CamelFtpBindingType#isPassiveMode()
+     * @see org.switchyard.tools.models.switchyard1_0.camel.CamelFtpBindingType#getPassiveMode()
      * @see #getCamelFtpBindingType()
      * @generated
      */
@@ -6480,33 +6480,33 @@ public interface CamelPackage extends EPackage {
     EAttribute getCamelJmsBindingType_MaxConcurrentConsumers();
 
     /**
-     * Returns the meta object for the attribute '{@link org.switchyard.tools.models.switchyard1_0.camel.CamelJmsBindingType#isDisableReplyTo <em>Disable Reply To</em>}'.
+     * Returns the meta object for the attribute '{@link org.switchyard.tools.models.switchyard1_0.camel.CamelJmsBindingType#getDisableReplyTo <em>Disable Reply To</em>}'.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @return the meta object for the attribute '<em>Disable Reply To</em>'.
-     * @see org.switchyard.tools.models.switchyard1_0.camel.CamelJmsBindingType#isDisableReplyTo()
+     * @see org.switchyard.tools.models.switchyard1_0.camel.CamelJmsBindingType#getDisableReplyTo()
      * @see #getCamelJmsBindingType()
      * @generated
      */
     EAttribute getCamelJmsBindingType_DisableReplyTo();
 
     /**
-     * Returns the meta object for the attribute '{@link org.switchyard.tools.models.switchyard1_0.camel.CamelJmsBindingType#isPreserveMessageQos <em>Preserve Message Qos</em>}'.
+     * Returns the meta object for the attribute '{@link org.switchyard.tools.models.switchyard1_0.camel.CamelJmsBindingType#getPreserveMessageQos <em>Preserve Message Qos</em>}'.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @return the meta object for the attribute '<em>Preserve Message Qos</em>'.
-     * @see org.switchyard.tools.models.switchyard1_0.camel.CamelJmsBindingType#isPreserveMessageQos()
+     * @see org.switchyard.tools.models.switchyard1_0.camel.CamelJmsBindingType#getPreserveMessageQos()
      * @see #getCamelJmsBindingType()
      * @generated
      */
     EAttribute getCamelJmsBindingType_PreserveMessageQos();
 
     /**
-     * Returns the meta object for the attribute '{@link org.switchyard.tools.models.switchyard1_0.camel.CamelJmsBindingType#isDeliveryPersistent <em>Delivery Persistent</em>}'.
+     * Returns the meta object for the attribute '{@link org.switchyard.tools.models.switchyard1_0.camel.CamelJmsBindingType#getDeliveryPersistent <em>Delivery Persistent</em>}'.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @return the meta object for the attribute '<em>Delivery Persistent</em>'.
-     * @see org.switchyard.tools.models.switchyard1_0.camel.CamelJmsBindingType#isDeliveryPersistent()
+     * @see org.switchyard.tools.models.switchyard1_0.camel.CamelJmsBindingType#getDeliveryPersistent()
      * @see #getCamelJmsBindingType()
      * @generated
      */
@@ -6524,11 +6524,11 @@ public interface CamelPackage extends EPackage {
     EAttribute getCamelJmsBindingType_Priority();
 
     /**
-     * Returns the meta object for the attribute '{@link org.switchyard.tools.models.switchyard1_0.camel.CamelJmsBindingType#isExplicitQosEnabled <em>Explicit Qos Enabled</em>}'.
+     * Returns the meta object for the attribute '{@link org.switchyard.tools.models.switchyard1_0.camel.CamelJmsBindingType#getExplicitQosEnabled <em>Explicit Qos Enabled</em>}'.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @return the meta object for the attribute '<em>Explicit Qos Enabled</em>'.
-     * @see org.switchyard.tools.models.switchyard1_0.camel.CamelJmsBindingType#isExplicitQosEnabled()
+     * @see org.switchyard.tools.models.switchyard1_0.camel.CamelJmsBindingType#getExplicitQosEnabled()
      * @see #getCamelJmsBindingType()
      * @generated
      */
@@ -6666,11 +6666,11 @@ public interface CamelPackage extends EPackage {
     EAttribute getCamelNettyBindingType_SendBufferSize();
 
     /**
-     * Returns the meta object for the attribute '{@link org.switchyard.tools.models.switchyard1_0.camel.CamelNettyBindingType#isReuseAddress <em>Reuse Address</em>}'.
+     * Returns the meta object for the attribute '{@link org.switchyard.tools.models.switchyard1_0.camel.CamelNettyBindingType#getReuseAddress <em>Reuse Address</em>}'.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @return the meta object for the attribute '<em>Reuse Address</em>'.
-     * @see org.switchyard.tools.models.switchyard1_0.camel.CamelNettyBindingType#isReuseAddress()
+     * @see org.switchyard.tools.models.switchyard1_0.camel.CamelNettyBindingType#getReuseAddress()
      * @see #getCamelNettyBindingType()
      * @generated
      */
@@ -6699,11 +6699,11 @@ public interface CamelPackage extends EPackage {
     EAttribute getCamelNettyBindingType_Decoders();
 
     /**
-     * Returns the meta object for the attribute '{@link org.switchyard.tools.models.switchyard1_0.camel.CamelNettyBindingType#isAllowDefaultCodec <em>Allow Default Codec</em>}'.
+     * Returns the meta object for the attribute '{@link org.switchyard.tools.models.switchyard1_0.camel.CamelNettyBindingType#getAllowDefaultCodec <em>Allow Default Codec</em>}'.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @return the meta object for the attribute '<em>Allow Default Codec</em>'.
-     * @see org.switchyard.tools.models.switchyard1_0.camel.CamelNettyBindingType#isAllowDefaultCodec()
+     * @see org.switchyard.tools.models.switchyard1_0.camel.CamelNettyBindingType#getAllowDefaultCodec()
      * @see #getCamelNettyBindingType()
      * @generated
      */
@@ -6732,11 +6732,11 @@ public interface CamelPackage extends EPackage {
     EAttribute getCamelNettyBindingType_Sync();
 
     /**
-     * Returns the meta object for the attribute '{@link org.switchyard.tools.models.switchyard1_0.camel.CamelNettyBindingType#isDisconnect <em>Disconnect</em>}'.
+     * Returns the meta object for the attribute '{@link org.switchyard.tools.models.switchyard1_0.camel.CamelNettyBindingType#getDisconnect <em>Disconnect</em>}'.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @return the meta object for the attribute '<em>Disconnect</em>'.
-     * @see org.switchyard.tools.models.switchyard1_0.camel.CamelNettyBindingType#isDisconnect()
+     * @see org.switchyard.tools.models.switchyard1_0.camel.CamelNettyBindingType#getDisconnect()
      * @see #getCamelNettyBindingType()
      * @generated
      */
@@ -6774,22 +6774,22 @@ public interface CamelPackage extends EPackage {
     EClass getCamelNettyTcpBindingType();
 
     /**
-     * Returns the meta object for the attribute '{@link org.switchyard.tools.models.switchyard1_0.camel.CamelNettyTcpBindingType#isTextline <em>Textline</em>}'.
+     * Returns the meta object for the attribute '{@link org.switchyard.tools.models.switchyard1_0.camel.CamelNettyTcpBindingType#getTextline <em>Textline</em>}'.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @return the meta object for the attribute '<em>Textline</em>'.
-     * @see org.switchyard.tools.models.switchyard1_0.camel.CamelNettyTcpBindingType#isTextline()
+     * @see org.switchyard.tools.models.switchyard1_0.camel.CamelNettyTcpBindingType#getTextline()
      * @see #getCamelNettyTcpBindingType()
      * @generated
      */
     EAttribute getCamelNettyTcpBindingType_Textline();
 
     /**
-     * Returns the meta object for the attribute '{@link org.switchyard.tools.models.switchyard1_0.camel.CamelNettyTcpBindingType#isTcpNoDelay <em>Tcp No Delay</em>}'.
+     * Returns the meta object for the attribute '{@link org.switchyard.tools.models.switchyard1_0.camel.CamelNettyTcpBindingType#getTcpNoDelay <em>Tcp No Delay</em>}'.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @return the meta object for the attribute '<em>Tcp No Delay</em>'.
-     * @see org.switchyard.tools.models.switchyard1_0.camel.CamelNettyTcpBindingType#isTcpNoDelay()
+     * @see org.switchyard.tools.models.switchyard1_0.camel.CamelNettyTcpBindingType#getTcpNoDelay()
      * @see #getCamelNettyTcpBindingType()
      * @generated
      */
@@ -7383,11 +7383,11 @@ public interface CamelPackage extends EPackage {
     EAttribute getCamelRemoteBindingType_ConnectTimeout();
 
     /**
-     * Returns the meta object for the attribute '{@link org.switchyard.tools.models.switchyard1_0.camel.CamelRemoteBindingType#isDisconnect <em>Disconnect</em>}'.
+     * Returns the meta object for the attribute '{@link org.switchyard.tools.models.switchyard1_0.camel.CamelRemoteBindingType#getDisconnect <em>Disconnect</em>}'.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @return the meta object for the attribute '<em>Disconnect</em>'.
-     * @see org.switchyard.tools.models.switchyard1_0.camel.CamelRemoteBindingType#isDisconnect()
+     * @see org.switchyard.tools.models.switchyard1_0.camel.CamelRemoteBindingType#getDisconnect()
      * @see #getCamelRemoteBindingType()
      * @generated
      */
@@ -7427,22 +7427,22 @@ public interface CamelPackage extends EPackage {
     EAttribute getCamelRemoteBindingType_Separator();
 
     /**
-     * Returns the meta object for the attribute '{@link org.switchyard.tools.models.switchyard1_0.camel.CamelRemoteBindingType#isStepwise <em>Stepwise</em>}'.
+     * Returns the meta object for the attribute '{@link org.switchyard.tools.models.switchyard1_0.camel.CamelRemoteBindingType#getStepwise <em>Stepwise</em>}'.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @return the meta object for the attribute '<em>Stepwise</em>'.
-     * @see org.switchyard.tools.models.switchyard1_0.camel.CamelRemoteBindingType#isStepwise()
+     * @see org.switchyard.tools.models.switchyard1_0.camel.CamelRemoteBindingType#getStepwise()
      * @see #getCamelRemoteBindingType()
      * @generated
      */
     EAttribute getCamelRemoteBindingType_Stepwise();
 
     /**
-     * Returns the meta object for the attribute '{@link org.switchyard.tools.models.switchyard1_0.camel.CamelRemoteBindingType#isThrowExceptionOnConnectFailed <em>Throw Exception On Connect Failed</em>}'.
+     * Returns the meta object for the attribute '{@link org.switchyard.tools.models.switchyard1_0.camel.CamelRemoteBindingType#getThrowExceptionOnConnectFailed <em>Throw Exception On Connect Failed</em>}'.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @return the meta object for the attribute '<em>Throw Exception On Connect Failed</em>'.
-     * @see org.switchyard.tools.models.switchyard1_0.camel.CamelRemoteBindingType#isThrowExceptionOnConnectFailed()
+     * @see org.switchyard.tools.models.switchyard1_0.camel.CamelRemoteBindingType#getThrowExceptionOnConnectFailed()
      * @see #getCamelRemoteBindingType()
      * @generated
      */
@@ -7652,11 +7652,11 @@ public interface CamelPackage extends EPackage {
     EAttribute getGenericFileBindingType_FileName();
 
     /**
-     * Returns the meta object for the attribute '{@link org.switchyard.tools.models.switchyard1_0.camel.GenericFileBindingType#isFlatten <em>Flatten</em>}'.
+     * Returns the meta object for the attribute '{@link org.switchyard.tools.models.switchyard1_0.camel.GenericFileBindingType#getFlatten <em>Flatten</em>}'.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @return the meta object for the attribute '<em>Flatten</em>'.
-     * @see org.switchyard.tools.models.switchyard1_0.camel.GenericFileBindingType#isFlatten()
+     * @see org.switchyard.tools.models.switchyard1_0.camel.GenericFileBindingType#getFlatten()
      * @see #getGenericFileBindingType()
      * @generated
      */
@@ -7705,33 +7705,33 @@ public interface CamelPackage extends EPackage {
     EClass getGenericFileConsumerType();
 
     /**
-     * Returns the meta object for the attribute '{@link org.switchyard.tools.models.switchyard1_0.camel.GenericFileConsumerType#isDelete <em>Delete</em>}'.
+     * Returns the meta object for the attribute '{@link org.switchyard.tools.models.switchyard1_0.camel.GenericFileConsumerType#getDelete <em>Delete</em>}'.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @return the meta object for the attribute '<em>Delete</em>'.
-     * @see org.switchyard.tools.models.switchyard1_0.camel.GenericFileConsumerType#isDelete()
+     * @see org.switchyard.tools.models.switchyard1_0.camel.GenericFileConsumerType#getDelete()
      * @see #getGenericFileConsumerType()
      * @generated
      */
     EAttribute getGenericFileConsumerType_Delete();
 
     /**
-     * Returns the meta object for the attribute '{@link org.switchyard.tools.models.switchyard1_0.camel.GenericFileConsumerType#isRecursive <em>Recursive</em>}'.
+     * Returns the meta object for the attribute '{@link org.switchyard.tools.models.switchyard1_0.camel.GenericFileConsumerType#getRecursive <em>Recursive</em>}'.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @return the meta object for the attribute '<em>Recursive</em>'.
-     * @see org.switchyard.tools.models.switchyard1_0.camel.GenericFileConsumerType#isRecursive()
+     * @see org.switchyard.tools.models.switchyard1_0.camel.GenericFileConsumerType#getRecursive()
      * @see #getGenericFileConsumerType()
      * @generated
      */
     EAttribute getGenericFileConsumerType_Recursive();
 
     /**
-     * Returns the meta object for the attribute '{@link org.switchyard.tools.models.switchyard1_0.camel.GenericFileConsumerType#isNoop <em>Noop</em>}'.
+     * Returns the meta object for the attribute '{@link org.switchyard.tools.models.switchyard1_0.camel.GenericFileConsumerType#getNoop <em>Noop</em>}'.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @return the meta object for the attribute '<em>Noop</em>'.
-     * @see org.switchyard.tools.models.switchyard1_0.camel.GenericFileConsumerType#isNoop()
+     * @see org.switchyard.tools.models.switchyard1_0.camel.GenericFileConsumerType#getNoop()
      * @see #getGenericFileConsumerType()
      * @generated
      */
@@ -7793,11 +7793,11 @@ public interface CamelPackage extends EPackage {
     EAttribute getGenericFileConsumerType_Exclude();
 
     /**
-     * Returns the meta object for the attribute '{@link org.switchyard.tools.models.switchyard1_0.camel.GenericFileConsumerType#isIdempotent <em>Idempotent</em>}'.
+     * Returns the meta object for the attribute '{@link org.switchyard.tools.models.switchyard1_0.camel.GenericFileConsumerType#getIdempotent <em>Idempotent</em>}'.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @return the meta object for the attribute '<em>Idempotent</em>'.
-     * @see org.switchyard.tools.models.switchyard1_0.camel.GenericFileConsumerType#isIdempotent()
+     * @see org.switchyard.tools.models.switchyard1_0.camel.GenericFileConsumerType#getIdempotent()
      * @see #getGenericFileConsumerType()
      * @generated
      */
@@ -7914,22 +7914,22 @@ public interface CamelPackage extends EPackage {
     EAttribute getGenericFileConsumerType_ProcessStrategy();
 
     /**
-     * Returns the meta object for the attribute '{@link org.switchyard.tools.models.switchyard1_0.camel.GenericFileConsumerType#isStartingDirectoryMustExist <em>Starting Directory Must Exist</em>}'.
+     * Returns the meta object for the attribute '{@link org.switchyard.tools.models.switchyard1_0.camel.GenericFileConsumerType#getStartingDirectoryMustExist <em>Starting Directory Must Exist</em>}'.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @return the meta object for the attribute '<em>Starting Directory Must Exist</em>'.
-     * @see org.switchyard.tools.models.switchyard1_0.camel.GenericFileConsumerType#isStartingDirectoryMustExist()
+     * @see org.switchyard.tools.models.switchyard1_0.camel.GenericFileConsumerType#getStartingDirectoryMustExist()
      * @see #getGenericFileConsumerType()
      * @generated
      */
     EAttribute getGenericFileConsumerType_StartingDirectoryMustExist();
 
     /**
-     * Returns the meta object for the attribute '{@link org.switchyard.tools.models.switchyard1_0.camel.GenericFileConsumerType#isDirectoryMustExist <em>Directory Must Exist</em>}'.
+     * Returns the meta object for the attribute '{@link org.switchyard.tools.models.switchyard1_0.camel.GenericFileConsumerType#getDirectoryMustExist <em>Directory Must Exist</em>}'.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @return the meta object for the attribute '<em>Directory Must Exist</em>'.
-     * @see org.switchyard.tools.models.switchyard1_0.camel.GenericFileConsumerType#isDirectoryMustExist()
+     * @see org.switchyard.tools.models.switchyard1_0.camel.GenericFileConsumerType#getDirectoryMustExist()
      * @see #getGenericFileConsumerType()
      * @generated
      */
@@ -7990,22 +7990,22 @@ public interface CamelPackage extends EPackage {
     EAttribute getGenericFileProducerType_TempFileName();
 
     /**
-     * Returns the meta object for the attribute '{@link org.switchyard.tools.models.switchyard1_0.camel.GenericFileProducerType#isKeepLastModified <em>Keep Last Modified</em>}'.
+     * Returns the meta object for the attribute '{@link org.switchyard.tools.models.switchyard1_0.camel.GenericFileProducerType#getKeepLastModified <em>Keep Last Modified</em>}'.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @return the meta object for the attribute '<em>Keep Last Modified</em>'.
-     * @see org.switchyard.tools.models.switchyard1_0.camel.GenericFileProducerType#isKeepLastModified()
+     * @see org.switchyard.tools.models.switchyard1_0.camel.GenericFileProducerType#getKeepLastModified()
      * @see #getGenericFileProducerType()
      * @generated
      */
     EAttribute getGenericFileProducerType_KeepLastModified();
 
     /**
-     * Returns the meta object for the attribute '{@link org.switchyard.tools.models.switchyard1_0.camel.GenericFileProducerType#isEagerDeleteTargetFile <em>Eager Delete Target File</em>}'.
+     * Returns the meta object for the attribute '{@link org.switchyard.tools.models.switchyard1_0.camel.GenericFileProducerType#getEagerDeleteTargetFile <em>Eager Delete Target File</em>}'.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @return the meta object for the attribute '<em>Eager Delete Target File</em>'.
-     * @see org.switchyard.tools.models.switchyard1_0.camel.GenericFileProducerType#isEagerDeleteTargetFile()
+     * @see org.switchyard.tools.models.switchyard1_0.camel.GenericFileProducerType#getEagerDeleteTargetFile()
      * @see #getGenericFileProducerType()
      * @generated
      */
@@ -8075,11 +8075,11 @@ public interface CamelPackage extends EPackage {
     EAttribute getCamelQuartzBindingType_Cron();
 
     /**
-     * Returns the meta object for the attribute '{@link org.switchyard.tools.models.switchyard1_0.camel.CamelQuartzBindingType#isStateful <em>Stateful</em>}'.
+     * Returns the meta object for the attribute '{@link org.switchyard.tools.models.switchyard1_0.camel.CamelQuartzBindingType#getStateful <em>Stateful</em>}'.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @return the meta object for the attribute '<em>Stateful</em>'.
-     * @see org.switchyard.tools.models.switchyard1_0.camel.CamelQuartzBindingType#isStateful()
+     * @see org.switchyard.tools.models.switchyard1_0.camel.CamelQuartzBindingType#getStateful()
      * @see #getCamelQuartzBindingType()
      * @generated
      */

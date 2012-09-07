@@ -13,6 +13,7 @@
 package org.switchyard.tools.ui.editor.components.jca;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import javax.swing.event.ChangeEvent;
 import javax.swing.event.ChangeListener;
@@ -70,6 +71,7 @@ public class JCABindingInboundComposite extends AbstractSYBindingComposite {
     private Button _transactedButton;
     private Combo _operationSelectionCombo;
     private TabFolder _tabFolder;
+    private List<String> _advancedPropsFilterList;
 
     private enum ENDPOINT_MAPPING_TYPE {
         JMSENDPOINT, CCIENDPOINT
@@ -471,5 +473,10 @@ public class JCABindingInboundComposite extends AbstractSYBindingComposite {
                 }
             }
         }
+    }
+
+    @Override
+    protected List<String> getAdvancedPropertiesFilterList() {
+        return _advancedPropsFilterList;
     }
 }

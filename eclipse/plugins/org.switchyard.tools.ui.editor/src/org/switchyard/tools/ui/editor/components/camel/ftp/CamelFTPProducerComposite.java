@@ -13,6 +13,7 @@
 package org.switchyard.tools.ui.editor.components.camel.ftp;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import org.eclipse.soa.sca.sca1_1.model.sca.Binding;
 import org.eclipse.swt.SWT;
@@ -50,6 +51,7 @@ public class CamelFTPProducerComposite extends AbstractSYBindingComposite {
     private Text _fileExistText;
     private Text _tempPrefixText;
     private TabFolder _tabFolder;
+    private List<String> _advancedPropsFilterList;
 
     @Override
     public Binding getBinding() {
@@ -251,6 +253,32 @@ public class CamelFTPProducerComposite extends AbstractSYBindingComposite {
             }
         }
         setHasChanged(false);
+    }
+
+    @Override
+    protected List<String> getAdvancedPropertiesFilterList() {
+        if (_advancedPropsFilterList == null) {
+            _advancedPropsFilterList = new ArrayList<String>();
+            _advancedPropsFilterList.add("passiveMode");
+            _advancedPropsFilterList.add("timeout");
+            _advancedPropsFilterList.add("soTimeout");
+            _advancedPropsFilterList.add("siteCommand");
+            _advancedPropsFilterList.add("connectTimeout");
+            _advancedPropsFilterList.add("disconnect");
+            _advancedPropsFilterList.add("maximumReconnectAttempts");
+            _advancedPropsFilterList.add("reconnectDelay");
+            _advancedPropsFilterList.add("separator");
+            _advancedPropsFilterList.add("stepWise");
+            _advancedPropsFilterList.add("throwExceptionOnConnectFailed");
+
+            _advancedPropsFilterList.add("fileExist");
+            _advancedPropsFilterList.add("tempPrefix");
+            _advancedPropsFilterList.add("tempFileName");
+            _advancedPropsFilterList.add("keepLastModified");
+            _advancedPropsFilterList.add("eagerDeleteTargetFile");
+            _advancedPropsFilterList.add("doneFileName");
+        }
+        return _advancedPropsFilterList;
     }
     
 }

@@ -27,7 +27,7 @@ import org.switchyard.tools.models.switchyard1_0.camel.CamelQuartzBindingType;
  * <ul>
  *   <li>{@link org.switchyard.tools.models.switchyard1_0.camel.impl.CamelQuartzBindingTypeImpl#getCamelBindingName <em>Camel Binding Name</em>}</li>
  *   <li>{@link org.switchyard.tools.models.switchyard1_0.camel.impl.CamelQuartzBindingTypeImpl#getCron <em>Cron</em>}</li>
- *   <li>{@link org.switchyard.tools.models.switchyard1_0.camel.impl.CamelQuartzBindingTypeImpl#isStateful <em>Stateful</em>}</li>
+ *   <li>{@link org.switchyard.tools.models.switchyard1_0.camel.impl.CamelQuartzBindingTypeImpl#getStateful <em>Stateful</em>}</li>
  *   <li>{@link org.switchyard.tools.models.switchyard1_0.camel.impl.CamelQuartzBindingTypeImpl#getStartTime <em>Start Time</em>}</li>
  *   <li>{@link org.switchyard.tools.models.switchyard1_0.camel.impl.CamelQuartzBindingTypeImpl#getEndTime <em>End Time</em>}</li>
  * </ul>
@@ -77,24 +77,33 @@ public class CamelQuartzBindingTypeImpl extends BaseCamelBindingImpl implements 
     protected String cron = CRON_EDEFAULT;
 
     /**
-     * The default value of the '{@link #isStateful() <em>Stateful</em>}' attribute.
+     * The default value of the '{@link #getStateful() <em>Stateful</em>}' attribute.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @see #isStateful()
+     * @see #getStateful()
      * @generated
      * @ordered
      */
-    protected static final boolean STATEFUL_EDEFAULT = false;
+    protected static final Boolean STATEFUL_EDEFAULT = null;
 
     /**
-     * The cached value of the '{@link #isStateful() <em>Stateful</em>}' attribute.
+     * The cached value of the '{@link #getStateful() <em>Stateful</em>}' attribute.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @see #isStateful()
+     * @see #getStateful()
      * @generated
      * @ordered
      */
-    protected boolean stateful = STATEFUL_EDEFAULT;
+    protected Boolean stateful = STATEFUL_EDEFAULT;
+
+    /**
+     * This is true if the Stateful attribute has been set.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    protected boolean statefulESet;
 
     /**
      * The default value of the '{@link #getStartTime() <em>Start Time</em>}' attribute.
@@ -202,7 +211,7 @@ public class CamelQuartzBindingTypeImpl extends BaseCamelBindingImpl implements 
      * <!-- end-user-doc -->
      * @generated
      */
-    public boolean isStateful() {
+    public Boolean getStateful() {
         return stateful;
     }
 
@@ -211,11 +220,36 @@ public class CamelQuartzBindingTypeImpl extends BaseCamelBindingImpl implements 
      * <!-- end-user-doc -->
      * @generated
      */
-    public void setStateful(boolean newStateful) {
-        boolean oldStateful = stateful;
+    public void setStateful(Boolean newStateful) {
+        Boolean oldStateful = stateful;
         stateful = newStateful;
+        boolean oldStatefulESet = statefulESet;
+        statefulESet = true;
         if (eNotificationRequired())
-            eNotify(new ENotificationImpl(this, Notification.SET, CamelPackage.CAMEL_QUARTZ_BINDING_TYPE__STATEFUL, oldStateful, stateful));
+            eNotify(new ENotificationImpl(this, Notification.SET, CamelPackage.CAMEL_QUARTZ_BINDING_TYPE__STATEFUL, oldStateful, stateful, !oldStatefulESet));
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public void unsetStateful() {
+        Boolean oldStateful = stateful;
+        boolean oldStatefulESet = statefulESet;
+        stateful = STATEFUL_EDEFAULT;
+        statefulESet = false;
+        if (eNotificationRequired())
+            eNotify(new ENotificationImpl(this, Notification.UNSET, CamelPackage.CAMEL_QUARTZ_BINDING_TYPE__STATEFUL, oldStateful, STATEFUL_EDEFAULT, oldStatefulESet));
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public boolean isSetStateful() {
+        return statefulESet;
     }
 
     /**
@@ -273,7 +307,7 @@ public class CamelQuartzBindingTypeImpl extends BaseCamelBindingImpl implements 
             case CamelPackage.CAMEL_QUARTZ_BINDING_TYPE__CRON:
                 return getCron();
             case CamelPackage.CAMEL_QUARTZ_BINDING_TYPE__STATEFUL:
-                return isStateful();
+                return getStateful();
             case CamelPackage.CAMEL_QUARTZ_BINDING_TYPE__START_TIME:
                 return getStartTime();
             case CamelPackage.CAMEL_QUARTZ_BINDING_TYPE__END_TIME:
@@ -324,7 +358,7 @@ public class CamelQuartzBindingTypeImpl extends BaseCamelBindingImpl implements 
                 setCron(CRON_EDEFAULT);
                 return;
             case CamelPackage.CAMEL_QUARTZ_BINDING_TYPE__STATEFUL:
-                setStateful(STATEFUL_EDEFAULT);
+                unsetStateful();
                 return;
             case CamelPackage.CAMEL_QUARTZ_BINDING_TYPE__START_TIME:
                 setStartTime(START_TIME_EDEFAULT);
@@ -349,7 +383,7 @@ public class CamelQuartzBindingTypeImpl extends BaseCamelBindingImpl implements 
             case CamelPackage.CAMEL_QUARTZ_BINDING_TYPE__CRON:
                 return CRON_EDEFAULT == null ? cron != null : !CRON_EDEFAULT.equals(cron);
             case CamelPackage.CAMEL_QUARTZ_BINDING_TYPE__STATEFUL:
-                return stateful != STATEFUL_EDEFAULT;
+                return isSetStateful();
             case CamelPackage.CAMEL_QUARTZ_BINDING_TYPE__START_TIME:
                 return START_TIME_EDEFAULT == null ? startTime != null : !START_TIME_EDEFAULT.equals(startTime);
             case CamelPackage.CAMEL_QUARTZ_BINDING_TYPE__END_TIME:
@@ -373,7 +407,7 @@ public class CamelQuartzBindingTypeImpl extends BaseCamelBindingImpl implements 
         result.append(", cron: ");
         result.append(cron);
         result.append(", stateful: ");
-        result.append(stateful);
+        if (statefulESet) result.append(stateful); else result.append("<unset>");
         result.append(", startTime: ");
         result.append(startTime);
         result.append(", endTime: ");

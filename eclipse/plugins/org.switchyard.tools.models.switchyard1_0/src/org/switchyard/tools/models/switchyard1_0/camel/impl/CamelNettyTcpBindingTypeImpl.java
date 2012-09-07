@@ -23,8 +23,8 @@ import org.switchyard.tools.models.switchyard1_0.camel.CamelPackage;
  * <p>
  * The following features are implemented:
  * <ul>
- *   <li>{@link org.switchyard.tools.models.switchyard1_0.camel.impl.CamelNettyTcpBindingTypeImpl#isTextline <em>Textline</em>}</li>
- *   <li>{@link org.switchyard.tools.models.switchyard1_0.camel.impl.CamelNettyTcpBindingTypeImpl#isTcpNoDelay <em>Tcp No Delay</em>}</li>
+ *   <li>{@link org.switchyard.tools.models.switchyard1_0.camel.impl.CamelNettyTcpBindingTypeImpl#getTextline <em>Textline</em>}</li>
+ *   <li>{@link org.switchyard.tools.models.switchyard1_0.camel.impl.CamelNettyTcpBindingTypeImpl#getTcpNoDelay <em>Tcp No Delay</em>}</li>
  *   <li>{@link org.switchyard.tools.models.switchyard1_0.camel.impl.CamelNettyTcpBindingTypeImpl#isKeepAlive <em>Keep Alive</em>}</li>
  * </ul>
  * </p>
@@ -33,44 +33,44 @@ import org.switchyard.tools.models.switchyard1_0.camel.CamelPackage;
  */
 public class CamelNettyTcpBindingTypeImpl extends CamelNettyBindingTypeImpl implements CamelNettyTcpBindingType {
     /**
-     * The default value of the '{@link #isTextline() <em>Textline</em>}' attribute.
+     * The default value of the '{@link #getTextline() <em>Textline</em>}' attribute.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @see #isTextline()
+     * @see #getTextline()
      * @generated
      * @ordered
      */
-    protected static final boolean TEXTLINE_EDEFAULT = false;
+    protected static final Boolean TEXTLINE_EDEFAULT = null;
 
     /**
-     * The cached value of the '{@link #isTextline() <em>Textline</em>}' attribute.
+     * The cached value of the '{@link #getTextline() <em>Textline</em>}' attribute.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @see #isTextline()
+     * @see #getTextline()
      * @generated
      * @ordered
      */
-    protected boolean textline = TEXTLINE_EDEFAULT;
+    protected Boolean textline = TEXTLINE_EDEFAULT;
 
     /**
-     * The default value of the '{@link #isTcpNoDelay() <em>Tcp No Delay</em>}' attribute.
+     * The default value of the '{@link #getTcpNoDelay() <em>Tcp No Delay</em>}' attribute.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @see #isTcpNoDelay()
+     * @see #getTcpNoDelay()
      * @generated
      * @ordered
      */
-    protected static final boolean TCP_NO_DELAY_EDEFAULT = false;
+    protected static final Boolean TCP_NO_DELAY_EDEFAULT = null;
 
     /**
-     * The cached value of the '{@link #isTcpNoDelay() <em>Tcp No Delay</em>}' attribute.
+     * The cached value of the '{@link #getTcpNoDelay() <em>Tcp No Delay</em>}' attribute.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @see #isTcpNoDelay()
+     * @see #getTcpNoDelay()
      * @generated
      * @ordered
      */
-    protected boolean tcpNoDelay = TCP_NO_DELAY_EDEFAULT;
+    protected Boolean tcpNoDelay = TCP_NO_DELAY_EDEFAULT;
 
     /**
      * The default value of the '{@link #isKeepAlive() <em>Keep Alive</em>}' attribute.
@@ -116,7 +116,7 @@ public class CamelNettyTcpBindingTypeImpl extends CamelNettyBindingTypeImpl impl
      * <!-- end-user-doc -->
      * @generated
      */
-    public boolean isTextline() {
+    public Boolean getTextline() {
         return textline;
     }
 
@@ -125,8 +125,8 @@ public class CamelNettyTcpBindingTypeImpl extends CamelNettyBindingTypeImpl impl
      * <!-- end-user-doc -->
      * @generated
      */
-    public void setTextline(boolean newTextline) {
-        boolean oldTextline = textline;
+    public void setTextline(Boolean newTextline) {
+        Boolean oldTextline = textline;
         textline = newTextline;
         if (eNotificationRequired())
             eNotify(new ENotificationImpl(this, Notification.SET, CamelPackage.CAMEL_NETTY_TCP_BINDING_TYPE__TEXTLINE, oldTextline, textline));
@@ -137,7 +137,7 @@ public class CamelNettyTcpBindingTypeImpl extends CamelNettyBindingTypeImpl impl
      * <!-- end-user-doc -->
      * @generated
      */
-    public boolean isTcpNoDelay() {
+    public Boolean getTcpNoDelay() {
         return tcpNoDelay;
     }
 
@@ -146,8 +146,8 @@ public class CamelNettyTcpBindingTypeImpl extends CamelNettyBindingTypeImpl impl
      * <!-- end-user-doc -->
      * @generated
      */
-    public void setTcpNoDelay(boolean newTcpNoDelay) {
-        boolean oldTcpNoDelay = tcpNoDelay;
+    public void setTcpNoDelay(Boolean newTcpNoDelay) {
+        Boolean oldTcpNoDelay = tcpNoDelay;
         tcpNoDelay = newTcpNoDelay;
         if (eNotificationRequired())
             eNotify(new ENotificationImpl(this, Notification.SET, CamelPackage.CAMEL_NETTY_TCP_BINDING_TYPE__TCP_NO_DELAY, oldTcpNoDelay, tcpNoDelay));
@@ -183,9 +183,9 @@ public class CamelNettyTcpBindingTypeImpl extends CamelNettyBindingTypeImpl impl
     public Object eGet(int featureID, boolean resolve, boolean coreType) {
         switch (featureID) {
             case CamelPackage.CAMEL_NETTY_TCP_BINDING_TYPE__TEXTLINE:
-                return isTextline();
+                return getTextline();
             case CamelPackage.CAMEL_NETTY_TCP_BINDING_TYPE__TCP_NO_DELAY:
-                return isTcpNoDelay();
+                return getTcpNoDelay();
             case CamelPackage.CAMEL_NETTY_TCP_BINDING_TYPE__KEEP_ALIVE:
                 return isKeepAlive();
         }
@@ -243,9 +243,9 @@ public class CamelNettyTcpBindingTypeImpl extends CamelNettyBindingTypeImpl impl
     public boolean eIsSet(int featureID) {
         switch (featureID) {
             case CamelPackage.CAMEL_NETTY_TCP_BINDING_TYPE__TEXTLINE:
-                return textline != TEXTLINE_EDEFAULT;
+                return TEXTLINE_EDEFAULT == null ? textline != null : !TEXTLINE_EDEFAULT.equals(textline);
             case CamelPackage.CAMEL_NETTY_TCP_BINDING_TYPE__TCP_NO_DELAY:
-                return tcpNoDelay != TCP_NO_DELAY_EDEFAULT;
+                return TCP_NO_DELAY_EDEFAULT == null ? tcpNoDelay != null : !TCP_NO_DELAY_EDEFAULT.equals(tcpNoDelay);
             case CamelPackage.CAMEL_NETTY_TCP_BINDING_TYPE__KEEP_ALIVE:
                 return keepAlive != KEEP_ALIVE_EDEFAULT;
         }

@@ -23,7 +23,7 @@ import org.switchyard.tools.models.switchyard1_0.camel.CamelPackage;
  * <p>
  * The following features are implemented:
  * <ul>
- *   <li>{@link org.switchyard.tools.models.switchyard1_0.camel.impl.CamelFtpBindingTypeImpl#isPassiveMode <em>Passive Mode</em>}</li>
+ *   <li>{@link org.switchyard.tools.models.switchyard1_0.camel.impl.CamelFtpBindingTypeImpl#getPassiveMode <em>Passive Mode</em>}</li>
  *   <li>{@link org.switchyard.tools.models.switchyard1_0.camel.impl.CamelFtpBindingTypeImpl#getTimeout <em>Timeout</em>}</li>
  *   <li>{@link org.switchyard.tools.models.switchyard1_0.camel.impl.CamelFtpBindingTypeImpl#getSoTimeout <em>So Timeout</em>}</li>
  *   <li>{@link org.switchyard.tools.models.switchyard1_0.camel.impl.CamelFtpBindingTypeImpl#getSiteCommand <em>Site Command</em>}</li>
@@ -34,24 +34,24 @@ import org.switchyard.tools.models.switchyard1_0.camel.CamelPackage;
  */
 public class CamelFtpBindingTypeImpl extends CamelRemoteBindingTypeImpl implements CamelFtpBindingType {
     /**
-     * The default value of the '{@link #isPassiveMode() <em>Passive Mode</em>}' attribute.
+     * The default value of the '{@link #getPassiveMode() <em>Passive Mode</em>}' attribute.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @see #isPassiveMode()
+     * @see #getPassiveMode()
      * @generated
      * @ordered
      */
-    protected static final boolean PASSIVE_MODE_EDEFAULT = false;
+    protected static final Boolean PASSIVE_MODE_EDEFAULT = null;
 
     /**
-     * The cached value of the '{@link #isPassiveMode() <em>Passive Mode</em>}' attribute.
+     * The cached value of the '{@link #getPassiveMode() <em>Passive Mode</em>}' attribute.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @see #isPassiveMode()
+     * @see #getPassiveMode()
      * @generated
      * @ordered
      */
-    protected boolean passiveMode = PASSIVE_MODE_EDEFAULT;
+    protected Boolean passiveMode = PASSIVE_MODE_EDEFAULT;
 
     /**
      * This is true if the Passive Mode attribute has been set.
@@ -70,7 +70,7 @@ public class CamelFtpBindingTypeImpl extends CamelRemoteBindingTypeImpl implemen
      * @generated
      * @ordered
      */
-    protected static final int TIMEOUT_EDEFAULT = 0;
+    protected static final Integer TIMEOUT_EDEFAULT = null;
 
     /**
      * The cached value of the '{@link #getTimeout() <em>Timeout</em>}' attribute.
@@ -80,7 +80,7 @@ public class CamelFtpBindingTypeImpl extends CamelRemoteBindingTypeImpl implemen
      * @generated
      * @ordered
      */
-    protected int timeout = TIMEOUT_EDEFAULT;
+    protected Integer timeout = TIMEOUT_EDEFAULT;
 
     /**
      * This is true if the Timeout attribute has been set.
@@ -99,7 +99,7 @@ public class CamelFtpBindingTypeImpl extends CamelRemoteBindingTypeImpl implemen
      * @generated
      * @ordered
      */
-    protected static final int SO_TIMEOUT_EDEFAULT = 0;
+    protected static final Integer SO_TIMEOUT_EDEFAULT = null;
 
     /**
      * The cached value of the '{@link #getSoTimeout() <em>So Timeout</em>}' attribute.
@@ -109,7 +109,7 @@ public class CamelFtpBindingTypeImpl extends CamelRemoteBindingTypeImpl implemen
      * @generated
      * @ordered
      */
-    protected int soTimeout = SO_TIMEOUT_EDEFAULT;
+    protected Integer soTimeout = SO_TIMEOUT_EDEFAULT;
 
     /**
      * This is true if the So Timeout attribute has been set.
@@ -164,7 +164,7 @@ public class CamelFtpBindingTypeImpl extends CamelRemoteBindingTypeImpl implemen
      * <!-- end-user-doc -->
      * @generated
      */
-    public boolean isPassiveMode() {
+    public Boolean getPassiveMode() {
         return passiveMode;
     }
 
@@ -173,8 +173,8 @@ public class CamelFtpBindingTypeImpl extends CamelRemoteBindingTypeImpl implemen
      * <!-- end-user-doc -->
      * @generated
      */
-    public void setPassiveMode(boolean newPassiveMode) {
-        boolean oldPassiveMode = passiveMode;
+    public void setPassiveMode(Boolean newPassiveMode) {
+        Boolean oldPassiveMode = passiveMode;
         passiveMode = newPassiveMode;
         boolean oldPassiveModeESet = passiveModeESet;
         passiveModeESet = true;
@@ -188,7 +188,7 @@ public class CamelFtpBindingTypeImpl extends CamelRemoteBindingTypeImpl implemen
      * @generated
      */
     public void unsetPassiveMode() {
-        boolean oldPassiveMode = passiveMode;
+        Boolean oldPassiveMode = passiveMode;
         boolean oldPassiveModeESet = passiveModeESet;
         passiveMode = PASSIVE_MODE_EDEFAULT;
         passiveModeESet = false;
@@ -210,7 +210,7 @@ public class CamelFtpBindingTypeImpl extends CamelRemoteBindingTypeImpl implemen
      * <!-- end-user-doc -->
      * @generated
      */
-    public int getTimeout() {
+    public Integer getTimeout() {
         return timeout;
     }
 
@@ -219,8 +219,8 @@ public class CamelFtpBindingTypeImpl extends CamelRemoteBindingTypeImpl implemen
      * <!-- end-user-doc -->
      * @generated
      */
-    public void setTimeout(int newTimeout) {
-        int oldTimeout = timeout;
+    public void setTimeout(Integer newTimeout) {
+        Integer oldTimeout = timeout;
         timeout = newTimeout;
         boolean oldTimeoutESet = timeoutESet;
         timeoutESet = true;
@@ -234,7 +234,7 @@ public class CamelFtpBindingTypeImpl extends CamelRemoteBindingTypeImpl implemen
      * @generated
      */
     public void unsetTimeout() {
-        int oldTimeout = timeout;
+        Integer oldTimeout = timeout;
         boolean oldTimeoutESet = timeoutESet;
         timeout = TIMEOUT_EDEFAULT;
         timeoutESet = false;
@@ -256,7 +256,7 @@ public class CamelFtpBindingTypeImpl extends CamelRemoteBindingTypeImpl implemen
      * <!-- end-user-doc -->
      * @generated
      */
-    public int getSoTimeout() {
+    public Integer getSoTimeout() {
         return soTimeout;
     }
 
@@ -265,8 +265,8 @@ public class CamelFtpBindingTypeImpl extends CamelRemoteBindingTypeImpl implemen
      * <!-- end-user-doc -->
      * @generated
      */
-    public void setSoTimeout(int newSoTimeout) {
-        int oldSoTimeout = soTimeout;
+    public void setSoTimeout(Integer newSoTimeout) {
+        Integer oldSoTimeout = soTimeout;
         soTimeout = newSoTimeout;
         boolean oldSoTimeoutESet = soTimeoutESet;
         soTimeoutESet = true;
@@ -280,7 +280,7 @@ public class CamelFtpBindingTypeImpl extends CamelRemoteBindingTypeImpl implemen
      * @generated
      */
     public void unsetSoTimeout() {
-        int oldSoTimeout = soTimeout;
+        Integer oldSoTimeout = soTimeout;
         boolean oldSoTimeoutESet = soTimeoutESet;
         soTimeout = SO_TIMEOUT_EDEFAULT;
         soTimeoutESet = false;
@@ -327,7 +327,7 @@ public class CamelFtpBindingTypeImpl extends CamelRemoteBindingTypeImpl implemen
     public Object eGet(int featureID, boolean resolve, boolean coreType) {
         switch (featureID) {
             case CamelPackage.CAMEL_FTP_BINDING_TYPE__PASSIVE_MODE:
-                return isPassiveMode();
+                return getPassiveMode();
             case CamelPackage.CAMEL_FTP_BINDING_TYPE__TIMEOUT:
                 return getTimeout();
             case CamelPackage.CAMEL_FTP_BINDING_TYPE__SO_TIMEOUT:

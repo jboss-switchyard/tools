@@ -26,8 +26,8 @@ import org.switchyard.tools.models.switchyard1_0.camel.GenericFileProducerType;
  *   <li>{@link org.switchyard.tools.models.switchyard1_0.camel.impl.GenericFileProducerTypeImpl#getFileExist <em>File Exist</em>}</li>
  *   <li>{@link org.switchyard.tools.models.switchyard1_0.camel.impl.GenericFileProducerTypeImpl#getTempPrefix <em>Temp Prefix</em>}</li>
  *   <li>{@link org.switchyard.tools.models.switchyard1_0.camel.impl.GenericFileProducerTypeImpl#getTempFileName <em>Temp File Name</em>}</li>
- *   <li>{@link org.switchyard.tools.models.switchyard1_0.camel.impl.GenericFileProducerTypeImpl#isKeepLastModified <em>Keep Last Modified</em>}</li>
- *   <li>{@link org.switchyard.tools.models.switchyard1_0.camel.impl.GenericFileProducerTypeImpl#isEagerDeleteTargetFile <em>Eager Delete Target File</em>}</li>
+ *   <li>{@link org.switchyard.tools.models.switchyard1_0.camel.impl.GenericFileProducerTypeImpl#getKeepLastModified <em>Keep Last Modified</em>}</li>
+ *   <li>{@link org.switchyard.tools.models.switchyard1_0.camel.impl.GenericFileProducerTypeImpl#getEagerDeleteTargetFile <em>Eager Delete Target File</em>}</li>
  *   <li>{@link org.switchyard.tools.models.switchyard1_0.camel.impl.GenericFileProducerTypeImpl#getDoneFileName <em>Done File Name</em>}</li>
  * </ul>
  * </p>
@@ -96,24 +96,24 @@ public class GenericFileProducerTypeImpl extends EObjectImpl implements GenericF
     protected String tempFileName = TEMP_FILE_NAME_EDEFAULT;
 
     /**
-     * The default value of the '{@link #isKeepLastModified() <em>Keep Last Modified</em>}' attribute.
+     * The default value of the '{@link #getKeepLastModified() <em>Keep Last Modified</em>}' attribute.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @see #isKeepLastModified()
+     * @see #getKeepLastModified()
      * @generated
      * @ordered
      */
-    protected static final boolean KEEP_LAST_MODIFIED_EDEFAULT = false;
+    protected static final Boolean KEEP_LAST_MODIFIED_EDEFAULT = null;
 
     /**
-     * The cached value of the '{@link #isKeepLastModified() <em>Keep Last Modified</em>}' attribute.
+     * The cached value of the '{@link #getKeepLastModified() <em>Keep Last Modified</em>}' attribute.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @see #isKeepLastModified()
+     * @see #getKeepLastModified()
      * @generated
      * @ordered
      */
-    protected boolean keepLastModified = KEEP_LAST_MODIFIED_EDEFAULT;
+    protected Boolean keepLastModified = KEEP_LAST_MODIFIED_EDEFAULT;
 
     /**
      * This is true if the Keep Last Modified attribute has been set.
@@ -125,24 +125,24 @@ public class GenericFileProducerTypeImpl extends EObjectImpl implements GenericF
     protected boolean keepLastModifiedESet;
 
     /**
-     * The default value of the '{@link #isEagerDeleteTargetFile() <em>Eager Delete Target File</em>}' attribute.
+     * The default value of the '{@link #getEagerDeleteTargetFile() <em>Eager Delete Target File</em>}' attribute.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @see #isEagerDeleteTargetFile()
+     * @see #getEagerDeleteTargetFile()
      * @generated
      * @ordered
      */
-    protected static final boolean EAGER_DELETE_TARGET_FILE_EDEFAULT = false;
+    protected static final Boolean EAGER_DELETE_TARGET_FILE_EDEFAULT = null;
 
     /**
-     * The cached value of the '{@link #isEagerDeleteTargetFile() <em>Eager Delete Target File</em>}' attribute.
+     * The cached value of the '{@link #getEagerDeleteTargetFile() <em>Eager Delete Target File</em>}' attribute.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @see #isEagerDeleteTargetFile()
+     * @see #getEagerDeleteTargetFile()
      * @generated
      * @ordered
      */
-    protected boolean eagerDeleteTargetFile = EAGER_DELETE_TARGET_FILE_EDEFAULT;
+    protected Boolean eagerDeleteTargetFile = EAGER_DELETE_TARGET_FILE_EDEFAULT;
 
     /**
      * This is true if the Eager Delete Target File attribute has been set.
@@ -260,7 +260,7 @@ public class GenericFileProducerTypeImpl extends EObjectImpl implements GenericF
      * <!-- end-user-doc -->
      * @generated
      */
-    public boolean isKeepLastModified() {
+    public Boolean getKeepLastModified() {
         return keepLastModified;
     }
 
@@ -269,8 +269,8 @@ public class GenericFileProducerTypeImpl extends EObjectImpl implements GenericF
      * <!-- end-user-doc -->
      * @generated
      */
-    public void setKeepLastModified(boolean newKeepLastModified) {
-        boolean oldKeepLastModified = keepLastModified;
+    public void setKeepLastModified(Boolean newKeepLastModified) {
+        Boolean oldKeepLastModified = keepLastModified;
         keepLastModified = newKeepLastModified;
         boolean oldKeepLastModifiedESet = keepLastModifiedESet;
         keepLastModifiedESet = true;
@@ -284,7 +284,7 @@ public class GenericFileProducerTypeImpl extends EObjectImpl implements GenericF
      * @generated
      */
     public void unsetKeepLastModified() {
-        boolean oldKeepLastModified = keepLastModified;
+        Boolean oldKeepLastModified = keepLastModified;
         boolean oldKeepLastModifiedESet = keepLastModifiedESet;
         keepLastModified = KEEP_LAST_MODIFIED_EDEFAULT;
         keepLastModifiedESet = false;
@@ -306,7 +306,7 @@ public class GenericFileProducerTypeImpl extends EObjectImpl implements GenericF
      * <!-- end-user-doc -->
      * @generated
      */
-    public boolean isEagerDeleteTargetFile() {
+    public Boolean getEagerDeleteTargetFile() {
         return eagerDeleteTargetFile;
     }
 
@@ -315,8 +315,8 @@ public class GenericFileProducerTypeImpl extends EObjectImpl implements GenericF
      * <!-- end-user-doc -->
      * @generated
      */
-    public void setEagerDeleteTargetFile(boolean newEagerDeleteTargetFile) {
-        boolean oldEagerDeleteTargetFile = eagerDeleteTargetFile;
+    public void setEagerDeleteTargetFile(Boolean newEagerDeleteTargetFile) {
+        Boolean oldEagerDeleteTargetFile = eagerDeleteTargetFile;
         eagerDeleteTargetFile = newEagerDeleteTargetFile;
         boolean oldEagerDeleteTargetFileESet = eagerDeleteTargetFileESet;
         eagerDeleteTargetFileESet = true;
@@ -330,7 +330,7 @@ public class GenericFileProducerTypeImpl extends EObjectImpl implements GenericF
      * @generated
      */
     public void unsetEagerDeleteTargetFile() {
-        boolean oldEagerDeleteTargetFile = eagerDeleteTargetFile;
+        Boolean oldEagerDeleteTargetFile = eagerDeleteTargetFile;
         boolean oldEagerDeleteTargetFileESet = eagerDeleteTargetFileESet;
         eagerDeleteTargetFile = EAGER_DELETE_TARGET_FILE_EDEFAULT;
         eagerDeleteTargetFileESet = false;
@@ -383,9 +383,9 @@ public class GenericFileProducerTypeImpl extends EObjectImpl implements GenericF
             case CamelPackage.GENERIC_FILE_PRODUCER_TYPE__TEMP_FILE_NAME:
                 return getTempFileName();
             case CamelPackage.GENERIC_FILE_PRODUCER_TYPE__KEEP_LAST_MODIFIED:
-                return isKeepLastModified();
+                return getKeepLastModified();
             case CamelPackage.GENERIC_FILE_PRODUCER_TYPE__EAGER_DELETE_TARGET_FILE:
-                return isEagerDeleteTargetFile();
+                return getEagerDeleteTargetFile();
             case CamelPackage.GENERIC_FILE_PRODUCER_TYPE__DONE_FILE_NAME:
                 return getDoneFileName();
         }

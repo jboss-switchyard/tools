@@ -22,7 +22,7 @@ import org.eclipse.emf.ecore.util.FeatureMap;
  *   <li>{@link org.switchyard.tools.models.switchyard1_0.jca.JCAOutboundConnection#getConnection <em>Connection</em>}</li>
  *   <li>{@link org.switchyard.tools.models.switchyard1_0.jca.JCAOutboundConnection#getResAuth <em>Res Auth</em>}</li>
  *   <li>{@link org.switchyard.tools.models.switchyard1_0.jca.JCAOutboundConnection#getAny <em>Any</em>}</li>
- *   <li>{@link org.switchyard.tools.models.switchyard1_0.jca.JCAOutboundConnection#isManaged <em>Managed</em>}</li>
+ *   <li>{@link org.switchyard.tools.models.switchyard1_0.jca.JCAOutboundConnection#getManaged <em>Managed</em>}</li>
  *   <li>{@link org.switchyard.tools.models.switchyard1_0.jca.JCAOutboundConnection#getAnyAttribute <em>Any Attribute</em>}</li>
  * </ul>
  * </p>
@@ -172,45 +172,45 @@ public interface JCAOutboundConnection extends EObject {
      * @return the value of the '<em>Managed</em>' attribute.
      * @see #isSetManaged()
      * @see #unsetManaged()
-     * @see #setManaged(boolean)
+     * @see #setManaged(Boolean)
      * @see org.switchyard.tools.models.switchyard1_0.jca.JcaPackage#getJCAOutboundConnection_Managed()
-     * @model default="true" unsettable="true" dataType="org.eclipse.emf.ecore.xml.type.Boolean"
+     * @model default="true" unsettable="true" dataType="org.eclipse.emf.ecore.xml.type.BooleanObject"
      *        extendedMetaData="kind='attribute' name='managed'"
      * @generated
      */
-    boolean isManaged();
+    Boolean getManaged();
 
     /**
-     * Sets the value of the '{@link org.switchyard.tools.models.switchyard1_0.jca.JCAOutboundConnection#isManaged <em>Managed</em>}' attribute.
+     * Sets the value of the '{@link org.switchyard.tools.models.switchyard1_0.jca.JCAOutboundConnection#getManaged <em>Managed</em>}' attribute.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @param value the new value of the '<em>Managed</em>' attribute.
      * @see #isSetManaged()
      * @see #unsetManaged()
-     * @see #isManaged()
+     * @see #getManaged()
      * @generated
      */
-    void setManaged(boolean value);
+    void setManaged(Boolean value);
 
     /**
-     * Unsets the value of the '{@link org.switchyard.tools.models.switchyard1_0.jca.JCAOutboundConnection#isManaged <em>Managed</em>}' attribute.
+     * Unsets the value of the '{@link org.switchyard.tools.models.switchyard1_0.jca.JCAOutboundConnection#getManaged <em>Managed</em>}' attribute.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @see #isSetManaged()
-     * @see #isManaged()
-     * @see #setManaged(boolean)
+     * @see #getManaged()
+     * @see #setManaged(Boolean)
      * @generated
      */
     void unsetManaged();
 
     /**
-     * Returns whether the value of the '{@link org.switchyard.tools.models.switchyard1_0.jca.JCAOutboundConnection#isManaged <em>Managed</em>}' attribute is set.
+     * Returns whether the value of the '{@link org.switchyard.tools.models.switchyard1_0.jca.JCAOutboundConnection#getManaged <em>Managed</em>}' attribute is set.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @return whether the value of the '<em>Managed</em>' attribute is set.
      * @see #unsetManaged()
-     * @see #isManaged()
-     * @see #setManaged(boolean)
+     * @see #getManaged()
+     * @see #setManaged(Boolean)
      * @generated
      */
     boolean isSetManaged();

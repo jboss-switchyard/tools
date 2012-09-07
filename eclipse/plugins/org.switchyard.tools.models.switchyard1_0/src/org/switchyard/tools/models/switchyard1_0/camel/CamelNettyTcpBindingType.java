@@ -15,8 +15,8 @@ package org.switchyard.tools.models.switchyard1_0.camel;
  * <p>
  * The following features are supported:
  * <ul>
- *   <li>{@link org.switchyard.tools.models.switchyard1_0.camel.CamelNettyTcpBindingType#isTextline <em>Textline</em>}</li>
- *   <li>{@link org.switchyard.tools.models.switchyard1_0.camel.CamelNettyTcpBindingType#isTcpNoDelay <em>Tcp No Delay</em>}</li>
+ *   <li>{@link org.switchyard.tools.models.switchyard1_0.camel.CamelNettyTcpBindingType#getTextline <em>Textline</em>}</li>
+ *   <li>{@link org.switchyard.tools.models.switchyard1_0.camel.CamelNettyTcpBindingType#getTcpNoDelay <em>Tcp No Delay</em>}</li>
  *   <li>{@link org.switchyard.tools.models.switchyard1_0.camel.CamelNettyTcpBindingType#isKeepAlive <em>Keep Alive</em>}</li>
  * </ul>
  * </p>
@@ -35,23 +35,23 @@ public interface CamelNettyTcpBindingType extends CamelNettyBindingType {
      * </p>
      * <!-- end-user-doc -->
      * @return the value of the '<em>Textline</em>' attribute.
-     * @see #setTextline(boolean)
+     * @see #setTextline(Boolean)
      * @see org.switchyard.tools.models.switchyard1_0.camel.CamelPackage#getCamelNettyTcpBindingType_Textline()
-     * @model dataType="org.eclipse.emf.ecore.xml.type.Boolean"
+     * @model dataType="org.eclipse.emf.ecore.xml.type.BooleanObject"
      *        extendedMetaData="kind='element' name='textline' namespace='##targetNamespace'"
      * @generated
      */
-    boolean isTextline();
+    Boolean getTextline();
 
     /**
-     * Sets the value of the '{@link org.switchyard.tools.models.switchyard1_0.camel.CamelNettyTcpBindingType#isTextline <em>Textline</em>}' attribute.
+     * Sets the value of the '{@link org.switchyard.tools.models.switchyard1_0.camel.CamelNettyTcpBindingType#getTextline <em>Textline</em>}' attribute.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @param value the new value of the '<em>Textline</em>' attribute.
-     * @see #isTextline()
+     * @see #getTextline()
      * @generated
      */
-    void setTextline(boolean value);
+    void setTextline(Boolean value);
 
     /**
      * Returns the value of the '<em><b>Tcp No Delay</b></em>' attribute.
@@ -62,23 +62,23 @@ public interface CamelNettyTcpBindingType extends CamelNettyBindingType {
      * </p>
      * <!-- end-user-doc -->
      * @return the value of the '<em>Tcp No Delay</em>' attribute.
-     * @see #setTcpNoDelay(boolean)
+     * @see #setTcpNoDelay(Boolean)
      * @see org.switchyard.tools.models.switchyard1_0.camel.CamelPackage#getCamelNettyTcpBindingType_TcpNoDelay()
-     * @model dataType="org.eclipse.emf.ecore.xml.type.Boolean"
+     * @model dataType="org.eclipse.emf.ecore.xml.type.BooleanObject"
      *        extendedMetaData="kind='element' name='tcpNoDelay' namespace='##targetNamespace'"
      * @generated
      */
-    boolean isTcpNoDelay();
+    Boolean getTcpNoDelay();
 
     /**
-     * Sets the value of the '{@link org.switchyard.tools.models.switchyard1_0.camel.CamelNettyTcpBindingType#isTcpNoDelay <em>Tcp No Delay</em>}' attribute.
+     * Sets the value of the '{@link org.switchyard.tools.models.switchyard1_0.camel.CamelNettyTcpBindingType#getTcpNoDelay <em>Tcp No Delay</em>}' attribute.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @param value the new value of the '<em>Tcp No Delay</em>' attribute.
-     * @see #isTcpNoDelay()
+     * @see #getTcpNoDelay()
      * @generated
      */
-    void setTcpNoDelay(boolean value);
+    void setTcpNoDelay(Boolean value);
 
     /**
      * Returns the value of the '<em><b>Keep Alive</b></em>' attribute.

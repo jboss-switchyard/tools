@@ -20,7 +20,7 @@ import java.math.BigInteger;
  *   <li>{@link org.switchyard.tools.models.switchyard1_0.camel.GenericFileBindingType#isAutoCreate <em>Auto Create</em>}</li>
  *   <li>{@link org.switchyard.tools.models.switchyard1_0.camel.GenericFileBindingType#getBufferSize <em>Buffer Size</em>}</li>
  *   <li>{@link org.switchyard.tools.models.switchyard1_0.camel.GenericFileBindingType#getFileName <em>File Name</em>}</li>
- *   <li>{@link org.switchyard.tools.models.switchyard1_0.camel.GenericFileBindingType#isFlatten <em>Flatten</em>}</li>
+ *   <li>{@link org.switchyard.tools.models.switchyard1_0.camel.GenericFileBindingType#getFlatten <em>Flatten</em>}</li>
  *   <li>{@link org.switchyard.tools.models.switchyard1_0.camel.GenericFileBindingType#getCharset <em>Charset</em>}</li>
  * </ul>
  * </p>
@@ -121,9 +121,11 @@ public interface GenericFileBindingType extends BaseCamelBinding {
      * </p>
      * <!-- end-user-doc -->
      * @return the value of the '<em>Buffer Size</em>' attribute.
+     * @see #isSetBufferSize()
+     * @see #unsetBufferSize()
      * @see #setBufferSize(BigInteger)
      * @see org.switchyard.tools.models.switchyard1_0.camel.CamelPackage#getGenericFileBindingType_BufferSize()
-     * @model dataType="org.eclipse.emf.ecore.xml.type.Integer"
+     * @model unsettable="true" dataType="org.eclipse.emf.ecore.xml.type.Integer"
      *        extendedMetaData="kind='element' name='bufferSize' namespace='##targetNamespace'"
      * @generated
      */
@@ -134,10 +136,35 @@ public interface GenericFileBindingType extends BaseCamelBinding {
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @param value the new value of the '<em>Buffer Size</em>' attribute.
+     * @see #isSetBufferSize()
+     * @see #unsetBufferSize()
      * @see #getBufferSize()
      * @generated
      */
     void setBufferSize(BigInteger value);
+
+    /**
+     * Unsets the value of the '{@link org.switchyard.tools.models.switchyard1_0.camel.GenericFileBindingType#getBufferSize <em>Buffer Size</em>}' attribute.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @see #isSetBufferSize()
+     * @see #getBufferSize()
+     * @see #setBufferSize(BigInteger)
+     * @generated
+     */
+    void unsetBufferSize();
+
+    /**
+     * Returns whether the value of the '{@link org.switchyard.tools.models.switchyard1_0.camel.GenericFileBindingType#getBufferSize <em>Buffer Size</em>}' attribute is set.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @return whether the value of the '<em>Buffer Size</em>' attribute is set.
+     * @see #unsetBufferSize()
+     * @see #getBufferSize()
+     * @see #setBufferSize(BigInteger)
+     * @generated
+     */
+    boolean isSetBufferSize();
 
     /**
      * Returns the value of the '<em><b>File Name</b></em>' attribute.
@@ -177,45 +204,45 @@ public interface GenericFileBindingType extends BaseCamelBinding {
      * @return the value of the '<em>Flatten</em>' attribute.
      * @see #isSetFlatten()
      * @see #unsetFlatten()
-     * @see #setFlatten(boolean)
+     * @see #setFlatten(Boolean)
      * @see org.switchyard.tools.models.switchyard1_0.camel.CamelPackage#getGenericFileBindingType_Flatten()
-     * @model unsettable="true" dataType="org.eclipse.emf.ecore.xml.type.Boolean"
+     * @model unsettable="true" dataType="org.eclipse.emf.ecore.xml.type.BooleanObject"
      *        extendedMetaData="kind='element' name='flatten' namespace='##targetNamespace'"
      * @generated
      */
-    boolean isFlatten();
+    Boolean getFlatten();
 
     /**
-     * Sets the value of the '{@link org.switchyard.tools.models.switchyard1_0.camel.GenericFileBindingType#isFlatten <em>Flatten</em>}' attribute.
+     * Sets the value of the '{@link org.switchyard.tools.models.switchyard1_0.camel.GenericFileBindingType#getFlatten <em>Flatten</em>}' attribute.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @param value the new value of the '<em>Flatten</em>' attribute.
      * @see #isSetFlatten()
      * @see #unsetFlatten()
-     * @see #isFlatten()
+     * @see #getFlatten()
      * @generated
      */
-    void setFlatten(boolean value);
+    void setFlatten(Boolean value);
 
     /**
-     * Unsets the value of the '{@link org.switchyard.tools.models.switchyard1_0.camel.GenericFileBindingType#isFlatten <em>Flatten</em>}' attribute.
+     * Unsets the value of the '{@link org.switchyard.tools.models.switchyard1_0.camel.GenericFileBindingType#getFlatten <em>Flatten</em>}' attribute.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @see #isSetFlatten()
-     * @see #isFlatten()
-     * @see #setFlatten(boolean)
+     * @see #getFlatten()
+     * @see #setFlatten(Boolean)
      * @generated
      */
     void unsetFlatten();
 
     /**
-     * Returns whether the value of the '{@link org.switchyard.tools.models.switchyard1_0.camel.GenericFileBindingType#isFlatten <em>Flatten</em>}' attribute is set.
+     * Returns whether the value of the '{@link org.switchyard.tools.models.switchyard1_0.camel.GenericFileBindingType#getFlatten <em>Flatten</em>}' attribute is set.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @return whether the value of the '<em>Flatten</em>' attribute is set.
      * @see #unsetFlatten()
-     * @see #isFlatten()
-     * @see #setFlatten(boolean)
+     * @see #getFlatten()
+     * @see #setFlatten(Boolean)
      * @generated
      */
     boolean isSetFlatten();

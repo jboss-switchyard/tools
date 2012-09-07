@@ -32,193 +32,192 @@ import org.eclipse.soa.sca.core.model.policy.*;
  */
 public class PolicyFactoryImpl extends EFactoryImpl implements PolicyFactory {
 	/**
-	 * Creates the default factory implementation.
-	 * <!-- begin-user-doc -->
+     * Creates the default factory implementation.
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public static PolicyFactory init() {
-		try {
-			PolicyFactory thePolicyFactory = (PolicyFactory)EPackage.Registry.INSTANCE.getEFactory("http://schemas.xmlsoap.org/ws/2004/09/policy"); 
-			if (thePolicyFactory != null) {
-				return thePolicyFactory;
-			}
-		}
-		catch (Exception exception) {
-			EcorePlugin.INSTANCE.log(exception);
-		}
-		return new PolicyFactoryImpl();
-	}
+        try {
+            PolicyFactory thePolicyFactory = (PolicyFactory)EPackage.Registry.INSTANCE.getEFactory("http://schemas.xmlsoap.org/ws/2004/09/policy"); 
+            if (thePolicyFactory != null) {
+                return thePolicyFactory;
+            }
+        }
+        catch (Exception exception) {
+            EcorePlugin.INSTANCE.log(exception);
+        }
+        return new PolicyFactoryImpl();
+    }
 
 	/**
-	 * Creates an instance of the factory.
-	 * <!-- begin-user-doc -->
+     * Creates an instance of the factory.
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public PolicyFactoryImpl() {
-		super();
-	}
+        super();
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	@Override
 	public EObject create(EClass eClass) {
-		switch (eClass.getClassifierID()) {
-			case PolicyPackage.APPLIES_TO_TYPE: return createAppliesToType();
-			case PolicyPackage.DOCUMENT_ROOT: return createDocumentRoot();
-			case PolicyPackage.OPERATOR_CONTENT_TYPE: return createOperatorContentType();
-			case PolicyPackage.POLICY_ATTACHMENT_TYPE: return createPolicyAttachmentType();
-			case PolicyPackage.POLICY_REFERENCE_TYPE: return createPolicyReferenceType();
-			case PolicyPackage.POLICY_TYPE: return createPolicyType();
-			default:
-				throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier");
-		}
-	}
+        switch (eClass.getClassifierID()) {
+            case PolicyPackage.APPLIES_TO_TYPE: return createAppliesToType();
+            case PolicyPackage.DOCUMENT_ROOT: return createDocumentRoot();
+            case PolicyPackage.OPERATOR_CONTENT_TYPE: return createOperatorContentType();
+            case PolicyPackage.POLICY_ATTACHMENT_TYPE: return createPolicyAttachmentType();
+            case PolicyPackage.POLICY_REFERENCE_TYPE: return createPolicyReferenceType();
+            case PolicyPackage.POLICY_TYPE: return createPolicyType();
+            default:
+                throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier");
+        }
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	@Override
 	public Object createFromString(EDataType eDataType, String initialValue) {
-		switch (eDataType.getClassifierID()) {
-			case PolicyPackage.POLICY_UR_IS_TYPE:
-				return createPolicyURIsTypeFromString(eDataType, initialValue);
-			default:
-				throw new IllegalArgumentException("The datatype '" + eDataType.getName() + "' is not a valid classifier");
-		}
-	}
+        switch (eDataType.getClassifierID()) {
+            case PolicyPackage.POLICY_UR_IS_TYPE:
+                return createPolicyURIsTypeFromString(eDataType, initialValue);
+            default:
+                throw new IllegalArgumentException("The datatype '" + eDataType.getName() + "' is not a valid classifier");
+        }
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	@Override
 	public String convertToString(EDataType eDataType, Object instanceValue) {
-		switch (eDataType.getClassifierID()) {
-			case PolicyPackage.POLICY_UR_IS_TYPE:
-				return convertPolicyURIsTypeToString(eDataType, instanceValue);
-			default:
-				throw new IllegalArgumentException("The datatype '" + eDataType.getName() + "' is not a valid classifier");
-		}
-	}
+        switch (eDataType.getClassifierID()) {
+            case PolicyPackage.POLICY_UR_IS_TYPE:
+                return convertPolicyURIsTypeToString(eDataType, instanceValue);
+            default:
+                throw new IllegalArgumentException("The datatype '" + eDataType.getName() + "' is not a valid classifier");
+        }
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public AppliesToType createAppliesToType() {
-		AppliesToTypeImpl appliesToType = new AppliesToTypeImpl();
-		return appliesToType;
-	}
+        AppliesToTypeImpl appliesToType = new AppliesToTypeImpl();
+        return appliesToType;
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public DocumentRoot createDocumentRoot() {
-		DocumentRootImpl documentRoot = new DocumentRootImpl();
-		return documentRoot;
-	}
+        DocumentRootImpl documentRoot = new DocumentRootImpl();
+        return documentRoot;
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public OperatorContentType createOperatorContentType() {
-		OperatorContentTypeImpl operatorContentType = new OperatorContentTypeImpl();
-		return operatorContentType;
-	}
+        OperatorContentTypeImpl operatorContentType = new OperatorContentTypeImpl();
+        return operatorContentType;
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public PolicyAttachmentType createPolicyAttachmentType() {
-		PolicyAttachmentTypeImpl policyAttachmentType = new PolicyAttachmentTypeImpl();
-		return policyAttachmentType;
-	}
+        PolicyAttachmentTypeImpl policyAttachmentType = new PolicyAttachmentTypeImpl();
+        return policyAttachmentType;
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public PolicyReferenceType createPolicyReferenceType() {
-		PolicyReferenceTypeImpl policyReferenceType = new PolicyReferenceTypeImpl();
-		return policyReferenceType;
-	}
+        PolicyReferenceTypeImpl policyReferenceType = new PolicyReferenceTypeImpl();
+        return policyReferenceType;
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public PolicyType createPolicyType() {
-		PolicyTypeImpl policyType = new PolicyTypeImpl();
-		return policyType;
-	}
+        PolicyTypeImpl policyType = new PolicyTypeImpl();
+        return policyType;
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public List<String> createPolicyURIsTypeFromString(EDataType eDataType, String initialValue) {
-		if (initialValue == null) return null;
-		List<String> result = new ArrayList<String>();
-		for (StringTokenizer stringTokenizer = new StringTokenizer(initialValue); stringTokenizer.hasMoreTokens(); ) {
-			String item = stringTokenizer.nextToken();
-			result.add((String)XMLTypeFactory.eINSTANCE.createFromString(XMLTypePackage.Literals.ANY_URI, item));
-		}
-		return result;
-	}
+        if (initialValue == null) return null;
+        List<String> result = new ArrayList<String>();
+        for (String item : split(initialValue)) {
+            result.add((String)XMLTypeFactory.eINSTANCE.createFromString(XMLTypePackage.Literals.ANY_URI, item));
+        }
+        return result;
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public String convertPolicyURIsTypeToString(EDataType eDataType, Object instanceValue) {
-		if (instanceValue == null) return null;
-		List<?> list = (List<?>)instanceValue;
-		if (list.isEmpty()) return "";
-		StringBuffer result = new StringBuffer();
-		for (Object item : list) {
-			result.append(XMLTypeFactory.eINSTANCE.convertToString(XMLTypePackage.Literals.ANY_URI, item));
-			result.append(' ');
-		}
-		return result.substring(0, result.length() - 1);
-	}
+        if (instanceValue == null) return null;
+        List<?> list = (List<?>)instanceValue;
+        if (list.isEmpty()) return "";
+        StringBuffer result = new StringBuffer();
+        for (Object item : list) {
+            result.append(XMLTypeFactory.eINSTANCE.convertToString(XMLTypePackage.Literals.ANY_URI, item));
+            result.append(' ');
+        }
+        return result.substring(0, result.length() - 1);
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public PolicyPackage getPolicyPackage() {
-		return (PolicyPackage)getEPackage();
-	}
+        return (PolicyPackage)getEPackage();
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @deprecated
-	 * @generated
-	 */
+     * @deprecated
+     * @generated
+     */
 	@Deprecated
 	public static PolicyPackage getPackage() {
-		return PolicyPackage.eINSTANCE;
-	}
+        return PolicyPackage.eINSTANCE;
+    }
 
 } //PolicyFactoryImpl

@@ -14,6 +14,7 @@ package org.switchyard.tools.ui.editor.components.camel.file;
 
 import java.math.BigInteger;
 import java.util.ArrayList;
+import java.util.List;
 
 import org.eclipse.graphiti.mm.pictograms.PictogramElement;
 import org.eclipse.soa.sca.sca1_1.model.sca.Binding;
@@ -58,6 +59,7 @@ public class CamelFileConsumerComposite extends AbstractSYBindingComposite  {
     private Text _delayText;
     private Combo _operationSelectionCombo;
     private TabFolder _tabFolder;
+    private List<String> _advancedPropsFilterList;
 
     @Override
     public Binding getBinding() {
@@ -341,6 +343,33 @@ public class CamelFileConsumerComposite extends AbstractSYBindingComposite  {
             }
         }
         setHasChanged(false);
+    }
+
+    @Override
+    protected List<String> getAdvancedPropertiesFilterList() {
+        if (_advancedPropsFilterList == null) {
+            _advancedPropsFilterList = new ArrayList<String>();
+            _advancedPropsFilterList.add("bufferSize");
+            _advancedPropsFilterList.add("flatten");
+            _advancedPropsFilterList.add("charset");
+            _advancedPropsFilterList.add("delete");
+            _advancedPropsFilterList.add("noop");
+            _advancedPropsFilterList.add("idempotent");
+            _advancedPropsFilterList.add("idempotentRepository");
+            _advancedPropsFilterList.add("inProgressRepository");
+            _advancedPropsFilterList.add("filter");
+            _advancedPropsFilterList.add("sorter");
+            _advancedPropsFilterList.add("sortBy");
+            _advancedPropsFilterList.add("readLock");
+            _advancedPropsFilterList.add("readLockTimeout");
+            _advancedPropsFilterList.add("readLockCheckInterval");
+            _advancedPropsFilterList.add("exclusiveReadLockStrategy");
+            _advancedPropsFilterList.add("processStrategy");
+            _advancedPropsFilterList.add("startingDirectoryMustExist");
+            _advancedPropsFilterList.add("directoryMustExist");
+            _advancedPropsFilterList.add("doneFileName");
+        }
+        return _advancedPropsFilterList;
     }
     
 }

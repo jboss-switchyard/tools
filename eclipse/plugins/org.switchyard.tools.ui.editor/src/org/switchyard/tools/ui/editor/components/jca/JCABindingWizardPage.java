@@ -49,6 +49,8 @@ public class JCABindingWizardPage extends WizardPage {
     public void createControl(Composite parent) {
         _targetContainer = ((JCABindingWizard)getWizard()).getTargetContainer();
         if (_targetContainer instanceof Service) {
+            _binding.setInboundConnection(JcaFactory.eINSTANCE.createJCAInboundConnection());
+            _binding.setInboundInteraction(JcaFactory.eINSTANCE.createJCAInboundInteraction());
             _jcaInComposite = new JCABindingInboundComposite();
             _jcaInComposite.addChangeListener(new ChangeListener() {
                 @Override
@@ -64,6 +66,8 @@ public class JCABindingWizardPage extends WizardPage {
             setControl(_jcaInComposite.getPanel());
             setPageComplete(_jcaInComposite.getErrorMessage() == null);
         } else if (_targetContainer instanceof Reference) {
+            _binding.setOutboundConnection(JcaFactory.eINSTANCE.createJCAOutboundConnection());
+            _binding.setOutboundInteraction(JcaFactory.eINSTANCE.createJCAOutboundInteraction());
             setTitle("Specify JCA Outbound Binding Details");
             setDescription("Specify pertinent details for your JCA Outbound Binding. Resource adapters may require unique properties.");
             _jcaOutComposite = new JCABindingOutboundComposite();

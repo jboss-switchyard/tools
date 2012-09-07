@@ -36,7 +36,7 @@ import org.switchyard.tools.models.switchyard1_0.jca.ResourceAdapter;
  *   <li>{@link org.switchyard.tools.models.switchyard1_0.jca.impl.JCAOutboundConnectionImpl#getConnection <em>Connection</em>}</li>
  *   <li>{@link org.switchyard.tools.models.switchyard1_0.jca.impl.JCAOutboundConnectionImpl#getResAuth <em>Res Auth</em>}</li>
  *   <li>{@link org.switchyard.tools.models.switchyard1_0.jca.impl.JCAOutboundConnectionImpl#getAny <em>Any</em>}</li>
- *   <li>{@link org.switchyard.tools.models.switchyard1_0.jca.impl.JCAOutboundConnectionImpl#isManaged <em>Managed</em>}</li>
+ *   <li>{@link org.switchyard.tools.models.switchyard1_0.jca.impl.JCAOutboundConnectionImpl#getManaged <em>Managed</em>}</li>
  *   <li>{@link org.switchyard.tools.models.switchyard1_0.jca.impl.JCAOutboundConnectionImpl#getAnyAttribute <em>Any Attribute</em>}</li>
  * </ul>
  * </p>
@@ -104,24 +104,24 @@ public class JCAOutboundConnectionImpl extends EObjectImpl implements JCAOutboun
     protected FeatureMap any;
 
     /**
-     * The default value of the '{@link #isManaged() <em>Managed</em>}' attribute.
+     * The default value of the '{@link #getManaged() <em>Managed</em>}' attribute.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @see #isManaged()
+     * @see #getManaged()
      * @generated
      * @ordered
      */
-    protected static final boolean MANAGED_EDEFAULT = true;
+    protected static final Boolean MANAGED_EDEFAULT = Boolean.TRUE;
 
     /**
-     * The cached value of the '{@link #isManaged() <em>Managed</em>}' attribute.
+     * The cached value of the '{@link #getManaged() <em>Managed</em>}' attribute.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @see #isManaged()
+     * @see #getManaged()
      * @generated
      * @ordered
      */
-    protected boolean managed = MANAGED_EDEFAULT;
+    protected Boolean managed = MANAGED_EDEFAULT;
 
     /**
      * This is true if the Managed attribute has been set.
@@ -310,7 +310,7 @@ public class JCAOutboundConnectionImpl extends EObjectImpl implements JCAOutboun
      * <!-- end-user-doc -->
      * @generated
      */
-    public boolean isManaged() {
+    public Boolean getManaged() {
         return managed;
     }
 
@@ -319,8 +319,8 @@ public class JCAOutboundConnectionImpl extends EObjectImpl implements JCAOutboun
      * <!-- end-user-doc -->
      * @generated
      */
-    public void setManaged(boolean newManaged) {
-        boolean oldManaged = managed;
+    public void setManaged(Boolean newManaged) {
+        Boolean oldManaged = managed;
         managed = newManaged;
         boolean oldManagedESet = managedESet;
         managedESet = true;
@@ -334,7 +334,7 @@ public class JCAOutboundConnectionImpl extends EObjectImpl implements JCAOutboun
      * @generated
      */
     public void unsetManaged() {
-        boolean oldManaged = managed;
+        Boolean oldManaged = managed;
         boolean oldManagedESet = managedESet;
         managed = MANAGED_EDEFAULT;
         managedESet = false;
@@ -401,7 +401,7 @@ public class JCAOutboundConnectionImpl extends EObjectImpl implements JCAOutboun
                 if (coreType) return getAny();
                 return ((FeatureMap.Internal)getAny()).getWrapper();
             case JcaPackage.JCA_OUTBOUND_CONNECTION__MANAGED:
-                return isManaged();
+                return getManaged();
             case JcaPackage.JCA_OUTBOUND_CONNECTION__ANY_ATTRIBUTE:
                 if (coreType) return getAnyAttribute();
                 return ((FeatureMap.Internal)getAnyAttribute()).getWrapper();

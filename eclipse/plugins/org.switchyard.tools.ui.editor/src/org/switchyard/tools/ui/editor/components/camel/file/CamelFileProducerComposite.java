@@ -13,6 +13,7 @@
 package org.switchyard.tools.ui.editor.components.camel.file;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import org.eclipse.soa.sca.sca1_1.model.sca.Binding;
 import org.eclipse.swt.SWT;
@@ -45,6 +46,7 @@ public class CamelFileProducerComposite extends AbstractSYBindingComposite {
     private Text _fileExistText;
     private Text _tempPrefixText;
     private TabFolder _tabFolder;
+    private List<String> _advancedPropsFilterList;
 
     @Override
     public Binding getBinding() {
@@ -190,4 +192,20 @@ public class CamelFileProducerComposite extends AbstractSYBindingComposite {
         setHasChanged(false);
     }
 
+    @Override
+    protected List<String> getAdvancedPropertiesFilterList() {
+        if (_advancedPropsFilterList == null) {
+            _advancedPropsFilterList = new ArrayList<String>();
+            _advancedPropsFilterList.add("bufferSize");
+            _advancedPropsFilterList.add("flatten");
+            _advancedPropsFilterList.add("charset");
+            _advancedPropsFilterList.add("fileExist");
+            _advancedPropsFilterList.add("tempPrefix");
+            _advancedPropsFilterList.add("tempFileName");
+            _advancedPropsFilterList.add("keepLastModified");
+            _advancedPropsFilterList.add("eagerDeleteTargetFile");
+            _advancedPropsFilterList.add("doneFileName");
+        }
+        return _advancedPropsFilterList;
+    }
 }

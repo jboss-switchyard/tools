@@ -13,6 +13,7 @@
 package org.switchyard.tools.ui.editor.components.camel.netty;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import org.eclipse.graphiti.mm.pictograms.PictogramElement;
 import org.eclipse.soa.sca.sca1_1.model.sca.Binding;
@@ -53,6 +54,7 @@ public class CamelNettyTCPComposite extends AbstractSYBindingComposite {
     private Button _keepAliveCheckbox;
     private Combo _operationSelectionCombo;
     private TabFolder _tabFolder;
+    private List<String> _advancedPropsFilterList;
 
     @Override
     public Binding getBinding() {
@@ -298,5 +300,21 @@ public class CamelNettyTCPComposite extends AbstractSYBindingComposite {
             }
         }
         setHasChanged(false);
+    }
+
+    @Override
+    protected List<String> getAdvancedPropertiesFilterList() {
+        if (_advancedPropsFilterList == null) {
+            _advancedPropsFilterList = new ArrayList<String>();
+            _advancedPropsFilterList.add("textline");
+            _advancedPropsFilterList.add("tcpNoDelay");
+            _advancedPropsFilterList.add("reuseAddress");
+            _advancedPropsFilterList.add("encoders");
+            _advancedPropsFilterList.add("decoders");
+            _advancedPropsFilterList.add("allowDefaultCodec");
+            _advancedPropsFilterList.add("workerCount");
+            _advancedPropsFilterList.add("disconnect");
+        }
+        return _advancedPropsFilterList;
     }
 }

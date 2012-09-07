@@ -1860,11 +1860,11 @@ public interface JcaPackage extends EPackage {
     EAttribute getJCAOutboundConnection_Any();
 
     /**
-     * Returns the meta object for the attribute '{@link org.switchyard.tools.models.switchyard1_0.jca.JCAOutboundConnection#isManaged <em>Managed</em>}'.
+     * Returns the meta object for the attribute '{@link org.switchyard.tools.models.switchyard1_0.jca.JCAOutboundConnection#getManaged <em>Managed</em>}'.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @return the meta object for the attribute '<em>Managed</em>'.
-     * @see org.switchyard.tools.models.switchyard1_0.jca.JCAOutboundConnection#isManaged()
+     * @see org.switchyard.tools.models.switchyard1_0.jca.JCAOutboundConnection#getManaged()
      * @see #getJCAOutboundConnection()
      * @generated
      */

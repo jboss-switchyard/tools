@@ -470,7 +470,7 @@
         <details key="processing" value="lax"/>
       </eAnnotations>
     </eStructuralFeatures>
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="managed" eType="ecore:EDataType http://www.eclipse.org/emf/2003/XMLType#//Boolean"
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="managed" eType="ecore:EDataType http://www.eclipse.org/emf/2003/XMLType#//BooleanObject"
         defaultValueLiteral="true" unsettable="true">
       <eAnnotations source="http:///org/eclipse/emf/ecore/util/ExtendedMetaData">
         <details key="kind" value="attribute"/>

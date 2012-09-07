@@ -1477,7 +1477,7 @@ public class JcaPackageImpl extends EPackageImpl implements JcaPackage {
         initEReference(getJCAOutboundConnection_Connection(), this.getConnection(), null, "connection", null, 1, 1, JCAOutboundConnection.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
         initEAttribute(getJCAOutboundConnection_ResAuth(), this.getResAuth(), "resAuth", null, 0, 1, JCAOutboundConnection.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
         initEAttribute(getJCAOutboundConnection_Any(), ecorePackage.getEFeatureMapEntry(), "any", null, 0, -1, JCAOutboundConnection.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-        initEAttribute(getJCAOutboundConnection_Managed(), theXMLTypePackage.getBoolean(), "managed", "true", 0, 1, JCAOutboundConnection.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+        initEAttribute(getJCAOutboundConnection_Managed(), theXMLTypePackage.getBooleanObject(), "managed", "true", 0, 1, JCAOutboundConnection.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
         initEAttribute(getJCAOutboundConnection_AnyAttribute(), ecorePackage.getEFeatureMapEntry(), "anyAttribute", null, 0, -1, JCAOutboundConnection.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
         initEClass(jcaOutboundInteractionEClass, JCAOutboundInteraction.class, "JCAOutboundInteraction", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);

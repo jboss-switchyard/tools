@@ -32,11 +32,11 @@ import org.switchyard.tools.models.switchyard1_0.camel.CamelPackage;
  *   <li>{@link org.switchyard.tools.models.switchyard1_0.camel.impl.CamelJmsBindingTypeImpl#getDurableSubscriptionName <em>Durable Subscription Name</em>}</li>
  *   <li>{@link org.switchyard.tools.models.switchyard1_0.camel.impl.CamelJmsBindingTypeImpl#getConcurrentConsumers <em>Concurrent Consumers</em>}</li>
  *   <li>{@link org.switchyard.tools.models.switchyard1_0.camel.impl.CamelJmsBindingTypeImpl#getMaxConcurrentConsumers <em>Max Concurrent Consumers</em>}</li>
- *   <li>{@link org.switchyard.tools.models.switchyard1_0.camel.impl.CamelJmsBindingTypeImpl#isDisableReplyTo <em>Disable Reply To</em>}</li>
- *   <li>{@link org.switchyard.tools.models.switchyard1_0.camel.impl.CamelJmsBindingTypeImpl#isPreserveMessageQos <em>Preserve Message Qos</em>}</li>
- *   <li>{@link org.switchyard.tools.models.switchyard1_0.camel.impl.CamelJmsBindingTypeImpl#isDeliveryPersistent <em>Delivery Persistent</em>}</li>
+ *   <li>{@link org.switchyard.tools.models.switchyard1_0.camel.impl.CamelJmsBindingTypeImpl#getDisableReplyTo <em>Disable Reply To</em>}</li>
+ *   <li>{@link org.switchyard.tools.models.switchyard1_0.camel.impl.CamelJmsBindingTypeImpl#getPreserveMessageQos <em>Preserve Message Qos</em>}</li>
+ *   <li>{@link org.switchyard.tools.models.switchyard1_0.camel.impl.CamelJmsBindingTypeImpl#getDeliveryPersistent <em>Delivery Persistent</em>}</li>
  *   <li>{@link org.switchyard.tools.models.switchyard1_0.camel.impl.CamelJmsBindingTypeImpl#getPriority <em>Priority</em>}</li>
- *   <li>{@link org.switchyard.tools.models.switchyard1_0.camel.impl.CamelJmsBindingTypeImpl#isExplicitQosEnabled <em>Explicit Qos Enabled</em>}</li>
+ *   <li>{@link org.switchyard.tools.models.switchyard1_0.camel.impl.CamelJmsBindingTypeImpl#getExplicitQosEnabled <em>Explicit Qos Enabled</em>}</li>
  *   <li>{@link org.switchyard.tools.models.switchyard1_0.camel.impl.CamelJmsBindingTypeImpl#getReplyTo <em>Reply To</em>}</li>
  *   <li>{@link org.switchyard.tools.models.switchyard1_0.camel.impl.CamelJmsBindingTypeImpl#getReplyToType <em>Reply To Type</em>}</li>
  *   <li>{@link org.switchyard.tools.models.switchyard1_0.camel.impl.CamelJmsBindingTypeImpl#getRequestTimeout <em>Request Timeout</em>}</li>
@@ -249,24 +249,24 @@ public class CamelJmsBindingTypeImpl extends BaseCamelBindingImpl implements Cam
     protected boolean maxConcurrentConsumersESet;
 
     /**
-     * The default value of the '{@link #isDisableReplyTo() <em>Disable Reply To</em>}' attribute.
+     * The default value of the '{@link #getDisableReplyTo() <em>Disable Reply To</em>}' attribute.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @see #isDisableReplyTo()
+     * @see #getDisableReplyTo()
      * @generated
      * @ordered
      */
-    protected static final boolean DISABLE_REPLY_TO_EDEFAULT = false;
+    protected static final Boolean DISABLE_REPLY_TO_EDEFAULT = null;
 
     /**
-     * The cached value of the '{@link #isDisableReplyTo() <em>Disable Reply To</em>}' attribute.
+     * The cached value of the '{@link #getDisableReplyTo() <em>Disable Reply To</em>}' attribute.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @see #isDisableReplyTo()
+     * @see #getDisableReplyTo()
      * @generated
      * @ordered
      */
-    protected boolean disableReplyTo = DISABLE_REPLY_TO_EDEFAULT;
+    protected Boolean disableReplyTo = DISABLE_REPLY_TO_EDEFAULT;
 
     /**
      * This is true if the Disable Reply To attribute has been set.
@@ -278,24 +278,24 @@ public class CamelJmsBindingTypeImpl extends BaseCamelBindingImpl implements Cam
     protected boolean disableReplyToESet;
 
     /**
-     * The default value of the '{@link #isPreserveMessageQos() <em>Preserve Message Qos</em>}' attribute.
+     * The default value of the '{@link #getPreserveMessageQos() <em>Preserve Message Qos</em>}' attribute.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @see #isPreserveMessageQos()
+     * @see #getPreserveMessageQos()
      * @generated
      * @ordered
      */
-    protected static final boolean PRESERVE_MESSAGE_QOS_EDEFAULT = false;
+    protected static final Boolean PRESERVE_MESSAGE_QOS_EDEFAULT = null;
 
     /**
-     * The cached value of the '{@link #isPreserveMessageQos() <em>Preserve Message Qos</em>}' attribute.
+     * The cached value of the '{@link #getPreserveMessageQos() <em>Preserve Message Qos</em>}' attribute.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @see #isPreserveMessageQos()
+     * @see #getPreserveMessageQos()
      * @generated
      * @ordered
      */
-    protected boolean preserveMessageQos = PRESERVE_MESSAGE_QOS_EDEFAULT;
+    protected Boolean preserveMessageQos = PRESERVE_MESSAGE_QOS_EDEFAULT;
 
     /**
      * This is true if the Preserve Message Qos attribute has been set.
@@ -307,24 +307,24 @@ public class CamelJmsBindingTypeImpl extends BaseCamelBindingImpl implements Cam
     protected boolean preserveMessageQosESet;
 
     /**
-     * The default value of the '{@link #isDeliveryPersistent() <em>Delivery Persistent</em>}' attribute.
+     * The default value of the '{@link #getDeliveryPersistent() <em>Delivery Persistent</em>}' attribute.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @see #isDeliveryPersistent()
+     * @see #getDeliveryPersistent()
      * @generated
      * @ordered
      */
-    protected static final boolean DELIVERY_PERSISTENT_EDEFAULT = false;
+    protected static final Boolean DELIVERY_PERSISTENT_EDEFAULT = null;
 
     /**
-     * The cached value of the '{@link #isDeliveryPersistent() <em>Delivery Persistent</em>}' attribute.
+     * The cached value of the '{@link #getDeliveryPersistent() <em>Delivery Persistent</em>}' attribute.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @see #isDeliveryPersistent()
+     * @see #getDeliveryPersistent()
      * @generated
      * @ordered
      */
-    protected boolean deliveryPersistent = DELIVERY_PERSISTENT_EDEFAULT;
+    protected Boolean deliveryPersistent = DELIVERY_PERSISTENT_EDEFAULT;
 
     /**
      * This is true if the Delivery Persistent attribute has been set.
@@ -343,7 +343,7 @@ public class CamelJmsBindingTypeImpl extends BaseCamelBindingImpl implements Cam
      * @generated
      * @ordered
      */
-    protected static final int PRIORITY_EDEFAULT = 0;
+    protected static final Integer PRIORITY_EDEFAULT = null;
 
     /**
      * The cached value of the '{@link #getPriority() <em>Priority</em>}' attribute.
@@ -353,7 +353,7 @@ public class CamelJmsBindingTypeImpl extends BaseCamelBindingImpl implements Cam
      * @generated
      * @ordered
      */
-    protected int priority = PRIORITY_EDEFAULT;
+    protected Integer priority = PRIORITY_EDEFAULT;
 
     /**
      * This is true if the Priority attribute has been set.
@@ -365,24 +365,24 @@ public class CamelJmsBindingTypeImpl extends BaseCamelBindingImpl implements Cam
     protected boolean priorityESet;
 
     /**
-     * The default value of the '{@link #isExplicitQosEnabled() <em>Explicit Qos Enabled</em>}' attribute.
+     * The default value of the '{@link #getExplicitQosEnabled() <em>Explicit Qos Enabled</em>}' attribute.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @see #isExplicitQosEnabled()
+     * @see #getExplicitQosEnabled()
      * @generated
      * @ordered
      */
-    protected static final boolean EXPLICIT_QOS_ENABLED_EDEFAULT = false;
+    protected static final Boolean EXPLICIT_QOS_ENABLED_EDEFAULT = null;
 
     /**
-     * The cached value of the '{@link #isExplicitQosEnabled() <em>Explicit Qos Enabled</em>}' attribute.
+     * The cached value of the '{@link #getExplicitQosEnabled() <em>Explicit Qos Enabled</em>}' attribute.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @see #isExplicitQosEnabled()
+     * @see #getExplicitQosEnabled()
      * @generated
      * @ordered
      */
-    protected boolean explicitQosEnabled = EXPLICIT_QOS_ENABLED_EDEFAULT;
+    protected Boolean explicitQosEnabled = EXPLICIT_QOS_ENABLED_EDEFAULT;
 
     /**
      * This is true if the Explicit Qos Enabled attribute has been set.
@@ -441,7 +441,7 @@ public class CamelJmsBindingTypeImpl extends BaseCamelBindingImpl implements Cam
      * @generated
      * @ordered
      */
-    protected static final int REQUEST_TIMEOUT_EDEFAULT = 0;
+    protected static final Integer REQUEST_TIMEOUT_EDEFAULT = null;
 
     /**
      * The cached value of the '{@link #getRequestTimeout() <em>Request Timeout</em>}' attribute.
@@ -451,7 +451,7 @@ public class CamelJmsBindingTypeImpl extends BaseCamelBindingImpl implements Cam
      * @generated
      * @ordered
      */
-    protected int requestTimeout = REQUEST_TIMEOUT_EDEFAULT;
+    protected Integer requestTimeout = REQUEST_TIMEOUT_EDEFAULT;
 
     /**
      * This is true if the Request Timeout attribute has been set.
@@ -490,7 +490,7 @@ public class CamelJmsBindingTypeImpl extends BaseCamelBindingImpl implements Cam
      * @generated
      * @ordered
      */
-    protected static final int TIME_TO_LIVE_EDEFAULT = 0;
+    protected static final Integer TIME_TO_LIVE_EDEFAULT = null;
 
     /**
      * The cached value of the '{@link #getTimeToLive() <em>Time To Live</em>}' attribute.
@@ -500,7 +500,7 @@ public class CamelJmsBindingTypeImpl extends BaseCamelBindingImpl implements Cam
      * @generated
      * @ordered
      */
-    protected int timeToLive = TIME_TO_LIVE_EDEFAULT;
+    protected Integer timeToLive = TIME_TO_LIVE_EDEFAULT;
 
     /**
      * This is true if the Time To Live attribute has been set.
@@ -823,7 +823,7 @@ public class CamelJmsBindingTypeImpl extends BaseCamelBindingImpl implements Cam
      * <!-- end-user-doc -->
      * @generated
      */
-    public boolean isDisableReplyTo() {
+    public Boolean getDisableReplyTo() {
         return disableReplyTo;
     }
 
@@ -832,8 +832,8 @@ public class CamelJmsBindingTypeImpl extends BaseCamelBindingImpl implements Cam
      * <!-- end-user-doc -->
      * @generated
      */
-    public void setDisableReplyTo(boolean newDisableReplyTo) {
-        boolean oldDisableReplyTo = disableReplyTo;
+    public void setDisableReplyTo(Boolean newDisableReplyTo) {
+        Boolean oldDisableReplyTo = disableReplyTo;
         disableReplyTo = newDisableReplyTo;
         boolean oldDisableReplyToESet = disableReplyToESet;
         disableReplyToESet = true;
@@ -847,7 +847,7 @@ public class CamelJmsBindingTypeImpl extends BaseCamelBindingImpl implements Cam
      * @generated
      */
     public void unsetDisableReplyTo() {
-        boolean oldDisableReplyTo = disableReplyTo;
+        Boolean oldDisableReplyTo = disableReplyTo;
         boolean oldDisableReplyToESet = disableReplyToESet;
         disableReplyTo = DISABLE_REPLY_TO_EDEFAULT;
         disableReplyToESet = false;
@@ -869,7 +869,7 @@ public class CamelJmsBindingTypeImpl extends BaseCamelBindingImpl implements Cam
      * <!-- end-user-doc -->
      * @generated
      */
-    public boolean isPreserveMessageQos() {
+    public Boolean getPreserveMessageQos() {
         return preserveMessageQos;
     }
 
@@ -878,8 +878,8 @@ public class CamelJmsBindingTypeImpl extends BaseCamelBindingImpl implements Cam
      * <!-- end-user-doc -->
      * @generated
      */
-    public void setPreserveMessageQos(boolean newPreserveMessageQos) {
-        boolean oldPreserveMessageQos = preserveMessageQos;
+    public void setPreserveMessageQos(Boolean newPreserveMessageQos) {
+        Boolean oldPreserveMessageQos = preserveMessageQos;
         preserveMessageQos = newPreserveMessageQos;
         boolean oldPreserveMessageQosESet = preserveMessageQosESet;
         preserveMessageQosESet = true;
@@ -893,7 +893,7 @@ public class CamelJmsBindingTypeImpl extends BaseCamelBindingImpl implements Cam
      * @generated
      */
     public void unsetPreserveMessageQos() {
-        boolean oldPreserveMessageQos = preserveMessageQos;
+        Boolean oldPreserveMessageQos = preserveMessageQos;
         boolean oldPreserveMessageQosESet = preserveMessageQosESet;
         preserveMessageQos = PRESERVE_MESSAGE_QOS_EDEFAULT;
         preserveMessageQosESet = false;
@@ -915,7 +915,7 @@ public class CamelJmsBindingTypeImpl extends BaseCamelBindingImpl implements Cam
      * <!-- end-user-doc -->
      * @generated
      */
-    public boolean isDeliveryPersistent() {
+    public Boolean getDeliveryPersistent() {
         return deliveryPersistent;
     }
 
@@ -924,8 +924,8 @@ public class CamelJmsBindingTypeImpl extends BaseCamelBindingImpl implements Cam
      * <!-- end-user-doc -->
      * @generated
      */
-    public void setDeliveryPersistent(boolean newDeliveryPersistent) {
-        boolean oldDeliveryPersistent = deliveryPersistent;
+    public void setDeliveryPersistent(Boolean newDeliveryPersistent) {
+        Boolean oldDeliveryPersistent = deliveryPersistent;
         deliveryPersistent = newDeliveryPersistent;
         boolean oldDeliveryPersistentESet = deliveryPersistentESet;
         deliveryPersistentESet = true;
@@ -939,7 +939,7 @@ public class CamelJmsBindingTypeImpl extends BaseCamelBindingImpl implements Cam
      * @generated
      */
     public void unsetDeliveryPersistent() {
-        boolean oldDeliveryPersistent = deliveryPersistent;
+        Boolean oldDeliveryPersistent = deliveryPersistent;
         boolean oldDeliveryPersistentESet = deliveryPersistentESet;
         deliveryPersistent = DELIVERY_PERSISTENT_EDEFAULT;
         deliveryPersistentESet = false;
@@ -961,7 +961,7 @@ public class CamelJmsBindingTypeImpl extends BaseCamelBindingImpl implements Cam
      * <!-- end-user-doc -->
      * @generated
      */
-    public int getPriority() {
+    public Integer getPriority() {
         return priority;
     }
 
@@ -970,8 +970,8 @@ public class CamelJmsBindingTypeImpl extends BaseCamelBindingImpl implements Cam
      * <!-- end-user-doc -->
      * @generated
      */
-    public void setPriority(int newPriority) {
-        int oldPriority = priority;
+    public void setPriority(Integer newPriority) {
+        Integer oldPriority = priority;
         priority = newPriority;
         boolean oldPriorityESet = priorityESet;
         priorityESet = true;
@@ -985,7 +985,7 @@ public class CamelJmsBindingTypeImpl extends BaseCamelBindingImpl implements Cam
      * @generated
      */
     public void unsetPriority() {
-        int oldPriority = priority;
+        Integer oldPriority = priority;
         boolean oldPriorityESet = priorityESet;
         priority = PRIORITY_EDEFAULT;
         priorityESet = false;
@@ -1007,7 +1007,7 @@ public class CamelJmsBindingTypeImpl extends BaseCamelBindingImpl implements Cam
      * <!-- end-user-doc -->
      * @generated
      */
-    public boolean isExplicitQosEnabled() {
+    public Boolean getExplicitQosEnabled() {
         return explicitQosEnabled;
     }
 
@@ -1016,8 +1016,8 @@ public class CamelJmsBindingTypeImpl extends BaseCamelBindingImpl implements Cam
      * <!-- end-user-doc -->
      * @generated
      */
-    public void setExplicitQosEnabled(boolean newExplicitQosEnabled) {
-        boolean oldExplicitQosEnabled = explicitQosEnabled;
+    public void setExplicitQosEnabled(Boolean newExplicitQosEnabled) {
+        Boolean oldExplicitQosEnabled = explicitQosEnabled;
         explicitQosEnabled = newExplicitQosEnabled;
         boolean oldExplicitQosEnabledESet = explicitQosEnabledESet;
         explicitQosEnabledESet = true;
@@ -1031,7 +1031,7 @@ public class CamelJmsBindingTypeImpl extends BaseCamelBindingImpl implements Cam
      * @generated
      */
     public void unsetExplicitQosEnabled() {
-        boolean oldExplicitQosEnabled = explicitQosEnabled;
+        Boolean oldExplicitQosEnabled = explicitQosEnabled;
         boolean oldExplicitQosEnabledESet = explicitQosEnabledESet;
         explicitQosEnabled = EXPLICIT_QOS_ENABLED_EDEFAULT;
         explicitQosEnabledESet = false;
@@ -1095,7 +1095,7 @@ public class CamelJmsBindingTypeImpl extends BaseCamelBindingImpl implements Cam
      * <!-- end-user-doc -->
      * @generated
      */
-    public int getRequestTimeout() {
+    public Integer getRequestTimeout() {
         return requestTimeout;
     }
 
@@ -1104,8 +1104,8 @@ public class CamelJmsBindingTypeImpl extends BaseCamelBindingImpl implements Cam
      * <!-- end-user-doc -->
      * @generated
      */
-    public void setRequestTimeout(int newRequestTimeout) {
-        int oldRequestTimeout = requestTimeout;
+    public void setRequestTimeout(Integer newRequestTimeout) {
+        Integer oldRequestTimeout = requestTimeout;
         requestTimeout = newRequestTimeout;
         boolean oldRequestTimeoutESet = requestTimeoutESet;
         requestTimeoutESet = true;
@@ -1119,7 +1119,7 @@ public class CamelJmsBindingTypeImpl extends BaseCamelBindingImpl implements Cam
      * @generated
      */
     public void unsetRequestTimeout() {
-        int oldRequestTimeout = requestTimeout;
+        Integer oldRequestTimeout = requestTimeout;
         boolean oldRequestTimeoutESet = requestTimeoutESet;
         requestTimeout = REQUEST_TIMEOUT_EDEFAULT;
         requestTimeoutESet = false;
@@ -1162,7 +1162,7 @@ public class CamelJmsBindingTypeImpl extends BaseCamelBindingImpl implements Cam
      * <!-- end-user-doc -->
      * @generated
      */
-    public int getTimeToLive() {
+    public Integer getTimeToLive() {
         return timeToLive;
     }
 
@@ -1171,8 +1171,8 @@ public class CamelJmsBindingTypeImpl extends BaseCamelBindingImpl implements Cam
      * <!-- end-user-doc -->
      * @generated
      */
-    public void setTimeToLive(int newTimeToLive) {
-        int oldTimeToLive = timeToLive;
+    public void setTimeToLive(Integer newTimeToLive) {
+        Integer oldTimeToLive = timeToLive;
         timeToLive = newTimeToLive;
         boolean oldTimeToLiveESet = timeToLiveESet;
         timeToLiveESet = true;
@@ -1186,7 +1186,7 @@ public class CamelJmsBindingTypeImpl extends BaseCamelBindingImpl implements Cam
      * @generated
      */
     public void unsetTimeToLive() {
-        int oldTimeToLive = timeToLive;
+        Integer oldTimeToLive = timeToLive;
         boolean oldTimeToLiveESet = timeToLiveESet;
         timeToLive = TIME_TO_LIVE_EDEFAULT;
         timeToLiveESet = false;
@@ -1297,15 +1297,15 @@ public class CamelJmsBindingTypeImpl extends BaseCamelBindingImpl implements Cam
             case CamelPackage.CAMEL_JMS_BINDING_TYPE__MAX_CONCURRENT_CONSUMERS:
                 return getMaxConcurrentConsumers();
             case CamelPackage.CAMEL_JMS_BINDING_TYPE__DISABLE_REPLY_TO:
-                return isDisableReplyTo();
+                return getDisableReplyTo();
             case CamelPackage.CAMEL_JMS_BINDING_TYPE__PRESERVE_MESSAGE_QOS:
-                return isPreserveMessageQos();
+                return getPreserveMessageQos();
             case CamelPackage.CAMEL_JMS_BINDING_TYPE__DELIVERY_PERSISTENT:
-                return isDeliveryPersistent();
+                return getDeliveryPersistent();
             case CamelPackage.CAMEL_JMS_BINDING_TYPE__PRIORITY:
                 return getPriority();
             case CamelPackage.CAMEL_JMS_BINDING_TYPE__EXPLICIT_QOS_ENABLED:
-                return isExplicitQosEnabled();
+                return getExplicitQosEnabled();
             case CamelPackage.CAMEL_JMS_BINDING_TYPE__REPLY_TO:
                 return getReplyTo();
             case CamelPackage.CAMEL_JMS_BINDING_TYPE__REPLY_TO_TYPE:

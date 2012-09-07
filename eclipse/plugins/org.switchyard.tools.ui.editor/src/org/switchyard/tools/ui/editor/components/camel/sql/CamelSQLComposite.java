@@ -13,6 +13,7 @@
 package org.switchyard.tools.ui.editor.components.camel.sql;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import org.eclipse.graphiti.mm.pictograms.PictogramElement;
 import org.eclipse.soa.sca.sca1_1.model.sca.Binding;
@@ -51,6 +52,7 @@ public class CamelSQLComposite extends AbstractSYBindingComposite {
     private Button _batchCheckbox;
     private Combo _operationSelectionCombo;
     private TabFolder _tabFolder;
+    private List<String> _advancedPropsFilterList;
 
     @Override
     public Binding getBinding() {
@@ -234,4 +236,8 @@ public class CamelSQLComposite extends AbstractSYBindingComposite {
         setHasChanged(false);
     }
     
+    @Override
+    protected List<String> getAdvancedPropertiesFilterList() {
+        return _advancedPropsFilterList;
+    }
 }

@@ -15,7 +15,7 @@ package org.switchyard.tools.models.switchyard1_0.camel;
  * <p>
  * The following features are supported:
  * <ul>
- *   <li>{@link org.switchyard.tools.models.switchyard1_0.camel.CamelFtpBindingType#isPassiveMode <em>Passive Mode</em>}</li>
+ *   <li>{@link org.switchyard.tools.models.switchyard1_0.camel.CamelFtpBindingType#getPassiveMode <em>Passive Mode</em>}</li>
  *   <li>{@link org.switchyard.tools.models.switchyard1_0.camel.CamelFtpBindingType#getTimeout <em>Timeout</em>}</li>
  *   <li>{@link org.switchyard.tools.models.switchyard1_0.camel.CamelFtpBindingType#getSoTimeout <em>So Timeout</em>}</li>
  *   <li>{@link org.switchyard.tools.models.switchyard1_0.camel.CamelFtpBindingType#getSiteCommand <em>Site Command</em>}</li>
@@ -38,45 +38,45 @@ public interface CamelFtpBindingType extends CamelRemoteBindingType {
      * @return the value of the '<em>Passive Mode</em>' attribute.
      * @see #isSetPassiveMode()
      * @see #unsetPassiveMode()
-     * @see #setPassiveMode(boolean)
+     * @see #setPassiveMode(Boolean)
      * @see org.switchyard.tools.models.switchyard1_0.camel.CamelPackage#getCamelFtpBindingType_PassiveMode()
-     * @model unsettable="true" dataType="org.eclipse.emf.ecore.xml.type.Boolean"
+     * @model unsettable="true" dataType="org.eclipse.emf.ecore.xml.type.BooleanObject"
      *        extendedMetaData="kind='element' name='passiveMode' namespace='##targetNamespace'"
      * @generated
      */
-    boolean isPassiveMode();
+    Boolean getPassiveMode();
 
     /**
-     * Sets the value of the '{@link org.switchyard.tools.models.switchyard1_0.camel.CamelFtpBindingType#isPassiveMode <em>Passive Mode</em>}' attribute.
+     * Sets the value of the '{@link org.switchyard.tools.models.switchyard1_0.camel.CamelFtpBindingType#getPassiveMode <em>Passive Mode</em>}' attribute.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @param value the new value of the '<em>Passive Mode</em>' attribute.
      * @see #isSetPassiveMode()
      * @see #unsetPassiveMode()
-     * @see #isPassiveMode()
+     * @see #getPassiveMode()
      * @generated
      */
-    void setPassiveMode(boolean value);
+    void setPassiveMode(Boolean value);
 
     /**
-     * Unsets the value of the '{@link org.switchyard.tools.models.switchyard1_0.camel.CamelFtpBindingType#isPassiveMode <em>Passive Mode</em>}' attribute.
+     * Unsets the value of the '{@link org.switchyard.tools.models.switchyard1_0.camel.CamelFtpBindingType#getPassiveMode <em>Passive Mode</em>}' attribute.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @see #isSetPassiveMode()
-     * @see #isPassiveMode()
-     * @see #setPassiveMode(boolean)
+     * @see #getPassiveMode()
+     * @see #setPassiveMode(Boolean)
      * @generated
      */
     void unsetPassiveMode();
 
     /**
-     * Returns whether the value of the '{@link org.switchyard.tools.models.switchyard1_0.camel.CamelFtpBindingType#isPassiveMode <em>Passive Mode</em>}' attribute is set.
+     * Returns whether the value of the '{@link org.switchyard.tools.models.switchyard1_0.camel.CamelFtpBindingType#getPassiveMode <em>Passive Mode</em>}' attribute is set.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @return whether the value of the '<em>Passive Mode</em>' attribute is set.
      * @see #unsetPassiveMode()
-     * @see #isPassiveMode()
-     * @see #setPassiveMode(boolean)
+     * @see #getPassiveMode()
+     * @see #setPassiveMode(Boolean)
      * @generated
      */
     boolean isSetPassiveMode();
@@ -92,13 +92,13 @@ public interface CamelFtpBindingType extends CamelRemoteBindingType {
      * @return the value of the '<em>Timeout</em>' attribute.
      * @see #isSetTimeout()
      * @see #unsetTimeout()
-     * @see #setTimeout(int)
+     * @see #setTimeout(Integer)
      * @see org.switchyard.tools.models.switchyard1_0.camel.CamelPackage#getCamelFtpBindingType_Timeout()
-     * @model unsettable="true" dataType="org.eclipse.emf.ecore.xml.type.Int"
+     * @model unsettable="true" dataType="org.eclipse.emf.ecore.xml.type.IntObject"
      *        extendedMetaData="kind='element' name='timeout' namespace='##targetNamespace'"
      * @generated
      */
-    int getTimeout();
+    Integer getTimeout();
 
     /**
      * Sets the value of the '{@link org.switchyard.tools.models.switchyard1_0.camel.CamelFtpBindingType#getTimeout <em>Timeout</em>}' attribute.
@@ -110,7 +110,7 @@ public interface CamelFtpBindingType extends CamelRemoteBindingType {
      * @see #getTimeout()
      * @generated
      */
-    void setTimeout(int value);
+    void setTimeout(Integer value);
 
     /**
      * Unsets the value of the '{@link org.switchyard.tools.models.switchyard1_0.camel.CamelFtpBindingType#getTimeout <em>Timeout</em>}' attribute.
@@ -118,7 +118,7 @@ public interface CamelFtpBindingType extends CamelRemoteBindingType {
      * <!-- end-user-doc -->
      * @see #isSetTimeout()
      * @see #getTimeout()
-     * @see #setTimeout(int)
+     * @see #setTimeout(Integer)
      * @generated
      */
     void unsetTimeout();
@@ -130,7 +130,7 @@ public interface CamelFtpBindingType extends CamelRemoteBindingType {
      * @return whether the value of the '<em>Timeout</em>' attribute is set.
      * @see #unsetTimeout()
      * @see #getTimeout()
-     * @see #setTimeout(int)
+     * @see #setTimeout(Integer)
      * @generated
      */
     boolean isSetTimeout();
@@ -146,13 +146,13 @@ public interface CamelFtpBindingType extends CamelRemoteBindingType {
      * @return the value of the '<em>So Timeout</em>' attribute.
      * @see #isSetSoTimeout()
      * @see #unsetSoTimeout()
-     * @see #setSoTimeout(int)
+     * @see #setSoTimeout(Integer)
      * @see org.switchyard.tools.models.switchyard1_0.camel.CamelPackage#getCamelFtpBindingType_SoTimeout()
-     * @model unsettable="true" dataType="org.eclipse.emf.ecore.xml.type.Int"
+     * @model unsettable="true" dataType="org.eclipse.emf.ecore.xml.type.IntObject"
      *        extendedMetaData="kind='element' name='soTimeout' namespace='##targetNamespace'"
      * @generated
      */
-    int getSoTimeout();
+    Integer getSoTimeout();
 
     /**
      * Sets the value of the '{@link org.switchyard.tools.models.switchyard1_0.camel.CamelFtpBindingType#getSoTimeout <em>So Timeout</em>}' attribute.
@@ -164,7 +164,7 @@ public interface CamelFtpBindingType extends CamelRemoteBindingType {
      * @see #getSoTimeout()
      * @generated
      */
-    void setSoTimeout(int value);
+    void setSoTimeout(Integer value);
 
     /**
      * Unsets the value of the '{@link org.switchyard.tools.models.switchyard1_0.camel.CamelFtpBindingType#getSoTimeout <em>So Timeout</em>}' attribute.
@@ -172,7 +172,7 @@ public interface CamelFtpBindingType extends CamelRemoteBindingType {
      * <!-- end-user-doc -->
      * @see #isSetSoTimeout()
      * @see #getSoTimeout()
-     * @see #setSoTimeout(int)
+     * @see #setSoTimeout(Integer)
      * @generated
      */
     void unsetSoTimeout();
@@ -184,7 +184,7 @@ public interface CamelFtpBindingType extends CamelRemoteBindingType {
      * @return whether the value of the '<em>So Timeout</em>' attribute is set.
      * @see #unsetSoTimeout()
      * @see #getSoTimeout()
-     * @see #setSoTimeout(int)
+     * @see #setSoTimeout(Integer)
      * @generated
      */
     boolean isSetSoTimeout();
