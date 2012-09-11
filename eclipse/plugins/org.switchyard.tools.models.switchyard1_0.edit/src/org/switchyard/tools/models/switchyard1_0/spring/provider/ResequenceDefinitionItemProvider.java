@@ -1449,7 +1449,7 @@ public class ResequenceDefinitionItemProvider
         newChildDescriptors.add
             (createChildParameter
                 (SpringPackage.eINSTANCE.getResequenceDefinition_Property(),
-                 SOAPFactory.eINSTANCE.createMessageComposerType()));
+                 SOAPFactory.eINSTANCE.createSOAPMessageComposerType()));
 
         newChildDescriptors.add
             (createChildParameter

@@ -1430,7 +1430,7 @@ public class ExpressionSubElementDefinitionItemProvider
         newChildDescriptors.add
             (createChildParameter
                 (SpringPackage.eINSTANCE.getExpressionSubElementDefinition_Property(),
-                 SOAPFactory.eINSTANCE.createMessageComposerType()));
+                 SOAPFactory.eINSTANCE.createSOAPMessageComposerType()));
 
         newChildDescriptors.add
             (createChildParameter

@@ -27,17 +27,19 @@ import org.eclipse.emf.edit.provider.ViewerNotification;
 
 import org.switchyard.tools.models.switchyard1_0.bean.provider.Switchyard_1EditPlugin;
 
-import org.switchyard.tools.models.switchyard1_0.soap.MessageComposerType;
+import org.switchyard.tools.models.switchyard1_0.soap.SOAPMessageComposerType;
 import org.switchyard.tools.models.switchyard1_0.soap.SOAPPackage;
 
+import org.switchyard.tools.models.switchyard1_0.switchyard.provider.MessageComposerTypeItemProvider;
+
 /**
- * This is the item provider adapter for a {@link org.switchyard.tools.models.switchyard1_0.soap.MessageComposerType} object.
+ * This is the item provider adapter for a {@link org.switchyard.tools.models.switchyard1_0.soap.SOAPMessageComposerType} object.
  * <!-- begin-user-doc -->
  * <!-- end-user-doc -->
  * @generated
  */
-public class MessageComposerTypeItemProvider
-    extends org.switchyard.tools.models.switchyard1_0.switchyard.provider.MessageComposerTypeItemProvider
+public class SOAPMessageComposerTypeItemProvider
+    extends MessageComposerTypeItemProvider
     implements
         IEditingDomainItemProvider,
         IStructuredItemContentProvider,
@@ -50,7 +52,7 @@ public class MessageComposerTypeItemProvider
      * <!-- end-user-doc -->
      * @generated
      */
-    public MessageComposerTypeItemProvider(AdapterFactory adapterFactory) {
+    public SOAPMessageComposerTypeItemProvider(AdapterFactory adapterFactory) {
         super(adapterFactory);
     }
 
@@ -81,9 +83,9 @@ public class MessageComposerTypeItemProvider
             (createItemPropertyDescriptor
                 (((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
                  getResourceLocator(),
-                 getString("_UI_MessageComposerType_unwrapped_feature"),
-                 getString("_UI_PropertyDescriptor_description", "_UI_MessageComposerType_unwrapped_feature", "_UI_MessageComposerType_type"),
-                 SOAPPackage.Literals.MESSAGE_COMPOSER_TYPE__UNWRAPPED,
+                 getString("_UI_SOAPMessageComposerType_unwrapped_feature"),
+                 getString("_UI_PropertyDescriptor_description", "_UI_SOAPMessageComposerType_unwrapped_feature", "_UI_SOAPMessageComposerType_type"),
+                 SOAPPackage.Literals.SOAP_MESSAGE_COMPOSER_TYPE__UNWRAPPED,
                  true,
                  false,
                  false,
@@ -93,14 +95,14 @@ public class MessageComposerTypeItemProvider
     }
 
     /**
-     * This returns MessageComposerType.gif.
+     * This returns SOAPMessageComposerType.gif.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @generated
      */
     @Override
     public Object getImage(Object object) {
-        return overlayImage(object, getResourceLocator().getImage("full/obj16/MessageComposerType"));
+        return overlayImage(object, getResourceLocator().getImage("full/obj16/SOAPMessageComposerType"));
     }
 
     /**
@@ -111,10 +113,10 @@ public class MessageComposerTypeItemProvider
      */
     @Override
     public String getText(Object object) {
-        String label = ((MessageComposerType)object).getClass_();
+        String label = ((SOAPMessageComposerType)object).getClass_();
         return label == null || label.length() == 0 ?
-            getString("_UI_MessageComposerType_type") :
-            getString("_UI_MessageComposerType_type") + " " + label;
+            getString("_UI_SOAPMessageComposerType_type") :
+            getString("_UI_SOAPMessageComposerType_type") + " " + label;
     }
 
     /**
@@ -128,8 +130,8 @@ public class MessageComposerTypeItemProvider
     public void notifyChanged(Notification notification) {
         updateChildren(notification);
 
-        switch (notification.getFeatureID(MessageComposerType.class)) {
-            case SOAPPackage.MESSAGE_COMPOSER_TYPE__UNWRAPPED:
+        switch (notification.getFeatureID(SOAPMessageComposerType.class)) {
+            case SOAPPackage.SOAP_MESSAGE_COMPOSER_TYPE__UNWRAPPED:
                 fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
                 return;
         }

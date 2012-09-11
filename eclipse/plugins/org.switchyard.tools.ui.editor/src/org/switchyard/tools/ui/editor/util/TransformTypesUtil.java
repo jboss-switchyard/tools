@@ -323,11 +323,13 @@ public final class TransformTypesUtil {
      * @return true/false if the transform already exists
      */
     public boolean transformExists(String from, String to) {
-        for (TransformType targetTransformType : _targetTransforms.getTransform()) {
-            boolean testToMatch = targetTransformType.getTo().equals(to);
-            boolean testFromMatch = targetTransformType.getFrom().equals(from);
-            if (testToMatch && testFromMatch) {
-                return true;
+        if (_targetTransforms != null) {
+            for (TransformType targetTransformType : _targetTransforms.getTransform()) {
+                boolean testToMatch = targetTransformType.getTo().equals(to);
+                boolean testFromMatch = targetTransformType.getFrom().equals(from);
+                if (testToMatch && testFromMatch) {
+                    return true;
+                }
             }
         }
         return false;

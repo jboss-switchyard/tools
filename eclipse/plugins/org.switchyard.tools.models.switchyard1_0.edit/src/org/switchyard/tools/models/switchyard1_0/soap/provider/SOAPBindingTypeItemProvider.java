@@ -272,7 +272,7 @@ public class SOAPBindingTypeItemProvider
         newChildDescriptors.add
             (createChildParameter
                 (SOAPPackage.Literals.SOAP_BINDING_TYPE__SOAP_MESSAGE_COMPOSER,
-                 SOAPFactory.eINSTANCE.createMessageComposerType()));
+                 SOAPFactory.eINSTANCE.createSOAPMessageComposerType()));
     }
 
     /**

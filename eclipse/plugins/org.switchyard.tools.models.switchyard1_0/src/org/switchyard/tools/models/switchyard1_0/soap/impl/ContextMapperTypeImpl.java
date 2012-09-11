@@ -13,7 +13,6 @@ import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 
 import org.switchyard.tools.models.switchyard1_0.soap.ContextMapperType;
-import org.switchyard.tools.models.switchyard1_0.soap.SOAPFactory;
 import org.switchyard.tools.models.switchyard1_0.soap.SOAPPackage;
 import org.switchyard.tools.models.switchyard1_0.soap.SoapHeadersType;
 

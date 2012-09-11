@@ -99,26 +99,26 @@ public class SOAPItemProviderAdapterFactory extends SOAPAdapterFactory implement
     }
 
     /**
-     * This keeps track of the one adapter used for all {@link org.switchyard.tools.models.switchyard1_0.soap.MessageComposerType} instances.
+     * This keeps track of the one adapter used for all {@link org.switchyard.tools.models.switchyard1_0.soap.SOAPMessageComposerType} instances.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @generated
      */
-    protected MessageComposerTypeItemProvider messageComposerTypeItemProvider;
+    protected SOAPMessageComposerTypeItemProvider soapMessageComposerTypeItemProvider;
 
     /**
-     * This creates an adapter for a {@link org.switchyard.tools.models.switchyard1_0.soap.MessageComposerType}.
+     * This creates an adapter for a {@link org.switchyard.tools.models.switchyard1_0.soap.SOAPMessageComposerType}.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @generated
      */
     @Override
-    public Adapter createMessageComposerTypeAdapter() {
-        if (messageComposerTypeItemProvider == null) {
-            messageComposerTypeItemProvider = new MessageComposerTypeItemProvider(this);
+    public Adapter createSOAPMessageComposerTypeAdapter() {
+        if (soapMessageComposerTypeItemProvider == null) {
+            soapMessageComposerTypeItemProvider = new SOAPMessageComposerTypeItemProvider(this);
         }
 
-        return messageComposerTypeItemProvider;
+        return soapMessageComposerTypeItemProvider;
     }
 
     /**
@@ -267,7 +267,7 @@ public class SOAPItemProviderAdapterFactory extends SOAPAdapterFactory implement
      */
     public void dispose() {
         if (contextMapperTypeItemProvider != null) contextMapperTypeItemProvider.dispose();
-        if (messageComposerTypeItemProvider != null) messageComposerTypeItemProvider.dispose();
+        if (soapMessageComposerTypeItemProvider != null) soapMessageComposerTypeItemProvider.dispose();
         if (documentRootItemProvider != null) documentRootItemProvider.dispose();
         if (soapBindingTypeItemProvider != null) soapBindingTypeItemProvider.dispose();
     }

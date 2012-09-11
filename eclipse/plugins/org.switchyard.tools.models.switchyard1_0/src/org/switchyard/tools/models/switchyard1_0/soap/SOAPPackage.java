@@ -137,14 +137,14 @@ public interface SOAPPackage extends EPackage {
     int CONTEXT_MAPPER_TYPE_FEATURE_COUNT = SwitchyardPackage.CONTEXT_MAPPER_TYPE_FEATURE_COUNT + 1;
 
     /**
-     * The meta object id for the '{@link org.switchyard.tools.models.switchyard1_0.soap.impl.MessageComposerTypeImpl <em>Message Composer Type</em>}' class.
+     * The meta object id for the '{@link org.switchyard.tools.models.switchyard1_0.soap.impl.SOAPMessageComposerTypeImpl <em>Message Composer Type</em>}' class.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @see org.switchyard.tools.models.switchyard1_0.soap.impl.MessageComposerTypeImpl
-     * @see org.switchyard.tools.models.switchyard1_0.soap.impl.SOAPPackageImpl#getMessageComposerType()
+     * @see org.switchyard.tools.models.switchyard1_0.soap.impl.SOAPMessageComposerTypeImpl
+     * @see org.switchyard.tools.models.switchyard1_0.soap.impl.SOAPPackageImpl#getSOAPMessageComposerType()
      * @generated
      */
-    int MESSAGE_COMPOSER_TYPE = 1;
+    int SOAP_MESSAGE_COMPOSER_TYPE = 1;
 
     /**
      * The feature id for the '<em><b>Class</b></em>' attribute.
@@ -153,7 +153,7 @@ public interface SOAPPackage extends EPackage {
      * @generated
      * @ordered
      */
-    int MESSAGE_COMPOSER_TYPE__CLASS = SwitchyardPackage.MESSAGE_COMPOSER_TYPE__CLASS;
+    int SOAP_MESSAGE_COMPOSER_TYPE__CLASS = SwitchyardPackage.MESSAGE_COMPOSER_TYPE__CLASS;
 
     /**
      * The feature id for the '<em><b>Unwrapped</b></em>' attribute.
@@ -162,7 +162,7 @@ public interface SOAPPackage extends EPackage {
      * @generated
      * @ordered
      */
-    int MESSAGE_COMPOSER_TYPE__UNWRAPPED = SwitchyardPackage.MESSAGE_COMPOSER_TYPE_FEATURE_COUNT + 0;
+    int SOAP_MESSAGE_COMPOSER_TYPE__UNWRAPPED = SwitchyardPackage.MESSAGE_COMPOSER_TYPE_FEATURE_COUNT + 0;
 
     /**
      * The number of structural features of the '<em>Message Composer Type</em>' class.
@@ -171,7 +171,7 @@ public interface SOAPPackage extends EPackage {
      * @generated
      * @ordered
      */
-    int MESSAGE_COMPOSER_TYPE_FEATURE_COUNT = SwitchyardPackage.MESSAGE_COMPOSER_TYPE_FEATURE_COUNT + 1;
+    int SOAP_MESSAGE_COMPOSER_TYPE_FEATURE_COUNT = SwitchyardPackage.MESSAGE_COMPOSER_TYPE_FEATURE_COUNT + 1;
 
     /**
      * The meta object id for the '{@link org.switchyard.tools.models.switchyard1_0.soap.impl.DocumentRootImpl <em>Document Root</em>}' class.
@@ -462,25 +462,25 @@ public interface SOAPPackage extends EPackage {
     EAttribute getContextMapperType_SoapHeadersType();
 
     /**
-     * Returns the meta object for class '{@link org.switchyard.tools.models.switchyard1_0.soap.MessageComposerType <em>Message Composer Type</em>}'.
+     * Returns the meta object for class '{@link org.switchyard.tools.models.switchyard1_0.soap.SOAPMessageComposerType <em>Message Composer Type</em>}'.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @return the meta object for class '<em>Message Composer Type</em>'.
-     * @see org.switchyard.tools.models.switchyard1_0.soap.MessageComposerType
+     * @see org.switchyard.tools.models.switchyard1_0.soap.SOAPMessageComposerType
      * @generated
      */
-    EClass getMessageComposerType();
+    EClass getSOAPMessageComposerType();
 
     /**
-     * Returns the meta object for the attribute '{@link org.switchyard.tools.models.switchyard1_0.soap.MessageComposerType#isUnwrapped <em>Unwrapped</em>}'.
+     * Returns the meta object for the attribute '{@link org.switchyard.tools.models.switchyard1_0.soap.SOAPMessageComposerType#isUnwrapped <em>Unwrapped</em>}'.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @return the meta object for the attribute '<em>Unwrapped</em>'.
-     * @see org.switchyard.tools.models.switchyard1_0.soap.MessageComposerType#isUnwrapped()
-     * @see #getMessageComposerType()
+     * @see org.switchyard.tools.models.switchyard1_0.soap.SOAPMessageComposerType#isUnwrapped()
+     * @see #getSOAPMessageComposerType()
      * @generated
      */
-    EAttribute getMessageComposerType_Unwrapped();
+    EAttribute getSOAPMessageComposerType_Unwrapped();
 
     /**
      * Returns the meta object for class '{@link org.switchyard.tools.models.switchyard1_0.soap.DocumentRoot <em>Document Root</em>}'.
@@ -687,14 +687,14 @@ public interface SOAPPackage extends EPackage {
         EAttribute CONTEXT_MAPPER_TYPE__SOAP_HEADERS_TYPE = eINSTANCE.getContextMapperType_SoapHeadersType();
 
         /**
-         * The meta object literal for the '{@link org.switchyard.tools.models.switchyard1_0.soap.impl.MessageComposerTypeImpl <em>Message Composer Type</em>}' class.
+         * The meta object literal for the '{@link org.switchyard.tools.models.switchyard1_0.soap.impl.SOAPMessageComposerTypeImpl <em>Message Composer Type</em>}' class.
          * <!-- begin-user-doc -->
          * <!-- end-user-doc -->
-         * @see org.switchyard.tools.models.switchyard1_0.soap.impl.MessageComposerTypeImpl
-         * @see org.switchyard.tools.models.switchyard1_0.soap.impl.SOAPPackageImpl#getMessageComposerType()
+         * @see org.switchyard.tools.models.switchyard1_0.soap.impl.SOAPMessageComposerTypeImpl
+         * @see org.switchyard.tools.models.switchyard1_0.soap.impl.SOAPPackageImpl#getSOAPMessageComposerType()
          * @generated
          */
-        EClass MESSAGE_COMPOSER_TYPE = eINSTANCE.getMessageComposerType();
+        EClass SOAP_MESSAGE_COMPOSER_TYPE = eINSTANCE.getSOAPMessageComposerType();
 
         /**
          * The meta object literal for the '<em><b>Unwrapped</b></em>' attribute feature.
@@ -702,7 +702,7 @@ public interface SOAPPackage extends EPackage {
          * <!-- end-user-doc -->
          * @generated
          */
-        EAttribute MESSAGE_COMPOSER_TYPE__UNWRAPPED = eINSTANCE.getMessageComposerType_Unwrapped();
+        EAttribute SOAP_MESSAGE_COMPOSER_TYPE__UNWRAPPED = eINSTANCE.getSOAPMessageComposerType_Unwrapped();
 
         /**
          * The meta object literal for the '{@link org.switchyard.tools.models.switchyard1_0.soap.impl.DocumentRootImpl <em>Document Root</em>}' class.

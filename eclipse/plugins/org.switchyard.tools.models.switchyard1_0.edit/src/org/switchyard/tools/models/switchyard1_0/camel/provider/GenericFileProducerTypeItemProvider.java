@@ -159,7 +159,7 @@ public class GenericFileProducerTypeItemProvider
                  true,
                  false,
                  false,
-                 ItemPropertyDescriptor.BOOLEAN_VALUE_IMAGE,
+                 ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
                  null,
                  null));
     }
@@ -181,7 +181,7 @@ public class GenericFileProducerTypeItemProvider
                  true,
                  false,
                  false,
-                 ItemPropertyDescriptor.BOOLEAN_VALUE_IMAGE,
+                 ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
                  null,
                  null));
     }

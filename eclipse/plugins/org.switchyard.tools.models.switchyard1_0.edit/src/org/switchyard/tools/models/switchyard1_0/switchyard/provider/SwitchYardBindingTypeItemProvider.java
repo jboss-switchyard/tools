@@ -164,7 +164,7 @@ public class SwitchYardBindingTypeItemProvider
         newChildDescriptors.add
             (createChildParameter
                 (SwitchyardPackage.Literals.SWITCH_YARD_BINDING_TYPE__MESSAGE_COMPOSER,
-                 SOAPFactory.eINSTANCE.createMessageComposerType()));
+                 SOAPFactory.eINSTANCE.createSOAPMessageComposerType()));
     }
 
 }

@@ -1435,7 +1435,7 @@ public class ExpressionNodeItemProvider
         newChildDescriptors.add
             (createChildParameter
                 (SpringPackage.eINSTANCE.getExpressionNode_Property(),
-                 SOAPFactory.eINSTANCE.createMessageComposerType()));
+                 SOAPFactory.eINSTANCE.createSOAPMessageComposerType()));
 
         newChildDescriptors.add
             (createChildParameter

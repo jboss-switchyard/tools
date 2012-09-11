@@ -20,7 +20,7 @@ package org.switchyard.tools.models.switchyard1_0.soap;
  * </p>
  *
  * @see org.switchyard.tools.models.switchyard1_0.soap.SOAPPackage#getContextMapperType()
- * @model extendedMetaData="name='ContextMapperType' kind='empty'"
+ * @model extendedMetaData="name='ContextMapperType' kind='empty' namespace='##targetNamespace'"
  * @generated
  */
 public interface ContextMapperType extends org.switchyard.tools.models.switchyard1_0.switchyard.ContextMapperType {

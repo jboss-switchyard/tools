@@ -12,8 +12,10 @@ import org.eclipse.emf.ecore.EClass;
 
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 
-import org.switchyard.tools.models.switchyard1_0.soap.MessageComposerType;
+import org.switchyard.tools.models.switchyard1_0.soap.SOAPMessageComposerType;
 import org.switchyard.tools.models.switchyard1_0.soap.SOAPPackage;
+
+import org.switchyard.tools.models.switchyard1_0.switchyard.impl.MessageComposerTypeImpl;
 
 /**
  * <!-- begin-user-doc -->
@@ -22,13 +24,13 @@ import org.switchyard.tools.models.switchyard1_0.soap.SOAPPackage;
  * <p>
  * The following features are implemented:
  * <ul>
- *   <li>{@link org.switchyard.tools.models.switchyard1_0.soap.impl.MessageComposerTypeImpl#isUnwrapped <em>Unwrapped</em>}</li>
+ *   <li>{@link org.switchyard.tools.models.switchyard1_0.soap.impl.SOAPMessageComposerTypeImpl#isUnwrapped <em>Unwrapped</em>}</li>
  * </ul>
  * </p>
  *
  * @generated
  */
-public class MessageComposerTypeImpl extends org.switchyard.tools.models.switchyard1_0.switchyard.impl.MessageComposerTypeImpl implements MessageComposerType {
+public class SOAPMessageComposerTypeImpl extends MessageComposerTypeImpl implements SOAPMessageComposerType {
     /**
      * The default value of the '{@link #isUnwrapped() <em>Unwrapped</em>}' attribute.
      * <!-- begin-user-doc -->
@@ -54,7 +56,7 @@ public class MessageComposerTypeImpl extends org.switchyard.tools.models.switchy
      * <!-- end-user-doc -->
      * @generated
      */
-    protected MessageComposerTypeImpl() {
+    protected SOAPMessageComposerTypeImpl() {
         super();
     }
 
@@ -65,7 +67,7 @@ public class MessageComposerTypeImpl extends org.switchyard.tools.models.switchy
      */
     @Override
     protected EClass eStaticClass() {
-        return SOAPPackage.Literals.MESSAGE_COMPOSER_TYPE;
+        return SOAPPackage.Literals.SOAP_MESSAGE_COMPOSER_TYPE;
     }
 
     /**
@@ -86,7 +88,7 @@ public class MessageComposerTypeImpl extends org.switchyard.tools.models.switchy
         boolean oldUnwrapped = unwrapped;
         unwrapped = newUnwrapped;
         if (eNotificationRequired())
-            eNotify(new ENotificationImpl(this, Notification.SET, SOAPPackage.MESSAGE_COMPOSER_TYPE__UNWRAPPED, oldUnwrapped, unwrapped));
+            eNotify(new ENotificationImpl(this, Notification.SET, SOAPPackage.SOAP_MESSAGE_COMPOSER_TYPE__UNWRAPPED, oldUnwrapped, unwrapped));
     }
 
     /**
@@ -97,7 +99,7 @@ public class MessageComposerTypeImpl extends org.switchyard.tools.models.switchy
     @Override
     public Object eGet(int featureID, boolean resolve, boolean coreType) {
         switch (featureID) {
-            case SOAPPackage.MESSAGE_COMPOSER_TYPE__UNWRAPPED:
+            case SOAPPackage.SOAP_MESSAGE_COMPOSER_TYPE__UNWRAPPED:
                 return isUnwrapped();
         }
         return super.eGet(featureID, resolve, coreType);
@@ -111,7 +113,7 @@ public class MessageComposerTypeImpl extends org.switchyard.tools.models.switchy
     @Override
     public void eSet(int featureID, Object newValue) {
         switch (featureID) {
-            case SOAPPackage.MESSAGE_COMPOSER_TYPE__UNWRAPPED:
+            case SOAPPackage.SOAP_MESSAGE_COMPOSER_TYPE__UNWRAPPED:
                 setUnwrapped((Boolean)newValue);
                 return;
         }
@@ -126,7 +128,7 @@ public class MessageComposerTypeImpl extends org.switchyard.tools.models.switchy
     @Override
     public void eUnset(int featureID) {
         switch (featureID) {
-            case SOAPPackage.MESSAGE_COMPOSER_TYPE__UNWRAPPED:
+            case SOAPPackage.SOAP_MESSAGE_COMPOSER_TYPE__UNWRAPPED:
                 setUnwrapped(UNWRAPPED_EDEFAULT);
                 return;
         }
@@ -141,7 +143,7 @@ public class MessageComposerTypeImpl extends org.switchyard.tools.models.switchy
     @Override
     public boolean eIsSet(int featureID) {
         switch (featureID) {
-            case SOAPPackage.MESSAGE_COMPOSER_TYPE__UNWRAPPED:
+            case SOAPPackage.SOAP_MESSAGE_COMPOSER_TYPE__UNWRAPPED:
                 return unwrapped != UNWRAPPED_EDEFAULT;
         }
         return super.eIsSet(featureID);
@@ -163,4 +165,4 @@ public class MessageComposerTypeImpl extends org.switchyard.tools.models.switchy
         return result.toString();
     }
 
-} //MessageComposerTypeImpl
+} //SOAPMessageComposerTypeImpl

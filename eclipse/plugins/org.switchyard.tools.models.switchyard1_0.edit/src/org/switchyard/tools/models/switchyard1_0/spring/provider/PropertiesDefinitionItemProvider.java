@@ -1223,7 +1223,7 @@ public class PropertiesDefinitionItemProvider
         newChildDescriptors.add
             (createChildParameter
                 (SpringPackage.eINSTANCE.getPropertiesDefinition_Property(),
-                 SOAPFactory.eINSTANCE.createMessageComposerType()));
+                 SOAPFactory.eINSTANCE.createSOAPMessageComposerType()));
 
         newChildDescriptors.add
             (createChildParameter

@@ -14,7 +14,10 @@ import org.eclipse.emf.ecore.util.Switch;
 import org.eclipse.soa.sca.sca1_1.model.sca.Binding;
 import org.eclipse.soa.sca.sca1_1.model.sca.CommonExtensionBase;
 import org.eclipse.soa.sca.sca1_1.model.sca.ExtendableType;
+
 import org.switchyard.tools.models.switchyard1_0.soap.*;
+
+import org.switchyard.tools.models.switchyard1_0.switchyard.MessageComposerType;
 import org.switchyard.tools.models.switchyard1_0.switchyard.SwitchYardBindingType;
 
 /**
@@ -31,48 +34,48 @@ import org.switchyard.tools.models.switchyard1_0.switchyard.SwitchYardBindingTyp
  * @generated
  */
 public class SOAPSwitch<T> extends Switch<T> {
-	/**
+    /**
      * The cached model package
      * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
      * @generated
      */
-	protected static SOAPPackage modelPackage;
+    protected static SOAPPackage modelPackage;
 
-	/**
+    /**
      * Creates an instance of the switch.
      * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
      * @generated
      */
-	public SOAPSwitch() {
+    public SOAPSwitch() {
         if (modelPackage == null) {
             modelPackage = SOAPPackage.eINSTANCE;
         }
     }
 
-	/**
+    /**
      * Checks whether this is a switch for the given package.
      * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
      * @parameter ePackage the package in question.
      * @return whether this is a switch for the given package.
      * @generated
      */
-	@Override
-	protected boolean isSwitchFor(EPackage ePackage) {
+    @Override
+    protected boolean isSwitchFor(EPackage ePackage) {
         return ePackage == modelPackage;
     }
 
-	/**
+    /**
      * Calls <code>caseXXX</code> for each class of the model until one returns a non null result; it yields that result.
      * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
      * @return the first non-null result returned by a <code>caseXXX</code> call.
      * @generated
      */
-	@Override
-	protected T doSwitch(int classifierID, EObject theEObject) {
+    @Override
+    protected T doSwitch(int classifierID, EObject theEObject) {
         switch (classifierID) {
             case SOAPPackage.CONTEXT_MAPPER_TYPE: {
                 ContextMapperType contextMapperType = (ContextMapperType)theEObject;
@@ -81,10 +84,10 @@ public class SOAPSwitch<T> extends Switch<T> {
                 if (result == null) result = defaultCase(theEObject);
                 return result;
             }
-            case SOAPPackage.MESSAGE_COMPOSER_TYPE: {
-                MessageComposerType messageComposerType = (MessageComposerType)theEObject;
-                T result = caseMessageComposerType(messageComposerType);
-                if (result == null) result = caseSwitchyard_MessageComposerType(messageComposerType);
+            case SOAPPackage.SOAP_MESSAGE_COMPOSER_TYPE: {
+                SOAPMessageComposerType soapMessageComposerType = (SOAPMessageComposerType)theEObject;
+                T result = caseSOAPMessageComposerType(soapMessageComposerType);
+                if (result == null) result = caseMessageComposerType(soapMessageComposerType);
                 if (result == null) result = defaultCase(theEObject);
                 return result;
             }
@@ -108,7 +111,7 @@ public class SOAPSwitch<T> extends Switch<T> {
         }
     }
 
-	/**
+    /**
      * Returns the result of interpreting the object as an instance of '<em>Context Mapper Type</em>'.
      * <!-- begin-user-doc -->
      * This implementation returns null;
@@ -134,41 +137,41 @@ public class SOAPSwitch<T> extends Switch<T> {
      * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
      * @generated
      */
-    public T caseMessageComposerType(MessageComposerType object) {
+    public T caseSOAPMessageComposerType(SOAPMessageComposerType object) {
         return null;
     }
 
     /**
      * Returns the result of interpreting the object as an instance of '<em>Document Root</em>'.
      * <!-- begin-user-doc -->
-	 * This implementation returns null;
-	 * returning a non-null result will terminate the switch.
-	 * <!-- end-user-doc -->
+     * This implementation returns null;
+     * returning a non-null result will terminate the switch.
+     * <!-- end-user-doc -->
      * @param object the target of the switch.
      * @return the result of interpreting the object as an instance of '<em>Document Root</em>'.
      * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
      * @generated
      */
-	public T caseDocumentRoot(DocumentRoot object) {
+    public T caseDocumentRoot(DocumentRoot object) {
         return null;
     }
 
-	/**
+    /**
      * Returns the result of interpreting the object as an instance of '<em>Binding Type</em>'.
      * <!-- begin-user-doc -->
-	 * This implementation returns null;
-	 * returning a non-null result will terminate the switch.
-	 * <!-- end-user-doc -->
+     * This implementation returns null;
+     * returning a non-null result will terminate the switch.
+     * <!-- end-user-doc -->
      * @param object the target of the switch.
      * @return the result of interpreting the object as an instance of '<em>Binding Type</em>'.
      * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
      * @generated
      */
-	public T caseSOAPBindingType(SOAPBindingType object) {
+    public T caseSOAPBindingType(SOAPBindingType object) {
         return null;
     }
 
-	/**
+    /**
      * Returns the result of interpreting the object as an instance of '<em>Context Mapper Type</em>'.
      * <!-- begin-user-doc -->
      * This implementation returns null;
@@ -194,7 +197,7 @@ public class SOAPSwitch<T> extends Switch<T> {
      * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
      * @generated
      */
-    public T caseSwitchyard_MessageComposerType(org.switchyard.tools.models.switchyard1_0.switchyard.MessageComposerType object) {
+    public T caseMessageComposerType(MessageComposerType object) {
         return null;
     }
 
@@ -261,16 +264,16 @@ public class SOAPSwitch<T> extends Switch<T> {
     /**
      * Returns the result of interpreting the object as an instance of '<em>EObject</em>'.
      * <!-- begin-user-doc -->
-	 * This implementation returns null;
-	 * returning a non-null result will terminate the switch, but this is the last case anyway.
-	 * <!-- end-user-doc -->
+     * This implementation returns null;
+     * returning a non-null result will terminate the switch, but this is the last case anyway.
+     * <!-- end-user-doc -->
      * @param object the target of the switch.
      * @return the result of interpreting the object as an instance of '<em>EObject</em>'.
      * @see #doSwitch(org.eclipse.emf.ecore.EObject)
      * @generated
      */
-	@Override
-	public T defaultCase(EObject object) {
+    @Override
+    public T defaultCase(EObject object) {
         return null;
     }
 

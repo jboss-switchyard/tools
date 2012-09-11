@@ -10,16 +10,12 @@ import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.NotificationChain;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EStructuralFeature;
-
 import org.eclipse.emf.ecore.InternalEObject;
-
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
-
 import org.switchyard.tools.models.switchyard1_0.soap.ContextMapperType;
-import org.switchyard.tools.models.switchyard1_0.soap.MessageComposerType;
 import org.switchyard.tools.models.switchyard1_0.soap.SOAPBindingType;
+import org.switchyard.tools.models.switchyard1_0.soap.SOAPMessageComposerType;
 import org.switchyard.tools.models.switchyard1_0.soap.SOAPPackage;
-
 import org.switchyard.tools.models.switchyard1_0.switchyard.impl.SwitchYardBindingTypeImpl;
 
 /**
@@ -59,7 +55,7 @@ public class SOAPBindingTypeImpl extends SwitchYardBindingTypeImpl implements SO
      * @generated
      * @ordered
      */
-    protected MessageComposerType soapMessageComposer;
+    protected SOAPMessageComposerType soapMessageComposer;
 
     /**
      * The default value of the '{@link #getWsdl() <em>Wsdl</em>}' attribute.
@@ -208,7 +204,7 @@ public class SOAPBindingTypeImpl extends SwitchYardBindingTypeImpl implements SO
      * <!-- end-user-doc -->
      * @generated
      */
-    public MessageComposerType getSoapMessageComposer() {
+    public SOAPMessageComposerType getSoapMessageComposer() {
         return soapMessageComposer;
     }
 
@@ -217,8 +213,8 @@ public class SOAPBindingTypeImpl extends SwitchYardBindingTypeImpl implements SO
      * <!-- end-user-doc -->
      * @generated
      */
-    public NotificationChain basicSetSoapMessageComposer(MessageComposerType newSoapMessageComposer, NotificationChain msgs) {
-        MessageComposerType oldSoapMessageComposer = soapMessageComposer;
+    public NotificationChain basicSetSoapMessageComposer(SOAPMessageComposerType newSoapMessageComposer, NotificationChain msgs) {
+        SOAPMessageComposerType oldSoapMessageComposer = soapMessageComposer;
         soapMessageComposer = newSoapMessageComposer;
         if (eNotificationRequired()) {
             ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, SOAPPackage.SOAP_BINDING_TYPE__SOAP_MESSAGE_COMPOSER, oldSoapMessageComposer, newSoapMessageComposer);
@@ -232,7 +228,7 @@ public class SOAPBindingTypeImpl extends SwitchYardBindingTypeImpl implements SO
      * <!-- end-user-doc -->
      * @generated
      */
-    public void setSoapMessageComposer(MessageComposerType newSoapMessageComposer) {
+    public void setSoapMessageComposer(SOAPMessageComposerType newSoapMessageComposer) {
         if (newSoapMessageComposer != soapMessageComposer) {
             NotificationChain msgs = null;
             if (soapMessageComposer != null)
@@ -382,7 +378,7 @@ public class SOAPBindingTypeImpl extends SwitchYardBindingTypeImpl implements SO
                 setSoapContextMapper((ContextMapperType)newValue);
                 return;
             case SOAPPackage.SOAP_BINDING_TYPE__SOAP_MESSAGE_COMPOSER:
-                setSoapMessageComposer((MessageComposerType)newValue);
+                setSoapMessageComposer((SOAPMessageComposerType)newValue);
                 return;
             case SOAPPackage.SOAP_BINDING_TYPE__WSDL:
                 setWsdl((String)newValue);
@@ -412,7 +408,7 @@ public class SOAPBindingTypeImpl extends SwitchYardBindingTypeImpl implements SO
                 setSoapContextMapper((ContextMapperType)null);
                 return;
             case SOAPPackage.SOAP_BINDING_TYPE__SOAP_MESSAGE_COMPOSER:
-                setSoapMessageComposer((MessageComposerType)null);
+                setSoapMessageComposer((SOAPMessageComposerType)null);
                 return;
             case SOAPPackage.SOAP_BINDING_TYPE__WSDL:
                 setWsdl(WSDL_EDEFAULT);

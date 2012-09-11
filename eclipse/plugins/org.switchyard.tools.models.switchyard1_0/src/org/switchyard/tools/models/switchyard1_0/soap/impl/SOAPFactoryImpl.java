@@ -65,7 +65,7 @@ public class SOAPFactoryImpl extends EFactoryImpl implements SOAPFactory {
     public EObject create(EClass eClass) {
         switch (eClass.getClassifierID()) {
             case SOAPPackage.CONTEXT_MAPPER_TYPE: return createContextMapperType();
-            case SOAPPackage.MESSAGE_COMPOSER_TYPE: return createMessageComposerType();
+            case SOAPPackage.SOAP_MESSAGE_COMPOSER_TYPE: return createSOAPMessageComposerType();
             case SOAPPackage.DOCUMENT_ROOT: return createDocumentRoot();
             case SOAPPackage.SOAP_BINDING_TYPE: return createSOAPBindingType();
             default:
@@ -126,9 +126,9 @@ public class SOAPFactoryImpl extends EFactoryImpl implements SOAPFactory {
      * <!-- end-user-doc -->
      * @generated
      */
-    public MessageComposerType createMessageComposerType() {
-        MessageComposerTypeImpl messageComposerType = new MessageComposerTypeImpl();
-        return messageComposerType;
+    public SOAPMessageComposerType createSOAPMessageComposerType() {
+        SOAPMessageComposerTypeImpl soapMessageComposerType = new SOAPMessageComposerTypeImpl();
+        return soapMessageComposerType;
     }
 
     /**
@@ -144,12 +144,10 @@ public class SOAPFactoryImpl extends EFactoryImpl implements SOAPFactory {
     /**
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @generated NOT
+     * @generated
      */
     public SOAPBindingType createSOAPBindingType() {
         SOAPBindingTypeImpl soapBindingType = new SOAPBindingTypeImpl();
-        soapBindingType.setWsdl("MyService.wsdl");
-        soapBindingType.setSocketAddr(":18001");
         return soapBindingType;
     }
 

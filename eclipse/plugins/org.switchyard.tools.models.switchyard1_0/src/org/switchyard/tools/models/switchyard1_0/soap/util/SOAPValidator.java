@@ -28,83 +28,83 @@ import org.switchyard.tools.models.switchyard1_0.soap.*;
  * @generated
  */
 public class SOAPValidator extends EObjectValidator {
-	/**
+    /**
      * The cached model package
      * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
      * @generated
      */
-	public static final SOAPValidator INSTANCE = new SOAPValidator();
+    public static final SOAPValidator INSTANCE = new SOAPValidator();
 
-	/**
+    /**
      * A constant for the {@link org.eclipse.emf.common.util.Diagnostic#getSource() source} of diagnostic {@link org.eclipse.emf.common.util.Diagnostic#getCode() codes} from this package.
      * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
      * @see org.eclipse.emf.common.util.Diagnostic#getSource()
      * @see org.eclipse.emf.common.util.Diagnostic#getCode()
      * @generated
      */
-	public static final String DIAGNOSTIC_SOURCE = "org.switchyard.tools.models.switchyard1_0.soap";
+    public static final String DIAGNOSTIC_SOURCE = "org.switchyard.tools.models.switchyard1_0.soap";
 
-	/**
+    /**
      * A constant with a fixed name that can be used as the base value for additional hand written constants.
      * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
      * @generated
      */
-	private static final int GENERATED_DIAGNOSTIC_CODE_COUNT = 0;
+    private static final int GENERATED_DIAGNOSTIC_CODE_COUNT = 0;
 
-	/**
+    /**
      * A constant with a fixed name that can be used as the base value for additional hand written constants in a derived class.
      * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
      * @generated
      */
-	protected static final int DIAGNOSTIC_CODE_COUNT = GENERATED_DIAGNOSTIC_CODE_COUNT;
+    protected static final int DIAGNOSTIC_CODE_COUNT = GENERATED_DIAGNOSTIC_CODE_COUNT;
 
-	/**
+    /**
      * The cached base package validator.
      * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
      * @generated
      */
-	protected XMLTypeValidator xmlTypeValidator;
+    protected XMLTypeValidator xmlTypeValidator;
 
-	/**
+    /**
      * Creates an instance of the switch.
      * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
      * @generated
      */
-	public SOAPValidator() {
+    public SOAPValidator() {
         super();
         xmlTypeValidator = XMLTypeValidator.INSTANCE;
     }
 
-	/**
+    /**
      * Returns the package of this validator switch.
      * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
      * @generated
      */
-	@Override
-	protected EPackage getEPackage() {
+    @Override
+    protected EPackage getEPackage() {
       return SOAPPackage.eINSTANCE;
     }
 
-	/**
+    /**
      * Calls <code>validateXXX</code> for the corresponding classifier of the model.
      * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
      * @generated
      */
-	@Override
-	protected boolean validate(int classifierID, Object value, DiagnosticChain diagnostics, Map<Object, Object> context) {
+    @Override
+    protected boolean validate(int classifierID, Object value, DiagnosticChain diagnostics, Map<Object, Object> context) {
         switch (classifierID) {
             case SOAPPackage.CONTEXT_MAPPER_TYPE:
                 return validateContextMapperType((ContextMapperType)value, diagnostics, context);
-            case SOAPPackage.MESSAGE_COMPOSER_TYPE:
-                return validateMessageComposerType((MessageComposerType)value, diagnostics, context);
+            case SOAPPackage.SOAP_MESSAGE_COMPOSER_TYPE:
+                return validateSOAPMessageComposerType((SOAPMessageComposerType)value, diagnostics, context);
             case SOAPPackage.DOCUMENT_ROOT:
                 return validateDocumentRoot((DocumentRoot)value, diagnostics, context);
             case SOAPPackage.SOAP_BINDING_TYPE:
@@ -120,7 +120,7 @@ public class SOAPValidator extends EObjectValidator {
         }
     }
 
-	/**
+    /**
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @generated
@@ -134,29 +134,29 @@ public class SOAPValidator extends EObjectValidator {
      * <!-- end-user-doc -->
      * @generated
      */
-    public boolean validateMessageComposerType(MessageComposerType messageComposerType, DiagnosticChain diagnostics, Map<Object, Object> context) {
-        return validate_EveryDefaultConstraint(messageComposerType, diagnostics, context);
+    public boolean validateSOAPMessageComposerType(SOAPMessageComposerType soapMessageComposerType, DiagnosticChain diagnostics, Map<Object, Object> context) {
+        return validate_EveryDefaultConstraint(soapMessageComposerType, diagnostics, context);
     }
 
     /**
      * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
      * @generated
      */
-	public boolean validateDocumentRoot(DocumentRoot documentRoot, DiagnosticChain diagnostics, Map<Object, Object> context) {
+    public boolean validateDocumentRoot(DocumentRoot documentRoot, DiagnosticChain diagnostics, Map<Object, Object> context) {
         return validate_EveryDefaultConstraint(documentRoot, diagnostics, context);
     }
 
-	/**
+    /**
      * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
      * @generated
      */
-	public boolean validateSOAPBindingType(SOAPBindingType soapBindingType, DiagnosticChain diagnostics, Map<Object, Object> context) {
+    public boolean validateSOAPBindingType(SOAPBindingType soapBindingType, DiagnosticChain diagnostics, Map<Object, Object> context) {
         return validate_EveryDefaultConstraint(soapBindingType, diagnostics, context);
     }
 
-	/**
+    /**
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @generated
@@ -176,45 +176,45 @@ public class SOAPValidator extends EObjectValidator {
 
     /**
      * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
      * @generated
      */
-	public boolean validateWsdlPortType(String wsdlPortType, DiagnosticChain diagnostics, Map<Object, Object> context) {
+    public boolean validateWsdlPortType(String wsdlPortType, DiagnosticChain diagnostics, Map<Object, Object> context) {
         boolean result = validateWsdlPortType_Pattern(wsdlPortType, diagnostics, context);
         return result;
     }
 
-	/**
+    /**
      * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
      * @generated
      * @see #validateWsdlPortType_Pattern
      */
-	public static final  PatternMatcher [][] WSDL_PORT_TYPE__PATTERN__VALUES =
-		new PatternMatcher [][] {
+    public static final  PatternMatcher [][] WSDL_PORT_TYPE__PATTERN__VALUES =
+        new PatternMatcher [][] {
             new PatternMatcher [] {
                 XMLTypeUtil.createPatternMatcher("\\{.+\\}.+:[^:]+|.+:[^:]+|[^:]+")
             }
         };
 
-	/**
+    /**
      * Validates the Pattern constraint of '<em>Wsdl Port Type</em>'.
      * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
      * @generated
      */
-	public boolean validateWsdlPortType_Pattern(String wsdlPortType, DiagnosticChain diagnostics, Map<Object, Object> context) {
+    public boolean validateWsdlPortType_Pattern(String wsdlPortType, DiagnosticChain diagnostics, Map<Object, Object> context) {
         return validatePattern(SOAPPackage.Literals.WSDL_PORT_TYPE, wsdlPortType, WSDL_PORT_TYPE__PATTERN__VALUES, diagnostics, context);
     }
 
-	/**
+    /**
      * Returns the resource locator that will be used to fetch messages for this validator's diagnostics.
      * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
      * @generated
      */
-	@Override
-	public ResourceLocator getResourceLocator() {
+    @Override
+    public ResourceLocator getResourceLocator() {
         // TODO
         // Specialize this to return a resource locator for messages specific to this validator.
         // Ensure that you remove @generated or mark it @generated NOT

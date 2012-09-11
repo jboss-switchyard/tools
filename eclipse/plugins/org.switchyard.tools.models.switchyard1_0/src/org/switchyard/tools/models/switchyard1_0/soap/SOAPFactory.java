@@ -41,7 +41,7 @@ public interface SOAPFactory extends EFactory {
      * @return a new object of class '<em>Message Composer Type</em>'.
      * @generated
      */
-    MessageComposerType createMessageComposerType();
+    SOAPMessageComposerType createSOAPMessageComposerType();
 
     /**
      * Returns a new object of class '<em>Document Root</em>'.

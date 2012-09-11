@@ -104,7 +104,7 @@ public class GenericFileConsumerTypeItemProvider
                  true,
                  false,
                  false,
-                 ItemPropertyDescriptor.BOOLEAN_VALUE_IMAGE,
+                 ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
                  null,
                  null));
     }
@@ -126,7 +126,7 @@ public class GenericFileConsumerTypeItemProvider
                  true,
                  false,
                  false,
-                 ItemPropertyDescriptor.BOOLEAN_VALUE_IMAGE,
+                 ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
                  null,
                  null));
     }
@@ -148,7 +148,7 @@ public class GenericFileConsumerTypeItemProvider
                  true,
                  false,
                  false,
-                 ItemPropertyDescriptor.BOOLEAN_VALUE_IMAGE,
+                 ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
                  null,
                  null));
     }
@@ -280,7 +280,7 @@ public class GenericFileConsumerTypeItemProvider
                  true,
                  false,
                  false,
-                 ItemPropertyDescriptor.BOOLEAN_VALUE_IMAGE,
+                 ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
                  null,
                  null));
     }
@@ -434,7 +434,7 @@ public class GenericFileConsumerTypeItemProvider
                  true,
                  false,
                  false,
-                 ItemPropertyDescriptor.INTEGRAL_VALUE_IMAGE,
+                 ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
                  null,
                  null));
     }
@@ -522,7 +522,7 @@ public class GenericFileConsumerTypeItemProvider
                  true,
                  false,
                  false,
-                 ItemPropertyDescriptor.BOOLEAN_VALUE_IMAGE,
+                 ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
                  null,
                  null));
     }
@@ -544,7 +544,7 @@ public class GenericFileConsumerTypeItemProvider
                  true,
                  false,
                  false,
-                 ItemPropertyDescriptor.BOOLEAN_VALUE_IMAGE,
+                 ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
                  null,
                  null));
     }

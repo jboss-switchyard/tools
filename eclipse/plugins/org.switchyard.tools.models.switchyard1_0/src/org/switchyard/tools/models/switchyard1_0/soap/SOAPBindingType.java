@@ -68,13 +68,13 @@ public interface SOAPBindingType extends SwitchYardBindingType {
      *                             
      * <!-- end-model-doc -->
      * @return the value of the '<em>Soap Message Composer</em>' containment reference.
-     * @see #setSoapMessageComposer(MessageComposerType)
+     * @see #setSoapMessageComposer(SOAPMessageComposerType)
      * @see org.switchyard.tools.models.switchyard1_0.soap.SOAPPackage#getSOAPBindingType_SoapMessageComposer()
-     * @model containment="true"
+     * @model containment="true" derived="true"
      *        extendedMetaData="kind='element' name='messageComposer' namespace='##targetNamespace'"
      * @generated
      */
-    MessageComposerType getSoapMessageComposer();
+    SOAPMessageComposerType getSoapMessageComposer();
 
     /**
      * Sets the value of the '{@link org.switchyard.tools.models.switchyard1_0.soap.SOAPBindingType#getSoapMessageComposer <em>Soap Message Composer</em>}' containment reference.
@@ -84,7 +84,7 @@ public interface SOAPBindingType extends SwitchYardBindingType {
      * @see #getSoapMessageComposer()
      * @generated
      */
-    void setSoapMessageComposer(MessageComposerType value);
+    void setSoapMessageComposer(SOAPMessageComposerType value);
 
     /**
      * Returns the value of the '<em><b>Wsdl</b></em>' attribute.

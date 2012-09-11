@@ -1971,7 +1971,7 @@ public class DocumentRootItemProvider
         newChildDescriptors.add
             (createChildParameter
                 (SpringPackage.eINSTANCE.getDocumentRoot_Property(),
-                 SOAPFactory.eINSTANCE.createMessageComposerType()));
+                 SOAPFactory.eINSTANCE.createSOAPMessageComposerType()));
 
         newChildDescriptors.add
             (createChildParameter
