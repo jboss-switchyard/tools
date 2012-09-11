@@ -39,6 +39,12 @@
               label="Bindings">
         </propertyTab>
         <propertyTab
+              afterTab="switchyard.application.tab"
+              category="SwitchyardSCA"
+              id="switchyard.application.tab"
+              label="Application">
+        </propertyTab>
+        <propertyTab
               afterTab="switchyard.binding.tab"
               category="SwitchyardSCA"
               id="switchyard.interface.tab"
@@ -98,6 +104,11 @@
 	         class="org.switchyard.tools.ui.editor.property.SwitchyardSCAPropertiesMainSection"
 	         filter="org.switchyard.tools.ui.editor.property.SwitchyardSCAPropertiesMainFilter"
 	         id="switchyard.main.tab.names">
+	        </propertySection>
+	        <propertySection tab="switchyard.application.tab"            
+	         class="org.switchyard.tools.ui.editor.property.ApplicationPropertySection"
+	         filter="org.switchyard.tools.ui.editor.property.ApplicationPropertyFilter"
+	         id="switchyard.application.tab">
 	        </propertySection>
          <propertySection
                class="org.switchyard.tools.ui.editor.property.SwitchyardSCAPropertiesBindingsSection"
