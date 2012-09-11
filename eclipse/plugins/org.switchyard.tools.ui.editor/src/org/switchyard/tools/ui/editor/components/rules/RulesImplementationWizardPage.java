@@ -54,6 +54,7 @@ import org.switchyard.tools.ui.editor.impl.SwitchyardSCAEditor;
  */
 public class RulesImplementationWizardPage extends WizardPage {
 
+    private Component _component;
     private ComponentService _serviceInterface;
     private Link _newRulesLink;
     private Text _rulesFileText;
@@ -112,6 +113,7 @@ public class RulesImplementationWizardPage extends WizardPage {
      * @param component the containing component.
      */
     public void init(Component component) {
+        _component = component;
         if (component == null || component.getService() == null) {
             return;
         }
@@ -201,6 +203,8 @@ public class RulesImplementationWizardPage extends WizardPage {
         IWorkbench workbench = editor == null ? PlatformUI.getWorkbench() : editor.getEditorSite().getWorkbenchWindow()
                 .getWorkbench();
         wizard.init(workbench, selection);
+        wizard.init(_component == null ? null : (org.eclipse.soa.sca.sca1_1.model.sca.Composite) _component
+                .eContainer());
         wizard.forceServiceInterfaceType(_serviceInterface);
         WizardDialog dialog = new WizardDialog(getShell(), wizard);
         if (dialog.open() == WizardDialog.OK) {

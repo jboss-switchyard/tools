@@ -17,7 +17,6 @@ import java.util.EnumSet;
 import java.util.List;
 
 import org.eclipse.core.resources.IFile;
-import org.eclipse.core.resources.IFolder;
 import org.eclipse.core.resources.IResource;
 import org.eclipse.core.resources.ResourcesPlugin;
 import org.eclipse.core.runtime.IPath;
@@ -251,12 +250,12 @@ public abstract class BaseNewServiceFileWizard extends BasicNewFileResourceWizar
         if (_page == null) {
             return null;
         }
-        IFolder folder = ResourcesPlugin.getWorkspace().getRoot().getFolder(_page.getContainerFullPath());
-        if (folder == null) {
+        IResource resource = ResourcesPlugin.getWorkspace().getRoot().findMember(_page.getContainerFullPath());
+        if (resource == null || resource.getProject() == null) {
             _project = null;
-        } else if (_project == null || !_project.getProject().equals(folder.getProject())) {
+        } else if (_project == null || !_project.getProject().equals(resource.getProject())) {
 
-            _project = JavaCore.create(folder.getProject());
+            _project = JavaCore.create(resource.getProject());
         }
         return _project;
     }
