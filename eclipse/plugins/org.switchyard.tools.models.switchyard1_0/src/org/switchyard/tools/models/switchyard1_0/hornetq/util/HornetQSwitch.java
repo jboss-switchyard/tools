@@ -110,13 +110,6 @@ public class HornetQSwitch<T> extends Switch<T> {
                 if (result == null) result = defaultCase(theEObject);
                 return result;
             }
-            case HornetQPackage.HQ_OPERATION_SELECTOR_TYPE: {
-                hqOperationSelectorType hqOperationSelectorType = (hqOperationSelectorType)theEObject;
-                T result = casehqOperationSelectorType(hqOperationSelectorType);
-                if (result == null) result = caseOperationSelectorType(hqOperationSelectorType);
-                if (result == null) result = defaultCase(theEObject);
-                return result;
-            }
             case HornetQPackage.PROPERTIES_TYPE: {
                 PropertiesType propertiesType = (PropertiesType)theEObject;
                 T result = casePropertiesType(propertiesType);
@@ -209,21 +202,6 @@ public class HornetQSwitch<T> extends Switch<T> {
     }
 
     /**
-     * Returns the result of interpreting the object as an instance of '<em>hq Operation Selector Type</em>'.
-     * <!-- begin-user-doc -->
-     * This implementation returns null;
-     * returning a non-null result will terminate the switch.
-     * <!-- end-user-doc -->
-     * @param object the target of the switch.
-     * @return the result of interpreting the object as an instance of '<em>hq Operation Selector Type</em>'.
-     * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
-     * @generated
-     */
-    public T casehqOperationSelectorType(hqOperationSelectorType object) {
-        return null;
-    }
-
-    /**
      * Returns the result of interpreting the object as an instance of '<em>Properties Type</em>'.
      * <!-- begin-user-doc -->
      * This implementation returns null;
@@ -310,21 +288,6 @@ public class HornetQSwitch<T> extends Switch<T> {
      * @generated
      */
     public T caseSwitchYardBindingType(SwitchYardBindingType object) {
-        return null;
-    }
-
-    /**
-     * Returns the result of interpreting the object as an instance of '<em>Operation Selector Type</em>'.
-     * <!-- begin-user-doc -->
-     * This implementation returns null;
-     * returning a non-null result will terminate the switch.
-     * <!-- end-user-doc -->
-     * @param object the target of the switch.
-     * @return the result of interpreting the object as an instance of '<em>Operation Selector Type</em>'.
-     * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
-     * @generated
-     */
-    public T caseOperationSelectorType(OperationSelectorType object) {
         return null;
     }
 

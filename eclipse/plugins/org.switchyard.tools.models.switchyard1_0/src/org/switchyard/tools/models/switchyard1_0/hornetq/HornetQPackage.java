@@ -182,22 +182,13 @@ public interface HornetQPackage extends EPackage {
     int BINDING_TYPE__MESSAGE_COMPOSER = SwitchyardPackage.SWITCH_YARD_BINDING_TYPE__MESSAGE_COMPOSER;
 
     /**
-     * The feature id for the '<em><b>Hq Operation Selector</b></em>' containment reference.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     * @ordered
-     */
-    int BINDING_TYPE__HQ_OPERATION_SELECTOR = SwitchyardPackage.SWITCH_YARD_BINDING_TYPE_FEATURE_COUNT + 0;
-
-    /**
      * The feature id for the '<em><b>Config</b></em>' containment reference.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @generated
      * @ordered
      */
-    int BINDING_TYPE__CONFIG = SwitchyardPackage.SWITCH_YARD_BINDING_TYPE_FEATURE_COUNT + 1;
+    int BINDING_TYPE__CONFIG = SwitchyardPackage.SWITCH_YARD_BINDING_TYPE_FEATURE_COUNT + 0;
 
     /**
      * The number of structural features of the '<em>Binding Type</em>' class.
@@ -206,7 +197,7 @@ public interface HornetQPackage extends EPackage {
      * @generated
      * @ordered
      */
-    int BINDING_TYPE_FEATURE_COUNT = SwitchyardPackage.SWITCH_YARD_BINDING_TYPE_FEATURE_COUNT + 2;
+    int BINDING_TYPE_FEATURE_COUNT = SwitchyardPackage.SWITCH_YARD_BINDING_TYPE_FEATURE_COUNT + 1;
 
     /**
      * The meta object id for the '{@link org.switchyard.tools.models.switchyard1_0.hornetq.impl.ConfigTypeImpl <em>Config Type</em>}' class.
@@ -717,52 +708,6 @@ public interface HornetQPackage extends EPackage {
     int DOCUMENT_ROOT_FEATURE_COUNT = 5;
 
     /**
-     * The meta object id for the '{@link org.switchyard.tools.models.switchyard1_0.hornetq.impl.hqOperationSelectorTypeImpl <em>hq Operation Selector Type</em>}' class.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @see org.switchyard.tools.models.switchyard1_0.hornetq.impl.hqOperationSelectorTypeImpl
-     * @see org.switchyard.tools.models.switchyard1_0.hornetq.impl.HornetQPackageImpl#gethqOperationSelectorType()
-     * @generated
-     */
-    int HQ_OPERATION_SELECTOR_TYPE = 5;
-
-    /**
-     * The feature id for the '<em><b>Any</b></em>' attribute list.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     * @ordered
-     */
-    int HQ_OPERATION_SELECTOR_TYPE__ANY = ScaPackage.OPERATION_SELECTOR_TYPE__ANY;
-
-    /**
-     * The feature id for the '<em><b>Any Attribute</b></em>' attribute list.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     * @ordered
-     */
-    int HQ_OPERATION_SELECTOR_TYPE__ANY_ATTRIBUTE = ScaPackage.OPERATION_SELECTOR_TYPE__ANY_ATTRIBUTE;
-
-    /**
-     * The feature id for the '<em><b>Operation Name</b></em>' attribute.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     * @ordered
-     */
-    int HQ_OPERATION_SELECTOR_TYPE__OPERATION_NAME = ScaPackage.OPERATION_SELECTOR_TYPE_FEATURE_COUNT + 0;
-
-    /**
-     * The number of structural features of the '<em>hq Operation Selector Type</em>' class.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     * @ordered
-     */
-    int HQ_OPERATION_SELECTOR_TYPE_FEATURE_COUNT = ScaPackage.OPERATION_SELECTOR_TYPE_FEATURE_COUNT + 1;
-
-    /**
      * The meta object id for the '{@link org.switchyard.tools.models.switchyard1_0.hornetq.impl.PropertiesTypeImpl <em>Properties Type</em>}' class.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
@@ -770,7 +715,7 @@ public interface HornetQPackage extends EPackage {
      * @see org.switchyard.tools.models.switchyard1_0.hornetq.impl.HornetQPackageImpl#getPropertiesType()
      * @generated
      */
-    int PROPERTIES_TYPE = 6;
+    int PROPERTIES_TYPE = 5;
 
     /**
      * The feature id for the '<em><b>Property</b></em>' containment reference list.
@@ -798,7 +743,7 @@ public interface HornetQPackage extends EPackage {
      * @see org.switchyard.tools.models.switchyard1_0.hornetq.impl.HornetQPackageImpl#getPropertyType()
      * @generated
      */
-    int PROPERTY_TYPE = 7;
+    int PROPERTY_TYPE = 6;
 
     /**
      * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -837,17 +782,6 @@ public interface HornetQPackage extends EPackage {
      * @generated
      */
     EClass getBindingType();
-
-    /**
-     * Returns the meta object for the containment reference '{@link org.switchyard.tools.models.switchyard1_0.hornetq.BindingType#getHqOperationSelector <em>Hq Operation Selector</em>}'.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @return the meta object for the containment reference '<em>Hq Operation Selector</em>'.
-     * @see org.switchyard.tools.models.switchyard1_0.hornetq.BindingType#getHqOperationSelector()
-     * @see #getBindingType()
-     * @generated
-     */
-    EReference getBindingType_HqOperationSelector();
 
     /**
      * Returns the meta object for the containment reference '{@link org.switchyard.tools.models.switchyard1_0.hornetq.BindingType#getConfig <em>Config</em>}'.
@@ -1429,27 +1363,6 @@ public interface HornetQPackage extends EPackage {
     EReference getDocumentRoot_Config();
 
     /**
-     * Returns the meta object for class '{@link org.switchyard.tools.models.switchyard1_0.hornetq.hqOperationSelectorType <em>hq Operation Selector Type</em>}'.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @return the meta object for class '<em>hq Operation Selector Type</em>'.
-     * @see org.switchyard.tools.models.switchyard1_0.hornetq.hqOperationSelectorType
-     * @generated
-     */
-    EClass gethqOperationSelectorType();
-
-    /**
-     * Returns the meta object for the attribute '{@link org.switchyard.tools.models.switchyard1_0.hornetq.hqOperationSelectorType#getOperationName <em>Operation Name</em>}'.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @return the meta object for the attribute '<em>Operation Name</em>'.
-     * @see org.switchyard.tools.models.switchyard1_0.hornetq.hqOperationSelectorType#getOperationName()
-     * @see #gethqOperationSelectorType()
-     * @generated
-     */
-    EAttribute gethqOperationSelectorType_OperationName();
-
-    /**
      * Returns the meta object for class '{@link org.switchyard.tools.models.switchyard1_0.hornetq.PropertiesType <em>Properties Type</em>}'.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
@@ -1533,14 +1446,6 @@ public interface HornetQPackage extends EPackage {
          * @generated
          */
         EClass BINDING_TYPE = eINSTANCE.getBindingType();
-
-        /**
-         * The meta object literal for the '<em><b>Hq Operation Selector</b></em>' containment reference feature.
-         * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
-         * @generated
-         */
-        EReference BINDING_TYPE__HQ_OPERATION_SELECTOR = eINSTANCE.getBindingType_HqOperationSelector();
 
         /**
          * The meta object literal for the '<em><b>Config</b></em>' containment reference feature.
@@ -1973,24 +1878,6 @@ public interface HornetQPackage extends EPackage {
          * @generated
          */
         EReference DOCUMENT_ROOT__CONFIG = eINSTANCE.getDocumentRoot_Config();
-
-        /**
-         * The meta object literal for the '{@link org.switchyard.tools.models.switchyard1_0.hornetq.impl.hqOperationSelectorTypeImpl <em>hq Operation Selector Type</em>}' class.
-         * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
-         * @see org.switchyard.tools.models.switchyard1_0.hornetq.impl.hqOperationSelectorTypeImpl
-         * @see org.switchyard.tools.models.switchyard1_0.hornetq.impl.HornetQPackageImpl#gethqOperationSelectorType()
-         * @generated
-         */
-        EClass HQ_OPERATION_SELECTOR_TYPE = eINSTANCE.gethqOperationSelectorType();
-
-        /**
-         * The meta object literal for the '<em><b>Operation Name</b></em>' attribute feature.
-         * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
-         * @generated
-         */
-        EAttribute HQ_OPERATION_SELECTOR_TYPE__OPERATION_NAME = eINSTANCE.gethqOperationSelectorType_OperationName();
 
         /**
          * The meta object literal for the '{@link org.switchyard.tools.models.switchyard1_0.hornetq.impl.PropertiesTypeImpl <em>Properties Type</em>}' class.

@@ -43,6 +43,8 @@ import org.switchyard.tools.models.switchyard1_0.commonrules.CommonRulesPackage;
 
 import org.switchyard.tools.models.switchyard1_0.commonrules.impl.CommonRulesPackageImpl;
 
+import org.switchyard.tools.models.switchyard1_0.commonselector.CommonselectorPackage;
+import org.switchyard.tools.models.switchyard1_0.commonselector.impl.CommonselectorPackageImpl;
 import org.switchyard.tools.models.switchyard1_0.hornetq.HornetQPackage;
 
 import org.switchyard.tools.models.switchyard1_0.hornetq.impl.HornetQPackageImpl;
@@ -306,6 +308,7 @@ public class JcaPackageImpl extends EPackageImpl implements JcaPackage {
         CamelPackageImpl theCamelPackage = (CamelPackageImpl)(EPackage.Registry.INSTANCE.getEPackage(CamelPackage.eNS_URI) instanceof CamelPackageImpl ? EPackage.Registry.INSTANCE.getEPackage(CamelPackage.eNS_URI) : CamelPackage.eINSTANCE);
         SpringPackageImpl theSpringPackage = (SpringPackageImpl)(EPackage.Registry.INSTANCE.getEPackage(SpringPackage.eNS_URI) instanceof SpringPackageImpl ? EPackage.Registry.INSTANCE.getEPackage(SpringPackage.eNS_URI) : SpringPackage.eINSTANCE);
         ResteasyPackageImpl theResteasyPackage = (ResteasyPackageImpl)(EPackage.Registry.INSTANCE.getEPackage(ResteasyPackage.eNS_URI) instanceof ResteasyPackageImpl ? EPackage.Registry.INSTANCE.getEPackage(ResteasyPackage.eNS_URI) : ResteasyPackage.eINSTANCE);
+        CommonselectorPackageImpl theCommonselectorPackage = (CommonselectorPackageImpl)(EPackage.Registry.INSTANCE.getEPackage(CommonselectorPackage.eNS_URI) instanceof CommonselectorPackageImpl ? EPackage.Registry.INSTANCE.getEPackage(CommonselectorPackage.eNS_URI) : CommonselectorPackage.eINSTANCE);
 
         // Load packages
         theSpringPackage.loadPackage();
@@ -325,6 +328,7 @@ public class JcaPackageImpl extends EPackageImpl implements JcaPackage {
         theValidatePackage.createPackageContents();
         theCamelPackage.createPackageContents();
         theResteasyPackage.createPackageContents();
+        theCommonselectorPackage.createPackageContents();
 
         // Initialize created meta-data
         theJcaPackage.initializePackageContents();
@@ -341,6 +345,7 @@ public class JcaPackageImpl extends EPackageImpl implements JcaPackage {
         theValidatePackage.initializePackageContents();
         theCamelPackage.initializePackageContents();
         theResteasyPackage.initializePackageContents();
+        theCommonselectorPackage.initializePackageContents();
 
         // Fix loaded packages
         theSpringPackage.fixPackageContents();
@@ -809,7 +814,7 @@ public class JcaPackageImpl extends EPackageImpl implements JcaPackage {
      * <!-- end-user-doc -->
      * @generated
      */
-    public EReference getJCAInboundInteraction_InboundOperation() {
+    public EReference getJCAInboundInteraction_Endpoint() {
         return (EReference)jcaInboundInteractionEClass.getEStructuralFeatures().get(1);
     }
 
@@ -818,17 +823,8 @@ public class JcaPackageImpl extends EPackageImpl implements JcaPackage {
      * <!-- end-user-doc -->
      * @generated
      */
-    public EReference getJCAInboundInteraction_Endpoint() {
-        return (EReference)jcaInboundInteractionEClass.getEStructuralFeatures().get(2);
-    }
-
-    /**
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
     public EAttribute getJCAInboundInteraction_Transacted() {
-        return (EAttribute)jcaInboundInteractionEClass.getEStructuralFeatures().get(3);
+        return (EAttribute)jcaInboundInteractionEClass.getEStructuralFeatures().get(2);
     }
 
     /**
@@ -837,7 +833,7 @@ public class JcaPackageImpl extends EPackageImpl implements JcaPackage {
      * @generated
      */
     public EAttribute getJCAInboundInteraction_Any() {
-        return (EAttribute)jcaInboundInteractionEClass.getEStructuralFeatures().get(4);
+        return (EAttribute)jcaInboundInteractionEClass.getEStructuralFeatures().get(3);
     }
 
     /**
@@ -846,7 +842,7 @@ public class JcaPackageImpl extends EPackageImpl implements JcaPackage {
      * @generated
      */
     public EAttribute getJCAInboundInteraction_AnyAttribute() {
-        return (EAttribute)jcaInboundInteractionEClass.getEStructuralFeatures().get(5);
+        return (EAttribute)jcaInboundInteractionEClass.getEStructuralFeatures().get(4);
     }
 
     /**
@@ -1277,11 +1273,11 @@ public class JcaPackageImpl extends EPackageImpl implements JcaPackage {
         createEAttribute(connectionSpecEClass, CONNECTION_SPEC__TYPE);
         createEAttribute(connectionSpecEClass, CONNECTION_SPEC__ANY_ATTRIBUTE);
 
-        documentRootEClass = createEClass(DOCUMENT_ROOT);
-        createEAttribute(documentRootEClass, DOCUMENT_ROOT__MIXED);
-        createEReference(documentRootEClass, DOCUMENT_ROOT__XMLNS_PREFIX_MAP);
-        createEReference(documentRootEClass, DOCUMENT_ROOT__XSI_SCHEMA_LOCATION);
-        createEReference(documentRootEClass, DOCUMENT_ROOT__BINDING_JCA);
+        endpointEClass = createEClass(ENDPOINT);
+        createEReference(endpointEClass, ENDPOINT__PROPERTY);
+        createEAttribute(endpointEClass, ENDPOINT__ANY);
+        createEAttribute(endpointEClass, ENDPOINT__TYPE);
+        createEAttribute(endpointEClass, ENDPOINT__ANY_ATTRIBUTE);
 
         inboundOperationEClass = createEClass(INBOUND_OPERATION);
         createEAttribute(inboundOperationEClass, INBOUND_OPERATION__ANY);
@@ -1313,7 +1309,6 @@ public class JcaPackageImpl extends EPackageImpl implements JcaPackage {
 
         jcaInboundInteractionEClass = createEClass(JCA_INBOUND_INTERACTION);
         createEAttribute(jcaInboundInteractionEClass, JCA_INBOUND_INTERACTION__LISTENER);
-        createEReference(jcaInboundInteractionEClass, JCA_INBOUND_INTERACTION__INBOUND_OPERATION);
         createEReference(jcaInboundInteractionEClass, JCA_INBOUND_INTERACTION__ENDPOINT);
         createEAttribute(jcaInboundInteractionEClass, JCA_INBOUND_INTERACTION__TRANSACTED);
         createEAttribute(jcaInboundInteractionEClass, JCA_INBOUND_INTERACTION__ANY);
@@ -1341,6 +1336,12 @@ public class JcaPackageImpl extends EPackageImpl implements JcaPackage {
         createEAttribute(operationEClass, OPERATION__NAME);
         createEAttribute(operationEClass, OPERATION__ANY_ATTRIBUTE);
 
+        processorEClass = createEClass(PROCESSOR);
+        createEReference(processorEClass, PROCESSOR__PROPERTY);
+        createEAttribute(processorEClass, PROCESSOR__ANY);
+        createEAttribute(processorEClass, PROCESSOR__TYPE);
+        createEAttribute(processorEClass, PROCESSOR__ANY_ATTRIBUTE);
+
         propertyEClass = createEClass(PROPERTY);
         createEAttribute(propertyEClass, PROPERTY__NAME);
         createEAttribute(propertyEClass, PROPERTY__VALUE);
@@ -1352,17 +1353,11 @@ public class JcaPackageImpl extends EPackageImpl implements JcaPackage {
         createEAttribute(resourceAdapterEClass, RESOURCE_ADAPTER__TYPE);
         createEAttribute(resourceAdapterEClass, RESOURCE_ADAPTER__ANY_ATTRIBUTE);
 
-        processorEClass = createEClass(PROCESSOR);
-        createEReference(processorEClass, PROCESSOR__PROPERTY);
-        createEAttribute(processorEClass, PROCESSOR__ANY);
-        createEAttribute(processorEClass, PROCESSOR__TYPE);
-        createEAttribute(processorEClass, PROCESSOR__ANY_ATTRIBUTE);
-
-        endpointEClass = createEClass(ENDPOINT);
-        createEReference(endpointEClass, ENDPOINT__PROPERTY);
-        createEAttribute(endpointEClass, ENDPOINT__ANY);
-        createEAttribute(endpointEClass, ENDPOINT__TYPE);
-        createEAttribute(endpointEClass, ENDPOINT__ANY_ATTRIBUTE);
+        documentRootEClass = createEClass(DOCUMENT_ROOT);
+        createEAttribute(documentRootEClass, DOCUMENT_ROOT__MIXED);
+        createEReference(documentRootEClass, DOCUMENT_ROOT__XMLNS_PREFIX_MAP);
+        createEReference(documentRootEClass, DOCUMENT_ROOT__XSI_SCHEMA_LOCATION);
+        createEReference(documentRootEClass, DOCUMENT_ROOT__BINDING_JCA);
 
         // Create enums
         jcaCreateResourceEEnum = createEEnum(JCA_CREATE_RESOURCE);
@@ -1430,11 +1425,11 @@ public class JcaPackageImpl extends EPackageImpl implements JcaPackage {
         initEAttribute(getConnectionSpec_Type(), theXMLTypePackage.getNMTOKEN(), "type", null, 0, 1, ConnectionSpec.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
         initEAttribute(getConnectionSpec_AnyAttribute(), ecorePackage.getEFeatureMapEntry(), "anyAttribute", null, 0, -1, ConnectionSpec.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
-        initEClass(documentRootEClass, DocumentRoot.class, "DocumentRoot", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-        initEAttribute(getDocumentRoot_Mixed(), ecorePackage.getEFeatureMapEntry(), "mixed", null, 0, -1, null, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-        initEReference(getDocumentRoot_XMLNSPrefixMap(), ecorePackage.getEStringToStringMapEntry(), null, "xMLNSPrefixMap", null, 0, -1, null, IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-        initEReference(getDocumentRoot_XSISchemaLocation(), ecorePackage.getEStringToStringMapEntry(), null, "xSISchemaLocation", null, 0, -1, null, IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-        initEReference(getDocumentRoot_BindingJca(), this.getJCABinding(), null, "bindingJca", null, 0, -2, null, IS_TRANSIENT, IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, IS_DERIVED, IS_ORDERED);
+        initEClass(endpointEClass, Endpoint.class, "Endpoint", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+        initEReference(getEndpoint_Property(), this.getProperty(), null, "property", null, 0, -1, Endpoint.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+        initEAttribute(getEndpoint_Any(), ecorePackage.getEFeatureMapEntry(), "any", null, 0, -1, Endpoint.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+        initEAttribute(getEndpoint_Type(), theXMLTypePackage.getNMTOKEN(), "type", null, 1, 1, Endpoint.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+        initEAttribute(getEndpoint_AnyAttribute(), ecorePackage.getEFeatureMapEntry(), "anyAttribute", null, 0, -1, Endpoint.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
         initEClass(inboundOperationEClass, InboundOperation.class, "InboundOperation", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
         initEAttribute(getInboundOperation_Any(), ecorePackage.getEFeatureMapEntry(), "any", null, 0, -1, InboundOperation.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
@@ -1466,7 +1461,6 @@ public class JcaPackageImpl extends EPackageImpl implements JcaPackage {
 
         initEClass(jcaInboundInteractionEClass, JCAInboundInteraction.class, "JCAInboundInteraction", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
         initEAttribute(getJCAInboundInteraction_Listener(), theXMLTypePackage.getString(), "listener", null, 0, 1, JCAInboundInteraction.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-        initEReference(getJCAInboundInteraction_InboundOperation(), this.getInboundOperation(), null, "inboundOperation", null, 0, -1, JCAInboundInteraction.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
         initEReference(getJCAInboundInteraction_Endpoint(), this.getEndpoint(), null, "endpoint", null, 0, 1, JCAInboundInteraction.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
         initEAttribute(getJCAInboundInteraction_Transacted(), theXMLTypePackage.getBoolean(), "transacted", null, 0, 1, JCAInboundInteraction.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
         initEAttribute(getJCAInboundInteraction_Any(), ecorePackage.getEFeatureMapEntry(), "any", null, 0, -1, JCAInboundInteraction.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
@@ -1494,6 +1488,12 @@ public class JcaPackageImpl extends EPackageImpl implements JcaPackage {
         initEAttribute(getOperation_Name(), theXMLTypePackage.getNMTOKEN(), "name", null, 1, 1, Operation.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
         initEAttribute(getOperation_AnyAttribute(), ecorePackage.getEFeatureMapEntry(), "anyAttribute", null, 0, -1, Operation.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
+        initEClass(processorEClass, Processor.class, "Processor", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+        initEReference(getProcessor_Property(), this.getProperty(), null, "property", null, 0, -1, Processor.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+        initEAttribute(getProcessor_Any(), ecorePackage.getEFeatureMapEntry(), "any", null, 0, -1, Processor.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+        initEAttribute(getProcessor_Type(), theXMLTypePackage.getNMTOKEN(), "type", null, 1, 1, Processor.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+        initEAttribute(getProcessor_AnyAttribute(), ecorePackage.getEFeatureMapEntry(), "anyAttribute", null, 0, -1, Processor.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
         initEClass(propertyEClass, Property.class, "Property", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
         initEAttribute(getProperty_Name(), theXMLTypePackage.getNCName(), "name", null, 1, 1, Property.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
         initEAttribute(getProperty_Value(), theXMLTypePackage.getAnySimpleType(), "value", null, 0, 1, Property.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
@@ -1505,17 +1505,11 @@ public class JcaPackageImpl extends EPackageImpl implements JcaPackage {
         initEAttribute(getResourceAdapter_Type(), theXMLTypePackage.getNMTOKEN(), "type", null, 0, 1, ResourceAdapter.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
         initEAttribute(getResourceAdapter_AnyAttribute(), ecorePackage.getEFeatureMapEntry(), "anyAttribute", null, 0, -1, ResourceAdapter.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
-        initEClass(processorEClass, Processor.class, "Processor", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-        initEReference(getProcessor_Property(), this.getProperty(), null, "property", null, 0, -1, Processor.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-        initEAttribute(getProcessor_Any(), ecorePackage.getEFeatureMapEntry(), "any", null, 0, -1, Processor.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-        initEAttribute(getProcessor_Type(), theXMLTypePackage.getNMTOKEN(), "type", null, 1, 1, Processor.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-        initEAttribute(getProcessor_AnyAttribute(), ecorePackage.getEFeatureMapEntry(), "anyAttribute", null, 0, -1, Processor.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-
-        initEClass(endpointEClass, Endpoint.class, "Endpoint", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-        initEReference(getEndpoint_Property(), this.getProperty(), null, "property", null, 0, -1, Endpoint.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-        initEAttribute(getEndpoint_Any(), ecorePackage.getEFeatureMapEntry(), "any", null, 0, -1, Endpoint.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-        initEAttribute(getEndpoint_Type(), theXMLTypePackage.getNMTOKEN(), "type", null, 1, 1, Endpoint.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-        initEAttribute(getEndpoint_AnyAttribute(), ecorePackage.getEFeatureMapEntry(), "anyAttribute", null, 0, -1, Endpoint.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+        initEClass(documentRootEClass, DocumentRoot.class, "DocumentRoot", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+        initEAttribute(getDocumentRoot_Mixed(), ecorePackage.getEFeatureMapEntry(), "mixed", null, 0, -1, null, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+        initEReference(getDocumentRoot_XMLNSPrefixMap(), ecorePackage.getEStringToStringMapEntry(), null, "xMLNSPrefixMap", null, 0, -1, null, IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+        initEReference(getDocumentRoot_XSISchemaLocation(), ecorePackage.getEStringToStringMapEntry(), null, "xSISchemaLocation", null, 0, -1, null, IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+        initEReference(getDocumentRoot_BindingJca(), this.getJCABinding(), null, "bindingJca", null, 0, -2, null, IS_TRANSIENT, IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, IS_DERIVED, IS_ORDERED);
 
         // Initialize enums and add enum literals
         initEEnum(jcaCreateResourceEEnum, JCACreateResource.class, "JCACreateResource");
@@ -1696,41 +1690,44 @@ public class JcaPackageImpl extends EPackageImpl implements JcaPackage {
              "processing", "lax"
            });		
         addAnnotation
-          (documentRootEClass, 
+          (endpointEClass, 
            source, 
            new String[] {
-             "name", "",
-             "kind", "mixed"
+             "name", "Endpoint",
+             "kind", "elementOnly"
            });		
         addAnnotation
-          (getDocumentRoot_Mixed(), 
-           source, 
-           new String[] {
-             "kind", "elementWildcard",
-             "name", ":mixed"
-           });		
-        addAnnotation
-          (getDocumentRoot_XMLNSPrefixMap(), 
-           source, 
-           new String[] {
-             "kind", "attribute",
-             "name", "xmlns:prefix"
-           });		
-        addAnnotation
-          (getDocumentRoot_XSISchemaLocation(), 
-           source, 
-           new String[] {
-             "kind", "attribute",
-             "name", "xsi:schemaLocation"
-           });		
-        addAnnotation
-          (getDocumentRoot_BindingJca(), 
+          (getEndpoint_Property(), 
            source, 
            new String[] {
              "kind", "element",
-             "name", "binding.jca",
-             "namespace", "##targetNamespace",
-             "affiliation", "urn:switchyard-config:switchyard:1.0#binding.switchyard"
+             "name", "property",
+             "namespace", "##targetNamespace"
+           });		
+        addAnnotation
+          (getEndpoint_Any(), 
+           source, 
+           new String[] {
+             "kind", "elementWildcard",
+             "wildcards", "##other",
+             "name", ":1",
+             "processing", "lax"
+           });		
+        addAnnotation
+          (getEndpoint_Type(), 
+           source, 
+           new String[] {
+             "kind", "attribute",
+             "name", "type"
+           });		
+        addAnnotation
+          (getEndpoint_AnyAttribute(), 
+           source, 
+           new String[] {
+             "kind", "attributeWildcard",
+             "wildcards", "##other",
+             "name", ":5",
+             "processing", "lax"
            });		
         addAnnotation
           (inboundOperationEClass, 
@@ -1881,19 +1878,6 @@ public class JcaPackageImpl extends EPackageImpl implements JcaPackage {
              "namespace", "http://docs.oasis-open.org/ns/opencsa/sca/200912"
            });		
         addAnnotation
-          (jcaCreateResourceEEnum, 
-           source, 
-           new String[] {
-             "name", "JCACreateResource"
-           });		
-        addAnnotation
-          (jcaCreateResourceObjectEDataType, 
-           source, 
-           new String[] {
-             "name", "JCACreateResource:Object",
-             "baseType", "JCACreateResource"
-           });		
-        addAnnotation
           (jcaInboundConnectionEClass, 
            source, 
            new String[] {
@@ -1947,14 +1931,6 @@ public class JcaPackageImpl extends EPackageImpl implements JcaPackage {
            new String[] {
              "kind", "element",
              "name", "listener",
-             "namespace", "##targetNamespace"
-           });		
-        addAnnotation
-          (getJCAInboundInteraction_InboundOperation(), 
-           source, 
-           new String[] {
-             "kind", "element",
-             "name", "inboundOperation",
              "namespace", "##targetNamespace"
            });		
         addAnnotation
@@ -2145,6 +2121,46 @@ public class JcaPackageImpl extends EPackageImpl implements JcaPackage {
              "processing", "lax"
            });		
         addAnnotation
+          (processorEClass, 
+           source, 
+           new String[] {
+             "name", "Processor",
+             "kind", "empty"
+           });		
+        addAnnotation
+          (getProcessor_Property(), 
+           source, 
+           new String[] {
+             "kind", "element",
+             "name", "property",
+             "namespace", "##targetNamespace"
+           });		
+        addAnnotation
+          (getProcessor_Any(), 
+           source, 
+           new String[] {
+             "kind", "elementWildcard",
+             "wildcards", "##other",
+             "name", ":1",
+             "processing", "lax"
+           });		
+        addAnnotation
+          (getProcessor_Type(), 
+           source, 
+           new String[] {
+             "kind", "attribute",
+             "name", "type"
+           });		
+        addAnnotation
+          (getProcessor_AnyAttribute(), 
+           source, 
+           new String[] {
+             "kind", "attributeWildcard",
+             "wildcards", "##other",
+             "name", ":3",
+             "processing", "lax"
+           });		
+        addAnnotation
           (propertyEClass, 
            source, 
            new String[] {
@@ -2164,19 +2180,6 @@ public class JcaPackageImpl extends EPackageImpl implements JcaPackage {
            new String[] {
              "kind", "attribute",
              "name", "value"
-           });		
-        addAnnotation
-          (resAuthEEnum, 
-           source, 
-           new String[] {
-             "name", "ResAuth"
-           });		
-        addAnnotation
-          (resAuthObjectEDataType, 
-           source, 
-           new String[] {
-             "name", "ResAuth:Object",
-             "baseType", "ResAuth"
            });		
         addAnnotation
           (resourceAdapterEClass, 
@@ -2226,84 +2229,67 @@ public class JcaPackageImpl extends EPackageImpl implements JcaPackage {
              "processing", "lax"
            });		
         addAnnotation
-          (processorEClass, 
+          (documentRootEClass, 
            source, 
            new String[] {
-             "name", "Processor",
-             "kind", "empty"
+             "name", "",
+             "kind", "mixed"
            });		
         addAnnotation
-          (getProcessor_Property(), 
-           source, 
-           new String[] {
-             "kind", "element",
-             "name", "property",
-             "namespace", "##targetNamespace"
-           });		
-        addAnnotation
-          (getProcessor_Any(), 
+          (getDocumentRoot_Mixed(), 
            source, 
            new String[] {
              "kind", "elementWildcard",
-             "wildcards", "##other",
-             "name", ":1",
-             "processing", "lax"
+             "name", ":mixed"
            });		
         addAnnotation
-          (getProcessor_Type(), 
+          (getDocumentRoot_XMLNSPrefixMap(), 
            source, 
            new String[] {
              "kind", "attribute",
-             "name", "type"
+             "name", "xmlns:prefix"
            });		
         addAnnotation
-          (getProcessor_AnyAttribute(), 
+          (getDocumentRoot_XSISchemaLocation(), 
            source, 
            new String[] {
-             "kind", "attributeWildcard",
-             "wildcards", "##other",
-             "name", ":3",
-             "processing", "lax"
+             "kind", "attribute",
+             "name", "xsi:schemaLocation"
            });		
         addAnnotation
-          (endpointEClass, 
-           source, 
-           new String[] {
-             "name", "Endpoint",
-             "kind", "elementOnly"
-           });		
-        addAnnotation
-          (getEndpoint_Property(), 
+          (getDocumentRoot_BindingJca(), 
            source, 
            new String[] {
              "kind", "element",
-             "name", "property",
-             "namespace", "##targetNamespace"
+             "name", "binding.jca",
+             "namespace", "##targetNamespace",
+             "affiliation", "urn:switchyard-config:switchyard:1.0#binding.switchyard"
            });		
         addAnnotation
-          (getEndpoint_Any(), 
+          (jcaCreateResourceEEnum, 
            source, 
            new String[] {
-             "kind", "elementWildcard",
-             "wildcards", "##other",
-             "name", ":1",
-             "processing", "lax"
+             "name", "JCACreateResource"
            });		
         addAnnotation
-          (getEndpoint_Type(), 
+          (jcaCreateResourceObjectEDataType, 
            source, 
            new String[] {
-             "kind", "attribute",
-             "name", "type"
+             "name", "JCACreateResource:Object",
+             "baseType", "JCACreateResource"
            });		
         addAnnotation
-          (getEndpoint_AnyAttribute(), 
+          (resAuthEEnum, 
            source, 
            new String[] {
-             "kind", "attributeWildcard",
-             "wildcards", "##other",
-             "name", ":5",
-             "processing", "lax"
+             "name", "ResAuth"
+           });		
+        addAnnotation
+          (resAuthObjectEDataType, 
+           source, 
+           new String[] {
+             "name", "ResAuth:Object",
+             "baseType", "ResAuth"
            });
     }
 

@@ -42,7 +42,7 @@ import org.switchyard.tools.models.switchyard1_0.switchyard.impl.SwitchYardBindi
  *
  * @generated
  */
-public class CamelSedaBindingTypeImpl extends SwitchYardBindingTypeImpl implements CamelSedaBindingType {
+public class CamelSedaBindingTypeImpl extends BaseCamelBindingImpl implements CamelSedaBindingType {
 	/**
      * The default value of the '{@link #getNameElement() <em>Name Element</em>}' attribute.
      * <!-- begin-user-doc -->

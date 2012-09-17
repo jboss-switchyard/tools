@@ -191,29 +191,6 @@ public class HornetQItemProviderAdapterFactory extends HornetQAdapterFactory imp
     }
 
     /**
-     * This keeps track of the one adapter used for all {@link org.switchyard.tools.models.switchyard1_0.hornetq.hqOperationSelectorType} instances.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    protected hqOperationSelectorTypeItemProvider hqOperationSelectorTypeItemProvider;
-
-    /**
-     * This creates an adapter for a {@link org.switchyard.tools.models.switchyard1_0.hornetq.hqOperationSelectorType}.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    @Override
-    public Adapter createhqOperationSelectorTypeAdapter() {
-        if (hqOperationSelectorTypeItemProvider == null) {
-            hqOperationSelectorTypeItemProvider = new hqOperationSelectorTypeItemProvider(this);
-        }
-
-        return hqOperationSelectorTypeItemProvider;
-    }
-
-    /**
      * This keeps track of the one adapter used for all {@link org.switchyard.tools.models.switchyard1_0.hornetq.PropertiesType} instances.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
@@ -363,7 +340,6 @@ public class HornetQItemProviderAdapterFactory extends HornetQAdapterFactory imp
         if (connectorTypeItemProvider != null) connectorTypeItemProvider.dispose();
         if (discoveryGroupTypeItemProvider != null) discoveryGroupTypeItemProvider.dispose();
         if (documentRootItemProvider != null) documentRootItemProvider.dispose();
-        if (hqOperationSelectorTypeItemProvider != null) hqOperationSelectorTypeItemProvider.dispose();
         if (propertiesTypeItemProvider != null) propertiesTypeItemProvider.dispose();
         if (propertyTypeItemProvider != null) propertyTypeItemProvider.dispose();
     }

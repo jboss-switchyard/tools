@@ -24,6 +24,7 @@ import org.eclipse.emf.ecore.xml.type.XMLTypeFactory;
 import org.eclipse.graphiti.mm.pictograms.PictogramElement;
 import org.eclipse.soa.sca.sca1_1.model.sca.Binding;
 import org.eclipse.soa.sca.sca1_1.model.sca.Contract;
+import org.eclipse.soa.sca.sca1_1.model.sca.OperationSelectorType;
 import org.eclipse.soa.sca.sca1_1.model.sca.Service;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.layout.FillLayout;
@@ -36,10 +37,14 @@ import org.eclipse.swt.widgets.Group;
 import org.eclipse.swt.widgets.TabFolder;
 import org.eclipse.swt.widgets.TabItem;
 import org.eclipse.swt.widgets.Text;
-import org.switchyard.tools.models.switchyard1_0.camel.CamelFactory;
-import org.switchyard.tools.models.switchyard1_0.camel.CamelOperationSelectorType;
 import org.switchyard.tools.models.switchyard1_0.camel.CamelQuartzBindingType;
+import org.switchyard.tools.models.switchyard1_0.commonselector.CommonselectorFactory;
+import org.switchyard.tools.models.switchyard1_0.commonselector.StaticOperationSelectorType;
 import org.switchyard.tools.ui.editor.diagram.binding.AbstractSYBindingComposite;
+import org.switchyard.tools.ui.editor.diagram.binding.CamelBindingUtil;
+import org.switchyard.tools.ui.editor.diagram.binding.CamelOperationSelectorGroupOp;
+import org.switchyard.tools.ui.editor.diagram.binding.OperationSelectorOp;
+import org.switchyard.tools.ui.editor.diagram.binding.RemoveOperationSelectorOp;
 import org.switchyard.tools.ui.editor.diagram.shared.ModelOperation;
 import org.switchyard.tools.ui.editor.impl.SwitchyardSCAEditor;
 import org.switchyard.tools.ui.editor.util.InterfaceOpsUtil;
@@ -84,12 +89,11 @@ public class CamelQuartzComposite extends AbstractSYBindingComposite {
                 _endTimeText.setText(this._binding.getEndTime().toString());
             }
             populateOperationCombo();
-            if (this._binding.getCamelOperationSelector() != null) {
-                CamelOperationSelectorType camelOpSelector = (CamelOperationSelectorType) this._binding
-                        .getCamelOperationSelector();
-                setTextValue(_operationSelectionCombo, camelOpSelector.getOperationName());
+            String opName = CamelBindingUtil.getOperationNameForStaticOperationSelector(this._binding);
+            if (opName != null) {
+                setTextValue(_operationSelectionCombo, opName);
             }
-            setInUpdate(false);
+           setInUpdate(false);
             if (this._binding.getCamelBindingName() == null || this._binding.getCamelBindingName().trim().isEmpty()) {
                 if (getTargetObject() != null && getTargetObject() instanceof Contract) {
                     Contract contract = (Contract) getTargetObject();
@@ -197,8 +201,8 @@ public class CamelQuartzComposite extends AbstractSYBindingComposite {
                     }
                 }
             }
-            if (getTargetObject() != null && getTargetObject() instanceof Service) {
-                String[] operations = InterfaceOpsUtil.gatherOperations((Service) getTargetObject());
+            if (getTargetObject() != null && getTargetObject() instanceof Contract) {
+                String[] operations = InterfaceOpsUtil.gatherOperations((Contract) getTargetObject());
                 for (int i = 0; i < operations.length; i++) {
                     _operationSelectionCombo.add(operations[i]);
                 }
@@ -215,15 +219,31 @@ public class CamelQuartzComposite extends AbstractSYBindingComposite {
         @Override
         public void run() throws Exception {
             if (_binding.getOperationSelector() == null) {
-                setFeatureValue(_binding, "camelOperationSelector", CamelFactory.eINSTANCE.createCamelOperationSelectorType());
+                setFeatureValue(_binding, "operationSelector", CommonselectorFactory.eINSTANCE.createStaticOperationSelectorType());
             }
         }
     }
     
-    protected void updateCamelOperationSelectorFeature(String featureId, Object value) {
+    private void updateCamelOperationSelectorFeature(String featureId, Object value) {
+        if (CamelBindingUtil.getFirstOperationSelector(_binding) != null) {
+            OperationSelectorType opSelect = CamelBindingUtil.getFirstOperationSelector(_binding);
+            Object oldValue = getFeatureValue(opSelect, featureId);
+            // don't do anything if the value is the same
+            if (oldValue == null && value == null) {
+                return;
+            } else if (oldValue != null && oldValue.equals(value)) {
+                return;
+            } else if (value != null && value.equals(oldValue)) {
+                return;
+            }
+        }
         ArrayList<ModelOperation> ops = new ArrayList<ModelOperation>();
-        ops.add(new CamelOperationSelectorOp());
-        ops.add(new BasicOperation("camelOperationSelector", featureId, value));
+        if (featureId.equals("operationName") && value instanceof String && ((String)value).trim().isEmpty()) {
+            ops.add(new RemoveOperationSelectorOp(this._binding));
+        } else {
+            ops.add(new CamelOperationSelectorGroupOp(this._binding));
+            ops.add(new OperationSelectorOp(this._binding, featureId, value));
+        }
         wrapOperation(ops);
     }
 
@@ -276,11 +296,10 @@ public class CamelQuartzComposite extends AbstractSYBindingComposite {
             } else if (control.equals(_startTimeText)) {
                 _startTimeText.setText(this._binding.getStartTime().toString());
             } else if (control.equals(_operationSelectionCombo)) {
-                if (this._binding.getCamelOperationSelector() != null) {
+                if (this._binding.getOperationSelector() != null && this._binding.getOperationSelector() instanceof StaticOperationSelectorType) {
                     populateOperationCombo();
-                    CamelOperationSelectorType camelOpSelector = (CamelOperationSelectorType) this._binding
-                            .getCamelOperationSelector();
-                    setTextValue(_operationSelectionCombo, camelOpSelector.getOperationName());
+                    String opName = CamelBindingUtil.getOperationNameForStaticOperationSelector(this._binding);
+                    setTextValue(_operationSelectionCombo, opName);
                 }
             } else {
                 super.handleUndo(control);

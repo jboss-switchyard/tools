@@ -34,7 +34,7 @@ import org.switchyard.tools.models.switchyard1_0.switchyard.SwitchYardBindingTyp
  * @model extendedMetaData="name='CamelTimerBindingType' kind='elementOnly'"
  * @generated
  */
-public interface CamelTimerBindingType extends SwitchYardBindingType {
+public interface CamelTimerBindingType extends BaseCamelBinding {
 	/**
      * Returns the value of the '<em><b>Name Element</b></em>' attribute.
      * <!-- begin-user-doc -->

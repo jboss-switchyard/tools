@@ -4,7 +4,7 @@
  *
  * $Id$
  */
-package org.switchyard.tools.models.switchyard1_0.hornetq.impl;
+package org.switchyard.tools.models.switchyard1_0.commonselector.impl;
 
 import org.eclipse.emf.common.notify.Notification;
 
@@ -12,51 +12,51 @@ import org.eclipse.emf.ecore.EClass;
 
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 
-import org.eclipse.soa.sca.sca1_1.model.sca.impl.OperationSelectorTypeImpl;
+import org.switchyard.tools.models.switchyard1_0.commonselector.CommonselectorPackage;
+import org.switchyard.tools.models.switchyard1_0.commonselector.RegexOperationSelectorType;
 
-import org.switchyard.tools.models.switchyard1_0.hornetq.HornetQPackage;
-import org.switchyard.tools.models.switchyard1_0.hornetq.hqOperationSelectorType;
+import org.switchyard.tools.models.switchyard1_0.switchyard.impl.SwitchYardOperationSelectorTypeImpl;
 
 /**
  * <!-- begin-user-doc -->
- * An implementation of the model object '<em><b>hq Operation Selector Type</b></em>'.
+ * An implementation of the model object '<em><b>Regex Operation Selector Type</b></em>'.
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
  * <ul>
- *   <li>{@link org.switchyard.tools.models.switchyard1_0.hornetq.impl.hqOperationSelectorTypeImpl#getOperationName <em>Operation Name</em>}</li>
+ *   <li>{@link org.switchyard.tools.models.switchyard1_0.commonselector.impl.RegexOperationSelectorTypeImpl#getExpression <em>Expression</em>}</li>
  * </ul>
  * </p>
  *
  * @generated
  */
-public class hqOperationSelectorTypeImpl extends OperationSelectorTypeImpl implements hqOperationSelectorType {
+public class RegexOperationSelectorTypeImpl extends SwitchYardOperationSelectorTypeImpl implements RegexOperationSelectorType {
     /**
-     * The default value of the '{@link #getOperationName() <em>Operation Name</em>}' attribute.
+     * The default value of the '{@link #getExpression() <em>Expression</em>}' attribute.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @see #getOperationName()
+     * @see #getExpression()
      * @generated
      * @ordered
      */
-    protected static final String OPERATION_NAME_EDEFAULT = null;
+    protected static final String EXPRESSION_EDEFAULT = null;
 
     /**
-     * The cached value of the '{@link #getOperationName() <em>Operation Name</em>}' attribute.
+     * The cached value of the '{@link #getExpression() <em>Expression</em>}' attribute.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @see #getOperationName()
+     * @see #getExpression()
      * @generated
      * @ordered
      */
-    protected String operationName = OPERATION_NAME_EDEFAULT;
+    protected String expression = EXPRESSION_EDEFAULT;
 
     /**
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @generated
      */
-    protected hqOperationSelectorTypeImpl() {
+    protected RegexOperationSelectorTypeImpl() {
         super();
     }
 
@@ -67,7 +67,7 @@ public class hqOperationSelectorTypeImpl extends OperationSelectorTypeImpl imple
      */
     @Override
     protected EClass eStaticClass() {
-        return HornetQPackage.Literals.HQ_OPERATION_SELECTOR_TYPE;
+        return CommonselectorPackage.Literals.REGEX_OPERATION_SELECTOR_TYPE;
     }
 
     /**
@@ -75,8 +75,8 @@ public class hqOperationSelectorTypeImpl extends OperationSelectorTypeImpl imple
      * <!-- end-user-doc -->
      * @generated
      */
-    public String getOperationName() {
-        return operationName;
+    public String getExpression() {
+        return expression;
     }
 
     /**
@@ -84,11 +84,11 @@ public class hqOperationSelectorTypeImpl extends OperationSelectorTypeImpl imple
      * <!-- end-user-doc -->
      * @generated
      */
-    public void setOperationName(String newOperationName) {
-        String oldOperationName = operationName;
-        operationName = newOperationName;
+    public void setExpression(String newExpression) {
+        String oldExpression = expression;
+        expression = newExpression;
         if (eNotificationRequired())
-            eNotify(new ENotificationImpl(this, Notification.SET, HornetQPackage.HQ_OPERATION_SELECTOR_TYPE__OPERATION_NAME, oldOperationName, operationName));
+            eNotify(new ENotificationImpl(this, Notification.SET, CommonselectorPackage.REGEX_OPERATION_SELECTOR_TYPE__EXPRESSION, oldExpression, expression));
     }
 
     /**
@@ -99,8 +99,8 @@ public class hqOperationSelectorTypeImpl extends OperationSelectorTypeImpl imple
     @Override
     public Object eGet(int featureID, boolean resolve, boolean coreType) {
         switch (featureID) {
-            case HornetQPackage.HQ_OPERATION_SELECTOR_TYPE__OPERATION_NAME:
-                return getOperationName();
+            case CommonselectorPackage.REGEX_OPERATION_SELECTOR_TYPE__EXPRESSION:
+                return getExpression();
         }
         return super.eGet(featureID, resolve, coreType);
     }
@@ -113,8 +113,8 @@ public class hqOperationSelectorTypeImpl extends OperationSelectorTypeImpl imple
     @Override
     public void eSet(int featureID, Object newValue) {
         switch (featureID) {
-            case HornetQPackage.HQ_OPERATION_SELECTOR_TYPE__OPERATION_NAME:
-                setOperationName((String)newValue);
+            case CommonselectorPackage.REGEX_OPERATION_SELECTOR_TYPE__EXPRESSION:
+                setExpression((String)newValue);
                 return;
         }
         super.eSet(featureID, newValue);
@@ -128,8 +128,8 @@ public class hqOperationSelectorTypeImpl extends OperationSelectorTypeImpl imple
     @Override
     public void eUnset(int featureID) {
         switch (featureID) {
-            case HornetQPackage.HQ_OPERATION_SELECTOR_TYPE__OPERATION_NAME:
-                setOperationName(OPERATION_NAME_EDEFAULT);
+            case CommonselectorPackage.REGEX_OPERATION_SELECTOR_TYPE__EXPRESSION:
+                setExpression(EXPRESSION_EDEFAULT);
                 return;
         }
         super.eUnset(featureID);
@@ -143,8 +143,8 @@ public class hqOperationSelectorTypeImpl extends OperationSelectorTypeImpl imple
     @Override
     public boolean eIsSet(int featureID) {
         switch (featureID) {
-            case HornetQPackage.HQ_OPERATION_SELECTOR_TYPE__OPERATION_NAME:
-                return OPERATION_NAME_EDEFAULT == null ? operationName != null : !OPERATION_NAME_EDEFAULT.equals(operationName);
+            case CommonselectorPackage.REGEX_OPERATION_SELECTOR_TYPE__EXPRESSION:
+                return EXPRESSION_EDEFAULT == null ? expression != null : !EXPRESSION_EDEFAULT.equals(expression);
         }
         return super.eIsSet(featureID);
     }
@@ -159,10 +159,10 @@ public class hqOperationSelectorTypeImpl extends OperationSelectorTypeImpl imple
         if (eIsProxy()) return super.toString();
 
         StringBuffer result = new StringBuffer(super.toString());
-        result.append(" (operationName: ");
-        result.append(operationName);
+        result.append(" (expression: ");
+        result.append(expression);
         result.append(')');
         return result.toString();
     }
 
-} //hqOperationSelectorTypeImpl
+} //RegexOperationSelectorTypeImpl

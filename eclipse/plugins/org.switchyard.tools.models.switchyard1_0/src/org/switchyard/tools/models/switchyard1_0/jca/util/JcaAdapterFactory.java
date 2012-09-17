@@ -90,8 +90,8 @@ public class JcaAdapterFactory extends AdapterFactoryImpl {
                 return createConnectionSpecAdapter();
             }
             @Override
-            public Adapter caseDocumentRoot(DocumentRoot object) {
-                return createDocumentRootAdapter();
+            public Adapter caseEndpoint(Endpoint object) {
+                return createEndpointAdapter();
             }
             @Override
             public Adapter caseInboundOperation(InboundOperation object) {
@@ -126,6 +126,10 @@ public class JcaAdapterFactory extends AdapterFactoryImpl {
                 return createOperationAdapter();
             }
             @Override
+            public Adapter caseProcessor(Processor object) {
+                return createProcessorAdapter();
+            }
+            @Override
             public Adapter caseProperty(Property object) {
                 return createPropertyAdapter();
             }
@@ -134,12 +138,8 @@ public class JcaAdapterFactory extends AdapterFactoryImpl {
                 return createResourceAdapterAdapter();
             }
             @Override
-            public Adapter caseProcessor(Processor object) {
-                return createProcessorAdapter();
-            }
-            @Override
-            public Adapter caseEndpoint(Endpoint object) {
-                return createEndpointAdapter();
+            public Adapter caseDocumentRoot(DocumentRoot object) {
+                return createDocumentRootAdapter();
             }
             @Override
             public Adapter caseCommonExtensionBase(CommonExtensionBase object) {

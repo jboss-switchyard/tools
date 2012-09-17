@@ -32,7 +32,7 @@ import org.switchyard.tools.models.switchyard1_0.switchyard.impl.SwitchYardBindi
  *
  * @generated
  */
-public class CamelDirectBindingTypeImpl extends SwitchYardBindingTypeImpl implements CamelDirectBindingType {
+public class CamelDirectBindingTypeImpl extends BaseCamelBindingImpl implements CamelDirectBindingType {
 	/**
      * The default value of the '{@link #getNameElement() <em>Name Element</em>}' attribute.
      * <!-- begin-user-doc -->

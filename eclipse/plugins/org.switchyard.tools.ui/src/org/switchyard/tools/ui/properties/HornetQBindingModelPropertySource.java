@@ -30,7 +30,6 @@ import org.switchyard.component.hornetq.config.model.HornetQBindingModel;
 public class HornetQBindingModelPropertySource extends BindingModelPropertySource implements IPropertySource {
 
     private static final String PROP_QUEUE = "queue";
-    private static final String PROP_OPERATION_SELECTOR = "operation-selector";
     private static final PropertyDescriptor[] DESCRIPTORS;
 
     private final HornetQBindingModel _model;
@@ -57,11 +56,6 @@ public class HornetQBindingModelPropertySource extends BindingModelPropertySourc
                 return null;
             }
             return _model.getHornetQConfig().getQueue();
-        } else if (PROP_OPERATION_SELECTOR.equals(id)) {
-            if (_model.getOperationSelector() == null) {
-                return null;
-            }
-            return _model.getOperationSelector().getOperationName();
         }
         return super.getPropertyValue(id);
     }
@@ -82,11 +76,8 @@ public class HornetQBindingModelPropertySource extends BindingModelPropertySourc
     static {
         List<PropertyDescriptor> temp = new ArrayList<PropertyDescriptor>(10);
         temp.add(new PropertyDescriptor(PROP_QUEUE, "Queue"));
-        temp.add(new PropertyDescriptor(PROP_OPERATION_SELECTOR, "Operation Selector"));
         temp.get(0).setDescription("The Queue.");
         temp.get(0).setCategory("HornetQ");
-        temp.get(1).setDescription("The operation to which this binding applies.");
-        temp.get(1).setCategory("HornetQ");
         temp.addAll(Arrays.asList(BindingModelPropertySource.DESCRIPTORS));
         DESCRIPTORS = temp.toArray(new PropertyDescriptor[temp.size()]);
     }

@@ -30,6 +30,7 @@ import org.switchyard.tools.models.switchyard1_0.switchyard.PropertiesType;
 import org.switchyard.tools.models.switchyard1_0.switchyard.PropertyType;
 import org.switchyard.tools.models.switchyard1_0.switchyard.ResourceType;
 import org.switchyard.tools.models.switchyard1_0.switchyard.SwitchYardBindingType;
+import org.switchyard.tools.models.switchyard1_0.switchyard.SwitchYardOperationSelectorType;
 import org.switchyard.tools.models.switchyard1_0.switchyard.SwitchYardType;
 import org.switchyard.tools.models.switchyard1_0.switchyard.SwitchyardPackage;
 import org.switchyard.tools.models.switchyard1_0.switchyard.TransformType;
@@ -62,6 +63,7 @@ import org.switchyard.tools.models.switchyard1_0.switchyard.ValidatesType;
  *   <li>{@link org.switchyard.tools.models.switchyard1_0.switchyard.impl.DocumentRootImpl#getTransforms <em>Transforms</em>}</li>
  *   <li>{@link org.switchyard.tools.models.switchyard1_0.switchyard.impl.DocumentRootImpl#getValidate <em>Validate</em>}</li>
  *   <li>{@link org.switchyard.tools.models.switchyard1_0.switchyard.impl.DocumentRootImpl#getValidates <em>Validates</em>}</li>
+ *   <li>{@link org.switchyard.tools.models.switchyard1_0.switchyard.impl.DocumentRootImpl#getOperationSelectorSwitchyard <em>Operation Selector Switchyard</em>}</li>
  * </ul>
  * </p>
  *
@@ -549,6 +551,24 @@ public class DocumentRootImpl extends EObjectImpl implements DocumentRoot {
 
 	/**
      * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public SwitchYardOperationSelectorType getOperationSelectorSwitchyard() {
+        return (SwitchYardOperationSelectorType)getMixed().get(SwitchyardPackage.Literals.DOCUMENT_ROOT__OPERATION_SELECTOR_SWITCHYARD, true);
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public NotificationChain basicSetOperationSelectorSwitchyard(SwitchYardOperationSelectorType newOperationSelectorSwitchyard, NotificationChain msgs) {
+        return ((FeatureMap.Internal)getMixed()).basicAdd(SwitchyardPackage.Literals.DOCUMENT_ROOT__OPERATION_SELECTOR_SWITCHYARD, newOperationSelectorSwitchyard, msgs);
+    }
+
+    /**
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
      * @generated
      */
@@ -591,6 +611,8 @@ public class DocumentRootImpl extends EObjectImpl implements DocumentRoot {
                 return basicSetValidate(null, msgs);
             case SwitchyardPackage.DOCUMENT_ROOT__VALIDATES:
                 return basicSetValidates(null, msgs);
+            case SwitchyardPackage.DOCUMENT_ROOT__OPERATION_SELECTOR_SWITCHYARD:
+                return basicSetOperationSelectorSwitchyard(null, msgs);
         }
         return super.eInverseRemove(otherEnd, featureID, msgs);
     }
@@ -642,6 +664,8 @@ public class DocumentRootImpl extends EObjectImpl implements DocumentRoot {
                 return getValidate();
             case SwitchyardPackage.DOCUMENT_ROOT__VALIDATES:
                 return getValidates();
+            case SwitchyardPackage.DOCUMENT_ROOT__OPERATION_SELECTOR_SWITCHYARD:
+                return getOperationSelectorSwitchyard();
         }
         return super.eGet(featureID, resolve, coreType);
     }
@@ -804,6 +828,8 @@ public class DocumentRootImpl extends EObjectImpl implements DocumentRoot {
                 return getValidate() != null;
             case SwitchyardPackage.DOCUMENT_ROOT__VALIDATES:
                 return getValidates() != null;
+            case SwitchyardPackage.DOCUMENT_ROOT__OPERATION_SELECTOR_SWITCHYARD:
+                return getOperationSelectorSwitchyard() != null;
         }
         return super.eIsSet(featureID);
     }

@@ -44,6 +44,7 @@ import org.switchyard.tools.models.switchyard1_0.camel.CamelFactory;
 
 import org.switchyard.tools.models.switchyard1_0.clojure.ClojureFactory;
 
+import org.switchyard.tools.models.switchyard1_0.commonselector.CommonselectorFactory;
 import org.switchyard.tools.models.switchyard1_0.hornetq.HornetQFactory;
 
 import org.switchyard.tools.models.switchyard1_0.jca.JcaFactory;
@@ -1168,11 +1169,6 @@ public class PropertiesDefinitionItemProvider
         newChildDescriptors.add
             (createChildParameter
                 (SpringPackage.eINSTANCE.getPropertiesDefinition_Property(),
-                 HornetQFactory.eINSTANCE.createhqOperationSelectorType()));
-
-        newChildDescriptors.add
-            (createChildParameter
-                (SpringPackage.eINSTANCE.getPropertiesDefinition_Property(),
                  HornetQFactory.eINSTANCE.createPropertiesType()));
 
         newChildDescriptors.add
@@ -1268,17 +1264,7 @@ public class PropertiesDefinitionItemProvider
         newChildDescriptors.add
             (createChildParameter
                 (SpringPackage.eINSTANCE.getPropertiesDefinition_Property(),
-                 CamelFactory.eINSTANCE.createCamelAtomBindingType()));
-
-        newChildDescriptors.add
-            (createChildParameter
-                (SpringPackage.eINSTANCE.getPropertiesDefinition_Property(),
                  CamelFactory.eINSTANCE.createCamelBindingType()));
-
-        newChildDescriptors.add
-            (createChildParameter
-                (SpringPackage.eINSTANCE.getPropertiesDefinition_Property(),
-                 CamelFactory.eINSTANCE.createCamelDirectBindingType()));
 
         newChildDescriptors.add
             (createChildParameter
@@ -1298,37 +1284,17 @@ public class PropertiesDefinitionItemProvider
         newChildDescriptors.add
             (createChildParameter
                 (SpringPackage.eINSTANCE.getPropertiesDefinition_Property(),
-                 CamelFactory.eINSTANCE.createCamelImplementationType()));
+                 CamelFactory.eINSTANCE.createCamelSftpBindingType()));
 
         newChildDescriptors.add
             (createChildParameter
                 (SpringPackage.eINSTANCE.getPropertiesDefinition_Property(),
-                 CamelFactory.eINSTANCE.createCamelJmsBindingType()));
+                 CamelFactory.eINSTANCE.createCamelAtomBindingType()));
 
         newChildDescriptors.add
             (createChildParameter
                 (SpringPackage.eINSTANCE.getPropertiesDefinition_Property(),
-                 CamelFactory.eINSTANCE.createCamelNettyUdpBindingType()));
-
-        newChildDescriptors.add
-            (createChildParameter
-                (SpringPackage.eINSTANCE.getPropertiesDefinition_Property(),
-                 CamelFactory.eINSTANCE.createCamelNettyTcpBindingType()));
-
-        newChildDescriptors.add
-            (createChildParameter
-                (SpringPackage.eINSTANCE.getPropertiesDefinition_Property(),
-                 CamelFactory.eINSTANCE.createCamelMockBindingType()));
-
-        newChildDescriptors.add
-            (createChildParameter
-                (SpringPackage.eINSTANCE.getPropertiesDefinition_Property(),
-                 CamelFactory.eINSTANCE.createCamelOperationSelectorType()));
-
-        newChildDescriptors.add
-            (createChildParameter
-                (SpringPackage.eINSTANCE.getPropertiesDefinition_Property(),
-                 CamelFactory.eINSTANCE.createCamelSedaBindingType()));
+                 CamelFactory.eINSTANCE.createCamelDirectBindingType()));
 
         newChildDescriptors.add
             (createChildParameter
@@ -1338,7 +1304,52 @@ public class PropertiesDefinitionItemProvider
         newChildDescriptors.add
             (createChildParameter
                 (SpringPackage.eINSTANCE.getPropertiesDefinition_Property(),
-                 CamelFactory.eINSTANCE.createCamelSftpBindingType()));
+                 CamelFactory.eINSTANCE.createCamelSedaBindingType()));
+
+        newChildDescriptors.add
+            (createChildParameter
+                (SpringPackage.eINSTANCE.getPropertiesDefinition_Property(),
+                 CamelFactory.eINSTANCE.createCamelMockBindingType()));
+
+        newChildDescriptors.add
+            (createChildParameter
+                (SpringPackage.eINSTANCE.getPropertiesDefinition_Property(),
+                 CamelFactory.eINSTANCE.createCamelNettyTcpBindingType()));
+
+        newChildDescriptors.add
+            (createChildParameter
+                (SpringPackage.eINSTANCE.getPropertiesDefinition_Property(),
+                 CamelFactory.eINSTANCE.createCamelNettyUdpBindingType()));
+
+        newChildDescriptors.add
+            (createChildParameter
+                (SpringPackage.eINSTANCE.getPropertiesDefinition_Property(),
+                 CamelFactory.eINSTANCE.createCamelQuartzBindingType()));
+
+        newChildDescriptors.add
+            (createChildParameter
+                (SpringPackage.eINSTANCE.getPropertiesDefinition_Property(),
+                 CamelFactory.eINSTANCE.createCamelJmsBindingType()));
+
+        newChildDescriptors.add
+            (createChildParameter
+                (SpringPackage.eINSTANCE.getPropertiesDefinition_Property(),
+                 CamelFactory.eINSTANCE.createCamelSqlBindingType()));
+
+        newChildDescriptors.add
+            (createChildParameter
+                (SpringPackage.eINSTANCE.getPropertiesDefinition_Property(),
+                 CamelFactory.eINSTANCE.createJavaDSLType()));
+
+        newChildDescriptors.add
+            (createChildParameter
+                (SpringPackage.eINSTANCE.getPropertiesDefinition_Property(),
+                 CamelFactory.eINSTANCE.createXMLDSLType()));
+
+        newChildDescriptors.add
+            (createChildParameter
+                (SpringPackage.eINSTANCE.getPropertiesDefinition_Property(),
+                 CamelFactory.eINSTANCE.createCamelImplementationType()));
 
         newChildDescriptors.add
             (createChildParameter
@@ -1373,32 +1384,12 @@ public class PropertiesDefinitionItemProvider
         newChildDescriptors.add
             (createChildParameter
                 (SpringPackage.eINSTANCE.getPropertiesDefinition_Property(),
-                 CamelFactory.eINSTANCE.createJavaDSLType()));
-
-        newChildDescriptors.add
-            (createChildParameter
-                (SpringPackage.eINSTANCE.getPropertiesDefinition_Property(),
-                 CamelFactory.eINSTANCE.createXMLDSLType()));
-
-        newChildDescriptors.add
-            (createChildParameter
-                (SpringPackage.eINSTANCE.getPropertiesDefinition_Property(),
                  CamelFactory.eINSTANCE.createRemoteFileConsumerType()));
 
         newChildDescriptors.add
             (createChildParameter
                 (SpringPackage.eINSTANCE.getPropertiesDefinition_Property(),
                  CamelFactory.eINSTANCE.createRemoteFileProducerType()));
-
-        newChildDescriptors.add
-            (createChildParameter
-                (SpringPackage.eINSTANCE.getPropertiesDefinition_Property(),
-                 CamelFactory.eINSTANCE.createCamelQuartzBindingType()));
-
-        newChildDescriptors.add
-            (createChildParameter
-                (SpringPackage.eINSTANCE.getPropertiesDefinition_Property(),
-                 CamelFactory.eINSTANCE.createCamelSqlBindingType()));
 
         newChildDescriptors.add
             (createChildParameter
@@ -1414,6 +1405,11 @@ public class PropertiesDefinitionItemProvider
             (createChildParameter
                 (SpringPackage.eINSTANCE.getPropertiesDefinition_Property(),
                  JcaFactory.eINSTANCE.createConnectionSpec()));
+
+        newChildDescriptors.add
+            (createChildParameter
+                (SpringPackage.eINSTANCE.getPropertiesDefinition_Property(),
+                 JcaFactory.eINSTANCE.createEndpoint()));
 
         newChildDescriptors.add
             (createChildParameter
@@ -1458,6 +1454,11 @@ public class PropertiesDefinitionItemProvider
         newChildDescriptors.add
             (createChildParameter
                 (SpringPackage.eINSTANCE.getPropertiesDefinition_Property(),
+                 JcaFactory.eINSTANCE.createProcessor()));
+
+        newChildDescriptors.add
+            (createChildParameter
+                (SpringPackage.eINSTANCE.getPropertiesDefinition_Property(),
                  JcaFactory.eINSTANCE.createProperty()));
 
         newChildDescriptors.add
@@ -1468,17 +1469,27 @@ public class PropertiesDefinitionItemProvider
         newChildDescriptors.add
             (createChildParameter
                 (SpringPackage.eINSTANCE.getPropertiesDefinition_Property(),
-                 JcaFactory.eINSTANCE.createProcessor()));
-
-        newChildDescriptors.add
-            (createChildParameter
-                (SpringPackage.eINSTANCE.getPropertiesDefinition_Property(),
-                 JcaFactory.eINSTANCE.createEndpoint()));
-
-        newChildDescriptors.add
-            (createChildParameter
-                (SpringPackage.eINSTANCE.getPropertiesDefinition_Property(),
                  ResteasyFactory.eINSTANCE.createRESTBindingType()));
+
+        newChildDescriptors.add
+            (createChildParameter
+                (SpringPackage.eINSTANCE.getPropertiesDefinition_Property(),
+                 CommonselectorFactory.eINSTANCE.createStaticOperationSelectorType()));
+
+        newChildDescriptors.add
+            (createChildParameter
+                (SpringPackage.eINSTANCE.getPropertiesDefinition_Property(),
+                 CommonselectorFactory.eINSTANCE.createXPathOperationSelectorType()));
+
+        newChildDescriptors.add
+            (createChildParameter
+                (SpringPackage.eINSTANCE.getPropertiesDefinition_Property(),
+                 CommonselectorFactory.eINSTANCE.createRegexOperationSelectorType()));
+
+        newChildDescriptors.add
+            (createChildParameter
+                (SpringPackage.eINSTANCE.getPropertiesDefinition_Property(),
+                 CommonselectorFactory.eINSTANCE.createJavaOperationSelectorType()));
 
         newChildDescriptors.add
             (createChildParameter

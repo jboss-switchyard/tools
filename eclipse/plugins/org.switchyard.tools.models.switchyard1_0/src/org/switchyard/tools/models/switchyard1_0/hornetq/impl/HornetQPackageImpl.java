@@ -41,6 +41,8 @@ import org.switchyard.tools.models.switchyard1_0.commonrules.CommonRulesPackage;
 
 import org.switchyard.tools.models.switchyard1_0.commonrules.impl.CommonRulesPackageImpl;
 
+import org.switchyard.tools.models.switchyard1_0.commonselector.CommonselectorPackage;
+import org.switchyard.tools.models.switchyard1_0.commonselector.impl.CommonselectorPackageImpl;
 import org.switchyard.tools.models.switchyard1_0.hornetq.BindingType;
 import org.switchyard.tools.models.switchyard1_0.hornetq.ConfigType;
 import org.switchyard.tools.models.switchyard1_0.hornetq.ConnectorType;
@@ -50,8 +52,6 @@ import org.switchyard.tools.models.switchyard1_0.hornetq.HornetQFactory;
 import org.switchyard.tools.models.switchyard1_0.hornetq.HornetQPackage;
 import org.switchyard.tools.models.switchyard1_0.hornetq.PropertiesType;
 import org.switchyard.tools.models.switchyard1_0.hornetq.PropertyType;
-import org.switchyard.tools.models.switchyard1_0.hornetq.hqOperationSelectorType;
-
 import org.switchyard.tools.models.switchyard1_0.jca.JcaPackage;
 import org.switchyard.tools.models.switchyard1_0.jca.impl.JcaPackageImpl;
 import org.switchyard.tools.models.switchyard1_0.resteasy.ResteasyPackage;
@@ -121,13 +121,6 @@ public class HornetQPackageImpl extends EPackageImpl implements HornetQPackage {
      * @generated
      */
     private EClass documentRootEClass = null;
-
-    /**
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    private EClass hqOperationSelectorTypeEClass = null;
 
     /**
      * <!-- begin-user-doc -->
@@ -208,6 +201,7 @@ public class HornetQPackageImpl extends EPackageImpl implements HornetQPackage {
         SpringPackageImpl theSpringPackage = (SpringPackageImpl)(EPackage.Registry.INSTANCE.getEPackage(SpringPackage.eNS_URI) instanceof SpringPackageImpl ? EPackage.Registry.INSTANCE.getEPackage(SpringPackage.eNS_URI) : SpringPackage.eINSTANCE);
         JcaPackageImpl theJcaPackage = (JcaPackageImpl)(EPackage.Registry.INSTANCE.getEPackage(JcaPackage.eNS_URI) instanceof JcaPackageImpl ? EPackage.Registry.INSTANCE.getEPackage(JcaPackage.eNS_URI) : JcaPackage.eINSTANCE);
         ResteasyPackageImpl theResteasyPackage = (ResteasyPackageImpl)(EPackage.Registry.INSTANCE.getEPackage(ResteasyPackage.eNS_URI) instanceof ResteasyPackageImpl ? EPackage.Registry.INSTANCE.getEPackage(ResteasyPackage.eNS_URI) : ResteasyPackage.eINSTANCE);
+        CommonselectorPackageImpl theCommonselectorPackage = (CommonselectorPackageImpl)(EPackage.Registry.INSTANCE.getEPackage(CommonselectorPackage.eNS_URI) instanceof CommonselectorPackageImpl ? EPackage.Registry.INSTANCE.getEPackage(CommonselectorPackage.eNS_URI) : CommonselectorPackage.eINSTANCE);
 
         // Load packages
         theSpringPackage.loadPackage();
@@ -227,6 +221,7 @@ public class HornetQPackageImpl extends EPackageImpl implements HornetQPackage {
         theCamelPackage.createPackageContents();
         theJcaPackage.createPackageContents();
         theResteasyPackage.createPackageContents();
+        theCommonselectorPackage.createPackageContents();
 
         // Initialize created meta-data
         theHornetQPackage.initializePackageContents();
@@ -243,6 +238,7 @@ public class HornetQPackageImpl extends EPackageImpl implements HornetQPackage {
         theCamelPackage.initializePackageContents();
         theJcaPackage.initializePackageContents();
         theResteasyPackage.initializePackageContents();
+        theCommonselectorPackage.initializePackageContents();
 
         // Fix loaded packages
         theSpringPackage.fixPackageContents();
@@ -270,17 +266,8 @@ public class HornetQPackageImpl extends EPackageImpl implements HornetQPackage {
      * <!-- end-user-doc -->
      * @generated
      */
-    public EReference getBindingType_HqOperationSelector() {
-        return (EReference)bindingTypeEClass.getEStructuralFeatures().get(0);
-    }
-
-    /**
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
     public EReference getBindingType_Config() {
-        return (EReference)bindingTypeEClass.getEStructuralFeatures().get(1);
+        return (EReference)bindingTypeEClass.getEStructuralFeatures().get(0);
     }
 
     /**
@@ -756,24 +743,6 @@ public class HornetQPackageImpl extends EPackageImpl implements HornetQPackage {
      * <!-- end-user-doc -->
      * @generated
      */
-    public EClass gethqOperationSelectorType() {
-        return hqOperationSelectorTypeEClass;
-    }
-
-    /**
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    public EAttribute gethqOperationSelectorType_OperationName() {
-        return (EAttribute)hqOperationSelectorTypeEClass.getEStructuralFeatures().get(0);
-    }
-
-    /**
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
     public EClass getPropertiesType() {
         return propertiesTypeEClass;
     }
@@ -843,7 +812,6 @@ public class HornetQPackageImpl extends EPackageImpl implements HornetQPackage {
 
         // Create classes and their features
         bindingTypeEClass = createEClass(BINDING_TYPE);
-        createEReference(bindingTypeEClass, BINDING_TYPE__HQ_OPERATION_SELECTOR);
         createEReference(bindingTypeEClass, BINDING_TYPE__CONFIG);
 
         configTypeEClass = createEClass(CONFIG_TYPE);
@@ -902,9 +870,6 @@ public class HornetQPackageImpl extends EPackageImpl implements HornetQPackage {
         createEReference(documentRootEClass, DOCUMENT_ROOT__BINDING_HORNETQ);
         createEReference(documentRootEClass, DOCUMENT_ROOT__CONFIG);
 
-        hqOperationSelectorTypeEClass = createEClass(HQ_OPERATION_SELECTOR_TYPE);
-        createEAttribute(hqOperationSelectorTypeEClass, HQ_OPERATION_SELECTOR_TYPE__OPERATION_NAME);
-
         propertiesTypeEClass = createEClass(PROPERTIES_TYPE);
         createEReference(propertiesTypeEClass, PROPERTIES_TYPE__PROPERTY);
 
@@ -939,7 +904,6 @@ public class HornetQPackageImpl extends EPackageImpl implements HornetQPackage {
         // Obtain other dependent packages
         SwitchyardPackage theSwitchyardPackage = (SwitchyardPackage)EPackage.Registry.INSTANCE.getEPackage(SwitchyardPackage.eNS_URI);
         XMLTypePackage theXMLTypePackage = (XMLTypePackage)EPackage.Registry.INSTANCE.getEPackage(XMLTypePackage.eNS_URI);
-        ScaPackage theScaPackage = (ScaPackage)EPackage.Registry.INSTANCE.getEPackage(ScaPackage.eNS_URI);
 
         // Create type parameters
 
@@ -947,11 +911,9 @@ public class HornetQPackageImpl extends EPackageImpl implements HornetQPackage {
 
         // Add supertypes to classes
         bindingTypeEClass.getESuperTypes().add(theSwitchyardPackage.getSwitchYardBindingType());
-        hqOperationSelectorTypeEClass.getESuperTypes().add(theScaPackage.getOperationSelectorType());
 
         // Initialize classes and features; add operations and parameters
         initEClass(bindingTypeEClass, BindingType.class, "BindingType", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-        initEReference(getBindingType_HqOperationSelector(), this.gethqOperationSelectorType(), null, "hqOperationSelector", null, 0, 1, BindingType.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
         initEReference(getBindingType_Config(), this.getConfigType(), null, "config", null, 1, 1, BindingType.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
         initEClass(configTypeEClass, ConfigType.class, "ConfigType", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
@@ -1010,9 +972,6 @@ public class HornetQPackageImpl extends EPackageImpl implements HornetQPackage {
         initEReference(getDocumentRoot_BindingHornetq(), this.getBindingType(), null, "bindingHornetq", null, 0, -2, null, IS_TRANSIENT, IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, IS_DERIVED, IS_ORDERED);
         initEReference(getDocumentRoot_Config(), this.getConfigType(), null, "config", null, 0, -2, null, IS_TRANSIENT, IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, IS_DERIVED, IS_ORDERED);
 
-        initEClass(hqOperationSelectorTypeEClass, hqOperationSelectorType.class, "hqOperationSelectorType", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-        initEAttribute(gethqOperationSelectorType_OperationName(), theXMLTypePackage.getString(), "operationName", null, 1, 1, hqOperationSelectorType.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-
         initEClass(propertiesTypeEClass, PropertiesType.class, "PropertiesType", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
         initEReference(getPropertiesType_Property(), this.getPropertyType(), null, "property", null, 0, -1, PropertiesType.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
@@ -1042,14 +1001,6 @@ public class HornetQPackageImpl extends EPackageImpl implements HornetQPackage {
            new String[] {
              "name", "BindingType",
              "kind", "elementOnly"
-           });		
-        addAnnotation
-          (getBindingType_HqOperationSelector(), 
-           source, 
-           new String[] {
-             "kind", "element",
-             "name", "operationSelector",
-             "namespace", "##targetNamespace"
            });		
         addAnnotation
           (getBindingType_Config(), 
@@ -1467,13 +1418,6 @@ public class HornetQPackageImpl extends EPackageImpl implements HornetQPackage {
              "kind", "element",
              "name", "config",
              "namespace", "##targetNamespace"
-           });		
-        addAnnotation
-          (hqOperationSelectorTypeEClass, 
-           source, 
-           new String[] {
-             "name", "OperationSelectorType",
-             "kind", "empty"
            });		
         addAnnotation
           (propertiesTypeEClass, 

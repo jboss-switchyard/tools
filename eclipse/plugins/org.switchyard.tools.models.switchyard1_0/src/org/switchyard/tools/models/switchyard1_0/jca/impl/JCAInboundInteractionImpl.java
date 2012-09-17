@@ -37,7 +37,6 @@ import org.switchyard.tools.models.switchyard1_0.jca.JcaPackage;
  * The following features are implemented:
  * <ul>
  *   <li>{@link org.switchyard.tools.models.switchyard1_0.jca.impl.JCAInboundInteractionImpl#getListener <em>Listener</em>}</li>
- *   <li>{@link org.switchyard.tools.models.switchyard1_0.jca.impl.JCAInboundInteractionImpl#getInboundOperation <em>Inbound Operation</em>}</li>
  *   <li>{@link org.switchyard.tools.models.switchyard1_0.jca.impl.JCAInboundInteractionImpl#getEndpoint <em>Endpoint</em>}</li>
  *   <li>{@link org.switchyard.tools.models.switchyard1_0.jca.impl.JCAInboundInteractionImpl#isTransacted <em>Transacted</em>}</li>
  *   <li>{@link org.switchyard.tools.models.switchyard1_0.jca.impl.JCAInboundInteractionImpl#getAny <em>Any</em>}</li>
@@ -67,16 +66,6 @@ public class JCAInboundInteractionImpl extends EObjectImpl implements JCAInbound
      * @ordered
      */
     protected String listener = LISTENER_EDEFAULT;
-
-    /**
-     * The cached value of the '{@link #getInboundOperation() <em>Inbound Operation</em>}' containment reference list.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @see #getInboundOperation()
-     * @generated
-     * @ordered
-     */
-    protected EList<InboundOperation> inboundOperation;
 
     /**
      * The cached value of the '{@link #getEndpoint() <em>Endpoint</em>}' containment reference.
@@ -175,18 +164,6 @@ public class JCAInboundInteractionImpl extends EObjectImpl implements JCAInbound
         listener = newListener;
         if (eNotificationRequired())
             eNotify(new ENotificationImpl(this, Notification.SET, JcaPackage.JCA_INBOUND_INTERACTION__LISTENER, oldListener, listener));
-    }
-
-    /**
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    public EList<InboundOperation> getInboundOperation() {
-        if (inboundOperation == null) {
-            inboundOperation = new EObjectContainmentEList<InboundOperation>(InboundOperation.class, this, JcaPackage.JCA_INBOUND_INTERACTION__INBOUND_OPERATION);
-        }
-        return inboundOperation;
     }
 
     /**
@@ -310,8 +287,6 @@ public class JCAInboundInteractionImpl extends EObjectImpl implements JCAInbound
     @Override
     public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
         switch (featureID) {
-            case JcaPackage.JCA_INBOUND_INTERACTION__INBOUND_OPERATION:
-                return ((InternalEList<?>)getInboundOperation()).basicRemove(otherEnd, msgs);
             case JcaPackage.JCA_INBOUND_INTERACTION__ENDPOINT:
                 return basicSetEndpoint(null, msgs);
             case JcaPackage.JCA_INBOUND_INTERACTION__ANY:
@@ -332,8 +307,6 @@ public class JCAInboundInteractionImpl extends EObjectImpl implements JCAInbound
         switch (featureID) {
             case JcaPackage.JCA_INBOUND_INTERACTION__LISTENER:
                 return getListener();
-            case JcaPackage.JCA_INBOUND_INTERACTION__INBOUND_OPERATION:
-                return getInboundOperation();
             case JcaPackage.JCA_INBOUND_INTERACTION__ENDPOINT:
                 return getEndpoint();
             case JcaPackage.JCA_INBOUND_INTERACTION__TRANSACTED:
@@ -359,10 +332,6 @@ public class JCAInboundInteractionImpl extends EObjectImpl implements JCAInbound
         switch (featureID) {
             case JcaPackage.JCA_INBOUND_INTERACTION__LISTENER:
                 setListener((String)newValue);
-                return;
-            case JcaPackage.JCA_INBOUND_INTERACTION__INBOUND_OPERATION:
-                getInboundOperation().clear();
-                getInboundOperation().addAll((Collection<? extends InboundOperation>)newValue);
                 return;
             case JcaPackage.JCA_INBOUND_INTERACTION__ENDPOINT:
                 setEndpoint((Endpoint)newValue);
@@ -391,9 +360,6 @@ public class JCAInboundInteractionImpl extends EObjectImpl implements JCAInbound
             case JcaPackage.JCA_INBOUND_INTERACTION__LISTENER:
                 setListener(LISTENER_EDEFAULT);
                 return;
-            case JcaPackage.JCA_INBOUND_INTERACTION__INBOUND_OPERATION:
-                getInboundOperation().clear();
-                return;
             case JcaPackage.JCA_INBOUND_INTERACTION__ENDPOINT:
                 setEndpoint((Endpoint)null);
                 return;
@@ -420,8 +386,6 @@ public class JCAInboundInteractionImpl extends EObjectImpl implements JCAInbound
         switch (featureID) {
             case JcaPackage.JCA_INBOUND_INTERACTION__LISTENER:
                 return LISTENER_EDEFAULT == null ? listener != null : !LISTENER_EDEFAULT.equals(listener);
-            case JcaPackage.JCA_INBOUND_INTERACTION__INBOUND_OPERATION:
-                return inboundOperation != null && !inboundOperation.isEmpty();
             case JcaPackage.JCA_INBOUND_INTERACTION__ENDPOINT:
                 return endpoint != null;
             case JcaPackage.JCA_INBOUND_INTERACTION__TRANSACTED:

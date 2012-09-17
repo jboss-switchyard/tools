@@ -31,6 +31,7 @@ public class BindingModelPropertySource implements IPropertySource {
     private static final String PROP_TYPE = "type";
     private static final String PROP_CONTEXT_MAPPER = "context-mapper";
     private static final String PROP_MESSAGE_COMPOSER = "message-composer";
+    private static final String PROP_OPERATION_SELECTOR = "operation-selector";
     protected static final PropertyDescriptor[] DESCRIPTORS;
 
     private final BindingModel _model;
@@ -60,6 +61,12 @@ public class BindingModelPropertySource implements IPropertySource {
                 return null;
             }
             return _model.getMessageComposer().getClazz();
+//        } else if (PROP_OPERATION_SELECTOR.equals(id)) {
+//            OperationSelector selector = _model.getOperationSelector();
+//            if (selector == null || selector.getOperationName() == null) {
+//                return null;
+//            }
+//            return new QName(selector.getNamespace(), selector.getOperationName());
         }
         return null;
     }
@@ -80,7 +87,8 @@ public class BindingModelPropertySource implements IPropertySource {
     static {
         DESCRIPTORS = new PropertyDescriptor[] {new PropertyDescriptor(PROP_TYPE, "Binding Type"),
                 new PropertyDescriptor(PROP_CONTEXT_MAPPER, "Context Mapper"),
-                new PropertyDescriptor(PROP_MESSAGE_COMPOSER, "Message Composer") };
+                new PropertyDescriptor(PROP_MESSAGE_COMPOSER, "Message Composer"),
+                new PropertyDescriptor(PROP_OPERATION_SELECTOR, "Operation Selector")};
         DESCRIPTORS[0].setDescription("The binding type.");
         DESCRIPTORS[0].setCategory("General");
         DESCRIPTORS[1].setDescription("The context mapper for the binding.");

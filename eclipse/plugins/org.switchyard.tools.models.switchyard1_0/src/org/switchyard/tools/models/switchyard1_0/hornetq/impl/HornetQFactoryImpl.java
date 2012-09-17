@@ -65,7 +65,6 @@ public class HornetQFactoryImpl extends EFactoryImpl implements HornetQFactory {
             case HornetQPackage.CONNECTOR_TYPE: return createConnectorType();
             case HornetQPackage.DISCOVERY_GROUP_TYPE: return createDiscoveryGroupType();
             case HornetQPackage.DOCUMENT_ROOT: return createDocumentRoot();
-            case HornetQPackage.HQ_OPERATION_SELECTOR_TYPE: return createhqOperationSelectorType();
             case HornetQPackage.PROPERTIES_TYPE: return createPropertiesType();
             case HornetQPackage.PROPERTY_TYPE: return createPropertyType();
             default:
@@ -121,16 +120,6 @@ public class HornetQFactoryImpl extends EFactoryImpl implements HornetQFactory {
     public DocumentRoot createDocumentRoot() {
         DocumentRootImpl documentRoot = new DocumentRootImpl();
         return documentRoot;
-    }
-
-    /**
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    public hqOperationSelectorType createhqOperationSelectorType() {
-        hqOperationSelectorTypeImpl hqOperationSelectorType = new hqOperationSelectorTypeImpl();
-        return hqOperationSelectorType;
     }
 
     /**

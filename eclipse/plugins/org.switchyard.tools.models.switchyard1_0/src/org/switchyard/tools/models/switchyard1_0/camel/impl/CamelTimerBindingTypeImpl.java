@@ -42,7 +42,7 @@ import org.switchyard.tools.models.switchyard1_0.switchyard.impl.SwitchYardBindi
  *
  * @generated
  */
-public class CamelTimerBindingTypeImpl extends SwitchYardBindingTypeImpl implements CamelTimerBindingType {
+public class CamelTimerBindingTypeImpl extends BaseCamelBindingImpl implements CamelTimerBindingType {
 	/**
      * The default value of the '{@link #getNameElement() <em>Name Element</em>}' attribute.
      * <!-- begin-user-doc -->

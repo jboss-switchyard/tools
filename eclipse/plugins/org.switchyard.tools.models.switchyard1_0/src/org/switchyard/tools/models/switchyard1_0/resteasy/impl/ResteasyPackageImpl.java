@@ -39,6 +39,8 @@ import org.switchyard.tools.models.switchyard1_0.commonrules.CommonRulesPackage;
 
 import org.switchyard.tools.models.switchyard1_0.commonrules.impl.CommonRulesPackageImpl;
 
+import org.switchyard.tools.models.switchyard1_0.commonselector.CommonselectorPackage;
+import org.switchyard.tools.models.switchyard1_0.commonselector.impl.CommonselectorPackageImpl;
 import org.switchyard.tools.models.switchyard1_0.hornetq.HornetQPackage;
 
 import org.switchyard.tools.models.switchyard1_0.hornetq.impl.HornetQPackageImpl;
@@ -161,6 +163,7 @@ public class ResteasyPackageImpl extends EPackageImpl implements ResteasyPackage
         CamelPackageImpl theCamelPackage = (CamelPackageImpl)(EPackage.Registry.INSTANCE.getEPackage(CamelPackage.eNS_URI) instanceof CamelPackageImpl ? EPackage.Registry.INSTANCE.getEPackage(CamelPackage.eNS_URI) : CamelPackage.eINSTANCE);
         SpringPackageImpl theSpringPackage = (SpringPackageImpl)(EPackage.Registry.INSTANCE.getEPackage(SpringPackage.eNS_URI) instanceof SpringPackageImpl ? EPackage.Registry.INSTANCE.getEPackage(SpringPackage.eNS_URI) : SpringPackage.eINSTANCE);
         JcaPackageImpl theJcaPackage = (JcaPackageImpl)(EPackage.Registry.INSTANCE.getEPackage(JcaPackage.eNS_URI) instanceof JcaPackageImpl ? EPackage.Registry.INSTANCE.getEPackage(JcaPackage.eNS_URI) : JcaPackage.eINSTANCE);
+        CommonselectorPackageImpl theCommonselectorPackage = (CommonselectorPackageImpl)(EPackage.Registry.INSTANCE.getEPackage(CommonselectorPackage.eNS_URI) instanceof CommonselectorPackageImpl ? EPackage.Registry.INSTANCE.getEPackage(CommonselectorPackage.eNS_URI) : CommonselectorPackage.eINSTANCE);
 
         // Load packages
         theSpringPackage.loadPackage();
@@ -180,6 +183,7 @@ public class ResteasyPackageImpl extends EPackageImpl implements ResteasyPackage
         theValidatePackage.createPackageContents();
         theCamelPackage.createPackageContents();
         theJcaPackage.createPackageContents();
+        theCommonselectorPackage.createPackageContents();
 
         // Initialize created meta-data
         theResteasyPackage.initializePackageContents();
@@ -196,6 +200,7 @@ public class ResteasyPackageImpl extends EPackageImpl implements ResteasyPackage
         theValidatePackage.initializePackageContents();
         theCamelPackage.initializePackageContents();
         theJcaPackage.initializePackageContents();
+        theCommonselectorPackage.initializePackageContents();
 
         // Fix loaded packages
         theSpringPackage.fixPackageContents();

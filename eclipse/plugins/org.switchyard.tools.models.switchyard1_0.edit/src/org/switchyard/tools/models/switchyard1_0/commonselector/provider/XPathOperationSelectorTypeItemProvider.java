@@ -4,7 +4,7 @@
  *
  * $Id$
  */
-package org.switchyard.tools.models.switchyard1_0.hornetq.provider;
+package org.switchyard.tools.models.switchyard1_0.commonselector.provider;
 
 
 import java.util.Collection;
@@ -14,8 +14,6 @@ import org.eclipse.emf.common.notify.AdapterFactory;
 import org.eclipse.emf.common.notify.Notification;
 
 import org.eclipse.emf.common.util.ResourceLocator;
-
-import org.eclipse.emf.ecore.util.FeatureMapUtil;
 
 import org.eclipse.emf.edit.provider.ComposeableAdapterFactory;
 import org.eclipse.emf.edit.provider.IEditingDomainItemProvider;
@@ -27,26 +25,21 @@ import org.eclipse.emf.edit.provider.ITreeItemContentProvider;
 import org.eclipse.emf.edit.provider.ItemPropertyDescriptor;
 import org.eclipse.emf.edit.provider.ViewerNotification;
 
-import org.eclipse.soa.sca.sca1_1.model.sca.ScaPackage;
-
-import org.eclipse.soa.sca.sca1_1.model.sca.provider.OperationSelectorTypeItemProvider;
-
 import org.switchyard.tools.models.switchyard1_0.bean.provider.Switchyard_1EditPlugin;
 
-import org.switchyard.tools.models.switchyard1_0.hornetq.HornetQPackage;
-import org.switchyard.tools.models.switchyard1_0.hornetq.hqOperationSelectorType;
+import org.switchyard.tools.models.switchyard1_0.commonselector.CommonselectorPackage;
+import org.switchyard.tools.models.switchyard1_0.commonselector.XPathOperationSelectorType;
 
-import org.switchyard.tools.models.switchyard1_0.resteasy.ResteasyFactory;
-import org.switchyard.tools.models.switchyard1_0.resteasy.ResteasyPackage;
+import org.switchyard.tools.models.switchyard1_0.switchyard.provider.SwitchYardOperationSelectorTypeItemProvider;
 
 /**
- * This is the item provider adapter for a {@link org.switchyard.tools.models.switchyard1_0.hornetq.hqOperationSelectorType} object.
+ * This is the item provider adapter for a {@link org.switchyard.tools.models.switchyard1_0.commonselector.XPathOperationSelectorType} object.
  * <!-- begin-user-doc -->
  * <!-- end-user-doc -->
  * @generated
  */
-public class hqOperationSelectorTypeItemProvider
-    extends OperationSelectorTypeItemProvider
+public class XPathOperationSelectorTypeItemProvider
+    extends SwitchYardOperationSelectorTypeItemProvider
     implements
         IEditingDomainItemProvider,
         IStructuredItemContentProvider,
@@ -59,7 +52,7 @@ public class hqOperationSelectorTypeItemProvider
      * <!-- end-user-doc -->
      * @generated
      */
-    public hqOperationSelectorTypeItemProvider(AdapterFactory adapterFactory) {
+    public XPathOperationSelectorTypeItemProvider(AdapterFactory adapterFactory) {
         super(adapterFactory);
     }
 
@@ -74,25 +67,25 @@ public class hqOperationSelectorTypeItemProvider
         if (itemPropertyDescriptors == null) {
             super.getPropertyDescriptors(object);
 
-            addOperationNamePropertyDescriptor(object);
+            addExpressionPropertyDescriptor(object);
         }
         return itemPropertyDescriptors;
     }
 
     /**
-     * This adds a property descriptor for the Operation Name feature.
+     * This adds a property descriptor for the Expression feature.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @generated
      */
-    protected void addOperationNamePropertyDescriptor(Object object) {
+    protected void addExpressionPropertyDescriptor(Object object) {
         itemPropertyDescriptors.add
             (createItemPropertyDescriptor
                 (((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
                  getResourceLocator(),
-                 getString("_UI_hqOperationSelectorType_operationName_feature"),
-                 getString("_UI_PropertyDescriptor_description", "_UI_hqOperationSelectorType_operationName_feature", "_UI_hqOperationSelectorType_type"),
-                 HornetQPackage.Literals.HQ_OPERATION_SELECTOR_TYPE__OPERATION_NAME,
+                 getString("_UI_XPathOperationSelectorType_expression_feature"),
+                 getString("_UI_PropertyDescriptor_description", "_UI_XPathOperationSelectorType_expression_feature", "_UI_XPathOperationSelectorType_type"),
+                 CommonselectorPackage.Literals.XPATH_OPERATION_SELECTOR_TYPE__EXPRESSION,
                  true,
                  false,
                  false,
@@ -102,14 +95,14 @@ public class hqOperationSelectorTypeItemProvider
     }
 
     /**
-     * This returns hqOperationSelectorType.gif.
+     * This returns XPathOperationSelectorType.gif.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @generated
      */
     @Override
     public Object getImage(Object object) {
-        return overlayImage(object, getResourceLocator().getImage("full/obj16/hqOperationSelectorType"));
+        return overlayImage(object, getResourceLocator().getImage("full/obj16/XPathOperationSelectorType"));
     }
 
     /**
@@ -120,10 +113,10 @@ public class hqOperationSelectorTypeItemProvider
      */
     @Override
     public String getText(Object object) {
-        String label = ((hqOperationSelectorType)object).getOperationName();
+        String label = ((XPathOperationSelectorType)object).getExpression();
         return label == null || label.length() == 0 ?
-            getString("_UI_hqOperationSelectorType_type") :
-            getString("_UI_hqOperationSelectorType_type") + " " + label;
+            getString("_UI_XPathOperationSelectorType_type") :
+            getString("_UI_XPathOperationSelectorType_type") + " " + label;
     }
 
     /**
@@ -137,8 +130,8 @@ public class hqOperationSelectorTypeItemProvider
     public void notifyChanged(Notification notification) {
         updateChildren(notification);
 
-        switch (notification.getFeatureID(hqOperationSelectorType.class)) {
-            case HornetQPackage.HQ_OPERATION_SELECTOR_TYPE__OPERATION_NAME:
+        switch (notification.getFeatureID(XPathOperationSelectorType.class)) {
+            case CommonselectorPackage.XPATH_OPERATION_SELECTOR_TYPE__EXPRESSION:
                 fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
                 return;
         }
@@ -155,13 +148,6 @@ public class hqOperationSelectorTypeItemProvider
     @Override
     protected void collectNewChildDescriptors(Collection<Object> newChildDescriptors, Object object) {
         super.collectNewChildDescriptors(newChildDescriptors, object);
-
-        newChildDescriptors.add
-            (createChildParameter
-                (ScaPackage.eINSTANCE.getOperationSelectorType_Any(),
-                 FeatureMapUtil.createEntry
-                    (ResteasyPackage.Literals.DOCUMENT_ROOT__BINDING_REST,
-                     ResteasyFactory.eINSTANCE.createRESTBindingType())));
     }
 
     /**

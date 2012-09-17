@@ -4,7 +4,7 @@
  *
  * $Id$
  */
-package org.switchyard.tools.models.switchyard1_0.camel.provider;
+package org.switchyard.tools.models.switchyard1_0.commonselector.provider;
 
 
 import java.util.Collection;
@@ -14,8 +14,6 @@ import org.eclipse.emf.common.notify.AdapterFactory;
 import org.eclipse.emf.common.notify.Notification;
 
 import org.eclipse.emf.common.util.ResourceLocator;
-
-import org.eclipse.emf.ecore.util.FeatureMapUtil;
 
 import org.eclipse.emf.edit.provider.ComposeableAdapterFactory;
 import org.eclipse.emf.edit.provider.IEditingDomainItemProvider;
@@ -27,26 +25,21 @@ import org.eclipse.emf.edit.provider.ITreeItemContentProvider;
 import org.eclipse.emf.edit.provider.ItemPropertyDescriptor;
 import org.eclipse.emf.edit.provider.ViewerNotification;
 
-import org.eclipse.soa.sca.sca1_1.model.sca.ScaPackage;
-
-import org.eclipse.soa.sca.sca1_1.model.sca.provider.OperationSelectorTypeItemProvider;
-
 import org.switchyard.tools.models.switchyard1_0.bean.provider.Switchyard_1EditPlugin;
 
-import org.switchyard.tools.models.switchyard1_0.camel.CamelOperationSelectorType;
-import org.switchyard.tools.models.switchyard1_0.camel.CamelPackage;
+import org.switchyard.tools.models.switchyard1_0.commonselector.CommonselectorPackage;
+import org.switchyard.tools.models.switchyard1_0.commonselector.JavaOperationSelectorType;
 
-import org.switchyard.tools.models.switchyard1_0.resteasy.ResteasyFactory;
-import org.switchyard.tools.models.switchyard1_0.resteasy.ResteasyPackage;
+import org.switchyard.tools.models.switchyard1_0.switchyard.provider.SwitchYardOperationSelectorTypeItemProvider;
 
 /**
- * This is the item provider adapter for a {@link org.switchyard.tools.models.switchyard1_0.camel.CamelOperationSelectorType} object.
+ * This is the item provider adapter for a {@link org.switchyard.tools.models.switchyard1_0.commonselector.JavaOperationSelectorType} object.
  * <!-- begin-user-doc -->
  * <!-- end-user-doc -->
  * @generated
  */
-public class CamelOperationSelectorTypeItemProvider
-    extends OperationSelectorTypeItemProvider
+public class JavaOperationSelectorTypeItemProvider
+    extends SwitchYardOperationSelectorTypeItemProvider
     implements
         IEditingDomainItemProvider,
         IStructuredItemContentProvider,
@@ -59,7 +52,7 @@ public class CamelOperationSelectorTypeItemProvider
      * <!-- end-user-doc -->
      * @generated
      */
-    public CamelOperationSelectorTypeItemProvider(AdapterFactory adapterFactory) {
+    public JavaOperationSelectorTypeItemProvider(AdapterFactory adapterFactory) {
         super(adapterFactory);
     }
 
@@ -74,26 +67,25 @@ public class CamelOperationSelectorTypeItemProvider
         if (itemPropertyDescriptors == null) {
             super.getPropertyDescriptors(object);
 
-            addNamespacePropertyDescriptor(object);
-            addOperationNamePropertyDescriptor(object);
+            addClassPropertyDescriptor(object);
         }
         return itemPropertyDescriptors;
     }
 
     /**
-     * This adds a property descriptor for the Namespace feature.
+     * This adds a property descriptor for the Class feature.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @generated
      */
-    protected void addNamespacePropertyDescriptor(Object object) {
+    protected void addClassPropertyDescriptor(Object object) {
         itemPropertyDescriptors.add
             (createItemPropertyDescriptor
                 (((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
                  getResourceLocator(),
-                 getString("_UI_CamelOperationSelectorType_namespace_feature"),
-                 getString("_UI_PropertyDescriptor_description", "_UI_CamelOperationSelectorType_namespace_feature", "_UI_CamelOperationSelectorType_type"),
-                 CamelPackage.Literals.CAMEL_OPERATION_SELECTOR_TYPE__NAMESPACE,
+                 getString("_UI_JavaOperationSelectorType_class_feature"),
+                 getString("_UI_PropertyDescriptor_description", "_UI_JavaOperationSelectorType_class_feature", "_UI_JavaOperationSelectorType_type"),
+                 CommonselectorPackage.Literals.JAVA_OPERATION_SELECTOR_TYPE__CLASS,
                  true,
                  false,
                  false,
@@ -103,36 +95,14 @@ public class CamelOperationSelectorTypeItemProvider
     }
 
     /**
-     * This adds a property descriptor for the Operation Name feature.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    protected void addOperationNamePropertyDescriptor(Object object) {
-        itemPropertyDescriptors.add
-            (createItemPropertyDescriptor
-                (((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
-                 getResourceLocator(),
-                 getString("_UI_CamelOperationSelectorType_operationName_feature"),
-                 getString("_UI_PropertyDescriptor_description", "_UI_CamelOperationSelectorType_operationName_feature", "_UI_CamelOperationSelectorType_type"),
-                 CamelPackage.Literals.CAMEL_OPERATION_SELECTOR_TYPE__OPERATION_NAME,
-                 true,
-                 false,
-                 false,
-                 ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
-                 null,
-                 null));
-    }
-
-    /**
-     * This returns CamelOperationSelectorType.gif.
+     * This returns JavaOperationSelectorType.gif.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @generated
      */
     @Override
     public Object getImage(Object object) {
-        return overlayImage(object, getResourceLocator().getImage("full/obj16/CamelOperationSelectorType"));
+        return overlayImage(object, getResourceLocator().getImage("full/obj16/JavaOperationSelectorType"));
     }
 
     /**
@@ -143,10 +113,10 @@ public class CamelOperationSelectorTypeItemProvider
      */
     @Override
     public String getText(Object object) {
-        String label = ((CamelOperationSelectorType)object).getOperationName();
+        String label = ((JavaOperationSelectorType)object).getClass_();
         return label == null || label.length() == 0 ?
-            getString("_UI_CamelOperationSelectorType_type") :
-            getString("_UI_CamelOperationSelectorType_type") + " " + label;
+            getString("_UI_JavaOperationSelectorType_type") :
+            getString("_UI_JavaOperationSelectorType_type") + " " + label;
     }
 
     /**
@@ -160,9 +130,8 @@ public class CamelOperationSelectorTypeItemProvider
     public void notifyChanged(Notification notification) {
         updateChildren(notification);
 
-        switch (notification.getFeatureID(CamelOperationSelectorType.class)) {
-            case CamelPackage.CAMEL_OPERATION_SELECTOR_TYPE__NAMESPACE:
-            case CamelPackage.CAMEL_OPERATION_SELECTOR_TYPE__OPERATION_NAME:
+        switch (notification.getFeatureID(JavaOperationSelectorType.class)) {
+            case CommonselectorPackage.JAVA_OPERATION_SELECTOR_TYPE__CLASS:
                 fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
                 return;
         }
@@ -179,13 +148,6 @@ public class CamelOperationSelectorTypeItemProvider
     @Override
     protected void collectNewChildDescriptors(Collection<Object> newChildDescriptors, Object object) {
         super.collectNewChildDescriptors(newChildDescriptors, object);
-
-        newChildDescriptors.add
-            (createChildParameter
-                (ScaPackage.eINSTANCE.getOperationSelectorType_Any(),
-                 FeatureMapUtil.createEntry
-                    (ResteasyPackage.Literals.DOCUMENT_ROOT__BINDING_REST,
-                     ResteasyFactory.eINSTANCE.createRESTBindingType())));
     }
 
     /**

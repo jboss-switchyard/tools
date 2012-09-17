@@ -39,7 +39,7 @@ import org.switchyard.tools.models.switchyard1_0.switchyard.provider.SwitchYardB
  * @generated
  */
 public class CamelSedaBindingTypeItemProvider
-    extends SwitchYardBindingTypeItemProvider
+    extends BaseCamelBindingItemProvider
     implements
         IEditingDomainItemProvider,
         IStructuredItemContentProvider,
@@ -292,17 +292,6 @@ public class CamelSedaBindingTypeItemProvider
     @Override
     protected void collectNewChildDescriptors(Collection<Object> newChildDescriptors, Object object) {
         super.collectNewChildDescriptors(newChildDescriptors, object);
-    }
-
-    /**
-     * Return the resource locator for this item provider's resources.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    @Override
-    public ResourceLocator getResourceLocator() {
-        return Switchyard_1EditPlugin.INSTANCE;
     }
 
 }

@@ -363,13 +363,22 @@ public interface SwitchyardPackage extends EPackage {
 	int DOCUMENT_ROOT__VALIDATES = 17;
 
 	/**
+     * The feature id for the '<em><b>Operation Selector Switchyard</b></em>' containment reference.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int DOCUMENT_ROOT__OPERATION_SELECTOR_SWITCHYARD = 18;
+
+    /**
      * The number of structural features of the '<em>Document Root</em>' class.
      * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
      * @generated
      * @ordered
      */
-	int DOCUMENT_ROOT_FEATURE_COUNT = 18;
+	int DOCUMENT_ROOT_FEATURE_COUNT = 19;
 
 	/**
      * The meta object id for the '{@link org.switchyard.tools.models.switchyard1_0.switchyard.impl.DomainTypeImpl <em>Domain Type</em>}' class.
@@ -1071,6 +1080,44 @@ public interface SwitchyardPackage extends EPackage {
 
 
 	/**
+     * The meta object id for the '{@link org.switchyard.tools.models.switchyard1_0.switchyard.impl.SwitchYardOperationSelectorTypeImpl <em>Switch Yard Operation Selector Type</em>}' class.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @see org.switchyard.tools.models.switchyard1_0.switchyard.impl.SwitchYardOperationSelectorTypeImpl
+     * @see org.switchyard.tools.models.switchyard1_0.switchyard.impl.SwitchyardPackageImpl#getSwitchYardOperationSelectorType()
+     * @generated
+     */
+    int SWITCH_YARD_OPERATION_SELECTOR_TYPE = 18;
+
+    /**
+     * The feature id for the '<em><b>Any</b></em>' attribute list.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int SWITCH_YARD_OPERATION_SELECTOR_TYPE__ANY = ScaPackage.OPERATION_SELECTOR_TYPE__ANY;
+
+    /**
+     * The feature id for the '<em><b>Any Attribute</b></em>' attribute list.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int SWITCH_YARD_OPERATION_SELECTOR_TYPE__ANY_ATTRIBUTE = ScaPackage.OPERATION_SELECTOR_TYPE__ANY_ATTRIBUTE;
+
+    /**
+     * The number of structural features of the '<em>Switch Yard Operation Selector Type</em>' class.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int SWITCH_YARD_OPERATION_SELECTOR_TYPE_FEATURE_COUNT = ScaPackage.OPERATION_SELECTOR_TYPE_FEATURE_COUNT + 0;
+
+
+    /**
      * Returns the meta object for class '{@link org.switchyard.tools.models.switchyard1_0.switchyard.ArtifactsType <em>Artifacts Type</em>}'.
      * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -1397,6 +1444,17 @@ public interface SwitchyardPackage extends EPackage {
 	EReference getDocumentRoot_Validates();
 
 	/**
+     * Returns the meta object for the containment reference '{@link org.switchyard.tools.models.switchyard1_0.switchyard.DocumentRoot#getOperationSelectorSwitchyard <em>Operation Selector Switchyard</em>}'.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @return the meta object for the containment reference '<em>Operation Selector Switchyard</em>'.
+     * @see org.switchyard.tools.models.switchyard1_0.switchyard.DocumentRoot#getOperationSelectorSwitchyard()
+     * @see #getDocumentRoot()
+     * @generated
+     */
+    EReference getDocumentRoot_OperationSelectorSwitchyard();
+
+    /**
      * Returns the meta object for class '{@link org.switchyard.tools.models.switchyard1_0.switchyard.DomainType <em>Domain Type</em>}'.
      * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -1900,6 +1958,16 @@ public interface SwitchyardPackage extends EPackage {
 	EAttribute getValidateType_Name();
 
 	/**
+     * Returns the meta object for class '{@link org.switchyard.tools.models.switchyard1_0.switchyard.SwitchYardOperationSelectorType <em>Switch Yard Operation Selector Type</em>}'.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @return the meta object for class '<em>Switch Yard Operation Selector Type</em>'.
+     * @see org.switchyard.tools.models.switchyard1_0.switchyard.SwitchYardOperationSelectorType
+     * @generated
+     */
+    EClass getSwitchYardOperationSelectorType();
+
+    /**
      * Returns the factory that creates the instances of the model.
      * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -2170,6 +2238,14 @@ public interface SwitchyardPackage extends EPackage {
 		EReference DOCUMENT_ROOT__VALIDATES = eINSTANCE.getDocumentRoot_Validates();
 
 		/**
+         * The meta object literal for the '<em><b>Operation Selector Switchyard</b></em>' containment reference feature.
+         * <!-- begin-user-doc -->
+         * <!-- end-user-doc -->
+         * @generated
+         */
+        EReference DOCUMENT_ROOT__OPERATION_SELECTOR_SWITCHYARD = eINSTANCE.getDocumentRoot_OperationSelectorSwitchyard();
+
+        /**
          * The meta object literal for the '{@link org.switchyard.tools.models.switchyard1_0.switchyard.impl.DomainTypeImpl <em>Domain Type</em>}' class.
          * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
@@ -2572,6 +2648,16 @@ public interface SwitchyardPackage extends EPackage {
          * @generated
          */
 		EAttribute VALIDATE_TYPE__NAME = eINSTANCE.getValidateType_Name();
+
+        /**
+         * The meta object literal for the '{@link org.switchyard.tools.models.switchyard1_0.switchyard.impl.SwitchYardOperationSelectorTypeImpl <em>Switch Yard Operation Selector Type</em>}' class.
+         * <!-- begin-user-doc -->
+         * <!-- end-user-doc -->
+         * @see org.switchyard.tools.models.switchyard1_0.switchyard.impl.SwitchYardOperationSelectorTypeImpl
+         * @see org.switchyard.tools.models.switchyard1_0.switchyard.impl.SwitchyardPackageImpl#getSwitchYardOperationSelectorType()
+         * @generated
+         */
+        EClass SWITCH_YARD_OPERATION_SELECTOR_TYPE = eINSTANCE.getSwitchYardOperationSelectorType();
 
 	}
 

@@ -38,6 +38,7 @@ import org.eclipse.emf.ecore.util.FeatureMap;
  *   <li>{@link org.switchyard.tools.models.switchyard1_0.switchyard.DocumentRoot#getTransforms <em>Transforms</em>}</li>
  *   <li>{@link org.switchyard.tools.models.switchyard1_0.switchyard.DocumentRoot#getValidate <em>Validate</em>}</li>
  *   <li>{@link org.switchyard.tools.models.switchyard1_0.switchyard.DocumentRoot#getValidates <em>Validates</em>}</li>
+ *   <li>{@link org.switchyard.tools.models.switchyard1_0.switchyard.DocumentRoot#getOperationSelectorSwitchyard <em>Operation Selector Switchyard</em>}</li>
  * </ul>
  * </p>
  *
@@ -470,5 +471,21 @@ public interface DocumentRoot extends EObject {
      * @generated
      */
 	void setValidates(ValidatesType value);
+
+    /**
+     * Returns the value of the '<em><b>Operation Selector Switchyard</b></em>' containment reference.
+     * <!-- begin-user-doc -->
+     * <p>
+     * If the meaning of the '<em>Operation Selector Switchyard</em>' containment reference isn't clear,
+     * there really should be more of a description here...
+     * </p>
+     * <!-- end-user-doc -->
+     * @return the value of the '<em>Operation Selector Switchyard</em>' containment reference.
+     * @see org.switchyard.tools.models.switchyard1_0.switchyard.SwitchyardPackage#getDocumentRoot_OperationSelectorSwitchyard()
+     * @model containment="true" upper="-2" transient="true" changeable="false" volatile="true" derived="true"
+     *        extendedMetaData="kind='element' name='operationSelector.switchyard' namespace='##targetNamespace' affiliation='http://docs.oasis-open.org/ns/opencsa/sca/200912#operationSelector'"
+     * @generated
+     */
+    SwitchYardOperationSelectorType getOperationSelectorSwitchyard();
 
 } // DocumentRoot

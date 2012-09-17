@@ -18,7 +18,6 @@ import org.switchyard.tools.models.switchyard1_0.switchyard.SwitchYardBindingTyp
  * <p>
  * The following features are supported:
  * <ul>
- *   <li>{@link org.switchyard.tools.models.switchyard1_0.hornetq.BindingType#getHqOperationSelector <em>Hq Operation Selector</em>}</li>
  *   <li>{@link org.switchyard.tools.models.switchyard1_0.hornetq.BindingType#getConfig <em>Config</em>}</li>
  * </ul>
  * </p>
@@ -28,33 +27,6 @@ import org.switchyard.tools.models.switchyard1_0.switchyard.SwitchYardBindingTyp
  * @generated
  */
 public interface BindingType extends SwitchYardBindingType {
-    /**
-     * Returns the value of the '<em><b>Hq Operation Selector</b></em>' containment reference.
-     * <!-- begin-user-doc -->
-     * <p>
-     * If the meaning of the '<em>Hq Operation Selector</em>' containment reference isn't clear,
-     * there really should be more of a description here...
-     * </p>
-     * <!-- end-user-doc -->
-     * @return the value of the '<em>Hq Operation Selector</em>' containment reference.
-     * @see #setHqOperationSelector(hqOperationSelectorType)
-     * @see org.switchyard.tools.models.switchyard1_0.hornetq.HornetQPackage#getBindingType_HqOperationSelector()
-     * @model containment="true"
-     *        extendedMetaData="kind='element' name='operationSelector' namespace='##targetNamespace'"
-     * @generated
-     */
-    hqOperationSelectorType getHqOperationSelector();
-
-    /**
-     * Sets the value of the '{@link org.switchyard.tools.models.switchyard1_0.hornetq.BindingType#getHqOperationSelector <em>Hq Operation Selector</em>}' containment reference.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @param value the new value of the '<em>Hq Operation Selector</em>' containment reference.
-     * @see #getHqOperationSelector()
-     * @generated
-     */
-    void setHqOperationSelector(hqOperationSelectorType value);
-
     /**
      * Returns the value of the '<em><b>Config</b></em>' containment reference.
      * <!-- begin-user-doc -->

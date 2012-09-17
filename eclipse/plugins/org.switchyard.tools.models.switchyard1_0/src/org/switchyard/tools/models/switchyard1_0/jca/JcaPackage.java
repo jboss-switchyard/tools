@@ -272,52 +272,7 @@ public interface JcaPackage extends EPackage {
      * @see org.switchyard.tools.models.switchyard1_0.jca.impl.JcaPackageImpl#getDocumentRoot()
      * @generated
      */
-    int DOCUMENT_ROOT = 3;
-
-    /**
-     * The feature id for the '<em><b>Mixed</b></em>' attribute list.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     * @ordered
-     */
-    int DOCUMENT_ROOT__MIXED = 0;
-
-    /**
-     * The feature id for the '<em><b>XMLNS Prefix Map</b></em>' map.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     * @ordered
-     */
-    int DOCUMENT_ROOT__XMLNS_PREFIX_MAP = 1;
-
-    /**
-     * The feature id for the '<em><b>XSI Schema Location</b></em>' map.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     * @ordered
-     */
-    int DOCUMENT_ROOT__XSI_SCHEMA_LOCATION = 2;
-
-    /**
-     * The feature id for the '<em><b>Binding Jca</b></em>' containment reference.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     * @ordered
-     */
-    int DOCUMENT_ROOT__BINDING_JCA = 3;
-
-    /**
-     * The number of structural features of the '<em>Document Root</em>' class.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     * @ordered
-     */
-    int DOCUMENT_ROOT_FEATURE_COUNT = 4;
+    int DOCUMENT_ROOT = 15;
 
     /**
      * The meta object id for the '{@link org.switchyard.tools.models.switchyard1_0.jca.impl.InboundOperationImpl <em>Inbound Operation</em>}' class.
@@ -328,6 +283,161 @@ public interface JcaPackage extends EPackage {
      * @generated
      */
     int INBOUND_OPERATION = 4;
+
+    /**
+     * The meta object id for the '{@link org.switchyard.tools.models.switchyard1_0.jca.impl.InteractionSpecImpl <em>Interaction Spec</em>}' class.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @see org.switchyard.tools.models.switchyard1_0.jca.impl.InteractionSpecImpl
+     * @see org.switchyard.tools.models.switchyard1_0.jca.impl.JcaPackageImpl#getInteractionSpec()
+     * @generated
+     */
+    int INTERACTION_SPEC = 5;
+
+    /**
+     * The meta object id for the '{@link org.switchyard.tools.models.switchyard1_0.jca.impl.JCABindingImpl <em>JCA Binding</em>}' class.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @see org.switchyard.tools.models.switchyard1_0.jca.impl.JCABindingImpl
+     * @see org.switchyard.tools.models.switchyard1_0.jca.impl.JcaPackageImpl#getJCABinding()
+     * @generated
+     */
+    int JCA_BINDING = 6;
+
+    /**
+     * The meta object id for the '{@link org.switchyard.tools.models.switchyard1_0.jca.impl.JCAInboundConnectionImpl <em>JCA Inbound Connection</em>}' class.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @see org.switchyard.tools.models.switchyard1_0.jca.impl.JCAInboundConnectionImpl
+     * @see org.switchyard.tools.models.switchyard1_0.jca.impl.JcaPackageImpl#getJCAInboundConnection()
+     * @generated
+     */
+    int JCA_INBOUND_CONNECTION = 7;
+
+    /**
+     * The meta object id for the '{@link org.switchyard.tools.models.switchyard1_0.jca.impl.JCAInboundInteractionImpl <em>JCA Inbound Interaction</em>}' class.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @see org.switchyard.tools.models.switchyard1_0.jca.impl.JCAInboundInteractionImpl
+     * @see org.switchyard.tools.models.switchyard1_0.jca.impl.JcaPackageImpl#getJCAInboundInteraction()
+     * @generated
+     */
+    int JCA_INBOUND_INTERACTION = 8;
+
+    /**
+     * The meta object id for the '{@link org.switchyard.tools.models.switchyard1_0.jca.impl.JCAOutboundConnectionImpl <em>JCA Outbound Connection</em>}' class.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @see org.switchyard.tools.models.switchyard1_0.jca.impl.JCAOutboundConnectionImpl
+     * @see org.switchyard.tools.models.switchyard1_0.jca.impl.JcaPackageImpl#getJCAOutboundConnection()
+     * @generated
+     */
+    int JCA_OUTBOUND_CONNECTION = 9;
+
+    /**
+     * The meta object id for the '{@link org.switchyard.tools.models.switchyard1_0.jca.impl.JCAOutboundInteractionImpl <em>JCA Outbound Interaction</em>}' class.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @see org.switchyard.tools.models.switchyard1_0.jca.impl.JCAOutboundInteractionImpl
+     * @see org.switchyard.tools.models.switchyard1_0.jca.impl.JcaPackageImpl#getJCAOutboundInteraction()
+     * @generated
+     */
+    int JCA_OUTBOUND_INTERACTION = 10;
+
+    /**
+     * The meta object id for the '{@link org.switchyard.tools.models.switchyard1_0.jca.impl.OperationImpl <em>Operation</em>}' class.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @see org.switchyard.tools.models.switchyard1_0.jca.impl.OperationImpl
+     * @see org.switchyard.tools.models.switchyard1_0.jca.impl.JcaPackageImpl#getOperation()
+     * @generated
+     */
+    int OPERATION = 11;
+
+    /**
+     * The meta object id for the '{@link org.switchyard.tools.models.switchyard1_0.jca.impl.PropertyImpl <em>Property</em>}' class.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @see org.switchyard.tools.models.switchyard1_0.jca.impl.PropertyImpl
+     * @see org.switchyard.tools.models.switchyard1_0.jca.impl.JcaPackageImpl#getProperty()
+     * @generated
+     */
+    int PROPERTY = 13;
+
+    /**
+     * The meta object id for the '{@link org.switchyard.tools.models.switchyard1_0.jca.impl.ResourceAdapterImpl <em>Resource Adapter</em>}' class.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @see org.switchyard.tools.models.switchyard1_0.jca.impl.ResourceAdapterImpl
+     * @see org.switchyard.tools.models.switchyard1_0.jca.impl.JcaPackageImpl#getResourceAdapter()
+     * @generated
+     */
+    int RESOURCE_ADAPTER = 14;
+
+    /**
+     * The meta object id for the '{@link org.switchyard.tools.models.switchyard1_0.jca.impl.ProcessorImpl <em>Processor</em>}' class.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @see org.switchyard.tools.models.switchyard1_0.jca.impl.ProcessorImpl
+     * @see org.switchyard.tools.models.switchyard1_0.jca.impl.JcaPackageImpl#getProcessor()
+     * @generated
+     */
+    int PROCESSOR = 12;
+
+    /**
+     * The meta object id for the '{@link org.switchyard.tools.models.switchyard1_0.jca.impl.EndpointImpl <em>Endpoint</em>}' class.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @see org.switchyard.tools.models.switchyard1_0.jca.impl.EndpointImpl
+     * @see org.switchyard.tools.models.switchyard1_0.jca.impl.JcaPackageImpl#getEndpoint()
+     * @generated
+     */
+    int ENDPOINT = 3;
+
+    /**
+     * The feature id for the '<em><b>Property</b></em>' containment reference list.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int ENDPOINT__PROPERTY = 0;
+
+    /**
+     * The feature id for the '<em><b>Any</b></em>' attribute list.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int ENDPOINT__ANY = 1;
+
+    /**
+     * The feature id for the '<em><b>Type</b></em>' attribute.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int ENDPOINT__TYPE = 2;
+
+    /**
+     * The feature id for the '<em><b>Any Attribute</b></em>' attribute list.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int ENDPOINT__ANY_ATTRIBUTE = 3;
+
+    /**
+     * The number of structural features of the '<em>Endpoint</em>' class.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int ENDPOINT_FEATURE_COUNT = 4;
 
     /**
      * The feature id for the '<em><b>Any</b></em>' attribute list.
@@ -375,16 +485,6 @@ public interface JcaPackage extends EPackage {
     int INBOUND_OPERATION_FEATURE_COUNT = 4;
 
     /**
-     * The meta object id for the '{@link org.switchyard.tools.models.switchyard1_0.jca.impl.InteractionSpecImpl <em>Interaction Spec</em>}' class.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @see org.switchyard.tools.models.switchyard1_0.jca.impl.InteractionSpecImpl
-     * @see org.switchyard.tools.models.switchyard1_0.jca.impl.JcaPackageImpl#getInteractionSpec()
-     * @generated
-     */
-    int INTERACTION_SPEC = 5;
-
-    /**
      * The feature id for the '<em><b>Property</b></em>' containment reference list.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
@@ -428,16 +528,6 @@ public interface JcaPackage extends EPackage {
      * @ordered
      */
     int INTERACTION_SPEC_FEATURE_COUNT = 4;
-
-    /**
-     * The meta object id for the '{@link org.switchyard.tools.models.switchyard1_0.jca.impl.JCABindingImpl <em>JCA Binding</em>}' class.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @see org.switchyard.tools.models.switchyard1_0.jca.impl.JCABindingImpl
-     * @see org.switchyard.tools.models.switchyard1_0.jca.impl.JcaPackageImpl#getJCABinding()
-     * @generated
-     */
-    int JCA_BINDING = 6;
 
     /**
      * The feature id for the '<em><b>Documentation</b></em>' containment reference list.
@@ -629,16 +719,6 @@ public interface JcaPackage extends EPackage {
     int JCA_BINDING_FEATURE_COUNT = SwitchyardPackage.SWITCH_YARD_BINDING_TYPE_FEATURE_COUNT + 8;
 
     /**
-     * The meta object id for the '{@link org.switchyard.tools.models.switchyard1_0.jca.impl.JCAInboundConnectionImpl <em>JCA Inbound Connection</em>}' class.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @see org.switchyard.tools.models.switchyard1_0.jca.impl.JCAInboundConnectionImpl
-     * @see org.switchyard.tools.models.switchyard1_0.jca.impl.JcaPackageImpl#getJCAInboundConnection()
-     * @generated
-     */
-    int JCA_INBOUND_CONNECTION = 7;
-
-    /**
      * The feature id for the '<em><b>Resource Adapter</b></em>' containment reference.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
@@ -684,16 +764,6 @@ public interface JcaPackage extends EPackage {
     int JCA_INBOUND_CONNECTION_FEATURE_COUNT = 4;
 
     /**
-     * The meta object id for the '{@link org.switchyard.tools.models.switchyard1_0.jca.impl.JCAInboundInteractionImpl <em>JCA Inbound Interaction</em>}' class.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @see org.switchyard.tools.models.switchyard1_0.jca.impl.JCAInboundInteractionImpl
-     * @see org.switchyard.tools.models.switchyard1_0.jca.impl.JcaPackageImpl#getJCAInboundInteraction()
-     * @generated
-     */
-    int JCA_INBOUND_INTERACTION = 8;
-
-    /**
      * The feature id for the '<em><b>Listener</b></em>' attribute.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
@@ -703,22 +773,13 @@ public interface JcaPackage extends EPackage {
     int JCA_INBOUND_INTERACTION__LISTENER = 0;
 
     /**
-     * The feature id for the '<em><b>Inbound Operation</b></em>' containment reference list.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     * @ordered
-     */
-    int JCA_INBOUND_INTERACTION__INBOUND_OPERATION = 1;
-
-    /**
      * The feature id for the '<em><b>Endpoint</b></em>' containment reference.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @generated
      * @ordered
      */
-    int JCA_INBOUND_INTERACTION__ENDPOINT = 2;
+    int JCA_INBOUND_INTERACTION__ENDPOINT = 1;
 
     /**
      * The feature id for the '<em><b>Transacted</b></em>' attribute.
@@ -727,7 +788,7 @@ public interface JcaPackage extends EPackage {
      * @generated
      * @ordered
      */
-    int JCA_INBOUND_INTERACTION__TRANSACTED = 3;
+    int JCA_INBOUND_INTERACTION__TRANSACTED = 2;
 
     /**
      * The feature id for the '<em><b>Any</b></em>' attribute list.
@@ -736,7 +797,7 @@ public interface JcaPackage extends EPackage {
      * @generated
      * @ordered
      */
-    int JCA_INBOUND_INTERACTION__ANY = 4;
+    int JCA_INBOUND_INTERACTION__ANY = 3;
 
     /**
      * The feature id for the '<em><b>Any Attribute</b></em>' attribute list.
@@ -745,7 +806,7 @@ public interface JcaPackage extends EPackage {
      * @generated
      * @ordered
      */
-    int JCA_INBOUND_INTERACTION__ANY_ATTRIBUTE = 5;
+    int JCA_INBOUND_INTERACTION__ANY_ATTRIBUTE = 4;
 
     /**
      * The number of structural features of the '<em>JCA Inbound Interaction</em>' class.
@@ -754,17 +815,7 @@ public interface JcaPackage extends EPackage {
      * @generated
      * @ordered
      */
-    int JCA_INBOUND_INTERACTION_FEATURE_COUNT = 6;
-
-    /**
-     * The meta object id for the '{@link org.switchyard.tools.models.switchyard1_0.jca.impl.JCAOutboundConnectionImpl <em>JCA Outbound Connection</em>}' class.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @see org.switchyard.tools.models.switchyard1_0.jca.impl.JCAOutboundConnectionImpl
-     * @see org.switchyard.tools.models.switchyard1_0.jca.impl.JcaPackageImpl#getJCAOutboundConnection()
-     * @generated
-     */
-    int JCA_OUTBOUND_CONNECTION = 9;
+    int JCA_INBOUND_INTERACTION_FEATURE_COUNT = 5;
 
     /**
      * The feature id for the '<em><b>Resource Adapter</b></em>' containment reference.
@@ -830,16 +881,6 @@ public interface JcaPackage extends EPackage {
     int JCA_OUTBOUND_CONNECTION_FEATURE_COUNT = 6;
 
     /**
-     * The meta object id for the '{@link org.switchyard.tools.models.switchyard1_0.jca.impl.JCAOutboundInteractionImpl <em>JCA Outbound Interaction</em>}' class.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @see org.switchyard.tools.models.switchyard1_0.jca.impl.JCAOutboundInteractionImpl
-     * @see org.switchyard.tools.models.switchyard1_0.jca.impl.JcaPackageImpl#getJCAOutboundInteraction()
-     * @generated
-     */
-    int JCA_OUTBOUND_INTERACTION = 10;
-
-    /**
      * The feature id for the '<em><b>Connection Spec</b></em>' containment reference.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
@@ -903,16 +944,6 @@ public interface JcaPackage extends EPackage {
     int JCA_OUTBOUND_INTERACTION_FEATURE_COUNT = 6;
 
     /**
-     * The meta object id for the '{@link org.switchyard.tools.models.switchyard1_0.jca.impl.OperationImpl <em>Operation</em>}' class.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @see org.switchyard.tools.models.switchyard1_0.jca.impl.OperationImpl
-     * @see org.switchyard.tools.models.switchyard1_0.jca.impl.JcaPackageImpl#getOperation()
-     * @generated
-     */
-    int OPERATION = 11;
-
-    /**
      * The feature id for the '<em><b>Interaction Spec</b></em>' containment reference.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
@@ -958,14 +989,49 @@ public interface JcaPackage extends EPackage {
     int OPERATION_FEATURE_COUNT = 4;
 
     /**
-     * The meta object id for the '{@link org.switchyard.tools.models.switchyard1_0.jca.impl.PropertyImpl <em>Property</em>}' class.
+     * The feature id for the '<em><b>Property</b></em>' containment reference list.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @see org.switchyard.tools.models.switchyard1_0.jca.impl.PropertyImpl
-     * @see org.switchyard.tools.models.switchyard1_0.jca.impl.JcaPackageImpl#getProperty()
      * @generated
+     * @ordered
      */
-    int PROPERTY = 12;
+    int PROCESSOR__PROPERTY = 0;
+
+    /**
+     * The feature id for the '<em><b>Any</b></em>' attribute list.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int PROCESSOR__ANY = 1;
+
+    /**
+     * The feature id for the '<em><b>Type</b></em>' attribute.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int PROCESSOR__TYPE = 2;
+
+    /**
+     * The feature id for the '<em><b>Any Attribute</b></em>' attribute list.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int PROCESSOR__ANY_ATTRIBUTE = 3;
+
+    /**
+     * The number of structural features of the '<em>Processor</em>' class.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int PROCESSOR_FEATURE_COUNT = 4;
 
     /**
      * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -993,16 +1059,6 @@ public interface JcaPackage extends EPackage {
      * @ordered
      */
     int PROPERTY_FEATURE_COUNT = 2;
-
-    /**
-     * The meta object id for the '{@link org.switchyard.tools.models.switchyard1_0.jca.impl.ResourceAdapterImpl <em>Resource Adapter</em>}' class.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @see org.switchyard.tools.models.switchyard1_0.jca.impl.ResourceAdapterImpl
-     * @see org.switchyard.tools.models.switchyard1_0.jca.impl.JcaPackageImpl#getResourceAdapter()
-     * @generated
-     */
-    int RESOURCE_ADAPTER = 13;
 
     /**
      * The feature id for the '<em><b>Property</b></em>' containment reference list.
@@ -1059,114 +1115,49 @@ public interface JcaPackage extends EPackage {
     int RESOURCE_ADAPTER_FEATURE_COUNT = 5;
 
     /**
-     * The meta object id for the '{@link org.switchyard.tools.models.switchyard1_0.jca.impl.ProcessorImpl <em>Processor</em>}' class.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @see org.switchyard.tools.models.switchyard1_0.jca.impl.ProcessorImpl
-     * @see org.switchyard.tools.models.switchyard1_0.jca.impl.JcaPackageImpl#getProcessor()
-     * @generated
-     */
-    int PROCESSOR = 14;
-
-    /**
-     * The feature id for the '<em><b>Property</b></em>' containment reference list.
+     * The feature id for the '<em><b>Mixed</b></em>' attribute list.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @generated
      * @ordered
      */
-    int PROCESSOR__PROPERTY = 0;
+    int DOCUMENT_ROOT__MIXED = 0;
 
     /**
-     * The feature id for the '<em><b>Any</b></em>' attribute list.
+     * The feature id for the '<em><b>XMLNS Prefix Map</b></em>' map.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @generated
      * @ordered
      */
-    int PROCESSOR__ANY = 1;
+    int DOCUMENT_ROOT__XMLNS_PREFIX_MAP = 1;
 
     /**
-     * The feature id for the '<em><b>Type</b></em>' attribute.
+     * The feature id for the '<em><b>XSI Schema Location</b></em>' map.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @generated
      * @ordered
      */
-    int PROCESSOR__TYPE = 2;
+    int DOCUMENT_ROOT__XSI_SCHEMA_LOCATION = 2;
 
     /**
-     * The feature id for the '<em><b>Any Attribute</b></em>' attribute list.
+     * The feature id for the '<em><b>Binding Jca</b></em>' containment reference.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @generated
      * @ordered
      */
-    int PROCESSOR__ANY_ATTRIBUTE = 3;
+    int DOCUMENT_ROOT__BINDING_JCA = 3;
 
     /**
-     * The number of structural features of the '<em>Processor</em>' class.
+     * The number of structural features of the '<em>Document Root</em>' class.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @generated
      * @ordered
      */
-    int PROCESSOR_FEATURE_COUNT = 4;
-
-    /**
-     * The meta object id for the '{@link org.switchyard.tools.models.switchyard1_0.jca.impl.EndpointImpl <em>Endpoint</em>}' class.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @see org.switchyard.tools.models.switchyard1_0.jca.impl.EndpointImpl
-     * @see org.switchyard.tools.models.switchyard1_0.jca.impl.JcaPackageImpl#getEndpoint()
-     * @generated
-     */
-    int ENDPOINT = 15;
-
-    /**
-     * The feature id for the '<em><b>Property</b></em>' containment reference list.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     * @ordered
-     */
-    int ENDPOINT__PROPERTY = 0;
-
-    /**
-     * The feature id for the '<em><b>Any</b></em>' attribute list.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     * @ordered
-     */
-    int ENDPOINT__ANY = 1;
-
-    /**
-     * The feature id for the '<em><b>Type</b></em>' attribute.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     * @ordered
-     */
-    int ENDPOINT__TYPE = 2;
-
-    /**
-     * The feature id for the '<em><b>Any Attribute</b></em>' attribute list.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     * @ordered
-     */
-    int ENDPOINT__ANY_ATTRIBUTE = 3;
-
-    /**
-     * The number of structural features of the '<em>Endpoint</em>' class.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     * @ordered
-     */
-    int ENDPOINT_FEATURE_COUNT = 4;
+    int DOCUMENT_ROOT_FEATURE_COUNT = 4;
 
     /**
      * The meta object id for the '{@link org.switchyard.tools.models.switchyard1_0.jca.JCACreateResource <em>JCA Create Resource</em>}' enum.
@@ -1749,17 +1740,6 @@ public interface JcaPackage extends EPackage {
      * @generated
      */
     EAttribute getJCAInboundInteraction_Listener();
-
-    /**
-     * Returns the meta object for the containment reference list '{@link org.switchyard.tools.models.switchyard1_0.jca.JCAInboundInteraction#getInboundOperation <em>Inbound Operation</em>}'.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @return the meta object for the containment reference list '<em>Inbound Operation</em>'.
-     * @see org.switchyard.tools.models.switchyard1_0.jca.JCAInboundInteraction#getInboundOperation()
-     * @see #getJCAInboundInteraction()
-     * @generated
-     */
-    EReference getJCAInboundInteraction_InboundOperation();
 
     /**
      * Returns the meta object for the containment reference '{@link org.switchyard.tools.models.switchyard1_0.jca.JCAInboundInteraction#getEndpoint <em>Endpoint</em>}'.
@@ -2699,14 +2679,6 @@ public interface JcaPackage extends EPackage {
          * @generated
          */
         EAttribute JCA_INBOUND_INTERACTION__LISTENER = eINSTANCE.getJCAInboundInteraction_Listener();
-
-        /**
-         * The meta object literal for the '<em><b>Inbound Operation</b></em>' containment reference list feature.
-         * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
-         * @generated
-         */
-        EReference JCA_INBOUND_INTERACTION__INBOUND_OPERATION = eINSTANCE.getJCAInboundInteraction_InboundOperation();
 
         /**
          * The meta object literal for the '<em><b>Endpoint</b></em>' containment reference feature.

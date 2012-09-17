@@ -98,10 +98,6 @@ public class HornetQAdapterFactory extends AdapterFactoryImpl {
                 return createDocumentRootAdapter();
             }
             @Override
-            public Adapter casehqOperationSelectorType(hqOperationSelectorType object) {
-                return createhqOperationSelectorTypeAdapter();
-            }
-            @Override
             public Adapter casePropertiesType(PropertiesType object) {
                 return createPropertiesTypeAdapter();
             }
@@ -124,10 +120,6 @@ public class HornetQAdapterFactory extends AdapterFactoryImpl {
             @Override
             public Adapter caseSwitchYardBindingType(SwitchYardBindingType object) {
                 return createSwitchYardBindingTypeAdapter();
-            }
-            @Override
-            public Adapter caseOperationSelectorType(OperationSelectorType object) {
-                return createOperationSelectorTypeAdapter();
             }
             @Override
             public Adapter defaultCase(EObject object) {
@@ -220,20 +212,6 @@ public class HornetQAdapterFactory extends AdapterFactoryImpl {
     }
 
     /**
-     * Creates a new adapter for an object of class '{@link org.switchyard.tools.models.switchyard1_0.hornetq.hqOperationSelectorType <em>hq Operation Selector Type</em>}'.
-     * <!-- begin-user-doc -->
-     * This default implementation returns null so that we can easily ignore cases;
-     * it's useful to ignore a case when inheritance will catch all the cases anyway.
-     * <!-- end-user-doc -->
-     * @return the new adapter.
-     * @see org.switchyard.tools.models.switchyard1_0.hornetq.hqOperationSelectorType
-     * @generated
-     */
-    public Adapter createhqOperationSelectorTypeAdapter() {
-        return null;
-    }
-
-    /**
      * Creates a new adapter for an object of class '{@link org.switchyard.tools.models.switchyard1_0.hornetq.PropertiesType <em>Properties Type</em>}'.
      * <!-- begin-user-doc -->
      * This default implementation returns null so that we can easily ignore cases;
@@ -314,20 +292,6 @@ public class HornetQAdapterFactory extends AdapterFactoryImpl {
      * @generated
      */
     public Adapter createSwitchYardBindingTypeAdapter() {
-        return null;
-    }
-
-    /**
-     * Creates a new adapter for an object of class '{@link org.eclipse.soa.sca.sca1_1.model.sca.OperationSelectorType <em>Operation Selector Type</em>}'.
-     * <!-- begin-user-doc -->
-     * This default implementation returns null so that we can easily ignore cases;
-     * it's useful to ignore a case when inheritance will catch all the cases anyway.
-     * <!-- end-user-doc -->
-     * @return the new adapter.
-     * @see org.eclipse.soa.sca.sca1_1.model.sca.OperationSelectorType
-     * @generated
-     */
-    public Adapter createOperationSelectorTypeAdapter() {
         return null;
     }
 

@@ -530,7 +530,19 @@ public abstract class AbstractSwitchyardComposite implements FocusListener, KeyL
                 }
             }
         }
+        System.out.println("No love, didn't find feature: " + featureId);
+        showFeatures(eObject);
         throw new Exception("Feature ID (" + featureId + ") not found.");
+    }
+    
+    private void showFeatures(EObject eObject) {
+        EClass eClass = eObject.eClass();
+        for (int i = 0, size = eClass.getFeatureCount(); i < size; ++i) {
+            EStructuralFeature eStructuralFeature = eClass.getEStructuralFeature(i);
+            if (eStructuralFeature.isChangeable()) {
+                System.out.println("Feature: " + eStructuralFeature.getName());
+            }
+        }
     }
 
     /**
@@ -548,6 +560,8 @@ public abstract class AbstractSwitchyardComposite implements FocusListener, KeyL
                 }
             }
         }
+        System.out.println("No love, didn't find feature: " + featureId);
+        showFeatures(eObject);
         return null;
     }
 

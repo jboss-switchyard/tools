@@ -145,9 +145,9 @@ public class SwitchYardModelValidationTest extends AbstractMavenProjectTestCase 
      * 
      * @throws Exception if a failure occurs.
      */
-    public void testRulesCamelCBRQuickstart() throws Exception {
-        runModelTest("rules-camel-cbr");
-    }
+//    public void testRulesCamelCBRQuickstart() throws Exception {
+//        runModelTest("rules-camel-cbr");
+//    }
 
     /**
      * Tests import and configuration of rules-interview quickstart.

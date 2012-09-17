@@ -21,7 +21,6 @@ import org.eclipse.emf.ecore.util.FeatureMap;
  * The following features are supported:
  * <ul>
  *   <li>{@link org.switchyard.tools.models.switchyard1_0.jca.JCAInboundInteraction#getListener <em>Listener</em>}</li>
- *   <li>{@link org.switchyard.tools.models.switchyard1_0.jca.JCAInboundInteraction#getInboundOperation <em>Inbound Operation</em>}</li>
  *   <li>{@link org.switchyard.tools.models.switchyard1_0.jca.JCAInboundInteraction#getEndpoint <em>Endpoint</em>}</li>
  *   <li>{@link org.switchyard.tools.models.switchyard1_0.jca.JCAInboundInteraction#isTransacted <em>Transacted</em>}</li>
  *   <li>{@link org.switchyard.tools.models.switchyard1_0.jca.JCAInboundInteraction#getAny <em>Any</em>}</li>
@@ -60,23 +59,6 @@ public interface JCAInboundInteraction extends EObject {
      * @generated
      */
     void setListener(String value);
-
-    /**
-     * Returns the value of the '<em><b>Inbound Operation</b></em>' containment reference list.
-     * The list contents are of type {@link org.switchyard.tools.models.switchyard1_0.jca.InboundOperation}.
-     * <!-- begin-user-doc -->
-     * <p>
-     * If the meaning of the '<em>Inbound Operation</em>' containment reference list isn't clear,
-     * there really should be more of a description here...
-     * </p>
-     * <!-- end-user-doc -->
-     * @return the value of the '<em>Inbound Operation</em>' containment reference list.
-     * @see org.switchyard.tools.models.switchyard1_0.jca.JcaPackage#getJCAInboundInteraction_InboundOperation()
-     * @model containment="true"
-     *        extendedMetaData="kind='element' name='inboundOperation' namespace='##targetNamespace'"
-     * @generated
-     */
-    EList<InboundOperation> getInboundOperation();
 
     /**
      * Returns the value of the '<em><b>Endpoint</b></em>' containment reference.

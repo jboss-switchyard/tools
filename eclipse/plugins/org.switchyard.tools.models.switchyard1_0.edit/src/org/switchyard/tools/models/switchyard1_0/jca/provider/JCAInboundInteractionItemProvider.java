@@ -136,7 +136,6 @@ public class JCAInboundInteractionItemProvider
     public Collection<? extends EStructuralFeature> getChildrenFeatures(Object object) {
         if (childrenFeatures == null) {
             super.getChildrenFeatures(object);
-            childrenFeatures.add(JcaPackage.Literals.JCA_INBOUND_INTERACTION__INBOUND_OPERATION);
             childrenFeatures.add(JcaPackage.Literals.JCA_INBOUND_INTERACTION__ENDPOINT);
             childrenFeatures.add(JcaPackage.Literals.JCA_INBOUND_INTERACTION__ANY);
             childrenFeatures.add(JcaPackage.Literals.JCA_INBOUND_INTERACTION__ANY_ATTRIBUTE);
@@ -198,7 +197,6 @@ public class JCAInboundInteractionItemProvider
             case JcaPackage.JCA_INBOUND_INTERACTION__TRANSACTED:
                 fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
                 return;
-            case JcaPackage.JCA_INBOUND_INTERACTION__INBOUND_OPERATION:
             case JcaPackage.JCA_INBOUND_INTERACTION__ENDPOINT:
             case JcaPackage.JCA_INBOUND_INTERACTION__ANY:
             case JcaPackage.JCA_INBOUND_INTERACTION__ANY_ATTRIBUTE:
@@ -218,11 +216,6 @@ public class JCAInboundInteractionItemProvider
     @Override
     protected void collectNewChildDescriptors(Collection<Object> newChildDescriptors, Object object) {
         super.collectNewChildDescriptors(newChildDescriptors, object);
-
-        newChildDescriptors.add
-            (createChildParameter
-                (JcaPackage.Literals.JCA_INBOUND_INTERACTION__INBOUND_OPERATION,
-                 JcaFactory.eINSTANCE.createInboundOperation()));
 
         newChildDescriptors.add
             (createChildParameter

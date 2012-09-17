@@ -28,6 +28,7 @@ import org.eclipse.jdt.core.IMethod;
 import org.eclipse.jdt.core.IType;
 import org.eclipse.jdt.core.JavaCore;
 import org.eclipse.jdt.core.JavaModelException;
+import org.eclipse.soa.sca.sca1_1.model.sca.Contract;
 import org.eclipse.soa.sca.sca1_1.model.sca.Interface;
 import org.eclipse.soa.sca.sca1_1.model.sca.JavaInterface;
 import org.eclipse.soa.sca.sca1_1.model.sca.Service;
@@ -38,6 +39,7 @@ import org.eclipse.wst.wsdl.Definition;
 import org.eclipse.wst.wsdl.Operation;
 import org.eclipse.wst.wsdl.PortType;
 import org.eclipse.wst.wsdl.util.WSDLResourceImpl;
+import org.switchyard.tools.models.switchyard1_0.switchyard.EsbInterface;
 
 /**
  * @author bfitzpat
@@ -126,14 +128,18 @@ public final class InterfaceOpsUtil {
     }
 
     /**
-     * @param svc Service to check interface for
+     * @param contract Contract to check interface for
      * @return String array of operation names
      */
-    public static String[] gatherOperations(Service svc) {
+    public static String[] gatherOperations(Contract contract) {
         ArrayList<String> list = new ArrayList<String>();
         list.add("");
-        Interface intfc = svc.getInterface();
-        if (intfc == null) {
+        Interface intfc = contract.getInterface();
+        Service svc = null;
+        if (contract instanceof Service) {
+            svc = (Service) contract;
+        }
+        if (intfc == null && svc != null) {
             if (svc.getPromote() != null) {
                 intfc = svc.getPromote().getInterface();
             }
@@ -145,6 +151,9 @@ public final class InterfaceOpsUtil {
         } else if (intfc != null && intfc instanceof WSDLPortType) {
             WSDLPortType wsdlIntfc = (WSDLPortType) intfc;
             String[] ops = getOperationsForWSDLInterface(wsdlIntfc);
+            return ops;
+        } else if (intfc != null && intfc instanceof EsbInterface) {
+            String[] ops = new String[]{""};
             return ops;
         }
         

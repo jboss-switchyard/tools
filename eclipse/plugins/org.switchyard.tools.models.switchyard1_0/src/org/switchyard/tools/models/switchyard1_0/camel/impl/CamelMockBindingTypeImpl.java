@@ -37,7 +37,7 @@ import org.switchyard.tools.models.switchyard1_0.switchyard.impl.SwitchYardBindi
  *
  * @generated
  */
-public class CamelMockBindingTypeImpl extends SwitchYardBindingTypeImpl implements CamelMockBindingType {
+public class CamelMockBindingTypeImpl extends BaseCamelBindingImpl implements CamelMockBindingType {
 	/**
      * The default value of the '{@link #getNameElement() <em>Name Element</em>}' attribute.
      * <!-- begin-user-doc -->

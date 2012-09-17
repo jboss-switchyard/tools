@@ -26,7 +26,7 @@ import org.switchyard.tools.models.switchyard1_0.switchyard.SwitchYardBindingTyp
  * @model extendedMetaData="name='CamelDirectBindingType' kind='elementOnly'"
  * @generated
  */
-public interface CamelDirectBindingType extends SwitchYardBindingType {
+public interface CamelDirectBindingType extends BaseCamelBinding {
 
     /**
      * Returns the value of the '<em><b>Name Element</b></em>' attribute.

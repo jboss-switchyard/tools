@@ -329,29 +329,6 @@ public class CamelItemProviderAdapterFactory extends CamelAdapterFactory impleme
     }
 
     /**
-     * This keeps track of the one adapter used for all {@link org.switchyard.tools.models.switchyard1_0.camel.CamelOperationSelectorType} instances.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    protected CamelOperationSelectorTypeItemProvider camelOperationSelectorTypeItemProvider;
-
-    /**
-     * This creates an adapter for a {@link org.switchyard.tools.models.switchyard1_0.camel.CamelOperationSelectorType}.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    @Override
-    public Adapter createCamelOperationSelectorTypeAdapter() {
-        if (camelOperationSelectorTypeItemProvider == null) {
-            camelOperationSelectorTypeItemProvider = new CamelOperationSelectorTypeItemProvider(this);
-        }
-
-        return camelOperationSelectorTypeItemProvider;
-    }
-
-    /**
      * This keeps track of the one adapter used for all {@link org.switchyard.tools.models.switchyard1_0.camel.CamelSedaBindingType} instances.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
@@ -818,34 +795,33 @@ public class CamelItemProviderAdapterFactory extends CamelAdapterFactory impleme
      * @generated
      */
     public void dispose() {
-        if (camelAtomBindingTypeItemProvider != null) camelAtomBindingTypeItemProvider.dispose();
         if (camelBindingTypeItemProvider != null) camelBindingTypeItemProvider.dispose();
-        if (camelDirectBindingTypeItemProvider != null) camelDirectBindingTypeItemProvider.dispose();
         if (camelFileBindingTypeItemProvider != null) camelFileBindingTypeItemProvider.dispose();
         if (camelFtpBindingTypeItemProvider != null) camelFtpBindingTypeItemProvider.dispose();
         if (camelFtpsBindingTypeItemProvider != null) camelFtpsBindingTypeItemProvider.dispose();
-        if (camelImplementationTypeItemProvider != null) camelImplementationTypeItemProvider.dispose();
-        if (camelJmsBindingTypeItemProvider != null) camelJmsBindingTypeItemProvider.dispose();
-        if (camelNettyUdpBindingTypeItemProvider != null) camelNettyUdpBindingTypeItemProvider.dispose();
-        if (camelNettyTcpBindingTypeItemProvider != null) camelNettyTcpBindingTypeItemProvider.dispose();
-        if (camelMockBindingTypeItemProvider != null) camelMockBindingTypeItemProvider.dispose();
-        if (camelOperationSelectorTypeItemProvider != null) camelOperationSelectorTypeItemProvider.dispose();
-        if (camelSedaBindingTypeItemProvider != null) camelSedaBindingTypeItemProvider.dispose();
-        if (camelTimerBindingTypeItemProvider != null) camelTimerBindingTypeItemProvider.dispose();
         if (camelSftpBindingTypeItemProvider != null) camelSftpBindingTypeItemProvider.dispose();
-        if (documentRootItemProvider != null) documentRootItemProvider.dispose();
-        if (fileConsumerTypeItemProvider != null) fileConsumerTypeItemProvider.dispose();
-        if (fileProducerTypeItemProvider != null) fileProducerTypeItemProvider.dispose();
+        if (camelAtomBindingTypeItemProvider != null) camelAtomBindingTypeItemProvider.dispose();
+        if (camelDirectBindingTypeItemProvider != null) camelDirectBindingTypeItemProvider.dispose();
+        if (camelTimerBindingTypeItemProvider != null) camelTimerBindingTypeItemProvider.dispose();
+        if (camelSedaBindingTypeItemProvider != null) camelSedaBindingTypeItemProvider.dispose();
+        if (camelMockBindingTypeItemProvider != null) camelMockBindingTypeItemProvider.dispose();
+        if (camelNettyTcpBindingTypeItemProvider != null) camelNettyTcpBindingTypeItemProvider.dispose();
+        if (camelNettyUdpBindingTypeItemProvider != null) camelNettyUdpBindingTypeItemProvider.dispose();
+        if (camelQuartzBindingTypeItemProvider != null) camelQuartzBindingTypeItemProvider.dispose();
+        if (camelJmsBindingTypeItemProvider != null) camelJmsBindingTypeItemProvider.dispose();
+        if (camelSqlBindingTypeItemProvider != null) camelSqlBindingTypeItemProvider.dispose();
         if (javaDSLTypeItemProvider != null) javaDSLTypeItemProvider.dispose();
         if (xmldslTypeItemProvider != null) xmldslTypeItemProvider.dispose();
+        if (camelImplementationTypeItemProvider != null) camelImplementationTypeItemProvider.dispose();
         if (scheduledPollConsumerTypeItemProvider != null) scheduledPollConsumerTypeItemProvider.dispose();
         if (scheduledBatchPollConsumerTypeItemProvider != null) scheduledBatchPollConsumerTypeItemProvider.dispose();
-        if (genericFileConsumerTypeItemProvider != null) genericFileConsumerTypeItemProvider.dispose();
-        if (genericFileProducerTypeItemProvider != null) genericFileProducerTypeItemProvider.dispose();
+        if (fileConsumerTypeItemProvider != null) fileConsumerTypeItemProvider.dispose();
+        if (fileProducerTypeItemProvider != null) fileProducerTypeItemProvider.dispose();
         if (remoteFileConsumerTypeItemProvider != null) remoteFileConsumerTypeItemProvider.dispose();
         if (remoteFileProducerTypeItemProvider != null) remoteFileProducerTypeItemProvider.dispose();
-        if (camelQuartzBindingTypeItemProvider != null) camelQuartzBindingTypeItemProvider.dispose();
-        if (camelSqlBindingTypeItemProvider != null) camelSqlBindingTypeItemProvider.dispose();
+        if (genericFileConsumerTypeItemProvider != null) genericFileConsumerTypeItemProvider.dispose();
+        if (genericFileProducerTypeItemProvider != null) genericFileProducerTypeItemProvider.dispose();
+        if (documentRootItemProvider != null) documentRootItemProvider.dispose();
     }
 
 }

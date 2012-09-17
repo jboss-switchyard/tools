@@ -545,7 +545,7 @@ public class JcaItemProviderAdapterFactory extends JcaAdapterFactory implements 
         if (activationSpecItemProvider != null) activationSpecItemProvider.dispose();
         if (connectionItemProvider != null) connectionItemProvider.dispose();
         if (connectionSpecItemProvider != null) connectionSpecItemProvider.dispose();
-        if (documentRootItemProvider != null) documentRootItemProvider.dispose();
+        if (endpointItemProvider != null) endpointItemProvider.dispose();
         if (inboundOperationItemProvider != null) inboundOperationItemProvider.dispose();
         if (interactionSpecItemProvider != null) interactionSpecItemProvider.dispose();
         if (jcaBindingItemProvider != null) jcaBindingItemProvider.dispose();
@@ -554,10 +554,10 @@ public class JcaItemProviderAdapterFactory extends JcaAdapterFactory implements 
         if (jcaOutboundConnectionItemProvider != null) jcaOutboundConnectionItemProvider.dispose();
         if (jcaOutboundInteractionItemProvider != null) jcaOutboundInteractionItemProvider.dispose();
         if (operationItemProvider != null) operationItemProvider.dispose();
+        if (processorItemProvider != null) processorItemProvider.dispose();
         if (propertyItemProvider != null) propertyItemProvider.dispose();
         if (resourceAdapterItemProvider != null) resourceAdapterItemProvider.dispose();
-        if (processorItemProvider != null) processorItemProvider.dispose();
-        if (endpointItemProvider != null) endpointItemProvider.dispose();
+        if (documentRootItemProvider != null) documentRootItemProvider.dispose();
     }
 
 }

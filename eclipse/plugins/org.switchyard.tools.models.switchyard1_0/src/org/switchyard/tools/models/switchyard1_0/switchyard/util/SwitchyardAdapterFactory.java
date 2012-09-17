@@ -17,6 +17,7 @@ import org.eclipse.soa.sca.sca1_1.model.sca.Binding;
 import org.eclipse.soa.sca.sca1_1.model.sca.CommonExtensionBase;
 import org.eclipse.soa.sca.sca1_1.model.sca.ExtendableType;
 import org.eclipse.soa.sca.sca1_1.model.sca.Interface;
+import org.eclipse.soa.sca.sca1_1.model.sca.OperationSelectorType;
 import org.switchyard.tools.models.switchyard1_0.switchyard.*;
 
 /**
@@ -148,6 +149,10 @@ public class SwitchyardAdapterFactory extends AdapterFactoryImpl {
                 return createValidateTypeAdapter();
             }
             @Override
+            public Adapter caseSwitchYardOperationSelectorType(SwitchYardOperationSelectorType object) {
+                return createSwitchYardOperationSelectorTypeAdapter();
+            }
+            @Override
             public Adapter caseCommonExtensionBase(CommonExtensionBase object) {
                 return createCommonExtensionBaseAdapter();
             }
@@ -162,6 +167,10 @@ public class SwitchyardAdapterFactory extends AdapterFactoryImpl {
             @Override
             public Adapter caseBinding(Binding object) {
                 return createBindingAdapter();
+            }
+            @Override
+            public Adapter caseOperationSelectorType(OperationSelectorType object) {
+                return createOperationSelectorTypeAdapter();
             }
             @Override
             public Adapter defaultCase(EObject object) {
@@ -436,6 +445,20 @@ public class SwitchyardAdapterFactory extends AdapterFactoryImpl {
     }
 
 	/**
+     * Creates a new adapter for an object of class '{@link org.switchyard.tools.models.switchyard1_0.switchyard.SwitchYardOperationSelectorType <em>Switch Yard Operation Selector Type</em>}'.
+     * <!-- begin-user-doc -->
+     * This default implementation returns null so that we can easily ignore cases;
+     * it's useful to ignore a case when inheritance will catch all the cases anyway.
+     * <!-- end-user-doc -->
+     * @return the new adapter.
+     * @see org.switchyard.tools.models.switchyard1_0.switchyard.SwitchYardOperationSelectorType
+     * @generated
+     */
+    public Adapter createSwitchYardOperationSelectorTypeAdapter() {
+        return null;
+    }
+
+    /**
      * Creates a new adapter for an object of class '{@link org.eclipse.soa.sca.sca1_1.model.sca.CommonExtensionBase <em>Common Extension Base</em>}'.
      * <!-- begin-user-doc -->
      * This default implementation returns null so that we can easily ignore cases;
@@ -488,6 +511,20 @@ public class SwitchyardAdapterFactory extends AdapterFactoryImpl {
      * @generated
      */
     public Adapter createBindingAdapter() {
+        return null;
+    }
+
+    /**
+     * Creates a new adapter for an object of class '{@link org.eclipse.soa.sca.sca1_1.model.sca.OperationSelectorType <em>Operation Selector Type</em>}'.
+     * <!-- begin-user-doc -->
+     * This default implementation returns null so that we can easily ignore cases;
+     * it's useful to ignore a case when inheritance will catch all the cases anyway.
+     * <!-- end-user-doc -->
+     * @return the new adapter.
+     * @see org.eclipse.soa.sca.sca1_1.model.sca.OperationSelectorType
+     * @generated
+     */
+    public Adapter createOperationSelectorTypeAdapter() {
         return null;
     }
 

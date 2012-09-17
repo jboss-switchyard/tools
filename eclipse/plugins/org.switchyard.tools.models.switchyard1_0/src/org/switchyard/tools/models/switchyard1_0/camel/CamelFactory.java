@@ -125,15 +125,6 @@ public interface CamelFactory extends EFactory {
 	CamelMockBindingType createCamelMockBindingType();
 
 	/**
-     * Returns a new object of class '<em>Operation Selector Type</em>'.
-     * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-     * @return a new object of class '<em>Operation Selector Type</em>'.
-     * @generated
-     */
-	CamelOperationSelectorType createCamelOperationSelectorType();
-
-	/**
      * Returns a new object of class '<em>Seda Binding Type</em>'.
      * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->

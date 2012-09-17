@@ -84,7 +84,6 @@ public class BindingTypeItemProvider
     public Collection<? extends EStructuralFeature> getChildrenFeatures(Object object) {
         if (childrenFeatures == null) {
             super.getChildrenFeatures(object);
-            childrenFeatures.add(HornetQPackage.Literals.BINDING_TYPE__HQ_OPERATION_SELECTOR);
             childrenFeatures.add(HornetQPackage.Literals.BINDING_TYPE__CONFIG);
         }
         return childrenFeatures;
@@ -140,7 +139,6 @@ public class BindingTypeItemProvider
         updateChildren(notification);
 
         switch (notification.getFeatureID(BindingType.class)) {
-            case HornetQPackage.BINDING_TYPE__HQ_OPERATION_SELECTOR:
             case HornetQPackage.BINDING_TYPE__CONFIG:
                 fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), true, false));
                 return;
@@ -158,11 +156,6 @@ public class BindingTypeItemProvider
     @Override
     protected void collectNewChildDescriptors(Collection<Object> newChildDescriptors, Object object) {
         super.collectNewChildDescriptors(newChildDescriptors, object);
-
-        newChildDescriptors.add
-            (createChildParameter
-                (HornetQPackage.Literals.BINDING_TYPE__HQ_OPERATION_SELECTOR,
-                 HornetQFactory.eINSTANCE.createhqOperationSelectorType()));
 
         newChildDescriptors.add
             (createChildParameter

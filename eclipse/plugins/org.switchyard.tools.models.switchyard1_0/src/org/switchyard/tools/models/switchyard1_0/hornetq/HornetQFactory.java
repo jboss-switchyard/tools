@@ -71,15 +71,6 @@ public interface HornetQFactory extends EFactory {
     DocumentRoot createDocumentRoot();
 
     /**
-     * Returns a new object of class '<em>hq Operation Selector Type</em>'.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @return a new object of class '<em>hq Operation Selector Type</em>'.
-     * @generated
-     */
-    hqOperationSelectorType createhqOperationSelectorType();
-
-    /**
      * Returns a new object of class '<em>Properties Type</em>'.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->

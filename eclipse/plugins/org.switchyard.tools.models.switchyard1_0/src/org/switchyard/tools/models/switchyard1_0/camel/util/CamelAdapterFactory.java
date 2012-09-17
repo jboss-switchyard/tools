@@ -84,16 +84,8 @@ public class CamelAdapterFactory extends AdapterFactoryImpl {
                 return createBaseCamelBindingAdapter();
             }
             @Override
-            public Adapter caseCamelAtomBindingType(CamelAtomBindingType object) {
-                return createCamelAtomBindingTypeAdapter();
-            }
-            @Override
             public Adapter caseCamelBindingType(CamelBindingType object) {
                 return createCamelBindingTypeAdapter();
-            }
-            @Override
-            public Adapter caseCamelDirectBindingType(CamelDirectBindingType object) {
-                return createCamelDirectBindingTypeAdapter();
             }
             @Override
             public Adapter caseCamelFileBindingType(CamelFileBindingType object) {
@@ -108,60 +100,52 @@ public class CamelAdapterFactory extends AdapterFactoryImpl {
                 return createCamelFtpsBindingTypeAdapter();
             }
             @Override
-            public Adapter caseCamelImplementationType(CamelImplementationType object) {
-                return createCamelImplementationTypeAdapter();
+            public Adapter caseCamelSftpBindingType(CamelSftpBindingType object) {
+                return createCamelSftpBindingTypeAdapter();
             }
             @Override
-            public Adapter caseCamelJmsBindingType(CamelJmsBindingType object) {
-                return createCamelJmsBindingTypeAdapter();
+            public Adapter caseCamelAtomBindingType(CamelAtomBindingType object) {
+                return createCamelAtomBindingTypeAdapter();
             }
             @Override
-            public Adapter caseCamelNettyBindingType(CamelNettyBindingType object) {
-                return createCamelNettyBindingTypeAdapter();
-            }
-            @Override
-            public Adapter caseCamelNettyUdpBindingType(CamelNettyUdpBindingType object) {
-                return createCamelNettyUdpBindingTypeAdapter();
-            }
-            @Override
-            public Adapter caseCamelNettyTcpBindingType(CamelNettyTcpBindingType object) {
-                return createCamelNettyTcpBindingTypeAdapter();
-            }
-            @Override
-            public Adapter caseCamelMockBindingType(CamelMockBindingType object) {
-                return createCamelMockBindingTypeAdapter();
-            }
-            @Override
-            public Adapter caseCamelOperationSelectorType(CamelOperationSelectorType object) {
-                return createCamelOperationSelectorTypeAdapter();
-            }
-            @Override
-            public Adapter caseCamelSedaBindingType(CamelSedaBindingType object) {
-                return createCamelSedaBindingTypeAdapter();
+            public Adapter caseCamelDirectBindingType(CamelDirectBindingType object) {
+                return createCamelDirectBindingTypeAdapter();
             }
             @Override
             public Adapter caseCamelTimerBindingType(CamelTimerBindingType object) {
                 return createCamelTimerBindingTypeAdapter();
             }
             @Override
-            public Adapter caseCamelSftpBindingType(CamelSftpBindingType object) {
-                return createCamelSftpBindingTypeAdapter();
+            public Adapter caseCamelSedaBindingType(CamelSedaBindingType object) {
+                return createCamelSedaBindingTypeAdapter();
             }
             @Override
-            public Adapter caseDocumentRoot(DocumentRoot object) {
-                return createDocumentRootAdapter();
+            public Adapter caseCamelMockBindingType(CamelMockBindingType object) {
+                return createCamelMockBindingTypeAdapter();
             }
             @Override
-            public Adapter caseCamelRemoteBindingType(CamelRemoteBindingType object) {
-                return createCamelRemoteBindingTypeAdapter();
+            public Adapter caseCamelNettyTcpBindingType(CamelNettyTcpBindingType object) {
+                return createCamelNettyTcpBindingTypeAdapter();
             }
             @Override
-            public Adapter caseFileConsumerType(FileConsumerType object) {
-                return createFileConsumerTypeAdapter();
+            public Adapter caseCamelNettyUdpBindingType(CamelNettyUdpBindingType object) {
+                return createCamelNettyUdpBindingTypeAdapter();
             }
             @Override
-            public Adapter caseFileProducerType(FileProducerType object) {
-                return createFileProducerTypeAdapter();
+            public Adapter caseCamelNettyBindingType(CamelNettyBindingType object) {
+                return createCamelNettyBindingTypeAdapter();
+            }
+            @Override
+            public Adapter caseCamelQuartzBindingType(CamelQuartzBindingType object) {
+                return createCamelQuartzBindingTypeAdapter();
+            }
+            @Override
+            public Adapter caseCamelJmsBindingType(CamelJmsBindingType object) {
+                return createCamelJmsBindingTypeAdapter();
+            }
+            @Override
+            public Adapter caseCamelSqlBindingType(CamelSqlBindingType object) {
+                return createCamelSqlBindingTypeAdapter();
             }
             @Override
             public Adapter caseJavaDSLType(JavaDSLType object) {
@@ -172,24 +156,32 @@ public class CamelAdapterFactory extends AdapterFactoryImpl {
                 return createXMLDSLTypeAdapter();
             }
             @Override
-            public Adapter caseScheduledPollConsumerType(ScheduledPollConsumerType object) {
-                return createScheduledPollConsumerTypeAdapter();
+            public Adapter caseCamelImplementationType(CamelImplementationType object) {
+                return createCamelImplementationTypeAdapter();
             }
             @Override
             public Adapter caseGenericFileBindingType(GenericFileBindingType object) {
                 return createGenericFileBindingTypeAdapter();
             }
             @Override
+            public Adapter caseCamelRemoteBindingType(CamelRemoteBindingType object) {
+                return createCamelRemoteBindingTypeAdapter();
+            }
+            @Override
+            public Adapter caseScheduledPollConsumerType(ScheduledPollConsumerType object) {
+                return createScheduledPollConsumerTypeAdapter();
+            }
+            @Override
             public Adapter caseScheduledBatchPollConsumerType(ScheduledBatchPollConsumerType object) {
                 return createScheduledBatchPollConsumerTypeAdapter();
             }
             @Override
-            public Adapter caseGenericFileConsumerType(GenericFileConsumerType object) {
-                return createGenericFileConsumerTypeAdapter();
+            public Adapter caseFileConsumerType(FileConsumerType object) {
+                return createFileConsumerTypeAdapter();
             }
             @Override
-            public Adapter caseGenericFileProducerType(GenericFileProducerType object) {
-                return createGenericFileProducerTypeAdapter();
+            public Adapter caseFileProducerType(FileProducerType object) {
+                return createFileProducerTypeAdapter();
             }
             @Override
             public Adapter caseRemoteFileConsumerType(RemoteFileConsumerType object) {
@@ -200,12 +192,16 @@ public class CamelAdapterFactory extends AdapterFactoryImpl {
                 return createRemoteFileProducerTypeAdapter();
             }
             @Override
-            public Adapter caseCamelQuartzBindingType(CamelQuartzBindingType object) {
-                return createCamelQuartzBindingTypeAdapter();
+            public Adapter caseGenericFileConsumerType(GenericFileConsumerType object) {
+                return createGenericFileConsumerTypeAdapter();
             }
             @Override
-            public Adapter caseCamelSqlBindingType(CamelSqlBindingType object) {
-                return createCamelSqlBindingTypeAdapter();
+            public Adapter caseGenericFileProducerType(GenericFileProducerType object) {
+                return createGenericFileProducerTypeAdapter();
+            }
+            @Override
+            public Adapter caseDocumentRoot(DocumentRoot object) {
+                return createDocumentRootAdapter();
             }
             @Override
             public Adapter caseCommonExtensionBase(CommonExtensionBase object) {
@@ -226,10 +222,6 @@ public class CamelAdapterFactory extends AdapterFactoryImpl {
             @Override
             public Adapter caseImplementation(Implementation object) {
                 return createImplementationAdapter();
-            }
-            @Override
-            public Adapter caseOperationSelectorType(OperationSelectorType object) {
-                return createOperationSelectorTypeAdapter();
             }
             @Override
             public Adapter defaultCase(EObject object) {
@@ -430,20 +422,6 @@ public class CamelAdapterFactory extends AdapterFactoryImpl {
      * @generated
      */
 	public Adapter createCamelMockBindingTypeAdapter() {
-        return null;
-    }
-
-	/**
-     * Creates a new adapter for an object of class '{@link org.switchyard.tools.models.switchyard1_0.camel.CamelOperationSelectorType <em>Operation Selector Type</em>}'.
-     * <!-- begin-user-doc -->
-	 * This default implementation returns null so that we can easily ignore cases;
-	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
-	 * <!-- end-user-doc -->
-     * @return the new adapter.
-     * @see org.switchyard.tools.models.switchyard1_0.camel.CamelOperationSelectorType
-     * @generated
-     */
-	public Adapter createCamelOperationSelectorTypeAdapter() {
         return null;
     }
 
@@ -766,20 +744,6 @@ public class CamelAdapterFactory extends AdapterFactoryImpl {
      * @generated
      */
 	public Adapter createImplementationAdapter() {
-        return null;
-    }
-
-	/**
-     * Creates a new adapter for an object of class '{@link org.eclipse.soa.sca.sca1_1.model.sca.OperationSelectorType <em>Operation Selector Type</em>}'.
-     * <!-- begin-user-doc -->
-	 * This default implementation returns null so that we can easily ignore cases;
-	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
-	 * <!-- end-user-doc -->
-     * @return the new adapter.
-     * @see org.eclipse.soa.sca.sca1_1.model.sca.OperationSelectorType
-     * @generated
-     */
-	public Adapter createOperationSelectorTypeAdapter() {
         return null;
     }
 

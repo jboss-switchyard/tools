@@ -29,7 +29,7 @@ import org.switchyard.tools.models.switchyard1_0.switchyard.SwitchYardBindingTyp
  * @model extendedMetaData="name='CamelMockBindingType' kind='elementOnly'"
  * @generated
  */
-public interface CamelMockBindingType extends SwitchYardBindingType {
+public interface CamelMockBindingType extends BaseCamelBinding {
 	/**
      * Returns the value of the '<em><b>Name Element</b></em>' attribute.
      * <!-- begin-user-doc -->

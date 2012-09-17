@@ -64,7 +64,7 @@ public class JcaFactoryImpl extends EFactoryImpl implements JcaFactory {
             case JcaPackage.ACTIVATION_SPEC: return createActivationSpec();
             case JcaPackage.CONNECTION: return createConnection();
             case JcaPackage.CONNECTION_SPEC: return createConnectionSpec();
-            case JcaPackage.DOCUMENT_ROOT: return createDocumentRoot();
+            case JcaPackage.ENDPOINT: return createEndpoint();
             case JcaPackage.INBOUND_OPERATION: return createInboundOperation();
             case JcaPackage.INTERACTION_SPEC: return createInteractionSpec();
             case JcaPackage.JCA_BINDING: return createJCABinding();
@@ -73,10 +73,10 @@ public class JcaFactoryImpl extends EFactoryImpl implements JcaFactory {
             case JcaPackage.JCA_OUTBOUND_CONNECTION: return createJCAOutboundConnection();
             case JcaPackage.JCA_OUTBOUND_INTERACTION: return createJCAOutboundInteraction();
             case JcaPackage.OPERATION: return createOperation();
+            case JcaPackage.PROCESSOR: return createProcessor();
             case JcaPackage.PROPERTY: return createProperty();
             case JcaPackage.RESOURCE_ADAPTER: return createResourceAdapter();
-            case JcaPackage.PROCESSOR: return createProcessor();
-            case JcaPackage.ENDPOINT: return createEndpoint();
+            case JcaPackage.DOCUMENT_ROOT: return createDocumentRoot();
             default:
                 throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier");
         }

@@ -25,7 +25,8 @@ Bundle-ClassPath: .,
  lib/switchyard-component-rules.jar,
  lib/switchyard-component-soap.jar,
  lib/camel-core.jar,
- lib/switchyard-extensions-wsdl.jar
+ lib/switchyard-extensions-wsdl.jar,
+ lib/switchyard-component-common.jar
 Export-Package: org.switchyard,
  org.switchyard.annotations,
  org.switchyard.common.io,

@@ -94,9 +94,9 @@ public class JcaSwitch<T> extends Switch<T> {
                 if (result == null) result = defaultCase(theEObject);
                 return result;
             }
-            case JcaPackage.DOCUMENT_ROOT: {
-                DocumentRoot documentRoot = (DocumentRoot)theEObject;
-                T result = caseDocumentRoot(documentRoot);
+            case JcaPackage.ENDPOINT: {
+                Endpoint endpoint = (Endpoint)theEObject;
+                T result = caseEndpoint(endpoint);
                 if (result == null) result = defaultCase(theEObject);
                 return result;
             }
@@ -152,6 +152,12 @@ public class JcaSwitch<T> extends Switch<T> {
                 if (result == null) result = defaultCase(theEObject);
                 return result;
             }
+            case JcaPackage.PROCESSOR: {
+                Processor processor = (Processor)theEObject;
+                T result = caseProcessor(processor);
+                if (result == null) result = defaultCase(theEObject);
+                return result;
+            }
             case JcaPackage.PROPERTY: {
                 Property property = (Property)theEObject;
                 T result = caseProperty(property);
@@ -164,15 +170,9 @@ public class JcaSwitch<T> extends Switch<T> {
                 if (result == null) result = defaultCase(theEObject);
                 return result;
             }
-            case JcaPackage.PROCESSOR: {
-                Processor processor = (Processor)theEObject;
-                T result = caseProcessor(processor);
-                if (result == null) result = defaultCase(theEObject);
-                return result;
-            }
-            case JcaPackage.ENDPOINT: {
-                Endpoint endpoint = (Endpoint)theEObject;
-                T result = caseEndpoint(endpoint);
+            case JcaPackage.DOCUMENT_ROOT: {
+                DocumentRoot documentRoot = (DocumentRoot)theEObject;
+                T result = caseDocumentRoot(documentRoot);
                 if (result == null) result = defaultCase(theEObject);
                 return result;
             }

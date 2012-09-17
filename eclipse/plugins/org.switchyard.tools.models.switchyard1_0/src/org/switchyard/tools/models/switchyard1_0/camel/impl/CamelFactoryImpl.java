@@ -61,34 +61,33 @@ public class CamelFactoryImpl extends EFactoryImpl implements CamelFactory {
 	@Override
 	public EObject create(EClass eClass) {
         switch (eClass.getClassifierID()) {
-            case CamelPackage.CAMEL_ATOM_BINDING_TYPE: return createCamelAtomBindingType();
             case CamelPackage.CAMEL_BINDING_TYPE: return createCamelBindingType();
-            case CamelPackage.CAMEL_DIRECT_BINDING_TYPE: return createCamelDirectBindingType();
             case CamelPackage.CAMEL_FILE_BINDING_TYPE: return createCamelFileBindingType();
             case CamelPackage.CAMEL_FTP_BINDING_TYPE: return createCamelFtpBindingType();
             case CamelPackage.CAMEL_FTPS_BINDING_TYPE: return createCamelFtpsBindingType();
-            case CamelPackage.CAMEL_IMPLEMENTATION_TYPE: return createCamelImplementationType();
-            case CamelPackage.CAMEL_JMS_BINDING_TYPE: return createCamelJmsBindingType();
-            case CamelPackage.CAMEL_NETTY_UDP_BINDING_TYPE: return createCamelNettyUdpBindingType();
-            case CamelPackage.CAMEL_NETTY_TCP_BINDING_TYPE: return createCamelNettyTcpBindingType();
-            case CamelPackage.CAMEL_MOCK_BINDING_TYPE: return createCamelMockBindingType();
-            case CamelPackage.CAMEL_OPERATION_SELECTOR_TYPE: return createCamelOperationSelectorType();
-            case CamelPackage.CAMEL_SEDA_BINDING_TYPE: return createCamelSedaBindingType();
-            case CamelPackage.CAMEL_TIMER_BINDING_TYPE: return createCamelTimerBindingType();
             case CamelPackage.CAMEL_SFTP_BINDING_TYPE: return createCamelSftpBindingType();
-            case CamelPackage.DOCUMENT_ROOT: return createDocumentRoot();
-            case CamelPackage.FILE_CONSUMER_TYPE: return createFileConsumerType();
-            case CamelPackage.FILE_PRODUCER_TYPE: return createFileProducerType();
+            case CamelPackage.CAMEL_ATOM_BINDING_TYPE: return createCamelAtomBindingType();
+            case CamelPackage.CAMEL_DIRECT_BINDING_TYPE: return createCamelDirectBindingType();
+            case CamelPackage.CAMEL_TIMER_BINDING_TYPE: return createCamelTimerBindingType();
+            case CamelPackage.CAMEL_SEDA_BINDING_TYPE: return createCamelSedaBindingType();
+            case CamelPackage.CAMEL_MOCK_BINDING_TYPE: return createCamelMockBindingType();
+            case CamelPackage.CAMEL_NETTY_TCP_BINDING_TYPE: return createCamelNettyTcpBindingType();
+            case CamelPackage.CAMEL_NETTY_UDP_BINDING_TYPE: return createCamelNettyUdpBindingType();
+            case CamelPackage.CAMEL_QUARTZ_BINDING_TYPE: return createCamelQuartzBindingType();
+            case CamelPackage.CAMEL_JMS_BINDING_TYPE: return createCamelJmsBindingType();
+            case CamelPackage.CAMEL_SQL_BINDING_TYPE: return createCamelSqlBindingType();
             case CamelPackage.JAVA_DSL_TYPE: return createJavaDSLType();
             case CamelPackage.XMLDSL_TYPE: return createXMLDSLType();
+            case CamelPackage.CAMEL_IMPLEMENTATION_TYPE: return createCamelImplementationType();
             case CamelPackage.SCHEDULED_POLL_CONSUMER_TYPE: return createScheduledPollConsumerType();
             case CamelPackage.SCHEDULED_BATCH_POLL_CONSUMER_TYPE: return createScheduledBatchPollConsumerType();
-            case CamelPackage.GENERIC_FILE_CONSUMER_TYPE: return createGenericFileConsumerType();
-            case CamelPackage.GENERIC_FILE_PRODUCER_TYPE: return createGenericFileProducerType();
+            case CamelPackage.FILE_CONSUMER_TYPE: return createFileConsumerType();
+            case CamelPackage.FILE_PRODUCER_TYPE: return createFileProducerType();
             case CamelPackage.REMOTE_FILE_CONSUMER_TYPE: return createRemoteFileConsumerType();
             case CamelPackage.REMOTE_FILE_PRODUCER_TYPE: return createRemoteFileProducerType();
-            case CamelPackage.CAMEL_QUARTZ_BINDING_TYPE: return createCamelQuartzBindingType();
-            case CamelPackage.CAMEL_SQL_BINDING_TYPE: return createCamelSqlBindingType();
+            case CamelPackage.GENERIC_FILE_CONSUMER_TYPE: return createGenericFileConsumerType();
+            case CamelPackage.GENERIC_FILE_PRODUCER_TYPE: return createGenericFileProducerType();
+            case CamelPackage.DOCUMENT_ROOT: return createDocumentRoot();
             default:
                 throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier");
         }
@@ -238,16 +237,6 @@ public class CamelFactoryImpl extends EFactoryImpl implements CamelFactory {
 	public CamelMockBindingType createCamelMockBindingType() {
         CamelMockBindingTypeImpl camelMockBindingType = new CamelMockBindingTypeImpl();
         return camelMockBindingType;
-    }
-
-	/**
-     * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-     * @generated
-     */
-	public CamelOperationSelectorType createCamelOperationSelectorType() {
-        CamelOperationSelectorTypeImpl camelOperationSelectorType = new CamelOperationSelectorTypeImpl();
-        return camelOperationSelectorType;
     }
 
 	/**

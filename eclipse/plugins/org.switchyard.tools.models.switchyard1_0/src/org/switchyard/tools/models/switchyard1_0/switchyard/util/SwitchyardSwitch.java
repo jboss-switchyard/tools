@@ -15,6 +15,7 @@ import org.eclipse.soa.sca.sca1_1.model.sca.Binding;
 import org.eclipse.soa.sca.sca1_1.model.sca.CommonExtensionBase;
 import org.eclipse.soa.sca.sca1_1.model.sca.ExtendableType;
 import org.eclipse.soa.sca.sca1_1.model.sca.Interface;
+import org.eclipse.soa.sca.sca1_1.model.sca.OperationSelectorType;
 import org.switchyard.tools.models.switchyard1_0.switchyard.*;
 
 /**
@@ -185,6 +186,13 @@ public class SwitchyardSwitch<T> extends Switch<T> {
             case SwitchyardPackage.VALIDATE_TYPE: {
                 ValidateType validateType = (ValidateType)theEObject;
                 T result = caseValidateType(validateType);
+                if (result == null) result = defaultCase(theEObject);
+                return result;
+            }
+            case SwitchyardPackage.SWITCH_YARD_OPERATION_SELECTOR_TYPE: {
+                SwitchYardOperationSelectorType switchYardOperationSelectorType = (SwitchYardOperationSelectorType)theEObject;
+                T result = caseSwitchYardOperationSelectorType(switchYardOperationSelectorType);
+                if (result == null) result = caseOperationSelectorType(switchYardOperationSelectorType);
                 if (result == null) result = defaultCase(theEObject);
                 return result;
             }
@@ -463,6 +471,21 @@ public class SwitchyardSwitch<T> extends Switch<T> {
     }
 
 	/**
+     * Returns the result of interpreting the object as an instance of '<em>Switch Yard Operation Selector Type</em>'.
+     * <!-- begin-user-doc -->
+     * This implementation returns null;
+     * returning a non-null result will terminate the switch.
+     * <!-- end-user-doc -->
+     * @param object the target of the switch.
+     * @return the result of interpreting the object as an instance of '<em>Switch Yard Operation Selector Type</em>'.
+     * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+     * @generated
+     */
+    public T caseSwitchYardOperationSelectorType(SwitchYardOperationSelectorType object) {
+        return null;
+    }
+
+    /**
      * Returns the result of interpreting the object as an instance of '<em>Common Extension Base</em>'.
      * <!-- begin-user-doc -->
      * This implementation returns null;
@@ -519,6 +542,21 @@ public class SwitchyardSwitch<T> extends Switch<T> {
      * @generated
      */
     public T caseBinding(Binding object) {
+        return null;
+    }
+
+    /**
+     * Returns the result of interpreting the object as an instance of '<em>Operation Selector Type</em>'.
+     * <!-- begin-user-doc -->
+     * This implementation returns null;
+     * returning a non-null result will terminate the switch.
+     * <!-- end-user-doc -->
+     * @param object the target of the switch.
+     * @return the result of interpreting the object as an instance of '<em>Operation Selector Type</em>'.
+     * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+     * @generated
+     */
+    public T caseOperationSelectorType(OperationSelectorType object) {
         return null;
     }
 

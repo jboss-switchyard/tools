@@ -88,17 +88,6 @@ public class CamelSwitch<T> extends Switch<T> {
                 if (result == null) result = defaultCase(theEObject);
                 return result;
             }
-            case CamelPackage.CAMEL_ATOM_BINDING_TYPE: {
-                CamelAtomBindingType camelAtomBindingType = (CamelAtomBindingType)theEObject;
-                T result = caseCamelAtomBindingType(camelAtomBindingType);
-                if (result == null) result = caseBaseCamelBinding(camelAtomBindingType);
-                if (result == null) result = caseSwitchYardBindingType(camelAtomBindingType);
-                if (result == null) result = caseBinding(camelAtomBindingType);
-                if (result == null) result = caseCommonExtensionBase(camelAtomBindingType);
-                if (result == null) result = caseExtendableType(camelAtomBindingType);
-                if (result == null) result = defaultCase(theEObject);
-                return result;
-            }
             case CamelPackage.CAMEL_BINDING_TYPE: {
                 CamelBindingType camelBindingType = (CamelBindingType)theEObject;
                 T result = caseCamelBindingType(camelBindingType);
@@ -107,16 +96,6 @@ public class CamelSwitch<T> extends Switch<T> {
                 if (result == null) result = caseBinding(camelBindingType);
                 if (result == null) result = caseCommonExtensionBase(camelBindingType);
                 if (result == null) result = caseExtendableType(camelBindingType);
-                if (result == null) result = defaultCase(theEObject);
-                return result;
-            }
-            case CamelPackage.CAMEL_DIRECT_BINDING_TYPE: {
-                CamelDirectBindingType camelDirectBindingType = (CamelDirectBindingType)theEObject;
-                T result = caseCamelDirectBindingType(camelDirectBindingType);
-                if (result == null) result = caseSwitchYardBindingType(camelDirectBindingType);
-                if (result == null) result = caseBinding(camelDirectBindingType);
-                if (result == null) result = caseCommonExtensionBase(camelDirectBindingType);
-                if (result == null) result = caseExtendableType(camelDirectBindingType);
                 if (result == null) result = defaultCase(theEObject);
                 return result;
             }
@@ -159,46 +138,71 @@ public class CamelSwitch<T> extends Switch<T> {
                 if (result == null) result = defaultCase(theEObject);
                 return result;
             }
-            case CamelPackage.CAMEL_IMPLEMENTATION_TYPE: {
-                CamelImplementationType camelImplementationType = (CamelImplementationType)theEObject;
-                T result = caseCamelImplementationType(camelImplementationType);
-                if (result == null) result = caseImplementation(camelImplementationType);
-                if (result == null) result = caseCommonExtensionBase(camelImplementationType);
-                if (result == null) result = caseExtendableType(camelImplementationType);
+            case CamelPackage.CAMEL_SFTP_BINDING_TYPE: {
+                CamelSftpBindingType camelSftpBindingType = (CamelSftpBindingType)theEObject;
+                T result = caseCamelSftpBindingType(camelSftpBindingType);
+                if (result == null) result = caseCamelRemoteBindingType(camelSftpBindingType);
+                if (result == null) result = caseGenericFileBindingType(camelSftpBindingType);
+                if (result == null) result = caseBaseCamelBinding(camelSftpBindingType);
+                if (result == null) result = caseSwitchYardBindingType(camelSftpBindingType);
+                if (result == null) result = caseBinding(camelSftpBindingType);
+                if (result == null) result = caseCommonExtensionBase(camelSftpBindingType);
+                if (result == null) result = caseExtendableType(camelSftpBindingType);
                 if (result == null) result = defaultCase(theEObject);
                 return result;
             }
-            case CamelPackage.CAMEL_JMS_BINDING_TYPE: {
-                CamelJmsBindingType camelJmsBindingType = (CamelJmsBindingType)theEObject;
-                T result = caseCamelJmsBindingType(camelJmsBindingType);
-                if (result == null) result = caseBaseCamelBinding(camelJmsBindingType);
-                if (result == null) result = caseSwitchYardBindingType(camelJmsBindingType);
-                if (result == null) result = caseBinding(camelJmsBindingType);
-                if (result == null) result = caseCommonExtensionBase(camelJmsBindingType);
-                if (result == null) result = caseExtendableType(camelJmsBindingType);
+            case CamelPackage.CAMEL_ATOM_BINDING_TYPE: {
+                CamelAtomBindingType camelAtomBindingType = (CamelAtomBindingType)theEObject;
+                T result = caseCamelAtomBindingType(camelAtomBindingType);
+                if (result == null) result = caseBaseCamelBinding(camelAtomBindingType);
+                if (result == null) result = caseSwitchYardBindingType(camelAtomBindingType);
+                if (result == null) result = caseBinding(camelAtomBindingType);
+                if (result == null) result = caseCommonExtensionBase(camelAtomBindingType);
+                if (result == null) result = caseExtendableType(camelAtomBindingType);
                 if (result == null) result = defaultCase(theEObject);
                 return result;
             }
-            case CamelPackage.CAMEL_NETTY_BINDING_TYPE: {
-                CamelNettyBindingType camelNettyBindingType = (CamelNettyBindingType)theEObject;
-                T result = caseCamelNettyBindingType(camelNettyBindingType);
-                if (result == null) result = caseBaseCamelBinding(camelNettyBindingType);
-                if (result == null) result = caseSwitchYardBindingType(camelNettyBindingType);
-                if (result == null) result = caseBinding(camelNettyBindingType);
-                if (result == null) result = caseCommonExtensionBase(camelNettyBindingType);
-                if (result == null) result = caseExtendableType(camelNettyBindingType);
+            case CamelPackage.CAMEL_DIRECT_BINDING_TYPE: {
+                CamelDirectBindingType camelDirectBindingType = (CamelDirectBindingType)theEObject;
+                T result = caseCamelDirectBindingType(camelDirectBindingType);
+                if (result == null) result = caseBaseCamelBinding(camelDirectBindingType);
+                if (result == null) result = caseSwitchYardBindingType(camelDirectBindingType);
+                if (result == null) result = caseBinding(camelDirectBindingType);
+                if (result == null) result = caseCommonExtensionBase(camelDirectBindingType);
+                if (result == null) result = caseExtendableType(camelDirectBindingType);
                 if (result == null) result = defaultCase(theEObject);
                 return result;
             }
-            case CamelPackage.CAMEL_NETTY_UDP_BINDING_TYPE: {
-                CamelNettyUdpBindingType camelNettyUdpBindingType = (CamelNettyUdpBindingType)theEObject;
-                T result = caseCamelNettyUdpBindingType(camelNettyUdpBindingType);
-                if (result == null) result = caseCamelNettyBindingType(camelNettyUdpBindingType);
-                if (result == null) result = caseBaseCamelBinding(camelNettyUdpBindingType);
-                if (result == null) result = caseSwitchYardBindingType(camelNettyUdpBindingType);
-                if (result == null) result = caseBinding(camelNettyUdpBindingType);
-                if (result == null) result = caseCommonExtensionBase(camelNettyUdpBindingType);
-                if (result == null) result = caseExtendableType(camelNettyUdpBindingType);
+            case CamelPackage.CAMEL_TIMER_BINDING_TYPE: {
+                CamelTimerBindingType camelTimerBindingType = (CamelTimerBindingType)theEObject;
+                T result = caseCamelTimerBindingType(camelTimerBindingType);
+                if (result == null) result = caseBaseCamelBinding(camelTimerBindingType);
+                if (result == null) result = caseSwitchYardBindingType(camelTimerBindingType);
+                if (result == null) result = caseBinding(camelTimerBindingType);
+                if (result == null) result = caseCommonExtensionBase(camelTimerBindingType);
+                if (result == null) result = caseExtendableType(camelTimerBindingType);
+                if (result == null) result = defaultCase(theEObject);
+                return result;
+            }
+            case CamelPackage.CAMEL_SEDA_BINDING_TYPE: {
+                CamelSedaBindingType camelSedaBindingType = (CamelSedaBindingType)theEObject;
+                T result = caseCamelSedaBindingType(camelSedaBindingType);
+                if (result == null) result = caseBaseCamelBinding(camelSedaBindingType);
+                if (result == null) result = caseSwitchYardBindingType(camelSedaBindingType);
+                if (result == null) result = caseBinding(camelSedaBindingType);
+                if (result == null) result = caseCommonExtensionBase(camelSedaBindingType);
+                if (result == null) result = caseExtendableType(camelSedaBindingType);
+                if (result == null) result = defaultCase(theEObject);
+                return result;
+            }
+            case CamelPackage.CAMEL_MOCK_BINDING_TYPE: {
+                CamelMockBindingType camelMockBindingType = (CamelMockBindingType)theEObject;
+                T result = caseCamelMockBindingType(camelMockBindingType);
+                if (result == null) result = caseBaseCamelBinding(camelMockBindingType);
+                if (result == null) result = caseSwitchYardBindingType(camelMockBindingType);
+                if (result == null) result = caseBinding(camelMockBindingType);
+                if (result == null) result = caseCommonExtensionBase(camelMockBindingType);
+                if (result == null) result = caseExtendableType(camelMockBindingType);
                 if (result == null) result = defaultCase(theEObject);
                 return result;
             }
@@ -214,59 +218,91 @@ public class CamelSwitch<T> extends Switch<T> {
                 if (result == null) result = defaultCase(theEObject);
                 return result;
             }
-            case CamelPackage.CAMEL_MOCK_BINDING_TYPE: {
-                CamelMockBindingType camelMockBindingType = (CamelMockBindingType)theEObject;
-                T result = caseCamelMockBindingType(camelMockBindingType);
-                if (result == null) result = caseSwitchYardBindingType(camelMockBindingType);
-                if (result == null) result = caseBinding(camelMockBindingType);
-                if (result == null) result = caseCommonExtensionBase(camelMockBindingType);
-                if (result == null) result = caseExtendableType(camelMockBindingType);
+            case CamelPackage.CAMEL_NETTY_UDP_BINDING_TYPE: {
+                CamelNettyUdpBindingType camelNettyUdpBindingType = (CamelNettyUdpBindingType)theEObject;
+                T result = caseCamelNettyUdpBindingType(camelNettyUdpBindingType);
+                if (result == null) result = caseCamelNettyBindingType(camelNettyUdpBindingType);
+                if (result == null) result = caseBaseCamelBinding(camelNettyUdpBindingType);
+                if (result == null) result = caseSwitchYardBindingType(camelNettyUdpBindingType);
+                if (result == null) result = caseBinding(camelNettyUdpBindingType);
+                if (result == null) result = caseCommonExtensionBase(camelNettyUdpBindingType);
+                if (result == null) result = caseExtendableType(camelNettyUdpBindingType);
                 if (result == null) result = defaultCase(theEObject);
                 return result;
             }
-            case CamelPackage.CAMEL_OPERATION_SELECTOR_TYPE: {
-                CamelOperationSelectorType camelOperationSelectorType = (CamelOperationSelectorType)theEObject;
-                T result = caseCamelOperationSelectorType(camelOperationSelectorType);
-                if (result == null) result = caseOperationSelectorType(camelOperationSelectorType);
+            case CamelPackage.CAMEL_NETTY_BINDING_TYPE: {
+                CamelNettyBindingType camelNettyBindingType = (CamelNettyBindingType)theEObject;
+                T result = caseCamelNettyBindingType(camelNettyBindingType);
+                if (result == null) result = caseBaseCamelBinding(camelNettyBindingType);
+                if (result == null) result = caseSwitchYardBindingType(camelNettyBindingType);
+                if (result == null) result = caseBinding(camelNettyBindingType);
+                if (result == null) result = caseCommonExtensionBase(camelNettyBindingType);
+                if (result == null) result = caseExtendableType(camelNettyBindingType);
                 if (result == null) result = defaultCase(theEObject);
                 return result;
             }
-            case CamelPackage.CAMEL_SEDA_BINDING_TYPE: {
-                CamelSedaBindingType camelSedaBindingType = (CamelSedaBindingType)theEObject;
-                T result = caseCamelSedaBindingType(camelSedaBindingType);
-                if (result == null) result = caseSwitchYardBindingType(camelSedaBindingType);
-                if (result == null) result = caseBinding(camelSedaBindingType);
-                if (result == null) result = caseCommonExtensionBase(camelSedaBindingType);
-                if (result == null) result = caseExtendableType(camelSedaBindingType);
+            case CamelPackage.CAMEL_QUARTZ_BINDING_TYPE: {
+                CamelQuartzBindingType camelQuartzBindingType = (CamelQuartzBindingType)theEObject;
+                T result = caseCamelQuartzBindingType(camelQuartzBindingType);
+                if (result == null) result = caseBaseCamelBinding(camelQuartzBindingType);
+                if (result == null) result = caseSwitchYardBindingType(camelQuartzBindingType);
+                if (result == null) result = caseBinding(camelQuartzBindingType);
+                if (result == null) result = caseCommonExtensionBase(camelQuartzBindingType);
+                if (result == null) result = caseExtendableType(camelQuartzBindingType);
                 if (result == null) result = defaultCase(theEObject);
                 return result;
             }
-            case CamelPackage.CAMEL_TIMER_BINDING_TYPE: {
-                CamelTimerBindingType camelTimerBindingType = (CamelTimerBindingType)theEObject;
-                T result = caseCamelTimerBindingType(camelTimerBindingType);
-                if (result == null) result = caseSwitchYardBindingType(camelTimerBindingType);
-                if (result == null) result = caseBinding(camelTimerBindingType);
-                if (result == null) result = caseCommonExtensionBase(camelTimerBindingType);
-                if (result == null) result = caseExtendableType(camelTimerBindingType);
+            case CamelPackage.CAMEL_JMS_BINDING_TYPE: {
+                CamelJmsBindingType camelJmsBindingType = (CamelJmsBindingType)theEObject;
+                T result = caseCamelJmsBindingType(camelJmsBindingType);
+                if (result == null) result = caseBaseCamelBinding(camelJmsBindingType);
+                if (result == null) result = caseSwitchYardBindingType(camelJmsBindingType);
+                if (result == null) result = caseBinding(camelJmsBindingType);
+                if (result == null) result = caseCommonExtensionBase(camelJmsBindingType);
+                if (result == null) result = caseExtendableType(camelJmsBindingType);
                 if (result == null) result = defaultCase(theEObject);
                 return result;
             }
-            case CamelPackage.CAMEL_SFTP_BINDING_TYPE: {
-                CamelSftpBindingType camelSftpBindingType = (CamelSftpBindingType)theEObject;
-                T result = caseCamelSftpBindingType(camelSftpBindingType);
-                if (result == null) result = caseCamelRemoteBindingType(camelSftpBindingType);
-                if (result == null) result = caseGenericFileBindingType(camelSftpBindingType);
-                if (result == null) result = caseBaseCamelBinding(camelSftpBindingType);
-                if (result == null) result = caseSwitchYardBindingType(camelSftpBindingType);
-                if (result == null) result = caseBinding(camelSftpBindingType);
-                if (result == null) result = caseCommonExtensionBase(camelSftpBindingType);
-                if (result == null) result = caseExtendableType(camelSftpBindingType);
+            case CamelPackage.CAMEL_SQL_BINDING_TYPE: {
+                CamelSqlBindingType camelSqlBindingType = (CamelSqlBindingType)theEObject;
+                T result = caseCamelSqlBindingType(camelSqlBindingType);
+                if (result == null) result = caseBaseCamelBinding(camelSqlBindingType);
+                if (result == null) result = caseSwitchYardBindingType(camelSqlBindingType);
+                if (result == null) result = caseBinding(camelSqlBindingType);
+                if (result == null) result = caseCommonExtensionBase(camelSqlBindingType);
+                if (result == null) result = caseExtendableType(camelSqlBindingType);
                 if (result == null) result = defaultCase(theEObject);
                 return result;
             }
-            case CamelPackage.DOCUMENT_ROOT: {
-                DocumentRoot documentRoot = (DocumentRoot)theEObject;
-                T result = caseDocumentRoot(documentRoot);
+            case CamelPackage.JAVA_DSL_TYPE: {
+                JavaDSLType javaDSLType = (JavaDSLType)theEObject;
+                T result = caseJavaDSLType(javaDSLType);
+                if (result == null) result = defaultCase(theEObject);
+                return result;
+            }
+            case CamelPackage.XMLDSL_TYPE: {
+                XMLDSLType xmldslType = (XMLDSLType)theEObject;
+                T result = caseXMLDSLType(xmldslType);
+                if (result == null) result = defaultCase(theEObject);
+                return result;
+            }
+            case CamelPackage.CAMEL_IMPLEMENTATION_TYPE: {
+                CamelImplementationType camelImplementationType = (CamelImplementationType)theEObject;
+                T result = caseCamelImplementationType(camelImplementationType);
+                if (result == null) result = caseImplementation(camelImplementationType);
+                if (result == null) result = caseCommonExtensionBase(camelImplementationType);
+                if (result == null) result = caseExtendableType(camelImplementationType);
+                if (result == null) result = defaultCase(theEObject);
+                return result;
+            }
+            case CamelPackage.GENERIC_FILE_BINDING_TYPE: {
+                GenericFileBindingType genericFileBindingType = (GenericFileBindingType)theEObject;
+                T result = caseGenericFileBindingType(genericFileBindingType);
+                if (result == null) result = caseBaseCamelBinding(genericFileBindingType);
+                if (result == null) result = caseSwitchYardBindingType(genericFileBindingType);
+                if (result == null) result = caseBinding(genericFileBindingType);
+                if (result == null) result = caseCommonExtensionBase(genericFileBindingType);
+                if (result == null) result = caseExtendableType(genericFileBindingType);
                 if (result == null) result = defaultCase(theEObject);
                 return result;
             }
@@ -279,6 +315,19 @@ public class CamelSwitch<T> extends Switch<T> {
                 if (result == null) result = caseBinding(camelRemoteBindingType);
                 if (result == null) result = caseCommonExtensionBase(camelRemoteBindingType);
                 if (result == null) result = caseExtendableType(camelRemoteBindingType);
+                if (result == null) result = defaultCase(theEObject);
+                return result;
+            }
+            case CamelPackage.SCHEDULED_POLL_CONSUMER_TYPE: {
+                ScheduledPollConsumerType scheduledPollConsumerType = (ScheduledPollConsumerType)theEObject;
+                T result = caseScheduledPollConsumerType(scheduledPollConsumerType);
+                if (result == null) result = defaultCase(theEObject);
+                return result;
+            }
+            case CamelPackage.SCHEDULED_BATCH_POLL_CONSUMER_TYPE: {
+                ScheduledBatchPollConsumerType scheduledBatchPollConsumerType = (ScheduledBatchPollConsumerType)theEObject;
+                T result = caseScheduledBatchPollConsumerType(scheduledBatchPollConsumerType);
+                if (result == null) result = caseScheduledPollConsumerType(scheduledBatchPollConsumerType);
                 if (result == null) result = defaultCase(theEObject);
                 return result;
             }
@@ -298,39 +347,19 @@ public class CamelSwitch<T> extends Switch<T> {
                 if (result == null) result = defaultCase(theEObject);
                 return result;
             }
-            case CamelPackage.JAVA_DSL_TYPE: {
-                JavaDSLType javaDSLType = (JavaDSLType)theEObject;
-                T result = caseJavaDSLType(javaDSLType);
+            case CamelPackage.REMOTE_FILE_CONSUMER_TYPE: {
+                RemoteFileConsumerType remoteFileConsumerType = (RemoteFileConsumerType)theEObject;
+                T result = caseRemoteFileConsumerType(remoteFileConsumerType);
+                if (result == null) result = caseGenericFileConsumerType(remoteFileConsumerType);
+                if (result == null) result = caseScheduledBatchPollConsumerType(remoteFileConsumerType);
+                if (result == null) result = caseScheduledPollConsumerType(remoteFileConsumerType);
                 if (result == null) result = defaultCase(theEObject);
                 return result;
             }
-            case CamelPackage.XMLDSL_TYPE: {
-                XMLDSLType xmldslType = (XMLDSLType)theEObject;
-                T result = caseXMLDSLType(xmldslType);
-                if (result == null) result = defaultCase(theEObject);
-                return result;
-            }
-            case CamelPackage.SCHEDULED_POLL_CONSUMER_TYPE: {
-                ScheduledPollConsumerType scheduledPollConsumerType = (ScheduledPollConsumerType)theEObject;
-                T result = caseScheduledPollConsumerType(scheduledPollConsumerType);
-                if (result == null) result = defaultCase(theEObject);
-                return result;
-            }
-            case CamelPackage.GENERIC_FILE_BINDING_TYPE: {
-                GenericFileBindingType genericFileBindingType = (GenericFileBindingType)theEObject;
-                T result = caseGenericFileBindingType(genericFileBindingType);
-                if (result == null) result = caseBaseCamelBinding(genericFileBindingType);
-                if (result == null) result = caseSwitchYardBindingType(genericFileBindingType);
-                if (result == null) result = caseBinding(genericFileBindingType);
-                if (result == null) result = caseCommonExtensionBase(genericFileBindingType);
-                if (result == null) result = caseExtendableType(genericFileBindingType);
-                if (result == null) result = defaultCase(theEObject);
-                return result;
-            }
-            case CamelPackage.SCHEDULED_BATCH_POLL_CONSUMER_TYPE: {
-                ScheduledBatchPollConsumerType scheduledBatchPollConsumerType = (ScheduledBatchPollConsumerType)theEObject;
-                T result = caseScheduledBatchPollConsumerType(scheduledBatchPollConsumerType);
-                if (result == null) result = caseScheduledPollConsumerType(scheduledBatchPollConsumerType);
+            case CamelPackage.REMOTE_FILE_PRODUCER_TYPE: {
+                RemoteFileProducerType remoteFileProducerType = (RemoteFileProducerType)theEObject;
+                T result = caseRemoteFileProducerType(remoteFileProducerType);
+                if (result == null) result = caseGenericFileProducerType(remoteFileProducerType);
                 if (result == null) result = defaultCase(theEObject);
                 return result;
             }
@@ -348,41 +377,9 @@ public class CamelSwitch<T> extends Switch<T> {
                 if (result == null) result = defaultCase(theEObject);
                 return result;
             }
-            case CamelPackage.REMOTE_FILE_CONSUMER_TYPE: {
-                RemoteFileConsumerType remoteFileConsumerType = (RemoteFileConsumerType)theEObject;
-                T result = caseRemoteFileConsumerType(remoteFileConsumerType);
-                if (result == null) result = caseGenericFileConsumerType(remoteFileConsumerType);
-                if (result == null) result = caseScheduledBatchPollConsumerType(remoteFileConsumerType);
-                if (result == null) result = caseScheduledPollConsumerType(remoteFileConsumerType);
-                if (result == null) result = defaultCase(theEObject);
-                return result;
-            }
-            case CamelPackage.REMOTE_FILE_PRODUCER_TYPE: {
-                RemoteFileProducerType remoteFileProducerType = (RemoteFileProducerType)theEObject;
-                T result = caseRemoteFileProducerType(remoteFileProducerType);
-                if (result == null) result = caseGenericFileProducerType(remoteFileProducerType);
-                if (result == null) result = defaultCase(theEObject);
-                return result;
-            }
-            case CamelPackage.CAMEL_QUARTZ_BINDING_TYPE: {
-                CamelQuartzBindingType camelQuartzBindingType = (CamelQuartzBindingType)theEObject;
-                T result = caseCamelQuartzBindingType(camelQuartzBindingType);
-                if (result == null) result = caseBaseCamelBinding(camelQuartzBindingType);
-                if (result == null) result = caseSwitchYardBindingType(camelQuartzBindingType);
-                if (result == null) result = caseBinding(camelQuartzBindingType);
-                if (result == null) result = caseCommonExtensionBase(camelQuartzBindingType);
-                if (result == null) result = caseExtendableType(camelQuartzBindingType);
-                if (result == null) result = defaultCase(theEObject);
-                return result;
-            }
-            case CamelPackage.CAMEL_SQL_BINDING_TYPE: {
-                CamelSqlBindingType camelSqlBindingType = (CamelSqlBindingType)theEObject;
-                T result = caseCamelSqlBindingType(camelSqlBindingType);
-                if (result == null) result = caseBaseCamelBinding(camelSqlBindingType);
-                if (result == null) result = caseSwitchYardBindingType(camelSqlBindingType);
-                if (result == null) result = caseBinding(camelSqlBindingType);
-                if (result == null) result = caseCommonExtensionBase(camelSqlBindingType);
-                if (result == null) result = caseExtendableType(camelSqlBindingType);
+            case CamelPackage.DOCUMENT_ROOT: {
+                DocumentRoot documentRoot = (DocumentRoot)theEObject;
+                T result = caseDocumentRoot(documentRoot);
                 if (result == null) result = defaultCase(theEObject);
                 return result;
             }
@@ -582,21 +579,6 @@ public class CamelSwitch<T> extends Switch<T> {
      * @generated
      */
 	public T caseCamelMockBindingType(CamelMockBindingType object) {
-        return null;
-    }
-
-	/**
-     * Returns the result of interpreting the object as an instance of '<em>Operation Selector Type</em>'.
-     * <!-- begin-user-doc -->
-	 * This implementation returns null;
-	 * returning a non-null result will terminate the switch.
-	 * <!-- end-user-doc -->
-     * @param object the target of the switch.
-     * @return the result of interpreting the object as an instance of '<em>Operation Selector Type</em>'.
-     * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
-     * @generated
-     */
-	public T caseCamelOperationSelectorType(CamelOperationSelectorType object) {
         return null;
     }
 
@@ -942,21 +924,6 @@ public class CamelSwitch<T> extends Switch<T> {
      * @generated
      */
 	public T caseImplementation(Implementation object) {
-        return null;
-    }
-
-	/**
-     * Returns the result of interpreting the object as an instance of '<em>Operation Selector Type</em>'.
-     * <!-- begin-user-doc -->
-	 * This implementation returns null;
-	 * returning a non-null result will terminate the switch.
-	 * <!-- end-user-doc -->
-     * @param object the target of the switch.
-     * @return the result of interpreting the object as an instance of '<em>Operation Selector Type</em>'.
-     * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
-     * @generated
-     */
-	public T caseOperationSelectorType(OperationSelectorType object) {
         return null;
     }
 

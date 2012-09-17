@@ -34,7 +34,7 @@ import org.switchyard.tools.models.switchyard1_0.switchyard.SwitchYardBindingTyp
  * @model extendedMetaData="name='CamelSedaBindingType' kind='elementOnly'"
  * @generated
  */
-public interface CamelSedaBindingType extends SwitchYardBindingType {
+public interface CamelSedaBindingType extends BaseCamelBinding {
 	/**
      * Returns the value of the '<em><b>Name Element</b></em>' attribute.
      * <!-- begin-user-doc -->

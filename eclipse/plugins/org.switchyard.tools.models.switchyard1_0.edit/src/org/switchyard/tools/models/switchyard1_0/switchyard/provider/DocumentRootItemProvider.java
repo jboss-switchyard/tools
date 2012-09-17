@@ -142,6 +142,7 @@ public class DocumentRootItemProvider
             childrenFeatures.add(SwitchyardPackage.Literals.DOCUMENT_ROOT__TRANSFORMS);
             childrenFeatures.add(SwitchyardPackage.Literals.DOCUMENT_ROOT__VALIDATE);
             childrenFeatures.add(SwitchyardPackage.Literals.DOCUMENT_ROOT__VALIDATES);
+            childrenFeatures.add(SwitchyardPackage.Literals.DOCUMENT_ROOT__OPERATION_SELECTOR_SWITCHYARD);
         }
         return childrenFeatures;
     }
@@ -210,6 +211,7 @@ public class DocumentRootItemProvider
             case SwitchyardPackage.DOCUMENT_ROOT__TRANSFORMS:
             case SwitchyardPackage.DOCUMENT_ROOT__VALIDATE:
             case SwitchyardPackage.DOCUMENT_ROOT__VALIDATES:
+            case SwitchyardPackage.DOCUMENT_ROOT__OPERATION_SELECTOR_SWITCHYARD:
                 fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), true, false));
                 return;
         }
