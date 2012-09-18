@@ -12,8 +12,6 @@
  ******************************************************************************/
 package org.switchyard.tools.ui.editor.diagram.shared;
 
-import org.eclipse.emf.transaction.RecordingCommand;
-import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.eclipse.soa.sca.sca1_1.model.sca.Interface;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.events.FocusEvent;
@@ -24,7 +22,6 @@ import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Control;
 import org.eclipse.swt.widgets.Text;
 import org.switchyard.tools.models.switchyard1_0.switchyard.EsbInterface;
-import org.switchyard.tools.ui.editor.impl.SwitchyardSCAEditor;
 
 /**
  * @author bfitzpat
@@ -84,17 +81,18 @@ public class ESBInterfaceSelectionComposite extends AbstractSwitchyardComposite 
             EsbInterface esbIntfc = (EsbInterface) this._interface;
             if (esbIntfc.getInputType() != null) {
                 _inputType = esbIntfc.getInputType();
-                _inputTypeText.setText(esbIntfc.getInputType());
+                _inputTypeText.setText(_inputType);
             }
             if (esbIntfc.getOutputType() != null) {
                 _outputType = esbIntfc.getOutputType();
-                _outputTypeText.setText(esbIntfc.getOutputType());
+                _outputTypeText.setText(_outputType);
             }
             if (esbIntfc.getFaultType() != null) {
                 _faultType = esbIntfc.getFaultType();
-                _faultTypeText.setText(esbIntfc.getFaultType());
+                _faultTypeText.setText(_faultType);
             }
             setInUpdate(false);
+            addObservableListeners();
         }
     }
 
@@ -119,47 +117,16 @@ public class ESBInterfaceSelectionComposite extends AbstractSwitchyardComposite 
     @Override
     protected void handleModify(Control control) {
         validate();
-        if (control.equals(_inputTypeText)) {
-            if (_inputTypeText != null && !_inputTypeText.isDisposed() && _inputTypeText.isEnabled()) {
-                if (_interface.eContainer() != null) {
-                    TransactionalEditingDomain domain = SwitchyardSCAEditor.getActiveEditor().getEditingDomain();
-                    domain.getCommandStack().execute(new RecordingCommand(domain) {
-                        @Override
-                        protected void doExecute() {
-                            ((EsbInterface) _interface).setInputType(_inputType);
-                        }
-                    });
-                } else {
-                    ((EsbInterface) _interface).setInputType(_inputType);
-                }
-            }
-        } else if (control.equals(_outputTypeText)) {
-            if (_outputTypeText != null && !_outputTypeText.isDisposed() && _outputTypeText.isEnabled()) {
-                if (_interface.eContainer() != null) {
-                    TransactionalEditingDomain domain = SwitchyardSCAEditor.getActiveEditor().getEditingDomain();
-                    domain.getCommandStack().execute(new RecordingCommand(domain) {
-                        @Override
-                        protected void doExecute() {
-                            ((EsbInterface) _interface).setOutputType(_outputType);
-                        }
-                    });
-                } else {
-                    ((EsbInterface) _interface).setOutputType(_outputType);
-                }
-            }
-        } else if (control.equals(_faultTypeText)) {
-            if (_faultTypeText != null && !_faultTypeText.isDisposed() && _faultTypeText.isEnabled()) {
-                if (_interface.eContainer() != null) {
-                    TransactionalEditingDomain domain = SwitchyardSCAEditor.getActiveEditor().getEditingDomain();
-                    domain.getCommandStack().execute(new RecordingCommand(domain) {
-                        @Override
-                        protected void doExecute() {
-                            ((EsbInterface) _interface).setFaultType(_faultType);
-                        }
-                    });
-                } else {
-                    ((EsbInterface) _interface).setFaultType(_faultType);
-                }
+        if (_interface != null) {
+            if (control.equals(_inputTypeText)) {
+                _inputType = _inputTypeText.getText().trim();
+                updateFeature(_interface, "inputType", _inputType);
+            } else if (control.equals(_outputTypeText)) {
+                _outputType = _outputTypeText.getText().trim();
+                updateFeature(_interface, "outputType", _outputType);
+            } else if (control.equals(_faultTypeText)) {
+                _faultType = _faultTypeText.getText().trim();
+                updateFeature(_interface, "faultType", _faultType);
             }
         }
     }
