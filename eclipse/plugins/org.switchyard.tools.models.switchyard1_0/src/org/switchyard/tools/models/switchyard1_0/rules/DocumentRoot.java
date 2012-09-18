@@ -30,6 +30,7 @@ import org.eclipse.emf.ecore.util.FeatureMap;
  *   <li>{@link org.switchyard.tools.models.switchyard1_0.rules.DocumentRoot#getImplementationRules <em>Implementation Rules</em>}</li>
  *   <li>{@link org.switchyard.tools.models.switchyard1_0.rules.DocumentRoot#getMapping <em>Mapping</em>}</li>
  *   <li>{@link org.switchyard.tools.models.switchyard1_0.rules.DocumentRoot#getResource <em>Resource</em>}</li>
+ *   <li>{@link org.switchyard.tools.models.switchyard1_0.rules.DocumentRoot#getFacts <em>Facts</em>}</li>
  * </ul>
  * </p>
  *
@@ -279,5 +280,32 @@ public interface DocumentRoot extends EObject {
      * @generated
      */
 	void setResource(ResourceType value);
+
+    /**
+     * Returns the value of the '<em><b>Facts</b></em>' containment reference.
+     * <!-- begin-user-doc -->
+     * <p>
+     * If the meaning of the '<em>Facts</em>' containment reference isn't clear,
+     * there really should be more of a description here...
+     * </p>
+     * <!-- end-user-doc -->
+     * @return the value of the '<em>Facts</em>' containment reference.
+     * @see #setFacts(FactsType)
+     * @see org.switchyard.tools.models.switchyard1_0.rules.RulesPackage#getDocumentRoot_Facts()
+     * @model containment="true" upper="-2" transient="true" volatile="true" derived="true"
+     *        extendedMetaData="kind='element' name='facts' namespace='##targetNamespace'"
+     * @generated
+     */
+    FactsType getFacts();
+
+    /**
+     * Sets the value of the '{@link org.switchyard.tools.models.switchyard1_0.rules.DocumentRoot#getFacts <em>Facts</em>}' containment reference.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @param value the new value of the '<em>Facts</em>' containment reference.
+     * @see #getFacts()
+     * @generated
+     */
+    void setFacts(FactsType value);
 
 } // DocumentRoot

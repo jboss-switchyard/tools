@@ -52,6 +52,8 @@ import org.switchyard.tools.models.switchyard1_0.hornetq.HornetQFactory;
 import org.switchyard.tools.models.switchyard1_0.hornetq.HornetQPackage;
 import org.switchyard.tools.models.switchyard1_0.hornetq.PropertiesType;
 import org.switchyard.tools.models.switchyard1_0.hornetq.PropertyType;
+import org.switchyard.tools.models.switchyard1_0.http.HttpPackage;
+import org.switchyard.tools.models.switchyard1_0.http.impl.HttpPackageImpl;
 import org.switchyard.tools.models.switchyard1_0.jca.JcaPackage;
 import org.switchyard.tools.models.switchyard1_0.jca.impl.JcaPackageImpl;
 import org.switchyard.tools.models.switchyard1_0.resteasy.ResteasyPackage;
@@ -202,6 +204,7 @@ public class HornetQPackageImpl extends EPackageImpl implements HornetQPackage {
         JcaPackageImpl theJcaPackage = (JcaPackageImpl)(EPackage.Registry.INSTANCE.getEPackage(JcaPackage.eNS_URI) instanceof JcaPackageImpl ? EPackage.Registry.INSTANCE.getEPackage(JcaPackage.eNS_URI) : JcaPackage.eINSTANCE);
         ResteasyPackageImpl theResteasyPackage = (ResteasyPackageImpl)(EPackage.Registry.INSTANCE.getEPackage(ResteasyPackage.eNS_URI) instanceof ResteasyPackageImpl ? EPackage.Registry.INSTANCE.getEPackage(ResteasyPackage.eNS_URI) : ResteasyPackage.eINSTANCE);
         CommonselectorPackageImpl theCommonselectorPackage = (CommonselectorPackageImpl)(EPackage.Registry.INSTANCE.getEPackage(CommonselectorPackage.eNS_URI) instanceof CommonselectorPackageImpl ? EPackage.Registry.INSTANCE.getEPackage(CommonselectorPackage.eNS_URI) : CommonselectorPackage.eINSTANCE);
+        HttpPackageImpl theHttpPackage = (HttpPackageImpl)(EPackage.Registry.INSTANCE.getEPackage(HttpPackage.eNS_URI) instanceof HttpPackageImpl ? EPackage.Registry.INSTANCE.getEPackage(HttpPackage.eNS_URI) : HttpPackage.eINSTANCE);
 
         // Load packages
         theSpringPackage.loadPackage();
@@ -222,6 +225,7 @@ public class HornetQPackageImpl extends EPackageImpl implements HornetQPackage {
         theJcaPackage.createPackageContents();
         theResteasyPackage.createPackageContents();
         theCommonselectorPackage.createPackageContents();
+        theHttpPackage.createPackageContents();
 
         // Initialize created meta-data
         theHornetQPackage.initializePackageContents();
@@ -239,6 +243,7 @@ public class HornetQPackageImpl extends EPackageImpl implements HornetQPackage {
         theJcaPackage.initializePackageContents();
         theResteasyPackage.initializePackageContents();
         theCommonselectorPackage.initializePackageContents();
+        theHttpPackage.initializePackageContents();
 
         // Fix loaded packages
         theSpringPackage.fixPackageContents();

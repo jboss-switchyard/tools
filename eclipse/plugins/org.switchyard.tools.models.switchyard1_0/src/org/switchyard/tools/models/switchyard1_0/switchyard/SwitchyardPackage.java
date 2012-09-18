@@ -865,79 +865,7 @@ public interface SwitchyardPackage extends EPackage {
      * @see org.switchyard.tools.models.switchyard1_0.switchyard.impl.SwitchyardPackageImpl#getSwitchYardType()
      * @generated
      */
-	int SWITCH_YARD_TYPE = 13;
-
-	/**
-     * The feature id for the '<em><b>Name</b></em>' attribute.
-     * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-     * @generated
-     * @ordered
-     */
-	int SWITCH_YARD_TYPE__NAME = 0;
-
-	/**
-     * The feature id for the '<em><b>Target Namespace</b></em>' attribute.
-     * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-     * @generated
-     * @ordered
-     */
-	int SWITCH_YARD_TYPE__TARGET_NAMESPACE = 1;
-
-	/**
-     * The feature id for the '<em><b>Composite</b></em>' containment reference.
-     * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-     * @generated
-     * @ordered
-     */
-	int SWITCH_YARD_TYPE__COMPOSITE = 2;
-
-	/**
-     * The feature id for the '<em><b>Transforms</b></em>' containment reference.
-     * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-     * @generated
-     * @ordered
-     */
-	int SWITCH_YARD_TYPE__TRANSFORMS = 3;
-
-	/**
-     * The feature id for the '<em><b>Validates</b></em>' containment reference.
-     * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-     * @generated
-     * @ordered
-     */
-	int SWITCH_YARD_TYPE__VALIDATES = 4;
-
-	/**
-     * The feature id for the '<em><b>Domain</b></em>' containment reference.
-     * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-     * @generated
-     * @ordered
-     */
-	int SWITCH_YARD_TYPE__DOMAIN = 5;
-
-	/**
-     * The feature id for the '<em><b>Artifacts</b></em>' containment reference.
-     * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-     * @generated
-     * @ordered
-     */
-	int SWITCH_YARD_TYPE__ARTIFACTS = 6;
-
-	/**
-     * The number of structural features of the '<em>Switch Yard Type</em>' class.
-     * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-     * @generated
-     * @ordered
-     */
-	int SWITCH_YARD_TYPE_FEATURE_COUNT = 7;
+	int SWITCH_YARD_TYPE = 14;
 
 	/**
      * The meta object id for the '{@link org.switchyard.tools.models.switchyard1_0.switchyard.impl.TransformsTypeImpl <em>Transforms Type</em>}' class.
@@ -947,34 +875,7 @@ public interface SwitchyardPackage extends EPackage {
      * @see org.switchyard.tools.models.switchyard1_0.switchyard.impl.SwitchyardPackageImpl#getTransformsType()
      * @generated
      */
-	int TRANSFORMS_TYPE = 14;
-
-	/**
-     * The feature id for the '<em><b>Transform Group</b></em>' attribute list.
-     * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-     * @generated
-     * @ordered
-     */
-	int TRANSFORMS_TYPE__TRANSFORM_GROUP = 0;
-
-	/**
-     * The feature id for the '<em><b>Transform</b></em>' containment reference list.
-     * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-     * @generated
-     * @ordered
-     */
-	int TRANSFORMS_TYPE__TRANSFORM = 1;
-
-	/**
-     * The number of structural features of the '<em>Transforms Type</em>' class.
-     * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-     * @generated
-     * @ordered
-     */
-	int TRANSFORMS_TYPE_FEATURE_COUNT = 2;
+	int TRANSFORMS_TYPE = 15;
 
 	/**
      * The meta object id for the '{@link org.switchyard.tools.models.switchyard1_0.switchyard.impl.TransformTypeImpl <em>Transform Type</em>}' class.
@@ -984,34 +885,7 @@ public interface SwitchyardPackage extends EPackage {
      * @see org.switchyard.tools.models.switchyard1_0.switchyard.impl.SwitchyardPackageImpl#getTransformType()
      * @generated
      */
-	int TRANSFORM_TYPE = 15;
-
-	/**
-     * The feature id for the '<em><b>From</b></em>' attribute.
-     * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-     * @generated
-     * @ordered
-     */
-	int TRANSFORM_TYPE__FROM = 0;
-
-	/**
-     * The feature id for the '<em><b>To</b></em>' attribute.
-     * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-     * @generated
-     * @ordered
-     */
-	int TRANSFORM_TYPE__TO = 1;
-
-	/**
-     * The number of structural features of the '<em>Transform Type</em>' class.
-     * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-     * @generated
-     * @ordered
-     */
-	int TRANSFORM_TYPE_FEATURE_COUNT = 2;
+	int TRANSFORM_TYPE = 16;
 
 	/**
      * The meta object id for the '{@link org.switchyard.tools.models.switchyard1_0.switchyard.impl.ValidatesTypeImpl <em>Validates Type</em>}' class.
@@ -1021,34 +895,7 @@ public interface SwitchyardPackage extends EPackage {
      * @see org.switchyard.tools.models.switchyard1_0.switchyard.impl.SwitchyardPackageImpl#getValidatesType()
      * @generated
      */
-	int VALIDATES_TYPE = 16;
-
-	/**
-     * The feature id for the '<em><b>Validate Group</b></em>' attribute list.
-     * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-     * @generated
-     * @ordered
-     */
-	int VALIDATES_TYPE__VALIDATE_GROUP = 0;
-
-	/**
-     * The feature id for the '<em><b>Validate</b></em>' containment reference list.
-     * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-     * @generated
-     * @ordered
-     */
-	int VALIDATES_TYPE__VALIDATE = 1;
-
-	/**
-     * The number of structural features of the '<em>Validates Type</em>' class.
-     * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-     * @generated
-     * @ordered
-     */
-	int VALIDATES_TYPE_FEATURE_COUNT = 2;
+	int VALIDATES_TYPE = 17;
 
 	/**
      * The meta object id for the '{@link org.switchyard.tools.models.switchyard1_0.switchyard.impl.ValidateTypeImpl <em>Validate Type</em>}' class.
@@ -1058,26 +905,7 @@ public interface SwitchyardPackage extends EPackage {
      * @see org.switchyard.tools.models.switchyard1_0.switchyard.impl.SwitchyardPackageImpl#getValidateType()
      * @generated
      */
-	int VALIDATE_TYPE = 17;
-
-	/**
-     * The feature id for the '<em><b>Name</b></em>' attribute.
-     * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-     * @generated
-     * @ordered
-     */
-	int VALIDATE_TYPE__NAME = 0;
-
-	/**
-     * The number of structural features of the '<em>Validate Type</em>' class.
-     * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-     * @generated
-     * @ordered
-     */
-	int VALIDATE_TYPE_FEATURE_COUNT = 1;
-
+	int VALIDATE_TYPE = 18;
 
 	/**
      * The meta object id for the '{@link org.switchyard.tools.models.switchyard1_0.switchyard.impl.SwitchYardOperationSelectorTypeImpl <em>Switch Yard Operation Selector Type</em>}' class.
@@ -1087,7 +915,7 @@ public interface SwitchyardPackage extends EPackage {
      * @see org.switchyard.tools.models.switchyard1_0.switchyard.impl.SwitchyardPackageImpl#getSwitchYardOperationSelectorType()
      * @generated
      */
-    int SWITCH_YARD_OPERATION_SELECTOR_TYPE = 18;
+    int SWITCH_YARD_OPERATION_SELECTOR_TYPE = 13;
 
     /**
      * The feature id for the '<em><b>Any</b></em>' attribute list.
@@ -1115,6 +943,177 @@ public interface SwitchyardPackage extends EPackage {
      * @ordered
      */
     int SWITCH_YARD_OPERATION_SELECTOR_TYPE_FEATURE_COUNT = ScaPackage.OPERATION_SELECTOR_TYPE_FEATURE_COUNT + 0;
+
+    /**
+     * The feature id for the '<em><b>Name</b></em>' attribute.
+     * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+	int SWITCH_YARD_TYPE__NAME = 0;
+
+    /**
+     * The feature id for the '<em><b>Target Namespace</b></em>' attribute.
+     * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+	int SWITCH_YARD_TYPE__TARGET_NAMESPACE = 1;
+
+    /**
+     * The feature id for the '<em><b>Composite</b></em>' containment reference.
+     * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+	int SWITCH_YARD_TYPE__COMPOSITE = 2;
+
+    /**
+     * The feature id for the '<em><b>Transforms</b></em>' containment reference.
+     * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+	int SWITCH_YARD_TYPE__TRANSFORMS = 3;
+
+    /**
+     * The feature id for the '<em><b>Validates</b></em>' containment reference.
+     * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+	int SWITCH_YARD_TYPE__VALIDATES = 4;
+
+    /**
+     * The feature id for the '<em><b>Domain</b></em>' containment reference.
+     * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+	int SWITCH_YARD_TYPE__DOMAIN = 5;
+
+    /**
+     * The feature id for the '<em><b>Artifacts</b></em>' containment reference.
+     * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+	int SWITCH_YARD_TYPE__ARTIFACTS = 6;
+
+    /**
+     * The number of structural features of the '<em>Switch Yard Type</em>' class.
+     * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+	int SWITCH_YARD_TYPE_FEATURE_COUNT = 7;
+
+    /**
+     * The feature id for the '<em><b>Transform Group</b></em>' attribute list.
+     * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+	int TRANSFORMS_TYPE__TRANSFORM_GROUP = 0;
+
+    /**
+     * The feature id for the '<em><b>Transform</b></em>' containment reference list.
+     * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+	int TRANSFORMS_TYPE__TRANSFORM = 1;
+
+    /**
+     * The number of structural features of the '<em>Transforms Type</em>' class.
+     * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+	int TRANSFORMS_TYPE_FEATURE_COUNT = 2;
+
+    /**
+     * The feature id for the '<em><b>From</b></em>' attribute.
+     * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+	int TRANSFORM_TYPE__FROM = 0;
+
+    /**
+     * The feature id for the '<em><b>To</b></em>' attribute.
+     * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+	int TRANSFORM_TYPE__TO = 1;
+
+    /**
+     * The number of structural features of the '<em>Transform Type</em>' class.
+     * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+	int TRANSFORM_TYPE_FEATURE_COUNT = 2;
+
+    /**
+     * The feature id for the '<em><b>Validate Group</b></em>' attribute list.
+     * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+	int VALIDATES_TYPE__VALIDATE_GROUP = 0;
+
+    /**
+     * The feature id for the '<em><b>Validate</b></em>' containment reference list.
+     * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+	int VALIDATES_TYPE__VALIDATE = 1;
+
+    /**
+     * The number of structural features of the '<em>Validates Type</em>' class.
+     * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+	int VALIDATES_TYPE_FEATURE_COUNT = 2;
+
+    /**
+     * The feature id for the '<em><b>Name</b></em>' attribute.
+     * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+	int VALIDATE_TYPE__NAME = 0;
+
+    /**
+     * The number of structural features of the '<em>Validate Type</em>' class.
+     * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+	int VALIDATE_TYPE_FEATURE_COUNT = 1;
 
 
     /**

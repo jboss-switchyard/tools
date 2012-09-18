@@ -50,6 +50,8 @@ import org.switchyard.tools.models.switchyard1_0.hornetq.HornetQPackage;
 
 import org.switchyard.tools.models.switchyard1_0.hornetq.impl.HornetQPackageImpl;
 
+import org.switchyard.tools.models.switchyard1_0.http.HttpPackage;
+import org.switchyard.tools.models.switchyard1_0.http.impl.HttpPackageImpl;
 import org.switchyard.tools.models.switchyard1_0.jca.JcaPackage;
 
 import org.switchyard.tools.models.switchyard1_0.jca.impl.JcaPackageImpl;
@@ -210,6 +212,7 @@ public class SOAPPackageImpl extends EPackageImpl implements SOAPPackage {
         JcaPackageImpl theJcaPackage = (JcaPackageImpl)(EPackage.Registry.INSTANCE.getEPackage(JcaPackage.eNS_URI) instanceof JcaPackageImpl ? EPackage.Registry.INSTANCE.getEPackage(JcaPackage.eNS_URI) : JcaPackage.eINSTANCE);
         ResteasyPackageImpl theResteasyPackage = (ResteasyPackageImpl)(EPackage.Registry.INSTANCE.getEPackage(ResteasyPackage.eNS_URI) instanceof ResteasyPackageImpl ? EPackage.Registry.INSTANCE.getEPackage(ResteasyPackage.eNS_URI) : ResteasyPackage.eINSTANCE);
         CommonselectorPackageImpl theCommonselectorPackage = (CommonselectorPackageImpl)(EPackage.Registry.INSTANCE.getEPackage(CommonselectorPackage.eNS_URI) instanceof CommonselectorPackageImpl ? EPackage.Registry.INSTANCE.getEPackage(CommonselectorPackage.eNS_URI) : CommonselectorPackage.eINSTANCE);
+        HttpPackageImpl theHttpPackage = (HttpPackageImpl)(EPackage.Registry.INSTANCE.getEPackage(HttpPackage.eNS_URI) instanceof HttpPackageImpl ? EPackage.Registry.INSTANCE.getEPackage(HttpPackage.eNS_URI) : HttpPackage.eINSTANCE);
 
         // Load packages
         theSpringPackage.loadPackage();
@@ -230,6 +233,7 @@ public class SOAPPackageImpl extends EPackageImpl implements SOAPPackage {
         theJcaPackage.createPackageContents();
         theResteasyPackage.createPackageContents();
         theCommonselectorPackage.createPackageContents();
+        theHttpPackage.createPackageContents();
 
         // Initialize created meta-data
         theSOAPPackage.initializePackageContents();
@@ -247,6 +251,7 @@ public class SOAPPackageImpl extends EPackageImpl implements SOAPPackage {
         theJcaPackage.initializePackageContents();
         theResteasyPackage.initializePackageContents();
         theCommonselectorPackage.initializePackageContents();
+        theHttpPackage.initializePackageContents();
 
         // Fix loaded packages
         theSpringPackage.fixPackageContents();

@@ -47,6 +47,7 @@ import org.switchyard.tools.models.switchyard1_0.clojure.ClojureFactory;
 import org.switchyard.tools.models.switchyard1_0.commonselector.CommonselectorFactory;
 import org.switchyard.tools.models.switchyard1_0.hornetq.HornetQFactory;
 
+import org.switchyard.tools.models.switchyard1_0.http.HttpFactory;
 import org.switchyard.tools.models.switchyard1_0.jca.JcaFactory;
 
 import org.switchyard.tools.models.switchyard1_0.resteasy.ResteasyFactory;
@@ -1421,6 +1422,11 @@ public class ExpressionSubElementDefinitionItemProvider
         newChildDescriptors.add
             (createChildParameter
                 (SpringPackage.eINSTANCE.getExpressionSubElementDefinition_Property(),
+                 RulesFactory.eINSTANCE.createFactsType()));
+
+        newChildDescriptors.add
+            (createChildParameter
+                (SpringPackage.eINSTANCE.getExpressionSubElementDefinition_Property(),
                  SOAPFactory.eINSTANCE.createContextMapperType()));
 
         newChildDescriptors.add
@@ -1697,6 +1703,11 @@ public class ExpressionSubElementDefinitionItemProvider
             (createChildParameter
                 (SpringPackage.eINSTANCE.getExpressionSubElementDefinition_Property(),
                  CommonselectorFactory.eINSTANCE.createJavaOperationSelectorType()));
+
+        newChildDescriptors.add
+            (createChildParameter
+                (SpringPackage.eINSTANCE.getExpressionSubElementDefinition_Property(),
+                 HttpFactory.eINSTANCE.createHttpBindingType()));
 
         newChildDescriptors.add
             (createChildParameter

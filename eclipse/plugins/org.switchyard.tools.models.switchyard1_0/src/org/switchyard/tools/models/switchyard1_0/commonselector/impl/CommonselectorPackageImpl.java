@@ -53,6 +53,8 @@ import org.switchyard.tools.models.switchyard1_0.hornetq.HornetQPackage;
 
 import org.switchyard.tools.models.switchyard1_0.hornetq.impl.HornetQPackageImpl;
 
+import org.switchyard.tools.models.switchyard1_0.http.HttpPackage;
+import org.switchyard.tools.models.switchyard1_0.http.impl.HttpPackageImpl;
 import org.switchyard.tools.models.switchyard1_0.jca.JcaPackage;
 
 import org.switchyard.tools.models.switchyard1_0.jca.impl.JcaPackageImpl;
@@ -193,6 +195,7 @@ public class CommonselectorPackageImpl extends EPackageImpl implements Commonsel
         SpringPackageImpl theSpringPackage = (SpringPackageImpl)(EPackage.Registry.INSTANCE.getEPackage(SpringPackage.eNS_URI) instanceof SpringPackageImpl ? EPackage.Registry.INSTANCE.getEPackage(SpringPackage.eNS_URI) : SpringPackage.eINSTANCE);
         JcaPackageImpl theJcaPackage = (JcaPackageImpl)(EPackage.Registry.INSTANCE.getEPackage(JcaPackage.eNS_URI) instanceof JcaPackageImpl ? EPackage.Registry.INSTANCE.getEPackage(JcaPackage.eNS_URI) : JcaPackage.eINSTANCE);
         ResteasyPackageImpl theResteasyPackage = (ResteasyPackageImpl)(EPackage.Registry.INSTANCE.getEPackage(ResteasyPackage.eNS_URI) instanceof ResteasyPackageImpl ? EPackage.Registry.INSTANCE.getEPackage(ResteasyPackage.eNS_URI) : ResteasyPackage.eINSTANCE);
+        HttpPackageImpl theHttpPackage = (HttpPackageImpl)(EPackage.Registry.INSTANCE.getEPackage(HttpPackage.eNS_URI) instanceof HttpPackageImpl ? EPackage.Registry.INSTANCE.getEPackage(HttpPackage.eNS_URI) : HttpPackage.eINSTANCE);
 
         // Load packages
         theSpringPackage.loadPackage();
@@ -213,6 +216,7 @@ public class CommonselectorPackageImpl extends EPackageImpl implements Commonsel
         theCamelPackage.createPackageContents();
         theJcaPackage.createPackageContents();
         theResteasyPackage.createPackageContents();
+        theHttpPackage.createPackageContents();
 
         // Initialize created meta-data
         theCommonselectorPackage.initializePackageContents();
@@ -230,6 +234,7 @@ public class CommonselectorPackageImpl extends EPackageImpl implements Commonsel
         theCamelPackage.initializePackageContents();
         theJcaPackage.initializePackageContents();
         theResteasyPackage.initializePackageContents();
+        theHttpPackage.initializePackageContents();
 
         // Fix loaded packages
         theSpringPackage.fixPackageContents();
@@ -286,6 +291,33 @@ public class CommonselectorPackageImpl extends EPackageImpl implements Commonsel
      */
     public EReference getDocumentRoot_StaticOperationSelector() {
         return (EReference)documentRootEClass.getEStructuralFeatures().get(3);
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public EReference getDocumentRoot_XpathOperationSelector() {
+        return (EReference)documentRootEClass.getEStructuralFeatures().get(4);
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public EReference getDocumentRoot_RegexOperationSelector() {
+        return (EReference)documentRootEClass.getEStructuralFeatures().get(5);
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public EReference getDocumentRoot_JavaOperationSelector() {
+        return (EReference)documentRootEClass.getEStructuralFeatures().get(6);
     }
 
     /**
@@ -393,6 +425,9 @@ public class CommonselectorPackageImpl extends EPackageImpl implements Commonsel
         createEReference(documentRootEClass, DOCUMENT_ROOT__XMLNS_PREFIX_MAP);
         createEReference(documentRootEClass, DOCUMENT_ROOT__XSI_SCHEMA_LOCATION);
         createEReference(documentRootEClass, DOCUMENT_ROOT__STATIC_OPERATION_SELECTOR);
+        createEReference(documentRootEClass, DOCUMENT_ROOT__XPATH_OPERATION_SELECTOR);
+        createEReference(documentRootEClass, DOCUMENT_ROOT__REGEX_OPERATION_SELECTOR);
+        createEReference(documentRootEClass, DOCUMENT_ROOT__JAVA_OPERATION_SELECTOR);
 
         staticOperationSelectorTypeEClass = createEClass(STATIC_OPERATION_SELECTOR_TYPE);
         createEAttribute(staticOperationSelectorTypeEClass, STATIC_OPERATION_SELECTOR_TYPE__OPERATION_NAME);
@@ -450,6 +485,9 @@ public class CommonselectorPackageImpl extends EPackageImpl implements Commonsel
         initEReference(getDocumentRoot_XMLNSPrefixMap(), ecorePackage.getEStringToStringMapEntry(), null, "xMLNSPrefixMap", null, 0, -1, null, IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
         initEReference(getDocumentRoot_XSISchemaLocation(), ecorePackage.getEStringToStringMapEntry(), null, "xSISchemaLocation", null, 0, -1, null, IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
         initEReference(getDocumentRoot_StaticOperationSelector(), this.getStaticOperationSelectorType(), null, "staticOperationSelector", null, 0, -2, null, IS_TRANSIENT, IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, IS_DERIVED, IS_ORDERED);
+        initEReference(getDocumentRoot_XpathOperationSelector(), this.getXPathOperationSelectorType(), null, "xpathOperationSelector", null, 0, -2, null, IS_TRANSIENT, IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, IS_DERIVED, IS_ORDERED);
+        initEReference(getDocumentRoot_RegexOperationSelector(), this.getRegexOperationSelectorType(), null, "regexOperationSelector", null, 0, -2, null, IS_TRANSIENT, IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, IS_DERIVED, IS_ORDERED);
+        initEReference(getDocumentRoot_JavaOperationSelector(), this.getJavaOperationSelectorType(), null, "javaOperationSelector", null, 0, -2, null, IS_TRANSIENT, IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, IS_DERIVED, IS_ORDERED);
 
         initEClass(staticOperationSelectorTypeEClass, StaticOperationSelectorType.class, "StaticOperationSelectorType", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
         initEAttribute(getStaticOperationSelectorType_OperationName(), theXMLTypePackage.getString(), "operationName", null, 1, 1, StaticOperationSelectorType.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
@@ -513,6 +551,33 @@ public class CommonselectorPackageImpl extends EPackageImpl implements Commonsel
            new String[] {
              "kind", "element",
              "name", "operationSelector",
+             "namespace", "##targetNamespace",
+             "affiliation", "urn:switchyard-config:switchyard:1.0#operationSelector.switchyard"
+           });		
+        addAnnotation
+          (getDocumentRoot_XpathOperationSelector(), 
+           source, 
+           new String[] {
+             "kind", "element",
+             "name", "operationSelector.xpath",
+             "namespace", "##targetNamespace",
+             "affiliation", "urn:switchyard-config:switchyard:1.0#operationSelector.switchyard"
+           });		
+        addAnnotation
+          (getDocumentRoot_RegexOperationSelector(), 
+           source, 
+           new String[] {
+             "kind", "element",
+             "name", "operationSelector.regex",
+             "namespace", "##targetNamespace",
+             "affiliation", "urn:switchyard-config:switchyard:1.0#operationSelector.switchyard"
+           });		
+        addAnnotation
+          (getDocumentRoot_JavaOperationSelector(), 
+           source, 
+           new String[] {
+             "kind", "element",
+             "name", "operationSelector.java",
              "namespace", "##targetNamespace",
              "affiliation", "urn:switchyard-config:switchyard:1.0#operationSelector.switchyard"
            });		

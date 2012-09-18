@@ -69,7 +69,7 @@ public class ActionType1ItemProvider
 
             addNamePropertyDescriptor(object);
             addTypePropertyDescriptor(object);
-            addEventTypePropertyDescriptor(object);
+            addEntryPointPropertyDescriptor(object);
         }
         return itemPropertyDescriptors;
     }
@@ -119,19 +119,19 @@ public class ActionType1ItemProvider
     }
 
     /**
-     * This adds a property descriptor for the Event Type feature.
+     * This adds a property descriptor for the Entry Point feature.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @generated
      */
-    protected void addEventTypePropertyDescriptor(Object object) {
+    protected void addEntryPointPropertyDescriptor(Object object) {
         itemPropertyDescriptors.add
             (createItemPropertyDescriptor
                 (((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
                  getResourceLocator(),
-                 getString("_UI_ActionType1_eventType_feature"),
-                 getString("_UI_PropertyDescriptor_description", "_UI_ActionType1_eventType_feature", "_UI_ActionType1_type"),
-                 RulesPackage.Literals.ACTION_TYPE1__EVENT_TYPE,
+                 getString("_UI_ActionType1_entryPoint_feature"),
+                 getString("_UI_PropertyDescriptor_description", "_UI_ActionType1_entryPoint_feature", "_UI_ActionType1_type"),
+                 RulesPackage.Literals.ACTION_TYPE1__ENTRY_POINT,
                  true,
                  false,
                  false,
@@ -179,7 +179,7 @@ public class ActionType1ItemProvider
         switch (notification.getFeatureID(ActionType1.class)) {
             case RulesPackage.ACTION_TYPE1__NAME:
             case RulesPackage.ACTION_TYPE1__TYPE:
-            case RulesPackage.ACTION_TYPE1__EVENT_TYPE:
+            case RulesPackage.ACTION_TYPE1__ENTRY_POINT:
                 fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
                 return;
         }

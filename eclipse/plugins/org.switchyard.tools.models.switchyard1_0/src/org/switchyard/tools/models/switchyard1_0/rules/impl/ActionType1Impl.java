@@ -25,7 +25,7 @@ import org.switchyard.tools.models.switchyard1_0.rules.RulesPackage;
  * <ul>
  *   <li>{@link org.switchyard.tools.models.switchyard1_0.rules.impl.ActionType1Impl#getName <em>Name</em>}</li>
  *   <li>{@link org.switchyard.tools.models.switchyard1_0.rules.impl.ActionType1Impl#getType <em>Type</em>}</li>
- *   <li>{@link org.switchyard.tools.models.switchyard1_0.rules.impl.ActionType1Impl#getEventType <em>Event Type</em>}</li>
+ *   <li>{@link org.switchyard.tools.models.switchyard1_0.rules.impl.ActionType1Impl#getEntryPoint <em>Entry Point</em>}</li>
  * </ul>
  * </p>
  *
@@ -69,24 +69,23 @@ public class ActionType1Impl extends CommonExtensionBaseImpl implements ActionTy
      */
     protected ActionType type = TYPE_EDEFAULT;
     /**
-     * The default value of the '{@link #getEventType() <em>Event Type</em>}' attribute.
+     * The default value of the '{@link #getEntryPoint() <em>Entry Point</em>}' attribute.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @see #getEventType()
+     * @see #getEntryPoint()
      * @generated
      * @ordered
      */
-    protected static final String EVENT_TYPE_EDEFAULT = null;
+    protected static final String ENTRY_POINT_EDEFAULT = null;
     /**
-     * The cached value of the '{@link #getEventType() <em>Event Type</em>}' attribute.
+     * The cached value of the '{@link #getEntryPoint() <em>Entry Point</em>}' attribute.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @see #getEventType()
+     * @see #getEntryPoint()
      * @generated
      * @ordered
      */
-    protected String eventType = EVENT_TYPE_EDEFAULT;
-
+    protected String entryPoint = ENTRY_POINT_EDEFAULT;
     /**
      * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -153,8 +152,8 @@ public class ActionType1Impl extends CommonExtensionBaseImpl implements ActionTy
      * <!-- end-user-doc -->
      * @generated
      */
-    public String getEventType() {
-        return eventType;
+    public String getEntryPoint() {
+        return entryPoint;
     }
 
     /**
@@ -162,11 +161,11 @@ public class ActionType1Impl extends CommonExtensionBaseImpl implements ActionTy
      * <!-- end-user-doc -->
      * @generated
      */
-    public void setEventType(String newEventType) {
-        String oldEventType = eventType;
-        eventType = newEventType;
+    public void setEntryPoint(String newEntryPoint) {
+        String oldEntryPoint = entryPoint;
+        entryPoint = newEntryPoint;
         if (eNotificationRequired())
-            eNotify(new ENotificationImpl(this, Notification.SET, RulesPackage.ACTION_TYPE1__EVENT_TYPE, oldEventType, eventType));
+            eNotify(new ENotificationImpl(this, Notification.SET, RulesPackage.ACTION_TYPE1__ENTRY_POINT, oldEntryPoint, entryPoint));
     }
 
     /**
@@ -181,8 +180,8 @@ public class ActionType1Impl extends CommonExtensionBaseImpl implements ActionTy
                 return getName();
             case RulesPackage.ACTION_TYPE1__TYPE:
                 return getType();
-            case RulesPackage.ACTION_TYPE1__EVENT_TYPE:
-                return getEventType();
+            case RulesPackage.ACTION_TYPE1__ENTRY_POINT:
+                return getEntryPoint();
         }
         return super.eGet(featureID, resolve, coreType);
     }
@@ -201,8 +200,8 @@ public class ActionType1Impl extends CommonExtensionBaseImpl implements ActionTy
             case RulesPackage.ACTION_TYPE1__TYPE:
                 setType((ActionType)newValue);
                 return;
-            case RulesPackage.ACTION_TYPE1__EVENT_TYPE:
-                setEventType((String)newValue);
+            case RulesPackage.ACTION_TYPE1__ENTRY_POINT:
+                setEntryPoint((String)newValue);
                 return;
         }
         super.eSet(featureID, newValue);
@@ -222,8 +221,8 @@ public class ActionType1Impl extends CommonExtensionBaseImpl implements ActionTy
             case RulesPackage.ACTION_TYPE1__TYPE:
                 setType(TYPE_EDEFAULT);
                 return;
-            case RulesPackage.ACTION_TYPE1__EVENT_TYPE:
-                setEventType(EVENT_TYPE_EDEFAULT);
+            case RulesPackage.ACTION_TYPE1__ENTRY_POINT:
+                setEntryPoint(ENTRY_POINT_EDEFAULT);
                 return;
         }
         super.eUnset(featureID);
@@ -241,8 +240,8 @@ public class ActionType1Impl extends CommonExtensionBaseImpl implements ActionTy
                 return NAME_EDEFAULT == null ? name != null : !NAME_EDEFAULT.equals(name);
             case RulesPackage.ACTION_TYPE1__TYPE:
                 return type != TYPE_EDEFAULT;
-            case RulesPackage.ACTION_TYPE1__EVENT_TYPE:
-                return EVENT_TYPE_EDEFAULT == null ? eventType != null : !EVENT_TYPE_EDEFAULT.equals(eventType);
+            case RulesPackage.ACTION_TYPE1__ENTRY_POINT:
+                return ENTRY_POINT_EDEFAULT == null ? entryPoint != null : !ENTRY_POINT_EDEFAULT.equals(entryPoint);
         }
         return super.eIsSet(featureID);
     }
@@ -261,8 +260,8 @@ public class ActionType1Impl extends CommonExtensionBaseImpl implements ActionTy
         result.append(name);
         result.append(", type: ");
         result.append(type);
-        result.append(", eventType: ");
-        result.append(eventType);
+        result.append(", entryPoint: ");
+        result.append(entryPoint);
         result.append(')');
         return result.toString();
     }

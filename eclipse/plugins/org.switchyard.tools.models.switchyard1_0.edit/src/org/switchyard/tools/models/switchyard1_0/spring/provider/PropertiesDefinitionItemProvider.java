@@ -47,6 +47,7 @@ import org.switchyard.tools.models.switchyard1_0.clojure.ClojureFactory;
 import org.switchyard.tools.models.switchyard1_0.commonselector.CommonselectorFactory;
 import org.switchyard.tools.models.switchyard1_0.hornetq.HornetQFactory;
 
+import org.switchyard.tools.models.switchyard1_0.http.HttpFactory;
 import org.switchyard.tools.models.switchyard1_0.jca.JcaFactory;
 
 import org.switchyard.tools.models.switchyard1_0.resteasy.ResteasyFactory;
@@ -1214,6 +1215,11 @@ public class PropertiesDefinitionItemProvider
         newChildDescriptors.add
             (createChildParameter
                 (SpringPackage.eINSTANCE.getPropertiesDefinition_Property(),
+                 RulesFactory.eINSTANCE.createFactsType()));
+
+        newChildDescriptors.add
+            (createChildParameter
+                (SpringPackage.eINSTANCE.getPropertiesDefinition_Property(),
                  SOAPFactory.eINSTANCE.createContextMapperType()));
 
         newChildDescriptors.add
@@ -1490,6 +1496,11 @@ public class PropertiesDefinitionItemProvider
             (createChildParameter
                 (SpringPackage.eINSTANCE.getPropertiesDefinition_Property(),
                  CommonselectorFactory.eINSTANCE.createJavaOperationSelectorType()));
+
+        newChildDescriptors.add
+            (createChildParameter
+                (SpringPackage.eINSTANCE.getPropertiesDefinition_Property(),
+                 HttpFactory.eINSTANCE.createHttpBindingType()));
 
         newChildDescriptors.add
             (createChildParameter

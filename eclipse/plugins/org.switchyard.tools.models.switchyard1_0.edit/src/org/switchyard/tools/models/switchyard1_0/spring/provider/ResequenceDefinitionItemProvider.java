@@ -45,6 +45,7 @@ import org.switchyard.tools.models.switchyard1_0.clojure.ClojureFactory;
 import org.switchyard.tools.models.switchyard1_0.commonselector.CommonselectorFactory;
 import org.switchyard.tools.models.switchyard1_0.hornetq.HornetQFactory;
 
+import org.switchyard.tools.models.switchyard1_0.http.HttpFactory;
 import org.switchyard.tools.models.switchyard1_0.jca.JcaFactory;
 
 import org.switchyard.tools.models.switchyard1_0.resteasy.ResteasyFactory;
@@ -1440,6 +1441,11 @@ public class ResequenceDefinitionItemProvider
         newChildDescriptors.add
             (createChildParameter
                 (SpringPackage.eINSTANCE.getResequenceDefinition_Property(),
+                 RulesFactory.eINSTANCE.createFactsType()));
+
+        newChildDescriptors.add
+            (createChildParameter
+                (SpringPackage.eINSTANCE.getResequenceDefinition_Property(),
                  SOAPFactory.eINSTANCE.createContextMapperType()));
 
         newChildDescriptors.add
@@ -1716,6 +1722,11 @@ public class ResequenceDefinitionItemProvider
             (createChildParameter
                 (SpringPackage.eINSTANCE.getResequenceDefinition_Property(),
                  CommonselectorFactory.eINSTANCE.createJavaOperationSelectorType()));
+
+        newChildDescriptors.add
+            (createChildParameter
+                (SpringPackage.eINSTANCE.getResequenceDefinition_Property(),
+                 HttpFactory.eINSTANCE.createHttpBindingType()));
 
         newChildDescriptors.add
             (createChildParameter

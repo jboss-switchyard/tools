@@ -108,13 +108,40 @@ public interface CommonselectorPackage extends EPackage {
     int DOCUMENT_ROOT__STATIC_OPERATION_SELECTOR = 3;
 
     /**
+     * The feature id for the '<em><b>Xpath Operation Selector</b></em>' containment reference.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int DOCUMENT_ROOT__XPATH_OPERATION_SELECTOR = 4;
+
+    /**
+     * The feature id for the '<em><b>Regex Operation Selector</b></em>' containment reference.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int DOCUMENT_ROOT__REGEX_OPERATION_SELECTOR = 5;
+
+    /**
+     * The feature id for the '<em><b>Java Operation Selector</b></em>' containment reference.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int DOCUMENT_ROOT__JAVA_OPERATION_SELECTOR = 6;
+
+    /**
      * The number of structural features of the '<em>Document Root</em>' class.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @generated
      * @ordered
      */
-    int DOCUMENT_ROOT_FEATURE_COUNT = 4;
+    int DOCUMENT_ROOT_FEATURE_COUNT = 7;
 
     /**
      * The meta object id for the '{@link org.switchyard.tools.models.switchyard1_0.commonselector.impl.StaticOperationSelectorTypeImpl <em>Static Operation Selector Type</em>}' class.
@@ -356,6 +383,39 @@ public interface CommonselectorPackage extends EPackage {
     EReference getDocumentRoot_StaticOperationSelector();
 
     /**
+     * Returns the meta object for the containment reference '{@link org.switchyard.tools.models.switchyard1_0.commonselector.DocumentRoot#getXpathOperationSelector <em>Xpath Operation Selector</em>}'.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @return the meta object for the containment reference '<em>Xpath Operation Selector</em>'.
+     * @see org.switchyard.tools.models.switchyard1_0.commonselector.DocumentRoot#getXpathOperationSelector()
+     * @see #getDocumentRoot()
+     * @generated
+     */
+    EReference getDocumentRoot_XpathOperationSelector();
+
+    /**
+     * Returns the meta object for the containment reference '{@link org.switchyard.tools.models.switchyard1_0.commonselector.DocumentRoot#getRegexOperationSelector <em>Regex Operation Selector</em>}'.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @return the meta object for the containment reference '<em>Regex Operation Selector</em>'.
+     * @see org.switchyard.tools.models.switchyard1_0.commonselector.DocumentRoot#getRegexOperationSelector()
+     * @see #getDocumentRoot()
+     * @generated
+     */
+    EReference getDocumentRoot_RegexOperationSelector();
+
+    /**
+     * Returns the meta object for the containment reference '{@link org.switchyard.tools.models.switchyard1_0.commonselector.DocumentRoot#getJavaOperationSelector <em>Java Operation Selector</em>}'.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @return the meta object for the containment reference '<em>Java Operation Selector</em>'.
+     * @see org.switchyard.tools.models.switchyard1_0.commonselector.DocumentRoot#getJavaOperationSelector()
+     * @see #getDocumentRoot()
+     * @generated
+     */
+    EReference getDocumentRoot_JavaOperationSelector();
+
+    /**
      * Returns the meta object for class '{@link org.switchyard.tools.models.switchyard1_0.commonselector.StaticOperationSelectorType <em>Static Operation Selector Type</em>}'.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
@@ -502,6 +562,30 @@ public interface CommonselectorPackage extends EPackage {
          * @generated
          */
         EReference DOCUMENT_ROOT__STATIC_OPERATION_SELECTOR = eINSTANCE.getDocumentRoot_StaticOperationSelector();
+
+        /**
+         * The meta object literal for the '<em><b>Xpath Operation Selector</b></em>' containment reference feature.
+         * <!-- begin-user-doc -->
+         * <!-- end-user-doc -->
+         * @generated
+         */
+        EReference DOCUMENT_ROOT__XPATH_OPERATION_SELECTOR = eINSTANCE.getDocumentRoot_XpathOperationSelector();
+
+        /**
+         * The meta object literal for the '<em><b>Regex Operation Selector</b></em>' containment reference feature.
+         * <!-- begin-user-doc -->
+         * <!-- end-user-doc -->
+         * @generated
+         */
+        EReference DOCUMENT_ROOT__REGEX_OPERATION_SELECTOR = eINSTANCE.getDocumentRoot_RegexOperationSelector();
+
+        /**
+         * The meta object literal for the '<em><b>Java Operation Selector</b></em>' containment reference feature.
+         * <!-- begin-user-doc -->
+         * <!-- end-user-doc -->
+         * @generated
+         */
+        EReference DOCUMENT_ROOT__JAVA_OPERATION_SELECTOR = eINSTANCE.getDocumentRoot_JavaOperationSelector();
 
         /**
          * The meta object literal for the '{@link org.switchyard.tools.models.switchyard1_0.commonselector.impl.StaticOperationSelectorTypeImpl <em>Static Operation Selector Type</em>}' class.

@@ -90,6 +90,7 @@ public class DocumentRootItemProvider
             childrenFeatures.add(RulesPackage.Literals.DOCUMENT_ROOT__IMPLEMENTATION_RULES);
             childrenFeatures.add(RulesPackage.Literals.DOCUMENT_ROOT__MAPPING);
             childrenFeatures.add(RulesPackage.Literals.DOCUMENT_ROOT__RESOURCE);
+            childrenFeatures.add(RulesPackage.Literals.DOCUMENT_ROOT__FACTS);
         }
         return childrenFeatures;
     }
@@ -148,6 +149,7 @@ public class DocumentRootItemProvider
             case RulesPackage.DOCUMENT_ROOT__IMPLEMENTATION_RULES:
             case RulesPackage.DOCUMENT_ROOT__MAPPING:
             case RulesPackage.DOCUMENT_ROOT__RESOURCE:
+            case RulesPackage.DOCUMENT_ROOT__FACTS:
                 fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), true, false));
                 return;
         }
@@ -199,6 +201,11 @@ public class DocumentRootItemProvider
             (createChildParameter
                 (RulesPackage.Literals.DOCUMENT_ROOT__RESOURCE,
                  RulesFactory.eINSTANCE.createResourceType()));
+
+        newChildDescriptors.add
+            (createChildParameter
+                (RulesPackage.Literals.DOCUMENT_ROOT__FACTS,
+                 RulesFactory.eINSTANCE.createFactsType()));
     }
 
     /**

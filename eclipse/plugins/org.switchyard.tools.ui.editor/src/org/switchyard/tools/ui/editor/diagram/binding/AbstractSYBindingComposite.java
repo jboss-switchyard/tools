@@ -828,4 +828,28 @@ public abstract class AbstractSYBindingComposite extends AbstractSwitchyardCompo
         return this._targetObj;
     }
 
+    protected Text getComposerClassText() {
+        return _composerClassText;
+    }
+
+    protected Text getMapperClassText() {
+        return _mapperClassText;
+    }
+
+    protected Text getIncludesText() {
+        return _includesText;
+    }
+
+    protected Text getIncludesNSText() {
+        return _includesNSText;
+    }
+
+    protected Text getExcludesText() {
+        return _excludesText;
+    }
+
+    protected Text getExcludesNSText() {
+        return _excludesNSText;
+    }
+
 }

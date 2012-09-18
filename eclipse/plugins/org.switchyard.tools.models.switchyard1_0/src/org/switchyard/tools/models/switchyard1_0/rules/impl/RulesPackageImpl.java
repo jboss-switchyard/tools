@@ -58,6 +58,8 @@ import org.switchyard.tools.models.switchyard1_0.commonselector.CommonselectorPa
 import org.switchyard.tools.models.switchyard1_0.commonselector.impl.CommonselectorPackageImpl;
 import org.switchyard.tools.models.switchyard1_0.hornetq.HornetQPackage;
 import org.switchyard.tools.models.switchyard1_0.hornetq.impl.HornetQPackageImpl;
+import org.switchyard.tools.models.switchyard1_0.http.HttpPackage;
+import org.switchyard.tools.models.switchyard1_0.http.impl.HttpPackageImpl;
 import org.switchyard.tools.models.switchyard1_0.jca.JcaPackage;
 import org.switchyard.tools.models.switchyard1_0.jca.impl.JcaPackageImpl;
 import org.switchyard.tools.models.switchyard1_0.resteasy.ResteasyPackage;
@@ -67,6 +69,7 @@ import org.switchyard.tools.models.switchyard1_0.rules.ActionType1;
 import org.switchyard.tools.models.switchyard1_0.rules.AuditType;
 import org.switchyard.tools.models.switchyard1_0.rules.ChannelType;
 import org.switchyard.tools.models.switchyard1_0.rules.DocumentRoot;
+import org.switchyard.tools.models.switchyard1_0.rules.FactsType;
 import org.switchyard.tools.models.switchyard1_0.rules.GlobalsType;
 import org.switchyard.tools.models.switchyard1_0.rules.MappingType;
 import org.switchyard.tools.models.switchyard1_0.rules.ResourceType;
@@ -149,6 +152,13 @@ public class RulesPackageImpl extends EPackageImpl implements RulesPackage {
 
 	/**
      * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    private EClass factsTypeEClass = null;
+
+    /**
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
      * @generated
      */
@@ -227,6 +237,7 @@ public class RulesPackageImpl extends EPackageImpl implements RulesPackage {
         JcaPackageImpl theJcaPackage = (JcaPackageImpl)(EPackage.Registry.INSTANCE.getEPackage(JcaPackage.eNS_URI) instanceof JcaPackageImpl ? EPackage.Registry.INSTANCE.getEPackage(JcaPackage.eNS_URI) : JcaPackage.eINSTANCE);
         ResteasyPackageImpl theResteasyPackage = (ResteasyPackageImpl)(EPackage.Registry.INSTANCE.getEPackage(ResteasyPackage.eNS_URI) instanceof ResteasyPackageImpl ? EPackage.Registry.INSTANCE.getEPackage(ResteasyPackage.eNS_URI) : ResteasyPackage.eINSTANCE);
         CommonselectorPackageImpl theCommonselectorPackage = (CommonselectorPackageImpl)(EPackage.Registry.INSTANCE.getEPackage(CommonselectorPackage.eNS_URI) instanceof CommonselectorPackageImpl ? EPackage.Registry.INSTANCE.getEPackage(CommonselectorPackage.eNS_URI) : CommonselectorPackage.eINSTANCE);
+        HttpPackageImpl theHttpPackage = (HttpPackageImpl)(EPackage.Registry.INSTANCE.getEPackage(HttpPackage.eNS_URI) instanceof HttpPackageImpl ? EPackage.Registry.INSTANCE.getEPackage(HttpPackage.eNS_URI) : HttpPackage.eINSTANCE);
 
         // Load packages
         theSpringPackage.loadPackage();
@@ -247,6 +258,7 @@ public class RulesPackageImpl extends EPackageImpl implements RulesPackage {
         theJcaPackage.createPackageContents();
         theResteasyPackage.createPackageContents();
         theCommonselectorPackage.createPackageContents();
+        theHttpPackage.createPackageContents();
 
         // Initialize created meta-data
         theRulesPackage.initializePackageContents();
@@ -264,6 +276,7 @@ public class RulesPackageImpl extends EPackageImpl implements RulesPackage {
         theJcaPackage.initializePackageContents();
         theResteasyPackage.initializePackageContents();
         theCommonselectorPackage.initializePackageContents();
+        theHttpPackage.initializePackageContents();
 
         // Fix loaded packages
         theSpringPackage.fixPackageContents();
@@ -309,7 +322,7 @@ public class RulesPackageImpl extends EPackageImpl implements RulesPackage {
      * <!-- end-user-doc -->
      * @generated
      */
-    public EAttribute getActionType1_EventType() {
+    public EAttribute getActionType1_EntryPoint() {
         return (EAttribute)actionType1EClass.getEStructuralFeatures().get(2);
     }
 
@@ -480,6 +493,15 @@ public class RulesPackageImpl extends EPackageImpl implements RulesPackage {
      * <!-- end-user-doc -->
      * @generated
      */
+    public EReference getDocumentRoot_Facts() {
+        return (EReference)documentRootEClass.getEStructuralFeatures().get(10);
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
     public EClass getGlobalsType() {
         return globalsTypeEClass;
     }
@@ -576,6 +598,33 @@ public class RulesPackageImpl extends EPackageImpl implements RulesPackage {
 
     /**
      * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public EReference getRulesImplementationType_Facts() {
+        return (EReference)rulesImplementationTypeEClass.getEStructuralFeatures().get(6);
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public EClass getFactsType() {
+        return factsTypeEClass;
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public EReference getFactsType_Mapping() {
+        return (EReference)factsTypeEClass.getEStructuralFeatures().get(0);
+    }
+
+    /**
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
      * @generated
      */
@@ -623,7 +672,7 @@ public class RulesPackageImpl extends EPackageImpl implements RulesPackage {
         actionType1EClass = createEClass(ACTION_TYPE1);
         createEAttribute(actionType1EClass, ACTION_TYPE1__NAME);
         createEAttribute(actionType1EClass, ACTION_TYPE1__TYPE);
-        createEAttribute(actionType1EClass, ACTION_TYPE1__EVENT_TYPE);
+        createEAttribute(actionType1EClass, ACTION_TYPE1__ENTRY_POINT);
 
         auditTypeEClass = createEClass(AUDIT_TYPE);
 
@@ -645,6 +694,7 @@ public class RulesPackageImpl extends EPackageImpl implements RulesPackage {
         createEReference(documentRootEClass, DOCUMENT_ROOT__IMPLEMENTATION_RULES);
         createEReference(documentRootEClass, DOCUMENT_ROOT__MAPPING);
         createEReference(documentRootEClass, DOCUMENT_ROOT__RESOURCE);
+        createEReference(documentRootEClass, DOCUMENT_ROOT__FACTS);
 
         globalsTypeEClass = createEClass(GLOBALS_TYPE);
         createEReference(globalsTypeEClass, GLOBALS_TYPE__MAPPING);
@@ -660,6 +710,10 @@ public class RulesPackageImpl extends EPackageImpl implements RulesPackage {
         createEReference(rulesImplementationTypeEClass, RULES_IMPLEMENTATION_TYPE__RESOURCE);
         createEReference(rulesImplementationTypeEClass, RULES_IMPLEMENTATION_TYPE__GLOBALS);
         createEAttribute(rulesImplementationTypeEClass, RULES_IMPLEMENTATION_TYPE__MESSAGE_CONTENT_NAME);
+        createEReference(rulesImplementationTypeEClass, RULES_IMPLEMENTATION_TYPE__FACTS);
+
+        factsTypeEClass = createEClass(FACTS_TYPE);
+        createEReference(factsTypeEClass, FACTS_TYPE__MAPPING);
 
         // Create enums
         actionTypeEEnum = createEEnum(ACTION_TYPE);
@@ -709,12 +763,13 @@ public class RulesPackageImpl extends EPackageImpl implements RulesPackage {
         mappingTypeEClass.getESuperTypes().add(theCommonRulesPackage.getMappingType());
         resourceTypeEClass.getESuperTypes().add(theSwitchyardPackage.getResourceType());
         rulesImplementationTypeEClass.getESuperTypes().add(theCommonRulesPackage.getCommonImplementationType());
+        factsTypeEClass.getESuperTypes().add(theScaPackage.getCommonExtensionBase());
 
         // Initialize classes and features; add operations and parameters
         initEClass(actionType1EClass, ActionType1.class, "ActionType1", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
         initEAttribute(getActionType1_Name(), theXMLTypePackage.getNCName(), "name", null, 1, 1, ActionType1.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
         initEAttribute(getActionType1_Type(), this.getActionType(), "type", null, 1, 1, ActionType1.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-        initEAttribute(getActionType1_EventType(), theXMLTypePackage.getString(), "eventType", null, 0, 1, ActionType1.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+        initEAttribute(getActionType1_EntryPoint(), theXMLTypePackage.getString(), "entryPoint", null, 0, 1, ActionType1.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
         initEClass(auditTypeEClass, AuditType.class, "AuditType", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 
@@ -736,6 +791,7 @@ public class RulesPackageImpl extends EPackageImpl implements RulesPackage {
         initEReference(getDocumentRoot_ImplementationRules(), this.getRulesImplementationType(), null, "implementationRules", null, 0, -2, null, IS_TRANSIENT, IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, IS_DERIVED, IS_ORDERED);
         initEReference(getDocumentRoot_Mapping(), this.getMappingType(), null, "mapping", null, 0, -2, null, IS_TRANSIENT, IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, IS_DERIVED, IS_ORDERED);
         initEReference(getDocumentRoot_Resource(), this.getResourceType(), null, "resource", null, 0, -2, null, IS_TRANSIENT, IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, IS_DERIVED, IS_ORDERED);
+        initEReference(getDocumentRoot_Facts(), this.getFactsType(), null, "facts", null, 0, -2, null, IS_TRANSIENT, IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, IS_DERIVED, IS_ORDERED);
 
         initEClass(globalsTypeEClass, GlobalsType.class, "GlobalsType", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
         initEReference(getGlobalsType_Mapping(), this.getMappingType(), null, "mapping", null, 0, -1, GlobalsType.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
@@ -751,6 +807,10 @@ public class RulesPackageImpl extends EPackageImpl implements RulesPackage {
         initEReference(getRulesImplementationType_Resource(), this.getResourceType(), null, "resource", null, 0, -1, RulesImplementationType.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
         initEReference(getRulesImplementationType_Globals(), this.getGlobalsType(), null, "globals", null, 0, 1, RulesImplementationType.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
         initEAttribute(getRulesImplementationType_MessageContentName(), theXMLTypePackage.getString(), "messageContentName", null, 0, 1, RulesImplementationType.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+        initEReference(getRulesImplementationType_Facts(), this.getFactsType(), null, "facts", null, 0, 1, RulesImplementationType.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+        initEClass(factsTypeEClass, FactsType.class, "FactsType", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+        initEReference(getFactsType_Mapping(), this.getMappingType(), null, "mapping", null, 0, -1, FactsType.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
         // Initialize enums and add enum literals
         initEEnum(actionTypeEEnum, ActionType.class, "ActionType");
@@ -805,10 +865,10 @@ public class RulesPackageImpl extends EPackageImpl implements RulesPackage {
              "kind", "attribute"
            });		
         addAnnotation
-          (getActionType1_EventType(), 
+          (getActionType1_EntryPoint(), 
            source, 
            new String[] {
-             "name", "eventType",
+             "name", "entryPoint",
              "kind", "attribute"
            });		
         addAnnotation
@@ -956,6 +1016,14 @@ public class RulesPackageImpl extends EPackageImpl implements RulesPackage {
              "affiliation", "urn:switchyard-config:switchyard:1.0#resource"
            });		
         addAnnotation
+          (getDocumentRoot_Facts(), 
+           source, 
+           new String[] {
+             "kind", "element",
+             "name", "facts",
+             "namespace", "##targetNamespace"
+           });		
+        addAnnotation
           (globalsTypeEClass, 
            source, 
            new String[] {
@@ -1037,6 +1105,29 @@ public class RulesPackageImpl extends EPackageImpl implements RulesPackage {
            new String[] {
              "name", "messageContentName",
              "kind", "attribute"
+           });		
+        addAnnotation
+          (getRulesImplementationType_Facts(), 
+           source, 
+           new String[] {
+             "kind", "element",
+             "name", "facts",
+             "namespace", "##targetNamespace"
+           });		
+        addAnnotation
+          (factsTypeEClass, 
+           source, 
+           new String[] {
+             "name", "FactsType",
+             "kind", "elementOnly"
+           });		
+        addAnnotation
+          (getFactsType_Mapping(), 
+           source, 
+           new String[] {
+             "kind", "element",
+             "name", "mapping",
+             "namespace", "##targetNamespace"
            });
     }
 

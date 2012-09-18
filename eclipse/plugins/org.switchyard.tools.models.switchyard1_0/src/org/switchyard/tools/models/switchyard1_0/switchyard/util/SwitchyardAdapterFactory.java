@@ -129,6 +129,10 @@ public class SwitchyardAdapterFactory extends AdapterFactoryImpl {
                 return createSwitchYardBindingTypeAdapter();
             }
             @Override
+            public Adapter caseSwitchYardOperationSelectorType(SwitchYardOperationSelectorType object) {
+                return createSwitchYardOperationSelectorTypeAdapter();
+            }
+            @Override
             public Adapter caseSwitchYardType(SwitchYardType object) {
                 return createSwitchYardTypeAdapter();
             }
@@ -147,10 +151,6 @@ public class SwitchyardAdapterFactory extends AdapterFactoryImpl {
             @Override
             public Adapter caseValidateType(ValidateType object) {
                 return createValidateTypeAdapter();
-            }
-            @Override
-            public Adapter caseSwitchYardOperationSelectorType(SwitchYardOperationSelectorType object) {
-                return createSwitchYardOperationSelectorTypeAdapter();
             }
             @Override
             public Adapter caseCommonExtensionBase(CommonExtensionBase object) {

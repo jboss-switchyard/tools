@@ -24,6 +24,9 @@ import org.eclipse.emf.ecore.util.FeatureMap;
  *   <li>{@link org.switchyard.tools.models.switchyard1_0.commonselector.DocumentRoot#getXMLNSPrefixMap <em>XMLNS Prefix Map</em>}</li>
  *   <li>{@link org.switchyard.tools.models.switchyard1_0.commonselector.DocumentRoot#getXSISchemaLocation <em>XSI Schema Location</em>}</li>
  *   <li>{@link org.switchyard.tools.models.switchyard1_0.commonselector.DocumentRoot#getStaticOperationSelector <em>Static Operation Selector</em>}</li>
+ *   <li>{@link org.switchyard.tools.models.switchyard1_0.commonselector.DocumentRoot#getXpathOperationSelector <em>Xpath Operation Selector</em>}</li>
+ *   <li>{@link org.switchyard.tools.models.switchyard1_0.commonselector.DocumentRoot#getRegexOperationSelector <em>Regex Operation Selector</em>}</li>
+ *   <li>{@link org.switchyard.tools.models.switchyard1_0.commonselector.DocumentRoot#getJavaOperationSelector <em>Java Operation Selector</em>}</li>
  * </ul>
  * </p>
  *
@@ -111,5 +114,86 @@ public interface DocumentRoot extends EObject {
      * @generated
      */
     void setStaticOperationSelector(StaticOperationSelectorType value);
+
+    /**
+     * Returns the value of the '<em><b>Xpath Operation Selector</b></em>' containment reference.
+     * <!-- begin-user-doc -->
+     * <p>
+     * If the meaning of the '<em>Xpath Operation Selector</em>' containment reference isn't clear,
+     * there really should be more of a description here...
+     * </p>
+     * <!-- end-user-doc -->
+     * @return the value of the '<em>Xpath Operation Selector</em>' containment reference.
+     * @see #setXpathOperationSelector(XPathOperationSelectorType)
+     * @see org.switchyard.tools.models.switchyard1_0.commonselector.CommonselectorPackage#getDocumentRoot_XpathOperationSelector()
+     * @model containment="true" upper="-2" transient="true" volatile="true" derived="true"
+     *        extendedMetaData="kind='element' name='operationSelector.xpath' namespace='##targetNamespace' affiliation='urn:switchyard-config:switchyard:1.0#operationSelector.switchyard'"
+     * @generated
+     */
+    XPathOperationSelectorType getXpathOperationSelector();
+
+    /**
+     * Sets the value of the '{@link org.switchyard.tools.models.switchyard1_0.commonselector.DocumentRoot#getXpathOperationSelector <em>Xpath Operation Selector</em>}' containment reference.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @param value the new value of the '<em>Xpath Operation Selector</em>' containment reference.
+     * @see #getXpathOperationSelector()
+     * @generated
+     */
+    void setXpathOperationSelector(XPathOperationSelectorType value);
+
+    /**
+     * Returns the value of the '<em><b>Regex Operation Selector</b></em>' containment reference.
+     * <!-- begin-user-doc -->
+     * <p>
+     * If the meaning of the '<em>Regex Operation Selector</em>' containment reference isn't clear,
+     * there really should be more of a description here...
+     * </p>
+     * <!-- end-user-doc -->
+     * @return the value of the '<em>Regex Operation Selector</em>' containment reference.
+     * @see #setRegexOperationSelector(RegexOperationSelectorType)
+     * @see org.switchyard.tools.models.switchyard1_0.commonselector.CommonselectorPackage#getDocumentRoot_RegexOperationSelector()
+     * @model containment="true" upper="-2" transient="true" volatile="true" derived="true"
+     *        extendedMetaData="kind='element' name='operationSelector.regex' namespace='##targetNamespace' affiliation='urn:switchyard-config:switchyard:1.0#operationSelector.switchyard'"
+     * @generated
+     */
+    RegexOperationSelectorType getRegexOperationSelector();
+
+    /**
+     * Sets the value of the '{@link org.switchyard.tools.models.switchyard1_0.commonselector.DocumentRoot#getRegexOperationSelector <em>Regex Operation Selector</em>}' containment reference.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @param value the new value of the '<em>Regex Operation Selector</em>' containment reference.
+     * @see #getRegexOperationSelector()
+     * @generated
+     */
+    void setRegexOperationSelector(RegexOperationSelectorType value);
+
+    /**
+     * Returns the value of the '<em><b>Java Operation Selector</b></em>' containment reference.
+     * <!-- begin-user-doc -->
+     * <p>
+     * If the meaning of the '<em>Java Operation Selector</em>' containment reference isn't clear,
+     * there really should be more of a description here...
+     * </p>
+     * <!-- end-user-doc -->
+     * @return the value of the '<em>Java Operation Selector</em>' containment reference.
+     * @see #setJavaOperationSelector(JavaOperationSelectorType)
+     * @see org.switchyard.tools.models.switchyard1_0.commonselector.CommonselectorPackage#getDocumentRoot_JavaOperationSelector()
+     * @model containment="true" upper="-2" transient="true" volatile="true" derived="true"
+     *        extendedMetaData="kind='element' name='operationSelector.java' namespace='##targetNamespace' affiliation='urn:switchyard-config:switchyard:1.0#operationSelector.switchyard'"
+     * @generated
+     */
+    JavaOperationSelectorType getJavaOperationSelector();
+
+    /**
+     * Sets the value of the '{@link org.switchyard.tools.models.switchyard1_0.commonselector.DocumentRoot#getJavaOperationSelector <em>Java Operation Selector</em>}' containment reference.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @param value the new value of the '<em>Java Operation Selector</em>' containment reference.
+     * @see #getJavaOperationSelector()
+     * @generated
+     */
+    void setJavaOperationSelector(JavaOperationSelectorType value);
 
 } // DocumentRoot

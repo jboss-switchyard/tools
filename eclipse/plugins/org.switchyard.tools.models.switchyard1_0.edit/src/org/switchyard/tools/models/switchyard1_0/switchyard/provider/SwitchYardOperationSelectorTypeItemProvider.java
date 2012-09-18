@@ -26,6 +26,10 @@ import org.eclipse.soa.sca.sca1_1.model.sca.ScaPackage;
 
 import org.eclipse.soa.sca.sca1_1.model.sca.provider.OperationSelectorTypeItemProvider;
 
+import org.switchyard.tools.models.switchyard1_0.commonselector.CommonselectorFactory;
+import org.switchyard.tools.models.switchyard1_0.commonselector.CommonselectorPackage;
+import org.switchyard.tools.models.switchyard1_0.http.HttpFactory;
+import org.switchyard.tools.models.switchyard1_0.http.HttpPackage;
 import org.switchyard.tools.models.switchyard1_0.resteasy.ResteasyFactory;
 import org.switchyard.tools.models.switchyard1_0.resteasy.ResteasyPackage;
 
@@ -109,6 +113,41 @@ public class SwitchYardOperationSelectorTypeItemProvider
                  FeatureMapUtil.createEntry
                     (ResteasyPackage.Literals.DOCUMENT_ROOT__BINDING_REST,
                      ResteasyFactory.eINSTANCE.createRESTBindingType())));
+
+        newChildDescriptors.add
+            (createChildParameter
+                (ScaPackage.eINSTANCE.getOperationSelectorType_Any(),
+                 FeatureMapUtil.createEntry
+                    (CommonselectorPackage.Literals.DOCUMENT_ROOT__STATIC_OPERATION_SELECTOR,
+                     CommonselectorFactory.eINSTANCE.createStaticOperationSelectorType())));
+
+        newChildDescriptors.add
+            (createChildParameter
+                (ScaPackage.eINSTANCE.getOperationSelectorType_Any(),
+                 FeatureMapUtil.createEntry
+                    (CommonselectorPackage.Literals.DOCUMENT_ROOT__XPATH_OPERATION_SELECTOR,
+                     CommonselectorFactory.eINSTANCE.createXPathOperationSelectorType())));
+
+        newChildDescriptors.add
+            (createChildParameter
+                (ScaPackage.eINSTANCE.getOperationSelectorType_Any(),
+                 FeatureMapUtil.createEntry
+                    (CommonselectorPackage.Literals.DOCUMENT_ROOT__REGEX_OPERATION_SELECTOR,
+                     CommonselectorFactory.eINSTANCE.createRegexOperationSelectorType())));
+
+        newChildDescriptors.add
+            (createChildParameter
+                (ScaPackage.eINSTANCE.getOperationSelectorType_Any(),
+                 FeatureMapUtil.createEntry
+                    (CommonselectorPackage.Literals.DOCUMENT_ROOT__JAVA_OPERATION_SELECTOR,
+                     CommonselectorFactory.eINSTANCE.createJavaOperationSelectorType())));
+
+        newChildDescriptors.add
+            (createChildParameter
+                (ScaPackage.eINSTANCE.getOperationSelectorType_Any(),
+                 FeatureMapUtil.createEntry
+                    (HttpPackage.Literals.DOCUMENT_ROOT__BINDING_HTTP,
+                     HttpFactory.eINSTANCE.createHttpBindingType())));
     }
 
 }

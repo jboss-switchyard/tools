@@ -112,13 +112,13 @@ public interface RulesPackage extends EPackage {
     int ACTION_TYPE1__TYPE = ScaPackage.COMMON_EXTENSION_BASE_FEATURE_COUNT + 1;
 
     /**
-     * The feature id for the '<em><b>Event Type</b></em>' attribute.
+     * The feature id for the '<em><b>Entry Point</b></em>' attribute.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @generated
      * @ordered
      */
-    int ACTION_TYPE1__EVENT_TYPE = ScaPackage.COMMON_EXTENSION_BASE_FEATURE_COUNT + 2;
+    int ACTION_TYPE1__ENTRY_POINT = ScaPackage.COMMON_EXTENSION_BASE_FEATURE_COUNT + 2;
 
     /**
      * The number of structural features of the '<em>Action Type1</em>' class.
@@ -376,13 +376,22 @@ public interface RulesPackage extends EPackage {
 	int DOCUMENT_ROOT__RESOURCE = 9;
 
 	/**
+     * The feature id for the '<em><b>Facts</b></em>' containment reference.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int DOCUMENT_ROOT__FACTS = 10;
+
+    /**
      * The number of structural features of the '<em>Document Root</em>' class.
      * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
      * @generated
      * @ordered
      */
-	int DOCUMENT_ROOT_FEATURE_COUNT = 10;
+	int DOCUMENT_ROOT_FEATURE_COUNT = 11;
 
 	/**
      * The meta object id for the '{@link org.switchyard.tools.models.switchyard1_0.rules.impl.GlobalsTypeImpl <em>Globals Type</em>}' class.
@@ -686,15 +695,70 @@ public interface RulesPackage extends EPackage {
     int RULES_IMPLEMENTATION_TYPE__MESSAGE_CONTENT_NAME = CommonRulesPackage.COMMON_IMPLEMENTATION_TYPE_FEATURE_COUNT + 5;
 
     /**
+     * The feature id for the '<em><b>Facts</b></em>' containment reference.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int RULES_IMPLEMENTATION_TYPE__FACTS = CommonRulesPackage.COMMON_IMPLEMENTATION_TYPE_FEATURE_COUNT + 6;
+
+    /**
      * The number of structural features of the '<em>Implementation Type</em>' class.
      * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
      * @generated
      * @ordered
      */
-	int RULES_IMPLEMENTATION_TYPE_FEATURE_COUNT = CommonRulesPackage.COMMON_IMPLEMENTATION_TYPE_FEATURE_COUNT + 6;
+	int RULES_IMPLEMENTATION_TYPE_FEATURE_COUNT = CommonRulesPackage.COMMON_IMPLEMENTATION_TYPE_FEATURE_COUNT + 7;
 
 	/**
+     * The meta object id for the '{@link org.switchyard.tools.models.switchyard1_0.rules.impl.FactsTypeImpl <em>Facts Type</em>}' class.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @see org.switchyard.tools.models.switchyard1_0.rules.impl.FactsTypeImpl
+     * @see org.switchyard.tools.models.switchyard1_0.rules.impl.RulesPackageImpl#getFactsType()
+     * @generated
+     */
+    int FACTS_TYPE = 8;
+
+    /**
+     * The feature id for the '<em><b>Documentation</b></em>' containment reference list.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int FACTS_TYPE__DOCUMENTATION = ScaPackage.COMMON_EXTENSION_BASE__DOCUMENTATION;
+
+    /**
+     * The feature id for the '<em><b>Any Attribute</b></em>' attribute list.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int FACTS_TYPE__ANY_ATTRIBUTE = ScaPackage.COMMON_EXTENSION_BASE__ANY_ATTRIBUTE;
+
+    /**
+     * The feature id for the '<em><b>Mapping</b></em>' containment reference list.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int FACTS_TYPE__MAPPING = ScaPackage.COMMON_EXTENSION_BASE_FEATURE_COUNT + 0;
+
+    /**
+     * The number of structural features of the '<em>Facts Type</em>' class.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int FACTS_TYPE_FEATURE_COUNT = ScaPackage.COMMON_EXTENSION_BASE_FEATURE_COUNT + 1;
+
+    /**
      * The meta object id for the '{@link org.switchyard.tools.models.switchyard1_0.rules.ActionType <em>Action Type</em>}' enum.
      * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -702,7 +766,7 @@ public interface RulesPackage extends EPackage {
      * @see org.switchyard.tools.models.switchyard1_0.rules.impl.RulesPackageImpl#getActionType()
      * @generated
      */
-	int ACTION_TYPE = 8;
+	int ACTION_TYPE = 9;
 
 	/**
      * The meta object id for the '<em>Action Type Object</em>' data type.
@@ -712,7 +776,7 @@ public interface RulesPackage extends EPackage {
      * @see org.switchyard.tools.models.switchyard1_0.rules.impl.RulesPackageImpl#getActionTypeObject()
      * @generated
      */
-	int ACTION_TYPE_OBJECT = 9;
+	int ACTION_TYPE_OBJECT = 10;
 
 
 	/**
@@ -748,15 +812,15 @@ public interface RulesPackage extends EPackage {
     EAttribute getActionType1_Type();
 
     /**
-     * Returns the meta object for the attribute '{@link org.switchyard.tools.models.switchyard1_0.rules.ActionType1#getEventType <em>Event Type</em>}'.
+     * Returns the meta object for the attribute '{@link org.switchyard.tools.models.switchyard1_0.rules.ActionType1#getEntryPoint <em>Entry Point</em>}'.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @return the meta object for the attribute '<em>Event Type</em>'.
-     * @see org.switchyard.tools.models.switchyard1_0.rules.ActionType1#getEventType()
+     * @return the meta object for the attribute '<em>Entry Point</em>'.
+     * @see org.switchyard.tools.models.switchyard1_0.rules.ActionType1#getEntryPoint()
      * @see #getActionType1()
      * @generated
      */
-    EAttribute getActionType1_EventType();
+    EAttribute getActionType1_EntryPoint();
 
     /**
      * Returns the meta object for class '{@link org.switchyard.tools.models.switchyard1_0.rules.AuditType <em>Audit Type</em>}'.
@@ -954,6 +1018,17 @@ public interface RulesPackage extends EPackage {
 	EReference getDocumentRoot_Resource();
 
 	/**
+     * Returns the meta object for the containment reference '{@link org.switchyard.tools.models.switchyard1_0.rules.DocumentRoot#getFacts <em>Facts</em>}'.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @return the meta object for the containment reference '<em>Facts</em>'.
+     * @see org.switchyard.tools.models.switchyard1_0.rules.DocumentRoot#getFacts()
+     * @see #getDocumentRoot()
+     * @generated
+     */
+    EReference getDocumentRoot_Facts();
+
+    /**
      * Returns the meta object for class '{@link org.switchyard.tools.models.switchyard1_0.rules.GlobalsType <em>Globals Type</em>}'.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
@@ -1071,6 +1146,38 @@ public interface RulesPackage extends EPackage {
     EAttribute getRulesImplementationType_MessageContentName();
 
     /**
+     * Returns the meta object for the containment reference '{@link org.switchyard.tools.models.switchyard1_0.rules.RulesImplementationType#getFacts <em>Facts</em>}'.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @return the meta object for the containment reference '<em>Facts</em>'.
+     * @see org.switchyard.tools.models.switchyard1_0.rules.RulesImplementationType#getFacts()
+     * @see #getRulesImplementationType()
+     * @generated
+     */
+    EReference getRulesImplementationType_Facts();
+
+    /**
+     * Returns the meta object for class '{@link org.switchyard.tools.models.switchyard1_0.rules.FactsType <em>Facts Type</em>}'.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @return the meta object for class '<em>Facts Type</em>'.
+     * @see org.switchyard.tools.models.switchyard1_0.rules.FactsType
+     * @generated
+     */
+    EClass getFactsType();
+
+    /**
+     * Returns the meta object for the containment reference list '{@link org.switchyard.tools.models.switchyard1_0.rules.FactsType#getMapping <em>Mapping</em>}'.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @return the meta object for the containment reference list '<em>Mapping</em>'.
+     * @see org.switchyard.tools.models.switchyard1_0.rules.FactsType#getMapping()
+     * @see #getFactsType()
+     * @generated
+     */
+    EReference getFactsType_Mapping();
+
+    /**
      * Returns the meta object for enum '{@link org.switchyard.tools.models.switchyard1_0.rules.ActionType <em>Action Type</em>}'.
      * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -1141,12 +1248,12 @@ public interface RulesPackage extends EPackage {
         EAttribute ACTION_TYPE1__TYPE = eINSTANCE.getActionType1_Type();
 
         /**
-         * The meta object literal for the '<em><b>Event Type</b></em>' attribute feature.
+         * The meta object literal for the '<em><b>Entry Point</b></em>' attribute feature.
          * <!-- begin-user-doc -->
          * <!-- end-user-doc -->
          * @generated
          */
-        EAttribute ACTION_TYPE1__EVENT_TYPE = eINSTANCE.getActionType1_EventType();
+        EAttribute ACTION_TYPE1__ENTRY_POINT = eINSTANCE.getActionType1_EntryPoint();
 
         /**
          * The meta object literal for the '{@link org.switchyard.tools.models.switchyard1_0.rules.impl.AuditTypeImpl <em>Audit Type</em>}' class.
@@ -1299,6 +1406,14 @@ public interface RulesPackage extends EPackage {
 		EReference DOCUMENT_ROOT__RESOURCE = eINSTANCE.getDocumentRoot_Resource();
 
 		/**
+         * The meta object literal for the '<em><b>Facts</b></em>' containment reference feature.
+         * <!-- begin-user-doc -->
+         * <!-- end-user-doc -->
+         * @generated
+         */
+        EReference DOCUMENT_ROOT__FACTS = eINSTANCE.getDocumentRoot_Facts();
+
+        /**
          * The meta object literal for the '{@link org.switchyard.tools.models.switchyard1_0.rules.impl.GlobalsTypeImpl <em>Globals Type</em>}' class.
          * <!-- begin-user-doc -->
          * <!-- end-user-doc -->
@@ -1393,6 +1508,32 @@ public interface RulesPackage extends EPackage {
          * @generated
          */
         EAttribute RULES_IMPLEMENTATION_TYPE__MESSAGE_CONTENT_NAME = eINSTANCE.getRulesImplementationType_MessageContentName();
+
+        /**
+         * The meta object literal for the '<em><b>Facts</b></em>' containment reference feature.
+         * <!-- begin-user-doc -->
+         * <!-- end-user-doc -->
+         * @generated
+         */
+        EReference RULES_IMPLEMENTATION_TYPE__FACTS = eINSTANCE.getRulesImplementationType_Facts();
+
+        /**
+         * The meta object literal for the '{@link org.switchyard.tools.models.switchyard1_0.rules.impl.FactsTypeImpl <em>Facts Type</em>}' class.
+         * <!-- begin-user-doc -->
+         * <!-- end-user-doc -->
+         * @see org.switchyard.tools.models.switchyard1_0.rules.impl.FactsTypeImpl
+         * @see org.switchyard.tools.models.switchyard1_0.rules.impl.RulesPackageImpl#getFactsType()
+         * @generated
+         */
+        EClass FACTS_TYPE = eINSTANCE.getFactsType();
+
+        /**
+         * The meta object literal for the '<em><b>Mapping</b></em>' containment reference list feature.
+         * <!-- begin-user-doc -->
+         * <!-- end-user-doc -->
+         * @generated
+         */
+        EReference FACTS_TYPE__MAPPING = eINSTANCE.getFactsType_Mapping();
 
         /**
          * The meta object literal for the '{@link org.switchyard.tools.models.switchyard1_0.rules.ActionType <em>Action Type</em>}' enum.

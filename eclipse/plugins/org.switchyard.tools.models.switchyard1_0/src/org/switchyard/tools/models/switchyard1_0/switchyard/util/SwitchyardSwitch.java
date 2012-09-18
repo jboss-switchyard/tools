@@ -159,6 +159,13 @@ public class SwitchyardSwitch<T> extends Switch<T> {
                 if (result == null) result = defaultCase(theEObject);
                 return result;
             }
+            case SwitchyardPackage.SWITCH_YARD_OPERATION_SELECTOR_TYPE: {
+                SwitchYardOperationSelectorType switchYardOperationSelectorType = (SwitchYardOperationSelectorType)theEObject;
+                T result = caseSwitchYardOperationSelectorType(switchYardOperationSelectorType);
+                if (result == null) result = caseOperationSelectorType(switchYardOperationSelectorType);
+                if (result == null) result = defaultCase(theEObject);
+                return result;
+            }
             case SwitchyardPackage.SWITCH_YARD_TYPE: {
                 SwitchYardType switchYardType = (SwitchYardType)theEObject;
                 T result = caseSwitchYardType(switchYardType);
@@ -186,13 +193,6 @@ public class SwitchyardSwitch<T> extends Switch<T> {
             case SwitchyardPackage.VALIDATE_TYPE: {
                 ValidateType validateType = (ValidateType)theEObject;
                 T result = caseValidateType(validateType);
-                if (result == null) result = defaultCase(theEObject);
-                return result;
-            }
-            case SwitchyardPackage.SWITCH_YARD_OPERATION_SELECTOR_TYPE: {
-                SwitchYardOperationSelectorType switchYardOperationSelectorType = (SwitchYardOperationSelectorType)theEObject;
-                T result = caseSwitchYardOperationSelectorType(switchYardOperationSelectorType);
-                if (result == null) result = caseOperationSelectorType(switchYardOperationSelectorType);
                 if (result == null) result = defaultCase(theEObject);
                 return result;
             }

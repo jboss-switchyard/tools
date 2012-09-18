@@ -24,6 +24,7 @@ import org.switchyard.tools.models.switchyard1_0.commonrules.CommonImplementatio
  *   <li>{@link org.switchyard.tools.models.switchyard1_0.rules.RulesImplementationType#getResource <em>Resource</em>}</li>
  *   <li>{@link org.switchyard.tools.models.switchyard1_0.rules.RulesImplementationType#getGlobals <em>Globals</em>}</li>
  *   <li>{@link org.switchyard.tools.models.switchyard1_0.rules.RulesImplementationType#getMessageContentName <em>Message Content Name</em>}</li>
+ *   <li>{@link org.switchyard.tools.models.switchyard1_0.rules.RulesImplementationType#getFacts <em>Facts</em>}</li>
  * </ul>
  * </p>
  *
@@ -163,5 +164,32 @@ public interface RulesImplementationType extends CommonImplementationType {
      * @generated
      */
     void setMessageContentName(String value);
+
+    /**
+     * Returns the value of the '<em><b>Facts</b></em>' containment reference.
+     * <!-- begin-user-doc -->
+     * <p>
+     * If the meaning of the '<em>Facts</em>' containment reference isn't clear,
+     * there really should be more of a description here...
+     * </p>
+     * <!-- end-user-doc -->
+     * @return the value of the '<em>Facts</em>' containment reference.
+     * @see #setFacts(FactsType)
+     * @see org.switchyard.tools.models.switchyard1_0.rules.RulesPackage#getRulesImplementationType_Facts()
+     * @model containment="true"
+     *        extendedMetaData="kind='element' name='facts' namespace='##targetNamespace'"
+     * @generated
+     */
+    FactsType getFacts();
+
+    /**
+     * Sets the value of the '{@link org.switchyard.tools.models.switchyard1_0.rules.RulesImplementationType#getFacts <em>Facts</em>}' containment reference.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @param value the new value of the '<em>Facts</em>' containment reference.
+     * @see #getFacts()
+     * @generated
+     */
+    void setFacts(FactsType value);
 
 } // RulesImplementationType

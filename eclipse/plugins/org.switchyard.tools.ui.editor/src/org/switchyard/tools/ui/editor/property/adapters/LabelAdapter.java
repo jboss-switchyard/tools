@@ -27,6 +27,7 @@ import org.switchyard.tools.models.switchyard1_0.camel.CamelSftpBindingType;
 import org.switchyard.tools.models.switchyard1_0.camel.CamelSqlBindingType;
 import org.switchyard.tools.models.switchyard1_0.camel.CamelTimerBindingType;
 import org.switchyard.tools.models.switchyard1_0.hornetq.BindingType;
+import org.switchyard.tools.models.switchyard1_0.http.HttpBindingType;
 import org.switchyard.tools.models.switchyard1_0.jca.JCABinding;
 import org.switchyard.tools.models.switchyard1_0.resteasy.RESTBindingType;
 import org.switchyard.tools.models.switchyard1_0.soap.SOAPBindingType;
@@ -107,6 +108,8 @@ public final class LabelAdapter {
             return "JCA";
         } else if (binding instanceof RESTBindingType) {
             return "REST";
+        } else if (binding instanceof HttpBindingType) {
+            return "HTTP";
         } else {
             return "Unsupported (" + binding.eClass().getClass().getName() + ")";
         }

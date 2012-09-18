@@ -69,6 +69,7 @@ public class RulesFactoryImpl extends EFactoryImpl implements RulesFactory {
             case RulesPackage.MAPPING_TYPE: return createMappingType();
             case RulesPackage.RESOURCE_TYPE: return createResourceType();
             case RulesPackage.RULES_IMPLEMENTATION_TYPE: return createRulesImplementationType();
+            case RulesPackage.FACTS_TYPE: return createFactsType();
             default:
                 throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier");
         }
@@ -189,6 +190,16 @@ public class RulesFactoryImpl extends EFactoryImpl implements RulesFactory {
     }
 
 	/**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public FactsType createFactsType() {
+        FactsTypeImpl factsType = new FactsTypeImpl();
+        return factsType;
+    }
+
+    /**
      * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
      * @generated

@@ -25,7 +25,10 @@ import org.eclipse.emf.ecore.util.InternalEList;
 
 import org.switchyard.tools.models.switchyard1_0.commonselector.CommonselectorPackage;
 import org.switchyard.tools.models.switchyard1_0.commonselector.DocumentRoot;
+import org.switchyard.tools.models.switchyard1_0.commonselector.JavaOperationSelectorType;
+import org.switchyard.tools.models.switchyard1_0.commonselector.RegexOperationSelectorType;
 import org.switchyard.tools.models.switchyard1_0.commonselector.StaticOperationSelectorType;
+import org.switchyard.tools.models.switchyard1_0.commonselector.XPathOperationSelectorType;
 
 /**
  * <!-- begin-user-doc -->
@@ -38,6 +41,9 @@ import org.switchyard.tools.models.switchyard1_0.commonselector.StaticOperationS
  *   <li>{@link org.switchyard.tools.models.switchyard1_0.commonselector.impl.DocumentRootImpl#getXMLNSPrefixMap <em>XMLNS Prefix Map</em>}</li>
  *   <li>{@link org.switchyard.tools.models.switchyard1_0.commonselector.impl.DocumentRootImpl#getXSISchemaLocation <em>XSI Schema Location</em>}</li>
  *   <li>{@link org.switchyard.tools.models.switchyard1_0.commonselector.impl.DocumentRootImpl#getStaticOperationSelector <em>Static Operation Selector</em>}</li>
+ *   <li>{@link org.switchyard.tools.models.switchyard1_0.commonselector.impl.DocumentRootImpl#getXpathOperationSelector <em>Xpath Operation Selector</em>}</li>
+ *   <li>{@link org.switchyard.tools.models.switchyard1_0.commonselector.impl.DocumentRootImpl#getRegexOperationSelector <em>Regex Operation Selector</em>}</li>
+ *   <li>{@link org.switchyard.tools.models.switchyard1_0.commonselector.impl.DocumentRootImpl#getJavaOperationSelector <em>Java Operation Selector</em>}</li>
  * </ul>
  * </p>
  *
@@ -161,6 +167,87 @@ public class DocumentRootImpl extends EObjectImpl implements DocumentRoot {
      * <!-- end-user-doc -->
      * @generated
      */
+    public XPathOperationSelectorType getXpathOperationSelector() {
+        return (XPathOperationSelectorType)getMixed().get(CommonselectorPackage.Literals.DOCUMENT_ROOT__XPATH_OPERATION_SELECTOR, true);
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public NotificationChain basicSetXpathOperationSelector(XPathOperationSelectorType newXpathOperationSelector, NotificationChain msgs) {
+        return ((FeatureMap.Internal)getMixed()).basicAdd(CommonselectorPackage.Literals.DOCUMENT_ROOT__XPATH_OPERATION_SELECTOR, newXpathOperationSelector, msgs);
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public void setXpathOperationSelector(XPathOperationSelectorType newXpathOperationSelector) {
+        ((FeatureMap.Internal)getMixed()).set(CommonselectorPackage.Literals.DOCUMENT_ROOT__XPATH_OPERATION_SELECTOR, newXpathOperationSelector);
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public RegexOperationSelectorType getRegexOperationSelector() {
+        return (RegexOperationSelectorType)getMixed().get(CommonselectorPackage.Literals.DOCUMENT_ROOT__REGEX_OPERATION_SELECTOR, true);
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public NotificationChain basicSetRegexOperationSelector(RegexOperationSelectorType newRegexOperationSelector, NotificationChain msgs) {
+        return ((FeatureMap.Internal)getMixed()).basicAdd(CommonselectorPackage.Literals.DOCUMENT_ROOT__REGEX_OPERATION_SELECTOR, newRegexOperationSelector, msgs);
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public void setRegexOperationSelector(RegexOperationSelectorType newRegexOperationSelector) {
+        ((FeatureMap.Internal)getMixed()).set(CommonselectorPackage.Literals.DOCUMENT_ROOT__REGEX_OPERATION_SELECTOR, newRegexOperationSelector);
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public JavaOperationSelectorType getJavaOperationSelector() {
+        return (JavaOperationSelectorType)getMixed().get(CommonselectorPackage.Literals.DOCUMENT_ROOT__JAVA_OPERATION_SELECTOR, true);
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public NotificationChain basicSetJavaOperationSelector(JavaOperationSelectorType newJavaOperationSelector, NotificationChain msgs) {
+        return ((FeatureMap.Internal)getMixed()).basicAdd(CommonselectorPackage.Literals.DOCUMENT_ROOT__JAVA_OPERATION_SELECTOR, newJavaOperationSelector, msgs);
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public void setJavaOperationSelector(JavaOperationSelectorType newJavaOperationSelector) {
+        ((FeatureMap.Internal)getMixed()).set(CommonselectorPackage.Literals.DOCUMENT_ROOT__JAVA_OPERATION_SELECTOR, newJavaOperationSelector);
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
     @Override
     public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
         switch (featureID) {
@@ -172,6 +259,12 @@ public class DocumentRootImpl extends EObjectImpl implements DocumentRoot {
                 return ((InternalEList<?>)getXSISchemaLocation()).basicRemove(otherEnd, msgs);
             case CommonselectorPackage.DOCUMENT_ROOT__STATIC_OPERATION_SELECTOR:
                 return basicSetStaticOperationSelector(null, msgs);
+            case CommonselectorPackage.DOCUMENT_ROOT__XPATH_OPERATION_SELECTOR:
+                return basicSetXpathOperationSelector(null, msgs);
+            case CommonselectorPackage.DOCUMENT_ROOT__REGEX_OPERATION_SELECTOR:
+                return basicSetRegexOperationSelector(null, msgs);
+            case CommonselectorPackage.DOCUMENT_ROOT__JAVA_OPERATION_SELECTOR:
+                return basicSetJavaOperationSelector(null, msgs);
         }
         return super.eInverseRemove(otherEnd, featureID, msgs);
     }
@@ -195,6 +288,12 @@ public class DocumentRootImpl extends EObjectImpl implements DocumentRoot {
                 else return getXSISchemaLocation().map();
             case CommonselectorPackage.DOCUMENT_ROOT__STATIC_OPERATION_SELECTOR:
                 return getStaticOperationSelector();
+            case CommonselectorPackage.DOCUMENT_ROOT__XPATH_OPERATION_SELECTOR:
+                return getXpathOperationSelector();
+            case CommonselectorPackage.DOCUMENT_ROOT__REGEX_OPERATION_SELECTOR:
+                return getRegexOperationSelector();
+            case CommonselectorPackage.DOCUMENT_ROOT__JAVA_OPERATION_SELECTOR:
+                return getJavaOperationSelector();
         }
         return super.eGet(featureID, resolve, coreType);
     }
@@ -218,6 +317,15 @@ public class DocumentRootImpl extends EObjectImpl implements DocumentRoot {
                 return;
             case CommonselectorPackage.DOCUMENT_ROOT__STATIC_OPERATION_SELECTOR:
                 setStaticOperationSelector((StaticOperationSelectorType)newValue);
+                return;
+            case CommonselectorPackage.DOCUMENT_ROOT__XPATH_OPERATION_SELECTOR:
+                setXpathOperationSelector((XPathOperationSelectorType)newValue);
+                return;
+            case CommonselectorPackage.DOCUMENT_ROOT__REGEX_OPERATION_SELECTOR:
+                setRegexOperationSelector((RegexOperationSelectorType)newValue);
+                return;
+            case CommonselectorPackage.DOCUMENT_ROOT__JAVA_OPERATION_SELECTOR:
+                setJavaOperationSelector((JavaOperationSelectorType)newValue);
                 return;
         }
         super.eSet(featureID, newValue);
@@ -243,6 +351,15 @@ public class DocumentRootImpl extends EObjectImpl implements DocumentRoot {
             case CommonselectorPackage.DOCUMENT_ROOT__STATIC_OPERATION_SELECTOR:
                 setStaticOperationSelector((StaticOperationSelectorType)null);
                 return;
+            case CommonselectorPackage.DOCUMENT_ROOT__XPATH_OPERATION_SELECTOR:
+                setXpathOperationSelector((XPathOperationSelectorType)null);
+                return;
+            case CommonselectorPackage.DOCUMENT_ROOT__REGEX_OPERATION_SELECTOR:
+                setRegexOperationSelector((RegexOperationSelectorType)null);
+                return;
+            case CommonselectorPackage.DOCUMENT_ROOT__JAVA_OPERATION_SELECTOR:
+                setJavaOperationSelector((JavaOperationSelectorType)null);
+                return;
         }
         super.eUnset(featureID);
     }
@@ -263,6 +380,12 @@ public class DocumentRootImpl extends EObjectImpl implements DocumentRoot {
                 return xSISchemaLocation != null && !xSISchemaLocation.isEmpty();
             case CommonselectorPackage.DOCUMENT_ROOT__STATIC_OPERATION_SELECTOR:
                 return getStaticOperationSelector() != null;
+            case CommonselectorPackage.DOCUMENT_ROOT__XPATH_OPERATION_SELECTOR:
+                return getXpathOperationSelector() != null;
+            case CommonselectorPackage.DOCUMENT_ROOT__REGEX_OPERATION_SELECTOR:
+                return getRegexOperationSelector() != null;
+            case CommonselectorPackage.DOCUMENT_ROOT__JAVA_OPERATION_SELECTOR:
+                return getJavaOperationSelector() != null;
         }
         return super.eIsSet(featureID);
     }

@@ -114,6 +114,7 @@ public class RulesImplementationTypeItemProvider
             childrenFeatures.add(RulesPackage.Literals.RULES_IMPLEMENTATION_TYPE__CHANNEL);
             childrenFeatures.add(RulesPackage.Literals.RULES_IMPLEMENTATION_TYPE__RESOURCE);
             childrenFeatures.add(RulesPackage.Literals.RULES_IMPLEMENTATION_TYPE__GLOBALS);
+            childrenFeatures.add(RulesPackage.Literals.RULES_IMPLEMENTATION_TYPE__FACTS);
         }
         return childrenFeatures;
     }
@@ -176,6 +177,7 @@ public class RulesImplementationTypeItemProvider
             case RulesPackage.RULES_IMPLEMENTATION_TYPE__CHANNEL:
             case RulesPackage.RULES_IMPLEMENTATION_TYPE__RESOURCE:
             case RulesPackage.RULES_IMPLEMENTATION_TYPE__GLOBALS:
+            case RulesPackage.RULES_IMPLEMENTATION_TYPE__FACTS:
                 fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), true, false));
                 return;
         }
@@ -217,6 +219,11 @@ public class RulesImplementationTypeItemProvider
             (createChildParameter
                 (RulesPackage.Literals.RULES_IMPLEMENTATION_TYPE__GLOBALS,
                  RulesFactory.eINSTANCE.createGlobalsType()));
+
+        newChildDescriptors.add
+            (createChildParameter
+                (RulesPackage.Literals.RULES_IMPLEMENTATION_TYPE__FACTS,
+                 RulesFactory.eINSTANCE.createFactsType()));
     }
 
     /**

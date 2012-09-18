@@ -18,7 +18,7 @@ import org.eclipse.soa.sca.sca1_1.model.sca.CommonExtensionBase;
  * <ul>
  *   <li>{@link org.switchyard.tools.models.switchyard1_0.rules.ActionType1#getName <em>Name</em>}</li>
  *   <li>{@link org.switchyard.tools.models.switchyard1_0.rules.ActionType1#getType <em>Type</em>}</li>
- *   <li>{@link org.switchyard.tools.models.switchyard1_0.rules.ActionType1#getEventType <em>Event Type</em>}</li>
+ *   <li>{@link org.switchyard.tools.models.switchyard1_0.rules.ActionType1#getEntryPoint <em>Entry Point</em>}</li>
  * </ul>
  * </p>
  *
@@ -86,29 +86,29 @@ public interface ActionType1 extends CommonExtensionBase {
     void setType(ActionType value);
 
     /**
-     * Returns the value of the '<em><b>Event Type</b></em>' attribute.
+     * Returns the value of the '<em><b>Entry Point</b></em>' attribute.
      * <!-- begin-user-doc -->
      * <p>
-     * If the meaning of the '<em>Event Type</em>' attribute isn't clear,
+     * If the meaning of the '<em>Entry Point</em>' attribute isn't clear,
      * there really should be more of a description here...
      * </p>
      * <!-- end-user-doc -->
-     * @return the value of the '<em>Event Type</em>' attribute.
-     * @see #setEventType(String)
-     * @see org.switchyard.tools.models.switchyard1_0.rules.RulesPackage#getActionType1_EventType()
+     * @return the value of the '<em>Entry Point</em>' attribute.
+     * @see #setEntryPoint(String)
+     * @see org.switchyard.tools.models.switchyard1_0.rules.RulesPackage#getActionType1_EntryPoint()
      * @model dataType="org.eclipse.emf.ecore.xml.type.String"
-     *        extendedMetaData="name='eventType' kind='attribute'"
+     *        extendedMetaData="name='entryPoint' kind='attribute'"
      * @generated
      */
-    String getEventType();
+    String getEntryPoint();
 
     /**
-     * Sets the value of the '{@link org.switchyard.tools.models.switchyard1_0.rules.ActionType1#getEventType <em>Event Type</em>}' attribute.
+     * Sets the value of the '{@link org.switchyard.tools.models.switchyard1_0.rules.ActionType1#getEntryPoint <em>Entry Point</em>}' attribute.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @param value the new value of the '<em>Event Type</em>' attribute.
-     * @see #getEventType()
+     * @param value the new value of the '<em>Entry Point</em>' attribute.
+     * @see #getEntryPoint()
      * @generated
      */
-    void setEventType(String value);
+    void setEntryPoint(String value);
 } // ActionType1

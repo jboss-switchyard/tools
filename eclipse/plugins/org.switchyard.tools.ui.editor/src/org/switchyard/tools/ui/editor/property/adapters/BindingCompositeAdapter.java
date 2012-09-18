@@ -24,6 +24,7 @@ import org.switchyard.tools.models.switchyard1_0.camel.CamelNettyTcpBindingType;
 import org.switchyard.tools.models.switchyard1_0.camel.CamelNettyUdpBindingType;
 import org.switchyard.tools.models.switchyard1_0.camel.CamelQuartzBindingType;
 import org.switchyard.tools.models.switchyard1_0.camel.CamelSqlBindingType;
+import org.switchyard.tools.models.switchyard1_0.http.HttpBindingType;
 import org.switchyard.tools.models.switchyard1_0.jca.JCABinding;
 import org.switchyard.tools.models.switchyard1_0.resteasy.RESTBindingType;
 import org.switchyard.tools.models.switchyard1_0.soap.SOAPBindingType;
@@ -36,6 +37,7 @@ import org.switchyard.tools.ui.editor.components.camel.netty.CamelNettyTCPCompos
 import org.switchyard.tools.ui.editor.components.camel.netty.CamelNettyUDPComposite;
 import org.switchyard.tools.ui.editor.components.camel.quartz.CamelQuartzComposite;
 import org.switchyard.tools.ui.editor.components.camel.sql.CamelSQLComposite;
+import org.switchyard.tools.ui.editor.components.http.HttpBindingComposite;
 import org.switchyard.tools.ui.editor.components.jca.JCABindingInboundComposite;
 import org.switchyard.tools.ui.editor.components.jca.JCABindingOutboundComposite;
 import org.switchyard.tools.ui.editor.components.resteasy.ResteasyBindingComposite;
@@ -114,6 +116,11 @@ public final class BindingCompositeAdapter {
             GridData wsdlGD = new GridData(SWT.FILL, SWT.FILL, true, true);
             composite.setRootGridData(wsdlGD);
             ((ResteasyBindingComposite) composite).setTargetObject(object.eContainer());
+        } else if (object instanceof HttpBindingType) {
+            composite = new HttpBindingComposite();
+            GridData wsdlGD = new GridData(SWT.FILL, SWT.FILL, true, true);
+            composite.setRootGridData(wsdlGD);
+            ((HttpBindingComposite) composite).setTargetObject(object.eContainer());
         } else if (object instanceof JCABinding) {
             JCABinding binding = (JCABinding) object;
             if (binding.eContainer() instanceof Service) {

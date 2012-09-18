@@ -260,6 +260,29 @@ public class RulesItemProviderAdapterFactory extends RulesAdapterFactory impleme
     }
 
     /**
+     * This keeps track of the one adapter used for all {@link org.switchyard.tools.models.switchyard1_0.rules.FactsType} instances.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    protected FactsTypeItemProvider factsTypeItemProvider;
+
+    /**
+     * This creates an adapter for a {@link org.switchyard.tools.models.switchyard1_0.rules.FactsType}.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    @Override
+    public Adapter createFactsTypeAdapter() {
+        if (factsTypeItemProvider == null) {
+            factsTypeItemProvider = new FactsTypeItemProvider(this);
+        }
+
+        return factsTypeItemProvider;
+    }
+
+    /**
      * This returns the root adapter factory that contains this factory.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
@@ -366,6 +389,7 @@ public class RulesItemProviderAdapterFactory extends RulesAdapterFactory impleme
         if (mappingTypeItemProvider != null) mappingTypeItemProvider.dispose();
         if (resourceTypeItemProvider != null) resourceTypeItemProvider.dispose();
         if (rulesImplementationTypeItemProvider != null) rulesImplementationTypeItemProvider.dispose();
+        if (factsTypeItemProvider != null) factsTypeItemProvider.dispose();
     }
 
 }

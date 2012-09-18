@@ -27,6 +27,7 @@ import org.switchyard.tools.models.switchyard1_0.rules.ActionType1;
 import org.switchyard.tools.models.switchyard1_0.rules.AuditType;
 import org.switchyard.tools.models.switchyard1_0.rules.ChannelType;
 import org.switchyard.tools.models.switchyard1_0.rules.DocumentRoot;
+import org.switchyard.tools.models.switchyard1_0.rules.FactsType;
 import org.switchyard.tools.models.switchyard1_0.rules.GlobalsType;
 import org.switchyard.tools.models.switchyard1_0.rules.MappingType;
 import org.switchyard.tools.models.switchyard1_0.rules.ResourceType;
@@ -50,6 +51,7 @@ import org.switchyard.tools.models.switchyard1_0.rules.RulesPackage;
  *   <li>{@link org.switchyard.tools.models.switchyard1_0.rules.impl.DocumentRootImpl#getImplementationRules <em>Implementation Rules</em>}</li>
  *   <li>{@link org.switchyard.tools.models.switchyard1_0.rules.impl.DocumentRootImpl#getMapping <em>Mapping</em>}</li>
  *   <li>{@link org.switchyard.tools.models.switchyard1_0.rules.impl.DocumentRootImpl#getResource <em>Resource</em>}</li>
+ *   <li>{@link org.switchyard.tools.models.switchyard1_0.rules.impl.DocumentRootImpl#getFacts <em>Facts</em>}</li>
  * </ul>
  * </p>
  *
@@ -332,6 +334,33 @@ public class DocumentRootImpl extends EObjectImpl implements DocumentRoot {
 
 	/**
      * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public FactsType getFacts() {
+        return (FactsType)getMixed().get(RulesPackage.Literals.DOCUMENT_ROOT__FACTS, true);
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public NotificationChain basicSetFacts(FactsType newFacts, NotificationChain msgs) {
+        return ((FeatureMap.Internal)getMixed()).basicAdd(RulesPackage.Literals.DOCUMENT_ROOT__FACTS, newFacts, msgs);
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public void setFacts(FactsType newFacts) {
+        ((FeatureMap.Internal)getMixed()).set(RulesPackage.Literals.DOCUMENT_ROOT__FACTS, newFacts);
+    }
+
+    /**
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
      * @generated
      */
@@ -358,6 +387,8 @@ public class DocumentRootImpl extends EObjectImpl implements DocumentRoot {
                 return basicSetMapping(null, msgs);
             case RulesPackage.DOCUMENT_ROOT__RESOURCE:
                 return basicSetResource(null, msgs);
+            case RulesPackage.DOCUMENT_ROOT__FACTS:
+                return basicSetFacts(null, msgs);
         }
         return super.eInverseRemove(otherEnd, featureID, msgs);
     }
@@ -393,6 +424,8 @@ public class DocumentRootImpl extends EObjectImpl implements DocumentRoot {
                 return getMapping();
             case RulesPackage.DOCUMENT_ROOT__RESOURCE:
                 return getResource();
+            case RulesPackage.DOCUMENT_ROOT__FACTS:
+                return getFacts();
         }
         return super.eGet(featureID, resolve, coreType);
     }
@@ -434,6 +467,9 @@ public class DocumentRootImpl extends EObjectImpl implements DocumentRoot {
                 return;
             case RulesPackage.DOCUMENT_ROOT__RESOURCE:
                 setResource((ResourceType)newValue);
+                return;
+            case RulesPackage.DOCUMENT_ROOT__FACTS:
+                setFacts((FactsType)newValue);
                 return;
         }
         super.eSet(featureID, newValue);
@@ -477,6 +513,9 @@ public class DocumentRootImpl extends EObjectImpl implements DocumentRoot {
             case RulesPackage.DOCUMENT_ROOT__RESOURCE:
                 setResource((ResourceType)null);
                 return;
+            case RulesPackage.DOCUMENT_ROOT__FACTS:
+                setFacts((FactsType)null);
+                return;
         }
         super.eUnset(featureID);
     }
@@ -509,6 +548,8 @@ public class DocumentRootImpl extends EObjectImpl implements DocumentRoot {
                 return getMapping() != null;
             case RulesPackage.DOCUMENT_ROOT__RESOURCE:
                 return getResource() != null;
+            case RulesPackage.DOCUMENT_ROOT__FACTS:
+                return getFacts() != null;
         }
         return super.eIsSet(featureID);
     }

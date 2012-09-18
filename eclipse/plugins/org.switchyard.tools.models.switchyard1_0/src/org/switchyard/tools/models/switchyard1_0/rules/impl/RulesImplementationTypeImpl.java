@@ -27,6 +27,7 @@ import org.switchyard.tools.models.switchyard1_0.commonrules.impl.CommonImplemen
 import org.switchyard.tools.models.switchyard1_0.rules.ActionType1;
 import org.switchyard.tools.models.switchyard1_0.rules.AuditType;
 import org.switchyard.tools.models.switchyard1_0.rules.ChannelType;
+import org.switchyard.tools.models.switchyard1_0.rules.FactsType;
 import org.switchyard.tools.models.switchyard1_0.rules.GlobalsType;
 import org.switchyard.tools.models.switchyard1_0.rules.ResourceType;
 import org.switchyard.tools.models.switchyard1_0.rules.RulesImplementationType;
@@ -45,6 +46,7 @@ import org.switchyard.tools.models.switchyard1_0.rules.RulesPackage;
  *   <li>{@link org.switchyard.tools.models.switchyard1_0.rules.impl.RulesImplementationTypeImpl#getResource <em>Resource</em>}</li>
  *   <li>{@link org.switchyard.tools.models.switchyard1_0.rules.impl.RulesImplementationTypeImpl#getGlobals <em>Globals</em>}</li>
  *   <li>{@link org.switchyard.tools.models.switchyard1_0.rules.impl.RulesImplementationTypeImpl#getMessageContentName <em>Message Content Name</em>}</li>
+ *   <li>{@link org.switchyard.tools.models.switchyard1_0.rules.impl.RulesImplementationTypeImpl#getFacts <em>Facts</em>}</li>
  * </ul>
  * </p>
  *
@@ -120,6 +122,16 @@ public class RulesImplementationTypeImpl extends CommonImplementationTypeImpl im
      * @ordered
      */
     protected String messageContentName = MESSAGE_CONTENT_NAME_EDEFAULT;
+
+    /**
+     * The cached value of the '{@link #getFacts() <em>Facts</em>}' containment reference.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @see #getFacts()
+     * @generated
+     * @ordered
+     */
+    protected FactsType facts;
 
     /**
      * <!-- begin-user-doc -->
@@ -285,6 +297,49 @@ public class RulesImplementationTypeImpl extends CommonImplementationTypeImpl im
 
     /**
      * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public FactsType getFacts() {
+        return facts;
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public NotificationChain basicSetFacts(FactsType newFacts, NotificationChain msgs) {
+        FactsType oldFacts = facts;
+        facts = newFacts;
+        if (eNotificationRequired()) {
+            ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, RulesPackage.RULES_IMPLEMENTATION_TYPE__FACTS, oldFacts, newFacts);
+            if (msgs == null) msgs = notification; else msgs.add(notification);
+        }
+        return msgs;
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public void setFacts(FactsType newFacts) {
+        if (newFacts != facts) {
+            NotificationChain msgs = null;
+            if (facts != null)
+                msgs = ((InternalEObject)facts).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - RulesPackage.RULES_IMPLEMENTATION_TYPE__FACTS, null, msgs);
+            if (newFacts != null)
+                msgs = ((InternalEObject)newFacts).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - RulesPackage.RULES_IMPLEMENTATION_TYPE__FACTS, null, msgs);
+            msgs = basicSetFacts(newFacts, msgs);
+            if (msgs != null) msgs.dispatch();
+        }
+        else if (eNotificationRequired())
+            eNotify(new ENotificationImpl(this, Notification.SET, RulesPackage.RULES_IMPLEMENTATION_TYPE__FACTS, newFacts, newFacts));
+    }
+
+    /**
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
      * @generated
      */
@@ -301,6 +356,8 @@ public class RulesImplementationTypeImpl extends CommonImplementationTypeImpl im
                 return ((InternalEList<?>)getResource()).basicRemove(otherEnd, msgs);
             case RulesPackage.RULES_IMPLEMENTATION_TYPE__GLOBALS:
                 return basicSetGlobals(null, msgs);
+            case RulesPackage.RULES_IMPLEMENTATION_TYPE__FACTS:
+                return basicSetFacts(null, msgs);
         }
         return super.eInverseRemove(otherEnd, featureID, msgs);
     }
@@ -325,6 +382,8 @@ public class RulesImplementationTypeImpl extends CommonImplementationTypeImpl im
                 return getGlobals();
             case RulesPackage.RULES_IMPLEMENTATION_TYPE__MESSAGE_CONTENT_NAME:
                 return getMessageContentName();
+            case RulesPackage.RULES_IMPLEMENTATION_TYPE__FACTS:
+                return getFacts();
         }
         return super.eGet(featureID, resolve, coreType);
     }
@@ -359,6 +418,9 @@ public class RulesImplementationTypeImpl extends CommonImplementationTypeImpl im
             case RulesPackage.RULES_IMPLEMENTATION_TYPE__MESSAGE_CONTENT_NAME:
                 setMessageContentName((String)newValue);
                 return;
+            case RulesPackage.RULES_IMPLEMENTATION_TYPE__FACTS:
+                setFacts((FactsType)newValue);
+                return;
         }
         super.eSet(featureID, newValue);
     }
@@ -389,6 +451,9 @@ public class RulesImplementationTypeImpl extends CommonImplementationTypeImpl im
             case RulesPackage.RULES_IMPLEMENTATION_TYPE__MESSAGE_CONTENT_NAME:
                 setMessageContentName(MESSAGE_CONTENT_NAME_EDEFAULT);
                 return;
+            case RulesPackage.RULES_IMPLEMENTATION_TYPE__FACTS:
+                setFacts((FactsType)null);
+                return;
         }
         super.eUnset(featureID);
     }
@@ -413,6 +478,8 @@ public class RulesImplementationTypeImpl extends CommonImplementationTypeImpl im
                 return globals != null;
             case RulesPackage.RULES_IMPLEMENTATION_TYPE__MESSAGE_CONTENT_NAME:
                 return MESSAGE_CONTENT_NAME_EDEFAULT == null ? messageContentName != null : !MESSAGE_CONTENT_NAME_EDEFAULT.equals(messageContentName);
+            case RulesPackage.RULES_IMPLEMENTATION_TYPE__FACTS:
+                return facts != null;
         }
         return super.eIsSet(featureID);
     }

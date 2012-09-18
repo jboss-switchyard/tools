@@ -98,6 +98,15 @@ public interface RulesFactory extends EFactory {
 	RulesImplementationType createRulesImplementationType();
 
 	/**
+     * Returns a new object of class '<em>Facts Type</em>'.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @return a new object of class '<em>Facts Type</em>'.
+     * @generated
+     */
+    FactsType createFactsType();
+
+    /**
      * Returns the package supported by this factory.
      * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
