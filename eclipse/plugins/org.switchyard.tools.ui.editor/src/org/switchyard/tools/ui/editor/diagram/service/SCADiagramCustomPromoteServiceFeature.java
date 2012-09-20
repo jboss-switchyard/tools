@@ -29,8 +29,9 @@ import org.eclipse.soa.sca.sca1_1.model.sca.Service;
 import org.eclipse.swt.widgets.Shell;
 import org.eclipse.ui.PlatformUI;
 import org.switchyard.tools.ui.editor.ImageProvider;
-import org.switchyard.tools.ui.editor.diagram.StyleUtil;
+import org.switchyard.tools.ui.editor.diagram.composite.SCADiagramAddCompositeFeature;
 import org.switchyard.tools.ui.editor.diagram.shared.BaseNewContractWizard;
+import org.switchyard.tools.ui.editor.model.merge.MergedModelUtil;
 
 /**
  * @author bfitzpat
@@ -76,17 +77,15 @@ public class SCADiagramCustomPromoteServiceFeature extends AbstractCustomFeature
             return;
         }
 
-        Composite composite = (Composite) componentService.eContainer().eContainer();
+        Composite composite = MergedModelUtil.getSwitchYard(componentService).getComposite();
         composite.getService().add(newService);
 
         ContainerShape compositeShape = (ContainerShape) getFeatureProvider().getPictogramElementForBusinessObject(
                 composite);
 
-        AddContext addServiceContext = new AddContext();
+        AddContext addServiceContext = SCADiagramAddCompositeFeature.createServiceAddContext(getFeatureProvider(),
+                compositeShape);
         addServiceContext.setNewObject(newService);
-        addServiceContext.setTargetContainer(compositeShape);
-        addServiceContext.setX(0);
-        addServiceContext.setY(compositeShape.getGraphicsAlgorithm().getY() + 3 * StyleUtil.COMPOSITE_EDGE);
         Shape serviceShape = (Shape) addGraphicalRepresentation(addServiceContext, newService);
         _hasDoneChanges = serviceShape != null;
     }

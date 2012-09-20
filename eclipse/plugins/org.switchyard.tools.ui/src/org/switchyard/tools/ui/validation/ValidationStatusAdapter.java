@@ -36,7 +36,7 @@ public class ValidationStatusAdapter extends AdapterImpl {
 
     @Override
     public boolean isAdapterForType(Object type) {
-        return type instanceof Class && getClass().isAssignableFrom((Class<?>) type);
+        return type instanceof Class && ((Class<?>) type).isAssignableFrom(getClass());
     }
 
     /**

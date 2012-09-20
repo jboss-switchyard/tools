@@ -74,13 +74,24 @@ public class SwitchYardBuildParticipant extends MojoExecutionBuildParticipant {
         for (File scanDirectory : scanDirectories) {
             Scanner scanner = buildContext.newScanner(scanDirectory);
             String scanPath = scanDirectory.getCanonicalPath();
+            String[] excludes = null;
             if (outputFilePath.startsWith(scanPath)) {
                 // we'll be changing this file and we don't want any infinite
                 // build loops
-                scanner.setExcludes(new String[] {outputFilePath.substring(scanPath.length()) });
+                excludes = new String[] {outputFilePath.substring(scanPath.length()) };
+                scanner.setExcludes(excludes);
             }
             scanner.scan();
             String[] includedFiles = scanner.getIncludedFiles();
+            if (includedFiles != null && includedFiles.length > 0) {
+                return performBuild(outputFile, kind, monitor);
+            }
+            scanner = buildContext.newDeleteScanner(scanDirectory);
+            if (excludes != null) {
+                scanner.setExcludes(excludes);
+            }
+            scanner.scan();
+            includedFiles = scanner.getIncludedFiles();
             if (includedFiles != null && includedFiles.length > 0) {
                 return performBuild(outputFile, kind, monitor);
             }

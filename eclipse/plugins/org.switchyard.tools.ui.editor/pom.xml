@@ -9,7 +9,7 @@
   </parent>
   <artifactId>org.switchyard.tools.ui.editor</artifactId>
   <packaging>eclipse-plugin</packaging>
-  <name>SwitchYard: SwitchYard SCA Plugin</name>
-  <description>SwitchYard SCA plugin.</description>
+  <name>SwitchYard: SwitchYard Configuration Editor Plugin</name>
+  <description>SwitchYard configuration editor plugin.</description>
 
 </project>

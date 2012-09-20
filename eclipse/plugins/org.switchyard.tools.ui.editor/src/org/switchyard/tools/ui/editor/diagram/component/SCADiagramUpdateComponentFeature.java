@@ -28,6 +28,7 @@ import org.eclipse.graphiti.features.context.impl.RemoveContext;
 import org.eclipse.graphiti.features.context.impl.UpdateContext;
 import org.eclipse.graphiti.features.impl.AbstractUpdateFeature;
 import org.eclipse.graphiti.features.impl.Reason;
+import org.eclipse.graphiti.internal.services.GraphitiInternal;
 import org.eclipse.graphiti.mm.algorithms.Text;
 import org.eclipse.graphiti.mm.pictograms.ContainerShape;
 import org.eclipse.graphiti.mm.pictograms.PictogramElement;
@@ -37,12 +38,15 @@ import org.eclipse.soa.sca.sca1_1.model.sca.Component;
 import org.eclipse.soa.sca.sca1_1.model.sca.ComponentReference;
 import org.eclipse.soa.sca.sca1_1.model.sca.ComponentService;
 import org.switchyard.tools.ui.editor.diagram.StyleUtil;
+import org.switchyard.tools.ui.editor.model.merge.ComponentMergedModelAdapter;
+import org.switchyard.tools.ui.editor.model.merge.MergedModelUtil;
 import org.switchyard.tools.ui.editor.util.GraphitiUtil;
 
 /**
  * @author bfitzpat
  * 
  */
+@SuppressWarnings("restriction")
 public class SCADiagramUpdateComponentFeature extends AbstractUpdateFeature {
 
     private boolean _hasDoneChanges;
@@ -63,18 +67,24 @@ public class SCADiagramUpdateComponentFeature extends AbstractUpdateFeature {
 
     @Override
     public IReason updateNeeded(IUpdateContext context) {
+        PictogramElement pictogramElement = context.getPictogramElement();
+
+        Component component = (Component) getBusinessObjectForPictogramElement(pictogramElement);
+
+        // make sure the component still exists in the model
+        if (!GraphitiInternal.getEmfService().isObjectAlive(component)) {
+            return Reason.createTrueReason(String.format("Component {0} has been removed.", component.getName()));
+        }
+
+        // retrieve name from business model
+        String businessName = component.getName();
+
         // retrieve name from pictogram model
         String pictogramName = null;
-        PictogramElement pictogramElement = context.getPictogramElement();
         Text foundText = GraphitiUtil.findChildGA(pictogramElement.getGraphicsAlgorithm(), Text.class);
         if (foundText != null) {
             pictogramName = foundText.getValue();
         }
-
-        // retrieve name from business model
-        String businessName = null;
-        Component component = (Component) getBusinessObjectForPictogramElement(pictogramElement);
-        businessName = component.getName();
 
         // update needed, if names are different
         boolean updateNameNeeded = pictogramName == null ? businessName != null : !pictogramName.equals(businessName);
@@ -94,6 +104,17 @@ public class SCADiagramUpdateComponentFeature extends AbstractUpdateFeature {
         // retrieve name from business model
         PictogramElement pictogramElement = context.getPictogramElement();
         Component component = (Component) getBusinessObjectForPictogramElement(pictogramElement);
+
+        // remove it if it's gone
+        if (!GraphitiInternal.getEmfService().isObjectAlive(component)) {
+            IRemoveContext removeContext = new RemoveContext(pictogramElement);
+            final IRemoveFeature removeFeature = getFeatureProvider().getRemoveFeature(removeContext);
+            if (removeFeature != null && removeFeature.canRemove(removeContext)) {
+                removeFeature.remove(removeContext);
+                return true;
+            }
+        }
+
         String businessName = component.getName();
 
         Text text = GraphitiUtil.findChildGA(pictogramElement.getGraphicsAlgorithm(), Text.class);
@@ -121,7 +142,7 @@ public class SCADiagramUpdateComponentFeature extends AbstractUpdateFeature {
 
     private boolean updateChildren(Component component, ContainerShape containerShape) {
         boolean changed = false;
-        List<EObject> children = component.eContents();
+        List<EObject> children = getChildren(component);
         for (Shape shape : new ArrayList<Shape>(containerShape.getChildren())) {
             if (children.contains(getBusinessObjectForPictogramElement(shape))) {
                 UpdateContext updateContext = new UpdateContext(shape);
@@ -146,15 +167,14 @@ public class SCADiagramUpdateComponentFeature extends AbstractUpdateFeature {
         boolean changed = false;
 
         AddContext addServiceContext = new AddContext();
-        addServiceContext.setX(0);
-        addServiceContext.setY(36 + StyleUtil.COMPONENT_CHILD_V_SPACING
+        addServiceContext.setX(StyleUtil.COMPONENT_EDGE - 8);
+        addServiceContext.setY(2 * StyleUtil.COMPONENT_EDGE + StyleUtil.COMPONENT_CHILD_V_SPACING
                 * getChildShapeCount(containerShape, ComponentService.class));
         addServiceContext.setTargetContainer(containerShape);
 
         AddContext addReferenceContext = new AddContext();
-        addReferenceContext.setX(containerShape.getGraphicsAlgorithm().getWidth()
-                - StyleUtil.COMPONENT_INVISIBLE_RECT_RIGHT);
-        addReferenceContext.setY(16 + StyleUtil.COMPONENT_CHILD_V_SPACING
+        addReferenceContext.setX(containerShape.getGraphicsAlgorithm().getWidth() - StyleUtil.COMPONENT_EDGE - 8);
+        addReferenceContext.setY(2 * StyleUtil.COMPONENT_EDGE + StyleUtil.COMPONENT_CHILD_V_SPACING
                 * getChildShapeCount(containerShape, ComponentReference.class));
         addReferenceContext.setTargetContainer(containerShape);
 
@@ -181,30 +201,40 @@ public class SCADiagramUpdateComponentFeature extends AbstractUpdateFeature {
     }
 
     private List<EObject> getMissingChildren(Component component, ContainerShape containerShape) {
-        List<EObject> children = new ArrayList<EObject>();
-        children.addAll(component.getService());
-        children.addAll(component.getReference());
-
+        List<EObject> children = getChildren(component);
         for (Shape shape : containerShape.getChildren()) {
-            children.removeAll(Arrays.asList(Graphiti.getLinkService().getBusinessObjectForLinkedPictogramElement(shape)));
+            children.removeAll(Arrays.asList(Graphiti.getLinkService()
+                    .getBusinessObjectForLinkedPictogramElement(shape)));
         }
 
         return children;
     }
 
     private IReason childrenNeedUpdating(Component component, ContainerShape containerShape) {
-        List<EObject> children = component.eContents();
+        List<EObject> children = getChildren(component);
         for (Shape shape : containerShape.getChildren()) {
             if (children.contains(getBusinessObjectForPictogramElement(shape))) {
                 UpdateContext updateContext = new UpdateContext(shape);
                 IUpdateFeature updateFeature = getFeatureProvider().getUpdateFeature(updateContext);
-                if (updateFeature != null && updateFeature.updateNeeded(updateContext).toBoolean()) {
-                    return Reason.createTrueReason();
+                if (updateFeature != null) {
+                    IReason reason = updateFeature.updateNeeded(updateContext);
+                    if (reason.toBoolean()) {
+                        return reason;
+                    }
                 }
             } else {
-                return Reason.createTrueReason();
+                return Reason.createTrueReason("Add missing children.");
             }
         }
         return Reason.createFalseReason();
+    }
+
+    private List<EObject> getChildren(Component component) {
+        List<EObject> children = new ArrayList<EObject>();
+        ComponentMergedModelAdapter mergedComponent = MergedModelUtil.getAdapter(component,
+                ComponentMergedModelAdapter.class);
+        children.addAll(mergedComponent.getServices());
+        children.addAll(mergedComponent.getReferences());
+        return children;
     }
 }

@@ -35,6 +35,7 @@ import org.switchyard.tools.models.switchyard1_0.transform.SmooksTransformType1;
 import org.switchyard.tools.models.switchyard1_0.transform.TransformPackage;
 import org.switchyard.tools.models.switchyard1_0.transform.XsltTransformType;
 import org.switchyard.tools.ui.editor.ImageProvider;
+import org.switchyard.tools.ui.editor.model.merge.MergedModelUtil;
 import org.switchyard.tools.ui.editor.transform.wizards.AddTransformWizard;
 
 /**
@@ -68,11 +69,7 @@ public class CustomAddTransformFeature extends AbstractCustomFeature {
                     int rtn_code = wizDialog.open();
                     if (rtn_code == Window.OK) {
                         TransformType transform = wizard.getTransform();
-                        EObject bo = (EObject) startbo;
-                        while (bo != null && !(bo instanceof SwitchYardType)) {
-                            bo = bo.eContainer();
-                        }
-                        SwitchYardType switchYardRoot = (SwitchYardType) bo;
+                        SwitchYardType switchYardRoot = MergedModelUtil.getSwitchYard((EObject) startbo);
                         TransformsType transforms = switchYardRoot.getTransforms();
                         if (transforms == null) {
                             switchYardRoot.setTransforms(SwitchyardFactory.eINSTANCE.createTransformsType());

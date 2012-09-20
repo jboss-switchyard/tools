@@ -74,6 +74,9 @@ public class ImageProvider extends AbstractImageProvider {
     /** Image for SwitchYard override. **/
     public static final String IMG_16_SWITCHYARD = PREFIX + "SwitchYard" + DOT16;
 
+    /** Image for synchronize command. **/
+    public static final String IMG_16_SYNCHRONIZE = PREFIX + "synchronize" + DOT16;
+
     @Override
     protected void addAvailableImages() {
         addImageFilePath(IMG_16_COMPOSITE, ICONS_16 + "Composite.gif");
@@ -89,6 +92,7 @@ public class ImageProvider extends AbstractImageProvider {
         addImageFilePath(IMG_16_INTERFACE, ICONS_16 + "interface.gif");
         addImageFilePath(IMG_16_INTERFACE_OVERRIDE, ICONS_16 + "interface_override.gif");
         addImageFilePath(IMG_16_SWITCHYARD, ICONS_16 + "switchyard_icon_16px.png");
+        addImageFilePath(IMG_16_SYNCHRONIZE, ICONS_16 + "synchronize.gif");
     }
 
 }

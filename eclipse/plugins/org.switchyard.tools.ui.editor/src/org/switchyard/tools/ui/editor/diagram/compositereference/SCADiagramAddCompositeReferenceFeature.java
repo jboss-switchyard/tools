@@ -114,7 +114,11 @@ public class SCADiagramAddCompositeReferenceFeature extends AbstractAddShapeFeat
         gaService.setLocationAndSize(text, left + 10, 0, right - left - 10, height);
 
         layoutPictogramElement(containerShape);
-        updatePictogramElement(containerShape);
+        if (updatePictogramElementNeeded(containerShape)) {
+            // need to check otherwise, if no work is done, we'll nuke the
+            // previous item on the undo stack
+            updatePictogramElement(containerShape);
+        }
 
         return containerShape;
 

@@ -16,6 +16,7 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
+import org.eclipse.emf.ecore.EObject;
 import org.eclipse.graphiti.dt.IDiagramTypeProvider;
 import org.eclipse.graphiti.features.IAddFeature;
 import org.eclipse.graphiti.features.ICreateConnectionFeature;
@@ -96,6 +97,7 @@ import org.switchyard.tools.ui.editor.diagram.composite.SCADiagramAddCompositeFe
 import org.switchyard.tools.ui.editor.diagram.composite.SCADiagramDeleteCompositeFeature;
 import org.switchyard.tools.ui.editor.diagram.composite.SCADiagramDirectEditCompositeFeature;
 import org.switchyard.tools.ui.editor.diagram.composite.SCADiagramLayoutCompositeFeature;
+import org.switchyard.tools.ui.editor.diagram.composite.SCADiagramResizeCompositeFeature;
 import org.switchyard.tools.ui.editor.diagram.composite.SCADiagramUpdateCompositeFeature;
 import org.switchyard.tools.ui.editor.diagram.compositereference.SCADiagramAddCompositeReferenceFeature;
 import org.switchyard.tools.ui.editor.diagram.compositereference.SCADiagramCreateCompositeReferenceFeature;
@@ -264,8 +266,7 @@ public class SCADiagramFeatureProvider extends DefaultFeatureProvider {
                 "A Camel Netty TCP based endpoint."));
         features.add(new CreateBindingFeature(this, new CamelNettyUDPBindingFactory(), "Netty UDP",
                 "A Camel Netty UDP based endpoint."));
-        features.add(new CreateBindingFeature(this, new ResteasyBindingFactory(), "REST",
-                "A REST based endpoint."));
+        features.add(new CreateBindingFeature(this, new ResteasyBindingFactory(), "REST", "A REST based endpoint."));
         features.add(new CreateBindingFeature(this, new CamelQuartzBindingFactory(), "Scheduling",
                 "A Camel Scheduling based endpoint."));
         features.add(new CreateBindingFeature(this, new SOAPBindingFactory(), "SOAP", "A SOAP based endpoint."));
@@ -337,6 +338,12 @@ public class SCADiagramFeatureProvider extends DefaultFeatureProvider {
     public IDirectEditingFeature getDirectEditingFeature(IDirectEditingContext context) {
         PictogramElement pe = context.getPictogramElement();
         Object bo = getBusinessObjectForPictogramElement(pe);
+        if (bo instanceof EObject
+                && ((EObject) bo).eResource() != null
+                && getDiagramTypeProvider().getDiagramEditor().getEditingDomain()
+                        .isReadOnly(((EObject) bo).eResource())) {
+            return null;
+        }
         if (bo instanceof Composite) {
             return new SCADiagramDirectEditCompositeFeature(this);
         }
@@ -375,13 +382,13 @@ public class SCADiagramFeatureProvider extends DefaultFeatureProvider {
     public IResizeShapeFeature getResizeShapeFeature(IResizeShapeContext context) {
         PictogramElement pe = context.getPictogramElement();
         Object bo = getBusinessObjectForPictogramElement(pe);
-        if (bo instanceof Service) {
+        if (bo instanceof Composite) {
+            return new SCADiagramResizeCompositeFeature(this);
+        } else if (bo instanceof Service) {
             return new SCADiagramResizeServiceFeature(this);
-        }
-        if (bo instanceof Reference) {
+        } else if (bo instanceof Reference) {
             return new SCADiagramResizeCompositeReferenceFeature(this);
-        }
-        if (bo instanceof ComponentReference || bo instanceof ComponentService) {
+        } else if (bo instanceof ComponentReference || bo instanceof ComponentService) {
             return null;
         }
         return super.getResizeShapeFeature(context);
@@ -412,6 +419,7 @@ public class SCADiagramFeatureProvider extends DefaultFeatureProvider {
                 features.add(new CustomAddTransformFeature(this));
             }
         }
+        features.add(new SynchronizeGeneratedModelFeature(this));
         features.add(new ValidateModelFeature(this));
         return features.toArray(new ICustomFeature[features.size()]);
     }
@@ -425,7 +433,7 @@ public class SCADiagramFeatureProvider extends DefaultFeatureProvider {
                 return new SCADiagramDeleteCompositeFeature(this);
             }
         }
-        return super.getDeleteFeature(context);
+        return new ReadOnlyDeleteFeature(this);
     }
 
     @Override

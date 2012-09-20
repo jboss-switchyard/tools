@@ -527,9 +527,13 @@ public class NewServiceTestClassWizardPage extends NewTypeWizardPage {
         try {
             ResourceSet rs = new ResourceSetImpl();
             rs.getResourceFactoryRegistry().getExtensionToFactoryMap().put("*", new SwitchyardResourceFactoryImpl());
-            resource = rs.getResource(URI.createPlatformResourceURI(
-                    MavenProjectUtils.getFullPath(_mavenProjectFacade.getProject(), switchYardOutputFile).toString(),
-                    true), true);
+            try {
+                resource = rs.getResource(URI.createPlatformResourceURI(
+                        MavenProjectUtils.getFullPath(_mavenProjectFacade.getProject(), switchYardOutputFile).toString(),
+                        true), true);
+            } catch (Exception e) {
+                e.fillInStackTrace();
+            }
             if (resource == null || resource.getContents().size() == 0
                     || !(resource.getContents().get(0) instanceof DocumentRoot)) {
                 return;

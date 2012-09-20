@@ -24,6 +24,7 @@ import java.util.Set;
 import javax.xml.namespace.QName;
 
 import org.eclipse.core.runtime.IStatus;
+import org.eclipse.core.runtime.Status;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.emf.validation.IValidationContext;
@@ -43,6 +44,7 @@ import org.switchyard.metadata.ServiceOperation;
 import org.switchyard.tools.models.switchyard1_0.switchyard.SwitchYardType;
 import org.switchyard.tools.models.switchyard1_0.switchyard.SwitchyardPackage;
 import org.switchyard.tools.models.switchyard1_0.switchyard.TransformType;
+import org.switchyard.tools.ui.Activator;
 import org.switchyard.tools.ui.JavaUtil;
 import org.switchyard.tools.ui.SwitchYardModelUtils;
 
@@ -247,6 +249,8 @@ final class WiringValidationContext {
             }
         } catch (Exception e) {
             e.fillInStackTrace();
+            _problems.add(new Status(Status.WARNING, Activator.PLUGIN_ID,
+                    "Error loading service interface meta-data.  Interface compatibility cannot be verified."));
         } finally {
             Thread.currentThread().setContextClassLoader(oldTCCL);
         }

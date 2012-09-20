@@ -96,7 +96,7 @@ public class UpdateDiagramFeature extends DefaultUpdateDiagramFeature {
         if (pe instanceof Diagram) {
             Diagram d = (Diagram) pe;
             if (d.getChildren().size() == 0) {
-                return Reason.createTrueReason();
+                return Reason.createTrueReason("Add Composite to diagram.");
             }
         }
         return Reason.createFalseReason();
@@ -111,6 +111,7 @@ public class UpdateDiagramFeature extends DefaultUpdateDiagramFeature {
 
         PictogramElement pe = getFeatureProvider().addIfPossible(addContext);
         if (pe != null) {
+            updatePictogramElement(pe);
             CustomContext context = new CustomContext(new PictogramElement[] {pe });
             ICustomFeature layoutFeature = new AutoLayoutFeature(getFeatureProvider());
             if (layoutFeature.canExecute(context)) {

@@ -116,14 +116,19 @@ public final class StyleUtil {
     public static final int COMPOSITE_HEIGHT = 300;
 
     /**
-     * Composite lip for the invisible rectangle.
-     */
-    public static final int COMPOSITE_INVISIBLE_RECT_RIGHT = 40;
-
-    /**
      * Composite edge for the invisible rectangle.
      */
-    public static final int COMPOSITE_EDGE = 10;
+    public static final int COMPOSITE_OUTER_EDGE = 30;
+
+    /**
+     * Distance that services and reference protrude out from the composite.
+     */
+    public static final int COMPOSITE_PROTRUSION_WIDTH = 20;
+
+    /**
+     * Composite edge spacing for shapes within the visible rectangle.
+     */
+    public static final int COMPOSITE_INNER_EDGE = 15;
 
     /** Spacing between composite children. */
     public static final int COMPOSITE_CHILD_V_SPACING = 10;
@@ -137,11 +142,6 @@ public final class StyleUtil {
      * Component rectangle height.
      */
     public static final int COMPONENT_HEIGHT = 50;
-
-    /**
-     * Component lip for the invisible rectangle.
-     */
-    public static final int COMPONENT_INVISIBLE_RECT_RIGHT = 13;
 
     /**
      * Component edge for the invisible rectangle.

@@ -28,6 +28,7 @@ import org.eclipse.graphiti.services.Graphiti;
 import org.eclipse.graphiti.services.IGaService;
 import org.eclipse.soa.sca.sca1_1.model.sca.Component;
 import org.eclipse.soa.sca.sca1_1.model.sca.ComponentReference;
+import org.eclipse.soa.sca.sca1_1.model.sca.ComponentService;
 import org.switchyard.tools.ui.editor.diagram.StyleUtil;
 
 /**
@@ -71,22 +72,23 @@ public class SCADiagramLayoutComponentFeature extends AbstractLayoutFeature {
         GraphicsAlgorithm containerGa = containerShape.getGraphicsAlgorithm();
         Component component = (Component) getBusinessObjectForPictogramElement(containerShape);
 
+        final int edging = 2 * StyleUtil.COMPONENT_EDGE;
+
         // make sure all the nubs fit
         int minHeight = Math.max(
-                Math.max(containerGa.getHeight(), MIN_HEIGHT),
-                Math.max((component.getService().size() + 1) * StyleUtil.COMPONENT_CHILD_V_SPACING
-                        + StyleUtil.COMPONENT_CHILD_V_SPACING / 2, (component.getReference().size() + 1)
-                        * StyleUtil.COMPONENT_CHILD_V_SPACING));
+                Math.max(containerGa.getHeight() - edging, MIN_HEIGHT),
+                Math.max(component.getService().size() * StyleUtil.COMPONENT_CHILD_V_SPACING + edging, component
+                        .getReference().size() * StyleUtil.COMPONENT_CHILD_V_SPACING + edging));
         // TODO: make sure the text fits
-        int minWidth = Math.max(MIN_WIDTH, containerGa.getWidth());
+        int minWidth = Math.max(MIN_WIDTH, containerGa.getWidth() - edging);
 
-        if (containerGa.getHeight() < minHeight) {
-            containerGa.setHeight(minHeight);
+        if (containerGa.getHeight() - edging < minHeight) {
+            containerGa.setHeight(minHeight + edging);
             anythingChanged = true;
         }
 
-        if (containerGa.getWidth() < minWidth) {
-            containerGa.setWidth(minWidth);
+        if (containerGa.getWidth() - edging < minWidth) {
+            containerGa.setWidth(minWidth + edging);
             anythingChanged = true;
         }
 
@@ -101,16 +103,23 @@ public class SCADiagramLayoutComponentFeature extends AbstractLayoutFeature {
                     anythingChanged = true;
                 }
             } else if (ga instanceof RoundedRectangle) {
-                if (minWidth != size.getWidth() + StyleUtil.COMPONENT_INVISIBLE_RECT_RIGHT
-                        || minHeight != size.getHeight()) {
+                if (minWidth != size.getWidth() || minHeight != size.getHeight()) {
                     RoundedRectangle rt = (RoundedRectangle) ga;
+                    rt.setX(StyleUtil.COMPONENT_EDGE);
+                    rt.setY(StyleUtil.COMPONENT_EDGE);
                     rt.setHeight(minHeight);
-                    rt.setWidth(minWidth - StyleUtil.COMPONENT_INVISIBLE_RECT_RIGHT);
+                    rt.setWidth(minWidth);
                     // make sure the references are on the edge
+                    final int serviceX = StyleUtil.COMPONENT_EDGE - 8;
+                    final int referenceX = containerGa.getWidth() - StyleUtil.COMPONENT_EDGE - 8;
                     for (Shape child : containerShape.getChildren()) {
-                        if (getBusinessObjectForPictogramElement(child) instanceof ComponentReference) {
+                        Object bo = getBusinessObjectForPictogramElement(child);
+                        if (bo instanceof ComponentReference) {
                             GraphicsAlgorithm childGa = child.getGraphicsAlgorithm();
-                            childGa.setX(minWidth - childGa.getWidth());
+                            childGa.setX(referenceX);
+                        } else if (bo instanceof ComponentService) {
+                            GraphicsAlgorithm childGa = child.getGraphicsAlgorithm();
+                            childGa.setX(serviceX);
                         }
                     }
                     anythingChanged = true;
@@ -125,7 +134,10 @@ public class SCADiagramLayoutComponentFeature extends AbstractLayoutFeature {
             Text text = (Text) gaFound;
             text.setHorizontalAlignment(Orientation.ALIGNMENT_CENTER);
             text.setVerticalAlignment(Orientation.ALIGNMENT_CENTER);
-            gaService.setLocationAndSize(text, 5, containerHeight / 4, containerWidth - 15, containerHeight / 2);
+            // width/height - 2*edging since we need to account for the
+            // invisible edge around the component
+            gaService.setLocationAndSize(text, StyleUtil.COMPONENT_EDGE, StyleUtil.COMPONENT_EDGE, containerWidth - 2
+                    * edging, containerHeight - 2 * edging);
             anythingChanged = true;
         }
         return anythingChanged;

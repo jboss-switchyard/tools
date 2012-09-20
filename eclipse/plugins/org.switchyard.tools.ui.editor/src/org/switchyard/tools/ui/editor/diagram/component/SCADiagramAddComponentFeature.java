@@ -72,16 +72,16 @@ public class SCADiagramAddComponentFeature extends AbstractAddShapeFeature {
         IPeCreateService peCreateService = Graphiti.getPeCreateService();
         ContainerShape containerShape = peCreateService.createContainerShape(targetContainer, true);
 
-        int edge = StyleUtil.COMPONENT_EDGE;
+        int edging = 2 * StyleUtil.COMPONENT_EDGE;
 
         // check whether the context has a size (e.g. from a create feature)
         // otherwise define a default size for the shape
-        int width = context.getWidth() <= 0 ? StyleUtil.COMPONENT_WIDTH + edge : context.getWidth();
-        int height = context.getHeight() <= 0 ? StyleUtil.COMPONENT_HEIGHT + edge : context.getHeight();
+        int width = context.getWidth() <= 0 ? StyleUtil.COMPONENT_WIDTH : context.getWidth();
+        int height = context.getHeight() <= 0 ? StyleUtil.COMPONENT_HEIGHT : context.getHeight();
 
         Rectangle invisibleRectangle = gaService.createInvisibleRectangle(containerShape);
-        gaService.setLocationAndSize(invisibleRectangle, context.getX(), context.getY(), width
-                + StyleUtil.COMPONENT_INVISIBLE_RECT_RIGHT, height);
+        gaService.setLocationAndSize(invisibleRectangle, context.getX() - StyleUtil.COMPONENT_EDGE, context.getY()
+                - StyleUtil.COMPONENT_EDGE, width + edging, height + edging);
 
         // define a default size for the shape
         RoundedRectangle roundedRectangle;
@@ -91,7 +91,8 @@ public class SCADiagramAddComponentFeature extends AbstractAddShapeFeature {
         roundedRectangle.setStyle(StyleUtil.getStyleForComponent(getDiagram()));
         roundedRectangle.setParentGraphicsAlgorithm(invisibleRectangle);
 
-        gaService.setLocationAndSize(roundedRectangle, 5, 0, width, height);
+        gaService.setLocationAndSize(roundedRectangle, StyleUtil.COMPONENT_EDGE, StyleUtil.COMPONENT_EDGE, width,
+                height);
 
         // create link and wire it
         link(containerShape, addedComponent);
@@ -106,14 +107,14 @@ public class SCADiagramAddComponentFeature extends AbstractAddShapeFeature {
         Font font = text.getFont();
         font = gaService.manageFont(getDiagram(), font.getName(), font.getSize(), false, true);
         text.setFont(font);
-        gaService.setLocationAndSize(text, StyleUtil.COMPONENT_EDGE + 10, 0, width - (StyleUtil.COMPONENT_EDGE * 3)
-                - (StyleUtil.COMPONENT_INVISIBLE_RECT_RIGHT * 2), height);
+        gaService.setLocationAndSize(text, StyleUtil.COMPONENT_EDGE, StyleUtil.COMPONENT_EDGE, width - edging, height
+                - edging);
 
         if (addedComponent.getService().size() > 0) {
             final AddContext addContext = new AddContext();
             // TODO: do we really need this spacing?
-            final int anchorX = 0;
-            int anchorY = 36;
+            final int anchorX = roundedRectangle.getX() - 8;
+            int anchorY = 2 * edging;
             addContext.setTargetContainer(containerShape);
             for (ComponentService componentService : addedComponent.getService()) {
                 addContext.setNewObject(componentService);
@@ -129,8 +130,8 @@ public class SCADiagramAddComponentFeature extends AbstractAddShapeFeature {
         if (addedComponent.getReference().size() > 0) {
             // TODO: do we really need this spacing?
             final AddContext addContext = new AddContext();
-            final int anchorX = roundedRectangle.getWidth() - 4;
-            int anchorY = 16;
+            final int anchorX = roundedRectangle.getX() + roundedRectangle.getWidth() - 8;
+            int anchorY = 2 * edging;
             addContext.setTargetContainer(containerShape);
             for (ComponentReference componentReference : addedComponent.getReference()) {
                 addContext.setNewObject(componentReference);

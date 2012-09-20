@@ -27,7 +27,7 @@ import org.switchyard.tools.ui.editor.diagram.StyleUtil;
 
 /**
  * @author bfitzpat
- *
+ * 
  */
 public class SCADiagramResizeComponentFeature extends DefaultResizeShapeFeature {
 
@@ -46,16 +46,18 @@ public class SCADiagramResizeComponentFeature extends DefaultResizeShapeFeature 
         int width = context.getWidth();
         int height = context.getHeight();
 
+        int edging = 2 * StyleUtil.COMPONENT_EDGE;
         GraphicsAlgorithm shapeGa = shape.getGraphicsAlgorithm();
         if (shapeGa != null) {
-            Graphiti.getGaService().setLocationAndSize(shapeGa, x, y, width, height);
+            Graphiti.getGaService().setLocationAndSize(shapeGa, x - StyleUtil.COMPONENT_EDGE,
+                    y - StyleUtil.COMPONENT_EDGE, width + edging, height + edging);
             if (!shapeGa.getGraphicsAlgorithmChildren().isEmpty()) {
                 EList<GraphicsAlgorithm> children = shapeGa.getGraphicsAlgorithmChildren();
                 for (GraphicsAlgorithm graphicsAlgorithm : children) {
                     if (graphicsAlgorithm instanceof RoundedRectangle) {
                         RoundedRectangle rrect = (RoundedRectangle) graphicsAlgorithm;
-                        Graphiti.getGaService().setLocationAndSize(rrect, StyleUtil.COMPONENT_EDGE, 0,
-                                width - (StyleUtil.COMPONENT_EDGE * 2), height);
+                        Graphiti.getGaService().setLocationAndSize(rrect, StyleUtil.COMPONENT_EDGE, 0, width - edging,
+                                height - edging);
                     }
                 }
             }
@@ -67,8 +69,8 @@ public class SCADiagramResizeComponentFeature extends DefaultResizeShapeFeature 
             Text text = (Text) textGa;
             text.setHorizontalAlignment(Orientation.ALIGNMENT_CENTER);
             text.setVerticalAlignment(Orientation.ALIGNMENT_CENTER);
-            gaService.setLocationAndSize(text, StyleUtil.COMPONENT_EDGE + 10, 0, width - (StyleUtil.COMPONENT_EDGE * 3)
-                    - (StyleUtil.COMPONENT_INVISIBLE_RECT_RIGHT * 2), height);
+            gaService.setLocationAndSize(text, StyleUtil.COMPONENT_EDGE, StyleUtil.COMPONENT_EDGE, width - edging,
+                    height - edging);
         }
     }
 

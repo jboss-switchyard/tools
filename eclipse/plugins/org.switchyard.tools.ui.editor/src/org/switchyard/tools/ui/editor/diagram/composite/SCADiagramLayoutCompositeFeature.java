@@ -38,9 +38,6 @@ import org.switchyard.tools.ui.editor.diagram.StyleUtil;
  */
 public class SCADiagramLayoutCompositeFeature extends AbstractLayoutFeature {
 
-    private static final int MIN_HEIGHT = 150;
-    private static final int MIN_WIDTH = 150;
-
     /**
      * @param fp the feature provider
      */
@@ -65,27 +62,28 @@ public class SCADiagramLayoutCompositeFeature extends AbstractLayoutFeature {
 
         ContainerShape containerShape = (ContainerShape) context.getPictogramElement();
         GraphicsAlgorithm containerGa = containerShape.getGraphicsAlgorithm();
-        int containerWidth = Math.max(MIN_WIDTH, containerGa.getWidth());
-        int containerHeight = Math.max(MIN_HEIGHT, containerGa.getHeight());
+        int edging = 2 * StyleUtil.COMPOSITE_OUTER_EDGE;
+        int containerWidth = Math.max(StyleUtil.COMPOSITE_WIDTH, containerGa.getWidth() - edging);
+        int containerHeight = Math.max(StyleUtil.COMPOSITE_HEIGHT, containerGa.getHeight() - edging);
 
         for (Shape child : containerShape.getChildren()) {
             final GraphicsAlgorithm ga = child.getGraphicsAlgorithm();
             if (getBusinessObjectForPictogramElement(child) instanceof Component) {
                 // only need to check width for components as services and
                 // references are fixed to the edges.
-                containerWidth = Math.max(containerWidth, ga.getX() + ga.getWidth() + 2 * StyleUtil.COMPONENT_EDGE);
+                containerWidth = Math.max(containerWidth, ga.getX() + ga.getWidth());
             }
-            containerHeight = Math.max(containerHeight, ga.getY() + ga.getHeight() + 2 * StyleUtil.COMPONENT_EDGE);
+            containerHeight = Math.max(containerHeight, ga.getY() + ga.getHeight());
         }
         // height
-        if (containerGa.getHeight() < containerHeight) {
-            containerGa.setHeight(containerHeight);
+        if (containerGa.getHeight() - edging < containerHeight) {
+            containerGa.setHeight(containerHeight + edging);
             anythingChanged = true;
         }
 
         // width
-        if (containerGa.getWidth() < containerWidth) {
-            containerGa.setWidth(containerWidth);
+        if (containerGa.getWidth() - edging < containerWidth) {
+            containerGa.setWidth(containerWidth + edging);
             anythingChanged = true;
         }
 
@@ -100,26 +98,30 @@ public class SCADiagramLayoutCompositeFeature extends AbstractLayoutFeature {
                     anythingChanged = true;
                 }
             } else if (ga instanceof RoundedRectangle) {
-                if (containerWidth != size.getWidth() + 40 || containerHeight != size.getHeight() + 40) {
+                if (containerWidth != size.getWidth() || containerHeight != size.getHeight()) {
                     RoundedRectangle rt = (RoundedRectangle) ga;
-                    rt.setHeight(containerHeight - 40);
-                    rt.setWidth(containerWidth - 40);
+                    rt.setX(StyleUtil.COMPOSITE_OUTER_EDGE);
+                    rt.setY(StyleUtil.COMPOSITE_OUTER_EDGE);
+                    rt.setHeight(containerHeight);
+                    rt.setWidth(containerWidth);
                     anythingChanged = true;
                 }
             }
         }
 
+        final int serviceX = StyleUtil.COMPOSITE_OUTER_EDGE - StyleUtil.COMPOSITE_PROTRUSION_WIDTH;
         for (Shape child : containerShape.getChildren()) {
             final Object bo = getBusinessObjectForPictogramElement(child);
             if (bo instanceof Service) {
                 final GraphicsAlgorithm ga = child.getGraphicsAlgorithm();
-                if (ga.getX() != 0) {
-                    ga.setX(0);
+                if (ga.getX() != serviceX) {
+                    ga.setX(serviceX);
                     anythingChanged = true;
                 }
             } else if (bo instanceof Reference) {
                 final GraphicsAlgorithm ga = child.getGraphicsAlgorithm();
-                final int desiredX = containerGa.getWidth() - ga.getWidth();
+                final int desiredX = containerGa.getWidth() - ga.getWidth() - StyleUtil.COMPOSITE_OUTER_EDGE
+                        + StyleUtil.COMPOSITE_PROTRUSION_WIDTH;
                 if (ga.getX() != desiredX) {
                     ga.setX(desiredX);
                     anythingChanged = true;

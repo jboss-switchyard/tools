@@ -48,7 +48,8 @@ public class UpdateConnectionFeature extends AbstractUpdateFeature implements IU
 
     @Override
     public IReason updateNeeded(IUpdateContext context) {
-        return canUpdate(context) ? Reason.createTrueReason() : Reason.createFalseReason();
+        return canUpdate(context) ? Reason.createTrueReason("Add decorator to connection.") : Reason
+                .createFalseReason();
     }
 
     @Override

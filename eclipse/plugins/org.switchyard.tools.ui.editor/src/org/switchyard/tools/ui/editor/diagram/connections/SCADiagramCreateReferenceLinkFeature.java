@@ -15,6 +15,7 @@ package org.switchyard.tools.ui.editor.diagram.connections;
 import org.eclipse.graphiti.features.IFeatureProvider;
 import org.eclipse.graphiti.features.context.ICreateConnectionContext;
 import org.eclipse.graphiti.features.context.impl.AddConnectionContext;
+import org.eclipse.graphiti.features.context.impl.UpdateContext;
 import org.eclipse.graphiti.features.impl.AbstractCreateConnectionFeature;
 import org.eclipse.graphiti.mm.pictograms.Connection;
 import org.eclipse.soa.sca.sca1_1.model.sca.ComponentReference;
@@ -42,9 +43,11 @@ public class SCADiagramCreateReferenceLinkFeature extends AbstractCreateConnecti
             Object source = getBusinessObjectForPictogramElement(context.getSourceAnchor());
             Object target = getBusinessObjectForPictogramElement(context.getTargetAnchor());
             if (source != null && target != null) {
-                if (source instanceof ComponentReference && target instanceof Reference) {
+                if (source instanceof ComponentReference && target instanceof Reference
+                        && !getDiagramEditor().getEditingDomain().isReadOnly(((Reference) target).eResource())) {
                     return true;
-                } else if (source instanceof ComponentReference && target instanceof ComponentService) {
+                } else if (source instanceof ComponentReference && target instanceof ComponentService
+                        && !getDiagramEditor().getEditingDomain().isReadOnly(((ComponentReference) source).eResource())) {
                     return true;
                 }
             }
@@ -106,7 +109,7 @@ public class SCADiagramCreateReferenceLinkFeature extends AbstractCreateConnecti
         }
 
         if (newConnection != null) {
-            updatePictogramElement(newConnection);
+            getFeatureProvider().updateIfPossibleAndNeeded(new UpdateContext(newConnection));
         }
 
         return newConnection;

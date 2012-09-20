@@ -36,6 +36,8 @@ import org.eclipse.soa.sca.sca1_1.model.sca.Composite;
 import org.eclipse.soa.sca.sca1_1.model.sca.Reference;
 import org.eclipse.soa.sca.sca1_1.model.sca.Service;
 import org.switchyard.tools.ui.editor.diagram.StyleUtil;
+import org.switchyard.tools.ui.editor.model.merge.CompositeMergedModelAdapter;
+import org.switchyard.tools.ui.editor.model.merge.MergedModelUtil;
 import org.switchyard.tools.ui.editor.util.GraphitiUtil;
 
 /**
@@ -105,14 +107,14 @@ public class SCADiagramUpdateCompositeFeature extends AbstractUpdateFeature {
 
         boolean layout = false;
 
-        // update child shapes
-        if (updateChildren((ContainerShape) pictogramElement)) {
+        // add missing shapes
+        if (addMissingChildren(composite, (ContainerShape) pictogramElement)) {
             layout = true;
             _hasDoneChanges = true;
         }
 
-        // add missing shapes
-        if (addMissingChildren(composite, (ContainerShape) pictogramElement)) {
+        // update child shapes
+        if (updateChildren((ContainerShape) pictogramElement)) {
             layout = true;
             _hasDoneChanges = true;
         }
@@ -137,7 +139,8 @@ public class SCADiagramUpdateCompositeFeature extends AbstractUpdateFeature {
             IUpdateFeature updateFeature = getFeatureProvider().getUpdateFeature(updateContext);
             if (updateFeature != null && updateFeature.canUpdate(updateContext)
                     && updateFeature.updateNeeded(updateContext).toBoolean()) {
-                changed = updateFeature.update(updateContext) || changed;
+                updateFeature.update(updateContext);
+                changed = changed || updateFeature.hasDoneChanges();
             }
         }
         return changed;
@@ -177,9 +180,11 @@ public class SCADiagramUpdateCompositeFeature extends AbstractUpdateFeature {
 
     private EObject[] getChildrenNotInDiagram(Composite composite) {
         List<EObject> children = new ArrayList<EObject>();
-        children.addAll(composite.getService());
-        children.addAll(composite.getReference());
-        children.addAll(composite.getComponent());
+        CompositeMergedModelAdapter mergedComposite = MergedModelUtil.getAdapter(composite,
+                CompositeMergedModelAdapter.class);
+        children.addAll(mergedComposite.getServices());
+        children.addAll(mergedComposite.getReferences());
+        children.addAll(mergedComposite.getComponents());
 
         return Graphiti.getPeService().getElementsNotInDiagram(children.toArray(new EObject[children.size()]),
                 getDiagram());
@@ -191,8 +196,11 @@ public class SCADiagramUpdateCompositeFeature extends AbstractUpdateFeature {
             for (Shape shape : children) {
                 UpdateContext updateContext = new UpdateContext(shape);
                 IUpdateFeature updateFeature = getFeatureProvider().getUpdateFeature(updateContext);
-                if (updateFeature != null && updateFeature.updateNeeded(updateContext).toBoolean()) {
-                    return Reason.createTrueReason();
+                if (updateFeature != null) {
+                    IReason reason = updateFeature.updateNeeded(updateContext);
+                    if (reason.toBoolean()) {
+                        return reason;
+                    }
                 }
             }
         }

@@ -47,7 +47,9 @@ public class SCADiagramCreateComponentReferenceFeature extends AbstractCreateFea
 
     @Override
     public boolean canCreate(ICreateContext context) {
-        return getBusinessObjectForPictogramElement(context.getTargetContainer()) instanceof Component;
+        final Object bo = getBusinessObjectForPictogramElement(context.getTargetContainer());
+        return bo instanceof Component
+                && !getDiagramEditor().getEditingDomain().isReadOnly(((Component) bo).eResource());
     }
 
     @Override

@@ -50,7 +50,8 @@ public class SCADiagramCreateCompositeReferenceFeature extends AbstractCreateFea
 
     @Override
     public boolean canCreate(ICreateContext context) {
-        if (getBusinessObjectForPictogramElement(context.getTargetContainer()) instanceof Composite) {
+        final Object bo = getBusinessObjectForPictogramElement(context.getTargetContainer());
+        if (bo instanceof Composite && !getDiagramEditor().getEditingDomain().isReadOnly(((Composite) bo).eResource())) {
             return true;
         }
         return false;

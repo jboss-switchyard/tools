@@ -10,6 +10,8 @@
  ************************************************************************************/
 package org.switchyard.tools.ui;
 
+import java.util.Collections;
+
 import org.eclipse.core.resources.IFile;
 import org.eclipse.core.resources.IProject;
 import org.eclipse.core.resources.IResource;
@@ -18,6 +20,7 @@ import org.eclipse.core.runtime.IAdapterFactory;
 import org.eclipse.core.runtime.Path;
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EObject;
+import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.soa.sca.sca1_1.model.sca.Component;
 import org.eclipse.soa.sca.sca1_1.model.sca.ComponentReference;
 import org.eclipse.soa.sca.sca1_1.model.sca.ComponentService;
@@ -148,19 +151,23 @@ public class PlatformResourceAdapterFactory implements IAdapterFactory {
         if (!(obj instanceof EObject)) {
             return null;
         }
-        URI uri = ((EObject) obj).eResource().getURI();
-        if (uri.isPlatformResource()) {
-            IFile file = ResourcesPlugin.getWorkspace().getRoot().getFile(new Path(uri.toPlatformString(true)));
-            if (file == null) {
-                return null;
+        Resource objectResource = ((EObject) obj).eResource();
+        for (Resource resource : objectResource.getResourceSet() == null ? Collections.singleton(objectResource)
+                : objectResource.getResourceSet().getResources()) {
+            URI uri = resource.getURI();
+            if (uri.isPlatformResource()) {
+                IFile file = ResourcesPlugin.getWorkspace().getRoot().getFile(new Path(uri.toPlatformString(true)));
+                if (file == null) {
+                    return null;
+                }
+                return file.getProject();
+            } else if (uri.isFile()) {
+                IFile file = ResourcesPlugin.getWorkspace().getRoot().getFileForLocation(new Path(uri.toFileString()));
+                if (file == null) {
+                    return null;
+                }
+                return file.getProject();
             }
-            return file.getProject();
-        } else if (uri.isFile()) {
-            IFile file = ResourcesPlugin.getWorkspace().getRoot().getFileForLocation(new Path(uri.toFileString()));
-            if (file == null) {
-                return null;
-            }
-            return file.getProject();
         }
         return null;
     }

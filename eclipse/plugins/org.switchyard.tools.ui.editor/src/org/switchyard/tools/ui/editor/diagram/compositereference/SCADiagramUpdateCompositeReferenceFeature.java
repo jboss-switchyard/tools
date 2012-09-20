@@ -19,11 +19,13 @@ import java.util.Set;
 import org.eclipse.graphiti.features.IFeatureProvider;
 import org.eclipse.graphiti.features.IReason;
 import org.eclipse.graphiti.features.IRemoveFeature;
+import org.eclipse.graphiti.features.context.IRemoveContext;
 import org.eclipse.graphiti.features.context.IUpdateContext;
 import org.eclipse.graphiti.features.context.impl.AddConnectionContext;
 import org.eclipse.graphiti.features.context.impl.RemoveContext;
 import org.eclipse.graphiti.features.impl.AbstractUpdateFeature;
 import org.eclipse.graphiti.features.impl.Reason;
+import org.eclipse.graphiti.internal.services.GraphitiInternal;
 import org.eclipse.graphiti.mm.algorithms.Text;
 import org.eclipse.graphiti.mm.pictograms.Anchor;
 import org.eclipse.graphiti.mm.pictograms.AnchorContainer;
@@ -39,6 +41,7 @@ import org.switchyard.tools.ui.editor.util.GraphitiUtil;
  * @author bfitzpat
  * 
  */
+@SuppressWarnings("restriction")
 public class SCADiagramUpdateCompositeReferenceFeature extends AbstractUpdateFeature {
 
     private boolean _hasDoneChanges;
@@ -67,6 +70,11 @@ public class SCADiagramUpdateCompositeReferenceFeature extends AbstractUpdateFea
         ContainerShape cs = (ContainerShape) context.getPictogramElement();
         Reference reference = (Reference) getBusinessObjectForPictogramElement(cs);
 
+        // make sure the component still exists in the model
+        if (!GraphitiInternal.getEmfService().isObjectAlive(reference)) {
+            return Reason.createTrueReason(String.format("Reference {0} has been removed.", reference.getName()));
+        }
+
         // retrieve name from pictogram model
         String pictogramName = null;
         Text foundText = GraphitiUtil.findChildGA(cs.getGraphicsAlgorithm(), Text.class);
@@ -85,7 +93,7 @@ public class SCADiagramUpdateCompositeReferenceFeature extends AbstractUpdateFea
         // check the wiring
         final Set<Contract> existingConnections = getExistingConnections(cs);
         for (ComponentReference promotedReference : reference.getPromote()) {
-            if (!existingConnections.remove(promotedReference)) {
+            if (promotedReference != null && !existingConnections.remove(promotedReference)) {
                 return Reason.createTrueReason("Update connections.");
             }
         }
@@ -105,6 +113,16 @@ public class SCADiagramUpdateCompositeReferenceFeature extends AbstractUpdateFea
         ContainerShape cs = (ContainerShape) context.getPictogramElement();
         Reference reference = (Reference) getBusinessObjectForPictogramElement(cs);
 
+        // remove it if it's gone
+        if (!GraphitiInternal.getEmfService().isObjectAlive(reference)) {
+            IRemoveContext removeContext = new RemoveContext(context.getPictogramElement());
+            final IRemoveFeature removeFeature = getFeatureProvider().getRemoveFeature(removeContext);
+            if (removeFeature != null && removeFeature.canRemove(removeContext)) {
+                removeFeature.remove(removeContext);
+                return true;
+            }
+        }
+
         // Set name in pictogram model
         String pictogramName = null;
         Text foundText = GraphitiUtil.findChildGA(cs.getGraphicsAlgorithm(), Text.class);
@@ -123,7 +141,7 @@ public class SCADiagramUpdateCompositeReferenceFeature extends AbstractUpdateFea
         final Set<Contract> existingConnections = getExistingConnections(cs);
         final Anchor anchor = cs.getAnchors().get(0);
         for (ComponentReference promotedReference : reference.getPromote()) {
-            if (!existingConnections.remove(promotedReference)) {
+            if (promotedReference != null && !existingConnections.remove(promotedReference)) {
                 for (PictogramElement pe : getFeatureProvider().getAllPictogramElementsForBusinessObject(
                         promotedReference)) {
                     if (pe instanceof Anchor) {
@@ -139,7 +157,7 @@ public class SCADiagramUpdateCompositeReferenceFeature extends AbstractUpdateFea
 
         for (Connection connection : new ArrayList<Connection>(anchor.getIncomingConnections())) {
             Object bo = getBusinessObjectForPictogramElement(connection.getStart());
-            if (existingConnections.remove(bo)) {
+            if (bo == null || existingConnections.remove(bo)) {
                 RemoveContext removeContext = new RemoveContext(connection);
                 IRemoveFeature removeFeature = getFeatureProvider().getRemoveFeature(removeContext);
                 if (removeFeature.canExecute(removeContext)) {
@@ -162,7 +180,7 @@ public class SCADiagramUpdateCompositeReferenceFeature extends AbstractUpdateFea
         for (Anchor anchor : container.getAnchors()) {
             for (Connection connection : anchor.getIncomingConnections()) {
                 Object bo = getBusinessObjectForPictogramElement(connection.getStart());
-                if (bo instanceof Contract) {
+                if (bo instanceof Contract || bo == null) {
                     existingConnections.add((Contract) bo);
                 }
             }

@@ -17,11 +17,13 @@ import java.util.Set;
 import org.eclipse.graphiti.features.IFeatureProvider;
 import org.eclipse.graphiti.features.IReason;
 import org.eclipse.graphiti.features.IRemoveFeature;
+import org.eclipse.graphiti.features.context.IRemoveContext;
 import org.eclipse.graphiti.features.context.IUpdateContext;
 import org.eclipse.graphiti.features.context.impl.AddConnectionContext;
 import org.eclipse.graphiti.features.context.impl.RemoveContext;
 import org.eclipse.graphiti.features.impl.AbstractUpdateFeature;
 import org.eclipse.graphiti.features.impl.Reason;
+import org.eclipse.graphiti.internal.services.GraphitiInternal;
 import org.eclipse.graphiti.mm.pictograms.Anchor;
 import org.eclipse.graphiti.mm.pictograms.AnchorContainer;
 import org.eclipse.graphiti.mm.pictograms.Connection;
@@ -30,9 +32,11 @@ import org.eclipse.graphiti.mm.pictograms.PictogramElement;
 import org.eclipse.soa.sca.sca1_1.model.sca.Component;
 import org.eclipse.soa.sca.sca1_1.model.sca.ComponentReference;
 import org.eclipse.soa.sca.sca1_1.model.sca.ComponentService;
-import org.eclipse.soa.sca.sca1_1.model.sca.Composite;
 import org.eclipse.soa.sca.sca1_1.model.sca.Contract;
 import org.eclipse.soa.sca.sca1_1.model.sca.Service;
+import org.switchyard.tools.ui.editor.model.merge.CompositeMergedModelAdapter;
+import org.switchyard.tools.ui.editor.model.merge.ContractMergedModelAdapter;
+import org.switchyard.tools.ui.editor.model.merge.MergedModelUtil;
 
 /**
  * UpdateComponentServiceFeature
@@ -40,6 +44,7 @@ import org.eclipse.soa.sca.sca1_1.model.sca.Service;
  * <p/>
  * Updates connections, etc. based on changes to a component service.
  */
+@SuppressWarnings("restriction")
 public class UpdateComponentServiceFeature extends AbstractUpdateFeature {
 
     private boolean _hasDoneChanges;
@@ -63,20 +68,29 @@ public class UpdateComponentServiceFeature extends AbstractUpdateFeature {
     public IReason updateNeeded(IUpdateContext context) {
         final ComponentService service = (ComponentService) getBusinessObjectForPictogramElement(context
                 .getPictogramElement());
+
+        // make sure the component still exists in the model
+        if (!GraphitiInternal.getEmfService().isObjectAlive(service)) {
+            return Reason.createTrueReason(String.format("Service {0} has been removed.", service.getName()));
+        }
+
         final ContainerShape container = (ContainerShape) context.getPictogramElement();
         final Set<Contract> existingConnections = getExistingConnections(container);
-        final Composite composite = (Composite) service.eContainer().eContainer();
+        final ContractMergedModelAdapter mergeAdapter = MergedModelUtil.getAdapter(service,
+                ContractMergedModelAdapter.class);
+        final CompositeMergedModelAdapter composite = MergedModelUtil.getAdapter(mergeAdapter.getSwitchYard()
+                .getComposite(), CompositeMergedModelAdapter.class);
 
-        for (Service compositeService : composite.getService()) {
+        for (Service compositeService : composite.getServices()) {
             if (compositeService.getPromote() == service) {
                 if (!existingConnections.remove(compositeService)) {
-                    return Reason.createTrueReason();
+                    return Reason.createTrueReason("Update connections.");
                 }
             }
         }
 
         if (service.getName() != null && service.getName().length() > 0) {
-            for (Component other : composite.getComponent()) {
+            for (Component other : composite.getComponents()) {
                 if (other == service.eContainer()) {
                     // we don't allow self references???
                     continue;
@@ -84,14 +98,15 @@ public class UpdateComponentServiceFeature extends AbstractUpdateFeature {
                 for (ComponentReference reference : other.getReference()) {
                     if (service.getName().equals(reference.getName())) {
                         if (!existingConnections.remove(reference)) {
-                            return Reason.createTrueReason();
+                            return Reason.createTrueReason("Update connections.");
                         }
                     }
                 }
             }
         }
 
-        return existingConnections.isEmpty() ? Reason.createFalseReason() : Reason.createTrueReason();
+        return existingConnections.isEmpty() ? Reason.createFalseReason() : Reason
+                .createTrueReason("Update connections.");
     }
 
     @Override
@@ -99,12 +114,26 @@ public class UpdateComponentServiceFeature extends AbstractUpdateFeature {
         _hasDoneChanges = false;
         final ComponentService service = (ComponentService) getBusinessObjectForPictogramElement(context
                 .getPictogramElement());
+
+        // remove it if it's gone
+        if (!GraphitiInternal.getEmfService().isObjectAlive(service)) {
+            IRemoveContext removeContext = new RemoveContext(context.getPictogramElement());
+            final IRemoveFeature removeFeature = getFeatureProvider().getRemoveFeature(removeContext);
+            if (removeFeature != null && removeFeature.canRemove(removeContext)) {
+                removeFeature.remove(removeContext);
+                return true;
+            }
+        }
+
         final ContainerShape container = (ContainerShape) context.getPictogramElement();
         final Anchor anchor = container.getAnchors().get(0);
         final Set<Contract> existingConnections = getExistingConnections(container);
-        final Composite composite = (Composite) service.eContainer().eContainer();
+        final ContractMergedModelAdapter mergeAdapter = MergedModelUtil.getAdapter(service,
+                ContractMergedModelAdapter.class);
+        final CompositeMergedModelAdapter composite = MergedModelUtil.getAdapter(mergeAdapter.getSwitchYard()
+                .getComposite(), CompositeMergedModelAdapter.class);
 
-        for (Service compositeService : composite.getService()) {
+        for (Service compositeService : composite.getServices()) {
             if (compositeService.getPromote() == service) {
                 if (!existingConnections.remove(compositeService)) {
                     for (PictogramElement pe : getFeatureProvider().getAllPictogramElementsForBusinessObject(
@@ -122,7 +151,7 @@ public class UpdateComponentServiceFeature extends AbstractUpdateFeature {
         }
 
         if (service.getName() != null && service.getName().length() > 0) {
-            for (Component other : composite.getComponent()) {
+            for (Component other : composite.getComponents()) {
                 if (other == service.eContainer()) {
                     // we don't allow self references???
                     continue;
@@ -148,7 +177,7 @@ public class UpdateComponentServiceFeature extends AbstractUpdateFeature {
 
         for (Connection connection : new ArrayList<Connection>(anchor.getIncomingConnections())) {
             Object bo = getBusinessObjectForPictogramElement(connection.getStart());
-            if (existingConnections.remove(bo)) {
+            if (bo == null || existingConnections.remove(bo)) {
                 RemoveContext removeContext = new RemoveContext(connection);
                 IRemoveFeature removeFeature = getFeatureProvider().getRemoveFeature(removeContext);
                 if (removeFeature.canExecute(removeContext)) {
@@ -170,7 +199,7 @@ public class UpdateComponentServiceFeature extends AbstractUpdateFeature {
         for (Anchor anchor : container.getAnchors()) {
             for (Connection connection : anchor.getIncomingConnections()) {
                 Object bo = getBusinessObjectForPictogramElement(connection.getStart());
-                if (bo instanceof Contract) {
+                if (bo instanceof Contract || bo == null) {
                     existingConnections.add((Contract) bo);
                 }
             }

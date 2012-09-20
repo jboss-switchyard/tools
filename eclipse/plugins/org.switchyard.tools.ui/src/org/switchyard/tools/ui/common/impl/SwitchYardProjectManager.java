@@ -278,10 +278,12 @@ public final class SwitchYardProjectManager {
                 return false;
             }
             SwitchYardProject switchYardProject = _cache.get(project);
-            if (switchYardProject.getOutputSwitchYardConfigurationFile() != null
-                    && delta.findMember(switchYardProject.getOutputSwitchYardConfigurationFile()
-                            .getProjectRelativePath()) != null) {
-                SwitchYardProjectManager.this.notify(switchYardProject, EnumSet.of(Type.CONFIG));
+            if (switchYardProject.getOutputSwitchYardConfigurationFile() != null) {
+                final IResourceDelta configDelta = delta.findMember(switchYardProject
+                        .getOutputSwitchYardConfigurationFile().getProjectRelativePath());
+                if (configDelta != null && (configDelta.getFlags() & IResourceDelta.MARKERS) != IResourceDelta.MARKERS) {
+                    SwitchYardProjectManager.this.notify(switchYardProject, EnumSet.of(Type.CONFIG));
+                }
             }
             return false;
         }

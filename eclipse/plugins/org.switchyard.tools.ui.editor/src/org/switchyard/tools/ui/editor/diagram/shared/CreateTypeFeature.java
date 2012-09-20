@@ -60,7 +60,9 @@ public abstract class CreateTypeFeature<T extends EObject, C extends EObject> ex
     @Override
     public boolean canCreate(ICreateContext context) {
         final PictogramElement pe = context.getTargetContainer();
-        return pe != null && _containerClass.isInstance(getBusinessObjectForPictogramElement(pe));
+        final Object bo = getBusinessObjectForPictogramElement(pe);
+        return pe != null && _containerClass.isInstance(bo)
+                && !getDiagramEditor().getEditingDomain().isReadOnly(((EObject) bo).eResource());
     }
 
     @Override

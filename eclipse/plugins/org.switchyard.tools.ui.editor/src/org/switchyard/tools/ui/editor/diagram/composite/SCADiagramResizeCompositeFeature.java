@@ -15,12 +15,13 @@ package org.switchyard.tools.ui.editor.diagram.composite;
 import org.eclipse.graphiti.features.IFeatureProvider;
 import org.eclipse.graphiti.features.context.IResizeShapeContext;
 import org.eclipse.graphiti.features.impl.DefaultResizeShapeFeature;
+import org.eclipse.graphiti.mm.algorithms.GraphicsAlgorithm;
 import org.eclipse.graphiti.mm.pictograms.Shape;
-import org.eclipse.soa.sca.sca1_1.model.sca.Composite;
+import org.eclipse.graphiti.services.Graphiti;
 
 /**
  * @author bfitzpat
- *
+ * 
  */
 public class SCADiagramResizeCompositeFeature extends DefaultResizeShapeFeature {
 
@@ -32,21 +33,17 @@ public class SCADiagramResizeCompositeFeature extends DefaultResizeShapeFeature 
     }
 
     @Override
-    public boolean canResizeShape(IResizeShapeContext context) {
-        boolean canResize = super.canResizeShape(context);
-        // perform further check only if move allowed by default feature
-        if (canResize) {
-            // don't allow resize if the class name has the length of 1
-            Shape shape = context.getShape();
-            Object bo = getBusinessObjectForPictogramElement(shape);
-            if (bo instanceof Composite) {
-                Composite c = (Composite) bo;
-                if (c.getName() != null && c.getName().length() == 1) {
-                    canResize = false;
-                }
-            }
+    public void resizeShape(IResizeShapeContext context) {
+        Shape shape = context.getShape();
+        int width = context.getWidth();
+        int height = context.getHeight();
+
+        GraphicsAlgorithm shapeGa = shape.getGraphicsAlgorithm();
+        if (shapeGa != null) {
+            Graphiti.getGaService().setLocationAndSize(shapeGa, shapeGa.getX(), shapeGa.getY(), width, height);
         }
-        return canResize;
+
+        layoutPictogramElement(shape);
     }
 
 }

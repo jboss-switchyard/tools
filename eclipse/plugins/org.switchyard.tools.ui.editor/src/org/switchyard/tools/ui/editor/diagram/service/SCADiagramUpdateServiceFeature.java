@@ -19,11 +19,13 @@ import java.util.Set;
 import org.eclipse.graphiti.features.IFeatureProvider;
 import org.eclipse.graphiti.features.IReason;
 import org.eclipse.graphiti.features.IRemoveFeature;
+import org.eclipse.graphiti.features.context.IRemoveContext;
 import org.eclipse.graphiti.features.context.IUpdateContext;
 import org.eclipse.graphiti.features.context.impl.AddConnectionContext;
 import org.eclipse.graphiti.features.context.impl.RemoveContext;
 import org.eclipse.graphiti.features.impl.AbstractUpdateFeature;
 import org.eclipse.graphiti.features.impl.Reason;
+import org.eclipse.graphiti.internal.services.GraphitiInternal;
 import org.eclipse.graphiti.mm.algorithms.Text;
 import org.eclipse.graphiti.mm.pictograms.Anchor;
 import org.eclipse.graphiti.mm.pictograms.AnchorContainer;
@@ -39,6 +41,7 @@ import org.switchyard.tools.ui.editor.util.GraphitiUtil;
  * @author bfitzpat
  * 
  */
+@SuppressWarnings("restriction")
 public class SCADiagramUpdateServiceFeature extends AbstractUpdateFeature {
 
     private boolean _hasDoneChanges;
@@ -66,6 +69,11 @@ public class SCADiagramUpdateServiceFeature extends AbstractUpdateFeature {
 
         ContainerShape cs = (ContainerShape) context.getPictogramElement();
         Service service = (Service) getBusinessObjectForPictogramElement(cs);
+
+        // make sure the component still exists in the model
+        if (!GraphitiInternal.getEmfService().isObjectAlive(service)) {
+            return Reason.createTrueReason(String.format("Service {0} has been removed.", service.getName()));
+        }
 
         // retrieve name from pictogram model
         String pictogramName = null;
@@ -104,6 +112,16 @@ public class SCADiagramUpdateServiceFeature extends AbstractUpdateFeature {
         ContainerShape cs = (ContainerShape) context.getPictogramElement();
         Service service = (Service) getBusinessObjectForPictogramElement(cs);
 
+        // remove it if it's gone
+        if (!GraphitiInternal.getEmfService().isObjectAlive(service)) {
+            IRemoveContext removeContext = new RemoveContext(context.getPictogramElement());
+            final IRemoveFeature removeFeature = getFeatureProvider().getRemoveFeature(removeContext);
+            if (removeFeature != null && removeFeature.canRemove(removeContext)) {
+                removeFeature.remove(removeContext);
+                return true;
+            }
+        }
+
         // Set name in pictogram model
         String pictogramName = null;
         Text foundText = GraphitiUtil.findChildGA(cs.getGraphicsAlgorithm(), Text.class);
@@ -136,7 +154,7 @@ public class SCADiagramUpdateServiceFeature extends AbstractUpdateFeature {
 
         for (Connection connection : new ArrayList<Connection>(anchor.getOutgoingConnections())) {
             Object bo = getBusinessObjectForPictogramElement(connection.getEnd());
-            if (existingConnections.remove(bo)) {
+            if (bo == null || existingConnections.remove(bo)) {
                 RemoveContext removeContext = new RemoveContext(connection);
                 IRemoveFeature removeFeature = getFeatureProvider().getRemoveFeature(removeContext);
                 if (removeFeature.canExecute(removeContext)) {
@@ -159,7 +177,7 @@ public class SCADiagramUpdateServiceFeature extends AbstractUpdateFeature {
         for (Anchor anchor : container.getAnchors()) {
             for (Connection connection : anchor.getOutgoingConnections()) {
                 Object bo = getBusinessObjectForPictogramElement(connection.getEnd());
-                if (bo instanceof Contract) {
+                if (bo instanceof Contract || bo == null) {
                     existingConnections.add((Contract) bo);
                 }
             }

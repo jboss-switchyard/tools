@@ -30,8 +30,9 @@ import org.eclipse.soa.sca.sca1_1.model.sca.ScaPackage;
 import org.eclipse.swt.widgets.Shell;
 import org.eclipse.ui.PlatformUI;
 import org.switchyard.tools.ui.editor.ImageProvider;
-import org.switchyard.tools.ui.editor.diagram.StyleUtil;
+import org.switchyard.tools.ui.editor.diagram.composite.SCADiagramAddCompositeFeature;
 import org.switchyard.tools.ui.editor.diagram.shared.BaseNewContractWizard;
+import org.switchyard.tools.ui.editor.model.merge.MergedModelUtil;
 
 /**
  * @author bfitzpat
@@ -71,19 +72,15 @@ public class SCADiagramCustomPromoteReferenceFeature extends AbstractCustomFeatu
                     return;
                 }
 
-                Composite composite = (Composite) componentReference.eContainer().eContainer();
+                Composite composite = MergedModelUtil.getSwitchYard(componentReference).getComposite();
                 composite.getReference().add(newReference);
 
                 ContainerShape compositeShape = (ContainerShape) getFeatureProvider()
                         .getPictogramElementForBusinessObject(composite);
 
-                AddContext addRefContext = new AddContext();
+                AddContext addRefContext = SCADiagramAddCompositeFeature.createReferenceAddContext(
+                        getFeatureProvider(), compositeShape);
                 addRefContext.setNewObject(newReference);
-                addRefContext.setTargetContainer(compositeShape);
-                addRefContext.setX(compositeShape.getGraphicsAlgorithm().getWidth()
-                        - StyleUtil.COMPOSITE_REFERENCE_WIDTH);
-                addRefContext.setY(compositeShape.getGraphicsAlgorithm().getY() + 3 * StyleUtil.COMPOSITE_EDGE);
-
                 Shape referenceShape = (Shape) addGraphicalRepresentation(addRefContext, newReference);
                 if (referenceShape != null) {
                     // make sure the new reference is positioned

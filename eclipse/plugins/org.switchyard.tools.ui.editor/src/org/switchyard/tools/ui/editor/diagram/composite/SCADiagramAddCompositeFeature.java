@@ -72,16 +72,17 @@ public class SCADiagramAddCompositeFeature extends AbstractAddShapeFeature {
 
         // define a default size for the shape
         IGaService gaService = Graphiti.getGaService();
-        int edge = StyleUtil.COMPOSITE_EDGE;
+        int outerEdging = 2 * StyleUtil.COMPOSITE_OUTER_EDGE;
+        int innerEdging = 2 * StyleUtil.COMPOSITE_INNER_EDGE;
 
         // check whether the context has a size (e.g. from a create feature)
         // otherwise define a default size for the shape
-        int width = context.getWidth() <= 0 ? StyleUtil.COMPOSITE_WIDTH + edge : context.getWidth();
-        int height = context.getHeight() <= 0 ? StyleUtil.COMPOSITE_HEIGHT + edge : context.getHeight();
+        int width = context.getWidth() <= 0 ? StyleUtil.COMPOSITE_WIDTH : context.getWidth();
+        int height = context.getHeight() <= 0 ? StyleUtil.COMPOSITE_HEIGHT : context.getHeight();
 
         Rectangle invisibleRectangle = gaService.createInvisibleRectangle(containerShape);
-        gaService.setLocationAndSize(invisibleRectangle, context.getX(), context.getY(), width
-                + StyleUtil.COMPOSITE_INVISIBLE_RECT_RIGHT, height + StyleUtil.COMPOSITE_INVISIBLE_RECT_RIGHT);
+        gaService.setLocationAndSize(invisibleRectangle, context.getX(), context.getY(), width + outerEdging, height
+                + outerEdging);
 
         RoundedRectangle roundedRectangle = null;
 
@@ -90,8 +91,8 @@ public class SCADiagramAddCompositeFeature extends AbstractAddShapeFeature {
         roundedRectangle.setStyle(StyleUtil.getStyleForComposite(getDiagram()));
         roundedRectangle.setLineWidth(2);
 
-        gaService.setLocationAndSize(roundedRectangle, StyleUtil.COMPOSITE_INVISIBLE_RECT_RIGHT / 2,
-                StyleUtil.COMPOSITE_INVISIBLE_RECT_RIGHT / 2, width - edge, height - edge);
+        gaService.setLocationAndSize(roundedRectangle, StyleUtil.COMPOSITE_OUTER_EDGE, StyleUtil.COMPOSITE_OUTER_EDGE,
+                width, height);
 
         // if added Class has no resource we add it to the resource
         // of the diagram
@@ -115,11 +116,10 @@ public class SCADiagramAddCompositeFeature extends AbstractAddShapeFeature {
         text.setVerticalAlignment(Orientation.ALIGNMENT_CENTER);
         Font font = gaService.manageFont(getDiagram(), text.getFont().getName(), text.getFont().getSize(), false, true);
         text.setFont(font);
-        gaService.setLocationAndSize(text, edge + 2, edge + 2, width, font.getSize() * 2);
+        gaService.setLocationAndSize(text, StyleUtil.COMPOSITE_INNER_EDGE, StyleUtil.COMPOSITE_INNER_EDGE, width
+                - innerEdging, font.getSize() * 2);
 
         AddContext childContext = createComponentAddContext(getFeatureProvider(), containerShape);
-        childContext.setX((width - StyleUtil.COMPONENT_WIDTH) / 2 + context.getX());
-        childContext.setY(edge * 3 + context.getY());
         childContext.setTargetContainer(containerShape);
         for (Component component : addedComposite.getComponent()) {
             PictogramElement pe = addGraphicalRepresentation(childContext, component);
@@ -171,11 +171,10 @@ public class SCADiagramAddCompositeFeature extends AbstractAddShapeFeature {
     public static AddContext createComponentAddContext(IFeatureProvider featureProvider,
             ContainerShape compositeContainer) {
         GraphicsAlgorithm ga = compositeContainer.getGraphicsAlgorithm();
-        int width = ga.getWidth() - StyleUtil.COMPOSITE_INVISIBLE_RECT_RIGHT;
 
         AddContext context = new AddContext();
-        context.setX((width - StyleUtil.COMPONENT_WIDTH) / 2 + ga.getX());
-        context.setY(Math.max(StyleUtil.COMPOSITE_EDGE * 3 + ga.getY(),
+        context.setX((ga.getWidth() - StyleUtil.COMPONENT_WIDTH) / 2 + ga.getX());
+        context.setY(Math.max(StyleUtil.COMPOSITE_OUTER_EDGE + StyleUtil.COMPOSITE_INNER_EDGE * 2 + ga.getY(),
                 getMaxYForChildShapeCount(featureProvider, compositeContainer, Component.class)));
         context.setTargetContainer(compositeContainer);
 
@@ -194,8 +193,8 @@ public class SCADiagramAddCompositeFeature extends AbstractAddShapeFeature {
         GraphicsAlgorithm ga = compositeContainer.getGraphicsAlgorithm();
 
         AddContext context = new AddContext();
-        context.setX(ga.getX());
-        context.setY(Math.max(StyleUtil.COMPOSITE_EDGE * 3 + ga.getY(),
+        context.setX(ga.getX() + StyleUtil.COMPOSITE_OUTER_EDGE - StyleUtil.COMPOSITE_PROTRUSION_WIDTH);
+        context.setY(Math.max(StyleUtil.COMPOSITE_OUTER_EDGE + StyleUtil.COMPOSITE_INNER_EDGE * 2 + ga.getY(),
                 getMaxYForChildShapeCount(featureProvider, compositeContainer, Service.class)));
         context.setTargetContainer(compositeContainer);
 
@@ -213,11 +212,11 @@ public class SCADiagramAddCompositeFeature extends AbstractAddShapeFeature {
     public static AddContext createReferenceAddContext(IFeatureProvider featureProvider,
             ContainerShape compositeContainer) {
         GraphicsAlgorithm ga = compositeContainer.getGraphicsAlgorithm();
-        int width = ga.getWidth() - StyleUtil.COMPOSITE_INVISIBLE_RECT_RIGHT;
 
         AddContext context = new AddContext();
-        context.setX(width - StyleUtil.COMPOSITE_REFERENCE_WIDTH + context.getX() + 2 * StyleUtil.COMPOSITE_EDGE);
-        context.setY(Math.max(StyleUtil.COMPOSITE_EDGE * 3 + ga.getY(),
+        context.setX(ga.getX() + ga.getWidth() - StyleUtil.COMPOSITE_OUTER_EDGE + StyleUtil.COMPOSITE_PROTRUSION_WIDTH
+                - StyleUtil.COMPOSITE_REFERENCE_WIDTH);
+        context.setY(Math.max(StyleUtil.COMPOSITE_OUTER_EDGE + StyleUtil.COMPOSITE_INNER_EDGE * 2 + ga.getY(),
                 getMaxYForChildShapeCount(featureProvider, compositeContainer, Reference.class)));
         context.setTargetContainer(compositeContainer);
 

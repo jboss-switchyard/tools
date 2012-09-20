@@ -17,6 +17,7 @@ import java.util.Iterator;
 import java.util.List;
 
 import org.eclipse.core.runtime.IStatus;
+import org.eclipse.draw2d.Graphics;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.InternalEObject;
@@ -28,10 +29,12 @@ import org.eclipse.graphiti.features.IFeatureProvider;
 import org.eclipse.graphiti.features.context.ICustomContext;
 import org.eclipse.graphiti.features.context.IDoubleClickContext;
 import org.eclipse.graphiti.features.context.IPictogramElementContext;
+import org.eclipse.graphiti.features.context.impl.CustomContext;
 import org.eclipse.graphiti.features.custom.ICustomFeature;
 import org.eclipse.graphiti.mm.algorithms.GraphicsAlgorithm;
 import org.eclipse.graphiti.mm.algorithms.Polygon;
 import org.eclipse.graphiti.mm.algorithms.styles.Point;
+import org.eclipse.graphiti.mm.pictograms.Anchor;
 import org.eclipse.graphiti.mm.pictograms.Connection;
 import org.eclipse.graphiti.mm.pictograms.ConnectionDecorator;
 import org.eclipse.graphiti.mm.pictograms.PictogramElement;
@@ -40,6 +43,8 @@ import org.eclipse.graphiti.palette.impl.ConnectionCreationToolEntry;
 import org.eclipse.graphiti.palette.impl.ObjectCreationToolEntry;
 import org.eclipse.graphiti.palette.impl.PaletteCompartmentEntry;
 import org.eclipse.graphiti.platform.IPlatformImageConstants;
+import org.eclipse.graphiti.tb.BorderDecorator;
+import org.eclipse.graphiti.tb.ContextButtonEntry;
 import org.eclipse.graphiti.tb.ContextMenuEntry;
 import org.eclipse.graphiti.tb.DefaultToolBehaviorProvider;
 import org.eclipse.graphiti.tb.IContextButtonPadData;
@@ -47,6 +52,7 @@ import org.eclipse.graphiti.tb.IContextMenuEntry;
 import org.eclipse.graphiti.tb.IDecorator;
 import org.eclipse.graphiti.tb.IImageDecorator;
 import org.eclipse.graphiti.tb.ImageDecorator;
+import org.eclipse.graphiti.util.IColorConstant;
 import org.eclipse.soa.sca.sca1_1.model.sca.Binding;
 import org.eclipse.soa.sca.sca1_1.model.sca.Component;
 import org.eclipse.soa.sca.sca1_1.model.sca.ComponentReference;
@@ -85,7 +91,8 @@ public class SCADiagramToolBehaviorProvider extends DefaultToolBehaviorProvider 
         if (context.getPictogramElements() != null) {
             for (PictogramElement pictogramElement : context.getPictogramElements()) {
                 if (pictogramElement instanceof Connection) {
-                    ContextMenuEntry addTransformMenu = new ContextMenuEntry(new CustomAddTransformFeature(getFeatureProvider()), context);
+                    ContextMenuEntry addTransformMenu = new ContextMenuEntry(new CustomAddTransformFeature(
+                            getFeatureProvider()), context);
                     addTransformMenu.setText("Add Transformer");
                     addTransformMenu.setSubmenu(false);
                 }
@@ -125,12 +132,15 @@ public class SCADiagramToolBehaviorProvider extends DefaultToolBehaviorProvider 
 
     @Override
     public IDecorator[] getDecorators(PictogramElement pe) {
-        if (pe instanceof ConnectionDecorator) {
+        if (pe instanceof Anchor) {
+            // no decorators for anchors
+            return super.getDecorators(pe);
+        } else if (pe instanceof ConnectionDecorator) {
             return getDecoratorsForConnection((ConnectionDecorator) pe);
         }
         IFeatureProvider featureProvider = getFeatureProvider();
         Object bo = featureProvider.getBusinessObjectForPictogramElement(pe);
-        if (bo == null) {
+        if (bo == null || !(bo instanceof EObject)) {
             return super.getDecorators(pe);
         }
         List<IDecorator> decorators = new ArrayList<IDecorator>();
@@ -219,8 +229,10 @@ public class SCADiagramToolBehaviorProvider extends DefaultToolBehaviorProvider 
             if (component.getImplementation() != null) {
                 Implementation implementation = component.getImplementation();
                 String text = implementation.getClass().getSimpleName();
-                IDecorator imageRenderingDecorator = new ImageDecorator(ImageProvider.IMG_16_IMPLEMENTATION_TYPE);
+                IImageDecorator imageRenderingDecorator = new ImageDecorator(ImageProvider.IMG_16_IMPLEMENTATION_TYPE);
                 imageRenderingDecorator.setMessage(text);
+                imageRenderingDecorator.setX(StyleUtil.COMPONENT_EDGE);
+                imageRenderingDecorator.setY(StyleUtil.COMPONENT_EDGE);
                 decorators.add(imageRenderingDecorator);
             }
         }
@@ -238,6 +250,10 @@ public class SCADiagramToolBehaviorProvider extends DefaultToolBehaviorProvider 
                 decorator.setY(ga.getHeight() - 10);
                 decorators.add(decorator);
             }
+        }
+
+        if (getDiagramTypeProvider().getDiagramEditor().getEditingDomain().isReadOnly(((EObject) bo).eResource())) {
+            decorators.add(new BorderDecorator(IColorConstant.GRAY, null, Graphics.LINE_DASH));
         }
         return decorators.toArray(new IDecorator[decorators.size()]);
     }
@@ -380,10 +396,13 @@ public class SCADiagramToolBehaviorProvider extends DefaultToolBehaviorProvider 
         Object bo = getFeatureProvider().getBusinessObjectForPictogramElement(pe);
 
         if (bo instanceof Composite) {
-            setGenericContextButtons(data, pe, CONTEXT_BUTTON_UPDATE); // just
-                                                                       // update,
-                                                                       // no
-                                                                       // delete
+            // just update, no delete
+            setGenericContextButtons(data, pe, CONTEXT_BUTTON_UPDATE);
+
+            // show synchronize on composite
+            data.getDomainSpecificContextButtons().add(
+                    new ContextButtonEntry(new SynchronizeGeneratedModelFeature(getFeatureProvider()),
+                            new CustomContext(new PictogramElement[] {context.getPictogramElement() })));
         } else {
             setGenericContextButtons(data, pe, CONTEXT_BUTTON_DELETE | CONTEXT_BUTTON_UPDATE);
         }
@@ -405,6 +424,28 @@ public class SCADiagramToolBehaviorProvider extends DefaultToolBehaviorProvider 
             }
         }
         return super.getDoubleClickFeature(context);
+    }
+
+    @Override
+    public GraphicsAlgorithm getSelectionBorder(PictogramElement pe) {
+        GraphicsAlgorithm ga = pe.getGraphicsAlgorithm();
+        if (!ga.getFilled()) {
+            for (GraphicsAlgorithm childGA : ga.getGraphicsAlgorithmChildren()) {
+                if (childGA.getFilled()) {
+                    return childGA;
+                }
+            }
+        }
+        return super.getSelectionBorder(pe);
+    }
+
+    @Override
+    public GraphicsAlgorithm[] getClickArea(PictogramElement pe) {
+        GraphicsAlgorithm ga = getSelectionBorder(pe);
+        if (ga == null) {
+            return super.getClickArea(pe);
+        }
+        return new GraphicsAlgorithm[] {ga };
     }
 
     @Override

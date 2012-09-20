@@ -13,9 +13,6 @@
 package org.switchyard.tools.ui.editor.impl;
 
 import org.eclipse.core.resources.IMarker;
-import org.eclipse.core.resources.IResourceChangeEvent;
-import org.eclipse.core.resources.IResourceChangeListener;
-import org.eclipse.core.resources.ResourcesPlugin;
 import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.gef.ContextMenuProvider;
 import org.eclipse.gef.ui.actions.ActionRegistry;
@@ -31,12 +28,10 @@ import org.eclipse.jface.viewers.StructuredSelection;
 import org.eclipse.swt.custom.CTabFolder;
 import org.eclipse.swt.custom.CTabFolder2Listener;
 import org.eclipse.swt.custom.CTabFolderEvent;
-import org.eclipse.swt.widgets.Display;
 import org.eclipse.ui.IEditorInput;
 import org.eclipse.ui.IEditorPart;
 import org.eclipse.ui.IEditorSite;
 import org.eclipse.ui.IFileEditorInput;
-import org.eclipse.ui.IWorkbenchPage;
 import org.eclipse.ui.IWorkbenchPart;
 import org.eclipse.ui.PartInitException;
 import org.eclipse.ui.ide.IDE;
@@ -54,7 +49,7 @@ import org.w3c.dom.Node;
  * @author bfitzpat
  * 
  */
-public class MultiPageEditor extends MultiPageEditorPart implements IResourceChangeListener, IGotoMarker {
+public class MultiPageEditor extends MultiPageEditorPart implements IGotoMarker {
 
     /** The text editor used in page 0. */
     private SwitchyardSCAEditor _diagramEditor;
@@ -68,7 +63,6 @@ public class MultiPageEditor extends MultiPageEditorPart implements IResourceCha
      */
     public MultiPageEditor() {
         super();
-        ResourcesPlugin.getWorkspace().addResourceChangeListener(this);
     }
 
     /**
@@ -78,7 +72,6 @@ public class MultiPageEditor extends MultiPageEditorPart implements IResourceCha
      */
     @Override
     public void dispose() {
-        ResourcesPlugin.getWorkspace().removeResourceChangeListener(this);
         super.dispose();
     }
 
@@ -110,31 +103,6 @@ public class MultiPageEditor extends MultiPageEditorPart implements IResourceCha
             throw new PartInitException("Invalid Input: Must be IFileEditorInput");
         }
         super.init(site, editorInput);
-    }
-
-    /*
-     * (non-Javadoc) Closes all project files on project close.
-     * 
-     * @see
-     * org.eclipse.core.resources.IResourceChangeListener#resourceChanged(org
-     * .eclipse.core.resources.IResourceChangeEvent)
-     */
-    @Override
-    public void resourceChanged(final IResourceChangeEvent event) {
-        if (event.getType() == IResourceChangeEvent.PRE_CLOSE) {
-            Display.getDefault().asyncExec(new Runnable() {
-                public void run() {
-                    IWorkbenchPage[] pages = getSite().getWorkbenchWindow().getPages();
-                    for (int i = 0; i < pages.length; i++) {
-                        if (((FileEditorInput) _diagramEditor.getEditorInput()).getFile().getProject()
-                                .equals(event.getResource())) {
-                            IEditorPart editorPart = pages[i].findEditor(_diagramEditor.getEditorInput());
-                            pages[i].closeEditor(editorPart, true);
-                        }
-                    }
-                }
-            });
-        }
     }
 
     /**

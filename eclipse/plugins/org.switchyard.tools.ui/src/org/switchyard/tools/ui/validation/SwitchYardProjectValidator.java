@@ -112,7 +112,7 @@ public class SwitchYardProjectValidator extends AbstractValidator {
         try {
             resource.load(null);
         } catch (IOException e) {
-            e.printStackTrace();
+            e.fillInStackTrace();
         }
         try {
             if (resource.getContents().isEmpty()) {
@@ -120,13 +120,9 @@ public class SwitchYardProjectValidator extends AbstractValidator {
                 message.setType(SWITCHYARD_MARKER_ID);
                 result.add(message);
             } else {
-                if (!switchYardOutput.equals(event.getResource())) {
-                    // fake the validation logic out so it points to the source
-                    // resource
-                    resource.setURI(URI.createPlatformResourceURI(event.getResource().getFullPath().toString(), false));
-                }
                 IBatchValidator validator = ModelValidationService.getInstance().newValidator(EvaluationMode.BATCH);
-                processStatus(validator.validate(resource.getContents(), monitor), event.getResource(), result);
+                processStatus(validator.validate(resource.getContents(), monitor), event.getResource(), result,
+                        !switchYardOutput.equals(event.getResource()));
             }
             return result;
         } finally {
@@ -134,17 +130,17 @@ public class SwitchYardProjectValidator extends AbstractValidator {
         }
     }
 
-    private void processStatus(IStatus status, IResource resource, ValidationResult result) {
+    private void processStatus(IStatus status, IResource resource, ValidationResult result, boolean patchURIs) {
         if (status.isMultiStatus()) {
             for (IStatus child : status.getChildren()) {
-                processStatus(child, resource, result);
+                processStatus(child, resource, result, patchURIs);
             }
         } else if (!status.isOK()) {
-            result.add(createValidationMessage(status, resource));
+            result.add(createValidationMessage(status, resource, patchURIs));
         }
     }
 
-    private ValidatorMessage createValidationMessage(IStatus status, IResource resource) {
+    private ValidatorMessage createValidationMessage(IStatus status, IResource resource, boolean patchURIs) {
         ValidatorMessage message = ValidatorMessage.create(status.getMessage(), resource);
         switch (status.getSeverity()) {
         case IStatus.INFO:
@@ -161,13 +157,13 @@ public class SwitchYardProjectValidator extends AbstractValidator {
 
         if (status instanceof IConstraintStatus) {
             IConstraintStatus ics = (IConstraintStatus) status;
-            message.setAttribute(EValidator.URI_ATTRIBUTE, EcoreUtil.getURI(ics.getTarget()).toString());
+            message.setAttribute(EValidator.URI_ATTRIBUTE, getURIStringForObject(ics.getTarget(), patchURIs));
             message.setAttribute(MarkerUtil.RULE_ATTRIBUTE, ics.getConstraint().getDescriptor().getId());
             message.setAttribute(ValidationProblem.PROBLEM_CODE, ics.getCode());
             if (ics.getResultLocus().size() > 0) {
                 StringBuffer relatedUris = new StringBuffer();
                 for (EObject eobject : ics.getResultLocus()) {
-                    relatedUris.append(EcoreUtil.getURI(eobject).toString()).append(" ");
+                    relatedUris.append(getURIStringForObject(eobject, patchURIs)).append(" ");
                 }
                 relatedUris.deleteCharAt(relatedUris.length() - 1);
                 message.setAttribute(EValidator.RELATED_URIS_ATTRIBUTE, relatedUris.toString());
@@ -177,6 +173,14 @@ public class SwitchYardProjectValidator extends AbstractValidator {
         message.setType(SWITCHYARD_MARKER_ID);
 
         return message;
+    }
+
+    private String getURIStringForObject(EObject object, boolean patchURI) {
+        final URI objectURI = EcoreUtil.getURI(object);
+        if (patchURI) {
+            return URI.createGenericURI("switchyard", "generated", objectURI.fragment()).toString();
+        }
+        return objectURI.toString();
     }
 
     @Override

@@ -66,6 +66,17 @@
         <enabled>true</enabled>
       </releases>
     </repository>
+    <repository>
+      <id>emf-compare-update-site</id>
+      <url>http://download.eclipse.org/modeling/emf/compare/updates/releases/1.2</url>
+      <layout>p2</layout>
+      <snapshots>
+        <enabled>true</enabled>
+      </snapshots>
+      <releases>
+        <enabled>true</enabled>
+      </releases>
+    </repository>
     <!-- The following provide dependencies required by the bpmn2 plugin. -->
     <repository>
       <id>bpmn2-model-update-site</id>

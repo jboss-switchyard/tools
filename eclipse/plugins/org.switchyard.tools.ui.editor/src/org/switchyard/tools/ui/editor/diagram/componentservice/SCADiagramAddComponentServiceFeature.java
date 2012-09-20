@@ -71,8 +71,9 @@ public class SCADiagramAddComponentServiceFeature extends AbstractAddShapeFeatur
         IPeCreateService peCreateService = Graphiti.getPeCreateService();
         IGaService gaService = Graphiti.getGaService();
 
-        int anchorY = (component.getService().indexOf(service) + 1) * StyleUtil.COMPONENT_CHILD_V_SPACING;
-        int anchorX = 0;
+        int anchorY = 2 * StyleUtil.COMPONENT_EDGE + (component.getService().indexOf(service))
+                * StyleUtil.COMPONENT_CHILD_V_SPACING;
+        int anchorX = StyleUtil.COMPONENT_EDGE - 8;
         final ContainerShape container = peCreateService.createContainerShape(targetContainer, true);
         // use the image to represent the service component
         final Image image = gaService.createImage(container, ImageProvider.IMG_16_COMPONENT_SERVICE);
@@ -88,7 +89,11 @@ public class SCADiagramAddComponentServiceFeature extends AbstractAddShapeFeatur
         layoutPictogramElement(container);
 
         // make sure the connections get updated
-        updatePictogramElement(container);
+        if (updatePictogramElementNeeded(container)) {
+            // need to check otherwise, if no work is done, we'll nuke the
+            // previous item on the undo stack
+            updatePictogramElement(container);
+        }
 
         return container;
     }
