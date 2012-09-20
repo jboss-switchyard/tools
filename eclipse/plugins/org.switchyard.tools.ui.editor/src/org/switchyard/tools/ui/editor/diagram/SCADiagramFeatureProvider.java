@@ -427,7 +427,9 @@ public class SCADiagramFeatureProvider extends DefaultFeatureProvider {
     @Override
     public IDeleteFeature getDeleteFeature(IDeleteContext context) {
         PictogramElement pe = context.getPictogramElement();
-        if (pe != null) {
+        if (pe instanceof Connection) {
+            return new ConnectionDeleteFeature(this);
+        } else if (pe != null) {
             Object bo = getBusinessObjectForPictogramElement(pe);
             if (bo instanceof Composite) {
                 return new SCADiagramDeleteCompositeFeature(this);
