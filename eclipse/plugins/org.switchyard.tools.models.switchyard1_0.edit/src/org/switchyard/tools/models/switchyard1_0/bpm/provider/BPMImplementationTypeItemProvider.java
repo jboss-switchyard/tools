@@ -76,6 +76,7 @@ public class BPMImplementationTypeItemProvider
             addMessageContentInNamePropertyDescriptor(object);
             addMessageContentOutNamePropertyDescriptor(object);
             addPersistentPropertyDescriptor(object);
+            addSessionIdPropertyDescriptor(object);
         }
         return itemPropertyDescriptors;
     }
@@ -213,6 +214,28 @@ public class BPMImplementationTypeItemProvider
     }
 
     /**
+     * This adds a property descriptor for the Session Id feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    protected void addSessionIdPropertyDescriptor(Object object) {
+        itemPropertyDescriptors.add
+            (createItemPropertyDescriptor
+                (((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+                 getResourceLocator(),
+                 getString("_UI_BPMImplementationType_sessionId_feature"),
+                 getString("_UI_PropertyDescriptor_description", "_UI_BPMImplementationType_sessionId_feature", "_UI_BPMImplementationType_type"),
+                 BPMPackage.Literals.BPM_IMPLEMENTATION_TYPE__SESSION_ID,
+                 true,
+                 false,
+                 false,
+                 ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
+                 null,
+                 null));
+    }
+
+    /**
      * This specifies how to implement {@link #getChildren} and is used to deduce an appropriate feature for an
      * {@link org.eclipse.emf.edit.command.AddCommand}, {@link org.eclipse.emf.edit.command.RemoveCommand} or
      * {@link org.eclipse.emf.edit.command.MoveCommand} in {@link #createCommand}.
@@ -226,6 +249,7 @@ public class BPMImplementationTypeItemProvider
             super.getChildrenFeatures(object);
             childrenFeatures.add(BPMPackage.Literals.BPM_IMPLEMENTATION_TYPE__ACTION);
             childrenFeatures.add(BPMPackage.Literals.BPM_IMPLEMENTATION_TYPE__AUDIT);
+            childrenFeatures.add(BPMPackage.Literals.BPM_IMPLEMENTATION_TYPE__EVENT_LISTENER);
             childrenFeatures.add(BPMPackage.Literals.BPM_IMPLEMENTATION_TYPE__TASK_HANDLER);
             childrenFeatures.add(BPMPackage.Literals.BPM_IMPLEMENTATION_TYPE__RESOURCE);
             childrenFeatures.add(BPMPackage.Literals.BPM_IMPLEMENTATION_TYPE__PARAMETERS);
@@ -290,10 +314,12 @@ public class BPMImplementationTypeItemProvider
             case BPMPackage.BPM_IMPLEMENTATION_TYPE__MESSAGE_CONTENT_IN_NAME:
             case BPMPackage.BPM_IMPLEMENTATION_TYPE__MESSAGE_CONTENT_OUT_NAME:
             case BPMPackage.BPM_IMPLEMENTATION_TYPE__PERSISTENT:
+            case BPMPackage.BPM_IMPLEMENTATION_TYPE__SESSION_ID:
                 fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
                 return;
             case BPMPackage.BPM_IMPLEMENTATION_TYPE__ACTION:
             case BPMPackage.BPM_IMPLEMENTATION_TYPE__AUDIT:
+            case BPMPackage.BPM_IMPLEMENTATION_TYPE__EVENT_LISTENER:
             case BPMPackage.BPM_IMPLEMENTATION_TYPE__TASK_HANDLER:
             case BPMPackage.BPM_IMPLEMENTATION_TYPE__RESOURCE:
             case BPMPackage.BPM_IMPLEMENTATION_TYPE__PARAMETERS:
@@ -324,6 +350,11 @@ public class BPMImplementationTypeItemProvider
             (createChildParameter
                 (BPMPackage.Literals.BPM_IMPLEMENTATION_TYPE__AUDIT,
                  BPMFactory.eINSTANCE.createAuditType()));
+
+        newChildDescriptors.add
+            (createChildParameter
+                (BPMPackage.Literals.BPM_IMPLEMENTATION_TYPE__EVENT_LISTENER,
+                 BPMFactory.eINSTANCE.createEventListenerType()));
 
         newChildDescriptors.add
             (createChildParameter

@@ -283,6 +283,29 @@ public class BPMItemProviderAdapterFactory extends BPMAdapterFactory implements 
     }
 
     /**
+     * This keeps track of the one adapter used for all {@link org.switchyard.tools.models.switchyard1_0.bpm.EventListenerType} instances.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    protected EventListenerTypeItemProvider eventListenerTypeItemProvider;
+
+    /**
+     * This creates an adapter for a {@link org.switchyard.tools.models.switchyard1_0.bpm.EventListenerType}.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    @Override
+    public Adapter createEventListenerTypeAdapter() {
+        if (eventListenerTypeItemProvider == null) {
+            eventListenerTypeItemProvider = new EventListenerTypeItemProvider(this);
+        }
+
+        return eventListenerTypeItemProvider;
+    }
+
+    /**
      * This returns the root adapter factory that contains this factory.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
@@ -390,6 +413,7 @@ public class BPMItemProviderAdapterFactory extends BPMAdapterFactory implements 
         if (resourceTypeItemProvider != null) resourceTypeItemProvider.dispose();
         if (resultsTypeItemProvider != null) resultsTypeItemProvider.dispose();
         if (taskHandlerTypeItemProvider != null) taskHandlerTypeItemProvider.dispose();
+        if (eventListenerTypeItemProvider != null) eventListenerTypeItemProvider.dispose();
     }
 
 }

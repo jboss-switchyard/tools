@@ -29,6 +29,7 @@ import org.eclipse.soa.sca.sca1_1.model.sca.provider.BindingItemProvider;
 
 import org.switchyard.tools.models.switchyard1_0.commonselector.CommonselectorFactory;
 import org.switchyard.tools.models.switchyard1_0.commonselector.CommonselectorPackage;
+import org.switchyard.tools.models.switchyard1_0.http.HttpFactory;
 import org.switchyard.tools.models.switchyard1_0.soap.SOAPFactory;
 
 import org.switchyard.tools.models.switchyard1_0.switchyard.SwitchYardBindingType;
@@ -190,6 +191,11 @@ public class SwitchYardBindingTypeItemProvider
 
         newChildDescriptors.add
             (createChildParameter
+                (SwitchyardPackage.Literals.SWITCH_YARD_BINDING_TYPE__CONTEXT_MAPPER,
+                 HttpFactory.eINSTANCE.createHttpContextMapperType()));
+
+        newChildDescriptors.add
+            (createChildParameter
                 (SwitchyardPackage.Literals.SWITCH_YARD_BINDING_TYPE__MESSAGE_COMPOSER,
                  SwitchyardFactory.eINSTANCE.createMessageComposerType()));
 
@@ -197,6 +203,11 @@ public class SwitchYardBindingTypeItemProvider
             (createChildParameter
                 (SwitchyardPackage.Literals.SWITCH_YARD_BINDING_TYPE__MESSAGE_COMPOSER,
                  SOAPFactory.eINSTANCE.createSOAPMessageComposerType()));
+
+        newChildDescriptors.add
+            (createChildParameter
+                (SwitchyardPackage.Literals.SWITCH_YARD_BINDING_TYPE__MESSAGE_COMPOSER,
+                 HttpFactory.eINSTANCE.createHttpMessageComposerType()));
     }
 
 }

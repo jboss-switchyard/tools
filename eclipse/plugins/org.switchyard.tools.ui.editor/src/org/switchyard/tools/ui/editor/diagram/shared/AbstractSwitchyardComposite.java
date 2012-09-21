@@ -51,6 +51,7 @@ import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Control;
 import org.eclipse.swt.widgets.Label;
 import org.eclipse.swt.widgets.Text;
+import org.eclipse.ui.views.properties.tabbed.TabbedPropertySheetWidgetFactory;
 import org.switchyard.tools.ui.editor.Activator;
 import org.switchyard.tools.ui.editor.impl.SwitchyardSCAEditor;
 import org.switchyard.tools.ui.editor.util.ErrorUtils;
@@ -417,7 +418,10 @@ public abstract class AbstractSwitchyardComposite implements FocusListener, KeyL
 
     protected Combo createLabelAndCombo(Composite parent, String label, boolean readOnly) {
         if (label != null && !label.trim().isEmpty()) {
-            new Label(parent, SWT.NONE).setText(label);
+            Label labelControl = new Label(parent, SWT.NONE);
+            labelControl.setText(label);
+            TabbedPropertySheetWidgetFactory factory = new TabbedPropertySheetWidgetFactory();
+            factory.adapt(labelControl, false, false);
         }
         int styles = SWT.BORDER | SWT.DROP_DOWN;
         if (readOnly) {

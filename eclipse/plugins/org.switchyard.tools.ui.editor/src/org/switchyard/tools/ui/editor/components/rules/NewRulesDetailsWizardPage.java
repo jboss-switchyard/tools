@@ -49,8 +49,8 @@ public class NewRulesDetailsWizardPage extends WizardPage {
     private Text _packageNameText;
     private boolean _agent;
     private Button _agentCheckbox;
-    private String _messageName;
-    private Text _messageNameText;
+//    private String _messageName;
+//    private Text _messageNameText;
     private boolean _auditingEnabled;
     private Button _auditingEnabledCheckbox;
     private AuditType _auditSettings = RulesFactory.eINSTANCE.createAuditType();
@@ -86,18 +86,18 @@ public class NewRulesDetailsWizardPage extends WizardPage {
             }
         });
 
-        createLabel(contents, "Input Message:");
-        _messageNameText = new Text(contents, SWT.SINGLE | SWT.BORDER);
-        _messageNameText
-                .setToolTipText("The name for the property in which the input message contents will be stored; may be empty.");
-        _messageNameText.setLayoutData(new GridData(GridData.FILL_HORIZONTAL));
-        _messageNameText.addModifyListener(new ModifyListener() {
-            @Override
-            public void modifyText(ModifyEvent event) {
-                _messageName = _messageNameText.getText();
-                validate();
-            }
-        });
+//        createLabel(contents, "Input Message:");
+//        _messageNameText = new Text(contents, SWT.SINGLE | SWT.BORDER);
+//        _messageNameText
+//                .setToolTipText("The name for the property in which the input message contents will be stored; may be empty.");
+//        _messageNameText.setLayoutData(new GridData(GridData.FILL_HORIZONTAL));
+//        _messageNameText.addModifyListener(new ModifyListener() {
+//            @Override
+//            public void modifyText(ModifyEvent event) {
+//                _messageName = _messageNameText.getText();
+//                validate();
+//            }
+//        });
 
         // TODO: enable once we figure out what "agent" means
         // _agentCheckbox = new Button(contents, SWT.CHECK);
@@ -222,25 +222,25 @@ public class NewRulesDetailsWizardPage extends WizardPage {
         }
     }
 
-    /**
-     * @return the process variable name to be used for storing inbound message
-     *         content.
-     */
-    public String getMessageName() {
-        return nullForEmpty(_messageName);
-    }
-
-    /**
-     * @param messageName The process variable name to be used for storing
-     *            inbound message content.
-     */
-    public void setMessageName(String messageName) {
-        if (_messageNameText == null) {
-            _messageName = messageName;
-        } else {
-            _messageNameText.setText(messageName);
-        }
-    }
+//    /**
+//     * @return the process variable name to be used for storing inbound message
+//     *         content.
+//     */
+//    public String getMessageName() {
+//        return nullForEmpty(_messageName);
+//    }
+//
+//    /**
+//     * @param messageName The process variable name to be used for storing
+//     *            inbound message content.
+//     */
+//    public void setMessageName(String messageName) {
+//        if (_messageNameText == null) {
+//            _messageName = messageName;
+//        } else {
+//            _messageNameText.setText(messageName);
+//        }
+//    }
 
     /**
      * @return true if auditing is enabled.
@@ -321,7 +321,7 @@ public class NewRulesDetailsWizardPage extends WizardPage {
     private void initControls() {
         setAuditSettings(_auditSettings == null ? RulesFactory.eINSTANCE.createAuditType() : _auditSettings);
         setAuditingEnabled(_auditingEnabled);
-        setMessageName(emptyForNull(_messageName));
+//        setMessageName(emptyForNull(_messageName));
         setPackageName(emptyForNull(_packageName));
     }
 

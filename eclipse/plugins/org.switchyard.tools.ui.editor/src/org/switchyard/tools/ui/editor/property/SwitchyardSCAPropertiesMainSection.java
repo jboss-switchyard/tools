@@ -71,7 +71,7 @@ public class SwitchyardSCAPropertiesMainSection extends GFPropertySection implem
 
     private void addDomainListener() {
         if (_domain == null) {
-            _domain = (TransactionalEditingDomainImpl) SwitchyardSCAEditor.getActiveEditor().getEditingDomain();
+            _domain = (TransactionalEditingDomainImpl) SwitchyardSCAEditor.getEditor((EObject) _businessObject).getEditingDomain();
             _domain.addResourceSetListener(this);
         }
     }
@@ -145,7 +145,7 @@ public class SwitchyardSCAPropertiesMainSection extends GFPropertySection implem
         data.top = new FormAttachment(_nameText, 0, SWT.CENTER);
         valueLabel.setLayoutData(data);
 
-        addDomainListener();
+//        addDomainListener();
     }
 
     private void updateObjectName(final Object bo, final String value) {
@@ -216,6 +216,7 @@ public class SwitchyardSCAPropertiesMainSection extends GFPropertySection implem
             public void run() {
                 PictogramElement pe = getSelectedPictogramElement();
                 if (pe != null) {
+                    removeDomainListener();
                     _inUpdate = true;
                     _pe = null;
                     _businessObject = null;
@@ -247,6 +248,7 @@ public class SwitchyardSCAPropertiesMainSection extends GFPropertySection implem
                         }
                     }
                     _inUpdate = false;
+                    addDomainListener();
                 }
             }
         });

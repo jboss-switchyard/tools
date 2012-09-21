@@ -79,7 +79,7 @@ public class BeanImplementationWizardPage extends WizardPage {
         setTitle("Bean Implementation Details");
         setDescription("Select an implementation class.");
         setPageComplete(false);
-        ResourceSet resourceSet = (ResourceSet) SwitchyardSCAEditor.getActiveEditor().getEditorInput()
+        ResourceSet resourceSet = (ResourceSet) SwitchyardSCAEditor.getEditor(_serviceInterface).getEditorInput()
                 .getAdapter(ResourceSet.class);
         if (resourceSet != null && resourceSet.getResources().size() > 0) {
             for (Resource emfResource : resourceSet.getResources()) {
@@ -208,7 +208,7 @@ public class BeanImplementationWizardPage extends WizardPage {
 
     private void openNewBeanWizard() {
         NewBeanServiceWizard wizard = new NewBeanServiceWizard(false, false);
-        SwitchyardSCAEditor editor = SwitchyardSCAEditor.getActiveEditor();
+        SwitchyardSCAEditor editor = SwitchyardSCAEditor.getEditor(_serviceInterface);
         IJavaElement element = JavaUtil.getInitialPackageForProject(_project);
         IStructuredSelection selection = element == null ? StructuredSelection.EMPTY : new StructuredSelection(element);
         IWorkbench workbench = editor == null ? PlatformUI.getWorkbench() : editor.getEditorSite().getWorkbenchWindow()

@@ -31,6 +31,7 @@ import org.eclipse.emf.ecore.util.FeatureMap;
  *   <li>{@link org.switchyard.tools.models.switchyard1_0.rules.DocumentRoot#getMapping <em>Mapping</em>}</li>
  *   <li>{@link org.switchyard.tools.models.switchyard1_0.rules.DocumentRoot#getResource <em>Resource</em>}</li>
  *   <li>{@link org.switchyard.tools.models.switchyard1_0.rules.DocumentRoot#getFacts <em>Facts</em>}</li>
+ *   <li>{@link org.switchyard.tools.models.switchyard1_0.rules.DocumentRoot#getEventListener <em>Event Listener</em>}</li>
  * </ul>
  * </p>
  *
@@ -307,5 +308,32 @@ public interface DocumentRoot extends EObject {
      * @generated
      */
     void setFacts(FactsType value);
+
+    /**
+     * Returns the value of the '<em><b>Event Listener</b></em>' containment reference.
+     * <!-- begin-user-doc -->
+     * <p>
+     * If the meaning of the '<em>Event Listener</em>' containment reference isn't clear,
+     * there really should be more of a description here...
+     * </p>
+     * <!-- end-user-doc -->
+     * @return the value of the '<em>Event Listener</em>' containment reference.
+     * @see #setEventListener(EventListenerType)
+     * @see org.switchyard.tools.models.switchyard1_0.rules.RulesPackage#getDocumentRoot_EventListener()
+     * @model containment="true" upper="-2" transient="true" volatile="true" derived="true"
+     *        extendedMetaData="kind='element' name='eventListener' namespace='##targetNamespace' affiliation='urn:switchyard-component-common-rules:config:1.0#mapping'"
+     * @generated
+     */
+    EventListenerType getEventListener();
+
+    /**
+     * Sets the value of the '{@link org.switchyard.tools.models.switchyard1_0.rules.DocumentRoot#getEventListener <em>Event Listener</em>}' containment reference.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @param value the new value of the '<em>Event Listener</em>' containment reference.
+     * @see #getEventListener()
+     * @generated
+     */
+    void setEventListener(EventListenerType value);
 
 } // DocumentRoot

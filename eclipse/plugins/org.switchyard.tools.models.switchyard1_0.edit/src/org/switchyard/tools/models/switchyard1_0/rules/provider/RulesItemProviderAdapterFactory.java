@@ -283,6 +283,29 @@ public class RulesItemProviderAdapterFactory extends RulesAdapterFactory impleme
     }
 
     /**
+     * This keeps track of the one adapter used for all {@link org.switchyard.tools.models.switchyard1_0.rules.EventListenerType} instances.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    protected EventListenerTypeItemProvider eventListenerTypeItemProvider;
+
+    /**
+     * This creates an adapter for a {@link org.switchyard.tools.models.switchyard1_0.rules.EventListenerType}.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    @Override
+    public Adapter createEventListenerTypeAdapter() {
+        if (eventListenerTypeItemProvider == null) {
+            eventListenerTypeItemProvider = new EventListenerTypeItemProvider(this);
+        }
+
+        return eventListenerTypeItemProvider;
+    }
+
+    /**
      * This returns the root adapter factory that contains this factory.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
@@ -390,6 +413,7 @@ public class RulesItemProviderAdapterFactory extends RulesAdapterFactory impleme
         if (resourceTypeItemProvider != null) resourceTypeItemProvider.dispose();
         if (rulesImplementationTypeItemProvider != null) rulesImplementationTypeItemProvider.dispose();
         if (factsTypeItemProvider != null) factsTypeItemProvider.dispose();
+        if (eventListenerTypeItemProvider != null) eventListenerTypeItemProvider.dispose();
     }
 
 }

@@ -385,13 +385,22 @@ public interface RulesPackage extends EPackage {
     int DOCUMENT_ROOT__FACTS = 10;
 
     /**
+     * The feature id for the '<em><b>Event Listener</b></em>' containment reference.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int DOCUMENT_ROOT__EVENT_LISTENER = 11;
+
+    /**
      * The number of structural features of the '<em>Document Root</em>' class.
      * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
      * @generated
      * @ordered
      */
-	int DOCUMENT_ROOT_FEATURE_COUNT = 11;
+	int DOCUMENT_ROOT_FEATURE_COUNT = 12;
 
 	/**
      * The meta object id for the '{@link org.switchyard.tools.models.switchyard1_0.rules.impl.GlobalsTypeImpl <em>Globals Type</em>}' class.
@@ -659,13 +668,22 @@ public interface RulesPackage extends EPackage {
 	int RULES_IMPLEMENTATION_TYPE__AUDIT = CommonRulesPackage.COMMON_IMPLEMENTATION_TYPE_FEATURE_COUNT + 1;
 
 	/**
+     * The feature id for the '<em><b>Event Listener</b></em>' containment reference list.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int RULES_IMPLEMENTATION_TYPE__EVENT_LISTENER = CommonRulesPackage.COMMON_IMPLEMENTATION_TYPE_FEATURE_COUNT + 2;
+
+    /**
      * The feature id for the '<em><b>Channel</b></em>' containment reference list.
      * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
      * @generated
      * @ordered
      */
-	int RULES_IMPLEMENTATION_TYPE__CHANNEL = CommonRulesPackage.COMMON_IMPLEMENTATION_TYPE_FEATURE_COUNT + 2;
+	int RULES_IMPLEMENTATION_TYPE__CHANNEL = CommonRulesPackage.COMMON_IMPLEMENTATION_TYPE_FEATURE_COUNT + 3;
 
 	/**
      * The feature id for the '<em><b>Resource</b></em>' containment reference list.
@@ -674,7 +692,7 @@ public interface RulesPackage extends EPackage {
      * @generated
      * @ordered
      */
-	int RULES_IMPLEMENTATION_TYPE__RESOURCE = CommonRulesPackage.COMMON_IMPLEMENTATION_TYPE_FEATURE_COUNT + 3;
+	int RULES_IMPLEMENTATION_TYPE__RESOURCE = CommonRulesPackage.COMMON_IMPLEMENTATION_TYPE_FEATURE_COUNT + 4;
 
 	/**
      * The feature id for the '<em><b>Globals</b></em>' containment reference.
@@ -683,16 +701,7 @@ public interface RulesPackage extends EPackage {
      * @generated
      * @ordered
      */
-    int RULES_IMPLEMENTATION_TYPE__GLOBALS = CommonRulesPackage.COMMON_IMPLEMENTATION_TYPE_FEATURE_COUNT + 4;
-
-    /**
-     * The feature id for the '<em><b>Message Content Name</b></em>' attribute.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     * @ordered
-     */
-    int RULES_IMPLEMENTATION_TYPE__MESSAGE_CONTENT_NAME = CommonRulesPackage.COMMON_IMPLEMENTATION_TYPE_FEATURE_COUNT + 5;
+    int RULES_IMPLEMENTATION_TYPE__GLOBALS = CommonRulesPackage.COMMON_IMPLEMENTATION_TYPE_FEATURE_COUNT + 5;
 
     /**
      * The feature id for the '<em><b>Facts</b></em>' containment reference.
@@ -759,6 +768,43 @@ public interface RulesPackage extends EPackage {
     int FACTS_TYPE_FEATURE_COUNT = ScaPackage.COMMON_EXTENSION_BASE_FEATURE_COUNT + 1;
 
     /**
+     * The meta object id for the '{@link org.switchyard.tools.models.switchyard1_0.rules.impl.EventListenerTypeImpl <em>Event Listener Type</em>}' class.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @see org.switchyard.tools.models.switchyard1_0.rules.impl.EventListenerTypeImpl
+     * @see org.switchyard.tools.models.switchyard1_0.rules.impl.RulesPackageImpl#getEventListenerType()
+     * @generated
+     */
+    int EVENT_LISTENER_TYPE = 9;
+
+    /**
+     * The feature id for the '<em><b>Documentation</b></em>' containment reference list.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int EVENT_LISTENER_TYPE__DOCUMENTATION = CommonRulesPackage.EVENT_LISTENER_TYPE__DOCUMENTATION;
+
+    /**
+     * The feature id for the '<em><b>Any Attribute</b></em>' attribute list.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int EVENT_LISTENER_TYPE__ANY_ATTRIBUTE = CommonRulesPackage.EVENT_LISTENER_TYPE__ANY_ATTRIBUTE;
+
+    /**
+     * The number of structural features of the '<em>Event Listener Type</em>' class.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int EVENT_LISTENER_TYPE_FEATURE_COUNT = CommonRulesPackage.EVENT_LISTENER_TYPE_FEATURE_COUNT + 0;
+
+    /**
      * The meta object id for the '{@link org.switchyard.tools.models.switchyard1_0.rules.ActionType <em>Action Type</em>}' enum.
      * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -766,7 +812,7 @@ public interface RulesPackage extends EPackage {
      * @see org.switchyard.tools.models.switchyard1_0.rules.impl.RulesPackageImpl#getActionType()
      * @generated
      */
-	int ACTION_TYPE = 9;
+	int ACTION_TYPE = 10;
 
 	/**
      * The meta object id for the '<em>Action Type Object</em>' data type.
@@ -776,7 +822,7 @@ public interface RulesPackage extends EPackage {
      * @see org.switchyard.tools.models.switchyard1_0.rules.impl.RulesPackageImpl#getActionTypeObject()
      * @generated
      */
-	int ACTION_TYPE_OBJECT = 10;
+	int ACTION_TYPE_OBJECT = 11;
 
 
 	/**
@@ -1029,6 +1075,17 @@ public interface RulesPackage extends EPackage {
     EReference getDocumentRoot_Facts();
 
     /**
+     * Returns the meta object for the containment reference '{@link org.switchyard.tools.models.switchyard1_0.rules.DocumentRoot#getEventListener <em>Event Listener</em>}'.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @return the meta object for the containment reference '<em>Event Listener</em>'.
+     * @see org.switchyard.tools.models.switchyard1_0.rules.DocumentRoot#getEventListener()
+     * @see #getDocumentRoot()
+     * @generated
+     */
+    EReference getDocumentRoot_EventListener();
+
+    /**
      * Returns the meta object for class '{@link org.switchyard.tools.models.switchyard1_0.rules.GlobalsType <em>Globals Type</em>}'.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
@@ -1102,6 +1159,17 @@ public interface RulesPackage extends EPackage {
 	EReference getRulesImplementationType_Audit();
 
 	/**
+     * Returns the meta object for the containment reference list '{@link org.switchyard.tools.models.switchyard1_0.rules.RulesImplementationType#getEventListener <em>Event Listener</em>}'.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @return the meta object for the containment reference list '<em>Event Listener</em>'.
+     * @see org.switchyard.tools.models.switchyard1_0.rules.RulesImplementationType#getEventListener()
+     * @see #getRulesImplementationType()
+     * @generated
+     */
+    EReference getRulesImplementationType_EventListener();
+
+    /**
      * Returns the meta object for the containment reference list '{@link org.switchyard.tools.models.switchyard1_0.rules.RulesImplementationType#getChannel <em>Channel</em>}'.
      * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -1135,17 +1203,6 @@ public interface RulesPackage extends EPackage {
     EReference getRulesImplementationType_Globals();
 
     /**
-     * Returns the meta object for the attribute '{@link org.switchyard.tools.models.switchyard1_0.rules.RulesImplementationType#getMessageContentName <em>Message Content Name</em>}'.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @return the meta object for the attribute '<em>Message Content Name</em>'.
-     * @see org.switchyard.tools.models.switchyard1_0.rules.RulesImplementationType#getMessageContentName()
-     * @see #getRulesImplementationType()
-     * @generated
-     */
-    EAttribute getRulesImplementationType_MessageContentName();
-
-    /**
      * Returns the meta object for the containment reference '{@link org.switchyard.tools.models.switchyard1_0.rules.RulesImplementationType#getFacts <em>Facts</em>}'.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
@@ -1176,6 +1233,16 @@ public interface RulesPackage extends EPackage {
      * @generated
      */
     EReference getFactsType_Mapping();
+
+    /**
+     * Returns the meta object for class '{@link org.switchyard.tools.models.switchyard1_0.rules.EventListenerType <em>Event Listener Type</em>}'.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @return the meta object for class '<em>Event Listener Type</em>'.
+     * @see org.switchyard.tools.models.switchyard1_0.rules.EventListenerType
+     * @generated
+     */
+    EClass getEventListenerType();
 
     /**
      * Returns the meta object for enum '{@link org.switchyard.tools.models.switchyard1_0.rules.ActionType <em>Action Type</em>}'.
@@ -1414,6 +1481,14 @@ public interface RulesPackage extends EPackage {
         EReference DOCUMENT_ROOT__FACTS = eINSTANCE.getDocumentRoot_Facts();
 
         /**
+         * The meta object literal for the '<em><b>Event Listener</b></em>' containment reference feature.
+         * <!-- begin-user-doc -->
+         * <!-- end-user-doc -->
+         * @generated
+         */
+        EReference DOCUMENT_ROOT__EVENT_LISTENER = eINSTANCE.getDocumentRoot_EventListener();
+
+        /**
          * The meta object literal for the '{@link org.switchyard.tools.models.switchyard1_0.rules.impl.GlobalsTypeImpl <em>Globals Type</em>}' class.
          * <!-- begin-user-doc -->
          * <!-- end-user-doc -->
@@ -1478,6 +1553,14 @@ public interface RulesPackage extends EPackage {
 		EReference RULES_IMPLEMENTATION_TYPE__AUDIT = eINSTANCE.getRulesImplementationType_Audit();
 
 		/**
+         * The meta object literal for the '<em><b>Event Listener</b></em>' containment reference list feature.
+         * <!-- begin-user-doc -->
+         * <!-- end-user-doc -->
+         * @generated
+         */
+        EReference RULES_IMPLEMENTATION_TYPE__EVENT_LISTENER = eINSTANCE.getRulesImplementationType_EventListener();
+
+        /**
          * The meta object literal for the '<em><b>Channel</b></em>' containment reference list feature.
          * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
@@ -1500,14 +1583,6 @@ public interface RulesPackage extends EPackage {
          * @generated
          */
         EReference RULES_IMPLEMENTATION_TYPE__GLOBALS = eINSTANCE.getRulesImplementationType_Globals();
-
-        /**
-         * The meta object literal for the '<em><b>Message Content Name</b></em>' attribute feature.
-         * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
-         * @generated
-         */
-        EAttribute RULES_IMPLEMENTATION_TYPE__MESSAGE_CONTENT_NAME = eINSTANCE.getRulesImplementationType_MessageContentName();
 
         /**
          * The meta object literal for the '<em><b>Facts</b></em>' containment reference feature.
@@ -1534,6 +1609,16 @@ public interface RulesPackage extends EPackage {
          * @generated
          */
         EReference FACTS_TYPE__MAPPING = eINSTANCE.getFactsType_Mapping();
+
+        /**
+         * The meta object literal for the '{@link org.switchyard.tools.models.switchyard1_0.rules.impl.EventListenerTypeImpl <em>Event Listener Type</em>}' class.
+         * <!-- begin-user-doc -->
+         * <!-- end-user-doc -->
+         * @see org.switchyard.tools.models.switchyard1_0.rules.impl.EventListenerTypeImpl
+         * @see org.switchyard.tools.models.switchyard1_0.rules.impl.RulesPackageImpl#getEventListenerType()
+         * @generated
+         */
+        EClass EVENT_LISTENER_TYPE = eINSTANCE.getEventListenerType();
 
         /**
          * The meta object literal for the '{@link org.switchyard.tools.models.switchyard1_0.rules.ActionType <em>Action Type</em>}' enum.

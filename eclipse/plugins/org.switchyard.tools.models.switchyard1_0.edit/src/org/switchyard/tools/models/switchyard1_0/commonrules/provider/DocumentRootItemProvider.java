@@ -130,6 +130,7 @@ public class DocumentRootItemProvider
         if (childrenFeatures == null) {
             super.getChildrenFeatures(object);
             childrenFeatures.add(CommonRulesPackage.Literals.DOCUMENT_ROOT__MAPPING);
+            childrenFeatures.add(CommonRulesPackage.Literals.DOCUMENT_ROOT__EVENT_LISTENER);
         }
         return childrenFeatures;
     }
@@ -186,6 +187,7 @@ public class DocumentRootItemProvider
                 fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
                 return;
             case CommonRulesPackage.DOCUMENT_ROOT__MAPPING:
+            case CommonRulesPackage.DOCUMENT_ROOT__EVENT_LISTENER:
                 fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), true, false));
                 return;
         }

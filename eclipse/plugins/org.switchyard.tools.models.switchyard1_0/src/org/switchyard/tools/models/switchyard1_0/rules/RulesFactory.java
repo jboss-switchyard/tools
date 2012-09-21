@@ -107,6 +107,15 @@ public interface RulesFactory extends EFactory {
     FactsType createFactsType();
 
     /**
+     * Returns a new object of class '<em>Event Listener Type</em>'.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @return a new object of class '<em>Event Listener Type</em>'.
+     * @generated
+     */
+    EventListenerType createEventListenerType();
+
+    /**
      * Returns the package supported by this factory.
      * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->

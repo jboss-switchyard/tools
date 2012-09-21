@@ -91,6 +91,7 @@ public class DocumentRootItemProvider
             childrenFeatures.add(BPMPackage.Literals.DOCUMENT_ROOT__RESOURCE);
             childrenFeatures.add(BPMPackage.Literals.DOCUMENT_ROOT__RESULTS);
             childrenFeatures.add(BPMPackage.Literals.DOCUMENT_ROOT__TASK_HANDLER);
+            childrenFeatures.add(BPMPackage.Literals.DOCUMENT_ROOT__EVENT_LISTENER);
         }
         return childrenFeatures;
     }
@@ -150,6 +151,7 @@ public class DocumentRootItemProvider
             case BPMPackage.DOCUMENT_ROOT__RESOURCE:
             case BPMPackage.DOCUMENT_ROOT__RESULTS:
             case BPMPackage.DOCUMENT_ROOT__TASK_HANDLER:
+            case BPMPackage.DOCUMENT_ROOT__EVENT_LISTENER:
                 fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), true, false));
                 return;
         }
@@ -206,6 +208,11 @@ public class DocumentRootItemProvider
             (createChildParameter
                 (BPMPackage.Literals.DOCUMENT_ROOT__TASK_HANDLER,
                  BPMFactory.eINSTANCE.createTaskHandlerType()));
+
+        newChildDescriptors.add
+            (createChildParameter
+                (BPMPackage.Literals.DOCUMENT_ROOT__EVENT_LISTENER,
+                 BPMFactory.eINSTANCE.createEventListenerType()));
     }
 
     /**

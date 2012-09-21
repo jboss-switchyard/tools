@@ -53,6 +53,7 @@ import org.switchyard.tools.models.switchyard1_0.bpm.BPMFactory;
 import org.switchyard.tools.models.switchyard1_0.bpm.BPMImplementationType;
 import org.switchyard.tools.models.switchyard1_0.bpm.BPMPackage;
 import org.switchyard.tools.models.switchyard1_0.bpm.DocumentRoot;
+import org.switchyard.tools.models.switchyard1_0.bpm.EventListenerType;
 import org.switchyard.tools.models.switchyard1_0.bpm.MappingType;
 import org.switchyard.tools.models.switchyard1_0.bpm.ParametersType;
 import org.switchyard.tools.models.switchyard1_0.bpm.ResourceType;
@@ -158,6 +159,13 @@ public class BPMPackageImpl extends EPackageImpl implements BPMPackage {
 	private EClass taskHandlerTypeEClass = null;
 
 	/**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    private EClass eventListenerTypeEClass = null;
+
+    /**
      * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
      * @generated
@@ -364,11 +372,20 @@ public class BPMPackageImpl extends EPackageImpl implements BPMPackage {
 
 	/**
      * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public EReference getBPMImplementationType_EventListener() {
+        return (EReference)bpmImplementationTypeEClass.getEStructuralFeatures().get(2);
+    }
+
+    /**
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
      * @generated
      */
 	public EReference getBPMImplementationType_TaskHandler() {
-        return (EReference)bpmImplementationTypeEClass.getEStructuralFeatures().get(2);
+        return (EReference)bpmImplementationTypeEClass.getEStructuralFeatures().get(3);
     }
 
 	/**
@@ -377,7 +394,7 @@ public class BPMPackageImpl extends EPackageImpl implements BPMPackage {
      * @generated
      */
 	public EReference getBPMImplementationType_Resource() {
-        return (EReference)bpmImplementationTypeEClass.getEStructuralFeatures().get(3);
+        return (EReference)bpmImplementationTypeEClass.getEStructuralFeatures().get(4);
     }
 
 	/**
@@ -386,15 +403,6 @@ public class BPMPackageImpl extends EPackageImpl implements BPMPackage {
      * @generated
      */
     public EReference getBPMImplementationType_Parameters() {
-        return (EReference)bpmImplementationTypeEClass.getEStructuralFeatures().get(4);
-    }
-
-    /**
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    public EReference getBPMImplementationType_Results() {
         return (EReference)bpmImplementationTypeEClass.getEStructuralFeatures().get(5);
     }
 
@@ -403,8 +411,8 @@ public class BPMPackageImpl extends EPackageImpl implements BPMPackage {
      * <!-- end-user-doc -->
      * @generated
      */
-    public EAttribute getBPMImplementationType_ProcessDefinition() {
-        return (EAttribute)bpmImplementationTypeEClass.getEStructuralFeatures().get(6);
+    public EReference getBPMImplementationType_Results() {
+        return (EReference)bpmImplementationTypeEClass.getEStructuralFeatures().get(6);
     }
 
     /**
@@ -412,7 +420,7 @@ public class BPMPackageImpl extends EPackageImpl implements BPMPackage {
      * <!-- end-user-doc -->
      * @generated
      */
-    public EAttribute getBPMImplementationType_ProcessDefinitionType() {
+    public EAttribute getBPMImplementationType_ProcessDefinition() {
         return (EAttribute)bpmImplementationTypeEClass.getEStructuralFeatures().get(7);
     }
 
@@ -421,7 +429,7 @@ public class BPMPackageImpl extends EPackageImpl implements BPMPackage {
      * <!-- end-user-doc -->
      * @generated
      */
-    public EAttribute getBPMImplementationType_ProcessId() {
+    public EAttribute getBPMImplementationType_ProcessDefinitionType() {
         return (EAttribute)bpmImplementationTypeEClass.getEStructuralFeatures().get(8);
     }
 
@@ -430,7 +438,7 @@ public class BPMPackageImpl extends EPackageImpl implements BPMPackage {
      * <!-- end-user-doc -->
      * @generated
      */
-    public EAttribute getBPMImplementationType_MessageContentInName() {
+    public EAttribute getBPMImplementationType_ProcessId() {
         return (EAttribute)bpmImplementationTypeEClass.getEStructuralFeatures().get(9);
     }
 
@@ -439,7 +447,7 @@ public class BPMPackageImpl extends EPackageImpl implements BPMPackage {
      * <!-- end-user-doc -->
      * @generated
      */
-    public EAttribute getBPMImplementationType_MessageContentOutName() {
+    public EAttribute getBPMImplementationType_MessageContentInName() {
         return (EAttribute)bpmImplementationTypeEClass.getEStructuralFeatures().get(10);
     }
 
@@ -448,8 +456,26 @@ public class BPMPackageImpl extends EPackageImpl implements BPMPackage {
      * <!-- end-user-doc -->
      * @generated
      */
-    public EAttribute getBPMImplementationType_Persistent() {
+    public EAttribute getBPMImplementationType_MessageContentOutName() {
         return (EAttribute)bpmImplementationTypeEClass.getEStructuralFeatures().get(11);
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public EAttribute getBPMImplementationType_Persistent() {
+        return (EAttribute)bpmImplementationTypeEClass.getEStructuralFeatures().get(12);
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public EAttribute getBPMImplementationType_SessionId() {
+        return (EAttribute)bpmImplementationTypeEClass.getEStructuralFeatures().get(13);
     }
 
     /**
@@ -565,6 +591,15 @@ public class BPMPackageImpl extends EPackageImpl implements BPMPackage {
      * <!-- end-user-doc -->
      * @generated
      */
+    public EReference getDocumentRoot_EventListener() {
+        return (EReference)documentRootEClass.getEStructuralFeatures().get(11);
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
     public EClass getMappingType() {
         return mappingTypeEClass;
     }
@@ -643,6 +678,15 @@ public class BPMPackageImpl extends EPackageImpl implements BPMPackage {
 
     /**
      * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public EClass getEventListenerType() {
+        return eventListenerTypeEClass;
+    }
+
+    /**
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
      * @generated
      */
@@ -697,6 +741,7 @@ public class BPMPackageImpl extends EPackageImpl implements BPMPackage {
         bpmImplementationTypeEClass = createEClass(BPM_IMPLEMENTATION_TYPE);
         createEReference(bpmImplementationTypeEClass, BPM_IMPLEMENTATION_TYPE__ACTION);
         createEReference(bpmImplementationTypeEClass, BPM_IMPLEMENTATION_TYPE__AUDIT);
+        createEReference(bpmImplementationTypeEClass, BPM_IMPLEMENTATION_TYPE__EVENT_LISTENER);
         createEReference(bpmImplementationTypeEClass, BPM_IMPLEMENTATION_TYPE__TASK_HANDLER);
         createEReference(bpmImplementationTypeEClass, BPM_IMPLEMENTATION_TYPE__RESOURCE);
         createEReference(bpmImplementationTypeEClass, BPM_IMPLEMENTATION_TYPE__PARAMETERS);
@@ -707,6 +752,7 @@ public class BPMPackageImpl extends EPackageImpl implements BPMPackage {
         createEAttribute(bpmImplementationTypeEClass, BPM_IMPLEMENTATION_TYPE__MESSAGE_CONTENT_IN_NAME);
         createEAttribute(bpmImplementationTypeEClass, BPM_IMPLEMENTATION_TYPE__MESSAGE_CONTENT_OUT_NAME);
         createEAttribute(bpmImplementationTypeEClass, BPM_IMPLEMENTATION_TYPE__PERSISTENT);
+        createEAttribute(bpmImplementationTypeEClass, BPM_IMPLEMENTATION_TYPE__SESSION_ID);
 
         documentRootEClass = createEClass(DOCUMENT_ROOT);
         createEAttribute(documentRootEClass, DOCUMENT_ROOT__MIXED);
@@ -720,6 +766,7 @@ public class BPMPackageImpl extends EPackageImpl implements BPMPackage {
         createEReference(documentRootEClass, DOCUMENT_ROOT__RESOURCE);
         createEReference(documentRootEClass, DOCUMENT_ROOT__RESULTS);
         createEReference(documentRootEClass, DOCUMENT_ROOT__TASK_HANDLER);
+        createEReference(documentRootEClass, DOCUMENT_ROOT__EVENT_LISTENER);
 
         mappingTypeEClass = createEClass(MAPPING_TYPE);
 
@@ -734,6 +781,8 @@ public class BPMPackageImpl extends EPackageImpl implements BPMPackage {
         taskHandlerTypeEClass = createEClass(TASK_HANDLER_TYPE);
         createEAttribute(taskHandlerTypeEClass, TASK_HANDLER_TYPE__NAME);
         createEAttribute(taskHandlerTypeEClass, TASK_HANDLER_TYPE__CLASS);
+
+        eventListenerTypeEClass = createEClass(EVENT_LISTENER_TYPE);
 
         // Create enums
         actionTypeEEnum = createEEnum(ACTION_TYPE);
@@ -784,6 +833,7 @@ public class BPMPackageImpl extends EPackageImpl implements BPMPackage {
         resourceTypeEClass.getESuperTypes().add(theSwitchyardPackage.getResourceType());
         resultsTypeEClass.getESuperTypes().add(theScaPackage.getCommonExtensionBase());
         taskHandlerTypeEClass.getESuperTypes().add(theScaPackage.getCommonExtensionBase());
+        eventListenerTypeEClass.getESuperTypes().add(theCommonRulesPackage.getEventListenerType());
 
         // Initialize classes and features; add operations and parameters
         initEClass(actionType1EClass, ActionType1.class, "ActionType1", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
@@ -796,6 +846,7 @@ public class BPMPackageImpl extends EPackageImpl implements BPMPackage {
         initEClass(bpmImplementationTypeEClass, BPMImplementationType.class, "BPMImplementationType", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
         initEReference(getBPMImplementationType_Action(), this.getActionType1(), null, "action", null, 0, -1, BPMImplementationType.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
         initEReference(getBPMImplementationType_Audit(), this.getAuditType(), null, "audit", null, 0, 1, BPMImplementationType.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+        initEReference(getBPMImplementationType_EventListener(), this.getEventListenerType(), null, "eventListener", null, 0, -1, BPMImplementationType.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
         initEReference(getBPMImplementationType_TaskHandler(), this.getTaskHandlerType(), null, "taskHandler", null, 0, -1, BPMImplementationType.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
         initEReference(getBPMImplementationType_Resource(), this.getResourceType(), null, "resource", null, 0, -1, BPMImplementationType.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
         initEReference(getBPMImplementationType_Parameters(), this.getParametersType(), null, "parameters", null, 0, 1, BPMImplementationType.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
@@ -806,6 +857,7 @@ public class BPMPackageImpl extends EPackageImpl implements BPMPackage {
         initEAttribute(getBPMImplementationType_MessageContentInName(), theXMLTypePackage.getString(), "messageContentInName", "messageContentIn", 0, 1, BPMImplementationType.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
         initEAttribute(getBPMImplementationType_MessageContentOutName(), theXMLTypePackage.getString(), "messageContentOutName", "messageContentOut", 0, 1, BPMImplementationType.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
         initEAttribute(getBPMImplementationType_Persistent(), theXMLTypePackage.getBoolean(), "persistent", "false", 0, 1, BPMImplementationType.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+        initEAttribute(getBPMImplementationType_SessionId(), theXMLTypePackage.getString(), "sessionId", "", 0, 1, BPMImplementationType.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
         initEClass(documentRootEClass, DocumentRoot.class, "DocumentRoot", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
         initEAttribute(getDocumentRoot_Mixed(), ecorePackage.getEFeatureMapEntry(), "mixed", null, 0, -1, null, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
@@ -819,6 +871,7 @@ public class BPMPackageImpl extends EPackageImpl implements BPMPackage {
         initEReference(getDocumentRoot_Resource(), this.getResourceType(), null, "resource", null, 0, -2, null, IS_TRANSIENT, IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, IS_DERIVED, IS_ORDERED);
         initEReference(getDocumentRoot_Results(), this.getResultsType(), null, "results", null, 0, -2, null, IS_TRANSIENT, IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, IS_DERIVED, IS_ORDERED);
         initEReference(getDocumentRoot_TaskHandler(), this.getTaskHandlerType(), null, "taskHandler", null, 0, -2, null, IS_TRANSIENT, IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, IS_DERIVED, IS_ORDERED);
+        initEReference(getDocumentRoot_EventListener(), this.getEventListenerType(), null, "eventListener", null, 0, -2, null, IS_TRANSIENT, IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, IS_DERIVED, IS_ORDERED);
 
         initEClass(mappingTypeEClass, MappingType.class, "MappingType", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 
@@ -833,6 +886,8 @@ public class BPMPackageImpl extends EPackageImpl implements BPMPackage {
         initEClass(taskHandlerTypeEClass, TaskHandlerType.class, "TaskHandlerType", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
         initEAttribute(getTaskHandlerType_Name(), theXMLTypePackage.getNCName(), "name", null, 0, 1, TaskHandlerType.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
         initEAttribute(getTaskHandlerType_Class(), theXMLTypePackage.getName_(), "class", null, 1, 1, TaskHandlerType.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+        initEClass(eventListenerTypeEClass, EventListenerType.class, "EventListenerType", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 
         // Initialize enums and add enum literals
         initEEnum(actionTypeEEnum, ActionType.class, "ActionType");
@@ -931,6 +986,14 @@ public class BPMPackageImpl extends EPackageImpl implements BPMPackage {
              "namespace", "##targetNamespace"
            });		
         addAnnotation
+          (getBPMImplementationType_EventListener(), 
+           source, 
+           new String[] {
+             "kind", "element",
+             "name", "eventListener",
+             "namespace", "##targetNamespace"
+           });		
+        addAnnotation
           (getBPMImplementationType_TaskHandler(), 
            source, 
            new String[] {
@@ -1002,6 +1065,13 @@ public class BPMPackageImpl extends EPackageImpl implements BPMPackage {
            source, 
            new String[] {
              "name", "persistent",
+             "kind", "attribute"
+           });		
+        addAnnotation
+          (getBPMImplementationType_SessionId(), 
+           source, 
+           new String[] {
+             "name", "sessionId",
              "kind", "attribute"
            });		
         addAnnotation
@@ -1101,6 +1171,15 @@ public class BPMPackageImpl extends EPackageImpl implements BPMPackage {
              "namespace", "##targetNamespace"
            });		
         addAnnotation
+          (getDocumentRoot_EventListener(), 
+           source, 
+           new String[] {
+             "kind", "element",
+             "name", "eventListener",
+             "namespace", "##targetNamespace",
+             "affiliation", "urn:switchyard-component-common-rules:config:1.0#mapping"
+           });		
+        addAnnotation
           (mappingTypeEClass, 
            source, 
            new String[] {
@@ -1164,6 +1243,13 @@ public class BPMPackageImpl extends EPackageImpl implements BPMPackage {
            new String[] {
              "kind", "attribute",
              "name", "class"
+           });		
+        addAnnotation
+          (eventListenerTypeEClass, 
+           source, 
+           new String[] {
+             "name", "MappingType",
+             "kind", "empty"
            });
     }
 

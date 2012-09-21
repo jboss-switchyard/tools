@@ -70,6 +70,7 @@ public class BPMFactoryImpl extends EFactoryImpl implements BPMFactory {
             case BPMPackage.RESOURCE_TYPE: return createResourceType();
             case BPMPackage.RESULTS_TYPE: return createResultsType();
             case BPMPackage.TASK_HANDLER_TYPE: return createTaskHandlerType();
+            case BPMPackage.EVENT_LISTENER_TYPE: return createEventListenerType();
             default:
                 throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier");
         }
@@ -200,6 +201,16 @@ public class BPMFactoryImpl extends EFactoryImpl implements BPMFactory {
     }
 
 	/**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public EventListenerType createEventListenerType() {
+        EventListenerTypeImpl eventListenerType = new EventListenerTypeImpl();
+        return eventListenerType;
+    }
+
+    /**
      * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
      * @generated

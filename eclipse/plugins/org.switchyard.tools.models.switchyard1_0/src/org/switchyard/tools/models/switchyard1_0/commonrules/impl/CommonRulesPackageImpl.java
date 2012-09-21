@@ -61,6 +61,7 @@ import org.switchyard.tools.models.switchyard1_0.commonrules.CommonRulesFactory;
 import org.switchyard.tools.models.switchyard1_0.commonrules.CommonRulesPackage;
 import org.switchyard.tools.models.switchyard1_0.commonrules.ContextScope;
 import org.switchyard.tools.models.switchyard1_0.commonrules.DocumentRoot;
+import org.switchyard.tools.models.switchyard1_0.commonrules.EventListenerType;
 import org.switchyard.tools.models.switchyard1_0.commonrules.EventProcessingType;
 import org.switchyard.tools.models.switchyard1_0.commonrules.ExpressionType;
 import org.switchyard.tools.models.switchyard1_0.commonrules.MappingType;
@@ -119,6 +120,12 @@ public class CommonRulesPackageImpl extends EPackageImpl implements CommonRulesP
      * @generated
      */
     private EClass mappingTypeEClass = null;
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    private EClass eventListenerTypeEClass = null;
     /**
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
@@ -457,6 +464,15 @@ public class CommonRulesPackageImpl extends EPackageImpl implements CommonRulesP
      * <!-- end-user-doc -->
      * @generated
      */
+    public EReference getDocumentRoot_EventListener() {
+        return (EReference)documentRootEClass.getEStructuralFeatures().get(6);
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
     public EClass getMappingType() {
         return mappingTypeEClass;
     }
@@ -495,6 +511,24 @@ public class CommonRulesPackageImpl extends EPackageImpl implements CommonRulesP
      */
     public EAttribute getMappingType_Variable() {
         return (EAttribute)mappingTypeEClass.getEStructuralFeatures().get(3);
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public EClass getEventListenerType() {
+        return eventListenerTypeEClass;
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public EAttribute getEventListenerType_Class() {
+        return (EAttribute)eventListenerTypeEClass.getEStructuralFeatures().get(0);
     }
 
     /**
@@ -634,12 +668,16 @@ public class CommonRulesPackageImpl extends EPackageImpl implements CommonRulesP
         createEReference(documentRootEClass, DOCUMENT_ROOT__AUDIT);
         createEReference(documentRootEClass, DOCUMENT_ROOT__IMPLEMENTATION_COMMON_RULES);
         createEReference(documentRootEClass, DOCUMENT_ROOT__MAPPING);
+        createEReference(documentRootEClass, DOCUMENT_ROOT__EVENT_LISTENER);
 
         mappingTypeEClass = createEClass(MAPPING_TYPE);
         createEAttribute(mappingTypeEClass, MAPPING_TYPE__CONTEXT_SCOPE);
         createEAttribute(mappingTypeEClass, MAPPING_TYPE__EXPRESSION);
         createEAttribute(mappingTypeEClass, MAPPING_TYPE__EXPRESSION_TYPE);
         createEAttribute(mappingTypeEClass, MAPPING_TYPE__VARIABLE);
+
+        eventListenerTypeEClass = createEClass(EVENT_LISTENER_TYPE);
+        createEAttribute(eventListenerTypeEClass, EVENT_LISTENER_TYPE__CLASS);
 
         // Create enums
         auditTypeEEnum = createEEnum(AUDIT_TYPE);
@@ -691,6 +729,7 @@ public class CommonRulesPackageImpl extends EPackageImpl implements CommonRulesP
         auditType1EClass.getESuperTypes().add(theScaPackage.getCommonExtensionBase());
         commonImplementationTypeEClass.getESuperTypes().add(theScaPackage.getImplementation());
         mappingTypeEClass.getESuperTypes().add(theScaPackage.getCommonExtensionBase());
+        eventListenerTypeEClass.getESuperTypes().add(theScaPackage.getCommonExtensionBase());
 
         // Initialize classes and features; add operations and parameters
         initEClass(auditType1EClass, AuditType1.class, "AuditType1", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
@@ -712,12 +751,16 @@ public class CommonRulesPackageImpl extends EPackageImpl implements CommonRulesP
         initEReference(getDocumentRoot_Audit(), this.getAuditType1(), null, "audit", null, 0, -2, null, IS_TRANSIENT, IS_VOLATILE, !IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, IS_DERIVED, IS_ORDERED);
         initEReference(getDocumentRoot_ImplementationCommonRules(), this.getCommonImplementationType(), null, "implementationCommonRules", null, 0, -2, null, IS_TRANSIENT, IS_VOLATILE, !IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, IS_DERIVED, IS_ORDERED);
         initEReference(getDocumentRoot_Mapping(), this.getMappingType(), null, "mapping", null, 0, -2, null, IS_TRANSIENT, IS_VOLATILE, !IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, IS_DERIVED, IS_ORDERED);
+        initEReference(getDocumentRoot_EventListener(), this.getEventListenerType(), null, "eventListener", null, 0, -2, null, IS_TRANSIENT, IS_VOLATILE, !IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, IS_DERIVED, IS_ORDERED);
 
         initEClass(mappingTypeEClass, MappingType.class, "MappingType", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
         initEAttribute(getMappingType_ContextScope(), this.getContextScope(), "contextScope", "IN", 0, 1, MappingType.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
         initEAttribute(getMappingType_Expression(), theXMLTypePackage.getString(), "expression", "", 1, 1, MappingType.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
         initEAttribute(getMappingType_ExpressionType(), this.getExpressionType(), "expressionType", "MVEL", 0, 1, MappingType.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
         initEAttribute(getMappingType_Variable(), theXMLTypePackage.getNCName(), "variable", null, 0, 1, MappingType.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+        initEClass(eventListenerTypeEClass, EventListenerType.class, "EventListenerType", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+        initEAttribute(getEventListenerType_Class(), theXMLTypePackage.getNCName(), "class", null, 1, 1, EventListenerType.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
         // Initialize enums and add enum literals
         initEEnum(auditTypeEEnum, AuditType.class, "AuditType");
@@ -927,6 +970,14 @@ public class CommonRulesPackageImpl extends EPackageImpl implements CommonRulesP
              "namespace", "##targetNamespace"
            });		
         addAnnotation
+          (getDocumentRoot_EventListener(), 
+           source, 
+           new String[] {
+             "kind", "element",
+             "name", "eventListener",
+             "namespace", "##targetNamespace"
+           });		
+        addAnnotation
           (eventProcessingTypeEEnum, 
            source, 
            new String[] {
@@ -986,6 +1037,20 @@ public class CommonRulesPackageImpl extends EPackageImpl implements CommonRulesP
            new String[] {
              "kind", "attribute",
              "name", "variable"
+           });		
+        addAnnotation
+          (eventListenerTypeEClass, 
+           source, 
+           new String[] {
+             "name", "EventListenerType",
+             "kind", "empty"
+           });		
+        addAnnotation
+          (getEventListenerType_Class(), 
+           source, 
+           new String[] {
+             "kind", "attribute",
+             "name", "class"
            });
     }
 

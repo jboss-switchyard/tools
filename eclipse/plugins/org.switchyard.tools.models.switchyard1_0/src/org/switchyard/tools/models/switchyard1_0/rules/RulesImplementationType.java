@@ -20,10 +20,10 @@ import org.switchyard.tools.models.switchyard1_0.commonrules.CommonImplementatio
  * <ul>
  *   <li>{@link org.switchyard.tools.models.switchyard1_0.rules.RulesImplementationType#getAction <em>Action</em>}</li>
  *   <li>{@link org.switchyard.tools.models.switchyard1_0.rules.RulesImplementationType#getAudit <em>Audit</em>}</li>
+ *   <li>{@link org.switchyard.tools.models.switchyard1_0.rules.RulesImplementationType#getEventListener <em>Event Listener</em>}</li>
  *   <li>{@link org.switchyard.tools.models.switchyard1_0.rules.RulesImplementationType#getChannel <em>Channel</em>}</li>
  *   <li>{@link org.switchyard.tools.models.switchyard1_0.rules.RulesImplementationType#getResource <em>Resource</em>}</li>
  *   <li>{@link org.switchyard.tools.models.switchyard1_0.rules.RulesImplementationType#getGlobals <em>Globals</em>}</li>
- *   <li>{@link org.switchyard.tools.models.switchyard1_0.rules.RulesImplementationType#getMessageContentName <em>Message Content Name</em>}</li>
  *   <li>{@link org.switchyard.tools.models.switchyard1_0.rules.RulesImplementationType#getFacts <em>Facts</em>}</li>
  * </ul>
  * </p>
@@ -78,6 +78,23 @@ public interface RulesImplementationType extends CommonImplementationType {
 	void setAudit(AuditType value);
 
 	/**
+     * Returns the value of the '<em><b>Event Listener</b></em>' containment reference list.
+     * The list contents are of type {@link org.switchyard.tools.models.switchyard1_0.rules.EventListenerType}.
+     * <!-- begin-user-doc -->
+     * <p>
+     * If the meaning of the '<em>Event Listener</em>' containment reference isn't clear,
+     * there really should be more of a description here...
+     * </p>
+     * <!-- end-user-doc -->
+     * @return the value of the '<em>Event Listener</em>' containment reference list.
+     * @see org.switchyard.tools.models.switchyard1_0.rules.RulesPackage#getRulesImplementationType_EventListener()
+     * @model containment="true"
+     *        extendedMetaData="kind='element' name='eventListener' namespace='##targetNamespace'"
+     * @generated
+     */
+    EList<EventListenerType> getEventListener();
+
+    /**
      * Returns the value of the '<em><b>Channel</b></em>' containment reference list.
      * The list contents are of type {@link org.switchyard.tools.models.switchyard1_0.rules.ChannelType}.
      * <!-- begin-user-doc -->
@@ -137,33 +154,6 @@ public interface RulesImplementationType extends CommonImplementationType {
      * @generated
      */
     void setGlobals(GlobalsType value);
-
-    /**
-     * Returns the value of the '<em><b>Message Content Name</b></em>' attribute.
-     * <!-- begin-user-doc -->
-     * <p>
-     * If the meaning of the '<em>Message Content Name</em>' attribute isn't clear,
-     * there really should be more of a description here...
-     * </p>
-     * <!-- end-user-doc -->
-     * @return the value of the '<em>Message Content Name</em>' attribute.
-     * @see #setMessageContentName(String)
-     * @see org.switchyard.tools.models.switchyard1_0.rules.RulesPackage#getRulesImplementationType_MessageContentName()
-     * @model dataType="org.eclipse.emf.ecore.xml.type.String"
-     *        extendedMetaData="name='messageContentName' kind='attribute'"
-     * @generated
-     */
-    String getMessageContentName();
-
-    /**
-     * Sets the value of the '{@link org.switchyard.tools.models.switchyard1_0.rules.RulesImplementationType#getMessageContentName <em>Message Content Name</em>}' attribute.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @param value the new value of the '<em>Message Content Name</em>' attribute.
-     * @see #getMessageContentName()
-     * @generated
-     */
-    void setMessageContentName(String value);
 
     /**
      * Returns the value of the '<em><b>Facts</b></em>' containment reference.

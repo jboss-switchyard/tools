@@ -27,6 +27,7 @@ import org.switchyard.tools.models.switchyard1_0.rules.ActionType1;
 import org.switchyard.tools.models.switchyard1_0.rules.AuditType;
 import org.switchyard.tools.models.switchyard1_0.rules.ChannelType;
 import org.switchyard.tools.models.switchyard1_0.rules.DocumentRoot;
+import org.switchyard.tools.models.switchyard1_0.rules.EventListenerType;
 import org.switchyard.tools.models.switchyard1_0.rules.FactsType;
 import org.switchyard.tools.models.switchyard1_0.rules.GlobalsType;
 import org.switchyard.tools.models.switchyard1_0.rules.MappingType;
@@ -52,6 +53,7 @@ import org.switchyard.tools.models.switchyard1_0.rules.RulesPackage;
  *   <li>{@link org.switchyard.tools.models.switchyard1_0.rules.impl.DocumentRootImpl#getMapping <em>Mapping</em>}</li>
  *   <li>{@link org.switchyard.tools.models.switchyard1_0.rules.impl.DocumentRootImpl#getResource <em>Resource</em>}</li>
  *   <li>{@link org.switchyard.tools.models.switchyard1_0.rules.impl.DocumentRootImpl#getFacts <em>Facts</em>}</li>
+ *   <li>{@link org.switchyard.tools.models.switchyard1_0.rules.impl.DocumentRootImpl#getEventListener <em>Event Listener</em>}</li>
  * </ul>
  * </p>
  *
@@ -361,6 +363,33 @@ public class DocumentRootImpl extends EObjectImpl implements DocumentRoot {
 
     /**
      * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public EventListenerType getEventListener() {
+        return (EventListenerType)getMixed().get(RulesPackage.Literals.DOCUMENT_ROOT__EVENT_LISTENER, true);
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public NotificationChain basicSetEventListener(EventListenerType newEventListener, NotificationChain msgs) {
+        return ((FeatureMap.Internal)getMixed()).basicAdd(RulesPackage.Literals.DOCUMENT_ROOT__EVENT_LISTENER, newEventListener, msgs);
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public void setEventListener(EventListenerType newEventListener) {
+        ((FeatureMap.Internal)getMixed()).set(RulesPackage.Literals.DOCUMENT_ROOT__EVENT_LISTENER, newEventListener);
+    }
+
+    /**
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
      * @generated
      */
@@ -389,6 +418,8 @@ public class DocumentRootImpl extends EObjectImpl implements DocumentRoot {
                 return basicSetResource(null, msgs);
             case RulesPackage.DOCUMENT_ROOT__FACTS:
                 return basicSetFacts(null, msgs);
+            case RulesPackage.DOCUMENT_ROOT__EVENT_LISTENER:
+                return basicSetEventListener(null, msgs);
         }
         return super.eInverseRemove(otherEnd, featureID, msgs);
     }
@@ -426,6 +457,8 @@ public class DocumentRootImpl extends EObjectImpl implements DocumentRoot {
                 return getResource();
             case RulesPackage.DOCUMENT_ROOT__FACTS:
                 return getFacts();
+            case RulesPackage.DOCUMENT_ROOT__EVENT_LISTENER:
+                return getEventListener();
         }
         return super.eGet(featureID, resolve, coreType);
     }
@@ -470,6 +503,9 @@ public class DocumentRootImpl extends EObjectImpl implements DocumentRoot {
                 return;
             case RulesPackage.DOCUMENT_ROOT__FACTS:
                 setFacts((FactsType)newValue);
+                return;
+            case RulesPackage.DOCUMENT_ROOT__EVENT_LISTENER:
+                setEventListener((EventListenerType)newValue);
                 return;
         }
         super.eSet(featureID, newValue);
@@ -516,6 +552,9 @@ public class DocumentRootImpl extends EObjectImpl implements DocumentRoot {
             case RulesPackage.DOCUMENT_ROOT__FACTS:
                 setFacts((FactsType)null);
                 return;
+            case RulesPackage.DOCUMENT_ROOT__EVENT_LISTENER:
+                setEventListener((EventListenerType)null);
+                return;
         }
         super.eUnset(featureID);
     }
@@ -550,6 +589,8 @@ public class DocumentRootImpl extends EObjectImpl implements DocumentRoot {
                 return getResource() != null;
             case RulesPackage.DOCUMENT_ROOT__FACTS:
                 return getFacts() != null;
+            case RulesPackage.DOCUMENT_ROOT__EVENT_LISTENER:
+                return getEventListener() != null;
         }
         return super.eIsSet(featureID);
     }

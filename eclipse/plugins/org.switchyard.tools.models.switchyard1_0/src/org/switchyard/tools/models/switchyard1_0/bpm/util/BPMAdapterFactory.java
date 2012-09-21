@@ -113,6 +113,10 @@ public class BPMAdapterFactory extends AdapterFactoryImpl {
                 return createTaskHandlerTypeAdapter();
             }
             @Override
+            public Adapter caseEventListenerType(EventListenerType object) {
+                return createEventListenerTypeAdapter();
+            }
+            @Override
             public Adapter caseCommonExtensionBase(CommonExtensionBase object) {
                 return createCommonExtensionBaseAdapter();
             }
@@ -139,6 +143,10 @@ public class BPMAdapterFactory extends AdapterFactoryImpl {
             @Override
             public Adapter caseSwitchyard_ResourceType(org.switchyard.tools.models.switchyard1_0.switchyard.ResourceType object) {
                 return createSwitchyard_ResourceTypeAdapter();
+            }
+            @Override
+            public Adapter caseCommonRules_EventListenerType(org.switchyard.tools.models.switchyard1_0.commonrules.EventListenerType object) {
+                return createCommonRules_EventListenerTypeAdapter();
             }
             @Override
             public Adapter defaultCase(EObject object) {
@@ -287,6 +295,20 @@ public class BPMAdapterFactory extends AdapterFactoryImpl {
     }
 
 	/**
+     * Creates a new adapter for an object of class '{@link org.switchyard.tools.models.switchyard1_0.bpm.EventListenerType <em>Event Listener Type</em>}'.
+     * <!-- begin-user-doc -->
+     * This default implementation returns null so that we can easily ignore cases;
+     * it's useful to ignore a case when inheritance will catch all the cases anyway.
+     * <!-- end-user-doc -->
+     * @return the new adapter.
+     * @see org.switchyard.tools.models.switchyard1_0.bpm.EventListenerType
+     * @generated
+     */
+    public Adapter createEventListenerTypeAdapter() {
+        return null;
+    }
+
+    /**
      * Creates a new adapter for an object of class '{@link org.eclipse.soa.sca.sca1_1.model.sca.CommonExtensionBase <em>Common Extension Base</em>}'.
      * <!-- begin-user-doc -->
      * This default implementation returns null so that we can easily ignore cases;
@@ -381,6 +403,20 @@ public class BPMAdapterFactory extends AdapterFactoryImpl {
      * @generated
      */
     public Adapter createSwitchyard_ResourceTypeAdapter() {
+        return null;
+    }
+
+    /**
+     * Creates a new adapter for an object of class '{@link org.switchyard.tools.models.switchyard1_0.commonrules.EventListenerType <em>Event Listener Type</em>}'.
+     * <!-- begin-user-doc -->
+     * This default implementation returns null so that we can easily ignore cases;
+     * it's useful to ignore a case when inheritance will catch all the cases anyway.
+     * <!-- end-user-doc -->
+     * @return the new adapter.
+     * @see org.switchyard.tools.models.switchyard1_0.commonrules.EventListenerType
+     * @generated
+     */
+    public Adapter createCommonRules_EventListenerTypeAdapter() {
         return null;
     }
 

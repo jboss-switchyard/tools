@@ -1075,6 +1075,11 @@ public class PropertiesDefinitionItemProvider
         newChildDescriptors.add
             (createChildParameter
                 (SpringPackage.eINSTANCE.getPropertiesDefinition_Property(),
+                 BPMFactory.eINSTANCE.createEventListenerType()));
+
+        newChildDescriptors.add
+            (createChildParameter
+                (SpringPackage.eINSTANCE.getPropertiesDefinition_Property(),
                  SwitchyardFactory.eINSTANCE.createArtifactsType()));
 
         newChildDescriptors.add
@@ -1216,6 +1221,11 @@ public class PropertiesDefinitionItemProvider
             (createChildParameter
                 (SpringPackage.eINSTANCE.getPropertiesDefinition_Property(),
                  RulesFactory.eINSTANCE.createFactsType()));
+
+        newChildDescriptors.add
+            (createChildParameter
+                (SpringPackage.eINSTANCE.getPropertiesDefinition_Property(),
+                 RulesFactory.eINSTANCE.createEventListenerType()));
 
         newChildDescriptors.add
             (createChildParameter
@@ -1501,6 +1511,16 @@ public class PropertiesDefinitionItemProvider
             (createChildParameter
                 (SpringPackage.eINSTANCE.getPropertiesDefinition_Property(),
                  HttpFactory.eINSTANCE.createHttpBindingType()));
+
+        newChildDescriptors.add
+            (createChildParameter
+                (SpringPackage.eINSTANCE.getPropertiesDefinition_Property(),
+                 HttpFactory.eINSTANCE.createHttpContextMapperType()));
+
+        newChildDescriptors.add
+            (createChildParameter
+                (SpringPackage.eINSTANCE.getPropertiesDefinition_Property(),
+                 HttpFactory.eINSTANCE.createHttpMessageComposerType()));
 
         newChildDescriptors.add
             (createChildParameter

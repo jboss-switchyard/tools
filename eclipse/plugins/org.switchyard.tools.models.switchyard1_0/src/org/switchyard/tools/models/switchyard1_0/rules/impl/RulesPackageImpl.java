@@ -69,6 +69,7 @@ import org.switchyard.tools.models.switchyard1_0.rules.ActionType1;
 import org.switchyard.tools.models.switchyard1_0.rules.AuditType;
 import org.switchyard.tools.models.switchyard1_0.rules.ChannelType;
 import org.switchyard.tools.models.switchyard1_0.rules.DocumentRoot;
+import org.switchyard.tools.models.switchyard1_0.rules.EventListenerType;
 import org.switchyard.tools.models.switchyard1_0.rules.FactsType;
 import org.switchyard.tools.models.switchyard1_0.rules.GlobalsType;
 import org.switchyard.tools.models.switchyard1_0.rules.MappingType;
@@ -156,6 +157,13 @@ public class RulesPackageImpl extends EPackageImpl implements RulesPackage {
      * @generated
      */
     private EClass factsTypeEClass = null;
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    private EClass eventListenerTypeEClass = null;
 
     /**
      * <!-- begin-user-doc -->
@@ -502,6 +510,15 @@ public class RulesPackageImpl extends EPackageImpl implements RulesPackage {
      * <!-- end-user-doc -->
      * @generated
      */
+    public EReference getDocumentRoot_EventListener() {
+        return (EReference)documentRootEClass.getEStructuralFeatures().get(11);
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
     public EClass getGlobalsType() {
         return globalsTypeEClass;
     }
@@ -562,11 +579,20 @@ public class RulesPackageImpl extends EPackageImpl implements RulesPackage {
 
 	/**
      * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public EReference getRulesImplementationType_EventListener() {
+        return (EReference)rulesImplementationTypeEClass.getEStructuralFeatures().get(2);
+    }
+
+    /**
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
      * @generated
      */
 	public EReference getRulesImplementationType_Channel() {
-        return (EReference)rulesImplementationTypeEClass.getEStructuralFeatures().get(2);
+        return (EReference)rulesImplementationTypeEClass.getEStructuralFeatures().get(3);
     }
 
 	/**
@@ -575,7 +601,7 @@ public class RulesPackageImpl extends EPackageImpl implements RulesPackage {
      * @generated
      */
 	public EReference getRulesImplementationType_Resource() {
-        return (EReference)rulesImplementationTypeEClass.getEStructuralFeatures().get(3);
+        return (EReference)rulesImplementationTypeEClass.getEStructuralFeatures().get(4);
     }
 
 	/**
@@ -584,16 +610,7 @@ public class RulesPackageImpl extends EPackageImpl implements RulesPackage {
      * @generated
      */
     public EReference getRulesImplementationType_Globals() {
-        return (EReference)rulesImplementationTypeEClass.getEStructuralFeatures().get(4);
-    }
-
-    /**
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    public EAttribute getRulesImplementationType_MessageContentName() {
-        return (EAttribute)rulesImplementationTypeEClass.getEStructuralFeatures().get(5);
+        return (EReference)rulesImplementationTypeEClass.getEStructuralFeatures().get(5);
     }
 
     /**
@@ -621,6 +638,15 @@ public class RulesPackageImpl extends EPackageImpl implements RulesPackage {
      */
     public EReference getFactsType_Mapping() {
         return (EReference)factsTypeEClass.getEStructuralFeatures().get(0);
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public EClass getEventListenerType() {
+        return eventListenerTypeEClass;
     }
 
     /**
@@ -695,6 +721,7 @@ public class RulesPackageImpl extends EPackageImpl implements RulesPackage {
         createEReference(documentRootEClass, DOCUMENT_ROOT__MAPPING);
         createEReference(documentRootEClass, DOCUMENT_ROOT__RESOURCE);
         createEReference(documentRootEClass, DOCUMENT_ROOT__FACTS);
+        createEReference(documentRootEClass, DOCUMENT_ROOT__EVENT_LISTENER);
 
         globalsTypeEClass = createEClass(GLOBALS_TYPE);
         createEReference(globalsTypeEClass, GLOBALS_TYPE__MAPPING);
@@ -706,14 +733,16 @@ public class RulesPackageImpl extends EPackageImpl implements RulesPackage {
         rulesImplementationTypeEClass = createEClass(RULES_IMPLEMENTATION_TYPE);
         createEReference(rulesImplementationTypeEClass, RULES_IMPLEMENTATION_TYPE__ACTION);
         createEReference(rulesImplementationTypeEClass, RULES_IMPLEMENTATION_TYPE__AUDIT);
+        createEReference(rulesImplementationTypeEClass, RULES_IMPLEMENTATION_TYPE__EVENT_LISTENER);
         createEReference(rulesImplementationTypeEClass, RULES_IMPLEMENTATION_TYPE__CHANNEL);
         createEReference(rulesImplementationTypeEClass, RULES_IMPLEMENTATION_TYPE__RESOURCE);
         createEReference(rulesImplementationTypeEClass, RULES_IMPLEMENTATION_TYPE__GLOBALS);
-        createEAttribute(rulesImplementationTypeEClass, RULES_IMPLEMENTATION_TYPE__MESSAGE_CONTENT_NAME);
         createEReference(rulesImplementationTypeEClass, RULES_IMPLEMENTATION_TYPE__FACTS);
 
         factsTypeEClass = createEClass(FACTS_TYPE);
         createEReference(factsTypeEClass, FACTS_TYPE__MAPPING);
+
+        eventListenerTypeEClass = createEClass(EVENT_LISTENER_TYPE);
 
         // Create enums
         actionTypeEEnum = createEEnum(ACTION_TYPE);
@@ -764,6 +793,7 @@ public class RulesPackageImpl extends EPackageImpl implements RulesPackage {
         resourceTypeEClass.getESuperTypes().add(theSwitchyardPackage.getResourceType());
         rulesImplementationTypeEClass.getESuperTypes().add(theCommonRulesPackage.getCommonImplementationType());
         factsTypeEClass.getESuperTypes().add(theScaPackage.getCommonExtensionBase());
+        eventListenerTypeEClass.getESuperTypes().add(theCommonRulesPackage.getEventListenerType());
 
         // Initialize classes and features; add operations and parameters
         initEClass(actionType1EClass, ActionType1.class, "ActionType1", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
@@ -792,6 +822,7 @@ public class RulesPackageImpl extends EPackageImpl implements RulesPackage {
         initEReference(getDocumentRoot_Mapping(), this.getMappingType(), null, "mapping", null, 0, -2, null, IS_TRANSIENT, IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, IS_DERIVED, IS_ORDERED);
         initEReference(getDocumentRoot_Resource(), this.getResourceType(), null, "resource", null, 0, -2, null, IS_TRANSIENT, IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, IS_DERIVED, IS_ORDERED);
         initEReference(getDocumentRoot_Facts(), this.getFactsType(), null, "facts", null, 0, -2, null, IS_TRANSIENT, IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, IS_DERIVED, IS_ORDERED);
+        initEReference(getDocumentRoot_EventListener(), this.getEventListenerType(), null, "eventListener", null, 0, -2, null, IS_TRANSIENT, IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, IS_DERIVED, IS_ORDERED);
 
         initEClass(globalsTypeEClass, GlobalsType.class, "GlobalsType", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
         initEReference(getGlobalsType_Mapping(), this.getMappingType(), null, "mapping", null, 0, -1, GlobalsType.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
@@ -803,14 +834,16 @@ public class RulesPackageImpl extends EPackageImpl implements RulesPackage {
         initEClass(rulesImplementationTypeEClass, RulesImplementationType.class, "RulesImplementationType", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
         initEReference(getRulesImplementationType_Action(), this.getActionType1(), null, "action", null, 0, -1, RulesImplementationType.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
         initEReference(getRulesImplementationType_Audit(), this.getAuditType(), null, "audit", null, 0, 1, RulesImplementationType.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+        initEReference(getRulesImplementationType_EventListener(), this.getEventListenerType(), null, "eventListener", null, 0, -1, RulesImplementationType.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
         initEReference(getRulesImplementationType_Channel(), this.getChannelType(), null, "channel", null, 0, -1, RulesImplementationType.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
         initEReference(getRulesImplementationType_Resource(), this.getResourceType(), null, "resource", null, 0, -1, RulesImplementationType.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
         initEReference(getRulesImplementationType_Globals(), this.getGlobalsType(), null, "globals", null, 0, 1, RulesImplementationType.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-        initEAttribute(getRulesImplementationType_MessageContentName(), theXMLTypePackage.getString(), "messageContentName", null, 0, 1, RulesImplementationType.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
         initEReference(getRulesImplementationType_Facts(), this.getFactsType(), null, "facts", null, 0, 1, RulesImplementationType.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
         initEClass(factsTypeEClass, FactsType.class, "FactsType", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
         initEReference(getFactsType_Mapping(), this.getMappingType(), null, "mapping", null, 0, -1, FactsType.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+        initEClass(eventListenerTypeEClass, EventListenerType.class, "EventListenerType", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 
         // Initialize enums and add enum literals
         initEEnum(actionTypeEEnum, ActionType.class, "ActionType");
@@ -1024,6 +1057,15 @@ public class RulesPackageImpl extends EPackageImpl implements RulesPackage {
              "namespace", "##targetNamespace"
            });		
         addAnnotation
+          (getDocumentRoot_EventListener(), 
+           source, 
+           new String[] {
+             "kind", "element",
+             "name", "eventListener",
+             "namespace", "##targetNamespace",
+             "affiliation", "urn:switchyard-component-common-rules:config:1.0#mapping"
+           });		
+        addAnnotation
           (globalsTypeEClass, 
            source, 
            new String[] {
@@ -1076,6 +1118,14 @@ public class RulesPackageImpl extends EPackageImpl implements RulesPackage {
              "namespace", "##targetNamespace"
            });		
         addAnnotation
+          (getRulesImplementationType_EventListener(), 
+           source, 
+           new String[] {
+             "kind", "element",
+             "name", "eventListener",
+             "namespace", "##targetNamespace"
+           });		
+        addAnnotation
           (getRulesImplementationType_Channel(), 
            source, 
            new String[] {
@@ -1100,13 +1150,6 @@ public class RulesPackageImpl extends EPackageImpl implements RulesPackage {
              "namespace", "##targetNamespace"
            });		
         addAnnotation
-          (getRulesImplementationType_MessageContentName(), 
-           source, 
-           new String[] {
-             "name", "messageContentName",
-             "kind", "attribute"
-           });		
-        addAnnotation
           (getRulesImplementationType_Facts(), 
            source, 
            new String[] {
@@ -1128,6 +1171,13 @@ public class RulesPackageImpl extends EPackageImpl implements RulesPackage {
              "kind", "element",
              "name", "mapping",
              "namespace", "##targetNamespace"
+           });		
+        addAnnotation
+          (eventListenerTypeEClass, 
+           source, 
+           new String[] {
+             "name", "EventListenerType",
+             "kind", "empty"
            });
     }
 

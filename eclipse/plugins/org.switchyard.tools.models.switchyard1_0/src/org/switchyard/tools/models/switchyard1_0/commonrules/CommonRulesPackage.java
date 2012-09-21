@@ -291,13 +291,22 @@ public interface CommonRulesPackage extends EPackage {
     int DOCUMENT_ROOT__MAPPING = 5;
 
     /**
+     * The feature id for the '<em><b>Event Listener</b></em>' containment reference.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int DOCUMENT_ROOT__EVENT_LISTENER = 6;
+
+    /**
      * The number of structural features of the '<em>Document Root</em>' class.
      * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
      * @generated
      * @ordered
      */
-	int DOCUMENT_ROOT_FEATURE_COUNT = 6;
+	int DOCUMENT_ROOT_FEATURE_COUNT = 7;
 
 
 	/**
@@ -374,6 +383,52 @@ public interface CommonRulesPackage extends EPackage {
     int MAPPING_TYPE_FEATURE_COUNT = ScaPackage.COMMON_EXTENSION_BASE_FEATURE_COUNT + 4;
 
     /**
+     * The meta object id for the '{@link org.switchyard.tools.models.switchyard1_0.commonrules.impl.EventListenerTypeImpl <em>Event Listener Type</em>}' class.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @see org.switchyard.tools.models.switchyard1_0.commonrules.impl.EventListenerTypeImpl
+     * @see org.switchyard.tools.models.switchyard1_0.commonrules.impl.CommonRulesPackageImpl#getEventListenerType()
+     * @generated
+     */
+    int EVENT_LISTENER_TYPE = 4;
+
+    /**
+     * The feature id for the '<em><b>Documentation</b></em>' containment reference list.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int EVENT_LISTENER_TYPE__DOCUMENTATION = ScaPackage.COMMON_EXTENSION_BASE__DOCUMENTATION;
+
+    /**
+     * The feature id for the '<em><b>Any Attribute</b></em>' attribute list.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int EVENT_LISTENER_TYPE__ANY_ATTRIBUTE = ScaPackage.COMMON_EXTENSION_BASE__ANY_ATTRIBUTE;
+
+    /**
+     * The feature id for the '<em><b>Class</b></em>' attribute.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int EVENT_LISTENER_TYPE__CLASS = ScaPackage.COMMON_EXTENSION_BASE_FEATURE_COUNT + 0;
+
+    /**
+     * The number of structural features of the '<em>Event Listener Type</em>' class.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int EVENT_LISTENER_TYPE_FEATURE_COUNT = ScaPackage.COMMON_EXTENSION_BASE_FEATURE_COUNT + 1;
+
+    /**
      * The meta object id for the '{@link org.switchyard.tools.models.switchyard1_0.commonrules.AuditType <em>Audit Type</em>}' enum.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
@@ -381,7 +436,7 @@ public interface CommonRulesPackage extends EPackage {
      * @see org.switchyard.tools.models.switchyard1_0.commonrules.impl.CommonRulesPackageImpl#getAuditType()
      * @generated
      */
-    int AUDIT_TYPE = 4;
+    int AUDIT_TYPE = 5;
 
     /**
      * The meta object id for the '{@link org.switchyard.tools.models.switchyard1_0.commonrules.ClockType <em>Clock Type</em>}' enum.
@@ -391,7 +446,7 @@ public interface CommonRulesPackage extends EPackage {
      * @see org.switchyard.tools.models.switchyard1_0.commonrules.impl.CommonRulesPackageImpl#getClockType()
      * @generated
      */
-    int CLOCK_TYPE = 5;
+    int CLOCK_TYPE = 6;
 
     /**
      * The meta object id for the '{@link org.switchyard.tools.models.switchyard1_0.commonrules.ContextScope <em>Context Scope</em>}' enum.
@@ -401,7 +456,7 @@ public interface CommonRulesPackage extends EPackage {
      * @see org.switchyard.tools.models.switchyard1_0.commonrules.impl.CommonRulesPackageImpl#getContextScope()
      * @generated
      */
-    int CONTEXT_SCOPE = 6;
+    int CONTEXT_SCOPE = 7;
 
     /**
      * The meta object id for the '{@link org.switchyard.tools.models.switchyard1_0.commonrules.EventProcessingType <em>Event Processing Type</em>}' enum.
@@ -411,7 +466,7 @@ public interface CommonRulesPackage extends EPackage {
      * @see org.switchyard.tools.models.switchyard1_0.commonrules.impl.CommonRulesPackageImpl#getEventProcessingType()
      * @generated
      */
-    int EVENT_PROCESSING_TYPE = 7;
+    int EVENT_PROCESSING_TYPE = 8;
 
     /**
      * The meta object id for the '{@link org.switchyard.tools.models.switchyard1_0.commonrules.ExpressionType <em>Expression Type</em>}' enum.
@@ -421,7 +476,7 @@ public interface CommonRulesPackage extends EPackage {
      * @see org.switchyard.tools.models.switchyard1_0.commonrules.impl.CommonRulesPackageImpl#getExpressionType()
      * @generated
      */
-    int EXPRESSION_TYPE = 8;
+    int EXPRESSION_TYPE = 9;
 
     /**
      * The meta object id for the '<em>Audit Type Object</em>' data type.
@@ -431,7 +486,7 @@ public interface CommonRulesPackage extends EPackage {
      * @see org.switchyard.tools.models.switchyard1_0.commonrules.impl.CommonRulesPackageImpl#getAuditTypeObject()
      * @generated
      */
-    int AUDIT_TYPE_OBJECT = 9;
+    int AUDIT_TYPE_OBJECT = 10;
 
     /**
      * The meta object id for the '<em>Clock Type Object</em>' data type.
@@ -441,7 +496,7 @@ public interface CommonRulesPackage extends EPackage {
      * @see org.switchyard.tools.models.switchyard1_0.commonrules.impl.CommonRulesPackageImpl#getClockTypeObject()
      * @generated
      */
-    int CLOCK_TYPE_OBJECT = 10;
+    int CLOCK_TYPE_OBJECT = 11;
 
     /**
      * The meta object id for the '<em>Context Scope Object</em>' data type.
@@ -451,7 +506,7 @@ public interface CommonRulesPackage extends EPackage {
      * @see org.switchyard.tools.models.switchyard1_0.commonrules.impl.CommonRulesPackageImpl#getContextScopeObject()
      * @generated
      */
-    int CONTEXT_SCOPE_OBJECT = 11;
+    int CONTEXT_SCOPE_OBJECT = 12;
 
     /**
      * The meta object id for the '<em>Event Processing Type Object</em>' data type.
@@ -461,7 +516,7 @@ public interface CommonRulesPackage extends EPackage {
      * @see org.switchyard.tools.models.switchyard1_0.commonrules.impl.CommonRulesPackageImpl#getEventProcessingTypeObject()
      * @generated
      */
-    int EVENT_PROCESSING_TYPE_OBJECT = 12;
+    int EVENT_PROCESSING_TYPE_OBJECT = 13;
 
     /**
      * The meta object id for the '<em>Expression Type Object</em>' data type.
@@ -471,7 +526,7 @@ public interface CommonRulesPackage extends EPackage {
      * @see org.switchyard.tools.models.switchyard1_0.commonrules.impl.CommonRulesPackageImpl#getExpressionTypeObject()
      * @generated
      */
-    int EXPRESSION_TYPE_OBJECT = 13;
+    int EXPRESSION_TYPE_OBJECT = 14;
 
 
     /**
@@ -659,6 +714,17 @@ public interface CommonRulesPackage extends EPackage {
     EReference getDocumentRoot_Mapping();
 
     /**
+     * Returns the meta object for the containment reference '{@link org.switchyard.tools.models.switchyard1_0.commonrules.DocumentRoot#getEventListener <em>Event Listener</em>}'.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @return the meta object for the containment reference '<em>Event Listener</em>'.
+     * @see org.switchyard.tools.models.switchyard1_0.commonrules.DocumentRoot#getEventListener()
+     * @see #getDocumentRoot()
+     * @generated
+     */
+    EReference getDocumentRoot_EventListener();
+
+    /**
      * Returns the meta object for class '{@link org.switchyard.tools.models.switchyard1_0.commonrules.MappingType <em>Mapping Type</em>}'.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
@@ -711,6 +777,27 @@ public interface CommonRulesPackage extends EPackage {
      * @generated
      */
     EAttribute getMappingType_Variable();
+
+    /**
+     * Returns the meta object for class '{@link org.switchyard.tools.models.switchyard1_0.commonrules.EventListenerType <em>Event Listener Type</em>}'.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @return the meta object for class '<em>Event Listener Type</em>'.
+     * @see org.switchyard.tools.models.switchyard1_0.commonrules.EventListenerType
+     * @generated
+     */
+    EClass getEventListenerType();
+
+    /**
+     * Returns the meta object for the attribute '{@link org.switchyard.tools.models.switchyard1_0.commonrules.EventListenerType#getClass_ <em>Class</em>}'.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @return the meta object for the attribute '<em>Class</em>'.
+     * @see org.switchyard.tools.models.switchyard1_0.commonrules.EventListenerType#getClass_()
+     * @see #getEventListenerType()
+     * @generated
+     */
+    EAttribute getEventListenerType_Class();
 
     /**
      * Returns the meta object for enum '{@link org.switchyard.tools.models.switchyard1_0.commonrules.AuditType <em>Audit Type</em>}'.
@@ -987,6 +1074,14 @@ public interface CommonRulesPackage extends EPackage {
         EReference DOCUMENT_ROOT__MAPPING = eINSTANCE.getDocumentRoot_Mapping();
 
         /**
+         * The meta object literal for the '<em><b>Event Listener</b></em>' containment reference feature.
+         * <!-- begin-user-doc -->
+         * <!-- end-user-doc -->
+         * @generated
+         */
+        EReference DOCUMENT_ROOT__EVENT_LISTENER = eINSTANCE.getDocumentRoot_EventListener();
+
+        /**
          * The meta object literal for the '{@link org.switchyard.tools.models.switchyard1_0.commonrules.impl.MappingTypeImpl <em>Mapping Type</em>}' class.
          * <!-- begin-user-doc -->
          * <!-- end-user-doc -->
@@ -1027,6 +1122,24 @@ public interface CommonRulesPackage extends EPackage {
          * @generated
          */
         EAttribute MAPPING_TYPE__VARIABLE = eINSTANCE.getMappingType_Variable();
+
+        /**
+         * The meta object literal for the '{@link org.switchyard.tools.models.switchyard1_0.commonrules.impl.EventListenerTypeImpl <em>Event Listener Type</em>}' class.
+         * <!-- begin-user-doc -->
+         * <!-- end-user-doc -->
+         * @see org.switchyard.tools.models.switchyard1_0.commonrules.impl.EventListenerTypeImpl
+         * @see org.switchyard.tools.models.switchyard1_0.commonrules.impl.CommonRulesPackageImpl#getEventListenerType()
+         * @generated
+         */
+        EClass EVENT_LISTENER_TYPE = eINSTANCE.getEventListenerType();
+
+        /**
+         * The meta object literal for the '<em><b>Class</b></em>' attribute feature.
+         * <!-- begin-user-doc -->
+         * <!-- end-user-doc -->
+         * @generated
+         */
+        EAttribute EVENT_LISTENER_TYPE__CLASS = eINSTANCE.getEventListenerType_Class();
 
         /**
          * The meta object literal for the '{@link org.switchyard.tools.models.switchyard1_0.commonrules.AuditType <em>Audit Type</em>}' enum.

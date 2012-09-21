@@ -31,6 +31,7 @@ import org.eclipse.emf.ecore.util.FeatureMap;
  *   <li>{@link org.switchyard.tools.models.switchyard1_0.bpm.DocumentRoot#getResource <em>Resource</em>}</li>
  *   <li>{@link org.switchyard.tools.models.switchyard1_0.bpm.DocumentRoot#getResults <em>Results</em>}</li>
  *   <li>{@link org.switchyard.tools.models.switchyard1_0.bpm.DocumentRoot#getTaskHandler <em>Task Handler</em>}</li>
+ *   <li>{@link org.switchyard.tools.models.switchyard1_0.bpm.DocumentRoot#getEventListener <em>Event Listener</em>}</li>
  * </ul>
  * </p>
  *
@@ -307,5 +308,32 @@ public interface DocumentRoot extends EObject {
      * @generated
      */
 	void setTaskHandler(TaskHandlerType value);
+
+    /**
+     * Returns the value of the '<em><b>Event Listener</b></em>' containment reference.
+     * <!-- begin-user-doc -->
+     * <p>
+     * If the meaning of the '<em>Event Listener</em>' containment reference isn't clear,
+     * there really should be more of a description here...
+     * </p>
+     * <!-- end-user-doc -->
+     * @return the value of the '<em>Event Listener</em>' containment reference.
+     * @see #setEventListener(EventListenerType)
+     * @see org.switchyard.tools.models.switchyard1_0.bpm.BPMPackage#getDocumentRoot_EventListener()
+     * @model containment="true" upper="-2" transient="true" volatile="true" derived="true"
+     *        extendedMetaData="kind='element' name='eventListener' namespace='##targetNamespace' affiliation='urn:switchyard-component-common-rules:config:1.0#mapping'"
+     * @generated
+     */
+    EventListenerType getEventListener();
+
+    /**
+     * Sets the value of the '{@link org.switchyard.tools.models.switchyard1_0.bpm.DocumentRoot#getEventListener <em>Event Listener</em>}' containment reference.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @param value the new value of the '<em>Event Listener</em>' containment reference.
+     * @see #getEventListener()
+     * @generated
+     */
+    void setEventListener(EventListenerType value);
 
 } // DocumentRoot

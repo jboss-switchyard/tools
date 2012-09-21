@@ -303,13 +303,22 @@ public interface BPMPackage extends EPackage {
 	int BPM_IMPLEMENTATION_TYPE__AUDIT = CommonRulesPackage.COMMON_IMPLEMENTATION_TYPE_FEATURE_COUNT + 1;
 
 	/**
+     * The feature id for the '<em><b>Event Listener</b></em>' containment reference list.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int BPM_IMPLEMENTATION_TYPE__EVENT_LISTENER = CommonRulesPackage.COMMON_IMPLEMENTATION_TYPE_FEATURE_COUNT + 2;
+
+    /**
      * The feature id for the '<em><b>Task Handler</b></em>' containment reference list.
      * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
      * @generated
      * @ordered
      */
-	int BPM_IMPLEMENTATION_TYPE__TASK_HANDLER = CommonRulesPackage.COMMON_IMPLEMENTATION_TYPE_FEATURE_COUNT + 2;
+	int BPM_IMPLEMENTATION_TYPE__TASK_HANDLER = CommonRulesPackage.COMMON_IMPLEMENTATION_TYPE_FEATURE_COUNT + 3;
 
 	/**
      * The feature id for the '<em><b>Resource</b></em>' containment reference list.
@@ -318,7 +327,7 @@ public interface BPMPackage extends EPackage {
      * @generated
      * @ordered
      */
-	int BPM_IMPLEMENTATION_TYPE__RESOURCE = CommonRulesPackage.COMMON_IMPLEMENTATION_TYPE_FEATURE_COUNT + 3;
+	int BPM_IMPLEMENTATION_TYPE__RESOURCE = CommonRulesPackage.COMMON_IMPLEMENTATION_TYPE_FEATURE_COUNT + 4;
 
 	/**
      * The feature id for the '<em><b>Parameters</b></em>' containment reference.
@@ -327,7 +336,7 @@ public interface BPMPackage extends EPackage {
      * @generated
      * @ordered
      */
-    int BPM_IMPLEMENTATION_TYPE__PARAMETERS = CommonRulesPackage.COMMON_IMPLEMENTATION_TYPE_FEATURE_COUNT + 4;
+    int BPM_IMPLEMENTATION_TYPE__PARAMETERS = CommonRulesPackage.COMMON_IMPLEMENTATION_TYPE_FEATURE_COUNT + 5;
 
     /**
      * The feature id for the '<em><b>Results</b></em>' containment reference.
@@ -336,7 +345,7 @@ public interface BPMPackage extends EPackage {
      * @generated
      * @ordered
      */
-    int BPM_IMPLEMENTATION_TYPE__RESULTS = CommonRulesPackage.COMMON_IMPLEMENTATION_TYPE_FEATURE_COUNT + 5;
+    int BPM_IMPLEMENTATION_TYPE__RESULTS = CommonRulesPackage.COMMON_IMPLEMENTATION_TYPE_FEATURE_COUNT + 6;
 
     /**
      * The feature id for the '<em><b>Process Definition</b></em>' attribute.
@@ -345,7 +354,7 @@ public interface BPMPackage extends EPackage {
      * @generated
      * @ordered
      */
-    int BPM_IMPLEMENTATION_TYPE__PROCESS_DEFINITION = CommonRulesPackage.COMMON_IMPLEMENTATION_TYPE_FEATURE_COUNT + 6;
+    int BPM_IMPLEMENTATION_TYPE__PROCESS_DEFINITION = CommonRulesPackage.COMMON_IMPLEMENTATION_TYPE_FEATURE_COUNT + 7;
 
     /**
      * The feature id for the '<em><b>Process Definition Type</b></em>' attribute.
@@ -354,7 +363,7 @@ public interface BPMPackage extends EPackage {
      * @generated
      * @ordered
      */
-    int BPM_IMPLEMENTATION_TYPE__PROCESS_DEFINITION_TYPE = CommonRulesPackage.COMMON_IMPLEMENTATION_TYPE_FEATURE_COUNT + 7;
+    int BPM_IMPLEMENTATION_TYPE__PROCESS_DEFINITION_TYPE = CommonRulesPackage.COMMON_IMPLEMENTATION_TYPE_FEATURE_COUNT + 8;
 
     /**
      * The feature id for the '<em><b>Process Id</b></em>' attribute.
@@ -363,7 +372,7 @@ public interface BPMPackage extends EPackage {
      * @generated
      * @ordered
      */
-    int BPM_IMPLEMENTATION_TYPE__PROCESS_ID = CommonRulesPackage.COMMON_IMPLEMENTATION_TYPE_FEATURE_COUNT + 8;
+    int BPM_IMPLEMENTATION_TYPE__PROCESS_ID = CommonRulesPackage.COMMON_IMPLEMENTATION_TYPE_FEATURE_COUNT + 9;
 
     /**
      * The feature id for the '<em><b>Message Content In Name</b></em>' attribute.
@@ -372,7 +381,7 @@ public interface BPMPackage extends EPackage {
      * @generated
      * @ordered
      */
-    int BPM_IMPLEMENTATION_TYPE__MESSAGE_CONTENT_IN_NAME = CommonRulesPackage.COMMON_IMPLEMENTATION_TYPE_FEATURE_COUNT + 9;
+    int BPM_IMPLEMENTATION_TYPE__MESSAGE_CONTENT_IN_NAME = CommonRulesPackage.COMMON_IMPLEMENTATION_TYPE_FEATURE_COUNT + 10;
 
     /**
      * The feature id for the '<em><b>Message Content Out Name</b></em>' attribute.
@@ -381,7 +390,7 @@ public interface BPMPackage extends EPackage {
      * @generated
      * @ordered
      */
-    int BPM_IMPLEMENTATION_TYPE__MESSAGE_CONTENT_OUT_NAME = CommonRulesPackage.COMMON_IMPLEMENTATION_TYPE_FEATURE_COUNT + 10;
+    int BPM_IMPLEMENTATION_TYPE__MESSAGE_CONTENT_OUT_NAME = CommonRulesPackage.COMMON_IMPLEMENTATION_TYPE_FEATURE_COUNT + 11;
 
     /**
      * The feature id for the '<em><b>Persistent</b></em>' attribute.
@@ -390,7 +399,16 @@ public interface BPMPackage extends EPackage {
      * @generated
      * @ordered
      */
-    int BPM_IMPLEMENTATION_TYPE__PERSISTENT = CommonRulesPackage.COMMON_IMPLEMENTATION_TYPE_FEATURE_COUNT + 11;
+    int BPM_IMPLEMENTATION_TYPE__PERSISTENT = CommonRulesPackage.COMMON_IMPLEMENTATION_TYPE_FEATURE_COUNT + 12;
+
+    /**
+     * The feature id for the '<em><b>Session Id</b></em>' attribute.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int BPM_IMPLEMENTATION_TYPE__SESSION_ID = CommonRulesPackage.COMMON_IMPLEMENTATION_TYPE_FEATURE_COUNT + 13;
 
     /**
      * The number of structural features of the '<em>Implementation Type</em>' class.
@@ -399,7 +417,7 @@ public interface BPMPackage extends EPackage {
      * @generated
      * @ordered
      */
-	int BPM_IMPLEMENTATION_TYPE_FEATURE_COUNT = CommonRulesPackage.COMMON_IMPLEMENTATION_TYPE_FEATURE_COUNT + 12;
+	int BPM_IMPLEMENTATION_TYPE_FEATURE_COUNT = CommonRulesPackage.COMMON_IMPLEMENTATION_TYPE_FEATURE_COUNT + 14;
 
 	/**
      * The meta object id for the '{@link org.switchyard.tools.models.switchyard1_0.bpm.impl.DocumentRootImpl <em>Document Root</em>}' class.
@@ -511,13 +529,22 @@ public interface BPMPackage extends EPackage {
 	int DOCUMENT_ROOT__TASK_HANDLER = 10;
 
 	/**
+     * The feature id for the '<em><b>Event Listener</b></em>' containment reference.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int DOCUMENT_ROOT__EVENT_LISTENER = 11;
+
+    /**
      * The number of structural features of the '<em>Document Root</em>' class.
      * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
      * @generated
      * @ordered
      */
-	int DOCUMENT_ROOT_FEATURE_COUNT = 11;
+	int DOCUMENT_ROOT_FEATURE_COUNT = 12;
 
 	/**
      * The meta object id for the '{@link org.switchyard.tools.models.switchyard1_0.bpm.impl.MappingTypeImpl <em>Mapping Type</em>}' class.
@@ -777,6 +804,52 @@ public interface BPMPackage extends EPackage {
 	int TASK_HANDLER_TYPE_FEATURE_COUNT = ScaPackage.COMMON_EXTENSION_BASE_FEATURE_COUNT + 2;
 
 	/**
+     * The meta object id for the '{@link org.switchyard.tools.models.switchyard1_0.bpm.impl.EventListenerTypeImpl <em>Event Listener Type</em>}' class.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @see org.switchyard.tools.models.switchyard1_0.bpm.impl.EventListenerTypeImpl
+     * @see org.switchyard.tools.models.switchyard1_0.bpm.impl.BPMPackageImpl#getEventListenerType()
+     * @generated
+     */
+    int EVENT_LISTENER_TYPE = 9;
+
+    /**
+     * The feature id for the '<em><b>Documentation</b></em>' containment reference list.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int EVENT_LISTENER_TYPE__DOCUMENTATION = CommonRulesPackage.EVENT_LISTENER_TYPE__DOCUMENTATION;
+
+    /**
+     * The feature id for the '<em><b>Any Attribute</b></em>' attribute list.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int EVENT_LISTENER_TYPE__ANY_ATTRIBUTE = CommonRulesPackage.EVENT_LISTENER_TYPE__ANY_ATTRIBUTE;
+
+    /**
+     * The feature id for the '<em><b>Class</b></em>' attribute.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int EVENT_LISTENER_TYPE__CLASS = CommonRulesPackage.EVENT_LISTENER_TYPE__CLASS;
+
+    /**
+     * The number of structural features of the '<em>Event Listener Type</em>' class.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int EVENT_LISTENER_TYPE_FEATURE_COUNT = CommonRulesPackage.EVENT_LISTENER_TYPE_FEATURE_COUNT + 0;
+
+    /**
      * The meta object id for the '{@link org.switchyard.tools.models.switchyard1_0.bpm.ActionType <em>Action Type</em>}' enum.
      * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -784,7 +857,7 @@ public interface BPMPackage extends EPackage {
      * @see org.switchyard.tools.models.switchyard1_0.bpm.impl.BPMPackageImpl#getActionType()
      * @generated
      */
-	int ACTION_TYPE = 9;
+	int ACTION_TYPE = 10;
 
 	/**
      * The meta object id for the '<em>Action Type Object</em>' data type.
@@ -794,7 +867,7 @@ public interface BPMPackage extends EPackage {
      * @see org.switchyard.tools.models.switchyard1_0.bpm.impl.BPMPackageImpl#getActionTypeObject()
      * @generated
      */
-	int ACTION_TYPE_OBJECT = 10;
+	int ACTION_TYPE_OBJECT = 11;
 
 
 	/**
@@ -883,6 +956,17 @@ public interface BPMPackage extends EPackage {
 	EReference getBPMImplementationType_Audit();
 
 	/**
+     * Returns the meta object for the containment reference list '{@link org.switchyard.tools.models.switchyard1_0.bpm.BPMImplementationType#getEventListener <em>Event Listener</em>}'.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @return the meta object for the containment reference list '<em>Event Listener</em>'.
+     * @see org.switchyard.tools.models.switchyard1_0.bpm.BPMImplementationType#getEventListener()
+     * @see #getBPMImplementationType()
+     * @generated
+     */
+    EReference getBPMImplementationType_EventListener();
+
+    /**
      * Returns the meta object for the containment reference list '{@link org.switchyard.tools.models.switchyard1_0.bpm.BPMImplementationType#getTaskHandler <em>Task Handler</em>}'.
      * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -991,6 +1075,17 @@ public interface BPMPackage extends EPackage {
      * @generated
      */
     EAttribute getBPMImplementationType_Persistent();
+
+    /**
+     * Returns the meta object for the attribute '{@link org.switchyard.tools.models.switchyard1_0.bpm.BPMImplementationType#getSessionId <em>Session Id</em>}'.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @return the meta object for the attribute '<em>Session Id</em>'.
+     * @see org.switchyard.tools.models.switchyard1_0.bpm.BPMImplementationType#getSessionId()
+     * @see #getBPMImplementationType()
+     * @generated
+     */
+    EAttribute getBPMImplementationType_SessionId();
 
     /**
      * Returns the meta object for class '{@link org.switchyard.tools.models.switchyard1_0.bpm.DocumentRoot <em>Document Root</em>}'.
@@ -1124,6 +1219,17 @@ public interface BPMPackage extends EPackage {
 	EReference getDocumentRoot_TaskHandler();
 
 	/**
+     * Returns the meta object for the containment reference '{@link org.switchyard.tools.models.switchyard1_0.bpm.DocumentRoot#getEventListener <em>Event Listener</em>}'.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @return the meta object for the containment reference '<em>Event Listener</em>'.
+     * @see org.switchyard.tools.models.switchyard1_0.bpm.DocumentRoot#getEventListener()
+     * @see #getDocumentRoot()
+     * @generated
+     */
+    EReference getDocumentRoot_EventListener();
+
+    /**
      * Returns the meta object for class '{@link org.switchyard.tools.models.switchyard1_0.bpm.MappingType <em>Mapping Type</em>}'.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
@@ -1216,6 +1322,16 @@ public interface BPMPackage extends EPackage {
      * @generated
      */
     EAttribute getTaskHandlerType_Class();
+
+    /**
+     * Returns the meta object for class '{@link org.switchyard.tools.models.switchyard1_0.bpm.EventListenerType <em>Event Listener Type</em>}'.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @return the meta object for class '<em>Event Listener Type</em>'.
+     * @see org.switchyard.tools.models.switchyard1_0.bpm.EventListenerType
+     * @generated
+     */
+    EClass getEventListenerType();
 
     /**
      * Returns the meta object for enum '{@link org.switchyard.tools.models.switchyard1_0.bpm.ActionType <em>Action Type</em>}'.
@@ -1332,6 +1448,14 @@ public interface BPMPackage extends EPackage {
 		EReference BPM_IMPLEMENTATION_TYPE__AUDIT = eINSTANCE.getBPMImplementationType_Audit();
 
 		/**
+         * The meta object literal for the '<em><b>Event Listener</b></em>' containment reference list feature.
+         * <!-- begin-user-doc -->
+         * <!-- end-user-doc -->
+         * @generated
+         */
+        EReference BPM_IMPLEMENTATION_TYPE__EVENT_LISTENER = eINSTANCE.getBPMImplementationType_EventListener();
+
+        /**
          * The meta object literal for the '<em><b>Task Handler</b></em>' containment reference list feature.
          * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
@@ -1410,6 +1534,14 @@ public interface BPMPackage extends EPackage {
          * @generated
          */
         EAttribute BPM_IMPLEMENTATION_TYPE__PERSISTENT = eINSTANCE.getBPMImplementationType_Persistent();
+
+        /**
+         * The meta object literal for the '<em><b>Session Id</b></em>' attribute feature.
+         * <!-- begin-user-doc -->
+         * <!-- end-user-doc -->
+         * @generated
+         */
+        EAttribute BPM_IMPLEMENTATION_TYPE__SESSION_ID = eINSTANCE.getBPMImplementationType_SessionId();
 
         /**
          * The meta object literal for the '{@link org.switchyard.tools.models.switchyard1_0.bpm.impl.DocumentRootImpl <em>Document Root</em>}' class.
@@ -1510,6 +1642,14 @@ public interface BPMPackage extends EPackage {
 		EReference DOCUMENT_ROOT__TASK_HANDLER = eINSTANCE.getDocumentRoot_TaskHandler();
 
 		/**
+         * The meta object literal for the '<em><b>Event Listener</b></em>' containment reference feature.
+         * <!-- begin-user-doc -->
+         * <!-- end-user-doc -->
+         * @generated
+         */
+        EReference DOCUMENT_ROOT__EVENT_LISTENER = eINSTANCE.getDocumentRoot_EventListener();
+
+        /**
          * The meta object literal for the '{@link org.switchyard.tools.models.switchyard1_0.bpm.impl.MappingTypeImpl <em>Mapping Type</em>}' class.
          * <!-- begin-user-doc -->
          * <!-- end-user-doc -->
@@ -1590,6 +1730,16 @@ public interface BPMPackage extends EPackage {
          * @generated
          */
         EAttribute TASK_HANDLER_TYPE__CLASS = eINSTANCE.getTaskHandlerType_Class();
+
+        /**
+         * The meta object literal for the '{@link org.switchyard.tools.models.switchyard1_0.bpm.impl.EventListenerTypeImpl <em>Event Listener Type</em>}' class.
+         * <!-- begin-user-doc -->
+         * <!-- end-user-doc -->
+         * @see org.switchyard.tools.models.switchyard1_0.bpm.impl.EventListenerTypeImpl
+         * @see org.switchyard.tools.models.switchyard1_0.bpm.impl.BPMPackageImpl#getEventListenerType()
+         * @generated
+         */
+        EClass EVENT_LISTENER_TYPE = eINSTANCE.getEventListenerType();
 
         /**
          * The meta object literal for the '{@link org.switchyard.tools.models.switchyard1_0.bpm.ActionType <em>Action Type</em>}' enum.

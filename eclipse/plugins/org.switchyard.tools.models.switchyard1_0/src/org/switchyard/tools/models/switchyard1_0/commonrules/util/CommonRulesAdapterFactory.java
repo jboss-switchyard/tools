@@ -91,6 +91,10 @@ public class CommonRulesAdapterFactory extends AdapterFactoryImpl {
                 return createMappingTypeAdapter();
             }
             @Override
+            public Adapter caseEventListenerType(EventListenerType object) {
+                return createEventListenerTypeAdapter();
+            }
+            @Override
             public Adapter caseCommonExtensionBase(CommonExtensionBase object) {
                 return createCommonExtensionBaseAdapter();
             }
@@ -175,6 +179,20 @@ public class CommonRulesAdapterFactory extends AdapterFactoryImpl {
      * @generated
      */
     public Adapter createMappingTypeAdapter() {
+        return null;
+    }
+
+    /**
+     * Creates a new adapter for an object of class '{@link org.switchyard.tools.models.switchyard1_0.commonrules.EventListenerType <em>Event Listener Type</em>}'.
+     * <!-- begin-user-doc -->
+     * This default implementation returns null so that we can easily ignore cases;
+     * it's useful to ignore a case when inheritance will catch all the cases anyway.
+     * <!-- end-user-doc -->
+     * @return the new adapter.
+     * @see org.switchyard.tools.models.switchyard1_0.commonrules.EventListenerType
+     * @generated
+     */
+    public Adapter createEventListenerTypeAdapter() {
         return null;
     }
 

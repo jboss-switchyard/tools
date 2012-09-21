@@ -27,6 +27,7 @@ import org.switchyard.tools.models.switchyard1_0.commonrules.impl.CommonImplemen
 import org.switchyard.tools.models.switchyard1_0.rules.ActionType1;
 import org.switchyard.tools.models.switchyard1_0.rules.AuditType;
 import org.switchyard.tools.models.switchyard1_0.rules.ChannelType;
+import org.switchyard.tools.models.switchyard1_0.rules.EventListenerType;
 import org.switchyard.tools.models.switchyard1_0.rules.FactsType;
 import org.switchyard.tools.models.switchyard1_0.rules.GlobalsType;
 import org.switchyard.tools.models.switchyard1_0.rules.ResourceType;
@@ -42,10 +43,10 @@ import org.switchyard.tools.models.switchyard1_0.rules.RulesPackage;
  * <ul>
  *   <li>{@link org.switchyard.tools.models.switchyard1_0.rules.impl.RulesImplementationTypeImpl#getAction <em>Action</em>}</li>
  *   <li>{@link org.switchyard.tools.models.switchyard1_0.rules.impl.RulesImplementationTypeImpl#getAudit <em>Audit</em>}</li>
+ *   <li>{@link org.switchyard.tools.models.switchyard1_0.rules.impl.RulesImplementationTypeImpl#getEventListener <em>Event Listener</em>}</li>
  *   <li>{@link org.switchyard.tools.models.switchyard1_0.rules.impl.RulesImplementationTypeImpl#getChannel <em>Channel</em>}</li>
  *   <li>{@link org.switchyard.tools.models.switchyard1_0.rules.impl.RulesImplementationTypeImpl#getResource <em>Resource</em>}</li>
  *   <li>{@link org.switchyard.tools.models.switchyard1_0.rules.impl.RulesImplementationTypeImpl#getGlobals <em>Globals</em>}</li>
- *   <li>{@link org.switchyard.tools.models.switchyard1_0.rules.impl.RulesImplementationTypeImpl#getMessageContentName <em>Message Content Name</em>}</li>
  *   <li>{@link org.switchyard.tools.models.switchyard1_0.rules.impl.RulesImplementationTypeImpl#getFacts <em>Facts</em>}</li>
  * </ul>
  * </p>
@@ -74,6 +75,16 @@ public class RulesImplementationTypeImpl extends CommonImplementationTypeImpl im
 	protected AuditType audit;
 
 	/**
+     * The cached value of the '{@link #getEventListener() <em>Event Listener</em>}' containment reference list.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @see #getEventListener()
+     * @generated
+     * @ordered
+     */
+    protected EList<EventListenerType> eventListener;
+
+    /**
      * The cached value of the '{@link #getChannel() <em>Channel</em>}' containment reference list.
      * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -102,26 +113,6 @@ public class RulesImplementationTypeImpl extends CommonImplementationTypeImpl im
      * @ordered
      */
     protected GlobalsType globals;
-
-    /**
-     * The default value of the '{@link #getMessageContentName() <em>Message Content Name</em>}' attribute.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @see #getMessageContentName()
-     * @generated
-     * @ordered
-     */
-    protected static final String MESSAGE_CONTENT_NAME_EDEFAULT = null;
-
-    /**
-     * The cached value of the '{@link #getMessageContentName() <em>Message Content Name</em>}' attribute.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @see #getMessageContentName()
-     * @generated
-     * @ordered
-     */
-    protected String messageContentName = MESSAGE_CONTENT_NAME_EDEFAULT;
 
     /**
      * The cached value of the '{@link #getFacts() <em>Facts</em>}' containment reference.
@@ -209,6 +200,18 @@ public class RulesImplementationTypeImpl extends CommonImplementationTypeImpl im
 
 	/**
      * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public EList<EventListenerType> getEventListener() {
+        if (eventListener == null) {
+            eventListener = new EObjectContainmentEList<EventListenerType>(EventListenerType.class, this, RulesPackage.RULES_IMPLEMENTATION_TYPE__EVENT_LISTENER);
+        }
+        return eventListener;
+    }
+
+    /**
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
      * @generated
      */
@@ -279,27 +282,6 @@ public class RulesImplementationTypeImpl extends CommonImplementationTypeImpl im
      * <!-- end-user-doc -->
      * @generated
      */
-    public String getMessageContentName() {
-        return messageContentName;
-    }
-
-    /**
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    public void setMessageContentName(String newMessageContentName) {
-        String oldMessageContentName = messageContentName;
-        messageContentName = newMessageContentName;
-        if (eNotificationRequired())
-            eNotify(new ENotificationImpl(this, Notification.SET, RulesPackage.RULES_IMPLEMENTATION_TYPE__MESSAGE_CONTENT_NAME, oldMessageContentName, messageContentName));
-    }
-
-    /**
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
     public FactsType getFacts() {
         return facts;
     }
@@ -350,6 +332,8 @@ public class RulesImplementationTypeImpl extends CommonImplementationTypeImpl im
                 return ((InternalEList<?>)getAction()).basicRemove(otherEnd, msgs);
             case RulesPackage.RULES_IMPLEMENTATION_TYPE__AUDIT:
                 return basicSetAudit(null, msgs);
+            case RulesPackage.RULES_IMPLEMENTATION_TYPE__EVENT_LISTENER:
+                return ((InternalEList<?>)getEventListener()).basicRemove(otherEnd, msgs);
             case RulesPackage.RULES_IMPLEMENTATION_TYPE__CHANNEL:
                 return ((InternalEList<?>)getChannel()).basicRemove(otherEnd, msgs);
             case RulesPackage.RULES_IMPLEMENTATION_TYPE__RESOURCE:
@@ -374,14 +358,14 @@ public class RulesImplementationTypeImpl extends CommonImplementationTypeImpl im
                 return getAction();
             case RulesPackage.RULES_IMPLEMENTATION_TYPE__AUDIT:
                 return getAudit();
+            case RulesPackage.RULES_IMPLEMENTATION_TYPE__EVENT_LISTENER:
+                return getEventListener();
             case RulesPackage.RULES_IMPLEMENTATION_TYPE__CHANNEL:
                 return getChannel();
             case RulesPackage.RULES_IMPLEMENTATION_TYPE__RESOURCE:
                 return getResource();
             case RulesPackage.RULES_IMPLEMENTATION_TYPE__GLOBALS:
                 return getGlobals();
-            case RulesPackage.RULES_IMPLEMENTATION_TYPE__MESSAGE_CONTENT_NAME:
-                return getMessageContentName();
             case RulesPackage.RULES_IMPLEMENTATION_TYPE__FACTS:
                 return getFacts();
         }
@@ -404,6 +388,10 @@ public class RulesImplementationTypeImpl extends CommonImplementationTypeImpl im
             case RulesPackage.RULES_IMPLEMENTATION_TYPE__AUDIT:
                 setAudit((AuditType)newValue);
                 return;
+            case RulesPackage.RULES_IMPLEMENTATION_TYPE__EVENT_LISTENER:
+                getEventListener().clear();
+                getEventListener().addAll((Collection<? extends EventListenerType>)newValue);
+                return;
             case RulesPackage.RULES_IMPLEMENTATION_TYPE__CHANNEL:
                 getChannel().clear();
                 getChannel().addAll((Collection<? extends ChannelType>)newValue);
@@ -414,9 +402,6 @@ public class RulesImplementationTypeImpl extends CommonImplementationTypeImpl im
                 return;
             case RulesPackage.RULES_IMPLEMENTATION_TYPE__GLOBALS:
                 setGlobals((GlobalsType)newValue);
-                return;
-            case RulesPackage.RULES_IMPLEMENTATION_TYPE__MESSAGE_CONTENT_NAME:
-                setMessageContentName((String)newValue);
                 return;
             case RulesPackage.RULES_IMPLEMENTATION_TYPE__FACTS:
                 setFacts((FactsType)newValue);
@@ -439,6 +424,9 @@ public class RulesImplementationTypeImpl extends CommonImplementationTypeImpl im
             case RulesPackage.RULES_IMPLEMENTATION_TYPE__AUDIT:
                 setAudit((AuditType)null);
                 return;
+            case RulesPackage.RULES_IMPLEMENTATION_TYPE__EVENT_LISTENER:
+                getEventListener().clear();
+                return;
             case RulesPackage.RULES_IMPLEMENTATION_TYPE__CHANNEL:
                 getChannel().clear();
                 return;
@@ -447,9 +435,6 @@ public class RulesImplementationTypeImpl extends CommonImplementationTypeImpl im
                 return;
             case RulesPackage.RULES_IMPLEMENTATION_TYPE__GLOBALS:
                 setGlobals((GlobalsType)null);
-                return;
-            case RulesPackage.RULES_IMPLEMENTATION_TYPE__MESSAGE_CONTENT_NAME:
-                setMessageContentName(MESSAGE_CONTENT_NAME_EDEFAULT);
                 return;
             case RulesPackage.RULES_IMPLEMENTATION_TYPE__FACTS:
                 setFacts((FactsType)null);
@@ -470,34 +455,18 @@ public class RulesImplementationTypeImpl extends CommonImplementationTypeImpl im
                 return action != null && !action.isEmpty();
             case RulesPackage.RULES_IMPLEMENTATION_TYPE__AUDIT:
                 return audit != null;
+            case RulesPackage.RULES_IMPLEMENTATION_TYPE__EVENT_LISTENER:
+                return eventListener != null && !eventListener.isEmpty();
             case RulesPackage.RULES_IMPLEMENTATION_TYPE__CHANNEL:
                 return channel != null && !channel.isEmpty();
             case RulesPackage.RULES_IMPLEMENTATION_TYPE__RESOURCE:
                 return resource != null && !resource.isEmpty();
             case RulesPackage.RULES_IMPLEMENTATION_TYPE__GLOBALS:
                 return globals != null;
-            case RulesPackage.RULES_IMPLEMENTATION_TYPE__MESSAGE_CONTENT_NAME:
-                return MESSAGE_CONTENT_NAME_EDEFAULT == null ? messageContentName != null : !MESSAGE_CONTENT_NAME_EDEFAULT.equals(messageContentName);
             case RulesPackage.RULES_IMPLEMENTATION_TYPE__FACTS:
                 return facts != null;
         }
         return super.eIsSet(featureID);
-    }
-
-    /**
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    @Override
-    public String toString() {
-        if (eIsProxy()) return super.toString();
-
-        StringBuffer result = new StringBuffer(super.toString());
-        result.append(" (messageContentName: ");
-        result.append(messageContentName);
-        result.append(')');
-        return result.toString();
     }
 
     @Override

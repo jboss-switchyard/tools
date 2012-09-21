@@ -27,6 +27,7 @@ import org.switchyard.tools.models.switchyard1_0.commonrules.AuditType1;
 import org.switchyard.tools.models.switchyard1_0.commonrules.CommonImplementationType;
 import org.switchyard.tools.models.switchyard1_0.commonrules.CommonRulesPackage;
 import org.switchyard.tools.models.switchyard1_0.commonrules.DocumentRoot;
+import org.switchyard.tools.models.switchyard1_0.commonrules.EventListenerType;
 import org.switchyard.tools.models.switchyard1_0.commonrules.MappingType;
 
 /**
@@ -42,6 +43,7 @@ import org.switchyard.tools.models.switchyard1_0.commonrules.MappingType;
  *   <li>{@link org.switchyard.tools.models.switchyard1_0.commonrules.impl.DocumentRootImpl#getAudit <em>Audit</em>}</li>
  *   <li>{@link org.switchyard.tools.models.switchyard1_0.commonrules.impl.DocumentRootImpl#getImplementationCommonRules <em>Implementation Common Rules</em>}</li>
  *   <li>{@link org.switchyard.tools.models.switchyard1_0.commonrules.impl.DocumentRootImpl#getMapping <em>Mapping</em>}</li>
+ *   <li>{@link org.switchyard.tools.models.switchyard1_0.commonrules.impl.DocumentRootImpl#getEventListener <em>Event Listener</em>}</li>
  * </ul>
  * </p>
  *
@@ -189,6 +191,24 @@ public class DocumentRootImpl extends EObjectImpl implements DocumentRoot {
 
     /**
      * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public EventListenerType getEventListener() {
+        return (EventListenerType)getMixed().get(CommonRulesPackage.Literals.DOCUMENT_ROOT__EVENT_LISTENER, true);
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public NotificationChain basicSetEventListener(EventListenerType newEventListener, NotificationChain msgs) {
+        return ((FeatureMap.Internal)getMixed()).basicAdd(CommonRulesPackage.Literals.DOCUMENT_ROOT__EVENT_LISTENER, newEventListener, msgs);
+    }
+
+    /**
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
      * @generated
      */
@@ -207,6 +227,8 @@ public class DocumentRootImpl extends EObjectImpl implements DocumentRoot {
                 return basicSetImplementationCommonRules(null, msgs);
             case CommonRulesPackage.DOCUMENT_ROOT__MAPPING:
                 return basicSetMapping(null, msgs);
+            case CommonRulesPackage.DOCUMENT_ROOT__EVENT_LISTENER:
+                return basicSetEventListener(null, msgs);
         }
         return super.eInverseRemove(otherEnd, featureID, msgs);
     }
@@ -234,6 +256,8 @@ public class DocumentRootImpl extends EObjectImpl implements DocumentRoot {
                 return getImplementationCommonRules();
             case CommonRulesPackage.DOCUMENT_ROOT__MAPPING:
                 return getMapping();
+            case CommonRulesPackage.DOCUMENT_ROOT__EVENT_LISTENER:
+                return getEventListener();
         }
         return super.eGet(featureID, resolve, coreType);
     }
@@ -300,6 +324,8 @@ public class DocumentRootImpl extends EObjectImpl implements DocumentRoot {
                 return getImplementationCommonRules() != null;
             case CommonRulesPackage.DOCUMENT_ROOT__MAPPING:
                 return getMapping() != null;
+            case CommonRulesPackage.DOCUMENT_ROOT__EVENT_LISTENER:
+                return getEventListener() != null;
         }
         return super.eIsSet(featureID);
     }

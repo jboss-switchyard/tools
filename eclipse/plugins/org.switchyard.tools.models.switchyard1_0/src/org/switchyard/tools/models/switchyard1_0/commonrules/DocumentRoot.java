@@ -26,6 +26,7 @@ import org.eclipse.emf.ecore.util.FeatureMap;
  *   <li>{@link org.switchyard.tools.models.switchyard1_0.commonrules.DocumentRoot#getAudit <em>Audit</em>}</li>
  *   <li>{@link org.switchyard.tools.models.switchyard1_0.commonrules.DocumentRoot#getImplementationCommonRules <em>Implementation Common Rules</em>}</li>
  *   <li>{@link org.switchyard.tools.models.switchyard1_0.commonrules.DocumentRoot#getMapping <em>Mapping</em>}</li>
+ *   <li>{@link org.switchyard.tools.models.switchyard1_0.commonrules.DocumentRoot#getEventListener <em>Event Listener</em>}</li>
  * </ul>
  * </p>
  *
@@ -134,5 +135,21 @@ public interface DocumentRoot extends EObject {
      * @generated
      */
     MappingType getMapping();
+
+    /**
+     * Returns the value of the '<em><b>Event Listener</b></em>' containment reference.
+     * <!-- begin-user-doc -->
+     * <p>
+     * If the meaning of the '<em>Event Listener</em>' containment reference isn't clear,
+     * there really should be more of a description here...
+     * </p>
+     * <!-- end-user-doc -->
+     * @return the value of the '<em>Event Listener</em>' containment reference.
+     * @see org.switchyard.tools.models.switchyard1_0.commonrules.CommonRulesPackage#getDocumentRoot_EventListener()
+     * @model containment="true" upper="-2" transient="true" changeable="false" volatile="true" derived="true"
+     *        extendedMetaData="kind='element' name='eventListener' namespace='##targetNamespace'"
+     * @generated
+     */
+    EventListenerType getEventListener();
 
 } // DocumentRoot

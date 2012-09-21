@@ -185,7 +185,7 @@ public class BeanImplementationComposite extends AbstractSwitchyardComposite imp
 
     private void openNewBeanWizard() {
         NewBeanServiceWizard wizard = new NewBeanServiceWizard(false, false);
-        SwitchyardSCAEditor editor = SwitchyardSCAEditor.getActiveEditor();
+        SwitchyardSCAEditor editor = SwitchyardSCAEditor.getEditor(getImplementation());
         IStructuredSelection selection = _project == null ? StructuredSelection.EMPTY : new StructuredSelection(
                 _project);
         IWorkbench workbench = editor == null ? PlatformUI.getWorkbench() : editor.getEditorSite().getWorkbenchWindow()

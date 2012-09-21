@@ -70,31 +70,8 @@ public class RulesImplementationTypeItemProvider
         if (itemPropertyDescriptors == null) {
             super.getPropertyDescriptors(object);
 
-            addMessageContentNamePropertyDescriptor(object);
         }
         return itemPropertyDescriptors;
-    }
-
-    /**
-     * This adds a property descriptor for the Message Content Name feature.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    protected void addMessageContentNamePropertyDescriptor(Object object) {
-        itemPropertyDescriptors.add
-            (createItemPropertyDescriptor
-                (((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
-                 getResourceLocator(),
-                 getString("_UI_RulesImplementationType_messageContentName_feature"),
-                 getString("_UI_PropertyDescriptor_description", "_UI_RulesImplementationType_messageContentName_feature", "_UI_RulesImplementationType_type"),
-                 RulesPackage.Literals.RULES_IMPLEMENTATION_TYPE__MESSAGE_CONTENT_NAME,
-                 true,
-                 false,
-                 false,
-                 ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
-                 null,
-                 null));
     }
 
     /**
@@ -111,6 +88,7 @@ public class RulesImplementationTypeItemProvider
             super.getChildrenFeatures(object);
             childrenFeatures.add(RulesPackage.Literals.RULES_IMPLEMENTATION_TYPE__ACTION);
             childrenFeatures.add(RulesPackage.Literals.RULES_IMPLEMENTATION_TYPE__AUDIT);
+            childrenFeatures.add(RulesPackage.Literals.RULES_IMPLEMENTATION_TYPE__EVENT_LISTENER);
             childrenFeatures.add(RulesPackage.Literals.RULES_IMPLEMENTATION_TYPE__CHANNEL);
             childrenFeatures.add(RulesPackage.Literals.RULES_IMPLEMENTATION_TYPE__RESOURCE);
             childrenFeatures.add(RulesPackage.Literals.RULES_IMPLEMENTATION_TYPE__GLOBALS);
@@ -151,7 +129,8 @@ public class RulesImplementationTypeItemProvider
      */
     @Override
     public String getText(Object object) {
-        String label = ((RulesImplementationType)object).getMessageContentName();
+        List labelValue = ((RulesImplementationType)object).getPolicySets();
+        String label = labelValue == null ? null : labelValue.toString();
         return label == null || label.length() == 0 ?
             getString("_UI_RulesImplementationType_type") :
             getString("_UI_RulesImplementationType_type") + " " + label;
@@ -169,11 +148,9 @@ public class RulesImplementationTypeItemProvider
         updateChildren(notification);
 
         switch (notification.getFeatureID(RulesImplementationType.class)) {
-            case RulesPackage.RULES_IMPLEMENTATION_TYPE__MESSAGE_CONTENT_NAME:
-                fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
-                return;
             case RulesPackage.RULES_IMPLEMENTATION_TYPE__ACTION:
             case RulesPackage.RULES_IMPLEMENTATION_TYPE__AUDIT:
+            case RulesPackage.RULES_IMPLEMENTATION_TYPE__EVENT_LISTENER:
             case RulesPackage.RULES_IMPLEMENTATION_TYPE__CHANNEL:
             case RulesPackage.RULES_IMPLEMENTATION_TYPE__RESOURCE:
             case RulesPackage.RULES_IMPLEMENTATION_TYPE__GLOBALS:
@@ -204,6 +181,11 @@ public class RulesImplementationTypeItemProvider
             (createChildParameter
                 (RulesPackage.Literals.RULES_IMPLEMENTATION_TYPE__AUDIT,
                  RulesFactory.eINSTANCE.createAuditType()));
+
+        newChildDescriptors.add
+            (createChildParameter
+                (RulesPackage.Literals.RULES_IMPLEMENTATION_TYPE__EVENT_LISTENER,
+                 RulesFactory.eINSTANCE.createEventListenerType()));
 
         newChildDescriptors.add
             (createChildParameter

@@ -14,10 +14,14 @@ package org.switchyard.tools.ui.editor.property.adapters;
 
 import org.eclipse.emf.ecore.EObject;
 import org.switchyard.tools.models.switchyard1_0.bean.BeanImplementationType;
+import org.switchyard.tools.models.switchyard1_0.bpm.BPMImplementationType;
 import org.switchyard.tools.models.switchyard1_0.camel.CamelImplementationType;
+import org.switchyard.tools.models.switchyard1_0.rules.RulesImplementationType;
 import org.switchyard.tools.ui.editor.components.bean.BeanImplementationComposite;
+import org.switchyard.tools.ui.editor.components.bpm.BPMImplementationComposite;
 import org.switchyard.tools.ui.editor.components.camel.java.CamelJavaRouteComposite;
 import org.switchyard.tools.ui.editor.components.camel.xml.CamelXMLRouteComposite;
+import org.switchyard.tools.ui.editor.components.rules.RulesImplementationComposite;
 import org.switchyard.tools.ui.editor.diagram.shared.AbstractSwitchyardComposite;
 
 /**
@@ -44,6 +48,10 @@ public final class ImplementationCompositeAdapter {
             }
         } else if (object instanceof BeanImplementationType) {
             composite = new BeanImplementationComposite();
+        } else if (object instanceof RulesImplementationType) {
+            composite = new RulesImplementationComposite();
+        } else if (object instanceof BPMImplementationType) {
+            composite = new BPMImplementationComposite();
         }
         if (composite != null) {
             return composite;

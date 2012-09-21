@@ -20,6 +20,7 @@ import org.switchyard.tools.models.switchyard1_0.commonrules.CommonImplementatio
  * <ul>
  *   <li>{@link org.switchyard.tools.models.switchyard1_0.bpm.BPMImplementationType#getAction <em>Action</em>}</li>
  *   <li>{@link org.switchyard.tools.models.switchyard1_0.bpm.BPMImplementationType#getAudit <em>Audit</em>}</li>
+ *   <li>{@link org.switchyard.tools.models.switchyard1_0.bpm.BPMImplementationType#getEventListener <em>Event Listener</em>}</li>
  *   <li>{@link org.switchyard.tools.models.switchyard1_0.bpm.BPMImplementationType#getTaskHandler <em>Task Handler</em>}</li>
  *   <li>{@link org.switchyard.tools.models.switchyard1_0.bpm.BPMImplementationType#getResource <em>Resource</em>}</li>
  *   <li>{@link org.switchyard.tools.models.switchyard1_0.bpm.BPMImplementationType#getParameters <em>Parameters</em>}</li>
@@ -30,6 +31,7 @@ import org.switchyard.tools.models.switchyard1_0.commonrules.CommonImplementatio
  *   <li>{@link org.switchyard.tools.models.switchyard1_0.bpm.BPMImplementationType#getMessageContentInName <em>Message Content In Name</em>}</li>
  *   <li>{@link org.switchyard.tools.models.switchyard1_0.bpm.BPMImplementationType#getMessageContentOutName <em>Message Content Out Name</em>}</li>
  *   <li>{@link org.switchyard.tools.models.switchyard1_0.bpm.BPMImplementationType#isPersistent <em>Persistent</em>}</li>
+ *   <li>{@link org.switchyard.tools.models.switchyard1_0.bpm.BPMImplementationType#getSessionId <em>Session Id</em>}</li>
  * </ul>
  * </p>
  *
@@ -83,6 +85,23 @@ public interface BPMImplementationType extends CommonImplementationType {
 	void setAudit(AuditType value);
 
 	/**
+     * Returns the value of the '<em><b>Event Listener</b></em>' containment reference list.
+     * The list contents are of type {@link org.switchyard.tools.models.switchyard1_0.bpm.EventListenerType}.
+     * <!-- begin-user-doc -->
+     * <p>
+     * If the meaning of the '<em>Event Listener</em>' containment reference isn't clear,
+     * there really should be more of a description here...
+     * </p>
+     * <!-- end-user-doc -->
+     * @return the value of the '<em>Event Listener</em>' containment reference list.
+     * @see org.switchyard.tools.models.switchyard1_0.bpm.BPMPackage#getBPMImplementationType_EventListener()
+     * @model containment="true"
+     *        extendedMetaData="kind='element' name='eventListener' namespace='##targetNamespace'"
+     * @generated
+     */
+    EList<EventListenerType> getEventListener();
+
+    /**
      * Returns the value of the '<em><b>Task Handler</b></em>' containment reference list.
      * The list contents are of type {@link org.switchyard.tools.models.switchyard1_0.bpm.TaskHandlerType}.
      * <!-- begin-user-doc -->
@@ -335,5 +354,33 @@ public interface BPMImplementationType extends CommonImplementationType {
      * @generated
      */
     void setPersistent(boolean value);
+
+    /**
+     * Returns the value of the '<em><b>Session Id</b></em>' attribute.
+     * The default value is <code>""</code>.
+     * <!-- begin-user-doc -->
+     * <p>
+     * If the meaning of the '<em>Session Id</em>' attribute isn't clear,
+     * there really should be more of a description here...
+     * </p>
+     * <!-- end-user-doc -->
+     * @return the value of the '<em>Session Id</em>' attribute.
+     * @see #setSessionId(String)
+     * @see org.switchyard.tools.models.switchyard1_0.bpm.BPMPackage#getBPMImplementationType_SessionId()
+     * @model default="" dataType="org.eclipse.emf.ecore.xml.type.String"
+     *        extendedMetaData="name='sessionId' kind='attribute'"
+     * @generated
+     */
+    String getSessionId();
+
+    /**
+     * Sets the value of the '{@link org.switchyard.tools.models.switchyard1_0.bpm.BPMImplementationType#getSessionId <em>Session Id</em>}' attribute.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @param value the new value of the '<em>Session Id</em>' attribute.
+     * @see #getSessionId()
+     * @generated
+     */
+    void setSessionId(String value);
 
 } // BPMImplementationType

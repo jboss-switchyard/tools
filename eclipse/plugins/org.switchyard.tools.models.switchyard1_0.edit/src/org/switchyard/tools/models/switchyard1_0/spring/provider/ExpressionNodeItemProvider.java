@@ -1287,6 +1287,11 @@ public class ExpressionNodeItemProvider
         newChildDescriptors.add
             (createChildParameter
                 (SpringPackage.eINSTANCE.getExpressionNode_Property(),
+                 BPMFactory.eINSTANCE.createEventListenerType()));
+
+        newChildDescriptors.add
+            (createChildParameter
+                (SpringPackage.eINSTANCE.getExpressionNode_Property(),
                  SwitchyardFactory.eINSTANCE.createArtifactsType()));
 
         newChildDescriptors.add
@@ -1428,6 +1433,11 @@ public class ExpressionNodeItemProvider
             (createChildParameter
                 (SpringPackage.eINSTANCE.getExpressionNode_Property(),
                  RulesFactory.eINSTANCE.createFactsType()));
+
+        newChildDescriptors.add
+            (createChildParameter
+                (SpringPackage.eINSTANCE.getExpressionNode_Property(),
+                 RulesFactory.eINSTANCE.createEventListenerType()));
 
         newChildDescriptors.add
             (createChildParameter
@@ -1713,6 +1723,16 @@ public class ExpressionNodeItemProvider
             (createChildParameter
                 (SpringPackage.eINSTANCE.getExpressionNode_Property(),
                  HttpFactory.eINSTANCE.createHttpBindingType()));
+
+        newChildDescriptors.add
+            (createChildParameter
+                (SpringPackage.eINSTANCE.getExpressionNode_Property(),
+                 HttpFactory.eINSTANCE.createHttpContextMapperType()));
+
+        newChildDescriptors.add
+            (createChildParameter
+                (SpringPackage.eINSTANCE.getExpressionNode_Property(),
+                 HttpFactory.eINSTANCE.createHttpMessageComposerType()));
 
         newChildDescriptors.add
             (createChildParameter

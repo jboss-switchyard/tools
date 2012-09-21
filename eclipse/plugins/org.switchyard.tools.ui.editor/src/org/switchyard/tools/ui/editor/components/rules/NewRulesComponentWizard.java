@@ -32,7 +32,6 @@ import org.switchyard.tools.models.switchyard1_0.rules.AuditType;
 import org.switchyard.tools.models.switchyard1_0.rules.ResourceType;
 import org.switchyard.tools.models.switchyard1_0.rules.RulesFactory;
 import org.switchyard.tools.models.switchyard1_0.rules.RulesImplementationType;
-import org.switchyard.tools.models.switchyard1_0.rules.RulesPackage;
 import org.switchyard.tools.ui.editor.Activator;
 import org.switchyard.tools.ui.editor.diagram.shared.BaseNewServiceFileWizard;
 
@@ -115,11 +114,11 @@ public class NewRulesComponentWizard extends BaseNewServiceFileWizard implements
     public boolean performFinish() {
         // make sure the implementation is initialized (to get correct defaults)
         _implementation = RulesFactory.eINSTANCE.createRulesImplementationType();
-        if (_processPage.getMessageName() == null) {
-            _implementation.eUnset(RulesPackage.eINSTANCE.getRulesImplementationType_MessageContentName());
-        } else {
-            _implementation.setMessageContentName(_processPage.getMessageName());
-        }
+//        if (_processPage.getMessageName() == null) {
+//            _implementation.eUnset(RulesPackage.eINSTANCE.getRulesImplementationType_MessageContentName());
+//        } else {
+//            _implementation.setMessageContentName(_processPage.getMessageName());
+//        }
         if (_processPage.isAuditingEnabled()) {
             AuditType auditSettings = _processPage.getAuditSettings();
             if (auditSettings.getLog() == null) {

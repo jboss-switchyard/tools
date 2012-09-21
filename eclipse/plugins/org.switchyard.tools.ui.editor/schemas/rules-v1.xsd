@@ -36,10 +36,12 @@ MA  02110-1301, USA.
                 <sequence>
                     <element ref="rules:action" minOccurs="0" maxOccurs="unbounded"/>
                     <element ref="rules:audit" minOccurs="0" maxOccurs="1"/>
+                    <element ref="rules:eventListener" minOccurs="0" maxOccurs="unbounded"/>
                     <element ref="rules:channel" minOccurs="0" maxOccurs="unbounded"/>
                     <element ref="rules:resource" minOccurs="0" maxOccurs="unbounded"/>
+                    <element ref="rules:globals" minOccurs="0" maxOccurs="1"/>
+                    <element ref="rules:facts" minOccurs="0" maxOccurs="1"/>
                 </sequence>
-                <attribute name="messageContentName" type="string" use="optional"/>
             </extension>
         </complexContent>
     </complexType>
@@ -62,6 +64,13 @@ MA  02110-1301, USA.
         </complexContent>
     </complexType>
 
+    <element name="eventListener" type="rules:EventListenerType" substitutionGroup="common.rules:eventListener"/>
+    <complexType name="EventListenerType">
+        <complexContent>
+            <extension base="common.rules:EventListenerType"/>
+        </complexContent>
+    </complexType>
+
    <element name="channel" type="rules:ChannelType"/>
     <complexType name="ChannelType">
         <complexContent>
@@ -79,6 +88,35 @@ MA  02110-1301, USA.
     <complexType name="ResourceType">
         <complexContent>
             <extension base="swyd:ResourceType"/>
+        </complexContent>
+    </complexType>
+
+    <element name="globals" type="rules:GlobalsType"/>
+    <complexType name="GlobalsType">
+        <complexContent>
+            <extension base="sca:CommonExtensionBase">
+                <sequence>
+                    <element ref="rules:mapping" minOccurs="0" maxOccurs="unbounded"/>
+                </sequence>
+            </extension>
+        </complexContent>
+    </complexType>
+
+    <element name="facts" type="rules:FactsType"/>
+    <complexType name="FactsType">
+        <complexContent>
+            <extension base="sca:CommonExtensionBase">
+                <sequence>
+                    <element ref="rules:mapping" minOccurs="0" maxOccurs="unbounded"/>
+                </sequence>
+            </extension>
+        </complexContent>
+    </complexType>
+
+    <element name="mapping" type="rules:MappingType" substitutionGroup="common.rules:mapping"/>
+    <complexType name="MappingType">
+        <complexContent>
+            <extension base="common.rules:MappingType"/>
         </complexContent>
     </complexType>
 

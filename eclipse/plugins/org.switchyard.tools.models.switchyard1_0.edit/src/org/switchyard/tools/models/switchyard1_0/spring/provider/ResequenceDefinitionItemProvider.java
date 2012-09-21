@@ -1301,6 +1301,11 @@ public class ResequenceDefinitionItemProvider
         newChildDescriptors.add
             (createChildParameter
                 (SpringPackage.eINSTANCE.getResequenceDefinition_Property(),
+                 BPMFactory.eINSTANCE.createEventListenerType()));
+
+        newChildDescriptors.add
+            (createChildParameter
+                (SpringPackage.eINSTANCE.getResequenceDefinition_Property(),
                  SwitchyardFactory.eINSTANCE.createArtifactsType()));
 
         newChildDescriptors.add
@@ -1442,6 +1447,11 @@ public class ResequenceDefinitionItemProvider
             (createChildParameter
                 (SpringPackage.eINSTANCE.getResequenceDefinition_Property(),
                  RulesFactory.eINSTANCE.createFactsType()));
+
+        newChildDescriptors.add
+            (createChildParameter
+                (SpringPackage.eINSTANCE.getResequenceDefinition_Property(),
+                 RulesFactory.eINSTANCE.createEventListenerType()));
 
         newChildDescriptors.add
             (createChildParameter
@@ -1727,6 +1737,16 @@ public class ResequenceDefinitionItemProvider
             (createChildParameter
                 (SpringPackage.eINSTANCE.getResequenceDefinition_Property(),
                  HttpFactory.eINSTANCE.createHttpBindingType()));
+
+        newChildDescriptors.add
+            (createChildParameter
+                (SpringPackage.eINSTANCE.getResequenceDefinition_Property(),
+                 HttpFactory.eINSTANCE.createHttpContextMapperType()));
+
+        newChildDescriptors.add
+            (createChildParameter
+                (SpringPackage.eINSTANCE.getResequenceDefinition_Property(),
+                 HttpFactory.eINSTANCE.createHttpMessageComposerType()));
 
         newChildDescriptors.add
             (createChildParameter

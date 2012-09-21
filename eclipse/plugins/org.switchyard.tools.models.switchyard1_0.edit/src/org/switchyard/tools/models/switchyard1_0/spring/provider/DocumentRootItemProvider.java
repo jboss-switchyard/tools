@@ -1823,6 +1823,11 @@ public class DocumentRootItemProvider
         newChildDescriptors.add
             (createChildParameter
                 (SpringPackage.eINSTANCE.getDocumentRoot_Property(),
+                 BPMFactory.eINSTANCE.createEventListenerType()));
+
+        newChildDescriptors.add
+            (createChildParameter
+                (SpringPackage.eINSTANCE.getDocumentRoot_Property(),
                  SwitchyardFactory.eINSTANCE.createArtifactsType()));
 
         newChildDescriptors.add
@@ -1964,6 +1969,11 @@ public class DocumentRootItemProvider
             (createChildParameter
                 (SpringPackage.eINSTANCE.getDocumentRoot_Property(),
                  RulesFactory.eINSTANCE.createFactsType()));
+
+        newChildDescriptors.add
+            (createChildParameter
+                (SpringPackage.eINSTANCE.getDocumentRoot_Property(),
+                 RulesFactory.eINSTANCE.createEventListenerType()));
 
         newChildDescriptors.add
             (createChildParameter
@@ -2249,6 +2259,16 @@ public class DocumentRootItemProvider
             (createChildParameter
                 (SpringPackage.eINSTANCE.getDocumentRoot_Property(),
                  HttpFactory.eINSTANCE.createHttpBindingType()));
+
+        newChildDescriptors.add
+            (createChildParameter
+                (SpringPackage.eINSTANCE.getDocumentRoot_Property(),
+                 HttpFactory.eINSTANCE.createHttpContextMapperType()));
+
+        newChildDescriptors.add
+            (createChildParameter
+                (SpringPackage.eINSTANCE.getDocumentRoot_Property(),
+                 HttpFactory.eINSTANCE.createHttpMessageComposerType()));
 
         newChildDescriptors.add
             (createChildParameter

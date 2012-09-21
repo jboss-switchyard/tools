@@ -26,6 +26,7 @@ import org.switchyard.tools.models.switchyard1_0.bpm.ActionType1;
 import org.switchyard.tools.models.switchyard1_0.bpm.AuditType;
 import org.switchyard.tools.models.switchyard1_0.bpm.BPMImplementationType;
 import org.switchyard.tools.models.switchyard1_0.bpm.BPMPackage;
+import org.switchyard.tools.models.switchyard1_0.bpm.EventListenerType;
 import org.switchyard.tools.models.switchyard1_0.bpm.ParametersType;
 import org.switchyard.tools.models.switchyard1_0.bpm.ResourceType;
 import org.switchyard.tools.models.switchyard1_0.bpm.ResultsType;
@@ -41,6 +42,7 @@ import org.switchyard.tools.models.switchyard1_0.commonrules.impl.CommonImplemen
  * <ul>
  *   <li>{@link org.switchyard.tools.models.switchyard1_0.bpm.impl.BPMImplementationTypeImpl#getAction <em>Action</em>}</li>
  *   <li>{@link org.switchyard.tools.models.switchyard1_0.bpm.impl.BPMImplementationTypeImpl#getAudit <em>Audit</em>}</li>
+ *   <li>{@link org.switchyard.tools.models.switchyard1_0.bpm.impl.BPMImplementationTypeImpl#getEventListener <em>Event Listener</em>}</li>
  *   <li>{@link org.switchyard.tools.models.switchyard1_0.bpm.impl.BPMImplementationTypeImpl#getTaskHandler <em>Task Handler</em>}</li>
  *   <li>{@link org.switchyard.tools.models.switchyard1_0.bpm.impl.BPMImplementationTypeImpl#getResource <em>Resource</em>}</li>
  *   <li>{@link org.switchyard.tools.models.switchyard1_0.bpm.impl.BPMImplementationTypeImpl#getParameters <em>Parameters</em>}</li>
@@ -51,6 +53,7 @@ import org.switchyard.tools.models.switchyard1_0.commonrules.impl.CommonImplemen
  *   <li>{@link org.switchyard.tools.models.switchyard1_0.bpm.impl.BPMImplementationTypeImpl#getMessageContentInName <em>Message Content In Name</em>}</li>
  *   <li>{@link org.switchyard.tools.models.switchyard1_0.bpm.impl.BPMImplementationTypeImpl#getMessageContentOutName <em>Message Content Out Name</em>}</li>
  *   <li>{@link org.switchyard.tools.models.switchyard1_0.bpm.impl.BPMImplementationTypeImpl#isPersistent <em>Persistent</em>}</li>
+ *   <li>{@link org.switchyard.tools.models.switchyard1_0.bpm.impl.BPMImplementationTypeImpl#getSessionId <em>Session Id</em>}</li>
  * </ul>
  * </p>
  *
@@ -78,6 +81,16 @@ public class BPMImplementationTypeImpl extends CommonImplementationTypeImpl impl
 	protected AuditType audit;
 
 	/**
+     * The cached value of the '{@link #getEventListener() <em>Event Listener</em>}' containment reference list.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @see #getEventListener()
+     * @generated
+     * @ordered
+     */
+    protected EList<EventListenerType> eventListener;
+
+    /**
      * The cached value of the '{@link #getTaskHandler() <em>Task Handler</em>}' containment reference list.
      * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -238,6 +251,26 @@ public class BPMImplementationTypeImpl extends CommonImplementationTypeImpl impl
     protected boolean persistent = PERSISTENT_EDEFAULT;
 
     /**
+     * The default value of the '{@link #getSessionId() <em>Session Id</em>}' attribute.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @see #getSessionId()
+     * @generated
+     * @ordered
+     */
+    protected static final String SESSION_ID_EDEFAULT = "";
+
+    /**
+     * The cached value of the '{@link #getSessionId() <em>Session Id</em>}' attribute.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @see #getSessionId()
+     * @generated
+     * @ordered
+     */
+    protected String sessionId = SESSION_ID_EDEFAULT;
+
+    /**
      * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
      * @generated
@@ -312,6 +345,18 @@ public class BPMImplementationTypeImpl extends CommonImplementationTypeImpl impl
     }
 
 	/**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public EList<EventListenerType> getEventListener() {
+        if (eventListener == null) {
+            eventListener = new EObjectContainmentEList<EventListenerType>(EventListenerType.class, this, BPMPackage.BPM_IMPLEMENTATION_TYPE__EVENT_LISTENER);
+        }
+        return eventListener;
+    }
+
+    /**
      * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
      * @generated
@@ -549,6 +594,27 @@ public class BPMImplementationTypeImpl extends CommonImplementationTypeImpl impl
 
     /**
      * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public String getSessionId() {
+        return sessionId;
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public void setSessionId(String newSessionId) {
+        String oldSessionId = sessionId;
+        sessionId = newSessionId;
+        if (eNotificationRequired())
+            eNotify(new ENotificationImpl(this, Notification.SET, BPMPackage.BPM_IMPLEMENTATION_TYPE__SESSION_ID, oldSessionId, sessionId));
+    }
+
+    /**
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
      * @generated
      */
@@ -559,6 +625,8 @@ public class BPMImplementationTypeImpl extends CommonImplementationTypeImpl impl
                 return ((InternalEList<?>)getAction()).basicRemove(otherEnd, msgs);
             case BPMPackage.BPM_IMPLEMENTATION_TYPE__AUDIT:
                 return basicSetAudit(null, msgs);
+            case BPMPackage.BPM_IMPLEMENTATION_TYPE__EVENT_LISTENER:
+                return ((InternalEList<?>)getEventListener()).basicRemove(otherEnd, msgs);
             case BPMPackage.BPM_IMPLEMENTATION_TYPE__TASK_HANDLER:
                 return ((InternalEList<?>)getTaskHandler()).basicRemove(otherEnd, msgs);
             case BPMPackage.BPM_IMPLEMENTATION_TYPE__RESOURCE:
@@ -583,6 +651,8 @@ public class BPMImplementationTypeImpl extends CommonImplementationTypeImpl impl
                 return getAction();
             case BPMPackage.BPM_IMPLEMENTATION_TYPE__AUDIT:
                 return getAudit();
+            case BPMPackage.BPM_IMPLEMENTATION_TYPE__EVENT_LISTENER:
+                return getEventListener();
             case BPMPackage.BPM_IMPLEMENTATION_TYPE__TASK_HANDLER:
                 return getTaskHandler();
             case BPMPackage.BPM_IMPLEMENTATION_TYPE__RESOURCE:
@@ -603,6 +673,8 @@ public class BPMImplementationTypeImpl extends CommonImplementationTypeImpl impl
                 return getMessageContentOutName();
             case BPMPackage.BPM_IMPLEMENTATION_TYPE__PERSISTENT:
                 return isPersistent();
+            case BPMPackage.BPM_IMPLEMENTATION_TYPE__SESSION_ID:
+                return getSessionId();
         }
         return super.eGet(featureID, resolve, coreType);
     }
@@ -622,6 +694,10 @@ public class BPMImplementationTypeImpl extends CommonImplementationTypeImpl impl
                 return;
             case BPMPackage.BPM_IMPLEMENTATION_TYPE__AUDIT:
                 setAudit((AuditType)newValue);
+                return;
+            case BPMPackage.BPM_IMPLEMENTATION_TYPE__EVENT_LISTENER:
+                getEventListener().clear();
+                getEventListener().addAll((Collection<? extends EventListenerType>)newValue);
                 return;
             case BPMPackage.BPM_IMPLEMENTATION_TYPE__TASK_HANDLER:
                 getTaskHandler().clear();
@@ -655,6 +731,9 @@ public class BPMImplementationTypeImpl extends CommonImplementationTypeImpl impl
             case BPMPackage.BPM_IMPLEMENTATION_TYPE__PERSISTENT:
                 setPersistent((Boolean)newValue);
                 return;
+            case BPMPackage.BPM_IMPLEMENTATION_TYPE__SESSION_ID:
+                setSessionId((String)newValue);
+                return;
         }
         super.eSet(featureID, newValue);
     }
@@ -672,6 +751,9 @@ public class BPMImplementationTypeImpl extends CommonImplementationTypeImpl impl
                 return;
             case BPMPackage.BPM_IMPLEMENTATION_TYPE__AUDIT:
                 setAudit((AuditType)null);
+                return;
+            case BPMPackage.BPM_IMPLEMENTATION_TYPE__EVENT_LISTENER:
+                getEventListener().clear();
                 return;
             case BPMPackage.BPM_IMPLEMENTATION_TYPE__TASK_HANDLER:
                 getTaskHandler().clear();
@@ -703,6 +785,9 @@ public class BPMImplementationTypeImpl extends CommonImplementationTypeImpl impl
             case BPMPackage.BPM_IMPLEMENTATION_TYPE__PERSISTENT:
                 setPersistent(PERSISTENT_EDEFAULT);
                 return;
+            case BPMPackage.BPM_IMPLEMENTATION_TYPE__SESSION_ID:
+                setSessionId(SESSION_ID_EDEFAULT);
+                return;
         }
         super.eUnset(featureID);
     }
@@ -719,6 +804,8 @@ public class BPMImplementationTypeImpl extends CommonImplementationTypeImpl impl
                 return action != null && !action.isEmpty();
             case BPMPackage.BPM_IMPLEMENTATION_TYPE__AUDIT:
                 return audit != null;
+            case BPMPackage.BPM_IMPLEMENTATION_TYPE__EVENT_LISTENER:
+                return eventListener != null && !eventListener.isEmpty();
             case BPMPackage.BPM_IMPLEMENTATION_TYPE__TASK_HANDLER:
                 return taskHandler != null && !taskHandler.isEmpty();
             case BPMPackage.BPM_IMPLEMENTATION_TYPE__RESOURCE:
@@ -739,6 +826,8 @@ public class BPMImplementationTypeImpl extends CommonImplementationTypeImpl impl
                 return MESSAGE_CONTENT_OUT_NAME_EDEFAULT == null ? messageContentOutName != null : !MESSAGE_CONTENT_OUT_NAME_EDEFAULT.equals(messageContentOutName);
             case BPMPackage.BPM_IMPLEMENTATION_TYPE__PERSISTENT:
                 return persistent != PERSISTENT_EDEFAULT;
+            case BPMPackage.BPM_IMPLEMENTATION_TYPE__SESSION_ID:
+                return SESSION_ID_EDEFAULT == null ? sessionId != null : !SESSION_ID_EDEFAULT.equals(sessionId);
         }
         return super.eIsSet(featureID);
     }
@@ -765,6 +854,8 @@ public class BPMImplementationTypeImpl extends CommonImplementationTypeImpl impl
         result.append(messageContentOutName);
         result.append(", persistent: ");
         result.append(persistent);
+        result.append(", sessionId: ");
+        result.append(sessionId);
         result.append(')');
         return result.toString();
     }

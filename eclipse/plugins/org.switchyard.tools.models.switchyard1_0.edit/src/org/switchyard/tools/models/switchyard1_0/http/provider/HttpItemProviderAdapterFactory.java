@@ -99,6 +99,52 @@ public class HttpItemProviderAdapterFactory extends HttpAdapterFactory implement
     }
 
     /**
+     * This keeps track of the one adapter used for all {@link org.switchyard.tools.models.switchyard1_0.http.HttpContextMapperType} instances.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    protected HttpContextMapperTypeItemProvider httpContextMapperTypeItemProvider;
+
+    /**
+     * This creates an adapter for a {@link org.switchyard.tools.models.switchyard1_0.http.HttpContextMapperType}.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    @Override
+    public Adapter createHttpContextMapperTypeAdapter() {
+        if (httpContextMapperTypeItemProvider == null) {
+            httpContextMapperTypeItemProvider = new HttpContextMapperTypeItemProvider(this);
+        }
+
+        return httpContextMapperTypeItemProvider;
+    }
+
+    /**
+     * This keeps track of the one adapter used for all {@link org.switchyard.tools.models.switchyard1_0.http.HttpMessageComposerType} instances.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    protected HttpMessageComposerTypeItemProvider httpMessageComposerTypeItemProvider;
+
+    /**
+     * This creates an adapter for a {@link org.switchyard.tools.models.switchyard1_0.http.HttpMessageComposerType}.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    @Override
+    public Adapter createHttpMessageComposerTypeAdapter() {
+        if (httpMessageComposerTypeItemProvider == null) {
+            httpMessageComposerTypeItemProvider = new HttpMessageComposerTypeItemProvider(this);
+        }
+
+        return httpMessageComposerTypeItemProvider;
+    }
+
+    /**
      * This keeps track of the one adapter used for all {@link org.switchyard.tools.models.switchyard1_0.http.DocumentRoot} instances.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
@@ -221,6 +267,8 @@ public class HttpItemProviderAdapterFactory extends HttpAdapterFactory implement
      */
     public void dispose() {
         if (httpBindingTypeItemProvider != null) httpBindingTypeItemProvider.dispose();
+        if (httpContextMapperTypeItemProvider != null) httpContextMapperTypeItemProvider.dispose();
+        if (httpMessageComposerTypeItemProvider != null) httpMessageComposerTypeItemProvider.dispose();
         if (documentRootItemProvider != null) documentRootItemProvider.dispose();
     }
 
