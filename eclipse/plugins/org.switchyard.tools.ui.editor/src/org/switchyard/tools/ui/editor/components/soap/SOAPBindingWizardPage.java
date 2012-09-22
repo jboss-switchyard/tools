@@ -19,6 +19,7 @@ import org.eclipse.jface.wizard.WizardPage;
 import org.eclipse.soa.sca.sca1_1.model.sca.Binding;
 import org.eclipse.soa.sca.sca1_1.model.sca.Contract;
 import org.eclipse.soa.sca.sca1_1.model.sca.Reference;
+import org.eclipse.soa.sca.sca1_1.model.sca.WSDLPortType;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.widgets.Composite;
 import org.switchyard.tools.models.switchyard1_0.soap.SOAPBindingType;
@@ -45,9 +46,20 @@ public class SOAPBindingWizardPage extends WizardPage {
 
     @Override
     public void createControl(Composite parent) {
-        _targetContainer = ((SOAPBindingWizard)getWizard()).getTargetContainer();
+        _targetContainer = ((SOAPBindingWizard) getWizard()).getTargetContainer();
         if (_targetContainer instanceof Reference) {
             _binding.setSocketAddr(null);
+        }
+        if (_targetContainer.getInterface() instanceof WSDLPortType) {
+            String wsdlPortType = ((WSDLPortType) _targetContainer.getInterface()).getInterface();
+            if (wsdlPortType != null) {
+                final int fragmentIndex = wsdlPortType.indexOf('#');
+                if (fragmentIndex >= 0) {
+                    _binding.setWsdl(wsdlPortType.substring(0, fragmentIndex));
+                } else {
+                    _binding.setWsdl(wsdlPortType);
+                }
+            }
         }
         _soapComposite = new SOAPBindingComposite();
         _soapComposite.setTargetObject(_targetContainer);
