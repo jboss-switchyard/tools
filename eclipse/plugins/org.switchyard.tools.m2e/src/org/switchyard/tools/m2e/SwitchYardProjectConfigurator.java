@@ -12,6 +12,7 @@ package org.switchyard.tools.m2e;
 
 import org.apache.maven.plugin.MojoExecution;
 import org.eclipse.core.runtime.CoreException;
+import org.eclipse.core.runtime.IPath;
 import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.m2e.core.lifecyclemapping.model.IPluginExecutionMetadata;
 import org.eclipse.m2e.core.project.IMavenProjectFacade;
@@ -26,6 +27,7 @@ import org.eclipse.wst.common.project.facet.core.IPreset;
 import org.eclipse.wst.common.project.facet.core.IProjectFacet;
 import org.eclipse.wst.common.project.facet.core.IProjectFacetVersion;
 import org.eclipse.wst.common.project.facet.core.ProjectFacetsManager;
+import org.maven.ide.eclipse.wtp.ResourceCleaner;
 
 /**
  * SwitchYardProjectConfigurator
@@ -64,7 +66,23 @@ public class SwitchYardProjectConfigurator extends AbstractProjectConfigurator {
             modified = true;
         }
         if (modified) {
-            ifpwc.commitChanges(monitor);
+            final ResourceCleaner fileCleaner = new ResourceCleaner(request.getProject());
+            try {
+                final IMavenProjectFacade facade = request.getMavenProjectFacade();
+                addFilesToClean(fileCleaner, facade.getResourceLocations());
+                addFilesToClean(fileCleaner, facade.getCompileSourceLocations());
+                ifpwc.commitChanges(monitor);
+            } finally {
+                // Remove any unwanted MANIFEST.MF the Facet installation has
+                // created
+                fileCleaner.cleanUp();
+            }
+        }
+    }
+
+    protected void addFilesToClean(ResourceCleaner fileCleaner, IPath[] paths) {
+        for (IPath resourceFolderPath : paths) {
+            fileCleaner.addFiles(resourceFolderPath.append("META-INF/MANIFEST.MF"));
         }
     }
 

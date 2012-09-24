@@ -64,6 +64,8 @@ public class SwitchYardConfigurationTest extends AbstractMavenProjectTestCase {
         assertTrue(project.getFile("target/classes/META-INF/switchyard.xml").isSynchronized(IResource.DEPTH_ZERO));
         assertTrue(project.getFile("target/classes/META-INF/switchyard.xml").isAccessible());
 
+        assertTrue(!project.getFile("src/main/java/META-INF/MANIFEST.MF").exists());
+
         Reader sourceReader = null;
         Reader testReader = null;
         try {
@@ -96,8 +98,8 @@ public class SwitchYardConfigurationTest extends AbstractMavenProjectTestCase {
 
     private void waitForJobs() throws Exception {
         waitForJobsToComplete();
-//        Job.getJobManager().join(ResourcesPlugin.FAMILY_MANUAL_BUILD, null);
-//        Job.getJobManager().join(ResourcesPlugin.FAMILY_AUTO_BUILD, null);
+        // Job.getJobManager().join(ResourcesPlugin.FAMILY_MANUAL_BUILD, null);
+        // Job.getJobManager().join(ResourcesPlugin.FAMILY_AUTO_BUILD, null);
     }
 
 }
