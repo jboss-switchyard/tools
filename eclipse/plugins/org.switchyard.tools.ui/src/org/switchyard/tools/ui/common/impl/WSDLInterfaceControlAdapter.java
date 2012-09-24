@@ -18,6 +18,7 @@ import org.eclipse.core.resources.ResourcesPlugin;
 import org.eclipse.core.runtime.IPath;
 import org.eclipse.core.runtime.IStatus;
 import org.eclipse.core.runtime.Path;
+import org.eclipse.core.runtime.Platform;
 import org.eclipse.core.runtime.Status;
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.resource.ResourceSet;
@@ -28,6 +29,7 @@ import org.eclipse.jface.viewers.StructuredSelection;
 import org.eclipse.jface.window.Window;
 import org.eclipse.jface.wizard.WizardDialog;
 import org.eclipse.soa.sca.sca1_1.model.sca.Interface;
+import org.eclipse.soa.sca.sca1_1.model.sca.JavaInterface;
 import org.eclipse.soa.sca.sca1_1.model.sca.ScaFactory;
 import org.eclipse.soa.sca.sca1_1.model.sca.WSDLPortType;
 import org.eclipse.swt.widgets.Shell;
@@ -35,11 +37,12 @@ import org.eclipse.ui.PlatformUI;
 import org.eclipse.wst.wsdl.Definition;
 import org.eclipse.wst.wsdl.PortType;
 import org.eclipse.wst.wsdl.util.WSDLResourceImpl;
+import org.switchyard.tools.ui.Activator;
 import org.switchyard.tools.ui.JavaUtil;
 import org.switchyard.tools.ui.SwitchYardModelUtils;
-import org.switchyard.tools.ui.Activator;
 import org.switchyard.tools.ui.common.IInterfaceControlAdapter;
 import org.switchyard.tools.ui.common.WSDLPortTypeSelectionDialog;
+import org.switchyard.tools.ui.wizards.Java2WSDLWizard;
 import org.switchyard.tools.ui.wizards.NewWSDLFileWizard;
 
 /**
@@ -53,6 +56,7 @@ import org.switchyard.tools.ui.wizards.NewWSDLFileWizard;
 public class WSDLInterfaceControlAdapter implements IInterfaceControlAdapter {
 
     private WSDLPortType _interface;
+    private Interface _related;
 
     /**
      * Create a new JavaInterfaceControlAdapter.
@@ -64,6 +68,11 @@ public class WSDLInterfaceControlAdapter implements IInterfaceControlAdapter {
     @Override
     public Interface getInterface() {
         return _interface;
+    }
+
+    @Override
+    public void setRelatedInterface(Interface related) {
+        _related = related;
     }
 
     @Override
@@ -88,7 +97,16 @@ public class WSDLInterfaceControlAdapter implements IInterfaceControlAdapter {
     }
 
     @Override
-    public boolean open(Shell shell, IJavaProject project) {
+    public boolean open(Shell shell, IJavaProject project, boolean useRelated) {
+        if (useRelated) {
+            if (_related instanceof JavaInterface) {
+                return openJava2WSDLWizard(shell, project);
+            }
+        }
+        return openNewWSDLFileWizard(shell, project);
+    }
+
+    private boolean openNewWSDLFileWizard(Shell shell, IJavaProject project) {
         IResource container = JavaUtil.getFirstResourceRoot(project);
         IStructuredSelection selectionToPass;
         if (container == null) {
@@ -104,17 +122,41 @@ public class WSDLInterfaceControlAdapter implements IInterfaceControlAdapter {
 
         WizardDialog dialog = new WizardDialog(shell, newWizard);
         if (dialog.open() == Window.OK) {
-            IFile newFile = newWizard.getNewFile();
-            ResourceSet resourceSet = new ResourceSetImpl();
-            WSDLResourceImpl resource = (WSDLResourceImpl) resourceSet.getResource(
-                    URI.createPlatformResourceURI(newFile.getFullPath().toString(), true), true);
-            Definition definition = resource.getDefinition();
-            @SuppressWarnings("unchecked")
-            List<PortType> portTypes = definition.getEPortTypes();
-            if (portTypes.size() > 0) {
-                _interface.setInterface(getInterfaceURL(project, portTypes.get(0)));
-                return true;
-            }
+            return updateInterfaceFromNewFile(newWizard.getNewFile(), project);
+        }
+        return false;
+    }
+
+    private boolean openJava2WSDLWizard(Shell shell, IJavaProject project) {
+        final Java2WSDLWizard newWizard = new Java2WSDLWizard();
+        final WizardDialog dialog = new WizardDialog(PlatformUI.getWorkbench().getActiveWorkbenchWindow().getShell(),
+                newWizard);
+        newWizard.init(PlatformUI.getWorkbench(), getResourceForInterface((JavaInterface) _related));
+        if (dialog.open() == Window.OK) {
+            return updateInterfaceFromNewFile(newWizard.getWSDLFile(), project);
+        }
+        return false;
+    }
+
+    private IStructuredSelection getResourceForInterface(JavaInterface javaIntf) {
+        final IResource file = (IResource) Platform.getAdapterManager().loadAdapter(javaIntf,
+                IResource.class.getCanonicalName());
+        if (file == null) {
+            return StructuredSelection.EMPTY;
+        }
+        return new StructuredSelection(file);
+    }
+
+    private boolean updateInterfaceFromNewFile(IFile newFile, IJavaProject project) {
+        ResourceSet resourceSet = new ResourceSetImpl();
+        WSDLResourceImpl resource = (WSDLResourceImpl) resourceSet.getResource(
+                URI.createPlatformResourceURI(newFile.getFullPath().toString(), true), true);
+        Definition definition = resource.getDefinition();
+        @SuppressWarnings("unchecked")
+        List<PortType> portTypes = definition.getEPortTypes();
+        if (portTypes.size() > 0) {
+            _interface.setInterface(getInterfaceURL(project, portTypes.get(0)));
+            return true;
         }
         return false;
     }

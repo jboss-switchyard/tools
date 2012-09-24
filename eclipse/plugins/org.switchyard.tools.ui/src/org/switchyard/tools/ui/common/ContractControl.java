@@ -157,8 +157,9 @@ public class ContractControl implements ISelectionProvider {
      * 
      * @param contract initialize control with details from an existing
      *            contract.
+     * @param related the contract related to the contract being edited
      */
-    public void init(Contract contract) {
+    public void init(Contract contract, Contract related) {
         if (contract == null) {
             return;
         }
@@ -167,7 +168,7 @@ public class ContractControl implements ISelectionProvider {
         } else if (contract.getName() != null) {
             _serviceNameText.setText(contract.getName());
         }
-        _interfaceControl.init(contract.getInterface());
+        _interfaceControl.init(contract.getInterface(), related == null ? null : related.getInterface());
     }
 
     /**
@@ -179,7 +180,7 @@ public class ContractControl implements ISelectionProvider {
         if (intf == null) {
             return;
         }
-        _interfaceControl.init(intf);
+        _interfaceControl.init(intf, null);
     }
 
     /**

@@ -31,6 +31,7 @@ public class Java2WSDLOptions {
     private String _style = WSDLConstants.DOCUMENT;
     private String _use = WSDLConstants.LITERAL;
     private boolean _useImportedSchema = false;
+    private boolean _wrapped = false;
 
     /**
      * Get the serviceInterface.
@@ -181,4 +182,17 @@ public class Java2WSDLOptions {
         _use = use;
     }
 
+    /**
+     * @return true if WSDL should generated "wrapped" i/o types.
+     */
+    public boolean isWrapped() {
+        return _wrapped;
+    }
+
+    /**
+     * @param wrapped the new "wrapped" value.
+     */
+    public void setWrapped(boolean wrapped) {
+        _wrapped = wrapped;
+    }
 }

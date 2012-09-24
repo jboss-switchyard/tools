@@ -61,6 +61,11 @@ public class JavaInterfaceControlAdapter implements IInterfaceControlAdapter {
     }
 
     @Override
+    public void setRelatedInterface(Interface related) {
+        // TODO: store related away for when we support WSDL->Java
+    }
+
+    @Override
     public void init(Interface intf) {
         final String typeString = intf == null ? null : ((JavaInterface) intf).getInterface();
         _interface.setInterface(typeString);
@@ -93,7 +98,8 @@ public class JavaInterfaceControlAdapter implements IInterfaceControlAdapter {
     }
 
     @Override
-    public boolean open(Shell shell, IJavaProject project) {
+    public boolean open(Shell shell, IJavaProject project, boolean useRelated) {
+        // TODO: if useRelated....
         IJavaElement initialJavaElement = JavaUtil.getInitialPackageForProject(project);
         IStructuredSelection selectionToPass;
         if (initialJavaElement == null) {

@@ -193,7 +193,7 @@ public class SCADiagramAddCompositeFeature extends AbstractAddShapeFeature {
         GraphicsAlgorithm ga = compositeContainer.getGraphicsAlgorithm();
 
         AddContext context = new AddContext();
-        context.setX(ga.getX() + StyleUtil.COMPOSITE_OUTER_EDGE - StyleUtil.COMPOSITE_PROTRUSION_WIDTH);
+        context.setX(StyleUtil.COMPOSITE_OUTER_EDGE - StyleUtil.COMPOSITE_PROTRUSION_WIDTH);
         context.setY(Math.max(StyleUtil.COMPOSITE_OUTER_EDGE + StyleUtil.COMPOSITE_INNER_EDGE * 2 + ga.getY(),
                 getMaxYForChildShapeCount(featureProvider, compositeContainer, Service.class)));
         context.setTargetContainer(compositeContainer);

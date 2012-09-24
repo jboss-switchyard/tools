@@ -609,7 +609,7 @@ public class NewServiceTestClassWizardPage extends NewTypeWizardPage {
         } else if (contract.getInterface() == null) {
             _serviceInterfaceStatus.setError("Selected service does not define any interface.");
         }
-        _interfaceControl.init(contract == null ? null : contract.getInterface());
+        _interfaceControl.init(contract == null ? null : contract.getInterface(), null);
 
         String newName = createDefaultClassName();
         if (updateDefault(_oldTypeName, newName, getTypeName())) {

@@ -49,7 +49,8 @@ public class NewContractWizardPage extends WizardPage {
     public NewContractWizardPage(String pageName, String title, String description, EClass contractType) {
         super(pageName, title, null);
         setDescription(description);
-        _contractControl = new ContractControl(contractType, null, EnumSet.of(InterfaceType.Java, InterfaceType.WSDL, InterfaceType.ESB));
+        _contractControl = new ContractControl(contractType, null, EnumSet.of(InterfaceType.Java, InterfaceType.WSDL,
+                InterfaceType.ESB));
     }
 
     @Override
@@ -77,9 +78,10 @@ public class NewContractWizardPage extends WizardPage {
      * 
      * @param contract initialize control with details from an existing
      *            contract.
+     * @param related the related contract (e.g. when promoting a service)
      */
-    public void init(Contract contract) {
-        _contractControl.init(contract);
+    public void init(Contract contract, Contract related) {
+        _contractControl.init(contract, related);
     }
 
     /**

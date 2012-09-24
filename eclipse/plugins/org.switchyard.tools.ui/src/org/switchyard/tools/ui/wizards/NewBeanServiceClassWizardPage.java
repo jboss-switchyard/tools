@@ -125,7 +125,7 @@ public class NewBeanServiceClassWizardPage extends NewTypeWizardPage {
         if (serviceInterface == null) {
             return;
         }
-        _serviceInterfaceControl.init(serviceInterface);
+        _serviceInterfaceControl.init(serviceInterface, null);
         _serviceInterfaceControl.setEnabled(false);
 
         serviceInterfaceChanged();

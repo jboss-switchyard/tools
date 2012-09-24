@@ -10,15 +10,13 @@
  ************************************************************************************/
 package org.switchyard.tools.ui.editor.diagram.shared;
 
-import org.eclipse.core.resources.IResource;
-import org.eclipse.core.resources.ResourcesPlugin;
-import org.eclipse.core.runtime.Path;
+import org.eclipse.core.resources.IProject;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
-import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.jdt.core.JavaCore;
 import org.eclipse.jface.wizard.Wizard;
 import org.eclipse.soa.sca.sca1_1.model.sca.Contract;
+import org.switchyard.tools.ui.PlatformResourceAdapterFactory;
 
 /**
  * BaseNewContractWizard
@@ -54,16 +52,11 @@ public class BaseNewContractWizard extends Wizard {
         if (container == null) {
             return;
         }
-        Resource resource = container.eResource();
-        if (resource == null || resource.getURI() == null || !resource.getURI().isPlatformResource()) {
+        IProject project = PlatformResourceAdapterFactory.getContainingProject(container);
+        if (project == null) {
             return;
         }
-        IResource modelFile = ResourcesPlugin.getWorkspace().getRoot()
-                .getFile(new Path(resource.getURI().toPlatformString(true)));
-        if (modelFile == null) {
-            return;
-        }
-        _page.setJavaProject(JavaCore.create(modelFile.getProject()));
+        _page.setJavaProject(JavaCore.create(project));
     }
 
     /**
@@ -72,9 +65,10 @@ public class BaseNewContractWizard extends Wizard {
      * 
      * @param contract initialize control with details from an existing
      *            contract.
+     * @param related the related contract (e.g. when promoting a service)
      */
-    public void init(Contract contract) {
-        _page.init(contract);
+    public void init(Contract contract, Contract related) {
+        _page.init(contract, related);
         init((EObject) contract);
     }
 

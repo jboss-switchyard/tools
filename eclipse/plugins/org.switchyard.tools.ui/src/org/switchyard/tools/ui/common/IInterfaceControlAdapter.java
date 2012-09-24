@@ -36,6 +36,11 @@ public interface IInterfaceControlAdapter {
     public void init(Interface intf);
 
     /**
+     * @param related the related interface, if any.
+     */
+    public void setRelatedInterface(Interface related);
+
+    /**
      * The "browse" button on the control has been pressed. Implementations
      * should implement appropriate behavior based on the type they are
      * supporting (e.g. select type for JavaInterface).
@@ -54,10 +59,12 @@ public interface IInterfaceControlAdapter {
      * 
      * @param shell the parent shell
      * @param project the containing project (may be used to reduce scope)
+     * @param useRelated use any specified related interface when creating a new
+     *            interface.
      * 
      * @return true if the data associated with this adapter has changed.
      */
-    public boolean open(Shell shell, IJavaProject project);
+    public boolean open(Shell shell, IJavaProject project, boolean useRelated);
 
     /**
      * @return the text that should be displayed for the interface type (e.g.

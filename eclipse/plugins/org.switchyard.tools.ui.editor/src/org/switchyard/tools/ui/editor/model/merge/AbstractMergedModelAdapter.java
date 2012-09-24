@@ -356,7 +356,6 @@ public abstract class AbstractMergedModelAdapter implements Adapter {
                 if (copy == null) {
                     copy = (EObject) key;
                 }
-                put((EObject) key, copy);
             }
             return copy;
         }

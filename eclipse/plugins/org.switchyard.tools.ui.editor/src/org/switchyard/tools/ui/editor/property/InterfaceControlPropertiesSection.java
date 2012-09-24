@@ -110,7 +110,7 @@ public class InterfaceControlPropertiesSection extends GFPropertySection impleme
                 _service = contract;
                 
                 // init controls
-                _interfaceControl.init(_interface);
+                _interfaceControl.init(_interface, null);
             }
         }
         _inUpdate = false;

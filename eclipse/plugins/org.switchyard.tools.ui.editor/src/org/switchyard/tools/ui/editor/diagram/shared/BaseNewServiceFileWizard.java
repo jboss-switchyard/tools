@@ -17,13 +17,12 @@ import java.util.EnumSet;
 import java.util.List;
 
 import org.eclipse.core.resources.IFile;
+import org.eclipse.core.resources.IProject;
 import org.eclipse.core.resources.IResource;
 import org.eclipse.core.resources.ResourcesPlugin;
 import org.eclipse.core.runtime.IPath;
 import org.eclipse.core.runtime.IStatus;
-import org.eclipse.core.runtime.Path;
 import org.eclipse.core.runtime.Status;
-import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.jdt.core.IJavaProject;
 import org.eclipse.jdt.core.JavaCore;
 import org.eclipse.jface.viewers.ISelectionChangedListener;
@@ -48,6 +47,7 @@ import org.eclipse.ui.dialogs.WizardNewFileCreationPage;
 import org.eclipse.ui.ide.IDE;
 import org.eclipse.ui.wizards.newresource.BasicNewFileResourceWizard;
 import org.switchyard.tools.ui.JavaUtil;
+import org.switchyard.tools.ui.PlatformResourceAdapterFactory;
 import org.switchyard.tools.ui.common.ContractControl;
 import org.switchyard.tools.ui.common.InterfaceControl.InterfaceType;
 import org.switchyard.tools.ui.editor.Activator;
@@ -160,17 +160,12 @@ public abstract class BaseNewServiceFileWizard extends BasicNewFileResourceWizar
         if (container == null || !(getSelection() == null || getSelection().isEmpty())) {
             return;
         }
-        Resource resource = container.eResource();
-        if (resource == null || resource.getURI() == null || !resource.getURI().isPlatformResource()) {
+        IProject project = PlatformResourceAdapterFactory.getContainingProject(container);
+        if (project == null) {
             return;
         }
-        IResource modelFile = ResourcesPlugin.getWorkspace().getRoot()
-                .getFile(new Path(resource.getURI().toPlatformString(true)));
-        if (modelFile == null) {
-            return;
-        }
-        IResource folder = JavaUtil.getFirstResourceRoot(JavaCore.create(modelFile.getProject()));
-        StructuredSelection selection = new StructuredSelection(folder == null ? modelFile.getParent() : folder);
+        IResource folder = JavaUtil.getFirstResourceRoot(JavaCore.create(project));
+        StructuredSelection selection = new StructuredSelection(folder == null ? project : folder);
         init(getWorkbench() == null ? PlatformUI.getWorkbench() : getWorkbench(), selection);
     }
 
@@ -290,7 +285,7 @@ public abstract class BaseNewServiceFileWizard extends BasicNewFileResourceWizar
             });
 
             if (_service != null) {
-                _contractControl.init(_service);
+                _contractControl.init(_service, null);
                 _contractControl.setEnabled(false);
             }
             // get the new instance

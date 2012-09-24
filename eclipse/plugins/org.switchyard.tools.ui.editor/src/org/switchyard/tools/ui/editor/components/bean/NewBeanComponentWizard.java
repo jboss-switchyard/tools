@@ -12,10 +12,7 @@ package org.switchyard.tools.ui.editor.components.bean;
 
 import java.util.List;
 
-import org.eclipse.core.resources.IResource;
-import org.eclipse.core.resources.ResourcesPlugin;
-import org.eclipse.core.runtime.Path;
-import org.eclipse.emf.ecore.resource.Resource;
+import org.eclipse.core.resources.IProject;
 import org.eclipse.jdt.core.IJavaElement;
 import org.eclipse.jdt.core.IType;
 import org.eclipse.jdt.core.JavaCore;
@@ -29,6 +26,7 @@ import org.eclipse.ui.PlatformUI;
 import org.switchyard.tools.models.switchyard1_0.bean.BeanFactory;
 import org.switchyard.tools.models.switchyard1_0.bean.BeanImplementationType;
 import org.switchyard.tools.ui.JavaUtil;
+import org.switchyard.tools.ui.PlatformResourceAdapterFactory;
 import org.switchyard.tools.ui.editor.diagram.component.IComponentWizard;
 import org.switchyard.tools.ui.editor.util.JavaTypeScanner;
 import org.switchyard.tools.ui.wizards.NewBeanServiceWizard;
@@ -65,16 +63,11 @@ public class NewBeanComponentWizard extends NewBeanServiceWizard implements ICom
         if (container == null || !(getSelection() == null || getSelection().isEmpty())) {
             return;
         }
-        Resource resource = container.eResource();
-        if (resource == null || resource.getURI() == null || !resource.getURI().isPlatformResource()) {
+        IProject project = PlatformResourceAdapterFactory.getContainingProject(container);
+        if (project == null) {
             return;
         }
-        IResource modelFile = ResourcesPlugin.getWorkspace().getRoot()
-                .getFile(new Path(resource.getURI().toPlatformString(true)));
-        if (modelFile == null) {
-            return;
-        }
-        IJavaElement element = JavaUtil.getInitialPackageForProject(JavaCore.create(modelFile.getProject()));
+        IJavaElement element = JavaUtil.getInitialPackageForProject(JavaCore.create(project));
         StructuredSelection selection = element == null ? StructuredSelection.EMPTY : new StructuredSelection(element);
         init(getWorkbench() == null ? PlatformUI.getWorkbench() : getWorkbench(), selection);
     }

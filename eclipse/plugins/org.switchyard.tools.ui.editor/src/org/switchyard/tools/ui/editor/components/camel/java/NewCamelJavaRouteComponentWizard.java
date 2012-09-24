@@ -10,12 +10,9 @@
  ************************************************************************************/
 package org.switchyard.tools.ui.editor.components.camel.java;
 
-import org.eclipse.core.resources.IResource;
-import org.eclipse.core.resources.ResourcesPlugin;
+import org.eclipse.core.resources.IProject;
 import org.eclipse.core.runtime.CoreException;
 import org.eclipse.core.runtime.IProgressMonitor;
-import org.eclipse.core.runtime.Path;
-import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.jdt.core.IJavaElement;
 import org.eclipse.jdt.core.IType;
 import org.eclipse.jdt.core.JavaCore;
@@ -33,6 +30,7 @@ import org.switchyard.tools.models.switchyard1_0.camel.CamelFactory;
 import org.switchyard.tools.models.switchyard1_0.camel.CamelImplementationType;
 import org.switchyard.tools.models.switchyard1_0.camel.JavaDSLType;
 import org.switchyard.tools.ui.JavaUtil;
+import org.switchyard.tools.ui.PlatformResourceAdapterFactory;
 import org.switchyard.tools.ui.editor.diagram.component.IComponentWizard;
 
 /**
@@ -92,16 +90,11 @@ public class NewCamelJavaRouteComponentWizard extends NewClassCreationWizard imp
         if (container == null || !(getSelection() == null || getSelection().isEmpty())) {
             return;
         }
-        Resource resource = container.eResource();
-        if (resource == null || resource.getURI() == null || !resource.getURI().isPlatformResource()) {
+        IProject project = PlatformResourceAdapterFactory.getContainingProject(container);
+        if (project == null) {
             return;
         }
-        IResource modelFile = ResourcesPlugin.getWorkspace().getRoot()
-                .getFile(new Path(resource.getURI().toPlatformString(true)));
-        if (modelFile == null) {
-            return;
-        }
-        IJavaElement element = JavaUtil.getInitialPackageForProject(JavaCore.create(modelFile.getProject()));
+        IJavaElement element = JavaUtil.getInitialPackageForProject(JavaCore.create(project));
         StructuredSelection selection = element == null ? StructuredSelection.EMPTY : new StructuredSelection(element);
         init(getWorkbench() == null ? PlatformUI.getWorkbench() : getWorkbench(), selection);
     }

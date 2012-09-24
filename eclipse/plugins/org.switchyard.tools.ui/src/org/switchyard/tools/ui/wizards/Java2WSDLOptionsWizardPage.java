@@ -13,6 +13,8 @@ package org.switchyard.tools.ui.wizards;
 import java.lang.reflect.InvocationTargetException;
 import java.net.URI;
 import java.net.URISyntaxException;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 import org.eclipse.core.resources.IFile;
 import org.eclipse.core.resources.IProject;
@@ -29,6 +31,7 @@ import org.eclipse.jdt.core.search.SearchEngine;
 import org.eclipse.jdt.ui.JavaUI;
 import org.eclipse.jface.operation.IRunnableWithProgress;
 import org.eclipse.jface.viewers.IStructuredSelection;
+import org.eclipse.jface.viewers.StructuredSelection;
 import org.eclipse.jface.wizard.WizardPage;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.events.ModifyEvent;
@@ -58,16 +61,24 @@ import org.switchyard.tools.ui.explorer.impl.SwitchYardRootNode;
  */
 public class Java2WSDLOptionsWizardPage extends WizardPage {
 
+    private static final String DEFAULT_LOCATION = "http://localhost:8080/%1$s/%2$s";
+    private static final String DEFAULT_LOCATION_MATCH = "(^.+?:.*\\/)%1$s$";
+
     private IStructuredSelection _selection;
+    private boolean _isInitialized;
     private IType _serviceInterface;
     private String _serviceName;
+    private String _oldServiceName;
     private String _targetNamespace;
-    private String _locationURI = "http://localhost:8081/";
+    private String _applicationName;
+    private String _locationURI = String.format(DEFAULT_LOCATION, "", "");
     private boolean _useImportedSchema;
+    private boolean _useWrappedMessages;
     private Text _serviceInterfaceText;
     private Text _serviceNameText;
     private Text _targetNamespaceText;
     private Text _locationURIText;
+    private Button _useWrappedMessagesCheck;
     private Button _useImportedSchemaCheck;
 
     /**
@@ -75,7 +86,8 @@ public class Java2WSDLOptionsWizardPage extends WizardPage {
      */
     public Java2WSDLOptionsWizardPage() {
         super(Java2WSDLOptionsWizardPage.class.getName());
-        setTitle("Java to WSDL Options");
+        setTitle("Java2WSDL Options");
+        setDescription("Specify WSDL generation options.");
     }
 
     /**
@@ -91,6 +103,8 @@ public class Java2WSDLOptionsWizardPage extends WizardPage {
         if (_selection == null || _selection.isEmpty()) {
             return;
         }
+        _isInitialized = true;
+
         Object obj = _selection.getFirstElement();
         if (obj instanceof IProject) {
             initFromProject((IProject) obj);
@@ -137,7 +151,6 @@ public class Java2WSDLOptionsWizardPage extends WizardPage {
     private void initFromType(IType type) {
         _serviceInterface = (IType) type;
         _serviceName = _serviceInterface.getElementName();
-        _locationURI += _serviceName;
         if (_serviceInterface.getJavaProject() != null) {
             initFromProject(_serviceInterface.getJavaProject().getProject());
         }
@@ -154,7 +167,8 @@ public class Java2WSDLOptionsWizardPage extends WizardPage {
         }
         _serviceName = reference.getModel().getName();
         _targetNamespace = reference.getRoot().getTargetNamespace();
-        _locationURI += _serviceName;
+        _applicationName = reference.getRoot().getName();
+        _locationURI = String.format(DEFAULT_LOCATION, _applicationName, _serviceName);
     }
 
     private void initFromComponentService(ComponentService service) {
@@ -168,11 +182,14 @@ public class Java2WSDLOptionsWizardPage extends WizardPage {
         }
         _serviceName = service.getModel().getName();
         _targetNamespace = service.getRoot().getTargetNamespace();
-        _locationURI += _serviceName;
+        _applicationName = service.getRoot().getName();
+        _locationURI = String.format(DEFAULT_LOCATION, _applicationName, _serviceName);
     }
 
     private void initFromSwitchYardRoot(ISwitchYardRootNode root) {
         _targetNamespace = root.getTargetNamespace();
+        _applicationName = root.getName();
+        _locationURI = String.format(DEFAULT_LOCATION, _applicationName, "");
     }
 
     private void initFromProject(final IProject project) {
@@ -183,6 +200,9 @@ public class Java2WSDLOptionsWizardPage extends WizardPage {
                     SwitchYardRootNode switchYardNode = new SwitchYardRootNode(project);
                     switchYardNode.reload(monitor);
                     _targetNamespace = switchYardNode.getTargetNamespace();
+                    _applicationName = switchYardNode.getName();
+                    _locationURI = String.format(DEFAULT_LOCATION, _applicationName, _serviceName == null ? ""
+                            : _serviceName);
                 }
             });
         } catch (Exception e) {
@@ -204,14 +224,20 @@ public class Java2WSDLOptionsWizardPage extends WizardPage {
         selectType.addSelectionListener(new SelectionAdapter() {
             public void widgetSelected(SelectionEvent event) {
                 try {
-                    SelectionDialog dialog = JavaUI.createTypeDialog(getShell(), getWizard().getContainer(),
-                            SearchEngine.createWorkspaceScope(), IJavaSearchConstants.INTERFACE, false,
-                            _serviceInterfaceText.getText());
+                    SelectionDialog dialog = JavaUI
+                            .createTypeDialog(getShell(), getWizard().getContainer(), SearchEngine
+                                    .createJavaSearchScope(new IJavaElement[] {JavaCore.create(getTargetProject()) }),
+                                    IJavaSearchConstants.INTERFACE, false, _serviceInterfaceText.getText());
                     if (dialog.open() == SelectionDialog.OK) {
                         Object[] result = dialog.getResult();
                         if (result.length == 1 && result[0] instanceof IType) {
                             _serviceInterface = (IType) result[0];
                             _serviceInterfaceText.setText(_serviceInterface.getFullyQualifiedName());
+                            final String newServiceName = _serviceInterface.getElementName();
+                            if (updateDefault(_oldServiceName, newServiceName, _serviceName)) {
+                                _serviceNameText.setText(newServiceName);
+                            }
+                            _oldServiceName = newServiceName;
                         }
                     }
                 } catch (JavaModelException e) {
@@ -227,7 +253,13 @@ public class Java2WSDLOptionsWizardPage extends WizardPage {
         _serviceNameText.addModifyListener(new ModifyListener() {
             @Override
             public void modifyText(ModifyEvent e) {
+                final Matcher matcher = Pattern.compile(
+                        String.format(DEFAULT_LOCATION_MATCH, _serviceName == null ? "" : _serviceName)).matcher(
+                        _locationURI);
                 _serviceName = _serviceNameText.getText();
+                if (matcher.matches()) {
+                    _locationURIText.setText(matcher.replaceFirst("$1" + _serviceName));
+                }
                 validate();
             }
         });
@@ -253,6 +285,18 @@ public class Java2WSDLOptionsWizardPage extends WizardPage {
             @Override
             public void modifyText(ModifyEvent e) {
                 _locationURI = _locationURIText.getText();
+                validate();
+            }
+        });
+
+        new Label(contents, SWT.NONE);
+        _useWrappedMessagesCheck = new Button(contents, SWT.CHECK);
+        _useWrappedMessagesCheck.setText("Use \"wrapped\" messages");
+        _useWrappedMessagesCheck.setLayoutData(new GridData(SWT.FILL, SWT.CENTER, true, false, 2, 1));
+        _useWrappedMessagesCheck.addSelectionListener(new SelectionAdapter() {
+            @Override
+            public void widgetSelected(SelectionEvent e) {
+                _useWrappedMessages = _useWrappedMessagesCheck.getSelection();
                 validate();
             }
         });
@@ -303,10 +347,21 @@ public class Java2WSDLOptionsWizardPage extends WizardPage {
     }
 
     /**
+     * @return the true if messages should use "wrapped" style.
+     */
+    public boolean isUseWrappedMessages() {
+        return _useWrappedMessages;
+    }
+
+    /**
      * @return the true if external schema should be generated.
      */
     public boolean isUseImportedSchema() {
         return _useImportedSchema;
+    }
+
+    private IProject getTargetProject() {
+        return ((Java2WSDLWizard) getWizard()).getTargetProject();
     }
 
     private void validate() {
@@ -353,4 +408,23 @@ public class Java2WSDLOptionsWizardPage extends WizardPage {
             _locationURIText.setText(_locationURI);
         }
     }
+
+    @Override
+    public void setVisible(boolean visible) {
+        if (visible && !_isInitialized) {
+            // update defaults
+            _selection = new StructuredSelection(getTargetProject());
+            setDefaults();
+            setErrorMessage(null);
+        }
+        super.setVisible(visible);
+    }
+
+    private boolean updateDefault(String oldValue, String newValue, String currentValue) {
+        return currentValue == null
+                || currentValue.length() == 0
+                || (!currentValue.equals(newValue) && (oldValue == null || oldValue.length() == 0 || currentValue
+                        .matches(oldValue)));
+    }
+
 }

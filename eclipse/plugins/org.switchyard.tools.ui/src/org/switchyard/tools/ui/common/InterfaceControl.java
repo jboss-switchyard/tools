@@ -70,6 +70,7 @@ public class InterfaceControl implements ISelectionProvider {
     private IInterfaceControlAdapter _adapter;
     private Set<InterfaceType> _supportedTypes;
     private Interface _interface;
+    private Interface _related;
     private IJavaProject _project;
     private Set<ISelectionChangedListener> _listeners = new LinkedHashSet<ISelectionChangedListener>();
     private Map<EClass, IInterfaceControlAdapter> _adapters = new HashMap<EClass, IInterfaceControlAdapter>();
@@ -87,15 +88,16 @@ public class InterfaceControl implements ISelectionProvider {
         WSDL(ScaPackage.eINSTANCE.getWSDLPortType()),
         /** Generic ESB interface. */
         ESB(SwitchyardPackage.eINSTANCE.getEsbInterface());
-        
+
         /**
          * @return the EClass supported by the type.
          */
         public EClass eClass() {
             return _eClass;
         }
-        
+
         private EClass _eClass;
+
         private InterfaceType(EClass eClass) {
             _eClass = eClass;
         }
@@ -236,7 +238,7 @@ public class InterfaceControl implements ISelectionProvider {
             }
         });
 
-        init(_interface);
+        init(_interface, _related);
         setEnabled(_enabled);
     }
 
@@ -316,7 +318,7 @@ public class InterfaceControl implements ISelectionProvider {
         }
         Object obj = ((IStructuredSelection) selection).getFirstElement();
         if (obj instanceof Interface) {
-            init((Interface) obj);
+            init((Interface) obj, _related);
         }
     }
 
@@ -326,12 +328,16 @@ public class InterfaceControl implements ISelectionProvider {
      * 
      * @param intf the interface whose details should be used to initialize the
      *            controls
+     * @param related the related interface (e.g. if creating a service during
+     *            promotion)
      */
-    public void init(Interface intf) {
+    public void init(Interface intf, Interface related) {
         _interface = intf;
+        _related = related;
         IInterfaceControlAdapter adapter = getAdapter(intf);
         if (adapter != null) {
             adapter.init(_interface);
+            adapter.setRelatedInterface(_related);
         }
         if (_javaRadio == null) {
             _adapter = adapter;
@@ -383,8 +389,11 @@ public class InterfaceControl implements ISelectionProvider {
 
     private void updateAdapter(IInterfaceControlAdapter adapter) {
         _adapter = adapter;
-        if (adapter != null && adapter.getText() != null) {
-            _text.setText(adapter.getText());
+        if (adapter != null) {
+            if (adapter.getText() != null) {
+                _text.setText(adapter.getText());
+            }
+            adapter.setRelatedInterface(_related);
         }
     }
 
@@ -395,7 +404,8 @@ public class InterfaceControl implements ISelectionProvider {
     }
 
     private void openInterface() {
-        if (_adapter.open(_browseButton.getShell(), _project)) {
+        // TODO: use a preference for "useRelated"; for now, always true
+        if (_adapter.open(_browseButton.getShell(), _project, true)) {
             _text.setText(_adapter.getText());
         }
     }

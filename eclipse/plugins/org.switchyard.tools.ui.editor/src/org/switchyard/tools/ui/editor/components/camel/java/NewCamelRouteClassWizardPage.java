@@ -90,7 +90,7 @@ public class NewCamelRouteClassWizardPage extends NewClassWizardPage {
         if (serviceInterface == null) {
             return;
         }
-        _serviceInterfaceControl.init(serviceInterface);
+        _serviceInterfaceControl.init(serviceInterface, null);
         _serviceInterfaceControl.setEnabled(false);
         if (getTypeName().length() == 0 || getTypeName().equals(CLASS_NAME_DEFAULT)) {
             setTypeName("" + serviceInterface.getName() + "Route", true);

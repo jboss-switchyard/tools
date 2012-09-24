@@ -48,6 +48,10 @@ public class ESBInterfaceControlAdapter implements IInterfaceControlAdapter {
     }
 
     @Override
+    public void setRelatedInterface(Interface related) {
+    }
+
+    @Override
     public void init(Interface intf) {
         if (intf instanceof EsbInterface) {
             final EsbInterface esbIntfc = (EsbInterface) intf;
@@ -81,7 +85,7 @@ public class ESBInterfaceControlAdapter implements IInterfaceControlAdapter {
     }
 
     @Override
-    public boolean open(Shell shell, IJavaProject project) {
+    public boolean open(Shell shell, IJavaProject project, boolean useRelated) {
         return browse(shell, project);
     }
 

@@ -14,6 +14,7 @@ import java.lang.reflect.InvocationTargetException;
 
 import org.eclipse.core.resources.IContainer;
 import org.eclipse.core.resources.IFile;
+import org.eclipse.core.resources.IProject;
 import org.eclipse.core.resources.IResource;
 import org.eclipse.core.resources.ResourcesPlugin;
 import org.eclipse.core.runtime.CoreException;
@@ -63,6 +64,7 @@ public class Java2WSDLWizard extends BasicNewResourceWizard {
      */
     public Java2WSDLWizard() {
         setNeedsProgressMonitor(true);
+        setWindowTitle("Java2WSDL");
     }
 
     /**
@@ -97,6 +99,7 @@ public class Java2WSDLWizard extends BasicNewResourceWizard {
         };
         _filePage.setFileExtension("wsdl");
         _filePage.setTitle("New WSDL File");
+        _filePage.setDescription("Specify the location of the new WSDL file.");
         setFilePageDefaults();
         addPage(_filePage);
 
@@ -112,6 +115,8 @@ public class Java2WSDLWizard extends BasicNewResourceWizard {
         options.setServiceInterface(_optionsPage.getServiceInterface());
         options.setTargetNamespace(_optionsPage.getTargetNamespace());
         options.setUseImportedSchema(_optionsPage.isUseImportedSchema());
+        options.setServiceName(_optionsPage.getServiceName());
+        options.setWrapped(_optionsPage.isUseWrappedMessages());
 
         _wsdlFile = ResourcesPlugin.getWorkspace().getRoot()
                 .getFile(_filePage.getContainerFullPath().append(_filePage.getFileName()));
@@ -242,6 +247,12 @@ public class Java2WSDLWizard extends BasicNewResourceWizard {
             return name;
         }
         return name.substring(0, dot);
+    }
+
+    protected IProject getTargetProject() {
+        final IResource resource = ResourcesPlugin.getWorkspace().getRoot()
+                .findMember(_filePage.getContainerFullPath());
+        return resource == null ? null : resource.getProject();
     }
 
 }

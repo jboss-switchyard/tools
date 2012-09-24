@@ -158,11 +158,11 @@ public class Java2WSDLOperation implements IRunnableWithProgress {
         for (AbstractServiceConfiguration asc : serviceFactory.getConfigurations()) {
             if (asc instanceof JaxWsServiceConfiguration || asc instanceof DefaultServiceConfiguration) {
                 // override default param name generation
-                serviceFactory.getServiceConfigurations().add(0, new CustomParamNameServiceConfiguration(asc));
+                serviceFactory.getServiceConfigurations().add(0, new CustomNameServiceConfiguration(asc));
                 break;
             }
         }
-        serviceFactory.getConfigurations().add(new CustomSOAPActionServiceConfiguration());
+        serviceFactory.getConfigurations().add(0, new CustomSOAPServiceConfiguration());
     }
 
     private ClassLoader getProjectBuildClassLoader(IType interfaceType) throws Exception {
@@ -192,10 +192,10 @@ public class Java2WSDLOperation implements IRunnableWithProgress {
         return map;
     }
 
-    private static final class CustomParamNameServiceConfiguration extends AbstractServiceConfiguration {
+    private final class CustomNameServiceConfiguration extends AbstractServiceConfiguration {
         private AbstractServiceConfiguration _default;
 
-        private CustomParamNameServiceConfiguration(AbstractServiceConfiguration orig) {
+        private CustomNameServiceConfiguration(AbstractServiceConfiguration orig) {
             _default = orig;
         }
 
@@ -238,9 +238,33 @@ public class Java2WSDLOperation implements IRunnableWithProgress {
             return new QName(name.getNamespaceURI(), local.substring(0, 1).toLowerCase() + local.substring(1));
         }
 
+        @Override
+        public String getServiceName() {
+            if (_default instanceof DefaultServiceConfiguration) {
+                return _options.getServiceName();
+            }
+            return _default.getServiceName();
+        }
+
+        @Override
+        public QName getInterfaceName() {
+            if (_default instanceof DefaultServiceConfiguration) {
+                return new QName(_options.getTargetNamespace(), getServiceName() + "PortType");
+            }
+            return _default.getInterfaceName();
+        }
+
+        @Override
+        public QName getEndpointName() {
+            if (_default instanceof DefaultServiceConfiguration) {
+                return new QName(_options.getTargetNamespace(), getServiceName() + "Port");
+            }
+            return _default.getEndpointName();
+        }
+
     }
 
-    private static final class CustomSOAPActionServiceConfiguration extends AbstractServiceConfiguration {
+    private final class CustomSOAPServiceConfiguration extends AbstractServiceConfiguration {
         @Override
         public String getAction(OperationInfo op, Method method) {
             String action = super.getAction(op, method);
@@ -248,6 +272,11 @@ public class Java2WSDLOperation implements IRunnableWithProgress {
                 return op.getName().getLocalPart();
             }
             return action;
+        }
+
+        @Override
+        public Boolean isWrapped() {
+            return _options.isWrapped();
         }
     }
 

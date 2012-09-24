@@ -24,13 +24,11 @@ import org.eclipse.jface.window.Window;
 import org.eclipse.jface.wizard.WizardDialog;
 import org.eclipse.soa.sca.sca1_1.model.sca.ComponentService;
 import org.eclipse.soa.sca.sca1_1.model.sca.Composite;
-import org.eclipse.soa.sca.sca1_1.model.sca.ScaPackage;
 import org.eclipse.soa.sca.sca1_1.model.sca.Service;
 import org.eclipse.swt.widgets.Shell;
 import org.eclipse.ui.PlatformUI;
 import org.switchyard.tools.ui.editor.ImageProvider;
 import org.switchyard.tools.ui.editor.diagram.composite.SCADiagramAddCompositeFeature;
-import org.switchyard.tools.ui.editor.diagram.shared.BaseNewContractWizard;
 import org.switchyard.tools.ui.editor.model.merge.MergedModelUtil;
 
 /**
@@ -63,8 +61,7 @@ public class SCADiagramCustomPromoteServiceFeature extends AbstractCustomFeature
 
     private void createService(ComponentService componentService, Shape componentServiceShape) {
         Service newService = null;
-        BaseNewContractWizard wizard = new BaseNewContractWizard("Promote Component Service",
-                "Specify details for the new composite service.", ScaPackage.eINSTANCE.getService());
+        PromoteServiceWizard wizard = new PromoteServiceWizard();
         wizard.init(componentService);
         Shell shell = PlatformUI.getWorkbench().getActiveWorkbenchWindow().getShell();
         WizardDialog wizDialog = new WizardDialog(shell, wizard);
