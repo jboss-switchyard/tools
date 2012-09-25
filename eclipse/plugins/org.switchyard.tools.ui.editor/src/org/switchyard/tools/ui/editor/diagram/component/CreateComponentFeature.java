@@ -28,6 +28,8 @@ import org.switchyard.tools.ui.editor.diagram.shared.ITypeFactory;
  */
 public class CreateComponentFeature extends CreateTypeFeature<Component, Composite> {
 
+    private String _imageId = ImageProvider.IMG_16_COMPONENT;
+
     /**
      * Create a new CreateImplementationFeature.
      * 
@@ -41,6 +43,21 @@ public class CreateComponentFeature extends CreateTypeFeature<Component, Composi
         super(fp, factory, Composite.class, name, description);
     }
 
+    /**
+     * Create a new CreateImplementationFeature.
+     * 
+     * @param fp the feature provider
+     * @param factory the factory creating the component
+     * @param name the name of this feature
+     * @param description the description for this feature
+     * @param imageId the image for this feature
+     */
+    public CreateComponentFeature(IFeatureProvider fp, ITypeFactory<Component, Composite> factory, String name,
+            String description, String imageId) {
+        super(fp, factory, Composite.class, name, description);
+        this._imageId = imageId;
+    }
+
     @Override
     protected Object[] updateContainer(ICreateContext context, Component newObject) {
         getContainerObject(context).getComponent().add(newObject);
@@ -49,7 +66,7 @@ public class CreateComponentFeature extends CreateTypeFeature<Component, Composi
 
     @Override
     public String getCreateImageId() {
-        return ImageProvider.IMG_16_COMPONENT;
+        return this._imageId;
     }
 
 }

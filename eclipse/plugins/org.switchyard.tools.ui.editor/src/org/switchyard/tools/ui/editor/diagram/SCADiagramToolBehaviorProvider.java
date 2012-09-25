@@ -33,6 +33,7 @@ import org.eclipse.graphiti.features.context.impl.CustomContext;
 import org.eclipse.graphiti.features.custom.ICustomFeature;
 import org.eclipse.graphiti.mm.algorithms.GraphicsAlgorithm;
 import org.eclipse.graphiti.mm.algorithms.Polygon;
+import org.eclipse.graphiti.mm.algorithms.RoundedRectangle;
 import org.eclipse.graphiti.mm.algorithms.styles.Point;
 import org.eclipse.graphiti.mm.pictograms.Anchor;
 import org.eclipse.graphiti.mm.pictograms.Connection;
@@ -64,8 +65,9 @@ import org.eclipse.soa.sca.sca1_1.model.sca.Reference;
 import org.eclipse.soa.sca.sca1_1.model.sca.Service;
 import org.switchyard.tools.models.switchyard1_0.hornetq.BindingType;
 import org.switchyard.tools.models.switchyard1_0.soap.SOAPBindingType;
-import org.switchyard.tools.ui.editor.ImageProvider;
+import org.switchyard.tools.models.switchyard1_0.switchyard.SwitchYardBindingType;
 import org.switchyard.tools.ui.editor.diagram.connections.CustomAddTransformFeature;
+import org.switchyard.tools.ui.editor.property.adapters.LabelAdapter;
 import org.switchyard.tools.ui.validation.ValidationStatusAdapter;
 
 /**
@@ -130,6 +132,75 @@ public class SCADiagramToolBehaviorProvider extends DefaultToolBehaviorProvider 
         return new Location(x, y);
     }
 
+    /**
+     * @param pe incoming pictogram element
+     * @return point with x/y
+     */
+    public Location getDecoratorLocationLowerLeft(PictogramElement pe) {
+        GraphicsAlgorithm ga = pe.getGraphicsAlgorithm();
+        int x = 4;
+        int y = 4;
+        EList<GraphicsAlgorithm> gaChildren = ga.getGraphicsAlgorithmChildren();
+        for (Object gaChild : gaChildren.toArray()) {
+            if (gaChild instanceof Polygon) {
+                Polygon poly = (Polygon) gaChild;
+                EList<Point> points = poly.getPoints();
+                for (Iterator<Point> iterator = points.iterator(); iterator.hasNext();) {
+                    Point point = (Point) iterator.next();
+                    if (point.getY() > y) {
+                        y = point.getY();
+                    }
+                }
+                break;
+            } else if (gaChild instanceof RoundedRectangle) {
+                RoundedRectangle rect = (RoundedRectangle) gaChild;
+                int rectY = rect.getY();
+                if (rectY > y) {
+                    y = rectY;
+                }
+            }
+        }
+        return new Location(x, y);
+    }
+
+    /**
+     * @param pe incoming pictogram element
+     * @return point with x/y
+     */
+    public Location getDecoratorLocationTopLeft(PictogramElement pe) {
+        GraphicsAlgorithm ga = pe.getGraphicsAlgorithm();
+        int x = 30;
+        int y = 30;
+        EList<GraphicsAlgorithm> gaChildren = ga.getGraphicsAlgorithmChildren();
+        for (Object gaChild : gaChildren.toArray()) {
+            if (gaChild instanceof Polygon) {
+                Polygon poly = (Polygon) gaChild;
+                EList<Point> points = poly.getPoints();
+                for (Iterator<Point> iterator = points.iterator(); iterator.hasNext();) {
+                    Point point = (Point) iterator.next();
+                    if (point.getY() < y) {
+                        y = point.getY();
+                    }
+                    if (point.getX() < x) {
+                        x = point.getX();
+                    }
+                }
+                break;
+            } else if (gaChild instanceof RoundedRectangle) {
+                RoundedRectangle rect = (RoundedRectangle) gaChild;
+                int rectX = rect.getX();
+                int rectY = rect.getY();
+                if (rectY < y) {
+                    y = rectY;
+                }
+                if (rectX < x) {
+                    x = rectX;
+                }
+            }
+        }
+        return new Location(x, y);
+    }
+
     @Override
     public IDecorator[] getDecorators(PictogramElement pe) {
         if (pe instanceof Anchor) {
@@ -148,79 +219,102 @@ public class SCADiagramToolBehaviorProvider extends DefaultToolBehaviorProvider 
             Service service = (Service) bo;
             if (!service.getBinding().isEmpty()) {
                 EList<Binding> bindings = service.getBinding();
+                int x = 0;
                 for (Binding binding : bindings) {
-                    IDecorator imageRenderingDecorator = new ImageDecorator(ImageProvider.IMG_16_CHAIN);
-                    String text = binding.getClass().getSimpleName();
+                    ImageDecorator imageRenderingDecorator = LabelAdapter.getImageDecoratorForBinding(binding);
+                    if (x > 0) {
+                        x = imageRenderingDecorator.getX() + 20;
+                        imageRenderingDecorator.setX(x);
+                    } else {
+                        x = imageRenderingDecorator.getX();
+                    }
+                    String text = LabelAdapter.getLabel(binding);
+                    if (binding instanceof SwitchYardBindingType) {
+                        text = "Binding: " + LabelAdapter.getLabel(binding);
+                    }
                     if (binding instanceof SOAPBindingType) {
                         SOAPBindingType soapBinding = (SOAPBindingType) binding;
-                        text = "SOAP Binding:\n";
-                        text = text + soapBinding.getWsdl();
+                        text = text + "\n" + soapBinding.getWsdl();
                     } else if (binding instanceof BindingType) {
                         BindingType hornetQBinding = (BindingType) binding;
-                        text = "HornetQ Binding:\n";
-                        text = text + hornetQBinding.getUri();
+                        text = text + "\n"+ hornetQBinding.getUri();
                     }
                     imageRenderingDecorator.setMessage(text);
                     decorators.add(imageRenderingDecorator);
                 }
             }
             if (!(service.getInterface() == null)) {
-                ImageDecorator imageRenderingDecorator = new ImageDecorator(ImageProvider.IMG_16_INTERFACE_OVERRIDE);
+                ImageDecorator imageRenderingDecorator = LabelAdapter.getImageDecoratorForInterface(service.getInterface());
                 Interface intfc = service.getInterface();
-                imageRenderingDecorator.setMessage("Interface:\n" + intfc.eClass().getInstanceTypeName());
-                Location loc = getDecoratorLocationUpperRight(pe);
-                imageRenderingDecorator.setX(loc.getX() - 10);
+                String text = LabelAdapter.getLabel(intfc);
+                imageRenderingDecorator.setMessage("Interface: " + text);
+                Location loc = getDecoratorLocationLowerLeft(pe);
+                imageRenderingDecorator.setY(loc.getY() - 18);
                 decorators.add(imageRenderingDecorator);
             } else if (service.getPromote() != null && service.getPromote().getInterface() != null) {
-                ImageDecorator imageRenderingDecorator = new ImageDecorator(ImageProvider.IMG_16_INTERFACE);
+                ImageDecorator imageRenderingDecorator = LabelAdapter.getImageDecoratorForInterface(service.getPromote().getInterface());
+//                ImageDecorator imageRenderingDecorator = new ImageDecorator(ImageProvider.IMG_16_INTERFACE);
                 Interface intfc = service.getPromote().getInterface();
-                Location loc = getDecoratorLocationUpperRight(pe);
-                imageRenderingDecorator.setX(loc.getX() - 10);
-                imageRenderingDecorator.setMessage("Interface (Inherited):\n" + intfc.eClass().getInstanceTypeName());
+                String text = LabelAdapter.getLabel(intfc);
+                Location loc = getDecoratorLocationLowerLeft(pe);
+                imageRenderingDecorator.setY(loc.getY() - 18);
+                imageRenderingDecorator.setMessage("Interface (Inherited): " + text);
                 decorators.add(imageRenderingDecorator);
             }
         } else if (bo instanceof Reference) {
             Reference reference = (Reference) bo;
             if (!reference.getBinding().isEmpty()) {
                 EList<Binding> bindings = reference.getBinding();
+                int x = 0;
                 for (Binding binding : bindings) {
-                    IDecorator imageRenderingDecorator = new ImageDecorator(ImageProvider.IMG_16_CHAIN);
-                    String text = binding.getClass().getSimpleName();
+                    ImageDecorator imageRenderingDecorator = LabelAdapter.getImageDecoratorForBinding(binding);
+                    if (x > 0) {
+                        x = imageRenderingDecorator.getX() + 20;
+                        imageRenderingDecorator.setX(x);
+                    } else {
+                        x = imageRenderingDecorator.getX();
+                    }
+                    String text = LabelAdapter.getLabel(binding);
+                    if (binding instanceof SwitchYardBindingType) {
+                        text = "Binding: " + LabelAdapter.getLabel(binding);
+                    }
                     if (binding instanceof SOAPBindingType) {
                         SOAPBindingType soapBinding = (SOAPBindingType) binding;
-                        text = "SOAP Binding:\n";
-                        text = text + soapBinding.getWsdl();
+                        text = text + "\n" + soapBinding.getWsdl();
                     } else if (binding instanceof BindingType) {
                         BindingType hornetQBinding = (BindingType) binding;
-                        text = "HornetQ Binding:\n";
-                        text = text + hornetQBinding.getUri();
+                        text = text + "\n" + hornetQBinding.getUri();
                     }
                     imageRenderingDecorator.setMessage(text);
                     decorators.add(imageRenderingDecorator);
                 }
             }
             if (!(reference.getInterface() == null)) {
-                ImageDecorator imageRenderingDecorator = new ImageDecorator(ImageProvider.IMG_16_INTERFACE_OVERRIDE);
+                ImageDecorator imageRenderingDecorator = LabelAdapter.getImageDecoratorForInterface(reference.getInterface());
                 Interface intfc = reference.getInterface();
-                Location loc = getDecoratorLocationUpperRight(pe);
-                imageRenderingDecorator.setX(loc.getX() - 10);
-                imageRenderingDecorator.setMessage("Interface:\n" + intfc.eClass().getInstanceTypeName());
+                Location loc = getDecoratorLocationLowerLeft(pe);
+                imageRenderingDecorator.setY(loc.getY() - 18);
+                String text = LabelAdapter.getLabel(intfc);
+                imageRenderingDecorator.setMessage("Interface: " + text);
                 decorators.add(imageRenderingDecorator);
             } else if (reference.getPromote() != null) {
                 EList<ComponentReference> references = reference.getPromote();
                 boolean hasInterface = false;
+                Interface intfc = null;
                 for (Iterator<ComponentReference> iterator = references.iterator(); iterator.hasNext();) {
                     ComponentReference componentReference = (ComponentReference) iterator.next();
                     if (componentReference.getInterface() != null) {
                         hasInterface = true;
+                        intfc = componentReference.getInterface();
                         break;
                     }
                 }
                 if (hasInterface) {
-                    ImageDecorator imageRenderingDecorator = new ImageDecorator(ImageProvider.IMG_16_INTERFACE);
-                    imageRenderingDecorator.setMessage("Inherited Interface(s)");
-                    Location loc = getDecoratorLocationUpperRight(pe);
-                    imageRenderingDecorator.setX(loc.getX() - 10);
+                    String text = LabelAdapter.getLabel(intfc);
+                    ImageDecorator imageRenderingDecorator = LabelAdapter.getImageDecoratorForInterface(intfc);
+                    imageRenderingDecorator.setMessage("Inherited Interface(s): " + text);
+                    Location loc = getDecoratorLocationLowerLeft(pe);
+                    imageRenderingDecorator.setY(loc.getY() - 18);
                     decorators.add(imageRenderingDecorator);
                 }
             }
@@ -228,11 +322,12 @@ public class SCADiagramToolBehaviorProvider extends DefaultToolBehaviorProvider 
             Component component = (Component) bo;
             if (component.getImplementation() != null) {
                 Implementation implementation = component.getImplementation();
-                String text = implementation.getClass().getSimpleName();
-                IImageDecorator imageRenderingDecorator = new ImageDecorator(ImageProvider.IMG_16_IMPLEMENTATION_TYPE);
-                imageRenderingDecorator.setMessage(text);
-                imageRenderingDecorator.setX(StyleUtil.COMPONENT_EDGE);
-                imageRenderingDecorator.setY(StyleUtil.COMPONENT_EDGE);
+                String text = LabelAdapter.getLabel(implementation);
+                IImageDecorator imageRenderingDecorator = LabelAdapter.getImageDecoratorForImplementation(implementation);
+                imageRenderingDecorator.setMessage("Implementation: " + text);
+                Location loc = getDecoratorLocationTopLeft(pe);
+                imageRenderingDecorator.setX(loc.getX() + 10);
+                imageRenderingDecorator.setY(loc.getY() + 4);
                 decorators.add(imageRenderingDecorator);
             }
         }
@@ -496,7 +591,6 @@ public class SCADiagramToolBehaviorProvider extends DefaultToolBehaviorProvider 
         /**
          * @return y coord
          */
-        @SuppressWarnings("unused")
         public int getY() {
             return _y;
         }

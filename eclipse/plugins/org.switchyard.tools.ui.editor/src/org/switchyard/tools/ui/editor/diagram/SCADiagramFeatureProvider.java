@@ -57,6 +57,7 @@ import org.eclipse.soa.sca.sca1_1.model.sca.JavaInterface;
 import org.eclipse.soa.sca.sca1_1.model.sca.Reference;
 import org.eclipse.soa.sca.sca1_1.model.sca.Service;
 import org.switchyard.tools.models.switchyard1_0.switchyard.SwitchYardBindingType;
+import org.switchyard.tools.ui.editor.ImageProvider;
 import org.switchyard.tools.ui.editor.components.bean.BeanComponentFactory;
 import org.switchyard.tools.ui.editor.components.bean.BeanImplementationFactory;
 import org.switchyard.tools.ui.editor.components.bpm.BPMComponentFactory;
@@ -194,18 +195,18 @@ public class SCADiagramFeatureProvider extends DefaultFeatureProvider {
         features.add(new CompositeCreateFeature(this, "Camel (Java)",
                 "A Java based Camel route component/implementation", new CreateComponentFeature(this,
                         new CamelJavaComponentFactory(), "Camel (Java)",
-                        "Create a component implemented as a Java based Camel route."),
+                        "Create a component implemented as a Java based Camel route.", ImageProvider.IMG_16_CAMEL_JAVA),
                 new CreateImplementationFeature(this, new CamelJavaImplementationFactory(), "Camel (Java)",
                         "An implementation using a Java based Camel route.")));
         features.add(new CompositeCreateFeature(this, "Camel (XML)",
                 "An XML based Camel route component/implementation.", new CreateComponentFeature(this,
                         new CamelXMLComponentFactory(), "Camel (XML)",
-                        "Create a component implemented as an XML based Camel route."),
+                        "Create a component implemented as an XML based Camel route.", ImageProvider.IMG_16_CAMEL_XML),
                 new CreateImplementationFeature(this, new CamelXMLImplementationFactory(), "Camel (XML)",
                         "An implementation using an XML based Camel route.")));
         features.add(new CompositeCreateFeature(this, "Bean", "A Java Bean (CDI)  based component/implementation.",
                 new CreateComponentFeature(this, new BeanComponentFactory(), "Bean",
-                        "Create a component with a Java Bean (CDI) implementation."), new CreateImplementationFeature(
+                        "Create a component with a Java Bean (CDI) implementation.", ImageProvider.IMG_16_BEAN), new CreateImplementationFeature(
                         this, new BeanImplementationFactory(), "Bean", "An implementation using a Java Bean (CDI).") {
                     @Override
                     public boolean canCreate(ICreateContext context) {
@@ -232,11 +233,11 @@ public class SCADiagramFeatureProvider extends DefaultFeatureProvider {
         features.add(new CompositeCreateFeature(this, "Process (BPMN)",
                 "A BPMN process based component/implementation.", new CreateComponentFeature(this,
                         new BPMComponentFactory(), "Process (BPMN)",
-                        "Create a component implemented as a BPMN process."), new CreateImplementationFeature(this,
+                        "Create a component implemented as a BPMN process.", ImageProvider.IMG_16_BPMN), new CreateImplementationFeature(this,
                         new BPMImplementationFactory(), "Process (BPMN)", "An implementation using a BPMN process.")));
         features.add(new CompositeCreateFeature(this, "Rules (DRL)", "A rules based component/implementation.",
                 new CreateComponentFeature(this, new RulesComponentFactory(), "Rules (DRL)",
-                        "Create a component implemented using rules."), new CreateImplementationFeature(this,
+                        "Create a component implemented using rules.", ImageProvider.IMG_16_RULES), new CreateImplementationFeature(this,
                         new RulesImplementationFactory(), "Rules (DRL)", "An implementation using rules.")));
 
         return features;
@@ -257,20 +258,20 @@ public class SCADiagramFeatureProvider extends DefaultFeatureProvider {
     /* package */List<ICreateFeature> getCreateBindingFeatures() {
         List<ICreateFeature> features = new ArrayList<ICreateFeature>(10);
         features.add(new CreateBindingFeature(this, new CamelFileBindingFactory(), "File",
-                "A Camel File based endpoint."));
-        features.add(new CreateBindingFeature(this, new CamelFTPBindingFactory(), "FTP", "A Camel FTP based endpoint."));
-        features.add(new CreateBindingFeature(this, new HttpBindingFactory(), "HTTP", "A HTTP based endpoint."));
-        features.add(new CreateBindingFeature(this, new JCABindingFactory(), "JCA", "A JCA based endpoint."));
-        features.add(new CreateBindingFeature(this, new CamelJmsBindingFactory(), "JMS", "A Camel JMS based endpoint."));
+                "A Camel File based endpoint.", ImageProvider.IMG_16_FILE));
+        features.add(new CreateBindingFeature(this, new CamelFTPBindingFactory(), "FTP", "A Camel FTP based endpoint.", ImageProvider.IMG_16_FTP));
+        features.add(new CreateBindingFeature(this, new HttpBindingFactory(), "HTTP", "A HTTP based endpoint.", ImageProvider.IMG_16_HTTP));
+        features.add(new CreateBindingFeature(this, new JCABindingFactory(), "JCA", "A JCA based endpoint.", ImageProvider.IMG_16_JCA));
+        features.add(new CreateBindingFeature(this, new CamelJmsBindingFactory(), "JMS", "A Camel JMS based endpoint.", ImageProvider.IMG_16_QUEUE));
         features.add(new CreateBindingFeature(this, new CamelNettyTCPBindingFactory(), "Netty TCP",
-                "A Camel Netty TCP based endpoint."));
+                "A Camel Netty TCP based endpoint.", ImageProvider.IMG_16_NETTY_TCP));
         features.add(new CreateBindingFeature(this, new CamelNettyUDPBindingFactory(), "Netty UDP",
-                "A Camel Netty UDP based endpoint."));
-        features.add(new CreateBindingFeature(this, new ResteasyBindingFactory(), "REST", "A REST based endpoint."));
+                "A Camel Netty UDP based endpoint.", ImageProvider.IMG_16_NETTY_UDP));
+        features.add(new CreateBindingFeature(this, new ResteasyBindingFactory(), "REST", "A REST based endpoint.", ImageProvider.IMG_16_RESTEASY));
         features.add(new CreateBindingFeature(this, new CamelQuartzBindingFactory(), "Scheduling",
-                "A Camel Scheduling based endpoint."));
-        features.add(new CreateBindingFeature(this, new SOAPBindingFactory(), "SOAP", "A SOAP based endpoint."));
-        features.add(new CreateBindingFeature(this, new CamelSqlBindingFactory(), "SQL", "A Camel SQL based endpoint."));
+                "A Camel Scheduling based endpoint.", ImageProvider.IMG_16_SCHEDULER));
+        features.add(new CreateBindingFeature(this, new SOAPBindingFactory(), "SOAP", "A SOAP based endpoint.", ImageProvider.IMG_16_SOAP));
+        features.add(new CreateBindingFeature(this, new CamelSqlBindingFactory(), "SQL", "A Camel SQL based endpoint.", ImageProvider.IMG_16_SQL));
         return features;
     }
 

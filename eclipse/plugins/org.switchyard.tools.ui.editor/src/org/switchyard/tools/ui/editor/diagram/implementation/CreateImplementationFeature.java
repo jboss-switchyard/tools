@@ -33,6 +33,8 @@ import org.switchyard.tools.ui.editor.diagram.shared.CreateTypeFeature;
  */
 public class CreateImplementationFeature extends CreateTypeFeature<Implementation, Component> {
 
+    private String _imageId = ImageProvider.IMG_16_IMPLEMENTATION_TYPE;
+    
     /**
      * Create a new CreateImplementationFeature.
      * 
@@ -44,6 +46,21 @@ public class CreateImplementationFeature extends CreateTypeFeature<Implementatio
     public CreateImplementationFeature(IFeatureProvider fp, IImplementationTypeFactory factory, String name,
             String description) {
         super(fp, factory, Component.class, name, description);
+    }
+
+    /**
+     * Create a new CreateImplementationFeature.
+     * 
+     * @param fp the feature provider
+     * @param factory the factory creating the implementation
+     * @param name the name of this feature
+     * @param description the description for this feature
+     * @param imageId the image ID for this feature
+     */
+    public CreateImplementationFeature(IFeatureProvider fp, IImplementationTypeFactory factory, String name,
+            String description, String imageId) {
+        super(fp, factory, Component.class, name, description);
+        _imageId = imageId;
     }
 
     @Override
@@ -96,7 +113,7 @@ public class CreateImplementationFeature extends CreateTypeFeature<Implementatio
 
     @Override
     public String getCreateImageId() {
-        return ImageProvider.IMG_16_IMPLEMENTATION_TYPE;
+        return _imageId;
     }
 
 }

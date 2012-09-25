@@ -12,12 +12,21 @@ package org.switchyard.tools.ui.editor.property.adapters;
 
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EObject;
+import org.eclipse.graphiti.tb.ImageDecorator;
+import org.eclipse.soa.sca.sca1_1.model.sca.BPELImplementation;
 import org.eclipse.soa.sca.sca1_1.model.sca.Binding;
+import org.eclipse.soa.sca.sca1_1.model.sca.Implementation;
+import org.eclipse.soa.sca.sca1_1.model.sca.Interface;
+import org.eclipse.soa.sca.sca1_1.model.sca.JavaInterface;
+import org.eclipse.soa.sca.sca1_1.model.sca.WSDLPortType;
+import org.switchyard.tools.models.switchyard1_0.bean.BeanImplementationType;
+import org.switchyard.tools.models.switchyard1_0.bpm.BPMImplementationType;
 import org.switchyard.tools.models.switchyard1_0.camel.CamelAtomBindingType;
 import org.switchyard.tools.models.switchyard1_0.camel.CamelBindingType;
 import org.switchyard.tools.models.switchyard1_0.camel.CamelDirectBindingType;
 import org.switchyard.tools.models.switchyard1_0.camel.CamelFileBindingType;
 import org.switchyard.tools.models.switchyard1_0.camel.CamelFtpBindingType;
+import org.switchyard.tools.models.switchyard1_0.camel.CamelImplementationType;
 import org.switchyard.tools.models.switchyard1_0.camel.CamelJmsBindingType;
 import org.switchyard.tools.models.switchyard1_0.camel.CamelNettyTcpBindingType;
 import org.switchyard.tools.models.switchyard1_0.camel.CamelNettyUdpBindingType;
@@ -30,7 +39,9 @@ import org.switchyard.tools.models.switchyard1_0.hornetq.BindingType;
 import org.switchyard.tools.models.switchyard1_0.http.HttpBindingType;
 import org.switchyard.tools.models.switchyard1_0.jca.JCABinding;
 import org.switchyard.tools.models.switchyard1_0.resteasy.RESTBindingType;
+import org.switchyard.tools.models.switchyard1_0.rules.RulesImplementationType;
 import org.switchyard.tools.models.switchyard1_0.soap.SOAPBindingType;
+import org.switchyard.tools.models.switchyard1_0.switchyard.EsbInterface;
 import org.switchyard.tools.models.switchyard1_0.switchyard.TransformType;
 import org.switchyard.tools.models.switchyard1_0.switchyard.ValidateType;
 import org.switchyard.tools.models.switchyard1_0.transform.JAXBTransformType;
@@ -40,6 +51,7 @@ import org.switchyard.tools.models.switchyard1_0.transform.SmooksTransformType1;
 import org.switchyard.tools.models.switchyard1_0.transform.XsltTransformType;
 import org.switchyard.tools.models.switchyard1_0.validate.JavaValidateType;
 import org.switchyard.tools.models.switchyard1_0.validate.XmlValidateType;
+import org.switchyard.tools.ui.editor.ImageProvider;
 import org.switchyard.tools.ui.editor.impl.SwitchyardSCAEditor;
 
 /**
@@ -65,6 +77,10 @@ public final class LabelAdapter {
             return getLabelForTransformType((TransformType) objectForLabel);
         } else if (objectForLabel instanceof ValidateType) {
             return getLabelForValidatorType((ValidateType) objectForLabel);
+        } else if (objectForLabel instanceof Implementation) {
+            return getLabelForImplementationType((Implementation) objectForLabel);
+        } else if (objectForLabel instanceof Interface) {
+            return getLabelForInterfaceType((Interface) objectForLabel);
         }
         return objectForLabel.toString();
     }
@@ -115,7 +131,126 @@ public final class LabelAdapter {
         }
 
     }
+    
+    private static String getLabelForImplementationType(Implementation impl) {
+        if (impl instanceof BeanImplementationType) {
+            return "Bean";
+        } else if (impl instanceof BPELImplementation) {
+            return "BPEL";
+        } else if (impl instanceof CamelImplementationType) {
+            CamelImplementationType camelimpl = (CamelImplementationType) impl;
+            if (camelimpl.getJava() != null) {
+                return "Camel (Java)";
+            } else if (camelimpl.getRoute() != null) {
+                return "Camel (XML)";
+            } else {
+                return "Camel";
+            }
+        } else if (impl instanceof BPMImplementationType) {
+            return "BPM";
+        } else if (impl instanceof RulesImplementationType) {
+            return "Rules";
+        } else {
+            return "Unsupported (" + impl.eClass().getClass().getName() + ")";
+        }
+    }
 
+    private static String getLabelForInterfaceType(Interface intfc) {
+        if (intfc instanceof EsbInterface) {
+            return "ESB";
+        } else if (intfc instanceof JavaInterface) {
+            return "Java";
+        } else if (intfc instanceof WSDLPortType) {
+            return "WSDL";
+        } else {
+            return "Unsupported (" + intfc.eClass().getClass().getName() + ")";
+        }
+    }
+    /**
+     * @param binding binding to check
+     * @return IDecorator decorator image
+     */
+    public static ImageDecorator getImageDecoratorForBinding(Binding binding) {
+        ImageDecorator imageRenderingDecorator = 
+                new ImageDecorator(ImageProvider.IMG_16_CHAIN);
+        if (binding instanceof SOAPBindingType) {
+            imageRenderingDecorator = new ImageDecorator(ImageProvider.IMG_16_SOAP);
+        } else if (binding instanceof BindingType) {
+            imageRenderingDecorator = new ImageDecorator(ImageProvider.IMG_16_HORNETQ);
+        } else if (binding instanceof CamelFileBindingType) {
+            imageRenderingDecorator = new ImageDecorator(ImageProvider.IMG_16_FILE);
+        } else if (binding instanceof CamelQuartzBindingType) {
+            imageRenderingDecorator = new ImageDecorator(ImageProvider.IMG_16_SCHEDULER);
+        } else if (binding instanceof CamelSftpBindingType) {
+            imageRenderingDecorator = new ImageDecorator(ImageProvider.IMG_16_FTP);
+        } else if (binding instanceof CamelFtpBindingType) {
+            imageRenderingDecorator = new ImageDecorator(ImageProvider.IMG_16_FTP);
+        } else if (binding instanceof CamelNettyTcpBindingType) {
+            imageRenderingDecorator = new ImageDecorator(ImageProvider.IMG_16_NETTY_TCP);
+        } else if (binding instanceof CamelNettyUdpBindingType) {
+            imageRenderingDecorator = new ImageDecorator(ImageProvider.IMG_16_NETTY_UDP);
+        } else if (binding instanceof CamelJmsBindingType) {
+            imageRenderingDecorator = new ImageDecorator(ImageProvider.IMG_16_QUEUE);
+        } else if (binding instanceof CamelTimerBindingType) {
+            imageRenderingDecorator = new ImageDecorator(ImageProvider.IMG_16_SCHEDULER);
+        } else if (binding instanceof CamelSqlBindingType) {
+            imageRenderingDecorator = new ImageDecorator(ImageProvider.IMG_16_SQL);
+        } else if (binding instanceof JCABinding) {
+            imageRenderingDecorator = new ImageDecorator(ImageProvider.IMG_16_JCA);
+        } else if (binding instanceof RESTBindingType) {
+            imageRenderingDecorator = new ImageDecorator(ImageProvider.IMG_16_RESTEASY);
+        } else if (binding instanceof HttpBindingType) {
+            imageRenderingDecorator = new ImageDecorator(ImageProvider.IMG_16_HTTP);
+        } else if (binding instanceof CamelBindingType) {
+            imageRenderingDecorator = new ImageDecorator(ImageProvider.IMG_16_CAMEL);
+        }
+        return imageRenderingDecorator;
+    }
+
+    /**
+     * @param intfc interface to check
+     * @return IDecorator decorator image
+     */
+    public static ImageDecorator getImageDecoratorForInterface(Interface intfc) {
+        ImageDecorator imageRenderingDecorator = 
+                new ImageDecorator(ImageProvider.IMG_16_INTERFACE);
+        if (intfc instanceof EsbInterface) {
+            imageRenderingDecorator = new ImageDecorator(ImageProvider.IMG_16_ESB);
+        } else if (intfc instanceof JavaInterface) {
+            imageRenderingDecorator = new ImageDecorator(ImageProvider.IMG_16_INTERFACE);
+        } else if (intfc instanceof WSDLPortType) {
+            imageRenderingDecorator = new ImageDecorator(ImageProvider.IMG_16_WSDL);
+        }
+        return imageRenderingDecorator;
+    }
+
+    /**
+     * @param intfc Implementation to check
+     * @return IDecorator decorator image
+     */
+    public static ImageDecorator getImageDecoratorForImplementation(Implementation intfc) {
+        ImageDecorator imageRenderingDecorator = 
+                new ImageDecorator(ImageProvider.IMG_16_IMPLEMENTATION_TYPE);
+        if (intfc instanceof BeanImplementationType) {
+            imageRenderingDecorator = new ImageDecorator(ImageProvider.IMG_16_BEAN);
+        } else if (intfc instanceof BPELImplementation) {
+            imageRenderingDecorator = new ImageDecorator(ImageProvider.IMG_16_BPEL);
+        } else if (intfc instanceof CamelImplementationType) {
+            CamelImplementationType camelIntfc = (CamelImplementationType) intfc;
+            if (camelIntfc.getJava() != null) {
+                imageRenderingDecorator = new ImageDecorator(ImageProvider.IMG_16_CAMEL_JAVA);
+            } else if (camelIntfc.getRoute() != null) {
+                imageRenderingDecorator = new ImageDecorator(ImageProvider.IMG_16_CAMEL_XML);
+            } else {
+                imageRenderingDecorator = new ImageDecorator(ImageProvider.IMG_16_CAMEL);
+            }
+        } else if (intfc instanceof BPMImplementationType) {
+            imageRenderingDecorator = new ImageDecorator(ImageProvider.IMG_16_BPMN);
+        } else if (intfc instanceof RulesImplementationType) {
+            imageRenderingDecorator = new ImageDecorator(ImageProvider.IMG_16_RULES);
+        }
+        return imageRenderingDecorator;
+    }
     /**
      * @param transform transform to check
      * @return String label

@@ -30,6 +30,8 @@ import org.switchyard.tools.ui.editor.diagram.shared.ITypeFactory;
  */
 public class CreateBindingFeature extends CreateTypeFeature<Binding, Contract> {
 
+    private String _imageProvider = ImageProvider.IMG_16_CHAIN;
+    
     /**
      * Create a new CreateBindingFeature.
      * 
@@ -41,6 +43,21 @@ public class CreateBindingFeature extends CreateTypeFeature<Binding, Contract> {
     public CreateBindingFeature(IFeatureProvider fp, ITypeFactory<Binding, Contract> factory, String name,
             String description) {
         super(fp, factory, Contract.class, name, description);
+    }
+
+    /**
+     * Create a new CreateBindingFeature.
+     * 
+     * @param fp the feature provider
+     * @param factory the factory creating the binding
+     * @param name the name of this feature
+     * @param description the description for this feature
+     * @param imageId the image ID for this feature
+     */
+    public CreateBindingFeature(IFeatureProvider fp, ITypeFactory<Binding, Contract> factory, String name,
+            String description, String imageId) {
+        super(fp, factory, Contract.class, name, description);
+        _imageProvider = imageId;
     }
 
     @Override
@@ -58,7 +75,7 @@ public class CreateBindingFeature extends CreateTypeFeature<Binding, Contract> {
 
     @Override
     public String getCreateImageId() {
-        return ImageProvider.IMG_16_CHAIN;
+        return _imageProvider;
     }
 
 }

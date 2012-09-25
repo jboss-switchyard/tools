@@ -77,6 +77,75 @@ public class ImageProvider extends AbstractImageProvider {
     /** Image for synchronize command. **/
     public static final String IMG_16_SYNCHRONIZE = PREFIX + "synchronize" + DOT16;
 
+    /** Image for bean. **/
+    public static final String IMG_16_BEAN = PREFIX + "bean" + DOT16;
+    
+    /** Image for bpmn. **/
+    public static final String IMG_16_BPMN = PREFIX + "bpmn" + DOT16;
+    
+    /** Image for camel. **/
+    public static final String IMG_16_CAMEL = PREFIX + "camel" + DOT16;
+    
+    /** Image for camel. **/
+    public static final String IMG_16_CAMEL_XML = PREFIX + "camel.xml" + DOT16;
+
+    /** Image for camel. **/
+    public static final String IMG_16_CAMEL_JAVA = PREFIX + "camel.java" + DOT16;
+
+    /** Image for file. **/
+    public static final String IMG_16_FILE = PREFIX + "file" + DOT16;
+    
+    /** Image for ftp. **/
+    public static final String IMG_16_FTP = PREFIX + "ftp" + DOT16;
+    
+    /** Image for http. **/
+    public static final String IMG_16_HTTP = PREFIX + "http" + DOT16;
+    
+    /** Image for netty. **/
+    public static final String IMG_16_NETTY = PREFIX + "netty" + DOT16;
+    
+    /** Image for netty tcp. **/
+    public static final String IMG_16_NETTY_TCP = PREFIX + "netty.tcp" + DOT16;
+
+    /** Image for netty udp. **/
+    public static final String IMG_16_NETTY_UDP = PREFIX + "netty.udp" + DOT16;
+
+    /** Image for JMS. **/
+    public static final String IMG_16_QUEUE = PREFIX + "queue" + DOT16;
+    
+    /** Image for Rules. **/
+    public static final String IMG_16_RULES = PREFIX + "rules" + DOT16;
+    
+    /** Image for Schedulers. **/
+    public static final String IMG_16_SCHEDULER = PREFIX + "scheduler" + DOT16;
+    
+    /** Image for SOAP. **/
+    public static final String IMG_16_SOAP = PREFIX + "soap" + DOT16;
+    
+    /** Image for SQL. **/
+    public static final String IMG_16_SQL = PREFIX + "sql" + DOT16;
+    
+    /** Image for BPEL. **/
+    public static final String IMG_16_BPEL = PREFIX + "BPEL" + DOT16;
+
+    /** Image for HORNETQ. **/
+    public static final String IMG_16_HORNETQ = PREFIX + "HORNETQ" + DOT16;
+
+    /** Image for JCA. **/
+    public static final String IMG_16_JCA = PREFIX + "JCA" + DOT16;
+
+    /** Image for RESTEASY. **/
+    public static final String IMG_16_RESTEASY = PREFIX + "RESTEASY" + DOT16;
+
+    /** Image for ESB interface. **/
+    public static final String IMG_16_ESB = PREFIX + "ESB" + DOT16;
+
+    /** Image for WSDL interface. **/
+    public static final String IMG_16_WSDL = PREFIX + "WSDL" + DOT16;
+
+    /** Image for CLOJURE. **/
+    public static final String IMG_16_CLOJURE = PREFIX + "CLOJURE" + DOT16;
+
     @Override
     protected void addAvailableImages() {
         addImageFilePath(IMG_16_COMPOSITE, ICONS_16 + "Composite.gif");
@@ -93,6 +162,29 @@ public class ImageProvider extends AbstractImageProvider {
         addImageFilePath(IMG_16_INTERFACE_OVERRIDE, ICONS_16 + "interface_override.gif");
         addImageFilePath(IMG_16_SWITCHYARD, ICONS_16 + "switchyard_icon_16px.png");
         addImageFilePath(IMG_16_SYNCHRONIZE, ICONS_16 + "synchronize.gif");
+        addImageFilePath(IMG_16_BEAN, ICONS_16 + "bean.png");
+        addImageFilePath(IMG_16_BPMN, ICONS_16 + "bpmn.png");
+        addImageFilePath(IMG_16_CAMEL, ICONS_16 + "camel.png");
+        addImageFilePath(IMG_16_CAMEL_XML, ICONS_16 + "camel_xml.png");
+        addImageFilePath(IMG_16_CAMEL_JAVA, ICONS_16 + "camel_java.png");
+        addImageFilePath(IMG_16_FILE, ICONS_16 + "file.png");
+        addImageFilePath(IMG_16_FTP, ICONS_16 + "ftp.png");
+        addImageFilePath(IMG_16_HTTP, ICONS_16 + "http.png");
+        addImageFilePath(IMG_16_NETTY, ICONS_16 + "netty.png");
+        addImageFilePath(IMG_16_NETTY_TCP, ICONS_16 + "netty_tcp.png");
+        addImageFilePath(IMG_16_NETTY_UDP, ICONS_16 + "netty_udp.png");
+        addImageFilePath(IMG_16_QUEUE, ICONS_16 + "queue.png");
+        addImageFilePath(IMG_16_RULES, ICONS_16 + "drools.png");
+        addImageFilePath(IMG_16_SCHEDULER, ICONS_16 + "scheduler.png");
+        addImageFilePath(IMG_16_SOAP, ICONS_16 + "soap.png");
+        addImageFilePath(IMG_16_SQL, ICONS_16 + "sql.png");
+        addImageFilePath(IMG_16_BPEL, ICONS_16 + "bpel.png");
+        addImageFilePath(IMG_16_HORNETQ, ICONS_16 + "hornetQ.png");
+        addImageFilePath(IMG_16_JCA, ICONS_16 + "jca.png");
+        addImageFilePath(IMG_16_RESTEASY, ICONS_16 + "resteasy.png");
+        addImageFilePath(IMG_16_ESB, ICONS_16 + "esb.png");
+        addImageFilePath(IMG_16_WSDL, ICONS_16 + "wsdl.png");
+        addImageFilePath(IMG_16_CLOJURE, ICONS_16 + "clojure.png");
     }
 
 }
