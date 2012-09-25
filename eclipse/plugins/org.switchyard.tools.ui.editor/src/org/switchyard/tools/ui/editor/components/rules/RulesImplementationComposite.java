@@ -19,11 +19,13 @@ import javax.swing.event.ChangeEvent;
 import javax.swing.event.ChangeListener;
 
 import org.eclipse.core.resources.IContainer;
+import org.eclipse.core.resources.IFile;
+import org.eclipse.core.resources.IProject;
 import org.eclipse.core.resources.IResource;
 import org.eclipse.core.resources.ResourcesPlugin;
+import org.eclipse.core.runtime.IPath;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.jdt.core.IJavaProject;
-import org.eclipse.jface.wizard.WizardDialog;
 import org.eclipse.soa.sca.sca1_1.model.sca.Component;
 import org.eclipse.soa.sca.sca1_1.model.sca.ComponentService;
 import org.eclipse.soa.sca.sca1_1.model.sca.Implementation;
@@ -42,6 +44,7 @@ import org.eclipse.swt.widgets.Control;
 import org.eclipse.swt.widgets.Display;
 import org.eclipse.swt.widgets.Group;
 import org.eclipse.swt.widgets.Label;
+import org.eclipse.swt.widgets.Link;
 import org.eclipse.swt.widgets.Shell;
 import org.eclipse.swt.widgets.Text;
 import org.eclipse.ui.dialogs.SelectionDialog;
@@ -58,6 +61,8 @@ import org.switchyard.tools.ui.common.ClasspathResourceSelectionDialog;
 import org.switchyard.tools.ui.editor.diagram.shared.AbstractSwitchyardComposite;
 import org.switchyard.tools.ui.editor.diagram.shared.IImplementationComposite;
 import org.switchyard.tools.ui.editor.diagram.shared.ModelOperation;
+import org.switchyard.tools.ui.editor.impl.SwitchyardSCAEditor;
+import org.switchyard.tools.ui.editor.util.OpenFileUtil;
 
 /**
  * @author bfitzpat
@@ -67,7 +72,7 @@ public class RulesImplementationComposite extends AbstractSwitchyardComposite im
 
     private Component _component;
 //    private ComponentService _serviceInterface;
-//    private Link _newRulesLink;
+    private Link _newRulesLink;
     private Text _rulesFileText;
     private Button _browseRulesButton;
     private ComponentService _service;
@@ -105,24 +110,39 @@ public class RulesImplementationComposite extends AbstractSwitchyardComposite im
 
         _panel = new Composite(parent, SWT.NONE);
         _panel.setLayout(new GridLayout(3, false));
+        _factory.adapt(_panel);
 
-//        _newRulesLink = new Link(_panel, SWT.NONE);
-//        _newRulesLink.setText("<a>Rules File:</a>");
-//        _newRulesLink.addSelectionListener(new SelectionAdapter() {
-//            @Override
-//            public void widgetSelected(SelectionEvent event) {
-//                openNewWizard();
-//            }
-//
-//        });
+        _newRulesLink = new Link(_panel, SWT.NONE);
+        _newRulesLink.setText("<a>Rules File:</a>");
+        _newRulesLink.setBackground(_panel.getBackground());
+        _newRulesLink.addSelectionListener(new SelectionAdapter() {
+            @Override
+            public void widgetSelected(SelectionEvent event) {
+                String oldResult = _rulesFileText.getText().trim();
+                IFile modelFile = SwitchyardSCAEditor.getEditor(_implementation).getModelFile();
+                IPath rulesPath = modelFile.getParent().getParent().getProjectRelativePath();
+                rulesPath = rulesPath.append(oldResult);
+                IProject project = SwitchyardSCAEditor.getActiveEditor().getModelFile().getProject();
+                if (project.exists(rulesPath)) {
+                    IResource rulesFile = project.findMember(rulesPath);
+                    OpenFileUtil.openFile(rulesFile);
+//                } else {
+//                    openNewWizard();
+                }
+            }
+        });
 
-        createLabel(_panel,  "Rules File:");
+//        createLabel(_panel,  "Rules File:");
         _rulesFileText = _factory.createText(_panel, "", SWT.READ_ONLY | SWT.BORDER);
         _rulesFileText.setLayoutData(new GridData(GridData.FILL_HORIZONTAL));
         _rulesFileText.addModifyListener(new ModifyListener() {
             @Override
             public void modifyText(ModifyEvent event) {
-                validate();
+                if (_implementation != null && !inUpdate()) {
+                    validate();
+                    handleModify(_rulesFileText);
+                    fireChangedEvent(_rulesFileText);
+                }
             }
 
         });
@@ -377,7 +397,7 @@ public class RulesImplementationComposite extends AbstractSwitchyardComposite im
         ArrayList<ModelOperation> ops = new ArrayList<ModelOperation>();
         RulesImplementationType rulesImpl = (RulesImplementationType) this._implementation;
         ops.add(new AddResourceTypeOp());
-        ops.add(new BasicEObjectOperation(rulesImpl, featureId, value));
+        ops.add(new BasicEObjectOperation(rulesImpl.getResource().get(0), featureId, value));
         wrapOperation(rulesImpl, ops);
     }
 
@@ -413,7 +433,7 @@ public class RulesImplementationComposite extends AbstractSwitchyardComposite im
             validate();
             if (_implementation instanceof RulesImplementationType) {
                 if (_rulesFileText != null && !_rulesFileText.isDisposed() && _rulesFileText.isEnabled()) {
-                    updateRulesLocationFeature("resource", rulesFileText);
+                    updateRulesLocationFeature("location", rulesFileText);
                 }
             }
         } else if (control.equals(_auditIntervalText)) {
@@ -466,7 +486,12 @@ public class RulesImplementationComposite extends AbstractSwitchyardComposite im
         this._implementation = impl;
         if (this._implementation != null && this._implementation instanceof RulesImplementationType) {
             RulesImplementationType rulesImpl = (RulesImplementationType) this._implementation;
-            if (rulesImpl.eContainer() instanceof ComponentService) {
+            if (rulesImpl.eContainer() instanceof Component) {
+                this._component = (Component) rulesImpl.eContainer();
+                if (!this._component.getService().isEmpty()) {
+                    this._service = this._component.getService().get(0);
+                }
+            } else if (rulesImpl.eContainer() instanceof ComponentService) {
                 _service = (ComponentService) rulesImpl.eContainer();
 //                _serviceInterface = _service;
                 if (_service.eContainer() instanceof Component) {
@@ -545,19 +570,25 @@ public class RulesImplementationComposite extends AbstractSwitchyardComposite im
         }
     }
 
-    private void openNewWizard() {
-        RulesImplementationWizard wizard = new RulesImplementationWizard();
-        wizard.init(_component);
-        WizardDialog dialog = new WizardDialog(getShell(), wizard);
-        if (dialog.open() == WizardDialog.OK) {
-            RulesImplementationType rulesImpl = (RulesImplementationType) wizard.getCreatedObject();
-            if (rulesImpl.getResource() != null && !rulesImpl.getResource().isEmpty()) {
-                ResourceType resType = rulesImpl.getResource().get(0);
-                String location = resType.getLocation();
-                setTextValue(_rulesFileText, location);
-            }
-        }
-    }
+//    private void openNewWizard() {
+//        NewRulesResourceWizard wizard = new NewRulesResourceWizard();
+//        
+//        wizard.init(this._component);
+//        wizard.setImplementation((RulesImplementationType) this._implementation);
+//        SwitchyardSCAEditor editor = SwitchyardSCAEditor.getEditor(this._component);
+//        IResource resource = editor.getModelFile();
+//        IStructuredSelection selection = resource == null ? StructuredSelection.EMPTY : new StructuredSelection(
+//                resource);
+//        IWorkbench workbench = editor == null ? PlatformUI.getWorkbench() : editor.getEditorSite().getWorkbenchWindow()
+//                .getWorkbench();
+//        wizard.init(workbench, selection);
+//        WizardDialog dialog = new WizardDialog(getShell(), wizard);
+//        if (dialog.open() == WizardDialog.OK) {
+//            IFile createdFile = wizard.getFile();
+//            String rulesFilePath = JavaUtil.getJavaPathForResource(createdFile).toString();
+//            setTextValue(this._rulesFileText, rulesFilePath);
+//        }
+//    }
 
     private Shell getShell() {
         return Display.getCurrent().getActiveShell();

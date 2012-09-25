@@ -19,13 +19,13 @@ import javax.swing.event.ChangeEvent;
 import javax.swing.event.ChangeListener;
 
 import org.eclipse.core.resources.IContainer;
+import org.eclipse.core.resources.IFile;
+import org.eclipse.core.resources.IProject;
 import org.eclipse.core.resources.IResource;
 import org.eclipse.core.resources.ResourcesPlugin;
+import org.eclipse.core.runtime.IPath;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.jdt.core.IJavaProject;
-import org.eclipse.jface.viewers.IStructuredSelection;
-import org.eclipse.jface.viewers.StructuredSelection;
-import org.eclipse.jface.wizard.WizardDialog;
 import org.eclipse.soa.sca.sca1_1.model.sca.Component;
 import org.eclipse.soa.sca.sca1_1.model.sca.ComponentService;
 import org.eclipse.soa.sca.sca1_1.model.sca.Implementation;
@@ -44,10 +44,9 @@ import org.eclipse.swt.widgets.Control;
 import org.eclipse.swt.widgets.Display;
 import org.eclipse.swt.widgets.Group;
 import org.eclipse.swt.widgets.Label;
+import org.eclipse.swt.widgets.Link;
 import org.eclipse.swt.widgets.Shell;
 import org.eclipse.swt.widgets.Text;
-import org.eclipse.ui.IWorkbench;
-import org.eclipse.ui.PlatformUI;
 import org.eclipse.ui.dialogs.SelectionDialog;
 import org.eclipse.ui.views.properties.tabbed.TabbedPropertySheetWidgetFactory;
 import org.switchyard.tools.models.switchyard1_0.bpm.ActionType1;
@@ -63,6 +62,7 @@ import org.switchyard.tools.ui.editor.diagram.shared.AbstractSwitchyardComposite
 import org.switchyard.tools.ui.editor.diagram.shared.IImplementationComposite;
 import org.switchyard.tools.ui.editor.diagram.shared.ModelOperation;
 import org.switchyard.tools.ui.editor.impl.SwitchyardSCAEditor;
+import org.switchyard.tools.ui.editor.util.OpenFileUtil;
 
 /**
  * @author bfitzpat
@@ -71,9 +71,8 @@ import org.switchyard.tools.ui.editor.impl.SwitchyardSCAEditor;
 public class BPMImplementationComposite extends AbstractSwitchyardComposite implements IImplementationComposite {
 
     private Component _component;
-    private ComponentService _serviceInterface;
     private ComponentService _service;
-//    private Link _newBPMNLink;
+    private Link _newBPMNLink;
     private Text _bpmnFileText;
     private Button _browseBPMNButton;
     private Composite _panel;
@@ -115,18 +114,30 @@ public class BPMImplementationComposite extends AbstractSwitchyardComposite impl
 
         _panel = new Composite(parent, SWT.NONE);
         _panel.setLayout(new GridLayout(3, false));
+        _factory.adapt(_panel);
 
-//        _newBPMNLink = new Link(_panel, SWT.NONE);
-//        _newBPMNLink.setText("<a>BPMN File:</a>");
-//        _newBPMNLink.addSelectionListener(new SelectionAdapter() {
-//            @Override
-//            public void widgetSelected(SelectionEvent event) {
-//                openNewWizard();
-//            }
-//
-//        });
+        _newBPMNLink = new Link(_panel, SWT.NONE);
+        _newBPMNLink.setText("<a>BPMN File:</a>");
+        _newBPMNLink.setBackground(_panel.getBackground());
+        _newBPMNLink.addSelectionListener(new SelectionAdapter() {
+            @Override
+            public void widgetSelected(SelectionEvent event) {
+                String oldResult = _bpmnFileText.getText().trim();
+                IFile modelFile = SwitchyardSCAEditor.getEditor(_implementation).getModelFile();
+                IPath bpmPath = modelFile.getParent().getParent().getProjectRelativePath();
+                bpmPath = bpmPath.append(oldResult);
+                IProject project = SwitchyardSCAEditor.getActiveEditor().getModelFile().getProject();
+                if (project.exists(bpmPath)) {
+                    IResource bpmFile = project.findMember(bpmPath);
+                    OpenFileUtil.openFile(bpmFile);
+//                } else {
+//                    openNewWizard();
+                }
+            }
 
-        createLabel(_panel, "BPMN File:");
+        });
+
+//        createLabel(_panel, "BPMN File:");
         _bpmnFileText = _factory.createText(_panel, "", SWT.READ_ONLY | SWT.BORDER);
         _bpmnFileText.setLayoutData(new GridData(GridData.FILL_HORIZONTAL));
         _bpmnFileText.addModifyListener(new ModifyListener() {
@@ -473,7 +484,6 @@ public class BPMImplementationComposite extends AbstractSwitchyardComposite impl
             BPMImplementationType bpmImpl = (BPMImplementationType) this._implementation;
             if (bpmImpl.eContainer() instanceof ComponentService) {
                 _service = (ComponentService) bpmImpl.eContainer();
-                _serviceInterface = _service;
                 if (_service.eContainer() instanceof Component) {
                     _component = (Component) _service.eContainer();
                 }
@@ -549,25 +559,28 @@ public class BPMImplementationComposite extends AbstractSwitchyardComposite impl
         }
     }
 
-    private void openNewWizard() {
-        NewBPMComponentWizard wizard = new NewBPMComponentWizard(false);
-        SwitchyardSCAEditor editor = SwitchyardSCAEditor.getActiveEditor();
-        IResource resource = JavaUtil.getFirstResourceRoot(_project);
-        IStructuredSelection selection = resource == null ? StructuredSelection.EMPTY : new StructuredSelection(
-                resource);
-        IWorkbench workbench = editor == null ? PlatformUI.getWorkbench() : editor.getEditorSite().getWorkbenchWindow()
-                .getWorkbench();
-        wizard.init(workbench, selection);
-        wizard.init(_component == null ? null : (org.eclipse.soa.sca.sca1_1.model.sca.Composite) _component.eContainer());
-        wizard.forceServiceInterfaceType(_serviceInterface);
-        WizardDialog dialog = new WizardDialog(getShell(), wizard);
-        if (dialog.open() == WizardDialog.OK) {
-            _implementation = (BPMImplementationType) wizard.getCreatedObject().getImplementation();
-            BPMImplementationType bpmImpl = (BPMImplementationType) this._implementation;
-            _service = wizard.getService();
-            _bpmnFileText.setText(bpmImpl.getProcessDefinition());
-        }
-    }
+//    private void openNewWizard() {
+//        NewBPMResourceWizard wizard = new NewBPMResourceWizard();
+//        
+//        if (this._implementation.eContainer() instanceof Component) {
+//            this._component = (Component) this._implementation.eContainer();
+//        }
+//        wizard.init(this._component);
+//        wizard.setImplementation((BPMImplementationType) this._implementation);
+//        SwitchyardSCAEditor editor = SwitchyardSCAEditor.getEditor(this._implementation);
+//        IResource resource = editor.getModelFile();
+//        IStructuredSelection selection = resource == null ? StructuredSelection.EMPTY : new StructuredSelection(
+//                resource);
+//        IWorkbench workbench = editor == null ? PlatformUI.getWorkbench() : editor.getEditorSite().getWorkbenchWindow()
+//                .getWorkbench();
+//        wizard.init(workbench, selection);
+//        WizardDialog dialog = new WizardDialog(getShell(), wizard);
+//        if (dialog.open() == WizardDialog.OK) {
+//            IFile createdFile = wizard.getFile();
+//            String bpmFilePath = JavaUtil.getJavaPathForResource(createdFile).toString();
+//            setTextValue(this._bpmnFileText, bpmFilePath);
+//        }
+//    }
     
     private Shell getShell() {
         return Display.getCurrent().getActiveShell();    

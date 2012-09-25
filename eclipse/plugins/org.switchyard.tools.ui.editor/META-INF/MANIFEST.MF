@@ -64,3 +64,5 @@ Export-Package: org.switchyard.tools.ui.editor,
  org.switchyard.tools.ui.editor.impl,
  org.switchyard.tools.ui.editor.property,
  org.switchyard.tools.ui.editor.util
+Import-Package: org.eclipse.core.filesystem,
+ org.eclipse.core.filesystem.provider
