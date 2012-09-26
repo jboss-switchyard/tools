@@ -73,14 +73,14 @@
               category="SwitchyardSCA"
               id="switchyard.interaction.policy.tab"
               indented="true"
-              label="Interaction Policy">
+              label="Transaction Policy">
         </propertyTab>
         <propertyTab
               afterTab="switchyard.implementation.policy.tab"
               category="SwitchyardSCA"
               id="switchyard.implementation.policy.tab"
               indented="true"
-              label="Implementation Policy">
+              label="Transaction Policy">
         </propertyTab>
         <propertyTab
               afterTab="switchyard.security.policy.tab"

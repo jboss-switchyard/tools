@@ -125,7 +125,7 @@ public class InteractionPolicyPropertySection extends GFPropertySection implemen
         data.top = new FormAttachment(0, VSPACE);
         _interactionCombo.setLayoutData(data);
         
-        _interactionComboLabel = factory.createCLabel(transactionGroup, "Interaction Policy:");
+        _interactionComboLabel = factory.createCLabel(transactionGroup, "Transaction Policy:");
         data = new FormData();
         data.left = new FormAttachment(0, 0);
         data.right = new FormAttachment(_interactionCombo, -HSPACE);

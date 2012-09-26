@@ -82,6 +82,7 @@ public class ImplementationPolicyPropertySection extends GFPropertySection imple
         super();
         _supportedImplementationPolicies = new ArrayList<String>();
         _supportedImplementationPolicies.add("managedTransaction.Global");
+        _supportedImplementationPolicies.add("managedTransaction.Local");
         _supportedImplementationPolicies.add("noManagedTransaction");
     }
 
@@ -125,7 +126,7 @@ public class ImplementationPolicyPropertySection extends GFPropertySection imple
         data.top = new FormAttachment(0, VSPACE);
         _implementationCombo.setLayoutData(data);
         
-        _implementationComboLabel = factory.createCLabel(transactionGroup, "Implementation Policy:");
+        _implementationComboLabel = factory.createCLabel(transactionGroup, "Transaction Policy:");
         data = new FormData();
         data.left = new FormAttachment(0, 0);
         data.right = new FormAttachment(_implementationCombo, -HSPACE);
@@ -185,12 +186,14 @@ public class ImplementationPolicyPropertySection extends GFPropertySection imple
                     _inUpdate = true;
                     
                     String implementationPolicy = null;
-                    List<QName> requires = component.getRequires();
-                    if (requires != null) {
-                        for (QName requiresItem : requires) {
-                            String localPart = requiresItem.getLocalPart();
-                            if (_supportedImplementationPolicies.contains(localPart)) {
-                                implementationPolicy = localPart;
+                    if (component.getImplementation() != null) {
+                        List<QName> requires = component.getImplementation().getRequires();
+                        if (requires != null) {
+                            for (QName requiresItem : requires) {
+                                String localPart = requiresItem.getLocalPart();
+                                if (_supportedImplementationPolicies.contains(localPart)) {
+                                    implementationPolicy = localPart;
+                                }
                             }
                         }
                     }
