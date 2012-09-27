@@ -158,12 +158,12 @@
                id="switchyard.security.policy.tab.details"
                tab="switchyard.security.policy.tab">
          </propertySection>
-        <propertySection
+<!--        <propertySection
                class="org.switchyard.tools.ui.editor.property.SwitchyardAdvancedPropertySection"
                id="switchyard.advanced.section"
                filter="org.switchyard.tools.ui.editor.property.SwitchyardSCAPropertiesMainFilter"
                tab="switchyard.advanced.tab">
-         </propertySection>
+         </propertySection> -->
 	    </propertySections>
 	</extension>
  <extension

@@ -165,7 +165,7 @@ public class ApplicationPropertySection extends GFPropertySection implements ITa
 
     private boolean testForMessageTraceHandler(DocumentRoot root) {
         if (root.getSwitchyard() != null) {
-            DomainType domain = root.getDomain();
+            DomainType domain = root.getSwitchyard().getDomain();
             if (domain != null) {
                 HandlersType handlers = domain.getHandlers();
                 if (handlers != null) {
@@ -184,10 +184,10 @@ public class ApplicationPropertySection extends GFPropertySection implements ITa
 
     private void addMessageTraceHandler(final DocumentRoot root) {
         if (root.getSwitchyard() != null) {
-            DomainType domain = root.getDomain();
+            DomainType domain = root.getSwitchyard().getDomain();
             if (domain == null) {
                 domain = SwitchyardFactory.eINSTANCE.createDomainType();
-                root.setDomain(domain);
+                root.getSwitchyard().setDomain(domain);
             }
             HandlersType handlers = domain.getHandlers();
             if (handlers == null) {
@@ -206,7 +206,7 @@ public class ApplicationPropertySection extends GFPropertySection implements ITa
 
     private void removeMessageTraceHandler(final DocumentRoot root) {
         if (root.getSwitchyard() != null) {
-            DomainType domain = root.getDomain();
+            DomainType domain = root.getSwitchyard().getDomain();
             if (domain != null) {
                 HandlersType handlers = domain.getHandlers();
                 if (handlers != null) {

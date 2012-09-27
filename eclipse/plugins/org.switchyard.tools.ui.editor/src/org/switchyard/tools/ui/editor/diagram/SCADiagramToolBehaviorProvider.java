@@ -59,6 +59,7 @@ import org.eclipse.soa.sca.sca1_1.model.sca.Component;
 import org.eclipse.soa.sca.sca1_1.model.sca.ComponentReference;
 import org.eclipse.soa.sca.sca1_1.model.sca.ComponentService;
 import org.eclipse.soa.sca.sca1_1.model.sca.Composite;
+import org.eclipse.soa.sca.sca1_1.model.sca.Contract;
 import org.eclipse.soa.sca.sca1_1.model.sca.Implementation;
 import org.eclipse.soa.sca.sca1_1.model.sca.Interface;
 import org.eclipse.soa.sca.sca1_1.model.sca.Reference;
@@ -98,6 +99,14 @@ public class SCADiagramToolBehaviorProvider extends DefaultToolBehaviorProvider 
                     addTransformMenu.setText("Add Transformer");
                     addTransformMenu.setSubmenu(false);
                 }
+            }
+            Object bo = getFeatureProvider().getBusinessObjectForPictogramElement(context.getPictogramElements()[0]);
+            if (bo != null && (bo instanceof Component || bo instanceof Contract)) {
+                ContextMenuEntry openMenu = new ContextMenuEntry(new SCADiagramOpenOnDoubleClickFeature(
+                        getFeatureProvider()), context);
+                openMenu.setText("Open");
+                openMenu.setSubmenu(false);
+                menuList.add(openMenu);
             }
             if (menuList.size() > 0) {
                 return menuList.toArray(new IContextMenuEntry[menuList.size()]);

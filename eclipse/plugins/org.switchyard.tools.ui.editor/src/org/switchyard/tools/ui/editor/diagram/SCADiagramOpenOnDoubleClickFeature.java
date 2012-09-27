@@ -3,6 +3,7 @@ package org.switchyard.tools.ui.editor.diagram;
 import org.eclipse.core.resources.IResource;
 import org.eclipse.core.runtime.Platform;
 import org.eclipse.graphiti.features.IFeatureProvider;
+import org.eclipse.graphiti.features.context.IContext;
 import org.eclipse.graphiti.features.context.ICustomContext;
 import org.eclipse.graphiti.features.custom.AbstractCustomFeature;
 import org.eclipse.graphiti.mm.pictograms.PictogramElement;
@@ -55,5 +56,11 @@ public class SCADiagramOpenOnDoubleClickFeature extends AbstractCustomFeature {
             return StructuredSelection.EMPTY;
         }
         return new StructuredSelection(file);
+    }
+
+    @Override
+    public boolean isAvailable(IContext context) {
+        _action.selectionChanged(getResourceFromContext((ICustomContext) context));
+        return _action.isEnabled();
     }
 }
