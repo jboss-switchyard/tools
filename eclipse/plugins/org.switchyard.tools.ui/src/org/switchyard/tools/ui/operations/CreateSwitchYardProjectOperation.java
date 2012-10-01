@@ -299,7 +299,7 @@ public class CreateSwitchYardProjectOperation implements IWorkspaceRunnable {
                         createTargetnamespace(_projectMetatData.getGroupId(), _projectMetatData.getNewProjectHandle()
                                 .getName(), _projectMetatData.getProjectVersion()));
                 ByteArrayOutputStream baos = new ByteArrayOutputStream();
-                switchYardModel.getModelConfiguration().write(baos, new OutputKey[0]);
+                switchYardModel.getModelConfiguration().write(baos, new OutputKey[] {OutputKey.PRETTY_PRINT });
                 _switchYardFile = _projectMetatData.getNewProjectHandle().getFolder(MAVEN_MAIN_RESOURCES_PATH)
                         .getFolder(M2EUtils.META_INF).getFile(M2EUtils.SWITCHYARD_XML);
                 CreateFileOperation op = new CreateFileOperation(_switchYardFile, null, new ByteArrayInputStream(
