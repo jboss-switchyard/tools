@@ -572,11 +572,6 @@
            <groupId>org.switchyard.components</groupId>
            <artifactId>switchyard-component-camel</artifactId>
         </dependency>
-        <dependency>
-           <groupId>org.switchyard.components</groupId>
-           <artifactId>switchyard-component-camel-cdi</artifactId>
-           <scope>test</scope>
-        </dependency>
      </component>
      <component
            name="Clojure"
