@@ -1151,13 +1151,123 @@ public interface JcaPackage extends EPackage {
     int DOCUMENT_ROOT__BINDING_JCA = 3;
 
     /**
+     * The feature id for the '<em><b>Context Mapper</b></em>' containment reference.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int DOCUMENT_ROOT__CONTEXT_MAPPER = 4;
+
+    /**
+     * The feature id for the '<em><b>Message Composer</b></em>' containment reference.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int DOCUMENT_ROOT__MESSAGE_COMPOSER = 5;
+
+    /**
      * The number of structural features of the '<em>Document Root</em>' class.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @generated
      * @ordered
      */
-    int DOCUMENT_ROOT_FEATURE_COUNT = 4;
+    int DOCUMENT_ROOT_FEATURE_COUNT = 6;
+
+    /**
+     * The meta object id for the '{@link org.switchyard.tools.models.switchyard1_0.jca.impl.JCAContextMapperTypeImpl <em>JCA Context Mapper Type</em>}' class.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @see org.switchyard.tools.models.switchyard1_0.jca.impl.JCAContextMapperTypeImpl
+     * @see org.switchyard.tools.models.switchyard1_0.jca.impl.JcaPackageImpl#getJCAContextMapperType()
+     * @generated
+     */
+    int JCA_CONTEXT_MAPPER_TYPE = 16;
+
+    /**
+     * The feature id for the '<em><b>Class</b></em>' attribute.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int JCA_CONTEXT_MAPPER_TYPE__CLASS = SwitchyardPackage.CONTEXT_MAPPER_TYPE__CLASS;
+
+    /**
+     * The feature id for the '<em><b>Exclude Namespaces</b></em>' attribute.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int JCA_CONTEXT_MAPPER_TYPE__EXCLUDE_NAMESPACES = SwitchyardPackage.CONTEXT_MAPPER_TYPE__EXCLUDE_NAMESPACES;
+
+    /**
+     * The feature id for the '<em><b>Excludes</b></em>' attribute.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int JCA_CONTEXT_MAPPER_TYPE__EXCLUDES = SwitchyardPackage.CONTEXT_MAPPER_TYPE__EXCLUDES;
+
+    /**
+     * The feature id for the '<em><b>Include Namespaces</b></em>' attribute.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int JCA_CONTEXT_MAPPER_TYPE__INCLUDE_NAMESPACES = SwitchyardPackage.CONTEXT_MAPPER_TYPE__INCLUDE_NAMESPACES;
+
+    /**
+     * The feature id for the '<em><b>Includes</b></em>' attribute.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int JCA_CONTEXT_MAPPER_TYPE__INCLUDES = SwitchyardPackage.CONTEXT_MAPPER_TYPE__INCLUDES;
+
+    /**
+     * The number of structural features of the '<em>JCA Context Mapper Type</em>' class.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int JCA_CONTEXT_MAPPER_TYPE_FEATURE_COUNT = SwitchyardPackage.CONTEXT_MAPPER_TYPE_FEATURE_COUNT + 0;
+
+    /**
+     * The meta object id for the '{@link org.switchyard.tools.models.switchyard1_0.jca.impl.JCAMessageComposerTypeImpl <em>JCA Message Composer Type</em>}' class.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @see org.switchyard.tools.models.switchyard1_0.jca.impl.JCAMessageComposerTypeImpl
+     * @see org.switchyard.tools.models.switchyard1_0.jca.impl.JcaPackageImpl#getJCAMessageComposerType()
+     * @generated
+     */
+    int JCA_MESSAGE_COMPOSER_TYPE = 17;
+
+    /**
+     * The feature id for the '<em><b>Class</b></em>' attribute.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int JCA_MESSAGE_COMPOSER_TYPE__CLASS = SwitchyardPackage.MESSAGE_COMPOSER_TYPE__CLASS;
+
+    /**
+     * The number of structural features of the '<em>JCA Message Composer Type</em>' class.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int JCA_MESSAGE_COMPOSER_TYPE_FEATURE_COUNT = SwitchyardPackage.MESSAGE_COMPOSER_TYPE_FEATURE_COUNT + 0;
 
     /**
      * The meta object id for the '{@link org.switchyard.tools.models.switchyard1_0.jca.JCACreateResource <em>JCA Create Resource</em>}' enum.
@@ -1167,7 +1277,7 @@ public interface JcaPackage extends EPackage {
      * @see org.switchyard.tools.models.switchyard1_0.jca.impl.JcaPackageImpl#getJCACreateResource()
      * @generated
      */
-    int JCA_CREATE_RESOURCE = 16;
+    int JCA_CREATE_RESOURCE = 18;
 
     /**
      * The meta object id for the '{@link org.switchyard.tools.models.switchyard1_0.jca.ResAuth <em>Res Auth</em>}' enum.
@@ -1177,7 +1287,7 @@ public interface JcaPackage extends EPackage {
      * @see org.switchyard.tools.models.switchyard1_0.jca.impl.JcaPackageImpl#getResAuth()
      * @generated
      */
-    int RES_AUTH = 17;
+    int RES_AUTH = 19;
 
     /**
      * The meta object id for the '<em>JCA Create Resource Object</em>' data type.
@@ -1187,7 +1297,7 @@ public interface JcaPackage extends EPackage {
      * @see org.switchyard.tools.models.switchyard1_0.jca.impl.JcaPackageImpl#getJCACreateResourceObject()
      * @generated
      */
-    int JCA_CREATE_RESOURCE_OBJECT = 18;
+    int JCA_CREATE_RESOURCE_OBJECT = 20;
 
     /**
      * The meta object id for the '<em>Res Auth Object</em>' data type.
@@ -1197,7 +1307,7 @@ public interface JcaPackage extends EPackage {
      * @see org.switchyard.tools.models.switchyard1_0.jca.impl.JcaPackageImpl#getResAuthObject()
      * @generated
      */
-    int RES_AUTH_OBJECT = 19;
+    int RES_AUTH_OBJECT = 21;
 
 
     /**
@@ -1459,6 +1569,48 @@ public interface JcaPackage extends EPackage {
      * @generated
      */
     EReference getDocumentRoot_BindingJca();
+
+    /**
+     * Returns the meta object for the containment reference '{@link org.switchyard.tools.models.switchyard1_0.jca.DocumentRoot#getContextMapper <em>Context Mapper</em>}'.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @return the meta object for the containment reference '<em>Context Mapper</em>'.
+     * @see org.switchyard.tools.models.switchyard1_0.jca.DocumentRoot#getContextMapper()
+     * @see #getDocumentRoot()
+     * @generated
+     */
+    EReference getDocumentRoot_ContextMapper();
+
+    /**
+     * Returns the meta object for the containment reference '{@link org.switchyard.tools.models.switchyard1_0.jca.DocumentRoot#getMessageComposer <em>Message Composer</em>}'.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @return the meta object for the containment reference '<em>Message Composer</em>'.
+     * @see org.switchyard.tools.models.switchyard1_0.jca.DocumentRoot#getMessageComposer()
+     * @see #getDocumentRoot()
+     * @generated
+     */
+    EReference getDocumentRoot_MessageComposer();
+
+    /**
+     * Returns the meta object for class '{@link org.switchyard.tools.models.switchyard1_0.jca.JCAContextMapperType <em>JCA Context Mapper Type</em>}'.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @return the meta object for class '<em>JCA Context Mapper Type</em>'.
+     * @see org.switchyard.tools.models.switchyard1_0.jca.JCAContextMapperType
+     * @generated
+     */
+    EClass getJCAContextMapperType();
+
+    /**
+     * Returns the meta object for class '{@link org.switchyard.tools.models.switchyard1_0.jca.JCAMessageComposerType <em>JCA Message Composer Type</em>}'.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @return the meta object for class '<em>JCA Message Composer Type</em>'.
+     * @see org.switchyard.tools.models.switchyard1_0.jca.JCAMessageComposerType
+     * @generated
+     */
+    EClass getJCAMessageComposerType();
 
     /**
      * Returns the meta object for class '{@link org.switchyard.tools.models.switchyard1_0.jca.InboundOperation <em>Inbound Operation</em>}'.
@@ -2461,6 +2613,42 @@ public interface JcaPackage extends EPackage {
          * @generated
          */
         EReference DOCUMENT_ROOT__BINDING_JCA = eINSTANCE.getDocumentRoot_BindingJca();
+
+        /**
+         * The meta object literal for the '<em><b>Context Mapper</b></em>' containment reference feature.
+         * <!-- begin-user-doc -->
+         * <!-- end-user-doc -->
+         * @generated
+         */
+        EReference DOCUMENT_ROOT__CONTEXT_MAPPER = eINSTANCE.getDocumentRoot_ContextMapper();
+
+        /**
+         * The meta object literal for the '<em><b>Message Composer</b></em>' containment reference feature.
+         * <!-- begin-user-doc -->
+         * <!-- end-user-doc -->
+         * @generated
+         */
+        EReference DOCUMENT_ROOT__MESSAGE_COMPOSER = eINSTANCE.getDocumentRoot_MessageComposer();
+
+        /**
+         * The meta object literal for the '{@link org.switchyard.tools.models.switchyard1_0.jca.impl.JCAContextMapperTypeImpl <em>JCA Context Mapper Type</em>}' class.
+         * <!-- begin-user-doc -->
+         * <!-- end-user-doc -->
+         * @see org.switchyard.tools.models.switchyard1_0.jca.impl.JCAContextMapperTypeImpl
+         * @see org.switchyard.tools.models.switchyard1_0.jca.impl.JcaPackageImpl#getJCAContextMapperType()
+         * @generated
+         */
+        EClass JCA_CONTEXT_MAPPER_TYPE = eINSTANCE.getJCAContextMapperType();
+
+        /**
+         * The meta object literal for the '{@link org.switchyard.tools.models.switchyard1_0.jca.impl.JCAMessageComposerTypeImpl <em>JCA Message Composer Type</em>}' class.
+         * <!-- begin-user-doc -->
+         * <!-- end-user-doc -->
+         * @see org.switchyard.tools.models.switchyard1_0.jca.impl.JCAMessageComposerTypeImpl
+         * @see org.switchyard.tools.models.switchyard1_0.jca.impl.JcaPackageImpl#getJCAMessageComposerType()
+         * @generated
+         */
+        EClass JCA_MESSAGE_COMPOSER_TYPE = eINSTANCE.getJCAMessageComposerType();
 
         /**
          * The meta object literal for the '{@link org.switchyard.tools.models.switchyard1_0.jca.impl.InboundOperationImpl <em>Inbound Operation</em>}' class.

@@ -247,6 +247,15 @@ public class ComponentImpl extends CommonExtensionBaseImpl implements Component 
 
 	/**
      * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public void setImplementation(Implementation newImplementation) {
+        ((FeatureMap.Internal)getImplementationGroup()).set(ScaPackage.eINSTANCE.getComponent_Implementation(), newImplementation);
+    }
+
+    /**
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
      * @generated
      */
@@ -503,6 +512,9 @@ public class ComponentImpl extends CommonExtensionBaseImpl implements Component 
             case ScaPackage.COMPONENT__IMPLEMENTATION_GROUP:
                 ((FeatureMap.Internal)getImplementationGroup()).set(newValue);
                 return;
+            case ScaPackage.COMPONENT__IMPLEMENTATION:
+                setImplementation((Implementation)newValue);
+                return;
             case ScaPackage.COMPONENT__GROUP:
                 ((FeatureMap.Internal)getGroup()).set(newValue);
                 return;
@@ -550,6 +562,9 @@ public class ComponentImpl extends CommonExtensionBaseImpl implements Component 
         switch (featureID) {
             case ScaPackage.COMPONENT__IMPLEMENTATION_GROUP:
                 getImplementationGroup().clear();
+                return;
+            case ScaPackage.COMPONENT__IMPLEMENTATION:
+                setImplementation((Implementation)null);
                 return;
             case ScaPackage.COMPONENT__GROUP:
                 getGroup().clear();

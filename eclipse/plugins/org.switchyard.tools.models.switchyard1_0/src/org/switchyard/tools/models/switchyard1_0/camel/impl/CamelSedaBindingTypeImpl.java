@@ -11,17 +11,12 @@ import java.math.BigInteger;
 import org.eclipse.emf.common.notify.Notification;
 
 import org.eclipse.emf.ecore.EClass;
-import org.eclipse.emf.ecore.EStructuralFeature;
 
-import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 
 
 import org.switchyard.tools.models.switchyard1_0.camel.CamelPackage;
 import org.switchyard.tools.models.switchyard1_0.camel.CamelSedaBindingType;
-import org.switchyard.tools.models.switchyard1_0.switchyard.ContextMapperType;
-import org.switchyard.tools.models.switchyard1_0.switchyard.MessageComposerType;
-import org.switchyard.tools.models.switchyard1_0.switchyard.impl.SwitchYardBindingTypeImpl;
 
 /**
  * <!-- begin-user-doc -->
@@ -595,11 +590,6 @@ public class CamelSedaBindingTypeImpl extends BaseCamelBindingImpl implements Ca
         if (limitConcurrentConsumersESet) result.append(limitConcurrentConsumers); else result.append("<unset>");
         result.append(')');
         return result.toString();
-    }
-
-    @Override
-    public EStructuralFeature getDocumentFeature() {
-        return CamelPackage.eINSTANCE.getDocumentRoot_BindingSeda();
     }
 
 } //CamelSedaBindingTypeImpl

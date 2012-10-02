@@ -14,7 +14,6 @@ import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.NotificationChain;
 
 import org.eclipse.emf.ecore.EClass;
-import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.ecore.InternalEObject;
 
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
@@ -311,13 +310,6 @@ public abstract class BindingImpl extends CommonExtensionBaseImpl implements Bin
         if (eNotificationRequired())
             eNotify(new ENotificationImpl(this, Notification.SET, ScaPackage.BINDING__URI, oldUri, uri));
     }
-
-	/**
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated NOT
-     */
-    public abstract EStructuralFeature getDocumentFeature();
 
     /**
      * <!-- begin-user-doc -->

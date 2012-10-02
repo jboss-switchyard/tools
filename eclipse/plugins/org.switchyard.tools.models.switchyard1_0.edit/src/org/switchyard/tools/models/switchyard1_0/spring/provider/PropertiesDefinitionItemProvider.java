@@ -1185,6 +1185,16 @@ public class PropertiesDefinitionItemProvider
         newChildDescriptors.add
             (createChildParameter
                 (SpringPackage.eINSTANCE.getPropertiesDefinition_Property(),
+                 HornetQFactory.eINSTANCE.createHornetQContextMapperType()));
+
+        newChildDescriptors.add
+            (createChildParameter
+                (SpringPackage.eINSTANCE.getPropertiesDefinition_Property(),
+                 HornetQFactory.eINSTANCE.createHornetQMessageComposerType()));
+
+        newChildDescriptors.add
+            (createChildParameter
+                (SpringPackage.eINSTANCE.getPropertiesDefinition_Property(),
                  RulesFactory.eINSTANCE.createActionType1()));
 
         newChildDescriptors.add
@@ -1410,6 +1420,16 @@ public class PropertiesDefinitionItemProvider
         newChildDescriptors.add
             (createChildParameter
                 (SpringPackage.eINSTANCE.getPropertiesDefinition_Property(),
+                 CamelFactory.eINSTANCE.createCamelContextMapperType()));
+
+        newChildDescriptors.add
+            (createChildParameter
+                (SpringPackage.eINSTANCE.getPropertiesDefinition_Property(),
+                 CamelFactory.eINSTANCE.createCamelMessageComposerType()));
+
+        newChildDescriptors.add
+            (createChildParameter
+                (SpringPackage.eINSTANCE.getPropertiesDefinition_Property(),
                  JcaFactory.eINSTANCE.createActivationSpec()));
 
         newChildDescriptors.add
@@ -1485,7 +1505,27 @@ public class PropertiesDefinitionItemProvider
         newChildDescriptors.add
             (createChildParameter
                 (SpringPackage.eINSTANCE.getPropertiesDefinition_Property(),
+                 JcaFactory.eINSTANCE.createJCAContextMapperType()));
+
+        newChildDescriptors.add
+            (createChildParameter
+                (SpringPackage.eINSTANCE.getPropertiesDefinition_Property(),
+                 JcaFactory.eINSTANCE.createJCAMessageComposerType()));
+
+        newChildDescriptors.add
+            (createChildParameter
+                (SpringPackage.eINSTANCE.getPropertiesDefinition_Property(),
                  ResteasyFactory.eINSTANCE.createRESTBindingType()));
+
+        newChildDescriptors.add
+            (createChildParameter
+                (SpringPackage.eINSTANCE.getPropertiesDefinition_Property(),
+                 ResteasyFactory.eINSTANCE.createRESTContextMapperType()));
+
+        newChildDescriptors.add
+            (createChildParameter
+                (SpringPackage.eINSTANCE.getPropertiesDefinition_Property(),
+                 ResteasyFactory.eINSTANCE.createRESTMessageComposerType()));
 
         newChildDescriptors.add
             (createChildParameter

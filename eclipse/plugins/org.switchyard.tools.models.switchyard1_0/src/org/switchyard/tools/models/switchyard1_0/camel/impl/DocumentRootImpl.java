@@ -25,12 +25,14 @@ import org.eclipse.emf.ecore.util.InternalEList;
 
 import org.switchyard.tools.models.switchyard1_0.camel.CamelAtomBindingType;
 import org.switchyard.tools.models.switchyard1_0.camel.CamelBindingType;
+import org.switchyard.tools.models.switchyard1_0.camel.CamelContextMapperType;
 import org.switchyard.tools.models.switchyard1_0.camel.CamelDirectBindingType;
 import org.switchyard.tools.models.switchyard1_0.camel.CamelFileBindingType;
 import org.switchyard.tools.models.switchyard1_0.camel.CamelFtpBindingType;
 import org.switchyard.tools.models.switchyard1_0.camel.CamelFtpsBindingType;
 import org.switchyard.tools.models.switchyard1_0.camel.CamelImplementationType;
 import org.switchyard.tools.models.switchyard1_0.camel.CamelJmsBindingType;
+import org.switchyard.tools.models.switchyard1_0.camel.CamelMessageComposerType;
 import org.switchyard.tools.models.switchyard1_0.camel.CamelMockBindingType;
 import org.switchyard.tools.models.switchyard1_0.camel.CamelNettyTcpBindingType;
 import org.switchyard.tools.models.switchyard1_0.camel.CamelNettyUdpBindingType;
@@ -68,6 +70,8 @@ import org.switchyard.tools.models.switchyard1_0.camel.DocumentRoot;
  *   <li>{@link org.switchyard.tools.models.switchyard1_0.camel.impl.DocumentRootImpl#getBindingNettyTCP <em>Binding Netty TCP</em>}</li>
  *   <li>{@link org.switchyard.tools.models.switchyard1_0.camel.impl.DocumentRootImpl#getBindingQuartz <em>Binding Quartz</em>}</li>
  *   <li>{@link org.switchyard.tools.models.switchyard1_0.camel.impl.DocumentRootImpl#getBindingSql <em>Binding Sql</em>}</li>
+ *   <li>{@link org.switchyard.tools.models.switchyard1_0.camel.impl.DocumentRootImpl#getContextMapper <em>Context Mapper</em>}</li>
+ *   <li>{@link org.switchyard.tools.models.switchyard1_0.camel.impl.DocumentRootImpl#getMessageComposer <em>Message Composer</em>}</li>
  * </ul>
  * </p>
  *
@@ -593,6 +597,60 @@ public class DocumentRootImpl extends EObjectImpl implements DocumentRoot {
 
     /**
      * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public CamelContextMapperType getContextMapper() {
+        return (CamelContextMapperType)getMixed().get(CamelPackage.Literals.DOCUMENT_ROOT__CONTEXT_MAPPER, true);
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public NotificationChain basicSetContextMapper(CamelContextMapperType newContextMapper, NotificationChain msgs) {
+        return ((FeatureMap.Internal)getMixed()).basicAdd(CamelPackage.Literals.DOCUMENT_ROOT__CONTEXT_MAPPER, newContextMapper, msgs);
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public void setContextMapper(CamelContextMapperType newContextMapper) {
+        ((FeatureMap.Internal)getMixed()).set(CamelPackage.Literals.DOCUMENT_ROOT__CONTEXT_MAPPER, newContextMapper);
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public CamelMessageComposerType getMessageComposer() {
+        return (CamelMessageComposerType)getMixed().get(CamelPackage.Literals.DOCUMENT_ROOT__MESSAGE_COMPOSER, true);
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public NotificationChain basicSetMessageComposer(CamelMessageComposerType newMessageComposer, NotificationChain msgs) {
+        return ((FeatureMap.Internal)getMixed()).basicAdd(CamelPackage.Literals.DOCUMENT_ROOT__MESSAGE_COMPOSER, newMessageComposer, msgs);
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public void setMessageComposer(CamelMessageComposerType newMessageComposer) {
+        ((FeatureMap.Internal)getMixed()).set(CamelPackage.Literals.DOCUMENT_ROOT__MESSAGE_COMPOSER, newMessageComposer);
+    }
+
+    /**
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
      * @generated
      */
@@ -637,6 +695,10 @@ public class DocumentRootImpl extends EObjectImpl implements DocumentRoot {
                 return basicSetBindingQuartz(null, msgs);
             case CamelPackage.DOCUMENT_ROOT__BINDING_SQL:
                 return basicSetBindingSql(null, msgs);
+            case CamelPackage.DOCUMENT_ROOT__CONTEXT_MAPPER:
+                return basicSetContextMapper(null, msgs);
+            case CamelPackage.DOCUMENT_ROOT__MESSAGE_COMPOSER:
+                return basicSetMessageComposer(null, msgs);
         }
         return super.eInverseRemove(otherEnd, featureID, msgs);
     }
@@ -690,6 +752,10 @@ public class DocumentRootImpl extends EObjectImpl implements DocumentRoot {
                 return getBindingQuartz();
             case CamelPackage.DOCUMENT_ROOT__BINDING_SQL:
                 return getBindingSql();
+            case CamelPackage.DOCUMENT_ROOT__CONTEXT_MAPPER:
+                return getContextMapper();
+            case CamelPackage.DOCUMENT_ROOT__MESSAGE_COMPOSER:
+                return getMessageComposer();
         }
         return super.eGet(featureID, resolve, coreType);
     }
@@ -758,6 +824,12 @@ public class DocumentRootImpl extends EObjectImpl implements DocumentRoot {
                 return;
             case CamelPackage.DOCUMENT_ROOT__BINDING_SQL:
                 setBindingSql((CamelSqlBindingType)newValue);
+                return;
+            case CamelPackage.DOCUMENT_ROOT__CONTEXT_MAPPER:
+                setContextMapper((CamelContextMapperType)newValue);
+                return;
+            case CamelPackage.DOCUMENT_ROOT__MESSAGE_COMPOSER:
+                setMessageComposer((CamelMessageComposerType)newValue);
                 return;
         }
         super.eSet(featureID, newValue);
@@ -828,6 +900,12 @@ public class DocumentRootImpl extends EObjectImpl implements DocumentRoot {
             case CamelPackage.DOCUMENT_ROOT__BINDING_SQL:
                 setBindingSql((CamelSqlBindingType)null);
                 return;
+            case CamelPackage.DOCUMENT_ROOT__CONTEXT_MAPPER:
+                setContextMapper((CamelContextMapperType)null);
+                return;
+            case CamelPackage.DOCUMENT_ROOT__MESSAGE_COMPOSER:
+                setMessageComposer((CamelMessageComposerType)null);
+                return;
         }
         super.eUnset(featureID);
     }
@@ -878,6 +956,10 @@ public class DocumentRootImpl extends EObjectImpl implements DocumentRoot {
                 return getBindingQuartz() != null;
             case CamelPackage.DOCUMENT_ROOT__BINDING_SQL:
                 return getBindingSql() != null;
+            case CamelPackage.DOCUMENT_ROOT__CONTEXT_MAPPER:
+                return getContextMapper() != null;
+            case CamelPackage.DOCUMENT_ROOT__MESSAGE_COMPOSER:
+                return getMessageComposer() != null;
         }
         return super.eIsSet(featureID);
     }

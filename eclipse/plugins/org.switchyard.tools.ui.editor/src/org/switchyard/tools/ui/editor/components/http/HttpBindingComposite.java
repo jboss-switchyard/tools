@@ -344,9 +344,9 @@ public class HttpBindingComposite extends AbstractSYBindingComposite {
     class MessageComposerOp extends ModelOperation {
         @Override
         public void run() throws Exception {
-            if (_binding != null && _binding.getHttpMessageComposer() == null) {
+            if (_binding != null && _binding.getMessageComposer() == null) {
                 HttpMessageComposerType messageComposer = (HttpMessageComposerType) createMessageComposer();
-                setFeatureValue(_binding, "httpMessageComposer", messageComposer);
+                setFeatureValue(_binding, "messageComposer", messageComposer);
             }
         }
     }
@@ -354,9 +354,9 @@ public class HttpBindingComposite extends AbstractSYBindingComposite {
     class ContextMapperOp extends ModelOperation {
         @Override
         public void run() throws Exception {
-            if (_binding != null && _binding.getHttpContextMapper() == null) {
+            if (_binding != null && _binding.getContextMapper() == null) {
                 HttpContextMapperType contextMapper = (HttpContextMapperType) createContextMapper();
-                setFeatureValue(_binding, "httpContextMapper", contextMapper);
+                setFeatureValue(_binding, "contextMapper", contextMapper);
             }
         }
     }
@@ -364,14 +364,14 @@ public class HttpBindingComposite extends AbstractSYBindingComposite {
     protected void updateMessageComposerFeature(String featureId, Object value) {
         ArrayList<ModelOperation> ops = new ArrayList<ModelOperation>();
         ops.add(new MessageComposerOp());
-        ops.add(new BasicOperation("httpMessageComposer", featureId, value));
+        ops.add(new BasicOperation("messageComposer", featureId, value));
         wrapOperation(ops);
     }
 
     protected void updateContextMapperFeature(String featureId, Object value) {
         ArrayList<ModelOperation> ops = new ArrayList<ModelOperation>();
         ops.add(new ContextMapperOp());
-        ops.add(new BasicOperation("httpContextMapper", featureId, value));
+        ops.add(new BasicOperation("contextMapper", featureId, value));
         wrapOperation(ops);
     }
 
@@ -382,21 +382,24 @@ public class HttpBindingComposite extends AbstractSYBindingComposite {
         super.setTabsBinding(switchYardBindingType);
         if (_binding != null && _binding instanceof HttpBindingType) {
             HttpBindingType binding = (HttpBindingType) _binding;
-            if (binding.getHttpContextMapper() != null && binding.getHttpContextMapper().getClass_() != null) {
-                setTextValue(getMapperClassText(), binding.getHttpContextMapper().getClass_());
+            if (binding.getContextMapper() instanceof HttpContextMapperType
+                    && ((HttpContextMapperType) binding.getContextMapper()).getClass_() != null) {
+                setTextValue(getMapperClassText(), ((HttpContextMapperType) binding.getContextMapper()).getClass_());
             } else {
                 setTextValue(getMapperClassText(), "");
             }
-            if (binding.getHttpMessageComposer() != null && binding.getHttpMessageComposer().getClass_() != null) {
-                setTextValue(getComposerClassText(), binding.getHttpMessageComposer().getClass_());
+            if (binding.getMessageComposer() instanceof HttpMessageComposerType
+                    && ((HttpMessageComposerType) binding.getMessageComposer()).getClass_() != null) {
+                setTextValue(getComposerClassText(),
+                        ((HttpMessageComposerType) binding.getMessageComposer()).getClass_());
             } else {
                 setTextValue(getComposerClassText(), "");
             }
-            if (binding.getHttpContextMapper() != null) {
-                setTextValue(getIncludesText(), binding.getHttpContextMapper().getIncludes());
-                setTextValue(getIncludesNSText(), binding.getHttpContextMapper().getIncludeNamespaces());
-                setTextValue(getExcludesText(), binding.getHttpContextMapper().getExcludes());
-                setTextValue(getExcludesNSText(), binding.getHttpContextMapper().getExcludeNamespaces());
+            if (binding.getContextMapper() != null) {
+                setTextValue(getIncludesText(), binding.getContextMapper().getIncludes());
+                setTextValue(getIncludesNSText(), binding.getContextMapper().getIncludeNamespaces());
+                setTextValue(getExcludesText(), binding.getContextMapper().getExcludes());
+                setTextValue(getExcludesNSText(), binding.getContextMapper().getExcludeNamespaces());
             } else {
                 setTextValue(getIncludesText(), "");
                 setTextValue(getIncludesNSText(), "");

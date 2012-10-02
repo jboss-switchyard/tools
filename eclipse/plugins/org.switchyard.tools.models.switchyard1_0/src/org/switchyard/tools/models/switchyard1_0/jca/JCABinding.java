@@ -8,8 +8,6 @@ package org.switchyard.tools.models.switchyard1_0.jca;
 
 import org.eclipse.emf.common.util.EList;
 
-import org.switchyard.tools.models.switchyard1_0.switchyard.ContextMapperType;
-import org.switchyard.tools.models.switchyard1_0.switchyard.MessageComposerType;
 import org.switchyard.tools.models.switchyard1_0.switchyard.SwitchYardBindingType;
 
 /**

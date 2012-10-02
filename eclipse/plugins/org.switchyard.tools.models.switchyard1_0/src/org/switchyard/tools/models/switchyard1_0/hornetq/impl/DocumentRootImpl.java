@@ -26,6 +26,8 @@ import org.eclipse.emf.ecore.util.InternalEList;
 import org.switchyard.tools.models.switchyard1_0.hornetq.BindingType;
 import org.switchyard.tools.models.switchyard1_0.hornetq.ConfigType;
 import org.switchyard.tools.models.switchyard1_0.hornetq.DocumentRoot;
+import org.switchyard.tools.models.switchyard1_0.hornetq.HornetQContextMapperType;
+import org.switchyard.tools.models.switchyard1_0.hornetq.HornetQMessageComposerType;
 import org.switchyard.tools.models.switchyard1_0.hornetq.HornetQPackage;
 
 /**
@@ -40,6 +42,8 @@ import org.switchyard.tools.models.switchyard1_0.hornetq.HornetQPackage;
  *   <li>{@link org.switchyard.tools.models.switchyard1_0.hornetq.impl.DocumentRootImpl#getXSISchemaLocation <em>XSI Schema Location</em>}</li>
  *   <li>{@link org.switchyard.tools.models.switchyard1_0.hornetq.impl.DocumentRootImpl#getBindingHornetq <em>Binding Hornetq</em>}</li>
  *   <li>{@link org.switchyard.tools.models.switchyard1_0.hornetq.impl.DocumentRootImpl#getConfig <em>Config</em>}</li>
+ *   <li>{@link org.switchyard.tools.models.switchyard1_0.hornetq.impl.DocumentRootImpl#getContextMapper <em>Context Mapper</em>}</li>
+ *   <li>{@link org.switchyard.tools.models.switchyard1_0.hornetq.impl.DocumentRootImpl#getMessageComposer <em>Message Composer</em>}</li>
  * </ul>
  * </p>
  *
@@ -190,6 +194,60 @@ public class DocumentRootImpl extends EObjectImpl implements DocumentRoot {
      * <!-- end-user-doc -->
      * @generated
      */
+    public HornetQContextMapperType getContextMapper() {
+        return (HornetQContextMapperType)getMixed().get(HornetQPackage.Literals.DOCUMENT_ROOT__CONTEXT_MAPPER, true);
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public NotificationChain basicSetContextMapper(HornetQContextMapperType newContextMapper, NotificationChain msgs) {
+        return ((FeatureMap.Internal)getMixed()).basicAdd(HornetQPackage.Literals.DOCUMENT_ROOT__CONTEXT_MAPPER, newContextMapper, msgs);
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public void setContextMapper(HornetQContextMapperType newContextMapper) {
+        ((FeatureMap.Internal)getMixed()).set(HornetQPackage.Literals.DOCUMENT_ROOT__CONTEXT_MAPPER, newContextMapper);
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public HornetQMessageComposerType getMessageComposer() {
+        return (HornetQMessageComposerType)getMixed().get(HornetQPackage.Literals.DOCUMENT_ROOT__MESSAGE_COMPOSER, true);
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public NotificationChain basicSetMessageComposer(HornetQMessageComposerType newMessageComposer, NotificationChain msgs) {
+        return ((FeatureMap.Internal)getMixed()).basicAdd(HornetQPackage.Literals.DOCUMENT_ROOT__MESSAGE_COMPOSER, newMessageComposer, msgs);
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public void setMessageComposer(HornetQMessageComposerType newMessageComposer) {
+        ((FeatureMap.Internal)getMixed()).set(HornetQPackage.Literals.DOCUMENT_ROOT__MESSAGE_COMPOSER, newMessageComposer);
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
     @Override
     public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
         switch (featureID) {
@@ -203,6 +261,10 @@ public class DocumentRootImpl extends EObjectImpl implements DocumentRoot {
                 return basicSetBindingHornetq(null, msgs);
             case HornetQPackage.DOCUMENT_ROOT__CONFIG:
                 return basicSetConfig(null, msgs);
+            case HornetQPackage.DOCUMENT_ROOT__CONTEXT_MAPPER:
+                return basicSetContextMapper(null, msgs);
+            case HornetQPackage.DOCUMENT_ROOT__MESSAGE_COMPOSER:
+                return basicSetMessageComposer(null, msgs);
         }
         return super.eInverseRemove(otherEnd, featureID, msgs);
     }
@@ -228,6 +290,10 @@ public class DocumentRootImpl extends EObjectImpl implements DocumentRoot {
                 return getBindingHornetq();
             case HornetQPackage.DOCUMENT_ROOT__CONFIG:
                 return getConfig();
+            case HornetQPackage.DOCUMENT_ROOT__CONTEXT_MAPPER:
+                return getContextMapper();
+            case HornetQPackage.DOCUMENT_ROOT__MESSAGE_COMPOSER:
+                return getMessageComposer();
         }
         return super.eGet(featureID, resolve, coreType);
     }
@@ -254,6 +320,12 @@ public class DocumentRootImpl extends EObjectImpl implements DocumentRoot {
                 return;
             case HornetQPackage.DOCUMENT_ROOT__CONFIG:
                 setConfig((ConfigType)newValue);
+                return;
+            case HornetQPackage.DOCUMENT_ROOT__CONTEXT_MAPPER:
+                setContextMapper((HornetQContextMapperType)newValue);
+                return;
+            case HornetQPackage.DOCUMENT_ROOT__MESSAGE_COMPOSER:
+                setMessageComposer((HornetQMessageComposerType)newValue);
                 return;
         }
         super.eSet(featureID, newValue);
@@ -282,6 +354,12 @@ public class DocumentRootImpl extends EObjectImpl implements DocumentRoot {
             case HornetQPackage.DOCUMENT_ROOT__CONFIG:
                 setConfig((ConfigType)null);
                 return;
+            case HornetQPackage.DOCUMENT_ROOT__CONTEXT_MAPPER:
+                setContextMapper((HornetQContextMapperType)null);
+                return;
+            case HornetQPackage.DOCUMENT_ROOT__MESSAGE_COMPOSER:
+                setMessageComposer((HornetQMessageComposerType)null);
+                return;
         }
         super.eUnset(featureID);
     }
@@ -304,6 +382,10 @@ public class DocumentRootImpl extends EObjectImpl implements DocumentRoot {
                 return getBindingHornetq() != null;
             case HornetQPackage.DOCUMENT_ROOT__CONFIG:
                 return getConfig() != null;
+            case HornetQPackage.DOCUMENT_ROOT__CONTEXT_MAPPER:
+                return getContextMapper() != null;
+            case HornetQPackage.DOCUMENT_ROOT__MESSAGE_COMPOSER:
+                return getMessageComposer() != null;
         }
         return super.eIsSet(featureID);
     }

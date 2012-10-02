@@ -86,8 +86,8 @@ public class InterfaceControlPropertiesSection extends GFPropertySection impleme
                         _domain.getCommandStack().execute(new RecordingCommand(_domain) {
                             @Override
                             protected void doExecute() {
-                                _service.getInterfaceGroup().clear();
-                                _service.getInterfaceGroup().set(intf.getDocumentFeature(), intf);                            }
+                                _service.setInterface(intf);
+                            }
                         });
                     }
                 }

@@ -12,7 +12,6 @@ import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.util.Switch;
 
 import org.eclipse.soa.sca.sca1_1.model.sca.CommonExtensionBase;
-import org.eclipse.soa.sca.sca1_1.model.sca.ExtendableType;
 import org.eclipse.soa.sca.sca1_1.model.sca.Implementation;
 import org.switchyard.tools.models.switchyard1_0.commonrules.AuditType1;
 import org.switchyard.tools.models.switchyard1_0.commonrules.CommonImplementationType;
@@ -131,7 +130,6 @@ public class RulesSwitch<T> extends Switch<T> {
                 if (result == null) result = caseCommonImplementationType(rulesImplementationType);
                 if (result == null) result = caseImplementation(rulesImplementationType);
                 if (result == null) result = caseCommonExtensionBase(rulesImplementationType);
-                if (result == null) result = caseExtendableType(rulesImplementationType);
                 if (result == null) result = defaultCase(theEObject);
                 return result;
             }
@@ -361,21 +359,6 @@ public class RulesSwitch<T> extends Switch<T> {
      * @generated
      */
     public T caseSwitchyard_ResourceType(org.switchyard.tools.models.switchyard1_0.switchyard.ResourceType object) {
-        return null;
-    }
-
-    /**
-     * Returns the result of interpreting the object as an instance of '<em>Extendable Type</em>'.
-     * <!-- begin-user-doc -->
-     * This implementation returns null;
-     * returning a non-null result will terminate the switch.
-     * <!-- end-user-doc -->
-     * @param object the target of the switch.
-     * @return the result of interpreting the object as an instance of '<em>Extendable Type</em>'.
-     * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
-     * @generated
-     */
-    public T caseExtendableType(ExtendableType object) {
         return null;
     }
 

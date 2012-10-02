@@ -66,7 +66,6 @@ import org.eclipse.ui.dialogs.SelectionDialog;
 import org.switchyard.tools.models.switchyard1_0.switchyard.ContextMapperType;
 import org.switchyard.tools.models.switchyard1_0.switchyard.MessageComposerType;
 import org.switchyard.tools.models.switchyard1_0.switchyard.SwitchYardBindingType;
-import org.switchyard.tools.models.switchyard1_0.switchyard.SwitchyardFactory;
 import org.switchyard.tools.ui.editor.diagram.shared.AbstractSwitchyardComposite;
 import org.switchyard.tools.ui.editor.diagram.shared.IBindingComposite;
 import org.switchyard.tools.ui.editor.diagram.shared.ModelOperation;
@@ -432,10 +431,7 @@ public abstract class AbstractSYBindingComposite extends AbstractSwitchyardCompo
         wrapOperation(ops);
     }
 
-    protected ContextMapperType createContextMapper() {
-        ContextMapperType contextMapper = SwitchyardFactory.eINSTANCE.createContextMapperType();
-        return contextMapper;
-    }
+    protected abstract ContextMapperType createContextMapper();
 
     class ContextMapperOp extends ModelOperation {
         @Override
@@ -516,10 +512,7 @@ public abstract class AbstractSYBindingComposite extends AbstractSwitchyardCompo
         updateMessageComposerFeature((String) control.getData(), value);
     }
 
-    protected MessageComposerType createMessageComposer() {
-        MessageComposerType messageComposer = SwitchyardFactory.eINSTANCE.createMessageComposerType();
-        return messageComposer;
-    }
+    protected abstract MessageComposerType createMessageComposer();
 
     protected void updateMessageComposerFeature(final Text control) {
         String value = control.getText().trim();

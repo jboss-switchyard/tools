@@ -17,6 +17,7 @@ import org.eclipse.emf.common.util.ResourceLocator;
 
 import org.eclipse.emf.ecore.EStructuralFeature;
 
+import org.eclipse.emf.ecore.util.FeatureMapUtil;
 import org.eclipse.emf.edit.provider.IChildCreationExtender;
 import org.eclipse.emf.edit.provider.IEditingDomainItemProvider;
 import org.eclipse.emf.edit.provider.IItemLabelProvider;
@@ -29,6 +30,7 @@ import org.eclipse.emf.edit.provider.ViewerNotification;
 
 import org.switchyard.tools.models.switchyard1_0.switchyard.SwitchyardPackage;
 import org.switchyard.tools.models.switchyard1_0.switchyard.ValidatesType;
+import org.switchyard.tools.models.switchyard1_0.validate.ValidateFactory;
 
 /**
  * This is the item provider adapter for a {@link org.switchyard.tools.models.switchyard1_0.switchyard.ValidatesType} object.
@@ -150,6 +152,20 @@ public class ValidatesTypeItemProvider
     @Override
     protected void collectNewChildDescriptors(Collection<Object> newChildDescriptors, Object object) {
         super.collectNewChildDescriptors(newChildDescriptors, object);
+
+        newChildDescriptors.add
+            (createChildParameter
+                (SwitchyardPackage.Literals.VALIDATES_TYPE__VALIDATE_GROUP,
+                 FeatureMapUtil.createEntry
+                    (SwitchyardPackage.Literals.VALIDATES_TYPE__VALIDATE,
+                     ValidateFactory.eINSTANCE.createJavaValidateType())));
+
+        newChildDescriptors.add
+            (createChildParameter
+                (SwitchyardPackage.Literals.VALIDATES_TYPE__VALIDATE_GROUP,
+                 FeatureMapUtil.createEntry
+                    (SwitchyardPackage.Literals.VALIDATES_TYPE__VALIDATE,
+                     ValidateFactory.eINSTANCE.createXmlValidateType())));
     }
 
     /**

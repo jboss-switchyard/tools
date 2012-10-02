@@ -12,6 +12,8 @@
  ******************************************************************************/
 package org.switchyard.tools.ui.editor.diagram.service;
 
+import java.util.Collection;
+
 import org.eclipse.graphiti.features.IFeatureProvider;
 import org.eclipse.graphiti.features.context.IContext;
 import org.eclipse.graphiti.features.context.ICustomContext;
@@ -27,6 +29,10 @@ import org.eclipse.soa.sca.sca1_1.model.sca.Composite;
 import org.eclipse.soa.sca.sca1_1.model.sca.Service;
 import org.eclipse.swt.widgets.Shell;
 import org.eclipse.ui.PlatformUI;
+import org.switchyard.tools.models.switchyard1_0.switchyard.SwitchYardType;
+import org.switchyard.tools.models.switchyard1_0.switchyard.SwitchyardFactory;
+import org.switchyard.tools.models.switchyard1_0.switchyard.TransformType;
+import org.switchyard.tools.models.switchyard1_0.switchyard.TransformsType;
 import org.switchyard.tools.ui.editor.ImageProvider;
 import org.switchyard.tools.ui.editor.diagram.composite.SCADiagramAddCompositeFeature;
 import org.switchyard.tools.ui.editor.model.merge.MergedModelUtil;
@@ -74,8 +80,24 @@ public class SCADiagramCustomPromoteServiceFeature extends AbstractCustomFeature
             return;
         }
 
-        Composite composite = MergedModelUtil.getSwitchYard(componentService).getComposite();
+        SwitchYardType switchYardRoot = MergedModelUtil.getSwitchYard(componentService);
+        Composite composite = switchYardRoot.getComposite();
         composite.getService().add(newService);
+        _hasDoneChanges = true;
+
+        // add in any new transformers
+        Collection<TransformType> newTransforms = wizard.getCreatedTransforms();
+        if (newTransforms != null && newTransforms.size() > 0) {
+            TransformsType transforms = switchYardRoot.getTransforms();
+            if (transforms == null) {
+                switchYardRoot.setTransforms(SwitchyardFactory.eINSTANCE.createTransformsType());
+                transforms = switchYardRoot.getTransforms();
+            }
+            Collection<TransformType> transformsList = transforms.getTransform();
+            for (TransformType newTransform : newTransforms) {
+                transformsList.add(newTransform);
+            }
+        }
 
         ContainerShape compositeShape = (ContainerShape) getFeatureProvider().getPictogramElementForBusinessObject(
                 composite);
@@ -83,8 +105,7 @@ public class SCADiagramCustomPromoteServiceFeature extends AbstractCustomFeature
         AddContext addServiceContext = SCADiagramAddCompositeFeature.createServiceAddContext(getFeatureProvider(),
                 compositeShape);
         addServiceContext.setNewObject(newService);
-        Shape serviceShape = (Shape) addGraphicalRepresentation(addServiceContext, newService);
-        _hasDoneChanges = serviceShape != null;
+        addGraphicalRepresentation(addServiceContext, newService);
     }
 
     @Override

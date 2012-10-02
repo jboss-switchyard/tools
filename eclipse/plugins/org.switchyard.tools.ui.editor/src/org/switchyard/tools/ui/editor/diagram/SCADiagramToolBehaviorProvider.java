@@ -101,7 +101,7 @@ public class SCADiagramToolBehaviorProvider extends DefaultToolBehaviorProvider 
             }
         }
         menuList.addAll(Arrays.asList(super.getContextMenu(context)));
-                return menuList.toArray(new IContextMenuEntry[menuList.size()]);
+        return menuList.toArray(new IContextMenuEntry[menuList.size()]);
     }
 
     /**
@@ -235,7 +235,7 @@ public class SCADiagramToolBehaviorProvider extends DefaultToolBehaviorProvider 
                         text = text + "\n" + soapBinding.getWsdl();
                     } else if (binding instanceof BindingType) {
                         BindingType hornetQBinding = (BindingType) binding;
-                        text = text + "\n"+ hornetQBinding.getUri();
+                        text = text + "\n" + hornetQBinding.getUri();
                     }
                     imageRenderingDecorator.setMessage(text);
                     decorators.add(imageRenderingDecorator);
@@ -251,7 +251,7 @@ public class SCADiagramToolBehaviorProvider extends DefaultToolBehaviorProvider 
                 decorators.add(imageRenderingDecorator);
             } else if (service.getPromote() != null && service.getPromote().getInterface() != null) {
                 ImageDecorator imageRenderingDecorator = LabelAdapter.getImageDecoratorForInterface(service.getPromote().getInterface());
-//                ImageDecorator imageRenderingDecorator = new ImageDecorator(ImageProvider.IMG_16_INTERFACE);
+                // ImageDecorator imageRenderingDecorator = new ImageDecorator(ImageProvider.IMG_16_INTERFACE);
                 Interface intfc = service.getPromote().getInterface();
                 String text = LabelAdapter.getLabel(intfc);
                 Location loc = getDecoratorLocationLowerLeft(pe);

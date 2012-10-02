@@ -14,7 +14,6 @@ import org.eclipse.emf.common.notify.Notification;
 
 import org.eclipse.emf.ecore.EClass;
 
-import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 
 import org.eclipse.soa.sca.sca1_1.model.sca.Implementation;
@@ -135,13 +134,6 @@ public abstract class ImplementationImpl extends CommonExtensionBaseImpl impleme
         if (eNotificationRequired())
             eNotify(new ENotificationImpl(this, Notification.SET, ScaPackage.IMPLEMENTATION__REQUIRES, oldRequires, requires));
     }
-
-	/**
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated NOT
-     */
-    public abstract EStructuralFeature getDocumentFeature();
 
     /**
      * <!-- begin-user-doc -->

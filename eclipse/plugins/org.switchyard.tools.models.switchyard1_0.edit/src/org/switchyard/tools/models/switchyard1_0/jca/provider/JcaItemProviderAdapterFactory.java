@@ -168,6 +168,52 @@ public class JcaItemProviderAdapterFactory extends JcaAdapterFactory implements 
     }
 
     /**
+     * This keeps track of the one adapter used for all {@link org.switchyard.tools.models.switchyard1_0.jca.JCAContextMapperType} instances.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    protected JCAContextMapperTypeItemProvider jcaContextMapperTypeItemProvider;
+
+    /**
+     * This creates an adapter for a {@link org.switchyard.tools.models.switchyard1_0.jca.JCAContextMapperType}.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    @Override
+    public Adapter createJCAContextMapperTypeAdapter() {
+        if (jcaContextMapperTypeItemProvider == null) {
+            jcaContextMapperTypeItemProvider = new JCAContextMapperTypeItemProvider(this);
+        }
+
+        return jcaContextMapperTypeItemProvider;
+    }
+
+    /**
+     * This keeps track of the one adapter used for all {@link org.switchyard.tools.models.switchyard1_0.jca.JCAMessageComposerType} instances.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    protected JCAMessageComposerTypeItemProvider jcaMessageComposerTypeItemProvider;
+
+    /**
+     * This creates an adapter for a {@link org.switchyard.tools.models.switchyard1_0.jca.JCAMessageComposerType}.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    @Override
+    public Adapter createJCAMessageComposerTypeAdapter() {
+        if (jcaMessageComposerTypeItemProvider == null) {
+            jcaMessageComposerTypeItemProvider = new JCAMessageComposerTypeItemProvider(this);
+        }
+
+        return jcaMessageComposerTypeItemProvider;
+    }
+
+    /**
      * This keeps track of the one adapter used for all {@link org.switchyard.tools.models.switchyard1_0.jca.InboundOperation} instances.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
@@ -558,6 +604,8 @@ public class JcaItemProviderAdapterFactory extends JcaAdapterFactory implements 
         if (propertyItemProvider != null) propertyItemProvider.dispose();
         if (resourceAdapterItemProvider != null) resourceAdapterItemProvider.dispose();
         if (documentRootItemProvider != null) documentRootItemProvider.dispose();
+        if (jcaContextMapperTypeItemProvider != null) jcaContextMapperTypeItemProvider.dispose();
+        if (jcaMessageComposerTypeItemProvider != null) jcaMessageComposerTypeItemProvider.dispose();
     }
 
 }

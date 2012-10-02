@@ -9,7 +9,6 @@ package org.switchyard.tools.models.switchyard1_0.clojure.impl;
 import org.eclipse.emf.common.notify.Notification;
 
 import org.eclipse.emf.ecore.EClass;
-import org.eclipse.emf.ecore.EStructuralFeature;
 
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 
@@ -164,11 +163,6 @@ public class ClojureImplementationTypeImpl extends ImplementationImpl implements
         result.append(script);
         result.append(')');
         return result.toString();
-    }
-
-    @Override
-    public EStructuralFeature getDocumentFeature() {
-        return ClojurePackage.eINSTANCE.getDocumentRoot_ImplementationClojure();
     }
 
 } //ClojureImplementationTypeImpl

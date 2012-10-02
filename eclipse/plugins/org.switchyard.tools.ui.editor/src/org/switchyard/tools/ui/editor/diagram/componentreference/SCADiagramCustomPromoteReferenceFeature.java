@@ -12,6 +12,8 @@
  ******************************************************************************/
 package org.switchyard.tools.ui.editor.diagram.componentreference;
 
+import java.util.Collection;
+
 import org.eclipse.graphiti.features.IFeatureProvider;
 import org.eclipse.graphiti.features.context.IContext;
 import org.eclipse.graphiti.features.context.ICustomContext;
@@ -26,12 +28,15 @@ import org.eclipse.soa.sca.sca1_1.model.sca.ComponentReference;
 import org.eclipse.soa.sca.sca1_1.model.sca.Composite;
 import org.eclipse.soa.sca.sca1_1.model.sca.Multiplicity;
 import org.eclipse.soa.sca.sca1_1.model.sca.Reference;
-import org.eclipse.soa.sca.sca1_1.model.sca.ScaPackage;
 import org.eclipse.swt.widgets.Shell;
 import org.eclipse.ui.PlatformUI;
+import org.switchyard.tools.models.switchyard1_0.switchyard.SwitchYardType;
+import org.switchyard.tools.models.switchyard1_0.switchyard.SwitchyardFactory;
+import org.switchyard.tools.models.switchyard1_0.switchyard.TransformType;
+import org.switchyard.tools.models.switchyard1_0.switchyard.TransformsType;
 import org.switchyard.tools.ui.editor.ImageProvider;
 import org.switchyard.tools.ui.editor.diagram.composite.SCADiagramAddCompositeFeature;
-import org.switchyard.tools.ui.editor.diagram.shared.BaseNewContractWizard;
+import org.switchyard.tools.ui.editor.diagram.compositereference.PromoteReferenceWizard;
 import org.switchyard.tools.ui.editor.model.merge.MergedModelUtil;
 
 /**
@@ -57,8 +62,7 @@ public class SCADiagramCustomPromoteReferenceFeature extends AbstractCustomFeatu
             if (bo instanceof ComponentReference) {
                 ComponentReference componentReference = (ComponentReference) bo;
                 Reference newReference = null;
-                BaseNewContractWizard wizard = new BaseNewContractWizard("Promote Component Reference",
-                        "Specify details for the new composite reference.", ScaPackage.eINSTANCE.getReference());
+                PromoteReferenceWizard wizard = new PromoteReferenceWizard();
                 wizard.init(componentReference);
                 Shell shell = PlatformUI.getWorkbench().getActiveWorkbenchWindow().getShell();
                 WizardDialog wizDialog = new WizardDialog(shell, wizard);
@@ -72,8 +76,23 @@ public class SCADiagramCustomPromoteReferenceFeature extends AbstractCustomFeatu
                     return;
                 }
 
-                Composite composite = MergedModelUtil.getSwitchYard(componentReference).getComposite();
+                SwitchYardType switchYardRoot = MergedModelUtil.getSwitchYard(componentReference);
+                Composite composite = switchYardRoot.getComposite();
                 composite.getReference().add(newReference);
+
+                // add in any new transformers
+                Collection<TransformType> newTransforms = wizard.getCreatedTransforms();
+                if (newTransforms != null && newTransforms.size() > 0) {
+                    TransformsType transforms = switchYardRoot.getTransforms();
+                    if (transforms == null) {
+                        switchYardRoot.setTransforms(SwitchyardFactory.eINSTANCE.createTransformsType());
+                        transforms = switchYardRoot.getTransforms();
+                    }
+                    Collection<TransformType> transformsList = transforms.getTransform();
+                    for (TransformType newTransform : newTransforms) {
+                        transformsList.add(newTransform);
+                    }
+                }
 
                 ContainerShape compositeShape = (ContainerShape) getFeatureProvider()
                         .getPictogramElementForBusinessObject(composite);

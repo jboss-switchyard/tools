@@ -27,6 +27,7 @@ import org.eclipse.graphiti.features.impl.AbstractCreateFeature;
 public class CompositeCreateFeature extends AbstractCreateFeature {
 
     private final ICreateFeature[] _delegates;
+    private boolean _hasDoneChanges;
 
     /**
      * Create a new CompositeCreateFeature.
@@ -56,6 +57,7 @@ public class CompositeCreateFeature extends AbstractCreateFeature {
 
     @Override
     public Object[] create(ICreateContext context) {
+        _hasDoneChanges = false;
         if (_delegates == null || _delegates.length == 0) {
             return new Object[0];
         }
@@ -63,6 +65,7 @@ public class CompositeCreateFeature extends AbstractCreateFeature {
         for (ICreateFeature delegate : _delegates) {
             if (delegate.canCreate(context)) {
                 Object[] objects = delegate.create(context);
+                _hasDoneChanges = _hasDoneChanges || delegate.hasDoneChanges();
                 if (objects != null) {
                     createdObjects.addAll(Arrays.asList(objects));
                 }
@@ -85,6 +88,11 @@ public class CompositeCreateFeature extends AbstractCreateFeature {
             return super.getCreateLargeImageId();
         }
         return _delegates[0].getCreateLargeImageId();
+    }
+
+    @Override
+    public boolean hasDoneChanges() {
+        return _hasDoneChanges;
     }
 
 }

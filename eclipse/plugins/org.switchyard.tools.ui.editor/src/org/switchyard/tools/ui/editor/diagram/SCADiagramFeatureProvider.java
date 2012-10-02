@@ -412,6 +412,7 @@ public class SCADiagramFeatureProvider extends DefaultFeatureProvider {
                 features.add(new SCADiagramCustomPromoteReferenceFeature(this));
             } else if (bo instanceof Composite) {
                 features.add(new AutoLayoutFeature(this));
+                features.add(new CustomAddTransformFeature(this));
             }
             // if (bo != null) {
             // features.add(new PropertiesDialogFeature(this));

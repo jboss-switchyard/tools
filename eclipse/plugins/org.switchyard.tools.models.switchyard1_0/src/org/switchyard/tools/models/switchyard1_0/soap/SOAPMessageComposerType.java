@@ -21,7 +21,7 @@ import org.switchyard.tools.models.switchyard1_0.switchyard.MessageComposerType;
  * </p>
  *
  * @see org.switchyard.tools.models.switchyard1_0.soap.SOAPPackage#getSOAPMessageComposerType()
- * @model extendedMetaData="name='MessageComposerType' kind='empty'"
+ * @model extendedMetaData="name='MessageComposerType' kind='empty' namespace='##targetNamespace'"
  * @generated
  */
 public interface SOAPMessageComposerType extends MessageComposerType {

@@ -84,6 +84,8 @@ public class DocumentRootItemProvider
         if (childrenFeatures == null) {
             super.getChildrenFeatures(object);
             childrenFeatures.add(SOAPPackage.Literals.DOCUMENT_ROOT__BINDING_SOAP);
+            childrenFeatures.add(SOAPPackage.Literals.DOCUMENT_ROOT__CONTEXT_MAPPER_SOAP);
+            childrenFeatures.add(SOAPPackage.Literals.DOCUMENT_ROOT__MESSAGE_COMPOSER_SOAP);
         }
         return childrenFeatures;
     }
@@ -136,6 +138,8 @@ public class DocumentRootItemProvider
 
         switch (notification.getFeatureID(DocumentRoot.class)) {
             case SOAPPackage.DOCUMENT_ROOT__BINDING_SOAP:
+            case SOAPPackage.DOCUMENT_ROOT__CONTEXT_MAPPER_SOAP:
+            case SOAPPackage.DOCUMENT_ROOT__MESSAGE_COMPOSER_SOAP:
                 fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), true, false));
                 return;
         }
@@ -157,6 +161,16 @@ public class DocumentRootItemProvider
             (createChildParameter
                 (SOAPPackage.Literals.DOCUMENT_ROOT__BINDING_SOAP,
                  SOAPFactory.eINSTANCE.createSOAPBindingType()));
+
+        newChildDescriptors.add
+            (createChildParameter
+                (SOAPPackage.Literals.DOCUMENT_ROOT__CONTEXT_MAPPER_SOAP,
+                 SOAPFactory.eINSTANCE.createContextMapperType()));
+
+        newChildDescriptors.add
+            (createChildParameter
+                (SOAPPackage.Literals.DOCUMENT_ROOT__MESSAGE_COMPOSER_SOAP,
+                 SOAPFactory.eINSTANCE.createSOAPMessageComposerType()));
     }
 
     /**

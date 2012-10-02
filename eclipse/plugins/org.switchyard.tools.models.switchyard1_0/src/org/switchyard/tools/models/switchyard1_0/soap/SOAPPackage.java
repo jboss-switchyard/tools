@@ -220,13 +220,31 @@ public interface SOAPPackage extends EPackage {
     int DOCUMENT_ROOT__BINDING_SOAP = 3;
 
     /**
+     * The feature id for the '<em><b>Context Mapper Soap</b></em>' containment reference.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int DOCUMENT_ROOT__CONTEXT_MAPPER_SOAP = 4;
+
+    /**
+     * The feature id for the '<em><b>Message Composer Soap</b></em>' containment reference.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int DOCUMENT_ROOT__MESSAGE_COMPOSER_SOAP = 5;
+
+    /**
      * The number of structural features of the '<em>Document Root</em>' class.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @generated
      * @ordered
      */
-    int DOCUMENT_ROOT_FEATURE_COUNT = 4;
+    int DOCUMENT_ROOT_FEATURE_COUNT = 6;
 
     /**
      * The meta object id for the '{@link org.switchyard.tools.models.switchyard1_0.soap.impl.SOAPBindingTypeImpl <em>Binding Type</em>}' class.
@@ -347,31 +365,13 @@ public interface SOAPPackage extends EPackage {
     int SOAP_BINDING_TYPE__MESSAGE_COMPOSER = SwitchyardPackage.SWITCH_YARD_BINDING_TYPE__MESSAGE_COMPOSER;
 
     /**
-     * The feature id for the '<em><b>Soap Context Mapper</b></em>' containment reference.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     * @ordered
-     */
-    int SOAP_BINDING_TYPE__SOAP_CONTEXT_MAPPER = SwitchyardPackage.SWITCH_YARD_BINDING_TYPE_FEATURE_COUNT + 0;
-
-    /**
-     * The feature id for the '<em><b>Soap Message Composer</b></em>' containment reference.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     * @ordered
-     */
-    int SOAP_BINDING_TYPE__SOAP_MESSAGE_COMPOSER = SwitchyardPackage.SWITCH_YARD_BINDING_TYPE_FEATURE_COUNT + 1;
-
-    /**
      * The feature id for the '<em><b>Wsdl</b></em>' attribute.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @generated
      * @ordered
      */
-    int SOAP_BINDING_TYPE__WSDL = SwitchyardPackage.SWITCH_YARD_BINDING_TYPE_FEATURE_COUNT + 2;
+    int SOAP_BINDING_TYPE__WSDL = SwitchyardPackage.SWITCH_YARD_BINDING_TYPE_FEATURE_COUNT + 0;
 
     /**
      * The feature id for the '<em><b>Wsdl Port</b></em>' attribute.
@@ -380,7 +380,7 @@ public interface SOAPPackage extends EPackage {
      * @generated
      * @ordered
      */
-    int SOAP_BINDING_TYPE__WSDL_PORT = SwitchyardPackage.SWITCH_YARD_BINDING_TYPE_FEATURE_COUNT + 3;
+    int SOAP_BINDING_TYPE__WSDL_PORT = SwitchyardPackage.SWITCH_YARD_BINDING_TYPE_FEATURE_COUNT + 1;
 
     /**
      * The feature id for the '<em><b>Socket Addr</b></em>' attribute.
@@ -389,7 +389,7 @@ public interface SOAPPackage extends EPackage {
      * @generated
      * @ordered
      */
-    int SOAP_BINDING_TYPE__SOCKET_ADDR = SwitchyardPackage.SWITCH_YARD_BINDING_TYPE_FEATURE_COUNT + 4;
+    int SOAP_BINDING_TYPE__SOCKET_ADDR = SwitchyardPackage.SWITCH_YARD_BINDING_TYPE_FEATURE_COUNT + 2;
 
     /**
      * The feature id for the '<em><b>Context Path</b></em>' attribute.
@@ -398,7 +398,7 @@ public interface SOAPPackage extends EPackage {
      * @generated
      * @ordered
      */
-    int SOAP_BINDING_TYPE__CONTEXT_PATH = SwitchyardPackage.SWITCH_YARD_BINDING_TYPE_FEATURE_COUNT + 5;
+    int SOAP_BINDING_TYPE__CONTEXT_PATH = SwitchyardPackage.SWITCH_YARD_BINDING_TYPE_FEATURE_COUNT + 3;
 
     /**
      * The number of structural features of the '<em>Binding Type</em>' class.
@@ -407,7 +407,7 @@ public interface SOAPPackage extends EPackage {
      * @generated
      * @ordered
      */
-    int SOAP_BINDING_TYPE_FEATURE_COUNT = SwitchyardPackage.SWITCH_YARD_BINDING_TYPE_FEATURE_COUNT + 6;
+    int SOAP_BINDING_TYPE_FEATURE_COUNT = SwitchyardPackage.SWITCH_YARD_BINDING_TYPE_FEATURE_COUNT + 4;
 
     /**
      * The meta object id for the '{@link org.switchyard.tools.models.switchyard1_0.soap.SoapHeadersType <em>Soap Headers Type</em>}' enum.
@@ -537,6 +537,28 @@ public interface SOAPPackage extends EPackage {
     EReference getDocumentRoot_BindingSoap();
 
     /**
+     * Returns the meta object for the containment reference '{@link org.switchyard.tools.models.switchyard1_0.soap.DocumentRoot#getContextMapperSoap <em>Context Mapper Soap</em>}'.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @return the meta object for the containment reference '<em>Context Mapper Soap</em>'.
+     * @see org.switchyard.tools.models.switchyard1_0.soap.DocumentRoot#getContextMapperSoap()
+     * @see #getDocumentRoot()
+     * @generated
+     */
+    EReference getDocumentRoot_ContextMapperSoap();
+
+    /**
+     * Returns the meta object for the containment reference '{@link org.switchyard.tools.models.switchyard1_0.soap.DocumentRoot#getMessageComposerSoap <em>Message Composer Soap</em>}'.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @return the meta object for the containment reference '<em>Message Composer Soap</em>'.
+     * @see org.switchyard.tools.models.switchyard1_0.soap.DocumentRoot#getMessageComposerSoap()
+     * @see #getDocumentRoot()
+     * @generated
+     */
+    EReference getDocumentRoot_MessageComposerSoap();
+
+    /**
      * Returns the meta object for class '{@link org.switchyard.tools.models.switchyard1_0.soap.SOAPBindingType <em>Binding Type</em>}'.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
@@ -545,28 +567,6 @@ public interface SOAPPackage extends EPackage {
      * @generated
      */
     EClass getSOAPBindingType();
-
-    /**
-     * Returns the meta object for the containment reference '{@link org.switchyard.tools.models.switchyard1_0.soap.SOAPBindingType#getSoapContextMapper <em>Soap Context Mapper</em>}'.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @return the meta object for the containment reference '<em>Soap Context Mapper</em>'.
-     * @see org.switchyard.tools.models.switchyard1_0.soap.SOAPBindingType#getSoapContextMapper()
-     * @see #getSOAPBindingType()
-     * @generated
-     */
-    EReference getSOAPBindingType_SoapContextMapper();
-
-    /**
-     * Returns the meta object for the containment reference '{@link org.switchyard.tools.models.switchyard1_0.soap.SOAPBindingType#getSoapMessageComposer <em>Soap Message Composer</em>}'.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @return the meta object for the containment reference '<em>Soap Message Composer</em>'.
-     * @see org.switchyard.tools.models.switchyard1_0.soap.SOAPBindingType#getSoapMessageComposer()
-     * @see #getSOAPBindingType()
-     * @generated
-     */
-    EReference getSOAPBindingType_SoapMessageComposer();
 
     /**
      * Returns the meta object for the attribute '{@link org.switchyard.tools.models.switchyard1_0.soap.SOAPBindingType#getWsdl <em>Wsdl</em>}'.
@@ -747,6 +747,22 @@ public interface SOAPPackage extends EPackage {
         EReference DOCUMENT_ROOT__BINDING_SOAP = eINSTANCE.getDocumentRoot_BindingSoap();
 
         /**
+         * The meta object literal for the '<em><b>Context Mapper Soap</b></em>' containment reference feature.
+         * <!-- begin-user-doc -->
+         * <!-- end-user-doc -->
+         * @generated
+         */
+        EReference DOCUMENT_ROOT__CONTEXT_MAPPER_SOAP = eINSTANCE.getDocumentRoot_ContextMapperSoap();
+
+        /**
+         * The meta object literal for the '<em><b>Message Composer Soap</b></em>' containment reference feature.
+         * <!-- begin-user-doc -->
+         * <!-- end-user-doc -->
+         * @generated
+         */
+        EReference DOCUMENT_ROOT__MESSAGE_COMPOSER_SOAP = eINSTANCE.getDocumentRoot_MessageComposerSoap();
+
+        /**
          * The meta object literal for the '{@link org.switchyard.tools.models.switchyard1_0.soap.impl.SOAPBindingTypeImpl <em>Binding Type</em>}' class.
          * <!-- begin-user-doc -->
          * <!-- end-user-doc -->
@@ -755,22 +771,6 @@ public interface SOAPPackage extends EPackage {
          * @generated
          */
         EClass SOAP_BINDING_TYPE = eINSTANCE.getSOAPBindingType();
-
-        /**
-         * The meta object literal for the '<em><b>Soap Context Mapper</b></em>' containment reference feature.
-         * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
-         * @generated
-         */
-        EReference SOAP_BINDING_TYPE__SOAP_CONTEXT_MAPPER = eINSTANCE.getSOAPBindingType_SoapContextMapper();
-
-        /**
-         * The meta object literal for the '<em><b>Soap Message Composer</b></em>' containment reference feature.
-         * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
-         * @generated
-         */
-        EReference SOAP_BINDING_TYPE__SOAP_MESSAGE_COMPOSER = eINSTANCE.getSOAPBindingType_SoapMessageComposer();
 
         /**
          * The meta object literal for the '<em><b>Wsdl</b></em>' attribute feature.

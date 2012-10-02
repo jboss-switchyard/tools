@@ -85,6 +85,8 @@ public class DocumentRootItemProvider
             super.getChildrenFeatures(object);
             childrenFeatures.add(HornetQPackage.Literals.DOCUMENT_ROOT__BINDING_HORNETQ);
             childrenFeatures.add(HornetQPackage.Literals.DOCUMENT_ROOT__CONFIG);
+            childrenFeatures.add(HornetQPackage.Literals.DOCUMENT_ROOT__CONTEXT_MAPPER);
+            childrenFeatures.add(HornetQPackage.Literals.DOCUMENT_ROOT__MESSAGE_COMPOSER);
         }
         return childrenFeatures;
     }
@@ -138,6 +140,8 @@ public class DocumentRootItemProvider
         switch (notification.getFeatureID(DocumentRoot.class)) {
             case HornetQPackage.DOCUMENT_ROOT__BINDING_HORNETQ:
             case HornetQPackage.DOCUMENT_ROOT__CONFIG:
+            case HornetQPackage.DOCUMENT_ROOT__CONTEXT_MAPPER:
+            case HornetQPackage.DOCUMENT_ROOT__MESSAGE_COMPOSER:
                 fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), true, false));
                 return;
         }
@@ -164,6 +168,16 @@ public class DocumentRootItemProvider
             (createChildParameter
                 (HornetQPackage.Literals.DOCUMENT_ROOT__CONFIG,
                  HornetQFactory.eINSTANCE.createConfigType()));
+
+        newChildDescriptors.add
+            (createChildParameter
+                (HornetQPackage.Literals.DOCUMENT_ROOT__CONTEXT_MAPPER,
+                 HornetQFactory.eINSTANCE.createHornetQContextMapperType()));
+
+        newChildDescriptors.add
+            (createChildParameter
+                (HornetQPackage.Literals.DOCUMENT_ROOT__MESSAGE_COMPOSER,
+                 HornetQFactory.eINSTANCE.createHornetQMessageComposerType()));
     }
 
     /**

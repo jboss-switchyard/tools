@@ -82,7 +82,7 @@ public class NewBeanComponentWizard extends NewBeanServiceWizard implements ICom
 
             _component = ScaFactory.eINSTANCE.createComponent();
             _component.setName(type.getElementName());
-            _component.getImplementationGroup().set(implementation.getDocumentFeature(), implementation);
+            _component.setImplementation(implementation);
 
             // see if there are any services on the class
             final JavaTypeScanner scanner = new JavaTypeScanner(type);

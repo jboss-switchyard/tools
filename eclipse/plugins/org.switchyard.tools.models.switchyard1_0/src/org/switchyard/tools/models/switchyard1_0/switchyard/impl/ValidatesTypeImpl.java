@@ -6,6 +6,7 @@
  */
 package org.switchyard.tools.models.switchyard1_0.switchyard.impl;
 
+import java.util.Collection;
 import org.eclipse.emf.common.notify.NotificationChain;
 
 import org.eclipse.emf.common.util.EList;
@@ -126,11 +127,16 @@ public class ValidatesTypeImpl extends EObjectImpl implements ValidatesType {
 	 * <!-- end-user-doc -->
      * @generated
      */
-	@Override
+	@SuppressWarnings("unchecked")
+    @Override
 	public void eSet(int featureID, Object newValue) {
         switch (featureID) {
             case SwitchyardPackage.VALIDATES_TYPE__VALIDATE_GROUP:
                 ((FeatureMap.Internal)getValidateGroup()).set(newValue);
+                return;
+            case SwitchyardPackage.VALIDATES_TYPE__VALIDATE:
+                getValidate().clear();
+                getValidate().addAll((Collection<? extends ValidateType>)newValue);
                 return;
         }
         super.eSet(featureID, newValue);
@@ -146,6 +152,9 @@ public class ValidatesTypeImpl extends EObjectImpl implements ValidatesType {
         switch (featureID) {
             case SwitchyardPackage.VALIDATES_TYPE__VALIDATE_GROUP:
                 getValidateGroup().clear();
+                return;
+            case SwitchyardPackage.VALIDATES_TYPE__VALIDATE:
+                getValidate().clear();
                 return;
         }
         super.eUnset(featureID);

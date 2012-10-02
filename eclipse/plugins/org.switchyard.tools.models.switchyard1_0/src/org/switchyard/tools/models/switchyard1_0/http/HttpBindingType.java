@@ -20,8 +20,6 @@ import org.switchyard.tools.models.switchyard1_0.switchyard.SwitchYardBindingTyp
  *   <li>{@link org.switchyard.tools.models.switchyard1_0.http.HttpBindingType#getAddress <em>Address</em>}</li>
  *   <li>{@link org.switchyard.tools.models.switchyard1_0.http.HttpBindingType#getMethod <em>Method</em>}</li>
  *   <li>{@link org.switchyard.tools.models.switchyard1_0.http.HttpBindingType#getContentType <em>Content Type</em>}</li>
- *   <li>{@link org.switchyard.tools.models.switchyard1_0.http.HttpBindingType#getHttpContextMapper <em>Http Context Mapper</em>}</li>
- *   <li>{@link org.switchyard.tools.models.switchyard1_0.http.HttpBindingType#getHttpMessageComposer <em>Http Message Composer</em>}</li>
  * </ul>
  * </p>
  *
@@ -133,61 +131,5 @@ public interface HttpBindingType extends SwitchYardBindingType {
      * @generated
      */
     void setContentType(String value);
-
-    /**
-     * Returns the value of the '<em><b>Http Context Mapper</b></em>' containment reference.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * <!-- begin-model-doc -->
-     * 
-     *                                 Specify the ContextMapper to be used.
-     *                             
-     * <!-- end-model-doc -->
-     * @return the value of the '<em>Http Context Mapper</em>' containment reference.
-     * @see #setHttpContextMapper(HttpContextMapperType)
-     * @see org.switchyard.tools.models.switchyard1_0.http.HttpPackage#getHttpBindingType_HttpContextMapper()
-     * @model containment="true"
-     *        extendedMetaData="kind='element' name='contextMapper' namespace='##targetNamespace'"
-     * @generated
-     */
-    HttpContextMapperType getHttpContextMapper();
-
-    /**
-     * Sets the value of the '{@link org.switchyard.tools.models.switchyard1_0.http.HttpBindingType#getHttpContextMapper <em>Http Context Mapper</em>}' containment reference.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @param value the new value of the '<em>Http Context Mapper</em>' containment reference.
-     * @see #getHttpContextMapper()
-     * @generated
-     */
-    void setHttpContextMapper(HttpContextMapperType value);
-
-    /**
-     * Returns the value of the '<em><b>Http Message Composer</b></em>' containment reference.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * <!-- begin-model-doc -->
-     * 
-     *                                 Specify the MessageComposer to be used.
-     *                             
-     * <!-- end-model-doc -->
-     * @return the value of the '<em>Http Message Composer</em>' containment reference.
-     * @see #setHttpMessageComposer(HttpMessageComposerType)
-     * @see org.switchyard.tools.models.switchyard1_0.http.HttpPackage#getHttpBindingType_HttpMessageComposer()
-     * @model containment="true" derived="true"
-     *        extendedMetaData="kind='element' name='messageComposer' namespace='##targetNamespace'"
-     * @generated
-     */
-    HttpMessageComposerType getHttpMessageComposer();
-
-    /**
-     * Sets the value of the '{@link org.switchyard.tools.models.switchyard1_0.http.HttpBindingType#getHttpMessageComposer <em>Http Message Composer</em>}' containment reference.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @param value the new value of the '<em>Http Message Composer</em>' containment reference.
-     * @see #getHttpMessageComposer()
-     * @generated
-     */
-    void setHttpMessageComposer(HttpMessageComposerType value);
 
 } // HttpBindingType

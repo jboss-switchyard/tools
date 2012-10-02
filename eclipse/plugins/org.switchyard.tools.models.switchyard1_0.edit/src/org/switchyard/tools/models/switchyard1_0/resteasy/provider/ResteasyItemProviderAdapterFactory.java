@@ -122,6 +122,52 @@ public class ResteasyItemProviderAdapterFactory extends ResteasyAdapterFactory i
     }
 
     /**
+     * This keeps track of the one adapter used for all {@link org.switchyard.tools.models.switchyard1_0.resteasy.RESTContextMapperType} instances.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    protected RESTContextMapperTypeItemProvider restContextMapperTypeItemProvider;
+
+    /**
+     * This creates an adapter for a {@link org.switchyard.tools.models.switchyard1_0.resteasy.RESTContextMapperType}.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    @Override
+    public Adapter createRESTContextMapperTypeAdapter() {
+        if (restContextMapperTypeItemProvider == null) {
+            restContextMapperTypeItemProvider = new RESTContextMapperTypeItemProvider(this);
+        }
+
+        return restContextMapperTypeItemProvider;
+    }
+
+    /**
+     * This keeps track of the one adapter used for all {@link org.switchyard.tools.models.switchyard1_0.resteasy.RESTMessageComposerType} instances.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    protected RESTMessageComposerTypeItemProvider restMessageComposerTypeItemProvider;
+
+    /**
+     * This creates an adapter for a {@link org.switchyard.tools.models.switchyard1_0.resteasy.RESTMessageComposerType}.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    @Override
+    public Adapter createRESTMessageComposerTypeAdapter() {
+        if (restMessageComposerTypeItemProvider == null) {
+            restMessageComposerTypeItemProvider = new RESTMessageComposerTypeItemProvider(this);
+        }
+
+        return restMessageComposerTypeItemProvider;
+    }
+
+    /**
      * This returns the root adapter factory that contains this factory.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
@@ -222,6 +268,8 @@ public class ResteasyItemProviderAdapterFactory extends ResteasyAdapterFactory i
     public void dispose() {
         if (restBindingTypeItemProvider != null) restBindingTypeItemProvider.dispose();
         if (documentRootItemProvider != null) documentRootItemProvider.dispose();
+        if (restContextMapperTypeItemProvider != null) restContextMapperTypeItemProvider.dispose();
+        if (restMessageComposerTypeItemProvider != null) restMessageComposerTypeItemProvider.dispose();
     }
 
 }

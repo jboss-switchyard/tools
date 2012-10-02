@@ -12,31 +12,30 @@
  ******************************************************************************/
 package org.switchyard.tools.ui.editor.diagram.connections;
 
+import java.util.Collection;
+
 import org.eclipse.emf.ecore.EObject;
-import org.eclipse.emf.ecore.util.FeatureMap;
 import org.eclipse.graphiti.features.IFeatureProvider;
 import org.eclipse.graphiti.features.context.IContext;
 import org.eclipse.graphiti.features.context.ICustomContext;
 import org.eclipse.graphiti.features.custom.AbstractCustomFeature;
 import org.eclipse.graphiti.mm.pictograms.Connection;
 import org.eclipse.graphiti.mm.pictograms.PictogramElement;
+import org.eclipse.jface.dialogs.MessageDialog;
 import org.eclipse.jface.window.Window;
 import org.eclipse.jface.wizard.WizardDialog;
+import org.eclipse.soa.sca.sca1_1.model.sca.Composite;
+import org.eclipse.soa.sca.sca1_1.model.sca.Contract;
 import org.eclipse.swt.widgets.Shell;
 import org.eclipse.ui.PlatformUI;
 import org.switchyard.tools.models.switchyard1_0.switchyard.SwitchYardType;
 import org.switchyard.tools.models.switchyard1_0.switchyard.SwitchyardFactory;
 import org.switchyard.tools.models.switchyard1_0.switchyard.TransformType;
 import org.switchyard.tools.models.switchyard1_0.switchyard.TransformsType;
-import org.switchyard.tools.models.switchyard1_0.transform.JAXBTransformType;
-import org.switchyard.tools.models.switchyard1_0.transform.JavaTransformType1;
-import org.switchyard.tools.models.switchyard1_0.transform.JsonTransformType;
-import org.switchyard.tools.models.switchyard1_0.transform.SmooksTransformType1;
-import org.switchyard.tools.models.switchyard1_0.transform.TransformPackage;
-import org.switchyard.tools.models.switchyard1_0.transform.XsltTransformType;
 import org.switchyard.tools.ui.editor.ImageProvider;
 import org.switchyard.tools.ui.editor.model.merge.MergedModelUtil;
-import org.switchyard.tools.ui.editor.transform.wizards.AddTransformWizard;
+import org.switchyard.tools.ui.editor.transform.NewTransformWizard;
+import org.switchyard.tools.ui.editor.transform.TransformDetails;
 
 /**
  * @author bfitzpat
@@ -55,46 +54,62 @@ public class CustomAddTransformFeature extends AbstractCustomFeature {
 
     @Override
     public void execute(ICustomContext context) {
+        _hasDoneChanges = false;
         PictogramElement[] pes = context.getPictogramElements();
-        if (pes != null && pes.length == 1) {
-            if (pes[0] instanceof Connection) {
-                Connection connection = (Connection) pes[0];
-                Object startbo = getBusinessObjectForPictogramElement(connection.getStart().getParent());
-                Object endbo = getBusinessObjectForPictogramElement(connection.getEnd().getParent());
-                if (startbo != null && endbo != null) {
-                    AddTransformWizard wizard = new AddTransformWizard();
-                    wizard.initializeFromAndTo((EObject)startbo, (EObject)endbo);
-                    Shell shell = PlatformUI.getWorkbench().getActiveWorkbenchWindow().getShell();
-                    WizardDialog wizDialog = new WizardDialog(shell, wizard);
-                    int rtn_code = wizDialog.open();
-                    if (rtn_code == Window.OK) {
-                        TransformType transform = wizard.getTransform();
-                        SwitchYardType switchYardRoot = MergedModelUtil.getSwitchYard((EObject) startbo);
-                        TransformsType transforms = switchYardRoot.getTransforms();
-                        if (transforms == null) {
-                            switchYardRoot.setTransforms(SwitchyardFactory.eINSTANCE.createTransformsType());
-                            transforms = switchYardRoot.getTransforms();
-                        }
-                        FeatureMap transformGroup = transforms.getTransformGroup();
-                        if (transform instanceof JAXBTransformType) {
-                            transformGroup.add(TransformPackage.eINSTANCE.getDocumentRoot_TransformJaxb(), transform);
-                        } else if (transform instanceof XsltTransformType) {
-                            transformGroup.add(TransformPackage.eINSTANCE.getDocumentRoot_TransformXslt(), transform);
-                        } else if (transform instanceof SmooksTransformType1) {
-                            transformGroup.add(TransformPackage.eINSTANCE.getDocumentRoot_TransformSmooks(), transform);
-                        } else if (transform instanceof JsonTransformType) {
-                            transformGroup.add(TransformPackage.eINSTANCE.getDocumentRoot_TransformJson(), transform);
-                        } else if (transform instanceof JavaTransformType1) {
-                            transformGroup.add(TransformPackage.eINSTANCE.getDocumentRoot_TransformJava(), transform);
-                        }
-                        _hasDoneChanges = true;
-                    } else {
-                        _hasDoneChanges = false;
-                        return;
-                    }
-                }
-            }
+        if (pes == null || pes.length != 1) {
+            return;
         }
+        final Shell shell = PlatformUI.getWorkbench().getActiveWorkbenchWindow().getShell();
+        final SwitchYardType switchYardRoot;
+        final TransformDetails details;
+        try {
+            if (pes[0] instanceof Connection) {
+                final Connection connection = (Connection) pes[0];
+                final Object startbo = getBusinessObjectForPictogramElement(connection.getStart().getParent());
+                final Object endbo = getBusinessObjectForPictogramElement(connection.getEnd().getParent());
+                if (!(startbo instanceof Contract && endbo instanceof Contract)) {
+                    return;
+                }
+                switchYardRoot = MergedModelUtil.getSwitchYard((EObject) startbo);
+                details = new TransformDetails(switchYardRoot, (Contract) startbo, (Contract) endbo);
+            } else {
+                final Object bo = getBusinessObjectForPictogramElement(pes[0]);
+                if (!(bo instanceof EObject)) {
+                    return;
+                }
+                switchYardRoot = MergedModelUtil.getSwitchYard((EObject) bo);
+                details = new TransformDetails(switchYardRoot);
+            }
+        } catch (Exception e) {
+            MessageDialog.openError(shell, "Error Resolving Transformers", "Could not resolve required transformers.\n"
+                    + e.getMessage());
+            return;
+        }
+        if (details.getDeclaredTransforms().containsAll(details.getRequiredTransforms())) {
+            MessageDialog.openInformation(shell, "No New Transformers Required",
+                    "All required transformers have been created.");
+            return;
+        }
+        final NewTransformWizard wizard = new NewTransformWizard();
+        wizard.init(details);
+        WizardDialog dialog = new WizardDialog(shell, wizard);
+        if (dialog.open() != Window.OK) {
+            return;
+        }
+        Collection<TransformType> newTransforms = wizard.getCreatedTransforms();
+        if (newTransforms == null || newTransforms.isEmpty()) {
+            return;
+        }
+        TransformsType transforms = switchYardRoot.getTransforms();
+        if (transforms == null) {
+            switchYardRoot.setTransforms(SwitchyardFactory.eINSTANCE.createTransformsType());
+            transforms = switchYardRoot.getTransforms();
+        }
+        Collection<TransformType> transformsList = transforms.getTransform();
+        for (TransformType newTransform : newTransforms) {
+            transformsList.add(newTransform);
+        }
+        _hasDoneChanges = true;
     }
 
     @Override
@@ -106,7 +121,7 @@ public class CustomAddTransformFeature extends AbstractCustomFeature {
     public boolean canExecute(ICustomContext context) {
         PictogramElement[] pes = context.getPictogramElements();
         if (pes != null && pes.length == 1) {
-            return pes[0] instanceof Connection;
+            return pes[0] instanceof Connection || getBusinessObjectForPictogramElement(pes[0]) instanceof Composite;
         }
 
         return false;
@@ -114,7 +129,7 @@ public class CustomAddTransformFeature extends AbstractCustomFeature {
 
     @Override
     public String getName() {
-        return "Add Transformer";
+        return "Create Required Transformers";
     }
 
     @Override

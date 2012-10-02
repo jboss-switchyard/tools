@@ -58,7 +58,7 @@ public class ComponentWithImplementationFactory extends BaseComponentFactory {
 
         component.setName(getComponentName(implementation, container));
 
-        component.getImplementationGroup().set(implementation.getDocumentFeature(), implementation);
+        component.setImplementation(implementation);
 
         // add any new services
         final ComponentService service = _delegate.getImplementedService();

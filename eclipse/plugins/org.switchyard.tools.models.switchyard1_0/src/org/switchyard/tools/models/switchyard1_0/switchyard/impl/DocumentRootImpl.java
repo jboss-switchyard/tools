@@ -21,11 +21,13 @@ import org.eclipse.emf.ecore.util.FeatureMap;
 import org.eclipse.emf.ecore.util.InternalEList;
 import org.switchyard.tools.models.switchyard1_0.switchyard.ArtifactType;
 import org.switchyard.tools.models.switchyard1_0.switchyard.ArtifactsType;
+import org.switchyard.tools.models.switchyard1_0.switchyard.ContextMapperType;
 import org.switchyard.tools.models.switchyard1_0.switchyard.DocumentRoot;
 import org.switchyard.tools.models.switchyard1_0.switchyard.DomainType;
 import org.switchyard.tools.models.switchyard1_0.switchyard.EsbInterface;
 import org.switchyard.tools.models.switchyard1_0.switchyard.HandlerType;
 import org.switchyard.tools.models.switchyard1_0.switchyard.HandlersType;
+import org.switchyard.tools.models.switchyard1_0.switchyard.MessageComposerType;
 import org.switchyard.tools.models.switchyard1_0.switchyard.PropertiesType;
 import org.switchyard.tools.models.switchyard1_0.switchyard.PropertyType;
 import org.switchyard.tools.models.switchyard1_0.switchyard.ResourceType;
@@ -64,6 +66,8 @@ import org.switchyard.tools.models.switchyard1_0.switchyard.ValidatesType;
  *   <li>{@link org.switchyard.tools.models.switchyard1_0.switchyard.impl.DocumentRootImpl#getValidate <em>Validate</em>}</li>
  *   <li>{@link org.switchyard.tools.models.switchyard1_0.switchyard.impl.DocumentRootImpl#getValidates <em>Validates</em>}</li>
  *   <li>{@link org.switchyard.tools.models.switchyard1_0.switchyard.impl.DocumentRootImpl#getOperationSelectorSwitchyard <em>Operation Selector Switchyard</em>}</li>
+ *   <li>{@link org.switchyard.tools.models.switchyard1_0.switchyard.impl.DocumentRootImpl#getContextMapper <em>Context Mapper</em>}</li>
+ *   <li>{@link org.switchyard.tools.models.switchyard1_0.switchyard.impl.DocumentRootImpl#getMessageComposer <em>Message Composer</em>}</li>
  * </ul>
  * </p>
  *
@@ -569,6 +573,60 @@ public class DocumentRootImpl extends EObjectImpl implements DocumentRoot {
 
     /**
      * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public ContextMapperType getContextMapper() {
+        return (ContextMapperType)getMixed().get(SwitchyardPackage.Literals.DOCUMENT_ROOT__CONTEXT_MAPPER, true);
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public NotificationChain basicSetContextMapper(ContextMapperType newContextMapper, NotificationChain msgs) {
+        return ((FeatureMap.Internal)getMixed()).basicAdd(SwitchyardPackage.Literals.DOCUMENT_ROOT__CONTEXT_MAPPER, newContextMapper, msgs);
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public void setContextMapper(ContextMapperType newContextMapper) {
+        ((FeatureMap.Internal)getMixed()).set(SwitchyardPackage.Literals.DOCUMENT_ROOT__CONTEXT_MAPPER, newContextMapper);
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public MessageComposerType getMessageComposer() {
+        return (MessageComposerType)getMixed().get(SwitchyardPackage.Literals.DOCUMENT_ROOT__MESSAGE_COMPOSER, true);
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public NotificationChain basicSetMessageComposer(MessageComposerType newMessageComposer, NotificationChain msgs) {
+        return ((FeatureMap.Internal)getMixed()).basicAdd(SwitchyardPackage.Literals.DOCUMENT_ROOT__MESSAGE_COMPOSER, newMessageComposer, msgs);
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public void setMessageComposer(MessageComposerType newMessageComposer) {
+        ((FeatureMap.Internal)getMixed()).set(SwitchyardPackage.Literals.DOCUMENT_ROOT__MESSAGE_COMPOSER, newMessageComposer);
+    }
+
+    /**
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
      * @generated
      */
@@ -613,6 +671,10 @@ public class DocumentRootImpl extends EObjectImpl implements DocumentRoot {
                 return basicSetValidates(null, msgs);
             case SwitchyardPackage.DOCUMENT_ROOT__OPERATION_SELECTOR_SWITCHYARD:
                 return basicSetOperationSelectorSwitchyard(null, msgs);
+            case SwitchyardPackage.DOCUMENT_ROOT__CONTEXT_MAPPER:
+                return basicSetContextMapper(null, msgs);
+            case SwitchyardPackage.DOCUMENT_ROOT__MESSAGE_COMPOSER:
+                return basicSetMessageComposer(null, msgs);
         }
         return super.eInverseRemove(otherEnd, featureID, msgs);
     }
@@ -666,6 +728,10 @@ public class DocumentRootImpl extends EObjectImpl implements DocumentRoot {
                 return getValidates();
             case SwitchyardPackage.DOCUMENT_ROOT__OPERATION_SELECTOR_SWITCHYARD:
                 return getOperationSelectorSwitchyard();
+            case SwitchyardPackage.DOCUMENT_ROOT__CONTEXT_MAPPER:
+                return getContextMapper();
+            case SwitchyardPackage.DOCUMENT_ROOT__MESSAGE_COMPOSER:
+                return getMessageComposer();
         }
         return super.eGet(featureID, resolve, coreType);
     }
@@ -722,6 +788,12 @@ public class DocumentRootImpl extends EObjectImpl implements DocumentRoot {
                 return;
             case SwitchyardPackage.DOCUMENT_ROOT__VALIDATES:
                 setValidates((ValidatesType)newValue);
+                return;
+            case SwitchyardPackage.DOCUMENT_ROOT__CONTEXT_MAPPER:
+                setContextMapper((ContextMapperType)newValue);
+                return;
+            case SwitchyardPackage.DOCUMENT_ROOT__MESSAGE_COMPOSER:
+                setMessageComposer((MessageComposerType)newValue);
                 return;
         }
         super.eSet(featureID, newValue);
@@ -780,6 +852,12 @@ public class DocumentRootImpl extends EObjectImpl implements DocumentRoot {
             case SwitchyardPackage.DOCUMENT_ROOT__VALIDATES:
                 setValidates((ValidatesType)null);
                 return;
+            case SwitchyardPackage.DOCUMENT_ROOT__CONTEXT_MAPPER:
+                setContextMapper((ContextMapperType)null);
+                return;
+            case SwitchyardPackage.DOCUMENT_ROOT__MESSAGE_COMPOSER:
+                setMessageComposer((MessageComposerType)null);
+                return;
         }
         super.eUnset(featureID);
     }
@@ -830,6 +908,10 @@ public class DocumentRootImpl extends EObjectImpl implements DocumentRoot {
                 return getValidates() != null;
             case SwitchyardPackage.DOCUMENT_ROOT__OPERATION_SELECTOR_SWITCHYARD:
                 return getOperationSelectorSwitchyard() != null;
+            case SwitchyardPackage.DOCUMENT_ROOT__CONTEXT_MAPPER:
+                return getContextMapper() != null;
+            case SwitchyardPackage.DOCUMENT_ROOT__MESSAGE_COMPOSER:
+                return getMessageComposer() != null;
         }
         return super.eIsSet(featureID);
     }

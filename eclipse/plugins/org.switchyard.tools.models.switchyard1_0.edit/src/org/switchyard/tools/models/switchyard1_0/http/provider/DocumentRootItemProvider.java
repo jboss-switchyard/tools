@@ -84,6 +84,8 @@ public class DocumentRootItemProvider
         if (childrenFeatures == null) {
             super.getChildrenFeatures(object);
             childrenFeatures.add(HttpPackage.Literals.DOCUMENT_ROOT__BINDING_HTTP);
+            childrenFeatures.add(HttpPackage.Literals.DOCUMENT_ROOT__CONTEXT_MAPPER);
+            childrenFeatures.add(HttpPackage.Literals.DOCUMENT_ROOT__MESSAGE_COMPOSER);
         }
         return childrenFeatures;
     }
@@ -136,6 +138,8 @@ public class DocumentRootItemProvider
 
         switch (notification.getFeatureID(DocumentRoot.class)) {
             case HttpPackage.DOCUMENT_ROOT__BINDING_HTTP:
+            case HttpPackage.DOCUMENT_ROOT__CONTEXT_MAPPER:
+            case HttpPackage.DOCUMENT_ROOT__MESSAGE_COMPOSER:
                 fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), true, false));
                 return;
         }
@@ -157,6 +161,16 @@ public class DocumentRootItemProvider
             (createChildParameter
                 (HttpPackage.Literals.DOCUMENT_ROOT__BINDING_HTTP,
                  HttpFactory.eINSTANCE.createHttpBindingType()));
+
+        newChildDescriptors.add
+            (createChildParameter
+                (HttpPackage.Literals.DOCUMENT_ROOT__CONTEXT_MAPPER,
+                 HttpFactory.eINSTANCE.createHttpContextMapperType()));
+
+        newChildDescriptors.add
+            (createChildParameter
+                (HttpPackage.Literals.DOCUMENT_ROOT__MESSAGE_COMPOSER,
+                 HttpFactory.eINSTANCE.createHttpMessageComposerType()));
     }
 
     /**

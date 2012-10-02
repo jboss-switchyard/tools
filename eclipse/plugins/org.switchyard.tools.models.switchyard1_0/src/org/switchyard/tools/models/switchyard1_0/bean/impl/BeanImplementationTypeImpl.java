@@ -9,7 +9,6 @@ package org.switchyard.tools.models.switchyard1_0.bean.impl;
 import org.eclipse.emf.common.notify.Notification;
 
 import org.eclipse.emf.ecore.EClass;
-import org.eclipse.emf.ecore.EStructuralFeature;
 
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 
@@ -164,11 +163,6 @@ public class BeanImplementationTypeImpl extends ImplementationImpl implements Be
         result.append(class_);
         result.append(')');
         return result.toString();
-    }
-
-    @Override
-    public EStructuralFeature getDocumentFeature() {
-        return BeanPackage.eINSTANCE.getDocumentRoot_ImplementationBean();
     }
 
 } //BeanImplementationTypeImpl

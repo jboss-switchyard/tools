@@ -52,6 +52,8 @@ import org.switchyard.tools.models.switchyard1_0.jca.JCAInboundInteraction;
 import org.switchyard.tools.models.switchyard1_0.jca.JcaFactory;
 import org.switchyard.tools.models.switchyard1_0.jca.Property;
 import org.switchyard.tools.models.switchyard1_0.jca.ResourceAdapter;
+import org.switchyard.tools.models.switchyard1_0.switchyard.ContextMapperType;
+import org.switchyard.tools.models.switchyard1_0.switchyard.MessageComposerType;
 import org.switchyard.tools.ui.common.ClasspathResourceSelectionDialog;
 import org.switchyard.tools.ui.editor.diagram.binding.AbstractSYBindingComposite;
 import org.switchyard.tools.ui.editor.diagram.binding.CamelBindingUtil;
@@ -451,6 +453,16 @@ public class JCABindingInboundComposite extends AbstractSYBindingComposite {
         wrapOperation(ops);
     }
 
+    @Override
+    protected ContextMapperType createContextMapper() {
+        return JcaFactory.eINSTANCE.createJCAContextMapperType();
+    }
+
+    @Override
+    protected MessageComposerType createMessageComposer() {
+        return JcaFactory.eINSTANCE.createJCAMessageComposerType();
+    }
+    
     class JCAOperationSelectorOp extends ModelOperation {
         @Override
         public void run() throws Exception {

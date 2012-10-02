@@ -65,14 +65,25 @@ public interface Contract extends CommonExtensionBase {
 	 * </p>
 	 * <!-- end-user-doc -->
      * @return the value of the '<em>Interface</em>' containment reference.
+     * @see #setInterface(Interface)
      * @see org.eclipse.soa.sca.sca1_1.model.sca.ScaPackage#getContract_Interface()
-     * @model containment="true" transient="true" changeable="false" volatile="true" derived="true"
+     * @model containment="true" transient="true" volatile="true" derived="true"
      *        extendedMetaData="kind='element' name='interface' namespace='##targetNamespace' group='interface:group'"
      * @generated
      */
 	Interface getInterface();
 
 	/**
+     * Sets the value of the '{@link org.eclipse.soa.sca.sca1_1.model.sca.Contract#getInterface <em>Interface</em>}' containment reference.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @param value the new value of the '<em>Interface</em>' containment reference.
+     * @see #getInterface()
+     * @generated
+     */
+    void setInterface(Interface value);
+
+    /**
      * Returns the value of the '<em><b>Binding Group</b></em>' attribute list.
      * The list contents are of type {@link org.eclipse.emf.ecore.util.FeatureMap.Entry}.
      * <!-- begin-user-doc -->
@@ -100,7 +111,7 @@ public interface Contract extends CommonExtensionBase {
 	 * <!-- end-user-doc -->
      * @return the value of the '<em>Binding</em>' containment reference list.
      * @see org.eclipse.soa.sca.sca1_1.model.sca.ScaPackage#getContract_Binding()
-     * @model containment="true" transient="true" changeable="false" volatile="true" derived="true"
+     * @model containment="true" transient="true" volatile="true" derived="true"
      *        extendedMetaData="kind='element' name='binding' namespace='##targetNamespace' group='binding:group'"
      * @generated
      */

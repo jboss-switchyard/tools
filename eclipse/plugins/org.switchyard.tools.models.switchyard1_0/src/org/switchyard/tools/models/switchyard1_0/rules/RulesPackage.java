@@ -796,6 +796,15 @@ public interface RulesPackage extends EPackage {
     int EVENT_LISTENER_TYPE__ANY_ATTRIBUTE = CommonRulesPackage.EVENT_LISTENER_TYPE__ANY_ATTRIBUTE;
 
     /**
+     * The feature id for the '<em><b>Class</b></em>' attribute.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int EVENT_LISTENER_TYPE__CLASS = CommonRulesPackage.EVENT_LISTENER_TYPE__CLASS;
+
+    /**
      * The number of structural features of the '<em>Event Listener Type</em>' class.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->

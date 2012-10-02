@@ -24,6 +24,8 @@ import org.eclipse.emf.ecore.util.FeatureMap;
  *   <li>{@link org.switchyard.tools.models.switchyard1_0.http.DocumentRoot#getXMLNSPrefixMap <em>XMLNS Prefix Map</em>}</li>
  *   <li>{@link org.switchyard.tools.models.switchyard1_0.http.DocumentRoot#getXSISchemaLocation <em>XSI Schema Location</em>}</li>
  *   <li>{@link org.switchyard.tools.models.switchyard1_0.http.DocumentRoot#getBindingHTTP <em>Binding HTTP</em>}</li>
+ *   <li>{@link org.switchyard.tools.models.switchyard1_0.http.DocumentRoot#getContextMapper <em>Context Mapper</em>}</li>
+ *   <li>{@link org.switchyard.tools.models.switchyard1_0.http.DocumentRoot#getMessageComposer <em>Message Composer</em>}</li>
  * </ul>
  * </p>
  *
@@ -111,5 +113,59 @@ public interface DocumentRoot extends EObject {
      * @generated
      */
     void setBindingHTTP(HttpBindingType value);
+
+    /**
+     * Returns the value of the '<em><b>Context Mapper</b></em>' containment reference.
+     * <!-- begin-user-doc -->
+     * <p>
+     * If the meaning of the '<em>Context Mapper</em>' containment reference isn't clear,
+     * there really should be more of a description here...
+     * </p>
+     * <!-- end-user-doc -->
+     * @return the value of the '<em>Context Mapper</em>' containment reference.
+     * @see #setContextMapper(HttpContextMapperType)
+     * @see org.switchyard.tools.models.switchyard1_0.http.HttpPackage#getDocumentRoot_ContextMapper()
+     * @model containment="true" upper="-2" transient="true" volatile="true" derived="true"
+     *        extendedMetaData="kind='element' name='contextMapper' namespace='##targetNamespace' affiliation='urn:switchyard-config:switchyard:1.0#contextMapper'"
+     * @generated
+     */
+    HttpContextMapperType getContextMapper();
+
+    /**
+     * Sets the value of the '{@link org.switchyard.tools.models.switchyard1_0.http.DocumentRoot#getContextMapper <em>Context Mapper</em>}' containment reference.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @param value the new value of the '<em>Context Mapper</em>' containment reference.
+     * @see #getContextMapper()
+     * @generated
+     */
+    void setContextMapper(HttpContextMapperType value);
+
+    /**
+     * Returns the value of the '<em><b>Message Composer</b></em>' containment reference.
+     * <!-- begin-user-doc -->
+     * <p>
+     * If the meaning of the '<em>Message Composer</em>' containment reference isn't clear,
+     * there really should be more of a description here...
+     * </p>
+     * <!-- end-user-doc -->
+     * @return the value of the '<em>Message Composer</em>' containment reference.
+     * @see #setMessageComposer(HttpMessageComposerType)
+     * @see org.switchyard.tools.models.switchyard1_0.http.HttpPackage#getDocumentRoot_MessageComposer()
+     * @model containment="true" upper="-2" transient="true" volatile="true" derived="true"
+     *        extendedMetaData="kind='element' name='messageComposer' namespace='##targetNamespace' affiliation='urn:switchyard-config:switchyard:1.0#messageComposer'"
+     * @generated
+     */
+    HttpMessageComposerType getMessageComposer();
+
+    /**
+     * Sets the value of the '{@link org.switchyard.tools.models.switchyard1_0.http.DocumentRoot#getMessageComposer <em>Message Composer</em>}' containment reference.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @param value the new value of the '<em>Message Composer</em>' containment reference.
+     * @see #getMessageComposer()
+     * @generated
+     */
+    void setMessageComposer(HttpMessageComposerType value);
 
 } // DocumentRoot

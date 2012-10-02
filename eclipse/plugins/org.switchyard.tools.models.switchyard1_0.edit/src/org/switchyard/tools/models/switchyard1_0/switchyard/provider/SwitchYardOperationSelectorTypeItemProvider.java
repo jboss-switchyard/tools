@@ -118,6 +118,20 @@ public class SwitchYardOperationSelectorTypeItemProvider
             (createChildParameter
                 (ScaPackage.eINSTANCE.getOperationSelectorType_Any(),
                  FeatureMapUtil.createEntry
+                    (ResteasyPackage.Literals.DOCUMENT_ROOT__CONTEXT_MAPPER,
+                     ResteasyFactory.eINSTANCE.createRESTContextMapperType())));
+
+        newChildDescriptors.add
+            (createChildParameter
+                (ScaPackage.eINSTANCE.getOperationSelectorType_Any(),
+                 FeatureMapUtil.createEntry
+                    (ResteasyPackage.Literals.DOCUMENT_ROOT__MESSAGE_COMPOSER,
+                     ResteasyFactory.eINSTANCE.createRESTMessageComposerType())));
+
+        newChildDescriptors.add
+            (createChildParameter
+                (ScaPackage.eINSTANCE.getOperationSelectorType_Any(),
+                 FeatureMapUtil.createEntry
                     (CommonselectorPackage.Literals.DOCUMENT_ROOT__STATIC_OPERATION_SELECTOR,
                      CommonselectorFactory.eINSTANCE.createStaticOperationSelectorType())));
 
@@ -148,6 +162,20 @@ public class SwitchYardOperationSelectorTypeItemProvider
                  FeatureMapUtil.createEntry
                     (HttpPackage.Literals.DOCUMENT_ROOT__BINDING_HTTP,
                      HttpFactory.eINSTANCE.createHttpBindingType())));
+
+        newChildDescriptors.add
+            (createChildParameter
+                (ScaPackage.eINSTANCE.getOperationSelectorType_Any(),
+                 FeatureMapUtil.createEntry
+                    (HttpPackage.Literals.DOCUMENT_ROOT__CONTEXT_MAPPER,
+                     HttpFactory.eINSTANCE.createHttpContextMapperType())));
+
+        newChildDescriptors.add
+            (createChildParameter
+                (ScaPackage.eINSTANCE.getOperationSelectorType_Any(),
+                 FeatureMapUtil.createEntry
+                    (HttpPackage.Literals.DOCUMENT_ROOT__MESSAGE_COMPOSER,
+                     HttpFactory.eINSTANCE.createHttpMessageComposerType())));
     }
 
 }

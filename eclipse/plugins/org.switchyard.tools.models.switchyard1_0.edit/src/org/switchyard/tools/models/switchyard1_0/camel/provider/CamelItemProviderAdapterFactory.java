@@ -421,6 +421,52 @@ public class CamelItemProviderAdapterFactory extends CamelAdapterFactory impleme
     }
 
     /**
+     * This keeps track of the one adapter used for all {@link org.switchyard.tools.models.switchyard1_0.camel.CamelContextMapperType} instances.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    protected CamelContextMapperTypeItemProvider camelContextMapperTypeItemProvider;
+
+    /**
+     * This creates an adapter for a {@link org.switchyard.tools.models.switchyard1_0.camel.CamelContextMapperType}.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    @Override
+    public Adapter createCamelContextMapperTypeAdapter() {
+        if (camelContextMapperTypeItemProvider == null) {
+            camelContextMapperTypeItemProvider = new CamelContextMapperTypeItemProvider(this);
+        }
+
+        return camelContextMapperTypeItemProvider;
+    }
+
+    /**
+     * This keeps track of the one adapter used for all {@link org.switchyard.tools.models.switchyard1_0.camel.CamelMessageComposerType} instances.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    protected CamelMessageComposerTypeItemProvider camelMessageComposerTypeItemProvider;
+
+    /**
+     * This creates an adapter for a {@link org.switchyard.tools.models.switchyard1_0.camel.CamelMessageComposerType}.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    @Override
+    public Adapter createCamelMessageComposerTypeAdapter() {
+        if (camelMessageComposerTypeItemProvider == null) {
+            camelMessageComposerTypeItemProvider = new CamelMessageComposerTypeItemProvider(this);
+        }
+
+        return camelMessageComposerTypeItemProvider;
+    }
+
+    /**
      * This keeps track of the one adapter used for all {@link org.switchyard.tools.models.switchyard1_0.camel.FileConsumerType} instances.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
@@ -822,6 +868,8 @@ public class CamelItemProviderAdapterFactory extends CamelAdapterFactory impleme
         if (genericFileConsumerTypeItemProvider != null) genericFileConsumerTypeItemProvider.dispose();
         if (genericFileProducerTypeItemProvider != null) genericFileProducerTypeItemProvider.dispose();
         if (documentRootItemProvider != null) documentRootItemProvider.dispose();
+        if (camelContextMapperTypeItemProvider != null) camelContextMapperTypeItemProvider.dispose();
+        if (camelMessageComposerTypeItemProvider != null) camelMessageComposerTypeItemProvider.dispose();
     }
 
 }

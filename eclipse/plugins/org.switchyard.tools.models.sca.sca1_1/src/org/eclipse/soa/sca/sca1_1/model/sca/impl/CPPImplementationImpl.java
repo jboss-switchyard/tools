@@ -14,7 +14,6 @@ import org.eclipse.emf.common.notify.NotificationChain;
 import org.eclipse.emf.common.util.EList;
 
 import org.eclipse.emf.ecore.EClass;
-import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.ecore.InternalEObject;
 
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
@@ -780,11 +779,6 @@ public class CPPImplementationImpl extends ImplementationImpl implements CPPImpl
         result.append(anyAttribute1);
         result.append(')');
         return result.toString();
-    }
-
-    @Override
-    public EStructuralFeature getDocumentFeature() {
-        return ScaPackage.eINSTANCE.getDocumentRoot_ImplementationCpp();
     }
 
 } //CPPImplementationImpl

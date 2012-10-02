@@ -27,8 +27,11 @@ import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.compare.diff.merge.service.MergeService;
 import org.eclipse.emf.compare.diff.metamodel.DiffElement;
 import org.eclipse.emf.compare.diff.metamodel.DiffModel;
-import org.eclipse.emf.compare.diff.metamodel.ReferenceOrderChange;
+import org.eclipse.emf.compare.diff.metamodel.ModelElementChangeLeftTarget;
+import org.eclipse.emf.compare.diff.metamodel.ModelElementChangeRightTarget;
+import org.eclipse.emf.compare.diff.metamodel.ReferenceChange;
 import org.eclipse.emf.compare.diff.metamodel.UpdateModelElement;
+import org.eclipse.emf.compare.diff.metamodel.util.DiffSwitch;
 import org.eclipse.emf.compare.diff.service.DiffService;
 import org.eclipse.emf.compare.match.metamodel.Match2Elements;
 import org.eclipse.emf.compare.match.metamodel.MatchFactory;
@@ -45,6 +48,7 @@ import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
 import org.eclipse.emf.ecore.util.EcoreUtil.CrossReferencer;
 import org.eclipse.emf.ecore.util.EcoreUtil.UnresolvedProxyCrossReferencer;
+import org.eclipse.emf.ecore.util.ExtendedMetaData;
 import org.eclipse.emf.edit.domain.AdapterFactoryEditingDomain;
 import org.eclipse.emf.edit.domain.EditingDomain;
 import org.eclipse.emf.transaction.impl.InternalTransaction;
@@ -52,6 +56,7 @@ import org.eclipse.emf.transaction.impl.TransactionalEditingDomainImpl;
 import org.eclipse.soa.sca.sca1_1.model.sca.Component;
 import org.eclipse.soa.sca.sca1_1.model.sca.Composite;
 import org.eclipse.soa.sca.sca1_1.model.sca.Contract;
+import org.eclipse.soa.sca.sca1_1.model.sca.ScaPackage;
 import org.switchyard.tools.models.switchyard1_0.switchyard.ArtifactsType;
 import org.switchyard.tools.models.switchyard1_0.switchyard.DocumentRoot;
 import org.switchyard.tools.models.switchyard1_0.switchyard.DomainType;
@@ -77,6 +82,7 @@ public class MergedModelAdapterFactory extends AdapterFactoryImpl {
     private MatchCrossReferencer _crossReferencedMatches;
     private DiffModel _differences;
     private Map<AbstractMergedModelAdapter, Map<EStructuralFeature, Object>> _cache = new HashMap<AbstractMergedModelAdapter, Map<EStructuralFeature, Object>>();
+    private MergedModelUpdateAdapter _mergedModelUpdater;
 
     /**
      * Create a new MergedModelAdapterFactory.
@@ -99,6 +105,10 @@ public class MergedModelAdapterFactory extends AdapterFactoryImpl {
             }
         }
         calculateDifferences();
+        _mergedModelUpdater = new MergedModelUpdateAdapter(this);
+        if (_switchYard != null) {
+            _mergedModelUpdater.setTarget(source);
+        }
     }
 
     /**
@@ -154,8 +164,10 @@ public class MergedModelAdapterFactory extends AdapterFactoryImpl {
                         }
                     }
                     calculateDifferences();
+                    final DiagramAffectedDiffSwitch affectedSwitch = new DiagramAffectedDiffSwitch();
                     for (DiffElement element : diffs) {
-                        if (!(element instanceof UpdateModelElement || element instanceof ReferenceOrderChange)) {
+                        final Boolean affected = affectedSwitch.doSwitch(element);
+                        if (affected != null && affected) {
                             // if it's just ordering, we don't care
                             return true;
                         }
@@ -429,4 +441,39 @@ public class MergedModelAdapterFactory extends AdapterFactoryImpl {
         }
     }
 
+    private static final class DiagramAffectedDiffSwitch extends DiffSwitch<Boolean> {
+
+        @Override
+        public Boolean caseReferenceChange(ReferenceChange object) {
+            final EStructuralFeature affiliate = ExtendedMetaData.INSTANCE.getAffiliation(
+                    object.getLeftElement() == null ? object.getRightElement().eClass() : object.getLeftElement()
+                            .eClass(), object.getReference());
+            return affiliate == ScaPackage.eINSTANCE.getComposite_Component()
+                    || affiliate == ScaPackage.eINSTANCE.getComposite_Reference()
+                    || affiliate == ScaPackage.eINSTANCE.getComposite_Service()
+                    || affiliate == ScaPackage.eINSTANCE.getComponent_Reference()
+                    || affiliate == ScaPackage.eINSTANCE.getComposite_Service();
+        }
+
+        @Override
+        public Boolean caseUpdateModelElement(UpdateModelElement object) {
+            final EObject leftElement = object.getLeftElement();
+            final EObject rightElement = object.getRightElement();
+            return leftElement instanceof Component || leftElement instanceof Contract
+                    || rightElement instanceof Component || rightElement instanceof Contract;
+        }
+
+        @Override
+        public Boolean caseModelElementChangeLeftTarget(ModelElementChangeLeftTarget object) {
+            final EObject element = object.getLeftElement();
+            return element instanceof Component || element instanceof Contract;
+        }
+
+        @Override
+        public Boolean caseModelElementChangeRightTarget(ModelElementChangeRightTarget object) {
+            final EObject element = object.getRightElement();
+            return element instanceof Component || element instanceof Contract;
+        }
+
+    }
 }

@@ -58,7 +58,7 @@ public interface ValidatesType extends EObject {
 	 * <!-- end-user-doc -->
      * @return the value of the '<em>Validate</em>' containment reference list.
      * @see org.switchyard.tools.models.switchyard1_0.switchyard.SwitchyardPackage#getValidatesType_Validate()
-     * @model containment="true" transient="true" changeable="false" volatile="true" derived="true"
+     * @model containment="true" transient="true" volatile="true" derived="true"
      *        extendedMetaData="kind='element' name='validate' namespace='##targetNamespace' group='validate:group'"
      * @generated
      */

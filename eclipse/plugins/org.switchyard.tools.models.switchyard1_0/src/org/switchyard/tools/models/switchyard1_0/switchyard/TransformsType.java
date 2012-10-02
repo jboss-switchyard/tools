@@ -58,7 +58,7 @@ public interface TransformsType extends EObject {
 	 * <!-- end-user-doc -->
      * @return the value of the '<em>Transform</em>' containment reference list.
      * @see org.switchyard.tools.models.switchyard1_0.switchyard.SwitchyardPackage#getTransformsType_Transform()
-     * @model containment="true" transient="true" changeable="false" volatile="true" derived="true"
+     * @model containment="true" transient="true" volatile="true" derived="true"
      *        extendedMetaData="kind='element' name='transform' namespace='##targetNamespace' group='transform:group'"
      * @generated
      */

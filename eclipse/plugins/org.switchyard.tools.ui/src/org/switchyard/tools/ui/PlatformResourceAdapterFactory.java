@@ -52,39 +52,49 @@ public class PlatformResourceAdapterFactory implements IAdapterFactory {
 
     @Override
     public Object getAdapter(Object adaptableObject, Class adapterType) {
-        if (!adapterType.isAssignableFrom(IResource.class) && !adapterType.isAssignableFrom(IFile.class)) {
+        if (!adapterType.isAssignableFrom(IFile.class)) {
             return null;
         }
         IProject project = getContainingProject(adaptableObject);
         if (project == null) {
             return null;
         }
+        return getFileForObject(adaptableObject, project);
+    }
+
+    /**
+     * @param adaptableObject the object to be adapted to a file.
+     * @param project the containing project.
+     * @return the file, if it can be resolved.
+     */
+    public static IFile getFileForObject(Object adaptableObject, IProject project) {
         if (adaptableObject instanceof Component) {
             Implementation impl = ((Component) adaptableObject).getImplementation();
             if (impl instanceof BeanImplementationType) {
-                return SwitchYardModelUtils.getJavaType(project, ((BeanImplementationType) impl).getClass_());
+                return (IFile) SwitchYardModelUtils.getJavaType(project, ((BeanImplementationType) impl).getClass_());
             } else if (impl instanceof BPELImplementation) {
                 // TODO: figure this out
                 // return SwitchYardModelUtils.getJavaResource(project,
                 // ((BPELImplementation) impl).getProcess());
                 return null;
             } else if (impl instanceof BPMImplementationType) {
-                return SwitchYardModelUtils.getJavaResource(project,
+                return (IFile) SwitchYardModelUtils.getJavaResource(project,
                         ((BPMImplementationType) impl).getProcessDefinition());
             } else if (impl instanceof RulesImplementationType) {
                 for (ResourceType resource : ((RulesImplementationType) impl).getResource()) {
-                    return SwitchYardModelUtils.getJavaResource(project, resource.getLocation());
+                    return (IFile) SwitchYardModelUtils.getJavaResource(project, resource.getLocation());
                 }
             } else if (impl instanceof CamelImplementationType) {
                 CamelImplementationType camelImpl = (CamelImplementationType) impl;
                 if (camelImpl.getJava() != null) {
-                    return SwitchYardModelUtils.getJavaType(project, camelImpl.getJava().getClass_());
+                    return (IFile) SwitchYardModelUtils.getJavaType(project, camelImpl.getJava().getClass_());
                 } else if (camelImpl.getXml() != null) {
-                    return SwitchYardModelUtils.getJavaResource(project, camelImpl.getXml().getPath());
+                    return (IFile) SwitchYardModelUtils.getJavaResource(project, camelImpl.getXml().getPath());
                 }
                 return null;
             } else if (impl instanceof ClojureImplementationType) {
-                return SwitchYardModelUtils.getJavaResource(project, ((ClojureImplementationType) impl).getScript());
+                return (IFile) SwitchYardModelUtils.getJavaResource(project,
+                        ((ClojureImplementationType) impl).getScript());
             }
             return null;
         } else if (adaptableObject instanceof Service) {
@@ -96,9 +106,9 @@ public class PlatformResourceAdapterFactory implements IAdapterFactory {
                 if (service.getPromote() == null) {
                     return null;
                 }
-                return getAdapter(service.getPromote(), adapterType);
+                return getFileForObject(service.getPromote(), project);
             }
-            return getAdapter(service.getInterface(), adapterType);
+            return getFileForObject(service.getInterface(), project);
         } else if (adaptableObject instanceof Reference) {
             Reference reference = (Reference) adaptableObject;
             if (reference.getInterface() == null) {
@@ -109,27 +119,28 @@ public class PlatformResourceAdapterFactory implements IAdapterFactory {
                     if (promoted.getInterface() == null) {
                         continue;
                     }
-                    return getAdapter(promoted, adapterType);
+                    return getFileForObject(promoted, project);
                 }
                 return null;
             }
-            return getAdapter(reference.getInterface(), adapterType);
+            return getFileForObject(reference.getInterface(), project);
         } else if (adaptableObject instanceof ComponentService) {
             ComponentService service = (ComponentService) adaptableObject;
             if (service.getInterface() == null) {
                 return null;
             }
-            return getAdapter(service.getInterface(), adapterType);
+            return getFileForObject(service.getInterface(), project);
         } else if (adaptableObject instanceof ComponentReference) {
             ComponentReference reference = (ComponentReference) adaptableObject;
             if (reference.getInterface() == null) {
                 return null;
             }
-            return getAdapter(reference.getInterface(), adapterType);
+            return getFileForObject(reference.getInterface(), project);
         } else if (adaptableObject instanceof JavaInterface) {
-            return SwitchYardModelUtils.getJavaType(project, ((JavaInterface) adaptableObject).getInterface());
+            return (IFile) SwitchYardModelUtils.getJavaType(project, ((JavaInterface) adaptableObject).getInterface());
         } else if (adaptableObject instanceof WSDLPortType) {
-            return SwitchYardModelUtils.getJavaResource(project, ((WSDLPortType) adaptableObject).getInterface());
+            return (IFile) SwitchYardModelUtils.getJavaResource(project,
+                    ((WSDLPortType) adaptableObject).getInterface());
         }
         return null;
     }
@@ -152,6 +163,9 @@ public class PlatformResourceAdapterFactory implements IAdapterFactory {
             return null;
         }
         Resource objectResource = ((EObject) obj).eResource();
+        if (objectResource == null) {
+            return null;
+        }
         for (Resource resource : objectResource.getResourceSet() == null ? Collections.singleton(objectResource)
                 : objectResource.getResourceSet().getResources()) {
             URI uri = resource.getURI();

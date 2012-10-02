@@ -15,7 +15,7 @@ import org.switchyard.tools.models.switchyard1_0.switchyard.MessageComposerType;
  *
  *
  * @see org.switchyard.tools.models.switchyard1_0.http.HttpPackage#getHttpMessageComposerType()
- * @model extendedMetaData="name='MessageComposerType' kind='empty'"
+ * @model extendedMetaData="name='MessageComposerType' kind='empty' namespace='##targetNamespace'"
  * @generated
  */
 public interface HttpMessageComposerType extends MessageComposerType {

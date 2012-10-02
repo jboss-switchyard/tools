@@ -15,6 +15,7 @@ import org.eclipse.emf.common.notify.Notification;
 
 import org.eclipse.emf.common.util.ResourceLocator;
 
+import org.eclipse.emf.edit.provider.ComposeableAdapterFactory;
 import org.eclipse.emf.edit.provider.IEditingDomainItemProvider;
 import org.eclipse.emf.edit.provider.IItemLabelProvider;
 import org.eclipse.emf.edit.provider.IItemPropertyDescriptor;
@@ -22,9 +23,13 @@ import org.eclipse.emf.edit.provider.IItemPropertySource;
 import org.eclipse.emf.edit.provider.IStructuredItemContentProvider;
 import org.eclipse.emf.edit.provider.ITreeItemContentProvider;
 
+import org.eclipse.emf.edit.provider.ItemPropertyDescriptor;
+import org.eclipse.emf.edit.provider.ViewerNotification;
 import org.eclipse.soa.sca.sca1_1.model.sca.provider.CommonExtensionBaseItemProvider;
 
 import org.switchyard.tools.models.switchyard1_0.bean.provider.Switchyard_1EditPlugin;
+import org.switchyard.tools.models.switchyard1_0.commonrules.CommonRulesPackage;
+import org.switchyard.tools.models.switchyard1_0.commonrules.EventListenerType;
 
 /**
  * This is the item provider adapter for a {@link org.switchyard.tools.models.switchyard1_0.commonrules.EventListenerType} object.
@@ -61,8 +66,31 @@ public class EventListenerTypeItemProvider
         if (itemPropertyDescriptors == null) {
             super.getPropertyDescriptors(object);
 
+            addClassPropertyDescriptor(object);
         }
         return itemPropertyDescriptors;
+    }
+
+    /**
+     * This adds a property descriptor for the Class feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    protected void addClassPropertyDescriptor(Object object) {
+        itemPropertyDescriptors.add
+            (createItemPropertyDescriptor
+                (((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+                 getResourceLocator(),
+                 getString("_UI_EventListenerType_class_feature"),
+                 getString("_UI_PropertyDescriptor_description", "_UI_EventListenerType_class_feature", "_UI_EventListenerType_type"),
+                 CommonRulesPackage.Literals.EVENT_LISTENER_TYPE__CLASS,
+                 true,
+                 false,
+                 false,
+                 ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
+                 null,
+                 null));
     }
 
     /**
@@ -73,7 +101,10 @@ public class EventListenerTypeItemProvider
      */
     @Override
     public String getText(Object object) {
-        return getString("_UI_EventListenerType_type");
+        String label = ((EventListenerType)object).getClass_();
+        return label == null || label.length() == 0 ?
+            getString("_UI_EventListenerType_type") :
+            getString("_UI_EventListenerType_type") + " " + label;
     }
 
     /**
@@ -86,6 +117,12 @@ public class EventListenerTypeItemProvider
     @Override
     public void notifyChanged(Notification notification) {
         updateChildren(notification);
+
+        switch (notification.getFeatureID(EventListenerType.class)) {
+            case CommonRulesPackage.EVENT_LISTENER_TYPE__CLASS:
+                fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
+                return;
+        }
         super.notifyChanged(notification);
     }
 

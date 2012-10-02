@@ -19,29 +19,6 @@ import org.eclipse.emf.ecore.xml.type.XMLTypePackage;
 
 import org.eclipse.soa.sca.sca1_1.model.sca.ScaPackage;
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 import org.open.oasis.docs.ns.opencsa.sca.bpel.BPELPackage;
 
 import org.open.oasis.docs.ns.opencsa.sca.bpel.impl.BPELPackageImpl;
@@ -52,6 +29,7 @@ import org.switchyard.tools.models.switchyard1_0.bpm.impl.BPMPackageImpl;
 import org.switchyard.tools.models.switchyard1_0.camel.BaseCamelBinding;
 import org.switchyard.tools.models.switchyard1_0.camel.CamelAtomBindingType;
 import org.switchyard.tools.models.switchyard1_0.camel.CamelBindingType;
+import org.switchyard.tools.models.switchyard1_0.camel.CamelContextMapperType;
 import org.switchyard.tools.models.switchyard1_0.camel.CamelDirectBindingType;
 import org.switchyard.tools.models.switchyard1_0.camel.CamelFactory;
 import org.switchyard.tools.models.switchyard1_0.camel.CamelFileBindingType;
@@ -59,6 +37,7 @@ import org.switchyard.tools.models.switchyard1_0.camel.CamelFtpBindingType;
 import org.switchyard.tools.models.switchyard1_0.camel.CamelFtpsBindingType;
 import org.switchyard.tools.models.switchyard1_0.camel.CamelImplementationType;
 import org.switchyard.tools.models.switchyard1_0.camel.CamelJmsBindingType;
+import org.switchyard.tools.models.switchyard1_0.camel.CamelMessageComposerType;
 import org.switchyard.tools.models.switchyard1_0.camel.CamelMockBindingType;
 import org.switchyard.tools.models.switchyard1_0.camel.CamelNettyBindingType;
 import org.switchyard.tools.models.switchyard1_0.camel.CamelNettyTcpBindingType;
@@ -237,6 +216,20 @@ public class CamelPackageImpl extends EPackageImpl implements CamelPackage {
 	private EClass documentRootEClass = null;
 
 	/**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    private EClass camelContextMapperTypeEClass = null;
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    private EClass camelMessageComposerTypeEClass = null;
+
+    /**
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @generated
@@ -1507,6 +1500,42 @@ public class CamelPackageImpl extends EPackageImpl implements CamelPackage {
      * <!-- end-user-doc -->
      * @generated
      */
+    public EReference getDocumentRoot_ContextMapper() {
+        return (EReference)documentRootEClass.getEStructuralFeatures().get(19);
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public EReference getDocumentRoot_MessageComposer() {
+        return (EReference)documentRootEClass.getEStructuralFeatures().get(20);
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public EClass getCamelContextMapperType() {
+        return camelContextMapperTypeEClass;
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public EClass getCamelMessageComposerType() {
+        return camelMessageComposerTypeEClass;
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
     public EClass getCamelRemoteBindingType() {
         return camelRemoteBindingTypeEClass;
     }
@@ -2483,6 +2512,12 @@ public class CamelPackageImpl extends EPackageImpl implements CamelPackage {
         createEReference(documentRootEClass, DOCUMENT_ROOT__BINDING_NETTY_TCP);
         createEReference(documentRootEClass, DOCUMENT_ROOT__BINDING_QUARTZ);
         createEReference(documentRootEClass, DOCUMENT_ROOT__BINDING_SQL);
+        createEReference(documentRootEClass, DOCUMENT_ROOT__CONTEXT_MAPPER);
+        createEReference(documentRootEClass, DOCUMENT_ROOT__MESSAGE_COMPOSER);
+
+        camelContextMapperTypeEClass = createEClass(CAMEL_CONTEXT_MAPPER_TYPE);
+
+        camelMessageComposerTypeEClass = createEClass(CAMEL_MESSAGE_COMPOSER_TYPE);
 
         // Create enums
         timeUnitEEnum = createEEnum(TIME_UNIT);
@@ -2551,6 +2586,8 @@ public class CamelPackageImpl extends EPackageImpl implements CamelPackage {
         remoteFileConsumerTypeEClass.getESuperTypes().add(this.getGenericFileConsumerType());
         remoteFileProducerTypeEClass.getESuperTypes().add(this.getGenericFileProducerType());
         genericFileConsumerTypeEClass.getESuperTypes().add(this.getScheduledBatchPollConsumerType());
+        camelContextMapperTypeEClass.getESuperTypes().add(theSwitchyardPackage.getContextMapperType());
+        camelMessageComposerTypeEClass.getESuperTypes().add(theSwitchyardPackage.getMessageComposerType());
 
         // Initialize classes and features; add operations and parameters
         initEClass(baseCamelBindingEClass, BaseCamelBinding.class, "BaseCamelBinding", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
@@ -2777,6 +2814,12 @@ public class CamelPackageImpl extends EPackageImpl implements CamelPackage {
         initEReference(getDocumentRoot_BindingNettyTCP(), this.getCamelNettyTcpBindingType(), null, "bindingNettyTCP", null, 0, -2, null, IS_TRANSIENT, IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, IS_DERIVED, IS_ORDERED);
         initEReference(getDocumentRoot_BindingQuartz(), this.getCamelQuartzBindingType(), null, "bindingQuartz", null, 0, -2, null, IS_TRANSIENT, IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, IS_DERIVED, IS_ORDERED);
         initEReference(getDocumentRoot_BindingSql(), this.getCamelSqlBindingType(), null, "bindingSql", null, 0, -2, null, IS_TRANSIENT, IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, IS_DERIVED, IS_ORDERED);
+        initEReference(getDocumentRoot_ContextMapper(), this.getCamelContextMapperType(), null, "contextMapper", null, 0, -2, null, IS_TRANSIENT, IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, IS_DERIVED, IS_ORDERED);
+        initEReference(getDocumentRoot_MessageComposer(), this.getCamelMessageComposerType(), null, "messageComposer", null, 0, -2, null, IS_TRANSIENT, IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, IS_DERIVED, IS_ORDERED);
+
+        initEClass(camelContextMapperTypeEClass, CamelContextMapperType.class, "CamelContextMapperType", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+
+        initEClass(camelMessageComposerTypeEClass, CamelMessageComposerType.class, "CamelMessageComposerType", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 
         // Initialize enums and add enum literals
         initEEnum(timeUnitEEnum, TimeUnit.class, "TimeUnit");
@@ -4345,11 +4388,45 @@ public class CamelPackageImpl extends EPackageImpl implements CamelPackage {
              "affiliation", "urn:switchyard-config:switchyard:1.0#binding.switchyard"
            });		
         addAnnotation
+          (getDocumentRoot_ContextMapper(), 
+           source, 
+           new String[] {
+             "kind", "element",
+             "name", "contextMapper",
+             "namespace", "##targetNamespace",
+             "affiliation", "urn:switchyard-config:switchyard:1.0#contextMapper"
+           });		
+        addAnnotation
+          (getDocumentRoot_MessageComposer(), 
+           source, 
+           new String[] {
+             "kind", "element",
+             "name", "messageComposer",
+             "namespace", "##targetNamespace",
+             "affiliation", "urn:switchyard-config:switchyard:1.0#messageComposer"
+           });		
+        addAnnotation
           (timeUnitObjectEDataType, 
            source, 
            new String[] {
              "name", "TimeUnit:Object",
              "baseType", "TimeUnit"
+           });		
+        addAnnotation
+          (camelContextMapperTypeEClass, 
+           source, 
+           new String[] {
+             "name", "ContextMapperType",
+             "kind", "empty",
+             "namespace", "##targetNamespace"
+           });		
+        addAnnotation
+          (camelMessageComposerTypeEClass, 
+           source, 
+           new String[] {
+             "name", "MessageComposerType",
+             "kind", "empty",
+             "namespace", "##targetNamespace"
            });
     }
 

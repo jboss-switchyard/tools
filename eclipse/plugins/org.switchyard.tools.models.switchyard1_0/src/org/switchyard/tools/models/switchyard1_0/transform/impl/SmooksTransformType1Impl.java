@@ -9,7 +9,6 @@ package org.switchyard.tools.models.switchyard1_0.transform.impl;
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.ecore.EClass;
 
-
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.switchyard.tools.models.switchyard1_0.switchyard.impl.TransformTypeImpl;
 import org.switchyard.tools.models.switchyard1_0.transform.SmooksTransformType;

@@ -67,6 +67,8 @@ public class HornetQFactoryImpl extends EFactoryImpl implements HornetQFactory {
             case HornetQPackage.DOCUMENT_ROOT: return createDocumentRoot();
             case HornetQPackage.PROPERTIES_TYPE: return createPropertiesType();
             case HornetQPackage.PROPERTY_TYPE: return createPropertyType();
+            case HornetQPackage.HORNET_QCONTEXT_MAPPER_TYPE: return createHornetQContextMapperType();
+            case HornetQPackage.HORNET_QMESSAGE_COMPOSER_TYPE: return createHornetQMessageComposerType();
             default:
                 throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier");
         }
@@ -140,6 +142,26 @@ public class HornetQFactoryImpl extends EFactoryImpl implements HornetQFactory {
     public PropertyType createPropertyType() {
         PropertyTypeImpl propertyType = new PropertyTypeImpl();
         return propertyType;
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public HornetQContextMapperType createHornetQContextMapperType() {
+        HornetQContextMapperTypeImpl hornetQContextMapperType = new HornetQContextMapperTypeImpl();
+        return hornetQContextMapperType;
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public HornetQMessageComposerType createHornetQMessageComposerType() {
+        HornetQMessageComposerTypeImpl hornetQMessageComposerType = new HornetQMessageComposerTypeImpl();
+        return hornetQMessageComposerType;
     }
 
     /**

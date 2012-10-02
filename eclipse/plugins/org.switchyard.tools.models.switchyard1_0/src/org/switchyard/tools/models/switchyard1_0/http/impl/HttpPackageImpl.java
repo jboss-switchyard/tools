@@ -289,24 +289,6 @@ public class HttpPackageImpl extends EPackageImpl implements HttpPackage {
      * <!-- end-user-doc -->
      * @generated
      */
-    public EReference getHttpBindingType_HttpContextMapper() {
-        return (EReference)httpBindingTypeEClass.getEStructuralFeatures().get(4);
-    }
-
-    /**
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    public EReference getHttpBindingType_HttpMessageComposer() {
-        return (EReference)httpBindingTypeEClass.getEStructuralFeatures().get(5);
-    }
-
-    /**
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
     public EClass getHttpContextMapperType() {
         return httpContextMapperTypeEClass;
     }
@@ -370,6 +352,24 @@ public class HttpPackageImpl extends EPackageImpl implements HttpPackage {
      * <!-- end-user-doc -->
      * @generated
      */
+    public EReference getDocumentRoot_ContextMapper() {
+        return (EReference)documentRootEClass.getEStructuralFeatures().get(4);
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public EReference getDocumentRoot_MessageComposer() {
+        return (EReference)documentRootEClass.getEStructuralFeatures().get(5);
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
     public HttpFactory getHttpFactory() {
         return (HttpFactory)getEFactoryInstance();
     }
@@ -398,8 +398,6 @@ public class HttpPackageImpl extends EPackageImpl implements HttpPackage {
         createEAttribute(httpBindingTypeEClass, HTTP_BINDING_TYPE__ADDRESS);
         createEAttribute(httpBindingTypeEClass, HTTP_BINDING_TYPE__METHOD);
         createEAttribute(httpBindingTypeEClass, HTTP_BINDING_TYPE__CONTENT_TYPE);
-        createEReference(httpBindingTypeEClass, HTTP_BINDING_TYPE__HTTP_CONTEXT_MAPPER);
-        createEReference(httpBindingTypeEClass, HTTP_BINDING_TYPE__HTTP_MESSAGE_COMPOSER);
 
         httpContextMapperTypeEClass = createEClass(HTTP_CONTEXT_MAPPER_TYPE);
 
@@ -410,6 +408,8 @@ public class HttpPackageImpl extends EPackageImpl implements HttpPackage {
         createEReference(documentRootEClass, DOCUMENT_ROOT__XMLNS_PREFIX_MAP);
         createEReference(documentRootEClass, DOCUMENT_ROOT__XSI_SCHEMA_LOCATION);
         createEReference(documentRootEClass, DOCUMENT_ROOT__BINDING_HTTP);
+        createEReference(documentRootEClass, DOCUMENT_ROOT__CONTEXT_MAPPER);
+        createEReference(documentRootEClass, DOCUMENT_ROOT__MESSAGE_COMPOSER);
     }
 
     /**
@@ -453,8 +453,6 @@ public class HttpPackageImpl extends EPackageImpl implements HttpPackage {
         initEAttribute(getHttpBindingType_Address(), ecorePackage.getEString(), "address", null, 0, 1, HttpBindingType.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
         initEAttribute(getHttpBindingType_Method(), ecorePackage.getEString(), "method", null, 0, 1, HttpBindingType.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
         initEAttribute(getHttpBindingType_ContentType(), ecorePackage.getEString(), "contentType", null, 0, 1, HttpBindingType.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-        initEReference(getHttpBindingType_HttpContextMapper(), this.getHttpContextMapperType(), null, "httpContextMapper", null, 0, 1, HttpBindingType.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-        initEReference(getHttpBindingType_HttpMessageComposer(), this.getHttpMessageComposerType(), null, "httpMessageComposer", null, 0, 1, HttpBindingType.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, IS_DERIVED, IS_ORDERED);
 
         initEClass(httpContextMapperTypeEClass, HttpContextMapperType.class, "HttpContextMapperType", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 
@@ -465,6 +463,8 @@ public class HttpPackageImpl extends EPackageImpl implements HttpPackage {
         initEReference(getDocumentRoot_XMLNSPrefixMap(), ecorePackage.getEStringToStringMapEntry(), null, "xMLNSPrefixMap", null, 0, -1, null, IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
         initEReference(getDocumentRoot_XSISchemaLocation(), ecorePackage.getEStringToStringMapEntry(), null, "xSISchemaLocation", null, 0, -1, null, IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
         initEReference(getDocumentRoot_BindingHTTP(), this.getHttpBindingType(), null, "bindingHTTP", null, 0, -2, null, IS_TRANSIENT, IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, IS_DERIVED, IS_ORDERED);
+        initEReference(getDocumentRoot_ContextMapper(), this.getHttpContextMapperType(), null, "contextMapper", null, 0, -2, null, IS_TRANSIENT, IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, IS_DERIVED, IS_ORDERED);
+        initEReference(getDocumentRoot_MessageComposer(), this.getHttpMessageComposerType(), null, "messageComposer", null, 0, -2, null, IS_TRANSIENT, IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, IS_DERIVED, IS_ORDERED);
 
         // Create resource
         createResource(eNS_URI);
@@ -520,22 +520,6 @@ public class HttpPackageImpl extends EPackageImpl implements HttpPackage {
              "kind", "element",
              "name", "contentType",
              "namespace", "##targetNamespace"
-           });			
-        addAnnotation
-          (getHttpBindingType_HttpContextMapper(), 
-           source, 
-           new String[] {
-             "kind", "element",
-             "name", "contextMapper",
-             "namespace", "##targetNamespace"
-           });			
-        addAnnotation
-          (getHttpBindingType_HttpMessageComposer(), 
-           source, 
-           new String[] {
-             "kind", "element",
-             "name", "messageComposer",
-             "namespace", "##targetNamespace"
            });		
         addAnnotation
           (httpContextMapperTypeEClass, 
@@ -550,7 +534,8 @@ public class HttpPackageImpl extends EPackageImpl implements HttpPackage {
            source, 
            new String[] {
              "name", "MessageComposerType",
-             "kind", "empty"
+             "kind", "empty",
+             "namespace", "##targetNamespace"
            });		
         addAnnotation
           (documentRootEClass, 
@@ -588,6 +573,24 @@ public class HttpPackageImpl extends EPackageImpl implements HttpPackage {
              "name", "binding.http",
              "namespace", "##targetNamespace",
              "affiliation", "urn:switchyard-config:switchyard:1.0#binding.switchyard"
+           });		
+        addAnnotation
+          (getDocumentRoot_ContextMapper(), 
+           source, 
+           new String[] {
+             "kind", "element",
+             "name", "contextMapper",
+             "namespace", "##targetNamespace",
+             "affiliation", "urn:switchyard-config:switchyard:1.0#contextMapper"
+           });		
+        addAnnotation
+          (getDocumentRoot_MessageComposer(), 
+           source, 
+           new String[] {
+             "kind", "element",
+             "name", "messageComposer",
+             "namespace", "##targetNamespace",
+             "affiliation", "urn:switchyard-config:switchyard:1.0#messageComposer"
            });
     }
 

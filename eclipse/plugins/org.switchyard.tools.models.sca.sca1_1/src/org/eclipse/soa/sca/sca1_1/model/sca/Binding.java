@@ -36,7 +36,7 @@ import org.eclipse.emf.ecore.util.FeatureMap;
  *        extendedMetaData="name='Binding' kind='elementOnly'"
  * @generated
  */
-public interface Binding extends CommonExtensionBase, ExtendableType {
+public interface Binding extends CommonExtensionBase {
 	/**
      * Returns the value of the '<em><b>Wire Format Group</b></em>' attribute list.
      * The list contents are of type {@link org.eclipse.emf.ecore.util.FeatureMap.Entry}.

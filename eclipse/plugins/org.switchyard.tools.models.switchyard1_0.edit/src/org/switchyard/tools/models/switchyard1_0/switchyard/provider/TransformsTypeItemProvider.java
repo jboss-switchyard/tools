@@ -17,6 +17,7 @@ import org.eclipse.emf.common.util.ResourceLocator;
 
 import org.eclipse.emf.ecore.EStructuralFeature;
 
+import org.eclipse.emf.ecore.util.FeatureMapUtil;
 import org.eclipse.emf.edit.provider.IChildCreationExtender;
 import org.eclipse.emf.edit.provider.IEditingDomainItemProvider;
 import org.eclipse.emf.edit.provider.IItemLabelProvider;
@@ -29,6 +30,7 @@ import org.eclipse.emf.edit.provider.ViewerNotification;
 
 import org.switchyard.tools.models.switchyard1_0.switchyard.SwitchyardPackage;
 import org.switchyard.tools.models.switchyard1_0.switchyard.TransformsType;
+import org.switchyard.tools.models.switchyard1_0.transform.TransformFactory;
 
 /**
  * This is the item provider adapter for a {@link org.switchyard.tools.models.switchyard1_0.switchyard.TransformsType} object.
@@ -150,6 +152,41 @@ public class TransformsTypeItemProvider
     @Override
     protected void collectNewChildDescriptors(Collection<Object> newChildDescriptors, Object object) {
         super.collectNewChildDescriptors(newChildDescriptors, object);
+
+        newChildDescriptors.add
+            (createChildParameter
+                (SwitchyardPackage.Literals.TRANSFORMS_TYPE__TRANSFORM_GROUP,
+                 FeatureMapUtil.createEntry
+                    (SwitchyardPackage.Literals.TRANSFORMS_TYPE__TRANSFORM,
+                     TransformFactory.eINSTANCE.createJavaTransformType1())));
+
+        newChildDescriptors.add
+            (createChildParameter
+                (SwitchyardPackage.Literals.TRANSFORMS_TYPE__TRANSFORM_GROUP,
+                 FeatureMapUtil.createEntry
+                    (SwitchyardPackage.Literals.TRANSFORMS_TYPE__TRANSFORM,
+                     TransformFactory.eINSTANCE.createJAXBTransformType())));
+
+        newChildDescriptors.add
+            (createChildParameter
+                (SwitchyardPackage.Literals.TRANSFORMS_TYPE__TRANSFORM_GROUP,
+                 FeatureMapUtil.createEntry
+                    (SwitchyardPackage.Literals.TRANSFORMS_TYPE__TRANSFORM,
+                     TransformFactory.eINSTANCE.createJsonTransformType())));
+
+        newChildDescriptors.add
+            (createChildParameter
+                (SwitchyardPackage.Literals.TRANSFORMS_TYPE__TRANSFORM_GROUP,
+                 FeatureMapUtil.createEntry
+                    (SwitchyardPackage.Literals.TRANSFORMS_TYPE__TRANSFORM,
+                     TransformFactory.eINSTANCE.createSmooksTransformType1())));
+
+        newChildDescriptors.add
+            (createChildParameter
+                (SwitchyardPackage.Literals.TRANSFORMS_TYPE__TRANSFORM_GROUP,
+                 FeatureMapUtil.createEntry
+                    (SwitchyardPackage.Literals.TRANSFORMS_TYPE__TRANSFORM,
+                     TransformFactory.eINSTANCE.createXsltTransformType())));
     }
 
     /**

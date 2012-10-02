@@ -23,6 +23,7 @@ import org.eclipse.emf.edit.provider.IStructuredItemContentProvider;
 import org.eclipse.emf.edit.provider.ITreeItemContentProvider;
 
 import org.switchyard.tools.models.switchyard1_0.bean.provider.Switchyard_1EditPlugin;
+import org.switchyard.tools.models.switchyard1_0.rules.EventListenerType;
 
 /**
  * This is the item provider adapter for a {@link org.switchyard.tools.models.switchyard1_0.rules.EventListenerType} object.
@@ -82,7 +83,10 @@ public class EventListenerTypeItemProvider
      */
     @Override
     public String getText(Object object) {
-        return getString("_UI_EventListenerType_type");
+        String label = ((EventListenerType)object).getClass_();
+        return label == null || label.length() == 0 ?
+            getString("_UI_EventListenerType_type") :
+            getString("_UI_EventListenerType_type") + " " + label;
     }
 
     /**

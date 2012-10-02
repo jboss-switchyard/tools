@@ -6,10 +6,6 @@
  */
 package org.switchyard.tools.models.switchyard1_0.camel;
 
-import org.switchyard.tools.models.switchyard1_0.switchyard.ContextMapperType;
-import org.switchyard.tools.models.switchyard1_0.switchyard.MessageComposerType;
-import org.switchyard.tools.models.switchyard1_0.switchyard.SwitchYardBindingType;
-
 /**
  * <!-- begin-user-doc -->
  * A representation of the model object '<em><b>Direct Binding Type</b></em>'.

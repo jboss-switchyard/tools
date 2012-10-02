@@ -88,6 +88,8 @@ public class CamelFactoryImpl extends EFactoryImpl implements CamelFactory {
             case CamelPackage.GENERIC_FILE_CONSUMER_TYPE: return createGenericFileConsumerType();
             case CamelPackage.GENERIC_FILE_PRODUCER_TYPE: return createGenericFileProducerType();
             case CamelPackage.DOCUMENT_ROOT: return createDocumentRoot();
+            case CamelPackage.CAMEL_CONTEXT_MAPPER_TYPE: return createCamelContextMapperType();
+            case CamelPackage.CAMEL_MESSAGE_COMPOSER_TYPE: return createCamelMessageComposerType();
             default:
                 throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier");
         }
@@ -280,6 +282,26 @@ public class CamelFactoryImpl extends EFactoryImpl implements CamelFactory {
     }
 
 	/**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public CamelContextMapperType createCamelContextMapperType() {
+        CamelContextMapperTypeImpl camelContextMapperType = new CamelContextMapperTypeImpl();
+        return camelContextMapperType;
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public CamelMessageComposerType createCamelMessageComposerType() {
+        CamelMessageComposerTypeImpl camelMessageComposerType = new CamelMessageComposerTypeImpl();
+        return camelMessageComposerType;
+    }
+
+    /**
      * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
      * @generated

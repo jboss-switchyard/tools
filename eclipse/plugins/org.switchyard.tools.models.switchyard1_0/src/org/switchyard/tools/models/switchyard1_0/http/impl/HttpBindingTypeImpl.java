@@ -8,16 +8,11 @@ package org.switchyard.tools.models.switchyard1_0.http.impl;
 
 import org.eclipse.emf.common.notify.Notification;
 
-import org.eclipse.emf.common.notify.NotificationChain;
 import org.eclipse.emf.ecore.EClass;
-import org.eclipse.emf.ecore.InternalEObject;
-import org.eclipse.emf.ecore.EStructuralFeature;
 
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 
 import org.switchyard.tools.models.switchyard1_0.http.HttpBindingType;
-import org.switchyard.tools.models.switchyard1_0.http.HttpContextMapperType;
-import org.switchyard.tools.models.switchyard1_0.http.HttpMessageComposerType;
 import org.switchyard.tools.models.switchyard1_0.http.HttpPackage;
 
 import org.switchyard.tools.models.switchyard1_0.switchyard.impl.SwitchYardBindingTypeImpl;
@@ -33,8 +28,6 @@ import org.switchyard.tools.models.switchyard1_0.switchyard.impl.SwitchYardBindi
  *   <li>{@link org.switchyard.tools.models.switchyard1_0.http.impl.HttpBindingTypeImpl#getAddress <em>Address</em>}</li>
  *   <li>{@link org.switchyard.tools.models.switchyard1_0.http.impl.HttpBindingTypeImpl#getMethod <em>Method</em>}</li>
  *   <li>{@link org.switchyard.tools.models.switchyard1_0.http.impl.HttpBindingTypeImpl#getContentType <em>Content Type</em>}</li>
- *   <li>{@link org.switchyard.tools.models.switchyard1_0.http.impl.HttpBindingTypeImpl#getHttpContextMapper <em>Http Context Mapper</em>}</li>
- *   <li>{@link org.switchyard.tools.models.switchyard1_0.http.impl.HttpBindingTypeImpl#getHttpMessageComposer <em>Http Message Composer</em>}</li>
  * </ul>
  * </p>
  *
@@ -120,26 +113,6 @@ public class HttpBindingTypeImpl extends SwitchYardBindingTypeImpl implements Ht
      * @ordered
      */
     protected String contentType = CONTENT_TYPE_EDEFAULT;
-
-    /**
-     * The cached value of the '{@link #getHttpContextMapper() <em>Http Context Mapper</em>}' containment reference.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @see #getHttpContextMapper()
-     * @generated
-     * @ordered
-     */
-    protected HttpContextMapperType httpContextMapper;
-
-    /**
-     * The cached value of the '{@link #getHttpMessageComposer() <em>Http Message Composer</em>}' containment reference.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @see #getHttpMessageComposer()
-     * @generated
-     * @ordered
-     */
-    protected HttpMessageComposerType httpMessageComposer;
 
     /**
      * <!-- begin-user-doc -->
@@ -249,108 +222,6 @@ public class HttpBindingTypeImpl extends SwitchYardBindingTypeImpl implements Ht
      * <!-- end-user-doc -->
      * @generated
      */
-    public HttpContextMapperType getHttpContextMapper() {
-        return httpContextMapper;
-    }
-
-    /**
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    public NotificationChain basicSetHttpContextMapper(HttpContextMapperType newHttpContextMapper, NotificationChain msgs) {
-        HttpContextMapperType oldHttpContextMapper = httpContextMapper;
-        httpContextMapper = newHttpContextMapper;
-        if (eNotificationRequired()) {
-            ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, HttpPackage.HTTP_BINDING_TYPE__HTTP_CONTEXT_MAPPER, oldHttpContextMapper, newHttpContextMapper);
-            if (msgs == null) msgs = notification; else msgs.add(notification);
-        }
-        return msgs;
-    }
-
-    /**
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    public void setHttpContextMapper(HttpContextMapperType newHttpContextMapper) {
-        if (newHttpContextMapper != httpContextMapper) {
-            NotificationChain msgs = null;
-            if (httpContextMapper != null)
-                msgs = ((InternalEObject)httpContextMapper).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - HttpPackage.HTTP_BINDING_TYPE__HTTP_CONTEXT_MAPPER, null, msgs);
-            if (newHttpContextMapper != null)
-                msgs = ((InternalEObject)newHttpContextMapper).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - HttpPackage.HTTP_BINDING_TYPE__HTTP_CONTEXT_MAPPER, null, msgs);
-            msgs = basicSetHttpContextMapper(newHttpContextMapper, msgs);
-            if (msgs != null) msgs.dispatch();
-        }
-        else if (eNotificationRequired())
-            eNotify(new ENotificationImpl(this, Notification.SET, HttpPackage.HTTP_BINDING_TYPE__HTTP_CONTEXT_MAPPER, newHttpContextMapper, newHttpContextMapper));
-    }
-
-    /**
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    public HttpMessageComposerType getHttpMessageComposer() {
-        return httpMessageComposer;
-    }
-
-    /**
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    public NotificationChain basicSetHttpMessageComposer(HttpMessageComposerType newHttpMessageComposer, NotificationChain msgs) {
-        HttpMessageComposerType oldHttpMessageComposer = httpMessageComposer;
-        httpMessageComposer = newHttpMessageComposer;
-        if (eNotificationRequired()) {
-            ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, HttpPackage.HTTP_BINDING_TYPE__HTTP_MESSAGE_COMPOSER, oldHttpMessageComposer, newHttpMessageComposer);
-            if (msgs == null) msgs = notification; else msgs.add(notification);
-        }
-        return msgs;
-    }
-
-    /**
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    public void setHttpMessageComposer(HttpMessageComposerType newHttpMessageComposer) {
-        if (newHttpMessageComposer != httpMessageComposer) {
-            NotificationChain msgs = null;
-            if (httpMessageComposer != null)
-                msgs = ((InternalEObject)httpMessageComposer).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - HttpPackage.HTTP_BINDING_TYPE__HTTP_MESSAGE_COMPOSER, null, msgs);
-            if (newHttpMessageComposer != null)
-                msgs = ((InternalEObject)newHttpMessageComposer).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - HttpPackage.HTTP_BINDING_TYPE__HTTP_MESSAGE_COMPOSER, null, msgs);
-            msgs = basicSetHttpMessageComposer(newHttpMessageComposer, msgs);
-            if (msgs != null) msgs.dispatch();
-        }
-        else if (eNotificationRequired())
-            eNotify(new ENotificationImpl(this, Notification.SET, HttpPackage.HTTP_BINDING_TYPE__HTTP_MESSAGE_COMPOSER, newHttpMessageComposer, newHttpMessageComposer));
-    }
-
-    /**
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    @Override
-    public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
-        switch (featureID) {
-            case HttpPackage.HTTP_BINDING_TYPE__HTTP_CONTEXT_MAPPER:
-                return basicSetHttpContextMapper(null, msgs);
-            case HttpPackage.HTTP_BINDING_TYPE__HTTP_MESSAGE_COMPOSER:
-                return basicSetHttpMessageComposer(null, msgs);
-        }
-        return super.eInverseRemove(otherEnd, featureID, msgs);
-    }
-
-    /**
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
     @Override
     public Object eGet(int featureID, boolean resolve, boolean coreType) {
         switch (featureID) {
@@ -362,10 +233,6 @@ public class HttpBindingTypeImpl extends SwitchYardBindingTypeImpl implements Ht
                 return getMethod();
             case HttpPackage.HTTP_BINDING_TYPE__CONTENT_TYPE:
                 return getContentType();
-            case HttpPackage.HTTP_BINDING_TYPE__HTTP_CONTEXT_MAPPER:
-                return getHttpContextMapper();
-            case HttpPackage.HTTP_BINDING_TYPE__HTTP_MESSAGE_COMPOSER:
-                return getHttpMessageComposer();
         }
         return super.eGet(featureID, resolve, coreType);
     }
@@ -389,12 +256,6 @@ public class HttpBindingTypeImpl extends SwitchYardBindingTypeImpl implements Ht
                 return;
             case HttpPackage.HTTP_BINDING_TYPE__CONTENT_TYPE:
                 setContentType((String)newValue);
-                return;
-            case HttpPackage.HTTP_BINDING_TYPE__HTTP_CONTEXT_MAPPER:
-                setHttpContextMapper((HttpContextMapperType)newValue);
-                return;
-            case HttpPackage.HTTP_BINDING_TYPE__HTTP_MESSAGE_COMPOSER:
-                setHttpMessageComposer((HttpMessageComposerType)newValue);
                 return;
         }
         super.eSet(featureID, newValue);
@@ -420,12 +281,6 @@ public class HttpBindingTypeImpl extends SwitchYardBindingTypeImpl implements Ht
             case HttpPackage.HTTP_BINDING_TYPE__CONTENT_TYPE:
                 setContentType(CONTENT_TYPE_EDEFAULT);
                 return;
-            case HttpPackage.HTTP_BINDING_TYPE__HTTP_CONTEXT_MAPPER:
-                setHttpContextMapper((HttpContextMapperType)null);
-                return;
-            case HttpPackage.HTTP_BINDING_TYPE__HTTP_MESSAGE_COMPOSER:
-                setHttpMessageComposer((HttpMessageComposerType)null);
-                return;
         }
         super.eUnset(featureID);
     }
@@ -446,10 +301,6 @@ public class HttpBindingTypeImpl extends SwitchYardBindingTypeImpl implements Ht
                 return METHOD_EDEFAULT == null ? method != null : !METHOD_EDEFAULT.equals(method);
             case HttpPackage.HTTP_BINDING_TYPE__CONTENT_TYPE:
                 return CONTENT_TYPE_EDEFAULT == null ? contentType != null : !CONTENT_TYPE_EDEFAULT.equals(contentType);
-            case HttpPackage.HTTP_BINDING_TYPE__HTTP_CONTEXT_MAPPER:
-                return httpContextMapper != null;
-            case HttpPackage.HTTP_BINDING_TYPE__HTTP_MESSAGE_COMPOSER:
-                return httpMessageComposer != null;
         }
         return super.eIsSet(featureID);
     }
@@ -476,8 +327,4 @@ public class HttpBindingTypeImpl extends SwitchYardBindingTypeImpl implements Ht
         return result.toString();
     }
 
-    @Override
-    public EStructuralFeature getDocumentFeature() {
-        return HttpPackageImpl.eINSTANCE.getDocumentRoot_BindingHTTP();
-    }
 } //HttpBindingTypeImpl

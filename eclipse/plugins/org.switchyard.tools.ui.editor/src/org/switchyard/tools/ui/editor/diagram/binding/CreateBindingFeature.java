@@ -69,7 +69,7 @@ public class CreateBindingFeature extends CreateTypeFeature<Binding, Contract> {
 
     @Override
     protected Object[] updateContainer(ICreateContext context, Binding newObject) {
-        getContainerObject(context).getBindingGroup().add(newObject.getDocumentFeature(), newObject);
+        getContainerObject(context).getBinding().add(newObject);
         return new Object[] {newObject };
     }
 

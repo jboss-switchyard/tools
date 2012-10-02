@@ -66,6 +66,9 @@ public class NewContractWizardPage extends WizardPage {
                 validate();
             }
         });
+
+        createAdditionalControls(contents, 3);
+
         validate();
         setErrorMessage(null);
 
@@ -98,7 +101,10 @@ public class NewContractWizardPage extends WizardPage {
         _contractControl.setProject(project);
     }
 
-    private void validate() {
+    protected void createAdditionalControls(Composite content, int nColumns) {
+    }
+
+    protected void validate() {
         setMessage(null);
         setErrorMessage(null);
 

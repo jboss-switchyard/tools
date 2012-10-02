@@ -216,31 +216,13 @@ public interface HttpPackage extends EPackage {
     int HTTP_BINDING_TYPE__CONTENT_TYPE = SwitchyardPackage.SWITCH_YARD_BINDING_TYPE_FEATURE_COUNT + 3;
 
     /**
-     * The feature id for the '<em><b>Http Context Mapper</b></em>' containment reference.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     * @ordered
-     */
-    int HTTP_BINDING_TYPE__HTTP_CONTEXT_MAPPER = SwitchyardPackage.SWITCH_YARD_BINDING_TYPE_FEATURE_COUNT + 4;
-
-    /**
-     * The feature id for the '<em><b>Http Message Composer</b></em>' containment reference.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     * @ordered
-     */
-    int HTTP_BINDING_TYPE__HTTP_MESSAGE_COMPOSER = SwitchyardPackage.SWITCH_YARD_BINDING_TYPE_FEATURE_COUNT + 5;
-
-    /**
      * The number of structural features of the '<em>Binding Type</em>' class.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @generated
      * @ordered
      */
-    int HTTP_BINDING_TYPE_FEATURE_COUNT = SwitchyardPackage.SWITCH_YARD_BINDING_TYPE_FEATURE_COUNT + 6;
+    int HTTP_BINDING_TYPE_FEATURE_COUNT = SwitchyardPackage.SWITCH_YARD_BINDING_TYPE_FEATURE_COUNT + 4;
 
     /**
      * The meta object id for the '{@link org.switchyard.tools.models.switchyard1_0.http.impl.HttpContextMapperTypeImpl <em>Context Mapper Type</em>}' class.
@@ -381,13 +363,31 @@ public interface HttpPackage extends EPackage {
     int DOCUMENT_ROOT__BINDING_HTTP = 3;
 
     /**
+     * The feature id for the '<em><b>Context Mapper</b></em>' containment reference.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int DOCUMENT_ROOT__CONTEXT_MAPPER = 4;
+
+    /**
+     * The feature id for the '<em><b>Message Composer</b></em>' containment reference.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int DOCUMENT_ROOT__MESSAGE_COMPOSER = 5;
+
+    /**
      * The number of structural features of the '<em>Document Root</em>' class.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @generated
      * @ordered
      */
-    int DOCUMENT_ROOT_FEATURE_COUNT = 4;
+    int DOCUMENT_ROOT_FEATURE_COUNT = 6;
 
 
     /**
@@ -443,28 +443,6 @@ public interface HttpPackage extends EPackage {
      * @generated
      */
     EAttribute getHttpBindingType_ContentType();
-
-    /**
-     * Returns the meta object for the containment reference '{@link org.switchyard.tools.models.switchyard1_0.http.HttpBindingType#getHttpContextMapper <em>Http Context Mapper</em>}'.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @return the meta object for the containment reference '<em>Http Context Mapper</em>'.
-     * @see org.switchyard.tools.models.switchyard1_0.http.HttpBindingType#getHttpContextMapper()
-     * @see #getHttpBindingType()
-     * @generated
-     */
-    EReference getHttpBindingType_HttpContextMapper();
-
-    /**
-     * Returns the meta object for the containment reference '{@link org.switchyard.tools.models.switchyard1_0.http.HttpBindingType#getHttpMessageComposer <em>Http Message Composer</em>}'.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @return the meta object for the containment reference '<em>Http Message Composer</em>'.
-     * @see org.switchyard.tools.models.switchyard1_0.http.HttpBindingType#getHttpMessageComposer()
-     * @see #getHttpBindingType()
-     * @generated
-     */
-    EReference getHttpBindingType_HttpMessageComposer();
 
     /**
      * Returns the meta object for class '{@link org.switchyard.tools.models.switchyard1_0.http.HttpContextMapperType <em>Context Mapper Type</em>}'.
@@ -541,6 +519,28 @@ public interface HttpPackage extends EPackage {
     EReference getDocumentRoot_BindingHTTP();
 
     /**
+     * Returns the meta object for the containment reference '{@link org.switchyard.tools.models.switchyard1_0.http.DocumentRoot#getContextMapper <em>Context Mapper</em>}'.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @return the meta object for the containment reference '<em>Context Mapper</em>'.
+     * @see org.switchyard.tools.models.switchyard1_0.http.DocumentRoot#getContextMapper()
+     * @see #getDocumentRoot()
+     * @generated
+     */
+    EReference getDocumentRoot_ContextMapper();
+
+    /**
+     * Returns the meta object for the containment reference '{@link org.switchyard.tools.models.switchyard1_0.http.DocumentRoot#getMessageComposer <em>Message Composer</em>}'.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @return the meta object for the containment reference '<em>Message Composer</em>'.
+     * @see org.switchyard.tools.models.switchyard1_0.http.DocumentRoot#getMessageComposer()
+     * @see #getDocumentRoot()
+     * @generated
+     */
+    EReference getDocumentRoot_MessageComposer();
+
+    /**
      * Returns the factory that creates the instances of the model.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
@@ -605,22 +605,6 @@ public interface HttpPackage extends EPackage {
         EAttribute HTTP_BINDING_TYPE__CONTENT_TYPE = eINSTANCE.getHttpBindingType_ContentType();
 
         /**
-         * The meta object literal for the '<em><b>Http Context Mapper</b></em>' containment reference feature.
-         * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
-         * @generated
-         */
-        EReference HTTP_BINDING_TYPE__HTTP_CONTEXT_MAPPER = eINSTANCE.getHttpBindingType_HttpContextMapper();
-
-        /**
-         * The meta object literal for the '<em><b>Http Message Composer</b></em>' containment reference feature.
-         * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
-         * @generated
-         */
-        EReference HTTP_BINDING_TYPE__HTTP_MESSAGE_COMPOSER = eINSTANCE.getHttpBindingType_HttpMessageComposer();
-
-        /**
          * The meta object literal for the '{@link org.switchyard.tools.models.switchyard1_0.http.impl.HttpContextMapperTypeImpl <em>Context Mapper Type</em>}' class.
          * <!-- begin-user-doc -->
          * <!-- end-user-doc -->
@@ -681,6 +665,22 @@ public interface HttpPackage extends EPackage {
          * @generated
          */
         EReference DOCUMENT_ROOT__BINDING_HTTP = eINSTANCE.getDocumentRoot_BindingHTTP();
+
+        /**
+         * The meta object literal for the '<em><b>Context Mapper</b></em>' containment reference feature.
+         * <!-- begin-user-doc -->
+         * <!-- end-user-doc -->
+         * @generated
+         */
+        EReference DOCUMENT_ROOT__CONTEXT_MAPPER = eINSTANCE.getDocumentRoot_ContextMapper();
+
+        /**
+         * The meta object literal for the '<em><b>Message Composer</b></em>' containment reference feature.
+         * <!-- begin-user-doc -->
+         * <!-- end-user-doc -->
+         * @generated
+         */
+        EReference DOCUMENT_ROOT__MESSAGE_COMPOSER = eINSTANCE.getDocumentRoot_MessageComposer();
 
     }
 

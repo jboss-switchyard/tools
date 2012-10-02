@@ -13,10 +13,10 @@ import org.eclipse.emf.ecore.util.Switch;
 
 import org.eclipse.soa.sca.sca1_1.model.sca.Binding;
 import org.eclipse.soa.sca.sca1_1.model.sca.CommonExtensionBase;
-import org.eclipse.soa.sca.sca1_1.model.sca.OperationSelectorType;
-import org.eclipse.soa.sca.sca1_1.model.sca.ExtendableType;
 
 import org.switchyard.tools.models.switchyard1_0.hornetq.*;
+import org.switchyard.tools.models.switchyard1_0.switchyard.ContextMapperType;
+import org.switchyard.tools.models.switchyard1_0.switchyard.MessageComposerType;
 import org.switchyard.tools.models.switchyard1_0.switchyard.SwitchYardBindingType;
 
 /**
@@ -82,7 +82,6 @@ public class HornetQSwitch<T> extends Switch<T> {
                 if (result == null) result = caseSwitchYardBindingType(bindingType);
                 if (result == null) result = caseBinding(bindingType);
                 if (result == null) result = caseCommonExtensionBase(bindingType);
-                if (result == null) result = caseExtendableType(bindingType);
                 if (result == null) result = defaultCase(theEObject);
                 return result;
             }
@@ -119,6 +118,20 @@ public class HornetQSwitch<T> extends Switch<T> {
             case HornetQPackage.PROPERTY_TYPE: {
                 PropertyType propertyType = (PropertyType)theEObject;
                 T result = casePropertyType(propertyType);
+                if (result == null) result = defaultCase(theEObject);
+                return result;
+            }
+            case HornetQPackage.HORNET_QCONTEXT_MAPPER_TYPE: {
+                HornetQContextMapperType hornetQContextMapperType = (HornetQContextMapperType)theEObject;
+                T result = caseHornetQContextMapperType(hornetQContextMapperType);
+                if (result == null) result = caseContextMapperType(hornetQContextMapperType);
+                if (result == null) result = defaultCase(theEObject);
+                return result;
+            }
+            case HornetQPackage.HORNET_QMESSAGE_COMPOSER_TYPE: {
+                HornetQMessageComposerType hornetQMessageComposerType = (HornetQMessageComposerType)theEObject;
+                T result = caseHornetQMessageComposerType(hornetQMessageComposerType);
+                if (result == null) result = caseMessageComposerType(hornetQMessageComposerType);
                 if (result == null) result = defaultCase(theEObject);
                 return result;
             }
@@ -232,6 +245,66 @@ public class HornetQSwitch<T> extends Switch<T> {
     }
 
     /**
+     * Returns the result of interpreting the object as an instance of '<em>Context Mapper Type</em>'.
+     * <!-- begin-user-doc -->
+     * This implementation returns null;
+     * returning a non-null result will terminate the switch.
+     * <!-- end-user-doc -->
+     * @param object the target of the switch.
+     * @return the result of interpreting the object as an instance of '<em>Context Mapper Type</em>'.
+     * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+     * @generated
+     */
+    public T caseHornetQContextMapperType(HornetQContextMapperType object) {
+        return null;
+    }
+
+    /**
+     * Returns the result of interpreting the object as an instance of '<em>Message Composer Type</em>'.
+     * <!-- begin-user-doc -->
+     * This implementation returns null;
+     * returning a non-null result will terminate the switch.
+     * <!-- end-user-doc -->
+     * @param object the target of the switch.
+     * @return the result of interpreting the object as an instance of '<em>Message Composer Type</em>'.
+     * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+     * @generated
+     */
+    public T caseHornetQMessageComposerType(HornetQMessageComposerType object) {
+        return null;
+    }
+
+    /**
+     * Returns the result of interpreting the object as an instance of '<em>Context Mapper Type</em>'.
+     * <!-- begin-user-doc -->
+     * This implementation returns null;
+     * returning a non-null result will terminate the switch.
+     * <!-- end-user-doc -->
+     * @param object the target of the switch.
+     * @return the result of interpreting the object as an instance of '<em>Context Mapper Type</em>'.
+     * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+     * @generated
+     */
+    public T caseContextMapperType(ContextMapperType object) {
+        return null;
+    }
+
+    /**
+     * Returns the result of interpreting the object as an instance of '<em>Message Composer Type</em>'.
+     * <!-- begin-user-doc -->
+     * This implementation returns null;
+     * returning a non-null result will terminate the switch.
+     * <!-- end-user-doc -->
+     * @param object the target of the switch.
+     * @return the result of interpreting the object as an instance of '<em>Message Composer Type</em>'.
+     * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+     * @generated
+     */
+    public T caseMessageComposerType(MessageComposerType object) {
+        return null;
+    }
+
+    /**
      * Returns the result of interpreting the object as an instance of '<em>Common Extension Base</em>'.
      * <!-- begin-user-doc -->
      * This implementation returns null;
@@ -243,21 +316,6 @@ public class HornetQSwitch<T> extends Switch<T> {
      * @generated
      */
     public T caseCommonExtensionBase(CommonExtensionBase object) {
-        return null;
-    }
-
-    /**
-     * Returns the result of interpreting the object as an instance of '<em>Extendable Type</em>'.
-     * <!-- begin-user-doc -->
-     * This implementation returns null;
-     * returning a non-null result will terminate the switch.
-     * <!-- end-user-doc -->
-     * @param object the target of the switch.
-     * @return the result of interpreting the object as an instance of '<em>Extendable Type</em>'.
-     * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
-     * @generated
-     */
-    public T caseExtendableType(ExtendableType object) {
         return null;
     }
 

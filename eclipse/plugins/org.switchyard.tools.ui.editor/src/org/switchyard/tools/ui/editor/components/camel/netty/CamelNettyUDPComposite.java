@@ -32,8 +32,11 @@ import org.eclipse.swt.widgets.Group;
 import org.eclipse.swt.widgets.TabFolder;
 import org.eclipse.swt.widgets.TabItem;
 import org.eclipse.swt.widgets.Text;
+import org.switchyard.tools.models.switchyard1_0.camel.CamelFactory;
 import org.switchyard.tools.models.switchyard1_0.camel.CamelNettyUdpBindingType;
 import org.switchyard.tools.models.switchyard1_0.commonselector.CommonselectorFactory;
+import org.switchyard.tools.models.switchyard1_0.switchyard.ContextMapperType;
+import org.switchyard.tools.models.switchyard1_0.switchyard.MessageComposerType;
 import org.switchyard.tools.ui.editor.diagram.binding.AbstractSYBindingComposite;
 import org.switchyard.tools.ui.editor.diagram.binding.CamelBindingUtil;
 import org.switchyard.tools.ui.editor.diagram.binding.CamelOperationSelectorGroupOp;
@@ -326,4 +329,15 @@ public class CamelNettyUDPComposite extends AbstractSYBindingComposite {
         }
         return _advancedPropsFilterList;
     }
+
+    @Override
+    protected ContextMapperType createContextMapper() {
+        return CamelFactory.eINSTANCE.createCamelContextMapperType();
+    }
+
+    @Override
+    protected MessageComposerType createMessageComposer() {
+        return CamelFactory.eINSTANCE.createCamelMessageComposerType();
+    }
+    
 }

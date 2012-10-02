@@ -217,5 +217,14 @@
           priority="normal">
     </matchengine>
  </extension>
+ <extension
+       point="org.eclipse.emf.compare.diff.engine">
+    <diffengine
+          contentType="org.switchyard.tools.ui.editor.content-type.xml"
+          engineClass="org.switchyard.tools.ui.editor.model.merge.SwitchYardDiffEngine"
+          label="org.switchyard.tools.ui.editor.model.merge.SwitchYardDiffEngine"
+          priority="normal">
+    </diffengine>
+ </extension>
 
 </plugin>

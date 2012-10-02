@@ -131,7 +131,7 @@ public abstract class BaseNewServiceFileWizard extends BasicNewFileResourceWizar
             _component = ScaFactory.eINSTANCE.createComponent();
             _component.setName(getComponentName(file.getFullPath()));
             _component.getService().add(_service);
-            _component.getImplementationGroup().set(implementation.getDocumentFeature(), implementation);
+            _component.setImplementation(implementation);
             if (references != null) {
                 _component.getReference().addAll(references);
             }

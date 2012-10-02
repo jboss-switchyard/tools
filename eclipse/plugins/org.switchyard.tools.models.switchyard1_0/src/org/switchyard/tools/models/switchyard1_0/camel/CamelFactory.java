@@ -161,6 +161,24 @@ public interface CamelFactory extends EFactory {
 	DocumentRoot createDocumentRoot();
 
 	/**
+     * Returns a new object of class '<em>Context Mapper Type</em>'.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @return a new object of class '<em>Context Mapper Type</em>'.
+     * @generated
+     */
+    CamelContextMapperType createCamelContextMapperType();
+
+    /**
+     * Returns a new object of class '<em>Message Composer Type</em>'.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @return a new object of class '<em>Message Composer Type</em>'.
+     * @generated
+     */
+    CamelMessageComposerType createCamelMessageComposerType();
+
+    /**
      * Returns a new object of class '<em>File Consumer Type</em>'.
      * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->

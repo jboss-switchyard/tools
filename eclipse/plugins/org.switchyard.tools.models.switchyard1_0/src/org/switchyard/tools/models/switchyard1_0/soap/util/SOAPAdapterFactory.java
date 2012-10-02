@@ -15,7 +15,6 @@ import org.eclipse.emf.ecore.EObject;
 
 import org.eclipse.soa.sca.sca1_1.model.sca.Binding;
 import org.eclipse.soa.sca.sca1_1.model.sca.CommonExtensionBase;
-import org.eclipse.soa.sca.sca1_1.model.sca.ExtendableType;
 
 import org.switchyard.tools.models.switchyard1_0.soap.*;
 
@@ -105,10 +104,6 @@ public class SOAPAdapterFactory extends AdapterFactoryImpl {
             @Override
             public Adapter caseCommonExtensionBase(CommonExtensionBase object) {
                 return createCommonExtensionBaseAdapter();
-            }
-            @Override
-            public Adapter caseExtendableType(ExtendableType object) {
-                return createExtendableTypeAdapter();
             }
             @Override
             public Adapter caseBinding(Binding object) {
@@ -233,20 +228,6 @@ public class SOAPAdapterFactory extends AdapterFactoryImpl {
      * @generated
      */
     public Adapter createCommonExtensionBaseAdapter() {
-        return null;
-    }
-
-    /**
-     * Creates a new adapter for an object of class '{@link org.eclipse.soa.sca.sca1_1.model.sca.ExtendableType <em>Extendable Type</em>}'.
-     * <!-- begin-user-doc -->
-     * This default implementation returns null so that we can easily ignore cases;
-     * it's useful to ignore a case when inheritance will catch all the cases anyway.
-     * <!-- end-user-doc -->
-     * @return the new adapter.
-     * @see org.eclipse.soa.sca.sca1_1.model.sca.ExtendableType
-     * @generated
-     */
-    public Adapter createExtendableTypeAdapter() {
         return null;
     }
 

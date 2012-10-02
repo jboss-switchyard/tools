@@ -20,7 +20,6 @@ import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EStructuralFeature;
-import org.eclipse.emf.ecore.util.FeatureMap;
 import org.eclipse.emf.transaction.NotificationFilter;
 import org.eclipse.emf.transaction.RecordingCommand;
 import org.eclipse.emf.transaction.ResourceSetChangeEvent;
@@ -69,12 +68,6 @@ import org.switchyard.tools.models.switchyard1_0.switchyard.SwitchYardType;
 import org.switchyard.tools.models.switchyard1_0.switchyard.SwitchyardFactory;
 import org.switchyard.tools.models.switchyard1_0.switchyard.TransformType;
 import org.switchyard.tools.models.switchyard1_0.switchyard.TransformsType;
-import org.switchyard.tools.models.switchyard1_0.transform.JAXBTransformType;
-import org.switchyard.tools.models.switchyard1_0.transform.JavaTransformType1;
-import org.switchyard.tools.models.switchyard1_0.transform.JsonTransformType;
-import org.switchyard.tools.models.switchyard1_0.transform.SmooksTransformType1;
-import org.switchyard.tools.models.switchyard1_0.transform.TransformPackage;
-import org.switchyard.tools.models.switchyard1_0.transform.XsltTransformType;
 import org.switchyard.tools.ui.editor.impl.SwitchyardSCAEditor;
 import org.switchyard.tools.ui.editor.property.adapters.LabelAdapter;
 import org.switchyard.tools.ui.editor.transform.wizards.AddTransformWizard;
@@ -359,18 +352,7 @@ public class TransformPropertySection extends GFPropertySection implements ITabb
                             switchYardRoot.setTransforms(SwitchyardFactory.eINSTANCE.createTransformsType());
                             transforms = switchYardRoot.getTransforms();
                         }
-                        FeatureMap transformGroup = transforms.getTransformGroup();
-                        if (transform instanceof JAXBTransformType) {
-                            transformGroup.add(TransformPackage.eINSTANCE.getDocumentRoot_TransformJaxb(), transform);
-                        } else if (transform instanceof XsltTransformType) {
-                            transformGroup.add(TransformPackage.eINSTANCE.getDocumentRoot_TransformXslt(), transform);
-                        } else if (transform instanceof SmooksTransformType1) {
-                            transformGroup.add(TransformPackage.eINSTANCE.getDocumentRoot_TransformSmooks(), transform);
-                        } else if (transform instanceof JsonTransformType) {
-                            transformGroup.add(TransformPackage.eINSTANCE.getDocumentRoot_TransformJson(), transform);
-                        } else if (transform instanceof JavaTransformType1) {
-                            transformGroup.add(TransformPackage.eINSTANCE.getDocumentRoot_TransformJava(), transform);
-                        }
+                        transforms.getTransform().add(transform);
                     }
                 });
                 refresh();

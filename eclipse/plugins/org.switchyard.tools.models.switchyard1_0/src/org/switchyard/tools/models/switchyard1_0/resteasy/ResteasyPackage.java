@@ -262,14 +262,124 @@ public interface ResteasyPackage extends EPackage {
     int DOCUMENT_ROOT__BINDING_REST = 3;
 
     /**
+     * The feature id for the '<em><b>Context Mapper</b></em>' containment reference.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int DOCUMENT_ROOT__CONTEXT_MAPPER = 4;
+
+    /**
+     * The feature id for the '<em><b>Message Composer</b></em>' containment reference.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int DOCUMENT_ROOT__MESSAGE_COMPOSER = 5;
+
+    /**
      * The number of structural features of the '<em>Document Root</em>' class.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @generated
      * @ordered
      */
-    int DOCUMENT_ROOT_FEATURE_COUNT = 4;
+    int DOCUMENT_ROOT_FEATURE_COUNT = 6;
 
+
+    /**
+     * The meta object id for the '{@link org.switchyard.tools.models.switchyard1_0.resteasy.impl.RESTContextMapperTypeImpl <em>REST Context Mapper Type</em>}' class.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @see org.switchyard.tools.models.switchyard1_0.resteasy.impl.RESTContextMapperTypeImpl
+     * @see org.switchyard.tools.models.switchyard1_0.resteasy.impl.ResteasyPackageImpl#getRESTContextMapperType()
+     * @generated
+     */
+    int REST_CONTEXT_MAPPER_TYPE = 2;
+
+    /**
+     * The feature id for the '<em><b>Class</b></em>' attribute.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int REST_CONTEXT_MAPPER_TYPE__CLASS = SwitchyardPackage.CONTEXT_MAPPER_TYPE__CLASS;
+
+    /**
+     * The feature id for the '<em><b>Exclude Namespaces</b></em>' attribute.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int REST_CONTEXT_MAPPER_TYPE__EXCLUDE_NAMESPACES = SwitchyardPackage.CONTEXT_MAPPER_TYPE__EXCLUDE_NAMESPACES;
+
+    /**
+     * The feature id for the '<em><b>Excludes</b></em>' attribute.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int REST_CONTEXT_MAPPER_TYPE__EXCLUDES = SwitchyardPackage.CONTEXT_MAPPER_TYPE__EXCLUDES;
+
+    /**
+     * The feature id for the '<em><b>Include Namespaces</b></em>' attribute.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int REST_CONTEXT_MAPPER_TYPE__INCLUDE_NAMESPACES = SwitchyardPackage.CONTEXT_MAPPER_TYPE__INCLUDE_NAMESPACES;
+
+    /**
+     * The feature id for the '<em><b>Includes</b></em>' attribute.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int REST_CONTEXT_MAPPER_TYPE__INCLUDES = SwitchyardPackage.CONTEXT_MAPPER_TYPE__INCLUDES;
+
+    /**
+     * The number of structural features of the '<em>REST Context Mapper Type</em>' class.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int REST_CONTEXT_MAPPER_TYPE_FEATURE_COUNT = SwitchyardPackage.CONTEXT_MAPPER_TYPE_FEATURE_COUNT + 0;
+
+    /**
+     * The meta object id for the '{@link org.switchyard.tools.models.switchyard1_0.resteasy.impl.RESTMessageComposerTypeImpl <em>REST Message Composer Type</em>}' class.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @see org.switchyard.tools.models.switchyard1_0.resteasy.impl.RESTMessageComposerTypeImpl
+     * @see org.switchyard.tools.models.switchyard1_0.resteasy.impl.ResteasyPackageImpl#getRESTMessageComposerType()
+     * @generated
+     */
+    int REST_MESSAGE_COMPOSER_TYPE = 3;
+
+    /**
+     * The feature id for the '<em><b>Class</b></em>' attribute.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int REST_MESSAGE_COMPOSER_TYPE__CLASS = SwitchyardPackage.MESSAGE_COMPOSER_TYPE__CLASS;
+
+    /**
+     * The number of structural features of the '<em>REST Message Composer Type</em>' class.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int REST_MESSAGE_COMPOSER_TYPE_FEATURE_COUNT = SwitchyardPackage.MESSAGE_COMPOSER_TYPE_FEATURE_COUNT + 0;
 
     /**
      * Returns the meta object for class '{@link org.switchyard.tools.models.switchyard1_0.resteasy.RESTBindingType <em>REST Binding Type</em>}'.
@@ -369,6 +479,48 @@ public interface ResteasyPackage extends EPackage {
     EReference getDocumentRoot_BindingREST();
 
     /**
+     * Returns the meta object for the containment reference '{@link org.switchyard.tools.models.switchyard1_0.resteasy.DocumentRoot#getContextMapper <em>Context Mapper</em>}'.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @return the meta object for the containment reference '<em>Context Mapper</em>'.
+     * @see org.switchyard.tools.models.switchyard1_0.resteasy.DocumentRoot#getContextMapper()
+     * @see #getDocumentRoot()
+     * @generated
+     */
+    EReference getDocumentRoot_ContextMapper();
+
+    /**
+     * Returns the meta object for the containment reference '{@link org.switchyard.tools.models.switchyard1_0.resteasy.DocumentRoot#getMessageComposer <em>Message Composer</em>}'.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @return the meta object for the containment reference '<em>Message Composer</em>'.
+     * @see org.switchyard.tools.models.switchyard1_0.resteasy.DocumentRoot#getMessageComposer()
+     * @see #getDocumentRoot()
+     * @generated
+     */
+    EReference getDocumentRoot_MessageComposer();
+
+    /**
+     * Returns the meta object for class '{@link org.switchyard.tools.models.switchyard1_0.resteasy.RESTContextMapperType <em>REST Context Mapper Type</em>}'.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @return the meta object for class '<em>REST Context Mapper Type</em>'.
+     * @see org.switchyard.tools.models.switchyard1_0.resteasy.RESTContextMapperType
+     * @generated
+     */
+    EClass getRESTContextMapperType();
+
+    /**
+     * Returns the meta object for class '{@link org.switchyard.tools.models.switchyard1_0.resteasy.RESTMessageComposerType <em>REST Message Composer Type</em>}'.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @return the meta object for class '<em>REST Message Composer Type</em>'.
+     * @see org.switchyard.tools.models.switchyard1_0.resteasy.RESTMessageComposerType
+     * @generated
+     */
+    EClass getRESTMessageComposerType();
+
+    /**
      * Returns the factory that creates the instances of the model.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
@@ -465,6 +617,42 @@ public interface ResteasyPackage extends EPackage {
          * @generated
          */
         EReference DOCUMENT_ROOT__BINDING_REST = eINSTANCE.getDocumentRoot_BindingREST();
+
+        /**
+         * The meta object literal for the '<em><b>Context Mapper</b></em>' containment reference feature.
+         * <!-- begin-user-doc -->
+         * <!-- end-user-doc -->
+         * @generated
+         */
+        EReference DOCUMENT_ROOT__CONTEXT_MAPPER = eINSTANCE.getDocumentRoot_ContextMapper();
+
+        /**
+         * The meta object literal for the '<em><b>Message Composer</b></em>' containment reference feature.
+         * <!-- begin-user-doc -->
+         * <!-- end-user-doc -->
+         * @generated
+         */
+        EReference DOCUMENT_ROOT__MESSAGE_COMPOSER = eINSTANCE.getDocumentRoot_MessageComposer();
+
+        /**
+         * The meta object literal for the '{@link org.switchyard.tools.models.switchyard1_0.resteasy.impl.RESTContextMapperTypeImpl <em>REST Context Mapper Type</em>}' class.
+         * <!-- begin-user-doc -->
+         * <!-- end-user-doc -->
+         * @see org.switchyard.tools.models.switchyard1_0.resteasy.impl.RESTContextMapperTypeImpl
+         * @see org.switchyard.tools.models.switchyard1_0.resteasy.impl.ResteasyPackageImpl#getRESTContextMapperType()
+         * @generated
+         */
+        EClass REST_CONTEXT_MAPPER_TYPE = eINSTANCE.getRESTContextMapperType();
+
+        /**
+         * The meta object literal for the '{@link org.switchyard.tools.models.switchyard1_0.resteasy.impl.RESTMessageComposerTypeImpl <em>REST Message Composer Type</em>}' class.
+         * <!-- begin-user-doc -->
+         * <!-- end-user-doc -->
+         * @see org.switchyard.tools.models.switchyard1_0.resteasy.impl.RESTMessageComposerTypeImpl
+         * @see org.switchyard.tools.models.switchyard1_0.resteasy.impl.ResteasyPackageImpl#getRESTMessageComposerType()
+         * @generated
+         */
+        EClass REST_MESSAGE_COMPOSER_TYPE = eINSTANCE.getRESTMessageComposerType();
 
     }
 

@@ -72,7 +72,7 @@ public class ContractControl implements ISelectionProvider {
                 Interface intf = _interfaceControl.getInterface();
                 _service.getInterfaceGroup().clear();
                 if (intf != null) {
-                    _service.getInterfaceGroup().set(intf.getDocumentFeature(), intf);
+                    _service.setInterface(intf);
                     String newName = InterfaceControl.getSimpleServiceInterfaceName(intf);
                     String currentName = _service.getName();
                     if (updateDefault(_oldServiceName, newName, currentName)) {
@@ -125,8 +125,7 @@ public class ContractControl implements ISelectionProvider {
         // init data (interface control will have created the interface by now.
         Interface intf = _interfaceControl.getInterface();
         if (intf != null) {
-            _service.getInterfaceGroup().clear();
-            _service.getInterfaceGroup().set(intf.getDocumentFeature(), intf);
+            _service.setInterface(intf);
         }
         // make sure we're enabled correctly.
         setEnabled(_enabled);
@@ -163,6 +162,7 @@ public class ContractControl implements ISelectionProvider {
         if (contract == null) {
             return;
         }
+        _oldServiceName = InterfaceControl.getSimpleServiceInterfaceName(contract.getInterface());
         if (_serviceNameText == null) {
             _service.setName(contract.getName());
         } else if (contract.getName() != null) {

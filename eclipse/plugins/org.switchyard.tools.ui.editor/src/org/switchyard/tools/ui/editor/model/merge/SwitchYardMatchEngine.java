@@ -10,6 +10,9 @@
  ************************************************************************************/
 package org.switchyard.tools.ui.editor.model.merge;
 
+import java.util.Iterator;
+import java.util.List;
+
 import org.eclipse.emf.common.CommonPlugin.Implementation;
 import org.eclipse.emf.compare.FactoryException;
 import org.eclipse.emf.compare.match.engine.AbstractSimilarityChecker;
@@ -23,6 +26,7 @@ import org.eclipse.emf.ecore.EAttribute;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EStructuralFeature;
+import org.eclipse.emf.ecore.util.FeatureMapUtil;
 import org.eclipse.soa.sca.sca1_1.model.sca.Component;
 import org.eclipse.soa.sca.sca1_1.model.sca.Composite;
 import org.eclipse.soa.sca.sca1_1.model.sca.Contract;
@@ -43,6 +47,27 @@ import org.switchyard.tools.models.switchyard1_0.switchyard.EsbInterface;
  */
 @SuppressWarnings("restriction")
 public class SwitchYardMatchEngine extends GenericMatchEngine implements IMatchEngine {
+
+    /**
+     * Create a new SwitchYardMatchEngine.
+     */
+    public SwitchYardMatchEngine() {
+        super();
+        filter = new MetamodelFilter() {
+
+            @Override
+            public List<EStructuralFeature> getFilteredFeatures(EObject eObj) {
+                final List<EStructuralFeature> result = super.getFilteredFeatures(eObj);
+                for (Iterator<EStructuralFeature> it = result.iterator(); it.hasNext();) {
+                    if (FeatureMapUtil.isFeatureMap(it.next())) {
+                        it.remove();
+                    }
+                }
+                return result;
+            }
+
+        };
+    }
 
     @Override
     protected AbstractSimilarityChecker prepareChecker() {

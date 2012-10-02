@@ -24,6 +24,7 @@ import org.eclipse.graphiti.mm.pictograms.Connection;
 public class CompositeCreateConnectionFeature extends AbstractCreateConnectionFeature {
 
     private final ICreateConnectionFeature[] _delegates;
+    private boolean _hasDoneChanges;
 
     /**
      * Create a new CompositeCreateConnectionFeature.
@@ -54,12 +55,15 @@ public class CompositeCreateConnectionFeature extends AbstractCreateConnectionFe
 
     @Override
     public Connection create(ICreateConnectionContext context) {
+        _hasDoneChanges = false;
         if (_delegates == null || _delegates.length == 0) {
             return null;
         }
         for (ICreateConnectionFeature delegate : _delegates) {
             if (delegate.canCreate(context)) {
-                return delegate.create(context);
+                final Connection connection = delegate.create(context);
+                _hasDoneChanges = delegate.hasDoneChanges();
+                return connection;
             }
         }
         return null;
@@ -92,6 +96,11 @@ public class CompositeCreateConnectionFeature extends AbstractCreateConnectionFe
             return super.getCreateLargeImageId();
         }
         return _delegates[0].getCreateLargeImageId();
+    }
+
+    @Override
+    public boolean hasDoneChanges() {
+        return _hasDoneChanges;
     }
 
 }

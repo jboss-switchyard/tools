@@ -237,6 +237,20 @@ public class ResourceAdapterItemProvider
             (createChildParameter
                 (JcaPackage.Literals.RESOURCE_ADAPTER__ANY,
                  FeatureMapUtil.createEntry
+                    (ResteasyPackage.Literals.DOCUMENT_ROOT__CONTEXT_MAPPER,
+                     ResteasyFactory.eINSTANCE.createRESTContextMapperType())));
+
+        newChildDescriptors.add
+            (createChildParameter
+                (JcaPackage.Literals.RESOURCE_ADAPTER__ANY,
+                 FeatureMapUtil.createEntry
+                    (ResteasyPackage.Literals.DOCUMENT_ROOT__MESSAGE_COMPOSER,
+                     ResteasyFactory.eINSTANCE.createRESTMessageComposerType())));
+
+        newChildDescriptors.add
+            (createChildParameter
+                (JcaPackage.Literals.RESOURCE_ADAPTER__ANY,
+                 FeatureMapUtil.createEntry
                     (CommonselectorPackage.Literals.DOCUMENT_ROOT__STATIC_OPERATION_SELECTOR,
                      CommonselectorFactory.eINSTANCE.createStaticOperationSelectorType())));
 
@@ -267,6 +281,20 @@ public class ResourceAdapterItemProvider
                  FeatureMapUtil.createEntry
                     (HttpPackage.Literals.DOCUMENT_ROOT__BINDING_HTTP,
                      HttpFactory.eINSTANCE.createHttpBindingType())));
+
+        newChildDescriptors.add
+            (createChildParameter
+                (JcaPackage.Literals.RESOURCE_ADAPTER__ANY,
+                 FeatureMapUtil.createEntry
+                    (HttpPackage.Literals.DOCUMENT_ROOT__CONTEXT_MAPPER,
+                     HttpFactory.eINSTANCE.createHttpContextMapperType())));
+
+        newChildDescriptors.add
+            (createChildParameter
+                (JcaPackage.Literals.RESOURCE_ADAPTER__ANY,
+                 FeatureMapUtil.createEntry
+                    (HttpPackage.Literals.DOCUMENT_ROOT__MESSAGE_COMPOSER,
+                     HttpFactory.eINSTANCE.createHttpMessageComposerType())));
     }
 
     /**

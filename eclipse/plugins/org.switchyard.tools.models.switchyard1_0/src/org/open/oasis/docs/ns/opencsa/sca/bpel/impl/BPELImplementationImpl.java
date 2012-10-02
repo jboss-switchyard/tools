@@ -9,7 +9,6 @@ package org.open.oasis.docs.ns.opencsa.sca.bpel.impl;
 import javax.xml.namespace.QName;
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.ecore.EClass;
-import org.eclipse.emf.ecore.EStructuralFeature;
 
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.soa.sca.sca1_1.model.sca.impl.ImplementationImpl;
@@ -162,11 +161,6 @@ public class BPELImplementationImpl extends ImplementationImpl implements BPELIm
         result.append(process);
         result.append(')');
         return result.toString();
-    }
-
-    @Override
-    public EStructuralFeature getDocumentFeature() {
-        return BPELPackage.eINSTANCE.getDocumentRoot_ImplementationBpel();
     }
 
 } //BPELImplementationImpl

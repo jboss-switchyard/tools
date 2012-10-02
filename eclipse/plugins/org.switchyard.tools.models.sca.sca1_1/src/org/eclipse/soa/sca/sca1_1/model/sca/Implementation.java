@@ -28,7 +28,7 @@ import javax.xml.namespace.QName;
  *        extendedMetaData="name='Implementation' kind='elementOnly'"
  * @generated
  */
-public interface Implementation extends CommonExtensionBase, ExtendableType {
+public interface Implementation extends CommonExtensionBase {
 	/**
      * Returns the value of the '<em><b>Policy Sets</b></em>' attribute.
      * <!-- begin-user-doc -->

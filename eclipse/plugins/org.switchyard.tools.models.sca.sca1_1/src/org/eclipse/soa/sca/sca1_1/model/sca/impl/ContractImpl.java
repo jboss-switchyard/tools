@@ -6,6 +6,7 @@
  */
 package org.eclipse.soa.sca.sca1_1.model.sca.impl;
 
+import java.util.Collection;
 import java.util.List;
 
 import javax.xml.namespace.QName;
@@ -202,6 +203,15 @@ public abstract class ContractImpl extends CommonExtensionBaseImpl implements Co
     }
 
 	/**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public void setInterface(Interface newInterface) {
+        ((FeatureMap.Internal)getInterfaceGroup()).set(ScaPackage.eINSTANCE.getContract_Interface(), newInterface);
+    }
+
+    /**
      * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
      * @generated
@@ -409,8 +419,15 @@ public abstract class ContractImpl extends CommonExtensionBaseImpl implements Co
             case ScaPackage.CONTRACT__INTERFACE_GROUP:
                 ((FeatureMap.Internal)getInterfaceGroup()).set(newValue);
                 return;
+            case ScaPackage.CONTRACT__INTERFACE:
+                setInterface((Interface)newValue);
+                return;
             case ScaPackage.CONTRACT__BINDING_GROUP:
                 ((FeatureMap.Internal)getBindingGroup()).set(newValue);
+                return;
+            case ScaPackage.CONTRACT__BINDING:
+                getBinding().clear();
+                getBinding().addAll((Collection<? extends Binding>)newValue);
                 return;
             case ScaPackage.CONTRACT__CALLBACK:
                 setCallback((Callback)newValue);
@@ -442,8 +459,14 @@ public abstract class ContractImpl extends CommonExtensionBaseImpl implements Co
             case ScaPackage.CONTRACT__INTERFACE_GROUP:
                 getInterfaceGroup().clear();
                 return;
+            case ScaPackage.CONTRACT__INTERFACE:
+                setInterface((Interface)null);
+                return;
             case ScaPackage.CONTRACT__BINDING_GROUP:
                 getBindingGroup().clear();
+                return;
+            case ScaPackage.CONTRACT__BINDING:
+                getBinding().clear();
                 return;
             case ScaPackage.CONTRACT__CALLBACK:
                 setCallback((Callback)null);

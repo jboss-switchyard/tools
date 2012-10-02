@@ -8,7 +8,6 @@ package org.switchyard.tools.models.switchyard1_0.transform.impl;
 
 import org.eclipse.emf.ecore.EClass;
 
-
 import org.switchyard.tools.models.switchyard1_0.switchyard.impl.TransformTypeImpl;
 import org.switchyard.tools.models.switchyard1_0.transform.JsonTransformType;
 import org.switchyard.tools.models.switchyard1_0.transform.TransformPackage;

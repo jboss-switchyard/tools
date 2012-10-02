@@ -8,16 +8,10 @@ package org.switchyard.tools.models.switchyard1_0.camel.impl;
 
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.ecore.EClass;
-import org.eclipse.emf.ecore.EStructuralFeature;
 
-
-import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.switchyard.tools.models.switchyard1_0.camel.CamelDirectBindingType;
 import org.switchyard.tools.models.switchyard1_0.camel.CamelPackage;
-import org.switchyard.tools.models.switchyard1_0.switchyard.ContextMapperType;
-import org.switchyard.tools.models.switchyard1_0.switchyard.MessageComposerType;
-import org.switchyard.tools.models.switchyard1_0.switchyard.impl.SwitchYardBindingTypeImpl;
 
 /**
  * <!-- begin-user-doc -->
@@ -164,11 +158,6 @@ public class CamelDirectBindingTypeImpl extends BaseCamelBindingImpl implements 
         result.append(nameElement);
         result.append(')');
         return result.toString();
-    }
-
-    @Override
-    public EStructuralFeature getDocumentFeature() {
-        return CamelPackage.eINSTANCE.getDocumentRoot_BindingDirect();
     }
 
 } //CamelDirectBindingTypeImpl

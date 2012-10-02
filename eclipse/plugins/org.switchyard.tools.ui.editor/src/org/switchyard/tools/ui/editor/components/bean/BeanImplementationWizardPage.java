@@ -79,8 +79,14 @@ public class BeanImplementationWizardPage extends WizardPage {
         setTitle("Bean Implementation Details");
         setDescription("Select an implementation class.");
         setPageComplete(false);
-        ResourceSet resourceSet = (ResourceSet) SwitchyardSCAEditor.getEditor(_serviceInterface).getEditorInput()
-                .getAdapter(ResourceSet.class);
+    }
+
+    private void updateProject(Component container) {
+        if (container == null) {
+            _project = null;
+            return;
+        }
+        ResourceSet resourceSet = container.eResource() == null ? null : container.eResource().getResourceSet();
         if (resourceSet != null && resourceSet.getResources().size() > 0) {
             for (Resource emfResource : resourceSet.getResources()) {
                 String path = resourceSet.getURIConverter().normalize(emfResource.getURI()).toPlatformString(true);
@@ -103,6 +109,7 @@ public class BeanImplementationWizardPage extends WizardPage {
      *            be set; may be null.
      */
     public void setComponent(Component component) {
+        updateProject(component);
         _serviceInterface = null;
         if (_project == null || component == null || component.getService() == null) {
             return;

@@ -237,6 +237,52 @@ public class HornetQItemProviderAdapterFactory extends HornetQAdapterFactory imp
     }
 
     /**
+     * This keeps track of the one adapter used for all {@link org.switchyard.tools.models.switchyard1_0.hornetq.HornetQContextMapperType} instances.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    protected HornetQContextMapperTypeItemProvider hornetQContextMapperTypeItemProvider;
+
+    /**
+     * This creates an adapter for a {@link org.switchyard.tools.models.switchyard1_0.hornetq.HornetQContextMapperType}.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    @Override
+    public Adapter createHornetQContextMapperTypeAdapter() {
+        if (hornetQContextMapperTypeItemProvider == null) {
+            hornetQContextMapperTypeItemProvider = new HornetQContextMapperTypeItemProvider(this);
+        }
+
+        return hornetQContextMapperTypeItemProvider;
+    }
+
+    /**
+     * This keeps track of the one adapter used for all {@link org.switchyard.tools.models.switchyard1_0.hornetq.HornetQMessageComposerType} instances.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    protected HornetQMessageComposerTypeItemProvider hornetQMessageComposerTypeItemProvider;
+
+    /**
+     * This creates an adapter for a {@link org.switchyard.tools.models.switchyard1_0.hornetq.HornetQMessageComposerType}.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    @Override
+    public Adapter createHornetQMessageComposerTypeAdapter() {
+        if (hornetQMessageComposerTypeItemProvider == null) {
+            hornetQMessageComposerTypeItemProvider = new HornetQMessageComposerTypeItemProvider(this);
+        }
+
+        return hornetQMessageComposerTypeItemProvider;
+    }
+
+    /**
      * This returns the root adapter factory that contains this factory.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
@@ -342,6 +388,8 @@ public class HornetQItemProviderAdapterFactory extends HornetQAdapterFactory imp
         if (documentRootItemProvider != null) documentRootItemProvider.dispose();
         if (propertiesTypeItemProvider != null) propertiesTypeItemProvider.dispose();
         if (propertyTypeItemProvider != null) propertyTypeItemProvider.dispose();
+        if (hornetQContextMapperTypeItemProvider != null) hornetQContextMapperTypeItemProvider.dispose();
+        if (hornetQMessageComposerTypeItemProvider != null) hornetQMessageComposerTypeItemProvider.dispose();
     }
 
 }

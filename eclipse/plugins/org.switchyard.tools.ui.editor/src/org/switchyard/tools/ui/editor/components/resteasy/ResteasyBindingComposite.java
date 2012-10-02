@@ -34,6 +34,9 @@ import org.eclipse.swt.widgets.TabFolder;
 import org.eclipse.swt.widgets.TabItem;
 import org.eclipse.swt.widgets.Text;
 import org.switchyard.tools.models.switchyard1_0.resteasy.RESTBindingType;
+import org.switchyard.tools.models.switchyard1_0.resteasy.ResteasyFactory;
+import org.switchyard.tools.models.switchyard1_0.switchyard.ContextMapperType;
+import org.switchyard.tools.models.switchyard1_0.switchyard.MessageComposerType;
 import org.switchyard.tools.models.switchyard1_0.switchyard.SwitchYardType;
 import org.switchyard.tools.ui.editor.diagram.binding.AbstractSYBindingComposite;
 
@@ -254,4 +257,15 @@ public class ResteasyBindingComposite extends AbstractSYBindingComposite {
     protected List<String> getAdvancedPropertiesFilterList() {
         return _advancedPropsFilterList;
     }
+
+    @Override
+    protected ContextMapperType createContextMapper() {
+        return ResteasyFactory.eINSTANCE.createRESTContextMapperType();
+    }
+
+    @Override
+    protected MessageComposerType createMessageComposer() {
+        return ResteasyFactory.eINSTANCE.createRESTMessageComposerType();
+    }
+    
 }

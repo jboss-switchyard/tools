@@ -6,8 +6,6 @@
  */
 package org.switchyard.tools.models.switchyard1_0.jca;
 
-import org.eclipse.emf.common.util.EList;
-
 import org.eclipse.emf.ecore.EObject;
 
 import org.eclipse.emf.ecore.util.FeatureMap;

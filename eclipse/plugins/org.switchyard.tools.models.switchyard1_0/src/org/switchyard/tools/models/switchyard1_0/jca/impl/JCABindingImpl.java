@@ -14,7 +14,6 @@ import org.eclipse.emf.common.notify.NotificationChain;
 import org.eclipse.emf.common.util.EList;
 
 import org.eclipse.emf.ecore.EClass;
-import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.ecore.InternalEObject;
 
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
@@ -29,9 +28,6 @@ import org.switchyard.tools.models.switchyard1_0.jca.JCAOutboundConnection;
 import org.switchyard.tools.models.switchyard1_0.jca.JCAOutboundInteraction;
 import org.switchyard.tools.models.switchyard1_0.jca.JcaPackage;
 import org.switchyard.tools.models.switchyard1_0.jca.Property;
-
-import org.switchyard.tools.models.switchyard1_0.switchyard.ContextMapperType;
-import org.switchyard.tools.models.switchyard1_0.switchyard.MessageComposerType;
 
 import org.switchyard.tools.models.switchyard1_0.switchyard.impl.SwitchYardBindingTypeImpl;
 
@@ -604,8 +600,4 @@ public class JCABindingImpl extends SwitchYardBindingTypeImpl implements JCABind
         return result.toString();
     }
 
-    @Override
-    public EStructuralFeature getDocumentFeature() {
-        return JcaPackage.eINSTANCE.getDocumentRoot_BindingJca();
-    }
 } //JCABindingImpl

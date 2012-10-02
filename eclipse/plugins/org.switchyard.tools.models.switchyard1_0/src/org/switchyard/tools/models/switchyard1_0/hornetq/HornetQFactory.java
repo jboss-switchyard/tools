@@ -89,6 +89,24 @@ public interface HornetQFactory extends EFactory {
     PropertyType createPropertyType();
 
     /**
+     * Returns a new object of class '<em>Context Mapper Type</em>'.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @return a new object of class '<em>Context Mapper Type</em>'.
+     * @generated
+     */
+    HornetQContextMapperType createHornetQContextMapperType();
+
+    /**
+     * Returns a new object of class '<em>Message Composer Type</em>'.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @return a new object of class '<em>Message Composer Type</em>'.
+     * @generated
+     */
+    HornetQMessageComposerType createHornetQMessageComposerType();
+
+    /**
      * Returns the package supported by this factory.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->

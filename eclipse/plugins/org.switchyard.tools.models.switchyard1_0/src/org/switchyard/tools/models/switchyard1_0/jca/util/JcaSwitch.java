@@ -13,10 +13,11 @@ import org.eclipse.emf.ecore.util.Switch;
 
 import org.eclipse.soa.sca.sca1_1.model.sca.Binding;
 import org.eclipse.soa.sca.sca1_1.model.sca.CommonExtensionBase;
-import org.eclipse.soa.sca.sca1_1.model.sca.ExtendableType;
 
 import org.switchyard.tools.models.switchyard1_0.jca.*;
 
+import org.switchyard.tools.models.switchyard1_0.switchyard.ContextMapperType;
+import org.switchyard.tools.models.switchyard1_0.switchyard.MessageComposerType;
 import org.switchyard.tools.models.switchyard1_0.switchyard.SwitchYardBindingType;
 
 /**
@@ -118,7 +119,6 @@ public class JcaSwitch<T> extends Switch<T> {
                 if (result == null) result = caseSwitchYardBindingType(jcaBinding);
                 if (result == null) result = caseBinding(jcaBinding);
                 if (result == null) result = caseCommonExtensionBase(jcaBinding);
-                if (result == null) result = caseExtendableType(jcaBinding);
                 if (result == null) result = defaultCase(theEObject);
                 return result;
             }
@@ -173,6 +173,20 @@ public class JcaSwitch<T> extends Switch<T> {
             case JcaPackage.DOCUMENT_ROOT: {
                 DocumentRoot documentRoot = (DocumentRoot)theEObject;
                 T result = caseDocumentRoot(documentRoot);
+                if (result == null) result = defaultCase(theEObject);
+                return result;
+            }
+            case JcaPackage.JCA_CONTEXT_MAPPER_TYPE: {
+                JCAContextMapperType jcaContextMapperType = (JCAContextMapperType)theEObject;
+                T result = caseJCAContextMapperType(jcaContextMapperType);
+                if (result == null) result = caseContextMapperType(jcaContextMapperType);
+                if (result == null) result = defaultCase(theEObject);
+                return result;
+            }
+            case JcaPackage.JCA_MESSAGE_COMPOSER_TYPE: {
+                JCAMessageComposerType jcaMessageComposerType = (JCAMessageComposerType)theEObject;
+                T result = caseJCAMessageComposerType(jcaMessageComposerType);
+                if (result == null) result = caseMessageComposerType(jcaMessageComposerType);
                 if (result == null) result = defaultCase(theEObject);
                 return result;
             }
@@ -237,6 +251,66 @@ public class JcaSwitch<T> extends Switch<T> {
      * @generated
      */
     public T caseDocumentRoot(DocumentRoot object) {
+        return null;
+    }
+
+    /**
+     * Returns the result of interpreting the object as an instance of '<em>JCA Context Mapper Type</em>'.
+     * <!-- begin-user-doc -->
+     * This implementation returns null;
+     * returning a non-null result will terminate the switch.
+     * <!-- end-user-doc -->
+     * @param object the target of the switch.
+     * @return the result of interpreting the object as an instance of '<em>JCA Context Mapper Type</em>'.
+     * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+     * @generated
+     */
+    public T caseJCAContextMapperType(JCAContextMapperType object) {
+        return null;
+    }
+
+    /**
+     * Returns the result of interpreting the object as an instance of '<em>JCA Message Composer Type</em>'.
+     * <!-- begin-user-doc -->
+     * This implementation returns null;
+     * returning a non-null result will terminate the switch.
+     * <!-- end-user-doc -->
+     * @param object the target of the switch.
+     * @return the result of interpreting the object as an instance of '<em>JCA Message Composer Type</em>'.
+     * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+     * @generated
+     */
+    public T caseJCAMessageComposerType(JCAMessageComposerType object) {
+        return null;
+    }
+
+    /**
+     * Returns the result of interpreting the object as an instance of '<em>Context Mapper Type</em>'.
+     * <!-- begin-user-doc -->
+     * This implementation returns null;
+     * returning a non-null result will terminate the switch.
+     * <!-- end-user-doc -->
+     * @param object the target of the switch.
+     * @return the result of interpreting the object as an instance of '<em>Context Mapper Type</em>'.
+     * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+     * @generated
+     */
+    public T caseContextMapperType(ContextMapperType object) {
+        return null;
+    }
+
+    /**
+     * Returns the result of interpreting the object as an instance of '<em>Message Composer Type</em>'.
+     * <!-- begin-user-doc -->
+     * This implementation returns null;
+     * returning a non-null result will terminate the switch.
+     * <!-- end-user-doc -->
+     * @param object the target of the switch.
+     * @return the result of interpreting the object as an instance of '<em>Message Composer Type</em>'.
+     * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+     * @generated
+     */
+    public T caseMessageComposerType(MessageComposerType object) {
         return null;
     }
 
@@ -432,21 +506,6 @@ public class JcaSwitch<T> extends Switch<T> {
      * @generated
      */
     public T caseCommonExtensionBase(CommonExtensionBase object) {
-        return null;
-    }
-
-    /**
-     * Returns the result of interpreting the object as an instance of '<em>Extendable Type</em>'.
-     * <!-- begin-user-doc -->
-     * This implementation returns null;
-     * returning a non-null result will terminate the switch.
-     * <!-- end-user-doc -->
-     * @param object the target of the switch.
-     * @return the result of interpreting the object as an instance of '<em>Extendable Type</em>'.
-     * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
-     * @generated
-     */
-    public T caseExtendableType(ExtendableType object) {
         return null;
     }
 

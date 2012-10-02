@@ -10,11 +10,15 @@
  ************************************************************************************/
 package org.switchyard.tools.ui.editor.diagram.service;
 
+import java.util.Collection;
+
 import org.eclipse.core.resources.IProject;
 import org.eclipse.jdt.core.JavaCore;
+import org.eclipse.jface.wizard.IWizardPage;
 import org.eclipse.jface.wizard.Wizard;
 import org.eclipse.soa.sca.sca1_1.model.sca.ComponentService;
 import org.eclipse.soa.sca.sca1_1.model.sca.Contract;
+import org.switchyard.tools.models.switchyard1_0.switchyard.TransformType;
 import org.switchyard.tools.ui.PlatformResourceAdapterFactory;
 
 /**
@@ -33,6 +37,7 @@ public class PromoteServiceWizard extends Wizard {
     public PromoteServiceWizard() {
         _page = new PromoteServiceWizardPage();
         setWindowTitle(_page.getTitle());
+        setForcePreviousAndNextButtons(true);
     }
 
     /**
@@ -64,4 +69,27 @@ public class PromoteServiceWizard extends Wizard {
         return _page.getContract();
     }
 
+    /**
+     * @return any created transformers
+     */
+    public Collection<TransformType> getCreatedTransforms() {
+        return _page.getCreatedTransforms();
+    }
+
+    @Override
+    public IWizardPage getNextPage(IWizardPage page) {
+        if (page == _page && _page.getNextWizard() != null) {
+            return _page.getNextWizard().getStartingPage();
+        }
+        return super.getNextPage(page);
+    }
+
+    @Override
+    public boolean canFinish() {
+        boolean canFinish = super.canFinish();
+        if (canFinish && _page.getNextWizard() != null) {
+            canFinish = canFinish && _page.getNextWizard().canFinish();
+        }
+        return canFinish;
+    }
 }

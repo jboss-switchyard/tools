@@ -27,9 +27,13 @@ import org.eclipse.emf.edit.provider.ViewerNotification;
 import org.eclipse.soa.sca.sca1_1.model.sca.ScaPackage;
 import org.eclipse.soa.sca.sca1_1.model.sca.provider.BindingItemProvider;
 
+import org.switchyard.tools.models.switchyard1_0.camel.CamelFactory;
 import org.switchyard.tools.models.switchyard1_0.commonselector.CommonselectorFactory;
 import org.switchyard.tools.models.switchyard1_0.commonselector.CommonselectorPackage;
+import org.switchyard.tools.models.switchyard1_0.hornetq.HornetQFactory;
 import org.switchyard.tools.models.switchyard1_0.http.HttpFactory;
+import org.switchyard.tools.models.switchyard1_0.jca.JcaFactory;
+import org.switchyard.tools.models.switchyard1_0.resteasy.ResteasyFactory;
 import org.switchyard.tools.models.switchyard1_0.soap.SOAPFactory;
 
 import org.switchyard.tools.models.switchyard1_0.switchyard.SwitchYardBindingType;
@@ -187,7 +191,27 @@ public class SwitchYardBindingTypeItemProvider
         newChildDescriptors.add
             (createChildParameter
                 (SwitchyardPackage.Literals.SWITCH_YARD_BINDING_TYPE__CONTEXT_MAPPER,
+                 HornetQFactory.eINSTANCE.createHornetQContextMapperType()));
+
+        newChildDescriptors.add
+            (createChildParameter
+                (SwitchyardPackage.Literals.SWITCH_YARD_BINDING_TYPE__CONTEXT_MAPPER,
                  SOAPFactory.eINSTANCE.createContextMapperType()));
+
+        newChildDescriptors.add
+            (createChildParameter
+                (SwitchyardPackage.Literals.SWITCH_YARD_BINDING_TYPE__CONTEXT_MAPPER,
+                 CamelFactory.eINSTANCE.createCamelContextMapperType()));
+
+        newChildDescriptors.add
+            (createChildParameter
+                (SwitchyardPackage.Literals.SWITCH_YARD_BINDING_TYPE__CONTEXT_MAPPER,
+                 JcaFactory.eINSTANCE.createJCAContextMapperType()));
+
+        newChildDescriptors.add
+            (createChildParameter
+                (SwitchyardPackage.Literals.SWITCH_YARD_BINDING_TYPE__CONTEXT_MAPPER,
+                 ResteasyFactory.eINSTANCE.createRESTContextMapperType()));
 
         newChildDescriptors.add
             (createChildParameter
@@ -202,7 +226,27 @@ public class SwitchYardBindingTypeItemProvider
         newChildDescriptors.add
             (createChildParameter
                 (SwitchyardPackage.Literals.SWITCH_YARD_BINDING_TYPE__MESSAGE_COMPOSER,
+                 HornetQFactory.eINSTANCE.createHornetQMessageComposerType()));
+
+        newChildDescriptors.add
+            (createChildParameter
+                (SwitchyardPackage.Literals.SWITCH_YARD_BINDING_TYPE__MESSAGE_COMPOSER,
                  SOAPFactory.eINSTANCE.createSOAPMessageComposerType()));
+
+        newChildDescriptors.add
+            (createChildParameter
+                (SwitchyardPackage.Literals.SWITCH_YARD_BINDING_TYPE__MESSAGE_COMPOSER,
+                 CamelFactory.eINSTANCE.createCamelMessageComposerType()));
+
+        newChildDescriptors.add
+            (createChildParameter
+                (SwitchyardPackage.Literals.SWITCH_YARD_BINDING_TYPE__MESSAGE_COMPOSER,
+                 JcaFactory.eINSTANCE.createJCAMessageComposerType()));
+
+        newChildDescriptors.add
+            (createChildParameter
+                (SwitchyardPackage.Literals.SWITCH_YARD_BINDING_TYPE__MESSAGE_COMPOSER,
+                 ResteasyFactory.eINSTANCE.createRESTMessageComposerType()));
 
         newChildDescriptors.add
             (createChildParameter

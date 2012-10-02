@@ -169,37 +169,6 @@ public class HttpBindingTypeItemProvider
     }
 
     /**
-     * This specifies how to implement {@link #getChildren} and is used to deduce an appropriate feature for an
-     * {@link org.eclipse.emf.edit.command.AddCommand}, {@link org.eclipse.emf.edit.command.RemoveCommand} or
-     * {@link org.eclipse.emf.edit.command.MoveCommand} in {@link #createCommand}.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    @Override
-    public Collection<? extends EStructuralFeature> getChildrenFeatures(Object object) {
-        if (childrenFeatures == null) {
-            super.getChildrenFeatures(object);
-            childrenFeatures.add(HttpPackage.Literals.HTTP_BINDING_TYPE__HTTP_CONTEXT_MAPPER);
-            childrenFeatures.add(HttpPackage.Literals.HTTP_BINDING_TYPE__HTTP_MESSAGE_COMPOSER);
-        }
-        return childrenFeatures;
-    }
-
-    /**
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    @Override
-    protected EStructuralFeature getChildFeature(Object object, Object child) {
-        // Check the type of the specified child object and return the proper feature to use for
-        // adding (see {@link AddCommand}) it as a child.
-
-        return super.getChildFeature(object, child);
-    }
-
-    /**
      * This returns HttpBindingType.gif.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
@@ -242,10 +211,6 @@ public class HttpBindingTypeItemProvider
             case HttpPackage.HTTP_BINDING_TYPE__CONTENT_TYPE:
                 fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
                 return;
-            case HttpPackage.HTTP_BINDING_TYPE__HTTP_CONTEXT_MAPPER:
-            case HttpPackage.HTTP_BINDING_TYPE__HTTP_MESSAGE_COMPOSER:
-                fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), true, false));
-                return;
         }
         super.notifyChanged(notification);
     }
@@ -260,47 +225,6 @@ public class HttpBindingTypeItemProvider
     @Override
     protected void collectNewChildDescriptors(Collection<Object> newChildDescriptors, Object object) {
         super.collectNewChildDescriptors(newChildDescriptors, object);
-
-        newChildDescriptors.add
-            (createChildParameter
-                (HttpPackage.Literals.HTTP_BINDING_TYPE__HTTP_CONTEXT_MAPPER,
-                 HttpFactory.eINSTANCE.createHttpContextMapperType()));
-
-        newChildDescriptors.add
-            (createChildParameter
-                (HttpPackage.Literals.HTTP_BINDING_TYPE__HTTP_MESSAGE_COMPOSER,
-                 HttpFactory.eINSTANCE.createHttpMessageComposerType()));
-    }
-
-    /**
-     * This returns the label text for {@link org.eclipse.emf.edit.command.CreateChildCommand}.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    @Override
-    public String getCreateChildText(Object owner, Object feature, Object child, Collection<?> selection) {
-        Object childFeature = feature;
-        Object childObject = child;
-
-        if (childFeature instanceof EStructuralFeature && FeatureMapUtil.isFeatureMap((EStructuralFeature)childFeature)) {
-            FeatureMap.Entry entry = (FeatureMap.Entry)childObject;
-            childFeature = entry.getEStructuralFeature();
-            childObject = entry.getValue();
-        }
-
-        boolean qualify =
-            childFeature == SwitchyardPackage.Literals.SWITCH_YARD_BINDING_TYPE__CONTEXT_MAPPER ||
-            childFeature == HttpPackage.Literals.HTTP_BINDING_TYPE__HTTP_CONTEXT_MAPPER ||
-            childFeature == SwitchyardPackage.Literals.SWITCH_YARD_BINDING_TYPE__MESSAGE_COMPOSER ||
-            childFeature == HttpPackage.Literals.HTTP_BINDING_TYPE__HTTP_MESSAGE_COMPOSER;
-
-        if (qualify) {
-            return getString
-                ("_UI_CreateChild_text2",
-                 new Object[] { getTypeText(childObject), getFeatureText(childFeature), getTypeText(owner) });
-        }
-        return super.getCreateChildText(owner, feature, child, selection);
     }
 
     /**

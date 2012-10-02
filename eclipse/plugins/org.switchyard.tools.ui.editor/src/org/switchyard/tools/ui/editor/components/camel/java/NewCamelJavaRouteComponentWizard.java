@@ -138,7 +138,7 @@ public class NewCamelJavaRouteComponentWizard extends NewClassCreationWizard imp
 
         _component = ScaFactory.eINSTANCE.createComponent();
         _component.setName(newType.getElementName());
-        _component.getImplementationGroup().set(implementation.getDocumentFeature(), implementation);
+        _component.setImplementation(implementation);
 
         ComponentService service = page.getService();
         if (service != null) {

@@ -14,7 +14,6 @@ import org.eclipse.emf.common.notify.impl.AdapterFactoryImpl;
 import org.eclipse.emf.ecore.EObject;
 
 import org.eclipse.soa.sca.sca1_1.model.sca.CommonExtensionBase;
-import org.eclipse.soa.sca.sca1_1.model.sca.ExtendableType;
 import org.eclipse.soa.sca.sca1_1.model.sca.Implementation;
 import org.switchyard.tools.models.switchyard1_0.clojure.*;
 
@@ -87,10 +86,6 @@ public class ClojureAdapterFactory extends AdapterFactoryImpl {
                 return createCommonExtensionBaseAdapter();
             }
             @Override
-            public Adapter caseExtendableType(ExtendableType object) {
-                return createExtendableTypeAdapter();
-            }
-            @Override
             public Adapter caseImplementation(Implementation object) {
                 return createImplementationAdapter();
             }
@@ -157,20 +152,6 @@ public class ClojureAdapterFactory extends AdapterFactoryImpl {
     }
 
 	/**
-     * Creates a new adapter for an object of class '{@link org.eclipse.soa.sca.sca1_1.model.sca.ExtendableType <em>Extendable Type</em>}'.
-     * <!-- begin-user-doc -->
-     * This default implementation returns null so that we can easily ignore cases;
-     * it's useful to ignore a case when inheritance will catch all the cases anyway.
-     * <!-- end-user-doc -->
-     * @return the new adapter.
-     * @see org.eclipse.soa.sca.sca1_1.model.sca.ExtendableType
-     * @generated
-     */
-    public Adapter createExtendableTypeAdapter() {
-        return null;
-    }
-
-    /**
      * Creates a new adapter for an object of class '{@link org.eclipse.soa.sca.sca1_1.model.sca.Implementation <em>Implementation</em>}'.
      * <!-- begin-user-doc -->
      * This default implementation returns null so that we can easily ignore cases;

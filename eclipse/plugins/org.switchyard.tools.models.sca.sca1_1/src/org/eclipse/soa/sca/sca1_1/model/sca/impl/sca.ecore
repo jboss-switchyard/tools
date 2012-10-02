@@ -54,7 +54,7 @@
       </eAnnotations>
     </eStructuralFeatures>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="Binding" abstract="true" eSuperTypes="#//CommonExtensionBase #//ExtendableType">
+  <eClassifiers xsi:type="ecore:EClass" name="Binding" abstract="true" eSuperTypes="#//CommonExtensionBase">
     <eAnnotations source="http:///org/eclipse/emf/ecore/util/ExtendedMetaData">
       <details key="name" value="Binding"/>
       <details key="kind" value="elementOnly"/>
@@ -588,8 +588,8 @@
       </eAnnotations>
     </eStructuralFeatures>
     <eStructuralFeatures xsi:type="ecore:EReference" name="implementation" lowerBound="1"
-        eType="#//Implementation" changeable="false" volatile="true" transient="true"
-        derived="true" containment="true" resolveProxies="false">
+        eType="#//Implementation" volatile="true" transient="true" derived="true"
+        containment="true" resolveProxies="false">
       <eAnnotations source="http:///org/eclipse/emf/ecore/util/ExtendedMetaData">
         <details key="kind" value="element"/>
         <details key="name" value="implementation"/>
@@ -1098,8 +1098,7 @@
       </eAnnotations>
     </eStructuralFeatures>
     <eStructuralFeatures xsi:type="ecore:EReference" name="interface" eType="#//Interface"
-        changeable="false" volatile="true" transient="true" derived="true" containment="true"
-        resolveProxies="false">
+        volatile="true" transient="true" derived="true" containment="true" resolveProxies="false">
       <eAnnotations source="http:///org/eclipse/emf/ecore/util/ExtendedMetaData">
         <details key="kind" value="element"/>
         <details key="name" value="interface"/>
@@ -1116,8 +1115,8 @@
       </eAnnotations>
     </eStructuralFeatures>
     <eStructuralFeatures xsi:type="ecore:EReference" name="binding" upperBound="-1"
-        eType="#//Binding" changeable="false" volatile="true" transient="true" derived="true"
-        containment="true" resolveProxies="false">
+        eType="#//Binding" volatile="true" transient="true" derived="true" containment="true"
+        resolveProxies="false">
       <eAnnotations source="http:///org/eclipse/emf/ecore/util/ExtendedMetaData">
         <details key="kind" value="element"/>
         <details key="name" value="binding"/>
@@ -2177,7 +2176,7 @@
       </eAnnotations>
     </eStructuralFeatures>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="Implementation" abstract="true" eSuperTypes="#//CommonExtensionBase #//ExtendableType">
+  <eClassifiers xsi:type="ecore:EClass" name="Implementation" abstract="true" eSuperTypes="#//CommonExtensionBase">
     <eAnnotations source="http:///org/eclipse/emf/ecore/util/ExtendedMetaData">
       <details key="name" value="Implementation"/>
       <details key="kind" value="elementOnly"/>
@@ -2516,7 +2515,7 @@
       </eAnnotations>
     </eStructuralFeatures>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="Interface" abstract="true" eSuperTypes="#//CommonExtensionBase #//ExtendableType">
+  <eClassifiers xsi:type="ecore:EClass" name="Interface" abstract="true" eSuperTypes="#//CommonExtensionBase">
     <eAnnotations source="http:///org/eclipse/emf/ecore/util/ExtendedMetaData">
       <details key="name" value="Interface"/>
       <details key="kind" value="elementOnly"/>

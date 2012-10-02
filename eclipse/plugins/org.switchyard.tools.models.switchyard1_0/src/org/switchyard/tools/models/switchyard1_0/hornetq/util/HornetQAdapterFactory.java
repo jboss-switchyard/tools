@@ -15,10 +15,10 @@ import org.eclipse.emf.ecore.EObject;
 
 import org.eclipse.soa.sca.sca1_1.model.sca.Binding;
 import org.eclipse.soa.sca.sca1_1.model.sca.CommonExtensionBase;
-import org.eclipse.soa.sca.sca1_1.model.sca.OperationSelectorType;
-import org.eclipse.soa.sca.sca1_1.model.sca.ExtendableType;
 
 import org.switchyard.tools.models.switchyard1_0.hornetq.*;
+import org.switchyard.tools.models.switchyard1_0.switchyard.ContextMapperType;
+import org.switchyard.tools.models.switchyard1_0.switchyard.MessageComposerType;
 import org.switchyard.tools.models.switchyard1_0.switchyard.SwitchYardBindingType;
 
 /**
@@ -106,12 +106,16 @@ public class HornetQAdapterFactory extends AdapterFactoryImpl {
                 return createPropertyTypeAdapter();
             }
             @Override
-            public Adapter caseCommonExtensionBase(CommonExtensionBase object) {
-                return createCommonExtensionBaseAdapter();
+            public Adapter caseHornetQContextMapperType(HornetQContextMapperType object) {
+                return createHornetQContextMapperTypeAdapter();
             }
             @Override
-            public Adapter caseExtendableType(ExtendableType object) {
-                return createExtendableTypeAdapter();
+            public Adapter caseHornetQMessageComposerType(HornetQMessageComposerType object) {
+                return createHornetQMessageComposerTypeAdapter();
+            }
+            @Override
+            public Adapter caseCommonExtensionBase(CommonExtensionBase object) {
+                return createCommonExtensionBaseAdapter();
             }
             @Override
             public Adapter caseBinding(Binding object) {
@@ -120,6 +124,14 @@ public class HornetQAdapterFactory extends AdapterFactoryImpl {
             @Override
             public Adapter caseSwitchYardBindingType(SwitchYardBindingType object) {
                 return createSwitchYardBindingTypeAdapter();
+            }
+            @Override
+            public Adapter caseContextMapperType(ContextMapperType object) {
+                return createContextMapperTypeAdapter();
+            }
+            @Override
+            public Adapter caseMessageComposerType(MessageComposerType object) {
+                return createMessageComposerTypeAdapter();
             }
             @Override
             public Adapter defaultCase(EObject object) {
@@ -240,6 +252,62 @@ public class HornetQAdapterFactory extends AdapterFactoryImpl {
     }
 
     /**
+     * Creates a new adapter for an object of class '{@link org.switchyard.tools.models.switchyard1_0.hornetq.HornetQContextMapperType <em>Context Mapper Type</em>}'.
+     * <!-- begin-user-doc -->
+     * This default implementation returns null so that we can easily ignore cases;
+     * it's useful to ignore a case when inheritance will catch all the cases anyway.
+     * <!-- end-user-doc -->
+     * @return the new adapter.
+     * @see org.switchyard.tools.models.switchyard1_0.hornetq.HornetQContextMapperType
+     * @generated
+     */
+    public Adapter createHornetQContextMapperTypeAdapter() {
+        return null;
+    }
+
+    /**
+     * Creates a new adapter for an object of class '{@link org.switchyard.tools.models.switchyard1_0.hornetq.HornetQMessageComposerType <em>Message Composer Type</em>}'.
+     * <!-- begin-user-doc -->
+     * This default implementation returns null so that we can easily ignore cases;
+     * it's useful to ignore a case when inheritance will catch all the cases anyway.
+     * <!-- end-user-doc -->
+     * @return the new adapter.
+     * @see org.switchyard.tools.models.switchyard1_0.hornetq.HornetQMessageComposerType
+     * @generated
+     */
+    public Adapter createHornetQMessageComposerTypeAdapter() {
+        return null;
+    }
+
+    /**
+     * Creates a new adapter for an object of class '{@link org.switchyard.tools.models.switchyard1_0.switchyard.ContextMapperType <em>Context Mapper Type</em>}'.
+     * <!-- begin-user-doc -->
+     * This default implementation returns null so that we can easily ignore cases;
+     * it's useful to ignore a case when inheritance will catch all the cases anyway.
+     * <!-- end-user-doc -->
+     * @return the new adapter.
+     * @see org.switchyard.tools.models.switchyard1_0.switchyard.ContextMapperType
+     * @generated
+     */
+    public Adapter createContextMapperTypeAdapter() {
+        return null;
+    }
+
+    /**
+     * Creates a new adapter for an object of class '{@link org.switchyard.tools.models.switchyard1_0.switchyard.MessageComposerType <em>Message Composer Type</em>}'.
+     * <!-- begin-user-doc -->
+     * This default implementation returns null so that we can easily ignore cases;
+     * it's useful to ignore a case when inheritance will catch all the cases anyway.
+     * <!-- end-user-doc -->
+     * @return the new adapter.
+     * @see org.switchyard.tools.models.switchyard1_0.switchyard.MessageComposerType
+     * @generated
+     */
+    public Adapter createMessageComposerTypeAdapter() {
+        return null;
+    }
+
+    /**
      * Creates a new adapter for an object of class '{@link org.eclipse.soa.sca.sca1_1.model.sca.CommonExtensionBase <em>Common Extension Base</em>}'.
      * <!-- begin-user-doc -->
      * This default implementation returns null so that we can easily ignore cases;
@@ -250,20 +318,6 @@ public class HornetQAdapterFactory extends AdapterFactoryImpl {
      * @generated
      */
     public Adapter createCommonExtensionBaseAdapter() {
-        return null;
-    }
-
-    /**
-     * Creates a new adapter for an object of class '{@link org.eclipse.soa.sca.sca1_1.model.sca.ExtendableType <em>Extendable Type</em>}'.
-     * <!-- begin-user-doc -->
-     * This default implementation returns null so that we can easily ignore cases;
-     * it's useful to ignore a case when inheritance will catch all the cases anyway.
-     * <!-- end-user-doc -->
-     * @return the new adapter.
-     * @see org.eclipse.soa.sca.sca1_1.model.sca.ExtendableType
-     * @generated
-     */
-    public Adapter createExtendableTypeAdapter() {
         return null;
     }
 

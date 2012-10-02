@@ -62,6 +62,24 @@ public interface JcaFactory extends EFactory {
     DocumentRoot createDocumentRoot();
 
     /**
+     * Returns a new object of class '<em>JCA Context Mapper Type</em>'.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @return a new object of class '<em>JCA Context Mapper Type</em>'.
+     * @generated
+     */
+    JCAContextMapperType createJCAContextMapperType();
+
+    /**
+     * Returns a new object of class '<em>JCA Message Composer Type</em>'.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @return a new object of class '<em>JCA Message Composer Type</em>'.
+     * @generated
+     */
+    JCAMessageComposerType createJCAMessageComposerType();
+
+    /**
      * Returns a new object of class '<em>Inbound Operation</em>'.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->

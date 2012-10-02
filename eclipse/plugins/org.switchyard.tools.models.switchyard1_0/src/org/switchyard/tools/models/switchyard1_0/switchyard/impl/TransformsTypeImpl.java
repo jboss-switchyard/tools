@@ -6,6 +6,7 @@
  */
 package org.switchyard.tools.models.switchyard1_0.switchyard.impl;
 
+import java.util.Collection;
 import org.eclipse.emf.common.notify.NotificationChain;
 
 import org.eclipse.emf.common.util.EList;
@@ -126,11 +127,16 @@ public class TransformsTypeImpl extends EObjectImpl implements TransformsType {
 	 * <!-- end-user-doc -->
      * @generated
      */
-	@Override
+	@SuppressWarnings("unchecked")
+    @Override
 	public void eSet(int featureID, Object newValue) {
         switch (featureID) {
             case SwitchyardPackage.TRANSFORMS_TYPE__TRANSFORM_GROUP:
                 ((FeatureMap.Internal)getTransformGroup()).set(newValue);
+                return;
+            case SwitchyardPackage.TRANSFORMS_TYPE__TRANSFORM:
+                getTransform().clear();
+                getTransform().addAll((Collection<? extends TransformType>)newValue);
                 return;
         }
         super.eSet(featureID, newValue);
@@ -146,6 +152,9 @@ public class TransformsTypeImpl extends EObjectImpl implements TransformsType {
         switch (featureID) {
             case SwitchyardPackage.TRANSFORMS_TYPE__TRANSFORM_GROUP:
                 getTransformGroup().clear();
+                return;
+            case SwitchyardPackage.TRANSFORMS_TYPE__TRANSFORM:
+                getTransform().clear();
                 return;
         }
         super.eUnset(featureID);

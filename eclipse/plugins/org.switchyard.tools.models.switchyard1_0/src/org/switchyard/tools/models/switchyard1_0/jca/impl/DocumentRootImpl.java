@@ -25,6 +25,8 @@ import org.eclipse.emf.ecore.util.InternalEList;
 
 import org.switchyard.tools.models.switchyard1_0.jca.DocumentRoot;
 import org.switchyard.tools.models.switchyard1_0.jca.JCABinding;
+import org.switchyard.tools.models.switchyard1_0.jca.JCAContextMapperType;
+import org.switchyard.tools.models.switchyard1_0.jca.JCAMessageComposerType;
 import org.switchyard.tools.models.switchyard1_0.jca.JcaPackage;
 
 /**
@@ -38,6 +40,8 @@ import org.switchyard.tools.models.switchyard1_0.jca.JcaPackage;
  *   <li>{@link org.switchyard.tools.models.switchyard1_0.jca.impl.DocumentRootImpl#getXMLNSPrefixMap <em>XMLNS Prefix Map</em>}</li>
  *   <li>{@link org.switchyard.tools.models.switchyard1_0.jca.impl.DocumentRootImpl#getXSISchemaLocation <em>XSI Schema Location</em>}</li>
  *   <li>{@link org.switchyard.tools.models.switchyard1_0.jca.impl.DocumentRootImpl#getBindingJca <em>Binding Jca</em>}</li>
+ *   <li>{@link org.switchyard.tools.models.switchyard1_0.jca.impl.DocumentRootImpl#getContextMapper <em>Context Mapper</em>}</li>
+ *   <li>{@link org.switchyard.tools.models.switchyard1_0.jca.impl.DocumentRootImpl#getMessageComposer <em>Message Composer</em>}</li>
  * </ul>
  * </p>
  *
@@ -161,6 +165,60 @@ public class DocumentRootImpl extends EObjectImpl implements DocumentRoot {
      * <!-- end-user-doc -->
      * @generated
      */
+    public JCAContextMapperType getContextMapper() {
+        return (JCAContextMapperType)getMixed().get(JcaPackage.Literals.DOCUMENT_ROOT__CONTEXT_MAPPER, true);
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public NotificationChain basicSetContextMapper(JCAContextMapperType newContextMapper, NotificationChain msgs) {
+        return ((FeatureMap.Internal)getMixed()).basicAdd(JcaPackage.Literals.DOCUMENT_ROOT__CONTEXT_MAPPER, newContextMapper, msgs);
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public void setContextMapper(JCAContextMapperType newContextMapper) {
+        ((FeatureMap.Internal)getMixed()).set(JcaPackage.Literals.DOCUMENT_ROOT__CONTEXT_MAPPER, newContextMapper);
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public JCAMessageComposerType getMessageComposer() {
+        return (JCAMessageComposerType)getMixed().get(JcaPackage.Literals.DOCUMENT_ROOT__MESSAGE_COMPOSER, true);
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public NotificationChain basicSetMessageComposer(JCAMessageComposerType newMessageComposer, NotificationChain msgs) {
+        return ((FeatureMap.Internal)getMixed()).basicAdd(JcaPackage.Literals.DOCUMENT_ROOT__MESSAGE_COMPOSER, newMessageComposer, msgs);
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public void setMessageComposer(JCAMessageComposerType newMessageComposer) {
+        ((FeatureMap.Internal)getMixed()).set(JcaPackage.Literals.DOCUMENT_ROOT__MESSAGE_COMPOSER, newMessageComposer);
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
     @Override
     public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
         switch (featureID) {
@@ -172,6 +230,10 @@ public class DocumentRootImpl extends EObjectImpl implements DocumentRoot {
                 return ((InternalEList<?>)getXSISchemaLocation()).basicRemove(otherEnd, msgs);
             case JcaPackage.DOCUMENT_ROOT__BINDING_JCA:
                 return basicSetBindingJca(null, msgs);
+            case JcaPackage.DOCUMENT_ROOT__CONTEXT_MAPPER:
+                return basicSetContextMapper(null, msgs);
+            case JcaPackage.DOCUMENT_ROOT__MESSAGE_COMPOSER:
+                return basicSetMessageComposer(null, msgs);
         }
         return super.eInverseRemove(otherEnd, featureID, msgs);
     }
@@ -195,6 +257,10 @@ public class DocumentRootImpl extends EObjectImpl implements DocumentRoot {
                 else return getXSISchemaLocation().map();
             case JcaPackage.DOCUMENT_ROOT__BINDING_JCA:
                 return getBindingJca();
+            case JcaPackage.DOCUMENT_ROOT__CONTEXT_MAPPER:
+                return getContextMapper();
+            case JcaPackage.DOCUMENT_ROOT__MESSAGE_COMPOSER:
+                return getMessageComposer();
         }
         return super.eGet(featureID, resolve, coreType);
     }
@@ -218,6 +284,12 @@ public class DocumentRootImpl extends EObjectImpl implements DocumentRoot {
                 return;
             case JcaPackage.DOCUMENT_ROOT__BINDING_JCA:
                 setBindingJca((JCABinding)newValue);
+                return;
+            case JcaPackage.DOCUMENT_ROOT__CONTEXT_MAPPER:
+                setContextMapper((JCAContextMapperType)newValue);
+                return;
+            case JcaPackage.DOCUMENT_ROOT__MESSAGE_COMPOSER:
+                setMessageComposer((JCAMessageComposerType)newValue);
                 return;
         }
         super.eSet(featureID, newValue);
@@ -243,6 +315,12 @@ public class DocumentRootImpl extends EObjectImpl implements DocumentRoot {
             case JcaPackage.DOCUMENT_ROOT__BINDING_JCA:
                 setBindingJca((JCABinding)null);
                 return;
+            case JcaPackage.DOCUMENT_ROOT__CONTEXT_MAPPER:
+                setContextMapper((JCAContextMapperType)null);
+                return;
+            case JcaPackage.DOCUMENT_ROOT__MESSAGE_COMPOSER:
+                setMessageComposer((JCAMessageComposerType)null);
+                return;
         }
         super.eUnset(featureID);
     }
@@ -263,6 +341,10 @@ public class DocumentRootImpl extends EObjectImpl implements DocumentRoot {
                 return xSISchemaLocation != null && !xSISchemaLocation.isEmpty();
             case JcaPackage.DOCUMENT_ROOT__BINDING_JCA:
                 return getBindingJca() != null;
+            case JcaPackage.DOCUMENT_ROOT__CONTEXT_MAPPER:
+                return getContextMapper() != null;
+            case JcaPackage.DOCUMENT_ROOT__MESSAGE_COMPOSER:
+                return getMessageComposer() != null;
         }
         return super.eIsSet(featureID);
     }

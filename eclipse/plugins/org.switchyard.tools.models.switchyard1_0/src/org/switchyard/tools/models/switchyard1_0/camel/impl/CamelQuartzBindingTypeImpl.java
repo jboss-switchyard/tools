@@ -11,7 +11,6 @@ import javax.xml.datatype.XMLGregorianCalendar;
 import org.eclipse.emf.common.notify.Notification;
 
 import org.eclipse.emf.ecore.EClass;
-import org.eclipse.emf.ecore.EStructuralFeature;
 
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 
@@ -416,8 +415,4 @@ public class CamelQuartzBindingTypeImpl extends BaseCamelBindingImpl implements 
         return result.toString();
     }
 
-    @Override
-    public EStructuralFeature getDocumentFeature() {
-        return CamelPackage.eINSTANCE.getDocumentRoot_BindingQuartz();
-    }
 } //CamelQuartzBindingTypeImpl

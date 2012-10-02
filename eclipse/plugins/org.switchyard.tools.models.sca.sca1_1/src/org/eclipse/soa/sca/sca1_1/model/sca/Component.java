@@ -67,14 +67,25 @@ public interface Component extends CommonExtensionBase {
 	 * </p>
 	 * <!-- end-user-doc -->
      * @return the value of the '<em>Implementation</em>' containment reference.
+     * @see #setImplementation(Implementation)
      * @see org.eclipse.soa.sca.sca1_1.model.sca.ScaPackage#getComponent_Implementation()
-     * @model containment="true" required="true" transient="true" changeable="false" volatile="true" derived="true"
+     * @model containment="true" required="true" transient="true" volatile="true" derived="true"
      *        extendedMetaData="kind='element' name='implementation' namespace='##targetNamespace' group='implementation:group'"
      * @generated
      */
 	Implementation getImplementation();
 
 	/**
+     * Sets the value of the '{@link org.eclipse.soa.sca.sca1_1.model.sca.Component#getImplementation <em>Implementation</em>}' containment reference.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @param value the new value of the '<em>Implementation</em>' containment reference.
+     * @see #getImplementation()
+     * @generated
+     */
+    void setImplementation(Implementation value);
+
+    /**
      * Returns the value of the '<em><b>Group</b></em>' attribute list.
      * The list contents are of type {@link org.eclipse.emf.ecore.util.FeatureMap.Entry}.
      * <!-- begin-user-doc -->

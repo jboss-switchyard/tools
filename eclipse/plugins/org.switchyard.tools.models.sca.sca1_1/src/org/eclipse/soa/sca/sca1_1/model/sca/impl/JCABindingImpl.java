@@ -14,7 +14,6 @@ import org.eclipse.emf.common.notify.NotificationChain;
 import org.eclipse.emf.common.util.EList;
 
 import org.eclipse.emf.ecore.EClass;
-import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.ecore.InternalEObject;
 
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
@@ -637,11 +636,6 @@ public class JCABindingImpl extends BindingImpl implements JCABinding {
         result.append(jndiURL);
         result.append(')');
         return result.toString();
-    }
-
-    @Override
-    public EStructuralFeature getDocumentFeature() {
-        return ScaPackage.eINSTANCE.getDocumentRoot_BindingJca();
     }
 
 } //JCABindingImpl

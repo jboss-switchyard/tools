@@ -48,7 +48,9 @@ import org.switchyard.tools.models.switchyard1_0.hornetq.ConfigType;
 import org.switchyard.tools.models.switchyard1_0.hornetq.ConnectorType;
 import org.switchyard.tools.models.switchyard1_0.hornetq.DiscoveryGroupType;
 import org.switchyard.tools.models.switchyard1_0.hornetq.DocumentRoot;
+import org.switchyard.tools.models.switchyard1_0.hornetq.HornetQContextMapperType;
 import org.switchyard.tools.models.switchyard1_0.hornetq.HornetQFactory;
+import org.switchyard.tools.models.switchyard1_0.hornetq.HornetQMessageComposerType;
 import org.switchyard.tools.models.switchyard1_0.hornetq.HornetQPackage;
 import org.switchyard.tools.models.switchyard1_0.hornetq.PropertiesType;
 import org.switchyard.tools.models.switchyard1_0.hornetq.PropertyType;
@@ -137,6 +139,20 @@ public class HornetQPackageImpl extends EPackageImpl implements HornetQPackage {
      * @generated
      */
     private EClass propertyTypeEClass = null;
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    private EClass hornetQContextMapperTypeEClass = null;
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    private EClass hornetQMessageComposerTypeEClass = null;
 
     /**
      * Creates an instance of the model <b>Package</b>, registered with
@@ -748,6 +764,24 @@ public class HornetQPackageImpl extends EPackageImpl implements HornetQPackage {
      * <!-- end-user-doc -->
      * @generated
      */
+    public EReference getDocumentRoot_ContextMapper() {
+        return (EReference)documentRootEClass.getEStructuralFeatures().get(5);
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public EReference getDocumentRoot_MessageComposer() {
+        return (EReference)documentRootEClass.getEStructuralFeatures().get(6);
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
     public EClass getPropertiesType() {
         return propertiesTypeEClass;
     }
@@ -786,6 +820,24 @@ public class HornetQPackageImpl extends EPackageImpl implements HornetQPackage {
      */
     public EAttribute getPropertyType_Value() {
         return (EAttribute)propertyTypeEClass.getEStructuralFeatures().get(1);
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public EClass getHornetQContextMapperType() {
+        return hornetQContextMapperTypeEClass;
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public EClass getHornetQMessageComposerType() {
+        return hornetQMessageComposerTypeEClass;
     }
 
     /**
@@ -874,6 +926,8 @@ public class HornetQPackageImpl extends EPackageImpl implements HornetQPackage {
         createEReference(documentRootEClass, DOCUMENT_ROOT__XSI_SCHEMA_LOCATION);
         createEReference(documentRootEClass, DOCUMENT_ROOT__BINDING_HORNETQ);
         createEReference(documentRootEClass, DOCUMENT_ROOT__CONFIG);
+        createEReference(documentRootEClass, DOCUMENT_ROOT__CONTEXT_MAPPER);
+        createEReference(documentRootEClass, DOCUMENT_ROOT__MESSAGE_COMPOSER);
 
         propertiesTypeEClass = createEClass(PROPERTIES_TYPE);
         createEReference(propertiesTypeEClass, PROPERTIES_TYPE__PROPERTY);
@@ -881,6 +935,10 @@ public class HornetQPackageImpl extends EPackageImpl implements HornetQPackage {
         propertyTypeEClass = createEClass(PROPERTY_TYPE);
         createEAttribute(propertyTypeEClass, PROPERTY_TYPE__NAME);
         createEAttribute(propertyTypeEClass, PROPERTY_TYPE__VALUE);
+
+        hornetQContextMapperTypeEClass = createEClass(HORNET_QCONTEXT_MAPPER_TYPE);
+
+        hornetQMessageComposerTypeEClass = createEClass(HORNET_QMESSAGE_COMPOSER_TYPE);
     }
 
     /**
@@ -916,6 +974,8 @@ public class HornetQPackageImpl extends EPackageImpl implements HornetQPackage {
 
         // Add supertypes to classes
         bindingTypeEClass.getESuperTypes().add(theSwitchyardPackage.getSwitchYardBindingType());
+        hornetQContextMapperTypeEClass.getESuperTypes().add(theSwitchyardPackage.getContextMapperType());
+        hornetQMessageComposerTypeEClass.getESuperTypes().add(theSwitchyardPackage.getMessageComposerType());
 
         // Initialize classes and features; add operations and parameters
         initEClass(bindingTypeEClass, BindingType.class, "BindingType", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
@@ -976,6 +1036,8 @@ public class HornetQPackageImpl extends EPackageImpl implements HornetQPackage {
         initEReference(getDocumentRoot_XSISchemaLocation(), ecorePackage.getEStringToStringMapEntry(), null, "xSISchemaLocation", null, 0, -1, null, IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
         initEReference(getDocumentRoot_BindingHornetq(), this.getBindingType(), null, "bindingHornetq", null, 0, -2, null, IS_TRANSIENT, IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, IS_DERIVED, IS_ORDERED);
         initEReference(getDocumentRoot_Config(), this.getConfigType(), null, "config", null, 0, -2, null, IS_TRANSIENT, IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, IS_DERIVED, IS_ORDERED);
+        initEReference(getDocumentRoot_ContextMapper(), this.getHornetQContextMapperType(), null, "contextMapper", null, 0, -2, null, IS_TRANSIENT, IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, IS_DERIVED, IS_ORDERED);
+        initEReference(getDocumentRoot_MessageComposer(), this.getHornetQMessageComposerType(), null, "messageComposer", null, 0, -2, null, IS_TRANSIENT, IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, IS_DERIVED, IS_ORDERED);
 
         initEClass(propertiesTypeEClass, PropertiesType.class, "PropertiesType", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
         initEReference(getPropertiesType_Property(), this.getPropertyType(), null, "property", null, 0, -1, PropertiesType.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
@@ -983,6 +1045,10 @@ public class HornetQPackageImpl extends EPackageImpl implements HornetQPackage {
         initEClass(propertyTypeEClass, PropertyType.class, "PropertyType", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
         initEAttribute(getPropertyType_Name(), theXMLTypePackage.getString(), "name", null, 1, 1, PropertyType.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
         initEAttribute(getPropertyType_Value(), theXMLTypePackage.getString(), "value", null, 1, 1, PropertyType.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+        initEClass(hornetQContextMapperTypeEClass, HornetQContextMapperType.class, "HornetQContextMapperType", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+
+        initEClass(hornetQMessageComposerTypeEClass, HornetQMessageComposerType.class, "HornetQMessageComposerType", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 
         // Create resource
         createResource(eNS_URI);
@@ -1425,6 +1491,24 @@ public class HornetQPackageImpl extends EPackageImpl implements HornetQPackage {
              "namespace", "##targetNamespace"
            });		
         addAnnotation
+          (getDocumentRoot_ContextMapper(), 
+           source, 
+           new String[] {
+             "kind", "element",
+             "name", "contextMapper",
+             "namespace", "##targetNamespace",
+             "affiliation", "urn:switchyard-config:switchyard:1.0#contextMapper"
+           });		
+        addAnnotation
+          (getDocumentRoot_MessageComposer(), 
+           source, 
+           new String[] {
+             "kind", "element",
+             "name", "messageComposer",
+             "namespace", "##targetNamespace",
+             "affiliation", "urn:switchyard-config:switchyard:1.0#messageComposer"
+           });		
+        addAnnotation
           (propertiesTypeEClass, 
            source, 
            new String[] {
@@ -1459,6 +1543,22 @@ public class HornetQPackageImpl extends EPackageImpl implements HornetQPackage {
            new String[] {
              "kind", "attribute",
              "name", "value"
+           });		
+        addAnnotation
+          (hornetQContextMapperTypeEClass, 
+           source, 
+           new String[] {
+             "name", "ContextMapperType",
+             "kind", "empty",
+             "namespace", "##targetNamespace"
+           });		
+        addAnnotation
+          (hornetQMessageComposerTypeEClass, 
+           source, 
+           new String[] {
+             "name", "MessageComposerType",
+             "kind", "empty",
+             "namespace", "##targetNamespace"
            });
     }
 

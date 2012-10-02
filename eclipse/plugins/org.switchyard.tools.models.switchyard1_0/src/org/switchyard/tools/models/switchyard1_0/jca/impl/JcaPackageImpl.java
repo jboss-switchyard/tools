@@ -59,9 +59,11 @@ import org.switchyard.tools.models.switchyard1_0.jca.Endpoint;
 import org.switchyard.tools.models.switchyard1_0.jca.InboundOperation;
 import org.switchyard.tools.models.switchyard1_0.jca.InteractionSpec;
 import org.switchyard.tools.models.switchyard1_0.jca.JCABinding;
+import org.switchyard.tools.models.switchyard1_0.jca.JCAContextMapperType;
 import org.switchyard.tools.models.switchyard1_0.jca.JCACreateResource;
 import org.switchyard.tools.models.switchyard1_0.jca.JCAInboundConnection;
 import org.switchyard.tools.models.switchyard1_0.jca.JCAInboundInteraction;
+import org.switchyard.tools.models.switchyard1_0.jca.JCAMessageComposerType;
 import org.switchyard.tools.models.switchyard1_0.jca.JCAOutboundConnection;
 import org.switchyard.tools.models.switchyard1_0.jca.JCAOutboundInteraction;
 import org.switchyard.tools.models.switchyard1_0.jca.JcaFactory;
@@ -132,6 +134,20 @@ public class JcaPackageImpl extends EPackageImpl implements JcaPackage {
      * @generated
      */
     private EClass documentRootEClass = null;
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    private EClass jcaContextMapperTypeEClass = null;
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    private EClass jcaMessageComposerTypeEClass = null;
 
     /**
      * <!-- begin-user-doc -->
@@ -578,6 +594,42 @@ public class JcaPackageImpl extends EPackageImpl implements JcaPackage {
      */
     public EReference getDocumentRoot_BindingJca() {
         return (EReference)documentRootEClass.getEStructuralFeatures().get(3);
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public EReference getDocumentRoot_ContextMapper() {
+        return (EReference)documentRootEClass.getEStructuralFeatures().get(4);
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public EReference getDocumentRoot_MessageComposer() {
+        return (EReference)documentRootEClass.getEStructuralFeatures().get(5);
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public EClass getJCAContextMapperType() {
+        return jcaContextMapperTypeEClass;
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public EClass getJCAMessageComposerType() {
+        return jcaMessageComposerTypeEClass;
     }
 
     /**
@@ -1363,6 +1415,12 @@ public class JcaPackageImpl extends EPackageImpl implements JcaPackage {
         createEReference(documentRootEClass, DOCUMENT_ROOT__XMLNS_PREFIX_MAP);
         createEReference(documentRootEClass, DOCUMENT_ROOT__XSI_SCHEMA_LOCATION);
         createEReference(documentRootEClass, DOCUMENT_ROOT__BINDING_JCA);
+        createEReference(documentRootEClass, DOCUMENT_ROOT__CONTEXT_MAPPER);
+        createEReference(documentRootEClass, DOCUMENT_ROOT__MESSAGE_COMPOSER);
+
+        jcaContextMapperTypeEClass = createEClass(JCA_CONTEXT_MAPPER_TYPE);
+
+        jcaMessageComposerTypeEClass = createEClass(JCA_MESSAGE_COMPOSER_TYPE);
 
         // Create enums
         jcaCreateResourceEEnum = createEEnum(JCA_CREATE_RESOURCE);
@@ -1406,6 +1464,8 @@ public class JcaPackageImpl extends EPackageImpl implements JcaPackage {
 
         // Add supertypes to classes
         jcaBindingEClass.getESuperTypes().add(theSwitchyardPackage.getSwitchYardBindingType());
+        jcaContextMapperTypeEClass.getESuperTypes().add(theSwitchyardPackage.getContextMapperType());
+        jcaMessageComposerTypeEClass.getESuperTypes().add(theSwitchyardPackage.getMessageComposerType());
 
         // Initialize classes and features; add operations and parameters
         initEClass(activationSpecEClass, ActivationSpec.class, "ActivationSpec", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
@@ -1515,6 +1575,12 @@ public class JcaPackageImpl extends EPackageImpl implements JcaPackage {
         initEReference(getDocumentRoot_XMLNSPrefixMap(), ecorePackage.getEStringToStringMapEntry(), null, "xMLNSPrefixMap", null, 0, -1, null, IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
         initEReference(getDocumentRoot_XSISchemaLocation(), ecorePackage.getEStringToStringMapEntry(), null, "xSISchemaLocation", null, 0, -1, null, IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
         initEReference(getDocumentRoot_BindingJca(), this.getJCABinding(), null, "bindingJca", null, 0, -2, null, IS_TRANSIENT, IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, IS_DERIVED, IS_ORDERED);
+        initEReference(getDocumentRoot_ContextMapper(), this.getJCAContextMapperType(), null, "contextMapper", null, 0, -2, null, IS_TRANSIENT, IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, IS_DERIVED, IS_ORDERED);
+        initEReference(getDocumentRoot_MessageComposer(), this.getJCAMessageComposerType(), null, "messageComposer", null, 0, -2, null, IS_TRANSIENT, IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, IS_DERIVED, IS_ORDERED);
+
+        initEClass(jcaContextMapperTypeEClass, JCAContextMapperType.class, "JCAContextMapperType", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+
+        initEClass(jcaMessageComposerTypeEClass, JCAMessageComposerType.class, "JCAMessageComposerType", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 
         // Initialize enums and add enum literals
         initEEnum(jcaCreateResourceEEnum, JCACreateResource.class, "JCACreateResource");
@@ -2271,6 +2337,24 @@ public class JcaPackageImpl extends EPackageImpl implements JcaPackage {
              "affiliation", "urn:switchyard-config:switchyard:1.0#binding.switchyard"
            });		
         addAnnotation
+          (getDocumentRoot_ContextMapper(), 
+           source, 
+           new String[] {
+             "kind", "element",
+             "name", "contextMapper",
+             "namespace", "##targetNamespace",
+             "affiliation", "urn:switchyard-config:switchyard:1.0#contextMapper"
+           });		
+        addAnnotation
+          (getDocumentRoot_MessageComposer(), 
+           source, 
+           new String[] {
+             "kind", "element",
+             "name", "messageComposer",
+             "namespace", "##targetNamespace",
+             "affiliation", "urn:switchyard-config:switchyard:1.0#messageComposer"
+           });		
+        addAnnotation
           (jcaCreateResourceEEnum, 
            source, 
            new String[] {
@@ -2295,6 +2379,22 @@ public class JcaPackageImpl extends EPackageImpl implements JcaPackage {
            new String[] {
              "name", "ResAuth:Object",
              "baseType", "ResAuth"
+           });		
+        addAnnotation
+          (jcaContextMapperTypeEClass, 
+           source, 
+           new String[] {
+             "name", "ContextMapperType",
+             "kind", "empty",
+             "namespace", "##targetNamespace"
+           });		
+        addAnnotation
+          (jcaMessageComposerTypeEClass, 
+           source, 
+           new String[] {
+             "name", "MessageComposerType",
+             "kind", "empty",
+             "namespace", "##targetNamespace"
            });
     }
 

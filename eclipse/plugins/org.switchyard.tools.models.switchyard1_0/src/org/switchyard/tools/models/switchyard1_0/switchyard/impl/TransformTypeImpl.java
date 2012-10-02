@@ -132,7 +132,7 @@ public abstract class TransformTypeImpl extends EObjectImpl implements Transform
             eNotify(new ENotificationImpl(this, Notification.SET, SwitchyardPackage.TRANSFORM_TYPE__TO, oldTo, to));
     }
 
-	/**
+    /**
      * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
      * @generated

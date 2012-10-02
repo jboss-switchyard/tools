@@ -99,6 +99,8 @@ public class DocumentRootItemProvider
             childrenFeatures.add(CamelPackage.Literals.DOCUMENT_ROOT__BINDING_NETTY_TCP);
             childrenFeatures.add(CamelPackage.Literals.DOCUMENT_ROOT__BINDING_QUARTZ);
             childrenFeatures.add(CamelPackage.Literals.DOCUMENT_ROOT__BINDING_SQL);
+            childrenFeatures.add(CamelPackage.Literals.DOCUMENT_ROOT__CONTEXT_MAPPER);
+            childrenFeatures.add(CamelPackage.Literals.DOCUMENT_ROOT__MESSAGE_COMPOSER);
         }
         return childrenFeatures;
     }
@@ -166,6 +168,8 @@ public class DocumentRootItemProvider
             case CamelPackage.DOCUMENT_ROOT__BINDING_NETTY_TCP:
             case CamelPackage.DOCUMENT_ROOT__BINDING_QUARTZ:
             case CamelPackage.DOCUMENT_ROOT__BINDING_SQL:
+            case CamelPackage.DOCUMENT_ROOT__CONTEXT_MAPPER:
+            case CamelPackage.DOCUMENT_ROOT__MESSAGE_COMPOSER:
                 fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), true, false));
                 return;
         }
@@ -267,6 +271,16 @@ public class DocumentRootItemProvider
             (createChildParameter
                 (CamelPackage.Literals.DOCUMENT_ROOT__BINDING_SQL,
                  CamelFactory.eINSTANCE.createCamelSqlBindingType()));
+
+        newChildDescriptors.add
+            (createChildParameter
+                (CamelPackage.Literals.DOCUMENT_ROOT__CONTEXT_MAPPER,
+                 CamelFactory.eINSTANCE.createCamelContextMapperType()));
+
+        newChildDescriptors.add
+            (createChildParameter
+                (CamelPackage.Literals.DOCUMENT_ROOT__MESSAGE_COMPOSER,
+                 CamelFactory.eINSTANCE.createCamelMessageComposerType()));
     }
 
     /**

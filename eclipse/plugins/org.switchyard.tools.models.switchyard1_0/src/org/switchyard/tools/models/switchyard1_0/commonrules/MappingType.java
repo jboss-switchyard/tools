@@ -7,7 +7,6 @@
 package org.switchyard.tools.models.switchyard1_0.commonrules;
 
 import org.eclipse.soa.sca.sca1_1.model.sca.CommonExtensionBase;
-import org.eclipse.emf.ecore.EObject;
 
 /**
  * <!-- begin-user-doc -->

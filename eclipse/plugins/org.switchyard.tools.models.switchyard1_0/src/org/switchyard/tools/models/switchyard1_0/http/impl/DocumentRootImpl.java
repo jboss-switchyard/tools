@@ -25,6 +25,8 @@ import org.eclipse.emf.ecore.util.InternalEList;
 
 import org.switchyard.tools.models.switchyard1_0.http.DocumentRoot;
 import org.switchyard.tools.models.switchyard1_0.http.HttpBindingType;
+import org.switchyard.tools.models.switchyard1_0.http.HttpContextMapperType;
+import org.switchyard.tools.models.switchyard1_0.http.HttpMessageComposerType;
 import org.switchyard.tools.models.switchyard1_0.http.HttpPackage;
 
 /**
@@ -38,6 +40,8 @@ import org.switchyard.tools.models.switchyard1_0.http.HttpPackage;
  *   <li>{@link org.switchyard.tools.models.switchyard1_0.http.impl.DocumentRootImpl#getXMLNSPrefixMap <em>XMLNS Prefix Map</em>}</li>
  *   <li>{@link org.switchyard.tools.models.switchyard1_0.http.impl.DocumentRootImpl#getXSISchemaLocation <em>XSI Schema Location</em>}</li>
  *   <li>{@link org.switchyard.tools.models.switchyard1_0.http.impl.DocumentRootImpl#getBindingHTTP <em>Binding HTTP</em>}</li>
+ *   <li>{@link org.switchyard.tools.models.switchyard1_0.http.impl.DocumentRootImpl#getContextMapper <em>Context Mapper</em>}</li>
+ *   <li>{@link org.switchyard.tools.models.switchyard1_0.http.impl.DocumentRootImpl#getMessageComposer <em>Message Composer</em>}</li>
  * </ul>
  * </p>
  *
@@ -161,6 +165,60 @@ public class DocumentRootImpl extends EObjectImpl implements DocumentRoot {
      * <!-- end-user-doc -->
      * @generated
      */
+    public HttpContextMapperType getContextMapper() {
+        return (HttpContextMapperType)getMixed().get(HttpPackage.Literals.DOCUMENT_ROOT__CONTEXT_MAPPER, true);
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public NotificationChain basicSetContextMapper(HttpContextMapperType newContextMapper, NotificationChain msgs) {
+        return ((FeatureMap.Internal)getMixed()).basicAdd(HttpPackage.Literals.DOCUMENT_ROOT__CONTEXT_MAPPER, newContextMapper, msgs);
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public void setContextMapper(HttpContextMapperType newContextMapper) {
+        ((FeatureMap.Internal)getMixed()).set(HttpPackage.Literals.DOCUMENT_ROOT__CONTEXT_MAPPER, newContextMapper);
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public HttpMessageComposerType getMessageComposer() {
+        return (HttpMessageComposerType)getMixed().get(HttpPackage.Literals.DOCUMENT_ROOT__MESSAGE_COMPOSER, true);
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public NotificationChain basicSetMessageComposer(HttpMessageComposerType newMessageComposer, NotificationChain msgs) {
+        return ((FeatureMap.Internal)getMixed()).basicAdd(HttpPackage.Literals.DOCUMENT_ROOT__MESSAGE_COMPOSER, newMessageComposer, msgs);
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public void setMessageComposer(HttpMessageComposerType newMessageComposer) {
+        ((FeatureMap.Internal)getMixed()).set(HttpPackage.Literals.DOCUMENT_ROOT__MESSAGE_COMPOSER, newMessageComposer);
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
     @Override
     public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
         switch (featureID) {
@@ -172,6 +230,10 @@ public class DocumentRootImpl extends EObjectImpl implements DocumentRoot {
                 return ((InternalEList<?>)getXSISchemaLocation()).basicRemove(otherEnd, msgs);
             case HttpPackage.DOCUMENT_ROOT__BINDING_HTTP:
                 return basicSetBindingHTTP(null, msgs);
+            case HttpPackage.DOCUMENT_ROOT__CONTEXT_MAPPER:
+                return basicSetContextMapper(null, msgs);
+            case HttpPackage.DOCUMENT_ROOT__MESSAGE_COMPOSER:
+                return basicSetMessageComposer(null, msgs);
         }
         return super.eInverseRemove(otherEnd, featureID, msgs);
     }
@@ -195,6 +257,10 @@ public class DocumentRootImpl extends EObjectImpl implements DocumentRoot {
                 else return getXSISchemaLocation().map();
             case HttpPackage.DOCUMENT_ROOT__BINDING_HTTP:
                 return getBindingHTTP();
+            case HttpPackage.DOCUMENT_ROOT__CONTEXT_MAPPER:
+                return getContextMapper();
+            case HttpPackage.DOCUMENT_ROOT__MESSAGE_COMPOSER:
+                return getMessageComposer();
         }
         return super.eGet(featureID, resolve, coreType);
     }
@@ -218,6 +284,12 @@ public class DocumentRootImpl extends EObjectImpl implements DocumentRoot {
                 return;
             case HttpPackage.DOCUMENT_ROOT__BINDING_HTTP:
                 setBindingHTTP((HttpBindingType)newValue);
+                return;
+            case HttpPackage.DOCUMENT_ROOT__CONTEXT_MAPPER:
+                setContextMapper((HttpContextMapperType)newValue);
+                return;
+            case HttpPackage.DOCUMENT_ROOT__MESSAGE_COMPOSER:
+                setMessageComposer((HttpMessageComposerType)newValue);
                 return;
         }
         super.eSet(featureID, newValue);
@@ -243,6 +315,12 @@ public class DocumentRootImpl extends EObjectImpl implements DocumentRoot {
             case HttpPackage.DOCUMENT_ROOT__BINDING_HTTP:
                 setBindingHTTP((HttpBindingType)null);
                 return;
+            case HttpPackage.DOCUMENT_ROOT__CONTEXT_MAPPER:
+                setContextMapper((HttpContextMapperType)null);
+                return;
+            case HttpPackage.DOCUMENT_ROOT__MESSAGE_COMPOSER:
+                setMessageComposer((HttpMessageComposerType)null);
+                return;
         }
         super.eUnset(featureID);
     }
@@ -263,6 +341,10 @@ public class DocumentRootImpl extends EObjectImpl implements DocumentRoot {
                 return xSISchemaLocation != null && !xSISchemaLocation.isEmpty();
             case HttpPackage.DOCUMENT_ROOT__BINDING_HTTP:
                 return getBindingHTTP() != null;
+            case HttpPackage.DOCUMENT_ROOT__CONTEXT_MAPPER:
+                return getContextMapper() != null;
+            case HttpPackage.DOCUMENT_ROOT__MESSAGE_COMPOSER:
+                return getMessageComposer() != null;
         }
         return super.eIsSet(featureID);
     }

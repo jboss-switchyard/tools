@@ -23,8 +23,10 @@ import org.eclipse.emf.ecore.util.EcoreEMap;
 import org.eclipse.emf.ecore.util.FeatureMap;
 import org.eclipse.emf.ecore.util.InternalEList;
 
+import org.switchyard.tools.models.switchyard1_0.soap.ContextMapperType;
 import org.switchyard.tools.models.switchyard1_0.soap.DocumentRoot;
 import org.switchyard.tools.models.switchyard1_0.soap.SOAPBindingType;
+import org.switchyard.tools.models.switchyard1_0.soap.SOAPMessageComposerType;
 import org.switchyard.tools.models.switchyard1_0.soap.SOAPPackage;
 
 /**
@@ -38,6 +40,8 @@ import org.switchyard.tools.models.switchyard1_0.soap.SOAPPackage;
  *   <li>{@link org.switchyard.tools.models.switchyard1_0.soap.impl.DocumentRootImpl#getXMLNSPrefixMap <em>XMLNS Prefix Map</em>}</li>
  *   <li>{@link org.switchyard.tools.models.switchyard1_0.soap.impl.DocumentRootImpl#getXSISchemaLocation <em>XSI Schema Location</em>}</li>
  *   <li>{@link org.switchyard.tools.models.switchyard1_0.soap.impl.DocumentRootImpl#getBindingSoap <em>Binding Soap</em>}</li>
+ *   <li>{@link org.switchyard.tools.models.switchyard1_0.soap.impl.DocumentRootImpl#getContextMapperSoap <em>Context Mapper Soap</em>}</li>
+ *   <li>{@link org.switchyard.tools.models.switchyard1_0.soap.impl.DocumentRootImpl#getMessageComposerSoap <em>Message Composer Soap</em>}</li>
  * </ul>
  * </p>
  *
@@ -161,6 +165,60 @@ public class DocumentRootImpl extends EObjectImpl implements DocumentRoot {
      * <!-- end-user-doc -->
      * @generated
      */
+    public ContextMapperType getContextMapperSoap() {
+        return (ContextMapperType)getMixed().get(SOAPPackage.Literals.DOCUMENT_ROOT__CONTEXT_MAPPER_SOAP, true);
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public NotificationChain basicSetContextMapperSoap(ContextMapperType newContextMapperSoap, NotificationChain msgs) {
+        return ((FeatureMap.Internal)getMixed()).basicAdd(SOAPPackage.Literals.DOCUMENT_ROOT__CONTEXT_MAPPER_SOAP, newContextMapperSoap, msgs);
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public void setContextMapperSoap(ContextMapperType newContextMapperSoap) {
+        ((FeatureMap.Internal)getMixed()).set(SOAPPackage.Literals.DOCUMENT_ROOT__CONTEXT_MAPPER_SOAP, newContextMapperSoap);
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public SOAPMessageComposerType getMessageComposerSoap() {
+        return (SOAPMessageComposerType)getMixed().get(SOAPPackage.Literals.DOCUMENT_ROOT__MESSAGE_COMPOSER_SOAP, true);
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public NotificationChain basicSetMessageComposerSoap(SOAPMessageComposerType newMessageComposerSoap, NotificationChain msgs) {
+        return ((FeatureMap.Internal)getMixed()).basicAdd(SOAPPackage.Literals.DOCUMENT_ROOT__MESSAGE_COMPOSER_SOAP, newMessageComposerSoap, msgs);
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public void setMessageComposerSoap(SOAPMessageComposerType newMessageComposerSoap) {
+        ((FeatureMap.Internal)getMixed()).set(SOAPPackage.Literals.DOCUMENT_ROOT__MESSAGE_COMPOSER_SOAP, newMessageComposerSoap);
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
     @Override
     public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
         switch (featureID) {
@@ -172,6 +230,10 @@ public class DocumentRootImpl extends EObjectImpl implements DocumentRoot {
                 return ((InternalEList<?>)getXSISchemaLocation()).basicRemove(otherEnd, msgs);
             case SOAPPackage.DOCUMENT_ROOT__BINDING_SOAP:
                 return basicSetBindingSoap(null, msgs);
+            case SOAPPackage.DOCUMENT_ROOT__CONTEXT_MAPPER_SOAP:
+                return basicSetContextMapperSoap(null, msgs);
+            case SOAPPackage.DOCUMENT_ROOT__MESSAGE_COMPOSER_SOAP:
+                return basicSetMessageComposerSoap(null, msgs);
         }
         return super.eInverseRemove(otherEnd, featureID, msgs);
     }
@@ -195,6 +257,10 @@ public class DocumentRootImpl extends EObjectImpl implements DocumentRoot {
                 else return getXSISchemaLocation().map();
             case SOAPPackage.DOCUMENT_ROOT__BINDING_SOAP:
                 return getBindingSoap();
+            case SOAPPackage.DOCUMENT_ROOT__CONTEXT_MAPPER_SOAP:
+                return getContextMapperSoap();
+            case SOAPPackage.DOCUMENT_ROOT__MESSAGE_COMPOSER_SOAP:
+                return getMessageComposerSoap();
         }
         return super.eGet(featureID, resolve, coreType);
     }
@@ -218,6 +284,12 @@ public class DocumentRootImpl extends EObjectImpl implements DocumentRoot {
                 return;
             case SOAPPackage.DOCUMENT_ROOT__BINDING_SOAP:
                 setBindingSoap((SOAPBindingType)newValue);
+                return;
+            case SOAPPackage.DOCUMENT_ROOT__CONTEXT_MAPPER_SOAP:
+                setContextMapperSoap((ContextMapperType)newValue);
+                return;
+            case SOAPPackage.DOCUMENT_ROOT__MESSAGE_COMPOSER_SOAP:
+                setMessageComposerSoap((SOAPMessageComposerType)newValue);
                 return;
         }
         super.eSet(featureID, newValue);
@@ -243,6 +315,12 @@ public class DocumentRootImpl extends EObjectImpl implements DocumentRoot {
             case SOAPPackage.DOCUMENT_ROOT__BINDING_SOAP:
                 setBindingSoap((SOAPBindingType)null);
                 return;
+            case SOAPPackage.DOCUMENT_ROOT__CONTEXT_MAPPER_SOAP:
+                setContextMapperSoap((ContextMapperType)null);
+                return;
+            case SOAPPackage.DOCUMENT_ROOT__MESSAGE_COMPOSER_SOAP:
+                setMessageComposerSoap((SOAPMessageComposerType)null);
+                return;
         }
         super.eUnset(featureID);
     }
@@ -263,6 +341,10 @@ public class DocumentRootImpl extends EObjectImpl implements DocumentRoot {
                 return xSISchemaLocation != null && !xSISchemaLocation.isEmpty();
             case SOAPPackage.DOCUMENT_ROOT__BINDING_SOAP:
                 return getBindingSoap() != null;
+            case SOAPPackage.DOCUMENT_ROOT__CONTEXT_MAPPER_SOAP:
+                return getContextMapperSoap() != null;
+            case SOAPPackage.DOCUMENT_ROOT__MESSAGE_COMPOSER_SOAP:
+                return getMessageComposerSoap() != null;
         }
         return super.eIsSet(featureID);
     }

@@ -77,6 +77,8 @@ public class JcaFactoryImpl extends EFactoryImpl implements JcaFactory {
             case JcaPackage.PROPERTY: return createProperty();
             case JcaPackage.RESOURCE_ADAPTER: return createResourceAdapter();
             case JcaPackage.DOCUMENT_ROOT: return createDocumentRoot();
+            case JcaPackage.JCA_CONTEXT_MAPPER_TYPE: return createJCAContextMapperType();
+            case JcaPackage.JCA_MESSAGE_COMPOSER_TYPE: return createJCAMessageComposerType();
             default:
                 throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier");
         }
@@ -162,6 +164,26 @@ public class JcaFactoryImpl extends EFactoryImpl implements JcaFactory {
     public DocumentRoot createDocumentRoot() {
         DocumentRootImpl documentRoot = new DocumentRootImpl();
         return documentRoot;
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public JCAContextMapperType createJCAContextMapperType() {
+        JCAContextMapperTypeImpl jcaContextMapperType = new JCAContextMapperTypeImpl();
+        return jcaContextMapperType;
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public JCAMessageComposerType createJCAMessageComposerType() {
+        JCAMessageComposerTypeImpl jcaMessageComposerType = new JCAMessageComposerTypeImpl();
+        return jcaMessageComposerType;
     }
 
     /**

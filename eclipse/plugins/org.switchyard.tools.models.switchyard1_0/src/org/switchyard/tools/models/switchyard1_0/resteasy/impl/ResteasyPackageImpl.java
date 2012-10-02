@@ -53,6 +53,8 @@ import org.switchyard.tools.models.switchyard1_0.jca.impl.JcaPackageImpl;
 
 import org.switchyard.tools.models.switchyard1_0.resteasy.DocumentRoot;
 import org.switchyard.tools.models.switchyard1_0.resteasy.RESTBindingType;
+import org.switchyard.tools.models.switchyard1_0.resteasy.RESTContextMapperType;
+import org.switchyard.tools.models.switchyard1_0.resteasy.RESTMessageComposerType;
 import org.switchyard.tools.models.switchyard1_0.resteasy.ResteasyFactory;
 import org.switchyard.tools.models.switchyard1_0.resteasy.ResteasyPackage;
 
@@ -100,6 +102,20 @@ public class ResteasyPackageImpl extends EPackageImpl implements ResteasyPackage
      * @generated
      */
     private EClass documentRootEClass = null;
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    private EClass restContextMapperTypeEClass = null;
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    private EClass restMessageComposerTypeEClass = null;
 
     /**
      * Creates an instance of the model <b>Package</b>, registered with
@@ -305,6 +321,42 @@ public class ResteasyPackageImpl extends EPackageImpl implements ResteasyPackage
      * <!-- end-user-doc -->
      * @generated
      */
+    public EReference getDocumentRoot_ContextMapper() {
+        return (EReference)documentRootEClass.getEStructuralFeatures().get(4);
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public EReference getDocumentRoot_MessageComposer() {
+        return (EReference)documentRootEClass.getEStructuralFeatures().get(5);
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public EClass getRESTContextMapperType() {
+        return restContextMapperTypeEClass;
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public EClass getRESTMessageComposerType() {
+        return restMessageComposerTypeEClass;
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
     public ResteasyFactory getResteasyFactory() {
         return (ResteasyFactory)getEFactoryInstance();
     }
@@ -338,6 +390,12 @@ public class ResteasyPackageImpl extends EPackageImpl implements ResteasyPackage
         createEReference(documentRootEClass, DOCUMENT_ROOT__XMLNS_PREFIX_MAP);
         createEReference(documentRootEClass, DOCUMENT_ROOT__XSI_SCHEMA_LOCATION);
         createEReference(documentRootEClass, DOCUMENT_ROOT__BINDING_REST);
+        createEReference(documentRootEClass, DOCUMENT_ROOT__CONTEXT_MAPPER);
+        createEReference(documentRootEClass, DOCUMENT_ROOT__MESSAGE_COMPOSER);
+
+        restContextMapperTypeEClass = createEClass(REST_CONTEXT_MAPPER_TYPE);
+
+        restMessageComposerTypeEClass = createEClass(REST_MESSAGE_COMPOSER_TYPE);
     }
 
     /**
@@ -372,6 +430,8 @@ public class ResteasyPackageImpl extends EPackageImpl implements ResteasyPackage
 
         // Add supertypes to classes
         restBindingTypeEClass.getESuperTypes().add(theSwitchyardPackage.getSwitchYardBindingType());
+        restContextMapperTypeEClass.getESuperTypes().add(theSwitchyardPackage.getContextMapperType());
+        restMessageComposerTypeEClass.getESuperTypes().add(theSwitchyardPackage.getMessageComposerType());
 
         // Initialize classes and features; add operations and parameters
         initEClass(restBindingTypeEClass, RESTBindingType.class, "RESTBindingType", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
@@ -384,6 +444,12 @@ public class ResteasyPackageImpl extends EPackageImpl implements ResteasyPackage
         initEReference(getDocumentRoot_XMLNSPrefixMap(), ecorePackage.getEStringToStringMapEntry(), null, "xMLNSPrefixMap", null, 0, -1, null, IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
         initEReference(getDocumentRoot_XSISchemaLocation(), ecorePackage.getEStringToStringMapEntry(), null, "xSISchemaLocation", null, 0, -1, null, IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
         initEReference(getDocumentRoot_BindingREST(), this.getRESTBindingType(), null, "bindingREST", null, 0, -2, null, IS_TRANSIENT, IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, IS_DERIVED, IS_ORDERED);
+        initEReference(getDocumentRoot_ContextMapper(), this.getRESTContextMapperType(), null, "contextMapper", null, 0, -2, null, IS_TRANSIENT, IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, IS_DERIVED, IS_ORDERED);
+        initEReference(getDocumentRoot_MessageComposer(), this.getRESTMessageComposerType(), null, "messageComposer", null, 0, -2, null, IS_TRANSIENT, IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, IS_DERIVED, IS_ORDERED);
+
+        initEClass(restContextMapperTypeEClass, RESTContextMapperType.class, "RESTContextMapperType", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+
+        initEClass(restMessageComposerTypeEClass, RESTMessageComposerType.class, "RESTMessageComposerType", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 
         // Create resource
         createResource(eNS_URI);
@@ -468,6 +534,40 @@ public class ResteasyPackageImpl extends EPackageImpl implements ResteasyPackage
              "name", "binding.rest",
              "namespace", "##targetNamespace",
              "affiliation", "urn:switchyard-config:switchyard:1.0#binding.switchyard"
+           });		
+        addAnnotation
+          (getDocumentRoot_ContextMapper(), 
+           source, 
+           new String[] {
+             "kind", "element",
+             "name", "contextMapper",
+             "namespace", "##targetNamespace",
+             "affiliation", "urn:switchyard-config:switchyard:1.0#contextMapper"
+           });		
+        addAnnotation
+          (getDocumentRoot_MessageComposer(), 
+           source, 
+           new String[] {
+             "kind", "element",
+             "name", "messageComposer",
+             "namespace", "##targetNamespace",
+             "affiliation", "urn:switchyard-config:switchyard:1.0#messageComposer"
+           });		
+        addAnnotation
+          (restContextMapperTypeEClass, 
+           source, 
+           new String[] {
+             "name", "ContextMapperType",
+             "kind", "empty",
+             "namespace", "##targetNamespace"
+           });		
+        addAnnotation
+          (restMessageComposerTypeEClass, 
+           source, 
+           new String[] {
+             "name", "MessageComposerType",
+             "kind", "empty",
+             "namespace", "##targetNamespace"
            });
     }
 
