@@ -13,6 +13,7 @@
 package org.switchyard.tools.ui.editor.diagram;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Iterator;
 import java.util.List;
 
@@ -36,7 +37,6 @@ import org.eclipse.graphiti.mm.algorithms.Polygon;
 import org.eclipse.graphiti.mm.algorithms.RoundedRectangle;
 import org.eclipse.graphiti.mm.algorithms.styles.Point;
 import org.eclipse.graphiti.mm.pictograms.Anchor;
-import org.eclipse.graphiti.mm.pictograms.Connection;
 import org.eclipse.graphiti.mm.pictograms.ConnectionDecorator;
 import org.eclipse.graphiti.mm.pictograms.PictogramElement;
 import org.eclipse.graphiti.palette.IPaletteCompartmentEntry;
@@ -67,7 +67,6 @@ import org.eclipse.soa.sca.sca1_1.model.sca.Service;
 import org.switchyard.tools.models.switchyard1_0.hornetq.BindingType;
 import org.switchyard.tools.models.switchyard1_0.soap.SOAPBindingType;
 import org.switchyard.tools.models.switchyard1_0.switchyard.SwitchYardBindingType;
-import org.switchyard.tools.ui.editor.diagram.connections.CustomAddTransformFeature;
 import org.switchyard.tools.ui.editor.property.adapters.LabelAdapter;
 import org.switchyard.tools.ui.validation.ValidationStatusAdapter;
 
@@ -92,14 +91,6 @@ public class SCADiagramToolBehaviorProvider extends DefaultToolBehaviorProvider 
     public IContextMenuEntry[] getContextMenu(ICustomContext context) {
         List<IContextMenuEntry> menuList = new ArrayList<IContextMenuEntry>();
         if (context.getPictogramElements() != null) {
-            for (PictogramElement pictogramElement : context.getPictogramElements()) {
-                if (pictogramElement instanceof Connection) {
-                    ContextMenuEntry addTransformMenu = new ContextMenuEntry(new CustomAddTransformFeature(
-                            getFeatureProvider()), context);
-                    addTransformMenu.setText("Add Transformer");
-                    addTransformMenu.setSubmenu(false);
-                }
-            }
             Object bo = getFeatureProvider().getBusinessObjectForPictogramElement(context.getPictogramElements()[0]);
             if (bo != null && (bo instanceof Component || bo instanceof Contract)) {
                 ContextMenuEntry openMenu = new ContextMenuEntry(new SCADiagramOpenOnDoubleClickFeature(
@@ -108,11 +99,9 @@ public class SCADiagramToolBehaviorProvider extends DefaultToolBehaviorProvider 
                 openMenu.setSubmenu(false);
                 menuList.add(openMenu);
             }
-            if (menuList.size() > 0) {
-                return menuList.toArray(new IContextMenuEntry[menuList.size()]);
-            }
         }
-        return super.getContextMenu(context);
+        menuList.addAll(Arrays.asList(super.getContextMenu(context)));
+                return menuList.toArray(new IContextMenuEntry[menuList.size()]);
     }
 
     /**

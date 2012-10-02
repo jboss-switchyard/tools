@@ -73,7 +73,7 @@ public class Java2WSDLOptionsWizardPage extends WizardPage {
     private String _applicationName;
     private String _locationURI = String.format(DEFAULT_LOCATION, "", "");
     private boolean _useImportedSchema;
-    private boolean _useWrappedMessages;
+    private boolean _useWrappedMessages = true;
     private Text _serviceInterfaceText;
     private Text _serviceNameText;
     private Text _targetNamespaceText;
@@ -407,6 +407,7 @@ public class Java2WSDLOptionsWizardPage extends WizardPage {
         if (_locationURI != null) {
             _locationURIText.setText(_locationURI);
         }
+        _useWrappedMessagesCheck.setSelection(_useWrappedMessages);
     }
 
     @Override
