@@ -10,12 +10,17 @@
  ************************************************************************************/
 package org.switchyard.tools.ui.editor.diagram.service;
 
+import java.lang.reflect.InvocationTargetException;
 import java.util.Collection;
 import java.util.Collections;
 
 import org.eclipse.core.resources.IFile;
 import org.eclipse.core.resources.IProject;
 import org.eclipse.core.resources.IResource;
+import org.eclipse.core.resources.ResourcesPlugin;
+import org.eclipse.core.runtime.IProgressMonitor;
+import org.eclipse.core.runtime.jobs.Job;
+import org.eclipse.jface.operation.IRunnableWithProgress;
 import org.eclipse.jface.wizard.IWizard;
 import org.eclipse.soa.sca.sca1_1.model.sca.Contract;
 import org.eclipse.soa.sca.sca1_1.model.sca.ScaPackage;
@@ -100,20 +105,41 @@ public class PromoteServiceWizardPage extends NewContractWizardPage {
 
     @Override
     protected void validate() {
-        if (!typesMatch()) {
-            try {
-                _details = new TransformDetails(_switchYard, getContract(), _targetContract);
-                if (!_details.getDeclaredTransforms().containsAll(_details.getRequiredTransforms())) {
-                    _transformWizard.init(_details);
-                    _createTransformersCheck.setEnabled(true);
-                } else {
+        final IFile newSourceResource = PlatformResourceAdapterFactory.getFileForObject(getContract(), _project);
+        if (newSourceResource != null && _targetResource != null && !newSourceResource.equals(_targetResource)
+                && newSourceResource.exists() && _targetResource.exists()) {
+            if (!newSourceResource.equals(_sourceResource)) {
+                // need to update required transforms
+                _sourceResource = newSourceResource;
+                try {
+                    getWizard().getContainer().run(false, false, new IRunnableWithProgress() {
+                        @Override
+                        public void run(IProgressMonitor monitor) throws InvocationTargetException,
+                                InterruptedException {
+                            Job.getJobManager().join(ResourcesPlugin.FAMILY_AUTO_BUILD, monitor);
+                            try {
+                                _details = new TransformDetails(_switchYard, getContract(), _targetContract);
+                            } catch (Exception e) {
+                                throw new InvocationTargetException(e);
+                            }
+
+                        }
+                    });
+                    if (!_details.getDeclaredTransforms().containsAll(_details.getRequiredTransforms())) {
+                        _transformWizard.init(_details);
+                        _createTransformersCheck.setEnabled(true);
+                    } else {
+                        _createTransformersCheck.setEnabled(false);
+                    }
+                } catch (Exception e) {
                     _createTransformersCheck.setEnabled(false);
                 }
-            } catch (Exception e) {
-                _createTransformersCheck.setEnabled(false);
             }
         } else {
+            // we either can't resolve the corresponding resources or the
+            // interfaces are the same
             _createTransformersCheck.setEnabled(false);
+            _sourceResource = newSourceResource;
         }
         _creatingTransformers = _createTransformersCheck.isEnabled() && _createTransformersCheck.getSelection();
         super.validate();
@@ -124,17 +150,6 @@ public class PromoteServiceWizardPage extends NewContractWizardPage {
             return _transformWizard;
         }
         return null;
-    }
-
-    private boolean typesMatch() {
-        final IFile newSourceResource = PlatformResourceAdapterFactory.getFileForObject(getContract(), _project);
-        if (newSourceResource == null || _targetResource == null || newSourceResource.equals(_targetResource)
-                || newSourceResource.equals(_sourceResource) || !newSourceResource.exists()
-                || !_targetResource.exists()) {
-            return true;
-        }
-        _sourceResource = newSourceResource;
-        return false;
     }
 
 }
