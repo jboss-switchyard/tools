@@ -121,6 +121,7 @@ public class UpdateComponentReferenceFeature extends AbstractUpdateFeature {
             final IRemoveFeature removeFeature = getFeatureProvider().getRemoveFeature(removeContext);
             if (removeFeature != null && removeFeature.canRemove(removeContext)) {
                 removeFeature.remove(removeContext);
+                _hasDoneChanges = removeFeature.hasDoneChanges();
                 return true;
             }
         }

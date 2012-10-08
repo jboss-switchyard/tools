@@ -524,28 +524,32 @@ public class SwitchyardSCAEditor extends DiagramEditor implements IGotoMarker {
         if (project == null) {
             return false;
         }
+        boolean modified = false;
+        Diagram diagram = getDiagramTypeProvider().getDiagram();
         if (mergeAdapter.processUpdatesToGenerated(project.getOutputSwitchYardConfigurationFile())) {
-            Diagram diagram = getDiagramTypeProvider().getDiagram();
             /*
              * make sure the diagram is marked as dirty so the user can save any
              * updated references.
              */
             diagram.eResource().setModified(true);
-            IUpdateContext context = new UpdateContext(diagram);
-            IUpdateFeature feature = getDiagramTypeProvider().getFeatureProvider().getUpdateFeature(context);
-            if (feature != null && feature.canExecute(context) && feature.updateNeeded(context).toBoolean()) {
-                feature.update(context);
-            }
-            try {
-                loadValidationStatus(Arrays.asList(_modelFile.findMarkers(
-                        SwitchYardProjectValidator.SWITCHYARD_MARKER_ID, true, IResource.DEPTH_ZERO)));
-                refresh();
-            } catch (CoreException e) {
-                e.fillInStackTrace();
-            }
-            return true;
+            modified = true;
         }
-        return false;
+        // update the diagram, if needed
+        IUpdateContext context = new UpdateContext(diagram);
+        IUpdateFeature feature = getDiagramTypeProvider().getFeatureProvider().getUpdateFeature(context);
+        if (feature != null && feature.canExecute(context) && feature.updateNeeded(context).toBoolean()) {
+            feature.update(context);
+            modified = modified || feature.hasDoneChanges();
+        }
+        // reload the markers and refresh the diagram
+        try {
+            loadValidationStatus(Arrays.asList(_modelFile.findMarkers(SwitchYardProjectValidator.SWITCHYARD_MARKER_ID,
+                    true, IResource.DEPTH_ZERO)));
+            refresh();
+        } catch (CoreException e) {
+            e.fillInStackTrace();
+        }
+        return modified;
     }
 
     private void addWorkspaceListener() {
