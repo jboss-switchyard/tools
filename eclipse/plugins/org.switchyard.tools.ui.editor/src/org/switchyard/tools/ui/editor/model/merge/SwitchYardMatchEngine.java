@@ -38,6 +38,7 @@ import org.switchyard.tools.models.switchyard1_0.bean.BeanImplementationType;
 import org.switchyard.tools.models.switchyard1_0.bpm.BPMImplementationType;
 import org.switchyard.tools.models.switchyard1_0.camel.CamelImplementationType;
 import org.switchyard.tools.models.switchyard1_0.switchyard.EsbInterface;
+import org.switchyard.tools.models.switchyard1_0.switchyard.SwitchyardPackage;
 
 /**
  * SwitchYardMatchEngine
@@ -150,11 +151,36 @@ public class SwitchYardMatchEngine extends GenericMatchEngine implements IMatchE
 
         @Override
         public double absoluteMetric(EObject obj1, EObject obj2) throws FactoryException {
+            final EClass class1 = obj1.eClass();
+            if (class1 == SwitchyardPackage.eINSTANCE.getArtifactsType()
+                    || class1 == SwitchyardPackage.eINSTANCE.getTransformsType()
+                    || class1 == SwitchyardPackage.eINSTANCE.getValidatesType()
+                    || class1 == SwitchyardPackage.eINSTANCE.getDomainType()
+                    || class1 == SwitchyardPackage.eINSTANCE.getPropertiesType()) {
+                if (class1 == obj2.eClass()) {
+                    return 1d;
+                } else {
+                    return 0d;
+                }
+            }
             final double nameWeight = 0.8d;
             final double contentWeight = 0.2d;
             final double nameSimilarity = nameSimilarity(obj1, obj2);
             final double contentSimilarity = contentSimilarity(obj1, obj2);
             return (contentSimilarity * contentWeight + nameSimilarity * nameWeight) / (contentWeight + nameWeight);
+        }
+
+        @Override
+        public boolean isSimilar(EObject obj1, EObject obj2) throws FactoryException {
+            final EClass class1 = obj1.eClass();
+            if ((class1 == SwitchyardPackage.eINSTANCE.getArtifactsType()
+                    || class1 == SwitchyardPackage.eINSTANCE.getTransformsType()
+                    || class1 == SwitchyardPackage.eINSTANCE.getValidatesType()
+                    || class1 == SwitchyardPackage.eINSTANCE.getDomainType()
+                    || class1 == SwitchyardPackage.eINSTANCE.getPropertiesType()) && class1 == obj2.eClass()) {
+                return true;
+            }
+            return super.isSimilar(obj1, obj2);
         }
 
         @Override

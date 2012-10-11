@@ -226,5 +226,12 @@
           priority="normal">
     </diffengine>
  </extension>
+ <extension
+       point="org.eclipse.emf.compare.diff.mergerprovider">
+    <mergerprovider
+          mergerProviderClass="org.switchyard.tools.ui.editor.model.merge.SwitchYardMergerProvider"
+          priority="normal">
+    </mergerprovider>
+ </extension>
 
 </plugin>

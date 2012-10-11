@@ -62,7 +62,6 @@ public class BaseTransformComposite extends AbstractSwitchyardComposite {
     private TransformType _transform;
     private Combo _toText;
     private Combo _fromText;
-    private static TransformTypesUtil _typesUtil = null;
     private WizardPage _page = null;
     private String _warningMessage = null;
     private boolean _ignoreListUpdate = false;
@@ -75,9 +74,6 @@ public class BaseTransformComposite extends AbstractSwitchyardComposite {
      */
     public BaseTransformComposite() {
         super();
-        if (_typesUtil == null) {
-            _typesUtil = new TransformTypesUtil();
-        }
     }
 
     @Override
@@ -111,7 +107,7 @@ public class BaseTransformComposite extends AbstractSwitchyardComposite {
             }
         }
         if (toText != null && toText.trim().length() > 0 && fromText != null && fromText.trim().length() > 0) {
-            if (_typesUtil.transformExists(fromText, toText)) {
+            if (getTransformTypes().transformExists(fromText, toText)) {
                 setWarningMessage("A transform already exists between these two types.");
             }
             // boolean isToInput = _typesUtil.isQNameInput(toText);
@@ -145,31 +141,32 @@ public class BaseTransformComposite extends AbstractSwitchyardComposite {
     }
 
     private void updateToList(Control control) {
+        final TransformTypesUtil typesUtil = getTransformTypes();
         boolean isInput = false;
         boolean isOutput = false;
         Combo opposite = null;
         if (control == _fromText) {
             String from = _fromText.getText().trim();
-            isInput = _typesUtil.isQNameInput(from);
-            isOutput = _typesUtil.isQNameOutput(from);
+            isInput = typesUtil.isQNameInput(from);
+            isOutput = typesUtil.isQNameOutput(from);
             opposite = _toText;
         }
         String[] types = null;
         try {
             if (isInput && isOutput) {
-                types = _typesUtil.getTypesAsStringsForConfig();
+                types = typesUtil.getTypesAsStringsForConfig();
                 if (getToObject() != null && opposite == _toText) {
-                    types = _typesUtil.getTypesAsStringsForEObjectConfig(getToObject());
+                    types = typesUtil.getTypesAsStringsForEObjectConfig(getToObject());
                 }
             } else if (isInput) {
-                types = _typesUtil.getInputTypesAsStringsForConfig();
+                types = typesUtil.getInputTypesAsStringsForConfig();
                 if (getToObject() != null && opposite == _toText) {
-                    types = _typesUtil.getInputTypesAsStringsForEObjectConfig(getToObject());
+                    types = typesUtil.getInputTypesAsStringsForEObjectConfig(getToObject());
                 }
             } else if (isOutput) {
-                types = _typesUtil.getOutputTypesAsStringsForConfig();
+                types = typesUtil.getOutputTypesAsStringsForConfig();
                 if (getToObject() != null && opposite == _toText) {
-                    types = _typesUtil.getOutputTypesAsStringsForEObjectConfig(getToObject());
+                    types = typesUtil.getOutputTypesAsStringsForEObjectConfig(getToObject());
                 }
             } else {
                 types = new String[0];
@@ -226,6 +223,7 @@ public class BaseTransformComposite extends AbstractSwitchyardComposite {
      * @param transform incoming transform type
      */
     public void setTransform(TransformType transform) {
+        final TransformTypesUtil typesUtil = getTransformTypes();
         setInUpdate(true);
         boolean autoSelectTo = false;
         boolean autoSelectFrom = false;
@@ -234,18 +232,18 @@ public class BaseTransformComposite extends AbstractSwitchyardComposite {
             String[] fromtypes = null;
             String[] totypes = null;
             if (_page != null) {
-                fromtypes = _typesUtil.getTypesAsStringsForConfig();
+                fromtypes = typesUtil.getTypesAsStringsForConfig();
                 if (getFromObject() != null) {
-                    fromtypes = _typesUtil.getTypesAsStringsForEObjectConfig(getFromObject());
+                    fromtypes = typesUtil.getTypesAsStringsForEObjectConfig(getFromObject());
                 }
                 autoSelectFrom = false;
-                totypes = _typesUtil.getTypesAsStringsForConfig();
+                totypes = typesUtil.getTypesAsStringsForConfig();
                 if (getToObject() != null) {
-                    totypes = _typesUtil.getTypesAsStringsForEObjectConfig(getToObject());
+                    totypes = typesUtil.getTypesAsStringsForEObjectConfig(getToObject());
                 }
                 autoSelectTo = false;
                 if (getFromObject() != null && getToObject() != null) {
-                    _typeMappings = _typesUtil.createMappings(getFromObject(), getToObject());
+                    _typeMappings = typesUtil.createMappings(getFromObject(), getToObject());
                 }
             }
             updateList(_fromText, fromtypes);
@@ -259,8 +257,8 @@ public class BaseTransformComposite extends AbstractSwitchyardComposite {
         setInUpdate(false);
         if (_toText.getText().trim().length() == 0 && _fromText.getText().trim().length() == 0) {
             try {
-                if (_typesUtil.isOnlyOneServiceOperation(getFromObject())
-                        && _typesUtil.isOnlyOneServiceOperation(getToObject()) && !_typeMappings.isEmpty()) {
+                if (typesUtil.isOnlyOneServiceOperation(getFromObject())
+                        && typesUtil.isOnlyOneServiceOperation(getToObject()) && !_typeMappings.isEmpty()) {
                     setTextValue(_fromText, (String) _typeMappings.keySet().toArray()[0]);
                     setTextValue(_toText, (String) _typeMappings.get(_fromText.getText()));
                 }
@@ -494,8 +492,10 @@ public class BaseTransformComposite extends AbstractSwitchyardComposite {
 
     @Override
     public void dispose() {
-        _typesUtil = null;
         super.dispose();
     }
 
+    protected TransformTypesUtil getTransformTypes() {
+        return ((AddTransformWizard) _page.getWizard()).getTransformTypes();
+    }
 }

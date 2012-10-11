@@ -14,6 +14,7 @@ package org.switchyard.tools.ui.editor.transform.wizards;
 
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.jface.wizard.IWizardPage;
+import org.switchyard.tools.models.switchyard1_0.switchyard.SwitchYardType;
 import org.switchyard.tools.models.switchyard1_0.switchyard.TransformType;
 import org.switchyard.tools.models.switchyard1_0.transform.JAXBTransformType;
 import org.switchyard.tools.models.switchyard1_0.transform.JavaTransformType1;
@@ -21,6 +22,7 @@ import org.switchyard.tools.models.switchyard1_0.transform.JsonTransformType;
 import org.switchyard.tools.models.switchyard1_0.transform.SmooksTransformType1;
 import org.switchyard.tools.models.switchyard1_0.transform.XsltTransformType;
 import org.switchyard.tools.ui.editor.diagram.internal.wizards.BaseWizard;
+import org.switchyard.tools.ui.editor.util.TransformTypesUtil;
 
 /**
  * @author bfitzpat
@@ -37,32 +39,19 @@ public class AddTransformWizard extends BaseWizard {
 
     private EObject _fromObject = null;
     private EObject _toObject = null;
+    
+    private TransformTypesUtil _typesUtil = null;
 
     /**
      * Opens the add transform wizard.
+     * 
+     * @param switchYard the root SwitchYard model
      */
-    public AddTransformWizard() {
+    public AddTransformWizard(SwitchYardType switchYard) {
         super();
         initPages();
         setWindowTitle("New Transformer");
-    }
-
-    /**
-     * @param from object coming from
-     * @param to object going to
-     */
-    public AddTransformWizard(EObject from, EObject to) {
-        this();
-        initializeFromAndTo(from, to);
-    }
-
-    /**
-     * @param from object coming from
-     * @param to object going to
-     */
-    public void initializeFromAndTo(EObject from, EObject to) {
-        this._fromObject = from;
-        this._toObject = to;
+        _typesUtil = new TransformTypesUtil(switchYard);
     }
 
     private void initPages() {
@@ -141,4 +130,10 @@ public class AddTransformWizard extends BaseWizard {
         return _toObject;
     }
 
+    /**
+     * @return the collected transform types
+     */
+    public TransformTypesUtil getTransformTypes() {
+        return _typesUtil;
+    }
 }

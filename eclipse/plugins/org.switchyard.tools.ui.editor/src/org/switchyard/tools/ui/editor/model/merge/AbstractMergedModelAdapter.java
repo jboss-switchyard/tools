@@ -25,6 +25,7 @@ import org.eclipse.emf.compare.diff.metamodel.ModelElementChangeRightTarget;
 import org.eclipse.emf.compare.diff.metamodel.ReferenceChangeRightTarget;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EStructuralFeature;
+import org.eclipse.emf.ecore.util.ExtendedMetaData;
 import org.switchyard.tools.models.switchyard1_0.switchyard.SwitchYardType;
 
 /**
@@ -171,17 +172,20 @@ public abstract class AbstractMergedModelAdapter implements Adapter {
     private Object getRightTarget(EStructuralFeature feature, DiffElement difference) {
         if (difference instanceof ModelElementChangeRightTarget) {
             EObject rightTarget = ((ModelElementChangeRightTarget) difference).getRightElement();
-            if (feature.equals(rightTarget.eContainmentFeature())) {
+            if (feature.equals(ExtendedMetaData.INSTANCE.getAffiliation(((ModelElementChangeRightTarget) difference)
+                    .getLeftParent().eClass(), rightTarget.eContainmentFeature()))) {
                 return rightTarget;
             }
         } else if (difference instanceof ReferenceChangeRightTarget) {
             ReferenceChangeRightTarget change = (ReferenceChangeRightTarget) difference;
-            if (feature.equals(change.getReference())) {
+            if (feature.equals(ExtendedMetaData.INSTANCE.getAffiliation(change.getLeftElement().eClass(),
+                    change.getReference()))) {
                 return change.getRightTarget();
             }
         } else if (difference instanceof AttributeChangeRightTarget) {
             AttributeChangeRightTarget change = (AttributeChangeRightTarget) difference;
-            if (feature.equals(change.getAttribute())) {
+            if (feature.equals(ExtendedMetaData.INSTANCE.getAffiliation(change.getLeftElement().eClass(),
+                    change.getAttribute()))) {
                 return change.getRightTarget();
             }
         }

@@ -12,7 +12,6 @@
  ******************************************************************************/
 package org.switchyard.tools.ui.editor.property;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import org.eclipse.emf.common.command.Command;
@@ -69,6 +68,8 @@ import org.switchyard.tools.models.switchyard1_0.switchyard.SwitchyardFactory;
 import org.switchyard.tools.models.switchyard1_0.switchyard.TransformType;
 import org.switchyard.tools.models.switchyard1_0.switchyard.TransformsType;
 import org.switchyard.tools.ui.editor.impl.SwitchyardSCAEditor;
+import org.switchyard.tools.ui.editor.model.merge.MergedModelUtil;
+import org.switchyard.tools.ui.editor.model.merge.SwitchYardMergedModelAdapter;
 import org.switchyard.tools.ui.editor.property.adapters.LabelAdapter;
 import org.switchyard.tools.ui.editor.transform.wizards.AddTransformWizard;
 import org.switchyard.tools.ui.editor.util.TransformTypesUtil;
@@ -88,7 +89,6 @@ public class TransformPropertySection extends GFPropertySection implements ITabb
     private Button _addButton;
     private Button _removeButton;
     private TransactionalEditingDomain _domain = null;
-    private TransformTypesUtil _transformUtil;
 
     /**
      * Constructor.
@@ -141,17 +141,8 @@ public class TransformPropertySection extends GFPropertySection implements ITabb
     private SwitchYardType getSwitchYardRoot() {
         PictogramElement pe = getSelectedPictogramElement();
         if (pe != null) {
-            EObject targetBO = Graphiti.getLinkService().getBusinessObjectForLinkedPictogramElement(pe);
-            // the filter assured, that it is a Composite
-            if (targetBO != null) {
-                org.eclipse.soa.sca.sca1_1.model.sca.Composite composite = 
-                        (org.eclipse.soa.sca.sca1_1.model.sca.Composite) targetBO;
-                if (composite.eContainer() != null && composite.eContainer() instanceof SwitchYardType) {
-                    SwitchYardType rootSwitchYard = (SwitchYardType) composite.eContainer();
-                    return rootSwitchYard;
-                }                
-            }
-            
+            return MergedModelUtil.getSwitchYard(Graphiti.getLinkService().getBusinessObjectForLinkedPictogramElement(
+                    pe));
         }
         return null;
     }
@@ -160,49 +151,16 @@ public class TransformPropertySection extends GFPropertySection implements ITabb
     public void refresh() {
         Display.getDefault().asyncExec(new Runnable() {
             public void run() {
-                SwitchYardType switchYardRoot = getSwitchYardRoot();
-                TransformsType transforms = null;
+                final SwitchYardType switchYardRoot = getSwitchYardRoot();
                 if (_tableViewer.getTable().isDisposed()) {
                     return;
                 }
-                _tableViewer.setInput(null);
-                if (switchYardRoot.getTransforms() != null) {
-                    transforms = switchYardRoot.getTransforms();
+                if (switchYardRoot == null) {
+                    _tableViewer.setInput(null);
+                } else {
+                    _tableViewer.setInput(MergedModelUtil
+                            .getAdapter(switchYardRoot, SwitchYardMergedModelAdapter.class).getTransforms());
                 }
-                if (_transformUtil == null) {
-                    _transformUtil = new TransformTypesUtil();
-                }
-                TransformsType targetTransforms = _transformUtil.getTransformsFromTarget();
-                List<TransformType> combined = new ArrayList<TransformType>();
-                if (transforms != null) {
-                    combined.addAll(transforms.getTransform());
-                }
-                if (targetTransforms != null) {
-                    for (TransformType targetTransformType : targetTransforms.getTransform()) {
-                        if (transforms != null && transforms.getTransform().size() > 0) {
-                            boolean foundMatch = false;
-                            for (TransformType srcTransformType : transforms.getTransform()) {
-                                boolean testToMatch = srcTransformType.getTo().equals(targetTransformType.getTo());
-                                boolean testFromMatch = srcTransformType.getFrom().equals(targetTransformType.getFrom());
-                                boolean testClassMatch = srcTransformType.getClass().equals(targetTransformType.getClass());
-                                if (testToMatch && testFromMatch && testClassMatch) {
-                                    foundMatch = true;
-                                    break;
-                                }
-                            }
-                            // if this came from the source, don't re-add
-                            if (!foundMatch) {
-                                combined.add(targetTransformType);
-                            }
-                        } else {
-                            // make sure we haven't added it already
-                            if (!combined.contains(targetTransformType)) {
-                                combined.add(targetTransformType);
-                            }
-                        }
-                    }
-                }
-                _tableViewer.setInput(combined);
             }
         });
     }
@@ -335,7 +293,7 @@ public class TransformPropertySection extends GFPropertySection implements ITabb
 
     private TransformType addTransform() {
         TransformType newTransform = null;
-        AddTransformWizard wizard = new AddTransformWizard();
+        AddTransformWizard wizard = new AddTransformWizard(getSwitchYardRoot());
         Shell shell = PlatformUI.getWorkbench().getActiveWorkbenchWindow().getShell();
         WizardDialog wizDialog = new WizardDialog(shell, wizard);
         int rtn_code = wizDialog.open();
@@ -425,9 +383,9 @@ public class TransformPropertySection extends GFPropertySection implements ITabb
             if (element instanceof TransformType) {
                 TransformType transform = (TransformType) element;
                 if (columnIndex == ColumnConst.COLUMN_TO) {
-                    return transform.getTo();
+                    return TransformTypesUtil.getLabelForType(transform.getTo());
                 } else if (columnIndex == ColumnConst.COLUMN_FROM) {
-                    return transform.getFrom();
+                    return TransformTypesUtil.getLabelForType(transform.getFrom());
                 } else if (columnIndex == ColumnConst.COLUMN_TYPE) {
                     return LabelAdapter.getLabel(transform);
                 }

@@ -18,8 +18,6 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
-import javax.xml.namespace.QName;
-
 import org.eclipse.core.resources.IProject;
 import org.eclipse.core.runtime.CoreException;
 import org.eclipse.core.runtime.IStatus;
@@ -61,6 +59,7 @@ import org.eclipse.swt.widgets.TableColumn;
 import org.switchyard.tools.models.switchyard1_0.switchyard.TransformType;
 import org.switchyard.tools.ui.PlatformResourceAdapterFactory;
 import org.switchyard.tools.ui.editor.Activator;
+import org.switchyard.tools.ui.editor.util.TransformTypesUtil;
 
 /**
  * NewTransformWizardPage
@@ -459,25 +458,11 @@ public class NewTransformWizardPage extends WizardPage implements ITransformProv
 
         @Override
         public String getColumnText(Object element, int columnIndex) {
-            final String typeString;
             if (columnIndex == 0) {
-                typeString = ((TransformType) element).getFrom();
+                return TransformTypesUtil.getLabelForType(((TransformType) element).getFrom());
             } else {
-                typeString = ((TransformType) element).getTo();
+                return TransformTypesUtil.getLabelForType(((TransformType) element).getTo());
             }
-            if (typeString == null || typeString.length() == 0) {
-                return "";
-            }
-            final QName qname = QName.valueOf(typeString);
-            if (NewTransformWizard.isJavaType(typeString)) {
-                final int lastDot = qname.getLocalPart().lastIndexOf('.');
-                if (lastDot >= 0) {
-                    return qname.getLocalPart().substring(lastDot + 1) + " {"
-                            + qname.getLocalPart().substring(5, lastDot) + "}";
-                }
-                return qname.getLocalPart().substring(5);
-            }
-            return qname.getLocalPart() + " {" + qname.getNamespaceURI() + "}";
         }
 
     }

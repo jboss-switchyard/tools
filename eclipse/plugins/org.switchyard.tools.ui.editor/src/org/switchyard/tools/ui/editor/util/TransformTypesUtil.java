@@ -43,13 +43,15 @@ import org.switchyard.tools.models.switchyard1_0.switchyard.DocumentRoot;
 import org.switchyard.tools.models.switchyard1_0.switchyard.SwitchYardType;
 import org.switchyard.tools.models.switchyard1_0.switchyard.SwitchyardPackage;
 import org.switchyard.tools.models.switchyard1_0.switchyard.TransformType;
-import org.switchyard.tools.models.switchyard1_0.switchyard.TransformsType;
 import org.switchyard.tools.models.switchyard1_0.switchyard.util.SwitchyardResourceFactoryImpl;
 import org.switchyard.tools.models.switchyard1_0.switchyard.util.SwitchyardResourceImpl;
 import org.switchyard.tools.models.switchyard1_0.transform.TransformFactory;
 import org.switchyard.tools.ui.JavaUtil;
 import org.switchyard.tools.ui.SwitchYardModelUtils;
 import org.switchyard.tools.ui.editor.impl.SwitchyardSCAEditor;
+import org.switchyard.tools.ui.editor.model.merge.MergedModelUtil;
+import org.switchyard.tools.ui.editor.model.merge.SwitchYardMergedModelAdapter;
+import org.switchyard.tools.ui.editor.transform.NewTransformWizard;
 
 /**
  * @author bfitzpat
@@ -59,16 +61,18 @@ public final class TransformTypesUtil {
 
     private Set<QName> _outputTypeQNames = null;
     private Set<QName> _inputTypeQNames = null;
-    private TransformsType _targetTransforms = null;
+    private List<TransformType> _targetTransforms = null;
 
     /**
      * Get operations for transformer types.
+     * 
+     * @param switchYard the root SwitchYard model
      */
-    public TransformTypesUtil() {
+    public TransformTypesUtil(SwitchYardType switchYard) {
         try {
             _inputTypeQNames = getInputTypesForConfig();
             _outputTypeQNames = getOutputTypesForConfig();
-            _targetTransforms = loadTransformsFromTarget();
+            _targetTransforms = loadTransformsFromTarget(switchYard);
         } catch (Exception e) {
             // ignore
             e.fillInStackTrace();
@@ -297,24 +301,35 @@ public final class TransformTypesUtil {
         return typeList;
     }
 
-    private TransformsType loadTransformsFromTarget() {
-        IFile target = SwitchyardSCAEditor.getActiveEditor().getTargetModelFile();
-        if (target != null) {
-            try {
-                SwitchYardType switchyard = loadModelFile(target);
-                return switchyard.getTransforms();
-            } catch (IOException e) {
-                e.fillInStackTrace();
-            }
+    /**
+     * Returns text to use as a label for a type. The label will be formatted as
+     * "SimpleName {namespace | package}".
+     * 
+     * @param typeString the QName.toString() value for the type.
+     * @return a String that may be used as a label.
+     */
+    public static String getLabelForType(String typeString) {
+        if (typeString == null || typeString.length() == 0) {
+            return "";
         }
-        return null;
+        final QName qname = QName.valueOf(typeString);
+        if (NewTransformWizard.isJavaType(typeString)) {
+            final int lastDot = qname.getLocalPart().lastIndexOf('.');
+            if (lastDot >= 0) {
+                return qname.getLocalPart().substring(lastDot + 1) + " {" + qname.getLocalPart().substring(5, lastDot)
+                        + "}";
+            }
+            return qname.getLocalPart().substring(5);
+        }
+        final String namespaceURI = qname.getNamespaceURI();
+        if (namespaceURI == null || namespaceURI.isEmpty()) {
+            return qname.getLocalPart();
+        }
+        return qname.getLocalPart() + " {" + namespaceURI + "}";
     }
 
-    /**
-     * @return Transforms root type
-     */
-    public TransformsType getTransformsFromTarget() {
-        return _targetTransforms;
+    private List<TransformType> loadTransformsFromTarget(SwitchYardType switchYard) {
+        return MergedModelUtil.getAdapter(switchYard, SwitchYardMergedModelAdapter.class).getTransforms();
     }
 
     /**
@@ -324,7 +339,7 @@ public final class TransformTypesUtil {
      */
     public boolean transformExists(String from, String to) {
         if (_targetTransforms != null) {
-            for (TransformType targetTransformType : _targetTransforms.getTransform()) {
+            for (TransformType targetTransformType : _targetTransforms) {
                 boolean testToMatch = targetTransformType.getTo().equals(to);
                 boolean testFromMatch = targetTransformType.getFrom().equals(from);
                 if (testToMatch && testFromMatch) {
