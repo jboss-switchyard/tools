@@ -24,4 +24,7 @@
       </repositories>
     </profile>
   </profiles>
+
+  <!-- points the local repository to the test repository. -->
+  <localRepository>${LOCAL_TEST_REPO}</localRepository>
 </settings>
