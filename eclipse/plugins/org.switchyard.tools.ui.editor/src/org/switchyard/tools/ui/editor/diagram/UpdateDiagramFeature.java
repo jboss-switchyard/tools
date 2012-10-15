@@ -27,6 +27,7 @@ import org.eclipse.graphiti.mm.pictograms.Connection;
 import org.eclipse.graphiti.mm.pictograms.Diagram;
 import org.eclipse.graphiti.mm.pictograms.PictogramElement;
 import org.eclipse.soa.sca.sca1_1.model.sca.Composite;
+import org.eclipse.soa.sca.sca1_1.model.sca.ScaFactory;
 import org.switchyard.tools.models.switchyard1_0.switchyard.DocumentRoot;
 import org.switchyard.tools.models.switchyard1_0.switchyard.SwitchYardType;
 
@@ -58,8 +59,17 @@ public class UpdateDiagramFeature extends DefaultUpdateDiagramFeature {
             for (EObject bo : d.getLink().getBusinessObjects()) {
                 if (bo instanceof DocumentRoot) {
                     DocumentRoot root = (DocumentRoot) bo;
-                    if (root.getSwitchyard() != null && root.getSwitchyard().getComposite() != null) {
-                        addComposite(context, root.getSwitchyard().getComposite());
+                    if (root.getSwitchyard() != null) {
+                        final SwitchYardType switchYard = root.getSwitchyard();
+                        if (switchYard.getComposite() != null) {
+                            addComposite(context, root.getSwitchyard().getComposite());
+                        } else {
+                            final Composite newComposite = ScaFactory.eINSTANCE.createComposite();
+                            newComposite.setName(switchYard.getName());
+                            newComposite.setTargetNamespace(switchYard.getTargetNamespace());
+                            switchYard.setComposite(newComposite);
+                            addComposite(context, newComposite);
+                        }
                     }
                 } else if (bo instanceof SwitchYardType) {
                     SwitchYardType switchYard = (SwitchYardType) bo;
