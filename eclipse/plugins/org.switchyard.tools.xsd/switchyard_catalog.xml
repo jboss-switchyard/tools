@@ -18,6 +18,7 @@
   <public publicId="urn:switchyard-component-soap:config:1.0" uri="org/switchyard/component/soap/config/model/v1/soap-v1.xsd" />
   <public publicId="urn:switchyard-component-jca:config:1.0" uri="org/switchyard/component/jca/config/model/v1/jca-v1.xsd" />
   <public publicId="urn:switchyard-component-resteasy:config:1.0" uri="org/switchyard/component/resteasy/config/model/v1/resteasy-v1.xsd" />
+  <public publicId="urn:switchyard-component-http:config:1.0" uri="org/switchyard/component/resteasy/config/model/v1/http-v1.xsd" />
 
   <!-- Other dependencies -->
   <public publicId="http://docs.oasis-open.org/ns/opencsa/sca/200912" uri="org/oasis-open/docs/ns/opencsa/sca/200912/sca-1.1-cd06.xsd" />

@@ -573,7 +573,7 @@
            <artifactId>switchyard-component-camel</artifactId>
         </dependency>
      </component>
-     <component
+<!--     <component
            name="Clojure"
            id="org.switchyard.components:switchyard-component-clojure">
         <description>
@@ -583,7 +583,7 @@
            <groupId>org.switchyard.components</groupId>
            <artifactId>switchyard-component-clojure</artifactId>
         </dependency>
-     </component>
+     </component> -->
      <component
            name="HornetQ"
            id="org.switchyard.components:switchyard-component-hornetq">
@@ -593,6 +593,17 @@
         <dependency>
            <groupId>org.switchyard.components</groupId>
            <artifactId>switchyard-component-hornetq</artifactId>
+        </dependency>
+     </component>
+     <component
+           name="HTTP"
+           id="org.switchyard.components:switchyard-component-http">
+        <description>
+           Provides support for HTTP based service implementations.
+        </description>
+        <dependency>
+           <groupId>org.switchyard.components</groupId>
+           <artifactId>switchyard-component-http</artifactId>
         </dependency>
      </component>
      <component

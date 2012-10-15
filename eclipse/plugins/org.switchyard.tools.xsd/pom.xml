@@ -115,6 +115,11 @@
                   <version>${version.switchyard.runtime}</version>
                   <classifier>sources</classifier>
                 </artifactItem>
+                <artifactItem>
+                  <groupId>org.switchyard.components</groupId>
+                  <artifactId>switchyard-component-http</artifactId>
+                  <version>${version.switchyard.runtime}</version>
+                </artifactItem>
               </artifactItems>
             </configuration>
           </execution>
