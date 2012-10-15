@@ -12,6 +12,7 @@
  ******************************************************************************/
 package org.switchyard.tools.ui.editor.tests.swt;
 
+import static org.eclipse.swtbot.swt.finder.waits.Conditions.shellCloses;
 import junit.framework.Assert;
 
 import org.eclipse.core.resources.IProject;
@@ -35,7 +36,7 @@ import org.switchyard.tools.ui.editor.tests.swt.utils.TestUtils;
 /**
  *  Create a component and add a Bean implementation.
  */
-public class SYEditorDemoBeanTests extends SWTBotGefTestCase {
+public class DemoBeanTests extends SWTBotGefTestCase {
 
     private SWTBotGefEditor editor;
     private SYEditorBot syEditorBot; 
@@ -48,7 +49,8 @@ public class SYEditorDemoBeanTests extends SWTBotGefTestCase {
     @Before
     protected void setUp() throws Exception {
         super.setUp();
-        SWTBotPreferences.TIMEOUT = 60000; // increase to 60 second delay
+        System.out.println("[DemoBeanTests]");
+        SWTBotPreferences.TIMEOUT = 90000; // increase to 90 second delay
         syEditorBot = new SYEditorBot();
     }
 
@@ -56,6 +58,7 @@ public class SYEditorDemoBeanTests extends SWTBotGefTestCase {
     public void tearDown() throws Exception {
         super.tearDown();
         SWTBotPreferences.TIMEOUT = 5000; // return to 5 second delay
+        System.out.println("[/DemoBeanTests]");
     }
 
     @Test
@@ -86,10 +89,10 @@ public class SYEditorDemoBeanTests extends SWTBotGefTestCase {
         
         editor.click(x, y);
         
-        SWTBotShell wizard = bot.shell("");
+        SWTBotShell wizard = bot.shell("Bean Implementation");
         wizard.bot().link().click();
         
-        SWTBotShell beandialog = bot.shell("");
+        SWTBotShell beandialog = bot.shell("New Bean Service");
         beandialog.activate();
         SWTBotText beanNameText = bot.textWithLabel("Name:", 0);
         beanNameText.setText("Payments");
@@ -100,6 +103,7 @@ public class SYEditorDemoBeanTests extends SWTBotGefTestCase {
         bot.textWithLabel("Name:").setText("Payments");
         intfcName = "Payments.java";
         bot.button("Finish").click();
+        bot.waitUntil(shellCloses(interfaceDialog));
         
         beandialog.activate();
         SWTBotText beanFolderText = bot.textWithLabel("Source folder:");
@@ -110,9 +114,11 @@ public class SYEditorDemoBeanTests extends SWTBotGefTestCase {
         beanName = beanNameText2.getText();
         
         bot.button("Finish").click();
+        bot.waitUntil(shellCloses(beandialog));
         
         wizard.activate();
         bot.button("Finish").click();
+        bot.waitUntil(shellCloses(wizard));
 
         Component componentBO = (Component) syEditorBot.getBOforPE(component);
         System.out.println("Found component: " + componentBO.toString());
@@ -124,6 +130,8 @@ public class SYEditorDemoBeanTests extends SWTBotGefTestCase {
 
         try {
             syEditorBot.saveCurrentEditor();
+            TestUtils.waitForBuildsToFinish();
+            syEditorBot.validateDiagram();
             TestUtils.waitForBuildsToFinish();
         } catch (Exception e) {
             e.printStackTrace();

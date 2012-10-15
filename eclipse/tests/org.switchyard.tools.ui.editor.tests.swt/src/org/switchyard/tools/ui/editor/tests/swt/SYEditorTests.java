@@ -35,10 +35,14 @@ public class SYEditorTests extends SWTBotGefTestCase {
     public static final String TOOL_SERVICE = "Service";
     public static final String TOOL_REFERENCE = "Reference";
     public static final String TOOL_PROMOTE = "Promote";
+    public static final String TOOL_CAMEL_JAVA = "Camel (Java)";
+    public static final String TOOL_SOAP = "SOAP";
+    public static final String TOOL_BPMN = "Process (BPMN)";
     
     @Before
     protected void setUp() throws Exception {
         super.setUp();
+        System.out.println("[SYEditorTests]");
         SWTBotPreferences.TIMEOUT = 30000; // increase to 30 second delay
         syEditorBot = new SYEditorBot();
     }
@@ -47,6 +51,7 @@ public class SYEditorTests extends SWTBotGefTestCase {
     public void tearDown() throws Exception {
         super.tearDown();
         SWTBotPreferences.TIMEOUT = 5000; // return to 5 second delay
+        System.out.println("[/SYEditorTests]");
     }
 
     @Test

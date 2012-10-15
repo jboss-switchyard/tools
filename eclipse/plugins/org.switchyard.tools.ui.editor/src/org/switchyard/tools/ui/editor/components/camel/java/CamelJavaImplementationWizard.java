@@ -39,6 +39,7 @@ public class CamelJavaImplementationWizard extends LinkedWizardBase implements I
 
     @Override
     public void addPages() {
+        setWindowTitle("Camel Implementation");
         _page = new CamelJavaRouteImplementationPage(CamelJavaRouteImplementationPage.class.getCanonicalName());
         _page.init(_implementation);
         _page.forceServiceInterfaceType(_service);

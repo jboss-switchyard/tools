@@ -30,6 +30,7 @@ public class SOAPBindingWizard extends LinkedWizardBase implements IBindingWizar
 
     @Override
     public void addPages() {
+        setWindowTitle("SOAP Binding");
         _page = new SOAPBindingWizardPage(SOAPBindingWizardPage.class.getCanonicalName());
         addPage(_page);
     }

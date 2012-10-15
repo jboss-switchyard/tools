@@ -69,6 +69,7 @@ public class NewBeanServiceWizard extends AbstractSwitchYardServiceWizard {
 
     @Override
     public void addPages() {
+        setWindowTitle("New Bean Service");
         _newClassPage = new NewBeanServiceClassWizardPage();
         _newClassPage.init(selection);
         if (_serviceInterface != null) {

@@ -42,7 +42,7 @@ public final class TestUtils {
             // do nothing
         }
     }
-    
+
     public static SWTBotMenu getSubMenuItem(final SWTBotMenu parentMenu, 
             final String itemText)
                     throws WidgetNotFoundException {
@@ -52,6 +52,7 @@ public final class TestUtils {
                 Menu bar = parentMenu.widget.getMenu();
                 if (bar != null) {
                     for (MenuItem item : bar.getItems()) {
+                        System.out.println("Menu: " + item.getText());
                         if (item.getText().contains(itemText)) {
                             return item;
                         }
@@ -99,6 +100,9 @@ public final class TestUtils {
         IFile testFile = project.getFolder(folderPath)
                 .getFile(existFileName);
         
+        if (testFile.exists()) {
+            testFile.delete(true, new NullProgressMonitor());
+        }
         // fill the file
         testFile.create(
                 TestUtils.class.getClassLoader().getResourceAsStream(

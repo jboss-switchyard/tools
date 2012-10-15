@@ -19,6 +19,7 @@
   <modules>
     <module>org.switchyard.tools.m2e.tests</module>
     <module>org.switchyard.tools.ui.tests</module>
+    <!--  <module>org.switchyard.tools.ui.editor.tests.swt</module> -->
   </modules>
 
   <build>

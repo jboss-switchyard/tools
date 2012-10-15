@@ -12,6 +12,7 @@
  ******************************************************************************/
 package org.switchyard.tools.ui.editor.tests.swt.common;
 
+import java.util.ArrayList;
 import java.util.Collection;
 
 import junit.framework.Assert;
@@ -58,6 +59,10 @@ public class SYEditorBot {
         bot.activeEditor();
     }
     
+    public void setFocus() {
+        editor.setFocus();
+    }
+    
     public void closeEditor() {
         if (editor != null) {
             editor.close();
@@ -71,6 +76,10 @@ public class SYEditorBot {
     
     public void autoLayoutDiagram() {
         findShapeWithClassAndClickMenu(Composite.class, "Auto-layout Diagram");
+    }
+
+    public void validateDiagram() {
+        findShapeWithClassAndClickMenu(Composite.class, "Validate");
     }
 
     protected IPeService getPeService() {
@@ -92,6 +101,24 @@ public class SYEditorBot {
             }
         }
         return null;
+    }
+
+    public Shape[] findShapesForEClass(Class<?> clazz) {
+        ArrayList<Shape> outList = new ArrayList<Shape>();
+        IPeService peService = getPeService();
+        final DiagramEditor diagramEditorLocal = getDiagramEditor();
+        final IDiagramTypeProvider diagramTypeProvider = diagramEditorLocal.getDiagramTypeProvider();
+        final Diagram currentDiagram = diagramTypeProvider.getDiagram();
+        Collection<Shape> allShapes = peService.getAllContainedShapes(currentDiagram);
+        for (Shape shape : allShapes) {
+            if (shape instanceof ContainerShape) {
+                Object bo = Graphiti.getLinkService().getBusinessObjectForLinkedPictogramElement(shape);
+                if (clazz.isInstance(bo)) {
+                    outList.add(shape);
+                }
+            }
+        }
+        return (Shape[]) outList.toArray(new Shape[outList.size()]);
     }
 
     public void findShapeWithClassAndClickMenu(final Class<?> clazz, String menuLabel) {
@@ -169,11 +196,12 @@ public class SYEditorBot {
         bot.menu("File").menu("Save").click();
     }
 
-    public DiagramEditor getDiagramEditor() {
+    private DiagramEditor getDiagramEditor() {
         DiagramEditor ret = UIThreadRunnable.syncExec(new Result<DiagramEditor>() {
             @Override
             public DiagramEditor run() {
-                SWTBotMultiPageEditor multi = new SWTBotMultiPageEditor(editor.getReference(), 
+                SWTBotGefEditor localGef = bot.gefEditor("switchyard.xml");
+                SWTBotMultiPageEditor multi = new SWTBotMultiPageEditor(localGef.getReference(), 
                         bot);
                 SWTBotCTabItem designtab = multi.activatePage("Design");
                 if (designtab != null) {
@@ -188,6 +216,16 @@ public class SYEditorBot {
         return ret;
     }
     
+    public void setDiagramEditorFocus() {
+        UIThreadRunnable.syncExec(new VoidResult() {
+            
+            @Override
+            public void run() {
+                getDiagramEditor().setFocus();
+            }
+        });
+    }
+
     public String getActiveToolLabel() {
         return editor.getActiveTool().getLabel();
     }

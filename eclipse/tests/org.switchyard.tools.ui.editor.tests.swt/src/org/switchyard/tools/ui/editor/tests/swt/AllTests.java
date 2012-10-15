@@ -20,10 +20,18 @@ import org.junit.runners.Suite.SuiteClasses;
  * Run all the tests in a specified order.
  */
 @RunWith(Suite.class)
-@SuiteClasses({ProjectCreationTests.class, 
+@SuiteClasses({
+    ProjectCreationTests.class, 
     SYEditorTests.class, 
-    SYEditorDemoBeanTests.class,
-    SYEditorDemoServiceTestClassTests.class })
+    DemoBeanTests.class,
+    DemoServiceTestClassTests.class,
+    DemoGenerateWSDLTests.class,
+    DemoPromoteServiceTests.class,
+    DemoSOAPBindingTests.class,
+    DemoUseCamelImplTests.class,
+    DemoAddSecondComponentTests.class,
+    DemoAddReferenceTests.class,
+    DemoUseBPMNImplTests.class
+})
 public class AllTests {
-
 }

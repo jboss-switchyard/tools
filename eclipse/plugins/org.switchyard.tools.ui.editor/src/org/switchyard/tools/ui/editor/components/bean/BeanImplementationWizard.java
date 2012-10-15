@@ -41,6 +41,7 @@ public class BeanImplementationWizard extends LinkedWizardBase implements IImple
 
     @Override
     public void addPages() {
+        setWindowTitle("Bean Implementation");
         _page = new BeanImplementationWizardPage(BeanImplementationWizardPage.class.getCanonicalName());
         _page.setComponent(_component);
         addPage(_page);

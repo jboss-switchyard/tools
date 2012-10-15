@@ -13,7 +13,7 @@ public class PaymentsRoute extends RouteBuilder {
 		from("switchyard://Payments")
 			.choice()
 				.when(simple("${body.daysOut} > 90"))
-					.log("Camel : pay now")
+					.to("switchyard://AccountsPayable")
 				.otherwise()
 					.log("Camel : pay later");
 	}

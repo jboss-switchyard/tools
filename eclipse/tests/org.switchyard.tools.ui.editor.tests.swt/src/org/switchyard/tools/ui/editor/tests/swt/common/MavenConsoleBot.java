@@ -27,6 +27,7 @@ public class MavenConsoleBot {
 
     public static final String CONSOLE_VIEW_ID = "org.eclipse.ui.console.ConsoleView";
     private final String FINISH_MARKER = "[INFO] Finished at:";
+    private final String BUILD_FAILURE_MARKER = "[INFO] BUILD FAILURE";
 
     private SWTWorkbenchBot bot= new SWTWorkbenchBot();
     private SWTBotView console_view = null;
@@ -51,5 +52,20 @@ public class MavenConsoleBot {
         StyledText console = bot.widget(WidgetMatcherFactory.widgetOfType(StyledText.class), consoleViewComposite);
         SWTBotStyledText styledText = new SWTBotStyledText(console);
         return styledText.getText().contains(text);
+    }
+
+    public String getConsoleText () {
+        Widget consoleViewComposite = console_view.getWidget();
+        StyledText console = bot.widget(WidgetMatcherFactory.widgetOfType(StyledText.class), consoleViewComposite);
+        SWTBotStyledText styledText = new SWTBotStyledText(console);
+        return styledText.getText();
+    }
+    
+    public boolean isFinished() {
+        return consoleContainsText(FINISH_MARKER);
+    }
+
+    public boolean isBuildFailed() {
+        return consoleContainsText(BUILD_FAILURE_MARKER);
     }
 }

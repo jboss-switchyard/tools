@@ -1,6 +1,5 @@
 package com.example.switchyard.SWTBot_Project;
 
-import org.junit.Assert;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.switchyard.test.Invoker;
@@ -21,9 +20,6 @@ public class PaymentsTest {
         Invoice message = new Invoice();
         message.setDaysOut(118);
         service.operation("submit").sendInOnly(message);
-
-        // validate the results
-        //Assert.assertTrue("Implement me", false);
     }
 
 }

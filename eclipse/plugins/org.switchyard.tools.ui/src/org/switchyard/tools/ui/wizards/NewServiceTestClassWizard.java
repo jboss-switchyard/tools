@@ -49,6 +49,7 @@ public class NewServiceTestClassWizard extends BasicNewResourceWizard {
 
     @Override
     public void addPages() {
+        setWindowTitle("Service Test Class");
         _newClassPage.init(selection);
         addPage(_newClassPage);
     }
