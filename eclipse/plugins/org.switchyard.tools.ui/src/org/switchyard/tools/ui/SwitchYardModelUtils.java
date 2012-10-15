@@ -250,8 +250,8 @@ public final class SwitchYardModelUtils {
                         esbIntfc.getInputType())));
             } else {
                 return new InOutService(new InOutOperation(ServiceInterface.DEFAULT_OPERATION, new QName(
-                        esbIntfc.getInputType()), new QName(esbIntfc.getOutputType()), new QName(
-                        esbIntfc.getFaultType())));
+                        esbIntfc.getInputType()), new QName(esbIntfc.getOutputType()),
+                        esbIntfc.getFaultType() == null ? null : new QName(esbIntfc.getFaultType())));
             }
         }
         throw new IllegalArgumentException("Interface type is not supported: "
