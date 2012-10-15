@@ -19,6 +19,7 @@ import org.custommonkey.xmlunit.XMLUnit;
 import org.eclipse.core.resources.IProject;
 import org.eclipse.core.resources.IResource;
 import org.eclipse.core.resources.IncrementalProjectBuilder;
+import org.eclipse.core.runtime.NullProgressMonitor;
 import org.eclipse.m2e.core.project.ResolverConfiguration;
 import org.eclipse.m2e.tests.common.AbstractMavenProjectTestCase;
 
@@ -56,6 +57,12 @@ public class SwitchYardConfigurationTest extends AbstractMavenProjectTestCase {
         waitForJobs();
 
         project.build(IncrementalProjectBuilder.FULL_BUILD, monitor);
+        waitForJobs();
+
+        assertNoErrors(project);
+
+        // make sure we get through an incremental build (SWITCHYARD-1108)
+        project.touch(new NullProgressMonitor());
         project.build(IncrementalProjectBuilder.INCREMENTAL_BUILD, monitor);
         waitForJobs();
 

@@ -106,33 +106,54 @@ public class SwitchYardBuildParticipant extends MojoExecutionBuildParticipant {
     }
 
     private File getOutputDirectory() throws CoreException {
-        return MavenPlugin.getMaven().getMojoParameterValue(getSession(), getMojoExecution(), "outputDirectory",
-                File.class);
+        File outputDirectory = MavenPlugin.getMaven().getMojoParameterValue(getSession(), getMojoExecution(),
+                "_project_build_outputDirectory", File.class);
+        if (outputDirectory == null) {
+            // pre-0.6 property name
+            outputDirectory = MavenPlugin.getMaven().getMojoParameterValue(getSession(), getMojoExecution(),
+                    "outputDirectory", File.class);
+        }
+        return outputDirectory;
     }
 
     private File getOutputFile(File outputDirectory) throws CoreException {
-        File outputFile = MavenPlugin.getMaven().getMojoParameterValue(getSession(), getMojoExecution(), "outputFile",
+        File outputFile = MavenPlugin.getMaven().getMojoParameterValue(getSession(), getMojoExecution(), "_outputFile",
                 File.class);
         if (outputFile == null) {
-            outputFile = new File(outputDirectory, SWITCHYARD_DEFAULT_OUTPUT_FILE_PATH);
+            // pre-0.6 property name
+            outputFile = MavenPlugin.getMaven().getMojoParameterValue(getSession(), getMojoExecution(), "outputFile",
+                    File.class);
+            if (outputFile == null) {
+                outputFile = new File(outputDirectory, SWITCHYARD_DEFAULT_OUTPUT_FILE_PATH);
+            }
         }
         return outputFile;
     }
 
     private Resource[] getResources() throws CoreException {
         Resource[] resources = MavenPlugin.getMaven().getMojoParameterValue(getSession(), getMojoExecution(),
-                "resources", Resource[].class);
+                "_project_resources", Resource[].class);
         if (resources == null) {
-            return new Resource[0];
+            // pre-0.6 property name
+            resources = MavenPlugin.getMaven().getMojoParameterValue(getSession(), getMojoExecution(), "resources",
+                    Resource[].class);
+            if (resources == null) {
+                return new Resource[0];
+            }
         }
         return resources;
     }
 
     private File[] getScanDirectories(File outputDirectory) throws CoreException {
         File[] scanDirectories = MavenPlugin.getMaven().getMojoParameterValue(getSession(), getMojoExecution(),
-                "scanDirectories", File[].class);
+                "_scanDirectories", File[].class);
         if (scanDirectories == null || scanDirectories.length == 0) {
-            return new File[] {outputDirectory };
+            // pre-0.6 property name
+            scanDirectories = MavenPlugin.getMaven().getMojoParameterValue(getSession(), getMojoExecution(),
+                    "scanDirectories", File[].class);
+            if (scanDirectories == null || scanDirectories.length == 0) {
+                return new File[] {outputDirectory };
+            }
         }
         return scanDirectories;
     }
