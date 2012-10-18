@@ -12,6 +12,8 @@
  ******************************************************************************/
 package org.switchyard.tools.ui.editor.diagram.componentreference;
 
+import java.util.List;
+
 import org.eclipse.graphiti.features.IFeatureProvider;
 import org.eclipse.graphiti.features.context.IAddContext;
 import org.eclipse.graphiti.features.impl.AbstractAddShapeFeature;
@@ -26,6 +28,8 @@ import org.eclipse.soa.sca.sca1_1.model.sca.Component;
 import org.eclipse.soa.sca.sca1_1.model.sca.ComponentReference;
 import org.switchyard.tools.ui.editor.ImageProvider;
 import org.switchyard.tools.ui.editor.diagram.StyleUtil;
+import org.switchyard.tools.ui.editor.model.merge.ComponentMergedModelAdapter;
+import org.switchyard.tools.ui.editor.model.merge.MergedModelUtil;
 
 /**
  * @author bfitzpat
@@ -55,15 +59,17 @@ public class SCADiagramAddComponentReferenceFeature extends AbstractAddShapeFeat
 
     @Override
     public PictogramElement add(IAddContext context) {
-        ContainerShape targetContainer = context.getTargetContainer();
-        Component component = (Component) getBusinessObjectForPictogramElement(targetContainer);
+        final ContainerShape targetContainer = context.getTargetContainer();
+        final Component component = (Component) getBusinessObjectForPictogramElement(targetContainer);
 
-        ComponentReference reference = (ComponentReference) context.getNewObject();
+        final ComponentReference reference = (ComponentReference) context.getNewObject();
         if (reference == null) {
             return null;
         }
 
-        if (reference.eContainer() != component) {
+        final List<ComponentReference> references = MergedModelUtil.getAdapter(component,
+                ComponentMergedModelAdapter.class).getReferences();
+        if (!references.contains(reference)) {
             System.err.println("Target component does not contain new reference!!!");
             return null;
         }
@@ -71,7 +77,7 @@ public class SCADiagramAddComponentReferenceFeature extends AbstractAddShapeFeat
         IPeCreateService peCreateService = Graphiti.getPeCreateService();
         IGaService gaService = Graphiti.getGaService();
 
-        int anchorY = 2 * StyleUtil.COMPONENT_EDGE + component.getReference().indexOf(reference)
+        int anchorY = 2 * StyleUtil.COMPONENT_EDGE + references.indexOf(reference)
                 * StyleUtil.COMPONENT_CHILD_V_SPACING;
         int anchorX = targetContainer.getGraphicsAlgorithm().getWidth() - StyleUtil.COMPONENT_EDGE - 8;
         final ContainerShape container = peCreateService.createContainerShape(targetContainer, true);

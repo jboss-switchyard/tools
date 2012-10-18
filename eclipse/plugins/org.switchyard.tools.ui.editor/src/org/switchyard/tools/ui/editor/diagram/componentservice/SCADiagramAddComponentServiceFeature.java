@@ -12,6 +12,8 @@
  ******************************************************************************/
 package org.switchyard.tools.ui.editor.diagram.componentservice;
 
+import java.util.List;
+
 import org.eclipse.graphiti.features.IFeatureProvider;
 import org.eclipse.graphiti.features.context.IAddContext;
 import org.eclipse.graphiti.features.impl.AbstractAddShapeFeature;
@@ -26,6 +28,8 @@ import org.eclipse.soa.sca.sca1_1.model.sca.Component;
 import org.eclipse.soa.sca.sca1_1.model.sca.ComponentService;
 import org.switchyard.tools.ui.editor.ImageProvider;
 import org.switchyard.tools.ui.editor.diagram.StyleUtil;
+import org.switchyard.tools.ui.editor.model.merge.ComponentMergedModelAdapter;
+import org.switchyard.tools.ui.editor.model.merge.MergedModelUtil;
 
 /**
  * @author bfitzpat
@@ -55,15 +59,17 @@ public class SCADiagramAddComponentServiceFeature extends AbstractAddShapeFeatur
 
     @Override
     public PictogramElement add(IAddContext context) {
-        ContainerShape targetContainer = context.getTargetContainer();
-        Component component = (Component) getBusinessObjectForPictogramElement(targetContainer);
+        final ContainerShape targetContainer = context.getTargetContainer();
+        final Component component = (Component) getBusinessObjectForPictogramElement(targetContainer);
 
-        ComponentService service = (ComponentService) context.getNewObject();
+        final ComponentService service = (ComponentService) context.getNewObject();
         if (service == null) {
             return null;
         }
 
-        if (service.eContainer() != component) {
+        final List<ComponentService> services = MergedModelUtil.getAdapter(component,
+                ComponentMergedModelAdapter.class).getServices();
+        if (!services.contains(service)) {
             System.err.println("Target component does not contain new service!!!");
             return null;
         }
@@ -71,7 +77,7 @@ public class SCADiagramAddComponentServiceFeature extends AbstractAddShapeFeatur
         IPeCreateService peCreateService = Graphiti.getPeCreateService();
         IGaService gaService = Graphiti.getGaService();
 
-        int anchorY = 2 * StyleUtil.COMPONENT_EDGE + (component.getService().indexOf(service))
+        int anchorY = 2 * StyleUtil.COMPONENT_EDGE + (services.indexOf(service))
                 * StyleUtil.COMPONENT_CHILD_V_SPACING;
         int anchorX = StyleUtil.COMPONENT_EDGE - 8;
         final ContainerShape container = peCreateService.createContainerShape(targetContainer, true);
