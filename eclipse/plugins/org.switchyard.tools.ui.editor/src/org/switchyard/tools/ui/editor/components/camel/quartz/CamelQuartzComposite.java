@@ -272,8 +272,8 @@ public class CamelQuartzComposite extends AbstractSYBindingComposite {
             SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss");
             try {
                 XMLGregorianCalendar calendar = null;
-                if (_startTimeText.getText().trim().length() > 0) {
-                    Date date = sdf.parse(_startTimeText.getText().trim());
+                if (_endTimeText.getText().trim().length() > 0) {
+                    Date date = sdf.parse(_endTimeText.getText().trim());
                     String dateStr = sdf.format(date);
                     calendar = XMLTypeFactory.eINSTANCE.createDateTime(dateStr);
                 }
