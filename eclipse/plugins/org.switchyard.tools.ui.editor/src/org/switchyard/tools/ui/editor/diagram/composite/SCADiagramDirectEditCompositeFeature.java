@@ -21,6 +21,7 @@ import org.eclipse.graphiti.mm.algorithms.GraphicsAlgorithm;
 import org.eclipse.graphiti.mm.algorithms.Text;
 import org.eclipse.graphiti.mm.pictograms.PictogramElement;
 import org.eclipse.soa.sca.sca1_1.model.sca.Composite;
+import org.switchyard.tools.models.switchyard1_0.switchyard.SwitchYardType;
 
 /**
  * @author bfitzpat
@@ -123,6 +124,8 @@ public class SCADiagramDirectEditCompositeFeature extends AbstractDirectEditingF
         PictogramElement pe = context.getPictogramElement();
         Composite eClass = (Composite) getBusinessObjectForPictogramElement(pe);
         eClass.setName(value);
+        SwitchYardType switchyard = (SwitchYardType) eClass.eContainer();
+        switchyard.setName(value);
 
         // Explicitly update the shape to display the new value in the diagram
         // Note, that this might not be necessary in future versions of Graphiti

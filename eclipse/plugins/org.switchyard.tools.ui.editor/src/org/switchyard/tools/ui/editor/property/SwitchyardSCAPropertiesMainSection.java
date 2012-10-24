@@ -41,11 +41,14 @@ import org.eclipse.swt.events.KeyListener;
 import org.eclipse.swt.layout.FormAttachment;
 import org.eclipse.swt.layout.FormData;
 import org.eclipse.swt.widgets.Composite;
+import org.eclipse.swt.widgets.Control;
 import org.eclipse.swt.widgets.Display;
+import org.eclipse.swt.widgets.Label;
 import org.eclipse.swt.widgets.Text;
 import org.eclipse.ui.views.properties.tabbed.ITabbedPropertyConstants;
 import org.eclipse.ui.views.properties.tabbed.TabbedPropertySheetPage;
 import org.eclipse.ui.views.properties.tabbed.TabbedPropertySheetWidgetFactory;
+import org.switchyard.tools.models.switchyard1_0.switchyard.SwitchYardType;
 import org.switchyard.tools.ui.editor.impl.SwitchyardSCAEditor;
 
 /**
@@ -61,6 +64,8 @@ public class SwitchyardSCAPropertiesMainSection extends GFPropertySection implem
     private PictogramElement _pe = null;
     private NameListener _nameListener = null;
     private TransactionalEditingDomain _domain = null;
+    private Text _targetNamespaceText;
+    private Label _tnsLabel;
 
     /**
      * Constructor.
@@ -144,8 +149,55 @@ public class SwitchyardSCAPropertiesMainSection extends GFPropertySection implem
         data.right = new FormAttachment(_nameText, -HSPACE);
         data.top = new FormAttachment(_nameText, 0, SWT.CENTER);
         valueLabel.setLayoutData(data);
+        
+        _targetNamespaceText = factory.createText(composite, "");
+        data = new FormData();
+        Integer widthTimes1Point5 = new Integer( (int) (STANDARD_LABEL_WIDTH * 1.5));
+        data.left = new FormAttachment(0, widthTimes1Point5.intValue());
+        data.right = new FormAttachment(100, 0);
+        data.top = new FormAttachment(_nameText, VSPACE);
+        _targetNamespaceText.setLayoutData(data);
 
-//        addDomainListener();
+        _targetNamespaceText.addFocusListener(new FocusListener() {
+            @Override
+            public void focusGained(FocusEvent e) {
+                // ignore
+            }
+
+            @Override
+            public void focusLost(FocusEvent e) {
+                if (_businessObject != null && !_inUpdate) {
+                    updateTargetNamespace(_businessObject, _targetNamespaceText.getText().trim());
+                }
+            }
+        });
+        
+        _targetNamespaceText.addKeyListener(new KeyListener() {
+            @Override
+            public void keyPressed(KeyEvent e) {
+                // ignore
+            }
+
+            @Override
+            public void keyReleased(KeyEvent e) {
+                if (e.keyCode == SWT.ESC) {
+                    _inUpdate = true;
+                    undo(_targetNamespaceText);
+                    _inUpdate = false;
+                } else if (e.keyCode == SWT.CR || e.keyCode == SWT.TAB) {
+                    updateTargetNamespace(_businessObject, _targetNamespaceText.getText().trim());
+                }
+            }
+        });
+
+        _tnsLabel = factory.createLabel(composite, "Target Namespace:");
+        data = new FormData();
+        data.left = new FormAttachment(0, 0);
+        data.right = new FormAttachment(_targetNamespaceText, -HSPACE);
+        data.top = new FormAttachment(_targetNamespaceText, 0, SWT.CENTER);
+        _tnsLabel.setLayoutData(data);
+
+        //        addDomainListener();
     }
 
     private void updateObjectName(final Object bo, final String value) {
@@ -158,6 +210,10 @@ public class SwitchyardSCAPropertiesMainSection extends GFPropertySection implem
                     @Override
                     protected void doExecute() {
                         composite.setName(value.trim());
+                        if (composite.eContainer() instanceof SwitchYardType) {
+                            SwitchYardType switchyard = (SwitchYardType) composite.eContainer();
+                            switchyard.setName(value.trim());
+                        }
                         SwitchyardSCAEditor editor = SwitchyardSCAEditor.getEditor(composite);
                         INotificationService notificationService = editor.getDiagramTypeProvider()
                                 .getNotificationService();
@@ -234,6 +290,12 @@ public class SwitchyardSCAPropertiesMainSection extends GFPropertySection implem
                     EObject eobj = (EObject) bo;
                     eobj.eAdapters().add(_nameListener);
 
+                    boolean showTNSField = (bo instanceof org.eclipse.soa.sca.sca1_1.model.sca.Composite);
+                    if (_targetNamespaceText != null && !_targetNamespaceText.isDisposed()) {
+                        _targetNamespaceText.setVisible(showTNSField);
+                        _tnsLabel.setVisible(showTNSField);
+                    }
+                    
                     _inUpdate = true;
                     if (_nameText != null && !_nameText.isDisposed()) {
                         if (bo instanceof org.eclipse.soa.sca.sca1_1.model.sca.Composite) {
@@ -247,11 +309,30 @@ public class SwitchyardSCAPropertiesMainSection extends GFPropertySection implem
                             _nameText.setText(name == null ? "" : name); //$NON-NLS-1$
                         }
                     }
+                    if (_targetNamespaceText != null && !_targetNamespaceText.isDisposed()) {
+                        // update TNS text box based on SY/composite settings
+                        if (bo instanceof org.eclipse.soa.sca.sca1_1.model.sca.Composite) {
+                            String tns = ((org.eclipse.soa.sca.sca1_1.model.sca.Composite) bo).getTargetNamespace();
+                            _targetNamespaceText.setText(tns);
+                        }
+                    }
                     _inUpdate = false;
                     addDomainListener();
                 }
             }
         });
+    }
+
+    private void undo(Control control) {
+        if (control.equals(_targetNamespaceText)) {
+            if (_targetNamespaceText != null && !_targetNamespaceText.isDisposed()) {
+                // update TNS text box based on SY/composite settings
+                if (_businessObject instanceof org.eclipse.soa.sca.sca1_1.model.sca.Composite) {
+                    final org.eclipse.soa.sca.sca1_1.model.sca.Composite composite = (org.eclipse.soa.sca.sca1_1.model.sca.Composite) _businessObject;
+                    _targetNamespaceText.setText(composite.getTargetNamespace());
+                }
+            }
+        }
     }
 
     private final class NameListener extends AdapterImpl {
@@ -346,5 +427,30 @@ public class SwitchyardSCAPropertiesMainSection extends GFPropertySection implem
     public void aboutToBeHidden() {
         _inUpdate = true;
         super.aboutToBeHidden();
+    }
+
+    private void updateTargetNamespace(final Object bo, final String value) {
+        boolean changed = false;
+        if (bo instanceof org.eclipse.soa.sca.sca1_1.model.sca.Composite) {
+            final org.eclipse.soa.sca.sca1_1.model.sca.Composite composite = (org.eclipse.soa.sca.sca1_1.model.sca.Composite) _businessObject;
+            final SwitchYardType switchyard = (SwitchYardType) composite.eContainer();
+            changed = true;
+            _domain.getCommandStack().execute(new RecordingCommand(_domain) {
+                @Override
+                protected void doExecute() {
+                    switchyard.setTargetNamespace(value);
+                    composite.setTargetNamespace(value);
+                }
+            });
+        }
+        if (_pe != null && changed) {
+            IUpdateContext updateContext = new UpdateContext(_pe);
+            if (SwitchyardSCAEditor.getActiveEditor().getDiagramTypeProvider() != null) {
+                if (SwitchyardSCAEditor.getActiveEditor().getDiagramTypeProvider().getFeatureProvider() != null) {
+                    SwitchyardSCAEditor.getActiveEditor().getDiagramTypeProvider().getFeatureProvider()
+                            .updateIfPossible(updateContext);
+                }
+            }
+        }
     }
 }
