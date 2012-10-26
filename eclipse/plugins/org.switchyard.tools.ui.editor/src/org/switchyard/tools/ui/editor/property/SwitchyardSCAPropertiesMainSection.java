@@ -29,17 +29,23 @@ import org.eclipse.graphiti.mm.pictograms.PictogramElement;
 import org.eclipse.graphiti.notification.INotificationService;
 import org.eclipse.graphiti.services.Graphiti;
 import org.eclipse.graphiti.ui.platform.GFPropertySection;
+import org.eclipse.soa.sca.sca1_1.model.sca.Binding;
 import org.eclipse.soa.sca.sca1_1.model.sca.Component;
 import org.eclipse.soa.sca.sca1_1.model.sca.Contract;
+import org.eclipse.soa.sca.sca1_1.model.sca.Reference;
 import org.eclipse.soa.sca.sca1_1.model.sca.ScaPackage;
+import org.eclipse.soa.sca.sca1_1.model.sca.Service;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.custom.CLabel;
 import org.eclipse.swt.events.FocusEvent;
 import org.eclipse.swt.events.FocusListener;
 import org.eclipse.swt.events.KeyEvent;
 import org.eclipse.swt.events.KeyListener;
+import org.eclipse.swt.events.SelectionAdapter;
+import org.eclipse.swt.events.SelectionEvent;
 import org.eclipse.swt.layout.FormAttachment;
 import org.eclipse.swt.layout.FormData;
+import org.eclipse.swt.widgets.Button;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Control;
 import org.eclipse.swt.widgets.Display;
@@ -48,6 +54,8 @@ import org.eclipse.swt.widgets.Text;
 import org.eclipse.ui.views.properties.tabbed.ITabbedPropertyConstants;
 import org.eclipse.ui.views.properties.tabbed.TabbedPropertySheetPage;
 import org.eclipse.ui.views.properties.tabbed.TabbedPropertySheetWidgetFactory;
+import org.switchyard.tools.models.switchyard1_0.remote.RemoteBindingType;
+import org.switchyard.tools.models.switchyard1_0.remote.RemoteFactory;
 import org.switchyard.tools.models.switchyard1_0.switchyard.SwitchYardType;
 import org.switchyard.tools.ui.editor.impl.SwitchyardSCAEditor;
 
@@ -66,6 +74,8 @@ public class SwitchyardSCAPropertiesMainSection extends GFPropertySection implem
     private TransactionalEditingDomain _domain = null;
     private Text _targetNamespaceText;
     private Label _tnsLabel;
+    private Button _isRemotedCheck;
+    private boolean _isRemoted = false;
 
     /**
      * Constructor.
@@ -197,6 +207,21 @@ public class SwitchyardSCAPropertiesMainSection extends GFPropertySection implem
         data.top = new FormAttachment(_targetNamespaceText, 0, SWT.CENTER);
         _tnsLabel.setLayoutData(data);
 
+        _isRemotedCheck = factory.createButton(composite, "Enable remote channel", SWT.CHECK);
+        data = new FormData();
+        data.left = new FormAttachment(0, 0);
+        data.right = new FormAttachment(100, 0);
+        data.top = new FormAttachment(_tnsLabel, 0, SWT.CENTER);
+        _isRemotedCheck.setLayoutData(data);
+        _isRemotedCheck.setSelection(false);
+        _isRemotedCheck.addSelectionListener(new SelectionAdapter() {
+            @Override
+            public void widgetSelected(SelectionEvent event) {
+                _isRemoted = _isRemotedCheck.getSelection();
+                updateIsRemoted(_businessObject, _isRemotedCheck.getSelection());
+            }
+        });
+
         //        addDomainListener();
     }
 
@@ -296,6 +321,11 @@ public class SwitchyardSCAPropertiesMainSection extends GFPropertySection implem
                         _tnsLabel.setVisible(showTNSField);
                     }
                     
+                    boolean showRemotedCheckbox = (bo instanceof Service || bo instanceof Reference);
+                    if (_isRemotedCheck != null && !_isRemotedCheck.isDisposed()) {
+                        _isRemotedCheck.setVisible(showRemotedCheckbox);
+                    }
+
                     _inUpdate = true;
                     if (_nameText != null && !_nameText.isDisposed()) {
                         if (bo instanceof org.eclipse.soa.sca.sca1_1.model.sca.Composite) {
@@ -314,6 +344,19 @@ public class SwitchyardSCAPropertiesMainSection extends GFPropertySection implem
                         if (bo instanceof org.eclipse.soa.sca.sca1_1.model.sca.Composite) {
                             String tns = ((org.eclipse.soa.sca.sca1_1.model.sca.Composite) bo).getTargetNamespace();
                             _targetNamespaceText.setText(tns);
+                        }
+                    }
+                    if (showRemotedCheckbox && _isRemotedCheck != null && !_isRemotedCheck.isDisposed()) {
+                        Contract contract = (Contract) bo;
+                        if (!contract.getBinding().isEmpty()) {
+                            _isRemoted = false;
+                            for (Binding binding : contract.getBinding()) {
+                                if (binding instanceof RemoteBindingType) {
+                                    _isRemoted = true;
+                                    break;
+                                }
+                            }
+                            _isRemotedCheck.setSelection(_isRemoted);
                         }
                     }
                     _inUpdate = false;
@@ -429,6 +472,43 @@ public class SwitchyardSCAPropertiesMainSection extends GFPropertySection implem
         super.aboutToBeHidden();
     }
 
+    private void updateIsRemoted( final Object bo, final boolean value) {
+        if (bo instanceof Service || bo instanceof Reference) {
+            final Contract contract = (Contract) bo;
+            _domain.getCommandStack().execute(new RecordingCommand(_domain) {
+                @Override
+                protected void doExecute() {
+                    boolean bindingExists = false;
+                    Binding existingBinding = null;
+                    for (Binding binding : contract.getBinding()) {
+                        if (binding instanceof RemoteBindingType) {
+                            if (!value) {
+                                bindingExists = true;
+                                existingBinding = binding;
+                                break;
+                            }
+                        }
+                    }
+                    if (!value && bindingExists && existingBinding != null) {
+                        contract.getBinding().remove(existingBinding);
+                    } else if (value && !bindingExists) {
+                        RemoteBindingType remoteBinding =
+                                RemoteFactory.eINSTANCE.createRemoteBindingType();
+                        contract.getBinding().add(remoteBinding);
+                    }
+                    SwitchyardSCAEditor editor = SwitchyardSCAEditor.getEditor((EObject) bo);
+                    INotificationService notificationService = editor.getDiagramTypeProvider()
+                            .getNotificationService();
+                    PictogramElement[] affectedPEs = 
+                            notificationService.calculateRelatedPictogramElements(new Object[] {bo });
+                    for (PictogramElement pe : affectedPEs) {
+                        editor.refreshRenderingDecorators(pe);    
+                    }
+                }
+            });
+        }
+    }
+    
     private void updateTargetNamespace(final Object bo, final String value) {
         boolean changed = false;
         if (bo instanceof org.eclipse.soa.sca.sca1_1.model.sca.Composite) {

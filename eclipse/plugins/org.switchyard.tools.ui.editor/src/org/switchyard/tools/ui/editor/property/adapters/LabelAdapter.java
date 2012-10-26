@@ -38,6 +38,7 @@ import org.switchyard.tools.models.switchyard1_0.camel.CamelTimerBindingType;
 import org.switchyard.tools.models.switchyard1_0.hornetq.BindingType;
 import org.switchyard.tools.models.switchyard1_0.http.HttpBindingType;
 import org.switchyard.tools.models.switchyard1_0.jca.JCABinding;
+import org.switchyard.tools.models.switchyard1_0.remote.RemoteBindingType;
 import org.switchyard.tools.models.switchyard1_0.resteasy.RESTBindingType;
 import org.switchyard.tools.models.switchyard1_0.rules.RulesImplementationType;
 import org.switchyard.tools.models.switchyard1_0.soap.SOAPBindingType;
@@ -203,6 +204,8 @@ public final class LabelAdapter {
             imageRenderingDecorator = new ImageDecorator(ImageProvider.IMG_16_HTTP);
         } else if (binding instanceof CamelBindingType) {
             imageRenderingDecorator = new ImageDecorator(ImageProvider.IMG_16_CAMEL);
+        } else if (binding instanceof RemoteBindingType) {
+            imageRenderingDecorator = new ImageDecorator(ImageProvider.IMG_16_REMOTE);
         }
         return imageRenderingDecorator;
     }

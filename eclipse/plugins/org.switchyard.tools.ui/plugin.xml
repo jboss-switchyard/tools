@@ -664,6 +664,17 @@
            <artifactId>switchyard-component-soap</artifactId>
         </dependency>
      </component>
+     <component
+           id="org.switchyard.components:switchyard-component-remote"
+           name="Remote">
+        <description>
+           Provides support for Remote gateways.
+        </description>
+        <dependency>
+           <groupId>org.switchyard.components</groupId>
+           <artifactId>switchyard-component-remote</artifactId>
+        </dependency>
+     </component>
   </extension>
   <extension
         point="org.switchyard.tools.ui.repositorySupport">

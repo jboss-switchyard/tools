@@ -29,6 +29,8 @@ import org.eclipse.soa.sca.sca1_1.model.sca.Composite;
 import org.eclipse.soa.sca.sca1_1.model.sca.Service;
 import org.eclipse.swt.widgets.Shell;
 import org.eclipse.ui.PlatformUI;
+import org.switchyard.tools.models.switchyard1_0.remote.RemoteBindingType;
+import org.switchyard.tools.models.switchyard1_0.remote.RemoteFactory;
 import org.switchyard.tools.models.switchyard1_0.switchyard.SwitchYardType;
 import org.switchyard.tools.models.switchyard1_0.switchyard.SwitchyardFactory;
 import org.switchyard.tools.models.switchyard1_0.switchyard.TransformType;
@@ -75,6 +77,11 @@ public class SCADiagramCustomPromoteServiceFeature extends AbstractCustomFeature
         if (rtn_code == Window.OK) {
             newService = (Service) wizard.getContract();
             newService.setPromote(componentService);
+            if (wizard.isRemoted()) {
+                RemoteBindingType remoteBinding =
+                        RemoteFactory.eINSTANCE.createRemoteBindingType();
+                newService.getBinding().add(remoteBinding);
+            }
         } else {
             _hasDoneChanges = false;
             return;

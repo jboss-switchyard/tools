@@ -120,6 +120,11 @@
                   <artifactId>switchyard-component-http</artifactId>
                   <version>${version.switchyard.runtime}</version>
                 </artifactItem>
+                <artifactItem>
+                	<groupId>org.switchyard.components</groupId>
+                  <artifactId>switchyard-component-remote</artifactId>
+                  <version>${version.switchyard.runtime}</version>
+                </artifactItem>
               </artifactItems>
             </configuration>
           </execution>

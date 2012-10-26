@@ -86,6 +86,14 @@
             class="org.switchyard.tools.models.switchyard1_0.validate.ValidatePackage"
             genModel="model/switchyard_1.0.genmodel"/>
    </extension>
+
+   <extension point="org.eclipse.emf.ecore.generated_package">
+      <package
+            uri="urn:switchyard-component-remote:config:1.0"
+            class="org.switchyard.tools.models.switchyard1_0.remote.RemotePackage"
+            genModel="model/switchyard_1.0.genmodel"/>
+   </extension>
+
    <extension
          point="org.eclipse.emf.ecore.content_parser">
       <parser

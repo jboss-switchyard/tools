@@ -145,6 +145,9 @@ public class ImageProvider extends AbstractImageProvider {
 
     /** Image for CLOJURE. **/
     public static final String IMG_16_CLOJURE = PREFIX + "CLOJURE" + DOT16;
+    
+    /** Image for Remote **/
+    public static final String IMG_16_REMOTE = PREFIX + "REMOTE" + DOT16;
 
     @Override
     protected void addAvailableImages() {
@@ -185,6 +188,7 @@ public class ImageProvider extends AbstractImageProvider {
         addImageFilePath(IMG_16_ESB, ICONS_16 + "esb.png");
         addImageFilePath(IMG_16_WSDL, ICONS_16 + "wsdl.png");
         addImageFilePath(IMG_16_CLOJURE, ICONS_16 + "clojure.png");
+        addImageFilePath(IMG_16_REMOTE, ICONS_16 + "remote.png");
     }
 
 }
