@@ -146,7 +146,7 @@ public class ImageProvider extends AbstractImageProvider {
     /** Image for CLOJURE. **/
     public static final String IMG_16_CLOJURE = PREFIX + "CLOJURE" + DOT16;
     
-    /** Image for Remote **/
+    /** Image for Remote. **/
     public static final String IMG_16_REMOTE = PREFIX + "REMOTE" + DOT16;
 
     @Override

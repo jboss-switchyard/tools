@@ -162,7 +162,7 @@ public class SwitchyardSCAPropertiesMainSection extends GFPropertySection implem
         
         _targetNamespaceText = factory.createText(composite, "");
         data = new FormData();
-        Integer widthTimes1Point5 = new Integer( (int) (STANDARD_LABEL_WIDTH * 1.5));
+        Integer widthTimes1Point5 = new Integer((int) (STANDARD_LABEL_WIDTH * 1.5));
         data.left = new FormAttachment(0, widthTimes1Point5.intValue());
         data.right = new FormAttachment(100, 0);
         data.top = new FormAttachment(_nameText, VSPACE);
@@ -472,7 +472,7 @@ public class SwitchyardSCAPropertiesMainSection extends GFPropertySection implem
         super.aboutToBeHidden();
     }
 
-    private void updateIsRemoted( final Object bo, final boolean value) {
+    private void updateIsRemoted(final Object bo, final boolean value) {
         if (bo instanceof Service || bo instanceof Reference) {
             final Contract contract = (Contract) bo;
             _domain.getCommandStack().execute(new RecordingCommand(_domain) {
