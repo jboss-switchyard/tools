@@ -66,9 +66,11 @@ public interface ActionType1 extends CommonExtensionBase {
      * <!-- end-user-doc -->
      * @return the value of the '<em>Type</em>' attribute.
      * @see org.switchyard.tools.models.switchyard1_0.bpm.ActionType
+     * @see #isSetType()
+     * @see #unsetType()
      * @see #setType(ActionType)
      * @see org.switchyard.tools.models.switchyard1_0.bpm.BPMPackage#getActionType1_Type()
-     * @model required="true"
+     * @model unsettable="true" required="true"
      *        extendedMetaData="name='type' kind='attribute'"
      * @generated
      */
@@ -80,10 +82,35 @@ public interface ActionType1 extends CommonExtensionBase {
      * <!-- end-user-doc -->
      * @param value the new value of the '<em>Type</em>' attribute.
      * @see org.switchyard.tools.models.switchyard1_0.bpm.ActionType
+     * @see #isSetType()
+     * @see #unsetType()
      * @see #getType()
      * @generated
      */
     void setType(ActionType value);
+
+    /**
+     * Unsets the value of the '{@link org.switchyard.tools.models.switchyard1_0.bpm.ActionType1#getType <em>Type</em>}' attribute.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @see #isSetType()
+     * @see #getType()
+     * @see #setType(ActionType)
+     * @generated
+     */
+    void unsetType();
+
+    /**
+     * Returns whether the value of the '{@link org.switchyard.tools.models.switchyard1_0.bpm.ActionType1#getType <em>Type</em>}' attribute is set.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @return whether the value of the '<em>Type</em>' attribute is set.
+     * @see #unsetType()
+     * @see #getType()
+     * @see #setType(ActionType)
+     * @generated
+     */
+    boolean isSetType();
 
     /**
      * Returns the value of the '<em><b>Event Type</b></em>' attribute.

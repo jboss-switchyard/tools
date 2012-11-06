@@ -45,9 +45,12 @@ public interface SmooksTransformType1 extends TransformType {
      * <!-- end-user-doc -->
      * @return the value of the '<em>Type</em>' attribute.
      * @see org.switchyard.tools.models.switchyard1_0.transform.SmooksTransformType
+     * @see #isSetType()
+     * @see #unsetType()
      * @see #setType(SmooksTransformType)
      * @see org.switchyard.tools.models.switchyard1_0.transform.TransformPackage#getSmooksTransformType1_Type()
-     * @model required="true"
+     * @model unsettable="true" required="true"
+     *        extendedMetaData="name='type' kind='attribute'"
      * @generated
      */
     SmooksTransformType getType();
@@ -58,10 +61,35 @@ public interface SmooksTransformType1 extends TransformType {
      * <!-- end-user-doc -->
      * @param value the new value of the '<em>Type</em>' attribute.
      * @see org.switchyard.tools.models.switchyard1_0.transform.SmooksTransformType
+     * @see #isSetType()
+     * @see #unsetType()
      * @see #getType()
      * @generated
      */
     void setType(SmooksTransformType value);
+
+    /**
+     * Unsets the value of the '{@link org.switchyard.tools.models.switchyard1_0.transform.SmooksTransformType1#getType <em>Type</em>}' attribute.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @see #isSetType()
+     * @see #getType()
+     * @see #setType(SmooksTransformType)
+     * @generated
+     */
+    void unsetType();
+
+    /**
+     * Returns whether the value of the '{@link org.switchyard.tools.models.switchyard1_0.transform.SmooksTransformType1#getType <em>Type</em>}' attribute is set.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @return whether the value of the '<em>Type</em>' attribute is set.
+     * @see #unsetType()
+     * @see #getType()
+     * @see #setType(SmooksTransformType)
+     * @generated
+     */
+    boolean isSetType();
 
     /**
      * Returns the value of the '<em><b>Config</b></em>' attribute.
@@ -75,6 +103,7 @@ public interface SmooksTransformType1 extends TransformType {
      * @see #setConfig(String)
      * @see org.switchyard.tools.models.switchyard1_0.transform.TransformPackage#getSmooksTransformType1_Config()
      * @model dataType="org.eclipse.emf.ecore.xml.type.String" required="true"
+     *        extendedMetaData="name='config' kind='attribute'"
      * @generated
      */
     String getConfig();
@@ -101,6 +130,7 @@ public interface SmooksTransformType1 extends TransformType {
      * @see #setReportPath(String)
      * @see org.switchyard.tools.models.switchyard1_0.transform.TransformPackage#getSmooksTransformType1_ReportPath()
      * @model dataType="org.eclipse.emf.ecore.xml.type.String"
+     *        extendedMetaData="name='reportPath' kind='attribute'"
      * @generated
      */
     String getReportPath();

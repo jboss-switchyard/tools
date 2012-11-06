@@ -69,6 +69,14 @@ public class ActionType1Impl extends CommonExtensionBaseImpl implements ActionTy
      */
     protected ActionType type = TYPE_EDEFAULT;
     /**
+     * This is true if the Type attribute has been set.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    protected boolean typeESet;
+    /**
      * The default value of the '{@link #getEventType() <em>Event Type</em>}' attribute.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
@@ -144,8 +152,33 @@ public class ActionType1Impl extends CommonExtensionBaseImpl implements ActionTy
     public void setType(ActionType newType) {
         ActionType oldType = type;
         type = newType == null ? TYPE_EDEFAULT : newType;
+        boolean oldTypeESet = typeESet;
+        typeESet = true;
         if (eNotificationRequired())
-            eNotify(new ENotificationImpl(this, Notification.SET, BPMPackage.ACTION_TYPE1__TYPE, oldType, type));
+            eNotify(new ENotificationImpl(this, Notification.SET, BPMPackage.ACTION_TYPE1__TYPE, oldType, type, !oldTypeESet));
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public void unsetType() {
+        ActionType oldType = type;
+        boolean oldTypeESet = typeESet;
+        type = TYPE_EDEFAULT;
+        typeESet = false;
+        if (eNotificationRequired())
+            eNotify(new ENotificationImpl(this, Notification.UNSET, BPMPackage.ACTION_TYPE1__TYPE, oldType, TYPE_EDEFAULT, oldTypeESet));
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public boolean isSetType() {
+        return typeESet;
     }
 
     /**
@@ -220,7 +253,7 @@ public class ActionType1Impl extends CommonExtensionBaseImpl implements ActionTy
                 setName(NAME_EDEFAULT);
                 return;
             case BPMPackage.ACTION_TYPE1__TYPE:
-                setType(TYPE_EDEFAULT);
+                unsetType();
                 return;
             case BPMPackage.ACTION_TYPE1__EVENT_TYPE:
                 setEventType(EVENT_TYPE_EDEFAULT);
@@ -240,7 +273,7 @@ public class ActionType1Impl extends CommonExtensionBaseImpl implements ActionTy
             case BPMPackage.ACTION_TYPE1__NAME:
                 return NAME_EDEFAULT == null ? name != null : !NAME_EDEFAULT.equals(name);
             case BPMPackage.ACTION_TYPE1__TYPE:
-                return type != TYPE_EDEFAULT;
+                return isSetType();
             case BPMPackage.ACTION_TYPE1__EVENT_TYPE:
                 return EVENT_TYPE_EDEFAULT == null ? eventType != null : !EVENT_TYPE_EDEFAULT.equals(eventType);
         }
@@ -260,7 +293,7 @@ public class ActionType1Impl extends CommonExtensionBaseImpl implements ActionTy
         result.append(" (name: ");
         result.append(name);
         result.append(", type: ");
-        result.append(type);
+        if (typeESet) result.append(type); else result.append("<unset>");
         result.append(", eventType: ");
         result.append(eventType);
         result.append(')');

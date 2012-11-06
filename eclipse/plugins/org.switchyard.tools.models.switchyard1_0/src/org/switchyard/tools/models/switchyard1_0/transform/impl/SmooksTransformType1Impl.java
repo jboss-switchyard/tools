@@ -50,6 +50,14 @@ public class SmooksTransformType1Impl extends TransformTypeImpl implements Smook
      */
     protected SmooksTransformType type = TYPE_EDEFAULT;
     /**
+     * This is true if the Type attribute has been set.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    protected boolean typeESet;
+    /**
      * The default value of the '{@link #getConfig() <em>Config</em>}' attribute.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
@@ -122,8 +130,33 @@ public class SmooksTransformType1Impl extends TransformTypeImpl implements Smook
     public void setType(SmooksTransformType newType) {
         SmooksTransformType oldType = type;
         type = newType == null ? TYPE_EDEFAULT : newType;
+        boolean oldTypeESet = typeESet;
+        typeESet = true;
         if (eNotificationRequired())
-            eNotify(new ENotificationImpl(this, Notification.SET, TransformPackage.SMOOKS_TRANSFORM_TYPE1__TYPE, oldType, type));
+            eNotify(new ENotificationImpl(this, Notification.SET, TransformPackage.SMOOKS_TRANSFORM_TYPE1__TYPE, oldType, type, !oldTypeESet));
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public void unsetType() {
+        SmooksTransformType oldType = type;
+        boolean oldTypeESet = typeESet;
+        type = TYPE_EDEFAULT;
+        typeESet = false;
+        if (eNotificationRequired())
+            eNotify(new ENotificationImpl(this, Notification.UNSET, TransformPackage.SMOOKS_TRANSFORM_TYPE1__TYPE, oldType, TYPE_EDEFAULT, oldTypeESet));
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public boolean isSetType() {
+        return typeESet;
     }
 
     /**
@@ -216,7 +249,7 @@ public class SmooksTransformType1Impl extends TransformTypeImpl implements Smook
     public void eUnset(int featureID) {
         switch (featureID) {
             case TransformPackage.SMOOKS_TRANSFORM_TYPE1__TYPE:
-                setType(TYPE_EDEFAULT);
+                unsetType();
                 return;
             case TransformPackage.SMOOKS_TRANSFORM_TYPE1__CONFIG:
                 setConfig(CONFIG_EDEFAULT);
@@ -237,7 +270,7 @@ public class SmooksTransformType1Impl extends TransformTypeImpl implements Smook
     public boolean eIsSet(int featureID) {
         switch (featureID) {
             case TransformPackage.SMOOKS_TRANSFORM_TYPE1__TYPE:
-                return type != TYPE_EDEFAULT;
+                return isSetType();
             case TransformPackage.SMOOKS_TRANSFORM_TYPE1__CONFIG:
                 return CONFIG_EDEFAULT == null ? config != null : !CONFIG_EDEFAULT.equals(config);
             case TransformPackage.SMOOKS_TRANSFORM_TYPE1__REPORT_PATH:
@@ -257,7 +290,7 @@ public class SmooksTransformType1Impl extends TransformTypeImpl implements Smook
 
         StringBuffer result = new StringBuffer(super.toString());
         result.append(" (type: ");
-        result.append(type);
+        if (typeESet) result.append(type); else result.append("<unset>");
         result.append(", config: ");
         result.append(config);
         result.append(", reportPath: ");

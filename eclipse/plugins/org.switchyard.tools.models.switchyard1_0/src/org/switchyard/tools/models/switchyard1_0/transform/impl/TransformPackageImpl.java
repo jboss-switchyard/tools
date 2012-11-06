@@ -63,6 +63,8 @@ import org.switchyard.tools.models.switchyard1_0.http.HttpPackage;
 import org.switchyard.tools.models.switchyard1_0.http.impl.HttpPackageImpl;
 import org.switchyard.tools.models.switchyard1_0.jca.JcaPackage;
 import org.switchyard.tools.models.switchyard1_0.jca.impl.JcaPackageImpl;
+import org.switchyard.tools.models.switchyard1_0.remote.RemotePackage;
+import org.switchyard.tools.models.switchyard1_0.remote.impl.RemotePackageImpl;
 import org.switchyard.tools.models.switchyard1_0.resteasy.ResteasyPackage;
 import org.switchyard.tools.models.switchyard1_0.resteasy.impl.ResteasyPackageImpl;
 import org.switchyard.tools.models.switchyard1_0.rules.RulesPackage;
@@ -230,6 +232,7 @@ public class TransformPackageImpl extends EPackageImpl implements TransformPacka
         ResteasyPackageImpl theResteasyPackage = (ResteasyPackageImpl)(EPackage.Registry.INSTANCE.getEPackage(ResteasyPackage.eNS_URI) instanceof ResteasyPackageImpl ? EPackage.Registry.INSTANCE.getEPackage(ResteasyPackage.eNS_URI) : ResteasyPackage.eINSTANCE);
         CommonselectorPackageImpl theCommonselectorPackage = (CommonselectorPackageImpl)(EPackage.Registry.INSTANCE.getEPackage(CommonselectorPackage.eNS_URI) instanceof CommonselectorPackageImpl ? EPackage.Registry.INSTANCE.getEPackage(CommonselectorPackage.eNS_URI) : CommonselectorPackage.eINSTANCE);
         HttpPackageImpl theHttpPackage = (HttpPackageImpl)(EPackage.Registry.INSTANCE.getEPackage(HttpPackage.eNS_URI) instanceof HttpPackageImpl ? EPackage.Registry.INSTANCE.getEPackage(HttpPackage.eNS_URI) : HttpPackage.eINSTANCE);
+        RemotePackageImpl theRemotePackage = (RemotePackageImpl)(EPackage.Registry.INSTANCE.getEPackage(RemotePackage.eNS_URI) instanceof RemotePackageImpl ? EPackage.Registry.INSTANCE.getEPackage(RemotePackage.eNS_URI) : RemotePackage.eINSTANCE);
 
         // Load packages
         theSpringPackage.loadPackage();
@@ -251,6 +254,7 @@ public class TransformPackageImpl extends EPackageImpl implements TransformPacka
         theResteasyPackage.createPackageContents();
         theCommonselectorPackage.createPackageContents();
         theHttpPackage.createPackageContents();
+        theRemotePackage.createPackageContents();
 
         // Initialize created meta-data
         theTransformPackage.initializePackageContents();
@@ -269,6 +273,7 @@ public class TransformPackageImpl extends EPackageImpl implements TransformPacka
         theResteasyPackage.initializePackageContents();
         theCommonselectorPackage.initializePackageContents();
         theHttpPackage.initializePackageContents();
+        theRemotePackage.initializePackageContents();
 
         // Fix loaded packages
         theSpringPackage.fixPackageContents();
@@ -629,7 +634,7 @@ public class TransformPackageImpl extends EPackageImpl implements TransformPacka
         initEClass(jsonTransformTypeEClass, JsonTransformType.class, "JsonTransformType", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 
         initEClass(smooksTransformType1EClass, SmooksTransformType1.class, "SmooksTransformType1", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-        initEAttribute(getSmooksTransformType1_Type(), this.getSmooksTransformType(), "type", null, 1, 1, SmooksTransformType1.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+        initEAttribute(getSmooksTransformType1_Type(), this.getSmooksTransformType(), "type", null, 1, 1, SmooksTransformType1.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
         initEAttribute(getSmooksTransformType1_Config(), theXMLTypePackage.getString(), "config", null, 1, 1, SmooksTransformType1.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
         initEAttribute(getSmooksTransformType1_ReportPath(), theXMLTypePackage.getString(), "reportPath", null, 0, 1, SmooksTransformType1.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
@@ -793,6 +798,27 @@ public class TransformPackageImpl extends EPackageImpl implements TransformPacka
            new String[] {
              "name", "SmooksTransformType",
              "kind", "empty"
+           });		
+        addAnnotation
+          (getSmooksTransformType1_Type(), 
+           source, 
+           new String[] {
+             "name", "type",
+             "kind", "attribute"
+           });		
+        addAnnotation
+          (getSmooksTransformType1_Config(), 
+           source, 
+           new String[] {
+             "name", "config",
+             "kind", "attribute"
+           });		
+        addAnnotation
+          (getSmooksTransformType1_ReportPath(), 
+           source, 
+           new String[] {
+             "name", "reportPath",
+             "kind", "attribute"
            });		
         addAnnotation
           (smooksTransformTypeObjectEDataType, 

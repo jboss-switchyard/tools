@@ -45,6 +45,8 @@ import org.switchyard.tools.models.switchyard1_0.switchyard.SwitchyardPackage;
 import org.switchyard.tools.models.switchyard1_0.switchyard.TransformType;
 import org.switchyard.tools.models.switchyard1_0.switchyard.util.SwitchyardResourceFactoryImpl;
 import org.switchyard.tools.models.switchyard1_0.switchyard.util.SwitchyardResourceImpl;
+import org.switchyard.tools.models.switchyard1_0.transform.SmooksTransformType;
+import org.switchyard.tools.models.switchyard1_0.transform.SmooksTransformType1;
 import org.switchyard.tools.models.switchyard1_0.transform.TransformFactory;
 import org.switchyard.tools.ui.JavaUtil;
 import org.switchyard.tools.ui.SwitchYardModelUtils;
@@ -291,6 +293,7 @@ public final class TransformTypesUtil {
         typeList.add(xsltType);
 
         TransformType smooksType = TransformFactory.eINSTANCE.createSmooksTransformType1();
+        ((SmooksTransformType1) smooksType).setType(SmooksTransformType.SMOOKS);
         typeList.add(smooksType);
 
         TransformType jsonType = TransformFactory.eINSTANCE.createJsonTransformType();
