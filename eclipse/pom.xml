@@ -4,7 +4,7 @@
   <parent>
     <groupId>org.switchyard.tools</groupId>
     <artifactId>switchyard-tools-parent</artifactId>
-    <version>0.6.0.Beta2</version>
+    <version>0.6.0.Final</version>
     <relativePath>../pom.xml</relativePath>
   </parent>
   <artifactId>switchyard-tools-eclipse</artifactId>
@@ -22,7 +22,7 @@
   <properties>
     <tycho-version>0.14.1</tycho-version>
     <!-- Just in case the Eclipse project version does not match the parent. -->
-    <version.switchyard.runtime>0.6.0.Beta2</version.switchyard.runtime>
+    <version.switchyard.runtime>0.6.0.Final</version.switchyard.runtime>
   </properties>
 
   <modules>
@@ -91,7 +91,7 @@
     </repository>
     <repository>
       <id>bpmn2-editor-update-site</id>
-      <url>http://download.eclipse.org/bpmn2-modeler/site/</url>
+      <url>http://download.eclipse.org/bpmn2-modeler/site/0.1.0</url>
       <layout>p2</layout>
       <snapshots>
         <enabled>true</enabled>
