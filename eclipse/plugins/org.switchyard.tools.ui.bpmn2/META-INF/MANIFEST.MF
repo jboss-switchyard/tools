@@ -2,7 +2,7 @@ Manifest-Version: 1.0
 Bundle-ManifestVersion: 2
 Bundle-Name: SwitchYard Tools BPMN2 Editor Extensions
 Bundle-SymbolicName: org.switchyard.tools.ui.bpmn2;singleton:=true
-Bundle-Version: 0.6.0.qualifier
+Bundle-Version: 0.7.0.qualifier
 Bundle-Vendor: www.jboss.org
 Bundle-RequiredExecutionEnvironment: JavaSE-1.6
 Bundle-ActivationPolicy: lazy
@@ -12,7 +12,7 @@ Require-Bundle: org.eclipse.ui,
  org.eclipse.ui.views.properties.tabbed,
  org.switchyard.tools.ui,
  org.switchyard.tools.ui.editor,
- org.eclipse.wst.common.project.facet.core;bundle-version="1.4.200",
+ org.eclipse.wst.common.project.facet.core;bundle-version="1.4.0",
  org.eclipse.graphiti,
  org.eclipse.graphiti.ui,
  org.eclipse.gef,
