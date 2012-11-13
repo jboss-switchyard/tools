@@ -21,13 +21,13 @@ import org.eclipse.m2e.core.project.configurator.AbstractProjectConfigurator;
 import org.eclipse.m2e.core.project.configurator.ILifecycleMappingConfiguration;
 import org.eclipse.m2e.core.project.configurator.MojoExecutionKey;
 import org.eclipse.m2e.core.project.configurator.ProjectConfigurationRequest;
+import org.eclipse.m2e.wtp.ResourceCleaner;
 import org.eclipse.wst.common.project.facet.core.IFacetedProject;
 import org.eclipse.wst.common.project.facet.core.IFacetedProjectWorkingCopy;
 import org.eclipse.wst.common.project.facet.core.IPreset;
 import org.eclipse.wst.common.project.facet.core.IProjectFacet;
 import org.eclipse.wst.common.project.facet.core.IProjectFacetVersion;
 import org.eclipse.wst.common.project.facet.core.ProjectFacetsManager;
-import org.maven.ide.eclipse.wtp.ResourceCleaner;
 
 /**
  * SwitchYardProjectConfigurator
@@ -38,6 +38,7 @@ import org.maven.ide.eclipse.wtp.ResourceCleaner;
  * 
  * @author Rob Cernich
  */
+@SuppressWarnings("restriction")
 public class SwitchYardProjectConfigurator extends AbstractProjectConfigurator {
 
     private static final IProjectFacet UTILITY_MODULE_FACET;

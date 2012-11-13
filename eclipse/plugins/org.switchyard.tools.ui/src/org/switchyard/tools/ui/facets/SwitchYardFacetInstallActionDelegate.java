@@ -16,12 +16,12 @@ import org.eclipse.core.resources.IProject;
 import org.eclipse.core.runtime.CoreException;
 import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.core.runtime.Status;
+import org.eclipse.m2e.wtp.WTPProjectsUtil;
 import org.eclipse.wst.common.componentcore.datamodel.properties.IFacetDataModelProperties;
 import org.eclipse.wst.common.frameworks.datamodel.IDataModel;
 import org.eclipse.wst.common.project.facet.core.IDelegate;
 import org.eclipse.wst.common.project.facet.core.IFacetedProjectWorkingCopy;
 import org.eclipse.wst.common.project.facet.core.IProjectFacetVersion;
-import org.maven.ide.eclipse.wtp.WTPProjectsUtil;
 import org.sonatype.aether.version.Version;
 import org.switchyard.tools.ui.Activator;
 import org.switchyard.tools.ui.common.ISwitchYardComponentExtension;
@@ -37,6 +37,7 @@ import org.switchyard.tools.ui.operations.AbstractSwitchYardProjectOperation;
  * 
  * @author Rob Cernich
  */
+@SuppressWarnings("restriction")
 public class SwitchYardFacetInstallActionDelegate implements IDelegate {
 
     @Override
