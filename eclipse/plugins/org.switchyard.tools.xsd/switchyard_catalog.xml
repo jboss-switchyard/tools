@@ -18,7 +18,7 @@
   <public publicId="urn:switchyard-component-soap:config:1.0" uri="org/switchyard/component/soap/config/model/v1/soap-v1.xsd" />
   <public publicId="urn:switchyard-component-jca:config:1.0" uri="org/switchyard/component/jca/config/model/v1/jca-v1.xsd" />
   <public publicId="urn:switchyard-component-resteasy:config:1.0" uri="org/switchyard/component/resteasy/config/model/v1/resteasy-v1.xsd" />
-  <public publicId="urn:switchyard-component-http:config:1.0" uri="org/switchyard/component/resteasy/config/model/v1/http-v1.xsd" />
+  <public publicId="urn:switchyard-component-http:config:1.0" uri="org/switchyard/component/http/config/model/v1/http-v1.xsd" />
   <public publicId="urn:switchyard-component-remote:config:1.0" uri="org/switchyard/component/remote/config/model/v1/remote-v1.xsd" />
 
   <!-- Other dependencies -->

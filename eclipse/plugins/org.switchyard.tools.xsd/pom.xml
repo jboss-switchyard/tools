@@ -111,7 +111,7 @@
                 </artifactItem>
                 <artifactItem>
                   <groupId>org.switchyard.components</groupId>
-                  <artifactId>switchyard-component-common-rest</artifactId>
+                  <artifactId>switchyard-component-resteasy</artifactId>
                   <version>${version.switchyard.runtime}</version>
                   <classifier>sources</classifier>
                 </artifactItem>
