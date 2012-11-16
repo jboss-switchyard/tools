@@ -33,9 +33,9 @@ import org.eclipse.swt.widgets.TabItem;
 import org.eclipse.swt.widgets.Text;
 import org.switchyard.tools.models.switchyard1_0.camel.CamelFactory;
 import org.switchyard.tools.models.switchyard1_0.camel.CamelSqlBindingType;
-import org.switchyard.tools.models.switchyard1_0.commonselector.CommonselectorFactory;
 import org.switchyard.tools.models.switchyard1_0.switchyard.ContextMapperType;
 import org.switchyard.tools.models.switchyard1_0.switchyard.MessageComposerType;
+import org.switchyard.tools.models.switchyard1_0.switchyard.SwitchyardFactory;
 import org.switchyard.tools.ui.editor.diagram.binding.AbstractSYBindingComposite;
 import org.switchyard.tools.ui.editor.diagram.binding.CamelBindingUtil;
 import org.switchyard.tools.ui.editor.diagram.binding.CamelOperationSelectorGroupOp;
@@ -188,7 +188,7 @@ public class CamelSQLComposite extends AbstractSYBindingComposite {
         @Override
         public void run() throws Exception {
             if (_binding.getOperationSelector() == null) {
-                setFeatureValue(_binding, "operationSelector", CommonselectorFactory.eINSTANCE.createStaticOperationSelectorType());
+                setFeatureValue(_binding, "operationSelector", SwitchyardFactory.eINSTANCE.createStaticOperationSelectorType());
             }
         }
     }

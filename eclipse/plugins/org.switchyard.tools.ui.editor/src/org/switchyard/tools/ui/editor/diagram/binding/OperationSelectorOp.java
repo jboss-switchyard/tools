@@ -5,7 +5,7 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.soa.sca.sca1_1.model.sca.Binding;
 import org.eclipse.soa.sca.sca1_1.model.sca.OperationSelectorType;
-import org.switchyard.tools.models.switchyard1_0.commonselector.StaticOperationSelectorType;
+import org.switchyard.tools.models.switchyard1_0.switchyard.StaticOperationSelectorType;
 import org.switchyard.tools.ui.editor.diagram.shared.ModelOperation;
 
 /**

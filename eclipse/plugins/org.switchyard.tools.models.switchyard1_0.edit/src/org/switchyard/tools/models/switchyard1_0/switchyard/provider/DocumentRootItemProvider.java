@@ -151,6 +151,10 @@ public class DocumentRootItemProvider
             childrenFeatures.add(SwitchyardPackage.Literals.DOCUMENT_ROOT__OPERATION_SELECTOR_SWITCHYARD);
             childrenFeatures.add(SwitchyardPackage.Literals.DOCUMENT_ROOT__CONTEXT_MAPPER);
             childrenFeatures.add(SwitchyardPackage.Literals.DOCUMENT_ROOT__MESSAGE_COMPOSER);
+            childrenFeatures.add(SwitchyardPackage.Literals.DOCUMENT_ROOT__JAVA_OPERATION_SELECTOR_SWITCHYARD);
+            childrenFeatures.add(SwitchyardPackage.Literals.DOCUMENT_ROOT__REGEX_OPERATION_SELECTOR_SWITCHYARD);
+            childrenFeatures.add(SwitchyardPackage.Literals.DOCUMENT_ROOT__XPATH_OPERATION_SELECTOR_SWITCHYARD);
+            childrenFeatures.add(SwitchyardPackage.Literals.DOCUMENT_ROOT__STATIC_OPERATION_SELECTOR_SWITCHYARD);
         }
         return childrenFeatures;
     }
@@ -222,6 +226,10 @@ public class DocumentRootItemProvider
             case SwitchyardPackage.DOCUMENT_ROOT__OPERATION_SELECTOR_SWITCHYARD:
             case SwitchyardPackage.DOCUMENT_ROOT__CONTEXT_MAPPER:
             case SwitchyardPackage.DOCUMENT_ROOT__MESSAGE_COMPOSER:
+            case SwitchyardPackage.DOCUMENT_ROOT__JAVA_OPERATION_SELECTOR_SWITCHYARD:
+            case SwitchyardPackage.DOCUMENT_ROOT__REGEX_OPERATION_SELECTOR_SWITCHYARD:
+            case SwitchyardPackage.DOCUMENT_ROOT__XPATH_OPERATION_SELECTOR_SWITCHYARD:
+            case SwitchyardPackage.DOCUMENT_ROOT__STATIC_OPERATION_SELECTOR_SWITCHYARD:
                 fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), true, false));
                 return;
         }
@@ -363,6 +371,26 @@ public class DocumentRootItemProvider
             (createChildParameter
                 (SwitchyardPackage.Literals.DOCUMENT_ROOT__MESSAGE_COMPOSER,
                  HttpFactory.eINSTANCE.createHttpMessageComposerType()));
+
+        newChildDescriptors.add
+            (createChildParameter
+                (SwitchyardPackage.Literals.DOCUMENT_ROOT__JAVA_OPERATION_SELECTOR_SWITCHYARD,
+                 SwitchyardFactory.eINSTANCE.createJavaOperationSelectorType()));
+
+        newChildDescriptors.add
+            (createChildParameter
+                (SwitchyardPackage.Literals.DOCUMENT_ROOT__REGEX_OPERATION_SELECTOR_SWITCHYARD,
+                 SwitchyardFactory.eINSTANCE.createRegexOperationSelectorType()));
+
+        newChildDescriptors.add
+            (createChildParameter
+                (SwitchyardPackage.Literals.DOCUMENT_ROOT__XPATH_OPERATION_SELECTOR_SWITCHYARD,
+                 SwitchyardFactory.eINSTANCE.createXPathOperationSelectorType()));
+
+        newChildDescriptors.add
+            (createChildParameter
+                (SwitchyardPackage.Literals.DOCUMENT_ROOT__STATIC_OPERATION_SELECTOR_SWITCHYARD,
+                 SwitchyardFactory.eINSTANCE.createStaticOperationSelectorType()));
     }
 
     /**

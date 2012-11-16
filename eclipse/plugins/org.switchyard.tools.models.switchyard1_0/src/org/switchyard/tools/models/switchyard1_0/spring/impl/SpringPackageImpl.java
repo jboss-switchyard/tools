@@ -69,14 +69,14 @@ import org.switchyard.tools.models.switchyard1_0.clojure.ClojurePackage;
 import org.switchyard.tools.models.switchyard1_0.clojure.impl.ClojurePackageImpl;
 import org.switchyard.tools.models.switchyard1_0.commonrules.CommonRulesPackage;
 import org.switchyard.tools.models.switchyard1_0.commonrules.impl.CommonRulesPackageImpl;
-import org.switchyard.tools.models.switchyard1_0.commonselector.CommonselectorPackage;
-import org.switchyard.tools.models.switchyard1_0.commonselector.impl.CommonselectorPackageImpl;
 import org.switchyard.tools.models.switchyard1_0.hornetq.HornetQPackage;
 import org.switchyard.tools.models.switchyard1_0.hornetq.impl.HornetQPackageImpl;
 import org.switchyard.tools.models.switchyard1_0.http.HttpPackage;
 import org.switchyard.tools.models.switchyard1_0.http.impl.HttpPackageImpl;
 import org.switchyard.tools.models.switchyard1_0.jca.JcaPackage;
 import org.switchyard.tools.models.switchyard1_0.jca.impl.JcaPackageImpl;
+import org.switchyard.tools.models.switchyard1_0.remote.RemotePackage;
+import org.switchyard.tools.models.switchyard1_0.remote.impl.RemotePackageImpl;
 import org.switchyard.tools.models.switchyard1_0.resteasy.ResteasyPackage;
 import org.switchyard.tools.models.switchyard1_0.resteasy.impl.ResteasyPackageImpl;
 import org.switchyard.tools.models.switchyard1_0.rules.RulesPackage;
@@ -1640,8 +1640,8 @@ public class SpringPackageImpl extends EPackageImpl implements SpringPackage {
         CamelPackageImpl theCamelPackage = (CamelPackageImpl)(EPackage.Registry.INSTANCE.getEPackage(CamelPackage.eNS_URI) instanceof CamelPackageImpl ? EPackage.Registry.INSTANCE.getEPackage(CamelPackage.eNS_URI) : CamelPackage.eINSTANCE);
         JcaPackageImpl theJcaPackage = (JcaPackageImpl)(EPackage.Registry.INSTANCE.getEPackage(JcaPackage.eNS_URI) instanceof JcaPackageImpl ? EPackage.Registry.INSTANCE.getEPackage(JcaPackage.eNS_URI) : JcaPackage.eINSTANCE);
         ResteasyPackageImpl theResteasyPackage = (ResteasyPackageImpl)(EPackage.Registry.INSTANCE.getEPackage(ResteasyPackage.eNS_URI) instanceof ResteasyPackageImpl ? EPackage.Registry.INSTANCE.getEPackage(ResteasyPackage.eNS_URI) : ResteasyPackage.eINSTANCE);
-        CommonselectorPackageImpl theCommonselectorPackage = (CommonselectorPackageImpl)(EPackage.Registry.INSTANCE.getEPackage(CommonselectorPackage.eNS_URI) instanceof CommonselectorPackageImpl ? EPackage.Registry.INSTANCE.getEPackage(CommonselectorPackage.eNS_URI) : CommonselectorPackage.eINSTANCE);
         HttpPackageImpl theHttpPackage = (HttpPackageImpl)(EPackage.Registry.INSTANCE.getEPackage(HttpPackage.eNS_URI) instanceof HttpPackageImpl ? EPackage.Registry.INSTANCE.getEPackage(HttpPackage.eNS_URI) : HttpPackage.eINSTANCE);
+        RemotePackageImpl theRemotePackage = (RemotePackageImpl)(EPackage.Registry.INSTANCE.getEPackage(RemotePackage.eNS_URI) instanceof RemotePackageImpl ? EPackage.Registry.INSTANCE.getEPackage(RemotePackage.eNS_URI) : RemotePackage.eINSTANCE);
 
         // Load packages
         theSpringPackage.loadPackage();
@@ -1661,8 +1661,8 @@ public class SpringPackageImpl extends EPackageImpl implements SpringPackage {
         theCamelPackage.createPackageContents();
         theJcaPackage.createPackageContents();
         theResteasyPackage.createPackageContents();
-        theCommonselectorPackage.createPackageContents();
         theHttpPackage.createPackageContents();
+        theRemotePackage.createPackageContents();
 
         // Initialize created meta-data
         theBeanPackage.initializePackageContents();
@@ -1679,8 +1679,8 @@ public class SpringPackageImpl extends EPackageImpl implements SpringPackage {
         theCamelPackage.initializePackageContents();
         theJcaPackage.initializePackageContents();
         theResteasyPackage.initializePackageContents();
-        theCommonselectorPackage.initializePackageContents();
         theHttpPackage.initializePackageContents();
+        theRemotePackage.initializePackageContents();
 
         // Fix loaded packages
         theSpringPackage.fixPackageContents();

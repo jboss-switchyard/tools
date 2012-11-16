@@ -390,13 +390,49 @@ public interface SwitchyardPackage extends EPackage {
     int DOCUMENT_ROOT__MESSAGE_COMPOSER = 20;
 
     /**
+     * The feature id for the '<em><b>Java Operation Selector Switchyard</b></em>' containment reference.
+     * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+	int DOCUMENT_ROOT__JAVA_OPERATION_SELECTOR_SWITCHYARD = 21;
+
+				/**
+     * The feature id for the '<em><b>Regex Operation Selector Switchyard</b></em>' containment reference.
+     * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+	int DOCUMENT_ROOT__REGEX_OPERATION_SELECTOR_SWITCHYARD = 22;
+
+				/**
+     * The feature id for the '<em><b>Xpath Operation Selector Switchyard</b></em>' containment reference.
+     * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+	int DOCUMENT_ROOT__XPATH_OPERATION_SELECTOR_SWITCHYARD = 23;
+
+				/**
+     * The feature id for the '<em><b>Static Operation Selector Switchyard</b></em>' containment reference.
+     * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+	int DOCUMENT_ROOT__STATIC_OPERATION_SELECTOR_SWITCHYARD = 24;
+
+				/**
      * The number of structural features of the '<em>Document Root</em>' class.
      * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
      * @generated
      * @ordered
      */
-	int DOCUMENT_ROOT_FEATURE_COUNT = 21;
+	int DOCUMENT_ROOT_FEATURE_COUNT = 25;
 
 	/**
      * The meta object id for the '{@link org.switchyard.tools.models.switchyard1_0.switchyard.impl.DomainTypeImpl <em>Domain Type</em>}' class.
@@ -1135,6 +1171,191 @@ public interface SwitchyardPackage extends EPackage {
 
 
     /**
+     * The meta object id for the '{@link org.switchyard.tools.models.switchyard1_0.switchyard.impl.JavaOperationSelectorTypeImpl <em>Java Operation Selector Type</em>}' class.
+     * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+     * @see org.switchyard.tools.models.switchyard1_0.switchyard.impl.JavaOperationSelectorTypeImpl
+     * @see org.switchyard.tools.models.switchyard1_0.switchyard.impl.SwitchyardPackageImpl#getJavaOperationSelectorType()
+     * @generated
+     */
+	int JAVA_OPERATION_SELECTOR_TYPE = 19;
+
+				/**
+     * The feature id for the '<em><b>Any</b></em>' attribute list.
+     * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+	int JAVA_OPERATION_SELECTOR_TYPE__ANY = SWITCH_YARD_OPERATION_SELECTOR_TYPE__ANY;
+
+				/**
+     * The feature id for the '<em><b>Any Attribute</b></em>' attribute list.
+     * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+	int JAVA_OPERATION_SELECTOR_TYPE__ANY_ATTRIBUTE = SWITCH_YARD_OPERATION_SELECTOR_TYPE__ANY_ATTRIBUTE;
+
+				/**
+     * The feature id for the '<em><b>Class</b></em>' attribute.
+     * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+	int JAVA_OPERATION_SELECTOR_TYPE__CLASS = SWITCH_YARD_OPERATION_SELECTOR_TYPE_FEATURE_COUNT + 0;
+
+				/**
+     * The number of structural features of the '<em>Java Operation Selector Type</em>' class.
+     * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+	int JAVA_OPERATION_SELECTOR_TYPE_FEATURE_COUNT = SWITCH_YARD_OPERATION_SELECTOR_TYPE_FEATURE_COUNT + 1;
+
+				/**
+     * The meta object id for the '{@link org.switchyard.tools.models.switchyard1_0.switchyard.impl.RegexOperationSelectorTypeImpl <em>Regex Operation Selector Type</em>}' class.
+     * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+     * @see org.switchyard.tools.models.switchyard1_0.switchyard.impl.RegexOperationSelectorTypeImpl
+     * @see org.switchyard.tools.models.switchyard1_0.switchyard.impl.SwitchyardPackageImpl#getRegexOperationSelectorType()
+     * @generated
+     */
+	int REGEX_OPERATION_SELECTOR_TYPE = 20;
+
+				/**
+     * The feature id for the '<em><b>Any</b></em>' attribute list.
+     * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+	int REGEX_OPERATION_SELECTOR_TYPE__ANY = SWITCH_YARD_OPERATION_SELECTOR_TYPE__ANY;
+
+				/**
+     * The feature id for the '<em><b>Any Attribute</b></em>' attribute list.
+     * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+	int REGEX_OPERATION_SELECTOR_TYPE__ANY_ATTRIBUTE = SWITCH_YARD_OPERATION_SELECTOR_TYPE__ANY_ATTRIBUTE;
+
+				/**
+     * The feature id for the '<em><b>Expression</b></em>' attribute.
+     * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+	int REGEX_OPERATION_SELECTOR_TYPE__EXPRESSION = SWITCH_YARD_OPERATION_SELECTOR_TYPE_FEATURE_COUNT + 0;
+
+				/**
+     * The number of structural features of the '<em>Regex Operation Selector Type</em>' class.
+     * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+	int REGEX_OPERATION_SELECTOR_TYPE_FEATURE_COUNT = SWITCH_YARD_OPERATION_SELECTOR_TYPE_FEATURE_COUNT + 1;
+
+				/**
+     * The meta object id for the '{@link org.switchyard.tools.models.switchyard1_0.switchyard.impl.StaticOperationSelectorTypeImpl <em>Static Operation Selector Type</em>}' class.
+     * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+     * @see org.switchyard.tools.models.switchyard1_0.switchyard.impl.StaticOperationSelectorTypeImpl
+     * @see org.switchyard.tools.models.switchyard1_0.switchyard.impl.SwitchyardPackageImpl#getStaticOperationSelectorType()
+     * @generated
+     */
+	int STATIC_OPERATION_SELECTOR_TYPE = 21;
+
+				/**
+     * The feature id for the '<em><b>Any</b></em>' attribute list.
+     * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+	int STATIC_OPERATION_SELECTOR_TYPE__ANY = SWITCH_YARD_OPERATION_SELECTOR_TYPE__ANY;
+
+				/**
+     * The feature id for the '<em><b>Any Attribute</b></em>' attribute list.
+     * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+	int STATIC_OPERATION_SELECTOR_TYPE__ANY_ATTRIBUTE = SWITCH_YARD_OPERATION_SELECTOR_TYPE__ANY_ATTRIBUTE;
+
+				/**
+     * The feature id for the '<em><b>Operation Name</b></em>' attribute.
+     * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+	int STATIC_OPERATION_SELECTOR_TYPE__OPERATION_NAME = SWITCH_YARD_OPERATION_SELECTOR_TYPE_FEATURE_COUNT + 0;
+
+				/**
+     * The number of structural features of the '<em>Static Operation Selector Type</em>' class.
+     * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+	int STATIC_OPERATION_SELECTOR_TYPE_FEATURE_COUNT = SWITCH_YARD_OPERATION_SELECTOR_TYPE_FEATURE_COUNT + 1;
+
+				/**
+     * The meta object id for the '{@link org.switchyard.tools.models.switchyard1_0.switchyard.impl.XPathOperationSelectorTypeImpl <em>XPath Operation Selector Type</em>}' class.
+     * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+     * @see org.switchyard.tools.models.switchyard1_0.switchyard.impl.XPathOperationSelectorTypeImpl
+     * @see org.switchyard.tools.models.switchyard1_0.switchyard.impl.SwitchyardPackageImpl#getXPathOperationSelectorType()
+     * @generated
+     */
+	int XPATH_OPERATION_SELECTOR_TYPE = 22;
+
+				/**
+     * The feature id for the '<em><b>Any</b></em>' attribute list.
+     * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+	int XPATH_OPERATION_SELECTOR_TYPE__ANY = SWITCH_YARD_OPERATION_SELECTOR_TYPE__ANY;
+
+				/**
+     * The feature id for the '<em><b>Any Attribute</b></em>' attribute list.
+     * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+	int XPATH_OPERATION_SELECTOR_TYPE__ANY_ATTRIBUTE = SWITCH_YARD_OPERATION_SELECTOR_TYPE__ANY_ATTRIBUTE;
+
+				/**
+     * The feature id for the '<em><b>Expression</b></em>' attribute.
+     * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+	int XPATH_OPERATION_SELECTOR_TYPE__EXPRESSION = SWITCH_YARD_OPERATION_SELECTOR_TYPE_FEATURE_COUNT + 0;
+
+				/**
+     * The number of structural features of the '<em>XPath Operation Selector Type</em>' class.
+     * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+	int XPATH_OPERATION_SELECTOR_TYPE_FEATURE_COUNT = SWITCH_YARD_OPERATION_SELECTOR_TYPE_FEATURE_COUNT + 1;
+
+
+				/**
      * Returns the meta object for class '{@link org.switchyard.tools.models.switchyard1_0.switchyard.ArtifactsType <em>Artifacts Type</em>}'.
      * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -1494,6 +1715,50 @@ public interface SwitchyardPackage extends EPackage {
     EReference getDocumentRoot_MessageComposer();
 
     /**
+     * Returns the meta object for the containment reference '{@link org.switchyard.tools.models.switchyard1_0.switchyard.DocumentRoot#getJavaOperationSelectorSwitchyard <em>Java Operation Selector Switchyard</em>}'.
+     * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+     * @return the meta object for the containment reference '<em>Java Operation Selector Switchyard</em>'.
+     * @see org.switchyard.tools.models.switchyard1_0.switchyard.DocumentRoot#getJavaOperationSelectorSwitchyard()
+     * @see #getDocumentRoot()
+     * @generated
+     */
+	EReference getDocumentRoot_JavaOperationSelectorSwitchyard();
+
+				/**
+     * Returns the meta object for the containment reference '{@link org.switchyard.tools.models.switchyard1_0.switchyard.DocumentRoot#getRegexOperationSelectorSwitchyard <em>Regex Operation Selector Switchyard</em>}'.
+     * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+     * @return the meta object for the containment reference '<em>Regex Operation Selector Switchyard</em>'.
+     * @see org.switchyard.tools.models.switchyard1_0.switchyard.DocumentRoot#getRegexOperationSelectorSwitchyard()
+     * @see #getDocumentRoot()
+     * @generated
+     */
+	EReference getDocumentRoot_RegexOperationSelectorSwitchyard();
+
+				/**
+     * Returns the meta object for the containment reference '{@link org.switchyard.tools.models.switchyard1_0.switchyard.DocumentRoot#getXpathOperationSelectorSwitchyard <em>Xpath Operation Selector Switchyard</em>}'.
+     * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+     * @return the meta object for the containment reference '<em>Xpath Operation Selector Switchyard</em>'.
+     * @see org.switchyard.tools.models.switchyard1_0.switchyard.DocumentRoot#getXpathOperationSelectorSwitchyard()
+     * @see #getDocumentRoot()
+     * @generated
+     */
+	EReference getDocumentRoot_XpathOperationSelectorSwitchyard();
+
+				/**
+     * Returns the meta object for the containment reference '{@link org.switchyard.tools.models.switchyard1_0.switchyard.DocumentRoot#getStaticOperationSelectorSwitchyard <em>Static Operation Selector Switchyard</em>}'.
+     * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+     * @return the meta object for the containment reference '<em>Static Operation Selector Switchyard</em>'.
+     * @see org.switchyard.tools.models.switchyard1_0.switchyard.DocumentRoot#getStaticOperationSelectorSwitchyard()
+     * @see #getDocumentRoot()
+     * @generated
+     */
+	EReference getDocumentRoot_StaticOperationSelectorSwitchyard();
+
+				/**
      * Returns the meta object for class '{@link org.switchyard.tools.models.switchyard1_0.switchyard.DomainType <em>Domain Type</em>}'.
      * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -1997,6 +2262,90 @@ public interface SwitchyardPackage extends EPackage {
 	EAttribute getValidateType_Name();
 
 	/**
+     * Returns the meta object for class '{@link org.switchyard.tools.models.switchyard1_0.switchyard.JavaOperationSelectorType <em>Java Operation Selector Type</em>}'.
+     * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+     * @return the meta object for class '<em>Java Operation Selector Type</em>'.
+     * @see org.switchyard.tools.models.switchyard1_0.switchyard.JavaOperationSelectorType
+     * @generated
+     */
+	EClass getJavaOperationSelectorType();
+
+	/**
+     * Returns the meta object for the attribute '{@link org.switchyard.tools.models.switchyard1_0.switchyard.JavaOperationSelectorType#getClass_ <em>Class</em>}'.
+     * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+     * @return the meta object for the attribute '<em>Class</em>'.
+     * @see org.switchyard.tools.models.switchyard1_0.switchyard.JavaOperationSelectorType#getClass_()
+     * @see #getJavaOperationSelectorType()
+     * @generated
+     */
+	EAttribute getJavaOperationSelectorType_Class();
+
+	/**
+     * Returns the meta object for class '{@link org.switchyard.tools.models.switchyard1_0.switchyard.RegexOperationSelectorType <em>Regex Operation Selector Type</em>}'.
+     * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+     * @return the meta object for class '<em>Regex Operation Selector Type</em>'.
+     * @see org.switchyard.tools.models.switchyard1_0.switchyard.RegexOperationSelectorType
+     * @generated
+     */
+	EClass getRegexOperationSelectorType();
+
+	/**
+     * Returns the meta object for the attribute '{@link org.switchyard.tools.models.switchyard1_0.switchyard.RegexOperationSelectorType#getExpression <em>Expression</em>}'.
+     * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+     * @return the meta object for the attribute '<em>Expression</em>'.
+     * @see org.switchyard.tools.models.switchyard1_0.switchyard.RegexOperationSelectorType#getExpression()
+     * @see #getRegexOperationSelectorType()
+     * @generated
+     */
+	EAttribute getRegexOperationSelectorType_Expression();
+
+	/**
+     * Returns the meta object for class '{@link org.switchyard.tools.models.switchyard1_0.switchyard.StaticOperationSelectorType <em>Static Operation Selector Type</em>}'.
+     * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+     * @return the meta object for class '<em>Static Operation Selector Type</em>'.
+     * @see org.switchyard.tools.models.switchyard1_0.switchyard.StaticOperationSelectorType
+     * @generated
+     */
+	EClass getStaticOperationSelectorType();
+
+	/**
+     * Returns the meta object for the attribute '{@link org.switchyard.tools.models.switchyard1_0.switchyard.StaticOperationSelectorType#getOperationName <em>Operation Name</em>}'.
+     * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+     * @return the meta object for the attribute '<em>Operation Name</em>'.
+     * @see org.switchyard.tools.models.switchyard1_0.switchyard.StaticOperationSelectorType#getOperationName()
+     * @see #getStaticOperationSelectorType()
+     * @generated
+     */
+	EAttribute getStaticOperationSelectorType_OperationName();
+
+	/**
+     * Returns the meta object for class '{@link org.switchyard.tools.models.switchyard1_0.switchyard.XPathOperationSelectorType <em>XPath Operation Selector Type</em>}'.
+     * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+     * @return the meta object for class '<em>XPath Operation Selector Type</em>'.
+     * @see org.switchyard.tools.models.switchyard1_0.switchyard.XPathOperationSelectorType
+     * @generated
+     */
+	EClass getXPathOperationSelectorType();
+
+	/**
+     * Returns the meta object for the attribute '{@link org.switchyard.tools.models.switchyard1_0.switchyard.XPathOperationSelectorType#getExpression <em>Expression</em>}'.
+     * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+     * @return the meta object for the attribute '<em>Expression</em>'.
+     * @see org.switchyard.tools.models.switchyard1_0.switchyard.XPathOperationSelectorType#getExpression()
+     * @see #getXPathOperationSelectorType()
+     * @generated
+     */
+	EAttribute getXPathOperationSelectorType_Expression();
+
+	/**
      * Returns the meta object for class '{@link org.switchyard.tools.models.switchyard1_0.switchyard.SwitchYardOperationSelectorType <em>Switch Yard Operation Selector Type</em>}'.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
@@ -2301,6 +2650,38 @@ public interface SwitchyardPackage extends EPackage {
         EReference DOCUMENT_ROOT__MESSAGE_COMPOSER = eINSTANCE.getDocumentRoot_MessageComposer();
 
         /**
+         * The meta object literal for the '<em><b>Java Operation Selector Switchyard</b></em>' containment reference feature.
+         * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+         * @generated
+         */
+		EReference DOCUMENT_ROOT__JAVA_OPERATION_SELECTOR_SWITCHYARD = eINSTANCE.getDocumentRoot_JavaOperationSelectorSwitchyard();
+
+								/**
+         * The meta object literal for the '<em><b>Regex Operation Selector Switchyard</b></em>' containment reference feature.
+         * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+         * @generated
+         */
+		EReference DOCUMENT_ROOT__REGEX_OPERATION_SELECTOR_SWITCHYARD = eINSTANCE.getDocumentRoot_RegexOperationSelectorSwitchyard();
+
+								/**
+         * The meta object literal for the '<em><b>Xpath Operation Selector Switchyard</b></em>' containment reference feature.
+         * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+         * @generated
+         */
+		EReference DOCUMENT_ROOT__XPATH_OPERATION_SELECTOR_SWITCHYARD = eINSTANCE.getDocumentRoot_XpathOperationSelectorSwitchyard();
+
+								/**
+         * The meta object literal for the '<em><b>Static Operation Selector Switchyard</b></em>' containment reference feature.
+         * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+         * @generated
+         */
+		EReference DOCUMENT_ROOT__STATIC_OPERATION_SELECTOR_SWITCHYARD = eINSTANCE.getDocumentRoot_StaticOperationSelectorSwitchyard();
+
+								/**
          * The meta object literal for the '{@link org.switchyard.tools.models.switchyard1_0.switchyard.impl.DomainTypeImpl <em>Domain Type</em>}' class.
          * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
@@ -2705,6 +3086,78 @@ public interface SwitchyardPackage extends EPackage {
 		EAttribute VALIDATE_TYPE__NAME = eINSTANCE.getValidateType_Name();
 
         /**
+         * The meta object literal for the '{@link org.switchyard.tools.models.switchyard1_0.switchyard.impl.JavaOperationSelectorTypeImpl <em>Java Operation Selector Type</em>}' class.
+         * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+         * @see org.switchyard.tools.models.switchyard1_0.switchyard.impl.JavaOperationSelectorTypeImpl
+         * @see org.switchyard.tools.models.switchyard1_0.switchyard.impl.SwitchyardPackageImpl#getJavaOperationSelectorType()
+         * @generated
+         */
+		EClass JAVA_OPERATION_SELECTOR_TYPE = eINSTANCE.getJavaOperationSelectorType();
+
+		/**
+         * The meta object literal for the '<em><b>Class</b></em>' attribute feature.
+         * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+         * @generated
+         */
+		EAttribute JAVA_OPERATION_SELECTOR_TYPE__CLASS = eINSTANCE.getJavaOperationSelectorType_Class();
+
+		/**
+         * The meta object literal for the '{@link org.switchyard.tools.models.switchyard1_0.switchyard.impl.RegexOperationSelectorTypeImpl <em>Regex Operation Selector Type</em>}' class.
+         * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+         * @see org.switchyard.tools.models.switchyard1_0.switchyard.impl.RegexOperationSelectorTypeImpl
+         * @see org.switchyard.tools.models.switchyard1_0.switchyard.impl.SwitchyardPackageImpl#getRegexOperationSelectorType()
+         * @generated
+         */
+		EClass REGEX_OPERATION_SELECTOR_TYPE = eINSTANCE.getRegexOperationSelectorType();
+
+		/**
+         * The meta object literal for the '<em><b>Expression</b></em>' attribute feature.
+         * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+         * @generated
+         */
+		EAttribute REGEX_OPERATION_SELECTOR_TYPE__EXPRESSION = eINSTANCE.getRegexOperationSelectorType_Expression();
+
+		/**
+         * The meta object literal for the '{@link org.switchyard.tools.models.switchyard1_0.switchyard.impl.StaticOperationSelectorTypeImpl <em>Static Operation Selector Type</em>}' class.
+         * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+         * @see org.switchyard.tools.models.switchyard1_0.switchyard.impl.StaticOperationSelectorTypeImpl
+         * @see org.switchyard.tools.models.switchyard1_0.switchyard.impl.SwitchyardPackageImpl#getStaticOperationSelectorType()
+         * @generated
+         */
+		EClass STATIC_OPERATION_SELECTOR_TYPE = eINSTANCE.getStaticOperationSelectorType();
+
+		/**
+         * The meta object literal for the '<em><b>Operation Name</b></em>' attribute feature.
+         * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+         * @generated
+         */
+		EAttribute STATIC_OPERATION_SELECTOR_TYPE__OPERATION_NAME = eINSTANCE.getStaticOperationSelectorType_OperationName();
+
+		/**
+         * The meta object literal for the '{@link org.switchyard.tools.models.switchyard1_0.switchyard.impl.XPathOperationSelectorTypeImpl <em>XPath Operation Selector Type</em>}' class.
+         * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+         * @see org.switchyard.tools.models.switchyard1_0.switchyard.impl.XPathOperationSelectorTypeImpl
+         * @see org.switchyard.tools.models.switchyard1_0.switchyard.impl.SwitchyardPackageImpl#getXPathOperationSelectorType()
+         * @generated
+         */
+		EClass XPATH_OPERATION_SELECTOR_TYPE = eINSTANCE.getXPathOperationSelectorType();
+
+		/**
+         * The meta object literal for the '<em><b>Expression</b></em>' attribute feature.
+         * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+         * @generated
+         */
+		EAttribute XPATH_OPERATION_SELECTOR_TYPE__EXPRESSION = eINSTANCE.getXPathOperationSelectorType_Expression();
+
+								/**
          * The meta object literal for the '{@link org.switchyard.tools.models.switchyard1_0.switchyard.impl.SwitchYardOperationSelectorTypeImpl <em>Switch Yard Operation Selector Type</em>}' class.
          * <!-- begin-user-doc -->
          * <!-- end-user-doc -->

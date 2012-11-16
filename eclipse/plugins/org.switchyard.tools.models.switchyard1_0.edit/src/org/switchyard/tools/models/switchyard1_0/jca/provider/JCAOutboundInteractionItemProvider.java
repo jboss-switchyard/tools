@@ -30,14 +30,14 @@ import org.eclipse.emf.edit.provider.ViewerNotification;
 
 import org.switchyard.tools.models.switchyard1_0.bean.provider.Switchyard_1EditPlugin;
 
-import org.switchyard.tools.models.switchyard1_0.commonselector.CommonselectorFactory;
-import org.switchyard.tools.models.switchyard1_0.commonselector.CommonselectorPackage;
 import org.switchyard.tools.models.switchyard1_0.http.HttpFactory;
 import org.switchyard.tools.models.switchyard1_0.http.HttpPackage;
 import org.switchyard.tools.models.switchyard1_0.jca.JCAOutboundInteraction;
 import org.switchyard.tools.models.switchyard1_0.jca.JcaFactory;
 import org.switchyard.tools.models.switchyard1_0.jca.JcaPackage;
 
+import org.switchyard.tools.models.switchyard1_0.remote.RemoteFactory;
+import org.switchyard.tools.models.switchyard1_0.remote.RemotePackage;
 import org.switchyard.tools.models.switchyard1_0.resteasy.ResteasyFactory;
 import org.switchyard.tools.models.switchyard1_0.resteasy.ResteasyPackage;
 
@@ -217,34 +217,6 @@ public class JCAOutboundInteractionItemProvider
             (createChildParameter
                 (JcaPackage.Literals.JCA_OUTBOUND_INTERACTION__ANY,
                  FeatureMapUtil.createEntry
-                    (CommonselectorPackage.Literals.DOCUMENT_ROOT__STATIC_OPERATION_SELECTOR,
-                     CommonselectorFactory.eINSTANCE.createStaticOperationSelectorType())));
-
-        newChildDescriptors.add
-            (createChildParameter
-                (JcaPackage.Literals.JCA_OUTBOUND_INTERACTION__ANY,
-                 FeatureMapUtil.createEntry
-                    (CommonselectorPackage.Literals.DOCUMENT_ROOT__XPATH_OPERATION_SELECTOR,
-                     CommonselectorFactory.eINSTANCE.createXPathOperationSelectorType())));
-
-        newChildDescriptors.add
-            (createChildParameter
-                (JcaPackage.Literals.JCA_OUTBOUND_INTERACTION__ANY,
-                 FeatureMapUtil.createEntry
-                    (CommonselectorPackage.Literals.DOCUMENT_ROOT__REGEX_OPERATION_SELECTOR,
-                     CommonselectorFactory.eINSTANCE.createRegexOperationSelectorType())));
-
-        newChildDescriptors.add
-            (createChildParameter
-                (JcaPackage.Literals.JCA_OUTBOUND_INTERACTION__ANY,
-                 FeatureMapUtil.createEntry
-                    (CommonselectorPackage.Literals.DOCUMENT_ROOT__JAVA_OPERATION_SELECTOR,
-                     CommonselectorFactory.eINSTANCE.createJavaOperationSelectorType())));
-
-        newChildDescriptors.add
-            (createChildParameter
-                (JcaPackage.Literals.JCA_OUTBOUND_INTERACTION__ANY,
-                 FeatureMapUtil.createEntry
                     (HttpPackage.Literals.DOCUMENT_ROOT__BINDING_HTTP,
                      HttpFactory.eINSTANCE.createHttpBindingType())));
 
@@ -261,6 +233,13 @@ public class JCAOutboundInteractionItemProvider
                  FeatureMapUtil.createEntry
                     (HttpPackage.Literals.DOCUMENT_ROOT__MESSAGE_COMPOSER,
                      HttpFactory.eINSTANCE.createHttpMessageComposerType())));
+
+        newChildDescriptors.add
+            (createChildParameter
+                (JcaPackage.Literals.JCA_OUTBOUND_INTERACTION__ANY,
+                 FeatureMapUtil.createEntry
+                    (RemotePackage.Literals.DOCUMENT_ROOT__REMOTE_BINDING,
+                     RemoteFactory.eINSTANCE.createRemoteBindingType())));
     }
 
     /**

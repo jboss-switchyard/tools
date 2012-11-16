@@ -42,12 +42,12 @@ import org.switchyard.tools.models.switchyard1_0.camel.CamelFactory;
 
 import org.switchyard.tools.models.switchyard1_0.clojure.ClojureFactory;
 
-import org.switchyard.tools.models.switchyard1_0.commonselector.CommonselectorFactory;
 import org.switchyard.tools.models.switchyard1_0.hornetq.HornetQFactory;
 
 import org.switchyard.tools.models.switchyard1_0.http.HttpFactory;
 import org.switchyard.tools.models.switchyard1_0.jca.JcaFactory;
 
+import org.switchyard.tools.models.switchyard1_0.remote.RemoteFactory;
 import org.switchyard.tools.models.switchyard1_0.resteasy.ResteasyFactory;
 
 import org.switchyard.tools.models.switchyard1_0.rules.RulesFactory;
@@ -1376,6 +1376,26 @@ public class ResequenceDefinitionItemProvider
         newChildDescriptors.add
             (createChildParameter
                 (SpringPackage.eINSTANCE.getResequenceDefinition_Property(),
+                 SwitchyardFactory.eINSTANCE.createJavaOperationSelectorType()));
+
+        newChildDescriptors.add
+            (createChildParameter
+                (SpringPackage.eINSTANCE.getResequenceDefinition_Property(),
+                 SwitchyardFactory.eINSTANCE.createRegexOperationSelectorType()));
+
+        newChildDescriptors.add
+            (createChildParameter
+                (SpringPackage.eINSTANCE.getResequenceDefinition_Property(),
+                 SwitchyardFactory.eINSTANCE.createStaticOperationSelectorType()));
+
+        newChildDescriptors.add
+            (createChildParameter
+                (SpringPackage.eINSTANCE.getResequenceDefinition_Property(),
+                 SwitchyardFactory.eINSTANCE.createXPathOperationSelectorType()));
+
+        newChildDescriptors.add
+            (createChildParameter
+                (SpringPackage.eINSTANCE.getResequenceDefinition_Property(),
                  ClojureFactory.eINSTANCE.createClojureImplementationType()));
 
         newChildDescriptors.add
@@ -1756,26 +1776,6 @@ public class ResequenceDefinitionItemProvider
         newChildDescriptors.add
             (createChildParameter
                 (SpringPackage.eINSTANCE.getResequenceDefinition_Property(),
-                 CommonselectorFactory.eINSTANCE.createStaticOperationSelectorType()));
-
-        newChildDescriptors.add
-            (createChildParameter
-                (SpringPackage.eINSTANCE.getResequenceDefinition_Property(),
-                 CommonselectorFactory.eINSTANCE.createXPathOperationSelectorType()));
-
-        newChildDescriptors.add
-            (createChildParameter
-                (SpringPackage.eINSTANCE.getResequenceDefinition_Property(),
-                 CommonselectorFactory.eINSTANCE.createRegexOperationSelectorType()));
-
-        newChildDescriptors.add
-            (createChildParameter
-                (SpringPackage.eINSTANCE.getResequenceDefinition_Property(),
-                 CommonselectorFactory.eINSTANCE.createJavaOperationSelectorType()));
-
-        newChildDescriptors.add
-            (createChildParameter
-                (SpringPackage.eINSTANCE.getResequenceDefinition_Property(),
                  HttpFactory.eINSTANCE.createHttpBindingType()));
 
         newChildDescriptors.add
@@ -1787,6 +1787,11 @@ public class ResequenceDefinitionItemProvider
             (createChildParameter
                 (SpringPackage.eINSTANCE.getResequenceDefinition_Property(),
                  HttpFactory.eINSTANCE.createHttpMessageComposerType()));
+
+        newChildDescriptors.add
+            (createChildParameter
+                (SpringPackage.eINSTANCE.getResequenceDefinition_Property(),
+                 RemoteFactory.eINSTANCE.createRemoteBindingType()));
 
         newChildDescriptors.add
             (createChildParameter

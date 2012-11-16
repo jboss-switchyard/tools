@@ -152,6 +152,22 @@ public class SwitchyardAdapterFactory extends AdapterFactoryImpl {
                 return createValidateTypeAdapter();
             }
             @Override
+            public Adapter caseJavaOperationSelectorType(JavaOperationSelectorType object) {
+                return createJavaOperationSelectorTypeAdapter();
+            }
+            @Override
+            public Adapter caseRegexOperationSelectorType(RegexOperationSelectorType object) {
+                return createRegexOperationSelectorTypeAdapter();
+            }
+            @Override
+            public Adapter caseStaticOperationSelectorType(StaticOperationSelectorType object) {
+                return createStaticOperationSelectorTypeAdapter();
+            }
+            @Override
+            public Adapter caseXPathOperationSelectorType(XPathOperationSelectorType object) {
+                return createXPathOperationSelectorTypeAdapter();
+            }
+            @Override
             public Adapter caseCommonExtensionBase(CommonExtensionBase object) {
                 return createCommonExtensionBaseAdapter();
             }
@@ -436,6 +452,62 @@ public class SwitchyardAdapterFactory extends AdapterFactoryImpl {
      * @generated
      */
 	public Adapter createValidateTypeAdapter() {
+        return null;
+    }
+
+	/**
+     * Creates a new adapter for an object of class '{@link org.switchyard.tools.models.switchyard1_0.switchyard.JavaOperationSelectorType <em>Java Operation Selector Type</em>}'.
+     * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+     * @return the new adapter.
+     * @see org.switchyard.tools.models.switchyard1_0.switchyard.JavaOperationSelectorType
+     * @generated
+     */
+	public Adapter createJavaOperationSelectorTypeAdapter() {
+        return null;
+    }
+
+	/**
+     * Creates a new adapter for an object of class '{@link org.switchyard.tools.models.switchyard1_0.switchyard.RegexOperationSelectorType <em>Regex Operation Selector Type</em>}'.
+     * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+     * @return the new adapter.
+     * @see org.switchyard.tools.models.switchyard1_0.switchyard.RegexOperationSelectorType
+     * @generated
+     */
+	public Adapter createRegexOperationSelectorTypeAdapter() {
+        return null;
+    }
+
+	/**
+     * Creates a new adapter for an object of class '{@link org.switchyard.tools.models.switchyard1_0.switchyard.StaticOperationSelectorType <em>Static Operation Selector Type</em>}'.
+     * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+     * @return the new adapter.
+     * @see org.switchyard.tools.models.switchyard1_0.switchyard.StaticOperationSelectorType
+     * @generated
+     */
+	public Adapter createStaticOperationSelectorTypeAdapter() {
+        return null;
+    }
+
+	/**
+     * Creates a new adapter for an object of class '{@link org.switchyard.tools.models.switchyard1_0.switchyard.XPathOperationSelectorType <em>XPath Operation Selector Type</em>}'.
+     * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+     * @return the new adapter.
+     * @see org.switchyard.tools.models.switchyard1_0.switchyard.XPathOperationSelectorType
+     * @generated
+     */
+	public Adapter createXPathOperationSelectorTypeAdapter() {
         return null;
     }
 

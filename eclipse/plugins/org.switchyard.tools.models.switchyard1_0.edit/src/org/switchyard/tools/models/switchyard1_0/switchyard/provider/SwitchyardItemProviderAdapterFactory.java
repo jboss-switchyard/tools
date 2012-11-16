@@ -35,7 +35,9 @@ import org.eclipse.emf.edit.provider.INotifyChangedListener;
 import org.eclipse.emf.edit.provider.IStructuredItemContentProvider;
 import org.eclipse.emf.edit.provider.ITreeItemContentProvider;
 
+import org.eclipse.soa.sca.sca1_1.model.sca.Binding;
 import org.eclipse.soa.sca.sca1_1.model.sca.Contract;
+import org.eclipse.soa.sca.sca1_1.model.sca.DocumentRoot;
 import org.eclipse.soa.sca.sca1_1.model.sca.ScaPackage;
 import org.eclipse.soa.sca.sca1_1.model.sca.util.ScaSwitch;
 import org.switchyard.tools.models.switchyard1_0.bean.provider.Switchyard_1EditPlugin;
@@ -447,6 +449,98 @@ public class SwitchyardItemProviderAdapterFactory extends SwitchyardAdapterFacto
     }
 
     /**
+     * This keeps track of the one adapter used for all {@link org.switchyard.tools.models.switchyard1_0.switchyard.JavaOperationSelectorType} instances.
+     * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+     * @generated
+     */
+	protected JavaOperationSelectorTypeItemProvider javaOperationSelectorTypeItemProvider;
+
+				/**
+     * This creates an adapter for a {@link org.switchyard.tools.models.switchyard1_0.switchyard.JavaOperationSelectorType}.
+     * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+     * @generated
+     */
+	@Override
+	public Adapter createJavaOperationSelectorTypeAdapter() {
+        if (javaOperationSelectorTypeItemProvider == null) {
+            javaOperationSelectorTypeItemProvider = new JavaOperationSelectorTypeItemProvider(this);
+        }
+
+        return javaOperationSelectorTypeItemProvider;
+    }
+
+				/**
+     * This keeps track of the one adapter used for all {@link org.switchyard.tools.models.switchyard1_0.switchyard.RegexOperationSelectorType} instances.
+     * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+     * @generated
+     */
+	protected RegexOperationSelectorTypeItemProvider regexOperationSelectorTypeItemProvider;
+
+				/**
+     * This creates an adapter for a {@link org.switchyard.tools.models.switchyard1_0.switchyard.RegexOperationSelectorType}.
+     * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+     * @generated
+     */
+	@Override
+	public Adapter createRegexOperationSelectorTypeAdapter() {
+        if (regexOperationSelectorTypeItemProvider == null) {
+            regexOperationSelectorTypeItemProvider = new RegexOperationSelectorTypeItemProvider(this);
+        }
+
+        return regexOperationSelectorTypeItemProvider;
+    }
+
+				/**
+     * This keeps track of the one adapter used for all {@link org.switchyard.tools.models.switchyard1_0.switchyard.StaticOperationSelectorType} instances.
+     * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+     * @generated
+     */
+	protected StaticOperationSelectorTypeItemProvider staticOperationSelectorTypeItemProvider;
+
+				/**
+     * This creates an adapter for a {@link org.switchyard.tools.models.switchyard1_0.switchyard.StaticOperationSelectorType}.
+     * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+     * @generated
+     */
+	@Override
+	public Adapter createStaticOperationSelectorTypeAdapter() {
+        if (staticOperationSelectorTypeItemProvider == null) {
+            staticOperationSelectorTypeItemProvider = new StaticOperationSelectorTypeItemProvider(this);
+        }
+
+        return staticOperationSelectorTypeItemProvider;
+    }
+
+				/**
+     * This keeps track of the one adapter used for all {@link org.switchyard.tools.models.switchyard1_0.switchyard.XPathOperationSelectorType} instances.
+     * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+     * @generated
+     */
+	protected XPathOperationSelectorTypeItemProvider xPathOperationSelectorTypeItemProvider;
+
+				/**
+     * This creates an adapter for a {@link org.switchyard.tools.models.switchyard1_0.switchyard.XPathOperationSelectorType}.
+     * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+     * @generated
+     */
+	@Override
+	public Adapter createXPathOperationSelectorTypeAdapter() {
+        if (xPathOperationSelectorTypeItemProvider == null) {
+            xPathOperationSelectorTypeItemProvider = new XPathOperationSelectorTypeItemProvider(this);
+        }
+
+        return xPathOperationSelectorTypeItemProvider;
+    }
+
+				/**
      * This returns the root adapter factory that contains this factory.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
@@ -587,6 +681,10 @@ public class SwitchyardItemProviderAdapterFactory extends SwitchyardAdapterFacto
         if (switchYardTypeItemProvider != null) switchYardTypeItemProvider.dispose();
         if (transformsTypeItemProvider != null) transformsTypeItemProvider.dispose();
         if (validatesTypeItemProvider != null) validatesTypeItemProvider.dispose();
+        if (javaOperationSelectorTypeItemProvider != null) javaOperationSelectorTypeItemProvider.dispose();
+        if (regexOperationSelectorTypeItemProvider != null) regexOperationSelectorTypeItemProvider.dispose();
+        if (staticOperationSelectorTypeItemProvider != null) staticOperationSelectorTypeItemProvider.dispose();
+        if (xPathOperationSelectorTypeItemProvider != null) xPathOperationSelectorTypeItemProvider.dispose();
     }
 
     /**
@@ -631,6 +729,43 @@ public class SwitchyardItemProviderAdapterFactory extends SwitchyardAdapterFacto
             }
             /**
              * <!-- begin-user-doc -->
+			 * <!-- end-user-doc -->
+             * @generated
+             */
+			@Override
+			public Object caseBinding(Binding object) {
+                newChildDescriptors.add
+                    (createChildParameter
+                        (ScaPackage.eINSTANCE.getBinding_OperationSelectorGroup(),
+                         FeatureMapUtil.createEntry
+                            (ScaPackage.eINSTANCE.getBinding_OperationSelector(),
+                             SwitchyardFactory.eINSTANCE.createJavaOperationSelectorType())));
+
+                newChildDescriptors.add
+                    (createChildParameter
+                        (ScaPackage.eINSTANCE.getBinding_OperationSelectorGroup(),
+                         FeatureMapUtil.createEntry
+                            (ScaPackage.eINSTANCE.getBinding_OperationSelector(),
+                             SwitchyardFactory.eINSTANCE.createRegexOperationSelectorType())));
+
+                newChildDescriptors.add
+                    (createChildParameter
+                        (ScaPackage.eINSTANCE.getBinding_OperationSelectorGroup(),
+                         FeatureMapUtil.createEntry
+                            (ScaPackage.eINSTANCE.getBinding_OperationSelector(),
+                             SwitchyardFactory.eINSTANCE.createStaticOperationSelectorType())));
+
+                newChildDescriptors.add
+                    (createChildParameter
+                        (ScaPackage.eINSTANCE.getBinding_OperationSelectorGroup(),
+                         FeatureMapUtil.createEntry
+                            (ScaPackage.eINSTANCE.getBinding_OperationSelector(),
+                             SwitchyardFactory.eINSTANCE.createXPathOperationSelectorType())));
+
+                return null;
+            }
+												/**
+             * <!-- begin-user-doc -->
              * <!-- end-user-doc -->
              * @generated
              */
@@ -646,14 +781,14 @@ public class SwitchyardItemProviderAdapterFactory extends SwitchyardAdapterFacto
                 return null;
             }
  
-            /**
-             * <!-- begin-user-doc -->
+            /*
+			 * <!-- begin-user-doc -->
              * <!-- end-user-doc -->
-             * @generated
-             */
+			 * @generated
+			 */
             protected CommandParameter createChildParameter(Object feature, Object child) {
-                return new CommandParameter(null, feature, child);
-            }
+				return new CommandParameter(null, feature, child);
+			}
 
         }
 

@@ -96,12 +96,23 @@ public interface Binding extends CommonExtensionBase {
 	 * </p>
 	 * <!-- end-user-doc -->
      * @return the value of the '<em>Operation Selector</em>' containment reference.
+     * @see #setOperationSelector(OperationSelectorType)
      * @see org.eclipse.soa.sca.sca1_1.model.sca.ScaPackage#getBinding_OperationSelector()
-     * @model containment="true" transient="true" changeable="false" volatile="true" derived="true"
+     * @model containment="true" transient="true" volatile="true" derived="true"
      *        extendedMetaData="kind='element' name='operationSelector' namespace='##targetNamespace' group='operationSelector:group'"
      * @generated
      */
 	OperationSelectorType getOperationSelector();
+
+	/**
+     * Sets the value of the '{@link org.eclipse.soa.sca.sca1_1.model.sca.Binding#getOperationSelector <em>Operation Selector</em>}' containment reference.
+     * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+     * @param value the new value of the '<em>Operation Selector</em>' containment reference.
+     * @see #getOperationSelector()
+     * @generated
+     */
+	void setOperationSelector(OperationSelectorType value);
 
 	/**
      * Returns the value of the '<em><b>Name</b></em>' attribute.

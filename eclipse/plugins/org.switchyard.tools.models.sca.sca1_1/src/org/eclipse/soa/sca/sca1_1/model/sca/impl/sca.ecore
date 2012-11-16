@@ -1,8 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<ecore:EPackage xmi:version="2.0"
-    xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-    xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" name="sca"
-    nsURI="http://docs.oasis-open.org/ns/opencsa/sca/200912" nsPrefix="sca">
+<ecore:EPackage xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" name="sca" nsURI="http://docs.oasis-open.org/ns/opencsa/sca/200912"
+    nsPrefix="sca">
   <eClassifiers xsi:type="ecore:EClass" name="ActivationSpec">
     <eAnnotations source="http:///org/eclipse/emf/ecore/util/ExtendedMetaData">
       <details key="name" value="ActivationSpec"/>
@@ -85,8 +84,7 @@
       </eAnnotations>
     </eStructuralFeatures>
     <eStructuralFeatures xsi:type="ecore:EReference" name="operationSelector" eType="#//OperationSelectorType"
-        changeable="false" volatile="true" transient="true" derived="true" containment="true"
-        resolveProxies="false">
+        volatile="true" transient="true" derived="true" containment="true" resolveProxies="false">
       <eAnnotations source="http:///org/eclipse/emf/ecore/util/ExtendedMetaData">
         <details key="kind" value="element"/>
         <details key="name" value="operationSelector"/>

@@ -28,8 +28,6 @@ import org.eclipse.soa.sca.sca1_1.model.sca.ScaPackage;
 import org.eclipse.soa.sca.sca1_1.model.sca.provider.BindingItemProvider;
 
 import org.switchyard.tools.models.switchyard1_0.camel.CamelFactory;
-import org.switchyard.tools.models.switchyard1_0.commonselector.CommonselectorFactory;
-import org.switchyard.tools.models.switchyard1_0.commonselector.CommonselectorPackage;
 import org.switchyard.tools.models.switchyard1_0.hornetq.HornetQFactory;
 import org.switchyard.tools.models.switchyard1_0.http.HttpFactory;
 import org.switchyard.tools.models.switchyard1_0.jca.JcaFactory;
@@ -159,29 +157,29 @@ public class SwitchYardBindingTypeItemProvider
             (createChildParameter
                 (ScaPackage.eINSTANCE.getBinding_OperationSelectorGroup(),
                  FeatureMapUtil.createEntry
-                    (CommonselectorPackage.Literals.DOCUMENT_ROOT__STATIC_OPERATION_SELECTOR,
-                     CommonselectorFactory.eINSTANCE.createStaticOperationSelectorType())));
+                    (ScaPackage.eINSTANCE.getBinding_OperationSelector(),
+                     SwitchyardFactory.eINSTANCE.createJavaOperationSelectorType())));
 
         newChildDescriptors.add
             (createChildParameter
                 (ScaPackage.eINSTANCE.getBinding_OperationSelectorGroup(),
                  FeatureMapUtil.createEntry
-                    (CommonselectorPackage.Literals.DOCUMENT_ROOT__XPATH_OPERATION_SELECTOR,
-                     CommonselectorFactory.eINSTANCE.createXPathOperationSelectorType())));
+                    (ScaPackage.eINSTANCE.getBinding_OperationSelector(),
+                     SwitchyardFactory.eINSTANCE.createRegexOperationSelectorType())));
 
         newChildDescriptors.add
             (createChildParameter
                 (ScaPackage.eINSTANCE.getBinding_OperationSelectorGroup(),
                  FeatureMapUtil.createEntry
-                    (CommonselectorPackage.Literals.DOCUMENT_ROOT__REGEX_OPERATION_SELECTOR,
-                     CommonselectorFactory.eINSTANCE.createRegexOperationSelectorType())));
+                    (ScaPackage.eINSTANCE.getBinding_OperationSelector(),
+                     SwitchyardFactory.eINSTANCE.createStaticOperationSelectorType())));
 
         newChildDescriptors.add
             (createChildParameter
                 (ScaPackage.eINSTANCE.getBinding_OperationSelectorGroup(),
                  FeatureMapUtil.createEntry
-                    (CommonselectorPackage.Literals.DOCUMENT_ROOT__JAVA_OPERATION_SELECTOR,
-                     CommonselectorFactory.eINSTANCE.createJavaOperationSelectorType())));
+                    (ScaPackage.eINSTANCE.getBinding_OperationSelector(),
+                     SwitchyardFactory.eINSTANCE.createXPathOperationSelectorType())));
 
         newChildDescriptors.add
             (createChildParameter

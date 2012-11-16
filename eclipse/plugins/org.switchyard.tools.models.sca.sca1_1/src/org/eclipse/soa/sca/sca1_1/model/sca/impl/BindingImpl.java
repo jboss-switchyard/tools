@@ -232,6 +232,15 @@ public abstract class BindingImpl extends CommonExtensionBaseImpl implements Bin
 	 * <!-- end-user-doc -->
      * @generated
      */
+	public void setOperationSelector(OperationSelectorType newOperationSelector) {
+        ((FeatureMap.Internal)getOperationSelectorGroup()).set(ScaPackage.eINSTANCE.getBinding_OperationSelector(), newOperationSelector);
+    }
+
+	/**
+     * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+     * @generated
+     */
 	public String getName() {
         return name;
     }
@@ -376,6 +385,9 @@ public abstract class BindingImpl extends CommonExtensionBaseImpl implements Bin
             case ScaPackage.BINDING__OPERATION_SELECTOR_GROUP:
                 ((FeatureMap.Internal)getOperationSelectorGroup()).set(newValue);
                 return;
+            case ScaPackage.BINDING__OPERATION_SELECTOR:
+                setOperationSelector((OperationSelectorType)newValue);
+                return;
             case ScaPackage.BINDING__NAME:
                 setName((String)newValue);
                 return;
@@ -405,6 +417,9 @@ public abstract class BindingImpl extends CommonExtensionBaseImpl implements Bin
                 return;
             case ScaPackage.BINDING__OPERATION_SELECTOR_GROUP:
                 getOperationSelectorGroup().clear();
+                return;
+            case ScaPackage.BINDING__OPERATION_SELECTOR:
+                setOperationSelector((OperationSelectorType)null);
                 return;
             case ScaPackage.BINDING__NAME:
                 setName(NAME_EDEFAULT);

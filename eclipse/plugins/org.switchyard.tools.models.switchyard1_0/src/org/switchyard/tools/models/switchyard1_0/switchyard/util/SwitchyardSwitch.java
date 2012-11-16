@@ -193,6 +193,38 @@ public class SwitchyardSwitch<T> extends Switch<T> {
                 if (result == null) result = defaultCase(theEObject);
                 return result;
             }
+            case SwitchyardPackage.JAVA_OPERATION_SELECTOR_TYPE: {
+                JavaOperationSelectorType javaOperationSelectorType = (JavaOperationSelectorType)theEObject;
+                T result = caseJavaOperationSelectorType(javaOperationSelectorType);
+                if (result == null) result = caseSwitchYardOperationSelectorType(javaOperationSelectorType);
+                if (result == null) result = caseOperationSelectorType(javaOperationSelectorType);
+                if (result == null) result = defaultCase(theEObject);
+                return result;
+            }
+            case SwitchyardPackage.REGEX_OPERATION_SELECTOR_TYPE: {
+                RegexOperationSelectorType regexOperationSelectorType = (RegexOperationSelectorType)theEObject;
+                T result = caseRegexOperationSelectorType(regexOperationSelectorType);
+                if (result == null) result = caseSwitchYardOperationSelectorType(regexOperationSelectorType);
+                if (result == null) result = caseOperationSelectorType(regexOperationSelectorType);
+                if (result == null) result = defaultCase(theEObject);
+                return result;
+            }
+            case SwitchyardPackage.STATIC_OPERATION_SELECTOR_TYPE: {
+                StaticOperationSelectorType staticOperationSelectorType = (StaticOperationSelectorType)theEObject;
+                T result = caseStaticOperationSelectorType(staticOperationSelectorType);
+                if (result == null) result = caseSwitchYardOperationSelectorType(staticOperationSelectorType);
+                if (result == null) result = caseOperationSelectorType(staticOperationSelectorType);
+                if (result == null) result = defaultCase(theEObject);
+                return result;
+            }
+            case SwitchyardPackage.XPATH_OPERATION_SELECTOR_TYPE: {
+                XPathOperationSelectorType xPathOperationSelectorType = (XPathOperationSelectorType)theEObject;
+                T result = caseXPathOperationSelectorType(xPathOperationSelectorType);
+                if (result == null) result = caseSwitchYardOperationSelectorType(xPathOperationSelectorType);
+                if (result == null) result = caseOperationSelectorType(xPathOperationSelectorType);
+                if (result == null) result = defaultCase(theEObject);
+                return result;
+            }
             default: return defaultCase(theEObject);
         }
     }
@@ -464,6 +496,66 @@ public class SwitchyardSwitch<T> extends Switch<T> {
      * @generated
      */
 	public T caseValidateType(ValidateType object) {
+        return null;
+    }
+
+	/**
+     * Returns the result of interpreting the object as an instance of '<em>Java Operation Selector Type</em>'.
+     * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+     * @param object the target of the switch.
+     * @return the result of interpreting the object as an instance of '<em>Java Operation Selector Type</em>'.
+     * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+     * @generated
+     */
+	public T caseJavaOperationSelectorType(JavaOperationSelectorType object) {
+        return null;
+    }
+
+	/**
+     * Returns the result of interpreting the object as an instance of '<em>Regex Operation Selector Type</em>'.
+     * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+     * @param object the target of the switch.
+     * @return the result of interpreting the object as an instance of '<em>Regex Operation Selector Type</em>'.
+     * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+     * @generated
+     */
+	public T caseRegexOperationSelectorType(RegexOperationSelectorType object) {
+        return null;
+    }
+
+	/**
+     * Returns the result of interpreting the object as an instance of '<em>Static Operation Selector Type</em>'.
+     * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+     * @param object the target of the switch.
+     * @return the result of interpreting the object as an instance of '<em>Static Operation Selector Type</em>'.
+     * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+     * @generated
+     */
+	public T caseStaticOperationSelectorType(StaticOperationSelectorType object) {
+        return null;
+    }
+
+	/**
+     * Returns the result of interpreting the object as an instance of '<em>XPath Operation Selector Type</em>'.
+     * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+     * @param object the target of the switch.
+     * @return the result of interpreting the object as an instance of '<em>XPath Operation Selector Type</em>'.
+     * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+     * @generated
+     */
+	public T caseXPathOperationSelectorType(XPathOperationSelectorType object) {
         return null;
     }
 

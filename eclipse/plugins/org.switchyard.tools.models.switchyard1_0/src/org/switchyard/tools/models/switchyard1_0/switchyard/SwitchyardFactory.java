@@ -161,6 +161,42 @@ public interface SwitchyardFactory extends EFactory {
 	ValidatesType createValidatesType();
 
 	/**
+     * Returns a new object of class '<em>Java Operation Selector Type</em>'.
+     * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+     * @return a new object of class '<em>Java Operation Selector Type</em>'.
+     * @generated
+     */
+	JavaOperationSelectorType createJavaOperationSelectorType();
+
+	/**
+     * Returns a new object of class '<em>Regex Operation Selector Type</em>'.
+     * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+     * @return a new object of class '<em>Regex Operation Selector Type</em>'.
+     * @generated
+     */
+	RegexOperationSelectorType createRegexOperationSelectorType();
+
+	/**
+     * Returns a new object of class '<em>Static Operation Selector Type</em>'.
+     * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+     * @return a new object of class '<em>Static Operation Selector Type</em>'.
+     * @generated
+     */
+	StaticOperationSelectorType createStaticOperationSelectorType();
+
+	/**
+     * Returns a new object of class '<em>XPath Operation Selector Type</em>'.
+     * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+     * @return a new object of class '<em>XPath Operation Selector Type</em>'.
+     * @generated
+     */
+	XPathOperationSelectorType createXPathOperationSelectorType();
+
+	/**
      * Returns the package supported by this factory.
      * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->

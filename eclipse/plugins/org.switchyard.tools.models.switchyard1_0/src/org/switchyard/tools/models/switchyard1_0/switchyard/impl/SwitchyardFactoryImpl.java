@@ -75,6 +75,10 @@ public class SwitchyardFactoryImpl extends EFactoryImpl implements SwitchyardFac
             case SwitchyardPackage.SWITCH_YARD_TYPE: return createSwitchYardType();
             case SwitchyardPackage.TRANSFORMS_TYPE: return createTransformsType();
             case SwitchyardPackage.VALIDATES_TYPE: return createValidatesType();
+            case SwitchyardPackage.JAVA_OPERATION_SELECTOR_TYPE: return createJavaOperationSelectorType();
+            case SwitchyardPackage.REGEX_OPERATION_SELECTOR_TYPE: return createRegexOperationSelectorType();
+            case SwitchyardPackage.STATIC_OPERATION_SELECTOR_TYPE: return createStaticOperationSelectorType();
+            case SwitchyardPackage.XPATH_OPERATION_SELECTOR_TYPE: return createXPathOperationSelectorType();
             default:
                 throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier");
         }
@@ -228,6 +232,46 @@ public class SwitchyardFactoryImpl extends EFactoryImpl implements SwitchyardFac
 	public ValidatesType createValidatesType() {
         ValidatesTypeImpl validatesType = new ValidatesTypeImpl();
         return validatesType;
+    }
+
+	/**
+     * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+     * @generated
+     */
+	public JavaOperationSelectorType createJavaOperationSelectorType() {
+        JavaOperationSelectorTypeImpl javaOperationSelectorType = new JavaOperationSelectorTypeImpl();
+        return javaOperationSelectorType;
+    }
+
+	/**
+     * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+     * @generated
+     */
+	public RegexOperationSelectorType createRegexOperationSelectorType() {
+        RegexOperationSelectorTypeImpl regexOperationSelectorType = new RegexOperationSelectorTypeImpl();
+        return regexOperationSelectorType;
+    }
+
+	/**
+     * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+     * @generated
+     */
+	public StaticOperationSelectorType createStaticOperationSelectorType() {
+        StaticOperationSelectorTypeImpl staticOperationSelectorType = new StaticOperationSelectorTypeImpl();
+        return staticOperationSelectorType;
+    }
+
+	/**
+     * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+     * @generated
+     */
+	public XPathOperationSelectorType createXPathOperationSelectorType() {
+        XPathOperationSelectorTypeImpl xPathOperationSelectorType = new XPathOperationSelectorTypeImpl();
+        return xPathOperationSelectorType;
     }
 
 	/**

@@ -53,14 +53,14 @@ import org.switchyard.tools.models.switchyard1_0.clojure.ClojurePackage;
 import org.switchyard.tools.models.switchyard1_0.clojure.impl.ClojurePackageImpl;
 import org.switchyard.tools.models.switchyard1_0.commonrules.CommonRulesPackage;
 import org.switchyard.tools.models.switchyard1_0.commonrules.impl.CommonRulesPackageImpl;
-import org.switchyard.tools.models.switchyard1_0.commonselector.CommonselectorPackage;
-import org.switchyard.tools.models.switchyard1_0.commonselector.impl.CommonselectorPackageImpl;
 import org.switchyard.tools.models.switchyard1_0.hornetq.HornetQPackage;
 import org.switchyard.tools.models.switchyard1_0.hornetq.impl.HornetQPackageImpl;
 import org.switchyard.tools.models.switchyard1_0.http.HttpPackage;
 import org.switchyard.tools.models.switchyard1_0.http.impl.HttpPackageImpl;
 import org.switchyard.tools.models.switchyard1_0.jca.JcaPackage;
 import org.switchyard.tools.models.switchyard1_0.jca.impl.JcaPackageImpl;
+import org.switchyard.tools.models.switchyard1_0.remote.RemotePackage;
+import org.switchyard.tools.models.switchyard1_0.remote.impl.RemotePackageImpl;
 import org.switchyard.tools.models.switchyard1_0.resteasy.ResteasyPackage;
 import org.switchyard.tools.models.switchyard1_0.resteasy.impl.ResteasyPackageImpl;
 import org.switchyard.tools.models.switchyard1_0.rules.RulesPackage;
@@ -77,10 +77,13 @@ import org.switchyard.tools.models.switchyard1_0.switchyard.DomainType;
 import org.switchyard.tools.models.switchyard1_0.switchyard.EsbInterface;
 import org.switchyard.tools.models.switchyard1_0.switchyard.HandlerType;
 import org.switchyard.tools.models.switchyard1_0.switchyard.HandlersType;
+import org.switchyard.tools.models.switchyard1_0.switchyard.JavaOperationSelectorType;
 import org.switchyard.tools.models.switchyard1_0.switchyard.MessageComposerType;
 import org.switchyard.tools.models.switchyard1_0.switchyard.PropertiesType;
 import org.switchyard.tools.models.switchyard1_0.switchyard.PropertyType;
+import org.switchyard.tools.models.switchyard1_0.switchyard.RegexOperationSelectorType;
 import org.switchyard.tools.models.switchyard1_0.switchyard.ResourceType;
+import org.switchyard.tools.models.switchyard1_0.switchyard.StaticOperationSelectorType;
 import org.switchyard.tools.models.switchyard1_0.switchyard.SwitchYardBindingType;
 import org.switchyard.tools.models.switchyard1_0.switchyard.SwitchYardOperationSelectorType;
 import org.switchyard.tools.models.switchyard1_0.switchyard.SwitchYardType;
@@ -90,6 +93,7 @@ import org.switchyard.tools.models.switchyard1_0.switchyard.TransformType;
 import org.switchyard.tools.models.switchyard1_0.switchyard.TransformsType;
 import org.switchyard.tools.models.switchyard1_0.switchyard.ValidateType;
 import org.switchyard.tools.models.switchyard1_0.switchyard.ValidatesType;
+import org.switchyard.tools.models.switchyard1_0.switchyard.XPathOperationSelectorType;
 import org.switchyard.tools.models.switchyard1_0.transform.TransformPackage;
 import org.switchyard.tools.models.switchyard1_0.transform.impl.TransformPackageImpl;
 import org.switchyard.tools.models.switchyard1_0.validate.ValidatePackage;
@@ -230,6 +234,34 @@ public class SwitchyardPackageImpl extends EPackageImpl implements SwitchyardPac
 
 	/**
      * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+     * @generated
+     */
+	private EClass javaOperationSelectorTypeEClass = null;
+
+	/**
+     * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+     * @generated
+     */
+	private EClass regexOperationSelectorTypeEClass = null;
+
+	/**
+     * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+     * @generated
+     */
+	private EClass staticOperationSelectorTypeEClass = null;
+
+	/**
+     * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+     * @generated
+     */
+	private EClass xPathOperationSelectorTypeEClass = null;
+
+	/**
+     * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @generated
      */
@@ -300,8 +332,8 @@ public class SwitchyardPackageImpl extends EPackageImpl implements SwitchyardPac
         SpringPackageImpl theSpringPackage = (SpringPackageImpl)(EPackage.Registry.INSTANCE.getEPackage(SpringPackage.eNS_URI) instanceof SpringPackageImpl ? EPackage.Registry.INSTANCE.getEPackage(SpringPackage.eNS_URI) : SpringPackage.eINSTANCE);
         JcaPackageImpl theJcaPackage = (JcaPackageImpl)(EPackage.Registry.INSTANCE.getEPackage(JcaPackage.eNS_URI) instanceof JcaPackageImpl ? EPackage.Registry.INSTANCE.getEPackage(JcaPackage.eNS_URI) : JcaPackage.eINSTANCE);
         ResteasyPackageImpl theResteasyPackage = (ResteasyPackageImpl)(EPackage.Registry.INSTANCE.getEPackage(ResteasyPackage.eNS_URI) instanceof ResteasyPackageImpl ? EPackage.Registry.INSTANCE.getEPackage(ResteasyPackage.eNS_URI) : ResteasyPackage.eINSTANCE);
-        CommonselectorPackageImpl theCommonselectorPackage = (CommonselectorPackageImpl)(EPackage.Registry.INSTANCE.getEPackage(CommonselectorPackage.eNS_URI) instanceof CommonselectorPackageImpl ? EPackage.Registry.INSTANCE.getEPackage(CommonselectorPackage.eNS_URI) : CommonselectorPackage.eINSTANCE);
         HttpPackageImpl theHttpPackage = (HttpPackageImpl)(EPackage.Registry.INSTANCE.getEPackage(HttpPackage.eNS_URI) instanceof HttpPackageImpl ? EPackage.Registry.INSTANCE.getEPackage(HttpPackage.eNS_URI) : HttpPackage.eINSTANCE);
+        RemotePackageImpl theRemotePackage = (RemotePackageImpl)(EPackage.Registry.INSTANCE.getEPackage(RemotePackage.eNS_URI) instanceof RemotePackageImpl ? EPackage.Registry.INSTANCE.getEPackage(RemotePackage.eNS_URI) : RemotePackage.eINSTANCE);
 
         // Load packages
         theSpringPackage.loadPackage();
@@ -321,8 +353,8 @@ public class SwitchyardPackageImpl extends EPackageImpl implements SwitchyardPac
         theCamelPackage.createPackageContents();
         theJcaPackage.createPackageContents();
         theResteasyPackage.createPackageContents();
-        theCommonselectorPackage.createPackageContents();
         theHttpPackage.createPackageContents();
+        theRemotePackage.createPackageContents();
 
         // Initialize created meta-data
         theSwitchyardPackage.initializePackageContents();
@@ -339,8 +371,8 @@ public class SwitchyardPackageImpl extends EPackageImpl implements SwitchyardPac
         theCamelPackage.initializePackageContents();
         theJcaPackage.initializePackageContents();
         theResteasyPackage.initializePackageContents();
-        theCommonselectorPackage.initializePackageContents();
         theHttpPackage.initializePackageContents();
+        theRemotePackage.initializePackageContents();
 
         // Fix loaded packages
         theSpringPackage.fixPackageContents();
@@ -652,6 +684,42 @@ public class SwitchyardPackageImpl extends EPackageImpl implements SwitchyardPac
     }
 
     /**
+     * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+     * @generated
+     */
+	public EReference getDocumentRoot_JavaOperationSelectorSwitchyard() {
+        return (EReference)documentRootEClass.getEStructuralFeatures().get(21);
+    }
+
+				/**
+     * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+     * @generated
+     */
+	public EReference getDocumentRoot_RegexOperationSelectorSwitchyard() {
+        return (EReference)documentRootEClass.getEStructuralFeatures().get(22);
+    }
+
+				/**
+     * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+     * @generated
+     */
+	public EReference getDocumentRoot_XpathOperationSelectorSwitchyard() {
+        return (EReference)documentRootEClass.getEStructuralFeatures().get(23);
+    }
+
+				/**
+     * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+     * @generated
+     */
+	public EReference getDocumentRoot_StaticOperationSelectorSwitchyard() {
+        return (EReference)documentRootEClass.getEStructuralFeatures().get(24);
+    }
+
+				/**
      * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
      * @generated
@@ -1076,6 +1144,78 @@ public class SwitchyardPackageImpl extends EPackageImpl implements SwitchyardPac
 
 	/**
      * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+     * @generated
+     */
+	public EClass getJavaOperationSelectorType() {
+        return javaOperationSelectorTypeEClass;
+    }
+
+	/**
+     * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+     * @generated
+     */
+	public EAttribute getJavaOperationSelectorType_Class() {
+        return (EAttribute)javaOperationSelectorTypeEClass.getEStructuralFeatures().get(0);
+    }
+
+	/**
+     * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+     * @generated
+     */
+	public EClass getRegexOperationSelectorType() {
+        return regexOperationSelectorTypeEClass;
+    }
+
+	/**
+     * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+     * @generated
+     */
+	public EAttribute getRegexOperationSelectorType_Expression() {
+        return (EAttribute)regexOperationSelectorTypeEClass.getEStructuralFeatures().get(0);
+    }
+
+	/**
+     * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+     * @generated
+     */
+	public EClass getStaticOperationSelectorType() {
+        return staticOperationSelectorTypeEClass;
+    }
+
+	/**
+     * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+     * @generated
+     */
+	public EAttribute getStaticOperationSelectorType_OperationName() {
+        return (EAttribute)staticOperationSelectorTypeEClass.getEStructuralFeatures().get(0);
+    }
+
+	/**
+     * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+     * @generated
+     */
+	public EClass getXPathOperationSelectorType() {
+        return xPathOperationSelectorTypeEClass;
+    }
+
+	/**
+     * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+     * @generated
+     */
+	public EAttribute getXPathOperationSelectorType_Expression() {
+        return (EAttribute)xPathOperationSelectorTypeEClass.getEStructuralFeatures().get(0);
+    }
+
+	/**
+     * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @generated
      */
@@ -1147,6 +1287,10 @@ public class SwitchyardPackageImpl extends EPackageImpl implements SwitchyardPac
         createEReference(documentRootEClass, DOCUMENT_ROOT__OPERATION_SELECTOR_SWITCHYARD);
         createEReference(documentRootEClass, DOCUMENT_ROOT__CONTEXT_MAPPER);
         createEReference(documentRootEClass, DOCUMENT_ROOT__MESSAGE_COMPOSER);
+        createEReference(documentRootEClass, DOCUMENT_ROOT__JAVA_OPERATION_SELECTOR_SWITCHYARD);
+        createEReference(documentRootEClass, DOCUMENT_ROOT__REGEX_OPERATION_SELECTOR_SWITCHYARD);
+        createEReference(documentRootEClass, DOCUMENT_ROOT__XPATH_OPERATION_SELECTOR_SWITCHYARD);
+        createEReference(documentRootEClass, DOCUMENT_ROOT__STATIC_OPERATION_SELECTOR_SWITCHYARD);
 
         domainTypeEClass = createEClass(DOMAIN_TYPE);
         createEReference(domainTypeEClass, DOMAIN_TYPE__TRANSFORMS);
@@ -1210,6 +1354,18 @@ public class SwitchyardPackageImpl extends EPackageImpl implements SwitchyardPac
 
         validateTypeEClass = createEClass(VALIDATE_TYPE);
         createEAttribute(validateTypeEClass, VALIDATE_TYPE__NAME);
+
+        javaOperationSelectorTypeEClass = createEClass(JAVA_OPERATION_SELECTOR_TYPE);
+        createEAttribute(javaOperationSelectorTypeEClass, JAVA_OPERATION_SELECTOR_TYPE__CLASS);
+
+        regexOperationSelectorTypeEClass = createEClass(REGEX_OPERATION_SELECTOR_TYPE);
+        createEAttribute(regexOperationSelectorTypeEClass, REGEX_OPERATION_SELECTOR_TYPE__EXPRESSION);
+
+        staticOperationSelectorTypeEClass = createEClass(STATIC_OPERATION_SELECTOR_TYPE);
+        createEAttribute(staticOperationSelectorTypeEClass, STATIC_OPERATION_SELECTOR_TYPE__OPERATION_NAME);
+
+        xPathOperationSelectorTypeEClass = createEClass(XPATH_OPERATION_SELECTOR_TYPE);
+        createEAttribute(xPathOperationSelectorTypeEClass, XPATH_OPERATION_SELECTOR_TYPE__EXPRESSION);
     }
 
 	/**
@@ -1247,6 +1403,10 @@ public class SwitchyardPackageImpl extends EPackageImpl implements SwitchyardPac
         esbInterfaceEClass.getESuperTypes().add(theScaPackage.getInterface());
         switchYardBindingTypeEClass.getESuperTypes().add(theScaPackage.getBinding());
         switchYardOperationSelectorTypeEClass.getESuperTypes().add(theScaPackage.getOperationSelectorType());
+        javaOperationSelectorTypeEClass.getESuperTypes().add(this.getSwitchYardOperationSelectorType());
+        regexOperationSelectorTypeEClass.getESuperTypes().add(this.getSwitchYardOperationSelectorType());
+        staticOperationSelectorTypeEClass.getESuperTypes().add(this.getSwitchYardOperationSelectorType());
+        xPathOperationSelectorTypeEClass.getESuperTypes().add(this.getSwitchYardOperationSelectorType());
 
         // Initialize classes and features; add operations and parameters
         initEClass(artifactsTypeEClass, ArtifactsType.class, "ArtifactsType", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
@@ -1285,6 +1445,10 @@ public class SwitchyardPackageImpl extends EPackageImpl implements SwitchyardPac
         initEReference(getDocumentRoot_OperationSelectorSwitchyard(), this.getSwitchYardOperationSelectorType(), null, "operationSelectorSwitchyard", null, 0, -2, null, IS_TRANSIENT, IS_VOLATILE, !IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, IS_DERIVED, IS_ORDERED);
         initEReference(getDocumentRoot_ContextMapper(), this.getContextMapperType(), null, "contextMapper", null, 0, -2, null, IS_TRANSIENT, IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, IS_DERIVED, IS_ORDERED);
         initEReference(getDocumentRoot_MessageComposer(), this.getMessageComposerType(), null, "messageComposer", null, 0, -2, null, IS_TRANSIENT, IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, IS_DERIVED, IS_ORDERED);
+        initEReference(getDocumentRoot_JavaOperationSelectorSwitchyard(), this.getJavaOperationSelectorType(), null, "javaOperationSelectorSwitchyard", null, 0, -2, null, IS_TRANSIENT, IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, IS_DERIVED, IS_ORDERED);
+        initEReference(getDocumentRoot_RegexOperationSelectorSwitchyard(), this.getRegexOperationSelectorType(), null, "regexOperationSelectorSwitchyard", null, 0, -2, null, IS_TRANSIENT, IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, IS_DERIVED, IS_ORDERED);
+        initEReference(getDocumentRoot_XpathOperationSelectorSwitchyard(), this.getXPathOperationSelectorType(), null, "xpathOperationSelectorSwitchyard", null, 0, -2, null, IS_TRANSIENT, IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, IS_DERIVED, IS_ORDERED);
+        initEReference(getDocumentRoot_StaticOperationSelectorSwitchyard(), this.getStaticOperationSelectorType(), null, "staticOperationSelectorSwitchyard", null, 0, -2, null, IS_TRANSIENT, IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, IS_DERIVED, IS_ORDERED);
 
         initEClass(domainTypeEClass, DomainType.class, "DomainType", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
         initEReference(getDomainType_Transforms(), this.getTransformsType(), null, "transforms", null, 0, 1, DomainType.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
@@ -1348,6 +1512,18 @@ public class SwitchyardPackageImpl extends EPackageImpl implements SwitchyardPac
 
         initEClass(validateTypeEClass, ValidateType.class, "ValidateType", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
         initEAttribute(getValidateType_Name(), theXMLTypePackage.getString(), "name", null, 1, 1, ValidateType.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+        initEClass(javaOperationSelectorTypeEClass, JavaOperationSelectorType.class, "JavaOperationSelectorType", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+        initEAttribute(getJavaOperationSelectorType_Class(), theXMLTypePackage.getString(), "class", null, 0, 1, JavaOperationSelectorType.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+        initEClass(regexOperationSelectorTypeEClass, RegexOperationSelectorType.class, "RegexOperationSelectorType", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+        initEAttribute(getRegexOperationSelectorType_Expression(), theXMLTypePackage.getString(), "expression", null, 0, 1, RegexOperationSelectorType.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+        initEClass(staticOperationSelectorTypeEClass, StaticOperationSelectorType.class, "StaticOperationSelectorType", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+        initEAttribute(getStaticOperationSelectorType_OperationName(), theXMLTypePackage.getString(), "operationName", null, 0, 1, StaticOperationSelectorType.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+        initEClass(xPathOperationSelectorTypeEClass, XPathOperationSelectorType.class, "XPathOperationSelectorType", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+        initEAttribute(getXPathOperationSelectorType_Expression(), theXMLTypePackage.getString(), "expression", null, 0, 1, XPathOperationSelectorType.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
         // Create resource
         createResource(eNS_URI);
@@ -1617,6 +1793,42 @@ public class SwitchyardPackageImpl extends EPackageImpl implements SwitchyardPac
              "kind", "element",
              "name", "messageComposer",
              "namespace", "##targetNamespace"
+           });		
+        addAnnotation
+          (getDocumentRoot_JavaOperationSelectorSwitchyard(), 
+           source, 
+           new String[] {
+             "kind", "element",
+             "name", "operationSelector.java",
+             "namespace", "##targetNamespace",
+             "affiliation", "urn:switchyard-config:switchyard:1.0#operationSelector.switchyard"
+           });		
+        addAnnotation
+          (getDocumentRoot_RegexOperationSelectorSwitchyard(), 
+           source, 
+           new String[] {
+             "kind", "element",
+             "name", "operationSelector.regex",
+             "namespace", "##targetNamespace",
+             "affiliation", "urn:switchyard-config:switchyard:1.0#operationSelector.switchyard"
+           });		
+        addAnnotation
+          (getDocumentRoot_XpathOperationSelectorSwitchyard(), 
+           source, 
+           new String[] {
+             "kind", "element",
+             "name", "operationSelector.xpath",
+             "namespace", "##targetNamespace",
+             "affiliation", "urn:switchyard-config:switchyard:1.0#operationSelector.switchyard"
+           });		
+        addAnnotation
+          (getDocumentRoot_StaticOperationSelectorSwitchyard(), 
+           source, 
+           new String[] {
+             "kind", "element",
+             "name", "operationSelector",
+             "namespace", "##targetNamespace",
+             "affiliation", "urn:switchyard-config:switchyard:1.0#operationSelector.switchyard"
            });		
         addAnnotation
           (domainTypeEClass, 
@@ -1972,6 +2184,62 @@ public class SwitchyardPackageImpl extends EPackageImpl implements SwitchyardPac
            new String[] {
              "kind", "attribute",
              "name", "name"
+           });		
+        addAnnotation
+          (javaOperationSelectorTypeEClass, 
+           source, 
+           new String[] {
+             "name", "JavaOperationSelectorType",
+             "kind", "empty"
+           });		
+        addAnnotation
+          (getJavaOperationSelectorType_Class(), 
+           source, 
+           new String[] {
+             "kind", "attribute",
+             "name", "class"
+           });		
+        addAnnotation
+          (regexOperationSelectorTypeEClass, 
+           source, 
+           new String[] {
+             "name", "RegexOperationSelectorType",
+             "kind", "empty"
+           });		
+        addAnnotation
+          (getRegexOperationSelectorType_Expression(), 
+           source, 
+           new String[] {
+             "kind", "attribute",
+             "name", "expression"
+           });		
+        addAnnotation
+          (staticOperationSelectorTypeEClass, 
+           source, 
+           new String[] {
+             "name", "StaticOperationSelectorType",
+             "kind", "empty"
+           });		
+        addAnnotation
+          (getStaticOperationSelectorType_OperationName(), 
+           source, 
+           new String[] {
+             "kind", "attribute",
+             "name", "operationName"
+           });		
+        addAnnotation
+          (xPathOperationSelectorTypeEClass, 
+           source, 
+           new String[] {
+             "name", "XPathOperationSelectorType",
+             "kind", "empty"
+           });		
+        addAnnotation
+          (getXPathOperationSelectorType_Expression(), 
+           source, 
+           new String[] {
+             "kind", "attribute",
+             "name", "expression"
            });
     }
 
