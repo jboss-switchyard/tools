@@ -69,6 +69,12 @@
                 </artifactItem>
                 <artifactItem>
                   <groupId>org.switchyard.quickstarts</groupId>
+                  <artifactId>switchyard-quickstart-camel-bus-cdi</artifactId>
+                  <version>${version.switchyard.runtime}</version>
+                  <outputDirectory>test-data/quickstart-configs/camel-bus-cdi</outputDirectory>
+                </artifactItem>
+                <artifactItem>
+                  <groupId>org.switchyard.quickstarts</groupId>
                   <artifactId>switchyard-quickstart-camel-ftp-binding</artifactId>
                   <version>${version.switchyard.runtime}</version>
                   <outputDirectory>test-data/quickstart-configs/camel-ftp-binding</outputDirectory>
@@ -79,17 +85,23 @@
                   <version>${version.switchyard.runtime}</version>
                   <outputDirectory>test-data/quickstart-configs/camel-jms-binding</outputDirectory>
                 </artifactItem>
-<!--                 <artifactItem> -->
-<!--                   <groupId>org.switchyard.quickstarts</groupId> -->
-<!--                   <artifactId>switchyard-quickstart-camel-netty-binding</artifactId> -->
-<!--                   <version>${version.switchyard.runtime}</version> -->
-<!--                   <outputDirectory>test-data/quickstart-configs/camel-netty-binding</outputDirectory> -->
-<!--                 </artifactItem> -->
+                <artifactItem>
+                  <groupId>org.switchyard.quickstarts</groupId>
+                  <artifactId>switchyard-quickstart-camel-netty-binding</artifactId>
+                  <version>${version.switchyard.runtime}</version>
+                  <outputDirectory>test-data/quickstart-configs/camel-netty-binding</outputDirectory>
+                </artifactItem>
                 <artifactItem>
                   <groupId>org.switchyard.quickstarts</groupId>
                   <artifactId>switchyard-quickstart-rest-binding</artifactId>
                   <version>${version.switchyard.runtime}</version>
                   <outputDirectory>test-data/quickstart-configs/rest-binding</outputDirectory>
+                </artifactItem>
+                <artifactItem>
+                  <groupId>org.switchyard.quickstarts</groupId>
+                  <artifactId>switchyard-quickstart-camel-sql-binding</artifactId>
+                  <version>${version.switchyard.runtime}</version>
+                  <outputDirectory>test-data/quickstart-configs/camel-sql-binding</outputDirectory>
                 </artifactItem>
                 <artifactItem>
                   <groupId>org.switchyard.quickstarts</groupId>
@@ -120,6 +132,12 @@
                   <artifactId>switchyard-quickstart-hornetq-binding</artifactId>
                   <version>${version.switchyard.runtime}</version>
                   <outputDirectory>test-data/quickstart-configs/hornetq-binding</outputDirectory>
+                </artifactItem>
+                <artifactItem>
+                  <groupId>org.switchyard.quickstarts</groupId>
+                  <artifactId>switchyard-quickstart-http-binding</artifactId>
+                  <version>${version.switchyard.runtime}</version>
+                  <outputDirectory>test-data/quickstart-configs/http-binding</outputDirectory>
                 </artifactItem>
                 <artifactItem>
                   <groupId>org.switchyard.quickstarts</groupId>

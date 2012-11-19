@@ -44,6 +44,15 @@ public class SwitchYardModelValidationTest extends AbstractMavenProjectTestCase 
     }
 
     /**
+     * Tests BPEL quickstart.
+     * (commented out because we need the generated config, not the source config)
+     * @throws Exception exception
+     */
+    public void testBpelQuickstart() throws Exception {
+        runModelTest("bpel-service/say_hello");
+    }
+
+    /**
      * Tests Helpdesk demo quickstart.
      * 
      * @throws Exception exception
@@ -79,6 +88,15 @@ public class SwitchYardModelValidationTest extends AbstractMavenProjectTestCase 
     }
 
     /**
+     * Tests import and configuration of camel-bus-cdi quickstart.
+     * 
+     * @throws Exception if a failure occurs.
+     */
+    public void testCamelBusCDIQuickstart() throws Exception {
+        runModelTest("camel-bus-cdi");
+    }
+
+    /**
      * Tests import and configuration of camel-ftp-binding quickstart.
      * 
      * @throws Exception if a failure occurs.
@@ -98,13 +116,13 @@ public class SwitchYardModelValidationTest extends AbstractMavenProjectTestCase 
 
      /**
      * Tests import and configuration of camel-netty-binding quickstart.
-     *
+     * TODO: Currently not run because of issues in the quickstart with model validation
      * @throws Exception if a failure occurs.
      */
-     public void testCamelNettyBindingQuickstart() throws Exception {
+//     public void testCamelNettyBindingQuickstart() throws Exception {
          // disabled with quickstart issue
 //         runModelTest("camel-netty-binding");
-     }
+//     }
 
     /**
      * Tests import and configuration of rest-binding quickstart.
@@ -167,6 +185,16 @@ public class SwitchYardModelValidationTest extends AbstractMavenProjectTestCase 
      */
     public void testHornetQQuickstart() throws Exception {
         runModelTest("hornetq-binding");
+    }
+
+    /**
+     * Tests import and configuration of http-binding quickstart.
+     * (commented out since it's an incomplete config - need generated config, not source)
+     * 
+     * @throws Exception if a failure occurs.
+     */
+    public void testHTTPQuickstart() throws Exception {
+        runModelTest("http-binding");
     }
 
     /**
