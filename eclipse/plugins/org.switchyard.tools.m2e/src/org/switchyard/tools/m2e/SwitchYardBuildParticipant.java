@@ -133,7 +133,7 @@ public class SwitchYardBuildParticipant extends MojoExecutionBuildParticipant {
     private Resource[] getResources() throws CoreException {
         Resource[] resources = MavenPlugin.getMaven().getMojoParameterValue(getSession(), getMojoExecution(),
                 "_project_resources", Resource[].class);
-        if (resources == null) {
+        if (resources == null || resources.length == 0) {
             // pre-0.6 property name
             resources = MavenPlugin.getMaven().getMojoParameterValue(getSession(), getMojoExecution(), "resources",
                     Resource[].class);

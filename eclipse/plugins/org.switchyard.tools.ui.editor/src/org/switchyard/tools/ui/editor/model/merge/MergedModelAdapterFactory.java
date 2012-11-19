@@ -11,6 +11,7 @@
 package org.switchyard.tools.ui.editor.model.merge;
 
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Collections;
 import java.util.HashMap;
@@ -25,9 +26,12 @@ import org.eclipse.emf.common.notify.impl.AdapterFactoryImpl;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.compare.diff.merge.service.MergeService;
+import org.eclipse.emf.compare.diff.metamodel.AttributeChangeRightTarget;
 import org.eclipse.emf.compare.diff.metamodel.DiffElement;
 import org.eclipse.emf.compare.diff.metamodel.DiffModel;
+import org.eclipse.emf.compare.diff.metamodel.ModelElementChangeRightTarget;
 import org.eclipse.emf.compare.diff.metamodel.MoveModelElement;
+import org.eclipse.emf.compare.diff.metamodel.ReferenceChangeRightTarget;
 import org.eclipse.emf.compare.diff.metamodel.util.DiffSwitch;
 import org.eclipse.emf.compare.diff.service.DiffService;
 import org.eclipse.emf.compare.match.metamodel.Match2Elements;
@@ -395,6 +399,91 @@ public class MergedModelAdapterFactory extends AdapterFactoryImpl {
         }
         // clear the cache
         _cache.clear();
+    }
+
+    protected boolean isCopiedSource(EObject source, EObject generated) {
+        if (source == generated) {
+            return true;
+        }
+        if (getDifferencesFor(source).size() > 0) {
+            return false;
+        }
+        final EObject sourceParent = getSource(generated.eContainer());
+        for (DiffElement diff : getDifferencesFor(generated)) {
+            if (new DiffSwitch<Boolean>() {
+                @Override
+                public Boolean caseAttributeChangeRightTarget(AttributeChangeRightTarget object) {
+                    return object.getLeftElement() == sourceParent;
+                }
+
+                @Override
+                public Boolean caseModelElementChangeRightTarget(ModelElementChangeRightTarget object) {
+                    return object.getLeftParent() == sourceParent;
+                }
+
+                @Override
+                public Boolean caseReferenceChangeRightTarget(ReferenceChangeRightTarget object) {
+                    return object.getLeftElement() == sourceParent;
+                }
+
+                @Override
+                public Boolean defaultCase(EObject object) {
+                    return false;
+                }
+            }.doSwitch(diff)) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    /**
+     * Work around bug in DiffModel that doesn't account for the object (i.e it
+     * gives us all the diff's).
+     * 
+     * Also account for whether the object is source or generated (i.e. left or
+     * right).
+     * 
+     * @param object the object for which we are collecting differences.
+     * 
+     * @return the differences for the object.
+     */
+    protected List<DiffElement> getDifferencesFor(EObject object) {
+        if (_differences == null) {
+            return Collections.emptyList();
+        }
+        final List<DiffElement> objectDifferences = new ArrayList<DiffElement>();
+        for (DiffElement diff : _differences.getDifferences()) {
+            if (isPertinentDiff(diff, object)) {
+                objectDifferences.add(diff);
+            }
+        }
+
+        return objectDifferences;
+    }
+
+    private boolean isPertinentDiff(final DiffElement diff, final EObject modelElement) {
+        return new DiffSwitch<Boolean>() {
+            @Override
+            public Boolean caseAttributeChangeRightTarget(AttributeChangeRightTarget object) {
+                return object.getLeftElement() == modelElement || object.getRightTarget() == modelElement;
+            }
+
+            @Override
+            public Boolean caseModelElementChangeRightTarget(ModelElementChangeRightTarget object) {
+                return object.getLeftParent() == modelElement || object.getRightElement() == modelElement;
+            }
+
+            @Override
+            public Boolean caseReferenceChangeRightTarget(ReferenceChangeRightTarget object) {
+                return object.getLeftElement() == modelElement || object.getRightTarget() == modelElement;
+            }
+
+            @Override
+            public Boolean defaultCase(EObject object) {
+                return false;
+            }
+        }.doSwitch(diff);
     }
 
     private static final class MatchCrossReferencer extends CrossReferencer {

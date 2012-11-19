@@ -23,6 +23,7 @@ import org.eclipse.emf.compare.diff.metamodel.DiffModel;
 import org.eclipse.emf.compare.diff.metamodel.DifferenceKind;
 import org.eclipse.emf.compare.diff.metamodel.ModelElementChangeRightTarget;
 import org.eclipse.emf.compare.diff.metamodel.ReferenceChangeRightTarget;
+import org.eclipse.emf.compare.diff.metamodel.util.DiffSwitch;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.ecore.util.ExtendedMetaData;
@@ -101,35 +102,57 @@ public abstract class AbstractMergedModelAdapter implements Adapter {
      * @param feature the feature.
      * @return the aggregate value.
      */
+    @SuppressWarnings("unchecked")
     protected Object getAggregatedValue(EStructuralFeature feature) {
         final EObject source = getSource();
+        final EObject generated = getGenerated();
         if (source == null) {
-            final EObject generated = getGenerated();
             if (generated == null) {
                 return null;
             }
             return generated.eGet(feature);
         }
         final Object value = source.eGet(feature);
-        final DiffModel differences = _factory == null ? null : _factory.getDifferences(source);
-        if (differences == null) {
+        final DiffModel diffModel = _factory == null ? null : _factory.getDifferences(source);
+        if (diffModel == null) {
             return value;
         }
         if (feature.isMany()) {
-            @SuppressWarnings("unchecked")
             List<Object> added = (List<Object>) _factory.getCachedFeatureDifferences(this, feature);
             if (added == null) {
                 added = new ArrayList<Object>();
-                for (DiffElement difference : differences.getDifferences(source)) {
-                    /*
-                     * Because of the way we compare, generated content is
-                     * marked as "deleted" from the source, i.e. the source file
-                     * is missing the generated content.
-                     */
-                    if (difference.getKind() == DifferenceKind.DELETION) {
-                        Object addedElement = getRightTarget(feature, difference);
-                        if (addedElement != null) {
-                            added.add(addedElement);
+                if (_factory.isCopiedSource(source, generated)) {
+                    final Collection<?> sourceValues = (Collection<?>) value;
+                    final Collection<?> generatedValues = (Collection<?>) generated.eGet(feature);
+                    for (Object obj : generatedValues) {
+                        if (obj instanceof EObject) {
+                            /*
+                             * only add the unique values, in case some of the
+                             * children were copied into the source too.
+                             */
+                            if (_factory.getSource((EObject) obj) == obj) {
+                                added.add(obj);
+                            }
+                        } else {
+                            // XXX: not sure if this is good enough
+                            // assume the list does not contain EObjects
+                            added.addAll(generatedValues);
+                            added.removeAll(sourceValues);
+                            break;
+                        }
+                    }
+                } else {
+                    for (DiffElement difference : _factory.getDifferencesFor(source)) {
+                        /*
+                         * Because of the way we compare, generated content is
+                         * marked as "deleted" from the source, i.e. the source
+                         * file is missing the generated content.
+                         */
+                        if (difference.getKind() == DifferenceKind.DELETION) {
+                            Object addedElement = getRightTarget(feature, difference);
+                            if (addedElement != null) {
+                                added.add(addedElement);
+                            }
                         }
                     }
                 }
@@ -144,7 +167,7 @@ public abstract class AbstractMergedModelAdapter implements Adapter {
         } else if (!source.eIsSet(feature)) {
             Object added = _factory.getCachedFeatureDifferences(this, feature);
             if (added == null) {
-                for (DiffElement difference : differences.getDifferences(source)) {
+                for (DiffElement difference : _factory.getDifferencesFor(source)) {
                     /*
                      * Because of the way we compare, generated content is
                      * marked as "deleted" from the source, i.e. the source file
@@ -169,27 +192,41 @@ public abstract class AbstractMergedModelAdapter implements Adapter {
         return value;
     }
 
-    private Object getRightTarget(EStructuralFeature feature, DiffElement difference) {
-        if (difference instanceof ModelElementChangeRightTarget) {
-            EObject rightTarget = ((ModelElementChangeRightTarget) difference).getRightElement();
-            if (feature.equals(ExtendedMetaData.INSTANCE.getAffiliation(((ModelElementChangeRightTarget) difference)
-                    .getLeftParent().eClass(), rightTarget.eContainmentFeature()))) {
-                return rightTarget;
+    private Object getRightTarget(final EStructuralFeature feature, final DiffElement difference) {
+        return new DiffSwitch<Object>() {
+            @Override
+            public Object caseAttributeChangeRightTarget(AttributeChangeRightTarget object) {
+                if (feature.equals(ExtendedMetaData.INSTANCE.getAffiliation(object.getLeftElement().eClass(),
+                        object.getAttribute()))) {
+                    return object.getRightTarget();
+                }
+                return null;
             }
-        } else if (difference instanceof ReferenceChangeRightTarget) {
-            ReferenceChangeRightTarget change = (ReferenceChangeRightTarget) difference;
-            if (feature.equals(ExtendedMetaData.INSTANCE.getAffiliation(change.getLeftElement().eClass(),
-                    change.getReference()))) {
-                return change.getRightTarget();
+
+            @Override
+            public Object caseModelElementChangeRightTarget(ModelElementChangeRightTarget object) {
+                final EObject rightTarget = object.getRightElement();
+                if (feature.equals(ExtendedMetaData.INSTANCE.getAffiliation(object.getLeftParent().eClass(),
+                        rightTarget.eContainmentFeature()))) {
+                    return rightTarget;
+                }
+                return null;
             }
-        } else if (difference instanceof AttributeChangeRightTarget) {
-            AttributeChangeRightTarget change = (AttributeChangeRightTarget) difference;
-            if (feature.equals(ExtendedMetaData.INSTANCE.getAffiliation(change.getLeftElement().eClass(),
-                    change.getAttribute()))) {
-                return change.getRightTarget();
+
+            @Override
+            public Object caseReferenceChangeRightTarget(ReferenceChangeRightTarget object) {
+                if (feature.equals(ExtendedMetaData.INSTANCE.getAffiliation(object.getLeftElement().eClass(),
+                        object.getReference()))) {
+                    return object.getRightTarget();
+                }
+                return null;
             }
-        }
-        return null;
+
+            @Override
+            public Object defaultCase(EObject object) {
+                return null;
+            }
+        }.doSwitch(difference);
     }
 
 }

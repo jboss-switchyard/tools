@@ -12,6 +12,7 @@ package org.switchyard.tools.ui.editor.model.merge;
 
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.Iterator;
 import java.util.List;
 
 import org.eclipse.emf.common.notify.Adapter;
@@ -50,8 +51,11 @@ public class MergedModelUpdateAdapter extends EContentAdapter implements Adapter
         if (notification.isTouch() || !(notification.getNotifier() instanceof EObject)) {
             return;
         }
-        final EObject generated = getGenerated((EObject) notification.getNotifier());
-        if (generated == null) {
+        final EObject source = (EObject) notification.getNotifier();
+        final EObject generated = getGenerated(source);
+        if (generated == null || _factory.isCopiedSource(source, generated)) {
+            // we're not tracking changes if we copied the generated object into
+            // source
             return;
         }
         final boolean oldDeliver = generated.eDeliver();
@@ -66,10 +70,27 @@ public class MergedModelUpdateAdapter extends EContentAdapter implements Adapter
                  * that actually hold the contained objects).
                  */
                 return;
-            } else if (notification.isReset()) {
-                generated.eUnset(feature);
             } else {
                 if (feature.isMany()) {
+                    /*
+                     * TODO: this code does not support the addition/removal of
+                     * objects that are copied from source, i.e. if the object
+                     * being removed corresponds with generated content, we
+                     * remove it anyway. The diagram should self-correct upon
+                     * synchronization after a save.
+                     * 
+                     * See handleContainmentSet() for an example of what we
+                     * could do _if_ we could determine that the item being
+                     * removed corresponds to generated content. (Of course, we
+                     * could use the same process as "set" except that it is far
+                     * from foolproof. We also don't support editing of
+                     * generated content. Set represents a special case for
+                     * container elements (e.g. transforms, artifacts, etc.).)
+                     */
+                    /*
+                     * XXX: all positional code assumes the lists are identical
+                     * between source and destination.
+                     */
                     final Object newValue = notification.getNewValue();
                     switch (notification.getEventType()) {
                     case Notification.ADD:
@@ -93,35 +114,42 @@ public class MergedModelUpdateAdapter extends EContentAdapter implements Adapter
                         break;
                     case Notification.REMOVE:
                         do {
-                            ((EList<Object>) generated.eGet(feature)).remove(notification.getPosition());
+                            final Object removed = notification.getOldValue();
+                            ((EList<Object>) generated.eGet(feature)).remove(removed instanceof EObject ? _factory
+                                    .getGenerated((EObject) removed) : removed);
                             if (feature instanceof EReference
                                     && (((EReference) feature).isContainment() || ((EReference) feature).isContainer())) {
-                                _factory.removeMatchFromSource(notification.getOldValue());
+                                _factory.removeMatchFromSource(removed);
                             }
                         } while (false);
                         break;
                     case Notification.REMOVE_MANY:
-                        for (int index = ((int[]) newValue).length - 1; index >= 0; --index) {
-                            ((EList<Object>) generated.eGet(feature)).remove(((int[]) newValue)[index]);
-                        }
-                        if (feature instanceof EReference
-                                && (((EReference) feature).isContainment() || ((EReference) feature).isContainer())) {
+                        do {
+                            final boolean isContainment = feature instanceof EReference
+                                    && (((EReference) feature).isContainment() || ((EReference) feature).isContainer());
+                            final EList<Object> sourceList = (EList<Object>) generated.eGet(feature);
                             for (Object removed : (Collection<Object>) notification.getOldValue()) {
-                                if (removed instanceof EObject) {
-                                    _factory.removeMatchFromSource(removed);
+                                sourceList.remove(removed instanceof EObject ? _factory.getGenerated((EObject) removed)
+                                        : removed);
+                                if (isContainment) {
+                                    if (removed instanceof EObject) {
+                                        _factory.removeMatchFromSource(removed);
+                                    }
                                 }
                             }
-                        }
+                        } while (false);
                         break;
                     case Notification.MOVE:
-                        ((EList<Object>) generated.eGet(feature)).move(notification.getPosition(),
-                                notification.getOldIntValue());
+                        // TODO: move is messed up. ignore for now
+                        // ((EList<Object>)
+                        // generated.eGet(feature)).move(notification.getPosition(),
+                        // notification.getOldIntValue());
                         break;
                     }
                 } else {
                     if (feature instanceof EReference
                             && (((EReference) feature).isContainment() || ((EReference) feature).isContainer())) {
-                        generated.eSet(feature, copy(notification.getNewValue()));
+                        handleContainmentSet(notification, generated, feature);
                     } else {
                         generated.eSet(feature, getGeneratedReference(notification.getNewValue()));
                     }
@@ -130,6 +158,74 @@ public class MergedModelUpdateAdapter extends EContentAdapter implements Adapter
         } finally {
             generated.eSetDeliver(oldDeliver);
             super.notifyChanged(notification);
+        }
+    }
+
+    private void handleContainmentSet(final Notification notification, final EObject generated,
+            final EStructuralFeature feature) {
+        if (generated.eIsSet(feature)) {
+            final Object existingGenerated = generated.eGet(feature);
+            // see what type of feature we're dealing with
+            if (existingGenerated instanceof EObject) {
+                final EObject existingSource = _factory.getSource((EObject) existingGenerated);
+                final EObject newSource = (EObject) notification.getNewValue();
+                if (_factory.isCopiedSource(existingSource, (EObject) existingGenerated)
+                        || _factory.getDifferencesFor(existingSource).size() > 0) {
+                    /*
+                     * There are differences between the source and the
+                     * generated value, act accordingly.
+                     */
+                    if (existingSource == existingGenerated || existingSource == null) {
+                        /*
+                         * There is no source. Recalucate the differences so
+                         * everything works correctly.
+                         */
+                        _factory.calculateDifferences();
+                    } else if (newSource != existingSource) {
+                        /*
+                         * The source is changing. We'll try to remove any items
+                         * that match between source and generated. This may not
+                         * be correct as it's possible generated content could
+                         * be fully defined in the source. Presumably,
+                         * everything will get worked out after a save.
+                         */
+                        final List<EObject> generatedContents = new ArrayList<EObject>(
+                                ((EObject) existingGenerated).eContents());
+                        for (Iterator<EObject> it = generatedContents.iterator(); it.hasNext();) {
+                            final EObject generatedContent = it.next();
+                            final EObject sourceContent = _factory.getSource(generatedContent);
+                            if (sourceContent != generatedContent) {
+                                ((Collection<?>) ((EObject) existingGenerated).eGet(sourceContent.eContainingFeature()))
+                                        .remove(generatedContent);
+                                _factory.removeMatchFromSource(sourceContent);
+                            }
+                        }
+                        _factory.calculateDifferences();
+                    }
+                } else {
+                    /*
+                     * safe to copy over (i.e. generated == source)
+                     */
+                    if (notification.isReset()) {
+                        generated.eUnset(feature);
+                    } else {
+                        generated.eSet(feature, copy(notification.getNewValue()));
+                    }
+                }
+            } else {
+                // not an EObject or null
+                if (notification.isReset()) {
+                    generated.eUnset(feature);
+                } else {
+                    generated.eSet(feature, copy(notification.getNewValue()));
+                }
+            }
+        } else {
+            if (notification.isReset()) {
+                generated.eUnset(feature);
+            } else {
+                generated.eSet(feature, copy(notification.getNewValue()));
+            }
         }
     }
 

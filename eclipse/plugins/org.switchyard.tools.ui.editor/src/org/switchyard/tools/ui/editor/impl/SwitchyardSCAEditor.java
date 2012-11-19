@@ -54,7 +54,7 @@ import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.emf.edit.domain.AdapterFactoryEditingDomain;
-import org.eclipse.emf.edit.ui.util.EditUIMarkerHelper;
+import org.eclipse.emf.edit.domain.EditingDomain;
 import org.eclipse.emf.transaction.RecordingCommand;
 import org.eclipse.emf.transaction.ResourceSetChangeEvent;
 import org.eclipse.emf.transaction.ResourceSetListener;
@@ -296,7 +296,6 @@ public class SwitchyardSCAEditor extends DiagramEditor implements IGotoMarker {
         return generated;
     }
 
-    @SuppressWarnings("unchecked")
     private IStatus convertMarker(IMarker marker, EObject target, MergedModelAdapterFactory mergeAdapter) {
         final String message = marker.getAttribute(IMarker.MESSAGE, "");
         final String constraintId = marker.getAttribute(MarkerUtil.RULE_ATTRIBUTE, null);
@@ -321,17 +320,13 @@ public class SwitchyardSCAEditor extends DiagramEditor implements IGotoMarker {
         if (imc == null) {
             return new Status(severity, Activator.PLUGIN_ID, code, message, null);
         }
-        List<Object> locus = (List<Object>) new EditUIMarkerHelper().getTargetObjects(getEditingDomain(), marker);
-        for (ListIterator<Object> it = locus.listIterator(); it.hasNext();) {
-            final Object item = it.next();
-            if (item instanceof EObject) {
-                final EObject source = mergeAdapter == null ? null : mergeAdapter.getSource((EObject) item);
-                if (source != null) {
-                    // swap out with the source object
-                    it.set(source);
-                }
-            } else {
-                it.remove();
+        List<EObject> locus = getTargetObjects(getEditingDomain(), marker);
+        for (ListIterator<EObject> it = locus.listIterator(); it.hasNext();) {
+            final EObject item = it.next();
+            final EObject source = mergeAdapter == null ? null : mergeAdapter.getSource(item);
+            if (source != null) {
+                // swap out with the source object
+                it.set(source);
             }
         }
         return new ConstraintStatus(imc, target, severity, code, message, locus == null ? null
@@ -343,6 +338,34 @@ public class SwitchyardSCAEditor extends DiagramEditor implements IGotoMarker {
                 .append(_modelFile.getFullPath().removeFirstSegments(1)).addFileExtension("diagram");
         _diagramFile = _modelFile.getWorkspace().getRoot().getFile(diagramFilePath);
         return URI.createPlatformResourceURI(diagramFilePath.toString(), true);
+    }
+
+    /**
+     * Copied from EditUIMarkerHelper.getTargetObjects(): removed creation of
+     * wrapper objects.
+     */
+    private List<EObject> getTargetObjects(Object object, IMarker marker) {
+        final List<EObject> result = new ArrayList<EObject>();
+        final EditingDomain editingDomain = getEditingDomain();
+        final String uriAttribute = marker.getAttribute(EValidator.URI_ATTRIBUTE, null);
+        if (uriAttribute != null) {
+            final URI uri = URI.createURI(uriAttribute);
+            final EObject eObject = editingDomain.getResourceSet().getEObject(uri, true);
+            if (eObject != null) {
+                result.add(eObject);
+            }
+        }
+        final String relatedURIsAttribute = marker.getAttribute(EValidator.RELATED_URIS_ATTRIBUTE, null);
+        if (relatedURIsAttribute != null) {
+            for (String relatedURI : relatedURIsAttribute.split(" ")) {
+                final URI uri = URI.createURI(URI.decode(relatedURI));
+                final EObject eObject = editingDomain.getResourceSet().getEObject(uri, true);
+                if (eObject != null) {
+                    result.add(eObject);
+                }
+            }
+        }
+        return result;
     }
 
     @Override
