@@ -15,17 +15,17 @@ package org.switchyard.tools.ui.editor.components.camel.netty;
 import java.util.ArrayList;
 import java.util.List;
 
-import org.eclipse.graphiti.mm.pictograms.PictogramElement;
+import javax.swing.event.ChangeEvent;
+import javax.swing.event.ChangeListener;
+
+import org.eclipse.emf.ecore.EObject;
 import org.eclipse.soa.sca.sca1_1.model.sca.Binding;
-import org.eclipse.soa.sca.sca1_1.model.sca.Contract;
 import org.eclipse.soa.sca.sca1_1.model.sca.OperationSelectorType;
-import org.eclipse.soa.sca.sca1_1.model.sca.Service;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.layout.FillLayout;
 import org.eclipse.swt.layout.GridData;
 import org.eclipse.swt.layout.GridLayout;
 import org.eclipse.swt.widgets.Button;
-import org.eclipse.swt.widgets.Combo;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Control;
 import org.eclipse.swt.widgets.Group;
@@ -36,15 +36,12 @@ import org.switchyard.tools.models.switchyard1_0.camel.CamelFactory;
 import org.switchyard.tools.models.switchyard1_0.camel.CamelNettyUdpBindingType;
 import org.switchyard.tools.models.switchyard1_0.switchyard.ContextMapperType;
 import org.switchyard.tools.models.switchyard1_0.switchyard.MessageComposerType;
+import org.switchyard.tools.models.switchyard1_0.switchyard.SwitchYardOperationSelectorType;
 import org.switchyard.tools.models.switchyard1_0.switchyard.SwitchyardFactory;
 import org.switchyard.tools.ui.editor.diagram.binding.AbstractSYBindingComposite;
-import org.switchyard.tools.ui.editor.diagram.binding.CamelBindingUtil;
-import org.switchyard.tools.ui.editor.diagram.binding.CamelOperationSelectorGroupOp;
-import org.switchyard.tools.ui.editor.diagram.binding.OperationSelectorOp;
-import org.switchyard.tools.ui.editor.diagram.binding.RemoveOperationSelectorOp;
+import org.switchyard.tools.ui.editor.diagram.binding.OperationSelectorComposite;
+import org.switchyard.tools.ui.editor.diagram.binding.OperationSelectorUtil;
 import org.switchyard.tools.ui.editor.diagram.shared.ModelOperation;
-import org.switchyard.tools.ui.editor.impl.SwitchyardSCAEditor;
-import org.switchyard.tools.ui.editor.util.InterfaceOpsUtil;
 
 /**
  * @author bfitzpat
@@ -60,9 +57,9 @@ public class CamelNettyUDPComposite extends AbstractSYBindingComposite {
     private Text _receiveBufferSizeText;
     private Button _syncCheckbox;
     private Button _broadcastCheckbox;
-    private Combo _operationSelectionCombo;
     private TabFolder _tabFolder;
     private List<String> _advancedPropsFilterList;
+    private OperationSelectorComposite _opSelectorComposite;
 
     @Override
     public Binding getBinding() {
@@ -88,19 +85,24 @@ public class CamelNettyUDPComposite extends AbstractSYBindingComposite {
             }
             _syncCheckbox.setSelection(this._binding.isSync());
             _broadcastCheckbox.setSelection(this._binding.isBroadcast());
-            populateOperationCombo();
-            String opName = CamelBindingUtil.getOperationNameForStaticOperationSelector(this._binding);
-            if (opName != null) {
-                setTextValue(_operationSelectionCombo, opName);
-            }
+
+            OperationSelectorType opSelector = OperationSelectorUtil.getFirstOperationSelector(this._binding);
+            _opSelectorComposite.setBinding(this._binding);
+            _opSelectorComposite.setOperation((SwitchYardOperationSelectorType) opSelector);
+
             super.setTabsBinding(_binding);
             setInUpdate(false);
             validate();
         } else {
             this._binding = null;
-            populateOperationCombo();
         }
         addObservableListeners();
+    }
+
+    @Override
+    public void setTargetObject(Object target) {
+        super.setTargetObject(target);
+        _opSelectorComposite.setTargetObject((EObject) target);
     }
 
     @Override
@@ -172,38 +174,17 @@ public class CamelNettyUDPComposite extends AbstractSYBindingComposite {
         _sendBufferSizeText = createLabelAndText(udpGroup, "Send Buffer Size");
         _receiveBufferSizeText = createLabelAndText(udpGroup, "Receive Buffer Size");
 
-        Group opGroup = new Group(composite, SWT.NONE);
-        opGroup.setLayoutData(new GridData(SWT.FILL, SWT.FILL, true, true));
-        opGroup.setLayout(new GridLayout(2, false));
-        opGroup.setText("Operation Options");
-        _operationSelectionCombo = createLabelAndCombo(opGroup, "Operation");
-        populateOperationCombo();
+        _opSelectorComposite = new OperationSelectorComposite(composite, SWT.NONE);
+        _opSelectorComposite.setLayoutData(new GridData(SWT.FILL, SWT.FILL, true, true));
+        _opSelectorComposite.setLayout(new GridLayout(2, false));
+        _opSelectorComposite.addChangeListener(new ChangeListener() {
+            @Override
+            public void stateChanged(ChangeEvent e) {
+                handleModify(_opSelectorComposite);
+            }
+         });
 
         return composite;
-    }
-
-    private void populateOperationCombo() {
-        if (_operationSelectionCombo != null && !_operationSelectionCombo.isDisposed()) {
-            _operationSelectionCombo.removeAll();
-            _operationSelectionCombo.clearSelection();
-
-            if (getTargetObject() == null) {
-                PictogramElement[] pes = SwitchyardSCAEditor.getActiveEditor().getSelectedPictogramElements();
-                if (pes.length > 0) {
-                    Object bo = SwitchyardSCAEditor.getActiveEditor().getDiagramTypeProvider().getFeatureProvider()
-                            .getBusinessObjectForPictogramElement(pes[0]);
-                    if (bo instanceof Service) {
-                        setTargetObject(bo);
-                    }
-                }
-            }
-            if (getTargetObject() != null && getTargetObject() instanceof Contract) {
-                String[] operations = InterfaceOpsUtil.gatherOperations((Contract) getTargetObject());
-                for (int i = 0; i < operations.length; i++) {
-                    _operationSelectionCombo.add(operations[i]);
-                }
-            }
-        }
     }
 
     @Override
@@ -220,29 +201,6 @@ public class CamelNettyUDPComposite extends AbstractSYBindingComposite {
         }
     }
 
-    private void updateCamelOperationSelectorFeature(String featureId, Object value) {
-        if (CamelBindingUtil.getFirstOperationSelector(_binding) != null) {
-            OperationSelectorType opSelect = CamelBindingUtil.getFirstOperationSelector(_binding);
-            Object oldValue = getFeatureValue(opSelect, featureId);
-            // don't do anything if the value is the same
-            if (oldValue == null && value == null) {
-                return;
-            } else if (oldValue != null && oldValue.equals(value)) {
-                return;
-            } else if (value != null && value.equals(oldValue)) {
-                return;
-            }
-        }
-        ArrayList<ModelOperation> ops = new ArrayList<ModelOperation>();
-        if (featureId.equals("operationName") && value instanceof String && ((String)value).trim().isEmpty()) {
-            ops.add(new RemoveOperationSelectorOp(this._binding));
-        } else {
-            ops.add(new CamelOperationSelectorGroupOp(this._binding));
-            ops.add(new OperationSelectorOp(this._binding, featureId, value));
-        }
-        wrapOperation(ops);
-    }
-    
     protected void handleModify(final Control control) {
         if (control.equals(_hostText)) {
             updateFeature(_binding, "host", _hostText.getText().trim());
@@ -285,11 +243,13 @@ public class CamelNettyUDPComposite extends AbstractSYBindingComposite {
         } else if (control.equals(_broadcastCheckbox)) {
             boolean value = _broadcastCheckbox.getSelection();
             updateFeature(_binding, "broadcast", value);
-        } else if (control.equals(_operationSelectionCombo)) {
-            updateCamelOperationSelectorFeature("operationName", _operationSelectionCombo.getText().trim());
+        } else if (control.equals(_opSelectorComposite)) {
+            int opType = _opSelectorComposite.getSelectedOperationSelectorType();
+            updateOperationSelectorFeature(opType, _opSelectorComposite.getSelectedOperationSelectorValue());
         }
         super.handleModify(control);
         setHasChanged(false);
+        setDidSomething(true);
     }
 
     protected void handleUndo(Control control) {
@@ -306,9 +266,9 @@ public class CamelNettyUDPComposite extends AbstractSYBindingComposite {
                 _broadcastCheckbox.setSelection(this._binding.isBroadcast());
             } else if (control.equals(_syncCheckbox)) {
                 _syncCheckbox.setSelection(this._binding.isSync());
-            } else if (control.equals(_operationSelectionCombo)) {
-                String opName = CamelBindingUtil.getOperationNameForStaticOperationSelector(this._binding);
-                setTextValue(_operationSelectionCombo, opName);
+//            } else if (control.equals(_operationSelectionCombo)) {
+//                String opName = OperationSelectorUtil.getOperationNameForStaticOperationSelector(this._binding);
+//                setTextValue(_operationSelectionCombo, opName);
             } else {
                 super.handleUndo(control);
             }

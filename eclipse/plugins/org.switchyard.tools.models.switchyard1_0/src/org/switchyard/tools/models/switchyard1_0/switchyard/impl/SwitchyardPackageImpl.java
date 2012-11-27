@@ -2039,7 +2039,7 @@ public class SwitchyardPackageImpl extends EPackageImpl implements SwitchyardPac
            source, 
            new String[] {
              "name", "SwitchYardOperationSelectorType",
-             "kind", "empty"
+             "kind", "elementOnly"
            });		
         addAnnotation
           (switchYardTypeEClass, 
@@ -2190,7 +2190,7 @@ public class SwitchyardPackageImpl extends EPackageImpl implements SwitchyardPac
            source, 
            new String[] {
              "name", "JavaOperationSelectorType",
-             "kind", "empty"
+             "kind", "elementOnly"
            });		
         addAnnotation
           (getJavaOperationSelectorType_Class(), 
@@ -2204,7 +2204,7 @@ public class SwitchyardPackageImpl extends EPackageImpl implements SwitchyardPac
            source, 
            new String[] {
              "name", "RegexOperationSelectorType",
-             "kind", "empty"
+             "kind", "elementOnly"
            });		
         addAnnotation
           (getRegexOperationSelectorType_Expression(), 
@@ -2218,7 +2218,7 @@ public class SwitchyardPackageImpl extends EPackageImpl implements SwitchyardPac
            source, 
            new String[] {
              "name", "StaticOperationSelectorType",
-             "kind", "empty"
+             "kind", "elementOnly"
            });		
         addAnnotation
           (getStaticOperationSelectorType_OperationName(), 
@@ -2232,7 +2232,7 @@ public class SwitchyardPackageImpl extends EPackageImpl implements SwitchyardPac
            source, 
            new String[] {
              "name", "XPathOperationSelectorType",
-             "kind", "empty"
+             "kind", "elementOnly"
            });		
         addAnnotation
           (getXPathOperationSelectorType_Expression(), 

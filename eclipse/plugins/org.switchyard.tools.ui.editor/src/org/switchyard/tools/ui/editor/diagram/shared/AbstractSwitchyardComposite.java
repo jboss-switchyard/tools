@@ -281,8 +281,8 @@ public abstract class AbstractSwitchyardComposite implements FocusListener, KeyL
     class TextValueChangeListener implements IValueChangeListener {
         @Override
         public void handleValueChange(final ValueChangeEvent e) {
-            if (!inUpdate() && e.diff != null) {
-                System.out.println("TextValueChanged: " + e.diff);
+            if (!inUpdate() && e.diff != null && !e.diff.getOldValue().equals(e.diff.getNewValue())) {
+                System.out.println("AbstractSwitchyardComposite:TextValueChanged: " + e.diff);
                 SWTVetoableValueDecorator decorator = (SWTVetoableValueDecorator) e.getSource();
                 handleChange((Control) decorator.getWidget());
                 ErrorUtils.showErrorMessage(null);
@@ -294,7 +294,7 @@ public abstract class AbstractSwitchyardComposite implements FocusListener, KeyL
         @Override
         public void handleValueChange(final ValueChangeEvent e) {
             if (!inUpdate() && e.diff != null) {
-                System.out.println("ComboValueChanged: " + e.diff);
+                System.out.println("AbstractSwitchyardComposite:ComboValueChanged: " + e.diff);
                 SWTObservableValueDecorator decorator = (SWTObservableValueDecorator) e.getSource();
                 handleChange((Control) decorator.getWidget());
                 ErrorUtils.showErrorMessage(null);
@@ -307,7 +307,7 @@ public abstract class AbstractSwitchyardComposite implements FocusListener, KeyL
         public void handleValueChange(final ValueChangeEvent e) {
             if (!inUpdate() && e.diff != null) {
                 if (!inUpdate() && e.diff != null) {
-                    System.out.println("ButtonValueChanged: " + e.diff);
+                    System.out.println("AbstractSwitchyardComposite:ButtonValueChanged: " + e.diff);
                     SWTObservableValueDecorator decorator = (SWTObservableValueDecorator) e.getSource();
                     handleChange((Control) decorator.getWidget());
                 }
@@ -383,7 +383,7 @@ public abstract class AbstractSwitchyardComposite implements FocusListener, KeyL
                         @Override
                         public void focusLost(FocusEvent e) {
                             if (AbstractSwitchyardComposite.this._comboTextChanged == (Control) e.getSource()) {
-                                System.out.println("New Combo Value (text entry): " + ((Combo) e.getSource()).getText());
+                                System.out.println("AbstractSwitchyardComposite:New Combo Value (text entry): " + ((Combo) e.getSource()).getText());
                                 handleChange((Control) e.getSource());
                                 AbstractSwitchyardComposite.this._comboTextChanged = null;
                             }
@@ -534,9 +534,9 @@ public abstract class AbstractSwitchyardComposite implements FocusListener, KeyL
                 }
             }
         }
-        System.out.println("No love, didn't find feature: " + featureId);
+        System.out.println("AbstractSwitchyardComposite: Didn't find feature: " + featureId);
         showFeatures(eObject);
-        throw new Exception("Feature ID (" + featureId + ") not found.");
+        throw new Exception("AbstractSwitchyardComposite:Feature ID (" + featureId + ") not found.");
     }
     
     private void showFeatures(EObject eObject) {
@@ -544,7 +544,7 @@ public abstract class AbstractSwitchyardComposite implements FocusListener, KeyL
         for (int i = 0, size = eClass.getFeatureCount(); i < size; ++i) {
             EStructuralFeature eStructuralFeature = eClass.getEStructuralFeature(i);
             if (eStructuralFeature.isChangeable()) {
-                System.out.println("Feature: " + eStructuralFeature.getName());
+                System.out.println("AbstractSwitchyardComposite:Feature: " + eStructuralFeature.getName());
             }
         }
     }
@@ -564,7 +564,7 @@ public abstract class AbstractSwitchyardComposite implements FocusListener, KeyL
                 }
             }
         }
-        System.out.println("No love, didn't find feature: " + featureId);
+        System.out.println("AbstractSwitchyardComposite: Didn't find feature: " + featureId);
         showFeatures(eObject);
         return null;
     }

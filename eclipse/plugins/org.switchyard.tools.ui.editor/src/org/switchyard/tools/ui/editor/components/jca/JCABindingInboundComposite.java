@@ -22,13 +22,11 @@ import org.eclipse.core.resources.IFile;
 import org.eclipse.core.resources.IResource;
 import org.eclipse.core.resources.ResourcesPlugin;
 import org.eclipse.emf.common.util.EList;
-import org.eclipse.graphiti.mm.pictograms.PictogramElement;
+import org.eclipse.emf.ecore.EObject;
 import org.eclipse.jdt.core.IJavaProject;
 import org.eclipse.jdt.core.JavaCore;
 import org.eclipse.soa.sca.sca1_1.model.sca.Binding;
-import org.eclipse.soa.sca.sca1_1.model.sca.Contract;
 import org.eclipse.soa.sca.sca1_1.model.sca.OperationSelectorType;
-import org.eclipse.soa.sca.sca1_1.model.sca.Service;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.events.SelectionAdapter;
 import org.eclipse.swt.events.SelectionEvent;
@@ -53,16 +51,13 @@ import org.switchyard.tools.models.switchyard1_0.jca.Property;
 import org.switchyard.tools.models.switchyard1_0.jca.ResourceAdapter;
 import org.switchyard.tools.models.switchyard1_0.switchyard.ContextMapperType;
 import org.switchyard.tools.models.switchyard1_0.switchyard.MessageComposerType;
-import org.switchyard.tools.models.switchyard1_0.switchyard.SwitchyardFactory;
+import org.switchyard.tools.models.switchyard1_0.switchyard.SwitchYardOperationSelectorType;
 import org.switchyard.tools.ui.common.ClasspathResourceSelectionDialog;
 import org.switchyard.tools.ui.editor.diagram.binding.AbstractSYBindingComposite;
-import org.switchyard.tools.ui.editor.diagram.binding.CamelBindingUtil;
-import org.switchyard.tools.ui.editor.diagram.binding.CamelOperationSelectorGroupOp;
-import org.switchyard.tools.ui.editor.diagram.binding.OperationSelectorOp;
-import org.switchyard.tools.ui.editor.diagram.binding.RemoveOperationSelectorOp;
+import org.switchyard.tools.ui.editor.diagram.binding.OperationSelectorComposite;
+import org.switchyard.tools.ui.editor.diagram.binding.OperationSelectorUtil;
 import org.switchyard.tools.ui.editor.diagram.shared.ModelOperation;
 import org.switchyard.tools.ui.editor.impl.SwitchyardSCAEditor;
-import org.switchyard.tools.ui.editor.util.InterfaceOpsUtil;
 
 /**
  * @author bfitzpat
@@ -77,7 +72,7 @@ public class JCABindingInboundComposite extends AbstractSYBindingComposite {
     private JCAPropertyTable _propsList;
     private Combo _endpointMappingTypeCombo;
     private Button _transactedButton;
-    private Combo _operationSelectionCombo;
+    private OperationSelectorComposite _opSelectorComposite;
     private TabFolder _tabFolder;
     private List<String> _advancedPropsFilterList;
 
@@ -121,11 +116,9 @@ public class JCABindingInboundComposite extends AbstractSYBindingComposite {
                     if (interaction.isTransacted()) {
                         _transactedButton.setSelection(interaction.isTransacted());
                     }
-                    populateOperationCombo();
-                    String opName = CamelBindingUtil.getOperationNameForStaticOperationSelector(this._binding);
-                    if (opName != null) {
-                        setTextValue(_operationSelectionCombo, opName);
-                    }
+                    OperationSelectorType opSelector = OperationSelectorUtil.getFirstOperationSelector(this._binding);
+                    _opSelectorComposite.setBinding(this._binding);
+                    _opSelectorComposite.setOperation((SwitchYardOperationSelectorType) opSelector);
                 }
             }
             super.setTabsBinding(_binding);
@@ -135,6 +128,12 @@ public class JCABindingInboundComposite extends AbstractSYBindingComposite {
             this._binding = null;
         }
         addObservableListeners();
+    }
+
+    @Override
+    public void setTargetObject(Object target) {
+        super.setTargetObject(target);
+        _opSelectorComposite.setTargetObject((EObject) target);
     }
 
     @Override
@@ -230,13 +229,15 @@ public class JCABindingInboundComposite extends AbstractSYBindingComposite {
 
         _transactedButton = createCheckbox(inboundInteractionGroup, "Transacted");
 
-        Group opGroup = new Group(inboundInteractionGroup, SWT.NONE);
-        GridData opGroupGD = new GridData(SWT.FILL, SWT.FILL, true, true, 2, 1);
-        opGroup.setLayoutData(opGroupGD);
-        opGroup.setLayout(new GridLayout(2, false));
-        opGroup.setText("Inbound Operation Options");
-        _operationSelectionCombo = createLabelAndCombo(opGroup, "Operation");
-        populateOperationCombo();
+        _opSelectorComposite = new OperationSelectorComposite(composite, SWT.NONE);
+        _opSelectorComposite.setLayoutData(new GridData(SWT.FILL, SWT.FILL, true, true));
+        _opSelectorComposite.setLayout(new GridLayout(2, false));
+        _opSelectorComposite.addChangeListener(new ChangeListener() {
+            @Override
+            public void stateChanged(ChangeEvent e) {
+                handleModify(_opSelectorComposite);
+            }
+         });
 
         return composite;
     }
@@ -264,29 +265,6 @@ public class JCABindingInboundComposite extends AbstractSYBindingComposite {
                 setFeatureValue(_binding, "inboundInteraction", interaction);
             }
         }
-    }
-
-    private void updateCamelOperationSelectorFeature(String featureId, Object value) {
-        if (CamelBindingUtil.getFirstOperationSelector(_binding) != null) {
-            OperationSelectorType opSelect = CamelBindingUtil.getFirstOperationSelector(_binding);
-            Object oldValue = getFeatureValue(opSelect, featureId);
-            // don't do anything if the value is the same
-            if (oldValue == null && value == null) {
-                return;
-            } else if (oldValue != null && oldValue.equals(value)) {
-                return;
-            } else if (value != null && value.equals(oldValue)) {
-                return;
-            }
-        }
-        ArrayList<ModelOperation> ops = new ArrayList<ModelOperation>();
-        if (featureId.equals("operationName") && value instanceof String && ((String)value).trim().isEmpty()) {
-            ops.add(new RemoveOperationSelectorOp(this._binding));
-        } else {
-            ops.add(new CamelOperationSelectorGroupOp(this._binding));
-            ops.add(new OperationSelectorOp(this._binding, featureId, value));
-        }
-        wrapOperation(ops);
     }
     
     class ResourceAdapterOp extends ModelOperation {
@@ -376,22 +354,24 @@ public class JCABindingInboundComposite extends AbstractSYBindingComposite {
             updateEndpoint();
         } else if (control.equals(_transactedButton)) {
             updateInboundInteractionFeature("transacted", Boolean.valueOf(_transactedButton.getSelection()));
-        } else if (control.equals(_operationSelectionCombo)) {
-            updateCamelOperationSelectorFeature("operationName", _operationSelectionCombo.getText().trim());
+        } else if (control.equals(_opSelectorComposite)) {
+            int opType = _opSelectorComposite.getSelectedOperationSelectorType();
+            updateOperationSelectorFeature(opType, _opSelectorComposite.getSelectedOperationSelectorValue());
         } else {
             super.handleModify(control);
         }
         validate();
         setHasChanged(false);
+        setDidSomething(true);
     }
 
     protected void handleUndo(Control control) {
         if (_binding != null) {
             if (control.equals(_resourceAdapterText)) {
                 _resourceAdapterText.setText(_binding.getInboundConnection().getResourceAdapter().getName());
-            } else if (control.equals(_operationSelectionCombo)) {
-                String opName = CamelBindingUtil.getOperationNameForStaticOperationSelector(this._binding);
-                setTextValue(_operationSelectionCombo, opName);
+//            } else if (control.equals(_operationSelectionCombo)) {
+//                String opName = OperationSelectorUtil.getOperationNameForStaticOperationSelector(this._binding);
+//                setTextValue(_operationSelectionCombo, opName);
             } else {
                 super.handleUndo(control);
             }
@@ -417,40 +397,9 @@ public class JCABindingInboundComposite extends AbstractSYBindingComposite {
         return null;
     }
 
-    private void populateOperationCombo() {
-        if (_operationSelectionCombo != null && !_operationSelectionCombo.isDisposed()) {
-            _operationSelectionCombo.removeAll();
-            _operationSelectionCombo.clearSelection();
-
-            if (getTargetObject() == null) {
-                PictogramElement[] pes = SwitchyardSCAEditor.getActiveEditor().getSelectedPictogramElements();
-                if (pes.length > 0) {
-                    Object bo = SwitchyardSCAEditor.getActiveEditor().getDiagramTypeProvider().getFeatureProvider()
-                            .getBusinessObjectForPictogramElement(pes[0]);
-                    if (bo instanceof Service) {
-                        setTargetObject(bo);
-                    }
-                }
-            }
-            if (getTargetObject() != null && getTargetObject() instanceof Contract) {
-                String[] operations = InterfaceOpsUtil.gatherOperations((Contract) getTargetObject());
-                for (int i = 0; i < operations.length; i++) {
-                    _operationSelectionCombo.add(operations[i]);
-                }
-            }
-        }
-    }
-
     @Override
     protected List<String> getAdvancedPropertiesFilterList() {
         return _advancedPropsFilterList;
-    }
-
-    protected void updateJCAOperationSelectorFeature(String featureId, Object value) {
-        ArrayList<ModelOperation> ops = new ArrayList<ModelOperation>();
-        ops.add(new JCAOperationSelectorOp());
-        ops.add(new BasicOperation("operationSelector", featureId, value));
-        wrapOperation(ops);
     }
 
     @Override
@@ -463,12 +412,4 @@ public class JCABindingInboundComposite extends AbstractSYBindingComposite {
         return JcaFactory.eINSTANCE.createJCAMessageComposerType();
     }
     
-    class JCAOperationSelectorOp extends ModelOperation {
-        @Override
-        public void run() throws Exception {
-            if (_binding.getOperationSelector() == null) {
-                setFeatureValue(_binding, "operationSelector", SwitchyardFactory.eINSTANCE.createStaticOperationSelectorType());
-            }
-        }
-    }
 }

@@ -16,7 +16,7 @@ package org.switchyard.tools.models.switchyard1_0.switchyard;
  * </p>
  *
  * @see org.switchyard.tools.models.switchyard1_0.switchyard.SwitchyardPackage#getJavaOperationSelectorType()
- * @model extendedMetaData="name='JavaOperationSelectorType' kind='empty'"
+ * @model extendedMetaData="name='JavaOperationSelectorType' kind='elementOnly'"
  * @generated
  */
 public interface JavaOperationSelectorType extends SwitchYardOperationSelectorType {

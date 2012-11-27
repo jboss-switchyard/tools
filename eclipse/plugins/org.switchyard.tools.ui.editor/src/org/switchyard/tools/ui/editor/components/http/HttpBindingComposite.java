@@ -16,7 +16,10 @@ import java.net.URI;
 import java.util.ArrayList;
 import java.util.List;
 
-import org.eclipse.graphiti.mm.pictograms.PictogramElement;
+import javax.swing.event.ChangeEvent;
+import javax.swing.event.ChangeListener;
+
+import org.eclipse.emf.ecore.EObject;
 import org.eclipse.soa.sca.sca1_1.model.sca.Binding;
 import org.eclipse.soa.sca.sca1_1.model.sca.Contract;
 import org.eclipse.soa.sca.sca1_1.model.sca.OperationSelectorType;
@@ -39,15 +42,12 @@ import org.switchyard.tools.models.switchyard1_0.http.HttpFactory;
 import org.switchyard.tools.models.switchyard1_0.http.HttpMessageComposerType;
 import org.switchyard.tools.models.switchyard1_0.switchyard.ContextMapperType;
 import org.switchyard.tools.models.switchyard1_0.switchyard.MessageComposerType;
+import org.switchyard.tools.models.switchyard1_0.switchyard.SwitchYardOperationSelectorType;
 import org.switchyard.tools.models.switchyard1_0.switchyard.SwitchYardType;
 import org.switchyard.tools.ui.editor.diagram.binding.AbstractSYBindingComposite;
-import org.switchyard.tools.ui.editor.diagram.binding.CamelBindingUtil;
-import org.switchyard.tools.ui.editor.diagram.binding.CamelOperationSelectorGroupOp;
-import org.switchyard.tools.ui.editor.diagram.binding.OperationSelectorOp;
-import org.switchyard.tools.ui.editor.diagram.binding.RemoveOperationSelectorOp;
+import org.switchyard.tools.ui.editor.diagram.binding.OperationSelectorComposite;
+import org.switchyard.tools.ui.editor.diagram.binding.OperationSelectorUtil;
 import org.switchyard.tools.ui.editor.diagram.shared.ModelOperation;
-import org.switchyard.tools.ui.editor.impl.SwitchyardSCAEditor;
-import org.switchyard.tools.ui.editor.util.InterfaceOpsUtil;
 
 /**
  * @author bfitzpat
@@ -57,13 +57,13 @@ public class HttpBindingComposite extends AbstractSYBindingComposite {
 
     private Composite _panel;
     private Text _mAddressURLText;
-    private Combo _operationSelectionCombo;
     private Combo _methodCombo;
     private Text _contentTypeText;
     private Text _contextPathText = null;
     private HttpBindingType _binding = null;
     private TabFolder _tabFolder;
     private List<String> _advancedPropsFilterList;
+    private OperationSelectorComposite _opSelectorComposite;
 
     /**
      * @param parent composite parent
@@ -104,12 +104,15 @@ public class HttpBindingComposite extends AbstractSYBindingComposite {
             _contextPathText.setLayoutData(cpGD);
         }
 
-        Group opGroup = new Group(composite, SWT.NONE);
-        opGroup.setLayoutData(new GridData(SWT.FILL, SWT.FILL, true, true));
-        opGroup.setLayout(new GridLayout(2, false));
-        opGroup.setText("Operation Options");
-        _operationSelectionCombo = createLabelAndCombo(opGroup, "Operation");
-        populateOperationCombo();
+        _opSelectorComposite = new OperationSelectorComposite(composite, SWT.NONE);
+        _opSelectorComposite.setLayoutData(new GridData(SWT.FILL, SWT.FILL, true, true));
+        _opSelectorComposite.setLayout(new GridLayout(2, false));
+        _opSelectorComposite.addChangeListener(new ChangeListener() {
+            @Override
+            public void stateChanged(ChangeEvent e) {
+                handleModify(_opSelectorComposite);
+            }
+         });
 
         if (getTargetObject() instanceof Reference) {
             _mAddressURLText = createLabelAndText(httpGroup, "Address");
@@ -150,8 +153,9 @@ public class HttpBindingComposite extends AbstractSYBindingComposite {
             } else if (control.equals(_contextPathText)) {
                 String contextPath = _contextPathText.getText().trim();
                 updateFeature(_binding, "contextPath", contextPath);
-            } else if (control.equals(_operationSelectionCombo)) {
-                updateOperationSelectorFeature("operationName", _operationSelectionCombo.getText().trim());
+            } else if (control.equals(_opSelectorComposite)) {
+                int opType = _opSelectorComposite.getSelectedOperationSelectorType();
+                updateOperationSelectorFeature(opType, _opSelectorComposite.getSelectedOperationSelectorValue());
             } else if (control.equals(_methodCombo)) {
                 String methodName = _methodCombo.getText().trim();
                 updateFeature(_binding, "method", methodName);
@@ -163,57 +167,15 @@ public class HttpBindingComposite extends AbstractSYBindingComposite {
         super.handleModify(control);
         validate();
         setHasChanged(false);
+        setDidSomething(true);
     }
 
-    private void populateOperationCombo() {
-        if (_operationSelectionCombo != null && !_operationSelectionCombo.isDisposed()) {
-            _operationSelectionCombo.removeAll();
-            _operationSelectionCombo.clearSelection();
+    @Override
+    public void setTargetObject(Object target) {
+        super.setTargetObject(target);
+        _opSelectorComposite.setTargetObject((EObject) target);
+    }
 
-            if (getTargetObject() == null) {
-                PictogramElement[] pes = 
-                        SwitchyardSCAEditor.getActiveEditor().getSelectedPictogramElements();
-                if (pes.length > 0) {
-                    Object bo = SwitchyardSCAEditor.getActiveEditor().
-                        getDiagramTypeProvider().getFeatureProvider().
-                           getBusinessObjectForPictogramElement(pes[0]);
-                    if (bo instanceof Service) {
-                        setTargetObject(bo);
-                    }
-                }
-            }
-            if (getTargetObject() != null && getTargetObject() instanceof Contract) {
-                String[] operations = InterfaceOpsUtil.gatherOperations((Contract) getTargetObject());
-                for (int i = 0; i < operations.length; i++) {
-                    _operationSelectionCombo.add(operations[i]);
-                }
-            }
-        }
-    }
-    
-    private void updateOperationSelectorFeature(String featureId, Object value) {
-        if (CamelBindingUtil.getFirstOperationSelector(_binding) != null) {
-            OperationSelectorType opSelect = CamelBindingUtil.getFirstOperationSelector(_binding);
-            Object oldValue = getFeatureValue(opSelect, featureId);
-            // don't do anything if the value is the same
-            if (oldValue == null && value == null) {
-                return;
-            } else if (oldValue != null && oldValue.equals(value)) {
-                return;
-            } else if (value != null && value.equals(oldValue)) {
-                return;
-            }
-        }
-        ArrayList<ModelOperation> ops = new ArrayList<ModelOperation>();
-        if (featureId.equals("operationName") && value instanceof String && ((String)value).trim().isEmpty()) {
-            ops.add(new RemoveOperationSelectorOp(this._binding));
-        } else {
-            ops.add(new CamelOperationSelectorGroupOp(this._binding));
-            ops.add(new OperationSelectorOp(this._binding, featureId, value));
-        }
-        wrapOperation(ops);
-    }
-    
     protected boolean validate() {
         setErrorMessage(null);
         String urlString = null;
@@ -263,11 +225,9 @@ public class HttpBindingComposite extends AbstractSYBindingComposite {
             setTextValue(_contentTypeText, _binding.getContentType());
             setTextValue(_methodCombo, _binding.getMethod());
 
-            populateOperationCombo();
-            String opName = CamelBindingUtil.getOperationNameForStaticOperationSelector(this._binding);
-            if (opName != null) {
-                setTextValue(_operationSelectionCombo, opName);
-            }
+            OperationSelectorType opSelector = OperationSelectorUtil.getFirstOperationSelector(this._binding);
+            _opSelectorComposite.setBinding(this._binding);
+            _opSelectorComposite.setOperation((SwitchYardOperationSelectorType) opSelector);
 
             if (_contextPathText != null && !_contextPathText.isDisposed()) {
                 if (_binding.getContextPath() != null) {
@@ -316,9 +276,9 @@ public class HttpBindingComposite extends AbstractSYBindingComposite {
                 _contextPathText.setText(_binding.getContextPath());
            } else if (control.equals(_mAddressURLText)) {
                _mAddressURLText.setText(_binding.getAddress());
-           } else if (control.equals(_operationSelectionCombo)) {
-               String opName = CamelBindingUtil.getOperationNameForStaticOperationSelector(this._binding);
-               setTextValue(_operationSelectionCombo, opName);
+//           } else if (control.equals(_operationSelectionCombo)) {
+//               String opName = OperationSelectorUtil.getOperationNameForStaticOperationSelector(this._binding);
+//               setTextValue(_operationSelectionCombo, opName);
            }
         } else {
             super.handleUndo(control);

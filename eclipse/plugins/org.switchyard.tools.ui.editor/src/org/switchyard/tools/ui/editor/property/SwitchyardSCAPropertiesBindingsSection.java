@@ -53,6 +53,7 @@ import org.eclipse.ui.forms.widgets.Section;
 import org.eclipse.ui.views.properties.tabbed.ITabbedPropertyConstants;
 import org.eclipse.ui.views.properties.tabbed.TabbedPropertySheetPage;
 import org.eclipse.ui.views.properties.tabbed.TabbedPropertySheetWidgetFactory;
+import org.switchyard.tools.ui.editor.diagram.binding.AbstractSYBindingComposite;
 import org.switchyard.tools.ui.editor.diagram.shared.AbstractSwitchyardComposite;
 import org.switchyard.tools.ui.editor.diagram.shared.IBindingComposite;
 import org.switchyard.tools.ui.editor.impl.SwitchyardSCAEditor;
@@ -127,7 +128,7 @@ public class SwitchyardSCAPropertiesBindingsSection extends GFPropertySection im
             _removeButton.setEnabled(_binding != null);
         }
         if (_binding != null) {
-            if (justRefresh) {
+            if (justRefresh && _composite.getBinding().equals(_binding)) {
                 if (_composite != null) {
                     _composite.setBinding(_binding);
                     _detailSection.setClient(((AbstractSwitchyardComposite) _composite).getPanel());
@@ -167,6 +168,9 @@ public class SwitchyardSCAPropertiesBindingsSection extends GFPropertySection im
 
         Display.getDefault().asyncExec(new Runnable() {
             public void run() {
+                if (_composite != null && ((AbstractSYBindingComposite)_composite).getDidSomething()) {
+                    ((AbstractSYBindingComposite)_composite).setDidSomething(false);
+                }
                 PictogramElement pe = getSelectedPictogramElement();
                 if (pe != null) {
                     Object newTarget = Graphiti.getLinkService().getBusinessObjectForLinkedPictogramElement(pe);
@@ -209,6 +213,7 @@ public class SwitchyardSCAPropertiesBindingsSection extends GFPropertySection im
                     } else {
                         _detailSection.setExpanded(false);
                     }
+                    _listViewer.getControl().setFocus();
                 }
             }
         });
@@ -312,10 +317,16 @@ public class SwitchyardSCAPropertiesBindingsSection extends GFPropertySection im
 
                 @Override
                 public void widgetSelected(SelectionEvent e) {
-                    // remove old binding
-                    IStructuredSelection ssel = (IStructuredSelection) _listViewer.getSelection();
-                    removeBinding((Binding) ssel.getFirstElement());
-                    refreshDiagram();
+                    if (e.widget.equals(_removeButton) && _removeButton.isEnabled() && _removeButton.isFocusControl()) {
+                        if (_composite != null && ((AbstractSYBindingComposite)_composite).getDidSomething()) {
+                            ((AbstractSYBindingComposite)_composite).setDidSomething(false);
+                            return;
+                        }
+                        // remove old binding
+                        IStructuredSelection ssel = (IStructuredSelection) _listViewer.getSelection();
+                        removeBinding((Binding) ssel.getFirstElement());
+                        refreshDiagram();
+                    }
                 }
 
                 @Override

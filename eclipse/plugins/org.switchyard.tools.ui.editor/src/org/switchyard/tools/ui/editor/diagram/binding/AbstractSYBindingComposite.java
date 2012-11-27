@@ -45,6 +45,7 @@ import org.eclipse.jface.viewers.ISelection;
 import org.eclipse.jface.viewers.IStructuredSelection;
 import org.eclipse.jface.viewers.StructuredSelection;
 import org.eclipse.soa.sca.sca1_1.model.sca.Binding;
+import org.eclipse.soa.sca.sca1_1.model.sca.OperationSelectorType;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.events.SelectionAdapter;
 import org.eclipse.swt.events.SelectionEvent;
@@ -95,7 +96,24 @@ public abstract class AbstractSYBindingComposite extends AbstractSwitchyardCompo
     private TabFolder _tabFolder;
     private static int _selectedTab = 0;
     private AdvancedBindingPropertyTable _advPropsTable;
+    private boolean _didSomething = false;
 
+    /**
+     * Hack to get around triggering an unwanted button push on a property page.
+     * @param flag true/false
+     */
+    public void setDidSomething(boolean flag) {
+        this._didSomething = flag;
+    }
+    
+    /**
+     * Hack to get around triggering an unwanted button push on a property page.
+     * @return true/false
+     */
+    public boolean getDidSomething() {
+        return this._didSomething;
+    }
+    
     /**
      * @param tabFolder folder to add tabs to
      */
@@ -845,4 +863,45 @@ public abstract class AbstractSYBindingComposite extends AbstractSwitchyardCompo
         return _excludesNSText;
     }
 
+    protected void updateOperationSelectorFeature(int opType, Object value) {
+        if (OperationSelectorUtil.getFirstOperationSelector(_binding) != null) {
+            OperationSelectorType opSelect = OperationSelectorUtil.getFirstOperationSelector(_binding);
+            int oldOpType = OperationSelectorComposite.getTypeOfExistingOpSelector(opSelect);
+            Object oldValue = OperationSelectorComposite.getValueOfExistingOpSelector(opSelect);
+            
+            // don't do anything if the value is the same
+            if (opType == oldOpType) {
+                if (oldValue.equals(value)) {
+                    return;
+                }
+            }
+            if (oldValue == null && value == null) {
+                return;
+            } else if (oldValue != null && oldValue.equals(value)) {
+                return;
+            } else if (value != null && value.equals(oldValue)) {
+                return;
+            }
+        }
+        ArrayList<ModelOperation> ops = new ArrayList<ModelOperation>();
+        if (value == null || (value instanceof String && ((String)value).trim().isEmpty())) {
+            ops.add(new RemoveOperationSelectorOp(this._binding));
+        } else {
+            switch (opType) {
+                case OperationSelectorComposite.STATIC_TYPE:
+                    ops.add(new StaticOperationSelectorGroupOp(this._binding, (String) value));
+                    break;
+                case OperationSelectorComposite.REGEX_TYPE:
+                    ops.add(new RegexOperationSelectorGroupOp(this._binding, (String) value));
+                    break;
+                case OperationSelectorComposite.XPATH_TYPE:
+                    ops.add(new XPathOperationSelectorGroupOp(this._binding, (String) value));
+                    break;
+                case OperationSelectorComposite.JAVA_TYPE:
+                    ops.add(new JavaOperationSelectorGroupOp(this._binding, (String) value));
+                    break;
+            }
+        }
+        wrapOperation(ops);
+    }
 }

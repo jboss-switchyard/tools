@@ -16,7 +16,7 @@ package org.switchyard.tools.models.switchyard1_0.switchyard;
  * </p>
  *
  * @see org.switchyard.tools.models.switchyard1_0.switchyard.SwitchyardPackage#getRegexOperationSelectorType()
- * @model extendedMetaData="name='RegexOperationSelectorType' kind='empty'"
+ * @model extendedMetaData="name='RegexOperationSelectorType' kind='elementOnly'"
  * @generated
  */
 public interface RegexOperationSelectorType extends SwitchYardOperationSelectorType {

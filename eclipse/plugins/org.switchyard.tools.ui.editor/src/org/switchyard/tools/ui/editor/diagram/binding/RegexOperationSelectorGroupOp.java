@@ -12,33 +12,42 @@
  ******************************************************************************/
 package org.switchyard.tools.ui.editor.diagram.binding;
 
-import org.eclipse.emf.ecore.util.FeatureMap;
 import org.eclipse.soa.sca.sca1_1.model.sca.Binding;
+import org.switchyard.tools.models.switchyard1_0.switchyard.RegexOperationSelectorType;
+import org.switchyard.tools.models.switchyard1_0.switchyard.SwitchyardFactory;
 import org.switchyard.tools.ui.editor.diagram.shared.ModelOperation;
 
 /**
  * @author bfitzpat
  *
  */
-public class RemoveOperationSelectorOp extends ModelOperation {
-
+public class RegexOperationSelectorGroupOp extends ModelOperation {
+    
     private Binding _binding = null;
+    private String _value = null;
     
     /**
-     * @param binding incoming
+     * @param binding incoming binding
      */
-    public RemoveOperationSelectorOp(Binding binding) {
+    public RegexOperationSelectorGroupOp(Binding binding) {
         this._binding = binding;
     }
     
-    @Override
-    public void run() throws Exception {
-        if (_binding.getOperationSelectorGroup() != null) {
-            FeatureMap operationGroup = (FeatureMap) _binding.getOperationSelectorGroup();
-            while (!operationGroup.isEmpty()) {
-                operationGroup.remove(0);
-            }
-        }
+    /**
+     * @param binding incoming binding
+     * @param value incoming value
+     */
+    public RegexOperationSelectorGroupOp(Binding binding, String value) {
+        this(binding);
+        _value = value;
     }
 
+    @Override
+    public void run() throws Exception {
+        RegexOperationSelectorType regexOp = SwitchyardFactory.eINSTANCE.createRegexOperationSelectorType();
+        if (_value != null) {
+            regexOp.setExpression(_value);
+        }
+        _binding.setOperationSelector(regexOp);
+    }
 }

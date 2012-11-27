@@ -16,7 +16,7 @@ package org.switchyard.tools.models.switchyard1_0.switchyard;
  * </p>
  *
  * @see org.switchyard.tools.models.switchyard1_0.switchyard.SwitchyardPackage#getStaticOperationSelectorType()
- * @model extendedMetaData="name='StaticOperationSelectorType' kind='empty'"
+ * @model extendedMetaData="name='StaticOperationSelectorType' kind='elementOnly'"
  * @generated
  */
 public interface StaticOperationSelectorType extends SwitchYardOperationSelectorType {

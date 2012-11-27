@@ -16,7 +16,7 @@ package org.switchyard.tools.models.switchyard1_0.switchyard;
  * </p>
  *
  * @see org.switchyard.tools.models.switchyard1_0.switchyard.SwitchyardPackage#getXPathOperationSelectorType()
- * @model extendedMetaData="name='XPathOperationSelectorType' kind='empty'"
+ * @model extendedMetaData="name='XPathOperationSelectorType' kind='elementOnly'"
  * @generated
  */
 public interface XPathOperationSelectorType extends SwitchYardOperationSelectorType {

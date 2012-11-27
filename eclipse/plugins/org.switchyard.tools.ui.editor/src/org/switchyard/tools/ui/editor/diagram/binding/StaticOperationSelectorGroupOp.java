@@ -12,33 +12,42 @@
  ******************************************************************************/
 package org.switchyard.tools.ui.editor.diagram.binding;
 
-import org.eclipse.emf.ecore.util.FeatureMap;
 import org.eclipse.soa.sca.sca1_1.model.sca.Binding;
+import org.switchyard.tools.models.switchyard1_0.switchyard.StaticOperationSelectorType;
+import org.switchyard.tools.models.switchyard1_0.switchyard.SwitchyardFactory;
 import org.switchyard.tools.ui.editor.diagram.shared.ModelOperation;
 
 /**
  * @author bfitzpat
  *
  */
-public class RemoveOperationSelectorOp extends ModelOperation {
-
+public class StaticOperationSelectorGroupOp extends ModelOperation {
+    
     private Binding _binding = null;
+    private String _value = null;
     
     /**
-     * @param binding incoming
+     * @param binding incoming binding
      */
-    public RemoveOperationSelectorOp(Binding binding) {
+    public StaticOperationSelectorGroupOp(Binding binding) {
         this._binding = binding;
+    }
+    
+    /**
+     * @param binding incoming binding
+     * @param value incoming value
+     */
+    public StaticOperationSelectorGroupOp(Binding binding, String value) {
+        this(binding);
+        _value = value;
     }
     
     @Override
     public void run() throws Exception {
-        if (_binding.getOperationSelectorGroup() != null) {
-            FeatureMap operationGroup = (FeatureMap) _binding.getOperationSelectorGroup();
-            while (!operationGroup.isEmpty()) {
-                operationGroup.remove(0);
-            }
+        StaticOperationSelectorType staticOp = SwitchyardFactory.eINSTANCE.createStaticOperationSelectorType();
+        if (_value != null) {
+            staticOp.setOperationName(_value);
         }
+        this._binding.setOperationSelector(staticOp);
     }
-
 }
