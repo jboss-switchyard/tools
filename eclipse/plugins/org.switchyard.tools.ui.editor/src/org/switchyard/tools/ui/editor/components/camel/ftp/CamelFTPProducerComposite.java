@@ -224,6 +224,7 @@ public class CamelFTPProducerComposite extends AbstractSYBindingComposite {
         }
         validate();
         setHasChanged(false);
+        setDidSomething(true);
     }
     
     protected void handleUndo(Control control) {

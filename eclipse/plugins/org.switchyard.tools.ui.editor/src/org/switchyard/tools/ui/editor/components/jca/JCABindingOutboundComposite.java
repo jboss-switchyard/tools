@@ -331,6 +331,7 @@ public class JCABindingOutboundComposite extends AbstractSYBindingComposite {
             super.handleModify(control);
         }
         setHasChanged(false);
+        setDidSomething(true);
     }
 
     protected void handleUndo(Control control) {

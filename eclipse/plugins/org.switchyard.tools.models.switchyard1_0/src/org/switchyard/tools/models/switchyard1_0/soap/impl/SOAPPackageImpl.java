@@ -423,6 +423,15 @@ public class SOAPPackageImpl extends EPackageImpl implements SOAPPackage {
      * <!-- end-user-doc -->
      * @generated
      */
+    public EAttribute getSOAPBindingType_EndpointAddress() {
+        return (EAttribute)soapBindingTypeEClass.getEStructuralFeatures().get(4);
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
     public EEnum getSoapHeadersType() {
         return soapHeadersTypeEEnum;
     }
@@ -492,6 +501,7 @@ public class SOAPPackageImpl extends EPackageImpl implements SOAPPackage {
         createEAttribute(soapBindingTypeEClass, SOAP_BINDING_TYPE__WSDL_PORT);
         createEAttribute(soapBindingTypeEClass, SOAP_BINDING_TYPE__SOCKET_ADDR);
         createEAttribute(soapBindingTypeEClass, SOAP_BINDING_TYPE__CONTEXT_PATH);
+        createEAttribute(soapBindingTypeEClass, SOAP_BINDING_TYPE__ENDPOINT_ADDRESS);
 
         // Create enums
         soapHeadersTypeEEnum = createEEnum(SOAP_HEADERS_TYPE);
@@ -557,6 +567,7 @@ public class SOAPPackageImpl extends EPackageImpl implements SOAPPackage {
         initEAttribute(getSOAPBindingType_WsdlPort(), this.getWsdlPortType(), "wsdlPort", null, 0, 1, SOAPBindingType.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
         initEAttribute(getSOAPBindingType_SocketAddr(), theXMLTypePackage.getString(), "socketAddr", null, 0, 1, SOAPBindingType.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
         initEAttribute(getSOAPBindingType_ContextPath(), theXMLTypePackage.getString(), "contextPath", null, 0, 1, SOAPBindingType.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+        initEAttribute(getSOAPBindingType_EndpointAddress(), theXMLTypePackage.getString(), "endpointAddress", null, 0, 1, SOAPBindingType.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
         // Initialize enums and add enum literals
         initEEnum(soapHeadersTypeEEnum, SoapHeadersType.class, "SoapHeadersType");
@@ -707,6 +718,14 @@ public class SOAPPackageImpl extends EPackageImpl implements SOAPPackage {
            new String[] {
              "kind", "element",
              "name", "contextPath",
+             "namespace", "##targetNamespace"
+           });			
+        addAnnotation
+          (getSOAPBindingType_EndpointAddress(), 
+           source, 
+           new String[] {
+             "kind", "element",
+             "name", "endpointAddress",
              "namespace", "##targetNamespace"
            });		
         addAnnotation

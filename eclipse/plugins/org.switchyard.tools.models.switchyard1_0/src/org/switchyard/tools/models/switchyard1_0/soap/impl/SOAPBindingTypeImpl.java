@@ -24,6 +24,7 @@ import org.switchyard.tools.models.switchyard1_0.switchyard.impl.SwitchYardBindi
  *   <li>{@link org.switchyard.tools.models.switchyard1_0.soap.impl.SOAPBindingTypeImpl#getWsdlPort <em>Wsdl Port</em>}</li>
  *   <li>{@link org.switchyard.tools.models.switchyard1_0.soap.impl.SOAPBindingTypeImpl#getSocketAddr <em>Socket Addr</em>}</li>
  *   <li>{@link org.switchyard.tools.models.switchyard1_0.soap.impl.SOAPBindingTypeImpl#getContextPath <em>Context Path</em>}</li>
+ *   <li>{@link org.switchyard.tools.models.switchyard1_0.soap.impl.SOAPBindingTypeImpl#getEndpointAddress <em>Endpoint Address</em>}</li>
  * </ul>
  * </p>
  *
@@ -109,6 +110,26 @@ public class SOAPBindingTypeImpl extends SwitchYardBindingTypeImpl implements SO
      * @ordered
      */
     protected String contextPath = CONTEXT_PATH_EDEFAULT;
+
+    /**
+     * The default value of the '{@link #getEndpointAddress() <em>Endpoint Address</em>}' attribute.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @see #getEndpointAddress()
+     * @generated
+     * @ordered
+     */
+    protected static final String ENDPOINT_ADDRESS_EDEFAULT = null;
+
+    /**
+     * The cached value of the '{@link #getEndpointAddress() <em>Endpoint Address</em>}' attribute.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @see #getEndpointAddress()
+     * @generated
+     * @ordered
+     */
+    protected String endpointAddress = ENDPOINT_ADDRESS_EDEFAULT;
 
     /**
      * <!-- begin-user-doc -->
@@ -218,6 +239,27 @@ public class SOAPBindingTypeImpl extends SwitchYardBindingTypeImpl implements SO
      * <!-- end-user-doc -->
      * @generated
      */
+    public String getEndpointAddress() {
+        return endpointAddress;
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public void setEndpointAddress(String newEndpointAddress) {
+        String oldEndpointAddress = endpointAddress;
+        endpointAddress = newEndpointAddress;
+        if (eNotificationRequired())
+            eNotify(new ENotificationImpl(this, Notification.SET, SOAPPackage.SOAP_BINDING_TYPE__ENDPOINT_ADDRESS, oldEndpointAddress, endpointAddress));
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
     @Override
     public Object eGet(int featureID, boolean resolve, boolean coreType) {
         switch (featureID) {
@@ -229,6 +271,8 @@ public class SOAPBindingTypeImpl extends SwitchYardBindingTypeImpl implements SO
                 return getSocketAddr();
             case SOAPPackage.SOAP_BINDING_TYPE__CONTEXT_PATH:
                 return getContextPath();
+            case SOAPPackage.SOAP_BINDING_TYPE__ENDPOINT_ADDRESS:
+                return getEndpointAddress();
         }
         return super.eGet(featureID, resolve, coreType);
     }
@@ -252,6 +296,9 @@ public class SOAPBindingTypeImpl extends SwitchYardBindingTypeImpl implements SO
                 return;
             case SOAPPackage.SOAP_BINDING_TYPE__CONTEXT_PATH:
                 setContextPath((String)newValue);
+                return;
+            case SOAPPackage.SOAP_BINDING_TYPE__ENDPOINT_ADDRESS:
+                setEndpointAddress((String)newValue);
                 return;
         }
         super.eSet(featureID, newValue);
@@ -277,6 +324,9 @@ public class SOAPBindingTypeImpl extends SwitchYardBindingTypeImpl implements SO
             case SOAPPackage.SOAP_BINDING_TYPE__CONTEXT_PATH:
                 setContextPath(CONTEXT_PATH_EDEFAULT);
                 return;
+            case SOAPPackage.SOAP_BINDING_TYPE__ENDPOINT_ADDRESS:
+                setEndpointAddress(ENDPOINT_ADDRESS_EDEFAULT);
+                return;
         }
         super.eUnset(featureID);
     }
@@ -297,6 +347,8 @@ public class SOAPBindingTypeImpl extends SwitchYardBindingTypeImpl implements SO
                 return SOCKET_ADDR_EDEFAULT == null ? socketAddr != null : !SOCKET_ADDR_EDEFAULT.equals(socketAddr);
             case SOAPPackage.SOAP_BINDING_TYPE__CONTEXT_PATH:
                 return CONTEXT_PATH_EDEFAULT == null ? contextPath != null : !CONTEXT_PATH_EDEFAULT.equals(contextPath);
+            case SOAPPackage.SOAP_BINDING_TYPE__ENDPOINT_ADDRESS:
+                return ENDPOINT_ADDRESS_EDEFAULT == null ? endpointAddress != null : !ENDPOINT_ADDRESS_EDEFAULT.equals(endpointAddress);
         }
         return super.eIsSet(featureID);
     }
@@ -319,6 +371,8 @@ public class SOAPBindingTypeImpl extends SwitchYardBindingTypeImpl implements SO
         result.append(socketAddr);
         result.append(", contextPath: ");
         result.append(contextPath);
+        result.append(", endpointAddress: ");
+        result.append(endpointAddress);
         result.append(')');
         return result.toString();
     }

@@ -138,6 +138,7 @@ public class ResteasyBindingComposite extends AbstractSYBindingComposite {
         super.handleModify(control);
         validate();
         setHasChanged(false);
+        setDidSomething(true);
     }
 
     protected boolean validate() {

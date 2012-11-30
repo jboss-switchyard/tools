@@ -20,6 +20,7 @@ import org.switchyard.tools.models.switchyard1_0.switchyard.SwitchYardBindingTyp
  *   <li>{@link org.switchyard.tools.models.switchyard1_0.soap.SOAPBindingType#getWsdlPort <em>Wsdl Port</em>}</li>
  *   <li>{@link org.switchyard.tools.models.switchyard1_0.soap.SOAPBindingType#getSocketAddr <em>Socket Addr</em>}</li>
  *   <li>{@link org.switchyard.tools.models.switchyard1_0.soap.SOAPBindingType#getContextPath <em>Context Path</em>}</li>
+ *   <li>{@link org.switchyard.tools.models.switchyard1_0.soap.SOAPBindingType#getEndpointAddress <em>Endpoint Address</em>}</li>
  * </ul>
  * </p>
  *
@@ -139,5 +140,33 @@ public interface SOAPBindingType extends SwitchYardBindingType {
      * @generated
      */
     void setContextPath(String value);
+
+    /**
+     * Returns the value of the '<em><b>Endpoint Address</b></em>' attribute.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * <!-- begin-model-doc -->
+     * 
+     *                                 The context path used in the HTTP URL
+     *                             
+     * <!-- end-model-doc -->
+     * @return the value of the '<em>Endpoint Address</em>' attribute.
+     * @see #setEndpointAddress(String)
+     * @see org.switchyard.tools.models.switchyard1_0.soap.SOAPPackage#getSOAPBindingType_EndpointAddress()
+     * @model dataType="org.eclipse.emf.ecore.xml.type.String"
+     *        extendedMetaData="kind='element' name='endpointAddress' namespace='##targetNamespace'"
+     * @generated
+     */
+    String getEndpointAddress();
+
+    /**
+     * Sets the value of the '{@link org.switchyard.tools.models.switchyard1_0.soap.SOAPBindingType#getEndpointAddress <em>Endpoint Address</em>}' attribute.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @param value the new value of the '<em>Endpoint Address</em>' attribute.
+     * @see #getEndpointAddress()
+     * @generated
+     */
+    void setEndpointAddress(String value);
 
 } // SOAPBindingType

@@ -84,6 +84,8 @@ public class SOAPBindingComposite extends AbstractSYBindingComposite {
     private Button _browseBtnFile;
     private Link _newWSDLLink;
     private TabFolder _tabFolder;
+    private Text _endpointAddressText;
+    private String _endpointAddress = null;
 
     /**
      * Constructor.
@@ -208,6 +210,11 @@ public class SOAPBindingComposite extends AbstractSYBindingComposite {
         }
         _soapHeadersTypeCombo.select(SoapHeadersType.VALUE_VALUE);
 
+        _endpointAddressText = createLabelAndText(composite, "Endpoint Address");
+        _endpointAddressText.setEnabled(canEdit());
+        GridData epAddrGD = new GridData(GridData.FILL_HORIZONTAL);
+        epAddrGD.horizontalSpan = 2;
+        _endpointAddressText.setLayoutData(epAddrGD);
         return composite;
     }
 
@@ -242,12 +249,16 @@ public class SOAPBindingComposite extends AbstractSYBindingComposite {
             } else if (control.equals(_portNameText)) {
                 final String wsdlPort = _portNameText.getText();
                 updateFeature(_binding, "wsdlPort", wsdlPort);
+            } else if (control.equals(_endpointAddressText)) {
+                final String endpointAddress = _endpointAddressText.getText();
+                updateFeature(_binding, "endpointAddress", endpointAddress);
             } else {
                 super.handleModify(control);
             }
         }
         validate();
         setHasChanged(false);
+        setDidSomething(true);
     }
 
     protected void handleUndo(Control control) {
@@ -278,6 +289,8 @@ public class SOAPBindingComposite extends AbstractSYBindingComposite {
                         _soapHeadersTypeCombo.select(index);
                     }
                 }
+            } else if (control.equals(_endpointAddressText)) {
+                _endpointAddressText.setText(_binding.getEndpointAddress());
             } else {
                 super.handleUndo(control);
             }
@@ -415,6 +428,12 @@ public class SOAPBindingComposite extends AbstractSYBindingComposite {
             } else {
                 _soapHeadersTypeCombo.select(SoapHeadersType.VALUE_VALUE);
             }
+            if (_endpointAddressText != null && !_endpointAddressText.isDisposed()) {
+                _endpointAddress  = _binding.getEndpointAddress();
+                if (_endpointAddress != null) {
+                    _endpointAddressText.setText(_endpointAddress);
+                }
+            }
             super.setTabsBinding(_binding);
             setInUpdate(false);
             validate();
@@ -504,6 +523,7 @@ public class SOAPBindingComposite extends AbstractSYBindingComposite {
         updateControlEditable(_mWSDLSocketText);
         updateControlEditable(_unwrappedPayloadCheckbox);
         updateControlEditable(_soapHeadersTypeCombo);
+        updateControlEditable(_endpointAddressText);
     }
 
     class MessageComposerOp extends ModelOperation {

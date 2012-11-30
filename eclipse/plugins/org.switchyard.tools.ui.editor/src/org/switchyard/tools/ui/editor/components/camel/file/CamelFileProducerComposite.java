@@ -171,6 +171,7 @@ public class CamelFileProducerComposite extends AbstractSYBindingComposite {
         }
         validate();
         setHasChanged(false);
+        setDidSomething(true);
     }
 
     protected void handleUndo(Control control) {
