@@ -28,6 +28,7 @@ import org.switchyard.tools.models.switchyard1_0.camel.CamelFileBindingType;
 import org.switchyard.tools.models.switchyard1_0.camel.CamelFtpBindingType;
 import org.switchyard.tools.models.switchyard1_0.camel.CamelImplementationType;
 import org.switchyard.tools.models.switchyard1_0.camel.CamelJmsBindingType;
+import org.switchyard.tools.models.switchyard1_0.camel.CamelMailBindingType;
 import org.switchyard.tools.models.switchyard1_0.camel.CamelNettyTcpBindingType;
 import org.switchyard.tools.models.switchyard1_0.camel.CamelNettyUdpBindingType;
 import org.switchyard.tools.models.switchyard1_0.camel.CamelQuartzBindingType;
@@ -127,6 +128,8 @@ public final class LabelAdapter {
             return "REST";
         } else if (binding instanceof HttpBindingType) {
             return "HTTP";
+        } else if (binding instanceof CamelMailBindingType) {
+            return "Mail";
         } else {
             return "Unsupported (" + binding.eClass().getClass().getName() + ")";
         }
@@ -206,6 +209,8 @@ public final class LabelAdapter {
             imageRenderingDecorator = new ImageDecorator(ImageProvider.IMG_16_CAMEL);
         } else if (binding instanceof RemoteBindingType) {
             imageRenderingDecorator = new ImageDecorator(ImageProvider.IMG_16_REMOTE);
+        } else if (binding instanceof CamelMailBindingType) {
+            imageRenderingDecorator = new ImageDecorator(ImageProvider.IMG_16_MAIL);
         }
         return imageRenderingDecorator;
     }

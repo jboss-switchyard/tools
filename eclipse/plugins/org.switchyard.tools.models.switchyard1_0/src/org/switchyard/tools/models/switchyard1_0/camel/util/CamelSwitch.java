@@ -377,6 +377,30 @@ public class CamelSwitch<T> extends Switch<T> {
                 if (result == null) result = defaultCase(theEObject);
                 return result;
             }
+            case CamelPackage.CAMEL_MAIL_CONSUMER_TYPE: {
+                CamelMailConsumerType camelMailConsumerType = (CamelMailConsumerType)theEObject;
+                T result = caseCamelMailConsumerType(camelMailConsumerType);
+                if (result == null) result = caseScheduledBatchPollConsumerType(camelMailConsumerType);
+                if (result == null) result = caseScheduledPollConsumerType(camelMailConsumerType);
+                if (result == null) result = defaultCase(theEObject);
+                return result;
+            }
+            case CamelPackage.CAMEL_MAIL_PRODUCER_TYPE: {
+                CamelMailProducerType camelMailProducerType = (CamelMailProducerType)theEObject;
+                T result = caseCamelMailProducerType(camelMailProducerType);
+                if (result == null) result = defaultCase(theEObject);
+                return result;
+            }
+            case CamelPackage.CAMEL_MAIL_BINDING_TYPE: {
+                CamelMailBindingType camelMailBindingType = (CamelMailBindingType)theEObject;
+                T result = caseCamelMailBindingType(camelMailBindingType);
+                if (result == null) result = caseBaseCamelBinding(camelMailBindingType);
+                if (result == null) result = caseSwitchYardBindingType(camelMailBindingType);
+                if (result == null) result = caseBinding(camelMailBindingType);
+                if (result == null) result = caseCommonExtensionBase(camelMailBindingType);
+                if (result == null) result = defaultCase(theEObject);
+                return result;
+            }
             default: return defaultCase(theEObject);
         }
     }
@@ -663,6 +687,51 @@ public class CamelSwitch<T> extends Switch<T> {
      * @generated
      */
     public T caseCamelMessageComposerType(CamelMessageComposerType object) {
+        return null;
+    }
+
+    /**
+     * Returns the result of interpreting the object as an instance of '<em>Mail Consumer Type</em>'.
+     * <!-- begin-user-doc -->
+     * This implementation returns null;
+     * returning a non-null result will terminate the switch.
+     * <!-- end-user-doc -->
+     * @param object the target of the switch.
+     * @return the result of interpreting the object as an instance of '<em>Mail Consumer Type</em>'.
+     * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+     * @generated
+     */
+    public T caseCamelMailConsumerType(CamelMailConsumerType object) {
+        return null;
+    }
+
+    /**
+     * Returns the result of interpreting the object as an instance of '<em>Mail Producer Type</em>'.
+     * <!-- begin-user-doc -->
+     * This implementation returns null;
+     * returning a non-null result will terminate the switch.
+     * <!-- end-user-doc -->
+     * @param object the target of the switch.
+     * @return the result of interpreting the object as an instance of '<em>Mail Producer Type</em>'.
+     * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+     * @generated
+     */
+    public T caseCamelMailProducerType(CamelMailProducerType object) {
+        return null;
+    }
+
+    /**
+     * Returns the result of interpreting the object as an instance of '<em>Mail Binding Type</em>'.
+     * <!-- begin-user-doc -->
+     * This implementation returns null;
+     * returning a non-null result will terminate the switch.
+     * <!-- end-user-doc -->
+     * @param object the target of the switch.
+     * @return the result of interpreting the object as an instance of '<em>Mail Binding Type</em>'.
+     * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+     * @generated
+     */
+    public T caseCamelMailBindingType(CamelMailBindingType object) {
         return null;
     }
 

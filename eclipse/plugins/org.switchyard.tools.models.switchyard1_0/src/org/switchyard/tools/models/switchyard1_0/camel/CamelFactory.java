@@ -179,6 +179,33 @@ public interface CamelFactory extends EFactory {
     CamelMessageComposerType createCamelMessageComposerType();
 
     /**
+     * Returns a new object of class '<em>Mail Consumer Type</em>'.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @return a new object of class '<em>Mail Consumer Type</em>'.
+     * @generated
+     */
+    CamelMailConsumerType createCamelMailConsumerType();
+
+    /**
+     * Returns a new object of class '<em>Mail Producer Type</em>'.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @return a new object of class '<em>Mail Producer Type</em>'.
+     * @generated
+     */
+    CamelMailProducerType createCamelMailProducerType();
+
+    /**
+     * Returns a new object of class '<em>Mail Binding Type</em>'.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @return a new object of class '<em>Mail Binding Type</em>'.
+     * @generated
+     */
+    CamelMailBindingType createCamelMailBindingType();
+
+    /**
      * Returns a new object of class '<em>File Consumer Type</em>'.
      * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->

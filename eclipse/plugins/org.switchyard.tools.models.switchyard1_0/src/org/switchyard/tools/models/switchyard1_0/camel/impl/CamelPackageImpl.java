@@ -37,6 +37,9 @@ import org.switchyard.tools.models.switchyard1_0.camel.CamelFtpBindingType;
 import org.switchyard.tools.models.switchyard1_0.camel.CamelFtpsBindingType;
 import org.switchyard.tools.models.switchyard1_0.camel.CamelImplementationType;
 import org.switchyard.tools.models.switchyard1_0.camel.CamelJmsBindingType;
+import org.switchyard.tools.models.switchyard1_0.camel.CamelMailBindingType;
+import org.switchyard.tools.models.switchyard1_0.camel.CamelMailConsumerType;
+import org.switchyard.tools.models.switchyard1_0.camel.CamelMailProducerType;
 import org.switchyard.tools.models.switchyard1_0.camel.CamelMessageComposerType;
 import org.switchyard.tools.models.switchyard1_0.camel.CamelMockBindingType;
 import org.switchyard.tools.models.switchyard1_0.camel.CamelNettyBindingType;
@@ -56,6 +59,7 @@ import org.switchyard.tools.models.switchyard1_0.camel.GenericFileBindingType;
 import org.switchyard.tools.models.switchyard1_0.camel.GenericFileConsumerType;
 import org.switchyard.tools.models.switchyard1_0.camel.GenericFileProducerType;
 import org.switchyard.tools.models.switchyard1_0.camel.JavaDSLType;
+import org.switchyard.tools.models.switchyard1_0.camel.MailConsumerAccountType;
 import org.switchyard.tools.models.switchyard1_0.camel.RemoteFileConsumerType;
 import org.switchyard.tools.models.switchyard1_0.camel.RemoteFileProducerType;
 import org.switchyard.tools.models.switchyard1_0.camel.ScheduledBatchPollConsumerType;
@@ -234,6 +238,27 @@ public class CamelPackageImpl extends EPackageImpl implements CamelPackage {
      * <!-- end-user-doc -->
      * @generated
      */
+    private EClass camelMailConsumerTypeEClass = null;
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    private EClass camelMailProducerTypeEClass = null;
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    private EClass camelMailBindingTypeEClass = null;
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
     private EClass camelRemoteBindingTypeEClass = null;
 
     /**
@@ -333,6 +358,13 @@ public class CamelPackageImpl extends EPackageImpl implements CamelPackage {
      * @generated
      */
     private EEnum timeUnitEEnum = null;
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    private EEnum mailConsumerAccountTypeEEnum = null;
 
     /**
      * <!-- begin-user-doc -->
@@ -1518,6 +1550,15 @@ public class CamelPackageImpl extends EPackageImpl implements CamelPackage {
      * <!-- end-user-doc -->
      * @generated
      */
+    public EReference getDocumentRoot_BindingMail() {
+        return (EReference)documentRootEClass.getEStructuralFeatures().get(21);
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
     public EClass getCamelContextMapperType() {
         return camelContextMapperTypeEClass;
     }
@@ -1529,6 +1570,222 @@ public class CamelPackageImpl extends EPackageImpl implements CamelPackage {
      */
     public EClass getCamelMessageComposerType() {
         return camelMessageComposerTypeEClass;
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public EClass getCamelMailConsumerType() {
+        return camelMailConsumerTypeEClass;
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public EAttribute getCamelMailConsumerType_FolderName() {
+        return (EAttribute)camelMailConsumerTypeEClass.getEStructuralFeatures().get(0);
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public EAttribute getCamelMailConsumerType_FetchSize() {
+        return (EAttribute)camelMailConsumerTypeEClass.getEStructuralFeatures().get(1);
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public EAttribute getCamelMailConsumerType_Unseen() {
+        return (EAttribute)camelMailConsumerTypeEClass.getEStructuralFeatures().get(2);
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public EAttribute getCamelMailConsumerType_Delete() {
+        return (EAttribute)camelMailConsumerTypeEClass.getEStructuralFeatures().get(3);
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public EAttribute getCamelMailConsumerType_CopyTo() {
+        return (EAttribute)camelMailConsumerTypeEClass.getEStructuralFeatures().get(4);
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public EAttribute getCamelMailConsumerType_Disconnect() {
+        return (EAttribute)camelMailConsumerTypeEClass.getEStructuralFeatures().get(5);
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public EAttribute getCamelMailConsumerType_AccountType() {
+        return (EAttribute)camelMailConsumerTypeEClass.getEStructuralFeatures().get(6);
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public EClass getCamelMailProducerType() {
+        return camelMailProducerTypeEClass;
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public EAttribute getCamelMailProducerType_Subject() {
+        return (EAttribute)camelMailProducerTypeEClass.getEStructuralFeatures().get(0);
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public EAttribute getCamelMailProducerType_From() {
+        return (EAttribute)camelMailProducerTypeEClass.getEStructuralFeatures().get(1);
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public EAttribute getCamelMailProducerType_To() {
+        return (EAttribute)camelMailProducerTypeEClass.getEStructuralFeatures().get(2);
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public EAttribute getCamelMailProducerType_CC() {
+        return (EAttribute)camelMailProducerTypeEClass.getEStructuralFeatures().get(3);
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public EAttribute getCamelMailProducerType_BCC() {
+        return (EAttribute)camelMailProducerTypeEClass.getEStructuralFeatures().get(4);
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public EAttribute getCamelMailProducerType_ReplyTo() {
+        return (EAttribute)camelMailProducerTypeEClass.getEStructuralFeatures().get(5);
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public EClass getCamelMailBindingType() {
+        return camelMailBindingTypeEClass;
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public EAttribute getCamelMailBindingType_Host() {
+        return (EAttribute)camelMailBindingTypeEClass.getEStructuralFeatures().get(0);
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public EAttribute getCamelMailBindingType_Port() {
+        return (EAttribute)camelMailBindingTypeEClass.getEStructuralFeatures().get(1);
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public EAttribute getCamelMailBindingType_Username() {
+        return (EAttribute)camelMailBindingTypeEClass.getEStructuralFeatures().get(2);
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public EAttribute getCamelMailBindingType_Password() {
+        return (EAttribute)camelMailBindingTypeEClass.getEStructuralFeatures().get(3);
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public EAttribute getCamelMailBindingType_ConnectionTimeout() {
+        return (EAttribute)camelMailBindingTypeEClass.getEStructuralFeatures().get(4);
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public EReference getCamelMailBindingType_Consume() {
+        return (EReference)camelMailBindingTypeEClass.getEStructuralFeatures().get(5);
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public EReference getCamelMailBindingType_Produce() {
+        return (EReference)camelMailBindingTypeEClass.getEStructuralFeatures().get(6);
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public EAttribute getCamelMailBindingType_Secure() {
+        return (EAttribute)camelMailBindingTypeEClass.getEStructuralFeatures().get(7);
     }
 
     /**
@@ -2256,6 +2513,15 @@ public class CamelPackageImpl extends EPackageImpl implements CamelPackage {
      * <!-- end-user-doc -->
      * @generated
      */
+    public EEnum getMailConsumerAccountType() {
+        return mailConsumerAccountTypeEEnum;
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
     public EDataType getTimeUnitObject() {
         return timeUnitObjectEDataType;
     }
@@ -2514,13 +2780,42 @@ public class CamelPackageImpl extends EPackageImpl implements CamelPackage {
         createEReference(documentRootEClass, DOCUMENT_ROOT__BINDING_SQL);
         createEReference(documentRootEClass, DOCUMENT_ROOT__CONTEXT_MAPPER);
         createEReference(documentRootEClass, DOCUMENT_ROOT__MESSAGE_COMPOSER);
+        createEReference(documentRootEClass, DOCUMENT_ROOT__BINDING_MAIL);
 
         camelContextMapperTypeEClass = createEClass(CAMEL_CONTEXT_MAPPER_TYPE);
 
         camelMessageComposerTypeEClass = createEClass(CAMEL_MESSAGE_COMPOSER_TYPE);
 
+        camelMailConsumerTypeEClass = createEClass(CAMEL_MAIL_CONSUMER_TYPE);
+        createEAttribute(camelMailConsumerTypeEClass, CAMEL_MAIL_CONSUMER_TYPE__FOLDER_NAME);
+        createEAttribute(camelMailConsumerTypeEClass, CAMEL_MAIL_CONSUMER_TYPE__FETCH_SIZE);
+        createEAttribute(camelMailConsumerTypeEClass, CAMEL_MAIL_CONSUMER_TYPE__UNSEEN);
+        createEAttribute(camelMailConsumerTypeEClass, CAMEL_MAIL_CONSUMER_TYPE__DELETE);
+        createEAttribute(camelMailConsumerTypeEClass, CAMEL_MAIL_CONSUMER_TYPE__COPY_TO);
+        createEAttribute(camelMailConsumerTypeEClass, CAMEL_MAIL_CONSUMER_TYPE__DISCONNECT);
+        createEAttribute(camelMailConsumerTypeEClass, CAMEL_MAIL_CONSUMER_TYPE__ACCOUNT_TYPE);
+
+        camelMailProducerTypeEClass = createEClass(CAMEL_MAIL_PRODUCER_TYPE);
+        createEAttribute(camelMailProducerTypeEClass, CAMEL_MAIL_PRODUCER_TYPE__SUBJECT);
+        createEAttribute(camelMailProducerTypeEClass, CAMEL_MAIL_PRODUCER_TYPE__FROM);
+        createEAttribute(camelMailProducerTypeEClass, CAMEL_MAIL_PRODUCER_TYPE__TO);
+        createEAttribute(camelMailProducerTypeEClass, CAMEL_MAIL_PRODUCER_TYPE__CC);
+        createEAttribute(camelMailProducerTypeEClass, CAMEL_MAIL_PRODUCER_TYPE__BCC);
+        createEAttribute(camelMailProducerTypeEClass, CAMEL_MAIL_PRODUCER_TYPE__REPLY_TO);
+
+        camelMailBindingTypeEClass = createEClass(CAMEL_MAIL_BINDING_TYPE);
+        createEAttribute(camelMailBindingTypeEClass, CAMEL_MAIL_BINDING_TYPE__HOST);
+        createEAttribute(camelMailBindingTypeEClass, CAMEL_MAIL_BINDING_TYPE__PORT);
+        createEAttribute(camelMailBindingTypeEClass, CAMEL_MAIL_BINDING_TYPE__USERNAME);
+        createEAttribute(camelMailBindingTypeEClass, CAMEL_MAIL_BINDING_TYPE__PASSWORD);
+        createEAttribute(camelMailBindingTypeEClass, CAMEL_MAIL_BINDING_TYPE__CONNECTION_TIMEOUT);
+        createEReference(camelMailBindingTypeEClass, CAMEL_MAIL_BINDING_TYPE__CONSUME);
+        createEReference(camelMailBindingTypeEClass, CAMEL_MAIL_BINDING_TYPE__PRODUCE);
+        createEAttribute(camelMailBindingTypeEClass, CAMEL_MAIL_BINDING_TYPE__SECURE);
+
         // Create enums
         timeUnitEEnum = createEEnum(TIME_UNIT);
+        mailConsumerAccountTypeEEnum = createEEnum(MAIL_CONSUMER_ACCOUNT_TYPE);
 
         // Create data types
         timeUnitObjectEDataType = createEDataType(TIME_UNIT_OBJECT);
@@ -2588,6 +2883,8 @@ public class CamelPackageImpl extends EPackageImpl implements CamelPackage {
         genericFileConsumerTypeEClass.getESuperTypes().add(this.getScheduledBatchPollConsumerType());
         camelContextMapperTypeEClass.getESuperTypes().add(theSwitchyardPackage.getContextMapperType());
         camelMessageComposerTypeEClass.getESuperTypes().add(theSwitchyardPackage.getMessageComposerType());
+        camelMailConsumerTypeEClass.getESuperTypes().add(this.getScheduledBatchPollConsumerType());
+        camelMailBindingTypeEClass.getESuperTypes().add(this.getBaseCamelBinding());
 
         // Initialize classes and features; add operations and parameters
         initEClass(baseCamelBindingEClass, BaseCamelBinding.class, "BaseCamelBinding", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
@@ -2816,10 +3113,38 @@ public class CamelPackageImpl extends EPackageImpl implements CamelPackage {
         initEReference(getDocumentRoot_BindingSql(), this.getCamelSqlBindingType(), null, "bindingSql", null, 0, -2, null, IS_TRANSIENT, IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, IS_DERIVED, IS_ORDERED);
         initEReference(getDocumentRoot_ContextMapper(), this.getCamelContextMapperType(), null, "contextMapper", null, 0, -2, null, IS_TRANSIENT, IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, IS_DERIVED, IS_ORDERED);
         initEReference(getDocumentRoot_MessageComposer(), this.getCamelMessageComposerType(), null, "messageComposer", null, 0, -2, null, IS_TRANSIENT, IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, IS_DERIVED, IS_ORDERED);
+        initEReference(getDocumentRoot_BindingMail(), this.getCamelMailBindingType(), null, "bindingMail", null, 0, -2, null, IS_TRANSIENT, IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, IS_DERIVED, IS_ORDERED);
 
         initEClass(camelContextMapperTypeEClass, CamelContextMapperType.class, "CamelContextMapperType", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 
         initEClass(camelMessageComposerTypeEClass, CamelMessageComposerType.class, "CamelMessageComposerType", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+
+        initEClass(camelMailConsumerTypeEClass, CamelMailConsumerType.class, "CamelMailConsumerType", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+        initEAttribute(getCamelMailConsumerType_FolderName(), theXMLTypePackage.getString(), "folderName", null, 0, 1, CamelMailConsumerType.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+        initEAttribute(getCamelMailConsumerType_FetchSize(), theXMLTypePackage.getIntObject(), "fetchSize", null, 0, 1, CamelMailConsumerType.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+        initEAttribute(getCamelMailConsumerType_Unseen(), theXMLTypePackage.getBooleanObject(), "unseen", null, 0, 1, CamelMailConsumerType.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+        initEAttribute(getCamelMailConsumerType_Delete(), theXMLTypePackage.getBooleanObject(), "delete", null, 0, 1, CamelMailConsumerType.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+        initEAttribute(getCamelMailConsumerType_CopyTo(), theXMLTypePackage.getString(), "copyTo", null, 0, 1, CamelMailConsumerType.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+        initEAttribute(getCamelMailConsumerType_Disconnect(), theXMLTypePackage.getBooleanObject(), "disconnect", null, 0, 1, CamelMailConsumerType.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+        initEAttribute(getCamelMailConsumerType_AccountType(), this.getMailConsumerAccountType(), "accountType", "", 0, 1, CamelMailConsumerType.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+        initEClass(camelMailProducerTypeEClass, CamelMailProducerType.class, "CamelMailProducerType", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+        initEAttribute(getCamelMailProducerType_Subject(), theXMLTypePackage.getString(), "subject", null, 0, 1, CamelMailProducerType.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+        initEAttribute(getCamelMailProducerType_From(), theXMLTypePackage.getString(), "from", null, 0, 1, CamelMailProducerType.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+        initEAttribute(getCamelMailProducerType_To(), theXMLTypePackage.getString(), "to", null, 0, 1, CamelMailProducerType.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+        initEAttribute(getCamelMailProducerType_CC(), theXMLTypePackage.getString(), "CC", null, 0, 1, CamelMailProducerType.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+        initEAttribute(getCamelMailProducerType_BCC(), theXMLTypePackage.getString(), "BCC", null, 0, 1, CamelMailProducerType.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+        initEAttribute(getCamelMailProducerType_ReplyTo(), theXMLTypePackage.getString(), "replyTo", null, 0, 1, CamelMailProducerType.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+        initEClass(camelMailBindingTypeEClass, CamelMailBindingType.class, "CamelMailBindingType", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+        initEAttribute(getCamelMailBindingType_Host(), theXMLTypePackage.getString(), "host", null, 1, 1, CamelMailBindingType.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+        initEAttribute(getCamelMailBindingType_Port(), theXMLTypePackage.getIntObject(), "port", null, 0, 1, CamelMailBindingType.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+        initEAttribute(getCamelMailBindingType_Username(), theXMLTypePackage.getString(), "username", null, 0, 1, CamelMailBindingType.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+        initEAttribute(getCamelMailBindingType_Password(), theXMLTypePackage.getString(), "password", null, 0, 1, CamelMailBindingType.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+        initEAttribute(getCamelMailBindingType_ConnectionTimeout(), theXMLTypePackage.getIntObject(), "connectionTimeout", null, 0, 1, CamelMailBindingType.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+        initEReference(getCamelMailBindingType_Consume(), this.getCamelMailConsumerType(), null, "consume", null, 0, 1, CamelMailBindingType.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+        initEReference(getCamelMailBindingType_Produce(), this.getCamelMailProducerType(), null, "produce", null, 0, 1, CamelMailBindingType.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+        initEAttribute(getCamelMailBindingType_Secure(), theXMLTypePackage.getBooleanObject(), "secure", "false", 0, 1, CamelMailBindingType.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
         // Initialize enums and add enum literals
         initEEnum(timeUnitEEnum, TimeUnit.class, "TimeUnit");
@@ -2830,6 +3155,10 @@ public class CamelPackageImpl extends EPackageImpl implements CamelPackage {
         addEEnumLiteral(timeUnitEEnum, TimeUnit.MINUTES);
         addEEnumLiteral(timeUnitEEnum, TimeUnit.HOURS);
         addEEnumLiteral(timeUnitEEnum, TimeUnit.DAYS);
+
+        initEEnum(mailConsumerAccountTypeEEnum, MailConsumerAccountType.class, "MailConsumerAccountType");
+        addEEnumLiteral(mailConsumerAccountTypeEEnum, MailConsumerAccountType.IMAP);
+        addEEnumLiteral(mailConsumerAccountTypeEEnum, MailConsumerAccountType.POP3);
 
         // Initialize data types
         initEDataType(timeUnitObjectEDataType, TimeUnit.class, "TimeUnitObject", IS_SERIALIZABLE, IS_GENERATED_INSTANCE_CLASS);
@@ -4406,6 +4735,15 @@ public class CamelPackageImpl extends EPackageImpl implements CamelPackage {
              "affiliation", "urn:switchyard-config:switchyard:1.0#messageComposer"
            });		
         addAnnotation
+          (getDocumentRoot_BindingMail(), 
+           source, 
+           new String[] {
+             "kind", "element",
+             "name", "binding.mail",
+             "namespace", "##targetNamespace",
+             "affiliation", "urn:switchyard-config:switchyard:1.0#binding.switchyard"
+           });		
+        addAnnotation
           (timeUnitObjectEDataType, 
            source, 
            new String[] {
@@ -4427,6 +4765,199 @@ public class CamelPackageImpl extends EPackageImpl implements CamelPackage {
              "name", "MessageComposerType",
              "kind", "empty",
              "namespace", "##targetNamespace"
+           });		
+        addAnnotation
+          (camelMailConsumerTypeEClass, 
+           source, 
+           new String[] {
+             "name", "CamelMailConsumerType",
+             "kind", "elementOnly"
+           });		
+        addAnnotation
+          (getCamelMailConsumerType_FolderName(), 
+           source, 
+           new String[] {
+             "kind", "element",
+             "name", "folderName",
+             "namespace", "##targetNamespace"
+           });		
+        addAnnotation
+          (getCamelMailConsumerType_FetchSize(), 
+           source, 
+           new String[] {
+             "kind", "element",
+             "name", "fetchSize",
+             "namespace", "##targetNamespace"
+           });		
+        addAnnotation
+          (getCamelMailConsumerType_Unseen(), 
+           source, 
+           new String[] {
+             "kind", "element",
+             "name", "unseen",
+             "namespace", "##targetNamespace"
+           });		
+        addAnnotation
+          (getCamelMailConsumerType_Delete(), 
+           source, 
+           new String[] {
+             "kind", "element",
+             "name", "delete",
+             "namespace", "##targetNamespace"
+           });		
+        addAnnotation
+          (getCamelMailConsumerType_CopyTo(), 
+           source, 
+           new String[] {
+             "kind", "element",
+             "name", "copyTo",
+             "namespace", "##targetNamespace"
+           });		
+        addAnnotation
+          (getCamelMailConsumerType_Disconnect(), 
+           source, 
+           new String[] {
+             "kind", "element",
+             "name", "disconnect",
+             "namespace", "##targetNamespace"
+           });		
+        addAnnotation
+          (getCamelMailConsumerType_AccountType(), 
+           source, 
+           new String[] {
+             "kind", "attribute",
+             "name", "accountType"
+           });		
+        addAnnotation
+          (mailConsumerAccountTypeEEnum, 
+           source, 
+           new String[] {
+             "name", "MailConsumerAccountType"
+           });		
+        addAnnotation
+          (camelMailProducerTypeEClass, 
+           source, 
+           new String[] {
+             "name", "CamelMailProducerType",
+             "kind", "elementOnly"
+           });		
+        addAnnotation
+          (getCamelMailProducerType_Subject(), 
+           source, 
+           new String[] {
+             "kind", "element",
+             "name", "subject",
+             "namespace", "##targetNamespace"
+           });		
+        addAnnotation
+          (getCamelMailProducerType_From(), 
+           source, 
+           new String[] {
+             "kind", "element",
+             "name", "from",
+             "namespace", "##targetNamespace"
+           });		
+        addAnnotation
+          (getCamelMailProducerType_To(), 
+           source, 
+           new String[] {
+             "kind", "element",
+             "name", "to",
+             "namespace", "##targetNamespace"
+           });		
+        addAnnotation
+          (getCamelMailProducerType_CC(), 
+           source, 
+           new String[] {
+             "kind", "element",
+             "name", "CC",
+             "namespace", "##targetNamespace"
+           });		
+        addAnnotation
+          (getCamelMailProducerType_BCC(), 
+           source, 
+           new String[] {
+             "kind", "element",
+             "name", "BCC",
+             "namespace", "##targetNamespace"
+           });		
+        addAnnotation
+          (getCamelMailProducerType_ReplyTo(), 
+           source, 
+           new String[] {
+             "kind", "element",
+             "name", "replyTo",
+             "namespace", "##targetNamespace"
+           });		
+        addAnnotation
+          (camelMailBindingTypeEClass, 
+           source, 
+           new String[] {
+             "name", "CamelMailBindingType",
+             "kind", "elementOnly"
+           });		
+        addAnnotation
+          (getCamelMailBindingType_Host(), 
+           source, 
+           new String[] {
+             "kind", "element",
+             "name", "host",
+             "namespace", "##targetNamespace"
+           });		
+        addAnnotation
+          (getCamelMailBindingType_Port(), 
+           source, 
+           new String[] {
+             "kind", "element",
+             "name", "port",
+             "namespace", "##targetNamespace"
+           });		
+        addAnnotation
+          (getCamelMailBindingType_Username(), 
+           source, 
+           new String[] {
+             "kind", "element",
+             "name", "username",
+             "namespace", "##targetNamespace"
+           });		
+        addAnnotation
+          (getCamelMailBindingType_Password(), 
+           source, 
+           new String[] {
+             "kind", "element",
+             "name", "password",
+             "namespace", "##targetNamespace"
+           });		
+        addAnnotation
+          (getCamelMailBindingType_ConnectionTimeout(), 
+           source, 
+           new String[] {
+             "kind", "element",
+             "name", "connectionTimeout",
+             "namespace", "##targetNamespace"
+           });		
+        addAnnotation
+          (getCamelMailBindingType_Consume(), 
+           source, 
+           new String[] {
+             "kind", "element",
+             "name", "consume",
+             "namespace", "##targetNamespace"
+           });		
+        addAnnotation
+          (getCamelMailBindingType_Produce(), 
+           source, 
+           new String[] {
+             "kind", "element",
+             "name", "produce",
+             "namespace", "##targetNamespace"
+           });		
+        addAnnotation
+          (getCamelMailBindingType_Secure(), 
+           source, 
+           new String[] {
+             "kind", "attribute",
+             "name", "secure"
            });
     }
 

@@ -41,6 +41,7 @@ import org.eclipse.emf.ecore.util.FeatureMap;
  *   <li>{@link org.switchyard.tools.models.switchyard1_0.camel.DocumentRoot#getBindingSql <em>Binding Sql</em>}</li>
  *   <li>{@link org.switchyard.tools.models.switchyard1_0.camel.DocumentRoot#getContextMapper <em>Context Mapper</em>}</li>
  *   <li>{@link org.switchyard.tools.models.switchyard1_0.camel.DocumentRoot#getMessageComposer <em>Message Composer</em>}</li>
+ *   <li>{@link org.switchyard.tools.models.switchyard1_0.camel.DocumentRoot#getBindingMail <em>Binding Mail</em>}</li>
  * </ul>
  * </p>
  *
@@ -587,5 +588,32 @@ public interface DocumentRoot extends EObject {
      * @generated
      */
     void setMessageComposer(CamelMessageComposerType value);
+
+    /**
+     * Returns the value of the '<em><b>Binding Mail</b></em>' containment reference.
+     * <!-- begin-user-doc -->
+     * <p>
+     * If the meaning of the '<em>Binding Mail</em>' containment reference isn't clear,
+     * there really should be more of a description here...
+     * </p>
+     * <!-- end-user-doc -->
+     * @return the value of the '<em>Binding Mail</em>' containment reference.
+     * @see #setBindingMail(CamelMailBindingType)
+     * @see org.switchyard.tools.models.switchyard1_0.camel.CamelPackage#getDocumentRoot_BindingMail()
+     * @model containment="true" upper="-2" transient="true" volatile="true" derived="true"
+     *        extendedMetaData="kind='element' name='binding.mail' namespace='##targetNamespace' affiliation='urn:switchyard-config:switchyard:1.0#binding.switchyard'"
+     * @generated
+     */
+    CamelMailBindingType getBindingMail();
+
+    /**
+     * Sets the value of the '{@link org.switchyard.tools.models.switchyard1_0.camel.DocumentRoot#getBindingMail <em>Binding Mail</em>}' containment reference.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @param value the new value of the '<em>Binding Mail</em>' containment reference.
+     * @see #getBindingMail()
+     * @generated
+     */
+    void setBindingMail(CamelMailBindingType value);
 
 } // DocumentRoot

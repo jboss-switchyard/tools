@@ -32,6 +32,7 @@ import org.switchyard.tools.models.switchyard1_0.camel.CamelFtpBindingType;
 import org.switchyard.tools.models.switchyard1_0.camel.CamelFtpsBindingType;
 import org.switchyard.tools.models.switchyard1_0.camel.CamelImplementationType;
 import org.switchyard.tools.models.switchyard1_0.camel.CamelJmsBindingType;
+import org.switchyard.tools.models.switchyard1_0.camel.CamelMailBindingType;
 import org.switchyard.tools.models.switchyard1_0.camel.CamelMessageComposerType;
 import org.switchyard.tools.models.switchyard1_0.camel.CamelMockBindingType;
 import org.switchyard.tools.models.switchyard1_0.camel.CamelNettyTcpBindingType;
@@ -72,6 +73,7 @@ import org.switchyard.tools.models.switchyard1_0.camel.DocumentRoot;
  *   <li>{@link org.switchyard.tools.models.switchyard1_0.camel.impl.DocumentRootImpl#getBindingSql <em>Binding Sql</em>}</li>
  *   <li>{@link org.switchyard.tools.models.switchyard1_0.camel.impl.DocumentRootImpl#getContextMapper <em>Context Mapper</em>}</li>
  *   <li>{@link org.switchyard.tools.models.switchyard1_0.camel.impl.DocumentRootImpl#getMessageComposer <em>Message Composer</em>}</li>
+ *   <li>{@link org.switchyard.tools.models.switchyard1_0.camel.impl.DocumentRootImpl#getBindingMail <em>Binding Mail</em>}</li>
  * </ul>
  * </p>
  *
@@ -651,6 +653,33 @@ public class DocumentRootImpl extends EObjectImpl implements DocumentRoot {
 
     /**
      * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public CamelMailBindingType getBindingMail() {
+        return (CamelMailBindingType)getMixed().get(CamelPackage.Literals.DOCUMENT_ROOT__BINDING_MAIL, true);
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public NotificationChain basicSetBindingMail(CamelMailBindingType newBindingMail, NotificationChain msgs) {
+        return ((FeatureMap.Internal)getMixed()).basicAdd(CamelPackage.Literals.DOCUMENT_ROOT__BINDING_MAIL, newBindingMail, msgs);
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public void setBindingMail(CamelMailBindingType newBindingMail) {
+        ((FeatureMap.Internal)getMixed()).set(CamelPackage.Literals.DOCUMENT_ROOT__BINDING_MAIL, newBindingMail);
+    }
+
+    /**
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
      * @generated
      */
@@ -699,6 +728,8 @@ public class DocumentRootImpl extends EObjectImpl implements DocumentRoot {
                 return basicSetContextMapper(null, msgs);
             case CamelPackage.DOCUMENT_ROOT__MESSAGE_COMPOSER:
                 return basicSetMessageComposer(null, msgs);
+            case CamelPackage.DOCUMENT_ROOT__BINDING_MAIL:
+                return basicSetBindingMail(null, msgs);
         }
         return super.eInverseRemove(otherEnd, featureID, msgs);
     }
@@ -756,6 +787,8 @@ public class DocumentRootImpl extends EObjectImpl implements DocumentRoot {
                 return getContextMapper();
             case CamelPackage.DOCUMENT_ROOT__MESSAGE_COMPOSER:
                 return getMessageComposer();
+            case CamelPackage.DOCUMENT_ROOT__BINDING_MAIL:
+                return getBindingMail();
         }
         return super.eGet(featureID, resolve, coreType);
     }
@@ -830,6 +863,9 @@ public class DocumentRootImpl extends EObjectImpl implements DocumentRoot {
                 return;
             case CamelPackage.DOCUMENT_ROOT__MESSAGE_COMPOSER:
                 setMessageComposer((CamelMessageComposerType)newValue);
+                return;
+            case CamelPackage.DOCUMENT_ROOT__BINDING_MAIL:
+                setBindingMail((CamelMailBindingType)newValue);
                 return;
         }
         super.eSet(featureID, newValue);
@@ -906,6 +942,9 @@ public class DocumentRootImpl extends EObjectImpl implements DocumentRoot {
             case CamelPackage.DOCUMENT_ROOT__MESSAGE_COMPOSER:
                 setMessageComposer((CamelMessageComposerType)null);
                 return;
+            case CamelPackage.DOCUMENT_ROOT__BINDING_MAIL:
+                setBindingMail((CamelMailBindingType)null);
+                return;
         }
         super.eUnset(featureID);
     }
@@ -960,6 +999,8 @@ public class DocumentRootImpl extends EObjectImpl implements DocumentRoot {
                 return getContextMapper() != null;
             case CamelPackage.DOCUMENT_ROOT__MESSAGE_COMPOSER:
                 return getMessageComposer() != null;
+            case CamelPackage.DOCUMENT_ROOT__BINDING_MAIL:
+                return getBindingMail() != null;
         }
         return super.eIsSet(featureID);
     }

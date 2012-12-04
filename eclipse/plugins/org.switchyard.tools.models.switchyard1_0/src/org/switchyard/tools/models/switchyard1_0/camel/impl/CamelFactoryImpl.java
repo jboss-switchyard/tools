@@ -90,6 +90,9 @@ public class CamelFactoryImpl extends EFactoryImpl implements CamelFactory {
             case CamelPackage.DOCUMENT_ROOT: return createDocumentRoot();
             case CamelPackage.CAMEL_CONTEXT_MAPPER_TYPE: return createCamelContextMapperType();
             case CamelPackage.CAMEL_MESSAGE_COMPOSER_TYPE: return createCamelMessageComposerType();
+            case CamelPackage.CAMEL_MAIL_CONSUMER_TYPE: return createCamelMailConsumerType();
+            case CamelPackage.CAMEL_MAIL_PRODUCER_TYPE: return createCamelMailProducerType();
+            case CamelPackage.CAMEL_MAIL_BINDING_TYPE: return createCamelMailBindingType();
             default:
                 throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier");
         }
@@ -105,6 +108,8 @@ public class CamelFactoryImpl extends EFactoryImpl implements CamelFactory {
         switch (eDataType.getClassifierID()) {
             case CamelPackage.TIME_UNIT:
                 return createTimeUnitFromString(eDataType, initialValue);
+            case CamelPackage.MAIL_CONSUMER_ACCOUNT_TYPE:
+                return createMailConsumerAccountTypeFromString(eDataType, initialValue);
             case CamelPackage.TIME_UNIT_OBJECT:
                 return createTimeUnitObjectFromString(eDataType, initialValue);
             default:
@@ -122,6 +127,8 @@ public class CamelFactoryImpl extends EFactoryImpl implements CamelFactory {
         switch (eDataType.getClassifierID()) {
             case CamelPackage.TIME_UNIT:
                 return convertTimeUnitToString(eDataType, instanceValue);
+            case CamelPackage.MAIL_CONSUMER_ACCOUNT_TYPE:
+                return convertMailConsumerAccountTypeToString(eDataType, instanceValue);
             case CamelPackage.TIME_UNIT_OBJECT:
                 return convertTimeUnitObjectToString(eDataType, instanceValue);
             default:
@@ -303,6 +310,36 @@ public class CamelFactoryImpl extends EFactoryImpl implements CamelFactory {
 
     /**
      * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public CamelMailConsumerType createCamelMailConsumerType() {
+        CamelMailConsumerTypeImpl camelMailConsumerType = new CamelMailConsumerTypeImpl();
+        return camelMailConsumerType;
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public CamelMailProducerType createCamelMailProducerType() {
+        CamelMailProducerTypeImpl camelMailProducerType = new CamelMailProducerTypeImpl();
+        return camelMailProducerType;
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public CamelMailBindingType createCamelMailBindingType() {
+        CamelMailBindingTypeImpl camelMailBindingType = new CamelMailBindingTypeImpl();
+        return camelMailBindingType;
+    }
+
+    /**
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
      * @generated
      */
@@ -438,6 +475,26 @@ public class CamelFactoryImpl extends EFactoryImpl implements CamelFactory {
      * @generated
      */
     public String convertTimeUnitToString(EDataType eDataType, Object instanceValue) {
+        return instanceValue == null ? null : instanceValue.toString();
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public MailConsumerAccountType createMailConsumerAccountTypeFromString(EDataType eDataType, String initialValue) {
+        MailConsumerAccountType result = MailConsumerAccountType.get(initialValue);
+        if (result == null) throw new IllegalArgumentException("The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'");
+        return result;
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public String convertMailConsumerAccountTypeToString(EDataType eDataType, Object instanceValue) {
         return instanceValue == null ? null : instanceValue.toString();
     }
 

@@ -149,6 +149,9 @@ public class ImageProvider extends AbstractImageProvider {
     /** Image for Remote. **/
     public static final String IMG_16_REMOTE = PREFIX + "REMOTE" + DOT16;
 
+    /** Image for Remote. **/
+    public static final String IMG_16_MAIL = PREFIX + "MAIL" + DOT16;
+
     @Override
     protected void addAvailableImages() {
         addImageFilePath(IMG_16_COMPOSITE, ICONS_16 + "Composite.gif");
@@ -189,6 +192,7 @@ public class ImageProvider extends AbstractImageProvider {
         addImageFilePath(IMG_16_WSDL, ICONS_16 + "wsdl.png");
         addImageFilePath(IMG_16_CLOJURE, ICONS_16 + "clojure.png");
         addImageFilePath(IMG_16_REMOTE, ICONS_16 + "remote.png");
+        addImageFilePath(IMG_16_MAIL, ICONS_16 + "mail.png");
     }
 
 }

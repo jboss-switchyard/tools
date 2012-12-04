@@ -212,6 +212,18 @@ public class CamelAdapterFactory extends AdapterFactoryImpl {
                 return createCamelMessageComposerTypeAdapter();
             }
             @Override
+            public Adapter caseCamelMailConsumerType(CamelMailConsumerType object) {
+                return createCamelMailConsumerTypeAdapter();
+            }
+            @Override
+            public Adapter caseCamelMailProducerType(CamelMailProducerType object) {
+                return createCamelMailProducerTypeAdapter();
+            }
+            @Override
+            public Adapter caseCamelMailBindingType(CamelMailBindingType object) {
+                return createCamelMailBindingTypeAdapter();
+            }
+            @Override
             public Adapter caseCommonExtensionBase(CommonExtensionBase object) {
                 return createCommonExtensionBaseAdapter();
             }
@@ -518,6 +530,48 @@ public class CamelAdapterFactory extends AdapterFactoryImpl {
      * @generated
      */
     public Adapter createCamelMessageComposerTypeAdapter() {
+        return null;
+    }
+
+    /**
+     * Creates a new adapter for an object of class '{@link org.switchyard.tools.models.switchyard1_0.camel.CamelMailConsumerType <em>Mail Consumer Type</em>}'.
+     * <!-- begin-user-doc -->
+     * This default implementation returns null so that we can easily ignore cases;
+     * it's useful to ignore a case when inheritance will catch all the cases anyway.
+     * <!-- end-user-doc -->
+     * @return the new adapter.
+     * @see org.switchyard.tools.models.switchyard1_0.camel.CamelMailConsumerType
+     * @generated
+     */
+    public Adapter createCamelMailConsumerTypeAdapter() {
+        return null;
+    }
+
+    /**
+     * Creates a new adapter for an object of class '{@link org.switchyard.tools.models.switchyard1_0.camel.CamelMailProducerType <em>Mail Producer Type</em>}'.
+     * <!-- begin-user-doc -->
+     * This default implementation returns null so that we can easily ignore cases;
+     * it's useful to ignore a case when inheritance will catch all the cases anyway.
+     * <!-- end-user-doc -->
+     * @return the new adapter.
+     * @see org.switchyard.tools.models.switchyard1_0.camel.CamelMailProducerType
+     * @generated
+     */
+    public Adapter createCamelMailProducerTypeAdapter() {
+        return null;
+    }
+
+    /**
+     * Creates a new adapter for an object of class '{@link org.switchyard.tools.models.switchyard1_0.camel.CamelMailBindingType <em>Mail Binding Type</em>}'.
+     * <!-- begin-user-doc -->
+     * This default implementation returns null so that we can easily ignore cases;
+     * it's useful to ignore a case when inheritance will catch all the cases anyway.
+     * <!-- end-user-doc -->
+     * @return the new adapter.
+     * @see org.switchyard.tools.models.switchyard1_0.camel.CamelMailBindingType
+     * @generated
+     */
+    public Adapter createCamelMailBindingTypeAdapter() {
         return null;
     }
 
