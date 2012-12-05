@@ -401,6 +401,30 @@ public class CamelSwitch<T> extends Switch<T> {
                 if (result == null) result = defaultCase(theEObject);
                 return result;
             }
+            case CamelPackage.JPA_PRODUCER_TYPE: {
+                JpaProducerType jpaProducerType = (JpaProducerType)theEObject;
+                T result = caseJpaProducerType(jpaProducerType);
+                if (result == null) result = defaultCase(theEObject);
+                return result;
+            }
+            case CamelPackage.JPA_CONSUMER_TYPE: {
+                JpaConsumerType jpaConsumerType = (JpaConsumerType)theEObject;
+                T result = caseJpaConsumerType(jpaConsumerType);
+                if (result == null) result = caseScheduledBatchPollConsumerType(jpaConsumerType);
+                if (result == null) result = caseScheduledPollConsumerType(jpaConsumerType);
+                if (result == null) result = defaultCase(theEObject);
+                return result;
+            }
+            case CamelPackage.CAMEL_JPA_BINDING_TYPE: {
+                CamelJPABindingType camelJPABindingType = (CamelJPABindingType)theEObject;
+                T result = caseCamelJPABindingType(camelJPABindingType);
+                if (result == null) result = caseBaseCamelBinding(camelJPABindingType);
+                if (result == null) result = caseSwitchYardBindingType(camelJPABindingType);
+                if (result == null) result = caseBinding(camelJPABindingType);
+                if (result == null) result = caseCommonExtensionBase(camelJPABindingType);
+                if (result == null) result = defaultCase(theEObject);
+                return result;
+            }
             default: return defaultCase(theEObject);
         }
     }
@@ -736,6 +760,51 @@ public class CamelSwitch<T> extends Switch<T> {
     }
 
     /**
+     * Returns the result of interpreting the object as an instance of '<em>Jpa Producer Type</em>'.
+     * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+     * @param object the target of the switch.
+     * @return the result of interpreting the object as an instance of '<em>Jpa Producer Type</em>'.
+     * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+     * @generated
+     */
+	public T caseJpaProducerType(JpaProducerType object) {
+        return null;
+    }
+
+				/**
+     * Returns the result of interpreting the object as an instance of '<em>Jpa Consumer Type</em>'.
+     * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+     * @param object the target of the switch.
+     * @return the result of interpreting the object as an instance of '<em>Jpa Consumer Type</em>'.
+     * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+     * @generated
+     */
+	public T caseJpaConsumerType(JpaConsumerType object) {
+        return null;
+    }
+
+				/**
+     * Returns the result of interpreting the object as an instance of '<em>JPA Binding Type</em>'.
+     * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+     * @param object the target of the switch.
+     * @return the result of interpreting the object as an instance of '<em>JPA Binding Type</em>'.
+     * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+     * @generated
+     */
+	public T caseCamelJPABindingType(CamelJPABindingType object) {
+        return null;
+    }
+
+				/**
      * Returns the result of interpreting the object as an instance of '<em>Context Mapper Type</em>'.
      * <!-- begin-user-doc -->
      * This implementation returns null;

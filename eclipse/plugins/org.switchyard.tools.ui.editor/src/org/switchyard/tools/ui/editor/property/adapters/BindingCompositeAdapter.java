@@ -19,6 +19,7 @@ import org.eclipse.swt.SWT;
 import org.eclipse.swt.layout.GridData;
 import org.switchyard.tools.models.switchyard1_0.camel.CamelFileBindingType;
 import org.switchyard.tools.models.switchyard1_0.camel.CamelFtpBindingType;
+import org.switchyard.tools.models.switchyard1_0.camel.CamelJPABindingType;
 import org.switchyard.tools.models.switchyard1_0.camel.CamelJmsBindingType;
 import org.switchyard.tools.models.switchyard1_0.camel.CamelMailBindingType;
 import org.switchyard.tools.models.switchyard1_0.camel.CamelNettyTcpBindingType;
@@ -34,6 +35,8 @@ import org.switchyard.tools.ui.editor.components.camel.file.CamelFileProducerCom
 import org.switchyard.tools.ui.editor.components.camel.ftp.CamelFTPConsumerComposite;
 import org.switchyard.tools.ui.editor.components.camel.ftp.CamelFTPProducerComposite;
 import org.switchyard.tools.ui.editor.components.camel.jms.CamelJmsComposite;
+import org.switchyard.tools.ui.editor.components.camel.jpa.CamelJPAConsumerComposite;
+import org.switchyard.tools.ui.editor.components.camel.jpa.CamelJPAProducerComposite;
 import org.switchyard.tools.ui.editor.components.camel.mail.CamelMailConsumerComposite;
 import org.switchyard.tools.ui.editor.components.camel.mail.CamelMailProducerComposite;
 import org.switchyard.tools.ui.editor.components.camel.netty.CamelNettyTCPComposite;
@@ -139,6 +142,17 @@ public final class BindingCompositeAdapter {
                 composite.setRootGridData(wsdlGD);
             } else if (binding.eContainer() instanceof Reference) {
                 composite = new CamelMailProducerComposite();
+                GridData wsdlGD = new GridData(SWT.FILL, SWT.FILL, true, true);
+                composite.setRootGridData(wsdlGD);
+            }
+        } else if (object instanceof CamelJPABindingType) {
+            CamelJPABindingType binding = (CamelJPABindingType) object;
+            if (binding.eContainer() instanceof Service) {
+                composite = new CamelJPAConsumerComposite();
+                GridData wsdlGD = new GridData(SWT.FILL, SWT.FILL, true, true);
+                composite.setRootGridData(wsdlGD);
+            } else if (binding.eContainer() instanceof Reference) {
+                composite = new CamelJPAProducerComposite();
                 GridData wsdlGD = new GridData(SWT.FILL, SWT.FILL, true, true);
                 composite.setRootGridData(wsdlGD);
             }

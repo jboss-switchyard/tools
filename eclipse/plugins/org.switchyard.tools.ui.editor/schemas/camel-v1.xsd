@@ -212,6 +212,21 @@ MA  02110-1301, USA.
         </complexContent>
     </complexType>
 
+    <element name="binding.jpa" type="camel:CamelJpaBindingType" substitutionGroup="swyd:binding.switchyard"/>
+    <complexType name="CamelJpaBindingType">
+        <complexContent>
+            <extension base="camel:BaseCamelBinding">
+                <sequence>
+                    <element name="entityClassName" type="string"/>
+                    <element name="persistenceUnit" type="string"/>
+                    <element name="transactionManager" type="string" minOccurs="0" maxOccurs="1"/>
+                    <element name="consume" type="camel:JpaConsumerType" minOccurs="0" maxOccurs="1"/>
+                    <element name="produce" type="camel:JpaProducerType" minOccurs="0" maxOccurs="1"/>
+                </sequence>
+            </extension>
+        </complexContent>
+    </complexType>
+
     <element name="binding.mock" type="camel:CamelMockBindingType" substitutionGroup="swyd:binding.switchyard"/>
     <complexType name="CamelMockBindingType" >
         <complexContent>
@@ -282,36 +297,17 @@ MA  02110-1301, USA.
         </complexContent>
     </complexType>
 
+    <element name="binding.amqp" type="camel:CamelAmqpBindingType" substitutionGroup="swyd:binding.switchyard" />
+    <complexType name="CamelAmqpBindingType">
+        <complexContent>
+            <extension base="camel:GenericMqBindingType" />
+        </complexContent>
+    </complexType>
+
     <element name="binding.jms" type="camel:CamelJmsBindingType" substitutionGroup="swyd:binding.switchyard"/>
     <complexType name="CamelJmsBindingType">
         <complexContent>
-            <extension base="camel:BaseCamelBinding">
-                <sequence>
-                    <choice minOccurs="1">
-                        <element name="queue" type="string"/>
-                        <element name="topic" type="string"/>
-                    </choice>
-                    <element name="connectionFactory" type="string" />
-                    <element name="username" type="string" minOccurs="0" maxOccurs="1"/>
-                    <element name="password" type="string" minOccurs="0" maxOccurs="1"/>
-                    <element name="clientId" type="string" minOccurs="0" maxOccurs="1"/>
-                    <element name="durableSubscriptionName" type="string" minOccurs="0" maxOccurs="1"/>
-                    <element name="concurrentConsumers" type="int" minOccurs="0" maxOccurs="1"/>
-                    <element name="maxConcurrentConsumers" type="int" minOccurs="0" maxOccurs="1"/>
-                    <element name="disableReplyTo" type="boolean" minOccurs="0" maxOccurs="1"/>
-                    <element name="preserveMessageQos" type="boolean" minOccurs="0" maxOccurs="1"/>
-                    <element name="deliveryPersistent" type="boolean" minOccurs="0" maxOccurs="1"/>
-                    <element name="priority" type="int" minOccurs="0" maxOccurs="1"/>
-                    <element name="explicitQosEnabled" type="boolean" minOccurs="0" maxOccurs="1"/>
-                    <element name="replyTo" type="string" minOccurs="0" maxOccurs="1"/>
-                    <element name="replyToType" type="string" minOccurs="0" maxOccurs="1"/>
-                    <element name="requestTimeout" type="int" minOccurs="0" maxOccurs="1"/>
-                    <element name="selector" type="string" minOccurs="0" maxOccurs="1"/>
-                    <element name="timeToLive" type="int" minOccurs="0" maxOccurs="1"/>
-                    <element name="transacted" type="boolean" minOccurs="0" maxOccurs="1"/>
-                    <element name="transactionManager" type="string" minOccurs="0" maxOccurs="1"/>
-                </sequence>
-            </extension>
+            <extension base="camel:GenericMqBindingType" />
         </complexContent>
     </complexType>
 
@@ -348,6 +344,38 @@ MA  02110-1301, USA.
                         <element name="java" type="camel:JavaDSLType"/>
                         <element name="xml" type="camel:XMLDSLType"/>
                     </choice>
+                </sequence>
+            </extension>
+        </complexContent>
+    </complexType>
+
+    <complexType name="GenericMqBindingType">
+        <complexContent>
+            <extension base="camel:BaseCamelBinding">
+                <sequence>
+                    <choice minOccurs="1">
+                        <element name="queue" type="string"/>
+                        <element name="topic" type="string"/>
+                    </choice>
+                    <element name="connectionFactory" type="string" />
+                    <element name="username" type="string" minOccurs="0" maxOccurs="1"/>
+                    <element name="password" type="string" minOccurs="0" maxOccurs="1"/>
+                    <element name="clientId" type="string" minOccurs="0" maxOccurs="1"/>
+                    <element name="durableSubscriptionName" type="string" minOccurs="0" maxOccurs="1"/>
+                    <element name="concurrentConsumers" type="int" minOccurs="0" maxOccurs="1"/>
+                    <element name="maxConcurrentConsumers" type="int" minOccurs="0" maxOccurs="1"/>
+                    <element name="disableReplyTo" type="boolean" minOccurs="0" maxOccurs="1"/>
+                    <element name="preserveMessageQos" type="boolean" minOccurs="0" maxOccurs="1"/>
+                    <element name="deliveryPersistent" type="boolean" minOccurs="0" maxOccurs="1"/>
+                    <element name="priority" type="int" minOccurs="0" maxOccurs="1"/>
+                    <element name="explicitQosEnabled" type="boolean" minOccurs="0" maxOccurs="1"/>
+                    <element name="replyTo" type="string" minOccurs="0" maxOccurs="1"/>
+                    <element name="replyToType" type="string" minOccurs="0" maxOccurs="1"/>
+                    <element name="requestTimeout" type="int" minOccurs="0" maxOccurs="1"/>
+                    <element name="selector" type="string" minOccurs="0" maxOccurs="1"/>
+                    <element name="timeToLive" type="int" minOccurs="0" maxOccurs="1"/>
+                    <element name="transacted" type="boolean" minOccurs="0" maxOccurs="1"/>
+                    <element name="transactionManager" type="string" minOccurs="0" maxOccurs="1"/>
                 </sequence>
             </extension>
         </complexContent>
@@ -474,6 +502,30 @@ MA  02110-1301, USA.
             <element name="keepLastModified" type="boolean" minOccurs="0" maxOccurs="1"/>
             <element name="eagerDeleteTargetFile" type="boolean" minOccurs="0" maxOccurs="1"/>
             <element name="doneFileName" type="string" minOccurs="0" maxOccurs="1"/>
+        </sequence>
+    </complexType>
+
+    <complexType name="JpaConsumerType">
+        <complexContent>
+            <extension base="camel:ScheduledBatchPollConsumerType">
+                <sequence>
+                    <element name="consumeDelete" type="boolean" minOccurs="0" maxOccurs="1" />
+                    <element name="consumeLockEntity" type="boolean" minOccurs="0" maxOccurs="1" />
+                    <element name="maximumResults" type="int" minOccurs="0" maxOccurs="1" />
+                    <element name="consumer.query" type="string" minOccurs="0" maxOccurs="1" />
+                    <element name="consumer.namedQuery" type="string" minOccurs="0" maxOccurs="1" />
+                    <element name="consumer.nativeQuery" type="string" minOccurs="0" maxOccurs="1" />
+                    <element name="consumer.resultClass" type="string" minOccurs="0" maxOccurs="1" />
+                    <element name="consumer.transacted" type="boolean" minOccurs="0" maxOccurs="1" />
+                </sequence>
+            </extension>
+        </complexContent>
+    </complexType>
+
+    <complexType name="JpaProducerType">
+        <sequence>
+            <element name="flushOnSend" type="boolean" minOccurs="0" maxOccurs="1" />
+            <element name="usePersist" type="boolean" minOccurs="0" maxOccurs="1" />
         </sequence>
     </complexType>
 

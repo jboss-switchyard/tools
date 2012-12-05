@@ -203,6 +203,24 @@ public class SwitchYardModelValidationTest extends AbstractMavenProjectTestCase 
         runModelTest("transform-xslt");
     }
     
+    /**
+     * Tests import and configuration of camel-mail-binding quickstart.
+     * 
+     * @throws Exception if a failure occurs.
+     */
+    public void testCamelMailBindingQuickstart() throws Exception {
+        runModelTest("camel-mail-binding");
+    }
+
+    /**
+     * Tests import and configuration of camel-jpa-binding quickstart.
+     * DISABLED UNTIL SWITCHYARD-1201 is fixed
+     * @throws Exception if a failure occurs.
+     */
+//    public void testCamelJPABindingTQuickstart() throws Exception {
+//        runModelTest("camel-jpa-binding");
+//    }
+
     private void waitForJobs() throws Exception {
         waitForJobsToComplete();
     }

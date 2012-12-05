@@ -67,6 +67,7 @@ import org.switchyard.tools.ui.editor.components.camel.ftp.CamelFTPBindingFactor
 import org.switchyard.tools.ui.editor.components.camel.java.CamelJavaComponentFactory;
 import org.switchyard.tools.ui.editor.components.camel.java.CamelJavaImplementationFactory;
 import org.switchyard.tools.ui.editor.components.camel.jms.CamelJmsBindingFactory;
+import org.switchyard.tools.ui.editor.components.camel.jpa.CamelJPABindingFactory;
 import org.switchyard.tools.ui.editor.components.camel.mail.CamelMailBindingFactory;
 import org.switchyard.tools.ui.editor.components.camel.netty.CamelNettyTCPBindingFactory;
 import org.switchyard.tools.ui.editor.components.camel.netty.CamelNettyUDPBindingFactory;
@@ -264,6 +265,7 @@ public class SCADiagramFeatureProvider extends DefaultFeatureProvider {
         features.add(new CreateBindingFeature(this, new HttpBindingFactory(), "HTTP", "A HTTP based endpoint.", ImageProvider.IMG_16_HTTP));
         features.add(new CreateBindingFeature(this, new JCABindingFactory(), "JCA", "A JCA based endpoint.", ImageProvider.IMG_16_JCA));
         features.add(new CreateBindingFeature(this, new CamelJmsBindingFactory(), "JMS", "A Camel JMS based endpoint.", ImageProvider.IMG_16_QUEUE));
+        features.add(new CreateBindingFeature(this, new CamelJPABindingFactory(), "JPA", "A Camel JPA based endpoint.", ImageProvider.IMG_16_JPA));
         features.add(new CreateBindingFeature(this, new CamelMailBindingFactory(), "Mail", "A Camel Mail based endpoint.", ImageProvider.IMG_16_MAIL));
         features.add(new CreateBindingFeature(this, new CamelNettyTCPBindingFactory(), "Netty TCP",
                 "A Camel Netty TCP based endpoint.", ImageProvider.IMG_16_NETTY_TCP));

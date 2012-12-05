@@ -36,6 +36,7 @@ import org.switchyard.tools.models.switchyard1_0.camel.CamelFileBindingType;
 import org.switchyard.tools.models.switchyard1_0.camel.CamelFtpBindingType;
 import org.switchyard.tools.models.switchyard1_0.camel.CamelFtpsBindingType;
 import org.switchyard.tools.models.switchyard1_0.camel.CamelImplementationType;
+import org.switchyard.tools.models.switchyard1_0.camel.CamelJPABindingType;
 import org.switchyard.tools.models.switchyard1_0.camel.CamelJmsBindingType;
 import org.switchyard.tools.models.switchyard1_0.camel.CamelMailBindingType;
 import org.switchyard.tools.models.switchyard1_0.camel.CamelMailConsumerType;
@@ -59,6 +60,8 @@ import org.switchyard.tools.models.switchyard1_0.camel.GenericFileBindingType;
 import org.switchyard.tools.models.switchyard1_0.camel.GenericFileConsumerType;
 import org.switchyard.tools.models.switchyard1_0.camel.GenericFileProducerType;
 import org.switchyard.tools.models.switchyard1_0.camel.JavaDSLType;
+import org.switchyard.tools.models.switchyard1_0.camel.JpaConsumerType;
+import org.switchyard.tools.models.switchyard1_0.camel.JpaProducerType;
 import org.switchyard.tools.models.switchyard1_0.camel.MailConsumerAccountType;
 import org.switchyard.tools.models.switchyard1_0.camel.RemoteFileConsumerType;
 import org.switchyard.tools.models.switchyard1_0.camel.RemoteFileProducerType;
@@ -255,6 +258,27 @@ public class CamelPackageImpl extends EPackageImpl implements CamelPackage {
     private EClass camelMailBindingTypeEClass = null;
 
     /**
+     * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+     * @generated
+     */
+	private EClass jpaProducerTypeEClass = null;
+
+				/**
+     * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+     * @generated
+     */
+	private EClass jpaConsumerTypeEClass = null;
+
+				/**
+     * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+     * @generated
+     */
+	private EClass camelJPABindingTypeEClass = null;
+
+				/**
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @generated
@@ -1556,6 +1580,15 @@ public class CamelPackageImpl extends EPackageImpl implements CamelPackage {
 
     /**
      * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+     * @generated
+     */
+	public EReference getDocumentRoot_BindingJPA() {
+        return (EReference)documentRootEClass.getEStructuralFeatures().get(22);
+    }
+
+				/**
+     * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @generated
      */
@@ -1789,6 +1822,168 @@ public class CamelPackageImpl extends EPackageImpl implements CamelPackage {
     }
 
     /**
+     * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+     * @generated
+     */
+	public EClass getJpaProducerType() {
+        return jpaProducerTypeEClass;
+    }
+
+				/**
+     * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+     * @generated
+     */
+	public EAttribute getJpaProducerType_FlushOnSend() {
+        return (EAttribute)jpaProducerTypeEClass.getEStructuralFeatures().get(0);
+    }
+
+				/**
+     * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+     * @generated
+     */
+	public EAttribute getJpaProducerType_UsePersist() {
+        return (EAttribute)jpaProducerTypeEClass.getEStructuralFeatures().get(1);
+    }
+
+				/**
+     * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+     * @generated
+     */
+	public EClass getJpaConsumerType() {
+        return jpaConsumerTypeEClass;
+    }
+
+				/**
+     * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+     * @generated
+     */
+	public EAttribute getJpaConsumerType_ConsumeDelete() {
+        return (EAttribute)jpaConsumerTypeEClass.getEStructuralFeatures().get(0);
+    }
+
+				/**
+     * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+     * @generated
+     */
+	public EAttribute getJpaConsumerType_ConsumeLockEntity() {
+        return (EAttribute)jpaConsumerTypeEClass.getEStructuralFeatures().get(1);
+    }
+
+				/**
+     * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+     * @generated
+     */
+	public EAttribute getJpaConsumerType_MaximumResults() {
+        return (EAttribute)jpaConsumerTypeEClass.getEStructuralFeatures().get(2);
+    }
+
+				/**
+     * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+     * @generated
+     */
+	public EAttribute getJpaConsumerType_ConsumerQuery() {
+        return (EAttribute)jpaConsumerTypeEClass.getEStructuralFeatures().get(3);
+    }
+
+				/**
+     * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+     * @generated
+     */
+	public EAttribute getJpaConsumerType_ConsumerNamedQuery() {
+        return (EAttribute)jpaConsumerTypeEClass.getEStructuralFeatures().get(4);
+    }
+
+				/**
+     * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+     * @generated
+     */
+	public EAttribute getJpaConsumerType_ConsumerNativeQuery() {
+        return (EAttribute)jpaConsumerTypeEClass.getEStructuralFeatures().get(5);
+    }
+
+				/**
+     * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+     * @generated
+     */
+	public EAttribute getJpaConsumerType_ConsumerResultClass() {
+        return (EAttribute)jpaConsumerTypeEClass.getEStructuralFeatures().get(6);
+    }
+
+				/**
+     * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+     * @generated
+     */
+	public EAttribute getJpaConsumerType_ConsumerTransacted() {
+        return (EAttribute)jpaConsumerTypeEClass.getEStructuralFeatures().get(7);
+    }
+
+				/**
+     * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+     * @generated
+     */
+	public EClass getCamelJPABindingType() {
+        return camelJPABindingTypeEClass;
+    }
+
+				/**
+     * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+     * @generated
+     */
+	public EAttribute getCamelJPABindingType_EntityClassName() {
+        return (EAttribute)camelJPABindingTypeEClass.getEStructuralFeatures().get(0);
+    }
+
+				/**
+     * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+     * @generated
+     */
+	public EAttribute getCamelJPABindingType_PersistenceUnit() {
+        return (EAttribute)camelJPABindingTypeEClass.getEStructuralFeatures().get(1);
+    }
+
+				/**
+     * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+     * @generated
+     */
+	public EAttribute getCamelJPABindingType_TransactionManager() {
+        return (EAttribute)camelJPABindingTypeEClass.getEStructuralFeatures().get(2);
+    }
+
+				/**
+     * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+     * @generated
+     */
+	public EReference getCamelJPABindingType_Consume() {
+        return (EReference)camelJPABindingTypeEClass.getEStructuralFeatures().get(3);
+    }
+
+				/**
+     * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+     * @generated
+     */
+	public EReference getCamelJPABindingType_Produce() {
+        return (EReference)camelJPABindingTypeEClass.getEStructuralFeatures().get(4);
+    }
+
+				/**
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @generated
@@ -2781,6 +2976,7 @@ public class CamelPackageImpl extends EPackageImpl implements CamelPackage {
         createEReference(documentRootEClass, DOCUMENT_ROOT__CONTEXT_MAPPER);
         createEReference(documentRootEClass, DOCUMENT_ROOT__MESSAGE_COMPOSER);
         createEReference(documentRootEClass, DOCUMENT_ROOT__BINDING_MAIL);
+        createEReference(documentRootEClass, DOCUMENT_ROOT__BINDING_JPA);
 
         camelContextMapperTypeEClass = createEClass(CAMEL_CONTEXT_MAPPER_TYPE);
 
@@ -2812,6 +3008,27 @@ public class CamelPackageImpl extends EPackageImpl implements CamelPackage {
         createEReference(camelMailBindingTypeEClass, CAMEL_MAIL_BINDING_TYPE__CONSUME);
         createEReference(camelMailBindingTypeEClass, CAMEL_MAIL_BINDING_TYPE__PRODUCE);
         createEAttribute(camelMailBindingTypeEClass, CAMEL_MAIL_BINDING_TYPE__SECURE);
+
+        jpaProducerTypeEClass = createEClass(JPA_PRODUCER_TYPE);
+        createEAttribute(jpaProducerTypeEClass, JPA_PRODUCER_TYPE__FLUSH_ON_SEND);
+        createEAttribute(jpaProducerTypeEClass, JPA_PRODUCER_TYPE__USE_PERSIST);
+
+        jpaConsumerTypeEClass = createEClass(JPA_CONSUMER_TYPE);
+        createEAttribute(jpaConsumerTypeEClass, JPA_CONSUMER_TYPE__CONSUME_DELETE);
+        createEAttribute(jpaConsumerTypeEClass, JPA_CONSUMER_TYPE__CONSUME_LOCK_ENTITY);
+        createEAttribute(jpaConsumerTypeEClass, JPA_CONSUMER_TYPE__MAXIMUM_RESULTS);
+        createEAttribute(jpaConsumerTypeEClass, JPA_CONSUMER_TYPE__CONSUMER_QUERY);
+        createEAttribute(jpaConsumerTypeEClass, JPA_CONSUMER_TYPE__CONSUMER_NAMED_QUERY);
+        createEAttribute(jpaConsumerTypeEClass, JPA_CONSUMER_TYPE__CONSUMER_NATIVE_QUERY);
+        createEAttribute(jpaConsumerTypeEClass, JPA_CONSUMER_TYPE__CONSUMER_RESULT_CLASS);
+        createEAttribute(jpaConsumerTypeEClass, JPA_CONSUMER_TYPE__CONSUMER_TRANSACTED);
+
+        camelJPABindingTypeEClass = createEClass(CAMEL_JPA_BINDING_TYPE);
+        createEAttribute(camelJPABindingTypeEClass, CAMEL_JPA_BINDING_TYPE__ENTITY_CLASS_NAME);
+        createEAttribute(camelJPABindingTypeEClass, CAMEL_JPA_BINDING_TYPE__PERSISTENCE_UNIT);
+        createEAttribute(camelJPABindingTypeEClass, CAMEL_JPA_BINDING_TYPE__TRANSACTION_MANAGER);
+        createEReference(camelJPABindingTypeEClass, CAMEL_JPA_BINDING_TYPE__CONSUME);
+        createEReference(camelJPABindingTypeEClass, CAMEL_JPA_BINDING_TYPE__PRODUCE);
 
         // Create enums
         timeUnitEEnum = createEEnum(TIME_UNIT);
@@ -2885,6 +3102,8 @@ public class CamelPackageImpl extends EPackageImpl implements CamelPackage {
         camelMessageComposerTypeEClass.getESuperTypes().add(theSwitchyardPackage.getMessageComposerType());
         camelMailConsumerTypeEClass.getESuperTypes().add(this.getScheduledBatchPollConsumerType());
         camelMailBindingTypeEClass.getESuperTypes().add(this.getBaseCamelBinding());
+        jpaConsumerTypeEClass.getESuperTypes().add(this.getScheduledBatchPollConsumerType());
+        camelJPABindingTypeEClass.getESuperTypes().add(this.getBaseCamelBinding());
 
         // Initialize classes and features; add operations and parameters
         initEClass(baseCamelBindingEClass, BaseCamelBinding.class, "BaseCamelBinding", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
@@ -3114,6 +3333,7 @@ public class CamelPackageImpl extends EPackageImpl implements CamelPackage {
         initEReference(getDocumentRoot_ContextMapper(), this.getCamelContextMapperType(), null, "contextMapper", null, 0, -2, null, IS_TRANSIENT, IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, IS_DERIVED, IS_ORDERED);
         initEReference(getDocumentRoot_MessageComposer(), this.getCamelMessageComposerType(), null, "messageComposer", null, 0, -2, null, IS_TRANSIENT, IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, IS_DERIVED, IS_ORDERED);
         initEReference(getDocumentRoot_BindingMail(), this.getCamelMailBindingType(), null, "bindingMail", null, 0, -2, null, IS_TRANSIENT, IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, IS_DERIVED, IS_ORDERED);
+        initEReference(getDocumentRoot_BindingJPA(), this.getCamelJPABindingType(), null, "bindingJPA", null, 0, -2, null, IS_TRANSIENT, IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, IS_DERIVED, IS_ORDERED);
 
         initEClass(camelContextMapperTypeEClass, CamelContextMapperType.class, "CamelContextMapperType", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 
@@ -3145,6 +3365,27 @@ public class CamelPackageImpl extends EPackageImpl implements CamelPackage {
         initEReference(getCamelMailBindingType_Consume(), this.getCamelMailConsumerType(), null, "consume", null, 0, 1, CamelMailBindingType.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
         initEReference(getCamelMailBindingType_Produce(), this.getCamelMailProducerType(), null, "produce", null, 0, 1, CamelMailBindingType.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
         initEAttribute(getCamelMailBindingType_Secure(), theXMLTypePackage.getBooleanObject(), "secure", "false", 0, 1, CamelMailBindingType.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+        initEClass(jpaProducerTypeEClass, JpaProducerType.class, "JpaProducerType", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+        initEAttribute(getJpaProducerType_FlushOnSend(), theXMLTypePackage.getBooleanObject(), "flushOnSend", null, 0, 1, JpaProducerType.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+        initEAttribute(getJpaProducerType_UsePersist(), theXMLTypePackage.getBooleanObject(), "usePersist", null, 0, 1, JpaProducerType.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+        initEClass(jpaConsumerTypeEClass, JpaConsumerType.class, "JpaConsumerType", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+        initEAttribute(getJpaConsumerType_ConsumeDelete(), theXMLTypePackage.getBooleanObject(), "consumeDelete", null, 0, 1, JpaConsumerType.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+        initEAttribute(getJpaConsumerType_ConsumeLockEntity(), theXMLTypePackage.getBooleanObject(), "consumeLockEntity", null, 0, 1, JpaConsumerType.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+        initEAttribute(getJpaConsumerType_MaximumResults(), theXMLTypePackage.getIntObject(), "maximumResults", null, 0, 1, JpaConsumerType.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+        initEAttribute(getJpaConsumerType_ConsumerQuery(), theXMLTypePackage.getString(), "consumerQuery", null, 0, 1, JpaConsumerType.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+        initEAttribute(getJpaConsumerType_ConsumerNamedQuery(), theXMLTypePackage.getString(), "consumerNamedQuery", null, 0, 1, JpaConsumerType.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+        initEAttribute(getJpaConsumerType_ConsumerNativeQuery(), theXMLTypePackage.getString(), "consumerNativeQuery", null, 0, 1, JpaConsumerType.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+        initEAttribute(getJpaConsumerType_ConsumerResultClass(), theXMLTypePackage.getString(), "consumerResultClass", null, 0, 1, JpaConsumerType.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+        initEAttribute(getJpaConsumerType_ConsumerTransacted(), theXMLTypePackage.getBooleanObject(), "consumerTransacted", null, 0, 1, JpaConsumerType.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+        initEClass(camelJPABindingTypeEClass, CamelJPABindingType.class, "CamelJPABindingType", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+        initEAttribute(getCamelJPABindingType_EntityClassName(), theXMLTypePackage.getString(), "entityClassName", null, 1, 1, CamelJPABindingType.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+        initEAttribute(getCamelJPABindingType_PersistenceUnit(), theXMLTypePackage.getString(), "persistenceUnit", null, 1, 1, CamelJPABindingType.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+        initEAttribute(getCamelJPABindingType_TransactionManager(), theXMLTypePackage.getString(), "transactionManager", null, 0, 1, CamelJPABindingType.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+        initEReference(getCamelJPABindingType_Consume(), this.getJpaConsumerType(), null, "consume", null, 0, 1, CamelJPABindingType.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+        initEReference(getCamelJPABindingType_Produce(), this.getJpaProducerType(), null, "produce", null, 0, 1, CamelJPABindingType.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
         // Initialize enums and add enum literals
         initEEnum(timeUnitEEnum, TimeUnit.class, "TimeUnit");
@@ -4744,6 +4985,15 @@ public class CamelPackageImpl extends EPackageImpl implements CamelPackage {
              "affiliation", "urn:switchyard-config:switchyard:1.0#binding.switchyard"
            });		
         addAnnotation
+          (getDocumentRoot_BindingJPA(), 
+           source, 
+           new String[] {
+             "kind", "element",
+             "name", "binding.jpa",
+             "namespace", "##targetNamespace",
+             "affiliation", "urn:switchyard-config:switchyard:1.0#binding.switchyard"
+           });		
+        addAnnotation
           (timeUnitObjectEDataType, 
            source, 
            new String[] {
@@ -4958,6 +5208,147 @@ public class CamelPackageImpl extends EPackageImpl implements CamelPackage {
            new String[] {
              "kind", "attribute",
              "name", "secure"
+           });		
+        addAnnotation
+          (jpaProducerTypeEClass, 
+           source, 
+           new String[] {
+             "name", "JpaProducerType",
+             "kind", "elementOnly"
+           });		
+        addAnnotation
+          (getJpaProducerType_FlushOnSend(), 
+           source, 
+           new String[] {
+             "kind", "element",
+             "name", "flushOnSend",
+             "namespace", "##targetNamespace"
+           });		
+        addAnnotation
+          (getJpaProducerType_UsePersist(), 
+           source, 
+           new String[] {
+             "kind", "element",
+             "name", "usePersist",
+             "namespace", "##targetNamespace"
+           });		
+        addAnnotation
+          (jpaConsumerTypeEClass, 
+           source, 
+           new String[] {
+             "name", "JpaConsumerType",
+             "kind", "elementOnly"
+           });		
+        addAnnotation
+          (getJpaConsumerType_ConsumeDelete(), 
+           source, 
+           new String[] {
+             "kind", "element",
+             "name", "consumeDelete",
+             "namespace", "##targetNamespace"
+           });		
+        addAnnotation
+          (getJpaConsumerType_ConsumeLockEntity(), 
+           source, 
+           new String[] {
+             "kind", "element",
+             "name", "consumeLockEntity",
+             "namespace", "##targetNamespace"
+           });		
+        addAnnotation
+          (getJpaConsumerType_MaximumResults(), 
+           source, 
+           new String[] {
+             "kind", "element",
+             "name", "maximumResults",
+             "namespace", "##targetNamespace"
+           });		
+        addAnnotation
+          (getJpaConsumerType_ConsumerQuery(), 
+           source, 
+           new String[] {
+             "kind", "element",
+             "name", "consumer.query",
+             "namespace", "##targetNamespace"
+           });		
+        addAnnotation
+          (getJpaConsumerType_ConsumerNamedQuery(), 
+           source, 
+           new String[] {
+             "kind", "element",
+             "name", "consumer.namedQuery",
+             "namespace", "##targetNamespace"
+           });		
+        addAnnotation
+          (getJpaConsumerType_ConsumerNativeQuery(), 
+           source, 
+           new String[] {
+             "kind", "element",
+             "name", "consumer.nativeQuery",
+             "namespace", "##targetNamespace"
+           });		
+        addAnnotation
+          (getJpaConsumerType_ConsumerResultClass(), 
+           source, 
+           new String[] {
+             "kind", "element",
+             "name", "consumer.resultClass",
+             "namespace", "##targetNamespace"
+           });		
+        addAnnotation
+          (getJpaConsumerType_ConsumerTransacted(), 
+           source, 
+           new String[] {
+             "kind", "element",
+             "name", "consumer.transacted",
+             "namespace", "##targetNamespace"
+           });		
+        addAnnotation
+          (camelJPABindingTypeEClass, 
+           source, 
+           new String[] {
+             "name", "CamelJPABindingType",
+             "kind", "elementOnly"
+           });		
+        addAnnotation
+          (getCamelJPABindingType_EntityClassName(), 
+           source, 
+           new String[] {
+             "kind", "element",
+             "name", "entityClassName",
+             "namespace", "##targetNamespace"
+           });		
+        addAnnotation
+          (getCamelJPABindingType_PersistenceUnit(), 
+           source, 
+           new String[] {
+             "kind", "element",
+             "name", "persistenceUnit",
+             "namespace", "##targetNamespace"
+           });		
+        addAnnotation
+          (getCamelJPABindingType_TransactionManager(), 
+           source, 
+           new String[] {
+             "kind", "element",
+             "name", "transactionManager",
+             "namespace", "##targetNamespace"
+           });		
+        addAnnotation
+          (getCamelJPABindingType_Consume(), 
+           source, 
+           new String[] {
+             "kind", "element",
+             "name", "consume",
+             "namespace", "##targetNamespace"
+           });		
+        addAnnotation
+          (getCamelJPABindingType_Produce(), 
+           source, 
+           new String[] {
+             "kind", "element",
+             "name", "produce",
+             "namespace", "##targetNamespace"
            });
     }
 

@@ -206,6 +206,33 @@ public interface CamelFactory extends EFactory {
     CamelMailBindingType createCamelMailBindingType();
 
     /**
+     * Returns a new object of class '<em>Jpa Producer Type</em>'.
+     * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+     * @return a new object of class '<em>Jpa Producer Type</em>'.
+     * @generated
+     */
+	JpaProducerType createJpaProducerType();
+
+				/**
+     * Returns a new object of class '<em>Jpa Consumer Type</em>'.
+     * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+     * @return a new object of class '<em>Jpa Consumer Type</em>'.
+     * @generated
+     */
+	JpaConsumerType createJpaConsumerType();
+
+				/**
+     * Returns a new object of class '<em>JPA Binding Type</em>'.
+     * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+     * @return a new object of class '<em>JPA Binding Type</em>'.
+     * @generated
+     */
+	CamelJPABindingType createCamelJPABindingType();
+
+				/**
      * Returns a new object of class '<em>File Consumer Type</em>'.
      * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->

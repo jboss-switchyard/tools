@@ -224,6 +224,18 @@ public class CamelAdapterFactory extends AdapterFactoryImpl {
                 return createCamelMailBindingTypeAdapter();
             }
             @Override
+            public Adapter caseJpaProducerType(JpaProducerType object) {
+                return createJpaProducerTypeAdapter();
+            }
+            @Override
+            public Adapter caseJpaConsumerType(JpaConsumerType object) {
+                return createJpaConsumerTypeAdapter();
+            }
+            @Override
+            public Adapter caseCamelJPABindingType(CamelJPABindingType object) {
+                return createCamelJPABindingTypeAdapter();
+            }
+            @Override
             public Adapter caseCommonExtensionBase(CommonExtensionBase object) {
                 return createCommonExtensionBaseAdapter();
             }
@@ -576,6 +588,48 @@ public class CamelAdapterFactory extends AdapterFactoryImpl {
     }
 
     /**
+     * Creates a new adapter for an object of class '{@link org.switchyard.tools.models.switchyard1_0.camel.JpaProducerType <em>Jpa Producer Type</em>}'.
+     * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+     * @return the new adapter.
+     * @see org.switchyard.tools.models.switchyard1_0.camel.JpaProducerType
+     * @generated
+     */
+	public Adapter createJpaProducerTypeAdapter() {
+        return null;
+    }
+
+				/**
+     * Creates a new adapter for an object of class '{@link org.switchyard.tools.models.switchyard1_0.camel.JpaConsumerType <em>Jpa Consumer Type</em>}'.
+     * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+     * @return the new adapter.
+     * @see org.switchyard.tools.models.switchyard1_0.camel.JpaConsumerType
+     * @generated
+     */
+	public Adapter createJpaConsumerTypeAdapter() {
+        return null;
+    }
+
+				/**
+     * Creates a new adapter for an object of class '{@link org.switchyard.tools.models.switchyard1_0.camel.CamelJPABindingType <em>JPA Binding Type</em>}'.
+     * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+     * @return the new adapter.
+     * @see org.switchyard.tools.models.switchyard1_0.camel.CamelJPABindingType
+     * @generated
+     */
+	public Adapter createCamelJPABindingTypeAdapter() {
+        return null;
+    }
+
+				/**
      * Creates a new adapter for an object of class '{@link org.switchyard.tools.models.switchyard1_0.switchyard.ContextMapperType <em>Context Mapper Type</em>}'.
      * <!-- begin-user-doc -->
      * This default implementation returns null so that we can easily ignore cases;

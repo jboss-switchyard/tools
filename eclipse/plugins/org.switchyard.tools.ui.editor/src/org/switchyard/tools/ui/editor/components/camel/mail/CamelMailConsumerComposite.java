@@ -202,7 +202,7 @@ public class CamelMailConsumerComposite extends AbstractSYBindingComposite  {
         @Override
         public void run() throws Exception {
             if (_binding != null && _binding.getConsume() == null) {
-                setFeatureValue(_binding, "consume", CamelFactory.eINSTANCE.createFileConsumerType());
+                setFeatureValue(_binding, "consume", CamelFactory.eINSTANCE.createCamelMailConsumerType());
             }
         }
     }

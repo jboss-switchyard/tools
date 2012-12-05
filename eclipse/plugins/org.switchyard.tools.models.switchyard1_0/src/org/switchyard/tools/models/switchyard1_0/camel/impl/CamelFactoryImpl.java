@@ -93,6 +93,9 @@ public class CamelFactoryImpl extends EFactoryImpl implements CamelFactory {
             case CamelPackage.CAMEL_MAIL_CONSUMER_TYPE: return createCamelMailConsumerType();
             case CamelPackage.CAMEL_MAIL_PRODUCER_TYPE: return createCamelMailProducerType();
             case CamelPackage.CAMEL_MAIL_BINDING_TYPE: return createCamelMailBindingType();
+            case CamelPackage.JPA_PRODUCER_TYPE: return createJpaProducerType();
+            case CamelPackage.JPA_CONSUMER_TYPE: return createJpaConsumerType();
+            case CamelPackage.CAMEL_JPA_BINDING_TYPE: return createCamelJPABindingType();
             default:
                 throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier");
         }
@@ -339,6 +342,36 @@ public class CamelFactoryImpl extends EFactoryImpl implements CamelFactory {
     }
 
     /**
+     * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+     * @generated
+     */
+	public JpaProducerType createJpaProducerType() {
+        JpaProducerTypeImpl jpaProducerType = new JpaProducerTypeImpl();
+        return jpaProducerType;
+    }
+
+				/**
+     * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+     * @generated
+     */
+	public JpaConsumerType createJpaConsumerType() {
+        JpaConsumerTypeImpl jpaConsumerType = new JpaConsumerTypeImpl();
+        return jpaConsumerType;
+    }
+
+				/**
+     * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+     * @generated
+     */
+	public CamelJPABindingType createCamelJPABindingType() {
+        CamelJPABindingTypeImpl camelJPABindingType = new CamelJPABindingTypeImpl();
+        return camelJPABindingType;
+    }
+
+				/**
      * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
      * @generated

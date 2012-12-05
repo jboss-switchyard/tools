@@ -163,6 +163,18 @@
                   <version>${version.switchyard.runtime}</version>
                   <outputDirectory>test-data/quickstart-configs/transform-xslt</outputDirectory>
                 </artifactItem>
+                <artifactItem>
+                  <groupId>org.switchyard.quickstarts</groupId>
+                  <artifactId>switchyard-quickstart-camel-mail-binding</artifactId>
+                  <version>${version.switchyard.runtime}</version>
+                  <outputDirectory>test-data/quickstart-configs/camel-mail-binding</outputDirectory>
+                </artifactItem>
+                <artifactItem>
+                  <groupId>org.switchyard.quickstarts</groupId>
+                  <artifactId>switchyard-quickstart-camel-jpa-binding</artifactId>
+                  <version>${version.switchyard.runtime}</version>
+                  <outputDirectory>test-data/quickstart-configs/camel-jpa-binding</outputDirectory>
+                </artifactItem>
               </artifactItems>
             </configuration>
           </execution>

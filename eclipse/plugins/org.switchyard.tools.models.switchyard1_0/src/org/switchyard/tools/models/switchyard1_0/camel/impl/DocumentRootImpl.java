@@ -31,6 +31,7 @@ import org.switchyard.tools.models.switchyard1_0.camel.CamelFileBindingType;
 import org.switchyard.tools.models.switchyard1_0.camel.CamelFtpBindingType;
 import org.switchyard.tools.models.switchyard1_0.camel.CamelFtpsBindingType;
 import org.switchyard.tools.models.switchyard1_0.camel.CamelImplementationType;
+import org.switchyard.tools.models.switchyard1_0.camel.CamelJPABindingType;
 import org.switchyard.tools.models.switchyard1_0.camel.CamelJmsBindingType;
 import org.switchyard.tools.models.switchyard1_0.camel.CamelMailBindingType;
 import org.switchyard.tools.models.switchyard1_0.camel.CamelMessageComposerType;
@@ -74,6 +75,7 @@ import org.switchyard.tools.models.switchyard1_0.camel.DocumentRoot;
  *   <li>{@link org.switchyard.tools.models.switchyard1_0.camel.impl.DocumentRootImpl#getContextMapper <em>Context Mapper</em>}</li>
  *   <li>{@link org.switchyard.tools.models.switchyard1_0.camel.impl.DocumentRootImpl#getMessageComposer <em>Message Composer</em>}</li>
  *   <li>{@link org.switchyard.tools.models.switchyard1_0.camel.impl.DocumentRootImpl#getBindingMail <em>Binding Mail</em>}</li>
+ *   <li>{@link org.switchyard.tools.models.switchyard1_0.camel.impl.DocumentRootImpl#getBindingJPA <em>Binding JPA</em>}</li>
  * </ul>
  * </p>
  *
@@ -683,6 +685,33 @@ public class DocumentRootImpl extends EObjectImpl implements DocumentRoot {
 	 * <!-- end-user-doc -->
      * @generated
      */
+	public CamelJPABindingType getBindingJPA() {
+        return (CamelJPABindingType)getMixed().get(CamelPackage.Literals.DOCUMENT_ROOT__BINDING_JPA, true);
+    }
+
+				/**
+     * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+     * @generated
+     */
+	public NotificationChain basicSetBindingJPA(CamelJPABindingType newBindingJPA, NotificationChain msgs) {
+        return ((FeatureMap.Internal)getMixed()).basicAdd(CamelPackage.Literals.DOCUMENT_ROOT__BINDING_JPA, newBindingJPA, msgs);
+    }
+
+				/**
+     * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+     * @generated
+     */
+	public void setBindingJPA(CamelJPABindingType newBindingJPA) {
+        ((FeatureMap.Internal)getMixed()).set(CamelPackage.Literals.DOCUMENT_ROOT__BINDING_JPA, newBindingJPA);
+    }
+
+				/**
+     * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+     * @generated
+     */
 	@Override
 	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
         switch (featureID) {
@@ -730,6 +759,8 @@ public class DocumentRootImpl extends EObjectImpl implements DocumentRoot {
                 return basicSetMessageComposer(null, msgs);
             case CamelPackage.DOCUMENT_ROOT__BINDING_MAIL:
                 return basicSetBindingMail(null, msgs);
+            case CamelPackage.DOCUMENT_ROOT__BINDING_JPA:
+                return basicSetBindingJPA(null, msgs);
         }
         return super.eInverseRemove(otherEnd, featureID, msgs);
     }
@@ -789,6 +820,8 @@ public class DocumentRootImpl extends EObjectImpl implements DocumentRoot {
                 return getMessageComposer();
             case CamelPackage.DOCUMENT_ROOT__BINDING_MAIL:
                 return getBindingMail();
+            case CamelPackage.DOCUMENT_ROOT__BINDING_JPA:
+                return getBindingJPA();
         }
         return super.eGet(featureID, resolve, coreType);
     }
@@ -866,6 +899,9 @@ public class DocumentRootImpl extends EObjectImpl implements DocumentRoot {
                 return;
             case CamelPackage.DOCUMENT_ROOT__BINDING_MAIL:
                 setBindingMail((CamelMailBindingType)newValue);
+                return;
+            case CamelPackage.DOCUMENT_ROOT__BINDING_JPA:
+                setBindingJPA((CamelJPABindingType)newValue);
                 return;
         }
         super.eSet(featureID, newValue);
@@ -945,6 +981,9 @@ public class DocumentRootImpl extends EObjectImpl implements DocumentRoot {
             case CamelPackage.DOCUMENT_ROOT__BINDING_MAIL:
                 setBindingMail((CamelMailBindingType)null);
                 return;
+            case CamelPackage.DOCUMENT_ROOT__BINDING_JPA:
+                setBindingJPA((CamelJPABindingType)null);
+                return;
         }
         super.eUnset(featureID);
     }
@@ -1001,6 +1040,8 @@ public class DocumentRootImpl extends EObjectImpl implements DocumentRoot {
                 return getMessageComposer() != null;
             case CamelPackage.DOCUMENT_ROOT__BINDING_MAIL:
                 return getBindingMail() != null;
+            case CamelPackage.DOCUMENT_ROOT__BINDING_JPA:
+                return getBindingJPA() != null;
         }
         return super.eIsSet(featureID);
     }

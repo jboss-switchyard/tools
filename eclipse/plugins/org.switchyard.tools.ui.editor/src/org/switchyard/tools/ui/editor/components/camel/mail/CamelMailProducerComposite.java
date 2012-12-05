@@ -183,7 +183,7 @@ public class CamelMailProducerComposite extends AbstractSYBindingComposite {
         @Override
         public void run() throws Exception {
             if (_binding != null && _binding.getProduce() == null) {
-                setFeatureValue(_binding, "produce", CamelFactory.eINSTANCE.createFileProducerType());
+                setFeatureValue(_binding, "produce", CamelFactory.eINSTANCE.createCamelMailProducerType());
             }
         }
     }
