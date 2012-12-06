@@ -403,7 +403,12 @@ public class SOAPBindingComposite extends AbstractSYBindingComposite {
                                     .eContainer();
                             if (composite.eContainer() != null && composite.eContainer() instanceof SwitchYardType) {
                                 SwitchYardType rootSwitchYard = (SwitchYardType) composite.eContainer();
-                                this._contextPathText.setText(rootSwitchYard.getName());
+                                // fixes SWITCHYARD-1191
+                                if (rootSwitchYard != null && rootSwitchYard.getName() != null) {
+                                    this._contextPathText.setText(rootSwitchYard.getName());
+                                } else {
+                                    this._contextPathText.setText(composite.getName());
+                                }
                                 handleModify(_contextPathText);
                             }
                         }
