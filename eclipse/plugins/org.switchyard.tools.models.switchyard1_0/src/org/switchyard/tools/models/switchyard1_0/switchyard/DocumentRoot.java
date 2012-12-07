@@ -45,6 +45,7 @@ import org.eclipse.emf.ecore.util.FeatureMap;
  *   <li>{@link org.switchyard.tools.models.switchyard1_0.switchyard.DocumentRoot#getRegexOperationSelectorSwitchyard <em>Regex Operation Selector Switchyard</em>}</li>
  *   <li>{@link org.switchyard.tools.models.switchyard1_0.switchyard.DocumentRoot#getXpathOperationSelectorSwitchyard <em>Xpath Operation Selector Switchyard</em>}</li>
  *   <li>{@link org.switchyard.tools.models.switchyard1_0.switchyard.DocumentRoot#getStaticOperationSelectorSwitchyard <em>Static Operation Selector Switchyard</em>}</li>
+ *   <li>{@link org.switchyard.tools.models.switchyard1_0.switchyard.DocumentRoot#getSecurity <em>Security</em>}</li>
  * </ul>
  * </p>
  *
@@ -655,5 +656,32 @@ public interface DocumentRoot extends EObject {
      * @generated
      */
 	void setStaticOperationSelectorSwitchyard(StaticOperationSelectorType value);
+
+                /**
+     * Returns the value of the '<em><b>Security</b></em>' containment reference.
+     * <!-- begin-user-doc -->
+     * <p>
+     * If the meaning of the '<em>Security</em>' containment reference isn't clear,
+     * there really should be more of a description here...
+     * </p>
+     * <!-- end-user-doc -->
+     * @return the value of the '<em>Security</em>' containment reference.
+     * @see #setSecurity(SecurityType)
+     * @see org.switchyard.tools.models.switchyard1_0.switchyard.SwitchyardPackage#getDocumentRoot_Security()
+     * @model containment="true" upper="-2" transient="true" volatile="true" derived="true"
+     *        extendedMetaData="kind='element' name='security' namespace='##targetNamespace'"
+     * @generated
+     */
+    SecurityType getSecurity();
+
+                /**
+     * Sets the value of the '{@link org.switchyard.tools.models.switchyard1_0.switchyard.DocumentRoot#getSecurity <em>Security</em>}' containment reference.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @param value the new value of the '<em>Security</em>' containment reference.
+     * @see #getSecurity()
+     * @generated
+     */
+    void setSecurity(SecurityType value);
 
 } // DocumentRoot

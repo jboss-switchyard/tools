@@ -27,7 +27,7 @@ import org.switchyard.tools.models.switchyard1_0.switchyard.util.SwitchyardResou
  * SwitchYardModelValidationTest
  * 
  * Tests whether the models load in the EMF model for SwitchYard.
- *
+ * 
  * @author bfitzpat
  * 
  */
@@ -45,19 +45,20 @@ public class SwitchYardModelValidationTest extends AbstractMavenProjectTestCase 
 
     /**
      * Tests Helpdesk demo quickstart.
+     * 
      * @throws Exception exception
      */
     public void testDemosHelpdeskQuickstart() throws Exception {
         runModelTest("demos/helpdesk");
     }
 
-//    /**
-//     * Tests orders demo quickstart.
-//     * @throws Exception exception
-//     */
-//    public void testDemosOrdersQuickstart() throws Exception {
-//        runModelTest("demos/orders");
-//    }
+    // /**
+    // * Tests orders demo quickstart.
+    // * @throws Exception exception
+    // */
+    // public void testDemosOrdersQuickstart() throws Exception {
+    // runModelTest("demos/orders");
+    // }
 
     /**
      * Tests import and configuration of bpm-service quickstart.
@@ -95,14 +96,14 @@ public class SwitchYardModelValidationTest extends AbstractMavenProjectTestCase 
         runModelTest("camel-jms-binding");
     }
 
-//    /**
-//     * Tests import and configuration of camel-netty-binding quickstart.
-//     * 
-//     * @throws Exception if a failure occurs.
-//     */
-//    public void testCamelNettyBindingQuickstart() throws Exception {
-//        runModelTest("camel-netty-binding");
-//    }
+    // /**
+    // * Tests import and configuration of camel-netty-binding quickstart.
+    // *
+    // * @throws Exception if a failure occurs.
+    // */
+    // public void testCamelNettyBindingQuickstart() throws Exception {
+    // runModelTest("camel-netty-binding");
+    // }
 
     /**
      * Tests import and configuration of camel-rest-binding quickstart.
@@ -202,7 +203,7 @@ public class SwitchYardModelValidationTest extends AbstractMavenProjectTestCase 
     public void testTransformXSLTQuickstart() throws Exception {
         runModelTest("transform-xslt");
     }
-    
+
     /**
      * Tests import and configuration of camel-mail-binding quickstart.
      * 
@@ -213,13 +214,41 @@ public class SwitchYardModelValidationTest extends AbstractMavenProjectTestCase 
     }
 
     /**
-     * Tests import and configuration of camel-jpa-binding quickstart.
-     * DISABLED UNTIL SWITCHYARD-1201 is fixed
+     * Tests import and configuration of camel-jpa-binding quickstart. DISABLED
+     * UNTIL SWITCHYARD-1201 is fixed
+     * 
      * @throws Exception if a failure occurs.
      */
-//    public void testCamelJPABindingTQuickstart() throws Exception {
-//        runModelTest("camel-jpa-binding");
-//    }
+    // public void testCamelJPABindingTQuickstart() throws Exception {
+    // runModelTest("camel-jpa-binding");
+    // }
+
+    /**
+     * Tests policy-security-basic demo quickstart.
+     * 
+     * @throws Exception exception
+     */
+    public void testDemosPolicySecurityBasicQuickstart() throws Exception {
+        runModelTest("demos/policy-security-basic");
+    }
+
+    /**
+     * Tests policy-security-saml demo quickstart.
+     * 
+     * @throws Exception exception
+     */
+    public void testDemosPolicySecuritySAMLQuickstart() throws Exception {
+        runModelTest("demos/policy-security-saml");
+    }
+
+    /**
+     * Tests policy-security-cert demo quickstart.
+     * 
+     * @throws Exception exception
+     */
+    public void testDemosPolicySecurityCertQuickstart() throws Exception {
+        runModelTest("demos/policy-security-cert");
+    }
 
     private void waitForJobs() throws Exception {
         waitForJobsToComplete();
@@ -232,7 +261,7 @@ public class SwitchYardModelValidationTest extends AbstractMavenProjectTestCase 
     private void loadModelFile(String filepath) throws IOException {
         // Initialize the model
         SwitchyardPackage.eINSTANCE.eClass();
-        
+
         // Register the XMI resource factory for the .website extension
 
         Resource.Factory.Registry reg = Resource.Factory.Registry.INSTANCE;
@@ -245,24 +274,23 @@ public class SwitchYardModelValidationTest extends AbstractMavenProjectTestCase 
         String fileURI = "platform:/plugin/org.switchyard.tools.ui.tests/" + filepath;
 
         // Get the resource
-        Resource resource = resSet.getResource(URI
-                .createURI(fileURI), true);
+        Resource resource = resSet.getResource(URI.createURI(fileURI), true);
         assertTrue("root of test model is a Switchyard document root",
                 resource.getContents().get(0) instanceof DocumentRoot);
 
         // Get the first model element and cast it to the right type, in my
         // example everything is hierarchical included in this first node
         DocumentRoot docroot = (DocumentRoot) resource.getContents().get(0);
-        
+
         SwitchYardType switchyard = docroot.getSwitchyard();
         assertTrue("document root has one switchyard element", switchyard != null);
         assertTrue("no errors", resource.getErrors().isEmpty());
 
     }
-    
+
     private void runModelTest(String projectName) throws Exception {
         loadModelFile("test-data/quickstart-configs/" + projectName + "/META-INF/switchyard.xml");
 
         waitForJobs();
-   }
+    }
 }

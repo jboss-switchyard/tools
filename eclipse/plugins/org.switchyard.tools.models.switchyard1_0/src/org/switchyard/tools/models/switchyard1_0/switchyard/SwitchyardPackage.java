@@ -426,13 +426,22 @@ public interface SwitchyardPackage extends EPackage {
 	int DOCUMENT_ROOT__STATIC_OPERATION_SELECTOR_SWITCHYARD = 24;
 
 				/**
+     * The feature id for the '<em><b>Security</b></em>' containment reference.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int DOCUMENT_ROOT__SECURITY = 25;
+
+                /**
      * The number of structural features of the '<em>Document Root</em>' class.
      * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
      * @generated
      * @ordered
      */
-	int DOCUMENT_ROOT_FEATURE_COUNT = 25;
+	int DOCUMENT_ROOT_FEATURE_COUNT = 26;
 
 	/**
      * The meta object id for the '{@link org.switchyard.tools.models.switchyard1_0.switchyard.impl.DomainTypeImpl <em>Domain Type</em>}' class.
@@ -490,13 +499,22 @@ public interface SwitchyardPackage extends EPackage {
 	int DOMAIN_TYPE__NAME = 4;
 
 	/**
+     * The feature id for the '<em><b>Security</b></em>' containment reference.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int DOMAIN_TYPE__SECURITY = 5;
+
+    /**
      * The number of structural features of the '<em>Domain Type</em>' class.
      * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
      * @generated
      * @ordered
      */
-	int DOMAIN_TYPE_FEATURE_COUNT = 5;
+	int DOMAIN_TYPE_FEATURE_COUNT = 6;
 
 	/**
      * The meta object id for the '{@link org.switchyard.tools.models.switchyard1_0.switchyard.impl.EsbInterfaceImpl <em>Esb Interface</em>}' class.
@@ -1356,6 +1374,53 @@ public interface SwitchyardPackage extends EPackage {
 
 
 				/**
+     * The meta object id for the '{@link org.switchyard.tools.models.switchyard1_0.switchyard.impl.SecurityTypeImpl <em>Security Type</em>}' class.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @see org.switchyard.tools.models.switchyard1_0.switchyard.impl.SecurityTypeImpl
+     * @see org.switchyard.tools.models.switchyard1_0.switchyard.impl.SwitchyardPackageImpl#getSecurityType()
+     * @generated
+     */
+    int SECURITY_TYPE = 23;
+
+                /**
+     * The feature id for the '<em><b>Callback Handler</b></em>' attribute.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int SECURITY_TYPE__CALLBACK_HANDLER = 0;
+
+                /**
+     * The feature id for the '<em><b>Module Name</b></em>' attribute.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int SECURITY_TYPE__MODULE_NAME = 1;
+
+                /**
+     * The feature id for the '<em><b>Properties</b></em>' containment reference.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int SECURITY_TYPE__PROPERTIES = 2;
+
+                /**
+     * The number of structural features of the '<em>Security Type</em>' class.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int SECURITY_TYPE_FEATURE_COUNT = 3;
+
+
+                /**
      * Returns the meta object for class '{@link org.switchyard.tools.models.switchyard1_0.switchyard.ArtifactsType <em>Artifacts Type</em>}'.
      * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -1759,6 +1824,17 @@ public interface SwitchyardPackage extends EPackage {
 	EReference getDocumentRoot_StaticOperationSelectorSwitchyard();
 
 				/**
+     * Returns the meta object for the containment reference '{@link org.switchyard.tools.models.switchyard1_0.switchyard.DocumentRoot#getSecurity <em>Security</em>}'.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @return the meta object for the containment reference '<em>Security</em>'.
+     * @see org.switchyard.tools.models.switchyard1_0.switchyard.DocumentRoot#getSecurity()
+     * @see #getDocumentRoot()
+     * @generated
+     */
+    EReference getDocumentRoot_Security();
+
+                /**
      * Returns the meta object for class '{@link org.switchyard.tools.models.switchyard1_0.switchyard.DomainType <em>Domain Type</em>}'.
      * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -1824,6 +1900,17 @@ public interface SwitchyardPackage extends EPackage {
 	EAttribute getDomainType_Name();
 
 	/**
+     * Returns the meta object for the containment reference '{@link org.switchyard.tools.models.switchyard1_0.switchyard.DomainType#getSecurity <em>Security</em>}'.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @return the meta object for the containment reference '<em>Security</em>'.
+     * @see org.switchyard.tools.models.switchyard1_0.switchyard.DomainType#getSecurity()
+     * @see #getDomainType()
+     * @generated
+     */
+    EReference getDomainType_Security();
+
+    /**
      * Returns the meta object for class '{@link org.switchyard.tools.models.switchyard1_0.switchyard.EsbInterface <em>Esb Interface</em>}'.
      * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -2346,6 +2433,49 @@ public interface SwitchyardPackage extends EPackage {
 	EAttribute getXPathOperationSelectorType_Expression();
 
 	/**
+     * Returns the meta object for class '{@link org.switchyard.tools.models.switchyard1_0.switchyard.SecurityType <em>Security Type</em>}'.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @return the meta object for class '<em>Security Type</em>'.
+     * @see org.switchyard.tools.models.switchyard1_0.switchyard.SecurityType
+     * @generated
+     */
+    EClass getSecurityType();
+
+    /**
+     * Returns the meta object for the attribute '{@link org.switchyard.tools.models.switchyard1_0.switchyard.SecurityType#getCallbackHandler <em>Callback Handler</em>}'.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @return the meta object for the attribute '<em>Callback Handler</em>'.
+     * @see org.switchyard.tools.models.switchyard1_0.switchyard.SecurityType#getCallbackHandler()
+     * @see #getSecurityType()
+     * @generated
+     */
+    EAttribute getSecurityType_CallbackHandler();
+
+    /**
+     * Returns the meta object for the attribute '{@link org.switchyard.tools.models.switchyard1_0.switchyard.SecurityType#getModuleName <em>Module Name</em>}'.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @return the meta object for the attribute '<em>Module Name</em>'.
+     * @see org.switchyard.tools.models.switchyard1_0.switchyard.SecurityType#getModuleName()
+     * @see #getSecurityType()
+     * @generated
+     */
+    EAttribute getSecurityType_ModuleName();
+
+    /**
+     * Returns the meta object for the containment reference '{@link org.switchyard.tools.models.switchyard1_0.switchyard.SecurityType#getProperties <em>Properties</em>}'.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @return the meta object for the containment reference '<em>Properties</em>'.
+     * @see org.switchyard.tools.models.switchyard1_0.switchyard.SecurityType#getProperties()
+     * @see #getSecurityType()
+     * @generated
+     */
+    EReference getSecurityType_Properties();
+
+    /**
      * Returns the meta object for class '{@link org.switchyard.tools.models.switchyard1_0.switchyard.SwitchYardOperationSelectorType <em>Switch Yard Operation Selector Type</em>}'.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
@@ -2682,6 +2812,14 @@ public interface SwitchyardPackage extends EPackage {
 		EReference DOCUMENT_ROOT__STATIC_OPERATION_SELECTOR_SWITCHYARD = eINSTANCE.getDocumentRoot_StaticOperationSelectorSwitchyard();
 
 								/**
+         * The meta object literal for the '<em><b>Security</b></em>' containment reference feature.
+         * <!-- begin-user-doc -->
+         * <!-- end-user-doc -->
+         * @generated
+         */
+        EReference DOCUMENT_ROOT__SECURITY = eINSTANCE.getDocumentRoot_Security();
+
+                                /**
          * The meta object literal for the '{@link org.switchyard.tools.models.switchyard1_0.switchyard.impl.DomainTypeImpl <em>Domain Type</em>}' class.
          * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
@@ -2732,6 +2870,14 @@ public interface SwitchyardPackage extends EPackage {
 		EAttribute DOMAIN_TYPE__NAME = eINSTANCE.getDomainType_Name();
 
 		/**
+         * The meta object literal for the '<em><b>Security</b></em>' containment reference feature.
+         * <!-- begin-user-doc -->
+         * <!-- end-user-doc -->
+         * @generated
+         */
+        EReference DOMAIN_TYPE__SECURITY = eINSTANCE.getDomainType_Security();
+
+        /**
          * The meta object literal for the '{@link org.switchyard.tools.models.switchyard1_0.switchyard.impl.EsbInterfaceImpl <em>Esb Interface</em>}' class.
          * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
@@ -3158,6 +3304,40 @@ public interface SwitchyardPackage extends EPackage {
 		EAttribute XPATH_OPERATION_SELECTOR_TYPE__EXPRESSION = eINSTANCE.getXPathOperationSelectorType_Expression();
 
 								/**
+         * The meta object literal for the '{@link org.switchyard.tools.models.switchyard1_0.switchyard.impl.SecurityTypeImpl <em>Security Type</em>}' class.
+         * <!-- begin-user-doc -->
+         * <!-- end-user-doc -->
+         * @see org.switchyard.tools.models.switchyard1_0.switchyard.impl.SecurityTypeImpl
+         * @see org.switchyard.tools.models.switchyard1_0.switchyard.impl.SwitchyardPackageImpl#getSecurityType()
+         * @generated
+         */
+        EClass SECURITY_TYPE = eINSTANCE.getSecurityType();
+
+        /**
+         * The meta object literal for the '<em><b>Callback Handler</b></em>' attribute feature.
+         * <!-- begin-user-doc -->
+         * <!-- end-user-doc -->
+         * @generated
+         */
+        EAttribute SECURITY_TYPE__CALLBACK_HANDLER = eINSTANCE.getSecurityType_CallbackHandler();
+
+        /**
+         * The meta object literal for the '<em><b>Module Name</b></em>' attribute feature.
+         * <!-- begin-user-doc -->
+         * <!-- end-user-doc -->
+         * @generated
+         */
+        EAttribute SECURITY_TYPE__MODULE_NAME = eINSTANCE.getSecurityType_ModuleName();
+
+        /**
+         * The meta object literal for the '<em><b>Properties</b></em>' containment reference feature.
+         * <!-- begin-user-doc -->
+         * <!-- end-user-doc -->
+         * @generated
+         */
+        EReference SECURITY_TYPE__PROPERTIES = eINSTANCE.getSecurityType_Properties();
+
+                                /**
          * The meta object literal for the '{@link org.switchyard.tools.models.switchyard1_0.switchyard.impl.SwitchYardOperationSelectorTypeImpl <em>Switch Yard Operation Selector Type</em>}' class.
          * <!-- begin-user-doc -->
          * <!-- end-user-doc -->

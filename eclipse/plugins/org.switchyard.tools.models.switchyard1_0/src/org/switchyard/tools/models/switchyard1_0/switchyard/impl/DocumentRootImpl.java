@@ -33,6 +33,7 @@ import org.switchyard.tools.models.switchyard1_0.switchyard.PropertiesType;
 import org.switchyard.tools.models.switchyard1_0.switchyard.PropertyType;
 import org.switchyard.tools.models.switchyard1_0.switchyard.RegexOperationSelectorType;
 import org.switchyard.tools.models.switchyard1_0.switchyard.ResourceType;
+import org.switchyard.tools.models.switchyard1_0.switchyard.SecurityType;
 import org.switchyard.tools.models.switchyard1_0.switchyard.StaticOperationSelectorType;
 import org.switchyard.tools.models.switchyard1_0.switchyard.SwitchYardBindingType;
 import org.switchyard.tools.models.switchyard1_0.switchyard.SwitchYardOperationSelectorType;
@@ -76,6 +77,7 @@ import org.switchyard.tools.models.switchyard1_0.switchyard.XPathOperationSelect
  *   <li>{@link org.switchyard.tools.models.switchyard1_0.switchyard.impl.DocumentRootImpl#getRegexOperationSelectorSwitchyard <em>Regex Operation Selector Switchyard</em>}</li>
  *   <li>{@link org.switchyard.tools.models.switchyard1_0.switchyard.impl.DocumentRootImpl#getXpathOperationSelectorSwitchyard <em>Xpath Operation Selector Switchyard</em>}</li>
  *   <li>{@link org.switchyard.tools.models.switchyard1_0.switchyard.impl.DocumentRootImpl#getStaticOperationSelectorSwitchyard <em>Static Operation Selector Switchyard</em>}</li>
+ *   <li>{@link org.switchyard.tools.models.switchyard1_0.switchyard.impl.DocumentRootImpl#getSecurity <em>Security</em>}</li>
  * </ul>
  * </p>
  *
@@ -743,6 +745,33 @@ public class DocumentRootImpl extends EObjectImpl implements DocumentRoot {
 
 				/**
      * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public SecurityType getSecurity() {
+        return (SecurityType)getMixed().get(SwitchyardPackage.Literals.DOCUMENT_ROOT__SECURITY, true);
+    }
+
+                /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public NotificationChain basicSetSecurity(SecurityType newSecurity, NotificationChain msgs) {
+        return ((FeatureMap.Internal)getMixed()).basicAdd(SwitchyardPackage.Literals.DOCUMENT_ROOT__SECURITY, newSecurity, msgs);
+    }
+
+                /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public void setSecurity(SecurityType newSecurity) {
+        ((FeatureMap.Internal)getMixed()).set(SwitchyardPackage.Literals.DOCUMENT_ROOT__SECURITY, newSecurity);
+    }
+
+                /**
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
      * @generated
      */
@@ -799,6 +828,8 @@ public class DocumentRootImpl extends EObjectImpl implements DocumentRoot {
                 return basicSetXpathOperationSelectorSwitchyard(null, msgs);
             case SwitchyardPackage.DOCUMENT_ROOT__STATIC_OPERATION_SELECTOR_SWITCHYARD:
                 return basicSetStaticOperationSelectorSwitchyard(null, msgs);
+            case SwitchyardPackage.DOCUMENT_ROOT__SECURITY:
+                return basicSetSecurity(null, msgs);
         }
         return super.eInverseRemove(otherEnd, featureID, msgs);
     }
@@ -864,6 +895,8 @@ public class DocumentRootImpl extends EObjectImpl implements DocumentRoot {
                 return getXpathOperationSelectorSwitchyard();
             case SwitchyardPackage.DOCUMENT_ROOT__STATIC_OPERATION_SELECTOR_SWITCHYARD:
                 return getStaticOperationSelectorSwitchyard();
+            case SwitchyardPackage.DOCUMENT_ROOT__SECURITY:
+                return getSecurity();
         }
         return super.eGet(featureID, resolve, coreType);
     }
@@ -938,6 +971,9 @@ public class DocumentRootImpl extends EObjectImpl implements DocumentRoot {
                 return;
             case SwitchyardPackage.DOCUMENT_ROOT__STATIC_OPERATION_SELECTOR_SWITCHYARD:
                 setStaticOperationSelectorSwitchyard((StaticOperationSelectorType)newValue);
+                return;
+            case SwitchyardPackage.DOCUMENT_ROOT__SECURITY:
+                setSecurity((SecurityType)newValue);
                 return;
         }
         super.eSet(featureID, newValue);
@@ -1014,6 +1050,9 @@ public class DocumentRootImpl extends EObjectImpl implements DocumentRoot {
             case SwitchyardPackage.DOCUMENT_ROOT__STATIC_OPERATION_SELECTOR_SWITCHYARD:
                 setStaticOperationSelectorSwitchyard((StaticOperationSelectorType)null);
                 return;
+            case SwitchyardPackage.DOCUMENT_ROOT__SECURITY:
+                setSecurity((SecurityType)null);
+                return;
         }
         super.eUnset(featureID);
     }
@@ -1076,6 +1115,8 @@ public class DocumentRootImpl extends EObjectImpl implements DocumentRoot {
                 return getXpathOperationSelectorSwitchyard() != null;
             case SwitchyardPackage.DOCUMENT_ROOT__STATIC_OPERATION_SELECTOR_SWITCHYARD:
                 return getStaticOperationSelectorSwitchyard() != null;
+            case SwitchyardPackage.DOCUMENT_ROOT__SECURITY:
+                return getSecurity() != null;
         }
         return super.eIsSet(featureID);
     }

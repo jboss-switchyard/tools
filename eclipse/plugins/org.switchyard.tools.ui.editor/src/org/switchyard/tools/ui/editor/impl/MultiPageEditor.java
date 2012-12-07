@@ -12,18 +12,38 @@
  ******************************************************************************/
 package org.switchyard.tools.ui.editor.impl;
 
+import org.eclipse.core.databinding.observable.value.IValueChangeListener;
+import org.eclipse.core.databinding.observable.value.ValueChangeEvent;
 import org.eclipse.core.resources.IMarker;
+import org.eclipse.core.resources.IProject;
 import org.eclipse.core.runtime.IProgressMonitor;
+import org.eclipse.emf.common.command.Command;
 import org.eclipse.emf.common.util.EList;
+import org.eclipse.emf.transaction.NotificationFilter;
 import org.eclipse.emf.transaction.RecordingCommand;
+import org.eclipse.emf.transaction.ResourceSetChangeEvent;
+import org.eclipse.emf.transaction.ResourceSetListener;
+import org.eclipse.emf.transaction.RollbackException;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.eclipse.emf.transaction.impl.TransactionalEditingDomainImpl;
 import org.eclipse.gef.ContextMenuProvider;
 import org.eclipse.gef.ui.actions.ActionRegistry;
 import org.eclipse.gef.ui.actions.WorkbenchPartAction;
 import org.eclipse.graphiti.ui.editor.DiagramEditorContextMenuProvider;
+import org.eclipse.jdt.core.IJavaElement;
+import org.eclipse.jdt.core.IJavaProject;
+import org.eclipse.jdt.core.IType;
+import org.eclipse.jdt.core.JavaCore;
+import org.eclipse.jdt.core.JavaModelException;
+import org.eclipse.jdt.core.search.IJavaSearchScope;
+import org.eclipse.jdt.core.search.SearchEngine;
+import org.eclipse.jdt.ui.IJavaElementSearchConstants;
+import org.eclipse.jdt.ui.JavaUI;
 import org.eclipse.jface.action.IAction;
 import org.eclipse.jface.action.IMenuManager;
+import org.eclipse.jface.databinding.swt.ISWTObservableValue;
+import org.eclipse.jface.databinding.swt.SWTObservables;
+import org.eclipse.jface.internal.databinding.swt.SWTVetoableValueDecorator;
 import org.eclipse.jface.viewers.ISelection;
 import org.eclipse.jface.viewers.ISelectionProvider;
 import org.eclipse.jface.viewers.IStructuredSelection;
@@ -42,12 +62,15 @@ import org.eclipse.swt.layout.GridLayout;
 import org.eclipse.swt.widgets.Button;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Display;
+import org.eclipse.swt.widgets.Label;
+import org.eclipse.swt.widgets.Text;
 import org.eclipse.ui.IEditorInput;
 import org.eclipse.ui.IEditorPart;
 import org.eclipse.ui.IEditorSite;
 import org.eclipse.ui.IFileEditorInput;
 import org.eclipse.ui.IWorkbenchPart;
 import org.eclipse.ui.PartInitException;
+import org.eclipse.ui.dialogs.SelectionDialog;
 import org.eclipse.ui.forms.widgets.FormToolkit;
 import org.eclipse.ui.forms.widgets.Section;
 import org.eclipse.ui.ide.IDE;
@@ -63,12 +86,14 @@ import org.switchyard.tools.models.switchyard1_0.switchyard.HandlerType;
 import org.switchyard.tools.models.switchyard1_0.switchyard.HandlersType;
 import org.switchyard.tools.models.switchyard1_0.switchyard.PropertiesType;
 import org.switchyard.tools.models.switchyard1_0.switchyard.PropertyType;
+import org.switchyard.tools.models.switchyard1_0.switchyard.SecurityType;
 import org.switchyard.tools.models.switchyard1_0.switchyard.SwitchYardType;
 import org.switchyard.tools.models.switchyard1_0.switchyard.SwitchyardFactory;
 import org.switchyard.tools.ui.editor.diagram.shared.DomainPropertyInputDialog;
 import org.switchyard.tools.ui.editor.diagram.shared.DomainPropertyTable;
 import org.switchyard.tools.ui.editor.model.merge.MergedModelUtil;
 import org.switchyard.tools.ui.editor.model.merge.SwitchYardMergedModelAdapter;
+import org.switchyard.tools.ui.editor.util.ErrorUtils;
 import org.w3c.dom.Attr;
 import org.w3c.dom.Node;
 
@@ -76,7 +101,8 @@ import org.w3c.dom.Node;
  * @author bfitzpat
  * 
  */
-public class MultiPageEditor extends MultiPageEditorPart implements IGotoMarker {
+@SuppressWarnings("restriction")
+public class MultiPageEditor extends MultiPageEditorPart implements IGotoMarker, ResourceSetListener {
 
     /** The text editor used in page 0. */
     private SwitchyardSCAEditor _diagramEditor;
@@ -89,6 +115,9 @@ public class MultiPageEditor extends MultiPageEditorPart implements IGotoMarker 
     private TransactionalEditingDomain _editDomain = null;
     private SwitchYardType _syRoot = null;
     private DomainPropertyTable _domainProperties = null;
+    private DomainPropertyTable _securityProperties = null;
+    private Text _callbackHandlerText;
+    private Text _moduleNameText;
 
     /**
      * Creates a multi-page editor example.
@@ -104,15 +133,23 @@ public class MultiPageEditor extends MultiPageEditorPart implements IGotoMarker 
      */
     @Override
     public void dispose() {
+        removeDomainListener();
         super.dispose();
     }
 
     private void addDomainListener() {
         if (_editDomain == null) {
             _editDomain = (TransactionalEditingDomainImpl) getDiagramEditor().getEditingDomain();
+            _editDomain.addResourceSetListener(this);
         }
     }
 
+    private void removeDomainListener() {
+        if (_editDomain != null) {
+            _editDomain.removeResourceSetListener(this);
+        }
+    }
+    
     /**
      * Method declared on IEditorPart.
      * 
@@ -142,11 +179,12 @@ public class MultiPageEditor extends MultiPageEditorPart implements IGotoMarker 
         }
         super.init(site, editorInput);
     }
-    
+
     private SwitchYardType getSwitchYardRoot() {
-        SwitchYardType switchYardRoot = MergedModelUtil.getSwitchYard(getDiagramEditor().getResourceSet().getResources().get(0));
-        SwitchYardMergedModelAdapter mergedAdapter =
-                MergedModelUtil.getAdapter(switchYardRoot, SwitchYardMergedModelAdapter.class);
+        SwitchYardType switchYardRoot = MergedModelUtil.getSwitchYard(getDiagramEditor().getResourceSet()
+                .getResources().get(0));
+        SwitchYardMergedModelAdapter mergedAdapter = MergedModelUtil.getAdapter(switchYardRoot,
+                SwitchYardMergedModelAdapter.class);
         return mergedAdapter.getSwitchYard();
     }
 
@@ -293,12 +331,27 @@ public class MultiPageEditor extends MultiPageEditorPart implements IGotoMarker 
             }
         }
     }
-    
+
     private EList<PropertyType> getDomainPropertyList() {
         if (_syRoot != null) {
             DomainType domain = _syRoot.getDomain();
             if (domain != null) {
                 PropertiesType properties = domain.getProperties();
+                if (properties != null) {
+                    EList<PropertyType> propertyList = properties.getProperty();
+                    return propertyList;
+                }
+            }
+        }
+        return null;
+    }
+
+    private EList<PropertyType> getSecurityPropertyList() {
+        if (_syRoot != null) {
+            DomainType domain = _syRoot.getDomain();
+            if (domain != null && domain.getSecurity() != null) {
+                SecurityType security = domain.getSecurity();
+                PropertiesType properties = security.getProperties();
                 if (properties != null) {
                     EList<PropertyType> propertyList = properties.getProperty();
                     return propertyList;
@@ -324,40 +377,81 @@ public class MultiPageEditor extends MultiPageEditorPart implements IGotoMarker 
             }
         }
     }
-    
+
     private void addDomainProperty(final String name, final String value) {
         if (_syRoot != null) {
+            final SwitchYardType finalRoot = _syRoot;
+            _editDomain.getCommandStack().execute(new RecordingCommand(_editDomain) {
+                @Override
+                protected void doExecute() {
+                    DomainType domain = finalRoot.getDomain();
+                    if (domain == null) {
+                        domain = SwitchyardFactory.eINSTANCE.createDomainType();
+                        _syRoot.setDomain(domain);
+                    }
+                    PropertiesType properties = domain.getProperties();
+                    if (properties == null) {
+                        properties = SwitchyardFactory.eINSTANCE.createPropertiesType();
+                        domain.setProperties(properties);
+                    }
+                    EList<PropertyType> propertyList = properties.getProperty();
+                    PropertyType newProperty = SwitchyardFactory.eINSTANCE.createPropertyType();
+                    newProperty.setName(name);
+                    newProperty.setValue(value);
+                    propertyList.add(newProperty);
+                }
+            });
+        }
+    }
+
+    private void removeSecurityProperty(final PropertyType property) {
+        if (_syRoot != null) {
             DomainType domain = _syRoot.getDomain();
-            if (domain == null) {
-                domain = SwitchyardFactory.eINSTANCE.createDomainType();
-                _syRoot.setDomain(domain);
-            }
-            final DomainType finalDomain = domain;
-            PropertiesType properties = domain.getProperties();
-            if (properties == null) {
-                properties = SwitchyardFactory.eINSTANCE.createPropertiesType();
-                final PropertiesType finalProperties = properties;
-                
-                _editDomain.getCommandStack().execute(new RecordingCommand(_editDomain) {
-                    @Override
-                    protected void doExecute() {
-                        finalDomain.setProperties(finalProperties);
+            if (domain != null) {
+                SecurityType security = domain.getSecurity();
+                if (security != null) {
+                    final PropertiesType properties = security.getProperties();
+                    if (properties != null) {
+                        _editDomain.getCommandStack().execute(new RecordingCommand(_editDomain) {
+                            @Override
+                            protected void doExecute() {
+                                properties.getProperty().remove(property);
+                            }
+                        });
                     }
-                });
+                }
             }
-            if (properties != null) {
-                final EList<PropertyType> propertyList = properties.getProperty();
-                final PropertyType newProperty = SwitchyardFactory.eINSTANCE.createPropertyType();
-                newProperty.setName(name);
-                newProperty.setValue(value);
-                _editDomain.getCommandStack().execute(new RecordingCommand(_editDomain) {
-                    @Override
-                    protected void doExecute() {
-                        propertyList.add(newProperty);
+        }
+    }
+
+    private void addSecurityProperty(final String name, final String value) {
+        if (_syRoot != null) {
+            final SwitchYardType finalRoot = _syRoot;
+            _editDomain.getCommandStack().execute(new RecordingCommand(_editDomain) {
+                @Override
+                protected void doExecute() {
+                    DomainType domain = finalRoot.getDomain();
+                    if (domain == null) {
+                        domain = SwitchyardFactory.eINSTANCE.createDomainType();
+                        finalRoot.setDomain(domain);
                     }
-                });
-                _domainProperties.setSelection(propertyList);
-            }
+                    SecurityType security = domain.getSecurity();
+                    if (security == null) {
+                        security = SwitchyardFactory.eINSTANCE.createSecurityType();
+                        domain.setSecurity(security);
+                    }
+                    PropertiesType properties = security.getProperties();
+                    if (properties == null) {
+                        properties = SwitchyardFactory.eINSTANCE.createPropertiesType();
+                        security.setProperties(properties);
+                    }
+                    EList<PropertyType> propertyList = properties.getProperty();
+                    PropertyType newProperty = SwitchyardFactory.eINSTANCE.createPropertyType();
+                    newProperty.setName(name);
+                    newProperty.setValue(value);
+                    propertyList.add(newProperty);
+                }
+            });
         }
     }
 
@@ -379,6 +473,50 @@ public class MultiPageEditor extends MultiPageEditorPart implements IGotoMarker 
                     handlersList.remove(handlerToRemove);
                 }
             }
+        }
+    }
+
+    private void updateModuleName(final String value) {
+        if (_syRoot != null) {
+            final SwitchYardType finalRoot = _syRoot;
+            _editDomain.getCommandStack().execute(new RecordingCommand(_editDomain) {
+                @Override
+                protected void doExecute() {
+                    DomainType domain = finalRoot.getDomain();
+                    if (domain == null) {
+                        domain = SwitchyardFactory.eINSTANCE.createDomainType();
+                        finalRoot.setDomain(domain);
+                    }
+                    SecurityType security = domain.getSecurity();
+                    if (security == null) {
+                        security = SwitchyardFactory.eINSTANCE.createSecurityType();
+                        domain.setSecurity(security);
+                    }
+                    security.setModuleName(value);
+                }
+            });
+        }
+    }
+
+    private void updateCallbackHandler(final String value) {
+        if (_syRoot != null) {
+            final SwitchYardType finalRoot = _syRoot;
+            _editDomain.getCommandStack().execute(new RecordingCommand(_editDomain) {
+                @Override
+                protected void doExecute() {
+                    DomainType domain = finalRoot.getDomain();
+                    if (domain == null) {
+                        domain = SwitchyardFactory.eINSTANCE.createDomainType();
+                        finalRoot.setDomain(domain);
+                    }
+                    SecurityType security = domain.getSecurity();
+                    if (security == null) {
+                        security = SwitchyardFactory.eINSTANCE.createSecurityType();
+                        domain.setSecurity(security);
+                    }
+                    security.setCallbackHandler(value);
+                }
+            });
         }
     }
 
@@ -422,105 +560,222 @@ public class MultiPageEditor extends MultiPageEditorPart implements IGotoMarker 
         return false;
     }
 
+    private void createDomainSettingsSection(FormToolkit toolkit, Composite parent) {
+        // Creating the Main Domain Settings section
+        Section section = toolkit.createSection(_domainPage, Section.TITLE_BAR);
+        section.setText("Domain Settings"); //$NON-NLS-1$
+        section.setLayout(new GridLayout(1, false));
+        section.setLayoutData(new GridData(GridData.FILL, GridData.FILL, true, false));
+
+        // Composite for storing controls of the main section
+        Composite client = toolkit.createComposite(section, SWT.WRAP);
+        GridLayout layout = new GridLayout();
+        layout.numColumns = 2;
+        layout.marginWidth = 2;
+        layout.marginHeight = 2;
+        client.setLayout(layout);
+
+        _messageTraceCheckbox = toolkit.createButton(client, "Enable Message Trace", SWT.CHECK | SWT.LEFT); //$NON-NLS-1$
+        _messageTraceCheckbox.setLayoutData(new GridData(GridData.FILL, GridData.BEGINNING, true, false));
+        _messageTraceCheckbox.addSelectionListener(new SelectionListener() {
+
+            @Override
+            public void widgetSelected(SelectionEvent e) {
+                widgetDefaultSelected(e);
+            }
+
+            @Override
+            public void widgetDefaultSelected(SelectionEvent e) {
+                if (_syRoot != null) {
+                    updateMessageTraceHandler(_messageTraceCheckbox.getSelection());
+                }
+            }
+        });
+
+        _messageTraceCheckbox.addKeyListener(new KeyListener() {
+            @Override
+            public void keyPressed(KeyEvent e) {
+                // ignore
+            }
+
+            @Override
+            public void keyReleased(KeyEvent e) {
+                if (e.keyCode == SWT.CR) {
+                    updateMessageTraceHandler(_messageTraceCheckbox.getSelection());
+                }
+            }
+        });
+
+        Section section2 = toolkit.createSection(_domainPage, Section.TITLE_BAR);
+        section2.setText("Domain Properties"); //$NON-NLS-1$
+        section2.setLayout(new GridLayout(1, false));
+        section2.setLayoutData(new GridData(GridData.FILL, GridData.FILL, true, false));
+
+        // Composite for storing controls of the main section
+        Composite client2 = toolkit.createComposite(section2, SWT.WRAP);
+        GridLayout layout2 = new GridLayout();
+        layout2.numColumns = 2;
+        layout2.marginWidth = 2;
+        layout2.marginHeight = 2;
+        client2.setLayout(layout2);
+
+        _domainProperties = new DomainPropertyTable(client2, SWT.NONE) {
+
+            @Override
+            protected void removeFromList() {
+                final PropertyType toRemove = _domainProperties.getTableSelection();
+                if (toRemove != null) {
+                    removeDomainProperty(toRemove);
+                }
+            }
+
+            @Override
+            protected void addPropertyTypeToList() {
+                final DomainPropertyInputDialog dialog = new DomainPropertyInputDialog(Display.getCurrent()
+                        .getActiveShell());
+                int rtn_value = dialog.open();
+                if (rtn_value == DomainPropertyInputDialog.OK) {
+                    final String name = dialog.getPropertyName();
+                    final String value = dialog.getPropertyValue();
+                    addDomainProperty(name, value);
+                }
+
+            }
+        };
+        _domainProperties.setLayoutData(new GridData(GridData.FILL, GridData.BEGINNING, true, false, 2, 5));
+
+        section2.setClient(client2);
+        section.setClient(client);
+    }
+
+    private void handleBrowse() {
+        IJavaSearchScope scope = null;
+        IProject project = SwitchyardSCAEditor.getActiveEditor().getModelFile().getProject();
+        IJavaProject javaProject = JavaCore.create(project);
+        if (javaProject == null) {
+            scope = SearchEngine.createWorkspaceScope();
+        } else {
+            scope = SearchEngine.createJavaSearchScope(new IJavaElement[] {javaProject });
+        }
+        try {
+            SelectionDialog dialog = JavaUI.createTypeDialog(Display.getCurrent().getActiveShell(), null, scope,
+                    IJavaElementSearchConstants.CONSIDER_CLASSES, false);
+            if (dialog.open() == SelectionDialog.OK) {
+                Object[] result = dialog.getResult();
+                if (result.length > 0 && result[0] instanceof IType) {
+                    IType clazz = (IType) result[0];
+                    String className = clazz.getFullyQualifiedName();
+                    if (_syRoot != null) {
+                        DomainType domain = _syRoot.getDomain();
+                        if (domain != null && domain.getSecurity() != null) {
+                            if (domain.getSecurity().getCallbackHandler() != null) {
+                                boolean isSame = domain.getSecurity().getCallbackHandler().contentEquals(className);
+                                if (!isSame) {
+                                    _callbackHandlerText.setText(className);
+                                    updateCallbackHandler(className);
+                                }
+                            } else {
+                                _callbackHandlerText.setText(className);
+                                updateCallbackHandler(className);
+                            }
+                        } else {
+                            _callbackHandlerText.setText(className);
+                            updateCallbackHandler(className);
+                        }
+                    }
+                }
+            }
+        } catch (JavaModelException e) {
+            e.printStackTrace();
+        }
+    }
+
+    private void createDomainSecuritySettingsSection(FormToolkit toolkit, Composite parent) {
+        Section section3 = toolkit.createSection(_domainPage, Section.TITLE_BAR);
+        section3.setText("Security Properties"); //$NON-NLS-1$
+        section3.setLayout(new GridLayout(1, false));
+        section3.setLayoutData(new GridData(GridData.FILL, GridData.FILL, true, false));
+
+        // Composite for storing controls of the main section
+        Composite client3 = toolkit.createComposite(section3, SWT.WRAP);
+        GridLayout layout3 = new GridLayout();
+        layout3.numColumns = 3;
+        layout3.marginWidth = 2;
+        layout3.marginHeight = 2;
+        client3.setLayout(layout3);
+
+        toolkit.createLabel(client3, "Callback Handler Class");
+        _callbackHandlerText = toolkit.createText(client3, "", SWT.READ_ONLY);
+        _callbackHandlerText.setLayoutData(new GridData(GridData.FILL, GridData.BEGINNING, true, false));
+
+        Button _callbackHandlerBrowseBtn = toolkit.createButton(client3, "Browse...", SWT.PUSH);
+        _callbackHandlerBrowseBtn.addSelectionListener(new SelectionListener() {
+
+            @Override
+            public void widgetSelected(SelectionEvent e) {
+                handleBrowse();
+            }
+
+            @Override
+            public void widgetDefaultSelected(SelectionEvent e) {
+            }
+        });
+
+        toolkit.createLabel(client3, "Module Name");
+        _moduleNameText = toolkit.createText(client3, "");
+        _moduleNameText.setLayoutData(new GridData(GridData.FILL, GridData.BEGINNING, true, false, 2, 1));
+
+        ModuleNameTextValueChangeListener moduleNameListener = new ModuleNameTextValueChangeListener();
+        ISWTObservableValue mnfocusObserver = SWTObservables.observeText(_moduleNameText, SWT.FocusOut);
+        mnfocusObserver.addValueChangeListener(moduleNameListener);
+
+        Label separator = toolkit.createLabel(client3, null, SWT.HORIZONTAL);
+        separator.setLayoutData(new GridData(GridData.FILL, GridData.BEGINNING, true, false, 3, 1));
+        
+        _securityProperties = new DomainPropertyTable(client3, SWT.NONE) {
+
+            @Override
+            protected void removeFromList() {
+                final PropertyType toRemove = _securityProperties.getTableSelection();
+                if (toRemove != null) {
+                    removeSecurityProperty(toRemove);
+                }
+            }
+
+            @Override
+            protected void addPropertyTypeToList() {
+                final DomainPropertyInputDialog dialog = new DomainPropertyInputDialog(Display.getCurrent()
+                        .getActiveShell());
+                int rtn_value = dialog.open();
+                if (rtn_value == DomainPropertyInputDialog.OK) {
+                    final String name = dialog.getPropertyName();
+                    final String value = dialog.getPropertyValue();
+                    addSecurityProperty(name, value);
+                }
+
+            }
+        };
+        _securityProperties.setLayoutData(new GridData(GridData.FILL, GridData.BEGINNING, true, false, 3, 5));
+
+        section3.setClient(client3);
+    }
+
     private void createDomainPage() {
         if (_domainPage == null) {
-            
+
             FormToolkit toolkit = new FormToolkit(getContainer().getDisplay());
             _domainPage = toolkit.createComposite(getContainer());
             _domainPage.setLayout(new GridLayout(1, false));
-            
-            // Creating the Main Domain Settings section
-            Section section = toolkit.createSection(_domainPage, Section.TITLE_BAR);
-            section.setText("Domain Settings"); //$NON-NLS-1$
-            section.setLayout(new GridLayout(1, false));
-            section.setLayoutData(new GridData(GridData.FILL, GridData.FILL, true, true));
 
-            // Composite for storing controls of the main section
-            Composite client = toolkit.createComposite(section, SWT.WRAP);
-            GridLayout layout = new GridLayout();
-            layout.numColumns = 2;
-            layout.marginWidth = 2;
-            layout.marginHeight = 2;
-            client.setLayout(layout);
-
-            _messageTraceCheckbox = toolkit.createButton(client, "Enable Message Trace", SWT.CHECK | SWT.LEFT); //$NON-NLS-1$
-            _messageTraceCheckbox.setLayoutData(new GridData(GridData.FILL, GridData.BEGINNING, true, false));
-            _messageTraceCheckbox.setSelection(testForMessageTraceHandler());
-            _messageTraceCheckbox.addSelectionListener(new SelectionListener() {
-
-                @Override
-                public void widgetSelected(SelectionEvent e) {
-                    widgetDefaultSelected(e);
-                }
-
-                @Override
-                public void widgetDefaultSelected(SelectionEvent e) {
-                    if (_syRoot != null) {
-                        updateMessageTraceHandler(_messageTraceCheckbox.getSelection());
-                    }
-                }
-            });
-
-            _messageTraceCheckbox.addKeyListener(new KeyListener() {
-                @Override
-                public void keyPressed(KeyEvent e) {
-                    // ignore
-                }
-
-                @Override
-                public void keyReleased(KeyEvent e) {
-                    if (e.keyCode == SWT.CR) {
-                        updateMessageTraceHandler(_messageTraceCheckbox.getSelection());
-                    }
-                }
-            });
-            
-            Section section2 = toolkit.createSection(_domainPage, Section.TITLE_BAR);
-            section2.setText("Domain Properties"); //$NON-NLS-1$
-            section2.setLayout(new GridLayout(1, false));
-            section2.setLayoutData(new GridData(GridData.FILL, GridData.FILL, true, true));
-
-            // Composite for storing controls of the main section
-            Composite client2 = toolkit.createComposite(section2, SWT.WRAP);
-            GridLayout layout2 = new GridLayout();
-            layout2.numColumns = 2;
-            layout2.marginWidth = 2;
-            layout2.marginHeight = 2;
-            client2.setLayout(layout2);
-
-            _domainProperties = new DomainPropertyTable(client2, SWT.NONE) {
-                
-                @Override
-                protected void removeFromList() {
-                    final PropertyType toRemove = _domainProperties.getTableSelection();
-                    if (toRemove != null) {
-                        removeDomainProperty(toRemove);
-                    }
-                }
-                
-                @Override
-                protected void addPropertyTypeToList() {
-                    final DomainPropertyInputDialog dialog = new DomainPropertyInputDialog(Display.getCurrent().getActiveShell());
-                    int rtn_value = dialog.open();
-                    if (rtn_value == DomainPropertyInputDialog.OK) {
-                        final String name = dialog.getPropertyName();
-                        final String value = dialog.getPropertyValue();
-                        addDomainProperty(name, value);
-                    }
-                    
-                }
-            };
-            _domainProperties.setLayoutData(new GridData(GridData.FILL, GridData.BEGINNING, true, false, 2, 5));
-            _domainProperties.setSelection(getDomainPropertyList());
-
-            section2.setClient(client2);
-            section.setClient(client);
+            createDomainSettingsSection(toolkit, _domainPage);
+            createDomainSecuritySettingsSection(toolkit, _domainPage);
 
             int index = addPage(_domainPage);
-            setPageText(index, "Domain");          
+            setPageText(index, "Domain");
+            refresh();
         }
     }
-    
+
     protected void createDesignEditor() {
         if (_diagramEditor == null) {
             _diagramEditor = new DesignEditor();
@@ -754,6 +1009,74 @@ public class MultiPageEditor extends MultiPageEditorPart implements IGotoMarker 
         createDesignEditor();
         createDomainPage();
         createSourceViewer();
+    }
+
+    class ModuleNameTextValueChangeListener implements IValueChangeListener {
+        @Override
+        public void handleValueChange(final ValueChangeEvent e) {
+            if (e.diff != null && !e.diff.getOldValue().equals(e.diff.getNewValue())) {
+                System.out.println("MultiPageEditor/Domain page: " + e.diff);
+                SWTVetoableValueDecorator decorator = (SWTVetoableValueDecorator) e.getSource();
+                Text textControl = (Text) decorator.getWidget();
+                updateModuleName(textControl.getText());
+                ErrorUtils.showErrorMessage(null);
+            }
+        }
+    }
+
+    private void refresh() {
+        Display.getDefault().asyncExec(new Runnable() {
+            public void run() {
+                _messageTraceCheckbox.setSelection(testForMessageTraceHandler());
+                _domainProperties.setSelection(getDomainPropertyList());
+                _securityProperties.setSelection(getSecurityPropertyList());
+                if (_syRoot != null) {
+                    DomainType domain = _syRoot.getDomain();
+                    if (domain != null) {
+                        _domainProperties.setTargetObject(domain);
+                        if (domain.getSecurity() != null) {
+                            _securityProperties.setTargetObject(domain.getSecurity());
+                            if (domain.getSecurity().getCallbackHandler() != null) {
+                                _callbackHandlerText.setText(domain.getSecurity().getCallbackHandler());
+                            }
+                            if (domain.getSecurity().getModuleName() != null) {
+                                _moduleNameText.setText(domain.getSecurity().getModuleName());
+                            }
+                        }
+                    }
+                }
+            }
+        });
+    }
+    
+    @Override
+    public NotificationFilter getFilter() {
+        return null;
+    }
+
+    @Override
+    public Command transactionAboutToCommit(ResourceSetChangeEvent event) throws RollbackException {
+        return null;
+    }
+
+    @Override
+    public void resourceSetChanged(ResourceSetChangeEvent event) {
+        refresh();
+    }
+
+    @Override
+    public boolean isAggregatePrecommitListener() {
+        return false;
+    }
+
+    @Override
+    public boolean isPrecommitOnly() {
+        return false;
+    }
+
+    @Override
+    public boolean isPostcommitOnly() {
+        return false;
     }
 
 }

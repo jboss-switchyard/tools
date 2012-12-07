@@ -83,6 +83,7 @@ import org.switchyard.tools.models.switchyard1_0.switchyard.PropertiesType;
 import org.switchyard.tools.models.switchyard1_0.switchyard.PropertyType;
 import org.switchyard.tools.models.switchyard1_0.switchyard.RegexOperationSelectorType;
 import org.switchyard.tools.models.switchyard1_0.switchyard.ResourceType;
+import org.switchyard.tools.models.switchyard1_0.switchyard.SecurityType;
 import org.switchyard.tools.models.switchyard1_0.switchyard.StaticOperationSelectorType;
 import org.switchyard.tools.models.switchyard1_0.switchyard.SwitchYardBindingType;
 import org.switchyard.tools.models.switchyard1_0.switchyard.SwitchYardOperationSelectorType;
@@ -261,6 +262,13 @@ public class SwitchyardPackageImpl extends EPackageImpl implements SwitchyardPac
 	private EClass xPathOperationSelectorTypeEClass = null;
 
 	/**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    private EClass securityTypeEClass = null;
+
+    /**
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @generated
@@ -721,6 +729,15 @@ public class SwitchyardPackageImpl extends EPackageImpl implements SwitchyardPac
 
 				/**
      * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public EReference getDocumentRoot_Security() {
+        return (EReference)documentRootEClass.getEStructuralFeatures().get(25);
+    }
+
+                /**
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
      * @generated
      */
@@ -774,6 +791,15 @@ public class SwitchyardPackageImpl extends EPackageImpl implements SwitchyardPac
     }
 
 	/**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public EReference getDomainType_Security() {
+        return (EReference)domainTypeEClass.getEStructuralFeatures().get(5);
+    }
+
+    /**
      * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
      * @generated
@@ -1219,6 +1245,42 @@ public class SwitchyardPackageImpl extends EPackageImpl implements SwitchyardPac
      * <!-- end-user-doc -->
      * @generated
      */
+    public EClass getSecurityType() {
+        return securityTypeEClass;
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public EAttribute getSecurityType_CallbackHandler() {
+        return (EAttribute)securityTypeEClass.getEStructuralFeatures().get(0);
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public EAttribute getSecurityType_ModuleName() {
+        return (EAttribute)securityTypeEClass.getEStructuralFeatures().get(1);
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public EReference getSecurityType_Properties() {
+        return (EReference)securityTypeEClass.getEStructuralFeatures().get(2);
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
     public EClass getSwitchYardOperationSelectorType() {
         return switchYardOperationSelectorTypeEClass;
     }
@@ -1291,6 +1353,7 @@ public class SwitchyardPackageImpl extends EPackageImpl implements SwitchyardPac
         createEReference(documentRootEClass, DOCUMENT_ROOT__REGEX_OPERATION_SELECTOR_SWITCHYARD);
         createEReference(documentRootEClass, DOCUMENT_ROOT__XPATH_OPERATION_SELECTOR_SWITCHYARD);
         createEReference(documentRootEClass, DOCUMENT_ROOT__STATIC_OPERATION_SELECTOR_SWITCHYARD);
+        createEReference(documentRootEClass, DOCUMENT_ROOT__SECURITY);
 
         domainTypeEClass = createEClass(DOMAIN_TYPE);
         createEReference(domainTypeEClass, DOMAIN_TYPE__TRANSFORMS);
@@ -1298,6 +1361,7 @@ public class SwitchyardPackageImpl extends EPackageImpl implements SwitchyardPac
         createEReference(domainTypeEClass, DOMAIN_TYPE__PROPERTIES);
         createEReference(domainTypeEClass, DOMAIN_TYPE__HANDLERS);
         createEAttribute(domainTypeEClass, DOMAIN_TYPE__NAME);
+        createEReference(domainTypeEClass, DOMAIN_TYPE__SECURITY);
 
         esbInterfaceEClass = createEClass(ESB_INTERFACE);
         createEAttribute(esbInterfaceEClass, ESB_INTERFACE__INPUT_TYPE);
@@ -1366,6 +1430,11 @@ public class SwitchyardPackageImpl extends EPackageImpl implements SwitchyardPac
 
         xPathOperationSelectorTypeEClass = createEClass(XPATH_OPERATION_SELECTOR_TYPE);
         createEAttribute(xPathOperationSelectorTypeEClass, XPATH_OPERATION_SELECTOR_TYPE__EXPRESSION);
+
+        securityTypeEClass = createEClass(SECURITY_TYPE);
+        createEAttribute(securityTypeEClass, SECURITY_TYPE__CALLBACK_HANDLER);
+        createEAttribute(securityTypeEClass, SECURITY_TYPE__MODULE_NAME);
+        createEReference(securityTypeEClass, SECURITY_TYPE__PROPERTIES);
     }
 
 	/**
@@ -1449,6 +1518,7 @@ public class SwitchyardPackageImpl extends EPackageImpl implements SwitchyardPac
         initEReference(getDocumentRoot_RegexOperationSelectorSwitchyard(), this.getRegexOperationSelectorType(), null, "regexOperationSelectorSwitchyard", null, 0, -2, null, IS_TRANSIENT, IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, IS_DERIVED, IS_ORDERED);
         initEReference(getDocumentRoot_XpathOperationSelectorSwitchyard(), this.getXPathOperationSelectorType(), null, "xpathOperationSelectorSwitchyard", null, 0, -2, null, IS_TRANSIENT, IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, IS_DERIVED, IS_ORDERED);
         initEReference(getDocumentRoot_StaticOperationSelectorSwitchyard(), this.getStaticOperationSelectorType(), null, "staticOperationSelectorSwitchyard", null, 0, -2, null, IS_TRANSIENT, IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, IS_DERIVED, IS_ORDERED);
+        initEReference(getDocumentRoot_Security(), this.getSecurityType(), null, "security", null, 0, -2, null, IS_TRANSIENT, IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, IS_DERIVED, IS_ORDERED);
 
         initEClass(domainTypeEClass, DomainType.class, "DomainType", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
         initEReference(getDomainType_Transforms(), this.getTransformsType(), null, "transforms", null, 0, 1, DomainType.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
@@ -1456,6 +1526,7 @@ public class SwitchyardPackageImpl extends EPackageImpl implements SwitchyardPac
         initEReference(getDomainType_Properties(), this.getPropertiesType(), null, "properties", null, 0, 1, DomainType.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
         initEReference(getDomainType_Handlers(), this.getHandlersType(), null, "handlers", null, 0, 1, DomainType.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
         initEAttribute(getDomainType_Name(), theXMLTypePackage.getString(), "name", null, 0, 1, DomainType.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+        initEReference(getDomainType_Security(), this.getSecurityType(), null, "security", null, 0, 1, DomainType.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
         initEClass(esbInterfaceEClass, EsbInterface.class, "EsbInterface", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
         initEAttribute(getEsbInterface_InputType(), theXMLTypePackage.getString(), "inputType", null, 0, 1, EsbInterface.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
@@ -1524,6 +1595,11 @@ public class SwitchyardPackageImpl extends EPackageImpl implements SwitchyardPac
 
         initEClass(xPathOperationSelectorTypeEClass, XPathOperationSelectorType.class, "XPathOperationSelectorType", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
         initEAttribute(getXPathOperationSelectorType_Expression(), theXMLTypePackage.getString(), "expression", null, 0, 1, XPathOperationSelectorType.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+        initEClass(securityTypeEClass, SecurityType.class, "SecurityType", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+        initEAttribute(getSecurityType_CallbackHandler(), theXMLTypePackage.getString(), "callbackHandler", null, 0, 1, SecurityType.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+        initEAttribute(getSecurityType_ModuleName(), theXMLTypePackage.getString(), "moduleName", null, 0, 1, SecurityType.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+        initEReference(getSecurityType_Properties(), this.getPropertiesType(), null, "properties", null, 0, 1, SecurityType.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
         // Create resource
         createResource(eNS_URI);
@@ -1831,6 +1907,14 @@ public class SwitchyardPackageImpl extends EPackageImpl implements SwitchyardPac
              "affiliation", "urn:switchyard-config:switchyard:1.0#operationSelector.switchyard"
            });		
         addAnnotation
+          (getDocumentRoot_Security(), 
+           source, 
+           new String[] {
+             "kind", "element",
+             "name", "security",
+             "namespace", "##targetNamespace"
+           });		
+        addAnnotation
           (domainTypeEClass, 
            source, 
            new String[] {
@@ -1875,6 +1959,14 @@ public class SwitchyardPackageImpl extends EPackageImpl implements SwitchyardPac
            new String[] {
              "kind", "attribute",
              "name", "name"
+           });		
+        addAnnotation
+          (getDomainType_Security(), 
+           source, 
+           new String[] {
+             "kind", "element",
+             "name", "security",
+             "namespace", "##targetNamespace"
            });		
         addAnnotation
           (esbInterfaceEClass, 
@@ -2240,6 +2332,35 @@ public class SwitchyardPackageImpl extends EPackageImpl implements SwitchyardPac
            new String[] {
              "kind", "attribute",
              "name", "expression"
+           });		
+        addAnnotation
+          (securityTypeEClass, 
+           source, 
+           new String[] {
+             "name", "SecurityType",
+             "kind", "elementOnly"
+           });		
+        addAnnotation
+          (getSecurityType_CallbackHandler(), 
+           source, 
+           new String[] {
+             "kind", "attribute",
+             "name", "callbackHandler"
+           });		
+        addAnnotation
+          (getSecurityType_ModuleName(), 
+           source, 
+           new String[] {
+             "kind", "attribute",
+             "name", "moduleName"
+           });		
+        addAnnotation
+          (getSecurityType_Properties(), 
+           source, 
+           new String[] {
+             "kind", "element",
+             "name", "properties",
+             "namespace", "##targetNamespace"
            });
     }
 

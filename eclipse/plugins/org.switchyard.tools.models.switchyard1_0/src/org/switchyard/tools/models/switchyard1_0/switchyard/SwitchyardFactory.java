@@ -197,6 +197,15 @@ public interface SwitchyardFactory extends EFactory {
 	XPathOperationSelectorType createXPathOperationSelectorType();
 
 	/**
+     * Returns a new object of class '<em>Security Type</em>'.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @return a new object of class '<em>Security Type</em>'.
+     * @generated
+     */
+    SecurityType createSecurityType();
+
+    /**
      * Returns the package supported by this factory.
      * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->

@@ -79,6 +79,7 @@ public class SwitchyardFactoryImpl extends EFactoryImpl implements SwitchyardFac
             case SwitchyardPackage.REGEX_OPERATION_SELECTOR_TYPE: return createRegexOperationSelectorType();
             case SwitchyardPackage.STATIC_OPERATION_SELECTOR_TYPE: return createStaticOperationSelectorType();
             case SwitchyardPackage.XPATH_OPERATION_SELECTOR_TYPE: return createXPathOperationSelectorType();
+            case SwitchyardPackage.SECURITY_TYPE: return createSecurityType();
             default:
                 throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier");
         }
@@ -275,6 +276,16 @@ public class SwitchyardFactoryImpl extends EFactoryImpl implements SwitchyardFac
     }
 
 	/**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public SecurityType createSecurityType() {
+        SecurityTypeImpl securityType = new SecurityTypeImpl();
+        return securityType;
+    }
+
+    /**
      * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
      * @generated

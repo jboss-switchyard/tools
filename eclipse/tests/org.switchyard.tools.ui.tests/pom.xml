@@ -175,6 +175,24 @@
                   <version>${version.switchyard.runtime}</version>
                   <outputDirectory>test-data/quickstart-configs/camel-jpa-binding</outputDirectory>
                 </artifactItem>
+                <artifactItem>
+                  <groupId>org.switchyard.quickstarts.demos</groupId>
+                  <artifactId>switchyard-quickstart-demo-policy-security-cert</artifactId>
+                  <version>${version.switchyard.runtime}</version>
+                  <outputDirectory>test-data/quickstart-configs/demos/policy-security-cert</outputDirectory>
+                </artifactItem>
+                <artifactItem>
+                  <groupId>org.switchyard.quickstarts.demos</groupId>
+                  <artifactId>switchyard-quickstart-demo-policy-security-basic</artifactId>
+                  <version>${version.switchyard.runtime}</version>
+                  <outputDirectory>test-data/quickstart-configs/demos/policy-security-basic</outputDirectory>
+                </artifactItem>
+                <artifactItem>
+                  <groupId>org.switchyard.quickstarts.demos</groupId>
+                  <artifactId>switchyard-quickstart-demo-policy-security-saml</artifactId>
+                  <version>${version.switchyard.runtime}</version>
+                  <outputDirectory>test-data/quickstart-configs/demos/policy-security-saml</outputDirectory>
+                </artifactItem>
               </artifactItems>
             </configuration>
           </execution>

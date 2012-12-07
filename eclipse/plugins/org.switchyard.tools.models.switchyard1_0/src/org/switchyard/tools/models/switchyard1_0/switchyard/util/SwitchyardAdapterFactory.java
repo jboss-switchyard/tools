@@ -168,6 +168,10 @@ public class SwitchyardAdapterFactory extends AdapterFactoryImpl {
                 return createXPathOperationSelectorTypeAdapter();
             }
             @Override
+            public Adapter caseSecurityType(SecurityType object) {
+                return createSecurityTypeAdapter();
+            }
+            @Override
             public Adapter caseCommonExtensionBase(CommonExtensionBase object) {
                 return createCommonExtensionBaseAdapter();
             }
@@ -512,6 +516,20 @@ public class SwitchyardAdapterFactory extends AdapterFactoryImpl {
     }
 
 	/**
+     * Creates a new adapter for an object of class '{@link org.switchyard.tools.models.switchyard1_0.switchyard.SecurityType <em>Security Type</em>}'.
+     * <!-- begin-user-doc -->
+     * This default implementation returns null so that we can easily ignore cases;
+     * it's useful to ignore a case when inheritance will catch all the cases anyway.
+     * <!-- end-user-doc -->
+     * @return the new adapter.
+     * @see org.switchyard.tools.models.switchyard1_0.switchyard.SecurityType
+     * @generated
+     */
+    public Adapter createSecurityTypeAdapter() {
+        return null;
+    }
+
+    /**
      * Creates a new adapter for an object of class '{@link org.switchyard.tools.models.switchyard1_0.switchyard.SwitchYardOperationSelectorType <em>Switch Yard Operation Selector Type</em>}'.
      * <!-- begin-user-doc -->
      * This default implementation returns null so that we can easily ignore cases;

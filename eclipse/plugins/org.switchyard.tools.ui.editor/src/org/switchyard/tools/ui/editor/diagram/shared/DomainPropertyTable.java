@@ -20,6 +20,7 @@ import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EStructuralFeature;
+import org.eclipse.emf.edit.domain.AdapterFactoryEditingDomain;
 import org.eclipse.emf.transaction.RecordingCommand;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.eclipse.jface.viewers.CellEditor;
@@ -43,7 +44,7 @@ import org.eclipse.swt.widgets.TreeColumn;
 import org.eclipse.swt.widgets.TreeItem;
 import org.switchyard.tools.models.switchyard1_0.switchyard.DomainType;
 import org.switchyard.tools.models.switchyard1_0.switchyard.PropertyType;
-import org.switchyard.tools.ui.editor.impl.SwitchyardSCAEditor;
+import org.switchyard.tools.models.switchyard1_0.switchyard.SecurityType;
 
 /**
  * @author bfitzpat
@@ -223,10 +224,6 @@ public abstract class DomainPropertyTable extends Composite implements ICellModi
 
             public void widgetSelected(SelectionEvent e) {
                 addPropertyTypeToList();
-                if (_propertyTreeTable.getInput() == null) {
-                    DomainType domain = (DomainType) _targetObj;
-                    _propertyTreeTable.setInput(domain.getProperties());
-                }
                 _propertyTreeTable.refresh();
                 fireChangedEvent(e.getSource());
             }
@@ -432,7 +429,24 @@ public abstract class DomainPropertyTable extends Composite implements ICellModi
             if (getTargetObject() instanceof DomainType) {
                 final DomainType domainType = (DomainType) getTargetObject();
                 if (domainType.eContainer() != null) {
-                    TransactionalEditingDomain domain = SwitchyardSCAEditor.getActiveEditor().getEditingDomain();
+                    TransactionalEditingDomain domain = (TransactionalEditingDomain) AdapterFactoryEditingDomain.getEditingDomainFor(domainType);
+                    domain.getCommandStack().execute(new RecordingCommand(domain) {
+                        @Override
+                        protected void doExecute() {
+                            PropertyType parm = (PropertyType) ti.getData();
+                            setFeatureValue(parm, "value", value);
+                            getTreeViewer().refresh(true);
+                        }
+                    });
+                } else {
+                    PropertyType parm = (PropertyType) ti.getData();
+                    setFeatureValue(parm, "value", value);
+                    getTreeViewer().refresh(true);
+                }
+            } else if (getTargetObject() instanceof SecurityType) {
+                final SecurityType securityType = (SecurityType) getTargetObject();
+                if (securityType.eContainer() != null) {
+                    TransactionalEditingDomain domain = (TransactionalEditingDomain) AdapterFactoryEditingDomain.getEditingDomainFor(securityType);
                     domain.getCommandStack().execute(new RecordingCommand(domain) {
                         @Override
                         protected void doExecute() {
@@ -447,6 +461,7 @@ public abstract class DomainPropertyTable extends Composite implements ICellModi
                     getTreeViewer().refresh(true);
                 }
             }
+
             fireChangedEvent(this);
             // validate();
         }
