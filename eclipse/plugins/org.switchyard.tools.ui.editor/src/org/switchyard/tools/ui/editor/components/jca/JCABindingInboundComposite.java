@@ -399,6 +399,11 @@ public class JCABindingInboundComposite extends AbstractSYBindingComposite {
 
     @Override
     protected List<String> getAdvancedPropertiesFilterList() {
+        if (_advancedPropsFilterList == null) {
+            _advancedPropsFilterList = new ArrayList<String>();
+            _advancedPropsFilterList.add("jndiURL");
+            _advancedPropsFilterList.add("initialContextFactory");
+        }
         return _advancedPropsFilterList;
     }
 

@@ -202,7 +202,6 @@ public class CamelFileProducerComposite extends AbstractSYBindingComposite {
             _advancedPropsFilterList.add("bufferSize");
             _advancedPropsFilterList.add("flatten");
             _advancedPropsFilterList.add("charset");
-            _advancedPropsFilterList.add("fileExist");
             _advancedPropsFilterList.add("tempPrefix");
             _advancedPropsFilterList.add("tempFileName");
             _advancedPropsFilterList.add("keepLastModified");

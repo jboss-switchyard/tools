@@ -63,6 +63,7 @@ public class CamelJmsComposite extends AbstractSYBindingComposite {
     private Text _replyToText;
     private Text _requestTimeOutText;
     private Text _transactionManagerText;
+    private Text _selectorText;
     private Button _transactedButton;
     private TabFolder _tabFolder;
     private List<String> _advancedPropsFilterList;
@@ -108,6 +109,9 @@ public class CamelJmsComposite extends AbstractSYBindingComposite {
             }
             if (this._binding.getReplyTo() != null && !this._binding.getReplyTo().trim().isEmpty()) {
                 _replyToText.setText(this._binding.getReplyTo());
+            }
+            if (this._binding.getSelector() != null && !this._binding.getSelector().trim().isEmpty()) {
+                _selectorText.setText(this._binding.getSelector());
             }
             OperationSelectorType opSelector = OperationSelectorUtil.getFirstOperationSelector(this._binding);
             _opSelectorComposite.setBinding(this._binding);
@@ -227,6 +231,7 @@ public class CamelJmsComposite extends AbstractSYBindingComposite {
             _requestTimeOutText = createLabelAndText(jmsGroup, "Request Timeout");
             _requestTimeOutText.setText("20000");
         }
+        _selectorText = createLabelAndText(jmsGroup, "Selector");
         _transactionManagerText = createLabelAndText(jmsGroup, "Transaction Manager");
         _transactedButton = createCheckbox(jmsGroup, "Transacted");
 
@@ -295,6 +300,12 @@ public class CamelJmsComposite extends AbstractSYBindingComposite {
                 value = _replyToText.getText().trim();
             }
             updateFeature(_binding, "replyTo", value);
+        } else if (control.equals(_selectorText)) {
+            String value = null;
+            if (!_selectorText.getText().trim().isEmpty()) {
+                value = _selectorText.getText().trim();
+            }
+            updateFeature(_binding, "selector", value);
         } else if (control.equals(_requestTimeOutText)) {
             Integer value = null;
             try {
@@ -344,6 +355,8 @@ public class CamelJmsComposite extends AbstractSYBindingComposite {
                 }
             } else if (control.equals(_replyToText)) {
                 _replyToText.setText(this._binding.getReplyTo());
+            } else if (control.equals(_selectorText)) {
+                _selectorText.setText(this._binding.getSelector());
             } else if (control.equals(_requestTimeOutText)) {
                 if (this._binding.getMaxConcurrentConsumers() > 0 && this._binding.getMaxConcurrentConsumers() != 2000) {
                     _maxConcurrentConsumersText.setText(Integer.toString(this._binding.getMaxConcurrentConsumers()));
@@ -374,6 +387,8 @@ public class CamelJmsComposite extends AbstractSYBindingComposite {
     protected List<String> getAdvancedPropertiesFilterList() {
         if (_advancedPropsFilterList == null) {
             _advancedPropsFilterList = new ArrayList<String>();
+            _advancedPropsFilterList.add("queue");
+            _advancedPropsFilterList.add("topic");
             _advancedPropsFilterList.add("username");
             _advancedPropsFilterList.add("password");
             _advancedPropsFilterList.add("clientId");

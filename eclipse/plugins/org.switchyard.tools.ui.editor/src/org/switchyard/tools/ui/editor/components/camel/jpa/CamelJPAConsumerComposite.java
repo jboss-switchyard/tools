@@ -277,24 +277,12 @@ public class CamelJPAConsumerComposite extends AbstractSYBindingComposite {
     protected List<String> getAdvancedPropertiesFilterList() {
         if (_advancedPropsFilterList == null) {
             _advancedPropsFilterList = new ArrayList<String>();
-            _advancedPropsFilterList.add("consume/bufferSize");
-            _advancedPropsFilterList.add("consume/flatten");
-            _advancedPropsFilterList.add("consume/charset");
-            _advancedPropsFilterList.add("consume/noop");
-            _advancedPropsFilterList.add("consume/idempotent");
-            _advancedPropsFilterList.add("consume/idempotentRepository");
-            _advancedPropsFilterList.add("consume/inProgressRepository");
-            _advancedPropsFilterList.add("consume/filter");
-            _advancedPropsFilterList.add("consume/sorter");
-            _advancedPropsFilterList.add("consume/sortBy");
-            _advancedPropsFilterList.add("consume/readLock");
-            _advancedPropsFilterList.add("consume/readLockTimeout");
-            _advancedPropsFilterList.add("consume/readLockCheckInterval");
-            _advancedPropsFilterList.add("consume/exclusiveReadLockStrategy");
-            _advancedPropsFilterList.add("consume/processStrategy");
-            _advancedPropsFilterList.add("consume/startingDirectoryMustExist");
-            _advancedPropsFilterList.add("consume/directoryMustExist");
-            _advancedPropsFilterList.add("consume/doneFileName");
+            _advancedPropsFilterList.add("maxMessagesPerPoll");
+            _advancedPropsFilterList.add("initialDelay");
+            _advancedPropsFilterList.add("delay");
+            _advancedPropsFilterList.add("useFixedDelay");
+            _advancedPropsFilterList.add("sendEmptyMessageWhenIdle");
+            _advancedPropsFilterList.add("timeUnit");
         }
         return _advancedPropsFilterList;
     }

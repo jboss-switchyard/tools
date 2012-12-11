@@ -321,6 +321,7 @@ public class CamelFileConsumerComposite extends AbstractSYBindingComposite  {
             _advancedPropsFilterList.add("flatten");
             _advancedPropsFilterList.add("charset");
             _advancedPropsFilterList.add("delete");
+            _advancedPropsFilterList.add("recursive");
             _advancedPropsFilterList.add("noop");
             _advancedPropsFilterList.add("idempotent");
             _advancedPropsFilterList.add("idempotentRepository");
@@ -336,6 +337,10 @@ public class CamelFileConsumerComposite extends AbstractSYBindingComposite  {
             _advancedPropsFilterList.add("startingDirectoryMustExist");
             _advancedPropsFilterList.add("directoryMustExist");
             _advancedPropsFilterList.add("doneFileName");
+            _advancedPropsFilterList.add("initialDelay");
+            _advancedPropsFilterList.add("useFixedDelay");
+            _advancedPropsFilterList.add("sendEmptyMessageWhenIdle");
+            _advancedPropsFilterList.add("timeUnit");
         }
         return _advancedPropsFilterList;
     }

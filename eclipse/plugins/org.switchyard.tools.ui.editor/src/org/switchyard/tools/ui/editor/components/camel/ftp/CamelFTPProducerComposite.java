@@ -271,10 +271,9 @@ public class CamelFTPProducerComposite extends AbstractSYBindingComposite {
             _advancedPropsFilterList.add("maximumReconnectAttempts");
             _advancedPropsFilterList.add("reconnectDelay");
             _advancedPropsFilterList.add("separator");
-            _advancedPropsFilterList.add("stepWise");
+            _advancedPropsFilterList.add("stepwise");
             _advancedPropsFilterList.add("throwExceptionOnConnectFailed");
 
-            _advancedPropsFilterList.add("fileExist");
             _advancedPropsFilterList.add("tempPrefix");
             _advancedPropsFilterList.add("tempFileName");
             _advancedPropsFilterList.add("keepLastModified");

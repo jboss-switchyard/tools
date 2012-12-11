@@ -369,6 +369,8 @@ public class JCABindingOutboundComposite extends AbstractSYBindingComposite {
     protected List<String> getAdvancedPropertiesFilterList() {
         if (_advancedPropsFilterList == null) {
             _advancedPropsFilterList = new ArrayList<String>();
+            _advancedPropsFilterList.add("jndiURL");
+            _advancedPropsFilterList.add("initialContextFactory");
             _advancedPropsFilterList.add("resAuth");
             _advancedPropsFilterList.add("managed");
         }

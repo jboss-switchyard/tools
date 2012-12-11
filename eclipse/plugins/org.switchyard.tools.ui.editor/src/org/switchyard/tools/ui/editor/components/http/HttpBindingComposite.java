@@ -113,6 +113,7 @@ public class HttpBindingComposite extends AbstractSYBindingComposite {
                 handleModify(_opSelectorComposite);
             }
          });
+        _opSelectorComposite.setTargetObject((EObject) getTargetObject());
 
         if (getTargetObject() instanceof Reference) {
             _mAddressURLText = createLabelAndText(httpGroup, "Address");
@@ -173,7 +174,9 @@ public class HttpBindingComposite extends AbstractSYBindingComposite {
     @Override
     public void setTargetObject(Object target) {
         super.setTargetObject(target);
-        _opSelectorComposite.setTargetObject((EObject) target);
+        if (_opSelectorComposite != null && !_opSelectorComposite.isDisposed()) {
+            _opSelectorComposite.setTargetObject((EObject) target);
+        }
     }
 
     protected boolean validate() {
@@ -190,6 +193,7 @@ public class HttpBindingComposite extends AbstractSYBindingComposite {
                         URI.create(urlString);
                     } catch (IllegalArgumentException e) {
                         setErrorMessage("Invalid address URL");
+                        return false;
                     }
                 }
             }
