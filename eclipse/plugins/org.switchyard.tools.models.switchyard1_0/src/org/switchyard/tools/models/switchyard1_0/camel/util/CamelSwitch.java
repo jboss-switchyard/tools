@@ -87,6 +87,64 @@ public class CamelSwitch<T> extends Switch<T> {
                 if (result == null) result = defaultCase(theEObject);
                 return result;
             }
+            case CamelPackage.GENERIC_FILE_BINDING_TYPE: {
+                GenericFileBindingType genericFileBindingType = (GenericFileBindingType)theEObject;
+                T result = caseGenericFileBindingType(genericFileBindingType);
+                if (result == null) result = caseBaseCamelBinding(genericFileBindingType);
+                if (result == null) result = caseSwitchYardBindingType(genericFileBindingType);
+                if (result == null) result = caseBinding(genericFileBindingType);
+                if (result == null) result = caseCommonExtensionBase(genericFileBindingType);
+                if (result == null) result = defaultCase(theEObject);
+                return result;
+            }
+            case CamelPackage.CAMEL_REMOTE_BINDING_TYPE: {
+                CamelRemoteBindingType camelRemoteBindingType = (CamelRemoteBindingType)theEObject;
+                T result = caseCamelRemoteBindingType(camelRemoteBindingType);
+                if (result == null) result = caseGenericFileBindingType(camelRemoteBindingType);
+                if (result == null) result = caseBaseCamelBinding(camelRemoteBindingType);
+                if (result == null) result = caseSwitchYardBindingType(camelRemoteBindingType);
+                if (result == null) result = caseBinding(camelRemoteBindingType);
+                if (result == null) result = caseCommonExtensionBase(camelRemoteBindingType);
+                if (result == null) result = defaultCase(theEObject);
+                return result;
+            }
+            case CamelPackage.SCHEDULED_POLL_CONSUMER_TYPE: {
+                ScheduledPollConsumerType scheduledPollConsumerType = (ScheduledPollConsumerType)theEObject;
+                T result = caseScheduledPollConsumerType(scheduledPollConsumerType);
+                if (result == null) result = defaultCase(theEObject);
+                return result;
+            }
+            case CamelPackage.SCHEDULED_BATCH_POLL_CONSUMER_TYPE: {
+                ScheduledBatchPollConsumerType scheduledBatchPollConsumerType = (ScheduledBatchPollConsumerType)theEObject;
+                T result = caseScheduledBatchPollConsumerType(scheduledBatchPollConsumerType);
+                if (result == null) result = caseScheduledPollConsumerType(scheduledBatchPollConsumerType);
+                if (result == null) result = defaultCase(theEObject);
+                return result;
+            }
+            case CamelPackage.GENERIC_FILE_CONSUMER_TYPE: {
+                GenericFileConsumerType genericFileConsumerType = (GenericFileConsumerType)theEObject;
+                T result = caseGenericFileConsumerType(genericFileConsumerType);
+                if (result == null) result = caseScheduledBatchPollConsumerType(genericFileConsumerType);
+                if (result == null) result = caseScheduledPollConsumerType(genericFileConsumerType);
+                if (result == null) result = defaultCase(theEObject);
+                return result;
+            }
+            case CamelPackage.GENERIC_FILE_PRODUCER_TYPE: {
+                GenericFileProducerType genericFileProducerType = (GenericFileProducerType)theEObject;
+                T result = caseGenericFileProducerType(genericFileProducerType);
+                if (result == null) result = defaultCase(theEObject);
+                return result;
+            }
+            case CamelPackage.JMS_BINDING_TYPE: {
+                JmsBindingType jmsBindingType = (JmsBindingType)theEObject;
+                T result = caseJmsBindingType(jmsBindingType);
+                if (result == null) result = caseBaseCamelBinding(jmsBindingType);
+                if (result == null) result = caseSwitchYardBindingType(jmsBindingType);
+                if (result == null) result = caseBinding(jmsBindingType);
+                if (result == null) result = caseCommonExtensionBase(jmsBindingType);
+                if (result == null) result = defaultCase(theEObject);
+                return result;
+            }
             case CamelPackage.CAMEL_BINDING_TYPE: {
                 CamelBindingType camelBindingType = (CamelBindingType)theEObject;
                 T result = caseCamelBindingType(camelBindingType);
@@ -94,64 +152,6 @@ public class CamelSwitch<T> extends Switch<T> {
                 if (result == null) result = caseSwitchYardBindingType(camelBindingType);
                 if (result == null) result = caseBinding(camelBindingType);
                 if (result == null) result = caseCommonExtensionBase(camelBindingType);
-                if (result == null) result = defaultCase(theEObject);
-                return result;
-            }
-            case CamelPackage.CAMEL_FILE_BINDING_TYPE: {
-                CamelFileBindingType camelFileBindingType = (CamelFileBindingType)theEObject;
-                T result = caseCamelFileBindingType(camelFileBindingType);
-                if (result == null) result = caseGenericFileBindingType(camelFileBindingType);
-                if (result == null) result = caseBaseCamelBinding(camelFileBindingType);
-                if (result == null) result = caseSwitchYardBindingType(camelFileBindingType);
-                if (result == null) result = caseBinding(camelFileBindingType);
-                if (result == null) result = caseCommonExtensionBase(camelFileBindingType);
-                if (result == null) result = defaultCase(theEObject);
-                return result;
-            }
-            case CamelPackage.CAMEL_FTP_BINDING_TYPE: {
-                CamelFtpBindingType camelFtpBindingType = (CamelFtpBindingType)theEObject;
-                T result = caseCamelFtpBindingType(camelFtpBindingType);
-                if (result == null) result = caseCamelRemoteBindingType(camelFtpBindingType);
-                if (result == null) result = caseGenericFileBindingType(camelFtpBindingType);
-                if (result == null) result = caseBaseCamelBinding(camelFtpBindingType);
-                if (result == null) result = caseSwitchYardBindingType(camelFtpBindingType);
-                if (result == null) result = caseBinding(camelFtpBindingType);
-                if (result == null) result = caseCommonExtensionBase(camelFtpBindingType);
-                if (result == null) result = defaultCase(theEObject);
-                return result;
-            }
-            case CamelPackage.CAMEL_FTPS_BINDING_TYPE: {
-                CamelFtpsBindingType camelFtpsBindingType = (CamelFtpsBindingType)theEObject;
-                T result = caseCamelFtpsBindingType(camelFtpsBindingType);
-                if (result == null) result = caseCamelFtpBindingType(camelFtpsBindingType);
-                if (result == null) result = caseCamelRemoteBindingType(camelFtpsBindingType);
-                if (result == null) result = caseGenericFileBindingType(camelFtpsBindingType);
-                if (result == null) result = caseBaseCamelBinding(camelFtpsBindingType);
-                if (result == null) result = caseSwitchYardBindingType(camelFtpsBindingType);
-                if (result == null) result = caseBinding(camelFtpsBindingType);
-                if (result == null) result = caseCommonExtensionBase(camelFtpsBindingType);
-                if (result == null) result = defaultCase(theEObject);
-                return result;
-            }
-            case CamelPackage.CAMEL_SFTP_BINDING_TYPE: {
-                CamelSftpBindingType camelSftpBindingType = (CamelSftpBindingType)theEObject;
-                T result = caseCamelSftpBindingType(camelSftpBindingType);
-                if (result == null) result = caseCamelRemoteBindingType(camelSftpBindingType);
-                if (result == null) result = caseGenericFileBindingType(camelSftpBindingType);
-                if (result == null) result = caseBaseCamelBinding(camelSftpBindingType);
-                if (result == null) result = caseSwitchYardBindingType(camelSftpBindingType);
-                if (result == null) result = caseBinding(camelSftpBindingType);
-                if (result == null) result = caseCommonExtensionBase(camelSftpBindingType);
-                if (result == null) result = defaultCase(theEObject);
-                return result;
-            }
-            case CamelPackage.CAMEL_ATOM_BINDING_TYPE: {
-                CamelAtomBindingType camelAtomBindingType = (CamelAtomBindingType)theEObject;
-                T result = caseCamelAtomBindingType(camelAtomBindingType);
-                if (result == null) result = caseBaseCamelBinding(camelAtomBindingType);
-                if (result == null) result = caseSwitchYardBindingType(camelAtomBindingType);
-                if (result == null) result = caseBinding(camelAtomBindingType);
-                if (result == null) result = caseCommonExtensionBase(camelAtomBindingType);
                 if (result == null) result = defaultCase(theEObject);
                 return result;
             }
@@ -195,233 +195,9 @@ public class CamelSwitch<T> extends Switch<T> {
                 if (result == null) result = defaultCase(theEObject);
                 return result;
             }
-            case CamelPackage.CAMEL_NETTY_TCP_BINDING_TYPE: {
-                CamelNettyTcpBindingType camelNettyTcpBindingType = (CamelNettyTcpBindingType)theEObject;
-                T result = caseCamelNettyTcpBindingType(camelNettyTcpBindingType);
-                if (result == null) result = caseCamelNettyBindingType(camelNettyTcpBindingType);
-                if (result == null) result = caseBaseCamelBinding(camelNettyTcpBindingType);
-                if (result == null) result = caseSwitchYardBindingType(camelNettyTcpBindingType);
-                if (result == null) result = caseBinding(camelNettyTcpBindingType);
-                if (result == null) result = caseCommonExtensionBase(camelNettyTcpBindingType);
-                if (result == null) result = defaultCase(theEObject);
-                return result;
-            }
-            case CamelPackage.CAMEL_NETTY_UDP_BINDING_TYPE: {
-                CamelNettyUdpBindingType camelNettyUdpBindingType = (CamelNettyUdpBindingType)theEObject;
-                T result = caseCamelNettyUdpBindingType(camelNettyUdpBindingType);
-                if (result == null) result = caseCamelNettyBindingType(camelNettyUdpBindingType);
-                if (result == null) result = caseBaseCamelBinding(camelNettyUdpBindingType);
-                if (result == null) result = caseSwitchYardBindingType(camelNettyUdpBindingType);
-                if (result == null) result = caseBinding(camelNettyUdpBindingType);
-                if (result == null) result = caseCommonExtensionBase(camelNettyUdpBindingType);
-                if (result == null) result = defaultCase(theEObject);
-                return result;
-            }
-            case CamelPackage.CAMEL_NETTY_BINDING_TYPE: {
-                CamelNettyBindingType camelNettyBindingType = (CamelNettyBindingType)theEObject;
-                T result = caseCamelNettyBindingType(camelNettyBindingType);
-                if (result == null) result = caseBaseCamelBinding(camelNettyBindingType);
-                if (result == null) result = caseSwitchYardBindingType(camelNettyBindingType);
-                if (result == null) result = caseBinding(camelNettyBindingType);
-                if (result == null) result = caseCommonExtensionBase(camelNettyBindingType);
-                if (result == null) result = defaultCase(theEObject);
-                return result;
-            }
-            case CamelPackage.CAMEL_QUARTZ_BINDING_TYPE: {
-                CamelQuartzBindingType camelQuartzBindingType = (CamelQuartzBindingType)theEObject;
-                T result = caseCamelQuartzBindingType(camelQuartzBindingType);
-                if (result == null) result = caseBaseCamelBinding(camelQuartzBindingType);
-                if (result == null) result = caseSwitchYardBindingType(camelQuartzBindingType);
-                if (result == null) result = caseBinding(camelQuartzBindingType);
-                if (result == null) result = caseCommonExtensionBase(camelQuartzBindingType);
-                if (result == null) result = defaultCase(theEObject);
-                return result;
-            }
-            case CamelPackage.CAMEL_JMS_BINDING_TYPE: {
-                CamelJmsBindingType camelJmsBindingType = (CamelJmsBindingType)theEObject;
-                T result = caseCamelJmsBindingType(camelJmsBindingType);
-                if (result == null) result = caseBaseCamelBinding(camelJmsBindingType);
-                if (result == null) result = caseSwitchYardBindingType(camelJmsBindingType);
-                if (result == null) result = caseBinding(camelJmsBindingType);
-                if (result == null) result = caseCommonExtensionBase(camelJmsBindingType);
-                if (result == null) result = defaultCase(theEObject);
-                return result;
-            }
-            case CamelPackage.CAMEL_SQL_BINDING_TYPE: {
-                CamelSqlBindingType camelSqlBindingType = (CamelSqlBindingType)theEObject;
-                T result = caseCamelSqlBindingType(camelSqlBindingType);
-                if (result == null) result = caseBaseCamelBinding(camelSqlBindingType);
-                if (result == null) result = caseSwitchYardBindingType(camelSqlBindingType);
-                if (result == null) result = caseBinding(camelSqlBindingType);
-                if (result == null) result = caseCommonExtensionBase(camelSqlBindingType);
-                if (result == null) result = defaultCase(theEObject);
-                return result;
-            }
-            case CamelPackage.JAVA_DSL_TYPE: {
-                JavaDSLType javaDSLType = (JavaDSLType)theEObject;
-                T result = caseJavaDSLType(javaDSLType);
-                if (result == null) result = defaultCase(theEObject);
-                return result;
-            }
-            case CamelPackage.XMLDSL_TYPE: {
-                XMLDSLType xmldslType = (XMLDSLType)theEObject;
-                T result = caseXMLDSLType(xmldslType);
-                if (result == null) result = defaultCase(theEObject);
-                return result;
-            }
-            case CamelPackage.CAMEL_IMPLEMENTATION_TYPE: {
-                CamelImplementationType camelImplementationType = (CamelImplementationType)theEObject;
-                T result = caseCamelImplementationType(camelImplementationType);
-                if (result == null) result = caseImplementation(camelImplementationType);
-                if (result == null) result = caseCommonExtensionBase(camelImplementationType);
-                if (result == null) result = defaultCase(theEObject);
-                return result;
-            }
-            case CamelPackage.GENERIC_FILE_BINDING_TYPE: {
-                GenericFileBindingType genericFileBindingType = (GenericFileBindingType)theEObject;
-                T result = caseGenericFileBindingType(genericFileBindingType);
-                if (result == null) result = caseBaseCamelBinding(genericFileBindingType);
-                if (result == null) result = caseSwitchYardBindingType(genericFileBindingType);
-                if (result == null) result = caseBinding(genericFileBindingType);
-                if (result == null) result = caseCommonExtensionBase(genericFileBindingType);
-                if (result == null) result = defaultCase(theEObject);
-                return result;
-            }
-            case CamelPackage.CAMEL_REMOTE_BINDING_TYPE: {
-                CamelRemoteBindingType camelRemoteBindingType = (CamelRemoteBindingType)theEObject;
-                T result = caseCamelRemoteBindingType(camelRemoteBindingType);
-                if (result == null) result = caseGenericFileBindingType(camelRemoteBindingType);
-                if (result == null) result = caseBaseCamelBinding(camelRemoteBindingType);
-                if (result == null) result = caseSwitchYardBindingType(camelRemoteBindingType);
-                if (result == null) result = caseBinding(camelRemoteBindingType);
-                if (result == null) result = caseCommonExtensionBase(camelRemoteBindingType);
-                if (result == null) result = defaultCase(theEObject);
-                return result;
-            }
-            case CamelPackage.SCHEDULED_POLL_CONSUMER_TYPE: {
-                ScheduledPollConsumerType scheduledPollConsumerType = (ScheduledPollConsumerType)theEObject;
-                T result = caseScheduledPollConsumerType(scheduledPollConsumerType);
-                if (result == null) result = defaultCase(theEObject);
-                return result;
-            }
-            case CamelPackage.SCHEDULED_BATCH_POLL_CONSUMER_TYPE: {
-                ScheduledBatchPollConsumerType scheduledBatchPollConsumerType = (ScheduledBatchPollConsumerType)theEObject;
-                T result = caseScheduledBatchPollConsumerType(scheduledBatchPollConsumerType);
-                if (result == null) result = caseScheduledPollConsumerType(scheduledBatchPollConsumerType);
-                if (result == null) result = defaultCase(theEObject);
-                return result;
-            }
-            case CamelPackage.FILE_CONSUMER_TYPE: {
-                FileConsumerType fileConsumerType = (FileConsumerType)theEObject;
-                T result = caseFileConsumerType(fileConsumerType);
-                if (result == null) result = caseGenericFileConsumerType(fileConsumerType);
-                if (result == null) result = caseScheduledBatchPollConsumerType(fileConsumerType);
-                if (result == null) result = caseScheduledPollConsumerType(fileConsumerType);
-                if (result == null) result = defaultCase(theEObject);
-                return result;
-            }
-            case CamelPackage.FILE_PRODUCER_TYPE: {
-                FileProducerType fileProducerType = (FileProducerType)theEObject;
-                T result = caseFileProducerType(fileProducerType);
-                if (result == null) result = caseGenericFileProducerType(fileProducerType);
-                if (result == null) result = defaultCase(theEObject);
-                return result;
-            }
-            case CamelPackage.REMOTE_FILE_CONSUMER_TYPE: {
-                RemoteFileConsumerType remoteFileConsumerType = (RemoteFileConsumerType)theEObject;
-                T result = caseRemoteFileConsumerType(remoteFileConsumerType);
-                if (result == null) result = caseGenericFileConsumerType(remoteFileConsumerType);
-                if (result == null) result = caseScheduledBatchPollConsumerType(remoteFileConsumerType);
-                if (result == null) result = caseScheduledPollConsumerType(remoteFileConsumerType);
-                if (result == null) result = defaultCase(theEObject);
-                return result;
-            }
-            case CamelPackage.REMOTE_FILE_PRODUCER_TYPE: {
-                RemoteFileProducerType remoteFileProducerType = (RemoteFileProducerType)theEObject;
-                T result = caseRemoteFileProducerType(remoteFileProducerType);
-                if (result == null) result = caseGenericFileProducerType(remoteFileProducerType);
-                if (result == null) result = defaultCase(theEObject);
-                return result;
-            }
-            case CamelPackage.GENERIC_FILE_CONSUMER_TYPE: {
-                GenericFileConsumerType genericFileConsumerType = (GenericFileConsumerType)theEObject;
-                T result = caseGenericFileConsumerType(genericFileConsumerType);
-                if (result == null) result = caseScheduledBatchPollConsumerType(genericFileConsumerType);
-                if (result == null) result = caseScheduledPollConsumerType(genericFileConsumerType);
-                if (result == null) result = defaultCase(theEObject);
-                return result;
-            }
-            case CamelPackage.GENERIC_FILE_PRODUCER_TYPE: {
-                GenericFileProducerType genericFileProducerType = (GenericFileProducerType)theEObject;
-                T result = caseGenericFileProducerType(genericFileProducerType);
-                if (result == null) result = defaultCase(theEObject);
-                return result;
-            }
             case CamelPackage.DOCUMENT_ROOT: {
                 DocumentRoot documentRoot = (DocumentRoot)theEObject;
                 T result = caseDocumentRoot(documentRoot);
-                if (result == null) result = defaultCase(theEObject);
-                return result;
-            }
-            case CamelPackage.CAMEL_CONTEXT_MAPPER_TYPE: {
-                CamelContextMapperType camelContextMapperType = (CamelContextMapperType)theEObject;
-                T result = caseCamelContextMapperType(camelContextMapperType);
-                if (result == null) result = caseContextMapperType(camelContextMapperType);
-                if (result == null) result = defaultCase(theEObject);
-                return result;
-            }
-            case CamelPackage.CAMEL_MESSAGE_COMPOSER_TYPE: {
-                CamelMessageComposerType camelMessageComposerType = (CamelMessageComposerType)theEObject;
-                T result = caseCamelMessageComposerType(camelMessageComposerType);
-                if (result == null) result = caseMessageComposerType(camelMessageComposerType);
-                if (result == null) result = defaultCase(theEObject);
-                return result;
-            }
-            case CamelPackage.CAMEL_MAIL_CONSUMER_TYPE: {
-                CamelMailConsumerType camelMailConsumerType = (CamelMailConsumerType)theEObject;
-                T result = caseCamelMailConsumerType(camelMailConsumerType);
-                if (result == null) result = caseScheduledBatchPollConsumerType(camelMailConsumerType);
-                if (result == null) result = caseScheduledPollConsumerType(camelMailConsumerType);
-                if (result == null) result = defaultCase(theEObject);
-                return result;
-            }
-            case CamelPackage.CAMEL_MAIL_PRODUCER_TYPE: {
-                CamelMailProducerType camelMailProducerType = (CamelMailProducerType)theEObject;
-                T result = caseCamelMailProducerType(camelMailProducerType);
-                if (result == null) result = defaultCase(theEObject);
-                return result;
-            }
-            case CamelPackage.CAMEL_MAIL_BINDING_TYPE: {
-                CamelMailBindingType camelMailBindingType = (CamelMailBindingType)theEObject;
-                T result = caseCamelMailBindingType(camelMailBindingType);
-                if (result == null) result = caseBaseCamelBinding(camelMailBindingType);
-                if (result == null) result = caseSwitchYardBindingType(camelMailBindingType);
-                if (result == null) result = caseBinding(camelMailBindingType);
-                if (result == null) result = caseCommonExtensionBase(camelMailBindingType);
-                if (result == null) result = defaultCase(theEObject);
-                return result;
-            }
-            case CamelPackage.JPA_PRODUCER_TYPE: {
-                JpaProducerType jpaProducerType = (JpaProducerType)theEObject;
-                T result = caseJpaProducerType(jpaProducerType);
-                if (result == null) result = defaultCase(theEObject);
-                return result;
-            }
-            case CamelPackage.JPA_CONSUMER_TYPE: {
-                JpaConsumerType jpaConsumerType = (JpaConsumerType)theEObject;
-                T result = caseJpaConsumerType(jpaConsumerType);
-                if (result == null) result = caseScheduledBatchPollConsumerType(jpaConsumerType);
-                if (result == null) result = caseScheduledPollConsumerType(jpaConsumerType);
-                if (result == null) result = defaultCase(theEObject);
-                return result;
-            }
-            case CamelPackage.CAMEL_JPA_BINDING_TYPE: {
-                CamelJPABindingType camelJPABindingType = (CamelJPABindingType)theEObject;
-                T result = caseCamelJPABindingType(camelJPABindingType);
-                if (result == null) result = caseBaseCamelBinding(camelJPABindingType);
-                if (result == null) result = caseSwitchYardBindingType(camelJPABindingType);
-                if (result == null) result = caseBinding(camelJPABindingType);
-                if (result == null) result = caseCommonExtensionBase(camelJPABindingType);
                 if (result == null) result = defaultCase(theEObject);
                 return result;
             }
@@ -445,21 +221,6 @@ public class CamelSwitch<T> extends Switch<T> {
     }
 
     /**
-     * Returns the result of interpreting the object as an instance of '<em>Atom Binding Type</em>'.
-     * <!-- begin-user-doc -->
-	 * This implementation returns null;
-	 * returning a non-null result will terminate the switch.
-	 * <!-- end-user-doc -->
-     * @param object the target of the switch.
-     * @return the result of interpreting the object as an instance of '<em>Atom Binding Type</em>'.
-     * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
-     * @generated
-     */
-	public T caseCamelAtomBindingType(CamelAtomBindingType object) {
-        return null;
-    }
-
-	/**
      * Returns the result of interpreting the object as an instance of '<em>Binding Type</em>'.
      * <!-- begin-user-doc -->
 	 * This implementation returns null;
@@ -490,126 +251,6 @@ public class CamelSwitch<T> extends Switch<T> {
     }
 
 	/**
-     * Returns the result of interpreting the object as an instance of '<em>File Binding Type</em>'.
-     * <!-- begin-user-doc -->
-	 * This implementation returns null;
-	 * returning a non-null result will terminate the switch.
-	 * <!-- end-user-doc -->
-     * @param object the target of the switch.
-     * @return the result of interpreting the object as an instance of '<em>File Binding Type</em>'.
-     * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
-     * @generated
-     */
-	public T caseCamelFileBindingType(CamelFileBindingType object) {
-        return null;
-    }
-
-	/**
-     * Returns the result of interpreting the object as an instance of '<em>Ftp Binding Type</em>'.
-     * <!-- begin-user-doc -->
-     * This implementation returns null;
-     * returning a non-null result will terminate the switch.
-     * <!-- end-user-doc -->
-     * @param object the target of the switch.
-     * @return the result of interpreting the object as an instance of '<em>Ftp Binding Type</em>'.
-     * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
-     * @generated
-     */
-    public T caseCamelFtpBindingType(CamelFtpBindingType object) {
-        return null;
-    }
-
-    /**
-     * Returns the result of interpreting the object as an instance of '<em>Ftps Binding Type</em>'.
-     * <!-- begin-user-doc -->
-     * This implementation returns null;
-     * returning a non-null result will terminate the switch.
-     * <!-- end-user-doc -->
-     * @param object the target of the switch.
-     * @return the result of interpreting the object as an instance of '<em>Ftps Binding Type</em>'.
-     * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
-     * @generated
-     */
-    public T caseCamelFtpsBindingType(CamelFtpsBindingType object) {
-        return null;
-    }
-
-    /**
-     * Returns the result of interpreting the object as an instance of '<em>Implementation Type</em>'.
-     * <!-- begin-user-doc -->
-	 * This implementation returns null;
-	 * returning a non-null result will terminate the switch.
-	 * <!-- end-user-doc -->
-     * @param object the target of the switch.
-     * @return the result of interpreting the object as an instance of '<em>Implementation Type</em>'.
-     * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
-     * @generated
-     */
-	public T caseCamelImplementationType(CamelImplementationType object) {
-        return null;
-    }
-
-	/**
-     * Returns the result of interpreting the object as an instance of '<em>Jms Binding Type</em>'.
-     * <!-- begin-user-doc -->
-     * This implementation returns null;
-     * returning a non-null result will terminate the switch.
-     * <!-- end-user-doc -->
-     * @param object the target of the switch.
-     * @return the result of interpreting the object as an instance of '<em>Jms Binding Type</em>'.
-     * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
-     * @generated
-     */
-    public T caseCamelJmsBindingType(CamelJmsBindingType object) {
-        return null;
-    }
-
-    /**
-     * Returns the result of interpreting the object as an instance of '<em>Netty Binding Type</em>'.
-     * <!-- begin-user-doc -->
-     * This implementation returns null;
-     * returning a non-null result will terminate the switch.
-     * <!-- end-user-doc -->
-     * @param object the target of the switch.
-     * @return the result of interpreting the object as an instance of '<em>Netty Binding Type</em>'.
-     * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
-     * @generated
-     */
-    public T caseCamelNettyBindingType(CamelNettyBindingType object) {
-        return null;
-    }
-
-    /**
-     * Returns the result of interpreting the object as an instance of '<em>Netty Udp Binding Type</em>'.
-     * <!-- begin-user-doc -->
-     * This implementation returns null;
-     * returning a non-null result will terminate the switch.
-     * <!-- end-user-doc -->
-     * @param object the target of the switch.
-     * @return the result of interpreting the object as an instance of '<em>Netty Udp Binding Type</em>'.
-     * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
-     * @generated
-     */
-    public T caseCamelNettyUdpBindingType(CamelNettyUdpBindingType object) {
-        return null;
-    }
-
-    /**
-     * Returns the result of interpreting the object as an instance of '<em>Netty Tcp Binding Type</em>'.
-     * <!-- begin-user-doc -->
-     * This implementation returns null;
-     * returning a non-null result will terminate the switch.
-     * <!-- end-user-doc -->
-     * @param object the target of the switch.
-     * @return the result of interpreting the object as an instance of '<em>Netty Tcp Binding Type</em>'.
-     * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
-     * @generated
-     */
-    public T caseCamelNettyTcpBindingType(CamelNettyTcpBindingType object) {
-        return null;
-    }
-
-    /**
      * Returns the result of interpreting the object as an instance of '<em>Mock Binding Type</em>'.
      * <!-- begin-user-doc -->
 	 * This implementation returns null;
@@ -655,21 +296,6 @@ public class CamelSwitch<T> extends Switch<T> {
     }
 
 	/**
-     * Returns the result of interpreting the object as an instance of '<em>Sftp Binding Type</em>'.
-     * <!-- begin-user-doc -->
-     * This implementation returns null;
-     * returning a non-null result will terminate the switch.
-     * <!-- end-user-doc -->
-     * @param object the target of the switch.
-     * @return the result of interpreting the object as an instance of '<em>Sftp Binding Type</em>'.
-     * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
-     * @generated
-     */
-    public T caseCamelSftpBindingType(CamelSftpBindingType object) {
-        return null;
-    }
-
-    /**
      * Returns the result of interpreting the object as an instance of '<em>Document Root</em>'.
      * <!-- begin-user-doc -->
 	 * This implementation returns null;
@@ -685,156 +311,6 @@ public class CamelSwitch<T> extends Switch<T> {
     }
 
 	/**
-     * Returns the result of interpreting the object as an instance of '<em>Context Mapper Type</em>'.
-     * <!-- begin-user-doc -->
-     * This implementation returns null;
-     * returning a non-null result will terminate the switch.
-     * <!-- end-user-doc -->
-     * @param object the target of the switch.
-     * @return the result of interpreting the object as an instance of '<em>Context Mapper Type</em>'.
-     * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
-     * @generated
-     */
-    public T caseCamelContextMapperType(CamelContextMapperType object) {
-        return null;
-    }
-
-    /**
-     * Returns the result of interpreting the object as an instance of '<em>Message Composer Type</em>'.
-     * <!-- begin-user-doc -->
-     * This implementation returns null;
-     * returning a non-null result will terminate the switch.
-     * <!-- end-user-doc -->
-     * @param object the target of the switch.
-     * @return the result of interpreting the object as an instance of '<em>Message Composer Type</em>'.
-     * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
-     * @generated
-     */
-    public T caseCamelMessageComposerType(CamelMessageComposerType object) {
-        return null;
-    }
-
-    /**
-     * Returns the result of interpreting the object as an instance of '<em>Mail Consumer Type</em>'.
-     * <!-- begin-user-doc -->
-     * This implementation returns null;
-     * returning a non-null result will terminate the switch.
-     * <!-- end-user-doc -->
-     * @param object the target of the switch.
-     * @return the result of interpreting the object as an instance of '<em>Mail Consumer Type</em>'.
-     * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
-     * @generated
-     */
-    public T caseCamelMailConsumerType(CamelMailConsumerType object) {
-        return null;
-    }
-
-    /**
-     * Returns the result of interpreting the object as an instance of '<em>Mail Producer Type</em>'.
-     * <!-- begin-user-doc -->
-     * This implementation returns null;
-     * returning a non-null result will terminate the switch.
-     * <!-- end-user-doc -->
-     * @param object the target of the switch.
-     * @return the result of interpreting the object as an instance of '<em>Mail Producer Type</em>'.
-     * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
-     * @generated
-     */
-    public T caseCamelMailProducerType(CamelMailProducerType object) {
-        return null;
-    }
-
-    /**
-     * Returns the result of interpreting the object as an instance of '<em>Mail Binding Type</em>'.
-     * <!-- begin-user-doc -->
-     * This implementation returns null;
-     * returning a non-null result will terminate the switch.
-     * <!-- end-user-doc -->
-     * @param object the target of the switch.
-     * @return the result of interpreting the object as an instance of '<em>Mail Binding Type</em>'.
-     * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
-     * @generated
-     */
-    public T caseCamelMailBindingType(CamelMailBindingType object) {
-        return null;
-    }
-
-    /**
-     * Returns the result of interpreting the object as an instance of '<em>Jpa Producer Type</em>'.
-     * <!-- begin-user-doc -->
-	 * This implementation returns null;
-	 * returning a non-null result will terminate the switch.
-	 * <!-- end-user-doc -->
-     * @param object the target of the switch.
-     * @return the result of interpreting the object as an instance of '<em>Jpa Producer Type</em>'.
-     * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
-     * @generated
-     */
-	public T caseJpaProducerType(JpaProducerType object) {
-        return null;
-    }
-
-				/**
-     * Returns the result of interpreting the object as an instance of '<em>Jpa Consumer Type</em>'.
-     * <!-- begin-user-doc -->
-	 * This implementation returns null;
-	 * returning a non-null result will terminate the switch.
-	 * <!-- end-user-doc -->
-     * @param object the target of the switch.
-     * @return the result of interpreting the object as an instance of '<em>Jpa Consumer Type</em>'.
-     * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
-     * @generated
-     */
-	public T caseJpaConsumerType(JpaConsumerType object) {
-        return null;
-    }
-
-				/**
-     * Returns the result of interpreting the object as an instance of '<em>JPA Binding Type</em>'.
-     * <!-- begin-user-doc -->
-	 * This implementation returns null;
-	 * returning a non-null result will terminate the switch.
-	 * <!-- end-user-doc -->
-     * @param object the target of the switch.
-     * @return the result of interpreting the object as an instance of '<em>JPA Binding Type</em>'.
-     * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
-     * @generated
-     */
-	public T caseCamelJPABindingType(CamelJPABindingType object) {
-        return null;
-    }
-
-				/**
-     * Returns the result of interpreting the object as an instance of '<em>Context Mapper Type</em>'.
-     * <!-- begin-user-doc -->
-     * This implementation returns null;
-     * returning a non-null result will terminate the switch.
-     * <!-- end-user-doc -->
-     * @param object the target of the switch.
-     * @return the result of interpreting the object as an instance of '<em>Context Mapper Type</em>'.
-     * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
-     * @generated
-     */
-    public T caseContextMapperType(ContextMapperType object) {
-        return null;
-    }
-
-    /**
-     * Returns the result of interpreting the object as an instance of '<em>Message Composer Type</em>'.
-     * <!-- begin-user-doc -->
-     * This implementation returns null;
-     * returning a non-null result will terminate the switch.
-     * <!-- end-user-doc -->
-     * @param object the target of the switch.
-     * @return the result of interpreting the object as an instance of '<em>Message Composer Type</em>'.
-     * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
-     * @generated
-     */
-    public T caseMessageComposerType(MessageComposerType object) {
-        return null;
-    }
-
-    /**
      * Returns the result of interpreting the object as an instance of '<em>Remote Binding Type</em>'.
      * <!-- begin-user-doc -->
      * This implementation returns null;
@@ -846,66 +322,6 @@ public class CamelSwitch<T> extends Switch<T> {
      * @generated
      */
     public T caseCamelRemoteBindingType(CamelRemoteBindingType object) {
-        return null;
-    }
-
-    /**
-     * Returns the result of interpreting the object as an instance of '<em>File Consumer Type</em>'.
-     * <!-- begin-user-doc -->
-	 * This implementation returns null;
-	 * returning a non-null result will terminate the switch.
-	 * <!-- end-user-doc -->
-     * @param object the target of the switch.
-     * @return the result of interpreting the object as an instance of '<em>File Consumer Type</em>'.
-     * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
-     * @generated
-     */
-	public T caseFileConsumerType(FileConsumerType object) {
-        return null;
-    }
-
-	/**
-     * Returns the result of interpreting the object as an instance of '<em>File Producer Type</em>'.
-     * <!-- begin-user-doc -->
-	 * This implementation returns null;
-	 * returning a non-null result will terminate the switch.
-	 * <!-- end-user-doc -->
-     * @param object the target of the switch.
-     * @return the result of interpreting the object as an instance of '<em>File Producer Type</em>'.
-     * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
-     * @generated
-     */
-	public T caseFileProducerType(FileProducerType object) {
-        return null;
-    }
-
-	/**
-     * Returns the result of interpreting the object as an instance of '<em>Java DSL Type</em>'.
-     * <!-- begin-user-doc -->
-	 * This implementation returns null;
-	 * returning a non-null result will terminate the switch.
-	 * <!-- end-user-doc -->
-     * @param object the target of the switch.
-     * @return the result of interpreting the object as an instance of '<em>Java DSL Type</em>'.
-     * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
-     * @generated
-     */
-	public T caseJavaDSLType(JavaDSLType object) {
-        return null;
-    }
-
-	/**
-     * Returns the result of interpreting the object as an instance of '<em>XMLDSL Type</em>'.
-     * <!-- begin-user-doc -->
-     * This implementation returns null;
-     * returning a non-null result will terminate the switch.
-     * <!-- end-user-doc -->
-     * @param object the target of the switch.
-     * @return the result of interpreting the object as an instance of '<em>XMLDSL Type</em>'.
-     * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
-     * @generated
-     */
-    public T caseXMLDSLType(XMLDSLType object) {
         return null;
     }
 
@@ -985,62 +401,17 @@ public class CamelSwitch<T> extends Switch<T> {
     }
 
     /**
-     * Returns the result of interpreting the object as an instance of '<em>Remote File Consumer Type</em>'.
+     * Returns the result of interpreting the object as an instance of '<em>Jms Binding Type</em>'.
      * <!-- begin-user-doc -->
      * This implementation returns null;
      * returning a non-null result will terminate the switch.
      * <!-- end-user-doc -->
      * @param object the target of the switch.
-     * @return the result of interpreting the object as an instance of '<em>Remote File Consumer Type</em>'.
+     * @return the result of interpreting the object as an instance of '<em>Jms Binding Type</em>'.
      * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
      * @generated
      */
-    public T caseRemoteFileConsumerType(RemoteFileConsumerType object) {
-        return null;
-    }
-
-    /**
-     * Returns the result of interpreting the object as an instance of '<em>Remote File Producer Type</em>'.
-     * <!-- begin-user-doc -->
-     * This implementation returns null;
-     * returning a non-null result will terminate the switch.
-     * <!-- end-user-doc -->
-     * @param object the target of the switch.
-     * @return the result of interpreting the object as an instance of '<em>Remote File Producer Type</em>'.
-     * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
-     * @generated
-     */
-    public T caseRemoteFileProducerType(RemoteFileProducerType object) {
-        return null;
-    }
-
-    /**
-     * Returns the result of interpreting the object as an instance of '<em>Quartz Binding Type</em>'.
-     * <!-- begin-user-doc -->
-     * This implementation returns null;
-     * returning a non-null result will terminate the switch.
-     * <!-- end-user-doc -->
-     * @param object the target of the switch.
-     * @return the result of interpreting the object as an instance of '<em>Quartz Binding Type</em>'.
-     * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
-     * @generated
-     */
-    public T caseCamelQuartzBindingType(CamelQuartzBindingType object) {
-        return null;
-    }
-
-    /**
-     * Returns the result of interpreting the object as an instance of '<em>Sql Binding Type</em>'.
-     * <!-- begin-user-doc -->
-     * This implementation returns null;
-     * returning a non-null result will terminate the switch.
-     * <!-- end-user-doc -->
-     * @param object the target of the switch.
-     * @return the result of interpreting the object as an instance of '<em>Sql Binding Type</em>'.
-     * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
-     * @generated
-     */
-    public T caseCamelSqlBindingType(CamelSqlBindingType object) {
+    public T caseJmsBindingType(JmsBindingType object) {
         return null;
     }
 
@@ -1086,21 +457,6 @@ public class CamelSwitch<T> extends Switch<T> {
      * @generated
      */
 	public T caseSwitchYardBindingType(SwitchYardBindingType object) {
-        return null;
-    }
-
-	/**
-     * Returns the result of interpreting the object as an instance of '<em>Implementation</em>'.
-     * <!-- begin-user-doc -->
-	 * This implementation returns null;
-	 * returning a non-null result will terminate the switch.
-	 * <!-- end-user-doc -->
-     * @param object the target of the switch.
-     * @return the result of interpreting the object as an instance of '<em>Implementation</em>'.
-     * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
-     * @generated
-     */
-	public T caseImplementation(Implementation object) {
         return null;
     }
 

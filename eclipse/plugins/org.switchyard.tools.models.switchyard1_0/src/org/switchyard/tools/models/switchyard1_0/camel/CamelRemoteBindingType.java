@@ -19,7 +19,7 @@ package org.switchyard.tools.models.switchyard1_0.camel;
  *   <li>{@link org.switchyard.tools.models.switchyard1_0.camel.CamelRemoteBindingType#getPort <em>Port</em>}</li>
  *   <li>{@link org.switchyard.tools.models.switchyard1_0.camel.CamelRemoteBindingType#getUsername <em>Username</em>}</li>
  *   <li>{@link org.switchyard.tools.models.switchyard1_0.camel.CamelRemoteBindingType#getPassword <em>Password</em>}</li>
- *   <li>{@link org.switchyard.tools.models.switchyard1_0.camel.CamelRemoteBindingType#isBinary <em>Binary</em>}</li>
+ *   <li>{@link org.switchyard.tools.models.switchyard1_0.camel.CamelRemoteBindingType#getBinary <em>Binary</em>}</li>
  *   <li>{@link org.switchyard.tools.models.switchyard1_0.camel.CamelRemoteBindingType#getConnectTimeout <em>Connect Timeout</em>}</li>
  *   <li>{@link org.switchyard.tools.models.switchyard1_0.camel.CamelRemoteBindingType#getDisconnect <em>Disconnect</em>}</li>
  *   <li>{@link org.switchyard.tools.models.switchyard1_0.camel.CamelRemoteBindingType#getMaximumReconnectAttempts <em>Maximum Reconnect Attempts</em>}</li>
@@ -27,8 +27,6 @@ package org.switchyard.tools.models.switchyard1_0.camel;
  *   <li>{@link org.switchyard.tools.models.switchyard1_0.camel.CamelRemoteBindingType#getSeparator <em>Separator</em>}</li>
  *   <li>{@link org.switchyard.tools.models.switchyard1_0.camel.CamelRemoteBindingType#getStepwise <em>Stepwise</em>}</li>
  *   <li>{@link org.switchyard.tools.models.switchyard1_0.camel.CamelRemoteBindingType#getThrowExceptionOnConnectFailed <em>Throw Exception On Connect Failed</em>}</li>
- *   <li>{@link org.switchyard.tools.models.switchyard1_0.camel.CamelRemoteBindingType#getConsume <em>Consume</em>}</li>
- *   <li>{@link org.switchyard.tools.models.switchyard1_0.camel.CamelRemoteBindingType#getProduce <em>Produce</em>}</li>
  * </ul>
  * </p>
  *
@@ -76,13 +74,13 @@ public interface CamelRemoteBindingType extends GenericFileBindingType {
      * @return the value of the '<em>Port</em>' attribute.
      * @see #isSetPort()
      * @see #unsetPort()
-     * @see #setPort(int)
+     * @see #setPort(Integer)
      * @see org.switchyard.tools.models.switchyard1_0.camel.CamelPackage#getCamelRemoteBindingType_Port()
-     * @model unsettable="true" dataType="org.eclipse.emf.ecore.xml.type.Int"
+     * @model unsettable="true" dataType="org.eclipse.emf.ecore.xml.type.IntObject"
      *        extendedMetaData="kind='element' name='port' namespace='##targetNamespace'"
      * @generated
      */
-    int getPort();
+    Integer getPort();
 
     /**
      * Sets the value of the '{@link org.switchyard.tools.models.switchyard1_0.camel.CamelRemoteBindingType#getPort <em>Port</em>}' attribute.
@@ -94,7 +92,7 @@ public interface CamelRemoteBindingType extends GenericFileBindingType {
      * @see #getPort()
      * @generated
      */
-    void setPort(int value);
+    void setPort(Integer value);
 
     /**
      * Unsets the value of the '{@link org.switchyard.tools.models.switchyard1_0.camel.CamelRemoteBindingType#getPort <em>Port</em>}' attribute.
@@ -102,7 +100,7 @@ public interface CamelRemoteBindingType extends GenericFileBindingType {
      * <!-- end-user-doc -->
      * @see #isSetPort()
      * @see #getPort()
-     * @see #setPort(int)
+     * @see #setPort(Integer)
      * @generated
      */
     void unsetPort();
@@ -114,7 +112,7 @@ public interface CamelRemoteBindingType extends GenericFileBindingType {
      * @return whether the value of the '<em>Port</em>' attribute is set.
      * @see #unsetPort()
      * @see #getPort()
-     * @see #setPort(int)
+     * @see #setPort(Integer)
      * @generated
      */
     boolean isSetPort();
@@ -184,45 +182,45 @@ public interface CamelRemoteBindingType extends GenericFileBindingType {
      * @return the value of the '<em>Binary</em>' attribute.
      * @see #isSetBinary()
      * @see #unsetBinary()
-     * @see #setBinary(boolean)
+     * @see #setBinary(Boolean)
      * @see org.switchyard.tools.models.switchyard1_0.camel.CamelPackage#getCamelRemoteBindingType_Binary()
-     * @model unsettable="true" dataType="org.eclipse.emf.ecore.xml.type.Boolean"
+     * @model unsettable="true" dataType="org.eclipse.emf.ecore.xml.type.BooleanObject"
      *        extendedMetaData="kind='element' name='binary' namespace='##targetNamespace'"
      * @generated
      */
-    boolean isBinary();
+    Boolean getBinary();
 
     /**
-     * Sets the value of the '{@link org.switchyard.tools.models.switchyard1_0.camel.CamelRemoteBindingType#isBinary <em>Binary</em>}' attribute.
+     * Sets the value of the '{@link org.switchyard.tools.models.switchyard1_0.camel.CamelRemoteBindingType#getBinary <em>Binary</em>}' attribute.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @param value the new value of the '<em>Binary</em>' attribute.
      * @see #isSetBinary()
      * @see #unsetBinary()
-     * @see #isBinary()
+     * @see #getBinary()
      * @generated
      */
-    void setBinary(boolean value);
+    void setBinary(Boolean value);
 
     /**
-     * Unsets the value of the '{@link org.switchyard.tools.models.switchyard1_0.camel.CamelRemoteBindingType#isBinary <em>Binary</em>}' attribute.
+     * Unsets the value of the '{@link org.switchyard.tools.models.switchyard1_0.camel.CamelRemoteBindingType#getBinary <em>Binary</em>}' attribute.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @see #isSetBinary()
-     * @see #isBinary()
-     * @see #setBinary(boolean)
+     * @see #getBinary()
+     * @see #setBinary(Boolean)
      * @generated
      */
     void unsetBinary();
 
     /**
-     * Returns whether the value of the '{@link org.switchyard.tools.models.switchyard1_0.camel.CamelRemoteBindingType#isBinary <em>Binary</em>}' attribute is set.
+     * Returns whether the value of the '{@link org.switchyard.tools.models.switchyard1_0.camel.CamelRemoteBindingType#getBinary <em>Binary</em>}' attribute is set.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @return whether the value of the '<em>Binary</em>' attribute is set.
      * @see #unsetBinary()
-     * @see #isBinary()
-     * @see #setBinary(boolean)
+     * @see #getBinary()
+     * @see #setBinary(Boolean)
      * @generated
      */
     boolean isSetBinary();
@@ -577,59 +575,5 @@ public interface CamelRemoteBindingType extends GenericFileBindingType {
      * @generated
      */
     boolean isSetThrowExceptionOnConnectFailed();
-
-    /**
-     * Returns the value of the '<em><b>Consume</b></em>' containment reference.
-     * <!-- begin-user-doc -->
-     * <p>
-     * If the meaning of the '<em>Consume</em>' containment reference isn't clear,
-     * there really should be more of a description here...
-     * </p>
-     * <!-- end-user-doc -->
-     * @return the value of the '<em>Consume</em>' containment reference.
-     * @see #setConsume(RemoteFileConsumerType)
-     * @see org.switchyard.tools.models.switchyard1_0.camel.CamelPackage#getCamelRemoteBindingType_Consume()
-     * @model containment="true"
-     *        extendedMetaData="kind='element' name='consume' namespace='##targetNamespace'"
-     * @generated
-     */
-    RemoteFileConsumerType getConsume();
-
-    /**
-     * Sets the value of the '{@link org.switchyard.tools.models.switchyard1_0.camel.CamelRemoteBindingType#getConsume <em>Consume</em>}' containment reference.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @param value the new value of the '<em>Consume</em>' containment reference.
-     * @see #getConsume()
-     * @generated
-     */
-    void setConsume(RemoteFileConsumerType value);
-
-    /**
-     * Returns the value of the '<em><b>Produce</b></em>' containment reference.
-     * <!-- begin-user-doc -->
-     * <p>
-     * If the meaning of the '<em>Produce</em>' containment reference isn't clear,
-     * there really should be more of a description here...
-     * </p>
-     * <!-- end-user-doc -->
-     * @return the value of the '<em>Produce</em>' containment reference.
-     * @see #setProduce(RemoteFileProducerType)
-     * @see org.switchyard.tools.models.switchyard1_0.camel.CamelPackage#getCamelRemoteBindingType_Produce()
-     * @model containment="true"
-     *        extendedMetaData="kind='element' name='produce' namespace='##targetNamespace'"
-     * @generated
-     */
-    RemoteFileProducerType getProduce();
-
-    /**
-     * Sets the value of the '{@link org.switchyard.tools.models.switchyard1_0.camel.CamelRemoteBindingType#getProduce <em>Produce</em>}' containment reference.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @param value the new value of the '<em>Produce</em>' containment reference.
-     * @see #getProduce()
-     * @generated
-     */
-    void setProduce(RemoteFileProducerType value);
 
 } // CamelRemoteBindingType

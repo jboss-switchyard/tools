@@ -96,14 +96,15 @@ public class SwitchYardModelValidationTest extends AbstractMavenProjectTestCase 
         runModelTest("camel-jms-binding");
     }
 
-    // /**
-    // * Tests import and configuration of camel-netty-binding quickstart.
-    // *
-    // * @throws Exception if a failure occurs.
-    // */
-    // public void testCamelNettyBindingQuickstart() throws Exception {
-    // runModelTest("camel-netty-binding");
-    // }
+     /**
+     * Tests import and configuration of camel-netty-binding quickstart.
+     *
+     * @throws Exception if a failure occurs.
+     */
+     public void testCamelNettyBindingQuickstart() throws Exception {
+         // disabled with quickstart issue
+//         runModelTest("camel-netty-binding");
+     }
 
     /**
      * Tests import and configuration of camel-rest-binding quickstart.
@@ -121,6 +122,33 @@ public class SwitchYardModelValidationTest extends AbstractMavenProjectTestCase 
      */
     public void testCamelServiceQuickstart() throws Exception {
         runModelTest("camel-service");
+    }
+
+    /**
+     * Tests import and configuration of camel-ampq quickstart.
+     * 
+     * @throws Exception if a failure occurs.
+     */
+    public void testCamelAmqpQuickstart() throws Exception {
+        runModelTest("camel-amqp-binding");
+    }
+    
+    /**
+     * Tests import and configuration of camel-quartz quickstart.
+     * 
+     * @throws Exception if a failure occurs.
+     */
+    public void testCamelQuartzQuickstart() throws Exception {
+        runModelTest("camel-quartz-binding");
+    }
+
+    /**
+     * Tests import and configuration of camel-sql quickstart.
+     * 
+     * @throws Exception if a failure occurs.
+     */
+    public void testCamelSqlQuickstart() throws Exception {
+        runModelTest("camel-sql-binding");
     }
 
     /**
@@ -204,14 +232,14 @@ public class SwitchYardModelValidationTest extends AbstractMavenProjectTestCase 
         runModelTest("transform-xslt");
     }
 
-    /**
-     * Tests import and configuration of camel-mail-binding quickstart.
-     * 
-     * @throws Exception if a failure occurs.
-     */
-    public void testCamelMailBindingQuickstart() throws Exception {
-        runModelTest("camel-mail-binding");
-    }
+//    /**
+//     * Tests import and configuration of camel-mail-binding quickstart.
+//     * 
+//     * @throws Exception if a failure occurs.
+//     */
+//    public void testCamelMailBindingQuickstart() throws Exception {
+//        runModelTest("camel-mail-binding");
+//    }
 
     /**
      * Tests import and configuration of camel-jpa-binding quickstart. DISABLED

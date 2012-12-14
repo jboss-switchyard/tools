@@ -11,6 +11,16 @@
   <public publicId="http://docs.oasis-open.org/ns/opencsa/sca/200903" uri="org/switchyard/component/bpel/config/model/v1/bpel-v1.xsd" />
   <public publicId="urn:switchyard-component-bpm:config:1.0" uri="org/switchyard/component/bpm/config/model/v1/bpm-v1.xsd" />
   <public publicId="urn:switchyard-component-camel:config:1.0" uri="org/switchyard/component/camel/config/model/v1/camel-v1.xsd" />
+  <public publicId="urn:switchyard-component-camel-amqp:config:1.0" uri="org/switchyard/component/camel/amqp/model/v1/camel-amqp-v1.xsd" />
+  <public publicId="urn:switchyard-component-camel-atom:config:1.0" uri="org/switchyard/component/camel/atom/model/v1/camel-atom-v1.xsd" />
+  <public publicId="urn:switchyard-component-camel-file:config:1.0" uri="org/switchyard/component/camel/file/model/v1/camel-file-v1.xsd" />
+  <public publicId="urn:switchyard-component-camel-ftp:config:1.0" uri="org/switchyard/component/camel/ftp/model/v1/camel-ftp-v1.xsd" />
+  <public publicId="urn:switchyard-component-camel-jms:config:1.0" uri="org/switchyard/component/camel/jms/model/v1/camel-jms-v1.xsd" />
+  <public publicId="urn:switchyard-component-camel-jpa:config:1.0" uri="org/switchyard/component/camel/jpa/model/v1/camel-jpa-v1.xsd" />
+  <public publicId="urn:switchyard-component-camel-mail:config:1.0" uri="org/switchyard/component/camel/mail/model/v1/camel-mail-v1.xsd" />
+  <public publicId="urn:switchyard-component-camel-netty:config:1.0" uri="org/switchyard/component/camel/netty/model/v1/camel-netty-v1.xsd" />
+  <public publicId="urn:switchyard-component-camel-quartz:config:1.0" uri="org/switchyard/component/camel/quartz/model/v1/camel-quartz-v1.xsd" />
+  <public publicId="urn:switchyard-component-camel-sql:config:1.0" uri="org/switchyard/component/camel/sql/model/v1/camel-sql-v1.xsd" />
   <public publicId="urn:switchyard-component-clojure:config:1.0" uri="org/switchyard/component/clojure/config/model/v1/clojure-v1.xsd" />
   <public publicId="urn:switchyard-component-hornetq:config:1.0" uri="org/switchyard/component/hornetq/config/model/v1/hornetq-v1.xsd" />
   <public publicId="urn:switchyard-component-common-rules:config:1.0" uri="org/switchyard/component/common/rules/config/model/v1/common-rules-v1.xsd" />

@@ -26,15 +26,6 @@ public interface CamelFactory extends EFactory {
 	CamelFactory eINSTANCE = org.switchyard.tools.models.switchyard1_0.camel.impl.CamelFactoryImpl.init();
 
 	/**
-     * Returns a new object of class '<em>Atom Binding Type</em>'.
-     * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-     * @return a new object of class '<em>Atom Binding Type</em>'.
-     * @generated
-     */
-	CamelAtomBindingType createCamelAtomBindingType();
-
-	/**
      * Returns a new object of class '<em>Binding Type</em>'.
      * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -53,69 +44,6 @@ public interface CamelFactory extends EFactory {
 	CamelDirectBindingType createCamelDirectBindingType();
 
 	/**
-     * Returns a new object of class '<em>File Binding Type</em>'.
-     * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-     * @return a new object of class '<em>File Binding Type</em>'.
-     * @generated
-     */
-	CamelFileBindingType createCamelFileBindingType();
-
-	/**
-     * Returns a new object of class '<em>Ftp Binding Type</em>'.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @return a new object of class '<em>Ftp Binding Type</em>'.
-     * @generated
-     */
-    CamelFtpBindingType createCamelFtpBindingType();
-
-    /**
-     * Returns a new object of class '<em>Ftps Binding Type</em>'.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @return a new object of class '<em>Ftps Binding Type</em>'.
-     * @generated
-     */
-    CamelFtpsBindingType createCamelFtpsBindingType();
-
-    /**
-     * Returns a new object of class '<em>Implementation Type</em>'.
-     * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-     * @return a new object of class '<em>Implementation Type</em>'.
-     * @generated
-     */
-	CamelImplementationType createCamelImplementationType();
-
-	/**
-     * Returns a new object of class '<em>Jms Binding Type</em>'.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @return a new object of class '<em>Jms Binding Type</em>'.
-     * @generated
-     */
-    CamelJmsBindingType createCamelJmsBindingType();
-
-    /**
-     * Returns a new object of class '<em>Netty Udp Binding Type</em>'.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @return a new object of class '<em>Netty Udp Binding Type</em>'.
-     * @generated
-     */
-    CamelNettyUdpBindingType createCamelNettyUdpBindingType();
-
-    /**
-     * Returns a new object of class '<em>Netty Tcp Binding Type</em>'.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @return a new object of class '<em>Netty Tcp Binding Type</em>'.
-     * @generated
-     */
-    CamelNettyTcpBindingType createCamelNettyTcpBindingType();
-
-    /**
      * Returns a new object of class '<em>Mock Binding Type</em>'.
      * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -143,15 +71,6 @@ public interface CamelFactory extends EFactory {
 	CamelTimerBindingType createCamelTimerBindingType();
 
 	/**
-     * Returns a new object of class '<em>Sftp Binding Type</em>'.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @return a new object of class '<em>Sftp Binding Type</em>'.
-     * @generated
-     */
-    CamelSftpBindingType createCamelSftpBindingType();
-
-    /**
      * Returns a new object of class '<em>Document Root</em>'.
      * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -161,114 +80,6 @@ public interface CamelFactory extends EFactory {
 	DocumentRoot createDocumentRoot();
 
 	/**
-     * Returns a new object of class '<em>Context Mapper Type</em>'.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @return a new object of class '<em>Context Mapper Type</em>'.
-     * @generated
-     */
-    CamelContextMapperType createCamelContextMapperType();
-
-    /**
-     * Returns a new object of class '<em>Message Composer Type</em>'.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @return a new object of class '<em>Message Composer Type</em>'.
-     * @generated
-     */
-    CamelMessageComposerType createCamelMessageComposerType();
-
-    /**
-     * Returns a new object of class '<em>Mail Consumer Type</em>'.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @return a new object of class '<em>Mail Consumer Type</em>'.
-     * @generated
-     */
-    CamelMailConsumerType createCamelMailConsumerType();
-
-    /**
-     * Returns a new object of class '<em>Mail Producer Type</em>'.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @return a new object of class '<em>Mail Producer Type</em>'.
-     * @generated
-     */
-    CamelMailProducerType createCamelMailProducerType();
-
-    /**
-     * Returns a new object of class '<em>Mail Binding Type</em>'.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @return a new object of class '<em>Mail Binding Type</em>'.
-     * @generated
-     */
-    CamelMailBindingType createCamelMailBindingType();
-
-    /**
-     * Returns a new object of class '<em>Jpa Producer Type</em>'.
-     * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-     * @return a new object of class '<em>Jpa Producer Type</em>'.
-     * @generated
-     */
-	JpaProducerType createJpaProducerType();
-
-				/**
-     * Returns a new object of class '<em>Jpa Consumer Type</em>'.
-     * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-     * @return a new object of class '<em>Jpa Consumer Type</em>'.
-     * @generated
-     */
-	JpaConsumerType createJpaConsumerType();
-
-				/**
-     * Returns a new object of class '<em>JPA Binding Type</em>'.
-     * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-     * @return a new object of class '<em>JPA Binding Type</em>'.
-     * @generated
-     */
-	CamelJPABindingType createCamelJPABindingType();
-
-				/**
-     * Returns a new object of class '<em>File Consumer Type</em>'.
-     * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-     * @return a new object of class '<em>File Consumer Type</em>'.
-     * @generated
-     */
-	FileConsumerType createFileConsumerType();
-
-	/**
-     * Returns a new object of class '<em>File Producer Type</em>'.
-     * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-     * @return a new object of class '<em>File Producer Type</em>'.
-     * @generated
-     */
-	FileProducerType createFileProducerType();
-
-	/**
-     * Returns a new object of class '<em>Java DSL Type</em>'.
-     * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-     * @return a new object of class '<em>Java DSL Type</em>'.
-     * @generated
-     */
-	JavaDSLType createJavaDSLType();
-
-	/**
-     * Returns a new object of class '<em>XMLDSL Type</em>'.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @return a new object of class '<em>XMLDSL Type</em>'.
-     * @generated
-     */
-    XMLDSLType createXMLDSLType();
-
-    /**
      * Returns a new object of class '<em>Scheduled Poll Consumer Type</em>'.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
@@ -305,40 +116,13 @@ public interface CamelFactory extends EFactory {
     GenericFileProducerType createGenericFileProducerType();
 
     /**
-     * Returns a new object of class '<em>Remote File Consumer Type</em>'.
+     * Returns a new object of class '<em>Jms Binding Type</em>'.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @return a new object of class '<em>Remote File Consumer Type</em>'.
+     * @return a new object of class '<em>Jms Binding Type</em>'.
      * @generated
      */
-    RemoteFileConsumerType createRemoteFileConsumerType();
-
-    /**
-     * Returns a new object of class '<em>Remote File Producer Type</em>'.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @return a new object of class '<em>Remote File Producer Type</em>'.
-     * @generated
-     */
-    RemoteFileProducerType createRemoteFileProducerType();
-
-    /**
-     * Returns a new object of class '<em>Quartz Binding Type</em>'.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @return a new object of class '<em>Quartz Binding Type</em>'.
-     * @generated
-     */
-    CamelQuartzBindingType createCamelQuartzBindingType();
-
-    /**
-     * Returns a new object of class '<em>Sql Binding Type</em>'.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @return a new object of class '<em>Sql Binding Type</em>'.
-     * @generated
-     */
-    CamelSqlBindingType createCamelSqlBindingType();
+    JmsBindingType createJmsBindingType();
 
     /**
      * Returns the package supported by this factory.

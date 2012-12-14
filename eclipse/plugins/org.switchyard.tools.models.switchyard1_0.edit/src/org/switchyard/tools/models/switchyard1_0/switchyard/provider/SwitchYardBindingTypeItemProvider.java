@@ -27,7 +27,6 @@ import org.eclipse.emf.edit.provider.ViewerNotification;
 import org.eclipse.soa.sca.sca1_1.model.sca.ScaPackage;
 import org.eclipse.soa.sca.sca1_1.model.sca.provider.BindingItemProvider;
 
-import org.switchyard.tools.models.switchyard1_0.camel.CamelFactory;
 import org.switchyard.tools.models.switchyard1_0.hornetq.HornetQFactory;
 import org.switchyard.tools.models.switchyard1_0.http.HttpFactory;
 import org.switchyard.tools.models.switchyard1_0.jca.JcaFactory;
@@ -199,11 +198,6 @@ public class SwitchYardBindingTypeItemProvider
         newChildDescriptors.add
             (createChildParameter
                 (SwitchyardPackage.Literals.SWITCH_YARD_BINDING_TYPE__CONTEXT_MAPPER,
-                 CamelFactory.eINSTANCE.createCamelContextMapperType()));
-
-        newChildDescriptors.add
-            (createChildParameter
-                (SwitchyardPackage.Literals.SWITCH_YARD_BINDING_TYPE__CONTEXT_MAPPER,
                  JcaFactory.eINSTANCE.createJCAContextMapperType()));
 
         newChildDescriptors.add
@@ -230,11 +224,6 @@ public class SwitchYardBindingTypeItemProvider
             (createChildParameter
                 (SwitchyardPackage.Literals.SWITCH_YARD_BINDING_TYPE__MESSAGE_COMPOSER,
                  SOAPFactory.eINSTANCE.createSOAPMessageComposerType()));
-
-        newChildDescriptors.add
-            (createChildParameter
-                (SwitchyardPackage.Literals.SWITCH_YARD_BINDING_TYPE__MESSAGE_COMPOSER,
-                 CamelFactory.eINSTANCE.createCamelMessageComposerType()));
 
         newChildDescriptors.add
             (createChildParameter

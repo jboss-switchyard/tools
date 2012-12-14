@@ -1,8 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<ecore:EPackage xmi:version="2.0"
-    xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-    xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" name="hornetq"
-    nsURI="urn:switchyard-component-hornetq:config:1.0" nsPrefix="hornetq">
+<ecore:EPackage xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" name="hornetq" nsURI="urn:switchyard-component-hornetq:config:1.0"
+    nsPrefix="hornetq">
   <eClassifiers xsi:type="ecore:EClass" name="BindingType" eSuperTypes="config.switchyard.ecore#//SwitchYardBindingType">
     <eAnnotations source="http:///org/eclipse/emf/ecore/util/ExtendedMetaData">
       <details key="name" value="BindingType"/>

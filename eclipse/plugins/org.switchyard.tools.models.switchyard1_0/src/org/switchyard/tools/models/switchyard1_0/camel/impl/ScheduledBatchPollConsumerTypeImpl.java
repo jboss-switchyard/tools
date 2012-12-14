@@ -39,7 +39,7 @@ public class ScheduledBatchPollConsumerTypeImpl extends ScheduledPollConsumerTyp
      * @generated
      * @ordered
      */
-    protected static final BigInteger MAX_MESSAGES_PER_POLL_EDEFAULT = null;
+    protected static final Integer MAX_MESSAGES_PER_POLL_EDEFAULT = null;
 
     /**
      * The cached value of the '{@link #getMaxMessagesPerPoll() <em>Max Messages Per Poll</em>}' attribute.
@@ -49,7 +49,7 @@ public class ScheduledBatchPollConsumerTypeImpl extends ScheduledPollConsumerTyp
      * @generated
      * @ordered
      */
-    protected BigInteger maxMessagesPerPoll = MAX_MESSAGES_PER_POLL_EDEFAULT;
+    protected Integer maxMessagesPerPoll = MAX_MESSAGES_PER_POLL_EDEFAULT;
 
     /**
      * <!-- begin-user-doc -->
@@ -75,7 +75,7 @@ public class ScheduledBatchPollConsumerTypeImpl extends ScheduledPollConsumerTyp
      * <!-- end-user-doc -->
      * @generated
      */
-    public BigInteger getMaxMessagesPerPoll() {
+    public Integer getMaxMessagesPerPoll() {
         return maxMessagesPerPoll;
     }
 
@@ -84,8 +84,8 @@ public class ScheduledBatchPollConsumerTypeImpl extends ScheduledPollConsumerTyp
      * <!-- end-user-doc -->
      * @generated
      */
-    public void setMaxMessagesPerPoll(BigInteger newMaxMessagesPerPoll) {
-        BigInteger oldMaxMessagesPerPoll = maxMessagesPerPoll;
+    public void setMaxMessagesPerPoll(Integer newMaxMessagesPerPoll) {
+        Integer oldMaxMessagesPerPoll = maxMessagesPerPoll;
         maxMessagesPerPoll = newMaxMessagesPerPoll;
         if (eNotificationRequired())
             eNotify(new ENotificationImpl(this, Notification.SET, CamelPackage.SCHEDULED_BATCH_POLL_CONSUMER_TYPE__MAX_MESSAGES_PER_POLL, oldMaxMessagesPerPoll, maxMessagesPerPoll));
@@ -114,7 +114,7 @@ public class ScheduledBatchPollConsumerTypeImpl extends ScheduledPollConsumerTyp
     public void eSet(int featureID, Object newValue) {
         switch (featureID) {
             case CamelPackage.SCHEDULED_BATCH_POLL_CONSUMER_TYPE__MAX_MESSAGES_PER_POLL:
-                setMaxMessagesPerPoll((BigInteger)newValue);
+                setMaxMessagesPerPoll((Integer)newValue);
                 return;
         }
         super.eSet(featureID, newValue);

@@ -25,7 +25,7 @@ import org.switchyard.tools.models.switchyard1_0.camel.GenericFileBindingType;
  * The following features are implemented:
  * <ul>
  *   <li>{@link org.switchyard.tools.models.switchyard1_0.camel.impl.GenericFileBindingTypeImpl#getDirectory <em>Directory</em>}</li>
- *   <li>{@link org.switchyard.tools.models.switchyard1_0.camel.impl.GenericFileBindingTypeImpl#isAutoCreate <em>Auto Create</em>}</li>
+ *   <li>{@link org.switchyard.tools.models.switchyard1_0.camel.impl.GenericFileBindingTypeImpl#getAutoCreate <em>Auto Create</em>}</li>
  *   <li>{@link org.switchyard.tools.models.switchyard1_0.camel.impl.GenericFileBindingTypeImpl#getBufferSize <em>Buffer Size</em>}</li>
  *   <li>{@link org.switchyard.tools.models.switchyard1_0.camel.impl.GenericFileBindingTypeImpl#getFileName <em>File Name</em>}</li>
  *   <li>{@link org.switchyard.tools.models.switchyard1_0.camel.impl.GenericFileBindingTypeImpl#getFlatten <em>Flatten</em>}</li>
@@ -57,24 +57,24 @@ public abstract class GenericFileBindingTypeImpl extends BaseCamelBindingImpl im
     protected String directory = DIRECTORY_EDEFAULT;
 
     /**
-     * The default value of the '{@link #isAutoCreate() <em>Auto Create</em>}' attribute.
+     * The default value of the '{@link #getAutoCreate() <em>Auto Create</em>}' attribute.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @see #isAutoCreate()
+     * @see #getAutoCreate()
      * @generated
      * @ordered
      */
-    protected static final boolean AUTO_CREATE_EDEFAULT = false;
+    protected static final Boolean AUTO_CREATE_EDEFAULT = null;
 
     /**
-     * The cached value of the '{@link #isAutoCreate() <em>Auto Create</em>}' attribute.
+     * The cached value of the '{@link #getAutoCreate() <em>Auto Create</em>}' attribute.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @see #isAutoCreate()
+     * @see #getAutoCreate()
      * @generated
      * @ordered
      */
-    protected boolean autoCreate = AUTO_CREATE_EDEFAULT;
+    protected Boolean autoCreate = AUTO_CREATE_EDEFAULT;
 
     /**
      * This is true if the Auto Create attribute has been set.
@@ -93,7 +93,7 @@ public abstract class GenericFileBindingTypeImpl extends BaseCamelBindingImpl im
      * @generated
      * @ordered
      */
-    protected static final BigInteger BUFFER_SIZE_EDEFAULT = null;
+    protected static final Integer BUFFER_SIZE_EDEFAULT = null;
 
     /**
      * The cached value of the '{@link #getBufferSize() <em>Buffer Size</em>}' attribute.
@@ -103,7 +103,7 @@ public abstract class GenericFileBindingTypeImpl extends BaseCamelBindingImpl im
      * @generated
      * @ordered
      */
-    protected BigInteger bufferSize = BUFFER_SIZE_EDEFAULT;
+    protected Integer bufferSize = BUFFER_SIZE_EDEFAULT;
 
     /**
      * This is true if the Buffer Size attribute has been set.
@@ -228,7 +228,7 @@ public abstract class GenericFileBindingTypeImpl extends BaseCamelBindingImpl im
      * <!-- end-user-doc -->
      * @generated
      */
-    public boolean isAutoCreate() {
+    public Boolean getAutoCreate() {
         return autoCreate;
     }
 
@@ -237,8 +237,8 @@ public abstract class GenericFileBindingTypeImpl extends BaseCamelBindingImpl im
      * <!-- end-user-doc -->
      * @generated
      */
-    public void setAutoCreate(boolean newAutoCreate) {
-        boolean oldAutoCreate = autoCreate;
+    public void setAutoCreate(Boolean newAutoCreate) {
+        Boolean oldAutoCreate = autoCreate;
         autoCreate = newAutoCreate;
         boolean oldAutoCreateESet = autoCreateESet;
         autoCreateESet = true;
@@ -252,7 +252,7 @@ public abstract class GenericFileBindingTypeImpl extends BaseCamelBindingImpl im
      * @generated
      */
     public void unsetAutoCreate() {
-        boolean oldAutoCreate = autoCreate;
+        Boolean oldAutoCreate = autoCreate;
         boolean oldAutoCreateESet = autoCreateESet;
         autoCreate = AUTO_CREATE_EDEFAULT;
         autoCreateESet = false;
@@ -274,7 +274,7 @@ public abstract class GenericFileBindingTypeImpl extends BaseCamelBindingImpl im
      * <!-- end-user-doc -->
      * @generated
      */
-    public BigInteger getBufferSize() {
+    public Integer getBufferSize() {
         return bufferSize;
     }
 
@@ -283,8 +283,8 @@ public abstract class GenericFileBindingTypeImpl extends BaseCamelBindingImpl im
      * <!-- end-user-doc -->
      * @generated
      */
-    public void setBufferSize(BigInteger newBufferSize) {
-        BigInteger oldBufferSize = bufferSize;
+    public void setBufferSize(Integer newBufferSize) {
+        Integer oldBufferSize = bufferSize;
         bufferSize = newBufferSize;
         boolean oldBufferSizeESet = bufferSizeESet;
         bufferSizeESet = true;
@@ -298,7 +298,7 @@ public abstract class GenericFileBindingTypeImpl extends BaseCamelBindingImpl im
      * @generated
      */
     public void unsetBufferSize() {
-        BigInteger oldBufferSize = bufferSize;
+        Integer oldBufferSize = bufferSize;
         boolean oldBufferSizeESet = bufferSizeESet;
         bufferSize = BUFFER_SIZE_EDEFAULT;
         bufferSizeESet = false;
@@ -414,7 +414,7 @@ public abstract class GenericFileBindingTypeImpl extends BaseCamelBindingImpl im
             case CamelPackage.GENERIC_FILE_BINDING_TYPE__DIRECTORY:
                 return getDirectory();
             case CamelPackage.GENERIC_FILE_BINDING_TYPE__AUTO_CREATE:
-                return isAutoCreate();
+                return getAutoCreate();
             case CamelPackage.GENERIC_FILE_BINDING_TYPE__BUFFER_SIZE:
                 return getBufferSize();
             case CamelPackage.GENERIC_FILE_BINDING_TYPE__FILE_NAME:
@@ -442,7 +442,7 @@ public abstract class GenericFileBindingTypeImpl extends BaseCamelBindingImpl im
                 setAutoCreate((Boolean)newValue);
                 return;
             case CamelPackage.GENERIC_FILE_BINDING_TYPE__BUFFER_SIZE:
-                setBufferSize((BigInteger)newValue);
+                setBufferSize((Integer)newValue);
                 return;
             case CamelPackage.GENERIC_FILE_BINDING_TYPE__FILE_NAME:
                 setFileName((String)newValue);

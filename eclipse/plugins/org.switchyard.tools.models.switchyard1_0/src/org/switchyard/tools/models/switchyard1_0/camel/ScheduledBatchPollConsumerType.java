@@ -34,13 +34,13 @@ public interface ScheduledBatchPollConsumerType extends ScheduledPollConsumerTyp
      * </p>
      * <!-- end-user-doc -->
      * @return the value of the '<em>Max Messages Per Poll</em>' attribute.
-     * @see #setMaxMessagesPerPoll(BigInteger)
+     * @see #setMaxMessagesPerPoll(Integer)
      * @see org.switchyard.tools.models.switchyard1_0.camel.CamelPackage#getScheduledBatchPollConsumerType_MaxMessagesPerPoll()
-     * @model dataType="org.eclipse.emf.ecore.xml.type.Integer"
+     * @model dataType="org.eclipse.emf.ecore.xml.type.IntObject"
      *        extendedMetaData="kind='element' name='maxMessagesPerPoll' namespace='##targetNamespace'"
      * @generated
      */
-    BigInteger getMaxMessagesPerPoll();
+    Integer getMaxMessagesPerPoll();
 
     /**
      * Sets the value of the '{@link org.switchyard.tools.models.switchyard1_0.camel.ScheduledBatchPollConsumerType#getMaxMessagesPerPoll <em>Max Messages Per Poll</em>}' attribute.
@@ -50,6 +50,6 @@ public interface ScheduledBatchPollConsumerType extends ScheduledPollConsumerTyp
      * @see #getMaxMessagesPerPoll()
      * @generated
      */
-    void setMaxMessagesPerPoll(BigInteger value);
+    void setMaxMessagesPerPoll(Integer value);
 
 } // ScheduledBatchPollConsumerType

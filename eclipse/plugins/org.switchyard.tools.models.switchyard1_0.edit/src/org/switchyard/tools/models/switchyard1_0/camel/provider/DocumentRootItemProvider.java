@@ -83,24 +83,12 @@ public class DocumentRootItemProvider
     public Collection<? extends EStructuralFeature> getChildrenFeatures(Object object) {
         if (childrenFeatures == null) {
             super.getChildrenFeatures(object);
-            childrenFeatures.add(CamelPackage.Literals.DOCUMENT_ROOT__BINDING_ATOM);
             childrenFeatures.add(CamelPackage.Literals.DOCUMENT_ROOT__BINDING_CAMEL);
             childrenFeatures.add(CamelPackage.Literals.DOCUMENT_ROOT__BINDING_DIRECT);
-            childrenFeatures.add(CamelPackage.Literals.DOCUMENT_ROOT__BINDING_FILE);
-            childrenFeatures.add(CamelPackage.Literals.DOCUMENT_ROOT__BINDING_FTP);
-            childrenFeatures.add(CamelPackage.Literals.DOCUMENT_ROOT__BINDING_FTPS);
             childrenFeatures.add(CamelPackage.Literals.DOCUMENT_ROOT__BINDING_JMS);
             childrenFeatures.add(CamelPackage.Literals.DOCUMENT_ROOT__BINDING_MOCK);
             childrenFeatures.add(CamelPackage.Literals.DOCUMENT_ROOT__BINDING_SEDA);
-            childrenFeatures.add(CamelPackage.Literals.DOCUMENT_ROOT__BINDING_SFTP);
             childrenFeatures.add(CamelPackage.Literals.DOCUMENT_ROOT__BINDING_TIMER);
-            childrenFeatures.add(CamelPackage.Literals.DOCUMENT_ROOT__IMPLEMENTATION_CAMEL);
-            childrenFeatures.add(CamelPackage.Literals.DOCUMENT_ROOT__BINDING_NETTY_UDP);
-            childrenFeatures.add(CamelPackage.Literals.DOCUMENT_ROOT__BINDING_NETTY_TCP);
-            childrenFeatures.add(CamelPackage.Literals.DOCUMENT_ROOT__BINDING_QUARTZ);
-            childrenFeatures.add(CamelPackage.Literals.DOCUMENT_ROOT__BINDING_SQL);
-            childrenFeatures.add(CamelPackage.Literals.DOCUMENT_ROOT__CONTEXT_MAPPER);
-            childrenFeatures.add(CamelPackage.Literals.DOCUMENT_ROOT__MESSAGE_COMPOSER);
         }
         return childrenFeatures;
     }
@@ -152,24 +140,12 @@ public class DocumentRootItemProvider
         updateChildren(notification);
 
         switch (notification.getFeatureID(DocumentRoot.class)) {
-            case CamelPackage.DOCUMENT_ROOT__BINDING_ATOM:
             case CamelPackage.DOCUMENT_ROOT__BINDING_CAMEL:
             case CamelPackage.DOCUMENT_ROOT__BINDING_DIRECT:
-            case CamelPackage.DOCUMENT_ROOT__BINDING_FILE:
-            case CamelPackage.DOCUMENT_ROOT__BINDING_FTP:
-            case CamelPackage.DOCUMENT_ROOT__BINDING_FTPS:
             case CamelPackage.DOCUMENT_ROOT__BINDING_JMS:
             case CamelPackage.DOCUMENT_ROOT__BINDING_MOCK:
             case CamelPackage.DOCUMENT_ROOT__BINDING_SEDA:
-            case CamelPackage.DOCUMENT_ROOT__BINDING_SFTP:
             case CamelPackage.DOCUMENT_ROOT__BINDING_TIMER:
-            case CamelPackage.DOCUMENT_ROOT__IMPLEMENTATION_CAMEL:
-            case CamelPackage.DOCUMENT_ROOT__BINDING_NETTY_UDP:
-            case CamelPackage.DOCUMENT_ROOT__BINDING_NETTY_TCP:
-            case CamelPackage.DOCUMENT_ROOT__BINDING_QUARTZ:
-            case CamelPackage.DOCUMENT_ROOT__BINDING_SQL:
-            case CamelPackage.DOCUMENT_ROOT__CONTEXT_MAPPER:
-            case CamelPackage.DOCUMENT_ROOT__MESSAGE_COMPOSER:
                 fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), true, false));
                 return;
         }
@@ -189,11 +165,6 @@ public class DocumentRootItemProvider
 
         newChildDescriptors.add
             (createChildParameter
-                (CamelPackage.Literals.DOCUMENT_ROOT__BINDING_ATOM,
-                 CamelFactory.eINSTANCE.createCamelAtomBindingType()));
-
-        newChildDescriptors.add
-            (createChildParameter
                 (CamelPackage.Literals.DOCUMENT_ROOT__BINDING_CAMEL,
                  CamelFactory.eINSTANCE.createCamelBindingType()));
 
@@ -202,30 +173,6 @@ public class DocumentRootItemProvider
                 (CamelPackage.Literals.DOCUMENT_ROOT__BINDING_DIRECT,
                  CamelFactory.eINSTANCE.createCamelDirectBindingType()));
 
-        newChildDescriptors.add
-            (createChildParameter
-                (CamelPackage.Literals.DOCUMENT_ROOT__BINDING_FILE,
-                 CamelFactory.eINSTANCE.createCamelFileBindingType()));
-
-        newChildDescriptors.add
-            (createChildParameter
-                (CamelPackage.Literals.DOCUMENT_ROOT__BINDING_FTP,
-                 CamelFactory.eINSTANCE.createCamelFtpBindingType()));
-
-        newChildDescriptors.add
-            (createChildParameter
-                (CamelPackage.Literals.DOCUMENT_ROOT__BINDING_FTP,
-                 CamelFactory.eINSTANCE.createCamelFtpsBindingType()));
-
-        newChildDescriptors.add
-            (createChildParameter
-                (CamelPackage.Literals.DOCUMENT_ROOT__BINDING_FTPS,
-                 CamelFactory.eINSTANCE.createCamelFtpsBindingType()));
-
-        newChildDescriptors.add
-            (createChildParameter
-                (CamelPackage.Literals.DOCUMENT_ROOT__BINDING_JMS,
-                 CamelFactory.eINSTANCE.createCamelJmsBindingType()));
 
         newChildDescriptors.add
             (createChildParameter
@@ -239,48 +186,9 @@ public class DocumentRootItemProvider
 
         newChildDescriptors.add
             (createChildParameter
-                (CamelPackage.Literals.DOCUMENT_ROOT__BINDING_SFTP,
-                 CamelFactory.eINSTANCE.createCamelSftpBindingType()));
-
-        newChildDescriptors.add
-            (createChildParameter
                 (CamelPackage.Literals.DOCUMENT_ROOT__BINDING_TIMER,
                  CamelFactory.eINSTANCE.createCamelTimerBindingType()));
 
-        newChildDescriptors.add
-            (createChildParameter
-                (CamelPackage.Literals.DOCUMENT_ROOT__IMPLEMENTATION_CAMEL,
-                 CamelFactory.eINSTANCE.createCamelImplementationType()));
-
-        newChildDescriptors.add
-            (createChildParameter
-                (CamelPackage.Literals.DOCUMENT_ROOT__BINDING_NETTY_UDP,
-                 CamelFactory.eINSTANCE.createCamelNettyUdpBindingType()));
-
-        newChildDescriptors.add
-            (createChildParameter
-                (CamelPackage.Literals.DOCUMENT_ROOT__BINDING_NETTY_TCP,
-                 CamelFactory.eINSTANCE.createCamelNettyTcpBindingType()));
-
-        newChildDescriptors.add
-            (createChildParameter
-                (CamelPackage.Literals.DOCUMENT_ROOT__BINDING_QUARTZ,
-                 CamelFactory.eINSTANCE.createCamelQuartzBindingType()));
-
-        newChildDescriptors.add
-            (createChildParameter
-                (CamelPackage.Literals.DOCUMENT_ROOT__BINDING_SQL,
-                 CamelFactory.eINSTANCE.createCamelSqlBindingType()));
-
-        newChildDescriptors.add
-            (createChildParameter
-                (CamelPackage.Literals.DOCUMENT_ROOT__CONTEXT_MAPPER,
-                 CamelFactory.eINSTANCE.createCamelContextMapperType()));
-
-        newChildDescriptors.add
-            (createChildParameter
-                (CamelPackage.Literals.DOCUMENT_ROOT__MESSAGE_COMPOSER,
-                 CamelFactory.eINSTANCE.createCamelMessageComposerType()));
     }
 
     /**
@@ -291,18 +199,6 @@ public class DocumentRootItemProvider
      */
     @Override
     public String getCreateChildText(Object owner, Object feature, Object child, Collection<?> selection) {
-        Object childFeature = feature;
-        Object childObject = child;
-
-        boolean qualify =
-            childFeature == CamelPackage.Literals.DOCUMENT_ROOT__BINDING_FTP ||
-            childFeature == CamelPackage.Literals.DOCUMENT_ROOT__BINDING_FTPS;
-
-        if (qualify) {
-            return getString
-                ("_UI_CreateChild_text2",
-                 new Object[] { getTypeText(childObject), getFeatureText(childFeature), getTypeText(owner) });
-        }
         return super.getCreateChildText(owner, feature, child, selection);
     }
 

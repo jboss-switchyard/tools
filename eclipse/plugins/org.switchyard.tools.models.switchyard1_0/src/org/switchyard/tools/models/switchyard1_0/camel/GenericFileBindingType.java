@@ -17,7 +17,7 @@ import java.math.BigInteger;
  * The following features are supported:
  * <ul>
  *   <li>{@link org.switchyard.tools.models.switchyard1_0.camel.GenericFileBindingType#getDirectory <em>Directory</em>}</li>
- *   <li>{@link org.switchyard.tools.models.switchyard1_0.camel.GenericFileBindingType#isAutoCreate <em>Auto Create</em>}</li>
+ *   <li>{@link org.switchyard.tools.models.switchyard1_0.camel.GenericFileBindingType#getAutoCreate <em>Auto Create</em>}</li>
  *   <li>{@link org.switchyard.tools.models.switchyard1_0.camel.GenericFileBindingType#getBufferSize <em>Buffer Size</em>}</li>
  *   <li>{@link org.switchyard.tools.models.switchyard1_0.camel.GenericFileBindingType#getFileName <em>File Name</em>}</li>
  *   <li>{@link org.switchyard.tools.models.switchyard1_0.camel.GenericFileBindingType#getFlatten <em>Flatten</em>}</li>
@@ -69,45 +69,45 @@ public interface GenericFileBindingType extends BaseCamelBinding {
      * @return the value of the '<em>Auto Create</em>' attribute.
      * @see #isSetAutoCreate()
      * @see #unsetAutoCreate()
-     * @see #setAutoCreate(boolean)
+     * @see #setAutoCreate(Boolean)
      * @see org.switchyard.tools.models.switchyard1_0.camel.CamelPackage#getGenericFileBindingType_AutoCreate()
-     * @model unsettable="true" dataType="org.eclipse.emf.ecore.xml.type.Boolean"
+     * @model unsettable="true" dataType="org.eclipse.emf.ecore.xml.type.BooleanObject"
      *        extendedMetaData="kind='element' name='autoCreate' namespace='##targetNamespace'"
      * @generated
      */
-    boolean isAutoCreate();
+    Boolean getAutoCreate();
 
     /**
-     * Sets the value of the '{@link org.switchyard.tools.models.switchyard1_0.camel.GenericFileBindingType#isAutoCreate <em>Auto Create</em>}' attribute.
+     * Sets the value of the '{@link org.switchyard.tools.models.switchyard1_0.camel.GenericFileBindingType#getAutoCreate <em>Auto Create</em>}' attribute.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @param value the new value of the '<em>Auto Create</em>' attribute.
      * @see #isSetAutoCreate()
      * @see #unsetAutoCreate()
-     * @see #isAutoCreate()
+     * @see #getAutoCreate()
      * @generated
      */
-    void setAutoCreate(boolean value);
+    void setAutoCreate(Boolean value);
 
     /**
-     * Unsets the value of the '{@link org.switchyard.tools.models.switchyard1_0.camel.GenericFileBindingType#isAutoCreate <em>Auto Create</em>}' attribute.
+     * Unsets the value of the '{@link org.switchyard.tools.models.switchyard1_0.camel.GenericFileBindingType#getAutoCreate <em>Auto Create</em>}' attribute.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @see #isSetAutoCreate()
-     * @see #isAutoCreate()
-     * @see #setAutoCreate(boolean)
+     * @see #getAutoCreate()
+     * @see #setAutoCreate(Boolean)
      * @generated
      */
     void unsetAutoCreate();
 
     /**
-     * Returns whether the value of the '{@link org.switchyard.tools.models.switchyard1_0.camel.GenericFileBindingType#isAutoCreate <em>Auto Create</em>}' attribute is set.
+     * Returns whether the value of the '{@link org.switchyard.tools.models.switchyard1_0.camel.GenericFileBindingType#getAutoCreate <em>Auto Create</em>}' attribute is set.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @return whether the value of the '<em>Auto Create</em>' attribute is set.
      * @see #unsetAutoCreate()
-     * @see #isAutoCreate()
-     * @see #setAutoCreate(boolean)
+     * @see #getAutoCreate()
+     * @see #setAutoCreate(Boolean)
      * @generated
      */
     boolean isSetAutoCreate();
@@ -123,13 +123,13 @@ public interface GenericFileBindingType extends BaseCamelBinding {
      * @return the value of the '<em>Buffer Size</em>' attribute.
      * @see #isSetBufferSize()
      * @see #unsetBufferSize()
-     * @see #setBufferSize(BigInteger)
+     * @see #setBufferSize(Integer)
      * @see org.switchyard.tools.models.switchyard1_0.camel.CamelPackage#getGenericFileBindingType_BufferSize()
-     * @model unsettable="true" dataType="org.eclipse.emf.ecore.xml.type.Integer"
+     * @model unsettable="true" dataType="org.eclipse.emf.ecore.xml.type.IntObject"
      *        extendedMetaData="kind='element' name='bufferSize' namespace='##targetNamespace'"
      * @generated
      */
-    BigInteger getBufferSize();
+    Integer getBufferSize();
 
     /**
      * Sets the value of the '{@link org.switchyard.tools.models.switchyard1_0.camel.GenericFileBindingType#getBufferSize <em>Buffer Size</em>}' attribute.
@@ -141,7 +141,7 @@ public interface GenericFileBindingType extends BaseCamelBinding {
      * @see #getBufferSize()
      * @generated
      */
-    void setBufferSize(BigInteger value);
+    void setBufferSize(Integer value);
 
     /**
      * Unsets the value of the '{@link org.switchyard.tools.models.switchyard1_0.camel.GenericFileBindingType#getBufferSize <em>Buffer Size</em>}' attribute.
@@ -149,7 +149,7 @@ public interface GenericFileBindingType extends BaseCamelBinding {
      * <!-- end-user-doc -->
      * @see #isSetBufferSize()
      * @see #getBufferSize()
-     * @see #setBufferSize(BigInteger)
+     * @see #setBufferSize(Integer)
      * @generated
      */
     void unsetBufferSize();
@@ -161,7 +161,7 @@ public interface GenericFileBindingType extends BaseCamelBinding {
      * @return whether the value of the '<em>Buffer Size</em>' attribute is set.
      * @see #unsetBufferSize()
      * @see #getBufferSize()
-     * @see #setBufferSize(BigInteger)
+     * @see #setBufferSize(Integer)
      * @generated
      */
     boolean isSetBufferSize();

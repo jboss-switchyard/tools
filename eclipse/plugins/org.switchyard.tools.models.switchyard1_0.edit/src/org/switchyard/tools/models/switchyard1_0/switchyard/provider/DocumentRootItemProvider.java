@@ -155,6 +155,7 @@ public class DocumentRootItemProvider
             childrenFeatures.add(SwitchyardPackage.Literals.DOCUMENT_ROOT__REGEX_OPERATION_SELECTOR_SWITCHYARD);
             childrenFeatures.add(SwitchyardPackage.Literals.DOCUMENT_ROOT__XPATH_OPERATION_SELECTOR_SWITCHYARD);
             childrenFeatures.add(SwitchyardPackage.Literals.DOCUMENT_ROOT__STATIC_OPERATION_SELECTOR_SWITCHYARD);
+            childrenFeatures.add(SwitchyardPackage.Literals.DOCUMENT_ROOT__SECURITY);
         }
         return childrenFeatures;
     }
@@ -230,6 +231,7 @@ public class DocumentRootItemProvider
             case SwitchyardPackage.DOCUMENT_ROOT__REGEX_OPERATION_SELECTOR_SWITCHYARD:
             case SwitchyardPackage.DOCUMENT_ROOT__XPATH_OPERATION_SELECTOR_SWITCHYARD:
             case SwitchyardPackage.DOCUMENT_ROOT__STATIC_OPERATION_SELECTOR_SWITCHYARD:
+            case SwitchyardPackage.DOCUMENT_ROOT__SECURITY:
                 fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), true, false));
                 return;
         }
@@ -320,11 +322,6 @@ public class DocumentRootItemProvider
         newChildDescriptors.add
             (createChildParameter
                 (SwitchyardPackage.Literals.DOCUMENT_ROOT__CONTEXT_MAPPER,
-                 CamelFactory.eINSTANCE.createCamelContextMapperType()));
-
-        newChildDescriptors.add
-            (createChildParameter
-                (SwitchyardPackage.Literals.DOCUMENT_ROOT__CONTEXT_MAPPER,
                  JcaFactory.eINSTANCE.createJCAContextMapperType()));
 
         newChildDescriptors.add
@@ -351,11 +348,6 @@ public class DocumentRootItemProvider
             (createChildParameter
                 (SwitchyardPackage.Literals.DOCUMENT_ROOT__MESSAGE_COMPOSER,
                  SOAPFactory.eINSTANCE.createSOAPMessageComposerType()));
-
-        newChildDescriptors.add
-            (createChildParameter
-                (SwitchyardPackage.Literals.DOCUMENT_ROOT__MESSAGE_COMPOSER,
-                 CamelFactory.eINSTANCE.createCamelMessageComposerType()));
 
         newChildDescriptors.add
             (createChildParameter
@@ -391,6 +383,11 @@ public class DocumentRootItemProvider
             (createChildParameter
                 (SwitchyardPackage.Literals.DOCUMENT_ROOT__STATIC_OPERATION_SELECTOR_SWITCHYARD,
                  SwitchyardFactory.eINSTANCE.createStaticOperationSelectorType()));
+
+        newChildDescriptors.add
+            (createChildParameter
+                (SwitchyardPackage.Literals.DOCUMENT_ROOT__SECURITY,
+                 SwitchyardFactory.eINSTANCE.createSecurityType()));
     }
 
     /**

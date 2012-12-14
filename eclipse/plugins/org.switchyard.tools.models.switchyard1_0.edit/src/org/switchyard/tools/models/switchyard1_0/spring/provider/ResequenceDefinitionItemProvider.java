@@ -38,7 +38,17 @@ import org.switchyard.tools.models.switchyard1_0.bean.BeanFactory;
 
 import org.switchyard.tools.models.switchyard1_0.bpm.BPMFactory;
 
-import org.switchyard.tools.models.switchyard1_0.camel.CamelFactory;
+import org.switchyard.tools.models.switchyard1_0.camel.amqp.AmqpFactory;
+import org.switchyard.tools.models.switchyard1_0.camel.atom.AtomFactory;
+import org.switchyard.tools.models.switchyard1_0.camel.core.CamelFactory;
+import org.switchyard.tools.models.switchyard1_0.camel.file.FileFactory;
+import org.switchyard.tools.models.switchyard1_0.camel.ftp.FtpFactory;
+import org.switchyard.tools.models.switchyard1_0.camel.jms.JmsFactory;
+import org.switchyard.tools.models.switchyard1_0.camel.jpa.JpaFactory;
+import org.switchyard.tools.models.switchyard1_0.camel.mail.MailFactory;
+import org.switchyard.tools.models.switchyard1_0.camel.netty.NettyFactory;
+import org.switchyard.tools.models.switchyard1_0.camel.quartz.QuartzFactory;
+import org.switchyard.tools.models.switchyard1_0.camel.sql.SqlFactory;
 
 import org.switchyard.tools.models.switchyard1_0.clojure.ClojureFactory;
 
@@ -1396,6 +1406,11 @@ public class ResequenceDefinitionItemProvider
         newChildDescriptors.add
             (createChildParameter
                 (SpringPackage.eINSTANCE.getResequenceDefinition_Property(),
+                 SwitchyardFactory.eINSTANCE.createSecurityType()));
+
+        newChildDescriptors.add
+            (createChildParameter
+                (SpringPackage.eINSTANCE.getResequenceDefinition_Property(),
                  ClojureFactory.eINSTANCE.createClojureImplementationType()));
 
         newChildDescriptors.add
@@ -1536,146 +1551,6 @@ public class ResequenceDefinitionItemProvider
         newChildDescriptors.add
             (createChildParameter
                 (SpringPackage.eINSTANCE.getResequenceDefinition_Property(),
-                 CamelFactory.eINSTANCE.createCamelBindingType()));
-
-        newChildDescriptors.add
-            (createChildParameter
-                (SpringPackage.eINSTANCE.getResequenceDefinition_Property(),
-                 CamelFactory.eINSTANCE.createCamelFileBindingType()));
-
-        newChildDescriptors.add
-            (createChildParameter
-                (SpringPackage.eINSTANCE.getResequenceDefinition_Property(),
-                 CamelFactory.eINSTANCE.createCamelFtpBindingType()));
-
-        newChildDescriptors.add
-            (createChildParameter
-                (SpringPackage.eINSTANCE.getResequenceDefinition_Property(),
-                 CamelFactory.eINSTANCE.createCamelFtpsBindingType()));
-
-        newChildDescriptors.add
-            (createChildParameter
-                (SpringPackage.eINSTANCE.getResequenceDefinition_Property(),
-                 CamelFactory.eINSTANCE.createCamelSftpBindingType()));
-
-        newChildDescriptors.add
-            (createChildParameter
-                (SpringPackage.eINSTANCE.getResequenceDefinition_Property(),
-                 CamelFactory.eINSTANCE.createCamelAtomBindingType()));
-
-        newChildDescriptors.add
-            (createChildParameter
-                (SpringPackage.eINSTANCE.getResequenceDefinition_Property(),
-                 CamelFactory.eINSTANCE.createCamelDirectBindingType()));
-
-        newChildDescriptors.add
-            (createChildParameter
-                (SpringPackage.eINSTANCE.getResequenceDefinition_Property(),
-                 CamelFactory.eINSTANCE.createCamelTimerBindingType()));
-
-        newChildDescriptors.add
-            (createChildParameter
-                (SpringPackage.eINSTANCE.getResequenceDefinition_Property(),
-                 CamelFactory.eINSTANCE.createCamelSedaBindingType()));
-
-        newChildDescriptors.add
-            (createChildParameter
-                (SpringPackage.eINSTANCE.getResequenceDefinition_Property(),
-                 CamelFactory.eINSTANCE.createCamelMockBindingType()));
-
-        newChildDescriptors.add
-            (createChildParameter
-                (SpringPackage.eINSTANCE.getResequenceDefinition_Property(),
-                 CamelFactory.eINSTANCE.createCamelNettyTcpBindingType()));
-
-        newChildDescriptors.add
-            (createChildParameter
-                (SpringPackage.eINSTANCE.getResequenceDefinition_Property(),
-                 CamelFactory.eINSTANCE.createCamelNettyUdpBindingType()));
-
-        newChildDescriptors.add
-            (createChildParameter
-                (SpringPackage.eINSTANCE.getResequenceDefinition_Property(),
-                 CamelFactory.eINSTANCE.createCamelQuartzBindingType()));
-
-        newChildDescriptors.add
-            (createChildParameter
-                (SpringPackage.eINSTANCE.getResequenceDefinition_Property(),
-                 CamelFactory.eINSTANCE.createCamelJmsBindingType()));
-
-        newChildDescriptors.add
-            (createChildParameter
-                (SpringPackage.eINSTANCE.getResequenceDefinition_Property(),
-                 CamelFactory.eINSTANCE.createCamelSqlBindingType()));
-
-        newChildDescriptors.add
-            (createChildParameter
-                (SpringPackage.eINSTANCE.getResequenceDefinition_Property(),
-                 CamelFactory.eINSTANCE.createJavaDSLType()));
-
-        newChildDescriptors.add
-            (createChildParameter
-                (SpringPackage.eINSTANCE.getResequenceDefinition_Property(),
-                 CamelFactory.eINSTANCE.createXMLDSLType()));
-
-        newChildDescriptors.add
-            (createChildParameter
-                (SpringPackage.eINSTANCE.getResequenceDefinition_Property(),
-                 CamelFactory.eINSTANCE.createCamelImplementationType()));
-
-        newChildDescriptors.add
-            (createChildParameter
-                (SpringPackage.eINSTANCE.getResequenceDefinition_Property(),
-                 CamelFactory.eINSTANCE.createScheduledPollConsumerType()));
-
-        newChildDescriptors.add
-            (createChildParameter
-                (SpringPackage.eINSTANCE.getResequenceDefinition_Property(),
-                 CamelFactory.eINSTANCE.createScheduledBatchPollConsumerType()));
-
-        newChildDescriptors.add
-            (createChildParameter
-                (SpringPackage.eINSTANCE.getResequenceDefinition_Property(),
-                 CamelFactory.eINSTANCE.createGenericFileConsumerType()));
-
-        newChildDescriptors.add
-            (createChildParameter
-                (SpringPackage.eINSTANCE.getResequenceDefinition_Property(),
-                 CamelFactory.eINSTANCE.createFileConsumerType()));
-
-        newChildDescriptors.add
-            (createChildParameter
-                (SpringPackage.eINSTANCE.getResequenceDefinition_Property(),
-                 CamelFactory.eINSTANCE.createGenericFileProducerType()));
-
-        newChildDescriptors.add
-            (createChildParameter
-                (SpringPackage.eINSTANCE.getResequenceDefinition_Property(),
-                 CamelFactory.eINSTANCE.createFileProducerType()));
-
-        newChildDescriptors.add
-            (createChildParameter
-                (SpringPackage.eINSTANCE.getResequenceDefinition_Property(),
-                 CamelFactory.eINSTANCE.createRemoteFileConsumerType()));
-
-        newChildDescriptors.add
-            (createChildParameter
-                (SpringPackage.eINSTANCE.getResequenceDefinition_Property(),
-                 CamelFactory.eINSTANCE.createRemoteFileProducerType()));
-
-        newChildDescriptors.add
-            (createChildParameter
-                (SpringPackage.eINSTANCE.getResequenceDefinition_Property(),
-                 CamelFactory.eINSTANCE.createCamelContextMapperType()));
-
-        newChildDescriptors.add
-            (createChildParameter
-                (SpringPackage.eINSTANCE.getResequenceDefinition_Property(),
-                 CamelFactory.eINSTANCE.createCamelMessageComposerType()));
-
-        newChildDescriptors.add
-            (createChildParameter
-                (SpringPackage.eINSTANCE.getResequenceDefinition_Property(),
                  JcaFactory.eINSTANCE.createActivationSpec()));
 
         newChildDescriptors.add
@@ -1792,6 +1667,166 @@ public class ResequenceDefinitionItemProvider
             (createChildParameter
                 (SpringPackage.eINSTANCE.getResequenceDefinition_Property(),
                  RemoteFactory.eINSTANCE.createRemoteBindingType()));
+
+        newChildDescriptors.add
+            (createChildParameter
+                (SpringPackage.eINSTANCE.getResequenceDefinition_Property(),
+                 CamelFactory.eINSTANCE.createScheduledPollConsumerType()));
+
+        newChildDescriptors.add
+            (createChildParameter
+                (SpringPackage.eINSTANCE.getResequenceDefinition_Property(),
+                 CamelFactory.eINSTANCE.createScheduledBatchPollConsumerType()));
+
+        newChildDescriptors.add
+            (createChildParameter
+                (SpringPackage.eINSTANCE.getResequenceDefinition_Property(),
+                 CamelFactory.eINSTANCE.createGenericFileConsumerType()));
+
+        newChildDescriptors.add
+            (createChildParameter
+                (SpringPackage.eINSTANCE.getResequenceDefinition_Property(),
+                 CamelFactory.eINSTANCE.createGenericFileProducerType()));
+
+        newChildDescriptors.add
+            (createChildParameter
+                (SpringPackage.eINSTANCE.getResequenceDefinition_Property(),
+                 CamelFactory.eINSTANCE.createJmsBindingType()));
+
+        newChildDescriptors.add
+            (createChildParameter
+                (SpringPackage.eINSTANCE.getResequenceDefinition_Property(),
+                 CamelFactory.eINSTANCE.createCamelBindingType()));
+
+        newChildDescriptors.add
+            (createChildParameter
+                (SpringPackage.eINSTANCE.getResequenceDefinition_Property(),
+                 CamelFactory.eINSTANCE.createCamelDirectBindingType()));
+
+        newChildDescriptors.add
+            (createChildParameter
+                (SpringPackage.eINSTANCE.getResequenceDefinition_Property(),
+                 CamelFactory.eINSTANCE.createCamelTimerBindingType()));
+
+        newChildDescriptors.add
+            (createChildParameter
+                (SpringPackage.eINSTANCE.getResequenceDefinition_Property(),
+                 CamelFactory.eINSTANCE.createCamelSedaBindingType()));
+
+        newChildDescriptors.add
+            (createChildParameter
+                (SpringPackage.eINSTANCE.getResequenceDefinition_Property(),
+                 CamelFactory.eINSTANCE.createCamelMockBindingType()));
+
+        newChildDescriptors.add
+            (createChildParameter
+                (SpringPackage.eINSTANCE.getResequenceDefinition_Property(),
+                 AmqpFactory.eINSTANCE.createCamelAmqpBindingType()));
+
+        newChildDescriptors.add
+            (createChildParameter
+                (SpringPackage.eINSTANCE.getResequenceDefinition_Property(),
+                 AtomFactory.eINSTANCE.createCamelAtomBindingType()));
+
+        newChildDescriptors.add
+            (createChildParameter
+                (SpringPackage.eINSTANCE.getResequenceDefinition_Property(),
+                 AtomFactory.eINSTANCE.createAtomScheduledPollConsumerType()));
+
+        newChildDescriptors.add
+            (createChildParameter
+                (SpringPackage.eINSTANCE.getResequenceDefinition_Property(),
+                 FileFactory.eINSTANCE.createCamelFileBindingType()));
+
+        newChildDescriptors.add
+            (createChildParameter
+                (SpringPackage.eINSTANCE.getResequenceDefinition_Property(),
+                 FileFactory.eINSTANCE.createFileConsumerType()));
+
+        newChildDescriptors.add
+            (createChildParameter
+                (SpringPackage.eINSTANCE.getResequenceDefinition_Property(),
+                 FileFactory.eINSTANCE.createFileProducerType()));
+
+        newChildDescriptors.add
+            (createChildParameter
+                (SpringPackage.eINSTANCE.getResequenceDefinition_Property(),
+                 FtpFactory.eINSTANCE.createCamelFtpBindingType()));
+
+        newChildDescriptors.add
+            (createChildParameter
+                (SpringPackage.eINSTANCE.getResequenceDefinition_Property(),
+                 FtpFactory.eINSTANCE.createCamelFtpsBindingType()));
+
+        newChildDescriptors.add
+            (createChildParameter
+                (SpringPackage.eINSTANCE.getResequenceDefinition_Property(),
+                 FtpFactory.eINSTANCE.createCamelSftpBindingType()));
+
+        newChildDescriptors.add
+            (createChildParameter
+                (SpringPackage.eINSTANCE.getResequenceDefinition_Property(),
+                 FtpFactory.eINSTANCE.createRemoteFileConsumerType()));
+
+        newChildDescriptors.add
+            (createChildParameter
+                (SpringPackage.eINSTANCE.getResequenceDefinition_Property(),
+                 FtpFactory.eINSTANCE.createRemoteFileProducerType()));
+
+        newChildDescriptors.add
+            (createChildParameter
+                (SpringPackage.eINSTANCE.getResequenceDefinition_Property(),
+                 JmsFactory.eINSTANCE.createCamelJmsBindingType()));
+
+        newChildDescriptors.add
+            (createChildParameter
+                (SpringPackage.eINSTANCE.getResequenceDefinition_Property(),
+                 JpaFactory.eINSTANCE.createJpaProducerType()));
+
+        newChildDescriptors.add
+            (createChildParameter
+                (SpringPackage.eINSTANCE.getResequenceDefinition_Property(),
+                 JpaFactory.eINSTANCE.createJpaConsumerType()));
+
+        newChildDescriptors.add
+            (createChildParameter
+                (SpringPackage.eINSTANCE.getResequenceDefinition_Property(),
+                 JpaFactory.eINSTANCE.createCamelJPABindingType()));
+
+        newChildDescriptors.add
+            (createChildParameter
+                (SpringPackage.eINSTANCE.getResequenceDefinition_Property(),
+                 MailFactory.eINSTANCE.createCamelMailConsumerType()));
+
+        newChildDescriptors.add
+            (createChildParameter
+                (SpringPackage.eINSTANCE.getResequenceDefinition_Property(),
+                 MailFactory.eINSTANCE.createCamelMailProducerType()));
+
+        newChildDescriptors.add
+            (createChildParameter
+                (SpringPackage.eINSTANCE.getResequenceDefinition_Property(),
+                 MailFactory.eINSTANCE.createCamelMailBindingType()));
+
+        newChildDescriptors.add
+            (createChildParameter
+                (SpringPackage.eINSTANCE.getResequenceDefinition_Property(),
+                 NettyFactory.eINSTANCE.createCamelNettyTcpBindingType()));
+
+        newChildDescriptors.add
+            (createChildParameter
+                (SpringPackage.eINSTANCE.getResequenceDefinition_Property(),
+                 NettyFactory.eINSTANCE.createCamelNettyUdpBindingType()));
+
+        newChildDescriptors.add
+            (createChildParameter
+                (SpringPackage.eINSTANCE.getResequenceDefinition_Property(),
+                 QuartzFactory.eINSTANCE.createCamelQuartzBindingType()));
+
+        newChildDescriptors.add
+            (createChildParameter
+                (SpringPackage.eINSTANCE.getResequenceDefinition_Property(),
+                 SqlFactory.eINSTANCE.createCamelSqlBindingType()));
 
         newChildDescriptors.add
             (createChildParameter

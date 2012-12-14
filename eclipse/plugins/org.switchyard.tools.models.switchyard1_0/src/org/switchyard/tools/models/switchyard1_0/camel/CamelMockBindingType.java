@@ -62,22 +62,22 @@ public interface CamelMockBindingType extends BaseCamelBinding {
 	 * </p>
 	 * <!-- end-user-doc -->
      * @return the value of the '<em>Report Group</em>' attribute.
-     * @see #setReportGroup(BigInteger)
+     * @see #setReportGroup(Integer)
      * @see org.switchyard.tools.models.switchyard1_0.camel.CamelPackage#getCamelMockBindingType_ReportGroup()
-     * @model dataType="org.eclipse.emf.ecore.xml.type.Integer" required="true"
+     * @model dataType="org.eclipse.emf.ecore.xml.type.IntObject"
      *        extendedMetaData="kind='element' name='reportGroup' namespace='##targetNamespace'"
      * @generated
      */
-	BigInteger getReportGroup();
+	Integer getReportGroup();
 
 	/**
      * Sets the value of the '{@link org.switchyard.tools.models.switchyard1_0.camel.CamelMockBindingType#getReportGroup <em>Report Group</em>}' attribute.
      * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
      * @param value the new value of the '<em>Report Group</em>' attribute.
      * @see #getReportGroup()
      * @generated
      */
-	void setReportGroup(BigInteger value);
+    void setReportGroup(Integer value);
 
 } // CamelMockBindingType

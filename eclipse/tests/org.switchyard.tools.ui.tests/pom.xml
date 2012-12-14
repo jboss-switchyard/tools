@@ -193,6 +193,24 @@
                   <version>${version.switchyard.runtime}</version>
                   <outputDirectory>test-data/quickstart-configs/demos/policy-security-saml</outputDirectory>
                 </artifactItem>
+                <artifactItem>
+                  <groupId>org.switchyard.quickstarts</groupId>
+                  <artifactId>switchyard-quickstart-camel-amqp-binding</artifactId>
+                  <version>${version.switchyard.runtime}</version>
+                  <outputDirectory>test-data/quickstart-configs/camel-amqp-binding</outputDirectory>
+                </artifactItem>
+                <artifactItem>
+                  <groupId>org.switchyard.quickstarts</groupId>
+                  <artifactId>switchyard-quickstart-camel-quartz-binding</artifactId>
+                  <version>${version.switchyard.runtime}</version>
+                  <outputDirectory>test-data/quickstart-configs/camel-quartz-binding</outputDirectory>
+                </artifactItem>
+                <artifactItem>
+                  <groupId>org.switchyard.quickstarts</groupId>
+                  <artifactId>switchyard-quickstart-camel-sql-binding</artifactId>
+                  <version>${version.switchyard.runtime}</version>
+                  <outputDirectory>test-data/quickstart-configs/camel-sql-binding</outputDirectory>
+                </artifactItem>
               </artifactItems>
             </configuration>
           </execution>

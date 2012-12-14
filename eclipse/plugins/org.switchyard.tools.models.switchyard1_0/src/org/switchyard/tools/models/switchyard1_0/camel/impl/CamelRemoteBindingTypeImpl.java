@@ -30,7 +30,7 @@ import org.switchyard.tools.models.switchyard1_0.camel.RemoteFileProducerType;
  *   <li>{@link org.switchyard.tools.models.switchyard1_0.camel.impl.CamelRemoteBindingTypeImpl#getPort <em>Port</em>}</li>
  *   <li>{@link org.switchyard.tools.models.switchyard1_0.camel.impl.CamelRemoteBindingTypeImpl#getUsername <em>Username</em>}</li>
  *   <li>{@link org.switchyard.tools.models.switchyard1_0.camel.impl.CamelRemoteBindingTypeImpl#getPassword <em>Password</em>}</li>
- *   <li>{@link org.switchyard.tools.models.switchyard1_0.camel.impl.CamelRemoteBindingTypeImpl#isBinary <em>Binary</em>}</li>
+ *   <li>{@link org.switchyard.tools.models.switchyard1_0.camel.impl.CamelRemoteBindingTypeImpl#getBinary <em>Binary</em>}</li>
  *   <li>{@link org.switchyard.tools.models.switchyard1_0.camel.impl.CamelRemoteBindingTypeImpl#getConnectTimeout <em>Connect Timeout</em>}</li>
  *   <li>{@link org.switchyard.tools.models.switchyard1_0.camel.impl.CamelRemoteBindingTypeImpl#getDisconnect <em>Disconnect</em>}</li>
  *   <li>{@link org.switchyard.tools.models.switchyard1_0.camel.impl.CamelRemoteBindingTypeImpl#getMaximumReconnectAttempts <em>Maximum Reconnect Attempts</em>}</li>
@@ -38,8 +38,6 @@ import org.switchyard.tools.models.switchyard1_0.camel.RemoteFileProducerType;
  *   <li>{@link org.switchyard.tools.models.switchyard1_0.camel.impl.CamelRemoteBindingTypeImpl#getSeparator <em>Separator</em>}</li>
  *   <li>{@link org.switchyard.tools.models.switchyard1_0.camel.impl.CamelRemoteBindingTypeImpl#getStepwise <em>Stepwise</em>}</li>
  *   <li>{@link org.switchyard.tools.models.switchyard1_0.camel.impl.CamelRemoteBindingTypeImpl#getThrowExceptionOnConnectFailed <em>Throw Exception On Connect Failed</em>}</li>
- *   <li>{@link org.switchyard.tools.models.switchyard1_0.camel.impl.CamelRemoteBindingTypeImpl#getConsume <em>Consume</em>}</li>
- *   <li>{@link org.switchyard.tools.models.switchyard1_0.camel.impl.CamelRemoteBindingTypeImpl#getProduce <em>Produce</em>}</li>
  * </ul>
  * </p>
  *
@@ -74,7 +72,7 @@ public abstract class CamelRemoteBindingTypeImpl extends GenericFileBindingTypeI
      * @generated
      * @ordered
      */
-    protected static final int PORT_EDEFAULT = 0;
+    protected static final Integer PORT_EDEFAULT = null;
 
     /**
      * The cached value of the '{@link #getPort() <em>Port</em>}' attribute.
@@ -84,7 +82,7 @@ public abstract class CamelRemoteBindingTypeImpl extends GenericFileBindingTypeI
      * @generated
      * @ordered
      */
-    protected int port = PORT_EDEFAULT;
+    protected Integer port = PORT_EDEFAULT;
 
     /**
      * This is true if the Port attribute has been set.
@@ -136,24 +134,24 @@ public abstract class CamelRemoteBindingTypeImpl extends GenericFileBindingTypeI
     protected String password = PASSWORD_EDEFAULT;
 
     /**
-     * The default value of the '{@link #isBinary() <em>Binary</em>}' attribute.
+     * The default value of the '{@link #getBinary() <em>Binary</em>}' attribute.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @see #isBinary()
+     * @see #getBinary()
      * @generated
      * @ordered
      */
-    protected static final boolean BINARY_EDEFAULT = false;
+    protected static final Boolean BINARY_EDEFAULT = null;
 
     /**
-     * The cached value of the '{@link #isBinary() <em>Binary</em>}' attribute.
+     * The cached value of the '{@link #getBinary() <em>Binary</em>}' attribute.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @see #isBinary()
+     * @see #getBinary()
      * @generated
      * @ordered
      */
-    protected boolean binary = BINARY_EDEFAULT;
+    protected Boolean binary = BINARY_EDEFAULT;
 
     /**
      * This is true if the Binary attribute has been set.
@@ -359,26 +357,6 @@ public abstract class CamelRemoteBindingTypeImpl extends GenericFileBindingTypeI
     protected boolean throwExceptionOnConnectFailedESet;
 
     /**
-     * The cached value of the '{@link #getConsume() <em>Consume</em>}' containment reference.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @see #getConsume()
-     * @generated
-     * @ordered
-     */
-    protected RemoteFileConsumerType consume;
-
-    /**
-     * The cached value of the '{@link #getProduce() <em>Produce</em>}' containment reference.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @see #getProduce()
-     * @generated
-     * @ordered
-     */
-    protected RemoteFileProducerType produce;
-
-    /**
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @generated
@@ -423,7 +401,7 @@ public abstract class CamelRemoteBindingTypeImpl extends GenericFileBindingTypeI
      * <!-- end-user-doc -->
      * @generated
      */
-    public int getPort() {
+    public Integer getPort() {
         return port;
     }
 
@@ -432,8 +410,8 @@ public abstract class CamelRemoteBindingTypeImpl extends GenericFileBindingTypeI
      * <!-- end-user-doc -->
      * @generated
      */
-    public void setPort(int newPort) {
-        int oldPort = port;
+    public void setPort(Integer newPort) {
+        Integer oldPort = port;
         port = newPort;
         boolean oldPortESet = portESet;
         portESet = true;
@@ -447,7 +425,7 @@ public abstract class CamelRemoteBindingTypeImpl extends GenericFileBindingTypeI
      * @generated
      */
     public void unsetPort() {
-        int oldPort = port;
+        Integer oldPort = port;
         boolean oldPortESet = portESet;
         port = PORT_EDEFAULT;
         portESet = false;
@@ -511,7 +489,7 @@ public abstract class CamelRemoteBindingTypeImpl extends GenericFileBindingTypeI
      * <!-- end-user-doc -->
      * @generated
      */
-    public boolean isBinary() {
+    public Boolean getBinary() {
         return binary;
     }
 
@@ -520,8 +498,8 @@ public abstract class CamelRemoteBindingTypeImpl extends GenericFileBindingTypeI
      * <!-- end-user-doc -->
      * @generated
      */
-    public void setBinary(boolean newBinary) {
-        boolean oldBinary = binary;
+    public void setBinary(Boolean newBinary) {
+        Boolean oldBinary = binary;
         binary = newBinary;
         boolean oldBinaryESet = binaryESet;
         binaryESet = true;
@@ -535,7 +513,7 @@ public abstract class CamelRemoteBindingTypeImpl extends GenericFileBindingTypeI
      * @generated
      */
     public void unsetBinary() {
-        boolean oldBinary = binary;
+        Boolean oldBinary = binary;
         boolean oldBinaryESet = binaryESet;
         binary = BINARY_EDEFAULT;
         binaryESet = false;
@@ -854,108 +832,6 @@ public abstract class CamelRemoteBindingTypeImpl extends GenericFileBindingTypeI
      * <!-- end-user-doc -->
      * @generated
      */
-    public RemoteFileConsumerType getConsume() {
-        return consume;
-    }
-
-    /**
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    public NotificationChain basicSetConsume(RemoteFileConsumerType newConsume, NotificationChain msgs) {
-        RemoteFileConsumerType oldConsume = consume;
-        consume = newConsume;
-        if (eNotificationRequired()) {
-            ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, CamelPackage.CAMEL_REMOTE_BINDING_TYPE__CONSUME, oldConsume, newConsume);
-            if (msgs == null) msgs = notification; else msgs.add(notification);
-        }
-        return msgs;
-    }
-
-    /**
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    public void setConsume(RemoteFileConsumerType newConsume) {
-        if (newConsume != consume) {
-            NotificationChain msgs = null;
-            if (consume != null)
-                msgs = ((InternalEObject)consume).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - CamelPackage.CAMEL_REMOTE_BINDING_TYPE__CONSUME, null, msgs);
-            if (newConsume != null)
-                msgs = ((InternalEObject)newConsume).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - CamelPackage.CAMEL_REMOTE_BINDING_TYPE__CONSUME, null, msgs);
-            msgs = basicSetConsume(newConsume, msgs);
-            if (msgs != null) msgs.dispatch();
-        }
-        else if (eNotificationRequired())
-            eNotify(new ENotificationImpl(this, Notification.SET, CamelPackage.CAMEL_REMOTE_BINDING_TYPE__CONSUME, newConsume, newConsume));
-    }
-
-    /**
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    public RemoteFileProducerType getProduce() {
-        return produce;
-    }
-
-    /**
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    public NotificationChain basicSetProduce(RemoteFileProducerType newProduce, NotificationChain msgs) {
-        RemoteFileProducerType oldProduce = produce;
-        produce = newProduce;
-        if (eNotificationRequired()) {
-            ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, CamelPackage.CAMEL_REMOTE_BINDING_TYPE__PRODUCE, oldProduce, newProduce);
-            if (msgs == null) msgs = notification; else msgs.add(notification);
-        }
-        return msgs;
-    }
-
-    /**
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    public void setProduce(RemoteFileProducerType newProduce) {
-        if (newProduce != produce) {
-            NotificationChain msgs = null;
-            if (produce != null)
-                msgs = ((InternalEObject)produce).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - CamelPackage.CAMEL_REMOTE_BINDING_TYPE__PRODUCE, null, msgs);
-            if (newProduce != null)
-                msgs = ((InternalEObject)newProduce).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - CamelPackage.CAMEL_REMOTE_BINDING_TYPE__PRODUCE, null, msgs);
-            msgs = basicSetProduce(newProduce, msgs);
-            if (msgs != null) msgs.dispatch();
-        }
-        else if (eNotificationRequired())
-            eNotify(new ENotificationImpl(this, Notification.SET, CamelPackage.CAMEL_REMOTE_BINDING_TYPE__PRODUCE, newProduce, newProduce));
-    }
-
-    /**
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    @Override
-    public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
-        switch (featureID) {
-            case CamelPackage.CAMEL_REMOTE_BINDING_TYPE__CONSUME:
-                return basicSetConsume(null, msgs);
-            case CamelPackage.CAMEL_REMOTE_BINDING_TYPE__PRODUCE:
-                return basicSetProduce(null, msgs);
-        }
-        return super.eInverseRemove(otherEnd, featureID, msgs);
-    }
-
-    /**
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
     @Override
     public Object eGet(int featureID, boolean resolve, boolean coreType) {
         switch (featureID) {
@@ -968,7 +844,7 @@ public abstract class CamelRemoteBindingTypeImpl extends GenericFileBindingTypeI
             case CamelPackage.CAMEL_REMOTE_BINDING_TYPE__PASSWORD:
                 return getPassword();
             case CamelPackage.CAMEL_REMOTE_BINDING_TYPE__BINARY:
-                return isBinary();
+                return getBinary();
             case CamelPackage.CAMEL_REMOTE_BINDING_TYPE__CONNECT_TIMEOUT:
                 return getConnectTimeout();
             case CamelPackage.CAMEL_REMOTE_BINDING_TYPE__DISCONNECT:
@@ -983,10 +859,6 @@ public abstract class CamelRemoteBindingTypeImpl extends GenericFileBindingTypeI
                 return getStepwise();
             case CamelPackage.CAMEL_REMOTE_BINDING_TYPE__THROW_EXCEPTION_ON_CONNECT_FAILED:
                 return getThrowExceptionOnConnectFailed();
-            case CamelPackage.CAMEL_REMOTE_BINDING_TYPE__CONSUME:
-                return getConsume();
-            case CamelPackage.CAMEL_REMOTE_BINDING_TYPE__PRODUCE:
-                return getProduce();
         }
         return super.eGet(featureID, resolve, coreType);
     }
@@ -1034,12 +906,6 @@ public abstract class CamelRemoteBindingTypeImpl extends GenericFileBindingTypeI
                 return;
             case CamelPackage.CAMEL_REMOTE_BINDING_TYPE__THROW_EXCEPTION_ON_CONNECT_FAILED:
                 setThrowExceptionOnConnectFailed((Boolean)newValue);
-                return;
-            case CamelPackage.CAMEL_REMOTE_BINDING_TYPE__CONSUME:
-                setConsume((RemoteFileConsumerType)newValue);
-                return;
-            case CamelPackage.CAMEL_REMOTE_BINDING_TYPE__PRODUCE:
-                setProduce((RemoteFileProducerType)newValue);
                 return;
         }
         super.eSet(featureID, newValue);
@@ -1089,12 +955,6 @@ public abstract class CamelRemoteBindingTypeImpl extends GenericFileBindingTypeI
             case CamelPackage.CAMEL_REMOTE_BINDING_TYPE__THROW_EXCEPTION_ON_CONNECT_FAILED:
                 unsetThrowExceptionOnConnectFailed();
                 return;
-            case CamelPackage.CAMEL_REMOTE_BINDING_TYPE__CONSUME:
-                setConsume((RemoteFileConsumerType)null);
-                return;
-            case CamelPackage.CAMEL_REMOTE_BINDING_TYPE__PRODUCE:
-                setProduce((RemoteFileProducerType)null);
-                return;
         }
         super.eUnset(featureID);
     }
@@ -1131,10 +991,6 @@ public abstract class CamelRemoteBindingTypeImpl extends GenericFileBindingTypeI
                 return isSetStepwise();
             case CamelPackage.CAMEL_REMOTE_BINDING_TYPE__THROW_EXCEPTION_ON_CONNECT_FAILED:
                 return isSetThrowExceptionOnConnectFailed();
-            case CamelPackage.CAMEL_REMOTE_BINDING_TYPE__CONSUME:
-                return consume != null;
-            case CamelPackage.CAMEL_REMOTE_BINDING_TYPE__PRODUCE:
-                return produce != null;
         }
         return super.eIsSet(featureID);
     }

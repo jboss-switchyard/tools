@@ -47,7 +47,7 @@ public interface CamelPackage extends EPackage {
 	 * <!-- end-user-doc -->
      * @generated
      */
-	String eNS_URI = "urn:switchyard-component-camel:config:1.0";
+	String eNS_URI = "urn:switchyard-component-camel-core:config:1.0";
 
 	/**
      * The package namespace name.
@@ -193,16 +193,6 @@ public interface CamelPackage extends EPackage {
     int BASE_CAMEL_BINDING_FEATURE_COUNT = SwitchyardPackage.SWITCH_YARD_BINDING_TYPE_FEATURE_COUNT + 0;
 
     /**
-     * The meta object id for the '{@link org.switchyard.tools.models.switchyard1_0.camel.impl.CamelAtomBindingTypeImpl <em>Atom Binding Type</em>}' class.
-     * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-     * @see org.switchyard.tools.models.switchyard1_0.camel.impl.CamelAtomBindingTypeImpl
-     * @see org.switchyard.tools.models.switchyard1_0.camel.impl.CamelPackageImpl#getCamelAtomBindingType()
-     * @generated
-     */
-	int CAMEL_ATOM_BINDING_TYPE = 6;
-
-	/**
      * The meta object id for the '{@link org.switchyard.tools.models.switchyard1_0.camel.impl.CamelBindingTypeImpl <em>Binding Type</em>}' class.
      * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -210,133 +200,7 @@ public interface CamelPackage extends EPackage {
      * @see org.switchyard.tools.models.switchyard1_0.camel.impl.CamelPackageImpl#getCamelBindingType()
      * @generated
      */
-	int CAMEL_BINDING_TYPE = 1;
-
-	/**
-     * The feature id for the '<em><b>Documentation</b></em>' containment reference list.
-     * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-     * @generated
-     * @ordered
-     */
-	int CAMEL_BINDING_TYPE__DOCUMENTATION = BASE_CAMEL_BINDING__DOCUMENTATION;
-
-	/**
-     * The feature id for the '<em><b>Any Attribute</b></em>' attribute list.
-     * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-     * @generated
-     * @ordered
-     */
-	int CAMEL_BINDING_TYPE__ANY_ATTRIBUTE = BASE_CAMEL_BINDING__ANY_ATTRIBUTE;
-
-	/**
-     * The feature id for the '<em><b>Wire Format Group</b></em>' attribute list.
-     * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-     * @generated
-     * @ordered
-     */
-	int CAMEL_BINDING_TYPE__WIRE_FORMAT_GROUP = BASE_CAMEL_BINDING__WIRE_FORMAT_GROUP;
-
-	/**
-     * The feature id for the '<em><b>Wire Format</b></em>' containment reference.
-     * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-     * @generated
-     * @ordered
-     */
-	int CAMEL_BINDING_TYPE__WIRE_FORMAT = BASE_CAMEL_BINDING__WIRE_FORMAT;
-
-	/**
-     * The feature id for the '<em><b>Operation Selector Group</b></em>' attribute list.
-     * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-     * @generated
-     * @ordered
-     */
-	int CAMEL_BINDING_TYPE__OPERATION_SELECTOR_GROUP = BASE_CAMEL_BINDING__OPERATION_SELECTOR_GROUP;
-
-	/**
-     * The feature id for the '<em><b>Operation Selector</b></em>' containment reference.
-     * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-     * @generated
-     * @ordered
-     */
-	int CAMEL_BINDING_TYPE__OPERATION_SELECTOR = BASE_CAMEL_BINDING__OPERATION_SELECTOR;
-
-	/**
-     * The feature id for the '<em><b>Name</b></em>' attribute.
-     * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-     * @generated
-     * @ordered
-     */
-	int CAMEL_BINDING_TYPE__NAME = BASE_CAMEL_BINDING__NAME;
-
-	/**
-     * The feature id for the '<em><b>Policy Sets</b></em>' attribute.
-     * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-     * @generated
-     * @ordered
-     */
-	int CAMEL_BINDING_TYPE__POLICY_SETS = BASE_CAMEL_BINDING__POLICY_SETS;
-
-	/**
-     * The feature id for the '<em><b>Requires</b></em>' attribute.
-     * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-     * @generated
-     * @ordered
-     */
-	int CAMEL_BINDING_TYPE__REQUIRES = BASE_CAMEL_BINDING__REQUIRES;
-
-	/**
-     * The feature id for the '<em><b>Uri</b></em>' attribute.
-     * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-     * @generated
-     * @ordered
-     */
-	int CAMEL_BINDING_TYPE__URI = BASE_CAMEL_BINDING__URI;
-
-	/**
-     * The feature id for the '<em><b>Context Mapper</b></em>' containment reference.
-     * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-     * @generated
-     * @ordered
-     */
-	int CAMEL_BINDING_TYPE__CONTEXT_MAPPER = BASE_CAMEL_BINDING__CONTEXT_MAPPER;
-
-	/**
-     * The feature id for the '<em><b>Message Composer</b></em>' containment reference.
-     * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-     * @generated
-     * @ordered
-     */
-	int CAMEL_BINDING_TYPE__MESSAGE_COMPOSER = BASE_CAMEL_BINDING__MESSAGE_COMPOSER;
-
-	/**
-     * The feature id for the '<em><b>Config URI</b></em>' attribute.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     * @ordered
-     */
-    int CAMEL_BINDING_TYPE__CONFIG_URI = BASE_CAMEL_BINDING_FEATURE_COUNT + 0;
-
-    /**
-     * The number of structural features of the '<em>Binding Type</em>' class.
-     * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-     * @generated
-     * @ordered
-     */
-	int CAMEL_BINDING_TYPE_FEATURE_COUNT = BASE_CAMEL_BINDING_FEATURE_COUNT + 1;
+	int CAMEL_BINDING_TYPE = 8;
 
 	/**
      * The meta object id for the '{@link org.switchyard.tools.models.switchyard1_0.camel.impl.CamelDirectBindingTypeImpl <em>Direct Binding Type</em>}' class.
@@ -346,7 +210,7 @@ public interface CamelPackage extends EPackage {
      * @see org.switchyard.tools.models.switchyard1_0.camel.impl.CamelPackageImpl#getCamelDirectBindingType()
      * @generated
      */
-	int CAMEL_DIRECT_BINDING_TYPE = 7;
+	int CAMEL_DIRECT_BINDING_TYPE = 9;
 
 	/**
      * The meta object id for the '{@link org.switchyard.tools.models.switchyard1_0.camel.impl.GenericFileBindingTypeImpl <em>Generic File Binding Type</em>}' class.
@@ -356,7 +220,7 @@ public interface CamelPackage extends EPackage {
      * @see org.switchyard.tools.models.switchyard1_0.camel.impl.CamelPackageImpl#getGenericFileBindingType()
      * @generated
      */
-    int GENERIC_FILE_BINDING_TYPE = 20;
+    int GENERIC_FILE_BINDING_TYPE = 1;
 
     /**
      * The feature id for the '<em><b>Documentation</b></em>' containment reference list.
@@ -530,205 +394,6 @@ public interface CamelPackage extends EPackage {
     int GENERIC_FILE_BINDING_TYPE_FEATURE_COUNT = BASE_CAMEL_BINDING_FEATURE_COUNT + 6;
 
     /**
-     * The meta object id for the '{@link org.switchyard.tools.models.switchyard1_0.camel.impl.CamelFileBindingTypeImpl <em>File Binding Type</em>}' class.
-     * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-     * @see org.switchyard.tools.models.switchyard1_0.camel.impl.CamelFileBindingTypeImpl
-     * @see org.switchyard.tools.models.switchyard1_0.camel.impl.CamelPackageImpl#getCamelFileBindingType()
-     * @generated
-     */
-	int CAMEL_FILE_BINDING_TYPE = 2;
-
-	/**
-     * The feature id for the '<em><b>Documentation</b></em>' containment reference list.
-     * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-     * @generated
-     * @ordered
-     */
-	int CAMEL_FILE_BINDING_TYPE__DOCUMENTATION = GENERIC_FILE_BINDING_TYPE__DOCUMENTATION;
-
-	/**
-     * The feature id for the '<em><b>Any Attribute</b></em>' attribute list.
-     * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-     * @generated
-     * @ordered
-     */
-	int CAMEL_FILE_BINDING_TYPE__ANY_ATTRIBUTE = GENERIC_FILE_BINDING_TYPE__ANY_ATTRIBUTE;
-
-	/**
-     * The feature id for the '<em><b>Wire Format Group</b></em>' attribute list.
-     * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-     * @generated
-     * @ordered
-     */
-	int CAMEL_FILE_BINDING_TYPE__WIRE_FORMAT_GROUP = GENERIC_FILE_BINDING_TYPE__WIRE_FORMAT_GROUP;
-
-	/**
-     * The feature id for the '<em><b>Wire Format</b></em>' containment reference.
-     * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-     * @generated
-     * @ordered
-     */
-	int CAMEL_FILE_BINDING_TYPE__WIRE_FORMAT = GENERIC_FILE_BINDING_TYPE__WIRE_FORMAT;
-
-	/**
-     * The feature id for the '<em><b>Operation Selector Group</b></em>' attribute list.
-     * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-     * @generated
-     * @ordered
-     */
-	int CAMEL_FILE_BINDING_TYPE__OPERATION_SELECTOR_GROUP = GENERIC_FILE_BINDING_TYPE__OPERATION_SELECTOR_GROUP;
-
-	/**
-     * The feature id for the '<em><b>Operation Selector</b></em>' containment reference.
-     * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-     * @generated
-     * @ordered
-     */
-	int CAMEL_FILE_BINDING_TYPE__OPERATION_SELECTOR = GENERIC_FILE_BINDING_TYPE__OPERATION_SELECTOR;
-
-	/**
-     * The feature id for the '<em><b>Name</b></em>' attribute.
-     * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-     * @generated
-     * @ordered
-     */
-	int CAMEL_FILE_BINDING_TYPE__NAME = GENERIC_FILE_BINDING_TYPE__NAME;
-
-	/**
-     * The feature id for the '<em><b>Policy Sets</b></em>' attribute.
-     * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-     * @generated
-     * @ordered
-     */
-	int CAMEL_FILE_BINDING_TYPE__POLICY_SETS = GENERIC_FILE_BINDING_TYPE__POLICY_SETS;
-
-	/**
-     * The feature id for the '<em><b>Requires</b></em>' attribute.
-     * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-     * @generated
-     * @ordered
-     */
-	int CAMEL_FILE_BINDING_TYPE__REQUIRES = GENERIC_FILE_BINDING_TYPE__REQUIRES;
-
-	/**
-     * The feature id for the '<em><b>Uri</b></em>' attribute.
-     * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-     * @generated
-     * @ordered
-     */
-	int CAMEL_FILE_BINDING_TYPE__URI = GENERIC_FILE_BINDING_TYPE__URI;
-
-	/**
-     * The feature id for the '<em><b>Context Mapper</b></em>' containment reference.
-     * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-     * @generated
-     * @ordered
-     */
-	int CAMEL_FILE_BINDING_TYPE__CONTEXT_MAPPER = GENERIC_FILE_BINDING_TYPE__CONTEXT_MAPPER;
-
-	/**
-     * The feature id for the '<em><b>Message Composer</b></em>' containment reference.
-     * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-     * @generated
-     * @ordered
-     */
-	int CAMEL_FILE_BINDING_TYPE__MESSAGE_COMPOSER = GENERIC_FILE_BINDING_TYPE__MESSAGE_COMPOSER;
-
-	/**
-     * The feature id for the '<em><b>Directory</b></em>' attribute.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     * @ordered
-     */
-    int CAMEL_FILE_BINDING_TYPE__DIRECTORY = GENERIC_FILE_BINDING_TYPE__DIRECTORY;
-
-    /**
-     * The feature id for the '<em><b>Auto Create</b></em>' attribute.
-     * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-     * @generated
-     * @ordered
-     */
-	int CAMEL_FILE_BINDING_TYPE__AUTO_CREATE = GENERIC_FILE_BINDING_TYPE__AUTO_CREATE;
-
-	/**
-     * The feature id for the '<em><b>Buffer Size</b></em>' attribute.
-     * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-     * @generated
-     * @ordered
-     */
-	int CAMEL_FILE_BINDING_TYPE__BUFFER_SIZE = GENERIC_FILE_BINDING_TYPE__BUFFER_SIZE;
-
-	/**
-     * The feature id for the '<em><b>File Name</b></em>' attribute.
-     * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-     * @generated
-     * @ordered
-     */
-	int CAMEL_FILE_BINDING_TYPE__FILE_NAME = GENERIC_FILE_BINDING_TYPE__FILE_NAME;
-
-	/**
-     * The feature id for the '<em><b>Flatten</b></em>' attribute.
-     * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-     * @generated
-     * @ordered
-     */
-	int CAMEL_FILE_BINDING_TYPE__FLATTEN = GENERIC_FILE_BINDING_TYPE__FLATTEN;
-
-	/**
-     * The feature id for the '<em><b>Charset</b></em>' attribute.
-     * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-     * @generated
-     * @ordered
-     */
-	int CAMEL_FILE_BINDING_TYPE__CHARSET = GENERIC_FILE_BINDING_TYPE__CHARSET;
-
-	/**
-     * The feature id for the '<em><b>Consume</b></em>' containment reference.
-     * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-     * @generated
-     * @ordered
-     */
-	int CAMEL_FILE_BINDING_TYPE__CONSUME = GENERIC_FILE_BINDING_TYPE_FEATURE_COUNT + 0;
-
-	/**
-     * The feature id for the '<em><b>Produce</b></em>' containment reference.
-     * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-     * @generated
-     * @ordered
-     */
-	int CAMEL_FILE_BINDING_TYPE__PRODUCE = GENERIC_FILE_BINDING_TYPE_FEATURE_COUNT + 1;
-
-	/**
-     * The number of structural features of the '<em>File Binding Type</em>' class.
-     * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-     * @generated
-     * @ordered
-     */
-	int CAMEL_FILE_BINDING_TYPE_FEATURE_COUNT = GENERIC_FILE_BINDING_TYPE_FEATURE_COUNT + 2;
-
-	/**
      * The meta object id for the '{@link org.switchyard.tools.models.switchyard1_0.camel.impl.CamelRemoteBindingTypeImpl <em>Remote Binding Type</em>}' class.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
@@ -736,7 +401,7 @@ public interface CamelPackage extends EPackage {
      * @see org.switchyard.tools.models.switchyard1_0.camel.impl.CamelPackageImpl#getCamelRemoteBindingType()
      * @generated
      */
-    int CAMEL_REMOTE_BINDING_TYPE = 21;
+    int CAMEL_REMOTE_BINDING_TYPE = 2;
 
     /**
      * The feature id for the '<em><b>Documentation</b></em>' containment reference list.
@@ -1009,812 +674,13 @@ public interface CamelPackage extends EPackage {
     int CAMEL_REMOTE_BINDING_TYPE__THROW_EXCEPTION_ON_CONNECT_FAILED = GENERIC_FILE_BINDING_TYPE_FEATURE_COUNT + 11;
 
     /**
-     * The feature id for the '<em><b>Consume</b></em>' containment reference.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     * @ordered
-     */
-    int CAMEL_REMOTE_BINDING_TYPE__CONSUME = GENERIC_FILE_BINDING_TYPE_FEATURE_COUNT + 12;
-
-    /**
-     * The feature id for the '<em><b>Produce</b></em>' containment reference.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     * @ordered
-     */
-    int CAMEL_REMOTE_BINDING_TYPE__PRODUCE = GENERIC_FILE_BINDING_TYPE_FEATURE_COUNT + 13;
-
-    /**
      * The number of structural features of the '<em>Remote Binding Type</em>' class.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @generated
      * @ordered
      */
-    int CAMEL_REMOTE_BINDING_TYPE_FEATURE_COUNT = GENERIC_FILE_BINDING_TYPE_FEATURE_COUNT + 14;
-
-    /**
-     * The meta object id for the '{@link org.switchyard.tools.models.switchyard1_0.camel.impl.CamelFtpBindingTypeImpl <em>Ftp Binding Type</em>}' class.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @see org.switchyard.tools.models.switchyard1_0.camel.impl.CamelFtpBindingTypeImpl
-     * @see org.switchyard.tools.models.switchyard1_0.camel.impl.CamelPackageImpl#getCamelFtpBindingType()
-     * @generated
-     */
-    int CAMEL_FTP_BINDING_TYPE = 3;
-
-    /**
-     * The feature id for the '<em><b>Documentation</b></em>' containment reference list.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     * @ordered
-     */
-    int CAMEL_FTP_BINDING_TYPE__DOCUMENTATION = CAMEL_REMOTE_BINDING_TYPE__DOCUMENTATION;
-
-    /**
-     * The feature id for the '<em><b>Any Attribute</b></em>' attribute list.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     * @ordered
-     */
-    int CAMEL_FTP_BINDING_TYPE__ANY_ATTRIBUTE = CAMEL_REMOTE_BINDING_TYPE__ANY_ATTRIBUTE;
-
-    /**
-     * The feature id for the '<em><b>Wire Format Group</b></em>' attribute list.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     * @ordered
-     */
-    int CAMEL_FTP_BINDING_TYPE__WIRE_FORMAT_GROUP = CAMEL_REMOTE_BINDING_TYPE__WIRE_FORMAT_GROUP;
-
-    /**
-     * The feature id for the '<em><b>Wire Format</b></em>' containment reference.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     * @ordered
-     */
-    int CAMEL_FTP_BINDING_TYPE__WIRE_FORMAT = CAMEL_REMOTE_BINDING_TYPE__WIRE_FORMAT;
-
-    /**
-     * The feature id for the '<em><b>Operation Selector Group</b></em>' attribute list.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     * @ordered
-     */
-    int CAMEL_FTP_BINDING_TYPE__OPERATION_SELECTOR_GROUP = CAMEL_REMOTE_BINDING_TYPE__OPERATION_SELECTOR_GROUP;
-
-    /**
-     * The feature id for the '<em><b>Operation Selector</b></em>' containment reference.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     * @ordered
-     */
-    int CAMEL_FTP_BINDING_TYPE__OPERATION_SELECTOR = CAMEL_REMOTE_BINDING_TYPE__OPERATION_SELECTOR;
-
-    /**
-     * The feature id for the '<em><b>Name</b></em>' attribute.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     * @ordered
-     */
-    int CAMEL_FTP_BINDING_TYPE__NAME = CAMEL_REMOTE_BINDING_TYPE__NAME;
-
-    /**
-     * The feature id for the '<em><b>Policy Sets</b></em>' attribute.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     * @ordered
-     */
-    int CAMEL_FTP_BINDING_TYPE__POLICY_SETS = CAMEL_REMOTE_BINDING_TYPE__POLICY_SETS;
-
-    /**
-     * The feature id for the '<em><b>Requires</b></em>' attribute.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     * @ordered
-     */
-    int CAMEL_FTP_BINDING_TYPE__REQUIRES = CAMEL_REMOTE_BINDING_TYPE__REQUIRES;
-
-    /**
-     * The feature id for the '<em><b>Uri</b></em>' attribute.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     * @ordered
-     */
-    int CAMEL_FTP_BINDING_TYPE__URI = CAMEL_REMOTE_BINDING_TYPE__URI;
-
-    /**
-     * The feature id for the '<em><b>Context Mapper</b></em>' containment reference.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     * @ordered
-     */
-    int CAMEL_FTP_BINDING_TYPE__CONTEXT_MAPPER = CAMEL_REMOTE_BINDING_TYPE__CONTEXT_MAPPER;
-
-    /**
-     * The feature id for the '<em><b>Message Composer</b></em>' containment reference.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     * @ordered
-     */
-    int CAMEL_FTP_BINDING_TYPE__MESSAGE_COMPOSER = CAMEL_REMOTE_BINDING_TYPE__MESSAGE_COMPOSER;
-
-    /**
-     * The feature id for the '<em><b>Directory</b></em>' attribute.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     * @ordered
-     */
-    int CAMEL_FTP_BINDING_TYPE__DIRECTORY = CAMEL_REMOTE_BINDING_TYPE__DIRECTORY;
-
-    /**
-     * The feature id for the '<em><b>Auto Create</b></em>' attribute.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     * @ordered
-     */
-    int CAMEL_FTP_BINDING_TYPE__AUTO_CREATE = CAMEL_REMOTE_BINDING_TYPE__AUTO_CREATE;
-
-    /**
-     * The feature id for the '<em><b>Buffer Size</b></em>' attribute.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     * @ordered
-     */
-    int CAMEL_FTP_BINDING_TYPE__BUFFER_SIZE = CAMEL_REMOTE_BINDING_TYPE__BUFFER_SIZE;
-
-    /**
-     * The feature id for the '<em><b>File Name</b></em>' attribute.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     * @ordered
-     */
-    int CAMEL_FTP_BINDING_TYPE__FILE_NAME = CAMEL_REMOTE_BINDING_TYPE__FILE_NAME;
-
-    /**
-     * The feature id for the '<em><b>Flatten</b></em>' attribute.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     * @ordered
-     */
-    int CAMEL_FTP_BINDING_TYPE__FLATTEN = CAMEL_REMOTE_BINDING_TYPE__FLATTEN;
-
-    /**
-     * The feature id for the '<em><b>Charset</b></em>' attribute.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     * @ordered
-     */
-    int CAMEL_FTP_BINDING_TYPE__CHARSET = CAMEL_REMOTE_BINDING_TYPE__CHARSET;
-
-    /**
-     * The feature id for the '<em><b>Host</b></em>' attribute.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     * @ordered
-     */
-    int CAMEL_FTP_BINDING_TYPE__HOST = CAMEL_REMOTE_BINDING_TYPE__HOST;
-
-    /**
-     * The feature id for the '<em><b>Port</b></em>' attribute.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     * @ordered
-     */
-    int CAMEL_FTP_BINDING_TYPE__PORT = CAMEL_REMOTE_BINDING_TYPE__PORT;
-
-    /**
-     * The feature id for the '<em><b>Username</b></em>' attribute.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     * @ordered
-     */
-    int CAMEL_FTP_BINDING_TYPE__USERNAME = CAMEL_REMOTE_BINDING_TYPE__USERNAME;
-
-    /**
-     * The feature id for the '<em><b>Password</b></em>' attribute.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     * @ordered
-     */
-    int CAMEL_FTP_BINDING_TYPE__PASSWORD = CAMEL_REMOTE_BINDING_TYPE__PASSWORD;
-
-    /**
-     * The feature id for the '<em><b>Binary</b></em>' attribute.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     * @ordered
-     */
-    int CAMEL_FTP_BINDING_TYPE__BINARY = CAMEL_REMOTE_BINDING_TYPE__BINARY;
-
-    /**
-     * The feature id for the '<em><b>Connect Timeout</b></em>' attribute.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     * @ordered
-     */
-    int CAMEL_FTP_BINDING_TYPE__CONNECT_TIMEOUT = CAMEL_REMOTE_BINDING_TYPE__CONNECT_TIMEOUT;
-
-    /**
-     * The feature id for the '<em><b>Disconnect</b></em>' attribute.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     * @ordered
-     */
-    int CAMEL_FTP_BINDING_TYPE__DISCONNECT = CAMEL_REMOTE_BINDING_TYPE__DISCONNECT;
-
-    /**
-     * The feature id for the '<em><b>Maximum Reconnect Attempts</b></em>' attribute.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     * @ordered
-     */
-    int CAMEL_FTP_BINDING_TYPE__MAXIMUM_RECONNECT_ATTEMPTS = CAMEL_REMOTE_BINDING_TYPE__MAXIMUM_RECONNECT_ATTEMPTS;
-
-    /**
-     * The feature id for the '<em><b>Reconnect Delay</b></em>' attribute.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     * @ordered
-     */
-    int CAMEL_FTP_BINDING_TYPE__RECONNECT_DELAY = CAMEL_REMOTE_BINDING_TYPE__RECONNECT_DELAY;
-
-    /**
-     * The feature id for the '<em><b>Separator</b></em>' attribute.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     * @ordered
-     */
-    int CAMEL_FTP_BINDING_TYPE__SEPARATOR = CAMEL_REMOTE_BINDING_TYPE__SEPARATOR;
-
-    /**
-     * The feature id for the '<em><b>Stepwise</b></em>' attribute.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     * @ordered
-     */
-    int CAMEL_FTP_BINDING_TYPE__STEPWISE = CAMEL_REMOTE_BINDING_TYPE__STEPWISE;
-
-    /**
-     * The feature id for the '<em><b>Throw Exception On Connect Failed</b></em>' attribute.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     * @ordered
-     */
-    int CAMEL_FTP_BINDING_TYPE__THROW_EXCEPTION_ON_CONNECT_FAILED = CAMEL_REMOTE_BINDING_TYPE__THROW_EXCEPTION_ON_CONNECT_FAILED;
-
-    /**
-     * The feature id for the '<em><b>Consume</b></em>' containment reference.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     * @ordered
-     */
-    int CAMEL_FTP_BINDING_TYPE__CONSUME = CAMEL_REMOTE_BINDING_TYPE__CONSUME;
-
-    /**
-     * The feature id for the '<em><b>Produce</b></em>' containment reference.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     * @ordered
-     */
-    int CAMEL_FTP_BINDING_TYPE__PRODUCE = CAMEL_REMOTE_BINDING_TYPE__PRODUCE;
-
-    /**
-     * The feature id for the '<em><b>Passive Mode</b></em>' attribute.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     * @ordered
-     */
-    int CAMEL_FTP_BINDING_TYPE__PASSIVE_MODE = CAMEL_REMOTE_BINDING_TYPE_FEATURE_COUNT + 0;
-
-    /**
-     * The feature id for the '<em><b>Timeout</b></em>' attribute.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     * @ordered
-     */
-    int CAMEL_FTP_BINDING_TYPE__TIMEOUT = CAMEL_REMOTE_BINDING_TYPE_FEATURE_COUNT + 1;
-
-    /**
-     * The feature id for the '<em><b>So Timeout</b></em>' attribute.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     * @ordered
-     */
-    int CAMEL_FTP_BINDING_TYPE__SO_TIMEOUT = CAMEL_REMOTE_BINDING_TYPE_FEATURE_COUNT + 2;
-
-    /**
-     * The feature id for the '<em><b>Site Command</b></em>' attribute.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     * @ordered
-     */
-    int CAMEL_FTP_BINDING_TYPE__SITE_COMMAND = CAMEL_REMOTE_BINDING_TYPE_FEATURE_COUNT + 3;
-
-    /**
-     * The number of structural features of the '<em>Ftp Binding Type</em>' class.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     * @ordered
-     */
-    int CAMEL_FTP_BINDING_TYPE_FEATURE_COUNT = CAMEL_REMOTE_BINDING_TYPE_FEATURE_COUNT + 4;
-
-    /**
-     * The meta object id for the '{@link org.switchyard.tools.models.switchyard1_0.camel.impl.CamelFtpsBindingTypeImpl <em>Ftps Binding Type</em>}' class.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @see org.switchyard.tools.models.switchyard1_0.camel.impl.CamelFtpsBindingTypeImpl
-     * @see org.switchyard.tools.models.switchyard1_0.camel.impl.CamelPackageImpl#getCamelFtpsBindingType()
-     * @generated
-     */
-    int CAMEL_FTPS_BINDING_TYPE = 4;
-
-    /**
-     * The feature id for the '<em><b>Documentation</b></em>' containment reference list.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     * @ordered
-     */
-    int CAMEL_FTPS_BINDING_TYPE__DOCUMENTATION = CAMEL_FTP_BINDING_TYPE__DOCUMENTATION;
-
-    /**
-     * The feature id for the '<em><b>Any Attribute</b></em>' attribute list.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     * @ordered
-     */
-    int CAMEL_FTPS_BINDING_TYPE__ANY_ATTRIBUTE = CAMEL_FTP_BINDING_TYPE__ANY_ATTRIBUTE;
-
-    /**
-     * The feature id for the '<em><b>Wire Format Group</b></em>' attribute list.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     * @ordered
-     */
-    int CAMEL_FTPS_BINDING_TYPE__WIRE_FORMAT_GROUP = CAMEL_FTP_BINDING_TYPE__WIRE_FORMAT_GROUP;
-
-    /**
-     * The feature id for the '<em><b>Wire Format</b></em>' containment reference.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     * @ordered
-     */
-    int CAMEL_FTPS_BINDING_TYPE__WIRE_FORMAT = CAMEL_FTP_BINDING_TYPE__WIRE_FORMAT;
-
-    /**
-     * The feature id for the '<em><b>Operation Selector Group</b></em>' attribute list.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     * @ordered
-     */
-    int CAMEL_FTPS_BINDING_TYPE__OPERATION_SELECTOR_GROUP = CAMEL_FTP_BINDING_TYPE__OPERATION_SELECTOR_GROUP;
-
-    /**
-     * The feature id for the '<em><b>Operation Selector</b></em>' containment reference.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     * @ordered
-     */
-    int CAMEL_FTPS_BINDING_TYPE__OPERATION_SELECTOR = CAMEL_FTP_BINDING_TYPE__OPERATION_SELECTOR;
-
-    /**
-     * The feature id for the '<em><b>Name</b></em>' attribute.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     * @ordered
-     */
-    int CAMEL_FTPS_BINDING_TYPE__NAME = CAMEL_FTP_BINDING_TYPE__NAME;
-
-    /**
-     * The feature id for the '<em><b>Policy Sets</b></em>' attribute.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     * @ordered
-     */
-    int CAMEL_FTPS_BINDING_TYPE__POLICY_SETS = CAMEL_FTP_BINDING_TYPE__POLICY_SETS;
-
-    /**
-     * The feature id for the '<em><b>Requires</b></em>' attribute.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     * @ordered
-     */
-    int CAMEL_FTPS_BINDING_TYPE__REQUIRES = CAMEL_FTP_BINDING_TYPE__REQUIRES;
-
-    /**
-     * The feature id for the '<em><b>Uri</b></em>' attribute.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     * @ordered
-     */
-    int CAMEL_FTPS_BINDING_TYPE__URI = CAMEL_FTP_BINDING_TYPE__URI;
-
-    /**
-     * The feature id for the '<em><b>Context Mapper</b></em>' containment reference.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     * @ordered
-     */
-    int CAMEL_FTPS_BINDING_TYPE__CONTEXT_MAPPER = CAMEL_FTP_BINDING_TYPE__CONTEXT_MAPPER;
-
-    /**
-     * The feature id for the '<em><b>Message Composer</b></em>' containment reference.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     * @ordered
-     */
-    int CAMEL_FTPS_BINDING_TYPE__MESSAGE_COMPOSER = CAMEL_FTP_BINDING_TYPE__MESSAGE_COMPOSER;
-
-    /**
-     * The feature id for the '<em><b>Directory</b></em>' attribute.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     * @ordered
-     */
-    int CAMEL_FTPS_BINDING_TYPE__DIRECTORY = CAMEL_FTP_BINDING_TYPE__DIRECTORY;
-
-    /**
-     * The feature id for the '<em><b>Auto Create</b></em>' attribute.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     * @ordered
-     */
-    int CAMEL_FTPS_BINDING_TYPE__AUTO_CREATE = CAMEL_FTP_BINDING_TYPE__AUTO_CREATE;
-
-    /**
-     * The feature id for the '<em><b>Buffer Size</b></em>' attribute.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     * @ordered
-     */
-    int CAMEL_FTPS_BINDING_TYPE__BUFFER_SIZE = CAMEL_FTP_BINDING_TYPE__BUFFER_SIZE;
-
-    /**
-     * The feature id for the '<em><b>File Name</b></em>' attribute.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     * @ordered
-     */
-    int CAMEL_FTPS_BINDING_TYPE__FILE_NAME = CAMEL_FTP_BINDING_TYPE__FILE_NAME;
-
-    /**
-     * The feature id for the '<em><b>Flatten</b></em>' attribute.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     * @ordered
-     */
-    int CAMEL_FTPS_BINDING_TYPE__FLATTEN = CAMEL_FTP_BINDING_TYPE__FLATTEN;
-
-    /**
-     * The feature id for the '<em><b>Charset</b></em>' attribute.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     * @ordered
-     */
-    int CAMEL_FTPS_BINDING_TYPE__CHARSET = CAMEL_FTP_BINDING_TYPE__CHARSET;
-
-    /**
-     * The feature id for the '<em><b>Host</b></em>' attribute.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     * @ordered
-     */
-    int CAMEL_FTPS_BINDING_TYPE__HOST = CAMEL_FTP_BINDING_TYPE__HOST;
-
-    /**
-     * The feature id for the '<em><b>Port</b></em>' attribute.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     * @ordered
-     */
-    int CAMEL_FTPS_BINDING_TYPE__PORT = CAMEL_FTP_BINDING_TYPE__PORT;
-
-    /**
-     * The feature id for the '<em><b>Username</b></em>' attribute.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     * @ordered
-     */
-    int CAMEL_FTPS_BINDING_TYPE__USERNAME = CAMEL_FTP_BINDING_TYPE__USERNAME;
-
-    /**
-     * The feature id for the '<em><b>Password</b></em>' attribute.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     * @ordered
-     */
-    int CAMEL_FTPS_BINDING_TYPE__PASSWORD = CAMEL_FTP_BINDING_TYPE__PASSWORD;
-
-    /**
-     * The feature id for the '<em><b>Binary</b></em>' attribute.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     * @ordered
-     */
-    int CAMEL_FTPS_BINDING_TYPE__BINARY = CAMEL_FTP_BINDING_TYPE__BINARY;
-
-    /**
-     * The feature id for the '<em><b>Connect Timeout</b></em>' attribute.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     * @ordered
-     */
-    int CAMEL_FTPS_BINDING_TYPE__CONNECT_TIMEOUT = CAMEL_FTP_BINDING_TYPE__CONNECT_TIMEOUT;
-
-    /**
-     * The feature id for the '<em><b>Disconnect</b></em>' attribute.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     * @ordered
-     */
-    int CAMEL_FTPS_BINDING_TYPE__DISCONNECT = CAMEL_FTP_BINDING_TYPE__DISCONNECT;
-
-    /**
-     * The feature id for the '<em><b>Maximum Reconnect Attempts</b></em>' attribute.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     * @ordered
-     */
-    int CAMEL_FTPS_BINDING_TYPE__MAXIMUM_RECONNECT_ATTEMPTS = CAMEL_FTP_BINDING_TYPE__MAXIMUM_RECONNECT_ATTEMPTS;
-
-    /**
-     * The feature id for the '<em><b>Reconnect Delay</b></em>' attribute.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     * @ordered
-     */
-    int CAMEL_FTPS_BINDING_TYPE__RECONNECT_DELAY = CAMEL_FTP_BINDING_TYPE__RECONNECT_DELAY;
-
-    /**
-     * The feature id for the '<em><b>Separator</b></em>' attribute.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     * @ordered
-     */
-    int CAMEL_FTPS_BINDING_TYPE__SEPARATOR = CAMEL_FTP_BINDING_TYPE__SEPARATOR;
-
-    /**
-     * The feature id for the '<em><b>Stepwise</b></em>' attribute.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     * @ordered
-     */
-    int CAMEL_FTPS_BINDING_TYPE__STEPWISE = CAMEL_FTP_BINDING_TYPE__STEPWISE;
-
-    /**
-     * The feature id for the '<em><b>Throw Exception On Connect Failed</b></em>' attribute.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     * @ordered
-     */
-    int CAMEL_FTPS_BINDING_TYPE__THROW_EXCEPTION_ON_CONNECT_FAILED = CAMEL_FTP_BINDING_TYPE__THROW_EXCEPTION_ON_CONNECT_FAILED;
-
-    /**
-     * The feature id for the '<em><b>Consume</b></em>' containment reference.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     * @ordered
-     */
-    int CAMEL_FTPS_BINDING_TYPE__CONSUME = CAMEL_FTP_BINDING_TYPE__CONSUME;
-
-    /**
-     * The feature id for the '<em><b>Produce</b></em>' containment reference.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     * @ordered
-     */
-    int CAMEL_FTPS_BINDING_TYPE__PRODUCE = CAMEL_FTP_BINDING_TYPE__PRODUCE;
-
-    /**
-     * The feature id for the '<em><b>Passive Mode</b></em>' attribute.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     * @ordered
-     */
-    int CAMEL_FTPS_BINDING_TYPE__PASSIVE_MODE = CAMEL_FTP_BINDING_TYPE__PASSIVE_MODE;
-
-    /**
-     * The feature id for the '<em><b>Timeout</b></em>' attribute.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     * @ordered
-     */
-    int CAMEL_FTPS_BINDING_TYPE__TIMEOUT = CAMEL_FTP_BINDING_TYPE__TIMEOUT;
-
-    /**
-     * The feature id for the '<em><b>So Timeout</b></em>' attribute.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     * @ordered
-     */
-    int CAMEL_FTPS_BINDING_TYPE__SO_TIMEOUT = CAMEL_FTP_BINDING_TYPE__SO_TIMEOUT;
-
-    /**
-     * The feature id for the '<em><b>Site Command</b></em>' attribute.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     * @ordered
-     */
-    int CAMEL_FTPS_BINDING_TYPE__SITE_COMMAND = CAMEL_FTP_BINDING_TYPE__SITE_COMMAND;
-
-    /**
-     * The feature id for the '<em><b>Security Protocol</b></em>' attribute.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     * @ordered
-     */
-    int CAMEL_FTPS_BINDING_TYPE__SECURITY_PROTOCOL = CAMEL_FTP_BINDING_TYPE_FEATURE_COUNT + 0;
-
-    /**
-     * The feature id for the '<em><b>Is Implicit</b></em>' attribute.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     * @ordered
-     */
-    int CAMEL_FTPS_BINDING_TYPE__IS_IMPLICIT = CAMEL_FTP_BINDING_TYPE_FEATURE_COUNT + 1;
-
-    /**
-     * The feature id for the '<em><b>Exec Pbsz</b></em>' attribute.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     * @ordered
-     */
-    int CAMEL_FTPS_BINDING_TYPE__EXEC_PBSZ = CAMEL_FTP_BINDING_TYPE_FEATURE_COUNT + 2;
-
-    /**
-     * The feature id for the '<em><b>Exec Prot</b></em>' attribute.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     * @ordered
-     */
-    int CAMEL_FTPS_BINDING_TYPE__EXEC_PROT = CAMEL_FTP_BINDING_TYPE_FEATURE_COUNT + 3;
-
-    /**
-     * The feature id for the '<em><b>Disable Secure Data Channel Defaults</b></em>' attribute.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     * @ordered
-     */
-    int CAMEL_FTPS_BINDING_TYPE__DISABLE_SECURE_DATA_CHANNEL_DEFAULTS = CAMEL_FTP_BINDING_TYPE_FEATURE_COUNT + 4;
-
-    /**
-     * The number of structural features of the '<em>Ftps Binding Type</em>' class.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     * @ordered
-     */
-    int CAMEL_FTPS_BINDING_TYPE_FEATURE_COUNT = CAMEL_FTP_BINDING_TYPE_FEATURE_COUNT + 5;
-
-    /**
-     * The meta object id for the '{@link org.switchyard.tools.models.switchyard1_0.camel.impl.CamelImplementationTypeImpl <em>Implementation Type</em>}' class.
-     * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-     * @see org.switchyard.tools.models.switchyard1_0.camel.impl.CamelImplementationTypeImpl
-     * @see org.switchyard.tools.models.switchyard1_0.camel.impl.CamelPackageImpl#getCamelImplementationType()
-     * @generated
-     */
-	int CAMEL_IMPLEMENTATION_TYPE = 19;
-
-	/**
-     * The meta object id for the '{@link org.switchyard.tools.models.switchyard1_0.camel.impl.CamelJmsBindingTypeImpl <em>Jms Binding Type</em>}' class.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @see org.switchyard.tools.models.switchyard1_0.camel.impl.CamelJmsBindingTypeImpl
-     * @see org.switchyard.tools.models.switchyard1_0.camel.impl.CamelPackageImpl#getCamelJmsBindingType()
-     * @generated
-     */
-    int CAMEL_JMS_BINDING_TYPE = 15;
-
-    /**
-     * The meta object id for the '{@link org.switchyard.tools.models.switchyard1_0.camel.impl.CamelNettyBindingTypeImpl <em>Netty Binding Type</em>}' class.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @see org.switchyard.tools.models.switchyard1_0.camel.impl.CamelNettyBindingTypeImpl
-     * @see org.switchyard.tools.models.switchyard1_0.camel.impl.CamelPackageImpl#getCamelNettyBindingType()
-     * @generated
-     */
-    int CAMEL_NETTY_BINDING_TYPE = 13;
-
-    /**
-     * The meta object id for the '{@link org.switchyard.tools.models.switchyard1_0.camel.impl.CamelNettyUdpBindingTypeImpl <em>Netty Udp Binding Type</em>}' class.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @see org.switchyard.tools.models.switchyard1_0.camel.impl.CamelNettyUdpBindingTypeImpl
-     * @see org.switchyard.tools.models.switchyard1_0.camel.impl.CamelPackageImpl#getCamelNettyUdpBindingType()
-     * @generated
-     */
-    int CAMEL_NETTY_UDP_BINDING_TYPE = 12;
-
-    /**
-     * The meta object id for the '{@link org.switchyard.tools.models.switchyard1_0.camel.impl.CamelNettyTcpBindingTypeImpl <em>Netty Tcp Binding Type</em>}' class.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @see org.switchyard.tools.models.switchyard1_0.camel.impl.CamelNettyTcpBindingTypeImpl
-     * @see org.switchyard.tools.models.switchyard1_0.camel.impl.CamelPackageImpl#getCamelNettyTcpBindingType()
-     * @generated
-     */
-    int CAMEL_NETTY_TCP_BINDING_TYPE = 11;
+    int CAMEL_REMOTE_BINDING_TYPE_FEATURE_COUNT = GENERIC_FILE_BINDING_TYPE_FEATURE_COUNT + 12;
 
     /**
      * The meta object id for the '{@link org.switchyard.tools.models.switchyard1_0.camel.impl.CamelMockBindingTypeImpl <em>Mock Binding Type</em>}' class.
@@ -1824,7 +690,7 @@ public interface CamelPackage extends EPackage {
      * @see org.switchyard.tools.models.switchyard1_0.camel.impl.CamelPackageImpl#getCamelMockBindingType()
      * @generated
      */
-	int CAMEL_MOCK_BINDING_TYPE = 10;
+	int CAMEL_MOCK_BINDING_TYPE = 12;
 
 	/**
      * The meta object id for the '{@link org.switchyard.tools.models.switchyard1_0.camel.impl.CamelSedaBindingTypeImpl <em>Seda Binding Type</em>}' class.
@@ -1834,7 +700,7 @@ public interface CamelPackage extends EPackage {
      * @see org.switchyard.tools.models.switchyard1_0.camel.impl.CamelPackageImpl#getCamelSedaBindingType()
      * @generated
      */
-	int CAMEL_SEDA_BINDING_TYPE = 9;
+	int CAMEL_SEDA_BINDING_TYPE = 11;
 
 	/**
      * The meta object id for the '{@link org.switchyard.tools.models.switchyard1_0.camel.impl.CamelTimerBindingTypeImpl <em>Timer Binding Type</em>}' class.
@@ -1844,1837 +710,9 @@ public interface CamelPackage extends EPackage {
      * @see org.switchyard.tools.models.switchyard1_0.camel.impl.CamelPackageImpl#getCamelTimerBindingType()
      * @generated
      */
-	int CAMEL_TIMER_BINDING_TYPE = 8;
+	int CAMEL_TIMER_BINDING_TYPE = 10;
 
 	/**
-     * The meta object id for the '{@link org.switchyard.tools.models.switchyard1_0.camel.impl.CamelSftpBindingTypeImpl <em>Sftp Binding Type</em>}' class.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @see org.switchyard.tools.models.switchyard1_0.camel.impl.CamelSftpBindingTypeImpl
-     * @see org.switchyard.tools.models.switchyard1_0.camel.impl.CamelPackageImpl#getCamelSftpBindingType()
-     * @generated
-     */
-    int CAMEL_SFTP_BINDING_TYPE = 5;
-
-    /**
-     * The feature id for the '<em><b>Documentation</b></em>' containment reference list.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     * @ordered
-     */
-    int CAMEL_SFTP_BINDING_TYPE__DOCUMENTATION = CAMEL_REMOTE_BINDING_TYPE__DOCUMENTATION;
-
-    /**
-     * The feature id for the '<em><b>Any Attribute</b></em>' attribute list.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     * @ordered
-     */
-    int CAMEL_SFTP_BINDING_TYPE__ANY_ATTRIBUTE = CAMEL_REMOTE_BINDING_TYPE__ANY_ATTRIBUTE;
-
-    /**
-     * The feature id for the '<em><b>Wire Format Group</b></em>' attribute list.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     * @ordered
-     */
-    int CAMEL_SFTP_BINDING_TYPE__WIRE_FORMAT_GROUP = CAMEL_REMOTE_BINDING_TYPE__WIRE_FORMAT_GROUP;
-
-    /**
-     * The feature id for the '<em><b>Wire Format</b></em>' containment reference.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     * @ordered
-     */
-    int CAMEL_SFTP_BINDING_TYPE__WIRE_FORMAT = CAMEL_REMOTE_BINDING_TYPE__WIRE_FORMAT;
-
-    /**
-     * The feature id for the '<em><b>Operation Selector Group</b></em>' attribute list.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     * @ordered
-     */
-    int CAMEL_SFTP_BINDING_TYPE__OPERATION_SELECTOR_GROUP = CAMEL_REMOTE_BINDING_TYPE__OPERATION_SELECTOR_GROUP;
-
-    /**
-     * The feature id for the '<em><b>Operation Selector</b></em>' containment reference.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     * @ordered
-     */
-    int CAMEL_SFTP_BINDING_TYPE__OPERATION_SELECTOR = CAMEL_REMOTE_BINDING_TYPE__OPERATION_SELECTOR;
-
-    /**
-     * The feature id for the '<em><b>Name</b></em>' attribute.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     * @ordered
-     */
-    int CAMEL_SFTP_BINDING_TYPE__NAME = CAMEL_REMOTE_BINDING_TYPE__NAME;
-
-    /**
-     * The feature id for the '<em><b>Policy Sets</b></em>' attribute.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     * @ordered
-     */
-    int CAMEL_SFTP_BINDING_TYPE__POLICY_SETS = CAMEL_REMOTE_BINDING_TYPE__POLICY_SETS;
-
-    /**
-     * The feature id for the '<em><b>Requires</b></em>' attribute.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     * @ordered
-     */
-    int CAMEL_SFTP_BINDING_TYPE__REQUIRES = CAMEL_REMOTE_BINDING_TYPE__REQUIRES;
-
-    /**
-     * The feature id for the '<em><b>Uri</b></em>' attribute.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     * @ordered
-     */
-    int CAMEL_SFTP_BINDING_TYPE__URI = CAMEL_REMOTE_BINDING_TYPE__URI;
-
-    /**
-     * The feature id for the '<em><b>Context Mapper</b></em>' containment reference.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     * @ordered
-     */
-    int CAMEL_SFTP_BINDING_TYPE__CONTEXT_MAPPER = CAMEL_REMOTE_BINDING_TYPE__CONTEXT_MAPPER;
-
-    /**
-     * The feature id for the '<em><b>Message Composer</b></em>' containment reference.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     * @ordered
-     */
-    int CAMEL_SFTP_BINDING_TYPE__MESSAGE_COMPOSER = CAMEL_REMOTE_BINDING_TYPE__MESSAGE_COMPOSER;
-
-    /**
-     * The feature id for the '<em><b>Directory</b></em>' attribute.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     * @ordered
-     */
-    int CAMEL_SFTP_BINDING_TYPE__DIRECTORY = CAMEL_REMOTE_BINDING_TYPE__DIRECTORY;
-
-    /**
-     * The feature id for the '<em><b>Auto Create</b></em>' attribute.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     * @ordered
-     */
-    int CAMEL_SFTP_BINDING_TYPE__AUTO_CREATE = CAMEL_REMOTE_BINDING_TYPE__AUTO_CREATE;
-
-    /**
-     * The feature id for the '<em><b>Buffer Size</b></em>' attribute.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     * @ordered
-     */
-    int CAMEL_SFTP_BINDING_TYPE__BUFFER_SIZE = CAMEL_REMOTE_BINDING_TYPE__BUFFER_SIZE;
-
-    /**
-     * The feature id for the '<em><b>File Name</b></em>' attribute.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     * @ordered
-     */
-    int CAMEL_SFTP_BINDING_TYPE__FILE_NAME = CAMEL_REMOTE_BINDING_TYPE__FILE_NAME;
-
-    /**
-     * The feature id for the '<em><b>Flatten</b></em>' attribute.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     * @ordered
-     */
-    int CAMEL_SFTP_BINDING_TYPE__FLATTEN = CAMEL_REMOTE_BINDING_TYPE__FLATTEN;
-
-    /**
-     * The feature id for the '<em><b>Charset</b></em>' attribute.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     * @ordered
-     */
-    int CAMEL_SFTP_BINDING_TYPE__CHARSET = CAMEL_REMOTE_BINDING_TYPE__CHARSET;
-
-    /**
-     * The feature id for the '<em><b>Host</b></em>' attribute.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     * @ordered
-     */
-    int CAMEL_SFTP_BINDING_TYPE__HOST = CAMEL_REMOTE_BINDING_TYPE__HOST;
-
-    /**
-     * The feature id for the '<em><b>Port</b></em>' attribute.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     * @ordered
-     */
-    int CAMEL_SFTP_BINDING_TYPE__PORT = CAMEL_REMOTE_BINDING_TYPE__PORT;
-
-    /**
-     * The feature id for the '<em><b>Username</b></em>' attribute.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     * @ordered
-     */
-    int CAMEL_SFTP_BINDING_TYPE__USERNAME = CAMEL_REMOTE_BINDING_TYPE__USERNAME;
-
-    /**
-     * The feature id for the '<em><b>Password</b></em>' attribute.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     * @ordered
-     */
-    int CAMEL_SFTP_BINDING_TYPE__PASSWORD = CAMEL_REMOTE_BINDING_TYPE__PASSWORD;
-
-    /**
-     * The feature id for the '<em><b>Binary</b></em>' attribute.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     * @ordered
-     */
-    int CAMEL_SFTP_BINDING_TYPE__BINARY = CAMEL_REMOTE_BINDING_TYPE__BINARY;
-
-    /**
-     * The feature id for the '<em><b>Connect Timeout</b></em>' attribute.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     * @ordered
-     */
-    int CAMEL_SFTP_BINDING_TYPE__CONNECT_TIMEOUT = CAMEL_REMOTE_BINDING_TYPE__CONNECT_TIMEOUT;
-
-    /**
-     * The feature id for the '<em><b>Disconnect</b></em>' attribute.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     * @ordered
-     */
-    int CAMEL_SFTP_BINDING_TYPE__DISCONNECT = CAMEL_REMOTE_BINDING_TYPE__DISCONNECT;
-
-    /**
-     * The feature id for the '<em><b>Maximum Reconnect Attempts</b></em>' attribute.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     * @ordered
-     */
-    int CAMEL_SFTP_BINDING_TYPE__MAXIMUM_RECONNECT_ATTEMPTS = CAMEL_REMOTE_BINDING_TYPE__MAXIMUM_RECONNECT_ATTEMPTS;
-
-    /**
-     * The feature id for the '<em><b>Reconnect Delay</b></em>' attribute.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     * @ordered
-     */
-    int CAMEL_SFTP_BINDING_TYPE__RECONNECT_DELAY = CAMEL_REMOTE_BINDING_TYPE__RECONNECT_DELAY;
-
-    /**
-     * The feature id for the '<em><b>Separator</b></em>' attribute.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     * @ordered
-     */
-    int CAMEL_SFTP_BINDING_TYPE__SEPARATOR = CAMEL_REMOTE_BINDING_TYPE__SEPARATOR;
-
-    /**
-     * The feature id for the '<em><b>Stepwise</b></em>' attribute.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     * @ordered
-     */
-    int CAMEL_SFTP_BINDING_TYPE__STEPWISE = CAMEL_REMOTE_BINDING_TYPE__STEPWISE;
-
-    /**
-     * The feature id for the '<em><b>Throw Exception On Connect Failed</b></em>' attribute.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     * @ordered
-     */
-    int CAMEL_SFTP_BINDING_TYPE__THROW_EXCEPTION_ON_CONNECT_FAILED = CAMEL_REMOTE_BINDING_TYPE__THROW_EXCEPTION_ON_CONNECT_FAILED;
-
-    /**
-     * The feature id for the '<em><b>Consume</b></em>' containment reference.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     * @ordered
-     */
-    int CAMEL_SFTP_BINDING_TYPE__CONSUME = CAMEL_REMOTE_BINDING_TYPE__CONSUME;
-
-    /**
-     * The feature id for the '<em><b>Produce</b></em>' containment reference.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     * @ordered
-     */
-    int CAMEL_SFTP_BINDING_TYPE__PRODUCE = CAMEL_REMOTE_BINDING_TYPE__PRODUCE;
-
-    /**
-     * The feature id for the '<em><b>Known Hosts File</b></em>' attribute.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     * @ordered
-     */
-    int CAMEL_SFTP_BINDING_TYPE__KNOWN_HOSTS_FILE = CAMEL_REMOTE_BINDING_TYPE_FEATURE_COUNT + 0;
-
-    /**
-     * The feature id for the '<em><b>Private Key File</b></em>' attribute.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     * @ordered
-     */
-    int CAMEL_SFTP_BINDING_TYPE__PRIVATE_KEY_FILE = CAMEL_REMOTE_BINDING_TYPE_FEATURE_COUNT + 1;
-
-    /**
-     * The feature id for the '<em><b>Private Key File Passphrase</b></em>' attribute.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     * @ordered
-     */
-    int CAMEL_SFTP_BINDING_TYPE__PRIVATE_KEY_FILE_PASSPHRASE = CAMEL_REMOTE_BINDING_TYPE_FEATURE_COUNT + 2;
-
-    /**
-     * The number of structural features of the '<em>Sftp Binding Type</em>' class.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     * @ordered
-     */
-    int CAMEL_SFTP_BINDING_TYPE_FEATURE_COUNT = CAMEL_REMOTE_BINDING_TYPE_FEATURE_COUNT + 3;
-
-    /**
-     * The feature id for the '<em><b>Documentation</b></em>' containment reference list.
-     * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-     * @generated
-     * @ordered
-     */
-	int CAMEL_ATOM_BINDING_TYPE__DOCUMENTATION = BASE_CAMEL_BINDING__DOCUMENTATION;
-
-    /**
-     * The feature id for the '<em><b>Any Attribute</b></em>' attribute list.
-     * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-     * @generated
-     * @ordered
-     */
-	int CAMEL_ATOM_BINDING_TYPE__ANY_ATTRIBUTE = BASE_CAMEL_BINDING__ANY_ATTRIBUTE;
-
-    /**
-     * The feature id for the '<em><b>Wire Format Group</b></em>' attribute list.
-     * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-     * @generated
-     * @ordered
-     */
-	int CAMEL_ATOM_BINDING_TYPE__WIRE_FORMAT_GROUP = BASE_CAMEL_BINDING__WIRE_FORMAT_GROUP;
-
-    /**
-     * The feature id for the '<em><b>Wire Format</b></em>' containment reference.
-     * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-     * @generated
-     * @ordered
-     */
-	int CAMEL_ATOM_BINDING_TYPE__WIRE_FORMAT = BASE_CAMEL_BINDING__WIRE_FORMAT;
-
-    /**
-     * The feature id for the '<em><b>Operation Selector Group</b></em>' attribute list.
-     * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-     * @generated
-     * @ordered
-     */
-	int CAMEL_ATOM_BINDING_TYPE__OPERATION_SELECTOR_GROUP = BASE_CAMEL_BINDING__OPERATION_SELECTOR_GROUP;
-
-    /**
-     * The feature id for the '<em><b>Operation Selector</b></em>' containment reference.
-     * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-     * @generated
-     * @ordered
-     */
-	int CAMEL_ATOM_BINDING_TYPE__OPERATION_SELECTOR = BASE_CAMEL_BINDING__OPERATION_SELECTOR;
-
-    /**
-     * The feature id for the '<em><b>Name</b></em>' attribute.
-     * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-     * @generated
-     * @ordered
-     */
-	int CAMEL_ATOM_BINDING_TYPE__NAME = BASE_CAMEL_BINDING__NAME;
-
-    /**
-     * The feature id for the '<em><b>Policy Sets</b></em>' attribute.
-     * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-     * @generated
-     * @ordered
-     */
-	int CAMEL_ATOM_BINDING_TYPE__POLICY_SETS = BASE_CAMEL_BINDING__POLICY_SETS;
-
-    /**
-     * The feature id for the '<em><b>Requires</b></em>' attribute.
-     * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-     * @generated
-     * @ordered
-     */
-	int CAMEL_ATOM_BINDING_TYPE__REQUIRES = BASE_CAMEL_BINDING__REQUIRES;
-
-    /**
-     * The feature id for the '<em><b>Uri</b></em>' attribute.
-     * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-     * @generated
-     * @ordered
-     */
-	int CAMEL_ATOM_BINDING_TYPE__URI = BASE_CAMEL_BINDING__URI;
-
-    /**
-     * The feature id for the '<em><b>Context Mapper</b></em>' containment reference.
-     * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-     * @generated
-     * @ordered
-     */
-	int CAMEL_ATOM_BINDING_TYPE__CONTEXT_MAPPER = BASE_CAMEL_BINDING__CONTEXT_MAPPER;
-
-    /**
-     * The feature id for the '<em><b>Message Composer</b></em>' containment reference.
-     * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-     * @generated
-     * @ordered
-     */
-	int CAMEL_ATOM_BINDING_TYPE__MESSAGE_COMPOSER = BASE_CAMEL_BINDING__MESSAGE_COMPOSER;
-
-    /**
-     * The feature id for the '<em><b>Feed URI</b></em>' attribute.
-     * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-     * @generated
-     * @ordered
-     */
-	int CAMEL_ATOM_BINDING_TYPE__FEED_URI = BASE_CAMEL_BINDING_FEATURE_COUNT + 0;
-
-    /**
-     * The feature id for the '<em><b>Split Entries</b></em>' attribute.
-     * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-     * @generated
-     * @ordered
-     */
-	int CAMEL_ATOM_BINDING_TYPE__SPLIT_ENTRIES = BASE_CAMEL_BINDING_FEATURE_COUNT + 1;
-
-    /**
-     * The feature id for the '<em><b>Filter</b></em>' attribute.
-     * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-     * @generated
-     * @ordered
-     */
-	int CAMEL_ATOM_BINDING_TYPE__FILTER = BASE_CAMEL_BINDING_FEATURE_COUNT + 2;
-
-    /**
-     * The feature id for the '<em><b>Last Update</b></em>' attribute.
-     * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-     * @generated
-     * @ordered
-     */
-	int CAMEL_ATOM_BINDING_TYPE__LAST_UPDATE = BASE_CAMEL_BINDING_FEATURE_COUNT + 3;
-
-    /**
-     * The feature id for the '<em><b>Throttle Entries</b></em>' attribute.
-     * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-     * @generated
-     * @ordered
-     */
-	int CAMEL_ATOM_BINDING_TYPE__THROTTLE_ENTRIES = BASE_CAMEL_BINDING_FEATURE_COUNT + 4;
-
-    /**
-     * The feature id for the '<em><b>Feed Header</b></em>' attribute.
-     * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-     * @generated
-     * @ordered
-     */
-	int CAMEL_ATOM_BINDING_TYPE__FEED_HEADER = BASE_CAMEL_BINDING_FEATURE_COUNT + 5;
-
-    /**
-     * The feature id for the '<em><b>Sort Entries</b></em>' attribute.
-     * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-     * @generated
-     * @ordered
-     */
-	int CAMEL_ATOM_BINDING_TYPE__SORT_ENTRIES = BASE_CAMEL_BINDING_FEATURE_COUNT + 6;
-
-    /**
-     * The feature id for the '<em><b>Consume</b></em>' containment reference.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     * @ordered
-     */
-    int CAMEL_ATOM_BINDING_TYPE__CONSUME = BASE_CAMEL_BINDING_FEATURE_COUNT + 7;
-
-    /**
-     * The number of structural features of the '<em>Atom Binding Type</em>' class.
-     * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-     * @generated
-     * @ordered
-     */
-	int CAMEL_ATOM_BINDING_TYPE_FEATURE_COUNT = BASE_CAMEL_BINDING_FEATURE_COUNT + 8;
-
-    /**
-     * The feature id for the '<em><b>Documentation</b></em>' containment reference list.
-     * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-     * @generated
-     * @ordered
-     */
-	int CAMEL_DIRECT_BINDING_TYPE__DOCUMENTATION = BASE_CAMEL_BINDING__DOCUMENTATION;
-
-    /**
-     * The feature id for the '<em><b>Any Attribute</b></em>' attribute list.
-     * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-     * @generated
-     * @ordered
-     */
-	int CAMEL_DIRECT_BINDING_TYPE__ANY_ATTRIBUTE = BASE_CAMEL_BINDING__ANY_ATTRIBUTE;
-
-    /**
-     * The feature id for the '<em><b>Wire Format Group</b></em>' attribute list.
-     * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-     * @generated
-     * @ordered
-     */
-	int CAMEL_DIRECT_BINDING_TYPE__WIRE_FORMAT_GROUP = BASE_CAMEL_BINDING__WIRE_FORMAT_GROUP;
-
-    /**
-     * The feature id for the '<em><b>Wire Format</b></em>' containment reference.
-     * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-     * @generated
-     * @ordered
-     */
-	int CAMEL_DIRECT_BINDING_TYPE__WIRE_FORMAT = BASE_CAMEL_BINDING__WIRE_FORMAT;
-
-    /**
-     * The feature id for the '<em><b>Operation Selector Group</b></em>' attribute list.
-     * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-     * @generated
-     * @ordered
-     */
-	int CAMEL_DIRECT_BINDING_TYPE__OPERATION_SELECTOR_GROUP = BASE_CAMEL_BINDING__OPERATION_SELECTOR_GROUP;
-
-    /**
-     * The feature id for the '<em><b>Operation Selector</b></em>' containment reference.
-     * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-     * @generated
-     * @ordered
-     */
-	int CAMEL_DIRECT_BINDING_TYPE__OPERATION_SELECTOR = BASE_CAMEL_BINDING__OPERATION_SELECTOR;
-
-    /**
-     * The feature id for the '<em><b>Name</b></em>' attribute.
-     * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-     * @generated
-     * @ordered
-     */
-	int CAMEL_DIRECT_BINDING_TYPE__NAME = BASE_CAMEL_BINDING__NAME;
-
-    /**
-     * The feature id for the '<em><b>Policy Sets</b></em>' attribute.
-     * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-     * @generated
-     * @ordered
-     */
-	int CAMEL_DIRECT_BINDING_TYPE__POLICY_SETS = BASE_CAMEL_BINDING__POLICY_SETS;
-
-    /**
-     * The feature id for the '<em><b>Requires</b></em>' attribute.
-     * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-     * @generated
-     * @ordered
-     */
-	int CAMEL_DIRECT_BINDING_TYPE__REQUIRES = BASE_CAMEL_BINDING__REQUIRES;
-
-    /**
-     * The feature id for the '<em><b>Uri</b></em>' attribute.
-     * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-     * @generated
-     * @ordered
-     */
-	int CAMEL_DIRECT_BINDING_TYPE__URI = BASE_CAMEL_BINDING__URI;
-
-    /**
-     * The feature id for the '<em><b>Context Mapper</b></em>' containment reference.
-     * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-     * @generated
-     * @ordered
-     */
-	int CAMEL_DIRECT_BINDING_TYPE__CONTEXT_MAPPER = BASE_CAMEL_BINDING__CONTEXT_MAPPER;
-
-    /**
-     * The feature id for the '<em><b>Message Composer</b></em>' containment reference.
-     * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-     * @generated
-     * @ordered
-     */
-	int CAMEL_DIRECT_BINDING_TYPE__MESSAGE_COMPOSER = BASE_CAMEL_BINDING__MESSAGE_COMPOSER;
-
-    /**
-     * The feature id for the '<em><b>Name Element</b></em>' attribute.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     * @ordered
-     */
-    int CAMEL_DIRECT_BINDING_TYPE__NAME_ELEMENT = BASE_CAMEL_BINDING_FEATURE_COUNT + 0;
-
-    /**
-     * The number of structural features of the '<em>Direct Binding Type</em>' class.
-     * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-     * @generated
-     * @ordered
-     */
-	int CAMEL_DIRECT_BINDING_TYPE_FEATURE_COUNT = BASE_CAMEL_BINDING_FEATURE_COUNT + 1;
-
-    /**
-     * The feature id for the '<em><b>Documentation</b></em>' containment reference list.
-     * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-     * @generated
-     * @ordered
-     */
-	int CAMEL_TIMER_BINDING_TYPE__DOCUMENTATION = BASE_CAMEL_BINDING__DOCUMENTATION;
-
-    /**
-     * The feature id for the '<em><b>Any Attribute</b></em>' attribute list.
-     * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-     * @generated
-     * @ordered
-     */
-	int CAMEL_TIMER_BINDING_TYPE__ANY_ATTRIBUTE = BASE_CAMEL_BINDING__ANY_ATTRIBUTE;
-
-    /**
-     * The feature id for the '<em><b>Wire Format Group</b></em>' attribute list.
-     * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-     * @generated
-     * @ordered
-     */
-	int CAMEL_TIMER_BINDING_TYPE__WIRE_FORMAT_GROUP = BASE_CAMEL_BINDING__WIRE_FORMAT_GROUP;
-
-    /**
-     * The feature id for the '<em><b>Wire Format</b></em>' containment reference.
-     * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-     * @generated
-     * @ordered
-     */
-	int CAMEL_TIMER_BINDING_TYPE__WIRE_FORMAT = BASE_CAMEL_BINDING__WIRE_FORMAT;
-
-    /**
-     * The feature id for the '<em><b>Operation Selector Group</b></em>' attribute list.
-     * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-     * @generated
-     * @ordered
-     */
-	int CAMEL_TIMER_BINDING_TYPE__OPERATION_SELECTOR_GROUP = BASE_CAMEL_BINDING__OPERATION_SELECTOR_GROUP;
-
-    /**
-     * The feature id for the '<em><b>Operation Selector</b></em>' containment reference.
-     * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-     * @generated
-     * @ordered
-     */
-	int CAMEL_TIMER_BINDING_TYPE__OPERATION_SELECTOR = BASE_CAMEL_BINDING__OPERATION_SELECTOR;
-
-    /**
-     * The feature id for the '<em><b>Name</b></em>' attribute.
-     * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-     * @generated
-     * @ordered
-     */
-	int CAMEL_TIMER_BINDING_TYPE__NAME = BASE_CAMEL_BINDING__NAME;
-
-    /**
-     * The feature id for the '<em><b>Policy Sets</b></em>' attribute.
-     * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-     * @generated
-     * @ordered
-     */
-	int CAMEL_TIMER_BINDING_TYPE__POLICY_SETS = BASE_CAMEL_BINDING__POLICY_SETS;
-
-    /**
-     * The feature id for the '<em><b>Requires</b></em>' attribute.
-     * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-     * @generated
-     * @ordered
-     */
-	int CAMEL_TIMER_BINDING_TYPE__REQUIRES = BASE_CAMEL_BINDING__REQUIRES;
-
-    /**
-     * The feature id for the '<em><b>Uri</b></em>' attribute.
-     * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-     * @generated
-     * @ordered
-     */
-	int CAMEL_TIMER_BINDING_TYPE__URI = BASE_CAMEL_BINDING__URI;
-
-    /**
-     * The feature id for the '<em><b>Context Mapper</b></em>' containment reference.
-     * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-     * @generated
-     * @ordered
-     */
-	int CAMEL_TIMER_BINDING_TYPE__CONTEXT_MAPPER = BASE_CAMEL_BINDING__CONTEXT_MAPPER;
-
-    /**
-     * The feature id for the '<em><b>Message Composer</b></em>' containment reference.
-     * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-     * @generated
-     * @ordered
-     */
-	int CAMEL_TIMER_BINDING_TYPE__MESSAGE_COMPOSER = BASE_CAMEL_BINDING__MESSAGE_COMPOSER;
-
-    /**
-     * The feature id for the '<em><b>Name Element</b></em>' attribute.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     * @ordered
-     */
-    int CAMEL_TIMER_BINDING_TYPE__NAME_ELEMENT = BASE_CAMEL_BINDING_FEATURE_COUNT + 0;
-
-    /**
-     * The feature id for the '<em><b>Time</b></em>' attribute.
-     * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-     * @generated
-     * @ordered
-     */
-	int CAMEL_TIMER_BINDING_TYPE__TIME = BASE_CAMEL_BINDING_FEATURE_COUNT + 1;
-
-    /**
-     * The feature id for the '<em><b>Pattern</b></em>' attribute.
-     * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-     * @generated
-     * @ordered
-     */
-	int CAMEL_TIMER_BINDING_TYPE__PATTERN = BASE_CAMEL_BINDING_FEATURE_COUNT + 2;
-
-    /**
-     * The feature id for the '<em><b>Period</b></em>' attribute.
-     * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-     * @generated
-     * @ordered
-     */
-	int CAMEL_TIMER_BINDING_TYPE__PERIOD = BASE_CAMEL_BINDING_FEATURE_COUNT + 3;
-
-    /**
-     * The feature id for the '<em><b>Delay</b></em>' attribute.
-     * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-     * @generated
-     * @ordered
-     */
-	int CAMEL_TIMER_BINDING_TYPE__DELAY = BASE_CAMEL_BINDING_FEATURE_COUNT + 4;
-
-    /**
-     * The feature id for the '<em><b>Fixed Rate</b></em>' attribute.
-     * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-     * @generated
-     * @ordered
-     */
-	int CAMEL_TIMER_BINDING_TYPE__FIXED_RATE = BASE_CAMEL_BINDING_FEATURE_COUNT + 5;
-
-    /**
-     * The feature id for the '<em><b>Daemon</b></em>' attribute.
-     * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-     * @generated
-     * @ordered
-     */
-	int CAMEL_TIMER_BINDING_TYPE__DAEMON = BASE_CAMEL_BINDING_FEATURE_COUNT + 6;
-
-    /**
-     * The number of structural features of the '<em>Timer Binding Type</em>' class.
-     * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-     * @generated
-     * @ordered
-     */
-	int CAMEL_TIMER_BINDING_TYPE_FEATURE_COUNT = BASE_CAMEL_BINDING_FEATURE_COUNT + 7;
-
-    /**
-     * The feature id for the '<em><b>Documentation</b></em>' containment reference list.
-     * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-     * @generated
-     * @ordered
-     */
-	int CAMEL_SEDA_BINDING_TYPE__DOCUMENTATION = BASE_CAMEL_BINDING__DOCUMENTATION;
-
-    /**
-     * The feature id for the '<em><b>Any Attribute</b></em>' attribute list.
-     * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-     * @generated
-     * @ordered
-     */
-	int CAMEL_SEDA_BINDING_TYPE__ANY_ATTRIBUTE = BASE_CAMEL_BINDING__ANY_ATTRIBUTE;
-
-    /**
-     * The feature id for the '<em><b>Wire Format Group</b></em>' attribute list.
-     * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-     * @generated
-     * @ordered
-     */
-	int CAMEL_SEDA_BINDING_TYPE__WIRE_FORMAT_GROUP = BASE_CAMEL_BINDING__WIRE_FORMAT_GROUP;
-
-    /**
-     * The feature id for the '<em><b>Wire Format</b></em>' containment reference.
-     * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-     * @generated
-     * @ordered
-     */
-	int CAMEL_SEDA_BINDING_TYPE__WIRE_FORMAT = BASE_CAMEL_BINDING__WIRE_FORMAT;
-
-    /**
-     * The feature id for the '<em><b>Operation Selector Group</b></em>' attribute list.
-     * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-     * @generated
-     * @ordered
-     */
-	int CAMEL_SEDA_BINDING_TYPE__OPERATION_SELECTOR_GROUP = BASE_CAMEL_BINDING__OPERATION_SELECTOR_GROUP;
-
-    /**
-     * The feature id for the '<em><b>Operation Selector</b></em>' containment reference.
-     * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-     * @generated
-     * @ordered
-     */
-	int CAMEL_SEDA_BINDING_TYPE__OPERATION_SELECTOR = BASE_CAMEL_BINDING__OPERATION_SELECTOR;
-
-    /**
-     * The feature id for the '<em><b>Name</b></em>' attribute.
-     * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-     * @generated
-     * @ordered
-     */
-	int CAMEL_SEDA_BINDING_TYPE__NAME = BASE_CAMEL_BINDING__NAME;
-
-    /**
-     * The feature id for the '<em><b>Policy Sets</b></em>' attribute.
-     * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-     * @generated
-     * @ordered
-     */
-	int CAMEL_SEDA_BINDING_TYPE__POLICY_SETS = BASE_CAMEL_BINDING__POLICY_SETS;
-
-    /**
-     * The feature id for the '<em><b>Requires</b></em>' attribute.
-     * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-     * @generated
-     * @ordered
-     */
-	int CAMEL_SEDA_BINDING_TYPE__REQUIRES = BASE_CAMEL_BINDING__REQUIRES;
-
-    /**
-     * The feature id for the '<em><b>Uri</b></em>' attribute.
-     * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-     * @generated
-     * @ordered
-     */
-	int CAMEL_SEDA_BINDING_TYPE__URI = BASE_CAMEL_BINDING__URI;
-
-    /**
-     * The feature id for the '<em><b>Context Mapper</b></em>' containment reference.
-     * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-     * @generated
-     * @ordered
-     */
-	int CAMEL_SEDA_BINDING_TYPE__CONTEXT_MAPPER = BASE_CAMEL_BINDING__CONTEXT_MAPPER;
-
-    /**
-     * The feature id for the '<em><b>Message Composer</b></em>' containment reference.
-     * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-     * @generated
-     * @ordered
-     */
-	int CAMEL_SEDA_BINDING_TYPE__MESSAGE_COMPOSER = BASE_CAMEL_BINDING__MESSAGE_COMPOSER;
-
-    /**
-     * The feature id for the '<em><b>Name Element</b></em>' attribute.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     * @ordered
-     */
-    int CAMEL_SEDA_BINDING_TYPE__NAME_ELEMENT = BASE_CAMEL_BINDING_FEATURE_COUNT + 0;
-
-    /**
-     * The feature id for the '<em><b>Size</b></em>' attribute.
-     * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-     * @generated
-     * @ordered
-     */
-	int CAMEL_SEDA_BINDING_TYPE__SIZE = BASE_CAMEL_BINDING_FEATURE_COUNT + 1;
-
-    /**
-     * The feature id for the '<em><b>Concurrent Consumers</b></em>' attribute.
-     * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-     * @generated
-     * @ordered
-     */
-	int CAMEL_SEDA_BINDING_TYPE__CONCURRENT_CONSUMERS = BASE_CAMEL_BINDING_FEATURE_COUNT + 2;
-
-    /**
-     * The feature id for the '<em><b>Wait For Task To Complete</b></em>' attribute.
-     * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-     * @generated
-     * @ordered
-     */
-	int CAMEL_SEDA_BINDING_TYPE__WAIT_FOR_TASK_TO_COMPLETE = BASE_CAMEL_BINDING_FEATURE_COUNT + 3;
-
-    /**
-     * The feature id for the '<em><b>Timeout</b></em>' attribute.
-     * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-     * @generated
-     * @ordered
-     */
-	int CAMEL_SEDA_BINDING_TYPE__TIMEOUT = BASE_CAMEL_BINDING_FEATURE_COUNT + 4;
-
-    /**
-     * The feature id for the '<em><b>Multiple Consumers</b></em>' attribute.
-     * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-     * @generated
-     * @ordered
-     */
-	int CAMEL_SEDA_BINDING_TYPE__MULTIPLE_CONSUMERS = BASE_CAMEL_BINDING_FEATURE_COUNT + 5;
-
-    /**
-     * The feature id for the '<em><b>Limit Concurrent Consumers</b></em>' attribute.
-     * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-     * @generated
-     * @ordered
-     */
-	int CAMEL_SEDA_BINDING_TYPE__LIMIT_CONCURRENT_CONSUMERS = BASE_CAMEL_BINDING_FEATURE_COUNT + 6;
-
-    /**
-     * The number of structural features of the '<em>Seda Binding Type</em>' class.
-     * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-     * @generated
-     * @ordered
-     */
-	int CAMEL_SEDA_BINDING_TYPE_FEATURE_COUNT = BASE_CAMEL_BINDING_FEATURE_COUNT + 7;
-
-    /**
-     * The feature id for the '<em><b>Documentation</b></em>' containment reference list.
-     * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-     * @generated
-     * @ordered
-     */
-	int CAMEL_MOCK_BINDING_TYPE__DOCUMENTATION = BASE_CAMEL_BINDING__DOCUMENTATION;
-
-    /**
-     * The feature id for the '<em><b>Any Attribute</b></em>' attribute list.
-     * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-     * @generated
-     * @ordered
-     */
-	int CAMEL_MOCK_BINDING_TYPE__ANY_ATTRIBUTE = BASE_CAMEL_BINDING__ANY_ATTRIBUTE;
-
-    /**
-     * The feature id for the '<em><b>Wire Format Group</b></em>' attribute list.
-     * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-     * @generated
-     * @ordered
-     */
-	int CAMEL_MOCK_BINDING_TYPE__WIRE_FORMAT_GROUP = BASE_CAMEL_BINDING__WIRE_FORMAT_GROUP;
-
-    /**
-     * The feature id for the '<em><b>Wire Format</b></em>' containment reference.
-     * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-     * @generated
-     * @ordered
-     */
-	int CAMEL_MOCK_BINDING_TYPE__WIRE_FORMAT = BASE_CAMEL_BINDING__WIRE_FORMAT;
-
-    /**
-     * The feature id for the '<em><b>Operation Selector Group</b></em>' attribute list.
-     * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-     * @generated
-     * @ordered
-     */
-	int CAMEL_MOCK_BINDING_TYPE__OPERATION_SELECTOR_GROUP = BASE_CAMEL_BINDING__OPERATION_SELECTOR_GROUP;
-
-    /**
-     * The feature id for the '<em><b>Operation Selector</b></em>' containment reference.
-     * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-     * @generated
-     * @ordered
-     */
-	int CAMEL_MOCK_BINDING_TYPE__OPERATION_SELECTOR = BASE_CAMEL_BINDING__OPERATION_SELECTOR;
-
-    /**
-     * The feature id for the '<em><b>Name</b></em>' attribute.
-     * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-     * @generated
-     * @ordered
-     */
-	int CAMEL_MOCK_BINDING_TYPE__NAME = BASE_CAMEL_BINDING__NAME;
-
-    /**
-     * The feature id for the '<em><b>Policy Sets</b></em>' attribute.
-     * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-     * @generated
-     * @ordered
-     */
-	int CAMEL_MOCK_BINDING_TYPE__POLICY_SETS = BASE_CAMEL_BINDING__POLICY_SETS;
-
-    /**
-     * The feature id for the '<em><b>Requires</b></em>' attribute.
-     * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-     * @generated
-     * @ordered
-     */
-	int CAMEL_MOCK_BINDING_TYPE__REQUIRES = BASE_CAMEL_BINDING__REQUIRES;
-
-    /**
-     * The feature id for the '<em><b>Uri</b></em>' attribute.
-     * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-     * @generated
-     * @ordered
-     */
-	int CAMEL_MOCK_BINDING_TYPE__URI = BASE_CAMEL_BINDING__URI;
-
-    /**
-     * The feature id for the '<em><b>Context Mapper</b></em>' containment reference.
-     * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-     * @generated
-     * @ordered
-     */
-	int CAMEL_MOCK_BINDING_TYPE__CONTEXT_MAPPER = BASE_CAMEL_BINDING__CONTEXT_MAPPER;
-
-    /**
-     * The feature id for the '<em><b>Message Composer</b></em>' containment reference.
-     * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-     * @generated
-     * @ordered
-     */
-	int CAMEL_MOCK_BINDING_TYPE__MESSAGE_COMPOSER = BASE_CAMEL_BINDING__MESSAGE_COMPOSER;
-
-    /**
-     * The feature id for the '<em><b>Name Element</b></em>' attribute.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     * @ordered
-     */
-    int CAMEL_MOCK_BINDING_TYPE__NAME_ELEMENT = BASE_CAMEL_BINDING_FEATURE_COUNT + 0;
-
-    /**
-     * The feature id for the '<em><b>Report Group</b></em>' attribute.
-     * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-     * @generated
-     * @ordered
-     */
-	int CAMEL_MOCK_BINDING_TYPE__REPORT_GROUP = BASE_CAMEL_BINDING_FEATURE_COUNT + 1;
-
-    /**
-     * The number of structural features of the '<em>Mock Binding Type</em>' class.
-     * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-     * @generated
-     * @ordered
-     */
-	int CAMEL_MOCK_BINDING_TYPE_FEATURE_COUNT = BASE_CAMEL_BINDING_FEATURE_COUNT + 2;
-
-    /**
-     * The feature id for the '<em><b>Documentation</b></em>' containment reference list.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     * @ordered
-     */
-    int CAMEL_NETTY_BINDING_TYPE__DOCUMENTATION = BASE_CAMEL_BINDING__DOCUMENTATION;
-
-    /**
-     * The feature id for the '<em><b>Any Attribute</b></em>' attribute list.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     * @ordered
-     */
-    int CAMEL_NETTY_BINDING_TYPE__ANY_ATTRIBUTE = BASE_CAMEL_BINDING__ANY_ATTRIBUTE;
-
-    /**
-     * The feature id for the '<em><b>Wire Format Group</b></em>' attribute list.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     * @ordered
-     */
-    int CAMEL_NETTY_BINDING_TYPE__WIRE_FORMAT_GROUP = BASE_CAMEL_BINDING__WIRE_FORMAT_GROUP;
-
-    /**
-     * The feature id for the '<em><b>Wire Format</b></em>' containment reference.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     * @ordered
-     */
-    int CAMEL_NETTY_BINDING_TYPE__WIRE_FORMAT = BASE_CAMEL_BINDING__WIRE_FORMAT;
-
-    /**
-     * The feature id for the '<em><b>Operation Selector Group</b></em>' attribute list.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     * @ordered
-     */
-    int CAMEL_NETTY_BINDING_TYPE__OPERATION_SELECTOR_GROUP = BASE_CAMEL_BINDING__OPERATION_SELECTOR_GROUP;
-
-    /**
-     * The feature id for the '<em><b>Operation Selector</b></em>' containment reference.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     * @ordered
-     */
-    int CAMEL_NETTY_BINDING_TYPE__OPERATION_SELECTOR = BASE_CAMEL_BINDING__OPERATION_SELECTOR;
-
-    /**
-     * The feature id for the '<em><b>Name</b></em>' attribute.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     * @ordered
-     */
-    int CAMEL_NETTY_BINDING_TYPE__NAME = BASE_CAMEL_BINDING__NAME;
-
-    /**
-     * The feature id for the '<em><b>Policy Sets</b></em>' attribute.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     * @ordered
-     */
-    int CAMEL_NETTY_BINDING_TYPE__POLICY_SETS = BASE_CAMEL_BINDING__POLICY_SETS;
-
-    /**
-     * The feature id for the '<em><b>Requires</b></em>' attribute.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     * @ordered
-     */
-    int CAMEL_NETTY_BINDING_TYPE__REQUIRES = BASE_CAMEL_BINDING__REQUIRES;
-
-    /**
-     * The feature id for the '<em><b>Uri</b></em>' attribute.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     * @ordered
-     */
-    int CAMEL_NETTY_BINDING_TYPE__URI = BASE_CAMEL_BINDING__URI;
-
-    /**
-     * The feature id for the '<em><b>Context Mapper</b></em>' containment reference.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     * @ordered
-     */
-    int CAMEL_NETTY_BINDING_TYPE__CONTEXT_MAPPER = BASE_CAMEL_BINDING__CONTEXT_MAPPER;
-
-    /**
-     * The feature id for the '<em><b>Message Composer</b></em>' containment reference.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     * @ordered
-     */
-    int CAMEL_NETTY_BINDING_TYPE__MESSAGE_COMPOSER = BASE_CAMEL_BINDING__MESSAGE_COMPOSER;
-
-    /**
-     * The feature id for the '<em><b>Host</b></em>' attribute.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     * @ordered
-     */
-    int CAMEL_NETTY_BINDING_TYPE__HOST = BASE_CAMEL_BINDING_FEATURE_COUNT + 0;
-
-    /**
-     * The feature id for the '<em><b>Port</b></em>' attribute.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     * @ordered
-     */
-    int CAMEL_NETTY_BINDING_TYPE__PORT = BASE_CAMEL_BINDING_FEATURE_COUNT + 1;
-
-    /**
-     * The feature id for the '<em><b>Receive Buffer Size</b></em>' attribute.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     * @ordered
-     */
-    int CAMEL_NETTY_BINDING_TYPE__RECEIVE_BUFFER_SIZE = BASE_CAMEL_BINDING_FEATURE_COUNT + 2;
-
-    /**
-     * The feature id for the '<em><b>Send Buffer Size</b></em>' attribute.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     * @ordered
-     */
-    int CAMEL_NETTY_BINDING_TYPE__SEND_BUFFER_SIZE = BASE_CAMEL_BINDING_FEATURE_COUNT + 3;
-
-    /**
-     * The feature id for the '<em><b>Reuse Address</b></em>' attribute.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     * @ordered
-     */
-    int CAMEL_NETTY_BINDING_TYPE__REUSE_ADDRESS = BASE_CAMEL_BINDING_FEATURE_COUNT + 4;
-
-    /**
-     * The feature id for the '<em><b>Encoders</b></em>' attribute.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     * @ordered
-     */
-    int CAMEL_NETTY_BINDING_TYPE__ENCODERS = BASE_CAMEL_BINDING_FEATURE_COUNT + 5;
-
-    /**
-     * The feature id for the '<em><b>Decoders</b></em>' attribute.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     * @ordered
-     */
-    int CAMEL_NETTY_BINDING_TYPE__DECODERS = BASE_CAMEL_BINDING_FEATURE_COUNT + 6;
-
-    /**
-     * The feature id for the '<em><b>Allow Default Codec</b></em>' attribute.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     * @ordered
-     */
-    int CAMEL_NETTY_BINDING_TYPE__ALLOW_DEFAULT_CODEC = BASE_CAMEL_BINDING_FEATURE_COUNT + 7;
-
-    /**
-     * The feature id for the '<em><b>Worker Count</b></em>' attribute.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     * @ordered
-     */
-    int CAMEL_NETTY_BINDING_TYPE__WORKER_COUNT = BASE_CAMEL_BINDING_FEATURE_COUNT + 8;
-
-    /**
-     * The feature id for the '<em><b>Sync</b></em>' attribute.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     * @ordered
-     */
-    int CAMEL_NETTY_BINDING_TYPE__SYNC = BASE_CAMEL_BINDING_FEATURE_COUNT + 9;
-
-    /**
-     * The feature id for the '<em><b>Disconnect</b></em>' attribute.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     * @ordered
-     */
-    int CAMEL_NETTY_BINDING_TYPE__DISCONNECT = BASE_CAMEL_BINDING_FEATURE_COUNT + 10;
-
-    /**
-     * The number of structural features of the '<em>Netty Binding Type</em>' class.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     * @ordered
-     */
-    int CAMEL_NETTY_BINDING_TYPE_FEATURE_COUNT = BASE_CAMEL_BINDING_FEATURE_COUNT + 11;
-
-    /**
-     * The feature id for the '<em><b>Documentation</b></em>' containment reference list.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     * @ordered
-     */
-    int CAMEL_NETTY_TCP_BINDING_TYPE__DOCUMENTATION = CAMEL_NETTY_BINDING_TYPE__DOCUMENTATION;
-
-    /**
-     * The feature id for the '<em><b>Any Attribute</b></em>' attribute list.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     * @ordered
-     */
-    int CAMEL_NETTY_TCP_BINDING_TYPE__ANY_ATTRIBUTE = CAMEL_NETTY_BINDING_TYPE__ANY_ATTRIBUTE;
-
-    /**
-     * The feature id for the '<em><b>Wire Format Group</b></em>' attribute list.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     * @ordered
-     */
-    int CAMEL_NETTY_TCP_BINDING_TYPE__WIRE_FORMAT_GROUP = CAMEL_NETTY_BINDING_TYPE__WIRE_FORMAT_GROUP;
-
-    /**
-     * The feature id for the '<em><b>Wire Format</b></em>' containment reference.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     * @ordered
-     */
-    int CAMEL_NETTY_TCP_BINDING_TYPE__WIRE_FORMAT = CAMEL_NETTY_BINDING_TYPE__WIRE_FORMAT;
-
-    /**
-     * The feature id for the '<em><b>Operation Selector Group</b></em>' attribute list.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     * @ordered
-     */
-    int CAMEL_NETTY_TCP_BINDING_TYPE__OPERATION_SELECTOR_GROUP = CAMEL_NETTY_BINDING_TYPE__OPERATION_SELECTOR_GROUP;
-
-    /**
-     * The feature id for the '<em><b>Operation Selector</b></em>' containment reference.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     * @ordered
-     */
-    int CAMEL_NETTY_TCP_BINDING_TYPE__OPERATION_SELECTOR = CAMEL_NETTY_BINDING_TYPE__OPERATION_SELECTOR;
-
-    /**
-     * The feature id for the '<em><b>Name</b></em>' attribute.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     * @ordered
-     */
-    int CAMEL_NETTY_TCP_BINDING_TYPE__NAME = CAMEL_NETTY_BINDING_TYPE__NAME;
-
-    /**
-     * The feature id for the '<em><b>Policy Sets</b></em>' attribute.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     * @ordered
-     */
-    int CAMEL_NETTY_TCP_BINDING_TYPE__POLICY_SETS = CAMEL_NETTY_BINDING_TYPE__POLICY_SETS;
-
-    /**
-     * The feature id for the '<em><b>Requires</b></em>' attribute.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     * @ordered
-     */
-    int CAMEL_NETTY_TCP_BINDING_TYPE__REQUIRES = CAMEL_NETTY_BINDING_TYPE__REQUIRES;
-
-    /**
-     * The feature id for the '<em><b>Uri</b></em>' attribute.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     * @ordered
-     */
-    int CAMEL_NETTY_TCP_BINDING_TYPE__URI = CAMEL_NETTY_BINDING_TYPE__URI;
-
-    /**
-     * The feature id for the '<em><b>Context Mapper</b></em>' containment reference.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     * @ordered
-     */
-    int CAMEL_NETTY_TCP_BINDING_TYPE__CONTEXT_MAPPER = CAMEL_NETTY_BINDING_TYPE__CONTEXT_MAPPER;
-
-    /**
-     * The feature id for the '<em><b>Message Composer</b></em>' containment reference.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     * @ordered
-     */
-    int CAMEL_NETTY_TCP_BINDING_TYPE__MESSAGE_COMPOSER = CAMEL_NETTY_BINDING_TYPE__MESSAGE_COMPOSER;
-
-    /**
-     * The feature id for the '<em><b>Host</b></em>' attribute.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     * @ordered
-     */
-    int CAMEL_NETTY_TCP_BINDING_TYPE__HOST = CAMEL_NETTY_BINDING_TYPE__HOST;
-
-    /**
-     * The feature id for the '<em><b>Port</b></em>' attribute.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     * @ordered
-     */
-    int CAMEL_NETTY_TCP_BINDING_TYPE__PORT = CAMEL_NETTY_BINDING_TYPE__PORT;
-
-    /**
-     * The feature id for the '<em><b>Receive Buffer Size</b></em>' attribute.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     * @ordered
-     */
-    int CAMEL_NETTY_TCP_BINDING_TYPE__RECEIVE_BUFFER_SIZE = CAMEL_NETTY_BINDING_TYPE__RECEIVE_BUFFER_SIZE;
-
-    /**
-     * The feature id for the '<em><b>Send Buffer Size</b></em>' attribute.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     * @ordered
-     */
-    int CAMEL_NETTY_TCP_BINDING_TYPE__SEND_BUFFER_SIZE = CAMEL_NETTY_BINDING_TYPE__SEND_BUFFER_SIZE;
-
-    /**
-     * The feature id for the '<em><b>Reuse Address</b></em>' attribute.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     * @ordered
-     */
-    int CAMEL_NETTY_TCP_BINDING_TYPE__REUSE_ADDRESS = CAMEL_NETTY_BINDING_TYPE__REUSE_ADDRESS;
-
-    /**
-     * The feature id for the '<em><b>Encoders</b></em>' attribute.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     * @ordered
-     */
-    int CAMEL_NETTY_TCP_BINDING_TYPE__ENCODERS = CAMEL_NETTY_BINDING_TYPE__ENCODERS;
-
-    /**
-     * The feature id for the '<em><b>Decoders</b></em>' attribute.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     * @ordered
-     */
-    int CAMEL_NETTY_TCP_BINDING_TYPE__DECODERS = CAMEL_NETTY_BINDING_TYPE__DECODERS;
-
-    /**
-     * The feature id for the '<em><b>Allow Default Codec</b></em>' attribute.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     * @ordered
-     */
-    int CAMEL_NETTY_TCP_BINDING_TYPE__ALLOW_DEFAULT_CODEC = CAMEL_NETTY_BINDING_TYPE__ALLOW_DEFAULT_CODEC;
-
-    /**
-     * The feature id for the '<em><b>Worker Count</b></em>' attribute.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     * @ordered
-     */
-    int CAMEL_NETTY_TCP_BINDING_TYPE__WORKER_COUNT = CAMEL_NETTY_BINDING_TYPE__WORKER_COUNT;
-
-    /**
-     * The feature id for the '<em><b>Sync</b></em>' attribute.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     * @ordered
-     */
-    int CAMEL_NETTY_TCP_BINDING_TYPE__SYNC = CAMEL_NETTY_BINDING_TYPE__SYNC;
-
-    /**
-     * The feature id for the '<em><b>Disconnect</b></em>' attribute.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     * @ordered
-     */
-    int CAMEL_NETTY_TCP_BINDING_TYPE__DISCONNECT = CAMEL_NETTY_BINDING_TYPE__DISCONNECT;
-
-    /**
-     * The feature id for the '<em><b>Textline</b></em>' attribute.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     * @ordered
-     */
-    int CAMEL_NETTY_TCP_BINDING_TYPE__TEXTLINE = CAMEL_NETTY_BINDING_TYPE_FEATURE_COUNT + 0;
-
-    /**
-     * The feature id for the '<em><b>Tcp No Delay</b></em>' attribute.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     * @ordered
-     */
-    int CAMEL_NETTY_TCP_BINDING_TYPE__TCP_NO_DELAY = CAMEL_NETTY_BINDING_TYPE_FEATURE_COUNT + 1;
-
-    /**
-     * The feature id for the '<em><b>Keep Alive</b></em>' attribute.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     * @ordered
-     */
-    int CAMEL_NETTY_TCP_BINDING_TYPE__KEEP_ALIVE = CAMEL_NETTY_BINDING_TYPE_FEATURE_COUNT + 2;
-
-    /**
-     * The number of structural features of the '<em>Netty Tcp Binding Type</em>' class.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     * @ordered
-     */
-    int CAMEL_NETTY_TCP_BINDING_TYPE_FEATURE_COUNT = CAMEL_NETTY_BINDING_TYPE_FEATURE_COUNT + 3;
-
-    /**
-     * The feature id for the '<em><b>Documentation</b></em>' containment reference list.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     * @ordered
-     */
-    int CAMEL_NETTY_UDP_BINDING_TYPE__DOCUMENTATION = CAMEL_NETTY_BINDING_TYPE__DOCUMENTATION;
-
-    /**
-     * The feature id for the '<em><b>Any Attribute</b></em>' attribute list.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     * @ordered
-     */
-    int CAMEL_NETTY_UDP_BINDING_TYPE__ANY_ATTRIBUTE = CAMEL_NETTY_BINDING_TYPE__ANY_ATTRIBUTE;
-
-    /**
-     * The feature id for the '<em><b>Wire Format Group</b></em>' attribute list.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     * @ordered
-     */
-    int CAMEL_NETTY_UDP_BINDING_TYPE__WIRE_FORMAT_GROUP = CAMEL_NETTY_BINDING_TYPE__WIRE_FORMAT_GROUP;
-
-    /**
-     * The feature id for the '<em><b>Wire Format</b></em>' containment reference.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     * @ordered
-     */
-    int CAMEL_NETTY_UDP_BINDING_TYPE__WIRE_FORMAT = CAMEL_NETTY_BINDING_TYPE__WIRE_FORMAT;
-
-    /**
-     * The feature id for the '<em><b>Operation Selector Group</b></em>' attribute list.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     * @ordered
-     */
-    int CAMEL_NETTY_UDP_BINDING_TYPE__OPERATION_SELECTOR_GROUP = CAMEL_NETTY_BINDING_TYPE__OPERATION_SELECTOR_GROUP;
-
-    /**
-     * The feature id for the '<em><b>Operation Selector</b></em>' containment reference.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     * @ordered
-     */
-    int CAMEL_NETTY_UDP_BINDING_TYPE__OPERATION_SELECTOR = CAMEL_NETTY_BINDING_TYPE__OPERATION_SELECTOR;
-
-    /**
-     * The feature id for the '<em><b>Name</b></em>' attribute.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     * @ordered
-     */
-    int CAMEL_NETTY_UDP_BINDING_TYPE__NAME = CAMEL_NETTY_BINDING_TYPE__NAME;
-
-    /**
-     * The feature id for the '<em><b>Policy Sets</b></em>' attribute.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     * @ordered
-     */
-    int CAMEL_NETTY_UDP_BINDING_TYPE__POLICY_SETS = CAMEL_NETTY_BINDING_TYPE__POLICY_SETS;
-
-    /**
-     * The feature id for the '<em><b>Requires</b></em>' attribute.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     * @ordered
-     */
-    int CAMEL_NETTY_UDP_BINDING_TYPE__REQUIRES = CAMEL_NETTY_BINDING_TYPE__REQUIRES;
-
-    /**
-     * The feature id for the '<em><b>Uri</b></em>' attribute.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     * @ordered
-     */
-    int CAMEL_NETTY_UDP_BINDING_TYPE__URI = CAMEL_NETTY_BINDING_TYPE__URI;
-
-    /**
-     * The feature id for the '<em><b>Context Mapper</b></em>' containment reference.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     * @ordered
-     */
-    int CAMEL_NETTY_UDP_BINDING_TYPE__CONTEXT_MAPPER = CAMEL_NETTY_BINDING_TYPE__CONTEXT_MAPPER;
-
-    /**
-     * The feature id for the '<em><b>Message Composer</b></em>' containment reference.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     * @ordered
-     */
-    int CAMEL_NETTY_UDP_BINDING_TYPE__MESSAGE_COMPOSER = CAMEL_NETTY_BINDING_TYPE__MESSAGE_COMPOSER;
-
-    /**
-     * The feature id for the '<em><b>Host</b></em>' attribute.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     * @ordered
-     */
-    int CAMEL_NETTY_UDP_BINDING_TYPE__HOST = CAMEL_NETTY_BINDING_TYPE__HOST;
-
-    /**
-     * The feature id for the '<em><b>Port</b></em>' attribute.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     * @ordered
-     */
-    int CAMEL_NETTY_UDP_BINDING_TYPE__PORT = CAMEL_NETTY_BINDING_TYPE__PORT;
-
-    /**
-     * The feature id for the '<em><b>Receive Buffer Size</b></em>' attribute.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     * @ordered
-     */
-    int CAMEL_NETTY_UDP_BINDING_TYPE__RECEIVE_BUFFER_SIZE = CAMEL_NETTY_BINDING_TYPE__RECEIVE_BUFFER_SIZE;
-
-    /**
-     * The feature id for the '<em><b>Send Buffer Size</b></em>' attribute.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     * @ordered
-     */
-    int CAMEL_NETTY_UDP_BINDING_TYPE__SEND_BUFFER_SIZE = CAMEL_NETTY_BINDING_TYPE__SEND_BUFFER_SIZE;
-
-    /**
-     * The feature id for the '<em><b>Reuse Address</b></em>' attribute.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     * @ordered
-     */
-    int CAMEL_NETTY_UDP_BINDING_TYPE__REUSE_ADDRESS = CAMEL_NETTY_BINDING_TYPE__REUSE_ADDRESS;
-
-    /**
-     * The feature id for the '<em><b>Encoders</b></em>' attribute.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     * @ordered
-     */
-    int CAMEL_NETTY_UDP_BINDING_TYPE__ENCODERS = CAMEL_NETTY_BINDING_TYPE__ENCODERS;
-
-    /**
-     * The feature id for the '<em><b>Decoders</b></em>' attribute.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     * @ordered
-     */
-    int CAMEL_NETTY_UDP_BINDING_TYPE__DECODERS = CAMEL_NETTY_BINDING_TYPE__DECODERS;
-
-    /**
-     * The feature id for the '<em><b>Allow Default Codec</b></em>' attribute.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     * @ordered
-     */
-    int CAMEL_NETTY_UDP_BINDING_TYPE__ALLOW_DEFAULT_CODEC = CAMEL_NETTY_BINDING_TYPE__ALLOW_DEFAULT_CODEC;
-
-    /**
-     * The feature id for the '<em><b>Worker Count</b></em>' attribute.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     * @ordered
-     */
-    int CAMEL_NETTY_UDP_BINDING_TYPE__WORKER_COUNT = CAMEL_NETTY_BINDING_TYPE__WORKER_COUNT;
-
-    /**
-     * The feature id for the '<em><b>Sync</b></em>' attribute.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     * @ordered
-     */
-    int CAMEL_NETTY_UDP_BINDING_TYPE__SYNC = CAMEL_NETTY_BINDING_TYPE__SYNC;
-
-    /**
-     * The feature id for the '<em><b>Disconnect</b></em>' attribute.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     * @ordered
-     */
-    int CAMEL_NETTY_UDP_BINDING_TYPE__DISCONNECT = CAMEL_NETTY_BINDING_TYPE__DISCONNECT;
-
-    /**
-     * The feature id for the '<em><b>Broadcast</b></em>' attribute.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     * @ordered
-     */
-    int CAMEL_NETTY_UDP_BINDING_TYPE__BROADCAST = CAMEL_NETTY_BINDING_TYPE_FEATURE_COUNT + 0;
-
-    /**
-     * The number of structural features of the '<em>Netty Udp Binding Type</em>' class.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     * @ordered
-     */
-    int CAMEL_NETTY_UDP_BINDING_TYPE_FEATURE_COUNT = CAMEL_NETTY_BINDING_TYPE_FEATURE_COUNT + 1;
-
-    /**
      * The meta object id for the '{@link org.switchyard.tools.models.switchyard1_0.camel.impl.DocumentRootImpl <em>Document Root</em>}' class.
      * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -3682,7 +720,7 @@ public interface CamelPackage extends EPackage {
      * @see org.switchyard.tools.models.switchyard1_0.camel.impl.CamelPackageImpl#getDocumentRoot()
      * @generated
      */
-	int DOCUMENT_ROOT = 30;
+	int DOCUMENT_ROOT = 13;
 
 	/**
      * The meta object id for the '{@link org.switchyard.tools.models.switchyard1_0.camel.impl.ScheduledPollConsumerTypeImpl <em>Scheduled Poll Consumer Type</em>}' class.
@@ -3692,7 +730,7 @@ public interface CamelPackage extends EPackage {
      * @see org.switchyard.tools.models.switchyard1_0.camel.impl.CamelPackageImpl#getScheduledPollConsumerType()
      * @generated
      */
-    int SCHEDULED_POLL_CONSUMER_TYPE = 22;
+    int SCHEDULED_POLL_CONSUMER_TYPE = 3;
 
     /**
      * The meta object id for the '{@link org.switchyard.tools.models.switchyard1_0.camel.impl.ScheduledBatchPollConsumerTypeImpl <em>Scheduled Batch Poll Consumer Type</em>}' class.
@@ -3702,7 +740,7 @@ public interface CamelPackage extends EPackage {
      * @see org.switchyard.tools.models.switchyard1_0.camel.impl.CamelPackageImpl#getScheduledBatchPollConsumerType()
      * @generated
      */
-    int SCHEDULED_BATCH_POLL_CONSUMER_TYPE = 23;
+    int SCHEDULED_BATCH_POLL_CONSUMER_TYPE = 4;
 
     /**
      * The meta object id for the '{@link org.switchyard.tools.models.switchyard1_0.camel.impl.GenericFileConsumerTypeImpl <em>Generic File Consumer Type</em>}' class.
@@ -3712,19 +750,9 @@ public interface CamelPackage extends EPackage {
      * @see org.switchyard.tools.models.switchyard1_0.camel.impl.CamelPackageImpl#getGenericFileConsumerType()
      * @generated
      */
-    int GENERIC_FILE_CONSUMER_TYPE = 28;
+    int GENERIC_FILE_CONSUMER_TYPE = 5;
 
     /**
-     * The meta object id for the '{@link org.switchyard.tools.models.switchyard1_0.camel.impl.FileConsumerTypeImpl <em>File Consumer Type</em>}' class.
-     * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-     * @see org.switchyard.tools.models.switchyard1_0.camel.impl.FileConsumerTypeImpl
-     * @see org.switchyard.tools.models.switchyard1_0.camel.impl.CamelPackageImpl#getFileConsumerType()
-     * @generated
-     */
-	int FILE_CONSUMER_TYPE = 24;
-
-	/**
      * The meta object id for the '{@link org.switchyard.tools.models.switchyard1_0.camel.impl.GenericFileProducerTypeImpl <em>Generic File Producer Type</em>}' class.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
@@ -3732,806 +760,7 @@ public interface CamelPackage extends EPackage {
      * @see org.switchyard.tools.models.switchyard1_0.camel.impl.CamelPackageImpl#getGenericFileProducerType()
      * @generated
      */
-    int GENERIC_FILE_PRODUCER_TYPE = 29;
-
-    /**
-     * The meta object id for the '{@link org.switchyard.tools.models.switchyard1_0.camel.impl.FileProducerTypeImpl <em>File Producer Type</em>}' class.
-     * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-     * @see org.switchyard.tools.models.switchyard1_0.camel.impl.FileProducerTypeImpl
-     * @see org.switchyard.tools.models.switchyard1_0.camel.impl.CamelPackageImpl#getFileProducerType()
-     * @generated
-     */
-	int FILE_PRODUCER_TYPE = 25;
-
-	/**
-     * The meta object id for the '{@link org.switchyard.tools.models.switchyard1_0.camel.impl.JavaDSLTypeImpl <em>Java DSL Type</em>}' class.
-     * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-     * @see org.switchyard.tools.models.switchyard1_0.camel.impl.JavaDSLTypeImpl
-     * @see org.switchyard.tools.models.switchyard1_0.camel.impl.CamelPackageImpl#getJavaDSLType()
-     * @generated
-     */
-	int JAVA_DSL_TYPE = 17;
-
-	/**
-     * The meta object id for the '{@link org.switchyard.tools.models.switchyard1_0.camel.impl.XMLDSLTypeImpl <em>XMLDSL Type</em>}' class.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @see org.switchyard.tools.models.switchyard1_0.camel.impl.XMLDSLTypeImpl
-     * @see org.switchyard.tools.models.switchyard1_0.camel.impl.CamelPackageImpl#getXMLDSLType()
-     * @generated
-     */
-    int XMLDSL_TYPE = 18;
-
-    /**
-     * The meta object id for the '{@link org.switchyard.tools.models.switchyard1_0.camel.impl.RemoteFileConsumerTypeImpl <em>Remote File Consumer Type</em>}' class.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @see org.switchyard.tools.models.switchyard1_0.camel.impl.RemoteFileConsumerTypeImpl
-     * @see org.switchyard.tools.models.switchyard1_0.camel.impl.CamelPackageImpl#getRemoteFileConsumerType()
-     * @generated
-     */
-    int REMOTE_FILE_CONSUMER_TYPE = 26;
-
-    /**
-     * The meta object id for the '{@link org.switchyard.tools.models.switchyard1_0.camel.impl.RemoteFileProducerTypeImpl <em>Remote File Producer Type</em>}' class.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @see org.switchyard.tools.models.switchyard1_0.camel.impl.RemoteFileProducerTypeImpl
-     * @see org.switchyard.tools.models.switchyard1_0.camel.impl.CamelPackageImpl#getRemoteFileProducerType()
-     * @generated
-     */
-    int REMOTE_FILE_PRODUCER_TYPE = 27;
-
-    /**
-     * The meta object id for the '{@link org.switchyard.tools.models.switchyard1_0.camel.impl.CamelQuartzBindingTypeImpl <em>Quartz Binding Type</em>}' class.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @see org.switchyard.tools.models.switchyard1_0.camel.impl.CamelQuartzBindingTypeImpl
-     * @see org.switchyard.tools.models.switchyard1_0.camel.impl.CamelPackageImpl#getCamelQuartzBindingType()
-     * @generated
-     */
-    int CAMEL_QUARTZ_BINDING_TYPE = 14;
-
-    /**
-     * The feature id for the '<em><b>Documentation</b></em>' containment reference list.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     * @ordered
-     */
-    int CAMEL_QUARTZ_BINDING_TYPE__DOCUMENTATION = BASE_CAMEL_BINDING__DOCUMENTATION;
-
-    /**
-     * The feature id for the '<em><b>Any Attribute</b></em>' attribute list.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     * @ordered
-     */
-    int CAMEL_QUARTZ_BINDING_TYPE__ANY_ATTRIBUTE = BASE_CAMEL_BINDING__ANY_ATTRIBUTE;
-
-    /**
-     * The feature id for the '<em><b>Wire Format Group</b></em>' attribute list.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     * @ordered
-     */
-    int CAMEL_QUARTZ_BINDING_TYPE__WIRE_FORMAT_GROUP = BASE_CAMEL_BINDING__WIRE_FORMAT_GROUP;
-
-    /**
-     * The feature id for the '<em><b>Wire Format</b></em>' containment reference.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     * @ordered
-     */
-    int CAMEL_QUARTZ_BINDING_TYPE__WIRE_FORMAT = BASE_CAMEL_BINDING__WIRE_FORMAT;
-
-    /**
-     * The feature id for the '<em><b>Operation Selector Group</b></em>' attribute list.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     * @ordered
-     */
-    int CAMEL_QUARTZ_BINDING_TYPE__OPERATION_SELECTOR_GROUP = BASE_CAMEL_BINDING__OPERATION_SELECTOR_GROUP;
-
-    /**
-     * The feature id for the '<em><b>Operation Selector</b></em>' containment reference.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     * @ordered
-     */
-    int CAMEL_QUARTZ_BINDING_TYPE__OPERATION_SELECTOR = BASE_CAMEL_BINDING__OPERATION_SELECTOR;
-
-    /**
-     * The feature id for the '<em><b>Name</b></em>' attribute.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     * @ordered
-     */
-    int CAMEL_QUARTZ_BINDING_TYPE__NAME = BASE_CAMEL_BINDING__NAME;
-
-    /**
-     * The feature id for the '<em><b>Policy Sets</b></em>' attribute.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     * @ordered
-     */
-    int CAMEL_QUARTZ_BINDING_TYPE__POLICY_SETS = BASE_CAMEL_BINDING__POLICY_SETS;
-
-    /**
-     * The feature id for the '<em><b>Requires</b></em>' attribute.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     * @ordered
-     */
-    int CAMEL_QUARTZ_BINDING_TYPE__REQUIRES = BASE_CAMEL_BINDING__REQUIRES;
-
-    /**
-     * The feature id for the '<em><b>Uri</b></em>' attribute.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     * @ordered
-     */
-    int CAMEL_QUARTZ_BINDING_TYPE__URI = BASE_CAMEL_BINDING__URI;
-
-    /**
-     * The feature id for the '<em><b>Context Mapper</b></em>' containment reference.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     * @ordered
-     */
-    int CAMEL_QUARTZ_BINDING_TYPE__CONTEXT_MAPPER = BASE_CAMEL_BINDING__CONTEXT_MAPPER;
-
-    /**
-     * The feature id for the '<em><b>Message Composer</b></em>' containment reference.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     * @ordered
-     */
-    int CAMEL_QUARTZ_BINDING_TYPE__MESSAGE_COMPOSER = BASE_CAMEL_BINDING__MESSAGE_COMPOSER;
-
-    /**
-     * The feature id for the '<em><b>Camel Binding Name</b></em>' attribute.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     * @ordered
-     */
-    int CAMEL_QUARTZ_BINDING_TYPE__CAMEL_BINDING_NAME = BASE_CAMEL_BINDING_FEATURE_COUNT + 0;
-
-    /**
-     * The feature id for the '<em><b>Cron</b></em>' attribute.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     * @ordered
-     */
-    int CAMEL_QUARTZ_BINDING_TYPE__CRON = BASE_CAMEL_BINDING_FEATURE_COUNT + 1;
-
-    /**
-     * The feature id for the '<em><b>Stateful</b></em>' attribute.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     * @ordered
-     */
-    int CAMEL_QUARTZ_BINDING_TYPE__STATEFUL = BASE_CAMEL_BINDING_FEATURE_COUNT + 2;
-
-    /**
-     * The feature id for the '<em><b>Start Time</b></em>' attribute.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     * @ordered
-     */
-    int CAMEL_QUARTZ_BINDING_TYPE__START_TIME = BASE_CAMEL_BINDING_FEATURE_COUNT + 3;
-
-    /**
-     * The feature id for the '<em><b>End Time</b></em>' attribute.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     * @ordered
-     */
-    int CAMEL_QUARTZ_BINDING_TYPE__END_TIME = BASE_CAMEL_BINDING_FEATURE_COUNT + 4;
-
-    /**
-     * The number of structural features of the '<em>Quartz Binding Type</em>' class.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     * @ordered
-     */
-    int CAMEL_QUARTZ_BINDING_TYPE_FEATURE_COUNT = BASE_CAMEL_BINDING_FEATURE_COUNT + 5;
-
-    /**
-     * The feature id for the '<em><b>Documentation</b></em>' containment reference list.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     * @ordered
-     */
-    int CAMEL_JMS_BINDING_TYPE__DOCUMENTATION = BASE_CAMEL_BINDING__DOCUMENTATION;
-
-    /**
-     * The feature id for the '<em><b>Any Attribute</b></em>' attribute list.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     * @ordered
-     */
-    int CAMEL_JMS_BINDING_TYPE__ANY_ATTRIBUTE = BASE_CAMEL_BINDING__ANY_ATTRIBUTE;
-
-    /**
-     * The feature id for the '<em><b>Wire Format Group</b></em>' attribute list.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     * @ordered
-     */
-    int CAMEL_JMS_BINDING_TYPE__WIRE_FORMAT_GROUP = BASE_CAMEL_BINDING__WIRE_FORMAT_GROUP;
-
-    /**
-     * The feature id for the '<em><b>Wire Format</b></em>' containment reference.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     * @ordered
-     */
-    int CAMEL_JMS_BINDING_TYPE__WIRE_FORMAT = BASE_CAMEL_BINDING__WIRE_FORMAT;
-
-    /**
-     * The feature id for the '<em><b>Operation Selector Group</b></em>' attribute list.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     * @ordered
-     */
-    int CAMEL_JMS_BINDING_TYPE__OPERATION_SELECTOR_GROUP = BASE_CAMEL_BINDING__OPERATION_SELECTOR_GROUP;
-
-    /**
-     * The feature id for the '<em><b>Operation Selector</b></em>' containment reference.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     * @ordered
-     */
-    int CAMEL_JMS_BINDING_TYPE__OPERATION_SELECTOR = BASE_CAMEL_BINDING__OPERATION_SELECTOR;
-
-    /**
-     * The feature id for the '<em><b>Name</b></em>' attribute.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     * @ordered
-     */
-    int CAMEL_JMS_BINDING_TYPE__NAME = BASE_CAMEL_BINDING__NAME;
-
-    /**
-     * The feature id for the '<em><b>Policy Sets</b></em>' attribute.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     * @ordered
-     */
-    int CAMEL_JMS_BINDING_TYPE__POLICY_SETS = BASE_CAMEL_BINDING__POLICY_SETS;
-
-    /**
-     * The feature id for the '<em><b>Requires</b></em>' attribute.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     * @ordered
-     */
-    int CAMEL_JMS_BINDING_TYPE__REQUIRES = BASE_CAMEL_BINDING__REQUIRES;
-
-    /**
-     * The feature id for the '<em><b>Uri</b></em>' attribute.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     * @ordered
-     */
-    int CAMEL_JMS_BINDING_TYPE__URI = BASE_CAMEL_BINDING__URI;
-
-    /**
-     * The feature id for the '<em><b>Context Mapper</b></em>' containment reference.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     * @ordered
-     */
-    int CAMEL_JMS_BINDING_TYPE__CONTEXT_MAPPER = BASE_CAMEL_BINDING__CONTEXT_MAPPER;
-
-    /**
-     * The feature id for the '<em><b>Message Composer</b></em>' containment reference.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     * @ordered
-     */
-    int CAMEL_JMS_BINDING_TYPE__MESSAGE_COMPOSER = BASE_CAMEL_BINDING__MESSAGE_COMPOSER;
-
-    /**
-     * The feature id for the '<em><b>Queue</b></em>' attribute.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     * @ordered
-     */
-    int CAMEL_JMS_BINDING_TYPE__QUEUE = BASE_CAMEL_BINDING_FEATURE_COUNT + 0;
-
-    /**
-     * The feature id for the '<em><b>Topic</b></em>' attribute.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     * @ordered
-     */
-    int CAMEL_JMS_BINDING_TYPE__TOPIC = BASE_CAMEL_BINDING_FEATURE_COUNT + 1;
-
-    /**
-     * The feature id for the '<em><b>Connection Factory</b></em>' attribute.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     * @ordered
-     */
-    int CAMEL_JMS_BINDING_TYPE__CONNECTION_FACTORY = BASE_CAMEL_BINDING_FEATURE_COUNT + 2;
-
-    /**
-     * The feature id for the '<em><b>Username</b></em>' attribute.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     * @ordered
-     */
-    int CAMEL_JMS_BINDING_TYPE__USERNAME = BASE_CAMEL_BINDING_FEATURE_COUNT + 3;
-
-    /**
-     * The feature id for the '<em><b>Password</b></em>' attribute.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     * @ordered
-     */
-    int CAMEL_JMS_BINDING_TYPE__PASSWORD = BASE_CAMEL_BINDING_FEATURE_COUNT + 4;
-
-    /**
-     * The feature id for the '<em><b>Client Id</b></em>' attribute.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     * @ordered
-     */
-    int CAMEL_JMS_BINDING_TYPE__CLIENT_ID = BASE_CAMEL_BINDING_FEATURE_COUNT + 5;
-
-    /**
-     * The feature id for the '<em><b>Durable Subscription Name</b></em>' attribute.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     * @ordered
-     */
-    int CAMEL_JMS_BINDING_TYPE__DURABLE_SUBSCRIPTION_NAME = BASE_CAMEL_BINDING_FEATURE_COUNT + 6;
-
-    /**
-     * The feature id for the '<em><b>Concurrent Consumers</b></em>' attribute.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     * @ordered
-     */
-    int CAMEL_JMS_BINDING_TYPE__CONCURRENT_CONSUMERS = BASE_CAMEL_BINDING_FEATURE_COUNT + 7;
-
-    /**
-     * The feature id for the '<em><b>Max Concurrent Consumers</b></em>' attribute.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     * @ordered
-     */
-    int CAMEL_JMS_BINDING_TYPE__MAX_CONCURRENT_CONSUMERS = BASE_CAMEL_BINDING_FEATURE_COUNT + 8;
-
-    /**
-     * The feature id for the '<em><b>Disable Reply To</b></em>' attribute.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     * @ordered
-     */
-    int CAMEL_JMS_BINDING_TYPE__DISABLE_REPLY_TO = BASE_CAMEL_BINDING_FEATURE_COUNT + 9;
-
-    /**
-     * The feature id for the '<em><b>Preserve Message Qos</b></em>' attribute.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     * @ordered
-     */
-    int CAMEL_JMS_BINDING_TYPE__PRESERVE_MESSAGE_QOS = BASE_CAMEL_BINDING_FEATURE_COUNT + 10;
-
-    /**
-     * The feature id for the '<em><b>Delivery Persistent</b></em>' attribute.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     * @ordered
-     */
-    int CAMEL_JMS_BINDING_TYPE__DELIVERY_PERSISTENT = BASE_CAMEL_BINDING_FEATURE_COUNT + 11;
-
-    /**
-     * The feature id for the '<em><b>Priority</b></em>' attribute.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     * @ordered
-     */
-    int CAMEL_JMS_BINDING_TYPE__PRIORITY = BASE_CAMEL_BINDING_FEATURE_COUNT + 12;
-
-    /**
-     * The feature id for the '<em><b>Explicit Qos Enabled</b></em>' attribute.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     * @ordered
-     */
-    int CAMEL_JMS_BINDING_TYPE__EXPLICIT_QOS_ENABLED = BASE_CAMEL_BINDING_FEATURE_COUNT + 13;
-
-    /**
-     * The feature id for the '<em><b>Reply To</b></em>' attribute.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     * @ordered
-     */
-    int CAMEL_JMS_BINDING_TYPE__REPLY_TO = BASE_CAMEL_BINDING_FEATURE_COUNT + 14;
-
-    /**
-     * The feature id for the '<em><b>Reply To Type</b></em>' attribute.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     * @ordered
-     */
-    int CAMEL_JMS_BINDING_TYPE__REPLY_TO_TYPE = BASE_CAMEL_BINDING_FEATURE_COUNT + 15;
-
-    /**
-     * The feature id for the '<em><b>Request Timeout</b></em>' attribute.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     * @ordered
-     */
-    int CAMEL_JMS_BINDING_TYPE__REQUEST_TIMEOUT = BASE_CAMEL_BINDING_FEATURE_COUNT + 16;
-
-    /**
-     * The feature id for the '<em><b>Selector</b></em>' attribute.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     * @ordered
-     */
-    int CAMEL_JMS_BINDING_TYPE__SELECTOR = BASE_CAMEL_BINDING_FEATURE_COUNT + 17;
-
-    /**
-     * The feature id for the '<em><b>Time To Live</b></em>' attribute.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     * @ordered
-     */
-    int CAMEL_JMS_BINDING_TYPE__TIME_TO_LIVE = BASE_CAMEL_BINDING_FEATURE_COUNT + 18;
-
-    /**
-     * The feature id for the '<em><b>Transacted</b></em>' attribute.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     * @ordered
-     */
-    int CAMEL_JMS_BINDING_TYPE__TRANSACTED = BASE_CAMEL_BINDING_FEATURE_COUNT + 19;
-
-    /**
-     * The feature id for the '<em><b>Transaction Manager</b></em>' attribute.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     * @ordered
-     */
-    int CAMEL_JMS_BINDING_TYPE__TRANSACTION_MANAGER = BASE_CAMEL_BINDING_FEATURE_COUNT + 20;
-
-    /**
-     * The number of structural features of the '<em>Jms Binding Type</em>' class.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     * @ordered
-     */
-    int CAMEL_JMS_BINDING_TYPE_FEATURE_COUNT = BASE_CAMEL_BINDING_FEATURE_COUNT + 21;
-
-    /**
-     * The meta object id for the '{@link org.switchyard.tools.models.switchyard1_0.camel.impl.CamelSqlBindingTypeImpl <em>Sql Binding Type</em>}' class.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @see org.switchyard.tools.models.switchyard1_0.camel.impl.CamelSqlBindingTypeImpl
-     * @see org.switchyard.tools.models.switchyard1_0.camel.impl.CamelPackageImpl#getCamelSqlBindingType()
-     * @generated
-     */
-    int CAMEL_SQL_BINDING_TYPE = 16;
-
-    /**
-     * The feature id for the '<em><b>Documentation</b></em>' containment reference list.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     * @ordered
-     */
-    int CAMEL_SQL_BINDING_TYPE__DOCUMENTATION = BASE_CAMEL_BINDING__DOCUMENTATION;
-
-    /**
-     * The feature id for the '<em><b>Any Attribute</b></em>' attribute list.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     * @ordered
-     */
-    int CAMEL_SQL_BINDING_TYPE__ANY_ATTRIBUTE = BASE_CAMEL_BINDING__ANY_ATTRIBUTE;
-
-    /**
-     * The feature id for the '<em><b>Wire Format Group</b></em>' attribute list.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     * @ordered
-     */
-    int CAMEL_SQL_BINDING_TYPE__WIRE_FORMAT_GROUP = BASE_CAMEL_BINDING__WIRE_FORMAT_GROUP;
-
-    /**
-     * The feature id for the '<em><b>Wire Format</b></em>' containment reference.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     * @ordered
-     */
-    int CAMEL_SQL_BINDING_TYPE__WIRE_FORMAT = BASE_CAMEL_BINDING__WIRE_FORMAT;
-
-    /**
-     * The feature id for the '<em><b>Operation Selector Group</b></em>' attribute list.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     * @ordered
-     */
-    int CAMEL_SQL_BINDING_TYPE__OPERATION_SELECTOR_GROUP = BASE_CAMEL_BINDING__OPERATION_SELECTOR_GROUP;
-
-    /**
-     * The feature id for the '<em><b>Operation Selector</b></em>' containment reference.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     * @ordered
-     */
-    int CAMEL_SQL_BINDING_TYPE__OPERATION_SELECTOR = BASE_CAMEL_BINDING__OPERATION_SELECTOR;
-
-    /**
-     * The feature id for the '<em><b>Name</b></em>' attribute.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     * @ordered
-     */
-    int CAMEL_SQL_BINDING_TYPE__NAME = BASE_CAMEL_BINDING__NAME;
-
-    /**
-     * The feature id for the '<em><b>Policy Sets</b></em>' attribute.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     * @ordered
-     */
-    int CAMEL_SQL_BINDING_TYPE__POLICY_SETS = BASE_CAMEL_BINDING__POLICY_SETS;
-
-    /**
-     * The feature id for the '<em><b>Requires</b></em>' attribute.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     * @ordered
-     */
-    int CAMEL_SQL_BINDING_TYPE__REQUIRES = BASE_CAMEL_BINDING__REQUIRES;
-
-    /**
-     * The feature id for the '<em><b>Uri</b></em>' attribute.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     * @ordered
-     */
-    int CAMEL_SQL_BINDING_TYPE__URI = BASE_CAMEL_BINDING__URI;
-
-    /**
-     * The feature id for the '<em><b>Context Mapper</b></em>' containment reference.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     * @ordered
-     */
-    int CAMEL_SQL_BINDING_TYPE__CONTEXT_MAPPER = BASE_CAMEL_BINDING__CONTEXT_MAPPER;
-
-    /**
-     * The feature id for the '<em><b>Message Composer</b></em>' containment reference.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     * @ordered
-     */
-    int CAMEL_SQL_BINDING_TYPE__MESSAGE_COMPOSER = BASE_CAMEL_BINDING__MESSAGE_COMPOSER;
-
-    /**
-     * The feature id for the '<em><b>Query</b></em>' attribute.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     * @ordered
-     */
-    int CAMEL_SQL_BINDING_TYPE__QUERY = BASE_CAMEL_BINDING_FEATURE_COUNT + 0;
-
-    /**
-     * The feature id for the '<em><b>Data Source Ref</b></em>' attribute.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     * @ordered
-     */
-    int CAMEL_SQL_BINDING_TYPE__DATA_SOURCE_REF = BASE_CAMEL_BINDING_FEATURE_COUNT + 1;
-
-    /**
-     * The feature id for the '<em><b>Batch</b></em>' attribute.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     * @ordered
-     */
-    int CAMEL_SQL_BINDING_TYPE__BATCH = BASE_CAMEL_BINDING_FEATURE_COUNT + 2;
-
-    /**
-     * The feature id for the '<em><b>Placeholder</b></em>' attribute.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     * @ordered
-     */
-    int CAMEL_SQL_BINDING_TYPE__PLACEHOLDER = BASE_CAMEL_BINDING_FEATURE_COUNT + 3;
-
-    /**
-     * The number of structural features of the '<em>Sql Binding Type</em>' class.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     * @ordered
-     */
-    int CAMEL_SQL_BINDING_TYPE_FEATURE_COUNT = BASE_CAMEL_BINDING_FEATURE_COUNT + 4;
-
-    /**
-     * The feature id for the '<em><b>Class</b></em>' attribute.
-     * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-     * @generated
-     * @ordered
-     */
-	int JAVA_DSL_TYPE__CLASS = 0;
-
-    /**
-     * The number of structural features of the '<em>Java DSL Type</em>' class.
-     * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-     * @generated
-     * @ordered
-     */
-	int JAVA_DSL_TYPE_FEATURE_COUNT = 1;
-
-    /**
-     * The feature id for the '<em><b>Path</b></em>' attribute.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     * @ordered
-     */
-    int XMLDSL_TYPE__PATH = 0;
-
-    /**
-     * The number of structural features of the '<em>XMLDSL Type</em>' class.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     * @ordered
-     */
-    int XMLDSL_TYPE_FEATURE_COUNT = 1;
-
-    /**
-     * The feature id for the '<em><b>Documentation</b></em>' containment reference list.
-     * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-     * @generated
-     * @ordered
-     */
-	int CAMEL_IMPLEMENTATION_TYPE__DOCUMENTATION = ScaPackage.IMPLEMENTATION__DOCUMENTATION;
-
-    /**
-     * The feature id for the '<em><b>Any Attribute</b></em>' attribute list.
-     * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-     * @generated
-     * @ordered
-     */
-	int CAMEL_IMPLEMENTATION_TYPE__ANY_ATTRIBUTE = ScaPackage.IMPLEMENTATION__ANY_ATTRIBUTE;
-
-    /**
-     * The feature id for the '<em><b>Policy Sets</b></em>' attribute.
-     * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-     * @generated
-     * @ordered
-     */
-	int CAMEL_IMPLEMENTATION_TYPE__POLICY_SETS = ScaPackage.IMPLEMENTATION__POLICY_SETS;
-
-    /**
-     * The feature id for the '<em><b>Requires</b></em>' attribute.
-     * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-     * @generated
-     * @ordered
-     */
-	int CAMEL_IMPLEMENTATION_TYPE__REQUIRES = ScaPackage.IMPLEMENTATION__REQUIRES;
-
-    /**
-     * The feature id for the '<em><b>Route</b></em>' reference.
-     * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-     * @generated
-     * @ordered
-     */
-	int CAMEL_IMPLEMENTATION_TYPE__ROUTE = ScaPackage.IMPLEMENTATION_FEATURE_COUNT + 0;
-
-    /**
-     * The feature id for the '<em><b>Java</b></em>' containment reference.
-     * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-     * @generated
-     * @ordered
-     */
-	int CAMEL_IMPLEMENTATION_TYPE__JAVA = ScaPackage.IMPLEMENTATION_FEATURE_COUNT + 1;
-
-    /**
-     * The feature id for the '<em><b>Xml</b></em>' containment reference.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     * @ordered
-     */
-    int CAMEL_IMPLEMENTATION_TYPE__XML = ScaPackage.IMPLEMENTATION_FEATURE_COUNT + 2;
-
-    /**
-     * The number of structural features of the '<em>Implementation Type</em>' class.
-     * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-     * @generated
-     * @ordered
-     */
-	int CAMEL_IMPLEMENTATION_TYPE_FEATURE_COUNT = ScaPackage.IMPLEMENTATION_FEATURE_COUNT + 3;
+    int GENERIC_FILE_PRODUCER_TYPE = 6;
 
     /**
      * The feature id for the '<em><b>Initial Delay</b></em>' attribute.
@@ -4912,267 +1141,6 @@ public interface CamelPackage extends EPackage {
     int GENERIC_FILE_CONSUMER_TYPE_FEATURE_COUNT = SCHEDULED_BATCH_POLL_CONSUMER_TYPE_FEATURE_COUNT + 22;
 
     /**
-     * The feature id for the '<em><b>Initial Delay</b></em>' attribute.
-     * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-     * @generated
-     * @ordered
-     */
-	int FILE_CONSUMER_TYPE__INITIAL_DELAY = GENERIC_FILE_CONSUMER_TYPE__INITIAL_DELAY;
-
-    /**
-     * The feature id for the '<em><b>Delay</b></em>' attribute.
-     * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-     * @generated
-     * @ordered
-     */
-	int FILE_CONSUMER_TYPE__DELAY = GENERIC_FILE_CONSUMER_TYPE__DELAY;
-
-    /**
-     * The feature id for the '<em><b>Use Fixed Delay</b></em>' attribute.
-     * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-     * @generated
-     * @ordered
-     */
-	int FILE_CONSUMER_TYPE__USE_FIXED_DELAY = GENERIC_FILE_CONSUMER_TYPE__USE_FIXED_DELAY;
-
-    /**
-     * The feature id for the '<em><b>Send Empty Message When Idle</b></em>' attribute.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     * @ordered
-     */
-    int FILE_CONSUMER_TYPE__SEND_EMPTY_MESSAGE_WHEN_IDLE = GENERIC_FILE_CONSUMER_TYPE__SEND_EMPTY_MESSAGE_WHEN_IDLE;
-
-    /**
-     * The feature id for the '<em><b>Time Unit</b></em>' attribute.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     * @ordered
-     */
-    int FILE_CONSUMER_TYPE__TIME_UNIT = GENERIC_FILE_CONSUMER_TYPE__TIME_UNIT;
-
-    /**
-     * The feature id for the '<em><b>Max Messages Per Poll</b></em>' attribute.
-     * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-     * @generated
-     * @ordered
-     */
-	int FILE_CONSUMER_TYPE__MAX_MESSAGES_PER_POLL = GENERIC_FILE_CONSUMER_TYPE__MAX_MESSAGES_PER_POLL;
-
-    /**
-     * The feature id for the '<em><b>Delete</b></em>' attribute.
-     * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-     * @generated
-     * @ordered
-     */
-	int FILE_CONSUMER_TYPE__DELETE = GENERIC_FILE_CONSUMER_TYPE__DELETE;
-
-    /**
-     * The feature id for the '<em><b>Recursive</b></em>' attribute.
-     * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-     * @generated
-     * @ordered
-     */
-	int FILE_CONSUMER_TYPE__RECURSIVE = GENERIC_FILE_CONSUMER_TYPE__RECURSIVE;
-
-    /**
-     * The feature id for the '<em><b>Noop</b></em>' attribute.
-     * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-     * @generated
-     * @ordered
-     */
-	int FILE_CONSUMER_TYPE__NOOP = GENERIC_FILE_CONSUMER_TYPE__NOOP;
-
-    /**
-     * The feature id for the '<em><b>Pre Move</b></em>' attribute.
-     * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-     * @generated
-     * @ordered
-     */
-	int FILE_CONSUMER_TYPE__PRE_MOVE = GENERIC_FILE_CONSUMER_TYPE__PRE_MOVE;
-
-    /**
-     * The feature id for the '<em><b>Move</b></em>' attribute.
-     * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-     * @generated
-     * @ordered
-     */
-	int FILE_CONSUMER_TYPE__MOVE = GENERIC_FILE_CONSUMER_TYPE__MOVE;
-
-    /**
-     * The feature id for the '<em><b>Move Failed</b></em>' attribute.
-     * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-     * @generated
-     * @ordered
-     */
-	int FILE_CONSUMER_TYPE__MOVE_FAILED = GENERIC_FILE_CONSUMER_TYPE__MOVE_FAILED;
-
-    /**
-     * The feature id for the '<em><b>Include</b></em>' attribute.
-     * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-     * @generated
-     * @ordered
-     */
-	int FILE_CONSUMER_TYPE__INCLUDE = GENERIC_FILE_CONSUMER_TYPE__INCLUDE;
-
-    /**
-     * The feature id for the '<em><b>Exclude</b></em>' attribute.
-     * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-     * @generated
-     * @ordered
-     */
-	int FILE_CONSUMER_TYPE__EXCLUDE = GENERIC_FILE_CONSUMER_TYPE__EXCLUDE;
-
-    /**
-     * The feature id for the '<em><b>Idempotent</b></em>' attribute.
-     * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-     * @generated
-     * @ordered
-     */
-	int FILE_CONSUMER_TYPE__IDEMPOTENT = GENERIC_FILE_CONSUMER_TYPE__IDEMPOTENT;
-
-    /**
-     * The feature id for the '<em><b>Idempotent Repository</b></em>' attribute.
-     * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-     * @generated
-     * @ordered
-     */
-	int FILE_CONSUMER_TYPE__IDEMPOTENT_REPOSITORY = GENERIC_FILE_CONSUMER_TYPE__IDEMPOTENT_REPOSITORY;
-
-    /**
-     * The feature id for the '<em><b>In Progress Repository</b></em>' attribute.
-     * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-     * @generated
-     * @ordered
-     */
-	int FILE_CONSUMER_TYPE__IN_PROGRESS_REPOSITORY = GENERIC_FILE_CONSUMER_TYPE__IN_PROGRESS_REPOSITORY;
-
-    /**
-     * The feature id for the '<em><b>Filter</b></em>' attribute.
-     * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-     * @generated
-     * @ordered
-     */
-	int FILE_CONSUMER_TYPE__FILTER = GENERIC_FILE_CONSUMER_TYPE__FILTER;
-
-    /**
-     * The feature id for the '<em><b>Sorter</b></em>' attribute.
-     * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-     * @generated
-     * @ordered
-     */
-	int FILE_CONSUMER_TYPE__SORTER = GENERIC_FILE_CONSUMER_TYPE__SORTER;
-
-    /**
-     * The feature id for the '<em><b>Sort By</b></em>' attribute.
-     * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-     * @generated
-     * @ordered
-     */
-	int FILE_CONSUMER_TYPE__SORT_BY = GENERIC_FILE_CONSUMER_TYPE__SORT_BY;
-
-    /**
-     * The feature id for the '<em><b>Read Lock</b></em>' attribute.
-     * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-     * @generated
-     * @ordered
-     */
-	int FILE_CONSUMER_TYPE__READ_LOCK = GENERIC_FILE_CONSUMER_TYPE__READ_LOCK;
-
-    /**
-     * The feature id for the '<em><b>Read Lock Timeout</b></em>' attribute.
-     * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-     * @generated
-     * @ordered
-     */
-	int FILE_CONSUMER_TYPE__READ_LOCK_TIMEOUT = GENERIC_FILE_CONSUMER_TYPE__READ_LOCK_TIMEOUT;
-
-    /**
-     * The feature id for the '<em><b>Read Lock Check Interval</b></em>' attribute.
-     * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-     * @generated
-     * @ordered
-     */
-	int FILE_CONSUMER_TYPE__READ_LOCK_CHECK_INTERVAL = GENERIC_FILE_CONSUMER_TYPE__READ_LOCK_CHECK_INTERVAL;
-
-    /**
-     * The feature id for the '<em><b>Exclusive Read Lock Strategy</b></em>' attribute.
-     * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-     * @generated
-     * @ordered
-     */
-	int FILE_CONSUMER_TYPE__EXCLUSIVE_READ_LOCK_STRATEGY = GENERIC_FILE_CONSUMER_TYPE__EXCLUSIVE_READ_LOCK_STRATEGY;
-
-    /**
-     * The feature id for the '<em><b>Process Strategy</b></em>' attribute.
-     * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-     * @generated
-     * @ordered
-     */
-	int FILE_CONSUMER_TYPE__PROCESS_STRATEGY = GENERIC_FILE_CONSUMER_TYPE__PROCESS_STRATEGY;
-
-    /**
-     * The feature id for the '<em><b>Starting Directory Must Exist</b></em>' attribute.
-     * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-     * @generated
-     * @ordered
-     */
-	int FILE_CONSUMER_TYPE__STARTING_DIRECTORY_MUST_EXIST = GENERIC_FILE_CONSUMER_TYPE__STARTING_DIRECTORY_MUST_EXIST;
-
-    /**
-     * The feature id for the '<em><b>Directory Must Exist</b></em>' attribute.
-     * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-     * @generated
-     * @ordered
-     */
-	int FILE_CONSUMER_TYPE__DIRECTORY_MUST_EXIST = GENERIC_FILE_CONSUMER_TYPE__DIRECTORY_MUST_EXIST;
-
-    /**
-     * The feature id for the '<em><b>Done File Name</b></em>' attribute.
-     * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-     * @generated
-     * @ordered
-     */
-	int FILE_CONSUMER_TYPE__DONE_FILE_NAME = GENERIC_FILE_CONSUMER_TYPE__DONE_FILE_NAME;
-
-    /**
-     * The number of structural features of the '<em>File Consumer Type</em>' class.
-     * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-     * @generated
-     * @ordered
-     */
-	int FILE_CONSUMER_TYPE_FEATURE_COUNT = GENERIC_FILE_CONSUMER_TYPE_FEATURE_COUNT + 0;
-
-    /**
      * The feature id for the '<em><b>File Exist</b></em>' attribute.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
@@ -5236,391 +1204,1067 @@ public interface CamelPackage extends EPackage {
     int GENERIC_FILE_PRODUCER_TYPE_FEATURE_COUNT = 6;
 
     /**
-     * The feature id for the '<em><b>File Exist</b></em>' attribute.
+     * The meta object id for the '{@link org.switchyard.tools.models.switchyard1_0.camel.impl.JmsBindingTypeImpl <em>Jms Binding Type</em>}' class.
      * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
+     * @see org.switchyard.tools.models.switchyard1_0.camel.impl.JmsBindingTypeImpl
+     * @see org.switchyard.tools.models.switchyard1_0.camel.impl.CamelPackageImpl#getJmsBindingType()
      * @generated
-     * @ordered
      */
-	int FILE_PRODUCER_TYPE__FILE_EXIST = GENERIC_FILE_PRODUCER_TYPE__FILE_EXIST;
+    int JMS_BINDING_TYPE = 7;
 
     /**
-     * The feature id for the '<em><b>Temp Prefix</b></em>' attribute.
-     * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-     * @generated
-     * @ordered
-     */
-	int FILE_PRODUCER_TYPE__TEMP_PREFIX = GENERIC_FILE_PRODUCER_TYPE__TEMP_PREFIX;
-
-    /**
-     * The feature id for the '<em><b>Temp File Name</b></em>' attribute.
-     * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-     * @generated
-     * @ordered
-     */
-	int FILE_PRODUCER_TYPE__TEMP_FILE_NAME = GENERIC_FILE_PRODUCER_TYPE__TEMP_FILE_NAME;
-
-    /**
-     * The feature id for the '<em><b>Keep Last Modified</b></em>' attribute.
-     * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-     * @generated
-     * @ordered
-     */
-	int FILE_PRODUCER_TYPE__KEEP_LAST_MODIFIED = GENERIC_FILE_PRODUCER_TYPE__KEEP_LAST_MODIFIED;
-
-    /**
-     * The feature id for the '<em><b>Eager Delete Target File</b></em>' attribute.
-     * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-     * @generated
-     * @ordered
-     */
-	int FILE_PRODUCER_TYPE__EAGER_DELETE_TARGET_FILE = GENERIC_FILE_PRODUCER_TYPE__EAGER_DELETE_TARGET_FILE;
-
-    /**
-     * The feature id for the '<em><b>Done File Name</b></em>' attribute.
-     * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-     * @generated
-     * @ordered
-     */
-	int FILE_PRODUCER_TYPE__DONE_FILE_NAME = GENERIC_FILE_PRODUCER_TYPE__DONE_FILE_NAME;
-
-    /**
-     * The number of structural features of the '<em>File Producer Type</em>' class.
-     * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-     * @generated
-     * @ordered
-     */
-	int FILE_PRODUCER_TYPE_FEATURE_COUNT = GENERIC_FILE_PRODUCER_TYPE_FEATURE_COUNT + 0;
-
-    /**
-     * The feature id for the '<em><b>Initial Delay</b></em>' attribute.
+     * The feature id for the '<em><b>Documentation</b></em>' containment reference list.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @generated
      * @ordered
      */
-    int REMOTE_FILE_CONSUMER_TYPE__INITIAL_DELAY = GENERIC_FILE_CONSUMER_TYPE__INITIAL_DELAY;
+    int JMS_BINDING_TYPE__DOCUMENTATION = BASE_CAMEL_BINDING__DOCUMENTATION;
+
+    /**
+     * The feature id for the '<em><b>Any Attribute</b></em>' attribute list.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int JMS_BINDING_TYPE__ANY_ATTRIBUTE = BASE_CAMEL_BINDING__ANY_ATTRIBUTE;
+
+    /**
+     * The feature id for the '<em><b>Wire Format Group</b></em>' attribute list.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int JMS_BINDING_TYPE__WIRE_FORMAT_GROUP = BASE_CAMEL_BINDING__WIRE_FORMAT_GROUP;
+
+    /**
+     * The feature id for the '<em><b>Wire Format</b></em>' containment reference.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int JMS_BINDING_TYPE__WIRE_FORMAT = BASE_CAMEL_BINDING__WIRE_FORMAT;
+
+    /**
+     * The feature id for the '<em><b>Operation Selector Group</b></em>' attribute list.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int JMS_BINDING_TYPE__OPERATION_SELECTOR_GROUP = BASE_CAMEL_BINDING__OPERATION_SELECTOR_GROUP;
+
+    /**
+     * The feature id for the '<em><b>Operation Selector</b></em>' containment reference.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int JMS_BINDING_TYPE__OPERATION_SELECTOR = BASE_CAMEL_BINDING__OPERATION_SELECTOR;
+
+    /**
+     * The feature id for the '<em><b>Name</b></em>' attribute.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int JMS_BINDING_TYPE__NAME = BASE_CAMEL_BINDING__NAME;
+
+    /**
+     * The feature id for the '<em><b>Policy Sets</b></em>' attribute.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int JMS_BINDING_TYPE__POLICY_SETS = BASE_CAMEL_BINDING__POLICY_SETS;
+
+    /**
+     * The feature id for the '<em><b>Requires</b></em>' attribute.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int JMS_BINDING_TYPE__REQUIRES = BASE_CAMEL_BINDING__REQUIRES;
+
+    /**
+     * The feature id for the '<em><b>Uri</b></em>' attribute.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int JMS_BINDING_TYPE__URI = BASE_CAMEL_BINDING__URI;
+
+    /**
+     * The feature id for the '<em><b>Context Mapper</b></em>' containment reference.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int JMS_BINDING_TYPE__CONTEXT_MAPPER = BASE_CAMEL_BINDING__CONTEXT_MAPPER;
+
+    /**
+     * The feature id for the '<em><b>Message Composer</b></em>' containment reference.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int JMS_BINDING_TYPE__MESSAGE_COMPOSER = BASE_CAMEL_BINDING__MESSAGE_COMPOSER;
+
+    /**
+     * The feature id for the '<em><b>Queue</b></em>' attribute.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int JMS_BINDING_TYPE__QUEUE = BASE_CAMEL_BINDING_FEATURE_COUNT + 0;
+
+    /**
+     * The feature id for the '<em><b>Topic</b></em>' attribute.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int JMS_BINDING_TYPE__TOPIC = BASE_CAMEL_BINDING_FEATURE_COUNT + 1;
+
+    /**
+     * The feature id for the '<em><b>Connection Factory</b></em>' attribute.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int JMS_BINDING_TYPE__CONNECTION_FACTORY = BASE_CAMEL_BINDING_FEATURE_COUNT + 2;
+
+    /**
+     * The feature id for the '<em><b>Username</b></em>' attribute.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int JMS_BINDING_TYPE__USERNAME = BASE_CAMEL_BINDING_FEATURE_COUNT + 3;
+
+    /**
+     * The feature id for the '<em><b>Password</b></em>' attribute.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int JMS_BINDING_TYPE__PASSWORD = BASE_CAMEL_BINDING_FEATURE_COUNT + 4;
+
+    /**
+     * The feature id for the '<em><b>Client Id</b></em>' attribute.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int JMS_BINDING_TYPE__CLIENT_ID = BASE_CAMEL_BINDING_FEATURE_COUNT + 5;
+
+    /**
+     * The feature id for the '<em><b>Durable Subscription Name</b></em>' attribute.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int JMS_BINDING_TYPE__DURABLE_SUBSCRIPTION_NAME = BASE_CAMEL_BINDING_FEATURE_COUNT + 6;
+
+    /**
+     * The feature id for the '<em><b>Concurrent Consumers</b></em>' attribute.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int JMS_BINDING_TYPE__CONCURRENT_CONSUMERS = BASE_CAMEL_BINDING_FEATURE_COUNT + 7;
+
+    /**
+     * The feature id for the '<em><b>Max Concurrent Consumers</b></em>' attribute.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int JMS_BINDING_TYPE__MAX_CONCURRENT_CONSUMERS = BASE_CAMEL_BINDING_FEATURE_COUNT + 8;
+
+    /**
+     * The feature id for the '<em><b>Disable Reply To</b></em>' attribute.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int JMS_BINDING_TYPE__DISABLE_REPLY_TO = BASE_CAMEL_BINDING_FEATURE_COUNT + 9;
+
+    /**
+     * The feature id for the '<em><b>Preserve Message Qos</b></em>' attribute.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int JMS_BINDING_TYPE__PRESERVE_MESSAGE_QOS = BASE_CAMEL_BINDING_FEATURE_COUNT + 10;
+
+    /**
+     * The feature id for the '<em><b>Delivery Persistent</b></em>' attribute.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int JMS_BINDING_TYPE__DELIVERY_PERSISTENT = BASE_CAMEL_BINDING_FEATURE_COUNT + 11;
+
+    /**
+     * The feature id for the '<em><b>Priority</b></em>' attribute.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int JMS_BINDING_TYPE__PRIORITY = BASE_CAMEL_BINDING_FEATURE_COUNT + 12;
+
+    /**
+     * The feature id for the '<em><b>Explicit Qos Enabled</b></em>' attribute.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int JMS_BINDING_TYPE__EXPLICIT_QOS_ENABLED = BASE_CAMEL_BINDING_FEATURE_COUNT + 13;
+
+    /**
+     * The feature id for the '<em><b>Reply To</b></em>' attribute.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int JMS_BINDING_TYPE__REPLY_TO = BASE_CAMEL_BINDING_FEATURE_COUNT + 14;
+
+    /**
+     * The feature id for the '<em><b>Reply To Type</b></em>' attribute.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int JMS_BINDING_TYPE__REPLY_TO_TYPE = BASE_CAMEL_BINDING_FEATURE_COUNT + 15;
+
+    /**
+     * The feature id for the '<em><b>Request Timeout</b></em>' attribute.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int JMS_BINDING_TYPE__REQUEST_TIMEOUT = BASE_CAMEL_BINDING_FEATURE_COUNT + 16;
+
+    /**
+     * The feature id for the '<em><b>Selector</b></em>' attribute.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int JMS_BINDING_TYPE__SELECTOR = BASE_CAMEL_BINDING_FEATURE_COUNT + 17;
+
+    /**
+     * The feature id for the '<em><b>Time To Live</b></em>' attribute.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int JMS_BINDING_TYPE__TIME_TO_LIVE = BASE_CAMEL_BINDING_FEATURE_COUNT + 18;
+
+    /**
+     * The feature id for the '<em><b>Transacted</b></em>' attribute.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int JMS_BINDING_TYPE__TRANSACTED = BASE_CAMEL_BINDING_FEATURE_COUNT + 19;
+
+    /**
+     * The feature id for the '<em><b>Transaction Manager</b></em>' attribute.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int JMS_BINDING_TYPE__TRANSACTION_MANAGER = BASE_CAMEL_BINDING_FEATURE_COUNT + 20;
+
+    /**
+     * The number of structural features of the '<em>Jms Binding Type</em>' class.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int JMS_BINDING_TYPE_FEATURE_COUNT = BASE_CAMEL_BINDING_FEATURE_COUNT + 21;
+
+    /**
+     * The feature id for the '<em><b>Documentation</b></em>' containment reference list.
+     * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+	int CAMEL_BINDING_TYPE__DOCUMENTATION = BASE_CAMEL_BINDING__DOCUMENTATION;
+
+    /**
+     * The feature id for the '<em><b>Any Attribute</b></em>' attribute list.
+     * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+	int CAMEL_BINDING_TYPE__ANY_ATTRIBUTE = BASE_CAMEL_BINDING__ANY_ATTRIBUTE;
+
+    /**
+     * The feature id for the '<em><b>Wire Format Group</b></em>' attribute list.
+     * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+	int CAMEL_BINDING_TYPE__WIRE_FORMAT_GROUP = BASE_CAMEL_BINDING__WIRE_FORMAT_GROUP;
+
+    /**
+     * The feature id for the '<em><b>Wire Format</b></em>' containment reference.
+     * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+	int CAMEL_BINDING_TYPE__WIRE_FORMAT = BASE_CAMEL_BINDING__WIRE_FORMAT;
+
+    /**
+     * The feature id for the '<em><b>Operation Selector Group</b></em>' attribute list.
+     * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+	int CAMEL_BINDING_TYPE__OPERATION_SELECTOR_GROUP = BASE_CAMEL_BINDING__OPERATION_SELECTOR_GROUP;
+
+    /**
+     * The feature id for the '<em><b>Operation Selector</b></em>' containment reference.
+     * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+	int CAMEL_BINDING_TYPE__OPERATION_SELECTOR = BASE_CAMEL_BINDING__OPERATION_SELECTOR;
+
+    /**
+     * The feature id for the '<em><b>Name</b></em>' attribute.
+     * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+	int CAMEL_BINDING_TYPE__NAME = BASE_CAMEL_BINDING__NAME;
+
+    /**
+     * The feature id for the '<em><b>Policy Sets</b></em>' attribute.
+     * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+	int CAMEL_BINDING_TYPE__POLICY_SETS = BASE_CAMEL_BINDING__POLICY_SETS;
+
+    /**
+     * The feature id for the '<em><b>Requires</b></em>' attribute.
+     * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+	int CAMEL_BINDING_TYPE__REQUIRES = BASE_CAMEL_BINDING__REQUIRES;
+
+    /**
+     * The feature id for the '<em><b>Uri</b></em>' attribute.
+     * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+	int CAMEL_BINDING_TYPE__URI = BASE_CAMEL_BINDING__URI;
+
+    /**
+     * The feature id for the '<em><b>Context Mapper</b></em>' containment reference.
+     * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+	int CAMEL_BINDING_TYPE__CONTEXT_MAPPER = BASE_CAMEL_BINDING__CONTEXT_MAPPER;
+
+    /**
+     * The feature id for the '<em><b>Message Composer</b></em>' containment reference.
+     * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+	int CAMEL_BINDING_TYPE__MESSAGE_COMPOSER = BASE_CAMEL_BINDING__MESSAGE_COMPOSER;
+
+    /**
+     * The feature id for the '<em><b>Config URI</b></em>' attribute.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int CAMEL_BINDING_TYPE__CONFIG_URI = BASE_CAMEL_BINDING_FEATURE_COUNT + 0;
+
+    /**
+     * The number of structural features of the '<em>Binding Type</em>' class.
+     * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+	int CAMEL_BINDING_TYPE_FEATURE_COUNT = BASE_CAMEL_BINDING_FEATURE_COUNT + 1;
+
+    /**
+     * The feature id for the '<em><b>Documentation</b></em>' containment reference list.
+     * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+	int CAMEL_DIRECT_BINDING_TYPE__DOCUMENTATION = BASE_CAMEL_BINDING__DOCUMENTATION;
+
+    /**
+     * The feature id for the '<em><b>Any Attribute</b></em>' attribute list.
+     * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+	int CAMEL_DIRECT_BINDING_TYPE__ANY_ATTRIBUTE = BASE_CAMEL_BINDING__ANY_ATTRIBUTE;
+
+    /**
+     * The feature id for the '<em><b>Wire Format Group</b></em>' attribute list.
+     * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+	int CAMEL_DIRECT_BINDING_TYPE__WIRE_FORMAT_GROUP = BASE_CAMEL_BINDING__WIRE_FORMAT_GROUP;
+
+    /**
+     * The feature id for the '<em><b>Wire Format</b></em>' containment reference.
+     * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+	int CAMEL_DIRECT_BINDING_TYPE__WIRE_FORMAT = BASE_CAMEL_BINDING__WIRE_FORMAT;
+
+    /**
+     * The feature id for the '<em><b>Operation Selector Group</b></em>' attribute list.
+     * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+	int CAMEL_DIRECT_BINDING_TYPE__OPERATION_SELECTOR_GROUP = BASE_CAMEL_BINDING__OPERATION_SELECTOR_GROUP;
+
+    /**
+     * The feature id for the '<em><b>Operation Selector</b></em>' containment reference.
+     * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+	int CAMEL_DIRECT_BINDING_TYPE__OPERATION_SELECTOR = BASE_CAMEL_BINDING__OPERATION_SELECTOR;
+
+    /**
+     * The feature id for the '<em><b>Name</b></em>' attribute.
+     * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+	int CAMEL_DIRECT_BINDING_TYPE__NAME = BASE_CAMEL_BINDING__NAME;
+
+    /**
+     * The feature id for the '<em><b>Policy Sets</b></em>' attribute.
+     * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+	int CAMEL_DIRECT_BINDING_TYPE__POLICY_SETS = BASE_CAMEL_BINDING__POLICY_SETS;
+
+    /**
+     * The feature id for the '<em><b>Requires</b></em>' attribute.
+     * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+	int CAMEL_DIRECT_BINDING_TYPE__REQUIRES = BASE_CAMEL_BINDING__REQUIRES;
+
+    /**
+     * The feature id for the '<em><b>Uri</b></em>' attribute.
+     * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+	int CAMEL_DIRECT_BINDING_TYPE__URI = BASE_CAMEL_BINDING__URI;
+
+    /**
+     * The feature id for the '<em><b>Context Mapper</b></em>' containment reference.
+     * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+	int CAMEL_DIRECT_BINDING_TYPE__CONTEXT_MAPPER = BASE_CAMEL_BINDING__CONTEXT_MAPPER;
+
+    /**
+     * The feature id for the '<em><b>Message Composer</b></em>' containment reference.
+     * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+	int CAMEL_DIRECT_BINDING_TYPE__MESSAGE_COMPOSER = BASE_CAMEL_BINDING__MESSAGE_COMPOSER;
+
+    /**
+     * The feature id for the '<em><b>Name Element</b></em>' attribute.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int CAMEL_DIRECT_BINDING_TYPE__NAME_ELEMENT = BASE_CAMEL_BINDING_FEATURE_COUNT + 0;
+
+    /**
+     * The number of structural features of the '<em>Direct Binding Type</em>' class.
+     * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+	int CAMEL_DIRECT_BINDING_TYPE_FEATURE_COUNT = BASE_CAMEL_BINDING_FEATURE_COUNT + 1;
+
+    /**
+     * The feature id for the '<em><b>Documentation</b></em>' containment reference list.
+     * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+	int CAMEL_TIMER_BINDING_TYPE__DOCUMENTATION = BASE_CAMEL_BINDING__DOCUMENTATION;
+
+    /**
+     * The feature id for the '<em><b>Any Attribute</b></em>' attribute list.
+     * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+	int CAMEL_TIMER_BINDING_TYPE__ANY_ATTRIBUTE = BASE_CAMEL_BINDING__ANY_ATTRIBUTE;
+
+    /**
+     * The feature id for the '<em><b>Wire Format Group</b></em>' attribute list.
+     * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+	int CAMEL_TIMER_BINDING_TYPE__WIRE_FORMAT_GROUP = BASE_CAMEL_BINDING__WIRE_FORMAT_GROUP;
+
+    /**
+     * The feature id for the '<em><b>Wire Format</b></em>' containment reference.
+     * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+	int CAMEL_TIMER_BINDING_TYPE__WIRE_FORMAT = BASE_CAMEL_BINDING__WIRE_FORMAT;
+
+    /**
+     * The feature id for the '<em><b>Operation Selector Group</b></em>' attribute list.
+     * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+	int CAMEL_TIMER_BINDING_TYPE__OPERATION_SELECTOR_GROUP = BASE_CAMEL_BINDING__OPERATION_SELECTOR_GROUP;
+
+    /**
+     * The feature id for the '<em><b>Operation Selector</b></em>' containment reference.
+     * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+	int CAMEL_TIMER_BINDING_TYPE__OPERATION_SELECTOR = BASE_CAMEL_BINDING__OPERATION_SELECTOR;
+
+    /**
+     * The feature id for the '<em><b>Name</b></em>' attribute.
+     * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+	int CAMEL_TIMER_BINDING_TYPE__NAME = BASE_CAMEL_BINDING__NAME;
+
+    /**
+     * The feature id for the '<em><b>Policy Sets</b></em>' attribute.
+     * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+	int CAMEL_TIMER_BINDING_TYPE__POLICY_SETS = BASE_CAMEL_BINDING__POLICY_SETS;
+
+    /**
+     * The feature id for the '<em><b>Requires</b></em>' attribute.
+     * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+	int CAMEL_TIMER_BINDING_TYPE__REQUIRES = BASE_CAMEL_BINDING__REQUIRES;
+
+    /**
+     * The feature id for the '<em><b>Uri</b></em>' attribute.
+     * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+	int CAMEL_TIMER_BINDING_TYPE__URI = BASE_CAMEL_BINDING__URI;
+
+    /**
+     * The feature id for the '<em><b>Context Mapper</b></em>' containment reference.
+     * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+	int CAMEL_TIMER_BINDING_TYPE__CONTEXT_MAPPER = BASE_CAMEL_BINDING__CONTEXT_MAPPER;
+
+    /**
+     * The feature id for the '<em><b>Message Composer</b></em>' containment reference.
+     * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+	int CAMEL_TIMER_BINDING_TYPE__MESSAGE_COMPOSER = BASE_CAMEL_BINDING__MESSAGE_COMPOSER;
+
+    /**
+     * The feature id for the '<em><b>Camel Binding Name</b></em>' attribute.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int CAMEL_TIMER_BINDING_TYPE__CAMEL_BINDING_NAME = BASE_CAMEL_BINDING_FEATURE_COUNT + 0;
+
+    /**
+     * The feature id for the '<em><b>Time</b></em>' attribute.
+     * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+	int CAMEL_TIMER_BINDING_TYPE__TIME = BASE_CAMEL_BINDING_FEATURE_COUNT + 1;
+
+    /**
+     * The feature id for the '<em><b>Pattern</b></em>' attribute.
+     * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+	int CAMEL_TIMER_BINDING_TYPE__PATTERN = BASE_CAMEL_BINDING_FEATURE_COUNT + 2;
+
+    /**
+     * The feature id for the '<em><b>Period</b></em>' attribute.
+     * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+	int CAMEL_TIMER_BINDING_TYPE__PERIOD = BASE_CAMEL_BINDING_FEATURE_COUNT + 3;
 
     /**
      * The feature id for the '<em><b>Delay</b></em>' attribute.
      * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
      * @generated
      * @ordered
      */
-    int REMOTE_FILE_CONSUMER_TYPE__DELAY = GENERIC_FILE_CONSUMER_TYPE__DELAY;
+	int CAMEL_TIMER_BINDING_TYPE__DELAY = BASE_CAMEL_BINDING_FEATURE_COUNT + 4;
 
     /**
-     * The feature id for the '<em><b>Use Fixed Delay</b></em>' attribute.
+     * The feature id for the '<em><b>Fixed Rate</b></em>' attribute.
+     * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+	int CAMEL_TIMER_BINDING_TYPE__FIXED_RATE = BASE_CAMEL_BINDING_FEATURE_COUNT + 5;
+
+    /**
+     * The feature id for the '<em><b>Daemon</b></em>' attribute.
+     * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+	int CAMEL_TIMER_BINDING_TYPE__DAEMON = BASE_CAMEL_BINDING_FEATURE_COUNT + 6;
+
+    /**
+     * The number of structural features of the '<em>Timer Binding Type</em>' class.
+     * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+	int CAMEL_TIMER_BINDING_TYPE_FEATURE_COUNT = BASE_CAMEL_BINDING_FEATURE_COUNT + 7;
+
+    /**
+     * The feature id for the '<em><b>Documentation</b></em>' containment reference list.
+     * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+	int CAMEL_SEDA_BINDING_TYPE__DOCUMENTATION = BASE_CAMEL_BINDING__DOCUMENTATION;
+
+    /**
+     * The feature id for the '<em><b>Any Attribute</b></em>' attribute list.
+     * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+	int CAMEL_SEDA_BINDING_TYPE__ANY_ATTRIBUTE = BASE_CAMEL_BINDING__ANY_ATTRIBUTE;
+
+    /**
+     * The feature id for the '<em><b>Wire Format Group</b></em>' attribute list.
+     * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+	int CAMEL_SEDA_BINDING_TYPE__WIRE_FORMAT_GROUP = BASE_CAMEL_BINDING__WIRE_FORMAT_GROUP;
+
+    /**
+     * The feature id for the '<em><b>Wire Format</b></em>' containment reference.
+     * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+	int CAMEL_SEDA_BINDING_TYPE__WIRE_FORMAT = BASE_CAMEL_BINDING__WIRE_FORMAT;
+
+    /**
+     * The feature id for the '<em><b>Operation Selector Group</b></em>' attribute list.
+     * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+	int CAMEL_SEDA_BINDING_TYPE__OPERATION_SELECTOR_GROUP = BASE_CAMEL_BINDING__OPERATION_SELECTOR_GROUP;
+
+    /**
+     * The feature id for the '<em><b>Operation Selector</b></em>' containment reference.
+     * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+	int CAMEL_SEDA_BINDING_TYPE__OPERATION_SELECTOR = BASE_CAMEL_BINDING__OPERATION_SELECTOR;
+
+    /**
+     * The feature id for the '<em><b>Name</b></em>' attribute.
+     * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+	int CAMEL_SEDA_BINDING_TYPE__NAME = BASE_CAMEL_BINDING__NAME;
+
+    /**
+     * The feature id for the '<em><b>Policy Sets</b></em>' attribute.
+     * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+	int CAMEL_SEDA_BINDING_TYPE__POLICY_SETS = BASE_CAMEL_BINDING__POLICY_SETS;
+
+    /**
+     * The feature id for the '<em><b>Requires</b></em>' attribute.
+     * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+	int CAMEL_SEDA_BINDING_TYPE__REQUIRES = BASE_CAMEL_BINDING__REQUIRES;
+
+    /**
+     * The feature id for the '<em><b>Uri</b></em>' attribute.
+     * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+	int CAMEL_SEDA_BINDING_TYPE__URI = BASE_CAMEL_BINDING__URI;
+
+    /**
+     * The feature id for the '<em><b>Context Mapper</b></em>' containment reference.
+     * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+	int CAMEL_SEDA_BINDING_TYPE__CONTEXT_MAPPER = BASE_CAMEL_BINDING__CONTEXT_MAPPER;
+
+    /**
+     * The feature id for the '<em><b>Message Composer</b></em>' containment reference.
+     * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+	int CAMEL_SEDA_BINDING_TYPE__MESSAGE_COMPOSER = BASE_CAMEL_BINDING__MESSAGE_COMPOSER;
+
+    /**
+     * The feature id for the '<em><b>Name Element</b></em>' attribute.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @generated
      * @ordered
      */
-    int REMOTE_FILE_CONSUMER_TYPE__USE_FIXED_DELAY = GENERIC_FILE_CONSUMER_TYPE__USE_FIXED_DELAY;
+    int CAMEL_SEDA_BINDING_TYPE__NAME_ELEMENT = BASE_CAMEL_BINDING_FEATURE_COUNT + 0;
 
     /**
-     * The feature id for the '<em><b>Send Empty Message When Idle</b></em>' attribute.
+     * The feature id for the '<em><b>Size</b></em>' attribute.
+     * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+	int CAMEL_SEDA_BINDING_TYPE__SIZE = BASE_CAMEL_BINDING_FEATURE_COUNT + 1;
+
+    /**
+     * The feature id for the '<em><b>Concurrent Consumers</b></em>' attribute.
+     * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+	int CAMEL_SEDA_BINDING_TYPE__CONCURRENT_CONSUMERS = BASE_CAMEL_BINDING_FEATURE_COUNT + 2;
+
+    /**
+     * The feature id for the '<em><b>Wait For Task To Complete</b></em>' attribute.
+     * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+	int CAMEL_SEDA_BINDING_TYPE__WAIT_FOR_TASK_TO_COMPLETE = BASE_CAMEL_BINDING_FEATURE_COUNT + 3;
+
+    /**
+     * The feature id for the '<em><b>Timeout</b></em>' attribute.
+     * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+	int CAMEL_SEDA_BINDING_TYPE__TIMEOUT = BASE_CAMEL_BINDING_FEATURE_COUNT + 4;
+
+    /**
+     * The feature id for the '<em><b>Multiple Consumers</b></em>' attribute.
+     * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+	int CAMEL_SEDA_BINDING_TYPE__MULTIPLE_CONSUMERS = BASE_CAMEL_BINDING_FEATURE_COUNT + 5;
+
+    /**
+     * The feature id for the '<em><b>Limit Concurrent Consumers</b></em>' attribute.
+     * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+	int CAMEL_SEDA_BINDING_TYPE__LIMIT_CONCURRENT_CONSUMERS = BASE_CAMEL_BINDING_FEATURE_COUNT + 6;
+
+    /**
+     * The number of structural features of the '<em>Seda Binding Type</em>' class.
+     * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+	int CAMEL_SEDA_BINDING_TYPE_FEATURE_COUNT = BASE_CAMEL_BINDING_FEATURE_COUNT + 7;
+
+    /**
+     * The feature id for the '<em><b>Documentation</b></em>' containment reference list.
+     * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+	int CAMEL_MOCK_BINDING_TYPE__DOCUMENTATION = BASE_CAMEL_BINDING__DOCUMENTATION;
+
+    /**
+     * The feature id for the '<em><b>Any Attribute</b></em>' attribute list.
+     * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+	int CAMEL_MOCK_BINDING_TYPE__ANY_ATTRIBUTE = BASE_CAMEL_BINDING__ANY_ATTRIBUTE;
+
+    /**
+     * The feature id for the '<em><b>Wire Format Group</b></em>' attribute list.
+     * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+	int CAMEL_MOCK_BINDING_TYPE__WIRE_FORMAT_GROUP = BASE_CAMEL_BINDING__WIRE_FORMAT_GROUP;
+
+    /**
+     * The feature id for the '<em><b>Wire Format</b></em>' containment reference.
+     * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+	int CAMEL_MOCK_BINDING_TYPE__WIRE_FORMAT = BASE_CAMEL_BINDING__WIRE_FORMAT;
+
+    /**
+     * The feature id for the '<em><b>Operation Selector Group</b></em>' attribute list.
+     * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+	int CAMEL_MOCK_BINDING_TYPE__OPERATION_SELECTOR_GROUP = BASE_CAMEL_BINDING__OPERATION_SELECTOR_GROUP;
+
+    /**
+     * The feature id for the '<em><b>Operation Selector</b></em>' containment reference.
+     * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+	int CAMEL_MOCK_BINDING_TYPE__OPERATION_SELECTOR = BASE_CAMEL_BINDING__OPERATION_SELECTOR;
+
+    /**
+     * The feature id for the '<em><b>Name</b></em>' attribute.
+     * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+	int CAMEL_MOCK_BINDING_TYPE__NAME = BASE_CAMEL_BINDING__NAME;
+
+    /**
+     * The feature id for the '<em><b>Policy Sets</b></em>' attribute.
+     * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+	int CAMEL_MOCK_BINDING_TYPE__POLICY_SETS = BASE_CAMEL_BINDING__POLICY_SETS;
+
+    /**
+     * The feature id for the '<em><b>Requires</b></em>' attribute.
+     * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+	int CAMEL_MOCK_BINDING_TYPE__REQUIRES = BASE_CAMEL_BINDING__REQUIRES;
+
+    /**
+     * The feature id for the '<em><b>Uri</b></em>' attribute.
+     * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+	int CAMEL_MOCK_BINDING_TYPE__URI = BASE_CAMEL_BINDING__URI;
+
+    /**
+     * The feature id for the '<em><b>Context Mapper</b></em>' containment reference.
+     * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+	int CAMEL_MOCK_BINDING_TYPE__CONTEXT_MAPPER = BASE_CAMEL_BINDING__CONTEXT_MAPPER;
+
+    /**
+     * The feature id for the '<em><b>Message Composer</b></em>' containment reference.
+     * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+	int CAMEL_MOCK_BINDING_TYPE__MESSAGE_COMPOSER = BASE_CAMEL_BINDING__MESSAGE_COMPOSER;
+
+    /**
+     * The feature id for the '<em><b>Name Element</b></em>' attribute.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @generated
      * @ordered
      */
-    int REMOTE_FILE_CONSUMER_TYPE__SEND_EMPTY_MESSAGE_WHEN_IDLE = GENERIC_FILE_CONSUMER_TYPE__SEND_EMPTY_MESSAGE_WHEN_IDLE;
+    int CAMEL_MOCK_BINDING_TYPE__NAME_ELEMENT = BASE_CAMEL_BINDING_FEATURE_COUNT + 0;
 
     /**
-     * The feature id for the '<em><b>Time Unit</b></em>' attribute.
+     * The feature id for the '<em><b>Report Group</b></em>' attribute.
      * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
      * @generated
      * @ordered
      */
-    int REMOTE_FILE_CONSUMER_TYPE__TIME_UNIT = GENERIC_FILE_CONSUMER_TYPE__TIME_UNIT;
+	int CAMEL_MOCK_BINDING_TYPE__REPORT_GROUP = BASE_CAMEL_BINDING_FEATURE_COUNT + 1;
 
     /**
-     * The feature id for the '<em><b>Max Messages Per Poll</b></em>' attribute.
+     * The number of structural features of the '<em>Mock Binding Type</em>' class.
      * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
      * @generated
      * @ordered
      */
-    int REMOTE_FILE_CONSUMER_TYPE__MAX_MESSAGES_PER_POLL = GENERIC_FILE_CONSUMER_TYPE__MAX_MESSAGES_PER_POLL;
-
-    /**
-     * The feature id for the '<em><b>Delete</b></em>' attribute.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     * @ordered
-     */
-    int REMOTE_FILE_CONSUMER_TYPE__DELETE = GENERIC_FILE_CONSUMER_TYPE__DELETE;
-
-    /**
-     * The feature id for the '<em><b>Recursive</b></em>' attribute.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     * @ordered
-     */
-    int REMOTE_FILE_CONSUMER_TYPE__RECURSIVE = GENERIC_FILE_CONSUMER_TYPE__RECURSIVE;
-
-    /**
-     * The feature id for the '<em><b>Noop</b></em>' attribute.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     * @ordered
-     */
-    int REMOTE_FILE_CONSUMER_TYPE__NOOP = GENERIC_FILE_CONSUMER_TYPE__NOOP;
-
-    /**
-     * The feature id for the '<em><b>Pre Move</b></em>' attribute.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     * @ordered
-     */
-    int REMOTE_FILE_CONSUMER_TYPE__PRE_MOVE = GENERIC_FILE_CONSUMER_TYPE__PRE_MOVE;
-
-    /**
-     * The feature id for the '<em><b>Move</b></em>' attribute.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     * @ordered
-     */
-    int REMOTE_FILE_CONSUMER_TYPE__MOVE = GENERIC_FILE_CONSUMER_TYPE__MOVE;
-
-    /**
-     * The feature id for the '<em><b>Move Failed</b></em>' attribute.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     * @ordered
-     */
-    int REMOTE_FILE_CONSUMER_TYPE__MOVE_FAILED = GENERIC_FILE_CONSUMER_TYPE__MOVE_FAILED;
-
-    /**
-     * The feature id for the '<em><b>Include</b></em>' attribute.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     * @ordered
-     */
-    int REMOTE_FILE_CONSUMER_TYPE__INCLUDE = GENERIC_FILE_CONSUMER_TYPE__INCLUDE;
-
-    /**
-     * The feature id for the '<em><b>Exclude</b></em>' attribute.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     * @ordered
-     */
-    int REMOTE_FILE_CONSUMER_TYPE__EXCLUDE = GENERIC_FILE_CONSUMER_TYPE__EXCLUDE;
-
-    /**
-     * The feature id for the '<em><b>Idempotent</b></em>' attribute.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     * @ordered
-     */
-    int REMOTE_FILE_CONSUMER_TYPE__IDEMPOTENT = GENERIC_FILE_CONSUMER_TYPE__IDEMPOTENT;
-
-    /**
-     * The feature id for the '<em><b>Idempotent Repository</b></em>' attribute.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     * @ordered
-     */
-    int REMOTE_FILE_CONSUMER_TYPE__IDEMPOTENT_REPOSITORY = GENERIC_FILE_CONSUMER_TYPE__IDEMPOTENT_REPOSITORY;
-
-    /**
-     * The feature id for the '<em><b>In Progress Repository</b></em>' attribute.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     * @ordered
-     */
-    int REMOTE_FILE_CONSUMER_TYPE__IN_PROGRESS_REPOSITORY = GENERIC_FILE_CONSUMER_TYPE__IN_PROGRESS_REPOSITORY;
-
-    /**
-     * The feature id for the '<em><b>Filter</b></em>' attribute.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     * @ordered
-     */
-    int REMOTE_FILE_CONSUMER_TYPE__FILTER = GENERIC_FILE_CONSUMER_TYPE__FILTER;
-
-    /**
-     * The feature id for the '<em><b>Sorter</b></em>' attribute.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     * @ordered
-     */
-    int REMOTE_FILE_CONSUMER_TYPE__SORTER = GENERIC_FILE_CONSUMER_TYPE__SORTER;
-
-    /**
-     * The feature id for the '<em><b>Sort By</b></em>' attribute.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     * @ordered
-     */
-    int REMOTE_FILE_CONSUMER_TYPE__SORT_BY = GENERIC_FILE_CONSUMER_TYPE__SORT_BY;
-
-    /**
-     * The feature id for the '<em><b>Read Lock</b></em>' attribute.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     * @ordered
-     */
-    int REMOTE_FILE_CONSUMER_TYPE__READ_LOCK = GENERIC_FILE_CONSUMER_TYPE__READ_LOCK;
-
-    /**
-     * The feature id for the '<em><b>Read Lock Timeout</b></em>' attribute.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     * @ordered
-     */
-    int REMOTE_FILE_CONSUMER_TYPE__READ_LOCK_TIMEOUT = GENERIC_FILE_CONSUMER_TYPE__READ_LOCK_TIMEOUT;
-
-    /**
-     * The feature id for the '<em><b>Read Lock Check Interval</b></em>' attribute.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     * @ordered
-     */
-    int REMOTE_FILE_CONSUMER_TYPE__READ_LOCK_CHECK_INTERVAL = GENERIC_FILE_CONSUMER_TYPE__READ_LOCK_CHECK_INTERVAL;
-
-    /**
-     * The feature id for the '<em><b>Exclusive Read Lock Strategy</b></em>' attribute.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     * @ordered
-     */
-    int REMOTE_FILE_CONSUMER_TYPE__EXCLUSIVE_READ_LOCK_STRATEGY = GENERIC_FILE_CONSUMER_TYPE__EXCLUSIVE_READ_LOCK_STRATEGY;
-
-    /**
-     * The feature id for the '<em><b>Process Strategy</b></em>' attribute.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     * @ordered
-     */
-    int REMOTE_FILE_CONSUMER_TYPE__PROCESS_STRATEGY = GENERIC_FILE_CONSUMER_TYPE__PROCESS_STRATEGY;
-
-    /**
-     * The feature id for the '<em><b>Starting Directory Must Exist</b></em>' attribute.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     * @ordered
-     */
-    int REMOTE_FILE_CONSUMER_TYPE__STARTING_DIRECTORY_MUST_EXIST = GENERIC_FILE_CONSUMER_TYPE__STARTING_DIRECTORY_MUST_EXIST;
-
-    /**
-     * The feature id for the '<em><b>Directory Must Exist</b></em>' attribute.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     * @ordered
-     */
-    int REMOTE_FILE_CONSUMER_TYPE__DIRECTORY_MUST_EXIST = GENERIC_FILE_CONSUMER_TYPE__DIRECTORY_MUST_EXIST;
-
-    /**
-     * The feature id for the '<em><b>Done File Name</b></em>' attribute.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     * @ordered
-     */
-    int REMOTE_FILE_CONSUMER_TYPE__DONE_FILE_NAME = GENERIC_FILE_CONSUMER_TYPE__DONE_FILE_NAME;
-
-    /**
-     * The number of structural features of the '<em>Remote File Consumer Type</em>' class.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     * @ordered
-     */
-    int REMOTE_FILE_CONSUMER_TYPE_FEATURE_COUNT = GENERIC_FILE_CONSUMER_TYPE_FEATURE_COUNT + 0;
-
-    /**
-     * The feature id for the '<em><b>File Exist</b></em>' attribute.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     * @ordered
-     */
-    int REMOTE_FILE_PRODUCER_TYPE__FILE_EXIST = GENERIC_FILE_PRODUCER_TYPE__FILE_EXIST;
-
-    /**
-     * The feature id for the '<em><b>Temp Prefix</b></em>' attribute.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     * @ordered
-     */
-    int REMOTE_FILE_PRODUCER_TYPE__TEMP_PREFIX = GENERIC_FILE_PRODUCER_TYPE__TEMP_PREFIX;
-
-    /**
-     * The feature id for the '<em><b>Temp File Name</b></em>' attribute.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     * @ordered
-     */
-    int REMOTE_FILE_PRODUCER_TYPE__TEMP_FILE_NAME = GENERIC_FILE_PRODUCER_TYPE__TEMP_FILE_NAME;
-
-    /**
-     * The feature id for the '<em><b>Keep Last Modified</b></em>' attribute.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     * @ordered
-     */
-    int REMOTE_FILE_PRODUCER_TYPE__KEEP_LAST_MODIFIED = GENERIC_FILE_PRODUCER_TYPE__KEEP_LAST_MODIFIED;
-
-    /**
-     * The feature id for the '<em><b>Eager Delete Target File</b></em>' attribute.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     * @ordered
-     */
-    int REMOTE_FILE_PRODUCER_TYPE__EAGER_DELETE_TARGET_FILE = GENERIC_FILE_PRODUCER_TYPE__EAGER_DELETE_TARGET_FILE;
-
-    /**
-     * The feature id for the '<em><b>Done File Name</b></em>' attribute.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     * @ordered
-     */
-    int REMOTE_FILE_PRODUCER_TYPE__DONE_FILE_NAME = GENERIC_FILE_PRODUCER_TYPE__DONE_FILE_NAME;
-
-    /**
-     * The number of structural features of the '<em>Remote File Producer Type</em>' class.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     * @ordered
-     */
-    int REMOTE_FILE_PRODUCER_TYPE_FEATURE_COUNT = GENERIC_FILE_PRODUCER_TYPE_FEATURE_COUNT + 0;
+	int CAMEL_MOCK_BINDING_TYPE_FEATURE_COUNT = BASE_CAMEL_BINDING_FEATURE_COUNT + 2;
 
     /**
      * The feature id for the '<em><b>Mixed</b></em>' attribute list.
@@ -5650,22 +2294,13 @@ public interface CamelPackage extends EPackage {
 	int DOCUMENT_ROOT__XSI_SCHEMA_LOCATION = 2;
 
     /**
-     * The feature id for the '<em><b>Binding Atom</b></em>' containment reference.
-     * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-     * @generated
-     * @ordered
-     */
-	int DOCUMENT_ROOT__BINDING_ATOM = 3;
-
-    /**
      * The feature id for the '<em><b>Binding Camel</b></em>' containment reference.
      * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
      * @generated
      * @ordered
      */
-	int DOCUMENT_ROOT__BINDING_CAMEL = 4;
+	int DOCUMENT_ROOT__BINDING_CAMEL = 3;
 
     /**
      * The feature id for the '<em><b>Binding Direct</b></em>' containment reference.
@@ -5674,34 +2309,7 @@ public interface CamelPackage extends EPackage {
      * @generated
      * @ordered
      */
-	int DOCUMENT_ROOT__BINDING_DIRECT = 5;
-
-    /**
-     * The feature id for the '<em><b>Binding File</b></em>' containment reference.
-     * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-     * @generated
-     * @ordered
-     */
-	int DOCUMENT_ROOT__BINDING_FILE = 6;
-
-    /**
-     * The feature id for the '<em><b>Binding Ftp</b></em>' containment reference.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     * @ordered
-     */
-    int DOCUMENT_ROOT__BINDING_FTP = 7;
-
-    /**
-     * The feature id for the '<em><b>Binding Ftps</b></em>' containment reference.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     * @ordered
-     */
-    int DOCUMENT_ROOT__BINDING_FTPS = 8;
+	int DOCUMENT_ROOT__BINDING_DIRECT = 4;
 
     /**
      * The feature id for the '<em><b>Binding Jms</b></em>' containment reference.
@@ -5710,7 +2318,7 @@ public interface CamelPackage extends EPackage {
      * @generated
      * @ordered
      */
-    int DOCUMENT_ROOT__BINDING_JMS = 9;
+    int DOCUMENT_ROOT__BINDING_JMS = 5;
 
     /**
      * The feature id for the '<em><b>Binding Mock</b></em>' containment reference.
@@ -5719,7 +2327,7 @@ public interface CamelPackage extends EPackage {
      * @generated
      * @ordered
      */
-	int DOCUMENT_ROOT__BINDING_MOCK = 10;
+	int DOCUMENT_ROOT__BINDING_MOCK = 6;
 
     /**
      * The feature id for the '<em><b>Binding Seda</b></em>' containment reference.
@@ -5728,16 +2336,7 @@ public interface CamelPackage extends EPackage {
      * @generated
      * @ordered
      */
-	int DOCUMENT_ROOT__BINDING_SEDA = 11;
-
-    /**
-     * The feature id for the '<em><b>Binding Sftp</b></em>' containment reference.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     * @ordered
-     */
-    int DOCUMENT_ROOT__BINDING_SFTP = 12;
+	int DOCUMENT_ROOT__BINDING_SEDA = 7;
 
     /**
      * The feature id for the '<em><b>Binding Timer</b></em>' containment reference.
@@ -5746,953 +2345,18 @@ public interface CamelPackage extends EPackage {
      * @generated
      * @ordered
      */
-	int DOCUMENT_ROOT__BINDING_TIMER = 13;
+	int DOCUMENT_ROOT__BINDING_TIMER = 8;
 
     /**
-     * The feature id for the '<em><b>Implementation Camel</b></em>' containment reference.
-     * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-     * @generated
-     * @ordered
-     */
-	int DOCUMENT_ROOT__IMPLEMENTATION_CAMEL = 14;
-
-    /**
-     * The feature id for the '<em><b>Binding Netty UDP</b></em>' containment reference.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     * @ordered
-     */
-    int DOCUMENT_ROOT__BINDING_NETTY_UDP = 15;
-
-    /**
-     * The feature id for the '<em><b>Binding Netty TCP</b></em>' containment reference.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     * @ordered
-     */
-    int DOCUMENT_ROOT__BINDING_NETTY_TCP = 16;
-
-    /**
-     * The feature id for the '<em><b>Binding Quartz</b></em>' containment reference.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     * @ordered
-     */
-    int DOCUMENT_ROOT__BINDING_QUARTZ = 17;
-
-    /**
-     * The feature id for the '<em><b>Binding Sql</b></em>' containment reference.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     * @ordered
-     */
-    int DOCUMENT_ROOT__BINDING_SQL = 18;
-
-    /**
-     * The feature id for the '<em><b>Context Mapper</b></em>' containment reference.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     * @ordered
-     */
-    int DOCUMENT_ROOT__CONTEXT_MAPPER = 19;
-
-    /**
-     * The feature id for the '<em><b>Message Composer</b></em>' containment reference.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     * @ordered
-     */
-    int DOCUMENT_ROOT__MESSAGE_COMPOSER = 20;
-
-    /**
-     * The feature id for the '<em><b>Binding Mail</b></em>' containment reference.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     * @ordered
-     */
-    int DOCUMENT_ROOT__BINDING_MAIL = 21;
-
-    /**
-     * The feature id for the '<em><b>Binding JPA</b></em>' containment reference.
-     * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-     * @generated
-     * @ordered
-     */
-	int DOCUMENT_ROOT__BINDING_JPA = 22;
-
-				/**
      * The number of structural features of the '<em>Document Root</em>' class.
      * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
      * @generated
      * @ordered
      */
-	int DOCUMENT_ROOT_FEATURE_COUNT = 23;
+	int DOCUMENT_ROOT_FEATURE_COUNT = 9;
 
     /**
-     * The meta object id for the '{@link org.switchyard.tools.models.switchyard1_0.camel.impl.CamelContextMapperTypeImpl <em>Context Mapper Type</em>}' class.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @see org.switchyard.tools.models.switchyard1_0.camel.impl.CamelContextMapperTypeImpl
-     * @see org.switchyard.tools.models.switchyard1_0.camel.impl.CamelPackageImpl#getCamelContextMapperType()
-     * @generated
-     */
-    int CAMEL_CONTEXT_MAPPER_TYPE = 31;
-
-    /**
-     * The feature id for the '<em><b>Class</b></em>' attribute.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     * @ordered
-     */
-    int CAMEL_CONTEXT_MAPPER_TYPE__CLASS = SwitchyardPackage.CONTEXT_MAPPER_TYPE__CLASS;
-
-    /**
-     * The feature id for the '<em><b>Exclude Namespaces</b></em>' attribute.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     * @ordered
-     */
-    int CAMEL_CONTEXT_MAPPER_TYPE__EXCLUDE_NAMESPACES = SwitchyardPackage.CONTEXT_MAPPER_TYPE__EXCLUDE_NAMESPACES;
-
-    /**
-     * The feature id for the '<em><b>Excludes</b></em>' attribute.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     * @ordered
-     */
-    int CAMEL_CONTEXT_MAPPER_TYPE__EXCLUDES = SwitchyardPackage.CONTEXT_MAPPER_TYPE__EXCLUDES;
-
-    /**
-     * The feature id for the '<em><b>Include Namespaces</b></em>' attribute.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     * @ordered
-     */
-    int CAMEL_CONTEXT_MAPPER_TYPE__INCLUDE_NAMESPACES = SwitchyardPackage.CONTEXT_MAPPER_TYPE__INCLUDE_NAMESPACES;
-
-    /**
-     * The feature id for the '<em><b>Includes</b></em>' attribute.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     * @ordered
-     */
-    int CAMEL_CONTEXT_MAPPER_TYPE__INCLUDES = SwitchyardPackage.CONTEXT_MAPPER_TYPE__INCLUDES;
-
-    /**
-     * The number of structural features of the '<em>Context Mapper Type</em>' class.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     * @ordered
-     */
-    int CAMEL_CONTEXT_MAPPER_TYPE_FEATURE_COUNT = SwitchyardPackage.CONTEXT_MAPPER_TYPE_FEATURE_COUNT + 0;
-
-    /**
-     * The meta object id for the '{@link org.switchyard.tools.models.switchyard1_0.camel.impl.CamelMessageComposerTypeImpl <em>Message Composer Type</em>}' class.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @see org.switchyard.tools.models.switchyard1_0.camel.impl.CamelMessageComposerTypeImpl
-     * @see org.switchyard.tools.models.switchyard1_0.camel.impl.CamelPackageImpl#getCamelMessageComposerType()
-     * @generated
-     */
-    int CAMEL_MESSAGE_COMPOSER_TYPE = 32;
-
-    /**
-     * The feature id for the '<em><b>Class</b></em>' attribute.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     * @ordered
-     */
-    int CAMEL_MESSAGE_COMPOSER_TYPE__CLASS = SwitchyardPackage.MESSAGE_COMPOSER_TYPE__CLASS;
-
-    /**
-     * The number of structural features of the '<em>Message Composer Type</em>' class.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     * @ordered
-     */
-    int CAMEL_MESSAGE_COMPOSER_TYPE_FEATURE_COUNT = SwitchyardPackage.MESSAGE_COMPOSER_TYPE_FEATURE_COUNT + 0;
-
-    /**
-     * The meta object id for the '{@link org.switchyard.tools.models.switchyard1_0.camel.impl.CamelMailConsumerTypeImpl <em>Mail Consumer Type</em>}' class.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @see org.switchyard.tools.models.switchyard1_0.camel.impl.CamelMailConsumerTypeImpl
-     * @see org.switchyard.tools.models.switchyard1_0.camel.impl.CamelPackageImpl#getCamelMailConsumerType()
-     * @generated
-     */
-    int CAMEL_MAIL_CONSUMER_TYPE = 33;
-
-    /**
-     * The feature id for the '<em><b>Initial Delay</b></em>' attribute.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     * @ordered
-     */
-    int CAMEL_MAIL_CONSUMER_TYPE__INITIAL_DELAY = SCHEDULED_BATCH_POLL_CONSUMER_TYPE__INITIAL_DELAY;
-
-    /**
-     * The feature id for the '<em><b>Delay</b></em>' attribute.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     * @ordered
-     */
-    int CAMEL_MAIL_CONSUMER_TYPE__DELAY = SCHEDULED_BATCH_POLL_CONSUMER_TYPE__DELAY;
-
-    /**
-     * The feature id for the '<em><b>Use Fixed Delay</b></em>' attribute.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     * @ordered
-     */
-    int CAMEL_MAIL_CONSUMER_TYPE__USE_FIXED_DELAY = SCHEDULED_BATCH_POLL_CONSUMER_TYPE__USE_FIXED_DELAY;
-
-    /**
-     * The feature id for the '<em><b>Send Empty Message When Idle</b></em>' attribute.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     * @ordered
-     */
-    int CAMEL_MAIL_CONSUMER_TYPE__SEND_EMPTY_MESSAGE_WHEN_IDLE = SCHEDULED_BATCH_POLL_CONSUMER_TYPE__SEND_EMPTY_MESSAGE_WHEN_IDLE;
-
-    /**
-     * The feature id for the '<em><b>Time Unit</b></em>' attribute.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     * @ordered
-     */
-    int CAMEL_MAIL_CONSUMER_TYPE__TIME_UNIT = SCHEDULED_BATCH_POLL_CONSUMER_TYPE__TIME_UNIT;
-
-    /**
-     * The feature id for the '<em><b>Max Messages Per Poll</b></em>' attribute.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     * @ordered
-     */
-    int CAMEL_MAIL_CONSUMER_TYPE__MAX_MESSAGES_PER_POLL = SCHEDULED_BATCH_POLL_CONSUMER_TYPE__MAX_MESSAGES_PER_POLL;
-
-    /**
-     * The feature id for the '<em><b>Folder Name</b></em>' attribute.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     * @ordered
-     */
-    int CAMEL_MAIL_CONSUMER_TYPE__FOLDER_NAME = SCHEDULED_BATCH_POLL_CONSUMER_TYPE_FEATURE_COUNT + 0;
-
-    /**
-     * The feature id for the '<em><b>Fetch Size</b></em>' attribute.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     * @ordered
-     */
-    int CAMEL_MAIL_CONSUMER_TYPE__FETCH_SIZE = SCHEDULED_BATCH_POLL_CONSUMER_TYPE_FEATURE_COUNT + 1;
-
-    /**
-     * The feature id for the '<em><b>Unseen</b></em>' attribute.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     * @ordered
-     */
-    int CAMEL_MAIL_CONSUMER_TYPE__UNSEEN = SCHEDULED_BATCH_POLL_CONSUMER_TYPE_FEATURE_COUNT + 2;
-
-    /**
-     * The feature id for the '<em><b>Delete</b></em>' attribute.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     * @ordered
-     */
-    int CAMEL_MAIL_CONSUMER_TYPE__DELETE = SCHEDULED_BATCH_POLL_CONSUMER_TYPE_FEATURE_COUNT + 3;
-
-    /**
-     * The feature id for the '<em><b>Copy To</b></em>' attribute.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     * @ordered
-     */
-    int CAMEL_MAIL_CONSUMER_TYPE__COPY_TO = SCHEDULED_BATCH_POLL_CONSUMER_TYPE_FEATURE_COUNT + 4;
-
-    /**
-     * The feature id for the '<em><b>Disconnect</b></em>' attribute.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     * @ordered
-     */
-    int CAMEL_MAIL_CONSUMER_TYPE__DISCONNECT = SCHEDULED_BATCH_POLL_CONSUMER_TYPE_FEATURE_COUNT + 5;
-
-    /**
-     * The feature id for the '<em><b>Account Type</b></em>' attribute.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     * @ordered
-     */
-    int CAMEL_MAIL_CONSUMER_TYPE__ACCOUNT_TYPE = SCHEDULED_BATCH_POLL_CONSUMER_TYPE_FEATURE_COUNT + 6;
-
-    /**
-     * The number of structural features of the '<em>Mail Consumer Type</em>' class.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     * @ordered
-     */
-    int CAMEL_MAIL_CONSUMER_TYPE_FEATURE_COUNT = SCHEDULED_BATCH_POLL_CONSUMER_TYPE_FEATURE_COUNT + 7;
-
-    /**
-     * The meta object id for the '{@link org.switchyard.tools.models.switchyard1_0.camel.impl.CamelMailProducerTypeImpl <em>Mail Producer Type</em>}' class.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @see org.switchyard.tools.models.switchyard1_0.camel.impl.CamelMailProducerTypeImpl
-     * @see org.switchyard.tools.models.switchyard1_0.camel.impl.CamelPackageImpl#getCamelMailProducerType()
-     * @generated
-     */
-    int CAMEL_MAIL_PRODUCER_TYPE = 34;
-
-    /**
-     * The feature id for the '<em><b>Subject</b></em>' attribute.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     * @ordered
-     */
-    int CAMEL_MAIL_PRODUCER_TYPE__SUBJECT = 0;
-
-    /**
-     * The feature id for the '<em><b>From</b></em>' attribute.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     * @ordered
-     */
-    int CAMEL_MAIL_PRODUCER_TYPE__FROM = 1;
-
-    /**
-     * The feature id for the '<em><b>To</b></em>' attribute.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     * @ordered
-     */
-    int CAMEL_MAIL_PRODUCER_TYPE__TO = 2;
-
-    /**
-     * The feature id for the '<em><b>CC</b></em>' attribute.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     * @ordered
-     */
-    int CAMEL_MAIL_PRODUCER_TYPE__CC = 3;
-
-    /**
-     * The feature id for the '<em><b>BCC</b></em>' attribute.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     * @ordered
-     */
-    int CAMEL_MAIL_PRODUCER_TYPE__BCC = 4;
-
-    /**
-     * The feature id for the '<em><b>Reply To</b></em>' attribute.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     * @ordered
-     */
-    int CAMEL_MAIL_PRODUCER_TYPE__REPLY_TO = 5;
-
-    /**
-     * The number of structural features of the '<em>Mail Producer Type</em>' class.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     * @ordered
-     */
-    int CAMEL_MAIL_PRODUCER_TYPE_FEATURE_COUNT = 6;
-
-    /**
-     * The meta object id for the '{@link org.switchyard.tools.models.switchyard1_0.camel.impl.CamelMailBindingTypeImpl <em>Mail Binding Type</em>}' class.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @see org.switchyard.tools.models.switchyard1_0.camel.impl.CamelMailBindingTypeImpl
-     * @see org.switchyard.tools.models.switchyard1_0.camel.impl.CamelPackageImpl#getCamelMailBindingType()
-     * @generated
-     */
-    int CAMEL_MAIL_BINDING_TYPE = 35;
-
-    /**
-     * The feature id for the '<em><b>Documentation</b></em>' containment reference list.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     * @ordered
-     */
-    int CAMEL_MAIL_BINDING_TYPE__DOCUMENTATION = BASE_CAMEL_BINDING__DOCUMENTATION;
-
-    /**
-     * The feature id for the '<em><b>Any Attribute</b></em>' attribute list.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     * @ordered
-     */
-    int CAMEL_MAIL_BINDING_TYPE__ANY_ATTRIBUTE = BASE_CAMEL_BINDING__ANY_ATTRIBUTE;
-
-    /**
-     * The feature id for the '<em><b>Wire Format Group</b></em>' attribute list.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     * @ordered
-     */
-    int CAMEL_MAIL_BINDING_TYPE__WIRE_FORMAT_GROUP = BASE_CAMEL_BINDING__WIRE_FORMAT_GROUP;
-
-    /**
-     * The feature id for the '<em><b>Wire Format</b></em>' containment reference.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     * @ordered
-     */
-    int CAMEL_MAIL_BINDING_TYPE__WIRE_FORMAT = BASE_CAMEL_BINDING__WIRE_FORMAT;
-
-    /**
-     * The feature id for the '<em><b>Operation Selector Group</b></em>' attribute list.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     * @ordered
-     */
-    int CAMEL_MAIL_BINDING_TYPE__OPERATION_SELECTOR_GROUP = BASE_CAMEL_BINDING__OPERATION_SELECTOR_GROUP;
-
-    /**
-     * The feature id for the '<em><b>Operation Selector</b></em>' containment reference.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     * @ordered
-     */
-    int CAMEL_MAIL_BINDING_TYPE__OPERATION_SELECTOR = BASE_CAMEL_BINDING__OPERATION_SELECTOR;
-
-    /**
-     * The feature id for the '<em><b>Name</b></em>' attribute.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     * @ordered
-     */
-    int CAMEL_MAIL_BINDING_TYPE__NAME = BASE_CAMEL_BINDING__NAME;
-
-    /**
-     * The feature id for the '<em><b>Policy Sets</b></em>' attribute.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     * @ordered
-     */
-    int CAMEL_MAIL_BINDING_TYPE__POLICY_SETS = BASE_CAMEL_BINDING__POLICY_SETS;
-
-    /**
-     * The feature id for the '<em><b>Requires</b></em>' attribute.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     * @ordered
-     */
-    int CAMEL_MAIL_BINDING_TYPE__REQUIRES = BASE_CAMEL_BINDING__REQUIRES;
-
-    /**
-     * The feature id for the '<em><b>Uri</b></em>' attribute.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     * @ordered
-     */
-    int CAMEL_MAIL_BINDING_TYPE__URI = BASE_CAMEL_BINDING__URI;
-
-    /**
-     * The feature id for the '<em><b>Context Mapper</b></em>' containment reference.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     * @ordered
-     */
-    int CAMEL_MAIL_BINDING_TYPE__CONTEXT_MAPPER = BASE_CAMEL_BINDING__CONTEXT_MAPPER;
-
-    /**
-     * The feature id for the '<em><b>Message Composer</b></em>' containment reference.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     * @ordered
-     */
-    int CAMEL_MAIL_BINDING_TYPE__MESSAGE_COMPOSER = BASE_CAMEL_BINDING__MESSAGE_COMPOSER;
-
-    /**
-     * The feature id for the '<em><b>Host</b></em>' attribute.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     * @ordered
-     */
-    int CAMEL_MAIL_BINDING_TYPE__HOST = BASE_CAMEL_BINDING_FEATURE_COUNT + 0;
-
-    /**
-     * The feature id for the '<em><b>Port</b></em>' attribute.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     * @ordered
-     */
-    int CAMEL_MAIL_BINDING_TYPE__PORT = BASE_CAMEL_BINDING_FEATURE_COUNT + 1;
-
-    /**
-     * The feature id for the '<em><b>Username</b></em>' attribute.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     * @ordered
-     */
-    int CAMEL_MAIL_BINDING_TYPE__USERNAME = BASE_CAMEL_BINDING_FEATURE_COUNT + 2;
-
-    /**
-     * The feature id for the '<em><b>Password</b></em>' attribute.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     * @ordered
-     */
-    int CAMEL_MAIL_BINDING_TYPE__PASSWORD = BASE_CAMEL_BINDING_FEATURE_COUNT + 3;
-
-    /**
-     * The feature id for the '<em><b>Connection Timeout</b></em>' attribute.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     * @ordered
-     */
-    int CAMEL_MAIL_BINDING_TYPE__CONNECTION_TIMEOUT = BASE_CAMEL_BINDING_FEATURE_COUNT + 4;
-
-    /**
-     * The feature id for the '<em><b>Consume</b></em>' containment reference.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     * @ordered
-     */
-    int CAMEL_MAIL_BINDING_TYPE__CONSUME = BASE_CAMEL_BINDING_FEATURE_COUNT + 5;
-
-    /**
-     * The feature id for the '<em><b>Produce</b></em>' containment reference.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     * @ordered
-     */
-    int CAMEL_MAIL_BINDING_TYPE__PRODUCE = BASE_CAMEL_BINDING_FEATURE_COUNT + 6;
-
-    /**
-     * The feature id for the '<em><b>Secure</b></em>' attribute.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     * @ordered
-     */
-    int CAMEL_MAIL_BINDING_TYPE__SECURE = BASE_CAMEL_BINDING_FEATURE_COUNT + 7;
-
-    /**
-     * The number of structural features of the '<em>Mail Binding Type</em>' class.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     * @ordered
-     */
-    int CAMEL_MAIL_BINDING_TYPE_FEATURE_COUNT = BASE_CAMEL_BINDING_FEATURE_COUNT + 8;
-
-    /**
-     * The meta object id for the '{@link org.switchyard.tools.models.switchyard1_0.camel.impl.JpaProducerTypeImpl <em>Jpa Producer Type</em>}' class.
-     * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-     * @see org.switchyard.tools.models.switchyard1_0.camel.impl.JpaProducerTypeImpl
-     * @see org.switchyard.tools.models.switchyard1_0.camel.impl.CamelPackageImpl#getJpaProducerType()
-     * @generated
-     */
-	int JPA_PRODUCER_TYPE = 36;
-
-				/**
-     * The feature id for the '<em><b>Flush On Send</b></em>' attribute.
-     * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-     * @generated
-     * @ordered
-     */
-	int JPA_PRODUCER_TYPE__FLUSH_ON_SEND = 0;
-
-				/**
-     * The feature id for the '<em><b>Use Persist</b></em>' attribute.
-     * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-     * @generated
-     * @ordered
-     */
-	int JPA_PRODUCER_TYPE__USE_PERSIST = 1;
-
-				/**
-     * The number of structural features of the '<em>Jpa Producer Type</em>' class.
-     * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-     * @generated
-     * @ordered
-     */
-	int JPA_PRODUCER_TYPE_FEATURE_COUNT = 2;
-
-				/**
-     * The meta object id for the '{@link org.switchyard.tools.models.switchyard1_0.camel.impl.JpaConsumerTypeImpl <em>Jpa Consumer Type</em>}' class.
-     * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-     * @see org.switchyard.tools.models.switchyard1_0.camel.impl.JpaConsumerTypeImpl
-     * @see org.switchyard.tools.models.switchyard1_0.camel.impl.CamelPackageImpl#getJpaConsumerType()
-     * @generated
-     */
-	int JPA_CONSUMER_TYPE = 37;
-
-				/**
-     * The feature id for the '<em><b>Initial Delay</b></em>' attribute.
-     * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-     * @generated
-     * @ordered
-     */
-	int JPA_CONSUMER_TYPE__INITIAL_DELAY = SCHEDULED_BATCH_POLL_CONSUMER_TYPE__INITIAL_DELAY;
-
-				/**
-     * The feature id for the '<em><b>Delay</b></em>' attribute.
-     * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-     * @generated
-     * @ordered
-     */
-	int JPA_CONSUMER_TYPE__DELAY = SCHEDULED_BATCH_POLL_CONSUMER_TYPE__DELAY;
-
-				/**
-     * The feature id for the '<em><b>Use Fixed Delay</b></em>' attribute.
-     * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-     * @generated
-     * @ordered
-     */
-	int JPA_CONSUMER_TYPE__USE_FIXED_DELAY = SCHEDULED_BATCH_POLL_CONSUMER_TYPE__USE_FIXED_DELAY;
-
-				/**
-     * The feature id for the '<em><b>Send Empty Message When Idle</b></em>' attribute.
-     * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-     * @generated
-     * @ordered
-     */
-	int JPA_CONSUMER_TYPE__SEND_EMPTY_MESSAGE_WHEN_IDLE = SCHEDULED_BATCH_POLL_CONSUMER_TYPE__SEND_EMPTY_MESSAGE_WHEN_IDLE;
-
-				/**
-     * The feature id for the '<em><b>Time Unit</b></em>' attribute.
-     * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-     * @generated
-     * @ordered
-     */
-	int JPA_CONSUMER_TYPE__TIME_UNIT = SCHEDULED_BATCH_POLL_CONSUMER_TYPE__TIME_UNIT;
-
-				/**
-     * The feature id for the '<em><b>Max Messages Per Poll</b></em>' attribute.
-     * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-     * @generated
-     * @ordered
-     */
-	int JPA_CONSUMER_TYPE__MAX_MESSAGES_PER_POLL = SCHEDULED_BATCH_POLL_CONSUMER_TYPE__MAX_MESSAGES_PER_POLL;
-
-				/**
-     * The feature id for the '<em><b>Consume Delete</b></em>' attribute.
-     * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-     * @generated
-     * @ordered
-     */
-	int JPA_CONSUMER_TYPE__CONSUME_DELETE = SCHEDULED_BATCH_POLL_CONSUMER_TYPE_FEATURE_COUNT + 0;
-
-				/**
-     * The feature id for the '<em><b>Consume Lock Entity</b></em>' attribute.
-     * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-     * @generated
-     * @ordered
-     */
-	int JPA_CONSUMER_TYPE__CONSUME_LOCK_ENTITY = SCHEDULED_BATCH_POLL_CONSUMER_TYPE_FEATURE_COUNT + 1;
-
-				/**
-     * The feature id for the '<em><b>Maximum Results</b></em>' attribute.
-     * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-     * @generated
-     * @ordered
-     */
-	int JPA_CONSUMER_TYPE__MAXIMUM_RESULTS = SCHEDULED_BATCH_POLL_CONSUMER_TYPE_FEATURE_COUNT + 2;
-
-				/**
-     * The feature id for the '<em><b>Consumer Query</b></em>' attribute.
-     * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-     * @generated
-     * @ordered
-     */
-	int JPA_CONSUMER_TYPE__CONSUMER_QUERY = SCHEDULED_BATCH_POLL_CONSUMER_TYPE_FEATURE_COUNT + 3;
-
-				/**
-     * The feature id for the '<em><b>Consumer Named Query</b></em>' attribute.
-     * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-     * @generated
-     * @ordered
-     */
-	int JPA_CONSUMER_TYPE__CONSUMER_NAMED_QUERY = SCHEDULED_BATCH_POLL_CONSUMER_TYPE_FEATURE_COUNT + 4;
-
-				/**
-     * The feature id for the '<em><b>Consumer Native Query</b></em>' attribute.
-     * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-     * @generated
-     * @ordered
-     */
-	int JPA_CONSUMER_TYPE__CONSUMER_NATIVE_QUERY = SCHEDULED_BATCH_POLL_CONSUMER_TYPE_FEATURE_COUNT + 5;
-
-				/**
-     * The feature id for the '<em><b>Consumer Result Class</b></em>' attribute.
-     * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-     * @generated
-     * @ordered
-     */
-	int JPA_CONSUMER_TYPE__CONSUMER_RESULT_CLASS = SCHEDULED_BATCH_POLL_CONSUMER_TYPE_FEATURE_COUNT + 6;
-
-				/**
-     * The feature id for the '<em><b>Consumer Transacted</b></em>' attribute.
-     * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-     * @generated
-     * @ordered
-     */
-	int JPA_CONSUMER_TYPE__CONSUMER_TRANSACTED = SCHEDULED_BATCH_POLL_CONSUMER_TYPE_FEATURE_COUNT + 7;
-
-				/**
-     * The number of structural features of the '<em>Jpa Consumer Type</em>' class.
-     * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-     * @generated
-     * @ordered
-     */
-	int JPA_CONSUMER_TYPE_FEATURE_COUNT = SCHEDULED_BATCH_POLL_CONSUMER_TYPE_FEATURE_COUNT + 8;
-
-				/**
-     * The meta object id for the '{@link org.switchyard.tools.models.switchyard1_0.camel.impl.CamelJPABindingTypeImpl <em>JPA Binding Type</em>}' class.
-     * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-     * @see org.switchyard.tools.models.switchyard1_0.camel.impl.CamelJPABindingTypeImpl
-     * @see org.switchyard.tools.models.switchyard1_0.camel.impl.CamelPackageImpl#getCamelJPABindingType()
-     * @generated
-     */
-	int CAMEL_JPA_BINDING_TYPE = 38;
-
-				/**
-     * The feature id for the '<em><b>Documentation</b></em>' containment reference list.
-     * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-     * @generated
-     * @ordered
-     */
-	int CAMEL_JPA_BINDING_TYPE__DOCUMENTATION = BASE_CAMEL_BINDING__DOCUMENTATION;
-
-				/**
-     * The feature id for the '<em><b>Any Attribute</b></em>' attribute list.
-     * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-     * @generated
-     * @ordered
-     */
-	int CAMEL_JPA_BINDING_TYPE__ANY_ATTRIBUTE = BASE_CAMEL_BINDING__ANY_ATTRIBUTE;
-
-				/**
-     * The feature id for the '<em><b>Wire Format Group</b></em>' attribute list.
-     * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-     * @generated
-     * @ordered
-     */
-	int CAMEL_JPA_BINDING_TYPE__WIRE_FORMAT_GROUP = BASE_CAMEL_BINDING__WIRE_FORMAT_GROUP;
-
-				/**
-     * The feature id for the '<em><b>Wire Format</b></em>' containment reference.
-     * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-     * @generated
-     * @ordered
-     */
-	int CAMEL_JPA_BINDING_TYPE__WIRE_FORMAT = BASE_CAMEL_BINDING__WIRE_FORMAT;
-
-				/**
-     * The feature id for the '<em><b>Operation Selector Group</b></em>' attribute list.
-     * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-     * @generated
-     * @ordered
-     */
-	int CAMEL_JPA_BINDING_TYPE__OPERATION_SELECTOR_GROUP = BASE_CAMEL_BINDING__OPERATION_SELECTOR_GROUP;
-
-				/**
-     * The feature id for the '<em><b>Operation Selector</b></em>' containment reference.
-     * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-     * @generated
-     * @ordered
-     */
-	int CAMEL_JPA_BINDING_TYPE__OPERATION_SELECTOR = BASE_CAMEL_BINDING__OPERATION_SELECTOR;
-
-				/**
-     * The feature id for the '<em><b>Name</b></em>' attribute.
-     * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-     * @generated
-     * @ordered
-     */
-	int CAMEL_JPA_BINDING_TYPE__NAME = BASE_CAMEL_BINDING__NAME;
-
-				/**
-     * The feature id for the '<em><b>Policy Sets</b></em>' attribute.
-     * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-     * @generated
-     * @ordered
-     */
-	int CAMEL_JPA_BINDING_TYPE__POLICY_SETS = BASE_CAMEL_BINDING__POLICY_SETS;
-
-				/**
-     * The feature id for the '<em><b>Requires</b></em>' attribute.
-     * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-     * @generated
-     * @ordered
-     */
-	int CAMEL_JPA_BINDING_TYPE__REQUIRES = BASE_CAMEL_BINDING__REQUIRES;
-
-				/**
-     * The feature id for the '<em><b>Uri</b></em>' attribute.
-     * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-     * @generated
-     * @ordered
-     */
-	int CAMEL_JPA_BINDING_TYPE__URI = BASE_CAMEL_BINDING__URI;
-
-				/**
-     * The feature id for the '<em><b>Context Mapper</b></em>' containment reference.
-     * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-     * @generated
-     * @ordered
-     */
-	int CAMEL_JPA_BINDING_TYPE__CONTEXT_MAPPER = BASE_CAMEL_BINDING__CONTEXT_MAPPER;
-
-				/**
-     * The feature id for the '<em><b>Message Composer</b></em>' containment reference.
-     * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-     * @generated
-     * @ordered
-     */
-	int CAMEL_JPA_BINDING_TYPE__MESSAGE_COMPOSER = BASE_CAMEL_BINDING__MESSAGE_COMPOSER;
-
-				/**
-     * The feature id for the '<em><b>Entity Class Name</b></em>' attribute.
-     * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-     * @generated
-     * @ordered
-     */
-	int CAMEL_JPA_BINDING_TYPE__ENTITY_CLASS_NAME = BASE_CAMEL_BINDING_FEATURE_COUNT + 0;
-
-				/**
-     * The feature id for the '<em><b>Persistence Unit</b></em>' attribute.
-     * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-     * @generated
-     * @ordered
-     */
-	int CAMEL_JPA_BINDING_TYPE__PERSISTENCE_UNIT = BASE_CAMEL_BINDING_FEATURE_COUNT + 1;
-
-				/**
-     * The feature id for the '<em><b>Transaction Manager</b></em>' attribute.
-     * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-     * @generated
-     * @ordered
-     */
-	int CAMEL_JPA_BINDING_TYPE__TRANSACTION_MANAGER = BASE_CAMEL_BINDING_FEATURE_COUNT + 2;
-
-				/**
-     * The feature id for the '<em><b>Consume</b></em>' containment reference.
-     * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-     * @generated
-     * @ordered
-     */
-	int CAMEL_JPA_BINDING_TYPE__CONSUME = BASE_CAMEL_BINDING_FEATURE_COUNT + 3;
-
-				/**
-     * The feature id for the '<em><b>Produce</b></em>' containment reference.
-     * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-     * @generated
-     * @ordered
-     */
-	int CAMEL_JPA_BINDING_TYPE__PRODUCE = BASE_CAMEL_BINDING_FEATURE_COUNT + 4;
-
-				/**
-     * The number of structural features of the '<em>JPA Binding Type</em>' class.
-     * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-     * @generated
-     * @ordered
-     */
-	int CAMEL_JPA_BINDING_TYPE_FEATURE_COUNT = BASE_CAMEL_BINDING_FEATURE_COUNT + 5;
-
-				/**
      * The meta object id for the '{@link org.switchyard.tools.models.switchyard1_0.camel.TimeUnit <em>Time Unit</em>}' enum.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
@@ -6700,17 +2364,7 @@ public interface CamelPackage extends EPackage {
      * @see org.switchyard.tools.models.switchyard1_0.camel.impl.CamelPackageImpl#getTimeUnit()
      * @generated
      */
-    int TIME_UNIT = 39;
-
-    /**
-     * The meta object id for the '{@link org.switchyard.tools.models.switchyard1_0.camel.MailConsumerAccountType <em>Mail Consumer Account Type</em>}' enum.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @see org.switchyard.tools.models.switchyard1_0.camel.MailConsumerAccountType
-     * @see org.switchyard.tools.models.switchyard1_0.camel.impl.CamelPackageImpl#getMailConsumerAccountType()
-     * @generated
-     */
-    int MAIL_CONSUMER_ACCOUNT_TYPE = 40;
+    int TIME_UNIT = 14;
 
     /**
      * The meta object id for the '<em>Time Unit Object</em>' data type.
@@ -6720,7 +2374,7 @@ public interface CamelPackage extends EPackage {
      * @see org.switchyard.tools.models.switchyard1_0.camel.impl.CamelPackageImpl#getTimeUnitObject()
      * @generated
      */
-    int TIME_UNIT_OBJECT = 41;
+    int TIME_UNIT_OBJECT = 15;
 
 
     /**
@@ -6732,104 +2386,6 @@ public interface CamelPackage extends EPackage {
      * @generated
      */
     EClass getBaseCamelBinding();
-
-    /**
-     * Returns the meta object for class '{@link org.switchyard.tools.models.switchyard1_0.camel.CamelAtomBindingType <em>Atom Binding Type</em>}'.
-     * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-     * @return the meta object for class '<em>Atom Binding Type</em>'.
-     * @see org.switchyard.tools.models.switchyard1_0.camel.CamelAtomBindingType
-     * @generated
-     */
-	EClass getCamelAtomBindingType();
-
-	/**
-     * Returns the meta object for the attribute '{@link org.switchyard.tools.models.switchyard1_0.camel.CamelAtomBindingType#getFeedURI <em>Feed URI</em>}'.
-     * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-     * @return the meta object for the attribute '<em>Feed URI</em>'.
-     * @see org.switchyard.tools.models.switchyard1_0.camel.CamelAtomBindingType#getFeedURI()
-     * @see #getCamelAtomBindingType()
-     * @generated
-     */
-	EAttribute getCamelAtomBindingType_FeedURI();
-
-	/**
-     * Returns the meta object for the attribute '{@link org.switchyard.tools.models.switchyard1_0.camel.CamelAtomBindingType#isSplitEntries <em>Split Entries</em>}'.
-     * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-     * @return the meta object for the attribute '<em>Split Entries</em>'.
-     * @see org.switchyard.tools.models.switchyard1_0.camel.CamelAtomBindingType#isSplitEntries()
-     * @see #getCamelAtomBindingType()
-     * @generated
-     */
-	EAttribute getCamelAtomBindingType_SplitEntries();
-
-	/**
-     * Returns the meta object for the attribute '{@link org.switchyard.tools.models.switchyard1_0.camel.CamelAtomBindingType#isFilter <em>Filter</em>}'.
-     * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-     * @return the meta object for the attribute '<em>Filter</em>'.
-     * @see org.switchyard.tools.models.switchyard1_0.camel.CamelAtomBindingType#isFilter()
-     * @see #getCamelAtomBindingType()
-     * @generated
-     */
-	EAttribute getCamelAtomBindingType_Filter();
-
-	/**
-     * Returns the meta object for the attribute '{@link org.switchyard.tools.models.switchyard1_0.camel.CamelAtomBindingType#getLastUpdate <em>Last Update</em>}'.
-     * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-     * @return the meta object for the attribute '<em>Last Update</em>'.
-     * @see org.switchyard.tools.models.switchyard1_0.camel.CamelAtomBindingType#getLastUpdate()
-     * @see #getCamelAtomBindingType()
-     * @generated
-     */
-	EAttribute getCamelAtomBindingType_LastUpdate();
-
-	/**
-     * Returns the meta object for the attribute '{@link org.switchyard.tools.models.switchyard1_0.camel.CamelAtomBindingType#isThrottleEntries <em>Throttle Entries</em>}'.
-     * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-     * @return the meta object for the attribute '<em>Throttle Entries</em>'.
-     * @see org.switchyard.tools.models.switchyard1_0.camel.CamelAtomBindingType#isThrottleEntries()
-     * @see #getCamelAtomBindingType()
-     * @generated
-     */
-	EAttribute getCamelAtomBindingType_ThrottleEntries();
-
-	/**
-     * Returns the meta object for the attribute '{@link org.switchyard.tools.models.switchyard1_0.camel.CamelAtomBindingType#isFeedHeader <em>Feed Header</em>}'.
-     * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-     * @return the meta object for the attribute '<em>Feed Header</em>'.
-     * @see org.switchyard.tools.models.switchyard1_0.camel.CamelAtomBindingType#isFeedHeader()
-     * @see #getCamelAtomBindingType()
-     * @generated
-     */
-	EAttribute getCamelAtomBindingType_FeedHeader();
-
-	/**
-     * Returns the meta object for the attribute '{@link org.switchyard.tools.models.switchyard1_0.camel.CamelAtomBindingType#isSortEntries <em>Sort Entries</em>}'.
-     * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-     * @return the meta object for the attribute '<em>Sort Entries</em>'.
-     * @see org.switchyard.tools.models.switchyard1_0.camel.CamelAtomBindingType#isSortEntries()
-     * @see #getCamelAtomBindingType()
-     * @generated
-     */
-	EAttribute getCamelAtomBindingType_SortEntries();
-
-	/**
-     * Returns the meta object for the containment reference '{@link org.switchyard.tools.models.switchyard1_0.camel.CamelAtomBindingType#getConsume <em>Consume</em>}'.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @return the meta object for the containment reference '<em>Consume</em>'.
-     * @see org.switchyard.tools.models.switchyard1_0.camel.CamelAtomBindingType#getConsume()
-     * @see #getCamelAtomBindingType()
-     * @generated
-     */
-    EReference getCamelAtomBindingType_Consume();
 
     /**
      * Returns the meta object for class '{@link org.switchyard.tools.models.switchyard1_0.camel.CamelBindingType <em>Binding Type</em>}'.
@@ -6872,636 +2428,6 @@ public interface CamelPackage extends EPackage {
      * @generated
      */
     EAttribute getCamelDirectBindingType_NameElement();
-
-    /**
-     * Returns the meta object for class '{@link org.switchyard.tools.models.switchyard1_0.camel.CamelFileBindingType <em>File Binding Type</em>}'.
-     * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-     * @return the meta object for class '<em>File Binding Type</em>'.
-     * @see org.switchyard.tools.models.switchyard1_0.camel.CamelFileBindingType
-     * @generated
-     */
-	EClass getCamelFileBindingType();
-
-	/**
-     * Returns the meta object for the containment reference '{@link org.switchyard.tools.models.switchyard1_0.camel.CamelFileBindingType#getConsume <em>Consume</em>}'.
-     * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-     * @return the meta object for the containment reference '<em>Consume</em>'.
-     * @see org.switchyard.tools.models.switchyard1_0.camel.CamelFileBindingType#getConsume()
-     * @see #getCamelFileBindingType()
-     * @generated
-     */
-	EReference getCamelFileBindingType_Consume();
-
-	/**
-     * Returns the meta object for the containment reference '{@link org.switchyard.tools.models.switchyard1_0.camel.CamelFileBindingType#getProduce <em>Produce</em>}'.
-     * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-     * @return the meta object for the containment reference '<em>Produce</em>'.
-     * @see org.switchyard.tools.models.switchyard1_0.camel.CamelFileBindingType#getProduce()
-     * @see #getCamelFileBindingType()
-     * @generated
-     */
-	EReference getCamelFileBindingType_Produce();
-
-	/**
-     * Returns the meta object for class '{@link org.switchyard.tools.models.switchyard1_0.camel.CamelFtpBindingType <em>Ftp Binding Type</em>}'.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @return the meta object for class '<em>Ftp Binding Type</em>'.
-     * @see org.switchyard.tools.models.switchyard1_0.camel.CamelFtpBindingType
-     * @generated
-     */
-    EClass getCamelFtpBindingType();
-
-    /**
-     * Returns the meta object for the attribute '{@link org.switchyard.tools.models.switchyard1_0.camel.CamelFtpBindingType#getPassiveMode <em>Passive Mode</em>}'.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @return the meta object for the attribute '<em>Passive Mode</em>'.
-     * @see org.switchyard.tools.models.switchyard1_0.camel.CamelFtpBindingType#getPassiveMode()
-     * @see #getCamelFtpBindingType()
-     * @generated
-     */
-    EAttribute getCamelFtpBindingType_PassiveMode();
-
-    /**
-     * Returns the meta object for the attribute '{@link org.switchyard.tools.models.switchyard1_0.camel.CamelFtpBindingType#getTimeout <em>Timeout</em>}'.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @return the meta object for the attribute '<em>Timeout</em>'.
-     * @see org.switchyard.tools.models.switchyard1_0.camel.CamelFtpBindingType#getTimeout()
-     * @see #getCamelFtpBindingType()
-     * @generated
-     */
-    EAttribute getCamelFtpBindingType_Timeout();
-
-    /**
-     * Returns the meta object for the attribute '{@link org.switchyard.tools.models.switchyard1_0.camel.CamelFtpBindingType#getSoTimeout <em>So Timeout</em>}'.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @return the meta object for the attribute '<em>So Timeout</em>'.
-     * @see org.switchyard.tools.models.switchyard1_0.camel.CamelFtpBindingType#getSoTimeout()
-     * @see #getCamelFtpBindingType()
-     * @generated
-     */
-    EAttribute getCamelFtpBindingType_SoTimeout();
-
-    /**
-     * Returns the meta object for the attribute '{@link org.switchyard.tools.models.switchyard1_0.camel.CamelFtpBindingType#getSiteCommand <em>Site Command</em>}'.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @return the meta object for the attribute '<em>Site Command</em>'.
-     * @see org.switchyard.tools.models.switchyard1_0.camel.CamelFtpBindingType#getSiteCommand()
-     * @see #getCamelFtpBindingType()
-     * @generated
-     */
-    EAttribute getCamelFtpBindingType_SiteCommand();
-
-    /**
-     * Returns the meta object for class '{@link org.switchyard.tools.models.switchyard1_0.camel.CamelFtpsBindingType <em>Ftps Binding Type</em>}'.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @return the meta object for class '<em>Ftps Binding Type</em>'.
-     * @see org.switchyard.tools.models.switchyard1_0.camel.CamelFtpsBindingType
-     * @generated
-     */
-    EClass getCamelFtpsBindingType();
-
-    /**
-     * Returns the meta object for the attribute '{@link org.switchyard.tools.models.switchyard1_0.camel.CamelFtpsBindingType#getSecurityProtocol <em>Security Protocol</em>}'.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @return the meta object for the attribute '<em>Security Protocol</em>'.
-     * @see org.switchyard.tools.models.switchyard1_0.camel.CamelFtpsBindingType#getSecurityProtocol()
-     * @see #getCamelFtpsBindingType()
-     * @generated
-     */
-    EAttribute getCamelFtpsBindingType_SecurityProtocol();
-
-    /**
-     * Returns the meta object for the attribute '{@link org.switchyard.tools.models.switchyard1_0.camel.CamelFtpsBindingType#isIsImplicit <em>Is Implicit</em>}'.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @return the meta object for the attribute '<em>Is Implicit</em>'.
-     * @see org.switchyard.tools.models.switchyard1_0.camel.CamelFtpsBindingType#isIsImplicit()
-     * @see #getCamelFtpsBindingType()
-     * @generated
-     */
-    EAttribute getCamelFtpsBindingType_IsImplicit();
-
-    /**
-     * Returns the meta object for the attribute '{@link org.switchyard.tools.models.switchyard1_0.camel.CamelFtpsBindingType#getExecPbsz <em>Exec Pbsz</em>}'.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @return the meta object for the attribute '<em>Exec Pbsz</em>'.
-     * @see org.switchyard.tools.models.switchyard1_0.camel.CamelFtpsBindingType#getExecPbsz()
-     * @see #getCamelFtpsBindingType()
-     * @generated
-     */
-    EAttribute getCamelFtpsBindingType_ExecPbsz();
-
-    /**
-     * Returns the meta object for the attribute '{@link org.switchyard.tools.models.switchyard1_0.camel.CamelFtpsBindingType#getExecProt <em>Exec Prot</em>}'.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @return the meta object for the attribute '<em>Exec Prot</em>'.
-     * @see org.switchyard.tools.models.switchyard1_0.camel.CamelFtpsBindingType#getExecProt()
-     * @see #getCamelFtpsBindingType()
-     * @generated
-     */
-    EAttribute getCamelFtpsBindingType_ExecProt();
-
-    /**
-     * Returns the meta object for the attribute '{@link org.switchyard.tools.models.switchyard1_0.camel.CamelFtpsBindingType#isDisableSecureDataChannelDefaults <em>Disable Secure Data Channel Defaults</em>}'.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @return the meta object for the attribute '<em>Disable Secure Data Channel Defaults</em>'.
-     * @see org.switchyard.tools.models.switchyard1_0.camel.CamelFtpsBindingType#isDisableSecureDataChannelDefaults()
-     * @see #getCamelFtpsBindingType()
-     * @generated
-     */
-    EAttribute getCamelFtpsBindingType_DisableSecureDataChannelDefaults();
-
-    /**
-     * Returns the meta object for class '{@link org.switchyard.tools.models.switchyard1_0.camel.CamelImplementationType <em>Implementation Type</em>}'.
-     * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-     * @return the meta object for class '<em>Implementation Type</em>'.
-     * @see org.switchyard.tools.models.switchyard1_0.camel.CamelImplementationType
-     * @generated
-     */
-	EClass getCamelImplementationType();
-
-	/**
-     * Returns the meta object for the reference '{@link org.switchyard.tools.models.switchyard1_0.camel.CamelImplementationType#getRoute <em>Route</em>}'.
-     * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-     * @return the meta object for the reference '<em>Route</em>'.
-     * @see org.switchyard.tools.models.switchyard1_0.camel.CamelImplementationType#getRoute()
-     * @see #getCamelImplementationType()
-     * @generated
-     */
-	EReference getCamelImplementationType_Route();
-
-	/**
-     * Returns the meta object for the containment reference '{@link org.switchyard.tools.models.switchyard1_0.camel.CamelImplementationType#getJava <em>Java</em>}'.
-     * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-     * @return the meta object for the containment reference '<em>Java</em>'.
-     * @see org.switchyard.tools.models.switchyard1_0.camel.CamelImplementationType#getJava()
-     * @see #getCamelImplementationType()
-     * @generated
-     */
-	EReference getCamelImplementationType_Java();
-
-	/**
-     * Returns the meta object for the containment reference '{@link org.switchyard.tools.models.switchyard1_0.camel.CamelImplementationType#getXml <em>Xml</em>}'.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @return the meta object for the containment reference '<em>Xml</em>'.
-     * @see org.switchyard.tools.models.switchyard1_0.camel.CamelImplementationType#getXml()
-     * @see #getCamelImplementationType()
-     * @generated
-     */
-    EReference getCamelImplementationType_Xml();
-
-    /**
-     * Returns the meta object for class '{@link org.switchyard.tools.models.switchyard1_0.camel.CamelJmsBindingType <em>Jms Binding Type</em>}'.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @return the meta object for class '<em>Jms Binding Type</em>'.
-     * @see org.switchyard.tools.models.switchyard1_0.camel.CamelJmsBindingType
-     * @generated
-     */
-    EClass getCamelJmsBindingType();
-
-    /**
-     * Returns the meta object for the attribute '{@link org.switchyard.tools.models.switchyard1_0.camel.CamelJmsBindingType#getQueue <em>Queue</em>}'.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @return the meta object for the attribute '<em>Queue</em>'.
-     * @see org.switchyard.tools.models.switchyard1_0.camel.CamelJmsBindingType#getQueue()
-     * @see #getCamelJmsBindingType()
-     * @generated
-     */
-    EAttribute getCamelJmsBindingType_Queue();
-
-    /**
-     * Returns the meta object for the attribute '{@link org.switchyard.tools.models.switchyard1_0.camel.CamelJmsBindingType#getTopic <em>Topic</em>}'.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @return the meta object for the attribute '<em>Topic</em>'.
-     * @see org.switchyard.tools.models.switchyard1_0.camel.CamelJmsBindingType#getTopic()
-     * @see #getCamelJmsBindingType()
-     * @generated
-     */
-    EAttribute getCamelJmsBindingType_Topic();
-
-    /**
-     * Returns the meta object for the attribute '{@link org.switchyard.tools.models.switchyard1_0.camel.CamelJmsBindingType#getConnectionFactory <em>Connection Factory</em>}'.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @return the meta object for the attribute '<em>Connection Factory</em>'.
-     * @see org.switchyard.tools.models.switchyard1_0.camel.CamelJmsBindingType#getConnectionFactory()
-     * @see #getCamelJmsBindingType()
-     * @generated
-     */
-    EAttribute getCamelJmsBindingType_ConnectionFactory();
-
-    /**
-     * Returns the meta object for the attribute '{@link org.switchyard.tools.models.switchyard1_0.camel.CamelJmsBindingType#getUsername <em>Username</em>}'.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @return the meta object for the attribute '<em>Username</em>'.
-     * @see org.switchyard.tools.models.switchyard1_0.camel.CamelJmsBindingType#getUsername()
-     * @see #getCamelJmsBindingType()
-     * @generated
-     */
-    EAttribute getCamelJmsBindingType_Username();
-
-    /**
-     * Returns the meta object for the attribute '{@link org.switchyard.tools.models.switchyard1_0.camel.CamelJmsBindingType#getPassword <em>Password</em>}'.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @return the meta object for the attribute '<em>Password</em>'.
-     * @see org.switchyard.tools.models.switchyard1_0.camel.CamelJmsBindingType#getPassword()
-     * @see #getCamelJmsBindingType()
-     * @generated
-     */
-    EAttribute getCamelJmsBindingType_Password();
-
-    /**
-     * Returns the meta object for the attribute '{@link org.switchyard.tools.models.switchyard1_0.camel.CamelJmsBindingType#getClientId <em>Client Id</em>}'.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @return the meta object for the attribute '<em>Client Id</em>'.
-     * @see org.switchyard.tools.models.switchyard1_0.camel.CamelJmsBindingType#getClientId()
-     * @see #getCamelJmsBindingType()
-     * @generated
-     */
-    EAttribute getCamelJmsBindingType_ClientId();
-
-    /**
-     * Returns the meta object for the attribute '{@link org.switchyard.tools.models.switchyard1_0.camel.CamelJmsBindingType#getDurableSubscriptionName <em>Durable Subscription Name</em>}'.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @return the meta object for the attribute '<em>Durable Subscription Name</em>'.
-     * @see org.switchyard.tools.models.switchyard1_0.camel.CamelJmsBindingType#getDurableSubscriptionName()
-     * @see #getCamelJmsBindingType()
-     * @generated
-     */
-    EAttribute getCamelJmsBindingType_DurableSubscriptionName();
-
-    /**
-     * Returns the meta object for the attribute '{@link org.switchyard.tools.models.switchyard1_0.camel.CamelJmsBindingType#getConcurrentConsumers <em>Concurrent Consumers</em>}'.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @return the meta object for the attribute '<em>Concurrent Consumers</em>'.
-     * @see org.switchyard.tools.models.switchyard1_0.camel.CamelJmsBindingType#getConcurrentConsumers()
-     * @see #getCamelJmsBindingType()
-     * @generated
-     */
-    EAttribute getCamelJmsBindingType_ConcurrentConsumers();
-
-    /**
-     * Returns the meta object for the attribute '{@link org.switchyard.tools.models.switchyard1_0.camel.CamelJmsBindingType#getMaxConcurrentConsumers <em>Max Concurrent Consumers</em>}'.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @return the meta object for the attribute '<em>Max Concurrent Consumers</em>'.
-     * @see org.switchyard.tools.models.switchyard1_0.camel.CamelJmsBindingType#getMaxConcurrentConsumers()
-     * @see #getCamelJmsBindingType()
-     * @generated
-     */
-    EAttribute getCamelJmsBindingType_MaxConcurrentConsumers();
-
-    /**
-     * Returns the meta object for the attribute '{@link org.switchyard.tools.models.switchyard1_0.camel.CamelJmsBindingType#getDisableReplyTo <em>Disable Reply To</em>}'.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @return the meta object for the attribute '<em>Disable Reply To</em>'.
-     * @see org.switchyard.tools.models.switchyard1_0.camel.CamelJmsBindingType#getDisableReplyTo()
-     * @see #getCamelJmsBindingType()
-     * @generated
-     */
-    EAttribute getCamelJmsBindingType_DisableReplyTo();
-
-    /**
-     * Returns the meta object for the attribute '{@link org.switchyard.tools.models.switchyard1_0.camel.CamelJmsBindingType#getPreserveMessageQos <em>Preserve Message Qos</em>}'.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @return the meta object for the attribute '<em>Preserve Message Qos</em>'.
-     * @see org.switchyard.tools.models.switchyard1_0.camel.CamelJmsBindingType#getPreserveMessageQos()
-     * @see #getCamelJmsBindingType()
-     * @generated
-     */
-    EAttribute getCamelJmsBindingType_PreserveMessageQos();
-
-    /**
-     * Returns the meta object for the attribute '{@link org.switchyard.tools.models.switchyard1_0.camel.CamelJmsBindingType#getDeliveryPersistent <em>Delivery Persistent</em>}'.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @return the meta object for the attribute '<em>Delivery Persistent</em>'.
-     * @see org.switchyard.tools.models.switchyard1_0.camel.CamelJmsBindingType#getDeliveryPersistent()
-     * @see #getCamelJmsBindingType()
-     * @generated
-     */
-    EAttribute getCamelJmsBindingType_DeliveryPersistent();
-
-    /**
-     * Returns the meta object for the attribute '{@link org.switchyard.tools.models.switchyard1_0.camel.CamelJmsBindingType#getPriority <em>Priority</em>}'.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @return the meta object for the attribute '<em>Priority</em>'.
-     * @see org.switchyard.tools.models.switchyard1_0.camel.CamelJmsBindingType#getPriority()
-     * @see #getCamelJmsBindingType()
-     * @generated
-     */
-    EAttribute getCamelJmsBindingType_Priority();
-
-    /**
-     * Returns the meta object for the attribute '{@link org.switchyard.tools.models.switchyard1_0.camel.CamelJmsBindingType#getExplicitQosEnabled <em>Explicit Qos Enabled</em>}'.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @return the meta object for the attribute '<em>Explicit Qos Enabled</em>'.
-     * @see org.switchyard.tools.models.switchyard1_0.camel.CamelJmsBindingType#getExplicitQosEnabled()
-     * @see #getCamelJmsBindingType()
-     * @generated
-     */
-    EAttribute getCamelJmsBindingType_ExplicitQosEnabled();
-
-    /**
-     * Returns the meta object for the attribute '{@link org.switchyard.tools.models.switchyard1_0.camel.CamelJmsBindingType#getReplyTo <em>Reply To</em>}'.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @return the meta object for the attribute '<em>Reply To</em>'.
-     * @see org.switchyard.tools.models.switchyard1_0.camel.CamelJmsBindingType#getReplyTo()
-     * @see #getCamelJmsBindingType()
-     * @generated
-     */
-    EAttribute getCamelJmsBindingType_ReplyTo();
-
-    /**
-     * Returns the meta object for the attribute '{@link org.switchyard.tools.models.switchyard1_0.camel.CamelJmsBindingType#getReplyToType <em>Reply To Type</em>}'.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @return the meta object for the attribute '<em>Reply To Type</em>'.
-     * @see org.switchyard.tools.models.switchyard1_0.camel.CamelJmsBindingType#getReplyToType()
-     * @see #getCamelJmsBindingType()
-     * @generated
-     */
-    EAttribute getCamelJmsBindingType_ReplyToType();
-
-    /**
-     * Returns the meta object for the attribute '{@link org.switchyard.tools.models.switchyard1_0.camel.CamelJmsBindingType#getRequestTimeout <em>Request Timeout</em>}'.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @return the meta object for the attribute '<em>Request Timeout</em>'.
-     * @see org.switchyard.tools.models.switchyard1_0.camel.CamelJmsBindingType#getRequestTimeout()
-     * @see #getCamelJmsBindingType()
-     * @generated
-     */
-    EAttribute getCamelJmsBindingType_RequestTimeout();
-
-    /**
-     * Returns the meta object for the attribute '{@link org.switchyard.tools.models.switchyard1_0.camel.CamelJmsBindingType#getSelector <em>Selector</em>}'.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @return the meta object for the attribute '<em>Selector</em>'.
-     * @see org.switchyard.tools.models.switchyard1_0.camel.CamelJmsBindingType#getSelector()
-     * @see #getCamelJmsBindingType()
-     * @generated
-     */
-    EAttribute getCamelJmsBindingType_Selector();
-
-    /**
-     * Returns the meta object for the attribute '{@link org.switchyard.tools.models.switchyard1_0.camel.CamelJmsBindingType#getTimeToLive <em>Time To Live</em>}'.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @return the meta object for the attribute '<em>Time To Live</em>'.
-     * @see org.switchyard.tools.models.switchyard1_0.camel.CamelJmsBindingType#getTimeToLive()
-     * @see #getCamelJmsBindingType()
-     * @generated
-     */
-    EAttribute getCamelJmsBindingType_TimeToLive();
-
-    /**
-     * Returns the meta object for the attribute '{@link org.switchyard.tools.models.switchyard1_0.camel.CamelJmsBindingType#isTransacted <em>Transacted</em>}'.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @return the meta object for the attribute '<em>Transacted</em>'.
-     * @see org.switchyard.tools.models.switchyard1_0.camel.CamelJmsBindingType#isTransacted()
-     * @see #getCamelJmsBindingType()
-     * @generated
-     */
-    EAttribute getCamelJmsBindingType_Transacted();
-
-    /**
-     * Returns the meta object for the attribute '{@link org.switchyard.tools.models.switchyard1_0.camel.CamelJmsBindingType#getTransactionManager <em>Transaction Manager</em>}'.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @return the meta object for the attribute '<em>Transaction Manager</em>'.
-     * @see org.switchyard.tools.models.switchyard1_0.camel.CamelJmsBindingType#getTransactionManager()
-     * @see #getCamelJmsBindingType()
-     * @generated
-     */
-    EAttribute getCamelJmsBindingType_TransactionManager();
-
-    /**
-     * Returns the meta object for class '{@link org.switchyard.tools.models.switchyard1_0.camel.CamelNettyBindingType <em>Netty Binding Type</em>}'.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @return the meta object for class '<em>Netty Binding Type</em>'.
-     * @see org.switchyard.tools.models.switchyard1_0.camel.CamelNettyBindingType
-     * @generated
-     */
-    EClass getCamelNettyBindingType();
-
-    /**
-     * Returns the meta object for the attribute '{@link org.switchyard.tools.models.switchyard1_0.camel.CamelNettyBindingType#getHost <em>Host</em>}'.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @return the meta object for the attribute '<em>Host</em>'.
-     * @see org.switchyard.tools.models.switchyard1_0.camel.CamelNettyBindingType#getHost()
-     * @see #getCamelNettyBindingType()
-     * @generated
-     */
-    EAttribute getCamelNettyBindingType_Host();
-
-    /**
-     * Returns the meta object for the attribute '{@link org.switchyard.tools.models.switchyard1_0.camel.CamelNettyBindingType#getPort <em>Port</em>}'.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @return the meta object for the attribute '<em>Port</em>'.
-     * @see org.switchyard.tools.models.switchyard1_0.camel.CamelNettyBindingType#getPort()
-     * @see #getCamelNettyBindingType()
-     * @generated
-     */
-    EAttribute getCamelNettyBindingType_Port();
-
-    /**
-     * Returns the meta object for the attribute '{@link org.switchyard.tools.models.switchyard1_0.camel.CamelNettyBindingType#getReceiveBufferSize <em>Receive Buffer Size</em>}'.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @return the meta object for the attribute '<em>Receive Buffer Size</em>'.
-     * @see org.switchyard.tools.models.switchyard1_0.camel.CamelNettyBindingType#getReceiveBufferSize()
-     * @see #getCamelNettyBindingType()
-     * @generated
-     */
-    EAttribute getCamelNettyBindingType_ReceiveBufferSize();
-
-    /**
-     * Returns the meta object for the attribute '{@link org.switchyard.tools.models.switchyard1_0.camel.CamelNettyBindingType#getSendBufferSize <em>Send Buffer Size</em>}'.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @return the meta object for the attribute '<em>Send Buffer Size</em>'.
-     * @see org.switchyard.tools.models.switchyard1_0.camel.CamelNettyBindingType#getSendBufferSize()
-     * @see #getCamelNettyBindingType()
-     * @generated
-     */
-    EAttribute getCamelNettyBindingType_SendBufferSize();
-
-    /**
-     * Returns the meta object for the attribute '{@link org.switchyard.tools.models.switchyard1_0.camel.CamelNettyBindingType#getReuseAddress <em>Reuse Address</em>}'.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @return the meta object for the attribute '<em>Reuse Address</em>'.
-     * @see org.switchyard.tools.models.switchyard1_0.camel.CamelNettyBindingType#getReuseAddress()
-     * @see #getCamelNettyBindingType()
-     * @generated
-     */
-    EAttribute getCamelNettyBindingType_ReuseAddress();
-
-    /**
-     * Returns the meta object for the attribute '{@link org.switchyard.tools.models.switchyard1_0.camel.CamelNettyBindingType#getEncoders <em>Encoders</em>}'.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @return the meta object for the attribute '<em>Encoders</em>'.
-     * @see org.switchyard.tools.models.switchyard1_0.camel.CamelNettyBindingType#getEncoders()
-     * @see #getCamelNettyBindingType()
-     * @generated
-     */
-    EAttribute getCamelNettyBindingType_Encoders();
-
-    /**
-     * Returns the meta object for the attribute '{@link org.switchyard.tools.models.switchyard1_0.camel.CamelNettyBindingType#getDecoders <em>Decoders</em>}'.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @return the meta object for the attribute '<em>Decoders</em>'.
-     * @see org.switchyard.tools.models.switchyard1_0.camel.CamelNettyBindingType#getDecoders()
-     * @see #getCamelNettyBindingType()
-     * @generated
-     */
-    EAttribute getCamelNettyBindingType_Decoders();
-
-    /**
-     * Returns the meta object for the attribute '{@link org.switchyard.tools.models.switchyard1_0.camel.CamelNettyBindingType#getAllowDefaultCodec <em>Allow Default Codec</em>}'.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @return the meta object for the attribute '<em>Allow Default Codec</em>'.
-     * @see org.switchyard.tools.models.switchyard1_0.camel.CamelNettyBindingType#getAllowDefaultCodec()
-     * @see #getCamelNettyBindingType()
-     * @generated
-     */
-    EAttribute getCamelNettyBindingType_AllowDefaultCodec();
-
-    /**
-     * Returns the meta object for the attribute '{@link org.switchyard.tools.models.switchyard1_0.camel.CamelNettyBindingType#getWorkerCount <em>Worker Count</em>}'.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @return the meta object for the attribute '<em>Worker Count</em>'.
-     * @see org.switchyard.tools.models.switchyard1_0.camel.CamelNettyBindingType#getWorkerCount()
-     * @see #getCamelNettyBindingType()
-     * @generated
-     */
-    EAttribute getCamelNettyBindingType_WorkerCount();
-
-    /**
-     * Returns the meta object for the attribute '{@link org.switchyard.tools.models.switchyard1_0.camel.CamelNettyBindingType#isSync <em>Sync</em>}'.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @return the meta object for the attribute '<em>Sync</em>'.
-     * @see org.switchyard.tools.models.switchyard1_0.camel.CamelNettyBindingType#isSync()
-     * @see #getCamelNettyBindingType()
-     * @generated
-     */
-    EAttribute getCamelNettyBindingType_Sync();
-
-    /**
-     * Returns the meta object for the attribute '{@link org.switchyard.tools.models.switchyard1_0.camel.CamelNettyBindingType#getDisconnect <em>Disconnect</em>}'.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @return the meta object for the attribute '<em>Disconnect</em>'.
-     * @see org.switchyard.tools.models.switchyard1_0.camel.CamelNettyBindingType#getDisconnect()
-     * @see #getCamelNettyBindingType()
-     * @generated
-     */
-    EAttribute getCamelNettyBindingType_Disconnect();
-
-    /**
-     * Returns the meta object for class '{@link org.switchyard.tools.models.switchyard1_0.camel.CamelNettyUdpBindingType <em>Netty Udp Binding Type</em>}'.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @return the meta object for class '<em>Netty Udp Binding Type</em>'.
-     * @see org.switchyard.tools.models.switchyard1_0.camel.CamelNettyUdpBindingType
-     * @generated
-     */
-    EClass getCamelNettyUdpBindingType();
-
-    /**
-     * Returns the meta object for the attribute '{@link org.switchyard.tools.models.switchyard1_0.camel.CamelNettyUdpBindingType#isBroadcast <em>Broadcast</em>}'.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @return the meta object for the attribute '<em>Broadcast</em>'.
-     * @see org.switchyard.tools.models.switchyard1_0.camel.CamelNettyUdpBindingType#isBroadcast()
-     * @see #getCamelNettyUdpBindingType()
-     * @generated
-     */
-    EAttribute getCamelNettyUdpBindingType_Broadcast();
-
-    /**
-     * Returns the meta object for class '{@link org.switchyard.tools.models.switchyard1_0.camel.CamelNettyTcpBindingType <em>Netty Tcp Binding Type</em>}'.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @return the meta object for class '<em>Netty Tcp Binding Type</em>'.
-     * @see org.switchyard.tools.models.switchyard1_0.camel.CamelNettyTcpBindingType
-     * @generated
-     */
-    EClass getCamelNettyTcpBindingType();
-
-    /**
-     * Returns the meta object for the attribute '{@link org.switchyard.tools.models.switchyard1_0.camel.CamelNettyTcpBindingType#getTextline <em>Textline</em>}'.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @return the meta object for the attribute '<em>Textline</em>'.
-     * @see org.switchyard.tools.models.switchyard1_0.camel.CamelNettyTcpBindingType#getTextline()
-     * @see #getCamelNettyTcpBindingType()
-     * @generated
-     */
-    EAttribute getCamelNettyTcpBindingType_Textline();
-
-    /**
-     * Returns the meta object for the attribute '{@link org.switchyard.tools.models.switchyard1_0.camel.CamelNettyTcpBindingType#getTcpNoDelay <em>Tcp No Delay</em>}'.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @return the meta object for the attribute '<em>Tcp No Delay</em>'.
-     * @see org.switchyard.tools.models.switchyard1_0.camel.CamelNettyTcpBindingType#getTcpNoDelay()
-     * @see #getCamelNettyTcpBindingType()
-     * @generated
-     */
-    EAttribute getCamelNettyTcpBindingType_TcpNoDelay();
-
-    /**
-     * Returns the meta object for the attribute '{@link org.switchyard.tools.models.switchyard1_0.camel.CamelNettyTcpBindingType#isKeepAlive <em>Keep Alive</em>}'.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @return the meta object for the attribute '<em>Keep Alive</em>'.
-     * @see org.switchyard.tools.models.switchyard1_0.camel.CamelNettyTcpBindingType#isKeepAlive()
-     * @see #getCamelNettyTcpBindingType()
-     * @generated
-     */
-    EAttribute getCamelNettyTcpBindingType_KeepAlive();
 
     /**
      * Returns the meta object for class '{@link org.switchyard.tools.models.switchyard1_0.camel.CamelMockBindingType <em>Mock Binding Type</em>}'.
@@ -7633,15 +2559,15 @@ public interface CamelPackage extends EPackage {
 	EClass getCamelTimerBindingType();
 
 	/**
-     * Returns the meta object for the attribute '{@link org.switchyard.tools.models.switchyard1_0.camel.CamelTimerBindingType#getNameElement <em>Name Element</em>}'.
+     * Returns the meta object for the attribute '{@link org.switchyard.tools.models.switchyard1_0.camel.CamelTimerBindingType#getCamelBindingName <em>Camel Binding Name</em>}'.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @return the meta object for the attribute '<em>Name Element</em>'.
-     * @see org.switchyard.tools.models.switchyard1_0.camel.CamelTimerBindingType#getNameElement()
+     * @return the meta object for the attribute '<em>Camel Binding Name</em>'.
+     * @see org.switchyard.tools.models.switchyard1_0.camel.CamelTimerBindingType#getCamelBindingName()
      * @see #getCamelTimerBindingType()
      * @generated
      */
-    EAttribute getCamelTimerBindingType_NameElement();
+    EAttribute getCamelTimerBindingType_CamelBindingName();
 
     /**
      * Returns the meta object for the attribute '{@link org.switchyard.tools.models.switchyard1_0.camel.CamelTimerBindingType#getTime <em>Time</em>}'.
@@ -7688,71 +2614,28 @@ public interface CamelPackage extends EPackage {
 	EAttribute getCamelTimerBindingType_Delay();
 
 	/**
-     * Returns the meta object for the attribute '{@link org.switchyard.tools.models.switchyard1_0.camel.CamelTimerBindingType#isFixedRate <em>Fixed Rate</em>}'.
+     * Returns the meta object for the attribute '{@link org.switchyard.tools.models.switchyard1_0.camel.CamelTimerBindingType#getFixedRate <em>Fixed Rate</em>}'.
      * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
      * @return the meta object for the attribute '<em>Fixed Rate</em>'.
-     * @see org.switchyard.tools.models.switchyard1_0.camel.CamelTimerBindingType#isFixedRate()
+     * @see org.switchyard.tools.models.switchyard1_0.camel.CamelTimerBindingType#getFixedRate()
      * @see #getCamelTimerBindingType()
      * @generated
      */
 	EAttribute getCamelTimerBindingType_FixedRate();
 
 	/**
-     * Returns the meta object for the attribute '{@link org.switchyard.tools.models.switchyard1_0.camel.CamelTimerBindingType#isDaemon <em>Daemon</em>}'.
+     * Returns the meta object for the attribute '{@link org.switchyard.tools.models.switchyard1_0.camel.CamelTimerBindingType#getDaemon <em>Daemon</em>}'.
      * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
      * @return the meta object for the attribute '<em>Daemon</em>'.
-     * @see org.switchyard.tools.models.switchyard1_0.camel.CamelTimerBindingType#isDaemon()
+     * @see org.switchyard.tools.models.switchyard1_0.camel.CamelTimerBindingType#getDaemon()
      * @see #getCamelTimerBindingType()
      * @generated
      */
 	EAttribute getCamelTimerBindingType_Daemon();
 
 	/**
-     * Returns the meta object for class '{@link org.switchyard.tools.models.switchyard1_0.camel.CamelSftpBindingType <em>Sftp Binding Type</em>}'.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @return the meta object for class '<em>Sftp Binding Type</em>'.
-     * @see org.switchyard.tools.models.switchyard1_0.camel.CamelSftpBindingType
-     * @generated
-     */
-    EClass getCamelSftpBindingType();
-
-    /**
-     * Returns the meta object for the attribute '{@link org.switchyard.tools.models.switchyard1_0.camel.CamelSftpBindingType#getKnownHostsFile <em>Known Hosts File</em>}'.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @return the meta object for the attribute '<em>Known Hosts File</em>'.
-     * @see org.switchyard.tools.models.switchyard1_0.camel.CamelSftpBindingType#getKnownHostsFile()
-     * @see #getCamelSftpBindingType()
-     * @generated
-     */
-    EAttribute getCamelSftpBindingType_KnownHostsFile();
-
-    /**
-     * Returns the meta object for the attribute '{@link org.switchyard.tools.models.switchyard1_0.camel.CamelSftpBindingType#getPrivateKeyFile <em>Private Key File</em>}'.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @return the meta object for the attribute '<em>Private Key File</em>'.
-     * @see org.switchyard.tools.models.switchyard1_0.camel.CamelSftpBindingType#getPrivateKeyFile()
-     * @see #getCamelSftpBindingType()
-     * @generated
-     */
-    EAttribute getCamelSftpBindingType_PrivateKeyFile();
-
-    /**
-     * Returns the meta object for the attribute '{@link org.switchyard.tools.models.switchyard1_0.camel.CamelSftpBindingType#getPrivateKeyFilePassphrase <em>Private Key File Passphrase</em>}'.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @return the meta object for the attribute '<em>Private Key File Passphrase</em>'.
-     * @see org.switchyard.tools.models.switchyard1_0.camel.CamelSftpBindingType#getPrivateKeyFilePassphrase()
-     * @see #getCamelSftpBindingType()
-     * @generated
-     */
-    EAttribute getCamelSftpBindingType_PrivateKeyFilePassphrase();
-
-    /**
      * Returns the meta object for class '{@link org.switchyard.tools.models.switchyard1_0.camel.DocumentRoot <em>Document Root</em>}'.
      * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -7796,17 +2679,6 @@ public interface CamelPackage extends EPackage {
 	EReference getDocumentRoot_XSISchemaLocation();
 
 	/**
-     * Returns the meta object for the containment reference '{@link org.switchyard.tools.models.switchyard1_0.camel.DocumentRoot#getBindingAtom <em>Binding Atom</em>}'.
-     * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-     * @return the meta object for the containment reference '<em>Binding Atom</em>'.
-     * @see org.switchyard.tools.models.switchyard1_0.camel.DocumentRoot#getBindingAtom()
-     * @see #getDocumentRoot()
-     * @generated
-     */
-	EReference getDocumentRoot_BindingAtom();
-
-	/**
      * Returns the meta object for the containment reference '{@link org.switchyard.tools.models.switchyard1_0.camel.DocumentRoot#getBindingCamel <em>Binding Camel</em>}'.
      * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -7829,39 +2701,6 @@ public interface CamelPackage extends EPackage {
 	EReference getDocumentRoot_BindingDirect();
 
 	/**
-     * Returns the meta object for the containment reference '{@link org.switchyard.tools.models.switchyard1_0.camel.DocumentRoot#getBindingFile <em>Binding File</em>}'.
-     * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-     * @return the meta object for the containment reference '<em>Binding File</em>'.
-     * @see org.switchyard.tools.models.switchyard1_0.camel.DocumentRoot#getBindingFile()
-     * @see #getDocumentRoot()
-     * @generated
-     */
-	EReference getDocumentRoot_BindingFile();
-
-	/**
-     * Returns the meta object for the containment reference '{@link org.switchyard.tools.models.switchyard1_0.camel.DocumentRoot#getBindingFtp <em>Binding Ftp</em>}'.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @return the meta object for the containment reference '<em>Binding Ftp</em>'.
-     * @see org.switchyard.tools.models.switchyard1_0.camel.DocumentRoot#getBindingFtp()
-     * @see #getDocumentRoot()
-     * @generated
-     */
-    EReference getDocumentRoot_BindingFtp();
-
-    /**
-     * Returns the meta object for the containment reference '{@link org.switchyard.tools.models.switchyard1_0.camel.DocumentRoot#getBindingFtps <em>Binding Ftps</em>}'.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @return the meta object for the containment reference '<em>Binding Ftps</em>'.
-     * @see org.switchyard.tools.models.switchyard1_0.camel.DocumentRoot#getBindingFtps()
-     * @see #getDocumentRoot()
-     * @generated
-     */
-    EReference getDocumentRoot_BindingFtps();
-
-    /**
      * Returns the meta object for the containment reference '{@link org.switchyard.tools.models.switchyard1_0.camel.DocumentRoot#getBindingJms <em>Binding Jms</em>}'.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
@@ -7895,17 +2734,6 @@ public interface CamelPackage extends EPackage {
 	EReference getDocumentRoot_BindingSeda();
 
 	/**
-     * Returns the meta object for the containment reference '{@link org.switchyard.tools.models.switchyard1_0.camel.DocumentRoot#getBindingSftp <em>Binding Sftp</em>}'.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @return the meta object for the containment reference '<em>Binding Sftp</em>'.
-     * @see org.switchyard.tools.models.switchyard1_0.camel.DocumentRoot#getBindingSftp()
-     * @see #getDocumentRoot()
-     * @generated
-     */
-    EReference getDocumentRoot_BindingSftp();
-
-    /**
      * Returns the meta object for the containment reference '{@link org.switchyard.tools.models.switchyard1_0.camel.DocumentRoot#getBindingTimer <em>Binding Timer</em>}'.
      * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -7917,581 +2745,6 @@ public interface CamelPackage extends EPackage {
 	EReference getDocumentRoot_BindingTimer();
 
 	/**
-     * Returns the meta object for the containment reference '{@link org.switchyard.tools.models.switchyard1_0.camel.DocumentRoot#getImplementationCamel <em>Implementation Camel</em>}'.
-     * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-     * @return the meta object for the containment reference '<em>Implementation Camel</em>'.
-     * @see org.switchyard.tools.models.switchyard1_0.camel.DocumentRoot#getImplementationCamel()
-     * @see #getDocumentRoot()
-     * @generated
-     */
-	EReference getDocumentRoot_ImplementationCamel();
-
-	/**
-     * Returns the meta object for the containment reference '{@link org.switchyard.tools.models.switchyard1_0.camel.DocumentRoot#getBindingNettyUDP <em>Binding Netty UDP</em>}'.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @return the meta object for the containment reference '<em>Binding Netty UDP</em>'.
-     * @see org.switchyard.tools.models.switchyard1_0.camel.DocumentRoot#getBindingNettyUDP()
-     * @see #getDocumentRoot()
-     * @generated
-     */
-    EReference getDocumentRoot_BindingNettyUDP();
-
-    /**
-     * Returns the meta object for the containment reference '{@link org.switchyard.tools.models.switchyard1_0.camel.DocumentRoot#getBindingNettyTCP <em>Binding Netty TCP</em>}'.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @return the meta object for the containment reference '<em>Binding Netty TCP</em>'.
-     * @see org.switchyard.tools.models.switchyard1_0.camel.DocumentRoot#getBindingNettyTCP()
-     * @see #getDocumentRoot()
-     * @generated
-     */
-    EReference getDocumentRoot_BindingNettyTCP();
-
-    /**
-     * Returns the meta object for the containment reference '{@link org.switchyard.tools.models.switchyard1_0.camel.DocumentRoot#getBindingQuartz <em>Binding Quartz</em>}'.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @return the meta object for the containment reference '<em>Binding Quartz</em>'.
-     * @see org.switchyard.tools.models.switchyard1_0.camel.DocumentRoot#getBindingQuartz()
-     * @see #getDocumentRoot()
-     * @generated
-     */
-    EReference getDocumentRoot_BindingQuartz();
-
-    /**
-     * Returns the meta object for the containment reference '{@link org.switchyard.tools.models.switchyard1_0.camel.DocumentRoot#getBindingSql <em>Binding Sql</em>}'.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @return the meta object for the containment reference '<em>Binding Sql</em>'.
-     * @see org.switchyard.tools.models.switchyard1_0.camel.DocumentRoot#getBindingSql()
-     * @see #getDocumentRoot()
-     * @generated
-     */
-    EReference getDocumentRoot_BindingSql();
-
-    /**
-     * Returns the meta object for the containment reference '{@link org.switchyard.tools.models.switchyard1_0.camel.DocumentRoot#getContextMapper <em>Context Mapper</em>}'.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @return the meta object for the containment reference '<em>Context Mapper</em>'.
-     * @see org.switchyard.tools.models.switchyard1_0.camel.DocumentRoot#getContextMapper()
-     * @see #getDocumentRoot()
-     * @generated
-     */
-    EReference getDocumentRoot_ContextMapper();
-
-    /**
-     * Returns the meta object for the containment reference '{@link org.switchyard.tools.models.switchyard1_0.camel.DocumentRoot#getMessageComposer <em>Message Composer</em>}'.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @return the meta object for the containment reference '<em>Message Composer</em>'.
-     * @see org.switchyard.tools.models.switchyard1_0.camel.DocumentRoot#getMessageComposer()
-     * @see #getDocumentRoot()
-     * @generated
-     */
-    EReference getDocumentRoot_MessageComposer();
-
-    /**
-     * Returns the meta object for the containment reference '{@link org.switchyard.tools.models.switchyard1_0.camel.DocumentRoot#getBindingMail <em>Binding Mail</em>}'.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @return the meta object for the containment reference '<em>Binding Mail</em>'.
-     * @see org.switchyard.tools.models.switchyard1_0.camel.DocumentRoot#getBindingMail()
-     * @see #getDocumentRoot()
-     * @generated
-     */
-    EReference getDocumentRoot_BindingMail();
-
-    /**
-     * Returns the meta object for the containment reference '{@link org.switchyard.tools.models.switchyard1_0.camel.DocumentRoot#getBindingJPA <em>Binding JPA</em>}'.
-     * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-     * @return the meta object for the containment reference '<em>Binding JPA</em>'.
-     * @see org.switchyard.tools.models.switchyard1_0.camel.DocumentRoot#getBindingJPA()
-     * @see #getDocumentRoot()
-     * @generated
-     */
-	EReference getDocumentRoot_BindingJPA();
-
-				/**
-     * Returns the meta object for class '{@link org.switchyard.tools.models.switchyard1_0.camel.CamelContextMapperType <em>Context Mapper Type</em>}'.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @return the meta object for class '<em>Context Mapper Type</em>'.
-     * @see org.switchyard.tools.models.switchyard1_0.camel.CamelContextMapperType
-     * @generated
-     */
-    EClass getCamelContextMapperType();
-
-    /**
-     * Returns the meta object for class '{@link org.switchyard.tools.models.switchyard1_0.camel.CamelMessageComposerType <em>Message Composer Type</em>}'.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @return the meta object for class '<em>Message Composer Type</em>'.
-     * @see org.switchyard.tools.models.switchyard1_0.camel.CamelMessageComposerType
-     * @generated
-     */
-    EClass getCamelMessageComposerType();
-
-    /**
-     * Returns the meta object for class '{@link org.switchyard.tools.models.switchyard1_0.camel.CamelMailConsumerType <em>Mail Consumer Type</em>}'.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @return the meta object for class '<em>Mail Consumer Type</em>'.
-     * @see org.switchyard.tools.models.switchyard1_0.camel.CamelMailConsumerType
-     * @generated
-     */
-    EClass getCamelMailConsumerType();
-
-    /**
-     * Returns the meta object for the attribute '{@link org.switchyard.tools.models.switchyard1_0.camel.CamelMailConsumerType#getFolderName <em>Folder Name</em>}'.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @return the meta object for the attribute '<em>Folder Name</em>'.
-     * @see org.switchyard.tools.models.switchyard1_0.camel.CamelMailConsumerType#getFolderName()
-     * @see #getCamelMailConsumerType()
-     * @generated
-     */
-    EAttribute getCamelMailConsumerType_FolderName();
-
-    /**
-     * Returns the meta object for the attribute '{@link org.switchyard.tools.models.switchyard1_0.camel.CamelMailConsumerType#getFetchSize <em>Fetch Size</em>}'.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @return the meta object for the attribute '<em>Fetch Size</em>'.
-     * @see org.switchyard.tools.models.switchyard1_0.camel.CamelMailConsumerType#getFetchSize()
-     * @see #getCamelMailConsumerType()
-     * @generated
-     */
-    EAttribute getCamelMailConsumerType_FetchSize();
-
-    /**
-     * Returns the meta object for the attribute '{@link org.switchyard.tools.models.switchyard1_0.camel.CamelMailConsumerType#getUnseen <em>Unseen</em>}'.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @return the meta object for the attribute '<em>Unseen</em>'.
-     * @see org.switchyard.tools.models.switchyard1_0.camel.CamelMailConsumerType#getUnseen()
-     * @see #getCamelMailConsumerType()
-     * @generated
-     */
-    EAttribute getCamelMailConsumerType_Unseen();
-
-    /**
-     * Returns the meta object for the attribute '{@link org.switchyard.tools.models.switchyard1_0.camel.CamelMailConsumerType#getDelete <em>Delete</em>}'.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @return the meta object for the attribute '<em>Delete</em>'.
-     * @see org.switchyard.tools.models.switchyard1_0.camel.CamelMailConsumerType#getDelete()
-     * @see #getCamelMailConsumerType()
-     * @generated
-     */
-    EAttribute getCamelMailConsumerType_Delete();
-
-    /**
-     * Returns the meta object for the attribute '{@link org.switchyard.tools.models.switchyard1_0.camel.CamelMailConsumerType#getCopyTo <em>Copy To</em>}'.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @return the meta object for the attribute '<em>Copy To</em>'.
-     * @see org.switchyard.tools.models.switchyard1_0.camel.CamelMailConsumerType#getCopyTo()
-     * @see #getCamelMailConsumerType()
-     * @generated
-     */
-    EAttribute getCamelMailConsumerType_CopyTo();
-
-    /**
-     * Returns the meta object for the attribute '{@link org.switchyard.tools.models.switchyard1_0.camel.CamelMailConsumerType#getDisconnect <em>Disconnect</em>}'.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @return the meta object for the attribute '<em>Disconnect</em>'.
-     * @see org.switchyard.tools.models.switchyard1_0.camel.CamelMailConsumerType#getDisconnect()
-     * @see #getCamelMailConsumerType()
-     * @generated
-     */
-    EAttribute getCamelMailConsumerType_Disconnect();
-
-    /**
-     * Returns the meta object for the attribute '{@link org.switchyard.tools.models.switchyard1_0.camel.CamelMailConsumerType#getAccountType <em>Account Type</em>}'.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @return the meta object for the attribute '<em>Account Type</em>'.
-     * @see org.switchyard.tools.models.switchyard1_0.camel.CamelMailConsumerType#getAccountType()
-     * @see #getCamelMailConsumerType()
-     * @generated
-     */
-    EAttribute getCamelMailConsumerType_AccountType();
-
-    /**
-     * Returns the meta object for class '{@link org.switchyard.tools.models.switchyard1_0.camel.CamelMailProducerType <em>Mail Producer Type</em>}'.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @return the meta object for class '<em>Mail Producer Type</em>'.
-     * @see org.switchyard.tools.models.switchyard1_0.camel.CamelMailProducerType
-     * @generated
-     */
-    EClass getCamelMailProducerType();
-
-    /**
-     * Returns the meta object for the attribute '{@link org.switchyard.tools.models.switchyard1_0.camel.CamelMailProducerType#getSubject <em>Subject</em>}'.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @return the meta object for the attribute '<em>Subject</em>'.
-     * @see org.switchyard.tools.models.switchyard1_0.camel.CamelMailProducerType#getSubject()
-     * @see #getCamelMailProducerType()
-     * @generated
-     */
-    EAttribute getCamelMailProducerType_Subject();
-
-    /**
-     * Returns the meta object for the attribute '{@link org.switchyard.tools.models.switchyard1_0.camel.CamelMailProducerType#getFrom <em>From</em>}'.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @return the meta object for the attribute '<em>From</em>'.
-     * @see org.switchyard.tools.models.switchyard1_0.camel.CamelMailProducerType#getFrom()
-     * @see #getCamelMailProducerType()
-     * @generated
-     */
-    EAttribute getCamelMailProducerType_From();
-
-    /**
-     * Returns the meta object for the attribute '{@link org.switchyard.tools.models.switchyard1_0.camel.CamelMailProducerType#getTo <em>To</em>}'.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @return the meta object for the attribute '<em>To</em>'.
-     * @see org.switchyard.tools.models.switchyard1_0.camel.CamelMailProducerType#getTo()
-     * @see #getCamelMailProducerType()
-     * @generated
-     */
-    EAttribute getCamelMailProducerType_To();
-
-    /**
-     * Returns the meta object for the attribute '{@link org.switchyard.tools.models.switchyard1_0.camel.CamelMailProducerType#getCC <em>CC</em>}'.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @return the meta object for the attribute '<em>CC</em>'.
-     * @see org.switchyard.tools.models.switchyard1_0.camel.CamelMailProducerType#getCC()
-     * @see #getCamelMailProducerType()
-     * @generated
-     */
-    EAttribute getCamelMailProducerType_CC();
-
-    /**
-     * Returns the meta object for the attribute '{@link org.switchyard.tools.models.switchyard1_0.camel.CamelMailProducerType#getBCC <em>BCC</em>}'.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @return the meta object for the attribute '<em>BCC</em>'.
-     * @see org.switchyard.tools.models.switchyard1_0.camel.CamelMailProducerType#getBCC()
-     * @see #getCamelMailProducerType()
-     * @generated
-     */
-    EAttribute getCamelMailProducerType_BCC();
-
-    /**
-     * Returns the meta object for the attribute '{@link org.switchyard.tools.models.switchyard1_0.camel.CamelMailProducerType#getReplyTo <em>Reply To</em>}'.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @return the meta object for the attribute '<em>Reply To</em>'.
-     * @see org.switchyard.tools.models.switchyard1_0.camel.CamelMailProducerType#getReplyTo()
-     * @see #getCamelMailProducerType()
-     * @generated
-     */
-    EAttribute getCamelMailProducerType_ReplyTo();
-
-    /**
-     * Returns the meta object for class '{@link org.switchyard.tools.models.switchyard1_0.camel.CamelMailBindingType <em>Mail Binding Type</em>}'.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @return the meta object for class '<em>Mail Binding Type</em>'.
-     * @see org.switchyard.tools.models.switchyard1_0.camel.CamelMailBindingType
-     * @generated
-     */
-    EClass getCamelMailBindingType();
-
-    /**
-     * Returns the meta object for the attribute '{@link org.switchyard.tools.models.switchyard1_0.camel.CamelMailBindingType#getHost <em>Host</em>}'.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @return the meta object for the attribute '<em>Host</em>'.
-     * @see org.switchyard.tools.models.switchyard1_0.camel.CamelMailBindingType#getHost()
-     * @see #getCamelMailBindingType()
-     * @generated
-     */
-    EAttribute getCamelMailBindingType_Host();
-
-    /**
-     * Returns the meta object for the attribute '{@link org.switchyard.tools.models.switchyard1_0.camel.CamelMailBindingType#getPort <em>Port</em>}'.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @return the meta object for the attribute '<em>Port</em>'.
-     * @see org.switchyard.tools.models.switchyard1_0.camel.CamelMailBindingType#getPort()
-     * @see #getCamelMailBindingType()
-     * @generated
-     */
-    EAttribute getCamelMailBindingType_Port();
-
-    /**
-     * Returns the meta object for the attribute '{@link org.switchyard.tools.models.switchyard1_0.camel.CamelMailBindingType#getUsername <em>Username</em>}'.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @return the meta object for the attribute '<em>Username</em>'.
-     * @see org.switchyard.tools.models.switchyard1_0.camel.CamelMailBindingType#getUsername()
-     * @see #getCamelMailBindingType()
-     * @generated
-     */
-    EAttribute getCamelMailBindingType_Username();
-
-    /**
-     * Returns the meta object for the attribute '{@link org.switchyard.tools.models.switchyard1_0.camel.CamelMailBindingType#getPassword <em>Password</em>}'.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @return the meta object for the attribute '<em>Password</em>'.
-     * @see org.switchyard.tools.models.switchyard1_0.camel.CamelMailBindingType#getPassword()
-     * @see #getCamelMailBindingType()
-     * @generated
-     */
-    EAttribute getCamelMailBindingType_Password();
-
-    /**
-     * Returns the meta object for the attribute '{@link org.switchyard.tools.models.switchyard1_0.camel.CamelMailBindingType#getConnectionTimeout <em>Connection Timeout</em>}'.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @return the meta object for the attribute '<em>Connection Timeout</em>'.
-     * @see org.switchyard.tools.models.switchyard1_0.camel.CamelMailBindingType#getConnectionTimeout()
-     * @see #getCamelMailBindingType()
-     * @generated
-     */
-    EAttribute getCamelMailBindingType_ConnectionTimeout();
-
-    /**
-     * Returns the meta object for the containment reference '{@link org.switchyard.tools.models.switchyard1_0.camel.CamelMailBindingType#getConsume <em>Consume</em>}'.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @return the meta object for the containment reference '<em>Consume</em>'.
-     * @see org.switchyard.tools.models.switchyard1_0.camel.CamelMailBindingType#getConsume()
-     * @see #getCamelMailBindingType()
-     * @generated
-     */
-    EReference getCamelMailBindingType_Consume();
-
-    /**
-     * Returns the meta object for the containment reference '{@link org.switchyard.tools.models.switchyard1_0.camel.CamelMailBindingType#getProduce <em>Produce</em>}'.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @return the meta object for the containment reference '<em>Produce</em>'.
-     * @see org.switchyard.tools.models.switchyard1_0.camel.CamelMailBindingType#getProduce()
-     * @see #getCamelMailBindingType()
-     * @generated
-     */
-    EReference getCamelMailBindingType_Produce();
-
-    /**
-     * Returns the meta object for the attribute '{@link org.switchyard.tools.models.switchyard1_0.camel.CamelMailBindingType#getSecure <em>Secure</em>}'.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @return the meta object for the attribute '<em>Secure</em>'.
-     * @see org.switchyard.tools.models.switchyard1_0.camel.CamelMailBindingType#getSecure()
-     * @see #getCamelMailBindingType()
-     * @generated
-     */
-    EAttribute getCamelMailBindingType_Secure();
-
-    /**
-     * Returns the meta object for class '{@link org.switchyard.tools.models.switchyard1_0.camel.JpaProducerType <em>Jpa Producer Type</em>}'.
-     * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-     * @return the meta object for class '<em>Jpa Producer Type</em>'.
-     * @see org.switchyard.tools.models.switchyard1_0.camel.JpaProducerType
-     * @generated
-     */
-	EClass getJpaProducerType();
-
-				/**
-     * Returns the meta object for the attribute '{@link org.switchyard.tools.models.switchyard1_0.camel.JpaProducerType#getFlushOnSend <em>Flush On Send</em>}'.
-     * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-     * @return the meta object for the attribute '<em>Flush On Send</em>'.
-     * @see org.switchyard.tools.models.switchyard1_0.camel.JpaProducerType#getFlushOnSend()
-     * @see #getJpaProducerType()
-     * @generated
-     */
-	EAttribute getJpaProducerType_FlushOnSend();
-
-				/**
-     * Returns the meta object for the attribute '{@link org.switchyard.tools.models.switchyard1_0.camel.JpaProducerType#getUsePersist <em>Use Persist</em>}'.
-     * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-     * @return the meta object for the attribute '<em>Use Persist</em>'.
-     * @see org.switchyard.tools.models.switchyard1_0.camel.JpaProducerType#getUsePersist()
-     * @see #getJpaProducerType()
-     * @generated
-     */
-	EAttribute getJpaProducerType_UsePersist();
-
-				/**
-     * Returns the meta object for class '{@link org.switchyard.tools.models.switchyard1_0.camel.JpaConsumerType <em>Jpa Consumer Type</em>}'.
-     * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-     * @return the meta object for class '<em>Jpa Consumer Type</em>'.
-     * @see org.switchyard.tools.models.switchyard1_0.camel.JpaConsumerType
-     * @generated
-     */
-	EClass getJpaConsumerType();
-
-				/**
-     * Returns the meta object for the attribute '{@link org.switchyard.tools.models.switchyard1_0.camel.JpaConsumerType#getConsumeDelete <em>Consume Delete</em>}'.
-     * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-     * @return the meta object for the attribute '<em>Consume Delete</em>'.
-     * @see org.switchyard.tools.models.switchyard1_0.camel.JpaConsumerType#getConsumeDelete()
-     * @see #getJpaConsumerType()
-     * @generated
-     */
-	EAttribute getJpaConsumerType_ConsumeDelete();
-
-				/**
-     * Returns the meta object for the attribute '{@link org.switchyard.tools.models.switchyard1_0.camel.JpaConsumerType#getConsumeLockEntity <em>Consume Lock Entity</em>}'.
-     * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-     * @return the meta object for the attribute '<em>Consume Lock Entity</em>'.
-     * @see org.switchyard.tools.models.switchyard1_0.camel.JpaConsumerType#getConsumeLockEntity()
-     * @see #getJpaConsumerType()
-     * @generated
-     */
-	EAttribute getJpaConsumerType_ConsumeLockEntity();
-
-				/**
-     * Returns the meta object for the attribute '{@link org.switchyard.tools.models.switchyard1_0.camel.JpaConsumerType#getMaximumResults <em>Maximum Results</em>}'.
-     * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-     * @return the meta object for the attribute '<em>Maximum Results</em>'.
-     * @see org.switchyard.tools.models.switchyard1_0.camel.JpaConsumerType#getMaximumResults()
-     * @see #getJpaConsumerType()
-     * @generated
-     */
-	EAttribute getJpaConsumerType_MaximumResults();
-
-				/**
-     * Returns the meta object for the attribute '{@link org.switchyard.tools.models.switchyard1_0.camel.JpaConsumerType#getConsumerQuery <em>Consumer Query</em>}'.
-     * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-     * @return the meta object for the attribute '<em>Consumer Query</em>'.
-     * @see org.switchyard.tools.models.switchyard1_0.camel.JpaConsumerType#getConsumerQuery()
-     * @see #getJpaConsumerType()
-     * @generated
-     */
-	EAttribute getJpaConsumerType_ConsumerQuery();
-
-				/**
-     * Returns the meta object for the attribute '{@link org.switchyard.tools.models.switchyard1_0.camel.JpaConsumerType#getConsumerNamedQuery <em>Consumer Named Query</em>}'.
-     * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-     * @return the meta object for the attribute '<em>Consumer Named Query</em>'.
-     * @see org.switchyard.tools.models.switchyard1_0.camel.JpaConsumerType#getConsumerNamedQuery()
-     * @see #getJpaConsumerType()
-     * @generated
-     */
-	EAttribute getJpaConsumerType_ConsumerNamedQuery();
-
-				/**
-     * Returns the meta object for the attribute '{@link org.switchyard.tools.models.switchyard1_0.camel.JpaConsumerType#getConsumerNativeQuery <em>Consumer Native Query</em>}'.
-     * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-     * @return the meta object for the attribute '<em>Consumer Native Query</em>'.
-     * @see org.switchyard.tools.models.switchyard1_0.camel.JpaConsumerType#getConsumerNativeQuery()
-     * @see #getJpaConsumerType()
-     * @generated
-     */
-	EAttribute getJpaConsumerType_ConsumerNativeQuery();
-
-				/**
-     * Returns the meta object for the attribute '{@link org.switchyard.tools.models.switchyard1_0.camel.JpaConsumerType#getConsumerResultClass <em>Consumer Result Class</em>}'.
-     * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-     * @return the meta object for the attribute '<em>Consumer Result Class</em>'.
-     * @see org.switchyard.tools.models.switchyard1_0.camel.JpaConsumerType#getConsumerResultClass()
-     * @see #getJpaConsumerType()
-     * @generated
-     */
-	EAttribute getJpaConsumerType_ConsumerResultClass();
-
-				/**
-     * Returns the meta object for the attribute '{@link org.switchyard.tools.models.switchyard1_0.camel.JpaConsumerType#getConsumerTransacted <em>Consumer Transacted</em>}'.
-     * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-     * @return the meta object for the attribute '<em>Consumer Transacted</em>'.
-     * @see org.switchyard.tools.models.switchyard1_0.camel.JpaConsumerType#getConsumerTransacted()
-     * @see #getJpaConsumerType()
-     * @generated
-     */
-	EAttribute getJpaConsumerType_ConsumerTransacted();
-
-				/**
-     * Returns the meta object for class '{@link org.switchyard.tools.models.switchyard1_0.camel.CamelJPABindingType <em>JPA Binding Type</em>}'.
-     * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-     * @return the meta object for class '<em>JPA Binding Type</em>'.
-     * @see org.switchyard.tools.models.switchyard1_0.camel.CamelJPABindingType
-     * @generated
-     */
-	EClass getCamelJPABindingType();
-
-				/**
-     * Returns the meta object for the attribute '{@link org.switchyard.tools.models.switchyard1_0.camel.CamelJPABindingType#getEntityClassName <em>Entity Class Name</em>}'.
-     * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-     * @return the meta object for the attribute '<em>Entity Class Name</em>'.
-     * @see org.switchyard.tools.models.switchyard1_0.camel.CamelJPABindingType#getEntityClassName()
-     * @see #getCamelJPABindingType()
-     * @generated
-     */
-	EAttribute getCamelJPABindingType_EntityClassName();
-
-				/**
-     * Returns the meta object for the attribute '{@link org.switchyard.tools.models.switchyard1_0.camel.CamelJPABindingType#getPersistenceUnit <em>Persistence Unit</em>}'.
-     * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-     * @return the meta object for the attribute '<em>Persistence Unit</em>'.
-     * @see org.switchyard.tools.models.switchyard1_0.camel.CamelJPABindingType#getPersistenceUnit()
-     * @see #getCamelJPABindingType()
-     * @generated
-     */
-	EAttribute getCamelJPABindingType_PersistenceUnit();
-
-				/**
-     * Returns the meta object for the attribute '{@link org.switchyard.tools.models.switchyard1_0.camel.CamelJPABindingType#getTransactionManager <em>Transaction Manager</em>}'.
-     * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-     * @return the meta object for the attribute '<em>Transaction Manager</em>'.
-     * @see org.switchyard.tools.models.switchyard1_0.camel.CamelJPABindingType#getTransactionManager()
-     * @see #getCamelJPABindingType()
-     * @generated
-     */
-	EAttribute getCamelJPABindingType_TransactionManager();
-
-				/**
-     * Returns the meta object for the containment reference '{@link org.switchyard.tools.models.switchyard1_0.camel.CamelJPABindingType#getConsume <em>Consume</em>}'.
-     * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-     * @return the meta object for the containment reference '<em>Consume</em>'.
-     * @see org.switchyard.tools.models.switchyard1_0.camel.CamelJPABindingType#getConsume()
-     * @see #getCamelJPABindingType()
-     * @generated
-     */
-	EReference getCamelJPABindingType_Consume();
-
-				/**
-     * Returns the meta object for the containment reference '{@link org.switchyard.tools.models.switchyard1_0.camel.CamelJPABindingType#getProduce <em>Produce</em>}'.
-     * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-     * @return the meta object for the containment reference '<em>Produce</em>'.
-     * @see org.switchyard.tools.models.switchyard1_0.camel.CamelJPABindingType#getProduce()
-     * @see #getCamelJPABindingType()
-     * @generated
-     */
-	EReference getCamelJPABindingType_Produce();
-
-				/**
      * Returns the meta object for class '{@link org.switchyard.tools.models.switchyard1_0.camel.CamelRemoteBindingType <em>Remote Binding Type</em>}'.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
@@ -8546,11 +2799,11 @@ public interface CamelPackage extends EPackage {
     EAttribute getCamelRemoteBindingType_Password();
 
     /**
-     * Returns the meta object for the attribute '{@link org.switchyard.tools.models.switchyard1_0.camel.CamelRemoteBindingType#isBinary <em>Binary</em>}'.
+     * Returns the meta object for the attribute '{@link org.switchyard.tools.models.switchyard1_0.camel.CamelRemoteBindingType#getBinary <em>Binary</em>}'.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @return the meta object for the attribute '<em>Binary</em>'.
-     * @see org.switchyard.tools.models.switchyard1_0.camel.CamelRemoteBindingType#isBinary()
+     * @see org.switchyard.tools.models.switchyard1_0.camel.CamelRemoteBindingType#getBinary()
      * @see #getCamelRemoteBindingType()
      * @generated
      */
@@ -8634,90 +2887,6 @@ public interface CamelPackage extends EPackage {
     EAttribute getCamelRemoteBindingType_ThrowExceptionOnConnectFailed();
 
     /**
-     * Returns the meta object for the containment reference '{@link org.switchyard.tools.models.switchyard1_0.camel.CamelRemoteBindingType#getConsume <em>Consume</em>}'.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @return the meta object for the containment reference '<em>Consume</em>'.
-     * @see org.switchyard.tools.models.switchyard1_0.camel.CamelRemoteBindingType#getConsume()
-     * @see #getCamelRemoteBindingType()
-     * @generated
-     */
-    EReference getCamelRemoteBindingType_Consume();
-
-    /**
-     * Returns the meta object for the containment reference '{@link org.switchyard.tools.models.switchyard1_0.camel.CamelRemoteBindingType#getProduce <em>Produce</em>}'.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @return the meta object for the containment reference '<em>Produce</em>'.
-     * @see org.switchyard.tools.models.switchyard1_0.camel.CamelRemoteBindingType#getProduce()
-     * @see #getCamelRemoteBindingType()
-     * @generated
-     */
-    EReference getCamelRemoteBindingType_Produce();
-
-    /**
-     * Returns the meta object for class '{@link org.switchyard.tools.models.switchyard1_0.camel.FileConsumerType <em>File Consumer Type</em>}'.
-     * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-     * @return the meta object for class '<em>File Consumer Type</em>'.
-     * @see org.switchyard.tools.models.switchyard1_0.camel.FileConsumerType
-     * @generated
-     */
-	EClass getFileConsumerType();
-
-	/**
-     * Returns the meta object for class '{@link org.switchyard.tools.models.switchyard1_0.camel.FileProducerType <em>File Producer Type</em>}'.
-     * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-     * @return the meta object for class '<em>File Producer Type</em>'.
-     * @see org.switchyard.tools.models.switchyard1_0.camel.FileProducerType
-     * @generated
-     */
-	EClass getFileProducerType();
-
-	/**
-     * Returns the meta object for class '{@link org.switchyard.tools.models.switchyard1_0.camel.JavaDSLType <em>Java DSL Type</em>}'.
-     * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-     * @return the meta object for class '<em>Java DSL Type</em>'.
-     * @see org.switchyard.tools.models.switchyard1_0.camel.JavaDSLType
-     * @generated
-     */
-	EClass getJavaDSLType();
-
-	/**
-     * Returns the meta object for the attribute '{@link org.switchyard.tools.models.switchyard1_0.camel.JavaDSLType#getClass_ <em>Class</em>}'.
-     * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-     * @return the meta object for the attribute '<em>Class</em>'.
-     * @see org.switchyard.tools.models.switchyard1_0.camel.JavaDSLType#getClass_()
-     * @see #getJavaDSLType()
-     * @generated
-     */
-	EAttribute getJavaDSLType_Class();
-
-	/**
-     * Returns the meta object for class '{@link org.switchyard.tools.models.switchyard1_0.camel.XMLDSLType <em>XMLDSL Type</em>}'.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @return the meta object for class '<em>XMLDSL Type</em>'.
-     * @see org.switchyard.tools.models.switchyard1_0.camel.XMLDSLType
-     * @generated
-     */
-    EClass getXMLDSLType();
-
-    /**
-     * Returns the meta object for the attribute '{@link org.switchyard.tools.models.switchyard1_0.camel.XMLDSLType#getPath <em>Path</em>}'.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @return the meta object for the attribute '<em>Path</em>'.
-     * @see org.switchyard.tools.models.switchyard1_0.camel.XMLDSLType#getPath()
-     * @see #getXMLDSLType()
-     * @generated
-     */
-    EAttribute getXMLDSLType_Path();
-
-    /**
      * Returns the meta object for class '{@link org.switchyard.tools.models.switchyard1_0.camel.ScheduledPollConsumerType <em>Scheduled Poll Consumer Type</em>}'.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
@@ -8750,22 +2919,22 @@ public interface CamelPackage extends EPackage {
     EAttribute getScheduledPollConsumerType_Delay();
 
     /**
-     * Returns the meta object for the attribute '{@link org.switchyard.tools.models.switchyard1_0.camel.ScheduledPollConsumerType#isUseFixedDelay <em>Use Fixed Delay</em>}'.
+     * Returns the meta object for the attribute '{@link org.switchyard.tools.models.switchyard1_0.camel.ScheduledPollConsumerType#getUseFixedDelay <em>Use Fixed Delay</em>}'.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @return the meta object for the attribute '<em>Use Fixed Delay</em>'.
-     * @see org.switchyard.tools.models.switchyard1_0.camel.ScheduledPollConsumerType#isUseFixedDelay()
+     * @see org.switchyard.tools.models.switchyard1_0.camel.ScheduledPollConsumerType#getUseFixedDelay()
      * @see #getScheduledPollConsumerType()
      * @generated
      */
     EAttribute getScheduledPollConsumerType_UseFixedDelay();
 
     /**
-     * Returns the meta object for the attribute '{@link org.switchyard.tools.models.switchyard1_0.camel.ScheduledPollConsumerType#isSendEmptyMessageWhenIdle <em>Send Empty Message When Idle</em>}'.
+     * Returns the meta object for the attribute '{@link org.switchyard.tools.models.switchyard1_0.camel.ScheduledPollConsumerType#getSendEmptyMessageWhenIdle <em>Send Empty Message When Idle</em>}'.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @return the meta object for the attribute '<em>Send Empty Message When Idle</em>'.
-     * @see org.switchyard.tools.models.switchyard1_0.camel.ScheduledPollConsumerType#isSendEmptyMessageWhenIdle()
+     * @see org.switchyard.tools.models.switchyard1_0.camel.ScheduledPollConsumerType#getSendEmptyMessageWhenIdle()
      * @see #getScheduledPollConsumerType()
      * @generated
      */
@@ -8804,11 +2973,11 @@ public interface CamelPackage extends EPackage {
     EAttribute getGenericFileBindingType_Directory();
 
     /**
-     * Returns the meta object for the attribute '{@link org.switchyard.tools.models.switchyard1_0.camel.GenericFileBindingType#isAutoCreate <em>Auto Create</em>}'.
+     * Returns the meta object for the attribute '{@link org.switchyard.tools.models.switchyard1_0.camel.GenericFileBindingType#getAutoCreate <em>Auto Create</em>}'.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @return the meta object for the attribute '<em>Auto Create</em>'.
-     * @see org.switchyard.tools.models.switchyard1_0.camel.GenericFileBindingType#isAutoCreate()
+     * @see org.switchyard.tools.models.switchyard1_0.camel.GenericFileBindingType#getAutoCreate()
      * @see #getGenericFileBindingType()
      * @generated
      */
@@ -9208,143 +3377,245 @@ public interface CamelPackage extends EPackage {
     EAttribute getGenericFileProducerType_DoneFileName();
 
     /**
-     * Returns the meta object for class '{@link org.switchyard.tools.models.switchyard1_0.camel.RemoteFileConsumerType <em>Remote File Consumer Type</em>}'.
+     * Returns the meta object for class '{@link org.switchyard.tools.models.switchyard1_0.camel.JmsBindingType <em>Jms Binding Type</em>}'.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @return the meta object for class '<em>Remote File Consumer Type</em>'.
-     * @see org.switchyard.tools.models.switchyard1_0.camel.RemoteFileConsumerType
+     * @return the meta object for class '<em>Jms Binding Type</em>'.
+     * @see org.switchyard.tools.models.switchyard1_0.camel.JmsBindingType
      * @generated
      */
-    EClass getRemoteFileConsumerType();
+    EClass getJmsBindingType();
 
     /**
-     * Returns the meta object for class '{@link org.switchyard.tools.models.switchyard1_0.camel.RemoteFileProducerType <em>Remote File Producer Type</em>}'.
+     * Returns the meta object for the attribute '{@link org.switchyard.tools.models.switchyard1_0.camel.JmsBindingType#getQueue <em>Queue</em>}'.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @return the meta object for class '<em>Remote File Producer Type</em>'.
-     * @see org.switchyard.tools.models.switchyard1_0.camel.RemoteFileProducerType
+     * @return the meta object for the attribute '<em>Queue</em>'.
+     * @see org.switchyard.tools.models.switchyard1_0.camel.JmsBindingType#getQueue()
+     * @see #getJmsBindingType()
      * @generated
      */
-    EClass getRemoteFileProducerType();
+    EAttribute getJmsBindingType_Queue();
 
     /**
-     * Returns the meta object for class '{@link org.switchyard.tools.models.switchyard1_0.camel.CamelQuartzBindingType <em>Quartz Binding Type</em>}'.
+     * Returns the meta object for the attribute '{@link org.switchyard.tools.models.switchyard1_0.camel.JmsBindingType#getTopic <em>Topic</em>}'.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @return the meta object for class '<em>Quartz Binding Type</em>'.
-     * @see org.switchyard.tools.models.switchyard1_0.camel.CamelQuartzBindingType
+     * @return the meta object for the attribute '<em>Topic</em>'.
+     * @see org.switchyard.tools.models.switchyard1_0.camel.JmsBindingType#getTopic()
+     * @see #getJmsBindingType()
      * @generated
      */
-    EClass getCamelQuartzBindingType();
+    EAttribute getJmsBindingType_Topic();
 
     /**
-     * Returns the meta object for the attribute '{@link org.switchyard.tools.models.switchyard1_0.camel.CamelQuartzBindingType#getCamelBindingName <em>Camel Binding Name</em>}'.
+     * Returns the meta object for the attribute '{@link org.switchyard.tools.models.switchyard1_0.camel.JmsBindingType#getConnectionFactory <em>Connection Factory</em>}'.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @return the meta object for the attribute '<em>Camel Binding Name</em>'.
-     * @see org.switchyard.tools.models.switchyard1_0.camel.CamelQuartzBindingType#getCamelBindingName()
-     * @see #getCamelQuartzBindingType()
+     * @return the meta object for the attribute '<em>Connection Factory</em>'.
+     * @see org.switchyard.tools.models.switchyard1_0.camel.JmsBindingType#getConnectionFactory()
+     * @see #getJmsBindingType()
      * @generated
      */
-    EAttribute getCamelQuartzBindingType_CamelBindingName();
+    EAttribute getJmsBindingType_ConnectionFactory();
 
     /**
-     * Returns the meta object for the attribute '{@link org.switchyard.tools.models.switchyard1_0.camel.CamelQuartzBindingType#getCron <em>Cron</em>}'.
+     * Returns the meta object for the attribute '{@link org.switchyard.tools.models.switchyard1_0.camel.JmsBindingType#getUsername <em>Username</em>}'.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @return the meta object for the attribute '<em>Cron</em>'.
-     * @see org.switchyard.tools.models.switchyard1_0.camel.CamelQuartzBindingType#getCron()
-     * @see #getCamelQuartzBindingType()
+     * @return the meta object for the attribute '<em>Username</em>'.
+     * @see org.switchyard.tools.models.switchyard1_0.camel.JmsBindingType#getUsername()
+     * @see #getJmsBindingType()
      * @generated
      */
-    EAttribute getCamelQuartzBindingType_Cron();
+    EAttribute getJmsBindingType_Username();
 
     /**
-     * Returns the meta object for the attribute '{@link org.switchyard.tools.models.switchyard1_0.camel.CamelQuartzBindingType#getStateful <em>Stateful</em>}'.
+     * Returns the meta object for the attribute '{@link org.switchyard.tools.models.switchyard1_0.camel.JmsBindingType#getPassword <em>Password</em>}'.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @return the meta object for the attribute '<em>Stateful</em>'.
-     * @see org.switchyard.tools.models.switchyard1_0.camel.CamelQuartzBindingType#getStateful()
-     * @see #getCamelQuartzBindingType()
+     * @return the meta object for the attribute '<em>Password</em>'.
+     * @see org.switchyard.tools.models.switchyard1_0.camel.JmsBindingType#getPassword()
+     * @see #getJmsBindingType()
      * @generated
      */
-    EAttribute getCamelQuartzBindingType_Stateful();
+    EAttribute getJmsBindingType_Password();
 
     /**
-     * Returns the meta object for the attribute '{@link org.switchyard.tools.models.switchyard1_0.camel.CamelQuartzBindingType#getStartTime <em>Start Time</em>}'.
+     * Returns the meta object for the attribute '{@link org.switchyard.tools.models.switchyard1_0.camel.JmsBindingType#getClientId <em>Client Id</em>}'.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @return the meta object for the attribute '<em>Start Time</em>'.
-     * @see org.switchyard.tools.models.switchyard1_0.camel.CamelQuartzBindingType#getStartTime()
-     * @see #getCamelQuartzBindingType()
+     * @return the meta object for the attribute '<em>Client Id</em>'.
+     * @see org.switchyard.tools.models.switchyard1_0.camel.JmsBindingType#getClientId()
+     * @see #getJmsBindingType()
      * @generated
      */
-    EAttribute getCamelQuartzBindingType_StartTime();
+    EAttribute getJmsBindingType_ClientId();
 
     /**
-     * Returns the meta object for the attribute '{@link org.switchyard.tools.models.switchyard1_0.camel.CamelQuartzBindingType#getEndTime <em>End Time</em>}'.
+     * Returns the meta object for the attribute '{@link org.switchyard.tools.models.switchyard1_0.camel.JmsBindingType#getDurableSubscriptionName <em>Durable Subscription Name</em>}'.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @return the meta object for the attribute '<em>End Time</em>'.
-     * @see org.switchyard.tools.models.switchyard1_0.camel.CamelQuartzBindingType#getEndTime()
-     * @see #getCamelQuartzBindingType()
+     * @return the meta object for the attribute '<em>Durable Subscription Name</em>'.
+     * @see org.switchyard.tools.models.switchyard1_0.camel.JmsBindingType#getDurableSubscriptionName()
+     * @see #getJmsBindingType()
      * @generated
      */
-    EAttribute getCamelQuartzBindingType_EndTime();
+    EAttribute getJmsBindingType_DurableSubscriptionName();
 
     /**
-     * Returns the meta object for class '{@link org.switchyard.tools.models.switchyard1_0.camel.CamelSqlBindingType <em>Sql Binding Type</em>}'.
+     * Returns the meta object for the attribute '{@link org.switchyard.tools.models.switchyard1_0.camel.JmsBindingType#getConcurrentConsumers <em>Concurrent Consumers</em>}'.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @return the meta object for class '<em>Sql Binding Type</em>'.
-     * @see org.switchyard.tools.models.switchyard1_0.camel.CamelSqlBindingType
+     * @return the meta object for the attribute '<em>Concurrent Consumers</em>'.
+     * @see org.switchyard.tools.models.switchyard1_0.camel.JmsBindingType#getConcurrentConsumers()
+     * @see #getJmsBindingType()
      * @generated
      */
-    EClass getCamelSqlBindingType();
+    EAttribute getJmsBindingType_ConcurrentConsumers();
 
     /**
-     * Returns the meta object for the attribute '{@link org.switchyard.tools.models.switchyard1_0.camel.CamelSqlBindingType#getQuery <em>Query</em>}'.
+     * Returns the meta object for the attribute '{@link org.switchyard.tools.models.switchyard1_0.camel.JmsBindingType#getMaxConcurrentConsumers <em>Max Concurrent Consumers</em>}'.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @return the meta object for the attribute '<em>Query</em>'.
-     * @see org.switchyard.tools.models.switchyard1_0.camel.CamelSqlBindingType#getQuery()
-     * @see #getCamelSqlBindingType()
+     * @return the meta object for the attribute '<em>Max Concurrent Consumers</em>'.
+     * @see org.switchyard.tools.models.switchyard1_0.camel.JmsBindingType#getMaxConcurrentConsumers()
+     * @see #getJmsBindingType()
      * @generated
      */
-    EAttribute getCamelSqlBindingType_Query();
+    EAttribute getJmsBindingType_MaxConcurrentConsumers();
 
     /**
-     * Returns the meta object for the attribute '{@link org.switchyard.tools.models.switchyard1_0.camel.CamelSqlBindingType#getDataSourceRef <em>Data Source Ref</em>}'.
+     * Returns the meta object for the attribute '{@link org.switchyard.tools.models.switchyard1_0.camel.JmsBindingType#getDisableReplyTo <em>Disable Reply To</em>}'.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @return the meta object for the attribute '<em>Data Source Ref</em>'.
-     * @see org.switchyard.tools.models.switchyard1_0.camel.CamelSqlBindingType#getDataSourceRef()
-     * @see #getCamelSqlBindingType()
+     * @return the meta object for the attribute '<em>Disable Reply To</em>'.
+     * @see org.switchyard.tools.models.switchyard1_0.camel.JmsBindingType#getDisableReplyTo()
+     * @see #getJmsBindingType()
      * @generated
      */
-    EAttribute getCamelSqlBindingType_DataSourceRef();
+    EAttribute getJmsBindingType_DisableReplyTo();
 
     /**
-     * Returns the meta object for the attribute '{@link org.switchyard.tools.models.switchyard1_0.camel.CamelSqlBindingType#isBatch <em>Batch</em>}'.
+     * Returns the meta object for the attribute '{@link org.switchyard.tools.models.switchyard1_0.camel.JmsBindingType#getPreserveMessageQos <em>Preserve Message Qos</em>}'.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @return the meta object for the attribute '<em>Batch</em>'.
-     * @see org.switchyard.tools.models.switchyard1_0.camel.CamelSqlBindingType#isBatch()
-     * @see #getCamelSqlBindingType()
+     * @return the meta object for the attribute '<em>Preserve Message Qos</em>'.
+     * @see org.switchyard.tools.models.switchyard1_0.camel.JmsBindingType#getPreserveMessageQos()
+     * @see #getJmsBindingType()
      * @generated
      */
-    EAttribute getCamelSqlBindingType_Batch();
+    EAttribute getJmsBindingType_PreserveMessageQos();
 
     /**
-     * Returns the meta object for the attribute '{@link org.switchyard.tools.models.switchyard1_0.camel.CamelSqlBindingType#getPlaceholder <em>Placeholder</em>}'.
+     * Returns the meta object for the attribute '{@link org.switchyard.tools.models.switchyard1_0.camel.JmsBindingType#getDeliveryPersistent <em>Delivery Persistent</em>}'.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @return the meta object for the attribute '<em>Placeholder</em>'.
-     * @see org.switchyard.tools.models.switchyard1_0.camel.CamelSqlBindingType#getPlaceholder()
-     * @see #getCamelSqlBindingType()
+     * @return the meta object for the attribute '<em>Delivery Persistent</em>'.
+     * @see org.switchyard.tools.models.switchyard1_0.camel.JmsBindingType#getDeliveryPersistent()
+     * @see #getJmsBindingType()
      * @generated
      */
-    EAttribute getCamelSqlBindingType_Placeholder();
+    EAttribute getJmsBindingType_DeliveryPersistent();
+
+    /**
+     * Returns the meta object for the attribute '{@link org.switchyard.tools.models.switchyard1_0.camel.JmsBindingType#getPriority <em>Priority</em>}'.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @return the meta object for the attribute '<em>Priority</em>'.
+     * @see org.switchyard.tools.models.switchyard1_0.camel.JmsBindingType#getPriority()
+     * @see #getJmsBindingType()
+     * @generated
+     */
+    EAttribute getJmsBindingType_Priority();
+
+    /**
+     * Returns the meta object for the attribute '{@link org.switchyard.tools.models.switchyard1_0.camel.JmsBindingType#getExplicitQosEnabled <em>Explicit Qos Enabled</em>}'.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @return the meta object for the attribute '<em>Explicit Qos Enabled</em>'.
+     * @see org.switchyard.tools.models.switchyard1_0.camel.JmsBindingType#getExplicitQosEnabled()
+     * @see #getJmsBindingType()
+     * @generated
+     */
+    EAttribute getJmsBindingType_ExplicitQosEnabled();
+
+    /**
+     * Returns the meta object for the attribute '{@link org.switchyard.tools.models.switchyard1_0.camel.JmsBindingType#getReplyTo <em>Reply To</em>}'.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @return the meta object for the attribute '<em>Reply To</em>'.
+     * @see org.switchyard.tools.models.switchyard1_0.camel.JmsBindingType#getReplyTo()
+     * @see #getJmsBindingType()
+     * @generated
+     */
+    EAttribute getJmsBindingType_ReplyTo();
+
+    /**
+     * Returns the meta object for the attribute '{@link org.switchyard.tools.models.switchyard1_0.camel.JmsBindingType#getReplyToType <em>Reply To Type</em>}'.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @return the meta object for the attribute '<em>Reply To Type</em>'.
+     * @see org.switchyard.tools.models.switchyard1_0.camel.JmsBindingType#getReplyToType()
+     * @see #getJmsBindingType()
+     * @generated
+     */
+    EAttribute getJmsBindingType_ReplyToType();
+
+    /**
+     * Returns the meta object for the attribute '{@link org.switchyard.tools.models.switchyard1_0.camel.JmsBindingType#getRequestTimeout <em>Request Timeout</em>}'.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @return the meta object for the attribute '<em>Request Timeout</em>'.
+     * @see org.switchyard.tools.models.switchyard1_0.camel.JmsBindingType#getRequestTimeout()
+     * @see #getJmsBindingType()
+     * @generated
+     */
+    EAttribute getJmsBindingType_RequestTimeout();
+
+    /**
+     * Returns the meta object for the attribute '{@link org.switchyard.tools.models.switchyard1_0.camel.JmsBindingType#getSelector <em>Selector</em>}'.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @return the meta object for the attribute '<em>Selector</em>'.
+     * @see org.switchyard.tools.models.switchyard1_0.camel.JmsBindingType#getSelector()
+     * @see #getJmsBindingType()
+     * @generated
+     */
+    EAttribute getJmsBindingType_Selector();
+
+    /**
+     * Returns the meta object for the attribute '{@link org.switchyard.tools.models.switchyard1_0.camel.JmsBindingType#getTimeToLive <em>Time To Live</em>}'.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @return the meta object for the attribute '<em>Time To Live</em>'.
+     * @see org.switchyard.tools.models.switchyard1_0.camel.JmsBindingType#getTimeToLive()
+     * @see #getJmsBindingType()
+     * @generated
+     */
+    EAttribute getJmsBindingType_TimeToLive();
+
+    /**
+     * Returns the meta object for the attribute '{@link org.switchyard.tools.models.switchyard1_0.camel.JmsBindingType#getTransacted <em>Transacted</em>}'.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @return the meta object for the attribute '<em>Transacted</em>'.
+     * @see org.switchyard.tools.models.switchyard1_0.camel.JmsBindingType#getTransacted()
+     * @see #getJmsBindingType()
+     * @generated
+     */
+    EAttribute getJmsBindingType_Transacted();
+
+    /**
+     * Returns the meta object for the attribute '{@link org.switchyard.tools.models.switchyard1_0.camel.JmsBindingType#getTransactionManager <em>Transaction Manager</em>}'.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @return the meta object for the attribute '<em>Transaction Manager</em>'.
+     * @see org.switchyard.tools.models.switchyard1_0.camel.JmsBindingType#getTransactionManager()
+     * @see #getJmsBindingType()
+     * @generated
+     */
+    EAttribute getJmsBindingType_TransactionManager();
 
     /**
      * Returns the meta object for enum '{@link org.switchyard.tools.models.switchyard1_0.camel.TimeUnit <em>Time Unit</em>}'.
@@ -9355,16 +3626,6 @@ public interface CamelPackage extends EPackage {
      * @generated
      */
     EEnum getTimeUnit();
-
-    /**
-     * Returns the meta object for enum '{@link org.switchyard.tools.models.switchyard1_0.camel.MailConsumerAccountType <em>Mail Consumer Account Type</em>}'.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @return the meta object for enum '<em>Mail Consumer Account Type</em>'.
-     * @see org.switchyard.tools.models.switchyard1_0.camel.MailConsumerAccountType
-     * @generated
-     */
-    EEnum getMailConsumerAccountType();
 
     /**
      * Returns the meta object for data type '{@link org.switchyard.tools.models.switchyard1_0.camel.TimeUnit <em>Time Unit Object</em>}'.
@@ -9411,80 +3672,6 @@ public interface CamelPackage extends EPackage {
         EClass BASE_CAMEL_BINDING = eINSTANCE.getBaseCamelBinding();
 
         /**
-         * The meta object literal for the '{@link org.switchyard.tools.models.switchyard1_0.camel.impl.CamelAtomBindingTypeImpl <em>Atom Binding Type</em>}' class.
-         * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-         * @see org.switchyard.tools.models.switchyard1_0.camel.impl.CamelAtomBindingTypeImpl
-         * @see org.switchyard.tools.models.switchyard1_0.camel.impl.CamelPackageImpl#getCamelAtomBindingType()
-         * @generated
-         */
-		EClass CAMEL_ATOM_BINDING_TYPE = eINSTANCE.getCamelAtomBindingType();
-
-		/**
-         * The meta object literal for the '<em><b>Feed URI</b></em>' attribute feature.
-         * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-         * @generated
-         */
-		EAttribute CAMEL_ATOM_BINDING_TYPE__FEED_URI = eINSTANCE.getCamelAtomBindingType_FeedURI();
-
-		/**
-         * The meta object literal for the '<em><b>Split Entries</b></em>' attribute feature.
-         * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-         * @generated
-         */
-		EAttribute CAMEL_ATOM_BINDING_TYPE__SPLIT_ENTRIES = eINSTANCE.getCamelAtomBindingType_SplitEntries();
-
-		/**
-         * The meta object literal for the '<em><b>Filter</b></em>' attribute feature.
-         * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-         * @generated
-         */
-		EAttribute CAMEL_ATOM_BINDING_TYPE__FILTER = eINSTANCE.getCamelAtomBindingType_Filter();
-
-		/**
-         * The meta object literal for the '<em><b>Last Update</b></em>' attribute feature.
-         * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-         * @generated
-         */
-		EAttribute CAMEL_ATOM_BINDING_TYPE__LAST_UPDATE = eINSTANCE.getCamelAtomBindingType_LastUpdate();
-
-		/**
-         * The meta object literal for the '<em><b>Throttle Entries</b></em>' attribute feature.
-         * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-         * @generated
-         */
-		EAttribute CAMEL_ATOM_BINDING_TYPE__THROTTLE_ENTRIES = eINSTANCE.getCamelAtomBindingType_ThrottleEntries();
-
-		/**
-         * The meta object literal for the '<em><b>Feed Header</b></em>' attribute feature.
-         * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-         * @generated
-         */
-		EAttribute CAMEL_ATOM_BINDING_TYPE__FEED_HEADER = eINSTANCE.getCamelAtomBindingType_FeedHeader();
-
-		/**
-         * The meta object literal for the '<em><b>Sort Entries</b></em>' attribute feature.
-         * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-         * @generated
-         */
-		EAttribute CAMEL_ATOM_BINDING_TYPE__SORT_ENTRIES = eINSTANCE.getCamelAtomBindingType_SortEntries();
-
-		/**
-         * The meta object literal for the '<em><b>Consume</b></em>' containment reference feature.
-         * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
-         * @generated
-         */
-        EReference CAMEL_ATOM_BINDING_TYPE__CONSUME = eINSTANCE.getCamelAtomBindingType_Consume();
-
-        /**
          * The meta object literal for the '{@link org.switchyard.tools.models.switchyard1_0.camel.impl.CamelBindingTypeImpl <em>Binding Type</em>}' class.
          * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
@@ -9519,486 +3706,6 @@ public interface CamelPackage extends EPackage {
          * @generated
          */
         EAttribute CAMEL_DIRECT_BINDING_TYPE__NAME_ELEMENT = eINSTANCE.getCamelDirectBindingType_NameElement();
-
-        /**
-         * The meta object literal for the '{@link org.switchyard.tools.models.switchyard1_0.camel.impl.CamelFileBindingTypeImpl <em>File Binding Type</em>}' class.
-         * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-         * @see org.switchyard.tools.models.switchyard1_0.camel.impl.CamelFileBindingTypeImpl
-         * @see org.switchyard.tools.models.switchyard1_0.camel.impl.CamelPackageImpl#getCamelFileBindingType()
-         * @generated
-         */
-		EClass CAMEL_FILE_BINDING_TYPE = eINSTANCE.getCamelFileBindingType();
-
-		/**
-         * The meta object literal for the '<em><b>Consume</b></em>' containment reference feature.
-         * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-         * @generated
-         */
-		EReference CAMEL_FILE_BINDING_TYPE__CONSUME = eINSTANCE.getCamelFileBindingType_Consume();
-
-		/**
-         * The meta object literal for the '<em><b>Produce</b></em>' containment reference feature.
-         * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-         * @generated
-         */
-		EReference CAMEL_FILE_BINDING_TYPE__PRODUCE = eINSTANCE.getCamelFileBindingType_Produce();
-
-		/**
-         * The meta object literal for the '{@link org.switchyard.tools.models.switchyard1_0.camel.impl.CamelFtpBindingTypeImpl <em>Ftp Binding Type</em>}' class.
-         * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
-         * @see org.switchyard.tools.models.switchyard1_0.camel.impl.CamelFtpBindingTypeImpl
-         * @see org.switchyard.tools.models.switchyard1_0.camel.impl.CamelPackageImpl#getCamelFtpBindingType()
-         * @generated
-         */
-        EClass CAMEL_FTP_BINDING_TYPE = eINSTANCE.getCamelFtpBindingType();
-
-        /**
-         * The meta object literal for the '<em><b>Passive Mode</b></em>' attribute feature.
-         * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
-         * @generated
-         */
-        EAttribute CAMEL_FTP_BINDING_TYPE__PASSIVE_MODE = eINSTANCE.getCamelFtpBindingType_PassiveMode();
-
-        /**
-         * The meta object literal for the '<em><b>Timeout</b></em>' attribute feature.
-         * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
-         * @generated
-         */
-        EAttribute CAMEL_FTP_BINDING_TYPE__TIMEOUT = eINSTANCE.getCamelFtpBindingType_Timeout();
-
-        /**
-         * The meta object literal for the '<em><b>So Timeout</b></em>' attribute feature.
-         * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
-         * @generated
-         */
-        EAttribute CAMEL_FTP_BINDING_TYPE__SO_TIMEOUT = eINSTANCE.getCamelFtpBindingType_SoTimeout();
-
-        /**
-         * The meta object literal for the '<em><b>Site Command</b></em>' attribute feature.
-         * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
-         * @generated
-         */
-        EAttribute CAMEL_FTP_BINDING_TYPE__SITE_COMMAND = eINSTANCE.getCamelFtpBindingType_SiteCommand();
-
-        /**
-         * The meta object literal for the '{@link org.switchyard.tools.models.switchyard1_0.camel.impl.CamelFtpsBindingTypeImpl <em>Ftps Binding Type</em>}' class.
-         * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
-         * @see org.switchyard.tools.models.switchyard1_0.camel.impl.CamelFtpsBindingTypeImpl
-         * @see org.switchyard.tools.models.switchyard1_0.camel.impl.CamelPackageImpl#getCamelFtpsBindingType()
-         * @generated
-         */
-        EClass CAMEL_FTPS_BINDING_TYPE = eINSTANCE.getCamelFtpsBindingType();
-
-        /**
-         * The meta object literal for the '<em><b>Security Protocol</b></em>' attribute feature.
-         * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
-         * @generated
-         */
-        EAttribute CAMEL_FTPS_BINDING_TYPE__SECURITY_PROTOCOL = eINSTANCE.getCamelFtpsBindingType_SecurityProtocol();
-
-        /**
-         * The meta object literal for the '<em><b>Is Implicit</b></em>' attribute feature.
-         * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
-         * @generated
-         */
-        EAttribute CAMEL_FTPS_BINDING_TYPE__IS_IMPLICIT = eINSTANCE.getCamelFtpsBindingType_IsImplicit();
-
-        /**
-         * The meta object literal for the '<em><b>Exec Pbsz</b></em>' attribute feature.
-         * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
-         * @generated
-         */
-        EAttribute CAMEL_FTPS_BINDING_TYPE__EXEC_PBSZ = eINSTANCE.getCamelFtpsBindingType_ExecPbsz();
-
-        /**
-         * The meta object literal for the '<em><b>Exec Prot</b></em>' attribute feature.
-         * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
-         * @generated
-         */
-        EAttribute CAMEL_FTPS_BINDING_TYPE__EXEC_PROT = eINSTANCE.getCamelFtpsBindingType_ExecProt();
-
-        /**
-         * The meta object literal for the '<em><b>Disable Secure Data Channel Defaults</b></em>' attribute feature.
-         * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
-         * @generated
-         */
-        EAttribute CAMEL_FTPS_BINDING_TYPE__DISABLE_SECURE_DATA_CHANNEL_DEFAULTS = eINSTANCE.getCamelFtpsBindingType_DisableSecureDataChannelDefaults();
-
-        /**
-         * The meta object literal for the '{@link org.switchyard.tools.models.switchyard1_0.camel.impl.CamelImplementationTypeImpl <em>Implementation Type</em>}' class.
-         * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-         * @see org.switchyard.tools.models.switchyard1_0.camel.impl.CamelImplementationTypeImpl
-         * @see org.switchyard.tools.models.switchyard1_0.camel.impl.CamelPackageImpl#getCamelImplementationType()
-         * @generated
-         */
-		EClass CAMEL_IMPLEMENTATION_TYPE = eINSTANCE.getCamelImplementationType();
-
-		/**
-         * The meta object literal for the '<em><b>Route</b></em>' reference feature.
-         * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-         * @generated
-         */
-		EReference CAMEL_IMPLEMENTATION_TYPE__ROUTE = eINSTANCE.getCamelImplementationType_Route();
-
-		/**
-         * The meta object literal for the '<em><b>Java</b></em>' containment reference feature.
-         * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-         * @generated
-         */
-		EReference CAMEL_IMPLEMENTATION_TYPE__JAVA = eINSTANCE.getCamelImplementationType_Java();
-
-		/**
-         * The meta object literal for the '<em><b>Xml</b></em>' containment reference feature.
-         * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
-         * @generated
-         */
-        EReference CAMEL_IMPLEMENTATION_TYPE__XML = eINSTANCE.getCamelImplementationType_Xml();
-
-        /**
-         * The meta object literal for the '{@link org.switchyard.tools.models.switchyard1_0.camel.impl.CamelJmsBindingTypeImpl <em>Jms Binding Type</em>}' class.
-         * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
-         * @see org.switchyard.tools.models.switchyard1_0.camel.impl.CamelJmsBindingTypeImpl
-         * @see org.switchyard.tools.models.switchyard1_0.camel.impl.CamelPackageImpl#getCamelJmsBindingType()
-         * @generated
-         */
-        EClass CAMEL_JMS_BINDING_TYPE = eINSTANCE.getCamelJmsBindingType();
-
-        /**
-         * The meta object literal for the '<em><b>Queue</b></em>' attribute feature.
-         * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
-         * @generated
-         */
-        EAttribute CAMEL_JMS_BINDING_TYPE__QUEUE = eINSTANCE.getCamelJmsBindingType_Queue();
-
-        /**
-         * The meta object literal for the '<em><b>Topic</b></em>' attribute feature.
-         * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
-         * @generated
-         */
-        EAttribute CAMEL_JMS_BINDING_TYPE__TOPIC = eINSTANCE.getCamelJmsBindingType_Topic();
-
-        /**
-         * The meta object literal for the '<em><b>Connection Factory</b></em>' attribute feature.
-         * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
-         * @generated
-         */
-        EAttribute CAMEL_JMS_BINDING_TYPE__CONNECTION_FACTORY = eINSTANCE.getCamelJmsBindingType_ConnectionFactory();
-
-        /**
-         * The meta object literal for the '<em><b>Username</b></em>' attribute feature.
-         * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
-         * @generated
-         */
-        EAttribute CAMEL_JMS_BINDING_TYPE__USERNAME = eINSTANCE.getCamelJmsBindingType_Username();
-
-        /**
-         * The meta object literal for the '<em><b>Password</b></em>' attribute feature.
-         * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
-         * @generated
-         */
-        EAttribute CAMEL_JMS_BINDING_TYPE__PASSWORD = eINSTANCE.getCamelJmsBindingType_Password();
-
-        /**
-         * The meta object literal for the '<em><b>Client Id</b></em>' attribute feature.
-         * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
-         * @generated
-         */
-        EAttribute CAMEL_JMS_BINDING_TYPE__CLIENT_ID = eINSTANCE.getCamelJmsBindingType_ClientId();
-
-        /**
-         * The meta object literal for the '<em><b>Durable Subscription Name</b></em>' attribute feature.
-         * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
-         * @generated
-         */
-        EAttribute CAMEL_JMS_BINDING_TYPE__DURABLE_SUBSCRIPTION_NAME = eINSTANCE.getCamelJmsBindingType_DurableSubscriptionName();
-
-        /**
-         * The meta object literal for the '<em><b>Concurrent Consumers</b></em>' attribute feature.
-         * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
-         * @generated
-         */
-        EAttribute CAMEL_JMS_BINDING_TYPE__CONCURRENT_CONSUMERS = eINSTANCE.getCamelJmsBindingType_ConcurrentConsumers();
-
-        /**
-         * The meta object literal for the '<em><b>Max Concurrent Consumers</b></em>' attribute feature.
-         * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
-         * @generated
-         */
-        EAttribute CAMEL_JMS_BINDING_TYPE__MAX_CONCURRENT_CONSUMERS = eINSTANCE.getCamelJmsBindingType_MaxConcurrentConsumers();
-
-        /**
-         * The meta object literal for the '<em><b>Disable Reply To</b></em>' attribute feature.
-         * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
-         * @generated
-         */
-        EAttribute CAMEL_JMS_BINDING_TYPE__DISABLE_REPLY_TO = eINSTANCE.getCamelJmsBindingType_DisableReplyTo();
-
-        /**
-         * The meta object literal for the '<em><b>Preserve Message Qos</b></em>' attribute feature.
-         * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
-         * @generated
-         */
-        EAttribute CAMEL_JMS_BINDING_TYPE__PRESERVE_MESSAGE_QOS = eINSTANCE.getCamelJmsBindingType_PreserveMessageQos();
-
-        /**
-         * The meta object literal for the '<em><b>Delivery Persistent</b></em>' attribute feature.
-         * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
-         * @generated
-         */
-        EAttribute CAMEL_JMS_BINDING_TYPE__DELIVERY_PERSISTENT = eINSTANCE.getCamelJmsBindingType_DeliveryPersistent();
-
-        /**
-         * The meta object literal for the '<em><b>Priority</b></em>' attribute feature.
-         * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
-         * @generated
-         */
-        EAttribute CAMEL_JMS_BINDING_TYPE__PRIORITY = eINSTANCE.getCamelJmsBindingType_Priority();
-
-        /**
-         * The meta object literal for the '<em><b>Explicit Qos Enabled</b></em>' attribute feature.
-         * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
-         * @generated
-         */
-        EAttribute CAMEL_JMS_BINDING_TYPE__EXPLICIT_QOS_ENABLED = eINSTANCE.getCamelJmsBindingType_ExplicitQosEnabled();
-
-        /**
-         * The meta object literal for the '<em><b>Reply To</b></em>' attribute feature.
-         * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
-         * @generated
-         */
-        EAttribute CAMEL_JMS_BINDING_TYPE__REPLY_TO = eINSTANCE.getCamelJmsBindingType_ReplyTo();
-
-        /**
-         * The meta object literal for the '<em><b>Reply To Type</b></em>' attribute feature.
-         * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
-         * @generated
-         */
-        EAttribute CAMEL_JMS_BINDING_TYPE__REPLY_TO_TYPE = eINSTANCE.getCamelJmsBindingType_ReplyToType();
-
-        /**
-         * The meta object literal for the '<em><b>Request Timeout</b></em>' attribute feature.
-         * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
-         * @generated
-         */
-        EAttribute CAMEL_JMS_BINDING_TYPE__REQUEST_TIMEOUT = eINSTANCE.getCamelJmsBindingType_RequestTimeout();
-
-        /**
-         * The meta object literal for the '<em><b>Selector</b></em>' attribute feature.
-         * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
-         * @generated
-         */
-        EAttribute CAMEL_JMS_BINDING_TYPE__SELECTOR = eINSTANCE.getCamelJmsBindingType_Selector();
-
-        /**
-         * The meta object literal for the '<em><b>Time To Live</b></em>' attribute feature.
-         * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
-         * @generated
-         */
-        EAttribute CAMEL_JMS_BINDING_TYPE__TIME_TO_LIVE = eINSTANCE.getCamelJmsBindingType_TimeToLive();
-
-        /**
-         * The meta object literal for the '<em><b>Transacted</b></em>' attribute feature.
-         * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
-         * @generated
-         */
-        EAttribute CAMEL_JMS_BINDING_TYPE__TRANSACTED = eINSTANCE.getCamelJmsBindingType_Transacted();
-
-        /**
-         * The meta object literal for the '<em><b>Transaction Manager</b></em>' attribute feature.
-         * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
-         * @generated
-         */
-        EAttribute CAMEL_JMS_BINDING_TYPE__TRANSACTION_MANAGER = eINSTANCE.getCamelJmsBindingType_TransactionManager();
-
-        /**
-         * The meta object literal for the '{@link org.switchyard.tools.models.switchyard1_0.camel.impl.CamelNettyBindingTypeImpl <em>Netty Binding Type</em>}' class.
-         * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
-         * @see org.switchyard.tools.models.switchyard1_0.camel.impl.CamelNettyBindingTypeImpl
-         * @see org.switchyard.tools.models.switchyard1_0.camel.impl.CamelPackageImpl#getCamelNettyBindingType()
-         * @generated
-         */
-        EClass CAMEL_NETTY_BINDING_TYPE = eINSTANCE.getCamelNettyBindingType();
-
-        /**
-         * The meta object literal for the '<em><b>Host</b></em>' attribute feature.
-         * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
-         * @generated
-         */
-        EAttribute CAMEL_NETTY_BINDING_TYPE__HOST = eINSTANCE.getCamelNettyBindingType_Host();
-
-        /**
-         * The meta object literal for the '<em><b>Port</b></em>' attribute feature.
-         * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
-         * @generated
-         */
-        EAttribute CAMEL_NETTY_BINDING_TYPE__PORT = eINSTANCE.getCamelNettyBindingType_Port();
-
-        /**
-         * The meta object literal for the '<em><b>Receive Buffer Size</b></em>' attribute feature.
-         * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
-         * @generated
-         */
-        EAttribute CAMEL_NETTY_BINDING_TYPE__RECEIVE_BUFFER_SIZE = eINSTANCE.getCamelNettyBindingType_ReceiveBufferSize();
-
-        /**
-         * The meta object literal for the '<em><b>Send Buffer Size</b></em>' attribute feature.
-         * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
-         * @generated
-         */
-        EAttribute CAMEL_NETTY_BINDING_TYPE__SEND_BUFFER_SIZE = eINSTANCE.getCamelNettyBindingType_SendBufferSize();
-
-        /**
-         * The meta object literal for the '<em><b>Reuse Address</b></em>' attribute feature.
-         * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
-         * @generated
-         */
-        EAttribute CAMEL_NETTY_BINDING_TYPE__REUSE_ADDRESS = eINSTANCE.getCamelNettyBindingType_ReuseAddress();
-
-        /**
-         * The meta object literal for the '<em><b>Encoders</b></em>' attribute feature.
-         * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
-         * @generated
-         */
-        EAttribute CAMEL_NETTY_BINDING_TYPE__ENCODERS = eINSTANCE.getCamelNettyBindingType_Encoders();
-
-        /**
-         * The meta object literal for the '<em><b>Decoders</b></em>' attribute feature.
-         * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
-         * @generated
-         */
-        EAttribute CAMEL_NETTY_BINDING_TYPE__DECODERS = eINSTANCE.getCamelNettyBindingType_Decoders();
-
-        /**
-         * The meta object literal for the '<em><b>Allow Default Codec</b></em>' attribute feature.
-         * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
-         * @generated
-         */
-        EAttribute CAMEL_NETTY_BINDING_TYPE__ALLOW_DEFAULT_CODEC = eINSTANCE.getCamelNettyBindingType_AllowDefaultCodec();
-
-        /**
-         * The meta object literal for the '<em><b>Worker Count</b></em>' attribute feature.
-         * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
-         * @generated
-         */
-        EAttribute CAMEL_NETTY_BINDING_TYPE__WORKER_COUNT = eINSTANCE.getCamelNettyBindingType_WorkerCount();
-
-        /**
-         * The meta object literal for the '<em><b>Sync</b></em>' attribute feature.
-         * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
-         * @generated
-         */
-        EAttribute CAMEL_NETTY_BINDING_TYPE__SYNC = eINSTANCE.getCamelNettyBindingType_Sync();
-
-        /**
-         * The meta object literal for the '<em><b>Disconnect</b></em>' attribute feature.
-         * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
-         * @generated
-         */
-        EAttribute CAMEL_NETTY_BINDING_TYPE__DISCONNECT = eINSTANCE.getCamelNettyBindingType_Disconnect();
-
-        /**
-         * The meta object literal for the '{@link org.switchyard.tools.models.switchyard1_0.camel.impl.CamelNettyUdpBindingTypeImpl <em>Netty Udp Binding Type</em>}' class.
-         * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
-         * @see org.switchyard.tools.models.switchyard1_0.camel.impl.CamelNettyUdpBindingTypeImpl
-         * @see org.switchyard.tools.models.switchyard1_0.camel.impl.CamelPackageImpl#getCamelNettyUdpBindingType()
-         * @generated
-         */
-        EClass CAMEL_NETTY_UDP_BINDING_TYPE = eINSTANCE.getCamelNettyUdpBindingType();
-
-        /**
-         * The meta object literal for the '<em><b>Broadcast</b></em>' attribute feature.
-         * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
-         * @generated
-         */
-        EAttribute CAMEL_NETTY_UDP_BINDING_TYPE__BROADCAST = eINSTANCE.getCamelNettyUdpBindingType_Broadcast();
-
-        /**
-         * The meta object literal for the '{@link org.switchyard.tools.models.switchyard1_0.camel.impl.CamelNettyTcpBindingTypeImpl <em>Netty Tcp Binding Type</em>}' class.
-         * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
-         * @see org.switchyard.tools.models.switchyard1_0.camel.impl.CamelNettyTcpBindingTypeImpl
-         * @see org.switchyard.tools.models.switchyard1_0.camel.impl.CamelPackageImpl#getCamelNettyTcpBindingType()
-         * @generated
-         */
-        EClass CAMEL_NETTY_TCP_BINDING_TYPE = eINSTANCE.getCamelNettyTcpBindingType();
-
-        /**
-         * The meta object literal for the '<em><b>Textline</b></em>' attribute feature.
-         * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
-         * @generated
-         */
-        EAttribute CAMEL_NETTY_TCP_BINDING_TYPE__TEXTLINE = eINSTANCE.getCamelNettyTcpBindingType_Textline();
-
-        /**
-         * The meta object literal for the '<em><b>Tcp No Delay</b></em>' attribute feature.
-         * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
-         * @generated
-         */
-        EAttribute CAMEL_NETTY_TCP_BINDING_TYPE__TCP_NO_DELAY = eINSTANCE.getCamelNettyTcpBindingType_TcpNoDelay();
-
-        /**
-         * The meta object literal for the '<em><b>Keep Alive</b></em>' attribute feature.
-         * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
-         * @generated
-         */
-        EAttribute CAMEL_NETTY_TCP_BINDING_TYPE__KEEP_ALIVE = eINSTANCE.getCamelNettyTcpBindingType_KeepAlive();
 
         /**
          * The meta object literal for the '{@link org.switchyard.tools.models.switchyard1_0.camel.impl.CamelMockBindingTypeImpl <em>Mock Binding Type</em>}' class.
@@ -10103,12 +3810,12 @@ public interface CamelPackage extends EPackage {
 		EClass CAMEL_TIMER_BINDING_TYPE = eINSTANCE.getCamelTimerBindingType();
 
 		/**
-         * The meta object literal for the '<em><b>Name Element</b></em>' attribute feature.
+         * The meta object literal for the '<em><b>Camel Binding Name</b></em>' attribute feature.
          * <!-- begin-user-doc -->
          * <!-- end-user-doc -->
          * @generated
          */
-        EAttribute CAMEL_TIMER_BINDING_TYPE__NAME_ELEMENT = eINSTANCE.getCamelTimerBindingType_NameElement();
+        EAttribute CAMEL_TIMER_BINDING_TYPE__CAMEL_BINDING_NAME = eINSTANCE.getCamelTimerBindingType_CamelBindingName();
 
         /**
          * The meta object literal for the '<em><b>Time</b></em>' attribute feature.
@@ -10159,40 +3866,6 @@ public interface CamelPackage extends EPackage {
 		EAttribute CAMEL_TIMER_BINDING_TYPE__DAEMON = eINSTANCE.getCamelTimerBindingType_Daemon();
 
 		/**
-         * The meta object literal for the '{@link org.switchyard.tools.models.switchyard1_0.camel.impl.CamelSftpBindingTypeImpl <em>Sftp Binding Type</em>}' class.
-         * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
-         * @see org.switchyard.tools.models.switchyard1_0.camel.impl.CamelSftpBindingTypeImpl
-         * @see org.switchyard.tools.models.switchyard1_0.camel.impl.CamelPackageImpl#getCamelSftpBindingType()
-         * @generated
-         */
-        EClass CAMEL_SFTP_BINDING_TYPE = eINSTANCE.getCamelSftpBindingType();
-
-        /**
-         * The meta object literal for the '<em><b>Known Hosts File</b></em>' attribute feature.
-         * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
-         * @generated
-         */
-        EAttribute CAMEL_SFTP_BINDING_TYPE__KNOWN_HOSTS_FILE = eINSTANCE.getCamelSftpBindingType_KnownHostsFile();
-
-        /**
-         * The meta object literal for the '<em><b>Private Key File</b></em>' attribute feature.
-         * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
-         * @generated
-         */
-        EAttribute CAMEL_SFTP_BINDING_TYPE__PRIVATE_KEY_FILE = eINSTANCE.getCamelSftpBindingType_PrivateKeyFile();
-
-        /**
-         * The meta object literal for the '<em><b>Private Key File Passphrase</b></em>' attribute feature.
-         * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
-         * @generated
-         */
-        EAttribute CAMEL_SFTP_BINDING_TYPE__PRIVATE_KEY_FILE_PASSPHRASE = eINSTANCE.getCamelSftpBindingType_PrivateKeyFilePassphrase();
-
-        /**
          * The meta object literal for the '{@link org.switchyard.tools.models.switchyard1_0.camel.impl.DocumentRootImpl <em>Document Root</em>}' class.
          * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
@@ -10227,14 +3900,6 @@ public interface CamelPackage extends EPackage {
 		EReference DOCUMENT_ROOT__XSI_SCHEMA_LOCATION = eINSTANCE.getDocumentRoot_XSISchemaLocation();
 
 		/**
-         * The meta object literal for the '<em><b>Binding Atom</b></em>' containment reference feature.
-         * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-         * @generated
-         */
-		EReference DOCUMENT_ROOT__BINDING_ATOM = eINSTANCE.getDocumentRoot_BindingAtom();
-
-		/**
          * The meta object literal for the '<em><b>Binding Camel</b></em>' containment reference feature.
          * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
@@ -10251,30 +3916,6 @@ public interface CamelPackage extends EPackage {
 		EReference DOCUMENT_ROOT__BINDING_DIRECT = eINSTANCE.getDocumentRoot_BindingDirect();
 
 		/**
-         * The meta object literal for the '<em><b>Binding File</b></em>' containment reference feature.
-         * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-         * @generated
-         */
-		EReference DOCUMENT_ROOT__BINDING_FILE = eINSTANCE.getDocumentRoot_BindingFile();
-
-		/**
-         * The meta object literal for the '<em><b>Binding Ftp</b></em>' containment reference feature.
-         * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
-         * @generated
-         */
-        EReference DOCUMENT_ROOT__BINDING_FTP = eINSTANCE.getDocumentRoot_BindingFtp();
-
-        /**
-         * The meta object literal for the '<em><b>Binding Ftps</b></em>' containment reference feature.
-         * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
-         * @generated
-         */
-        EReference DOCUMENT_ROOT__BINDING_FTPS = eINSTANCE.getDocumentRoot_BindingFtps();
-
-        /**
          * The meta object literal for the '<em><b>Binding Jms</b></em>' containment reference feature.
          * <!-- begin-user-doc -->
          * <!-- end-user-doc -->
@@ -10299,14 +3940,6 @@ public interface CamelPackage extends EPackage {
 		EReference DOCUMENT_ROOT__BINDING_SEDA = eINSTANCE.getDocumentRoot_BindingSeda();
 
 		/**
-         * The meta object literal for the '<em><b>Binding Sftp</b></em>' containment reference feature.
-         * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
-         * @generated
-         */
-        EReference DOCUMENT_ROOT__BINDING_SFTP = eINSTANCE.getDocumentRoot_BindingSftp();
-
-        /**
          * The meta object literal for the '<em><b>Binding Timer</b></em>' containment reference feature.
          * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
@@ -10315,446 +3948,6 @@ public interface CamelPackage extends EPackage {
 		EReference DOCUMENT_ROOT__BINDING_TIMER = eINSTANCE.getDocumentRoot_BindingTimer();
 
 		/**
-         * The meta object literal for the '<em><b>Implementation Camel</b></em>' containment reference feature.
-         * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-         * @generated
-         */
-		EReference DOCUMENT_ROOT__IMPLEMENTATION_CAMEL = eINSTANCE.getDocumentRoot_ImplementationCamel();
-
-		/**
-         * The meta object literal for the '<em><b>Binding Netty UDP</b></em>' containment reference feature.
-         * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
-         * @generated
-         */
-        EReference DOCUMENT_ROOT__BINDING_NETTY_UDP = eINSTANCE.getDocumentRoot_BindingNettyUDP();
-
-        /**
-         * The meta object literal for the '<em><b>Binding Netty TCP</b></em>' containment reference feature.
-         * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
-         * @generated
-         */
-        EReference DOCUMENT_ROOT__BINDING_NETTY_TCP = eINSTANCE.getDocumentRoot_BindingNettyTCP();
-
-        /**
-         * The meta object literal for the '<em><b>Binding Quartz</b></em>' containment reference feature.
-         * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
-         * @generated
-         */
-        EReference DOCUMENT_ROOT__BINDING_QUARTZ = eINSTANCE.getDocumentRoot_BindingQuartz();
-
-        /**
-         * The meta object literal for the '<em><b>Binding Sql</b></em>' containment reference feature.
-         * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
-         * @generated
-         */
-        EReference DOCUMENT_ROOT__BINDING_SQL = eINSTANCE.getDocumentRoot_BindingSql();
-
-        /**
-         * The meta object literal for the '<em><b>Context Mapper</b></em>' containment reference feature.
-         * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
-         * @generated
-         */
-        EReference DOCUMENT_ROOT__CONTEXT_MAPPER = eINSTANCE.getDocumentRoot_ContextMapper();
-
-        /**
-         * The meta object literal for the '<em><b>Message Composer</b></em>' containment reference feature.
-         * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
-         * @generated
-         */
-        EReference DOCUMENT_ROOT__MESSAGE_COMPOSER = eINSTANCE.getDocumentRoot_MessageComposer();
-
-        /**
-         * The meta object literal for the '<em><b>Binding Mail</b></em>' containment reference feature.
-         * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
-         * @generated
-         */
-        EReference DOCUMENT_ROOT__BINDING_MAIL = eINSTANCE.getDocumentRoot_BindingMail();
-
-        /**
-         * The meta object literal for the '<em><b>Binding JPA</b></em>' containment reference feature.
-         * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-         * @generated
-         */
-		EReference DOCUMENT_ROOT__BINDING_JPA = eINSTANCE.getDocumentRoot_BindingJPA();
-
-								/**
-         * The meta object literal for the '{@link org.switchyard.tools.models.switchyard1_0.camel.impl.CamelContextMapperTypeImpl <em>Context Mapper Type</em>}' class.
-         * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
-         * @see org.switchyard.tools.models.switchyard1_0.camel.impl.CamelContextMapperTypeImpl
-         * @see org.switchyard.tools.models.switchyard1_0.camel.impl.CamelPackageImpl#getCamelContextMapperType()
-         * @generated
-         */
-        EClass CAMEL_CONTEXT_MAPPER_TYPE = eINSTANCE.getCamelContextMapperType();
-
-        /**
-         * The meta object literal for the '{@link org.switchyard.tools.models.switchyard1_0.camel.impl.CamelMessageComposerTypeImpl <em>Message Composer Type</em>}' class.
-         * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
-         * @see org.switchyard.tools.models.switchyard1_0.camel.impl.CamelMessageComposerTypeImpl
-         * @see org.switchyard.tools.models.switchyard1_0.camel.impl.CamelPackageImpl#getCamelMessageComposerType()
-         * @generated
-         */
-        EClass CAMEL_MESSAGE_COMPOSER_TYPE = eINSTANCE.getCamelMessageComposerType();
-
-        /**
-         * The meta object literal for the '{@link org.switchyard.tools.models.switchyard1_0.camel.impl.CamelMailConsumerTypeImpl <em>Mail Consumer Type</em>}' class.
-         * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
-         * @see org.switchyard.tools.models.switchyard1_0.camel.impl.CamelMailConsumerTypeImpl
-         * @see org.switchyard.tools.models.switchyard1_0.camel.impl.CamelPackageImpl#getCamelMailConsumerType()
-         * @generated
-         */
-        EClass CAMEL_MAIL_CONSUMER_TYPE = eINSTANCE.getCamelMailConsumerType();
-
-        /**
-         * The meta object literal for the '<em><b>Folder Name</b></em>' attribute feature.
-         * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
-         * @generated
-         */
-        EAttribute CAMEL_MAIL_CONSUMER_TYPE__FOLDER_NAME = eINSTANCE.getCamelMailConsumerType_FolderName();
-
-        /**
-         * The meta object literal for the '<em><b>Fetch Size</b></em>' attribute feature.
-         * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
-         * @generated
-         */
-        EAttribute CAMEL_MAIL_CONSUMER_TYPE__FETCH_SIZE = eINSTANCE.getCamelMailConsumerType_FetchSize();
-
-        /**
-         * The meta object literal for the '<em><b>Unseen</b></em>' attribute feature.
-         * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
-         * @generated
-         */
-        EAttribute CAMEL_MAIL_CONSUMER_TYPE__UNSEEN = eINSTANCE.getCamelMailConsumerType_Unseen();
-
-        /**
-         * The meta object literal for the '<em><b>Delete</b></em>' attribute feature.
-         * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
-         * @generated
-         */
-        EAttribute CAMEL_MAIL_CONSUMER_TYPE__DELETE = eINSTANCE.getCamelMailConsumerType_Delete();
-
-        /**
-         * The meta object literal for the '<em><b>Copy To</b></em>' attribute feature.
-         * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
-         * @generated
-         */
-        EAttribute CAMEL_MAIL_CONSUMER_TYPE__COPY_TO = eINSTANCE.getCamelMailConsumerType_CopyTo();
-
-        /**
-         * The meta object literal for the '<em><b>Disconnect</b></em>' attribute feature.
-         * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
-         * @generated
-         */
-        EAttribute CAMEL_MAIL_CONSUMER_TYPE__DISCONNECT = eINSTANCE.getCamelMailConsumerType_Disconnect();
-
-        /**
-         * The meta object literal for the '<em><b>Account Type</b></em>' attribute feature.
-         * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
-         * @generated
-         */
-        EAttribute CAMEL_MAIL_CONSUMER_TYPE__ACCOUNT_TYPE = eINSTANCE.getCamelMailConsumerType_AccountType();
-
-        /**
-         * The meta object literal for the '{@link org.switchyard.tools.models.switchyard1_0.camel.impl.CamelMailProducerTypeImpl <em>Mail Producer Type</em>}' class.
-         * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
-         * @see org.switchyard.tools.models.switchyard1_0.camel.impl.CamelMailProducerTypeImpl
-         * @see org.switchyard.tools.models.switchyard1_0.camel.impl.CamelPackageImpl#getCamelMailProducerType()
-         * @generated
-         */
-        EClass CAMEL_MAIL_PRODUCER_TYPE = eINSTANCE.getCamelMailProducerType();
-
-        /**
-         * The meta object literal for the '<em><b>Subject</b></em>' attribute feature.
-         * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
-         * @generated
-         */
-        EAttribute CAMEL_MAIL_PRODUCER_TYPE__SUBJECT = eINSTANCE.getCamelMailProducerType_Subject();
-
-        /**
-         * The meta object literal for the '<em><b>From</b></em>' attribute feature.
-         * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
-         * @generated
-         */
-        EAttribute CAMEL_MAIL_PRODUCER_TYPE__FROM = eINSTANCE.getCamelMailProducerType_From();
-
-        /**
-         * The meta object literal for the '<em><b>To</b></em>' attribute feature.
-         * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
-         * @generated
-         */
-        EAttribute CAMEL_MAIL_PRODUCER_TYPE__TO = eINSTANCE.getCamelMailProducerType_To();
-
-        /**
-         * The meta object literal for the '<em><b>CC</b></em>' attribute feature.
-         * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
-         * @generated
-         */
-        EAttribute CAMEL_MAIL_PRODUCER_TYPE__CC = eINSTANCE.getCamelMailProducerType_CC();
-
-        /**
-         * The meta object literal for the '<em><b>BCC</b></em>' attribute feature.
-         * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
-         * @generated
-         */
-        EAttribute CAMEL_MAIL_PRODUCER_TYPE__BCC = eINSTANCE.getCamelMailProducerType_BCC();
-
-        /**
-         * The meta object literal for the '<em><b>Reply To</b></em>' attribute feature.
-         * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
-         * @generated
-         */
-        EAttribute CAMEL_MAIL_PRODUCER_TYPE__REPLY_TO = eINSTANCE.getCamelMailProducerType_ReplyTo();
-
-        /**
-         * The meta object literal for the '{@link org.switchyard.tools.models.switchyard1_0.camel.impl.CamelMailBindingTypeImpl <em>Mail Binding Type</em>}' class.
-         * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
-         * @see org.switchyard.tools.models.switchyard1_0.camel.impl.CamelMailBindingTypeImpl
-         * @see org.switchyard.tools.models.switchyard1_0.camel.impl.CamelPackageImpl#getCamelMailBindingType()
-         * @generated
-         */
-        EClass CAMEL_MAIL_BINDING_TYPE = eINSTANCE.getCamelMailBindingType();
-
-        /**
-         * The meta object literal for the '<em><b>Host</b></em>' attribute feature.
-         * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
-         * @generated
-         */
-        EAttribute CAMEL_MAIL_BINDING_TYPE__HOST = eINSTANCE.getCamelMailBindingType_Host();
-
-        /**
-         * The meta object literal for the '<em><b>Port</b></em>' attribute feature.
-         * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
-         * @generated
-         */
-        EAttribute CAMEL_MAIL_BINDING_TYPE__PORT = eINSTANCE.getCamelMailBindingType_Port();
-
-        /**
-         * The meta object literal for the '<em><b>Username</b></em>' attribute feature.
-         * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
-         * @generated
-         */
-        EAttribute CAMEL_MAIL_BINDING_TYPE__USERNAME = eINSTANCE.getCamelMailBindingType_Username();
-
-        /**
-         * The meta object literal for the '<em><b>Password</b></em>' attribute feature.
-         * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
-         * @generated
-         */
-        EAttribute CAMEL_MAIL_BINDING_TYPE__PASSWORD = eINSTANCE.getCamelMailBindingType_Password();
-
-        /**
-         * The meta object literal for the '<em><b>Connection Timeout</b></em>' attribute feature.
-         * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
-         * @generated
-         */
-        EAttribute CAMEL_MAIL_BINDING_TYPE__CONNECTION_TIMEOUT = eINSTANCE.getCamelMailBindingType_ConnectionTimeout();
-
-        /**
-         * The meta object literal for the '<em><b>Consume</b></em>' containment reference feature.
-         * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
-         * @generated
-         */
-        EReference CAMEL_MAIL_BINDING_TYPE__CONSUME = eINSTANCE.getCamelMailBindingType_Consume();
-
-        /**
-         * The meta object literal for the '<em><b>Produce</b></em>' containment reference feature.
-         * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
-         * @generated
-         */
-        EReference CAMEL_MAIL_BINDING_TYPE__PRODUCE = eINSTANCE.getCamelMailBindingType_Produce();
-
-        /**
-         * The meta object literal for the '<em><b>Secure</b></em>' attribute feature.
-         * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
-         * @generated
-         */
-        EAttribute CAMEL_MAIL_BINDING_TYPE__SECURE = eINSTANCE.getCamelMailBindingType_Secure();
-
-        /**
-         * The meta object literal for the '{@link org.switchyard.tools.models.switchyard1_0.camel.impl.JpaProducerTypeImpl <em>Jpa Producer Type</em>}' class.
-         * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-         * @see org.switchyard.tools.models.switchyard1_0.camel.impl.JpaProducerTypeImpl
-         * @see org.switchyard.tools.models.switchyard1_0.camel.impl.CamelPackageImpl#getJpaProducerType()
-         * @generated
-         */
-		EClass JPA_PRODUCER_TYPE = eINSTANCE.getJpaProducerType();
-
-								/**
-         * The meta object literal for the '<em><b>Flush On Send</b></em>' attribute feature.
-         * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-         * @generated
-         */
-		EAttribute JPA_PRODUCER_TYPE__FLUSH_ON_SEND = eINSTANCE.getJpaProducerType_FlushOnSend();
-
-								/**
-         * The meta object literal for the '<em><b>Use Persist</b></em>' attribute feature.
-         * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-         * @generated
-         */
-		EAttribute JPA_PRODUCER_TYPE__USE_PERSIST = eINSTANCE.getJpaProducerType_UsePersist();
-
-								/**
-         * The meta object literal for the '{@link org.switchyard.tools.models.switchyard1_0.camel.impl.JpaConsumerTypeImpl <em>Jpa Consumer Type</em>}' class.
-         * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-         * @see org.switchyard.tools.models.switchyard1_0.camel.impl.JpaConsumerTypeImpl
-         * @see org.switchyard.tools.models.switchyard1_0.camel.impl.CamelPackageImpl#getJpaConsumerType()
-         * @generated
-         */
-		EClass JPA_CONSUMER_TYPE = eINSTANCE.getJpaConsumerType();
-
-								/**
-         * The meta object literal for the '<em><b>Consume Delete</b></em>' attribute feature.
-         * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-         * @generated
-         */
-		EAttribute JPA_CONSUMER_TYPE__CONSUME_DELETE = eINSTANCE.getJpaConsumerType_ConsumeDelete();
-
-								/**
-         * The meta object literal for the '<em><b>Consume Lock Entity</b></em>' attribute feature.
-         * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-         * @generated
-         */
-		EAttribute JPA_CONSUMER_TYPE__CONSUME_LOCK_ENTITY = eINSTANCE.getJpaConsumerType_ConsumeLockEntity();
-
-								/**
-         * The meta object literal for the '<em><b>Maximum Results</b></em>' attribute feature.
-         * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-         * @generated
-         */
-		EAttribute JPA_CONSUMER_TYPE__MAXIMUM_RESULTS = eINSTANCE.getJpaConsumerType_MaximumResults();
-
-								/**
-         * The meta object literal for the '<em><b>Consumer Query</b></em>' attribute feature.
-         * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-         * @generated
-         */
-		EAttribute JPA_CONSUMER_TYPE__CONSUMER_QUERY = eINSTANCE.getJpaConsumerType_ConsumerQuery();
-
-								/**
-         * The meta object literal for the '<em><b>Consumer Named Query</b></em>' attribute feature.
-         * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-         * @generated
-         */
-		EAttribute JPA_CONSUMER_TYPE__CONSUMER_NAMED_QUERY = eINSTANCE.getJpaConsumerType_ConsumerNamedQuery();
-
-								/**
-         * The meta object literal for the '<em><b>Consumer Native Query</b></em>' attribute feature.
-         * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-         * @generated
-         */
-		EAttribute JPA_CONSUMER_TYPE__CONSUMER_NATIVE_QUERY = eINSTANCE.getJpaConsumerType_ConsumerNativeQuery();
-
-								/**
-         * The meta object literal for the '<em><b>Consumer Result Class</b></em>' attribute feature.
-         * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-         * @generated
-         */
-		EAttribute JPA_CONSUMER_TYPE__CONSUMER_RESULT_CLASS = eINSTANCE.getJpaConsumerType_ConsumerResultClass();
-
-								/**
-         * The meta object literal for the '<em><b>Consumer Transacted</b></em>' attribute feature.
-         * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-         * @generated
-         */
-		EAttribute JPA_CONSUMER_TYPE__CONSUMER_TRANSACTED = eINSTANCE.getJpaConsumerType_ConsumerTransacted();
-
-								/**
-         * The meta object literal for the '{@link org.switchyard.tools.models.switchyard1_0.camel.impl.CamelJPABindingTypeImpl <em>JPA Binding Type</em>}' class.
-         * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-         * @see org.switchyard.tools.models.switchyard1_0.camel.impl.CamelJPABindingTypeImpl
-         * @see org.switchyard.tools.models.switchyard1_0.camel.impl.CamelPackageImpl#getCamelJPABindingType()
-         * @generated
-         */
-		EClass CAMEL_JPA_BINDING_TYPE = eINSTANCE.getCamelJPABindingType();
-
-								/**
-         * The meta object literal for the '<em><b>Entity Class Name</b></em>' attribute feature.
-         * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-         * @generated
-         */
-		EAttribute CAMEL_JPA_BINDING_TYPE__ENTITY_CLASS_NAME = eINSTANCE.getCamelJPABindingType_EntityClassName();
-
-								/**
-         * The meta object literal for the '<em><b>Persistence Unit</b></em>' attribute feature.
-         * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-         * @generated
-         */
-		EAttribute CAMEL_JPA_BINDING_TYPE__PERSISTENCE_UNIT = eINSTANCE.getCamelJPABindingType_PersistenceUnit();
-
-								/**
-         * The meta object literal for the '<em><b>Transaction Manager</b></em>' attribute feature.
-         * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-         * @generated
-         */
-		EAttribute CAMEL_JPA_BINDING_TYPE__TRANSACTION_MANAGER = eINSTANCE.getCamelJPABindingType_TransactionManager();
-
-								/**
-         * The meta object literal for the '<em><b>Consume</b></em>' containment reference feature.
-         * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-         * @generated
-         */
-		EReference CAMEL_JPA_BINDING_TYPE__CONSUME = eINSTANCE.getCamelJPABindingType_Consume();
-
-								/**
-         * The meta object literal for the '<em><b>Produce</b></em>' containment reference feature.
-         * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-         * @generated
-         */
-		EReference CAMEL_JPA_BINDING_TYPE__PRODUCE = eINSTANCE.getCamelJPABindingType_Produce();
-
-								/**
          * The meta object literal for the '{@link org.switchyard.tools.models.switchyard1_0.camel.impl.CamelRemoteBindingTypeImpl <em>Remote Binding Type</em>}' class.
          * <!-- begin-user-doc -->
          * <!-- end-user-doc -->
@@ -10859,78 +4052,6 @@ public interface CamelPackage extends EPackage {
          * @generated
          */
         EAttribute CAMEL_REMOTE_BINDING_TYPE__THROW_EXCEPTION_ON_CONNECT_FAILED = eINSTANCE.getCamelRemoteBindingType_ThrowExceptionOnConnectFailed();
-
-        /**
-         * The meta object literal for the '<em><b>Consume</b></em>' containment reference feature.
-         * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
-         * @generated
-         */
-        EReference CAMEL_REMOTE_BINDING_TYPE__CONSUME = eINSTANCE.getCamelRemoteBindingType_Consume();
-
-        /**
-         * The meta object literal for the '<em><b>Produce</b></em>' containment reference feature.
-         * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
-         * @generated
-         */
-        EReference CAMEL_REMOTE_BINDING_TYPE__PRODUCE = eINSTANCE.getCamelRemoteBindingType_Produce();
-
-        /**
-         * The meta object literal for the '{@link org.switchyard.tools.models.switchyard1_0.camel.impl.FileConsumerTypeImpl <em>File Consumer Type</em>}' class.
-         * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-         * @see org.switchyard.tools.models.switchyard1_0.camel.impl.FileConsumerTypeImpl
-         * @see org.switchyard.tools.models.switchyard1_0.camel.impl.CamelPackageImpl#getFileConsumerType()
-         * @generated
-         */
-		EClass FILE_CONSUMER_TYPE = eINSTANCE.getFileConsumerType();
-
-		/**
-         * The meta object literal for the '{@link org.switchyard.tools.models.switchyard1_0.camel.impl.FileProducerTypeImpl <em>File Producer Type</em>}' class.
-         * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-         * @see org.switchyard.tools.models.switchyard1_0.camel.impl.FileProducerTypeImpl
-         * @see org.switchyard.tools.models.switchyard1_0.camel.impl.CamelPackageImpl#getFileProducerType()
-         * @generated
-         */
-		EClass FILE_PRODUCER_TYPE = eINSTANCE.getFileProducerType();
-
-		/**
-         * The meta object literal for the '{@link org.switchyard.tools.models.switchyard1_0.camel.impl.JavaDSLTypeImpl <em>Java DSL Type</em>}' class.
-         * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-         * @see org.switchyard.tools.models.switchyard1_0.camel.impl.JavaDSLTypeImpl
-         * @see org.switchyard.tools.models.switchyard1_0.camel.impl.CamelPackageImpl#getJavaDSLType()
-         * @generated
-         */
-		EClass JAVA_DSL_TYPE = eINSTANCE.getJavaDSLType();
-
-		/**
-         * The meta object literal for the '<em><b>Class</b></em>' attribute feature.
-         * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-         * @generated
-         */
-		EAttribute JAVA_DSL_TYPE__CLASS = eINSTANCE.getJavaDSLType_Class();
-
-        /**
-         * The meta object literal for the '{@link org.switchyard.tools.models.switchyard1_0.camel.impl.XMLDSLTypeImpl <em>XMLDSL Type</em>}' class.
-         * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
-         * @see org.switchyard.tools.models.switchyard1_0.camel.impl.XMLDSLTypeImpl
-         * @see org.switchyard.tools.models.switchyard1_0.camel.impl.CamelPackageImpl#getXMLDSLType()
-         * @generated
-         */
-        EClass XMLDSL_TYPE = eINSTANCE.getXMLDSLType();
-
-        /**
-         * The meta object literal for the '<em><b>Path</b></em>' attribute feature.
-         * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
-         * @generated
-         */
-        EAttribute XMLDSL_TYPE__PATH = eINSTANCE.getXMLDSLType_Path();
 
         /**
          * The meta object literal for the '{@link org.switchyard.tools.models.switchyard1_0.camel.impl.ScheduledPollConsumerTypeImpl <em>Scheduled Poll Consumer Type</em>}' class.
@@ -11303,116 +4424,182 @@ public interface CamelPackage extends EPackage {
         EAttribute GENERIC_FILE_PRODUCER_TYPE__DONE_FILE_NAME = eINSTANCE.getGenericFileProducerType_DoneFileName();
 
         /**
-         * The meta object literal for the '{@link org.switchyard.tools.models.switchyard1_0.camel.impl.RemoteFileConsumerTypeImpl <em>Remote File Consumer Type</em>}' class.
+         * The meta object literal for the '{@link org.switchyard.tools.models.switchyard1_0.camel.impl.JmsBindingTypeImpl <em>Jms Binding Type</em>}' class.
          * <!-- begin-user-doc -->
          * <!-- end-user-doc -->
-         * @see org.switchyard.tools.models.switchyard1_0.camel.impl.RemoteFileConsumerTypeImpl
-         * @see org.switchyard.tools.models.switchyard1_0.camel.impl.CamelPackageImpl#getRemoteFileConsumerType()
+         * @see org.switchyard.tools.models.switchyard1_0.camel.impl.JmsBindingTypeImpl
+         * @see org.switchyard.tools.models.switchyard1_0.camel.impl.CamelPackageImpl#getJmsBindingType()
          * @generated
          */
-        EClass REMOTE_FILE_CONSUMER_TYPE = eINSTANCE.getRemoteFileConsumerType();
+        EClass JMS_BINDING_TYPE = eINSTANCE.getJmsBindingType();
 
         /**
-         * The meta object literal for the '{@link org.switchyard.tools.models.switchyard1_0.camel.impl.RemoteFileProducerTypeImpl <em>Remote File Producer Type</em>}' class.
+         * The meta object literal for the '<em><b>Queue</b></em>' attribute feature.
          * <!-- begin-user-doc -->
          * <!-- end-user-doc -->
-         * @see org.switchyard.tools.models.switchyard1_0.camel.impl.RemoteFileProducerTypeImpl
-         * @see org.switchyard.tools.models.switchyard1_0.camel.impl.CamelPackageImpl#getRemoteFileProducerType()
          * @generated
          */
-        EClass REMOTE_FILE_PRODUCER_TYPE = eINSTANCE.getRemoteFileProducerType();
+        EAttribute JMS_BINDING_TYPE__QUEUE = eINSTANCE.getJmsBindingType_Queue();
 
         /**
-         * The meta object literal for the '{@link org.switchyard.tools.models.switchyard1_0.camel.impl.CamelQuartzBindingTypeImpl <em>Quartz Binding Type</em>}' class.
+         * The meta object literal for the '<em><b>Topic</b></em>' attribute feature.
          * <!-- begin-user-doc -->
          * <!-- end-user-doc -->
-         * @see org.switchyard.tools.models.switchyard1_0.camel.impl.CamelQuartzBindingTypeImpl
-         * @see org.switchyard.tools.models.switchyard1_0.camel.impl.CamelPackageImpl#getCamelQuartzBindingType()
          * @generated
          */
-        EClass CAMEL_QUARTZ_BINDING_TYPE = eINSTANCE.getCamelQuartzBindingType();
+        EAttribute JMS_BINDING_TYPE__TOPIC = eINSTANCE.getJmsBindingType_Topic();
 
         /**
-         * The meta object literal for the '<em><b>Camel Binding Name</b></em>' attribute feature.
+         * The meta object literal for the '<em><b>Connection Factory</b></em>' attribute feature.
          * <!-- begin-user-doc -->
          * <!-- end-user-doc -->
          * @generated
          */
-        EAttribute CAMEL_QUARTZ_BINDING_TYPE__CAMEL_BINDING_NAME = eINSTANCE.getCamelQuartzBindingType_CamelBindingName();
+        EAttribute JMS_BINDING_TYPE__CONNECTION_FACTORY = eINSTANCE.getJmsBindingType_ConnectionFactory();
 
         /**
-         * The meta object literal for the '<em><b>Cron</b></em>' attribute feature.
+         * The meta object literal for the '<em><b>Username</b></em>' attribute feature.
          * <!-- begin-user-doc -->
          * <!-- end-user-doc -->
          * @generated
          */
-        EAttribute CAMEL_QUARTZ_BINDING_TYPE__CRON = eINSTANCE.getCamelQuartzBindingType_Cron();
+        EAttribute JMS_BINDING_TYPE__USERNAME = eINSTANCE.getJmsBindingType_Username();
 
         /**
-         * The meta object literal for the '<em><b>Stateful</b></em>' attribute feature.
+         * The meta object literal for the '<em><b>Password</b></em>' attribute feature.
          * <!-- begin-user-doc -->
          * <!-- end-user-doc -->
          * @generated
          */
-        EAttribute CAMEL_QUARTZ_BINDING_TYPE__STATEFUL = eINSTANCE.getCamelQuartzBindingType_Stateful();
+        EAttribute JMS_BINDING_TYPE__PASSWORD = eINSTANCE.getJmsBindingType_Password();
 
         /**
-         * The meta object literal for the '<em><b>Start Time</b></em>' attribute feature.
+         * The meta object literal for the '<em><b>Client Id</b></em>' attribute feature.
          * <!-- begin-user-doc -->
          * <!-- end-user-doc -->
          * @generated
          */
-        EAttribute CAMEL_QUARTZ_BINDING_TYPE__START_TIME = eINSTANCE.getCamelQuartzBindingType_StartTime();
+        EAttribute JMS_BINDING_TYPE__CLIENT_ID = eINSTANCE.getJmsBindingType_ClientId();
 
         /**
-         * The meta object literal for the '<em><b>End Time</b></em>' attribute feature.
+         * The meta object literal for the '<em><b>Durable Subscription Name</b></em>' attribute feature.
          * <!-- begin-user-doc -->
          * <!-- end-user-doc -->
          * @generated
          */
-        EAttribute CAMEL_QUARTZ_BINDING_TYPE__END_TIME = eINSTANCE.getCamelQuartzBindingType_EndTime();
+        EAttribute JMS_BINDING_TYPE__DURABLE_SUBSCRIPTION_NAME = eINSTANCE.getJmsBindingType_DurableSubscriptionName();
 
         /**
-         * The meta object literal for the '{@link org.switchyard.tools.models.switchyard1_0.camel.impl.CamelSqlBindingTypeImpl <em>Sql Binding Type</em>}' class.
+         * The meta object literal for the '<em><b>Concurrent Consumers</b></em>' attribute feature.
          * <!-- begin-user-doc -->
          * <!-- end-user-doc -->
-         * @see org.switchyard.tools.models.switchyard1_0.camel.impl.CamelSqlBindingTypeImpl
-         * @see org.switchyard.tools.models.switchyard1_0.camel.impl.CamelPackageImpl#getCamelSqlBindingType()
          * @generated
          */
-        EClass CAMEL_SQL_BINDING_TYPE = eINSTANCE.getCamelSqlBindingType();
+        EAttribute JMS_BINDING_TYPE__CONCURRENT_CONSUMERS = eINSTANCE.getJmsBindingType_ConcurrentConsumers();
 
         /**
-         * The meta object literal for the '<em><b>Query</b></em>' attribute feature.
+         * The meta object literal for the '<em><b>Max Concurrent Consumers</b></em>' attribute feature.
          * <!-- begin-user-doc -->
          * <!-- end-user-doc -->
          * @generated
          */
-        EAttribute CAMEL_SQL_BINDING_TYPE__QUERY = eINSTANCE.getCamelSqlBindingType_Query();
+        EAttribute JMS_BINDING_TYPE__MAX_CONCURRENT_CONSUMERS = eINSTANCE.getJmsBindingType_MaxConcurrentConsumers();
 
         /**
-         * The meta object literal for the '<em><b>Data Source Ref</b></em>' attribute feature.
+         * The meta object literal for the '<em><b>Disable Reply To</b></em>' attribute feature.
          * <!-- begin-user-doc -->
          * <!-- end-user-doc -->
          * @generated
          */
-        EAttribute CAMEL_SQL_BINDING_TYPE__DATA_SOURCE_REF = eINSTANCE.getCamelSqlBindingType_DataSourceRef();
+        EAttribute JMS_BINDING_TYPE__DISABLE_REPLY_TO = eINSTANCE.getJmsBindingType_DisableReplyTo();
 
         /**
-         * The meta object literal for the '<em><b>Batch</b></em>' attribute feature.
+         * The meta object literal for the '<em><b>Preserve Message Qos</b></em>' attribute feature.
          * <!-- begin-user-doc -->
          * <!-- end-user-doc -->
          * @generated
          */
-        EAttribute CAMEL_SQL_BINDING_TYPE__BATCH = eINSTANCE.getCamelSqlBindingType_Batch();
+        EAttribute JMS_BINDING_TYPE__PRESERVE_MESSAGE_QOS = eINSTANCE.getJmsBindingType_PreserveMessageQos();
 
         /**
-         * The meta object literal for the '<em><b>Placeholder</b></em>' attribute feature.
+         * The meta object literal for the '<em><b>Delivery Persistent</b></em>' attribute feature.
          * <!-- begin-user-doc -->
          * <!-- end-user-doc -->
          * @generated
          */
-        EAttribute CAMEL_SQL_BINDING_TYPE__PLACEHOLDER = eINSTANCE.getCamelSqlBindingType_Placeholder();
+        EAttribute JMS_BINDING_TYPE__DELIVERY_PERSISTENT = eINSTANCE.getJmsBindingType_DeliveryPersistent();
+
+        /**
+         * The meta object literal for the '<em><b>Priority</b></em>' attribute feature.
+         * <!-- begin-user-doc -->
+         * <!-- end-user-doc -->
+         * @generated
+         */
+        EAttribute JMS_BINDING_TYPE__PRIORITY = eINSTANCE.getJmsBindingType_Priority();
+
+        /**
+         * The meta object literal for the '<em><b>Explicit Qos Enabled</b></em>' attribute feature.
+         * <!-- begin-user-doc -->
+         * <!-- end-user-doc -->
+         * @generated
+         */
+        EAttribute JMS_BINDING_TYPE__EXPLICIT_QOS_ENABLED = eINSTANCE.getJmsBindingType_ExplicitQosEnabled();
+
+        /**
+         * The meta object literal for the '<em><b>Reply To</b></em>' attribute feature.
+         * <!-- begin-user-doc -->
+         * <!-- end-user-doc -->
+         * @generated
+         */
+        EAttribute JMS_BINDING_TYPE__REPLY_TO = eINSTANCE.getJmsBindingType_ReplyTo();
+
+        /**
+         * The meta object literal for the '<em><b>Reply To Type</b></em>' attribute feature.
+         * <!-- begin-user-doc -->
+         * <!-- end-user-doc -->
+         * @generated
+         */
+        EAttribute JMS_BINDING_TYPE__REPLY_TO_TYPE = eINSTANCE.getJmsBindingType_ReplyToType();
+
+        /**
+         * The meta object literal for the '<em><b>Request Timeout</b></em>' attribute feature.
+         * <!-- begin-user-doc -->
+         * <!-- end-user-doc -->
+         * @generated
+         */
+        EAttribute JMS_BINDING_TYPE__REQUEST_TIMEOUT = eINSTANCE.getJmsBindingType_RequestTimeout();
+
+        /**
+         * The meta object literal for the '<em><b>Selector</b></em>' attribute feature.
+         * <!-- begin-user-doc -->
+         * <!-- end-user-doc -->
+         * @generated
+         */
+        EAttribute JMS_BINDING_TYPE__SELECTOR = eINSTANCE.getJmsBindingType_Selector();
+
+        /**
+         * The meta object literal for the '<em><b>Time To Live</b></em>' attribute feature.
+         * <!-- begin-user-doc -->
+         * <!-- end-user-doc -->
+         * @generated
+         */
+        EAttribute JMS_BINDING_TYPE__TIME_TO_LIVE = eINSTANCE.getJmsBindingType_TimeToLive();
+
+        /**
+         * The meta object literal for the '<em><b>Transacted</b></em>' attribute feature.
+         * <!-- begin-user-doc -->
+         * <!-- end-user-doc -->
+         * @generated
+         */
+        EAttribute JMS_BINDING_TYPE__TRANSACTED = eINSTANCE.getJmsBindingType_Transacted();
+
+        /**
+         * The meta object literal for the '<em><b>Transaction Manager</b></em>' attribute feature.
+         * <!-- begin-user-doc -->
+         * <!-- end-user-doc -->
+         * @generated
+         */
+        EAttribute JMS_BINDING_TYPE__TRANSACTION_MANAGER = eINSTANCE.getJmsBindingType_TransactionManager();
 
         /**
          * The meta object literal for the '{@link org.switchyard.tools.models.switchyard1_0.camel.TimeUnit <em>Time Unit</em>}' enum.
@@ -11423,16 +4610,6 @@ public interface CamelPackage extends EPackage {
          * @generated
          */
         EEnum TIME_UNIT = eINSTANCE.getTimeUnit();
-
-        /**
-         * The meta object literal for the '{@link org.switchyard.tools.models.switchyard1_0.camel.MailConsumerAccountType <em>Mail Consumer Account Type</em>}' enum.
-         * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
-         * @see org.switchyard.tools.models.switchyard1_0.camel.MailConsumerAccountType
-         * @see org.switchyard.tools.models.switchyard1_0.camel.impl.CamelPackageImpl#getMailConsumerAccountType()
-         * @generated
-         */
-        EEnum MAIL_CONSUMER_ACCOUNT_TYPE = eINSTANCE.getMailConsumerAccountType();
 
         /**
          * The meta object literal for the '<em>Time Unit Object</em>' data type.

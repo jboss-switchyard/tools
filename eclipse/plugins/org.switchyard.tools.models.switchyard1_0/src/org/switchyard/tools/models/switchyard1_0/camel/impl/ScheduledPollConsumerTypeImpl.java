@@ -28,8 +28,8 @@ import org.switchyard.tools.models.switchyard1_0.camel.TimeUnit;
  * <ul>
  *   <li>{@link org.switchyard.tools.models.switchyard1_0.camel.impl.ScheduledPollConsumerTypeImpl#getInitialDelay <em>Initial Delay</em>}</li>
  *   <li>{@link org.switchyard.tools.models.switchyard1_0.camel.impl.ScheduledPollConsumerTypeImpl#getDelay <em>Delay</em>}</li>
- *   <li>{@link org.switchyard.tools.models.switchyard1_0.camel.impl.ScheduledPollConsumerTypeImpl#isUseFixedDelay <em>Use Fixed Delay</em>}</li>
- *   <li>{@link org.switchyard.tools.models.switchyard1_0.camel.impl.ScheduledPollConsumerTypeImpl#isSendEmptyMessageWhenIdle <em>Send Empty Message When Idle</em>}</li>
+ *   <li>{@link org.switchyard.tools.models.switchyard1_0.camel.impl.ScheduledPollConsumerTypeImpl#getUseFixedDelay <em>Use Fixed Delay</em>}</li>
+ *   <li>{@link org.switchyard.tools.models.switchyard1_0.camel.impl.ScheduledPollConsumerTypeImpl#getSendEmptyMessageWhenIdle <em>Send Empty Message When Idle</em>}</li>
  *   <li>{@link org.switchyard.tools.models.switchyard1_0.camel.impl.ScheduledPollConsumerTypeImpl#getTimeUnit <em>Time Unit</em>}</li>
  * </ul>
  * </p>
@@ -45,7 +45,7 @@ public class ScheduledPollConsumerTypeImpl extends EObjectImpl implements Schedu
      * @generated
      * @ordered
      */
-    protected static final BigInteger INITIAL_DELAY_EDEFAULT = null;
+    protected static final Integer INITIAL_DELAY_EDEFAULT = null;
 
     /**
      * The cached value of the '{@link #getInitialDelay() <em>Initial Delay</em>}' attribute.
@@ -55,7 +55,7 @@ public class ScheduledPollConsumerTypeImpl extends EObjectImpl implements Schedu
      * @generated
      * @ordered
      */
-    protected BigInteger initialDelay = INITIAL_DELAY_EDEFAULT;
+    protected Integer initialDelay = INITIAL_DELAY_EDEFAULT;
 
     /**
      * The default value of the '{@link #getDelay() <em>Delay</em>}' attribute.
@@ -65,7 +65,7 @@ public class ScheduledPollConsumerTypeImpl extends EObjectImpl implements Schedu
      * @generated
      * @ordered
      */
-    protected static final BigInteger DELAY_EDEFAULT = null;
+    protected static final Integer DELAY_EDEFAULT = null;
 
     /**
      * The cached value of the '{@link #getDelay() <em>Delay</em>}' attribute.
@@ -75,27 +75,27 @@ public class ScheduledPollConsumerTypeImpl extends EObjectImpl implements Schedu
      * @generated
      * @ordered
      */
-    protected BigInteger delay = DELAY_EDEFAULT;
+    protected Integer delay = DELAY_EDEFAULT;
 
     /**
-     * The default value of the '{@link #isUseFixedDelay() <em>Use Fixed Delay</em>}' attribute.
+     * The default value of the '{@link #getUseFixedDelay() <em>Use Fixed Delay</em>}' attribute.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @see #isUseFixedDelay()
+     * @see #getUseFixedDelay()
      * @generated
      * @ordered
      */
-    protected static final boolean USE_FIXED_DELAY_EDEFAULT = false;
+    protected static final Boolean USE_FIXED_DELAY_EDEFAULT = null;
 
     /**
-     * The cached value of the '{@link #isUseFixedDelay() <em>Use Fixed Delay</em>}' attribute.
+     * The cached value of the '{@link #getUseFixedDelay() <em>Use Fixed Delay</em>}' attribute.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @see #isUseFixedDelay()
+     * @see #getUseFixedDelay()
      * @generated
      * @ordered
      */
-    protected boolean useFixedDelay = USE_FIXED_DELAY_EDEFAULT;
+    protected Boolean useFixedDelay = USE_FIXED_DELAY_EDEFAULT;
 
     /**
      * This is true if the Use Fixed Delay attribute has been set.
@@ -107,24 +107,24 @@ public class ScheduledPollConsumerTypeImpl extends EObjectImpl implements Schedu
     protected boolean useFixedDelayESet;
 
     /**
-     * The default value of the '{@link #isSendEmptyMessageWhenIdle() <em>Send Empty Message When Idle</em>}' attribute.
+     * The default value of the '{@link #getSendEmptyMessageWhenIdle() <em>Send Empty Message When Idle</em>}' attribute.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @see #isSendEmptyMessageWhenIdle()
+     * @see #getSendEmptyMessageWhenIdle()
      * @generated
      * @ordered
      */
-    protected static final boolean SEND_EMPTY_MESSAGE_WHEN_IDLE_EDEFAULT = false;
+    protected static final Boolean SEND_EMPTY_MESSAGE_WHEN_IDLE_EDEFAULT = null;
 
     /**
-     * The cached value of the '{@link #isSendEmptyMessageWhenIdle() <em>Send Empty Message When Idle</em>}' attribute.
+     * The cached value of the '{@link #getSendEmptyMessageWhenIdle() <em>Send Empty Message When Idle</em>}' attribute.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @see #isSendEmptyMessageWhenIdle()
+     * @see #getSendEmptyMessageWhenIdle()
      * @generated
      * @ordered
      */
-    protected boolean sendEmptyMessageWhenIdle = SEND_EMPTY_MESSAGE_WHEN_IDLE_EDEFAULT;
+    protected Boolean sendEmptyMessageWhenIdle = SEND_EMPTY_MESSAGE_WHEN_IDLE_EDEFAULT;
 
     /**
      * This is true if the Send Empty Message When Idle attribute has been set.
@@ -188,7 +188,7 @@ public class ScheduledPollConsumerTypeImpl extends EObjectImpl implements Schedu
      * <!-- end-user-doc -->
      * @generated
      */
-    public BigInteger getInitialDelay() {
+    public Integer getInitialDelay() {
         return initialDelay;
     }
 
@@ -197,8 +197,8 @@ public class ScheduledPollConsumerTypeImpl extends EObjectImpl implements Schedu
      * <!-- end-user-doc -->
      * @generated
      */
-    public void setInitialDelay(BigInteger newInitialDelay) {
-        BigInteger oldInitialDelay = initialDelay;
+    public void setInitialDelay(Integer newInitialDelay) {
+        Integer oldInitialDelay = initialDelay;
         initialDelay = newInitialDelay;
         if (eNotificationRequired())
             eNotify(new ENotificationImpl(this, Notification.SET, CamelPackage.SCHEDULED_POLL_CONSUMER_TYPE__INITIAL_DELAY, oldInitialDelay, initialDelay));
@@ -209,7 +209,7 @@ public class ScheduledPollConsumerTypeImpl extends EObjectImpl implements Schedu
      * <!-- end-user-doc -->
      * @generated
      */
-    public BigInteger getDelay() {
+    public Integer getDelay() {
         return delay;
     }
 
@@ -218,8 +218,8 @@ public class ScheduledPollConsumerTypeImpl extends EObjectImpl implements Schedu
      * <!-- end-user-doc -->
      * @generated
      */
-    public void setDelay(BigInteger newDelay) {
-        BigInteger oldDelay = delay;
+    public void setDelay(Integer newDelay) {
+        Integer oldDelay = delay;
         delay = newDelay;
         if (eNotificationRequired())
             eNotify(new ENotificationImpl(this, Notification.SET, CamelPackage.SCHEDULED_POLL_CONSUMER_TYPE__DELAY, oldDelay, delay));
@@ -230,7 +230,7 @@ public class ScheduledPollConsumerTypeImpl extends EObjectImpl implements Schedu
      * <!-- end-user-doc -->
      * @generated
      */
-    public boolean isUseFixedDelay() {
+    public Boolean getUseFixedDelay() {
         return useFixedDelay;
     }
 
@@ -239,8 +239,8 @@ public class ScheduledPollConsumerTypeImpl extends EObjectImpl implements Schedu
      * <!-- end-user-doc -->
      * @generated
      */
-    public void setUseFixedDelay(boolean newUseFixedDelay) {
-        boolean oldUseFixedDelay = useFixedDelay;
+    public void setUseFixedDelay(Boolean newUseFixedDelay) {
+        Boolean oldUseFixedDelay = useFixedDelay;
         useFixedDelay = newUseFixedDelay;
         boolean oldUseFixedDelayESet = useFixedDelayESet;
         useFixedDelayESet = true;
@@ -254,7 +254,7 @@ public class ScheduledPollConsumerTypeImpl extends EObjectImpl implements Schedu
      * @generated
      */
     public void unsetUseFixedDelay() {
-        boolean oldUseFixedDelay = useFixedDelay;
+        Boolean oldUseFixedDelay = useFixedDelay;
         boolean oldUseFixedDelayESet = useFixedDelayESet;
         useFixedDelay = USE_FIXED_DELAY_EDEFAULT;
         useFixedDelayESet = false;
@@ -276,7 +276,7 @@ public class ScheduledPollConsumerTypeImpl extends EObjectImpl implements Schedu
      * <!-- end-user-doc -->
      * @generated
      */
-    public boolean isSendEmptyMessageWhenIdle() {
+    public Boolean getSendEmptyMessageWhenIdle() {
         return sendEmptyMessageWhenIdle;
     }
 
@@ -285,8 +285,8 @@ public class ScheduledPollConsumerTypeImpl extends EObjectImpl implements Schedu
      * <!-- end-user-doc -->
      * @generated
      */
-    public void setSendEmptyMessageWhenIdle(boolean newSendEmptyMessageWhenIdle) {
-        boolean oldSendEmptyMessageWhenIdle = sendEmptyMessageWhenIdle;
+    public void setSendEmptyMessageWhenIdle(Boolean newSendEmptyMessageWhenIdle) {
+        Boolean oldSendEmptyMessageWhenIdle = sendEmptyMessageWhenIdle;
         sendEmptyMessageWhenIdle = newSendEmptyMessageWhenIdle;
         boolean oldSendEmptyMessageWhenIdleESet = sendEmptyMessageWhenIdleESet;
         sendEmptyMessageWhenIdleESet = true;
@@ -300,7 +300,7 @@ public class ScheduledPollConsumerTypeImpl extends EObjectImpl implements Schedu
      * @generated
      */
     public void unsetSendEmptyMessageWhenIdle() {
-        boolean oldSendEmptyMessageWhenIdle = sendEmptyMessageWhenIdle;
+        Boolean oldSendEmptyMessageWhenIdle = sendEmptyMessageWhenIdle;
         boolean oldSendEmptyMessageWhenIdleESet = sendEmptyMessageWhenIdleESet;
         sendEmptyMessageWhenIdle = SEND_EMPTY_MESSAGE_WHEN_IDLE_EDEFAULT;
         sendEmptyMessageWhenIdleESet = false;
@@ -376,9 +376,9 @@ public class ScheduledPollConsumerTypeImpl extends EObjectImpl implements Schedu
             case CamelPackage.SCHEDULED_POLL_CONSUMER_TYPE__DELAY:
                 return getDelay();
             case CamelPackage.SCHEDULED_POLL_CONSUMER_TYPE__USE_FIXED_DELAY:
-                return isUseFixedDelay();
+                return getUseFixedDelay();
             case CamelPackage.SCHEDULED_POLL_CONSUMER_TYPE__SEND_EMPTY_MESSAGE_WHEN_IDLE:
-                return isSendEmptyMessageWhenIdle();
+                return getSendEmptyMessageWhenIdle();
             case CamelPackage.SCHEDULED_POLL_CONSUMER_TYPE__TIME_UNIT:
                 return getTimeUnit();
         }
@@ -394,10 +394,10 @@ public class ScheduledPollConsumerTypeImpl extends EObjectImpl implements Schedu
     public void eSet(int featureID, Object newValue) {
         switch (featureID) {
             case CamelPackage.SCHEDULED_POLL_CONSUMER_TYPE__INITIAL_DELAY:
-                setInitialDelay((BigInteger)newValue);
+                setInitialDelay((Integer)newValue);
                 return;
             case CamelPackage.SCHEDULED_POLL_CONSUMER_TYPE__DELAY:
-                setDelay((BigInteger)newValue);
+                setDelay((Integer)newValue);
                 return;
             case CamelPackage.SCHEDULED_POLL_CONSUMER_TYPE__USE_FIXED_DELAY:
                 setUseFixedDelay((Boolean)newValue);

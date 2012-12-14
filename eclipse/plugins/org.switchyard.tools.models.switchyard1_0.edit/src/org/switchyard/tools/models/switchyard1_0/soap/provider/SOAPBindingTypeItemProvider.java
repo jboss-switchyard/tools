@@ -79,6 +79,7 @@ public class SOAPBindingTypeItemProvider
             addWsdlPortPropertyDescriptor(object);
             addSocketAddrPropertyDescriptor(object);
             addContextPathPropertyDescriptor(object);
+            addEndpointAddressPropertyDescriptor(object);
         }
         return itemPropertyDescriptors;
     }
@@ -172,6 +173,28 @@ public class SOAPBindingTypeItemProvider
     }
 
     /**
+     * This adds a property descriptor for the Endpoint Address feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    protected void addEndpointAddressPropertyDescriptor(Object object) {
+        itemPropertyDescriptors.add
+            (createItemPropertyDescriptor
+                (((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+                 getResourceLocator(),
+                 getString("_UI_SOAPBindingType_endpointAddress_feature"),
+                 getString("_UI_PropertyDescriptor_description", "_UI_SOAPBindingType_endpointAddress_feature", "_UI_SOAPBindingType_type"),
+                 SOAPPackage.Literals.SOAP_BINDING_TYPE__ENDPOINT_ADDRESS,
+                 true,
+                 false,
+                 false,
+                 ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
+                 null,
+                 null));
+    }
+
+    /**
      * This returns SOAPBindingType.gif.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
@@ -212,6 +235,7 @@ public class SOAPBindingTypeItemProvider
             case SOAPPackage.SOAP_BINDING_TYPE__WSDL_PORT:
             case SOAPPackage.SOAP_BINDING_TYPE__SOCKET_ADDR:
             case SOAPPackage.SOAP_BINDING_TYPE__CONTEXT_PATH:
+            case SOAPPackage.SOAP_BINDING_TYPE__ENDPOINT_ADDRESS:
                 fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
                 return;
         }

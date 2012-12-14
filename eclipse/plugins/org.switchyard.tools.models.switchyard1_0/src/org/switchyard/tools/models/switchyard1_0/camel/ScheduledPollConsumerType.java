@@ -20,8 +20,8 @@ import org.eclipse.emf.ecore.EObject;
  * <ul>
  *   <li>{@link org.switchyard.tools.models.switchyard1_0.camel.ScheduledPollConsumerType#getInitialDelay <em>Initial Delay</em>}</li>
  *   <li>{@link org.switchyard.tools.models.switchyard1_0.camel.ScheduledPollConsumerType#getDelay <em>Delay</em>}</li>
- *   <li>{@link org.switchyard.tools.models.switchyard1_0.camel.ScheduledPollConsumerType#isUseFixedDelay <em>Use Fixed Delay</em>}</li>
- *   <li>{@link org.switchyard.tools.models.switchyard1_0.camel.ScheduledPollConsumerType#isSendEmptyMessageWhenIdle <em>Send Empty Message When Idle</em>}</li>
+ *   <li>{@link org.switchyard.tools.models.switchyard1_0.camel.ScheduledPollConsumerType#getUseFixedDelay <em>Use Fixed Delay</em>}</li>
+ *   <li>{@link org.switchyard.tools.models.switchyard1_0.camel.ScheduledPollConsumerType#getSendEmptyMessageWhenIdle <em>Send Empty Message When Idle</em>}</li>
  *   <li>{@link org.switchyard.tools.models.switchyard1_0.camel.ScheduledPollConsumerType#getTimeUnit <em>Time Unit</em>}</li>
  * </ul>
  * </p>
@@ -40,13 +40,13 @@ public interface ScheduledPollConsumerType extends EObject {
      * </p>
      * <!-- end-user-doc -->
      * @return the value of the '<em>Initial Delay</em>' attribute.
-     * @see #setInitialDelay(BigInteger)
+     * @see #setInitialDelay(Integer)
      * @see org.switchyard.tools.models.switchyard1_0.camel.CamelPackage#getScheduledPollConsumerType_InitialDelay()
-     * @model dataType="org.eclipse.emf.ecore.xml.type.Integer"
+     * @model dataType="org.eclipse.emf.ecore.xml.type.IntObject"
      *        extendedMetaData="kind='element' name='initialDelay' namespace='##targetNamespace'"
      * @generated
      */
-    BigInteger getInitialDelay();
+    Integer getInitialDelay();
 
     /**
      * Sets the value of the '{@link org.switchyard.tools.models.switchyard1_0.camel.ScheduledPollConsumerType#getInitialDelay <em>Initial Delay</em>}' attribute.
@@ -56,7 +56,7 @@ public interface ScheduledPollConsumerType extends EObject {
      * @see #getInitialDelay()
      * @generated
      */
-    void setInitialDelay(BigInteger value);
+    void setInitialDelay(Integer value);
 
     /**
      * Returns the value of the '<em><b>Delay</b></em>' attribute.
@@ -67,13 +67,13 @@ public interface ScheduledPollConsumerType extends EObject {
      * </p>
      * <!-- end-user-doc -->
      * @return the value of the '<em>Delay</em>' attribute.
-     * @see #setDelay(BigInteger)
+     * @see #setDelay(Integer)
      * @see org.switchyard.tools.models.switchyard1_0.camel.CamelPackage#getScheduledPollConsumerType_Delay()
-     * @model dataType="org.eclipse.emf.ecore.xml.type.Integer"
+     * @model dataType="org.eclipse.emf.ecore.xml.type.IntObject"
      *        extendedMetaData="kind='element' name='delay' namespace='##targetNamespace'"
      * @generated
      */
-    BigInteger getDelay();
+    Integer getDelay();
 
     /**
      * Sets the value of the '{@link org.switchyard.tools.models.switchyard1_0.camel.ScheduledPollConsumerType#getDelay <em>Delay</em>}' attribute.
@@ -83,7 +83,7 @@ public interface ScheduledPollConsumerType extends EObject {
      * @see #getDelay()
      * @generated
      */
-    void setDelay(BigInteger value);
+    void setDelay(Integer value);
 
     /**
      * Returns the value of the '<em><b>Use Fixed Delay</b></em>' attribute.
@@ -96,45 +96,45 @@ public interface ScheduledPollConsumerType extends EObject {
      * @return the value of the '<em>Use Fixed Delay</em>' attribute.
      * @see #isSetUseFixedDelay()
      * @see #unsetUseFixedDelay()
-     * @see #setUseFixedDelay(boolean)
+     * @see #setUseFixedDelay(Boolean)
      * @see org.switchyard.tools.models.switchyard1_0.camel.CamelPackage#getScheduledPollConsumerType_UseFixedDelay()
-     * @model unsettable="true" dataType="org.eclipse.emf.ecore.xml.type.Boolean"
+     * @model unsettable="true" dataType="org.eclipse.emf.ecore.xml.type.BooleanObject"
      *        extendedMetaData="kind='element' name='useFixedDelay' namespace='##targetNamespace'"
      * @generated
      */
-    boolean isUseFixedDelay();
+    Boolean getUseFixedDelay();
 
     /**
-     * Sets the value of the '{@link org.switchyard.tools.models.switchyard1_0.camel.ScheduledPollConsumerType#isUseFixedDelay <em>Use Fixed Delay</em>}' attribute.
+     * Sets the value of the '{@link org.switchyard.tools.models.switchyard1_0.camel.ScheduledPollConsumerType#getUseFixedDelay <em>Use Fixed Delay</em>}' attribute.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @param value the new value of the '<em>Use Fixed Delay</em>' attribute.
      * @see #isSetUseFixedDelay()
      * @see #unsetUseFixedDelay()
-     * @see #isUseFixedDelay()
+     * @see #getUseFixedDelay()
      * @generated
      */
-    void setUseFixedDelay(boolean value);
+    void setUseFixedDelay(Boolean value);
 
     /**
-     * Unsets the value of the '{@link org.switchyard.tools.models.switchyard1_0.camel.ScheduledPollConsumerType#isUseFixedDelay <em>Use Fixed Delay</em>}' attribute.
+     * Unsets the value of the '{@link org.switchyard.tools.models.switchyard1_0.camel.ScheduledPollConsumerType#getUseFixedDelay <em>Use Fixed Delay</em>}' attribute.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @see #isSetUseFixedDelay()
-     * @see #isUseFixedDelay()
-     * @see #setUseFixedDelay(boolean)
+     * @see #getUseFixedDelay()
+     * @see #setUseFixedDelay(Boolean)
      * @generated
      */
     void unsetUseFixedDelay();
 
     /**
-     * Returns whether the value of the '{@link org.switchyard.tools.models.switchyard1_0.camel.ScheduledPollConsumerType#isUseFixedDelay <em>Use Fixed Delay</em>}' attribute is set.
+     * Returns whether the value of the '{@link org.switchyard.tools.models.switchyard1_0.camel.ScheduledPollConsumerType#getUseFixedDelay <em>Use Fixed Delay</em>}' attribute is set.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @return whether the value of the '<em>Use Fixed Delay</em>' attribute is set.
      * @see #unsetUseFixedDelay()
-     * @see #isUseFixedDelay()
-     * @see #setUseFixedDelay(boolean)
+     * @see #getUseFixedDelay()
+     * @see #setUseFixedDelay(Boolean)
      * @generated
      */
     boolean isSetUseFixedDelay();
@@ -150,45 +150,45 @@ public interface ScheduledPollConsumerType extends EObject {
      * @return the value of the '<em>Send Empty Message When Idle</em>' attribute.
      * @see #isSetSendEmptyMessageWhenIdle()
      * @see #unsetSendEmptyMessageWhenIdle()
-     * @see #setSendEmptyMessageWhenIdle(boolean)
+     * @see #setSendEmptyMessageWhenIdle(Boolean)
      * @see org.switchyard.tools.models.switchyard1_0.camel.CamelPackage#getScheduledPollConsumerType_SendEmptyMessageWhenIdle()
-     * @model unsettable="true" dataType="org.eclipse.emf.ecore.xml.type.Boolean"
+     * @model unsettable="true" dataType="org.eclipse.emf.ecore.xml.type.BooleanObject"
      *        extendedMetaData="kind='element' name='sendEmptyMessageWhenIdle' namespace='##targetNamespace'"
      * @generated
      */
-    boolean isSendEmptyMessageWhenIdle();
+    Boolean getSendEmptyMessageWhenIdle();
 
     /**
-     * Sets the value of the '{@link org.switchyard.tools.models.switchyard1_0.camel.ScheduledPollConsumerType#isSendEmptyMessageWhenIdle <em>Send Empty Message When Idle</em>}' attribute.
+     * Sets the value of the '{@link org.switchyard.tools.models.switchyard1_0.camel.ScheduledPollConsumerType#getSendEmptyMessageWhenIdle <em>Send Empty Message When Idle</em>}' attribute.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @param value the new value of the '<em>Send Empty Message When Idle</em>' attribute.
      * @see #isSetSendEmptyMessageWhenIdle()
      * @see #unsetSendEmptyMessageWhenIdle()
-     * @see #isSendEmptyMessageWhenIdle()
+     * @see #getSendEmptyMessageWhenIdle()
      * @generated
      */
-    void setSendEmptyMessageWhenIdle(boolean value);
+    void setSendEmptyMessageWhenIdle(Boolean value);
 
     /**
-     * Unsets the value of the '{@link org.switchyard.tools.models.switchyard1_0.camel.ScheduledPollConsumerType#isSendEmptyMessageWhenIdle <em>Send Empty Message When Idle</em>}' attribute.
+     * Unsets the value of the '{@link org.switchyard.tools.models.switchyard1_0.camel.ScheduledPollConsumerType#getSendEmptyMessageWhenIdle <em>Send Empty Message When Idle</em>}' attribute.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @see #isSetSendEmptyMessageWhenIdle()
-     * @see #isSendEmptyMessageWhenIdle()
-     * @see #setSendEmptyMessageWhenIdle(boolean)
+     * @see #getSendEmptyMessageWhenIdle()
+     * @see #setSendEmptyMessageWhenIdle(Boolean)
      * @generated
      */
     void unsetSendEmptyMessageWhenIdle();
 
     /**
-     * Returns whether the value of the '{@link org.switchyard.tools.models.switchyard1_0.camel.ScheduledPollConsumerType#isSendEmptyMessageWhenIdle <em>Send Empty Message When Idle</em>}' attribute is set.
+     * Returns whether the value of the '{@link org.switchyard.tools.models.switchyard1_0.camel.ScheduledPollConsumerType#getSendEmptyMessageWhenIdle <em>Send Empty Message When Idle</em>}' attribute is set.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @return whether the value of the '<em>Send Empty Message When Idle</em>' attribute is set.
      * @see #unsetSendEmptyMessageWhenIdle()
-     * @see #isSendEmptyMessageWhenIdle()
-     * @see #setSendEmptyMessageWhenIdle(boolean)
+     * @see #getSendEmptyMessageWhenIdle()
+     * @see #setSendEmptyMessageWhenIdle(Boolean)
      * @generated
      */
     boolean isSetSendEmptyMessageWhenIdle();

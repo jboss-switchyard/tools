@@ -59,6 +59,7 @@ import org.switchyard.tools.models.switchyard1_0.camel.FileProducerType;
 import org.switchyard.tools.models.switchyard1_0.camel.GenericFileBindingType;
 import org.switchyard.tools.models.switchyard1_0.camel.GenericFileConsumerType;
 import org.switchyard.tools.models.switchyard1_0.camel.GenericFileProducerType;
+import org.switchyard.tools.models.switchyard1_0.camel.JmsBindingType;
 import org.switchyard.tools.models.switchyard1_0.camel.JavaDSLType;
 import org.switchyard.tools.models.switchyard1_0.camel.JpaConsumerType;
 import org.switchyard.tools.models.switchyard1_0.camel.JpaProducerType;
@@ -115,13 +116,6 @@ public class CamelPackageImpl extends EPackageImpl implements CamelPackage {
 	 * <!-- end-user-doc -->
      * @generated
      */
-	private EClass camelAtomBindingTypeEClass = null;
-
-	/**
-     * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-     * @generated
-     */
 	private EClass camelBindingTypeEClass = null;
 
 	/**
@@ -132,62 +126,6 @@ public class CamelPackageImpl extends EPackageImpl implements CamelPackage {
 	private EClass camelDirectBindingTypeEClass = null;
 
 	/**
-     * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-     * @generated
-     */
-	private EClass camelFileBindingTypeEClass = null;
-
-	/**
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    private EClass camelFtpBindingTypeEClass = null;
-
-    /**
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    private EClass camelFtpsBindingTypeEClass = null;
-
-    /**
-     * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-     * @generated
-     */
-	private EClass camelImplementationTypeEClass = null;
-
-	/**
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    private EClass camelJmsBindingTypeEClass = null;
-
-    /**
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    private EClass camelNettyBindingTypeEClass = null;
-
-    /**
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    private EClass camelNettyUdpBindingTypeEClass = null;
-
-    /**
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    private EClass camelNettyTcpBindingTypeEClass = null;
-
-    /**
      * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
      * @generated
@@ -210,13 +148,6 @@ public class CamelPackageImpl extends EPackageImpl implements CamelPackage {
 
 	/**
      * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    private EClass camelSftpBindingTypeEClass = null;
-
-    /**
-     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
      * @generated
      */
@@ -227,91 +158,7 @@ public class CamelPackageImpl extends EPackageImpl implements CamelPackage {
      * <!-- end-user-doc -->
      * @generated
      */
-    private EClass camelContextMapperTypeEClass = null;
-
-    /**
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    private EClass camelMessageComposerTypeEClass = null;
-
-    /**
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    private EClass camelMailConsumerTypeEClass = null;
-
-    /**
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    private EClass camelMailProducerTypeEClass = null;
-
-    /**
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    private EClass camelMailBindingTypeEClass = null;
-
-    /**
-     * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-     * @generated
-     */
-	private EClass jpaProducerTypeEClass = null;
-
-				/**
-     * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-     * @generated
-     */
-	private EClass jpaConsumerTypeEClass = null;
-
-				/**
-     * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-     * @generated
-     */
-	private EClass camelJPABindingTypeEClass = null;
-
-				/**
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
     private EClass camelRemoteBindingTypeEClass = null;
-
-    /**
-     * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-     * @generated
-     */
-	private EClass fileConsumerTypeEClass = null;
-
-	/**
-     * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-     * @generated
-     */
-	private EClass fileProducerTypeEClass = null;
-
-	/**
-     * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-     * @generated
-     */
-	private EClass javaDSLTypeEClass = null;
-
-	/**
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    private EClass xmldslTypeEClass = null;
 
     /**
      * <!-- begin-user-doc -->
@@ -353,28 +200,7 @@ public class CamelPackageImpl extends EPackageImpl implements CamelPackage {
      * <!-- end-user-doc -->
      * @generated
      */
-    private EClass remoteFileConsumerTypeEClass = null;
-
-    /**
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    private EClass remoteFileProducerTypeEClass = null;
-
-    /**
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    private EClass camelQuartzBindingTypeEClass = null;
-
-    /**
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    private EClass camelSqlBindingTypeEClass = null;
+    private EClass jmsBindingTypeEClass = null;
 
     /**
      * <!-- begin-user-doc -->
@@ -382,13 +208,6 @@ public class CamelPackageImpl extends EPackageImpl implements CamelPackage {
      * @generated
      */
     private EEnum timeUnitEEnum = null;
-
-    /**
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    private EEnum mailConsumerAccountTypeEEnum = null;
 
     /**
      * <!-- begin-user-doc -->
@@ -530,87 +349,6 @@ public class CamelPackageImpl extends EPackageImpl implements CamelPackage {
 	 * <!-- end-user-doc -->
      * @generated
      */
-	public EClass getCamelAtomBindingType() {
-        return camelAtomBindingTypeEClass;
-    }
-
-	/**
-     * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-     * @generated
-     */
-	public EAttribute getCamelAtomBindingType_FeedURI() {
-        return (EAttribute)camelAtomBindingTypeEClass.getEStructuralFeatures().get(0);
-    }
-
-	/**
-     * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-     * @generated
-     */
-	public EAttribute getCamelAtomBindingType_SplitEntries() {
-        return (EAttribute)camelAtomBindingTypeEClass.getEStructuralFeatures().get(1);
-    }
-
-	/**
-     * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-     * @generated
-     */
-	public EAttribute getCamelAtomBindingType_Filter() {
-        return (EAttribute)camelAtomBindingTypeEClass.getEStructuralFeatures().get(2);
-    }
-
-	/**
-     * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-     * @generated
-     */
-	public EAttribute getCamelAtomBindingType_LastUpdate() {
-        return (EAttribute)camelAtomBindingTypeEClass.getEStructuralFeatures().get(3);
-    }
-
-	/**
-     * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-     * @generated
-     */
-	public EAttribute getCamelAtomBindingType_ThrottleEntries() {
-        return (EAttribute)camelAtomBindingTypeEClass.getEStructuralFeatures().get(4);
-    }
-
-	/**
-     * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-     * @generated
-     */
-	public EAttribute getCamelAtomBindingType_FeedHeader() {
-        return (EAttribute)camelAtomBindingTypeEClass.getEStructuralFeatures().get(5);
-    }
-
-	/**
-     * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-     * @generated
-     */
-	public EAttribute getCamelAtomBindingType_SortEntries() {
-        return (EAttribute)camelAtomBindingTypeEClass.getEStructuralFeatures().get(6);
-    }
-
-	/**
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    public EReference getCamelAtomBindingType_Consume() {
-        return (EReference)camelAtomBindingTypeEClass.getEStructuralFeatures().get(7);
-    }
-
-    /**
-     * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-     * @generated
-     */
 	public EClass getCamelBindingType() {
         return camelBindingTypeEClass;
     }
@@ -640,528 +378,6 @@ public class CamelPackageImpl extends EPackageImpl implements CamelPackage {
      */
     public EAttribute getCamelDirectBindingType_NameElement() {
         return (EAttribute)camelDirectBindingTypeEClass.getEStructuralFeatures().get(0);
-    }
-
-    /**
-     * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-     * @generated
-     */
-	public EClass getCamelFileBindingType() {
-        return camelFileBindingTypeEClass;
-    }
-
-	/**
-     * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-     * @generated
-     */
-	public EReference getCamelFileBindingType_Consume() {
-        return (EReference)camelFileBindingTypeEClass.getEStructuralFeatures().get(0);
-    }
-
-	/**
-     * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-     * @generated
-     */
-	public EReference getCamelFileBindingType_Produce() {
-        return (EReference)camelFileBindingTypeEClass.getEStructuralFeatures().get(1);
-    }
-
-	/**
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    public EClass getCamelFtpBindingType() {
-        return camelFtpBindingTypeEClass;
-    }
-
-    /**
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    public EAttribute getCamelFtpBindingType_PassiveMode() {
-        return (EAttribute)camelFtpBindingTypeEClass.getEStructuralFeatures().get(0);
-    }
-
-    /**
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    public EAttribute getCamelFtpBindingType_Timeout() {
-        return (EAttribute)camelFtpBindingTypeEClass.getEStructuralFeatures().get(1);
-    }
-
-    /**
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    public EAttribute getCamelFtpBindingType_SoTimeout() {
-        return (EAttribute)camelFtpBindingTypeEClass.getEStructuralFeatures().get(2);
-    }
-
-    /**
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    public EAttribute getCamelFtpBindingType_SiteCommand() {
-        return (EAttribute)camelFtpBindingTypeEClass.getEStructuralFeatures().get(3);
-    }
-
-    /**
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    public EClass getCamelFtpsBindingType() {
-        return camelFtpsBindingTypeEClass;
-    }
-
-    /**
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    public EAttribute getCamelFtpsBindingType_SecurityProtocol() {
-        return (EAttribute)camelFtpsBindingTypeEClass.getEStructuralFeatures().get(0);
-    }
-
-    /**
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    public EAttribute getCamelFtpsBindingType_IsImplicit() {
-        return (EAttribute)camelFtpsBindingTypeEClass.getEStructuralFeatures().get(1);
-    }
-
-    /**
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    public EAttribute getCamelFtpsBindingType_ExecPbsz() {
-        return (EAttribute)camelFtpsBindingTypeEClass.getEStructuralFeatures().get(2);
-    }
-
-    /**
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    public EAttribute getCamelFtpsBindingType_ExecProt() {
-        return (EAttribute)camelFtpsBindingTypeEClass.getEStructuralFeatures().get(3);
-    }
-
-    /**
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    public EAttribute getCamelFtpsBindingType_DisableSecureDataChannelDefaults() {
-        return (EAttribute)camelFtpsBindingTypeEClass.getEStructuralFeatures().get(4);
-    }
-
-    /**
-     * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-     * @generated
-     */
-	public EClass getCamelImplementationType() {
-        return camelImplementationTypeEClass;
-    }
-
-	/**
-     * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-     * @generated
-     */
-	public EReference getCamelImplementationType_Route() {
-        return (EReference)camelImplementationTypeEClass.getEStructuralFeatures().get(0);
-    }
-
-	/**
-     * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-     * @generated
-     */
-	public EReference getCamelImplementationType_Java() {
-        return (EReference)camelImplementationTypeEClass.getEStructuralFeatures().get(1);
-    }
-
-	/**
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    public EReference getCamelImplementationType_Xml() {
-        return (EReference)camelImplementationTypeEClass.getEStructuralFeatures().get(2);
-    }
-
-    /**
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    public EClass getCamelJmsBindingType() {
-        return camelJmsBindingTypeEClass;
-    }
-
-    /**
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    public EAttribute getCamelJmsBindingType_Queue() {
-        return (EAttribute)camelJmsBindingTypeEClass.getEStructuralFeatures().get(0);
-    }
-
-    /**
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    public EAttribute getCamelJmsBindingType_Topic() {
-        return (EAttribute)camelJmsBindingTypeEClass.getEStructuralFeatures().get(1);
-    }
-
-    /**
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    public EAttribute getCamelJmsBindingType_ConnectionFactory() {
-        return (EAttribute)camelJmsBindingTypeEClass.getEStructuralFeatures().get(2);
-    }
-
-    /**
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    public EAttribute getCamelJmsBindingType_Username() {
-        return (EAttribute)camelJmsBindingTypeEClass.getEStructuralFeatures().get(3);
-    }
-
-    /**
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    public EAttribute getCamelJmsBindingType_Password() {
-        return (EAttribute)camelJmsBindingTypeEClass.getEStructuralFeatures().get(4);
-    }
-
-    /**
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    public EAttribute getCamelJmsBindingType_ClientId() {
-        return (EAttribute)camelJmsBindingTypeEClass.getEStructuralFeatures().get(5);
-    }
-
-    /**
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    public EAttribute getCamelJmsBindingType_DurableSubscriptionName() {
-        return (EAttribute)camelJmsBindingTypeEClass.getEStructuralFeatures().get(6);
-    }
-
-    /**
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    public EAttribute getCamelJmsBindingType_ConcurrentConsumers() {
-        return (EAttribute)camelJmsBindingTypeEClass.getEStructuralFeatures().get(7);
-    }
-
-    /**
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    public EAttribute getCamelJmsBindingType_MaxConcurrentConsumers() {
-        return (EAttribute)camelJmsBindingTypeEClass.getEStructuralFeatures().get(8);
-    }
-
-    /**
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    public EAttribute getCamelJmsBindingType_DisableReplyTo() {
-        return (EAttribute)camelJmsBindingTypeEClass.getEStructuralFeatures().get(9);
-    }
-
-    /**
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    public EAttribute getCamelJmsBindingType_PreserveMessageQos() {
-        return (EAttribute)camelJmsBindingTypeEClass.getEStructuralFeatures().get(10);
-    }
-
-    /**
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    public EAttribute getCamelJmsBindingType_DeliveryPersistent() {
-        return (EAttribute)camelJmsBindingTypeEClass.getEStructuralFeatures().get(11);
-    }
-
-    /**
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    public EAttribute getCamelJmsBindingType_Priority() {
-        return (EAttribute)camelJmsBindingTypeEClass.getEStructuralFeatures().get(12);
-    }
-
-    /**
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    public EAttribute getCamelJmsBindingType_ExplicitQosEnabled() {
-        return (EAttribute)camelJmsBindingTypeEClass.getEStructuralFeatures().get(13);
-    }
-
-    /**
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    public EAttribute getCamelJmsBindingType_ReplyTo() {
-        return (EAttribute)camelJmsBindingTypeEClass.getEStructuralFeatures().get(14);
-    }
-
-    /**
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    public EAttribute getCamelJmsBindingType_ReplyToType() {
-        return (EAttribute)camelJmsBindingTypeEClass.getEStructuralFeatures().get(15);
-    }
-
-    /**
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    public EAttribute getCamelJmsBindingType_RequestTimeout() {
-        return (EAttribute)camelJmsBindingTypeEClass.getEStructuralFeatures().get(16);
-    }
-
-    /**
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    public EAttribute getCamelJmsBindingType_Selector() {
-        return (EAttribute)camelJmsBindingTypeEClass.getEStructuralFeatures().get(17);
-    }
-
-    /**
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    public EAttribute getCamelJmsBindingType_TimeToLive() {
-        return (EAttribute)camelJmsBindingTypeEClass.getEStructuralFeatures().get(18);
-    }
-
-    /**
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    public EAttribute getCamelJmsBindingType_Transacted() {
-        return (EAttribute)camelJmsBindingTypeEClass.getEStructuralFeatures().get(19);
-    }
-
-    /**
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    public EAttribute getCamelJmsBindingType_TransactionManager() {
-        return (EAttribute)camelJmsBindingTypeEClass.getEStructuralFeatures().get(20);
-    }
-
-    /**
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    public EClass getCamelNettyBindingType() {
-        return camelNettyBindingTypeEClass;
-    }
-
-    /**
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    public EAttribute getCamelNettyBindingType_Host() {
-        return (EAttribute)camelNettyBindingTypeEClass.getEStructuralFeatures().get(0);
-    }
-
-    /**
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    public EAttribute getCamelNettyBindingType_Port() {
-        return (EAttribute)camelNettyBindingTypeEClass.getEStructuralFeatures().get(1);
-    }
-
-    /**
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    public EAttribute getCamelNettyBindingType_ReceiveBufferSize() {
-        return (EAttribute)camelNettyBindingTypeEClass.getEStructuralFeatures().get(2);
-    }
-
-    /**
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    public EAttribute getCamelNettyBindingType_SendBufferSize() {
-        return (EAttribute)camelNettyBindingTypeEClass.getEStructuralFeatures().get(3);
-    }
-
-    /**
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    public EAttribute getCamelNettyBindingType_ReuseAddress() {
-        return (EAttribute)camelNettyBindingTypeEClass.getEStructuralFeatures().get(4);
-    }
-
-    /**
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    public EAttribute getCamelNettyBindingType_Encoders() {
-        return (EAttribute)camelNettyBindingTypeEClass.getEStructuralFeatures().get(5);
-    }
-
-    /**
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    public EAttribute getCamelNettyBindingType_Decoders() {
-        return (EAttribute)camelNettyBindingTypeEClass.getEStructuralFeatures().get(6);
-    }
-
-    /**
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    public EAttribute getCamelNettyBindingType_AllowDefaultCodec() {
-        return (EAttribute)camelNettyBindingTypeEClass.getEStructuralFeatures().get(7);
-    }
-
-    /**
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    public EAttribute getCamelNettyBindingType_WorkerCount() {
-        return (EAttribute)camelNettyBindingTypeEClass.getEStructuralFeatures().get(8);
-    }
-
-    /**
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    public EAttribute getCamelNettyBindingType_Sync() {
-        return (EAttribute)camelNettyBindingTypeEClass.getEStructuralFeatures().get(9);
-    }
-
-    /**
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    public EAttribute getCamelNettyBindingType_Disconnect() {
-        return (EAttribute)camelNettyBindingTypeEClass.getEStructuralFeatures().get(10);
-    }
-
-    /**
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    public EClass getCamelNettyUdpBindingType() {
-        return camelNettyUdpBindingTypeEClass;
-    }
-
-    /**
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    public EAttribute getCamelNettyUdpBindingType_Broadcast() {
-        return (EAttribute)camelNettyUdpBindingTypeEClass.getEStructuralFeatures().get(0);
-    }
-
-    /**
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    public EClass getCamelNettyTcpBindingType() {
-        return camelNettyTcpBindingTypeEClass;
-    }
-
-    /**
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    public EAttribute getCamelNettyTcpBindingType_Textline() {
-        return (EAttribute)camelNettyTcpBindingTypeEClass.getEStructuralFeatures().get(0);
-    }
-
-    /**
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    public EAttribute getCamelNettyTcpBindingType_TcpNoDelay() {
-        return (EAttribute)camelNettyTcpBindingTypeEClass.getEStructuralFeatures().get(1);
-    }
-
-    /**
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    public EAttribute getCamelNettyTcpBindingType_KeepAlive() {
-        return (EAttribute)camelNettyTcpBindingTypeEClass.getEStructuralFeatures().get(2);
     }
 
     /**
@@ -1277,7 +493,7 @@ public class CamelPackageImpl extends EPackageImpl implements CamelPackage {
      * <!-- end-user-doc -->
      * @generated
      */
-    public EAttribute getCamelTimerBindingType_NameElement() {
+    public EAttribute getCamelTimerBindingType_CamelBindingName() {
         return (EAttribute)camelTimerBindingTypeEClass.getEStructuralFeatures().get(0);
     }
 
@@ -1337,42 +553,6 @@ public class CamelPackageImpl extends EPackageImpl implements CamelPackage {
 
 	/**
      * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    public EClass getCamelSftpBindingType() {
-        return camelSftpBindingTypeEClass;
-    }
-
-    /**
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    public EAttribute getCamelSftpBindingType_KnownHostsFile() {
-        return (EAttribute)camelSftpBindingTypeEClass.getEStructuralFeatures().get(0);
-    }
-
-    /**
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    public EAttribute getCamelSftpBindingType_PrivateKeyFile() {
-        return (EAttribute)camelSftpBindingTypeEClass.getEStructuralFeatures().get(1);
-    }
-
-    /**
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    public EAttribute getCamelSftpBindingType_PrivateKeyFilePassphrase() {
-        return (EAttribute)camelSftpBindingTypeEClass.getEStructuralFeatures().get(2);
-    }
-
-    /**
-     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
      * @generated
      */
@@ -1412,7 +592,7 @@ public class CamelPackageImpl extends EPackageImpl implements CamelPackage {
 	 * <!-- end-user-doc -->
      * @generated
      */
-	public EReference getDocumentRoot_BindingAtom() {
+	public EReference getDocumentRoot_BindingCamel() {
         return (EReference)documentRootEClass.getEStructuralFeatures().get(3);
     }
 
@@ -1421,53 +601,17 @@ public class CamelPackageImpl extends EPackageImpl implements CamelPackage {
 	 * <!-- end-user-doc -->
      * @generated
      */
-	public EReference getDocumentRoot_BindingCamel() {
+	public EReference getDocumentRoot_BindingDirect() {
         return (EReference)documentRootEClass.getEStructuralFeatures().get(4);
     }
 
 	/**
      * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-     * @generated
-     */
-	public EReference getDocumentRoot_BindingDirect() {
-        return (EReference)documentRootEClass.getEStructuralFeatures().get(5);
-    }
-
-	/**
-     * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-     * @generated
-     */
-	public EReference getDocumentRoot_BindingFile() {
-        return (EReference)documentRootEClass.getEStructuralFeatures().get(6);
-    }
-
-	/**
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    public EReference getDocumentRoot_BindingFtp() {
-        return (EReference)documentRootEClass.getEStructuralFeatures().get(7);
-    }
-
-    /**
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    public EReference getDocumentRoot_BindingFtps() {
-        return (EReference)documentRootEClass.getEStructuralFeatures().get(8);
-    }
-
-    /**
-     * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @generated
      */
     public EReference getDocumentRoot_BindingJms() {
-        return (EReference)documentRootEClass.getEStructuralFeatures().get(9);
+        return (EReference)documentRootEClass.getEStructuralFeatures().get(5);
     }
 
     /**
@@ -1476,7 +620,7 @@ public class CamelPackageImpl extends EPackageImpl implements CamelPackage {
      * @generated
      */
 	public EReference getDocumentRoot_BindingMock() {
-        return (EReference)documentRootEClass.getEStructuralFeatures().get(10);
+        return (EReference)documentRootEClass.getEStructuralFeatures().get(6);
     }
 
 	/**
@@ -1485,505 +629,19 @@ public class CamelPackageImpl extends EPackageImpl implements CamelPackage {
      * @generated
      */
 	public EReference getDocumentRoot_BindingSeda() {
-        return (EReference)documentRootEClass.getEStructuralFeatures().get(11);
+        return (EReference)documentRootEClass.getEStructuralFeatures().get(7);
     }
 
 	/**
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    public EReference getDocumentRoot_BindingSftp() {
-        return (EReference)documentRootEClass.getEStructuralFeatures().get(12);
-    }
-
-    /**
      * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
      * @generated
      */
 	public EReference getDocumentRoot_BindingTimer() {
-        return (EReference)documentRootEClass.getEStructuralFeatures().get(13);
+        return (EReference)documentRootEClass.getEStructuralFeatures().get(8);
     }
 
 	/**
-     * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-     * @generated
-     */
-	public EReference getDocumentRoot_ImplementationCamel() {
-        return (EReference)documentRootEClass.getEStructuralFeatures().get(14);
-    }
-
-	/**
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    public EReference getDocumentRoot_BindingNettyUDP() {
-        return (EReference)documentRootEClass.getEStructuralFeatures().get(15);
-    }
-
-    /**
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    public EReference getDocumentRoot_BindingNettyTCP() {
-        return (EReference)documentRootEClass.getEStructuralFeatures().get(16);
-    }
-
-    /**
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    public EReference getDocumentRoot_BindingQuartz() {
-        return (EReference)documentRootEClass.getEStructuralFeatures().get(17);
-    }
-
-    /**
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    public EReference getDocumentRoot_BindingSql() {
-        return (EReference)documentRootEClass.getEStructuralFeatures().get(18);
-    }
-
-    /**
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    public EReference getDocumentRoot_ContextMapper() {
-        return (EReference)documentRootEClass.getEStructuralFeatures().get(19);
-    }
-
-    /**
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    public EReference getDocumentRoot_MessageComposer() {
-        return (EReference)documentRootEClass.getEStructuralFeatures().get(20);
-    }
-
-    /**
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    public EReference getDocumentRoot_BindingMail() {
-        return (EReference)documentRootEClass.getEStructuralFeatures().get(21);
-    }
-
-    /**
-     * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-     * @generated
-     */
-	public EReference getDocumentRoot_BindingJPA() {
-        return (EReference)documentRootEClass.getEStructuralFeatures().get(22);
-    }
-
-				/**
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    public EClass getCamelContextMapperType() {
-        return camelContextMapperTypeEClass;
-    }
-
-    /**
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    public EClass getCamelMessageComposerType() {
-        return camelMessageComposerTypeEClass;
-    }
-
-    /**
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    public EClass getCamelMailConsumerType() {
-        return camelMailConsumerTypeEClass;
-    }
-
-    /**
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    public EAttribute getCamelMailConsumerType_FolderName() {
-        return (EAttribute)camelMailConsumerTypeEClass.getEStructuralFeatures().get(0);
-    }
-
-    /**
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    public EAttribute getCamelMailConsumerType_FetchSize() {
-        return (EAttribute)camelMailConsumerTypeEClass.getEStructuralFeatures().get(1);
-    }
-
-    /**
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    public EAttribute getCamelMailConsumerType_Unseen() {
-        return (EAttribute)camelMailConsumerTypeEClass.getEStructuralFeatures().get(2);
-    }
-
-    /**
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    public EAttribute getCamelMailConsumerType_Delete() {
-        return (EAttribute)camelMailConsumerTypeEClass.getEStructuralFeatures().get(3);
-    }
-
-    /**
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    public EAttribute getCamelMailConsumerType_CopyTo() {
-        return (EAttribute)camelMailConsumerTypeEClass.getEStructuralFeatures().get(4);
-    }
-
-    /**
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    public EAttribute getCamelMailConsumerType_Disconnect() {
-        return (EAttribute)camelMailConsumerTypeEClass.getEStructuralFeatures().get(5);
-    }
-
-    /**
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    public EAttribute getCamelMailConsumerType_AccountType() {
-        return (EAttribute)camelMailConsumerTypeEClass.getEStructuralFeatures().get(6);
-    }
-
-    /**
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    public EClass getCamelMailProducerType() {
-        return camelMailProducerTypeEClass;
-    }
-
-    /**
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    public EAttribute getCamelMailProducerType_Subject() {
-        return (EAttribute)camelMailProducerTypeEClass.getEStructuralFeatures().get(0);
-    }
-
-    /**
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    public EAttribute getCamelMailProducerType_From() {
-        return (EAttribute)camelMailProducerTypeEClass.getEStructuralFeatures().get(1);
-    }
-
-    /**
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    public EAttribute getCamelMailProducerType_To() {
-        return (EAttribute)camelMailProducerTypeEClass.getEStructuralFeatures().get(2);
-    }
-
-    /**
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    public EAttribute getCamelMailProducerType_CC() {
-        return (EAttribute)camelMailProducerTypeEClass.getEStructuralFeatures().get(3);
-    }
-
-    /**
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    public EAttribute getCamelMailProducerType_BCC() {
-        return (EAttribute)camelMailProducerTypeEClass.getEStructuralFeatures().get(4);
-    }
-
-    /**
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    public EAttribute getCamelMailProducerType_ReplyTo() {
-        return (EAttribute)camelMailProducerTypeEClass.getEStructuralFeatures().get(5);
-    }
-
-    /**
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    public EClass getCamelMailBindingType() {
-        return camelMailBindingTypeEClass;
-    }
-
-    /**
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    public EAttribute getCamelMailBindingType_Host() {
-        return (EAttribute)camelMailBindingTypeEClass.getEStructuralFeatures().get(0);
-    }
-
-    /**
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    public EAttribute getCamelMailBindingType_Port() {
-        return (EAttribute)camelMailBindingTypeEClass.getEStructuralFeatures().get(1);
-    }
-
-    /**
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    public EAttribute getCamelMailBindingType_Username() {
-        return (EAttribute)camelMailBindingTypeEClass.getEStructuralFeatures().get(2);
-    }
-
-    /**
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    public EAttribute getCamelMailBindingType_Password() {
-        return (EAttribute)camelMailBindingTypeEClass.getEStructuralFeatures().get(3);
-    }
-
-    /**
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    public EAttribute getCamelMailBindingType_ConnectionTimeout() {
-        return (EAttribute)camelMailBindingTypeEClass.getEStructuralFeatures().get(4);
-    }
-
-    /**
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    public EReference getCamelMailBindingType_Consume() {
-        return (EReference)camelMailBindingTypeEClass.getEStructuralFeatures().get(5);
-    }
-
-    /**
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    public EReference getCamelMailBindingType_Produce() {
-        return (EReference)camelMailBindingTypeEClass.getEStructuralFeatures().get(6);
-    }
-
-    /**
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    public EAttribute getCamelMailBindingType_Secure() {
-        return (EAttribute)camelMailBindingTypeEClass.getEStructuralFeatures().get(7);
-    }
-
-    /**
-     * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-     * @generated
-     */
-	public EClass getJpaProducerType() {
-        return jpaProducerTypeEClass;
-    }
-
-				/**
-     * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-     * @generated
-     */
-	public EAttribute getJpaProducerType_FlushOnSend() {
-        return (EAttribute)jpaProducerTypeEClass.getEStructuralFeatures().get(0);
-    }
-
-				/**
-     * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-     * @generated
-     */
-	public EAttribute getJpaProducerType_UsePersist() {
-        return (EAttribute)jpaProducerTypeEClass.getEStructuralFeatures().get(1);
-    }
-
-				/**
-     * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-     * @generated
-     */
-	public EClass getJpaConsumerType() {
-        return jpaConsumerTypeEClass;
-    }
-
-				/**
-     * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-     * @generated
-     */
-	public EAttribute getJpaConsumerType_ConsumeDelete() {
-        return (EAttribute)jpaConsumerTypeEClass.getEStructuralFeatures().get(0);
-    }
-
-				/**
-     * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-     * @generated
-     */
-	public EAttribute getJpaConsumerType_ConsumeLockEntity() {
-        return (EAttribute)jpaConsumerTypeEClass.getEStructuralFeatures().get(1);
-    }
-
-				/**
-     * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-     * @generated
-     */
-	public EAttribute getJpaConsumerType_MaximumResults() {
-        return (EAttribute)jpaConsumerTypeEClass.getEStructuralFeatures().get(2);
-    }
-
-				/**
-     * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-     * @generated
-     */
-	public EAttribute getJpaConsumerType_ConsumerQuery() {
-        return (EAttribute)jpaConsumerTypeEClass.getEStructuralFeatures().get(3);
-    }
-
-				/**
-     * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-     * @generated
-     */
-	public EAttribute getJpaConsumerType_ConsumerNamedQuery() {
-        return (EAttribute)jpaConsumerTypeEClass.getEStructuralFeatures().get(4);
-    }
-
-				/**
-     * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-     * @generated
-     */
-	public EAttribute getJpaConsumerType_ConsumerNativeQuery() {
-        return (EAttribute)jpaConsumerTypeEClass.getEStructuralFeatures().get(5);
-    }
-
-				/**
-     * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-     * @generated
-     */
-	public EAttribute getJpaConsumerType_ConsumerResultClass() {
-        return (EAttribute)jpaConsumerTypeEClass.getEStructuralFeatures().get(6);
-    }
-
-				/**
-     * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-     * @generated
-     */
-	public EAttribute getJpaConsumerType_ConsumerTransacted() {
-        return (EAttribute)jpaConsumerTypeEClass.getEStructuralFeatures().get(7);
-    }
-
-				/**
-     * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-     * @generated
-     */
-	public EClass getCamelJPABindingType() {
-        return camelJPABindingTypeEClass;
-    }
-
-				/**
-     * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-     * @generated
-     */
-	public EAttribute getCamelJPABindingType_EntityClassName() {
-        return (EAttribute)camelJPABindingTypeEClass.getEStructuralFeatures().get(0);
-    }
-
-				/**
-     * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-     * @generated
-     */
-	public EAttribute getCamelJPABindingType_PersistenceUnit() {
-        return (EAttribute)camelJPABindingTypeEClass.getEStructuralFeatures().get(1);
-    }
-
-				/**
-     * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-     * @generated
-     */
-	public EAttribute getCamelJPABindingType_TransactionManager() {
-        return (EAttribute)camelJPABindingTypeEClass.getEStructuralFeatures().get(2);
-    }
-
-				/**
-     * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-     * @generated
-     */
-	public EReference getCamelJPABindingType_Consume() {
-        return (EReference)camelJPABindingTypeEClass.getEStructuralFeatures().get(3);
-    }
-
-				/**
-     * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-     * @generated
-     */
-	public EReference getCamelJPABindingType_Produce() {
-        return (EReference)camelJPABindingTypeEClass.getEStructuralFeatures().get(4);
-    }
-
-				/**
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @generated
@@ -2098,78 +756,6 @@ public class CamelPackageImpl extends EPackageImpl implements CamelPackage {
      */
     public EAttribute getCamelRemoteBindingType_ThrowExceptionOnConnectFailed() {
         return (EAttribute)camelRemoteBindingTypeEClass.getEStructuralFeatures().get(11);
-    }
-
-    /**
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    public EReference getCamelRemoteBindingType_Consume() {
-        return (EReference)camelRemoteBindingTypeEClass.getEStructuralFeatures().get(12);
-    }
-
-    /**
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    public EReference getCamelRemoteBindingType_Produce() {
-        return (EReference)camelRemoteBindingTypeEClass.getEStructuralFeatures().get(13);
-    }
-
-    /**
-     * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-     * @generated
-     */
-	public EClass getFileConsumerType() {
-        return fileConsumerTypeEClass;
-    }
-
-	/**
-     * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-     * @generated
-     */
-	public EClass getFileProducerType() {
-        return fileProducerTypeEClass;
-    }
-
-	/**
-     * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-     * @generated
-     */
-	public EClass getJavaDSLType() {
-        return javaDSLTypeEClass;
-    }
-
-	/**
-     * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-     * @generated
-     */
-	public EAttribute getJavaDSLType_Class() {
-        return (EAttribute)javaDSLTypeEClass.getEStructuralFeatures().get(0);
-    }
-
-	/**
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    public EClass getXMLDSLType() {
-        return xmldslTypeEClass;
-    }
-
-    /**
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    public EAttribute getXMLDSLType_Path() {
-        return (EAttribute)xmldslTypeEClass.getEStructuralFeatures().get(0);
     }
 
     /**
@@ -2582,8 +1168,8 @@ public class CamelPackageImpl extends EPackageImpl implements CamelPackage {
      * <!-- end-user-doc -->
      * @generated
      */
-    public EClass getRemoteFileConsumerType() {
-        return remoteFileConsumerTypeEClass;
+    public EClass getJmsBindingType() {
+        return jmsBindingTypeEClass;
     }
 
     /**
@@ -2591,8 +1177,8 @@ public class CamelPackageImpl extends EPackageImpl implements CamelPackage {
      * <!-- end-user-doc -->
      * @generated
      */
-    public EClass getRemoteFileProducerType() {
-        return remoteFileProducerTypeEClass;
+    public EAttribute getJmsBindingType_Queue() {
+        return (EAttribute)jmsBindingTypeEClass.getEStructuralFeatures().get(0);
     }
 
     /**
@@ -2600,8 +1186,8 @@ public class CamelPackageImpl extends EPackageImpl implements CamelPackage {
      * <!-- end-user-doc -->
      * @generated
      */
-    public EClass getCamelQuartzBindingType() {
-        return camelQuartzBindingTypeEClass;
+    public EAttribute getJmsBindingType_Topic() {
+        return (EAttribute)jmsBindingTypeEClass.getEStructuralFeatures().get(1);
     }
 
     /**
@@ -2609,8 +1195,8 @@ public class CamelPackageImpl extends EPackageImpl implements CamelPackage {
      * <!-- end-user-doc -->
      * @generated
      */
-    public EAttribute getCamelQuartzBindingType_CamelBindingName() {
-        return (EAttribute)camelQuartzBindingTypeEClass.getEStructuralFeatures().get(0);
+    public EAttribute getJmsBindingType_ConnectionFactory() {
+        return (EAttribute)jmsBindingTypeEClass.getEStructuralFeatures().get(2);
     }
 
     /**
@@ -2618,8 +1204,8 @@ public class CamelPackageImpl extends EPackageImpl implements CamelPackage {
      * <!-- end-user-doc -->
      * @generated
      */
-    public EAttribute getCamelQuartzBindingType_Cron() {
-        return (EAttribute)camelQuartzBindingTypeEClass.getEStructuralFeatures().get(1);
+    public EAttribute getJmsBindingType_Username() {
+        return (EAttribute)jmsBindingTypeEClass.getEStructuralFeatures().get(3);
     }
 
     /**
@@ -2627,8 +1213,8 @@ public class CamelPackageImpl extends EPackageImpl implements CamelPackage {
      * <!-- end-user-doc -->
      * @generated
      */
-    public EAttribute getCamelQuartzBindingType_Stateful() {
-        return (EAttribute)camelQuartzBindingTypeEClass.getEStructuralFeatures().get(2);
+    public EAttribute getJmsBindingType_Password() {
+        return (EAttribute)jmsBindingTypeEClass.getEStructuralFeatures().get(4);
     }
 
     /**
@@ -2636,8 +1222,8 @@ public class CamelPackageImpl extends EPackageImpl implements CamelPackage {
      * <!-- end-user-doc -->
      * @generated
      */
-    public EAttribute getCamelQuartzBindingType_StartTime() {
-        return (EAttribute)camelQuartzBindingTypeEClass.getEStructuralFeatures().get(3);
+    public EAttribute getJmsBindingType_ClientId() {
+        return (EAttribute)jmsBindingTypeEClass.getEStructuralFeatures().get(5);
     }
 
     /**
@@ -2645,8 +1231,8 @@ public class CamelPackageImpl extends EPackageImpl implements CamelPackage {
      * <!-- end-user-doc -->
      * @generated
      */
-    public EAttribute getCamelQuartzBindingType_EndTime() {
-        return (EAttribute)camelQuartzBindingTypeEClass.getEStructuralFeatures().get(4);
+    public EAttribute getJmsBindingType_DurableSubscriptionName() {
+        return (EAttribute)jmsBindingTypeEClass.getEStructuralFeatures().get(6);
     }
 
     /**
@@ -2654,8 +1240,8 @@ public class CamelPackageImpl extends EPackageImpl implements CamelPackage {
      * <!-- end-user-doc -->
      * @generated
      */
-    public EClass getCamelSqlBindingType() {
-        return camelSqlBindingTypeEClass;
+    public EAttribute getJmsBindingType_ConcurrentConsumers() {
+        return (EAttribute)jmsBindingTypeEClass.getEStructuralFeatures().get(7);
     }
 
     /**
@@ -2663,8 +1249,8 @@ public class CamelPackageImpl extends EPackageImpl implements CamelPackage {
      * <!-- end-user-doc -->
      * @generated
      */
-    public EAttribute getCamelSqlBindingType_Query() {
-        return (EAttribute)camelSqlBindingTypeEClass.getEStructuralFeatures().get(0);
+    public EAttribute getJmsBindingType_MaxConcurrentConsumers() {
+        return (EAttribute)jmsBindingTypeEClass.getEStructuralFeatures().get(8);
     }
 
     /**
@@ -2672,8 +1258,8 @@ public class CamelPackageImpl extends EPackageImpl implements CamelPackage {
      * <!-- end-user-doc -->
      * @generated
      */
-    public EAttribute getCamelSqlBindingType_DataSourceRef() {
-        return (EAttribute)camelSqlBindingTypeEClass.getEStructuralFeatures().get(1);
+    public EAttribute getJmsBindingType_DisableReplyTo() {
+        return (EAttribute)jmsBindingTypeEClass.getEStructuralFeatures().get(9);
     }
 
     /**
@@ -2681,8 +1267,8 @@ public class CamelPackageImpl extends EPackageImpl implements CamelPackage {
      * <!-- end-user-doc -->
      * @generated
      */
-    public EAttribute getCamelSqlBindingType_Batch() {
-        return (EAttribute)camelSqlBindingTypeEClass.getEStructuralFeatures().get(2);
+    public EAttribute getJmsBindingType_PreserveMessageQos() {
+        return (EAttribute)jmsBindingTypeEClass.getEStructuralFeatures().get(10);
     }
 
     /**
@@ -2690,8 +1276,89 @@ public class CamelPackageImpl extends EPackageImpl implements CamelPackage {
      * <!-- end-user-doc -->
      * @generated
      */
-    public EAttribute getCamelSqlBindingType_Placeholder() {
-        return (EAttribute)camelSqlBindingTypeEClass.getEStructuralFeatures().get(3);
+    public EAttribute getJmsBindingType_DeliveryPersistent() {
+        return (EAttribute)jmsBindingTypeEClass.getEStructuralFeatures().get(11);
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public EAttribute getJmsBindingType_Priority() {
+        return (EAttribute)jmsBindingTypeEClass.getEStructuralFeatures().get(12);
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public EAttribute getJmsBindingType_ExplicitQosEnabled() {
+        return (EAttribute)jmsBindingTypeEClass.getEStructuralFeatures().get(13);
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public EAttribute getJmsBindingType_ReplyTo() {
+        return (EAttribute)jmsBindingTypeEClass.getEStructuralFeatures().get(14);
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public EAttribute getJmsBindingType_ReplyToType() {
+        return (EAttribute)jmsBindingTypeEClass.getEStructuralFeatures().get(15);
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public EAttribute getJmsBindingType_RequestTimeout() {
+        return (EAttribute)jmsBindingTypeEClass.getEStructuralFeatures().get(16);
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public EAttribute getJmsBindingType_Selector() {
+        return (EAttribute)jmsBindingTypeEClass.getEStructuralFeatures().get(17);
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public EAttribute getJmsBindingType_TimeToLive() {
+        return (EAttribute)jmsBindingTypeEClass.getEStructuralFeatures().get(18);
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public EAttribute getJmsBindingType_Transacted() {
+        return (EAttribute)jmsBindingTypeEClass.getEStructuralFeatures().get(19);
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public EAttribute getJmsBindingType_TransactionManager() {
+        return (EAttribute)jmsBindingTypeEClass.getEStructuralFeatures().get(20);
     }
 
     /**
@@ -2701,15 +1368,6 @@ public class CamelPackageImpl extends EPackageImpl implements CamelPackage {
      */
     public EEnum getTimeUnit() {
         return timeUnitEEnum;
-    }
-
-    /**
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    public EEnum getMailConsumerAccountType() {
-        return mailConsumerAccountTypeEEnum;
     }
 
     /**
@@ -2751,134 +1409,6 @@ public class CamelPackageImpl extends EPackageImpl implements CamelPackage {
         // Create classes and their features
         baseCamelBindingEClass = createEClass(BASE_CAMEL_BINDING);
 
-        camelBindingTypeEClass = createEClass(CAMEL_BINDING_TYPE);
-        createEAttribute(camelBindingTypeEClass, CAMEL_BINDING_TYPE__CONFIG_URI);
-
-        camelFileBindingTypeEClass = createEClass(CAMEL_FILE_BINDING_TYPE);
-        createEReference(camelFileBindingTypeEClass, CAMEL_FILE_BINDING_TYPE__CONSUME);
-        createEReference(camelFileBindingTypeEClass, CAMEL_FILE_BINDING_TYPE__PRODUCE);
-
-        camelFtpBindingTypeEClass = createEClass(CAMEL_FTP_BINDING_TYPE);
-        createEAttribute(camelFtpBindingTypeEClass, CAMEL_FTP_BINDING_TYPE__PASSIVE_MODE);
-        createEAttribute(camelFtpBindingTypeEClass, CAMEL_FTP_BINDING_TYPE__TIMEOUT);
-        createEAttribute(camelFtpBindingTypeEClass, CAMEL_FTP_BINDING_TYPE__SO_TIMEOUT);
-        createEAttribute(camelFtpBindingTypeEClass, CAMEL_FTP_BINDING_TYPE__SITE_COMMAND);
-
-        camelFtpsBindingTypeEClass = createEClass(CAMEL_FTPS_BINDING_TYPE);
-        createEAttribute(camelFtpsBindingTypeEClass, CAMEL_FTPS_BINDING_TYPE__SECURITY_PROTOCOL);
-        createEAttribute(camelFtpsBindingTypeEClass, CAMEL_FTPS_BINDING_TYPE__IS_IMPLICIT);
-        createEAttribute(camelFtpsBindingTypeEClass, CAMEL_FTPS_BINDING_TYPE__EXEC_PBSZ);
-        createEAttribute(camelFtpsBindingTypeEClass, CAMEL_FTPS_BINDING_TYPE__EXEC_PROT);
-        createEAttribute(camelFtpsBindingTypeEClass, CAMEL_FTPS_BINDING_TYPE__DISABLE_SECURE_DATA_CHANNEL_DEFAULTS);
-
-        camelSftpBindingTypeEClass = createEClass(CAMEL_SFTP_BINDING_TYPE);
-        createEAttribute(camelSftpBindingTypeEClass, CAMEL_SFTP_BINDING_TYPE__KNOWN_HOSTS_FILE);
-        createEAttribute(camelSftpBindingTypeEClass, CAMEL_SFTP_BINDING_TYPE__PRIVATE_KEY_FILE);
-        createEAttribute(camelSftpBindingTypeEClass, CAMEL_SFTP_BINDING_TYPE__PRIVATE_KEY_FILE_PASSPHRASE);
-
-        camelAtomBindingTypeEClass = createEClass(CAMEL_ATOM_BINDING_TYPE);
-        createEAttribute(camelAtomBindingTypeEClass, CAMEL_ATOM_BINDING_TYPE__FEED_URI);
-        createEAttribute(camelAtomBindingTypeEClass, CAMEL_ATOM_BINDING_TYPE__SPLIT_ENTRIES);
-        createEAttribute(camelAtomBindingTypeEClass, CAMEL_ATOM_BINDING_TYPE__FILTER);
-        createEAttribute(camelAtomBindingTypeEClass, CAMEL_ATOM_BINDING_TYPE__LAST_UPDATE);
-        createEAttribute(camelAtomBindingTypeEClass, CAMEL_ATOM_BINDING_TYPE__THROTTLE_ENTRIES);
-        createEAttribute(camelAtomBindingTypeEClass, CAMEL_ATOM_BINDING_TYPE__FEED_HEADER);
-        createEAttribute(camelAtomBindingTypeEClass, CAMEL_ATOM_BINDING_TYPE__SORT_ENTRIES);
-        createEReference(camelAtomBindingTypeEClass, CAMEL_ATOM_BINDING_TYPE__CONSUME);
-
-        camelDirectBindingTypeEClass = createEClass(CAMEL_DIRECT_BINDING_TYPE);
-        createEAttribute(camelDirectBindingTypeEClass, CAMEL_DIRECT_BINDING_TYPE__NAME_ELEMENT);
-
-        camelTimerBindingTypeEClass = createEClass(CAMEL_TIMER_BINDING_TYPE);
-        createEAttribute(camelTimerBindingTypeEClass, CAMEL_TIMER_BINDING_TYPE__NAME_ELEMENT);
-        createEAttribute(camelTimerBindingTypeEClass, CAMEL_TIMER_BINDING_TYPE__TIME);
-        createEAttribute(camelTimerBindingTypeEClass, CAMEL_TIMER_BINDING_TYPE__PATTERN);
-        createEAttribute(camelTimerBindingTypeEClass, CAMEL_TIMER_BINDING_TYPE__PERIOD);
-        createEAttribute(camelTimerBindingTypeEClass, CAMEL_TIMER_BINDING_TYPE__DELAY);
-        createEAttribute(camelTimerBindingTypeEClass, CAMEL_TIMER_BINDING_TYPE__FIXED_RATE);
-        createEAttribute(camelTimerBindingTypeEClass, CAMEL_TIMER_BINDING_TYPE__DAEMON);
-
-        camelSedaBindingTypeEClass = createEClass(CAMEL_SEDA_BINDING_TYPE);
-        createEAttribute(camelSedaBindingTypeEClass, CAMEL_SEDA_BINDING_TYPE__NAME_ELEMENT);
-        createEAttribute(camelSedaBindingTypeEClass, CAMEL_SEDA_BINDING_TYPE__SIZE);
-        createEAttribute(camelSedaBindingTypeEClass, CAMEL_SEDA_BINDING_TYPE__CONCURRENT_CONSUMERS);
-        createEAttribute(camelSedaBindingTypeEClass, CAMEL_SEDA_BINDING_TYPE__WAIT_FOR_TASK_TO_COMPLETE);
-        createEAttribute(camelSedaBindingTypeEClass, CAMEL_SEDA_BINDING_TYPE__TIMEOUT);
-        createEAttribute(camelSedaBindingTypeEClass, CAMEL_SEDA_BINDING_TYPE__MULTIPLE_CONSUMERS);
-        createEAttribute(camelSedaBindingTypeEClass, CAMEL_SEDA_BINDING_TYPE__LIMIT_CONCURRENT_CONSUMERS);
-
-        camelMockBindingTypeEClass = createEClass(CAMEL_MOCK_BINDING_TYPE);
-        createEAttribute(camelMockBindingTypeEClass, CAMEL_MOCK_BINDING_TYPE__NAME_ELEMENT);
-        createEAttribute(camelMockBindingTypeEClass, CAMEL_MOCK_BINDING_TYPE__REPORT_GROUP);
-
-        camelNettyTcpBindingTypeEClass = createEClass(CAMEL_NETTY_TCP_BINDING_TYPE);
-        createEAttribute(camelNettyTcpBindingTypeEClass, CAMEL_NETTY_TCP_BINDING_TYPE__TEXTLINE);
-        createEAttribute(camelNettyTcpBindingTypeEClass, CAMEL_NETTY_TCP_BINDING_TYPE__TCP_NO_DELAY);
-        createEAttribute(camelNettyTcpBindingTypeEClass, CAMEL_NETTY_TCP_BINDING_TYPE__KEEP_ALIVE);
-
-        camelNettyUdpBindingTypeEClass = createEClass(CAMEL_NETTY_UDP_BINDING_TYPE);
-        createEAttribute(camelNettyUdpBindingTypeEClass, CAMEL_NETTY_UDP_BINDING_TYPE__BROADCAST);
-
-        camelNettyBindingTypeEClass = createEClass(CAMEL_NETTY_BINDING_TYPE);
-        createEAttribute(camelNettyBindingTypeEClass, CAMEL_NETTY_BINDING_TYPE__HOST);
-        createEAttribute(camelNettyBindingTypeEClass, CAMEL_NETTY_BINDING_TYPE__PORT);
-        createEAttribute(camelNettyBindingTypeEClass, CAMEL_NETTY_BINDING_TYPE__RECEIVE_BUFFER_SIZE);
-        createEAttribute(camelNettyBindingTypeEClass, CAMEL_NETTY_BINDING_TYPE__SEND_BUFFER_SIZE);
-        createEAttribute(camelNettyBindingTypeEClass, CAMEL_NETTY_BINDING_TYPE__REUSE_ADDRESS);
-        createEAttribute(camelNettyBindingTypeEClass, CAMEL_NETTY_BINDING_TYPE__ENCODERS);
-        createEAttribute(camelNettyBindingTypeEClass, CAMEL_NETTY_BINDING_TYPE__DECODERS);
-        createEAttribute(camelNettyBindingTypeEClass, CAMEL_NETTY_BINDING_TYPE__ALLOW_DEFAULT_CODEC);
-        createEAttribute(camelNettyBindingTypeEClass, CAMEL_NETTY_BINDING_TYPE__WORKER_COUNT);
-        createEAttribute(camelNettyBindingTypeEClass, CAMEL_NETTY_BINDING_TYPE__SYNC);
-        createEAttribute(camelNettyBindingTypeEClass, CAMEL_NETTY_BINDING_TYPE__DISCONNECT);
-
-        camelQuartzBindingTypeEClass = createEClass(CAMEL_QUARTZ_BINDING_TYPE);
-        createEAttribute(camelQuartzBindingTypeEClass, CAMEL_QUARTZ_BINDING_TYPE__CAMEL_BINDING_NAME);
-        createEAttribute(camelQuartzBindingTypeEClass, CAMEL_QUARTZ_BINDING_TYPE__CRON);
-        createEAttribute(camelQuartzBindingTypeEClass, CAMEL_QUARTZ_BINDING_TYPE__STATEFUL);
-        createEAttribute(camelQuartzBindingTypeEClass, CAMEL_QUARTZ_BINDING_TYPE__START_TIME);
-        createEAttribute(camelQuartzBindingTypeEClass, CAMEL_QUARTZ_BINDING_TYPE__END_TIME);
-
-        camelJmsBindingTypeEClass = createEClass(CAMEL_JMS_BINDING_TYPE);
-        createEAttribute(camelJmsBindingTypeEClass, CAMEL_JMS_BINDING_TYPE__QUEUE);
-        createEAttribute(camelJmsBindingTypeEClass, CAMEL_JMS_BINDING_TYPE__TOPIC);
-        createEAttribute(camelJmsBindingTypeEClass, CAMEL_JMS_BINDING_TYPE__CONNECTION_FACTORY);
-        createEAttribute(camelJmsBindingTypeEClass, CAMEL_JMS_BINDING_TYPE__USERNAME);
-        createEAttribute(camelJmsBindingTypeEClass, CAMEL_JMS_BINDING_TYPE__PASSWORD);
-        createEAttribute(camelJmsBindingTypeEClass, CAMEL_JMS_BINDING_TYPE__CLIENT_ID);
-        createEAttribute(camelJmsBindingTypeEClass, CAMEL_JMS_BINDING_TYPE__DURABLE_SUBSCRIPTION_NAME);
-        createEAttribute(camelJmsBindingTypeEClass, CAMEL_JMS_BINDING_TYPE__CONCURRENT_CONSUMERS);
-        createEAttribute(camelJmsBindingTypeEClass, CAMEL_JMS_BINDING_TYPE__MAX_CONCURRENT_CONSUMERS);
-        createEAttribute(camelJmsBindingTypeEClass, CAMEL_JMS_BINDING_TYPE__DISABLE_REPLY_TO);
-        createEAttribute(camelJmsBindingTypeEClass, CAMEL_JMS_BINDING_TYPE__PRESERVE_MESSAGE_QOS);
-        createEAttribute(camelJmsBindingTypeEClass, CAMEL_JMS_BINDING_TYPE__DELIVERY_PERSISTENT);
-        createEAttribute(camelJmsBindingTypeEClass, CAMEL_JMS_BINDING_TYPE__PRIORITY);
-        createEAttribute(camelJmsBindingTypeEClass, CAMEL_JMS_BINDING_TYPE__EXPLICIT_QOS_ENABLED);
-        createEAttribute(camelJmsBindingTypeEClass, CAMEL_JMS_BINDING_TYPE__REPLY_TO);
-        createEAttribute(camelJmsBindingTypeEClass, CAMEL_JMS_BINDING_TYPE__REPLY_TO_TYPE);
-        createEAttribute(camelJmsBindingTypeEClass, CAMEL_JMS_BINDING_TYPE__REQUEST_TIMEOUT);
-        createEAttribute(camelJmsBindingTypeEClass, CAMEL_JMS_BINDING_TYPE__SELECTOR);
-        createEAttribute(camelJmsBindingTypeEClass, CAMEL_JMS_BINDING_TYPE__TIME_TO_LIVE);
-        createEAttribute(camelJmsBindingTypeEClass, CAMEL_JMS_BINDING_TYPE__TRANSACTED);
-        createEAttribute(camelJmsBindingTypeEClass, CAMEL_JMS_BINDING_TYPE__TRANSACTION_MANAGER);
-
-        camelSqlBindingTypeEClass = createEClass(CAMEL_SQL_BINDING_TYPE);
-        createEAttribute(camelSqlBindingTypeEClass, CAMEL_SQL_BINDING_TYPE__QUERY);
-        createEAttribute(camelSqlBindingTypeEClass, CAMEL_SQL_BINDING_TYPE__DATA_SOURCE_REF);
-        createEAttribute(camelSqlBindingTypeEClass, CAMEL_SQL_BINDING_TYPE__BATCH);
-        createEAttribute(camelSqlBindingTypeEClass, CAMEL_SQL_BINDING_TYPE__PLACEHOLDER);
-
-        javaDSLTypeEClass = createEClass(JAVA_DSL_TYPE);
-        createEAttribute(javaDSLTypeEClass, JAVA_DSL_TYPE__CLASS);
-
-        xmldslTypeEClass = createEClass(XMLDSL_TYPE);
-        createEAttribute(xmldslTypeEClass, XMLDSL_TYPE__PATH);
-
-        camelImplementationTypeEClass = createEClass(CAMEL_IMPLEMENTATION_TYPE);
-        createEReference(camelImplementationTypeEClass, CAMEL_IMPLEMENTATION_TYPE__ROUTE);
-        createEReference(camelImplementationTypeEClass, CAMEL_IMPLEMENTATION_TYPE__JAVA);
-        createEReference(camelImplementationTypeEClass, CAMEL_IMPLEMENTATION_TYPE__XML);
-
         genericFileBindingTypeEClass = createEClass(GENERIC_FILE_BINDING_TYPE);
         createEAttribute(genericFileBindingTypeEClass, GENERIC_FILE_BINDING_TYPE__DIRECTORY);
         createEAttribute(genericFileBindingTypeEClass, GENERIC_FILE_BINDING_TYPE__AUTO_CREATE);
@@ -2900,8 +1430,6 @@ public class CamelPackageImpl extends EPackageImpl implements CamelPackage {
         createEAttribute(camelRemoteBindingTypeEClass, CAMEL_REMOTE_BINDING_TYPE__SEPARATOR);
         createEAttribute(camelRemoteBindingTypeEClass, CAMEL_REMOTE_BINDING_TYPE__STEPWISE);
         createEAttribute(camelRemoteBindingTypeEClass, CAMEL_REMOTE_BINDING_TYPE__THROW_EXCEPTION_ON_CONNECT_FAILED);
-        createEReference(camelRemoteBindingTypeEClass, CAMEL_REMOTE_BINDING_TYPE__CONSUME);
-        createEReference(camelRemoteBindingTypeEClass, CAMEL_REMOTE_BINDING_TYPE__PRODUCE);
 
         scheduledPollConsumerTypeEClass = createEClass(SCHEDULED_POLL_CONSUMER_TYPE);
         createEAttribute(scheduledPollConsumerTypeEClass, SCHEDULED_POLL_CONSUMER_TYPE__INITIAL_DELAY);
@@ -2912,14 +1440,6 @@ public class CamelPackageImpl extends EPackageImpl implements CamelPackage {
 
         scheduledBatchPollConsumerTypeEClass = createEClass(SCHEDULED_BATCH_POLL_CONSUMER_TYPE);
         createEAttribute(scheduledBatchPollConsumerTypeEClass, SCHEDULED_BATCH_POLL_CONSUMER_TYPE__MAX_MESSAGES_PER_POLL);
-
-        fileConsumerTypeEClass = createEClass(FILE_CONSUMER_TYPE);
-
-        fileProducerTypeEClass = createEClass(FILE_PRODUCER_TYPE);
-
-        remoteFileConsumerTypeEClass = createEClass(REMOTE_FILE_CONSUMER_TYPE);
-
-        remoteFileProducerTypeEClass = createEClass(REMOTE_FILE_PRODUCER_TYPE);
 
         genericFileConsumerTypeEClass = createEClass(GENERIC_FILE_CONSUMER_TYPE);
         createEAttribute(genericFileConsumerTypeEClass, GENERIC_FILE_CONSUMER_TYPE__DELETE);
@@ -2953,86 +1473,70 @@ public class CamelPackageImpl extends EPackageImpl implements CamelPackage {
         createEAttribute(genericFileProducerTypeEClass, GENERIC_FILE_PRODUCER_TYPE__EAGER_DELETE_TARGET_FILE);
         createEAttribute(genericFileProducerTypeEClass, GENERIC_FILE_PRODUCER_TYPE__DONE_FILE_NAME);
 
+        jmsBindingTypeEClass = createEClass(JMS_BINDING_TYPE);
+        createEAttribute(jmsBindingTypeEClass, JMS_BINDING_TYPE__QUEUE);
+        createEAttribute(jmsBindingTypeEClass, JMS_BINDING_TYPE__TOPIC);
+        createEAttribute(jmsBindingTypeEClass, JMS_BINDING_TYPE__CONNECTION_FACTORY);
+        createEAttribute(jmsBindingTypeEClass, JMS_BINDING_TYPE__USERNAME);
+        createEAttribute(jmsBindingTypeEClass, JMS_BINDING_TYPE__PASSWORD);
+        createEAttribute(jmsBindingTypeEClass, JMS_BINDING_TYPE__CLIENT_ID);
+        createEAttribute(jmsBindingTypeEClass, JMS_BINDING_TYPE__DURABLE_SUBSCRIPTION_NAME);
+        createEAttribute(jmsBindingTypeEClass, JMS_BINDING_TYPE__CONCURRENT_CONSUMERS);
+        createEAttribute(jmsBindingTypeEClass, JMS_BINDING_TYPE__MAX_CONCURRENT_CONSUMERS);
+        createEAttribute(jmsBindingTypeEClass, JMS_BINDING_TYPE__DISABLE_REPLY_TO);
+        createEAttribute(jmsBindingTypeEClass, JMS_BINDING_TYPE__PRESERVE_MESSAGE_QOS);
+        createEAttribute(jmsBindingTypeEClass, JMS_BINDING_TYPE__DELIVERY_PERSISTENT);
+        createEAttribute(jmsBindingTypeEClass, JMS_BINDING_TYPE__PRIORITY);
+        createEAttribute(jmsBindingTypeEClass, JMS_BINDING_TYPE__EXPLICIT_QOS_ENABLED);
+        createEAttribute(jmsBindingTypeEClass, JMS_BINDING_TYPE__REPLY_TO);
+        createEAttribute(jmsBindingTypeEClass, JMS_BINDING_TYPE__REPLY_TO_TYPE);
+        createEAttribute(jmsBindingTypeEClass, JMS_BINDING_TYPE__REQUEST_TIMEOUT);
+        createEAttribute(jmsBindingTypeEClass, JMS_BINDING_TYPE__SELECTOR);
+        createEAttribute(jmsBindingTypeEClass, JMS_BINDING_TYPE__TIME_TO_LIVE);
+        createEAttribute(jmsBindingTypeEClass, JMS_BINDING_TYPE__TRANSACTED);
+        createEAttribute(jmsBindingTypeEClass, JMS_BINDING_TYPE__TRANSACTION_MANAGER);
+
+        camelBindingTypeEClass = createEClass(CAMEL_BINDING_TYPE);
+        createEAttribute(camelBindingTypeEClass, CAMEL_BINDING_TYPE__CONFIG_URI);
+
+        camelDirectBindingTypeEClass = createEClass(CAMEL_DIRECT_BINDING_TYPE);
+        createEAttribute(camelDirectBindingTypeEClass, CAMEL_DIRECT_BINDING_TYPE__NAME_ELEMENT);
+
+        camelTimerBindingTypeEClass = createEClass(CAMEL_TIMER_BINDING_TYPE);
+        createEAttribute(camelTimerBindingTypeEClass, CAMEL_TIMER_BINDING_TYPE__CAMEL_BINDING_NAME);
+        createEAttribute(camelTimerBindingTypeEClass, CAMEL_TIMER_BINDING_TYPE__TIME);
+        createEAttribute(camelTimerBindingTypeEClass, CAMEL_TIMER_BINDING_TYPE__PATTERN);
+        createEAttribute(camelTimerBindingTypeEClass, CAMEL_TIMER_BINDING_TYPE__PERIOD);
+        createEAttribute(camelTimerBindingTypeEClass, CAMEL_TIMER_BINDING_TYPE__DELAY);
+        createEAttribute(camelTimerBindingTypeEClass, CAMEL_TIMER_BINDING_TYPE__FIXED_RATE);
+        createEAttribute(camelTimerBindingTypeEClass, CAMEL_TIMER_BINDING_TYPE__DAEMON);
+
+        camelSedaBindingTypeEClass = createEClass(CAMEL_SEDA_BINDING_TYPE);
+        createEAttribute(camelSedaBindingTypeEClass, CAMEL_SEDA_BINDING_TYPE__NAME_ELEMENT);
+        createEAttribute(camelSedaBindingTypeEClass, CAMEL_SEDA_BINDING_TYPE__SIZE);
+        createEAttribute(camelSedaBindingTypeEClass, CAMEL_SEDA_BINDING_TYPE__CONCURRENT_CONSUMERS);
+        createEAttribute(camelSedaBindingTypeEClass, CAMEL_SEDA_BINDING_TYPE__WAIT_FOR_TASK_TO_COMPLETE);
+        createEAttribute(camelSedaBindingTypeEClass, CAMEL_SEDA_BINDING_TYPE__TIMEOUT);
+        createEAttribute(camelSedaBindingTypeEClass, CAMEL_SEDA_BINDING_TYPE__MULTIPLE_CONSUMERS);
+        createEAttribute(camelSedaBindingTypeEClass, CAMEL_SEDA_BINDING_TYPE__LIMIT_CONCURRENT_CONSUMERS);
+
+        camelMockBindingTypeEClass = createEClass(CAMEL_MOCK_BINDING_TYPE);
+        createEAttribute(camelMockBindingTypeEClass, CAMEL_MOCK_BINDING_TYPE__NAME_ELEMENT);
+        createEAttribute(camelMockBindingTypeEClass, CAMEL_MOCK_BINDING_TYPE__REPORT_GROUP);
+
         documentRootEClass = createEClass(DOCUMENT_ROOT);
         createEAttribute(documentRootEClass, DOCUMENT_ROOT__MIXED);
         createEReference(documentRootEClass, DOCUMENT_ROOT__XMLNS_PREFIX_MAP);
         createEReference(documentRootEClass, DOCUMENT_ROOT__XSI_SCHEMA_LOCATION);
-        createEReference(documentRootEClass, DOCUMENT_ROOT__BINDING_ATOM);
         createEReference(documentRootEClass, DOCUMENT_ROOT__BINDING_CAMEL);
         createEReference(documentRootEClass, DOCUMENT_ROOT__BINDING_DIRECT);
-        createEReference(documentRootEClass, DOCUMENT_ROOT__BINDING_FILE);
-        createEReference(documentRootEClass, DOCUMENT_ROOT__BINDING_FTP);
-        createEReference(documentRootEClass, DOCUMENT_ROOT__BINDING_FTPS);
         createEReference(documentRootEClass, DOCUMENT_ROOT__BINDING_JMS);
         createEReference(documentRootEClass, DOCUMENT_ROOT__BINDING_MOCK);
         createEReference(documentRootEClass, DOCUMENT_ROOT__BINDING_SEDA);
-        createEReference(documentRootEClass, DOCUMENT_ROOT__BINDING_SFTP);
         createEReference(documentRootEClass, DOCUMENT_ROOT__BINDING_TIMER);
-        createEReference(documentRootEClass, DOCUMENT_ROOT__IMPLEMENTATION_CAMEL);
-        createEReference(documentRootEClass, DOCUMENT_ROOT__BINDING_NETTY_UDP);
-        createEReference(documentRootEClass, DOCUMENT_ROOT__BINDING_NETTY_TCP);
-        createEReference(documentRootEClass, DOCUMENT_ROOT__BINDING_QUARTZ);
-        createEReference(documentRootEClass, DOCUMENT_ROOT__BINDING_SQL);
-        createEReference(documentRootEClass, DOCUMENT_ROOT__CONTEXT_MAPPER);
-        createEReference(documentRootEClass, DOCUMENT_ROOT__MESSAGE_COMPOSER);
-        createEReference(documentRootEClass, DOCUMENT_ROOT__BINDING_MAIL);
-        createEReference(documentRootEClass, DOCUMENT_ROOT__BINDING_JPA);
-
-        camelContextMapperTypeEClass = createEClass(CAMEL_CONTEXT_MAPPER_TYPE);
-
-        camelMessageComposerTypeEClass = createEClass(CAMEL_MESSAGE_COMPOSER_TYPE);
-
-        camelMailConsumerTypeEClass = createEClass(CAMEL_MAIL_CONSUMER_TYPE);
-        createEAttribute(camelMailConsumerTypeEClass, CAMEL_MAIL_CONSUMER_TYPE__FOLDER_NAME);
-        createEAttribute(camelMailConsumerTypeEClass, CAMEL_MAIL_CONSUMER_TYPE__FETCH_SIZE);
-        createEAttribute(camelMailConsumerTypeEClass, CAMEL_MAIL_CONSUMER_TYPE__UNSEEN);
-        createEAttribute(camelMailConsumerTypeEClass, CAMEL_MAIL_CONSUMER_TYPE__DELETE);
-        createEAttribute(camelMailConsumerTypeEClass, CAMEL_MAIL_CONSUMER_TYPE__COPY_TO);
-        createEAttribute(camelMailConsumerTypeEClass, CAMEL_MAIL_CONSUMER_TYPE__DISCONNECT);
-        createEAttribute(camelMailConsumerTypeEClass, CAMEL_MAIL_CONSUMER_TYPE__ACCOUNT_TYPE);
-
-        camelMailProducerTypeEClass = createEClass(CAMEL_MAIL_PRODUCER_TYPE);
-        createEAttribute(camelMailProducerTypeEClass, CAMEL_MAIL_PRODUCER_TYPE__SUBJECT);
-        createEAttribute(camelMailProducerTypeEClass, CAMEL_MAIL_PRODUCER_TYPE__FROM);
-        createEAttribute(camelMailProducerTypeEClass, CAMEL_MAIL_PRODUCER_TYPE__TO);
-        createEAttribute(camelMailProducerTypeEClass, CAMEL_MAIL_PRODUCER_TYPE__CC);
-        createEAttribute(camelMailProducerTypeEClass, CAMEL_MAIL_PRODUCER_TYPE__BCC);
-        createEAttribute(camelMailProducerTypeEClass, CAMEL_MAIL_PRODUCER_TYPE__REPLY_TO);
-
-        camelMailBindingTypeEClass = createEClass(CAMEL_MAIL_BINDING_TYPE);
-        createEAttribute(camelMailBindingTypeEClass, CAMEL_MAIL_BINDING_TYPE__HOST);
-        createEAttribute(camelMailBindingTypeEClass, CAMEL_MAIL_BINDING_TYPE__PORT);
-        createEAttribute(camelMailBindingTypeEClass, CAMEL_MAIL_BINDING_TYPE__USERNAME);
-        createEAttribute(camelMailBindingTypeEClass, CAMEL_MAIL_BINDING_TYPE__PASSWORD);
-        createEAttribute(camelMailBindingTypeEClass, CAMEL_MAIL_BINDING_TYPE__CONNECTION_TIMEOUT);
-        createEReference(camelMailBindingTypeEClass, CAMEL_MAIL_BINDING_TYPE__CONSUME);
-        createEReference(camelMailBindingTypeEClass, CAMEL_MAIL_BINDING_TYPE__PRODUCE);
-        createEAttribute(camelMailBindingTypeEClass, CAMEL_MAIL_BINDING_TYPE__SECURE);
-
-        jpaProducerTypeEClass = createEClass(JPA_PRODUCER_TYPE);
-        createEAttribute(jpaProducerTypeEClass, JPA_PRODUCER_TYPE__FLUSH_ON_SEND);
-        createEAttribute(jpaProducerTypeEClass, JPA_PRODUCER_TYPE__USE_PERSIST);
-
-        jpaConsumerTypeEClass = createEClass(JPA_CONSUMER_TYPE);
-        createEAttribute(jpaConsumerTypeEClass, JPA_CONSUMER_TYPE__CONSUME_DELETE);
-        createEAttribute(jpaConsumerTypeEClass, JPA_CONSUMER_TYPE__CONSUME_LOCK_ENTITY);
-        createEAttribute(jpaConsumerTypeEClass, JPA_CONSUMER_TYPE__MAXIMUM_RESULTS);
-        createEAttribute(jpaConsumerTypeEClass, JPA_CONSUMER_TYPE__CONSUMER_QUERY);
-        createEAttribute(jpaConsumerTypeEClass, JPA_CONSUMER_TYPE__CONSUMER_NAMED_QUERY);
-        createEAttribute(jpaConsumerTypeEClass, JPA_CONSUMER_TYPE__CONSUMER_NATIVE_QUERY);
-        createEAttribute(jpaConsumerTypeEClass, JPA_CONSUMER_TYPE__CONSUMER_RESULT_CLASS);
-        createEAttribute(jpaConsumerTypeEClass, JPA_CONSUMER_TYPE__CONSUMER_TRANSACTED);
-
-        camelJPABindingTypeEClass = createEClass(CAMEL_JPA_BINDING_TYPE);
-        createEAttribute(camelJPABindingTypeEClass, CAMEL_JPA_BINDING_TYPE__ENTITY_CLASS_NAME);
-        createEAttribute(camelJPABindingTypeEClass, CAMEL_JPA_BINDING_TYPE__PERSISTENCE_UNIT);
-        createEAttribute(camelJPABindingTypeEClass, CAMEL_JPA_BINDING_TYPE__TRANSACTION_MANAGER);
-        createEReference(camelJPABindingTypeEClass, CAMEL_JPA_BINDING_TYPE__CONSUME);
-        createEReference(camelJPABindingTypeEClass, CAMEL_JPA_BINDING_TYPE__PRODUCE);
 
         // Create enums
         timeUnitEEnum = createEEnum(TIME_UNIT);
-        mailConsumerAccountTypeEEnum = createEEnum(MAIL_CONSUMER_ACCOUNT_TYPE);
 
         // Create data types
         timeUnitObjectEDataType = createEDataType(TIME_UNIT_OBJECT);
@@ -3064,8 +1568,6 @@ public class CamelPackageImpl extends EPackageImpl implements CamelPackage {
         // Obtain other dependent packages
         SwitchyardPackage theSwitchyardPackage = (SwitchyardPackage)EPackage.Registry.INSTANCE.getEPackage(SwitchyardPackage.eNS_URI);
         XMLTypePackage theXMLTypePackage = (XMLTypePackage)EPackage.Registry.INSTANCE.getEPackage(XMLTypePackage.eNS_URI);
-        ScaPackage theScaPackage = (ScaPackage)EPackage.Registry.INSTANCE.getEPackage(ScaPackage.eNS_URI);
-        SpringPackage theSpringPackage = (SpringPackage)EPackage.Registry.INSTANCE.getEPackage(SpringPackage.eNS_URI);
 
         // Create type parameters
 
@@ -3073,183 +1575,34 @@ public class CamelPackageImpl extends EPackageImpl implements CamelPackage {
 
         // Add supertypes to classes
         baseCamelBindingEClass.getESuperTypes().add(theSwitchyardPackage.getSwitchYardBindingType());
+        genericFileBindingTypeEClass.getESuperTypes().add(this.getBaseCamelBinding());
+        camelRemoteBindingTypeEClass.getESuperTypes().add(this.getGenericFileBindingType());
+        scheduledBatchPollConsumerTypeEClass.getESuperTypes().add(this.getScheduledPollConsumerType());
+        genericFileConsumerTypeEClass.getESuperTypes().add(this.getScheduledBatchPollConsumerType());
+        jmsBindingTypeEClass.getESuperTypes().add(this.getBaseCamelBinding());
         camelBindingTypeEClass.getESuperTypes().add(this.getBaseCamelBinding());
-        camelFileBindingTypeEClass.getESuperTypes().add(this.getGenericFileBindingType());
-        camelFtpBindingTypeEClass.getESuperTypes().add(this.getCamelRemoteBindingType());
-        camelFtpsBindingTypeEClass.getESuperTypes().add(this.getCamelFtpBindingType());
-        camelSftpBindingTypeEClass.getESuperTypes().add(this.getCamelRemoteBindingType());
-        camelAtomBindingTypeEClass.getESuperTypes().add(this.getBaseCamelBinding());
         camelDirectBindingTypeEClass.getESuperTypes().add(this.getBaseCamelBinding());
         camelTimerBindingTypeEClass.getESuperTypes().add(this.getBaseCamelBinding());
         camelSedaBindingTypeEClass.getESuperTypes().add(this.getBaseCamelBinding());
         camelMockBindingTypeEClass.getESuperTypes().add(this.getBaseCamelBinding());
-        camelNettyTcpBindingTypeEClass.getESuperTypes().add(this.getCamelNettyBindingType());
-        camelNettyUdpBindingTypeEClass.getESuperTypes().add(this.getCamelNettyBindingType());
-        camelNettyBindingTypeEClass.getESuperTypes().add(this.getBaseCamelBinding());
-        camelQuartzBindingTypeEClass.getESuperTypes().add(this.getBaseCamelBinding());
-        camelJmsBindingTypeEClass.getESuperTypes().add(this.getBaseCamelBinding());
-        camelSqlBindingTypeEClass.getESuperTypes().add(this.getBaseCamelBinding());
-        camelImplementationTypeEClass.getESuperTypes().add(theScaPackage.getImplementation());
-        genericFileBindingTypeEClass.getESuperTypes().add(this.getBaseCamelBinding());
-        camelRemoteBindingTypeEClass.getESuperTypes().add(this.getGenericFileBindingType());
-        scheduledBatchPollConsumerTypeEClass.getESuperTypes().add(this.getScheduledPollConsumerType());
-        fileConsumerTypeEClass.getESuperTypes().add(this.getGenericFileConsumerType());
-        fileProducerTypeEClass.getESuperTypes().add(this.getGenericFileProducerType());
-        remoteFileConsumerTypeEClass.getESuperTypes().add(this.getGenericFileConsumerType());
-        remoteFileProducerTypeEClass.getESuperTypes().add(this.getGenericFileProducerType());
-        genericFileConsumerTypeEClass.getESuperTypes().add(this.getScheduledBatchPollConsumerType());
-        camelContextMapperTypeEClass.getESuperTypes().add(theSwitchyardPackage.getContextMapperType());
-        camelMessageComposerTypeEClass.getESuperTypes().add(theSwitchyardPackage.getMessageComposerType());
-        camelMailConsumerTypeEClass.getESuperTypes().add(this.getScheduledBatchPollConsumerType());
-        camelMailBindingTypeEClass.getESuperTypes().add(this.getBaseCamelBinding());
-        jpaConsumerTypeEClass.getESuperTypes().add(this.getScheduledBatchPollConsumerType());
-        camelJPABindingTypeEClass.getESuperTypes().add(this.getBaseCamelBinding());
 
         // Initialize classes and features; add operations and parameters
         initEClass(baseCamelBindingEClass, BaseCamelBinding.class, "BaseCamelBinding", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 
-        initEClass(camelBindingTypeEClass, CamelBindingType.class, "CamelBindingType", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-        initEAttribute(getCamelBindingType_ConfigURI(), theXMLTypePackage.getAnyURI(), "configURI", null, 0, 1, CamelBindingType.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-
-        initEClass(camelFileBindingTypeEClass, CamelFileBindingType.class, "CamelFileBindingType", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-        initEReference(getCamelFileBindingType_Consume(), this.getFileConsumerType(), null, "consume", null, 0, 1, CamelFileBindingType.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-        initEReference(getCamelFileBindingType_Produce(), this.getFileProducerType(), null, "produce", null, 0, 1, CamelFileBindingType.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-
-        initEClass(camelFtpBindingTypeEClass, CamelFtpBindingType.class, "CamelFtpBindingType", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-        initEAttribute(getCamelFtpBindingType_PassiveMode(), theXMLTypePackage.getBooleanObject(), "passiveMode", null, 0, 1, CamelFtpBindingType.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-        initEAttribute(getCamelFtpBindingType_Timeout(), theXMLTypePackage.getIntObject(), "timeout", null, 0, 1, CamelFtpBindingType.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-        initEAttribute(getCamelFtpBindingType_SoTimeout(), theXMLTypePackage.getIntObject(), "soTimeout", null, 0, 1, CamelFtpBindingType.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-        initEAttribute(getCamelFtpBindingType_SiteCommand(), theXMLTypePackage.getString(), "siteCommand", null, 0, 1, CamelFtpBindingType.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-
-        initEClass(camelFtpsBindingTypeEClass, CamelFtpsBindingType.class, "CamelFtpsBindingType", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-        initEAttribute(getCamelFtpsBindingType_SecurityProtocol(), theXMLTypePackage.getString(), "securityProtocol", null, 0, 1, CamelFtpsBindingType.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-        initEAttribute(getCamelFtpsBindingType_IsImplicit(), theXMLTypePackage.getBoolean(), "isImplicit", null, 0, 1, CamelFtpsBindingType.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-        initEAttribute(getCamelFtpsBindingType_ExecPbsz(), theXMLTypePackage.getLong(), "execPbsz", null, 0, 1, CamelFtpsBindingType.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-        initEAttribute(getCamelFtpsBindingType_ExecProt(), theXMLTypePackage.getString(), "execProt", null, 0, 1, CamelFtpsBindingType.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-        initEAttribute(getCamelFtpsBindingType_DisableSecureDataChannelDefaults(), theXMLTypePackage.getBoolean(), "disableSecureDataChannelDefaults", null, 0, 1, CamelFtpsBindingType.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-
-        initEClass(camelSftpBindingTypeEClass, CamelSftpBindingType.class, "CamelSftpBindingType", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-        initEAttribute(getCamelSftpBindingType_KnownHostsFile(), theXMLTypePackage.getString(), "knownHostsFile", null, 0, 1, CamelSftpBindingType.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-        initEAttribute(getCamelSftpBindingType_PrivateKeyFile(), theXMLTypePackage.getString(), "privateKeyFile", null, 0, 1, CamelSftpBindingType.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-        initEAttribute(getCamelSftpBindingType_PrivateKeyFilePassphrase(), theXMLTypePackage.getString(), "privateKeyFilePassphrase", null, 0, 1, CamelSftpBindingType.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-
-        initEClass(camelAtomBindingTypeEClass, CamelAtomBindingType.class, "CamelAtomBindingType", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-        initEAttribute(getCamelAtomBindingType_FeedURI(), theXMLTypePackage.getAnyURI(), "feedURI", null, 1, 1, CamelAtomBindingType.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-        initEAttribute(getCamelAtomBindingType_SplitEntries(), theXMLTypePackage.getBoolean(), "splitEntries", null, 0, 1, CamelAtomBindingType.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-        initEAttribute(getCamelAtomBindingType_Filter(), theXMLTypePackage.getBoolean(), "filter", null, 0, 1, CamelAtomBindingType.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-        initEAttribute(getCamelAtomBindingType_LastUpdate(), theXMLTypePackage.getDateTime(), "lastUpdate", null, 0, 1, CamelAtomBindingType.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-        initEAttribute(getCamelAtomBindingType_ThrottleEntries(), theXMLTypePackage.getBoolean(), "throttleEntries", null, 0, 1, CamelAtomBindingType.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-        initEAttribute(getCamelAtomBindingType_FeedHeader(), theXMLTypePackage.getBoolean(), "feedHeader", null, 0, 1, CamelAtomBindingType.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-        initEAttribute(getCamelAtomBindingType_SortEntries(), theXMLTypePackage.getBoolean(), "sortEntries", null, 0, 1, CamelAtomBindingType.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-        initEReference(getCamelAtomBindingType_Consume(), this.getScheduledPollConsumerType(), null, "consume", null, 0, 1, CamelAtomBindingType.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-
-        initEClass(camelDirectBindingTypeEClass, CamelDirectBindingType.class, "CamelDirectBindingType", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-        initEAttribute(getCamelDirectBindingType_NameElement(), theXMLTypePackage.getString(), "nameElement", null, 1, 1, CamelDirectBindingType.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-
-        initEClass(camelTimerBindingTypeEClass, CamelTimerBindingType.class, "CamelTimerBindingType", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-        initEAttribute(getCamelTimerBindingType_NameElement(), theXMLTypePackage.getString(), "nameElement", null, 1, 1, CamelTimerBindingType.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-        initEAttribute(getCamelTimerBindingType_Time(), theXMLTypePackage.getDateTime(), "time", null, 0, 1, CamelTimerBindingType.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-        initEAttribute(getCamelTimerBindingType_Pattern(), theXMLTypePackage.getString(), "pattern", null, 0, 1, CamelTimerBindingType.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-        initEAttribute(getCamelTimerBindingType_Period(), theXMLTypePackage.getLong(), "period", null, 0, 1, CamelTimerBindingType.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-        initEAttribute(getCamelTimerBindingType_Delay(), theXMLTypePackage.getLong(), "delay", null, 0, 1, CamelTimerBindingType.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-        initEAttribute(getCamelTimerBindingType_FixedRate(), theXMLTypePackage.getBoolean(), "fixedRate", null, 0, 1, CamelTimerBindingType.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-        initEAttribute(getCamelTimerBindingType_Daemon(), theXMLTypePackage.getBoolean(), "daemon", null, 0, 1, CamelTimerBindingType.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-
-        initEClass(camelSedaBindingTypeEClass, CamelSedaBindingType.class, "CamelSedaBindingType", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-        initEAttribute(getCamelSedaBindingType_NameElement(), theXMLTypePackage.getString(), "nameElement", null, 1, 1, CamelSedaBindingType.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-        initEAttribute(getCamelSedaBindingType_Size(), theXMLTypePackage.getInteger(), "size", null, 1, 1, CamelSedaBindingType.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-        initEAttribute(getCamelSedaBindingType_ConcurrentConsumers(), theXMLTypePackage.getInteger(), "concurrentConsumers", null, 1, 1, CamelSedaBindingType.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-        initEAttribute(getCamelSedaBindingType_WaitForTaskToComplete(), theXMLTypePackage.getString(), "waitForTaskToComplete", null, 1, 1, CamelSedaBindingType.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-        initEAttribute(getCamelSedaBindingType_Timeout(), theXMLTypePackage.getLong(), "timeout", null, 1, 1, CamelSedaBindingType.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-        initEAttribute(getCamelSedaBindingType_MultipleConsumers(), theXMLTypePackage.getBoolean(), "multipleConsumers", null, 1, 1, CamelSedaBindingType.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-        initEAttribute(getCamelSedaBindingType_LimitConcurrentConsumers(), theXMLTypePackage.getBoolean(), "limitConcurrentConsumers", null, 1, 1, CamelSedaBindingType.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-
-        initEClass(camelMockBindingTypeEClass, CamelMockBindingType.class, "CamelMockBindingType", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-        initEAttribute(getCamelMockBindingType_NameElement(), theXMLTypePackage.getString(), "nameElement", null, 1, 1, CamelMockBindingType.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-        initEAttribute(getCamelMockBindingType_ReportGroup(), theXMLTypePackage.getInteger(), "reportGroup", null, 1, 1, CamelMockBindingType.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-
-        initEClass(camelNettyTcpBindingTypeEClass, CamelNettyTcpBindingType.class, "CamelNettyTcpBindingType", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-        initEAttribute(getCamelNettyTcpBindingType_Textline(), theXMLTypePackage.getBooleanObject(), "textline", null, 0, 1, CamelNettyTcpBindingType.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-        initEAttribute(getCamelNettyTcpBindingType_TcpNoDelay(), theXMLTypePackage.getBooleanObject(), "tcpNoDelay", null, 0, 1, CamelNettyTcpBindingType.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-        initEAttribute(getCamelNettyTcpBindingType_KeepAlive(), theXMLTypePackage.getBoolean(), "keepAlive", null, 0, 1, CamelNettyTcpBindingType.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-
-        initEClass(camelNettyUdpBindingTypeEClass, CamelNettyUdpBindingType.class, "CamelNettyUdpBindingType", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-        initEAttribute(getCamelNettyUdpBindingType_Broadcast(), theXMLTypePackage.getBoolean(), "broadcast", null, 0, 1, CamelNettyUdpBindingType.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-
-        initEClass(camelNettyBindingTypeEClass, CamelNettyBindingType.class, "CamelNettyBindingType", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-        initEAttribute(getCamelNettyBindingType_Host(), theXMLTypePackage.getString(), "host", null, 1, 1, CamelNettyBindingType.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-        initEAttribute(getCamelNettyBindingType_Port(), theXMLTypePackage.getInt(), "port", null, 1, 1, CamelNettyBindingType.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-        initEAttribute(getCamelNettyBindingType_ReceiveBufferSize(), theXMLTypePackage.getLong(), "receiveBufferSize", null, 0, 1, CamelNettyBindingType.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-        initEAttribute(getCamelNettyBindingType_SendBufferSize(), theXMLTypePackage.getLong(), "sendBufferSize", null, 0, 1, CamelNettyBindingType.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-        initEAttribute(getCamelNettyBindingType_ReuseAddress(), theXMLTypePackage.getBooleanObject(), "reuseAddress", null, 0, 1, CamelNettyBindingType.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-        initEAttribute(getCamelNettyBindingType_Encoders(), theXMLTypePackage.getString(), "encoders", null, 0, 1, CamelNettyBindingType.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-        initEAttribute(getCamelNettyBindingType_Decoders(), theXMLTypePackage.getString(), "decoders", null, 0, 1, CamelNettyBindingType.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-        initEAttribute(getCamelNettyBindingType_AllowDefaultCodec(), theXMLTypePackage.getBooleanObject(), "allowDefaultCodec", null, 0, 1, CamelNettyBindingType.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-        initEAttribute(getCamelNettyBindingType_WorkerCount(), theXMLTypePackage.getIntObject(), "workerCount", null, 0, 1, CamelNettyBindingType.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-        initEAttribute(getCamelNettyBindingType_Sync(), theXMLTypePackage.getBoolean(), "sync", null, 0, 1, CamelNettyBindingType.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-        initEAttribute(getCamelNettyBindingType_Disconnect(), theXMLTypePackage.getBooleanObject(), "disconnect", null, 0, 1, CamelNettyBindingType.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-
-        initEClass(camelQuartzBindingTypeEClass, CamelQuartzBindingType.class, "CamelQuartzBindingType", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-        initEAttribute(getCamelQuartzBindingType_CamelBindingName(), theXMLTypePackage.getString(), "camelBindingName", null, 1, 1, CamelQuartzBindingType.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-        initEAttribute(getCamelQuartzBindingType_Cron(), theXMLTypePackage.getString(), "cron", null, 1, 1, CamelQuartzBindingType.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-        initEAttribute(getCamelQuartzBindingType_Stateful(), theXMLTypePackage.getBooleanObject(), "stateful", null, 0, 1, CamelQuartzBindingType.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-        initEAttribute(getCamelQuartzBindingType_StartTime(), theXMLTypePackage.getDateTime(), "startTime", null, 0, 1, CamelQuartzBindingType.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-        initEAttribute(getCamelQuartzBindingType_EndTime(), theXMLTypePackage.getDateTime(), "endTime", null, 0, 1, CamelQuartzBindingType.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-
-        initEClass(camelJmsBindingTypeEClass, CamelJmsBindingType.class, "CamelJmsBindingType", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-        initEAttribute(getCamelJmsBindingType_Queue(), theXMLTypePackage.getString(), "queue", null, 0, 1, CamelJmsBindingType.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-        initEAttribute(getCamelJmsBindingType_Topic(), theXMLTypePackage.getString(), "topic", null, 0, 1, CamelJmsBindingType.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-        initEAttribute(getCamelJmsBindingType_ConnectionFactory(), theXMLTypePackage.getString(), "connectionFactory", null, 1, 1, CamelJmsBindingType.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-        initEAttribute(getCamelJmsBindingType_Username(), theXMLTypePackage.getString(), "username", null, 0, 1, CamelJmsBindingType.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-        initEAttribute(getCamelJmsBindingType_Password(), theXMLTypePackage.getString(), "password", null, 0, 1, CamelJmsBindingType.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-        initEAttribute(getCamelJmsBindingType_ClientId(), theXMLTypePackage.getString(), "clientId", null, 0, 1, CamelJmsBindingType.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-        initEAttribute(getCamelJmsBindingType_DurableSubscriptionName(), theXMLTypePackage.getString(), "durableSubscriptionName", null, 0, 1, CamelJmsBindingType.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-        initEAttribute(getCamelJmsBindingType_ConcurrentConsumers(), theXMLTypePackage.getInt(), "concurrentConsumers", null, 0, 1, CamelJmsBindingType.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-        initEAttribute(getCamelJmsBindingType_MaxConcurrentConsumers(), theXMLTypePackage.getInt(), "maxConcurrentConsumers", null, 0, 1, CamelJmsBindingType.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-        initEAttribute(getCamelJmsBindingType_DisableReplyTo(), theXMLTypePackage.getBooleanObject(), "disableReplyTo", null, 0, 1, CamelJmsBindingType.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-        initEAttribute(getCamelJmsBindingType_PreserveMessageQos(), theXMLTypePackage.getBooleanObject(), "preserveMessageQos", null, 0, 1, CamelJmsBindingType.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-        initEAttribute(getCamelJmsBindingType_DeliveryPersistent(), theXMLTypePackage.getBooleanObject(), "deliveryPersistent", null, 0, 1, CamelJmsBindingType.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-        initEAttribute(getCamelJmsBindingType_Priority(), theXMLTypePackage.getIntObject(), "priority", null, 0, 1, CamelJmsBindingType.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-        initEAttribute(getCamelJmsBindingType_ExplicitQosEnabled(), theXMLTypePackage.getBooleanObject(), "explicitQosEnabled", null, 0, 1, CamelJmsBindingType.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-        initEAttribute(getCamelJmsBindingType_ReplyTo(), theXMLTypePackage.getString(), "replyTo", null, 0, 1, CamelJmsBindingType.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-        initEAttribute(getCamelJmsBindingType_ReplyToType(), theXMLTypePackage.getString(), "replyToType", null, 0, 1, CamelJmsBindingType.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-        initEAttribute(getCamelJmsBindingType_RequestTimeout(), theXMLTypePackage.getIntObject(), "requestTimeout", null, 0, 1, CamelJmsBindingType.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-        initEAttribute(getCamelJmsBindingType_Selector(), theXMLTypePackage.getString(), "selector", null, 0, 1, CamelJmsBindingType.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-        initEAttribute(getCamelJmsBindingType_TimeToLive(), theXMLTypePackage.getIntObject(), "timeToLive", null, 0, 1, CamelJmsBindingType.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-        initEAttribute(getCamelJmsBindingType_Transacted(), theXMLTypePackage.getBoolean(), "transacted", null, 0, 1, CamelJmsBindingType.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-        initEAttribute(getCamelJmsBindingType_TransactionManager(), theXMLTypePackage.getString(), "transactionManager", null, 0, 1, CamelJmsBindingType.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-
-        initEClass(camelSqlBindingTypeEClass, CamelSqlBindingType.class, "CamelSqlBindingType", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-        initEAttribute(getCamelSqlBindingType_Query(), theXMLTypePackage.getString(), "query", null, 1, 1, CamelSqlBindingType.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-        initEAttribute(getCamelSqlBindingType_DataSourceRef(), theXMLTypePackage.getString(), "dataSourceRef", null, 1, 1, CamelSqlBindingType.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-        initEAttribute(getCamelSqlBindingType_Batch(), theXMLTypePackage.getBoolean(), "batch", null, 0, 1, CamelSqlBindingType.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-        initEAttribute(getCamelSqlBindingType_Placeholder(), theXMLTypePackage.getString(), "placeholder", null, 0, 1, CamelSqlBindingType.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-
-        initEClass(javaDSLTypeEClass, JavaDSLType.class, "JavaDSLType", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-        initEAttribute(getJavaDSLType_Class(), theXMLTypePackage.getString(), "class", null, 0, 1, JavaDSLType.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-
-        initEClass(xmldslTypeEClass, XMLDSLType.class, "XMLDSLType", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-        initEAttribute(getXMLDSLType_Path(), theXMLTypePackage.getString(), "path", null, 0, 1, XMLDSLType.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-
-        initEClass(camelImplementationTypeEClass, CamelImplementationType.class, "CamelImplementationType", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-        initEReference(getCamelImplementationType_Route(), theSpringPackage.getRouteDefinition(), null, "route", null, 0, 1, CamelImplementationType.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-        initEReference(getCamelImplementationType_Java(), this.getJavaDSLType(), null, "java", null, 0, 1, CamelImplementationType.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-        initEReference(getCamelImplementationType_Xml(), this.getXMLDSLType(), null, "xml", null, 0, 1, CamelImplementationType.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-
         initEClass(genericFileBindingTypeEClass, GenericFileBindingType.class, "GenericFileBindingType", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
         initEAttribute(getGenericFileBindingType_Directory(), theXMLTypePackage.getString(), "directory", null, 1, 1, GenericFileBindingType.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-        initEAttribute(getGenericFileBindingType_AutoCreate(), theXMLTypePackage.getBoolean(), "autoCreate", null, 0, 1, GenericFileBindingType.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-        initEAttribute(getGenericFileBindingType_BufferSize(), theXMLTypePackage.getInteger(), "bufferSize", null, 0, 1, GenericFileBindingType.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+        initEAttribute(getGenericFileBindingType_AutoCreate(), theXMLTypePackage.getBooleanObject(), "autoCreate", null, 0, 1, GenericFileBindingType.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+        initEAttribute(getGenericFileBindingType_BufferSize(), theXMLTypePackage.getIntObject(), "bufferSize", null, 0, 1, GenericFileBindingType.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
         initEAttribute(getGenericFileBindingType_FileName(), theXMLTypePackage.getString(), "fileName", null, 0, 1, GenericFileBindingType.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
         initEAttribute(getGenericFileBindingType_Flatten(), theXMLTypePackage.getBooleanObject(), "flatten", null, 0, 1, GenericFileBindingType.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
         initEAttribute(getGenericFileBindingType_Charset(), theXMLTypePackage.getString(), "charset", null, 0, 1, GenericFileBindingType.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
         initEClass(camelRemoteBindingTypeEClass, CamelRemoteBindingType.class, "CamelRemoteBindingType", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
         initEAttribute(getCamelRemoteBindingType_Host(), theXMLTypePackage.getString(), "host", null, 0, 1, CamelRemoteBindingType.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-        initEAttribute(getCamelRemoteBindingType_Port(), theXMLTypePackage.getInt(), "port", null, 0, 1, CamelRemoteBindingType.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+        initEAttribute(getCamelRemoteBindingType_Port(), theXMLTypePackage.getIntObject(), "port", null, 0, 1, CamelRemoteBindingType.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
         initEAttribute(getCamelRemoteBindingType_Username(), theXMLTypePackage.getString(), "username", null, 0, 1, CamelRemoteBindingType.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
         initEAttribute(getCamelRemoteBindingType_Password(), theXMLTypePackage.getString(), "password", null, 0, 1, CamelRemoteBindingType.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-        initEAttribute(getCamelRemoteBindingType_Binary(), theXMLTypePackage.getBoolean(), "binary", null, 0, 1, CamelRemoteBindingType.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+        initEAttribute(getCamelRemoteBindingType_Binary(), theXMLTypePackage.getBooleanObject(), "binary", null, 0, 1, CamelRemoteBindingType.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
         initEAttribute(getCamelRemoteBindingType_ConnectTimeout(), theXMLTypePackage.getIntObject(), "connectTimeout", null, 0, 1, CamelRemoteBindingType.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
         initEAttribute(getCamelRemoteBindingType_Disconnect(), theXMLTypePackage.getBooleanObject(), "disconnect", null, 0, 1, CamelRemoteBindingType.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
         initEAttribute(getCamelRemoteBindingType_MaximumReconnectAttempts(), theXMLTypePackage.getIntObject(), "maximumReconnectAttempts", null, 0, 1, CamelRemoteBindingType.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
@@ -3257,26 +1610,16 @@ public class CamelPackageImpl extends EPackageImpl implements CamelPackage {
         initEAttribute(getCamelRemoteBindingType_Separator(), theXMLTypePackage.getString(), "separator", null, 0, 1, CamelRemoteBindingType.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
         initEAttribute(getCamelRemoteBindingType_Stepwise(), theXMLTypePackage.getBooleanObject(), "stepwise", null, 0, 1, CamelRemoteBindingType.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
         initEAttribute(getCamelRemoteBindingType_ThrowExceptionOnConnectFailed(), theXMLTypePackage.getBooleanObject(), "throwExceptionOnConnectFailed", null, 0, 1, CamelRemoteBindingType.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-        initEReference(getCamelRemoteBindingType_Consume(), this.getRemoteFileConsumerType(), null, "consume", null, 0, 1, CamelRemoteBindingType.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-        initEReference(getCamelRemoteBindingType_Produce(), this.getRemoteFileProducerType(), null, "produce", null, 0, 1, CamelRemoteBindingType.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
         initEClass(scheduledPollConsumerTypeEClass, ScheduledPollConsumerType.class, "ScheduledPollConsumerType", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-        initEAttribute(getScheduledPollConsumerType_InitialDelay(), theXMLTypePackage.getInteger(), "initialDelay", null, 0, 1, ScheduledPollConsumerType.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-        initEAttribute(getScheduledPollConsumerType_Delay(), theXMLTypePackage.getInteger(), "delay", null, 0, 1, ScheduledPollConsumerType.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-        initEAttribute(getScheduledPollConsumerType_UseFixedDelay(), theXMLTypePackage.getBoolean(), "useFixedDelay", null, 0, 1, ScheduledPollConsumerType.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-        initEAttribute(getScheduledPollConsumerType_SendEmptyMessageWhenIdle(), theXMLTypePackage.getBoolean(), "sendEmptyMessageWhenIdle", null, 0, 1, ScheduledPollConsumerType.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+        initEAttribute(getScheduledPollConsumerType_InitialDelay(), theXMLTypePackage.getIntObject(), "initialDelay", null, 0, 1, ScheduledPollConsumerType.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+        initEAttribute(getScheduledPollConsumerType_Delay(), theXMLTypePackage.getIntObject(), "delay", null, 0, 1, ScheduledPollConsumerType.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+        initEAttribute(getScheduledPollConsumerType_UseFixedDelay(), theXMLTypePackage.getBooleanObject(), "useFixedDelay", null, 0, 1, ScheduledPollConsumerType.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+        initEAttribute(getScheduledPollConsumerType_SendEmptyMessageWhenIdle(), theXMLTypePackage.getBooleanObject(), "sendEmptyMessageWhenIdle", null, 0, 1, ScheduledPollConsumerType.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
         initEAttribute(getScheduledPollConsumerType_TimeUnit(), this.getTimeUnit(), "timeUnit", null, 0, 1, ScheduledPollConsumerType.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
         initEClass(scheduledBatchPollConsumerTypeEClass, ScheduledBatchPollConsumerType.class, "ScheduledBatchPollConsumerType", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-        initEAttribute(getScheduledBatchPollConsumerType_MaxMessagesPerPoll(), theXMLTypePackage.getInteger(), "maxMessagesPerPoll", null, 0, 1, ScheduledBatchPollConsumerType.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-
-        initEClass(fileConsumerTypeEClass, FileConsumerType.class, "FileConsumerType", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-
-        initEClass(fileProducerTypeEClass, FileProducerType.class, "FileProducerType", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-
-        initEClass(remoteFileConsumerTypeEClass, RemoteFileConsumerType.class, "RemoteFileConsumerType", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-
-        initEClass(remoteFileProducerTypeEClass, RemoteFileProducerType.class, "RemoteFileProducerType", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+        initEAttribute(getScheduledBatchPollConsumerType_MaxMessagesPerPoll(), theXMLTypePackage.getIntObject(), "maxMessagesPerPoll", null, 0, 1, ScheduledBatchPollConsumerType.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
         initEClass(genericFileConsumerTypeEClass, GenericFileConsumerType.class, "GenericFileConsumerType", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
         initEAttribute(getGenericFileConsumerType_Delete(), theXMLTypePackage.getBooleanObject(), "delete", null, 0, 1, GenericFileConsumerType.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
@@ -3310,82 +1653,67 @@ public class CamelPackageImpl extends EPackageImpl implements CamelPackage {
         initEAttribute(getGenericFileProducerType_EagerDeleteTargetFile(), theXMLTypePackage.getBooleanObject(), "eagerDeleteTargetFile", null, 0, 1, GenericFileProducerType.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
         initEAttribute(getGenericFileProducerType_DoneFileName(), theXMLTypePackage.getString(), "doneFileName", null, 0, 1, GenericFileProducerType.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
+        initEClass(jmsBindingTypeEClass, JmsBindingType.class, "JmsBindingType", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+        initEAttribute(getJmsBindingType_Queue(), theXMLTypePackage.getString(), "queue", null, 0, 1, JmsBindingType.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+        initEAttribute(getJmsBindingType_Topic(), theXMLTypePackage.getString(), "topic", null, 0, 1, JmsBindingType.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+        initEAttribute(getJmsBindingType_ConnectionFactory(), theXMLTypePackage.getString(), "connectionFactory", null, 1, 1, JmsBindingType.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+        initEAttribute(getJmsBindingType_Username(), theXMLTypePackage.getString(), "username", null, 0, 1, JmsBindingType.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+        initEAttribute(getJmsBindingType_Password(), theXMLTypePackage.getString(), "password", null, 0, 1, JmsBindingType.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+        initEAttribute(getJmsBindingType_ClientId(), theXMLTypePackage.getString(), "clientId", null, 0, 1, JmsBindingType.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+        initEAttribute(getJmsBindingType_DurableSubscriptionName(), theXMLTypePackage.getString(), "durableSubscriptionName", null, 0, 1, JmsBindingType.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+        initEAttribute(getJmsBindingType_ConcurrentConsumers(), theXMLTypePackage.getIntObject(), "concurrentConsumers", null, 0, 1, JmsBindingType.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+        initEAttribute(getJmsBindingType_MaxConcurrentConsumers(), theXMLTypePackage.getIntObject(), "maxConcurrentConsumers", null, 0, 1, JmsBindingType.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+        initEAttribute(getJmsBindingType_DisableReplyTo(), theXMLTypePackage.getBooleanObject(), "disableReplyTo", null, 0, 1, JmsBindingType.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+        initEAttribute(getJmsBindingType_PreserveMessageQos(), theXMLTypePackage.getBooleanObject(), "preserveMessageQos", null, 0, 1, JmsBindingType.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+        initEAttribute(getJmsBindingType_DeliveryPersistent(), theXMLTypePackage.getBooleanObject(), "deliveryPersistent", null, 0, 1, JmsBindingType.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+        initEAttribute(getJmsBindingType_Priority(), theXMLTypePackage.getIntObject(), "priority", null, 0, 1, JmsBindingType.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+        initEAttribute(getJmsBindingType_ExplicitQosEnabled(), theXMLTypePackage.getBooleanObject(), "explicitQosEnabled", null, 0, 1, JmsBindingType.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+        initEAttribute(getJmsBindingType_ReplyTo(), theXMLTypePackage.getString(), "replyTo", null, 0, 1, JmsBindingType.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+        initEAttribute(getJmsBindingType_ReplyToType(), theXMLTypePackage.getString(), "replyToType", null, 0, 1, JmsBindingType.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+        initEAttribute(getJmsBindingType_RequestTimeout(), theXMLTypePackage.getIntObject(), "requestTimeout", null, 0, 1, JmsBindingType.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+        initEAttribute(getJmsBindingType_Selector(), theXMLTypePackage.getString(), "selector", null, 0, 1, JmsBindingType.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+        initEAttribute(getJmsBindingType_TimeToLive(), theXMLTypePackage.getIntObject(), "timeToLive", null, 0, 1, JmsBindingType.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+        initEAttribute(getJmsBindingType_Transacted(), theXMLTypePackage.getBooleanObject(), "transacted", null, 0, 1, JmsBindingType.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+        initEAttribute(getJmsBindingType_TransactionManager(), theXMLTypePackage.getString(), "transactionManager", null, 0, 1, JmsBindingType.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+        initEClass(camelBindingTypeEClass, CamelBindingType.class, "CamelBindingType", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+        initEAttribute(getCamelBindingType_ConfigURI(), theXMLTypePackage.getAnyURI(), "configURI", null, 0, 1, CamelBindingType.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+        initEClass(camelDirectBindingTypeEClass, CamelDirectBindingType.class, "CamelDirectBindingType", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+        initEAttribute(getCamelDirectBindingType_NameElement(), theXMLTypePackage.getString(), "nameElement", null, 1, 1, CamelDirectBindingType.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+        initEClass(camelTimerBindingTypeEClass, CamelTimerBindingType.class, "CamelTimerBindingType", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+        initEAttribute(getCamelTimerBindingType_CamelBindingName(), theXMLTypePackage.getString(), "camelBindingName", null, 1, 1, CamelTimerBindingType.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+        initEAttribute(getCamelTimerBindingType_Time(), theXMLTypePackage.getDateTime(), "time", null, 0, 1, CamelTimerBindingType.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+        initEAttribute(getCamelTimerBindingType_Pattern(), theXMLTypePackage.getString(), "pattern", null, 0, 1, CamelTimerBindingType.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+        initEAttribute(getCamelTimerBindingType_Period(), theXMLTypePackage.getLongObject(), "period", null, 0, 1, CamelTimerBindingType.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+        initEAttribute(getCamelTimerBindingType_Delay(), theXMLTypePackage.getLongObject(), "delay", null, 0, 1, CamelTimerBindingType.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+        initEAttribute(getCamelTimerBindingType_FixedRate(), theXMLTypePackage.getBooleanObject(), "fixedRate", null, 0, 1, CamelTimerBindingType.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+        initEAttribute(getCamelTimerBindingType_Daemon(), theXMLTypePackage.getBooleanObject(), "daemon", null, 0, 1, CamelTimerBindingType.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+        initEClass(camelSedaBindingTypeEClass, CamelSedaBindingType.class, "CamelSedaBindingType", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+        initEAttribute(getCamelSedaBindingType_NameElement(), theXMLTypePackage.getString(), "nameElement", null, 1, 1, CamelSedaBindingType.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+        initEAttribute(getCamelSedaBindingType_Size(), theXMLTypePackage.getInteger(), "size", null, 1, 1, CamelSedaBindingType.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+        initEAttribute(getCamelSedaBindingType_ConcurrentConsumers(), theXMLTypePackage.getInteger(), "concurrentConsumers", null, 1, 1, CamelSedaBindingType.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+        initEAttribute(getCamelSedaBindingType_WaitForTaskToComplete(), theXMLTypePackage.getString(), "waitForTaskToComplete", null, 1, 1, CamelSedaBindingType.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+        initEAttribute(getCamelSedaBindingType_Timeout(), theXMLTypePackage.getLong(), "timeout", null, 1, 1, CamelSedaBindingType.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+        initEAttribute(getCamelSedaBindingType_MultipleConsumers(), theXMLTypePackage.getBoolean(), "multipleConsumers", null, 1, 1, CamelSedaBindingType.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+        initEAttribute(getCamelSedaBindingType_LimitConcurrentConsumers(), theXMLTypePackage.getBoolean(), "limitConcurrentConsumers", null, 1, 1, CamelSedaBindingType.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+        initEClass(camelMockBindingTypeEClass, CamelMockBindingType.class, "CamelMockBindingType", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+        initEAttribute(getCamelMockBindingType_NameElement(), theXMLTypePackage.getString(), "nameElement", null, 1, 1, CamelMockBindingType.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+        initEAttribute(getCamelMockBindingType_ReportGroup(), theXMLTypePackage.getIntObject(), "reportGroup", null, 0, 1, CamelMockBindingType.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
         initEClass(documentRootEClass, DocumentRoot.class, "DocumentRoot", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
         initEAttribute(getDocumentRoot_Mixed(), ecorePackage.getEFeatureMapEntry(), "mixed", null, 0, -1, null, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
         initEReference(getDocumentRoot_XMLNSPrefixMap(), ecorePackage.getEStringToStringMapEntry(), null, "xMLNSPrefixMap", null, 0, -1, null, IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
         initEReference(getDocumentRoot_XSISchemaLocation(), ecorePackage.getEStringToStringMapEntry(), null, "xSISchemaLocation", null, 0, -1, null, IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-        initEReference(getDocumentRoot_BindingAtom(), this.getCamelAtomBindingType(), null, "bindingAtom", null, 0, -2, null, IS_TRANSIENT, IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, IS_DERIVED, IS_ORDERED);
         initEReference(getDocumentRoot_BindingCamel(), this.getCamelBindingType(), null, "bindingCamel", null, 0, -2, null, IS_TRANSIENT, IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, IS_DERIVED, IS_ORDERED);
         initEReference(getDocumentRoot_BindingDirect(), this.getCamelDirectBindingType(), null, "bindingDirect", null, 0, -2, null, IS_TRANSIENT, IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, IS_DERIVED, IS_ORDERED);
-        initEReference(getDocumentRoot_BindingFile(), this.getCamelFileBindingType(), null, "bindingFile", null, 0, -2, null, IS_TRANSIENT, IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, IS_DERIVED, IS_ORDERED);
-        initEReference(getDocumentRoot_BindingFtp(), this.getCamelFtpBindingType(), null, "bindingFtp", null, 0, -2, null, IS_TRANSIENT, IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, IS_DERIVED, IS_ORDERED);
-        initEReference(getDocumentRoot_BindingFtps(), this.getCamelFtpsBindingType(), null, "bindingFtps", null, 0, -2, null, IS_TRANSIENT, IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, IS_DERIVED, IS_ORDERED);
-        initEReference(getDocumentRoot_BindingJms(), this.getCamelJmsBindingType(), null, "bindingJms", null, 0, -2, null, IS_TRANSIENT, IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, IS_DERIVED, IS_ORDERED);
+        initEReference(getDocumentRoot_BindingJms(), this.getJmsBindingType(), null, "bindingJms", null, 0, -2, null, IS_TRANSIENT, IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, IS_DERIVED, IS_ORDERED);
         initEReference(getDocumentRoot_BindingMock(), this.getCamelMockBindingType(), null, "bindingMock", null, 0, -2, null, IS_TRANSIENT, IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, IS_DERIVED, IS_ORDERED);
         initEReference(getDocumentRoot_BindingSeda(), this.getCamelSedaBindingType(), null, "bindingSeda", null, 0, -2, null, IS_TRANSIENT, IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, IS_DERIVED, IS_ORDERED);
-        initEReference(getDocumentRoot_BindingSftp(), this.getCamelSftpBindingType(), null, "bindingSftp", null, 0, -2, null, IS_TRANSIENT, IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, IS_DERIVED, IS_ORDERED);
         initEReference(getDocumentRoot_BindingTimer(), this.getCamelTimerBindingType(), null, "bindingTimer", null, 0, -2, null, IS_TRANSIENT, IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, IS_DERIVED, IS_ORDERED);
-        initEReference(getDocumentRoot_ImplementationCamel(), this.getCamelImplementationType(), null, "implementationCamel", null, 0, -2, null, IS_TRANSIENT, IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, IS_DERIVED, IS_ORDERED);
-        initEReference(getDocumentRoot_BindingNettyUDP(), this.getCamelNettyUdpBindingType(), null, "bindingNettyUDP", null, 0, -2, null, IS_TRANSIENT, IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, IS_DERIVED, IS_ORDERED);
-        initEReference(getDocumentRoot_BindingNettyTCP(), this.getCamelNettyTcpBindingType(), null, "bindingNettyTCP", null, 0, -2, null, IS_TRANSIENT, IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, IS_DERIVED, IS_ORDERED);
-        initEReference(getDocumentRoot_BindingQuartz(), this.getCamelQuartzBindingType(), null, "bindingQuartz", null, 0, -2, null, IS_TRANSIENT, IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, IS_DERIVED, IS_ORDERED);
-        initEReference(getDocumentRoot_BindingSql(), this.getCamelSqlBindingType(), null, "bindingSql", null, 0, -2, null, IS_TRANSIENT, IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, IS_DERIVED, IS_ORDERED);
-        initEReference(getDocumentRoot_ContextMapper(), this.getCamelContextMapperType(), null, "contextMapper", null, 0, -2, null, IS_TRANSIENT, IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, IS_DERIVED, IS_ORDERED);
-        initEReference(getDocumentRoot_MessageComposer(), this.getCamelMessageComposerType(), null, "messageComposer", null, 0, -2, null, IS_TRANSIENT, IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, IS_DERIVED, IS_ORDERED);
-        initEReference(getDocumentRoot_BindingMail(), this.getCamelMailBindingType(), null, "bindingMail", null, 0, -2, null, IS_TRANSIENT, IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, IS_DERIVED, IS_ORDERED);
-        initEReference(getDocumentRoot_BindingJPA(), this.getCamelJPABindingType(), null, "bindingJPA", null, 0, -2, null, IS_TRANSIENT, IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, IS_DERIVED, IS_ORDERED);
-
-        initEClass(camelContextMapperTypeEClass, CamelContextMapperType.class, "CamelContextMapperType", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-
-        initEClass(camelMessageComposerTypeEClass, CamelMessageComposerType.class, "CamelMessageComposerType", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-
-        initEClass(camelMailConsumerTypeEClass, CamelMailConsumerType.class, "CamelMailConsumerType", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-        initEAttribute(getCamelMailConsumerType_FolderName(), theXMLTypePackage.getString(), "folderName", null, 0, 1, CamelMailConsumerType.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-        initEAttribute(getCamelMailConsumerType_FetchSize(), theXMLTypePackage.getIntObject(), "fetchSize", null, 0, 1, CamelMailConsumerType.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-        initEAttribute(getCamelMailConsumerType_Unseen(), theXMLTypePackage.getBooleanObject(), "unseen", null, 0, 1, CamelMailConsumerType.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-        initEAttribute(getCamelMailConsumerType_Delete(), theXMLTypePackage.getBooleanObject(), "delete", null, 0, 1, CamelMailConsumerType.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-        initEAttribute(getCamelMailConsumerType_CopyTo(), theXMLTypePackage.getString(), "copyTo", null, 0, 1, CamelMailConsumerType.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-        initEAttribute(getCamelMailConsumerType_Disconnect(), theXMLTypePackage.getBooleanObject(), "disconnect", null, 0, 1, CamelMailConsumerType.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-        initEAttribute(getCamelMailConsumerType_AccountType(), this.getMailConsumerAccountType(), "accountType", "", 0, 1, CamelMailConsumerType.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-
-        initEClass(camelMailProducerTypeEClass, CamelMailProducerType.class, "CamelMailProducerType", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-        initEAttribute(getCamelMailProducerType_Subject(), theXMLTypePackage.getString(), "subject", null, 0, 1, CamelMailProducerType.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-        initEAttribute(getCamelMailProducerType_From(), theXMLTypePackage.getString(), "from", null, 0, 1, CamelMailProducerType.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-        initEAttribute(getCamelMailProducerType_To(), theXMLTypePackage.getString(), "to", null, 0, 1, CamelMailProducerType.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-        initEAttribute(getCamelMailProducerType_CC(), theXMLTypePackage.getString(), "CC", null, 0, 1, CamelMailProducerType.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-        initEAttribute(getCamelMailProducerType_BCC(), theXMLTypePackage.getString(), "BCC", null, 0, 1, CamelMailProducerType.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-        initEAttribute(getCamelMailProducerType_ReplyTo(), theXMLTypePackage.getString(), "replyTo", null, 0, 1, CamelMailProducerType.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-
-        initEClass(camelMailBindingTypeEClass, CamelMailBindingType.class, "CamelMailBindingType", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-        initEAttribute(getCamelMailBindingType_Host(), theXMLTypePackage.getString(), "host", null, 1, 1, CamelMailBindingType.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-        initEAttribute(getCamelMailBindingType_Port(), theXMLTypePackage.getIntObject(), "port", null, 0, 1, CamelMailBindingType.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-        initEAttribute(getCamelMailBindingType_Username(), theXMLTypePackage.getString(), "username", null, 0, 1, CamelMailBindingType.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-        initEAttribute(getCamelMailBindingType_Password(), theXMLTypePackage.getString(), "password", null, 0, 1, CamelMailBindingType.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-        initEAttribute(getCamelMailBindingType_ConnectionTimeout(), theXMLTypePackage.getIntObject(), "connectionTimeout", null, 0, 1, CamelMailBindingType.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-        initEReference(getCamelMailBindingType_Consume(), this.getCamelMailConsumerType(), null, "consume", null, 0, 1, CamelMailBindingType.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-        initEReference(getCamelMailBindingType_Produce(), this.getCamelMailProducerType(), null, "produce", null, 0, 1, CamelMailBindingType.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-        initEAttribute(getCamelMailBindingType_Secure(), theXMLTypePackage.getBooleanObject(), "secure", "false", 0, 1, CamelMailBindingType.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-
-        initEClass(jpaProducerTypeEClass, JpaProducerType.class, "JpaProducerType", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-        initEAttribute(getJpaProducerType_FlushOnSend(), theXMLTypePackage.getBooleanObject(), "flushOnSend", null, 0, 1, JpaProducerType.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-        initEAttribute(getJpaProducerType_UsePersist(), theXMLTypePackage.getBooleanObject(), "usePersist", null, 0, 1, JpaProducerType.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-
-        initEClass(jpaConsumerTypeEClass, JpaConsumerType.class, "JpaConsumerType", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-        initEAttribute(getJpaConsumerType_ConsumeDelete(), theXMLTypePackage.getBooleanObject(), "consumeDelete", null, 0, 1, JpaConsumerType.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-        initEAttribute(getJpaConsumerType_ConsumeLockEntity(), theXMLTypePackage.getBooleanObject(), "consumeLockEntity", null, 0, 1, JpaConsumerType.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-        initEAttribute(getJpaConsumerType_MaximumResults(), theXMLTypePackage.getIntObject(), "maximumResults", null, 0, 1, JpaConsumerType.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-        initEAttribute(getJpaConsumerType_ConsumerQuery(), theXMLTypePackage.getString(), "consumerQuery", null, 0, 1, JpaConsumerType.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-        initEAttribute(getJpaConsumerType_ConsumerNamedQuery(), theXMLTypePackage.getString(), "consumerNamedQuery", null, 0, 1, JpaConsumerType.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-        initEAttribute(getJpaConsumerType_ConsumerNativeQuery(), theXMLTypePackage.getString(), "consumerNativeQuery", null, 0, 1, JpaConsumerType.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-        initEAttribute(getJpaConsumerType_ConsumerResultClass(), theXMLTypePackage.getString(), "consumerResultClass", null, 0, 1, JpaConsumerType.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-        initEAttribute(getJpaConsumerType_ConsumerTransacted(), theXMLTypePackage.getBooleanObject(), "consumerTransacted", null, 0, 1, JpaConsumerType.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-
-        initEClass(camelJPABindingTypeEClass, CamelJPABindingType.class, "CamelJPABindingType", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-        initEAttribute(getCamelJPABindingType_EntityClassName(), theXMLTypePackage.getString(), "entityClassName", null, 1, 1, CamelJPABindingType.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-        initEAttribute(getCamelJPABindingType_PersistenceUnit(), theXMLTypePackage.getString(), "persistenceUnit", null, 1, 1, CamelJPABindingType.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-        initEAttribute(getCamelJPABindingType_TransactionManager(), theXMLTypePackage.getString(), "transactionManager", null, 0, 1, CamelJPABindingType.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-        initEReference(getCamelJPABindingType_Consume(), this.getJpaConsumerType(), null, "consume", null, 0, 1, CamelJPABindingType.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-        initEReference(getCamelJPABindingType_Produce(), this.getJpaProducerType(), null, "produce", null, 0, 1, CamelJPABindingType.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
         // Initialize enums and add enum literals
         initEEnum(timeUnitEEnum, TimeUnit.class, "TimeUnit");
@@ -3396,10 +1724,6 @@ public class CamelPackageImpl extends EPackageImpl implements CamelPackage {
         addEEnumLiteral(timeUnitEEnum, TimeUnit.MINUTES);
         addEEnumLiteral(timeUnitEEnum, TimeUnit.HOURS);
         addEEnumLiteral(timeUnitEEnum, TimeUnit.DAYS);
-
-        initEEnum(mailConsumerAccountTypeEEnum, MailConsumerAccountType.class, "MailConsumerAccountType");
-        addEEnumLiteral(mailConsumerAccountTypeEEnum, MailConsumerAccountType.IMAP);
-        addEEnumLiteral(mailConsumerAccountTypeEEnum, MailConsumerAccountType.POP3);
 
         // Initialize data types
         initEDataType(timeUnitObjectEDataType, TimeUnit.class, "TimeUnitObject", IS_SERIALIZABLE, IS_GENERATED_INSTANCE_CLASS);
@@ -3426,856 +1750,6 @@ public class CamelPackageImpl extends EPackageImpl implements CamelPackage {
            new String[] {
              "name", "BaseCamelBinding",
              "kind", "elementOnly"
-           });		
-        addAnnotation
-          (camelBindingTypeEClass, 
-           source, 
-           new String[] {
-             "name", "CamelBindingType",
-             "kind", "elementOnly"
-           });		
-        addAnnotation
-          (getCamelBindingType_ConfigURI(), 
-           source, 
-           new String[] {
-             "kind", "attribute",
-             "name", "configURI"
-           });		
-        addAnnotation
-          (camelFileBindingTypeEClass, 
-           source, 
-           new String[] {
-             "name", "CamelFileBindingType",
-             "kind", "elementOnly"
-           });		
-        addAnnotation
-          (getCamelFileBindingType_Consume(), 
-           source, 
-           new String[] {
-             "kind", "element",
-             "name", "consume",
-             "namespace", "##targetNamespace"
-           });		
-        addAnnotation
-          (getCamelFileBindingType_Produce(), 
-           source, 
-           new String[] {
-             "kind", "element",
-             "name", "produce",
-             "namespace", "##targetNamespace"
-           });		
-        addAnnotation
-          (camelFtpBindingTypeEClass, 
-           source, 
-           new String[] {
-             "name", "CamelFtpBindingType",
-             "kind", "elementOnly"
-           });		
-        addAnnotation
-          (getCamelFtpBindingType_PassiveMode(), 
-           source, 
-           new String[] {
-             "kind", "element",
-             "name", "passiveMode",
-             "namespace", "##targetNamespace"
-           });		
-        addAnnotation
-          (getCamelFtpBindingType_Timeout(), 
-           source, 
-           new String[] {
-             "kind", "element",
-             "name", "timeout",
-             "namespace", "##targetNamespace"
-           });		
-        addAnnotation
-          (getCamelFtpBindingType_SoTimeout(), 
-           source, 
-           new String[] {
-             "kind", "element",
-             "name", "soTimeout",
-             "namespace", "##targetNamespace"
-           });		
-        addAnnotation
-          (getCamelFtpBindingType_SiteCommand(), 
-           source, 
-           new String[] {
-             "kind", "element",
-             "name", "siteCommand",
-             "namespace", "##targetNamespace"
-           });		
-        addAnnotation
-          (camelFtpsBindingTypeEClass, 
-           source, 
-           new String[] {
-             "name", "CamelFtpsBindingType",
-             "kind", "elementOnly"
-           });		
-        addAnnotation
-          (getCamelFtpsBindingType_SecurityProtocol(), 
-           source, 
-           new String[] {
-             "kind", "element",
-             "name", "securityProtocol",
-             "namespace", "##targetNamespace"
-           });		
-        addAnnotation
-          (getCamelFtpsBindingType_IsImplicit(), 
-           source, 
-           new String[] {
-             "kind", "element",
-             "name", "isImplicit",
-             "namespace", "##targetNamespace"
-           });		
-        addAnnotation
-          (getCamelFtpsBindingType_ExecPbsz(), 
-           source, 
-           new String[] {
-             "kind", "element",
-             "name", "execPbsz",
-             "namespace", "##targetNamespace"
-           });		
-        addAnnotation
-          (getCamelFtpsBindingType_ExecProt(), 
-           source, 
-           new String[] {
-             "kind", "element",
-             "name", "execProt",
-             "namespace", "##targetNamespace"
-           });		
-        addAnnotation
-          (getCamelFtpsBindingType_DisableSecureDataChannelDefaults(), 
-           source, 
-           new String[] {
-             "kind", "element",
-             "name", "disableSecureDataChannelDefaults",
-             "namespace", "##targetNamespace"
-           });		
-        addAnnotation
-          (camelSftpBindingTypeEClass, 
-           source, 
-           new String[] {
-             "name", "CamelSftpBindingType",
-             "kind", "elementOnly"
-           });		
-        addAnnotation
-          (getCamelSftpBindingType_KnownHostsFile(), 
-           source, 
-           new String[] {
-             "kind", "element",
-             "name", "knownHostsFile",
-             "namespace", "##targetNamespace"
-           });		
-        addAnnotation
-          (getCamelSftpBindingType_PrivateKeyFile(), 
-           source, 
-           new String[] {
-             "kind", "element",
-             "name", "privateKeyFile",
-             "namespace", "##targetNamespace"
-           });		
-        addAnnotation
-          (getCamelSftpBindingType_PrivateKeyFilePassphrase(), 
-           source, 
-           new String[] {
-             "kind", "element",
-             "name", "privateKeyFilePassphrase",
-             "namespace", "##targetNamespace"
-           });		
-        addAnnotation
-          (camelAtomBindingTypeEClass, 
-           source, 
-           new String[] {
-             "name", "CamelAtomBindingType",
-             "kind", "elementOnly"
-           });		
-        addAnnotation
-          (getCamelAtomBindingType_FeedURI(), 
-           source, 
-           new String[] {
-             "kind", "element",
-             "name", "feedURI",
-             "namespace", "##targetNamespace"
-           });		
-        addAnnotation
-          (getCamelAtomBindingType_SplitEntries(), 
-           source, 
-           new String[] {
-             "kind", "element",
-             "name", "splitEntries",
-             "namespace", "##targetNamespace"
-           });		
-        addAnnotation
-          (getCamelAtomBindingType_Filter(), 
-           source, 
-           new String[] {
-             "kind", "element",
-             "name", "filter",
-             "namespace", "##targetNamespace"
-           });		
-        addAnnotation
-          (getCamelAtomBindingType_LastUpdate(), 
-           source, 
-           new String[] {
-             "kind", "element",
-             "name", "lastUpdate",
-             "namespace", "##targetNamespace"
-           });		
-        addAnnotation
-          (getCamelAtomBindingType_ThrottleEntries(), 
-           source, 
-           new String[] {
-             "kind", "element",
-             "name", "throttleEntries",
-             "namespace", "##targetNamespace"
-           });		
-        addAnnotation
-          (getCamelAtomBindingType_FeedHeader(), 
-           source, 
-           new String[] {
-             "kind", "element",
-             "name", "feedHeader",
-             "namespace", "##targetNamespace"
-           });		
-        addAnnotation
-          (getCamelAtomBindingType_SortEntries(), 
-           source, 
-           new String[] {
-             "kind", "element",
-             "name", "sortEntries",
-             "namespace", "##targetNamespace"
-           });		
-        addAnnotation
-          (getCamelAtomBindingType_Consume(), 
-           source, 
-           new String[] {
-             "kind", "element",
-             "name", "consume",
-             "namespace", "##targetNamespace"
-           });		
-        addAnnotation
-          (camelDirectBindingTypeEClass, 
-           source, 
-           new String[] {
-             "name", "CamelDirectBindingType",
-             "kind", "elementOnly"
-           });		
-        addAnnotation
-          (getCamelDirectBindingType_NameElement(), 
-           source, 
-           new String[] {
-             "kind", "element",
-             "name", "name",
-             "namespace", "##targetNamespace"
-           });		
-        addAnnotation
-          (camelTimerBindingTypeEClass, 
-           source, 
-           new String[] {
-             "name", "CamelTimerBindingType",
-             "kind", "elementOnly"
-           });		
-        addAnnotation
-          (getCamelTimerBindingType_NameElement(), 
-           source, 
-           new String[] {
-             "kind", "element",
-             "name", "name",
-             "namespace", "##targetNamespace"
-           });		
-        addAnnotation
-          (getCamelTimerBindingType_Time(), 
-           source, 
-           new String[] {
-             "kind", "element",
-             "name", "time",
-             "namespace", "##targetNamespace"
-           });		
-        addAnnotation
-          (getCamelTimerBindingType_Pattern(), 
-           source, 
-           new String[] {
-             "kind", "element",
-             "name", "pattern",
-             "namespace", "##targetNamespace"
-           });		
-        addAnnotation
-          (getCamelTimerBindingType_Period(), 
-           source, 
-           new String[] {
-             "kind", "element",
-             "name", "period",
-             "namespace", "##targetNamespace"
-           });		
-        addAnnotation
-          (getCamelTimerBindingType_Delay(), 
-           source, 
-           new String[] {
-             "kind", "element",
-             "name", "delay",
-             "namespace", "##targetNamespace"
-           });		
-        addAnnotation
-          (getCamelTimerBindingType_FixedRate(), 
-           source, 
-           new String[] {
-             "kind", "element",
-             "name", "fixedRate",
-             "namespace", "##targetNamespace"
-           });		
-        addAnnotation
-          (getCamelTimerBindingType_Daemon(), 
-           source, 
-           new String[] {
-             "kind", "element",
-             "name", "daemon",
-             "namespace", "##targetNamespace"
-           });		
-        addAnnotation
-          (camelSedaBindingTypeEClass, 
-           source, 
-           new String[] {
-             "name", "CamelSedaBindingType",
-             "kind", "elementOnly"
-           });		
-        addAnnotation
-          (getCamelSedaBindingType_NameElement(), 
-           source, 
-           new String[] {
-             "kind", "element",
-             "name", "name",
-             "namespace", "##targetNamespace"
-           });		
-        addAnnotation
-          (getCamelSedaBindingType_Size(), 
-           source, 
-           new String[] {
-             "kind", "element",
-             "name", "size",
-             "namespace", "##targetNamespace"
-           });		
-        addAnnotation
-          (getCamelSedaBindingType_ConcurrentConsumers(), 
-           source, 
-           new String[] {
-             "kind", "element",
-             "name", "concurrentConsumers",
-             "namespace", "##targetNamespace"
-           });		
-        addAnnotation
-          (getCamelSedaBindingType_WaitForTaskToComplete(), 
-           source, 
-           new String[] {
-             "kind", "element",
-             "name", "waitForTaskToComplete",
-             "namespace", "##targetNamespace"
-           });		
-        addAnnotation
-          (getCamelSedaBindingType_Timeout(), 
-           source, 
-           new String[] {
-             "kind", "element",
-             "name", "timeout",
-             "namespace", "##targetNamespace"
-           });		
-        addAnnotation
-          (getCamelSedaBindingType_MultipleConsumers(), 
-           source, 
-           new String[] {
-             "kind", "element",
-             "name", "multipleConsumers",
-             "namespace", "##targetNamespace"
-           });		
-        addAnnotation
-          (getCamelSedaBindingType_LimitConcurrentConsumers(), 
-           source, 
-           new String[] {
-             "kind", "element",
-             "name", "limitConcurrentConsumers",
-             "namespace", "##targetNamespace"
-           });		
-        addAnnotation
-          (camelMockBindingTypeEClass, 
-           source, 
-           new String[] {
-             "name", "CamelMockBindingType",
-             "kind", "elementOnly"
-           });		
-        addAnnotation
-          (getCamelMockBindingType_NameElement(), 
-           source, 
-           new String[] {
-             "kind", "element",
-             "name", "name",
-             "namespace", "##targetNamespace"
-           });		
-        addAnnotation
-          (getCamelMockBindingType_ReportGroup(), 
-           source, 
-           new String[] {
-             "kind", "element",
-             "name", "reportGroup",
-             "namespace", "##targetNamespace"
-           });		
-        addAnnotation
-          (camelNettyTcpBindingTypeEClass, 
-           source, 
-           new String[] {
-             "name", "CamelNettyTcpBindingType",
-             "kind", "elementOnly"
-           });		
-        addAnnotation
-          (getCamelNettyTcpBindingType_Textline(), 
-           source, 
-           new String[] {
-             "kind", "element",
-             "name", "textline",
-             "namespace", "##targetNamespace"
-           });		
-        addAnnotation
-          (getCamelNettyTcpBindingType_TcpNoDelay(), 
-           source, 
-           new String[] {
-             "kind", "element",
-             "name", "tcpNoDelay",
-             "namespace", "##targetNamespace"
-           });		
-        addAnnotation
-          (getCamelNettyTcpBindingType_KeepAlive(), 
-           source, 
-           new String[] {
-             "kind", "element",
-             "name", "keepAlive",
-             "namespace", "##targetNamespace"
-           });		
-        addAnnotation
-          (camelNettyUdpBindingTypeEClass, 
-           source, 
-           new String[] {
-             "name", "CamelNettyUdpBindingType",
-             "kind", "elementOnly"
-           });		
-        addAnnotation
-          (getCamelNettyUdpBindingType_Broadcast(), 
-           source, 
-           new String[] {
-             "kind", "element",
-             "name", "broadcast",
-             "namespace", "##targetNamespace"
-           });		
-        addAnnotation
-          (camelNettyBindingTypeEClass, 
-           source, 
-           new String[] {
-             "name", "CamelNettyBindingType",
-             "kind", "elementOnly"
-           });		
-        addAnnotation
-          (getCamelNettyBindingType_Host(), 
-           source, 
-           new String[] {
-             "kind", "element",
-             "name", "host",
-             "namespace", "##targetNamespace"
-           });		
-        addAnnotation
-          (getCamelNettyBindingType_Port(), 
-           source, 
-           new String[] {
-             "kind", "element",
-             "name", "port",
-             "namespace", "##targetNamespace"
-           });		
-        addAnnotation
-          (getCamelNettyBindingType_ReceiveBufferSize(), 
-           source, 
-           new String[] {
-             "kind", "element",
-             "name", "receiveBufferSize",
-             "namespace", "##targetNamespace"
-           });		
-        addAnnotation
-          (getCamelNettyBindingType_SendBufferSize(), 
-           source, 
-           new String[] {
-             "kind", "element",
-             "name", "sendBufferSize",
-             "namespace", "##targetNamespace"
-           });		
-        addAnnotation
-          (getCamelNettyBindingType_ReuseAddress(), 
-           source, 
-           new String[] {
-             "kind", "element",
-             "name", "reuseAddress",
-             "namespace", "##targetNamespace"
-           });		
-        addAnnotation
-          (getCamelNettyBindingType_Encoders(), 
-           source, 
-           new String[] {
-             "kind", "element",
-             "name", "encoders",
-             "namespace", "##targetNamespace"
-           });		
-        addAnnotation
-          (getCamelNettyBindingType_Decoders(), 
-           source, 
-           new String[] {
-             "kind", "element",
-             "name", "decoders",
-             "namespace", "##targetNamespace"
-           });		
-        addAnnotation
-          (getCamelNettyBindingType_AllowDefaultCodec(), 
-           source, 
-           new String[] {
-             "kind", "element",
-             "name", "allowDefaultCodec",
-             "namespace", "##targetNamespace"
-           });		
-        addAnnotation
-          (getCamelNettyBindingType_WorkerCount(), 
-           source, 
-           new String[] {
-             "kind", "element",
-             "name", "workerCount",
-             "namespace", "##targetNamespace"
-           });		
-        addAnnotation
-          (getCamelNettyBindingType_Sync(), 
-           source, 
-           new String[] {
-             "kind", "element",
-             "name", "sync",
-             "namespace", "##targetNamespace"
-           });		
-        addAnnotation
-          (getCamelNettyBindingType_Disconnect(), 
-           source, 
-           new String[] {
-             "kind", "element",
-             "name", "disconnect",
-             "namespace", "##targetNamespace"
-           });		
-        addAnnotation
-          (camelQuartzBindingTypeEClass, 
-           source, 
-           new String[] {
-             "name", "CamelQuartzBindingType",
-             "kind", "elementOnly"
-           });		
-        addAnnotation
-          (getCamelQuartzBindingType_CamelBindingName(), 
-           source, 
-           new String[] {
-             "kind", "element",
-             "name", "name",
-             "namespace", "##targetNamespace"
-           });		
-        addAnnotation
-          (getCamelQuartzBindingType_Cron(), 
-           source, 
-           new String[] {
-             "kind", "element",
-             "name", "cron",
-             "namespace", "##targetNamespace"
-           });		
-        addAnnotation
-          (getCamelQuartzBindingType_Stateful(), 
-           source, 
-           new String[] {
-             "kind", "element",
-             "name", "stateful",
-             "namespace", "##targetNamespace"
-           });		
-        addAnnotation
-          (getCamelQuartzBindingType_StartTime(), 
-           source, 
-           new String[] {
-             "kind", "element",
-             "name", "trigger.startTime",
-             "namespace", "##targetNamespace"
-           });		
-        addAnnotation
-          (getCamelQuartzBindingType_EndTime(), 
-           source, 
-           new String[] {
-             "kind", "element",
-             "name", "trigger.endTime",
-             "namespace", "##targetNamespace"
-           });		
-        addAnnotation
-          (camelJmsBindingTypeEClass, 
-           source, 
-           new String[] {
-             "name", "CamelJmsBindingType",
-             "kind", "elementOnly"
-           });		
-        addAnnotation
-          (getCamelJmsBindingType_Queue(), 
-           source, 
-           new String[] {
-             "kind", "element",
-             "name", "queue",
-             "namespace", "##targetNamespace"
-           });		
-        addAnnotation
-          (getCamelJmsBindingType_Topic(), 
-           source, 
-           new String[] {
-             "kind", "element",
-             "name", "topic",
-             "namespace", "##targetNamespace"
-           });		
-        addAnnotation
-          (getCamelJmsBindingType_ConnectionFactory(), 
-           source, 
-           new String[] {
-             "kind", "element",
-             "name", "connectionFactory",
-             "namespace", "##targetNamespace"
-           });		
-        addAnnotation
-          (getCamelJmsBindingType_Username(), 
-           source, 
-           new String[] {
-             "kind", "element",
-             "name", "username",
-             "namespace", "##targetNamespace"
-           });		
-        addAnnotation
-          (getCamelJmsBindingType_Password(), 
-           source, 
-           new String[] {
-             "kind", "element",
-             "name", "password",
-             "namespace", "##targetNamespace"
-           });		
-        addAnnotation
-          (getCamelJmsBindingType_ClientId(), 
-           source, 
-           new String[] {
-             "kind", "element",
-             "name", "clientId",
-             "namespace", "##targetNamespace"
-           });		
-        addAnnotation
-          (getCamelJmsBindingType_DurableSubscriptionName(), 
-           source, 
-           new String[] {
-             "kind", "element",
-             "name", "durableSubscriptionName",
-             "namespace", "##targetNamespace"
-           });		
-        addAnnotation
-          (getCamelJmsBindingType_ConcurrentConsumers(), 
-           source, 
-           new String[] {
-             "kind", "element",
-             "name", "concurrentConsumers",
-             "namespace", "##targetNamespace"
-           });		
-        addAnnotation
-          (getCamelJmsBindingType_MaxConcurrentConsumers(), 
-           source, 
-           new String[] {
-             "kind", "element",
-             "name", "maxConcurrentConsumers",
-             "namespace", "##targetNamespace"
-           });		
-        addAnnotation
-          (getCamelJmsBindingType_DisableReplyTo(), 
-           source, 
-           new String[] {
-             "kind", "element",
-             "name", "disableReplyTo",
-             "namespace", "##targetNamespace"
-           });		
-        addAnnotation
-          (getCamelJmsBindingType_PreserveMessageQos(), 
-           source, 
-           new String[] {
-             "kind", "element",
-             "name", "preserveMessageQos",
-             "namespace", "##targetNamespace"
-           });		
-        addAnnotation
-          (getCamelJmsBindingType_DeliveryPersistent(), 
-           source, 
-           new String[] {
-             "kind", "element",
-             "name", "deliveryPersistent",
-             "namespace", "##targetNamespace"
-           });		
-        addAnnotation
-          (getCamelJmsBindingType_Priority(), 
-           source, 
-           new String[] {
-             "kind", "element",
-             "name", "priority",
-             "namespace", "##targetNamespace"
-           });		
-        addAnnotation
-          (getCamelJmsBindingType_ExplicitQosEnabled(), 
-           source, 
-           new String[] {
-             "kind", "element",
-             "name", "explicitQosEnabled",
-             "namespace", "##targetNamespace"
-           });		
-        addAnnotation
-          (getCamelJmsBindingType_ReplyTo(), 
-           source, 
-           new String[] {
-             "kind", "element",
-             "name", "replyTo",
-             "namespace", "##targetNamespace"
-           });		
-        addAnnotation
-          (getCamelJmsBindingType_ReplyToType(), 
-           source, 
-           new String[] {
-             "kind", "element",
-             "name", "replyToType",
-             "namespace", "##targetNamespace"
-           });		
-        addAnnotation
-          (getCamelJmsBindingType_RequestTimeout(), 
-           source, 
-           new String[] {
-             "kind", "element",
-             "name", "requestTimeout",
-             "namespace", "##targetNamespace"
-           });		
-        addAnnotation
-          (getCamelJmsBindingType_Selector(), 
-           source, 
-           new String[] {
-             "kind", "element",
-             "name", "selector",
-             "namespace", "##targetNamespace"
-           });		
-        addAnnotation
-          (getCamelJmsBindingType_TimeToLive(), 
-           source, 
-           new String[] {
-             "kind", "element",
-             "name", "timeToLive",
-             "namespace", "##targetNamespace"
-           });		
-        addAnnotation
-          (getCamelJmsBindingType_Transacted(), 
-           source, 
-           new String[] {
-             "kind", "element",
-             "name", "transacted",
-             "namespace", "##targetNamespace"
-           });		
-        addAnnotation
-          (getCamelJmsBindingType_TransactionManager(), 
-           source, 
-           new String[] {
-             "kind", "element",
-             "name", "transactionManager",
-             "namespace", "##targetNamespace"
-           });		
-        addAnnotation
-          (camelSqlBindingTypeEClass, 
-           source, 
-           new String[] {
-             "name", "CamelSqlBindingType",
-             "kind", "elementOnly"
-           });		
-        addAnnotation
-          (getCamelSqlBindingType_Query(), 
-           source, 
-           new String[] {
-             "kind", "element",
-             "name", "query",
-             "namespace", "##targetNamespace"
-           });		
-        addAnnotation
-          (getCamelSqlBindingType_DataSourceRef(), 
-           source, 
-           new String[] {
-             "kind", "element",
-             "name", "dataSourceRef",
-             "namespace", "##targetNamespace"
-           });		
-        addAnnotation
-          (getCamelSqlBindingType_Batch(), 
-           source, 
-           new String[] {
-             "kind", "element",
-             "name", "batch",
-             "namespace", "##targetNamespace"
-           });		
-        addAnnotation
-          (getCamelSqlBindingType_Placeholder(), 
-           source, 
-           new String[] {
-             "kind", "element",
-             "name", "placeholder",
-             "namespace", "##targetNamespace"
-           });		
-        addAnnotation
-          (javaDSLTypeEClass, 
-           source, 
-           new String[] {
-             "name", "JavaDSLType",
-             "kind", "elementOnly"
-           });		
-        addAnnotation
-          (getJavaDSLType_Class(), 
-           source, 
-           new String[] {
-             "kind", "attribute",
-             "name", "class"
-           });		
-        addAnnotation
-          (xmldslTypeEClass, 
-           source, 
-           new String[] {
-             "name", "XMLDSLType",
-             "kind", "elementOnly"
-           });		
-        addAnnotation
-          (getXMLDSLType_Path(), 
-           source, 
-           new String[] {
-             "kind", "attribute",
-             "name", "path"
-           });		
-        addAnnotation
-          (camelImplementationTypeEClass, 
-           source, 
-           new String[] {
-             "name", "CamelImplementationType",
-             "kind", "elementOnly"
-           });		
-        addAnnotation
-          (getCamelImplementationType_Route(), 
-           source, 
-           new String[] {
-             "kind", "element",
-             "name", "route",
-             "namespace", "http://camel.apache.org/schema/spring"
-           });		
-        addAnnotation
-          (getCamelImplementationType_Java(), 
-           source, 
-           new String[] {
-             "kind", "element",
-             "name", "java",
-             "namespace", "##targetNamespace"
-           });		
-        addAnnotation
-          (getCamelImplementationType_Xml(), 
-           source, 
-           new String[] {
-             "kind", "element",
-             "name", "xml",
-             "namespace", "##targetNamespace"
            });		
         addAnnotation
           (genericFileBindingTypeEClass, 
@@ -4436,22 +1910,6 @@ public class CamelPackageImpl extends EPackageImpl implements CamelPackage {
              "namespace", "##targetNamespace"
            });		
         addAnnotation
-          (getCamelRemoteBindingType_Consume(), 
-           source, 
-           new String[] {
-             "kind", "element",
-             "name", "consume",
-             "namespace", "##targetNamespace"
-           });		
-        addAnnotation
-          (getCamelRemoteBindingType_Produce(), 
-           source, 
-           new String[] {
-             "kind", "element",
-             "name", "produce",
-             "namespace", "##targetNamespace"
-           });		
-        addAnnotation
           (scheduledPollConsumerTypeEClass, 
            source, 
            new String[] {
@@ -4499,6 +1957,19 @@ public class CamelPackageImpl extends EPackageImpl implements CamelPackage {
              "namespace", "##targetNamespace"
            });		
         addAnnotation
+          (timeUnitEEnum, 
+           source, 
+           new String[] {
+             "name", "TimeUnit"
+           });		
+        addAnnotation
+          (timeUnitObjectEDataType, 
+           source, 
+           new String[] {
+             "name", "TimeUnit:Object",
+             "baseType", "TimeUnit"
+           });		
+        addAnnotation
           (scheduledBatchPollConsumerTypeEClass, 
            source, 
            new String[] {
@@ -4512,34 +1983,6 @@ public class CamelPackageImpl extends EPackageImpl implements CamelPackage {
              "kind", "element",
              "name", "maxMessagesPerPoll",
              "namespace", "##targetNamespace"
-           });		
-        addAnnotation
-          (fileConsumerTypeEClass, 
-           source, 
-           new String[] {
-             "name", "FileConsumerType",
-             "kind", "elementOnly"
-           });		
-        addAnnotation
-          (fileProducerTypeEClass, 
-           source, 
-           new String[] {
-             "name", "FileProducerType",
-             "kind", "elementOnly"
-           });		
-        addAnnotation
-          (remoteFileConsumerTypeEClass, 
-           source, 
-           new String[] {
-             "name", "RemoteFileConsumerType",
-             "kind", "elementOnly"
-           });		
-        addAnnotation
-          (remoteFileProducerTypeEClass, 
-           source, 
-           new String[] {
-             "name", "RemoteFileProducerType",
-             "kind", "elementOnly"
            });		
         addAnnotation
           (genericFileConsumerTypeEClass, 
@@ -4780,10 +2223,357 @@ public class CamelPackageImpl extends EPackageImpl implements CamelPackage {
              "namespace", "##targetNamespace"
            });		
         addAnnotation
-          (timeUnitEEnum, 
+          (jmsBindingTypeEClass, 
            source, 
            new String[] {
-             "name", "TimeUnit"
+             "name", "JmsBindingType",
+             "kind", "elementOnly"
+           });		
+        addAnnotation
+          (getJmsBindingType_Queue(), 
+           source, 
+           new String[] {
+             "kind", "element",
+             "name", "queue",
+             "namespace", "##targetNamespace"
+           });		
+        addAnnotation
+          (getJmsBindingType_Topic(), 
+           source, 
+           new String[] {
+             "kind", "element",
+             "name", "topic",
+             "namespace", "##targetNamespace"
+           });		
+        addAnnotation
+          (getJmsBindingType_ConnectionFactory(), 
+           source, 
+           new String[] {
+             "kind", "element",
+             "name", "connectionFactory",
+             "namespace", "##targetNamespace"
+           });		
+        addAnnotation
+          (getJmsBindingType_Username(), 
+           source, 
+           new String[] {
+             "kind", "element",
+             "name", "username",
+             "namespace", "##targetNamespace"
+           });		
+        addAnnotation
+          (getJmsBindingType_Password(), 
+           source, 
+           new String[] {
+             "kind", "element",
+             "name", "password",
+             "namespace", "##targetNamespace"
+           });		
+        addAnnotation
+          (getJmsBindingType_ClientId(), 
+           source, 
+           new String[] {
+             "kind", "element",
+             "name", "clientId",
+             "namespace", "##targetNamespace"
+           });		
+        addAnnotation
+          (getJmsBindingType_DurableSubscriptionName(), 
+           source, 
+           new String[] {
+             "kind", "element",
+             "name", "durableSubscriptionName",
+             "namespace", "##targetNamespace"
+           });		
+        addAnnotation
+          (getJmsBindingType_ConcurrentConsumers(), 
+           source, 
+           new String[] {
+             "kind", "element",
+             "name", "concurrentConsumers",
+             "namespace", "##targetNamespace"
+           });		
+        addAnnotation
+          (getJmsBindingType_MaxConcurrentConsumers(), 
+           source, 
+           new String[] {
+             "kind", "element",
+             "name", "maxConcurrentConsumers",
+             "namespace", "##targetNamespace"
+           });		
+        addAnnotation
+          (getJmsBindingType_DisableReplyTo(), 
+           source, 
+           new String[] {
+             "kind", "element",
+             "name", "disableReplyTo",
+             "namespace", "##targetNamespace"
+           });		
+        addAnnotation
+          (getJmsBindingType_PreserveMessageQos(), 
+           source, 
+           new String[] {
+             "kind", "element",
+             "name", "preserveMessageQos",
+             "namespace", "##targetNamespace"
+           });		
+        addAnnotation
+          (getJmsBindingType_DeliveryPersistent(), 
+           source, 
+           new String[] {
+             "kind", "element",
+             "name", "deliveryPersistent",
+             "namespace", "##targetNamespace"
+           });		
+        addAnnotation
+          (getJmsBindingType_Priority(), 
+           source, 
+           new String[] {
+             "kind", "element",
+             "name", "priority",
+             "namespace", "##targetNamespace"
+           });		
+        addAnnotation
+          (getJmsBindingType_ExplicitQosEnabled(), 
+           source, 
+           new String[] {
+             "kind", "element",
+             "name", "explicitQosEnabled",
+             "namespace", "##targetNamespace"
+           });		
+        addAnnotation
+          (getJmsBindingType_ReplyTo(), 
+           source, 
+           new String[] {
+             "kind", "element",
+             "name", "replyTo",
+             "namespace", "##targetNamespace"
+           });		
+        addAnnotation
+          (getJmsBindingType_ReplyToType(), 
+           source, 
+           new String[] {
+             "kind", "element",
+             "name", "replyToType",
+             "namespace", "##targetNamespace"
+           });		
+        addAnnotation
+          (getJmsBindingType_RequestTimeout(), 
+           source, 
+           new String[] {
+             "kind", "element",
+             "name", "requestTimeout",
+             "namespace", "##targetNamespace"
+           });		
+        addAnnotation
+          (getJmsBindingType_Selector(), 
+           source, 
+           new String[] {
+             "kind", "element",
+             "name", "selector",
+             "namespace", "##targetNamespace"
+           });		
+        addAnnotation
+          (getJmsBindingType_TimeToLive(), 
+           source, 
+           new String[] {
+             "kind", "element",
+             "name", "timeToLive",
+             "namespace", "##targetNamespace"
+           });		
+        addAnnotation
+          (getJmsBindingType_Transacted(), 
+           source, 
+           new String[] {
+             "kind", "element",
+             "name", "transacted",
+             "namespace", "##targetNamespace"
+           });		
+        addAnnotation
+          (getJmsBindingType_TransactionManager(), 
+           source, 
+           new String[] {
+             "kind", "element",
+             "name", "transactionManager",
+             "namespace", "##targetNamespace"
+           });		
+        addAnnotation
+          (camelBindingTypeEClass, 
+           source, 
+           new String[] {
+             "name", "CamelBindingType",
+             "kind", "elementOnly"
+           });		
+        addAnnotation
+          (getCamelBindingType_ConfigURI(), 
+           source, 
+           new String[] {
+             "kind", "attribute",
+             "name", "configURI"
+           });		
+        addAnnotation
+          (camelDirectBindingTypeEClass, 
+           source, 
+           new String[] {
+             "name", "CamelDirectBindingType",
+             "kind", "elementOnly"
+           });		
+        addAnnotation
+          (getCamelDirectBindingType_NameElement(), 
+           source, 
+           new String[] {
+             "kind", "element",
+             "name", "name",
+             "namespace", "##targetNamespace"
+           });		
+        addAnnotation
+          (camelTimerBindingTypeEClass, 
+           source, 
+           new String[] {
+             "name", "CamelTimerBindingType",
+             "kind", "elementOnly"
+           });		
+        addAnnotation
+          (getCamelTimerBindingType_CamelBindingName(), 
+           source, 
+           new String[] {
+             "kind", "element",
+             "name", "name",
+             "namespace", "##targetNamespace"
+           });		
+        addAnnotation
+          (getCamelTimerBindingType_Time(), 
+           source, 
+           new String[] {
+             "kind", "element",
+             "name", "time",
+             "namespace", "##targetNamespace"
+           });		
+        addAnnotation
+          (getCamelTimerBindingType_Pattern(), 
+           source, 
+           new String[] {
+             "kind", "element",
+             "name", "pattern",
+             "namespace", "##targetNamespace"
+           });		
+        addAnnotation
+          (getCamelTimerBindingType_Period(), 
+           source, 
+           new String[] {
+             "kind", "element",
+             "name", "period",
+             "namespace", "##targetNamespace"
+           });		
+        addAnnotation
+          (getCamelTimerBindingType_Delay(), 
+           source, 
+           new String[] {
+             "kind", "element",
+             "name", "delay",
+             "namespace", "##targetNamespace"
+           });		
+        addAnnotation
+          (getCamelTimerBindingType_FixedRate(), 
+           source, 
+           new String[] {
+             "kind", "element",
+             "name", "fixedRate",
+             "namespace", "##targetNamespace"
+           });		
+        addAnnotation
+          (getCamelTimerBindingType_Daemon(), 
+           source, 
+           new String[] {
+             "kind", "element",
+             "name", "daemon",
+             "namespace", "##targetNamespace"
+           });		
+        addAnnotation
+          (camelSedaBindingTypeEClass, 
+           source, 
+           new String[] {
+             "name", "CamelSedaBindingType",
+             "kind", "elementOnly"
+           });		
+        addAnnotation
+          (getCamelSedaBindingType_NameElement(), 
+           source, 
+           new String[] {
+             "kind", "element",
+             "name", "name",
+             "namespace", "##targetNamespace"
+           });		
+        addAnnotation
+          (getCamelSedaBindingType_Size(), 
+           source, 
+           new String[] {
+             "kind", "element",
+             "name", "size",
+             "namespace", "##targetNamespace"
+           });		
+        addAnnotation
+          (getCamelSedaBindingType_ConcurrentConsumers(), 
+           source, 
+           new String[] {
+             "kind", "element",
+             "name", "concurrentConsumers",
+             "namespace", "##targetNamespace"
+           });		
+        addAnnotation
+          (getCamelSedaBindingType_WaitForTaskToComplete(), 
+           source, 
+           new String[] {
+             "kind", "element",
+             "name", "waitForTaskToComplete",
+             "namespace", "##targetNamespace"
+           });		
+        addAnnotation
+          (getCamelSedaBindingType_Timeout(), 
+           source, 
+           new String[] {
+             "kind", "element",
+             "name", "timeout",
+             "namespace", "##targetNamespace"
+           });		
+        addAnnotation
+          (getCamelSedaBindingType_MultipleConsumers(), 
+           source, 
+           new String[] {
+             "kind", "element",
+             "name", "multipleConsumers",
+             "namespace", "##targetNamespace"
+           });		
+        addAnnotation
+          (getCamelSedaBindingType_LimitConcurrentConsumers(), 
+           source, 
+           new String[] {
+             "kind", "element",
+             "name", "limitConcurrentConsumers",
+             "namespace", "##targetNamespace"
+           });		
+        addAnnotation
+          (camelMockBindingTypeEClass, 
+           source, 
+           new String[] {
+             "name", "CamelMockBindingType",
+             "kind", "elementOnly"
+           });		
+        addAnnotation
+          (getCamelMockBindingType_NameElement(), 
+           source, 
+           new String[] {
+             "kind", "element",
+             "name", "name",
+             "namespace", "##targetNamespace"
+           });		
+        addAnnotation
+          (getCamelMockBindingType_ReportGroup(), 
+           source, 
+           new String[] {
+             "kind", "element",
+             "name", "reportGroup",
+             "namespace", "##targetNamespace"
            });		
         addAnnotation
           (documentRootEClass, 
@@ -4814,20 +2604,11 @@ public class CamelPackageImpl extends EPackageImpl implements CamelPackage {
              "name", "xsi:schemaLocation"
            });		
         addAnnotation
-          (getDocumentRoot_BindingAtom(), 
-           source, 
-           new String[] {
-             "kind", "element",
-             "name", "binding.atom",
-             "namespace", "##targetNamespace",
-             "affiliation", "urn:switchyard-config:switchyard:1.0#binding.switchyard"
-           });		
-        addAnnotation
           (getDocumentRoot_BindingCamel(), 
            source, 
            new String[] {
              "kind", "element",
-             "name", "binding.camel",
+             "name", "binding.uri",
              "namespace", "##targetNamespace",
              "affiliation", "urn:switchyard-config:switchyard:1.0#binding.switchyard"
            });		
@@ -4837,33 +2618,6 @@ public class CamelPackageImpl extends EPackageImpl implements CamelPackage {
            new String[] {
              "kind", "element",
              "name", "binding.direct",
-             "namespace", "##targetNamespace",
-             "affiliation", "urn:switchyard-config:switchyard:1.0#binding.switchyard"
-           });		
-        addAnnotation
-          (getDocumentRoot_BindingFile(), 
-           source, 
-           new String[] {
-             "kind", "element",
-             "name", "binding.file",
-             "namespace", "##targetNamespace",
-             "affiliation", "urn:switchyard-config:switchyard:1.0#binding.switchyard"
-           });		
-        addAnnotation
-          (getDocumentRoot_BindingFtp(), 
-           source, 
-           new String[] {
-             "kind", "element",
-             "name", "binding.ftp",
-             "namespace", "##targetNamespace",
-             "affiliation", "urn:switchyard-config:switchyard:1.0#binding.switchyard"
-           });		
-        addAnnotation
-          (getDocumentRoot_BindingFtps(), 
-           source, 
-           new String[] {
-             "kind", "element",
-             "name", "binding.ftps",
              "namespace", "##targetNamespace",
              "affiliation", "urn:switchyard-config:switchyard:1.0#binding.switchyard"
            });		
@@ -4895,15 +2649,6 @@ public class CamelPackageImpl extends EPackageImpl implements CamelPackage {
              "affiliation", "urn:switchyard-config:switchyard:1.0#binding.switchyard"
            });		
         addAnnotation
-          (getDocumentRoot_BindingSftp(), 
-           source, 
-           new String[] {
-             "kind", "element",
-             "name", "binding.sftp",
-             "namespace", "##targetNamespace",
-             "affiliation", "urn:switchyard-config:switchyard:1.0#binding.switchyard"
-           });		
-        addAnnotation
           (getDocumentRoot_BindingTimer(), 
            source, 
            new String[] {
@@ -4911,444 +2656,6 @@ public class CamelPackageImpl extends EPackageImpl implements CamelPackage {
              "name", "binding.timer",
              "namespace", "##targetNamespace",
              "affiliation", "urn:switchyard-config:switchyard:1.0#binding.switchyard"
-           });		
-        addAnnotation
-          (getDocumentRoot_ImplementationCamel(), 
-           source, 
-           new String[] {
-             "kind", "element",
-             "name", "implementation.camel",
-             "namespace", "##targetNamespace",
-             "affiliation", "http://docs.oasis-open.org/ns/opencsa/sca/200912#implementation"
-           });		
-        addAnnotation
-          (getDocumentRoot_BindingNettyUDP(), 
-           source, 
-           new String[] {
-             "kind", "element",
-             "name", "binding.netty-udp",
-             "namespace", "##targetNamespace",
-             "affiliation", "urn:switchyard-config:switchyard:1.0#binding.switchyard"
-           });		
-        addAnnotation
-          (getDocumentRoot_BindingNettyTCP(), 
-           source, 
-           new String[] {
-             "kind", "element",
-             "name", "binding.netty-tcp",
-             "namespace", "##targetNamespace",
-             "affiliation", "urn:switchyard-config:switchyard:1.0#binding.switchyard"
-           });		
-        addAnnotation
-          (getDocumentRoot_BindingQuartz(), 
-           source, 
-           new String[] {
-             "kind", "element",
-             "name", "binding.quartz",
-             "namespace", "##targetNamespace",
-             "affiliation", "urn:switchyard-config:switchyard:1.0#binding.switchyard"
-           });		
-        addAnnotation
-          (getDocumentRoot_BindingSql(), 
-           source, 
-           new String[] {
-             "kind", "element",
-             "name", "binding.sql",
-             "namespace", "##targetNamespace",
-             "affiliation", "urn:switchyard-config:switchyard:1.0#binding.switchyard"
-           });		
-        addAnnotation
-          (getDocumentRoot_ContextMapper(), 
-           source, 
-           new String[] {
-             "kind", "element",
-             "name", "contextMapper",
-             "namespace", "##targetNamespace",
-             "affiliation", "urn:switchyard-config:switchyard:1.0#contextMapper"
-           });		
-        addAnnotation
-          (getDocumentRoot_MessageComposer(), 
-           source, 
-           new String[] {
-             "kind", "element",
-             "name", "messageComposer",
-             "namespace", "##targetNamespace",
-             "affiliation", "urn:switchyard-config:switchyard:1.0#messageComposer"
-           });		
-        addAnnotation
-          (getDocumentRoot_BindingMail(), 
-           source, 
-           new String[] {
-             "kind", "element",
-             "name", "binding.mail",
-             "namespace", "##targetNamespace",
-             "affiliation", "urn:switchyard-config:switchyard:1.0#binding.switchyard"
-           });		
-        addAnnotation
-          (getDocumentRoot_BindingJPA(), 
-           source, 
-           new String[] {
-             "kind", "element",
-             "name", "binding.jpa",
-             "namespace", "##targetNamespace",
-             "affiliation", "urn:switchyard-config:switchyard:1.0#binding.switchyard"
-           });		
-        addAnnotation
-          (timeUnitObjectEDataType, 
-           source, 
-           new String[] {
-             "name", "TimeUnit:Object",
-             "baseType", "TimeUnit"
-           });		
-        addAnnotation
-          (camelContextMapperTypeEClass, 
-           source, 
-           new String[] {
-             "name", "ContextMapperType",
-             "kind", "empty",
-             "namespace", "##targetNamespace"
-           });		
-        addAnnotation
-          (camelMessageComposerTypeEClass, 
-           source, 
-           new String[] {
-             "name", "MessageComposerType",
-             "kind", "empty",
-             "namespace", "##targetNamespace"
-           });		
-        addAnnotation
-          (camelMailConsumerTypeEClass, 
-           source, 
-           new String[] {
-             "name", "CamelMailConsumerType",
-             "kind", "elementOnly"
-           });		
-        addAnnotation
-          (getCamelMailConsumerType_FolderName(), 
-           source, 
-           new String[] {
-             "kind", "element",
-             "name", "folderName",
-             "namespace", "##targetNamespace"
-           });		
-        addAnnotation
-          (getCamelMailConsumerType_FetchSize(), 
-           source, 
-           new String[] {
-             "kind", "element",
-             "name", "fetchSize",
-             "namespace", "##targetNamespace"
-           });		
-        addAnnotation
-          (getCamelMailConsumerType_Unseen(), 
-           source, 
-           new String[] {
-             "kind", "element",
-             "name", "unseen",
-             "namespace", "##targetNamespace"
-           });		
-        addAnnotation
-          (getCamelMailConsumerType_Delete(), 
-           source, 
-           new String[] {
-             "kind", "element",
-             "name", "delete",
-             "namespace", "##targetNamespace"
-           });		
-        addAnnotation
-          (getCamelMailConsumerType_CopyTo(), 
-           source, 
-           new String[] {
-             "kind", "element",
-             "name", "copyTo",
-             "namespace", "##targetNamespace"
-           });		
-        addAnnotation
-          (getCamelMailConsumerType_Disconnect(), 
-           source, 
-           new String[] {
-             "kind", "element",
-             "name", "disconnect",
-             "namespace", "##targetNamespace"
-           });		
-        addAnnotation
-          (getCamelMailConsumerType_AccountType(), 
-           source, 
-           new String[] {
-             "kind", "attribute",
-             "name", "accountType"
-           });		
-        addAnnotation
-          (mailConsumerAccountTypeEEnum, 
-           source, 
-           new String[] {
-             "name", "MailConsumerAccountType"
-           });		
-        addAnnotation
-          (camelMailProducerTypeEClass, 
-           source, 
-           new String[] {
-             "name", "CamelMailProducerType",
-             "kind", "elementOnly"
-           });		
-        addAnnotation
-          (getCamelMailProducerType_Subject(), 
-           source, 
-           new String[] {
-             "kind", "element",
-             "name", "subject",
-             "namespace", "##targetNamespace"
-           });		
-        addAnnotation
-          (getCamelMailProducerType_From(), 
-           source, 
-           new String[] {
-             "kind", "element",
-             "name", "from",
-             "namespace", "##targetNamespace"
-           });		
-        addAnnotation
-          (getCamelMailProducerType_To(), 
-           source, 
-           new String[] {
-             "kind", "element",
-             "name", "to",
-             "namespace", "##targetNamespace"
-           });		
-        addAnnotation
-          (getCamelMailProducerType_CC(), 
-           source, 
-           new String[] {
-             "kind", "element",
-             "name", "CC",
-             "namespace", "##targetNamespace"
-           });		
-        addAnnotation
-          (getCamelMailProducerType_BCC(), 
-           source, 
-           new String[] {
-             "kind", "element",
-             "name", "BCC",
-             "namespace", "##targetNamespace"
-           });		
-        addAnnotation
-          (getCamelMailProducerType_ReplyTo(), 
-           source, 
-           new String[] {
-             "kind", "element",
-             "name", "replyTo",
-             "namespace", "##targetNamespace"
-           });		
-        addAnnotation
-          (camelMailBindingTypeEClass, 
-           source, 
-           new String[] {
-             "name", "CamelMailBindingType",
-             "kind", "elementOnly"
-           });		
-        addAnnotation
-          (getCamelMailBindingType_Host(), 
-           source, 
-           new String[] {
-             "kind", "element",
-             "name", "host",
-             "namespace", "##targetNamespace"
-           });		
-        addAnnotation
-          (getCamelMailBindingType_Port(), 
-           source, 
-           new String[] {
-             "kind", "element",
-             "name", "port",
-             "namespace", "##targetNamespace"
-           });		
-        addAnnotation
-          (getCamelMailBindingType_Username(), 
-           source, 
-           new String[] {
-             "kind", "element",
-             "name", "username",
-             "namespace", "##targetNamespace"
-           });		
-        addAnnotation
-          (getCamelMailBindingType_Password(), 
-           source, 
-           new String[] {
-             "kind", "element",
-             "name", "password",
-             "namespace", "##targetNamespace"
-           });		
-        addAnnotation
-          (getCamelMailBindingType_ConnectionTimeout(), 
-           source, 
-           new String[] {
-             "kind", "element",
-             "name", "connectionTimeout",
-             "namespace", "##targetNamespace"
-           });		
-        addAnnotation
-          (getCamelMailBindingType_Consume(), 
-           source, 
-           new String[] {
-             "kind", "element",
-             "name", "consume",
-             "namespace", "##targetNamespace"
-           });		
-        addAnnotation
-          (getCamelMailBindingType_Produce(), 
-           source, 
-           new String[] {
-             "kind", "element",
-             "name", "produce",
-             "namespace", "##targetNamespace"
-           });		
-        addAnnotation
-          (getCamelMailBindingType_Secure(), 
-           source, 
-           new String[] {
-             "kind", "attribute",
-             "name", "secure"
-           });		
-        addAnnotation
-          (jpaProducerTypeEClass, 
-           source, 
-           new String[] {
-             "name", "JpaProducerType",
-             "kind", "elementOnly"
-           });		
-        addAnnotation
-          (getJpaProducerType_FlushOnSend(), 
-           source, 
-           new String[] {
-             "kind", "element",
-             "name", "flushOnSend",
-             "namespace", "##targetNamespace"
-           });		
-        addAnnotation
-          (getJpaProducerType_UsePersist(), 
-           source, 
-           new String[] {
-             "kind", "element",
-             "name", "usePersist",
-             "namespace", "##targetNamespace"
-           });		
-        addAnnotation
-          (jpaConsumerTypeEClass, 
-           source, 
-           new String[] {
-             "name", "JpaConsumerType",
-             "kind", "elementOnly"
-           });		
-        addAnnotation
-          (getJpaConsumerType_ConsumeDelete(), 
-           source, 
-           new String[] {
-             "kind", "element",
-             "name", "consumeDelete",
-             "namespace", "##targetNamespace"
-           });		
-        addAnnotation
-          (getJpaConsumerType_ConsumeLockEntity(), 
-           source, 
-           new String[] {
-             "kind", "element",
-             "name", "consumeLockEntity",
-             "namespace", "##targetNamespace"
-           });		
-        addAnnotation
-          (getJpaConsumerType_MaximumResults(), 
-           source, 
-           new String[] {
-             "kind", "element",
-             "name", "maximumResults",
-             "namespace", "##targetNamespace"
-           });		
-        addAnnotation
-          (getJpaConsumerType_ConsumerQuery(), 
-           source, 
-           new String[] {
-             "kind", "element",
-             "name", "consumer.query",
-             "namespace", "##targetNamespace"
-           });		
-        addAnnotation
-          (getJpaConsumerType_ConsumerNamedQuery(), 
-           source, 
-           new String[] {
-             "kind", "element",
-             "name", "consumer.namedQuery",
-             "namespace", "##targetNamespace"
-           });		
-        addAnnotation
-          (getJpaConsumerType_ConsumerNativeQuery(), 
-           source, 
-           new String[] {
-             "kind", "element",
-             "name", "consumer.nativeQuery",
-             "namespace", "##targetNamespace"
-           });		
-        addAnnotation
-          (getJpaConsumerType_ConsumerResultClass(), 
-           source, 
-           new String[] {
-             "kind", "element",
-             "name", "consumer.resultClass",
-             "namespace", "##targetNamespace"
-           });		
-        addAnnotation
-          (getJpaConsumerType_ConsumerTransacted(), 
-           source, 
-           new String[] {
-             "kind", "element",
-             "name", "consumer.transacted",
-             "namespace", "##targetNamespace"
-           });		
-        addAnnotation
-          (camelJPABindingTypeEClass, 
-           source, 
-           new String[] {
-             "name", "CamelJPABindingType",
-             "kind", "elementOnly"
-           });		
-        addAnnotation
-          (getCamelJPABindingType_EntityClassName(), 
-           source, 
-           new String[] {
-             "kind", "element",
-             "name", "entityClassName",
-             "namespace", "##targetNamespace"
-           });		
-        addAnnotation
-          (getCamelJPABindingType_PersistenceUnit(), 
-           source, 
-           new String[] {
-             "kind", "element",
-             "name", "persistenceUnit",
-             "namespace", "##targetNamespace"
-           });		
-        addAnnotation
-          (getCamelJPABindingType_TransactionManager(), 
-           source, 
-           new String[] {
-             "kind", "element",
-             "name", "transactionManager",
-             "namespace", "##targetNamespace"
-           });		
-        addAnnotation
-          (getCamelJPABindingType_Consume(), 
-           source, 
-           new String[] {
-             "kind", "element",
-             "name", "consume",
-             "namespace", "##targetNamespace"
-           });		
-        addAnnotation
-          (getCamelJPABindingType_Produce(), 
-           source, 
-           new String[] {
-             "kind", "element",
-             "name", "produce",
-             "namespace", "##targetNamespace"
            });
     }
 

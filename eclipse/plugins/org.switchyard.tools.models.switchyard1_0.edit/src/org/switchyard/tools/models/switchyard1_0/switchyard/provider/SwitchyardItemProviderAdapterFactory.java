@@ -541,6 +541,29 @@ public class SwitchyardItemProviderAdapterFactory extends SwitchyardAdapterFacto
     }
 
 				/**
+     * This keeps track of the one adapter used for all {@link org.switchyard.tools.models.switchyard1_0.switchyard.SecurityType} instances.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    protected SecurityTypeItemProvider securityTypeItemProvider;
+
+                /**
+     * This creates an adapter for a {@link org.switchyard.tools.models.switchyard1_0.switchyard.SecurityType}.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    @Override
+    public Adapter createSecurityTypeAdapter() {
+        if (securityTypeItemProvider == null) {
+            securityTypeItemProvider = new SecurityTypeItemProvider(this);
+        }
+
+        return securityTypeItemProvider;
+    }
+
+                /**
      * This returns the root adapter factory that contains this factory.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
@@ -685,6 +708,7 @@ public class SwitchyardItemProviderAdapterFactory extends SwitchyardAdapterFacto
         if (regexOperationSelectorTypeItemProvider != null) regexOperationSelectorTypeItemProvider.dispose();
         if (staticOperationSelectorTypeItemProvider != null) staticOperationSelectorTypeItemProvider.dispose();
         if (xPathOperationSelectorTypeItemProvider != null) xPathOperationSelectorTypeItemProvider.dispose();
+        if (securityTypeItemProvider != null) securityTypeItemProvider.dispose();
     }
 
     /**
