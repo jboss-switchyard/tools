@@ -405,7 +405,7 @@ public class MergedModelAdapterFactory extends AdapterFactoryImpl {
         if (source == generated) {
             return true;
         }
-        if (getDifferencesFor(source).size() > 0) {
+        if (getDifferencesFor(source).size() > 0 || generated == null) {
             return false;
         }
         final EObject sourceParent = getSource(generated.eContainer());

@@ -109,6 +109,7 @@ public class NewSwitchYardProjectWizard extends Wizard implements INewWizard {
         }
 
         projectMetaData.setPackageName(_configurationPage.getPackageName());
+        projectMetaData.setNamespace(_configurationPage.getNamespace());
         projectMetaData.setGroupId(_configurationPage.getGroupId());
         projectMetaData.setProjectVersion(DEFAULT_PROJECT_VERSION);
         final Version runtimeVersion = _configurationPage.getRuntimeVersion();

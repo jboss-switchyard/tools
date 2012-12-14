@@ -12,6 +12,8 @@ package org.switchyard.tools.ui.wizards;
 
 import java.util.List;
 import java.util.Set;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 import org.eclipse.core.runtime.IStatus;
 import org.eclipse.jdt.core.JavaConventions;
@@ -50,11 +52,13 @@ public class ProjectConfigurationWizardPage extends WizardPage implements ILayou
 
     private Text _artifactIdText;
     private Text _groupIdText;
+    private Text _namespaceText;
     private Text _packageNameText;
     private SwitchYardSettingsGroup _settingsGroup;
     private boolean _isInitialized;
     private String _groupId = "";
     private String _packageName = "";
+    private String _namespace = "";
 
     /**
      * Create a new ProjectConfigurationWizardPage.
@@ -70,6 +74,13 @@ public class ProjectConfigurationWizardPage extends WizardPage implements ILayou
      */
     public String getGroupId() {
         return _groupId;
+    }
+
+    /**
+     * @return the namespace.
+     */
+    public String getNamespace() {
+        return _namespace;
     }
 
     /**
@@ -126,6 +137,20 @@ public class ProjectConfigurationWizardPage extends WizardPage implements ILayou
                 String oldGroupId = _groupId;
                 _groupId = _groupIdText.getText();
                 updatePackageName(oldGroupId, _groupId);
+                updateNamespaceGroup(oldGroupId, _groupId);
+                validate();
+            }
+        });
+
+        // application namespace
+        label = new Label(projectDetails, SWT.RIGHT);
+        label.setText("Target Namespace:");
+        _namespaceText = new Text(projectDetails, SWT.SINGLE | SWT.BORDER);
+        _namespaceText.setLayoutData(new GridData(GridData.FILL_HORIZONTAL));
+        _namespaceText.addModifyListener(new ModifyListener() {
+            @Override
+            public void modifyText(ModifyEvent event) {
+                _namespace = _namespaceText.getText();
                 validate();
             }
         });
@@ -161,6 +186,7 @@ public class ProjectConfigurationWizardPage extends WizardPage implements ILayou
             if (!_isInitialized) {
                 initRuntimeVersionsList();
                 _packageNameText.setText(normalizePackageName(projectName));
+                _namespaceText.setText("urn::" + projectName + ":1.0");
                 _groupIdText.setText(DEFAULT_GROUP_ID);
                 validate();
                 // clear out any error the first time we are displayed
@@ -195,6 +221,29 @@ public class ProjectConfigurationWizardPage extends WizardPage implements ILayou
         setPageComplete(getErrorMessage() == null);
     }
 
+    private void updateNamespaceGroup(String oldGroupId, String newGroupId) {
+        // strip off trailing .'s
+        while (oldGroupId.endsWith(".")) {
+            oldGroupId = oldGroupId.substring(0, oldGroupId.length() - 1);
+        }
+        while (newGroupId.endsWith(".")) {
+            newGroupId = newGroupId.substring(0, newGroupId.length() - 1);
+        }
+
+        // make sure it changed
+        if (oldGroupId.equals(newGroupId)) {
+            return;
+        }
+
+        Matcher matcher = Pattern.compile("urn:([^:]*)(:.*)").matcher(_namespace);
+        if (matcher.matches()) {
+            final String namespaceGroup = matcher.group(1);
+            if (oldGroupId.equals(namespaceGroup)) {
+                _namespaceText.setText("urn:" + newGroupId + matcher.group(2));
+            }
+        }
+    }
+
     private void updatePackageName(String oldGroupId, String newGroupId) {
         // strip off trailing .'s
         while (oldGroupId.endsWith(".")) {
@@ -204,8 +253,10 @@ public class ProjectConfigurationWizardPage extends WizardPage implements ILayou
             newGroupId = newGroupId.substring(0, newGroupId.length() - 1);
         }
 
-        // normalize the id's (e.g. replace invalid Java package name chars with
-        // _)
+        /*
+         * normalize the id's (e.g. replace invalid Java package name chars with
+         * _)
+         */
         oldGroupId = normalizePackageName(oldGroupId);
         newGroupId = normalizePackageName(newGroupId);
 
@@ -231,7 +282,8 @@ public class ProjectConfigurationWizardPage extends WizardPage implements ILayou
             _packageNameText.setText(newGroupId);
         } else if (_packageName.charAt(oldGroupId.length()) == '.') {
             // package name is prefixed with group id
-            _packageNameText.setText(newGroupId + _packageName.substring(oldGroupId.length()));
+            _packageNameText.setText(newGroupId
+                    + _packageName.substring(oldGroupId.length() + (newGroupId.length() == 0 ? 1 : 0)));
         } else {
             // need to insert a . between the two
             _packageNameText.setText(newGroupId + '.' + _packageName.substring(oldGroupId.length()));

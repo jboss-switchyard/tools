@@ -80,6 +80,7 @@ public class CreateSwitchYardProjectOperation implements IWorkspaceRunnable {
     public static final class NewSwitchYardProjectMetaData {
         private IProject _newProjectHandle;
         private URI _projectLocation;
+        private String _namespace;
         private String _packageName;
         private String _groupId;
         private String _projectVersion;
@@ -112,6 +113,20 @@ public class CreateSwitchYardProjectOperation implements IWorkspaceRunnable {
          */
         public void setProjectLocation(URI projectLocation) {
             _projectLocation = projectLocation;
+        }
+
+        /**
+         * @return the namespace for the application.
+         */
+        public String getNamespace() {
+            return _namespace;
+        }
+
+        /**
+         * @param namespace the namespace for the application.
+         */
+        public void setNamespace(String namespace) {
+            _namespace = namespace;
         }
 
         /**
@@ -294,10 +309,12 @@ public class CreateSwitchYardProjectOperation implements IWorkspaceRunnable {
             // create switchyard.xml
             try {
                 monitor.subTask("Creating switchyard.xml file.");
+                final String namespace = _projectMetatData.getNamespace();
                 SwitchYardModel switchYardModel = newSwitchYardModel(
                         _projectMetatData.getNewProjectHandle().getName(),
-                        createTargetnamespace(_projectMetatData.getGroupId(), _projectMetatData.getNewProjectHandle()
-                                .getName(), _projectMetatData.getProjectVersion()));
+                        namespace == null || namespace.length() == 0 ? createTargetnamespace(
+                                _projectMetatData.getGroupId(), _projectMetatData.getNewProjectHandle().getName(),
+                                _projectMetatData.getProjectVersion()) : namespace);
                 ByteArrayOutputStream baos = new ByteArrayOutputStream();
                 switchYardModel.getModelConfiguration().write(baos, new OutputKey[] {OutputKey.PRETTY_PRINT });
                 _switchYardFile = _projectMetatData.getNewProjectHandle().getFolder(MAVEN_MAIN_RESOURCES_PATH)
