@@ -60,6 +60,7 @@ public class SwitchYardFacetInstallWizardPage extends AbstractFacetWizardPage im
 
         Composite content = new Composite(parent, SWT.NONE);
         content.setLayout(new GridLayout());
+        content.setLayoutData(new GridData(SWT.FILL, SWT.FILL, true, true));
 
         _settingsGroup = new SwitchYardSettingsGroup(content, this, getWizard().getContainer());
 

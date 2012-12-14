@@ -510,6 +510,11 @@
            <artifactId>switchyard-test</artifactId>
            <scope>test</scope>
         </dependency>
+        <dependency>
+           <groupId>org.switchyard.components</groupId>
+           <artifactId>switchyard-component-test-mixin-cdi</artifactId>
+           <scope>test</scope>
+        </dependency>
      </component>
      <!--
      <component
@@ -673,6 +678,91 @@
         <dependency>
            <groupId>org.switchyard.components</groupId>
            <artifactId>switchyard-component-remote</artifactId>
+        </dependency>
+     </component>
+     <!-- Test modules... -->
+     <component
+           name="Test Mixin - AMQ"
+           id="org.switchyard.components:switchyard-component-test-mixin-amq">
+        <description>
+           Provides access to AMQ runtime features within unit tests, e.g. sending a message to a queue bound to a SwitchYard service.
+        </description>
+        <dependency>
+           <groupId>org.switchyard.components</groupId>
+           <artifactId>switchyard-component-test-mixin-amq</artifactId>
+           <scope>test</scope>
+        </dependency>
+     </component>
+     <component
+           name="Test Mixin - BPM"
+           id="org.switchyard.components:switchyard-component-test-mixin-bpm">
+        <description>
+           Provides access to BPM runtime features within unit tests, e.g. sending non-SwitchYard events into the BPM engine during a test.
+        </description>
+        <dependency>
+           <groupId>org.switchyard.components</groupId>
+           <artifactId>switchyard-component-test-mixin-bpm</artifactId>
+           <scope>test</scope>
+        </dependency>
+     </component>
+     <component
+           name="Test Mixin - HornetQ"
+           id="org.switchyard.components:switchyard-component-test-mixin-hornetq">
+        <description>
+           Provides access to HornetQ runtime features within unit tests, e.g. sending a message to a queue bound to a SwitchYard service.
+        </description>
+        <dependency>
+           <groupId>org.switchyard.components</groupId>
+           <artifactId>switchyard-component-test-mixin-hornetq</artifactId>
+           <scope>test</scope>
+        </dependency>
+     </component>
+     <component
+           name="Test Mixin - HTTP"
+           id="org.switchyard.components:switchyard-component-test-mixin-http">
+        <description>
+           Provides access to HTTP runtime features within unit tests, e.g. sending a SOAP message via http to a SwitchYard service.
+        </description>
+        <dependency>
+           <groupId>org.switchyard.components</groupId>
+           <artifactId>switchyard-component-test-mixin-http</artifactId>
+           <scope>test</scope>
+        </dependency>
+     </component>
+     <component
+           name="Test Mixin - JCA"
+           id="org.switchyard.components:switchyard-component-test-mixin-jca">
+        <description>
+           Provides access to JCA runtime features within unit tests, e.g. creating resource adapters.
+        </description>
+        <dependency>
+           <groupId>org.switchyard.components</groupId>
+           <artifactId>switchyard-component-test-mixin-jca</artifactId>
+           <scope>test</scope>
+        </dependency>
+     </component>
+     <component
+           name="Test Mixin - Naming"
+           id="org.switchyard.components:switchyard-component-test-mixin-naming">
+        <description>
+           Provides access to naming contexts within unit tests, e.g. binding resources to a name referenced by a service or binding.
+        </description>
+        <dependency>
+           <groupId>org.switchyard.components</groupId>
+           <artifactId>switchyard-component-test-mixin-naming</artifactId>
+           <scope>test</scope>
+        </dependency>
+     </component>
+     <component
+           name="Test Mixin - Smooks"
+           id="org.switchyard.components:switchyard-component-test-mixin-smooks">
+        <description>
+           Provides access to Smooks features within unit tests, e.g. testing Smooks transformations.
+        </description>
+        <dependency>
+           <groupId>org.switchyard.components</groupId>
+           <artifactId>switchyard-component-test-mixin-smooks</artifactId>
+           <scope>test</scope>
         </dependency>
      </component>
   </extension>

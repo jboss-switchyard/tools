@@ -292,7 +292,7 @@ public class NewServiceTestClassWizardPage extends NewTypeWizardPage {
         imports.addImport("org.switchyard.test.ServiceOperation");
         imports.addImport("org.switchyard.test.SwitchYardRunner");
         imports.addImport("org.switchyard.test.SwitchYardTestCaseConfig");
-        imports.addImport("org.switchyard.test.mixins.CDIMixIn");
+        imports.addImport("org.switchyard.component.test.mixins.cdi.CDIMixIn");
 
         String lineDelimiter = getJavaProject().getJavaModel().findRecommendedLineSeparator();
         type.createField(
@@ -414,6 +414,9 @@ public class NewServiceTestClassWizardPage extends NewTypeWizardPage {
     }
 
     private BindingKey getBindingForQName(QName typeName) {
+        if (typeName == null) {
+            return null;
+        }
         String typeString = Object.class.getCanonicalName();
         if (typeName.getNamespaceURI() == XMLConstants.NULL_NS_URI && typeName.getLocalPart() != null
                 && typeName.getLocalPart().startsWith("java:")) {

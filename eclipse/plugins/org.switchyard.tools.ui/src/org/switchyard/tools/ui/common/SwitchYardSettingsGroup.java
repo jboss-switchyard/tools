@@ -84,7 +84,11 @@ public class SwitchYardSettingsGroup {
         super();
         _context = context;
 
-        Composite runtimeControls = new Composite(parent, SWT.NONE);
+        Composite content = new Composite(parent, SWT.NONE);
+        content.setLayout(new GridLayout());
+        content.setLayoutData(new GridData(SWT.FILL, SWT.FILL, true, true));
+
+        Composite runtimeControls = new Composite(content, SWT.NONE);
         runtimeControls.setLayout(new GridLayout(2, false));
         runtimeControls.setLayoutData(new GridData(GridData.FILL_HORIZONTAL));
 
@@ -96,20 +100,15 @@ public class SwitchYardSettingsGroup {
         _runtimeVersionsList.setLabelProvider(new LabelProvider());
         _runtimeVersionsList.setContentProvider(ArrayContentProvider.getInstance());
 
-        Composite componentsControls = new Composite(parent, SWT.NONE);
-        componentsControls.setLayout(new GridLayout());
-        componentsControls.setLayoutData(new GridData(GridData.FILL_HORIZONTAL));
+        Composite componentControls = new Composite(content, SWT.NONE);
+        componentControls.setLayout(new GridLayout(2, false));
+        componentControls.setLayoutData(new GridData(SWT.FILL, SWT.FILL, true, true));
 
-        _runtimeProvidedCheckbox = new Button(componentsControls, SWT.CHECK);
-        _runtimeProvidedCheckbox.setText("SwitchYard dependencies provided by container");
-        _runtimeProvidedCheckbox.setLayoutData(new GridData());
-        // not currently supported
-        _runtimeProvidedCheckbox.setVisible(false);
-
-        label = new Label(componentsControls, SWT.NONE);
+        label = new Label(componentControls, SWT.NONE);
         label.setText("Components:");
+        label.setLayoutData(new GridData(SWT.FILL, SWT.CENTER, false, false, 2, 1));
 
-        _componentsTable = CheckboxTableViewer.newCheckList(componentsControls, SWT.SINGLE | SWT.BORDER | SWT.V_SCROLL
+        _componentsTable = CheckboxTableViewer.newCheckList(componentControls, SWT.SINGLE | SWT.BORDER | SWT.V_SCROLL
                 | SWT.V_SCROLL);
         _componentsTable.setLabelProvider(new LabelProvider() {
             public String getText(Object element) {
@@ -120,7 +119,7 @@ public class SwitchYardSettingsGroup {
             }
         });
         _componentsTable.setContentProvider(ArrayContentProvider.getInstance());
-        _componentsTable.getTable().setLayoutData(new GridData(GridData.FILL_HORIZONTAL));
+        _componentsTable.getTable().setLayoutData(new GridData(SWT.FILL, SWT.FILL, true, true));
         _componentsTable.addSelectionChangedListener(new ISelectionChangedListener() {
             @Override
             public void selectionChanged(SelectionChangedEvent event) {
@@ -147,9 +146,9 @@ public class SwitchYardSettingsGroup {
             }
         });
 
-        Composite buttonControls = new Composite(componentsControls, SWT.NONE);
-        buttonControls.setLayout(new GridLayout(2, true));
-        buttonControls.setLayoutData(new GridData(GridData.FILL_HORIZONTAL));
+        Composite buttonControls = new Composite(componentControls, SWT.NONE);
+        buttonControls.setLayout(new GridLayout());
+        buttonControls.setLayoutData(new GridData(SWT.FILL, SWT.BEGINNING, false, false));
 
         Button selectAll = new Button(buttonControls, SWT.PUSH);
         layoutUtilities.setButtonLayoutData(selectAll);
@@ -169,10 +168,10 @@ public class SwitchYardSettingsGroup {
             }
         });
 
-        Group detailsGroup = new Group(parent, SWT.NONE);
+        Group detailsGroup = new Group(componentControls, SWT.NONE);
         detailsGroup.setText("Component Description");
         detailsGroup.setLayout(new GridLayout());
-        detailsGroup.setLayoutData(new GridData(GridData.FILL_HORIZONTAL));
+        detailsGroup.setLayoutData(new GridData(SWT.FILL, SWT.CENTER, true, false));
 
         _descriptionText = new Text(detailsGroup, SWT.READ_ONLY | SWT.WRAP | SWT.MULTI | SWT.V_SCROLL | SWT.V_SCROLL);
         GridData gd = new GridData(GridData.FILL_HORIZONTAL);

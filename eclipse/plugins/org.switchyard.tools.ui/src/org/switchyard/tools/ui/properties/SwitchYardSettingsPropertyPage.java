@@ -66,6 +66,7 @@ public class SwitchYardSettingsPropertyPage extends PropertyPage implements IWor
     protected Control createContents(Composite parent) {
         Composite content = new Composite(parent, SWT.NONE);
         content.setLayout(new GridLayout());
+        content.setLayoutData(new GridData(SWT.FILL, SWT.FILL, true, true));
 
         _settingsGroup = new SwitchYardSettingsGroup(content, this, PlatformUI.getWorkbench().getProgressService());
 

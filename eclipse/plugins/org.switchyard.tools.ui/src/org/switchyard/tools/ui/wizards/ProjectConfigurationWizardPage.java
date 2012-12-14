@@ -146,7 +146,7 @@ public class ProjectConfigurationWizardPage extends WizardPage implements ILayou
         // runtime version
         Composite settingsContent = new Composite(content, SWT.NONE);
         settingsContent.setLayout(new GridLayout());
-        settingsContent.setLayoutData(new GridData(GridData.FILL_HORIZONTAL));
+        settingsContent.setLayoutData(new GridData(SWT.FILL, SWT.FILL, true, true));
 
         _settingsGroup = new SwitchYardSettingsGroup(settingsContent, this, getContainer());
 
