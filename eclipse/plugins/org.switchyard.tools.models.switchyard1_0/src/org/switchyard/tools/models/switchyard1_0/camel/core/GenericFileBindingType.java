@@ -20,7 +20,7 @@ package org.switchyard.tools.models.switchyard1_0.camel.core;
  * </ul>
  * </p>
  *
- * @see org.switchyard.tools.models.switchyard1_0.camel.core.CamelPackage#getGenericFileBindingType()
+ * @see org.switchyard.tools.models.switchyard1_0.camel.core.CorePackage#getGenericFileBindingType()
  * @model abstract="true"
  *        extendedMetaData="name='GenericFileBindingType' kind='elementOnly'"
  * @generated
@@ -36,7 +36,7 @@ public interface GenericFileBindingType extends BaseCamelBinding {
      * <!-- end-user-doc -->
      * @return the value of the '<em>Directory</em>' attribute.
      * @see #setDirectory(String)
-     * @see org.switchyard.tools.models.switchyard1_0.camel.core.CamelPackage#getGenericFileBindingType_Directory()
+     * @see org.switchyard.tools.models.switchyard1_0.camel.core.CorePackage#getGenericFileBindingType_Directory()
      * @model dataType="org.eclipse.emf.ecore.xml.type.String" required="true"
      *        extendedMetaData="kind='element' name='directory' namespace='##targetNamespace'"
      * @generated
@@ -65,7 +65,7 @@ public interface GenericFileBindingType extends BaseCamelBinding {
      * @see #isSetAutoCreate()
      * @see #unsetAutoCreate()
      * @see #setAutoCreate(Boolean)
-     * @see org.switchyard.tools.models.switchyard1_0.camel.core.CamelPackage#getGenericFileBindingType_AutoCreate()
+     * @see org.switchyard.tools.models.switchyard1_0.camel.core.CorePackage#getGenericFileBindingType_AutoCreate()
      * @model unsettable="true" dataType="org.eclipse.emf.ecore.xml.type.BooleanObject"
      *        extendedMetaData="kind='element' name='autoCreate' namespace='##targetNamespace'"
      * @generated
@@ -119,7 +119,7 @@ public interface GenericFileBindingType extends BaseCamelBinding {
      * @see #isSetBufferSize()
      * @see #unsetBufferSize()
      * @see #setBufferSize(Integer)
-     * @see org.switchyard.tools.models.switchyard1_0.camel.core.CamelPackage#getGenericFileBindingType_BufferSize()
+     * @see org.switchyard.tools.models.switchyard1_0.camel.core.CorePackage#getGenericFileBindingType_BufferSize()
      * @model unsettable="true" dataType="org.eclipse.emf.ecore.xml.type.IntObject"
      *        extendedMetaData="kind='element' name='bufferSize' namespace='##targetNamespace'"
      * @generated
@@ -171,7 +171,7 @@ public interface GenericFileBindingType extends BaseCamelBinding {
      * <!-- end-user-doc -->
      * @return the value of the '<em>File Name</em>' attribute.
      * @see #setFileName(String)
-     * @see org.switchyard.tools.models.switchyard1_0.camel.core.CamelPackage#getGenericFileBindingType_FileName()
+     * @see org.switchyard.tools.models.switchyard1_0.camel.core.CorePackage#getGenericFileBindingType_FileName()
      * @model dataType="org.eclipse.emf.ecore.xml.type.String"
      *        extendedMetaData="kind='element' name='fileName' namespace='##targetNamespace'"
      * @generated
@@ -200,7 +200,7 @@ public interface GenericFileBindingType extends BaseCamelBinding {
      * @see #isSetFlatten()
      * @see #unsetFlatten()
      * @see #setFlatten(Boolean)
-     * @see org.switchyard.tools.models.switchyard1_0.camel.core.CamelPackage#getGenericFileBindingType_Flatten()
+     * @see org.switchyard.tools.models.switchyard1_0.camel.core.CorePackage#getGenericFileBindingType_Flatten()
      * @model unsettable="true" dataType="org.eclipse.emf.ecore.xml.type.BooleanObject"
      *        extendedMetaData="kind='element' name='flatten' namespace='##targetNamespace'"
      * @generated
@@ -252,7 +252,7 @@ public interface GenericFileBindingType extends BaseCamelBinding {
      * <!-- end-user-doc -->
      * @return the value of the '<em>Charset</em>' attribute.
      * @see #setCharset(String)
-     * @see org.switchyard.tools.models.switchyard1_0.camel.core.CamelPackage#getGenericFileBindingType_Charset()
+     * @see org.switchyard.tools.models.switchyard1_0.camel.core.CorePackage#getGenericFileBindingType_Charset()
      * @model dataType="org.eclipse.emf.ecore.xml.type.String"
      *        extendedMetaData="kind='element' name='charset' namespace='##targetNamespace'"
      * @generated

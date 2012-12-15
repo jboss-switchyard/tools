@@ -14,11 +14,11 @@ import org.switchyard.tools.models.switchyard1_0.camel.core.BaseCamelBinding;
  * <p>
  * The following features are supported:
  * <ul>
- *   <li>{@link org.switchyard.tools.models.switchyard1_0.camel.quartz.CamelQuartzBindingType#getCamelBindingName <em>Camel Binding Name</em>}</li>
+ *   <li>{@link org.switchyard.tools.models.switchyard1_0.camel.quartz.CamelQuartzBindingType#getNameElement <em>Name Element</em>}</li>
  *   <li>{@link org.switchyard.tools.models.switchyard1_0.camel.quartz.CamelQuartzBindingType#getCron <em>Cron</em>}</li>
  *   <li>{@link org.switchyard.tools.models.switchyard1_0.camel.quartz.CamelQuartzBindingType#getStateful <em>Stateful</em>}</li>
- *   <li>{@link org.switchyard.tools.models.switchyard1_0.camel.quartz.CamelQuartzBindingType#getStartTime <em>Start Time</em>}</li>
- *   <li>{@link org.switchyard.tools.models.switchyard1_0.camel.quartz.CamelQuartzBindingType#getEndTime <em>End Time</em>}</li>
+ *   <li>{@link org.switchyard.tools.models.switchyard1_0.camel.quartz.CamelQuartzBindingType#getTriggerStartTime <em>Trigger Start Time</em>}</li>
+ *   <li>{@link org.switchyard.tools.models.switchyard1_0.camel.quartz.CamelQuartzBindingType#getTriggerEndTime <em>Trigger End Time</em>}</li>
  * </ul>
  * </p>
  *
@@ -28,31 +28,31 @@ import org.switchyard.tools.models.switchyard1_0.camel.core.BaseCamelBinding;
  */
 public interface CamelQuartzBindingType extends BaseCamelBinding {
     /**
-     * Returns the value of the '<em><b>Camel Binding Name</b></em>' attribute.
+     * Returns the value of the '<em><b>Name Element</b></em>' attribute.
      * <!-- begin-user-doc -->
      * <p>
-     * If the meaning of the '<em>Camel Binding Name</em>' attribute isn't clear,
+     * If the meaning of the '<em>Name Element</em>' attribute isn't clear,
      * there really should be more of a description here...
      * </p>
      * <!-- end-user-doc -->
-     * @return the value of the '<em>Camel Binding Name</em>' attribute.
-     * @see #setCamelBindingName(String)
-     * @see org.switchyard.tools.models.switchyard1_0.camel.quartz.QuartzPackage#getCamelQuartzBindingType_CamelBindingName()
+     * @return the value of the '<em>Name Element</em>' attribute.
+     * @see #setNameElement(String)
+     * @see org.switchyard.tools.models.switchyard1_0.camel.quartz.QuartzPackage#getCamelQuartzBindingType_NameElement()
      * @model dataType="org.eclipse.emf.ecore.xml.type.String" required="true"
      *        extendedMetaData="kind='element' name='name' namespace='##targetNamespace'"
      * @generated
      */
-    String getCamelBindingName();
+    String getNameElement();
 
     /**
-     * Sets the value of the '{@link org.switchyard.tools.models.switchyard1_0.camel.quartz.CamelQuartzBindingType#getCamelBindingName <em>Camel Binding Name</em>}' attribute.
+     * Sets the value of the '{@link org.switchyard.tools.models.switchyard1_0.camel.quartz.CamelQuartzBindingType#getNameElement <em>Name Element</em>}' attribute.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @param value the new value of the '<em>Camel Binding Name</em>' attribute.
-     * @see #getCamelBindingName()
+     * @param value the new value of the '<em>Name Element</em>' attribute.
+     * @see #getNameElement()
      * @generated
      */
-    void setCamelBindingName(String value);
+    void setNameElement(String value);
 
     /**
      * Returns the value of the '<em><b>Cron</b></em>' attribute.
@@ -136,57 +136,57 @@ public interface CamelQuartzBindingType extends BaseCamelBinding {
     boolean isSetStateful();
 
     /**
-     * Returns the value of the '<em><b>Start Time</b></em>' attribute.
+     * Returns the value of the '<em><b>Trigger Start Time</b></em>' attribute.
      * <!-- begin-user-doc -->
      * <p>
-     * If the meaning of the '<em>Start Time</em>' attribute isn't clear,
+     * If the meaning of the '<em>Trigger Start Time</em>' attribute isn't clear,
      * there really should be more of a description here...
      * </p>
      * <!-- end-user-doc -->
-     * @return the value of the '<em>Start Time</em>' attribute.
-     * @see #setStartTime(XMLGregorianCalendar)
-     * @see org.switchyard.tools.models.switchyard1_0.camel.quartz.QuartzPackage#getCamelQuartzBindingType_StartTime()
+     * @return the value of the '<em>Trigger Start Time</em>' attribute.
+     * @see #setTriggerStartTime(XMLGregorianCalendar)
+     * @see org.switchyard.tools.models.switchyard1_0.camel.quartz.QuartzPackage#getCamelQuartzBindingType_TriggerStartTime()
      * @model dataType="org.eclipse.emf.ecore.xml.type.DateTime"
      *        extendedMetaData="kind='element' name='trigger.startTime' namespace='##targetNamespace'"
      * @generated
      */
-    XMLGregorianCalendar getStartTime();
+    XMLGregorianCalendar getTriggerStartTime();
 
     /**
-     * Sets the value of the '{@link org.switchyard.tools.models.switchyard1_0.camel.quartz.CamelQuartzBindingType#getStartTime <em>Start Time</em>}' attribute.
+     * Sets the value of the '{@link org.switchyard.tools.models.switchyard1_0.camel.quartz.CamelQuartzBindingType#getTriggerStartTime <em>Trigger Start Time</em>}' attribute.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @param value the new value of the '<em>Start Time</em>' attribute.
-     * @see #getStartTime()
+     * @param value the new value of the '<em>Trigger Start Time</em>' attribute.
+     * @see #getTriggerStartTime()
      * @generated
      */
-    void setStartTime(XMLGregorianCalendar value);
+    void setTriggerStartTime(XMLGregorianCalendar value);
 
     /**
-     * Returns the value of the '<em><b>End Time</b></em>' attribute.
+     * Returns the value of the '<em><b>Trigger End Time</b></em>' attribute.
      * <!-- begin-user-doc -->
      * <p>
-     * If the meaning of the '<em>End Time</em>' attribute isn't clear,
+     * If the meaning of the '<em>Trigger End Time</em>' attribute isn't clear,
      * there really should be more of a description here...
      * </p>
      * <!-- end-user-doc -->
-     * @return the value of the '<em>End Time</em>' attribute.
-     * @see #setEndTime(XMLGregorianCalendar)
-     * @see org.switchyard.tools.models.switchyard1_0.camel.quartz.QuartzPackage#getCamelQuartzBindingType_EndTime()
+     * @return the value of the '<em>Trigger End Time</em>' attribute.
+     * @see #setTriggerEndTime(XMLGregorianCalendar)
+     * @see org.switchyard.tools.models.switchyard1_0.camel.quartz.QuartzPackage#getCamelQuartzBindingType_TriggerEndTime()
      * @model dataType="org.eclipse.emf.ecore.xml.type.DateTime"
      *        extendedMetaData="kind='element' name='trigger.endTime' namespace='##targetNamespace'"
      * @generated
      */
-    XMLGregorianCalendar getEndTime();
+    XMLGregorianCalendar getTriggerEndTime();
 
     /**
-     * Sets the value of the '{@link org.switchyard.tools.models.switchyard1_0.camel.quartz.CamelQuartzBindingType#getEndTime <em>End Time</em>}' attribute.
+     * Sets the value of the '{@link org.switchyard.tools.models.switchyard1_0.camel.quartz.CamelQuartzBindingType#getTriggerEndTime <em>Trigger End Time</em>}' attribute.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @param value the new value of the '<em>End Time</em>' attribute.
-     * @see #getEndTime()
+     * @param value the new value of the '<em>Trigger End Time</em>' attribute.
+     * @see #getTriggerEndTime()
      * @generated
      */
-    void setEndTime(XMLGregorianCalendar value);
+    void setTriggerEndTime(XMLGregorianCalendar value);
 
 } // CamelQuartzBindingType

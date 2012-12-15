@@ -20,7 +20,7 @@
         <executions>
           <execution>
             <id>copy-switchyard-core</id>
-            <phase>process-sources</phase>
+            <phase>generate-sources</phase>
             <goals>
               <goal>copy</goal>
             </goals>
@@ -42,6 +42,11 @@
                 <artifactItem>
                   <groupId>org.switchyard</groupId>
                   <artifactId>switchyard-common</artifactId>
+                  <version>${version.switchyard.runtime}</version>
+                </artifactItem>
+                <artifactItem>
+                  <groupId>org.switchyard</groupId>
+                  <artifactId>switchyard-common-camel</artifactId>
                   <version>${version.switchyard.runtime}</version>
                 </artifactItem>
                 <artifactItem>
@@ -78,6 +83,76 @@
                 <artifactItem>
                   <groupId>org.switchyard.components</groupId>
                   <artifactId>switchyard-component-camel</artifactId>
+                  <version>${version.switchyard.runtime}</version>
+                </artifactItem>
+                <artifactItem>
+                  <groupId>org.switchyard.components</groupId>
+                  <artifactId>switchyard-component-camel-core</artifactId>
+                  <version>${version.switchyard.runtime}</version>
+                </artifactItem>
+                <artifactItem>
+                  <groupId>org.switchyard.components</groupId>
+                  <artifactId>switchyard-component-common-camel</artifactId>
+                  <version>${version.switchyard.runtime}</version>
+                </artifactItem>
+                <artifactItem>
+                  <groupId>org.switchyard.components</groupId>
+                  <artifactId>switchyard-component-camel-switchyard</artifactId>
+                  <version>${version.switchyard.runtime}</version>
+                </artifactItem>
+                <artifactItem>
+                  <groupId>org.switchyard.components</groupId>
+                  <artifactId>switchyard-component-camel-amqp</artifactId>
+                  <version>${version.switchyard.runtime}</version>
+                </artifactItem>
+                <artifactItem>
+                  <groupId>org.switchyard.components</groupId>
+                  <artifactId>switchyard-component-camel-atom</artifactId>
+                  <version>${version.switchyard.runtime}</version>
+                </artifactItem>
+                <artifactItem>
+                  <groupId>org.switchyard.components</groupId>
+                  <artifactId>switchyard-component-camel-file</artifactId>
+                  <version>${version.switchyard.runtime}</version>
+                </artifactItem>
+                <artifactItem>
+                  <groupId>org.switchyard.components</groupId>
+                  <artifactId>switchyard-component-camel-ftp</artifactId>
+                  <version>${version.switchyard.runtime}</version>
+                </artifactItem>
+                <artifactItem>
+                  <groupId>org.switchyard.components</groupId>
+                  <artifactId>switchyard-component-camel-jms</artifactId>
+                  <version>${version.switchyard.runtime}</version>
+                </artifactItem>
+                <artifactItem>
+                  <groupId>org.switchyard.components</groupId>
+                  <artifactId>switchyard-component-camel-jpa</artifactId>
+                  <version>${version.switchyard.runtime}</version>
+                </artifactItem>
+                <artifactItem>
+                  <groupId>org.switchyard.components</groupId>
+                  <artifactId>switchyard-component-camel-mail</artifactId>
+                  <version>${version.switchyard.runtime}</version>
+                </artifactItem>
+                <artifactItem>
+                  <groupId>org.switchyard.components</groupId>
+                  <artifactId>switchyard-component-camel-netty</artifactId>
+                  <version>${version.switchyard.runtime}</version>
+                </artifactItem>
+                <artifactItem>
+                  <groupId>org.switchyard.components</groupId>
+                  <artifactId>switchyard-component-camel-quartz</artifactId>
+                  <version>${version.switchyard.runtime}</version>
+                </artifactItem>
+                <artifactItem>
+                  <groupId>org.switchyard.components</groupId>
+                  <artifactId>switchyard-component-camel-sql</artifactId>
+                  <version>${version.switchyard.runtime}</version>
+                </artifactItem>
+                <artifactItem>
+                  <groupId>org.switchyard.components</groupId>
+                  <artifactId>switchyard-component-camel-test</artifactId>
                   <version>${version.switchyard.runtime}</version>
                 </artifactItem>
                 <artifactItem>

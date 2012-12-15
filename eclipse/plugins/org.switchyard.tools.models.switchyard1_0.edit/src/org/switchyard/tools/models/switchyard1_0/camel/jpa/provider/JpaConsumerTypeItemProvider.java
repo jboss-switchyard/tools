@@ -11,6 +11,10 @@ import org.eclipse.emf.common.notify.Notification;
 
 import org.eclipse.emf.common.util.ResourceLocator;
 
+import org.eclipse.emf.ecore.EStructuralFeature;
+import org.eclipse.emf.ecore.util.FeatureMapUtil;
+import org.eclipse.emf.ecore.xml.type.XMLTypeFactory;
+import org.eclipse.emf.ecore.xml.type.XMLTypePackage;
 import org.eclipse.emf.edit.provider.ComposeableAdapterFactory;
 import org.eclipse.emf.edit.provider.IEditingDomainItemProvider;
 import org.eclipse.emf.edit.provider.IItemLabelProvider;
@@ -19,14 +23,14 @@ import org.eclipse.emf.edit.provider.IItemPropertySource;
 import org.eclipse.emf.edit.provider.IStructuredItemContentProvider;
 import org.eclipse.emf.edit.provider.ITreeItemContentProvider;
 import org.eclipse.emf.edit.provider.ItemPropertyDescriptor;
+import org.eclipse.emf.edit.provider.ItemProviderAdapter;
 import org.eclipse.emf.edit.provider.ViewerNotification;
 
 import org.switchyard.tools.models.switchyard1_0.bean.provider.Switchyard_1EditPlugin;
 
-import org.switchyard.tools.models.switchyard1_0.camel.core.provider.ScheduledBatchPollConsumerTypeItemProvider;
-
 import org.switchyard.tools.models.switchyard1_0.camel.jpa.JpaConsumerType;
 import org.switchyard.tools.models.switchyard1_0.camel.jpa.JpaPackage;
+import org.switchyard.tools.models.switchyard1_0.camel.jpa.TimeUnitType;
 
 /**
  * This is the item provider adapter for a {@link org.switchyard.tools.models.switchyard1_0.camel.jpa.JpaConsumerType} object.
@@ -35,7 +39,7 @@ import org.switchyard.tools.models.switchyard1_0.camel.jpa.JpaPackage;
  * @generated
  */
 public class JpaConsumerTypeItemProvider
-    extends ScheduledBatchPollConsumerTypeItemProvider
+    extends ItemProviderAdapter
     implements
         IEditingDomainItemProvider,
         IStructuredItemContentProvider,
@@ -63,6 +67,12 @@ public class JpaConsumerTypeItemProvider
         if (itemPropertyDescriptors == null) {
             super.getPropertyDescriptors(object);
 
+            addInitialDelayPropertyDescriptor(object);
+            addDelayPropertyDescriptor(object);
+            addUseFixedDelayPropertyDescriptor(object);
+            addSendEmptyMessageWhenIdlePropertyDescriptor(object);
+            addTimeUnitPropertyDescriptor(object);
+            addMaxMessagesPerPollPropertyDescriptor(object);
             addConsumeDeletePropertyDescriptor(object);
             addConsumeLockEntityPropertyDescriptor(object);
             addMaximumResultsPropertyDescriptor(object);
@@ -73,6 +83,138 @@ public class JpaConsumerTypeItemProvider
             addConsumerTransactedPropertyDescriptor(object);
         }
         return itemPropertyDescriptors;
+    }
+
+    /**
+     * This adds a property descriptor for the Initial Delay feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    protected void addInitialDelayPropertyDescriptor(Object object) {
+        itemPropertyDescriptors.add
+            (createItemPropertyDescriptor
+                (((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+                 getResourceLocator(),
+                 getString("_UI_JpaConsumerType_initialDelay_feature"),
+                 getString("_UI_PropertyDescriptor_description", "_UI_JpaConsumerType_initialDelay_feature", "_UI_JpaConsumerType_type"),
+                 JpaPackage.Literals.JPA_CONSUMER_TYPE__INITIAL_DELAY,
+                 true,
+                 false,
+                 false,
+                 ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
+                 null,
+                 null));
+    }
+
+    /**
+     * This adds a property descriptor for the Delay feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    protected void addDelayPropertyDescriptor(Object object) {
+        itemPropertyDescriptors.add
+            (createItemPropertyDescriptor
+                (((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+                 getResourceLocator(),
+                 getString("_UI_JpaConsumerType_delay_feature"),
+                 getString("_UI_PropertyDescriptor_description", "_UI_JpaConsumerType_delay_feature", "_UI_JpaConsumerType_type"),
+                 JpaPackage.Literals.JPA_CONSUMER_TYPE__DELAY,
+                 true,
+                 false,
+                 false,
+                 ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
+                 null,
+                 null));
+    }
+
+    /**
+     * This adds a property descriptor for the Use Fixed Delay feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    protected void addUseFixedDelayPropertyDescriptor(Object object) {
+        itemPropertyDescriptors.add
+            (createItemPropertyDescriptor
+                (((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+                 getResourceLocator(),
+                 getString("_UI_JpaConsumerType_useFixedDelay_feature"),
+                 getString("_UI_PropertyDescriptor_description", "_UI_JpaConsumerType_useFixedDelay_feature", "_UI_JpaConsumerType_type"),
+                 JpaPackage.Literals.JPA_CONSUMER_TYPE__USE_FIXED_DELAY,
+                 true,
+                 false,
+                 false,
+                 ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
+                 null,
+                 null));
+    }
+
+    /**
+     * This adds a property descriptor for the Send Empty Message When Idle feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    protected void addSendEmptyMessageWhenIdlePropertyDescriptor(Object object) {
+        itemPropertyDescriptors.add
+            (createItemPropertyDescriptor
+                (((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+                 getResourceLocator(),
+                 getString("_UI_JpaConsumerType_sendEmptyMessageWhenIdle_feature"),
+                 getString("_UI_PropertyDescriptor_description", "_UI_JpaConsumerType_sendEmptyMessageWhenIdle_feature", "_UI_JpaConsumerType_type"),
+                 JpaPackage.Literals.JPA_CONSUMER_TYPE__SEND_EMPTY_MESSAGE_WHEN_IDLE,
+                 true,
+                 false,
+                 false,
+                 ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
+                 null,
+                 null));
+    }
+
+    /**
+     * This adds a property descriptor for the Time Unit feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    protected void addTimeUnitPropertyDescriptor(Object object) {
+        itemPropertyDescriptors.add
+            (createItemPropertyDescriptor
+                (((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+                 getResourceLocator(),
+                 getString("_UI_JpaConsumerType_timeUnit_feature"),
+                 getString("_UI_PropertyDescriptor_description", "_UI_JpaConsumerType_timeUnit_feature", "_UI_JpaConsumerType_type"),
+                 JpaPackage.Literals.JPA_CONSUMER_TYPE__TIME_UNIT,
+                 true,
+                 false,
+                 false,
+                 ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
+                 null,
+                 null));
+    }
+
+    /**
+     * This adds a property descriptor for the Max Messages Per Poll feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    protected void addMaxMessagesPerPollPropertyDescriptor(Object object) {
+        itemPropertyDescriptors.add
+            (createItemPropertyDescriptor
+                (((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+                 getResourceLocator(),
+                 getString("_UI_JpaConsumerType_maxMessagesPerPoll_feature"),
+                 getString("_UI_PropertyDescriptor_description", "_UI_JpaConsumerType_maxMessagesPerPoll_feature", "_UI_JpaConsumerType_type"),
+                 JpaPackage.Literals.JPA_CONSUMER_TYPE__MAX_MESSAGES_PER_POLL,
+                 true,
+                 false,
+                 false,
+                 ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
+                 null,
+                 null));
     }
 
     /**
@@ -252,6 +394,37 @@ public class JpaConsumerTypeItemProvider
     }
 
     /**
+     * This specifies how to implement {@link #getChildren} and is used to deduce an appropriate feature for an
+     * {@link org.eclipse.emf.edit.command.AddCommand}, {@link org.eclipse.emf.edit.command.RemoveCommand} or
+     * {@link org.eclipse.emf.edit.command.MoveCommand} in {@link #createCommand}.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    @Override
+    public Collection<? extends EStructuralFeature> getChildrenFeatures(Object object) {
+        if (childrenFeatures == null) {
+            super.getChildrenFeatures(object);
+            childrenFeatures.add(JpaPackage.Literals.JPA_CONSUMER_TYPE__SCHEDULED_POLL_CONSUMER_TYPE);
+            childrenFeatures.add(JpaPackage.Literals.JPA_CONSUMER_TYPE__SCHEDULED_BATCH_POLL_CONSUMER_TYPE);
+        }
+        return childrenFeatures;
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    @Override
+    protected EStructuralFeature getChildFeature(Object object, Object child) {
+        // Check the type of the specified child object and return the proper feature to use for
+        // adding (see {@link AddCommand}) it as a child.
+
+        return super.getChildFeature(object, child);
+    }
+
+    /**
      * This returns JpaConsumerType.gif.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
@@ -288,6 +461,12 @@ public class JpaConsumerTypeItemProvider
         updateChildren(notification);
 
         switch (notification.getFeatureID(JpaConsumerType.class)) {
+            case JpaPackage.JPA_CONSUMER_TYPE__INITIAL_DELAY:
+            case JpaPackage.JPA_CONSUMER_TYPE__DELAY:
+            case JpaPackage.JPA_CONSUMER_TYPE__USE_FIXED_DELAY:
+            case JpaPackage.JPA_CONSUMER_TYPE__SEND_EMPTY_MESSAGE_WHEN_IDLE:
+            case JpaPackage.JPA_CONSUMER_TYPE__TIME_UNIT:
+            case JpaPackage.JPA_CONSUMER_TYPE__MAX_MESSAGES_PER_POLL:
             case JpaPackage.JPA_CONSUMER_TYPE__CONSUME_DELETE:
             case JpaPackage.JPA_CONSUMER_TYPE__CONSUME_LOCK_ENTITY:
             case JpaPackage.JPA_CONSUMER_TYPE__MAXIMUM_RESULTS:
@@ -297,6 +476,10 @@ public class JpaConsumerTypeItemProvider
             case JpaPackage.JPA_CONSUMER_TYPE__CONSUMER_RESULT_CLASS:
             case JpaPackage.JPA_CONSUMER_TYPE__CONSUMER_TRANSACTED:
                 fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
+                return;
+            case JpaPackage.JPA_CONSUMER_TYPE__SCHEDULED_POLL_CONSUMER_TYPE:
+            case JpaPackage.JPA_CONSUMER_TYPE__SCHEDULED_BATCH_POLL_CONSUMER_TYPE:
+                fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), true, false));
                 return;
         }
         super.notifyChanged(notification);
@@ -312,6 +495,48 @@ public class JpaConsumerTypeItemProvider
     @Override
     protected void collectNewChildDescriptors(Collection<Object> newChildDescriptors, Object object) {
         super.collectNewChildDescriptors(newChildDescriptors, object);
+
+        newChildDescriptors.add
+            (createChildParameter
+                (JpaPackage.Literals.JPA_CONSUMER_TYPE__SCHEDULED_POLL_CONSUMER_TYPE,
+                 FeatureMapUtil.createEntry
+                    (JpaPackage.Literals.JPA_CONSUMER_TYPE__INITIAL_DELAY,
+                     XMLTypeFactory.eINSTANCE.createFromString(XMLTypePackage.Literals.INT_OBJECT, "0"))));
+
+        newChildDescriptors.add
+            (createChildParameter
+                (JpaPackage.Literals.JPA_CONSUMER_TYPE__SCHEDULED_POLL_CONSUMER_TYPE,
+                 FeatureMapUtil.createEntry
+                    (JpaPackage.Literals.JPA_CONSUMER_TYPE__DELAY,
+                     XMLTypeFactory.eINSTANCE.createFromString(XMLTypePackage.Literals.INT_OBJECT, "0"))));
+
+        newChildDescriptors.add
+            (createChildParameter
+                (JpaPackage.Literals.JPA_CONSUMER_TYPE__SCHEDULED_POLL_CONSUMER_TYPE,
+                 FeatureMapUtil.createEntry
+                    (JpaPackage.Literals.JPA_CONSUMER_TYPE__USE_FIXED_DELAY,
+                     XMLTypeFactory.eINSTANCE.createFromString(XMLTypePackage.Literals.BOOLEAN_OBJECT, "false"))));
+
+        newChildDescriptors.add
+            (createChildParameter
+                (JpaPackage.Literals.JPA_CONSUMER_TYPE__SCHEDULED_POLL_CONSUMER_TYPE,
+                 FeatureMapUtil.createEntry
+                    (JpaPackage.Literals.JPA_CONSUMER_TYPE__SEND_EMPTY_MESSAGE_WHEN_IDLE,
+                     XMLTypeFactory.eINSTANCE.createFromString(XMLTypePackage.Literals.BOOLEAN_OBJECT, "false"))));
+
+        newChildDescriptors.add
+            (createChildParameter
+                (JpaPackage.Literals.JPA_CONSUMER_TYPE__SCHEDULED_POLL_CONSUMER_TYPE,
+                 FeatureMapUtil.createEntry
+                    (JpaPackage.Literals.JPA_CONSUMER_TYPE__TIME_UNIT,
+                     TimeUnitType.NANOSECONDS)));
+
+        newChildDescriptors.add
+            (createChildParameter
+                (JpaPackage.Literals.JPA_CONSUMER_TYPE__SCHEDULED_BATCH_POLL_CONSUMER_TYPE,
+                 FeatureMapUtil.createEntry
+                    (JpaPackage.Literals.JPA_CONSUMER_TYPE__MAX_MESSAGES_PER_POLL,
+                     XMLTypeFactory.eINSTANCE.createFromString(XMLTypePackage.Literals.INT_OBJECT, "0"))));
     }
 
     /**

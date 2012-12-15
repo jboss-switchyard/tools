@@ -23,12 +23,7 @@ import org.eclipse.emf.ecore.util.FeatureMap;
  *   <li>{@link org.switchyard.tools.models.switchyard1_0.camel.DocumentRoot#getMixed <em>Mixed</em>}</li>
  *   <li>{@link org.switchyard.tools.models.switchyard1_0.camel.DocumentRoot#getXMLNSPrefixMap <em>XMLNS Prefix Map</em>}</li>
  *   <li>{@link org.switchyard.tools.models.switchyard1_0.camel.DocumentRoot#getXSISchemaLocation <em>XSI Schema Location</em>}</li>
- *   <li>{@link org.switchyard.tools.models.switchyard1_0.camel.DocumentRoot#getBindingCamel <em>Binding Camel</em>}</li>
- *   <li>{@link org.switchyard.tools.models.switchyard1_0.camel.DocumentRoot#getBindingDirect <em>Binding Direct</em>}</li>
- *   <li>{@link org.switchyard.tools.models.switchyard1_0.camel.DocumentRoot#getBindingJms <em>Binding Jms</em>}</li>
- *   <li>{@link org.switchyard.tools.models.switchyard1_0.camel.DocumentRoot#getBindingMock <em>Binding Mock</em>}</li>
- *   <li>{@link org.switchyard.tools.models.switchyard1_0.camel.DocumentRoot#getBindingSeda <em>Binding Seda</em>}</li>
- *   <li>{@link org.switchyard.tools.models.switchyard1_0.camel.DocumentRoot#getBindingTimer <em>Binding Timer</em>}</li>
+ *   <li>{@link org.switchyard.tools.models.switchyard1_0.camel.DocumentRoot#getImplementationCamel <em>Implementation Camel</em>}</li>
  * </ul>
  * </p>
  *
@@ -91,165 +86,30 @@ public interface DocumentRoot extends EObject {
 	EMap<String, String> getXSISchemaLocation();
 
 	/**
-     * Returns the value of the '<em><b>Binding Camel</b></em>' containment reference.
-     * <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of the '<em>Binding Camel</em>' containment reference isn't clear,
-	 * there really should be more of a description here...
-	 * </p>
-	 * <!-- end-user-doc -->
-     * @return the value of the '<em>Binding Camel</em>' containment reference.
-     * @see #setBindingCamel(CamelBindingType)
-     * @see org.switchyard.tools.models.switchyard1_0.camel.CamelPackage#getDocumentRoot_BindingCamel()
-     * @model containment="true" upper="-2" transient="true" volatile="true" derived="true"
-     *        extendedMetaData="kind='element' name='binding.uri' namespace='##targetNamespace' affiliation='urn:switchyard-config:switchyard:1.0#binding.switchyard'"
-     * @generated
-     */
-	CamelBindingType getBindingCamel();
-
-	/**
-     * Sets the value of the '{@link org.switchyard.tools.models.switchyard1_0.camel.DocumentRoot#getBindingCamel <em>Binding Camel</em>}' containment reference.
-     * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-     * @param value the new value of the '<em>Binding Camel</em>' containment reference.
-     * @see #getBindingCamel()
-     * @generated
-     */
-	void setBindingCamel(CamelBindingType value);
-
-	/**
-     * Returns the value of the '<em><b>Binding Direct</b></em>' containment reference.
-     * <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of the '<em>Binding Direct</em>' containment reference isn't clear,
-	 * there really should be more of a description here...
-	 * </p>
-	 * <!-- end-user-doc -->
-     * @return the value of the '<em>Binding Direct</em>' containment reference.
-     * @see #setBindingDirect(CamelDirectBindingType)
-     * @see org.switchyard.tools.models.switchyard1_0.camel.CamelPackage#getDocumentRoot_BindingDirect()
-     * @model containment="true" upper="-2" transient="true" volatile="true" derived="true"
-     *        extendedMetaData="kind='element' name='binding.direct' namespace='##targetNamespace' affiliation='urn:switchyard-config:switchyard:1.0#binding.switchyard'"
-     * @generated
-     */
-	CamelDirectBindingType getBindingDirect();
-
-	/**
-     * Sets the value of the '{@link org.switchyard.tools.models.switchyard1_0.camel.DocumentRoot#getBindingDirect <em>Binding Direct</em>}' containment reference.
-     * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-     * @param value the new value of the '<em>Binding Direct</em>' containment reference.
-     * @see #getBindingDirect()
-     * @generated
-     */
-	void setBindingDirect(CamelDirectBindingType value);
-
-	/**
-     * Returns the value of the '<em><b>Binding Jms</b></em>' containment reference.
+     * Returns the value of the '<em><b>Implementation Camel</b></em>' containment reference.
      * <!-- begin-user-doc -->
      * <p>
-     * If the meaning of the '<em>Binding Jms</em>' containment reference isn't clear,
+     * If the meaning of the '<em>Implementation Camel</em>' containment reference isn't clear,
      * there really should be more of a description here...
      * </p>
      * <!-- end-user-doc -->
-     * @return the value of the '<em>Binding Jms</em>' containment reference.
-     * @see #setBindingJms(JmsBindingType)
-     * @see org.switchyard.tools.models.switchyard1_0.camel.CamelPackage#getDocumentRoot_BindingJms()
+     * @return the value of the '<em>Implementation Camel</em>' containment reference.
+     * @see #setImplementationCamel(CamelImplementationType)
+     * @see org.switchyard.tools.models.switchyard1_0.camel.CamelPackage#getDocumentRoot_ImplementationCamel()
      * @model containment="true" upper="-2" transient="true" volatile="true" derived="true"
-     *        extendedMetaData="kind='element' name='binding.jms' namespace='##targetNamespace' affiliation='urn:switchyard-config:switchyard:1.0#binding.switchyard'"
+     *        extendedMetaData="kind='element' name='implementation.camel' namespace='##targetNamespace' affiliation='http://docs.oasis-open.org/ns/opencsa/sca/200912#implementation'"
      * @generated
      */
-    JmsBindingType getBindingJms();
+    CamelImplementationType getImplementationCamel();
 
     /**
-     * Sets the value of the '{@link org.switchyard.tools.models.switchyard1_0.camel.DocumentRoot#getBindingJms <em>Binding Jms</em>}' containment reference.
+     * Sets the value of the '{@link org.switchyard.tools.models.switchyard1_0.camel.DocumentRoot#getImplementationCamel <em>Implementation Camel</em>}' containment reference.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @param value the new value of the '<em>Binding Jms</em>' containment reference.
-     * @see #getBindingJms()
+     * @param value the new value of the '<em>Implementation Camel</em>' containment reference.
+     * @see #getImplementationCamel()
      * @generated
      */
-    void setBindingJms(JmsBindingType value);
-
-    /**
-     * Returns the value of the '<em><b>Binding Mock</b></em>' containment reference.
-     * <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of the '<em>Binding Mock</em>' containment reference isn't clear,
-	 * there really should be more of a description here...
-	 * </p>
-	 * <!-- end-user-doc -->
-     * @return the value of the '<em>Binding Mock</em>' containment reference.
-     * @see #setBindingMock(CamelMockBindingType)
-     * @see org.switchyard.tools.models.switchyard1_0.camel.CamelPackage#getDocumentRoot_BindingMock()
-     * @model containment="true" upper="-2" transient="true" volatile="true" derived="true"
-     *        extendedMetaData="kind='element' name='binding.mock' namespace='##targetNamespace' affiliation='urn:switchyard-config:switchyard:1.0#binding.switchyard'"
-     * @generated
-     */
-	CamelMockBindingType getBindingMock();
-
-	/**
-     * Sets the value of the '{@link org.switchyard.tools.models.switchyard1_0.camel.DocumentRoot#getBindingMock <em>Binding Mock</em>}' containment reference.
-     * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-     * @param value the new value of the '<em>Binding Mock</em>' containment reference.
-     * @see #getBindingMock()
-     * @generated
-     */
-	void setBindingMock(CamelMockBindingType value);
-
-	/**
-     * Returns the value of the '<em><b>Binding Seda</b></em>' containment reference.
-     * <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of the '<em>Binding Seda</em>' containment reference isn't clear,
-	 * there really should be more of a description here...
-	 * </p>
-	 * <!-- end-user-doc -->
-     * @return the value of the '<em>Binding Seda</em>' containment reference.
-     * @see #setBindingSeda(CamelSedaBindingType)
-     * @see org.switchyard.tools.models.switchyard1_0.camel.CamelPackage#getDocumentRoot_BindingSeda()
-     * @model containment="true" upper="-2" transient="true" volatile="true" derived="true"
-     *        extendedMetaData="kind='element' name='binding.seda' namespace='##targetNamespace' affiliation='urn:switchyard-config:switchyard:1.0#binding.switchyard'"
-     * @generated
-     */
-	CamelSedaBindingType getBindingSeda();
-
-	/**
-     * Sets the value of the '{@link org.switchyard.tools.models.switchyard1_0.camel.DocumentRoot#getBindingSeda <em>Binding Seda</em>}' containment reference.
-     * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-     * @param value the new value of the '<em>Binding Seda</em>' containment reference.
-     * @see #getBindingSeda()
-     * @generated
-     */
-	void setBindingSeda(CamelSedaBindingType value);
-
-	/**
-     * Returns the value of the '<em><b>Binding Timer</b></em>' containment reference.
-     * <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of the '<em>Binding Timer</em>' containment reference isn't clear,
-	 * there really should be more of a description here...
-	 * </p>
-	 * <!-- end-user-doc -->
-     * @return the value of the '<em>Binding Timer</em>' containment reference.
-     * @see #setBindingTimer(CamelTimerBindingType)
-     * @see org.switchyard.tools.models.switchyard1_0.camel.CamelPackage#getDocumentRoot_BindingTimer()
-     * @model containment="true" upper="-2" transient="true" volatile="true" derived="true"
-     *        extendedMetaData="kind='element' name='binding.timer' namespace='##targetNamespace' affiliation='urn:switchyard-config:switchyard:1.0#binding.switchyard'"
-     * @generated
-     */
-	CamelTimerBindingType getBindingTimer();
-
-	/**
-     * Sets the value of the '{@link org.switchyard.tools.models.switchyard1_0.camel.DocumentRoot#getBindingTimer <em>Binding Timer</em>}' containment reference.
-     * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-     * @param value the new value of the '<em>Binding Timer</em>' containment reference.
-     * @see #getBindingTimer()
-     * @generated
-     */
-	void setBindingTimer(CamelTimerBindingType value);
+    void setImplementationCamel(CamelImplementationType value);
 
 } // DocumentRoot

@@ -75,23 +75,12 @@ public class MailSwitch<T> extends Switch<T> {
     @Override
     protected T doSwitch(int classifierID, EObject theEObject) {
         switch (classifierID) {
-            case MailPackage.DOCUMENT_ROOT: {
-                DocumentRoot documentRoot = (DocumentRoot)theEObject;
-                T result = caseDocumentRoot(documentRoot);
-                if (result == null) result = defaultCase(theEObject);
-                return result;
-            }
-            case MailPackage.CAMEL_MAIL_CONSUMER_TYPE: {
-                CamelMailConsumerType camelMailConsumerType = (CamelMailConsumerType)theEObject;
-                T result = caseCamelMailConsumerType(camelMailConsumerType);
-                if (result == null) result = caseScheduledBatchPollConsumerType(camelMailConsumerType);
-                if (result == null) result = caseScheduledPollConsumerType(camelMailConsumerType);
-                if (result == null) result = defaultCase(theEObject);
-                return result;
-            }
-            case MailPackage.CAMEL_MAIL_PRODUCER_TYPE: {
-                CamelMailProducerType camelMailProducerType = (CamelMailProducerType)theEObject;
-                T result = caseCamelMailProducerType(camelMailProducerType);
+            case MailPackage.BASE_CAMEL_BINDING: {
+                BaseCamelBinding baseCamelBinding = (BaseCamelBinding)theEObject;
+                T result = caseBaseCamelBinding(baseCamelBinding);
+                if (result == null) result = caseSwitchYardBindingType(baseCamelBinding);
+                if (result == null) result = caseBinding(baseCamelBinding);
+                if (result == null) result = caseCommonExtensionBase(baseCamelBinding);
                 if (result == null) result = defaultCase(theEObject);
                 return result;
             }
@@ -102,6 +91,24 @@ public class MailSwitch<T> extends Switch<T> {
                 if (result == null) result = caseSwitchYardBindingType(camelMailBindingType);
                 if (result == null) result = caseBinding(camelMailBindingType);
                 if (result == null) result = caseCommonExtensionBase(camelMailBindingType);
+                if (result == null) result = defaultCase(theEObject);
+                return result;
+            }
+            case MailPackage.DOCUMENT_ROOT: {
+                DocumentRoot documentRoot = (DocumentRoot)theEObject;
+                T result = caseDocumentRoot(documentRoot);
+                if (result == null) result = defaultCase(theEObject);
+                return result;
+            }
+            case MailPackage.CAMEL_MAIL_CONSUMER_TYPE: {
+                CamelMailConsumerType camelMailConsumerType = (CamelMailConsumerType)theEObject;
+                T result = caseCamelMailConsumerType(camelMailConsumerType);
+                if (result == null) result = defaultCase(theEObject);
+                return result;
+            }
+            case MailPackage.CAMEL_MAIL_PRODUCER_TYPE: {
+                CamelMailProducerType camelMailProducerType = (CamelMailProducerType)theEObject;
+                T result = caseCamelMailProducerType(camelMailProducerType);
                 if (result == null) result = defaultCase(theEObject);
                 return result;
             }
@@ -166,36 +173,6 @@ public class MailSwitch<T> extends Switch<T> {
      * @generated
      */
     public T caseCamelMailBindingType(CamelMailBindingType object) {
-        return null;
-    }
-
-    /**
-     * Returns the result of interpreting the object as an instance of '<em>Scheduled Poll Consumer Type</em>'.
-     * <!-- begin-user-doc -->
-     * This implementation returns null;
-     * returning a non-null result will terminate the switch.
-     * <!-- end-user-doc -->
-     * @param object the target of the switch.
-     * @return the result of interpreting the object as an instance of '<em>Scheduled Poll Consumer Type</em>'.
-     * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
-     * @generated
-     */
-    public T caseScheduledPollConsumerType(ScheduledPollConsumerType object) {
-        return null;
-    }
-
-    /**
-     * Returns the result of interpreting the object as an instance of '<em>Scheduled Batch Poll Consumer Type</em>'.
-     * <!-- begin-user-doc -->
-     * This implementation returns null;
-     * returning a non-null result will terminate the switch.
-     * <!-- end-user-doc -->
-     * @param object the target of the switch.
-     * @return the result of interpreting the object as an instance of '<em>Scheduled Batch Poll Consumer Type</em>'.
-     * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
-     * @generated
-     */
-    public T caseScheduledBatchPollConsumerType(ScheduledBatchPollConsumerType object) {
         return null;
     }
 

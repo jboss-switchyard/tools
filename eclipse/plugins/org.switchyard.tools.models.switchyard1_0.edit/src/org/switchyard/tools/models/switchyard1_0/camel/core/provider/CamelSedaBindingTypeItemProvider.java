@@ -19,8 +19,8 @@ import org.eclipse.emf.edit.provider.ITreeItemContentProvider;
 import org.eclipse.emf.edit.provider.ItemPropertyDescriptor;
 import org.eclipse.emf.edit.provider.ViewerNotification;
 
-import org.switchyard.tools.models.switchyard1_0.camel.core.CamelPackage;
 import org.switchyard.tools.models.switchyard1_0.camel.core.CamelSedaBindingType;
+import org.switchyard.tools.models.switchyard1_0.camel.core.CorePackage;
 
 /**
  * This is the item provider adapter for a {@link org.switchyard.tools.models.switchyard1_0.camel.core.CamelSedaBindingType} object.
@@ -81,7 +81,7 @@ public class CamelSedaBindingTypeItemProvider
                  getResourceLocator(),
                  getString("_UI_CamelSedaBindingType_nameElement_feature"),
                  getString("_UI_PropertyDescriptor_description", "_UI_CamelSedaBindingType_nameElement_feature", "_UI_CamelSedaBindingType_type"),
-                 CamelPackage.Literals.CAMEL_SEDA_BINDING_TYPE__NAME_ELEMENT,
+                 CorePackage.Literals.CAMEL_SEDA_BINDING_TYPE__NAME_ELEMENT,
                  true,
                  false,
                  false,
@@ -103,7 +103,7 @@ public class CamelSedaBindingTypeItemProvider
                  getResourceLocator(),
                  getString("_UI_CamelSedaBindingType_size_feature"),
                  getString("_UI_PropertyDescriptor_description", "_UI_CamelSedaBindingType_size_feature", "_UI_CamelSedaBindingType_type"),
-                 CamelPackage.Literals.CAMEL_SEDA_BINDING_TYPE__SIZE,
+                 CorePackage.Literals.CAMEL_SEDA_BINDING_TYPE__SIZE,
                  true,
                  false,
                  false,
@@ -125,7 +125,7 @@ public class CamelSedaBindingTypeItemProvider
                  getResourceLocator(),
                  getString("_UI_CamelSedaBindingType_concurrentConsumers_feature"),
                  getString("_UI_PropertyDescriptor_description", "_UI_CamelSedaBindingType_concurrentConsumers_feature", "_UI_CamelSedaBindingType_type"),
-                 CamelPackage.Literals.CAMEL_SEDA_BINDING_TYPE__CONCURRENT_CONSUMERS,
+                 CorePackage.Literals.CAMEL_SEDA_BINDING_TYPE__CONCURRENT_CONSUMERS,
                  true,
                  false,
                  false,
@@ -147,7 +147,7 @@ public class CamelSedaBindingTypeItemProvider
                  getResourceLocator(),
                  getString("_UI_CamelSedaBindingType_waitForTaskToComplete_feature"),
                  getString("_UI_PropertyDescriptor_description", "_UI_CamelSedaBindingType_waitForTaskToComplete_feature", "_UI_CamelSedaBindingType_type"),
-                 CamelPackage.Literals.CAMEL_SEDA_BINDING_TYPE__WAIT_FOR_TASK_TO_COMPLETE,
+                 CorePackage.Literals.CAMEL_SEDA_BINDING_TYPE__WAIT_FOR_TASK_TO_COMPLETE,
                  true,
                  false,
                  false,
@@ -169,7 +169,7 @@ public class CamelSedaBindingTypeItemProvider
                  getResourceLocator(),
                  getString("_UI_CamelSedaBindingType_timeout_feature"),
                  getString("_UI_PropertyDescriptor_description", "_UI_CamelSedaBindingType_timeout_feature", "_UI_CamelSedaBindingType_type"),
-                 CamelPackage.Literals.CAMEL_SEDA_BINDING_TYPE__TIMEOUT,
+                 CorePackage.Literals.CAMEL_SEDA_BINDING_TYPE__TIMEOUT,
                  true,
                  false,
                  false,
@@ -191,7 +191,7 @@ public class CamelSedaBindingTypeItemProvider
                  getResourceLocator(),
                  getString("_UI_CamelSedaBindingType_multipleConsumers_feature"),
                  getString("_UI_PropertyDescriptor_description", "_UI_CamelSedaBindingType_multipleConsumers_feature", "_UI_CamelSedaBindingType_type"),
-                 CamelPackage.Literals.CAMEL_SEDA_BINDING_TYPE__MULTIPLE_CONSUMERS,
+                 CorePackage.Literals.CAMEL_SEDA_BINDING_TYPE__MULTIPLE_CONSUMERS,
                  true,
                  false,
                  false,
@@ -213,7 +213,7 @@ public class CamelSedaBindingTypeItemProvider
                  getResourceLocator(),
                  getString("_UI_CamelSedaBindingType_limitConcurrentConsumers_feature"),
                  getString("_UI_PropertyDescriptor_description", "_UI_CamelSedaBindingType_limitConcurrentConsumers_feature", "_UI_CamelSedaBindingType_type"),
-                 CamelPackage.Literals.CAMEL_SEDA_BINDING_TYPE__LIMIT_CONCURRENT_CONSUMERS,
+                 CorePackage.Literals.CAMEL_SEDA_BINDING_TYPE__LIMIT_CONCURRENT_CONSUMERS,
                  true,
                  false,
                  false,
@@ -259,13 +259,13 @@ public class CamelSedaBindingTypeItemProvider
         updateChildren(notification);
 
         switch (notification.getFeatureID(CamelSedaBindingType.class)) {
-            case CamelPackage.CAMEL_SEDA_BINDING_TYPE__NAME_ELEMENT:
-            case CamelPackage.CAMEL_SEDA_BINDING_TYPE__SIZE:
-            case CamelPackage.CAMEL_SEDA_BINDING_TYPE__CONCURRENT_CONSUMERS:
-            case CamelPackage.CAMEL_SEDA_BINDING_TYPE__WAIT_FOR_TASK_TO_COMPLETE:
-            case CamelPackage.CAMEL_SEDA_BINDING_TYPE__TIMEOUT:
-            case CamelPackage.CAMEL_SEDA_BINDING_TYPE__MULTIPLE_CONSUMERS:
-            case CamelPackage.CAMEL_SEDA_BINDING_TYPE__LIMIT_CONCURRENT_CONSUMERS:
+            case CorePackage.CAMEL_SEDA_BINDING_TYPE__NAME_ELEMENT:
+            case CorePackage.CAMEL_SEDA_BINDING_TYPE__SIZE:
+            case CorePackage.CAMEL_SEDA_BINDING_TYPE__CONCURRENT_CONSUMERS:
+            case CorePackage.CAMEL_SEDA_BINDING_TYPE__WAIT_FOR_TASK_TO_COMPLETE:
+            case CorePackage.CAMEL_SEDA_BINDING_TYPE__TIMEOUT:
+            case CorePackage.CAMEL_SEDA_BINDING_TYPE__MULTIPLE_CONSUMERS:
+            case CorePackage.CAMEL_SEDA_BINDING_TYPE__LIMIT_CONCURRENT_CONSUMERS:
                 fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
                 return;
         }

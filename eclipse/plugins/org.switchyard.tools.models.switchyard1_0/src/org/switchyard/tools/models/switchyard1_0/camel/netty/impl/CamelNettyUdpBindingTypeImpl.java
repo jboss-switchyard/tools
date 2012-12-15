@@ -46,6 +46,15 @@ public class CamelNettyUdpBindingTypeImpl extends CamelNettyBindingTypeImpl impl
     protected Boolean broadcast = BROADCAST_EDEFAULT;
 
     /**
+     * This is true if the Broadcast attribute has been set.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    protected boolean broadcastESet;
+
+    /**
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @generated
@@ -81,8 +90,33 @@ public class CamelNettyUdpBindingTypeImpl extends CamelNettyBindingTypeImpl impl
     public void setBroadcast(Boolean newBroadcast) {
         Boolean oldBroadcast = broadcast;
         broadcast = newBroadcast;
+        boolean oldBroadcastESet = broadcastESet;
+        broadcastESet = true;
         if (eNotificationRequired())
-            eNotify(new ENotificationImpl(this, Notification.SET, NettyPackage.CAMEL_NETTY_UDP_BINDING_TYPE__BROADCAST, oldBroadcast, broadcast));
+            eNotify(new ENotificationImpl(this, Notification.SET, NettyPackage.CAMEL_NETTY_UDP_BINDING_TYPE__BROADCAST, oldBroadcast, broadcast, !oldBroadcastESet));
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public void unsetBroadcast() {
+        Boolean oldBroadcast = broadcast;
+        boolean oldBroadcastESet = broadcastESet;
+        broadcast = BROADCAST_EDEFAULT;
+        broadcastESet = false;
+        if (eNotificationRequired())
+            eNotify(new ENotificationImpl(this, Notification.UNSET, NettyPackage.CAMEL_NETTY_UDP_BINDING_TYPE__BROADCAST, oldBroadcast, BROADCAST_EDEFAULT, oldBroadcastESet));
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public boolean isSetBroadcast() {
+        return broadcastESet;
     }
 
     /**
@@ -123,7 +157,7 @@ public class CamelNettyUdpBindingTypeImpl extends CamelNettyBindingTypeImpl impl
     public void eUnset(int featureID) {
         switch (featureID) {
             case NettyPackage.CAMEL_NETTY_UDP_BINDING_TYPE__BROADCAST:
-                setBroadcast(BROADCAST_EDEFAULT);
+                unsetBroadcast();
                 return;
         }
         super.eUnset(featureID);
@@ -138,7 +172,7 @@ public class CamelNettyUdpBindingTypeImpl extends CamelNettyBindingTypeImpl impl
     public boolean eIsSet(int featureID) {
         switch (featureID) {
             case NettyPackage.CAMEL_NETTY_UDP_BINDING_TYPE__BROADCAST:
-                return BROADCAST_EDEFAULT == null ? broadcast != null : !BROADCAST_EDEFAULT.equals(broadcast);
+                return isSetBroadcast();
         }
         return super.eIsSet(featureID);
     }
@@ -154,7 +188,7 @@ public class CamelNettyUdpBindingTypeImpl extends CamelNettyBindingTypeImpl impl
 
         StringBuffer result = new StringBuffer(super.toString());
         result.append(" (broadcast: ");
-        result.append(broadcast);
+        if (broadcastESet) result.append(broadcast); else result.append("<unset>");
         result.append(')');
         return result.toString();
     }

@@ -35,7 +35,7 @@ package org.switchyard.tools.models.switchyard1_0.camel.core;
  * </ul>
  * </p>
  *
- * @see org.switchyard.tools.models.switchyard1_0.camel.core.CamelPackage#getJmsBindingType()
+ * @see org.switchyard.tools.models.switchyard1_0.camel.core.CorePackage#getJmsBindingType()
  * @model extendedMetaData="name='JmsBindingType' kind='elementOnly'"
  * @generated
  */
@@ -50,7 +50,7 @@ public interface JmsBindingType extends BaseCamelBinding {
      * <!-- end-user-doc -->
      * @return the value of the '<em>Queue</em>' attribute.
      * @see #setQueue(String)
-     * @see org.switchyard.tools.models.switchyard1_0.camel.core.CamelPackage#getJmsBindingType_Queue()
+     * @see org.switchyard.tools.models.switchyard1_0.camel.core.CorePackage#getJmsBindingType_Queue()
      * @model dataType="org.eclipse.emf.ecore.xml.type.String"
      *        extendedMetaData="kind='element' name='queue' namespace='##targetNamespace'"
      * @generated
@@ -77,7 +77,7 @@ public interface JmsBindingType extends BaseCamelBinding {
      * <!-- end-user-doc -->
      * @return the value of the '<em>Topic</em>' attribute.
      * @see #setTopic(String)
-     * @see org.switchyard.tools.models.switchyard1_0.camel.core.CamelPackage#getJmsBindingType_Topic()
+     * @see org.switchyard.tools.models.switchyard1_0.camel.core.CorePackage#getJmsBindingType_Topic()
      * @model dataType="org.eclipse.emf.ecore.xml.type.String"
      *        extendedMetaData="kind='element' name='topic' namespace='##targetNamespace'"
      * @generated
@@ -104,7 +104,7 @@ public interface JmsBindingType extends BaseCamelBinding {
      * <!-- end-user-doc -->
      * @return the value of the '<em>Connection Factory</em>' attribute.
      * @see #setConnectionFactory(String)
-     * @see org.switchyard.tools.models.switchyard1_0.camel.core.CamelPackage#getJmsBindingType_ConnectionFactory()
+     * @see org.switchyard.tools.models.switchyard1_0.camel.core.CorePackage#getJmsBindingType_ConnectionFactory()
      * @model dataType="org.eclipse.emf.ecore.xml.type.String" required="true"
      *        extendedMetaData="kind='element' name='connectionFactory' namespace='##targetNamespace'"
      * @generated
@@ -131,7 +131,7 @@ public interface JmsBindingType extends BaseCamelBinding {
      * <!-- end-user-doc -->
      * @return the value of the '<em>Username</em>' attribute.
      * @see #setUsername(String)
-     * @see org.switchyard.tools.models.switchyard1_0.camel.core.CamelPackage#getJmsBindingType_Username()
+     * @see org.switchyard.tools.models.switchyard1_0.camel.core.CorePackage#getJmsBindingType_Username()
      * @model dataType="org.eclipse.emf.ecore.xml.type.String"
      *        extendedMetaData="kind='element' name='username' namespace='##targetNamespace'"
      * @generated
@@ -158,7 +158,7 @@ public interface JmsBindingType extends BaseCamelBinding {
      * <!-- end-user-doc -->
      * @return the value of the '<em>Password</em>' attribute.
      * @see #setPassword(String)
-     * @see org.switchyard.tools.models.switchyard1_0.camel.core.CamelPackage#getJmsBindingType_Password()
+     * @see org.switchyard.tools.models.switchyard1_0.camel.core.CorePackage#getJmsBindingType_Password()
      * @model dataType="org.eclipse.emf.ecore.xml.type.String"
      *        extendedMetaData="kind='element' name='password' namespace='##targetNamespace'"
      * @generated
@@ -185,7 +185,7 @@ public interface JmsBindingType extends BaseCamelBinding {
      * <!-- end-user-doc -->
      * @return the value of the '<em>Client Id</em>' attribute.
      * @see #setClientId(String)
-     * @see org.switchyard.tools.models.switchyard1_0.camel.core.CamelPackage#getJmsBindingType_ClientId()
+     * @see org.switchyard.tools.models.switchyard1_0.camel.core.CorePackage#getJmsBindingType_ClientId()
      * @model dataType="org.eclipse.emf.ecore.xml.type.String"
      *        extendedMetaData="kind='element' name='clientId' namespace='##targetNamespace'"
      * @generated
@@ -212,7 +212,7 @@ public interface JmsBindingType extends BaseCamelBinding {
      * <!-- end-user-doc -->
      * @return the value of the '<em>Durable Subscription Name</em>' attribute.
      * @see #setDurableSubscriptionName(String)
-     * @see org.switchyard.tools.models.switchyard1_0.camel.core.CamelPackage#getJmsBindingType_DurableSubscriptionName()
+     * @see org.switchyard.tools.models.switchyard1_0.camel.core.CorePackage#getJmsBindingType_DurableSubscriptionName()
      * @model dataType="org.eclipse.emf.ecore.xml.type.String"
      *        extendedMetaData="kind='element' name='durableSubscriptionName' namespace='##targetNamespace'"
      * @generated
@@ -241,7 +241,7 @@ public interface JmsBindingType extends BaseCamelBinding {
      * @see #isSetConcurrentConsumers()
      * @see #unsetConcurrentConsumers()
      * @see #setConcurrentConsumers(Integer)
-     * @see org.switchyard.tools.models.switchyard1_0.camel.core.CamelPackage#getJmsBindingType_ConcurrentConsumers()
+     * @see org.switchyard.tools.models.switchyard1_0.camel.core.CorePackage#getJmsBindingType_ConcurrentConsumers()
      * @model unsettable="true" dataType="org.eclipse.emf.ecore.xml.type.IntObject"
      *        extendedMetaData="kind='element' name='concurrentConsumers' namespace='##targetNamespace'"
      * @generated
@@ -295,7 +295,7 @@ public interface JmsBindingType extends BaseCamelBinding {
      * @see #isSetMaxConcurrentConsumers()
      * @see #unsetMaxConcurrentConsumers()
      * @see #setMaxConcurrentConsumers(Integer)
-     * @see org.switchyard.tools.models.switchyard1_0.camel.core.CamelPackage#getJmsBindingType_MaxConcurrentConsumers()
+     * @see org.switchyard.tools.models.switchyard1_0.camel.core.CorePackage#getJmsBindingType_MaxConcurrentConsumers()
      * @model unsettable="true" dataType="org.eclipse.emf.ecore.xml.type.IntObject"
      *        extendedMetaData="kind='element' name='maxConcurrentConsumers' namespace='##targetNamespace'"
      * @generated
@@ -349,7 +349,7 @@ public interface JmsBindingType extends BaseCamelBinding {
      * @see #isSetDisableReplyTo()
      * @see #unsetDisableReplyTo()
      * @see #setDisableReplyTo(Boolean)
-     * @see org.switchyard.tools.models.switchyard1_0.camel.core.CamelPackage#getJmsBindingType_DisableReplyTo()
+     * @see org.switchyard.tools.models.switchyard1_0.camel.core.CorePackage#getJmsBindingType_DisableReplyTo()
      * @model unsettable="true" dataType="org.eclipse.emf.ecore.xml.type.BooleanObject"
      *        extendedMetaData="kind='element' name='disableReplyTo' namespace='##targetNamespace'"
      * @generated
@@ -403,7 +403,7 @@ public interface JmsBindingType extends BaseCamelBinding {
      * @see #isSetPreserveMessageQos()
      * @see #unsetPreserveMessageQos()
      * @see #setPreserveMessageQos(Boolean)
-     * @see org.switchyard.tools.models.switchyard1_0.camel.core.CamelPackage#getJmsBindingType_PreserveMessageQos()
+     * @see org.switchyard.tools.models.switchyard1_0.camel.core.CorePackage#getJmsBindingType_PreserveMessageQos()
      * @model unsettable="true" dataType="org.eclipse.emf.ecore.xml.type.BooleanObject"
      *        extendedMetaData="kind='element' name='preserveMessageQos' namespace='##targetNamespace'"
      * @generated
@@ -457,7 +457,7 @@ public interface JmsBindingType extends BaseCamelBinding {
      * @see #isSetDeliveryPersistent()
      * @see #unsetDeliveryPersistent()
      * @see #setDeliveryPersistent(Boolean)
-     * @see org.switchyard.tools.models.switchyard1_0.camel.core.CamelPackage#getJmsBindingType_DeliveryPersistent()
+     * @see org.switchyard.tools.models.switchyard1_0.camel.core.CorePackage#getJmsBindingType_DeliveryPersistent()
      * @model unsettable="true" dataType="org.eclipse.emf.ecore.xml.type.BooleanObject"
      *        extendedMetaData="kind='element' name='deliveryPersistent' namespace='##targetNamespace'"
      * @generated
@@ -511,7 +511,7 @@ public interface JmsBindingType extends BaseCamelBinding {
      * @see #isSetPriority()
      * @see #unsetPriority()
      * @see #setPriority(Integer)
-     * @see org.switchyard.tools.models.switchyard1_0.camel.core.CamelPackage#getJmsBindingType_Priority()
+     * @see org.switchyard.tools.models.switchyard1_0.camel.core.CorePackage#getJmsBindingType_Priority()
      * @model unsettable="true" dataType="org.eclipse.emf.ecore.xml.type.IntObject"
      *        extendedMetaData="kind='element' name='priority' namespace='##targetNamespace'"
      * @generated
@@ -565,7 +565,7 @@ public interface JmsBindingType extends BaseCamelBinding {
      * @see #isSetExplicitQosEnabled()
      * @see #unsetExplicitQosEnabled()
      * @see #setExplicitQosEnabled(Boolean)
-     * @see org.switchyard.tools.models.switchyard1_0.camel.core.CamelPackage#getJmsBindingType_ExplicitQosEnabled()
+     * @see org.switchyard.tools.models.switchyard1_0.camel.core.CorePackage#getJmsBindingType_ExplicitQosEnabled()
      * @model unsettable="true" dataType="org.eclipse.emf.ecore.xml.type.BooleanObject"
      *        extendedMetaData="kind='element' name='explicitQosEnabled' namespace='##targetNamespace'"
      * @generated
@@ -617,7 +617,7 @@ public interface JmsBindingType extends BaseCamelBinding {
      * <!-- end-user-doc -->
      * @return the value of the '<em>Reply To</em>' attribute.
      * @see #setReplyTo(String)
-     * @see org.switchyard.tools.models.switchyard1_0.camel.core.CamelPackage#getJmsBindingType_ReplyTo()
+     * @see org.switchyard.tools.models.switchyard1_0.camel.core.CorePackage#getJmsBindingType_ReplyTo()
      * @model dataType="org.eclipse.emf.ecore.xml.type.String"
      *        extendedMetaData="kind='element' name='replyTo' namespace='##targetNamespace'"
      * @generated
@@ -644,7 +644,7 @@ public interface JmsBindingType extends BaseCamelBinding {
      * <!-- end-user-doc -->
      * @return the value of the '<em>Reply To Type</em>' attribute.
      * @see #setReplyToType(String)
-     * @see org.switchyard.tools.models.switchyard1_0.camel.core.CamelPackage#getJmsBindingType_ReplyToType()
+     * @see org.switchyard.tools.models.switchyard1_0.camel.core.CorePackage#getJmsBindingType_ReplyToType()
      * @model dataType="org.eclipse.emf.ecore.xml.type.String"
      *        extendedMetaData="kind='element' name='replyToType' namespace='##targetNamespace'"
      * @generated
@@ -673,7 +673,7 @@ public interface JmsBindingType extends BaseCamelBinding {
      * @see #isSetRequestTimeout()
      * @see #unsetRequestTimeout()
      * @see #setRequestTimeout(Integer)
-     * @see org.switchyard.tools.models.switchyard1_0.camel.core.CamelPackage#getJmsBindingType_RequestTimeout()
+     * @see org.switchyard.tools.models.switchyard1_0.camel.core.CorePackage#getJmsBindingType_RequestTimeout()
      * @model unsettable="true" dataType="org.eclipse.emf.ecore.xml.type.IntObject"
      *        extendedMetaData="kind='element' name='requestTimeout' namespace='##targetNamespace'"
      * @generated
@@ -725,7 +725,7 @@ public interface JmsBindingType extends BaseCamelBinding {
      * <!-- end-user-doc -->
      * @return the value of the '<em>Selector</em>' attribute.
      * @see #setSelector(String)
-     * @see org.switchyard.tools.models.switchyard1_0.camel.core.CamelPackage#getJmsBindingType_Selector()
+     * @see org.switchyard.tools.models.switchyard1_0.camel.core.CorePackage#getJmsBindingType_Selector()
      * @model dataType="org.eclipse.emf.ecore.xml.type.String"
      *        extendedMetaData="kind='element' name='selector' namespace='##targetNamespace'"
      * @generated
@@ -754,7 +754,7 @@ public interface JmsBindingType extends BaseCamelBinding {
      * @see #isSetTimeToLive()
      * @see #unsetTimeToLive()
      * @see #setTimeToLive(Integer)
-     * @see org.switchyard.tools.models.switchyard1_0.camel.core.CamelPackage#getJmsBindingType_TimeToLive()
+     * @see org.switchyard.tools.models.switchyard1_0.camel.core.CorePackage#getJmsBindingType_TimeToLive()
      * @model unsettable="true" dataType="org.eclipse.emf.ecore.xml.type.IntObject"
      *        extendedMetaData="kind='element' name='timeToLive' namespace='##targetNamespace'"
      * @generated
@@ -808,7 +808,7 @@ public interface JmsBindingType extends BaseCamelBinding {
      * @see #isSetTransacted()
      * @see #unsetTransacted()
      * @see #setTransacted(Boolean)
-     * @see org.switchyard.tools.models.switchyard1_0.camel.core.CamelPackage#getJmsBindingType_Transacted()
+     * @see org.switchyard.tools.models.switchyard1_0.camel.core.CorePackage#getJmsBindingType_Transacted()
      * @model unsettable="true" dataType="org.eclipse.emf.ecore.xml.type.BooleanObject"
      *        extendedMetaData="kind='element' name='transacted' namespace='##targetNamespace'"
      * @generated
@@ -860,7 +860,7 @@ public interface JmsBindingType extends BaseCamelBinding {
      * <!-- end-user-doc -->
      * @return the value of the '<em>Transaction Manager</em>' attribute.
      * @see #setTransactionManager(String)
-     * @see org.switchyard.tools.models.switchyard1_0.camel.core.CamelPackage#getJmsBindingType_TransactionManager()
+     * @see org.switchyard.tools.models.switchyard1_0.camel.core.CorePackage#getJmsBindingType_TransactionManager()
      * @model dataType="org.eclipse.emf.ecore.xml.type.String"
      *        extendedMetaData="kind='element' name='transactionManager' namespace='##targetNamespace'"
      * @generated

@@ -3,6 +3,7 @@
 package org.switchyard.tools.models.switchyard1_0.camel.ftp.impl;
 
 import org.eclipse.emf.ecore.EClass;
+import org.eclipse.emf.ecore.EDataType;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EPackage;
 
@@ -59,11 +60,45 @@ public class FtpFactoryImpl extends EFactoryImpl implements FtpFactory {
             case FtpPackage.CAMEL_FTP_BINDING_TYPE: return createCamelFtpBindingType();
             case FtpPackage.CAMEL_FTPS_BINDING_TYPE: return createCamelFtpsBindingType();
             case FtpPackage.CAMEL_SFTP_BINDING_TYPE: return createCamelSftpBindingType();
+            case FtpPackage.DOCUMENT_ROOT: return createDocumentRoot();
             case FtpPackage.REMOTE_FILE_CONSUMER_TYPE: return createRemoteFileConsumerType();
             case FtpPackage.REMOTE_FILE_PRODUCER_TYPE: return createRemoteFileProducerType();
-            case FtpPackage.DOCUMENT_ROOT: return createDocumentRoot();
             default:
                 throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier");
+        }
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    @Override
+    public Object createFromString(EDataType eDataType, String initialValue) {
+        switch (eDataType.getClassifierID()) {
+            case FtpPackage.TIME_UNIT_TYPE:
+                return createTimeUnitTypeFromString(eDataType, initialValue);
+            case FtpPackage.TIME_UNIT_TYPE_OBJECT:
+                return createTimeUnitTypeObjectFromString(eDataType, initialValue);
+            default:
+                throw new IllegalArgumentException("The datatype '" + eDataType.getName() + "' is not a valid classifier");
+        }
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    @Override
+    public String convertToString(EDataType eDataType, Object instanceValue) {
+        switch (eDataType.getClassifierID()) {
+            case FtpPackage.TIME_UNIT_TYPE:
+                return convertTimeUnitTypeToString(eDataType, instanceValue);
+            case FtpPackage.TIME_UNIT_TYPE_OBJECT:
+                return convertTimeUnitTypeObjectToString(eDataType, instanceValue);
+            default:
+                throw new IllegalArgumentException("The datatype '" + eDataType.getName() + "' is not a valid classifier");
         }
     }
 
@@ -115,6 +150,44 @@ public class FtpFactoryImpl extends EFactoryImpl implements FtpFactory {
     public RemoteFileProducerType createRemoteFileProducerType() {
         RemoteFileProducerTypeImpl remoteFileProducerType = new RemoteFileProducerTypeImpl();
         return remoteFileProducerType;
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public TimeUnitType createTimeUnitTypeFromString(EDataType eDataType, String initialValue) {
+        TimeUnitType result = TimeUnitType.get(initialValue);
+        if (result == null) throw new IllegalArgumentException("The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'");
+        return result;
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public String convertTimeUnitTypeToString(EDataType eDataType, Object instanceValue) {
+        return instanceValue == null ? null : instanceValue.toString();
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public TimeUnitType createTimeUnitTypeObjectFromString(EDataType eDataType, String initialValue) {
+        return createTimeUnitTypeFromString(FtpPackage.Literals.TIME_UNIT_TYPE, initialValue);
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public String convertTimeUnitTypeObjectToString(EDataType eDataType, Object instanceValue) {
+        return convertTimeUnitTypeToString(FtpPackage.Literals.TIME_UNIT_TYPE, instanceValue);
     }
 
     /**

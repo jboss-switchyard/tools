@@ -87,9 +87,11 @@ public interface CamelSqlBindingType extends BaseCamelBinding {
      * </p>
      * <!-- end-user-doc -->
      * @return the value of the '<em>Batch</em>' attribute.
+     * @see #isSetBatch()
+     * @see #unsetBatch()
      * @see #setBatch(Boolean)
      * @see org.switchyard.tools.models.switchyard1_0.camel.sql.SqlPackage#getCamelSqlBindingType_Batch()
-     * @model dataType="org.eclipse.emf.ecore.xml.type.BooleanObject"
+     * @model unsettable="true" dataType="org.eclipse.emf.ecore.xml.type.BooleanObject"
      *        extendedMetaData="kind='element' name='batch' namespace='##targetNamespace'"
      * @generated
      */
@@ -100,10 +102,35 @@ public interface CamelSqlBindingType extends BaseCamelBinding {
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @param value the new value of the '<em>Batch</em>' attribute.
+     * @see #isSetBatch()
+     * @see #unsetBatch()
      * @see #getBatch()
      * @generated
      */
     void setBatch(Boolean value);
+
+    /**
+     * Unsets the value of the '{@link org.switchyard.tools.models.switchyard1_0.camel.sql.CamelSqlBindingType#getBatch <em>Batch</em>}' attribute.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @see #isSetBatch()
+     * @see #getBatch()
+     * @see #setBatch(Boolean)
+     * @generated
+     */
+    void unsetBatch();
+
+    /**
+     * Returns whether the value of the '{@link org.switchyard.tools.models.switchyard1_0.camel.sql.CamelSqlBindingType#getBatch <em>Batch</em>}' attribute is set.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @return whether the value of the '<em>Batch</em>' attribute is set.
+     * @see #unsetBatch()
+     * @see #getBatch()
+     * @see #setBatch(Boolean)
+     * @generated
+     */
+    boolean isSetBatch();
 
     /**
      * Returns the value of the '<em><b>Placeholder</b></em>' attribute.

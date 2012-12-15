@@ -32,8 +32,7 @@ import org.eclipse.swt.widgets.Group;
 import org.eclipse.swt.widgets.TabFolder;
 import org.eclipse.swt.widgets.TabItem;
 import org.eclipse.swt.widgets.Text;
-import org.switchyard.tools.models.switchyard1_0.camel.CamelFactory;
-import org.switchyard.tools.models.switchyard1_0.camel.CamelNettyUdpBindingType;
+import org.switchyard.tools.models.switchyard1_0.camel.netty.CamelNettyUdpBindingType;
 import org.switchyard.tools.models.switchyard1_0.switchyard.ContextMapperType;
 import org.switchyard.tools.models.switchyard1_0.switchyard.MessageComposerType;
 import org.switchyard.tools.models.switchyard1_0.switchyard.SwitchYardOperationSelectorType;
@@ -77,14 +76,18 @@ public class CamelNettyUDPComposite extends AbstractSYBindingComposite {
             if (this._binding.getPort() > 0) {
                 _portText.setText(""+this._binding.getPort());
             }
-            if (this._binding.getSendBufferSize() > 0) {
+            if (this._binding.getSendBufferSize() != null) {
                 _sendBufferSizeText.setText(""+this._binding.getSendBufferSize());
             }
-            if (this._binding.getReceiveBufferSize() > 0) {
+            if (this._binding.getReceiveBufferSize() != null) {
                 _receiveBufferSizeText.setText(""+this._binding.getReceiveBufferSize());
             }
-            _syncCheckbox.setSelection(this._binding.isSync());
-            _broadcastCheckbox.setSelection(this._binding.isBroadcast());
+            if (this._binding.getSync() != null) {
+                _syncCheckbox.setSelection(this._binding.getSync().booleanValue());
+            }
+            if (this._binding.getBroadcast() != null) {
+                _broadcastCheckbox.setSelection(this._binding.getBroadcast().booleanValue());
+            }
 
             OperationSelectorType opSelector = OperationSelectorUtil.getFirstOperationSelector(this._binding);
             _opSelectorComposite.setBinding(this._binding);
@@ -263,9 +266,9 @@ public class CamelNettyUDPComposite extends AbstractSYBindingComposite {
             } else if (control.equals(_sendBufferSizeText)) {
                 _sendBufferSizeText.setText(Long.toString(this._binding.getSendBufferSize()));
             } else if (control.equals(_broadcastCheckbox)) {
-                _broadcastCheckbox.setSelection(this._binding.isBroadcast());
+                _broadcastCheckbox.setSelection(this._binding.getBroadcast());
             } else if (control.equals(_syncCheckbox)) {
-                _syncCheckbox.setSelection(this._binding.isSync());
+                _syncCheckbox.setSelection(this._binding.getSync().booleanValue());
 //            } else if (control.equals(_operationSelectionCombo)) {
 //                String opName = OperationSelectorUtil.getOperationNameForStaticOperationSelector(this._binding);
 //                setTextValue(_operationSelectionCombo, opName);
@@ -292,12 +295,12 @@ public class CamelNettyUDPComposite extends AbstractSYBindingComposite {
 
     @Override
     protected ContextMapperType createContextMapper() {
-        return CamelFactory.eINSTANCE.createCamelContextMapperType();
+        return SwitchyardFactory.eINSTANCE.createContextMapperType();
     }
 
     @Override
     protected MessageComposerType createMessageComposer() {
-        return CamelFactory.eINSTANCE.createCamelMessageComposerType();
+        return SwitchyardFactory.eINSTANCE.createMessageComposerType();
     }
     
 }

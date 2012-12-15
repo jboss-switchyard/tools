@@ -27,10 +27,11 @@ import org.eclipse.swt.widgets.Group;
 import org.eclipse.swt.widgets.TabFolder;
 import org.eclipse.swt.widgets.TabItem;
 import org.eclipse.swt.widgets.Text;
-import org.switchyard.tools.models.switchyard1_0.camel.CamelFactory;
-import org.switchyard.tools.models.switchyard1_0.camel.CamelJPABindingType;
+import org.switchyard.tools.models.switchyard1_0.camel.jpa.CamelJPABindingType;
+import org.switchyard.tools.models.switchyard1_0.camel.jpa.JpaFactory;
 import org.switchyard.tools.models.switchyard1_0.switchyard.ContextMapperType;
 import org.switchyard.tools.models.switchyard1_0.switchyard.MessageComposerType;
+import org.switchyard.tools.models.switchyard1_0.switchyard.SwitchyardFactory;
 import org.switchyard.tools.ui.editor.diagram.binding.AbstractSYBindingComposite;
 import org.switchyard.tools.ui.editor.diagram.shared.ModelOperation;
 
@@ -193,7 +194,7 @@ public class CamelJPAConsumerComposite extends AbstractSYBindingComposite {
         @Override
         public void run() throws Exception {
             if (_binding != null && _binding.getConsume() == null) {
-                setFeatureValue(_binding, "consume", CamelFactory.eINSTANCE.createJpaConsumerType());
+                setFeatureValue(_binding, "consume", JpaFactory.eINSTANCE.createJpaConsumerType());
             }
         }
     }
@@ -289,12 +290,12 @@ public class CamelJPAConsumerComposite extends AbstractSYBindingComposite {
 
     @Override
     protected ContextMapperType createContextMapper() {
-        return CamelFactory.eINSTANCE.createCamelContextMapperType();
+        return SwitchyardFactory.eINSTANCE.createContextMapperType();
     }
 
     @Override
     protected MessageComposerType createMessageComposer() {
-        return CamelFactory.eINSTANCE.createCamelMessageComposerType();
+        return SwitchyardFactory.eINSTANCE.createMessageComposerType();
     }
 
 }

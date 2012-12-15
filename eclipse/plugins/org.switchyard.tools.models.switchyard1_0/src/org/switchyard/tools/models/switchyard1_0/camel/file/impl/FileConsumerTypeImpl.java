@@ -5,19 +5,12 @@ package org.switchyard.tools.models.switchyard1_0.camel.file.impl;
 import java.math.BigInteger;
 
 import org.eclipse.emf.common.notify.Notification;
-
 import org.eclipse.emf.ecore.EClass;
-
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
-
-import org.switchyard.tools.models.switchyard1_0.camel.core.CamelPackage;
-import org.switchyard.tools.models.switchyard1_0.camel.core.GenericFileConsumerType;
-import org.switchyard.tools.models.switchyard1_0.camel.core.ScheduledBatchPollConsumerType;
-
-import org.switchyard.tools.models.switchyard1_0.camel.core.impl.ScheduledPollConsumerTypeImpl;
-
+import org.eclipse.emf.ecore.impl.EObjectImpl;
 import org.switchyard.tools.models.switchyard1_0.camel.file.FileConsumerType;
 import org.switchyard.tools.models.switchyard1_0.camel.file.FilePackage;
+import org.switchyard.tools.models.switchyard1_0.camel.file.TimeUnit;
 
 /**
  * <!-- begin-user-doc -->
@@ -26,6 +19,11 @@ import org.switchyard.tools.models.switchyard1_0.camel.file.FilePackage;
  * <p>
  * The following features are implemented:
  * <ul>
+ *   <li>{@link org.switchyard.tools.models.switchyard1_0.camel.file.impl.FileConsumerTypeImpl#getInitialDelay <em>Initial Delay</em>}</li>
+ *   <li>{@link org.switchyard.tools.models.switchyard1_0.camel.file.impl.FileConsumerTypeImpl#getDelay <em>Delay</em>}</li>
+ *   <li>{@link org.switchyard.tools.models.switchyard1_0.camel.file.impl.FileConsumerTypeImpl#getUseFixedDelay <em>Use Fixed Delay</em>}</li>
+ *   <li>{@link org.switchyard.tools.models.switchyard1_0.camel.file.impl.FileConsumerTypeImpl#getSendEmptyMessageWhenIdle <em>Send Empty Message When Idle</em>}</li>
+ *   <li>{@link org.switchyard.tools.models.switchyard1_0.camel.file.impl.FileConsumerTypeImpl#getTimeUnit <em>Time Unit</em>}</li>
  *   <li>{@link org.switchyard.tools.models.switchyard1_0.camel.file.impl.FileConsumerTypeImpl#getMaxMessagesPerPoll <em>Max Messages Per Poll</em>}</li>
  *   <li>{@link org.switchyard.tools.models.switchyard1_0.camel.file.impl.FileConsumerTypeImpl#getDelete <em>Delete</em>}</li>
  *   <li>{@link org.switchyard.tools.models.switchyard1_0.camel.file.impl.FileConsumerTypeImpl#getRecursive <em>Recursive</em>}</li>
@@ -54,7 +52,134 @@ import org.switchyard.tools.models.switchyard1_0.camel.file.FilePackage;
  *
  * @generated
  */
-public class FileConsumerTypeImpl extends ScheduledPollConsumerTypeImpl implements FileConsumerType {
+public class FileConsumerTypeImpl extends EObjectImpl implements FileConsumerType {
+    /**
+     * The default value of the '{@link #getInitialDelay() <em>Initial Delay</em>}' attribute.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @see #getInitialDelay()
+     * @generated
+     * @ordered
+     */
+    protected static final Integer INITIAL_DELAY_EDEFAULT = null;
+
+    /**
+     * The cached value of the '{@link #getInitialDelay() <em>Initial Delay</em>}' attribute.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @see #getInitialDelay()
+     * @generated
+     * @ordered
+     */
+    protected Integer initialDelay = INITIAL_DELAY_EDEFAULT;
+
+    /**
+     * The default value of the '{@link #getDelay() <em>Delay</em>}' attribute.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @see #getDelay()
+     * @generated
+     * @ordered
+     */
+    protected static final Integer DELAY_EDEFAULT = null;
+
+    /**
+     * The cached value of the '{@link #getDelay() <em>Delay</em>}' attribute.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @see #getDelay()
+     * @generated
+     * @ordered
+     */
+    protected Integer delay = DELAY_EDEFAULT;
+
+    /**
+     * The default value of the '{@link #getUseFixedDelay() <em>Use Fixed Delay</em>}' attribute.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @see #getUseFixedDelay()
+     * @generated
+     * @ordered
+     */
+    protected static final Boolean USE_FIXED_DELAY_EDEFAULT = null;
+
+    /**
+     * The cached value of the '{@link #getUseFixedDelay() <em>Use Fixed Delay</em>}' attribute.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @see #getUseFixedDelay()
+     * @generated
+     * @ordered
+     */
+    protected Boolean useFixedDelay = USE_FIXED_DELAY_EDEFAULT;
+
+    /**
+     * This is true if the Use Fixed Delay attribute has been set.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    protected boolean useFixedDelayESet;
+
+    /**
+     * The default value of the '{@link #getSendEmptyMessageWhenIdle() <em>Send Empty Message When Idle</em>}' attribute.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @see #getSendEmptyMessageWhenIdle()
+     * @generated
+     * @ordered
+     */
+    protected static final Boolean SEND_EMPTY_MESSAGE_WHEN_IDLE_EDEFAULT = null;
+
+    /**
+     * The cached value of the '{@link #getSendEmptyMessageWhenIdle() <em>Send Empty Message When Idle</em>}' attribute.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @see #getSendEmptyMessageWhenIdle()
+     * @generated
+     * @ordered
+     */
+    protected Boolean sendEmptyMessageWhenIdle = SEND_EMPTY_MESSAGE_WHEN_IDLE_EDEFAULT;
+
+    /**
+     * This is true if the Send Empty Message When Idle attribute has been set.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    protected boolean sendEmptyMessageWhenIdleESet;
+
+    /**
+     * The default value of the '{@link #getTimeUnit() <em>Time Unit</em>}' attribute.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @see #getTimeUnit()
+     * @generated
+     * @ordered
+     */
+    protected static final TimeUnit TIME_UNIT_EDEFAULT = TimeUnit.NANOSECONDS;
+
+    /**
+     * The cached value of the '{@link #getTimeUnit() <em>Time Unit</em>}' attribute.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @see #getTimeUnit()
+     * @generated
+     * @ordered
+     */
+    protected TimeUnit timeUnit = TIME_UNIT_EDEFAULT;
+
+    /**
+     * This is true if the Time Unit attribute has been set.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    protected boolean timeUnitESet;
+
     /**
      * The default value of the '{@link #getMaxMessagesPerPoll() <em>Max Messages Per Poll</em>}' attribute.
      * <!-- begin-user-doc -->
@@ -703,6 +828,186 @@ public class FileConsumerTypeImpl extends ScheduledPollConsumerTypeImpl implemen
     @Override
     protected EClass eStaticClass() {
         return FilePackage.Literals.FILE_CONSUMER_TYPE;
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public Integer getInitialDelay() {
+        return initialDelay;
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public void setInitialDelay(Integer newInitialDelay) {
+        Integer oldInitialDelay = initialDelay;
+        initialDelay = newInitialDelay;
+        if (eNotificationRequired())
+            eNotify(new ENotificationImpl(this, Notification.SET, FilePackage.FILE_CONSUMER_TYPE__INITIAL_DELAY, oldInitialDelay, initialDelay));
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public Integer getDelay() {
+        return delay;
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public void setDelay(Integer newDelay) {
+        Integer oldDelay = delay;
+        delay = newDelay;
+        if (eNotificationRequired())
+            eNotify(new ENotificationImpl(this, Notification.SET, FilePackage.FILE_CONSUMER_TYPE__DELAY, oldDelay, delay));
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public Boolean getUseFixedDelay() {
+        return useFixedDelay;
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public void setUseFixedDelay(Boolean newUseFixedDelay) {
+        Boolean oldUseFixedDelay = useFixedDelay;
+        useFixedDelay = newUseFixedDelay;
+        boolean oldUseFixedDelayESet = useFixedDelayESet;
+        useFixedDelayESet = true;
+        if (eNotificationRequired())
+            eNotify(new ENotificationImpl(this, Notification.SET, FilePackage.FILE_CONSUMER_TYPE__USE_FIXED_DELAY, oldUseFixedDelay, useFixedDelay, !oldUseFixedDelayESet));
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public void unsetUseFixedDelay() {
+        Boolean oldUseFixedDelay = useFixedDelay;
+        boolean oldUseFixedDelayESet = useFixedDelayESet;
+        useFixedDelay = USE_FIXED_DELAY_EDEFAULT;
+        useFixedDelayESet = false;
+        if (eNotificationRequired())
+            eNotify(new ENotificationImpl(this, Notification.UNSET, FilePackage.FILE_CONSUMER_TYPE__USE_FIXED_DELAY, oldUseFixedDelay, USE_FIXED_DELAY_EDEFAULT, oldUseFixedDelayESet));
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public boolean isSetUseFixedDelay() {
+        return useFixedDelayESet;
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public Boolean getSendEmptyMessageWhenIdle() {
+        return sendEmptyMessageWhenIdle;
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public void setSendEmptyMessageWhenIdle(Boolean newSendEmptyMessageWhenIdle) {
+        Boolean oldSendEmptyMessageWhenIdle = sendEmptyMessageWhenIdle;
+        sendEmptyMessageWhenIdle = newSendEmptyMessageWhenIdle;
+        boolean oldSendEmptyMessageWhenIdleESet = sendEmptyMessageWhenIdleESet;
+        sendEmptyMessageWhenIdleESet = true;
+        if (eNotificationRequired())
+            eNotify(new ENotificationImpl(this, Notification.SET, FilePackage.FILE_CONSUMER_TYPE__SEND_EMPTY_MESSAGE_WHEN_IDLE, oldSendEmptyMessageWhenIdle, sendEmptyMessageWhenIdle, !oldSendEmptyMessageWhenIdleESet));
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public void unsetSendEmptyMessageWhenIdle() {
+        Boolean oldSendEmptyMessageWhenIdle = sendEmptyMessageWhenIdle;
+        boolean oldSendEmptyMessageWhenIdleESet = sendEmptyMessageWhenIdleESet;
+        sendEmptyMessageWhenIdle = SEND_EMPTY_MESSAGE_WHEN_IDLE_EDEFAULT;
+        sendEmptyMessageWhenIdleESet = false;
+        if (eNotificationRequired())
+            eNotify(new ENotificationImpl(this, Notification.UNSET, FilePackage.FILE_CONSUMER_TYPE__SEND_EMPTY_MESSAGE_WHEN_IDLE, oldSendEmptyMessageWhenIdle, SEND_EMPTY_MESSAGE_WHEN_IDLE_EDEFAULT, oldSendEmptyMessageWhenIdleESet));
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public boolean isSetSendEmptyMessageWhenIdle() {
+        return sendEmptyMessageWhenIdleESet;
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public TimeUnit getTimeUnit() {
+        return timeUnit;
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public void setTimeUnit(TimeUnit newTimeUnit) {
+        TimeUnit oldTimeUnit = timeUnit;
+        timeUnit = newTimeUnit == null ? TIME_UNIT_EDEFAULT : newTimeUnit;
+        boolean oldTimeUnitESet = timeUnitESet;
+        timeUnitESet = true;
+        if (eNotificationRequired())
+            eNotify(new ENotificationImpl(this, Notification.SET, FilePackage.FILE_CONSUMER_TYPE__TIME_UNIT, oldTimeUnit, timeUnit, !oldTimeUnitESet));
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public void unsetTimeUnit() {
+        TimeUnit oldTimeUnit = timeUnit;
+        boolean oldTimeUnitESet = timeUnitESet;
+        timeUnit = TIME_UNIT_EDEFAULT;
+        timeUnitESet = false;
+        if (eNotificationRequired())
+            eNotify(new ENotificationImpl(this, Notification.UNSET, FilePackage.FILE_CONSUMER_TYPE__TIME_UNIT, oldTimeUnit, TIME_UNIT_EDEFAULT, oldTimeUnitESet));
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public boolean isSetTimeUnit() {
+        return timeUnitESet;
     }
 
     /**
@@ -1671,6 +1976,16 @@ public class FileConsumerTypeImpl extends ScheduledPollConsumerTypeImpl implemen
     @Override
     public Object eGet(int featureID, boolean resolve, boolean coreType) {
         switch (featureID) {
+            case FilePackage.FILE_CONSUMER_TYPE__INITIAL_DELAY:
+                return getInitialDelay();
+            case FilePackage.FILE_CONSUMER_TYPE__DELAY:
+                return getDelay();
+            case FilePackage.FILE_CONSUMER_TYPE__USE_FIXED_DELAY:
+                return getUseFixedDelay();
+            case FilePackage.FILE_CONSUMER_TYPE__SEND_EMPTY_MESSAGE_WHEN_IDLE:
+                return getSendEmptyMessageWhenIdle();
+            case FilePackage.FILE_CONSUMER_TYPE__TIME_UNIT:
+                return getTimeUnit();
             case FilePackage.FILE_CONSUMER_TYPE__MAX_MESSAGES_PER_POLL:
                 return getMaxMessagesPerPoll();
             case FilePackage.FILE_CONSUMER_TYPE__DELETE:
@@ -1729,6 +2044,21 @@ public class FileConsumerTypeImpl extends ScheduledPollConsumerTypeImpl implemen
     @Override
     public void eSet(int featureID, Object newValue) {
         switch (featureID) {
+            case FilePackage.FILE_CONSUMER_TYPE__INITIAL_DELAY:
+                setInitialDelay((Integer)newValue);
+                return;
+            case FilePackage.FILE_CONSUMER_TYPE__DELAY:
+                setDelay((Integer)newValue);
+                return;
+            case FilePackage.FILE_CONSUMER_TYPE__USE_FIXED_DELAY:
+                setUseFixedDelay((Boolean)newValue);
+                return;
+            case FilePackage.FILE_CONSUMER_TYPE__SEND_EMPTY_MESSAGE_WHEN_IDLE:
+                setSendEmptyMessageWhenIdle((Boolean)newValue);
+                return;
+            case FilePackage.FILE_CONSUMER_TYPE__TIME_UNIT:
+                setTimeUnit((TimeUnit)newValue);
+                return;
             case FilePackage.FILE_CONSUMER_TYPE__MAX_MESSAGES_PER_POLL:
                 setMaxMessagesPerPoll((Integer)newValue);
                 return;
@@ -1810,6 +2140,21 @@ public class FileConsumerTypeImpl extends ScheduledPollConsumerTypeImpl implemen
     @Override
     public void eUnset(int featureID) {
         switch (featureID) {
+            case FilePackage.FILE_CONSUMER_TYPE__INITIAL_DELAY:
+                setInitialDelay(INITIAL_DELAY_EDEFAULT);
+                return;
+            case FilePackage.FILE_CONSUMER_TYPE__DELAY:
+                setDelay(DELAY_EDEFAULT);
+                return;
+            case FilePackage.FILE_CONSUMER_TYPE__USE_FIXED_DELAY:
+                unsetUseFixedDelay();
+                return;
+            case FilePackage.FILE_CONSUMER_TYPE__SEND_EMPTY_MESSAGE_WHEN_IDLE:
+                unsetSendEmptyMessageWhenIdle();
+                return;
+            case FilePackage.FILE_CONSUMER_TYPE__TIME_UNIT:
+                unsetTimeUnit();
+                return;
             case FilePackage.FILE_CONSUMER_TYPE__MAX_MESSAGES_PER_POLL:
                 setMaxMessagesPerPoll(MAX_MESSAGES_PER_POLL_EDEFAULT);
                 return;
@@ -1891,6 +2236,16 @@ public class FileConsumerTypeImpl extends ScheduledPollConsumerTypeImpl implemen
     @Override
     public boolean eIsSet(int featureID) {
         switch (featureID) {
+            case FilePackage.FILE_CONSUMER_TYPE__INITIAL_DELAY:
+                return INITIAL_DELAY_EDEFAULT == null ? initialDelay != null : !INITIAL_DELAY_EDEFAULT.equals(initialDelay);
+            case FilePackage.FILE_CONSUMER_TYPE__DELAY:
+                return DELAY_EDEFAULT == null ? delay != null : !DELAY_EDEFAULT.equals(delay);
+            case FilePackage.FILE_CONSUMER_TYPE__USE_FIXED_DELAY:
+                return isSetUseFixedDelay();
+            case FilePackage.FILE_CONSUMER_TYPE__SEND_EMPTY_MESSAGE_WHEN_IDLE:
+                return isSetSendEmptyMessageWhenIdle();
+            case FilePackage.FILE_CONSUMER_TYPE__TIME_UNIT:
+                return isSetTimeUnit();
             case FilePackage.FILE_CONSUMER_TYPE__MAX_MESSAGES_PER_POLL:
                 return MAX_MESSAGES_PER_POLL_EDEFAULT == null ? maxMessagesPerPoll != null : !MAX_MESSAGES_PER_POLL_EDEFAULT.equals(maxMessagesPerPoll);
             case FilePackage.FILE_CONSUMER_TYPE__DELETE:
@@ -1947,97 +2302,21 @@ public class FileConsumerTypeImpl extends ScheduledPollConsumerTypeImpl implemen
      * @generated
      */
     @Override
-    public int eBaseStructuralFeatureID(int derivedFeatureID, Class<?> baseClass) {
-        if (baseClass == ScheduledBatchPollConsumerType.class) {
-            switch (derivedFeatureID) {
-                case FilePackage.FILE_CONSUMER_TYPE__MAX_MESSAGES_PER_POLL: return CamelPackage.SCHEDULED_BATCH_POLL_CONSUMER_TYPE__MAX_MESSAGES_PER_POLL;
-                default: return -1;
-            }
-        }
-        if (baseClass == GenericFileConsumerType.class) {
-            switch (derivedFeatureID) {
-                case FilePackage.FILE_CONSUMER_TYPE__DELETE: return CamelPackage.GENERIC_FILE_CONSUMER_TYPE__DELETE;
-                case FilePackage.FILE_CONSUMER_TYPE__RECURSIVE: return CamelPackage.GENERIC_FILE_CONSUMER_TYPE__RECURSIVE;
-                case FilePackage.FILE_CONSUMER_TYPE__NOOP: return CamelPackage.GENERIC_FILE_CONSUMER_TYPE__NOOP;
-                case FilePackage.FILE_CONSUMER_TYPE__PRE_MOVE: return CamelPackage.GENERIC_FILE_CONSUMER_TYPE__PRE_MOVE;
-                case FilePackage.FILE_CONSUMER_TYPE__MOVE: return CamelPackage.GENERIC_FILE_CONSUMER_TYPE__MOVE;
-                case FilePackage.FILE_CONSUMER_TYPE__MOVE_FAILED: return CamelPackage.GENERIC_FILE_CONSUMER_TYPE__MOVE_FAILED;
-                case FilePackage.FILE_CONSUMER_TYPE__INCLUDE: return CamelPackage.GENERIC_FILE_CONSUMER_TYPE__INCLUDE;
-                case FilePackage.FILE_CONSUMER_TYPE__EXCLUDE: return CamelPackage.GENERIC_FILE_CONSUMER_TYPE__EXCLUDE;
-                case FilePackage.FILE_CONSUMER_TYPE__IDEMPOTENT: return CamelPackage.GENERIC_FILE_CONSUMER_TYPE__IDEMPOTENT;
-                case FilePackage.FILE_CONSUMER_TYPE__IDEMPOTENT_REPOSITORY: return CamelPackage.GENERIC_FILE_CONSUMER_TYPE__IDEMPOTENT_REPOSITORY;
-                case FilePackage.FILE_CONSUMER_TYPE__IN_PROGRESS_REPOSITORY: return CamelPackage.GENERIC_FILE_CONSUMER_TYPE__IN_PROGRESS_REPOSITORY;
-                case FilePackage.FILE_CONSUMER_TYPE__FILTER: return CamelPackage.GENERIC_FILE_CONSUMER_TYPE__FILTER;
-                case FilePackage.FILE_CONSUMER_TYPE__SORTER: return CamelPackage.GENERIC_FILE_CONSUMER_TYPE__SORTER;
-                case FilePackage.FILE_CONSUMER_TYPE__SORT_BY: return CamelPackage.GENERIC_FILE_CONSUMER_TYPE__SORT_BY;
-                case FilePackage.FILE_CONSUMER_TYPE__READ_LOCK: return CamelPackage.GENERIC_FILE_CONSUMER_TYPE__READ_LOCK;
-                case FilePackage.FILE_CONSUMER_TYPE__READ_LOCK_TIMEOUT: return CamelPackage.GENERIC_FILE_CONSUMER_TYPE__READ_LOCK_TIMEOUT;
-                case FilePackage.FILE_CONSUMER_TYPE__READ_LOCK_CHECK_INTERVAL: return CamelPackage.GENERIC_FILE_CONSUMER_TYPE__READ_LOCK_CHECK_INTERVAL;
-                case FilePackage.FILE_CONSUMER_TYPE__EXCLUSIVE_READ_LOCK_STRATEGY: return CamelPackage.GENERIC_FILE_CONSUMER_TYPE__EXCLUSIVE_READ_LOCK_STRATEGY;
-                case FilePackage.FILE_CONSUMER_TYPE__PROCESS_STRATEGY: return CamelPackage.GENERIC_FILE_CONSUMER_TYPE__PROCESS_STRATEGY;
-                case FilePackage.FILE_CONSUMER_TYPE__STARTING_DIRECTORY_MUST_EXIST: return CamelPackage.GENERIC_FILE_CONSUMER_TYPE__STARTING_DIRECTORY_MUST_EXIST;
-                case FilePackage.FILE_CONSUMER_TYPE__DIRECTORY_MUST_EXIST: return CamelPackage.GENERIC_FILE_CONSUMER_TYPE__DIRECTORY_MUST_EXIST;
-                case FilePackage.FILE_CONSUMER_TYPE__DONE_FILE_NAME: return CamelPackage.GENERIC_FILE_CONSUMER_TYPE__DONE_FILE_NAME;
-                default: return -1;
-            }
-        }
-        return super.eBaseStructuralFeatureID(derivedFeatureID, baseClass);
-    }
-
-    /**
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    @Override
-    public int eDerivedStructuralFeatureID(int baseFeatureID, Class<?> baseClass) {
-        if (baseClass == ScheduledBatchPollConsumerType.class) {
-            switch (baseFeatureID) {
-                case CamelPackage.SCHEDULED_BATCH_POLL_CONSUMER_TYPE__MAX_MESSAGES_PER_POLL: return FilePackage.FILE_CONSUMER_TYPE__MAX_MESSAGES_PER_POLL;
-                default: return -1;
-            }
-        }
-        if (baseClass == GenericFileConsumerType.class) {
-            switch (baseFeatureID) {
-                case CamelPackage.GENERIC_FILE_CONSUMER_TYPE__DELETE: return FilePackage.FILE_CONSUMER_TYPE__DELETE;
-                case CamelPackage.GENERIC_FILE_CONSUMER_TYPE__RECURSIVE: return FilePackage.FILE_CONSUMER_TYPE__RECURSIVE;
-                case CamelPackage.GENERIC_FILE_CONSUMER_TYPE__NOOP: return FilePackage.FILE_CONSUMER_TYPE__NOOP;
-                case CamelPackage.GENERIC_FILE_CONSUMER_TYPE__PRE_MOVE: return FilePackage.FILE_CONSUMER_TYPE__PRE_MOVE;
-                case CamelPackage.GENERIC_FILE_CONSUMER_TYPE__MOVE: return FilePackage.FILE_CONSUMER_TYPE__MOVE;
-                case CamelPackage.GENERIC_FILE_CONSUMER_TYPE__MOVE_FAILED: return FilePackage.FILE_CONSUMER_TYPE__MOVE_FAILED;
-                case CamelPackage.GENERIC_FILE_CONSUMER_TYPE__INCLUDE: return FilePackage.FILE_CONSUMER_TYPE__INCLUDE;
-                case CamelPackage.GENERIC_FILE_CONSUMER_TYPE__EXCLUDE: return FilePackage.FILE_CONSUMER_TYPE__EXCLUDE;
-                case CamelPackage.GENERIC_FILE_CONSUMER_TYPE__IDEMPOTENT: return FilePackage.FILE_CONSUMER_TYPE__IDEMPOTENT;
-                case CamelPackage.GENERIC_FILE_CONSUMER_TYPE__IDEMPOTENT_REPOSITORY: return FilePackage.FILE_CONSUMER_TYPE__IDEMPOTENT_REPOSITORY;
-                case CamelPackage.GENERIC_FILE_CONSUMER_TYPE__IN_PROGRESS_REPOSITORY: return FilePackage.FILE_CONSUMER_TYPE__IN_PROGRESS_REPOSITORY;
-                case CamelPackage.GENERIC_FILE_CONSUMER_TYPE__FILTER: return FilePackage.FILE_CONSUMER_TYPE__FILTER;
-                case CamelPackage.GENERIC_FILE_CONSUMER_TYPE__SORTER: return FilePackage.FILE_CONSUMER_TYPE__SORTER;
-                case CamelPackage.GENERIC_FILE_CONSUMER_TYPE__SORT_BY: return FilePackage.FILE_CONSUMER_TYPE__SORT_BY;
-                case CamelPackage.GENERIC_FILE_CONSUMER_TYPE__READ_LOCK: return FilePackage.FILE_CONSUMER_TYPE__READ_LOCK;
-                case CamelPackage.GENERIC_FILE_CONSUMER_TYPE__READ_LOCK_TIMEOUT: return FilePackage.FILE_CONSUMER_TYPE__READ_LOCK_TIMEOUT;
-                case CamelPackage.GENERIC_FILE_CONSUMER_TYPE__READ_LOCK_CHECK_INTERVAL: return FilePackage.FILE_CONSUMER_TYPE__READ_LOCK_CHECK_INTERVAL;
-                case CamelPackage.GENERIC_FILE_CONSUMER_TYPE__EXCLUSIVE_READ_LOCK_STRATEGY: return FilePackage.FILE_CONSUMER_TYPE__EXCLUSIVE_READ_LOCK_STRATEGY;
-                case CamelPackage.GENERIC_FILE_CONSUMER_TYPE__PROCESS_STRATEGY: return FilePackage.FILE_CONSUMER_TYPE__PROCESS_STRATEGY;
-                case CamelPackage.GENERIC_FILE_CONSUMER_TYPE__STARTING_DIRECTORY_MUST_EXIST: return FilePackage.FILE_CONSUMER_TYPE__STARTING_DIRECTORY_MUST_EXIST;
-                case CamelPackage.GENERIC_FILE_CONSUMER_TYPE__DIRECTORY_MUST_EXIST: return FilePackage.FILE_CONSUMER_TYPE__DIRECTORY_MUST_EXIST;
-                case CamelPackage.GENERIC_FILE_CONSUMER_TYPE__DONE_FILE_NAME: return FilePackage.FILE_CONSUMER_TYPE__DONE_FILE_NAME;
-                default: return -1;
-            }
-        }
-        return super.eDerivedStructuralFeatureID(baseFeatureID, baseClass);
-    }
-
-    /**
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    @Override
     public String toString() {
         if (eIsProxy()) return super.toString();
 
         StringBuffer result = new StringBuffer(super.toString());
-        result.append(" (maxMessagesPerPoll: ");
+        result.append(" (initialDelay: ");
+        result.append(initialDelay);
+        result.append(", delay: ");
+        result.append(delay);
+        result.append(", useFixedDelay: ");
+        if (useFixedDelayESet) result.append(useFixedDelay); else result.append("<unset>");
+        result.append(", sendEmptyMessageWhenIdle: ");
+        if (sendEmptyMessageWhenIdleESet) result.append(sendEmptyMessageWhenIdle); else result.append("<unset>");
+        result.append(", timeUnit: ");
+        if (timeUnitESet) result.append(timeUnit); else result.append("<unset>");
+        result.append(", maxMessagesPerPoll: ");
         result.append(maxMessagesPerPoll);
         result.append(", delete: ");
         if (deleteESet) result.append(delete); else result.append("<unset>");

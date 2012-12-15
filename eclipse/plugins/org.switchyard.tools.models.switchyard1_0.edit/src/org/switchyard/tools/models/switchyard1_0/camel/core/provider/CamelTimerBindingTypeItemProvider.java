@@ -19,8 +19,8 @@ import org.eclipse.emf.edit.provider.ITreeItemContentProvider;
 import org.eclipse.emf.edit.provider.ItemPropertyDescriptor;
 import org.eclipse.emf.edit.provider.ViewerNotification;
 
-import org.switchyard.tools.models.switchyard1_0.camel.core.CamelPackage;
 import org.switchyard.tools.models.switchyard1_0.camel.core.CamelTimerBindingType;
+import org.switchyard.tools.models.switchyard1_0.camel.core.CorePackage;
 
 /**
  * This is the item provider adapter for a {@link org.switchyard.tools.models.switchyard1_0.camel.core.CamelTimerBindingType} object.
@@ -81,7 +81,7 @@ public class CamelTimerBindingTypeItemProvider
                  getResourceLocator(),
                  getString("_UI_CamelTimerBindingType_camelBindingName_feature"),
                  getString("_UI_PropertyDescriptor_description", "_UI_CamelTimerBindingType_camelBindingName_feature", "_UI_CamelTimerBindingType_type"),
-                 CamelPackage.Literals.CAMEL_TIMER_BINDING_TYPE__CAMEL_BINDING_NAME,
+                 CorePackage.Literals.CAMEL_TIMER_BINDING_TYPE__CAMEL_BINDING_NAME,
                  true,
                  false,
                  false,
@@ -103,7 +103,7 @@ public class CamelTimerBindingTypeItemProvider
                  getResourceLocator(),
                  getString("_UI_CamelTimerBindingType_time_feature"),
                  getString("_UI_PropertyDescriptor_description", "_UI_CamelTimerBindingType_time_feature", "_UI_CamelTimerBindingType_type"),
-                 CamelPackage.Literals.CAMEL_TIMER_BINDING_TYPE__TIME,
+                 CorePackage.Literals.CAMEL_TIMER_BINDING_TYPE__TIME,
                  true,
                  false,
                  false,
@@ -125,7 +125,7 @@ public class CamelTimerBindingTypeItemProvider
                  getResourceLocator(),
                  getString("_UI_CamelTimerBindingType_pattern_feature"),
                  getString("_UI_PropertyDescriptor_description", "_UI_CamelTimerBindingType_pattern_feature", "_UI_CamelTimerBindingType_type"),
-                 CamelPackage.Literals.CAMEL_TIMER_BINDING_TYPE__PATTERN,
+                 CorePackage.Literals.CAMEL_TIMER_BINDING_TYPE__PATTERN,
                  true,
                  false,
                  false,
@@ -147,7 +147,7 @@ public class CamelTimerBindingTypeItemProvider
                  getResourceLocator(),
                  getString("_UI_CamelTimerBindingType_period_feature"),
                  getString("_UI_PropertyDescriptor_description", "_UI_CamelTimerBindingType_period_feature", "_UI_CamelTimerBindingType_type"),
-                 CamelPackage.Literals.CAMEL_TIMER_BINDING_TYPE__PERIOD,
+                 CorePackage.Literals.CAMEL_TIMER_BINDING_TYPE__PERIOD,
                  true,
                  false,
                  false,
@@ -169,7 +169,7 @@ public class CamelTimerBindingTypeItemProvider
                  getResourceLocator(),
                  getString("_UI_CamelTimerBindingType_delay_feature"),
                  getString("_UI_PropertyDescriptor_description", "_UI_CamelTimerBindingType_delay_feature", "_UI_CamelTimerBindingType_type"),
-                 CamelPackage.Literals.CAMEL_TIMER_BINDING_TYPE__DELAY,
+                 CorePackage.Literals.CAMEL_TIMER_BINDING_TYPE__DELAY,
                  true,
                  false,
                  false,
@@ -191,7 +191,7 @@ public class CamelTimerBindingTypeItemProvider
                  getResourceLocator(),
                  getString("_UI_CamelTimerBindingType_fixedRate_feature"),
                  getString("_UI_PropertyDescriptor_description", "_UI_CamelTimerBindingType_fixedRate_feature", "_UI_CamelTimerBindingType_type"),
-                 CamelPackage.Literals.CAMEL_TIMER_BINDING_TYPE__FIXED_RATE,
+                 CorePackage.Literals.CAMEL_TIMER_BINDING_TYPE__FIXED_RATE,
                  true,
                  false,
                  false,
@@ -213,7 +213,7 @@ public class CamelTimerBindingTypeItemProvider
                  getResourceLocator(),
                  getString("_UI_CamelTimerBindingType_daemon_feature"),
                  getString("_UI_PropertyDescriptor_description", "_UI_CamelTimerBindingType_daemon_feature", "_UI_CamelTimerBindingType_type"),
-                 CamelPackage.Literals.CAMEL_TIMER_BINDING_TYPE__DAEMON,
+                 CorePackage.Literals.CAMEL_TIMER_BINDING_TYPE__DAEMON,
                  true,
                  false,
                  false,
@@ -259,13 +259,13 @@ public class CamelTimerBindingTypeItemProvider
         updateChildren(notification);
 
         switch (notification.getFeatureID(CamelTimerBindingType.class)) {
-            case CamelPackage.CAMEL_TIMER_BINDING_TYPE__CAMEL_BINDING_NAME:
-            case CamelPackage.CAMEL_TIMER_BINDING_TYPE__TIME:
-            case CamelPackage.CAMEL_TIMER_BINDING_TYPE__PATTERN:
-            case CamelPackage.CAMEL_TIMER_BINDING_TYPE__PERIOD:
-            case CamelPackage.CAMEL_TIMER_BINDING_TYPE__DELAY:
-            case CamelPackage.CAMEL_TIMER_BINDING_TYPE__FIXED_RATE:
-            case CamelPackage.CAMEL_TIMER_BINDING_TYPE__DAEMON:
+            case CorePackage.CAMEL_TIMER_BINDING_TYPE__CAMEL_BINDING_NAME:
+            case CorePackage.CAMEL_TIMER_BINDING_TYPE__TIME:
+            case CorePackage.CAMEL_TIMER_BINDING_TYPE__PATTERN:
+            case CorePackage.CAMEL_TIMER_BINDING_TYPE__PERIOD:
+            case CorePackage.CAMEL_TIMER_BINDING_TYPE__DELAY:
+            case CorePackage.CAMEL_TIMER_BINDING_TYPE__FIXED_RATE:
+            case CorePackage.CAMEL_TIMER_BINDING_TYPE__DAEMON:
                 fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
                 return;
         }

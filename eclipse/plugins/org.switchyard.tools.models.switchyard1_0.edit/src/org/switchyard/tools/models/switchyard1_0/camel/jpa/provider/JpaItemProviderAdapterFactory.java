@@ -262,10 +262,10 @@ public class JpaItemProviderAdapterFactory extends JpaAdapterFactory implements 
      * @generated
      */
     public void dispose() {
-        if (documentRootItemProvider != null) documentRootItemProvider.dispose();
-        if (jpaProducerTypeItemProvider != null) jpaProducerTypeItemProvider.dispose();
-        if (jpaConsumerTypeItemProvider != null) jpaConsumerTypeItemProvider.dispose();
         if (camelJPABindingTypeItemProvider != null) camelJPABindingTypeItemProvider.dispose();
+        if (documentRootItemProvider != null) documentRootItemProvider.dispose();
+        if (jpaConsumerTypeItemProvider != null) jpaConsumerTypeItemProvider.dispose();
+        if (jpaProducerTypeItemProvider != null) jpaProducerTypeItemProvider.dispose();
     }
 
 }

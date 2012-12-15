@@ -2,16 +2,25 @@
  */
 package org.switchyard.tools.models.switchyard1_0.camel.jpa.impl;
 
+import java.math.BigInteger;
+import java.util.Collection;
 import org.eclipse.emf.common.notify.Notification;
 
+import org.eclipse.emf.common.notify.NotificationChain;
+import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
 
+import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 
-import org.switchyard.tools.models.switchyard1_0.camel.core.impl.ScheduledBatchPollConsumerTypeImpl;
+import org.eclipse.emf.ecore.impl.EObjectImpl;
+import org.eclipse.emf.ecore.util.BasicFeatureMap;
+import org.eclipse.emf.ecore.util.FeatureMap;
+import org.eclipse.emf.ecore.util.InternalEList;
 
 import org.switchyard.tools.models.switchyard1_0.camel.jpa.JpaConsumerType;
 import org.switchyard.tools.models.switchyard1_0.camel.jpa.JpaPackage;
+import org.switchyard.tools.models.switchyard1_0.camel.jpa.TimeUnitType;
 
 /**
  * <!-- begin-user-doc -->
@@ -20,6 +29,14 @@ import org.switchyard.tools.models.switchyard1_0.camel.jpa.JpaPackage;
  * <p>
  * The following features are implemented:
  * <ul>
+ *   <li>{@link org.switchyard.tools.models.switchyard1_0.camel.jpa.impl.JpaConsumerTypeImpl#getScheduledPollConsumerType <em>Scheduled Poll Consumer Type</em>}</li>
+ *   <li>{@link org.switchyard.tools.models.switchyard1_0.camel.jpa.impl.JpaConsumerTypeImpl#getInitialDelay <em>Initial Delay</em>}</li>
+ *   <li>{@link org.switchyard.tools.models.switchyard1_0.camel.jpa.impl.JpaConsumerTypeImpl#getDelay <em>Delay</em>}</li>
+ *   <li>{@link org.switchyard.tools.models.switchyard1_0.camel.jpa.impl.JpaConsumerTypeImpl#getUseFixedDelay <em>Use Fixed Delay</em>}</li>
+ *   <li>{@link org.switchyard.tools.models.switchyard1_0.camel.jpa.impl.JpaConsumerTypeImpl#getSendEmptyMessageWhenIdle <em>Send Empty Message When Idle</em>}</li>
+ *   <li>{@link org.switchyard.tools.models.switchyard1_0.camel.jpa.impl.JpaConsumerTypeImpl#getTimeUnit <em>Time Unit</em>}</li>
+ *   <li>{@link org.switchyard.tools.models.switchyard1_0.camel.jpa.impl.JpaConsumerTypeImpl#getScheduledBatchPollConsumerType <em>Scheduled Batch Poll Consumer Type</em>}</li>
+ *   <li>{@link org.switchyard.tools.models.switchyard1_0.camel.jpa.impl.JpaConsumerTypeImpl#getMaxMessagesPerPoll <em>Max Messages Per Poll</em>}</li>
  *   <li>{@link org.switchyard.tools.models.switchyard1_0.camel.jpa.impl.JpaConsumerTypeImpl#getConsumeDelete <em>Consume Delete</em>}</li>
  *   <li>{@link org.switchyard.tools.models.switchyard1_0.camel.jpa.impl.JpaConsumerTypeImpl#getConsumeLockEntity <em>Consume Lock Entity</em>}</li>
  *   <li>{@link org.switchyard.tools.models.switchyard1_0.camel.jpa.impl.JpaConsumerTypeImpl#getMaximumResults <em>Maximum Results</em>}</li>
@@ -33,7 +50,27 @@ import org.switchyard.tools.models.switchyard1_0.camel.jpa.JpaPackage;
  *
  * @generated
  */
-public class JpaConsumerTypeImpl extends ScheduledBatchPollConsumerTypeImpl implements JpaConsumerType {
+public class JpaConsumerTypeImpl extends EObjectImpl implements JpaConsumerType {
+    /**
+     * The cached value of the '{@link #getScheduledPollConsumerType() <em>Scheduled Poll Consumer Type</em>}' attribute list.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @see #getScheduledPollConsumerType()
+     * @generated
+     * @ordered
+     */
+    protected FeatureMap scheduledPollConsumerType;
+
+    /**
+     * The cached value of the '{@link #getScheduledBatchPollConsumerType() <em>Scheduled Batch Poll Consumer Type</em>}' attribute list.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @see #getScheduledBatchPollConsumerType()
+     * @generated
+     * @ordered
+     */
+    protected FeatureMap scheduledBatchPollConsumerType;
+
     /**
      * The default value of the '{@link #getConsumeDelete() <em>Consume Delete</em>}' attribute.
      * <!-- begin-user-doc -->
@@ -247,6 +284,84 @@ public class JpaConsumerTypeImpl extends ScheduledBatchPollConsumerTypeImpl impl
     @Override
     protected EClass eStaticClass() {
         return JpaPackage.Literals.JPA_CONSUMER_TYPE;
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public FeatureMap getScheduledPollConsumerType() {
+        if (scheduledPollConsumerType == null) {
+            scheduledPollConsumerType = new BasicFeatureMap(this, JpaPackage.JPA_CONSUMER_TYPE__SCHEDULED_POLL_CONSUMER_TYPE);
+        }
+        return scheduledPollConsumerType;
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public EList<Integer> getInitialDelay() {
+        return getScheduledPollConsumerType().list(JpaPackage.Literals.JPA_CONSUMER_TYPE__INITIAL_DELAY);
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public EList<Integer> getDelay() {
+        return getScheduledPollConsumerType().list(JpaPackage.Literals.JPA_CONSUMER_TYPE__DELAY);
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public EList<Boolean> getUseFixedDelay() {
+        return getScheduledPollConsumerType().list(JpaPackage.Literals.JPA_CONSUMER_TYPE__USE_FIXED_DELAY);
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public EList<Boolean> getSendEmptyMessageWhenIdle() {
+        return getScheduledPollConsumerType().list(JpaPackage.Literals.JPA_CONSUMER_TYPE__SEND_EMPTY_MESSAGE_WHEN_IDLE);
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public EList<TimeUnitType> getTimeUnit() {
+        return getScheduledPollConsumerType().list(JpaPackage.Literals.JPA_CONSUMER_TYPE__TIME_UNIT);
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public FeatureMap getScheduledBatchPollConsumerType() {
+        if (scheduledBatchPollConsumerType == null) {
+            scheduledBatchPollConsumerType = new BasicFeatureMap(this, JpaPackage.JPA_CONSUMER_TYPE__SCHEDULED_BATCH_POLL_CONSUMER_TYPE);
+        }
+        return scheduledBatchPollConsumerType;
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public EList<Integer> getMaxMessagesPerPoll() {
+        return getScheduledBatchPollConsumerType().list(JpaPackage.Literals.JPA_CONSUMER_TYPE__MAX_MESSAGES_PER_POLL);
     }
 
     /**
@@ -523,8 +638,42 @@ public class JpaConsumerTypeImpl extends ScheduledBatchPollConsumerTypeImpl impl
      * @generated
      */
     @Override
+    public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
+        switch (featureID) {
+            case JpaPackage.JPA_CONSUMER_TYPE__SCHEDULED_POLL_CONSUMER_TYPE:
+                return ((InternalEList<?>)getScheduledPollConsumerType()).basicRemove(otherEnd, msgs);
+            case JpaPackage.JPA_CONSUMER_TYPE__SCHEDULED_BATCH_POLL_CONSUMER_TYPE:
+                return ((InternalEList<?>)getScheduledBatchPollConsumerType()).basicRemove(otherEnd, msgs);
+        }
+        return super.eInverseRemove(otherEnd, featureID, msgs);
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    @Override
     public Object eGet(int featureID, boolean resolve, boolean coreType) {
         switch (featureID) {
+            case JpaPackage.JPA_CONSUMER_TYPE__SCHEDULED_POLL_CONSUMER_TYPE:
+                if (coreType) return getScheduledPollConsumerType();
+                return ((FeatureMap.Internal)getScheduledPollConsumerType()).getWrapper();
+            case JpaPackage.JPA_CONSUMER_TYPE__INITIAL_DELAY:
+                return getInitialDelay();
+            case JpaPackage.JPA_CONSUMER_TYPE__DELAY:
+                return getDelay();
+            case JpaPackage.JPA_CONSUMER_TYPE__USE_FIXED_DELAY:
+                return getUseFixedDelay();
+            case JpaPackage.JPA_CONSUMER_TYPE__SEND_EMPTY_MESSAGE_WHEN_IDLE:
+                return getSendEmptyMessageWhenIdle();
+            case JpaPackage.JPA_CONSUMER_TYPE__TIME_UNIT:
+                return getTimeUnit();
+            case JpaPackage.JPA_CONSUMER_TYPE__SCHEDULED_BATCH_POLL_CONSUMER_TYPE:
+                if (coreType) return getScheduledBatchPollConsumerType();
+                return ((FeatureMap.Internal)getScheduledBatchPollConsumerType()).getWrapper();
+            case JpaPackage.JPA_CONSUMER_TYPE__MAX_MESSAGES_PER_POLL:
+                return getMaxMessagesPerPoll();
             case JpaPackage.JPA_CONSUMER_TYPE__CONSUME_DELETE:
                 return getConsumeDelete();
             case JpaPackage.JPA_CONSUMER_TYPE__CONSUME_LOCK_ENTITY:
@@ -550,9 +699,40 @@ public class JpaConsumerTypeImpl extends ScheduledBatchPollConsumerTypeImpl impl
      * <!-- end-user-doc -->
      * @generated
      */
+    @SuppressWarnings("unchecked")
     @Override
     public void eSet(int featureID, Object newValue) {
         switch (featureID) {
+            case JpaPackage.JPA_CONSUMER_TYPE__SCHEDULED_POLL_CONSUMER_TYPE:
+                ((FeatureMap.Internal)getScheduledPollConsumerType()).set(newValue);
+                return;
+            case JpaPackage.JPA_CONSUMER_TYPE__INITIAL_DELAY:
+                getInitialDelay().clear();
+                getInitialDelay().addAll((Collection<? extends Integer>)newValue);
+                return;
+            case JpaPackage.JPA_CONSUMER_TYPE__DELAY:
+                getDelay().clear();
+                getDelay().addAll((Collection<? extends Integer>)newValue);
+                return;
+            case JpaPackage.JPA_CONSUMER_TYPE__USE_FIXED_DELAY:
+                getUseFixedDelay().clear();
+                getUseFixedDelay().addAll((Collection<? extends Boolean>)newValue);
+                return;
+            case JpaPackage.JPA_CONSUMER_TYPE__SEND_EMPTY_MESSAGE_WHEN_IDLE:
+                getSendEmptyMessageWhenIdle().clear();
+                getSendEmptyMessageWhenIdle().addAll((Collection<? extends Boolean>)newValue);
+                return;
+            case JpaPackage.JPA_CONSUMER_TYPE__TIME_UNIT:
+                getTimeUnit().clear();
+                getTimeUnit().addAll((Collection<? extends TimeUnitType>)newValue);
+                return;
+            case JpaPackage.JPA_CONSUMER_TYPE__SCHEDULED_BATCH_POLL_CONSUMER_TYPE:
+                ((FeatureMap.Internal)getScheduledBatchPollConsumerType()).set(newValue);
+                return;
+            case JpaPackage.JPA_CONSUMER_TYPE__MAX_MESSAGES_PER_POLL:
+                getMaxMessagesPerPoll().clear();
+                getMaxMessagesPerPoll().addAll((Collection<? extends Integer>)newValue);
+                return;
             case JpaPackage.JPA_CONSUMER_TYPE__CONSUME_DELETE:
                 setConsumeDelete((Boolean)newValue);
                 return;
@@ -589,6 +769,30 @@ public class JpaConsumerTypeImpl extends ScheduledBatchPollConsumerTypeImpl impl
     @Override
     public void eUnset(int featureID) {
         switch (featureID) {
+            case JpaPackage.JPA_CONSUMER_TYPE__SCHEDULED_POLL_CONSUMER_TYPE:
+                getScheduledPollConsumerType().clear();
+                return;
+            case JpaPackage.JPA_CONSUMER_TYPE__INITIAL_DELAY:
+                getInitialDelay().clear();
+                return;
+            case JpaPackage.JPA_CONSUMER_TYPE__DELAY:
+                getDelay().clear();
+                return;
+            case JpaPackage.JPA_CONSUMER_TYPE__USE_FIXED_DELAY:
+                getUseFixedDelay().clear();
+                return;
+            case JpaPackage.JPA_CONSUMER_TYPE__SEND_EMPTY_MESSAGE_WHEN_IDLE:
+                getSendEmptyMessageWhenIdle().clear();
+                return;
+            case JpaPackage.JPA_CONSUMER_TYPE__TIME_UNIT:
+                getTimeUnit().clear();
+                return;
+            case JpaPackage.JPA_CONSUMER_TYPE__SCHEDULED_BATCH_POLL_CONSUMER_TYPE:
+                getScheduledBatchPollConsumerType().clear();
+                return;
+            case JpaPackage.JPA_CONSUMER_TYPE__MAX_MESSAGES_PER_POLL:
+                getMaxMessagesPerPoll().clear();
+                return;
             case JpaPackage.JPA_CONSUMER_TYPE__CONSUME_DELETE:
                 unsetConsumeDelete();
                 return;
@@ -625,6 +829,22 @@ public class JpaConsumerTypeImpl extends ScheduledBatchPollConsumerTypeImpl impl
     @Override
     public boolean eIsSet(int featureID) {
         switch (featureID) {
+            case JpaPackage.JPA_CONSUMER_TYPE__SCHEDULED_POLL_CONSUMER_TYPE:
+                return scheduledPollConsumerType != null && !scheduledPollConsumerType.isEmpty();
+            case JpaPackage.JPA_CONSUMER_TYPE__INITIAL_DELAY:
+                return !getInitialDelay().isEmpty();
+            case JpaPackage.JPA_CONSUMER_TYPE__DELAY:
+                return !getDelay().isEmpty();
+            case JpaPackage.JPA_CONSUMER_TYPE__USE_FIXED_DELAY:
+                return !getUseFixedDelay().isEmpty();
+            case JpaPackage.JPA_CONSUMER_TYPE__SEND_EMPTY_MESSAGE_WHEN_IDLE:
+                return !getSendEmptyMessageWhenIdle().isEmpty();
+            case JpaPackage.JPA_CONSUMER_TYPE__TIME_UNIT:
+                return !getTimeUnit().isEmpty();
+            case JpaPackage.JPA_CONSUMER_TYPE__SCHEDULED_BATCH_POLL_CONSUMER_TYPE:
+                return scheduledBatchPollConsumerType != null && !scheduledBatchPollConsumerType.isEmpty();
+            case JpaPackage.JPA_CONSUMER_TYPE__MAX_MESSAGES_PER_POLL:
+                return !getMaxMessagesPerPoll().isEmpty();
             case JpaPackage.JPA_CONSUMER_TYPE__CONSUME_DELETE:
                 return isSetConsumeDelete();
             case JpaPackage.JPA_CONSUMER_TYPE__CONSUME_LOCK_ENTITY:
@@ -655,7 +875,11 @@ public class JpaConsumerTypeImpl extends ScheduledBatchPollConsumerTypeImpl impl
         if (eIsProxy()) return super.toString();
 
         StringBuffer result = new StringBuffer(super.toString());
-        result.append(" (consumeDelete: ");
+        result.append(" (scheduledPollConsumerType: ");
+        result.append(scheduledPollConsumerType);
+        result.append(", scheduledBatchPollConsumerType: ");
+        result.append(scheduledBatchPollConsumerType);
+        result.append(", consumeDelete: ");
         if (consumeDeleteESet) result.append(consumeDelete); else result.append("<unset>");
         result.append(", consumeLockEntity: ");
         if (consumeLockEntityESet) result.append(consumeLockEntity); else result.append("<unset>");

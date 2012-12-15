@@ -21,14 +21,13 @@ import org.eclipse.emf.ecore.util.FeatureMap;
  *   <li>{@link org.switchyard.tools.models.switchyard1_0.camel.core.DocumentRoot#getXSISchemaLocation <em>XSI Schema Location</em>}</li>
  *   <li>{@link org.switchyard.tools.models.switchyard1_0.camel.core.DocumentRoot#getBindingCamel <em>Binding Camel</em>}</li>
  *   <li>{@link org.switchyard.tools.models.switchyard1_0.camel.core.DocumentRoot#getBindingDirect <em>Binding Direct</em>}</li>
- *   <li>{@link org.switchyard.tools.models.switchyard1_0.camel.core.DocumentRoot#getBindingJms <em>Binding Jms</em>}</li>
  *   <li>{@link org.switchyard.tools.models.switchyard1_0.camel.core.DocumentRoot#getBindingMock <em>Binding Mock</em>}</li>
  *   <li>{@link org.switchyard.tools.models.switchyard1_0.camel.core.DocumentRoot#getBindingSeda <em>Binding Seda</em>}</li>
  *   <li>{@link org.switchyard.tools.models.switchyard1_0.camel.core.DocumentRoot#getBindingTimer <em>Binding Timer</em>}</li>
  * </ul>
  * </p>
  *
- * @see org.switchyard.tools.models.switchyard1_0.camel.core.CamelPackage#getDocumentRoot()
+ * @see org.switchyard.tools.models.switchyard1_0.camel.core.CorePackage#getDocumentRoot()
  * @model extendedMetaData="name='' kind='mixed'"
  * @generated
  */
@@ -43,7 +42,7 @@ public interface DocumentRoot extends EObject {
      * </p>
      * <!-- end-user-doc -->
      * @return the value of the '<em>Mixed</em>' attribute list.
-     * @see org.switchyard.tools.models.switchyard1_0.camel.core.CamelPackage#getDocumentRoot_Mixed()
+     * @see org.switchyard.tools.models.switchyard1_0.camel.core.CorePackage#getDocumentRoot_Mixed()
      * @model unique="false" dataType="org.eclipse.emf.ecore.EFeatureMapEntry" many="true"
      *        extendedMetaData="kind='elementWildcard' name=':mixed'"
      * @generated
@@ -61,7 +60,7 @@ public interface DocumentRoot extends EObject {
      * </p>
      * <!-- end-user-doc -->
      * @return the value of the '<em>XMLNS Prefix Map</em>' map.
-     * @see org.switchyard.tools.models.switchyard1_0.camel.core.CamelPackage#getDocumentRoot_XMLNSPrefixMap()
+     * @see org.switchyard.tools.models.switchyard1_0.camel.core.CorePackage#getDocumentRoot_XMLNSPrefixMap()
      * @model mapType="org.eclipse.emf.ecore.EStringToStringMapEntry<org.eclipse.emf.ecore.EString, org.eclipse.emf.ecore.EString>" transient="true"
      *        extendedMetaData="kind='attribute' name='xmlns:prefix'"
      * @generated
@@ -79,7 +78,7 @@ public interface DocumentRoot extends EObject {
      * </p>
      * <!-- end-user-doc -->
      * @return the value of the '<em>XSI Schema Location</em>' map.
-     * @see org.switchyard.tools.models.switchyard1_0.camel.core.CamelPackage#getDocumentRoot_XSISchemaLocation()
+     * @see org.switchyard.tools.models.switchyard1_0.camel.core.CorePackage#getDocumentRoot_XSISchemaLocation()
      * @model mapType="org.eclipse.emf.ecore.EStringToStringMapEntry<org.eclipse.emf.ecore.EString, org.eclipse.emf.ecore.EString>" transient="true"
      *        extendedMetaData="kind='attribute' name='xsi:schemaLocation'"
      * @generated
@@ -96,7 +95,7 @@ public interface DocumentRoot extends EObject {
      * <!-- end-user-doc -->
      * @return the value of the '<em>Binding Camel</em>' containment reference.
      * @see #setBindingCamel(CamelBindingType)
-     * @see org.switchyard.tools.models.switchyard1_0.camel.core.CamelPackage#getDocumentRoot_BindingCamel()
+     * @see org.switchyard.tools.models.switchyard1_0.camel.core.CorePackage#getDocumentRoot_BindingCamel()
      * @model containment="true" upper="-2" transient="true" volatile="true" derived="true"
      *        extendedMetaData="kind='element' name='binding.uri' namespace='##targetNamespace' affiliation='urn:switchyard-config:switchyard:1.0#binding.switchyard'"
      * @generated
@@ -123,7 +122,7 @@ public interface DocumentRoot extends EObject {
      * <!-- end-user-doc -->
      * @return the value of the '<em>Binding Direct</em>' containment reference.
      * @see #setBindingDirect(CamelDirectBindingType)
-     * @see org.switchyard.tools.models.switchyard1_0.camel.core.CamelPackage#getDocumentRoot_BindingDirect()
+     * @see org.switchyard.tools.models.switchyard1_0.camel.core.CorePackage#getDocumentRoot_BindingDirect()
      * @model containment="true" upper="-2" transient="true" volatile="true" derived="true"
      *        extendedMetaData="kind='element' name='binding.direct' namespace='##targetNamespace' affiliation='urn:switchyard-config:switchyard:1.0#binding.switchyard'"
      * @generated
@@ -141,33 +140,6 @@ public interface DocumentRoot extends EObject {
     void setBindingDirect(CamelDirectBindingType value);
 
     /**
-     * Returns the value of the '<em><b>Binding Jms</b></em>' containment reference.
-     * <!-- begin-user-doc -->
-     * <p>
-     * If the meaning of the '<em>Binding Jms</em>' containment reference isn't clear,
-     * there really should be more of a description here...
-     * </p>
-     * <!-- end-user-doc -->
-     * @return the value of the '<em>Binding Jms</em>' containment reference.
-     * @see #setBindingJms(JmsBindingType)
-     * @see org.switchyard.tools.models.switchyard1_0.camel.core.CamelPackage#getDocumentRoot_BindingJms()
-     * @model containment="true" upper="-2" transient="true" volatile="true" derived="true"
-     *        extendedMetaData="kind='element' name='binding.jms' namespace='##targetNamespace' affiliation='urn:switchyard-config:switchyard:1.0#binding.switchyard'"
-     * @generated
-     */
-    JmsBindingType getBindingJms();
-
-    /**
-     * Sets the value of the '{@link org.switchyard.tools.models.switchyard1_0.camel.core.DocumentRoot#getBindingJms <em>Binding Jms</em>}' containment reference.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @param value the new value of the '<em>Binding Jms</em>' containment reference.
-     * @see #getBindingJms()
-     * @generated
-     */
-    void setBindingJms(JmsBindingType value);
-
-    /**
      * Returns the value of the '<em><b>Binding Mock</b></em>' containment reference.
      * <!-- begin-user-doc -->
      * <p>
@@ -177,7 +149,7 @@ public interface DocumentRoot extends EObject {
      * <!-- end-user-doc -->
      * @return the value of the '<em>Binding Mock</em>' containment reference.
      * @see #setBindingMock(CamelMockBindingType)
-     * @see org.switchyard.tools.models.switchyard1_0.camel.core.CamelPackage#getDocumentRoot_BindingMock()
+     * @see org.switchyard.tools.models.switchyard1_0.camel.core.CorePackage#getDocumentRoot_BindingMock()
      * @model containment="true" upper="-2" transient="true" volatile="true" derived="true"
      *        extendedMetaData="kind='element' name='binding.mock' namespace='##targetNamespace' affiliation='urn:switchyard-config:switchyard:1.0#binding.switchyard'"
      * @generated
@@ -204,7 +176,7 @@ public interface DocumentRoot extends EObject {
      * <!-- end-user-doc -->
      * @return the value of the '<em>Binding Seda</em>' containment reference.
      * @see #setBindingSeda(CamelSedaBindingType)
-     * @see org.switchyard.tools.models.switchyard1_0.camel.core.CamelPackage#getDocumentRoot_BindingSeda()
+     * @see org.switchyard.tools.models.switchyard1_0.camel.core.CorePackage#getDocumentRoot_BindingSeda()
      * @model containment="true" upper="-2" transient="true" volatile="true" derived="true"
      *        extendedMetaData="kind='element' name='binding.seda' namespace='##targetNamespace' affiliation='urn:switchyard-config:switchyard:1.0#binding.switchyard'"
      * @generated
@@ -231,7 +203,7 @@ public interface DocumentRoot extends EObject {
      * <!-- end-user-doc -->
      * @return the value of the '<em>Binding Timer</em>' containment reference.
      * @see #setBindingTimer(CamelTimerBindingType)
-     * @see org.switchyard.tools.models.switchyard1_0.camel.core.CamelPackage#getDocumentRoot_BindingTimer()
+     * @see org.switchyard.tools.models.switchyard1_0.camel.core.CorePackage#getDocumentRoot_BindingTimer()
      * @model containment="true" upper="-2" transient="true" volatile="true" derived="true"
      *        extendedMetaData="kind='element' name='binding.timer' namespace='##targetNamespace' affiliation='urn:switchyard-config:switchyard:1.0#binding.switchyard'"
      * @generated

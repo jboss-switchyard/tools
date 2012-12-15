@@ -40,7 +40,6 @@ import org.switchyard.tools.models.switchyard1_0.bpm.BPMFactory;
 
 import org.switchyard.tools.models.switchyard1_0.camel.amqp.AmqpFactory;
 import org.switchyard.tools.models.switchyard1_0.camel.atom.AtomFactory;
-import org.switchyard.tools.models.switchyard1_0.camel.core.CamelFactory;
 import org.switchyard.tools.models.switchyard1_0.camel.file.FileFactory;
 import org.switchyard.tools.models.switchyard1_0.camel.ftp.FtpFactory;
 import org.switchyard.tools.models.switchyard1_0.camel.jms.JmsFactory;
@@ -1653,56 +1652,6 @@ public class ExpressionNodeItemProvider
             (createChildParameter
                 (SpringPackage.eINSTANCE.getExpressionNode_Property(),
                  RemoteFactory.eINSTANCE.createRemoteBindingType()));
-
-        newChildDescriptors.add
-            (createChildParameter
-                (SpringPackage.eINSTANCE.getExpressionNode_Property(),
-                 CamelFactory.eINSTANCE.createScheduledPollConsumerType()));
-
-        newChildDescriptors.add
-            (createChildParameter
-                (SpringPackage.eINSTANCE.getExpressionNode_Property(),
-                 CamelFactory.eINSTANCE.createScheduledBatchPollConsumerType()));
-
-        newChildDescriptors.add
-            (createChildParameter
-                (SpringPackage.eINSTANCE.getExpressionNode_Property(),
-                 CamelFactory.eINSTANCE.createGenericFileConsumerType()));
-
-        newChildDescriptors.add
-            (createChildParameter
-                (SpringPackage.eINSTANCE.getExpressionNode_Property(),
-                 CamelFactory.eINSTANCE.createGenericFileProducerType()));
-
-        newChildDescriptors.add
-            (createChildParameter
-                (SpringPackage.eINSTANCE.getExpressionNode_Property(),
-                 CamelFactory.eINSTANCE.createJmsBindingType()));
-
-        newChildDescriptors.add
-            (createChildParameter
-                (SpringPackage.eINSTANCE.getExpressionNode_Property(),
-                 CamelFactory.eINSTANCE.createCamelBindingType()));
-
-        newChildDescriptors.add
-            (createChildParameter
-                (SpringPackage.eINSTANCE.getExpressionNode_Property(),
-                 CamelFactory.eINSTANCE.createCamelDirectBindingType()));
-
-        newChildDescriptors.add
-            (createChildParameter
-                (SpringPackage.eINSTANCE.getExpressionNode_Property(),
-                 CamelFactory.eINSTANCE.createCamelTimerBindingType()));
-
-        newChildDescriptors.add
-            (createChildParameter
-                (SpringPackage.eINSTANCE.getExpressionNode_Property(),
-                 CamelFactory.eINSTANCE.createCamelSedaBindingType()));
-
-        newChildDescriptors.add
-            (createChildParameter
-                (SpringPackage.eINSTANCE.getExpressionNode_Property(),
-                 CamelFactory.eINSTANCE.createCamelMockBindingType()));
 
         newChildDescriptors.add
             (createChildParameter

@@ -20,8 +20,8 @@ import org.eclipse.soa.sca.sca1_1.model.sca.Binding;
 import org.eclipse.soa.sca.sca1_1.model.sca.Contract;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.widgets.Composite;
-import org.switchyard.tools.models.switchyard1_0.camel.CamelFactory;
-import org.switchyard.tools.models.switchyard1_0.camel.CamelNettyTcpBindingType;
+import org.switchyard.tools.models.switchyard1_0.camel.netty.CamelNettyTcpBindingType;
+import org.switchyard.tools.models.switchyard1_0.camel.netty.NettyFactory;
 
 /**
  * @author bfitzpat
@@ -30,7 +30,7 @@ import org.switchyard.tools.models.switchyard1_0.camel.CamelNettyTcpBindingType;
 public class CamelNettyTCPBindingWizardPage extends WizardPage {
 
     private CamelNettyTCPComposite _nettyTCPComposite = null;
-    private CamelNettyTcpBindingType _binding = CamelFactory.eINSTANCE.createCamelNettyTcpBindingType();
+    private CamelNettyTcpBindingType _binding = NettyFactory.eINSTANCE.createCamelNettyTcpBindingType();
     private Contract _targetContainer;
 
     /**

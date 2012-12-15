@@ -33,11 +33,12 @@ import org.eclipse.swt.widgets.Group;
 import org.eclipse.swt.widgets.TabFolder;
 import org.eclipse.swt.widgets.TabItem;
 import org.eclipse.swt.widgets.Text;
-import org.switchyard.tools.models.switchyard1_0.camel.CamelFactory;
-import org.switchyard.tools.models.switchyard1_0.camel.CamelFileBindingType;
+import org.switchyard.tools.models.switchyard1_0.camel.file.CamelFileBindingType;
+import org.switchyard.tools.models.switchyard1_0.camel.file.FileFactory;
 import org.switchyard.tools.models.switchyard1_0.switchyard.ContextMapperType;
 import org.switchyard.tools.models.switchyard1_0.switchyard.MessageComposerType;
 import org.switchyard.tools.models.switchyard1_0.switchyard.SwitchYardOperationSelectorType;
+import org.switchyard.tools.models.switchyard1_0.switchyard.SwitchyardFactory;
 import org.switchyard.tools.ui.editor.diagram.binding.AbstractSYBindingComposite;
 import org.switchyard.tools.ui.editor.diagram.binding.OperationSelectorComposite;
 import org.switchyard.tools.ui.editor.diagram.binding.OperationSelectorUtil;
@@ -104,8 +105,8 @@ public class CamelFileConsumerComposite extends AbstractSYBindingComposite  {
             if (this._binding.getFileName() != null) {
                 _fileNameText.setText(this._binding.getFileName());
             }
-            if (this._binding.isAutoCreate()) {
-                _autoCreateButton.setSelection(this._binding.isAutoCreate());
+            if (this._binding.getAutoCreate() != null) {
+                _autoCreateButton.setSelection(this._binding.getAutoCreate().booleanValue());
             }
             OperationSelectorType opSelector = OperationSelectorUtil.getFirstOperationSelector(this._binding);
             _opSelectorComposite.setBinding(this._binding);
@@ -223,7 +224,7 @@ public class CamelFileConsumerComposite extends AbstractSYBindingComposite  {
         @Override
         public void run() throws Exception {
             if (_binding != null && _binding.getConsume() == null) {
-                setFeatureValue(_binding, "consume", CamelFactory.eINSTANCE.createFileConsumerType());
+                setFeatureValue(_binding, "consume", FileFactory.eINSTANCE.createFileConsumerType());
             }
         }
     }
@@ -286,7 +287,7 @@ public class CamelFileConsumerComposite extends AbstractSYBindingComposite  {
             } else if (control.equals(_fileNameText)) {
                 _fileNameText.setText(this._binding.getFileName());
             } else if (control.equals(_autoCreateButton)) {
-                _autoCreateButton.setSelection(this._binding.isAutoCreate());
+                _autoCreateButton.setSelection(this._binding.getAutoCreate());
 //            } else if (control.equals(_operationSelectionCombo)) {
 //                String opName = CamelBindingUtil.getOperationNameForStaticOperationSelector(this._binding);
 //                setTextValue(_operationSelectionCombo, opName);
@@ -347,12 +348,12 @@ public class CamelFileConsumerComposite extends AbstractSYBindingComposite  {
 
     @Override
     protected ContextMapperType createContextMapper() {
-        return CamelFactory.eINSTANCE.createCamelContextMapperType();
+        return SwitchyardFactory.eINSTANCE.createContextMapperType();
     }
 
     @Override
     protected MessageComposerType createMessageComposer() {
-        return CamelFactory.eINSTANCE.createCamelMessageComposerType();
+        return SwitchyardFactory.eINSTANCE.createMessageComposerType();
     }
     
 }

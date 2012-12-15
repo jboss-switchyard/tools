@@ -48,6 +48,15 @@ public class CamelNettyTcpBindingTypeImpl extends CamelNettyBindingTypeImpl impl
     protected Boolean textline = TEXTLINE_EDEFAULT;
 
     /**
+     * This is true if the Textline attribute has been set.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    protected boolean textlineESet;
+
+    /**
      * The default value of the '{@link #getTcpNoDelay() <em>Tcp No Delay</em>}' attribute.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
@@ -68,6 +77,15 @@ public class CamelNettyTcpBindingTypeImpl extends CamelNettyBindingTypeImpl impl
     protected Boolean tcpNoDelay = TCP_NO_DELAY_EDEFAULT;
 
     /**
+     * This is true if the Tcp No Delay attribute has been set.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    protected boolean tcpNoDelayESet;
+
+    /**
      * The default value of the '{@link #getKeepAlive() <em>Keep Alive</em>}' attribute.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
@@ -86,6 +104,15 @@ public class CamelNettyTcpBindingTypeImpl extends CamelNettyBindingTypeImpl impl
      * @ordered
      */
     protected Boolean keepAlive = KEEP_ALIVE_EDEFAULT;
+
+    /**
+     * This is true if the Keep Alive attribute has been set.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    protected boolean keepAliveESet;
 
     /**
      * <!-- begin-user-doc -->
@@ -123,8 +150,33 @@ public class CamelNettyTcpBindingTypeImpl extends CamelNettyBindingTypeImpl impl
     public void setTextline(Boolean newTextline) {
         Boolean oldTextline = textline;
         textline = newTextline;
+        boolean oldTextlineESet = textlineESet;
+        textlineESet = true;
         if (eNotificationRequired())
-            eNotify(new ENotificationImpl(this, Notification.SET, NettyPackage.CAMEL_NETTY_TCP_BINDING_TYPE__TEXTLINE, oldTextline, textline));
+            eNotify(new ENotificationImpl(this, Notification.SET, NettyPackage.CAMEL_NETTY_TCP_BINDING_TYPE__TEXTLINE, oldTextline, textline, !oldTextlineESet));
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public void unsetTextline() {
+        Boolean oldTextline = textline;
+        boolean oldTextlineESet = textlineESet;
+        textline = TEXTLINE_EDEFAULT;
+        textlineESet = false;
+        if (eNotificationRequired())
+            eNotify(new ENotificationImpl(this, Notification.UNSET, NettyPackage.CAMEL_NETTY_TCP_BINDING_TYPE__TEXTLINE, oldTextline, TEXTLINE_EDEFAULT, oldTextlineESet));
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public boolean isSetTextline() {
+        return textlineESet;
     }
 
     /**
@@ -144,8 +196,33 @@ public class CamelNettyTcpBindingTypeImpl extends CamelNettyBindingTypeImpl impl
     public void setTcpNoDelay(Boolean newTcpNoDelay) {
         Boolean oldTcpNoDelay = tcpNoDelay;
         tcpNoDelay = newTcpNoDelay;
+        boolean oldTcpNoDelayESet = tcpNoDelayESet;
+        tcpNoDelayESet = true;
         if (eNotificationRequired())
-            eNotify(new ENotificationImpl(this, Notification.SET, NettyPackage.CAMEL_NETTY_TCP_BINDING_TYPE__TCP_NO_DELAY, oldTcpNoDelay, tcpNoDelay));
+            eNotify(new ENotificationImpl(this, Notification.SET, NettyPackage.CAMEL_NETTY_TCP_BINDING_TYPE__TCP_NO_DELAY, oldTcpNoDelay, tcpNoDelay, !oldTcpNoDelayESet));
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public void unsetTcpNoDelay() {
+        Boolean oldTcpNoDelay = tcpNoDelay;
+        boolean oldTcpNoDelayESet = tcpNoDelayESet;
+        tcpNoDelay = TCP_NO_DELAY_EDEFAULT;
+        tcpNoDelayESet = false;
+        if (eNotificationRequired())
+            eNotify(new ENotificationImpl(this, Notification.UNSET, NettyPackage.CAMEL_NETTY_TCP_BINDING_TYPE__TCP_NO_DELAY, oldTcpNoDelay, TCP_NO_DELAY_EDEFAULT, oldTcpNoDelayESet));
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public boolean isSetTcpNoDelay() {
+        return tcpNoDelayESet;
     }
 
     /**
@@ -165,8 +242,33 @@ public class CamelNettyTcpBindingTypeImpl extends CamelNettyBindingTypeImpl impl
     public void setKeepAlive(Boolean newKeepAlive) {
         Boolean oldKeepAlive = keepAlive;
         keepAlive = newKeepAlive;
+        boolean oldKeepAliveESet = keepAliveESet;
+        keepAliveESet = true;
         if (eNotificationRequired())
-            eNotify(new ENotificationImpl(this, Notification.SET, NettyPackage.CAMEL_NETTY_TCP_BINDING_TYPE__KEEP_ALIVE, oldKeepAlive, keepAlive));
+            eNotify(new ENotificationImpl(this, Notification.SET, NettyPackage.CAMEL_NETTY_TCP_BINDING_TYPE__KEEP_ALIVE, oldKeepAlive, keepAlive, !oldKeepAliveESet));
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public void unsetKeepAlive() {
+        Boolean oldKeepAlive = keepAlive;
+        boolean oldKeepAliveESet = keepAliveESet;
+        keepAlive = KEEP_ALIVE_EDEFAULT;
+        keepAliveESet = false;
+        if (eNotificationRequired())
+            eNotify(new ENotificationImpl(this, Notification.UNSET, NettyPackage.CAMEL_NETTY_TCP_BINDING_TYPE__KEEP_ALIVE, oldKeepAlive, KEEP_ALIVE_EDEFAULT, oldKeepAliveESet));
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public boolean isSetKeepAlive() {
+        return keepAliveESet;
     }
 
     /**
@@ -217,13 +319,13 @@ public class CamelNettyTcpBindingTypeImpl extends CamelNettyBindingTypeImpl impl
     public void eUnset(int featureID) {
         switch (featureID) {
             case NettyPackage.CAMEL_NETTY_TCP_BINDING_TYPE__TEXTLINE:
-                setTextline(TEXTLINE_EDEFAULT);
+                unsetTextline();
                 return;
             case NettyPackage.CAMEL_NETTY_TCP_BINDING_TYPE__TCP_NO_DELAY:
-                setTcpNoDelay(TCP_NO_DELAY_EDEFAULT);
+                unsetTcpNoDelay();
                 return;
             case NettyPackage.CAMEL_NETTY_TCP_BINDING_TYPE__KEEP_ALIVE:
-                setKeepAlive(KEEP_ALIVE_EDEFAULT);
+                unsetKeepAlive();
                 return;
         }
         super.eUnset(featureID);
@@ -238,11 +340,11 @@ public class CamelNettyTcpBindingTypeImpl extends CamelNettyBindingTypeImpl impl
     public boolean eIsSet(int featureID) {
         switch (featureID) {
             case NettyPackage.CAMEL_NETTY_TCP_BINDING_TYPE__TEXTLINE:
-                return TEXTLINE_EDEFAULT == null ? textline != null : !TEXTLINE_EDEFAULT.equals(textline);
+                return isSetTextline();
             case NettyPackage.CAMEL_NETTY_TCP_BINDING_TYPE__TCP_NO_DELAY:
-                return TCP_NO_DELAY_EDEFAULT == null ? tcpNoDelay != null : !TCP_NO_DELAY_EDEFAULT.equals(tcpNoDelay);
+                return isSetTcpNoDelay();
             case NettyPackage.CAMEL_NETTY_TCP_BINDING_TYPE__KEEP_ALIVE:
-                return KEEP_ALIVE_EDEFAULT == null ? keepAlive != null : !KEEP_ALIVE_EDEFAULT.equals(keepAlive);
+                return isSetKeepAlive();
         }
         return super.eIsSet(featureID);
     }
@@ -258,11 +360,11 @@ public class CamelNettyTcpBindingTypeImpl extends CamelNettyBindingTypeImpl impl
 
         StringBuffer result = new StringBuffer(super.toString());
         result.append(" (textline: ");
-        result.append(textline);
+        if (textlineESet) result.append(textline); else result.append("<unset>");
         result.append(", tcpNoDelay: ");
-        result.append(tcpNoDelay);
+        if (tcpNoDelayESet) result.append(tcpNoDelay); else result.append("<unset>");
         result.append(", keepAlive: ");
-        result.append(keepAlive);
+        if (keepAliveESet) result.append(keepAlive); else result.append("<unset>");
         result.append(')');
         return result.toString();
     }

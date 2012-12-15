@@ -5,13 +5,10 @@ package org.switchyard.tools.models.switchyard1_0.camel.core.impl;
 import java.math.BigInteger;
 
 import org.eclipse.emf.common.notify.Notification;
-
 import org.eclipse.emf.ecore.EClass;
-
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
-
-import org.switchyard.tools.models.switchyard1_0.camel.core.CamelPackage;
 import org.switchyard.tools.models.switchyard1_0.camel.core.CamelSedaBindingType;
+import org.switchyard.tools.models.switchyard1_0.camel.core.CorePackage;
 
 /**
  * <!-- begin-user-doc -->
@@ -25,8 +22,8 @@ import org.switchyard.tools.models.switchyard1_0.camel.core.CamelSedaBindingType
  *   <li>{@link org.switchyard.tools.models.switchyard1_0.camel.core.impl.CamelSedaBindingTypeImpl#getConcurrentConsumers <em>Concurrent Consumers</em>}</li>
  *   <li>{@link org.switchyard.tools.models.switchyard1_0.camel.core.impl.CamelSedaBindingTypeImpl#getWaitForTaskToComplete <em>Wait For Task To Complete</em>}</li>
  *   <li>{@link org.switchyard.tools.models.switchyard1_0.camel.core.impl.CamelSedaBindingTypeImpl#getTimeout <em>Timeout</em>}</li>
- *   <li>{@link org.switchyard.tools.models.switchyard1_0.camel.core.impl.CamelSedaBindingTypeImpl#isMultipleConsumers <em>Multiple Consumers</em>}</li>
- *   <li>{@link org.switchyard.tools.models.switchyard1_0.camel.core.impl.CamelSedaBindingTypeImpl#isLimitConcurrentConsumers <em>Limit Concurrent Consumers</em>}</li>
+ *   <li>{@link org.switchyard.tools.models.switchyard1_0.camel.core.impl.CamelSedaBindingTypeImpl#getMultipleConsumers <em>Multiple Consumers</em>}</li>
+ *   <li>{@link org.switchyard.tools.models.switchyard1_0.camel.core.impl.CamelSedaBindingTypeImpl#getLimitConcurrentConsumers <em>Limit Concurrent Consumers</em>}</li>
  * </ul>
  * </p>
  *
@@ -61,7 +58,7 @@ public class CamelSedaBindingTypeImpl extends BaseCamelBindingImpl implements Ca
      * @generated
      * @ordered
      */
-    protected static final BigInteger SIZE_EDEFAULT = null;
+    protected static final Integer SIZE_EDEFAULT = null;
 
     /**
      * The cached value of the '{@link #getSize() <em>Size</em>}' attribute.
@@ -71,7 +68,7 @@ public class CamelSedaBindingTypeImpl extends BaseCamelBindingImpl implements Ca
      * @generated
      * @ordered
      */
-    protected BigInteger size = SIZE_EDEFAULT;
+    protected Integer size = SIZE_EDEFAULT;
 
     /**
      * The default value of the '{@link #getConcurrentConsumers() <em>Concurrent Consumers</em>}' attribute.
@@ -81,7 +78,7 @@ public class CamelSedaBindingTypeImpl extends BaseCamelBindingImpl implements Ca
      * @generated
      * @ordered
      */
-    protected static final BigInteger CONCURRENT_CONSUMERS_EDEFAULT = null;
+    protected static final Integer CONCURRENT_CONSUMERS_EDEFAULT = null;
 
     /**
      * The cached value of the '{@link #getConcurrentConsumers() <em>Concurrent Consumers</em>}' attribute.
@@ -91,7 +88,7 @@ public class CamelSedaBindingTypeImpl extends BaseCamelBindingImpl implements Ca
      * @generated
      * @ordered
      */
-    protected BigInteger concurrentConsumers = CONCURRENT_CONSUMERS_EDEFAULT;
+    protected Integer concurrentConsumers = CONCURRENT_CONSUMERS_EDEFAULT;
 
     /**
      * The default value of the '{@link #getWaitForTaskToComplete() <em>Wait For Task To Complete</em>}' attribute.
@@ -121,7 +118,7 @@ public class CamelSedaBindingTypeImpl extends BaseCamelBindingImpl implements Ca
      * @generated
      * @ordered
      */
-    protected static final long TIMEOUT_EDEFAULT = 0L;
+    protected static final Long TIMEOUT_EDEFAULT = null;
 
     /**
      * The cached value of the '{@link #getTimeout() <em>Timeout</em>}' attribute.
@@ -131,7 +128,7 @@ public class CamelSedaBindingTypeImpl extends BaseCamelBindingImpl implements Ca
      * @generated
      * @ordered
      */
-    protected long timeout = TIMEOUT_EDEFAULT;
+    protected Long timeout = TIMEOUT_EDEFAULT;
 
     /**
      * This is true if the Timeout attribute has been set.
@@ -143,24 +140,24 @@ public class CamelSedaBindingTypeImpl extends BaseCamelBindingImpl implements Ca
     protected boolean timeoutESet;
 
     /**
-     * The default value of the '{@link #isMultipleConsumers() <em>Multiple Consumers</em>}' attribute.
+     * The default value of the '{@link #getMultipleConsumers() <em>Multiple Consumers</em>}' attribute.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @see #isMultipleConsumers()
+     * @see #getMultipleConsumers()
      * @generated
      * @ordered
      */
-    protected static final boolean MULTIPLE_CONSUMERS_EDEFAULT = false;
+    protected static final Boolean MULTIPLE_CONSUMERS_EDEFAULT = null;
 
     /**
-     * The cached value of the '{@link #isMultipleConsumers() <em>Multiple Consumers</em>}' attribute.
+     * The cached value of the '{@link #getMultipleConsumers() <em>Multiple Consumers</em>}' attribute.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @see #isMultipleConsumers()
+     * @see #getMultipleConsumers()
      * @generated
      * @ordered
      */
-    protected boolean multipleConsumers = MULTIPLE_CONSUMERS_EDEFAULT;
+    protected Boolean multipleConsumers = MULTIPLE_CONSUMERS_EDEFAULT;
 
     /**
      * This is true if the Multiple Consumers attribute has been set.
@@ -172,24 +169,24 @@ public class CamelSedaBindingTypeImpl extends BaseCamelBindingImpl implements Ca
     protected boolean multipleConsumersESet;
 
     /**
-     * The default value of the '{@link #isLimitConcurrentConsumers() <em>Limit Concurrent Consumers</em>}' attribute.
+     * The default value of the '{@link #getLimitConcurrentConsumers() <em>Limit Concurrent Consumers</em>}' attribute.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @see #isLimitConcurrentConsumers()
+     * @see #getLimitConcurrentConsumers()
      * @generated
      * @ordered
      */
-    protected static final boolean LIMIT_CONCURRENT_CONSUMERS_EDEFAULT = false;
+    protected static final Boolean LIMIT_CONCURRENT_CONSUMERS_EDEFAULT = null;
 
     /**
-     * The cached value of the '{@link #isLimitConcurrentConsumers() <em>Limit Concurrent Consumers</em>}' attribute.
+     * The cached value of the '{@link #getLimitConcurrentConsumers() <em>Limit Concurrent Consumers</em>}' attribute.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @see #isLimitConcurrentConsumers()
+     * @see #getLimitConcurrentConsumers()
      * @generated
      * @ordered
      */
-    protected boolean limitConcurrentConsumers = LIMIT_CONCURRENT_CONSUMERS_EDEFAULT;
+    protected Boolean limitConcurrentConsumers = LIMIT_CONCURRENT_CONSUMERS_EDEFAULT;
 
     /**
      * This is true if the Limit Concurrent Consumers attribute has been set.
@@ -216,7 +213,7 @@ public class CamelSedaBindingTypeImpl extends BaseCamelBindingImpl implements Ca
      */
     @Override
     protected EClass eStaticClass() {
-        return CamelPackage.Literals.CAMEL_SEDA_BINDING_TYPE;
+        return CorePackage.Literals.CAMEL_SEDA_BINDING_TYPE;
     }
 
     /**
@@ -237,7 +234,7 @@ public class CamelSedaBindingTypeImpl extends BaseCamelBindingImpl implements Ca
         String oldNameElement = nameElement;
         nameElement = newNameElement;
         if (eNotificationRequired())
-            eNotify(new ENotificationImpl(this, Notification.SET, CamelPackage.CAMEL_SEDA_BINDING_TYPE__NAME_ELEMENT, oldNameElement, nameElement));
+            eNotify(new ENotificationImpl(this, Notification.SET, CorePackage.CAMEL_SEDA_BINDING_TYPE__NAME_ELEMENT, oldNameElement, nameElement));
     }
 
     /**
@@ -245,7 +242,7 @@ public class CamelSedaBindingTypeImpl extends BaseCamelBindingImpl implements Ca
      * <!-- end-user-doc -->
      * @generated
      */
-    public BigInteger getSize() {
+    public Integer getSize() {
         return size;
     }
 
@@ -254,11 +251,11 @@ public class CamelSedaBindingTypeImpl extends BaseCamelBindingImpl implements Ca
      * <!-- end-user-doc -->
      * @generated
      */
-    public void setSize(BigInteger newSize) {
-        BigInteger oldSize = size;
+    public void setSize(Integer newSize) {
+        Integer oldSize = size;
         size = newSize;
         if (eNotificationRequired())
-            eNotify(new ENotificationImpl(this, Notification.SET, CamelPackage.CAMEL_SEDA_BINDING_TYPE__SIZE, oldSize, size));
+            eNotify(new ENotificationImpl(this, Notification.SET, CorePackage.CAMEL_SEDA_BINDING_TYPE__SIZE, oldSize, size));
     }
 
     /**
@@ -266,7 +263,7 @@ public class CamelSedaBindingTypeImpl extends BaseCamelBindingImpl implements Ca
      * <!-- end-user-doc -->
      * @generated
      */
-    public BigInteger getConcurrentConsumers() {
+    public Integer getConcurrentConsumers() {
         return concurrentConsumers;
     }
 
@@ -275,11 +272,11 @@ public class CamelSedaBindingTypeImpl extends BaseCamelBindingImpl implements Ca
      * <!-- end-user-doc -->
      * @generated
      */
-    public void setConcurrentConsumers(BigInteger newConcurrentConsumers) {
-        BigInteger oldConcurrentConsumers = concurrentConsumers;
+    public void setConcurrentConsumers(Integer newConcurrentConsumers) {
+        Integer oldConcurrentConsumers = concurrentConsumers;
         concurrentConsumers = newConcurrentConsumers;
         if (eNotificationRequired())
-            eNotify(new ENotificationImpl(this, Notification.SET, CamelPackage.CAMEL_SEDA_BINDING_TYPE__CONCURRENT_CONSUMERS, oldConcurrentConsumers, concurrentConsumers));
+            eNotify(new ENotificationImpl(this, Notification.SET, CorePackage.CAMEL_SEDA_BINDING_TYPE__CONCURRENT_CONSUMERS, oldConcurrentConsumers, concurrentConsumers));
     }
 
     /**
@@ -300,7 +297,7 @@ public class CamelSedaBindingTypeImpl extends BaseCamelBindingImpl implements Ca
         String oldWaitForTaskToComplete = waitForTaskToComplete;
         waitForTaskToComplete = newWaitForTaskToComplete;
         if (eNotificationRequired())
-            eNotify(new ENotificationImpl(this, Notification.SET, CamelPackage.CAMEL_SEDA_BINDING_TYPE__WAIT_FOR_TASK_TO_COMPLETE, oldWaitForTaskToComplete, waitForTaskToComplete));
+            eNotify(new ENotificationImpl(this, Notification.SET, CorePackage.CAMEL_SEDA_BINDING_TYPE__WAIT_FOR_TASK_TO_COMPLETE, oldWaitForTaskToComplete, waitForTaskToComplete));
     }
 
     /**
@@ -308,7 +305,7 @@ public class CamelSedaBindingTypeImpl extends BaseCamelBindingImpl implements Ca
      * <!-- end-user-doc -->
      * @generated
      */
-    public long getTimeout() {
+    public Long getTimeout() {
         return timeout;
     }
 
@@ -317,13 +314,13 @@ public class CamelSedaBindingTypeImpl extends BaseCamelBindingImpl implements Ca
      * <!-- end-user-doc -->
      * @generated
      */
-    public void setTimeout(long newTimeout) {
-        long oldTimeout = timeout;
+    public void setTimeout(Long newTimeout) {
+        Long oldTimeout = timeout;
         timeout = newTimeout;
         boolean oldTimeoutESet = timeoutESet;
         timeoutESet = true;
         if (eNotificationRequired())
-            eNotify(new ENotificationImpl(this, Notification.SET, CamelPackage.CAMEL_SEDA_BINDING_TYPE__TIMEOUT, oldTimeout, timeout, !oldTimeoutESet));
+            eNotify(new ENotificationImpl(this, Notification.SET, CorePackage.CAMEL_SEDA_BINDING_TYPE__TIMEOUT, oldTimeout, timeout, !oldTimeoutESet));
     }
 
     /**
@@ -332,12 +329,12 @@ public class CamelSedaBindingTypeImpl extends BaseCamelBindingImpl implements Ca
      * @generated
      */
     public void unsetTimeout() {
-        long oldTimeout = timeout;
+        Long oldTimeout = timeout;
         boolean oldTimeoutESet = timeoutESet;
         timeout = TIMEOUT_EDEFAULT;
         timeoutESet = false;
         if (eNotificationRequired())
-            eNotify(new ENotificationImpl(this, Notification.UNSET, CamelPackage.CAMEL_SEDA_BINDING_TYPE__TIMEOUT, oldTimeout, TIMEOUT_EDEFAULT, oldTimeoutESet));
+            eNotify(new ENotificationImpl(this, Notification.UNSET, CorePackage.CAMEL_SEDA_BINDING_TYPE__TIMEOUT, oldTimeout, TIMEOUT_EDEFAULT, oldTimeoutESet));
     }
 
     /**
@@ -354,7 +351,7 @@ public class CamelSedaBindingTypeImpl extends BaseCamelBindingImpl implements Ca
      * <!-- end-user-doc -->
      * @generated
      */
-    public boolean isMultipleConsumers() {
+    public Boolean getMultipleConsumers() {
         return multipleConsumers;
     }
 
@@ -363,13 +360,13 @@ public class CamelSedaBindingTypeImpl extends BaseCamelBindingImpl implements Ca
      * <!-- end-user-doc -->
      * @generated
      */
-    public void setMultipleConsumers(boolean newMultipleConsumers) {
-        boolean oldMultipleConsumers = multipleConsumers;
+    public void setMultipleConsumers(Boolean newMultipleConsumers) {
+        Boolean oldMultipleConsumers = multipleConsumers;
         multipleConsumers = newMultipleConsumers;
         boolean oldMultipleConsumersESet = multipleConsumersESet;
         multipleConsumersESet = true;
         if (eNotificationRequired())
-            eNotify(new ENotificationImpl(this, Notification.SET, CamelPackage.CAMEL_SEDA_BINDING_TYPE__MULTIPLE_CONSUMERS, oldMultipleConsumers, multipleConsumers, !oldMultipleConsumersESet));
+            eNotify(new ENotificationImpl(this, Notification.SET, CorePackage.CAMEL_SEDA_BINDING_TYPE__MULTIPLE_CONSUMERS, oldMultipleConsumers, multipleConsumers, !oldMultipleConsumersESet));
     }
 
     /**
@@ -378,12 +375,12 @@ public class CamelSedaBindingTypeImpl extends BaseCamelBindingImpl implements Ca
      * @generated
      */
     public void unsetMultipleConsumers() {
-        boolean oldMultipleConsumers = multipleConsumers;
+        Boolean oldMultipleConsumers = multipleConsumers;
         boolean oldMultipleConsumersESet = multipleConsumersESet;
         multipleConsumers = MULTIPLE_CONSUMERS_EDEFAULT;
         multipleConsumersESet = false;
         if (eNotificationRequired())
-            eNotify(new ENotificationImpl(this, Notification.UNSET, CamelPackage.CAMEL_SEDA_BINDING_TYPE__MULTIPLE_CONSUMERS, oldMultipleConsumers, MULTIPLE_CONSUMERS_EDEFAULT, oldMultipleConsumersESet));
+            eNotify(new ENotificationImpl(this, Notification.UNSET, CorePackage.CAMEL_SEDA_BINDING_TYPE__MULTIPLE_CONSUMERS, oldMultipleConsumers, MULTIPLE_CONSUMERS_EDEFAULT, oldMultipleConsumersESet));
     }
 
     /**
@@ -400,7 +397,7 @@ public class CamelSedaBindingTypeImpl extends BaseCamelBindingImpl implements Ca
      * <!-- end-user-doc -->
      * @generated
      */
-    public boolean isLimitConcurrentConsumers() {
+    public Boolean getLimitConcurrentConsumers() {
         return limitConcurrentConsumers;
     }
 
@@ -409,13 +406,13 @@ public class CamelSedaBindingTypeImpl extends BaseCamelBindingImpl implements Ca
      * <!-- end-user-doc -->
      * @generated
      */
-    public void setLimitConcurrentConsumers(boolean newLimitConcurrentConsumers) {
-        boolean oldLimitConcurrentConsumers = limitConcurrentConsumers;
+    public void setLimitConcurrentConsumers(Boolean newLimitConcurrentConsumers) {
+        Boolean oldLimitConcurrentConsumers = limitConcurrentConsumers;
         limitConcurrentConsumers = newLimitConcurrentConsumers;
         boolean oldLimitConcurrentConsumersESet = limitConcurrentConsumersESet;
         limitConcurrentConsumersESet = true;
         if (eNotificationRequired())
-            eNotify(new ENotificationImpl(this, Notification.SET, CamelPackage.CAMEL_SEDA_BINDING_TYPE__LIMIT_CONCURRENT_CONSUMERS, oldLimitConcurrentConsumers, limitConcurrentConsumers, !oldLimitConcurrentConsumersESet));
+            eNotify(new ENotificationImpl(this, Notification.SET, CorePackage.CAMEL_SEDA_BINDING_TYPE__LIMIT_CONCURRENT_CONSUMERS, oldLimitConcurrentConsumers, limitConcurrentConsumers, !oldLimitConcurrentConsumersESet));
     }
 
     /**
@@ -424,12 +421,12 @@ public class CamelSedaBindingTypeImpl extends BaseCamelBindingImpl implements Ca
      * @generated
      */
     public void unsetLimitConcurrentConsumers() {
-        boolean oldLimitConcurrentConsumers = limitConcurrentConsumers;
+        Boolean oldLimitConcurrentConsumers = limitConcurrentConsumers;
         boolean oldLimitConcurrentConsumersESet = limitConcurrentConsumersESet;
         limitConcurrentConsumers = LIMIT_CONCURRENT_CONSUMERS_EDEFAULT;
         limitConcurrentConsumersESet = false;
         if (eNotificationRequired())
-            eNotify(new ENotificationImpl(this, Notification.UNSET, CamelPackage.CAMEL_SEDA_BINDING_TYPE__LIMIT_CONCURRENT_CONSUMERS, oldLimitConcurrentConsumers, LIMIT_CONCURRENT_CONSUMERS_EDEFAULT, oldLimitConcurrentConsumersESet));
+            eNotify(new ENotificationImpl(this, Notification.UNSET, CorePackage.CAMEL_SEDA_BINDING_TYPE__LIMIT_CONCURRENT_CONSUMERS, oldLimitConcurrentConsumers, LIMIT_CONCURRENT_CONSUMERS_EDEFAULT, oldLimitConcurrentConsumersESet));
     }
 
     /**
@@ -449,20 +446,20 @@ public class CamelSedaBindingTypeImpl extends BaseCamelBindingImpl implements Ca
     @Override
     public Object eGet(int featureID, boolean resolve, boolean coreType) {
         switch (featureID) {
-            case CamelPackage.CAMEL_SEDA_BINDING_TYPE__NAME_ELEMENT:
+            case CorePackage.CAMEL_SEDA_BINDING_TYPE__NAME_ELEMENT:
                 return getNameElement();
-            case CamelPackage.CAMEL_SEDA_BINDING_TYPE__SIZE:
+            case CorePackage.CAMEL_SEDA_BINDING_TYPE__SIZE:
                 return getSize();
-            case CamelPackage.CAMEL_SEDA_BINDING_TYPE__CONCURRENT_CONSUMERS:
+            case CorePackage.CAMEL_SEDA_BINDING_TYPE__CONCURRENT_CONSUMERS:
                 return getConcurrentConsumers();
-            case CamelPackage.CAMEL_SEDA_BINDING_TYPE__WAIT_FOR_TASK_TO_COMPLETE:
+            case CorePackage.CAMEL_SEDA_BINDING_TYPE__WAIT_FOR_TASK_TO_COMPLETE:
                 return getWaitForTaskToComplete();
-            case CamelPackage.CAMEL_SEDA_BINDING_TYPE__TIMEOUT:
+            case CorePackage.CAMEL_SEDA_BINDING_TYPE__TIMEOUT:
                 return getTimeout();
-            case CamelPackage.CAMEL_SEDA_BINDING_TYPE__MULTIPLE_CONSUMERS:
-                return isMultipleConsumers();
-            case CamelPackage.CAMEL_SEDA_BINDING_TYPE__LIMIT_CONCURRENT_CONSUMERS:
-                return isLimitConcurrentConsumers();
+            case CorePackage.CAMEL_SEDA_BINDING_TYPE__MULTIPLE_CONSUMERS:
+                return getMultipleConsumers();
+            case CorePackage.CAMEL_SEDA_BINDING_TYPE__LIMIT_CONCURRENT_CONSUMERS:
+                return getLimitConcurrentConsumers();
         }
         return super.eGet(featureID, resolve, coreType);
     }
@@ -475,25 +472,25 @@ public class CamelSedaBindingTypeImpl extends BaseCamelBindingImpl implements Ca
     @Override
     public void eSet(int featureID, Object newValue) {
         switch (featureID) {
-            case CamelPackage.CAMEL_SEDA_BINDING_TYPE__NAME_ELEMENT:
+            case CorePackage.CAMEL_SEDA_BINDING_TYPE__NAME_ELEMENT:
                 setNameElement((String)newValue);
                 return;
-            case CamelPackage.CAMEL_SEDA_BINDING_TYPE__SIZE:
-                setSize((BigInteger)newValue);
+            case CorePackage.CAMEL_SEDA_BINDING_TYPE__SIZE:
+                setSize((Integer)newValue);
                 return;
-            case CamelPackage.CAMEL_SEDA_BINDING_TYPE__CONCURRENT_CONSUMERS:
-                setConcurrentConsumers((BigInteger)newValue);
+            case CorePackage.CAMEL_SEDA_BINDING_TYPE__CONCURRENT_CONSUMERS:
+                setConcurrentConsumers((Integer)newValue);
                 return;
-            case CamelPackage.CAMEL_SEDA_BINDING_TYPE__WAIT_FOR_TASK_TO_COMPLETE:
+            case CorePackage.CAMEL_SEDA_BINDING_TYPE__WAIT_FOR_TASK_TO_COMPLETE:
                 setWaitForTaskToComplete((String)newValue);
                 return;
-            case CamelPackage.CAMEL_SEDA_BINDING_TYPE__TIMEOUT:
+            case CorePackage.CAMEL_SEDA_BINDING_TYPE__TIMEOUT:
                 setTimeout((Long)newValue);
                 return;
-            case CamelPackage.CAMEL_SEDA_BINDING_TYPE__MULTIPLE_CONSUMERS:
+            case CorePackage.CAMEL_SEDA_BINDING_TYPE__MULTIPLE_CONSUMERS:
                 setMultipleConsumers((Boolean)newValue);
                 return;
-            case CamelPackage.CAMEL_SEDA_BINDING_TYPE__LIMIT_CONCURRENT_CONSUMERS:
+            case CorePackage.CAMEL_SEDA_BINDING_TYPE__LIMIT_CONCURRENT_CONSUMERS:
                 setLimitConcurrentConsumers((Boolean)newValue);
                 return;
         }
@@ -508,25 +505,25 @@ public class CamelSedaBindingTypeImpl extends BaseCamelBindingImpl implements Ca
     @Override
     public void eUnset(int featureID) {
         switch (featureID) {
-            case CamelPackage.CAMEL_SEDA_BINDING_TYPE__NAME_ELEMENT:
+            case CorePackage.CAMEL_SEDA_BINDING_TYPE__NAME_ELEMENT:
                 setNameElement(NAME_ELEMENT_EDEFAULT);
                 return;
-            case CamelPackage.CAMEL_SEDA_BINDING_TYPE__SIZE:
+            case CorePackage.CAMEL_SEDA_BINDING_TYPE__SIZE:
                 setSize(SIZE_EDEFAULT);
                 return;
-            case CamelPackage.CAMEL_SEDA_BINDING_TYPE__CONCURRENT_CONSUMERS:
+            case CorePackage.CAMEL_SEDA_BINDING_TYPE__CONCURRENT_CONSUMERS:
                 setConcurrentConsumers(CONCURRENT_CONSUMERS_EDEFAULT);
                 return;
-            case CamelPackage.CAMEL_SEDA_BINDING_TYPE__WAIT_FOR_TASK_TO_COMPLETE:
+            case CorePackage.CAMEL_SEDA_BINDING_TYPE__WAIT_FOR_TASK_TO_COMPLETE:
                 setWaitForTaskToComplete(WAIT_FOR_TASK_TO_COMPLETE_EDEFAULT);
                 return;
-            case CamelPackage.CAMEL_SEDA_BINDING_TYPE__TIMEOUT:
+            case CorePackage.CAMEL_SEDA_BINDING_TYPE__TIMEOUT:
                 unsetTimeout();
                 return;
-            case CamelPackage.CAMEL_SEDA_BINDING_TYPE__MULTIPLE_CONSUMERS:
+            case CorePackage.CAMEL_SEDA_BINDING_TYPE__MULTIPLE_CONSUMERS:
                 unsetMultipleConsumers();
                 return;
-            case CamelPackage.CAMEL_SEDA_BINDING_TYPE__LIMIT_CONCURRENT_CONSUMERS:
+            case CorePackage.CAMEL_SEDA_BINDING_TYPE__LIMIT_CONCURRENT_CONSUMERS:
                 unsetLimitConcurrentConsumers();
                 return;
         }
@@ -541,19 +538,19 @@ public class CamelSedaBindingTypeImpl extends BaseCamelBindingImpl implements Ca
     @Override
     public boolean eIsSet(int featureID) {
         switch (featureID) {
-            case CamelPackage.CAMEL_SEDA_BINDING_TYPE__NAME_ELEMENT:
+            case CorePackage.CAMEL_SEDA_BINDING_TYPE__NAME_ELEMENT:
                 return NAME_ELEMENT_EDEFAULT == null ? nameElement != null : !NAME_ELEMENT_EDEFAULT.equals(nameElement);
-            case CamelPackage.CAMEL_SEDA_BINDING_TYPE__SIZE:
+            case CorePackage.CAMEL_SEDA_BINDING_TYPE__SIZE:
                 return SIZE_EDEFAULT == null ? size != null : !SIZE_EDEFAULT.equals(size);
-            case CamelPackage.CAMEL_SEDA_BINDING_TYPE__CONCURRENT_CONSUMERS:
+            case CorePackage.CAMEL_SEDA_BINDING_TYPE__CONCURRENT_CONSUMERS:
                 return CONCURRENT_CONSUMERS_EDEFAULT == null ? concurrentConsumers != null : !CONCURRENT_CONSUMERS_EDEFAULT.equals(concurrentConsumers);
-            case CamelPackage.CAMEL_SEDA_BINDING_TYPE__WAIT_FOR_TASK_TO_COMPLETE:
+            case CorePackage.CAMEL_SEDA_BINDING_TYPE__WAIT_FOR_TASK_TO_COMPLETE:
                 return WAIT_FOR_TASK_TO_COMPLETE_EDEFAULT == null ? waitForTaskToComplete != null : !WAIT_FOR_TASK_TO_COMPLETE_EDEFAULT.equals(waitForTaskToComplete);
-            case CamelPackage.CAMEL_SEDA_BINDING_TYPE__TIMEOUT:
+            case CorePackage.CAMEL_SEDA_BINDING_TYPE__TIMEOUT:
                 return isSetTimeout();
-            case CamelPackage.CAMEL_SEDA_BINDING_TYPE__MULTIPLE_CONSUMERS:
+            case CorePackage.CAMEL_SEDA_BINDING_TYPE__MULTIPLE_CONSUMERS:
                 return isSetMultipleConsumers();
-            case CamelPackage.CAMEL_SEDA_BINDING_TYPE__LIMIT_CONCURRENT_CONSUMERS:
+            case CorePackage.CAMEL_SEDA_BINDING_TYPE__LIMIT_CONCURRENT_CONSUMERS:
                 return isSetLimitConcurrentConsumers();
         }
         return super.eIsSet(featureID);

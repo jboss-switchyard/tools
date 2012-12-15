@@ -16,12 +16,12 @@ import org.switchyard.tools.models.switchyard1_0.camel.core.BaseCamelBinding;
  *   <li>{@link org.switchyard.tools.models.switchyard1_0.camel.netty.CamelNettyBindingType#getPort <em>Port</em>}</li>
  *   <li>{@link org.switchyard.tools.models.switchyard1_0.camel.netty.CamelNettyBindingType#getReceiveBufferSize <em>Receive Buffer Size</em>}</li>
  *   <li>{@link org.switchyard.tools.models.switchyard1_0.camel.netty.CamelNettyBindingType#getSendBufferSize <em>Send Buffer Size</em>}</li>
- *   <li>{@link org.switchyard.tools.models.switchyard1_0.camel.netty.CamelNettyBindingType#getReuseAddress <em>Reuse Address</em>}</li>
+ *   <li>{@link org.switchyard.tools.models.switchyard1_0.camel.netty.CamelNettyBindingType#isReuseAddress <em>Reuse Address</em>}</li>
  *   <li>{@link org.switchyard.tools.models.switchyard1_0.camel.netty.CamelNettyBindingType#getEncoders <em>Encoders</em>}</li>
  *   <li>{@link org.switchyard.tools.models.switchyard1_0.camel.netty.CamelNettyBindingType#getDecoders <em>Decoders</em>}</li>
  *   <li>{@link org.switchyard.tools.models.switchyard1_0.camel.netty.CamelNettyBindingType#getAllowDefaultCodec <em>Allow Default Codec</em>}</li>
  *   <li>{@link org.switchyard.tools.models.switchyard1_0.camel.netty.CamelNettyBindingType#getWorkerCount <em>Worker Count</em>}</li>
- *   <li>{@link org.switchyard.tools.models.switchyard1_0.camel.netty.CamelNettyBindingType#isSync <em>Sync</em>}</li>
+ *   <li>{@link org.switchyard.tools.models.switchyard1_0.camel.netty.CamelNettyBindingType#getSync <em>Sync</em>}</li>
  *   <li>{@link org.switchyard.tools.models.switchyard1_0.camel.netty.CamelNettyBindingType#getDisconnect <em>Disconnect</em>}</li>
  * </ul>
  * </p>
@@ -68,23 +68,50 @@ public interface CamelNettyBindingType extends BaseCamelBinding {
      * </p>
      * <!-- end-user-doc -->
      * @return the value of the '<em>Port</em>' attribute.
-     * @see #setPort(int)
+     * @see #isSetPort()
+     * @see #unsetPort()
+     * @see #setPort(Integer)
      * @see org.switchyard.tools.models.switchyard1_0.camel.netty.NettyPackage#getCamelNettyBindingType_Port()
-     * @model dataType="org.eclipse.emf.ecore.xml.type.Int" required="true"
+     * @model unsettable="true" dataType="org.eclipse.emf.ecore.xml.type.IntObject" required="true"
      *        extendedMetaData="kind='element' name='port' namespace='##targetNamespace'"
      * @generated
      */
-    int getPort();
+    Integer getPort();
 
     /**
      * Sets the value of the '{@link org.switchyard.tools.models.switchyard1_0.camel.netty.CamelNettyBindingType#getPort <em>Port</em>}' attribute.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @param value the new value of the '<em>Port</em>' attribute.
+     * @see #isSetPort()
+     * @see #unsetPort()
      * @see #getPort()
      * @generated
      */
-    void setPort(int value);
+    void setPort(Integer value);
+
+    /**
+     * Unsets the value of the '{@link org.switchyard.tools.models.switchyard1_0.camel.netty.CamelNettyBindingType#getPort <em>Port</em>}' attribute.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @see #isSetPort()
+     * @see #getPort()
+     * @see #setPort(Integer)
+     * @generated
+     */
+    void unsetPort();
+
+    /**
+     * Returns whether the value of the '{@link org.switchyard.tools.models.switchyard1_0.camel.netty.CamelNettyBindingType#getPort <em>Port</em>}' attribute is set.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @return whether the value of the '<em>Port</em>' attribute is set.
+     * @see #unsetPort()
+     * @see #getPort()
+     * @see #setPort(Integer)
+     * @generated
+     */
+    boolean isSetPort();
 
     /**
      * Returns the value of the '<em><b>Receive Buffer Size</b></em>' attribute.
@@ -95,9 +122,11 @@ public interface CamelNettyBindingType extends BaseCamelBinding {
      * </p>
      * <!-- end-user-doc -->
      * @return the value of the '<em>Receive Buffer Size</em>' attribute.
+     * @see #isSetReceiveBufferSize()
+     * @see #unsetReceiveBufferSize()
      * @see #setReceiveBufferSize(Long)
      * @see org.switchyard.tools.models.switchyard1_0.camel.netty.NettyPackage#getCamelNettyBindingType_ReceiveBufferSize()
-     * @model dataType="org.eclipse.emf.ecore.xml.type.LongObject"
+     * @model unsettable="true" dataType="org.eclipse.emf.ecore.xml.type.LongObject"
      *        extendedMetaData="kind='element' name='receiveBufferSize' namespace='##targetNamespace'"
      * @generated
      */
@@ -108,10 +137,35 @@ public interface CamelNettyBindingType extends BaseCamelBinding {
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @param value the new value of the '<em>Receive Buffer Size</em>' attribute.
+     * @see #isSetReceiveBufferSize()
+     * @see #unsetReceiveBufferSize()
      * @see #getReceiveBufferSize()
      * @generated
      */
     void setReceiveBufferSize(Long value);
+
+    /**
+     * Unsets the value of the '{@link org.switchyard.tools.models.switchyard1_0.camel.netty.CamelNettyBindingType#getReceiveBufferSize <em>Receive Buffer Size</em>}' attribute.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @see #isSetReceiveBufferSize()
+     * @see #getReceiveBufferSize()
+     * @see #setReceiveBufferSize(Long)
+     * @generated
+     */
+    void unsetReceiveBufferSize();
+
+    /**
+     * Returns whether the value of the '{@link org.switchyard.tools.models.switchyard1_0.camel.netty.CamelNettyBindingType#getReceiveBufferSize <em>Receive Buffer Size</em>}' attribute is set.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @return whether the value of the '<em>Receive Buffer Size</em>' attribute is set.
+     * @see #unsetReceiveBufferSize()
+     * @see #getReceiveBufferSize()
+     * @see #setReceiveBufferSize(Long)
+     * @generated
+     */
+    boolean isSetReceiveBufferSize();
 
     /**
      * Returns the value of the '<em><b>Send Buffer Size</b></em>' attribute.
@@ -122,9 +176,11 @@ public interface CamelNettyBindingType extends BaseCamelBinding {
      * </p>
      * <!-- end-user-doc -->
      * @return the value of the '<em>Send Buffer Size</em>' attribute.
+     * @see #isSetSendBufferSize()
+     * @see #unsetSendBufferSize()
      * @see #setSendBufferSize(Long)
      * @see org.switchyard.tools.models.switchyard1_0.camel.netty.NettyPackage#getCamelNettyBindingType_SendBufferSize()
-     * @model dataType="org.eclipse.emf.ecore.xml.type.LongObject"
+     * @model unsettable="true" dataType="org.eclipse.emf.ecore.xml.type.LongObject"
      *        extendedMetaData="kind='element' name='sendBufferSize' namespace='##targetNamespace'"
      * @generated
      */
@@ -135,10 +191,35 @@ public interface CamelNettyBindingType extends BaseCamelBinding {
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @param value the new value of the '<em>Send Buffer Size</em>' attribute.
+     * @see #isSetSendBufferSize()
+     * @see #unsetSendBufferSize()
      * @see #getSendBufferSize()
      * @generated
      */
     void setSendBufferSize(Long value);
+
+    /**
+     * Unsets the value of the '{@link org.switchyard.tools.models.switchyard1_0.camel.netty.CamelNettyBindingType#getSendBufferSize <em>Send Buffer Size</em>}' attribute.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @see #isSetSendBufferSize()
+     * @see #getSendBufferSize()
+     * @see #setSendBufferSize(Long)
+     * @generated
+     */
+    void unsetSendBufferSize();
+
+    /**
+     * Returns whether the value of the '{@link org.switchyard.tools.models.switchyard1_0.camel.netty.CamelNettyBindingType#getSendBufferSize <em>Send Buffer Size</em>}' attribute is set.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @return whether the value of the '<em>Send Buffer Size</em>' attribute is set.
+     * @see #unsetSendBufferSize()
+     * @see #getSendBufferSize()
+     * @see #setSendBufferSize(Long)
+     * @generated
+     */
+    boolean isSetSendBufferSize();
 
     /**
      * Returns the value of the '<em><b>Reuse Address</b></em>' attribute.
@@ -151,45 +232,45 @@ public interface CamelNettyBindingType extends BaseCamelBinding {
      * @return the value of the '<em>Reuse Address</em>' attribute.
      * @see #isSetReuseAddress()
      * @see #unsetReuseAddress()
-     * @see #setReuseAddress(Boolean)
+     * @see #setReuseAddress(boolean)
      * @see org.switchyard.tools.models.switchyard1_0.camel.netty.NettyPackage#getCamelNettyBindingType_ReuseAddress()
-     * @model unsettable="true" dataType="org.eclipse.emf.ecore.xml.type.BooleanObject"
+     * @model unsettable="true" dataType="org.eclipse.emf.ecore.xml.type.Boolean"
      *        extendedMetaData="kind='element' name='reuseAddress' namespace='##targetNamespace'"
      * @generated
      */
-    Boolean getReuseAddress();
+    boolean isReuseAddress();
 
     /**
-     * Sets the value of the '{@link org.switchyard.tools.models.switchyard1_0.camel.netty.CamelNettyBindingType#getReuseAddress <em>Reuse Address</em>}' attribute.
+     * Sets the value of the '{@link org.switchyard.tools.models.switchyard1_0.camel.netty.CamelNettyBindingType#isReuseAddress <em>Reuse Address</em>}' attribute.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @param value the new value of the '<em>Reuse Address</em>' attribute.
      * @see #isSetReuseAddress()
      * @see #unsetReuseAddress()
-     * @see #getReuseAddress()
+     * @see #isReuseAddress()
      * @generated
      */
-    void setReuseAddress(Boolean value);
+    void setReuseAddress(boolean value);
 
     /**
-     * Unsets the value of the '{@link org.switchyard.tools.models.switchyard1_0.camel.netty.CamelNettyBindingType#getReuseAddress <em>Reuse Address</em>}' attribute.
+     * Unsets the value of the '{@link org.switchyard.tools.models.switchyard1_0.camel.netty.CamelNettyBindingType#isReuseAddress <em>Reuse Address</em>}' attribute.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @see #isSetReuseAddress()
-     * @see #getReuseAddress()
-     * @see #setReuseAddress(Boolean)
+     * @see #isReuseAddress()
+     * @see #setReuseAddress(boolean)
      * @generated
      */
     void unsetReuseAddress();
 
     /**
-     * Returns whether the value of the '{@link org.switchyard.tools.models.switchyard1_0.camel.netty.CamelNettyBindingType#getReuseAddress <em>Reuse Address</em>}' attribute is set.
+     * Returns whether the value of the '{@link org.switchyard.tools.models.switchyard1_0.camel.netty.CamelNettyBindingType#isReuseAddress <em>Reuse Address</em>}' attribute is set.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @return whether the value of the '<em>Reuse Address</em>' attribute is set.
      * @see #unsetReuseAddress()
-     * @see #getReuseAddress()
-     * @see #setReuseAddress(Boolean)
+     * @see #isReuseAddress()
+     * @see #setReuseAddress(boolean)
      * @generated
      */
     boolean isSetReuseAddress();
@@ -203,11 +284,9 @@ public interface CamelNettyBindingType extends BaseCamelBinding {
      * </p>
      * <!-- end-user-doc -->
      * @return the value of the '<em>Encoders</em>' attribute.
-     * @see #isSetEncoders()
-     * @see #unsetEncoders()
      * @see #setEncoders(String)
      * @see org.switchyard.tools.models.switchyard1_0.camel.netty.NettyPackage#getCamelNettyBindingType_Encoders()
-     * @model unsettable="true" dataType="org.eclipse.emf.ecore.xml.type.String"
+     * @model dataType="org.eclipse.emf.ecore.xml.type.String"
      *        extendedMetaData="kind='element' name='encoders' namespace='##targetNamespace'"
      * @generated
      */
@@ -218,35 +297,10 @@ public interface CamelNettyBindingType extends BaseCamelBinding {
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @param value the new value of the '<em>Encoders</em>' attribute.
-     * @see #isSetEncoders()
-     * @see #unsetEncoders()
      * @see #getEncoders()
      * @generated
      */
     void setEncoders(String value);
-
-    /**
-     * Unsets the value of the '{@link org.switchyard.tools.models.switchyard1_0.camel.netty.CamelNettyBindingType#getEncoders <em>Encoders</em>}' attribute.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @see #isSetEncoders()
-     * @see #getEncoders()
-     * @see #setEncoders(String)
-     * @generated
-     */
-    void unsetEncoders();
-
-    /**
-     * Returns whether the value of the '{@link org.switchyard.tools.models.switchyard1_0.camel.netty.CamelNettyBindingType#getEncoders <em>Encoders</em>}' attribute is set.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @return whether the value of the '<em>Encoders</em>' attribute is set.
-     * @see #unsetEncoders()
-     * @see #getEncoders()
-     * @see #setEncoders(String)
-     * @generated
-     */
-    boolean isSetEncoders();
 
     /**
      * Returns the value of the '<em><b>Decoders</b></em>' attribute.
@@ -257,11 +311,9 @@ public interface CamelNettyBindingType extends BaseCamelBinding {
      * </p>
      * <!-- end-user-doc -->
      * @return the value of the '<em>Decoders</em>' attribute.
-     * @see #isSetDecoders()
-     * @see #unsetDecoders()
      * @see #setDecoders(String)
      * @see org.switchyard.tools.models.switchyard1_0.camel.netty.NettyPackage#getCamelNettyBindingType_Decoders()
-     * @model unsettable="true" dataType="org.eclipse.emf.ecore.xml.type.String"
+     * @model dataType="org.eclipse.emf.ecore.xml.type.String"
      *        extendedMetaData="kind='element' name='decoders' namespace='##targetNamespace'"
      * @generated
      */
@@ -272,35 +324,10 @@ public interface CamelNettyBindingType extends BaseCamelBinding {
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @param value the new value of the '<em>Decoders</em>' attribute.
-     * @see #isSetDecoders()
-     * @see #unsetDecoders()
      * @see #getDecoders()
      * @generated
      */
     void setDecoders(String value);
-
-    /**
-     * Unsets the value of the '{@link org.switchyard.tools.models.switchyard1_0.camel.netty.CamelNettyBindingType#getDecoders <em>Decoders</em>}' attribute.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @see #isSetDecoders()
-     * @see #getDecoders()
-     * @see #setDecoders(String)
-     * @generated
-     */
-    void unsetDecoders();
-
-    /**
-     * Returns whether the value of the '{@link org.switchyard.tools.models.switchyard1_0.camel.netty.CamelNettyBindingType#getDecoders <em>Decoders</em>}' attribute is set.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @return whether the value of the '<em>Decoders</em>' attribute is set.
-     * @see #unsetDecoders()
-     * @see #getDecoders()
-     * @see #setDecoders(String)
-     * @generated
-     */
-    boolean isSetDecoders();
 
     /**
      * Returns the value of the '<em><b>Allow Default Codec</b></em>' attribute.
@@ -421,45 +448,45 @@ public interface CamelNettyBindingType extends BaseCamelBinding {
      * @return the value of the '<em>Sync</em>' attribute.
      * @see #isSetSync()
      * @see #unsetSync()
-     * @see #setSync(boolean)
+     * @see #setSync(Boolean)
      * @see org.switchyard.tools.models.switchyard1_0.camel.netty.NettyPackage#getCamelNettyBindingType_Sync()
-     * @model unsettable="true" dataType="org.eclipse.emf.ecore.xml.type.Boolean"
+     * @model unsettable="true" dataType="org.eclipse.emf.ecore.xml.type.BooleanObject"
      *        extendedMetaData="kind='element' name='sync' namespace='##targetNamespace'"
      * @generated
      */
-    boolean isSync();
+    Boolean getSync();
 
     /**
-     * Sets the value of the '{@link org.switchyard.tools.models.switchyard1_0.camel.netty.CamelNettyBindingType#isSync <em>Sync</em>}' attribute.
+     * Sets the value of the '{@link org.switchyard.tools.models.switchyard1_0.camel.netty.CamelNettyBindingType#getSync <em>Sync</em>}' attribute.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @param value the new value of the '<em>Sync</em>' attribute.
      * @see #isSetSync()
      * @see #unsetSync()
-     * @see #isSync()
+     * @see #getSync()
      * @generated
      */
-    void setSync(boolean value);
+    void setSync(Boolean value);
 
     /**
-     * Unsets the value of the '{@link org.switchyard.tools.models.switchyard1_0.camel.netty.CamelNettyBindingType#isSync <em>Sync</em>}' attribute.
+     * Unsets the value of the '{@link org.switchyard.tools.models.switchyard1_0.camel.netty.CamelNettyBindingType#getSync <em>Sync</em>}' attribute.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @see #isSetSync()
-     * @see #isSync()
-     * @see #setSync(boolean)
+     * @see #getSync()
+     * @see #setSync(Boolean)
      * @generated
      */
     void unsetSync();
 
     /**
-     * Returns whether the value of the '{@link org.switchyard.tools.models.switchyard1_0.camel.netty.CamelNettyBindingType#isSync <em>Sync</em>}' attribute is set.
+     * Returns whether the value of the '{@link org.switchyard.tools.models.switchyard1_0.camel.netty.CamelNettyBindingType#getSync <em>Sync</em>}' attribute is set.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @return whether the value of the '<em>Sync</em>' attribute is set.
      * @see #unsetSync()
-     * @see #isSync()
-     * @see #setSync(boolean)
+     * @see #getSync()
+     * @see #setSync(Boolean)
      * @generated
      */
     boolean isSetSync();

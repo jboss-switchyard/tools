@@ -109,7 +109,7 @@ public class CamelMailProducerTypeImpl extends EObjectImpl implements CamelMailP
      * @generated
      * @ordered
      */
-    protected String cc = CC_EDEFAULT;
+    protected String cC = CC_EDEFAULT;
 
     /**
      * The default value of the '{@link #getBCC() <em>BCC</em>}' attribute.
@@ -129,7 +129,7 @@ public class CamelMailProducerTypeImpl extends EObjectImpl implements CamelMailP
      * @generated
      * @ordered
      */
-    protected String bcc = BCC_EDEFAULT;
+    protected String bCC = BCC_EDEFAULT;
 
     /**
      * The default value of the '{@link #getReplyTo() <em>Reply To</em>}' attribute.
@@ -239,7 +239,7 @@ public class CamelMailProducerTypeImpl extends EObjectImpl implements CamelMailP
      * @generated
      */
     public String getCC() {
-        return cc;
+        return cC;
     }
 
     /**
@@ -248,10 +248,10 @@ public class CamelMailProducerTypeImpl extends EObjectImpl implements CamelMailP
      * @generated
      */
     public void setCC(String newCC) {
-        String oldCC = cc;
-        cc = newCC;
+        String oldCC = cC;
+        cC = newCC;
         if (eNotificationRequired())
-            eNotify(new ENotificationImpl(this, Notification.SET, MailPackage.CAMEL_MAIL_PRODUCER_TYPE__CC, oldCC, cc));
+            eNotify(new ENotificationImpl(this, Notification.SET, MailPackage.CAMEL_MAIL_PRODUCER_TYPE__CC, oldCC, cC));
     }
 
     /**
@@ -260,7 +260,7 @@ public class CamelMailProducerTypeImpl extends EObjectImpl implements CamelMailP
      * @generated
      */
     public String getBCC() {
-        return bcc;
+        return bCC;
     }
 
     /**
@@ -269,10 +269,10 @@ public class CamelMailProducerTypeImpl extends EObjectImpl implements CamelMailP
      * @generated
      */
     public void setBCC(String newBCC) {
-        String oldBCC = bcc;
-        bcc = newBCC;
+        String oldBCC = bCC;
+        bCC = newBCC;
         if (eNotificationRequired())
-            eNotify(new ENotificationImpl(this, Notification.SET, MailPackage.CAMEL_MAIL_PRODUCER_TYPE__BCC, oldBCC, bcc));
+            eNotify(new ENotificationImpl(this, Notification.SET, MailPackage.CAMEL_MAIL_PRODUCER_TYPE__BCC, oldBCC, bCC));
     }
 
     /**
@@ -395,9 +395,9 @@ public class CamelMailProducerTypeImpl extends EObjectImpl implements CamelMailP
             case MailPackage.CAMEL_MAIL_PRODUCER_TYPE__TO:
                 return TO_EDEFAULT == null ? to != null : !TO_EDEFAULT.equals(to);
             case MailPackage.CAMEL_MAIL_PRODUCER_TYPE__CC:
-                return CC_EDEFAULT == null ? cc != null : !CC_EDEFAULT.equals(cc);
+                return CC_EDEFAULT == null ? cC != null : !CC_EDEFAULT.equals(cC);
             case MailPackage.CAMEL_MAIL_PRODUCER_TYPE__BCC:
-                return BCC_EDEFAULT == null ? bcc != null : !BCC_EDEFAULT.equals(bcc);
+                return BCC_EDEFAULT == null ? bCC != null : !BCC_EDEFAULT.equals(bCC);
             case MailPackage.CAMEL_MAIL_PRODUCER_TYPE__REPLY_TO:
                 return REPLY_TO_EDEFAULT == null ? replyTo != null : !REPLY_TO_EDEFAULT.equals(replyTo);
         }
@@ -420,10 +420,10 @@ public class CamelMailProducerTypeImpl extends EObjectImpl implements CamelMailP
         result.append(from);
         result.append(", to: ");
         result.append(to);
-        result.append(", CC: ");
-        result.append(cc);
-        result.append(", BCC: ");
-        result.append(bcc);
+        result.append(", cC: ");
+        result.append(cC);
+        result.append(", bCC: ");
+        result.append(bCC);
         result.append(", replyTo: ");
         result.append(replyTo);
         result.append(')');

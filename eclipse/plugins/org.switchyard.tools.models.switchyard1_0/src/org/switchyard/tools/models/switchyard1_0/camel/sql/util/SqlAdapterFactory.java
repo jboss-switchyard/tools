@@ -75,6 +75,10 @@ public class SqlAdapterFactory extends AdapterFactoryImpl {
     protected SqlSwitch<Adapter> modelSwitch =
         new SqlSwitch<Adapter>() {
             @Override
+            public Adapter caseBaseCamelBinding(BaseCamelBinding object) {
+                return createBaseCamelBindingAdapter();
+            }
+            @Override
             public Adapter caseCamelSqlBindingType(CamelSqlBindingType object) {
                 return createCamelSqlBindingTypeAdapter();
             }
@@ -93,10 +97,6 @@ public class SqlAdapterFactory extends AdapterFactoryImpl {
             @Override
             public Adapter caseSwitchYardBindingType(SwitchYardBindingType object) {
                 return createSwitchYardBindingTypeAdapter();
-            }
-            @Override
-            public Adapter caseBaseCamelBinding(BaseCamelBinding object) {
-                return createBaseCamelBindingAdapter();
             }
             @Override
             public Adapter defaultCase(EObject object) {
@@ -189,13 +189,13 @@ public class SqlAdapterFactory extends AdapterFactoryImpl {
     }
 
     /**
-     * Creates a new adapter for an object of class '{@link org.switchyard.tools.models.switchyard1_0.camel.core.BaseCamelBinding <em>Base Camel Binding</em>}'.
+     * Creates a new adapter for an object of class '{@link org.switchyard.tools.models.switchyard1_0.camel.sql.BaseCamelBinding <em>Base Camel Binding</em>}'.
      * <!-- begin-user-doc -->
      * This default implementation returns null so that we can easily ignore cases;
      * it's useful to ignore a case when inheritance will catch all the cases anyway.
      * <!-- end-user-doc -->
      * @return the new adapter.
-     * @see org.switchyard.tools.models.switchyard1_0.camel.core.BaseCamelBinding
+     * @see org.switchyard.tools.models.switchyard1_0.camel.sql.BaseCamelBinding
      * @generated
      */
     public Adapter createBaseCamelBindingAdapter() {

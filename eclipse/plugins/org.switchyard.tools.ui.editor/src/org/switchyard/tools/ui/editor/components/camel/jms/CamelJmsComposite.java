@@ -35,11 +35,11 @@ import org.eclipse.swt.widgets.Group;
 import org.eclipse.swt.widgets.TabFolder;
 import org.eclipse.swt.widgets.TabItem;
 import org.eclipse.swt.widgets.Text;
-import org.switchyard.tools.models.switchyard1_0.camel.CamelFactory;
-import org.switchyard.tools.models.switchyard1_0.camel.CamelJmsBindingType;
+import org.switchyard.tools.models.switchyard1_0.camel.jms.CamelJmsBindingType;
 import org.switchyard.tools.models.switchyard1_0.switchyard.ContextMapperType;
 import org.switchyard.tools.models.switchyard1_0.switchyard.MessageComposerType;
 import org.switchyard.tools.models.switchyard1_0.switchyard.SwitchYardOperationSelectorType;
+import org.switchyard.tools.models.switchyard1_0.switchyard.SwitchyardFactory;
 import org.switchyard.tools.ui.editor.diagram.binding.AbstractSYBindingComposite;
 import org.switchyard.tools.ui.editor.diagram.binding.OperationSelectorComposite;
 import org.switchyard.tools.ui.editor.diagram.binding.OperationSelectorUtil;
@@ -86,7 +86,7 @@ public class CamelJmsComposite extends AbstractSYBindingComposite {
                 _typeCombo.select(TOPIC);
                 _typeNameText.setText(this._binding.getTopic());
             }
-            if (this._binding.getConcurrentConsumers() > 0) {
+            if (this._binding.getConcurrentConsumers() != null) {
                 _concurrentConsumersText.setText(Integer.toString(this._binding.getConcurrentConsumers()));
             }
             if (_requestTimeOutText != null && this._binding.getRequestTimeout() != null 
@@ -95,14 +95,16 @@ public class CamelJmsComposite extends AbstractSYBindingComposite {
                 _requestTimeOutText.setText(Integer.toString(this._binding.getRequestTimeout()));
             }
             if (_maxConcurrentConsumersText != null) {
-                if (this._binding.getMaxConcurrentConsumers() > 0) {
+                if (this._binding.getMaxConcurrentConsumers() != null) {
                     _maxConcurrentConsumersText.setText(Integer.toString(this._binding.getMaxConcurrentConsumers()));
                 }
             }
             if (this._binding.getConnectionFactory() != null && !this._binding.getConnectionFactory().trim().isEmpty()) {
                 _connectionFactoryText.setText(this._binding.getConnectionFactory());
             }
-            _transactedButton.setSelection(this._binding.isTransacted());
+            if (this._binding.getTransacted() != null) {
+                _transactedButton.setSelection(this._binding.getTransacted().booleanValue());
+            }
             if (this._binding.getTransactionManager() != null
                     && !this._binding.getTransactionManager().trim().isEmpty()) {
                 _transactionManagerText.setText(this._binding.getTransactionManager());
@@ -364,7 +366,7 @@ public class CamelJmsComposite extends AbstractSYBindingComposite {
                     _maxConcurrentConsumersText.setText("2000");
                 }
             } else if (control.equals(_transactedButton)) {
-                _transactedButton.setSelection(this._binding.isTransacted());
+                _transactedButton.setSelection(this._binding.getTransacted());
             } else if (control.equals(_typeCombo) || control.equals(_typeNameText)) {
                 if (this._binding.getQueue() != null && !this._binding.getQueue().trim().isEmpty()) {
                     _typeCombo.select(QUEUE);
@@ -408,12 +410,12 @@ public class CamelJmsComposite extends AbstractSYBindingComposite {
 
     @Override
     protected ContextMapperType createContextMapper() {
-        return CamelFactory.eINSTANCE.createCamelContextMapperType();
+        return SwitchyardFactory.eINSTANCE.createContextMapperType();
     }
 
     @Override
     protected MessageComposerType createMessageComposer() {
-        return CamelFactory.eINSTANCE.createCamelMessageComposerType();
+        return SwitchyardFactory.eINSTANCE.createMessageComposerType();
     }
     
 }

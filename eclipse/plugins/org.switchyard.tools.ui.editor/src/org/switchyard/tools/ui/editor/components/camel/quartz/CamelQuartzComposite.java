@@ -37,8 +37,7 @@ import org.eclipse.swt.widgets.Group;
 import org.eclipse.swt.widgets.TabFolder;
 import org.eclipse.swt.widgets.TabItem;
 import org.eclipse.swt.widgets.Text;
-import org.switchyard.tools.models.switchyard1_0.camel.CamelFactory;
-import org.switchyard.tools.models.switchyard1_0.camel.CamelQuartzBindingType;
+import org.switchyard.tools.models.switchyard1_0.camel.quartz.CamelQuartzBindingType;
 import org.switchyard.tools.models.switchyard1_0.switchyard.ContextMapperType;
 import org.switchyard.tools.models.switchyard1_0.switchyard.MessageComposerType;
 import org.switchyard.tools.models.switchyard1_0.switchyard.SwitchYardOperationSelectorType;
@@ -74,18 +73,18 @@ public class CamelQuartzComposite extends AbstractSYBindingComposite {
         if (impl instanceof CamelQuartzBindingType) {
             this._binding = (CamelQuartzBindingType) impl;
             setInUpdate(true);
-            if (this._binding.getCamelBindingName() != null) {
-                _nameText.setText(this._binding.getCamelBindingName());
+            if (this._binding.getNameElement() != null) {
+                _nameText.setText(this._binding.getNameElement());
             }
             if (this._binding.getCron() != null) {
                 _cronText.setText(this._binding.getCron());
             }
-            if (this._binding.getStartTime() != null) {
+            if (this._binding.getTriggerStartTime() != null) {
                 
-                _startTimeText.setText(this._binding.getStartTime().toString());
+                _startTimeText.setText(this._binding.getTriggerStartTime().toString());
             }
-            if (this._binding.getEndTime() != null) {
-                _endTimeText.setText(this._binding.getEndTime().toString());
+            if (this._binding.getTriggerEndTime() != null) {
+                _endTimeText.setText(this._binding.getTriggerEndTime().toString());
             }
 
             OperationSelectorType opSelector = OperationSelectorUtil.getFirstOperationSelector(this._binding);
@@ -93,7 +92,7 @@ public class CamelQuartzComposite extends AbstractSYBindingComposite {
             _opSelectorComposite.setOperation((SwitchYardOperationSelectorType) opSelector);
 
             setInUpdate(false);
-            if (this._binding.getCamelBindingName() == null || this._binding.getCamelBindingName().trim().isEmpty()) {
+            if (this._binding.getNameElement() == null || this._binding.getNameElement().trim().isEmpty()) {
                 if (getTargetObject() != null && getTargetObject() instanceof Contract) {
                     Contract contract = (Contract) getTargetObject();
                     if (contract.eContainer() != null && contract.eContainer() instanceof org.eclipse.soa.sca.sca1_1.model.sca.Composite) {
@@ -250,13 +249,13 @@ public class CamelQuartzComposite extends AbstractSYBindingComposite {
     protected void handleUndo(Control control) {
         if (_binding != null) {
             if (control.equals(_nameText)) {
-                _nameText.setText(this._binding.getCamelBindingName());
+                _nameText.setText(this._binding.getNameElement());
             } else if (control.equals(_cronText)) {
                 _cronText.setText(this._binding.getCron());
             } else if (control.equals(_endTimeText)) {
-                _endTimeText.setText(this._binding.getEndTime().toString());
+                _endTimeText.setText(this._binding.getTriggerEndTime().toString());
             } else if (control.equals(_startTimeText)) {
-                _startTimeText.setText(this._binding.getStartTime().toString());
+                _startTimeText.setText(this._binding.getTriggerStartTime().toString());
 //            } else if (control.equals(_operationSelectionCombo)) {
 //                if (this._binding.getOperationSelector() != null && this._binding.getOperationSelector() instanceof StaticOperationSelectorType) {
 //                    populateOperationCombo();
@@ -278,15 +277,15 @@ public class CamelQuartzComposite extends AbstractSYBindingComposite {
         }
         return _advancedPropsFilterList;
     }
-
+    
     @Override
     protected ContextMapperType createContextMapper() {
-        return CamelFactory.eINSTANCE.createCamelContextMapperType();
+        return SwitchyardFactory.eINSTANCE.createContextMapperType();
     }
 
     @Override
     protected MessageComposerType createMessageComposer() {
-        return CamelFactory.eINSTANCE.createCamelMessageComposerType();
+        return SwitchyardFactory.eINSTANCE.createMessageComposerType();
     }
-    
+
 }

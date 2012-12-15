@@ -73,6 +73,15 @@ public class QuartzSwitch<T> extends Switch<T> {
     @Override
     protected T doSwitch(int classifierID, EObject theEObject) {
         switch (classifierID) {
+            case QuartzPackage.BASE_CAMEL_BINDING: {
+                BaseCamelBinding baseCamelBinding = (BaseCamelBinding)theEObject;
+                T result = caseBaseCamelBinding(baseCamelBinding);
+                if (result == null) result = caseSwitchYardBindingType(baseCamelBinding);
+                if (result == null) result = caseBinding(baseCamelBinding);
+                if (result == null) result = caseCommonExtensionBase(baseCamelBinding);
+                if (result == null) result = defaultCase(theEObject);
+                return result;
+            }
             case QuartzPackage.CAMEL_QUARTZ_BINDING_TYPE: {
                 CamelQuartzBindingType camelQuartzBindingType = (CamelQuartzBindingType)theEObject;
                 T result = caseCamelQuartzBindingType(camelQuartzBindingType);

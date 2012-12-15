@@ -15,7 +15,7 @@ package org.switchyard.tools.models.switchyard1_0.camel.core;
  * </ul>
  * </p>
  *
- * @see org.switchyard.tools.models.switchyard1_0.camel.core.CamelPackage#getCamelDirectBindingType()
+ * @see org.switchyard.tools.models.switchyard1_0.camel.core.CorePackage#getCamelDirectBindingType()
  * @model extendedMetaData="name='CamelDirectBindingType' kind='elementOnly'"
  * @generated
  */
@@ -30,7 +30,7 @@ public interface CamelDirectBindingType extends BaseCamelBinding {
      * <!-- end-user-doc -->
      * @return the value of the '<em>Name Element</em>' attribute.
      * @see #setNameElement(String)
-     * @see org.switchyard.tools.models.switchyard1_0.camel.core.CamelPackage#getCamelDirectBindingType_NameElement()
+     * @see org.switchyard.tools.models.switchyard1_0.camel.core.CorePackage#getCamelDirectBindingType_NameElement()
      * @model dataType="org.eclipse.emf.ecore.xml.type.String" required="true"
      *        extendedMetaData="kind='element' name='name' namespace='##targetNamespace'"
      * @generated

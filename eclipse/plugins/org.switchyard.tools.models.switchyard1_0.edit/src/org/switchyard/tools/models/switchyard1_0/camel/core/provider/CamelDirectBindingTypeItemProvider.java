@@ -20,7 +20,7 @@ import org.eclipse.emf.edit.provider.ItemPropertyDescriptor;
 import org.eclipse.emf.edit.provider.ViewerNotification;
 
 import org.switchyard.tools.models.switchyard1_0.camel.core.CamelDirectBindingType;
-import org.switchyard.tools.models.switchyard1_0.camel.core.CamelPackage;
+import org.switchyard.tools.models.switchyard1_0.camel.core.CorePackage;
 
 /**
  * This is the item provider adapter for a {@link org.switchyard.tools.models.switchyard1_0.camel.core.CamelDirectBindingType} object.
@@ -75,7 +75,7 @@ public class CamelDirectBindingTypeItemProvider
                  getResourceLocator(),
                  getString("_UI_CamelDirectBindingType_nameElement_feature"),
                  getString("_UI_PropertyDescriptor_description", "_UI_CamelDirectBindingType_nameElement_feature", "_UI_CamelDirectBindingType_type"),
-                 CamelPackage.Literals.CAMEL_DIRECT_BINDING_TYPE__NAME_ELEMENT,
+                 CorePackage.Literals.CAMEL_DIRECT_BINDING_TYPE__NAME_ELEMENT,
                  true,
                  false,
                  false,
@@ -121,7 +121,7 @@ public class CamelDirectBindingTypeItemProvider
         updateChildren(notification);
 
         switch (notification.getFeatureID(CamelDirectBindingType.class)) {
-            case CamelPackage.CAMEL_DIRECT_BINDING_TYPE__NAME_ELEMENT:
+            case CorePackage.CAMEL_DIRECT_BINDING_TYPE__NAME_ELEMENT:
                 fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
                 return;
         }

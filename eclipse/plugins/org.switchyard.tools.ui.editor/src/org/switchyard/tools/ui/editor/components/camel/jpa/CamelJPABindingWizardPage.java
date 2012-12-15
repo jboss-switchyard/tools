@@ -20,8 +20,8 @@ import org.eclipse.soa.sca.sca1_1.model.sca.Binding;
 import org.eclipse.soa.sca.sca1_1.model.sca.Contract;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.widgets.Composite;
-import org.switchyard.tools.models.switchyard1_0.camel.CamelFactory;
-import org.switchyard.tools.models.switchyard1_0.camel.CamelJPABindingType;
+import org.switchyard.tools.models.switchyard1_0.camel.jpa.CamelJPABindingType;
+import org.switchyard.tools.models.switchyard1_0.camel.jpa.JpaFactory;
 
 /**
  * @author bfitzpat
@@ -31,7 +31,7 @@ public class CamelJPABindingWizardPage extends WizardPage {
 
     private CamelJPAConsumerComposite _consumerComposite = null;
     private CamelJPAProducerComposite _producerComposite = null;
-    private CamelJPABindingType _binding = CamelFactory.eINSTANCE.createCamelJPABindingType();
+    private CamelJPABindingType _binding = JpaFactory.eINSTANCE.createCamelJPABindingType();
     private boolean _showConsumer;
     private Contract _targetContainer;
 
@@ -54,9 +54,9 @@ public class CamelJPABindingWizardPage extends WizardPage {
         _showConsumer = showConsumer;
         if (_binding != null) {
             if (_showConsumer) {
-                _binding.setConsume(CamelFactory.eINSTANCE.createJpaConsumerType());
+                _binding.setConsume(JpaFactory.eINSTANCE.createJpaConsumerType());
             } else {
-                _binding.setProduce(CamelFactory.eINSTANCE.createJpaProducerType());
+                _binding.setProduce(JpaFactory.eINSTANCE.createJpaProducerType());
             }
         }
     }

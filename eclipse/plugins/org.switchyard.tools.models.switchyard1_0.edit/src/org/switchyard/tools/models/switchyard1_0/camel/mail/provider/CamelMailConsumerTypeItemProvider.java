@@ -19,11 +19,10 @@ import org.eclipse.emf.edit.provider.IItemPropertySource;
 import org.eclipse.emf.edit.provider.IStructuredItemContentProvider;
 import org.eclipse.emf.edit.provider.ITreeItemContentProvider;
 import org.eclipse.emf.edit.provider.ItemPropertyDescriptor;
+import org.eclipse.emf.edit.provider.ItemProviderAdapter;
 import org.eclipse.emf.edit.provider.ViewerNotification;
 
 import org.switchyard.tools.models.switchyard1_0.bean.provider.Switchyard_1EditPlugin;
-
-import org.switchyard.tools.models.switchyard1_0.camel.core.provider.ScheduledBatchPollConsumerTypeItemProvider;
 
 import org.switchyard.tools.models.switchyard1_0.camel.mail.CamelMailConsumerType;
 import org.switchyard.tools.models.switchyard1_0.camel.mail.MailPackage;
@@ -35,7 +34,7 @@ import org.switchyard.tools.models.switchyard1_0.camel.mail.MailPackage;
  * @generated
  */
 public class CamelMailConsumerTypeItemProvider
-    extends ScheduledBatchPollConsumerTypeItemProvider
+    extends ItemProviderAdapter
     implements
         IEditingDomainItemProvider,
         IStructuredItemContentProvider,
@@ -63,6 +62,12 @@ public class CamelMailConsumerTypeItemProvider
         if (itemPropertyDescriptors == null) {
             super.getPropertyDescriptors(object);
 
+            addInitialDelayPropertyDescriptor(object);
+            addDelayPropertyDescriptor(object);
+            addUseFixedDelayPropertyDescriptor(object);
+            addSendEmptyMessageWhenIdlePropertyDescriptor(object);
+            addTimeUnitPropertyDescriptor(object);
+            addMaxMessagesPerPollPropertyDescriptor(object);
             addFolderNamePropertyDescriptor(object);
             addFetchSizePropertyDescriptor(object);
             addUnseenPropertyDescriptor(object);
@@ -72,6 +77,138 @@ public class CamelMailConsumerTypeItemProvider
             addAccountTypePropertyDescriptor(object);
         }
         return itemPropertyDescriptors;
+    }
+
+    /**
+     * This adds a property descriptor for the Initial Delay feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    protected void addInitialDelayPropertyDescriptor(Object object) {
+        itemPropertyDescriptors.add
+            (createItemPropertyDescriptor
+                (((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+                 getResourceLocator(),
+                 getString("_UI_CamelMailConsumerType_initialDelay_feature"),
+                 getString("_UI_PropertyDescriptor_description", "_UI_CamelMailConsumerType_initialDelay_feature", "_UI_CamelMailConsumerType_type"),
+                 MailPackage.Literals.CAMEL_MAIL_CONSUMER_TYPE__INITIAL_DELAY,
+                 true,
+                 false,
+                 false,
+                 ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
+                 null,
+                 null));
+    }
+
+    /**
+     * This adds a property descriptor for the Delay feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    protected void addDelayPropertyDescriptor(Object object) {
+        itemPropertyDescriptors.add
+            (createItemPropertyDescriptor
+                (((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+                 getResourceLocator(),
+                 getString("_UI_CamelMailConsumerType_delay_feature"),
+                 getString("_UI_PropertyDescriptor_description", "_UI_CamelMailConsumerType_delay_feature", "_UI_CamelMailConsumerType_type"),
+                 MailPackage.Literals.CAMEL_MAIL_CONSUMER_TYPE__DELAY,
+                 true,
+                 false,
+                 false,
+                 ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
+                 null,
+                 null));
+    }
+
+    /**
+     * This adds a property descriptor for the Use Fixed Delay feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    protected void addUseFixedDelayPropertyDescriptor(Object object) {
+        itemPropertyDescriptors.add
+            (createItemPropertyDescriptor
+                (((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+                 getResourceLocator(),
+                 getString("_UI_CamelMailConsumerType_useFixedDelay_feature"),
+                 getString("_UI_PropertyDescriptor_description", "_UI_CamelMailConsumerType_useFixedDelay_feature", "_UI_CamelMailConsumerType_type"),
+                 MailPackage.Literals.CAMEL_MAIL_CONSUMER_TYPE__USE_FIXED_DELAY,
+                 true,
+                 false,
+                 false,
+                 ItemPropertyDescriptor.BOOLEAN_VALUE_IMAGE,
+                 null,
+                 null));
+    }
+
+    /**
+     * This adds a property descriptor for the Send Empty Message When Idle feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    protected void addSendEmptyMessageWhenIdlePropertyDescriptor(Object object) {
+        itemPropertyDescriptors.add
+            (createItemPropertyDescriptor
+                (((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+                 getResourceLocator(),
+                 getString("_UI_CamelMailConsumerType_sendEmptyMessageWhenIdle_feature"),
+                 getString("_UI_PropertyDescriptor_description", "_UI_CamelMailConsumerType_sendEmptyMessageWhenIdle_feature", "_UI_CamelMailConsumerType_type"),
+                 MailPackage.Literals.CAMEL_MAIL_CONSUMER_TYPE__SEND_EMPTY_MESSAGE_WHEN_IDLE,
+                 true,
+                 false,
+                 false,
+                 ItemPropertyDescriptor.BOOLEAN_VALUE_IMAGE,
+                 null,
+                 null));
+    }
+
+    /**
+     * This adds a property descriptor for the Time Unit feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    protected void addTimeUnitPropertyDescriptor(Object object) {
+        itemPropertyDescriptors.add
+            (createItemPropertyDescriptor
+                (((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+                 getResourceLocator(),
+                 getString("_UI_CamelMailConsumerType_timeUnit_feature"),
+                 getString("_UI_PropertyDescriptor_description", "_UI_CamelMailConsumerType_timeUnit_feature", "_UI_CamelMailConsumerType_type"),
+                 MailPackage.Literals.CAMEL_MAIL_CONSUMER_TYPE__TIME_UNIT,
+                 true,
+                 false,
+                 false,
+                 ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
+                 null,
+                 null));
+    }
+
+    /**
+     * This adds a property descriptor for the Max Messages Per Poll feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    protected void addMaxMessagesPerPollPropertyDescriptor(Object object) {
+        itemPropertyDescriptors.add
+            (createItemPropertyDescriptor
+                (((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+                 getResourceLocator(),
+                 getString("_UI_CamelMailConsumerType_maxMessagesPerPoll_feature"),
+                 getString("_UI_PropertyDescriptor_description", "_UI_CamelMailConsumerType_maxMessagesPerPoll_feature", "_UI_CamelMailConsumerType_type"),
+                 MailPackage.Literals.CAMEL_MAIL_CONSUMER_TYPE__MAX_MESSAGES_PER_POLL,
+                 true,
+                 false,
+                 false,
+                 ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
+                 null,
+                 null));
     }
 
     /**
@@ -135,7 +272,7 @@ public class CamelMailConsumerTypeItemProvider
                  true,
                  false,
                  false,
-                 ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
+                 ItemPropertyDescriptor.BOOLEAN_VALUE_IMAGE,
                  null,
                  null));
     }
@@ -157,7 +294,7 @@ public class CamelMailConsumerTypeItemProvider
                  true,
                  false,
                  false,
-                 ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
+                 ItemPropertyDescriptor.BOOLEAN_VALUE_IMAGE,
                  null,
                  null));
     }
@@ -201,7 +338,7 @@ public class CamelMailConsumerTypeItemProvider
                  true,
                  false,
                  false,
-                 ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
+                 ItemPropertyDescriptor.BOOLEAN_VALUE_IMAGE,
                  null,
                  null));
     }
@@ -265,6 +402,12 @@ public class CamelMailConsumerTypeItemProvider
         updateChildren(notification);
 
         switch (notification.getFeatureID(CamelMailConsumerType.class)) {
+            case MailPackage.CAMEL_MAIL_CONSUMER_TYPE__INITIAL_DELAY:
+            case MailPackage.CAMEL_MAIL_CONSUMER_TYPE__DELAY:
+            case MailPackage.CAMEL_MAIL_CONSUMER_TYPE__USE_FIXED_DELAY:
+            case MailPackage.CAMEL_MAIL_CONSUMER_TYPE__SEND_EMPTY_MESSAGE_WHEN_IDLE:
+            case MailPackage.CAMEL_MAIL_CONSUMER_TYPE__TIME_UNIT:
+            case MailPackage.CAMEL_MAIL_CONSUMER_TYPE__MAX_MESSAGES_PER_POLL:
             case MailPackage.CAMEL_MAIL_CONSUMER_TYPE__FOLDER_NAME:
             case MailPackage.CAMEL_MAIL_CONSUMER_TYPE__FETCH_SIZE:
             case MailPackage.CAMEL_MAIL_CONSUMER_TYPE__UNSEEN:

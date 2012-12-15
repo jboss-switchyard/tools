@@ -20,7 +20,7 @@ import org.eclipse.emf.ecore.EObject;
  * </ul>
  * </p>
  *
- * @see org.switchyard.tools.models.switchyard1_0.camel.core.CamelPackage#getScheduledPollConsumerType()
+ * @see org.switchyard.tools.models.switchyard1_0.camel.core.CorePackage#getScheduledPollConsumerType()
  * @model extendedMetaData="name='ScheduledPollConsumerType' kind='elementOnly'"
  * @generated
  */
@@ -35,7 +35,7 @@ public interface ScheduledPollConsumerType extends EObject {
      * <!-- end-user-doc -->
      * @return the value of the '<em>Initial Delay</em>' attribute.
      * @see #setInitialDelay(Integer)
-     * @see org.switchyard.tools.models.switchyard1_0.camel.core.CamelPackage#getScheduledPollConsumerType_InitialDelay()
+     * @see org.switchyard.tools.models.switchyard1_0.camel.core.CorePackage#getScheduledPollConsumerType_InitialDelay()
      * @model dataType="org.eclipse.emf.ecore.xml.type.IntObject"
      *        extendedMetaData="kind='element' name='initialDelay' namespace='##targetNamespace'"
      * @generated
@@ -62,7 +62,7 @@ public interface ScheduledPollConsumerType extends EObject {
      * <!-- end-user-doc -->
      * @return the value of the '<em>Delay</em>' attribute.
      * @see #setDelay(Integer)
-     * @see org.switchyard.tools.models.switchyard1_0.camel.core.CamelPackage#getScheduledPollConsumerType_Delay()
+     * @see org.switchyard.tools.models.switchyard1_0.camel.core.CorePackage#getScheduledPollConsumerType_Delay()
      * @model dataType="org.eclipse.emf.ecore.xml.type.IntObject"
      *        extendedMetaData="kind='element' name='delay' namespace='##targetNamespace'"
      * @generated
@@ -91,7 +91,7 @@ public interface ScheduledPollConsumerType extends EObject {
      * @see #isSetUseFixedDelay()
      * @see #unsetUseFixedDelay()
      * @see #setUseFixedDelay(Boolean)
-     * @see org.switchyard.tools.models.switchyard1_0.camel.core.CamelPackage#getScheduledPollConsumerType_UseFixedDelay()
+     * @see org.switchyard.tools.models.switchyard1_0.camel.core.CorePackage#getScheduledPollConsumerType_UseFixedDelay()
      * @model unsettable="true" dataType="org.eclipse.emf.ecore.xml.type.BooleanObject"
      *        extendedMetaData="kind='element' name='useFixedDelay' namespace='##targetNamespace'"
      * @generated
@@ -145,7 +145,7 @@ public interface ScheduledPollConsumerType extends EObject {
      * @see #isSetSendEmptyMessageWhenIdle()
      * @see #unsetSendEmptyMessageWhenIdle()
      * @see #setSendEmptyMessageWhenIdle(Boolean)
-     * @see org.switchyard.tools.models.switchyard1_0.camel.core.CamelPackage#getScheduledPollConsumerType_SendEmptyMessageWhenIdle()
+     * @see org.switchyard.tools.models.switchyard1_0.camel.core.CorePackage#getScheduledPollConsumerType_SendEmptyMessageWhenIdle()
      * @model unsettable="true" dataType="org.eclipse.emf.ecore.xml.type.BooleanObject"
      *        extendedMetaData="kind='element' name='sendEmptyMessageWhenIdle' namespace='##targetNamespace'"
      * @generated
@@ -201,7 +201,7 @@ public interface ScheduledPollConsumerType extends EObject {
      * @see #isSetTimeUnit()
      * @see #unsetTimeUnit()
      * @see #setTimeUnit(TimeUnit)
-     * @see org.switchyard.tools.models.switchyard1_0.camel.core.CamelPackage#getScheduledPollConsumerType_TimeUnit()
+     * @see org.switchyard.tools.models.switchyard1_0.camel.core.CorePackage#getScheduledPollConsumerType_TimeUnit()
      * @model unsettable="true"
      *        extendedMetaData="kind='element' name='timeUnit' namespace='##targetNamespace'"
      * @generated

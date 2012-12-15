@@ -4,6 +4,8 @@ package org.switchyard.tools.models.switchyard1_0.camel.atom.impl;
 
 import org.eclipse.emf.ecore.EAttribute;
 import org.eclipse.emf.ecore.EClass;
+import org.eclipse.emf.ecore.EDataType;
+import org.eclipse.emf.ecore.EEnum;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.EReference;
 
@@ -25,6 +27,7 @@ import org.switchyard.tools.models.switchyard1_0.bpm.BPMPackage;
 
 import org.switchyard.tools.models.switchyard1_0.bpm.impl.BPMPackageImpl;
 
+import org.switchyard.tools.models.switchyard1_0.camel.CamelPackage;
 import org.switchyard.tools.models.switchyard1_0.camel.amqp.AmqpPackage;
 
 import org.switchyard.tools.models.switchyard1_0.camel.amqp.impl.AmqpPackageImpl;
@@ -32,17 +35,33 @@ import org.switchyard.tools.models.switchyard1_0.camel.amqp.impl.AmqpPackageImpl
 import org.switchyard.tools.models.switchyard1_0.camel.atom.AtomFactory;
 import org.switchyard.tools.models.switchyard1_0.camel.atom.AtomPackage;
 import org.switchyard.tools.models.switchyard1_0.camel.atom.AtomScheduledPollConsumerType;
+import org.switchyard.tools.models.switchyard1_0.camel.atom.BaseCamelBinding;
 import org.switchyard.tools.models.switchyard1_0.camel.atom.CamelAtomBindingType;
 import org.switchyard.tools.models.switchyard1_0.camel.atom.DocumentRoot;
 
-import org.switchyard.tools.models.switchyard1_0.camel.core.CamelPackage;
-
-import org.switchyard.tools.models.switchyard1_0.camel.core.impl.CamelPackageImpl;
+import org.switchyard.tools.models.switchyard1_0.camel.atom.TimeUnitType;
+import org.switchyard.tools.models.switchyard1_0.camel.core.CorePackage;
+import org.switchyard.tools.models.switchyard1_0.camel.core.impl.CorePackageImpl;
 
 import org.switchyard.tools.models.switchyard1_0.camel.file.FilePackage;
 
 import org.switchyard.tools.models.switchyard1_0.camel.file.impl.FilePackageImpl;
 
+import org.switchyard.tools.models.switchyard1_0.camel.ftp.FtpPackage;
+import org.switchyard.tools.models.switchyard1_0.camel.ftp.impl.FtpPackageImpl;
+import org.switchyard.tools.models.switchyard1_0.camel.impl.CamelPackageImpl;
+import org.switchyard.tools.models.switchyard1_0.camel.jms.JmsPackage;
+import org.switchyard.tools.models.switchyard1_0.camel.jms.impl.JmsPackageImpl;
+import org.switchyard.tools.models.switchyard1_0.camel.jpa.JpaPackage;
+import org.switchyard.tools.models.switchyard1_0.camel.jpa.impl.JpaPackageImpl;
+import org.switchyard.tools.models.switchyard1_0.camel.mail.MailPackage;
+import org.switchyard.tools.models.switchyard1_0.camel.mail.impl.MailPackageImpl;
+import org.switchyard.tools.models.switchyard1_0.camel.netty.NettyPackage;
+import org.switchyard.tools.models.switchyard1_0.camel.netty.impl.NettyPackageImpl;
+import org.switchyard.tools.models.switchyard1_0.camel.quartz.QuartzPackage;
+import org.switchyard.tools.models.switchyard1_0.camel.quartz.impl.QuartzPackageImpl;
+import org.switchyard.tools.models.switchyard1_0.camel.sql.SqlPackage;
+import org.switchyard.tools.models.switchyard1_0.camel.sql.impl.SqlPackageImpl;
 import org.switchyard.tools.models.switchyard1_0.clojure.ClojurePackage;
 
 import org.switchyard.tools.models.switchyard1_0.clojure.impl.ClojurePackageImpl;
@@ -107,6 +126,13 @@ public class AtomPackageImpl extends EPackageImpl implements AtomPackage {
      * <!-- end-user-doc -->
      * @generated
      */
+    private EClass baseCamelBindingEClass = null;
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
     private EClass camelAtomBindingTypeEClass = null;
 
     /**
@@ -122,6 +148,20 @@ public class AtomPackageImpl extends EPackageImpl implements AtomPackage {
      * @generated
      */
     private EClass documentRootEClass = null;
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    private EEnum timeUnitTypeEEnum = null;
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    private EDataType timeUnitTypeObjectEDataType = null;
 
     /**
      * Creates an instance of the model <b>Package</b>, registered with
@@ -185,14 +225,22 @@ public class AtomPackageImpl extends EPackageImpl implements AtomPackage {
         SOAPPackageImpl theSOAPPackage = (SOAPPackageImpl)(EPackage.Registry.INSTANCE.getEPackage(SOAPPackage.eNS_URI) instanceof SOAPPackageImpl ? EPackage.Registry.INSTANCE.getEPackage(SOAPPackage.eNS_URI) : SOAPPackage.eINSTANCE);
         TransformPackageImpl theTransformPackage = (TransformPackageImpl)(EPackage.Registry.INSTANCE.getEPackage(TransformPackage.eNS_URI) instanceof TransformPackageImpl ? EPackage.Registry.INSTANCE.getEPackage(TransformPackage.eNS_URI) : TransformPackage.eINSTANCE);
         ValidatePackageImpl theValidatePackage = (ValidatePackageImpl)(EPackage.Registry.INSTANCE.getEPackage(ValidatePackage.eNS_URI) instanceof ValidatePackageImpl ? EPackage.Registry.INSTANCE.getEPackage(ValidatePackage.eNS_URI) : ValidatePackage.eINSTANCE);
+        CamelPackageImpl theCamelPackage = (CamelPackageImpl)(EPackage.Registry.INSTANCE.getEPackage(CamelPackage.eNS_URI) instanceof CamelPackageImpl ? EPackage.Registry.INSTANCE.getEPackage(CamelPackage.eNS_URI) : CamelPackage.eINSTANCE);
         SpringPackageImpl theSpringPackage = (SpringPackageImpl)(EPackage.Registry.INSTANCE.getEPackage(SpringPackage.eNS_URI) instanceof SpringPackageImpl ? EPackage.Registry.INSTANCE.getEPackage(SpringPackage.eNS_URI) : SpringPackage.eINSTANCE);
         JcaPackageImpl theJcaPackage = (JcaPackageImpl)(EPackage.Registry.INSTANCE.getEPackage(JcaPackage.eNS_URI) instanceof JcaPackageImpl ? EPackage.Registry.INSTANCE.getEPackage(JcaPackage.eNS_URI) : JcaPackage.eINSTANCE);
         ResteasyPackageImpl theResteasyPackage = (ResteasyPackageImpl)(EPackage.Registry.INSTANCE.getEPackage(ResteasyPackage.eNS_URI) instanceof ResteasyPackageImpl ? EPackage.Registry.INSTANCE.getEPackage(ResteasyPackage.eNS_URI) : ResteasyPackage.eINSTANCE);
         HttpPackageImpl theHttpPackage = (HttpPackageImpl)(EPackage.Registry.INSTANCE.getEPackage(HttpPackage.eNS_URI) instanceof HttpPackageImpl ? EPackage.Registry.INSTANCE.getEPackage(HttpPackage.eNS_URI) : HttpPackage.eINSTANCE);
         RemotePackageImpl theRemotePackage = (RemotePackageImpl)(EPackage.Registry.INSTANCE.getEPackage(RemotePackage.eNS_URI) instanceof RemotePackageImpl ? EPackage.Registry.INSTANCE.getEPackage(RemotePackage.eNS_URI) : RemotePackage.eINSTANCE);
-        CamelPackageImpl theCamelPackage = (CamelPackageImpl)(EPackage.Registry.INSTANCE.getEPackage(CamelPackage.eNS_URI) instanceof CamelPackageImpl ? EPackage.Registry.INSTANCE.getEPackage(CamelPackage.eNS_URI) : CamelPackage.eINSTANCE);
+        CorePackageImpl theCorePackage = (CorePackageImpl)(EPackage.Registry.INSTANCE.getEPackage(CorePackage.eNS_URI) instanceof CorePackageImpl ? EPackage.Registry.INSTANCE.getEPackage(CorePackage.eNS_URI) : CorePackage.eINSTANCE);
         AmqpPackageImpl theAmqpPackage = (AmqpPackageImpl)(EPackage.Registry.INSTANCE.getEPackage(AmqpPackage.eNS_URI) instanceof AmqpPackageImpl ? EPackage.Registry.INSTANCE.getEPackage(AmqpPackage.eNS_URI) : AmqpPackage.eINSTANCE);
         FilePackageImpl theFilePackage = (FilePackageImpl)(EPackage.Registry.INSTANCE.getEPackage(FilePackage.eNS_URI) instanceof FilePackageImpl ? EPackage.Registry.INSTANCE.getEPackage(FilePackage.eNS_URI) : FilePackage.eINSTANCE);
+        FtpPackageImpl theFtpPackage = (FtpPackageImpl)(EPackage.Registry.INSTANCE.getEPackage(FtpPackage.eNS_URI) instanceof FtpPackageImpl ? EPackage.Registry.INSTANCE.getEPackage(FtpPackage.eNS_URI) : FtpPackage.eINSTANCE);
+        JmsPackageImpl theJmsPackage = (JmsPackageImpl)(EPackage.Registry.INSTANCE.getEPackage(JmsPackage.eNS_URI) instanceof JmsPackageImpl ? EPackage.Registry.INSTANCE.getEPackage(JmsPackage.eNS_URI) : JmsPackage.eINSTANCE);
+        JpaPackageImpl theJpaPackage = (JpaPackageImpl)(EPackage.Registry.INSTANCE.getEPackage(JpaPackage.eNS_URI) instanceof JpaPackageImpl ? EPackage.Registry.INSTANCE.getEPackage(JpaPackage.eNS_URI) : JpaPackage.eINSTANCE);
+        MailPackageImpl theMailPackage = (MailPackageImpl)(EPackage.Registry.INSTANCE.getEPackage(MailPackage.eNS_URI) instanceof MailPackageImpl ? EPackage.Registry.INSTANCE.getEPackage(MailPackage.eNS_URI) : MailPackage.eINSTANCE);
+        NettyPackageImpl theNettyPackage = (NettyPackageImpl)(EPackage.Registry.INSTANCE.getEPackage(NettyPackage.eNS_URI) instanceof NettyPackageImpl ? EPackage.Registry.INSTANCE.getEPackage(NettyPackage.eNS_URI) : NettyPackage.eINSTANCE);
+        QuartzPackageImpl theQuartzPackage = (QuartzPackageImpl)(EPackage.Registry.INSTANCE.getEPackage(QuartzPackage.eNS_URI) instanceof QuartzPackageImpl ? EPackage.Registry.INSTANCE.getEPackage(QuartzPackage.eNS_URI) : QuartzPackage.eINSTANCE);
+        SqlPackageImpl theSqlPackage = (SqlPackageImpl)(EPackage.Registry.INSTANCE.getEPackage(SqlPackage.eNS_URI) instanceof SqlPackageImpl ? EPackage.Registry.INSTANCE.getEPackage(SqlPackage.eNS_URI) : SqlPackage.eINSTANCE);
 
         // Load packages
         theSpringPackage.loadPackage();
@@ -210,13 +258,21 @@ public class AtomPackageImpl extends EPackageImpl implements AtomPackage {
         theSOAPPackage.createPackageContents();
         theTransformPackage.createPackageContents();
         theValidatePackage.createPackageContents();
+        theCamelPackage.createPackageContents();
         theJcaPackage.createPackageContents();
         theResteasyPackage.createPackageContents();
         theHttpPackage.createPackageContents();
         theRemotePackage.createPackageContents();
-        theCamelPackage.createPackageContents();
+        theCorePackage.createPackageContents();
         theAmqpPackage.createPackageContents();
         theFilePackage.createPackageContents();
+        theFtpPackage.createPackageContents();
+        theJmsPackage.createPackageContents();
+        theJpaPackage.createPackageContents();
+        theMailPackage.createPackageContents();
+        theNettyPackage.createPackageContents();
+        theQuartzPackage.createPackageContents();
+        theSqlPackage.createPackageContents();
 
         // Initialize created meta-data
         theAtomPackage.initializePackageContents();
@@ -231,13 +287,21 @@ public class AtomPackageImpl extends EPackageImpl implements AtomPackage {
         theSOAPPackage.initializePackageContents();
         theTransformPackage.initializePackageContents();
         theValidatePackage.initializePackageContents();
+        theCamelPackage.initializePackageContents();
         theJcaPackage.initializePackageContents();
         theResteasyPackage.initializePackageContents();
         theHttpPackage.initializePackageContents();
         theRemotePackage.initializePackageContents();
-        theCamelPackage.initializePackageContents();
+        theCorePackage.initializePackageContents();
         theAmqpPackage.initializePackageContents();
         theFilePackage.initializePackageContents();
+        theFtpPackage.initializePackageContents();
+        theJmsPackage.initializePackageContents();
+        theJpaPackage.initializePackageContents();
+        theMailPackage.initializePackageContents();
+        theNettyPackage.initializePackageContents();
+        theQuartzPackage.initializePackageContents();
+        theSqlPackage.initializePackageContents();
 
         // Fix loaded packages
         theSpringPackage.fixPackageContents();
@@ -249,6 +313,15 @@ public class AtomPackageImpl extends EPackageImpl implements AtomPackage {
         // Update the registry and return the package
         EPackage.Registry.INSTANCE.put(AtomPackage.eNS_URI, theAtomPackage);
         return theAtomPackage;
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public EClass getBaseCamelBinding() {
+        return baseCamelBindingEClass;
     }
 
     /**
@@ -346,6 +419,51 @@ public class AtomPackageImpl extends EPackageImpl implements AtomPackage {
      * <!-- end-user-doc -->
      * @generated
      */
+    public EAttribute getAtomScheduledPollConsumerType_InitialDelay() {
+        return (EAttribute)atomScheduledPollConsumerTypeEClass.getEStructuralFeatures().get(0);
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public EAttribute getAtomScheduledPollConsumerType_Delay() {
+        return (EAttribute)atomScheduledPollConsumerTypeEClass.getEStructuralFeatures().get(1);
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public EAttribute getAtomScheduledPollConsumerType_UseFixedDelay() {
+        return (EAttribute)atomScheduledPollConsumerTypeEClass.getEStructuralFeatures().get(2);
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public EAttribute getAtomScheduledPollConsumerType_SendEmptyMessageWhenIdle() {
+        return (EAttribute)atomScheduledPollConsumerTypeEClass.getEStructuralFeatures().get(3);
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public EAttribute getAtomScheduledPollConsumerType_TimeUnit() {
+        return (EAttribute)atomScheduledPollConsumerTypeEClass.getEStructuralFeatures().get(4);
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
     public EClass getDocumentRoot() {
         return documentRootEClass;
     }
@@ -391,6 +509,24 @@ public class AtomPackageImpl extends EPackageImpl implements AtomPackage {
      * <!-- end-user-doc -->
      * @generated
      */
+    public EEnum getTimeUnitType() {
+        return timeUnitTypeEEnum;
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public EDataType getTimeUnitTypeObject() {
+        return timeUnitTypeObjectEDataType;
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
     public AtomFactory getAtomFactory() {
         return (AtomFactory)getEFactoryInstance();
     }
@@ -414,6 +550,8 @@ public class AtomPackageImpl extends EPackageImpl implements AtomPackage {
         isCreated = true;
 
         // Create classes and their features
+        baseCamelBindingEClass = createEClass(BASE_CAMEL_BINDING);
+
         camelAtomBindingTypeEClass = createEClass(CAMEL_ATOM_BINDING_TYPE);
         createEAttribute(camelAtomBindingTypeEClass, CAMEL_ATOM_BINDING_TYPE__FEED_URI);
         createEAttribute(camelAtomBindingTypeEClass, CAMEL_ATOM_BINDING_TYPE__SPLIT_ENTRIES);
@@ -425,12 +563,23 @@ public class AtomPackageImpl extends EPackageImpl implements AtomPackage {
         createEReference(camelAtomBindingTypeEClass, CAMEL_ATOM_BINDING_TYPE__CONSUME);
 
         atomScheduledPollConsumerTypeEClass = createEClass(ATOM_SCHEDULED_POLL_CONSUMER_TYPE);
+        createEAttribute(atomScheduledPollConsumerTypeEClass, ATOM_SCHEDULED_POLL_CONSUMER_TYPE__INITIAL_DELAY);
+        createEAttribute(atomScheduledPollConsumerTypeEClass, ATOM_SCHEDULED_POLL_CONSUMER_TYPE__DELAY);
+        createEAttribute(atomScheduledPollConsumerTypeEClass, ATOM_SCHEDULED_POLL_CONSUMER_TYPE__USE_FIXED_DELAY);
+        createEAttribute(atomScheduledPollConsumerTypeEClass, ATOM_SCHEDULED_POLL_CONSUMER_TYPE__SEND_EMPTY_MESSAGE_WHEN_IDLE);
+        createEAttribute(atomScheduledPollConsumerTypeEClass, ATOM_SCHEDULED_POLL_CONSUMER_TYPE__TIME_UNIT);
 
         documentRootEClass = createEClass(DOCUMENT_ROOT);
         createEAttribute(documentRootEClass, DOCUMENT_ROOT__MIXED);
         createEReference(documentRootEClass, DOCUMENT_ROOT__XMLNS_PREFIX_MAP);
         createEReference(documentRootEClass, DOCUMENT_ROOT__XSI_SCHEMA_LOCATION);
         createEReference(documentRootEClass, DOCUMENT_ROOT__BINDING_ATOM);
+
+        // Create enums
+        timeUnitTypeEEnum = createEEnum(TIME_UNIT_TYPE);
+
+        // Create data types
+        timeUnitTypeObjectEDataType = createEDataType(TIME_UNIT_TYPE_OBJECT);
     }
 
     /**
@@ -457,7 +606,7 @@ public class AtomPackageImpl extends EPackageImpl implements AtomPackage {
         setNsURI(eNS_URI);
 
         // Obtain other dependent packages
-        CamelPackage theCamelPackage = (CamelPackage)EPackage.Registry.INSTANCE.getEPackage(CamelPackage.eNS_URI);
+        SwitchyardPackage theSwitchyardPackage = (SwitchyardPackage)EPackage.Registry.INSTANCE.getEPackage(SwitchyardPackage.eNS_URI);
         XMLTypePackage theXMLTypePackage = (XMLTypePackage)EPackage.Registry.INSTANCE.getEPackage(XMLTypePackage.eNS_URI);
 
         // Create type parameters
@@ -465,10 +614,12 @@ public class AtomPackageImpl extends EPackageImpl implements AtomPackage {
         // Set bounds for type parameters
 
         // Add supertypes to classes
-        camelAtomBindingTypeEClass.getESuperTypes().add(theCamelPackage.getBaseCamelBinding());
-        atomScheduledPollConsumerTypeEClass.getESuperTypes().add(theCamelPackage.getScheduledPollConsumerType());
+        baseCamelBindingEClass.getESuperTypes().add(theSwitchyardPackage.getSwitchYardBindingType());
+        camelAtomBindingTypeEClass.getESuperTypes().add(this.getBaseCamelBinding());
 
         // Initialize classes and features; add operations and parameters
+        initEClass(baseCamelBindingEClass, BaseCamelBinding.class, "BaseCamelBinding", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+
         initEClass(camelAtomBindingTypeEClass, CamelAtomBindingType.class, "CamelAtomBindingType", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
         initEAttribute(getCamelAtomBindingType_FeedURI(), theXMLTypePackage.getAnyURI(), "feedURI", null, 1, 1, CamelAtomBindingType.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
         initEAttribute(getCamelAtomBindingType_SplitEntries(), theXMLTypePackage.getBooleanObject(), "splitEntries", null, 0, 1, CamelAtomBindingType.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
@@ -480,12 +631,30 @@ public class AtomPackageImpl extends EPackageImpl implements AtomPackage {
         initEReference(getCamelAtomBindingType_Consume(), this.getAtomScheduledPollConsumerType(), null, "consume", null, 0, 1, CamelAtomBindingType.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
         initEClass(atomScheduledPollConsumerTypeEClass, AtomScheduledPollConsumerType.class, "AtomScheduledPollConsumerType", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+        initEAttribute(getAtomScheduledPollConsumerType_InitialDelay(), theXMLTypePackage.getIntObject(), "initialDelay", null, 0, 1, AtomScheduledPollConsumerType.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+        initEAttribute(getAtomScheduledPollConsumerType_Delay(), theXMLTypePackage.getIntObject(), "delay", null, 0, 1, AtomScheduledPollConsumerType.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+        initEAttribute(getAtomScheduledPollConsumerType_UseFixedDelay(), theXMLTypePackage.getBooleanObject(), "useFixedDelay", null, 0, 1, AtomScheduledPollConsumerType.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+        initEAttribute(getAtomScheduledPollConsumerType_SendEmptyMessageWhenIdle(), theXMLTypePackage.getBooleanObject(), "sendEmptyMessageWhenIdle", null, 0, 1, AtomScheduledPollConsumerType.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+        initEAttribute(getAtomScheduledPollConsumerType_TimeUnit(), this.getTimeUnitType(), "timeUnit", null, 0, 1, AtomScheduledPollConsumerType.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
         initEClass(documentRootEClass, DocumentRoot.class, "DocumentRoot", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
         initEAttribute(getDocumentRoot_Mixed(), ecorePackage.getEFeatureMapEntry(), "mixed", null, 0, -1, null, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
         initEReference(getDocumentRoot_XMLNSPrefixMap(), ecorePackage.getEStringToStringMapEntry(), null, "xMLNSPrefixMap", null, 0, -1, null, IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
         initEReference(getDocumentRoot_XSISchemaLocation(), ecorePackage.getEStringToStringMapEntry(), null, "xSISchemaLocation", null, 0, -1, null, IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
         initEReference(getDocumentRoot_BindingAtom(), this.getCamelAtomBindingType(), null, "bindingAtom", null, 0, -2, null, IS_TRANSIENT, IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, IS_DERIVED, IS_ORDERED);
+
+        // Initialize enums and add enum literals
+        initEEnum(timeUnitTypeEEnum, TimeUnitType.class, "TimeUnitType");
+        addEEnumLiteral(timeUnitTypeEEnum, TimeUnitType.NANOSECONDS);
+        addEEnumLiteral(timeUnitTypeEEnum, TimeUnitType.MICROSECONDS);
+        addEEnumLiteral(timeUnitTypeEEnum, TimeUnitType.MILLISECONDS);
+        addEEnumLiteral(timeUnitTypeEEnum, TimeUnitType.SECONDS);
+        addEEnumLiteral(timeUnitTypeEEnum, TimeUnitType.MINUTES);
+        addEEnumLiteral(timeUnitTypeEEnum, TimeUnitType.HOURS);
+        addEEnumLiteral(timeUnitTypeEEnum, TimeUnitType.DAYS);
+
+        // Initialize data types
+        initEDataType(timeUnitTypeObjectEDataType, TimeUnitType.class, "TimeUnitTypeObject", IS_SERIALIZABLE, IS_GENERATED_INSTANCE_CLASS);
 
         // Create resource
         createResource(eNS_URI);
@@ -503,6 +672,13 @@ public class AtomPackageImpl extends EPackageImpl implements AtomPackage {
      */
     protected void createExtendedMetaDataAnnotations() {
         String source = "http:///org/eclipse/emf/ecore/util/ExtendedMetaData";		
+        addAnnotation
+          (baseCamelBindingEClass, 
+           source, 
+           new String[] {
+             "name", "BaseCamelBinding",
+             "kind", "elementOnly"
+           });		
         addAnnotation
           (camelAtomBindingTypeEClass, 
            source, 
@@ -582,6 +758,46 @@ public class AtomPackageImpl extends EPackageImpl implements AtomPackage {
              "kind", "elementOnly"
            });		
         addAnnotation
+          (getAtomScheduledPollConsumerType_InitialDelay(), 
+           source, 
+           new String[] {
+             "kind", "element",
+             "name", "initialDelay",
+             "namespace", "##targetNamespace"
+           });		
+        addAnnotation
+          (getAtomScheduledPollConsumerType_Delay(), 
+           source, 
+           new String[] {
+             "kind", "element",
+             "name", "delay",
+             "namespace", "##targetNamespace"
+           });		
+        addAnnotation
+          (getAtomScheduledPollConsumerType_UseFixedDelay(), 
+           source, 
+           new String[] {
+             "kind", "element",
+             "name", "useFixedDelay",
+             "namespace", "##targetNamespace"
+           });		
+        addAnnotation
+          (getAtomScheduledPollConsumerType_SendEmptyMessageWhenIdle(), 
+           source, 
+           new String[] {
+             "kind", "element",
+             "name", "sendEmptyMessageWhenIdle",
+             "namespace", "##targetNamespace"
+           });		
+        addAnnotation
+          (getAtomScheduledPollConsumerType_TimeUnit(), 
+           source, 
+           new String[] {
+             "kind", "element",
+             "name", "timeUnit",
+             "namespace", "##targetNamespace"
+           });		
+        addAnnotation
           (documentRootEClass, 
            source, 
            new String[] {
@@ -617,6 +833,19 @@ public class AtomPackageImpl extends EPackageImpl implements AtomPackage {
              "name", "binding.atom",
              "namespace", "##targetNamespace",
              "affiliation", "urn:switchyard-config:switchyard:1.0#binding.switchyard"
+           });		
+        addAnnotation
+          (timeUnitTypeEEnum, 
+           source, 
+           new String[] {
+             "name", "timeUnit_._type"
+           });		
+        addAnnotation
+          (timeUnitTypeObjectEDataType, 
+           source, 
+           new String[] {
+             "name", "timeUnit_._type:Object",
+             "baseType", "timeUnit_._type"
            });
     }
 

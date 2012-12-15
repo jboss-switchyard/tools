@@ -11,6 +11,7 @@ import org.eclipse.emf.common.notify.Notification;
 
 import org.eclipse.emf.common.util.ResourceLocator;
 
+import org.eclipse.emf.edit.provider.ComposeableAdapterFactory;
 import org.eclipse.emf.edit.provider.IEditingDomainItemProvider;
 import org.eclipse.emf.edit.provider.IItemLabelProvider;
 import org.eclipse.emf.edit.provider.IItemPropertyDescriptor;
@@ -18,9 +19,12 @@ import org.eclipse.emf.edit.provider.IItemPropertySource;
 import org.eclipse.emf.edit.provider.IStructuredItemContentProvider;
 import org.eclipse.emf.edit.provider.ITreeItemContentProvider;
 
+import org.eclipse.emf.edit.provider.ItemPropertyDescriptor;
+import org.eclipse.emf.edit.provider.ItemProviderAdapter;
+import org.eclipse.emf.edit.provider.ViewerNotification;
 import org.switchyard.tools.models.switchyard1_0.bean.provider.Switchyard_1EditPlugin;
 
-import org.switchyard.tools.models.switchyard1_0.camel.core.provider.GenericFileProducerTypeItemProvider;
+import org.switchyard.tools.models.switchyard1_0.camel.file.FilePackage;
 
 import org.switchyard.tools.models.switchyard1_0.camel.file.FileProducerType;
 
@@ -31,7 +35,7 @@ import org.switchyard.tools.models.switchyard1_0.camel.file.FileProducerType;
  * @generated
  */
 public class FileProducerTypeItemProvider
-    extends GenericFileProducerTypeItemProvider
+    extends ItemProviderAdapter
     implements
         IEditingDomainItemProvider,
         IStructuredItemContentProvider,
@@ -59,8 +63,146 @@ public class FileProducerTypeItemProvider
         if (itemPropertyDescriptors == null) {
             super.getPropertyDescriptors(object);
 
+            addFileExistPropertyDescriptor(object);
+            addTempPrefixPropertyDescriptor(object);
+            addTempFileNamePropertyDescriptor(object);
+            addKeepLastModifiedPropertyDescriptor(object);
+            addEagerDeleteTargetFilePropertyDescriptor(object);
+            addDoneFileNamePropertyDescriptor(object);
         }
         return itemPropertyDescriptors;
+    }
+
+    /**
+     * This adds a property descriptor for the File Exist feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    protected void addFileExistPropertyDescriptor(Object object) {
+        itemPropertyDescriptors.add
+            (createItemPropertyDescriptor
+                (((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+                 getResourceLocator(),
+                 getString("_UI_FileProducerType_fileExist_feature"),
+                 getString("_UI_PropertyDescriptor_description", "_UI_FileProducerType_fileExist_feature", "_UI_FileProducerType_type"),
+                 FilePackage.Literals.FILE_PRODUCER_TYPE__FILE_EXIST,
+                 true,
+                 false,
+                 false,
+                 ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
+                 null,
+                 null));
+    }
+
+    /**
+     * This adds a property descriptor for the Temp Prefix feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    protected void addTempPrefixPropertyDescriptor(Object object) {
+        itemPropertyDescriptors.add
+            (createItemPropertyDescriptor
+                (((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+                 getResourceLocator(),
+                 getString("_UI_FileProducerType_tempPrefix_feature"),
+                 getString("_UI_PropertyDescriptor_description", "_UI_FileProducerType_tempPrefix_feature", "_UI_FileProducerType_type"),
+                 FilePackage.Literals.FILE_PRODUCER_TYPE__TEMP_PREFIX,
+                 true,
+                 false,
+                 false,
+                 ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
+                 null,
+                 null));
+    }
+
+    /**
+     * This adds a property descriptor for the Temp File Name feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    protected void addTempFileNamePropertyDescriptor(Object object) {
+        itemPropertyDescriptors.add
+            (createItemPropertyDescriptor
+                (((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+                 getResourceLocator(),
+                 getString("_UI_FileProducerType_tempFileName_feature"),
+                 getString("_UI_PropertyDescriptor_description", "_UI_FileProducerType_tempFileName_feature", "_UI_FileProducerType_type"),
+                 FilePackage.Literals.FILE_PRODUCER_TYPE__TEMP_FILE_NAME,
+                 true,
+                 false,
+                 false,
+                 ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
+                 null,
+                 null));
+    }
+
+    /**
+     * This adds a property descriptor for the Keep Last Modified feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    protected void addKeepLastModifiedPropertyDescriptor(Object object) {
+        itemPropertyDescriptors.add
+            (createItemPropertyDescriptor
+                (((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+                 getResourceLocator(),
+                 getString("_UI_FileProducerType_keepLastModified_feature"),
+                 getString("_UI_PropertyDescriptor_description", "_UI_FileProducerType_keepLastModified_feature", "_UI_FileProducerType_type"),
+                 FilePackage.Literals.FILE_PRODUCER_TYPE__KEEP_LAST_MODIFIED,
+                 true,
+                 false,
+                 false,
+                 ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
+                 null,
+                 null));
+    }
+
+    /**
+     * This adds a property descriptor for the Eager Delete Target File feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    protected void addEagerDeleteTargetFilePropertyDescriptor(Object object) {
+        itemPropertyDescriptors.add
+            (createItemPropertyDescriptor
+                (((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+                 getResourceLocator(),
+                 getString("_UI_FileProducerType_eagerDeleteTargetFile_feature"),
+                 getString("_UI_PropertyDescriptor_description", "_UI_FileProducerType_eagerDeleteTargetFile_feature", "_UI_FileProducerType_type"),
+                 FilePackage.Literals.FILE_PRODUCER_TYPE__EAGER_DELETE_TARGET_FILE,
+                 true,
+                 false,
+                 false,
+                 ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
+                 null,
+                 null));
+    }
+
+    /**
+     * This adds a property descriptor for the Done File Name feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    protected void addDoneFileNamePropertyDescriptor(Object object) {
+        itemPropertyDescriptors.add
+            (createItemPropertyDescriptor
+                (((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+                 getResourceLocator(),
+                 getString("_UI_FileProducerType_doneFileName_feature"),
+                 getString("_UI_PropertyDescriptor_description", "_UI_FileProducerType_doneFileName_feature", "_UI_FileProducerType_type"),
+                 FilePackage.Literals.FILE_PRODUCER_TYPE__DONE_FILE_NAME,
+                 true,
+                 false,
+                 false,
+                 ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
+                 null,
+                 null));
     }
 
     /**
@@ -98,6 +240,17 @@ public class FileProducerTypeItemProvider
     @Override
     public void notifyChanged(Notification notification) {
         updateChildren(notification);
+
+        switch (notification.getFeatureID(FileProducerType.class)) {
+            case FilePackage.FILE_PRODUCER_TYPE__FILE_EXIST:
+            case FilePackage.FILE_PRODUCER_TYPE__TEMP_PREFIX:
+            case FilePackage.FILE_PRODUCER_TYPE__TEMP_FILE_NAME:
+            case FilePackage.FILE_PRODUCER_TYPE__KEEP_LAST_MODIFIED:
+            case FilePackage.FILE_PRODUCER_TYPE__EAGER_DELETE_TARGET_FILE:
+            case FilePackage.FILE_PRODUCER_TYPE__DONE_FILE_NAME:
+                fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
+                return;
+        }
         super.notifyChanged(notification);
     }
 

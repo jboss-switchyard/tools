@@ -4,22 +4,17 @@ package org.switchyard.tools.models.switchyard1_0.camel.ftp.util;
 
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EPackage;
-
 import org.eclipse.emf.ecore.util.Switch;
-
 import org.eclipse.soa.sca.sca1_1.model.sca.Binding;
 import org.eclipse.soa.sca.sca1_1.model.sca.CommonExtensionBase;
-
 import org.switchyard.tools.models.switchyard1_0.camel.core.BaseCamelBinding;
-import org.switchyard.tools.models.switchyard1_0.camel.core.CamelRemoteBindingType;
-import org.switchyard.tools.models.switchyard1_0.camel.core.GenericFileBindingType;
-import org.switchyard.tools.models.switchyard1_0.camel.core.GenericFileConsumerType;
-import org.switchyard.tools.models.switchyard1_0.camel.core.GenericFileProducerType;
-import org.switchyard.tools.models.switchyard1_0.camel.core.ScheduledBatchPollConsumerType;
-import org.switchyard.tools.models.switchyard1_0.camel.core.ScheduledPollConsumerType;
-
-import org.switchyard.tools.models.switchyard1_0.camel.ftp.*;
-
+import org.switchyard.tools.models.switchyard1_0.camel.ftp.CamelFtpBindingType;
+import org.switchyard.tools.models.switchyard1_0.camel.ftp.CamelFtpsBindingType;
+import org.switchyard.tools.models.switchyard1_0.camel.ftp.CamelSftpBindingType;
+import org.switchyard.tools.models.switchyard1_0.camel.ftp.DocumentRoot;
+import org.switchyard.tools.models.switchyard1_0.camel.ftp.FtpPackage;
+import org.switchyard.tools.models.switchyard1_0.camel.ftp.RemoteFileConsumerType;
+import org.switchyard.tools.models.switchyard1_0.camel.ftp.RemoteFileProducerType;
 import org.switchyard.tools.models.switchyard1_0.switchyard.SwitchYardBindingType;
 
 /**
@@ -79,12 +74,18 @@ public class FtpSwitch<T> extends Switch<T> {
     @Override
     protected T doSwitch(int classifierID, EObject theEObject) {
         switch (classifierID) {
+            case FtpPackage.BASE_CAMEL_BINDING: {
+                BaseCamelBinding baseCamelBinding = (BaseCamelBinding)theEObject;
+                T result = caseBaseCamelBinding(baseCamelBinding);
+                if (result == null) result = caseSwitchYardBindingType(baseCamelBinding);
+                if (result == null) result = caseBinding(baseCamelBinding);
+                if (result == null) result = caseCommonExtensionBase(baseCamelBinding);
+                if (result == null) result = defaultCase(theEObject);
+                return result;
+            }
             case FtpPackage.CAMEL_FTP_BINDING_TYPE: {
                 CamelFtpBindingType camelFtpBindingType = (CamelFtpBindingType)theEObject;
                 T result = caseCamelFtpBindingType(camelFtpBindingType);
-                if (result == null) result = caseCamelRemoteBindingType(camelFtpBindingType);
-                if (result == null) result = caseGenericFileBindingType(camelFtpBindingType);
-                if (result == null) result = caseBaseCamelBinding(camelFtpBindingType);
                 if (result == null) result = caseSwitchYardBindingType(camelFtpBindingType);
                 if (result == null) result = caseBinding(camelFtpBindingType);
                 if (result == null) result = caseCommonExtensionBase(camelFtpBindingType);
@@ -95,9 +96,6 @@ public class FtpSwitch<T> extends Switch<T> {
                 CamelFtpsBindingType camelFtpsBindingType = (CamelFtpsBindingType)theEObject;
                 T result = caseCamelFtpsBindingType(camelFtpsBindingType);
                 if (result == null) result = caseCamelFtpBindingType(camelFtpsBindingType);
-                if (result == null) result = caseCamelRemoteBindingType(camelFtpsBindingType);
-                if (result == null) result = caseGenericFileBindingType(camelFtpsBindingType);
-                if (result == null) result = caseBaseCamelBinding(camelFtpsBindingType);
                 if (result == null) result = caseSwitchYardBindingType(camelFtpsBindingType);
                 if (result == null) result = caseBinding(camelFtpsBindingType);
                 if (result == null) result = caseCommonExtensionBase(camelFtpsBindingType);
@@ -107,34 +105,27 @@ public class FtpSwitch<T> extends Switch<T> {
             case FtpPackage.CAMEL_SFTP_BINDING_TYPE: {
                 CamelSftpBindingType camelSftpBindingType = (CamelSftpBindingType)theEObject;
                 T result = caseCamelSftpBindingType(camelSftpBindingType);
-                if (result == null) result = caseCamelRemoteBindingType(camelSftpBindingType);
-                if (result == null) result = caseGenericFileBindingType(camelSftpBindingType);
-                if (result == null) result = caseBaseCamelBinding(camelSftpBindingType);
                 if (result == null) result = caseSwitchYardBindingType(camelSftpBindingType);
                 if (result == null) result = caseBinding(camelSftpBindingType);
                 if (result == null) result = caseCommonExtensionBase(camelSftpBindingType);
                 if (result == null) result = defaultCase(theEObject);
                 return result;
             }
+            case FtpPackage.DOCUMENT_ROOT: {
+                DocumentRoot documentRoot = (DocumentRoot)theEObject;
+                T result = caseDocumentRoot(documentRoot);
+                if (result == null) result = defaultCase(theEObject);
+                return result;
+            }
             case FtpPackage.REMOTE_FILE_CONSUMER_TYPE: {
                 RemoteFileConsumerType remoteFileConsumerType = (RemoteFileConsumerType)theEObject;
                 T result = caseRemoteFileConsumerType(remoteFileConsumerType);
-                if (result == null) result = caseGenericFileConsumerType(remoteFileConsumerType);
-                if (result == null) result = caseScheduledBatchPollConsumerType(remoteFileConsumerType);
-                if (result == null) result = caseScheduledPollConsumerType(remoteFileConsumerType);
                 if (result == null) result = defaultCase(theEObject);
                 return result;
             }
             case FtpPackage.REMOTE_FILE_PRODUCER_TYPE: {
                 RemoteFileProducerType remoteFileProducerType = (RemoteFileProducerType)theEObject;
                 T result = caseRemoteFileProducerType(remoteFileProducerType);
-                if (result == null) result = caseGenericFileProducerType(remoteFileProducerType);
-                if (result == null) result = defaultCase(theEObject);
-                return result;
-            }
-            case FtpPackage.DOCUMENT_ROOT: {
-                DocumentRoot documentRoot = (DocumentRoot)theEObject;
-                T result = caseDocumentRoot(documentRoot);
                 if (result == null) result = defaultCase(theEObject);
                 return result;
             }
@@ -289,96 +280,6 @@ public class FtpSwitch<T> extends Switch<T> {
      * @generated
      */
     public T caseBaseCamelBinding(BaseCamelBinding object) {
-        return null;
-    }
-
-    /**
-     * Returns the result of interpreting the object as an instance of '<em>Generic File Binding Type</em>'.
-     * <!-- begin-user-doc -->
-     * This implementation returns null;
-     * returning a non-null result will terminate the switch.
-     * <!-- end-user-doc -->
-     * @param object the target of the switch.
-     * @return the result of interpreting the object as an instance of '<em>Generic File Binding Type</em>'.
-     * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
-     * @generated
-     */
-    public T caseGenericFileBindingType(GenericFileBindingType object) {
-        return null;
-    }
-
-    /**
-     * Returns the result of interpreting the object as an instance of '<em>Remote Binding Type</em>'.
-     * <!-- begin-user-doc -->
-     * This implementation returns null;
-     * returning a non-null result will terminate the switch.
-     * <!-- end-user-doc -->
-     * @param object the target of the switch.
-     * @return the result of interpreting the object as an instance of '<em>Remote Binding Type</em>'.
-     * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
-     * @generated
-     */
-    public T caseCamelRemoteBindingType(CamelRemoteBindingType object) {
-        return null;
-    }
-
-    /**
-     * Returns the result of interpreting the object as an instance of '<em>Scheduled Poll Consumer Type</em>'.
-     * <!-- begin-user-doc -->
-     * This implementation returns null;
-     * returning a non-null result will terminate the switch.
-     * <!-- end-user-doc -->
-     * @param object the target of the switch.
-     * @return the result of interpreting the object as an instance of '<em>Scheduled Poll Consumer Type</em>'.
-     * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
-     * @generated
-     */
-    public T caseScheduledPollConsumerType(ScheduledPollConsumerType object) {
-        return null;
-    }
-
-    /**
-     * Returns the result of interpreting the object as an instance of '<em>Scheduled Batch Poll Consumer Type</em>'.
-     * <!-- begin-user-doc -->
-     * This implementation returns null;
-     * returning a non-null result will terminate the switch.
-     * <!-- end-user-doc -->
-     * @param object the target of the switch.
-     * @return the result of interpreting the object as an instance of '<em>Scheduled Batch Poll Consumer Type</em>'.
-     * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
-     * @generated
-     */
-    public T caseScheduledBatchPollConsumerType(ScheduledBatchPollConsumerType object) {
-        return null;
-    }
-
-    /**
-     * Returns the result of interpreting the object as an instance of '<em>Generic File Consumer Type</em>'.
-     * <!-- begin-user-doc -->
-     * This implementation returns null;
-     * returning a non-null result will terminate the switch.
-     * <!-- end-user-doc -->
-     * @param object the target of the switch.
-     * @return the result of interpreting the object as an instance of '<em>Generic File Consumer Type</em>'.
-     * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
-     * @generated
-     */
-    public T caseGenericFileConsumerType(GenericFileConsumerType object) {
-        return null;
-    }
-
-    /**
-     * Returns the result of interpreting the object as an instance of '<em>Generic File Producer Type</em>'.
-     * <!-- begin-user-doc -->
-     * This implementation returns null;
-     * returning a non-null result will terminate the switch.
-     * <!-- end-user-doc -->
-     * @param object the target of the switch.
-     * @return the result of interpreting the object as an instance of '<em>Generic File Producer Type</em>'.
-     * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
-     * @generated
-     */
-    public T caseGenericFileProducerType(GenericFileProducerType object) {
         return null;
     }
 

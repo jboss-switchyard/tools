@@ -13,7 +13,6 @@ import org.eclipse.soa.sca.sca1_1.model.sca.CommonExtensionBase;
 import org.switchyard.tools.models.switchyard1_0.camel.amqp.*;
 
 import org.switchyard.tools.models.switchyard1_0.camel.core.BaseCamelBinding;
-import org.switchyard.tools.models.switchyard1_0.camel.core.JmsBindingType;
 
 import org.switchyard.tools.models.switchyard1_0.switchyard.SwitchYardBindingType;
 
@@ -74,11 +73,18 @@ public class AmqpSwitch<T> extends Switch<T> {
     @Override
     protected T doSwitch(int classifierID, EObject theEObject) {
         switch (classifierID) {
+            case AmqpPackage.BASE_CAMEL_BINDING: {
+                BaseCamelBinding baseCamelBinding = (BaseCamelBinding)theEObject;
+                T result = caseBaseCamelBinding(baseCamelBinding);
+                if (result == null) result = caseSwitchYardBindingType(baseCamelBinding);
+                if (result == null) result = caseBinding(baseCamelBinding);
+                if (result == null) result = caseCommonExtensionBase(baseCamelBinding);
+                if (result == null) result = defaultCase(theEObject);
+                return result;
+            }
             case AmqpPackage.CAMEL_AMQP_BINDING_TYPE: {
                 CamelAmqpBindingType camelAmqpBindingType = (CamelAmqpBindingType)theEObject;
                 T result = caseCamelAmqpBindingType(camelAmqpBindingType);
-                if (result == null) result = caseJmsBindingType(camelAmqpBindingType);
-                if (result == null) result = caseBaseCamelBinding(camelAmqpBindingType);
                 if (result == null) result = caseSwitchYardBindingType(camelAmqpBindingType);
                 if (result == null) result = caseBinding(camelAmqpBindingType);
                 if (result == null) result = caseCommonExtensionBase(camelAmqpBindingType);
@@ -182,21 +188,6 @@ public class AmqpSwitch<T> extends Switch<T> {
      * @generated
      */
     public T caseBaseCamelBinding(BaseCamelBinding object) {
-        return null;
-    }
-
-    /**
-     * Returns the result of interpreting the object as an instance of '<em>Jms Binding Type</em>'.
-     * <!-- begin-user-doc -->
-     * This implementation returns null;
-     * returning a non-null result will terminate the switch.
-     * <!-- end-user-doc -->
-     * @param object the target of the switch.
-     * @return the result of interpreting the object as an instance of '<em>Jms Binding Type</em>'.
-     * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
-     * @generated
-     */
-    public T caseJmsBindingType(JmsBindingType object) {
         return null;
     }
 

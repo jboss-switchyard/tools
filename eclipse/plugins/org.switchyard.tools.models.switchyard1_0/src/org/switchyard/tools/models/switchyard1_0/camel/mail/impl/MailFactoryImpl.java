@@ -57,10 +57,10 @@ public class MailFactoryImpl extends EFactoryImpl implements MailFactory {
     @Override
     public EObject create(EClass eClass) {
         switch (eClass.getClassifierID()) {
+            case MailPackage.CAMEL_MAIL_BINDING_TYPE: return createCamelMailBindingType();
             case MailPackage.DOCUMENT_ROOT: return createDocumentRoot();
             case MailPackage.CAMEL_MAIL_CONSUMER_TYPE: return createCamelMailConsumerType();
             case MailPackage.CAMEL_MAIL_PRODUCER_TYPE: return createCamelMailProducerType();
-            case MailPackage.CAMEL_MAIL_BINDING_TYPE: return createCamelMailBindingType();
             default:
                 throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier");
         }
@@ -76,6 +76,12 @@ public class MailFactoryImpl extends EFactoryImpl implements MailFactory {
         switch (eDataType.getClassifierID()) {
             case MailPackage.MAIL_CONSUMER_ACCOUNT_TYPE:
                 return createMailConsumerAccountTypeFromString(eDataType, initialValue);
+            case MailPackage.TIME_UNIT_TYPE:
+                return createTimeUnitTypeFromString(eDataType, initialValue);
+            case MailPackage.MAIL_CONSUMER_ACCOUNT_TYPE_OBJECT:
+                return createMailConsumerAccountTypeObjectFromString(eDataType, initialValue);
+            case MailPackage.TIME_UNIT_TYPE_OBJECT:
+                return createTimeUnitTypeObjectFromString(eDataType, initialValue);
             default:
                 throw new IllegalArgumentException("The datatype '" + eDataType.getName() + "' is not a valid classifier");
         }
@@ -91,6 +97,12 @@ public class MailFactoryImpl extends EFactoryImpl implements MailFactory {
         switch (eDataType.getClassifierID()) {
             case MailPackage.MAIL_CONSUMER_ACCOUNT_TYPE:
                 return convertMailConsumerAccountTypeToString(eDataType, instanceValue);
+            case MailPackage.TIME_UNIT_TYPE:
+                return convertTimeUnitTypeToString(eDataType, instanceValue);
+            case MailPackage.MAIL_CONSUMER_ACCOUNT_TYPE_OBJECT:
+                return convertMailConsumerAccountTypeObjectToString(eDataType, instanceValue);
+            case MailPackage.TIME_UNIT_TYPE_OBJECT:
+                return convertTimeUnitTypeObjectToString(eDataType, instanceValue);
             default:
                 throw new IllegalArgumentException("The datatype '" + eDataType.getName() + "' is not a valid classifier");
         }
@@ -154,6 +166,62 @@ public class MailFactoryImpl extends EFactoryImpl implements MailFactory {
      */
     public String convertMailConsumerAccountTypeToString(EDataType eDataType, Object instanceValue) {
         return instanceValue == null ? null : instanceValue.toString();
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public TimeUnitType createTimeUnitTypeFromString(EDataType eDataType, String initialValue) {
+        TimeUnitType result = TimeUnitType.get(initialValue);
+        if (result == null) throw new IllegalArgumentException("The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'");
+        return result;
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public String convertTimeUnitTypeToString(EDataType eDataType, Object instanceValue) {
+        return instanceValue == null ? null : instanceValue.toString();
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public MailConsumerAccountType createMailConsumerAccountTypeObjectFromString(EDataType eDataType, String initialValue) {
+        return createMailConsumerAccountTypeFromString(MailPackage.Literals.MAIL_CONSUMER_ACCOUNT_TYPE, initialValue);
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public String convertMailConsumerAccountTypeObjectToString(EDataType eDataType, Object instanceValue) {
+        return convertMailConsumerAccountTypeToString(MailPackage.Literals.MAIL_CONSUMER_ACCOUNT_TYPE, instanceValue);
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public TimeUnitType createTimeUnitTypeObjectFromString(EDataType eDataType, String initialValue) {
+        return createTimeUnitTypeFromString(MailPackage.Literals.TIME_UNIT_TYPE, initialValue);
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public String convertTimeUnitTypeObjectToString(EDataType eDataType, Object instanceValue) {
+        return convertTimeUnitTypeToString(MailPackage.Literals.TIME_UNIT_TYPE, instanceValue);
     }
 
     /**

@@ -4,15 +4,17 @@ package org.switchyard.tools.models.switchyard1_0.camel.file.util;
 
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EPackage;
-
 import org.eclipse.emf.ecore.util.Switch;
-
-import org.switchyard.tools.models.switchyard1_0.camel.core.GenericFileConsumerType;
-import org.switchyard.tools.models.switchyard1_0.camel.core.GenericFileProducerType;
-import org.switchyard.tools.models.switchyard1_0.camel.core.ScheduledBatchPollConsumerType;
-import org.switchyard.tools.models.switchyard1_0.camel.core.ScheduledPollConsumerType;
-
+import org.eclipse.soa.sca.sca1_1.model.sca.Binding;
+import org.eclipse.soa.sca.sca1_1.model.sca.CommonExtensionBase;
 import org.switchyard.tools.models.switchyard1_0.camel.file.*;
+import org.switchyard.tools.models.switchyard1_0.camel.core.BaseCamelBinding;
+import org.switchyard.tools.models.switchyard1_0.camel.file.CamelFileBindingType;
+import org.switchyard.tools.models.switchyard1_0.camel.file.DocumentRoot;
+import org.switchyard.tools.models.switchyard1_0.camel.file.FileConsumerType;
+import org.switchyard.tools.models.switchyard1_0.camel.file.FilePackage;
+import org.switchyard.tools.models.switchyard1_0.camel.file.FileProducerType;
+import org.switchyard.tools.models.switchyard1_0.switchyard.SwitchYardBindingType;
 
 /**
  * <!-- begin-user-doc -->
@@ -71,25 +73,34 @@ public class FileSwitch<T> extends Switch<T> {
     @Override
     protected T doSwitch(int classifierID, EObject theEObject) {
         switch (classifierID) {
+            case FilePackage.BASE_CAMEL_BINDING: {
+                BaseCamelBinding baseCamelBinding = (BaseCamelBinding)theEObject;
+                T result = caseBaseCamelBinding(baseCamelBinding);
+                if (result == null) result = caseSwitchYardBindingType(baseCamelBinding);
+                if (result == null) result = caseBinding(baseCamelBinding);
+                if (result == null) result = caseCommonExtensionBase(baseCamelBinding);
+                if (result == null) result = defaultCase(theEObject);
+                return result;
+            }
             case FilePackage.CAMEL_FILE_BINDING_TYPE: {
                 CamelFileBindingType camelFileBindingType = (CamelFileBindingType)theEObject;
                 T result = caseCamelFileBindingType(camelFileBindingType);
+                if (result == null) result = caseBaseCamelBinding(camelFileBindingType);
+                if (result == null) result = caseSwitchYardBindingType(camelFileBindingType);
+                if (result == null) result = caseBinding(camelFileBindingType);
+                if (result == null) result = caseCommonExtensionBase(camelFileBindingType);
                 if (result == null) result = defaultCase(theEObject);
                 return result;
             }
             case FilePackage.FILE_CONSUMER_TYPE: {
                 FileConsumerType fileConsumerType = (FileConsumerType)theEObject;
                 T result = caseFileConsumerType(fileConsumerType);
-                if (result == null) result = caseGenericFileConsumerType(fileConsumerType);
-                if (result == null) result = caseScheduledPollConsumerType(fileConsumerType);
-                if (result == null) result = caseScheduledBatchPollConsumerType(fileConsumerType);
                 if (result == null) result = defaultCase(theEObject);
                 return result;
             }
             case FilePackage.FILE_PRODUCER_TYPE: {
                 FileProducerType fileProducerType = (FileProducerType)theEObject;
                 T result = caseFileProducerType(fileProducerType);
-                if (result == null) result = caseGenericFileProducerType(fileProducerType);
                 if (result == null) result = defaultCase(theEObject);
                 return result;
             }
@@ -164,62 +175,62 @@ public class FileSwitch<T> extends Switch<T> {
     }
 
     /**
-     * Returns the result of interpreting the object as an instance of '<em>Scheduled Poll Consumer Type</em>'.
+     * Returns the result of interpreting the object as an instance of '<em>Common Extension Base</em>'.
      * <!-- begin-user-doc -->
      * This implementation returns null;
      * returning a non-null result will terminate the switch.
      * <!-- end-user-doc -->
      * @param object the target of the switch.
-     * @return the result of interpreting the object as an instance of '<em>Scheduled Poll Consumer Type</em>'.
+     * @return the result of interpreting the object as an instance of '<em>Common Extension Base</em>'.
      * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
      * @generated
      */
-    public T caseScheduledPollConsumerType(ScheduledPollConsumerType object) {
+    public T caseCommonExtensionBase(CommonExtensionBase object) {
         return null;
     }
 
     /**
-     * Returns the result of interpreting the object as an instance of '<em>Scheduled Batch Poll Consumer Type</em>'.
+     * Returns the result of interpreting the object as an instance of '<em>Binding</em>'.
      * <!-- begin-user-doc -->
      * This implementation returns null;
      * returning a non-null result will terminate the switch.
      * <!-- end-user-doc -->
      * @param object the target of the switch.
-     * @return the result of interpreting the object as an instance of '<em>Scheduled Batch Poll Consumer Type</em>'.
+     * @return the result of interpreting the object as an instance of '<em>Binding</em>'.
      * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
      * @generated
      */
-    public T caseScheduledBatchPollConsumerType(ScheduledBatchPollConsumerType object) {
+    public T caseBinding(Binding object) {
         return null;
     }
 
     /**
-     * Returns the result of interpreting the object as an instance of '<em>Generic File Consumer Type</em>'.
+     * Returns the result of interpreting the object as an instance of '<em>Switch Yard Binding Type</em>'.
      * <!-- begin-user-doc -->
      * This implementation returns null;
      * returning a non-null result will terminate the switch.
      * <!-- end-user-doc -->
      * @param object the target of the switch.
-     * @return the result of interpreting the object as an instance of '<em>Generic File Consumer Type</em>'.
+     * @return the result of interpreting the object as an instance of '<em>Switch Yard Binding Type</em>'.
      * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
      * @generated
      */
-    public T caseGenericFileConsumerType(GenericFileConsumerType object) {
+    public T caseSwitchYardBindingType(SwitchYardBindingType object) {
         return null;
     }
 
     /**
-     * Returns the result of interpreting the object as an instance of '<em>Generic File Producer Type</em>'.
+     * Returns the result of interpreting the object as an instance of '<em>Base Camel Binding</em>'.
      * <!-- begin-user-doc -->
      * This implementation returns null;
      * returning a non-null result will terminate the switch.
      * <!-- end-user-doc -->
      * @param object the target of the switch.
-     * @return the result of interpreting the object as an instance of '<em>Generic File Producer Type</em>'.
+     * @return the result of interpreting the object as an instance of '<em>Base Camel Binding</em>'.
      * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
      * @generated
      */
-    public T caseGenericFileProducerType(GenericFileProducerType object) {
+    public T caseBaseCamelBinding(BaseCamelBinding object) {
         return null;
     }
 

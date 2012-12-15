@@ -2,6 +2,10 @@
  */
 package org.switchyard.tools.models.switchyard1_0.camel.jpa;
 
+import java.math.BigInteger;
+import org.eclipse.emf.common.util.EList;
+import org.eclipse.emf.ecore.EObject;
+import org.eclipse.emf.ecore.util.FeatureMap;
 import org.switchyard.tools.models.switchyard1_0.camel.core.ScheduledBatchPollConsumerType;
 
 /**
@@ -12,6 +16,14 @@ import org.switchyard.tools.models.switchyard1_0.camel.core.ScheduledBatchPollCo
  * <p>
  * The following features are supported:
  * <ul>
+ *   <li>{@link org.switchyard.tools.models.switchyard1_0.camel.jpa.JpaConsumerType#getScheduledPollConsumerType <em>Scheduled Poll Consumer Type</em>}</li>
+ *   <li>{@link org.switchyard.tools.models.switchyard1_0.camel.jpa.JpaConsumerType#getInitialDelay <em>Initial Delay</em>}</li>
+ *   <li>{@link org.switchyard.tools.models.switchyard1_0.camel.jpa.JpaConsumerType#getDelay <em>Delay</em>}</li>
+ *   <li>{@link org.switchyard.tools.models.switchyard1_0.camel.jpa.JpaConsumerType#getUseFixedDelay <em>Use Fixed Delay</em>}</li>
+ *   <li>{@link org.switchyard.tools.models.switchyard1_0.camel.jpa.JpaConsumerType#getSendEmptyMessageWhenIdle <em>Send Empty Message When Idle</em>}</li>
+ *   <li>{@link org.switchyard.tools.models.switchyard1_0.camel.jpa.JpaConsumerType#getTimeUnit <em>Time Unit</em>}</li>
+ *   <li>{@link org.switchyard.tools.models.switchyard1_0.camel.jpa.JpaConsumerType#getScheduledBatchPollConsumerType <em>Scheduled Batch Poll Consumer Type</em>}</li>
+ *   <li>{@link org.switchyard.tools.models.switchyard1_0.camel.jpa.JpaConsumerType#getMaxMessagesPerPoll <em>Max Messages Per Poll</em>}</li>
  *   <li>{@link org.switchyard.tools.models.switchyard1_0.camel.jpa.JpaConsumerType#getConsumeDelete <em>Consume Delete</em>}</li>
  *   <li>{@link org.switchyard.tools.models.switchyard1_0.camel.jpa.JpaConsumerType#getConsumeLockEntity <em>Consume Lock Entity</em>}</li>
  *   <li>{@link org.switchyard.tools.models.switchyard1_0.camel.jpa.JpaConsumerType#getMaximumResults <em>Maximum Results</em>}</li>
@@ -27,7 +39,145 @@ import org.switchyard.tools.models.switchyard1_0.camel.core.ScheduledBatchPollCo
  * @model extendedMetaData="name='JpaConsumerType' kind='elementOnly'"
  * @generated
  */
-public interface JpaConsumerType extends ScheduledBatchPollConsumerType {
+public interface JpaConsumerType extends EObject {
+    /**
+     * Returns the value of the '<em><b>Scheduled Poll Consumer Type</b></em>' attribute list.
+     * The list contents are of type {@link org.eclipse.emf.ecore.util.FeatureMap.Entry}.
+     * <!-- begin-user-doc -->
+     * <p>
+     * If the meaning of the '<em>Scheduled Poll Consumer Type</em>' attribute list isn't clear,
+     * there really should be more of a description here...
+     * </p>
+     * <!-- end-user-doc -->
+     * @return the value of the '<em>Scheduled Poll Consumer Type</em>' attribute list.
+     * @see org.switchyard.tools.models.switchyard1_0.camel.jpa.JpaPackage#getJpaConsumerType_ScheduledPollConsumerType()
+     * @model unique="false" dataType="org.eclipse.emf.ecore.EFeatureMapEntry" many="true"
+     *        extendedMetaData="kind='group' name='ScheduledPollConsumerType:0'"
+     * @generated
+     */
+    FeatureMap getScheduledPollConsumerType();
+
+    /**
+     * Returns the value of the '<em><b>Initial Delay</b></em>' attribute list.
+     * The list contents are of type {@link java.lang.Integer}.
+     * <!-- begin-user-doc -->
+     * <p>
+     * If the meaning of the '<em>Initial Delay</em>' attribute list isn't clear,
+     * there really should be more of a description here...
+     * </p>
+     * <!-- end-user-doc -->
+     * @return the value of the '<em>Initial Delay</em>' attribute list.
+     * @see org.switchyard.tools.models.switchyard1_0.camel.jpa.JpaPackage#getJpaConsumerType_InitialDelay()
+     * @model unique="false" dataType="org.eclipse.emf.ecore.xml.type.IntObject" transient="true" volatile="true" derived="true"
+     *        extendedMetaData="kind='element' name='initialDelay' namespace='##targetNamespace' group='#ScheduledPollConsumerType:0'"
+     * @generated
+     */
+    EList<Integer> getInitialDelay();
+
+    /**
+     * Returns the value of the '<em><b>Delay</b></em>' attribute list.
+     * The list contents are of type {@link java.lang.Integer}.
+     * <!-- begin-user-doc -->
+     * <p>
+     * If the meaning of the '<em>Delay</em>' attribute list isn't clear,
+     * there really should be more of a description here...
+     * </p>
+     * <!-- end-user-doc -->
+     * @return the value of the '<em>Delay</em>' attribute list.
+     * @see org.switchyard.tools.models.switchyard1_0.camel.jpa.JpaPackage#getJpaConsumerType_Delay()
+     * @model unique="false" dataType="org.eclipse.emf.ecore.xml.type.IntObject" transient="true" volatile="true" derived="true"
+     *        extendedMetaData="kind='element' name='delay' namespace='##targetNamespace' group='#ScheduledPollConsumerType:0'"
+     * @generated
+     */
+    EList<Integer> getDelay();
+
+    /**
+     * Returns the value of the '<em><b>Use Fixed Delay</b></em>' attribute list.
+     * The list contents are of type {@link java.lang.Boolean}.
+     * <!-- begin-user-doc -->
+     * <p>
+     * If the meaning of the '<em>Use Fixed Delay</em>' attribute list isn't clear,
+     * there really should be more of a description here...
+     * </p>
+     * <!-- end-user-doc -->
+     * @return the value of the '<em>Use Fixed Delay</em>' attribute list.
+     * @see org.switchyard.tools.models.switchyard1_0.camel.jpa.JpaPackage#getJpaConsumerType_UseFixedDelay()
+     * @model unique="false" dataType="org.eclipse.emf.ecore.xml.type.BooleanObject" transient="true" volatile="true" derived="true"
+     *        extendedMetaData="kind='element' name='useFixedDelay' namespace='##targetNamespace' group='#ScheduledPollConsumerType:0'"
+     * @generated
+     */
+    EList<Boolean> getUseFixedDelay();
+
+    /**
+     * Returns the value of the '<em><b>Send Empty Message When Idle</b></em>' attribute list.
+     * The list contents are of type {@link java.lang.Boolean}.
+     * <!-- begin-user-doc -->
+     * <p>
+     * If the meaning of the '<em>Send Empty Message When Idle</em>' attribute list isn't clear,
+     * there really should be more of a description here...
+     * </p>
+     * <!-- end-user-doc -->
+     * @return the value of the '<em>Send Empty Message When Idle</em>' attribute list.
+     * @see org.switchyard.tools.models.switchyard1_0.camel.jpa.JpaPackage#getJpaConsumerType_SendEmptyMessageWhenIdle()
+     * @model unique="false" dataType="org.eclipse.emf.ecore.xml.type.BooleanObject" transient="true" volatile="true" derived="true"
+     *        extendedMetaData="kind='element' name='sendEmptyMessageWhenIdle' namespace='##targetNamespace' group='#ScheduledPollConsumerType:0'"
+     * @generated
+     */
+    EList<Boolean> getSendEmptyMessageWhenIdle();
+
+    /**
+     * Returns the value of the '<em><b>Time Unit</b></em>' attribute list.
+     * The list contents are of type {@link org.switchyard.tools.models.switchyard1_0.camel.jpa.TimeUnitType}.
+     * The literals are from the enumeration {@link org.switchyard.tools.models.switchyard1_0.camel.jpa.TimeUnitType}.
+     * <!-- begin-user-doc -->
+     * <p>
+     * If the meaning of the '<em>Time Unit</em>' attribute list isn't clear,
+     * there really should be more of a description here...
+     * </p>
+     * <!-- end-user-doc -->
+     * @return the value of the '<em>Time Unit</em>' attribute list.
+     * @see org.switchyard.tools.models.switchyard1_0.camel.jpa.TimeUnitType
+     * @see org.switchyard.tools.models.switchyard1_0.camel.jpa.JpaPackage#getJpaConsumerType_TimeUnit()
+     * @model unique="false" transient="true" volatile="true" derived="true"
+     *        extendedMetaData="kind='element' name='timeUnit' namespace='##targetNamespace' group='#ScheduledPollConsumerType:0'"
+     * @generated
+     */
+    EList<TimeUnitType> getTimeUnit();
+
+    /**
+     * Returns the value of the '<em><b>Scheduled Batch Poll Consumer Type</b></em>' attribute list.
+     * The list contents are of type {@link org.eclipse.emf.ecore.util.FeatureMap.Entry}.
+     * <!-- begin-user-doc -->
+     * <p>
+     * If the meaning of the '<em>Scheduled Batch Poll Consumer Type</em>' attribute list isn't clear,
+     * there really should be more of a description here...
+     * </p>
+     * <!-- end-user-doc -->
+     * @return the value of the '<em>Scheduled Batch Poll Consumer Type</em>' attribute list.
+     * @see org.switchyard.tools.models.switchyard1_0.camel.jpa.JpaPackage#getJpaConsumerType_ScheduledBatchPollConsumerType()
+     * @model unique="false" dataType="org.eclipse.emf.ecore.EFeatureMapEntry" many="true"
+     *        extendedMetaData="kind='group' name='ScheduledBatchPollConsumerType:6'"
+     * @generated
+     */
+    FeatureMap getScheduledBatchPollConsumerType();
+
+    /**
+     * Returns the value of the '<em><b>Max Messages Per Poll</b></em>' attribute list.
+     * The list contents are of type {@link java.lang.Integer}.
+     * <!-- begin-user-doc -->
+     * <p>
+     * If the meaning of the '<em>Max Messages Per Poll</em>' attribute list isn't clear,
+     * there really should be more of a description here...
+     * </p>
+     * <!-- end-user-doc -->
+     * @return the value of the '<em>Max Messages Per Poll</em>' attribute list.
+     * @see org.switchyard.tools.models.switchyard1_0.camel.jpa.JpaPackage#getJpaConsumerType_MaxMessagesPerPoll()
+     * @model unique="false" dataType="org.eclipse.emf.ecore.xml.type.IntObject" transient="true" volatile="true" derived="true"
+     *        extendedMetaData="kind='element' name='maxMessagesPerPoll' namespace='##targetNamespace' group='#ScheduledBatchPollConsumerType:6'"
+     * @generated
+     */
+    EList<Integer> getMaxMessagesPerPoll();
+
     /**
      * Returns the value of the '<em><b>Consume Delete</b></em>' attribute.
      * <!-- begin-user-doc -->

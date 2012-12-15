@@ -17,12 +17,12 @@ import java.math.BigInteger;
  *   <li>{@link org.switchyard.tools.models.switchyard1_0.camel.core.CamelSedaBindingType#getConcurrentConsumers <em>Concurrent Consumers</em>}</li>
  *   <li>{@link org.switchyard.tools.models.switchyard1_0.camel.core.CamelSedaBindingType#getWaitForTaskToComplete <em>Wait For Task To Complete</em>}</li>
  *   <li>{@link org.switchyard.tools.models.switchyard1_0.camel.core.CamelSedaBindingType#getTimeout <em>Timeout</em>}</li>
- *   <li>{@link org.switchyard.tools.models.switchyard1_0.camel.core.CamelSedaBindingType#isMultipleConsumers <em>Multiple Consumers</em>}</li>
- *   <li>{@link org.switchyard.tools.models.switchyard1_0.camel.core.CamelSedaBindingType#isLimitConcurrentConsumers <em>Limit Concurrent Consumers</em>}</li>
+ *   <li>{@link org.switchyard.tools.models.switchyard1_0.camel.core.CamelSedaBindingType#getMultipleConsumers <em>Multiple Consumers</em>}</li>
+ *   <li>{@link org.switchyard.tools.models.switchyard1_0.camel.core.CamelSedaBindingType#getLimitConcurrentConsumers <em>Limit Concurrent Consumers</em>}</li>
  * </ul>
  * </p>
  *
- * @see org.switchyard.tools.models.switchyard1_0.camel.core.CamelPackage#getCamelSedaBindingType()
+ * @see org.switchyard.tools.models.switchyard1_0.camel.core.CorePackage#getCamelSedaBindingType()
  * @model extendedMetaData="name='CamelSedaBindingType' kind='elementOnly'"
  * @generated
  */
@@ -37,7 +37,7 @@ public interface CamelSedaBindingType extends BaseCamelBinding {
      * <!-- end-user-doc -->
      * @return the value of the '<em>Name Element</em>' attribute.
      * @see #setNameElement(String)
-     * @see org.switchyard.tools.models.switchyard1_0.camel.core.CamelPackage#getCamelSedaBindingType_NameElement()
+     * @see org.switchyard.tools.models.switchyard1_0.camel.core.CorePackage#getCamelSedaBindingType_NameElement()
      * @model dataType="org.eclipse.emf.ecore.xml.type.String" required="true"
      *        extendedMetaData="kind='element' name='name' namespace='##targetNamespace'"
      * @generated
@@ -63,13 +63,13 @@ public interface CamelSedaBindingType extends BaseCamelBinding {
      * </p>
      * <!-- end-user-doc -->
      * @return the value of the '<em>Size</em>' attribute.
-     * @see #setSize(BigInteger)
-     * @see org.switchyard.tools.models.switchyard1_0.camel.core.CamelPackage#getCamelSedaBindingType_Size()
-     * @model dataType="org.eclipse.emf.ecore.xml.type.Integer" required="true"
+     * @see #setSize(Integer)
+     * @see org.switchyard.tools.models.switchyard1_0.camel.core.CorePackage#getCamelSedaBindingType_Size()
+     * @model dataType="org.eclipse.emf.ecore.xml.type.IntObject" required="true"
      *        extendedMetaData="kind='element' name='size' namespace='##targetNamespace'"
      * @generated
      */
-    BigInteger getSize();
+    Integer getSize();
 
     /**
      * Sets the value of the '{@link org.switchyard.tools.models.switchyard1_0.camel.core.CamelSedaBindingType#getSize <em>Size</em>}' attribute.
@@ -79,7 +79,7 @@ public interface CamelSedaBindingType extends BaseCamelBinding {
      * @see #getSize()
      * @generated
      */
-    void setSize(BigInteger value);
+    void setSize(Integer value);
 
     /**
      * Returns the value of the '<em><b>Concurrent Consumers</b></em>' attribute.
@@ -90,13 +90,13 @@ public interface CamelSedaBindingType extends BaseCamelBinding {
      * </p>
      * <!-- end-user-doc -->
      * @return the value of the '<em>Concurrent Consumers</em>' attribute.
-     * @see #setConcurrentConsumers(BigInteger)
-     * @see org.switchyard.tools.models.switchyard1_0.camel.core.CamelPackage#getCamelSedaBindingType_ConcurrentConsumers()
-     * @model dataType="org.eclipse.emf.ecore.xml.type.Integer" required="true"
+     * @see #setConcurrentConsumers(Integer)
+     * @see org.switchyard.tools.models.switchyard1_0.camel.core.CorePackage#getCamelSedaBindingType_ConcurrentConsumers()
+     * @model dataType="org.eclipse.emf.ecore.xml.type.IntObject" required="true"
      *        extendedMetaData="kind='element' name='concurrentConsumers' namespace='##targetNamespace'"
      * @generated
      */
-    BigInteger getConcurrentConsumers();
+    Integer getConcurrentConsumers();
 
     /**
      * Sets the value of the '{@link org.switchyard.tools.models.switchyard1_0.camel.core.CamelSedaBindingType#getConcurrentConsumers <em>Concurrent Consumers</em>}' attribute.
@@ -106,7 +106,7 @@ public interface CamelSedaBindingType extends BaseCamelBinding {
      * @see #getConcurrentConsumers()
      * @generated
      */
-    void setConcurrentConsumers(BigInteger value);
+    void setConcurrentConsumers(Integer value);
 
     /**
      * Returns the value of the '<em><b>Wait For Task To Complete</b></em>' attribute.
@@ -118,7 +118,7 @@ public interface CamelSedaBindingType extends BaseCamelBinding {
      * <!-- end-user-doc -->
      * @return the value of the '<em>Wait For Task To Complete</em>' attribute.
      * @see #setWaitForTaskToComplete(String)
-     * @see org.switchyard.tools.models.switchyard1_0.camel.core.CamelPackage#getCamelSedaBindingType_WaitForTaskToComplete()
+     * @see org.switchyard.tools.models.switchyard1_0.camel.core.CorePackage#getCamelSedaBindingType_WaitForTaskToComplete()
      * @model dataType="org.eclipse.emf.ecore.xml.type.String" required="true"
      *        extendedMetaData="kind='element' name='waitForTaskToComplete' namespace='##targetNamespace'"
      * @generated
@@ -146,13 +146,13 @@ public interface CamelSedaBindingType extends BaseCamelBinding {
      * @return the value of the '<em>Timeout</em>' attribute.
      * @see #isSetTimeout()
      * @see #unsetTimeout()
-     * @see #setTimeout(long)
-     * @see org.switchyard.tools.models.switchyard1_0.camel.core.CamelPackage#getCamelSedaBindingType_Timeout()
-     * @model unsettable="true" dataType="org.eclipse.emf.ecore.xml.type.Long" required="true"
+     * @see #setTimeout(Long)
+     * @see org.switchyard.tools.models.switchyard1_0.camel.core.CorePackage#getCamelSedaBindingType_Timeout()
+     * @model unsettable="true" dataType="org.eclipse.emf.ecore.xml.type.LongObject" required="true"
      *        extendedMetaData="kind='element' name='timeout' namespace='##targetNamespace'"
      * @generated
      */
-    long getTimeout();
+    Long getTimeout();
 
     /**
      * Sets the value of the '{@link org.switchyard.tools.models.switchyard1_0.camel.core.CamelSedaBindingType#getTimeout <em>Timeout</em>}' attribute.
@@ -164,7 +164,7 @@ public interface CamelSedaBindingType extends BaseCamelBinding {
      * @see #getTimeout()
      * @generated
      */
-    void setTimeout(long value);
+    void setTimeout(Long value);
 
     /**
      * Unsets the value of the '{@link org.switchyard.tools.models.switchyard1_0.camel.core.CamelSedaBindingType#getTimeout <em>Timeout</em>}' attribute.
@@ -172,7 +172,7 @@ public interface CamelSedaBindingType extends BaseCamelBinding {
      * <!-- end-user-doc -->
      * @see #isSetTimeout()
      * @see #getTimeout()
-     * @see #setTimeout(long)
+     * @see #setTimeout(Long)
      * @generated
      */
     void unsetTimeout();
@@ -184,7 +184,7 @@ public interface CamelSedaBindingType extends BaseCamelBinding {
      * @return whether the value of the '<em>Timeout</em>' attribute is set.
      * @see #unsetTimeout()
      * @see #getTimeout()
-     * @see #setTimeout(long)
+     * @see #setTimeout(Long)
      * @generated
      */
     boolean isSetTimeout();
@@ -200,45 +200,45 @@ public interface CamelSedaBindingType extends BaseCamelBinding {
      * @return the value of the '<em>Multiple Consumers</em>' attribute.
      * @see #isSetMultipleConsumers()
      * @see #unsetMultipleConsumers()
-     * @see #setMultipleConsumers(boolean)
-     * @see org.switchyard.tools.models.switchyard1_0.camel.core.CamelPackage#getCamelSedaBindingType_MultipleConsumers()
-     * @model unsettable="true" dataType="org.eclipse.emf.ecore.xml.type.Boolean" required="true"
+     * @see #setMultipleConsumers(Boolean)
+     * @see org.switchyard.tools.models.switchyard1_0.camel.core.CorePackage#getCamelSedaBindingType_MultipleConsumers()
+     * @model unsettable="true" dataType="org.eclipse.emf.ecore.xml.type.BooleanObject" required="true"
      *        extendedMetaData="kind='element' name='multipleConsumers' namespace='##targetNamespace'"
      * @generated
      */
-    boolean isMultipleConsumers();
+    Boolean getMultipleConsumers();
 
     /**
-     * Sets the value of the '{@link org.switchyard.tools.models.switchyard1_0.camel.core.CamelSedaBindingType#isMultipleConsumers <em>Multiple Consumers</em>}' attribute.
+     * Sets the value of the '{@link org.switchyard.tools.models.switchyard1_0.camel.core.CamelSedaBindingType#getMultipleConsumers <em>Multiple Consumers</em>}' attribute.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @param value the new value of the '<em>Multiple Consumers</em>' attribute.
      * @see #isSetMultipleConsumers()
      * @see #unsetMultipleConsumers()
-     * @see #isMultipleConsumers()
+     * @see #getMultipleConsumers()
      * @generated
      */
-    void setMultipleConsumers(boolean value);
+    void setMultipleConsumers(Boolean value);
 
     /**
-     * Unsets the value of the '{@link org.switchyard.tools.models.switchyard1_0.camel.core.CamelSedaBindingType#isMultipleConsumers <em>Multiple Consumers</em>}' attribute.
+     * Unsets the value of the '{@link org.switchyard.tools.models.switchyard1_0.camel.core.CamelSedaBindingType#getMultipleConsumers <em>Multiple Consumers</em>}' attribute.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @see #isSetMultipleConsumers()
-     * @see #isMultipleConsumers()
-     * @see #setMultipleConsumers(boolean)
+     * @see #getMultipleConsumers()
+     * @see #setMultipleConsumers(Boolean)
      * @generated
      */
     void unsetMultipleConsumers();
 
     /**
-     * Returns whether the value of the '{@link org.switchyard.tools.models.switchyard1_0.camel.core.CamelSedaBindingType#isMultipleConsumers <em>Multiple Consumers</em>}' attribute is set.
+     * Returns whether the value of the '{@link org.switchyard.tools.models.switchyard1_0.camel.core.CamelSedaBindingType#getMultipleConsumers <em>Multiple Consumers</em>}' attribute is set.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @return whether the value of the '<em>Multiple Consumers</em>' attribute is set.
      * @see #unsetMultipleConsumers()
-     * @see #isMultipleConsumers()
-     * @see #setMultipleConsumers(boolean)
+     * @see #getMultipleConsumers()
+     * @see #setMultipleConsumers(Boolean)
      * @generated
      */
     boolean isSetMultipleConsumers();
@@ -254,45 +254,45 @@ public interface CamelSedaBindingType extends BaseCamelBinding {
      * @return the value of the '<em>Limit Concurrent Consumers</em>' attribute.
      * @see #isSetLimitConcurrentConsumers()
      * @see #unsetLimitConcurrentConsumers()
-     * @see #setLimitConcurrentConsumers(boolean)
-     * @see org.switchyard.tools.models.switchyard1_0.camel.core.CamelPackage#getCamelSedaBindingType_LimitConcurrentConsumers()
-     * @model unsettable="true" dataType="org.eclipse.emf.ecore.xml.type.Boolean" required="true"
+     * @see #setLimitConcurrentConsumers(Boolean)
+     * @see org.switchyard.tools.models.switchyard1_0.camel.core.CorePackage#getCamelSedaBindingType_LimitConcurrentConsumers()
+     * @model unsettable="true" dataType="org.eclipse.emf.ecore.xml.type.BooleanObject" required="true"
      *        extendedMetaData="kind='element' name='limitConcurrentConsumers' namespace='##targetNamespace'"
      * @generated
      */
-    boolean isLimitConcurrentConsumers();
+    Boolean getLimitConcurrentConsumers();
 
     /**
-     * Sets the value of the '{@link org.switchyard.tools.models.switchyard1_0.camel.core.CamelSedaBindingType#isLimitConcurrentConsumers <em>Limit Concurrent Consumers</em>}' attribute.
+     * Sets the value of the '{@link org.switchyard.tools.models.switchyard1_0.camel.core.CamelSedaBindingType#getLimitConcurrentConsumers <em>Limit Concurrent Consumers</em>}' attribute.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @param value the new value of the '<em>Limit Concurrent Consumers</em>' attribute.
      * @see #isSetLimitConcurrentConsumers()
      * @see #unsetLimitConcurrentConsumers()
-     * @see #isLimitConcurrentConsumers()
+     * @see #getLimitConcurrentConsumers()
      * @generated
      */
-    void setLimitConcurrentConsumers(boolean value);
+    void setLimitConcurrentConsumers(Boolean value);
 
     /**
-     * Unsets the value of the '{@link org.switchyard.tools.models.switchyard1_0.camel.core.CamelSedaBindingType#isLimitConcurrentConsumers <em>Limit Concurrent Consumers</em>}' attribute.
+     * Unsets the value of the '{@link org.switchyard.tools.models.switchyard1_0.camel.core.CamelSedaBindingType#getLimitConcurrentConsumers <em>Limit Concurrent Consumers</em>}' attribute.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @see #isSetLimitConcurrentConsumers()
-     * @see #isLimitConcurrentConsumers()
-     * @see #setLimitConcurrentConsumers(boolean)
+     * @see #getLimitConcurrentConsumers()
+     * @see #setLimitConcurrentConsumers(Boolean)
      * @generated
      */
     void unsetLimitConcurrentConsumers();
 
     /**
-     * Returns whether the value of the '{@link org.switchyard.tools.models.switchyard1_0.camel.core.CamelSedaBindingType#isLimitConcurrentConsumers <em>Limit Concurrent Consumers</em>}' attribute is set.
+     * Returns whether the value of the '{@link org.switchyard.tools.models.switchyard1_0.camel.core.CamelSedaBindingType#getLimitConcurrentConsumers <em>Limit Concurrent Consumers</em>}' attribute is set.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @return whether the value of the '<em>Limit Concurrent Consumers</em>' attribute is set.
      * @see #unsetLimitConcurrentConsumers()
-     * @see #isLimitConcurrentConsumers()
-     * @see #setLimitConcurrentConsumers(boolean)
+     * @see #getLimitConcurrentConsumers()
+     * @see #setLimitConcurrentConsumers(Boolean)
      * @generated
      */
     boolean isSetLimitConcurrentConsumers();

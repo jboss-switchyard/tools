@@ -20,8 +20,8 @@ import org.eclipse.soa.sca.sca1_1.model.sca.Binding;
 import org.eclipse.soa.sca.sca1_1.model.sca.Contract;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.widgets.Composite;
-import org.switchyard.tools.models.switchyard1_0.camel.CamelFactory;
-import org.switchyard.tools.models.switchyard1_0.camel.CamelJmsBindingType;
+import org.switchyard.tools.models.switchyard1_0.camel.jms.CamelJmsBindingType;
+import org.switchyard.tools.models.switchyard1_0.camel.jms.JmsFactory;
 
 /**
  * @author bfitzpat
@@ -30,7 +30,7 @@ import org.switchyard.tools.models.switchyard1_0.camel.CamelJmsBindingType;
 public class CamelJmsBindingWizardPage extends WizardPage {
 
     private CamelJmsComposite _consumerComposite = null;
-    private CamelJmsBindingType _binding = CamelFactory.eINSTANCE.createCamelJmsBindingType();
+    private CamelJmsBindingType _binding = JmsFactory.eINSTANCE.createCamelJmsBindingType();
     private Contract _targetContainer;
 
     /**

@@ -37,7 +37,7 @@ import java.math.BigInteger;
  * </ul>
  * </p>
  *
- * @see org.switchyard.tools.models.switchyard1_0.camel.core.CamelPackage#getGenericFileConsumerType()
+ * @see org.switchyard.tools.models.switchyard1_0.camel.core.CorePackage#getGenericFileConsumerType()
  * @model extendedMetaData="name='GenericFileConsumerType' kind='elementOnly'"
  * @generated
  */
@@ -54,7 +54,7 @@ public interface GenericFileConsumerType extends ScheduledBatchPollConsumerType 
      * @see #isSetDelete()
      * @see #unsetDelete()
      * @see #setDelete(Boolean)
-     * @see org.switchyard.tools.models.switchyard1_0.camel.core.CamelPackage#getGenericFileConsumerType_Delete()
+     * @see org.switchyard.tools.models.switchyard1_0.camel.core.CorePackage#getGenericFileConsumerType_Delete()
      * @model unsettable="true" dataType="org.eclipse.emf.ecore.xml.type.BooleanObject"
      *        extendedMetaData="kind='element' name='delete' namespace='##targetNamespace'"
      * @generated
@@ -108,7 +108,7 @@ public interface GenericFileConsumerType extends ScheduledBatchPollConsumerType 
      * @see #isSetRecursive()
      * @see #unsetRecursive()
      * @see #setRecursive(Boolean)
-     * @see org.switchyard.tools.models.switchyard1_0.camel.core.CamelPackage#getGenericFileConsumerType_Recursive()
+     * @see org.switchyard.tools.models.switchyard1_0.camel.core.CorePackage#getGenericFileConsumerType_Recursive()
      * @model unsettable="true" dataType="org.eclipse.emf.ecore.xml.type.BooleanObject"
      *        extendedMetaData="kind='element' name='recursive' namespace='##targetNamespace'"
      * @generated
@@ -162,7 +162,7 @@ public interface GenericFileConsumerType extends ScheduledBatchPollConsumerType 
      * @see #isSetNoop()
      * @see #unsetNoop()
      * @see #setNoop(Boolean)
-     * @see org.switchyard.tools.models.switchyard1_0.camel.core.CamelPackage#getGenericFileConsumerType_Noop()
+     * @see org.switchyard.tools.models.switchyard1_0.camel.core.CorePackage#getGenericFileConsumerType_Noop()
      * @model unsettable="true" dataType="org.eclipse.emf.ecore.xml.type.BooleanObject"
      *        extendedMetaData="kind='element' name='noop' namespace='##targetNamespace'"
      * @generated
@@ -214,7 +214,7 @@ public interface GenericFileConsumerType extends ScheduledBatchPollConsumerType 
      * <!-- end-user-doc -->
      * @return the value of the '<em>Pre Move</em>' attribute.
      * @see #setPreMove(String)
-     * @see org.switchyard.tools.models.switchyard1_0.camel.core.CamelPackage#getGenericFileConsumerType_PreMove()
+     * @see org.switchyard.tools.models.switchyard1_0.camel.core.CorePackage#getGenericFileConsumerType_PreMove()
      * @model dataType="org.eclipse.emf.ecore.xml.type.String"
      *        extendedMetaData="kind='element' name='preMove' namespace='##targetNamespace'"
      * @generated
@@ -241,7 +241,7 @@ public interface GenericFileConsumerType extends ScheduledBatchPollConsumerType 
      * <!-- end-user-doc -->
      * @return the value of the '<em>Move</em>' attribute.
      * @see #setMove(String)
-     * @see org.switchyard.tools.models.switchyard1_0.camel.core.CamelPackage#getGenericFileConsumerType_Move()
+     * @see org.switchyard.tools.models.switchyard1_0.camel.core.CorePackage#getGenericFileConsumerType_Move()
      * @model dataType="org.eclipse.emf.ecore.xml.type.String"
      *        extendedMetaData="kind='element' name='move' namespace='##targetNamespace'"
      * @generated
@@ -268,7 +268,7 @@ public interface GenericFileConsumerType extends ScheduledBatchPollConsumerType 
      * <!-- end-user-doc -->
      * @return the value of the '<em>Move Failed</em>' attribute.
      * @see #setMoveFailed(String)
-     * @see org.switchyard.tools.models.switchyard1_0.camel.core.CamelPackage#getGenericFileConsumerType_MoveFailed()
+     * @see org.switchyard.tools.models.switchyard1_0.camel.core.CorePackage#getGenericFileConsumerType_MoveFailed()
      * @model dataType="org.eclipse.emf.ecore.xml.type.String"
      *        extendedMetaData="kind='element' name='moveFailed' namespace='##targetNamespace'"
      * @generated
@@ -297,7 +297,7 @@ public interface GenericFileConsumerType extends ScheduledBatchPollConsumerType 
      * @see #isSetInclude()
      * @see #unsetInclude()
      * @see #setInclude(String)
-     * @see org.switchyard.tools.models.switchyard1_0.camel.core.CamelPackage#getGenericFileConsumerType_Include()
+     * @see org.switchyard.tools.models.switchyard1_0.camel.core.CorePackage#getGenericFileConsumerType_Include()
      * @model unsettable="true" dataType="org.eclipse.emf.ecore.xml.type.String"
      *        extendedMetaData="kind='element' name='include' namespace='##targetNamespace'"
      * @generated
@@ -351,7 +351,7 @@ public interface GenericFileConsumerType extends ScheduledBatchPollConsumerType 
      * @see #isSetExclude()
      * @see #unsetExclude()
      * @see #setExclude(String)
-     * @see org.switchyard.tools.models.switchyard1_0.camel.core.CamelPackage#getGenericFileConsumerType_Exclude()
+     * @see org.switchyard.tools.models.switchyard1_0.camel.core.CorePackage#getGenericFileConsumerType_Exclude()
      * @model unsettable="true" dataType="org.eclipse.emf.ecore.xml.type.String"
      *        extendedMetaData="kind='element' name='exclude' namespace='##targetNamespace'"
      * @generated
@@ -405,7 +405,7 @@ public interface GenericFileConsumerType extends ScheduledBatchPollConsumerType 
      * @see #isSetIdempotent()
      * @see #unsetIdempotent()
      * @see #setIdempotent(Boolean)
-     * @see org.switchyard.tools.models.switchyard1_0.camel.core.CamelPackage#getGenericFileConsumerType_Idempotent()
+     * @see org.switchyard.tools.models.switchyard1_0.camel.core.CorePackage#getGenericFileConsumerType_Idempotent()
      * @model unsettable="true" dataType="org.eclipse.emf.ecore.xml.type.BooleanObject"
      *        extendedMetaData="kind='element' name='idempotent' namespace='##targetNamespace'"
      * @generated
@@ -459,7 +459,7 @@ public interface GenericFileConsumerType extends ScheduledBatchPollConsumerType 
      * @see #isSetIdempotentRepository()
      * @see #unsetIdempotentRepository()
      * @see #setIdempotentRepository(String)
-     * @see org.switchyard.tools.models.switchyard1_0.camel.core.CamelPackage#getGenericFileConsumerType_IdempotentRepository()
+     * @see org.switchyard.tools.models.switchyard1_0.camel.core.CorePackage#getGenericFileConsumerType_IdempotentRepository()
      * @model unsettable="true" dataType="org.eclipse.emf.ecore.xml.type.String"
      *        extendedMetaData="kind='element' name='idempotentRepository' namespace='##targetNamespace'"
      * @generated
@@ -513,7 +513,7 @@ public interface GenericFileConsumerType extends ScheduledBatchPollConsumerType 
      * @see #isSetInProgressRepository()
      * @see #unsetInProgressRepository()
      * @see #setInProgressRepository(String)
-     * @see org.switchyard.tools.models.switchyard1_0.camel.core.CamelPackage#getGenericFileConsumerType_InProgressRepository()
+     * @see org.switchyard.tools.models.switchyard1_0.camel.core.CorePackage#getGenericFileConsumerType_InProgressRepository()
      * @model unsettable="true" dataType="org.eclipse.emf.ecore.xml.type.String"
      *        extendedMetaData="kind='element' name='inProgressRepository' namespace='##targetNamespace'"
      * @generated
@@ -567,7 +567,7 @@ public interface GenericFileConsumerType extends ScheduledBatchPollConsumerType 
      * @see #isSetFilter()
      * @see #unsetFilter()
      * @see #setFilter(String)
-     * @see org.switchyard.tools.models.switchyard1_0.camel.core.CamelPackage#getGenericFileConsumerType_Filter()
+     * @see org.switchyard.tools.models.switchyard1_0.camel.core.CorePackage#getGenericFileConsumerType_Filter()
      * @model unsettable="true" dataType="org.eclipse.emf.ecore.xml.type.String"
      *        extendedMetaData="kind='element' name='filter' namespace='##targetNamespace'"
      * @generated
@@ -621,7 +621,7 @@ public interface GenericFileConsumerType extends ScheduledBatchPollConsumerType 
      * @see #isSetSorter()
      * @see #unsetSorter()
      * @see #setSorter(String)
-     * @see org.switchyard.tools.models.switchyard1_0.camel.core.CamelPackage#getGenericFileConsumerType_Sorter()
+     * @see org.switchyard.tools.models.switchyard1_0.camel.core.CorePackage#getGenericFileConsumerType_Sorter()
      * @model unsettable="true" dataType="org.eclipse.emf.ecore.xml.type.String"
      *        extendedMetaData="kind='element' name='sorter' namespace='##targetNamespace'"
      * @generated
@@ -675,7 +675,7 @@ public interface GenericFileConsumerType extends ScheduledBatchPollConsumerType 
      * @see #isSetSortBy()
      * @see #unsetSortBy()
      * @see #setSortBy(String)
-     * @see org.switchyard.tools.models.switchyard1_0.camel.core.CamelPackage#getGenericFileConsumerType_SortBy()
+     * @see org.switchyard.tools.models.switchyard1_0.camel.core.CorePackage#getGenericFileConsumerType_SortBy()
      * @model unsettable="true" dataType="org.eclipse.emf.ecore.xml.type.String"
      *        extendedMetaData="kind='element' name='sortBy' namespace='##targetNamespace'"
      * @generated
@@ -729,7 +729,7 @@ public interface GenericFileConsumerType extends ScheduledBatchPollConsumerType 
      * @see #isSetReadLock()
      * @see #unsetReadLock()
      * @see #setReadLock(String)
-     * @see org.switchyard.tools.models.switchyard1_0.camel.core.CamelPackage#getGenericFileConsumerType_ReadLock()
+     * @see org.switchyard.tools.models.switchyard1_0.camel.core.CorePackage#getGenericFileConsumerType_ReadLock()
      * @model unsettable="true" dataType="org.eclipse.emf.ecore.xml.type.String"
      *        extendedMetaData="kind='element' name='readLock' namespace='##targetNamespace'"
      * @generated
@@ -783,7 +783,7 @@ public interface GenericFileConsumerType extends ScheduledBatchPollConsumerType 
      * @see #isSetReadLockTimeout()
      * @see #unsetReadLockTimeout()
      * @see #setReadLockTimeout(Long)
-     * @see org.switchyard.tools.models.switchyard1_0.camel.core.CamelPackage#getGenericFileConsumerType_ReadLockTimeout()
+     * @see org.switchyard.tools.models.switchyard1_0.camel.core.CorePackage#getGenericFileConsumerType_ReadLockTimeout()
      * @model unsettable="true" dataType="org.eclipse.emf.ecore.xml.type.LongObject"
      *        extendedMetaData="kind='element' name='readLockTimeout' namespace='##targetNamespace'"
      * @generated
@@ -837,7 +837,7 @@ public interface GenericFileConsumerType extends ScheduledBatchPollConsumerType 
      * @see #isSetReadLockCheckInterval()
      * @see #unsetReadLockCheckInterval()
      * @see #setReadLockCheckInterval(BigInteger)
-     * @see org.switchyard.tools.models.switchyard1_0.camel.core.CamelPackage#getGenericFileConsumerType_ReadLockCheckInterval()
+     * @see org.switchyard.tools.models.switchyard1_0.camel.core.CorePackage#getGenericFileConsumerType_ReadLockCheckInterval()
      * @model unsettable="true" dataType="org.eclipse.emf.ecore.xml.type.Integer"
      *        extendedMetaData="kind='element' name='readLockCheckInterval' namespace='##targetNamespace'"
      * @generated
@@ -891,7 +891,7 @@ public interface GenericFileConsumerType extends ScheduledBatchPollConsumerType 
      * @see #isSetExclusiveReadLockStrategy()
      * @see #unsetExclusiveReadLockStrategy()
      * @see #setExclusiveReadLockStrategy(String)
-     * @see org.switchyard.tools.models.switchyard1_0.camel.core.CamelPackage#getGenericFileConsumerType_ExclusiveReadLockStrategy()
+     * @see org.switchyard.tools.models.switchyard1_0.camel.core.CorePackage#getGenericFileConsumerType_ExclusiveReadLockStrategy()
      * @model unsettable="true" dataType="org.eclipse.emf.ecore.xml.type.String"
      *        extendedMetaData="kind='element' name='exclusiveReadLockStrategy' namespace='##targetNamespace'"
      * @generated
@@ -945,7 +945,7 @@ public interface GenericFileConsumerType extends ScheduledBatchPollConsumerType 
      * @see #isSetProcessStrategy()
      * @see #unsetProcessStrategy()
      * @see #setProcessStrategy(String)
-     * @see org.switchyard.tools.models.switchyard1_0.camel.core.CamelPackage#getGenericFileConsumerType_ProcessStrategy()
+     * @see org.switchyard.tools.models.switchyard1_0.camel.core.CorePackage#getGenericFileConsumerType_ProcessStrategy()
      * @model unsettable="true" dataType="org.eclipse.emf.ecore.xml.type.String"
      *        extendedMetaData="kind='element' name='processStrategy' namespace='##targetNamespace'"
      * @generated
@@ -999,7 +999,7 @@ public interface GenericFileConsumerType extends ScheduledBatchPollConsumerType 
      * @see #isSetStartingDirectoryMustExist()
      * @see #unsetStartingDirectoryMustExist()
      * @see #setStartingDirectoryMustExist(Boolean)
-     * @see org.switchyard.tools.models.switchyard1_0.camel.core.CamelPackage#getGenericFileConsumerType_StartingDirectoryMustExist()
+     * @see org.switchyard.tools.models.switchyard1_0.camel.core.CorePackage#getGenericFileConsumerType_StartingDirectoryMustExist()
      * @model unsettable="true" dataType="org.eclipse.emf.ecore.xml.type.BooleanObject"
      *        extendedMetaData="kind='element' name='startingDirectoryMustExist' namespace='##targetNamespace'"
      * @generated
@@ -1053,7 +1053,7 @@ public interface GenericFileConsumerType extends ScheduledBatchPollConsumerType 
      * @see #isSetDirectoryMustExist()
      * @see #unsetDirectoryMustExist()
      * @see #setDirectoryMustExist(Boolean)
-     * @see org.switchyard.tools.models.switchyard1_0.camel.core.CamelPackage#getGenericFileConsumerType_DirectoryMustExist()
+     * @see org.switchyard.tools.models.switchyard1_0.camel.core.CorePackage#getGenericFileConsumerType_DirectoryMustExist()
      * @model unsettable="true" dataType="org.eclipse.emf.ecore.xml.type.BooleanObject"
      *        extendedMetaData="kind='element' name='directoryMustExist' namespace='##targetNamespace'"
      * @generated
@@ -1107,7 +1107,7 @@ public interface GenericFileConsumerType extends ScheduledBatchPollConsumerType 
      * @see #isSetDoneFileName()
      * @see #unsetDoneFileName()
      * @see #setDoneFileName(String)
-     * @see org.switchyard.tools.models.switchyard1_0.camel.core.CamelPackage#getGenericFileConsumerType_DoneFileName()
+     * @see org.switchyard.tools.models.switchyard1_0.camel.core.CorePackage#getGenericFileConsumerType_DoneFileName()
      * @model unsettable="true" dataType="org.eclipse.emf.ecore.xml.type.String"
      *        extendedMetaData="kind='element' name='doneFileName' namespace='##targetNamespace'"
      * @generated

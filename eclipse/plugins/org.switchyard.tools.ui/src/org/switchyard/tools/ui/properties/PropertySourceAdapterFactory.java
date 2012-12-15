@@ -15,8 +15,7 @@ import org.eclipse.ui.views.properties.IPropertySource;
 import org.switchyard.component.bean.config.model.BeanComponentImplementationModel;
 import org.switchyard.component.bpel.config.model.BPELComponentImplementationModel;
 import org.switchyard.component.bpm.config.model.BPMComponentImplementationModel;
-import org.switchyard.component.camel.config.model.CamelBindingModel;
-import org.switchyard.component.camel.config.model.CamelComponentImplementationModel;
+import org.switchyard.component.camel.model.CamelComponentImplementationModel;
 import org.switchyard.component.clojure.config.model.ClojureComponentImplementationModel;
 import org.switchyard.component.hornetq.config.model.HornetQBindingModel;
 import org.switchyard.component.rules.config.model.RulesComponentImplementationModel;
@@ -126,8 +125,6 @@ public class PropertySourceAdapterFactory implements IAdapterFactory {
             return new CompositeReferenceModelPropertySource((CompositeReferenceModel) adaptableObject);
         } else if (adaptableObject instanceof CompositeServiceModel) {
             return new CompositeServiceModelPropertySource((CompositeServiceModel) adaptableObject);
-        } else if (adaptableObject instanceof CamelBindingModel) {
-            return new CamelBindingModelPropertySource((CamelBindingModel) adaptableObject);
         } else if (adaptableObject instanceof HornetQBindingModel) {
             return new HornetQBindingModelPropertySource((HornetQBindingModel) adaptableObject);
         } else if (adaptableObject instanceof SOAPBindingModel) {

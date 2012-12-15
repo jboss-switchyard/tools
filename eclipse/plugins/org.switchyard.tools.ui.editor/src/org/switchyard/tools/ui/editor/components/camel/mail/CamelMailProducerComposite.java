@@ -26,10 +26,11 @@ import org.eclipse.swt.widgets.Group;
 import org.eclipse.swt.widgets.TabFolder;
 import org.eclipse.swt.widgets.TabItem;
 import org.eclipse.swt.widgets.Text;
-import org.switchyard.tools.models.switchyard1_0.camel.CamelFactory;
-import org.switchyard.tools.models.switchyard1_0.camel.CamelMailBindingType;
+import org.switchyard.tools.models.switchyard1_0.camel.mail.CamelMailBindingType;
+import org.switchyard.tools.models.switchyard1_0.camel.mail.MailFactory;
 import org.switchyard.tools.models.switchyard1_0.switchyard.ContextMapperType;
 import org.switchyard.tools.models.switchyard1_0.switchyard.MessageComposerType;
+import org.switchyard.tools.models.switchyard1_0.switchyard.SwitchyardFactory;
 import org.switchyard.tools.ui.editor.diagram.binding.AbstractSYBindingComposite;
 import org.switchyard.tools.ui.editor.diagram.shared.ModelOperation;
 
@@ -183,7 +184,7 @@ public class CamelMailProducerComposite extends AbstractSYBindingComposite {
         @Override
         public void run() throws Exception {
             if (_binding != null && _binding.getProduce() == null) {
-                setFeatureValue(_binding, "produce", CamelFactory.eINSTANCE.createCamelMailProducerType());
+                setFeatureValue(_binding, "produce", MailFactory.eINSTANCE.createCamelMailProducerType());
             }
         }
     }
@@ -268,15 +269,15 @@ public class CamelMailProducerComposite extends AbstractSYBindingComposite {
         }
         return _advancedPropsFilterList;
     }
-
+    
     @Override
     protected ContextMapperType createContextMapper() {
-        return CamelFactory.eINSTANCE.createCamelContextMapperType();
+        return SwitchyardFactory.eINSTANCE.createContextMapperType();
     }
 
     @Override
     protected MessageComposerType createMessageComposer() {
-        return CamelFactory.eINSTANCE.createCamelMessageComposerType();
+        return SwitchyardFactory.eINSTANCE.createMessageComposerType();
     }
     
 }

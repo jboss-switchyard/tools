@@ -24,12 +24,12 @@ import org.switchyard.tools.models.switchyard1_0.camel.netty.NettyPackage;
  *   <li>{@link org.switchyard.tools.models.switchyard1_0.camel.netty.impl.CamelNettyBindingTypeImpl#getPort <em>Port</em>}</li>
  *   <li>{@link org.switchyard.tools.models.switchyard1_0.camel.netty.impl.CamelNettyBindingTypeImpl#getReceiveBufferSize <em>Receive Buffer Size</em>}</li>
  *   <li>{@link org.switchyard.tools.models.switchyard1_0.camel.netty.impl.CamelNettyBindingTypeImpl#getSendBufferSize <em>Send Buffer Size</em>}</li>
- *   <li>{@link org.switchyard.tools.models.switchyard1_0.camel.netty.impl.CamelNettyBindingTypeImpl#getReuseAddress <em>Reuse Address</em>}</li>
+ *   <li>{@link org.switchyard.tools.models.switchyard1_0.camel.netty.impl.CamelNettyBindingTypeImpl#isReuseAddress <em>Reuse Address</em>}</li>
  *   <li>{@link org.switchyard.tools.models.switchyard1_0.camel.netty.impl.CamelNettyBindingTypeImpl#getEncoders <em>Encoders</em>}</li>
  *   <li>{@link org.switchyard.tools.models.switchyard1_0.camel.netty.impl.CamelNettyBindingTypeImpl#getDecoders <em>Decoders</em>}</li>
  *   <li>{@link org.switchyard.tools.models.switchyard1_0.camel.netty.impl.CamelNettyBindingTypeImpl#getAllowDefaultCodec <em>Allow Default Codec</em>}</li>
  *   <li>{@link org.switchyard.tools.models.switchyard1_0.camel.netty.impl.CamelNettyBindingTypeImpl#getWorkerCount <em>Worker Count</em>}</li>
- *   <li>{@link org.switchyard.tools.models.switchyard1_0.camel.netty.impl.CamelNettyBindingTypeImpl#isSync <em>Sync</em>}</li>
+ *   <li>{@link org.switchyard.tools.models.switchyard1_0.camel.netty.impl.CamelNettyBindingTypeImpl#getSync <em>Sync</em>}</li>
  *   <li>{@link org.switchyard.tools.models.switchyard1_0.camel.netty.impl.CamelNettyBindingTypeImpl#getDisconnect <em>Disconnect</em>}</li>
  * </ul>
  * </p>
@@ -65,7 +65,7 @@ public abstract class CamelNettyBindingTypeImpl extends BaseCamelBindingImpl imp
      * @generated
      * @ordered
      */
-    protected static final int PORT_EDEFAULT = 0;
+    protected static final Integer PORT_EDEFAULT = null;
 
     /**
      * The cached value of the '{@link #getPort() <em>Port</em>}' attribute.
@@ -75,7 +75,16 @@ public abstract class CamelNettyBindingTypeImpl extends BaseCamelBindingImpl imp
      * @generated
      * @ordered
      */
-    protected int port = PORT_EDEFAULT;
+    protected Integer port = PORT_EDEFAULT;
+
+    /**
+     * This is true if the Port attribute has been set.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    protected boolean portESet;
 
     /**
      * The default value of the '{@link #getReceiveBufferSize() <em>Receive Buffer Size</em>}' attribute.
@@ -98,6 +107,15 @@ public abstract class CamelNettyBindingTypeImpl extends BaseCamelBindingImpl imp
     protected Long receiveBufferSize = RECEIVE_BUFFER_SIZE_EDEFAULT;
 
     /**
+     * This is true if the Receive Buffer Size attribute has been set.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    protected boolean receiveBufferSizeESet;
+
+    /**
      * The default value of the '{@link #getSendBufferSize() <em>Send Buffer Size</em>}' attribute.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
@@ -118,24 +136,33 @@ public abstract class CamelNettyBindingTypeImpl extends BaseCamelBindingImpl imp
     protected Long sendBufferSize = SEND_BUFFER_SIZE_EDEFAULT;
 
     /**
-     * The default value of the '{@link #getReuseAddress() <em>Reuse Address</em>}' attribute.
+     * This is true if the Send Buffer Size attribute has been set.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @see #getReuseAddress()
      * @generated
      * @ordered
      */
-    protected static final Boolean REUSE_ADDRESS_EDEFAULT = null;
+    protected boolean sendBufferSizeESet;
 
     /**
-     * The cached value of the '{@link #getReuseAddress() <em>Reuse Address</em>}' attribute.
+     * The default value of the '{@link #isReuseAddress() <em>Reuse Address</em>}' attribute.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @see #getReuseAddress()
+     * @see #isReuseAddress()
      * @generated
      * @ordered
      */
-    protected Boolean reuseAddress = REUSE_ADDRESS_EDEFAULT;
+    protected static final boolean REUSE_ADDRESS_EDEFAULT = false;
+
+    /**
+     * The cached value of the '{@link #isReuseAddress() <em>Reuse Address</em>}' attribute.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @see #isReuseAddress()
+     * @generated
+     * @ordered
+     */
+    protected boolean reuseAddress = REUSE_ADDRESS_EDEFAULT;
 
     /**
      * This is true if the Reuse Address attribute has been set.
@@ -167,15 +194,6 @@ public abstract class CamelNettyBindingTypeImpl extends BaseCamelBindingImpl imp
     protected String encoders = ENCODERS_EDEFAULT;
 
     /**
-     * This is true if the Encoders attribute has been set.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     * @ordered
-     */
-    protected boolean encodersESet;
-
-    /**
      * The default value of the '{@link #getDecoders() <em>Decoders</em>}' attribute.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
@@ -194,15 +212,6 @@ public abstract class CamelNettyBindingTypeImpl extends BaseCamelBindingImpl imp
      * @ordered
      */
     protected String decoders = DECODERS_EDEFAULT;
-
-    /**
-     * This is true if the Decoders attribute has been set.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     * @ordered
-     */
-    protected boolean decodersESet;
 
     /**
      * The default value of the '{@link #getAllowDefaultCodec() <em>Allow Default Codec</em>}' attribute.
@@ -263,24 +272,24 @@ public abstract class CamelNettyBindingTypeImpl extends BaseCamelBindingImpl imp
     protected boolean workerCountESet;
 
     /**
-     * The default value of the '{@link #isSync() <em>Sync</em>}' attribute.
+     * The default value of the '{@link #getSync() <em>Sync</em>}' attribute.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @see #isSync()
+     * @see #getSync()
      * @generated
      * @ordered
      */
-    protected static final boolean SYNC_EDEFAULT = false;
+    protected static final Boolean SYNC_EDEFAULT = null;
 
     /**
-     * The cached value of the '{@link #isSync() <em>Sync</em>}' attribute.
+     * The cached value of the '{@link #getSync() <em>Sync</em>}' attribute.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @see #isSync()
+     * @see #getSync()
      * @generated
      * @ordered
      */
-    protected boolean sync = SYNC_EDEFAULT;
+    protected Boolean sync = SYNC_EDEFAULT;
 
     /**
      * This is true if the Sync attribute has been set.
@@ -365,7 +374,7 @@ public abstract class CamelNettyBindingTypeImpl extends BaseCamelBindingImpl imp
      * <!-- end-user-doc -->
      * @generated
      */
-    public int getPort() {
+    public Integer getPort() {
         return port;
     }
 
@@ -374,11 +383,36 @@ public abstract class CamelNettyBindingTypeImpl extends BaseCamelBindingImpl imp
      * <!-- end-user-doc -->
      * @generated
      */
-    public void setPort(int newPort) {
-        int oldPort = port;
+    public void setPort(Integer newPort) {
+        Integer oldPort = port;
         port = newPort;
+        boolean oldPortESet = portESet;
+        portESet = true;
         if (eNotificationRequired())
-            eNotify(new ENotificationImpl(this, Notification.SET, NettyPackage.CAMEL_NETTY_BINDING_TYPE__PORT, oldPort, port));
+            eNotify(new ENotificationImpl(this, Notification.SET, NettyPackage.CAMEL_NETTY_BINDING_TYPE__PORT, oldPort, port, !oldPortESet));
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public void unsetPort() {
+        Integer oldPort = port;
+        boolean oldPortESet = portESet;
+        port = PORT_EDEFAULT;
+        portESet = false;
+        if (eNotificationRequired())
+            eNotify(new ENotificationImpl(this, Notification.UNSET, NettyPackage.CAMEL_NETTY_BINDING_TYPE__PORT, oldPort, PORT_EDEFAULT, oldPortESet));
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public boolean isSetPort() {
+        return portESet;
     }
 
     /**
@@ -398,8 +432,33 @@ public abstract class CamelNettyBindingTypeImpl extends BaseCamelBindingImpl imp
     public void setReceiveBufferSize(Long newReceiveBufferSize) {
         Long oldReceiveBufferSize = receiveBufferSize;
         receiveBufferSize = newReceiveBufferSize;
+        boolean oldReceiveBufferSizeESet = receiveBufferSizeESet;
+        receiveBufferSizeESet = true;
         if (eNotificationRequired())
-            eNotify(new ENotificationImpl(this, Notification.SET, NettyPackage.CAMEL_NETTY_BINDING_TYPE__RECEIVE_BUFFER_SIZE, oldReceiveBufferSize, receiveBufferSize));
+            eNotify(new ENotificationImpl(this, Notification.SET, NettyPackage.CAMEL_NETTY_BINDING_TYPE__RECEIVE_BUFFER_SIZE, oldReceiveBufferSize, receiveBufferSize, !oldReceiveBufferSizeESet));
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public void unsetReceiveBufferSize() {
+        Long oldReceiveBufferSize = receiveBufferSize;
+        boolean oldReceiveBufferSizeESet = receiveBufferSizeESet;
+        receiveBufferSize = RECEIVE_BUFFER_SIZE_EDEFAULT;
+        receiveBufferSizeESet = false;
+        if (eNotificationRequired())
+            eNotify(new ENotificationImpl(this, Notification.UNSET, NettyPackage.CAMEL_NETTY_BINDING_TYPE__RECEIVE_BUFFER_SIZE, oldReceiveBufferSize, RECEIVE_BUFFER_SIZE_EDEFAULT, oldReceiveBufferSizeESet));
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public boolean isSetReceiveBufferSize() {
+        return receiveBufferSizeESet;
     }
 
     /**
@@ -419,8 +478,10 @@ public abstract class CamelNettyBindingTypeImpl extends BaseCamelBindingImpl imp
     public void setSendBufferSize(Long newSendBufferSize) {
         Long oldSendBufferSize = sendBufferSize;
         sendBufferSize = newSendBufferSize;
+        boolean oldSendBufferSizeESet = sendBufferSizeESet;
+        sendBufferSizeESet = true;
         if (eNotificationRequired())
-            eNotify(new ENotificationImpl(this, Notification.SET, NettyPackage.CAMEL_NETTY_BINDING_TYPE__SEND_BUFFER_SIZE, oldSendBufferSize, sendBufferSize));
+            eNotify(new ENotificationImpl(this, Notification.SET, NettyPackage.CAMEL_NETTY_BINDING_TYPE__SEND_BUFFER_SIZE, oldSendBufferSize, sendBufferSize, !oldSendBufferSizeESet));
     }
 
     /**
@@ -428,7 +489,30 @@ public abstract class CamelNettyBindingTypeImpl extends BaseCamelBindingImpl imp
      * <!-- end-user-doc -->
      * @generated
      */
-    public Boolean getReuseAddress() {
+    public void unsetSendBufferSize() {
+        Long oldSendBufferSize = sendBufferSize;
+        boolean oldSendBufferSizeESet = sendBufferSizeESet;
+        sendBufferSize = SEND_BUFFER_SIZE_EDEFAULT;
+        sendBufferSizeESet = false;
+        if (eNotificationRequired())
+            eNotify(new ENotificationImpl(this, Notification.UNSET, NettyPackage.CAMEL_NETTY_BINDING_TYPE__SEND_BUFFER_SIZE, oldSendBufferSize, SEND_BUFFER_SIZE_EDEFAULT, oldSendBufferSizeESet));
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public boolean isSetSendBufferSize() {
+        return sendBufferSizeESet;
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public boolean isReuseAddress() {
         return reuseAddress;
     }
 
@@ -437,8 +521,8 @@ public abstract class CamelNettyBindingTypeImpl extends BaseCamelBindingImpl imp
      * <!-- end-user-doc -->
      * @generated
      */
-    public void setReuseAddress(Boolean newReuseAddress) {
-        Boolean oldReuseAddress = reuseAddress;
+    public void setReuseAddress(boolean newReuseAddress) {
+        boolean oldReuseAddress = reuseAddress;
         reuseAddress = newReuseAddress;
         boolean oldReuseAddressESet = reuseAddressESet;
         reuseAddressESet = true;
@@ -452,7 +536,7 @@ public abstract class CamelNettyBindingTypeImpl extends BaseCamelBindingImpl imp
      * @generated
      */
     public void unsetReuseAddress() {
-        Boolean oldReuseAddress = reuseAddress;
+        boolean oldReuseAddress = reuseAddress;
         boolean oldReuseAddressESet = reuseAddressESet;
         reuseAddress = REUSE_ADDRESS_EDEFAULT;
         reuseAddressESet = false;
@@ -486,33 +570,8 @@ public abstract class CamelNettyBindingTypeImpl extends BaseCamelBindingImpl imp
     public void setEncoders(String newEncoders) {
         String oldEncoders = encoders;
         encoders = newEncoders;
-        boolean oldEncodersESet = encodersESet;
-        encodersESet = true;
         if (eNotificationRequired())
-            eNotify(new ENotificationImpl(this, Notification.SET, NettyPackage.CAMEL_NETTY_BINDING_TYPE__ENCODERS, oldEncoders, encoders, !oldEncodersESet));
-    }
-
-    /**
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    public void unsetEncoders() {
-        String oldEncoders = encoders;
-        boolean oldEncodersESet = encodersESet;
-        encoders = ENCODERS_EDEFAULT;
-        encodersESet = false;
-        if (eNotificationRequired())
-            eNotify(new ENotificationImpl(this, Notification.UNSET, NettyPackage.CAMEL_NETTY_BINDING_TYPE__ENCODERS, oldEncoders, ENCODERS_EDEFAULT, oldEncodersESet));
-    }
-
-    /**
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    public boolean isSetEncoders() {
-        return encodersESet;
+            eNotify(new ENotificationImpl(this, Notification.SET, NettyPackage.CAMEL_NETTY_BINDING_TYPE__ENCODERS, oldEncoders, encoders));
     }
 
     /**
@@ -532,33 +591,8 @@ public abstract class CamelNettyBindingTypeImpl extends BaseCamelBindingImpl imp
     public void setDecoders(String newDecoders) {
         String oldDecoders = decoders;
         decoders = newDecoders;
-        boolean oldDecodersESet = decodersESet;
-        decodersESet = true;
         if (eNotificationRequired())
-            eNotify(new ENotificationImpl(this, Notification.SET, NettyPackage.CAMEL_NETTY_BINDING_TYPE__DECODERS, oldDecoders, decoders, !oldDecodersESet));
-    }
-
-    /**
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    public void unsetDecoders() {
-        String oldDecoders = decoders;
-        boolean oldDecodersESet = decodersESet;
-        decoders = DECODERS_EDEFAULT;
-        decodersESet = false;
-        if (eNotificationRequired())
-            eNotify(new ENotificationImpl(this, Notification.UNSET, NettyPackage.CAMEL_NETTY_BINDING_TYPE__DECODERS, oldDecoders, DECODERS_EDEFAULT, oldDecodersESet));
-    }
-
-    /**
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    public boolean isSetDecoders() {
-        return decodersESet;
+            eNotify(new ENotificationImpl(this, Notification.SET, NettyPackage.CAMEL_NETTY_BINDING_TYPE__DECODERS, oldDecoders, decoders));
     }
 
     /**
@@ -658,7 +692,7 @@ public abstract class CamelNettyBindingTypeImpl extends BaseCamelBindingImpl imp
      * <!-- end-user-doc -->
      * @generated
      */
-    public boolean isSync() {
+    public Boolean getSync() {
         return sync;
     }
 
@@ -667,8 +701,8 @@ public abstract class CamelNettyBindingTypeImpl extends BaseCamelBindingImpl imp
      * <!-- end-user-doc -->
      * @generated
      */
-    public void setSync(boolean newSync) {
-        boolean oldSync = sync;
+    public void setSync(Boolean newSync) {
+        Boolean oldSync = sync;
         sync = newSync;
         boolean oldSyncESet = syncESet;
         syncESet = true;
@@ -682,7 +716,7 @@ public abstract class CamelNettyBindingTypeImpl extends BaseCamelBindingImpl imp
      * @generated
      */
     public void unsetSync() {
-        boolean oldSync = sync;
+        Boolean oldSync = sync;
         boolean oldSyncESet = syncESet;
         sync = SYNC_EDEFAULT;
         syncESet = false;
@@ -762,7 +796,7 @@ public abstract class CamelNettyBindingTypeImpl extends BaseCamelBindingImpl imp
             case NettyPackage.CAMEL_NETTY_BINDING_TYPE__SEND_BUFFER_SIZE:
                 return getSendBufferSize();
             case NettyPackage.CAMEL_NETTY_BINDING_TYPE__REUSE_ADDRESS:
-                return getReuseAddress();
+                return isReuseAddress();
             case NettyPackage.CAMEL_NETTY_BINDING_TYPE__ENCODERS:
                 return getEncoders();
             case NettyPackage.CAMEL_NETTY_BINDING_TYPE__DECODERS:
@@ -772,7 +806,7 @@ public abstract class CamelNettyBindingTypeImpl extends BaseCamelBindingImpl imp
             case NettyPackage.CAMEL_NETTY_BINDING_TYPE__WORKER_COUNT:
                 return getWorkerCount();
             case NettyPackage.CAMEL_NETTY_BINDING_TYPE__SYNC:
-                return isSync();
+                return getSync();
             case NettyPackage.CAMEL_NETTY_BINDING_TYPE__DISCONNECT:
                 return getDisconnect();
         }
@@ -836,22 +870,22 @@ public abstract class CamelNettyBindingTypeImpl extends BaseCamelBindingImpl imp
                 setHost(HOST_EDEFAULT);
                 return;
             case NettyPackage.CAMEL_NETTY_BINDING_TYPE__PORT:
-                setPort(PORT_EDEFAULT);
+                unsetPort();
                 return;
             case NettyPackage.CAMEL_NETTY_BINDING_TYPE__RECEIVE_BUFFER_SIZE:
-                setReceiveBufferSize(RECEIVE_BUFFER_SIZE_EDEFAULT);
+                unsetReceiveBufferSize();
                 return;
             case NettyPackage.CAMEL_NETTY_BINDING_TYPE__SEND_BUFFER_SIZE:
-                setSendBufferSize(SEND_BUFFER_SIZE_EDEFAULT);
+                unsetSendBufferSize();
                 return;
             case NettyPackage.CAMEL_NETTY_BINDING_TYPE__REUSE_ADDRESS:
                 unsetReuseAddress();
                 return;
             case NettyPackage.CAMEL_NETTY_BINDING_TYPE__ENCODERS:
-                unsetEncoders();
+                setEncoders(ENCODERS_EDEFAULT);
                 return;
             case NettyPackage.CAMEL_NETTY_BINDING_TYPE__DECODERS:
-                unsetDecoders();
+                setDecoders(DECODERS_EDEFAULT);
                 return;
             case NettyPackage.CAMEL_NETTY_BINDING_TYPE__ALLOW_DEFAULT_CODEC:
                 unsetAllowDefaultCodec();
@@ -880,17 +914,17 @@ public abstract class CamelNettyBindingTypeImpl extends BaseCamelBindingImpl imp
             case NettyPackage.CAMEL_NETTY_BINDING_TYPE__HOST:
                 return HOST_EDEFAULT == null ? host != null : !HOST_EDEFAULT.equals(host);
             case NettyPackage.CAMEL_NETTY_BINDING_TYPE__PORT:
-                return port != PORT_EDEFAULT;
+                return isSetPort();
             case NettyPackage.CAMEL_NETTY_BINDING_TYPE__RECEIVE_BUFFER_SIZE:
-                return RECEIVE_BUFFER_SIZE_EDEFAULT == null ? receiveBufferSize != null : !RECEIVE_BUFFER_SIZE_EDEFAULT.equals(receiveBufferSize);
+                return isSetReceiveBufferSize();
             case NettyPackage.CAMEL_NETTY_BINDING_TYPE__SEND_BUFFER_SIZE:
-                return SEND_BUFFER_SIZE_EDEFAULT == null ? sendBufferSize != null : !SEND_BUFFER_SIZE_EDEFAULT.equals(sendBufferSize);
+                return isSetSendBufferSize();
             case NettyPackage.CAMEL_NETTY_BINDING_TYPE__REUSE_ADDRESS:
                 return isSetReuseAddress();
             case NettyPackage.CAMEL_NETTY_BINDING_TYPE__ENCODERS:
-                return isSetEncoders();
+                return ENCODERS_EDEFAULT == null ? encoders != null : !ENCODERS_EDEFAULT.equals(encoders);
             case NettyPackage.CAMEL_NETTY_BINDING_TYPE__DECODERS:
-                return isSetDecoders();
+                return DECODERS_EDEFAULT == null ? decoders != null : !DECODERS_EDEFAULT.equals(decoders);
             case NettyPackage.CAMEL_NETTY_BINDING_TYPE__ALLOW_DEFAULT_CODEC:
                 return isSetAllowDefaultCodec();
             case NettyPackage.CAMEL_NETTY_BINDING_TYPE__WORKER_COUNT:
@@ -916,17 +950,17 @@ public abstract class CamelNettyBindingTypeImpl extends BaseCamelBindingImpl imp
         result.append(" (host: ");
         result.append(host);
         result.append(", port: ");
-        result.append(port);
+        if (portESet) result.append(port); else result.append("<unset>");
         result.append(", receiveBufferSize: ");
-        result.append(receiveBufferSize);
+        if (receiveBufferSizeESet) result.append(receiveBufferSize); else result.append("<unset>");
         result.append(", sendBufferSize: ");
-        result.append(sendBufferSize);
+        if (sendBufferSizeESet) result.append(sendBufferSize); else result.append("<unset>");
         result.append(", reuseAddress: ");
         if (reuseAddressESet) result.append(reuseAddress); else result.append("<unset>");
         result.append(", encoders: ");
-        if (encodersESet) result.append(encoders); else result.append("<unset>");
+        result.append(encoders);
         result.append(", decoders: ");
-        if (decodersESet) result.append(decoders); else result.append("<unset>");
+        result.append(decoders);
         result.append(", allowDefaultCodec: ");
         if (allowDefaultCodecESet) result.append(allowDefaultCodec); else result.append("<unset>");
         result.append(", workerCount: ");

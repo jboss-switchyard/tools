@@ -27,10 +27,11 @@ import org.eclipse.swt.widgets.Group;
 import org.eclipse.swt.widgets.TabFolder;
 import org.eclipse.swt.widgets.TabItem;
 import org.eclipse.swt.widgets.Text;
-import org.switchyard.tools.models.switchyard1_0.camel.CamelFactory;
-import org.switchyard.tools.models.switchyard1_0.camel.CamelFtpBindingType;
+import org.switchyard.tools.models.switchyard1_0.camel.ftp.CamelFtpBindingType;
+import org.switchyard.tools.models.switchyard1_0.camel.ftp.FtpFactory;
 import org.switchyard.tools.models.switchyard1_0.switchyard.ContextMapperType;
 import org.switchyard.tools.models.switchyard1_0.switchyard.MessageComposerType;
+import org.switchyard.tools.models.switchyard1_0.switchyard.SwitchyardFactory;
 import org.switchyard.tools.ui.editor.diagram.binding.AbstractSYBindingComposite;
 import org.switchyard.tools.ui.editor.diagram.shared.ModelOperation;
 
@@ -79,8 +80,8 @@ public class CamelFTPProducerComposite extends AbstractSYBindingComposite {
             if (this._binding.getFileName() != null) {
                 _fileNameText.setText(this._binding.getFileName());
             }
-            if (this._binding.isAutoCreate()) {
-                _autoCreateButton.setSelection(this._binding.isAutoCreate());
+            if (this._binding.getAutoCreate().booleanValue()) {
+                _autoCreateButton.setSelection(this._binding.getAutoCreate());
             }
             if (this._binding.getHost() != null) {
                 _hostText.setText(this._binding.getHost());
@@ -94,8 +95,8 @@ public class CamelFTPProducerComposite extends AbstractSYBindingComposite {
             if (this._binding.getPassword() != null) {
                 _pwdText.setText(this._binding.getPassword());
             }
-            if (this._binding.isBinary()) {
-                _binaryButton.setSelection(this._binding.isBinary());
+            if (this._binding.getBinary() != null) {
+                _binaryButton.setSelection(this._binding.getBinary().booleanValue());
             }
             super.setTabsBinding(_binding);
             setInUpdate(false);
@@ -181,7 +182,7 @@ public class CamelFTPProducerComposite extends AbstractSYBindingComposite {
         @Override
         public void run() throws Exception {
             if (_binding != null && _binding.getProduce() == null) {
-                setFeatureValue(_binding, "produce", CamelFactory.eINSTANCE.createRemoteFileProducerType());
+                setFeatureValue(_binding, "produce", FtpFactory.eINSTANCE.createRemoteFileProducerType());
             }
         }
     }
@@ -234,7 +235,7 @@ public class CamelFTPProducerComposite extends AbstractSYBindingComposite {
             } else if (control.equals(_fileNameText)) {
                 _fileNameText.setText(this._binding.getFileName());
             } else if (control.equals(_autoCreateButton)) {
-                _autoCreateButton.setSelection(this._binding.isAutoCreate());
+                _autoCreateButton.setSelection(this._binding.getAutoCreate().booleanValue());
             } else if (control.equals(_hostText)) {
                 _hostText.setText(this._binding.getHost());
             } else if (control.equals(_portText)) {
@@ -244,7 +245,7 @@ public class CamelFTPProducerComposite extends AbstractSYBindingComposite {
             } else if (control.equals(_pwdText)) {
                 _pwdText.setText(this._binding.getPassword());
             } else if (control.equals(_binaryButton)) {
-                _binaryButton.setSelection(this._binding.isBinary());
+                _binaryButton.setSelection(this._binding.getBinary().booleanValue());
             } else if (this._binding.getProduce() != null) {
                 if (control.equals(_fileExistText)) {
                     _fileExistText.setText(this._binding.getProduce().getFileExist());
@@ -285,12 +286,12 @@ public class CamelFTPProducerComposite extends AbstractSYBindingComposite {
     
     @Override
     protected ContextMapperType createContextMapper() {
-        return CamelFactory.eINSTANCE.createCamelContextMapperType();
+        return SwitchyardFactory.eINSTANCE.createContextMapperType();
     }
 
     @Override
     protected MessageComposerType createMessageComposer() {
-        return CamelFactory.eINSTANCE.createCamelMessageComposerType();
+        return SwitchyardFactory.eINSTANCE.createMessageComposerType();
     }
     
 }

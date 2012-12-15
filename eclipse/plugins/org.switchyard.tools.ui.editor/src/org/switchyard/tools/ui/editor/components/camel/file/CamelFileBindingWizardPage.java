@@ -20,8 +20,8 @@ import org.eclipse.soa.sca.sca1_1.model.sca.Binding;
 import org.eclipse.soa.sca.sca1_1.model.sca.Contract;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.widgets.Composite;
-import org.switchyard.tools.models.switchyard1_0.camel.CamelFactory;
-import org.switchyard.tools.models.switchyard1_0.camel.CamelFileBindingType;
+import org.switchyard.tools.models.switchyard1_0.camel.file.CamelFileBindingType;
+import org.switchyard.tools.models.switchyard1_0.camel.file.FileFactory;
 
 /**
  * @author bfitzpat
@@ -31,7 +31,7 @@ public class CamelFileBindingWizardPage extends WizardPage {
 
     private CamelFileConsumerComposite _consumerComposite = null;
     private CamelFileProducerComposite _producerComposite = null;
-    private CamelFileBindingType _binding = CamelFactory.eINSTANCE.createCamelFileBindingType();
+    private CamelFileBindingType _binding = FileFactory.eINSTANCE.createCamelFileBindingType();
     private boolean _showConsumer;
     private Contract _targetContainer;
 
@@ -54,9 +54,9 @@ public class CamelFileBindingWizardPage extends WizardPage {
         _showConsumer = showConsumer;
         if (_binding != null) {
             if (_showConsumer) {
-                _binding.setConsume(CamelFactory.eINSTANCE.createFileConsumerType());
+                _binding.setConsume(FileFactory.eINSTANCE.createFileConsumerType());
             } else {
-                _binding.setProduce(CamelFactory.eINSTANCE.createFileProducerType());
+                _binding.setProduce(FileFactory.eINSTANCE.createFileProducerType());
             }
         }
     }

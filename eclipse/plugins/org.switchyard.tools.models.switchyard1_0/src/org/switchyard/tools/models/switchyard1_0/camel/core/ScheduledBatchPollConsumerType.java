@@ -15,7 +15,7 @@ package org.switchyard.tools.models.switchyard1_0.camel.core;
  * </ul>
  * </p>
  *
- * @see org.switchyard.tools.models.switchyard1_0.camel.core.CamelPackage#getScheduledBatchPollConsumerType()
+ * @see org.switchyard.tools.models.switchyard1_0.camel.core.CorePackage#getScheduledBatchPollConsumerType()
  * @model extendedMetaData="name='ScheduledBatchPollConsumerType' kind='elementOnly'"
  * @generated
  */
@@ -30,7 +30,7 @@ public interface ScheduledBatchPollConsumerType extends ScheduledPollConsumerTyp
      * <!-- end-user-doc -->
      * @return the value of the '<em>Max Messages Per Poll</em>' attribute.
      * @see #setMaxMessagesPerPoll(Integer)
-     * @see org.switchyard.tools.models.switchyard1_0.camel.core.CamelPackage#getScheduledBatchPollConsumerType_MaxMessagesPerPoll()
+     * @see org.switchyard.tools.models.switchyard1_0.camel.core.CorePackage#getScheduledBatchPollConsumerType_MaxMessagesPerPoll()
      * @model dataType="org.eclipse.emf.ecore.xml.type.IntObject"
      *        extendedMetaData="kind='element' name='maxMessagesPerPoll' namespace='##targetNamespace'"
      * @generated

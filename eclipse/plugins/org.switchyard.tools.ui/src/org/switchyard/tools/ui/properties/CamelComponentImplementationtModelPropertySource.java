@@ -13,7 +13,7 @@ package org.switchyard.tools.ui.properties;
 import org.eclipse.ui.views.properties.IPropertyDescriptor;
 import org.eclipse.ui.views.properties.IPropertySource;
 import org.eclipse.ui.views.properties.PropertyDescriptor;
-import org.switchyard.component.camel.config.model.CamelComponentImplementationModel;
+import org.switchyard.component.camel.model.CamelComponentImplementationModel;
 
 /**
  * CamelComponentImplementationtModelPropertySource

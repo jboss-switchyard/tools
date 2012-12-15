@@ -6,8 +6,8 @@ import org.eclipse.emf.ecore.EAttribute;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.EReference;
-
-import org.switchyard.tools.models.switchyard1_0.camel.core.CamelPackage;
+import org.switchyard.tools.models.switchyard1_0.switchyard.SwitchyardPackage;
+import org.switchyard.tools.models.switchyard1_0.camel.core.CorePackage;
 
 /**
  * <!-- begin-user-doc -->
@@ -58,14 +58,14 @@ public interface SqlPackage extends EPackage {
     SqlPackage eINSTANCE = org.switchyard.tools.models.switchyard1_0.camel.sql.impl.SqlPackageImpl.init();
 
     /**
-     * The meta object id for the '{@link org.switchyard.tools.models.switchyard1_0.camel.sql.impl.CamelSqlBindingTypeImpl <em>Camel Sql Binding Type</em>}' class.
+     * The meta object id for the '{@link org.switchyard.tools.models.switchyard1_0.camel.sql.impl.BaseCamelBindingImpl <em>Base Camel Binding</em>}' class.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @see org.switchyard.tools.models.switchyard1_0.camel.sql.impl.CamelSqlBindingTypeImpl
-     * @see org.switchyard.tools.models.switchyard1_0.camel.sql.impl.SqlPackageImpl#getCamelSqlBindingType()
+     * @see org.switchyard.tools.models.switchyard1_0.camel.sql.impl.BaseCamelBindingImpl
+     * @see org.switchyard.tools.models.switchyard1_0.camel.sql.impl.SqlPackageImpl#getBaseCamelBinding()
      * @generated
      */
-    int CAMEL_SQL_BINDING_TYPE = 0;
+    int BASE_CAMEL_BINDING = 0;
 
     /**
      * The feature id for the '<em><b>Documentation</b></em>' containment reference list.
@@ -74,7 +74,7 @@ public interface SqlPackage extends EPackage {
      * @generated
      * @ordered
      */
-    int CAMEL_SQL_BINDING_TYPE__DOCUMENTATION = CamelPackage.BASE_CAMEL_BINDING__DOCUMENTATION;
+    int BASE_CAMEL_BINDING__DOCUMENTATION = SwitchyardPackage.SWITCH_YARD_BINDING_TYPE__DOCUMENTATION;
 
     /**
      * The feature id for the '<em><b>Any Attribute</b></em>' attribute list.
@@ -83,7 +83,7 @@ public interface SqlPackage extends EPackage {
      * @generated
      * @ordered
      */
-    int CAMEL_SQL_BINDING_TYPE__ANY_ATTRIBUTE = CamelPackage.BASE_CAMEL_BINDING__ANY_ATTRIBUTE;
+    int BASE_CAMEL_BINDING__ANY_ATTRIBUTE = SwitchyardPackage.SWITCH_YARD_BINDING_TYPE__ANY_ATTRIBUTE;
 
     /**
      * The feature id for the '<em><b>Wire Format Group</b></em>' attribute list.
@@ -92,7 +92,7 @@ public interface SqlPackage extends EPackage {
      * @generated
      * @ordered
      */
-    int CAMEL_SQL_BINDING_TYPE__WIRE_FORMAT_GROUP = CamelPackage.BASE_CAMEL_BINDING__WIRE_FORMAT_GROUP;
+    int BASE_CAMEL_BINDING__WIRE_FORMAT_GROUP = SwitchyardPackage.SWITCH_YARD_BINDING_TYPE__WIRE_FORMAT_GROUP;
 
     /**
      * The feature id for the '<em><b>Wire Format</b></em>' containment reference.
@@ -101,7 +101,7 @@ public interface SqlPackage extends EPackage {
      * @generated
      * @ordered
      */
-    int CAMEL_SQL_BINDING_TYPE__WIRE_FORMAT = CamelPackage.BASE_CAMEL_BINDING__WIRE_FORMAT;
+    int BASE_CAMEL_BINDING__WIRE_FORMAT = SwitchyardPackage.SWITCH_YARD_BINDING_TYPE__WIRE_FORMAT;
 
     /**
      * The feature id for the '<em><b>Operation Selector Group</b></em>' attribute list.
@@ -110,7 +110,7 @@ public interface SqlPackage extends EPackage {
      * @generated
      * @ordered
      */
-    int CAMEL_SQL_BINDING_TYPE__OPERATION_SELECTOR_GROUP = CamelPackage.BASE_CAMEL_BINDING__OPERATION_SELECTOR_GROUP;
+    int BASE_CAMEL_BINDING__OPERATION_SELECTOR_GROUP = SwitchyardPackage.SWITCH_YARD_BINDING_TYPE__OPERATION_SELECTOR_GROUP;
 
     /**
      * The feature id for the '<em><b>Operation Selector</b></em>' containment reference.
@@ -119,7 +119,7 @@ public interface SqlPackage extends EPackage {
      * @generated
      * @ordered
      */
-    int CAMEL_SQL_BINDING_TYPE__OPERATION_SELECTOR = CamelPackage.BASE_CAMEL_BINDING__OPERATION_SELECTOR;
+    int BASE_CAMEL_BINDING__OPERATION_SELECTOR = SwitchyardPackage.SWITCH_YARD_BINDING_TYPE__OPERATION_SELECTOR;
 
     /**
      * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -128,7 +128,7 @@ public interface SqlPackage extends EPackage {
      * @generated
      * @ordered
      */
-    int CAMEL_SQL_BINDING_TYPE__NAME = CamelPackage.BASE_CAMEL_BINDING__NAME;
+    int BASE_CAMEL_BINDING__NAME = SwitchyardPackage.SWITCH_YARD_BINDING_TYPE__NAME;
 
     /**
      * The feature id for the '<em><b>Policy Sets</b></em>' attribute.
@@ -137,7 +137,7 @@ public interface SqlPackage extends EPackage {
      * @generated
      * @ordered
      */
-    int CAMEL_SQL_BINDING_TYPE__POLICY_SETS = CamelPackage.BASE_CAMEL_BINDING__POLICY_SETS;
+    int BASE_CAMEL_BINDING__POLICY_SETS = SwitchyardPackage.SWITCH_YARD_BINDING_TYPE__POLICY_SETS;
 
     /**
      * The feature id for the '<em><b>Requires</b></em>' attribute.
@@ -146,7 +146,7 @@ public interface SqlPackage extends EPackage {
      * @generated
      * @ordered
      */
-    int CAMEL_SQL_BINDING_TYPE__REQUIRES = CamelPackage.BASE_CAMEL_BINDING__REQUIRES;
+    int BASE_CAMEL_BINDING__REQUIRES = SwitchyardPackage.SWITCH_YARD_BINDING_TYPE__REQUIRES;
 
     /**
      * The feature id for the '<em><b>Uri</b></em>' attribute.
@@ -155,7 +155,7 @@ public interface SqlPackage extends EPackage {
      * @generated
      * @ordered
      */
-    int CAMEL_SQL_BINDING_TYPE__URI = CamelPackage.BASE_CAMEL_BINDING__URI;
+    int BASE_CAMEL_BINDING__URI = SwitchyardPackage.SWITCH_YARD_BINDING_TYPE__URI;
 
     /**
      * The feature id for the '<em><b>Context Mapper</b></em>' containment reference.
@@ -164,7 +164,7 @@ public interface SqlPackage extends EPackage {
      * @generated
      * @ordered
      */
-    int CAMEL_SQL_BINDING_TYPE__CONTEXT_MAPPER = CamelPackage.BASE_CAMEL_BINDING__CONTEXT_MAPPER;
+    int BASE_CAMEL_BINDING__CONTEXT_MAPPER = SwitchyardPackage.SWITCH_YARD_BINDING_TYPE__CONTEXT_MAPPER;
 
     /**
      * The feature id for the '<em><b>Message Composer</b></em>' containment reference.
@@ -173,7 +173,134 @@ public interface SqlPackage extends EPackage {
      * @generated
      * @ordered
      */
-    int CAMEL_SQL_BINDING_TYPE__MESSAGE_COMPOSER = CamelPackage.BASE_CAMEL_BINDING__MESSAGE_COMPOSER;
+    int BASE_CAMEL_BINDING__MESSAGE_COMPOSER = SwitchyardPackage.SWITCH_YARD_BINDING_TYPE__MESSAGE_COMPOSER;
+
+    /**
+     * The number of structural features of the '<em>Base Camel Binding</em>' class.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int BASE_CAMEL_BINDING_FEATURE_COUNT = SwitchyardPackage.SWITCH_YARD_BINDING_TYPE_FEATURE_COUNT + 0;
+
+    /**
+     * The meta object id for the '{@link org.switchyard.tools.models.switchyard1_0.camel.sql.impl.CamelSqlBindingTypeImpl <em>Camel Sql Binding Type</em>}' class.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @see org.switchyard.tools.models.switchyard1_0.camel.sql.impl.CamelSqlBindingTypeImpl
+     * @see org.switchyard.tools.models.switchyard1_0.camel.sql.impl.SqlPackageImpl#getCamelSqlBindingType()
+     * @generated
+     */
+    int CAMEL_SQL_BINDING_TYPE = 1;
+
+    /**
+     * The feature id for the '<em><b>Documentation</b></em>' containment reference list.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int CAMEL_SQL_BINDING_TYPE__DOCUMENTATION = BASE_CAMEL_BINDING__DOCUMENTATION;
+
+    /**
+     * The feature id for the '<em><b>Any Attribute</b></em>' attribute list.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int CAMEL_SQL_BINDING_TYPE__ANY_ATTRIBUTE = BASE_CAMEL_BINDING__ANY_ATTRIBUTE;
+
+    /**
+     * The feature id for the '<em><b>Wire Format Group</b></em>' attribute list.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int CAMEL_SQL_BINDING_TYPE__WIRE_FORMAT_GROUP = BASE_CAMEL_BINDING__WIRE_FORMAT_GROUP;
+
+    /**
+     * The feature id for the '<em><b>Wire Format</b></em>' containment reference.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int CAMEL_SQL_BINDING_TYPE__WIRE_FORMAT = BASE_CAMEL_BINDING__WIRE_FORMAT;
+
+    /**
+     * The feature id for the '<em><b>Operation Selector Group</b></em>' attribute list.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int CAMEL_SQL_BINDING_TYPE__OPERATION_SELECTOR_GROUP = BASE_CAMEL_BINDING__OPERATION_SELECTOR_GROUP;
+
+    /**
+     * The feature id for the '<em><b>Operation Selector</b></em>' containment reference.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int CAMEL_SQL_BINDING_TYPE__OPERATION_SELECTOR = BASE_CAMEL_BINDING__OPERATION_SELECTOR;
+
+    /**
+     * The feature id for the '<em><b>Name</b></em>' attribute.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int CAMEL_SQL_BINDING_TYPE__NAME = BASE_CAMEL_BINDING__NAME;
+
+    /**
+     * The feature id for the '<em><b>Policy Sets</b></em>' attribute.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int CAMEL_SQL_BINDING_TYPE__POLICY_SETS = BASE_CAMEL_BINDING__POLICY_SETS;
+
+    /**
+     * The feature id for the '<em><b>Requires</b></em>' attribute.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int CAMEL_SQL_BINDING_TYPE__REQUIRES = BASE_CAMEL_BINDING__REQUIRES;
+
+    /**
+     * The feature id for the '<em><b>Uri</b></em>' attribute.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int CAMEL_SQL_BINDING_TYPE__URI = BASE_CAMEL_BINDING__URI;
+
+    /**
+     * The feature id for the '<em><b>Context Mapper</b></em>' containment reference.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int CAMEL_SQL_BINDING_TYPE__CONTEXT_MAPPER = BASE_CAMEL_BINDING__CONTEXT_MAPPER;
+
+    /**
+     * The feature id for the '<em><b>Message Composer</b></em>' containment reference.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int CAMEL_SQL_BINDING_TYPE__MESSAGE_COMPOSER = BASE_CAMEL_BINDING__MESSAGE_COMPOSER;
 
     /**
      * The feature id for the '<em><b>Query</b></em>' attribute.
@@ -182,7 +309,7 @@ public interface SqlPackage extends EPackage {
      * @generated
      * @ordered
      */
-    int CAMEL_SQL_BINDING_TYPE__QUERY = CamelPackage.BASE_CAMEL_BINDING_FEATURE_COUNT + 0;
+    int CAMEL_SQL_BINDING_TYPE__QUERY = BASE_CAMEL_BINDING_FEATURE_COUNT + 0;
 
     /**
      * The feature id for the '<em><b>Data Source Ref</b></em>' attribute.
@@ -191,7 +318,7 @@ public interface SqlPackage extends EPackage {
      * @generated
      * @ordered
      */
-    int CAMEL_SQL_BINDING_TYPE__DATA_SOURCE_REF = CamelPackage.BASE_CAMEL_BINDING_FEATURE_COUNT + 1;
+    int CAMEL_SQL_BINDING_TYPE__DATA_SOURCE_REF = BASE_CAMEL_BINDING_FEATURE_COUNT + 1;
 
     /**
      * The feature id for the '<em><b>Batch</b></em>' attribute.
@@ -200,7 +327,7 @@ public interface SqlPackage extends EPackage {
      * @generated
      * @ordered
      */
-    int CAMEL_SQL_BINDING_TYPE__BATCH = CamelPackage.BASE_CAMEL_BINDING_FEATURE_COUNT + 2;
+    int CAMEL_SQL_BINDING_TYPE__BATCH = BASE_CAMEL_BINDING_FEATURE_COUNT + 2;
 
     /**
      * The feature id for the '<em><b>Placeholder</b></em>' attribute.
@@ -209,7 +336,7 @@ public interface SqlPackage extends EPackage {
      * @generated
      * @ordered
      */
-    int CAMEL_SQL_BINDING_TYPE__PLACEHOLDER = CamelPackage.BASE_CAMEL_BINDING_FEATURE_COUNT + 3;
+    int CAMEL_SQL_BINDING_TYPE__PLACEHOLDER = BASE_CAMEL_BINDING_FEATURE_COUNT + 3;
 
     /**
      * The number of structural features of the '<em>Camel Sql Binding Type</em>' class.
@@ -218,7 +345,7 @@ public interface SqlPackage extends EPackage {
      * @generated
      * @ordered
      */
-    int CAMEL_SQL_BINDING_TYPE_FEATURE_COUNT = CamelPackage.BASE_CAMEL_BINDING_FEATURE_COUNT + 4;
+    int CAMEL_SQL_BINDING_TYPE_FEATURE_COUNT = BASE_CAMEL_BINDING_FEATURE_COUNT + 4;
 
     /**
      * The meta object id for the '{@link org.switchyard.tools.models.switchyard1_0.camel.sql.impl.DocumentRootImpl <em>Document Root</em>}' class.
@@ -228,7 +355,7 @@ public interface SqlPackage extends EPackage {
      * @see org.switchyard.tools.models.switchyard1_0.camel.sql.impl.SqlPackageImpl#getDocumentRoot()
      * @generated
      */
-    int DOCUMENT_ROOT = 1;
+    int DOCUMENT_ROOT = 2;
 
     /**
      * The feature id for the '<em><b>Mixed</b></em>' attribute list.
@@ -275,6 +402,16 @@ public interface SqlPackage extends EPackage {
      */
     int DOCUMENT_ROOT_FEATURE_COUNT = 4;
 
+
+    /**
+     * Returns the meta object for class '{@link org.switchyard.tools.models.switchyard1_0.camel.sql.BaseCamelBinding <em>Base Camel Binding</em>}'.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @return the meta object for class '<em>Base Camel Binding</em>'.
+     * @see org.switchyard.tools.models.switchyard1_0.camel.sql.BaseCamelBinding
+     * @generated
+     */
+    EClass getBaseCamelBinding();
 
     /**
      * Returns the meta object for class '{@link org.switchyard.tools.models.switchyard1_0.camel.sql.CamelSqlBindingType <em>Camel Sql Binding Type</em>}'.
@@ -406,6 +543,16 @@ public interface SqlPackage extends EPackage {
      * @generated
      */
     interface Literals {
+        /**
+         * The meta object literal for the '{@link org.switchyard.tools.models.switchyard1_0.camel.sql.impl.BaseCamelBindingImpl <em>Base Camel Binding</em>}' class.
+         * <!-- begin-user-doc -->
+         * <!-- end-user-doc -->
+         * @see org.switchyard.tools.models.switchyard1_0.camel.sql.impl.BaseCamelBindingImpl
+         * @see org.switchyard.tools.models.switchyard1_0.camel.sql.impl.SqlPackageImpl#getBaseCamelBinding()
+         * @generated
+         */
+        EClass BASE_CAMEL_BINDING = eINSTANCE.getBaseCamelBinding();
+
         /**
          * The meta object literal for the '{@link org.switchyard.tools.models.switchyard1_0.camel.sql.impl.CamelSqlBindingTypeImpl <em>Camel Sql Binding Type</em>}' class.
          * <!-- begin-user-doc -->

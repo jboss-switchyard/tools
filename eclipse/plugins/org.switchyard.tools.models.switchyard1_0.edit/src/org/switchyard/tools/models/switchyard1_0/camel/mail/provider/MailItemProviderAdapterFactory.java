@@ -262,10 +262,10 @@ public class MailItemProviderAdapterFactory extends MailAdapterFactory implement
      * @generated
      */
     public void dispose() {
+        if (camelMailBindingTypeItemProvider != null) camelMailBindingTypeItemProvider.dispose();
         if (documentRootItemProvider != null) documentRootItemProvider.dispose();
         if (camelMailConsumerTypeItemProvider != null) camelMailConsumerTypeItemProvider.dispose();
         if (camelMailProducerTypeItemProvider != null) camelMailProducerTypeItemProvider.dispose();
-        if (camelMailBindingTypeItemProvider != null) camelMailBindingTypeItemProvider.dispose();
     }
 
 }

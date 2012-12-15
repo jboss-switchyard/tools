@@ -536,6 +536,26 @@
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute config.validate.ecore#//XmlValidateType/failOnWarning"/>
     </genClasses>
   </genPackages>
+  <genPackages prefix="Camel" basePackage="org.switchyard.tools.models.switchyard1_0"
+      resource="XML" disposableProviderFactory="true" ecorePackage="component.camel.ecore#/">
+    <genClasses ecoreClass="component.camel.ecore#//JavaDSLType">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute component.camel.ecore#//JavaDSLType/class"/>
+    </genClasses>
+    <genClasses ecoreClass="component.camel.ecore#//XMLDSLType">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute component.camel.ecore#//XMLDSLType/path"/>
+    </genClasses>
+    <genClasses ecoreClass="component.camel.ecore#//CamelImplementationType">
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference component.camel.ecore#//CamelImplementationType/route"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference component.camel.ecore#//CamelImplementationType/java"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference component.camel.ecore#//CamelImplementationType/xml"/>
+    </genClasses>
+    <genClasses ecoreClass="component.camel.ecore#//DocumentRoot">
+      <genFeatures property="None" notify="false" createChild="false" ecoreFeature="ecore:EAttribute component.camel.ecore#//DocumentRoot/mixed"/>
+      <genFeatures property="None" notify="false" createChild="false" ecoreFeature="ecore:EReference component.camel.ecore#//DocumentRoot/xMLNSPrefixMap"/>
+      <genFeatures property="None" notify="false" createChild="false" ecoreFeature="ecore:EReference component.camel.ecore#//DocumentRoot/xSISchemaLocation"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference component.camel.ecore#//DocumentRoot/implementationCamel"/>
+    </genClasses>
+  </genPackages>
   <genPackages prefix="Spring" basePackage="org.switchyard.tools.models.switchyard1_0"
       disposableProviderFactory="true" loadInitialization="true" literalsInterface="false"
       fileExtensions="" ecorePackage="camel-spring.ecore#/">
@@ -2463,7 +2483,7 @@
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference component.remote.ecore#//DocumentRoot/remoteBinding"/>
     </genClasses>
   </genPackages>
-  <genPackages prefix="Camel" basePackage="org.switchyard.tools.models.switchyard1_0.camel"
+  <genPackages prefix="Core" basePackage="org.switchyard.tools.models.switchyard1_0.camel"
       resource="XML" disposableProviderFactory="true" ecorePackage="component.camel.core.ecore#/">
     <genEnums typeSafeEnumCompatible="false" ecoreEnum="component.camel.core.ecore#//TimeUnit">
       <genEnumLiterals ecoreEnumLiteral="component.camel.core.ecore#//TimeUnit/NANOSECONDS"/>

@@ -3,13 +3,10 @@
 package org.switchyard.tools.models.switchyard1_0.camel.core.impl;
 
 import org.eclipse.emf.common.notify.Notification;
-
 import org.eclipse.emf.ecore.EClass;
-
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
-
 import org.switchyard.tools.models.switchyard1_0.camel.core.CamelMockBindingType;
-import org.switchyard.tools.models.switchyard1_0.camel.core.CamelPackage;
+import org.switchyard.tools.models.switchyard1_0.camel.core.CorePackage;
 
 /**
  * <!-- begin-user-doc -->
@@ -82,7 +79,7 @@ public class CamelMockBindingTypeImpl extends BaseCamelBindingImpl implements Ca
      */
     @Override
     protected EClass eStaticClass() {
-        return CamelPackage.Literals.CAMEL_MOCK_BINDING_TYPE;
+        return CorePackage.Literals.CAMEL_MOCK_BINDING_TYPE;
     }
 
     /**
@@ -103,7 +100,7 @@ public class CamelMockBindingTypeImpl extends BaseCamelBindingImpl implements Ca
         String oldNameElement = nameElement;
         nameElement = newNameElement;
         if (eNotificationRequired())
-            eNotify(new ENotificationImpl(this, Notification.SET, CamelPackage.CAMEL_MOCK_BINDING_TYPE__NAME_ELEMENT, oldNameElement, nameElement));
+            eNotify(new ENotificationImpl(this, Notification.SET, CorePackage.CAMEL_MOCK_BINDING_TYPE__NAME_ELEMENT, oldNameElement, nameElement));
     }
 
     /**
@@ -124,7 +121,7 @@ public class CamelMockBindingTypeImpl extends BaseCamelBindingImpl implements Ca
         Integer oldReportGroup = reportGroup;
         reportGroup = newReportGroup;
         if (eNotificationRequired())
-            eNotify(new ENotificationImpl(this, Notification.SET, CamelPackage.CAMEL_MOCK_BINDING_TYPE__REPORT_GROUP, oldReportGroup, reportGroup));
+            eNotify(new ENotificationImpl(this, Notification.SET, CorePackage.CAMEL_MOCK_BINDING_TYPE__REPORT_GROUP, oldReportGroup, reportGroup));
     }
 
     /**
@@ -135,9 +132,9 @@ public class CamelMockBindingTypeImpl extends BaseCamelBindingImpl implements Ca
     @Override
     public Object eGet(int featureID, boolean resolve, boolean coreType) {
         switch (featureID) {
-            case CamelPackage.CAMEL_MOCK_BINDING_TYPE__NAME_ELEMENT:
+            case CorePackage.CAMEL_MOCK_BINDING_TYPE__NAME_ELEMENT:
                 return getNameElement();
-            case CamelPackage.CAMEL_MOCK_BINDING_TYPE__REPORT_GROUP:
+            case CorePackage.CAMEL_MOCK_BINDING_TYPE__REPORT_GROUP:
                 return getReportGroup();
         }
         return super.eGet(featureID, resolve, coreType);
@@ -151,10 +148,10 @@ public class CamelMockBindingTypeImpl extends BaseCamelBindingImpl implements Ca
     @Override
     public void eSet(int featureID, Object newValue) {
         switch (featureID) {
-            case CamelPackage.CAMEL_MOCK_BINDING_TYPE__NAME_ELEMENT:
+            case CorePackage.CAMEL_MOCK_BINDING_TYPE__NAME_ELEMENT:
                 setNameElement((String)newValue);
                 return;
-            case CamelPackage.CAMEL_MOCK_BINDING_TYPE__REPORT_GROUP:
+            case CorePackage.CAMEL_MOCK_BINDING_TYPE__REPORT_GROUP:
                 setReportGroup((Integer)newValue);
                 return;
         }
@@ -169,10 +166,10 @@ public class CamelMockBindingTypeImpl extends BaseCamelBindingImpl implements Ca
     @Override
     public void eUnset(int featureID) {
         switch (featureID) {
-            case CamelPackage.CAMEL_MOCK_BINDING_TYPE__NAME_ELEMENT:
+            case CorePackage.CAMEL_MOCK_BINDING_TYPE__NAME_ELEMENT:
                 setNameElement(NAME_ELEMENT_EDEFAULT);
                 return;
-            case CamelPackage.CAMEL_MOCK_BINDING_TYPE__REPORT_GROUP:
+            case CorePackage.CAMEL_MOCK_BINDING_TYPE__REPORT_GROUP:
                 setReportGroup(REPORT_GROUP_EDEFAULT);
                 return;
         }
@@ -187,9 +184,9 @@ public class CamelMockBindingTypeImpl extends BaseCamelBindingImpl implements Ca
     @Override
     public boolean eIsSet(int featureID) {
         switch (featureID) {
-            case CamelPackage.CAMEL_MOCK_BINDING_TYPE__NAME_ELEMENT:
+            case CorePackage.CAMEL_MOCK_BINDING_TYPE__NAME_ELEMENT:
                 return NAME_ELEMENT_EDEFAULT == null ? nameElement != null : !NAME_ELEMENT_EDEFAULT.equals(nameElement);
-            case CamelPackage.CAMEL_MOCK_BINDING_TYPE__REPORT_GROUP:
+            case CorePackage.CAMEL_MOCK_BINDING_TYPE__REPORT_GROUP:
                 return REPORT_GROUP_EDEFAULT == null ? reportGroup != null : !REPORT_GROUP_EDEFAULT.equals(reportGroup);
         }
         return super.eIsSet(featureID);

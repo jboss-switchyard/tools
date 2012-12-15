@@ -5,13 +5,10 @@ package org.switchyard.tools.models.switchyard1_0.camel.core.impl;
 import javax.xml.datatype.XMLGregorianCalendar;
 
 import org.eclipse.emf.common.notify.Notification;
-
 import org.eclipse.emf.ecore.EClass;
-
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
-
-import org.switchyard.tools.models.switchyard1_0.camel.core.CamelPackage;
 import org.switchyard.tools.models.switchyard1_0.camel.core.CamelTimerBindingType;
+import org.switchyard.tools.models.switchyard1_0.camel.core.CorePackage;
 
 /**
  * <!-- begin-user-doc -->
@@ -207,7 +204,7 @@ public class CamelTimerBindingTypeImpl extends BaseCamelBindingImpl implements C
      */
     @Override
     protected EClass eStaticClass() {
-        return CamelPackage.Literals.CAMEL_TIMER_BINDING_TYPE;
+        return CorePackage.Literals.CAMEL_TIMER_BINDING_TYPE;
     }
 
     /**
@@ -228,7 +225,7 @@ public class CamelTimerBindingTypeImpl extends BaseCamelBindingImpl implements C
         String oldCamelBindingName = camelBindingName;
         camelBindingName = newCamelBindingName;
         if (eNotificationRequired())
-            eNotify(new ENotificationImpl(this, Notification.SET, CamelPackage.CAMEL_TIMER_BINDING_TYPE__CAMEL_BINDING_NAME, oldCamelBindingName, camelBindingName));
+            eNotify(new ENotificationImpl(this, Notification.SET, CorePackage.CAMEL_TIMER_BINDING_TYPE__CAMEL_BINDING_NAME, oldCamelBindingName, camelBindingName));
     }
 
     /**
@@ -249,7 +246,7 @@ public class CamelTimerBindingTypeImpl extends BaseCamelBindingImpl implements C
         XMLGregorianCalendar oldTime = time;
         time = newTime;
         if (eNotificationRequired())
-            eNotify(new ENotificationImpl(this, Notification.SET, CamelPackage.CAMEL_TIMER_BINDING_TYPE__TIME, oldTime, time));
+            eNotify(new ENotificationImpl(this, Notification.SET, CorePackage.CAMEL_TIMER_BINDING_TYPE__TIME, oldTime, time));
     }
 
     /**
@@ -270,7 +267,7 @@ public class CamelTimerBindingTypeImpl extends BaseCamelBindingImpl implements C
         String oldPattern = pattern;
         pattern = newPattern;
         if (eNotificationRequired())
-            eNotify(new ENotificationImpl(this, Notification.SET, CamelPackage.CAMEL_TIMER_BINDING_TYPE__PATTERN, oldPattern, pattern));
+            eNotify(new ENotificationImpl(this, Notification.SET, CorePackage.CAMEL_TIMER_BINDING_TYPE__PATTERN, oldPattern, pattern));
     }
 
     /**
@@ -291,7 +288,7 @@ public class CamelTimerBindingTypeImpl extends BaseCamelBindingImpl implements C
         Long oldPeriod = period;
         period = newPeriod;
         if (eNotificationRequired())
-            eNotify(new ENotificationImpl(this, Notification.SET, CamelPackage.CAMEL_TIMER_BINDING_TYPE__PERIOD, oldPeriod, period));
+            eNotify(new ENotificationImpl(this, Notification.SET, CorePackage.CAMEL_TIMER_BINDING_TYPE__PERIOD, oldPeriod, period));
     }
 
     /**
@@ -312,7 +309,7 @@ public class CamelTimerBindingTypeImpl extends BaseCamelBindingImpl implements C
         Long oldDelay = delay;
         delay = newDelay;
         if (eNotificationRequired())
-            eNotify(new ENotificationImpl(this, Notification.SET, CamelPackage.CAMEL_TIMER_BINDING_TYPE__DELAY, oldDelay, delay));
+            eNotify(new ENotificationImpl(this, Notification.SET, CorePackage.CAMEL_TIMER_BINDING_TYPE__DELAY, oldDelay, delay));
     }
 
     /**
@@ -335,7 +332,7 @@ public class CamelTimerBindingTypeImpl extends BaseCamelBindingImpl implements C
         boolean oldFixedRateESet = fixedRateESet;
         fixedRateESet = true;
         if (eNotificationRequired())
-            eNotify(new ENotificationImpl(this, Notification.SET, CamelPackage.CAMEL_TIMER_BINDING_TYPE__FIXED_RATE, oldFixedRate, fixedRate, !oldFixedRateESet));
+            eNotify(new ENotificationImpl(this, Notification.SET, CorePackage.CAMEL_TIMER_BINDING_TYPE__FIXED_RATE, oldFixedRate, fixedRate, !oldFixedRateESet));
     }
 
     /**
@@ -349,7 +346,7 @@ public class CamelTimerBindingTypeImpl extends BaseCamelBindingImpl implements C
         fixedRate = FIXED_RATE_EDEFAULT;
         fixedRateESet = false;
         if (eNotificationRequired())
-            eNotify(new ENotificationImpl(this, Notification.UNSET, CamelPackage.CAMEL_TIMER_BINDING_TYPE__FIXED_RATE, oldFixedRate, FIXED_RATE_EDEFAULT, oldFixedRateESet));
+            eNotify(new ENotificationImpl(this, Notification.UNSET, CorePackage.CAMEL_TIMER_BINDING_TYPE__FIXED_RATE, oldFixedRate, FIXED_RATE_EDEFAULT, oldFixedRateESet));
     }
 
     /**
@@ -381,7 +378,7 @@ public class CamelTimerBindingTypeImpl extends BaseCamelBindingImpl implements C
         boolean oldDaemonESet = daemonESet;
         daemonESet = true;
         if (eNotificationRequired())
-            eNotify(new ENotificationImpl(this, Notification.SET, CamelPackage.CAMEL_TIMER_BINDING_TYPE__DAEMON, oldDaemon, daemon, !oldDaemonESet));
+            eNotify(new ENotificationImpl(this, Notification.SET, CorePackage.CAMEL_TIMER_BINDING_TYPE__DAEMON, oldDaemon, daemon, !oldDaemonESet));
     }
 
     /**
@@ -395,7 +392,7 @@ public class CamelTimerBindingTypeImpl extends BaseCamelBindingImpl implements C
         daemon = DAEMON_EDEFAULT;
         daemonESet = false;
         if (eNotificationRequired())
-            eNotify(new ENotificationImpl(this, Notification.UNSET, CamelPackage.CAMEL_TIMER_BINDING_TYPE__DAEMON, oldDaemon, DAEMON_EDEFAULT, oldDaemonESet));
+            eNotify(new ENotificationImpl(this, Notification.UNSET, CorePackage.CAMEL_TIMER_BINDING_TYPE__DAEMON, oldDaemon, DAEMON_EDEFAULT, oldDaemonESet));
     }
 
     /**
@@ -415,19 +412,19 @@ public class CamelTimerBindingTypeImpl extends BaseCamelBindingImpl implements C
     @Override
     public Object eGet(int featureID, boolean resolve, boolean coreType) {
         switch (featureID) {
-            case CamelPackage.CAMEL_TIMER_BINDING_TYPE__CAMEL_BINDING_NAME:
+            case CorePackage.CAMEL_TIMER_BINDING_TYPE__CAMEL_BINDING_NAME:
                 return getCamelBindingName();
-            case CamelPackage.CAMEL_TIMER_BINDING_TYPE__TIME:
+            case CorePackage.CAMEL_TIMER_BINDING_TYPE__TIME:
                 return getTime();
-            case CamelPackage.CAMEL_TIMER_BINDING_TYPE__PATTERN:
+            case CorePackage.CAMEL_TIMER_BINDING_TYPE__PATTERN:
                 return getPattern();
-            case CamelPackage.CAMEL_TIMER_BINDING_TYPE__PERIOD:
+            case CorePackage.CAMEL_TIMER_BINDING_TYPE__PERIOD:
                 return getPeriod();
-            case CamelPackage.CAMEL_TIMER_BINDING_TYPE__DELAY:
+            case CorePackage.CAMEL_TIMER_BINDING_TYPE__DELAY:
                 return getDelay();
-            case CamelPackage.CAMEL_TIMER_BINDING_TYPE__FIXED_RATE:
+            case CorePackage.CAMEL_TIMER_BINDING_TYPE__FIXED_RATE:
                 return getFixedRate();
-            case CamelPackage.CAMEL_TIMER_BINDING_TYPE__DAEMON:
+            case CorePackage.CAMEL_TIMER_BINDING_TYPE__DAEMON:
                 return getDaemon();
         }
         return super.eGet(featureID, resolve, coreType);
@@ -441,25 +438,25 @@ public class CamelTimerBindingTypeImpl extends BaseCamelBindingImpl implements C
     @Override
     public void eSet(int featureID, Object newValue) {
         switch (featureID) {
-            case CamelPackage.CAMEL_TIMER_BINDING_TYPE__CAMEL_BINDING_NAME:
+            case CorePackage.CAMEL_TIMER_BINDING_TYPE__CAMEL_BINDING_NAME:
                 setCamelBindingName((String)newValue);
                 return;
-            case CamelPackage.CAMEL_TIMER_BINDING_TYPE__TIME:
+            case CorePackage.CAMEL_TIMER_BINDING_TYPE__TIME:
                 setTime((XMLGregorianCalendar)newValue);
                 return;
-            case CamelPackage.CAMEL_TIMER_BINDING_TYPE__PATTERN:
+            case CorePackage.CAMEL_TIMER_BINDING_TYPE__PATTERN:
                 setPattern((String)newValue);
                 return;
-            case CamelPackage.CAMEL_TIMER_BINDING_TYPE__PERIOD:
+            case CorePackage.CAMEL_TIMER_BINDING_TYPE__PERIOD:
                 setPeriod((Long)newValue);
                 return;
-            case CamelPackage.CAMEL_TIMER_BINDING_TYPE__DELAY:
+            case CorePackage.CAMEL_TIMER_BINDING_TYPE__DELAY:
                 setDelay((Long)newValue);
                 return;
-            case CamelPackage.CAMEL_TIMER_BINDING_TYPE__FIXED_RATE:
+            case CorePackage.CAMEL_TIMER_BINDING_TYPE__FIXED_RATE:
                 setFixedRate((Boolean)newValue);
                 return;
-            case CamelPackage.CAMEL_TIMER_BINDING_TYPE__DAEMON:
+            case CorePackage.CAMEL_TIMER_BINDING_TYPE__DAEMON:
                 setDaemon((Boolean)newValue);
                 return;
         }
@@ -474,25 +471,25 @@ public class CamelTimerBindingTypeImpl extends BaseCamelBindingImpl implements C
     @Override
     public void eUnset(int featureID) {
         switch (featureID) {
-            case CamelPackage.CAMEL_TIMER_BINDING_TYPE__CAMEL_BINDING_NAME:
+            case CorePackage.CAMEL_TIMER_BINDING_TYPE__CAMEL_BINDING_NAME:
                 setCamelBindingName(CAMEL_BINDING_NAME_EDEFAULT);
                 return;
-            case CamelPackage.CAMEL_TIMER_BINDING_TYPE__TIME:
+            case CorePackage.CAMEL_TIMER_BINDING_TYPE__TIME:
                 setTime(TIME_EDEFAULT);
                 return;
-            case CamelPackage.CAMEL_TIMER_BINDING_TYPE__PATTERN:
+            case CorePackage.CAMEL_TIMER_BINDING_TYPE__PATTERN:
                 setPattern(PATTERN_EDEFAULT);
                 return;
-            case CamelPackage.CAMEL_TIMER_BINDING_TYPE__PERIOD:
+            case CorePackage.CAMEL_TIMER_BINDING_TYPE__PERIOD:
                 setPeriod(PERIOD_EDEFAULT);
                 return;
-            case CamelPackage.CAMEL_TIMER_BINDING_TYPE__DELAY:
+            case CorePackage.CAMEL_TIMER_BINDING_TYPE__DELAY:
                 setDelay(DELAY_EDEFAULT);
                 return;
-            case CamelPackage.CAMEL_TIMER_BINDING_TYPE__FIXED_RATE:
+            case CorePackage.CAMEL_TIMER_BINDING_TYPE__FIXED_RATE:
                 unsetFixedRate();
                 return;
-            case CamelPackage.CAMEL_TIMER_BINDING_TYPE__DAEMON:
+            case CorePackage.CAMEL_TIMER_BINDING_TYPE__DAEMON:
                 unsetDaemon();
                 return;
         }
@@ -507,19 +504,19 @@ public class CamelTimerBindingTypeImpl extends BaseCamelBindingImpl implements C
     @Override
     public boolean eIsSet(int featureID) {
         switch (featureID) {
-            case CamelPackage.CAMEL_TIMER_BINDING_TYPE__CAMEL_BINDING_NAME:
+            case CorePackage.CAMEL_TIMER_BINDING_TYPE__CAMEL_BINDING_NAME:
                 return CAMEL_BINDING_NAME_EDEFAULT == null ? camelBindingName != null : !CAMEL_BINDING_NAME_EDEFAULT.equals(camelBindingName);
-            case CamelPackage.CAMEL_TIMER_BINDING_TYPE__TIME:
+            case CorePackage.CAMEL_TIMER_BINDING_TYPE__TIME:
                 return TIME_EDEFAULT == null ? time != null : !TIME_EDEFAULT.equals(time);
-            case CamelPackage.CAMEL_TIMER_BINDING_TYPE__PATTERN:
+            case CorePackage.CAMEL_TIMER_BINDING_TYPE__PATTERN:
                 return PATTERN_EDEFAULT == null ? pattern != null : !PATTERN_EDEFAULT.equals(pattern);
-            case CamelPackage.CAMEL_TIMER_BINDING_TYPE__PERIOD:
+            case CorePackage.CAMEL_TIMER_BINDING_TYPE__PERIOD:
                 return PERIOD_EDEFAULT == null ? period != null : !PERIOD_EDEFAULT.equals(period);
-            case CamelPackage.CAMEL_TIMER_BINDING_TYPE__DELAY:
+            case CorePackage.CAMEL_TIMER_BINDING_TYPE__DELAY:
                 return DELAY_EDEFAULT == null ? delay != null : !DELAY_EDEFAULT.equals(delay);
-            case CamelPackage.CAMEL_TIMER_BINDING_TYPE__FIXED_RATE:
+            case CorePackage.CAMEL_TIMER_BINDING_TYPE__FIXED_RATE:
                 return isSetFixedRate();
-            case CamelPackage.CAMEL_TIMER_BINDING_TYPE__DAEMON:
+            case CorePackage.CAMEL_TIMER_BINDING_TYPE__DAEMON:
                 return isSetDaemon();
         }
         return super.eIsSet(featureID);

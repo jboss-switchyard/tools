@@ -83,12 +83,7 @@ public class DocumentRootItemProvider
     public Collection<? extends EStructuralFeature> getChildrenFeatures(Object object) {
         if (childrenFeatures == null) {
             super.getChildrenFeatures(object);
-            childrenFeatures.add(CamelPackage.Literals.DOCUMENT_ROOT__BINDING_CAMEL);
-            childrenFeatures.add(CamelPackage.Literals.DOCUMENT_ROOT__BINDING_DIRECT);
-            childrenFeatures.add(CamelPackage.Literals.DOCUMENT_ROOT__BINDING_JMS);
-            childrenFeatures.add(CamelPackage.Literals.DOCUMENT_ROOT__BINDING_MOCK);
-            childrenFeatures.add(CamelPackage.Literals.DOCUMENT_ROOT__BINDING_SEDA);
-            childrenFeatures.add(CamelPackage.Literals.DOCUMENT_ROOT__BINDING_TIMER);
+            childrenFeatures.add(CamelPackage.Literals.DOCUMENT_ROOT__IMPLEMENTATION_CAMEL);
         }
         return childrenFeatures;
     }
@@ -140,12 +135,7 @@ public class DocumentRootItemProvider
         updateChildren(notification);
 
         switch (notification.getFeatureID(DocumentRoot.class)) {
-            case CamelPackage.DOCUMENT_ROOT__BINDING_CAMEL:
-            case CamelPackage.DOCUMENT_ROOT__BINDING_DIRECT:
-            case CamelPackage.DOCUMENT_ROOT__BINDING_JMS:
-            case CamelPackage.DOCUMENT_ROOT__BINDING_MOCK:
-            case CamelPackage.DOCUMENT_ROOT__BINDING_SEDA:
-            case CamelPackage.DOCUMENT_ROOT__BINDING_TIMER:
+            case CamelPackage.DOCUMENT_ROOT__IMPLEMENTATION_CAMEL:
                 fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), true, false));
                 return;
         }
@@ -165,41 +155,8 @@ public class DocumentRootItemProvider
 
         newChildDescriptors.add
             (createChildParameter
-                (CamelPackage.Literals.DOCUMENT_ROOT__BINDING_CAMEL,
-                 CamelFactory.eINSTANCE.createCamelBindingType()));
-
-        newChildDescriptors.add
-            (createChildParameter
-                (CamelPackage.Literals.DOCUMENT_ROOT__BINDING_DIRECT,
-                 CamelFactory.eINSTANCE.createCamelDirectBindingType()));
-
-
-        newChildDescriptors.add
-            (createChildParameter
-                (CamelPackage.Literals.DOCUMENT_ROOT__BINDING_MOCK,
-                 CamelFactory.eINSTANCE.createCamelMockBindingType()));
-
-        newChildDescriptors.add
-            (createChildParameter
-                (CamelPackage.Literals.DOCUMENT_ROOT__BINDING_SEDA,
-                 CamelFactory.eINSTANCE.createCamelSedaBindingType()));
-
-        newChildDescriptors.add
-            (createChildParameter
-                (CamelPackage.Literals.DOCUMENT_ROOT__BINDING_TIMER,
-                 CamelFactory.eINSTANCE.createCamelTimerBindingType()));
-
-    }
-
-    /**
-     * This returns the label text for {@link org.eclipse.emf.edit.command.CreateChildCommand}.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    @Override
-    public String getCreateChildText(Object owner, Object feature, Object child, Collection<?> selection) {
-        return super.getCreateChildText(owner, feature, child, selection);
+                (CamelPackage.Literals.DOCUMENT_ROOT__IMPLEMENTATION_CAMEL,
+                 CamelFactory.eINSTANCE.createCamelImplementationType()));
     }
 
     /**

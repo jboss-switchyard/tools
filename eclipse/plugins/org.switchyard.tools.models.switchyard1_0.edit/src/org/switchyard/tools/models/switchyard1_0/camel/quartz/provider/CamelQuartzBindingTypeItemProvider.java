@@ -63,29 +63,29 @@ public class CamelQuartzBindingTypeItemProvider
         if (itemPropertyDescriptors == null) {
             super.getPropertyDescriptors(object);
 
-            addCamelBindingNamePropertyDescriptor(object);
+            addNameElementPropertyDescriptor(object);
             addCronPropertyDescriptor(object);
             addStatefulPropertyDescriptor(object);
-            addStartTimePropertyDescriptor(object);
-            addEndTimePropertyDescriptor(object);
+            addTriggerStartTimePropertyDescriptor(object);
+            addTriggerEndTimePropertyDescriptor(object);
         }
         return itemPropertyDescriptors;
     }
 
     /**
-     * This adds a property descriptor for the Camel Binding Name feature.
+     * This adds a property descriptor for the Name Element feature.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @generated
      */
-    protected void addCamelBindingNamePropertyDescriptor(Object object) {
+    protected void addNameElementPropertyDescriptor(Object object) {
         itemPropertyDescriptors.add
             (createItemPropertyDescriptor
                 (((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
                  getResourceLocator(),
-                 getString("_UI_CamelQuartzBindingType_camelBindingName_feature"),
-                 getString("_UI_PropertyDescriptor_description", "_UI_CamelQuartzBindingType_camelBindingName_feature", "_UI_CamelQuartzBindingType_type"),
-                 QuartzPackage.Literals.CAMEL_QUARTZ_BINDING_TYPE__CAMEL_BINDING_NAME,
+                 getString("_UI_CamelQuartzBindingType_nameElement_feature"),
+                 getString("_UI_PropertyDescriptor_description", "_UI_CamelQuartzBindingType_nameElement_feature", "_UI_CamelQuartzBindingType_type"),
+                 QuartzPackage.Literals.CAMEL_QUARTZ_BINDING_TYPE__NAME_ELEMENT,
                  true,
                  false,
                  false,
@@ -133,25 +133,25 @@ public class CamelQuartzBindingTypeItemProvider
                  true,
                  false,
                  false,
-                 ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
+                 ItemPropertyDescriptor.BOOLEAN_VALUE_IMAGE,
                  null,
                  null));
     }
 
     /**
-     * This adds a property descriptor for the Start Time feature.
+     * This adds a property descriptor for the Trigger Start Time feature.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @generated
      */
-    protected void addStartTimePropertyDescriptor(Object object) {
+    protected void addTriggerStartTimePropertyDescriptor(Object object) {
         itemPropertyDescriptors.add
             (createItemPropertyDescriptor
                 (((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
                  getResourceLocator(),
-                 getString("_UI_CamelQuartzBindingType_startTime_feature"),
-                 getString("_UI_PropertyDescriptor_description", "_UI_CamelQuartzBindingType_startTime_feature", "_UI_CamelQuartzBindingType_type"),
-                 QuartzPackage.Literals.CAMEL_QUARTZ_BINDING_TYPE__START_TIME,
+                 getString("_UI_CamelQuartzBindingType_triggerStartTime_feature"),
+                 getString("_UI_PropertyDescriptor_description", "_UI_CamelQuartzBindingType_triggerStartTime_feature", "_UI_CamelQuartzBindingType_type"),
+                 QuartzPackage.Literals.CAMEL_QUARTZ_BINDING_TYPE__TRIGGER_START_TIME,
                  true,
                  false,
                  false,
@@ -161,19 +161,19 @@ public class CamelQuartzBindingTypeItemProvider
     }
 
     /**
-     * This adds a property descriptor for the End Time feature.
+     * This adds a property descriptor for the Trigger End Time feature.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @generated
      */
-    protected void addEndTimePropertyDescriptor(Object object) {
+    protected void addTriggerEndTimePropertyDescriptor(Object object) {
         itemPropertyDescriptors.add
             (createItemPropertyDescriptor
                 (((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
                  getResourceLocator(),
-                 getString("_UI_CamelQuartzBindingType_endTime_feature"),
-                 getString("_UI_PropertyDescriptor_description", "_UI_CamelQuartzBindingType_endTime_feature", "_UI_CamelQuartzBindingType_type"),
-                 QuartzPackage.Literals.CAMEL_QUARTZ_BINDING_TYPE__END_TIME,
+                 getString("_UI_CamelQuartzBindingType_triggerEndTime_feature"),
+                 getString("_UI_PropertyDescriptor_description", "_UI_CamelQuartzBindingType_triggerEndTime_feature", "_UI_CamelQuartzBindingType_type"),
+                 QuartzPackage.Literals.CAMEL_QUARTZ_BINDING_TYPE__TRIGGER_END_TIME,
                  true,
                  false,
                  false,
@@ -219,11 +219,11 @@ public class CamelQuartzBindingTypeItemProvider
         updateChildren(notification);
 
         switch (notification.getFeatureID(CamelQuartzBindingType.class)) {
-            case QuartzPackage.CAMEL_QUARTZ_BINDING_TYPE__CAMEL_BINDING_NAME:
+            case QuartzPackage.CAMEL_QUARTZ_BINDING_TYPE__NAME_ELEMENT:
             case QuartzPackage.CAMEL_QUARTZ_BINDING_TYPE__CRON:
             case QuartzPackage.CAMEL_QUARTZ_BINDING_TYPE__STATEFUL:
-            case QuartzPackage.CAMEL_QUARTZ_BINDING_TYPE__START_TIME:
-            case QuartzPackage.CAMEL_QUARTZ_BINDING_TYPE__END_TIME:
+            case QuartzPackage.CAMEL_QUARTZ_BINDING_TYPE__TRIGGER_START_TIME:
+            case QuartzPackage.CAMEL_QUARTZ_BINDING_TYPE__TRIGGER_END_TIME:
                 fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
                 return;
         }
@@ -240,17 +240,6 @@ public class CamelQuartzBindingTypeItemProvider
     @Override
     protected void collectNewChildDescriptors(Collection<Object> newChildDescriptors, Object object) {
         super.collectNewChildDescriptors(newChildDescriptors, object);
-    }
-
-    /**
-     * Return the resource locator for this item provider's resources.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    @Override
-    public ResourceLocator getResourceLocator() {
-        return Switchyard_1EditPlugin.INSTANCE;
     }
 
 }

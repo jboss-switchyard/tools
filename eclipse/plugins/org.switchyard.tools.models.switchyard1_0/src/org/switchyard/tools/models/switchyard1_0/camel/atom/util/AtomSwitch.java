@@ -74,6 +74,15 @@ public class AtomSwitch<T> extends Switch<T> {
     @Override
     protected T doSwitch(int classifierID, EObject theEObject) {
         switch (classifierID) {
+            case AtomPackage.BASE_CAMEL_BINDING: {
+                BaseCamelBinding baseCamelBinding = (BaseCamelBinding)theEObject;
+                T result = caseBaseCamelBinding(baseCamelBinding);
+                if (result == null) result = caseSwitchYardBindingType(baseCamelBinding);
+                if (result == null) result = caseBinding(baseCamelBinding);
+                if (result == null) result = caseCommonExtensionBase(baseCamelBinding);
+                if (result == null) result = defaultCase(theEObject);
+                return result;
+            }
             case AtomPackage.CAMEL_ATOM_BINDING_TYPE: {
                 CamelAtomBindingType camelAtomBindingType = (CamelAtomBindingType)theEObject;
                 T result = caseCamelAtomBindingType(camelAtomBindingType);
@@ -87,7 +96,6 @@ public class AtomSwitch<T> extends Switch<T> {
             case AtomPackage.ATOM_SCHEDULED_POLL_CONSUMER_TYPE: {
                 AtomScheduledPollConsumerType atomScheduledPollConsumerType = (AtomScheduledPollConsumerType)theEObject;
                 T result = caseAtomScheduledPollConsumerType(atomScheduledPollConsumerType);
-                if (result == null) result = caseScheduledPollConsumerType(atomScheduledPollConsumerType);
                 if (result == null) result = defaultCase(theEObject);
                 return result;
             }
@@ -203,21 +211,6 @@ public class AtomSwitch<T> extends Switch<T> {
      * @generated
      */
     public T caseBaseCamelBinding(BaseCamelBinding object) {
-        return null;
-    }
-
-    /**
-     * Returns the result of interpreting the object as an instance of '<em>Scheduled Poll Consumer Type</em>'.
-     * <!-- begin-user-doc -->
-     * This implementation returns null;
-     * returning a non-null result will terminate the switch.
-     * <!-- end-user-doc -->
-     * @param object the target of the switch.
-     * @return the result of interpreting the object as an instance of '<em>Scheduled Poll Consumer Type</em>'.
-     * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
-     * @generated
-     */
-    public T caseScheduledPollConsumerType(ScheduledPollConsumerType object) {
         return null;
     }
 

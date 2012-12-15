@@ -77,6 +77,14 @@ public class MailAdapterFactory extends AdapterFactoryImpl {
     protected MailSwitch<Adapter> modelSwitch =
         new MailSwitch<Adapter>() {
             @Override
+            public Adapter caseBaseCamelBinding(BaseCamelBinding object) {
+                return createBaseCamelBindingAdapter();
+            }
+            @Override
+            public Adapter caseCamelMailBindingType(CamelMailBindingType object) {
+                return createCamelMailBindingTypeAdapter();
+            }
+            @Override
             public Adapter caseDocumentRoot(DocumentRoot object) {
                 return createDocumentRootAdapter();
             }
@@ -89,18 +97,6 @@ public class MailAdapterFactory extends AdapterFactoryImpl {
                 return createCamelMailProducerTypeAdapter();
             }
             @Override
-            public Adapter caseCamelMailBindingType(CamelMailBindingType object) {
-                return createCamelMailBindingTypeAdapter();
-            }
-            @Override
-            public Adapter caseScheduledPollConsumerType(ScheduledPollConsumerType object) {
-                return createScheduledPollConsumerTypeAdapter();
-            }
-            @Override
-            public Adapter caseScheduledBatchPollConsumerType(ScheduledBatchPollConsumerType object) {
-                return createScheduledBatchPollConsumerTypeAdapter();
-            }
-            @Override
             public Adapter caseCommonExtensionBase(CommonExtensionBase object) {
                 return createCommonExtensionBaseAdapter();
             }
@@ -111,10 +107,6 @@ public class MailAdapterFactory extends AdapterFactoryImpl {
             @Override
             public Adapter caseSwitchYardBindingType(SwitchYardBindingType object) {
                 return createSwitchYardBindingTypeAdapter();
-            }
-            @Override
-            public Adapter caseBaseCamelBinding(BaseCamelBinding object) {
-                return createBaseCamelBindingAdapter();
             }
             @Override
             public Adapter defaultCase(EObject object) {
@@ -193,34 +185,6 @@ public class MailAdapterFactory extends AdapterFactoryImpl {
     }
 
     /**
-     * Creates a new adapter for an object of class '{@link org.switchyard.tools.models.switchyard1_0.camel.core.ScheduledPollConsumerType <em>Scheduled Poll Consumer Type</em>}'.
-     * <!-- begin-user-doc -->
-     * This default implementation returns null so that we can easily ignore cases;
-     * it's useful to ignore a case when inheritance will catch all the cases anyway.
-     * <!-- end-user-doc -->
-     * @return the new adapter.
-     * @see org.switchyard.tools.models.switchyard1_0.camel.core.ScheduledPollConsumerType
-     * @generated
-     */
-    public Adapter createScheduledPollConsumerTypeAdapter() {
-        return null;
-    }
-
-    /**
-     * Creates a new adapter for an object of class '{@link org.switchyard.tools.models.switchyard1_0.camel.core.ScheduledBatchPollConsumerType <em>Scheduled Batch Poll Consumer Type</em>}'.
-     * <!-- begin-user-doc -->
-     * This default implementation returns null so that we can easily ignore cases;
-     * it's useful to ignore a case when inheritance will catch all the cases anyway.
-     * <!-- end-user-doc -->
-     * @return the new adapter.
-     * @see org.switchyard.tools.models.switchyard1_0.camel.core.ScheduledBatchPollConsumerType
-     * @generated
-     */
-    public Adapter createScheduledBatchPollConsumerTypeAdapter() {
-        return null;
-    }
-
-    /**
      * Creates a new adapter for an object of class '{@link org.eclipse.soa.sca.sca1_1.model.sca.CommonExtensionBase <em>Common Extension Base</em>}'.
      * <!-- begin-user-doc -->
      * This default implementation returns null so that we can easily ignore cases;
@@ -263,13 +227,13 @@ public class MailAdapterFactory extends AdapterFactoryImpl {
     }
 
     /**
-     * Creates a new adapter for an object of class '{@link org.switchyard.tools.models.switchyard1_0.camel.core.BaseCamelBinding <em>Base Camel Binding</em>}'.
+     * Creates a new adapter for an object of class '{@link org.switchyard.tools.models.switchyard1_0.camel.mail.BaseCamelBinding <em>Base Camel Binding</em>}'.
      * <!-- begin-user-doc -->
      * This default implementation returns null so that we can easily ignore cases;
      * it's useful to ignore a case when inheritance will catch all the cases anyway.
      * <!-- end-user-doc -->
      * @return the new adapter.
-     * @see org.switchyard.tools.models.switchyard1_0.camel.core.BaseCamelBinding
+     * @see org.switchyard.tools.models.switchyard1_0.camel.mail.BaseCamelBinding
      * @generated
      */
     public Adapter createBaseCamelBindingAdapter() {

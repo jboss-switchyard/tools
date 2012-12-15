@@ -8,20 +8,16 @@ package org.switchyard.tools.models.switchyard1_0.camel.util;
 
 import org.eclipse.emf.common.notify.Adapter;
 import org.eclipse.emf.common.notify.Notifier;
-
 import org.eclipse.emf.common.notify.impl.AdapterFactoryImpl;
-
 import org.eclipse.emf.ecore.EObject;
-
-import org.eclipse.soa.sca.sca1_1.model.sca.Binding;
 import org.eclipse.soa.sca.sca1_1.model.sca.CommonExtensionBase;
 import org.eclipse.soa.sca.sca1_1.model.sca.Implementation;
-
-
 import org.switchyard.tools.models.switchyard1_0.camel.*;
-import org.switchyard.tools.models.switchyard1_0.switchyard.ContextMapperType;
-import org.switchyard.tools.models.switchyard1_0.switchyard.MessageComposerType;
-import org.switchyard.tools.models.switchyard1_0.switchyard.SwitchYardBindingType;
+import org.switchyard.tools.models.switchyard1_0.camel.CamelImplementationType;
+import org.switchyard.tools.models.switchyard1_0.camel.CamelPackage;
+import org.switchyard.tools.models.switchyard1_0.camel.DocumentRoot;
+import org.switchyard.tools.models.switchyard1_0.camel.JavaDSLType;
+import org.switchyard.tools.models.switchyard1_0.camel.XMLDSLType;
 
 /**
  * <!-- begin-user-doc -->
@@ -80,56 +76,16 @@ public class CamelAdapterFactory extends AdapterFactoryImpl {
 	protected CamelSwitch<Adapter> modelSwitch =
 		new CamelSwitch<Adapter>() {
             @Override
-            public Adapter caseBaseCamelBinding(BaseCamelBinding object) {
-                return createBaseCamelBindingAdapter();
+            public Adapter caseJavaDSLType(JavaDSLType object) {
+                return createJavaDSLTypeAdapter();
             }
             @Override
-            public Adapter caseGenericFileBindingType(GenericFileBindingType object) {
-                return createGenericFileBindingTypeAdapter();
+            public Adapter caseXMLDSLType(XMLDSLType object) {
+                return createXMLDSLTypeAdapter();
             }
             @Override
-            public Adapter caseCamelRemoteBindingType(CamelRemoteBindingType object) {
-                return createCamelRemoteBindingTypeAdapter();
-            }
-            @Override
-            public Adapter caseScheduledPollConsumerType(ScheduledPollConsumerType object) {
-                return createScheduledPollConsumerTypeAdapter();
-            }
-            @Override
-            public Adapter caseScheduledBatchPollConsumerType(ScheduledBatchPollConsumerType object) {
-                return createScheduledBatchPollConsumerTypeAdapter();
-            }
-            @Override
-            public Adapter caseGenericFileConsumerType(GenericFileConsumerType object) {
-                return createGenericFileConsumerTypeAdapter();
-            }
-            @Override
-            public Adapter caseGenericFileProducerType(GenericFileProducerType object) {
-                return createGenericFileProducerTypeAdapter();
-            }
-            @Override
-            public Adapter caseJmsBindingType(JmsBindingType object) {
-                return createJmsBindingTypeAdapter();
-            }
-            @Override
-            public Adapter caseCamelBindingType(CamelBindingType object) {
-                return createCamelBindingTypeAdapter();
-            }
-            @Override
-            public Adapter caseCamelDirectBindingType(CamelDirectBindingType object) {
-                return createCamelDirectBindingTypeAdapter();
-            }
-            @Override
-            public Adapter caseCamelTimerBindingType(CamelTimerBindingType object) {
-                return createCamelTimerBindingTypeAdapter();
-            }
-            @Override
-            public Adapter caseCamelSedaBindingType(CamelSedaBindingType object) {
-                return createCamelSedaBindingTypeAdapter();
-            }
-            @Override
-            public Adapter caseCamelMockBindingType(CamelMockBindingType object) {
-                return createCamelMockBindingTypeAdapter();
+            public Adapter caseCamelImplementationType(CamelImplementationType object) {
+                return createCamelImplementationTypeAdapter();
             }
             @Override
             public Adapter caseDocumentRoot(DocumentRoot object) {
@@ -140,12 +96,8 @@ public class CamelAdapterFactory extends AdapterFactoryImpl {
                 return createCommonExtensionBaseAdapter();
             }
             @Override
-            public Adapter caseBinding(Binding object) {
-                return createBindingAdapter();
-            }
-            @Override
-            public Adapter caseSwitchYardBindingType(SwitchYardBindingType object) {
-                return createSwitchYardBindingTypeAdapter();
+            public Adapter caseImplementation(Implementation object) {
+                return createImplementationAdapter();
             }
             @Override
             public Adapter defaultCase(EObject object) {
@@ -168,90 +120,48 @@ public class CamelAdapterFactory extends AdapterFactoryImpl {
 
 
 	/**
-     * Creates a new adapter for an object of class '{@link org.switchyard.tools.models.switchyard1_0.camel.BaseCamelBinding <em>Base Camel Binding</em>}'.
+     * Creates a new adapter for an object of class '{@link org.switchyard.tools.models.switchyard1_0.camel.JavaDSLType <em>Java DSL Type</em>}'.
      * <!-- begin-user-doc -->
      * This default implementation returns null so that we can easily ignore cases;
      * it's useful to ignore a case when inheritance will catch all the cases anyway.
      * <!-- end-user-doc -->
      * @return the new adapter.
-     * @see org.switchyard.tools.models.switchyard1_0.camel.BaseCamelBinding
+     * @see org.switchyard.tools.models.switchyard1_0.camel.JavaDSLType
      * @generated
      */
-    public Adapter createBaseCamelBindingAdapter() {
+    public Adapter createJavaDSLTypeAdapter() {
         return null;
     }
 
     /**
-     * Creates a new adapter for an object of class '{@link org.switchyard.tools.models.switchyard1_0.camel.CamelBindingType <em>Binding Type</em>}'.
+     * Creates a new adapter for an object of class '{@link org.switchyard.tools.models.switchyard1_0.camel.XMLDSLType <em>XMLDSL Type</em>}'.
      * <!-- begin-user-doc -->
-	 * This default implementation returns null so that we can easily ignore cases;
-	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
-	 * <!-- end-user-doc -->
+     * This default implementation returns null so that we can easily ignore cases;
+     * it's useful to ignore a case when inheritance will catch all the cases anyway.
+     * <!-- end-user-doc -->
      * @return the new adapter.
-     * @see org.switchyard.tools.models.switchyard1_0.camel.CamelBindingType
+     * @see org.switchyard.tools.models.switchyard1_0.camel.XMLDSLType
      * @generated
      */
-	public Adapter createCamelBindingTypeAdapter() {
+    public Adapter createXMLDSLTypeAdapter() {
         return null;
     }
 
-	/**
-     * Creates a new adapter for an object of class '{@link org.switchyard.tools.models.switchyard1_0.camel.CamelDirectBindingType <em>Direct Binding Type</em>}'.
+    /**
+     * Creates a new adapter for an object of class '{@link org.switchyard.tools.models.switchyard1_0.camel.CamelImplementationType <em>Implementation Type</em>}'.
      * <!-- begin-user-doc -->
-	 * This default implementation returns null so that we can easily ignore cases;
-	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
-	 * <!-- end-user-doc -->
+     * This default implementation returns null so that we can easily ignore cases;
+     * it's useful to ignore a case when inheritance will catch all the cases anyway.
+     * <!-- end-user-doc -->
      * @return the new adapter.
-     * @see org.switchyard.tools.models.switchyard1_0.camel.CamelDirectBindingType
+     * @see org.switchyard.tools.models.switchyard1_0.camel.CamelImplementationType
      * @generated
      */
-	public Adapter createCamelDirectBindingTypeAdapter() {
+    public Adapter createCamelImplementationTypeAdapter() {
         return null;
     }
 
-	/**
-     * Creates a new adapter for an object of class '{@link org.switchyard.tools.models.switchyard1_0.camel.CamelMockBindingType <em>Mock Binding Type</em>}'.
-     * <!-- begin-user-doc -->
-	 * This default implementation returns null so that we can easily ignore cases;
-	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
-	 * <!-- end-user-doc -->
-     * @return the new adapter.
-     * @see org.switchyard.tools.models.switchyard1_0.camel.CamelMockBindingType
-     * @generated
-     */
-	public Adapter createCamelMockBindingTypeAdapter() {
-        return null;
-    }
-
-	/**
-     * Creates a new adapter for an object of class '{@link org.switchyard.tools.models.switchyard1_0.camel.CamelSedaBindingType <em>Seda Binding Type</em>}'.
-     * <!-- begin-user-doc -->
-	 * This default implementation returns null so that we can easily ignore cases;
-	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
-	 * <!-- end-user-doc -->
-     * @return the new adapter.
-     * @see org.switchyard.tools.models.switchyard1_0.camel.CamelSedaBindingType
-     * @generated
-     */
-	public Adapter createCamelSedaBindingTypeAdapter() {
-        return null;
-    }
-
-	/**
-     * Creates a new adapter for an object of class '{@link org.switchyard.tools.models.switchyard1_0.camel.CamelTimerBindingType <em>Timer Binding Type</em>}'.
-     * <!-- begin-user-doc -->
-	 * This default implementation returns null so that we can easily ignore cases;
-	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
-	 * <!-- end-user-doc -->
-     * @return the new adapter.
-     * @see org.switchyard.tools.models.switchyard1_0.camel.CamelTimerBindingType
-     * @generated
-     */
-	public Adapter createCamelTimerBindingTypeAdapter() {
-        return null;
-    }
-
-	/**
+    /**
      * Creates a new adapter for an object of class '{@link org.switchyard.tools.models.switchyard1_0.camel.DocumentRoot <em>Document Root</em>}'.
      * <!-- begin-user-doc -->
 	 * This default implementation returns null so that we can easily ignore cases;
@@ -266,104 +176,6 @@ public class CamelAdapterFactory extends AdapterFactoryImpl {
     }
 
 	/**
-     * Creates a new adapter for an object of class '{@link org.switchyard.tools.models.switchyard1_0.camel.CamelRemoteBindingType <em>Remote Binding Type</em>}'.
-     * <!-- begin-user-doc -->
-     * This default implementation returns null so that we can easily ignore cases;
-     * it's useful to ignore a case when inheritance will catch all the cases anyway.
-     * <!-- end-user-doc -->
-     * @return the new adapter.
-     * @see org.switchyard.tools.models.switchyard1_0.camel.CamelRemoteBindingType
-     * @generated
-     */
-    public Adapter createCamelRemoteBindingTypeAdapter() {
-        return null;
-    }
-
-    /**
-     * Creates a new adapter for an object of class '{@link org.switchyard.tools.models.switchyard1_0.camel.ScheduledPollConsumerType <em>Scheduled Poll Consumer Type</em>}'.
-     * <!-- begin-user-doc -->
-     * This default implementation returns null so that we can easily ignore cases;
-     * it's useful to ignore a case when inheritance will catch all the cases anyway.
-     * <!-- end-user-doc -->
-     * @return the new adapter.
-     * @see org.switchyard.tools.models.switchyard1_0.camel.ScheduledPollConsumerType
-     * @generated
-     */
-    public Adapter createScheduledPollConsumerTypeAdapter() {
-        return null;
-    }
-
-    /**
-     * Creates a new adapter for an object of class '{@link org.switchyard.tools.models.switchyard1_0.camel.GenericFileBindingType <em>Generic File Binding Type</em>}'.
-     * <!-- begin-user-doc -->
-     * This default implementation returns null so that we can easily ignore cases;
-     * it's useful to ignore a case when inheritance will catch all the cases anyway.
-     * <!-- end-user-doc -->
-     * @return the new adapter.
-     * @see org.switchyard.tools.models.switchyard1_0.camel.GenericFileBindingType
-     * @generated
-     */
-    public Adapter createGenericFileBindingTypeAdapter() {
-        return null;
-    }
-
-    /**
-     * Creates a new adapter for an object of class '{@link org.switchyard.tools.models.switchyard1_0.camel.ScheduledBatchPollConsumerType <em>Scheduled Batch Poll Consumer Type</em>}'.
-     * <!-- begin-user-doc -->
-     * This default implementation returns null so that we can easily ignore cases;
-     * it's useful to ignore a case when inheritance will catch all the cases anyway.
-     * <!-- end-user-doc -->
-     * @return the new adapter.
-     * @see org.switchyard.tools.models.switchyard1_0.camel.ScheduledBatchPollConsumerType
-     * @generated
-     */
-    public Adapter createScheduledBatchPollConsumerTypeAdapter() {
-        return null;
-    }
-
-    /**
-     * Creates a new adapter for an object of class '{@link org.switchyard.tools.models.switchyard1_0.camel.GenericFileConsumerType <em>Generic File Consumer Type</em>}'.
-     * <!-- begin-user-doc -->
-     * This default implementation returns null so that we can easily ignore cases;
-     * it's useful to ignore a case when inheritance will catch all the cases anyway.
-     * <!-- end-user-doc -->
-     * @return the new adapter.
-     * @see org.switchyard.tools.models.switchyard1_0.camel.GenericFileConsumerType
-     * @generated
-     */
-    public Adapter createGenericFileConsumerTypeAdapter() {
-        return null;
-    }
-
-    /**
-     * Creates a new adapter for an object of class '{@link org.switchyard.tools.models.switchyard1_0.camel.GenericFileProducerType <em>Generic File Producer Type</em>}'.
-     * <!-- begin-user-doc -->
-     * This default implementation returns null so that we can easily ignore cases;
-     * it's useful to ignore a case when inheritance will catch all the cases anyway.
-     * <!-- end-user-doc -->
-     * @return the new adapter.
-     * @see org.switchyard.tools.models.switchyard1_0.camel.GenericFileProducerType
-     * @generated
-     */
-    public Adapter createGenericFileProducerTypeAdapter() {
-        return null;
-    }
-
-    /**
-     * Creates a new adapter for an object of class '{@link org.switchyard.tools.models.switchyard1_0.camel.JmsBindingType <em>Jms Binding Type</em>}'.
-     * <!-- begin-user-doc -->
-     * This default implementation returns null so that we can easily ignore cases;
-     * it's useful to ignore a case when inheritance will catch all the cases anyway.
-     * <!-- end-user-doc -->
-     * @return the new adapter.
-     * @see org.switchyard.tools.models.switchyard1_0.camel.JmsBindingType
-     * @generated
-     */
-    public Adapter createJmsBindingTypeAdapter() {
-        return null;
-    }
-
-    /**
      * Creates a new adapter for an object of class '{@link org.eclipse.soa.sca.sca1_1.model.sca.CommonExtensionBase <em>Common Extension Base</em>}'.
      * <!-- begin-user-doc -->
 	 * This default implementation returns null so that we can easily ignore cases;
@@ -378,34 +190,20 @@ public class CamelAdapterFactory extends AdapterFactoryImpl {
     }
 
 	/**
-     * Creates a new adapter for an object of class '{@link org.eclipse.soa.sca.sca1_1.model.sca.Binding <em>Binding</em>}'.
+     * Creates a new adapter for an object of class '{@link org.eclipse.soa.sca.sca1_1.model.sca.Implementation <em>Implementation</em>}'.
      * <!-- begin-user-doc -->
-	 * This default implementation returns null so that we can easily ignore cases;
-	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
-	 * <!-- end-user-doc -->
+     * This default implementation returns null so that we can easily ignore cases;
+     * it's useful to ignore a case when inheritance will catch all the cases anyway.
+     * <!-- end-user-doc -->
      * @return the new adapter.
-     * @see org.eclipse.soa.sca.sca1_1.model.sca.Binding
+     * @see org.eclipse.soa.sca.sca1_1.model.sca.Implementation
      * @generated
      */
-	public Adapter createBindingAdapter() {
+    public Adapter createImplementationAdapter() {
         return null;
     }
 
-	/**
-     * Creates a new adapter for an object of class '{@link org.switchyard.tools.models.switchyard1_0.switchyard.SwitchYardBindingType <em>Switch Yard Binding Type</em>}'.
-     * <!-- begin-user-doc -->
-	 * This default implementation returns null so that we can easily ignore cases;
-	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
-	 * <!-- end-user-doc -->
-     * @return the new adapter.
-     * @see org.switchyard.tools.models.switchyard1_0.switchyard.SwitchYardBindingType
-     * @generated
-     */
-	public Adapter createSwitchYardBindingTypeAdapter() {
-        return null;
-    }
-
-	/**
+    /**
      * Creates a new adapter for the default case.
      * <!-- begin-user-doc -->
 	 * This default implementation returns null.

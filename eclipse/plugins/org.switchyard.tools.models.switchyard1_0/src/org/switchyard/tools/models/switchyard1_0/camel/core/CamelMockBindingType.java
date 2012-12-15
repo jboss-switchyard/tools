@@ -16,7 +16,7 @@ package org.switchyard.tools.models.switchyard1_0.camel.core;
  * </ul>
  * </p>
  *
- * @see org.switchyard.tools.models.switchyard1_0.camel.core.CamelPackage#getCamelMockBindingType()
+ * @see org.switchyard.tools.models.switchyard1_0.camel.core.CorePackage#getCamelMockBindingType()
  * @model extendedMetaData="name='CamelMockBindingType' kind='elementOnly'"
  * @generated
  */
@@ -31,7 +31,7 @@ public interface CamelMockBindingType extends BaseCamelBinding {
      * <!-- end-user-doc -->
      * @return the value of the '<em>Name Element</em>' attribute.
      * @see #setNameElement(String)
-     * @see org.switchyard.tools.models.switchyard1_0.camel.core.CamelPackage#getCamelMockBindingType_NameElement()
+     * @see org.switchyard.tools.models.switchyard1_0.camel.core.CorePackage#getCamelMockBindingType_NameElement()
      * @model dataType="org.eclipse.emf.ecore.xml.type.String" required="true"
      *        extendedMetaData="kind='element' name='name' namespace='##targetNamespace'"
      * @generated
@@ -58,7 +58,7 @@ public interface CamelMockBindingType extends BaseCamelBinding {
      * <!-- end-user-doc -->
      * @return the value of the '<em>Report Group</em>' attribute.
      * @see #setReportGroup(Integer)
-     * @see org.switchyard.tools.models.switchyard1_0.camel.core.CamelPackage#getCamelMockBindingType_ReportGroup()
+     * @see org.switchyard.tools.models.switchyard1_0.camel.core.CorePackage#getCamelMockBindingType_ReportGroup()
      * @model dataType="org.eclipse.emf.ecore.xml.type.IntObject"
      *        extendedMetaData="kind='element' name='reportGroup' namespace='##targetNamespace'"
      * @generated

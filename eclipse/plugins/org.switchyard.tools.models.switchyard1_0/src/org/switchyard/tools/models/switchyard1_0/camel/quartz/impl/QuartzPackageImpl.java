@@ -25,6 +25,7 @@ import org.switchyard.tools.models.switchyard1_0.bpm.BPMPackage;
 
 import org.switchyard.tools.models.switchyard1_0.bpm.impl.BPMPackageImpl;
 
+import org.switchyard.tools.models.switchyard1_0.camel.CamelPackage;
 import org.switchyard.tools.models.switchyard1_0.camel.amqp.AmqpPackage;
 
 import org.switchyard.tools.models.switchyard1_0.camel.amqp.impl.AmqpPackageImpl;
@@ -33,9 +34,8 @@ import org.switchyard.tools.models.switchyard1_0.camel.atom.AtomPackage;
 
 import org.switchyard.tools.models.switchyard1_0.camel.atom.impl.AtomPackageImpl;
 
-import org.switchyard.tools.models.switchyard1_0.camel.core.CamelPackage;
-
-import org.switchyard.tools.models.switchyard1_0.camel.core.impl.CamelPackageImpl;
+import org.switchyard.tools.models.switchyard1_0.camel.core.CorePackage;
+import org.switchyard.tools.models.switchyard1_0.camel.core.impl.CorePackageImpl;
 
 import org.switchyard.tools.models.switchyard1_0.camel.file.FilePackage;
 
@@ -45,6 +45,7 @@ import org.switchyard.tools.models.switchyard1_0.camel.ftp.FtpPackage;
 
 import org.switchyard.tools.models.switchyard1_0.camel.ftp.impl.FtpPackageImpl;
 
+import org.switchyard.tools.models.switchyard1_0.camel.impl.CamelPackageImpl;
 import org.switchyard.tools.models.switchyard1_0.camel.jms.JmsPackage;
 
 import org.switchyard.tools.models.switchyard1_0.camel.jms.impl.JmsPackageImpl;
@@ -61,6 +62,7 @@ import org.switchyard.tools.models.switchyard1_0.camel.netty.NettyPackage;
 
 import org.switchyard.tools.models.switchyard1_0.camel.netty.impl.NettyPackageImpl;
 
+import org.switchyard.tools.models.switchyard1_0.camel.quartz.BaseCamelBinding;
 import org.switchyard.tools.models.switchyard1_0.camel.quartz.CamelQuartzBindingType;
 import org.switchyard.tools.models.switchyard1_0.camel.quartz.DocumentRoot;
 import org.switchyard.tools.models.switchyard1_0.camel.quartz.QuartzFactory;
@@ -129,6 +131,13 @@ import org.switchyard.tools.models.switchyard1_0.validate.impl.ValidatePackageIm
  * @generated
  */
 public class QuartzPackageImpl extends EPackageImpl implements QuartzPackage {
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    private EClass baseCamelBindingEClass = null;
+
     /**
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
@@ -205,12 +214,13 @@ public class QuartzPackageImpl extends EPackageImpl implements QuartzPackage {
         SOAPPackageImpl theSOAPPackage = (SOAPPackageImpl)(EPackage.Registry.INSTANCE.getEPackage(SOAPPackage.eNS_URI) instanceof SOAPPackageImpl ? EPackage.Registry.INSTANCE.getEPackage(SOAPPackage.eNS_URI) : SOAPPackage.eINSTANCE);
         TransformPackageImpl theTransformPackage = (TransformPackageImpl)(EPackage.Registry.INSTANCE.getEPackage(TransformPackage.eNS_URI) instanceof TransformPackageImpl ? EPackage.Registry.INSTANCE.getEPackage(TransformPackage.eNS_URI) : TransformPackage.eINSTANCE);
         ValidatePackageImpl theValidatePackage = (ValidatePackageImpl)(EPackage.Registry.INSTANCE.getEPackage(ValidatePackage.eNS_URI) instanceof ValidatePackageImpl ? EPackage.Registry.INSTANCE.getEPackage(ValidatePackage.eNS_URI) : ValidatePackage.eINSTANCE);
+        CamelPackageImpl theCamelPackage = (CamelPackageImpl)(EPackage.Registry.INSTANCE.getEPackage(CamelPackage.eNS_URI) instanceof CamelPackageImpl ? EPackage.Registry.INSTANCE.getEPackage(CamelPackage.eNS_URI) : CamelPackage.eINSTANCE);
         SpringPackageImpl theSpringPackage = (SpringPackageImpl)(EPackage.Registry.INSTANCE.getEPackage(SpringPackage.eNS_URI) instanceof SpringPackageImpl ? EPackage.Registry.INSTANCE.getEPackage(SpringPackage.eNS_URI) : SpringPackage.eINSTANCE);
         JcaPackageImpl theJcaPackage = (JcaPackageImpl)(EPackage.Registry.INSTANCE.getEPackage(JcaPackage.eNS_URI) instanceof JcaPackageImpl ? EPackage.Registry.INSTANCE.getEPackage(JcaPackage.eNS_URI) : JcaPackage.eINSTANCE);
         ResteasyPackageImpl theResteasyPackage = (ResteasyPackageImpl)(EPackage.Registry.INSTANCE.getEPackage(ResteasyPackage.eNS_URI) instanceof ResteasyPackageImpl ? EPackage.Registry.INSTANCE.getEPackage(ResteasyPackage.eNS_URI) : ResteasyPackage.eINSTANCE);
         HttpPackageImpl theHttpPackage = (HttpPackageImpl)(EPackage.Registry.INSTANCE.getEPackage(HttpPackage.eNS_URI) instanceof HttpPackageImpl ? EPackage.Registry.INSTANCE.getEPackage(HttpPackage.eNS_URI) : HttpPackage.eINSTANCE);
         RemotePackageImpl theRemotePackage = (RemotePackageImpl)(EPackage.Registry.INSTANCE.getEPackage(RemotePackage.eNS_URI) instanceof RemotePackageImpl ? EPackage.Registry.INSTANCE.getEPackage(RemotePackage.eNS_URI) : RemotePackage.eINSTANCE);
-        CamelPackageImpl theCamelPackage = (CamelPackageImpl)(EPackage.Registry.INSTANCE.getEPackage(CamelPackage.eNS_URI) instanceof CamelPackageImpl ? EPackage.Registry.INSTANCE.getEPackage(CamelPackage.eNS_URI) : CamelPackage.eINSTANCE);
+        CorePackageImpl theCorePackage = (CorePackageImpl)(EPackage.Registry.INSTANCE.getEPackage(CorePackage.eNS_URI) instanceof CorePackageImpl ? EPackage.Registry.INSTANCE.getEPackage(CorePackage.eNS_URI) : CorePackage.eINSTANCE);
         AmqpPackageImpl theAmqpPackage = (AmqpPackageImpl)(EPackage.Registry.INSTANCE.getEPackage(AmqpPackage.eNS_URI) instanceof AmqpPackageImpl ? EPackage.Registry.INSTANCE.getEPackage(AmqpPackage.eNS_URI) : AmqpPackage.eINSTANCE);
         AtomPackageImpl theAtomPackage = (AtomPackageImpl)(EPackage.Registry.INSTANCE.getEPackage(AtomPackage.eNS_URI) instanceof AtomPackageImpl ? EPackage.Registry.INSTANCE.getEPackage(AtomPackage.eNS_URI) : AtomPackage.eINSTANCE);
         FilePackageImpl theFilePackage = (FilePackageImpl)(EPackage.Registry.INSTANCE.getEPackage(FilePackage.eNS_URI) instanceof FilePackageImpl ? EPackage.Registry.INSTANCE.getEPackage(FilePackage.eNS_URI) : FilePackage.eINSTANCE);
@@ -237,11 +247,12 @@ public class QuartzPackageImpl extends EPackageImpl implements QuartzPackage {
         theSOAPPackage.createPackageContents();
         theTransformPackage.createPackageContents();
         theValidatePackage.createPackageContents();
+        theCamelPackage.createPackageContents();
         theJcaPackage.createPackageContents();
         theResteasyPackage.createPackageContents();
         theHttpPackage.createPackageContents();
         theRemotePackage.createPackageContents();
-        theCamelPackage.createPackageContents();
+        theCorePackage.createPackageContents();
         theAmqpPackage.createPackageContents();
         theAtomPackage.createPackageContents();
         theFilePackage.createPackageContents();
@@ -265,11 +276,12 @@ public class QuartzPackageImpl extends EPackageImpl implements QuartzPackage {
         theSOAPPackage.initializePackageContents();
         theTransformPackage.initializePackageContents();
         theValidatePackage.initializePackageContents();
+        theCamelPackage.initializePackageContents();
         theJcaPackage.initializePackageContents();
         theResteasyPackage.initializePackageContents();
         theHttpPackage.initializePackageContents();
         theRemotePackage.initializePackageContents();
-        theCamelPackage.initializePackageContents();
+        theCorePackage.initializePackageContents();
         theAmqpPackage.initializePackageContents();
         theAtomPackage.initializePackageContents();
         theFilePackage.initializePackageContents();
@@ -297,6 +309,15 @@ public class QuartzPackageImpl extends EPackageImpl implements QuartzPackage {
      * <!-- end-user-doc -->
      * @generated
      */
+    public EClass getBaseCamelBinding() {
+        return baseCamelBindingEClass;
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
     public EClass getCamelQuartzBindingType() {
         return camelQuartzBindingTypeEClass;
     }
@@ -306,7 +327,7 @@ public class QuartzPackageImpl extends EPackageImpl implements QuartzPackage {
      * <!-- end-user-doc -->
      * @generated
      */
-    public EAttribute getCamelQuartzBindingType_CamelBindingName() {
+    public EAttribute getCamelQuartzBindingType_NameElement() {
         return (EAttribute)camelQuartzBindingTypeEClass.getEStructuralFeatures().get(0);
     }
 
@@ -333,7 +354,7 @@ public class QuartzPackageImpl extends EPackageImpl implements QuartzPackage {
      * <!-- end-user-doc -->
      * @generated
      */
-    public EAttribute getCamelQuartzBindingType_StartTime() {
+    public EAttribute getCamelQuartzBindingType_TriggerStartTime() {
         return (EAttribute)camelQuartzBindingTypeEClass.getEStructuralFeatures().get(3);
     }
 
@@ -342,7 +363,7 @@ public class QuartzPackageImpl extends EPackageImpl implements QuartzPackage {
      * <!-- end-user-doc -->
      * @generated
      */
-    public EAttribute getCamelQuartzBindingType_EndTime() {
+    public EAttribute getCamelQuartzBindingType_TriggerEndTime() {
         return (EAttribute)camelQuartzBindingTypeEClass.getEStructuralFeatures().get(4);
     }
 
@@ -419,12 +440,14 @@ public class QuartzPackageImpl extends EPackageImpl implements QuartzPackage {
         isCreated = true;
 
         // Create classes and their features
+        baseCamelBindingEClass = createEClass(BASE_CAMEL_BINDING);
+
         camelQuartzBindingTypeEClass = createEClass(CAMEL_QUARTZ_BINDING_TYPE);
-        createEAttribute(camelQuartzBindingTypeEClass, CAMEL_QUARTZ_BINDING_TYPE__CAMEL_BINDING_NAME);
+        createEAttribute(camelQuartzBindingTypeEClass, CAMEL_QUARTZ_BINDING_TYPE__NAME_ELEMENT);
         createEAttribute(camelQuartzBindingTypeEClass, CAMEL_QUARTZ_BINDING_TYPE__CRON);
         createEAttribute(camelQuartzBindingTypeEClass, CAMEL_QUARTZ_BINDING_TYPE__STATEFUL);
-        createEAttribute(camelQuartzBindingTypeEClass, CAMEL_QUARTZ_BINDING_TYPE__START_TIME);
-        createEAttribute(camelQuartzBindingTypeEClass, CAMEL_QUARTZ_BINDING_TYPE__END_TIME);
+        createEAttribute(camelQuartzBindingTypeEClass, CAMEL_QUARTZ_BINDING_TYPE__TRIGGER_START_TIME);
+        createEAttribute(camelQuartzBindingTypeEClass, CAMEL_QUARTZ_BINDING_TYPE__TRIGGER_END_TIME);
 
         documentRootEClass = createEClass(DOCUMENT_ROOT);
         createEAttribute(documentRootEClass, DOCUMENT_ROOT__MIXED);
@@ -457,7 +480,7 @@ public class QuartzPackageImpl extends EPackageImpl implements QuartzPackage {
         setNsURI(eNS_URI);
 
         // Obtain other dependent packages
-        CamelPackage theCamelPackage = (CamelPackage)EPackage.Registry.INSTANCE.getEPackage(CamelPackage.eNS_URI);
+        SwitchyardPackage theSwitchyardPackage = (SwitchyardPackage)EPackage.Registry.INSTANCE.getEPackage(SwitchyardPackage.eNS_URI);
         XMLTypePackage theXMLTypePackage = (XMLTypePackage)EPackage.Registry.INSTANCE.getEPackage(XMLTypePackage.eNS_URI);
 
         // Create type parameters
@@ -465,15 +488,18 @@ public class QuartzPackageImpl extends EPackageImpl implements QuartzPackage {
         // Set bounds for type parameters
 
         // Add supertypes to classes
-        camelQuartzBindingTypeEClass.getESuperTypes().add(theCamelPackage.getBaseCamelBinding());
+        baseCamelBindingEClass.getESuperTypes().add(theSwitchyardPackage.getSwitchYardBindingType());
+        camelQuartzBindingTypeEClass.getESuperTypes().add(this.getBaseCamelBinding());
 
         // Initialize classes and features; add operations and parameters
+        initEClass(baseCamelBindingEClass, BaseCamelBinding.class, "BaseCamelBinding", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+
         initEClass(camelQuartzBindingTypeEClass, CamelQuartzBindingType.class, "CamelQuartzBindingType", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-        initEAttribute(getCamelQuartzBindingType_CamelBindingName(), theXMLTypePackage.getString(), "camelBindingName", null, 1, 1, CamelQuartzBindingType.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+        initEAttribute(getCamelQuartzBindingType_NameElement(), theXMLTypePackage.getString(), "nameElement", null, 1, 1, CamelQuartzBindingType.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
         initEAttribute(getCamelQuartzBindingType_Cron(), theXMLTypePackage.getString(), "cron", null, 1, 1, CamelQuartzBindingType.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
         initEAttribute(getCamelQuartzBindingType_Stateful(), theXMLTypePackage.getBooleanObject(), "stateful", null, 0, 1, CamelQuartzBindingType.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-        initEAttribute(getCamelQuartzBindingType_StartTime(), theXMLTypePackage.getDateTime(), "startTime", null, 0, 1, CamelQuartzBindingType.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-        initEAttribute(getCamelQuartzBindingType_EndTime(), theXMLTypePackage.getDateTime(), "endTime", null, 0, 1, CamelQuartzBindingType.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+        initEAttribute(getCamelQuartzBindingType_TriggerStartTime(), theXMLTypePackage.getDateTime(), "triggerStartTime", null, 0, 1, CamelQuartzBindingType.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+        initEAttribute(getCamelQuartzBindingType_TriggerEndTime(), theXMLTypePackage.getDateTime(), "triggerEndTime", null, 0, 1, CamelQuartzBindingType.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
         initEClass(documentRootEClass, DocumentRoot.class, "DocumentRoot", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
         initEAttribute(getDocumentRoot_Mixed(), ecorePackage.getEFeatureMapEntry(), "mixed", null, 0, -1, null, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
@@ -498,6 +524,13 @@ public class QuartzPackageImpl extends EPackageImpl implements QuartzPackage {
     protected void createExtendedMetaDataAnnotations() {
         String source = "http:///org/eclipse/emf/ecore/util/ExtendedMetaData";		
         addAnnotation
+          (baseCamelBindingEClass, 
+           source, 
+           new String[] {
+             "name", "BaseCamelBinding",
+             "kind", "elementOnly"
+           });		
+        addAnnotation
           (camelQuartzBindingTypeEClass, 
            source, 
            new String[] {
@@ -505,7 +538,7 @@ public class QuartzPackageImpl extends EPackageImpl implements QuartzPackage {
              "kind", "elementOnly"
            });		
         addAnnotation
-          (getCamelQuartzBindingType_CamelBindingName(), 
+          (getCamelQuartzBindingType_NameElement(), 
            source, 
            new String[] {
              "kind", "element",
@@ -529,7 +562,7 @@ public class QuartzPackageImpl extends EPackageImpl implements QuartzPackage {
              "namespace", "##targetNamespace"
            });		
         addAnnotation
-          (getCamelQuartzBindingType_StartTime(), 
+          (getCamelQuartzBindingType_TriggerStartTime(), 
            source, 
            new String[] {
              "kind", "element",
@@ -537,7 +570,7 @@ public class QuartzPackageImpl extends EPackageImpl implements QuartzPackage {
              "namespace", "##targetNamespace"
            });		
         addAnnotation
-          (getCamelQuartzBindingType_EndTime(), 
+          (getCamelQuartzBindingType_TriggerEndTime(), 
            source, 
            new String[] {
              "kind", "element",

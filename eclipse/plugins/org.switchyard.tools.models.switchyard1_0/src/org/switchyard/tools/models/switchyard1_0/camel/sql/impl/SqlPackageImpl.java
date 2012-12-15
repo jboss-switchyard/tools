@@ -25,6 +25,7 @@ import org.switchyard.tools.models.switchyard1_0.bpm.BPMPackage;
 
 import org.switchyard.tools.models.switchyard1_0.bpm.impl.BPMPackageImpl;
 
+import org.switchyard.tools.models.switchyard1_0.camel.CamelPackage;
 import org.switchyard.tools.models.switchyard1_0.camel.amqp.AmqpPackage;
 
 import org.switchyard.tools.models.switchyard1_0.camel.amqp.impl.AmqpPackageImpl;
@@ -33,9 +34,8 @@ import org.switchyard.tools.models.switchyard1_0.camel.atom.AtomPackage;
 
 import org.switchyard.tools.models.switchyard1_0.camel.atom.impl.AtomPackageImpl;
 
-import org.switchyard.tools.models.switchyard1_0.camel.core.CamelPackage;
-
-import org.switchyard.tools.models.switchyard1_0.camel.core.impl.CamelPackageImpl;
+import org.switchyard.tools.models.switchyard1_0.camel.core.CorePackage;
+import org.switchyard.tools.models.switchyard1_0.camel.core.impl.CorePackageImpl;
 
 import org.switchyard.tools.models.switchyard1_0.camel.file.FilePackage;
 
@@ -45,6 +45,7 @@ import org.switchyard.tools.models.switchyard1_0.camel.ftp.FtpPackage;
 
 import org.switchyard.tools.models.switchyard1_0.camel.ftp.impl.FtpPackageImpl;
 
+import org.switchyard.tools.models.switchyard1_0.camel.impl.CamelPackageImpl;
 import org.switchyard.tools.models.switchyard1_0.camel.jms.JmsPackage;
 
 import org.switchyard.tools.models.switchyard1_0.camel.jms.impl.JmsPackageImpl;
@@ -65,6 +66,7 @@ import org.switchyard.tools.models.switchyard1_0.camel.quartz.QuartzPackage;
 
 import org.switchyard.tools.models.switchyard1_0.camel.quartz.impl.QuartzPackageImpl;
 
+import org.switchyard.tools.models.switchyard1_0.camel.sql.BaseCamelBinding;
 import org.switchyard.tools.models.switchyard1_0.camel.sql.CamelSqlBindingType;
 import org.switchyard.tools.models.switchyard1_0.camel.sql.DocumentRoot;
 import org.switchyard.tools.models.switchyard1_0.camel.sql.SqlFactory;
@@ -129,6 +131,13 @@ import org.switchyard.tools.models.switchyard1_0.validate.impl.ValidatePackageIm
  * @generated
  */
 public class SqlPackageImpl extends EPackageImpl implements SqlPackage {
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    private EClass baseCamelBindingEClass = null;
+
     /**
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
@@ -205,12 +214,13 @@ public class SqlPackageImpl extends EPackageImpl implements SqlPackage {
         SOAPPackageImpl theSOAPPackage = (SOAPPackageImpl)(EPackage.Registry.INSTANCE.getEPackage(SOAPPackage.eNS_URI) instanceof SOAPPackageImpl ? EPackage.Registry.INSTANCE.getEPackage(SOAPPackage.eNS_URI) : SOAPPackage.eINSTANCE);
         TransformPackageImpl theTransformPackage = (TransformPackageImpl)(EPackage.Registry.INSTANCE.getEPackage(TransformPackage.eNS_URI) instanceof TransformPackageImpl ? EPackage.Registry.INSTANCE.getEPackage(TransformPackage.eNS_URI) : TransformPackage.eINSTANCE);
         ValidatePackageImpl theValidatePackage = (ValidatePackageImpl)(EPackage.Registry.INSTANCE.getEPackage(ValidatePackage.eNS_URI) instanceof ValidatePackageImpl ? EPackage.Registry.INSTANCE.getEPackage(ValidatePackage.eNS_URI) : ValidatePackage.eINSTANCE);
+        CamelPackageImpl theCamelPackage = (CamelPackageImpl)(EPackage.Registry.INSTANCE.getEPackage(CamelPackage.eNS_URI) instanceof CamelPackageImpl ? EPackage.Registry.INSTANCE.getEPackage(CamelPackage.eNS_URI) : CamelPackage.eINSTANCE);
         SpringPackageImpl theSpringPackage = (SpringPackageImpl)(EPackage.Registry.INSTANCE.getEPackage(SpringPackage.eNS_URI) instanceof SpringPackageImpl ? EPackage.Registry.INSTANCE.getEPackage(SpringPackage.eNS_URI) : SpringPackage.eINSTANCE);
         JcaPackageImpl theJcaPackage = (JcaPackageImpl)(EPackage.Registry.INSTANCE.getEPackage(JcaPackage.eNS_URI) instanceof JcaPackageImpl ? EPackage.Registry.INSTANCE.getEPackage(JcaPackage.eNS_URI) : JcaPackage.eINSTANCE);
         ResteasyPackageImpl theResteasyPackage = (ResteasyPackageImpl)(EPackage.Registry.INSTANCE.getEPackage(ResteasyPackage.eNS_URI) instanceof ResteasyPackageImpl ? EPackage.Registry.INSTANCE.getEPackage(ResteasyPackage.eNS_URI) : ResteasyPackage.eINSTANCE);
         HttpPackageImpl theHttpPackage = (HttpPackageImpl)(EPackage.Registry.INSTANCE.getEPackage(HttpPackage.eNS_URI) instanceof HttpPackageImpl ? EPackage.Registry.INSTANCE.getEPackage(HttpPackage.eNS_URI) : HttpPackage.eINSTANCE);
         RemotePackageImpl theRemotePackage = (RemotePackageImpl)(EPackage.Registry.INSTANCE.getEPackage(RemotePackage.eNS_URI) instanceof RemotePackageImpl ? EPackage.Registry.INSTANCE.getEPackage(RemotePackage.eNS_URI) : RemotePackage.eINSTANCE);
-        CamelPackageImpl theCamelPackage = (CamelPackageImpl)(EPackage.Registry.INSTANCE.getEPackage(CamelPackage.eNS_URI) instanceof CamelPackageImpl ? EPackage.Registry.INSTANCE.getEPackage(CamelPackage.eNS_URI) : CamelPackage.eINSTANCE);
+        CorePackageImpl theCorePackage = (CorePackageImpl)(EPackage.Registry.INSTANCE.getEPackage(CorePackage.eNS_URI) instanceof CorePackageImpl ? EPackage.Registry.INSTANCE.getEPackage(CorePackage.eNS_URI) : CorePackage.eINSTANCE);
         AmqpPackageImpl theAmqpPackage = (AmqpPackageImpl)(EPackage.Registry.INSTANCE.getEPackage(AmqpPackage.eNS_URI) instanceof AmqpPackageImpl ? EPackage.Registry.INSTANCE.getEPackage(AmqpPackage.eNS_URI) : AmqpPackage.eINSTANCE);
         AtomPackageImpl theAtomPackage = (AtomPackageImpl)(EPackage.Registry.INSTANCE.getEPackage(AtomPackage.eNS_URI) instanceof AtomPackageImpl ? EPackage.Registry.INSTANCE.getEPackage(AtomPackage.eNS_URI) : AtomPackage.eINSTANCE);
         FilePackageImpl theFilePackage = (FilePackageImpl)(EPackage.Registry.INSTANCE.getEPackage(FilePackage.eNS_URI) instanceof FilePackageImpl ? EPackage.Registry.INSTANCE.getEPackage(FilePackage.eNS_URI) : FilePackage.eINSTANCE);
@@ -237,11 +247,12 @@ public class SqlPackageImpl extends EPackageImpl implements SqlPackage {
         theSOAPPackage.createPackageContents();
         theTransformPackage.createPackageContents();
         theValidatePackage.createPackageContents();
+        theCamelPackage.createPackageContents();
         theJcaPackage.createPackageContents();
         theResteasyPackage.createPackageContents();
         theHttpPackage.createPackageContents();
         theRemotePackage.createPackageContents();
-        theCamelPackage.createPackageContents();
+        theCorePackage.createPackageContents();
         theAmqpPackage.createPackageContents();
         theAtomPackage.createPackageContents();
         theFilePackage.createPackageContents();
@@ -265,11 +276,12 @@ public class SqlPackageImpl extends EPackageImpl implements SqlPackage {
         theSOAPPackage.initializePackageContents();
         theTransformPackage.initializePackageContents();
         theValidatePackage.initializePackageContents();
+        theCamelPackage.initializePackageContents();
         theJcaPackage.initializePackageContents();
         theResteasyPackage.initializePackageContents();
         theHttpPackage.initializePackageContents();
         theRemotePackage.initializePackageContents();
-        theCamelPackage.initializePackageContents();
+        theCorePackage.initializePackageContents();
         theAmqpPackage.initializePackageContents();
         theAtomPackage.initializePackageContents();
         theFilePackage.initializePackageContents();
@@ -290,6 +302,15 @@ public class SqlPackageImpl extends EPackageImpl implements SqlPackage {
         // Update the registry and return the package
         EPackage.Registry.INSTANCE.put(SqlPackage.eNS_URI, theSqlPackage);
         return theSqlPackage;
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public EClass getBaseCamelBinding() {
+        return baseCamelBindingEClass;
     }
 
     /**
@@ -410,6 +431,8 @@ public class SqlPackageImpl extends EPackageImpl implements SqlPackage {
         isCreated = true;
 
         // Create classes and their features
+        baseCamelBindingEClass = createEClass(BASE_CAMEL_BINDING);
+
         camelSqlBindingTypeEClass = createEClass(CAMEL_SQL_BINDING_TYPE);
         createEAttribute(camelSqlBindingTypeEClass, CAMEL_SQL_BINDING_TYPE__QUERY);
         createEAttribute(camelSqlBindingTypeEClass, CAMEL_SQL_BINDING_TYPE__DATA_SOURCE_REF);
@@ -447,7 +470,7 @@ public class SqlPackageImpl extends EPackageImpl implements SqlPackage {
         setNsURI(eNS_URI);
 
         // Obtain other dependent packages
-        CamelPackage theCamelPackage = (CamelPackage)EPackage.Registry.INSTANCE.getEPackage(CamelPackage.eNS_URI);
+        SwitchyardPackage theSwitchyardPackage = (SwitchyardPackage)EPackage.Registry.INSTANCE.getEPackage(SwitchyardPackage.eNS_URI);
         XMLTypePackage theXMLTypePackage = (XMLTypePackage)EPackage.Registry.INSTANCE.getEPackage(XMLTypePackage.eNS_URI);
 
         // Create type parameters
@@ -455,13 +478,16 @@ public class SqlPackageImpl extends EPackageImpl implements SqlPackage {
         // Set bounds for type parameters
 
         // Add supertypes to classes
-        camelSqlBindingTypeEClass.getESuperTypes().add(theCamelPackage.getBaseCamelBinding());
+        baseCamelBindingEClass.getESuperTypes().add(theSwitchyardPackage.getSwitchYardBindingType());
+        camelSqlBindingTypeEClass.getESuperTypes().add(this.getBaseCamelBinding());
 
         // Initialize classes and features; add operations and parameters
+        initEClass(baseCamelBindingEClass, BaseCamelBinding.class, "BaseCamelBinding", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+
         initEClass(camelSqlBindingTypeEClass, CamelSqlBindingType.class, "CamelSqlBindingType", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
         initEAttribute(getCamelSqlBindingType_Query(), theXMLTypePackage.getString(), "query", null, 1, 1, CamelSqlBindingType.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
         initEAttribute(getCamelSqlBindingType_DataSourceRef(), theXMLTypePackage.getString(), "dataSourceRef", null, 1, 1, CamelSqlBindingType.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-        initEAttribute(getCamelSqlBindingType_Batch(), theXMLTypePackage.getBooleanObject(), "batch", null, 0, 1, CamelSqlBindingType.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+        initEAttribute(getCamelSqlBindingType_Batch(), theXMLTypePackage.getBooleanObject(), "batch", null, 0, 1, CamelSqlBindingType.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
         initEAttribute(getCamelSqlBindingType_Placeholder(), theXMLTypePackage.getString(), "placeholder", null, 0, 1, CamelSqlBindingType.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
         initEClass(documentRootEClass, DocumentRoot.class, "DocumentRoot", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
@@ -486,6 +512,13 @@ public class SqlPackageImpl extends EPackageImpl implements SqlPackage {
      */
     protected void createExtendedMetaDataAnnotations() {
         String source = "http:///org/eclipse/emf/ecore/util/ExtendedMetaData";		
+        addAnnotation
+          (baseCamelBindingEClass, 
+           source, 
+           new String[] {
+             "name", "BaseCamelBinding",
+             "kind", "elementOnly"
+           });		
         addAnnotation
           (camelSqlBindingTypeEClass, 
            source, 

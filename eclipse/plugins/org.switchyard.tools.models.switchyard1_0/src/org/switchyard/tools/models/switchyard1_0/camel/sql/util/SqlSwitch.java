@@ -73,6 +73,15 @@ public class SqlSwitch<T> extends Switch<T> {
     @Override
     protected T doSwitch(int classifierID, EObject theEObject) {
         switch (classifierID) {
+            case SqlPackage.BASE_CAMEL_BINDING: {
+                BaseCamelBinding baseCamelBinding = (BaseCamelBinding)theEObject;
+                T result = caseBaseCamelBinding(baseCamelBinding);
+                if (result == null) result = caseSwitchYardBindingType(baseCamelBinding);
+                if (result == null) result = caseBinding(baseCamelBinding);
+                if (result == null) result = caseCommonExtensionBase(baseCamelBinding);
+                if (result == null) result = defaultCase(theEObject);
+                return result;
+            }
             case SqlPackage.CAMEL_SQL_BINDING_TYPE: {
                 CamelSqlBindingType camelSqlBindingType = (CamelSqlBindingType)theEObject;
                 T result = caseCamelSqlBindingType(camelSqlBindingType);

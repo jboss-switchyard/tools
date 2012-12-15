@@ -3,6 +3,7 @@
 package org.switchyard.tools.models.switchyard1_0.camel.atom.provider;
 
 
+import java.math.BigInteger;
 import java.util.Collection;
 import java.util.List;
 
@@ -11,6 +12,7 @@ import org.eclipse.emf.common.notify.Notification;
 
 import org.eclipse.emf.common.util.ResourceLocator;
 
+import org.eclipse.emf.edit.provider.ComposeableAdapterFactory;
 import org.eclipse.emf.edit.provider.IEditingDomainItemProvider;
 import org.eclipse.emf.edit.provider.IItemLabelProvider;
 import org.eclipse.emf.edit.provider.IItemPropertyDescriptor;
@@ -18,11 +20,14 @@ import org.eclipse.emf.edit.provider.IItemPropertySource;
 import org.eclipse.emf.edit.provider.IStructuredItemContentProvider;
 import org.eclipse.emf.edit.provider.ITreeItemContentProvider;
 
+import org.eclipse.emf.edit.provider.ItemPropertyDescriptor;
+import org.eclipse.emf.edit.provider.ItemProviderAdapter;
+import org.eclipse.emf.edit.provider.ViewerNotification;
 import org.switchyard.tools.models.switchyard1_0.bean.provider.Switchyard_1EditPlugin;
 
+import org.switchyard.tools.models.switchyard1_0.camel.atom.AtomPackage;
 import org.switchyard.tools.models.switchyard1_0.camel.atom.AtomScheduledPollConsumerType;
 
-import org.switchyard.tools.models.switchyard1_0.camel.core.provider.ScheduledPollConsumerTypeItemProvider;
 
 /**
  * This is the item provider adapter for a {@link org.switchyard.tools.models.switchyard1_0.camel.atom.AtomScheduledPollConsumerType} object.
@@ -31,7 +36,7 @@ import org.switchyard.tools.models.switchyard1_0.camel.core.provider.ScheduledPo
  * @generated
  */
 public class AtomScheduledPollConsumerTypeItemProvider
-    extends ScheduledPollConsumerTypeItemProvider
+    extends ItemProviderAdapter
     implements
         IEditingDomainItemProvider,
         IStructuredItemContentProvider,
@@ -59,8 +64,123 @@ public class AtomScheduledPollConsumerTypeItemProvider
         if (itemPropertyDescriptors == null) {
             super.getPropertyDescriptors(object);
 
+            addInitialDelayPropertyDescriptor(object);
+            addDelayPropertyDescriptor(object);
+            addUseFixedDelayPropertyDescriptor(object);
+            addSendEmptyMessageWhenIdlePropertyDescriptor(object);
+            addTimeUnitPropertyDescriptor(object);
         }
         return itemPropertyDescriptors;
+    }
+
+    /**
+     * This adds a property descriptor for the Initial Delay feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    protected void addInitialDelayPropertyDescriptor(Object object) {
+        itemPropertyDescriptors.add
+            (createItemPropertyDescriptor
+                (((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+                 getResourceLocator(),
+                 getString("_UI_AtomScheduledPollConsumerType_initialDelay_feature"),
+                 getString("_UI_PropertyDescriptor_description", "_UI_AtomScheduledPollConsumerType_initialDelay_feature", "_UI_AtomScheduledPollConsumerType_type"),
+                 AtomPackage.Literals.ATOM_SCHEDULED_POLL_CONSUMER_TYPE__INITIAL_DELAY,
+                 true,
+                 false,
+                 false,
+                 ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
+                 null,
+                 null));
+    }
+
+    /**
+     * This adds a property descriptor for the Delay feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    protected void addDelayPropertyDescriptor(Object object) {
+        itemPropertyDescriptors.add
+            (createItemPropertyDescriptor
+                (((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+                 getResourceLocator(),
+                 getString("_UI_AtomScheduledPollConsumerType_delay_feature"),
+                 getString("_UI_PropertyDescriptor_description", "_UI_AtomScheduledPollConsumerType_delay_feature", "_UI_AtomScheduledPollConsumerType_type"),
+                 AtomPackage.Literals.ATOM_SCHEDULED_POLL_CONSUMER_TYPE__DELAY,
+                 true,
+                 false,
+                 false,
+                 ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
+                 null,
+                 null));
+    }
+
+    /**
+     * This adds a property descriptor for the Use Fixed Delay feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    protected void addUseFixedDelayPropertyDescriptor(Object object) {
+        itemPropertyDescriptors.add
+            (createItemPropertyDescriptor
+                (((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+                 getResourceLocator(),
+                 getString("_UI_AtomScheduledPollConsumerType_useFixedDelay_feature"),
+                 getString("_UI_PropertyDescriptor_description", "_UI_AtomScheduledPollConsumerType_useFixedDelay_feature", "_UI_AtomScheduledPollConsumerType_type"),
+                 AtomPackage.Literals.ATOM_SCHEDULED_POLL_CONSUMER_TYPE__USE_FIXED_DELAY,
+                 true,
+                 false,
+                 false,
+                 ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
+                 null,
+                 null));
+    }
+
+    /**
+     * This adds a property descriptor for the Send Empty Message When Idle feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    protected void addSendEmptyMessageWhenIdlePropertyDescriptor(Object object) {
+        itemPropertyDescriptors.add
+            (createItemPropertyDescriptor
+                (((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+                 getResourceLocator(),
+                 getString("_UI_AtomScheduledPollConsumerType_sendEmptyMessageWhenIdle_feature"),
+                 getString("_UI_PropertyDescriptor_description", "_UI_AtomScheduledPollConsumerType_sendEmptyMessageWhenIdle_feature", "_UI_AtomScheduledPollConsumerType_type"),
+                 AtomPackage.Literals.ATOM_SCHEDULED_POLL_CONSUMER_TYPE__SEND_EMPTY_MESSAGE_WHEN_IDLE,
+                 true,
+                 false,
+                 false,
+                 ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
+                 null,
+                 null));
+    }
+
+    /**
+     * This adds a property descriptor for the Time Unit feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    protected void addTimeUnitPropertyDescriptor(Object object) {
+        itemPropertyDescriptors.add
+            (createItemPropertyDescriptor
+                (((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+                 getResourceLocator(),
+                 getString("_UI_AtomScheduledPollConsumerType_timeUnit_feature"),
+                 getString("_UI_PropertyDescriptor_description", "_UI_AtomScheduledPollConsumerType_timeUnit_feature", "_UI_AtomScheduledPollConsumerType_type"),
+                 AtomPackage.Literals.ATOM_SCHEDULED_POLL_CONSUMER_TYPE__TIME_UNIT,
+                 true,
+                 false,
+                 false,
+                 ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
+                 null,
+                 null));
     }
 
     /**
@@ -99,6 +219,16 @@ public class AtomScheduledPollConsumerTypeItemProvider
     @Override
     public void notifyChanged(Notification notification) {
         updateChildren(notification);
+
+        switch (notification.getFeatureID(AtomScheduledPollConsumerType.class)) {
+            case AtomPackage.ATOM_SCHEDULED_POLL_CONSUMER_TYPE__INITIAL_DELAY:
+            case AtomPackage.ATOM_SCHEDULED_POLL_CONSUMER_TYPE__DELAY:
+            case AtomPackage.ATOM_SCHEDULED_POLL_CONSUMER_TYPE__USE_FIXED_DELAY:
+            case AtomPackage.ATOM_SCHEDULED_POLL_CONSUMER_TYPE__SEND_EMPTY_MESSAGE_WHEN_IDLE:
+            case AtomPackage.ATOM_SCHEDULED_POLL_CONSUMER_TYPE__TIME_UNIT:
+                fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
+                return;
+        }
         super.notifyChanged(notification);
     }
 

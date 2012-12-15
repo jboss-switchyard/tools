@@ -3,10 +3,8 @@
 package org.switchyard.tools.models.switchyard1_0.camel.core.impl;
 
 import org.eclipse.emf.ecore.EClass;
-
 import org.switchyard.tools.models.switchyard1_0.camel.core.BaseCamelBinding;
-import org.switchyard.tools.models.switchyard1_0.camel.core.CamelPackage;
-
+import org.switchyard.tools.models.switchyard1_0.camel.core.CorePackage;
 import org.switchyard.tools.models.switchyard1_0.switchyard.impl.SwitchYardBindingTypeImpl;
 
 /**
@@ -35,7 +33,7 @@ public abstract class BaseCamelBindingImpl extends SwitchYardBindingTypeImpl imp
      */
     @Override
     protected EClass eStaticClass() {
-        return CamelPackage.Literals.BASE_CAMEL_BINDING;
+        return CorePackage.Literals.BASE_CAMEL_BINDING;
     }
 
 } //BaseCamelBindingImpl

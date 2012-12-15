@@ -3,6 +3,7 @@
 package org.switchyard.tools.models.switchyard1_0.camel.file.impl;
 
 import org.eclipse.emf.ecore.EClass;
+import org.eclipse.emf.ecore.EDataType;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EPackage;
 
@@ -70,6 +71,40 @@ public class FileFactoryImpl extends EFactoryImpl implements FileFactory {
      * <!-- end-user-doc -->
      * @generated
      */
+    @Override
+    public Object createFromString(EDataType eDataType, String initialValue) {
+        switch (eDataType.getClassifierID()) {
+            case FilePackage.TIME_UNIT:
+                return createTimeUnitFromString(eDataType, initialValue);
+            case FilePackage.TIME_UNIT_OBJECT:
+                return createTimeUnitObjectFromString(eDataType, initialValue);
+            default:
+                throw new IllegalArgumentException("The datatype '" + eDataType.getName() + "' is not a valid classifier");
+        }
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    @Override
+    public String convertToString(EDataType eDataType, Object instanceValue) {
+        switch (eDataType.getClassifierID()) {
+            case FilePackage.TIME_UNIT:
+                return convertTimeUnitToString(eDataType, instanceValue);
+            case FilePackage.TIME_UNIT_OBJECT:
+                return convertTimeUnitObjectToString(eDataType, instanceValue);
+            default:
+                throw new IllegalArgumentException("The datatype '" + eDataType.getName() + "' is not a valid classifier");
+        }
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
     public CamelFileBindingType createCamelFileBindingType() {
         CamelFileBindingTypeImpl camelFileBindingType = new CamelFileBindingTypeImpl();
         return camelFileBindingType;
@@ -103,6 +138,44 @@ public class FileFactoryImpl extends EFactoryImpl implements FileFactory {
     public DocumentRoot createDocumentRoot() {
         DocumentRootImpl documentRoot = new DocumentRootImpl();
         return documentRoot;
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public TimeUnit createTimeUnitFromString(EDataType eDataType, String initialValue) {
+        TimeUnit result = TimeUnit.get(initialValue);
+        if (result == null) throw new IllegalArgumentException("The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'");
+        return result;
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public String convertTimeUnitToString(EDataType eDataType, Object instanceValue) {
+        return instanceValue == null ? null : instanceValue.toString();
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public TimeUnit createTimeUnitObjectFromString(EDataType eDataType, String initialValue) {
+        return createTimeUnitFromString(FilePackage.Literals.TIME_UNIT, initialValue);
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public String convertTimeUnitObjectToString(EDataType eDataType, Object instanceValue) {
+        return convertTimeUnitToString(FilePackage.Literals.TIME_UNIT, instanceValue);
     }
 
     /**

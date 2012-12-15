@@ -31,8 +31,7 @@ import org.eclipse.swt.widgets.Group;
 import org.eclipse.swt.widgets.TabFolder;
 import org.eclipse.swt.widgets.TabItem;
 import org.eclipse.swt.widgets.Text;
-import org.switchyard.tools.models.switchyard1_0.camel.CamelFactory;
-import org.switchyard.tools.models.switchyard1_0.camel.CamelSqlBindingType;
+import org.switchyard.tools.models.switchyard1_0.camel.sql.CamelSqlBindingType;
 import org.switchyard.tools.models.switchyard1_0.switchyard.ContextMapperType;
 import org.switchyard.tools.models.switchyard1_0.switchyard.MessageComposerType;
 import org.switchyard.tools.models.switchyard1_0.switchyard.SwitchYardOperationSelectorType;
@@ -77,8 +76,10 @@ public class CamelSQLComposite extends AbstractSYBindingComposite {
             if (this._binding.getPlaceholder() != null) {
                 _placeholderText.setText(this._binding.getPlaceholder());
             }
-            _batchCheckbox.setSelection(this._binding.isBatch());
-
+            if (this._binding.getBatch() != null) {
+                _batchCheckbox.setSelection(this._binding.getBatch().booleanValue());
+            }
+            
             OperationSelectorType opSelector = OperationSelectorUtil.getFirstOperationSelector(this._binding);
             _opSelectorComposite.setBinding(this._binding);
             _opSelectorComposite.setOperation((SwitchYardOperationSelectorType) opSelector);
@@ -203,7 +204,7 @@ public class CamelSQLComposite extends AbstractSYBindingComposite {
             } else if (control.equals(_placeholderText)) {
                 _placeholderText.setText(this._binding.getPlaceholder());
             } else if (control.equals(_batchCheckbox)) {
-                _batchCheckbox.setSelection(this._binding.isBatch());
+                _batchCheckbox.setSelection(this._binding.getBatch());
 //            } else if (control.equals(_operationSelectionCombo)) {
 //                String opName = OperationSelectorUtil.getOperationNameForStaticOperationSelector(this._binding);
 //                setTextValue(_operationSelectionCombo, opName);
@@ -221,12 +222,11 @@ public class CamelSQLComposite extends AbstractSYBindingComposite {
 
     @Override
     protected ContextMapperType createContextMapper() {
-        return CamelFactory.eINSTANCE.createCamelContextMapperType();
+        return SwitchyardFactory.eINSTANCE.createContextMapperType();
     }
 
     @Override
     protected MessageComposerType createMessageComposer() {
-        return CamelFactory.eINSTANCE.createCamelMessageComposerType();
+        return SwitchyardFactory.eINSTANCE.createMessageComposerType();
     }
-    
 }

@@ -37,8 +37,6 @@ import org.switchyard.tools.models.switchyard1_0.camel.amqp.AmqpFactory;
 import org.switchyard.tools.models.switchyard1_0.camel.amqp.AmqpPackage;
 import org.switchyard.tools.models.switchyard1_0.camel.atom.AtomFactory;
 import org.switchyard.tools.models.switchyard1_0.camel.atom.AtomPackage;
-import org.switchyard.tools.models.switchyard1_0.camel.core.CamelFactory;
-import org.switchyard.tools.models.switchyard1_0.camel.core.CamelPackage;
 import org.switchyard.tools.models.switchyard1_0.camel.file.FileFactory;
 import org.switchyard.tools.models.switchyard1_0.camel.file.FilePackage;
 import org.switchyard.tools.models.switchyard1_0.camel.ftp.FtpFactory;
@@ -302,62 +300,6 @@ public class ResourceAdapterItemProvider
             (createChildParameter
                 (JcaPackage.Literals.RESOURCE_ADAPTER__ANY,
                  FeatureMapUtil.createEntry
-                    (CamelPackage.Literals.DOCUMENT_ROOT__BINDING_CAMEL,
-                     CamelFactory.eINSTANCE.createCamelBindingType())));
-
-        newChildDescriptors.add
-            (createChildParameter
-                (JcaPackage.Literals.RESOURCE_ADAPTER__ANY,
-                 FeatureMapUtil.createEntry
-                    (CamelPackage.Literals.DOCUMENT_ROOT__BINDING_DIRECT,
-                     CamelFactory.eINSTANCE.createCamelDirectBindingType())));
-
-        newChildDescriptors.add
-            (createChildParameter
-                (JcaPackage.Literals.RESOURCE_ADAPTER__ANY,
-                 FeatureMapUtil.createEntry
-                    (CamelPackage.Literals.DOCUMENT_ROOT__BINDING_JMS,
-                     CamelFactory.eINSTANCE.createJmsBindingType())));
-
-        newChildDescriptors.add
-            (createChildParameter
-                (JcaPackage.Literals.RESOURCE_ADAPTER__ANY,
-                 FeatureMapUtil.createEntry
-                    (CamelPackage.Literals.DOCUMENT_ROOT__BINDING_JMS,
-                     AmqpFactory.eINSTANCE.createCamelAmqpBindingType())));
-
-        newChildDescriptors.add
-            (createChildParameter
-                (JcaPackage.Literals.RESOURCE_ADAPTER__ANY,
-                 FeatureMapUtil.createEntry
-                    (CamelPackage.Literals.DOCUMENT_ROOT__BINDING_JMS,
-                     JmsFactory.eINSTANCE.createCamelJmsBindingType())));
-
-        newChildDescriptors.add
-            (createChildParameter
-                (JcaPackage.Literals.RESOURCE_ADAPTER__ANY,
-                 FeatureMapUtil.createEntry
-                    (CamelPackage.Literals.DOCUMENT_ROOT__BINDING_MOCK,
-                     CamelFactory.eINSTANCE.createCamelMockBindingType())));
-
-        newChildDescriptors.add
-            (createChildParameter
-                (JcaPackage.Literals.RESOURCE_ADAPTER__ANY,
-                 FeatureMapUtil.createEntry
-                    (CamelPackage.Literals.DOCUMENT_ROOT__BINDING_SEDA,
-                     CamelFactory.eINSTANCE.createCamelSedaBindingType())));
-
-        newChildDescriptors.add
-            (createChildParameter
-                (JcaPackage.Literals.RESOURCE_ADAPTER__ANY,
-                 FeatureMapUtil.createEntry
-                    (CamelPackage.Literals.DOCUMENT_ROOT__BINDING_TIMER,
-                     CamelFactory.eINSTANCE.createCamelTimerBindingType())));
-
-        newChildDescriptors.add
-            (createChildParameter
-                (JcaPackage.Literals.RESOURCE_ADAPTER__ANY,
-                 FeatureMapUtil.createEntry
                     (AmqpPackage.Literals.DOCUMENT_ROOT__BINDING_AMQP,
                      AmqpFactory.eINSTANCE.createCamelAmqpBindingType())));
 
@@ -471,7 +413,6 @@ public class ResourceAdapterItemProvider
         }
 
         boolean qualify =
-            childFeature == CamelPackage.Literals.DOCUMENT_ROOT__BINDING_JMS ||
             childFeature == AmqpPackage.Literals.DOCUMENT_ROOT__BINDING_AMQP ||
             childFeature == JmsPackage.Literals.DOCUMENT_ROOT__BINDING_JMS ||
             childFeature == FtpPackage.Literals.DOCUMENT_ROOT__BINDING_FTP ||

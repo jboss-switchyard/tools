@@ -21,7 +21,7 @@ import org.eclipse.emf.ecore.EObject;
  * </ul>
  * </p>
  *
- * @see org.switchyard.tools.models.switchyard1_0.camel.core.CamelPackage#getGenericFileProducerType()
+ * @see org.switchyard.tools.models.switchyard1_0.camel.core.CorePackage#getGenericFileProducerType()
  * @model extendedMetaData="name='GenericFileProducerType' kind='elementOnly'"
  * @generated
  */
@@ -36,7 +36,7 @@ public interface GenericFileProducerType extends EObject {
      * <!-- end-user-doc -->
      * @return the value of the '<em>File Exist</em>' attribute.
      * @see #setFileExist(String)
-     * @see org.switchyard.tools.models.switchyard1_0.camel.core.CamelPackage#getGenericFileProducerType_FileExist()
+     * @see org.switchyard.tools.models.switchyard1_0.camel.core.CorePackage#getGenericFileProducerType_FileExist()
      * @model dataType="org.eclipse.emf.ecore.xml.type.String"
      *        extendedMetaData="kind='element' name='fileExist' namespace='##targetNamespace'"
      * @generated
@@ -63,7 +63,7 @@ public interface GenericFileProducerType extends EObject {
      * <!-- end-user-doc -->
      * @return the value of the '<em>Temp Prefix</em>' attribute.
      * @see #setTempPrefix(String)
-     * @see org.switchyard.tools.models.switchyard1_0.camel.core.CamelPackage#getGenericFileProducerType_TempPrefix()
+     * @see org.switchyard.tools.models.switchyard1_0.camel.core.CorePackage#getGenericFileProducerType_TempPrefix()
      * @model dataType="org.eclipse.emf.ecore.xml.type.String"
      *        extendedMetaData="kind='element' name='tempPrefix' namespace='##targetNamespace'"
      * @generated
@@ -90,7 +90,7 @@ public interface GenericFileProducerType extends EObject {
      * <!-- end-user-doc -->
      * @return the value of the '<em>Temp File Name</em>' attribute.
      * @see #setTempFileName(String)
-     * @see org.switchyard.tools.models.switchyard1_0.camel.core.CamelPackage#getGenericFileProducerType_TempFileName()
+     * @see org.switchyard.tools.models.switchyard1_0.camel.core.CorePackage#getGenericFileProducerType_TempFileName()
      * @model dataType="org.eclipse.emf.ecore.xml.type.String"
      *        extendedMetaData="kind='element' name='tempFileName' namespace='##targetNamespace'"
      * @generated
@@ -119,7 +119,7 @@ public interface GenericFileProducerType extends EObject {
      * @see #isSetKeepLastModified()
      * @see #unsetKeepLastModified()
      * @see #setKeepLastModified(Boolean)
-     * @see org.switchyard.tools.models.switchyard1_0.camel.core.CamelPackage#getGenericFileProducerType_KeepLastModified()
+     * @see org.switchyard.tools.models.switchyard1_0.camel.core.CorePackage#getGenericFileProducerType_KeepLastModified()
      * @model unsettable="true" dataType="org.eclipse.emf.ecore.xml.type.BooleanObject"
      *        extendedMetaData="kind='element' name='keepLastModified' namespace='##targetNamespace'"
      * @generated
@@ -173,7 +173,7 @@ public interface GenericFileProducerType extends EObject {
      * @see #isSetEagerDeleteTargetFile()
      * @see #unsetEagerDeleteTargetFile()
      * @see #setEagerDeleteTargetFile(Boolean)
-     * @see org.switchyard.tools.models.switchyard1_0.camel.core.CamelPackage#getGenericFileProducerType_EagerDeleteTargetFile()
+     * @see org.switchyard.tools.models.switchyard1_0.camel.core.CorePackage#getGenericFileProducerType_EagerDeleteTargetFile()
      * @model unsettable="true" dataType="org.eclipse.emf.ecore.xml.type.BooleanObject"
      *        extendedMetaData="kind='element' name='eagerDeleteTargetFile' namespace='##targetNamespace'"
      * @generated
@@ -225,7 +225,7 @@ public interface GenericFileProducerType extends EObject {
      * <!-- end-user-doc -->
      * @return the value of the '<em>Done File Name</em>' attribute.
      * @see #setDoneFileName(String)
-     * @see org.switchyard.tools.models.switchyard1_0.camel.core.CamelPackage#getGenericFileProducerType_DoneFileName()
+     * @see org.switchyard.tools.models.switchyard1_0.camel.core.CorePackage#getGenericFileProducerType_DoneFileName()
      * @model dataType="org.eclipse.emf.ecore.xml.type.String"
      *        extendedMetaData="kind='element' name='doneFileName' namespace='##targetNamespace'"
      * @generated

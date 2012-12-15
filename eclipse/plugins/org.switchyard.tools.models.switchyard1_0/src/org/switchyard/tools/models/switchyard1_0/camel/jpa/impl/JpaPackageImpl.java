@@ -4,6 +4,8 @@ package org.switchyard.tools.models.switchyard1_0.camel.jpa.impl;
 
 import org.eclipse.emf.ecore.EAttribute;
 import org.eclipse.emf.ecore.EClass;
+import org.eclipse.emf.ecore.EDataType;
+import org.eclipse.emf.ecore.EEnum;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.EReference;
 
@@ -25,6 +27,7 @@ import org.switchyard.tools.models.switchyard1_0.bpm.BPMPackage;
 
 import org.switchyard.tools.models.switchyard1_0.bpm.impl.BPMPackageImpl;
 
+import org.switchyard.tools.models.switchyard1_0.camel.CamelPackage;
 import org.switchyard.tools.models.switchyard1_0.camel.amqp.AmqpPackage;
 
 import org.switchyard.tools.models.switchyard1_0.camel.amqp.impl.AmqpPackageImpl;
@@ -33,9 +36,8 @@ import org.switchyard.tools.models.switchyard1_0.camel.atom.AtomPackage;
 
 import org.switchyard.tools.models.switchyard1_0.camel.atom.impl.AtomPackageImpl;
 
-import org.switchyard.tools.models.switchyard1_0.camel.core.CamelPackage;
-
-import org.switchyard.tools.models.switchyard1_0.camel.core.impl.CamelPackageImpl;
+import org.switchyard.tools.models.switchyard1_0.camel.core.CorePackage;
+import org.switchyard.tools.models.switchyard1_0.camel.core.impl.CorePackageImpl;
 
 import org.switchyard.tools.models.switchyard1_0.camel.file.FilePackage;
 
@@ -45,10 +47,12 @@ import org.switchyard.tools.models.switchyard1_0.camel.ftp.FtpPackage;
 
 import org.switchyard.tools.models.switchyard1_0.camel.ftp.impl.FtpPackageImpl;
 
+import org.switchyard.tools.models.switchyard1_0.camel.impl.CamelPackageImpl;
 import org.switchyard.tools.models.switchyard1_0.camel.jms.JmsPackage;
 
 import org.switchyard.tools.models.switchyard1_0.camel.jms.impl.JmsPackageImpl;
 
+import org.switchyard.tools.models.switchyard1_0.camel.jpa.BaseCamelBinding;
 import org.switchyard.tools.models.switchyard1_0.camel.jpa.CamelJPABindingType;
 import org.switchyard.tools.models.switchyard1_0.camel.jpa.DocumentRoot;
 import org.switchyard.tools.models.switchyard1_0.camel.jpa.JpaConsumerType;
@@ -56,6 +60,7 @@ import org.switchyard.tools.models.switchyard1_0.camel.jpa.JpaFactory;
 import org.switchyard.tools.models.switchyard1_0.camel.jpa.JpaPackage;
 import org.switchyard.tools.models.switchyard1_0.camel.jpa.JpaProducerType;
 
+import org.switchyard.tools.models.switchyard1_0.camel.jpa.TimeUnitType;
 import org.switchyard.tools.models.switchyard1_0.camel.mail.MailPackage;
 
 import org.switchyard.tools.models.switchyard1_0.camel.mail.impl.MailPackageImpl;
@@ -136,6 +141,13 @@ public class JpaPackageImpl extends EPackageImpl implements JpaPackage {
      * <!-- end-user-doc -->
      * @generated
      */
+    private EClass baseCamelBindingEClass = null;
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
     private EClass documentRootEClass = null;
 
     /**
@@ -144,6 +156,20 @@ public class JpaPackageImpl extends EPackageImpl implements JpaPackage {
      * @generated
      */
     private EClass jpaProducerTypeEClass = null;
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    private EEnum timeUnitTypeEEnum = null;
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    private EDataType timeUnitTypeObjectEDataType = null;
 
     /**
      * <!-- begin-user-doc -->
@@ -221,12 +247,13 @@ public class JpaPackageImpl extends EPackageImpl implements JpaPackage {
         SOAPPackageImpl theSOAPPackage = (SOAPPackageImpl)(EPackage.Registry.INSTANCE.getEPackage(SOAPPackage.eNS_URI) instanceof SOAPPackageImpl ? EPackage.Registry.INSTANCE.getEPackage(SOAPPackage.eNS_URI) : SOAPPackage.eINSTANCE);
         TransformPackageImpl theTransformPackage = (TransformPackageImpl)(EPackage.Registry.INSTANCE.getEPackage(TransformPackage.eNS_URI) instanceof TransformPackageImpl ? EPackage.Registry.INSTANCE.getEPackage(TransformPackage.eNS_URI) : TransformPackage.eINSTANCE);
         ValidatePackageImpl theValidatePackage = (ValidatePackageImpl)(EPackage.Registry.INSTANCE.getEPackage(ValidatePackage.eNS_URI) instanceof ValidatePackageImpl ? EPackage.Registry.INSTANCE.getEPackage(ValidatePackage.eNS_URI) : ValidatePackage.eINSTANCE);
+        CamelPackageImpl theCamelPackage = (CamelPackageImpl)(EPackage.Registry.INSTANCE.getEPackage(CamelPackage.eNS_URI) instanceof CamelPackageImpl ? EPackage.Registry.INSTANCE.getEPackage(CamelPackage.eNS_URI) : CamelPackage.eINSTANCE);
         SpringPackageImpl theSpringPackage = (SpringPackageImpl)(EPackage.Registry.INSTANCE.getEPackage(SpringPackage.eNS_URI) instanceof SpringPackageImpl ? EPackage.Registry.INSTANCE.getEPackage(SpringPackage.eNS_URI) : SpringPackage.eINSTANCE);
         JcaPackageImpl theJcaPackage = (JcaPackageImpl)(EPackage.Registry.INSTANCE.getEPackage(JcaPackage.eNS_URI) instanceof JcaPackageImpl ? EPackage.Registry.INSTANCE.getEPackage(JcaPackage.eNS_URI) : JcaPackage.eINSTANCE);
         ResteasyPackageImpl theResteasyPackage = (ResteasyPackageImpl)(EPackage.Registry.INSTANCE.getEPackage(ResteasyPackage.eNS_URI) instanceof ResteasyPackageImpl ? EPackage.Registry.INSTANCE.getEPackage(ResteasyPackage.eNS_URI) : ResteasyPackage.eINSTANCE);
         HttpPackageImpl theHttpPackage = (HttpPackageImpl)(EPackage.Registry.INSTANCE.getEPackage(HttpPackage.eNS_URI) instanceof HttpPackageImpl ? EPackage.Registry.INSTANCE.getEPackage(HttpPackage.eNS_URI) : HttpPackage.eINSTANCE);
         RemotePackageImpl theRemotePackage = (RemotePackageImpl)(EPackage.Registry.INSTANCE.getEPackage(RemotePackage.eNS_URI) instanceof RemotePackageImpl ? EPackage.Registry.INSTANCE.getEPackage(RemotePackage.eNS_URI) : RemotePackage.eINSTANCE);
-        CamelPackageImpl theCamelPackage = (CamelPackageImpl)(EPackage.Registry.INSTANCE.getEPackage(CamelPackage.eNS_URI) instanceof CamelPackageImpl ? EPackage.Registry.INSTANCE.getEPackage(CamelPackage.eNS_URI) : CamelPackage.eINSTANCE);
+        CorePackageImpl theCorePackage = (CorePackageImpl)(EPackage.Registry.INSTANCE.getEPackage(CorePackage.eNS_URI) instanceof CorePackageImpl ? EPackage.Registry.INSTANCE.getEPackage(CorePackage.eNS_URI) : CorePackage.eINSTANCE);
         AmqpPackageImpl theAmqpPackage = (AmqpPackageImpl)(EPackage.Registry.INSTANCE.getEPackage(AmqpPackage.eNS_URI) instanceof AmqpPackageImpl ? EPackage.Registry.INSTANCE.getEPackage(AmqpPackage.eNS_URI) : AmqpPackage.eINSTANCE);
         AtomPackageImpl theAtomPackage = (AtomPackageImpl)(EPackage.Registry.INSTANCE.getEPackage(AtomPackage.eNS_URI) instanceof AtomPackageImpl ? EPackage.Registry.INSTANCE.getEPackage(AtomPackage.eNS_URI) : AtomPackage.eINSTANCE);
         FilePackageImpl theFilePackage = (FilePackageImpl)(EPackage.Registry.INSTANCE.getEPackage(FilePackage.eNS_URI) instanceof FilePackageImpl ? EPackage.Registry.INSTANCE.getEPackage(FilePackage.eNS_URI) : FilePackage.eINSTANCE);
@@ -253,11 +280,12 @@ public class JpaPackageImpl extends EPackageImpl implements JpaPackage {
         theSOAPPackage.createPackageContents();
         theTransformPackage.createPackageContents();
         theValidatePackage.createPackageContents();
+        theCamelPackage.createPackageContents();
         theJcaPackage.createPackageContents();
         theResteasyPackage.createPackageContents();
         theHttpPackage.createPackageContents();
         theRemotePackage.createPackageContents();
-        theCamelPackage.createPackageContents();
+        theCorePackage.createPackageContents();
         theAmqpPackage.createPackageContents();
         theAtomPackage.createPackageContents();
         theFilePackage.createPackageContents();
@@ -281,11 +309,12 @@ public class JpaPackageImpl extends EPackageImpl implements JpaPackage {
         theSOAPPackage.initializePackageContents();
         theTransformPackage.initializePackageContents();
         theValidatePackage.initializePackageContents();
+        theCamelPackage.initializePackageContents();
         theJcaPackage.initializePackageContents();
         theResteasyPackage.initializePackageContents();
         theHttpPackage.initializePackageContents();
         theRemotePackage.initializePackageContents();
-        theCamelPackage.initializePackageContents();
+        theCorePackage.initializePackageContents();
         theAmqpPackage.initializePackageContents();
         theAtomPackage.initializePackageContents();
         theFilePackage.initializePackageContents();
@@ -306,6 +335,15 @@ public class JpaPackageImpl extends EPackageImpl implements JpaPackage {
         // Update the registry and return the package
         EPackage.Registry.INSTANCE.put(JpaPackage.eNS_URI, theJpaPackage);
         return theJpaPackage;
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public EClass getBaseCamelBinding() {
+        return baseCamelBindingEClass;
     }
 
     /**
@@ -385,6 +423,24 @@ public class JpaPackageImpl extends EPackageImpl implements JpaPackage {
      * <!-- end-user-doc -->
      * @generated
      */
+    public EEnum getTimeUnitType() {
+        return timeUnitTypeEEnum;
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public EDataType getTimeUnitTypeObject() {
+        return timeUnitTypeObjectEDataType;
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
     public EClass getJpaConsumerType() {
         return jpaConsumerTypeEClass;
     }
@@ -394,7 +450,7 @@ public class JpaPackageImpl extends EPackageImpl implements JpaPackage {
      * <!-- end-user-doc -->
      * @generated
      */
-    public EAttribute getJpaConsumerType_ConsumeDelete() {
+    public EAttribute getJpaConsumerType_ScheduledPollConsumerType() {
         return (EAttribute)jpaConsumerTypeEClass.getEStructuralFeatures().get(0);
     }
 
@@ -403,7 +459,7 @@ public class JpaPackageImpl extends EPackageImpl implements JpaPackage {
      * <!-- end-user-doc -->
      * @generated
      */
-    public EAttribute getJpaConsumerType_ConsumeLockEntity() {
+    public EAttribute getJpaConsumerType_InitialDelay() {
         return (EAttribute)jpaConsumerTypeEClass.getEStructuralFeatures().get(1);
     }
 
@@ -412,7 +468,7 @@ public class JpaPackageImpl extends EPackageImpl implements JpaPackage {
      * <!-- end-user-doc -->
      * @generated
      */
-    public EAttribute getJpaConsumerType_MaximumResults() {
+    public EAttribute getJpaConsumerType_Delay() {
         return (EAttribute)jpaConsumerTypeEClass.getEStructuralFeatures().get(2);
     }
 
@@ -421,7 +477,7 @@ public class JpaPackageImpl extends EPackageImpl implements JpaPackage {
      * <!-- end-user-doc -->
      * @generated
      */
-    public EAttribute getJpaConsumerType_ConsumerQuery() {
+    public EAttribute getJpaConsumerType_UseFixedDelay() {
         return (EAttribute)jpaConsumerTypeEClass.getEStructuralFeatures().get(3);
     }
 
@@ -430,7 +486,7 @@ public class JpaPackageImpl extends EPackageImpl implements JpaPackage {
      * <!-- end-user-doc -->
      * @generated
      */
-    public EAttribute getJpaConsumerType_ConsumerNamedQuery() {
+    public EAttribute getJpaConsumerType_SendEmptyMessageWhenIdle() {
         return (EAttribute)jpaConsumerTypeEClass.getEStructuralFeatures().get(4);
     }
 
@@ -439,7 +495,7 @@ public class JpaPackageImpl extends EPackageImpl implements JpaPackage {
      * <!-- end-user-doc -->
      * @generated
      */
-    public EAttribute getJpaConsumerType_ConsumerNativeQuery() {
+    public EAttribute getJpaConsumerType_TimeUnit() {
         return (EAttribute)jpaConsumerTypeEClass.getEStructuralFeatures().get(5);
     }
 
@@ -448,7 +504,7 @@ public class JpaPackageImpl extends EPackageImpl implements JpaPackage {
      * <!-- end-user-doc -->
      * @generated
      */
-    public EAttribute getJpaConsumerType_ConsumerResultClass() {
+    public EAttribute getJpaConsumerType_ScheduledBatchPollConsumerType() {
         return (EAttribute)jpaConsumerTypeEClass.getEStructuralFeatures().get(6);
     }
 
@@ -457,8 +513,80 @@ public class JpaPackageImpl extends EPackageImpl implements JpaPackage {
      * <!-- end-user-doc -->
      * @generated
      */
-    public EAttribute getJpaConsumerType_ConsumerTransacted() {
+    public EAttribute getJpaConsumerType_MaxMessagesPerPoll() {
         return (EAttribute)jpaConsumerTypeEClass.getEStructuralFeatures().get(7);
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public EAttribute getJpaConsumerType_ConsumeDelete() {
+        return (EAttribute)jpaConsumerTypeEClass.getEStructuralFeatures().get(8);
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public EAttribute getJpaConsumerType_ConsumeLockEntity() {
+        return (EAttribute)jpaConsumerTypeEClass.getEStructuralFeatures().get(9);
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public EAttribute getJpaConsumerType_MaximumResults() {
+        return (EAttribute)jpaConsumerTypeEClass.getEStructuralFeatures().get(10);
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public EAttribute getJpaConsumerType_ConsumerQuery() {
+        return (EAttribute)jpaConsumerTypeEClass.getEStructuralFeatures().get(11);
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public EAttribute getJpaConsumerType_ConsumerNamedQuery() {
+        return (EAttribute)jpaConsumerTypeEClass.getEStructuralFeatures().get(12);
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public EAttribute getJpaConsumerType_ConsumerNativeQuery() {
+        return (EAttribute)jpaConsumerTypeEClass.getEStructuralFeatures().get(13);
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public EAttribute getJpaConsumerType_ConsumerResultClass() {
+        return (EAttribute)jpaConsumerTypeEClass.getEStructuralFeatures().get(14);
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public EAttribute getJpaConsumerType_ConsumerTransacted() {
+        return (EAttribute)jpaConsumerTypeEClass.getEStructuralFeatures().get(15);
     }
 
     /**
@@ -543,17 +671,30 @@ public class JpaPackageImpl extends EPackageImpl implements JpaPackage {
         isCreated = true;
 
         // Create classes and their features
+        baseCamelBindingEClass = createEClass(BASE_CAMEL_BINDING);
+
+        camelJPABindingTypeEClass = createEClass(CAMEL_JPA_BINDING_TYPE);
+        createEAttribute(camelJPABindingTypeEClass, CAMEL_JPA_BINDING_TYPE__ENTITY_CLASS_NAME);
+        createEAttribute(camelJPABindingTypeEClass, CAMEL_JPA_BINDING_TYPE__PERSISTENCE_UNIT);
+        createEAttribute(camelJPABindingTypeEClass, CAMEL_JPA_BINDING_TYPE__TRANSACTION_MANAGER);
+        createEReference(camelJPABindingTypeEClass, CAMEL_JPA_BINDING_TYPE__CONSUME);
+        createEReference(camelJPABindingTypeEClass, CAMEL_JPA_BINDING_TYPE__PRODUCE);
+
         documentRootEClass = createEClass(DOCUMENT_ROOT);
         createEAttribute(documentRootEClass, DOCUMENT_ROOT__MIXED);
         createEReference(documentRootEClass, DOCUMENT_ROOT__XMLNS_PREFIX_MAP);
         createEReference(documentRootEClass, DOCUMENT_ROOT__XSI_SCHEMA_LOCATION);
         createEReference(documentRootEClass, DOCUMENT_ROOT__BINDING_JPA);
 
-        jpaProducerTypeEClass = createEClass(JPA_PRODUCER_TYPE);
-        createEAttribute(jpaProducerTypeEClass, JPA_PRODUCER_TYPE__FLUSH_ON_SEND);
-        createEAttribute(jpaProducerTypeEClass, JPA_PRODUCER_TYPE__USE_PERSIST);
-
         jpaConsumerTypeEClass = createEClass(JPA_CONSUMER_TYPE);
+        createEAttribute(jpaConsumerTypeEClass, JPA_CONSUMER_TYPE__SCHEDULED_POLL_CONSUMER_TYPE);
+        createEAttribute(jpaConsumerTypeEClass, JPA_CONSUMER_TYPE__INITIAL_DELAY);
+        createEAttribute(jpaConsumerTypeEClass, JPA_CONSUMER_TYPE__DELAY);
+        createEAttribute(jpaConsumerTypeEClass, JPA_CONSUMER_TYPE__USE_FIXED_DELAY);
+        createEAttribute(jpaConsumerTypeEClass, JPA_CONSUMER_TYPE__SEND_EMPTY_MESSAGE_WHEN_IDLE);
+        createEAttribute(jpaConsumerTypeEClass, JPA_CONSUMER_TYPE__TIME_UNIT);
+        createEAttribute(jpaConsumerTypeEClass, JPA_CONSUMER_TYPE__SCHEDULED_BATCH_POLL_CONSUMER_TYPE);
+        createEAttribute(jpaConsumerTypeEClass, JPA_CONSUMER_TYPE__MAX_MESSAGES_PER_POLL);
         createEAttribute(jpaConsumerTypeEClass, JPA_CONSUMER_TYPE__CONSUME_DELETE);
         createEAttribute(jpaConsumerTypeEClass, JPA_CONSUMER_TYPE__CONSUME_LOCK_ENTITY);
         createEAttribute(jpaConsumerTypeEClass, JPA_CONSUMER_TYPE__MAXIMUM_RESULTS);
@@ -563,12 +704,15 @@ public class JpaPackageImpl extends EPackageImpl implements JpaPackage {
         createEAttribute(jpaConsumerTypeEClass, JPA_CONSUMER_TYPE__CONSUMER_RESULT_CLASS);
         createEAttribute(jpaConsumerTypeEClass, JPA_CONSUMER_TYPE__CONSUMER_TRANSACTED);
 
-        camelJPABindingTypeEClass = createEClass(CAMEL_JPA_BINDING_TYPE);
-        createEAttribute(camelJPABindingTypeEClass, CAMEL_JPA_BINDING_TYPE__ENTITY_CLASS_NAME);
-        createEAttribute(camelJPABindingTypeEClass, CAMEL_JPA_BINDING_TYPE__PERSISTENCE_UNIT);
-        createEAttribute(camelJPABindingTypeEClass, CAMEL_JPA_BINDING_TYPE__TRANSACTION_MANAGER);
-        createEReference(camelJPABindingTypeEClass, CAMEL_JPA_BINDING_TYPE__CONSUME);
-        createEReference(camelJPABindingTypeEClass, CAMEL_JPA_BINDING_TYPE__PRODUCE);
+        jpaProducerTypeEClass = createEClass(JPA_PRODUCER_TYPE);
+        createEAttribute(jpaProducerTypeEClass, JPA_PRODUCER_TYPE__FLUSH_ON_SEND);
+        createEAttribute(jpaProducerTypeEClass, JPA_PRODUCER_TYPE__USE_PERSIST);
+
+        // Create enums
+        timeUnitTypeEEnum = createEEnum(TIME_UNIT_TYPE);
+
+        // Create data types
+        timeUnitTypeObjectEDataType = createEDataType(TIME_UNIT_TYPE_OBJECT);
     }
 
     /**
@@ -595,29 +739,42 @@ public class JpaPackageImpl extends EPackageImpl implements JpaPackage {
         setNsURI(eNS_URI);
 
         // Obtain other dependent packages
+        SwitchyardPackage theSwitchyardPackage = (SwitchyardPackage)EPackage.Registry.INSTANCE.getEPackage(SwitchyardPackage.eNS_URI);
         XMLTypePackage theXMLTypePackage = (XMLTypePackage)EPackage.Registry.INSTANCE.getEPackage(XMLTypePackage.eNS_URI);
-        CamelPackage theCamelPackage = (CamelPackage)EPackage.Registry.INSTANCE.getEPackage(CamelPackage.eNS_URI);
 
         // Create type parameters
 
         // Set bounds for type parameters
 
         // Add supertypes to classes
-        jpaConsumerTypeEClass.getESuperTypes().add(theCamelPackage.getScheduledBatchPollConsumerType());
-        camelJPABindingTypeEClass.getESuperTypes().add(theCamelPackage.getBaseCamelBinding());
+        baseCamelBindingEClass.getESuperTypes().add(theSwitchyardPackage.getSwitchYardBindingType());
+        camelJPABindingTypeEClass.getESuperTypes().add(this.getBaseCamelBinding());
 
         // Initialize classes and features; add operations and parameters
+        initEClass(baseCamelBindingEClass, BaseCamelBinding.class, "BaseCamelBinding", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+
+        initEClass(camelJPABindingTypeEClass, CamelJPABindingType.class, "CamelJPABindingType", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+        initEAttribute(getCamelJPABindingType_EntityClassName(), theXMLTypePackage.getString(), "entityClassName", null, 1, 1, CamelJPABindingType.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+        initEAttribute(getCamelJPABindingType_PersistenceUnit(), theXMLTypePackage.getString(), "persistenceUnit", null, 1, 1, CamelJPABindingType.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+        initEAttribute(getCamelJPABindingType_TransactionManager(), theXMLTypePackage.getString(), "transactionManager", null, 0, 1, CamelJPABindingType.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+        initEReference(getCamelJPABindingType_Consume(), this.getJpaConsumerType(), null, "consume", null, 0, 1, CamelJPABindingType.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+        initEReference(getCamelJPABindingType_Produce(), this.getJpaProducerType(), null, "produce", null, 0, 1, CamelJPABindingType.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
         initEClass(documentRootEClass, DocumentRoot.class, "DocumentRoot", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
         initEAttribute(getDocumentRoot_Mixed(), ecorePackage.getEFeatureMapEntry(), "mixed", null, 0, -1, null, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
         initEReference(getDocumentRoot_XMLNSPrefixMap(), ecorePackage.getEStringToStringMapEntry(), null, "xMLNSPrefixMap", null, 0, -1, null, IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
         initEReference(getDocumentRoot_XSISchemaLocation(), ecorePackage.getEStringToStringMapEntry(), null, "xSISchemaLocation", null, 0, -1, null, IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
         initEReference(getDocumentRoot_BindingJPA(), this.getCamelJPABindingType(), null, "bindingJPA", null, 0, -2, null, IS_TRANSIENT, IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, IS_DERIVED, IS_ORDERED);
 
-        initEClass(jpaProducerTypeEClass, JpaProducerType.class, "JpaProducerType", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-        initEAttribute(getJpaProducerType_FlushOnSend(), theXMLTypePackage.getBooleanObject(), "flushOnSend", null, 0, 1, JpaProducerType.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-        initEAttribute(getJpaProducerType_UsePersist(), theXMLTypePackage.getBooleanObject(), "usePersist", null, 0, 1, JpaProducerType.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-
         initEClass(jpaConsumerTypeEClass, JpaConsumerType.class, "JpaConsumerType", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+        initEAttribute(getJpaConsumerType_ScheduledPollConsumerType(), ecorePackage.getEFeatureMapEntry(), "scheduledPollConsumerType", null, 0, -1, JpaConsumerType.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+        initEAttribute(getJpaConsumerType_InitialDelay(), theXMLTypePackage.getIntObject(), "initialDelay", null, 0, -1, JpaConsumerType.class, IS_TRANSIENT, IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, IS_DERIVED, IS_ORDERED);
+        initEAttribute(getJpaConsumerType_Delay(), theXMLTypePackage.getIntObject(), "delay", null, 0, -1, JpaConsumerType.class, IS_TRANSIENT, IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, IS_DERIVED, IS_ORDERED);
+        initEAttribute(getJpaConsumerType_UseFixedDelay(), theXMLTypePackage.getBooleanObject(), "useFixedDelay", null, 0, -1, JpaConsumerType.class, IS_TRANSIENT, IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, IS_DERIVED, IS_ORDERED);
+        initEAttribute(getJpaConsumerType_SendEmptyMessageWhenIdle(), theXMLTypePackage.getBooleanObject(), "sendEmptyMessageWhenIdle", null, 0, -1, JpaConsumerType.class, IS_TRANSIENT, IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, IS_DERIVED, IS_ORDERED);
+        initEAttribute(getJpaConsumerType_TimeUnit(), this.getTimeUnitType(), "timeUnit", null, 0, -1, JpaConsumerType.class, IS_TRANSIENT, IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, IS_DERIVED, IS_ORDERED);
+        initEAttribute(getJpaConsumerType_ScheduledBatchPollConsumerType(), ecorePackage.getEFeatureMapEntry(), "scheduledBatchPollConsumerType", null, 0, -1, JpaConsumerType.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+        initEAttribute(getJpaConsumerType_MaxMessagesPerPoll(), theXMLTypePackage.getIntObject(), "maxMessagesPerPoll", null, 0, -1, JpaConsumerType.class, IS_TRANSIENT, IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, IS_DERIVED, IS_ORDERED);
         initEAttribute(getJpaConsumerType_ConsumeDelete(), theXMLTypePackage.getBooleanObject(), "consumeDelete", null, 0, 1, JpaConsumerType.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
         initEAttribute(getJpaConsumerType_ConsumeLockEntity(), theXMLTypePackage.getBooleanObject(), "consumeLockEntity", null, 0, 1, JpaConsumerType.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
         initEAttribute(getJpaConsumerType_MaximumResults(), theXMLTypePackage.getIntObject(), "maximumResults", null, 0, 1, JpaConsumerType.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
@@ -627,12 +784,22 @@ public class JpaPackageImpl extends EPackageImpl implements JpaPackage {
         initEAttribute(getJpaConsumerType_ConsumerResultClass(), theXMLTypePackage.getString(), "consumerResultClass", null, 0, 1, JpaConsumerType.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
         initEAttribute(getJpaConsumerType_ConsumerTransacted(), theXMLTypePackage.getBooleanObject(), "consumerTransacted", null, 0, 1, JpaConsumerType.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
-        initEClass(camelJPABindingTypeEClass, CamelJPABindingType.class, "CamelJPABindingType", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-        initEAttribute(getCamelJPABindingType_EntityClassName(), theXMLTypePackage.getString(), "entityClassName", null, 1, 1, CamelJPABindingType.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-        initEAttribute(getCamelJPABindingType_PersistenceUnit(), theXMLTypePackage.getString(), "persistenceUnit", null, 1, 1, CamelJPABindingType.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-        initEAttribute(getCamelJPABindingType_TransactionManager(), theXMLTypePackage.getString(), "transactionManager", null, 0, 1, CamelJPABindingType.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-        initEReference(getCamelJPABindingType_Consume(), this.getJpaConsumerType(), null, "consume", null, 0, 1, CamelJPABindingType.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-        initEReference(getCamelJPABindingType_Produce(), this.getJpaProducerType(), null, "produce", null, 0, 1, CamelJPABindingType.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+        initEClass(jpaProducerTypeEClass, JpaProducerType.class, "JpaProducerType", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+        initEAttribute(getJpaProducerType_FlushOnSend(), theXMLTypePackage.getBooleanObject(), "flushOnSend", null, 0, 1, JpaProducerType.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+        initEAttribute(getJpaProducerType_UsePersist(), theXMLTypePackage.getBooleanObject(), "usePersist", null, 0, 1, JpaProducerType.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+        // Initialize enums and add enum literals
+        initEEnum(timeUnitTypeEEnum, TimeUnitType.class, "TimeUnitType");
+        addEEnumLiteral(timeUnitTypeEEnum, TimeUnitType.NANOSECONDS);
+        addEEnumLiteral(timeUnitTypeEEnum, TimeUnitType.MICROSECONDS);
+        addEEnumLiteral(timeUnitTypeEEnum, TimeUnitType.MILLISECONDS);
+        addEEnumLiteral(timeUnitTypeEEnum, TimeUnitType.SECONDS);
+        addEEnumLiteral(timeUnitTypeEEnum, TimeUnitType.MINUTES);
+        addEEnumLiteral(timeUnitTypeEEnum, TimeUnitType.HOURS);
+        addEEnumLiteral(timeUnitTypeEEnum, TimeUnitType.DAYS);
+
+        // Initialize data types
+        initEDataType(timeUnitTypeObjectEDataType, TimeUnitType.class, "TimeUnitTypeObject", IS_SERIALIZABLE, IS_GENERATED_INSTANCE_CLASS);
 
         // Create resource
         createResource(eNS_URI);
@@ -650,6 +817,60 @@ public class JpaPackageImpl extends EPackageImpl implements JpaPackage {
      */
     protected void createExtendedMetaDataAnnotations() {
         String source = "http:///org/eclipse/emf/ecore/util/ExtendedMetaData";		
+        addAnnotation
+          (baseCamelBindingEClass, 
+           source, 
+           new String[] {
+             "name", "BaseCamelBinding",
+             "kind", "elementOnly"
+           });		
+        addAnnotation
+          (camelJPABindingTypeEClass, 
+           source, 
+           new String[] {
+             "name", "CamelJPABindingType",
+             "kind", "elementOnly"
+           });		
+        addAnnotation
+          (getCamelJPABindingType_EntityClassName(), 
+           source, 
+           new String[] {
+             "kind", "element",
+             "name", "entityClassName",
+             "namespace", "##targetNamespace"
+           });		
+        addAnnotation
+          (getCamelJPABindingType_PersistenceUnit(), 
+           source, 
+           new String[] {
+             "kind", "element",
+             "name", "persistenceUnit",
+             "namespace", "##targetNamespace"
+           });		
+        addAnnotation
+          (getCamelJPABindingType_TransactionManager(), 
+           source, 
+           new String[] {
+             "kind", "element",
+             "name", "transactionManager",
+             "namespace", "##targetNamespace"
+           });		
+        addAnnotation
+          (getCamelJPABindingType_Consume(), 
+           source, 
+           new String[] {
+             "kind", "element",
+             "name", "consume",
+             "namespace", "##targetNamespace"
+           });		
+        addAnnotation
+          (getCamelJPABindingType_Produce(), 
+           source, 
+           new String[] {
+             "kind", "element",
+             "name", "produce",
+             "namespace", "##targetNamespace"
+           });		
         addAnnotation
           (documentRootEClass, 
            source, 
@@ -688,34 +909,79 @@ public class JpaPackageImpl extends EPackageImpl implements JpaPackage {
              "affiliation", "urn:switchyard-config:switchyard:1.0#binding.switchyard"
            });		
         addAnnotation
-          (jpaProducerTypeEClass, 
-           source, 
-           new String[] {
-             "name", "JpaProducerType",
-             "kind", "elementOnly"
-           });		
-        addAnnotation
-          (getJpaProducerType_FlushOnSend(), 
-           source, 
-           new String[] {
-             "kind", "element",
-             "name", "flushOnSend",
-             "namespace", "##targetNamespace"
-           });		
-        addAnnotation
-          (getJpaProducerType_UsePersist(), 
-           source, 
-           new String[] {
-             "kind", "element",
-             "name", "usePersist",
-             "namespace", "##targetNamespace"
-           });		
-        addAnnotation
           (jpaConsumerTypeEClass, 
            source, 
            new String[] {
              "name", "JpaConsumerType",
              "kind", "elementOnly"
+           });		
+        addAnnotation
+          (getJpaConsumerType_ScheduledPollConsumerType(), 
+           source, 
+           new String[] {
+             "kind", "group",
+             "name", "ScheduledPollConsumerType:0"
+           });		
+        addAnnotation
+          (getJpaConsumerType_InitialDelay(), 
+           source, 
+           new String[] {
+             "kind", "element",
+             "name", "initialDelay",
+             "namespace", "##targetNamespace",
+             "group", "#ScheduledPollConsumerType:0"
+           });		
+        addAnnotation
+          (getJpaConsumerType_Delay(), 
+           source, 
+           new String[] {
+             "kind", "element",
+             "name", "delay",
+             "namespace", "##targetNamespace",
+             "group", "#ScheduledPollConsumerType:0"
+           });		
+        addAnnotation
+          (getJpaConsumerType_UseFixedDelay(), 
+           source, 
+           new String[] {
+             "kind", "element",
+             "name", "useFixedDelay",
+             "namespace", "##targetNamespace",
+             "group", "#ScheduledPollConsumerType:0"
+           });		
+        addAnnotation
+          (getJpaConsumerType_SendEmptyMessageWhenIdle(), 
+           source, 
+           new String[] {
+             "kind", "element",
+             "name", "sendEmptyMessageWhenIdle",
+             "namespace", "##targetNamespace",
+             "group", "#ScheduledPollConsumerType:0"
+           });		
+        addAnnotation
+          (getJpaConsumerType_TimeUnit(), 
+           source, 
+           new String[] {
+             "kind", "element",
+             "name", "timeUnit",
+             "namespace", "##targetNamespace",
+             "group", "#ScheduledPollConsumerType:0"
+           });		
+        addAnnotation
+          (getJpaConsumerType_ScheduledBatchPollConsumerType(), 
+           source, 
+           new String[] {
+             "kind", "group",
+             "name", "ScheduledBatchPollConsumerType:6"
+           });		
+        addAnnotation
+          (getJpaConsumerType_MaxMessagesPerPoll(), 
+           source, 
+           new String[] {
+             "kind", "element",
+             "name", "maxMessagesPerPoll",
+             "namespace", "##targetNamespace",
+             "group", "#ScheduledBatchPollConsumerType:6"
            });		
         addAnnotation
           (getJpaConsumerType_ConsumeDelete(), 
@@ -782,51 +1048,40 @@ public class JpaPackageImpl extends EPackageImpl implements JpaPackage {
              "namespace", "##targetNamespace"
            });		
         addAnnotation
-          (camelJPABindingTypeEClass, 
+          (jpaProducerTypeEClass, 
            source, 
            new String[] {
-             "name", "CamelJPABindingType",
+             "name", "JpaProducerType",
              "kind", "elementOnly"
            });		
         addAnnotation
-          (getCamelJPABindingType_EntityClassName(), 
+          (getJpaProducerType_FlushOnSend(), 
            source, 
            new String[] {
              "kind", "element",
-             "name", "entityClassName",
+             "name", "flushOnSend",
              "namespace", "##targetNamespace"
            });		
         addAnnotation
-          (getCamelJPABindingType_PersistenceUnit(), 
+          (getJpaProducerType_UsePersist(), 
            source, 
            new String[] {
              "kind", "element",
-             "name", "persistenceUnit",
+             "name", "usePersist",
              "namespace", "##targetNamespace"
            });		
         addAnnotation
-          (getCamelJPABindingType_TransactionManager(), 
+          (timeUnitTypeEEnum, 
            source, 
            new String[] {
-             "kind", "element",
-             "name", "transactionManager",
-             "namespace", "##targetNamespace"
+             "name", "timeUnit_._type"
            });		
         addAnnotation
-          (getCamelJPABindingType_Consume(), 
+          (timeUnitTypeObjectEDataType, 
            source, 
            new String[] {
-             "kind", "element",
-             "name", "consume",
-             "namespace", "##targetNamespace"
-           });		
-        addAnnotation
-          (getCamelJPABindingType_Produce(), 
-           source, 
-           new String[] {
-             "kind", "element",
-             "name", "produce",
-             "namespace", "##targetNamespace"
+             "name", "timeUnit_._type:Object",
+             "baseType", "timeUnit_._type"
            });
     }
 

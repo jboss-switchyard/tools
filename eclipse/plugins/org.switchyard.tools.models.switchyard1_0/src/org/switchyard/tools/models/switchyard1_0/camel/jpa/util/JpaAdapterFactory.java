@@ -77,28 +77,24 @@ public class JpaAdapterFactory extends AdapterFactoryImpl {
     protected JpaSwitch<Adapter> modelSwitch =
         new JpaSwitch<Adapter>() {
             @Override
-            public Adapter caseDocumentRoot(DocumentRoot object) {
-                return createDocumentRootAdapter();
-            }
-            @Override
-            public Adapter caseJpaProducerType(JpaProducerType object) {
-                return createJpaProducerTypeAdapter();
-            }
-            @Override
-            public Adapter caseJpaConsumerType(JpaConsumerType object) {
-                return createJpaConsumerTypeAdapter();
+            public Adapter caseBaseCamelBinding(BaseCamelBinding object) {
+                return createBaseCamelBindingAdapter();
             }
             @Override
             public Adapter caseCamelJPABindingType(CamelJPABindingType object) {
                 return createCamelJPABindingTypeAdapter();
             }
             @Override
-            public Adapter caseScheduledPollConsumerType(ScheduledPollConsumerType object) {
-                return createScheduledPollConsumerTypeAdapter();
+            public Adapter caseDocumentRoot(DocumentRoot object) {
+                return createDocumentRootAdapter();
             }
             @Override
-            public Adapter caseScheduledBatchPollConsumerType(ScheduledBatchPollConsumerType object) {
-                return createScheduledBatchPollConsumerTypeAdapter();
+            public Adapter caseJpaConsumerType(JpaConsumerType object) {
+                return createJpaConsumerTypeAdapter();
+            }
+            @Override
+            public Adapter caseJpaProducerType(JpaProducerType object) {
+                return createJpaProducerTypeAdapter();
             }
             @Override
             public Adapter caseCommonExtensionBase(CommonExtensionBase object) {
@@ -111,10 +107,6 @@ public class JpaAdapterFactory extends AdapterFactoryImpl {
             @Override
             public Adapter caseSwitchYardBindingType(SwitchYardBindingType object) {
                 return createSwitchYardBindingTypeAdapter();
-            }
-            @Override
-            public Adapter caseBaseCamelBinding(BaseCamelBinding object) {
-                return createBaseCamelBindingAdapter();
             }
             @Override
             public Adapter defaultCase(EObject object) {
@@ -193,34 +185,6 @@ public class JpaAdapterFactory extends AdapterFactoryImpl {
     }
 
     /**
-     * Creates a new adapter for an object of class '{@link org.switchyard.tools.models.switchyard1_0.camel.core.ScheduledPollConsumerType <em>Scheduled Poll Consumer Type</em>}'.
-     * <!-- begin-user-doc -->
-     * This default implementation returns null so that we can easily ignore cases;
-     * it's useful to ignore a case when inheritance will catch all the cases anyway.
-     * <!-- end-user-doc -->
-     * @return the new adapter.
-     * @see org.switchyard.tools.models.switchyard1_0.camel.core.ScheduledPollConsumerType
-     * @generated
-     */
-    public Adapter createScheduledPollConsumerTypeAdapter() {
-        return null;
-    }
-
-    /**
-     * Creates a new adapter for an object of class '{@link org.switchyard.tools.models.switchyard1_0.camel.core.ScheduledBatchPollConsumerType <em>Scheduled Batch Poll Consumer Type</em>}'.
-     * <!-- begin-user-doc -->
-     * This default implementation returns null so that we can easily ignore cases;
-     * it's useful to ignore a case when inheritance will catch all the cases anyway.
-     * <!-- end-user-doc -->
-     * @return the new adapter.
-     * @see org.switchyard.tools.models.switchyard1_0.camel.core.ScheduledBatchPollConsumerType
-     * @generated
-     */
-    public Adapter createScheduledBatchPollConsumerTypeAdapter() {
-        return null;
-    }
-
-    /**
      * Creates a new adapter for an object of class '{@link org.eclipse.soa.sca.sca1_1.model.sca.CommonExtensionBase <em>Common Extension Base</em>}'.
      * <!-- begin-user-doc -->
      * This default implementation returns null so that we can easily ignore cases;
@@ -263,13 +227,13 @@ public class JpaAdapterFactory extends AdapterFactoryImpl {
     }
 
     /**
-     * Creates a new adapter for an object of class '{@link org.switchyard.tools.models.switchyard1_0.camel.core.BaseCamelBinding <em>Base Camel Binding</em>}'.
+     * Creates a new adapter for an object of class '{@link org.switchyard.tools.models.switchyard1_0.camel.jpa.BaseCamelBinding <em>Base Camel Binding</em>}'.
      * <!-- begin-user-doc -->
      * This default implementation returns null so that we can easily ignore cases;
      * it's useful to ignore a case when inheritance will catch all the cases anyway.
      * <!-- end-user-doc -->
      * @return the new adapter.
-     * @see org.switchyard.tools.models.switchyard1_0.camel.core.BaseCamelBinding
+     * @see org.switchyard.tools.models.switchyard1_0.camel.jpa.BaseCamelBinding
      * @generated
      */
     public Adapter createBaseCamelBindingAdapter() {

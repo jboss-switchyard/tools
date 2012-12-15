@@ -76,6 +76,10 @@ public class JmsAdapterFactory extends AdapterFactoryImpl {
     protected JmsSwitch<Adapter> modelSwitch =
         new JmsSwitch<Adapter>() {
             @Override
+            public Adapter caseBaseCamelBinding(BaseCamelBinding object) {
+                return createBaseCamelBindingAdapter();
+            }
+            @Override
             public Adapter caseCamelJmsBindingType(CamelJmsBindingType object) {
                 return createCamelJmsBindingTypeAdapter();
             }
@@ -94,14 +98,6 @@ public class JmsAdapterFactory extends AdapterFactoryImpl {
             @Override
             public Adapter caseSwitchYardBindingType(SwitchYardBindingType object) {
                 return createSwitchYardBindingTypeAdapter();
-            }
-            @Override
-            public Adapter caseBaseCamelBinding(BaseCamelBinding object) {
-                return createBaseCamelBindingAdapter();
-            }
-            @Override
-            public Adapter caseJmsBindingType(JmsBindingType object) {
-                return createJmsBindingTypeAdapter();
             }
             @Override
             public Adapter defaultCase(EObject object) {
@@ -194,30 +190,16 @@ public class JmsAdapterFactory extends AdapterFactoryImpl {
     }
 
     /**
-     * Creates a new adapter for an object of class '{@link org.switchyard.tools.models.switchyard1_0.camel.core.BaseCamelBinding <em>Base Camel Binding</em>}'.
+     * Creates a new adapter for an object of class '{@link org.switchyard.tools.models.switchyard1_0.camel.jms.BaseCamelBinding <em>Base Camel Binding</em>}'.
      * <!-- begin-user-doc -->
      * This default implementation returns null so that we can easily ignore cases;
      * it's useful to ignore a case when inheritance will catch all the cases anyway.
      * <!-- end-user-doc -->
      * @return the new adapter.
-     * @see org.switchyard.tools.models.switchyard1_0.camel.core.BaseCamelBinding
+     * @see org.switchyard.tools.models.switchyard1_0.camel.jms.BaseCamelBinding
      * @generated
      */
     public Adapter createBaseCamelBindingAdapter() {
-        return null;
-    }
-
-    /**
-     * Creates a new adapter for an object of class '{@link org.switchyard.tools.models.switchyard1_0.camel.core.JmsBindingType <em>Jms Binding Type</em>}'.
-     * <!-- begin-user-doc -->
-     * This default implementation returns null so that we can easily ignore cases;
-     * it's useful to ignore a case when inheritance will catch all the cases anyway.
-     * <!-- end-user-doc -->
-     * @return the new adapter.
-     * @see org.switchyard.tools.models.switchyard1_0.camel.core.JmsBindingType
-     * @generated
-     */
-    public Adapter createJmsBindingTypeAdapter() {
         return null;
     }
 

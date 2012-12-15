@@ -51,6 +51,12 @@
                 </artifactItem>
                 <artifactItem>
                   <groupId>org.switchyard.components</groupId>
+                  <artifactId>switchyard-component-common-camel</artifactId>
+                  <version>${version.switchyard.runtime}</version>
+                  <classifier>sources</classifier>
+                </artifactItem>
+                <artifactItem>
+                  <groupId>org.switchyard.components</groupId>
                   <artifactId>switchyard-component-bean</artifactId>
                   <version>${version.switchyard.runtime}</version>
                   <classifier>sources</classifier>

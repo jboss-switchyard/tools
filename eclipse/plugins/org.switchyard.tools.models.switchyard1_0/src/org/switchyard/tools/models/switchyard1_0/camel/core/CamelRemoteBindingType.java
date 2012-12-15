@@ -26,7 +26,7 @@ package org.switchyard.tools.models.switchyard1_0.camel.core;
  * </ul>
  * </p>
  *
- * @see org.switchyard.tools.models.switchyard1_0.camel.core.CamelPackage#getCamelRemoteBindingType()
+ * @see org.switchyard.tools.models.switchyard1_0.camel.core.CorePackage#getCamelRemoteBindingType()
  * @model abstract="true"
  *        extendedMetaData="name='CamelRemoteBindingType' kind='elementOnly'"
  * @generated
@@ -42,7 +42,7 @@ public interface CamelRemoteBindingType extends GenericFileBindingType {
      * <!-- end-user-doc -->
      * @return the value of the '<em>Host</em>' attribute.
      * @see #setHost(String)
-     * @see org.switchyard.tools.models.switchyard1_0.camel.core.CamelPackage#getCamelRemoteBindingType_Host()
+     * @see org.switchyard.tools.models.switchyard1_0.camel.core.CorePackage#getCamelRemoteBindingType_Host()
      * @model dataType="org.eclipse.emf.ecore.xml.type.String"
      *        extendedMetaData="kind='element' name='host' namespace='##targetNamespace'"
      * @generated
@@ -71,7 +71,7 @@ public interface CamelRemoteBindingType extends GenericFileBindingType {
      * @see #isSetPort()
      * @see #unsetPort()
      * @see #setPort(Integer)
-     * @see org.switchyard.tools.models.switchyard1_0.camel.core.CamelPackage#getCamelRemoteBindingType_Port()
+     * @see org.switchyard.tools.models.switchyard1_0.camel.core.CorePackage#getCamelRemoteBindingType_Port()
      * @model unsettable="true" dataType="org.eclipse.emf.ecore.xml.type.IntObject"
      *        extendedMetaData="kind='element' name='port' namespace='##targetNamespace'"
      * @generated
@@ -123,7 +123,7 @@ public interface CamelRemoteBindingType extends GenericFileBindingType {
      * <!-- end-user-doc -->
      * @return the value of the '<em>Username</em>' attribute.
      * @see #setUsername(String)
-     * @see org.switchyard.tools.models.switchyard1_0.camel.core.CamelPackage#getCamelRemoteBindingType_Username()
+     * @see org.switchyard.tools.models.switchyard1_0.camel.core.CorePackage#getCamelRemoteBindingType_Username()
      * @model dataType="org.eclipse.emf.ecore.xml.type.String"
      *        extendedMetaData="kind='element' name='username' namespace='##targetNamespace'"
      * @generated
@@ -150,7 +150,7 @@ public interface CamelRemoteBindingType extends GenericFileBindingType {
      * <!-- end-user-doc -->
      * @return the value of the '<em>Password</em>' attribute.
      * @see #setPassword(String)
-     * @see org.switchyard.tools.models.switchyard1_0.camel.core.CamelPackage#getCamelRemoteBindingType_Password()
+     * @see org.switchyard.tools.models.switchyard1_0.camel.core.CorePackage#getCamelRemoteBindingType_Password()
      * @model dataType="org.eclipse.emf.ecore.xml.type.String"
      *        extendedMetaData="kind='element' name='password' namespace='##targetNamespace'"
      * @generated
@@ -179,7 +179,7 @@ public interface CamelRemoteBindingType extends GenericFileBindingType {
      * @see #isSetBinary()
      * @see #unsetBinary()
      * @see #setBinary(Boolean)
-     * @see org.switchyard.tools.models.switchyard1_0.camel.core.CamelPackage#getCamelRemoteBindingType_Binary()
+     * @see org.switchyard.tools.models.switchyard1_0.camel.core.CorePackage#getCamelRemoteBindingType_Binary()
      * @model unsettable="true" dataType="org.eclipse.emf.ecore.xml.type.BooleanObject"
      *        extendedMetaData="kind='element' name='binary' namespace='##targetNamespace'"
      * @generated
@@ -233,7 +233,7 @@ public interface CamelRemoteBindingType extends GenericFileBindingType {
      * @see #isSetConnectTimeout()
      * @see #unsetConnectTimeout()
      * @see #setConnectTimeout(Integer)
-     * @see org.switchyard.tools.models.switchyard1_0.camel.core.CamelPackage#getCamelRemoteBindingType_ConnectTimeout()
+     * @see org.switchyard.tools.models.switchyard1_0.camel.core.CorePackage#getCamelRemoteBindingType_ConnectTimeout()
      * @model unsettable="true" dataType="org.eclipse.emf.ecore.xml.type.IntObject"
      *        extendedMetaData="kind='element' name='connectTimeout' namespace='##targetNamespace'"
      * @generated
@@ -287,7 +287,7 @@ public interface CamelRemoteBindingType extends GenericFileBindingType {
      * @see #isSetDisconnect()
      * @see #unsetDisconnect()
      * @see #setDisconnect(Boolean)
-     * @see org.switchyard.tools.models.switchyard1_0.camel.core.CamelPackage#getCamelRemoteBindingType_Disconnect()
+     * @see org.switchyard.tools.models.switchyard1_0.camel.core.CorePackage#getCamelRemoteBindingType_Disconnect()
      * @model unsettable="true" dataType="org.eclipse.emf.ecore.xml.type.BooleanObject"
      *        extendedMetaData="kind='element' name='disconnect' namespace='##targetNamespace'"
      * @generated
@@ -341,7 +341,7 @@ public interface CamelRemoteBindingType extends GenericFileBindingType {
      * @see #isSetMaximumReconnectAttempts()
      * @see #unsetMaximumReconnectAttempts()
      * @see #setMaximumReconnectAttempts(Integer)
-     * @see org.switchyard.tools.models.switchyard1_0.camel.core.CamelPackage#getCamelRemoteBindingType_MaximumReconnectAttempts()
+     * @see org.switchyard.tools.models.switchyard1_0.camel.core.CorePackage#getCamelRemoteBindingType_MaximumReconnectAttempts()
      * @model unsettable="true" dataType="org.eclipse.emf.ecore.xml.type.IntObject"
      *        extendedMetaData="kind='element' name='maximumReconnectAttempts' namespace='##targetNamespace'"
      * @generated
@@ -395,7 +395,7 @@ public interface CamelRemoteBindingType extends GenericFileBindingType {
      * @see #isSetReconnectDelay()
      * @see #unsetReconnectDelay()
      * @see #setReconnectDelay(Integer)
-     * @see org.switchyard.tools.models.switchyard1_0.camel.core.CamelPackage#getCamelRemoteBindingType_ReconnectDelay()
+     * @see org.switchyard.tools.models.switchyard1_0.camel.core.CorePackage#getCamelRemoteBindingType_ReconnectDelay()
      * @model unsettable="true" dataType="org.eclipse.emf.ecore.xml.type.IntObject"
      *        extendedMetaData="kind='element' name='reconnectDelay' namespace='##targetNamespace'"
      * @generated
@@ -447,7 +447,7 @@ public interface CamelRemoteBindingType extends GenericFileBindingType {
      * <!-- end-user-doc -->
      * @return the value of the '<em>Separator</em>' attribute.
      * @see #setSeparator(String)
-     * @see org.switchyard.tools.models.switchyard1_0.camel.core.CamelPackage#getCamelRemoteBindingType_Separator()
+     * @see org.switchyard.tools.models.switchyard1_0.camel.core.CorePackage#getCamelRemoteBindingType_Separator()
      * @model dataType="org.eclipse.emf.ecore.xml.type.String"
      *        extendedMetaData="kind='element' name='separator' namespace='##targetNamespace'"
      * @generated
@@ -476,7 +476,7 @@ public interface CamelRemoteBindingType extends GenericFileBindingType {
      * @see #isSetStepwise()
      * @see #unsetStepwise()
      * @see #setStepwise(Boolean)
-     * @see org.switchyard.tools.models.switchyard1_0.camel.core.CamelPackage#getCamelRemoteBindingType_Stepwise()
+     * @see org.switchyard.tools.models.switchyard1_0.camel.core.CorePackage#getCamelRemoteBindingType_Stepwise()
      * @model unsettable="true" dataType="org.eclipse.emf.ecore.xml.type.BooleanObject"
      *        extendedMetaData="kind='element' name='stepwise' namespace='##targetNamespace'"
      * @generated
@@ -530,7 +530,7 @@ public interface CamelRemoteBindingType extends GenericFileBindingType {
      * @see #isSetThrowExceptionOnConnectFailed()
      * @see #unsetThrowExceptionOnConnectFailed()
      * @see #setThrowExceptionOnConnectFailed(Boolean)
-     * @see org.switchyard.tools.models.switchyard1_0.camel.core.CamelPackage#getCamelRemoteBindingType_ThrowExceptionOnConnectFailed()
+     * @see org.switchyard.tools.models.switchyard1_0.camel.core.CorePackage#getCamelRemoteBindingType_ThrowExceptionOnConnectFailed()
      * @model unsettable="true" dataType="org.eclipse.emf.ecore.xml.type.BooleanObject"
      *        extendedMetaData="kind='element' name='throwExceptionOnConnectFailed' namespace='##targetNamespace'"
      * @generated

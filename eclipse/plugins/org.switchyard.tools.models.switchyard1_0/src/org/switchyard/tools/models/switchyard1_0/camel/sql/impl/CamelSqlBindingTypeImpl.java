@@ -91,6 +91,15 @@ public class CamelSqlBindingTypeImpl extends BaseCamelBindingImpl implements Cam
     protected Boolean batch = BATCH_EDEFAULT;
 
     /**
+     * This is true if the Batch attribute has been set.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    protected boolean batchESet;
+
+    /**
      * The default value of the '{@link #getPlaceholder() <em>Placeholder</em>}' attribute.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
@@ -188,8 +197,33 @@ public class CamelSqlBindingTypeImpl extends BaseCamelBindingImpl implements Cam
     public void setBatch(Boolean newBatch) {
         Boolean oldBatch = batch;
         batch = newBatch;
+        boolean oldBatchESet = batchESet;
+        batchESet = true;
         if (eNotificationRequired())
-            eNotify(new ENotificationImpl(this, Notification.SET, SqlPackage.CAMEL_SQL_BINDING_TYPE__BATCH, oldBatch, batch));
+            eNotify(new ENotificationImpl(this, Notification.SET, SqlPackage.CAMEL_SQL_BINDING_TYPE__BATCH, oldBatch, batch, !oldBatchESet));
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public void unsetBatch() {
+        Boolean oldBatch = batch;
+        boolean oldBatchESet = batchESet;
+        batch = BATCH_EDEFAULT;
+        batchESet = false;
+        if (eNotificationRequired())
+            eNotify(new ENotificationImpl(this, Notification.UNSET, SqlPackage.CAMEL_SQL_BINDING_TYPE__BATCH, oldBatch, BATCH_EDEFAULT, oldBatchESet));
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public boolean isSetBatch() {
+        return batchESet;
     }
 
     /**
@@ -272,7 +306,7 @@ public class CamelSqlBindingTypeImpl extends BaseCamelBindingImpl implements Cam
                 setDataSourceRef(DATA_SOURCE_REF_EDEFAULT);
                 return;
             case SqlPackage.CAMEL_SQL_BINDING_TYPE__BATCH:
-                setBatch(BATCH_EDEFAULT);
+                unsetBatch();
                 return;
             case SqlPackage.CAMEL_SQL_BINDING_TYPE__PLACEHOLDER:
                 setPlaceholder(PLACEHOLDER_EDEFAULT);
@@ -294,7 +328,7 @@ public class CamelSqlBindingTypeImpl extends BaseCamelBindingImpl implements Cam
             case SqlPackage.CAMEL_SQL_BINDING_TYPE__DATA_SOURCE_REF:
                 return DATA_SOURCE_REF_EDEFAULT == null ? dataSourceRef != null : !DATA_SOURCE_REF_EDEFAULT.equals(dataSourceRef);
             case SqlPackage.CAMEL_SQL_BINDING_TYPE__BATCH:
-                return BATCH_EDEFAULT == null ? batch != null : !BATCH_EDEFAULT.equals(batch);
+                return isSetBatch();
             case SqlPackage.CAMEL_SQL_BINDING_TYPE__PLACEHOLDER:
                 return PLACEHOLDER_EDEFAULT == null ? placeholder != null : !PLACEHOLDER_EDEFAULT.equals(placeholder);
         }
@@ -316,7 +350,7 @@ public class CamelSqlBindingTypeImpl extends BaseCamelBindingImpl implements Cam
         result.append(", dataSourceRef: ");
         result.append(dataSourceRef);
         result.append(", batch: ");
-        result.append(batch);
+        if (batchESet) result.append(batch); else result.append("<unset>");
         result.append(", placeholder: ");
         result.append(placeholder);
         result.append(')');

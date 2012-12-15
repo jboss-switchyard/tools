@@ -24,10 +24,10 @@ import org.eclipse.emf.edit.provider.ViewerNotification;
 
 import org.switchyard.tools.models.switchyard1_0.bean.provider.Switchyard_1EditPlugin;
 
+import org.switchyard.tools.models.switchyard1_0.camel.core.CoreFactory;
+import org.switchyard.tools.models.switchyard1_0.camel.core.CorePackage;
 import org.switchyard.tools.models.switchyard1_0.camel.amqp.AmqpFactory;
 
-import org.switchyard.tools.models.switchyard1_0.camel.core.CamelFactory;
-import org.switchyard.tools.models.switchyard1_0.camel.core.CamelPackage;
 import org.switchyard.tools.models.switchyard1_0.camel.core.DocumentRoot;
 
 import org.switchyard.tools.models.switchyard1_0.camel.jms.JmsFactory;
@@ -83,12 +83,11 @@ public class DocumentRootItemProvider
     public Collection<? extends EStructuralFeature> getChildrenFeatures(Object object) {
         if (childrenFeatures == null) {
             super.getChildrenFeatures(object);
-            childrenFeatures.add(CamelPackage.Literals.DOCUMENT_ROOT__BINDING_CAMEL);
-            childrenFeatures.add(CamelPackage.Literals.DOCUMENT_ROOT__BINDING_DIRECT);
-            childrenFeatures.add(CamelPackage.Literals.DOCUMENT_ROOT__BINDING_JMS);
-            childrenFeatures.add(CamelPackage.Literals.DOCUMENT_ROOT__BINDING_MOCK);
-            childrenFeatures.add(CamelPackage.Literals.DOCUMENT_ROOT__BINDING_SEDA);
-            childrenFeatures.add(CamelPackage.Literals.DOCUMENT_ROOT__BINDING_TIMER);
+            childrenFeatures.add(CorePackage.Literals.DOCUMENT_ROOT__BINDING_CAMEL);
+            childrenFeatures.add(CorePackage.Literals.DOCUMENT_ROOT__BINDING_DIRECT);
+            childrenFeatures.add(CorePackage.Literals.DOCUMENT_ROOT__BINDING_MOCK);
+            childrenFeatures.add(CorePackage.Literals.DOCUMENT_ROOT__BINDING_SEDA);
+            childrenFeatures.add(CorePackage.Literals.DOCUMENT_ROOT__BINDING_TIMER);
         }
         return childrenFeatures;
     }
@@ -140,12 +139,11 @@ public class DocumentRootItemProvider
         updateChildren(notification);
 
         switch (notification.getFeatureID(DocumentRoot.class)) {
-            case CamelPackage.DOCUMENT_ROOT__BINDING_CAMEL:
-            case CamelPackage.DOCUMENT_ROOT__BINDING_DIRECT:
-            case CamelPackage.DOCUMENT_ROOT__BINDING_JMS:
-            case CamelPackage.DOCUMENT_ROOT__BINDING_MOCK:
-            case CamelPackage.DOCUMENT_ROOT__BINDING_SEDA:
-            case CamelPackage.DOCUMENT_ROOT__BINDING_TIMER:
+            case CorePackage.DOCUMENT_ROOT__BINDING_CAMEL:
+            case CorePackage.DOCUMENT_ROOT__BINDING_DIRECT:
+            case CorePackage.DOCUMENT_ROOT__BINDING_MOCK:
+            case CorePackage.DOCUMENT_ROOT__BINDING_SEDA:
+            case CorePackage.DOCUMENT_ROOT__BINDING_TIMER:
                 fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), true, false));
                 return;
         }
@@ -165,43 +163,28 @@ public class DocumentRootItemProvider
 
         newChildDescriptors.add
             (createChildParameter
-                (CamelPackage.Literals.DOCUMENT_ROOT__BINDING_CAMEL,
-                 CamelFactory.eINSTANCE.createCamelBindingType()));
+                (CorePackage.Literals.DOCUMENT_ROOT__BINDING_CAMEL,
+                 CoreFactory.eINSTANCE.createCamelBindingType()));
 
         newChildDescriptors.add
             (createChildParameter
-                (CamelPackage.Literals.DOCUMENT_ROOT__BINDING_DIRECT,
-                 CamelFactory.eINSTANCE.createCamelDirectBindingType()));
+                (CorePackage.Literals.DOCUMENT_ROOT__BINDING_DIRECT,
+                 CoreFactory.eINSTANCE.createCamelDirectBindingType()));
 
         newChildDescriptors.add
             (createChildParameter
-                (CamelPackage.Literals.DOCUMENT_ROOT__BINDING_JMS,
-                 CamelFactory.eINSTANCE.createJmsBindingType()));
+                (CorePackage.Literals.DOCUMENT_ROOT__BINDING_MOCK,
+                 CoreFactory.eINSTANCE.createCamelMockBindingType()));
 
         newChildDescriptors.add
             (createChildParameter
-                (CamelPackage.Literals.DOCUMENT_ROOT__BINDING_JMS,
-                 AmqpFactory.eINSTANCE.createCamelAmqpBindingType()));
+                (CorePackage.Literals.DOCUMENT_ROOT__BINDING_SEDA,
+                 CoreFactory.eINSTANCE.createCamelSedaBindingType()));
 
         newChildDescriptors.add
             (createChildParameter
-                (CamelPackage.Literals.DOCUMENT_ROOT__BINDING_JMS,
-                 JmsFactory.eINSTANCE.createCamelJmsBindingType()));
-
-        newChildDescriptors.add
-            (createChildParameter
-                (CamelPackage.Literals.DOCUMENT_ROOT__BINDING_MOCK,
-                 CamelFactory.eINSTANCE.createCamelMockBindingType()));
-
-        newChildDescriptors.add
-            (createChildParameter
-                (CamelPackage.Literals.DOCUMENT_ROOT__BINDING_SEDA,
-                 CamelFactory.eINSTANCE.createCamelSedaBindingType()));
-
-        newChildDescriptors.add
-            (createChildParameter
-                (CamelPackage.Literals.DOCUMENT_ROOT__BINDING_TIMER,
-                 CamelFactory.eINSTANCE.createCamelTimerBindingType()));
+                (CorePackage.Literals.DOCUMENT_ROOT__BINDING_TIMER,
+                 CoreFactory.eINSTANCE.createCamelTimerBindingType()));
     }
 
     /**

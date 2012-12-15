@@ -33,11 +33,12 @@ import org.eclipse.swt.widgets.Group;
 import org.eclipse.swt.widgets.TabFolder;
 import org.eclipse.swt.widgets.TabItem;
 import org.eclipse.swt.widgets.Text;
-import org.switchyard.tools.models.switchyard1_0.camel.CamelFactory;
-import org.switchyard.tools.models.switchyard1_0.camel.CamelFtpBindingType;
+import org.switchyard.tools.models.switchyard1_0.camel.ftp.CamelFtpBindingType;
+import org.switchyard.tools.models.switchyard1_0.camel.ftp.FtpFactory;
 import org.switchyard.tools.models.switchyard1_0.switchyard.ContextMapperType;
 import org.switchyard.tools.models.switchyard1_0.switchyard.MessageComposerType;
 import org.switchyard.tools.models.switchyard1_0.switchyard.SwitchYardOperationSelectorType;
+import org.switchyard.tools.models.switchyard1_0.switchyard.SwitchyardFactory;
 import org.switchyard.tools.ui.editor.diagram.binding.AbstractSYBindingComposite;
 import org.switchyard.tools.ui.editor.diagram.binding.OperationSelectorComposite;
 import org.switchyard.tools.ui.editor.diagram.binding.OperationSelectorUtil;
@@ -101,10 +102,10 @@ public class CamelFTPConsumerComposite extends AbstractSYBindingComposite {
                     _preMoveText.setText(this._binding.getConsume().getPreMove());
                 }
                 if (this._binding.getConsume().getDelete() != null) {
-                    _deleteButton.setSelection(this._binding.getConsume().getDelete());
+                    _deleteButton.setSelection(this._binding.getConsume().getDelete().booleanValue());
                 }
                 if (this._binding.getConsume().getRecursive() != null) {
-                    _recursiveButton.setSelection(this._binding.getConsume().getRecursive());
+                    _recursiveButton.setSelection(this._binding.getConsume().getRecursive().booleanValue());
                 }
             }
             if (this._binding.getDirectory() != null) {
@@ -113,8 +114,8 @@ public class CamelFTPConsumerComposite extends AbstractSYBindingComposite {
             if (this._binding.getFileName() != null) {
                 _fileNameText.setText(this._binding.getFileName());
             }
-            if (this._binding.isAutoCreate()) {
-                _autoCreateButton.setSelection(this._binding.isAutoCreate());
+            if (this._binding.getAutoCreate() != null) {
+                _autoCreateButton.setSelection(this._binding.getAutoCreate().booleanValue());
             }
             if (this._binding.getHost() != null) {
                 _hostText.setText(this._binding.getHost());
@@ -128,8 +129,8 @@ public class CamelFTPConsumerComposite extends AbstractSYBindingComposite {
             if (this._binding.getPassword() != null) {
                 _pwdText.setText(this._binding.getPassword());
             }
-            if (this._binding.isBinary()) {
-                _binaryButton.setSelection(this._binding.isBinary());
+            if (this._binding.getBinary() != null) {
+                _binaryButton.setSelection(this._binding.getBinary().booleanValue());
             }
             OperationSelectorType opSelector = OperationSelectorUtil.getFirstOperationSelector(this._binding);
             _opSelectorComposite.setBinding(this._binding);
@@ -262,7 +263,7 @@ public class CamelFTPConsumerComposite extends AbstractSYBindingComposite {
         @Override
         public void run() throws Exception {
             if (_binding != null && _binding.getConsume() == null) {
-                setFeatureValue(_binding, "consume", CamelFactory.eINSTANCE.createRemoteFileConsumerType());
+                setFeatureValue(_binding, "consume", FtpFactory.eINSTANCE.createRemoteFileConsumerType());
             }
         }
     }
@@ -339,7 +340,7 @@ public class CamelFTPConsumerComposite extends AbstractSYBindingComposite {
             } else if (control.equals(_fileNameText)) {
                 _fileNameText.setText(this._binding.getFileName());
             } else if (control.equals(_autoCreateButton)) {
-                _autoCreateButton.setSelection(this._binding.isAutoCreate());
+                _autoCreateButton.setSelection(this._binding.getAutoCreate().booleanValue());
             } else if (control.equals(_hostText)) {
                 _hostText.setText(this._binding.getHost());
             } else if (control.equals(_portText)) {
@@ -349,7 +350,7 @@ public class CamelFTPConsumerComposite extends AbstractSYBindingComposite {
             } else if (control.equals(_pwdText)) {
                 _pwdText.setText(this._binding.getPassword());
             } else if (control.equals(_binaryButton)) {
-                _binaryButton.setSelection(this._binding.isBinary());
+                _binaryButton.setSelection(this._binding.getBinary().booleanValue());
 //            } else if (control.equals(_operationSelectionCombo)) {
 //                String opName = OperationSelectorUtil.getOperationNameForStaticOperationSelector(this._binding);
 //                setTextValue(_operationSelectionCombo, opName);
@@ -367,9 +368,9 @@ public class CamelFTPConsumerComposite extends AbstractSYBindingComposite {
                 } else if (control.equals(_preMoveText)) {
                     _preMoveText.setText(this._binding.getConsume().getPreMove());
                 } else if (control.equals(_deleteButton)) {
-                    _deleteButton.setSelection(this._binding.getConsume().getDelete());
+                    _deleteButton.setSelection(this._binding.getConsume().getDelete().booleanValue());
                 } else if (control.equals(_recursiveButton)) {
-                    _recursiveButton.setSelection(this._binding.getConsume().getRecursive());
+                    _recursiveButton.setSelection(this._binding.getConsume().getRecursive().booleanValue());
                 }
             } else {
                 super.handleUndo(control);
@@ -415,12 +416,12 @@ public class CamelFTPConsumerComposite extends AbstractSYBindingComposite {
 
     @Override
     protected ContextMapperType createContextMapper() {
-        return CamelFactory.eINSTANCE.createCamelContextMapperType();
+        return SwitchyardFactory.eINSTANCE.createContextMapperType();
     }
 
     @Override
     protected MessageComposerType createMessageComposer() {
-        return CamelFactory.eINSTANCE.createCamelMessageComposerType();
+        return SwitchyardFactory.eINSTANCE.createMessageComposerType();
     }
     
 }

@@ -20,7 +20,7 @@ import org.eclipse.emf.edit.provider.ItemPropertyDescriptor;
 import org.eclipse.emf.edit.provider.ViewerNotification;
 
 import org.switchyard.tools.models.switchyard1_0.camel.core.CamelBindingType;
-import org.switchyard.tools.models.switchyard1_0.camel.core.CamelPackage;
+import org.switchyard.tools.models.switchyard1_0.camel.core.CorePackage;
 
 /**
  * This is the item provider adapter for a {@link org.switchyard.tools.models.switchyard1_0.camel.core.CamelBindingType} object.
@@ -75,7 +75,7 @@ public class CamelBindingTypeItemProvider
                  getResourceLocator(),
                  getString("_UI_CamelBindingType_configURI_feature"),
                  getString("_UI_PropertyDescriptor_description", "_UI_CamelBindingType_configURI_feature", "_UI_CamelBindingType_type"),
-                 CamelPackage.Literals.CAMEL_BINDING_TYPE__CONFIG_URI,
+                 CorePackage.Literals.CAMEL_BINDING_TYPE__CONFIG_URI,
                  true,
                  false,
                  false,
@@ -121,7 +121,7 @@ public class CamelBindingTypeItemProvider
         updateChildren(notification);
 
         switch (notification.getFeatureID(CamelBindingType.class)) {
-            case CamelPackage.CAMEL_BINDING_TYPE__CONFIG_URI:
+            case CorePackage.CAMEL_BINDING_TYPE__CONFIG_URI:
                 fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
                 return;
         }

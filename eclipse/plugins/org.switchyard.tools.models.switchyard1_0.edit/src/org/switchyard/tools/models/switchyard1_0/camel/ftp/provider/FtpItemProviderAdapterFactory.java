@@ -311,9 +311,9 @@ public class FtpItemProviderAdapterFactory extends FtpAdapterFactory implements 
         if (camelFtpBindingTypeItemProvider != null) camelFtpBindingTypeItemProvider.dispose();
         if (camelFtpsBindingTypeItemProvider != null) camelFtpsBindingTypeItemProvider.dispose();
         if (camelSftpBindingTypeItemProvider != null) camelSftpBindingTypeItemProvider.dispose();
+        if (documentRootItemProvider != null) documentRootItemProvider.dispose();
         if (remoteFileConsumerTypeItemProvider != null) remoteFileConsumerTypeItemProvider.dispose();
         if (remoteFileProducerTypeItemProvider != null) remoteFileProducerTypeItemProvider.dispose();
-        if (documentRootItemProvider != null) documentRootItemProvider.dispose();
     }
 
 }

@@ -20,7 +20,7 @@ import org.eclipse.emf.edit.provider.ItemPropertyDescriptor;
 import org.eclipse.emf.edit.provider.ViewerNotification;
 
 import org.switchyard.tools.models.switchyard1_0.camel.core.CamelMockBindingType;
-import org.switchyard.tools.models.switchyard1_0.camel.core.CamelPackage;
+import org.switchyard.tools.models.switchyard1_0.camel.core.CorePackage;
 
 /**
  * This is the item provider adapter for a {@link org.switchyard.tools.models.switchyard1_0.camel.core.CamelMockBindingType} object.
@@ -76,7 +76,7 @@ public class CamelMockBindingTypeItemProvider
                  getResourceLocator(),
                  getString("_UI_CamelMockBindingType_nameElement_feature"),
                  getString("_UI_PropertyDescriptor_description", "_UI_CamelMockBindingType_nameElement_feature", "_UI_CamelMockBindingType_type"),
-                 CamelPackage.Literals.CAMEL_MOCK_BINDING_TYPE__NAME_ELEMENT,
+                 CorePackage.Literals.CAMEL_MOCK_BINDING_TYPE__NAME_ELEMENT,
                  true,
                  false,
                  false,
@@ -98,7 +98,7 @@ public class CamelMockBindingTypeItemProvider
                  getResourceLocator(),
                  getString("_UI_CamelMockBindingType_reportGroup_feature"),
                  getString("_UI_PropertyDescriptor_description", "_UI_CamelMockBindingType_reportGroup_feature", "_UI_CamelMockBindingType_type"),
-                 CamelPackage.Literals.CAMEL_MOCK_BINDING_TYPE__REPORT_GROUP,
+                 CorePackage.Literals.CAMEL_MOCK_BINDING_TYPE__REPORT_GROUP,
                  true,
                  false,
                  false,
@@ -144,8 +144,8 @@ public class CamelMockBindingTypeItemProvider
         updateChildren(notification);
 
         switch (notification.getFeatureID(CamelMockBindingType.class)) {
-            case CamelPackage.CAMEL_MOCK_BINDING_TYPE__NAME_ELEMENT:
-            case CamelPackage.CAMEL_MOCK_BINDING_TYPE__REPORT_GROUP:
+            case CorePackage.CAMEL_MOCK_BINDING_TYPE__NAME_ELEMENT:
+            case CorePackage.CAMEL_MOCK_BINDING_TYPE__REPORT_GROUP:
                 fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
                 return;
         }

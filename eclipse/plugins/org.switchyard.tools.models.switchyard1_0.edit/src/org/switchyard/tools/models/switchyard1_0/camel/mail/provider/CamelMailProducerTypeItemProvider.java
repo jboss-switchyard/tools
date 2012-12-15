@@ -149,8 +149,8 @@ public class CamelMailProducerTypeItemProvider
             (createItemPropertyDescriptor
                 (((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
                  getResourceLocator(),
-                 getString("_UI_CamelMailProducerType_CC_feature"),
-                 getString("_UI_PropertyDescriptor_description", "_UI_CamelMailProducerType_CC_feature", "_UI_CamelMailProducerType_type"),
+                 getString("_UI_CamelMailProducerType_cC_feature"),
+                 getString("_UI_PropertyDescriptor_description", "_UI_CamelMailProducerType_cC_feature", "_UI_CamelMailProducerType_type"),
                  MailPackage.Literals.CAMEL_MAIL_PRODUCER_TYPE__CC,
                  true,
                  false,
@@ -171,8 +171,8 @@ public class CamelMailProducerTypeItemProvider
             (createItemPropertyDescriptor
                 (((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
                  getResourceLocator(),
-                 getString("_UI_CamelMailProducerType_BCC_feature"),
-                 getString("_UI_PropertyDescriptor_description", "_UI_CamelMailProducerType_BCC_feature", "_UI_CamelMailProducerType_type"),
+                 getString("_UI_CamelMailProducerType_bCC_feature"),
+                 getString("_UI_PropertyDescriptor_description", "_UI_CamelMailProducerType_bCC_feature", "_UI_CamelMailProducerType_type"),
                  MailPackage.Literals.CAMEL_MAIL_PRODUCER_TYPE__BCC,
                  true,
                  false,

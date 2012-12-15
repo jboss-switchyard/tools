@@ -4,11 +4,12 @@ package org.switchyard.tools.models.switchyard1_0.camel.mail;
 
 import org.eclipse.emf.ecore.EAttribute;
 import org.eclipse.emf.ecore.EClass;
+import org.eclipse.emf.ecore.EDataType;
 import org.eclipse.emf.ecore.EEnum;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.EReference;
-
-import org.switchyard.tools.models.switchyard1_0.camel.core.CamelPackage;
+import org.switchyard.tools.models.switchyard1_0.switchyard.SwitchyardPackage;
+import org.switchyard.tools.models.switchyard1_0.camel.core.CorePackage;
 
 /**
  * <!-- begin-user-doc -->
@@ -59,6 +60,133 @@ public interface MailPackage extends EPackage {
     MailPackage eINSTANCE = org.switchyard.tools.models.switchyard1_0.camel.mail.impl.MailPackageImpl.init();
 
     /**
+     * The meta object id for the '{@link org.switchyard.tools.models.switchyard1_0.camel.mail.impl.BaseCamelBindingImpl <em>Base Camel Binding</em>}' class.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @see org.switchyard.tools.models.switchyard1_0.camel.mail.impl.BaseCamelBindingImpl
+     * @see org.switchyard.tools.models.switchyard1_0.camel.mail.impl.MailPackageImpl#getBaseCamelBinding()
+     * @generated
+     */
+    int BASE_CAMEL_BINDING = 0;
+
+    /**
+     * The feature id for the '<em><b>Documentation</b></em>' containment reference list.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int BASE_CAMEL_BINDING__DOCUMENTATION = SwitchyardPackage.SWITCH_YARD_BINDING_TYPE__DOCUMENTATION;
+
+    /**
+     * The feature id for the '<em><b>Any Attribute</b></em>' attribute list.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int BASE_CAMEL_BINDING__ANY_ATTRIBUTE = SwitchyardPackage.SWITCH_YARD_BINDING_TYPE__ANY_ATTRIBUTE;
+
+    /**
+     * The feature id for the '<em><b>Wire Format Group</b></em>' attribute list.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int BASE_CAMEL_BINDING__WIRE_FORMAT_GROUP = SwitchyardPackage.SWITCH_YARD_BINDING_TYPE__WIRE_FORMAT_GROUP;
+
+    /**
+     * The feature id for the '<em><b>Wire Format</b></em>' containment reference.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int BASE_CAMEL_BINDING__WIRE_FORMAT = SwitchyardPackage.SWITCH_YARD_BINDING_TYPE__WIRE_FORMAT;
+
+    /**
+     * The feature id for the '<em><b>Operation Selector Group</b></em>' attribute list.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int BASE_CAMEL_BINDING__OPERATION_SELECTOR_GROUP = SwitchyardPackage.SWITCH_YARD_BINDING_TYPE__OPERATION_SELECTOR_GROUP;
+
+    /**
+     * The feature id for the '<em><b>Operation Selector</b></em>' containment reference.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int BASE_CAMEL_BINDING__OPERATION_SELECTOR = SwitchyardPackage.SWITCH_YARD_BINDING_TYPE__OPERATION_SELECTOR;
+
+    /**
+     * The feature id for the '<em><b>Name</b></em>' attribute.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int BASE_CAMEL_BINDING__NAME = SwitchyardPackage.SWITCH_YARD_BINDING_TYPE__NAME;
+
+    /**
+     * The feature id for the '<em><b>Policy Sets</b></em>' attribute.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int BASE_CAMEL_BINDING__POLICY_SETS = SwitchyardPackage.SWITCH_YARD_BINDING_TYPE__POLICY_SETS;
+
+    /**
+     * The feature id for the '<em><b>Requires</b></em>' attribute.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int BASE_CAMEL_BINDING__REQUIRES = SwitchyardPackage.SWITCH_YARD_BINDING_TYPE__REQUIRES;
+
+    /**
+     * The feature id for the '<em><b>Uri</b></em>' attribute.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int BASE_CAMEL_BINDING__URI = SwitchyardPackage.SWITCH_YARD_BINDING_TYPE__URI;
+
+    /**
+     * The feature id for the '<em><b>Context Mapper</b></em>' containment reference.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int BASE_CAMEL_BINDING__CONTEXT_MAPPER = SwitchyardPackage.SWITCH_YARD_BINDING_TYPE__CONTEXT_MAPPER;
+
+    /**
+     * The feature id for the '<em><b>Message Composer</b></em>' containment reference.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int BASE_CAMEL_BINDING__MESSAGE_COMPOSER = SwitchyardPackage.SWITCH_YARD_BINDING_TYPE__MESSAGE_COMPOSER;
+
+    /**
+     * The number of structural features of the '<em>Base Camel Binding</em>' class.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int BASE_CAMEL_BINDING_FEATURE_COUNT = SwitchyardPackage.SWITCH_YARD_BINDING_TYPE_FEATURE_COUNT + 0;
+
+    /**
      * The meta object id for the '{@link org.switchyard.tools.models.switchyard1_0.camel.mail.impl.DocumentRootImpl <em>Document Root</em>}' class.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
@@ -66,7 +194,226 @@ public interface MailPackage extends EPackage {
      * @see org.switchyard.tools.models.switchyard1_0.camel.mail.impl.MailPackageImpl#getDocumentRoot()
      * @generated
      */
-    int DOCUMENT_ROOT = 0;
+    int DOCUMENT_ROOT = 2;
+
+    /**
+     * The meta object id for the '{@link org.switchyard.tools.models.switchyard1_0.camel.mail.impl.CamelMailConsumerTypeImpl <em>Camel Mail Consumer Type</em>}' class.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @see org.switchyard.tools.models.switchyard1_0.camel.mail.impl.CamelMailConsumerTypeImpl
+     * @see org.switchyard.tools.models.switchyard1_0.camel.mail.impl.MailPackageImpl#getCamelMailConsumerType()
+     * @generated
+     */
+    int CAMEL_MAIL_CONSUMER_TYPE = 3;
+
+    /**
+     * The meta object id for the '{@link org.switchyard.tools.models.switchyard1_0.camel.mail.impl.CamelMailProducerTypeImpl <em>Camel Mail Producer Type</em>}' class.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @see org.switchyard.tools.models.switchyard1_0.camel.mail.impl.CamelMailProducerTypeImpl
+     * @see org.switchyard.tools.models.switchyard1_0.camel.mail.impl.MailPackageImpl#getCamelMailProducerType()
+     * @generated
+     */
+    int CAMEL_MAIL_PRODUCER_TYPE = 4;
+
+    /**
+     * The meta object id for the '{@link org.switchyard.tools.models.switchyard1_0.camel.mail.impl.CamelMailBindingTypeImpl <em>Camel Mail Binding Type</em>}' class.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @see org.switchyard.tools.models.switchyard1_0.camel.mail.impl.CamelMailBindingTypeImpl
+     * @see org.switchyard.tools.models.switchyard1_0.camel.mail.impl.MailPackageImpl#getCamelMailBindingType()
+     * @generated
+     */
+    int CAMEL_MAIL_BINDING_TYPE = 1;
+
+    /**
+     * The feature id for the '<em><b>Documentation</b></em>' containment reference list.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int CAMEL_MAIL_BINDING_TYPE__DOCUMENTATION = BASE_CAMEL_BINDING__DOCUMENTATION;
+
+    /**
+     * The feature id for the '<em><b>Any Attribute</b></em>' attribute list.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int CAMEL_MAIL_BINDING_TYPE__ANY_ATTRIBUTE = BASE_CAMEL_BINDING__ANY_ATTRIBUTE;
+
+    /**
+     * The feature id for the '<em><b>Wire Format Group</b></em>' attribute list.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int CAMEL_MAIL_BINDING_TYPE__WIRE_FORMAT_GROUP = BASE_CAMEL_BINDING__WIRE_FORMAT_GROUP;
+
+    /**
+     * The feature id for the '<em><b>Wire Format</b></em>' containment reference.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int CAMEL_MAIL_BINDING_TYPE__WIRE_FORMAT = BASE_CAMEL_BINDING__WIRE_FORMAT;
+
+    /**
+     * The feature id for the '<em><b>Operation Selector Group</b></em>' attribute list.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int CAMEL_MAIL_BINDING_TYPE__OPERATION_SELECTOR_GROUP = BASE_CAMEL_BINDING__OPERATION_SELECTOR_GROUP;
+
+    /**
+     * The feature id for the '<em><b>Operation Selector</b></em>' containment reference.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int CAMEL_MAIL_BINDING_TYPE__OPERATION_SELECTOR = BASE_CAMEL_BINDING__OPERATION_SELECTOR;
+
+    /**
+     * The feature id for the '<em><b>Name</b></em>' attribute.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int CAMEL_MAIL_BINDING_TYPE__NAME = BASE_CAMEL_BINDING__NAME;
+
+    /**
+     * The feature id for the '<em><b>Policy Sets</b></em>' attribute.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int CAMEL_MAIL_BINDING_TYPE__POLICY_SETS = BASE_CAMEL_BINDING__POLICY_SETS;
+
+    /**
+     * The feature id for the '<em><b>Requires</b></em>' attribute.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int CAMEL_MAIL_BINDING_TYPE__REQUIRES = BASE_CAMEL_BINDING__REQUIRES;
+
+    /**
+     * The feature id for the '<em><b>Uri</b></em>' attribute.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int CAMEL_MAIL_BINDING_TYPE__URI = BASE_CAMEL_BINDING__URI;
+
+    /**
+     * The feature id for the '<em><b>Context Mapper</b></em>' containment reference.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int CAMEL_MAIL_BINDING_TYPE__CONTEXT_MAPPER = BASE_CAMEL_BINDING__CONTEXT_MAPPER;
+
+    /**
+     * The feature id for the '<em><b>Message Composer</b></em>' containment reference.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int CAMEL_MAIL_BINDING_TYPE__MESSAGE_COMPOSER = BASE_CAMEL_BINDING__MESSAGE_COMPOSER;
+
+    /**
+     * The feature id for the '<em><b>Host</b></em>' attribute.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int CAMEL_MAIL_BINDING_TYPE__HOST = BASE_CAMEL_BINDING_FEATURE_COUNT + 0;
+
+    /**
+     * The feature id for the '<em><b>Port</b></em>' attribute.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int CAMEL_MAIL_BINDING_TYPE__PORT = BASE_CAMEL_BINDING_FEATURE_COUNT + 1;
+
+    /**
+     * The feature id for the '<em><b>Username</b></em>' attribute.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int CAMEL_MAIL_BINDING_TYPE__USERNAME = BASE_CAMEL_BINDING_FEATURE_COUNT + 2;
+
+    /**
+     * The feature id for the '<em><b>Password</b></em>' attribute.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int CAMEL_MAIL_BINDING_TYPE__PASSWORD = BASE_CAMEL_BINDING_FEATURE_COUNT + 3;
+
+    /**
+     * The feature id for the '<em><b>Connection Timeout</b></em>' attribute.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int CAMEL_MAIL_BINDING_TYPE__CONNECTION_TIMEOUT = BASE_CAMEL_BINDING_FEATURE_COUNT + 4;
+
+    /**
+     * The feature id for the '<em><b>Consume</b></em>' containment reference.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int CAMEL_MAIL_BINDING_TYPE__CONSUME = BASE_CAMEL_BINDING_FEATURE_COUNT + 5;
+
+    /**
+     * The feature id for the '<em><b>Produce</b></em>' containment reference.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int CAMEL_MAIL_BINDING_TYPE__PRODUCE = BASE_CAMEL_BINDING_FEATURE_COUNT + 6;
+
+    /**
+     * The feature id for the '<em><b>Secure</b></em>' attribute.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int CAMEL_MAIL_BINDING_TYPE__SECURE = BASE_CAMEL_BINDING_FEATURE_COUNT + 7;
+
+    /**
+     * The number of structural features of the '<em>Camel Mail Binding Type</em>' class.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int CAMEL_MAIL_BINDING_TYPE_FEATURE_COUNT = BASE_CAMEL_BINDING_FEATURE_COUNT + 8;
 
     /**
      * The feature id for the '<em><b>Mixed</b></em>' attribute list.
@@ -114,23 +461,13 @@ public interface MailPackage extends EPackage {
     int DOCUMENT_ROOT_FEATURE_COUNT = 4;
 
     /**
-     * The meta object id for the '{@link org.switchyard.tools.models.switchyard1_0.camel.mail.impl.CamelMailConsumerTypeImpl <em>Camel Mail Consumer Type</em>}' class.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @see org.switchyard.tools.models.switchyard1_0.camel.mail.impl.CamelMailConsumerTypeImpl
-     * @see org.switchyard.tools.models.switchyard1_0.camel.mail.impl.MailPackageImpl#getCamelMailConsumerType()
-     * @generated
-     */
-    int CAMEL_MAIL_CONSUMER_TYPE = 1;
-
-    /**
      * The feature id for the '<em><b>Initial Delay</b></em>' attribute.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @generated
      * @ordered
      */
-    int CAMEL_MAIL_CONSUMER_TYPE__INITIAL_DELAY = CamelPackage.SCHEDULED_BATCH_POLL_CONSUMER_TYPE__INITIAL_DELAY;
+    int CAMEL_MAIL_CONSUMER_TYPE__INITIAL_DELAY = 0;
 
     /**
      * The feature id for the '<em><b>Delay</b></em>' attribute.
@@ -139,7 +476,7 @@ public interface MailPackage extends EPackage {
      * @generated
      * @ordered
      */
-    int CAMEL_MAIL_CONSUMER_TYPE__DELAY = CamelPackage.SCHEDULED_BATCH_POLL_CONSUMER_TYPE__DELAY;
+    int CAMEL_MAIL_CONSUMER_TYPE__DELAY = 1;
 
     /**
      * The feature id for the '<em><b>Use Fixed Delay</b></em>' attribute.
@@ -148,7 +485,7 @@ public interface MailPackage extends EPackage {
      * @generated
      * @ordered
      */
-    int CAMEL_MAIL_CONSUMER_TYPE__USE_FIXED_DELAY = CamelPackage.SCHEDULED_BATCH_POLL_CONSUMER_TYPE__USE_FIXED_DELAY;
+    int CAMEL_MAIL_CONSUMER_TYPE__USE_FIXED_DELAY = 2;
 
     /**
      * The feature id for the '<em><b>Send Empty Message When Idle</b></em>' attribute.
@@ -157,7 +494,7 @@ public interface MailPackage extends EPackage {
      * @generated
      * @ordered
      */
-    int CAMEL_MAIL_CONSUMER_TYPE__SEND_EMPTY_MESSAGE_WHEN_IDLE = CamelPackage.SCHEDULED_BATCH_POLL_CONSUMER_TYPE__SEND_EMPTY_MESSAGE_WHEN_IDLE;
+    int CAMEL_MAIL_CONSUMER_TYPE__SEND_EMPTY_MESSAGE_WHEN_IDLE = 3;
 
     /**
      * The feature id for the '<em><b>Time Unit</b></em>' attribute.
@@ -166,7 +503,7 @@ public interface MailPackage extends EPackage {
      * @generated
      * @ordered
      */
-    int CAMEL_MAIL_CONSUMER_TYPE__TIME_UNIT = CamelPackage.SCHEDULED_BATCH_POLL_CONSUMER_TYPE__TIME_UNIT;
+    int CAMEL_MAIL_CONSUMER_TYPE__TIME_UNIT = 4;
 
     /**
      * The feature id for the '<em><b>Max Messages Per Poll</b></em>' attribute.
@@ -175,7 +512,7 @@ public interface MailPackage extends EPackage {
      * @generated
      * @ordered
      */
-    int CAMEL_MAIL_CONSUMER_TYPE__MAX_MESSAGES_PER_POLL = CamelPackage.SCHEDULED_BATCH_POLL_CONSUMER_TYPE__MAX_MESSAGES_PER_POLL;
+    int CAMEL_MAIL_CONSUMER_TYPE__MAX_MESSAGES_PER_POLL = 5;
 
     /**
      * The feature id for the '<em><b>Folder Name</b></em>' attribute.
@@ -184,7 +521,7 @@ public interface MailPackage extends EPackage {
      * @generated
      * @ordered
      */
-    int CAMEL_MAIL_CONSUMER_TYPE__FOLDER_NAME = CamelPackage.SCHEDULED_BATCH_POLL_CONSUMER_TYPE_FEATURE_COUNT + 0;
+    int CAMEL_MAIL_CONSUMER_TYPE__FOLDER_NAME = 6;
 
     /**
      * The feature id for the '<em><b>Fetch Size</b></em>' attribute.
@@ -193,7 +530,7 @@ public interface MailPackage extends EPackage {
      * @generated
      * @ordered
      */
-    int CAMEL_MAIL_CONSUMER_TYPE__FETCH_SIZE = CamelPackage.SCHEDULED_BATCH_POLL_CONSUMER_TYPE_FEATURE_COUNT + 1;
+    int CAMEL_MAIL_CONSUMER_TYPE__FETCH_SIZE = 7;
 
     /**
      * The feature id for the '<em><b>Unseen</b></em>' attribute.
@@ -202,7 +539,7 @@ public interface MailPackage extends EPackage {
      * @generated
      * @ordered
      */
-    int CAMEL_MAIL_CONSUMER_TYPE__UNSEEN = CamelPackage.SCHEDULED_BATCH_POLL_CONSUMER_TYPE_FEATURE_COUNT + 2;
+    int CAMEL_MAIL_CONSUMER_TYPE__UNSEEN = 8;
 
     /**
      * The feature id for the '<em><b>Delete</b></em>' attribute.
@@ -211,7 +548,7 @@ public interface MailPackage extends EPackage {
      * @generated
      * @ordered
      */
-    int CAMEL_MAIL_CONSUMER_TYPE__DELETE = CamelPackage.SCHEDULED_BATCH_POLL_CONSUMER_TYPE_FEATURE_COUNT + 3;
+    int CAMEL_MAIL_CONSUMER_TYPE__DELETE = 9;
 
     /**
      * The feature id for the '<em><b>Copy To</b></em>' attribute.
@@ -220,7 +557,7 @@ public interface MailPackage extends EPackage {
      * @generated
      * @ordered
      */
-    int CAMEL_MAIL_CONSUMER_TYPE__COPY_TO = CamelPackage.SCHEDULED_BATCH_POLL_CONSUMER_TYPE_FEATURE_COUNT + 4;
+    int CAMEL_MAIL_CONSUMER_TYPE__COPY_TO = 10;
 
     /**
      * The feature id for the '<em><b>Disconnect</b></em>' attribute.
@@ -229,7 +566,7 @@ public interface MailPackage extends EPackage {
      * @generated
      * @ordered
      */
-    int CAMEL_MAIL_CONSUMER_TYPE__DISCONNECT = CamelPackage.SCHEDULED_BATCH_POLL_CONSUMER_TYPE_FEATURE_COUNT + 5;
+    int CAMEL_MAIL_CONSUMER_TYPE__DISCONNECT = 11;
 
     /**
      * The feature id for the '<em><b>Account Type</b></em>' attribute.
@@ -238,7 +575,7 @@ public interface MailPackage extends EPackage {
      * @generated
      * @ordered
      */
-    int CAMEL_MAIL_CONSUMER_TYPE__ACCOUNT_TYPE = CamelPackage.SCHEDULED_BATCH_POLL_CONSUMER_TYPE_FEATURE_COUNT + 6;
+    int CAMEL_MAIL_CONSUMER_TYPE__ACCOUNT_TYPE = 12;
 
     /**
      * The number of structural features of the '<em>Camel Mail Consumer Type</em>' class.
@@ -247,17 +584,7 @@ public interface MailPackage extends EPackage {
      * @generated
      * @ordered
      */
-    int CAMEL_MAIL_CONSUMER_TYPE_FEATURE_COUNT = CamelPackage.SCHEDULED_BATCH_POLL_CONSUMER_TYPE_FEATURE_COUNT + 7;
-
-    /**
-     * The meta object id for the '{@link org.switchyard.tools.models.switchyard1_0.camel.mail.impl.CamelMailProducerTypeImpl <em>Camel Mail Producer Type</em>}' class.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @see org.switchyard.tools.models.switchyard1_0.camel.mail.impl.CamelMailProducerTypeImpl
-     * @see org.switchyard.tools.models.switchyard1_0.camel.mail.impl.MailPackageImpl#getCamelMailProducerType()
-     * @generated
-     */
-    int CAMEL_MAIL_PRODUCER_TYPE = 2;
+    int CAMEL_MAIL_CONSUMER_TYPE_FEATURE_COUNT = 13;
 
     /**
      * The feature id for the '<em><b>Subject</b></em>' attribute.
@@ -323,205 +650,6 @@ public interface MailPackage extends EPackage {
     int CAMEL_MAIL_PRODUCER_TYPE_FEATURE_COUNT = 6;
 
     /**
-     * The meta object id for the '{@link org.switchyard.tools.models.switchyard1_0.camel.mail.impl.CamelMailBindingTypeImpl <em>Camel Mail Binding Type</em>}' class.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @see org.switchyard.tools.models.switchyard1_0.camel.mail.impl.CamelMailBindingTypeImpl
-     * @see org.switchyard.tools.models.switchyard1_0.camel.mail.impl.MailPackageImpl#getCamelMailBindingType()
-     * @generated
-     */
-    int CAMEL_MAIL_BINDING_TYPE = 3;
-
-    /**
-     * The feature id for the '<em><b>Documentation</b></em>' containment reference list.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     * @ordered
-     */
-    int CAMEL_MAIL_BINDING_TYPE__DOCUMENTATION = CamelPackage.BASE_CAMEL_BINDING__DOCUMENTATION;
-
-    /**
-     * The feature id for the '<em><b>Any Attribute</b></em>' attribute list.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     * @ordered
-     */
-    int CAMEL_MAIL_BINDING_TYPE__ANY_ATTRIBUTE = CamelPackage.BASE_CAMEL_BINDING__ANY_ATTRIBUTE;
-
-    /**
-     * The feature id for the '<em><b>Wire Format Group</b></em>' attribute list.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     * @ordered
-     */
-    int CAMEL_MAIL_BINDING_TYPE__WIRE_FORMAT_GROUP = CamelPackage.BASE_CAMEL_BINDING__WIRE_FORMAT_GROUP;
-
-    /**
-     * The feature id for the '<em><b>Wire Format</b></em>' containment reference.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     * @ordered
-     */
-    int CAMEL_MAIL_BINDING_TYPE__WIRE_FORMAT = CamelPackage.BASE_CAMEL_BINDING__WIRE_FORMAT;
-
-    /**
-     * The feature id for the '<em><b>Operation Selector Group</b></em>' attribute list.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     * @ordered
-     */
-    int CAMEL_MAIL_BINDING_TYPE__OPERATION_SELECTOR_GROUP = CamelPackage.BASE_CAMEL_BINDING__OPERATION_SELECTOR_GROUP;
-
-    /**
-     * The feature id for the '<em><b>Operation Selector</b></em>' containment reference.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     * @ordered
-     */
-    int CAMEL_MAIL_BINDING_TYPE__OPERATION_SELECTOR = CamelPackage.BASE_CAMEL_BINDING__OPERATION_SELECTOR;
-
-    /**
-     * The feature id for the '<em><b>Name</b></em>' attribute.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     * @ordered
-     */
-    int CAMEL_MAIL_BINDING_TYPE__NAME = CamelPackage.BASE_CAMEL_BINDING__NAME;
-
-    /**
-     * The feature id for the '<em><b>Policy Sets</b></em>' attribute.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     * @ordered
-     */
-    int CAMEL_MAIL_BINDING_TYPE__POLICY_SETS = CamelPackage.BASE_CAMEL_BINDING__POLICY_SETS;
-
-    /**
-     * The feature id for the '<em><b>Requires</b></em>' attribute.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     * @ordered
-     */
-    int CAMEL_MAIL_BINDING_TYPE__REQUIRES = CamelPackage.BASE_CAMEL_BINDING__REQUIRES;
-
-    /**
-     * The feature id for the '<em><b>Uri</b></em>' attribute.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     * @ordered
-     */
-    int CAMEL_MAIL_BINDING_TYPE__URI = CamelPackage.BASE_CAMEL_BINDING__URI;
-
-    /**
-     * The feature id for the '<em><b>Context Mapper</b></em>' containment reference.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     * @ordered
-     */
-    int CAMEL_MAIL_BINDING_TYPE__CONTEXT_MAPPER = CamelPackage.BASE_CAMEL_BINDING__CONTEXT_MAPPER;
-
-    /**
-     * The feature id for the '<em><b>Message Composer</b></em>' containment reference.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     * @ordered
-     */
-    int CAMEL_MAIL_BINDING_TYPE__MESSAGE_COMPOSER = CamelPackage.BASE_CAMEL_BINDING__MESSAGE_COMPOSER;
-
-    /**
-     * The feature id for the '<em><b>Host</b></em>' attribute.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     * @ordered
-     */
-    int CAMEL_MAIL_BINDING_TYPE__HOST = CamelPackage.BASE_CAMEL_BINDING_FEATURE_COUNT + 0;
-
-    /**
-     * The feature id for the '<em><b>Port</b></em>' attribute.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     * @ordered
-     */
-    int CAMEL_MAIL_BINDING_TYPE__PORT = CamelPackage.BASE_CAMEL_BINDING_FEATURE_COUNT + 1;
-
-    /**
-     * The feature id for the '<em><b>Username</b></em>' attribute.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     * @ordered
-     */
-    int CAMEL_MAIL_BINDING_TYPE__USERNAME = CamelPackage.BASE_CAMEL_BINDING_FEATURE_COUNT + 2;
-
-    /**
-     * The feature id for the '<em><b>Password</b></em>' attribute.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     * @ordered
-     */
-    int CAMEL_MAIL_BINDING_TYPE__PASSWORD = CamelPackage.BASE_CAMEL_BINDING_FEATURE_COUNT + 3;
-
-    /**
-     * The feature id for the '<em><b>Connection Timeout</b></em>' attribute.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     * @ordered
-     */
-    int CAMEL_MAIL_BINDING_TYPE__CONNECTION_TIMEOUT = CamelPackage.BASE_CAMEL_BINDING_FEATURE_COUNT + 4;
-
-    /**
-     * The feature id for the '<em><b>Consume</b></em>' containment reference.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     * @ordered
-     */
-    int CAMEL_MAIL_BINDING_TYPE__CONSUME = CamelPackage.BASE_CAMEL_BINDING_FEATURE_COUNT + 5;
-
-    /**
-     * The feature id for the '<em><b>Produce</b></em>' containment reference.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     * @ordered
-     */
-    int CAMEL_MAIL_BINDING_TYPE__PRODUCE = CamelPackage.BASE_CAMEL_BINDING_FEATURE_COUNT + 6;
-
-    /**
-     * The feature id for the '<em><b>Secure</b></em>' attribute.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     * @ordered
-     */
-    int CAMEL_MAIL_BINDING_TYPE__SECURE = CamelPackage.BASE_CAMEL_BINDING_FEATURE_COUNT + 7;
-
-    /**
-     * The number of structural features of the '<em>Camel Mail Binding Type</em>' class.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     * @ordered
-     */
-    int CAMEL_MAIL_BINDING_TYPE_FEATURE_COUNT = CamelPackage.BASE_CAMEL_BINDING_FEATURE_COUNT + 8;
-
-    /**
      * The meta object id for the '{@link org.switchyard.tools.models.switchyard1_0.camel.mail.MailConsumerAccountType <em>Consumer Account Type</em>}' enum.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
@@ -529,8 +657,49 @@ public interface MailPackage extends EPackage {
      * @see org.switchyard.tools.models.switchyard1_0.camel.mail.impl.MailPackageImpl#getMailConsumerAccountType()
      * @generated
      */
-    int MAIL_CONSUMER_ACCOUNT_TYPE = 4;
+    int MAIL_CONSUMER_ACCOUNT_TYPE = 5;
 
+
+    /**
+     * The meta object id for the '{@link org.switchyard.tools.models.switchyard1_0.camel.mail.TimeUnitType <em>Time Unit Type</em>}' enum.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @see org.switchyard.tools.models.switchyard1_0.camel.mail.TimeUnitType
+     * @see org.switchyard.tools.models.switchyard1_0.camel.mail.impl.MailPackageImpl#getTimeUnitType()
+     * @generated
+     */
+    int TIME_UNIT_TYPE = 6;
+
+    /**
+     * The meta object id for the '<em>Consumer Account Type Object</em>' data type.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @see org.switchyard.tools.models.switchyard1_0.camel.mail.MailConsumerAccountType
+     * @see org.switchyard.tools.models.switchyard1_0.camel.mail.impl.MailPackageImpl#getMailConsumerAccountTypeObject()
+     * @generated
+     */
+    int MAIL_CONSUMER_ACCOUNT_TYPE_OBJECT = 7;
+
+    /**
+     * The meta object id for the '<em>Time Unit Type Object</em>' data type.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @see org.switchyard.tools.models.switchyard1_0.camel.mail.TimeUnitType
+     * @see org.switchyard.tools.models.switchyard1_0.camel.mail.impl.MailPackageImpl#getTimeUnitTypeObject()
+     * @generated
+     */
+    int TIME_UNIT_TYPE_OBJECT = 8;
+
+
+    /**
+     * Returns the meta object for class '{@link org.switchyard.tools.models.switchyard1_0.camel.mail.BaseCamelBinding <em>Base Camel Binding</em>}'.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @return the meta object for class '<em>Base Camel Binding</em>'.
+     * @see org.switchyard.tools.models.switchyard1_0.camel.mail.BaseCamelBinding
+     * @generated
+     */
+    EClass getBaseCamelBinding();
 
     /**
      * Returns the meta object for class '{@link org.switchyard.tools.models.switchyard1_0.camel.mail.DocumentRoot <em>Document Root</em>}'.
@@ -595,6 +764,72 @@ public interface MailPackage extends EPackage {
      * @generated
      */
     EClass getCamelMailConsumerType();
+
+    /**
+     * Returns the meta object for the attribute '{@link org.switchyard.tools.models.switchyard1_0.camel.mail.CamelMailConsumerType#getInitialDelay <em>Initial Delay</em>}'.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @return the meta object for the attribute '<em>Initial Delay</em>'.
+     * @see org.switchyard.tools.models.switchyard1_0.camel.mail.CamelMailConsumerType#getInitialDelay()
+     * @see #getCamelMailConsumerType()
+     * @generated
+     */
+    EAttribute getCamelMailConsumerType_InitialDelay();
+
+    /**
+     * Returns the meta object for the attribute '{@link org.switchyard.tools.models.switchyard1_0.camel.mail.CamelMailConsumerType#getDelay <em>Delay</em>}'.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @return the meta object for the attribute '<em>Delay</em>'.
+     * @see org.switchyard.tools.models.switchyard1_0.camel.mail.CamelMailConsumerType#getDelay()
+     * @see #getCamelMailConsumerType()
+     * @generated
+     */
+    EAttribute getCamelMailConsumerType_Delay();
+
+    /**
+     * Returns the meta object for the attribute '{@link org.switchyard.tools.models.switchyard1_0.camel.mail.CamelMailConsumerType#getUseFixedDelay <em>Use Fixed Delay</em>}'.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @return the meta object for the attribute '<em>Use Fixed Delay</em>'.
+     * @see org.switchyard.tools.models.switchyard1_0.camel.mail.CamelMailConsumerType#getUseFixedDelay()
+     * @see #getCamelMailConsumerType()
+     * @generated
+     */
+    EAttribute getCamelMailConsumerType_UseFixedDelay();
+
+    /**
+     * Returns the meta object for the attribute '{@link org.switchyard.tools.models.switchyard1_0.camel.mail.CamelMailConsumerType#getSendEmptyMessageWhenIdle <em>Send Empty Message When Idle</em>}'.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @return the meta object for the attribute '<em>Send Empty Message When Idle</em>'.
+     * @see org.switchyard.tools.models.switchyard1_0.camel.mail.CamelMailConsumerType#getSendEmptyMessageWhenIdle()
+     * @see #getCamelMailConsumerType()
+     * @generated
+     */
+    EAttribute getCamelMailConsumerType_SendEmptyMessageWhenIdle();
+
+    /**
+     * Returns the meta object for the attribute '{@link org.switchyard.tools.models.switchyard1_0.camel.mail.CamelMailConsumerType#getTimeUnit <em>Time Unit</em>}'.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @return the meta object for the attribute '<em>Time Unit</em>'.
+     * @see org.switchyard.tools.models.switchyard1_0.camel.mail.CamelMailConsumerType#getTimeUnit()
+     * @see #getCamelMailConsumerType()
+     * @generated
+     */
+    EAttribute getCamelMailConsumerType_TimeUnit();
+
+    /**
+     * Returns the meta object for the attribute '{@link org.switchyard.tools.models.switchyard1_0.camel.mail.CamelMailConsumerType#getMaxMessagesPerPoll <em>Max Messages Per Poll</em>}'.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @return the meta object for the attribute '<em>Max Messages Per Poll</em>'.
+     * @see org.switchyard.tools.models.switchyard1_0.camel.mail.CamelMailConsumerType#getMaxMessagesPerPoll()
+     * @see #getCamelMailConsumerType()
+     * @generated
+     */
+    EAttribute getCamelMailConsumerType_MaxMessagesPerPoll();
 
     /**
      * Returns the meta object for the attribute '{@link org.switchyard.tools.models.switchyard1_0.camel.mail.CamelMailConsumerType#getFolderName <em>Folder Name</em>}'.
@@ -858,6 +1093,40 @@ public interface MailPackage extends EPackage {
     EEnum getMailConsumerAccountType();
 
     /**
+     * Returns the meta object for enum '{@link org.switchyard.tools.models.switchyard1_0.camel.mail.TimeUnitType <em>Time Unit Type</em>}'.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @return the meta object for enum '<em>Time Unit Type</em>'.
+     * @see org.switchyard.tools.models.switchyard1_0.camel.mail.TimeUnitType
+     * @generated
+     */
+    EEnum getTimeUnitType();
+
+    /**
+     * Returns the meta object for data type '{@link org.switchyard.tools.models.switchyard1_0.camel.mail.MailConsumerAccountType <em>Consumer Account Type Object</em>}'.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @return the meta object for data type '<em>Consumer Account Type Object</em>'.
+     * @see org.switchyard.tools.models.switchyard1_0.camel.mail.MailConsumerAccountType
+     * @model instanceClass="org.switchyard.tools.models.switchyard1_0.camel.mail.MailConsumerAccountType"
+     *        extendedMetaData="name='MailConsumerAccountType:Object' baseType='MailConsumerAccountType'"
+     * @generated
+     */
+    EDataType getMailConsumerAccountTypeObject();
+
+    /**
+     * Returns the meta object for data type '{@link org.switchyard.tools.models.switchyard1_0.camel.mail.TimeUnitType <em>Time Unit Type Object</em>}'.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @return the meta object for data type '<em>Time Unit Type Object</em>'.
+     * @see org.switchyard.tools.models.switchyard1_0.camel.mail.TimeUnitType
+     * @model instanceClass="org.switchyard.tools.models.switchyard1_0.camel.mail.TimeUnitType"
+     *        extendedMetaData="name='timeUnit_._type:Object' baseType='timeUnit_._type'"
+     * @generated
+     */
+    EDataType getTimeUnitTypeObject();
+
+    /**
      * Returns the factory that creates the instances of the model.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
@@ -879,6 +1148,16 @@ public interface MailPackage extends EPackage {
      * @generated
      */
     interface Literals {
+        /**
+         * The meta object literal for the '{@link org.switchyard.tools.models.switchyard1_0.camel.mail.impl.BaseCamelBindingImpl <em>Base Camel Binding</em>}' class.
+         * <!-- begin-user-doc -->
+         * <!-- end-user-doc -->
+         * @see org.switchyard.tools.models.switchyard1_0.camel.mail.impl.BaseCamelBindingImpl
+         * @see org.switchyard.tools.models.switchyard1_0.camel.mail.impl.MailPackageImpl#getBaseCamelBinding()
+         * @generated
+         */
+        EClass BASE_CAMEL_BINDING = eINSTANCE.getBaseCamelBinding();
+
         /**
          * The meta object literal for the '{@link org.switchyard.tools.models.switchyard1_0.camel.mail.impl.DocumentRootImpl <em>Document Root</em>}' class.
          * <!-- begin-user-doc -->
@@ -930,6 +1209,54 @@ public interface MailPackage extends EPackage {
          * @generated
          */
         EClass CAMEL_MAIL_CONSUMER_TYPE = eINSTANCE.getCamelMailConsumerType();
+
+        /**
+         * The meta object literal for the '<em><b>Initial Delay</b></em>' attribute feature.
+         * <!-- begin-user-doc -->
+         * <!-- end-user-doc -->
+         * @generated
+         */
+        EAttribute CAMEL_MAIL_CONSUMER_TYPE__INITIAL_DELAY = eINSTANCE.getCamelMailConsumerType_InitialDelay();
+
+        /**
+         * The meta object literal for the '<em><b>Delay</b></em>' attribute feature.
+         * <!-- begin-user-doc -->
+         * <!-- end-user-doc -->
+         * @generated
+         */
+        EAttribute CAMEL_MAIL_CONSUMER_TYPE__DELAY = eINSTANCE.getCamelMailConsumerType_Delay();
+
+        /**
+         * The meta object literal for the '<em><b>Use Fixed Delay</b></em>' attribute feature.
+         * <!-- begin-user-doc -->
+         * <!-- end-user-doc -->
+         * @generated
+         */
+        EAttribute CAMEL_MAIL_CONSUMER_TYPE__USE_FIXED_DELAY = eINSTANCE.getCamelMailConsumerType_UseFixedDelay();
+
+        /**
+         * The meta object literal for the '<em><b>Send Empty Message When Idle</b></em>' attribute feature.
+         * <!-- begin-user-doc -->
+         * <!-- end-user-doc -->
+         * @generated
+         */
+        EAttribute CAMEL_MAIL_CONSUMER_TYPE__SEND_EMPTY_MESSAGE_WHEN_IDLE = eINSTANCE.getCamelMailConsumerType_SendEmptyMessageWhenIdle();
+
+        /**
+         * The meta object literal for the '<em><b>Time Unit</b></em>' attribute feature.
+         * <!-- begin-user-doc -->
+         * <!-- end-user-doc -->
+         * @generated
+         */
+        EAttribute CAMEL_MAIL_CONSUMER_TYPE__TIME_UNIT = eINSTANCE.getCamelMailConsumerType_TimeUnit();
+
+        /**
+         * The meta object literal for the '<em><b>Max Messages Per Poll</b></em>' attribute feature.
+         * <!-- begin-user-doc -->
+         * <!-- end-user-doc -->
+         * @generated
+         */
+        EAttribute CAMEL_MAIL_CONSUMER_TYPE__MAX_MESSAGES_PER_POLL = eINSTANCE.getCamelMailConsumerType_MaxMessagesPerPoll();
 
         /**
          * The meta object literal for the '<em><b>Folder Name</b></em>' attribute feature.
@@ -1128,6 +1455,36 @@ public interface MailPackage extends EPackage {
          * @generated
          */
         EEnum MAIL_CONSUMER_ACCOUNT_TYPE = eINSTANCE.getMailConsumerAccountType();
+
+        /**
+         * The meta object literal for the '{@link org.switchyard.tools.models.switchyard1_0.camel.mail.TimeUnitType <em>Time Unit Type</em>}' enum.
+         * <!-- begin-user-doc -->
+         * <!-- end-user-doc -->
+         * @see org.switchyard.tools.models.switchyard1_0.camel.mail.TimeUnitType
+         * @see org.switchyard.tools.models.switchyard1_0.camel.mail.impl.MailPackageImpl#getTimeUnitType()
+         * @generated
+         */
+        EEnum TIME_UNIT_TYPE = eINSTANCE.getTimeUnitType();
+
+        /**
+         * The meta object literal for the '<em>Consumer Account Type Object</em>' data type.
+         * <!-- begin-user-doc -->
+         * <!-- end-user-doc -->
+         * @see org.switchyard.tools.models.switchyard1_0.camel.mail.MailConsumerAccountType
+         * @see org.switchyard.tools.models.switchyard1_0.camel.mail.impl.MailPackageImpl#getMailConsumerAccountTypeObject()
+         * @generated
+         */
+        EDataType MAIL_CONSUMER_ACCOUNT_TYPE_OBJECT = eINSTANCE.getMailConsumerAccountTypeObject();
+
+        /**
+         * The meta object literal for the '<em>Time Unit Type Object</em>' data type.
+         * <!-- begin-user-doc -->
+         * <!-- end-user-doc -->
+         * @see org.switchyard.tools.models.switchyard1_0.camel.mail.TimeUnitType
+         * @see org.switchyard.tools.models.switchyard1_0.camel.mail.impl.MailPackageImpl#getTimeUnitTypeObject()
+         * @generated
+         */
+        EDataType TIME_UNIT_TYPE_OBJECT = eINSTANCE.getTimeUnitTypeObject();
 
     }
 

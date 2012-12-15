@@ -54,4 +54,5 @@
   <public publicId="http://camel.apache.org/schema/spring" uri="org/apache/camel/schema/spring/camel-spring.xsd" />
   <system systemId="http://camel.apache.org/schema/spring/camel-spring.xsd" uri="org/apache/camel/schema/spring/camel-spring.xsd" />
 
+   <system systemId="camel-common-v1.xsd" uri="org/switchyard/component/camel/common/model/v1/camel-common-v1.xsd" />
 </catalog>

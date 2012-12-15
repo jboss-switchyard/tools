@@ -20,8 +20,8 @@ import org.eclipse.soa.sca.sca1_1.model.sca.Binding;
 import org.eclipse.soa.sca.sca1_1.model.sca.Contract;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.widgets.Composite;
-import org.switchyard.tools.models.switchyard1_0.camel.CamelFactory;
-import org.switchyard.tools.models.switchyard1_0.camel.CamelFtpBindingType;
+import org.switchyard.tools.models.switchyard1_0.camel.ftp.CamelFtpBindingType;
+import org.switchyard.tools.models.switchyard1_0.camel.ftp.FtpFactory;
 
 /**
  * @author bfitzpat
@@ -31,7 +31,7 @@ public class CamelFTPBindingWizardPage extends WizardPage {
 
     private CamelFTPConsumerComposite _consumerComposite = null;
     private CamelFTPProducerComposite _producerComposite = null;
-    private CamelFtpBindingType _binding = CamelFactory.eINSTANCE.createCamelFtpBindingType();
+    private CamelFtpBindingType _binding = FtpFactory.eINSTANCE.createCamelFtpBindingType();
     private boolean _showConsumer;
     private Contract _targetContainer;
 
@@ -54,9 +54,9 @@ public class CamelFTPBindingWizardPage extends WizardPage {
         _showConsumer = showConsumer;
         if (_binding != null) {
             if (_showConsumer) {
-                _binding.setConsume(CamelFactory.eINSTANCE.createRemoteFileConsumerType());
+                _binding.setConsume(FtpFactory.eINSTANCE.createRemoteFileConsumerType());
             } else {
-                _binding.setProduce(CamelFactory.eINSTANCE.createRemoteFileProducerType());
+                _binding.setProduce(FtpFactory.eINSTANCE.createRemoteFileProducerType());
             }
         }
     }

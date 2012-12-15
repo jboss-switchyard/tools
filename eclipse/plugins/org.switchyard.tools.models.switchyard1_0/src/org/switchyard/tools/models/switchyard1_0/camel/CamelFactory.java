@@ -26,51 +26,33 @@ public interface CamelFactory extends EFactory {
 	CamelFactory eINSTANCE = org.switchyard.tools.models.switchyard1_0.camel.impl.CamelFactoryImpl.init();
 
 	/**
-     * Returns a new object of class '<em>Binding Type</em>'.
+     * Returns a new object of class '<em>Java DSL Type</em>'.
      * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-     * @return a new object of class '<em>Binding Type</em>'.
+     * <!-- end-user-doc -->
+     * @return a new object of class '<em>Java DSL Type</em>'.
      * @generated
      */
-	CamelBindingType createCamelBindingType();
+    JavaDSLType createJavaDSLType();
 
-	/**
-     * Returns a new object of class '<em>Direct Binding Type</em>'.
+    /**
+     * Returns a new object of class '<em>XMLDSL Type</em>'.
      * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-     * @return a new object of class '<em>Direct Binding Type</em>'.
+     * <!-- end-user-doc -->
+     * @return a new object of class '<em>XMLDSL Type</em>'.
      * @generated
      */
-	CamelDirectBindingType createCamelDirectBindingType();
+    XMLDSLType createXMLDSLType();
 
-	/**
-     * Returns a new object of class '<em>Mock Binding Type</em>'.
+    /**
+     * Returns a new object of class '<em>Implementation Type</em>'.
      * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-     * @return a new object of class '<em>Mock Binding Type</em>'.
+     * <!-- end-user-doc -->
+     * @return a new object of class '<em>Implementation Type</em>'.
      * @generated
      */
-	CamelMockBindingType createCamelMockBindingType();
+    CamelImplementationType createCamelImplementationType();
 
-	/**
-     * Returns a new object of class '<em>Seda Binding Type</em>'.
-     * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-     * @return a new object of class '<em>Seda Binding Type</em>'.
-     * @generated
-     */
-	CamelSedaBindingType createCamelSedaBindingType();
-
-	/**
-     * Returns a new object of class '<em>Timer Binding Type</em>'.
-     * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-     * @return a new object of class '<em>Timer Binding Type</em>'.
-     * @generated
-     */
-	CamelTimerBindingType createCamelTimerBindingType();
-
-	/**
+    /**
      * Returns a new object of class '<em>Document Root</em>'.
      * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -80,51 +62,6 @@ public interface CamelFactory extends EFactory {
 	DocumentRoot createDocumentRoot();
 
 	/**
-     * Returns a new object of class '<em>Scheduled Poll Consumer Type</em>'.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @return a new object of class '<em>Scheduled Poll Consumer Type</em>'.
-     * @generated
-     */
-    ScheduledPollConsumerType createScheduledPollConsumerType();
-
-    /**
-     * Returns a new object of class '<em>Scheduled Batch Poll Consumer Type</em>'.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @return a new object of class '<em>Scheduled Batch Poll Consumer Type</em>'.
-     * @generated
-     */
-    ScheduledBatchPollConsumerType createScheduledBatchPollConsumerType();
-
-    /**
-     * Returns a new object of class '<em>Generic File Consumer Type</em>'.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @return a new object of class '<em>Generic File Consumer Type</em>'.
-     * @generated
-     */
-    GenericFileConsumerType createGenericFileConsumerType();
-
-    /**
-     * Returns a new object of class '<em>Generic File Producer Type</em>'.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @return a new object of class '<em>Generic File Producer Type</em>'.
-     * @generated
-     */
-    GenericFileProducerType createGenericFileProducerType();
-
-    /**
-     * Returns a new object of class '<em>Jms Binding Type</em>'.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @return a new object of class '<em>Jms Binding Type</em>'.
-     * @generated
-     */
-    JmsBindingType createJmsBindingType();
-
-    /**
      * Returns the package supported by this factory.
      * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->

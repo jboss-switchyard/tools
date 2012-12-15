@@ -4,10 +4,12 @@ package org.switchyard.tools.models.switchyard1_0.camel.atom;
 
 import org.eclipse.emf.ecore.EAttribute;
 import org.eclipse.emf.ecore.EClass;
+import org.eclipse.emf.ecore.EDataType;
+import org.eclipse.emf.ecore.EEnum;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.EReference;
-
-import org.switchyard.tools.models.switchyard1_0.camel.core.CamelPackage;
+import org.switchyard.tools.models.switchyard1_0.switchyard.SwitchyardPackage;
+import org.switchyard.tools.models.switchyard1_0.camel.core.CorePackage;
 
 /**
  * <!-- begin-user-doc -->
@@ -58,14 +60,14 @@ public interface AtomPackage extends EPackage {
     AtomPackage eINSTANCE = org.switchyard.tools.models.switchyard1_0.camel.atom.impl.AtomPackageImpl.init();
 
     /**
-     * The meta object id for the '{@link org.switchyard.tools.models.switchyard1_0.camel.atom.impl.CamelAtomBindingTypeImpl <em>Camel Atom Binding Type</em>}' class.
+     * The meta object id for the '{@link org.switchyard.tools.models.switchyard1_0.camel.atom.impl.BaseCamelBindingImpl <em>Base Camel Binding</em>}' class.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @see org.switchyard.tools.models.switchyard1_0.camel.atom.impl.CamelAtomBindingTypeImpl
-     * @see org.switchyard.tools.models.switchyard1_0.camel.atom.impl.AtomPackageImpl#getCamelAtomBindingType()
+     * @see org.switchyard.tools.models.switchyard1_0.camel.atom.impl.BaseCamelBindingImpl
+     * @see org.switchyard.tools.models.switchyard1_0.camel.atom.impl.AtomPackageImpl#getBaseCamelBinding()
      * @generated
      */
-    int CAMEL_ATOM_BINDING_TYPE = 0;
+    int BASE_CAMEL_BINDING = 0;
 
     /**
      * The feature id for the '<em><b>Documentation</b></em>' containment reference list.
@@ -74,7 +76,7 @@ public interface AtomPackage extends EPackage {
      * @generated
      * @ordered
      */
-    int CAMEL_ATOM_BINDING_TYPE__DOCUMENTATION = CamelPackage.BASE_CAMEL_BINDING__DOCUMENTATION;
+    int BASE_CAMEL_BINDING__DOCUMENTATION = SwitchyardPackage.SWITCH_YARD_BINDING_TYPE__DOCUMENTATION;
 
     /**
      * The feature id for the '<em><b>Any Attribute</b></em>' attribute list.
@@ -83,7 +85,7 @@ public interface AtomPackage extends EPackage {
      * @generated
      * @ordered
      */
-    int CAMEL_ATOM_BINDING_TYPE__ANY_ATTRIBUTE = CamelPackage.BASE_CAMEL_BINDING__ANY_ATTRIBUTE;
+    int BASE_CAMEL_BINDING__ANY_ATTRIBUTE = SwitchyardPackage.SWITCH_YARD_BINDING_TYPE__ANY_ATTRIBUTE;
 
     /**
      * The feature id for the '<em><b>Wire Format Group</b></em>' attribute list.
@@ -92,7 +94,7 @@ public interface AtomPackage extends EPackage {
      * @generated
      * @ordered
      */
-    int CAMEL_ATOM_BINDING_TYPE__WIRE_FORMAT_GROUP = CamelPackage.BASE_CAMEL_BINDING__WIRE_FORMAT_GROUP;
+    int BASE_CAMEL_BINDING__WIRE_FORMAT_GROUP = SwitchyardPackage.SWITCH_YARD_BINDING_TYPE__WIRE_FORMAT_GROUP;
 
     /**
      * The feature id for the '<em><b>Wire Format</b></em>' containment reference.
@@ -101,7 +103,7 @@ public interface AtomPackage extends EPackage {
      * @generated
      * @ordered
      */
-    int CAMEL_ATOM_BINDING_TYPE__WIRE_FORMAT = CamelPackage.BASE_CAMEL_BINDING__WIRE_FORMAT;
+    int BASE_CAMEL_BINDING__WIRE_FORMAT = SwitchyardPackage.SWITCH_YARD_BINDING_TYPE__WIRE_FORMAT;
 
     /**
      * The feature id for the '<em><b>Operation Selector Group</b></em>' attribute list.
@@ -110,7 +112,7 @@ public interface AtomPackage extends EPackage {
      * @generated
      * @ordered
      */
-    int CAMEL_ATOM_BINDING_TYPE__OPERATION_SELECTOR_GROUP = CamelPackage.BASE_CAMEL_BINDING__OPERATION_SELECTOR_GROUP;
+    int BASE_CAMEL_BINDING__OPERATION_SELECTOR_GROUP = SwitchyardPackage.SWITCH_YARD_BINDING_TYPE__OPERATION_SELECTOR_GROUP;
 
     /**
      * The feature id for the '<em><b>Operation Selector</b></em>' containment reference.
@@ -119,7 +121,7 @@ public interface AtomPackage extends EPackage {
      * @generated
      * @ordered
      */
-    int CAMEL_ATOM_BINDING_TYPE__OPERATION_SELECTOR = CamelPackage.BASE_CAMEL_BINDING__OPERATION_SELECTOR;
+    int BASE_CAMEL_BINDING__OPERATION_SELECTOR = SwitchyardPackage.SWITCH_YARD_BINDING_TYPE__OPERATION_SELECTOR;
 
     /**
      * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -128,7 +130,7 @@ public interface AtomPackage extends EPackage {
      * @generated
      * @ordered
      */
-    int CAMEL_ATOM_BINDING_TYPE__NAME = CamelPackage.BASE_CAMEL_BINDING__NAME;
+    int BASE_CAMEL_BINDING__NAME = SwitchyardPackage.SWITCH_YARD_BINDING_TYPE__NAME;
 
     /**
      * The feature id for the '<em><b>Policy Sets</b></em>' attribute.
@@ -137,7 +139,7 @@ public interface AtomPackage extends EPackage {
      * @generated
      * @ordered
      */
-    int CAMEL_ATOM_BINDING_TYPE__POLICY_SETS = CamelPackage.BASE_CAMEL_BINDING__POLICY_SETS;
+    int BASE_CAMEL_BINDING__POLICY_SETS = SwitchyardPackage.SWITCH_YARD_BINDING_TYPE__POLICY_SETS;
 
     /**
      * The feature id for the '<em><b>Requires</b></em>' attribute.
@@ -146,7 +148,7 @@ public interface AtomPackage extends EPackage {
      * @generated
      * @ordered
      */
-    int CAMEL_ATOM_BINDING_TYPE__REQUIRES = CamelPackage.BASE_CAMEL_BINDING__REQUIRES;
+    int BASE_CAMEL_BINDING__REQUIRES = SwitchyardPackage.SWITCH_YARD_BINDING_TYPE__REQUIRES;
 
     /**
      * The feature id for the '<em><b>Uri</b></em>' attribute.
@@ -155,7 +157,7 @@ public interface AtomPackage extends EPackage {
      * @generated
      * @ordered
      */
-    int CAMEL_ATOM_BINDING_TYPE__URI = CamelPackage.BASE_CAMEL_BINDING__URI;
+    int BASE_CAMEL_BINDING__URI = SwitchyardPackage.SWITCH_YARD_BINDING_TYPE__URI;
 
     /**
      * The feature id for the '<em><b>Context Mapper</b></em>' containment reference.
@@ -164,7 +166,7 @@ public interface AtomPackage extends EPackage {
      * @generated
      * @ordered
      */
-    int CAMEL_ATOM_BINDING_TYPE__CONTEXT_MAPPER = CamelPackage.BASE_CAMEL_BINDING__CONTEXT_MAPPER;
+    int BASE_CAMEL_BINDING__CONTEXT_MAPPER = SwitchyardPackage.SWITCH_YARD_BINDING_TYPE__CONTEXT_MAPPER;
 
     /**
      * The feature id for the '<em><b>Message Composer</b></em>' containment reference.
@@ -173,7 +175,134 @@ public interface AtomPackage extends EPackage {
      * @generated
      * @ordered
      */
-    int CAMEL_ATOM_BINDING_TYPE__MESSAGE_COMPOSER = CamelPackage.BASE_CAMEL_BINDING__MESSAGE_COMPOSER;
+    int BASE_CAMEL_BINDING__MESSAGE_COMPOSER = SwitchyardPackage.SWITCH_YARD_BINDING_TYPE__MESSAGE_COMPOSER;
+
+    /**
+     * The number of structural features of the '<em>Base Camel Binding</em>' class.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int BASE_CAMEL_BINDING_FEATURE_COUNT = SwitchyardPackage.SWITCH_YARD_BINDING_TYPE_FEATURE_COUNT + 0;
+
+    /**
+     * The meta object id for the '{@link org.switchyard.tools.models.switchyard1_0.camel.atom.impl.CamelAtomBindingTypeImpl <em>Camel Atom Binding Type</em>}' class.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @see org.switchyard.tools.models.switchyard1_0.camel.atom.impl.CamelAtomBindingTypeImpl
+     * @see org.switchyard.tools.models.switchyard1_0.camel.atom.impl.AtomPackageImpl#getCamelAtomBindingType()
+     * @generated
+     */
+    int CAMEL_ATOM_BINDING_TYPE = 1;
+
+    /**
+     * The feature id for the '<em><b>Documentation</b></em>' containment reference list.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int CAMEL_ATOM_BINDING_TYPE__DOCUMENTATION = BASE_CAMEL_BINDING__DOCUMENTATION;
+
+    /**
+     * The feature id for the '<em><b>Any Attribute</b></em>' attribute list.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int CAMEL_ATOM_BINDING_TYPE__ANY_ATTRIBUTE = BASE_CAMEL_BINDING__ANY_ATTRIBUTE;
+
+    /**
+     * The feature id for the '<em><b>Wire Format Group</b></em>' attribute list.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int CAMEL_ATOM_BINDING_TYPE__WIRE_FORMAT_GROUP = BASE_CAMEL_BINDING__WIRE_FORMAT_GROUP;
+
+    /**
+     * The feature id for the '<em><b>Wire Format</b></em>' containment reference.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int CAMEL_ATOM_BINDING_TYPE__WIRE_FORMAT = BASE_CAMEL_BINDING__WIRE_FORMAT;
+
+    /**
+     * The feature id for the '<em><b>Operation Selector Group</b></em>' attribute list.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int CAMEL_ATOM_BINDING_TYPE__OPERATION_SELECTOR_GROUP = BASE_CAMEL_BINDING__OPERATION_SELECTOR_GROUP;
+
+    /**
+     * The feature id for the '<em><b>Operation Selector</b></em>' containment reference.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int CAMEL_ATOM_BINDING_TYPE__OPERATION_SELECTOR = BASE_CAMEL_BINDING__OPERATION_SELECTOR;
+
+    /**
+     * The feature id for the '<em><b>Name</b></em>' attribute.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int CAMEL_ATOM_BINDING_TYPE__NAME = BASE_CAMEL_BINDING__NAME;
+
+    /**
+     * The feature id for the '<em><b>Policy Sets</b></em>' attribute.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int CAMEL_ATOM_BINDING_TYPE__POLICY_SETS = BASE_CAMEL_BINDING__POLICY_SETS;
+
+    /**
+     * The feature id for the '<em><b>Requires</b></em>' attribute.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int CAMEL_ATOM_BINDING_TYPE__REQUIRES = BASE_CAMEL_BINDING__REQUIRES;
+
+    /**
+     * The feature id for the '<em><b>Uri</b></em>' attribute.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int CAMEL_ATOM_BINDING_TYPE__URI = BASE_CAMEL_BINDING__URI;
+
+    /**
+     * The feature id for the '<em><b>Context Mapper</b></em>' containment reference.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int CAMEL_ATOM_BINDING_TYPE__CONTEXT_MAPPER = BASE_CAMEL_BINDING__CONTEXT_MAPPER;
+
+    /**
+     * The feature id for the '<em><b>Message Composer</b></em>' containment reference.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int CAMEL_ATOM_BINDING_TYPE__MESSAGE_COMPOSER = BASE_CAMEL_BINDING__MESSAGE_COMPOSER;
 
     /**
      * The feature id for the '<em><b>Feed URI</b></em>' attribute.
@@ -182,7 +311,7 @@ public interface AtomPackage extends EPackage {
      * @generated
      * @ordered
      */
-    int CAMEL_ATOM_BINDING_TYPE__FEED_URI = CamelPackage.BASE_CAMEL_BINDING_FEATURE_COUNT + 0;
+    int CAMEL_ATOM_BINDING_TYPE__FEED_URI = BASE_CAMEL_BINDING_FEATURE_COUNT + 0;
 
     /**
      * The feature id for the '<em><b>Split Entries</b></em>' attribute.
@@ -191,7 +320,7 @@ public interface AtomPackage extends EPackage {
      * @generated
      * @ordered
      */
-    int CAMEL_ATOM_BINDING_TYPE__SPLIT_ENTRIES = CamelPackage.BASE_CAMEL_BINDING_FEATURE_COUNT + 1;
+    int CAMEL_ATOM_BINDING_TYPE__SPLIT_ENTRIES = BASE_CAMEL_BINDING_FEATURE_COUNT + 1;
 
     /**
      * The feature id for the '<em><b>Filter</b></em>' attribute.
@@ -200,7 +329,7 @@ public interface AtomPackage extends EPackage {
      * @generated
      * @ordered
      */
-    int CAMEL_ATOM_BINDING_TYPE__FILTER = CamelPackage.BASE_CAMEL_BINDING_FEATURE_COUNT + 2;
+    int CAMEL_ATOM_BINDING_TYPE__FILTER = BASE_CAMEL_BINDING_FEATURE_COUNT + 2;
 
     /**
      * The feature id for the '<em><b>Last Update</b></em>' attribute.
@@ -209,7 +338,7 @@ public interface AtomPackage extends EPackage {
      * @generated
      * @ordered
      */
-    int CAMEL_ATOM_BINDING_TYPE__LAST_UPDATE = CamelPackage.BASE_CAMEL_BINDING_FEATURE_COUNT + 3;
+    int CAMEL_ATOM_BINDING_TYPE__LAST_UPDATE = BASE_CAMEL_BINDING_FEATURE_COUNT + 3;
 
     /**
      * The feature id for the '<em><b>Throttle Entries</b></em>' attribute.
@@ -218,7 +347,7 @@ public interface AtomPackage extends EPackage {
      * @generated
      * @ordered
      */
-    int CAMEL_ATOM_BINDING_TYPE__THROTTLE_ENTRIES = CamelPackage.BASE_CAMEL_BINDING_FEATURE_COUNT + 4;
+    int CAMEL_ATOM_BINDING_TYPE__THROTTLE_ENTRIES = BASE_CAMEL_BINDING_FEATURE_COUNT + 4;
 
     /**
      * The feature id for the '<em><b>Feed Header</b></em>' attribute.
@@ -227,7 +356,7 @@ public interface AtomPackage extends EPackage {
      * @generated
      * @ordered
      */
-    int CAMEL_ATOM_BINDING_TYPE__FEED_HEADER = CamelPackage.BASE_CAMEL_BINDING_FEATURE_COUNT + 5;
+    int CAMEL_ATOM_BINDING_TYPE__FEED_HEADER = BASE_CAMEL_BINDING_FEATURE_COUNT + 5;
 
     /**
      * The feature id for the '<em><b>Sort Entries</b></em>' attribute.
@@ -236,7 +365,7 @@ public interface AtomPackage extends EPackage {
      * @generated
      * @ordered
      */
-    int CAMEL_ATOM_BINDING_TYPE__SORT_ENTRIES = CamelPackage.BASE_CAMEL_BINDING_FEATURE_COUNT + 6;
+    int CAMEL_ATOM_BINDING_TYPE__SORT_ENTRIES = BASE_CAMEL_BINDING_FEATURE_COUNT + 6;
 
     /**
      * The feature id for the '<em><b>Consume</b></em>' containment reference.
@@ -245,7 +374,7 @@ public interface AtomPackage extends EPackage {
      * @generated
      * @ordered
      */
-    int CAMEL_ATOM_BINDING_TYPE__CONSUME = CamelPackage.BASE_CAMEL_BINDING_FEATURE_COUNT + 7;
+    int CAMEL_ATOM_BINDING_TYPE__CONSUME = BASE_CAMEL_BINDING_FEATURE_COUNT + 7;
 
     /**
      * The number of structural features of the '<em>Camel Atom Binding Type</em>' class.
@@ -254,7 +383,7 @@ public interface AtomPackage extends EPackage {
      * @generated
      * @ordered
      */
-    int CAMEL_ATOM_BINDING_TYPE_FEATURE_COUNT = CamelPackage.BASE_CAMEL_BINDING_FEATURE_COUNT + 8;
+    int CAMEL_ATOM_BINDING_TYPE_FEATURE_COUNT = BASE_CAMEL_BINDING_FEATURE_COUNT + 8;
 
     /**
      * The meta object id for the '{@link org.switchyard.tools.models.switchyard1_0.camel.atom.impl.AtomScheduledPollConsumerTypeImpl <em>Scheduled Poll Consumer Type</em>}' class.
@@ -264,7 +393,7 @@ public interface AtomPackage extends EPackage {
      * @see org.switchyard.tools.models.switchyard1_0.camel.atom.impl.AtomPackageImpl#getAtomScheduledPollConsumerType()
      * @generated
      */
-    int ATOM_SCHEDULED_POLL_CONSUMER_TYPE = 1;
+    int ATOM_SCHEDULED_POLL_CONSUMER_TYPE = 2;
 
     /**
      * The feature id for the '<em><b>Initial Delay</b></em>' attribute.
@@ -273,7 +402,7 @@ public interface AtomPackage extends EPackage {
      * @generated
      * @ordered
      */
-    int ATOM_SCHEDULED_POLL_CONSUMER_TYPE__INITIAL_DELAY = CamelPackage.SCHEDULED_POLL_CONSUMER_TYPE__INITIAL_DELAY;
+    int ATOM_SCHEDULED_POLL_CONSUMER_TYPE__INITIAL_DELAY = 0;
 
     /**
      * The feature id for the '<em><b>Delay</b></em>' attribute.
@@ -282,7 +411,7 @@ public interface AtomPackage extends EPackage {
      * @generated
      * @ordered
      */
-    int ATOM_SCHEDULED_POLL_CONSUMER_TYPE__DELAY = CamelPackage.SCHEDULED_POLL_CONSUMER_TYPE__DELAY;
+    int ATOM_SCHEDULED_POLL_CONSUMER_TYPE__DELAY = 1;
 
     /**
      * The feature id for the '<em><b>Use Fixed Delay</b></em>' attribute.
@@ -291,7 +420,7 @@ public interface AtomPackage extends EPackage {
      * @generated
      * @ordered
      */
-    int ATOM_SCHEDULED_POLL_CONSUMER_TYPE__USE_FIXED_DELAY = CamelPackage.SCHEDULED_POLL_CONSUMER_TYPE__USE_FIXED_DELAY;
+    int ATOM_SCHEDULED_POLL_CONSUMER_TYPE__USE_FIXED_DELAY = 2;
 
     /**
      * The feature id for the '<em><b>Send Empty Message When Idle</b></em>' attribute.
@@ -300,7 +429,7 @@ public interface AtomPackage extends EPackage {
      * @generated
      * @ordered
      */
-    int ATOM_SCHEDULED_POLL_CONSUMER_TYPE__SEND_EMPTY_MESSAGE_WHEN_IDLE = CamelPackage.SCHEDULED_POLL_CONSUMER_TYPE__SEND_EMPTY_MESSAGE_WHEN_IDLE;
+    int ATOM_SCHEDULED_POLL_CONSUMER_TYPE__SEND_EMPTY_MESSAGE_WHEN_IDLE = 3;
 
     /**
      * The feature id for the '<em><b>Time Unit</b></em>' attribute.
@@ -309,7 +438,7 @@ public interface AtomPackage extends EPackage {
      * @generated
      * @ordered
      */
-    int ATOM_SCHEDULED_POLL_CONSUMER_TYPE__TIME_UNIT = CamelPackage.SCHEDULED_POLL_CONSUMER_TYPE__TIME_UNIT;
+    int ATOM_SCHEDULED_POLL_CONSUMER_TYPE__TIME_UNIT = 4;
 
     /**
      * The number of structural features of the '<em>Scheduled Poll Consumer Type</em>' class.
@@ -318,7 +447,7 @@ public interface AtomPackage extends EPackage {
      * @generated
      * @ordered
      */
-    int ATOM_SCHEDULED_POLL_CONSUMER_TYPE_FEATURE_COUNT = CamelPackage.SCHEDULED_POLL_CONSUMER_TYPE_FEATURE_COUNT + 0;
+    int ATOM_SCHEDULED_POLL_CONSUMER_TYPE_FEATURE_COUNT = 5;
 
     /**
      * The meta object id for the '{@link org.switchyard.tools.models.switchyard1_0.camel.atom.impl.DocumentRootImpl <em>Document Root</em>}' class.
@@ -328,7 +457,7 @@ public interface AtomPackage extends EPackage {
      * @see org.switchyard.tools.models.switchyard1_0.camel.atom.impl.AtomPackageImpl#getDocumentRoot()
      * @generated
      */
-    int DOCUMENT_ROOT = 2;
+    int DOCUMENT_ROOT = 3;
 
     /**
      * The feature id for the '<em><b>Mixed</b></em>' attribute list.
@@ -375,6 +504,37 @@ public interface AtomPackage extends EPackage {
      */
     int DOCUMENT_ROOT_FEATURE_COUNT = 4;
 
+
+    /**
+     * The meta object id for the '{@link org.switchyard.tools.models.switchyard1_0.camel.atom.TimeUnitType <em>Time Unit Type</em>}' enum.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @see org.switchyard.tools.models.switchyard1_0.camel.atom.TimeUnitType
+     * @see org.switchyard.tools.models.switchyard1_0.camel.atom.impl.AtomPackageImpl#getTimeUnitType()
+     * @generated
+     */
+    int TIME_UNIT_TYPE = 4;
+
+    /**
+     * The meta object id for the '<em>Time Unit Type Object</em>' data type.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @see org.switchyard.tools.models.switchyard1_0.camel.atom.TimeUnitType
+     * @see org.switchyard.tools.models.switchyard1_0.camel.atom.impl.AtomPackageImpl#getTimeUnitTypeObject()
+     * @generated
+     */
+    int TIME_UNIT_TYPE_OBJECT = 5;
+
+
+    /**
+     * Returns the meta object for class '{@link org.switchyard.tools.models.switchyard1_0.camel.atom.BaseCamelBinding <em>Base Camel Binding</em>}'.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @return the meta object for class '<em>Base Camel Binding</em>'.
+     * @see org.switchyard.tools.models.switchyard1_0.camel.atom.BaseCamelBinding
+     * @generated
+     */
+    EClass getBaseCamelBinding();
 
     /**
      * Returns the meta object for class '{@link org.switchyard.tools.models.switchyard1_0.camel.atom.CamelAtomBindingType <em>Camel Atom Binding Type</em>}'.
@@ -485,6 +645,61 @@ public interface AtomPackage extends EPackage {
     EClass getAtomScheduledPollConsumerType();
 
     /**
+     * Returns the meta object for the attribute '{@link org.switchyard.tools.models.switchyard1_0.camel.atom.AtomScheduledPollConsumerType#getInitialDelay <em>Initial Delay</em>}'.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @return the meta object for the attribute '<em>Initial Delay</em>'.
+     * @see org.switchyard.tools.models.switchyard1_0.camel.atom.AtomScheduledPollConsumerType#getInitialDelay()
+     * @see #getAtomScheduledPollConsumerType()
+     * @generated
+     */
+    EAttribute getAtomScheduledPollConsumerType_InitialDelay();
+
+    /**
+     * Returns the meta object for the attribute '{@link org.switchyard.tools.models.switchyard1_0.camel.atom.AtomScheduledPollConsumerType#getDelay <em>Delay</em>}'.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @return the meta object for the attribute '<em>Delay</em>'.
+     * @see org.switchyard.tools.models.switchyard1_0.camel.atom.AtomScheduledPollConsumerType#getDelay()
+     * @see #getAtomScheduledPollConsumerType()
+     * @generated
+     */
+    EAttribute getAtomScheduledPollConsumerType_Delay();
+
+    /**
+     * Returns the meta object for the attribute '{@link org.switchyard.tools.models.switchyard1_0.camel.atom.AtomScheduledPollConsumerType#getUseFixedDelay <em>Use Fixed Delay</em>}'.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @return the meta object for the attribute '<em>Use Fixed Delay</em>'.
+     * @see org.switchyard.tools.models.switchyard1_0.camel.atom.AtomScheduledPollConsumerType#getUseFixedDelay()
+     * @see #getAtomScheduledPollConsumerType()
+     * @generated
+     */
+    EAttribute getAtomScheduledPollConsumerType_UseFixedDelay();
+
+    /**
+     * Returns the meta object for the attribute '{@link org.switchyard.tools.models.switchyard1_0.camel.atom.AtomScheduledPollConsumerType#getSendEmptyMessageWhenIdle <em>Send Empty Message When Idle</em>}'.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @return the meta object for the attribute '<em>Send Empty Message When Idle</em>'.
+     * @see org.switchyard.tools.models.switchyard1_0.camel.atom.AtomScheduledPollConsumerType#getSendEmptyMessageWhenIdle()
+     * @see #getAtomScheduledPollConsumerType()
+     * @generated
+     */
+    EAttribute getAtomScheduledPollConsumerType_SendEmptyMessageWhenIdle();
+
+    /**
+     * Returns the meta object for the attribute '{@link org.switchyard.tools.models.switchyard1_0.camel.atom.AtomScheduledPollConsumerType#getTimeUnit <em>Time Unit</em>}'.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @return the meta object for the attribute '<em>Time Unit</em>'.
+     * @see org.switchyard.tools.models.switchyard1_0.camel.atom.AtomScheduledPollConsumerType#getTimeUnit()
+     * @see #getAtomScheduledPollConsumerType()
+     * @generated
+     */
+    EAttribute getAtomScheduledPollConsumerType_TimeUnit();
+
+    /**
      * Returns the meta object for class '{@link org.switchyard.tools.models.switchyard1_0.camel.atom.DocumentRoot <em>Document Root</em>}'.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
@@ -539,6 +754,28 @@ public interface AtomPackage extends EPackage {
     EReference getDocumentRoot_BindingAtom();
 
     /**
+     * Returns the meta object for enum '{@link org.switchyard.tools.models.switchyard1_0.camel.atom.TimeUnitType <em>Time Unit Type</em>}'.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @return the meta object for enum '<em>Time Unit Type</em>'.
+     * @see org.switchyard.tools.models.switchyard1_0.camel.atom.TimeUnitType
+     * @generated
+     */
+    EEnum getTimeUnitType();
+
+    /**
+     * Returns the meta object for data type '{@link org.switchyard.tools.models.switchyard1_0.camel.atom.TimeUnitType <em>Time Unit Type Object</em>}'.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @return the meta object for data type '<em>Time Unit Type Object</em>'.
+     * @see org.switchyard.tools.models.switchyard1_0.camel.atom.TimeUnitType
+     * @model instanceClass="org.switchyard.tools.models.switchyard1_0.camel.atom.TimeUnitType"
+     *        extendedMetaData="name='timeUnit_._type:Object' baseType='timeUnit_._type'"
+     * @generated
+     */
+    EDataType getTimeUnitTypeObject();
+
+    /**
      * Returns the factory that creates the instances of the model.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
@@ -560,6 +797,16 @@ public interface AtomPackage extends EPackage {
      * @generated
      */
     interface Literals {
+        /**
+         * The meta object literal for the '{@link org.switchyard.tools.models.switchyard1_0.camel.atom.impl.BaseCamelBindingImpl <em>Base Camel Binding</em>}' class.
+         * <!-- begin-user-doc -->
+         * <!-- end-user-doc -->
+         * @see org.switchyard.tools.models.switchyard1_0.camel.atom.impl.BaseCamelBindingImpl
+         * @see org.switchyard.tools.models.switchyard1_0.camel.atom.impl.AtomPackageImpl#getBaseCamelBinding()
+         * @generated
+         */
+        EClass BASE_CAMEL_BINDING = eINSTANCE.getBaseCamelBinding();
+
         /**
          * The meta object literal for the '{@link org.switchyard.tools.models.switchyard1_0.camel.atom.impl.CamelAtomBindingTypeImpl <em>Camel Atom Binding Type</em>}' class.
          * <!-- begin-user-doc -->
@@ -645,6 +892,46 @@ public interface AtomPackage extends EPackage {
         EClass ATOM_SCHEDULED_POLL_CONSUMER_TYPE = eINSTANCE.getAtomScheduledPollConsumerType();
 
         /**
+         * The meta object literal for the '<em><b>Initial Delay</b></em>' attribute feature.
+         * <!-- begin-user-doc -->
+         * <!-- end-user-doc -->
+         * @generated
+         */
+        EAttribute ATOM_SCHEDULED_POLL_CONSUMER_TYPE__INITIAL_DELAY = eINSTANCE.getAtomScheduledPollConsumerType_InitialDelay();
+
+        /**
+         * The meta object literal for the '<em><b>Delay</b></em>' attribute feature.
+         * <!-- begin-user-doc -->
+         * <!-- end-user-doc -->
+         * @generated
+         */
+        EAttribute ATOM_SCHEDULED_POLL_CONSUMER_TYPE__DELAY = eINSTANCE.getAtomScheduledPollConsumerType_Delay();
+
+        /**
+         * The meta object literal for the '<em><b>Use Fixed Delay</b></em>' attribute feature.
+         * <!-- begin-user-doc -->
+         * <!-- end-user-doc -->
+         * @generated
+         */
+        EAttribute ATOM_SCHEDULED_POLL_CONSUMER_TYPE__USE_FIXED_DELAY = eINSTANCE.getAtomScheduledPollConsumerType_UseFixedDelay();
+
+        /**
+         * The meta object literal for the '<em><b>Send Empty Message When Idle</b></em>' attribute feature.
+         * <!-- begin-user-doc -->
+         * <!-- end-user-doc -->
+         * @generated
+         */
+        EAttribute ATOM_SCHEDULED_POLL_CONSUMER_TYPE__SEND_EMPTY_MESSAGE_WHEN_IDLE = eINSTANCE.getAtomScheduledPollConsumerType_SendEmptyMessageWhenIdle();
+
+        /**
+         * The meta object literal for the '<em><b>Time Unit</b></em>' attribute feature.
+         * <!-- begin-user-doc -->
+         * <!-- end-user-doc -->
+         * @generated
+         */
+        EAttribute ATOM_SCHEDULED_POLL_CONSUMER_TYPE__TIME_UNIT = eINSTANCE.getAtomScheduledPollConsumerType_TimeUnit();
+
+        /**
          * The meta object literal for the '{@link org.switchyard.tools.models.switchyard1_0.camel.atom.impl.DocumentRootImpl <em>Document Root</em>}' class.
          * <!-- begin-user-doc -->
          * <!-- end-user-doc -->
@@ -685,6 +972,26 @@ public interface AtomPackage extends EPackage {
          * @generated
          */
         EReference DOCUMENT_ROOT__BINDING_ATOM = eINSTANCE.getDocumentRoot_BindingAtom();
+
+        /**
+         * The meta object literal for the '{@link org.switchyard.tools.models.switchyard1_0.camel.atom.TimeUnitType <em>Time Unit Type</em>}' enum.
+         * <!-- begin-user-doc -->
+         * <!-- end-user-doc -->
+         * @see org.switchyard.tools.models.switchyard1_0.camel.atom.TimeUnitType
+         * @see org.switchyard.tools.models.switchyard1_0.camel.atom.impl.AtomPackageImpl#getTimeUnitType()
+         * @generated
+         */
+        EEnum TIME_UNIT_TYPE = eINSTANCE.getTimeUnitType();
+
+        /**
+         * The meta object literal for the '<em>Time Unit Type Object</em>' data type.
+         * <!-- begin-user-doc -->
+         * <!-- end-user-doc -->
+         * @see org.switchyard.tools.models.switchyard1_0.camel.atom.TimeUnitType
+         * @see org.switchyard.tools.models.switchyard1_0.camel.atom.impl.AtomPackageImpl#getTimeUnitTypeObject()
+         * @generated
+         */
+        EDataType TIME_UNIT_TYPE_OBJECT = eINSTANCE.getTimeUnitTypeObject();
 
     }
 

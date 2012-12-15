@@ -19,13 +19,10 @@ import org.eclipse.emf.edit.provider.IItemPropertySource;
 import org.eclipse.emf.edit.provider.IStructuredItemContentProvider;
 import org.eclipse.emf.edit.provider.ITreeItemContentProvider;
 import org.eclipse.emf.edit.provider.ItemPropertyDescriptor;
+import org.eclipse.emf.edit.provider.ItemProviderAdapter;
 import org.eclipse.emf.edit.provider.ViewerNotification;
 
 import org.switchyard.tools.models.switchyard1_0.bean.provider.Switchyard_1EditPlugin;
-
-import org.switchyard.tools.models.switchyard1_0.camel.core.CamelPackage;
-
-import org.switchyard.tools.models.switchyard1_0.camel.core.provider.ScheduledPollConsumerTypeItemProvider;
 
 import org.switchyard.tools.models.switchyard1_0.camel.file.FileConsumerType;
 import org.switchyard.tools.models.switchyard1_0.camel.file.FilePackage;
@@ -37,7 +34,7 @@ import org.switchyard.tools.models.switchyard1_0.camel.file.FilePackage;
  * @generated
  */
 public class FileConsumerTypeItemProvider
-    extends ScheduledPollConsumerTypeItemProvider
+    extends ItemProviderAdapter
     implements
         IEditingDomainItemProvider,
         IStructuredItemContentProvider,
@@ -65,6 +62,11 @@ public class FileConsumerTypeItemProvider
         if (itemPropertyDescriptors == null) {
             super.getPropertyDescriptors(object);
 
+            addInitialDelayPropertyDescriptor(object);
+            addDelayPropertyDescriptor(object);
+            addUseFixedDelayPropertyDescriptor(object);
+            addSendEmptyMessageWhenIdlePropertyDescriptor(object);
+            addTimeUnitPropertyDescriptor(object);
             addMaxMessagesPerPollPropertyDescriptor(object);
             addDeletePropertyDescriptor(object);
             addRecursivePropertyDescriptor(object);
@@ -93,6 +95,116 @@ public class FileConsumerTypeItemProvider
     }
 
     /**
+     * This adds a property descriptor for the Initial Delay feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    protected void addInitialDelayPropertyDescriptor(Object object) {
+        itemPropertyDescriptors.add
+            (createItemPropertyDescriptor
+                (((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+                 getResourceLocator(),
+                 getString("_UI_FileConsumerType_initialDelay_feature"),
+                 getString("_UI_PropertyDescriptor_description", "_UI_FileConsumerType_initialDelay_feature", "_UI_FileConsumerType_type"),
+                 FilePackage.Literals.FILE_CONSUMER_TYPE__INITIAL_DELAY,
+                 true,
+                 false,
+                 false,
+                 ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
+                 null,
+                 null));
+    }
+
+    /**
+     * This adds a property descriptor for the Delay feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    protected void addDelayPropertyDescriptor(Object object) {
+        itemPropertyDescriptors.add
+            (createItemPropertyDescriptor
+                (((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+                 getResourceLocator(),
+                 getString("_UI_FileConsumerType_delay_feature"),
+                 getString("_UI_PropertyDescriptor_description", "_UI_FileConsumerType_delay_feature", "_UI_FileConsumerType_type"),
+                 FilePackage.Literals.FILE_CONSUMER_TYPE__DELAY,
+                 true,
+                 false,
+                 false,
+                 ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
+                 null,
+                 null));
+    }
+
+    /**
+     * This adds a property descriptor for the Use Fixed Delay feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    protected void addUseFixedDelayPropertyDescriptor(Object object) {
+        itemPropertyDescriptors.add
+            (createItemPropertyDescriptor
+                (((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+                 getResourceLocator(),
+                 getString("_UI_FileConsumerType_useFixedDelay_feature"),
+                 getString("_UI_PropertyDescriptor_description", "_UI_FileConsumerType_useFixedDelay_feature", "_UI_FileConsumerType_type"),
+                 FilePackage.Literals.FILE_CONSUMER_TYPE__USE_FIXED_DELAY,
+                 true,
+                 false,
+                 false,
+                 ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
+                 null,
+                 null));
+    }
+
+    /**
+     * This adds a property descriptor for the Send Empty Message When Idle feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    protected void addSendEmptyMessageWhenIdlePropertyDescriptor(Object object) {
+        itemPropertyDescriptors.add
+            (createItemPropertyDescriptor
+                (((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+                 getResourceLocator(),
+                 getString("_UI_FileConsumerType_sendEmptyMessageWhenIdle_feature"),
+                 getString("_UI_PropertyDescriptor_description", "_UI_FileConsumerType_sendEmptyMessageWhenIdle_feature", "_UI_FileConsumerType_type"),
+                 FilePackage.Literals.FILE_CONSUMER_TYPE__SEND_EMPTY_MESSAGE_WHEN_IDLE,
+                 true,
+                 false,
+                 false,
+                 ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
+                 null,
+                 null));
+    }
+
+    /**
+     * This adds a property descriptor for the Time Unit feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    protected void addTimeUnitPropertyDescriptor(Object object) {
+        itemPropertyDescriptors.add
+            (createItemPropertyDescriptor
+                (((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+                 getResourceLocator(),
+                 getString("_UI_FileConsumerType_timeUnit_feature"),
+                 getString("_UI_PropertyDescriptor_description", "_UI_FileConsumerType_timeUnit_feature", "_UI_FileConsumerType_type"),
+                 FilePackage.Literals.FILE_CONSUMER_TYPE__TIME_UNIT,
+                 true,
+                 false,
+                 false,
+                 ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
+                 null,
+                 null));
+    }
+
+    /**
      * This adds a property descriptor for the Max Messages Per Poll feature.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
@@ -103,9 +215,9 @@ public class FileConsumerTypeItemProvider
             (createItemPropertyDescriptor
                 (((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
                  getResourceLocator(),
-                 getString("_UI_ScheduledBatchPollConsumerType_maxMessagesPerPoll_feature"),
-                 getString("_UI_PropertyDescriptor_description", "_UI_ScheduledBatchPollConsumerType_maxMessagesPerPoll_feature", "_UI_ScheduledBatchPollConsumerType_type"),
-                 CamelPackage.Literals.SCHEDULED_BATCH_POLL_CONSUMER_TYPE__MAX_MESSAGES_PER_POLL,
+                 getString("_UI_FileConsumerType_maxMessagesPerPoll_feature"),
+                 getString("_UI_PropertyDescriptor_description", "_UI_FileConsumerType_maxMessagesPerPoll_feature", "_UI_FileConsumerType_type"),
+                 FilePackage.Literals.FILE_CONSUMER_TYPE__MAX_MESSAGES_PER_POLL,
                  true,
                  false,
                  false,
@@ -125,9 +237,9 @@ public class FileConsumerTypeItemProvider
             (createItemPropertyDescriptor
                 (((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
                  getResourceLocator(),
-                 getString("_UI_GenericFileConsumerType_delete_feature"),
-                 getString("_UI_PropertyDescriptor_description", "_UI_GenericFileConsumerType_delete_feature", "_UI_GenericFileConsumerType_type"),
-                 CamelPackage.Literals.GENERIC_FILE_CONSUMER_TYPE__DELETE,
+                 getString("_UI_FileConsumerType_delete_feature"),
+                 getString("_UI_PropertyDescriptor_description", "_UI_FileConsumerType_delete_feature", "_UI_FileConsumerType_type"),
+                 FilePackage.Literals.FILE_CONSUMER_TYPE__DELETE,
                  true,
                  false,
                  false,
@@ -147,9 +259,9 @@ public class FileConsumerTypeItemProvider
             (createItemPropertyDescriptor
                 (((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
                  getResourceLocator(),
-                 getString("_UI_GenericFileConsumerType_recursive_feature"),
-                 getString("_UI_PropertyDescriptor_description", "_UI_GenericFileConsumerType_recursive_feature", "_UI_GenericFileConsumerType_type"),
-                 CamelPackage.Literals.GENERIC_FILE_CONSUMER_TYPE__RECURSIVE,
+                 getString("_UI_FileConsumerType_recursive_feature"),
+                 getString("_UI_PropertyDescriptor_description", "_UI_FileConsumerType_recursive_feature", "_UI_FileConsumerType_type"),
+                 FilePackage.Literals.FILE_CONSUMER_TYPE__RECURSIVE,
                  true,
                  false,
                  false,
@@ -169,9 +281,9 @@ public class FileConsumerTypeItemProvider
             (createItemPropertyDescriptor
                 (((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
                  getResourceLocator(),
-                 getString("_UI_GenericFileConsumerType_noop_feature"),
-                 getString("_UI_PropertyDescriptor_description", "_UI_GenericFileConsumerType_noop_feature", "_UI_GenericFileConsumerType_type"),
-                 CamelPackage.Literals.GENERIC_FILE_CONSUMER_TYPE__NOOP,
+                 getString("_UI_FileConsumerType_noop_feature"),
+                 getString("_UI_PropertyDescriptor_description", "_UI_FileConsumerType_noop_feature", "_UI_FileConsumerType_type"),
+                 FilePackage.Literals.FILE_CONSUMER_TYPE__NOOP,
                  true,
                  false,
                  false,
@@ -191,9 +303,9 @@ public class FileConsumerTypeItemProvider
             (createItemPropertyDescriptor
                 (((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
                  getResourceLocator(),
-                 getString("_UI_GenericFileConsumerType_preMove_feature"),
-                 getString("_UI_PropertyDescriptor_description", "_UI_GenericFileConsumerType_preMove_feature", "_UI_GenericFileConsumerType_type"),
-                 CamelPackage.Literals.GENERIC_FILE_CONSUMER_TYPE__PRE_MOVE,
+                 getString("_UI_FileConsumerType_preMove_feature"),
+                 getString("_UI_PropertyDescriptor_description", "_UI_FileConsumerType_preMove_feature", "_UI_FileConsumerType_type"),
+                 FilePackage.Literals.FILE_CONSUMER_TYPE__PRE_MOVE,
                  true,
                  false,
                  false,
@@ -213,9 +325,9 @@ public class FileConsumerTypeItemProvider
             (createItemPropertyDescriptor
                 (((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
                  getResourceLocator(),
-                 getString("_UI_GenericFileConsumerType_move_feature"),
-                 getString("_UI_PropertyDescriptor_description", "_UI_GenericFileConsumerType_move_feature", "_UI_GenericFileConsumerType_type"),
-                 CamelPackage.Literals.GENERIC_FILE_CONSUMER_TYPE__MOVE,
+                 getString("_UI_FileConsumerType_move_feature"),
+                 getString("_UI_PropertyDescriptor_description", "_UI_FileConsumerType_move_feature", "_UI_FileConsumerType_type"),
+                 FilePackage.Literals.FILE_CONSUMER_TYPE__MOVE,
                  true,
                  false,
                  false,
@@ -235,9 +347,9 @@ public class FileConsumerTypeItemProvider
             (createItemPropertyDescriptor
                 (((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
                  getResourceLocator(),
-                 getString("_UI_GenericFileConsumerType_moveFailed_feature"),
-                 getString("_UI_PropertyDescriptor_description", "_UI_GenericFileConsumerType_moveFailed_feature", "_UI_GenericFileConsumerType_type"),
-                 CamelPackage.Literals.GENERIC_FILE_CONSUMER_TYPE__MOVE_FAILED,
+                 getString("_UI_FileConsumerType_moveFailed_feature"),
+                 getString("_UI_PropertyDescriptor_description", "_UI_FileConsumerType_moveFailed_feature", "_UI_FileConsumerType_type"),
+                 FilePackage.Literals.FILE_CONSUMER_TYPE__MOVE_FAILED,
                  true,
                  false,
                  false,
@@ -257,9 +369,9 @@ public class FileConsumerTypeItemProvider
             (createItemPropertyDescriptor
                 (((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
                  getResourceLocator(),
-                 getString("_UI_GenericFileConsumerType_include_feature"),
-                 getString("_UI_PropertyDescriptor_description", "_UI_GenericFileConsumerType_include_feature", "_UI_GenericFileConsumerType_type"),
-                 CamelPackage.Literals.GENERIC_FILE_CONSUMER_TYPE__INCLUDE,
+                 getString("_UI_FileConsumerType_include_feature"),
+                 getString("_UI_PropertyDescriptor_description", "_UI_FileConsumerType_include_feature", "_UI_FileConsumerType_type"),
+                 FilePackage.Literals.FILE_CONSUMER_TYPE__INCLUDE,
                  true,
                  false,
                  false,
@@ -279,9 +391,9 @@ public class FileConsumerTypeItemProvider
             (createItemPropertyDescriptor
                 (((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
                  getResourceLocator(),
-                 getString("_UI_GenericFileConsumerType_exclude_feature"),
-                 getString("_UI_PropertyDescriptor_description", "_UI_GenericFileConsumerType_exclude_feature", "_UI_GenericFileConsumerType_type"),
-                 CamelPackage.Literals.GENERIC_FILE_CONSUMER_TYPE__EXCLUDE,
+                 getString("_UI_FileConsumerType_exclude_feature"),
+                 getString("_UI_PropertyDescriptor_description", "_UI_FileConsumerType_exclude_feature", "_UI_FileConsumerType_type"),
+                 FilePackage.Literals.FILE_CONSUMER_TYPE__EXCLUDE,
                  true,
                  false,
                  false,
@@ -301,9 +413,9 @@ public class FileConsumerTypeItemProvider
             (createItemPropertyDescriptor
                 (((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
                  getResourceLocator(),
-                 getString("_UI_GenericFileConsumerType_idempotent_feature"),
-                 getString("_UI_PropertyDescriptor_description", "_UI_GenericFileConsumerType_idempotent_feature", "_UI_GenericFileConsumerType_type"),
-                 CamelPackage.Literals.GENERIC_FILE_CONSUMER_TYPE__IDEMPOTENT,
+                 getString("_UI_FileConsumerType_idempotent_feature"),
+                 getString("_UI_PropertyDescriptor_description", "_UI_FileConsumerType_idempotent_feature", "_UI_FileConsumerType_type"),
+                 FilePackage.Literals.FILE_CONSUMER_TYPE__IDEMPOTENT,
                  true,
                  false,
                  false,
@@ -323,9 +435,9 @@ public class FileConsumerTypeItemProvider
             (createItemPropertyDescriptor
                 (((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
                  getResourceLocator(),
-                 getString("_UI_GenericFileConsumerType_idempotentRepository_feature"),
-                 getString("_UI_PropertyDescriptor_description", "_UI_GenericFileConsumerType_idempotentRepository_feature", "_UI_GenericFileConsumerType_type"),
-                 CamelPackage.Literals.GENERIC_FILE_CONSUMER_TYPE__IDEMPOTENT_REPOSITORY,
+                 getString("_UI_FileConsumerType_idempotentRepository_feature"),
+                 getString("_UI_PropertyDescriptor_description", "_UI_FileConsumerType_idempotentRepository_feature", "_UI_FileConsumerType_type"),
+                 FilePackage.Literals.FILE_CONSUMER_TYPE__IDEMPOTENT_REPOSITORY,
                  true,
                  false,
                  false,
@@ -345,9 +457,9 @@ public class FileConsumerTypeItemProvider
             (createItemPropertyDescriptor
                 (((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
                  getResourceLocator(),
-                 getString("_UI_GenericFileConsumerType_inProgressRepository_feature"),
-                 getString("_UI_PropertyDescriptor_description", "_UI_GenericFileConsumerType_inProgressRepository_feature", "_UI_GenericFileConsumerType_type"),
-                 CamelPackage.Literals.GENERIC_FILE_CONSUMER_TYPE__IN_PROGRESS_REPOSITORY,
+                 getString("_UI_FileConsumerType_inProgressRepository_feature"),
+                 getString("_UI_PropertyDescriptor_description", "_UI_FileConsumerType_inProgressRepository_feature", "_UI_FileConsumerType_type"),
+                 FilePackage.Literals.FILE_CONSUMER_TYPE__IN_PROGRESS_REPOSITORY,
                  true,
                  false,
                  false,
@@ -367,9 +479,9 @@ public class FileConsumerTypeItemProvider
             (createItemPropertyDescriptor
                 (((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
                  getResourceLocator(),
-                 getString("_UI_GenericFileConsumerType_filter_feature"),
-                 getString("_UI_PropertyDescriptor_description", "_UI_GenericFileConsumerType_filter_feature", "_UI_GenericFileConsumerType_type"),
-                 CamelPackage.Literals.GENERIC_FILE_CONSUMER_TYPE__FILTER,
+                 getString("_UI_FileConsumerType_filter_feature"),
+                 getString("_UI_PropertyDescriptor_description", "_UI_FileConsumerType_filter_feature", "_UI_FileConsumerType_type"),
+                 FilePackage.Literals.FILE_CONSUMER_TYPE__FILTER,
                  true,
                  false,
                  false,
@@ -389,9 +501,9 @@ public class FileConsumerTypeItemProvider
             (createItemPropertyDescriptor
                 (((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
                  getResourceLocator(),
-                 getString("_UI_GenericFileConsumerType_sorter_feature"),
-                 getString("_UI_PropertyDescriptor_description", "_UI_GenericFileConsumerType_sorter_feature", "_UI_GenericFileConsumerType_type"),
-                 CamelPackage.Literals.GENERIC_FILE_CONSUMER_TYPE__SORTER,
+                 getString("_UI_FileConsumerType_sorter_feature"),
+                 getString("_UI_PropertyDescriptor_description", "_UI_FileConsumerType_sorter_feature", "_UI_FileConsumerType_type"),
+                 FilePackage.Literals.FILE_CONSUMER_TYPE__SORTER,
                  true,
                  false,
                  false,
@@ -411,9 +523,9 @@ public class FileConsumerTypeItemProvider
             (createItemPropertyDescriptor
                 (((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
                  getResourceLocator(),
-                 getString("_UI_GenericFileConsumerType_sortBy_feature"),
-                 getString("_UI_PropertyDescriptor_description", "_UI_GenericFileConsumerType_sortBy_feature", "_UI_GenericFileConsumerType_type"),
-                 CamelPackage.Literals.GENERIC_FILE_CONSUMER_TYPE__SORT_BY,
+                 getString("_UI_FileConsumerType_sortBy_feature"),
+                 getString("_UI_PropertyDescriptor_description", "_UI_FileConsumerType_sortBy_feature", "_UI_FileConsumerType_type"),
+                 FilePackage.Literals.FILE_CONSUMER_TYPE__SORT_BY,
                  true,
                  false,
                  false,
@@ -433,9 +545,9 @@ public class FileConsumerTypeItemProvider
             (createItemPropertyDescriptor
                 (((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
                  getResourceLocator(),
-                 getString("_UI_GenericFileConsumerType_readLock_feature"),
-                 getString("_UI_PropertyDescriptor_description", "_UI_GenericFileConsumerType_readLock_feature", "_UI_GenericFileConsumerType_type"),
-                 CamelPackage.Literals.GENERIC_FILE_CONSUMER_TYPE__READ_LOCK,
+                 getString("_UI_FileConsumerType_readLock_feature"),
+                 getString("_UI_PropertyDescriptor_description", "_UI_FileConsumerType_readLock_feature", "_UI_FileConsumerType_type"),
+                 FilePackage.Literals.FILE_CONSUMER_TYPE__READ_LOCK,
                  true,
                  false,
                  false,
@@ -455,9 +567,9 @@ public class FileConsumerTypeItemProvider
             (createItemPropertyDescriptor
                 (((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
                  getResourceLocator(),
-                 getString("_UI_GenericFileConsumerType_readLockTimeout_feature"),
-                 getString("_UI_PropertyDescriptor_description", "_UI_GenericFileConsumerType_readLockTimeout_feature", "_UI_GenericFileConsumerType_type"),
-                 CamelPackage.Literals.GENERIC_FILE_CONSUMER_TYPE__READ_LOCK_TIMEOUT,
+                 getString("_UI_FileConsumerType_readLockTimeout_feature"),
+                 getString("_UI_PropertyDescriptor_description", "_UI_FileConsumerType_readLockTimeout_feature", "_UI_FileConsumerType_type"),
+                 FilePackage.Literals.FILE_CONSUMER_TYPE__READ_LOCK_TIMEOUT,
                  true,
                  false,
                  false,
@@ -477,9 +589,9 @@ public class FileConsumerTypeItemProvider
             (createItemPropertyDescriptor
                 (((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
                  getResourceLocator(),
-                 getString("_UI_GenericFileConsumerType_readLockCheckInterval_feature"),
-                 getString("_UI_PropertyDescriptor_description", "_UI_GenericFileConsumerType_readLockCheckInterval_feature", "_UI_GenericFileConsumerType_type"),
-                 CamelPackage.Literals.GENERIC_FILE_CONSUMER_TYPE__READ_LOCK_CHECK_INTERVAL,
+                 getString("_UI_FileConsumerType_readLockCheckInterval_feature"),
+                 getString("_UI_PropertyDescriptor_description", "_UI_FileConsumerType_readLockCheckInterval_feature", "_UI_FileConsumerType_type"),
+                 FilePackage.Literals.FILE_CONSUMER_TYPE__READ_LOCK_CHECK_INTERVAL,
                  true,
                  false,
                  false,
@@ -499,9 +611,9 @@ public class FileConsumerTypeItemProvider
             (createItemPropertyDescriptor
                 (((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
                  getResourceLocator(),
-                 getString("_UI_GenericFileConsumerType_exclusiveReadLockStrategy_feature"),
-                 getString("_UI_PropertyDescriptor_description", "_UI_GenericFileConsumerType_exclusiveReadLockStrategy_feature", "_UI_GenericFileConsumerType_type"),
-                 CamelPackage.Literals.GENERIC_FILE_CONSUMER_TYPE__EXCLUSIVE_READ_LOCK_STRATEGY,
+                 getString("_UI_FileConsumerType_exclusiveReadLockStrategy_feature"),
+                 getString("_UI_PropertyDescriptor_description", "_UI_FileConsumerType_exclusiveReadLockStrategy_feature", "_UI_FileConsumerType_type"),
+                 FilePackage.Literals.FILE_CONSUMER_TYPE__EXCLUSIVE_READ_LOCK_STRATEGY,
                  true,
                  false,
                  false,
@@ -521,9 +633,9 @@ public class FileConsumerTypeItemProvider
             (createItemPropertyDescriptor
                 (((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
                  getResourceLocator(),
-                 getString("_UI_GenericFileConsumerType_processStrategy_feature"),
-                 getString("_UI_PropertyDescriptor_description", "_UI_GenericFileConsumerType_processStrategy_feature", "_UI_GenericFileConsumerType_type"),
-                 CamelPackage.Literals.GENERIC_FILE_CONSUMER_TYPE__PROCESS_STRATEGY,
+                 getString("_UI_FileConsumerType_processStrategy_feature"),
+                 getString("_UI_PropertyDescriptor_description", "_UI_FileConsumerType_processStrategy_feature", "_UI_FileConsumerType_type"),
+                 FilePackage.Literals.FILE_CONSUMER_TYPE__PROCESS_STRATEGY,
                  true,
                  false,
                  false,
@@ -543,9 +655,9 @@ public class FileConsumerTypeItemProvider
             (createItemPropertyDescriptor
                 (((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
                  getResourceLocator(),
-                 getString("_UI_GenericFileConsumerType_startingDirectoryMustExist_feature"),
-                 getString("_UI_PropertyDescriptor_description", "_UI_GenericFileConsumerType_startingDirectoryMustExist_feature", "_UI_GenericFileConsumerType_type"),
-                 CamelPackage.Literals.GENERIC_FILE_CONSUMER_TYPE__STARTING_DIRECTORY_MUST_EXIST,
+                 getString("_UI_FileConsumerType_startingDirectoryMustExist_feature"),
+                 getString("_UI_PropertyDescriptor_description", "_UI_FileConsumerType_startingDirectoryMustExist_feature", "_UI_FileConsumerType_type"),
+                 FilePackage.Literals.FILE_CONSUMER_TYPE__STARTING_DIRECTORY_MUST_EXIST,
                  true,
                  false,
                  false,
@@ -565,9 +677,9 @@ public class FileConsumerTypeItemProvider
             (createItemPropertyDescriptor
                 (((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
                  getResourceLocator(),
-                 getString("_UI_GenericFileConsumerType_directoryMustExist_feature"),
-                 getString("_UI_PropertyDescriptor_description", "_UI_GenericFileConsumerType_directoryMustExist_feature", "_UI_GenericFileConsumerType_type"),
-                 CamelPackage.Literals.GENERIC_FILE_CONSUMER_TYPE__DIRECTORY_MUST_EXIST,
+                 getString("_UI_FileConsumerType_directoryMustExist_feature"),
+                 getString("_UI_PropertyDescriptor_description", "_UI_FileConsumerType_directoryMustExist_feature", "_UI_FileConsumerType_type"),
+                 FilePackage.Literals.FILE_CONSUMER_TYPE__DIRECTORY_MUST_EXIST,
                  true,
                  false,
                  false,
@@ -587,9 +699,9 @@ public class FileConsumerTypeItemProvider
             (createItemPropertyDescriptor
                 (((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
                  getResourceLocator(),
-                 getString("_UI_GenericFileConsumerType_doneFileName_feature"),
-                 getString("_UI_PropertyDescriptor_description", "_UI_GenericFileConsumerType_doneFileName_feature", "_UI_GenericFileConsumerType_type"),
-                 CamelPackage.Literals.GENERIC_FILE_CONSUMER_TYPE__DONE_FILE_NAME,
+                 getString("_UI_FileConsumerType_doneFileName_feature"),
+                 getString("_UI_PropertyDescriptor_description", "_UI_FileConsumerType_doneFileName_feature", "_UI_FileConsumerType_type"),
+                 FilePackage.Literals.FILE_CONSUMER_TYPE__DONE_FILE_NAME,
                  true,
                  false,
                  false,
@@ -635,6 +747,11 @@ public class FileConsumerTypeItemProvider
         updateChildren(notification);
 
         switch (notification.getFeatureID(FileConsumerType.class)) {
+            case FilePackage.FILE_CONSUMER_TYPE__INITIAL_DELAY:
+            case FilePackage.FILE_CONSUMER_TYPE__DELAY:
+            case FilePackage.FILE_CONSUMER_TYPE__USE_FIXED_DELAY:
+            case FilePackage.FILE_CONSUMER_TYPE__SEND_EMPTY_MESSAGE_WHEN_IDLE:
+            case FilePackage.FILE_CONSUMER_TYPE__TIME_UNIT:
             case FilePackage.FILE_CONSUMER_TYPE__MAX_MESSAGES_PER_POLL:
             case FilePackage.FILE_CONSUMER_TYPE__DELETE:
             case FilePackage.FILE_CONSUMER_TYPE__RECURSIVE:

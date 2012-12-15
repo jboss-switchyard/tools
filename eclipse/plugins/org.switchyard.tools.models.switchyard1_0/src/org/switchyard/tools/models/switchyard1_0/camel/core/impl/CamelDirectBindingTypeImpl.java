@@ -3,13 +3,10 @@
 package org.switchyard.tools.models.switchyard1_0.camel.core.impl;
 
 import org.eclipse.emf.common.notify.Notification;
-
 import org.eclipse.emf.ecore.EClass;
-
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
-
 import org.switchyard.tools.models.switchyard1_0.camel.core.CamelDirectBindingType;
-import org.switchyard.tools.models.switchyard1_0.camel.core.CamelPackage;
+import org.switchyard.tools.models.switchyard1_0.camel.core.CorePackage;
 
 /**
  * <!-- begin-user-doc -->
@@ -61,7 +58,7 @@ public class CamelDirectBindingTypeImpl extends BaseCamelBindingImpl implements 
      */
     @Override
     protected EClass eStaticClass() {
-        return CamelPackage.Literals.CAMEL_DIRECT_BINDING_TYPE;
+        return CorePackage.Literals.CAMEL_DIRECT_BINDING_TYPE;
     }
 
     /**
@@ -82,7 +79,7 @@ public class CamelDirectBindingTypeImpl extends BaseCamelBindingImpl implements 
         String oldNameElement = nameElement;
         nameElement = newNameElement;
         if (eNotificationRequired())
-            eNotify(new ENotificationImpl(this, Notification.SET, CamelPackage.CAMEL_DIRECT_BINDING_TYPE__NAME_ELEMENT, oldNameElement, nameElement));
+            eNotify(new ENotificationImpl(this, Notification.SET, CorePackage.CAMEL_DIRECT_BINDING_TYPE__NAME_ELEMENT, oldNameElement, nameElement));
     }
 
     /**
@@ -93,7 +90,7 @@ public class CamelDirectBindingTypeImpl extends BaseCamelBindingImpl implements 
     @Override
     public Object eGet(int featureID, boolean resolve, boolean coreType) {
         switch (featureID) {
-            case CamelPackage.CAMEL_DIRECT_BINDING_TYPE__NAME_ELEMENT:
+            case CorePackage.CAMEL_DIRECT_BINDING_TYPE__NAME_ELEMENT:
                 return getNameElement();
         }
         return super.eGet(featureID, resolve, coreType);
@@ -107,7 +104,7 @@ public class CamelDirectBindingTypeImpl extends BaseCamelBindingImpl implements 
     @Override
     public void eSet(int featureID, Object newValue) {
         switch (featureID) {
-            case CamelPackage.CAMEL_DIRECT_BINDING_TYPE__NAME_ELEMENT:
+            case CorePackage.CAMEL_DIRECT_BINDING_TYPE__NAME_ELEMENT:
                 setNameElement((String)newValue);
                 return;
         }
@@ -122,7 +119,7 @@ public class CamelDirectBindingTypeImpl extends BaseCamelBindingImpl implements 
     @Override
     public void eUnset(int featureID) {
         switch (featureID) {
-            case CamelPackage.CAMEL_DIRECT_BINDING_TYPE__NAME_ELEMENT:
+            case CorePackage.CAMEL_DIRECT_BINDING_TYPE__NAME_ELEMENT:
                 setNameElement(NAME_ELEMENT_EDEFAULT);
                 return;
         }
@@ -137,7 +134,7 @@ public class CamelDirectBindingTypeImpl extends BaseCamelBindingImpl implements 
     @Override
     public boolean eIsSet(int featureID) {
         switch (featureID) {
-            case CamelPackage.CAMEL_DIRECT_BINDING_TYPE__NAME_ELEMENT:
+            case CorePackage.CAMEL_DIRECT_BINDING_TYPE__NAME_ELEMENT:
                 return NAME_ELEMENT_EDEFAULT == null ? nameElement != null : !NAME_ELEMENT_EDEFAULT.equals(nameElement);
         }
         return super.eIsSet(featureID);

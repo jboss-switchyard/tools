@@ -15,7 +15,7 @@ package org.switchyard.tools.models.switchyard1_0.camel.core;
  * </ul>
  * </p>
  *
- * @see org.switchyard.tools.models.switchyard1_0.camel.core.CamelPackage#getCamelBindingType()
+ * @see org.switchyard.tools.models.switchyard1_0.camel.core.CorePackage#getCamelBindingType()
  * @model extendedMetaData="name='CamelBindingType' kind='elementOnly'"
  * @generated
  */
@@ -30,7 +30,7 @@ public interface CamelBindingType extends BaseCamelBinding {
      * <!-- end-user-doc -->
      * @return the value of the '<em>Config URI</em>' attribute.
      * @see #setConfigURI(String)
-     * @see org.switchyard.tools.models.switchyard1_0.camel.core.CamelPackage#getCamelBindingType_ConfigURI()
+     * @see org.switchyard.tools.models.switchyard1_0.camel.core.CorePackage#getCamelBindingType_ConfigURI()
      * @model dataType="org.eclipse.emf.ecore.xml.type.AnyURI"
      *        extendedMetaData="kind='attribute' name='configURI'"
      * @generated

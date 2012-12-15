@@ -4,17 +4,13 @@ package org.switchyard.tools.models.switchyard1_0.camel.jms.util;
 
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EPackage;
-
 import org.eclipse.emf.ecore.util.Switch;
-
 import org.eclipse.soa.sca.sca1_1.model.sca.Binding;
 import org.eclipse.soa.sca.sca1_1.model.sca.CommonExtensionBase;
-
 import org.switchyard.tools.models.switchyard1_0.camel.core.BaseCamelBinding;
-import org.switchyard.tools.models.switchyard1_0.camel.core.JmsBindingType;
-
-import org.switchyard.tools.models.switchyard1_0.camel.jms.*;
-
+import org.switchyard.tools.models.switchyard1_0.camel.jms.CamelJmsBindingType;
+import org.switchyard.tools.models.switchyard1_0.camel.jms.DocumentRoot;
+import org.switchyard.tools.models.switchyard1_0.camel.jms.JmsPackage;
 import org.switchyard.tools.models.switchyard1_0.switchyard.SwitchYardBindingType;
 
 /**
@@ -74,11 +70,18 @@ public class JmsSwitch<T> extends Switch<T> {
     @Override
     protected T doSwitch(int classifierID, EObject theEObject) {
         switch (classifierID) {
+            case JmsPackage.BASE_CAMEL_BINDING: {
+                BaseCamelBinding baseCamelBinding = (BaseCamelBinding)theEObject;
+                T result = caseBaseCamelBinding(baseCamelBinding);
+                if (result == null) result = caseSwitchYardBindingType(baseCamelBinding);
+                if (result == null) result = caseBinding(baseCamelBinding);
+                if (result == null) result = caseCommonExtensionBase(baseCamelBinding);
+                if (result == null) result = defaultCase(theEObject);
+                return result;
+            }
             case JmsPackage.CAMEL_JMS_BINDING_TYPE: {
                 CamelJmsBindingType camelJmsBindingType = (CamelJmsBindingType)theEObject;
                 T result = caseCamelJmsBindingType(camelJmsBindingType);
-                if (result == null) result = caseJmsBindingType(camelJmsBindingType);
-                if (result == null) result = caseBaseCamelBinding(camelJmsBindingType);
                 if (result == null) result = caseSwitchYardBindingType(camelJmsBindingType);
                 if (result == null) result = caseBinding(camelJmsBindingType);
                 if (result == null) result = caseCommonExtensionBase(camelJmsBindingType);
@@ -182,21 +185,6 @@ public class JmsSwitch<T> extends Switch<T> {
      * @generated
      */
     public T caseBaseCamelBinding(BaseCamelBinding object) {
-        return null;
-    }
-
-    /**
-     * Returns the result of interpreting the object as an instance of '<em>Jms Binding Type</em>'.
-     * <!-- begin-user-doc -->
-     * This implementation returns null;
-     * returning a non-null result will terminate the switch.
-     * <!-- end-user-doc -->
-     * @param object the target of the switch.
-     * @return the result of interpreting the object as an instance of '<em>Jms Binding Type</em>'.
-     * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
-     * @generated
-     */
-    public T caseJmsBindingType(JmsBindingType object) {
         return null;
     }
 

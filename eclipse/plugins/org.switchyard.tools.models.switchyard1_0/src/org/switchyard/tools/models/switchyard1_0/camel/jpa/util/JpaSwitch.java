@@ -75,23 +75,12 @@ public class JpaSwitch<T> extends Switch<T> {
     @Override
     protected T doSwitch(int classifierID, EObject theEObject) {
         switch (classifierID) {
-            case JpaPackage.DOCUMENT_ROOT: {
-                DocumentRoot documentRoot = (DocumentRoot)theEObject;
-                T result = caseDocumentRoot(documentRoot);
-                if (result == null) result = defaultCase(theEObject);
-                return result;
-            }
-            case JpaPackage.JPA_PRODUCER_TYPE: {
-                JpaProducerType jpaProducerType = (JpaProducerType)theEObject;
-                T result = caseJpaProducerType(jpaProducerType);
-                if (result == null) result = defaultCase(theEObject);
-                return result;
-            }
-            case JpaPackage.JPA_CONSUMER_TYPE: {
-                JpaConsumerType jpaConsumerType = (JpaConsumerType)theEObject;
-                T result = caseJpaConsumerType(jpaConsumerType);
-                if (result == null) result = caseScheduledBatchPollConsumerType(jpaConsumerType);
-                if (result == null) result = caseScheduledPollConsumerType(jpaConsumerType);
+            case JpaPackage.BASE_CAMEL_BINDING: {
+                BaseCamelBinding baseCamelBinding = (BaseCamelBinding)theEObject;
+                T result = caseBaseCamelBinding(baseCamelBinding);
+                if (result == null) result = caseSwitchYardBindingType(baseCamelBinding);
+                if (result == null) result = caseBinding(baseCamelBinding);
+                if (result == null) result = caseCommonExtensionBase(baseCamelBinding);
                 if (result == null) result = defaultCase(theEObject);
                 return result;
             }
@@ -102,6 +91,24 @@ public class JpaSwitch<T> extends Switch<T> {
                 if (result == null) result = caseSwitchYardBindingType(camelJPABindingType);
                 if (result == null) result = caseBinding(camelJPABindingType);
                 if (result == null) result = caseCommonExtensionBase(camelJPABindingType);
+                if (result == null) result = defaultCase(theEObject);
+                return result;
+            }
+            case JpaPackage.DOCUMENT_ROOT: {
+                DocumentRoot documentRoot = (DocumentRoot)theEObject;
+                T result = caseDocumentRoot(documentRoot);
+                if (result == null) result = defaultCase(theEObject);
+                return result;
+            }
+            case JpaPackage.JPA_CONSUMER_TYPE: {
+                JpaConsumerType jpaConsumerType = (JpaConsumerType)theEObject;
+                T result = caseJpaConsumerType(jpaConsumerType);
+                if (result == null) result = defaultCase(theEObject);
+                return result;
+            }
+            case JpaPackage.JPA_PRODUCER_TYPE: {
+                JpaProducerType jpaProducerType = (JpaProducerType)theEObject;
+                T result = caseJpaProducerType(jpaProducerType);
                 if (result == null) result = defaultCase(theEObject);
                 return result;
             }
@@ -166,36 +173,6 @@ public class JpaSwitch<T> extends Switch<T> {
      * @generated
      */
     public T caseCamelJPABindingType(CamelJPABindingType object) {
-        return null;
-    }
-
-    /**
-     * Returns the result of interpreting the object as an instance of '<em>Scheduled Poll Consumer Type</em>'.
-     * <!-- begin-user-doc -->
-     * This implementation returns null;
-     * returning a non-null result will terminate the switch.
-     * <!-- end-user-doc -->
-     * @param object the target of the switch.
-     * @return the result of interpreting the object as an instance of '<em>Scheduled Poll Consumer Type</em>'.
-     * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
-     * @generated
-     */
-    public T caseScheduledPollConsumerType(ScheduledPollConsumerType object) {
-        return null;
-    }
-
-    /**
-     * Returns the result of interpreting the object as an instance of '<em>Scheduled Batch Poll Consumer Type</em>'.
-     * <!-- begin-user-doc -->
-     * This implementation returns null;
-     * returning a non-null result will terminate the switch.
-     * <!-- end-user-doc -->
-     * @param object the target of the switch.
-     * @return the result of interpreting the object as an instance of '<em>Scheduled Batch Poll Consumer Type</em>'.
-     * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
-     * @generated
-     */
-    public T caseScheduledBatchPollConsumerType(ScheduledBatchPollConsumerType object) {
         return null;
     }
 

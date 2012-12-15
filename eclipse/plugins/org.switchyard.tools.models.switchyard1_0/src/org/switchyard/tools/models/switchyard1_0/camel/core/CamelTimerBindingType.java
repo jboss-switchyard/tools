@@ -22,7 +22,7 @@ import javax.xml.datatype.XMLGregorianCalendar;
  * </ul>
  * </p>
  *
- * @see org.switchyard.tools.models.switchyard1_0.camel.core.CamelPackage#getCamelTimerBindingType()
+ * @see org.switchyard.tools.models.switchyard1_0.camel.core.CorePackage#getCamelTimerBindingType()
  * @model extendedMetaData="name='CamelTimerBindingType' kind='elementOnly'"
  * @generated
  */
@@ -37,7 +37,7 @@ public interface CamelTimerBindingType extends BaseCamelBinding {
      * <!-- end-user-doc -->
      * @return the value of the '<em>Camel Binding Name</em>' attribute.
      * @see #setCamelBindingName(String)
-     * @see org.switchyard.tools.models.switchyard1_0.camel.core.CamelPackage#getCamelTimerBindingType_CamelBindingName()
+     * @see org.switchyard.tools.models.switchyard1_0.camel.core.CorePackage#getCamelTimerBindingType_CamelBindingName()
      * @model dataType="org.eclipse.emf.ecore.xml.type.String" required="true"
      *        extendedMetaData="kind='element' name='name' namespace='##targetNamespace'"
      * @generated
@@ -64,7 +64,7 @@ public interface CamelTimerBindingType extends BaseCamelBinding {
      * <!-- end-user-doc -->
      * @return the value of the '<em>Time</em>' attribute.
      * @see #setTime(XMLGregorianCalendar)
-     * @see org.switchyard.tools.models.switchyard1_0.camel.core.CamelPackage#getCamelTimerBindingType_Time()
+     * @see org.switchyard.tools.models.switchyard1_0.camel.core.CorePackage#getCamelTimerBindingType_Time()
      * @model dataType="org.eclipse.emf.ecore.xml.type.DateTime"
      *        extendedMetaData="kind='element' name='time' namespace='##targetNamespace'"
      * @generated
@@ -91,7 +91,7 @@ public interface CamelTimerBindingType extends BaseCamelBinding {
      * <!-- end-user-doc -->
      * @return the value of the '<em>Pattern</em>' attribute.
      * @see #setPattern(String)
-     * @see org.switchyard.tools.models.switchyard1_0.camel.core.CamelPackage#getCamelTimerBindingType_Pattern()
+     * @see org.switchyard.tools.models.switchyard1_0.camel.core.CorePackage#getCamelTimerBindingType_Pattern()
      * @model dataType="org.eclipse.emf.ecore.xml.type.String"
      *        extendedMetaData="kind='element' name='pattern' namespace='##targetNamespace'"
      * @generated
@@ -118,7 +118,7 @@ public interface CamelTimerBindingType extends BaseCamelBinding {
      * <!-- end-user-doc -->
      * @return the value of the '<em>Period</em>' attribute.
      * @see #setPeriod(Long)
-     * @see org.switchyard.tools.models.switchyard1_0.camel.core.CamelPackage#getCamelTimerBindingType_Period()
+     * @see org.switchyard.tools.models.switchyard1_0.camel.core.CorePackage#getCamelTimerBindingType_Period()
      * @model dataType="org.eclipse.emf.ecore.xml.type.LongObject"
      *        extendedMetaData="kind='element' name='period' namespace='##targetNamespace'"
      * @generated
@@ -145,7 +145,7 @@ public interface CamelTimerBindingType extends BaseCamelBinding {
      * <!-- end-user-doc -->
      * @return the value of the '<em>Delay</em>' attribute.
      * @see #setDelay(Long)
-     * @see org.switchyard.tools.models.switchyard1_0.camel.core.CamelPackage#getCamelTimerBindingType_Delay()
+     * @see org.switchyard.tools.models.switchyard1_0.camel.core.CorePackage#getCamelTimerBindingType_Delay()
      * @model dataType="org.eclipse.emf.ecore.xml.type.LongObject"
      *        extendedMetaData="kind='element' name='delay' namespace='##targetNamespace'"
      * @generated
@@ -174,7 +174,7 @@ public interface CamelTimerBindingType extends BaseCamelBinding {
      * @see #isSetFixedRate()
      * @see #unsetFixedRate()
      * @see #setFixedRate(Boolean)
-     * @see org.switchyard.tools.models.switchyard1_0.camel.core.CamelPackage#getCamelTimerBindingType_FixedRate()
+     * @see org.switchyard.tools.models.switchyard1_0.camel.core.CorePackage#getCamelTimerBindingType_FixedRate()
      * @model unsettable="true" dataType="org.eclipse.emf.ecore.xml.type.BooleanObject"
      *        extendedMetaData="kind='element' name='fixedRate' namespace='##targetNamespace'"
      * @generated
@@ -228,7 +228,7 @@ public interface CamelTimerBindingType extends BaseCamelBinding {
      * @see #isSetDaemon()
      * @see #unsetDaemon()
      * @see #setDaemon(Boolean)
-     * @see org.switchyard.tools.models.switchyard1_0.camel.core.CamelPackage#getCamelTimerBindingType_Daemon()
+     * @see org.switchyard.tools.models.switchyard1_0.camel.core.CorePackage#getCamelTimerBindingType_Daemon()
      * @model unsettable="true" dataType="org.eclipse.emf.ecore.xml.type.BooleanObject"
      *        extendedMetaData="kind='element' name='daemon' namespace='##targetNamespace'"
      * @generated

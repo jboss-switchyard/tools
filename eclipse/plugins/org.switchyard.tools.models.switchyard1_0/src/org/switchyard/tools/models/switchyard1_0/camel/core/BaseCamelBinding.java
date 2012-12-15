@@ -10,7 +10,7 @@ import org.switchyard.tools.models.switchyard1_0.switchyard.SwitchYardBindingTyp
  * <!-- end-user-doc -->
  *
  *
- * @see org.switchyard.tools.models.switchyard1_0.camel.core.CamelPackage#getBaseCamelBinding()
+ * @see org.switchyard.tools.models.switchyard1_0.camel.core.CorePackage#getBaseCamelBinding()
  * @model abstract="true"
  *        extendedMetaData="name='BaseCamelBinding' kind='elementOnly'"
  * @generated

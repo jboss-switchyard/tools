@@ -73,6 +73,25 @@ public class NettySwitch<T> extends Switch<T> {
     @Override
     protected T doSwitch(int classifierID, EObject theEObject) {
         switch (classifierID) {
+            case NettyPackage.BASE_CAMEL_BINDING: {
+                BaseCamelBinding baseCamelBinding = (BaseCamelBinding)theEObject;
+                T result = caseBaseCamelBinding(baseCamelBinding);
+                if (result == null) result = caseSwitchYardBindingType(baseCamelBinding);
+                if (result == null) result = caseBinding(baseCamelBinding);
+                if (result == null) result = caseCommonExtensionBase(baseCamelBinding);
+                if (result == null) result = defaultCase(theEObject);
+                return result;
+            }
+            case NettyPackage.CAMEL_NETTY_BINDING_TYPE: {
+                CamelNettyBindingType camelNettyBindingType = (CamelNettyBindingType)theEObject;
+                T result = caseCamelNettyBindingType(camelNettyBindingType);
+                if (result == null) result = caseBaseCamelBinding(camelNettyBindingType);
+                if (result == null) result = caseSwitchYardBindingType(camelNettyBindingType);
+                if (result == null) result = caseBinding(camelNettyBindingType);
+                if (result == null) result = caseCommonExtensionBase(camelNettyBindingType);
+                if (result == null) result = defaultCase(theEObject);
+                return result;
+            }
             case NettyPackage.CAMEL_NETTY_TCP_BINDING_TYPE: {
                 CamelNettyTcpBindingType camelNettyTcpBindingType = (CamelNettyTcpBindingType)theEObject;
                 T result = caseCamelNettyTcpBindingType(camelNettyTcpBindingType);
@@ -92,16 +111,6 @@ public class NettySwitch<T> extends Switch<T> {
                 if (result == null) result = caseSwitchYardBindingType(camelNettyUdpBindingType);
                 if (result == null) result = caseBinding(camelNettyUdpBindingType);
                 if (result == null) result = caseCommonExtensionBase(camelNettyUdpBindingType);
-                if (result == null) result = defaultCase(theEObject);
-                return result;
-            }
-            case NettyPackage.CAMEL_NETTY_BINDING_TYPE: {
-                CamelNettyBindingType camelNettyBindingType = (CamelNettyBindingType)theEObject;
-                T result = caseCamelNettyBindingType(camelNettyBindingType);
-                if (result == null) result = caseBaseCamelBinding(camelNettyBindingType);
-                if (result == null) result = caseSwitchYardBindingType(camelNettyBindingType);
-                if (result == null) result = caseBinding(camelNettyBindingType);
-                if (result == null) result = caseCommonExtensionBase(camelNettyBindingType);
                 if (result == null) result = defaultCase(theEObject);
                 return result;
             }
