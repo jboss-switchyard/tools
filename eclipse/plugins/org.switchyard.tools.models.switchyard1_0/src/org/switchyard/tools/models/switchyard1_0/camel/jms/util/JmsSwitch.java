@@ -7,7 +7,7 @@ import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.util.Switch;
 import org.eclipse.soa.sca.sca1_1.model.sca.Binding;
 import org.eclipse.soa.sca.sca1_1.model.sca.CommonExtensionBase;
-import org.switchyard.tools.models.switchyard1_0.camel.core.BaseCamelBinding;
+import org.switchyard.tools.models.switchyard1_0.camel.jms.*;
 import org.switchyard.tools.models.switchyard1_0.camel.jms.CamelJmsBindingType;
 import org.switchyard.tools.models.switchyard1_0.camel.jms.DocumentRoot;
 import org.switchyard.tools.models.switchyard1_0.camel.jms.JmsPackage;
@@ -82,6 +82,7 @@ public class JmsSwitch<T> extends Switch<T> {
             case JmsPackage.CAMEL_JMS_BINDING_TYPE: {
                 CamelJmsBindingType camelJmsBindingType = (CamelJmsBindingType)theEObject;
                 T result = caseCamelJmsBindingType(camelJmsBindingType);
+                if (result == null) result = caseBaseCamelBinding(camelJmsBindingType);
                 if (result == null) result = caseSwitchYardBindingType(camelJmsBindingType);
                 if (result == null) result = caseBinding(camelJmsBindingType);
                 if (result == null) result = caseCommonExtensionBase(camelJmsBindingType);

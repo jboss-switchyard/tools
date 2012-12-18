@@ -10,6 +10,8 @@
  ************************************************************************************/
 package org.switchyard.tools.ui.editor.components.rules;
 
+import java.math.BigInteger;
+
 import org.eclipse.jdt.core.IJavaElement;
 import org.eclipse.jdt.core.IJavaProject;
 import org.eclipse.jdt.core.IPackageFragment;
@@ -30,7 +32,8 @@ import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Group;
 import org.eclipse.swt.widgets.Label;
 import org.eclipse.swt.widgets.Text;
-import org.switchyard.tools.models.switchyard1_0.rules.AuditType;
+import org.switchyard.tools.models.switchyard1_0.rules.LoggerType;
+import org.switchyard.tools.models.switchyard1_0.rules.LoggerType1;
 import org.switchyard.tools.models.switchyard1_0.rules.RulesFactory;
 import org.switchyard.tools.ui.JavaUtil;
 
@@ -49,11 +52,11 @@ public class NewRulesDetailsWizardPage extends WizardPage {
     private Text _packageNameText;
     private boolean _agent;
     private Button _agentCheckbox;
-//    private String _messageName;
-//    private Text _messageNameText;
+    private String _messageName;
+    private Text _messageNameText;
     private boolean _auditingEnabled;
     private Button _auditingEnabledCheckbox;
-    private AuditType _auditSettings = RulesFactory.eINSTANCE.createAuditType();
+    private LoggerType1 _auditSettings = RulesFactory.eINSTANCE.createLoggerType1();
     private Text _auditLogText;
     private Text _auditIntervalText;
     private ComboViewer _auditTypeList;
@@ -86,18 +89,18 @@ public class NewRulesDetailsWizardPage extends WizardPage {
             }
         });
 
-//        createLabel(contents, "Input Message:");
-//        _messageNameText = new Text(contents, SWT.SINGLE | SWT.BORDER);
-//        _messageNameText
-//                .setToolTipText("The name for the property in which the input message contents will be stored; may be empty.");
-//        _messageNameText.setLayoutData(new GridData(GridData.FILL_HORIZONTAL));
-//        _messageNameText.addModifyListener(new ModifyListener() {
-//            @Override
-//            public void modifyText(ModifyEvent event) {
-//                _messageName = _messageNameText.getText();
-//                validate();
-//            }
-//        });
+        createLabel(contents, "Input Variable:");
+        _messageNameText = new Text(contents, SWT.SINGLE | SWT.BORDER);
+        _messageNameText
+                .setToolTipText("The name of the variable the input message contents will be stored; may be empty.");
+        _messageNameText.setLayoutData(new GridData(GridData.FILL_HORIZONTAL));
+        _messageNameText.addModifyListener(new ModifyListener() {
+            @Override
+            public void modifyText(ModifyEvent event) {
+                _messageName = _messageNameText.getText();
+                validate();
+            }
+        });
 
         // TODO: enable once we figure out what "agent" means
         // _agentCheckbox = new Button(contents, SWT.CHECK);
@@ -157,7 +160,7 @@ public class NewRulesDetailsWizardPage extends WizardPage {
             @Override
             public void modifyText(ModifyEvent event) {
                 try {
-                    _auditSettings.setInterval(Integer.parseInt(_auditIntervalText.getText()));
+                    _auditSettings.setInterval(BigInteger.valueOf(Integer.parseInt(_auditIntervalText.getText())));
                 } catch (NumberFormatException e) {
                     e.fillInStackTrace();
                 }
@@ -170,14 +173,14 @@ public class NewRulesDetailsWizardPage extends WizardPage {
         _auditTypeList.setLabelProvider(new LabelProvider() {
             @Override
             public String getText(Object element) {
-                if (element instanceof org.switchyard.tools.models.switchyard1_0.commonrules.AuditType) {
-                    return ((org.switchyard.tools.models.switchyard1_0.commonrules.AuditType) element).getLiteral();
+                if (element instanceof LoggerType) {
+                    return ((LoggerType) element).getLiteral();
                 }
                 return super.getText(element);
             }
         });
         _auditTypeList.setContentProvider(ArrayContentProvider.getInstance());
-        _auditTypeList.setInput(org.switchyard.tools.models.switchyard1_0.commonrules.AuditType.values());
+        _auditTypeList.setInput(LoggerType.values());
     }
 
     private Label createLabel(Composite parent, String text) {
@@ -222,25 +225,25 @@ public class NewRulesDetailsWizardPage extends WizardPage {
         }
     }
 
-//    /**
-//     * @return the process variable name to be used for storing inbound message
-//     *         content.
-//     */
-//    public String getMessageName() {
-//        return nullForEmpty(_messageName);
-//    }
-//
-//    /**
-//     * @param messageName The process variable name to be used for storing
-//     *            inbound message content.
-//     */
-//    public void setMessageName(String messageName) {
-//        if (_messageNameText == null) {
-//            _messageName = messageName;
-//        } else {
-//            _messageNameText.setText(messageName);
-//        }
-//    }
+    /**
+     * @return the process variable name to be used for storing inbound message
+     *         content.
+     */
+    public String getMessageName() {
+        return nullForEmpty(_messageName);
+    }
+
+    /**
+     * @param messageName The process variable name to be used for storing
+     *            inbound message content.
+     */
+    public void setMessageName(String messageName) {
+        if (_messageNameText == null) {
+            _messageName = messageName;
+        } else {
+            _messageNameText.setText(messageName);
+        }
+    }
 
     /**
      * @return true if auditing is enabled.
@@ -264,19 +267,20 @@ public class NewRulesDetailsWizardPage extends WizardPage {
     /**
      * @return the audit settings.
      */
-    public AuditType getAuditSettings() {
+    public LoggerType1 getAuditSettings() {
         return _auditSettings;
     }
 
     /**
      * @param auditSettings the new audit settings
      */
-    public void setAuditSettings(AuditType auditSettings) {
+    public void setAuditSettings(LoggerType1 auditSettings) {
         if (_auditingEnabledCheckbox == null) {
             _auditSettings = auditSettings;
         } else {
             _auditLogText.setText(emptyForNull(auditSettings.getLog()));
-            _auditIntervalText.setText(Integer.toString(auditSettings.getInterval()));
+            _auditIntervalText.setText(auditSettings.getInterval() == null ? "" : auditSettings.getInterval()
+                    .toString());
             _auditTypeList.setSelection(new StructuredSelection(auditSettings.getType()), true);
         }
     }
@@ -319,9 +323,9 @@ public class NewRulesDetailsWizardPage extends WizardPage {
     }
 
     private void initControls() {
-        setAuditSettings(_auditSettings == null ? RulesFactory.eINSTANCE.createAuditType() : _auditSettings);
+        setAuditSettings(_auditSettings == null ? RulesFactory.eINSTANCE.createLoggerType1() : _auditSettings);
         setAuditingEnabled(_auditingEnabled);
-//        setMessageName(emptyForNull(_messageName));
+        // setMessageName(emptyForNull(_messageName));
         setPackageName(emptyForNull(_packageName));
     }
 

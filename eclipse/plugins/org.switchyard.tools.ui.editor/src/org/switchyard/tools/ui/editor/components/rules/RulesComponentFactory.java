@@ -39,8 +39,10 @@ public class RulesComponentFactory extends BaseComponentFactory {
     }
 
     private String getTypeName(RulesImplementationType implementation) {
-        for (ResourceType resource : implementation.getResource()) {
-            return new Path(resource.getLocation()).removeFileExtension().lastSegment();
+        if (implementation.getManifest() != null && implementation.getManifest().getResources() != null) {
+            for (ResourceType resource : implementation.getManifest().getResources().getResource()) {
+                return new Path(resource.getLocation()).removeFileExtension().lastSegment();
+            }
         }
         return "RulesComponent";
     }

@@ -16,21 +16,18 @@ import javax.swing.event.ChangeEvent;
 import javax.swing.event.ChangeListener;
 
 import org.eclipse.core.runtime.ListenerList;
-import org.eclipse.emf.common.util.EList;
-import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
-import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.transaction.RecordingCommand;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.eclipse.jface.viewers.CellEditor;
 import org.eclipse.jface.viewers.ComboBoxCellEditor;
 import org.eclipse.jface.viewers.ICellModifier;
 import org.eclipse.jface.viewers.ILabelProviderListener;
+import org.eclipse.jface.viewers.IStructuredContentProvider;
 import org.eclipse.jface.viewers.IStructuredSelection;
 import org.eclipse.jface.viewers.ITableLabelProvider;
-import org.eclipse.jface.viewers.ITreeContentProvider;
+import org.eclipse.jface.viewers.TableViewer;
 import org.eclipse.jface.viewers.TextCellEditor;
-import org.eclipse.jface.viewers.TreeViewer;
 import org.eclipse.jface.viewers.Viewer;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.events.SelectionAdapter;
@@ -40,8 +37,8 @@ import org.eclipse.swt.layout.GridData;
 import org.eclipse.swt.layout.GridLayout;
 import org.eclipse.swt.widgets.Button;
 import org.eclipse.swt.widgets.Composite;
-import org.eclipse.swt.widgets.TreeColumn;
-import org.eclipse.swt.widgets.TreeItem;
+import org.eclipse.swt.widgets.TableColumn;
+import org.eclipse.swt.widgets.TableItem;
 import org.switchyard.tools.models.switchyard1_0.rules.ActionType;
 import org.switchyard.tools.models.switchyard1_0.rules.ActionType1;
 import org.switchyard.tools.models.switchyard1_0.rules.RulesFactory;
@@ -54,52 +51,26 @@ import org.switchyard.tools.ui.editor.impl.SwitchyardSCAEditor;
  */
 public class RulesActionTable extends Composite implements ICellModifier {
 
-    private class PropertyTreeContentProvider implements ITreeContentProvider {
-        private EList<ActionType1> _properties;
-
+    private class PropertyTreeContentProvider implements IStructuredContentProvider {
         @Override
         public void dispose() {
         }
 
-        @SuppressWarnings("unchecked")
         @Override
         public void inputChanged(Viewer viewer, Object oldInput, Object newInput) {
-            if (newInput instanceof EList<?>) {
-                _properties = (EList<ActionType1>) newInput;
-            }
         }
 
         @Override
         public Object[] getElements(Object inputElement) {
-            if (inputElement instanceof EList<?>) {
-                return _properties.toArray();
+            if (inputElement instanceof RulesImplementationType) {
+                final RulesImplementationType impl = (RulesImplementationType) inputElement;
+                if (impl.getActions() != null) {
+                    return impl.getActions().getAction().toArray();
+                }
             }
-            return null;
+            return new Object[0];
         }
 
-        @Override
-        public Object[] getChildren(Object parentElement) {
-            if (parentElement instanceof ActionType1[]) {
-                return new Object[] {_properties.toArray() };
-            }
-            return null;
-        }
-
-        @Override
-        public Object getParent(Object element) {
-            if (element instanceof ActionType1) {
-                return ((ActionType1) element).eContainer();
-            }
-            return null;
-        }
-
-        @Override
-        public boolean hasChildren(Object element) {
-            if (element instanceof EList<?>) {
-                return ((EList<?>) element).size() > 0;
-            }
-            return false;
-        }
     }
 
     private class PropertyTreeLabelProvider implements ITableLabelProvider {
@@ -113,9 +84,7 @@ public class RulesActionTable extends Composite implements ICellModifier {
 
         @Override
         public boolean isLabelProperty(Object element, String property) {
-            if (element instanceof ActionType1 && property.equalsIgnoreCase(NAME_COLUMN)) {
-                return true;
-            } else if (element instanceof ActionType1 && property.equalsIgnoreCase(VALUE_COLUMN)) {
+            if (element instanceof ActionType1 && property.equalsIgnoreCase(VALUE_COLUMN)) {
                 return true;
             } else if (element instanceof ActionType1 && property.equalsIgnoreCase(ENTRY_POINT_COLUMN)) {
                 return true;
@@ -135,35 +104,28 @@ public class RulesActionTable extends Composite implements ICellModifier {
         @Override
         public String getColumnText(Object element, int columnIndex) {
             if (element instanceof ActionType1 && columnIndex == 0) {
-                return ((ActionType1) element).getName();
-            } else if (element instanceof ActionType1 && columnIndex == 1) {
                 ActionType1 tp = (ActionType1) element;
                 return (String) tp.getType().getLiteral();
-            } else if (element instanceof ActionType1 && columnIndex == 2) {
+            } else if (element instanceof ActionType1 && columnIndex == 1) {
                 ActionType1 tp = (ActionType1) element;
-                return tp.getEntryPoint();
+                return tp.getOperation();
             }
             return null;
         }
     }
 
-    private TreeViewer _propertyTreeTable;
-    
+    private TableViewer _propertyTreeTable;
+
     /**
-     *  Name column.
-     */
-    public static final String NAME_COLUMN = "name";
-    
-    /**
-     * Value column. 
+     * Value column.
      */
     public static final String VALUE_COLUMN = "value";
     /**
      * Entry point column.
      */
     public static final String ENTRY_POINT_COLUMN = "entryPoint";
-    
-    private static final String[] TREE_COLUMNS = new String[] {NAME_COLUMN, VALUE_COLUMN, ENTRY_POINT_COLUMN };
+
+    private static final String[] TREE_COLUMNS = new String[] {VALUE_COLUMN, ENTRY_POINT_COLUMN };
 
     private Button _mAddButton;
     private Button _mRemoveButton;
@@ -205,21 +167,17 @@ public class RulesActionTable extends Composite implements ICellModifier {
         gridLayout.numColumns = 2;
         setLayout(gridLayout);
 
-        _propertyTreeTable = new TreeViewer(this, SWT.BORDER | SWT.WRAP | SWT.V_SCROLL | SWT.FULL_SELECTION
+        _propertyTreeTable = new TableViewer(this, SWT.BORDER | SWT.WRAP | SWT.V_SCROLL | SWT.FULL_SELECTION
                 | additionalStyles);
-        this._propertyTreeTable.setAutoExpandLevel(TreeViewer.ALL_LEVELS);
         GridData gd11 = new GridData(SWT.FILL, SWT.FILL, true, false, 1, 3);
         gd11.heightHint = 100;
-        _propertyTreeTable.getTree().setLayoutData(gd11);
-        _propertyTreeTable.getTree().setHeaderVisible(true);
-        TreeColumn nameColumn = new TreeColumn(_propertyTreeTable.getTree(), SWT.LEFT);
-        nameColumn.setText("Name");
-        nameColumn.setWidth(200);
-        TreeColumn valueColumn = new TreeColumn(_propertyTreeTable.getTree(), SWT.LEFT);
+        _propertyTreeTable.getTable().setLayoutData(gd11);
+        _propertyTreeTable.getTable().setHeaderVisible(true);
+        TableColumn valueColumn = new TableColumn(_propertyTreeTable.getTable(), SWT.LEFT);
         valueColumn.setText("Type");
         valueColumn.setWidth(200);
-        TreeColumn entryPointColumn = new TreeColumn(_propertyTreeTable.getTree(), SWT.LEFT);
-        entryPointColumn.setText("Entry Point");
+        TableColumn entryPointColumn = new TableColumn(_propertyTreeTable.getTable(), SWT.LEFT);
+        entryPointColumn.setText("Operation");
         entryPointColumn.setWidth(200);
 
         _propertyTreeTable.setColumnProperties(TREE_COLUMNS);
@@ -230,13 +188,9 @@ public class RulesActionTable extends Composite implements ICellModifier {
 
         _propertyTreeTable.setCellModifier(this);
         _propertyTreeTable.setCellEditors(new CellEditor[] {
-                new TextCellEditor(_propertyTreeTable.getTree()), 
-                new ComboBoxCellEditor(_propertyTreeTable.getTree(), new String[] {
-                    ActionType.EXECUTE.getLiteral(),
-                    ActionType.FIREALLRULES.getLiteral(),
-                    ActionType.FIREUNTILHALT.getLiteral()
-                }),
-                new TextCellEditor(_propertyTreeTable.getTree()) });
+                new ComboBoxCellEditor(_propertyTreeTable.getTable(), new String[] {ActionType.EXECUTE.getLiteral(),
+                        ActionType.FIREALLRULES.getLiteral(), ActionType.FIREUNTILHALT.getLiteral() }),
+                new TextCellEditor(_propertyTreeTable.getTable()) });
 
         this._mAddButton = new Button(this, SWT.NONE);
         this._mAddButton.setLayoutData(new GridData(GridData.HORIZONTAL_ALIGN_FILL));
@@ -247,7 +201,7 @@ public class RulesActionTable extends Composite implements ICellModifier {
                 addPropertyToList();
                 if (_propertyTreeTable.getInput() == null) {
                     RulesImplementationType impl = (RulesImplementationType) _targetObj;
-                    _propertyTreeTable.setInput(impl.getAction());
+                    _propertyTreeTable.setInput(impl);
                 }
                 _propertyTreeTable.refresh();
                 fireChangedEvent(e.getSource());
@@ -256,7 +210,7 @@ public class RulesActionTable extends Composite implements ICellModifier {
 
         this._mAddButton.setEnabled(false);
 
-        _propertyTreeTable.getTree().addSelectionListener(new SelectionAdapter() {
+        _propertyTreeTable.getTable().addSelectionListener(new SelectionAdapter() {
 
             public void widgetSelected(SelectionEvent e) {
                 updatePropertyButtons();
@@ -302,17 +256,23 @@ public class RulesActionTable extends Composite implements ICellModifier {
                     protected void doExecute() {
                         ActionType1 newAction = RulesFactory.eINSTANCE.createActionType1();
                         newAction.setType(ActionType.EXECUTE);
-                        newAction.setName("NewAction");
-                        impl.getAction().add(newAction);
-                        getTreeViewer().refresh(true);
+                        newAction.setOperation("NewAction");
+                        if (impl.getActions() == null) {
+                            impl.setActions(RulesFactory.eINSTANCE.createActionsType());
+                        }
+                        impl.getActions().getAction().add(newAction);
+                        getTableViewer().refresh(true);
                     }
                 });
             } else {
                 ActionType1 newAction = RulesFactory.eINSTANCE.createActionType1();
                 newAction.setType(ActionType.EXECUTE);
-                newAction.setName("NewAction");
-                impl.getAction().add(newAction);
-                getTreeViewer().refresh(true);
+                newAction.setOperation("NewAction");
+                if (impl.getActions() == null) {
+                    impl.setActions(RulesFactory.eINSTANCE.createActionsType());
+                }
+                impl.getActions().getAction().add(newAction);
+                getTableViewer().refresh(true);
             }
             fireChangedEvent(this);
         }
@@ -330,31 +290,18 @@ public class RulesActionTable extends Composite implements ICellModifier {
                 domain.getCommandStack().execute(new RecordingCommand(domain) {
                     @Override
                     protected void doExecute() {
-                        impl.getAction().remove(actionToRemove);
-                        getTreeViewer().refresh(true);
+                        impl.getActions().getAction().remove(actionToRemove);
+                        getTableViewer().refresh(true);
                     }
                 });
             } else {
-                impl.getAction().remove(actionToRemove);
-                getTreeViewer().refresh(true);
+                impl.getActions().getAction().remove(actionToRemove);
+                getTableViewer().refresh(true);
             }
             fireChangedEvent(this);
         }
     }
 
-    /**
-     * Return the current selection.
-     * 
-     * @return String list
-     */
-    @SuppressWarnings("unchecked")
-    public EList<ActionType1> getSelection() {
-        if (_propertyTreeTable != null && _propertyTreeTable.getInput() != null) {
-            return (EList<ActionType1>) _propertyTreeTable.getInput();
-        }
-        return null;
-    }
-    
     protected ActionType1 getTableSelection() {
         if (_propertyTreeTable != null && !_propertyTreeTable.getSelection().isEmpty()) {
             IStructuredSelection ssel = (IStructuredSelection) _propertyTreeTable.getSelection();
@@ -375,18 +322,10 @@ public class RulesActionTable extends Composite implements ICellModifier {
 
         } else {
             this._mAddButton.setEnabled(true);
-            if (getSelection() != null) {
+            if (getTableSelection() != null) {
                 _mRemoveButton.setEnabled(true);
             }
         }
-    }
-
-    /**
-     * @param properties incoming property list
-     */
-    public void setSelection(EList<ActionType1> properties) {
-        _propertyTreeTable.setInput(properties);
-        updatePropertyButtons();
     }
 
     /**
@@ -432,31 +371,21 @@ public class RulesActionTable extends Composite implements ICellModifier {
      * @param target Passed in what we're dropping on
      */
     public void setTargetObject(EObject target) {
-        this._targetObj = target;
+        _targetObj = target;
+        _propertyTreeTable.setInput(target);
+        updatePropertyButtons();
     }
 
     protected EObject getTargetObject() {
         return this._targetObj;
-    }
-    
-    protected void setFeatureValue(EObject eObject, String featureId, Object value) {
-        EClass eClass = eObject.eClass();
-        for (int i = 0, size = eClass.getFeatureCount(); i < size; ++i) {
-            EStructuralFeature eStructuralFeature = eClass.getEStructuralFeature(i);
-            if (eStructuralFeature.isChangeable()) {
-                if (eStructuralFeature.getName().equalsIgnoreCase(featureId)) {
-                    eObject.eSet(eStructuralFeature, value);
-                    break;
-                }
-            }
-        }
     }
 
     /**
      * @param element Object being modified
      * @param property Property being modified
      * @return boolean flag
-     * @see org.eclipse.jface.viewers.ICellModifier#canModify(java.lang.Object, java.lang.String)
+     * @see org.eclipse.jface.viewers.ICellModifier#canModify(java.lang.Object,
+     *      java.lang.String)
      */
     public boolean canModify(Object element, String property) {
         return true;
@@ -466,18 +395,15 @@ public class RulesActionTable extends Composite implements ICellModifier {
      * @param element Object being modified
      * @param property Property being modified
      * @return value of element property
-     * @see
-     * org.eclipse.jface.viewers.ICellModifier#getValue(java.lang.Object ,
-     * java.lang.String)
+     * @see org.eclipse.jface.viewers.ICellModifier#getValue(java.lang.Object ,
+     *      java.lang.String)
      */
     public Object getValue(Object element, String property) {
-        if (element instanceof ActionType1 && property.equalsIgnoreCase(NAME_COLUMN)) {
-            return ((ActionType1) element).getName();
-        } else if (element instanceof ActionType1 && property.equalsIgnoreCase(VALUE_COLUMN)) {
+        if (element instanceof ActionType1 && property.equalsIgnoreCase(VALUE_COLUMN)) {
             return new Integer(((ActionType1) element).getType().getValue());
         } else if (element instanceof ActionType1 && property.equalsIgnoreCase(ENTRY_POINT_COLUMN)) {
-            if (((ActionType1) element).getEntryPoint() != null) {
-                return ((ActionType1) element).getEntryPoint();
+            if (((ActionType1) element).getOperation() != null) {
+                return ((ActionType1) element).getOperation();
             } else {
                 return "";
             }
@@ -489,13 +415,13 @@ public class RulesActionTable extends Composite implements ICellModifier {
      * @param element Object being modified
      * @param property Property being modified
      * @param value New property value
-     *
+     * 
      * @see org.eclipse.jface.viewers.ICellModifier#modify(java.lang.Object,
-     * java.lang.String, java.lang.Object)
+     *      java.lang.String, java.lang.Object)
      */
     public void modify(Object element, String property, final Object value) {
-        if (element instanceof TreeItem && property.equalsIgnoreCase(NAME_COLUMN)) {
-            final TreeItem ti = (TreeItem) element;
+        if (element instanceof TableItem && property.equalsIgnoreCase(VALUE_COLUMN)) {
+            final TableItem ti = (TableItem) element;
             if (getTargetObject() instanceof RulesImplementationType) {
                 final RulesImplementationType impl = (RulesImplementationType) getTargetObject();
                 if (impl.eContainer() != null) {
@@ -504,20 +430,22 @@ public class RulesActionTable extends Composite implements ICellModifier {
                         @Override
                         protected void doExecute() {
                             ActionType1 parm = (ActionType1) ti.getData();
-                            setFeatureValue(parm, "name", value);
-                            getTreeViewer().refresh(true);
+                            ActionType atype = ActionType.get(((Integer) value).intValue());
+                            parm.setType(atype);
+                            getTableViewer().refresh(true);
                         }
                     });
                 } else {
                     ActionType1 parm = (ActionType1) ti.getData();
-                    setFeatureValue(parm, "name", value);
-                    getTreeViewer().refresh(true);
+                    ActionType atype = ActionType.get(((Integer) value).intValue());
+                    parm.setType(atype);
+                    getTableViewer().refresh(true);
                 }
             }
             fireChangedEvent(this);
             // validate();
-        } else if (element instanceof TreeItem && property.equalsIgnoreCase(VALUE_COLUMN)) {
-            final TreeItem ti = (TreeItem) element;
+        } else if (element instanceof TableItem && property.equalsIgnoreCase(ENTRY_POINT_COLUMN)) {
+            final TableItem ti = (TableItem) element;
             if (getTargetObject() instanceof RulesImplementationType) {
                 final RulesImplementationType impl = (RulesImplementationType) getTargetObject();
                 if (impl.eContainer() != null) {
@@ -526,37 +454,14 @@ public class RulesActionTable extends Composite implements ICellModifier {
                         @Override
                         protected void doExecute() {
                             ActionType1 parm = (ActionType1) ti.getData();
-                            ActionType atype = ActionType.get(((Integer)value).intValue());
-                            setFeatureValue(parm, "type", atype);
-                            getTreeViewer().refresh(true);
+                            parm.setOperation((String) value);
+                            getTableViewer().refresh(true);
                         }
                     });
                 } else {
                     ActionType1 parm = (ActionType1) ti.getData();
-                    setFeatureValue(parm, "type", value);
-                    getTreeViewer().refresh(true);
-                }
-            }
-            fireChangedEvent(this);
-            // validate();
-        } else if (element instanceof TreeItem && property.equalsIgnoreCase(ENTRY_POINT_COLUMN)) {
-            final TreeItem ti = (TreeItem) element;
-            if (getTargetObject() instanceof RulesImplementationType) {
-                final RulesImplementationType impl = (RulesImplementationType) getTargetObject();
-                if (impl.eContainer() != null) {
-                    TransactionalEditingDomain domain = SwitchyardSCAEditor.getActiveEditor().getEditingDomain();
-                    domain.getCommandStack().execute(new RecordingCommand(domain) {
-                        @Override
-                        protected void doExecute() {
-                            ActionType1 parm = (ActionType1) ti.getData();
-                            setFeatureValue(parm, "entryPoint", value);
-                            getTreeViewer().refresh(true);
-                        }
-                    });
-                } else {
-                    ActionType1 parm = (ActionType1) ti.getData();
-                    setFeatureValue(parm, "entryPoint", value);
-                    getTreeViewer().refresh(true);
+                    parm.setOperation((String) value);
+                    getTableViewer().refresh(true);
                 }
             }
             fireChangedEvent(this);
@@ -564,7 +469,7 @@ public class RulesActionTable extends Composite implements ICellModifier {
         }
     }
 
-    protected TreeViewer getTreeViewer() {
+    protected TableViewer getTableViewer() {
         return this._propertyTreeTable;
     }
 }

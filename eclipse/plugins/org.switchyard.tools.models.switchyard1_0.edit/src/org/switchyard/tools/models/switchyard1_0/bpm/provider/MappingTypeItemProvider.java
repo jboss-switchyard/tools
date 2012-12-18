@@ -15,6 +15,7 @@ import org.eclipse.emf.common.notify.Notification;
 
 import org.eclipse.emf.common.util.ResourceLocator;
 
+import org.eclipse.emf.edit.provider.ComposeableAdapterFactory;
 import org.eclipse.emf.edit.provider.IEditingDomainItemProvider;
 import org.eclipse.emf.edit.provider.IItemLabelProvider;
 import org.eclipse.emf.edit.provider.IItemPropertyDescriptor;
@@ -22,11 +23,13 @@ import org.eclipse.emf.edit.provider.IItemPropertySource;
 import org.eclipse.emf.edit.provider.IStructuredItemContentProvider;
 import org.eclipse.emf.edit.provider.ITreeItemContentProvider;
 
+import org.eclipse.emf.edit.provider.ItemPropertyDescriptor;
+import org.eclipse.emf.edit.provider.ViewerNotification;
+import org.eclipse.soa.sca.sca1_1.model.sca.provider.CommonExtensionBaseItemProvider;
 import org.switchyard.tools.models.switchyard1_0.bean.provider.Switchyard_1EditPlugin;
 
+import org.switchyard.tools.models.switchyard1_0.bpm.BPMPackage;
 import org.switchyard.tools.models.switchyard1_0.bpm.MappingType;
-
-import org.switchyard.tools.models.switchyard1_0.commonrules.ContextScope;
 
 /**
  * This is the item provider adapter for a {@link org.switchyard.tools.models.switchyard1_0.bpm.MappingType} object.
@@ -35,7 +38,7 @@ import org.switchyard.tools.models.switchyard1_0.commonrules.ContextScope;
  * @generated
  */
 public class MappingTypeItemProvider
-    extends org.switchyard.tools.models.switchyard1_0.commonrules.provider.MappingTypeItemProvider
+    extends CommonExtensionBaseItemProvider
     implements
         IEditingDomainItemProvider,
         IStructuredItemContentProvider,
@@ -63,8 +66,100 @@ public class MappingTypeItemProvider
         if (itemPropertyDescriptors == null) {
             super.getPropertyDescriptors(object);
 
+            addExpressionPropertyDescriptor(object);
+            addExpressionTypePropertyDescriptor(object);
+            addScopePropertyDescriptor(object);
+            addVariablePropertyDescriptor(object);
         }
         return itemPropertyDescriptors;
+    }
+
+    /**
+     * This adds a property descriptor for the Expression feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    protected void addExpressionPropertyDescriptor(Object object) {
+        itemPropertyDescriptors.add
+            (createItemPropertyDescriptor
+                (((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+                 getResourceLocator(),
+                 getString("_UI_MappingType_expression_feature"),
+                 getString("_UI_PropertyDescriptor_description", "_UI_MappingType_expression_feature", "_UI_MappingType_type"),
+                 BPMPackage.Literals.MAPPING_TYPE__EXPRESSION,
+                 true,
+                 false,
+                 false,
+                 ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
+                 null,
+                 null));
+    }
+
+    /**
+     * This adds a property descriptor for the Expression Type feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    protected void addExpressionTypePropertyDescriptor(Object object) {
+        itemPropertyDescriptors.add
+            (createItemPropertyDescriptor
+                (((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+                 getResourceLocator(),
+                 getString("_UI_MappingType_expressionType_feature"),
+                 getString("_UI_PropertyDescriptor_description", "_UI_MappingType_expressionType_feature", "_UI_MappingType_type"),
+                 BPMPackage.Literals.MAPPING_TYPE__EXPRESSION_TYPE,
+                 true,
+                 false,
+                 false,
+                 ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
+                 null,
+                 null));
+    }
+
+    /**
+     * This adds a property descriptor for the Scope feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    protected void addScopePropertyDescriptor(Object object) {
+        itemPropertyDescriptors.add
+            (createItemPropertyDescriptor
+                (((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+                 getResourceLocator(),
+                 getString("_UI_MappingType_scope_feature"),
+                 getString("_UI_PropertyDescriptor_description", "_UI_MappingType_scope_feature", "_UI_MappingType_type"),
+                 BPMPackage.Literals.MAPPING_TYPE__SCOPE,
+                 true,
+                 false,
+                 false,
+                 ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
+                 null,
+                 null));
+    }
+
+    /**
+     * This adds a property descriptor for the Variable feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    protected void addVariablePropertyDescriptor(Object object) {
+        itemPropertyDescriptors.add
+            (createItemPropertyDescriptor
+                (((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+                 getResourceLocator(),
+                 getString("_UI_MappingType_variable_feature"),
+                 getString("_UI_PropertyDescriptor_description", "_UI_MappingType_variable_feature", "_UI_MappingType_type"),
+                 BPMPackage.Literals.MAPPING_TYPE__VARIABLE,
+                 true,
+                 false,
+                 false,
+                 ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
+                 null,
+                 null));
     }
 
     /**
@@ -86,8 +181,7 @@ public class MappingTypeItemProvider
      */
     @Override
     public String getText(Object object) {
-        ContextScope labelValue = ((MappingType)object).getContextScope();
-        String label = labelValue == null ? null : labelValue.toString();
+        String label = ((MappingType)object).getExpression();
         return label == null || label.length() == 0 ?
             getString("_UI_MappingType_type") :
             getString("_UI_MappingType_type") + " " + label;
@@ -103,6 +197,15 @@ public class MappingTypeItemProvider
     @Override
     public void notifyChanged(Notification notification) {
         updateChildren(notification);
+
+        switch (notification.getFeatureID(MappingType.class)) {
+            case BPMPackage.MAPPING_TYPE__EXPRESSION:
+            case BPMPackage.MAPPING_TYPE__EXPRESSION_TYPE:
+            case BPMPackage.MAPPING_TYPE__SCOPE:
+            case BPMPackage.MAPPING_TYPE__VARIABLE:
+                fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
+                return;
+        }
         super.notifyChanged(notification);
     }
 

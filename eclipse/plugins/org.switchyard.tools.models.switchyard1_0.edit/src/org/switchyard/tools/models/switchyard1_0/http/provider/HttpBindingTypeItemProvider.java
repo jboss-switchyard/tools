@@ -15,9 +15,6 @@ import org.eclipse.emf.common.notify.Notification;
 
 import org.eclipse.emf.common.util.ResourceLocator;
 
-import org.eclipse.emf.ecore.EStructuralFeature;
-import org.eclipse.emf.ecore.util.FeatureMap;
-import org.eclipse.emf.ecore.util.FeatureMapUtil;
 import org.eclipse.emf.edit.provider.ComposeableAdapterFactory;
 import org.eclipse.emf.edit.provider.IEditingDomainItemProvider;
 import org.eclipse.emf.edit.provider.IItemLabelProvider;
@@ -31,10 +28,8 @@ import org.eclipse.emf.edit.provider.ViewerNotification;
 import org.switchyard.tools.models.switchyard1_0.bean.provider.Switchyard_1EditPlugin;
 
 import org.switchyard.tools.models.switchyard1_0.http.HttpBindingType;
-import org.switchyard.tools.models.switchyard1_0.http.HttpFactory;
 import org.switchyard.tools.models.switchyard1_0.http.HttpPackage;
 
-import org.switchyard.tools.models.switchyard1_0.switchyard.SwitchyardPackage;
 import org.switchyard.tools.models.switchyard1_0.switchyard.provider.SwitchYardBindingTypeItemProvider;
 
 /**

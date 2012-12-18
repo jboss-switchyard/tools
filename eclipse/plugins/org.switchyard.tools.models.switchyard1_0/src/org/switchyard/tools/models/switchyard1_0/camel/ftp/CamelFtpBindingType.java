@@ -2,9 +2,6 @@
  */
 package org.switchyard.tools.models.switchyard1_0.camel.ftp;
 
-import java.math.BigInteger;
-import org.switchyard.tools.models.switchyard1_0.camel.core.CamelRemoteBindingType;
-
 /**
  * <!-- begin-user-doc -->
  * A representation of the model object '<em><b>Camel Ftp Binding Type</b></em>'.

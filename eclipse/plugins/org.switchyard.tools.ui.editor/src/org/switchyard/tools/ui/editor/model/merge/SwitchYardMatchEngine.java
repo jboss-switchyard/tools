@@ -118,7 +118,7 @@ public class SwitchYardMatchEngine extends GenericMatchEngine implements IMatchE
             } else if (obj instanceof BPELImplementation) {
                 return obj.eClass().getName() + ":" + ((BPELImplementation) obj).getProcess();
             } else if (obj instanceof BPMImplementationType) {
-                return obj.eClass().getName() + ":" + ((BPMImplementationType) obj).getProcessDefinition();
+                return obj.eClass().getName() + ":" + ((BPMImplementationType) obj).getProcessId();
             } else if (obj instanceof CamelImplementationType) {
                 CamelImplementationType camel = (CamelImplementationType) obj;
                 if (camel.getJava() != null) {

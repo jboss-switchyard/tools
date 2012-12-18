@@ -38,7 +38,6 @@ import org.switchyard.tools.models.switchyard1_0.bean.provider.BeanItemProviderA
 import org.switchyard.tools.models.switchyard1_0.bpm.provider.BPMItemProviderAdapterFactory;
 import org.switchyard.tools.models.switchyard1_0.camel.provider.CamelItemProviderAdapterFactory;
 import org.switchyard.tools.models.switchyard1_0.clojure.provider.ClojureItemProviderAdapterFactory;
-import org.switchyard.tools.models.switchyard1_0.commonrules.provider.CommonRulesItemProviderAdapterFactory;
 import org.switchyard.tools.models.switchyard1_0.hornetq.provider.HornetQItemProviderAdapterFactory;
 import org.switchyard.tools.models.switchyard1_0.jca.provider.JcaItemProviderAdapterFactory;
 import org.switchyard.tools.models.switchyard1_0.resteasy.provider.ResteasyItemProviderAdapterFactory;
@@ -160,7 +159,6 @@ public class SwitchyardAdvancedPropertySection extends AdvancedPropertySection i
         factories.add(new SwitchyardItemProviderAdapterFactory());
         factories.add(new JcaItemProviderAdapterFactory());
         factories.add(new HornetQItemProviderAdapterFactory());
-        factories.add(new CommonRulesItemProviderAdapterFactory());
         factories.add(new ClojureItemProviderAdapterFactory());
         factories.add(new CamelItemProviderAdapterFactory());
         factories.add(new BPMItemProviderAdapterFactory());

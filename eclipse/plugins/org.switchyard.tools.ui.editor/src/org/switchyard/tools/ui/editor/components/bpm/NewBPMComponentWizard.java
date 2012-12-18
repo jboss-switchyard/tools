@@ -24,12 +24,21 @@ import org.eclipse.soa.sca.sca1_1.model.sca.ComponentReference;
 import org.eclipse.soa.sca.sca1_1.model.sca.Implementation;
 import org.eclipse.ui.INewWizard;
 import org.eclipse.ui.dialogs.WizardNewFileCreationPage;
-import org.switchyard.tools.models.switchyard1_0.bpm.AuditType;
+import org.switchyard.tools.models.switchyard1_0.bpm.ActionType;
+import org.switchyard.tools.models.switchyard1_0.bpm.ActionType1;
 import org.switchyard.tools.models.switchyard1_0.bpm.BPMFactory;
 import org.switchyard.tools.models.switchyard1_0.bpm.BPMImplementationType;
 import org.switchyard.tools.models.switchyard1_0.bpm.BPMPackage;
-import org.switchyard.tools.models.switchyard1_0.bpm.TaskHandlerType;
-import org.switchyard.tools.models.switchyard1_0.commonrules.CommonRulesPackage;
+import org.switchyard.tools.models.switchyard1_0.bpm.LoggerType1;
+import org.switchyard.tools.models.switchyard1_0.bpm.LoggersType;
+import org.switchyard.tools.models.switchyard1_0.bpm.ManifestType;
+import org.switchyard.tools.models.switchyard1_0.bpm.MappingType;
+import org.switchyard.tools.models.switchyard1_0.bpm.MappingsType;
+import org.switchyard.tools.models.switchyard1_0.bpm.ResourceType;
+import org.switchyard.tools.models.switchyard1_0.bpm.ResourcesType;
+import org.switchyard.tools.models.switchyard1_0.bpm.ScopeType;
+import org.switchyard.tools.models.switchyard1_0.bpm.WorkItemHandlerType;
+import org.switchyard.tools.models.switchyard1_0.bpm.WorkItemHandlersType;
 import org.switchyard.tools.ui.editor.diagram.shared.BaseNewServiceFileWizard;
 
 /**
@@ -54,9 +63,9 @@ public class NewBPMComponentWizard extends BaseNewServiceFileWizard implements I
      * 
      * @return a configured TaskHandler for handling "SwitchYard Service" tasks.
      */
-    public static TaskHandlerType createSwitchYardServiceTaskHandler() {
-        TaskHandlerType switchYardServiceHandler = BPMFactory.eINSTANCE.createTaskHandlerType();
-        switchYardServiceHandler.setClass("org.switchyard.component.bpm.task.work.SwitchYardServiceTaskHandler");
+    public static WorkItemHandlerType createSwitchYardServiceTaskHandler() {
+        WorkItemHandlerType switchYardServiceHandler = BPMFactory.eINSTANCE.createWorkItemHandlerType();
+        switchYardServiceHandler.setClass("org.switchyard.component.bpm.work.SwitchYardServiceWorkItemHandler");
         switchYardServiceHandler.setName("SwitchYard Service");
         return switchYardServiceHandler;
     }
@@ -101,37 +110,70 @@ public class NewBPMComponentWizard extends BaseNewServiceFileWizard implements I
         // make sure the implementation is initialized (to get correct defaults)
         _implementation = BPMFactory.eINSTANCE.createBPMImplementationType();
         _implementation.setProcessId(_processPage.getProcessId());
+
+        final ActionType1 startAction = BPMFactory.eINSTANCE.createActionType1();
+        startAction.setOperation("");
+        startAction.setType(ActionType.STARTPROCESS);
         if (_processPage.getMessageInName() == null) {
-            _implementation.eUnset(BPMPackage.eINSTANCE.getBPMImplementationType_MessageContentInName());
+            startAction.setInputs(null);
         } else {
-            _implementation.setMessageContentInName(_processPage.getMessageInName());
+            final MappingsType inputs = BPMFactory.eINSTANCE.createMappingsType();
+            final MappingType inputMapping = BPMFactory.eINSTANCE.createMappingType();
+            inputMapping.setScope(ScopeType.IN);
+            inputMapping.setVariable(_processPage.getMessageInName());
+            inputMapping.setExpression("message.content");
+
+            inputs.getMapping().add(inputMapping);
+            startAction.setInputs(inputs);
         }
+
         if (_processPage.getMessageOutName() == null) {
-            _implementation.eUnset(BPMPackage.eINSTANCE.getBPMImplementationType_MessageContentOutName());
+            startAction.setOutputs(null);
         } else {
-            _implementation.setMessageContentOutName(_processPage.getMessageOutName());
+            final MappingsType outputs = BPMFactory.eINSTANCE.createMappingsType();
+            final MappingType outputMapping = BPMFactory.eINSTANCE.createMappingType();
+            outputMapping.setScope(ScopeType.IN);
+            outputMapping.setVariable(_processPage.getMessageOutName());
+            outputMapping.setExpression("message.content");
+
+            outputs.getMapping().add(outputMapping);
+            startAction.setOutputs(outputs);
         }
+
         _implementation.setPersistent(_processPage.isPersistent());
+
         if (_processPage.isAuditingEnabled()) {
-            AuditType auditSettings = _processPage.getAuditSettings();
+            LoggerType1 auditSettings = _processPage.getAuditSettings();
             if (auditSettings.getLog() == null) {
-                auditSettings.eUnset(CommonRulesPackage.eINSTANCE.getAuditType1_Log());
+                auditSettings.eUnset(BPMPackage.eINSTANCE.getLoggerType1_Log());
             }
-            _implementation.setAudit(auditSettings);
+            final LoggersType loggersType = BPMFactory.eINSTANCE.createLoggersType();
+            loggersType.getLogger().add(auditSettings);
+            _implementation.setLoggers(loggersType);
 
         } else {
-            _implementation.setAudit(null);
+            _implementation.setLoggers(null);
         }
 
         // TODO: prompt user for TaskHandler configuration
         // add the required "SwitchYard Service" task handler
-        _implementation.getTaskHandler().add(createSwitchYardServiceTaskHandler());
+        final WorkItemHandlersType workItemHandlers = BPMFactory.eINSTANCE.createWorkItemHandlersType();
+        workItemHandlers.getWorkItemHandler().add(createSwitchYardServiceTaskHandler());
+        _implementation.setWorkItemHandlers(workItemHandlers);
 
         if (!super.performFinish()) {
             return false;
         }
 
-        _implementation.setProcessDefinition(getCreatedFilePath());
+        final ManifestType manifest = BPMFactory.eINSTANCE.createManifestType();
+        final ResourcesType resources = BPMFactory.eINSTANCE.createResourcesType();
+        final ResourceType resource = BPMFactory.eINSTANCE.createResourceType();
+        resource.setLocation(getCreatedFilePath());
+        resource.setType("BPMN2");
+
+        resources.getResource().add(resource);
+        manifest.setResources(resources);
+        _implementation.setManifest(manifest);
 
         return true;
     }
@@ -181,8 +223,8 @@ public class NewBPMComponentWizard extends BaseNewServiceFileWizard implements I
     protected InputStream getInitialContents() {
         // this is crappy. ideally we would be using the bpmn2 model to do this.
         final StringBuffer buf = new StringBuffer();
-        final String messageIn = _implementation.getMessageContentInName();
-        final String messageOut = _implementation.getMessageContentOutName();
+        final String messageIn = _processPage.getMessageInName();
+        final String messageOut = _processPage.getMessageOutName();
         final String messageInItem = "_" + messageIn + "Item";
         final String messageOutItem = "_" + messageOut + "Item";
         String lineSeparator;

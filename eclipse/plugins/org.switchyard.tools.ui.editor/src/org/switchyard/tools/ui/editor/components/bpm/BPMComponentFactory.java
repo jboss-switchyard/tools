@@ -10,7 +10,6 @@
  ************************************************************************************/
 package org.switchyard.tools.ui.editor.components.bpm;
 
-import org.eclipse.core.runtime.Path;
 import org.eclipse.soa.sca.sca1_1.model.sca.Composite;
 import org.eclipse.soa.sca.sca1_1.model.sca.Implementation;
 import org.switchyard.tools.models.switchyard1_0.bpm.BPMImplementationType;
@@ -38,7 +37,7 @@ public class BPMComponentFactory extends BaseComponentFactory {
     }
 
     private String getTypeName(BPMImplementationType implementation) {
-        return new Path(implementation.getProcessDefinition()).removeFileExtension().lastSegment();
+        return implementation.getProcessId();
     }
 
 }

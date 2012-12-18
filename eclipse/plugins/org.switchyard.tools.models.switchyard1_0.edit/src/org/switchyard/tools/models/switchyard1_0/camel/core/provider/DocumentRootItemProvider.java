@@ -26,11 +26,8 @@ import org.switchyard.tools.models.switchyard1_0.bean.provider.Switchyard_1EditP
 
 import org.switchyard.tools.models.switchyard1_0.camel.core.CoreFactory;
 import org.switchyard.tools.models.switchyard1_0.camel.core.CorePackage;
-import org.switchyard.tools.models.switchyard1_0.camel.amqp.AmqpFactory;
 
 import org.switchyard.tools.models.switchyard1_0.camel.core.DocumentRoot;
-
-import org.switchyard.tools.models.switchyard1_0.camel.jms.JmsFactory;
 
 /**
  * This is the item provider adapter for a {@link org.switchyard.tools.models.switchyard1_0.camel.core.DocumentRoot} object.

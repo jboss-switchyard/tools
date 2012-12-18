@@ -40,6 +40,9 @@ import org.eclipse.ui.PlatformUI;
 import org.eclipse.ui.dialogs.SelectionDialog;
 import org.switchyard.tools.models.switchyard1_0.bpm.BPMFactory;
 import org.switchyard.tools.models.switchyard1_0.bpm.BPMImplementationType;
+import org.switchyard.tools.models.switchyard1_0.bpm.ManifestType;
+import org.switchyard.tools.models.switchyard1_0.bpm.ResourceType;
+import org.switchyard.tools.models.switchyard1_0.bpm.ResourcesType;
 import org.switchyard.tools.ui.JavaUtil;
 import org.switchyard.tools.ui.common.ClasspathResourceSelectionDialog;
 import org.switchyard.tools.ui.editor.impl.SwitchyardSCAEditor;
@@ -183,8 +186,17 @@ public class BPMImplementationWizardPage extends WizardPage {
                 IResource bpmnFile = (IResource) result[0];
                 String bpmnFilePath = JavaUtil.getJavaPathForResource(bpmnFile).toString();
                 _implementation = BPMFactory.eINSTANCE.createBPMImplementationType();
-                _implementation.setProcessDefinition(bpmnFilePath);
-                _implementation.getTaskHandler().add(NewBPMComponentWizard.createSwitchYardServiceTaskHandler());
+
+                final ManifestType manifest = BPMFactory.eINSTANCE.createManifestType();
+                final ResourcesType resources = BPMFactory.eINSTANCE.createResourcesType();
+                final ResourceType resource = BPMFactory.eINSTANCE.createResourceType();
+                resource.setLocation(bpmnFilePath);
+                resource.setType("BPMN2");
+
+                resources.getResource().add(resource);
+                manifest.setResources(resources);
+                _implementation.setManifest(manifest);
+
                 // TODO: see if we can get the processId
                 // _implementation.setProcessId(processId);
 
@@ -206,13 +218,14 @@ public class BPMImplementationWizardPage extends WizardPage {
         IWorkbench workbench = editor == null ? PlatformUI.getWorkbench() : editor.getEditorSite().getWorkbenchWindow()
                 .getWorkbench();
         wizard.init(workbench, selection);
-        wizard.init(_component == null ? null : (org.eclipse.soa.sca.sca1_1.model.sca.Composite) _component.eContainer());
+        wizard.init(_component == null ? null : (org.eclipse.soa.sca.sca1_1.model.sca.Composite) _component
+                .eContainer());
         wizard.forceServiceInterfaceType(_serviceInterface);
         WizardDialog dialog = new WizardDialog(getShell(), wizard);
         if (dialog.open() == WizardDialog.OK) {
             _implementation = (BPMImplementationType) wizard.getCreatedObject().getImplementation();
             _service = wizard.getService();
-            _bpmnFileText.setText(_implementation.getProcessDefinition());
+            _bpmnFileText.setText(_implementation.getManifest().getResources().getResource().get(0).getLocation());
         }
     }
 

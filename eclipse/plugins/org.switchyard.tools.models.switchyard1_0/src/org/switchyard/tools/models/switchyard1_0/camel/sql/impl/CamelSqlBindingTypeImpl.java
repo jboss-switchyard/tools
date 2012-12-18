@@ -8,8 +8,6 @@ import org.eclipse.emf.ecore.EClass;
 
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 
-import org.switchyard.tools.models.switchyard1_0.camel.core.impl.BaseCamelBindingImpl;
-
 import org.switchyard.tools.models.switchyard1_0.camel.sql.CamelSqlBindingType;
 import org.switchyard.tools.models.switchyard1_0.camel.sql.SqlPackage;
 

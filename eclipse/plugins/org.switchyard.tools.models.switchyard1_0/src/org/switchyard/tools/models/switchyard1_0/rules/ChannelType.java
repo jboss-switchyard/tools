@@ -17,7 +17,6 @@ import org.eclipse.soa.sca.sca1_1.model.sca.CommonExtensionBase;
  * The following features are supported:
  * <ul>
  *   <li>{@link org.switchyard.tools.models.switchyard1_0.rules.ChannelType#getClass_ <em>Class</em>}</li>
- *   <li>{@link org.switchyard.tools.models.switchyard1_0.rules.ChannelType#getInput <em>Input</em>}</li>
  *   <li>{@link org.switchyard.tools.models.switchyard1_0.rules.ChannelType#getName <em>Name</em>}</li>
  *   <li>{@link org.switchyard.tools.models.switchyard1_0.rules.ChannelType#getOperation <em>Operation</em>}</li>
  *   <li>{@link org.switchyard.tools.models.switchyard1_0.rules.ChannelType#getReference <em>Reference</em>}</li>
@@ -25,7 +24,7 @@ import org.eclipse.soa.sca.sca1_1.model.sca.CommonExtensionBase;
  * </p>
  *
  * @see org.switchyard.tools.models.switchyard1_0.rules.RulesPackage#getChannelType()
- * @model extendedMetaData="name='ChannelType' kind='empty'"
+ * @model extendedMetaData="name='ChannelType' kind='elementOnly'"
  * @generated
  */
 public interface ChannelType extends CommonExtensionBase {
@@ -42,7 +41,7 @@ public interface ChannelType extends CommonExtensionBase {
      * @see #setClass(String)
      * @see org.switchyard.tools.models.switchyard1_0.rules.RulesPackage#getChannelType_Class()
      * @model dataType="org.eclipse.emf.ecore.xml.type.String" required="true"
-     *        extendedMetaData="name='class' kind='attribute'"
+     *        extendedMetaData="kind='attribute' name='class'"
      * @generated
      */
     String getClass_();
@@ -58,33 +57,6 @@ public interface ChannelType extends CommonExtensionBase {
     void setClass(String value);
 
     /**
-     * Returns the value of the '<em><b>Input</b></em>' attribute.
-     * <!-- begin-user-doc -->
-     * <p>
-     * If the meaning of the '<em>Input</em>' attribute isn't clear,
-     * there really should be more of a description here...
-     * </p>
-     * <!-- end-user-doc -->
-     * @return the value of the '<em>Input</em>' attribute.
-     * @see #setInput(String)
-     * @see org.switchyard.tools.models.switchyard1_0.rules.RulesPackage#getChannelType_Input()
-     * @model dataType="org.eclipse.emf.ecore.xml.type.String"
-     *        extendedMetaData="name='input' kind='attribute'"
-     * @generated
-     */
-    String getInput();
-
-    /**
-     * Sets the value of the '{@link org.switchyard.tools.models.switchyard1_0.rules.ChannelType#getInput <em>Input</em>}' attribute.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @param value the new value of the '<em>Input</em>' attribute.
-     * @see #getInput()
-     * @generated
-     */
-    void setInput(String value);
-
-    /**
      * Returns the value of the '<em><b>Name</b></em>' attribute.
      * <!-- begin-user-doc -->
      * <p>
@@ -95,8 +67,8 @@ public interface ChannelType extends CommonExtensionBase {
      * @return the value of the '<em>Name</em>' attribute.
      * @see #setName(String)
      * @see org.switchyard.tools.models.switchyard1_0.rules.RulesPackage#getChannelType_Name()
-     * @model dataType="org.eclipse.emf.ecore.xml.type.NCName"
-     *        extendedMetaData="name='name' kind='attribute'"
+     * @model dataType="org.eclipse.emf.ecore.xml.type.String"
+     *        extendedMetaData="kind='attribute' name='name'"
      * @generated
      */
     String getName();
@@ -122,8 +94,8 @@ public interface ChannelType extends CommonExtensionBase {
      * @return the value of the '<em>Operation</em>' attribute.
      * @see #setOperation(String)
      * @see org.switchyard.tools.models.switchyard1_0.rules.RulesPackage#getChannelType_Operation()
-     * @model dataType="org.eclipse.emf.ecore.xml.type.NCName"
-     *        extendedMetaData="name='operation' kind='attribute'"
+     * @model dataType="org.eclipse.emf.ecore.xml.type.String"
+     *        extendedMetaData="kind='attribute' name='operation'"
      * @generated
      */
     String getOperation();
@@ -150,7 +122,7 @@ public interface ChannelType extends CommonExtensionBase {
      * @see #setReference(String)
      * @see org.switchyard.tools.models.switchyard1_0.rules.RulesPackage#getChannelType_Reference()
      * @model dataType="org.eclipse.emf.ecore.xml.type.String"
-     *        extendedMetaData="name='reference' kind='attribute'"
+     *        extendedMetaData="kind='attribute' name='reference'"
      * @generated
      */
     String getReference();

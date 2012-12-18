@@ -38,6 +38,9 @@ import org.eclipse.swt.widgets.Text;
 import org.eclipse.ui.IWorkbench;
 import org.eclipse.ui.PlatformUI;
 import org.eclipse.ui.dialogs.SelectionDialog;
+import org.switchyard.tools.models.switchyard1_0.rules.ManifestType;
+import org.switchyard.tools.models.switchyard1_0.rules.ResourceType;
+import org.switchyard.tools.models.switchyard1_0.rules.ResourcesType;
 import org.switchyard.tools.models.switchyard1_0.rules.RulesFactory;
 import org.switchyard.tools.models.switchyard1_0.rules.RulesImplementationType;
 import org.switchyard.tools.ui.JavaUtil;
@@ -183,7 +186,12 @@ public class RulesImplementationWizardPage extends WizardPage {
                 IResource rulesFile = (IResource) result[0];
                 String rulesFilePath = JavaUtil.getJavaPathForResource(rulesFile).toString();
                 _implementation = RulesFactory.eINSTANCE.createRulesImplementationType();
-                _implementation.getResource().add(NewRulesComponentWizard.createRulesResource(rulesFilePath));
+                final ManifestType manifest = RulesFactory.eINSTANCE.createManifestType();
+                final ResourcesType resources = RulesFactory.eINSTANCE.createResourcesType();
+                final ResourceType resource = NewRulesComponentWizard.createRulesResource(rulesFilePath);
+                resources.getResource().add(resource);
+                manifest.setResources(resources);
+                _implementation.setManifest(manifest);
 
                 // we have no way of inferring the service interface
                 _service = null;

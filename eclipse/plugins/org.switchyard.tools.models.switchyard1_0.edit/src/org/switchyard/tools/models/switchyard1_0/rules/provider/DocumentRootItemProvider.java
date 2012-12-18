@@ -84,14 +84,24 @@ public class DocumentRootItemProvider
         if (childrenFeatures == null) {
             super.getChildrenFeatures(object);
             childrenFeatures.add(RulesPackage.Literals.DOCUMENT_ROOT__ACTION);
-            childrenFeatures.add(RulesPackage.Literals.DOCUMENT_ROOT__AUDIT);
+            childrenFeatures.add(RulesPackage.Literals.DOCUMENT_ROOT__ACTIONS);
             childrenFeatures.add(RulesPackage.Literals.DOCUMENT_ROOT__CHANNEL);
+            childrenFeatures.add(RulesPackage.Literals.DOCUMENT_ROOT__CHANNELS);
+            childrenFeatures.add(RulesPackage.Literals.DOCUMENT_ROOT__CONTAINER);
             childrenFeatures.add(RulesPackage.Literals.DOCUMENT_ROOT__GLOBALS);
             childrenFeatures.add(RulesPackage.Literals.DOCUMENT_ROOT__IMPLEMENTATION_RULES);
+            childrenFeatures.add(RulesPackage.Literals.DOCUMENT_ROOT__INPUTS);
+            childrenFeatures.add(RulesPackage.Literals.DOCUMENT_ROOT__LISTENER);
+            childrenFeatures.add(RulesPackage.Literals.DOCUMENT_ROOT__LISTENERS);
+            childrenFeatures.add(RulesPackage.Literals.DOCUMENT_ROOT__LOGGER);
+            childrenFeatures.add(RulesPackage.Literals.DOCUMENT_ROOT__LOGGERS);
+            childrenFeatures.add(RulesPackage.Literals.DOCUMENT_ROOT__MANIFEST);
             childrenFeatures.add(RulesPackage.Literals.DOCUMENT_ROOT__MAPPING);
+            childrenFeatures.add(RulesPackage.Literals.DOCUMENT_ROOT__OUTPUTS);
+            childrenFeatures.add(RulesPackage.Literals.DOCUMENT_ROOT__PROPERTIES);
+            childrenFeatures.add(RulesPackage.Literals.DOCUMENT_ROOT__PROPERTY);
             childrenFeatures.add(RulesPackage.Literals.DOCUMENT_ROOT__RESOURCE);
-            childrenFeatures.add(RulesPackage.Literals.DOCUMENT_ROOT__FACTS);
-            childrenFeatures.add(RulesPackage.Literals.DOCUMENT_ROOT__EVENT_LISTENER);
+            childrenFeatures.add(RulesPackage.Literals.DOCUMENT_ROOT__RESOURCES);
         }
         return childrenFeatures;
     }
@@ -144,14 +154,24 @@ public class DocumentRootItemProvider
 
         switch (notification.getFeatureID(DocumentRoot.class)) {
             case RulesPackage.DOCUMENT_ROOT__ACTION:
-            case RulesPackage.DOCUMENT_ROOT__AUDIT:
+            case RulesPackage.DOCUMENT_ROOT__ACTIONS:
             case RulesPackage.DOCUMENT_ROOT__CHANNEL:
+            case RulesPackage.DOCUMENT_ROOT__CHANNELS:
+            case RulesPackage.DOCUMENT_ROOT__CONTAINER:
             case RulesPackage.DOCUMENT_ROOT__GLOBALS:
             case RulesPackage.DOCUMENT_ROOT__IMPLEMENTATION_RULES:
+            case RulesPackage.DOCUMENT_ROOT__INPUTS:
+            case RulesPackage.DOCUMENT_ROOT__LISTENER:
+            case RulesPackage.DOCUMENT_ROOT__LISTENERS:
+            case RulesPackage.DOCUMENT_ROOT__LOGGER:
+            case RulesPackage.DOCUMENT_ROOT__LOGGERS:
+            case RulesPackage.DOCUMENT_ROOT__MANIFEST:
             case RulesPackage.DOCUMENT_ROOT__MAPPING:
+            case RulesPackage.DOCUMENT_ROOT__OUTPUTS:
+            case RulesPackage.DOCUMENT_ROOT__PROPERTIES:
+            case RulesPackage.DOCUMENT_ROOT__PROPERTY:
             case RulesPackage.DOCUMENT_ROOT__RESOURCE:
-            case RulesPackage.DOCUMENT_ROOT__FACTS:
-            case RulesPackage.DOCUMENT_ROOT__EVENT_LISTENER:
+            case RulesPackage.DOCUMENT_ROOT__RESOURCES:
                 fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), true, false));
                 return;
         }
@@ -176,8 +196,8 @@ public class DocumentRootItemProvider
 
         newChildDescriptors.add
             (createChildParameter
-                (RulesPackage.Literals.DOCUMENT_ROOT__AUDIT,
-                 RulesFactory.eINSTANCE.createAuditType()));
+                (RulesPackage.Literals.DOCUMENT_ROOT__ACTIONS,
+                 RulesFactory.eINSTANCE.createActionsType()));
 
         newChildDescriptors.add
             (createChildParameter
@@ -186,8 +206,18 @@ public class DocumentRootItemProvider
 
         newChildDescriptors.add
             (createChildParameter
+                (RulesPackage.Literals.DOCUMENT_ROOT__CHANNELS,
+                 RulesFactory.eINSTANCE.createChannelsType()));
+
+        newChildDescriptors.add
+            (createChildParameter
+                (RulesPackage.Literals.DOCUMENT_ROOT__CONTAINER,
+                 RulesFactory.eINSTANCE.createContainerType()));
+
+        newChildDescriptors.add
+            (createChildParameter
                 (RulesPackage.Literals.DOCUMENT_ROOT__GLOBALS,
-                 RulesFactory.eINSTANCE.createGlobalsType()));
+                 RulesFactory.eINSTANCE.createMappingsType()));
 
         newChildDescriptors.add
             (createChildParameter
@@ -196,8 +226,53 @@ public class DocumentRootItemProvider
 
         newChildDescriptors.add
             (createChildParameter
+                (RulesPackage.Literals.DOCUMENT_ROOT__INPUTS,
+                 RulesFactory.eINSTANCE.createMappingsType()));
+
+        newChildDescriptors.add
+            (createChildParameter
+                (RulesPackage.Literals.DOCUMENT_ROOT__LISTENER,
+                 RulesFactory.eINSTANCE.createListenerType()));
+
+        newChildDescriptors.add
+            (createChildParameter
+                (RulesPackage.Literals.DOCUMENT_ROOT__LISTENERS,
+                 RulesFactory.eINSTANCE.createListenersType()));
+
+        newChildDescriptors.add
+            (createChildParameter
+                (RulesPackage.Literals.DOCUMENT_ROOT__LOGGER,
+                 RulesFactory.eINSTANCE.createLoggerType1()));
+
+        newChildDescriptors.add
+            (createChildParameter
+                (RulesPackage.Literals.DOCUMENT_ROOT__LOGGERS,
+                 RulesFactory.eINSTANCE.createLoggersType()));
+
+        newChildDescriptors.add
+            (createChildParameter
+                (RulesPackage.Literals.DOCUMENT_ROOT__MANIFEST,
+                 RulesFactory.eINSTANCE.createManifestType()));
+
+        newChildDescriptors.add
+            (createChildParameter
                 (RulesPackage.Literals.DOCUMENT_ROOT__MAPPING,
                  RulesFactory.eINSTANCE.createMappingType()));
+
+        newChildDescriptors.add
+            (createChildParameter
+                (RulesPackage.Literals.DOCUMENT_ROOT__OUTPUTS,
+                 RulesFactory.eINSTANCE.createMappingsType()));
+
+        newChildDescriptors.add
+            (createChildParameter
+                (RulesPackage.Literals.DOCUMENT_ROOT__PROPERTIES,
+                 RulesFactory.eINSTANCE.createPropertiesType()));
+
+        newChildDescriptors.add
+            (createChildParameter
+                (RulesPackage.Literals.DOCUMENT_ROOT__PROPERTY,
+                 RulesFactory.eINSTANCE.createPropertyType()));
 
         newChildDescriptors.add
             (createChildParameter
@@ -206,13 +281,32 @@ public class DocumentRootItemProvider
 
         newChildDescriptors.add
             (createChildParameter
-                (RulesPackage.Literals.DOCUMENT_ROOT__FACTS,
-                 RulesFactory.eINSTANCE.createFactsType()));
+                (RulesPackage.Literals.DOCUMENT_ROOT__RESOURCES,
+                 RulesFactory.eINSTANCE.createResourcesType()));
+    }
 
-        newChildDescriptors.add
-            (createChildParameter
-                (RulesPackage.Literals.DOCUMENT_ROOT__EVENT_LISTENER,
-                 RulesFactory.eINSTANCE.createEventListenerType()));
+    /**
+     * This returns the label text for {@link org.eclipse.emf.edit.command.CreateChildCommand}.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    @Override
+    public String getCreateChildText(Object owner, Object feature, Object child, Collection<?> selection) {
+        Object childFeature = feature;
+        Object childObject = child;
+
+        boolean qualify =
+            childFeature == RulesPackage.Literals.DOCUMENT_ROOT__GLOBALS ||
+            childFeature == RulesPackage.Literals.DOCUMENT_ROOT__INPUTS ||
+            childFeature == RulesPackage.Literals.DOCUMENT_ROOT__OUTPUTS;
+
+        if (qualify) {
+            return getString
+                ("_UI_CreateChild_text2",
+                 new Object[] { getTypeText(childObject), getFeatureText(childFeature), getTypeText(owner) });
+        }
+        return super.getCreateChildText(owner, feature, child, selection);
     }
 
     /**

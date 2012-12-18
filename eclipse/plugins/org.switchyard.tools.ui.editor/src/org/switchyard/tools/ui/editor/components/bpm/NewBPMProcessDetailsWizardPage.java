@@ -10,6 +10,8 @@
  ************************************************************************************/
 package org.switchyard.tools.ui.editor.components.bpm;
 
+import java.math.BigInteger;
+
 import org.eclipse.jdt.core.IJavaElement;
 import org.eclipse.jdt.core.IJavaProject;
 import org.eclipse.jdt.core.IPackageFragment;
@@ -31,8 +33,9 @@ import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Group;
 import org.eclipse.swt.widgets.Label;
 import org.eclipse.swt.widgets.Text;
-import org.switchyard.tools.models.switchyard1_0.bpm.AuditType;
 import org.switchyard.tools.models.switchyard1_0.bpm.BPMFactory;
+import org.switchyard.tools.models.switchyard1_0.bpm.LoggerType;
+import org.switchyard.tools.models.switchyard1_0.bpm.LoggerType1;
 import org.switchyard.tools.ui.JavaUtil;
 
 /**
@@ -62,7 +65,7 @@ public class NewBPMProcessDetailsWizardPage extends WizardPage {
     private Text _messageOutNameText;
     private boolean _auditingEnabled;
     private Button _auditingEnabledCheckbox;
-    private AuditType _auditSettings = BPMFactory.eINSTANCE.createAuditType();
+    private LoggerType1 _auditSettings = BPMFactory.eINSTANCE.createLoggerType1();
     private Text _auditLogText;
     private Text _auditIntervalText;
     private ComboViewer _auditTypeList;
@@ -222,7 +225,7 @@ public class NewBPMProcessDetailsWizardPage extends WizardPage {
             @Override
             public void modifyText(ModifyEvent event) {
                 try {
-                    _auditSettings.setInterval(Integer.parseInt(_auditIntervalText.getText()));
+                    _auditSettings.setInterval(BigInteger.valueOf(Integer.parseInt(_auditIntervalText.getText())));
                 } catch (NumberFormatException e) {
                     e.fillInStackTrace();
                 }
@@ -235,14 +238,14 @@ public class NewBPMProcessDetailsWizardPage extends WizardPage {
         _auditTypeList.setLabelProvider(new LabelProvider() {
             @Override
             public String getText(Object element) {
-                if (element instanceof org.switchyard.tools.models.switchyard1_0.commonrules.AuditType) {
-                    return ((org.switchyard.tools.models.switchyard1_0.commonrules.AuditType) element).getLiteral();
+                if (element instanceof LoggerType) {
+                    return ((LoggerType) element).getLiteral();
                 }
                 return super.getText(element);
             }
         });
         _auditTypeList.setContentProvider(ArrayContentProvider.getInstance());
-        _auditTypeList.setInput(org.switchyard.tools.models.switchyard1_0.commonrules.AuditType.values());
+        _auditTypeList.setInput(LoggerType.values());
     }
 
     private Label createLabel(Composite parent, String text) {
@@ -403,19 +406,20 @@ public class NewBPMProcessDetailsWizardPage extends WizardPage {
     /**
      * @return the audit settings.
      */
-    public AuditType getAuditSettings() {
+    public LoggerType1 getAuditSettings() {
         return _auditSettings;
     }
 
     /**
      * @param auditSettings the new audit settings
      */
-    public void setAuditSettings(AuditType auditSettings) {
+    public void setAuditSettings(LoggerType1 auditSettings) {
         if (_auditingEnabledCheckbox == null) {
             _auditSettings = auditSettings;
         } else {
             _auditLogText.setText(emptyForNull(auditSettings.getLog()));
-            _auditIntervalText.setText(Integer.toString(auditSettings.getInterval()));
+            _auditIntervalText.setText(auditSettings.getInterval() == null ? "" : auditSettings.getInterval()
+                    .toString());
             _auditTypeList.setSelection(new StructuredSelection(auditSettings.getType()), true);
         }
     }
@@ -469,7 +473,7 @@ public class NewBPMProcessDetailsWizardPage extends WizardPage {
     }
 
     private void initControls() {
-        setAuditSettings(_auditSettings == null ? BPMFactory.eINSTANCE.createAuditType() : _auditSettings);
+        setAuditSettings(_auditSettings == null ? BPMFactory.eINSTANCE.createLoggerType1() : _auditSettings);
         setAuditingEnabled(_auditingEnabled);
         setMessageInName(emptyForNull(_messageInName));
         setMessageOutName(emptyForNull(_messageOutName));

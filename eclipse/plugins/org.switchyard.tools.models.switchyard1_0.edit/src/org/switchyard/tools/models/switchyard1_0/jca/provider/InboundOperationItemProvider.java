@@ -33,10 +33,14 @@ import org.eclipse.emf.edit.provider.ViewerNotification;
 
 import org.switchyard.tools.models.switchyard1_0.bean.provider.Switchyard_1EditPlugin;
 
+import org.switchyard.tools.models.switchyard1_0.camel.CamelFactory;
+import org.switchyard.tools.models.switchyard1_0.camel.CamelPackage;
 import org.switchyard.tools.models.switchyard1_0.camel.amqp.AmqpFactory;
 import org.switchyard.tools.models.switchyard1_0.camel.amqp.AmqpPackage;
 import org.switchyard.tools.models.switchyard1_0.camel.atom.AtomFactory;
 import org.switchyard.tools.models.switchyard1_0.camel.atom.AtomPackage;
+import org.switchyard.tools.models.switchyard1_0.camel.core.CoreFactory;
+import org.switchyard.tools.models.switchyard1_0.camel.core.CorePackage;
 import org.switchyard.tools.models.switchyard1_0.camel.file.FileFactory;
 import org.switchyard.tools.models.switchyard1_0.camel.file.FilePackage;
 import org.switchyard.tools.models.switchyard1_0.camel.ftp.FtpFactory;
@@ -243,6 +247,13 @@ public class InboundOperationItemProvider
             (createChildParameter
                 (JcaPackage.Literals.INBOUND_OPERATION__ANY,
                  FeatureMapUtil.createEntry
+                    (CamelPackage.Literals.DOCUMENT_ROOT__IMPLEMENTATION_CAMEL,
+                     CamelFactory.eINSTANCE.createCamelImplementationType())));
+
+        newChildDescriptors.add
+            (createChildParameter
+                (JcaPackage.Literals.INBOUND_OPERATION__ANY,
+                 FeatureMapUtil.createEntry
                     (ResteasyPackage.Literals.DOCUMENT_ROOT__BINDING_REST,
                      ResteasyFactory.eINSTANCE.createRESTBindingType())));
 
@@ -288,6 +299,40 @@ public class InboundOperationItemProvider
                     (RemotePackage.Literals.DOCUMENT_ROOT__REMOTE_BINDING,
                      RemoteFactory.eINSTANCE.createRemoteBindingType())));
 
+        newChildDescriptors.add
+            (createChildParameter
+                (JcaPackage.Literals.INBOUND_OPERATION__ANY,
+                 FeatureMapUtil.createEntry
+                    (CorePackage.Literals.DOCUMENT_ROOT__BINDING_CAMEL,
+                     CoreFactory.eINSTANCE.createCamelBindingType())));
+
+        newChildDescriptors.add
+            (createChildParameter
+                (JcaPackage.Literals.INBOUND_OPERATION__ANY,
+                 FeatureMapUtil.createEntry
+                    (CorePackage.Literals.DOCUMENT_ROOT__BINDING_DIRECT,
+                     CoreFactory.eINSTANCE.createCamelDirectBindingType())));
+
+        newChildDescriptors.add
+            (createChildParameter
+                (JcaPackage.Literals.INBOUND_OPERATION__ANY,
+                 FeatureMapUtil.createEntry
+                    (CorePackage.Literals.DOCUMENT_ROOT__BINDING_MOCK,
+                     CoreFactory.eINSTANCE.createCamelMockBindingType())));
+
+        newChildDescriptors.add
+            (createChildParameter
+                (JcaPackage.Literals.INBOUND_OPERATION__ANY,
+                 FeatureMapUtil.createEntry
+                    (CorePackage.Literals.DOCUMENT_ROOT__BINDING_SEDA,
+                     CoreFactory.eINSTANCE.createCamelSedaBindingType())));
+
+        newChildDescriptors.add
+            (createChildParameter
+                (JcaPackage.Literals.INBOUND_OPERATION__ANY,
+                 FeatureMapUtil.createEntry
+                    (CorePackage.Literals.DOCUMENT_ROOT__BINDING_TIMER,
+                     CoreFactory.eINSTANCE.createCamelTimerBindingType())));
 
         newChildDescriptors.add
             (createChildParameter
@@ -406,8 +451,6 @@ public class InboundOperationItemProvider
         }
 
         boolean qualify =
-            childFeature == AmqpPackage.Literals.DOCUMENT_ROOT__BINDING_AMQP ||
-            childFeature == JmsPackage.Literals.DOCUMENT_ROOT__BINDING_JMS ||
             childFeature == FtpPackage.Literals.DOCUMENT_ROOT__BINDING_FTP ||
             childFeature == FtpPackage.Literals.DOCUMENT_ROOT__BINDING_FTPS;
 

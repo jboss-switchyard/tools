@@ -12,8 +12,6 @@ import org.eclipse.soa.sca.sca1_1.model.sca.CommonExtensionBase;
 
 import org.switchyard.tools.models.switchyard1_0.camel.amqp.*;
 
-import org.switchyard.tools.models.switchyard1_0.camel.core.BaseCamelBinding;
-
 import org.switchyard.tools.models.switchyard1_0.switchyard.SwitchYardBindingType;
 
 /**
@@ -85,6 +83,7 @@ public class AmqpSwitch<T> extends Switch<T> {
             case AmqpPackage.CAMEL_AMQP_BINDING_TYPE: {
                 CamelAmqpBindingType camelAmqpBindingType = (CamelAmqpBindingType)theEObject;
                 T result = caseCamelAmqpBindingType(camelAmqpBindingType);
+                if (result == null) result = caseBaseCamelBinding(camelAmqpBindingType);
                 if (result == null) result = caseSwitchYardBindingType(camelAmqpBindingType);
                 if (result == null) result = caseBinding(camelAmqpBindingType);
                 if (result == null) result = caseCommonExtensionBase(camelAmqpBindingType);

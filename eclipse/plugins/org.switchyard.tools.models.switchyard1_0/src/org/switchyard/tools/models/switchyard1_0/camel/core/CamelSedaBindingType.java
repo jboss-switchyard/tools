@@ -2,8 +2,6 @@
  */
 package org.switchyard.tools.models.switchyard1_0.camel.core;
 
-import java.math.BigInteger;
-
 /**
  * <!-- begin-user-doc -->
  * A representation of the model object '<em><b>Seda Binding Type</b></em>'.

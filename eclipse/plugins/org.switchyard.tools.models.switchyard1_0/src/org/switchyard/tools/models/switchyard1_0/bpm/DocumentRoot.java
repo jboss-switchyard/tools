@@ -24,14 +24,26 @@ import org.eclipse.emf.ecore.util.FeatureMap;
  *   <li>{@link org.switchyard.tools.models.switchyard1_0.bpm.DocumentRoot#getXMLNSPrefixMap <em>XMLNS Prefix Map</em>}</li>
  *   <li>{@link org.switchyard.tools.models.switchyard1_0.bpm.DocumentRoot#getXSISchemaLocation <em>XSI Schema Location</em>}</li>
  *   <li>{@link org.switchyard.tools.models.switchyard1_0.bpm.DocumentRoot#getAction <em>Action</em>}</li>
- *   <li>{@link org.switchyard.tools.models.switchyard1_0.bpm.DocumentRoot#getAudit <em>Audit</em>}</li>
+ *   <li>{@link org.switchyard.tools.models.switchyard1_0.bpm.DocumentRoot#getActions <em>Actions</em>}</li>
+ *   <li>{@link org.switchyard.tools.models.switchyard1_0.bpm.DocumentRoot#getChannel <em>Channel</em>}</li>
+ *   <li>{@link org.switchyard.tools.models.switchyard1_0.bpm.DocumentRoot#getChannels <em>Channels</em>}</li>
+ *   <li>{@link org.switchyard.tools.models.switchyard1_0.bpm.DocumentRoot#getContainer <em>Container</em>}</li>
+ *   <li>{@link org.switchyard.tools.models.switchyard1_0.bpm.DocumentRoot#getGlobals <em>Globals</em>}</li>
  *   <li>{@link org.switchyard.tools.models.switchyard1_0.bpm.DocumentRoot#getImplementationBpm <em>Implementation Bpm</em>}</li>
+ *   <li>{@link org.switchyard.tools.models.switchyard1_0.bpm.DocumentRoot#getInputs <em>Inputs</em>}</li>
+ *   <li>{@link org.switchyard.tools.models.switchyard1_0.bpm.DocumentRoot#getListener <em>Listener</em>}</li>
+ *   <li>{@link org.switchyard.tools.models.switchyard1_0.bpm.DocumentRoot#getListeners <em>Listeners</em>}</li>
+ *   <li>{@link org.switchyard.tools.models.switchyard1_0.bpm.DocumentRoot#getLogger <em>Logger</em>}</li>
+ *   <li>{@link org.switchyard.tools.models.switchyard1_0.bpm.DocumentRoot#getLoggers <em>Loggers</em>}</li>
+ *   <li>{@link org.switchyard.tools.models.switchyard1_0.bpm.DocumentRoot#getManifest <em>Manifest</em>}</li>
  *   <li>{@link org.switchyard.tools.models.switchyard1_0.bpm.DocumentRoot#getMapping <em>Mapping</em>}</li>
- *   <li>{@link org.switchyard.tools.models.switchyard1_0.bpm.DocumentRoot#getParameters <em>Parameters</em>}</li>
+ *   <li>{@link org.switchyard.tools.models.switchyard1_0.bpm.DocumentRoot#getOutputs <em>Outputs</em>}</li>
+ *   <li>{@link org.switchyard.tools.models.switchyard1_0.bpm.DocumentRoot#getProperties <em>Properties</em>}</li>
+ *   <li>{@link org.switchyard.tools.models.switchyard1_0.bpm.DocumentRoot#getProperty <em>Property</em>}</li>
  *   <li>{@link org.switchyard.tools.models.switchyard1_0.bpm.DocumentRoot#getResource <em>Resource</em>}</li>
- *   <li>{@link org.switchyard.tools.models.switchyard1_0.bpm.DocumentRoot#getResults <em>Results</em>}</li>
- *   <li>{@link org.switchyard.tools.models.switchyard1_0.bpm.DocumentRoot#getTaskHandler <em>Task Handler</em>}</li>
- *   <li>{@link org.switchyard.tools.models.switchyard1_0.bpm.DocumentRoot#getEventListener <em>Event Listener</em>}</li>
+ *   <li>{@link org.switchyard.tools.models.switchyard1_0.bpm.DocumentRoot#getResources <em>Resources</em>}</li>
+ *   <li>{@link org.switchyard.tools.models.switchyard1_0.bpm.DocumentRoot#getWorkItemHandler <em>Work Item Handler</em>}</li>
+ *   <li>{@link org.switchyard.tools.models.switchyard1_0.bpm.DocumentRoot#getWorkItemHandlers <em>Work Item Handlers</em>}</li>
  * </ul>
  * </p>
  *
@@ -121,33 +133,141 @@ public interface DocumentRoot extends EObject {
 	void setAction(ActionType1 value);
 
 	/**
-     * Returns the value of the '<em><b>Audit</b></em>' containment reference.
+     * Returns the value of the '<em><b>Actions</b></em>' containment reference.
      * <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of the '<em>Audit</em>' containment reference isn't clear,
-	 * there really should be more of a description here...
-	 * </p>
-	 * <!-- end-user-doc -->
-     * @return the value of the '<em>Audit</em>' containment reference.
-     * @see #setAudit(AuditType)
-     * @see org.switchyard.tools.models.switchyard1_0.bpm.BPMPackage#getDocumentRoot_Audit()
+     * <p>
+     * If the meaning of the '<em>Actions</em>' containment reference isn't clear,
+     * there really should be more of a description here...
+     * </p>
+     * <!-- end-user-doc -->
+     * @return the value of the '<em>Actions</em>' containment reference.
+     * @see #setActions(ActionsType)
+     * @see org.switchyard.tools.models.switchyard1_0.bpm.BPMPackage#getDocumentRoot_Actions()
      * @model containment="true" upper="-2" transient="true" volatile="true" derived="true"
-     *        extendedMetaData="kind='element' name='audit' namespace='##targetNamespace' affiliation='urn:switchyard-component-common-rules:config:1.0#audit'"
+     *        extendedMetaData="kind='element' name='actions' namespace='##targetNamespace'"
      * @generated
      */
-	AuditType getAudit();
+    ActionsType getActions();
 
-	/**
-     * Sets the value of the '{@link org.switchyard.tools.models.switchyard1_0.bpm.DocumentRoot#getAudit <em>Audit</em>}' containment reference.
+    /**
+     * Sets the value of the '{@link org.switchyard.tools.models.switchyard1_0.bpm.DocumentRoot#getActions <em>Actions</em>}' containment reference.
      * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-     * @param value the new value of the '<em>Audit</em>' containment reference.
-     * @see #getAudit()
+     * <!-- end-user-doc -->
+     * @param value the new value of the '<em>Actions</em>' containment reference.
+     * @see #getActions()
      * @generated
      */
-	void setAudit(AuditType value);
+    void setActions(ActionsType value);
 
-	/**
+    /**
+     * Returns the value of the '<em><b>Channel</b></em>' containment reference.
+     * <!-- begin-user-doc -->
+     * <p>
+     * If the meaning of the '<em>Channel</em>' containment reference isn't clear,
+     * there really should be more of a description here...
+     * </p>
+     * <!-- end-user-doc -->
+     * @return the value of the '<em>Channel</em>' containment reference.
+     * @see #setChannel(ChannelType)
+     * @see org.switchyard.tools.models.switchyard1_0.bpm.BPMPackage#getDocumentRoot_Channel()
+     * @model containment="true" upper="-2" transient="true" volatile="true" derived="true"
+     *        extendedMetaData="kind='element' name='channel' namespace='##targetNamespace'"
+     * @generated
+     */
+    ChannelType getChannel();
+
+    /**
+     * Sets the value of the '{@link org.switchyard.tools.models.switchyard1_0.bpm.DocumentRoot#getChannel <em>Channel</em>}' containment reference.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @param value the new value of the '<em>Channel</em>' containment reference.
+     * @see #getChannel()
+     * @generated
+     */
+    void setChannel(ChannelType value);
+
+    /**
+     * Returns the value of the '<em><b>Channels</b></em>' containment reference.
+     * <!-- begin-user-doc -->
+     * <p>
+     * If the meaning of the '<em>Channels</em>' containment reference isn't clear,
+     * there really should be more of a description here...
+     * </p>
+     * <!-- end-user-doc -->
+     * @return the value of the '<em>Channels</em>' containment reference.
+     * @see #setChannels(ChannelsType)
+     * @see org.switchyard.tools.models.switchyard1_0.bpm.BPMPackage#getDocumentRoot_Channels()
+     * @model containment="true" upper="-2" transient="true" volatile="true" derived="true"
+     *        extendedMetaData="kind='element' name='channels' namespace='##targetNamespace'"
+     * @generated
+     */
+    ChannelsType getChannels();
+
+    /**
+     * Sets the value of the '{@link org.switchyard.tools.models.switchyard1_0.bpm.DocumentRoot#getChannels <em>Channels</em>}' containment reference.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @param value the new value of the '<em>Channels</em>' containment reference.
+     * @see #getChannels()
+     * @generated
+     */
+    void setChannels(ChannelsType value);
+
+    /**
+     * Returns the value of the '<em><b>Container</b></em>' containment reference.
+     * <!-- begin-user-doc -->
+     * <p>
+     * If the meaning of the '<em>Container</em>' containment reference isn't clear,
+     * there really should be more of a description here...
+     * </p>
+     * <!-- end-user-doc -->
+     * @return the value of the '<em>Container</em>' containment reference.
+     * @see #setContainer(ContainerType)
+     * @see org.switchyard.tools.models.switchyard1_0.bpm.BPMPackage#getDocumentRoot_Container()
+     * @model containment="true" upper="-2" transient="true" volatile="true" derived="true"
+     *        extendedMetaData="kind='element' name='container' namespace='##targetNamespace'"
+     * @generated
+     */
+    ContainerType getContainer();
+
+    /**
+     * Sets the value of the '{@link org.switchyard.tools.models.switchyard1_0.bpm.DocumentRoot#getContainer <em>Container</em>}' containment reference.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @param value the new value of the '<em>Container</em>' containment reference.
+     * @see #getContainer()
+     * @generated
+     */
+    void setContainer(ContainerType value);
+
+    /**
+     * Returns the value of the '<em><b>Globals</b></em>' containment reference.
+     * <!-- begin-user-doc -->
+     * <p>
+     * If the meaning of the '<em>Globals</em>' containment reference isn't clear,
+     * there really should be more of a description here...
+     * </p>
+     * <!-- end-user-doc -->
+     * @return the value of the '<em>Globals</em>' containment reference.
+     * @see #setGlobals(MappingsType)
+     * @see org.switchyard.tools.models.switchyard1_0.bpm.BPMPackage#getDocumentRoot_Globals()
+     * @model containment="true" upper="-2" transient="true" volatile="true" derived="true"
+     *        extendedMetaData="kind='element' name='globals' namespace='##targetNamespace'"
+     * @generated
+     */
+    MappingsType getGlobals();
+
+    /**
+     * Sets the value of the '{@link org.switchyard.tools.models.switchyard1_0.bpm.DocumentRoot#getGlobals <em>Globals</em>}' containment reference.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @param value the new value of the '<em>Globals</em>' containment reference.
+     * @see #getGlobals()
+     * @generated
+     */
+    void setGlobals(MappingsType value);
+
+    /**
      * Returns the value of the '<em><b>Implementation Bpm</b></em>' containment reference.
      * <!-- begin-user-doc -->
 	 * <p>
@@ -159,7 +279,7 @@ public interface DocumentRoot extends EObject {
      * @see #setImplementationBpm(BPMImplementationType)
      * @see org.switchyard.tools.models.switchyard1_0.bpm.BPMPackage#getDocumentRoot_ImplementationBpm()
      * @model containment="true" upper="-2" transient="true" volatile="true" derived="true"
-     *        extendedMetaData="kind='element' name='implementation.bpm' namespace='##targetNamespace' affiliation='urn:switchyard-component-common-rules:config:1.0#implementation.common.rules'"
+     *        extendedMetaData="kind='element' name='implementation.bpm' namespace='##targetNamespace' affiliation='http://docs.oasis-open.org/ns/opencsa/sca/200912#implementation'"
      * @generated
      */
 	BPMImplementationType getImplementationBpm();
@@ -175,6 +295,168 @@ public interface DocumentRoot extends EObject {
 	void setImplementationBpm(BPMImplementationType value);
 
 	/**
+     * Returns the value of the '<em><b>Inputs</b></em>' containment reference.
+     * <!-- begin-user-doc -->
+     * <p>
+     * If the meaning of the '<em>Inputs</em>' containment reference isn't clear,
+     * there really should be more of a description here...
+     * </p>
+     * <!-- end-user-doc -->
+     * @return the value of the '<em>Inputs</em>' containment reference.
+     * @see #setInputs(MappingsType)
+     * @see org.switchyard.tools.models.switchyard1_0.bpm.BPMPackage#getDocumentRoot_Inputs()
+     * @model containment="true" upper="-2" transient="true" volatile="true" derived="true"
+     *        extendedMetaData="kind='element' name='inputs' namespace='##targetNamespace'"
+     * @generated
+     */
+    MappingsType getInputs();
+
+    /**
+     * Sets the value of the '{@link org.switchyard.tools.models.switchyard1_0.bpm.DocumentRoot#getInputs <em>Inputs</em>}' containment reference.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @param value the new value of the '<em>Inputs</em>' containment reference.
+     * @see #getInputs()
+     * @generated
+     */
+    void setInputs(MappingsType value);
+
+    /**
+     * Returns the value of the '<em><b>Listener</b></em>' containment reference.
+     * <!-- begin-user-doc -->
+     * <p>
+     * If the meaning of the '<em>Listener</em>' containment reference isn't clear,
+     * there really should be more of a description here...
+     * </p>
+     * <!-- end-user-doc -->
+     * @return the value of the '<em>Listener</em>' containment reference.
+     * @see #setListener(ListenerType)
+     * @see org.switchyard.tools.models.switchyard1_0.bpm.BPMPackage#getDocumentRoot_Listener()
+     * @model containment="true" upper="-2" transient="true" volatile="true" derived="true"
+     *        extendedMetaData="kind='element' name='listener' namespace='##targetNamespace'"
+     * @generated
+     */
+    ListenerType getListener();
+
+    /**
+     * Sets the value of the '{@link org.switchyard.tools.models.switchyard1_0.bpm.DocumentRoot#getListener <em>Listener</em>}' containment reference.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @param value the new value of the '<em>Listener</em>' containment reference.
+     * @see #getListener()
+     * @generated
+     */
+    void setListener(ListenerType value);
+
+    /**
+     * Returns the value of the '<em><b>Listeners</b></em>' containment reference.
+     * <!-- begin-user-doc -->
+     * <p>
+     * If the meaning of the '<em>Listeners</em>' containment reference isn't clear,
+     * there really should be more of a description here...
+     * </p>
+     * <!-- end-user-doc -->
+     * @return the value of the '<em>Listeners</em>' containment reference.
+     * @see #setListeners(ListenersType)
+     * @see org.switchyard.tools.models.switchyard1_0.bpm.BPMPackage#getDocumentRoot_Listeners()
+     * @model containment="true" upper="-2" transient="true" volatile="true" derived="true"
+     *        extendedMetaData="kind='element' name='listeners' namespace='##targetNamespace'"
+     * @generated
+     */
+    ListenersType getListeners();
+
+    /**
+     * Sets the value of the '{@link org.switchyard.tools.models.switchyard1_0.bpm.DocumentRoot#getListeners <em>Listeners</em>}' containment reference.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @param value the new value of the '<em>Listeners</em>' containment reference.
+     * @see #getListeners()
+     * @generated
+     */
+    void setListeners(ListenersType value);
+
+    /**
+     * Returns the value of the '<em><b>Logger</b></em>' containment reference.
+     * <!-- begin-user-doc -->
+     * <p>
+     * If the meaning of the '<em>Logger</em>' containment reference isn't clear,
+     * there really should be more of a description here...
+     * </p>
+     * <!-- end-user-doc -->
+     * @return the value of the '<em>Logger</em>' containment reference.
+     * @see #setLogger(LoggerType1)
+     * @see org.switchyard.tools.models.switchyard1_0.bpm.BPMPackage#getDocumentRoot_Logger()
+     * @model containment="true" upper="-2" transient="true" volatile="true" derived="true"
+     *        extendedMetaData="kind='element' name='logger' namespace='##targetNamespace'"
+     * @generated
+     */
+    LoggerType1 getLogger();
+
+    /**
+     * Sets the value of the '{@link org.switchyard.tools.models.switchyard1_0.bpm.DocumentRoot#getLogger <em>Logger</em>}' containment reference.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @param value the new value of the '<em>Logger</em>' containment reference.
+     * @see #getLogger()
+     * @generated
+     */
+    void setLogger(LoggerType1 value);
+
+    /**
+     * Returns the value of the '<em><b>Loggers</b></em>' containment reference.
+     * <!-- begin-user-doc -->
+     * <p>
+     * If the meaning of the '<em>Loggers</em>' containment reference isn't clear,
+     * there really should be more of a description here...
+     * </p>
+     * <!-- end-user-doc -->
+     * @return the value of the '<em>Loggers</em>' containment reference.
+     * @see #setLoggers(LoggersType)
+     * @see org.switchyard.tools.models.switchyard1_0.bpm.BPMPackage#getDocumentRoot_Loggers()
+     * @model containment="true" upper="-2" transient="true" volatile="true" derived="true"
+     *        extendedMetaData="kind='element' name='loggers' namespace='##targetNamespace'"
+     * @generated
+     */
+    LoggersType getLoggers();
+
+    /**
+     * Sets the value of the '{@link org.switchyard.tools.models.switchyard1_0.bpm.DocumentRoot#getLoggers <em>Loggers</em>}' containment reference.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @param value the new value of the '<em>Loggers</em>' containment reference.
+     * @see #getLoggers()
+     * @generated
+     */
+    void setLoggers(LoggersType value);
+
+    /**
+     * Returns the value of the '<em><b>Manifest</b></em>' containment reference.
+     * <!-- begin-user-doc -->
+     * <p>
+     * If the meaning of the '<em>Manifest</em>' containment reference isn't clear,
+     * there really should be more of a description here...
+     * </p>
+     * <!-- end-user-doc -->
+     * @return the value of the '<em>Manifest</em>' containment reference.
+     * @see #setManifest(ManifestType)
+     * @see org.switchyard.tools.models.switchyard1_0.bpm.BPMPackage#getDocumentRoot_Manifest()
+     * @model containment="true" upper="-2" transient="true" volatile="true" derived="true"
+     *        extendedMetaData="kind='element' name='manifest' namespace='##targetNamespace'"
+     * @generated
+     */
+    ManifestType getManifest();
+
+    /**
+     * Sets the value of the '{@link org.switchyard.tools.models.switchyard1_0.bpm.DocumentRoot#getManifest <em>Manifest</em>}' containment reference.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @param value the new value of the '<em>Manifest</em>' containment reference.
+     * @see #getManifest()
+     * @generated
+     */
+    void setManifest(ManifestType value);
+
+    /**
      * Returns the value of the '<em><b>Mapping</b></em>' containment reference.
      * <!-- begin-user-doc -->
      * <p>
@@ -186,7 +468,7 @@ public interface DocumentRoot extends EObject {
      * @see #setMapping(MappingType)
      * @see org.switchyard.tools.models.switchyard1_0.bpm.BPMPackage#getDocumentRoot_Mapping()
      * @model containment="true" upper="-2" transient="true" volatile="true" derived="true"
-     *        extendedMetaData="kind='element' name='mapping' namespace='##targetNamespace' affiliation='urn:switchyard-component-common-rules:config:1.0#mapping'"
+     *        extendedMetaData="kind='element' name='mapping' namespace='##targetNamespace'"
      * @generated
      */
     MappingType getMapping();
@@ -202,31 +484,85 @@ public interface DocumentRoot extends EObject {
     void setMapping(MappingType value);
 
     /**
-     * Returns the value of the '<em><b>Parameters</b></em>' containment reference.
+     * Returns the value of the '<em><b>Outputs</b></em>' containment reference.
      * <!-- begin-user-doc -->
      * <p>
-     * If the meaning of the '<em>Parameters</em>' containment reference isn't clear,
+     * If the meaning of the '<em>Outputs</em>' containment reference isn't clear,
      * there really should be more of a description here...
      * </p>
      * <!-- end-user-doc -->
-     * @return the value of the '<em>Parameters</em>' containment reference.
-     * @see #setParameters(ParametersType)
-     * @see org.switchyard.tools.models.switchyard1_0.bpm.BPMPackage#getDocumentRoot_Parameters()
+     * @return the value of the '<em>Outputs</em>' containment reference.
+     * @see #setOutputs(MappingsType)
+     * @see org.switchyard.tools.models.switchyard1_0.bpm.BPMPackage#getDocumentRoot_Outputs()
      * @model containment="true" upper="-2" transient="true" volatile="true" derived="true"
-     *        extendedMetaData="kind='element' name='parameters' namespace='##targetNamespace'"
+     *        extendedMetaData="kind='element' name='outputs' namespace='##targetNamespace'"
      * @generated
      */
-    ParametersType getParameters();
+    MappingsType getOutputs();
 
     /**
-     * Sets the value of the '{@link org.switchyard.tools.models.switchyard1_0.bpm.DocumentRoot#getParameters <em>Parameters</em>}' containment reference.
+     * Sets the value of the '{@link org.switchyard.tools.models.switchyard1_0.bpm.DocumentRoot#getOutputs <em>Outputs</em>}' containment reference.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @param value the new value of the '<em>Parameters</em>' containment reference.
-     * @see #getParameters()
+     * @param value the new value of the '<em>Outputs</em>' containment reference.
+     * @see #getOutputs()
      * @generated
      */
-    void setParameters(ParametersType value);
+    void setOutputs(MappingsType value);
+
+    /**
+     * Returns the value of the '<em><b>Properties</b></em>' containment reference.
+     * <!-- begin-user-doc -->
+     * <p>
+     * If the meaning of the '<em>Properties</em>' containment reference isn't clear,
+     * there really should be more of a description here...
+     * </p>
+     * <!-- end-user-doc -->
+     * @return the value of the '<em>Properties</em>' containment reference.
+     * @see #setProperties(PropertiesType)
+     * @see org.switchyard.tools.models.switchyard1_0.bpm.BPMPackage#getDocumentRoot_Properties()
+     * @model containment="true" upper="-2" transient="true" volatile="true" derived="true"
+     *        extendedMetaData="kind='element' name='properties' namespace='##targetNamespace'"
+     * @generated
+     */
+    PropertiesType getProperties();
+
+    /**
+     * Sets the value of the '{@link org.switchyard.tools.models.switchyard1_0.bpm.DocumentRoot#getProperties <em>Properties</em>}' containment reference.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @param value the new value of the '<em>Properties</em>' containment reference.
+     * @see #getProperties()
+     * @generated
+     */
+    void setProperties(PropertiesType value);
+
+    /**
+     * Returns the value of the '<em><b>Property</b></em>' containment reference.
+     * <!-- begin-user-doc -->
+     * <p>
+     * If the meaning of the '<em>Property</em>' containment reference isn't clear,
+     * there really should be more of a description here...
+     * </p>
+     * <!-- end-user-doc -->
+     * @return the value of the '<em>Property</em>' containment reference.
+     * @see #setProperty(PropertyType)
+     * @see org.switchyard.tools.models.switchyard1_0.bpm.BPMPackage#getDocumentRoot_Property()
+     * @model containment="true" upper="-2" transient="true" volatile="true" derived="true"
+     *        extendedMetaData="kind='element' name='property' namespace='##targetNamespace'"
+     * @generated
+     */
+    PropertyType getProperty();
+
+    /**
+     * Sets the value of the '{@link org.switchyard.tools.models.switchyard1_0.bpm.DocumentRoot#getProperty <em>Property</em>}' containment reference.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @param value the new value of the '<em>Property</em>' containment reference.
+     * @see #getProperty()
+     * @generated
+     */
+    void setProperty(PropertyType value);
 
     /**
      * Returns the value of the '<em><b>Resource</b></em>' containment reference.
@@ -240,7 +576,7 @@ public interface DocumentRoot extends EObject {
      * @see #setResource(ResourceType)
      * @see org.switchyard.tools.models.switchyard1_0.bpm.BPMPackage#getDocumentRoot_Resource()
      * @model containment="true" upper="-2" transient="true" volatile="true" derived="true"
-     *        extendedMetaData="kind='element' name='resource' namespace='##targetNamespace' affiliation='urn:switchyard-config:switchyard:1.0#resource'"
+     *        extendedMetaData="kind='element' name='resource' namespace='##targetNamespace'"
      * @generated
      */
 	ResourceType getResource();
@@ -256,84 +592,84 @@ public interface DocumentRoot extends EObject {
 	void setResource(ResourceType value);
 
 	/**
-     * Returns the value of the '<em><b>Results</b></em>' containment reference.
+     * Returns the value of the '<em><b>Resources</b></em>' containment reference.
      * <!-- begin-user-doc -->
      * <p>
-     * If the meaning of the '<em>Results</em>' containment reference isn't clear,
+     * If the meaning of the '<em>Resources</em>' containment reference isn't clear,
      * there really should be more of a description here...
      * </p>
      * <!-- end-user-doc -->
-     * @return the value of the '<em>Results</em>' containment reference.
-     * @see #setResults(ResultsType)
-     * @see org.switchyard.tools.models.switchyard1_0.bpm.BPMPackage#getDocumentRoot_Results()
+     * @return the value of the '<em>Resources</em>' containment reference.
+     * @see #setResources(ResourcesType)
+     * @see org.switchyard.tools.models.switchyard1_0.bpm.BPMPackage#getDocumentRoot_Resources()
      * @model containment="true" upper="-2" transient="true" volatile="true" derived="true"
-     *        extendedMetaData="kind='element' name='results' namespace='##targetNamespace'"
+     *        extendedMetaData="kind='element' name='resources' namespace='##targetNamespace'"
      * @generated
      */
-    ResultsType getResults();
+    ResourcesType getResources();
 
     /**
-     * Sets the value of the '{@link org.switchyard.tools.models.switchyard1_0.bpm.DocumentRoot#getResults <em>Results</em>}' containment reference.
+     * Sets the value of the '{@link org.switchyard.tools.models.switchyard1_0.bpm.DocumentRoot#getResources <em>Resources</em>}' containment reference.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @param value the new value of the '<em>Results</em>' containment reference.
-     * @see #getResults()
+     * @param value the new value of the '<em>Resources</em>' containment reference.
+     * @see #getResources()
      * @generated
      */
-    void setResults(ResultsType value);
+    void setResources(ResourcesType value);
 
     /**
-     * Returns the value of the '<em><b>Task Handler</b></em>' containment reference.
-     * <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of the '<em>Task Handler</em>' containment reference isn't clear,
-	 * there really should be more of a description here...
-	 * </p>
-	 * <!-- end-user-doc -->
-     * @return the value of the '<em>Task Handler</em>' containment reference.
-     * @see #setTaskHandler(TaskHandlerType)
-     * @see org.switchyard.tools.models.switchyard1_0.bpm.BPMPackage#getDocumentRoot_TaskHandler()
-     * @model containment="true" upper="-2" transient="true" volatile="true" derived="true"
-     *        extendedMetaData="kind='element' name='taskHandler' namespace='##targetNamespace'"
-     * @generated
-     */
-	TaskHandlerType getTaskHandler();
-
-	/**
-     * Sets the value of the '{@link org.switchyard.tools.models.switchyard1_0.bpm.DocumentRoot#getTaskHandler <em>Task Handler</em>}' containment reference.
-     * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-     * @param value the new value of the '<em>Task Handler</em>' containment reference.
-     * @see #getTaskHandler()
-     * @generated
-     */
-	void setTaskHandler(TaskHandlerType value);
-
-    /**
-     * Returns the value of the '<em><b>Event Listener</b></em>' containment reference.
+     * Returns the value of the '<em><b>Work Item Handler</b></em>' containment reference.
      * <!-- begin-user-doc -->
      * <p>
-     * If the meaning of the '<em>Event Listener</em>' containment reference isn't clear,
+     * If the meaning of the '<em>Work Item Handler</em>' containment reference isn't clear,
      * there really should be more of a description here...
      * </p>
      * <!-- end-user-doc -->
-     * @return the value of the '<em>Event Listener</em>' containment reference.
-     * @see #setEventListener(EventListenerType)
-     * @see org.switchyard.tools.models.switchyard1_0.bpm.BPMPackage#getDocumentRoot_EventListener()
+     * @return the value of the '<em>Work Item Handler</em>' containment reference.
+     * @see #setWorkItemHandler(WorkItemHandlerType)
+     * @see org.switchyard.tools.models.switchyard1_0.bpm.BPMPackage#getDocumentRoot_WorkItemHandler()
      * @model containment="true" upper="-2" transient="true" volatile="true" derived="true"
-     *        extendedMetaData="kind='element' name='eventListener' namespace='##targetNamespace' affiliation='urn:switchyard-component-common-rules:config:1.0#mapping'"
+     *        extendedMetaData="kind='element' name='workItemHandler' namespace='##targetNamespace'"
      * @generated
      */
-    EventListenerType getEventListener();
+    WorkItemHandlerType getWorkItemHandler();
 
     /**
-     * Sets the value of the '{@link org.switchyard.tools.models.switchyard1_0.bpm.DocumentRoot#getEventListener <em>Event Listener</em>}' containment reference.
+     * Sets the value of the '{@link org.switchyard.tools.models.switchyard1_0.bpm.DocumentRoot#getWorkItemHandler <em>Work Item Handler</em>}' containment reference.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @param value the new value of the '<em>Event Listener</em>' containment reference.
-     * @see #getEventListener()
+     * @param value the new value of the '<em>Work Item Handler</em>' containment reference.
+     * @see #getWorkItemHandler()
      * @generated
      */
-    void setEventListener(EventListenerType value);
+    void setWorkItemHandler(WorkItemHandlerType value);
+
+    /**
+     * Returns the value of the '<em><b>Work Item Handlers</b></em>' containment reference.
+     * <!-- begin-user-doc -->
+     * <p>
+     * If the meaning of the '<em>Work Item Handlers</em>' containment reference isn't clear,
+     * there really should be more of a description here...
+     * </p>
+     * <!-- end-user-doc -->
+     * @return the value of the '<em>Work Item Handlers</em>' containment reference.
+     * @see #setWorkItemHandlers(WorkItemHandlersType)
+     * @see org.switchyard.tools.models.switchyard1_0.bpm.BPMPackage#getDocumentRoot_WorkItemHandlers()
+     * @model containment="true" upper="-2" transient="true" volatile="true" derived="true"
+     *        extendedMetaData="kind='element' name='workItemHandlers' namespace='##targetNamespace'"
+     * @generated
+     */
+    WorkItemHandlersType getWorkItemHandlers();
+
+    /**
+     * Sets the value of the '{@link org.switchyard.tools.models.switchyard1_0.bpm.DocumentRoot#getWorkItemHandlers <em>Work Item Handlers</em>}' containment reference.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @param value the new value of the '<em>Work Item Handlers</em>' containment reference.
+     * @see #getWorkItemHandlers()
+     * @generated
+     */
+    void setWorkItemHandlers(WorkItemHandlersType value);
 
 } // DocumentRoot

@@ -14,8 +14,6 @@ import org.eclipse.emf.ecore.util.Switch;
 import org.eclipse.soa.sca.sca1_1.model.sca.CommonExtensionBase;
 import org.eclipse.soa.sca.sca1_1.model.sca.Implementation;
 import org.switchyard.tools.models.switchyard1_0.bpm.*;
-import org.switchyard.tools.models.switchyard1_0.commonrules.AuditType1;
-import org.switchyard.tools.models.switchyard1_0.commonrules.CommonImplementationType;
 
 /**
  * <!-- begin-user-doc -->
@@ -74,6 +72,13 @@ public class BPMSwitch<T> extends Switch<T> {
 	@Override
 	protected T doSwitch(int classifierID, EObject theEObject) {
         switch (classifierID) {
+            case BPMPackage.ACTIONS_TYPE: {
+                ActionsType actionsType = (ActionsType)theEObject;
+                T result = caseActionsType(actionsType);
+                if (result == null) result = caseCommonExtensionBase(actionsType);
+                if (result == null) result = defaultCase(theEObject);
+                return result;
+            }
             case BPMPackage.ACTION_TYPE1: {
                 ActionType1 actionType1 = (ActionType1)theEObject;
                 T result = caseActionType1(actionType1);
@@ -81,20 +86,32 @@ public class BPMSwitch<T> extends Switch<T> {
                 if (result == null) result = defaultCase(theEObject);
                 return result;
             }
-            case BPMPackage.AUDIT_TYPE: {
-                AuditType auditType = (AuditType)theEObject;
-                T result = caseAuditType(auditType);
-                if (result == null) result = caseAuditType1(auditType);
-                if (result == null) result = caseCommonExtensionBase(auditType);
-                if (result == null) result = defaultCase(theEObject);
-                return result;
-            }
             case BPMPackage.BPM_IMPLEMENTATION_TYPE: {
                 BPMImplementationType bpmImplementationType = (BPMImplementationType)theEObject;
                 T result = caseBPMImplementationType(bpmImplementationType);
-                if (result == null) result = caseCommonImplementationType(bpmImplementationType);
                 if (result == null) result = caseImplementation(bpmImplementationType);
                 if (result == null) result = caseCommonExtensionBase(bpmImplementationType);
+                if (result == null) result = defaultCase(theEObject);
+                return result;
+            }
+            case BPMPackage.CHANNELS_TYPE: {
+                ChannelsType channelsType = (ChannelsType)theEObject;
+                T result = caseChannelsType(channelsType);
+                if (result == null) result = caseCommonExtensionBase(channelsType);
+                if (result == null) result = defaultCase(theEObject);
+                return result;
+            }
+            case BPMPackage.CHANNEL_TYPE: {
+                ChannelType channelType = (ChannelType)theEObject;
+                T result = caseChannelType(channelType);
+                if (result == null) result = caseCommonExtensionBase(channelType);
+                if (result == null) result = defaultCase(theEObject);
+                return result;
+            }
+            case BPMPackage.CONTAINER_TYPE: {
+                ContainerType containerType = (ContainerType)theEObject;
+                T result = caseContainerType(containerType);
+                if (result == null) result = caseCommonExtensionBase(containerType);
                 if (result == null) result = defaultCase(theEObject);
                 return result;
             }
@@ -104,47 +121,94 @@ public class BPMSwitch<T> extends Switch<T> {
                 if (result == null) result = defaultCase(theEObject);
                 return result;
             }
+            case BPMPackage.LISTENERS_TYPE: {
+                ListenersType listenersType = (ListenersType)theEObject;
+                T result = caseListenersType(listenersType);
+                if (result == null) result = caseCommonExtensionBase(listenersType);
+                if (result == null) result = defaultCase(theEObject);
+                return result;
+            }
+            case BPMPackage.LISTENER_TYPE: {
+                ListenerType listenerType = (ListenerType)theEObject;
+                T result = caseListenerType(listenerType);
+                if (result == null) result = caseCommonExtensionBase(listenerType);
+                if (result == null) result = defaultCase(theEObject);
+                return result;
+            }
+            case BPMPackage.LOGGERS_TYPE: {
+                LoggersType loggersType = (LoggersType)theEObject;
+                T result = caseLoggersType(loggersType);
+                if (result == null) result = caseCommonExtensionBase(loggersType);
+                if (result == null) result = defaultCase(theEObject);
+                return result;
+            }
+            case BPMPackage.LOGGER_TYPE1: {
+                LoggerType1 loggerType1 = (LoggerType1)theEObject;
+                T result = caseLoggerType1(loggerType1);
+                if (result == null) result = caseCommonExtensionBase(loggerType1);
+                if (result == null) result = defaultCase(theEObject);
+                return result;
+            }
+            case BPMPackage.MANIFEST_TYPE: {
+                ManifestType manifestType = (ManifestType)theEObject;
+                T result = caseManifestType(manifestType);
+                if (result == null) result = caseCommonExtensionBase(manifestType);
+                if (result == null) result = defaultCase(theEObject);
+                return result;
+            }
+            case BPMPackage.MAPPINGS_TYPE: {
+                MappingsType mappingsType = (MappingsType)theEObject;
+                T result = caseMappingsType(mappingsType);
+                if (result == null) result = caseCommonExtensionBase(mappingsType);
+                if (result == null) result = defaultCase(theEObject);
+                return result;
+            }
             case BPMPackage.MAPPING_TYPE: {
                 MappingType mappingType = (MappingType)theEObject;
                 T result = caseMappingType(mappingType);
-                if (result == null) result = caseCommonRules_MappingType(mappingType);
                 if (result == null) result = caseCommonExtensionBase(mappingType);
                 if (result == null) result = defaultCase(theEObject);
                 return result;
             }
-            case BPMPackage.PARAMETERS_TYPE: {
-                ParametersType parametersType = (ParametersType)theEObject;
-                T result = caseParametersType(parametersType);
-                if (result == null) result = caseCommonExtensionBase(parametersType);
+            case BPMPackage.PROPERTIES_TYPE: {
+                PropertiesType propertiesType = (PropertiesType)theEObject;
+                T result = casePropertiesType(propertiesType);
+                if (result == null) result = caseCommonExtensionBase(propertiesType);
+                if (result == null) result = defaultCase(theEObject);
+                return result;
+            }
+            case BPMPackage.PROPERTY_TYPE: {
+                PropertyType propertyType = (PropertyType)theEObject;
+                T result = casePropertyType(propertyType);
+                if (result == null) result = caseCommonExtensionBase(propertyType);
+                if (result == null) result = defaultCase(theEObject);
+                return result;
+            }
+            case BPMPackage.RESOURCES_TYPE: {
+                ResourcesType resourcesType = (ResourcesType)theEObject;
+                T result = caseResourcesType(resourcesType);
+                if (result == null) result = caseCommonExtensionBase(resourcesType);
                 if (result == null) result = defaultCase(theEObject);
                 return result;
             }
             case BPMPackage.RESOURCE_TYPE: {
                 ResourceType resourceType = (ResourceType)theEObject;
                 T result = caseResourceType(resourceType);
-                if (result == null) result = caseSwitchyard_ResourceType(resourceType);
+                if (result == null) result = caseCommonExtensionBase(resourceType);
                 if (result == null) result = defaultCase(theEObject);
                 return result;
             }
-            case BPMPackage.RESULTS_TYPE: {
-                ResultsType resultsType = (ResultsType)theEObject;
-                T result = caseResultsType(resultsType);
-                if (result == null) result = caseCommonExtensionBase(resultsType);
+            case BPMPackage.WORK_ITEM_HANDLERS_TYPE: {
+                WorkItemHandlersType workItemHandlersType = (WorkItemHandlersType)theEObject;
+                T result = caseWorkItemHandlersType(workItemHandlersType);
+                if (result == null) result = caseCommonExtensionBase(workItemHandlersType);
                 if (result == null) result = defaultCase(theEObject);
                 return result;
             }
-            case BPMPackage.TASK_HANDLER_TYPE: {
-                TaskHandlerType taskHandlerType = (TaskHandlerType)theEObject;
-                T result = caseTaskHandlerType(taskHandlerType);
-                if (result == null) result = caseCommonExtensionBase(taskHandlerType);
-                if (result == null) result = defaultCase(theEObject);
-                return result;
-            }
-            case BPMPackage.EVENT_LISTENER_TYPE: {
-                EventListenerType eventListenerType = (EventListenerType)theEObject;
-                T result = caseEventListenerType(eventListenerType);
-                if (result == null) result = caseCommonRules_EventListenerType(eventListenerType);
-                if (result == null) result = caseCommonExtensionBase(eventListenerType);
+            case BPMPackage.WORK_ITEM_HANDLER_TYPE: {
+                WorkItemHandlerType workItemHandlerType = (WorkItemHandlerType)theEObject;
+                T result = caseWorkItemHandlerType(workItemHandlerType);
+                if (result == null) result = caseCommonExtensionBase(workItemHandlerType);
                 if (result == null) result = defaultCase(theEObject);
                 return result;
             }
@@ -153,6 +217,21 @@ public class BPMSwitch<T> extends Switch<T> {
     }
 
 	/**
+     * Returns the result of interpreting the object as an instance of '<em>Actions Type</em>'.
+     * <!-- begin-user-doc -->
+     * This implementation returns null;
+     * returning a non-null result will terminate the switch.
+     * <!-- end-user-doc -->
+     * @param object the target of the switch.
+     * @return the result of interpreting the object as an instance of '<em>Actions Type</em>'.
+     * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+     * @generated
+     */
+    public T caseActionsType(ActionsType object) {
+        return null;
+    }
+
+    /**
      * Returns the result of interpreting the object as an instance of '<em>Action Type1</em>'.
      * <!-- begin-user-doc -->
 	 * This implementation returns null;
@@ -164,21 +243,6 @@ public class BPMSwitch<T> extends Switch<T> {
      * @generated
      */
 	public T caseActionType1(ActionType1 object) {
-        return null;
-    }
-
-	/**
-     * Returns the result of interpreting the object as an instance of '<em>Audit Type</em>'.
-     * <!-- begin-user-doc -->
-	 * This implementation returns null;
-	 * returning a non-null result will terminate the switch.
-	 * <!-- end-user-doc -->
-     * @param object the target of the switch.
-     * @return the result of interpreting the object as an instance of '<em>Audit Type</em>'.
-     * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
-     * @generated
-     */
-	public T caseAuditType(AuditType object) {
         return null;
     }
 
@@ -198,6 +262,51 @@ public class BPMSwitch<T> extends Switch<T> {
     }
 
 	/**
+     * Returns the result of interpreting the object as an instance of '<em>Channels Type</em>'.
+     * <!-- begin-user-doc -->
+     * This implementation returns null;
+     * returning a non-null result will terminate the switch.
+     * <!-- end-user-doc -->
+     * @param object the target of the switch.
+     * @return the result of interpreting the object as an instance of '<em>Channels Type</em>'.
+     * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+     * @generated
+     */
+    public T caseChannelsType(ChannelsType object) {
+        return null;
+    }
+
+    /**
+     * Returns the result of interpreting the object as an instance of '<em>Channel Type</em>'.
+     * <!-- begin-user-doc -->
+     * This implementation returns null;
+     * returning a non-null result will terminate the switch.
+     * <!-- end-user-doc -->
+     * @param object the target of the switch.
+     * @return the result of interpreting the object as an instance of '<em>Channel Type</em>'.
+     * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+     * @generated
+     */
+    public T caseChannelType(ChannelType object) {
+        return null;
+    }
+
+    /**
+     * Returns the result of interpreting the object as an instance of '<em>Container Type</em>'.
+     * <!-- begin-user-doc -->
+     * This implementation returns null;
+     * returning a non-null result will terminate the switch.
+     * <!-- end-user-doc -->
+     * @param object the target of the switch.
+     * @return the result of interpreting the object as an instance of '<em>Container Type</em>'.
+     * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+     * @generated
+     */
+    public T caseContainerType(ContainerType object) {
+        return null;
+    }
+
+    /**
      * Returns the result of interpreting the object as an instance of '<em>Document Root</em>'.
      * <!-- begin-user-doc -->
 	 * This implementation returns null;
@@ -213,6 +322,96 @@ public class BPMSwitch<T> extends Switch<T> {
     }
 
 	/**
+     * Returns the result of interpreting the object as an instance of '<em>Listeners Type</em>'.
+     * <!-- begin-user-doc -->
+     * This implementation returns null;
+     * returning a non-null result will terminate the switch.
+     * <!-- end-user-doc -->
+     * @param object the target of the switch.
+     * @return the result of interpreting the object as an instance of '<em>Listeners Type</em>'.
+     * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+     * @generated
+     */
+    public T caseListenersType(ListenersType object) {
+        return null;
+    }
+
+    /**
+     * Returns the result of interpreting the object as an instance of '<em>Listener Type</em>'.
+     * <!-- begin-user-doc -->
+     * This implementation returns null;
+     * returning a non-null result will terminate the switch.
+     * <!-- end-user-doc -->
+     * @param object the target of the switch.
+     * @return the result of interpreting the object as an instance of '<em>Listener Type</em>'.
+     * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+     * @generated
+     */
+    public T caseListenerType(ListenerType object) {
+        return null;
+    }
+
+    /**
+     * Returns the result of interpreting the object as an instance of '<em>Loggers Type</em>'.
+     * <!-- begin-user-doc -->
+     * This implementation returns null;
+     * returning a non-null result will terminate the switch.
+     * <!-- end-user-doc -->
+     * @param object the target of the switch.
+     * @return the result of interpreting the object as an instance of '<em>Loggers Type</em>'.
+     * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+     * @generated
+     */
+    public T caseLoggersType(LoggersType object) {
+        return null;
+    }
+
+    /**
+     * Returns the result of interpreting the object as an instance of '<em>Logger Type1</em>'.
+     * <!-- begin-user-doc -->
+     * This implementation returns null;
+     * returning a non-null result will terminate the switch.
+     * <!-- end-user-doc -->
+     * @param object the target of the switch.
+     * @return the result of interpreting the object as an instance of '<em>Logger Type1</em>'.
+     * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+     * @generated
+     */
+    public T caseLoggerType1(LoggerType1 object) {
+        return null;
+    }
+
+    /**
+     * Returns the result of interpreting the object as an instance of '<em>Manifest Type</em>'.
+     * <!-- begin-user-doc -->
+     * This implementation returns null;
+     * returning a non-null result will terminate the switch.
+     * <!-- end-user-doc -->
+     * @param object the target of the switch.
+     * @return the result of interpreting the object as an instance of '<em>Manifest Type</em>'.
+     * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+     * @generated
+     */
+    public T caseManifestType(ManifestType object) {
+        return null;
+    }
+
+    /**
+     * Returns the result of interpreting the object as an instance of '<em>Mappings Type</em>'.
+     * <!-- begin-user-doc -->
+     * This implementation returns null;
+     * returning a non-null result will terminate the switch.
+     * <!-- end-user-doc -->
+     * @param object the target of the switch.
+     * @return the result of interpreting the object as an instance of '<em>Mappings Type</em>'.
+     * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+     * @generated
+     */
+    public T caseMappingsType(MappingsType object) {
+        return null;
+    }
+
+    /**
      * Returns the result of interpreting the object as an instance of '<em>Mapping Type</em>'.
      * <!-- begin-user-doc -->
      * This implementation returns null;
@@ -228,17 +427,47 @@ public class BPMSwitch<T> extends Switch<T> {
     }
 
     /**
-     * Returns the result of interpreting the object as an instance of '<em>Parameters Type</em>'.
+     * Returns the result of interpreting the object as an instance of '<em>Properties Type</em>'.
      * <!-- begin-user-doc -->
      * This implementation returns null;
      * returning a non-null result will terminate the switch.
      * <!-- end-user-doc -->
      * @param object the target of the switch.
-     * @return the result of interpreting the object as an instance of '<em>Parameters Type</em>'.
+     * @return the result of interpreting the object as an instance of '<em>Properties Type</em>'.
      * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
      * @generated
      */
-    public T caseParametersType(ParametersType object) {
+    public T casePropertiesType(PropertiesType object) {
+        return null;
+    }
+
+    /**
+     * Returns the result of interpreting the object as an instance of '<em>Property Type</em>'.
+     * <!-- begin-user-doc -->
+     * This implementation returns null;
+     * returning a non-null result will terminate the switch.
+     * <!-- end-user-doc -->
+     * @param object the target of the switch.
+     * @return the result of interpreting the object as an instance of '<em>Property Type</em>'.
+     * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+     * @generated
+     */
+    public T casePropertyType(PropertyType object) {
+        return null;
+    }
+
+    /**
+     * Returns the result of interpreting the object as an instance of '<em>Resources Type</em>'.
+     * <!-- begin-user-doc -->
+     * This implementation returns null;
+     * returning a non-null result will terminate the switch.
+     * <!-- end-user-doc -->
+     * @param object the target of the switch.
+     * @return the result of interpreting the object as an instance of '<em>Resources Type</em>'.
+     * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+     * @generated
+     */
+    public T caseResourcesType(ResourcesType object) {
         return null;
     }
 
@@ -258,47 +487,32 @@ public class BPMSwitch<T> extends Switch<T> {
     }
 
 	/**
-     * Returns the result of interpreting the object as an instance of '<em>Results Type</em>'.
+     * Returns the result of interpreting the object as an instance of '<em>Work Item Handlers Type</em>'.
      * <!-- begin-user-doc -->
      * This implementation returns null;
      * returning a non-null result will terminate the switch.
      * <!-- end-user-doc -->
      * @param object the target of the switch.
-     * @return the result of interpreting the object as an instance of '<em>Results Type</em>'.
+     * @return the result of interpreting the object as an instance of '<em>Work Item Handlers Type</em>'.
      * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
      * @generated
      */
-    public T caseResultsType(ResultsType object) {
+    public T caseWorkItemHandlersType(WorkItemHandlersType object) {
         return null;
     }
 
     /**
-     * Returns the result of interpreting the object as an instance of '<em>Task Handler Type</em>'.
-     * <!-- begin-user-doc -->
-	 * This implementation returns null;
-	 * returning a non-null result will terminate the switch.
-	 * <!-- end-user-doc -->
-     * @param object the target of the switch.
-     * @return the result of interpreting the object as an instance of '<em>Task Handler Type</em>'.
-     * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
-     * @generated
-     */
-	public T caseTaskHandlerType(TaskHandlerType object) {
-        return null;
-    }
-
-	/**
-     * Returns the result of interpreting the object as an instance of '<em>Event Listener Type</em>'.
+     * Returns the result of interpreting the object as an instance of '<em>Work Item Handler Type</em>'.
      * <!-- begin-user-doc -->
      * This implementation returns null;
      * returning a non-null result will terminate the switch.
      * <!-- end-user-doc -->
      * @param object the target of the switch.
-     * @return the result of interpreting the object as an instance of '<em>Event Listener Type</em>'.
+     * @return the result of interpreting the object as an instance of '<em>Work Item Handler Type</em>'.
      * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
      * @generated
      */
-    public T caseEventListenerType(EventListenerType object) {
+    public T caseWorkItemHandlerType(WorkItemHandlerType object) {
         return null;
     }
 
@@ -318,21 +532,6 @@ public class BPMSwitch<T> extends Switch<T> {
     }
 
     /**
-     * Returns the result of interpreting the object as an instance of '<em>Audit Type1</em>'.
-     * <!-- begin-user-doc -->
-     * This implementation returns null;
-     * returning a non-null result will terminate the switch.
-     * <!-- end-user-doc -->
-     * @param object the target of the switch.
-     * @return the result of interpreting the object as an instance of '<em>Audit Type1</em>'.
-     * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
-     * @generated
-     */
-    public T caseAuditType1(AuditType1 object) {
-        return null;
-    }
-
-    /**
      * Returns the result of interpreting the object as an instance of '<em>Implementation</em>'.
      * <!-- begin-user-doc -->
      * This implementation returns null;
@@ -344,66 +543,6 @@ public class BPMSwitch<T> extends Switch<T> {
      * @generated
      */
     public T caseImplementation(Implementation object) {
-        return null;
-    }
-
-    /**
-     * Returns the result of interpreting the object as an instance of '<em>Common Implementation Type</em>'.
-     * <!-- begin-user-doc -->
-     * This implementation returns null;
-     * returning a non-null result will terminate the switch.
-     * <!-- end-user-doc -->
-     * @param object the target of the switch.
-     * @return the result of interpreting the object as an instance of '<em>Common Implementation Type</em>'.
-     * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
-     * @generated
-     */
-    public T caseCommonImplementationType(CommonImplementationType object) {
-        return null;
-    }
-
-    /**
-     * Returns the result of interpreting the object as an instance of '<em>Mapping Type</em>'.
-     * <!-- begin-user-doc -->
-     * This implementation returns null;
-     * returning a non-null result will terminate the switch.
-     * <!-- end-user-doc -->
-     * @param object the target of the switch.
-     * @return the result of interpreting the object as an instance of '<em>Mapping Type</em>'.
-     * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
-     * @generated
-     */
-    public T caseCommonRules_MappingType(org.switchyard.tools.models.switchyard1_0.commonrules.MappingType object) {
-        return null;
-    }
-
-    /**
-     * Returns the result of interpreting the object as an instance of '<em>Resource Type</em>'.
-     * <!-- begin-user-doc -->
-     * This implementation returns null;
-     * returning a non-null result will terminate the switch.
-     * <!-- end-user-doc -->
-     * @param object the target of the switch.
-     * @return the result of interpreting the object as an instance of '<em>Resource Type</em>'.
-     * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
-     * @generated
-     */
-    public T caseSwitchyard_ResourceType(org.switchyard.tools.models.switchyard1_0.switchyard.ResourceType object) {
-        return null;
-    }
-
-    /**
-     * Returns the result of interpreting the object as an instance of '<em>Event Listener Type</em>'.
-     * <!-- begin-user-doc -->
-     * This implementation returns null;
-     * returning a non-null result will terminate the switch.
-     * <!-- end-user-doc -->
-     * @param object the target of the switch.
-     * @return the result of interpreting the object as an instance of '<em>Event Listener Type</em>'.
-     * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
-     * @generated
-     */
-    public T caseCommonRules_EventListenerType(org.switchyard.tools.models.switchyard1_0.commonrules.EventListenerType object) {
         return null;
     }
 

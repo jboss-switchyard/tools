@@ -27,13 +27,12 @@ import org.eclipse.emf.edit.provider.ITreeItemContentProvider;
 import org.eclipse.emf.edit.provider.ItemPropertyDescriptor;
 import org.eclipse.emf.edit.provider.ViewerNotification;
 
+import org.eclipse.soa.sca.sca1_1.model.sca.provider.ImplementationItemProvider;
 import org.switchyard.tools.models.switchyard1_0.bean.provider.Switchyard_1EditPlugin;
 
 import org.switchyard.tools.models.switchyard1_0.bpm.BPMFactory;
 import org.switchyard.tools.models.switchyard1_0.bpm.BPMImplementationType;
 import org.switchyard.tools.models.switchyard1_0.bpm.BPMPackage;
-
-import org.switchyard.tools.models.switchyard1_0.commonrules.provider.CommonImplementationTypeItemProvider;
 
 /**
  * This is the item provider adapter for a {@link org.switchyard.tools.models.switchyard1_0.bpm.BPMImplementationType} object.
@@ -42,7 +41,7 @@ import org.switchyard.tools.models.switchyard1_0.commonrules.provider.CommonImpl
  * @generated
  */
 public class BPMImplementationTypeItemProvider
-    extends CommonImplementationTypeItemProvider
+    extends ImplementationItemProvider
     implements
         IEditingDomainItemProvider,
         IStructuredItemContentProvider,
@@ -70,59 +69,11 @@ public class BPMImplementationTypeItemProvider
         if (itemPropertyDescriptors == null) {
             super.getPropertyDescriptors(object);
 
-            addProcessDefinitionPropertyDescriptor(object);
-            addProcessDefinitionTypePropertyDescriptor(object);
-            addProcessIdPropertyDescriptor(object);
-            addMessageContentInNamePropertyDescriptor(object);
-            addMessageContentOutNamePropertyDescriptor(object);
             addPersistentPropertyDescriptor(object);
+            addProcessIdPropertyDescriptor(object);
             addSessionIdPropertyDescriptor(object);
         }
         return itemPropertyDescriptors;
-    }
-
-    /**
-     * This adds a property descriptor for the Process Definition feature.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    protected void addProcessDefinitionPropertyDescriptor(Object object) {
-        itemPropertyDescriptors.add
-            (createItemPropertyDescriptor
-                (((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
-                 getResourceLocator(),
-                 getString("_UI_BPMImplementationType_processDefinition_feature"),
-                 getString("_UI_PropertyDescriptor_description", "_UI_BPMImplementationType_processDefinition_feature", "_UI_BPMImplementationType_type"),
-                 BPMPackage.Literals.BPM_IMPLEMENTATION_TYPE__PROCESS_DEFINITION,
-                 true,
-                 false,
-                 false,
-                 ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
-                 null,
-                 null));
-    }
-
-    /**
-     * This adds a property descriptor for the Process Definition Type feature.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    protected void addProcessDefinitionTypePropertyDescriptor(Object object) {
-        itemPropertyDescriptors.add
-            (createItemPropertyDescriptor
-                (((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
-                 getResourceLocator(),
-                 getString("_UI_BPMImplementationType_processDefinitionType_feature"),
-                 getString("_UI_PropertyDescriptor_description", "_UI_BPMImplementationType_processDefinitionType_feature", "_UI_BPMImplementationType_type"),
-                 BPMPackage.Literals.BPM_IMPLEMENTATION_TYPE__PROCESS_DEFINITION_TYPE,
-                 true,
-                 false,
-                 false,
-                 ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
-                 null,
-                 null));
     }
 
     /**
@@ -139,50 +90,6 @@ public class BPMImplementationTypeItemProvider
                  getString("_UI_BPMImplementationType_processId_feature"),
                  getString("_UI_PropertyDescriptor_description", "_UI_BPMImplementationType_processId_feature", "_UI_BPMImplementationType_type"),
                  BPMPackage.Literals.BPM_IMPLEMENTATION_TYPE__PROCESS_ID,
-                 true,
-                 false,
-                 false,
-                 ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
-                 null,
-                 null));
-    }
-
-    /**
-     * This adds a property descriptor for the Message Content In Name feature.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    protected void addMessageContentInNamePropertyDescriptor(Object object) {
-        itemPropertyDescriptors.add
-            (createItemPropertyDescriptor
-                (((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
-                 getResourceLocator(),
-                 getString("_UI_BPMImplementationType_messageContentInName_feature"),
-                 getString("_UI_PropertyDescriptor_description", "_UI_BPMImplementationType_messageContentInName_feature", "_UI_BPMImplementationType_type"),
-                 BPMPackage.Literals.BPM_IMPLEMENTATION_TYPE__MESSAGE_CONTENT_IN_NAME,
-                 true,
-                 false,
-                 false,
-                 ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
-                 null,
-                 null));
-    }
-
-    /**
-     * This adds a property descriptor for the Message Content Out Name feature.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    protected void addMessageContentOutNamePropertyDescriptor(Object object) {
-        itemPropertyDescriptors.add
-            (createItemPropertyDescriptor
-                (((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
-                 getResourceLocator(),
-                 getString("_UI_BPMImplementationType_messageContentOutName_feature"),
-                 getString("_UI_PropertyDescriptor_description", "_UI_BPMImplementationType_messageContentOutName_feature", "_UI_BPMImplementationType_type"),
-                 BPMPackage.Literals.BPM_IMPLEMENTATION_TYPE__MESSAGE_CONTENT_OUT_NAME,
                  true,
                  false,
                  false,
@@ -247,13 +154,13 @@ public class BPMImplementationTypeItemProvider
     public Collection<? extends EStructuralFeature> getChildrenFeatures(Object object) {
         if (childrenFeatures == null) {
             super.getChildrenFeatures(object);
-            childrenFeatures.add(BPMPackage.Literals.BPM_IMPLEMENTATION_TYPE__ACTION);
-            childrenFeatures.add(BPMPackage.Literals.BPM_IMPLEMENTATION_TYPE__AUDIT);
-            childrenFeatures.add(BPMPackage.Literals.BPM_IMPLEMENTATION_TYPE__EVENT_LISTENER);
-            childrenFeatures.add(BPMPackage.Literals.BPM_IMPLEMENTATION_TYPE__TASK_HANDLER);
-            childrenFeatures.add(BPMPackage.Literals.BPM_IMPLEMENTATION_TYPE__RESOURCE);
-            childrenFeatures.add(BPMPackage.Literals.BPM_IMPLEMENTATION_TYPE__PARAMETERS);
-            childrenFeatures.add(BPMPackage.Literals.BPM_IMPLEMENTATION_TYPE__RESULTS);
+            childrenFeatures.add(BPMPackage.Literals.BPM_IMPLEMENTATION_TYPE__ACTIONS);
+            childrenFeatures.add(BPMPackage.Literals.BPM_IMPLEMENTATION_TYPE__CHANNELS);
+            childrenFeatures.add(BPMPackage.Literals.BPM_IMPLEMENTATION_TYPE__LISTENERS);
+            childrenFeatures.add(BPMPackage.Literals.BPM_IMPLEMENTATION_TYPE__LOGGERS);
+            childrenFeatures.add(BPMPackage.Literals.BPM_IMPLEMENTATION_TYPE__MANIFEST);
+            childrenFeatures.add(BPMPackage.Literals.BPM_IMPLEMENTATION_TYPE__PROPERTIES);
+            childrenFeatures.add(BPMPackage.Literals.BPM_IMPLEMENTATION_TYPE__WORK_ITEM_HANDLERS);
         }
         return childrenFeatures;
     }
@@ -290,7 +197,8 @@ public class BPMImplementationTypeItemProvider
      */
     @Override
     public String getText(Object object) {
-        String label = ((BPMImplementationType)object).getMessageContentInName();
+        List labelValue = ((BPMImplementationType)object).getPolicySets();
+        String label = labelValue == null ? null : labelValue.toString();
         return label == null || label.length() == 0 ?
             getString("_UI_BPMImplementationType_type") :
             getString("_UI_BPMImplementationType_type") + " " + label;
@@ -308,22 +216,18 @@ public class BPMImplementationTypeItemProvider
         updateChildren(notification);
 
         switch (notification.getFeatureID(BPMImplementationType.class)) {
-            case BPMPackage.BPM_IMPLEMENTATION_TYPE__PROCESS_DEFINITION:
-            case BPMPackage.BPM_IMPLEMENTATION_TYPE__PROCESS_DEFINITION_TYPE:
-            case BPMPackage.BPM_IMPLEMENTATION_TYPE__PROCESS_ID:
-            case BPMPackage.BPM_IMPLEMENTATION_TYPE__MESSAGE_CONTENT_IN_NAME:
-            case BPMPackage.BPM_IMPLEMENTATION_TYPE__MESSAGE_CONTENT_OUT_NAME:
             case BPMPackage.BPM_IMPLEMENTATION_TYPE__PERSISTENT:
+            case BPMPackage.BPM_IMPLEMENTATION_TYPE__PROCESS_ID:
             case BPMPackage.BPM_IMPLEMENTATION_TYPE__SESSION_ID:
                 fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
                 return;
-            case BPMPackage.BPM_IMPLEMENTATION_TYPE__ACTION:
-            case BPMPackage.BPM_IMPLEMENTATION_TYPE__AUDIT:
-            case BPMPackage.BPM_IMPLEMENTATION_TYPE__EVENT_LISTENER:
-            case BPMPackage.BPM_IMPLEMENTATION_TYPE__TASK_HANDLER:
-            case BPMPackage.BPM_IMPLEMENTATION_TYPE__RESOURCE:
-            case BPMPackage.BPM_IMPLEMENTATION_TYPE__PARAMETERS:
-            case BPMPackage.BPM_IMPLEMENTATION_TYPE__RESULTS:
+            case BPMPackage.BPM_IMPLEMENTATION_TYPE__ACTIONS:
+            case BPMPackage.BPM_IMPLEMENTATION_TYPE__CHANNELS:
+            case BPMPackage.BPM_IMPLEMENTATION_TYPE__LISTENERS:
+            case BPMPackage.BPM_IMPLEMENTATION_TYPE__LOGGERS:
+            case BPMPackage.BPM_IMPLEMENTATION_TYPE__MANIFEST:
+            case BPMPackage.BPM_IMPLEMENTATION_TYPE__PROPERTIES:
+            case BPMPackage.BPM_IMPLEMENTATION_TYPE__WORK_ITEM_HANDLERS:
                 fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), true, false));
                 return;
         }
@@ -343,38 +247,38 @@ public class BPMImplementationTypeItemProvider
 
         newChildDescriptors.add
             (createChildParameter
-                (BPMPackage.Literals.BPM_IMPLEMENTATION_TYPE__ACTION,
-                 BPMFactory.eINSTANCE.createActionType1()));
+                (BPMPackage.Literals.BPM_IMPLEMENTATION_TYPE__ACTIONS,
+                 BPMFactory.eINSTANCE.createActionsType()));
 
         newChildDescriptors.add
             (createChildParameter
-                (BPMPackage.Literals.BPM_IMPLEMENTATION_TYPE__AUDIT,
-                 BPMFactory.eINSTANCE.createAuditType()));
+                (BPMPackage.Literals.BPM_IMPLEMENTATION_TYPE__CHANNELS,
+                 BPMFactory.eINSTANCE.createChannelsType()));
 
         newChildDescriptors.add
             (createChildParameter
-                (BPMPackage.Literals.BPM_IMPLEMENTATION_TYPE__EVENT_LISTENER,
-                 BPMFactory.eINSTANCE.createEventListenerType()));
+                (BPMPackage.Literals.BPM_IMPLEMENTATION_TYPE__LISTENERS,
+                 BPMFactory.eINSTANCE.createListenersType()));
 
         newChildDescriptors.add
             (createChildParameter
-                (BPMPackage.Literals.BPM_IMPLEMENTATION_TYPE__TASK_HANDLER,
-                 BPMFactory.eINSTANCE.createTaskHandlerType()));
+                (BPMPackage.Literals.BPM_IMPLEMENTATION_TYPE__LOGGERS,
+                 BPMFactory.eINSTANCE.createLoggersType()));
 
         newChildDescriptors.add
             (createChildParameter
-                (BPMPackage.Literals.BPM_IMPLEMENTATION_TYPE__RESOURCE,
-                 BPMFactory.eINSTANCE.createResourceType()));
+                (BPMPackage.Literals.BPM_IMPLEMENTATION_TYPE__MANIFEST,
+                 BPMFactory.eINSTANCE.createManifestType()));
 
         newChildDescriptors.add
             (createChildParameter
-                (BPMPackage.Literals.BPM_IMPLEMENTATION_TYPE__PARAMETERS,
-                 BPMFactory.eINSTANCE.createParametersType()));
+                (BPMPackage.Literals.BPM_IMPLEMENTATION_TYPE__PROPERTIES,
+                 BPMFactory.eINSTANCE.createPropertiesType()));
 
         newChildDescriptors.add
             (createChildParameter
-                (BPMPackage.Literals.BPM_IMPLEMENTATION_TYPE__RESULTS,
-                 BPMFactory.eINSTANCE.createResultsType()));
+                (BPMPackage.Literals.BPM_IMPLEMENTATION_TYPE__WORK_ITEM_HANDLERS,
+                 BPMFactory.eINSTANCE.createWorkItemHandlersType()));
     }
 
     /**

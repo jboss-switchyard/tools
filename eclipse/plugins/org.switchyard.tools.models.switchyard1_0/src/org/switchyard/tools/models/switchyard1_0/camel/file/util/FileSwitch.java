@@ -8,7 +8,6 @@ import org.eclipse.emf.ecore.util.Switch;
 import org.eclipse.soa.sca.sca1_1.model.sca.Binding;
 import org.eclipse.soa.sca.sca1_1.model.sca.CommonExtensionBase;
 import org.switchyard.tools.models.switchyard1_0.camel.file.*;
-import org.switchyard.tools.models.switchyard1_0.camel.core.BaseCamelBinding;
 import org.switchyard.tools.models.switchyard1_0.camel.file.CamelFileBindingType;
 import org.switchyard.tools.models.switchyard1_0.camel.file.DocumentRoot;
 import org.switchyard.tools.models.switchyard1_0.camel.file.FileConsumerType;

@@ -28,7 +28,6 @@ import org.eclipse.emf.edit.provider.ITreeItemContentProvider;
 import org.eclipse.emf.edit.provider.ItemProviderAdapter;
 import org.eclipse.emf.edit.provider.ViewerNotification;
 
-import org.switchyard.tools.models.switchyard1_0.camel.CamelFactory;
 import org.switchyard.tools.models.switchyard1_0.hornetq.HornetQFactory;
 import org.switchyard.tools.models.switchyard1_0.http.HttpFactory;
 import org.switchyard.tools.models.switchyard1_0.jca.JcaFactory;

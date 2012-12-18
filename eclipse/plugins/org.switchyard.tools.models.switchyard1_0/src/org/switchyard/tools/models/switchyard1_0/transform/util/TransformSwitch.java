@@ -11,7 +11,6 @@ import org.eclipse.emf.ecore.EPackage;
 
 import org.eclipse.emf.ecore.util.Switch;
 
-import org.eclipse.soa.sca.sca1_1.model.sca.ExtendableType;
 import org.switchyard.tools.models.switchyard1_0.switchyard.TransformType;
 import org.switchyard.tools.models.switchyard1_0.transform.*;
 

@@ -23,7 +23,7 @@
         <executions>
           <execution>
             <id>unpack-schema-resources</id>
-            <phase>generate-resources</phase>
+            <phase>generate-sources</phase>
             <goals>
               <goal>unpack</goal>
             </goals>
@@ -93,6 +93,12 @@
                 </artifactItem>
                 <artifactItem>
                   <groupId>org.switchyard.components</groupId>
+                  <artifactId>switchyard-component-camel-core</artifactId>
+                  <version>${version.switchyard.runtime}</version>
+                  <classifier>sources</classifier>
+                </artifactItem>
+                <artifactItem>
+                  <groupId>org.switchyard.components</groupId>
                   <artifactId>switchyard-component-camel-file</artifactId>
                   <version>${version.switchyard.runtime}</version>
                   <classifier>sources</classifier>
@@ -148,12 +154,6 @@
                 <artifactItem>
                   <groupId>org.switchyard.components</groupId>
                   <artifactId>switchyard-component-hornetq</artifactId>
-                  <version>${version.switchyard.runtime}</version>
-                  <classifier>sources</classifier>
-                </artifactItem>
-                <artifactItem>
-                  <groupId>org.switchyard.components</groupId>
-                  <artifactId>switchyard-component-common-rules</artifactId>
                   <version>${version.switchyard.runtime}</version>
                   <classifier>sources</classifier>
                 </artifactItem>

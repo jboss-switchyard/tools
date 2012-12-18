@@ -4,8 +4,6 @@ package org.switchyard.tools.models.switchyard1_0.camel.core.impl;
 
 import org.eclipse.emf.ecore.EAttribute;
 import org.eclipse.emf.ecore.EClass;
-import org.eclipse.emf.ecore.EDataType;
-import org.eclipse.emf.ecore.EEnum;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.EReference;
 
@@ -40,19 +38,11 @@ import org.switchyard.tools.models.switchyard1_0.camel.core.BaseCamelBinding;
 import org.switchyard.tools.models.switchyard1_0.camel.core.CamelBindingType;
 import org.switchyard.tools.models.switchyard1_0.camel.core.CamelDirectBindingType;
 import org.switchyard.tools.models.switchyard1_0.camel.core.CamelMockBindingType;
-import org.switchyard.tools.models.switchyard1_0.camel.core.CamelRemoteBindingType;
 import org.switchyard.tools.models.switchyard1_0.camel.core.CamelSedaBindingType;
 import org.switchyard.tools.models.switchyard1_0.camel.core.CamelTimerBindingType;
 import org.switchyard.tools.models.switchyard1_0.camel.core.CoreFactory;
 import org.switchyard.tools.models.switchyard1_0.camel.core.CorePackage;
 import org.switchyard.tools.models.switchyard1_0.camel.core.DocumentRoot;
-import org.switchyard.tools.models.switchyard1_0.camel.core.GenericFileBindingType;
-import org.switchyard.tools.models.switchyard1_0.camel.core.GenericFileConsumerType;
-import org.switchyard.tools.models.switchyard1_0.camel.core.GenericFileProducerType;
-import org.switchyard.tools.models.switchyard1_0.camel.core.JmsBindingType;
-import org.switchyard.tools.models.switchyard1_0.camel.core.ScheduledBatchPollConsumerType;
-import org.switchyard.tools.models.switchyard1_0.camel.core.ScheduledPollConsumerType;
-import org.switchyard.tools.models.switchyard1_0.camel.core.TimeUnit;
 
 import org.switchyard.tools.models.switchyard1_0.camel.file.FilePackage;
 
@@ -90,10 +80,6 @@ import org.switchyard.tools.models.switchyard1_0.camel.sql.impl.SqlPackageImpl;
 import org.switchyard.tools.models.switchyard1_0.clojure.ClojurePackage;
 
 import org.switchyard.tools.models.switchyard1_0.clojure.impl.ClojurePackageImpl;
-
-import org.switchyard.tools.models.switchyard1_0.commonrules.CommonRulesPackage;
-
-import org.switchyard.tools.models.switchyard1_0.commonrules.impl.CommonRulesPackageImpl;
 
 import org.switchyard.tools.models.switchyard1_0.hornetq.HornetQPackage;
 
@@ -249,7 +235,6 @@ public class CorePackageImpl extends EPackageImpl implements CorePackage {
         BeanPackageImpl theBeanPackage = (BeanPackageImpl)(EPackage.Registry.INSTANCE.getEPackage(BeanPackage.eNS_URI) instanceof BeanPackageImpl ? EPackage.Registry.INSTANCE.getEPackage(BeanPackage.eNS_URI) : BeanPackage.eINSTANCE);
         BPELPackageImpl theBPELPackage = (BPELPackageImpl)(EPackage.Registry.INSTANCE.getEPackage(BPELPackage.eNS_URI) instanceof BPELPackageImpl ? EPackage.Registry.INSTANCE.getEPackage(BPELPackage.eNS_URI) : BPELPackage.eINSTANCE);
         BPMPackageImpl theBPMPackage = (BPMPackageImpl)(EPackage.Registry.INSTANCE.getEPackage(BPMPackage.eNS_URI) instanceof BPMPackageImpl ? EPackage.Registry.INSTANCE.getEPackage(BPMPackage.eNS_URI) : BPMPackage.eINSTANCE);
-        CommonRulesPackageImpl theCommonRulesPackage = (CommonRulesPackageImpl)(EPackage.Registry.INSTANCE.getEPackage(CommonRulesPackage.eNS_URI) instanceof CommonRulesPackageImpl ? EPackage.Registry.INSTANCE.getEPackage(CommonRulesPackage.eNS_URI) : CommonRulesPackage.eINSTANCE);
         SwitchyardPackageImpl theSwitchyardPackage = (SwitchyardPackageImpl)(EPackage.Registry.INSTANCE.getEPackage(SwitchyardPackage.eNS_URI) instanceof SwitchyardPackageImpl ? EPackage.Registry.INSTANCE.getEPackage(SwitchyardPackage.eNS_URI) : SwitchyardPackage.eINSTANCE);
         ClojurePackageImpl theClojurePackage = (ClojurePackageImpl)(EPackage.Registry.INSTANCE.getEPackage(ClojurePackage.eNS_URI) instanceof ClojurePackageImpl ? EPackage.Registry.INSTANCE.getEPackage(ClojurePackage.eNS_URI) : ClojurePackage.eINSTANCE);
         HornetQPackageImpl theHornetQPackage = (HornetQPackageImpl)(EPackage.Registry.INSTANCE.getEPackage(HornetQPackage.eNS_URI) instanceof HornetQPackageImpl ? EPackage.Registry.INSTANCE.getEPackage(HornetQPackage.eNS_URI) : HornetQPackage.eINSTANCE);
@@ -282,7 +267,6 @@ public class CorePackageImpl extends EPackageImpl implements CorePackage {
         theBeanPackage.createPackageContents();
         theBPELPackage.createPackageContents();
         theBPMPackage.createPackageContents();
-        theCommonRulesPackage.createPackageContents();
         theSwitchyardPackage.createPackageContents();
         theClojurePackage.createPackageContents();
         theHornetQPackage.createPackageContents();
@@ -311,7 +295,6 @@ public class CorePackageImpl extends EPackageImpl implements CorePackage {
         theBeanPackage.initializePackageContents();
         theBPELPackage.initializePackageContents();
         theBPMPackage.initializePackageContents();
-        theCommonRulesPackage.initializePackageContents();
         theSwitchyardPackage.initializePackageContents();
         theClojurePackage.initializePackageContents();
         theHornetQPackage.initializePackageContents();

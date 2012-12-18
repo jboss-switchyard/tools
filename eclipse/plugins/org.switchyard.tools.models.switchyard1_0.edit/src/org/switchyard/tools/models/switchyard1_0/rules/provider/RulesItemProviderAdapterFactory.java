@@ -76,6 +76,29 @@ public class RulesItemProviderAdapterFactory extends RulesAdapterFactory impleme
     }
 
     /**
+     * This keeps track of the one adapter used for all {@link org.switchyard.tools.models.switchyard1_0.rules.ActionsType} instances.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    protected ActionsTypeItemProvider actionsTypeItemProvider;
+
+    /**
+     * This creates an adapter for a {@link org.switchyard.tools.models.switchyard1_0.rules.ActionsType}.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    @Override
+    public Adapter createActionsTypeAdapter() {
+        if (actionsTypeItemProvider == null) {
+            actionsTypeItemProvider = new ActionsTypeItemProvider(this);
+        }
+
+        return actionsTypeItemProvider;
+    }
+
+    /**
      * This keeps track of the one adapter used for all {@link org.switchyard.tools.models.switchyard1_0.rules.ActionType1} instances.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
@@ -99,26 +122,26 @@ public class RulesItemProviderAdapterFactory extends RulesAdapterFactory impleme
     }
 
     /**
-     * This keeps track of the one adapter used for all {@link org.switchyard.tools.models.switchyard1_0.rules.AuditType} instances.
+     * This keeps track of the one adapter used for all {@link org.switchyard.tools.models.switchyard1_0.rules.ChannelsType} instances.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @generated
      */
-    protected AuditTypeItemProvider auditTypeItemProvider;
+    protected ChannelsTypeItemProvider channelsTypeItemProvider;
 
     /**
-     * This creates an adapter for a {@link org.switchyard.tools.models.switchyard1_0.rules.AuditType}.
+     * This creates an adapter for a {@link org.switchyard.tools.models.switchyard1_0.rules.ChannelsType}.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @generated
      */
     @Override
-    public Adapter createAuditTypeAdapter() {
-        if (auditTypeItemProvider == null) {
-            auditTypeItemProvider = new AuditTypeItemProvider(this);
+    public Adapter createChannelsTypeAdapter() {
+        if (channelsTypeItemProvider == null) {
+            channelsTypeItemProvider = new ChannelsTypeItemProvider(this);
         }
 
-        return auditTypeItemProvider;
+        return channelsTypeItemProvider;
     }
 
     /**
@@ -145,6 +168,29 @@ public class RulesItemProviderAdapterFactory extends RulesAdapterFactory impleme
     }
 
     /**
+     * This keeps track of the one adapter used for all {@link org.switchyard.tools.models.switchyard1_0.rules.ContainerType} instances.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    protected ContainerTypeItemProvider containerTypeItemProvider;
+
+    /**
+     * This creates an adapter for a {@link org.switchyard.tools.models.switchyard1_0.rules.ContainerType}.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    @Override
+    public Adapter createContainerTypeAdapter() {
+        if (containerTypeItemProvider == null) {
+            containerTypeItemProvider = new ContainerTypeItemProvider(this);
+        }
+
+        return containerTypeItemProvider;
+    }
+
+    /**
      * This keeps track of the one adapter used for all {@link org.switchyard.tools.models.switchyard1_0.rules.DocumentRoot} instances.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
@@ -168,26 +214,141 @@ public class RulesItemProviderAdapterFactory extends RulesAdapterFactory impleme
     }
 
     /**
-     * This keeps track of the one adapter used for all {@link org.switchyard.tools.models.switchyard1_0.rules.GlobalsType} instances.
+     * This keeps track of the one adapter used for all {@link org.switchyard.tools.models.switchyard1_0.rules.ListenersType} instances.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @generated
      */
-    protected GlobalsTypeItemProvider globalsTypeItemProvider;
+    protected ListenersTypeItemProvider listenersTypeItemProvider;
 
     /**
-     * This creates an adapter for a {@link org.switchyard.tools.models.switchyard1_0.rules.GlobalsType}.
+     * This creates an adapter for a {@link org.switchyard.tools.models.switchyard1_0.rules.ListenersType}.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @generated
      */
     @Override
-    public Adapter createGlobalsTypeAdapter() {
-        if (globalsTypeItemProvider == null) {
-            globalsTypeItemProvider = new GlobalsTypeItemProvider(this);
+    public Adapter createListenersTypeAdapter() {
+        if (listenersTypeItemProvider == null) {
+            listenersTypeItemProvider = new ListenersTypeItemProvider(this);
         }
 
-        return globalsTypeItemProvider;
+        return listenersTypeItemProvider;
+    }
+
+    /**
+     * This keeps track of the one adapter used for all {@link org.switchyard.tools.models.switchyard1_0.rules.ListenerType} instances.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    protected ListenerTypeItemProvider listenerTypeItemProvider;
+
+    /**
+     * This creates an adapter for a {@link org.switchyard.tools.models.switchyard1_0.rules.ListenerType}.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    @Override
+    public Adapter createListenerTypeAdapter() {
+        if (listenerTypeItemProvider == null) {
+            listenerTypeItemProvider = new ListenerTypeItemProvider(this);
+        }
+
+        return listenerTypeItemProvider;
+    }
+
+    /**
+     * This keeps track of the one adapter used for all {@link org.switchyard.tools.models.switchyard1_0.rules.LoggersType} instances.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    protected LoggersTypeItemProvider loggersTypeItemProvider;
+
+    /**
+     * This creates an adapter for a {@link org.switchyard.tools.models.switchyard1_0.rules.LoggersType}.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    @Override
+    public Adapter createLoggersTypeAdapter() {
+        if (loggersTypeItemProvider == null) {
+            loggersTypeItemProvider = new LoggersTypeItemProvider(this);
+        }
+
+        return loggersTypeItemProvider;
+    }
+
+    /**
+     * This keeps track of the one adapter used for all {@link org.switchyard.tools.models.switchyard1_0.rules.LoggerType1} instances.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    protected LoggerType1ItemProvider loggerType1ItemProvider;
+
+    /**
+     * This creates an adapter for a {@link org.switchyard.tools.models.switchyard1_0.rules.LoggerType1}.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    @Override
+    public Adapter createLoggerType1Adapter() {
+        if (loggerType1ItemProvider == null) {
+            loggerType1ItemProvider = new LoggerType1ItemProvider(this);
+        }
+
+        return loggerType1ItemProvider;
+    }
+
+    /**
+     * This keeps track of the one adapter used for all {@link org.switchyard.tools.models.switchyard1_0.rules.ManifestType} instances.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    protected ManifestTypeItemProvider manifestTypeItemProvider;
+
+    /**
+     * This creates an adapter for a {@link org.switchyard.tools.models.switchyard1_0.rules.ManifestType}.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    @Override
+    public Adapter createManifestTypeAdapter() {
+        if (manifestTypeItemProvider == null) {
+            manifestTypeItemProvider = new ManifestTypeItemProvider(this);
+        }
+
+        return manifestTypeItemProvider;
+    }
+
+    /**
+     * This keeps track of the one adapter used for all {@link org.switchyard.tools.models.switchyard1_0.rules.MappingsType} instances.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    protected MappingsTypeItemProvider mappingsTypeItemProvider;
+
+    /**
+     * This creates an adapter for a {@link org.switchyard.tools.models.switchyard1_0.rules.MappingsType}.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    @Override
+    public Adapter createMappingsTypeAdapter() {
+        if (mappingsTypeItemProvider == null) {
+            mappingsTypeItemProvider = new MappingsTypeItemProvider(this);
+        }
+
+        return mappingsTypeItemProvider;
     }
 
     /**
@@ -211,6 +372,75 @@ public class RulesItemProviderAdapterFactory extends RulesAdapterFactory impleme
         }
 
         return mappingTypeItemProvider;
+    }
+
+    /**
+     * This keeps track of the one adapter used for all {@link org.switchyard.tools.models.switchyard1_0.rules.PropertiesType} instances.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    protected PropertiesTypeItemProvider propertiesTypeItemProvider;
+
+    /**
+     * This creates an adapter for a {@link org.switchyard.tools.models.switchyard1_0.rules.PropertiesType}.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    @Override
+    public Adapter createPropertiesTypeAdapter() {
+        if (propertiesTypeItemProvider == null) {
+            propertiesTypeItemProvider = new PropertiesTypeItemProvider(this);
+        }
+
+        return propertiesTypeItemProvider;
+    }
+
+    /**
+     * This keeps track of the one adapter used for all {@link org.switchyard.tools.models.switchyard1_0.rules.PropertyType} instances.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    protected PropertyTypeItemProvider propertyTypeItemProvider;
+
+    /**
+     * This creates an adapter for a {@link org.switchyard.tools.models.switchyard1_0.rules.PropertyType}.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    @Override
+    public Adapter createPropertyTypeAdapter() {
+        if (propertyTypeItemProvider == null) {
+            propertyTypeItemProvider = new PropertyTypeItemProvider(this);
+        }
+
+        return propertyTypeItemProvider;
+    }
+
+    /**
+     * This keeps track of the one adapter used for all {@link org.switchyard.tools.models.switchyard1_0.rules.ResourcesType} instances.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    protected ResourcesTypeItemProvider resourcesTypeItemProvider;
+
+    /**
+     * This creates an adapter for a {@link org.switchyard.tools.models.switchyard1_0.rules.ResourcesType}.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    @Override
+    public Adapter createResourcesTypeAdapter() {
+        if (resourcesTypeItemProvider == null) {
+            resourcesTypeItemProvider = new ResourcesTypeItemProvider(this);
+        }
+
+        return resourcesTypeItemProvider;
     }
 
     /**
@@ -257,52 +487,6 @@ public class RulesItemProviderAdapterFactory extends RulesAdapterFactory impleme
         }
 
         return rulesImplementationTypeItemProvider;
-    }
-
-    /**
-     * This keeps track of the one adapter used for all {@link org.switchyard.tools.models.switchyard1_0.rules.FactsType} instances.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    protected FactsTypeItemProvider factsTypeItemProvider;
-
-    /**
-     * This creates an adapter for a {@link org.switchyard.tools.models.switchyard1_0.rules.FactsType}.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    @Override
-    public Adapter createFactsTypeAdapter() {
-        if (factsTypeItemProvider == null) {
-            factsTypeItemProvider = new FactsTypeItemProvider(this);
-        }
-
-        return factsTypeItemProvider;
-    }
-
-    /**
-     * This keeps track of the one adapter used for all {@link org.switchyard.tools.models.switchyard1_0.rules.EventListenerType} instances.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    protected EventListenerTypeItemProvider eventListenerTypeItemProvider;
-
-    /**
-     * This creates an adapter for a {@link org.switchyard.tools.models.switchyard1_0.rules.EventListenerType}.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    @Override
-    public Adapter createEventListenerTypeAdapter() {
-        if (eventListenerTypeItemProvider == null) {
-            eventListenerTypeItemProvider = new EventListenerTypeItemProvider(this);
-        }
-
-        return eventListenerTypeItemProvider;
     }
 
     /**
@@ -404,16 +588,24 @@ public class RulesItemProviderAdapterFactory extends RulesAdapterFactory impleme
      * @generated
      */
     public void dispose() {
+        if (actionsTypeItemProvider != null) actionsTypeItemProvider.dispose();
         if (actionType1ItemProvider != null) actionType1ItemProvider.dispose();
-        if (auditTypeItemProvider != null) auditTypeItemProvider.dispose();
+        if (channelsTypeItemProvider != null) channelsTypeItemProvider.dispose();
         if (channelTypeItemProvider != null) channelTypeItemProvider.dispose();
+        if (containerTypeItemProvider != null) containerTypeItemProvider.dispose();
         if (documentRootItemProvider != null) documentRootItemProvider.dispose();
-        if (globalsTypeItemProvider != null) globalsTypeItemProvider.dispose();
+        if (listenersTypeItemProvider != null) listenersTypeItemProvider.dispose();
+        if (listenerTypeItemProvider != null) listenerTypeItemProvider.dispose();
+        if (loggersTypeItemProvider != null) loggersTypeItemProvider.dispose();
+        if (loggerType1ItemProvider != null) loggerType1ItemProvider.dispose();
+        if (manifestTypeItemProvider != null) manifestTypeItemProvider.dispose();
+        if (mappingsTypeItemProvider != null) mappingsTypeItemProvider.dispose();
         if (mappingTypeItemProvider != null) mappingTypeItemProvider.dispose();
+        if (propertiesTypeItemProvider != null) propertiesTypeItemProvider.dispose();
+        if (propertyTypeItemProvider != null) propertyTypeItemProvider.dispose();
+        if (resourcesTypeItemProvider != null) resourcesTypeItemProvider.dispose();
         if (resourceTypeItemProvider != null) resourceTypeItemProvider.dispose();
         if (rulesImplementationTypeItemProvider != null) rulesImplementationTypeItemProvider.dispose();
-        if (factsTypeItemProvider != null) factsTypeItemProvider.dispose();
-        if (eventListenerTypeItemProvider != null) eventListenerTypeItemProvider.dispose();
     }
 
 }

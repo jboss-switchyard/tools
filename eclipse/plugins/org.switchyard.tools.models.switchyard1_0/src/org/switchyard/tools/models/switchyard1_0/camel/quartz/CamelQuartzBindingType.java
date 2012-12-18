@@ -4,8 +4,6 @@ package org.switchyard.tools.models.switchyard1_0.camel.quartz;
 
 import javax.xml.datatype.XMLGregorianCalendar;
 
-import org.switchyard.tools.models.switchyard1_0.camel.core.BaseCamelBinding;
-
 /**
  * <!-- begin-user-doc -->
  * A representation of the model object '<em><b>Camel Quartz Binding Type</b></em>'.

@@ -15,6 +15,7 @@ import org.eclipse.emf.common.notify.Notification;
 
 import org.eclipse.emf.common.util.ResourceLocator;
 
+import org.eclipse.emf.edit.provider.ComposeableAdapterFactory;
 import org.eclipse.emf.edit.provider.IEditingDomainItemProvider;
 import org.eclipse.emf.edit.provider.IItemLabelProvider;
 import org.eclipse.emf.edit.provider.IItemPropertyDescriptor;
@@ -22,8 +23,12 @@ import org.eclipse.emf.edit.provider.IItemPropertySource;
 import org.eclipse.emf.edit.provider.IStructuredItemContentProvider;
 import org.eclipse.emf.edit.provider.ITreeItemContentProvider;
 
+import org.eclipse.emf.edit.provider.ItemPropertyDescriptor;
+import org.eclipse.emf.edit.provider.ViewerNotification;
+import org.eclipse.soa.sca.sca1_1.model.sca.provider.CommonExtensionBaseItemProvider;
 import org.switchyard.tools.models.switchyard1_0.bean.provider.Switchyard_1EditPlugin;
 
+import org.switchyard.tools.models.switchyard1_0.bpm.BPMPackage;
 import org.switchyard.tools.models.switchyard1_0.bpm.ResourceType;
 
 /**
@@ -33,7 +38,7 @@ import org.switchyard.tools.models.switchyard1_0.bpm.ResourceType;
  * @generated
  */
 public class ResourceTypeItemProvider
-    extends org.switchyard.tools.models.switchyard1_0.switchyard.provider.ResourceTypeItemProvider
+    extends CommonExtensionBaseItemProvider
     implements
         IEditingDomainItemProvider,
         IStructuredItemContentProvider,
@@ -61,8 +66,54 @@ public class ResourceTypeItemProvider
         if (itemPropertyDescriptors == null) {
             super.getPropertyDescriptors(object);
 
+            addLocationPropertyDescriptor(object);
+            addTypePropertyDescriptor(object);
         }
         return itemPropertyDescriptors;
+    }
+
+    /**
+     * This adds a property descriptor for the Location feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    protected void addLocationPropertyDescriptor(Object object) {
+        itemPropertyDescriptors.add
+            (createItemPropertyDescriptor
+                (((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+                 getResourceLocator(),
+                 getString("_UI_ResourceType_location_feature"),
+                 getString("_UI_PropertyDescriptor_description", "_UI_ResourceType_location_feature", "_UI_ResourceType_type"),
+                 BPMPackage.Literals.RESOURCE_TYPE__LOCATION,
+                 true,
+                 false,
+                 false,
+                 ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
+                 null,
+                 null));
+    }
+
+    /**
+     * This adds a property descriptor for the Type feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    protected void addTypePropertyDescriptor(Object object) {
+        itemPropertyDescriptors.add
+            (createItemPropertyDescriptor
+                (((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+                 getResourceLocator(),
+                 getString("_UI_ResourceType_type_feature"),
+                 getString("_UI_PropertyDescriptor_description", "_UI_ResourceType_type_feature", "_UI_ResourceType_type"),
+                 BPMPackage.Literals.RESOURCE_TYPE__TYPE,
+                 true,
+                 false,
+                 false,
+                 ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
+                 null,
+                 null));
     }
 
     /**
@@ -100,6 +151,13 @@ public class ResourceTypeItemProvider
     @Override
     public void notifyChanged(Notification notification) {
         updateChildren(notification);
+
+        switch (notification.getFeatureID(ResourceType.class)) {
+            case BPMPackage.RESOURCE_TYPE__LOCATION:
+            case BPMPackage.RESOURCE_TYPE__TYPE:
+                fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
+                return;
+        }
         super.notifyChanged(notification);
     }
 

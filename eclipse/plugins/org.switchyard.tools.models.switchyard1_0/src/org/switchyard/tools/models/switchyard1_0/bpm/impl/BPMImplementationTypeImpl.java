@@ -6,31 +6,27 @@
  */
 package org.switchyard.tools.models.switchyard1_0.bpm.impl;
 
-import java.util.Collection;
+import java.math.BigInteger;
 
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.NotificationChain;
-
-import org.eclipse.emf.common.util.EList;
 
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
 
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 
-import org.eclipse.emf.ecore.util.EObjectContainmentEList;
-import org.eclipse.emf.ecore.util.InternalEList;
+import org.eclipse.soa.sca.sca1_1.model.sca.impl.ImplementationImpl;
+import org.switchyard.tools.models.switchyard1_0.bpm.ActionsType;
 
-import org.switchyard.tools.models.switchyard1_0.bpm.ActionType1;
-import org.switchyard.tools.models.switchyard1_0.bpm.AuditType;
 import org.switchyard.tools.models.switchyard1_0.bpm.BPMImplementationType;
 import org.switchyard.tools.models.switchyard1_0.bpm.BPMPackage;
-import org.switchyard.tools.models.switchyard1_0.bpm.EventListenerType;
-import org.switchyard.tools.models.switchyard1_0.bpm.ParametersType;
-import org.switchyard.tools.models.switchyard1_0.bpm.ResourceType;
-import org.switchyard.tools.models.switchyard1_0.bpm.ResultsType;
-import org.switchyard.tools.models.switchyard1_0.bpm.TaskHandlerType;
-import org.switchyard.tools.models.switchyard1_0.commonrules.impl.CommonImplementationTypeImpl;
+import org.switchyard.tools.models.switchyard1_0.bpm.ChannelsType;
+import org.switchyard.tools.models.switchyard1_0.bpm.ListenersType;
+import org.switchyard.tools.models.switchyard1_0.bpm.LoggersType;
+import org.switchyard.tools.models.switchyard1_0.bpm.ManifestType;
+import org.switchyard.tools.models.switchyard1_0.bpm.PropertiesType;
+import org.switchyard.tools.models.switchyard1_0.bpm.WorkItemHandlersType;
 
 /**
  * <!-- begin-user-doc -->
@@ -39,195 +35,91 @@ import org.switchyard.tools.models.switchyard1_0.commonrules.impl.CommonImplemen
  * <p>
  * The following features are implemented:
  * <ul>
- *   <li>{@link org.switchyard.tools.models.switchyard1_0.bpm.impl.BPMImplementationTypeImpl#getAction <em>Action</em>}</li>
- *   <li>{@link org.switchyard.tools.models.switchyard1_0.bpm.impl.BPMImplementationTypeImpl#getAudit <em>Audit</em>}</li>
- *   <li>{@link org.switchyard.tools.models.switchyard1_0.bpm.impl.BPMImplementationTypeImpl#getEventListener <em>Event Listener</em>}</li>
- *   <li>{@link org.switchyard.tools.models.switchyard1_0.bpm.impl.BPMImplementationTypeImpl#getTaskHandler <em>Task Handler</em>}</li>
- *   <li>{@link org.switchyard.tools.models.switchyard1_0.bpm.impl.BPMImplementationTypeImpl#getResource <em>Resource</em>}</li>
- *   <li>{@link org.switchyard.tools.models.switchyard1_0.bpm.impl.BPMImplementationTypeImpl#getParameters <em>Parameters</em>}</li>
- *   <li>{@link org.switchyard.tools.models.switchyard1_0.bpm.impl.BPMImplementationTypeImpl#getResults <em>Results</em>}</li>
- *   <li>{@link org.switchyard.tools.models.switchyard1_0.bpm.impl.BPMImplementationTypeImpl#getProcessDefinition <em>Process Definition</em>}</li>
- *   <li>{@link org.switchyard.tools.models.switchyard1_0.bpm.impl.BPMImplementationTypeImpl#getProcessDefinitionType <em>Process Definition Type</em>}</li>
- *   <li>{@link org.switchyard.tools.models.switchyard1_0.bpm.impl.BPMImplementationTypeImpl#getProcessId <em>Process Id</em>}</li>
- *   <li>{@link org.switchyard.tools.models.switchyard1_0.bpm.impl.BPMImplementationTypeImpl#getMessageContentInName <em>Message Content In Name</em>}</li>
- *   <li>{@link org.switchyard.tools.models.switchyard1_0.bpm.impl.BPMImplementationTypeImpl#getMessageContentOutName <em>Message Content Out Name</em>}</li>
+ *   <li>{@link org.switchyard.tools.models.switchyard1_0.bpm.impl.BPMImplementationTypeImpl#getActions <em>Actions</em>}</li>
+ *   <li>{@link org.switchyard.tools.models.switchyard1_0.bpm.impl.BPMImplementationTypeImpl#getChannels <em>Channels</em>}</li>
+ *   <li>{@link org.switchyard.tools.models.switchyard1_0.bpm.impl.BPMImplementationTypeImpl#getListeners <em>Listeners</em>}</li>
+ *   <li>{@link org.switchyard.tools.models.switchyard1_0.bpm.impl.BPMImplementationTypeImpl#getLoggers <em>Loggers</em>}</li>
+ *   <li>{@link org.switchyard.tools.models.switchyard1_0.bpm.impl.BPMImplementationTypeImpl#getManifest <em>Manifest</em>}</li>
+ *   <li>{@link org.switchyard.tools.models.switchyard1_0.bpm.impl.BPMImplementationTypeImpl#getProperties <em>Properties</em>}</li>
+ *   <li>{@link org.switchyard.tools.models.switchyard1_0.bpm.impl.BPMImplementationTypeImpl#getWorkItemHandlers <em>Work Item Handlers</em>}</li>
  *   <li>{@link org.switchyard.tools.models.switchyard1_0.bpm.impl.BPMImplementationTypeImpl#isPersistent <em>Persistent</em>}</li>
+ *   <li>{@link org.switchyard.tools.models.switchyard1_0.bpm.impl.BPMImplementationTypeImpl#getProcessId <em>Process Id</em>}</li>
  *   <li>{@link org.switchyard.tools.models.switchyard1_0.bpm.impl.BPMImplementationTypeImpl#getSessionId <em>Session Id</em>}</li>
  * </ul>
  * </p>
  *
  * @generated
  */
-public class BPMImplementationTypeImpl extends CommonImplementationTypeImpl implements BPMImplementationType {
+public class BPMImplementationTypeImpl extends ImplementationImpl implements BPMImplementationType {
 	/**
-     * The cached value of the '{@link #getAction() <em>Action</em>}' containment reference list.
-     * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-     * @see #getAction()
-     * @generated
-     * @ordered
-     */
-	protected EList<ActionType1> action;
-
-	/**
-     * The cached value of the '{@link #getAudit() <em>Audit</em>}' containment reference.
-     * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-     * @see #getAudit()
-     * @generated
-     * @ordered
-     */
-	protected AuditType audit;
-
-	/**
-     * The cached value of the '{@link #getEventListener() <em>Event Listener</em>}' containment reference list.
+     * The cached value of the '{@link #getActions() <em>Actions</em>}' containment reference.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @see #getEventListener()
+     * @see #getActions()
      * @generated
      * @ordered
      */
-    protected EList<EventListenerType> eventListener;
+    protected ActionsType actions;
 
     /**
-     * The cached value of the '{@link #getTaskHandler() <em>Task Handler</em>}' containment reference list.
-     * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-     * @see #getTaskHandler()
-     * @generated
-     * @ordered
-     */
-	protected EList<TaskHandlerType> taskHandler;
-
-	/**
-     * The cached value of the '{@link #getResource() <em>Resource</em>}' containment reference list.
-     * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-     * @see #getResource()
-     * @generated
-     * @ordered
-     */
-	protected EList<ResourceType> resource;
-
-	/**
-     * The cached value of the '{@link #getParameters() <em>Parameters</em>}' containment reference.
+     * The cached value of the '{@link #getChannels() <em>Channels</em>}' containment reference.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @see #getParameters()
+     * @see #getChannels()
      * @generated
      * @ordered
      */
-    protected ParametersType parameters;
+    protected ChannelsType channels;
 
     /**
-     * The cached value of the '{@link #getResults() <em>Results</em>}' containment reference.
+     * The cached value of the '{@link #getListeners() <em>Listeners</em>}' containment reference.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @see #getResults()
+     * @see #getListeners()
      * @generated
      * @ordered
      */
-    protected ResultsType results;
+    protected ListenersType listeners;
 
     /**
-     * The default value of the '{@link #getProcessDefinition() <em>Process Definition</em>}' attribute.
+     * The cached value of the '{@link #getLoggers() <em>Loggers</em>}' containment reference.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @see #getProcessDefinition()
+     * @see #getLoggers()
      * @generated
      * @ordered
      */
-    protected static final String PROCESS_DEFINITION_EDEFAULT = null;
+    protected LoggersType loggers;
 
     /**
-     * The cached value of the '{@link #getProcessDefinition() <em>Process Definition</em>}' attribute.
+     * The cached value of the '{@link #getManifest() <em>Manifest</em>}' containment reference.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @see #getProcessDefinition()
+     * @see #getManifest()
      * @generated
      * @ordered
      */
-    protected String processDefinition = PROCESS_DEFINITION_EDEFAULT;
+    protected ManifestType manifest;
 
     /**
-     * The default value of the '{@link #getProcessDefinitionType() <em>Process Definition Type</em>}' attribute.
+     * The cached value of the '{@link #getProperties() <em>Properties</em>}' containment reference.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @see #getProcessDefinitionType()
+     * @see #getProperties()
      * @generated
      * @ordered
      */
-    protected static final String PROCESS_DEFINITION_TYPE_EDEFAULT = "BPMN2";
+    protected PropertiesType properties;
 
     /**
-     * The cached value of the '{@link #getProcessDefinitionType() <em>Process Definition Type</em>}' attribute.
+     * The cached value of the '{@link #getWorkItemHandlers() <em>Work Item Handlers</em>}' containment reference.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @see #getProcessDefinitionType()
+     * @see #getWorkItemHandlers()
      * @generated
      * @ordered
      */
-    protected String processDefinitionType = PROCESS_DEFINITION_TYPE_EDEFAULT;
-
-    /**
-     * The default value of the '{@link #getProcessId() <em>Process Id</em>}' attribute.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @see #getProcessId()
-     * @generated
-     * @ordered
-     */
-    protected static final String PROCESS_ID_EDEFAULT = null;
-
-    /**
-     * The cached value of the '{@link #getProcessId() <em>Process Id</em>}' attribute.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @see #getProcessId()
-     * @generated
-     * @ordered
-     */
-    protected String processId = PROCESS_ID_EDEFAULT;
-
-    /**
-     * The default value of the '{@link #getMessageContentInName() <em>Message Content In Name</em>}' attribute.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @see #getMessageContentInName()
-     * @generated
-     * @ordered
-     */
-    protected static final String MESSAGE_CONTENT_IN_NAME_EDEFAULT = "messageContentIn";
-
-    /**
-     * The cached value of the '{@link #getMessageContentInName() <em>Message Content In Name</em>}' attribute.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @see #getMessageContentInName()
-     * @generated
-     * @ordered
-     */
-    protected String messageContentInName = MESSAGE_CONTENT_IN_NAME_EDEFAULT;
-
-    /**
-     * The default value of the '{@link #getMessageContentOutName() <em>Message Content Out Name</em>}' attribute.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @see #getMessageContentOutName()
-     * @generated
-     * @ordered
-     */
-    protected static final String MESSAGE_CONTENT_OUT_NAME_EDEFAULT = "messageContentOut";
-
-    /**
-     * The cached value of the '{@link #getMessageContentOutName() <em>Message Content Out Name</em>}' attribute.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @see #getMessageContentOutName()
-     * @generated
-     * @ordered
-     */
-    protected String messageContentOutName = MESSAGE_CONTENT_OUT_NAME_EDEFAULT;
+    protected WorkItemHandlersType workItemHandlers;
 
     /**
      * The default value of the '{@link #isPersistent() <em>Persistent</em>}' attribute.
@@ -250,6 +142,35 @@ public class BPMImplementationTypeImpl extends CommonImplementationTypeImpl impl
     protected boolean persistent = PERSISTENT_EDEFAULT;
 
     /**
+     * This is true if the Persistent attribute has been set.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    protected boolean persistentESet;
+
+    /**
+     * The default value of the '{@link #getProcessId() <em>Process Id</em>}' attribute.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @see #getProcessId()
+     * @generated
+     * @ordered
+     */
+    protected static final String PROCESS_ID_EDEFAULT = null;
+
+    /**
+     * The cached value of the '{@link #getProcessId() <em>Process Id</em>}' attribute.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @see #getProcessId()
+     * @generated
+     * @ordered
+     */
+    protected String processId = PROCESS_ID_EDEFAULT;
+
+    /**
      * The default value of the '{@link #getSessionId() <em>Session Id</em>}' attribute.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
@@ -257,7 +178,7 @@ public class BPMImplementationTypeImpl extends CommonImplementationTypeImpl impl
      * @generated
      * @ordered
      */
-    protected static final String SESSION_ID_EDEFAULT = "";
+    protected static final BigInteger SESSION_ID_EDEFAULT = null;
 
     /**
      * The cached value of the '{@link #getSessionId() <em>Session Id</em>}' attribute.
@@ -267,7 +188,7 @@ public class BPMImplementationTypeImpl extends CommonImplementationTypeImpl impl
      * @generated
      * @ordered
      */
-    protected String sessionId = SESSION_ID_EDEFAULT;
+    protected BigInteger sessionId = SESSION_ID_EDEFAULT;
 
     /**
      * <!-- begin-user-doc -->
@@ -290,102 +211,11 @@ public class BPMImplementationTypeImpl extends CommonImplementationTypeImpl impl
 
 	/**
      * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-     * @generated
-     */
-	public EList<ActionType1> getAction() {
-        if (action == null) {
-            action = new EObjectContainmentEList<ActionType1>(ActionType1.class, this, BPMPackage.BPM_IMPLEMENTATION_TYPE__ACTION);
-        }
-        return action;
-    }
-
-	/**
-     * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-     * @generated
-     */
-	public AuditType getAudit() {
-        return audit;
-    }
-
-	/**
-     * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-     * @generated
-     */
-	public NotificationChain basicSetAudit(AuditType newAudit, NotificationChain msgs) {
-        AuditType oldAudit = audit;
-        audit = newAudit;
-        if (eNotificationRequired()) {
-            ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, BPMPackage.BPM_IMPLEMENTATION_TYPE__AUDIT, oldAudit, newAudit);
-            if (msgs == null) msgs = notification; else msgs.add(notification);
-        }
-        return msgs;
-    }
-
-	/**
-     * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-     * @generated
-     */
-	public void setAudit(AuditType newAudit) {
-        if (newAudit != audit) {
-            NotificationChain msgs = null;
-            if (audit != null)
-                msgs = ((InternalEObject)audit).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - BPMPackage.BPM_IMPLEMENTATION_TYPE__AUDIT, null, msgs);
-            if (newAudit != null)
-                msgs = ((InternalEObject)newAudit).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - BPMPackage.BPM_IMPLEMENTATION_TYPE__AUDIT, null, msgs);
-            msgs = basicSetAudit(newAudit, msgs);
-            if (msgs != null) msgs.dispatch();
-        }
-        else if (eNotificationRequired())
-            eNotify(new ENotificationImpl(this, Notification.SET, BPMPackage.BPM_IMPLEMENTATION_TYPE__AUDIT, newAudit, newAudit));
-    }
-
-	/**
-     * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @generated
      */
-    public EList<EventListenerType> getEventListener() {
-        if (eventListener == null) {
-            eventListener = new EObjectContainmentEList<EventListenerType>(EventListenerType.class, this, BPMPackage.BPM_IMPLEMENTATION_TYPE__EVENT_LISTENER);
-        }
-        return eventListener;
-    }
-
-    /**
-     * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-     * @generated
-     */
-	public EList<TaskHandlerType> getTaskHandler() {
-        if (taskHandler == null) {
-            taskHandler = new EObjectContainmentEList<TaskHandlerType>(TaskHandlerType.class, this, BPMPackage.BPM_IMPLEMENTATION_TYPE__TASK_HANDLER);
-        }
-        return taskHandler;
-    }
-
-	/**
-     * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-     * @generated
-     */
-	public EList<ResourceType> getResource() {
-        if (resource == null) {
-            resource = new EObjectContainmentEList<ResourceType>(ResourceType.class, this, BPMPackage.BPM_IMPLEMENTATION_TYPE__RESOURCE);
-        }
-        return resource;
-    }
-
-	/**
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    public ParametersType getParameters() {
-        return parameters;
+    public ActionsType getActions() {
+        return actions;
     }
 
     /**
@@ -393,11 +223,11 @@ public class BPMImplementationTypeImpl extends CommonImplementationTypeImpl impl
      * <!-- end-user-doc -->
      * @generated
      */
-    public NotificationChain basicSetParameters(ParametersType newParameters, NotificationChain msgs) {
-        ParametersType oldParameters = parameters;
-        parameters = newParameters;
+    public NotificationChain basicSetActions(ActionsType newActions, NotificationChain msgs) {
+        ActionsType oldActions = actions;
+        actions = newActions;
         if (eNotificationRequired()) {
-            ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, BPMPackage.BPM_IMPLEMENTATION_TYPE__PARAMETERS, oldParameters, newParameters);
+            ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, BPMPackage.BPM_IMPLEMENTATION_TYPE__ACTIONS, oldActions, newActions);
             if (msgs == null) msgs = notification; else msgs.add(notification);
         }
         return msgs;
@@ -408,18 +238,18 @@ public class BPMImplementationTypeImpl extends CommonImplementationTypeImpl impl
      * <!-- end-user-doc -->
      * @generated
      */
-    public void setParameters(ParametersType newParameters) {
-        if (newParameters != parameters) {
+    public void setActions(ActionsType newActions) {
+        if (newActions != actions) {
             NotificationChain msgs = null;
-            if (parameters != null)
-                msgs = ((InternalEObject)parameters).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - BPMPackage.BPM_IMPLEMENTATION_TYPE__PARAMETERS, null, msgs);
-            if (newParameters != null)
-                msgs = ((InternalEObject)newParameters).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - BPMPackage.BPM_IMPLEMENTATION_TYPE__PARAMETERS, null, msgs);
-            msgs = basicSetParameters(newParameters, msgs);
+            if (actions != null)
+                msgs = ((InternalEObject)actions).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - BPMPackage.BPM_IMPLEMENTATION_TYPE__ACTIONS, null, msgs);
+            if (newActions != null)
+                msgs = ((InternalEObject)newActions).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - BPMPackage.BPM_IMPLEMENTATION_TYPE__ACTIONS, null, msgs);
+            msgs = basicSetActions(newActions, msgs);
             if (msgs != null) msgs.dispatch();
         }
         else if (eNotificationRequired())
-            eNotify(new ENotificationImpl(this, Notification.SET, BPMPackage.BPM_IMPLEMENTATION_TYPE__PARAMETERS, newParameters, newParameters));
+            eNotify(new ENotificationImpl(this, Notification.SET, BPMPackage.BPM_IMPLEMENTATION_TYPE__ACTIONS, newActions, newActions));
     }
 
     /**
@@ -427,8 +257,8 @@ public class BPMImplementationTypeImpl extends CommonImplementationTypeImpl impl
      * <!-- end-user-doc -->
      * @generated
      */
-    public ResultsType getResults() {
-        return results;
+    public ChannelsType getChannels() {
+        return channels;
     }
 
     /**
@@ -436,11 +266,11 @@ public class BPMImplementationTypeImpl extends CommonImplementationTypeImpl impl
      * <!-- end-user-doc -->
      * @generated
      */
-    public NotificationChain basicSetResults(ResultsType newResults, NotificationChain msgs) {
-        ResultsType oldResults = results;
-        results = newResults;
+    public NotificationChain basicSetChannels(ChannelsType newChannels, NotificationChain msgs) {
+        ChannelsType oldChannels = channels;
+        channels = newChannels;
         if (eNotificationRequired()) {
-            ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, BPMPackage.BPM_IMPLEMENTATION_TYPE__RESULTS, oldResults, newResults);
+            ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, BPMPackage.BPM_IMPLEMENTATION_TYPE__CHANNELS, oldChannels, newChannels);
             if (msgs == null) msgs = notification; else msgs.add(notification);
         }
         return msgs;
@@ -451,18 +281,18 @@ public class BPMImplementationTypeImpl extends CommonImplementationTypeImpl impl
      * <!-- end-user-doc -->
      * @generated
      */
-    public void setResults(ResultsType newResults) {
-        if (newResults != results) {
+    public void setChannels(ChannelsType newChannels) {
+        if (newChannels != channels) {
             NotificationChain msgs = null;
-            if (results != null)
-                msgs = ((InternalEObject)results).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - BPMPackage.BPM_IMPLEMENTATION_TYPE__RESULTS, null, msgs);
-            if (newResults != null)
-                msgs = ((InternalEObject)newResults).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - BPMPackage.BPM_IMPLEMENTATION_TYPE__RESULTS, null, msgs);
-            msgs = basicSetResults(newResults, msgs);
+            if (channels != null)
+                msgs = ((InternalEObject)channels).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - BPMPackage.BPM_IMPLEMENTATION_TYPE__CHANNELS, null, msgs);
+            if (newChannels != null)
+                msgs = ((InternalEObject)newChannels).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - BPMPackage.BPM_IMPLEMENTATION_TYPE__CHANNELS, null, msgs);
+            msgs = basicSetChannels(newChannels, msgs);
             if (msgs != null) msgs.dispatch();
         }
         else if (eNotificationRequired())
-            eNotify(new ENotificationImpl(this, Notification.SET, BPMPackage.BPM_IMPLEMENTATION_TYPE__RESULTS, newResults, newResults));
+            eNotify(new ENotificationImpl(this, Notification.SET, BPMPackage.BPM_IMPLEMENTATION_TYPE__CHANNELS, newChannels, newChannels));
     }
 
     /**
@@ -470,8 +300,8 @@ public class BPMImplementationTypeImpl extends CommonImplementationTypeImpl impl
      * <!-- end-user-doc -->
      * @generated
      */
-    public String getProcessDefinition() {
-        return processDefinition;
+    public ListenersType getListeners() {
+        return listeners;
     }
 
     /**
@@ -479,11 +309,14 @@ public class BPMImplementationTypeImpl extends CommonImplementationTypeImpl impl
      * <!-- end-user-doc -->
      * @generated
      */
-    public void setProcessDefinition(String newProcessDefinition) {
-        String oldProcessDefinition = processDefinition;
-        processDefinition = newProcessDefinition;
-        if (eNotificationRequired())
-            eNotify(new ENotificationImpl(this, Notification.SET, BPMPackage.BPM_IMPLEMENTATION_TYPE__PROCESS_DEFINITION, oldProcessDefinition, processDefinition));
+    public NotificationChain basicSetListeners(ListenersType newListeners, NotificationChain msgs) {
+        ListenersType oldListeners = listeners;
+        listeners = newListeners;
+        if (eNotificationRequired()) {
+            ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, BPMPackage.BPM_IMPLEMENTATION_TYPE__LISTENERS, oldListeners, newListeners);
+            if (msgs == null) msgs = notification; else msgs.add(notification);
+        }
+        return msgs;
     }
 
     /**
@@ -491,8 +324,18 @@ public class BPMImplementationTypeImpl extends CommonImplementationTypeImpl impl
      * <!-- end-user-doc -->
      * @generated
      */
-    public String getProcessDefinitionType() {
-        return processDefinitionType;
+    public void setListeners(ListenersType newListeners) {
+        if (newListeners != listeners) {
+            NotificationChain msgs = null;
+            if (listeners != null)
+                msgs = ((InternalEObject)listeners).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - BPMPackage.BPM_IMPLEMENTATION_TYPE__LISTENERS, null, msgs);
+            if (newListeners != null)
+                msgs = ((InternalEObject)newListeners).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - BPMPackage.BPM_IMPLEMENTATION_TYPE__LISTENERS, null, msgs);
+            msgs = basicSetListeners(newListeners, msgs);
+            if (msgs != null) msgs.dispatch();
+        }
+        else if (eNotificationRequired())
+            eNotify(new ENotificationImpl(this, Notification.SET, BPMPackage.BPM_IMPLEMENTATION_TYPE__LISTENERS, newListeners, newListeners));
     }
 
     /**
@@ -500,11 +343,171 @@ public class BPMImplementationTypeImpl extends CommonImplementationTypeImpl impl
      * <!-- end-user-doc -->
      * @generated
      */
-    public void setProcessDefinitionType(String newProcessDefinitionType) {
-        String oldProcessDefinitionType = processDefinitionType;
-        processDefinitionType = newProcessDefinitionType;
-        if (eNotificationRequired())
-            eNotify(new ENotificationImpl(this, Notification.SET, BPMPackage.BPM_IMPLEMENTATION_TYPE__PROCESS_DEFINITION_TYPE, oldProcessDefinitionType, processDefinitionType));
+    public LoggersType getLoggers() {
+        return loggers;
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public NotificationChain basicSetLoggers(LoggersType newLoggers, NotificationChain msgs) {
+        LoggersType oldLoggers = loggers;
+        loggers = newLoggers;
+        if (eNotificationRequired()) {
+            ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, BPMPackage.BPM_IMPLEMENTATION_TYPE__LOGGERS, oldLoggers, newLoggers);
+            if (msgs == null) msgs = notification; else msgs.add(notification);
+        }
+        return msgs;
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public void setLoggers(LoggersType newLoggers) {
+        if (newLoggers != loggers) {
+            NotificationChain msgs = null;
+            if (loggers != null)
+                msgs = ((InternalEObject)loggers).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - BPMPackage.BPM_IMPLEMENTATION_TYPE__LOGGERS, null, msgs);
+            if (newLoggers != null)
+                msgs = ((InternalEObject)newLoggers).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - BPMPackage.BPM_IMPLEMENTATION_TYPE__LOGGERS, null, msgs);
+            msgs = basicSetLoggers(newLoggers, msgs);
+            if (msgs != null) msgs.dispatch();
+        }
+        else if (eNotificationRequired())
+            eNotify(new ENotificationImpl(this, Notification.SET, BPMPackage.BPM_IMPLEMENTATION_TYPE__LOGGERS, newLoggers, newLoggers));
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public ManifestType getManifest() {
+        return manifest;
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public NotificationChain basicSetManifest(ManifestType newManifest, NotificationChain msgs) {
+        ManifestType oldManifest = manifest;
+        manifest = newManifest;
+        if (eNotificationRequired()) {
+            ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, BPMPackage.BPM_IMPLEMENTATION_TYPE__MANIFEST, oldManifest, newManifest);
+            if (msgs == null) msgs = notification; else msgs.add(notification);
+        }
+        return msgs;
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public void setManifest(ManifestType newManifest) {
+        if (newManifest != manifest) {
+            NotificationChain msgs = null;
+            if (manifest != null)
+                msgs = ((InternalEObject)manifest).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - BPMPackage.BPM_IMPLEMENTATION_TYPE__MANIFEST, null, msgs);
+            if (newManifest != null)
+                msgs = ((InternalEObject)newManifest).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - BPMPackage.BPM_IMPLEMENTATION_TYPE__MANIFEST, null, msgs);
+            msgs = basicSetManifest(newManifest, msgs);
+            if (msgs != null) msgs.dispatch();
+        }
+        else if (eNotificationRequired())
+            eNotify(new ENotificationImpl(this, Notification.SET, BPMPackage.BPM_IMPLEMENTATION_TYPE__MANIFEST, newManifest, newManifest));
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public PropertiesType getProperties() {
+        return properties;
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public NotificationChain basicSetProperties(PropertiesType newProperties, NotificationChain msgs) {
+        PropertiesType oldProperties = properties;
+        properties = newProperties;
+        if (eNotificationRequired()) {
+            ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, BPMPackage.BPM_IMPLEMENTATION_TYPE__PROPERTIES, oldProperties, newProperties);
+            if (msgs == null) msgs = notification; else msgs.add(notification);
+        }
+        return msgs;
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public void setProperties(PropertiesType newProperties) {
+        if (newProperties != properties) {
+            NotificationChain msgs = null;
+            if (properties != null)
+                msgs = ((InternalEObject)properties).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - BPMPackage.BPM_IMPLEMENTATION_TYPE__PROPERTIES, null, msgs);
+            if (newProperties != null)
+                msgs = ((InternalEObject)newProperties).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - BPMPackage.BPM_IMPLEMENTATION_TYPE__PROPERTIES, null, msgs);
+            msgs = basicSetProperties(newProperties, msgs);
+            if (msgs != null) msgs.dispatch();
+        }
+        else if (eNotificationRequired())
+            eNotify(new ENotificationImpl(this, Notification.SET, BPMPackage.BPM_IMPLEMENTATION_TYPE__PROPERTIES, newProperties, newProperties));
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public WorkItemHandlersType getWorkItemHandlers() {
+        return workItemHandlers;
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public NotificationChain basicSetWorkItemHandlers(WorkItemHandlersType newWorkItemHandlers, NotificationChain msgs) {
+        WorkItemHandlersType oldWorkItemHandlers = workItemHandlers;
+        workItemHandlers = newWorkItemHandlers;
+        if (eNotificationRequired()) {
+            ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, BPMPackage.BPM_IMPLEMENTATION_TYPE__WORK_ITEM_HANDLERS, oldWorkItemHandlers, newWorkItemHandlers);
+            if (msgs == null) msgs = notification; else msgs.add(notification);
+        }
+        return msgs;
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public void setWorkItemHandlers(WorkItemHandlersType newWorkItemHandlers) {
+        if (newWorkItemHandlers != workItemHandlers) {
+            NotificationChain msgs = null;
+            if (workItemHandlers != null)
+                msgs = ((InternalEObject)workItemHandlers).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - BPMPackage.BPM_IMPLEMENTATION_TYPE__WORK_ITEM_HANDLERS, null, msgs);
+            if (newWorkItemHandlers != null)
+                msgs = ((InternalEObject)newWorkItemHandlers).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - BPMPackage.BPM_IMPLEMENTATION_TYPE__WORK_ITEM_HANDLERS, null, msgs);
+            msgs = basicSetWorkItemHandlers(newWorkItemHandlers, msgs);
+            if (msgs != null) msgs.dispatch();
+        }
+        else if (eNotificationRequired())
+            eNotify(new ENotificationImpl(this, Notification.SET, BPMPackage.BPM_IMPLEMENTATION_TYPE__WORK_ITEM_HANDLERS, newWorkItemHandlers, newWorkItemHandlers));
     }
 
     /**
@@ -533,48 +536,6 @@ public class BPMImplementationTypeImpl extends CommonImplementationTypeImpl impl
      * <!-- end-user-doc -->
      * @generated
      */
-    public String getMessageContentInName() {
-        return messageContentInName;
-    }
-
-    /**
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    public void setMessageContentInName(String newMessageContentInName) {
-        String oldMessageContentInName = messageContentInName;
-        messageContentInName = newMessageContentInName;
-        if (eNotificationRequired())
-            eNotify(new ENotificationImpl(this, Notification.SET, BPMPackage.BPM_IMPLEMENTATION_TYPE__MESSAGE_CONTENT_IN_NAME, oldMessageContentInName, messageContentInName));
-    }
-
-    /**
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    public String getMessageContentOutName() {
-        return messageContentOutName;
-    }
-
-    /**
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    public void setMessageContentOutName(String newMessageContentOutName) {
-        String oldMessageContentOutName = messageContentOutName;
-        messageContentOutName = newMessageContentOutName;
-        if (eNotificationRequired())
-            eNotify(new ENotificationImpl(this, Notification.SET, BPMPackage.BPM_IMPLEMENTATION_TYPE__MESSAGE_CONTENT_OUT_NAME, oldMessageContentOutName, messageContentOutName));
-    }
-
-    /**
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
     public boolean isPersistent() {
         return persistent;
     }
@@ -587,8 +548,10 @@ public class BPMImplementationTypeImpl extends CommonImplementationTypeImpl impl
     public void setPersistent(boolean newPersistent) {
         boolean oldPersistent = persistent;
         persistent = newPersistent;
+        boolean oldPersistentESet = persistentESet;
+        persistentESet = true;
         if (eNotificationRequired())
-            eNotify(new ENotificationImpl(this, Notification.SET, BPMPackage.BPM_IMPLEMENTATION_TYPE__PERSISTENT, oldPersistent, persistent));
+            eNotify(new ENotificationImpl(this, Notification.SET, BPMPackage.BPM_IMPLEMENTATION_TYPE__PERSISTENT, oldPersistent, persistent, !oldPersistentESet));
     }
 
     /**
@@ -596,7 +559,30 @@ public class BPMImplementationTypeImpl extends CommonImplementationTypeImpl impl
      * <!-- end-user-doc -->
      * @generated
      */
-    public String getSessionId() {
+    public void unsetPersistent() {
+        boolean oldPersistent = persistent;
+        boolean oldPersistentESet = persistentESet;
+        persistent = PERSISTENT_EDEFAULT;
+        persistentESet = false;
+        if (eNotificationRequired())
+            eNotify(new ENotificationImpl(this, Notification.UNSET, BPMPackage.BPM_IMPLEMENTATION_TYPE__PERSISTENT, oldPersistent, PERSISTENT_EDEFAULT, oldPersistentESet));
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public boolean isSetPersistent() {
+        return persistentESet;
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public BigInteger getSessionId() {
         return sessionId;
     }
 
@@ -605,8 +591,8 @@ public class BPMImplementationTypeImpl extends CommonImplementationTypeImpl impl
      * <!-- end-user-doc -->
      * @generated
      */
-    public void setSessionId(String newSessionId) {
-        String oldSessionId = sessionId;
+    public void setSessionId(BigInteger newSessionId) {
+        BigInteger oldSessionId = sessionId;
         sessionId = newSessionId;
         if (eNotificationRequired())
             eNotify(new ENotificationImpl(this, Notification.SET, BPMPackage.BPM_IMPLEMENTATION_TYPE__SESSION_ID, oldSessionId, sessionId));
@@ -620,20 +606,20 @@ public class BPMImplementationTypeImpl extends CommonImplementationTypeImpl impl
 	@Override
 	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
         switch (featureID) {
-            case BPMPackage.BPM_IMPLEMENTATION_TYPE__ACTION:
-                return ((InternalEList<?>)getAction()).basicRemove(otherEnd, msgs);
-            case BPMPackage.BPM_IMPLEMENTATION_TYPE__AUDIT:
-                return basicSetAudit(null, msgs);
-            case BPMPackage.BPM_IMPLEMENTATION_TYPE__EVENT_LISTENER:
-                return ((InternalEList<?>)getEventListener()).basicRemove(otherEnd, msgs);
-            case BPMPackage.BPM_IMPLEMENTATION_TYPE__TASK_HANDLER:
-                return ((InternalEList<?>)getTaskHandler()).basicRemove(otherEnd, msgs);
-            case BPMPackage.BPM_IMPLEMENTATION_TYPE__RESOURCE:
-                return ((InternalEList<?>)getResource()).basicRemove(otherEnd, msgs);
-            case BPMPackage.BPM_IMPLEMENTATION_TYPE__PARAMETERS:
-                return basicSetParameters(null, msgs);
-            case BPMPackage.BPM_IMPLEMENTATION_TYPE__RESULTS:
-                return basicSetResults(null, msgs);
+            case BPMPackage.BPM_IMPLEMENTATION_TYPE__ACTIONS:
+                return basicSetActions(null, msgs);
+            case BPMPackage.BPM_IMPLEMENTATION_TYPE__CHANNELS:
+                return basicSetChannels(null, msgs);
+            case BPMPackage.BPM_IMPLEMENTATION_TYPE__LISTENERS:
+                return basicSetListeners(null, msgs);
+            case BPMPackage.BPM_IMPLEMENTATION_TYPE__LOGGERS:
+                return basicSetLoggers(null, msgs);
+            case BPMPackage.BPM_IMPLEMENTATION_TYPE__MANIFEST:
+                return basicSetManifest(null, msgs);
+            case BPMPackage.BPM_IMPLEMENTATION_TYPE__PROPERTIES:
+                return basicSetProperties(null, msgs);
+            case BPMPackage.BPM_IMPLEMENTATION_TYPE__WORK_ITEM_HANDLERS:
+                return basicSetWorkItemHandlers(null, msgs);
         }
         return super.eInverseRemove(otherEnd, featureID, msgs);
     }
@@ -646,32 +632,24 @@ public class BPMImplementationTypeImpl extends CommonImplementationTypeImpl impl
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
         switch (featureID) {
-            case BPMPackage.BPM_IMPLEMENTATION_TYPE__ACTION:
-                return getAction();
-            case BPMPackage.BPM_IMPLEMENTATION_TYPE__AUDIT:
-                return getAudit();
-            case BPMPackage.BPM_IMPLEMENTATION_TYPE__EVENT_LISTENER:
-                return getEventListener();
-            case BPMPackage.BPM_IMPLEMENTATION_TYPE__TASK_HANDLER:
-                return getTaskHandler();
-            case BPMPackage.BPM_IMPLEMENTATION_TYPE__RESOURCE:
-                return getResource();
-            case BPMPackage.BPM_IMPLEMENTATION_TYPE__PARAMETERS:
-                return getParameters();
-            case BPMPackage.BPM_IMPLEMENTATION_TYPE__RESULTS:
-                return getResults();
-            case BPMPackage.BPM_IMPLEMENTATION_TYPE__PROCESS_DEFINITION:
-                return getProcessDefinition();
-            case BPMPackage.BPM_IMPLEMENTATION_TYPE__PROCESS_DEFINITION_TYPE:
-                return getProcessDefinitionType();
-            case BPMPackage.BPM_IMPLEMENTATION_TYPE__PROCESS_ID:
-                return getProcessId();
-            case BPMPackage.BPM_IMPLEMENTATION_TYPE__MESSAGE_CONTENT_IN_NAME:
-                return getMessageContentInName();
-            case BPMPackage.BPM_IMPLEMENTATION_TYPE__MESSAGE_CONTENT_OUT_NAME:
-                return getMessageContentOutName();
+            case BPMPackage.BPM_IMPLEMENTATION_TYPE__ACTIONS:
+                return getActions();
+            case BPMPackage.BPM_IMPLEMENTATION_TYPE__CHANNELS:
+                return getChannels();
+            case BPMPackage.BPM_IMPLEMENTATION_TYPE__LISTENERS:
+                return getListeners();
+            case BPMPackage.BPM_IMPLEMENTATION_TYPE__LOGGERS:
+                return getLoggers();
+            case BPMPackage.BPM_IMPLEMENTATION_TYPE__MANIFEST:
+                return getManifest();
+            case BPMPackage.BPM_IMPLEMENTATION_TYPE__PROPERTIES:
+                return getProperties();
+            case BPMPackage.BPM_IMPLEMENTATION_TYPE__WORK_ITEM_HANDLERS:
+                return getWorkItemHandlers();
             case BPMPackage.BPM_IMPLEMENTATION_TYPE__PERSISTENT:
                 return isPersistent();
+            case BPMPackage.BPM_IMPLEMENTATION_TYPE__PROCESS_ID:
+                return getProcessId();
             case BPMPackage.BPM_IMPLEMENTATION_TYPE__SESSION_ID:
                 return getSessionId();
         }
@@ -683,55 +661,38 @@ public class BPMImplementationTypeImpl extends CommonImplementationTypeImpl impl
 	 * <!-- end-user-doc -->
      * @generated
      */
-	@SuppressWarnings("unchecked")
 	@Override
 	public void eSet(int featureID, Object newValue) {
         switch (featureID) {
-            case BPMPackage.BPM_IMPLEMENTATION_TYPE__ACTION:
-                getAction().clear();
-                getAction().addAll((Collection<? extends ActionType1>)newValue);
+            case BPMPackage.BPM_IMPLEMENTATION_TYPE__ACTIONS:
+                setActions((ActionsType)newValue);
                 return;
-            case BPMPackage.BPM_IMPLEMENTATION_TYPE__AUDIT:
-                setAudit((AuditType)newValue);
+            case BPMPackage.BPM_IMPLEMENTATION_TYPE__CHANNELS:
+                setChannels((ChannelsType)newValue);
                 return;
-            case BPMPackage.BPM_IMPLEMENTATION_TYPE__EVENT_LISTENER:
-                getEventListener().clear();
-                getEventListener().addAll((Collection<? extends EventListenerType>)newValue);
+            case BPMPackage.BPM_IMPLEMENTATION_TYPE__LISTENERS:
+                setListeners((ListenersType)newValue);
                 return;
-            case BPMPackage.BPM_IMPLEMENTATION_TYPE__TASK_HANDLER:
-                getTaskHandler().clear();
-                getTaskHandler().addAll((Collection<? extends TaskHandlerType>)newValue);
+            case BPMPackage.BPM_IMPLEMENTATION_TYPE__LOGGERS:
+                setLoggers((LoggersType)newValue);
                 return;
-            case BPMPackage.BPM_IMPLEMENTATION_TYPE__RESOURCE:
-                getResource().clear();
-                getResource().addAll((Collection<? extends ResourceType>)newValue);
+            case BPMPackage.BPM_IMPLEMENTATION_TYPE__MANIFEST:
+                setManifest((ManifestType)newValue);
                 return;
-            case BPMPackage.BPM_IMPLEMENTATION_TYPE__PARAMETERS:
-                setParameters((ParametersType)newValue);
+            case BPMPackage.BPM_IMPLEMENTATION_TYPE__PROPERTIES:
+                setProperties((PropertiesType)newValue);
                 return;
-            case BPMPackage.BPM_IMPLEMENTATION_TYPE__RESULTS:
-                setResults((ResultsType)newValue);
-                return;
-            case BPMPackage.BPM_IMPLEMENTATION_TYPE__PROCESS_DEFINITION:
-                setProcessDefinition((String)newValue);
-                return;
-            case BPMPackage.BPM_IMPLEMENTATION_TYPE__PROCESS_DEFINITION_TYPE:
-                setProcessDefinitionType((String)newValue);
-                return;
-            case BPMPackage.BPM_IMPLEMENTATION_TYPE__PROCESS_ID:
-                setProcessId((String)newValue);
-                return;
-            case BPMPackage.BPM_IMPLEMENTATION_TYPE__MESSAGE_CONTENT_IN_NAME:
-                setMessageContentInName((String)newValue);
-                return;
-            case BPMPackage.BPM_IMPLEMENTATION_TYPE__MESSAGE_CONTENT_OUT_NAME:
-                setMessageContentOutName((String)newValue);
+            case BPMPackage.BPM_IMPLEMENTATION_TYPE__WORK_ITEM_HANDLERS:
+                setWorkItemHandlers((WorkItemHandlersType)newValue);
                 return;
             case BPMPackage.BPM_IMPLEMENTATION_TYPE__PERSISTENT:
                 setPersistent((Boolean)newValue);
                 return;
+            case BPMPackage.BPM_IMPLEMENTATION_TYPE__PROCESS_ID:
+                setProcessId((String)newValue);
+                return;
             case BPMPackage.BPM_IMPLEMENTATION_TYPE__SESSION_ID:
-                setSessionId((String)newValue);
+                setSessionId((BigInteger)newValue);
                 return;
         }
         super.eSet(featureID, newValue);
@@ -745,44 +706,32 @@ public class BPMImplementationTypeImpl extends CommonImplementationTypeImpl impl
 	@Override
 	public void eUnset(int featureID) {
         switch (featureID) {
-            case BPMPackage.BPM_IMPLEMENTATION_TYPE__ACTION:
-                getAction().clear();
+            case BPMPackage.BPM_IMPLEMENTATION_TYPE__ACTIONS:
+                setActions((ActionsType)null);
                 return;
-            case BPMPackage.BPM_IMPLEMENTATION_TYPE__AUDIT:
-                setAudit((AuditType)null);
+            case BPMPackage.BPM_IMPLEMENTATION_TYPE__CHANNELS:
+                setChannels((ChannelsType)null);
                 return;
-            case BPMPackage.BPM_IMPLEMENTATION_TYPE__EVENT_LISTENER:
-                getEventListener().clear();
+            case BPMPackage.BPM_IMPLEMENTATION_TYPE__LISTENERS:
+                setListeners((ListenersType)null);
                 return;
-            case BPMPackage.BPM_IMPLEMENTATION_TYPE__TASK_HANDLER:
-                getTaskHandler().clear();
+            case BPMPackage.BPM_IMPLEMENTATION_TYPE__LOGGERS:
+                setLoggers((LoggersType)null);
                 return;
-            case BPMPackage.BPM_IMPLEMENTATION_TYPE__RESOURCE:
-                getResource().clear();
+            case BPMPackage.BPM_IMPLEMENTATION_TYPE__MANIFEST:
+                setManifest((ManifestType)null);
                 return;
-            case BPMPackage.BPM_IMPLEMENTATION_TYPE__PARAMETERS:
-                setParameters((ParametersType)null);
+            case BPMPackage.BPM_IMPLEMENTATION_TYPE__PROPERTIES:
+                setProperties((PropertiesType)null);
                 return;
-            case BPMPackage.BPM_IMPLEMENTATION_TYPE__RESULTS:
-                setResults((ResultsType)null);
+            case BPMPackage.BPM_IMPLEMENTATION_TYPE__WORK_ITEM_HANDLERS:
+                setWorkItemHandlers((WorkItemHandlersType)null);
                 return;
-            case BPMPackage.BPM_IMPLEMENTATION_TYPE__PROCESS_DEFINITION:
-                setProcessDefinition(PROCESS_DEFINITION_EDEFAULT);
-                return;
-            case BPMPackage.BPM_IMPLEMENTATION_TYPE__PROCESS_DEFINITION_TYPE:
-                setProcessDefinitionType(PROCESS_DEFINITION_TYPE_EDEFAULT);
+            case BPMPackage.BPM_IMPLEMENTATION_TYPE__PERSISTENT:
+                unsetPersistent();
                 return;
             case BPMPackage.BPM_IMPLEMENTATION_TYPE__PROCESS_ID:
                 setProcessId(PROCESS_ID_EDEFAULT);
-                return;
-            case BPMPackage.BPM_IMPLEMENTATION_TYPE__MESSAGE_CONTENT_IN_NAME:
-                setMessageContentInName(MESSAGE_CONTENT_IN_NAME_EDEFAULT);
-                return;
-            case BPMPackage.BPM_IMPLEMENTATION_TYPE__MESSAGE_CONTENT_OUT_NAME:
-                setMessageContentOutName(MESSAGE_CONTENT_OUT_NAME_EDEFAULT);
-                return;
-            case BPMPackage.BPM_IMPLEMENTATION_TYPE__PERSISTENT:
-                setPersistent(PERSISTENT_EDEFAULT);
                 return;
             case BPMPackage.BPM_IMPLEMENTATION_TYPE__SESSION_ID:
                 setSessionId(SESSION_ID_EDEFAULT);
@@ -799,32 +748,24 @@ public class BPMImplementationTypeImpl extends CommonImplementationTypeImpl impl
 	@Override
 	public boolean eIsSet(int featureID) {
         switch (featureID) {
-            case BPMPackage.BPM_IMPLEMENTATION_TYPE__ACTION:
-                return action != null && !action.isEmpty();
-            case BPMPackage.BPM_IMPLEMENTATION_TYPE__AUDIT:
-                return audit != null;
-            case BPMPackage.BPM_IMPLEMENTATION_TYPE__EVENT_LISTENER:
-                return eventListener != null && !eventListener.isEmpty();
-            case BPMPackage.BPM_IMPLEMENTATION_TYPE__TASK_HANDLER:
-                return taskHandler != null && !taskHandler.isEmpty();
-            case BPMPackage.BPM_IMPLEMENTATION_TYPE__RESOURCE:
-                return resource != null && !resource.isEmpty();
-            case BPMPackage.BPM_IMPLEMENTATION_TYPE__PARAMETERS:
-                return parameters != null;
-            case BPMPackage.BPM_IMPLEMENTATION_TYPE__RESULTS:
-                return results != null;
-            case BPMPackage.BPM_IMPLEMENTATION_TYPE__PROCESS_DEFINITION:
-                return PROCESS_DEFINITION_EDEFAULT == null ? processDefinition != null : !PROCESS_DEFINITION_EDEFAULT.equals(processDefinition);
-            case BPMPackage.BPM_IMPLEMENTATION_TYPE__PROCESS_DEFINITION_TYPE:
-                return PROCESS_DEFINITION_TYPE_EDEFAULT == null ? processDefinitionType != null : !PROCESS_DEFINITION_TYPE_EDEFAULT.equals(processDefinitionType);
+            case BPMPackage.BPM_IMPLEMENTATION_TYPE__ACTIONS:
+                return actions != null;
+            case BPMPackage.BPM_IMPLEMENTATION_TYPE__CHANNELS:
+                return channels != null;
+            case BPMPackage.BPM_IMPLEMENTATION_TYPE__LISTENERS:
+                return listeners != null;
+            case BPMPackage.BPM_IMPLEMENTATION_TYPE__LOGGERS:
+                return loggers != null;
+            case BPMPackage.BPM_IMPLEMENTATION_TYPE__MANIFEST:
+                return manifest != null;
+            case BPMPackage.BPM_IMPLEMENTATION_TYPE__PROPERTIES:
+                return properties != null;
+            case BPMPackage.BPM_IMPLEMENTATION_TYPE__WORK_ITEM_HANDLERS:
+                return workItemHandlers != null;
+            case BPMPackage.BPM_IMPLEMENTATION_TYPE__PERSISTENT:
+                return isSetPersistent();
             case BPMPackage.BPM_IMPLEMENTATION_TYPE__PROCESS_ID:
                 return PROCESS_ID_EDEFAULT == null ? processId != null : !PROCESS_ID_EDEFAULT.equals(processId);
-            case BPMPackage.BPM_IMPLEMENTATION_TYPE__MESSAGE_CONTENT_IN_NAME:
-                return MESSAGE_CONTENT_IN_NAME_EDEFAULT == null ? messageContentInName != null : !MESSAGE_CONTENT_IN_NAME_EDEFAULT.equals(messageContentInName);
-            case BPMPackage.BPM_IMPLEMENTATION_TYPE__MESSAGE_CONTENT_OUT_NAME:
-                return MESSAGE_CONTENT_OUT_NAME_EDEFAULT == null ? messageContentOutName != null : !MESSAGE_CONTENT_OUT_NAME_EDEFAULT.equals(messageContentOutName);
-            case BPMPackage.BPM_IMPLEMENTATION_TYPE__PERSISTENT:
-                return persistent != PERSISTENT_EDEFAULT;
             case BPMPackage.BPM_IMPLEMENTATION_TYPE__SESSION_ID:
                 return SESSION_ID_EDEFAULT == null ? sessionId != null : !SESSION_ID_EDEFAULT.equals(sessionId);
         }
@@ -841,18 +782,10 @@ public class BPMImplementationTypeImpl extends CommonImplementationTypeImpl impl
         if (eIsProxy()) return super.toString();
 
         StringBuffer result = new StringBuffer(super.toString());
-        result.append(" (processDefinition: ");
-        result.append(processDefinition);
-        result.append(", processDefinitionType: ");
-        result.append(processDefinitionType);
+        result.append(" (persistent: ");
+        if (persistentESet) result.append(persistent); else result.append("<unset>");
         result.append(", processId: ");
         result.append(processId);
-        result.append(", messageContentInName: ");
-        result.append(messageContentInName);
-        result.append(", messageContentOutName: ");
-        result.append(messageContentOutName);
-        result.append(", persistent: ");
-        result.append(persistent);
         result.append(", sessionId: ");
         result.append(sessionId);
         result.append(')');

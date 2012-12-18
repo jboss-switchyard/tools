@@ -2,7 +2,6 @@
  */
 package org.switchyard.tools.models.switchyard1_0.camel.jpa.impl;
 
-import java.math.BigInteger;
 import java.util.Collection;
 import org.eclipse.emf.common.notify.Notification;
 

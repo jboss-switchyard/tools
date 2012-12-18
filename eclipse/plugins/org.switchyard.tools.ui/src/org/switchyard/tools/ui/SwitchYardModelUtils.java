@@ -135,10 +135,12 @@ public final class SwitchYardModelUtils {
             return getJavaResource(project, ((BPELComponentImplementationModel) im).getProcess());
         } else if (im instanceof BPMComponentImplementationModel) {
             BPMComponentImplementationModel bpmIm = (BPMComponentImplementationModel) im;
-            if (bpmIm.getProcessDefinition() == null) {
+            if (bpmIm.getManifest() == null || bpmIm.getManifest().getResources() == null
+                    || bpmIm.getManifest().getResources().getResources() == null
+                    || bpmIm.getManifest().getResources().getResources().size() != 1) {
                 return null;
             }
-            return getJavaResource(project, bpmIm.getProcessDefinition().getLocation());
+            return getJavaResource(project, bpmIm.getManifest().getResources().getResources().get(0).getLocation());
         } else if (im instanceof CamelComponentImplementationModel) {
             CamelComponentImplementationModel camelIm = (CamelComponentImplementationModel) im;
             if (camelIm.getJavaClass() == null || camelIm.getJavaClass().length() == 0) {
@@ -153,10 +155,12 @@ public final class SwitchYardModelUtils {
             return getJavaResource(project, clojureIm.getScriptFile());
         } else if (im instanceof RulesComponentImplementationModel) {
             RulesComponentImplementationModel rulesIm = (RulesComponentImplementationModel) im;
-            if (rulesIm.getResources() == null || rulesIm.getResources().size() != 1) {
+            if (rulesIm.getManifest() == null || rulesIm.getManifest().getResources() == null
+                    || rulesIm.getManifest().getResources().getResources() == null
+                    || rulesIm.getManifest().getResources().getResources().size() != 1) {
                 return null;
             }
-            return getJavaResource(project, rulesIm.getResources().get(0).getLocation());
+            return getJavaResource(project, rulesIm.getManifest().getResources().getResources().get(0).getLocation());
         }
         return null;
     }

@@ -17,19 +17,16 @@ import org.eclipse.emf.common.util.ResourceLocator;
 
 import org.eclipse.emf.ecore.EStructuralFeature;
 
-import org.eclipse.emf.edit.provider.ComposeableAdapterFactory;
 import org.eclipse.emf.edit.provider.IEditingDomainItemProvider;
 import org.eclipse.emf.edit.provider.IItemLabelProvider;
 import org.eclipse.emf.edit.provider.IItemPropertyDescriptor;
 import org.eclipse.emf.edit.provider.IItemPropertySource;
 import org.eclipse.emf.edit.provider.IStructuredItemContentProvider;
 import org.eclipse.emf.edit.provider.ITreeItemContentProvider;
-import org.eclipse.emf.edit.provider.ItemPropertyDescriptor;
 import org.eclipse.emf.edit.provider.ViewerNotification;
 
+import org.eclipse.soa.sca.sca1_1.model.sca.provider.ImplementationItemProvider;
 import org.switchyard.tools.models.switchyard1_0.bean.provider.Switchyard_1EditPlugin;
-
-import org.switchyard.tools.models.switchyard1_0.commonrules.provider.CommonImplementationTypeItemProvider;
 
 import org.switchyard.tools.models.switchyard1_0.rules.RulesFactory;
 import org.switchyard.tools.models.switchyard1_0.rules.RulesImplementationType;
@@ -42,7 +39,7 @@ import org.switchyard.tools.models.switchyard1_0.rules.RulesPackage;
  * @generated
  */
 public class RulesImplementationTypeItemProvider
-    extends CommonImplementationTypeItemProvider
+    extends ImplementationItemProvider
     implements
         IEditingDomainItemProvider,
         IStructuredItemContentProvider,
@@ -86,13 +83,12 @@ public class RulesImplementationTypeItemProvider
     public Collection<? extends EStructuralFeature> getChildrenFeatures(Object object) {
         if (childrenFeatures == null) {
             super.getChildrenFeatures(object);
-            childrenFeatures.add(RulesPackage.Literals.RULES_IMPLEMENTATION_TYPE__ACTION);
-            childrenFeatures.add(RulesPackage.Literals.RULES_IMPLEMENTATION_TYPE__AUDIT);
-            childrenFeatures.add(RulesPackage.Literals.RULES_IMPLEMENTATION_TYPE__EVENT_LISTENER);
-            childrenFeatures.add(RulesPackage.Literals.RULES_IMPLEMENTATION_TYPE__CHANNEL);
-            childrenFeatures.add(RulesPackage.Literals.RULES_IMPLEMENTATION_TYPE__RESOURCE);
-            childrenFeatures.add(RulesPackage.Literals.RULES_IMPLEMENTATION_TYPE__GLOBALS);
-            childrenFeatures.add(RulesPackage.Literals.RULES_IMPLEMENTATION_TYPE__FACTS);
+            childrenFeatures.add(RulesPackage.Literals.RULES_IMPLEMENTATION_TYPE__ACTIONS);
+            childrenFeatures.add(RulesPackage.Literals.RULES_IMPLEMENTATION_TYPE__CHANNELS);
+            childrenFeatures.add(RulesPackage.Literals.RULES_IMPLEMENTATION_TYPE__LISTENERS);
+            childrenFeatures.add(RulesPackage.Literals.RULES_IMPLEMENTATION_TYPE__LOGGERS);
+            childrenFeatures.add(RulesPackage.Literals.RULES_IMPLEMENTATION_TYPE__MANIFEST);
+            childrenFeatures.add(RulesPackage.Literals.RULES_IMPLEMENTATION_TYPE__PROPERTIES);
         }
         return childrenFeatures;
     }
@@ -148,13 +144,12 @@ public class RulesImplementationTypeItemProvider
         updateChildren(notification);
 
         switch (notification.getFeatureID(RulesImplementationType.class)) {
-            case RulesPackage.RULES_IMPLEMENTATION_TYPE__ACTION:
-            case RulesPackage.RULES_IMPLEMENTATION_TYPE__AUDIT:
-            case RulesPackage.RULES_IMPLEMENTATION_TYPE__EVENT_LISTENER:
-            case RulesPackage.RULES_IMPLEMENTATION_TYPE__CHANNEL:
-            case RulesPackage.RULES_IMPLEMENTATION_TYPE__RESOURCE:
-            case RulesPackage.RULES_IMPLEMENTATION_TYPE__GLOBALS:
-            case RulesPackage.RULES_IMPLEMENTATION_TYPE__FACTS:
+            case RulesPackage.RULES_IMPLEMENTATION_TYPE__ACTIONS:
+            case RulesPackage.RULES_IMPLEMENTATION_TYPE__CHANNELS:
+            case RulesPackage.RULES_IMPLEMENTATION_TYPE__LISTENERS:
+            case RulesPackage.RULES_IMPLEMENTATION_TYPE__LOGGERS:
+            case RulesPackage.RULES_IMPLEMENTATION_TYPE__MANIFEST:
+            case RulesPackage.RULES_IMPLEMENTATION_TYPE__PROPERTIES:
                 fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), true, false));
                 return;
         }
@@ -174,38 +169,33 @@ public class RulesImplementationTypeItemProvider
 
         newChildDescriptors.add
             (createChildParameter
-                (RulesPackage.Literals.RULES_IMPLEMENTATION_TYPE__ACTION,
-                 RulesFactory.eINSTANCE.createActionType1()));
+                (RulesPackage.Literals.RULES_IMPLEMENTATION_TYPE__ACTIONS,
+                 RulesFactory.eINSTANCE.createActionsType()));
 
         newChildDescriptors.add
             (createChildParameter
-                (RulesPackage.Literals.RULES_IMPLEMENTATION_TYPE__AUDIT,
-                 RulesFactory.eINSTANCE.createAuditType()));
+                (RulesPackage.Literals.RULES_IMPLEMENTATION_TYPE__CHANNELS,
+                 RulesFactory.eINSTANCE.createChannelsType()));
 
         newChildDescriptors.add
             (createChildParameter
-                (RulesPackage.Literals.RULES_IMPLEMENTATION_TYPE__EVENT_LISTENER,
-                 RulesFactory.eINSTANCE.createEventListenerType()));
+                (RulesPackage.Literals.RULES_IMPLEMENTATION_TYPE__LISTENERS,
+                 RulesFactory.eINSTANCE.createListenersType()));
 
         newChildDescriptors.add
             (createChildParameter
-                (RulesPackage.Literals.RULES_IMPLEMENTATION_TYPE__CHANNEL,
-                 RulesFactory.eINSTANCE.createChannelType()));
+                (RulesPackage.Literals.RULES_IMPLEMENTATION_TYPE__LOGGERS,
+                 RulesFactory.eINSTANCE.createLoggersType()));
 
         newChildDescriptors.add
             (createChildParameter
-                (RulesPackage.Literals.RULES_IMPLEMENTATION_TYPE__RESOURCE,
-                 RulesFactory.eINSTANCE.createResourceType()));
+                (RulesPackage.Literals.RULES_IMPLEMENTATION_TYPE__MANIFEST,
+                 RulesFactory.eINSTANCE.createManifestType()));
 
         newChildDescriptors.add
             (createChildParameter
-                (RulesPackage.Literals.RULES_IMPLEMENTATION_TYPE__GLOBALS,
-                 RulesFactory.eINSTANCE.createGlobalsType()));
-
-        newChildDescriptors.add
-            (createChildParameter
-                (RulesPackage.Literals.RULES_IMPLEMENTATION_TYPE__FACTS,
-                 RulesFactory.eINSTANCE.createFactsType()));
+                (RulesPackage.Literals.RULES_IMPLEMENTATION_TYPE__PROPERTIES,
+                 RulesFactory.eINSTANCE.createPropertiesType()));
     }
 
     /**

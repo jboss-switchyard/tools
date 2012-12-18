@@ -97,6 +97,11 @@
                 </artifactItem>
                 <artifactItem>
                   <groupId>org.switchyard.components</groupId>
+                  <artifactId>switchyard-component-common-knowledge</artifactId>
+                  <version>${version.switchyard.runtime}</version>
+                </artifactItem>
+                <artifactItem>
+                  <groupId>org.switchyard.components</groupId>
                   <artifactId>switchyard-component-camel-switchyard</artifactId>
                   <version>${version.switchyard.runtime}</version>
                 </artifactItem>

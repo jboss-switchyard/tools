@@ -6,9 +6,8 @@
  */
 package org.switchyard.tools.models.switchyard1_0.bpm;
 
-import org.eclipse.emf.common.util.EList;
-
-import org.switchyard.tools.models.switchyard1_0.commonrules.CommonImplementationType;
+import java.math.BigInteger;
+import org.eclipse.soa.sca.sca1_1.model.sca.Implementation;
 
 /**
  * <!-- begin-user-doc -->
@@ -18,19 +17,15 @@ import org.switchyard.tools.models.switchyard1_0.commonrules.CommonImplementatio
  * <p>
  * The following features are supported:
  * <ul>
- *   <li>{@link org.switchyard.tools.models.switchyard1_0.bpm.BPMImplementationType#getAction <em>Action</em>}</li>
- *   <li>{@link org.switchyard.tools.models.switchyard1_0.bpm.BPMImplementationType#getAudit <em>Audit</em>}</li>
- *   <li>{@link org.switchyard.tools.models.switchyard1_0.bpm.BPMImplementationType#getEventListener <em>Event Listener</em>}</li>
- *   <li>{@link org.switchyard.tools.models.switchyard1_0.bpm.BPMImplementationType#getTaskHandler <em>Task Handler</em>}</li>
- *   <li>{@link org.switchyard.tools.models.switchyard1_0.bpm.BPMImplementationType#getResource <em>Resource</em>}</li>
- *   <li>{@link org.switchyard.tools.models.switchyard1_0.bpm.BPMImplementationType#getParameters <em>Parameters</em>}</li>
- *   <li>{@link org.switchyard.tools.models.switchyard1_0.bpm.BPMImplementationType#getResults <em>Results</em>}</li>
- *   <li>{@link org.switchyard.tools.models.switchyard1_0.bpm.BPMImplementationType#getProcessDefinition <em>Process Definition</em>}</li>
- *   <li>{@link org.switchyard.tools.models.switchyard1_0.bpm.BPMImplementationType#getProcessDefinitionType <em>Process Definition Type</em>}</li>
- *   <li>{@link org.switchyard.tools.models.switchyard1_0.bpm.BPMImplementationType#getProcessId <em>Process Id</em>}</li>
- *   <li>{@link org.switchyard.tools.models.switchyard1_0.bpm.BPMImplementationType#getMessageContentInName <em>Message Content In Name</em>}</li>
- *   <li>{@link org.switchyard.tools.models.switchyard1_0.bpm.BPMImplementationType#getMessageContentOutName <em>Message Content Out Name</em>}</li>
+ *   <li>{@link org.switchyard.tools.models.switchyard1_0.bpm.BPMImplementationType#getActions <em>Actions</em>}</li>
+ *   <li>{@link org.switchyard.tools.models.switchyard1_0.bpm.BPMImplementationType#getChannels <em>Channels</em>}</li>
+ *   <li>{@link org.switchyard.tools.models.switchyard1_0.bpm.BPMImplementationType#getListeners <em>Listeners</em>}</li>
+ *   <li>{@link org.switchyard.tools.models.switchyard1_0.bpm.BPMImplementationType#getLoggers <em>Loggers</em>}</li>
+ *   <li>{@link org.switchyard.tools.models.switchyard1_0.bpm.BPMImplementationType#getManifest <em>Manifest</em>}</li>
+ *   <li>{@link org.switchyard.tools.models.switchyard1_0.bpm.BPMImplementationType#getProperties <em>Properties</em>}</li>
+ *   <li>{@link org.switchyard.tools.models.switchyard1_0.bpm.BPMImplementationType#getWorkItemHandlers <em>Work Item Handlers</em>}</li>
  *   <li>{@link org.switchyard.tools.models.switchyard1_0.bpm.BPMImplementationType#isPersistent <em>Persistent</em>}</li>
+ *   <li>{@link org.switchyard.tools.models.switchyard1_0.bpm.BPMImplementationType#getProcessId <em>Process Id</em>}</li>
  *   <li>{@link org.switchyard.tools.models.switchyard1_0.bpm.BPMImplementationType#getSessionId <em>Session Id</em>}</li>
  * </ul>
  * </p>
@@ -39,210 +34,195 @@ import org.switchyard.tools.models.switchyard1_0.commonrules.CommonImplementatio
  * @model extendedMetaData="name='BPMImplementationType' kind='elementOnly'"
  * @generated
  */
-public interface BPMImplementationType extends CommonImplementationType {
+public interface BPMImplementationType extends Implementation {
 	/**
-     * Returns the value of the '<em><b>Action</b></em>' containment reference list.
-     * The list contents are of type {@link org.switchyard.tools.models.switchyard1_0.bpm.ActionType1}.
-     * <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of the '<em>Action</em>' containment reference list isn't clear,
-	 * there really should be more of a description here...
-	 * </p>
-	 * <!-- end-user-doc -->
-     * @return the value of the '<em>Action</em>' containment reference list.
-     * @see org.switchyard.tools.models.switchyard1_0.bpm.BPMPackage#getBPMImplementationType_Action()
-     * @model containment="true"
-     *        extendedMetaData="kind='element' name='action' namespace='##targetNamespace'"
-     * @generated
-     */
-	EList<ActionType1> getAction();
-
-	/**
-     * Returns the value of the '<em><b>Audit</b></em>' containment reference.
-     * <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of the '<em>Audit</em>' containment reference isn't clear,
-	 * there really should be more of a description here...
-	 * </p>
-	 * <!-- end-user-doc -->
-     * @return the value of the '<em>Audit</em>' containment reference.
-     * @see #setAudit(AuditType)
-     * @see org.switchyard.tools.models.switchyard1_0.bpm.BPMPackage#getBPMImplementationType_Audit()
-     * @model containment="true"
-     *        extendedMetaData="kind='element' name='audit' namespace='##targetNamespace'"
-     * @generated
-     */
-	AuditType getAudit();
-
-	/**
-     * Sets the value of the '{@link org.switchyard.tools.models.switchyard1_0.bpm.BPMImplementationType#getAudit <em>Audit</em>}' containment reference.
-     * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-     * @param value the new value of the '<em>Audit</em>' containment reference.
-     * @see #getAudit()
-     * @generated
-     */
-	void setAudit(AuditType value);
-
-	/**
-     * Returns the value of the '<em><b>Event Listener</b></em>' containment reference list.
-     * The list contents are of type {@link org.switchyard.tools.models.switchyard1_0.bpm.EventListenerType}.
+     * Returns the value of the '<em><b>Actions</b></em>' containment reference.
      * <!-- begin-user-doc -->
      * <p>
-     * If the meaning of the '<em>Event Listener</em>' containment reference isn't clear,
+     * If the meaning of the '<em>Actions</em>' containment reference isn't clear,
      * there really should be more of a description here...
      * </p>
      * <!-- end-user-doc -->
-     * @return the value of the '<em>Event Listener</em>' containment reference list.
-     * @see org.switchyard.tools.models.switchyard1_0.bpm.BPMPackage#getBPMImplementationType_EventListener()
+     * @return the value of the '<em>Actions</em>' containment reference.
+     * @see #setActions(ActionsType)
+     * @see org.switchyard.tools.models.switchyard1_0.bpm.BPMPackage#getBPMImplementationType_Actions()
      * @model containment="true"
-     *        extendedMetaData="kind='element' name='eventListener' namespace='##targetNamespace'"
+     *        extendedMetaData="kind='element' name='actions' namespace='##targetNamespace'"
      * @generated
      */
-    EList<EventListenerType> getEventListener();
+    ActionsType getActions();
 
     /**
-     * Returns the value of the '<em><b>Task Handler</b></em>' containment reference list.
-     * The list contents are of type {@link org.switchyard.tools.models.switchyard1_0.bpm.TaskHandlerType}.
+     * Sets the value of the '{@link org.switchyard.tools.models.switchyard1_0.bpm.BPMImplementationType#getActions <em>Actions</em>}' containment reference.
      * <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of the '<em>Task Handler</em>' containment reference list isn't clear,
-	 * there really should be more of a description here...
-	 * </p>
-	 * <!-- end-user-doc -->
-     * @return the value of the '<em>Task Handler</em>' containment reference list.
-     * @see org.switchyard.tools.models.switchyard1_0.bpm.BPMPackage#getBPMImplementationType_TaskHandler()
-     * @model containment="true"
-     *        extendedMetaData="kind='element' name='taskHandler' namespace='##targetNamespace'"
+     * <!-- end-user-doc -->
+     * @param value the new value of the '<em>Actions</em>' containment reference.
+     * @see #getActions()
      * @generated
      */
-	EList<TaskHandlerType> getTaskHandler();
-
-	/**
-     * Returns the value of the '<em><b>Resource</b></em>' containment reference list.
-     * The list contents are of type {@link org.switchyard.tools.models.switchyard1_0.bpm.ResourceType}.
-     * <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of the '<em>Resource</em>' containment reference list isn't clear,
-	 * there really should be more of a description here...
-	 * </p>
-	 * <!-- end-user-doc -->
-     * @return the value of the '<em>Resource</em>' containment reference list.
-     * @see org.switchyard.tools.models.switchyard1_0.bpm.BPMPackage#getBPMImplementationType_Resource()
-     * @model containment="true"
-     *        extendedMetaData="kind='element' name='resource' namespace='##targetNamespace'"
-     * @generated
-     */
-	EList<ResourceType> getResource();
+    void setActions(ActionsType value);
 
     /**
-     * Returns the value of the '<em><b>Parameters</b></em>' containment reference.
+     * Returns the value of the '<em><b>Channels</b></em>' containment reference.
      * <!-- begin-user-doc -->
      * <p>
-     * If the meaning of the '<em>Parameters</em>' containment reference isn't clear,
+     * If the meaning of the '<em>Channels</em>' containment reference isn't clear,
      * there really should be more of a description here...
      * </p>
      * <!-- end-user-doc -->
-     * @return the value of the '<em>Parameters</em>' containment reference.
-     * @see #setParameters(ParametersType)
-     * @see org.switchyard.tools.models.switchyard1_0.bpm.BPMPackage#getBPMImplementationType_Parameters()
+     * @return the value of the '<em>Channels</em>' containment reference.
+     * @see #setChannels(ChannelsType)
+     * @see org.switchyard.tools.models.switchyard1_0.bpm.BPMPackage#getBPMImplementationType_Channels()
      * @model containment="true"
-     *        extendedMetaData="kind='element' name='parameters' namespace='##targetNamespace'"
+     *        extendedMetaData="kind='element' name='channels' namespace='##targetNamespace'"
      * @generated
      */
-    ParametersType getParameters();
+    ChannelsType getChannels();
 
     /**
-     * Sets the value of the '{@link org.switchyard.tools.models.switchyard1_0.bpm.BPMImplementationType#getParameters <em>Parameters</em>}' containment reference.
+     * Sets the value of the '{@link org.switchyard.tools.models.switchyard1_0.bpm.BPMImplementationType#getChannels <em>Channels</em>}' containment reference.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @param value the new value of the '<em>Parameters</em>' containment reference.
-     * @see #getParameters()
+     * @param value the new value of the '<em>Channels</em>' containment reference.
+     * @see #getChannels()
      * @generated
      */
-    void setParameters(ParametersType value);
+    void setChannels(ChannelsType value);
 
     /**
-     * Returns the value of the '<em><b>Results</b></em>' containment reference.
+     * Returns the value of the '<em><b>Listeners</b></em>' containment reference.
      * <!-- begin-user-doc -->
      * <p>
-     * If the meaning of the '<em>Results</em>' containment reference isn't clear,
+     * If the meaning of the '<em>Listeners</em>' containment reference isn't clear,
      * there really should be more of a description here...
      * </p>
      * <!-- end-user-doc -->
-     * @return the value of the '<em>Results</em>' containment reference.
-     * @see #setResults(ResultsType)
-     * @see org.switchyard.tools.models.switchyard1_0.bpm.BPMPackage#getBPMImplementationType_Results()
+     * @return the value of the '<em>Listeners</em>' containment reference.
+     * @see #setListeners(ListenersType)
+     * @see org.switchyard.tools.models.switchyard1_0.bpm.BPMPackage#getBPMImplementationType_Listeners()
      * @model containment="true"
-     *        extendedMetaData="kind='element' name='results' namespace='##targetNamespace'"
+     *        extendedMetaData="kind='element' name='listeners' namespace='##targetNamespace'"
      * @generated
      */
-    ResultsType getResults();
+    ListenersType getListeners();
 
     /**
-     * Sets the value of the '{@link org.switchyard.tools.models.switchyard1_0.bpm.BPMImplementationType#getResults <em>Results</em>}' containment reference.
+     * Sets the value of the '{@link org.switchyard.tools.models.switchyard1_0.bpm.BPMImplementationType#getListeners <em>Listeners</em>}' containment reference.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @param value the new value of the '<em>Results</em>' containment reference.
-     * @see #getResults()
+     * @param value the new value of the '<em>Listeners</em>' containment reference.
+     * @see #getListeners()
      * @generated
      */
-    void setResults(ResultsType value);
+    void setListeners(ListenersType value);
 
     /**
-     * Returns the value of the '<em><b>Process Definition</b></em>' attribute.
+     * Returns the value of the '<em><b>Loggers</b></em>' containment reference.
      * <!-- begin-user-doc -->
      * <p>
-     * If the meaning of the '<em>Process Definition</em>' attribute isn't clear,
+     * If the meaning of the '<em>Loggers</em>' containment reference isn't clear,
      * there really should be more of a description here...
      * </p>
      * <!-- end-user-doc -->
-     * @return the value of the '<em>Process Definition</em>' attribute.
-     * @see #setProcessDefinition(String)
-     * @see org.switchyard.tools.models.switchyard1_0.bpm.BPMPackage#getBPMImplementationType_ProcessDefinition()
-     * @model dataType="org.eclipse.emf.ecore.xml.type.String" required="true"
-     *        extendedMetaData="name='processDefinition' kind='attribute'"
+     * @return the value of the '<em>Loggers</em>' containment reference.
+     * @see #setLoggers(LoggersType)
+     * @see org.switchyard.tools.models.switchyard1_0.bpm.BPMPackage#getBPMImplementationType_Loggers()
+     * @model containment="true"
+     *        extendedMetaData="kind='element' name='loggers' namespace='##targetNamespace'"
      * @generated
      */
-    String getProcessDefinition();
+    LoggersType getLoggers();
 
     /**
-     * Sets the value of the '{@link org.switchyard.tools.models.switchyard1_0.bpm.BPMImplementationType#getProcessDefinition <em>Process Definition</em>}' attribute.
+     * Sets the value of the '{@link org.switchyard.tools.models.switchyard1_0.bpm.BPMImplementationType#getLoggers <em>Loggers</em>}' containment reference.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @param value the new value of the '<em>Process Definition</em>' attribute.
-     * @see #getProcessDefinition()
+     * @param value the new value of the '<em>Loggers</em>' containment reference.
+     * @see #getLoggers()
      * @generated
      */
-    void setProcessDefinition(String value);
+    void setLoggers(LoggersType value);
 
     /**
-     * Returns the value of the '<em><b>Process Definition Type</b></em>' attribute.
-     * The default value is <code>"BPMN2"</code>.
+     * Returns the value of the '<em><b>Manifest</b></em>' containment reference.
      * <!-- begin-user-doc -->
      * <p>
-     * If the meaning of the '<em>Process Definition Type</em>' attribute isn't clear,
+     * If the meaning of the '<em>Manifest</em>' containment reference isn't clear,
      * there really should be more of a description here...
      * </p>
      * <!-- end-user-doc -->
-     * @return the value of the '<em>Process Definition Type</em>' attribute.
-     * @see #setProcessDefinitionType(String)
-     * @see org.switchyard.tools.models.switchyard1_0.bpm.BPMPackage#getBPMImplementationType_ProcessDefinitionType()
-     * @model default="BPMN2" dataType="org.eclipse.emf.ecore.xml.type.NCName"
-     *        extendedMetaData="name='processDefinitionType' kind='attribute'"
+     * @return the value of the '<em>Manifest</em>' containment reference.
+     * @see #setManifest(ManifestType)
+     * @see org.switchyard.tools.models.switchyard1_0.bpm.BPMPackage#getBPMImplementationType_Manifest()
+     * @model containment="true"
+     *        extendedMetaData="kind='element' name='manifest' namespace='##targetNamespace'"
      * @generated
      */
-    String getProcessDefinitionType();
+    ManifestType getManifest();
 
     /**
-     * Sets the value of the '{@link org.switchyard.tools.models.switchyard1_0.bpm.BPMImplementationType#getProcessDefinitionType <em>Process Definition Type</em>}' attribute.
+     * Sets the value of the '{@link org.switchyard.tools.models.switchyard1_0.bpm.BPMImplementationType#getManifest <em>Manifest</em>}' containment reference.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @param value the new value of the '<em>Process Definition Type</em>' attribute.
-     * @see #getProcessDefinitionType()
+     * @param value the new value of the '<em>Manifest</em>' containment reference.
+     * @see #getManifest()
      * @generated
      */
-    void setProcessDefinitionType(String value);
+    void setManifest(ManifestType value);
+
+    /**
+     * Returns the value of the '<em><b>Properties</b></em>' containment reference.
+     * <!-- begin-user-doc -->
+     * <p>
+     * If the meaning of the '<em>Properties</em>' containment reference isn't clear,
+     * there really should be more of a description here...
+     * </p>
+     * <!-- end-user-doc -->
+     * @return the value of the '<em>Properties</em>' containment reference.
+     * @see #setProperties(PropertiesType)
+     * @see org.switchyard.tools.models.switchyard1_0.bpm.BPMPackage#getBPMImplementationType_Properties()
+     * @model containment="true"
+     *        extendedMetaData="kind='element' name='properties' namespace='##targetNamespace'"
+     * @generated
+     */
+    PropertiesType getProperties();
+
+    /**
+     * Sets the value of the '{@link org.switchyard.tools.models.switchyard1_0.bpm.BPMImplementationType#getProperties <em>Properties</em>}' containment reference.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @param value the new value of the '<em>Properties</em>' containment reference.
+     * @see #getProperties()
+     * @generated
+     */
+    void setProperties(PropertiesType value);
+
+    /**
+     * Returns the value of the '<em><b>Work Item Handlers</b></em>' containment reference.
+     * <!-- begin-user-doc -->
+     * <p>
+     * If the meaning of the '<em>Work Item Handlers</em>' containment reference isn't clear,
+     * there really should be more of a description here...
+     * </p>
+     * <!-- end-user-doc -->
+     * @return the value of the '<em>Work Item Handlers</em>' containment reference.
+     * @see #setWorkItemHandlers(WorkItemHandlersType)
+     * @see org.switchyard.tools.models.switchyard1_0.bpm.BPMPackage#getBPMImplementationType_WorkItemHandlers()
+     * @model containment="true"
+     *        extendedMetaData="kind='element' name='workItemHandlers' namespace='##targetNamespace'"
+     * @generated
+     */
+    WorkItemHandlersType getWorkItemHandlers();
+
+    /**
+     * Sets the value of the '{@link org.switchyard.tools.models.switchyard1_0.bpm.BPMImplementationType#getWorkItemHandlers <em>Work Item Handlers</em>}' containment reference.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @param value the new value of the '<em>Work Item Handlers</em>' containment reference.
+     * @see #getWorkItemHandlers()
+     * @generated
+     */
+    void setWorkItemHandlers(WorkItemHandlersType value);
 
     /**
      * Returns the value of the '<em><b>Process Id</b></em>' attribute.
@@ -255,8 +235,8 @@ public interface BPMImplementationType extends CommonImplementationType {
      * @return the value of the '<em>Process Id</em>' attribute.
      * @see #setProcessId(String)
      * @see org.switchyard.tools.models.switchyard1_0.bpm.BPMPackage#getBPMImplementationType_ProcessId()
-     * @model dataType="org.eclipse.emf.ecore.xml.type.String" required="true"
-     *        extendedMetaData="name='processId' kind='attribute'"
+     * @model dataType="org.eclipse.emf.ecore.xml.type.String"
+     *        extendedMetaData="kind='attribute' name='processId'"
      * @generated
      */
     String getProcessId();
@@ -272,64 +252,7 @@ public interface BPMImplementationType extends CommonImplementationType {
     void setProcessId(String value);
 
     /**
-     * Returns the value of the '<em><b>Message Content In Name</b></em>' attribute.
-     * The default value is <code>"messageContentIn"</code>.
-     * <!-- begin-user-doc -->
-     * <p>
-     * If the meaning of the '<em>Message Content In Name</em>' attribute isn't clear,
-     * there really should be more of a description here...
-     * </p>
-     * <!-- end-user-doc -->
-     * @return the value of the '<em>Message Content In Name</em>' attribute.
-     * @see #setMessageContentInName(String)
-     * @see org.switchyard.tools.models.switchyard1_0.bpm.BPMPackage#getBPMImplementationType_MessageContentInName()
-     * @model default="messageContentIn" dataType="org.eclipse.emf.ecore.xml.type.String"
-     *        extendedMetaData="name='messageContentInName' kind='attribute'"
-     * @generated
-     */
-    String getMessageContentInName();
-
-    /**
-     * Sets the value of the '{@link org.switchyard.tools.models.switchyard1_0.bpm.BPMImplementationType#getMessageContentInName <em>Message Content In Name</em>}' attribute.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @param value the new value of the '<em>Message Content In Name</em>' attribute.
-     * @see #getMessageContentInName()
-     * @generated
-     */
-    void setMessageContentInName(String value);
-
-    /**
-     * Returns the value of the '<em><b>Message Content Out Name</b></em>' attribute.
-     * The default value is <code>"messageContentOut"</code>.
-     * <!-- begin-user-doc -->
-     * <p>
-     * If the meaning of the '<em>Message Content Out Name</em>' attribute isn't clear,
-     * there really should be more of a description here...
-     * </p>
-     * <!-- end-user-doc -->
-     * @return the value of the '<em>Message Content Out Name</em>' attribute.
-     * @see #setMessageContentOutName(String)
-     * @see org.switchyard.tools.models.switchyard1_0.bpm.BPMPackage#getBPMImplementationType_MessageContentOutName()
-     * @model default="messageContentOut" dataType="org.eclipse.emf.ecore.xml.type.String"
-     *        extendedMetaData="name='messageContentOutName' kind='attribute'"
-     * @generated
-     */
-    String getMessageContentOutName();
-
-    /**
-     * Sets the value of the '{@link org.switchyard.tools.models.switchyard1_0.bpm.BPMImplementationType#getMessageContentOutName <em>Message Content Out Name</em>}' attribute.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @param value the new value of the '<em>Message Content Out Name</em>' attribute.
-     * @see #getMessageContentOutName()
-     * @generated
-     */
-    void setMessageContentOutName(String value);
-
-    /**
      * Returns the value of the '<em><b>Persistent</b></em>' attribute.
-     * The default value is <code>"false"</code>.
      * <!-- begin-user-doc -->
      * <p>
      * If the meaning of the '<em>Persistent</em>' attribute isn't clear,
@@ -337,10 +260,12 @@ public interface BPMImplementationType extends CommonImplementationType {
      * </p>
      * <!-- end-user-doc -->
      * @return the value of the '<em>Persistent</em>' attribute.
+     * @see #isSetPersistent()
+     * @see #unsetPersistent()
      * @see #setPersistent(boolean)
      * @see org.switchyard.tools.models.switchyard1_0.bpm.BPMPackage#getBPMImplementationType_Persistent()
-     * @model default="false" dataType="org.eclipse.emf.ecore.xml.type.Boolean"
-     *        extendedMetaData="name='persistent' kind='attribute'"
+     * @model unsettable="true" dataType="org.eclipse.emf.ecore.xml.type.Boolean"
+     *        extendedMetaData="kind='attribute' name='persistent'"
      * @generated
      */
     boolean isPersistent();
@@ -350,14 +275,38 @@ public interface BPMImplementationType extends CommonImplementationType {
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @param value the new value of the '<em>Persistent</em>' attribute.
+     * @see #isSetPersistent()
+     * @see #unsetPersistent()
      * @see #isPersistent()
      * @generated
      */
     void setPersistent(boolean value);
 
     /**
+     * Unsets the value of the '{@link org.switchyard.tools.models.switchyard1_0.bpm.BPMImplementationType#isPersistent <em>Persistent</em>}' attribute.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @see #isSetPersistent()
+     * @see #isPersistent()
+     * @see #setPersistent(boolean)
+     * @generated
+     */
+    void unsetPersistent();
+
+    /**
+     * Returns whether the value of the '{@link org.switchyard.tools.models.switchyard1_0.bpm.BPMImplementationType#isPersistent <em>Persistent</em>}' attribute is set.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @return whether the value of the '<em>Persistent</em>' attribute is set.
+     * @see #unsetPersistent()
+     * @see #isPersistent()
+     * @see #setPersistent(boolean)
+     * @generated
+     */
+    boolean isSetPersistent();
+
+    /**
      * Returns the value of the '<em><b>Session Id</b></em>' attribute.
-     * The default value is <code>""</code>.
      * <!-- begin-user-doc -->
      * <p>
      * If the meaning of the '<em>Session Id</em>' attribute isn't clear,
@@ -365,13 +314,13 @@ public interface BPMImplementationType extends CommonImplementationType {
      * </p>
      * <!-- end-user-doc -->
      * @return the value of the '<em>Session Id</em>' attribute.
-     * @see #setSessionId(String)
+     * @see #setSessionId(BigInteger)
      * @see org.switchyard.tools.models.switchyard1_0.bpm.BPMPackage#getBPMImplementationType_SessionId()
-     * @model default="" dataType="org.eclipse.emf.ecore.xml.type.String"
-     *        extendedMetaData="name='sessionId' kind='attribute'"
+     * @model dataType="org.eclipse.emf.ecore.xml.type.Integer"
+     *        extendedMetaData="kind='attribute' name='sessionId'"
      * @generated
      */
-    String getSessionId();
+    BigInteger getSessionId();
 
     /**
      * Sets the value of the '{@link org.switchyard.tools.models.switchyard1_0.bpm.BPMImplementationType#getSessionId <em>Session Id</em>}' attribute.
@@ -381,6 +330,6 @@ public interface BPMImplementationType extends CommonImplementationType {
      * @see #getSessionId()
      * @generated
      */
-    void setSessionId(String value);
+    void setSessionId(BigInteger value);
 
 } // BPMImplementationType

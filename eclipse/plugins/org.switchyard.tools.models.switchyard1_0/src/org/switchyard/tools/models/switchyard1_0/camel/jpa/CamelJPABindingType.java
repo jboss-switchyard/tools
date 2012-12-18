@@ -2,8 +2,6 @@
  */
 package org.switchyard.tools.models.switchyard1_0.camel.jpa;
 
-import org.switchyard.tools.models.switchyard1_0.camel.core.BaseCamelBinding;
-
 /**
  * <!-- begin-user-doc -->
  * A representation of the model object '<em><b>Camel JPA Binding Type</b></em>'.

@@ -50,16 +50,18 @@ public class BPMComponentImplementationtModelPropertySource implements IProperty
     @Override
     public Object getPropertyValue(Object id) {
         if (PROP_PROCESS_DEFINITION.equals(id)) {
-            if (_model.getProcessDefinition() == null) {
+            if (_model.getManifest() == null || _model.getManifest().getResources() == null
+                    || _model.getManifest().getResources().getResources() == null
+                    || _model.getManifest().getResources().getResources().size() != 1) {
                 return null;
             }
-            return _model.getProcessDefinition().getLocation();
+            return _model.getManifest().getResources().getResources().get(0).getLocation();
         } else if (PROP_PROCESS_ID.equals(id)) {
             return _model.getProcessId();
-        } else if (PROP_MESSAGE_CONTENT_IN_NAME.equals(id)) {
-            return _model.getMessageContentInName();
-        } else if (PROP_MESSAGE_CONTENT_OUT_NAME.equals(id)) {
-            return _model.getMessageContentOutName();
+            // } else if (PROP_MESSAGE_CONTENT_IN_NAME.equals(id)) {
+            // return _model.getMessageContentInName();
+            // } else if (PROP_MESSAGE_CONTENT_OUT_NAME.equals(id)) {
+            // return _model.getMessageContentOutName();
         }
         return null;
     }
@@ -79,12 +81,19 @@ public class BPMComponentImplementationtModelPropertySource implements IProperty
 
     static {
         DESCRIPTORS = new PropertyDescriptor[] {new PropertyDescriptor(PROP_PROCESS_DEFINITION, "Process Definition"),
-                new PropertyDescriptor(PROP_PROCESS_ID, "Process ID"),
-                new PropertyDescriptor(PROP_MESSAGE_CONTENT_IN_NAME, "Message Content In Name"),
-                new PropertyDescriptor(PROP_MESSAGE_CONTENT_OUT_NAME, "Message Content Out Name") };
+                new PropertyDescriptor(PROP_PROCESS_ID, "Process ID")
+        /*
+         * , new PropertyDescriptor ( PROP_MESSAGE_CONTENT_IN_NAME ,
+         * "Message Content In Name" ), new PropertyDescriptor (
+         * PROP_MESSAGE_CONTENT_OUT_NAME , "Message Content Out Name" )
+         */};
         DESCRIPTORS[0].setDescription("The resource containing the business process definition.");
         DESCRIPTORS[1].setDescription("The ID for the process.");
-        DESCRIPTORS[2].setDescription("The name used to identify the input message within the process.");
-        DESCRIPTORS[3].setDescription("The name used to identify the output message within the process.");
+        /*
+         * DESCRIPTORS[2].setDescription(
+         * "The name used to identify the input message within the process.");
+         * DESCRIPTORS[3].setDescription(
+         * "The name used to identify the output message within the process.");
+         */
     }
 }

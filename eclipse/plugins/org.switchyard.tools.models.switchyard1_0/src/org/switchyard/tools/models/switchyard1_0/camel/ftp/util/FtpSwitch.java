@@ -7,7 +7,7 @@ import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.util.Switch;
 import org.eclipse.soa.sca.sca1_1.model.sca.Binding;
 import org.eclipse.soa.sca.sca1_1.model.sca.CommonExtensionBase;
-import org.switchyard.tools.models.switchyard1_0.camel.core.BaseCamelBinding;
+import org.switchyard.tools.models.switchyard1_0.camel.ftp.*;
 import org.switchyard.tools.models.switchyard1_0.camel.ftp.CamelFtpBindingType;
 import org.switchyard.tools.models.switchyard1_0.camel.ftp.CamelFtpsBindingType;
 import org.switchyard.tools.models.switchyard1_0.camel.ftp.CamelSftpBindingType;
@@ -86,6 +86,7 @@ public class FtpSwitch<T> extends Switch<T> {
             case FtpPackage.CAMEL_FTP_BINDING_TYPE: {
                 CamelFtpBindingType camelFtpBindingType = (CamelFtpBindingType)theEObject;
                 T result = caseCamelFtpBindingType(camelFtpBindingType);
+                if (result == null) result = caseBaseCamelBinding(camelFtpBindingType);
                 if (result == null) result = caseSwitchYardBindingType(camelFtpBindingType);
                 if (result == null) result = caseBinding(camelFtpBindingType);
                 if (result == null) result = caseCommonExtensionBase(camelFtpBindingType);
@@ -96,6 +97,7 @@ public class FtpSwitch<T> extends Switch<T> {
                 CamelFtpsBindingType camelFtpsBindingType = (CamelFtpsBindingType)theEObject;
                 T result = caseCamelFtpsBindingType(camelFtpsBindingType);
                 if (result == null) result = caseCamelFtpBindingType(camelFtpsBindingType);
+                if (result == null) result = caseBaseCamelBinding(camelFtpsBindingType);
                 if (result == null) result = caseSwitchYardBindingType(camelFtpsBindingType);
                 if (result == null) result = caseBinding(camelFtpsBindingType);
                 if (result == null) result = caseCommonExtensionBase(camelFtpsBindingType);
@@ -105,6 +107,7 @@ public class FtpSwitch<T> extends Switch<T> {
             case FtpPackage.CAMEL_SFTP_BINDING_TYPE: {
                 CamelSftpBindingType camelSftpBindingType = (CamelSftpBindingType)theEObject;
                 T result = caseCamelSftpBindingType(camelSftpBindingType);
+                if (result == null) result = caseBaseCamelBinding(camelSftpBindingType);
                 if (result == null) result = caseSwitchYardBindingType(camelSftpBindingType);
                 if (result == null) result = caseBinding(camelSftpBindingType);
                 if (result == null) result = caseCommonExtensionBase(camelSftpBindingType);

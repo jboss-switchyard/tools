@@ -29,15 +29,33 @@ import org.switchyard.tools.models.switchyard1_0.bpm.impl.BPMPackageImpl;
 
 import org.switchyard.tools.models.switchyard1_0.camel.CamelPackage;
 
+import org.switchyard.tools.models.switchyard1_0.camel.amqp.AmqpPackage;
+import org.switchyard.tools.models.switchyard1_0.camel.amqp.impl.AmqpPackageImpl;
+import org.switchyard.tools.models.switchyard1_0.camel.atom.AtomPackage;
+import org.switchyard.tools.models.switchyard1_0.camel.atom.impl.AtomPackageImpl;
+import org.switchyard.tools.models.switchyard1_0.camel.core.CorePackage;
+import org.switchyard.tools.models.switchyard1_0.camel.core.impl.CorePackageImpl;
+import org.switchyard.tools.models.switchyard1_0.camel.file.FilePackage;
+import org.switchyard.tools.models.switchyard1_0.camel.file.impl.FilePackageImpl;
+import org.switchyard.tools.models.switchyard1_0.camel.ftp.FtpPackage;
+import org.switchyard.tools.models.switchyard1_0.camel.ftp.impl.FtpPackageImpl;
 import org.switchyard.tools.models.switchyard1_0.camel.impl.CamelPackageImpl;
 
+import org.switchyard.tools.models.switchyard1_0.camel.jms.JmsPackage;
+import org.switchyard.tools.models.switchyard1_0.camel.jms.impl.JmsPackageImpl;
+import org.switchyard.tools.models.switchyard1_0.camel.jpa.JpaPackage;
+import org.switchyard.tools.models.switchyard1_0.camel.jpa.impl.JpaPackageImpl;
+import org.switchyard.tools.models.switchyard1_0.camel.mail.MailPackage;
+import org.switchyard.tools.models.switchyard1_0.camel.mail.impl.MailPackageImpl;
+import org.switchyard.tools.models.switchyard1_0.camel.netty.NettyPackage;
+import org.switchyard.tools.models.switchyard1_0.camel.netty.impl.NettyPackageImpl;
+import org.switchyard.tools.models.switchyard1_0.camel.quartz.QuartzPackage;
+import org.switchyard.tools.models.switchyard1_0.camel.quartz.impl.QuartzPackageImpl;
+import org.switchyard.tools.models.switchyard1_0.camel.sql.SqlPackage;
+import org.switchyard.tools.models.switchyard1_0.camel.sql.impl.SqlPackageImpl;
 import org.switchyard.tools.models.switchyard1_0.clojure.ClojurePackage;
 
 import org.switchyard.tools.models.switchyard1_0.clojure.impl.ClojurePackageImpl;
-
-import org.switchyard.tools.models.switchyard1_0.commonrules.CommonRulesPackage;
-
-import org.switchyard.tools.models.switchyard1_0.commonrules.impl.CommonRulesPackageImpl;
 
 import org.switchyard.tools.models.switchyard1_0.hornetq.HornetQPackage;
 
@@ -170,7 +188,6 @@ public class ResteasyPackageImpl extends EPackageImpl implements ResteasyPackage
         BeanPackageImpl theBeanPackage = (BeanPackageImpl)(EPackage.Registry.INSTANCE.getEPackage(BeanPackage.eNS_URI) instanceof BeanPackageImpl ? EPackage.Registry.INSTANCE.getEPackage(BeanPackage.eNS_URI) : BeanPackage.eINSTANCE);
         BPELPackageImpl theBPELPackage = (BPELPackageImpl)(EPackage.Registry.INSTANCE.getEPackage(BPELPackage.eNS_URI) instanceof BPELPackageImpl ? EPackage.Registry.INSTANCE.getEPackage(BPELPackage.eNS_URI) : BPELPackage.eINSTANCE);
         BPMPackageImpl theBPMPackage = (BPMPackageImpl)(EPackage.Registry.INSTANCE.getEPackage(BPMPackage.eNS_URI) instanceof BPMPackageImpl ? EPackage.Registry.INSTANCE.getEPackage(BPMPackage.eNS_URI) : BPMPackage.eINSTANCE);
-        CommonRulesPackageImpl theCommonRulesPackage = (CommonRulesPackageImpl)(EPackage.Registry.INSTANCE.getEPackage(CommonRulesPackage.eNS_URI) instanceof CommonRulesPackageImpl ? EPackage.Registry.INSTANCE.getEPackage(CommonRulesPackage.eNS_URI) : CommonRulesPackage.eINSTANCE);
         SwitchyardPackageImpl theSwitchyardPackage = (SwitchyardPackageImpl)(EPackage.Registry.INSTANCE.getEPackage(SwitchyardPackage.eNS_URI) instanceof SwitchyardPackageImpl ? EPackage.Registry.INSTANCE.getEPackage(SwitchyardPackage.eNS_URI) : SwitchyardPackage.eINSTANCE);
         ClojurePackageImpl theClojurePackage = (ClojurePackageImpl)(EPackage.Registry.INSTANCE.getEPackage(ClojurePackage.eNS_URI) instanceof ClojurePackageImpl ? EPackage.Registry.INSTANCE.getEPackage(ClojurePackage.eNS_URI) : ClojurePackage.eINSTANCE);
         HornetQPackageImpl theHornetQPackage = (HornetQPackageImpl)(EPackage.Registry.INSTANCE.getEPackage(HornetQPackage.eNS_URI) instanceof HornetQPackageImpl ? EPackage.Registry.INSTANCE.getEPackage(HornetQPackage.eNS_URI) : HornetQPackage.eINSTANCE);
@@ -183,6 +200,17 @@ public class ResteasyPackageImpl extends EPackageImpl implements ResteasyPackage
         JcaPackageImpl theJcaPackage = (JcaPackageImpl)(EPackage.Registry.INSTANCE.getEPackage(JcaPackage.eNS_URI) instanceof JcaPackageImpl ? EPackage.Registry.INSTANCE.getEPackage(JcaPackage.eNS_URI) : JcaPackage.eINSTANCE);
         HttpPackageImpl theHttpPackage = (HttpPackageImpl)(EPackage.Registry.INSTANCE.getEPackage(HttpPackage.eNS_URI) instanceof HttpPackageImpl ? EPackage.Registry.INSTANCE.getEPackage(HttpPackage.eNS_URI) : HttpPackage.eINSTANCE);
         RemotePackageImpl theRemotePackage = (RemotePackageImpl)(EPackage.Registry.INSTANCE.getEPackage(RemotePackage.eNS_URI) instanceof RemotePackageImpl ? EPackage.Registry.INSTANCE.getEPackage(RemotePackage.eNS_URI) : RemotePackage.eINSTANCE);
+        CorePackageImpl theCorePackage = (CorePackageImpl)(EPackage.Registry.INSTANCE.getEPackage(CorePackage.eNS_URI) instanceof CorePackageImpl ? EPackage.Registry.INSTANCE.getEPackage(CorePackage.eNS_URI) : CorePackage.eINSTANCE);
+        AmqpPackageImpl theAmqpPackage = (AmqpPackageImpl)(EPackage.Registry.INSTANCE.getEPackage(AmqpPackage.eNS_URI) instanceof AmqpPackageImpl ? EPackage.Registry.INSTANCE.getEPackage(AmqpPackage.eNS_URI) : AmqpPackage.eINSTANCE);
+        AtomPackageImpl theAtomPackage = (AtomPackageImpl)(EPackage.Registry.INSTANCE.getEPackage(AtomPackage.eNS_URI) instanceof AtomPackageImpl ? EPackage.Registry.INSTANCE.getEPackage(AtomPackage.eNS_URI) : AtomPackage.eINSTANCE);
+        FilePackageImpl theFilePackage = (FilePackageImpl)(EPackage.Registry.INSTANCE.getEPackage(FilePackage.eNS_URI) instanceof FilePackageImpl ? EPackage.Registry.INSTANCE.getEPackage(FilePackage.eNS_URI) : FilePackage.eINSTANCE);
+        FtpPackageImpl theFtpPackage = (FtpPackageImpl)(EPackage.Registry.INSTANCE.getEPackage(FtpPackage.eNS_URI) instanceof FtpPackageImpl ? EPackage.Registry.INSTANCE.getEPackage(FtpPackage.eNS_URI) : FtpPackage.eINSTANCE);
+        JmsPackageImpl theJmsPackage = (JmsPackageImpl)(EPackage.Registry.INSTANCE.getEPackage(JmsPackage.eNS_URI) instanceof JmsPackageImpl ? EPackage.Registry.INSTANCE.getEPackage(JmsPackage.eNS_URI) : JmsPackage.eINSTANCE);
+        JpaPackageImpl theJpaPackage = (JpaPackageImpl)(EPackage.Registry.INSTANCE.getEPackage(JpaPackage.eNS_URI) instanceof JpaPackageImpl ? EPackage.Registry.INSTANCE.getEPackage(JpaPackage.eNS_URI) : JpaPackage.eINSTANCE);
+        MailPackageImpl theMailPackage = (MailPackageImpl)(EPackage.Registry.INSTANCE.getEPackage(MailPackage.eNS_URI) instanceof MailPackageImpl ? EPackage.Registry.INSTANCE.getEPackage(MailPackage.eNS_URI) : MailPackage.eINSTANCE);
+        NettyPackageImpl theNettyPackage = (NettyPackageImpl)(EPackage.Registry.INSTANCE.getEPackage(NettyPackage.eNS_URI) instanceof NettyPackageImpl ? EPackage.Registry.INSTANCE.getEPackage(NettyPackage.eNS_URI) : NettyPackage.eINSTANCE);
+        QuartzPackageImpl theQuartzPackage = (QuartzPackageImpl)(EPackage.Registry.INSTANCE.getEPackage(QuartzPackage.eNS_URI) instanceof QuartzPackageImpl ? EPackage.Registry.INSTANCE.getEPackage(QuartzPackage.eNS_URI) : QuartzPackage.eINSTANCE);
+        SqlPackageImpl theSqlPackage = (SqlPackageImpl)(EPackage.Registry.INSTANCE.getEPackage(SqlPackage.eNS_URI) instanceof SqlPackageImpl ? EPackage.Registry.INSTANCE.getEPackage(SqlPackage.eNS_URI) : SqlPackage.eINSTANCE);
 
         // Load packages
         theSpringPackage.loadPackage();
@@ -192,7 +220,6 @@ public class ResteasyPackageImpl extends EPackageImpl implements ResteasyPackage
         theBeanPackage.createPackageContents();
         theBPELPackage.createPackageContents();
         theBPMPackage.createPackageContents();
-        theCommonRulesPackage.createPackageContents();
         theSwitchyardPackage.createPackageContents();
         theClojurePackage.createPackageContents();
         theHornetQPackage.createPackageContents();
@@ -204,13 +231,23 @@ public class ResteasyPackageImpl extends EPackageImpl implements ResteasyPackage
         theJcaPackage.createPackageContents();
         theHttpPackage.createPackageContents();
         theRemotePackage.createPackageContents();
+        theCorePackage.createPackageContents();
+        theAmqpPackage.createPackageContents();
+        theAtomPackage.createPackageContents();
+        theFilePackage.createPackageContents();
+        theFtpPackage.createPackageContents();
+        theJmsPackage.createPackageContents();
+        theJpaPackage.createPackageContents();
+        theMailPackage.createPackageContents();
+        theNettyPackage.createPackageContents();
+        theQuartzPackage.createPackageContents();
+        theSqlPackage.createPackageContents();
 
         // Initialize created meta-data
         theResteasyPackage.initializePackageContents();
         theBeanPackage.initializePackageContents();
         theBPELPackage.initializePackageContents();
         theBPMPackage.initializePackageContents();
-        theCommonRulesPackage.initializePackageContents();
         theSwitchyardPackage.initializePackageContents();
         theClojurePackage.initializePackageContents();
         theHornetQPackage.initializePackageContents();
@@ -222,6 +259,17 @@ public class ResteasyPackageImpl extends EPackageImpl implements ResteasyPackage
         theJcaPackage.initializePackageContents();
         theHttpPackage.initializePackageContents();
         theRemotePackage.initializePackageContents();
+        theCorePackage.initializePackageContents();
+        theAmqpPackage.initializePackageContents();
+        theAtomPackage.initializePackageContents();
+        theFilePackage.initializePackageContents();
+        theFtpPackage.initializePackageContents();
+        theJmsPackage.initializePackageContents();
+        theJpaPackage.initializePackageContents();
+        theMailPackage.initializePackageContents();
+        theNettyPackage.initializePackageContents();
+        theQuartzPackage.initializePackageContents();
+        theSqlPackage.initializePackageContents();
 
         // Fix loaded packages
         theSpringPackage.fixPackageContents();

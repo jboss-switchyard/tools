@@ -3,7 +3,6 @@
 package org.switchyard.tools.models.switchyard1_0.camel.atom.provider;
 
 
-import java.math.BigInteger;
 import java.util.Collection;
 import java.util.List;
 

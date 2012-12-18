@@ -16,8 +16,6 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.soa.sca.sca1_1.model.sca.CommonExtensionBase;
 import org.eclipse.soa.sca.sca1_1.model.sca.Implementation;
 import org.switchyard.tools.models.switchyard1_0.bpm.*;
-import org.switchyard.tools.models.switchyard1_0.commonrules.AuditType1;
-import org.switchyard.tools.models.switchyard1_0.commonrules.CommonImplementationType;
 
 /**
  * <!-- begin-user-doc -->
@@ -76,72 +74,92 @@ public class BPMAdapterFactory extends AdapterFactoryImpl {
 	protected BPMSwitch<Adapter> modelSwitch =
 		new BPMSwitch<Adapter>() {
             @Override
-            public Adapter caseActionType1(ActionType1 object) {
-                return createActionType1Adapter();
+            public Adapter caseActionsType(ActionsType object) {
+                return createActionsTypeAdapter();
             }
             @Override
-            public Adapter caseAuditType(AuditType object) {
-                return createAuditTypeAdapter();
+            public Adapter caseActionType1(ActionType1 object) {
+                return createActionType1Adapter();
             }
             @Override
             public Adapter caseBPMImplementationType(BPMImplementationType object) {
                 return createBPMImplementationTypeAdapter();
             }
             @Override
+            public Adapter caseChannelsType(ChannelsType object) {
+                return createChannelsTypeAdapter();
+            }
+            @Override
+            public Adapter caseChannelType(ChannelType object) {
+                return createChannelTypeAdapter();
+            }
+            @Override
+            public Adapter caseContainerType(ContainerType object) {
+                return createContainerTypeAdapter();
+            }
+            @Override
             public Adapter caseDocumentRoot(DocumentRoot object) {
                 return createDocumentRootAdapter();
+            }
+            @Override
+            public Adapter caseListenersType(ListenersType object) {
+                return createListenersTypeAdapter();
+            }
+            @Override
+            public Adapter caseListenerType(ListenerType object) {
+                return createListenerTypeAdapter();
+            }
+            @Override
+            public Adapter caseLoggersType(LoggersType object) {
+                return createLoggersTypeAdapter();
+            }
+            @Override
+            public Adapter caseLoggerType1(LoggerType1 object) {
+                return createLoggerType1Adapter();
+            }
+            @Override
+            public Adapter caseManifestType(ManifestType object) {
+                return createManifestTypeAdapter();
+            }
+            @Override
+            public Adapter caseMappingsType(MappingsType object) {
+                return createMappingsTypeAdapter();
             }
             @Override
             public Adapter caseMappingType(MappingType object) {
                 return createMappingTypeAdapter();
             }
             @Override
-            public Adapter caseParametersType(ParametersType object) {
-                return createParametersTypeAdapter();
+            public Adapter casePropertiesType(PropertiesType object) {
+                return createPropertiesTypeAdapter();
+            }
+            @Override
+            public Adapter casePropertyType(PropertyType object) {
+                return createPropertyTypeAdapter();
+            }
+            @Override
+            public Adapter caseResourcesType(ResourcesType object) {
+                return createResourcesTypeAdapter();
             }
             @Override
             public Adapter caseResourceType(ResourceType object) {
                 return createResourceTypeAdapter();
             }
             @Override
-            public Adapter caseResultsType(ResultsType object) {
-                return createResultsTypeAdapter();
+            public Adapter caseWorkItemHandlersType(WorkItemHandlersType object) {
+                return createWorkItemHandlersTypeAdapter();
             }
             @Override
-            public Adapter caseTaskHandlerType(TaskHandlerType object) {
-                return createTaskHandlerTypeAdapter();
-            }
-            @Override
-            public Adapter caseEventListenerType(EventListenerType object) {
-                return createEventListenerTypeAdapter();
+            public Adapter caseWorkItemHandlerType(WorkItemHandlerType object) {
+                return createWorkItemHandlerTypeAdapter();
             }
             @Override
             public Adapter caseCommonExtensionBase(CommonExtensionBase object) {
                 return createCommonExtensionBaseAdapter();
             }
             @Override
-            public Adapter caseAuditType1(AuditType1 object) {
-                return createAuditType1Adapter();
-            }
-            @Override
             public Adapter caseImplementation(Implementation object) {
                 return createImplementationAdapter();
-            }
-            @Override
-            public Adapter caseCommonImplementationType(CommonImplementationType object) {
-                return createCommonImplementationTypeAdapter();
-            }
-            @Override
-            public Adapter caseCommonRules_MappingType(org.switchyard.tools.models.switchyard1_0.commonrules.MappingType object) {
-                return createCommonRules_MappingTypeAdapter();
-            }
-            @Override
-            public Adapter caseSwitchyard_ResourceType(org.switchyard.tools.models.switchyard1_0.switchyard.ResourceType object) {
-                return createSwitchyard_ResourceTypeAdapter();
-            }
-            @Override
-            public Adapter caseCommonRules_EventListenerType(org.switchyard.tools.models.switchyard1_0.commonrules.EventListenerType object) {
-                return createCommonRules_EventListenerTypeAdapter();
             }
             @Override
             public Adapter defaultCase(EObject object) {
@@ -164,6 +182,20 @@ public class BPMAdapterFactory extends AdapterFactoryImpl {
 
 
 	/**
+     * Creates a new adapter for an object of class '{@link org.switchyard.tools.models.switchyard1_0.bpm.ActionsType <em>Actions Type</em>}'.
+     * <!-- begin-user-doc -->
+     * This default implementation returns null so that we can easily ignore cases;
+     * it's useful to ignore a case when inheritance will catch all the cases anyway.
+     * <!-- end-user-doc -->
+     * @return the new adapter.
+     * @see org.switchyard.tools.models.switchyard1_0.bpm.ActionsType
+     * @generated
+     */
+    public Adapter createActionsTypeAdapter() {
+        return null;
+    }
+
+    /**
      * Creates a new adapter for an object of class '{@link org.switchyard.tools.models.switchyard1_0.bpm.ActionType1 <em>Action Type1</em>}'.
      * <!-- begin-user-doc -->
 	 * This default implementation returns null so that we can easily ignore cases;
@@ -174,20 +206,6 @@ public class BPMAdapterFactory extends AdapterFactoryImpl {
      * @generated
      */
 	public Adapter createActionType1Adapter() {
-        return null;
-    }
-
-	/**
-     * Creates a new adapter for an object of class '{@link org.switchyard.tools.models.switchyard1_0.bpm.AuditType <em>Audit Type</em>}'.
-     * <!-- begin-user-doc -->
-	 * This default implementation returns null so that we can easily ignore cases;
-	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
-	 * <!-- end-user-doc -->
-     * @return the new adapter.
-     * @see org.switchyard.tools.models.switchyard1_0.bpm.AuditType
-     * @generated
-     */
-	public Adapter createAuditTypeAdapter() {
         return null;
     }
 
@@ -206,6 +224,48 @@ public class BPMAdapterFactory extends AdapterFactoryImpl {
     }
 
 	/**
+     * Creates a new adapter for an object of class '{@link org.switchyard.tools.models.switchyard1_0.bpm.ChannelsType <em>Channels Type</em>}'.
+     * <!-- begin-user-doc -->
+     * This default implementation returns null so that we can easily ignore cases;
+     * it's useful to ignore a case when inheritance will catch all the cases anyway.
+     * <!-- end-user-doc -->
+     * @return the new adapter.
+     * @see org.switchyard.tools.models.switchyard1_0.bpm.ChannelsType
+     * @generated
+     */
+    public Adapter createChannelsTypeAdapter() {
+        return null;
+    }
+
+    /**
+     * Creates a new adapter for an object of class '{@link org.switchyard.tools.models.switchyard1_0.bpm.ChannelType <em>Channel Type</em>}'.
+     * <!-- begin-user-doc -->
+     * This default implementation returns null so that we can easily ignore cases;
+     * it's useful to ignore a case when inheritance will catch all the cases anyway.
+     * <!-- end-user-doc -->
+     * @return the new adapter.
+     * @see org.switchyard.tools.models.switchyard1_0.bpm.ChannelType
+     * @generated
+     */
+    public Adapter createChannelTypeAdapter() {
+        return null;
+    }
+
+    /**
+     * Creates a new adapter for an object of class '{@link org.switchyard.tools.models.switchyard1_0.bpm.ContainerType <em>Container Type</em>}'.
+     * <!-- begin-user-doc -->
+     * This default implementation returns null so that we can easily ignore cases;
+     * it's useful to ignore a case when inheritance will catch all the cases anyway.
+     * <!-- end-user-doc -->
+     * @return the new adapter.
+     * @see org.switchyard.tools.models.switchyard1_0.bpm.ContainerType
+     * @generated
+     */
+    public Adapter createContainerTypeAdapter() {
+        return null;
+    }
+
+    /**
      * Creates a new adapter for an object of class '{@link org.switchyard.tools.models.switchyard1_0.bpm.DocumentRoot <em>Document Root</em>}'.
      * <!-- begin-user-doc -->
 	 * This default implementation returns null so that we can easily ignore cases;
@@ -220,6 +280,90 @@ public class BPMAdapterFactory extends AdapterFactoryImpl {
     }
 
 	/**
+     * Creates a new adapter for an object of class '{@link org.switchyard.tools.models.switchyard1_0.bpm.ListenersType <em>Listeners Type</em>}'.
+     * <!-- begin-user-doc -->
+     * This default implementation returns null so that we can easily ignore cases;
+     * it's useful to ignore a case when inheritance will catch all the cases anyway.
+     * <!-- end-user-doc -->
+     * @return the new adapter.
+     * @see org.switchyard.tools.models.switchyard1_0.bpm.ListenersType
+     * @generated
+     */
+    public Adapter createListenersTypeAdapter() {
+        return null;
+    }
+
+    /**
+     * Creates a new adapter for an object of class '{@link org.switchyard.tools.models.switchyard1_0.bpm.ListenerType <em>Listener Type</em>}'.
+     * <!-- begin-user-doc -->
+     * This default implementation returns null so that we can easily ignore cases;
+     * it's useful to ignore a case when inheritance will catch all the cases anyway.
+     * <!-- end-user-doc -->
+     * @return the new adapter.
+     * @see org.switchyard.tools.models.switchyard1_0.bpm.ListenerType
+     * @generated
+     */
+    public Adapter createListenerTypeAdapter() {
+        return null;
+    }
+
+    /**
+     * Creates a new adapter for an object of class '{@link org.switchyard.tools.models.switchyard1_0.bpm.LoggersType <em>Loggers Type</em>}'.
+     * <!-- begin-user-doc -->
+     * This default implementation returns null so that we can easily ignore cases;
+     * it's useful to ignore a case when inheritance will catch all the cases anyway.
+     * <!-- end-user-doc -->
+     * @return the new adapter.
+     * @see org.switchyard.tools.models.switchyard1_0.bpm.LoggersType
+     * @generated
+     */
+    public Adapter createLoggersTypeAdapter() {
+        return null;
+    }
+
+    /**
+     * Creates a new adapter for an object of class '{@link org.switchyard.tools.models.switchyard1_0.bpm.LoggerType1 <em>Logger Type1</em>}'.
+     * <!-- begin-user-doc -->
+     * This default implementation returns null so that we can easily ignore cases;
+     * it's useful to ignore a case when inheritance will catch all the cases anyway.
+     * <!-- end-user-doc -->
+     * @return the new adapter.
+     * @see org.switchyard.tools.models.switchyard1_0.bpm.LoggerType1
+     * @generated
+     */
+    public Adapter createLoggerType1Adapter() {
+        return null;
+    }
+
+    /**
+     * Creates a new adapter for an object of class '{@link org.switchyard.tools.models.switchyard1_0.bpm.ManifestType <em>Manifest Type</em>}'.
+     * <!-- begin-user-doc -->
+     * This default implementation returns null so that we can easily ignore cases;
+     * it's useful to ignore a case when inheritance will catch all the cases anyway.
+     * <!-- end-user-doc -->
+     * @return the new adapter.
+     * @see org.switchyard.tools.models.switchyard1_0.bpm.ManifestType
+     * @generated
+     */
+    public Adapter createManifestTypeAdapter() {
+        return null;
+    }
+
+    /**
+     * Creates a new adapter for an object of class '{@link org.switchyard.tools.models.switchyard1_0.bpm.MappingsType <em>Mappings Type</em>}'.
+     * <!-- begin-user-doc -->
+     * This default implementation returns null so that we can easily ignore cases;
+     * it's useful to ignore a case when inheritance will catch all the cases anyway.
+     * <!-- end-user-doc -->
+     * @return the new adapter.
+     * @see org.switchyard.tools.models.switchyard1_0.bpm.MappingsType
+     * @generated
+     */
+    public Adapter createMappingsTypeAdapter() {
+        return null;
+    }
+
+    /**
      * Creates a new adapter for an object of class '{@link org.switchyard.tools.models.switchyard1_0.bpm.MappingType <em>Mapping Type</em>}'.
      * <!-- begin-user-doc -->
      * This default implementation returns null so that we can easily ignore cases;
@@ -234,16 +378,44 @@ public class BPMAdapterFactory extends AdapterFactoryImpl {
     }
 
     /**
-     * Creates a new adapter for an object of class '{@link org.switchyard.tools.models.switchyard1_0.bpm.ParametersType <em>Parameters Type</em>}'.
+     * Creates a new adapter for an object of class '{@link org.switchyard.tools.models.switchyard1_0.bpm.PropertiesType <em>Properties Type</em>}'.
      * <!-- begin-user-doc -->
      * This default implementation returns null so that we can easily ignore cases;
      * it's useful to ignore a case when inheritance will catch all the cases anyway.
      * <!-- end-user-doc -->
      * @return the new adapter.
-     * @see org.switchyard.tools.models.switchyard1_0.bpm.ParametersType
+     * @see org.switchyard.tools.models.switchyard1_0.bpm.PropertiesType
      * @generated
      */
-    public Adapter createParametersTypeAdapter() {
+    public Adapter createPropertiesTypeAdapter() {
+        return null;
+    }
+
+    /**
+     * Creates a new adapter for an object of class '{@link org.switchyard.tools.models.switchyard1_0.bpm.PropertyType <em>Property Type</em>}'.
+     * <!-- begin-user-doc -->
+     * This default implementation returns null so that we can easily ignore cases;
+     * it's useful to ignore a case when inheritance will catch all the cases anyway.
+     * <!-- end-user-doc -->
+     * @return the new adapter.
+     * @see org.switchyard.tools.models.switchyard1_0.bpm.PropertyType
+     * @generated
+     */
+    public Adapter createPropertyTypeAdapter() {
+        return null;
+    }
+
+    /**
+     * Creates a new adapter for an object of class '{@link org.switchyard.tools.models.switchyard1_0.bpm.ResourcesType <em>Resources Type</em>}'.
+     * <!-- begin-user-doc -->
+     * This default implementation returns null so that we can easily ignore cases;
+     * it's useful to ignore a case when inheritance will catch all the cases anyway.
+     * <!-- end-user-doc -->
+     * @return the new adapter.
+     * @see org.switchyard.tools.models.switchyard1_0.bpm.ResourcesType
+     * @generated
+     */
+    public Adapter createResourcesTypeAdapter() {
         return null;
     }
 
@@ -262,44 +434,30 @@ public class BPMAdapterFactory extends AdapterFactoryImpl {
     }
 
 	/**
-     * Creates a new adapter for an object of class '{@link org.switchyard.tools.models.switchyard1_0.bpm.ResultsType <em>Results Type</em>}'.
+     * Creates a new adapter for an object of class '{@link org.switchyard.tools.models.switchyard1_0.bpm.WorkItemHandlersType <em>Work Item Handlers Type</em>}'.
      * <!-- begin-user-doc -->
      * This default implementation returns null so that we can easily ignore cases;
      * it's useful to ignore a case when inheritance will catch all the cases anyway.
      * <!-- end-user-doc -->
      * @return the new adapter.
-     * @see org.switchyard.tools.models.switchyard1_0.bpm.ResultsType
+     * @see org.switchyard.tools.models.switchyard1_0.bpm.WorkItemHandlersType
      * @generated
      */
-    public Adapter createResultsTypeAdapter() {
+    public Adapter createWorkItemHandlersTypeAdapter() {
         return null;
     }
 
     /**
-     * Creates a new adapter for an object of class '{@link org.switchyard.tools.models.switchyard1_0.bpm.TaskHandlerType <em>Task Handler Type</em>}'.
-     * <!-- begin-user-doc -->
-	 * This default implementation returns null so that we can easily ignore cases;
-	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
-	 * <!-- end-user-doc -->
-     * @return the new adapter.
-     * @see org.switchyard.tools.models.switchyard1_0.bpm.TaskHandlerType
-     * @generated
-     */
-	public Adapter createTaskHandlerTypeAdapter() {
-        return null;
-    }
-
-	/**
-     * Creates a new adapter for an object of class '{@link org.switchyard.tools.models.switchyard1_0.bpm.EventListenerType <em>Event Listener Type</em>}'.
+     * Creates a new adapter for an object of class '{@link org.switchyard.tools.models.switchyard1_0.bpm.WorkItemHandlerType <em>Work Item Handler Type</em>}'.
      * <!-- begin-user-doc -->
      * This default implementation returns null so that we can easily ignore cases;
      * it's useful to ignore a case when inheritance will catch all the cases anyway.
      * <!-- end-user-doc -->
      * @return the new adapter.
-     * @see org.switchyard.tools.models.switchyard1_0.bpm.EventListenerType
+     * @see org.switchyard.tools.models.switchyard1_0.bpm.WorkItemHandlerType
      * @generated
      */
-    public Adapter createEventListenerTypeAdapter() {
+    public Adapter createWorkItemHandlerTypeAdapter() {
         return null;
     }
 
@@ -318,20 +476,6 @@ public class BPMAdapterFactory extends AdapterFactoryImpl {
     }
 
     /**
-     * Creates a new adapter for an object of class '{@link org.switchyard.tools.models.switchyard1_0.commonrules.AuditType1 <em>Audit Type1</em>}'.
-     * <!-- begin-user-doc -->
-     * This default implementation returns null so that we can easily ignore cases;
-     * it's useful to ignore a case when inheritance will catch all the cases anyway.
-     * <!-- end-user-doc -->
-     * @return the new adapter.
-     * @see org.switchyard.tools.models.switchyard1_0.commonrules.AuditType1
-     * @generated
-     */
-    public Adapter createAuditType1Adapter() {
-        return null;
-    }
-
-    /**
      * Creates a new adapter for an object of class '{@link org.eclipse.soa.sca.sca1_1.model.sca.Implementation <em>Implementation</em>}'.
      * <!-- begin-user-doc -->
      * This default implementation returns null so that we can easily ignore cases;
@@ -342,62 +486,6 @@ public class BPMAdapterFactory extends AdapterFactoryImpl {
      * @generated
      */
     public Adapter createImplementationAdapter() {
-        return null;
-    }
-
-    /**
-     * Creates a new adapter for an object of class '{@link org.switchyard.tools.models.switchyard1_0.commonrules.CommonImplementationType <em>Common Implementation Type</em>}'.
-     * <!-- begin-user-doc -->
-     * This default implementation returns null so that we can easily ignore cases;
-     * it's useful to ignore a case when inheritance will catch all the cases anyway.
-     * <!-- end-user-doc -->
-     * @return the new adapter.
-     * @see org.switchyard.tools.models.switchyard1_0.commonrules.CommonImplementationType
-     * @generated
-     */
-    public Adapter createCommonImplementationTypeAdapter() {
-        return null;
-    }
-
-    /**
-     * Creates a new adapter for an object of class '{@link org.switchyard.tools.models.switchyard1_0.commonrules.MappingType <em>Mapping Type</em>}'.
-     * <!-- begin-user-doc -->
-     * This default implementation returns null so that we can easily ignore cases;
-     * it's useful to ignore a case when inheritance will catch all the cases anyway.
-     * <!-- end-user-doc -->
-     * @return the new adapter.
-     * @see org.switchyard.tools.models.switchyard1_0.commonrules.MappingType
-     * @generated
-     */
-    public Adapter createCommonRules_MappingTypeAdapter() {
-        return null;
-    }
-
-    /**
-     * Creates a new adapter for an object of class '{@link org.switchyard.tools.models.switchyard1_0.switchyard.ResourceType <em>Resource Type</em>}'.
-     * <!-- begin-user-doc -->
-     * This default implementation returns null so that we can easily ignore cases;
-     * it's useful to ignore a case when inheritance will catch all the cases anyway.
-     * <!-- end-user-doc -->
-     * @return the new adapter.
-     * @see org.switchyard.tools.models.switchyard1_0.switchyard.ResourceType
-     * @generated
-     */
-    public Adapter createSwitchyard_ResourceTypeAdapter() {
-        return null;
-    }
-
-    /**
-     * Creates a new adapter for an object of class '{@link org.switchyard.tools.models.switchyard1_0.commonrules.EventListenerType <em>Event Listener Type</em>}'.
-     * <!-- begin-user-doc -->
-     * This default implementation returns null so that we can easily ignore cases;
-     * it's useful to ignore a case when inheritance will catch all the cases anyway.
-     * <!-- end-user-doc -->
-     * @return the new adapter.
-     * @see org.switchyard.tools.models.switchyard1_0.commonrules.EventListenerType
-     * @generated
-     */
-    public Adapter createCommonRules_EventListenerTypeAdapter() {
         return null;
     }
 

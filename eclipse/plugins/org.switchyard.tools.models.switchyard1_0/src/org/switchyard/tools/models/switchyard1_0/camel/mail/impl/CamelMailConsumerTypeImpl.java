@@ -2,7 +2,6 @@
  */
 package org.switchyard.tools.models.switchyard1_0.camel.mail.impl;
 
-import java.math.BigInteger;
 import org.eclipse.emf.common.notify.Notification;
 
 import org.eclipse.emf.ecore.EClass;

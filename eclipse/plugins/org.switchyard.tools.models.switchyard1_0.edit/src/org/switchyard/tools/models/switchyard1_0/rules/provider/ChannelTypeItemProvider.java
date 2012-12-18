@@ -68,7 +68,6 @@ public class ChannelTypeItemProvider
             super.getPropertyDescriptors(object);
 
             addClassPropertyDescriptor(object);
-            addInputPropertyDescriptor(object);
             addNamePropertyDescriptor(object);
             addOperationPropertyDescriptor(object);
             addReferencePropertyDescriptor(object);
@@ -90,28 +89,6 @@ public class ChannelTypeItemProvider
                  getString("_UI_ChannelType_class_feature"),
                  getString("_UI_PropertyDescriptor_description", "_UI_ChannelType_class_feature", "_UI_ChannelType_type"),
                  RulesPackage.Literals.CHANNEL_TYPE__CLASS,
-                 true,
-                 false,
-                 false,
-                 ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
-                 null,
-                 null));
-    }
-
-    /**
-     * This adds a property descriptor for the Input feature.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    protected void addInputPropertyDescriptor(Object object) {
-        itemPropertyDescriptors.add
-            (createItemPropertyDescriptor
-                (((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
-                 getResourceLocator(),
-                 getString("_UI_ChannelType_input_feature"),
-                 getString("_UI_PropertyDescriptor_description", "_UI_ChannelType_input_feature", "_UI_ChannelType_type"),
-                 RulesPackage.Literals.CHANNEL_TYPE__INPUT,
                  true,
                  false,
                  false,
@@ -224,7 +201,6 @@ public class ChannelTypeItemProvider
 
         switch (notification.getFeatureID(ChannelType.class)) {
             case RulesPackage.CHANNEL_TYPE__CLASS:
-            case RulesPackage.CHANNEL_TYPE__INPUT:
             case RulesPackage.CHANNEL_TYPE__NAME:
             case RulesPackage.CHANNEL_TYPE__OPERATION:
             case RulesPackage.CHANNEL_TYPE__REFERENCE:

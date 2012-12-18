@@ -15,6 +15,9 @@ import org.eclipse.emf.common.notify.Notification;
 
 import org.eclipse.emf.common.util.ResourceLocator;
 
+import org.eclipse.emf.ecore.EStructuralFeature;
+import org.eclipse.emf.ecore.util.FeatureMap;
+import org.eclipse.emf.ecore.util.FeatureMapUtil;
 import org.eclipse.emf.edit.provider.ComposeableAdapterFactory;
 import org.eclipse.emf.edit.provider.IEditingDomainItemProvider;
 import org.eclipse.emf.edit.provider.IItemLabelProvider;
@@ -30,6 +33,7 @@ import org.eclipse.soa.sca.sca1_1.model.sca.provider.CommonExtensionBaseItemProv
 import org.switchyard.tools.models.switchyard1_0.bean.provider.Switchyard_1EditPlugin;
 
 import org.switchyard.tools.models.switchyard1_0.bpm.ActionType1;
+import org.switchyard.tools.models.switchyard1_0.bpm.BPMFactory;
 import org.switchyard.tools.models.switchyard1_0.bpm.BPMPackage;
 
 /**
@@ -67,27 +71,49 @@ public class ActionType1ItemProvider
         if (itemPropertyDescriptors == null) {
             super.getPropertyDescriptors(object);
 
-            addNamePropertyDescriptor(object);
+            addIdPropertyDescriptor(object);
+            addOperationPropertyDescriptor(object);
             addTypePropertyDescriptor(object);
-            addEventTypePropertyDescriptor(object);
         }
         return itemPropertyDescriptors;
     }
 
     /**
-     * This adds a property descriptor for the Name feature.
+     * This adds a property descriptor for the Id feature.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @generated
      */
-    protected void addNamePropertyDescriptor(Object object) {
+    protected void addIdPropertyDescriptor(Object object) {
         itemPropertyDescriptors.add
             (createItemPropertyDescriptor
                 (((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
                  getResourceLocator(),
-                 getString("_UI_ActionType1_name_feature"),
-                 getString("_UI_PropertyDescriptor_description", "_UI_ActionType1_name_feature", "_UI_ActionType1_type"),
-                 BPMPackage.Literals.ACTION_TYPE1__NAME,
+                 getString("_UI_ActionType1_id_feature"),
+                 getString("_UI_PropertyDescriptor_description", "_UI_ActionType1_id_feature", "_UI_ActionType1_type"),
+                 BPMPackage.Literals.ACTION_TYPE1__ID,
+                 true,
+                 false,
+                 false,
+                 ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
+                 null,
+                 null));
+    }
+
+    /**
+     * This adds a property descriptor for the Operation feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    protected void addOperationPropertyDescriptor(Object object) {
+        itemPropertyDescriptors.add
+            (createItemPropertyDescriptor
+                (((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+                 getResourceLocator(),
+                 getString("_UI_ActionType1_operation_feature"),
+                 getString("_UI_PropertyDescriptor_description", "_UI_ActionType1_operation_feature", "_UI_ActionType1_type"),
+                 BPMPackage.Literals.ACTION_TYPE1__OPERATION,
                  true,
                  false,
                  false,
@@ -119,25 +145,35 @@ public class ActionType1ItemProvider
     }
 
     /**
-     * This adds a property descriptor for the Event Type feature.
+     * This specifies how to implement {@link #getChildren} and is used to deduce an appropriate feature for an
+     * {@link org.eclipse.emf.edit.command.AddCommand}, {@link org.eclipse.emf.edit.command.RemoveCommand} or
+     * {@link org.eclipse.emf.edit.command.MoveCommand} in {@link #createCommand}.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @generated
      */
-    protected void addEventTypePropertyDescriptor(Object object) {
-        itemPropertyDescriptors.add
-            (createItemPropertyDescriptor
-                (((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
-                 getResourceLocator(),
-                 getString("_UI_ActionType1_eventType_feature"),
-                 getString("_UI_PropertyDescriptor_description", "_UI_ActionType1_eventType_feature", "_UI_ActionType1_type"),
-                 BPMPackage.Literals.ACTION_TYPE1__EVENT_TYPE,
-                 true,
-                 false,
-                 false,
-                 ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
-                 null,
-                 null));
+    @Override
+    public Collection<? extends EStructuralFeature> getChildrenFeatures(Object object) {
+        if (childrenFeatures == null) {
+            super.getChildrenFeatures(object);
+            childrenFeatures.add(BPMPackage.Literals.ACTION_TYPE1__GLOBALS);
+            childrenFeatures.add(BPMPackage.Literals.ACTION_TYPE1__INPUTS);
+            childrenFeatures.add(BPMPackage.Literals.ACTION_TYPE1__OUTPUTS);
+        }
+        return childrenFeatures;
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    @Override
+    protected EStructuralFeature getChildFeature(Object object, Object child) {
+        // Check the type of the specified child object and return the proper feature to use for
+        // adding (see {@link AddCommand}) it as a child.
+
+        return super.getChildFeature(object, child);
     }
 
     /**
@@ -159,7 +195,7 @@ public class ActionType1ItemProvider
      */
     @Override
     public String getText(Object object) {
-        String label = ((ActionType1)object).getName();
+        String label = ((ActionType1)object).getId();
         return label == null || label.length() == 0 ?
             getString("_UI_ActionType1_type") :
             getString("_UI_ActionType1_type") + " " + label;
@@ -177,10 +213,15 @@ public class ActionType1ItemProvider
         updateChildren(notification);
 
         switch (notification.getFeatureID(ActionType1.class)) {
-            case BPMPackage.ACTION_TYPE1__NAME:
+            case BPMPackage.ACTION_TYPE1__ID:
+            case BPMPackage.ACTION_TYPE1__OPERATION:
             case BPMPackage.ACTION_TYPE1__TYPE:
-            case BPMPackage.ACTION_TYPE1__EVENT_TYPE:
                 fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
+                return;
+            case BPMPackage.ACTION_TYPE1__GLOBALS:
+            case BPMPackage.ACTION_TYPE1__INPUTS:
+            case BPMPackage.ACTION_TYPE1__OUTPUTS:
+                fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), true, false));
                 return;
         }
         super.notifyChanged(notification);
@@ -196,6 +237,51 @@ public class ActionType1ItemProvider
     @Override
     protected void collectNewChildDescriptors(Collection<Object> newChildDescriptors, Object object) {
         super.collectNewChildDescriptors(newChildDescriptors, object);
+
+        newChildDescriptors.add
+            (createChildParameter
+                (BPMPackage.Literals.ACTION_TYPE1__GLOBALS,
+                 BPMFactory.eINSTANCE.createMappingsType()));
+
+        newChildDescriptors.add
+            (createChildParameter
+                (BPMPackage.Literals.ACTION_TYPE1__INPUTS,
+                 BPMFactory.eINSTANCE.createMappingsType()));
+
+        newChildDescriptors.add
+            (createChildParameter
+                (BPMPackage.Literals.ACTION_TYPE1__OUTPUTS,
+                 BPMFactory.eINSTANCE.createMappingsType()));
+    }
+
+    /**
+     * This returns the label text for {@link org.eclipse.emf.edit.command.CreateChildCommand}.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    @Override
+    public String getCreateChildText(Object owner, Object feature, Object child, Collection<?> selection) {
+        Object childFeature = feature;
+        Object childObject = child;
+
+        if (childFeature instanceof EStructuralFeature && FeatureMapUtil.isFeatureMap((EStructuralFeature)childFeature)) {
+            FeatureMap.Entry entry = (FeatureMap.Entry)childObject;
+            childFeature = entry.getEStructuralFeature();
+            childObject = entry.getValue();
+        }
+
+        boolean qualify =
+            childFeature == BPMPackage.Literals.ACTION_TYPE1__GLOBALS ||
+            childFeature == BPMPackage.Literals.ACTION_TYPE1__INPUTS ||
+            childFeature == BPMPackage.Literals.ACTION_TYPE1__OUTPUTS;
+
+        if (qualify) {
+            return getString
+                ("_UI_CreateChild_text2",
+                 new Object[] { getTypeText(childObject), getFeatureText(childFeature), getTypeText(owner) });
+        }
+        return super.getCreateChildText(owner, feature, child, selection);
     }
 
     /**

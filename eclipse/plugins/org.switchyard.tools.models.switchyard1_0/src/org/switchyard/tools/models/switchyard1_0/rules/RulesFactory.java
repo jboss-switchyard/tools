@@ -26,6 +26,15 @@ public interface RulesFactory extends EFactory {
 	RulesFactory eINSTANCE = org.switchyard.tools.models.switchyard1_0.rules.impl.RulesFactoryImpl.init();
 
 	/**
+     * Returns a new object of class '<em>Actions Type</em>'.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @return a new object of class '<em>Actions Type</em>'.
+     * @generated
+     */
+    ActionsType createActionsType();
+
+    /**
      * Returns a new object of class '<em>Action Type1</em>'.
      * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -35,15 +44,15 @@ public interface RulesFactory extends EFactory {
 	ActionType1 createActionType1();
 
 	/**
-     * Returns a new object of class '<em>Audit Type</em>'.
+     * Returns a new object of class '<em>Channels Type</em>'.
      * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-     * @return a new object of class '<em>Audit Type</em>'.
+     * <!-- end-user-doc -->
+     * @return a new object of class '<em>Channels Type</em>'.
      * @generated
      */
-	AuditType createAuditType();
+    ChannelsType createChannelsType();
 
-	/**
+    /**
      * Returns a new object of class '<em>Channel Type</em>'.
      * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -53,6 +62,15 @@ public interface RulesFactory extends EFactory {
 	ChannelType createChannelType();
 
 	/**
+     * Returns a new object of class '<em>Container Type</em>'.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @return a new object of class '<em>Container Type</em>'.
+     * @generated
+     */
+    ContainerType createContainerType();
+
+    /**
      * Returns a new object of class '<em>Document Root</em>'.
      * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -62,13 +80,58 @@ public interface RulesFactory extends EFactory {
 	DocumentRoot createDocumentRoot();
 
 	/**
-     * Returns a new object of class '<em>Globals Type</em>'.
+     * Returns a new object of class '<em>Listeners Type</em>'.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @return a new object of class '<em>Globals Type</em>'.
+     * @return a new object of class '<em>Listeners Type</em>'.
      * @generated
      */
-    GlobalsType createGlobalsType();
+    ListenersType createListenersType();
+
+    /**
+     * Returns a new object of class '<em>Listener Type</em>'.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @return a new object of class '<em>Listener Type</em>'.
+     * @generated
+     */
+    ListenerType createListenerType();
+
+    /**
+     * Returns a new object of class '<em>Loggers Type</em>'.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @return a new object of class '<em>Loggers Type</em>'.
+     * @generated
+     */
+    LoggersType createLoggersType();
+
+    /**
+     * Returns a new object of class '<em>Logger Type1</em>'.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @return a new object of class '<em>Logger Type1</em>'.
+     * @generated
+     */
+    LoggerType1 createLoggerType1();
+
+    /**
+     * Returns a new object of class '<em>Manifest Type</em>'.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @return a new object of class '<em>Manifest Type</em>'.
+     * @generated
+     */
+    ManifestType createManifestType();
+
+    /**
+     * Returns a new object of class '<em>Mappings Type</em>'.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @return a new object of class '<em>Mappings Type</em>'.
+     * @generated
+     */
+    MappingsType createMappingsType();
 
     /**
      * Returns a new object of class '<em>Mapping Type</em>'.
@@ -78,6 +141,33 @@ public interface RulesFactory extends EFactory {
      * @generated
      */
     MappingType createMappingType();
+
+    /**
+     * Returns a new object of class '<em>Properties Type</em>'.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @return a new object of class '<em>Properties Type</em>'.
+     * @generated
+     */
+    PropertiesType createPropertiesType();
+
+    /**
+     * Returns a new object of class '<em>Property Type</em>'.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @return a new object of class '<em>Property Type</em>'.
+     * @generated
+     */
+    PropertyType createPropertyType();
+
+    /**
+     * Returns a new object of class '<em>Resources Type</em>'.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @return a new object of class '<em>Resources Type</em>'.
+     * @generated
+     */
+    ResourcesType createResourcesType();
 
     /**
      * Returns a new object of class '<em>Resource Type</em>'.
@@ -98,24 +188,6 @@ public interface RulesFactory extends EFactory {
 	RulesImplementationType createRulesImplementationType();
 
 	/**
-     * Returns a new object of class '<em>Facts Type</em>'.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @return a new object of class '<em>Facts Type</em>'.
-     * @generated
-     */
-    FactsType createFactsType();
-
-    /**
-     * Returns a new object of class '<em>Event Listener Type</em>'.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @return a new object of class '<em>Event Listener Type</em>'.
-     * @generated
-     */
-    EventListenerType createEventListenerType();
-
-    /**
      * Returns the package supported by this factory.
      * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->

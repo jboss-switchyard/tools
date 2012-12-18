@@ -10,8 +10,6 @@ import org.eclipse.emf.ecore.InternalEObject;
 
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 
-import org.switchyard.tools.models.switchyard1_0.camel.core.impl.BaseCamelBindingImpl;
-
 import org.switchyard.tools.models.switchyard1_0.camel.jpa.CamelJPABindingType;
 import org.switchyard.tools.models.switchyard1_0.camel.jpa.JpaConsumerType;
 import org.switchyard.tools.models.switchyard1_0.camel.jpa.JpaPackage;

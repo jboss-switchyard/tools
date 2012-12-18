@@ -2,9 +2,7 @@
  */
 package org.switchyard.tools.models.switchyard1_0.camel.ftp;
 
-import java.math.BigInteger;
 import org.eclipse.emf.ecore.EObject;
-import org.switchyard.tools.models.switchyard1_0.camel.core.GenericFileConsumerType;
 
 /**
  * <!-- begin-user-doc -->

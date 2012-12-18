@@ -26,6 +26,15 @@ public interface BPMFactory extends EFactory {
 	BPMFactory eINSTANCE = org.switchyard.tools.models.switchyard1_0.bpm.impl.BPMFactoryImpl.init();
 
 	/**
+     * Returns a new object of class '<em>Actions Type</em>'.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @return a new object of class '<em>Actions Type</em>'.
+     * @generated
+     */
+    ActionsType createActionsType();
+
+    /**
      * Returns a new object of class '<em>Action Type1</em>'.
      * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -33,15 +42,6 @@ public interface BPMFactory extends EFactory {
      * @generated
      */
 	ActionType1 createActionType1();
-
-	/**
-     * Returns a new object of class '<em>Audit Type</em>'.
-     * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-     * @return a new object of class '<em>Audit Type</em>'.
-     * @generated
-     */
-	AuditType createAuditType();
 
 	/**
      * Returns a new object of class '<em>Implementation Type</em>'.
@@ -53,6 +53,33 @@ public interface BPMFactory extends EFactory {
 	BPMImplementationType createBPMImplementationType();
 
 	/**
+     * Returns a new object of class '<em>Channels Type</em>'.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @return a new object of class '<em>Channels Type</em>'.
+     * @generated
+     */
+    ChannelsType createChannelsType();
+
+    /**
+     * Returns a new object of class '<em>Channel Type</em>'.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @return a new object of class '<em>Channel Type</em>'.
+     * @generated
+     */
+    ChannelType createChannelType();
+
+    /**
+     * Returns a new object of class '<em>Container Type</em>'.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @return a new object of class '<em>Container Type</em>'.
+     * @generated
+     */
+    ContainerType createContainerType();
+
+    /**
      * Returns a new object of class '<em>Document Root</em>'.
      * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -62,6 +89,60 @@ public interface BPMFactory extends EFactory {
 	DocumentRoot createDocumentRoot();
 
 	/**
+     * Returns a new object of class '<em>Listeners Type</em>'.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @return a new object of class '<em>Listeners Type</em>'.
+     * @generated
+     */
+    ListenersType createListenersType();
+
+    /**
+     * Returns a new object of class '<em>Listener Type</em>'.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @return a new object of class '<em>Listener Type</em>'.
+     * @generated
+     */
+    ListenerType createListenerType();
+
+    /**
+     * Returns a new object of class '<em>Loggers Type</em>'.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @return a new object of class '<em>Loggers Type</em>'.
+     * @generated
+     */
+    LoggersType createLoggersType();
+
+    /**
+     * Returns a new object of class '<em>Logger Type1</em>'.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @return a new object of class '<em>Logger Type1</em>'.
+     * @generated
+     */
+    LoggerType1 createLoggerType1();
+
+    /**
+     * Returns a new object of class '<em>Manifest Type</em>'.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @return a new object of class '<em>Manifest Type</em>'.
+     * @generated
+     */
+    ManifestType createManifestType();
+
+    /**
+     * Returns a new object of class '<em>Mappings Type</em>'.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @return a new object of class '<em>Mappings Type</em>'.
+     * @generated
+     */
+    MappingsType createMappingsType();
+
+    /**
      * Returns a new object of class '<em>Mapping Type</em>'.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
@@ -71,13 +152,31 @@ public interface BPMFactory extends EFactory {
     MappingType createMappingType();
 
     /**
-     * Returns a new object of class '<em>Parameters Type</em>'.
+     * Returns a new object of class '<em>Properties Type</em>'.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @return a new object of class '<em>Parameters Type</em>'.
+     * @return a new object of class '<em>Properties Type</em>'.
      * @generated
      */
-    ParametersType createParametersType();
+    PropertiesType createPropertiesType();
+
+    /**
+     * Returns a new object of class '<em>Property Type</em>'.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @return a new object of class '<em>Property Type</em>'.
+     * @generated
+     */
+    PropertyType createPropertyType();
+
+    /**
+     * Returns a new object of class '<em>Resources Type</em>'.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @return a new object of class '<em>Resources Type</em>'.
+     * @generated
+     */
+    ResourcesType createResourcesType();
 
     /**
      * Returns a new object of class '<em>Resource Type</em>'.
@@ -89,31 +188,22 @@ public interface BPMFactory extends EFactory {
 	ResourceType createResourceType();
 
 	/**
-     * Returns a new object of class '<em>Results Type</em>'.
+     * Returns a new object of class '<em>Work Item Handlers Type</em>'.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @return a new object of class '<em>Results Type</em>'.
+     * @return a new object of class '<em>Work Item Handlers Type</em>'.
      * @generated
      */
-    ResultsType createResultsType();
+    WorkItemHandlersType createWorkItemHandlersType();
 
     /**
-     * Returns a new object of class '<em>Task Handler Type</em>'.
-     * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-     * @return a new object of class '<em>Task Handler Type</em>'.
-     * @generated
-     */
-	TaskHandlerType createTaskHandlerType();
-
-	/**
-     * Returns a new object of class '<em>Event Listener Type</em>'.
+     * Returns a new object of class '<em>Work Item Handler Type</em>'.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @return a new object of class '<em>Event Listener Type</em>'.
+     * @return a new object of class '<em>Work Item Handler Type</em>'.
      * @generated
      */
-    EventListenerType createEventListenerType();
+    WorkItemHandlerType createWorkItemHandlerType();
 
     /**
      * Returns the package supported by this factory.

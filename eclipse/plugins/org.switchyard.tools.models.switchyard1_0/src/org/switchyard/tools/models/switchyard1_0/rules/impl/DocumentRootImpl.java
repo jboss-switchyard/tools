@@ -24,14 +24,22 @@ import org.eclipse.emf.ecore.util.FeatureMap;
 import org.eclipse.emf.ecore.util.InternalEList;
 
 import org.switchyard.tools.models.switchyard1_0.rules.ActionType1;
-import org.switchyard.tools.models.switchyard1_0.rules.AuditType;
+import org.switchyard.tools.models.switchyard1_0.rules.ActionsType;
 import org.switchyard.tools.models.switchyard1_0.rules.ChannelType;
+import org.switchyard.tools.models.switchyard1_0.rules.ChannelsType;
+import org.switchyard.tools.models.switchyard1_0.rules.ContainerType;
 import org.switchyard.tools.models.switchyard1_0.rules.DocumentRoot;
-import org.switchyard.tools.models.switchyard1_0.rules.EventListenerType;
-import org.switchyard.tools.models.switchyard1_0.rules.FactsType;
-import org.switchyard.tools.models.switchyard1_0.rules.GlobalsType;
+import org.switchyard.tools.models.switchyard1_0.rules.ListenerType;
+import org.switchyard.tools.models.switchyard1_0.rules.ListenersType;
+import org.switchyard.tools.models.switchyard1_0.rules.LoggerType1;
+import org.switchyard.tools.models.switchyard1_0.rules.LoggersType;
+import org.switchyard.tools.models.switchyard1_0.rules.ManifestType;
 import org.switchyard.tools.models.switchyard1_0.rules.MappingType;
+import org.switchyard.tools.models.switchyard1_0.rules.MappingsType;
+import org.switchyard.tools.models.switchyard1_0.rules.PropertiesType;
+import org.switchyard.tools.models.switchyard1_0.rules.PropertyType;
 import org.switchyard.tools.models.switchyard1_0.rules.ResourceType;
+import org.switchyard.tools.models.switchyard1_0.rules.ResourcesType;
 import org.switchyard.tools.models.switchyard1_0.rules.RulesImplementationType;
 import org.switchyard.tools.models.switchyard1_0.rules.RulesPackage;
 
@@ -46,14 +54,24 @@ import org.switchyard.tools.models.switchyard1_0.rules.RulesPackage;
  *   <li>{@link org.switchyard.tools.models.switchyard1_0.rules.impl.DocumentRootImpl#getXMLNSPrefixMap <em>XMLNS Prefix Map</em>}</li>
  *   <li>{@link org.switchyard.tools.models.switchyard1_0.rules.impl.DocumentRootImpl#getXSISchemaLocation <em>XSI Schema Location</em>}</li>
  *   <li>{@link org.switchyard.tools.models.switchyard1_0.rules.impl.DocumentRootImpl#getAction <em>Action</em>}</li>
- *   <li>{@link org.switchyard.tools.models.switchyard1_0.rules.impl.DocumentRootImpl#getAudit <em>Audit</em>}</li>
+ *   <li>{@link org.switchyard.tools.models.switchyard1_0.rules.impl.DocumentRootImpl#getActions <em>Actions</em>}</li>
  *   <li>{@link org.switchyard.tools.models.switchyard1_0.rules.impl.DocumentRootImpl#getChannel <em>Channel</em>}</li>
+ *   <li>{@link org.switchyard.tools.models.switchyard1_0.rules.impl.DocumentRootImpl#getChannels <em>Channels</em>}</li>
+ *   <li>{@link org.switchyard.tools.models.switchyard1_0.rules.impl.DocumentRootImpl#getContainer <em>Container</em>}</li>
  *   <li>{@link org.switchyard.tools.models.switchyard1_0.rules.impl.DocumentRootImpl#getGlobals <em>Globals</em>}</li>
  *   <li>{@link org.switchyard.tools.models.switchyard1_0.rules.impl.DocumentRootImpl#getImplementationRules <em>Implementation Rules</em>}</li>
+ *   <li>{@link org.switchyard.tools.models.switchyard1_0.rules.impl.DocumentRootImpl#getInputs <em>Inputs</em>}</li>
+ *   <li>{@link org.switchyard.tools.models.switchyard1_0.rules.impl.DocumentRootImpl#getListener <em>Listener</em>}</li>
+ *   <li>{@link org.switchyard.tools.models.switchyard1_0.rules.impl.DocumentRootImpl#getListeners <em>Listeners</em>}</li>
+ *   <li>{@link org.switchyard.tools.models.switchyard1_0.rules.impl.DocumentRootImpl#getLogger <em>Logger</em>}</li>
+ *   <li>{@link org.switchyard.tools.models.switchyard1_0.rules.impl.DocumentRootImpl#getLoggers <em>Loggers</em>}</li>
+ *   <li>{@link org.switchyard.tools.models.switchyard1_0.rules.impl.DocumentRootImpl#getManifest <em>Manifest</em>}</li>
  *   <li>{@link org.switchyard.tools.models.switchyard1_0.rules.impl.DocumentRootImpl#getMapping <em>Mapping</em>}</li>
+ *   <li>{@link org.switchyard.tools.models.switchyard1_0.rules.impl.DocumentRootImpl#getOutputs <em>Outputs</em>}</li>
+ *   <li>{@link org.switchyard.tools.models.switchyard1_0.rules.impl.DocumentRootImpl#getProperties <em>Properties</em>}</li>
+ *   <li>{@link org.switchyard.tools.models.switchyard1_0.rules.impl.DocumentRootImpl#getProperty <em>Property</em>}</li>
  *   <li>{@link org.switchyard.tools.models.switchyard1_0.rules.impl.DocumentRootImpl#getResource <em>Resource</em>}</li>
- *   <li>{@link org.switchyard.tools.models.switchyard1_0.rules.impl.DocumentRootImpl#getFacts <em>Facts</em>}</li>
- *   <li>{@link org.switchyard.tools.models.switchyard1_0.rules.impl.DocumentRootImpl#getEventListener <em>Event Listener</em>}</li>
+ *   <li>{@link org.switchyard.tools.models.switchyard1_0.rules.impl.DocumentRootImpl#getResources <em>Resources</em>}</li>
  * </ul>
  * </p>
  *
@@ -174,32 +192,32 @@ public class DocumentRootImpl extends EObjectImpl implements DocumentRoot {
 
 	/**
      * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
      * @generated
      */
-	public AuditType getAudit() {
-        return (AuditType)getMixed().get(RulesPackage.Literals.DOCUMENT_ROOT__AUDIT, true);
+    public ActionsType getActions() {
+        return (ActionsType)getMixed().get(RulesPackage.Literals.DOCUMENT_ROOT__ACTIONS, true);
     }
 
-	/**
+    /**
      * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
      * @generated
      */
-	public NotificationChain basicSetAudit(AuditType newAudit, NotificationChain msgs) {
-        return ((FeatureMap.Internal)getMixed()).basicAdd(RulesPackage.Literals.DOCUMENT_ROOT__AUDIT, newAudit, msgs);
+    public NotificationChain basicSetActions(ActionsType newActions, NotificationChain msgs) {
+        return ((FeatureMap.Internal)getMixed()).basicAdd(RulesPackage.Literals.DOCUMENT_ROOT__ACTIONS, newActions, msgs);
     }
 
-	/**
+    /**
      * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
      * @generated
      */
-	public void setAudit(AuditType newAudit) {
-        ((FeatureMap.Internal)getMixed()).set(RulesPackage.Literals.DOCUMENT_ROOT__AUDIT, newAudit);
+    public void setActions(ActionsType newActions) {
+        ((FeatureMap.Internal)getMixed()).set(RulesPackage.Literals.DOCUMENT_ROOT__ACTIONS, newActions);
     }
 
-	/**
+    /**
      * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
      * @generated
@@ -231,8 +249,8 @@ public class DocumentRootImpl extends EObjectImpl implements DocumentRoot {
      * <!-- end-user-doc -->
      * @generated
      */
-    public GlobalsType getGlobals() {
-        return (GlobalsType)getMixed().get(RulesPackage.Literals.DOCUMENT_ROOT__GLOBALS, true);
+    public ChannelsType getChannels() {
+        return (ChannelsType)getMixed().get(RulesPackage.Literals.DOCUMENT_ROOT__CHANNELS, true);
     }
 
     /**
@@ -240,7 +258,61 @@ public class DocumentRootImpl extends EObjectImpl implements DocumentRoot {
      * <!-- end-user-doc -->
      * @generated
      */
-    public NotificationChain basicSetGlobals(GlobalsType newGlobals, NotificationChain msgs) {
+    public NotificationChain basicSetChannels(ChannelsType newChannels, NotificationChain msgs) {
+        return ((FeatureMap.Internal)getMixed()).basicAdd(RulesPackage.Literals.DOCUMENT_ROOT__CHANNELS, newChannels, msgs);
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public void setChannels(ChannelsType newChannels) {
+        ((FeatureMap.Internal)getMixed()).set(RulesPackage.Literals.DOCUMENT_ROOT__CHANNELS, newChannels);
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public ContainerType getContainer() {
+        return (ContainerType)getMixed().get(RulesPackage.Literals.DOCUMENT_ROOT__CONTAINER, true);
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public NotificationChain basicSetContainer(ContainerType newContainer, NotificationChain msgs) {
+        return ((FeatureMap.Internal)getMixed()).basicAdd(RulesPackage.Literals.DOCUMENT_ROOT__CONTAINER, newContainer, msgs);
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public void setContainer(ContainerType newContainer) {
+        ((FeatureMap.Internal)getMixed()).set(RulesPackage.Literals.DOCUMENT_ROOT__CONTAINER, newContainer);
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public MappingsType getGlobals() {
+        return (MappingsType)getMixed().get(RulesPackage.Literals.DOCUMENT_ROOT__GLOBALS, true);
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public NotificationChain basicSetGlobals(MappingsType newGlobals, NotificationChain msgs) {
         return ((FeatureMap.Internal)getMixed()).basicAdd(RulesPackage.Literals.DOCUMENT_ROOT__GLOBALS, newGlobals, msgs);
     }
 
@@ -249,7 +321,7 @@ public class DocumentRootImpl extends EObjectImpl implements DocumentRoot {
      * <!-- end-user-doc -->
      * @generated
      */
-    public void setGlobals(GlobalsType newGlobals) {
+    public void setGlobals(MappingsType newGlobals) {
         ((FeatureMap.Internal)getMixed()).set(RulesPackage.Literals.DOCUMENT_ROOT__GLOBALS, newGlobals);
     }
 
@@ -285,6 +357,168 @@ public class DocumentRootImpl extends EObjectImpl implements DocumentRoot {
      * <!-- end-user-doc -->
      * @generated
      */
+    public MappingsType getInputs() {
+        return (MappingsType)getMixed().get(RulesPackage.Literals.DOCUMENT_ROOT__INPUTS, true);
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public NotificationChain basicSetInputs(MappingsType newInputs, NotificationChain msgs) {
+        return ((FeatureMap.Internal)getMixed()).basicAdd(RulesPackage.Literals.DOCUMENT_ROOT__INPUTS, newInputs, msgs);
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public void setInputs(MappingsType newInputs) {
+        ((FeatureMap.Internal)getMixed()).set(RulesPackage.Literals.DOCUMENT_ROOT__INPUTS, newInputs);
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public ListenerType getListener() {
+        return (ListenerType)getMixed().get(RulesPackage.Literals.DOCUMENT_ROOT__LISTENER, true);
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public NotificationChain basicSetListener(ListenerType newListener, NotificationChain msgs) {
+        return ((FeatureMap.Internal)getMixed()).basicAdd(RulesPackage.Literals.DOCUMENT_ROOT__LISTENER, newListener, msgs);
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public void setListener(ListenerType newListener) {
+        ((FeatureMap.Internal)getMixed()).set(RulesPackage.Literals.DOCUMENT_ROOT__LISTENER, newListener);
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public ListenersType getListeners() {
+        return (ListenersType)getMixed().get(RulesPackage.Literals.DOCUMENT_ROOT__LISTENERS, true);
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public NotificationChain basicSetListeners(ListenersType newListeners, NotificationChain msgs) {
+        return ((FeatureMap.Internal)getMixed()).basicAdd(RulesPackage.Literals.DOCUMENT_ROOT__LISTENERS, newListeners, msgs);
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public void setListeners(ListenersType newListeners) {
+        ((FeatureMap.Internal)getMixed()).set(RulesPackage.Literals.DOCUMENT_ROOT__LISTENERS, newListeners);
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public LoggerType1 getLogger() {
+        return (LoggerType1)getMixed().get(RulesPackage.Literals.DOCUMENT_ROOT__LOGGER, true);
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public NotificationChain basicSetLogger(LoggerType1 newLogger, NotificationChain msgs) {
+        return ((FeatureMap.Internal)getMixed()).basicAdd(RulesPackage.Literals.DOCUMENT_ROOT__LOGGER, newLogger, msgs);
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public void setLogger(LoggerType1 newLogger) {
+        ((FeatureMap.Internal)getMixed()).set(RulesPackage.Literals.DOCUMENT_ROOT__LOGGER, newLogger);
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public LoggersType getLoggers() {
+        return (LoggersType)getMixed().get(RulesPackage.Literals.DOCUMENT_ROOT__LOGGERS, true);
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public NotificationChain basicSetLoggers(LoggersType newLoggers, NotificationChain msgs) {
+        return ((FeatureMap.Internal)getMixed()).basicAdd(RulesPackage.Literals.DOCUMENT_ROOT__LOGGERS, newLoggers, msgs);
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public void setLoggers(LoggersType newLoggers) {
+        ((FeatureMap.Internal)getMixed()).set(RulesPackage.Literals.DOCUMENT_ROOT__LOGGERS, newLoggers);
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public ManifestType getManifest() {
+        return (ManifestType)getMixed().get(RulesPackage.Literals.DOCUMENT_ROOT__MANIFEST, true);
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public NotificationChain basicSetManifest(ManifestType newManifest, NotificationChain msgs) {
+        return ((FeatureMap.Internal)getMixed()).basicAdd(RulesPackage.Literals.DOCUMENT_ROOT__MANIFEST, newManifest, msgs);
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public void setManifest(ManifestType newManifest) {
+        ((FeatureMap.Internal)getMixed()).set(RulesPackage.Literals.DOCUMENT_ROOT__MANIFEST, newManifest);
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
     public MappingType getMapping() {
         return (MappingType)getMixed().get(RulesPackage.Literals.DOCUMENT_ROOT__MAPPING, true);
     }
@@ -305,6 +539,87 @@ public class DocumentRootImpl extends EObjectImpl implements DocumentRoot {
      */
     public void setMapping(MappingType newMapping) {
         ((FeatureMap.Internal)getMixed()).set(RulesPackage.Literals.DOCUMENT_ROOT__MAPPING, newMapping);
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public MappingsType getOutputs() {
+        return (MappingsType)getMixed().get(RulesPackage.Literals.DOCUMENT_ROOT__OUTPUTS, true);
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public NotificationChain basicSetOutputs(MappingsType newOutputs, NotificationChain msgs) {
+        return ((FeatureMap.Internal)getMixed()).basicAdd(RulesPackage.Literals.DOCUMENT_ROOT__OUTPUTS, newOutputs, msgs);
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public void setOutputs(MappingsType newOutputs) {
+        ((FeatureMap.Internal)getMixed()).set(RulesPackage.Literals.DOCUMENT_ROOT__OUTPUTS, newOutputs);
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public PropertiesType getProperties() {
+        return (PropertiesType)getMixed().get(RulesPackage.Literals.DOCUMENT_ROOT__PROPERTIES, true);
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public NotificationChain basicSetProperties(PropertiesType newProperties, NotificationChain msgs) {
+        return ((FeatureMap.Internal)getMixed()).basicAdd(RulesPackage.Literals.DOCUMENT_ROOT__PROPERTIES, newProperties, msgs);
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public void setProperties(PropertiesType newProperties) {
+        ((FeatureMap.Internal)getMixed()).set(RulesPackage.Literals.DOCUMENT_ROOT__PROPERTIES, newProperties);
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public PropertyType getProperty() {
+        return (PropertyType)getMixed().get(RulesPackage.Literals.DOCUMENT_ROOT__PROPERTY, true);
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public NotificationChain basicSetProperty(PropertyType newProperty, NotificationChain msgs) {
+        return ((FeatureMap.Internal)getMixed()).basicAdd(RulesPackage.Literals.DOCUMENT_ROOT__PROPERTY, newProperty, msgs);
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public void setProperty(PropertyType newProperty) {
+        ((FeatureMap.Internal)getMixed()).set(RulesPackage.Literals.DOCUMENT_ROOT__PROPERTY, newProperty);
     }
 
     /**
@@ -339,8 +654,8 @@ public class DocumentRootImpl extends EObjectImpl implements DocumentRoot {
      * <!-- end-user-doc -->
      * @generated
      */
-    public FactsType getFacts() {
-        return (FactsType)getMixed().get(RulesPackage.Literals.DOCUMENT_ROOT__FACTS, true);
+    public ResourcesType getResources() {
+        return (ResourcesType)getMixed().get(RulesPackage.Literals.DOCUMENT_ROOT__RESOURCES, true);
     }
 
     /**
@@ -348,8 +663,8 @@ public class DocumentRootImpl extends EObjectImpl implements DocumentRoot {
      * <!-- end-user-doc -->
      * @generated
      */
-    public NotificationChain basicSetFacts(FactsType newFacts, NotificationChain msgs) {
-        return ((FeatureMap.Internal)getMixed()).basicAdd(RulesPackage.Literals.DOCUMENT_ROOT__FACTS, newFacts, msgs);
+    public NotificationChain basicSetResources(ResourcesType newResources, NotificationChain msgs) {
+        return ((FeatureMap.Internal)getMixed()).basicAdd(RulesPackage.Literals.DOCUMENT_ROOT__RESOURCES, newResources, msgs);
     }
 
     /**
@@ -357,35 +672,8 @@ public class DocumentRootImpl extends EObjectImpl implements DocumentRoot {
      * <!-- end-user-doc -->
      * @generated
      */
-    public void setFacts(FactsType newFacts) {
-        ((FeatureMap.Internal)getMixed()).set(RulesPackage.Literals.DOCUMENT_ROOT__FACTS, newFacts);
-    }
-
-    /**
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    public EventListenerType getEventListener() {
-        return (EventListenerType)getMixed().get(RulesPackage.Literals.DOCUMENT_ROOT__EVENT_LISTENER, true);
-    }
-
-    /**
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    public NotificationChain basicSetEventListener(EventListenerType newEventListener, NotificationChain msgs) {
-        return ((FeatureMap.Internal)getMixed()).basicAdd(RulesPackage.Literals.DOCUMENT_ROOT__EVENT_LISTENER, newEventListener, msgs);
-    }
-
-    /**
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    public void setEventListener(EventListenerType newEventListener) {
-        ((FeatureMap.Internal)getMixed()).set(RulesPackage.Literals.DOCUMENT_ROOT__EVENT_LISTENER, newEventListener);
+    public void setResources(ResourcesType newResources) {
+        ((FeatureMap.Internal)getMixed()).set(RulesPackage.Literals.DOCUMENT_ROOT__RESOURCES, newResources);
     }
 
     /**
@@ -404,22 +692,42 @@ public class DocumentRootImpl extends EObjectImpl implements DocumentRoot {
                 return ((InternalEList<?>)getXSISchemaLocation()).basicRemove(otherEnd, msgs);
             case RulesPackage.DOCUMENT_ROOT__ACTION:
                 return basicSetAction(null, msgs);
-            case RulesPackage.DOCUMENT_ROOT__AUDIT:
-                return basicSetAudit(null, msgs);
+            case RulesPackage.DOCUMENT_ROOT__ACTIONS:
+                return basicSetActions(null, msgs);
             case RulesPackage.DOCUMENT_ROOT__CHANNEL:
                 return basicSetChannel(null, msgs);
+            case RulesPackage.DOCUMENT_ROOT__CHANNELS:
+                return basicSetChannels(null, msgs);
+            case RulesPackage.DOCUMENT_ROOT__CONTAINER:
+                return basicSetContainer(null, msgs);
             case RulesPackage.DOCUMENT_ROOT__GLOBALS:
                 return basicSetGlobals(null, msgs);
             case RulesPackage.DOCUMENT_ROOT__IMPLEMENTATION_RULES:
                 return basicSetImplementationRules(null, msgs);
+            case RulesPackage.DOCUMENT_ROOT__INPUTS:
+                return basicSetInputs(null, msgs);
+            case RulesPackage.DOCUMENT_ROOT__LISTENER:
+                return basicSetListener(null, msgs);
+            case RulesPackage.DOCUMENT_ROOT__LISTENERS:
+                return basicSetListeners(null, msgs);
+            case RulesPackage.DOCUMENT_ROOT__LOGGER:
+                return basicSetLogger(null, msgs);
+            case RulesPackage.DOCUMENT_ROOT__LOGGERS:
+                return basicSetLoggers(null, msgs);
+            case RulesPackage.DOCUMENT_ROOT__MANIFEST:
+                return basicSetManifest(null, msgs);
             case RulesPackage.DOCUMENT_ROOT__MAPPING:
                 return basicSetMapping(null, msgs);
+            case RulesPackage.DOCUMENT_ROOT__OUTPUTS:
+                return basicSetOutputs(null, msgs);
+            case RulesPackage.DOCUMENT_ROOT__PROPERTIES:
+                return basicSetProperties(null, msgs);
+            case RulesPackage.DOCUMENT_ROOT__PROPERTY:
+                return basicSetProperty(null, msgs);
             case RulesPackage.DOCUMENT_ROOT__RESOURCE:
                 return basicSetResource(null, msgs);
-            case RulesPackage.DOCUMENT_ROOT__FACTS:
-                return basicSetFacts(null, msgs);
-            case RulesPackage.DOCUMENT_ROOT__EVENT_LISTENER:
-                return basicSetEventListener(null, msgs);
+            case RulesPackage.DOCUMENT_ROOT__RESOURCES:
+                return basicSetResources(null, msgs);
         }
         return super.eInverseRemove(otherEnd, featureID, msgs);
     }
@@ -443,22 +751,42 @@ public class DocumentRootImpl extends EObjectImpl implements DocumentRoot {
                 else return getXSISchemaLocation().map();
             case RulesPackage.DOCUMENT_ROOT__ACTION:
                 return getAction();
-            case RulesPackage.DOCUMENT_ROOT__AUDIT:
-                return getAudit();
+            case RulesPackage.DOCUMENT_ROOT__ACTIONS:
+                return getActions();
             case RulesPackage.DOCUMENT_ROOT__CHANNEL:
                 return getChannel();
+            case RulesPackage.DOCUMENT_ROOT__CHANNELS:
+                return getChannels();
+            case RulesPackage.DOCUMENT_ROOT__CONTAINER:
+                return getContainer();
             case RulesPackage.DOCUMENT_ROOT__GLOBALS:
                 return getGlobals();
             case RulesPackage.DOCUMENT_ROOT__IMPLEMENTATION_RULES:
                 return getImplementationRules();
+            case RulesPackage.DOCUMENT_ROOT__INPUTS:
+                return getInputs();
+            case RulesPackage.DOCUMENT_ROOT__LISTENER:
+                return getListener();
+            case RulesPackage.DOCUMENT_ROOT__LISTENERS:
+                return getListeners();
+            case RulesPackage.DOCUMENT_ROOT__LOGGER:
+                return getLogger();
+            case RulesPackage.DOCUMENT_ROOT__LOGGERS:
+                return getLoggers();
+            case RulesPackage.DOCUMENT_ROOT__MANIFEST:
+                return getManifest();
             case RulesPackage.DOCUMENT_ROOT__MAPPING:
                 return getMapping();
+            case RulesPackage.DOCUMENT_ROOT__OUTPUTS:
+                return getOutputs();
+            case RulesPackage.DOCUMENT_ROOT__PROPERTIES:
+                return getProperties();
+            case RulesPackage.DOCUMENT_ROOT__PROPERTY:
+                return getProperty();
             case RulesPackage.DOCUMENT_ROOT__RESOURCE:
                 return getResource();
-            case RulesPackage.DOCUMENT_ROOT__FACTS:
-                return getFacts();
-            case RulesPackage.DOCUMENT_ROOT__EVENT_LISTENER:
-                return getEventListener();
+            case RulesPackage.DOCUMENT_ROOT__RESOURCES:
+                return getResources();
         }
         return super.eGet(featureID, resolve, coreType);
     }
@@ -483,29 +811,59 @@ public class DocumentRootImpl extends EObjectImpl implements DocumentRoot {
             case RulesPackage.DOCUMENT_ROOT__ACTION:
                 setAction((ActionType1)newValue);
                 return;
-            case RulesPackage.DOCUMENT_ROOT__AUDIT:
-                setAudit((AuditType)newValue);
+            case RulesPackage.DOCUMENT_ROOT__ACTIONS:
+                setActions((ActionsType)newValue);
                 return;
             case RulesPackage.DOCUMENT_ROOT__CHANNEL:
                 setChannel((ChannelType)newValue);
                 return;
+            case RulesPackage.DOCUMENT_ROOT__CHANNELS:
+                setChannels((ChannelsType)newValue);
+                return;
+            case RulesPackage.DOCUMENT_ROOT__CONTAINER:
+                setContainer((ContainerType)newValue);
+                return;
             case RulesPackage.DOCUMENT_ROOT__GLOBALS:
-                setGlobals((GlobalsType)newValue);
+                setGlobals((MappingsType)newValue);
                 return;
             case RulesPackage.DOCUMENT_ROOT__IMPLEMENTATION_RULES:
                 setImplementationRules((RulesImplementationType)newValue);
                 return;
+            case RulesPackage.DOCUMENT_ROOT__INPUTS:
+                setInputs((MappingsType)newValue);
+                return;
+            case RulesPackage.DOCUMENT_ROOT__LISTENER:
+                setListener((ListenerType)newValue);
+                return;
+            case RulesPackage.DOCUMENT_ROOT__LISTENERS:
+                setListeners((ListenersType)newValue);
+                return;
+            case RulesPackage.DOCUMENT_ROOT__LOGGER:
+                setLogger((LoggerType1)newValue);
+                return;
+            case RulesPackage.DOCUMENT_ROOT__LOGGERS:
+                setLoggers((LoggersType)newValue);
+                return;
+            case RulesPackage.DOCUMENT_ROOT__MANIFEST:
+                setManifest((ManifestType)newValue);
+                return;
             case RulesPackage.DOCUMENT_ROOT__MAPPING:
                 setMapping((MappingType)newValue);
+                return;
+            case RulesPackage.DOCUMENT_ROOT__OUTPUTS:
+                setOutputs((MappingsType)newValue);
+                return;
+            case RulesPackage.DOCUMENT_ROOT__PROPERTIES:
+                setProperties((PropertiesType)newValue);
+                return;
+            case RulesPackage.DOCUMENT_ROOT__PROPERTY:
+                setProperty((PropertyType)newValue);
                 return;
             case RulesPackage.DOCUMENT_ROOT__RESOURCE:
                 setResource((ResourceType)newValue);
                 return;
-            case RulesPackage.DOCUMENT_ROOT__FACTS:
-                setFacts((FactsType)newValue);
-                return;
-            case RulesPackage.DOCUMENT_ROOT__EVENT_LISTENER:
-                setEventListener((EventListenerType)newValue);
+            case RulesPackage.DOCUMENT_ROOT__RESOURCES:
+                setResources((ResourcesType)newValue);
                 return;
         }
         super.eSet(featureID, newValue);
@@ -531,29 +889,59 @@ public class DocumentRootImpl extends EObjectImpl implements DocumentRoot {
             case RulesPackage.DOCUMENT_ROOT__ACTION:
                 setAction((ActionType1)null);
                 return;
-            case RulesPackage.DOCUMENT_ROOT__AUDIT:
-                setAudit((AuditType)null);
+            case RulesPackage.DOCUMENT_ROOT__ACTIONS:
+                setActions((ActionsType)null);
                 return;
             case RulesPackage.DOCUMENT_ROOT__CHANNEL:
                 setChannel((ChannelType)null);
                 return;
+            case RulesPackage.DOCUMENT_ROOT__CHANNELS:
+                setChannels((ChannelsType)null);
+                return;
+            case RulesPackage.DOCUMENT_ROOT__CONTAINER:
+                setContainer((ContainerType)null);
+                return;
             case RulesPackage.DOCUMENT_ROOT__GLOBALS:
-                setGlobals((GlobalsType)null);
+                setGlobals((MappingsType)null);
                 return;
             case RulesPackage.DOCUMENT_ROOT__IMPLEMENTATION_RULES:
                 setImplementationRules((RulesImplementationType)null);
                 return;
+            case RulesPackage.DOCUMENT_ROOT__INPUTS:
+                setInputs((MappingsType)null);
+                return;
+            case RulesPackage.DOCUMENT_ROOT__LISTENER:
+                setListener((ListenerType)null);
+                return;
+            case RulesPackage.DOCUMENT_ROOT__LISTENERS:
+                setListeners((ListenersType)null);
+                return;
+            case RulesPackage.DOCUMENT_ROOT__LOGGER:
+                setLogger((LoggerType1)null);
+                return;
+            case RulesPackage.DOCUMENT_ROOT__LOGGERS:
+                setLoggers((LoggersType)null);
+                return;
+            case RulesPackage.DOCUMENT_ROOT__MANIFEST:
+                setManifest((ManifestType)null);
+                return;
             case RulesPackage.DOCUMENT_ROOT__MAPPING:
                 setMapping((MappingType)null);
+                return;
+            case RulesPackage.DOCUMENT_ROOT__OUTPUTS:
+                setOutputs((MappingsType)null);
+                return;
+            case RulesPackage.DOCUMENT_ROOT__PROPERTIES:
+                setProperties((PropertiesType)null);
+                return;
+            case RulesPackage.DOCUMENT_ROOT__PROPERTY:
+                setProperty((PropertyType)null);
                 return;
             case RulesPackage.DOCUMENT_ROOT__RESOURCE:
                 setResource((ResourceType)null);
                 return;
-            case RulesPackage.DOCUMENT_ROOT__FACTS:
-                setFacts((FactsType)null);
-                return;
-            case RulesPackage.DOCUMENT_ROOT__EVENT_LISTENER:
-                setEventListener((EventListenerType)null);
+            case RulesPackage.DOCUMENT_ROOT__RESOURCES:
+                setResources((ResourcesType)null);
                 return;
         }
         super.eUnset(featureID);
@@ -575,22 +963,42 @@ public class DocumentRootImpl extends EObjectImpl implements DocumentRoot {
                 return xSISchemaLocation != null && !xSISchemaLocation.isEmpty();
             case RulesPackage.DOCUMENT_ROOT__ACTION:
                 return getAction() != null;
-            case RulesPackage.DOCUMENT_ROOT__AUDIT:
-                return getAudit() != null;
+            case RulesPackage.DOCUMENT_ROOT__ACTIONS:
+                return getActions() != null;
             case RulesPackage.DOCUMENT_ROOT__CHANNEL:
                 return getChannel() != null;
+            case RulesPackage.DOCUMENT_ROOT__CHANNELS:
+                return getChannels() != null;
+            case RulesPackage.DOCUMENT_ROOT__CONTAINER:
+                return getContainer() != null;
             case RulesPackage.DOCUMENT_ROOT__GLOBALS:
                 return getGlobals() != null;
             case RulesPackage.DOCUMENT_ROOT__IMPLEMENTATION_RULES:
                 return getImplementationRules() != null;
+            case RulesPackage.DOCUMENT_ROOT__INPUTS:
+                return getInputs() != null;
+            case RulesPackage.DOCUMENT_ROOT__LISTENER:
+                return getListener() != null;
+            case RulesPackage.DOCUMENT_ROOT__LISTENERS:
+                return getListeners() != null;
+            case RulesPackage.DOCUMENT_ROOT__LOGGER:
+                return getLogger() != null;
+            case RulesPackage.DOCUMENT_ROOT__LOGGERS:
+                return getLoggers() != null;
+            case RulesPackage.DOCUMENT_ROOT__MANIFEST:
+                return getManifest() != null;
             case RulesPackage.DOCUMENT_ROOT__MAPPING:
                 return getMapping() != null;
+            case RulesPackage.DOCUMENT_ROOT__OUTPUTS:
+                return getOutputs() != null;
+            case RulesPackage.DOCUMENT_ROOT__PROPERTIES:
+                return getProperties() != null;
+            case RulesPackage.DOCUMENT_ROOT__PROPERTY:
+                return getProperty() != null;
             case RulesPackage.DOCUMENT_ROOT__RESOURCE:
                 return getResource() != null;
-            case RulesPackage.DOCUMENT_ROOT__FACTS:
-                return getFacts() != null;
-            case RulesPackage.DOCUMENT_ROOT__EVENT_LISTENER:
-                return getEventListener() != null;
+            case RulesPackage.DOCUMENT_ROOT__RESOURCES:
+                return getResources() != null;
         }
         return super.eIsSet(featureID);
     }

@@ -2,11 +2,9 @@
  */
 package org.switchyard.tools.models.switchyard1_0.camel.jpa;
 
-import java.math.BigInteger;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.util.FeatureMap;
-import org.switchyard.tools.models.switchyard1_0.camel.core.ScheduledBatchPollConsumerType;
 
 /**
  * <!-- begin-user-doc -->

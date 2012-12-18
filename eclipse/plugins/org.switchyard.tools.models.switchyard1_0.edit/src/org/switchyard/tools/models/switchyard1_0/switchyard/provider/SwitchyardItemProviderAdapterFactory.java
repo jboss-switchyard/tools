@@ -37,7 +37,6 @@ import org.eclipse.emf.edit.provider.ITreeItemContentProvider;
 
 import org.eclipse.soa.sca.sca1_1.model.sca.Binding;
 import org.eclipse.soa.sca.sca1_1.model.sca.Contract;
-import org.eclipse.soa.sca.sca1_1.model.sca.DocumentRoot;
 import org.eclipse.soa.sca.sca1_1.model.sca.ScaPackage;
 import org.eclipse.soa.sca.sca1_1.model.sca.util.ScaSwitch;
 import org.switchyard.tools.models.switchyard1_0.bean.provider.Switchyard_1EditPlugin;

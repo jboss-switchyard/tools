@@ -18,29 +18,6 @@ import org.eclipse.emf.ecore.impl.EPackageImpl;
 import org.eclipse.emf.ecore.xml.type.XMLTypePackage;
 import org.eclipse.soa.sca.sca1_1.model.sca.ScaPackage;
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 import org.open.oasis.docs.ns.opencsa.sca.bpel.BPELPackage;
 
 import org.open.oasis.docs.ns.opencsa.sca.bpel.impl.BPELPackageImpl;
@@ -74,8 +51,6 @@ import org.switchyard.tools.models.switchyard1_0.camel.sql.SqlPackage;
 import org.switchyard.tools.models.switchyard1_0.camel.sql.impl.SqlPackageImpl;
 import org.switchyard.tools.models.switchyard1_0.clojure.ClojurePackage;
 import org.switchyard.tools.models.switchyard1_0.clojure.impl.ClojurePackageImpl;
-import org.switchyard.tools.models.switchyard1_0.commonrules.CommonRulesPackage;
-import org.switchyard.tools.models.switchyard1_0.commonrules.impl.CommonRulesPackageImpl;
 import org.switchyard.tools.models.switchyard1_0.hornetq.HornetQPackage;
 import org.switchyard.tools.models.switchyard1_0.hornetq.impl.HornetQPackageImpl;
 import org.switchyard.tools.models.switchyard1_0.http.HttpPackage;
@@ -199,7 +174,6 @@ public class ValidatePackageImpl extends EPackageImpl implements ValidatePackage
         BeanPackageImpl theBeanPackage = (BeanPackageImpl)(EPackage.Registry.INSTANCE.getEPackage(BeanPackage.eNS_URI) instanceof BeanPackageImpl ? EPackage.Registry.INSTANCE.getEPackage(BeanPackage.eNS_URI) : BeanPackage.eINSTANCE);
         BPELPackageImpl theBPELPackage = (BPELPackageImpl)(EPackage.Registry.INSTANCE.getEPackage(BPELPackage.eNS_URI) instanceof BPELPackageImpl ? EPackage.Registry.INSTANCE.getEPackage(BPELPackage.eNS_URI) : BPELPackage.eINSTANCE);
         BPMPackageImpl theBPMPackage = (BPMPackageImpl)(EPackage.Registry.INSTANCE.getEPackage(BPMPackage.eNS_URI) instanceof BPMPackageImpl ? EPackage.Registry.INSTANCE.getEPackage(BPMPackage.eNS_URI) : BPMPackage.eINSTANCE);
-        CommonRulesPackageImpl theCommonRulesPackage = (CommonRulesPackageImpl)(EPackage.Registry.INSTANCE.getEPackage(CommonRulesPackage.eNS_URI) instanceof CommonRulesPackageImpl ? EPackage.Registry.INSTANCE.getEPackage(CommonRulesPackage.eNS_URI) : CommonRulesPackage.eINSTANCE);
         SwitchyardPackageImpl theSwitchyardPackage = (SwitchyardPackageImpl)(EPackage.Registry.INSTANCE.getEPackage(SwitchyardPackage.eNS_URI) instanceof SwitchyardPackageImpl ? EPackage.Registry.INSTANCE.getEPackage(SwitchyardPackage.eNS_URI) : SwitchyardPackage.eINSTANCE);
         ClojurePackageImpl theClojurePackage = (ClojurePackageImpl)(EPackage.Registry.INSTANCE.getEPackage(ClojurePackage.eNS_URI) instanceof ClojurePackageImpl ? EPackage.Registry.INSTANCE.getEPackage(ClojurePackage.eNS_URI) : ClojurePackage.eINSTANCE);
         HornetQPackageImpl theHornetQPackage = (HornetQPackageImpl)(EPackage.Registry.INSTANCE.getEPackage(HornetQPackage.eNS_URI) instanceof HornetQPackageImpl ? EPackage.Registry.INSTANCE.getEPackage(HornetQPackage.eNS_URI) : HornetQPackage.eINSTANCE);
@@ -232,7 +206,6 @@ public class ValidatePackageImpl extends EPackageImpl implements ValidatePackage
         theBeanPackage.createPackageContents();
         theBPELPackage.createPackageContents();
         theBPMPackage.createPackageContents();
-        theCommonRulesPackage.createPackageContents();
         theSwitchyardPackage.createPackageContents();
         theClojurePackage.createPackageContents();
         theHornetQPackage.createPackageContents();
@@ -261,7 +234,6 @@ public class ValidatePackageImpl extends EPackageImpl implements ValidatePackage
         theBeanPackage.initializePackageContents();
         theBPELPackage.initializePackageContents();
         theBPMPackage.initializePackageContents();
-        theCommonRulesPackage.initializePackageContents();
         theSwitchyardPackage.initializePackageContents();
         theClojurePackage.initializePackageContents();
         theHornetQPackage.initializePackageContents();

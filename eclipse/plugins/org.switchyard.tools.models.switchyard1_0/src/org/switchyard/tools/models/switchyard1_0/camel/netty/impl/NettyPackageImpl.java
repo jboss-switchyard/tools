@@ -78,10 +78,6 @@ import org.switchyard.tools.models.switchyard1_0.clojure.ClojurePackage;
 
 import org.switchyard.tools.models.switchyard1_0.clojure.impl.ClojurePackageImpl;
 
-import org.switchyard.tools.models.switchyard1_0.commonrules.CommonRulesPackage;
-
-import org.switchyard.tools.models.switchyard1_0.commonrules.impl.CommonRulesPackageImpl;
-
 import org.switchyard.tools.models.switchyard1_0.hornetq.HornetQPackage;
 
 import org.switchyard.tools.models.switchyard1_0.hornetq.impl.HornetQPackageImpl;
@@ -222,7 +218,6 @@ public class NettyPackageImpl extends EPackageImpl implements NettyPackage {
         BeanPackageImpl theBeanPackage = (BeanPackageImpl)(EPackage.Registry.INSTANCE.getEPackage(BeanPackage.eNS_URI) instanceof BeanPackageImpl ? EPackage.Registry.INSTANCE.getEPackage(BeanPackage.eNS_URI) : BeanPackage.eINSTANCE);
         BPELPackageImpl theBPELPackage = (BPELPackageImpl)(EPackage.Registry.INSTANCE.getEPackage(BPELPackage.eNS_URI) instanceof BPELPackageImpl ? EPackage.Registry.INSTANCE.getEPackage(BPELPackage.eNS_URI) : BPELPackage.eINSTANCE);
         BPMPackageImpl theBPMPackage = (BPMPackageImpl)(EPackage.Registry.INSTANCE.getEPackage(BPMPackage.eNS_URI) instanceof BPMPackageImpl ? EPackage.Registry.INSTANCE.getEPackage(BPMPackage.eNS_URI) : BPMPackage.eINSTANCE);
-        CommonRulesPackageImpl theCommonRulesPackage = (CommonRulesPackageImpl)(EPackage.Registry.INSTANCE.getEPackage(CommonRulesPackage.eNS_URI) instanceof CommonRulesPackageImpl ? EPackage.Registry.INSTANCE.getEPackage(CommonRulesPackage.eNS_URI) : CommonRulesPackage.eINSTANCE);
         SwitchyardPackageImpl theSwitchyardPackage = (SwitchyardPackageImpl)(EPackage.Registry.INSTANCE.getEPackage(SwitchyardPackage.eNS_URI) instanceof SwitchyardPackageImpl ? EPackage.Registry.INSTANCE.getEPackage(SwitchyardPackage.eNS_URI) : SwitchyardPackage.eINSTANCE);
         ClojurePackageImpl theClojurePackage = (ClojurePackageImpl)(EPackage.Registry.INSTANCE.getEPackage(ClojurePackage.eNS_URI) instanceof ClojurePackageImpl ? EPackage.Registry.INSTANCE.getEPackage(ClojurePackage.eNS_URI) : ClojurePackage.eINSTANCE);
         HornetQPackageImpl theHornetQPackage = (HornetQPackageImpl)(EPackage.Registry.INSTANCE.getEPackage(HornetQPackage.eNS_URI) instanceof HornetQPackageImpl ? EPackage.Registry.INSTANCE.getEPackage(HornetQPackage.eNS_URI) : HornetQPackage.eINSTANCE);
@@ -255,7 +250,6 @@ public class NettyPackageImpl extends EPackageImpl implements NettyPackage {
         theBeanPackage.createPackageContents();
         theBPELPackage.createPackageContents();
         theBPMPackage.createPackageContents();
-        theCommonRulesPackage.createPackageContents();
         theSwitchyardPackage.createPackageContents();
         theClojurePackage.createPackageContents();
         theHornetQPackage.createPackageContents();
@@ -284,7 +278,6 @@ public class NettyPackageImpl extends EPackageImpl implements NettyPackage {
         theBeanPackage.initializePackageContents();
         theBPELPackage.initializePackageContents();
         theBPMPackage.initializePackageContents();
-        theCommonRulesPackage.initializePackageContents();
         theSwitchyardPackage.initializePackageContents();
         theClojurePackage.initializePackageContents();
         theHornetQPackage.initializePackageContents();

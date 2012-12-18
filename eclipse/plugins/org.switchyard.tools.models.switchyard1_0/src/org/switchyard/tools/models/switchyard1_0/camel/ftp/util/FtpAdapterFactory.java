@@ -12,14 +12,6 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.soa.sca.sca1_1.model.sca.Binding;
 import org.eclipse.soa.sca.sca1_1.model.sca.CommonExtensionBase;
 
-import org.switchyard.tools.models.switchyard1_0.camel.core.BaseCamelBinding;
-import org.switchyard.tools.models.switchyard1_0.camel.core.CamelRemoteBindingType;
-import org.switchyard.tools.models.switchyard1_0.camel.core.GenericFileBindingType;
-import org.switchyard.tools.models.switchyard1_0.camel.core.GenericFileConsumerType;
-import org.switchyard.tools.models.switchyard1_0.camel.core.GenericFileProducerType;
-import org.switchyard.tools.models.switchyard1_0.camel.core.ScheduledBatchPollConsumerType;
-import org.switchyard.tools.models.switchyard1_0.camel.core.ScheduledPollConsumerType;
-
 import org.switchyard.tools.models.switchyard1_0.camel.ftp.*;
 
 import org.switchyard.tools.models.switchyard1_0.switchyard.SwitchYardBindingType;

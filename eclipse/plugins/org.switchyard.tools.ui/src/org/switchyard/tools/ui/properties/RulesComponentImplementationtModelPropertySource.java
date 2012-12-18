@@ -51,7 +51,10 @@ public class RulesComponentImplementationtModelPropertySource implements IProper
     @Override
     public Object getPropertyValue(Object id) {
         if (PROP_RESOURCES.equals(id)) {
-            final List<ResourceModel> resources = _model.getResources();
+            if (_model.getManifest() == null || _model.getManifest().getResources() == null) {
+                return null;
+            }
+            final List<ResourceModel> resources = _model.getManifest().getResources().getResources();
             if (resources == null) {
                 return null;
             }

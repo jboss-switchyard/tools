@@ -34,7 +34,6 @@ import org.switchyard.tools.models.switchyard1_0.bean.BeanImplementationType;
 import org.switchyard.tools.models.switchyard1_0.bpm.BPMImplementationType;
 import org.switchyard.tools.models.switchyard1_0.camel.CamelImplementationType;
 import org.switchyard.tools.models.switchyard1_0.clojure.ClojureImplementationType;
-import org.switchyard.tools.models.switchyard1_0.rules.ResourceType;
 import org.switchyard.tools.models.switchyard1_0.rules.RulesImplementationType;
 
 /**
@@ -78,12 +77,25 @@ public class PlatformResourceAdapterFactory implements IAdapterFactory {
                 // ((BPELImplementation) impl).getProcess());
                 return null;
             } else if (impl instanceof BPMImplementationType) {
-                return (IFile) SwitchYardModelUtils.getJavaResource(project,
-                        ((BPMImplementationType) impl).getProcessDefinition());
-            } else if (impl instanceof RulesImplementationType) {
-                for (ResourceType resource : ((RulesImplementationType) impl).getResource()) {
+                org.switchyard.tools.models.switchyard1_0.bpm.ManifestType manifest = ((BPMImplementationType) impl).getManifest();
+                if (manifest == null || manifest.getResources() == null) {
+                    return null;
+                }
+                for (org.switchyard.tools.models.switchyard1_0.bpm.ResourceType resource : manifest.getResources().getResource()) {
+                    // TODO: should we verify this is a bpmn2 file?
                     return (IFile) SwitchYardModelUtils.getJavaResource(project, resource.getLocation());
                 }
+                return null;
+            } else if (impl instanceof RulesImplementationType) {
+                org.switchyard.tools.models.switchyard1_0.rules.ManifestType manifest = ((RulesImplementationType) impl).getManifest();
+                if (manifest == null || manifest.getResources() == null) {
+                    return null;
+                }
+                for (org.switchyard.tools.models.switchyard1_0.rules.ResourceType resource : manifest.getResources().getResource()) {
+                    // TODO: should we verify this is a drl file?
+                    return (IFile) SwitchYardModelUtils.getJavaResource(project, resource.getLocation());
+                }
+                return null;
             } else if (impl instanceof CamelImplementationType) {
                 CamelImplementationType camelImpl = (CamelImplementationType) impl;
                 if (camelImpl.getJava() != null) {

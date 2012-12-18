@@ -40,8 +40,10 @@ import org.switchyard.tools.models.switchyard1_0.bean.provider.Switchyard_1EditP
 
 import org.switchyard.tools.models.switchyard1_0.bpm.BPMFactory;
 
+import org.switchyard.tools.models.switchyard1_0.camel.CamelFactory;
 import org.switchyard.tools.models.switchyard1_0.camel.amqp.AmqpFactory;
 import org.switchyard.tools.models.switchyard1_0.camel.atom.AtomFactory;
+import org.switchyard.tools.models.switchyard1_0.camel.core.CoreFactory;
 import org.switchyard.tools.models.switchyard1_0.camel.file.FileFactory;
 import org.switchyard.tools.models.switchyard1_0.camel.ftp.FtpFactory;
 import org.switchyard.tools.models.switchyard1_0.camel.jms.JmsFactory;
@@ -1792,12 +1794,12 @@ public class DocumentRootItemProvider
         newChildDescriptors.add
             (createChildParameter
                 (SpringPackage.eINSTANCE.getDocumentRoot_Property(),
-                 BPMFactory.eINSTANCE.createActionType1()));
+                 BPMFactory.eINSTANCE.createActionsType()));
 
         newChildDescriptors.add
             (createChildParameter
                 (SpringPackage.eINSTANCE.getDocumentRoot_Property(),
-                 BPMFactory.eINSTANCE.createAuditType()));
+                 BPMFactory.eINSTANCE.createActionType1()));
 
         newChildDescriptors.add
             (createChildParameter
@@ -1807,12 +1809,67 @@ public class DocumentRootItemProvider
         newChildDescriptors.add
             (createChildParameter
                 (SpringPackage.eINSTANCE.getDocumentRoot_Property(),
+                 BPMFactory.eINSTANCE.createChannelsType()));
+
+        newChildDescriptors.add
+            (createChildParameter
+                (SpringPackage.eINSTANCE.getDocumentRoot_Property(),
+                 BPMFactory.eINSTANCE.createChannelType()));
+
+        newChildDescriptors.add
+            (createChildParameter
+                (SpringPackage.eINSTANCE.getDocumentRoot_Property(),
+                 BPMFactory.eINSTANCE.createContainerType()));
+
+        newChildDescriptors.add
+            (createChildParameter
+                (SpringPackage.eINSTANCE.getDocumentRoot_Property(),
+                 BPMFactory.eINSTANCE.createListenersType()));
+
+        newChildDescriptors.add
+            (createChildParameter
+                (SpringPackage.eINSTANCE.getDocumentRoot_Property(),
+                 BPMFactory.eINSTANCE.createListenerType()));
+
+        newChildDescriptors.add
+            (createChildParameter
+                (SpringPackage.eINSTANCE.getDocumentRoot_Property(),
+                 BPMFactory.eINSTANCE.createLoggersType()));
+
+        newChildDescriptors.add
+            (createChildParameter
+                (SpringPackage.eINSTANCE.getDocumentRoot_Property(),
+                 BPMFactory.eINSTANCE.createLoggerType1()));
+
+        newChildDescriptors.add
+            (createChildParameter
+                (SpringPackage.eINSTANCE.getDocumentRoot_Property(),
+                 BPMFactory.eINSTANCE.createManifestType()));
+
+        newChildDescriptors.add
+            (createChildParameter
+                (SpringPackage.eINSTANCE.getDocumentRoot_Property(),
+                 BPMFactory.eINSTANCE.createMappingsType()));
+
+        newChildDescriptors.add
+            (createChildParameter
+                (SpringPackage.eINSTANCE.getDocumentRoot_Property(),
                  BPMFactory.eINSTANCE.createMappingType()));
 
         newChildDescriptors.add
             (createChildParameter
                 (SpringPackage.eINSTANCE.getDocumentRoot_Property(),
-                 BPMFactory.eINSTANCE.createParametersType()));
+                 BPMFactory.eINSTANCE.createPropertiesType()));
+
+        newChildDescriptors.add
+            (createChildParameter
+                (SpringPackage.eINSTANCE.getDocumentRoot_Property(),
+                 BPMFactory.eINSTANCE.createPropertyType()));
+
+        newChildDescriptors.add
+            (createChildParameter
+                (SpringPackage.eINSTANCE.getDocumentRoot_Property(),
+                 BPMFactory.eINSTANCE.createResourcesType()));
 
         newChildDescriptors.add
             (createChildParameter
@@ -1822,17 +1879,12 @@ public class DocumentRootItemProvider
         newChildDescriptors.add
             (createChildParameter
                 (SpringPackage.eINSTANCE.getDocumentRoot_Property(),
-                 BPMFactory.eINSTANCE.createResultsType()));
+                 BPMFactory.eINSTANCE.createWorkItemHandlersType()));
 
         newChildDescriptors.add
             (createChildParameter
                 (SpringPackage.eINSTANCE.getDocumentRoot_Property(),
-                 BPMFactory.eINSTANCE.createTaskHandlerType()));
-
-        newChildDescriptors.add
-            (createChildParameter
-                (SpringPackage.eINSTANCE.getDocumentRoot_Property(),
-                 BPMFactory.eINSTANCE.createEventListenerType()));
+                 BPMFactory.eINSTANCE.createWorkItemHandlerType()));
 
         newChildDescriptors.add
             (createChildParameter
@@ -1977,12 +2029,17 @@ public class DocumentRootItemProvider
         newChildDescriptors.add
             (createChildParameter
                 (SpringPackage.eINSTANCE.getDocumentRoot_Property(),
+                 RulesFactory.eINSTANCE.createActionsType()));
+
+        newChildDescriptors.add
+            (createChildParameter
+                (SpringPackage.eINSTANCE.getDocumentRoot_Property(),
                  RulesFactory.eINSTANCE.createActionType1()));
 
         newChildDescriptors.add
             (createChildParameter
                 (SpringPackage.eINSTANCE.getDocumentRoot_Property(),
-                 RulesFactory.eINSTANCE.createAuditType()));
+                 RulesFactory.eINSTANCE.createChannelsType()));
 
         newChildDescriptors.add
             (createChildParameter
@@ -1992,12 +2049,57 @@ public class DocumentRootItemProvider
         newChildDescriptors.add
             (createChildParameter
                 (SpringPackage.eINSTANCE.getDocumentRoot_Property(),
-                 RulesFactory.eINSTANCE.createGlobalsType()));
+                 RulesFactory.eINSTANCE.createContainerType()));
+
+        newChildDescriptors.add
+            (createChildParameter
+                (SpringPackage.eINSTANCE.getDocumentRoot_Property(),
+                 RulesFactory.eINSTANCE.createListenersType()));
+
+        newChildDescriptors.add
+            (createChildParameter
+                (SpringPackage.eINSTANCE.getDocumentRoot_Property(),
+                 RulesFactory.eINSTANCE.createListenerType()));
+
+        newChildDescriptors.add
+            (createChildParameter
+                (SpringPackage.eINSTANCE.getDocumentRoot_Property(),
+                 RulesFactory.eINSTANCE.createLoggersType()));
+
+        newChildDescriptors.add
+            (createChildParameter
+                (SpringPackage.eINSTANCE.getDocumentRoot_Property(),
+                 RulesFactory.eINSTANCE.createLoggerType1()));
+
+        newChildDescriptors.add
+            (createChildParameter
+                (SpringPackage.eINSTANCE.getDocumentRoot_Property(),
+                 RulesFactory.eINSTANCE.createManifestType()));
+
+        newChildDescriptors.add
+            (createChildParameter
+                (SpringPackage.eINSTANCE.getDocumentRoot_Property(),
+                 RulesFactory.eINSTANCE.createMappingsType()));
 
         newChildDescriptors.add
             (createChildParameter
                 (SpringPackage.eINSTANCE.getDocumentRoot_Property(),
                  RulesFactory.eINSTANCE.createMappingType()));
+
+        newChildDescriptors.add
+            (createChildParameter
+                (SpringPackage.eINSTANCE.getDocumentRoot_Property(),
+                 RulesFactory.eINSTANCE.createPropertiesType()));
+
+        newChildDescriptors.add
+            (createChildParameter
+                (SpringPackage.eINSTANCE.getDocumentRoot_Property(),
+                 RulesFactory.eINSTANCE.createPropertyType()));
+
+        newChildDescriptors.add
+            (createChildParameter
+                (SpringPackage.eINSTANCE.getDocumentRoot_Property(),
+                 RulesFactory.eINSTANCE.createResourcesType()));
 
         newChildDescriptors.add
             (createChildParameter
@@ -2008,16 +2110,6 @@ public class DocumentRootItemProvider
             (createChildParameter
                 (SpringPackage.eINSTANCE.getDocumentRoot_Property(),
                  RulesFactory.eINSTANCE.createRulesImplementationType()));
-
-        newChildDescriptors.add
-            (createChildParameter
-                (SpringPackage.eINSTANCE.getDocumentRoot_Property(),
-                 RulesFactory.eINSTANCE.createFactsType()));
-
-        newChildDescriptors.add
-            (createChildParameter
-                (SpringPackage.eINSTANCE.getDocumentRoot_Property(),
-                 RulesFactory.eINSTANCE.createEventListenerType()));
 
         newChildDescriptors.add
             (createChildParameter
@@ -2068,6 +2160,21 @@ public class DocumentRootItemProvider
             (createChildParameter
                 (SpringPackage.eINSTANCE.getDocumentRoot_Property(),
                  ValidateFactory.eINSTANCE.createXmlValidateType()));
+
+        newChildDescriptors.add
+            (createChildParameter
+                (SpringPackage.eINSTANCE.getDocumentRoot_Property(),
+                 CamelFactory.eINSTANCE.createJavaDSLType()));
+
+        newChildDescriptors.add
+            (createChildParameter
+                (SpringPackage.eINSTANCE.getDocumentRoot_Property(),
+                 CamelFactory.eINSTANCE.createXMLDSLType()));
+
+        newChildDescriptors.add
+            (createChildParameter
+                (SpringPackage.eINSTANCE.getDocumentRoot_Property(),
+                 CamelFactory.eINSTANCE.createCamelImplementationType()));
 
         newChildDescriptors.add
             (createChildParameter
@@ -2192,6 +2299,31 @@ public class DocumentRootItemProvider
         newChildDescriptors.add
             (createChildParameter
                 (SpringPackage.eINSTANCE.getDocumentRoot_Property(),
+                 CoreFactory.eINSTANCE.createCamelBindingType()));
+
+        newChildDescriptors.add
+            (createChildParameter
+                (SpringPackage.eINSTANCE.getDocumentRoot_Property(),
+                 CoreFactory.eINSTANCE.createCamelDirectBindingType()));
+
+        newChildDescriptors.add
+            (createChildParameter
+                (SpringPackage.eINSTANCE.getDocumentRoot_Property(),
+                 CoreFactory.eINSTANCE.createCamelTimerBindingType()));
+
+        newChildDescriptors.add
+            (createChildParameter
+                (SpringPackage.eINSTANCE.getDocumentRoot_Property(),
+                 CoreFactory.eINSTANCE.createCamelSedaBindingType()));
+
+        newChildDescriptors.add
+            (createChildParameter
+                (SpringPackage.eINSTANCE.getDocumentRoot_Property(),
+                 CoreFactory.eINSTANCE.createCamelMockBindingType()));
+
+        newChildDescriptors.add
+            (createChildParameter
+                (SpringPackage.eINSTANCE.getDocumentRoot_Property(),
                  AmqpFactory.eINSTANCE.createCamelAmqpBindingType()));
 
         newChildDescriptors.add
@@ -2252,7 +2384,7 @@ public class DocumentRootItemProvider
         newChildDescriptors.add
             (createChildParameter
                 (SpringPackage.eINSTANCE.getDocumentRoot_Property(),
-                 JpaFactory.eINSTANCE.createJpaProducerType()));
+                 JpaFactory.eINSTANCE.createCamelJPABindingType()));
 
         newChildDescriptors.add
             (createChildParameter
@@ -2262,7 +2394,12 @@ public class DocumentRootItemProvider
         newChildDescriptors.add
             (createChildParameter
                 (SpringPackage.eINSTANCE.getDocumentRoot_Property(),
-                 JpaFactory.eINSTANCE.createCamelJPABindingType()));
+                 JpaFactory.eINSTANCE.createJpaProducerType()));
+
+        newChildDescriptors.add
+            (createChildParameter
+                (SpringPackage.eINSTANCE.getDocumentRoot_Property(),
+                 MailFactory.eINSTANCE.createCamelMailBindingType()));
 
         newChildDescriptors.add
             (createChildParameter
@@ -2273,11 +2410,6 @@ public class DocumentRootItemProvider
             (createChildParameter
                 (SpringPackage.eINSTANCE.getDocumentRoot_Property(),
                  MailFactory.eINSTANCE.createCamelMailProducerType()));
-
-        newChildDescriptors.add
-            (createChildParameter
-                (SpringPackage.eINSTANCE.getDocumentRoot_Property(),
-                 MailFactory.eINSTANCE.createCamelMailBindingType()));
 
         newChildDescriptors.add
             (createChildParameter

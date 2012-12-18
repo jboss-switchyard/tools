@@ -14,9 +14,6 @@ import org.eclipse.soa.sca.sca1_1.model.sca.CommonExtensionBase;
 
 import org.switchyard.tools.models.switchyard1_0.camel.atom.*;
 
-import org.switchyard.tools.models.switchyard1_0.camel.core.BaseCamelBinding;
-import org.switchyard.tools.models.switchyard1_0.camel.core.ScheduledPollConsumerType;
-
 import org.switchyard.tools.models.switchyard1_0.switchyard.SwitchYardBindingType;
 
 /**

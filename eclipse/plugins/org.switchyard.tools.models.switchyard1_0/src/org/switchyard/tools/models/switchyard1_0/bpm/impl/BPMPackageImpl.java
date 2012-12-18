@@ -18,29 +18,6 @@ import org.eclipse.emf.ecore.impl.EPackageImpl;
 import org.eclipse.emf.ecore.xml.type.XMLTypePackage;
 import org.eclipse.soa.sca.sca1_1.model.sca.ScaPackage;
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 import org.open.oasis.docs.ns.opencsa.sca.bpel.BPELPackage;
 
 import org.open.oasis.docs.ns.opencsa.sca.bpel.impl.BPELPackageImpl;
@@ -48,23 +25,56 @@ import org.switchyard.tools.models.switchyard1_0.bean.BeanPackage;
 import org.switchyard.tools.models.switchyard1_0.bean.impl.BeanPackageImpl;
 import org.switchyard.tools.models.switchyard1_0.bpm.ActionType;
 import org.switchyard.tools.models.switchyard1_0.bpm.ActionType1;
-import org.switchyard.tools.models.switchyard1_0.bpm.AuditType;
+import org.switchyard.tools.models.switchyard1_0.bpm.ActionsType;
 import org.switchyard.tools.models.switchyard1_0.bpm.BPMFactory;
 import org.switchyard.tools.models.switchyard1_0.bpm.BPMImplementationType;
 import org.switchyard.tools.models.switchyard1_0.bpm.BPMPackage;
+import org.switchyard.tools.models.switchyard1_0.bpm.ChannelType;
+import org.switchyard.tools.models.switchyard1_0.bpm.ChannelsType;
+import org.switchyard.tools.models.switchyard1_0.bpm.ContainerType;
 import org.switchyard.tools.models.switchyard1_0.bpm.DocumentRoot;
-import org.switchyard.tools.models.switchyard1_0.bpm.EventListenerType;
+import org.switchyard.tools.models.switchyard1_0.bpm.ExpressionType;
+import org.switchyard.tools.models.switchyard1_0.bpm.ListenerType;
+import org.switchyard.tools.models.switchyard1_0.bpm.ListenersType;
+import org.switchyard.tools.models.switchyard1_0.bpm.LoggerType;
+import org.switchyard.tools.models.switchyard1_0.bpm.LoggerType1;
+import org.switchyard.tools.models.switchyard1_0.bpm.LoggersType;
+import org.switchyard.tools.models.switchyard1_0.bpm.ManifestType;
 import org.switchyard.tools.models.switchyard1_0.bpm.MappingType;
-import org.switchyard.tools.models.switchyard1_0.bpm.ParametersType;
+import org.switchyard.tools.models.switchyard1_0.bpm.MappingsType;
+import org.switchyard.tools.models.switchyard1_0.bpm.PropertiesType;
+import org.switchyard.tools.models.switchyard1_0.bpm.PropertyType;
 import org.switchyard.tools.models.switchyard1_0.bpm.ResourceType;
-import org.switchyard.tools.models.switchyard1_0.bpm.ResultsType;
-import org.switchyard.tools.models.switchyard1_0.bpm.TaskHandlerType;
+import org.switchyard.tools.models.switchyard1_0.bpm.ResourcesType;
+import org.switchyard.tools.models.switchyard1_0.bpm.ScopeType;
+import org.switchyard.tools.models.switchyard1_0.bpm.WorkItemHandlerType;
+import org.switchyard.tools.models.switchyard1_0.bpm.WorkItemHandlersType;
 import org.switchyard.tools.models.switchyard1_0.camel.CamelPackage;
+import org.switchyard.tools.models.switchyard1_0.camel.amqp.AmqpPackage;
+import org.switchyard.tools.models.switchyard1_0.camel.amqp.impl.AmqpPackageImpl;
+import org.switchyard.tools.models.switchyard1_0.camel.atom.AtomPackage;
+import org.switchyard.tools.models.switchyard1_0.camel.atom.impl.AtomPackageImpl;
+import org.switchyard.tools.models.switchyard1_0.camel.core.CorePackage;
+import org.switchyard.tools.models.switchyard1_0.camel.core.impl.CorePackageImpl;
+import org.switchyard.tools.models.switchyard1_0.camel.file.FilePackage;
+import org.switchyard.tools.models.switchyard1_0.camel.file.impl.FilePackageImpl;
+import org.switchyard.tools.models.switchyard1_0.camel.ftp.FtpPackage;
+import org.switchyard.tools.models.switchyard1_0.camel.ftp.impl.FtpPackageImpl;
 import org.switchyard.tools.models.switchyard1_0.camel.impl.CamelPackageImpl;
+import org.switchyard.tools.models.switchyard1_0.camel.jms.JmsPackage;
+import org.switchyard.tools.models.switchyard1_0.camel.jms.impl.JmsPackageImpl;
+import org.switchyard.tools.models.switchyard1_0.camel.jpa.JpaPackage;
+import org.switchyard.tools.models.switchyard1_0.camel.jpa.impl.JpaPackageImpl;
+import org.switchyard.tools.models.switchyard1_0.camel.mail.MailPackage;
+import org.switchyard.tools.models.switchyard1_0.camel.mail.impl.MailPackageImpl;
+import org.switchyard.tools.models.switchyard1_0.camel.netty.NettyPackage;
+import org.switchyard.tools.models.switchyard1_0.camel.netty.impl.NettyPackageImpl;
+import org.switchyard.tools.models.switchyard1_0.camel.quartz.QuartzPackage;
+import org.switchyard.tools.models.switchyard1_0.camel.quartz.impl.QuartzPackageImpl;
+import org.switchyard.tools.models.switchyard1_0.camel.sql.SqlPackage;
+import org.switchyard.tools.models.switchyard1_0.camel.sql.impl.SqlPackageImpl;
 import org.switchyard.tools.models.switchyard1_0.clojure.ClojurePackage;
 import org.switchyard.tools.models.switchyard1_0.clojure.impl.ClojurePackageImpl;
-import org.switchyard.tools.models.switchyard1_0.commonrules.CommonRulesPackage;
-import org.switchyard.tools.models.switchyard1_0.commonrules.impl.CommonRulesPackageImpl;
 import org.switchyard.tools.models.switchyard1_0.hornetq.HornetQPackage;
 import org.switchyard.tools.models.switchyard1_0.hornetq.impl.HornetQPackageImpl;
 import org.switchyard.tools.models.switchyard1_0.http.HttpPackage;
@@ -97,6 +107,13 @@ import org.switchyard.tools.models.switchyard1_0.validate.impl.ValidatePackageIm
 public class BPMPackageImpl extends EPackageImpl implements BPMPackage {
 	/**
      * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    private EClass actionsTypeEClass = null;
+
+    /**
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
      * @generated
      */
@@ -107,16 +124,30 @@ public class BPMPackageImpl extends EPackageImpl implements BPMPackage {
 	 * <!-- end-user-doc -->
      * @generated
      */
-	private EClass auditTypeEClass = null;
-
-	/**
-     * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-     * @generated
-     */
 	private EClass bpmImplementationTypeEClass = null;
 
 	/**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    private EClass channelsTypeEClass = null;
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    private EClass channelTypeEClass = null;
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    private EClass containerTypeEClass = null;
+
+    /**
      * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
      * @generated
@@ -128,6 +159,48 @@ public class BPMPackageImpl extends EPackageImpl implements BPMPackage {
      * <!-- end-user-doc -->
      * @generated
      */
+    private EClass listenersTypeEClass = null;
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    private EClass listenerTypeEClass = null;
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    private EClass loggersTypeEClass = null;
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    private EClass loggerType1EClass = null;
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    private EClass manifestTypeEClass = null;
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    private EClass mappingsTypeEClass = null;
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
     private EClass mappingTypeEClass = null;
 
     /**
@@ -135,7 +208,21 @@ public class BPMPackageImpl extends EPackageImpl implements BPMPackage {
      * <!-- end-user-doc -->
      * @generated
      */
-    private EClass parametersTypeEClass = null;
+    private EClass propertiesTypeEClass = null;
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    private EClass propertyTypeEClass = null;
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    private EClass resourcesTypeEClass = null;
 
     /**
      * <!-- begin-user-doc -->
@@ -149,21 +236,14 @@ public class BPMPackageImpl extends EPackageImpl implements BPMPackage {
      * <!-- end-user-doc -->
      * @generated
      */
-    private EClass resultsTypeEClass = null;
+    private EClass workItemHandlersTypeEClass = null;
 
     /**
-     * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-     * @generated
-     */
-	private EClass taskHandlerTypeEClass = null;
-
-	/**
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @generated
      */
-    private EClass eventListenerTypeEClass = null;
+    private EClass workItemHandlerTypeEClass = null;
 
     /**
      * <!-- begin-user-doc -->
@@ -174,12 +254,54 @@ public class BPMPackageImpl extends EPackageImpl implements BPMPackage {
 
 	/**
      * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    private EEnum expressionTypeEEnum = null;
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    private EEnum loggerTypeEEnum = null;
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    private EEnum scopeTypeEEnum = null;
+
+    /**
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
      * @generated
      */
 	private EDataType actionTypeObjectEDataType = null;
 
 	/**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    private EDataType expressionTypeObjectEDataType = null;
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    private EDataType loggerTypeObjectEDataType = null;
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    private EDataType scopeTypeObjectEDataType = null;
+
+    /**
      * Creates an instance of the model <b>Package</b>, registered with
      * {@link org.eclipse.emf.ecore.EPackage.Registry EPackage.Registry} by the package
      * package URI value.
@@ -232,7 +354,6 @@ public class BPMPackageImpl extends EPackageImpl implements BPMPackage {
         // Obtain or create and register interdependencies
         BeanPackageImpl theBeanPackage = (BeanPackageImpl)(EPackage.Registry.INSTANCE.getEPackage(BeanPackage.eNS_URI) instanceof BeanPackageImpl ? EPackage.Registry.INSTANCE.getEPackage(BeanPackage.eNS_URI) : BeanPackage.eINSTANCE);
         BPELPackageImpl theBPELPackage = (BPELPackageImpl)(EPackage.Registry.INSTANCE.getEPackage(BPELPackage.eNS_URI) instanceof BPELPackageImpl ? EPackage.Registry.INSTANCE.getEPackage(BPELPackage.eNS_URI) : BPELPackage.eINSTANCE);
-        CommonRulesPackageImpl theCommonRulesPackage = (CommonRulesPackageImpl)(EPackage.Registry.INSTANCE.getEPackage(CommonRulesPackage.eNS_URI) instanceof CommonRulesPackageImpl ? EPackage.Registry.INSTANCE.getEPackage(CommonRulesPackage.eNS_URI) : CommonRulesPackage.eINSTANCE);
         SwitchyardPackageImpl theSwitchyardPackage = (SwitchyardPackageImpl)(EPackage.Registry.INSTANCE.getEPackage(SwitchyardPackage.eNS_URI) instanceof SwitchyardPackageImpl ? EPackage.Registry.INSTANCE.getEPackage(SwitchyardPackage.eNS_URI) : SwitchyardPackage.eINSTANCE);
         ClojurePackageImpl theClojurePackage = (ClojurePackageImpl)(EPackage.Registry.INSTANCE.getEPackage(ClojurePackage.eNS_URI) instanceof ClojurePackageImpl ? EPackage.Registry.INSTANCE.getEPackage(ClojurePackage.eNS_URI) : ClojurePackage.eINSTANCE);
         HornetQPackageImpl theHornetQPackage = (HornetQPackageImpl)(EPackage.Registry.INSTANCE.getEPackage(HornetQPackage.eNS_URI) instanceof HornetQPackageImpl ? EPackage.Registry.INSTANCE.getEPackage(HornetQPackage.eNS_URI) : HornetQPackage.eINSTANCE);
@@ -246,6 +367,17 @@ public class BPMPackageImpl extends EPackageImpl implements BPMPackage {
         ResteasyPackageImpl theResteasyPackage = (ResteasyPackageImpl)(EPackage.Registry.INSTANCE.getEPackage(ResteasyPackage.eNS_URI) instanceof ResteasyPackageImpl ? EPackage.Registry.INSTANCE.getEPackage(ResteasyPackage.eNS_URI) : ResteasyPackage.eINSTANCE);
         HttpPackageImpl theHttpPackage = (HttpPackageImpl)(EPackage.Registry.INSTANCE.getEPackage(HttpPackage.eNS_URI) instanceof HttpPackageImpl ? EPackage.Registry.INSTANCE.getEPackage(HttpPackage.eNS_URI) : HttpPackage.eINSTANCE);
         RemotePackageImpl theRemotePackage = (RemotePackageImpl)(EPackage.Registry.INSTANCE.getEPackage(RemotePackage.eNS_URI) instanceof RemotePackageImpl ? EPackage.Registry.INSTANCE.getEPackage(RemotePackage.eNS_URI) : RemotePackage.eINSTANCE);
+        CorePackageImpl theCorePackage = (CorePackageImpl)(EPackage.Registry.INSTANCE.getEPackage(CorePackage.eNS_URI) instanceof CorePackageImpl ? EPackage.Registry.INSTANCE.getEPackage(CorePackage.eNS_URI) : CorePackage.eINSTANCE);
+        AmqpPackageImpl theAmqpPackage = (AmqpPackageImpl)(EPackage.Registry.INSTANCE.getEPackage(AmqpPackage.eNS_URI) instanceof AmqpPackageImpl ? EPackage.Registry.INSTANCE.getEPackage(AmqpPackage.eNS_URI) : AmqpPackage.eINSTANCE);
+        AtomPackageImpl theAtomPackage = (AtomPackageImpl)(EPackage.Registry.INSTANCE.getEPackage(AtomPackage.eNS_URI) instanceof AtomPackageImpl ? EPackage.Registry.INSTANCE.getEPackage(AtomPackage.eNS_URI) : AtomPackage.eINSTANCE);
+        FilePackageImpl theFilePackage = (FilePackageImpl)(EPackage.Registry.INSTANCE.getEPackage(FilePackage.eNS_URI) instanceof FilePackageImpl ? EPackage.Registry.INSTANCE.getEPackage(FilePackage.eNS_URI) : FilePackage.eINSTANCE);
+        FtpPackageImpl theFtpPackage = (FtpPackageImpl)(EPackage.Registry.INSTANCE.getEPackage(FtpPackage.eNS_URI) instanceof FtpPackageImpl ? EPackage.Registry.INSTANCE.getEPackage(FtpPackage.eNS_URI) : FtpPackage.eINSTANCE);
+        JmsPackageImpl theJmsPackage = (JmsPackageImpl)(EPackage.Registry.INSTANCE.getEPackage(JmsPackage.eNS_URI) instanceof JmsPackageImpl ? EPackage.Registry.INSTANCE.getEPackage(JmsPackage.eNS_URI) : JmsPackage.eINSTANCE);
+        JpaPackageImpl theJpaPackage = (JpaPackageImpl)(EPackage.Registry.INSTANCE.getEPackage(JpaPackage.eNS_URI) instanceof JpaPackageImpl ? EPackage.Registry.INSTANCE.getEPackage(JpaPackage.eNS_URI) : JpaPackage.eINSTANCE);
+        MailPackageImpl theMailPackage = (MailPackageImpl)(EPackage.Registry.INSTANCE.getEPackage(MailPackage.eNS_URI) instanceof MailPackageImpl ? EPackage.Registry.INSTANCE.getEPackage(MailPackage.eNS_URI) : MailPackage.eINSTANCE);
+        NettyPackageImpl theNettyPackage = (NettyPackageImpl)(EPackage.Registry.INSTANCE.getEPackage(NettyPackage.eNS_URI) instanceof NettyPackageImpl ? EPackage.Registry.INSTANCE.getEPackage(NettyPackage.eNS_URI) : NettyPackage.eINSTANCE);
+        QuartzPackageImpl theQuartzPackage = (QuartzPackageImpl)(EPackage.Registry.INSTANCE.getEPackage(QuartzPackage.eNS_URI) instanceof QuartzPackageImpl ? EPackage.Registry.INSTANCE.getEPackage(QuartzPackage.eNS_URI) : QuartzPackage.eINSTANCE);
+        SqlPackageImpl theSqlPackage = (SqlPackageImpl)(EPackage.Registry.INSTANCE.getEPackage(SqlPackage.eNS_URI) instanceof SqlPackageImpl ? EPackage.Registry.INSTANCE.getEPackage(SqlPackage.eNS_URI) : SqlPackage.eINSTANCE);
 
         // Load packages
         theSpringPackage.loadPackage();
@@ -254,7 +386,6 @@ public class BPMPackageImpl extends EPackageImpl implements BPMPackage {
         theBPMPackage.createPackageContents();
         theBeanPackage.createPackageContents();
         theBPELPackage.createPackageContents();
-        theCommonRulesPackage.createPackageContents();
         theSwitchyardPackage.createPackageContents();
         theClojurePackage.createPackageContents();
         theHornetQPackage.createPackageContents();
@@ -267,12 +398,22 @@ public class BPMPackageImpl extends EPackageImpl implements BPMPackage {
         theResteasyPackage.createPackageContents();
         theHttpPackage.createPackageContents();
         theRemotePackage.createPackageContents();
+        theCorePackage.createPackageContents();
+        theAmqpPackage.createPackageContents();
+        theAtomPackage.createPackageContents();
+        theFilePackage.createPackageContents();
+        theFtpPackage.createPackageContents();
+        theJmsPackage.createPackageContents();
+        theJpaPackage.createPackageContents();
+        theMailPackage.createPackageContents();
+        theNettyPackage.createPackageContents();
+        theQuartzPackage.createPackageContents();
+        theSqlPackage.createPackageContents();
 
         // Initialize created meta-data
         theBPMPackage.initializePackageContents();
         theBeanPackage.initializePackageContents();
         theBPELPackage.initializePackageContents();
-        theCommonRulesPackage.initializePackageContents();
         theSwitchyardPackage.initializePackageContents();
         theClojurePackage.initializePackageContents();
         theHornetQPackage.initializePackageContents();
@@ -285,6 +426,17 @@ public class BPMPackageImpl extends EPackageImpl implements BPMPackage {
         theResteasyPackage.initializePackageContents();
         theHttpPackage.initializePackageContents();
         theRemotePackage.initializePackageContents();
+        theCorePackage.initializePackageContents();
+        theAmqpPackage.initializePackageContents();
+        theAtomPackage.initializePackageContents();
+        theFilePackage.initializePackageContents();
+        theFtpPackage.initializePackageContents();
+        theJmsPackage.initializePackageContents();
+        theJpaPackage.initializePackageContents();
+        theMailPackage.initializePackageContents();
+        theNettyPackage.initializePackageContents();
+        theQuartzPackage.initializePackageContents();
+        theSqlPackage.initializePackageContents();
 
         // Fix loaded packages
         theSpringPackage.fixPackageContents();
@@ -300,6 +452,24 @@ public class BPMPackageImpl extends EPackageImpl implements BPMPackage {
 
 	/**
      * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public EClass getActionsType() {
+        return actionsTypeEClass;
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public EReference getActionsType_Action() {
+        return (EReference)actionsTypeEClass.getEStructuralFeatures().get(0);
+    }
+
+    /**
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
      * @generated
      */
@@ -312,8 +482,44 @@ public class BPMPackageImpl extends EPackageImpl implements BPMPackage {
      * <!-- end-user-doc -->
      * @generated
      */
-    public EAttribute getActionType1_Name() {
-        return (EAttribute)actionType1EClass.getEStructuralFeatures().get(0);
+    public EReference getActionType1_Globals() {
+        return (EReference)actionType1EClass.getEStructuralFeatures().get(0);
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public EReference getActionType1_Inputs() {
+        return (EReference)actionType1EClass.getEStructuralFeatures().get(1);
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public EReference getActionType1_Outputs() {
+        return (EReference)actionType1EClass.getEStructuralFeatures().get(2);
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public EAttribute getActionType1_Id() {
+        return (EAttribute)actionType1EClass.getEStructuralFeatures().get(3);
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public EAttribute getActionType1_Operation() {
+        return (EAttribute)actionType1EClass.getEStructuralFeatures().get(4);
     }
 
     /**
@@ -322,28 +528,10 @@ public class BPMPackageImpl extends EPackageImpl implements BPMPackage {
      * @generated
      */
     public EAttribute getActionType1_Type() {
-        return (EAttribute)actionType1EClass.getEStructuralFeatures().get(1);
+        return (EAttribute)actionType1EClass.getEStructuralFeatures().get(5);
     }
 
     /**
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    public EAttribute getActionType1_EventType() {
-        return (EAttribute)actionType1EClass.getEStructuralFeatures().get(2);
-    }
-
-    /**
-     * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-     * @generated
-     */
-	public EClass getAuditType() {
-        return auditTypeEClass;
-    }
-
-	/**
      * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
      * @generated
@@ -354,55 +542,55 @@ public class BPMPackageImpl extends EPackageImpl implements BPMPackage {
 
 	/**
      * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
      * @generated
      */
-	public EReference getBPMImplementationType_Action() {
+    public EReference getBPMImplementationType_Actions() {
         return (EReference)bpmImplementationTypeEClass.getEStructuralFeatures().get(0);
     }
 
-	/**
-     * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-     * @generated
-     */
-	public EReference getBPMImplementationType_Audit() {
-        return (EReference)bpmImplementationTypeEClass.getEStructuralFeatures().get(1);
-    }
-
-	/**
+    /**
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @generated
      */
-    public EReference getBPMImplementationType_EventListener() {
+    public EReference getBPMImplementationType_Channels() {
+        return (EReference)bpmImplementationTypeEClass.getEStructuralFeatures().get(1);
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public EReference getBPMImplementationType_Listeners() {
         return (EReference)bpmImplementationTypeEClass.getEStructuralFeatures().get(2);
     }
 
     /**
      * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
      * @generated
      */
-	public EReference getBPMImplementationType_TaskHandler() {
+    public EReference getBPMImplementationType_Loggers() {
         return (EReference)bpmImplementationTypeEClass.getEStructuralFeatures().get(3);
     }
 
-	/**
-     * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-     * @generated
-     */
-	public EReference getBPMImplementationType_Resource() {
-        return (EReference)bpmImplementationTypeEClass.getEStructuralFeatures().get(4);
-    }
-
-	/**
+    /**
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @generated
      */
-    public EReference getBPMImplementationType_Parameters() {
+    public EReference getBPMImplementationType_Manifest() {
+        return (EReference)bpmImplementationTypeEClass.getEStructuralFeatures().get(4);
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public EReference getBPMImplementationType_Properties() {
         return (EReference)bpmImplementationTypeEClass.getEStructuralFeatures().get(5);
     }
 
@@ -411,7 +599,7 @@ public class BPMPackageImpl extends EPackageImpl implements BPMPackage {
      * <!-- end-user-doc -->
      * @generated
      */
-    public EReference getBPMImplementationType_Results() {
+    public EReference getBPMImplementationType_WorkItemHandlers() {
         return (EReference)bpmImplementationTypeEClass.getEStructuralFeatures().get(6);
     }
 
@@ -420,16 +608,7 @@ public class BPMPackageImpl extends EPackageImpl implements BPMPackage {
      * <!-- end-user-doc -->
      * @generated
      */
-    public EAttribute getBPMImplementationType_ProcessDefinition() {
-        return (EAttribute)bpmImplementationTypeEClass.getEStructuralFeatures().get(7);
-    }
-
-    /**
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    public EAttribute getBPMImplementationType_ProcessDefinitionType() {
+    public EAttribute getBPMImplementationType_ProcessId() {
         return (EAttribute)bpmImplementationTypeEClass.getEStructuralFeatures().get(8);
     }
 
@@ -438,35 +617,8 @@ public class BPMPackageImpl extends EPackageImpl implements BPMPackage {
      * <!-- end-user-doc -->
      * @generated
      */
-    public EAttribute getBPMImplementationType_ProcessId() {
-        return (EAttribute)bpmImplementationTypeEClass.getEStructuralFeatures().get(9);
-    }
-
-    /**
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    public EAttribute getBPMImplementationType_MessageContentInName() {
-        return (EAttribute)bpmImplementationTypeEClass.getEStructuralFeatures().get(10);
-    }
-
-    /**
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    public EAttribute getBPMImplementationType_MessageContentOutName() {
-        return (EAttribute)bpmImplementationTypeEClass.getEStructuralFeatures().get(11);
-    }
-
-    /**
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
     public EAttribute getBPMImplementationType_Persistent() {
-        return (EAttribute)bpmImplementationTypeEClass.getEStructuralFeatures().get(12);
+        return (EAttribute)bpmImplementationTypeEClass.getEStructuralFeatures().get(7);
     }
 
     /**
@@ -475,7 +627,106 @@ public class BPMPackageImpl extends EPackageImpl implements BPMPackage {
      * @generated
      */
     public EAttribute getBPMImplementationType_SessionId() {
-        return (EAttribute)bpmImplementationTypeEClass.getEStructuralFeatures().get(13);
+        return (EAttribute)bpmImplementationTypeEClass.getEStructuralFeatures().get(9);
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public EClass getChannelsType() {
+        return channelsTypeEClass;
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public EReference getChannelsType_Channel() {
+        return (EReference)channelsTypeEClass.getEStructuralFeatures().get(0);
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public EClass getChannelType() {
+        return channelTypeEClass;
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public EAttribute getChannelType_Class() {
+        return (EAttribute)channelTypeEClass.getEStructuralFeatures().get(0);
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public EAttribute getChannelType_Name() {
+        return (EAttribute)channelTypeEClass.getEStructuralFeatures().get(1);
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public EAttribute getChannelType_Operation() {
+        return (EAttribute)channelTypeEClass.getEStructuralFeatures().get(2);
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public EAttribute getChannelType_Reference() {
+        return (EAttribute)channelTypeEClass.getEStructuralFeatures().get(3);
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public EClass getContainerType() {
+        return containerTypeEClass;
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public EAttribute getContainerType_BaseName() {
+        return (EAttribute)containerTypeEClass.getEStructuralFeatures().get(0);
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public EAttribute getContainerType_ReleaseId() {
+        return (EAttribute)containerTypeEClass.getEStructuralFeatures().get(1);
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public EAttribute getContainerType_SessionName() {
+        return (EAttribute)containerTypeEClass.getEStructuralFeatures().get(2);
     }
 
     /**
@@ -525,28 +776,28 @@ public class BPMPackageImpl extends EPackageImpl implements BPMPackage {
 
 	/**
      * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
      * @generated
      */
-	public EReference getDocumentRoot_Audit() {
+    public EReference getDocumentRoot_Actions() {
         return (EReference)documentRootEClass.getEStructuralFeatures().get(4);
     }
 
-	/**
-     * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-     * @generated
-     */
-	public EReference getDocumentRoot_ImplementationBpm() {
-        return (EReference)documentRootEClass.getEStructuralFeatures().get(5);
-    }
-
-	/**
+    /**
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @generated
      */
-    public EReference getDocumentRoot_Mapping() {
+    public EReference getDocumentRoot_Channel() {
+        return (EReference)documentRootEClass.getEStructuralFeatures().get(5);
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public EReference getDocumentRoot_Channels() {
         return (EReference)documentRootEClass.getEStructuralFeatures().get(6);
     }
 
@@ -555,8 +806,116 @@ public class BPMPackageImpl extends EPackageImpl implements BPMPackage {
      * <!-- end-user-doc -->
      * @generated
      */
-    public EReference getDocumentRoot_Parameters() {
+    public EReference getDocumentRoot_Container() {
         return (EReference)documentRootEClass.getEStructuralFeatures().get(7);
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public EReference getDocumentRoot_Globals() {
+        return (EReference)documentRootEClass.getEStructuralFeatures().get(8);
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+     * @generated
+     */
+	public EReference getDocumentRoot_ImplementationBpm() {
+        return (EReference)documentRootEClass.getEStructuralFeatures().get(9);
+    }
+
+	/**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public EReference getDocumentRoot_Inputs() {
+        return (EReference)documentRootEClass.getEStructuralFeatures().get(10);
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public EReference getDocumentRoot_Listener() {
+        return (EReference)documentRootEClass.getEStructuralFeatures().get(11);
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public EReference getDocumentRoot_Listeners() {
+        return (EReference)documentRootEClass.getEStructuralFeatures().get(12);
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public EReference getDocumentRoot_Logger() {
+        return (EReference)documentRootEClass.getEStructuralFeatures().get(13);
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public EReference getDocumentRoot_Loggers() {
+        return (EReference)documentRootEClass.getEStructuralFeatures().get(14);
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public EReference getDocumentRoot_Manifest() {
+        return (EReference)documentRootEClass.getEStructuralFeatures().get(15);
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public EReference getDocumentRoot_Mapping() {
+        return (EReference)documentRootEClass.getEStructuralFeatures().get(16);
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public EReference getDocumentRoot_Outputs() {
+        return (EReference)documentRootEClass.getEStructuralFeatures().get(17);
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public EReference getDocumentRoot_Properties() {
+        return (EReference)documentRootEClass.getEStructuralFeatures().get(18);
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public EReference getDocumentRoot_Property() {
+        return (EReference)documentRootEClass.getEStructuralFeatures().get(19);
     }
 
     /**
@@ -565,7 +924,7 @@ public class BPMPackageImpl extends EPackageImpl implements BPMPackage {
      * @generated
      */
 	public EReference getDocumentRoot_Resource() {
-        return (EReference)documentRootEClass.getEStructuralFeatures().get(8);
+        return (EReference)documentRootEClass.getEStructuralFeatures().get(20);
     }
 
 	/**
@@ -573,26 +932,170 @@ public class BPMPackageImpl extends EPackageImpl implements BPMPackage {
      * <!-- end-user-doc -->
      * @generated
      */
-    public EReference getDocumentRoot_Results() {
-        return (EReference)documentRootEClass.getEStructuralFeatures().get(9);
+    public EReference getDocumentRoot_Resources() {
+        return (EReference)documentRootEClass.getEStructuralFeatures().get(21);
     }
 
     /**
      * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
      * @generated
      */
-	public EReference getDocumentRoot_TaskHandler() {
-        return (EReference)documentRootEClass.getEStructuralFeatures().get(10);
+    public EReference getDocumentRoot_WorkItemHandler() {
+        return (EReference)documentRootEClass.getEStructuralFeatures().get(22);
     }
 
-	/**
+    /**
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @generated
      */
-    public EReference getDocumentRoot_EventListener() {
-        return (EReference)documentRootEClass.getEStructuralFeatures().get(11);
+    public EReference getDocumentRoot_WorkItemHandlers() {
+        return (EReference)documentRootEClass.getEStructuralFeatures().get(23);
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public EClass getListenersType() {
+        return listenersTypeEClass;
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public EReference getListenersType_Listener() {
+        return (EReference)listenersTypeEClass.getEStructuralFeatures().get(0);
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public EClass getListenerType() {
+        return listenerTypeEClass;
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public EAttribute getListenerType_Class() {
+        return (EAttribute)listenerTypeEClass.getEStructuralFeatures().get(0);
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public EClass getLoggersType() {
+        return loggersTypeEClass;
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public EReference getLoggersType_Logger() {
+        return (EReference)loggersTypeEClass.getEStructuralFeatures().get(0);
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public EClass getLoggerType1() {
+        return loggerType1EClass;
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public EAttribute getLoggerType1_Interval() {
+        return (EAttribute)loggerType1EClass.getEStructuralFeatures().get(0);
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public EAttribute getLoggerType1_Log() {
+        return (EAttribute)loggerType1EClass.getEStructuralFeatures().get(1);
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public EAttribute getLoggerType1_Type() {
+        return (EAttribute)loggerType1EClass.getEStructuralFeatures().get(2);
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public EClass getManifestType() {
+        return manifestTypeEClass;
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public EReference getManifestType_Container() {
+        return (EReference)manifestTypeEClass.getEStructuralFeatures().get(0);
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public EReference getManifestType_Resources() {
+        return (EReference)manifestTypeEClass.getEStructuralFeatures().get(1);
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public EAttribute getManifestType_Scan() {
+        return (EAttribute)manifestTypeEClass.getEStructuralFeatures().get(2);
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public EClass getMappingsType() {
+        return mappingsTypeEClass;
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public EReference getMappingsType_Mapping() {
+        return (EReference)mappingsTypeEClass.getEStructuralFeatures().get(0);
     }
 
     /**
@@ -609,8 +1112,8 @@ public class BPMPackageImpl extends EPackageImpl implements BPMPackage {
      * <!-- end-user-doc -->
      * @generated
      */
-    public EClass getParametersType() {
-        return parametersTypeEClass;
+    public EAttribute getMappingType_Expression() {
+        return (EAttribute)mappingTypeEClass.getEStructuralFeatures().get(0);
     }
 
     /**
@@ -618,8 +1121,89 @@ public class BPMPackageImpl extends EPackageImpl implements BPMPackage {
      * <!-- end-user-doc -->
      * @generated
      */
-    public EReference getParametersType_Mapping() {
-        return (EReference)parametersTypeEClass.getEStructuralFeatures().get(0);
+    public EAttribute getMappingType_ExpressionType() {
+        return (EAttribute)mappingTypeEClass.getEStructuralFeatures().get(1);
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public EAttribute getMappingType_Scope() {
+        return (EAttribute)mappingTypeEClass.getEStructuralFeatures().get(2);
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public EAttribute getMappingType_Variable() {
+        return (EAttribute)mappingTypeEClass.getEStructuralFeatures().get(3);
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public EClass getPropertiesType() {
+        return propertiesTypeEClass;
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public EReference getPropertiesType_Property() {
+        return (EReference)propertiesTypeEClass.getEStructuralFeatures().get(0);
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public EClass getPropertyType() {
+        return propertyTypeEClass;
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public EAttribute getPropertyType_Name() {
+        return (EAttribute)propertyTypeEClass.getEStructuralFeatures().get(0);
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public EAttribute getPropertyType_Value() {
+        return (EAttribute)propertyTypeEClass.getEStructuralFeatures().get(1);
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public EClass getResourcesType() {
+        return resourcesTypeEClass;
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public EReference getResourcesType_Resource() {
+        return (EReference)resourcesTypeEClass.getEStructuralFeatures().get(0);
     }
 
     /**
@@ -636,8 +1220,8 @@ public class BPMPackageImpl extends EPackageImpl implements BPMPackage {
      * <!-- end-user-doc -->
      * @generated
      */
-    public EClass getResultsType() {
-        return resultsTypeEClass;
+    public EAttribute getResourceType_Location() {
+        return (EAttribute)resourceTypeEClass.getEStructuralFeatures().get(0);
     }
 
     /**
@@ -645,26 +1229,8 @@ public class BPMPackageImpl extends EPackageImpl implements BPMPackage {
      * <!-- end-user-doc -->
      * @generated
      */
-    public EReference getResultsType_Mapping() {
-        return (EReference)resultsTypeEClass.getEStructuralFeatures().get(0);
-    }
-
-    /**
-     * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-     * @generated
-     */
-	public EClass getTaskHandlerType() {
-        return taskHandlerTypeEClass;
-    }
-
-	/**
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    public EAttribute getTaskHandlerType_Name() {
-        return (EAttribute)taskHandlerTypeEClass.getEStructuralFeatures().get(0);
+    public EAttribute getResourceType_Type() {
+        return (EAttribute)resourceTypeEClass.getEStructuralFeatures().get(1);
     }
 
     /**
@@ -672,8 +1238,8 @@ public class BPMPackageImpl extends EPackageImpl implements BPMPackage {
      * <!-- end-user-doc -->
      * @generated
      */
-    public EAttribute getTaskHandlerType_Class() {
-        return (EAttribute)taskHandlerTypeEClass.getEStructuralFeatures().get(1);
+    public EClass getWorkItemHandlersType() {
+        return workItemHandlersTypeEClass;
     }
 
     /**
@@ -681,8 +1247,35 @@ public class BPMPackageImpl extends EPackageImpl implements BPMPackage {
      * <!-- end-user-doc -->
      * @generated
      */
-    public EClass getEventListenerType() {
-        return eventListenerTypeEClass;
+    public EReference getWorkItemHandlersType_WorkItemHandler() {
+        return (EReference)workItemHandlersTypeEClass.getEStructuralFeatures().get(0);
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public EClass getWorkItemHandlerType() {
+        return workItemHandlerTypeEClass;
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public EAttribute getWorkItemHandlerType_Class() {
+        return (EAttribute)workItemHandlerTypeEClass.getEStructuralFeatures().get(0);
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public EAttribute getWorkItemHandlerType_Name() {
+        return (EAttribute)workItemHandlerTypeEClass.getEStructuralFeatures().get(1);
     }
 
     /**
@@ -696,6 +1289,33 @@ public class BPMPackageImpl extends EPackageImpl implements BPMPackage {
 
 	/**
      * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public EEnum getExpressionType() {
+        return expressionTypeEEnum;
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public EEnum getLoggerType() {
+        return loggerTypeEEnum;
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public EEnum getScopeType() {
+        return scopeTypeEEnum;
+    }
+
+    /**
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
      * @generated
      */
@@ -704,6 +1324,33 @@ public class BPMPackageImpl extends EPackageImpl implements BPMPackage {
     }
 
 	/**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public EDataType getExpressionTypeObject() {
+        return expressionTypeObjectEDataType;
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public EDataType getLoggerTypeObject() {
+        return loggerTypeObjectEDataType;
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public EDataType getScopeTypeObject() {
+        return scopeTypeObjectEDataType;
+    }
+
+    /**
      * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
      * @generated
@@ -731,64 +1378,129 @@ public class BPMPackageImpl extends EPackageImpl implements BPMPackage {
         isCreated = true;
 
         // Create classes and their features
-        actionType1EClass = createEClass(ACTION_TYPE1);
-        createEAttribute(actionType1EClass, ACTION_TYPE1__NAME);
-        createEAttribute(actionType1EClass, ACTION_TYPE1__TYPE);
-        createEAttribute(actionType1EClass, ACTION_TYPE1__EVENT_TYPE);
+        actionsTypeEClass = createEClass(ACTIONS_TYPE);
+        createEReference(actionsTypeEClass, ACTIONS_TYPE__ACTION);
 
-        auditTypeEClass = createEClass(AUDIT_TYPE);
+        actionType1EClass = createEClass(ACTION_TYPE1);
+        createEReference(actionType1EClass, ACTION_TYPE1__GLOBALS);
+        createEReference(actionType1EClass, ACTION_TYPE1__INPUTS);
+        createEReference(actionType1EClass, ACTION_TYPE1__OUTPUTS);
+        createEAttribute(actionType1EClass, ACTION_TYPE1__ID);
+        createEAttribute(actionType1EClass, ACTION_TYPE1__OPERATION);
+        createEAttribute(actionType1EClass, ACTION_TYPE1__TYPE);
 
         bpmImplementationTypeEClass = createEClass(BPM_IMPLEMENTATION_TYPE);
-        createEReference(bpmImplementationTypeEClass, BPM_IMPLEMENTATION_TYPE__ACTION);
-        createEReference(bpmImplementationTypeEClass, BPM_IMPLEMENTATION_TYPE__AUDIT);
-        createEReference(bpmImplementationTypeEClass, BPM_IMPLEMENTATION_TYPE__EVENT_LISTENER);
-        createEReference(bpmImplementationTypeEClass, BPM_IMPLEMENTATION_TYPE__TASK_HANDLER);
-        createEReference(bpmImplementationTypeEClass, BPM_IMPLEMENTATION_TYPE__RESOURCE);
-        createEReference(bpmImplementationTypeEClass, BPM_IMPLEMENTATION_TYPE__PARAMETERS);
-        createEReference(bpmImplementationTypeEClass, BPM_IMPLEMENTATION_TYPE__RESULTS);
-        createEAttribute(bpmImplementationTypeEClass, BPM_IMPLEMENTATION_TYPE__PROCESS_DEFINITION);
-        createEAttribute(bpmImplementationTypeEClass, BPM_IMPLEMENTATION_TYPE__PROCESS_DEFINITION_TYPE);
-        createEAttribute(bpmImplementationTypeEClass, BPM_IMPLEMENTATION_TYPE__PROCESS_ID);
-        createEAttribute(bpmImplementationTypeEClass, BPM_IMPLEMENTATION_TYPE__MESSAGE_CONTENT_IN_NAME);
-        createEAttribute(bpmImplementationTypeEClass, BPM_IMPLEMENTATION_TYPE__MESSAGE_CONTENT_OUT_NAME);
+        createEReference(bpmImplementationTypeEClass, BPM_IMPLEMENTATION_TYPE__ACTIONS);
+        createEReference(bpmImplementationTypeEClass, BPM_IMPLEMENTATION_TYPE__CHANNELS);
+        createEReference(bpmImplementationTypeEClass, BPM_IMPLEMENTATION_TYPE__LISTENERS);
+        createEReference(bpmImplementationTypeEClass, BPM_IMPLEMENTATION_TYPE__LOGGERS);
+        createEReference(bpmImplementationTypeEClass, BPM_IMPLEMENTATION_TYPE__MANIFEST);
+        createEReference(bpmImplementationTypeEClass, BPM_IMPLEMENTATION_TYPE__PROPERTIES);
+        createEReference(bpmImplementationTypeEClass, BPM_IMPLEMENTATION_TYPE__WORK_ITEM_HANDLERS);
         createEAttribute(bpmImplementationTypeEClass, BPM_IMPLEMENTATION_TYPE__PERSISTENT);
+        createEAttribute(bpmImplementationTypeEClass, BPM_IMPLEMENTATION_TYPE__PROCESS_ID);
         createEAttribute(bpmImplementationTypeEClass, BPM_IMPLEMENTATION_TYPE__SESSION_ID);
+
+        channelsTypeEClass = createEClass(CHANNELS_TYPE);
+        createEReference(channelsTypeEClass, CHANNELS_TYPE__CHANNEL);
+
+        channelTypeEClass = createEClass(CHANNEL_TYPE);
+        createEAttribute(channelTypeEClass, CHANNEL_TYPE__CLASS);
+        createEAttribute(channelTypeEClass, CHANNEL_TYPE__NAME);
+        createEAttribute(channelTypeEClass, CHANNEL_TYPE__OPERATION);
+        createEAttribute(channelTypeEClass, CHANNEL_TYPE__REFERENCE);
+
+        containerTypeEClass = createEClass(CONTAINER_TYPE);
+        createEAttribute(containerTypeEClass, CONTAINER_TYPE__BASE_NAME);
+        createEAttribute(containerTypeEClass, CONTAINER_TYPE__RELEASE_ID);
+        createEAttribute(containerTypeEClass, CONTAINER_TYPE__SESSION_NAME);
 
         documentRootEClass = createEClass(DOCUMENT_ROOT);
         createEAttribute(documentRootEClass, DOCUMENT_ROOT__MIXED);
         createEReference(documentRootEClass, DOCUMENT_ROOT__XMLNS_PREFIX_MAP);
         createEReference(documentRootEClass, DOCUMENT_ROOT__XSI_SCHEMA_LOCATION);
         createEReference(documentRootEClass, DOCUMENT_ROOT__ACTION);
-        createEReference(documentRootEClass, DOCUMENT_ROOT__AUDIT);
+        createEReference(documentRootEClass, DOCUMENT_ROOT__ACTIONS);
+        createEReference(documentRootEClass, DOCUMENT_ROOT__CHANNEL);
+        createEReference(documentRootEClass, DOCUMENT_ROOT__CHANNELS);
+        createEReference(documentRootEClass, DOCUMENT_ROOT__CONTAINER);
+        createEReference(documentRootEClass, DOCUMENT_ROOT__GLOBALS);
         createEReference(documentRootEClass, DOCUMENT_ROOT__IMPLEMENTATION_BPM);
+        createEReference(documentRootEClass, DOCUMENT_ROOT__INPUTS);
+        createEReference(documentRootEClass, DOCUMENT_ROOT__LISTENER);
+        createEReference(documentRootEClass, DOCUMENT_ROOT__LISTENERS);
+        createEReference(documentRootEClass, DOCUMENT_ROOT__LOGGER);
+        createEReference(documentRootEClass, DOCUMENT_ROOT__LOGGERS);
+        createEReference(documentRootEClass, DOCUMENT_ROOT__MANIFEST);
         createEReference(documentRootEClass, DOCUMENT_ROOT__MAPPING);
-        createEReference(documentRootEClass, DOCUMENT_ROOT__PARAMETERS);
+        createEReference(documentRootEClass, DOCUMENT_ROOT__OUTPUTS);
+        createEReference(documentRootEClass, DOCUMENT_ROOT__PROPERTIES);
+        createEReference(documentRootEClass, DOCUMENT_ROOT__PROPERTY);
         createEReference(documentRootEClass, DOCUMENT_ROOT__RESOURCE);
-        createEReference(documentRootEClass, DOCUMENT_ROOT__RESULTS);
-        createEReference(documentRootEClass, DOCUMENT_ROOT__TASK_HANDLER);
-        createEReference(documentRootEClass, DOCUMENT_ROOT__EVENT_LISTENER);
+        createEReference(documentRootEClass, DOCUMENT_ROOT__RESOURCES);
+        createEReference(documentRootEClass, DOCUMENT_ROOT__WORK_ITEM_HANDLER);
+        createEReference(documentRootEClass, DOCUMENT_ROOT__WORK_ITEM_HANDLERS);
+
+        listenersTypeEClass = createEClass(LISTENERS_TYPE);
+        createEReference(listenersTypeEClass, LISTENERS_TYPE__LISTENER);
+
+        listenerTypeEClass = createEClass(LISTENER_TYPE);
+        createEAttribute(listenerTypeEClass, LISTENER_TYPE__CLASS);
+
+        loggersTypeEClass = createEClass(LOGGERS_TYPE);
+        createEReference(loggersTypeEClass, LOGGERS_TYPE__LOGGER);
+
+        loggerType1EClass = createEClass(LOGGER_TYPE1);
+        createEAttribute(loggerType1EClass, LOGGER_TYPE1__INTERVAL);
+        createEAttribute(loggerType1EClass, LOGGER_TYPE1__LOG);
+        createEAttribute(loggerType1EClass, LOGGER_TYPE1__TYPE);
+
+        manifestTypeEClass = createEClass(MANIFEST_TYPE);
+        createEReference(manifestTypeEClass, MANIFEST_TYPE__CONTAINER);
+        createEReference(manifestTypeEClass, MANIFEST_TYPE__RESOURCES);
+        createEAttribute(manifestTypeEClass, MANIFEST_TYPE__SCAN);
+
+        mappingsTypeEClass = createEClass(MAPPINGS_TYPE);
+        createEReference(mappingsTypeEClass, MAPPINGS_TYPE__MAPPING);
 
         mappingTypeEClass = createEClass(MAPPING_TYPE);
+        createEAttribute(mappingTypeEClass, MAPPING_TYPE__EXPRESSION);
+        createEAttribute(mappingTypeEClass, MAPPING_TYPE__EXPRESSION_TYPE);
+        createEAttribute(mappingTypeEClass, MAPPING_TYPE__SCOPE);
+        createEAttribute(mappingTypeEClass, MAPPING_TYPE__VARIABLE);
 
-        parametersTypeEClass = createEClass(PARAMETERS_TYPE);
-        createEReference(parametersTypeEClass, PARAMETERS_TYPE__MAPPING);
+        propertiesTypeEClass = createEClass(PROPERTIES_TYPE);
+        createEReference(propertiesTypeEClass, PROPERTIES_TYPE__PROPERTY);
+
+        propertyTypeEClass = createEClass(PROPERTY_TYPE);
+        createEAttribute(propertyTypeEClass, PROPERTY_TYPE__NAME);
+        createEAttribute(propertyTypeEClass, PROPERTY_TYPE__VALUE);
+
+        resourcesTypeEClass = createEClass(RESOURCES_TYPE);
+        createEReference(resourcesTypeEClass, RESOURCES_TYPE__RESOURCE);
 
         resourceTypeEClass = createEClass(RESOURCE_TYPE);
+        createEAttribute(resourceTypeEClass, RESOURCE_TYPE__LOCATION);
+        createEAttribute(resourceTypeEClass, RESOURCE_TYPE__TYPE);
 
-        resultsTypeEClass = createEClass(RESULTS_TYPE);
-        createEReference(resultsTypeEClass, RESULTS_TYPE__MAPPING);
+        workItemHandlersTypeEClass = createEClass(WORK_ITEM_HANDLERS_TYPE);
+        createEReference(workItemHandlersTypeEClass, WORK_ITEM_HANDLERS_TYPE__WORK_ITEM_HANDLER);
 
-        taskHandlerTypeEClass = createEClass(TASK_HANDLER_TYPE);
-        createEAttribute(taskHandlerTypeEClass, TASK_HANDLER_TYPE__NAME);
-        createEAttribute(taskHandlerTypeEClass, TASK_HANDLER_TYPE__CLASS);
-
-        eventListenerTypeEClass = createEClass(EVENT_LISTENER_TYPE);
+        workItemHandlerTypeEClass = createEClass(WORK_ITEM_HANDLER_TYPE);
+        createEAttribute(workItemHandlerTypeEClass, WORK_ITEM_HANDLER_TYPE__CLASS);
+        createEAttribute(workItemHandlerTypeEClass, WORK_ITEM_HANDLER_TYPE__NAME);
 
         // Create enums
         actionTypeEEnum = createEEnum(ACTION_TYPE);
+        expressionTypeEEnum = createEEnum(EXPRESSION_TYPE);
+        loggerTypeEEnum = createEEnum(LOGGER_TYPE);
+        scopeTypeEEnum = createEEnum(SCOPE_TYPE);
 
         // Create data types
         actionTypeObjectEDataType = createEDataType(ACTION_TYPE_OBJECT);
+        expressionTypeObjectEDataType = createEDataType(EXPRESSION_TYPE_OBJECT);
+        loggerTypeObjectEDataType = createEDataType(LOGGER_TYPE_OBJECT);
+        scopeTypeObjectEDataType = createEDataType(SCOPE_TYPE_OBJECT);
     }
 
 	/**
@@ -817,77 +1529,144 @@ public class BPMPackageImpl extends EPackageImpl implements BPMPackage {
         // Obtain other dependent packages
         ScaPackage theScaPackage = (ScaPackage)EPackage.Registry.INSTANCE.getEPackage(ScaPackage.eNS_URI);
         XMLTypePackage theXMLTypePackage = (XMLTypePackage)EPackage.Registry.INSTANCE.getEPackage(XMLTypePackage.eNS_URI);
-        CommonRulesPackage theCommonRulesPackage = (CommonRulesPackage)EPackage.Registry.INSTANCE.getEPackage(CommonRulesPackage.eNS_URI);
-        SwitchyardPackage theSwitchyardPackage = (SwitchyardPackage)EPackage.Registry.INSTANCE.getEPackage(SwitchyardPackage.eNS_URI);
 
         // Create type parameters
 
         // Set bounds for type parameters
 
         // Add supertypes to classes
+        actionsTypeEClass.getESuperTypes().add(theScaPackage.getCommonExtensionBase());
         actionType1EClass.getESuperTypes().add(theScaPackage.getCommonExtensionBase());
-        auditTypeEClass.getESuperTypes().add(theCommonRulesPackage.getAuditType1());
-        bpmImplementationTypeEClass.getESuperTypes().add(theCommonRulesPackage.getCommonImplementationType());
-        mappingTypeEClass.getESuperTypes().add(theCommonRulesPackage.getMappingType());
-        parametersTypeEClass.getESuperTypes().add(theScaPackage.getCommonExtensionBase());
-        resourceTypeEClass.getESuperTypes().add(theSwitchyardPackage.getResourceType());
-        resultsTypeEClass.getESuperTypes().add(theScaPackage.getCommonExtensionBase());
-        taskHandlerTypeEClass.getESuperTypes().add(theScaPackage.getCommonExtensionBase());
-        eventListenerTypeEClass.getESuperTypes().add(theCommonRulesPackage.getEventListenerType());
+        bpmImplementationTypeEClass.getESuperTypes().add(theScaPackage.getImplementation());
+        channelsTypeEClass.getESuperTypes().add(theScaPackage.getCommonExtensionBase());
+        channelTypeEClass.getESuperTypes().add(theScaPackage.getCommonExtensionBase());
+        containerTypeEClass.getESuperTypes().add(theScaPackage.getCommonExtensionBase());
+        listenersTypeEClass.getESuperTypes().add(theScaPackage.getCommonExtensionBase());
+        listenerTypeEClass.getESuperTypes().add(theScaPackage.getCommonExtensionBase());
+        loggersTypeEClass.getESuperTypes().add(theScaPackage.getCommonExtensionBase());
+        loggerType1EClass.getESuperTypes().add(theScaPackage.getCommonExtensionBase());
+        manifestTypeEClass.getESuperTypes().add(theScaPackage.getCommonExtensionBase());
+        mappingsTypeEClass.getESuperTypes().add(theScaPackage.getCommonExtensionBase());
+        mappingTypeEClass.getESuperTypes().add(theScaPackage.getCommonExtensionBase());
+        propertiesTypeEClass.getESuperTypes().add(theScaPackage.getCommonExtensionBase());
+        propertyTypeEClass.getESuperTypes().add(theScaPackage.getCommonExtensionBase());
+        resourcesTypeEClass.getESuperTypes().add(theScaPackage.getCommonExtensionBase());
+        resourceTypeEClass.getESuperTypes().add(theScaPackage.getCommonExtensionBase());
+        workItemHandlersTypeEClass.getESuperTypes().add(theScaPackage.getCommonExtensionBase());
+        workItemHandlerTypeEClass.getESuperTypes().add(theScaPackage.getCommonExtensionBase());
 
         // Initialize classes and features; add operations and parameters
-        initEClass(actionType1EClass, ActionType1.class, "ActionType1", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-        initEAttribute(getActionType1_Name(), theXMLTypePackage.getNCName(), "name", null, 1, 1, ActionType1.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-        initEAttribute(getActionType1_Type(), this.getActionType(), "type", null, 1, 1, ActionType1.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-        initEAttribute(getActionType1_EventType(), theXMLTypePackage.getString(), "eventType", null, 0, 1, ActionType1.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+        initEClass(actionsTypeEClass, ActionsType.class, "ActionsType", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+        initEReference(getActionsType_Action(), this.getActionType1(), null, "action", null, 0, -1, ActionsType.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
-        initEClass(auditTypeEClass, AuditType.class, "AuditType", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+        initEClass(actionType1EClass, ActionType1.class, "ActionType1", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+        initEReference(getActionType1_Globals(), this.getMappingsType(), null, "globals", null, 0, 1, ActionType1.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+        initEReference(getActionType1_Inputs(), this.getMappingsType(), null, "inputs", null, 0, 1, ActionType1.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+        initEReference(getActionType1_Outputs(), this.getMappingsType(), null, "outputs", null, 0, 1, ActionType1.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+        initEAttribute(getActionType1_Id(), theXMLTypePackage.getString(), "id", null, 0, 1, ActionType1.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+        initEAttribute(getActionType1_Operation(), theXMLTypePackage.getString(), "operation", null, 1, 1, ActionType1.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+        initEAttribute(getActionType1_Type(), this.getActionType(), "type", null, 1, 1, ActionType1.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
         initEClass(bpmImplementationTypeEClass, BPMImplementationType.class, "BPMImplementationType", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-        initEReference(getBPMImplementationType_Action(), this.getActionType1(), null, "action", null, 0, -1, BPMImplementationType.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-        initEReference(getBPMImplementationType_Audit(), this.getAuditType(), null, "audit", null, 0, 1, BPMImplementationType.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-        initEReference(getBPMImplementationType_EventListener(), this.getEventListenerType(), null, "eventListener", null, 0, -1, BPMImplementationType.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-        initEReference(getBPMImplementationType_TaskHandler(), this.getTaskHandlerType(), null, "taskHandler", null, 0, -1, BPMImplementationType.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-        initEReference(getBPMImplementationType_Resource(), this.getResourceType(), null, "resource", null, 0, -1, BPMImplementationType.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-        initEReference(getBPMImplementationType_Parameters(), this.getParametersType(), null, "parameters", null, 0, 1, BPMImplementationType.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-        initEReference(getBPMImplementationType_Results(), this.getResultsType(), null, "results", null, 0, 1, BPMImplementationType.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-        initEAttribute(getBPMImplementationType_ProcessDefinition(), theXMLTypePackage.getString(), "processDefinition", null, 1, 1, BPMImplementationType.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-        initEAttribute(getBPMImplementationType_ProcessDefinitionType(), theXMLTypePackage.getNCName(), "processDefinitionType", "BPMN2", 0, 1, BPMImplementationType.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-        initEAttribute(getBPMImplementationType_ProcessId(), theXMLTypePackage.getString(), "processId", null, 1, 1, BPMImplementationType.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-        initEAttribute(getBPMImplementationType_MessageContentInName(), theXMLTypePackage.getString(), "messageContentInName", "messageContentIn", 0, 1, BPMImplementationType.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-        initEAttribute(getBPMImplementationType_MessageContentOutName(), theXMLTypePackage.getString(), "messageContentOutName", "messageContentOut", 0, 1, BPMImplementationType.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-        initEAttribute(getBPMImplementationType_Persistent(), theXMLTypePackage.getBoolean(), "persistent", "false", 0, 1, BPMImplementationType.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-        initEAttribute(getBPMImplementationType_SessionId(), theXMLTypePackage.getString(), "sessionId", "", 0, 1, BPMImplementationType.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+        initEReference(getBPMImplementationType_Actions(), this.getActionsType(), null, "actions", null, 0, 1, BPMImplementationType.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+        initEReference(getBPMImplementationType_Channels(), this.getChannelsType(), null, "channels", null, 0, 1, BPMImplementationType.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+        initEReference(getBPMImplementationType_Listeners(), this.getListenersType(), null, "listeners", null, 0, 1, BPMImplementationType.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+        initEReference(getBPMImplementationType_Loggers(), this.getLoggersType(), null, "loggers", null, 0, 1, BPMImplementationType.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+        initEReference(getBPMImplementationType_Manifest(), this.getManifestType(), null, "manifest", null, 0, 1, BPMImplementationType.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+        initEReference(getBPMImplementationType_Properties(), this.getPropertiesType(), null, "properties", null, 0, 1, BPMImplementationType.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+        initEReference(getBPMImplementationType_WorkItemHandlers(), this.getWorkItemHandlersType(), null, "workItemHandlers", null, 0, 1, BPMImplementationType.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+        initEAttribute(getBPMImplementationType_Persistent(), theXMLTypePackage.getBoolean(), "persistent", null, 0, 1, BPMImplementationType.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+        initEAttribute(getBPMImplementationType_ProcessId(), theXMLTypePackage.getString(), "processId", null, 0, 1, BPMImplementationType.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+        initEAttribute(getBPMImplementationType_SessionId(), theXMLTypePackage.getInteger(), "sessionId", null, 0, 1, BPMImplementationType.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+        initEClass(channelsTypeEClass, ChannelsType.class, "ChannelsType", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+        initEReference(getChannelsType_Channel(), this.getChannelType(), null, "channel", null, 0, -1, ChannelsType.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+        initEClass(channelTypeEClass, ChannelType.class, "ChannelType", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+        initEAttribute(getChannelType_Class(), theXMLTypePackage.getString(), "class", null, 1, 1, ChannelType.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+        initEAttribute(getChannelType_Name(), theXMLTypePackage.getString(), "name", null, 0, 1, ChannelType.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+        initEAttribute(getChannelType_Operation(), theXMLTypePackage.getString(), "operation", null, 0, 1, ChannelType.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+        initEAttribute(getChannelType_Reference(), theXMLTypePackage.getString(), "reference", null, 0, 1, ChannelType.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+        initEClass(containerTypeEClass, ContainerType.class, "ContainerType", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+        initEAttribute(getContainerType_BaseName(), theXMLTypePackage.getString(), "baseName", null, 0, 1, ContainerType.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+        initEAttribute(getContainerType_ReleaseId(), theXMLTypePackage.getString(), "releaseId", null, 0, 1, ContainerType.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+        initEAttribute(getContainerType_SessionName(), theXMLTypePackage.getString(), "sessionName", null, 0, 1, ContainerType.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
         initEClass(documentRootEClass, DocumentRoot.class, "DocumentRoot", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
         initEAttribute(getDocumentRoot_Mixed(), ecorePackage.getEFeatureMapEntry(), "mixed", null, 0, -1, null, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
         initEReference(getDocumentRoot_XMLNSPrefixMap(), ecorePackage.getEStringToStringMapEntry(), null, "xMLNSPrefixMap", null, 0, -1, null, IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
         initEReference(getDocumentRoot_XSISchemaLocation(), ecorePackage.getEStringToStringMapEntry(), null, "xSISchemaLocation", null, 0, -1, null, IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
         initEReference(getDocumentRoot_Action(), this.getActionType1(), null, "action", null, 0, -2, null, IS_TRANSIENT, IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, IS_DERIVED, IS_ORDERED);
-        initEReference(getDocumentRoot_Audit(), this.getAuditType(), null, "audit", null, 0, -2, null, IS_TRANSIENT, IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, IS_DERIVED, IS_ORDERED);
+        initEReference(getDocumentRoot_Actions(), this.getActionsType(), null, "actions", null, 0, -2, null, IS_TRANSIENT, IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, IS_DERIVED, IS_ORDERED);
+        initEReference(getDocumentRoot_Channel(), this.getChannelType(), null, "channel", null, 0, -2, null, IS_TRANSIENT, IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, IS_DERIVED, IS_ORDERED);
+        initEReference(getDocumentRoot_Channels(), this.getChannelsType(), null, "channels", null, 0, -2, null, IS_TRANSIENT, IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, IS_DERIVED, IS_ORDERED);
+        initEReference(getDocumentRoot_Container(), this.getContainerType(), null, "container", null, 0, -2, null, IS_TRANSIENT, IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, IS_DERIVED, IS_ORDERED);
+        initEReference(getDocumentRoot_Globals(), this.getMappingsType(), null, "globals", null, 0, -2, null, IS_TRANSIENT, IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, IS_DERIVED, IS_ORDERED);
         initEReference(getDocumentRoot_ImplementationBpm(), this.getBPMImplementationType(), null, "implementationBpm", null, 0, -2, null, IS_TRANSIENT, IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, IS_DERIVED, IS_ORDERED);
+        initEReference(getDocumentRoot_Inputs(), this.getMappingsType(), null, "inputs", null, 0, -2, null, IS_TRANSIENT, IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, IS_DERIVED, IS_ORDERED);
+        initEReference(getDocumentRoot_Listener(), this.getListenerType(), null, "listener", null, 0, -2, null, IS_TRANSIENT, IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, IS_DERIVED, IS_ORDERED);
+        initEReference(getDocumentRoot_Listeners(), this.getListenersType(), null, "listeners", null, 0, -2, null, IS_TRANSIENT, IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, IS_DERIVED, IS_ORDERED);
+        initEReference(getDocumentRoot_Logger(), this.getLoggerType1(), null, "logger", null, 0, -2, null, IS_TRANSIENT, IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, IS_DERIVED, IS_ORDERED);
+        initEReference(getDocumentRoot_Loggers(), this.getLoggersType(), null, "loggers", null, 0, -2, null, IS_TRANSIENT, IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, IS_DERIVED, IS_ORDERED);
+        initEReference(getDocumentRoot_Manifest(), this.getManifestType(), null, "manifest", null, 0, -2, null, IS_TRANSIENT, IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, IS_DERIVED, IS_ORDERED);
         initEReference(getDocumentRoot_Mapping(), this.getMappingType(), null, "mapping", null, 0, -2, null, IS_TRANSIENT, IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, IS_DERIVED, IS_ORDERED);
-        initEReference(getDocumentRoot_Parameters(), this.getParametersType(), null, "parameters", null, 0, -2, null, IS_TRANSIENT, IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, IS_DERIVED, IS_ORDERED);
+        initEReference(getDocumentRoot_Outputs(), this.getMappingsType(), null, "outputs", null, 0, -2, null, IS_TRANSIENT, IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, IS_DERIVED, IS_ORDERED);
+        initEReference(getDocumentRoot_Properties(), this.getPropertiesType(), null, "properties", null, 0, -2, null, IS_TRANSIENT, IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, IS_DERIVED, IS_ORDERED);
+        initEReference(getDocumentRoot_Property(), this.getPropertyType(), null, "property", null, 0, -2, null, IS_TRANSIENT, IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, IS_DERIVED, IS_ORDERED);
         initEReference(getDocumentRoot_Resource(), this.getResourceType(), null, "resource", null, 0, -2, null, IS_TRANSIENT, IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, IS_DERIVED, IS_ORDERED);
-        initEReference(getDocumentRoot_Results(), this.getResultsType(), null, "results", null, 0, -2, null, IS_TRANSIENT, IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, IS_DERIVED, IS_ORDERED);
-        initEReference(getDocumentRoot_TaskHandler(), this.getTaskHandlerType(), null, "taskHandler", null, 0, -2, null, IS_TRANSIENT, IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, IS_DERIVED, IS_ORDERED);
-        initEReference(getDocumentRoot_EventListener(), this.getEventListenerType(), null, "eventListener", null, 0, -2, null, IS_TRANSIENT, IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, IS_DERIVED, IS_ORDERED);
+        initEReference(getDocumentRoot_Resources(), this.getResourcesType(), null, "resources", null, 0, -2, null, IS_TRANSIENT, IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, IS_DERIVED, IS_ORDERED);
+        initEReference(getDocumentRoot_WorkItemHandler(), this.getWorkItemHandlerType(), null, "workItemHandler", null, 0, -2, null, IS_TRANSIENT, IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, IS_DERIVED, IS_ORDERED);
+        initEReference(getDocumentRoot_WorkItemHandlers(), this.getWorkItemHandlersType(), null, "workItemHandlers", null, 0, -2, null, IS_TRANSIENT, IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, IS_DERIVED, IS_ORDERED);
+
+        initEClass(listenersTypeEClass, ListenersType.class, "ListenersType", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+        initEReference(getListenersType_Listener(), this.getListenerType(), null, "listener", null, 0, -1, ListenersType.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+        initEClass(listenerTypeEClass, ListenerType.class, "ListenerType", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+        initEAttribute(getListenerType_Class(), theXMLTypePackage.getString(), "class", null, 1, 1, ListenerType.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+        initEClass(loggersTypeEClass, LoggersType.class, "LoggersType", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+        initEReference(getLoggersType_Logger(), this.getLoggerType1(), null, "logger", null, 0, -1, LoggersType.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+        initEClass(loggerType1EClass, LoggerType1.class, "LoggerType1", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+        initEAttribute(getLoggerType1_Interval(), theXMLTypePackage.getInteger(), "interval", null, 0, 1, LoggerType1.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+        initEAttribute(getLoggerType1_Log(), theXMLTypePackage.getString(), "log", null, 0, 1, LoggerType1.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+        initEAttribute(getLoggerType1_Type(), this.getLoggerType(), "type", null, 0, 1, LoggerType1.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+        initEClass(manifestTypeEClass, ManifestType.class, "ManifestType", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+        initEReference(getManifestType_Container(), this.getContainerType(), null, "container", null, 0, 1, ManifestType.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+        initEReference(getManifestType_Resources(), this.getResourcesType(), null, "resources", null, 0, 1, ManifestType.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+        initEAttribute(getManifestType_Scan(), theXMLTypePackage.getBoolean(), "scan", null, 0, 1, ManifestType.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+        initEClass(mappingsTypeEClass, MappingsType.class, "MappingsType", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+        initEReference(getMappingsType_Mapping(), this.getMappingType(), null, "mapping", null, 0, -1, MappingsType.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
         initEClass(mappingTypeEClass, MappingType.class, "MappingType", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+        initEAttribute(getMappingType_Expression(), theXMLTypePackage.getString(), "expression", null, 1, 1, MappingType.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+        initEAttribute(getMappingType_ExpressionType(), this.getExpressionType(), "expressionType", null, 0, 1, MappingType.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+        initEAttribute(getMappingType_Scope(), this.getScopeType(), "scope", null, 0, 1, MappingType.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+        initEAttribute(getMappingType_Variable(), theXMLTypePackage.getString(), "variable", null, 0, 1, MappingType.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
-        initEClass(parametersTypeEClass, ParametersType.class, "ParametersType", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-        initEReference(getParametersType_Mapping(), this.getMappingType(), null, "mapping", null, 0, -1, ParametersType.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+        initEClass(propertiesTypeEClass, PropertiesType.class, "PropertiesType", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+        initEReference(getPropertiesType_Property(), this.getPropertyType(), null, "property", null, 0, -1, PropertiesType.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+        initEClass(propertyTypeEClass, PropertyType.class, "PropertyType", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+        initEAttribute(getPropertyType_Name(), theXMLTypePackage.getString(), "name", null, 1, 1, PropertyType.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+        initEAttribute(getPropertyType_Value(), theXMLTypePackage.getString(), "value", null, 1, 1, PropertyType.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+        initEClass(resourcesTypeEClass, ResourcesType.class, "ResourcesType", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+        initEReference(getResourcesType_Resource(), this.getResourceType(), null, "resource", null, 0, -1, ResourcesType.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
         initEClass(resourceTypeEClass, ResourceType.class, "ResourceType", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+        initEAttribute(getResourceType_Location(), theXMLTypePackage.getString(), "location", null, 1, 1, ResourceType.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+        initEAttribute(getResourceType_Type(), theXMLTypePackage.getString(), "type", null, 1, 1, ResourceType.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
-        initEClass(resultsTypeEClass, ResultsType.class, "ResultsType", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-        initEReference(getResultsType_Mapping(), this.getMappingType(), null, "mapping", null, 0, -1, ResultsType.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+        initEClass(workItemHandlersTypeEClass, WorkItemHandlersType.class, "WorkItemHandlersType", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+        initEReference(getWorkItemHandlersType_WorkItemHandler(), this.getWorkItemHandlerType(), null, "workItemHandler", null, 0, -1, WorkItemHandlersType.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
-        initEClass(taskHandlerTypeEClass, TaskHandlerType.class, "TaskHandlerType", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-        initEAttribute(getTaskHandlerType_Name(), theXMLTypePackage.getNCName(), "name", null, 0, 1, TaskHandlerType.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-        initEAttribute(getTaskHandlerType_Class(), theXMLTypePackage.getName_(), "class", null, 1, 1, TaskHandlerType.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-
-        initEClass(eventListenerTypeEClass, EventListenerType.class, "EventListenerType", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+        initEClass(workItemHandlerTypeEClass, WorkItemHandlerType.class, "WorkItemHandlerType", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+        initEAttribute(getWorkItemHandlerType_Class(), theXMLTypePackage.getString(), "class", null, 1, 1, WorkItemHandlerType.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+        initEAttribute(getWorkItemHandlerType_Name(), theXMLTypePackage.getString(), "name", null, 0, 1, WorkItemHandlerType.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
         // Initialize enums and add enum literals
         initEEnum(actionTypeEEnum, ActionType.class, "ActionType");
@@ -895,8 +1674,24 @@ public class BPMPackageImpl extends EPackageImpl implements BPMPackage {
         addEEnumLiteral(actionTypeEEnum, ActionType.SIGNALEVENT);
         addEEnumLiteral(actionTypeEEnum, ActionType.ABORTPROCESSINSTANCE);
 
+        initEEnum(expressionTypeEEnum, ExpressionType.class, "ExpressionType");
+        addEEnumLiteral(expressionTypeEEnum, ExpressionType.MVEL);
+
+        initEEnum(loggerTypeEEnum, LoggerType.class, "LoggerType");
+        addEEnumLiteral(loggerTypeEEnum, LoggerType.CONSOLE);
+        addEEnumLiteral(loggerTypeEEnum, LoggerType.FILE);
+        addEEnumLiteral(loggerTypeEEnum, LoggerType.THREADEDFILE);
+
+        initEEnum(scopeTypeEEnum, ScopeType.class, "ScopeType");
+        addEEnumLiteral(scopeTypeEEnum, ScopeType.IN);
+        addEEnumLiteral(scopeTypeEEnum, ScopeType.OUT);
+        addEEnumLiteral(scopeTypeEEnum, ScopeType.EXCHANGE);
+
         // Initialize data types
         initEDataType(actionTypeObjectEDataType, ActionType.class, "ActionTypeObject", IS_SERIALIZABLE, IS_GENERATED_INSTANCE_CLASS);
+        initEDataType(expressionTypeObjectEDataType, ExpressionType.class, "ExpressionTypeObject", IS_SERIALIZABLE, IS_GENERATED_INSTANCE_CLASS);
+        initEDataType(loggerTypeObjectEDataType, LoggerType.class, "LoggerTypeObject", IS_SERIALIZABLE, IS_GENERATED_INSTANCE_CLASS);
+        initEDataType(scopeTypeObjectEDataType, ScopeType.class, "ScopeTypeObject", IS_SERIALIZABLE, IS_GENERATED_INSTANCE_CLASS);
 
         // Create resource
         createResource(eNS_URI);
@@ -913,7 +1708,22 @@ public class BPMPackageImpl extends EPackageImpl implements BPMPackage {
      * @generated
      */
 	protected void createExtendedMetaDataAnnotations() {
-        String source = "http:///org/eclipse/emf/ecore/util/ExtendedMetaData";		
+        String source = "http:///org/eclipse/emf/ecore/util/ExtendedMetaData";			
+        addAnnotation
+          (actionsTypeEClass, 
+           source, 
+           new String[] {
+             "name", "ActionsType",
+             "kind", "elementOnly"
+           });		
+        addAnnotation
+          (getActionsType_Action(), 
+           source, 
+           new String[] {
+             "kind", "element",
+             "name", "action",
+             "namespace", "##targetNamespace"
+           });		
         addAnnotation
           (actionTypeEEnum, 
            source, 
@@ -925,28 +1735,52 @@ public class BPMPackageImpl extends EPackageImpl implements BPMPackage {
            source, 
            new String[] {
              "name", "ActionType",
-             "kind", "empty"
+             "kind", "elementOnly"
            });		
         addAnnotation
-          (getActionType1_Name(), 
+          (getActionType1_Globals(), 
            source, 
            new String[] {
-             "name", "name",
-             "kind", "attribute"
+             "kind", "element",
+             "name", "globals",
+             "namespace", "##targetNamespace"
+           });		
+        addAnnotation
+          (getActionType1_Inputs(), 
+           source, 
+           new String[] {
+             "kind", "element",
+             "name", "inputs",
+             "namespace", "##targetNamespace"
+           });		
+        addAnnotation
+          (getActionType1_Outputs(), 
+           source, 
+           new String[] {
+             "kind", "element",
+             "name", "outputs",
+             "namespace", "##targetNamespace"
+           });		
+        addAnnotation
+          (getActionType1_Id(), 
+           source, 
+           new String[] {
+             "kind", "attribute",
+             "name", "id"
+           });		
+        addAnnotation
+          (getActionType1_Operation(), 
+           source, 
+           new String[] {
+             "kind", "attribute",
+             "name", "operation"
            });		
         addAnnotation
           (getActionType1_Type(), 
            source, 
            new String[] {
-             "name", "type",
-             "kind", "attribute"
-           });		
-        addAnnotation
-          (getActionType1_EventType(), 
-           source, 
-           new String[] {
-             "name", "eventType",
-             "kind", "attribute"
+             "kind", "attribute",
+             "name", "type"
            });		
         addAnnotation
           (actionTypeObjectEDataType, 
@@ -956,13 +1790,6 @@ public class BPMPackageImpl extends EPackageImpl implements BPMPackage {
              "baseType", "actionType"
            });		
         addAnnotation
-          (auditTypeEClass, 
-           source, 
-           new String[] {
-             "name", "AuditType",
-             "kind", "empty"
-           });		
-        addAnnotation
           (bpmImplementationTypeEClass, 
            source, 
            new String[] {
@@ -970,109 +1797,159 @@ public class BPMPackageImpl extends EPackageImpl implements BPMPackage {
              "kind", "elementOnly"
            });		
         addAnnotation
-          (getBPMImplementationType_Action(), 
+          (getBPMImplementationType_Actions(), 
            source, 
            new String[] {
              "kind", "element",
-             "name", "action",
+             "name", "actions",
              "namespace", "##targetNamespace"
            });		
         addAnnotation
-          (getBPMImplementationType_Audit(), 
+          (getBPMImplementationType_Channels(), 
            source, 
            new String[] {
              "kind", "element",
-             "name", "audit",
+             "name", "channels",
              "namespace", "##targetNamespace"
            });		
         addAnnotation
-          (getBPMImplementationType_EventListener(), 
+          (getBPMImplementationType_Listeners(), 
            source, 
            new String[] {
              "kind", "element",
-             "name", "eventListener",
+             "name", "listeners",
              "namespace", "##targetNamespace"
            });		
         addAnnotation
-          (getBPMImplementationType_TaskHandler(), 
+          (getBPMImplementationType_Loggers(), 
            source, 
            new String[] {
              "kind", "element",
-             "name", "taskHandler",
+             "name", "loggers",
              "namespace", "##targetNamespace"
            });		
         addAnnotation
-          (getBPMImplementationType_Resource(), 
+          (getBPMImplementationType_Manifest(), 
            source, 
            new String[] {
              "kind", "element",
-             "name", "resource",
+             "name", "manifest",
              "namespace", "##targetNamespace"
            });		
         addAnnotation
-          (getBPMImplementationType_Parameters(), 
+          (getBPMImplementationType_Properties(), 
            source, 
            new String[] {
              "kind", "element",
-             "name", "parameters",
+             "name", "properties",
              "namespace", "##targetNamespace"
            });		
         addAnnotation
-          (getBPMImplementationType_Results(), 
+          (getBPMImplementationType_WorkItemHandlers(), 
            source, 
            new String[] {
              "kind", "element",
-             "name", "results",
+             "name", "workItemHandlers",
              "namespace", "##targetNamespace"
-           });		
-        addAnnotation
-          (getBPMImplementationType_ProcessDefinition(), 
-           source, 
-           new String[] {
-             "name", "processDefinition",
-             "kind", "attribute"
-           });		
-        addAnnotation
-          (getBPMImplementationType_ProcessDefinitionType(), 
-           source, 
-           new String[] {
-             "name", "processDefinitionType",
-             "kind", "attribute"
-           });		
-        addAnnotation
-          (getBPMImplementationType_ProcessId(), 
-           source, 
-           new String[] {
-             "name", "processId",
-             "kind", "attribute"
-           });		
-        addAnnotation
-          (getBPMImplementationType_MessageContentInName(), 
-           source, 
-           new String[] {
-             "name", "messageContentInName",
-             "kind", "attribute"
-           });		
-        addAnnotation
-          (getBPMImplementationType_MessageContentOutName(), 
-           source, 
-           new String[] {
-             "name", "messageContentOutName",
-             "kind", "attribute"
            });		
         addAnnotation
           (getBPMImplementationType_Persistent(), 
            source, 
            new String[] {
-             "name", "persistent",
-             "kind", "attribute"
+             "kind", "attribute",
+             "name", "persistent"
+           });		
+        addAnnotation
+          (getBPMImplementationType_ProcessId(), 
+           source, 
+           new String[] {
+             "kind", "attribute",
+             "name", "processId"
            });		
         addAnnotation
           (getBPMImplementationType_SessionId(), 
            source, 
            new String[] {
-             "name", "sessionId",
-             "kind", "attribute"
+             "kind", "attribute",
+             "name", "sessionId"
+           });		
+        addAnnotation
+          (channelsTypeEClass, 
+           source, 
+           new String[] {
+             "name", "ChannelsType",
+             "kind", "elementOnly"
+           });		
+        addAnnotation
+          (getChannelsType_Channel(), 
+           source, 
+           new String[] {
+             "kind", "element",
+             "name", "channel",
+             "namespace", "##targetNamespace"
+           });		
+        addAnnotation
+          (channelTypeEClass, 
+           source, 
+           new String[] {
+             "name", "ChannelType",
+             "kind", "elementOnly"
+           });		
+        addAnnotation
+          (getChannelType_Class(), 
+           source, 
+           new String[] {
+             "kind", "attribute",
+             "name", "class"
+           });		
+        addAnnotation
+          (getChannelType_Name(), 
+           source, 
+           new String[] {
+             "kind", "attribute",
+             "name", "name"
+           });		
+        addAnnotation
+          (getChannelType_Operation(), 
+           source, 
+           new String[] {
+             "kind", "attribute",
+             "name", "operation"
+           });		
+        addAnnotation
+          (getChannelType_Reference(), 
+           source, 
+           new String[] {
+             "kind", "attribute",
+             "name", "reference"
+           });		
+        addAnnotation
+          (containerTypeEClass, 
+           source, 
+           new String[] {
+             "name", "ContainerType",
+             "kind", "elementOnly"
+           });		
+        addAnnotation
+          (getContainerType_BaseName(), 
+           source, 
+           new String[] {
+             "kind", "attribute",
+             "name", "baseName"
+           });		
+        addAnnotation
+          (getContainerType_ReleaseId(), 
+           source, 
+           new String[] {
+             "kind", "attribute",
+             "name", "releaseId"
+           });		
+        addAnnotation
+          (getContainerType_SessionName(), 
+           source, 
+           new String[] {
+             "kind", "attribute",
+             "name", "sessionName"
            });		
         addAnnotation
           (documentRootEClass, 
@@ -1111,13 +1988,44 @@ public class BPMPackageImpl extends EPackageImpl implements BPMPackage {
              "namespace", "##targetNamespace"
            });		
         addAnnotation
-          (getDocumentRoot_Audit(), 
+          (getDocumentRoot_Actions(), 
            source, 
            new String[] {
              "kind", "element",
-             "name", "audit",
-             "namespace", "##targetNamespace",
-             "affiliation", "urn:switchyard-component-common-rules:config:1.0#audit"
+             "name", "actions",
+             "namespace", "##targetNamespace"
+           });		
+        addAnnotation
+          (getDocumentRoot_Channel(), 
+           source, 
+           new String[] {
+             "kind", "element",
+             "name", "channel",
+             "namespace", "##targetNamespace"
+           });		
+        addAnnotation
+          (getDocumentRoot_Channels(), 
+           source, 
+           new String[] {
+             "kind", "element",
+             "name", "channels",
+             "namespace", "##targetNamespace"
+           });		
+        addAnnotation
+          (getDocumentRoot_Container(), 
+           source, 
+           new String[] {
+             "kind", "element",
+             "name", "container",
+             "namespace", "##targetNamespace"
+           });		
+        addAnnotation
+          (getDocumentRoot_Globals(), 
+           source, 
+           new String[] {
+             "kind", "element",
+             "name", "globals",
+             "namespace", "##targetNamespace"
            });		
         addAnnotation
           (getDocumentRoot_ImplementationBpm(), 
@@ -1126,7 +2034,55 @@ public class BPMPackageImpl extends EPackageImpl implements BPMPackage {
              "kind", "element",
              "name", "implementation.bpm",
              "namespace", "##targetNamespace",
-             "affiliation", "urn:switchyard-component-common-rules:config:1.0#implementation.common.rules"
+             "affiliation", "http://docs.oasis-open.org/ns/opencsa/sca/200912#implementation"
+           });		
+        addAnnotation
+          (getDocumentRoot_Inputs(), 
+           source, 
+           new String[] {
+             "kind", "element",
+             "name", "inputs",
+             "namespace", "##targetNamespace"
+           });		
+        addAnnotation
+          (getDocumentRoot_Listener(), 
+           source, 
+           new String[] {
+             "kind", "element",
+             "name", "listener",
+             "namespace", "##targetNamespace"
+           });		
+        addAnnotation
+          (getDocumentRoot_Listeners(), 
+           source, 
+           new String[] {
+             "kind", "element",
+             "name", "listeners",
+             "namespace", "##targetNamespace"
+           });		
+        addAnnotation
+          (getDocumentRoot_Logger(), 
+           source, 
+           new String[] {
+             "kind", "element",
+             "name", "logger",
+             "namespace", "##targetNamespace"
+           });		
+        addAnnotation
+          (getDocumentRoot_Loggers(), 
+           source, 
+           new String[] {
+             "kind", "element",
+             "name", "loggers",
+             "namespace", "##targetNamespace"
+           });		
+        addAnnotation
+          (getDocumentRoot_Manifest(), 
+           source, 
+           new String[] {
+             "kind", "element",
+             "name", "manifest",
+             "namespace", "##targetNamespace"
            });		
         addAnnotation
           (getDocumentRoot_Mapping(), 
@@ -1134,15 +2090,30 @@ public class BPMPackageImpl extends EPackageImpl implements BPMPackage {
            new String[] {
              "kind", "element",
              "name", "mapping",
-             "namespace", "##targetNamespace",
-             "affiliation", "urn:switchyard-component-common-rules:config:1.0#mapping"
+             "namespace", "##targetNamespace"
            });		
         addAnnotation
-          (getDocumentRoot_Parameters(), 
+          (getDocumentRoot_Outputs(), 
            source, 
            new String[] {
              "kind", "element",
-             "name", "parameters",
+             "name", "outputs",
+             "namespace", "##targetNamespace"
+           });		
+        addAnnotation
+          (getDocumentRoot_Properties(), 
+           source, 
+           new String[] {
+             "kind", "element",
+             "name", "properties",
+             "namespace", "##targetNamespace"
+           });		
+        addAnnotation
+          (getDocumentRoot_Property(), 
+           source, 
+           new String[] {
+             "kind", "element",
+             "name", "property",
              "namespace", "##targetNamespace"
            });		
         addAnnotation
@@ -1151,54 +2122,259 @@ public class BPMPackageImpl extends EPackageImpl implements BPMPackage {
            new String[] {
              "kind", "element",
              "name", "resource",
-             "namespace", "##targetNamespace",
-             "affiliation", "urn:switchyard-config:switchyard:1.0#resource"
-           });		
-        addAnnotation
-          (getDocumentRoot_Results(), 
-           source, 
-           new String[] {
-             "kind", "element",
-             "name", "results",
              "namespace", "##targetNamespace"
            });		
         addAnnotation
-          (getDocumentRoot_TaskHandler(), 
+          (getDocumentRoot_Resources(), 
            source, 
            new String[] {
              "kind", "element",
-             "name", "taskHandler",
+             "name", "resources",
              "namespace", "##targetNamespace"
            });		
         addAnnotation
-          (getDocumentRoot_EventListener(), 
+          (getDocumentRoot_WorkItemHandler(), 
            source, 
            new String[] {
              "kind", "element",
-             "name", "eventListener",
-             "namespace", "##targetNamespace",
-             "affiliation", "urn:switchyard-component-common-rules:config:1.0#mapping"
+             "name", "workItemHandler",
+             "namespace", "##targetNamespace"
+           });		
+        addAnnotation
+          (getDocumentRoot_WorkItemHandlers(), 
+           source, 
+           new String[] {
+             "kind", "element",
+             "name", "workItemHandlers",
+             "namespace", "##targetNamespace"
+           });		
+        addAnnotation
+          (expressionTypeEEnum, 
+           source, 
+           new String[] {
+             "name", "expressionType"
+           });		
+        addAnnotation
+          (expressionTypeObjectEDataType, 
+           source, 
+           new String[] {
+             "name", "expressionType:Object",
+             "baseType", "expressionType"
+           });		
+        addAnnotation
+          (listenersTypeEClass, 
+           source, 
+           new String[] {
+             "name", "ListenersType",
+             "kind", "elementOnly"
+           });		
+        addAnnotation
+          (getListenersType_Listener(), 
+           source, 
+           new String[] {
+             "kind", "element",
+             "name", "listener",
+             "namespace", "##targetNamespace"
+           });		
+        addAnnotation
+          (listenerTypeEClass, 
+           source, 
+           new String[] {
+             "name", "ListenerType",
+             "kind", "elementOnly"
+           });		
+        addAnnotation
+          (getListenerType_Class(), 
+           source, 
+           new String[] {
+             "kind", "attribute",
+             "name", "class"
+           });		
+        addAnnotation
+          (loggersTypeEClass, 
+           source, 
+           new String[] {
+             "name", "LoggersType",
+             "kind", "elementOnly"
+           });		
+        addAnnotation
+          (getLoggersType_Logger(), 
+           source, 
+           new String[] {
+             "kind", "element",
+             "name", "logger",
+             "namespace", "##targetNamespace"
+           });		
+        addAnnotation
+          (loggerTypeEEnum, 
+           source, 
+           new String[] {
+             "name", "loggerType"
+           });		
+        addAnnotation
+          (loggerType1EClass, 
+           source, 
+           new String[] {
+             "name", "LoggerType",
+             "kind", "elementOnly"
+           });		
+        addAnnotation
+          (getLoggerType1_Interval(), 
+           source, 
+           new String[] {
+             "kind", "attribute",
+             "name", "interval"
+           });		
+        addAnnotation
+          (getLoggerType1_Log(), 
+           source, 
+           new String[] {
+             "kind", "attribute",
+             "name", "log"
+           });		
+        addAnnotation
+          (getLoggerType1_Type(), 
+           source, 
+           new String[] {
+             "kind", "attribute",
+             "name", "type"
+           });		
+        addAnnotation
+          (loggerTypeObjectEDataType, 
+           source, 
+           new String[] {
+             "name", "loggerType:Object",
+             "baseType", "loggerType"
+           });		
+        addAnnotation
+          (manifestTypeEClass, 
+           source, 
+           new String[] {
+             "name", "ManifestType",
+             "kind", "elementOnly"
+           });		
+        addAnnotation
+          (getManifestType_Container(), 
+           source, 
+           new String[] {
+             "kind", "element",
+             "name", "container",
+             "namespace", "##targetNamespace"
+           });		
+        addAnnotation
+          (getManifestType_Resources(), 
+           source, 
+           new String[] {
+             "kind", "element",
+             "name", "resources",
+             "namespace", "##targetNamespace"
+           });		
+        addAnnotation
+          (getManifestType_Scan(), 
+           source, 
+           new String[] {
+             "kind", "attribute",
+             "name", "scan"
+           });		
+        addAnnotation
+          (mappingsTypeEClass, 
+           source, 
+           new String[] {
+             "name", "MappingsType",
+             "kind", "elementOnly"
+           });		
+        addAnnotation
+          (getMappingsType_Mapping(), 
+           source, 
+           new String[] {
+             "kind", "element",
+             "name", "mapping",
+             "namespace", "##targetNamespace"
            });		
         addAnnotation
           (mappingTypeEClass, 
            source, 
            new String[] {
              "name", "MappingType",
-             "kind", "empty"
-           });		
-        addAnnotation
-          (parametersTypeEClass, 
-           source, 
-           new String[] {
-             "name", "ParametersType",
              "kind", "elementOnly"
            });		
         addAnnotation
-          (getParametersType_Mapping(), 
+          (getMappingType_Expression(), 
+           source, 
+           new String[] {
+             "kind", "attribute",
+             "name", "expression"
+           });		
+        addAnnotation
+          (getMappingType_ExpressionType(), 
+           source, 
+           new String[] {
+             "kind", "attribute",
+             "name", "expressionType"
+           });		
+        addAnnotation
+          (getMappingType_Scope(), 
+           source, 
+           new String[] {
+             "kind", "attribute",
+             "name", "scope"
+           });		
+        addAnnotation
+          (getMappingType_Variable(), 
+           source, 
+           new String[] {
+             "kind", "attribute",
+             "name", "variable"
+           });		
+        addAnnotation
+          (propertiesTypeEClass, 
+           source, 
+           new String[] {
+             "name", "PropertiesType",
+             "kind", "elementOnly"
+           });		
+        addAnnotation
+          (getPropertiesType_Property(), 
            source, 
            new String[] {
              "kind", "element",
-             "name", "mapping",
+             "name", "property",
+             "namespace", "##targetNamespace"
+           });		
+        addAnnotation
+          (propertyTypeEClass, 
+           source, 
+           new String[] {
+             "name", "PropertyType",
+             "kind", "elementOnly"
+           });		
+        addAnnotation
+          (getPropertyType_Name(), 
+           source, 
+           new String[] {
+             "kind", "attribute",
+             "name", "name"
+           });		
+        addAnnotation
+          (getPropertyType_Value(), 
+           source, 
+           new String[] {
+             "kind", "attribute",
+             "name", "value"
+           });		
+        addAnnotation
+          (resourcesTypeEClass, 
+           source, 
+           new String[] {
+             "name", "ResourcesType",
+             "kind", "elementOnly"
+           });		
+        addAnnotation
+          (getResourcesType_Resource(), 
+           source, 
+           new String[] {
+             "kind", "element",
+             "name", "resource",
              "namespace", "##targetNamespace"
            });		
         addAnnotation
@@ -1206,50 +2382,70 @@ public class BPMPackageImpl extends EPackageImpl implements BPMPackage {
            source, 
            new String[] {
              "name", "ResourceType",
-             "kind", "empty"
-           });		
-        addAnnotation
-          (resultsTypeEClass, 
-           source, 
-           new String[] {
-             "name", "ResultsType",
              "kind", "elementOnly"
            });		
         addAnnotation
-          (getResultsType_Mapping(), 
-           source, 
-           new String[] {
-             "kind", "element",
-             "name", "mapping",
-             "namespace", "##targetNamespace"
-           });		
-        addAnnotation
-          (taskHandlerTypeEClass, 
-           source, 
-           new String[] {
-             "name", "TaskHandlerType",
-             "kind", "empty"
-           });		
-        addAnnotation
-          (getTaskHandlerType_Name(), 
+          (getResourceType_Location(), 
            source, 
            new String[] {
              "kind", "attribute",
-             "name", "name"
+             "name", "location"
            });		
         addAnnotation
-          (getTaskHandlerType_Class(), 
+          (getResourceType_Type(), 
+           source, 
+           new String[] {
+             "kind", "attribute",
+             "name", "type"
+           });		
+        addAnnotation
+          (scopeTypeEEnum, 
+           source, 
+           new String[] {
+             "name", "scopeType"
+           });		
+        addAnnotation
+          (scopeTypeObjectEDataType, 
+           source, 
+           new String[] {
+             "name", "scopeType:Object",
+             "baseType", "scopeType"
+           });		
+        addAnnotation
+          (workItemHandlersTypeEClass, 
+           source, 
+           new String[] {
+             "name", "WorkItemHandlersType",
+             "kind", "elementOnly"
+           });		
+        addAnnotation
+          (getWorkItemHandlersType_WorkItemHandler(), 
+           source, 
+           new String[] {
+             "kind", "element",
+             "name", "workItemHandler",
+             "namespace", "##targetNamespace"
+           });		
+        addAnnotation
+          (workItemHandlerTypeEClass, 
+           source, 
+           new String[] {
+             "name", "WorkItemHandlerType",
+             "kind", "elementOnly"
+           });		
+        addAnnotation
+          (getWorkItemHandlerType_Class(), 
            source, 
            new String[] {
              "kind", "attribute",
              "name", "class"
            });		
         addAnnotation
-          (eventListenerTypeEClass, 
+          (getWorkItemHandlerType_Name(), 
            source, 
            new String[] {
-             "name", "MappingType",
-             "kind", "empty"
+             "kind", "attribute",
+             "name", "name"
            });
     }
 

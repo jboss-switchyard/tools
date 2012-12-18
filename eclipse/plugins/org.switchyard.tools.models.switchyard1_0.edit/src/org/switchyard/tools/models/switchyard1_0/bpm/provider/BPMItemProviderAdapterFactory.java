@@ -76,6 +76,29 @@ public class BPMItemProviderAdapterFactory extends BPMAdapterFactory implements 
     }
 
     /**
+     * This keeps track of the one adapter used for all {@link org.switchyard.tools.models.switchyard1_0.bpm.ActionsType} instances.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    protected ActionsTypeItemProvider actionsTypeItemProvider;
+
+    /**
+     * This creates an adapter for a {@link org.switchyard.tools.models.switchyard1_0.bpm.ActionsType}.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    @Override
+    public Adapter createActionsTypeAdapter() {
+        if (actionsTypeItemProvider == null) {
+            actionsTypeItemProvider = new ActionsTypeItemProvider(this);
+        }
+
+        return actionsTypeItemProvider;
+    }
+
+    /**
      * This keeps track of the one adapter used for all {@link org.switchyard.tools.models.switchyard1_0.bpm.ActionType1} instances.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
@@ -96,29 +119,6 @@ public class BPMItemProviderAdapterFactory extends BPMAdapterFactory implements 
         }
 
         return actionType1ItemProvider;
-    }
-
-    /**
-     * This keeps track of the one adapter used for all {@link org.switchyard.tools.models.switchyard1_0.bpm.AuditType} instances.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    protected AuditTypeItemProvider auditTypeItemProvider;
-
-    /**
-     * This creates an adapter for a {@link org.switchyard.tools.models.switchyard1_0.bpm.AuditType}.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    @Override
-    public Adapter createAuditTypeAdapter() {
-        if (auditTypeItemProvider == null) {
-            auditTypeItemProvider = new AuditTypeItemProvider(this);
-        }
-
-        return auditTypeItemProvider;
     }
 
     /**
@@ -145,6 +145,75 @@ public class BPMItemProviderAdapterFactory extends BPMAdapterFactory implements 
     }
 
     /**
+     * This keeps track of the one adapter used for all {@link org.switchyard.tools.models.switchyard1_0.bpm.ChannelsType} instances.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    protected ChannelsTypeItemProvider channelsTypeItemProvider;
+
+    /**
+     * This creates an adapter for a {@link org.switchyard.tools.models.switchyard1_0.bpm.ChannelsType}.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    @Override
+    public Adapter createChannelsTypeAdapter() {
+        if (channelsTypeItemProvider == null) {
+            channelsTypeItemProvider = new ChannelsTypeItemProvider(this);
+        }
+
+        return channelsTypeItemProvider;
+    }
+
+    /**
+     * This keeps track of the one adapter used for all {@link org.switchyard.tools.models.switchyard1_0.bpm.ChannelType} instances.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    protected ChannelTypeItemProvider channelTypeItemProvider;
+
+    /**
+     * This creates an adapter for a {@link org.switchyard.tools.models.switchyard1_0.bpm.ChannelType}.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    @Override
+    public Adapter createChannelTypeAdapter() {
+        if (channelTypeItemProvider == null) {
+            channelTypeItemProvider = new ChannelTypeItemProvider(this);
+        }
+
+        return channelTypeItemProvider;
+    }
+
+    /**
+     * This keeps track of the one adapter used for all {@link org.switchyard.tools.models.switchyard1_0.bpm.ContainerType} instances.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    protected ContainerTypeItemProvider containerTypeItemProvider;
+
+    /**
+     * This creates an adapter for a {@link org.switchyard.tools.models.switchyard1_0.bpm.ContainerType}.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    @Override
+    public Adapter createContainerTypeAdapter() {
+        if (containerTypeItemProvider == null) {
+            containerTypeItemProvider = new ContainerTypeItemProvider(this);
+        }
+
+        return containerTypeItemProvider;
+    }
+
+    /**
      * This keeps track of the one adapter used for all {@link org.switchyard.tools.models.switchyard1_0.bpm.DocumentRoot} instances.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
@@ -165,6 +234,144 @@ public class BPMItemProviderAdapterFactory extends BPMAdapterFactory implements 
         }
 
         return documentRootItemProvider;
+    }
+
+    /**
+     * This keeps track of the one adapter used for all {@link org.switchyard.tools.models.switchyard1_0.bpm.ListenersType} instances.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    protected ListenersTypeItemProvider listenersTypeItemProvider;
+
+    /**
+     * This creates an adapter for a {@link org.switchyard.tools.models.switchyard1_0.bpm.ListenersType}.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    @Override
+    public Adapter createListenersTypeAdapter() {
+        if (listenersTypeItemProvider == null) {
+            listenersTypeItemProvider = new ListenersTypeItemProvider(this);
+        }
+
+        return listenersTypeItemProvider;
+    }
+
+    /**
+     * This keeps track of the one adapter used for all {@link org.switchyard.tools.models.switchyard1_0.bpm.ListenerType} instances.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    protected ListenerTypeItemProvider listenerTypeItemProvider;
+
+    /**
+     * This creates an adapter for a {@link org.switchyard.tools.models.switchyard1_0.bpm.ListenerType}.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    @Override
+    public Adapter createListenerTypeAdapter() {
+        if (listenerTypeItemProvider == null) {
+            listenerTypeItemProvider = new ListenerTypeItemProvider(this);
+        }
+
+        return listenerTypeItemProvider;
+    }
+
+    /**
+     * This keeps track of the one adapter used for all {@link org.switchyard.tools.models.switchyard1_0.bpm.LoggersType} instances.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    protected LoggersTypeItemProvider loggersTypeItemProvider;
+
+    /**
+     * This creates an adapter for a {@link org.switchyard.tools.models.switchyard1_0.bpm.LoggersType}.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    @Override
+    public Adapter createLoggersTypeAdapter() {
+        if (loggersTypeItemProvider == null) {
+            loggersTypeItemProvider = new LoggersTypeItemProvider(this);
+        }
+
+        return loggersTypeItemProvider;
+    }
+
+    /**
+     * This keeps track of the one adapter used for all {@link org.switchyard.tools.models.switchyard1_0.bpm.LoggerType1} instances.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    protected LoggerType1ItemProvider loggerType1ItemProvider;
+
+    /**
+     * This creates an adapter for a {@link org.switchyard.tools.models.switchyard1_0.bpm.LoggerType1}.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    @Override
+    public Adapter createLoggerType1Adapter() {
+        if (loggerType1ItemProvider == null) {
+            loggerType1ItemProvider = new LoggerType1ItemProvider(this);
+        }
+
+        return loggerType1ItemProvider;
+    }
+
+    /**
+     * This keeps track of the one adapter used for all {@link org.switchyard.tools.models.switchyard1_0.bpm.ManifestType} instances.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    protected ManifestTypeItemProvider manifestTypeItemProvider;
+
+    /**
+     * This creates an adapter for a {@link org.switchyard.tools.models.switchyard1_0.bpm.ManifestType}.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    @Override
+    public Adapter createManifestTypeAdapter() {
+        if (manifestTypeItemProvider == null) {
+            manifestTypeItemProvider = new ManifestTypeItemProvider(this);
+        }
+
+        return manifestTypeItemProvider;
+    }
+
+    /**
+     * This keeps track of the one adapter used for all {@link org.switchyard.tools.models.switchyard1_0.bpm.MappingsType} instances.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    protected MappingsTypeItemProvider mappingsTypeItemProvider;
+
+    /**
+     * This creates an adapter for a {@link org.switchyard.tools.models.switchyard1_0.bpm.MappingsType}.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    @Override
+    public Adapter createMappingsTypeAdapter() {
+        if (mappingsTypeItemProvider == null) {
+            mappingsTypeItemProvider = new MappingsTypeItemProvider(this);
+        }
+
+        return mappingsTypeItemProvider;
     }
 
     /**
@@ -191,26 +398,72 @@ public class BPMItemProviderAdapterFactory extends BPMAdapterFactory implements 
     }
 
     /**
-     * This keeps track of the one adapter used for all {@link org.switchyard.tools.models.switchyard1_0.bpm.ParametersType} instances.
+     * This keeps track of the one adapter used for all {@link org.switchyard.tools.models.switchyard1_0.bpm.PropertiesType} instances.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @generated
      */
-    protected ParametersTypeItemProvider parametersTypeItemProvider;
+    protected PropertiesTypeItemProvider propertiesTypeItemProvider;
 
     /**
-     * This creates an adapter for a {@link org.switchyard.tools.models.switchyard1_0.bpm.ParametersType}.
+     * This creates an adapter for a {@link org.switchyard.tools.models.switchyard1_0.bpm.PropertiesType}.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @generated
      */
     @Override
-    public Adapter createParametersTypeAdapter() {
-        if (parametersTypeItemProvider == null) {
-            parametersTypeItemProvider = new ParametersTypeItemProvider(this);
+    public Adapter createPropertiesTypeAdapter() {
+        if (propertiesTypeItemProvider == null) {
+            propertiesTypeItemProvider = new PropertiesTypeItemProvider(this);
         }
 
-        return parametersTypeItemProvider;
+        return propertiesTypeItemProvider;
+    }
+
+    /**
+     * This keeps track of the one adapter used for all {@link org.switchyard.tools.models.switchyard1_0.bpm.PropertyType} instances.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    protected PropertyTypeItemProvider propertyTypeItemProvider;
+
+    /**
+     * This creates an adapter for a {@link org.switchyard.tools.models.switchyard1_0.bpm.PropertyType}.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    @Override
+    public Adapter createPropertyTypeAdapter() {
+        if (propertyTypeItemProvider == null) {
+            propertyTypeItemProvider = new PropertyTypeItemProvider(this);
+        }
+
+        return propertyTypeItemProvider;
+    }
+
+    /**
+     * This keeps track of the one adapter used for all {@link org.switchyard.tools.models.switchyard1_0.bpm.ResourcesType} instances.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    protected ResourcesTypeItemProvider resourcesTypeItemProvider;
+
+    /**
+     * This creates an adapter for a {@link org.switchyard.tools.models.switchyard1_0.bpm.ResourcesType}.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    @Override
+    public Adapter createResourcesTypeAdapter() {
+        if (resourcesTypeItemProvider == null) {
+            resourcesTypeItemProvider = new ResourcesTypeItemProvider(this);
+        }
+
+        return resourcesTypeItemProvider;
     }
 
     /**
@@ -237,72 +490,49 @@ public class BPMItemProviderAdapterFactory extends BPMAdapterFactory implements 
     }
 
     /**
-     * This keeps track of the one adapter used for all {@link org.switchyard.tools.models.switchyard1_0.bpm.ResultsType} instances.
+     * This keeps track of the one adapter used for all {@link org.switchyard.tools.models.switchyard1_0.bpm.WorkItemHandlersType} instances.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @generated
      */
-    protected ResultsTypeItemProvider resultsTypeItemProvider;
+    protected WorkItemHandlersTypeItemProvider workItemHandlersTypeItemProvider;
 
     /**
-     * This creates an adapter for a {@link org.switchyard.tools.models.switchyard1_0.bpm.ResultsType}.
+     * This creates an adapter for a {@link org.switchyard.tools.models.switchyard1_0.bpm.WorkItemHandlersType}.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @generated
      */
     @Override
-    public Adapter createResultsTypeAdapter() {
-        if (resultsTypeItemProvider == null) {
-            resultsTypeItemProvider = new ResultsTypeItemProvider(this);
+    public Adapter createWorkItemHandlersTypeAdapter() {
+        if (workItemHandlersTypeItemProvider == null) {
+            workItemHandlersTypeItemProvider = new WorkItemHandlersTypeItemProvider(this);
         }
 
-        return resultsTypeItemProvider;
+        return workItemHandlersTypeItemProvider;
     }
 
     /**
-     * This keeps track of the one adapter used for all {@link org.switchyard.tools.models.switchyard1_0.bpm.TaskHandlerType} instances.
+     * This keeps track of the one adapter used for all {@link org.switchyard.tools.models.switchyard1_0.bpm.WorkItemHandlerType} instances.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @generated
      */
-    protected TaskHandlerTypeItemProvider taskHandlerTypeItemProvider;
+    protected WorkItemHandlerTypeItemProvider workItemHandlerTypeItemProvider;
 
     /**
-     * This creates an adapter for a {@link org.switchyard.tools.models.switchyard1_0.bpm.TaskHandlerType}.
+     * This creates an adapter for a {@link org.switchyard.tools.models.switchyard1_0.bpm.WorkItemHandlerType}.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @generated
      */
     @Override
-    public Adapter createTaskHandlerTypeAdapter() {
-        if (taskHandlerTypeItemProvider == null) {
-            taskHandlerTypeItemProvider = new TaskHandlerTypeItemProvider(this);
+    public Adapter createWorkItemHandlerTypeAdapter() {
+        if (workItemHandlerTypeItemProvider == null) {
+            workItemHandlerTypeItemProvider = new WorkItemHandlerTypeItemProvider(this);
         }
 
-        return taskHandlerTypeItemProvider;
-    }
-
-    /**
-     * This keeps track of the one adapter used for all {@link org.switchyard.tools.models.switchyard1_0.bpm.EventListenerType} instances.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    protected EventListenerTypeItemProvider eventListenerTypeItemProvider;
-
-    /**
-     * This creates an adapter for a {@link org.switchyard.tools.models.switchyard1_0.bpm.EventListenerType}.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    @Override
-    public Adapter createEventListenerTypeAdapter() {
-        if (eventListenerTypeItemProvider == null) {
-            eventListenerTypeItemProvider = new EventListenerTypeItemProvider(this);
-        }
-
-        return eventListenerTypeItemProvider;
+        return workItemHandlerTypeItemProvider;
     }
 
     /**
@@ -404,16 +634,26 @@ public class BPMItemProviderAdapterFactory extends BPMAdapterFactory implements 
      * @generated
      */
     public void dispose() {
+        if (actionsTypeItemProvider != null) actionsTypeItemProvider.dispose();
         if (actionType1ItemProvider != null) actionType1ItemProvider.dispose();
-        if (auditTypeItemProvider != null) auditTypeItemProvider.dispose();
         if (bpmImplementationTypeItemProvider != null) bpmImplementationTypeItemProvider.dispose();
+        if (channelsTypeItemProvider != null) channelsTypeItemProvider.dispose();
+        if (channelTypeItemProvider != null) channelTypeItemProvider.dispose();
+        if (containerTypeItemProvider != null) containerTypeItemProvider.dispose();
         if (documentRootItemProvider != null) documentRootItemProvider.dispose();
+        if (listenersTypeItemProvider != null) listenersTypeItemProvider.dispose();
+        if (listenerTypeItemProvider != null) listenerTypeItemProvider.dispose();
+        if (loggersTypeItemProvider != null) loggersTypeItemProvider.dispose();
+        if (loggerType1ItemProvider != null) loggerType1ItemProvider.dispose();
+        if (manifestTypeItemProvider != null) manifestTypeItemProvider.dispose();
+        if (mappingsTypeItemProvider != null) mappingsTypeItemProvider.dispose();
         if (mappingTypeItemProvider != null) mappingTypeItemProvider.dispose();
-        if (parametersTypeItemProvider != null) parametersTypeItemProvider.dispose();
+        if (propertiesTypeItemProvider != null) propertiesTypeItemProvider.dispose();
+        if (propertyTypeItemProvider != null) propertyTypeItemProvider.dispose();
+        if (resourcesTypeItemProvider != null) resourcesTypeItemProvider.dispose();
         if (resourceTypeItemProvider != null) resourceTypeItemProvider.dispose();
-        if (resultsTypeItemProvider != null) resultsTypeItemProvider.dispose();
-        if (taskHandlerTypeItemProvider != null) taskHandlerTypeItemProvider.dispose();
-        if (eventListenerTypeItemProvider != null) eventListenerTypeItemProvider.dispose();
+        if (workItemHandlersTypeItemProvider != null) workItemHandlersTypeItemProvider.dispose();
+        if (workItemHandlerTypeItemProvider != null) workItemHandlerTypeItemProvider.dispose();
     }
 
 }

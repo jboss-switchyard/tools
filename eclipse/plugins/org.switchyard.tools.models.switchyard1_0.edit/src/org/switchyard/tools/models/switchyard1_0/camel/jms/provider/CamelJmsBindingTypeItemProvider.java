@@ -10,7 +10,6 @@ import org.eclipse.emf.common.notify.AdapterFactory;
 import org.eclipse.emf.common.notify.Notification;
 
 import org.eclipse.emf.edit.provider.ComposeableAdapterFactory;
-import org.eclipse.emf.common.util.ResourceLocator;
 
 import org.eclipse.emf.edit.provider.IEditingDomainItemProvider;
 import org.eclipse.emf.edit.provider.IItemLabelProvider;
@@ -21,7 +20,6 @@ import org.eclipse.emf.edit.provider.ITreeItemContentProvider;
 
 import org.eclipse.emf.edit.provider.ItemPropertyDescriptor;
 import org.eclipse.emf.edit.provider.ViewerNotification;
-import org.switchyard.tools.models.switchyard1_0.bean.provider.Switchyard_1EditPlugin;
 
 import org.switchyard.tools.models.switchyard1_0.camel.jms.CamelJmsBindingType;
 import org.switchyard.tools.models.switchyard1_0.camel.jms.JmsPackage;
@@ -257,7 +255,7 @@ public class CamelJmsBindingTypeItemProvider
                  true,
                  false,
                  false,
-                 ItemPropertyDescriptor.INTEGRAL_VALUE_IMAGE,
+                 ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
                  null,
                  null));
     }
@@ -279,7 +277,7 @@ public class CamelJmsBindingTypeItemProvider
                  true,
                  false,
                  false,
-                 ItemPropertyDescriptor.INTEGRAL_VALUE_IMAGE,
+                 ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
                  null,
                  null));
     }
@@ -301,7 +299,7 @@ public class CamelJmsBindingTypeItemProvider
                  true,
                  false,
                  false,
-                 ItemPropertyDescriptor.BOOLEAN_VALUE_IMAGE,
+                 ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
                  null,
                  null));
     }
@@ -323,7 +321,7 @@ public class CamelJmsBindingTypeItemProvider
                  true,
                  false,
                  false,
-                 ItemPropertyDescriptor.BOOLEAN_VALUE_IMAGE,
+                 ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
                  null,
                  null));
     }
@@ -345,7 +343,7 @@ public class CamelJmsBindingTypeItemProvider
                  true,
                  false,
                  false,
-                 ItemPropertyDescriptor.BOOLEAN_VALUE_IMAGE,
+                 ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
                  null,
                  null));
     }
@@ -367,7 +365,7 @@ public class CamelJmsBindingTypeItemProvider
                  true,
                  false,
                  false,
-                 ItemPropertyDescriptor.INTEGRAL_VALUE_IMAGE,
+                 ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
                  null,
                  null));
     }
@@ -389,7 +387,7 @@ public class CamelJmsBindingTypeItemProvider
                  true,
                  false,
                  false,
-                 ItemPropertyDescriptor.BOOLEAN_VALUE_IMAGE,
+                 ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
                  null,
                  null));
     }
@@ -455,7 +453,7 @@ public class CamelJmsBindingTypeItemProvider
                  true,
                  false,
                  false,
-                 ItemPropertyDescriptor.INTEGRAL_VALUE_IMAGE,
+                 ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
                  null,
                  null));
     }
@@ -499,7 +497,7 @@ public class CamelJmsBindingTypeItemProvider
                  true,
                  false,
                  false,
-                 ItemPropertyDescriptor.INTEGRAL_VALUE_IMAGE,
+                 ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
                  null,
                  null));
     }
@@ -521,7 +519,7 @@ public class CamelJmsBindingTypeItemProvider
                  true,
                  false,
                  false,
-                 ItemPropertyDescriptor.BOOLEAN_VALUE_IMAGE,
+                 ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
                  null,
                  null));
     }

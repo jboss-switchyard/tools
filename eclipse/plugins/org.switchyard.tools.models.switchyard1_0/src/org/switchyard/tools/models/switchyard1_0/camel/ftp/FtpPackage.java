@@ -9,7 +9,6 @@ import org.eclipse.emf.ecore.EEnum;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.EReference;
 import org.switchyard.tools.models.switchyard1_0.switchyard.SwitchyardPackage;
-import org.switchyard.tools.models.switchyard1_0.camel.core.CorePackage;
 
 /**
  * <!-- begin-user-doc -->

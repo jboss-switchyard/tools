@@ -3,7 +3,6 @@
 package org.switchyard.tools.models.switchyard1_0.camel.core.impl;
 
 import org.eclipse.emf.ecore.EClass;
-import org.eclipse.emf.ecore.EDataType;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EPackage;
 

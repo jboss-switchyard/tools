@@ -23,7 +23,6 @@ import org.switchyard.tools.models.switchyard1_0.rules.RulesPackage;
  * The following features are implemented:
  * <ul>
  *   <li>{@link org.switchyard.tools.models.switchyard1_0.rules.impl.ChannelTypeImpl#getClass_ <em>Class</em>}</li>
- *   <li>{@link org.switchyard.tools.models.switchyard1_0.rules.impl.ChannelTypeImpl#getInput <em>Input</em>}</li>
  *   <li>{@link org.switchyard.tools.models.switchyard1_0.rules.impl.ChannelTypeImpl#getName <em>Name</em>}</li>
  *   <li>{@link org.switchyard.tools.models.switchyard1_0.rules.impl.ChannelTypeImpl#getOperation <em>Operation</em>}</li>
  *   <li>{@link org.switchyard.tools.models.switchyard1_0.rules.impl.ChannelTypeImpl#getReference <em>Reference</em>}</li>
@@ -51,24 +50,6 @@ public class ChannelTypeImpl extends CommonExtensionBaseImpl implements ChannelT
      * @ordered
      */
     protected String class_ = CLASS_EDEFAULT;
-    /**
-     * The default value of the '{@link #getInput() <em>Input</em>}' attribute.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @see #getInput()
-     * @generated
-     * @ordered
-     */
-    protected static final String INPUT_EDEFAULT = null;
-    /**
-     * The cached value of the '{@link #getInput() <em>Input</em>}' attribute.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @see #getInput()
-     * @generated
-     * @ordered
-     */
-    protected String input = INPUT_EDEFAULT;
     /**
      * The default value of the '{@link #getName() <em>Name</em>}' attribute.
      * <!-- begin-user-doc -->
@@ -169,27 +150,6 @@ public class ChannelTypeImpl extends CommonExtensionBaseImpl implements ChannelT
      * <!-- end-user-doc -->
      * @generated
      */
-    public String getInput() {
-        return input;
-    }
-
-    /**
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    public void setInput(String newInput) {
-        String oldInput = input;
-        input = newInput;
-        if (eNotificationRequired())
-            eNotify(new ENotificationImpl(this, Notification.SET, RulesPackage.CHANNEL_TYPE__INPUT, oldInput, input));
-    }
-
-    /**
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
     public String getName() {
         return name;
     }
@@ -258,8 +218,6 @@ public class ChannelTypeImpl extends CommonExtensionBaseImpl implements ChannelT
         switch (featureID) {
             case RulesPackage.CHANNEL_TYPE__CLASS:
                 return getClass_();
-            case RulesPackage.CHANNEL_TYPE__INPUT:
-                return getInput();
             case RulesPackage.CHANNEL_TYPE__NAME:
                 return getName();
             case RulesPackage.CHANNEL_TYPE__OPERATION:
@@ -280,9 +238,6 @@ public class ChannelTypeImpl extends CommonExtensionBaseImpl implements ChannelT
         switch (featureID) {
             case RulesPackage.CHANNEL_TYPE__CLASS:
                 setClass((String)newValue);
-                return;
-            case RulesPackage.CHANNEL_TYPE__INPUT:
-                setInput((String)newValue);
                 return;
             case RulesPackage.CHANNEL_TYPE__NAME:
                 setName((String)newValue);
@@ -308,9 +263,6 @@ public class ChannelTypeImpl extends CommonExtensionBaseImpl implements ChannelT
             case RulesPackage.CHANNEL_TYPE__CLASS:
                 setClass(CLASS_EDEFAULT);
                 return;
-            case RulesPackage.CHANNEL_TYPE__INPUT:
-                setInput(INPUT_EDEFAULT);
-                return;
             case RulesPackage.CHANNEL_TYPE__NAME:
                 setName(NAME_EDEFAULT);
                 return;
@@ -334,8 +286,6 @@ public class ChannelTypeImpl extends CommonExtensionBaseImpl implements ChannelT
         switch (featureID) {
             case RulesPackage.CHANNEL_TYPE__CLASS:
                 return CLASS_EDEFAULT == null ? class_ != null : !CLASS_EDEFAULT.equals(class_);
-            case RulesPackage.CHANNEL_TYPE__INPUT:
-                return INPUT_EDEFAULT == null ? input != null : !INPUT_EDEFAULT.equals(input);
             case RulesPackage.CHANNEL_TYPE__NAME:
                 return NAME_EDEFAULT == null ? name != null : !NAME_EDEFAULT.equals(name);
             case RulesPackage.CHANNEL_TYPE__OPERATION:
@@ -358,8 +308,6 @@ public class ChannelTypeImpl extends CommonExtensionBaseImpl implements ChannelT
         StringBuffer result = new StringBuffer(super.toString());
         result.append(" (class: ");
         result.append(class_);
-        result.append(", input: ");
-        result.append(input);
         result.append(", name: ");
         result.append(name);
         result.append(", operation: ");

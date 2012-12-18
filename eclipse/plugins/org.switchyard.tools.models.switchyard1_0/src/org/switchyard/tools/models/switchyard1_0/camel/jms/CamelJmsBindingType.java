@@ -2,8 +2,6 @@
  */
 package org.switchyard.tools.models.switchyard1_0.camel.jms;
 
-import org.switchyard.tools.models.switchyard1_0.camel.core.JmsBindingType;
-
 /**
  * <!-- begin-user-doc -->
  * A representation of the model object '<em><b>Camel Jms Binding Type</b></em>'.

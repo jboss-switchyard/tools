@@ -16,8 +16,6 @@ import org.switchyard.tools.models.switchyard1_0.camel.atom.AtomPackage;
 import org.switchyard.tools.models.switchyard1_0.camel.atom.AtomScheduledPollConsumerType;
 import org.switchyard.tools.models.switchyard1_0.camel.atom.CamelAtomBindingType;
 
-import org.switchyard.tools.models.switchyard1_0.camel.core.impl.BaseCamelBindingImpl;
-
 /**
  * <!-- begin-user-doc -->
  * An implementation of the model object '<em><b>Camel Atom Binding Type</b></em>'.

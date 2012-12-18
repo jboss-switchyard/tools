@@ -21,7 +21,6 @@ import org.switchyard.tools.models.switchyard1_0.camel.core.CamelSedaBindingType
 import org.switchyard.tools.models.switchyard1_0.camel.core.CamelTimerBindingType;
 import org.switchyard.tools.models.switchyard1_0.camel.core.CorePackage;
 import org.switchyard.tools.models.switchyard1_0.camel.core.DocumentRoot;
-import org.switchyard.tools.models.switchyard1_0.camel.core.JmsBindingType;
 
 /**
  * <!-- begin-user-doc -->
