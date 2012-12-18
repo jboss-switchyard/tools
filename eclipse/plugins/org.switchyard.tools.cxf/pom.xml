@@ -12,28 +12,18 @@
   <name>SwitchYard: CXF Libraries Plugin</name>
   <description>CXF libraries used by SwitchYard tooling.</description>
 
+  <properties>
+    <cxf.tools.version>2.4.6</cxf.tools.version>
+    <cxf.neethi.version>3.0.1</cxf.neethi.version>
+    <cxf.xmlschema.version>2.0.1</cxf.xmlschema.version>
+    <cxf.jaxb.impl.version>2.2.4</cxf.jaxb.impl.version>
+    <cxf.jaxb.xjc.version>2.2.4</cxf.jaxb.xjc.version>
+  </properties>
+
   <dependencies>
     <dependency>
       <groupId>org.apache.cxf</groupId>
       <artifactId>cxf-tools-java2ws</artifactId>
-      <exclusions>
-        <exclusion>
-          <groupId>org.apache.cxf</groupId>
-          <artifactId>cxf-rt-javascript</artifactId>
-        </exclusion>
-        <exclusion>
-          <groupId>asm</groupId>
-          <artifactId>asm</artifactId>
-        </exclusion>
-        <exclusion>
-          <groupId>org.apache.velocity</groupId>
-          <artifactId>velocity</artifactId>
-        </exclusion>
-        <exclusion>
-          <groupId>org.codehaus.woodstox</groupId>
-          <artifactId>woodstox-core-asl</artifactId>
-        </exclusion>
-      </exclusions>
     </dependency>
   </dependencies>
 
@@ -43,22 +33,112 @@
       <dependency>
         <groupId>org.apache.cxf</groupId>
         <artifactId>cxf-tools-java2ws</artifactId>
-        <version>2.4.6</version>
+        <version>${cxf.tools.version}</version>
+        <exclusions>
+          <exclusion>
+            <groupId>org.apache.cxf</groupId>
+            <artifactId>cxf-rt-javascript</artifactId>
+          </exclusion>
+          <exclusion>
+            <groupId>asm</groupId>
+            <artifactId>asm</artifactId>
+          </exclusion>
+          <exclusion>
+            <groupId>org.codehaus.woodstox</groupId>
+            <artifactId>woodstox-core-asl</artifactId>
+          </exclusion>
+        </exclusions>
+      </dependency>
+      <dependency>
+        <groupId>org.apache.cxf</groupId>
+        <artifactId>cxf-tools-validator</artifactId>
+        <version>${cxf.tools.version}</version>
+      </dependency>
+      <dependency>
+        <artifactId>cxf-tools-wsdlto-frontend-jaxws</artifactId>
+        <groupId>org.apache.cxf</groupId>
+        <version>${cxf.tools.version}</version>
+      </dependency>
+      <dependency>
+        <artifactId>cxf-tools-wsdlto-databinding-jaxb</artifactId>
+        <groupId>org.apache.cxf</groupId>
+        <version>${cxf.tools.version}</version>
+      </dependency>
+      <dependency>
+        <artifactId>cxf-tools-wsdlto-core</artifactId>
+        <groupId>org.apache.cxf</groupId>
+        <version>${cxf.tools.version}</version>
+      </dependency>
+      <dependency>
+        <groupId>org.apache.cxf</groupId>
+        <artifactId>cxf-tools-common</artifactId>
+        <version>${cxf.tools.version}</version>
       </dependency>
       <dependency>
         <artifactId>cxf-api</artifactId>
         <groupId>org.apache.cxf</groupId>
-        <version>2.4.6</version>
+        <version>${cxf.tools.version}</version>
+      </dependency>
+      <dependency>
+        <artifactId>cxf-rt-core</artifactId>
+        <groupId>org.apache.cxf</groupId>
+        <version>${cxf.tools.version}</version>
+        <exclusions>
+          <exclusion>
+            <groupId>org.apache.geronimo.specs</groupId>
+            <artifactId>geronimo-javamail_1.4_spec</artifactId>
+          </exclusion>
+        </exclusions>
       </dependency>
       <dependency>
         <artifactId>cxf-rt-frontend-jaxws</artifactId>
         <groupId>org.apache.cxf</groupId>
-        <version>2.4.6</version>
+        <version>${cxf.tools.version}</version>
+      </dependency>
+      <dependency>
+        <artifactId>cxf-rt-frontend-simple</artifactId>
+        <groupId>org.apache.cxf</groupId>
+        <version>${cxf.tools.version}</version>
       </dependency>
       <dependency>
         <artifactId>cxf-rt-bindings-soap</artifactId>
         <groupId>org.apache.cxf</groupId>
-        <version>2.4.6</version>
+        <version>${cxf.tools.version}</version>
+      </dependency>
+      <dependency>
+        <artifactId>cxf-rt-databinding-aegis</artifactId>
+        <groupId>org.apache.cxf</groupId>
+        <version>${cxf.tools.version}</version>
+      </dependency>
+      <dependency>
+        <artifactId>cxf-rt-databinding-jaxb</artifactId>
+        <groupId>org.apache.cxf</groupId>
+        <version>${cxf.tools.version}</version>
+      </dependency>
+      <dependency>
+        <artifactId>cxf-rt-ws-addr</artifactId>
+        <groupId>org.apache.cxf</groupId>
+        <version>${cxf.tools.version}</version>
+      </dependency>
+      <dependency>
+        <artifactId>neethi</artifactId>
+        <groupId>org.apache.neethi</groupId>
+        <version>${cxf.neethi.version}</version>
+      </dependency>
+      <dependency>
+        <artifactId>xmlschema-core</artifactId>
+        <groupId>org.apache.ws.xmlschema</groupId>
+        <version>${cxf.xmlschema.version}</version>
+      </dependency>
+      <dependency>
+        <artifactId>jaxb-xjc</artifactId>
+        <groupId>com.sun.xml.bind</groupId>
+        <version>${cxf.jaxb.xjc.version}</version>
+      </dependency>
+      <dependency>
+        <artifactId>jaxb-impl</artifactId>
+        <groupId>com.sun.xml.bind</groupId>
+        <version>${cxf.jaxb.impl.version}</version>
       </dependency>
     </dependencies>
   </dependencyManagement>
@@ -78,7 +158,7 @@
             <configuration>
               <excludeScope>system</excludeScope>
               <outputDirectory>lib</outputDirectory>
-              <excludeArtifactIds>xml-resolver,wsdl4j</excludeArtifactIds>
+              <excludeArtifactIds>xml-resolver,wsdl4j,commons-lang,commons-collections</excludeArtifactIds>
             </configuration>
           </execution>
         </executions>

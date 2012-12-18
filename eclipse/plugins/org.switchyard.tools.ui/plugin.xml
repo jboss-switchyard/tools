@@ -49,6 +49,18 @@
                class="org.eclipse.core.resources.IResource">
          </selection>
       </wizard>
+      <wizard
+            category="org.switchyard.tools.ui"
+            class="org.switchyard.tools.ui.wizards.WSDL2JavaWizard"
+            descriptionImage="icons/switchyard_logo_200px.png"
+            icon="icons/switchyard_icon_16px.png"
+            id="org.switchyard.tools.ui.wizards.WSDL2JavaWizard"
+            name="Java Files from WSDL">
+         <description>Create a Java interface from a WSDL file.</description>
+         <selection
+               class="org.eclipse.core.resources.IResource">
+         </selection>
+      </wizard>
    </extension>
    <extension
          point="org.eclipse.m2e.core.indexes">
@@ -453,6 +465,33 @@
              menuGroupId="switchyard.group"
              type="new"
              wizardId="org.switchyard.tools.ui.wizards.Java2WSDLWizard">
+          <enablement>
+             <or>
+                <instanceof
+                      value="org.eclipse.core.resources.IProject">
+                </instanceof>
+                <instanceof
+                      value="org.switchyard.tools.ui.explorer.ISwitchYardRootNode">
+                </instanceof>
+                <instanceof
+                      value="org.switchyard.tools.ui.explorer.IComponentService">
+                </instanceof>
+                <instanceof
+                      value="org.switchyard.tools.ui.explorer.IComponentReference">
+                </instanceof>
+                <instanceof
+                      value="org.eclipse.jdt.core.IJavaElement">
+                </instanceof>
+                <instanceof
+                      value="org.eclipse.core.resources.IResource">
+                </instanceof>
+             </or>
+          </enablement>
+       </commonWizard>
+       <commonWizard
+             menuGroupId="switchyard.group"
+             type="new"
+             wizardId="org.switchyard.tools.ui.wizards.WSDL2JavaWizard">
           <enablement>
              <or>
                 <instanceof

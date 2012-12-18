@@ -10,7 +10,9 @@
  ************************************************************************************/
 package org.switchyard.tools.ui.common.impl;
 
+import org.eclipse.core.resources.IResource;
 import org.eclipse.core.runtime.IStatus;
+import org.eclipse.core.runtime.Platform;
 import org.eclipse.core.runtime.Status;
 import org.eclipse.jdt.core.IJavaElement;
 import org.eclipse.jdt.core.IJavaProject;
@@ -24,9 +26,12 @@ import org.eclipse.jdt.ui.actions.OpenNewInterfaceWizardAction;
 import org.eclipse.jdt.ui.wizards.NewInterfaceWizardPage;
 import org.eclipse.jface.viewers.IStructuredSelection;
 import org.eclipse.jface.viewers.StructuredSelection;
+import org.eclipse.jface.window.Window;
+import org.eclipse.jface.wizard.WizardDialog;
 import org.eclipse.soa.sca.sca1_1.model.sca.Interface;
 import org.eclipse.soa.sca.sca1_1.model.sca.JavaInterface;
 import org.eclipse.soa.sca.sca1_1.model.sca.ScaFactory;
+import org.eclipse.soa.sca.sca1_1.model.sca.WSDLPortType;
 import org.eclipse.swt.widgets.Shell;
 import org.eclipse.ui.PlatformUI;
 import org.eclipse.ui.dialogs.SelectionDialog;
@@ -34,6 +39,7 @@ import org.switchyard.tools.ui.Activator;
 import org.switchyard.tools.ui.JavaUtil;
 import org.switchyard.tools.ui.SwitchYardModelUtils;
 import org.switchyard.tools.ui.common.IInterfaceControlAdapter;
+import org.switchyard.tools.ui.wizards.WSDL2JavaWizard;
 
 /**
  * JavaInterfaceControlAdapter
@@ -46,6 +52,7 @@ import org.switchyard.tools.ui.common.IInterfaceControlAdapter;
 public class JavaInterfaceControlAdapter implements IInterfaceControlAdapter {
 
     private JavaInterface _interface;
+    private Interface _related;
 
     /**
      * Create a new JavaInterfaceControlAdapter.
@@ -62,7 +69,7 @@ public class JavaInterfaceControlAdapter implements IInterfaceControlAdapter {
 
     @Override
     public void setRelatedInterface(Interface related) {
-        // TODO: store related away for when we support WSDL->Java
+        _related = related;
     }
 
     @Override
@@ -72,12 +79,12 @@ public class JavaInterfaceControlAdapter implements IInterfaceControlAdapter {
     }
 
     @Override
-    public boolean browse(Shell shell, IJavaProject project) {
+    public boolean browse(Shell shell, IJavaElement element) {
         IJavaSearchScope scope;
-        if (project == null) {
+        if (element == null) {
             scope = SearchEngine.createWorkspaceScope();
         } else {
-            scope = SearchEngine.createJavaSearchScope(new IJavaElement[] {project });
+            scope = SearchEngine.createJavaSearchScope(new IJavaElement[] {element });
         }
         try {
             SelectionDialog dialog = JavaUI.createTypeDialog(shell, PlatformUI.getWorkbench().getProgressService(),
@@ -99,6 +106,15 @@ public class JavaInterfaceControlAdapter implements IInterfaceControlAdapter {
 
     @Override
     public boolean open(Shell shell, IJavaProject project, boolean useRelated) {
+        if (useRelated) {
+            if (_related instanceof WSDLPortType) {
+                return openWSDL2JavaWizard(shell, project);
+            }
+        }
+        return openNewJavaInterfaceWizard(shell, project);
+    }
+
+    private boolean openNewJavaInterfaceWizard(Shell shell, IJavaProject project) {
         // TODO: if useRelated....
         IJavaElement initialJavaElement = JavaUtil.getInitialPackageForProject(project);
         IStructuredSelection selectionToPass;
@@ -124,6 +140,27 @@ public class JavaInterfaceControlAdapter implements IInterfaceControlAdapter {
             return true;
         }
         return false;
+    }
+
+    private boolean openWSDL2JavaWizard(Shell shell, IJavaProject project) {
+        final WSDL2JavaWizard newWizard = new WSDL2JavaWizard();
+        final WizardDialog dialog = new WizardDialog(PlatformUI.getWorkbench().getActiveWorkbenchWindow().getShell(),
+                newWizard);
+        newWizard.init(PlatformUI.getWorkbench(), getResourceForInterface((WSDLPortType) _related));
+        if (dialog.open() == Window.OK) {
+            // unfortunately, user needs to browse for generated file
+            return browse(shell, newWizard.getOutputPackage());
+        }
+        return false;
+    }
+
+    private IStructuredSelection getResourceForInterface(WSDLPortType wsdlIntf) {
+        final IResource file = (IResource) Platform.getAdapterManager().loadAdapter(wsdlIntf,
+                IResource.class.getCanonicalName());
+        if (file == null) {
+            return StructuredSelection.EMPTY;
+        }
+        return new StructuredSelection(file);
     }
 
     @Override

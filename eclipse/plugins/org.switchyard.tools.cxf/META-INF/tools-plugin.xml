@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<plugin name="switchyard" version="" provider="org.switchyard" xmlns="http://cxf.apache.org/tools/plugin">
+  <frontend name="switchyard" package="org.switchyard.tools.cxf" profile="SwitchYardProfile">
+    <!-- Override this if we need to customize the generator. -->
+    <container name="JAXWSContainer" package="org.apache.cxf.tools.wsdlto.frontend.jaxws" toolspec="jaxws-toolspec.xml" />
+    <!-- Creates JavaModel based on the ServiceInfo. -->
+    <processor name="SwitchYardWSDLToJavaProcessor" />
+    <!-- Parses the WSDL documents. Override if we need to add file resolvers. -->
+    <builder name="JAXWSDefinitionBuilder" package="org.apache.cxf.tools.wsdlto.frontend.jaxws.wsdl11" />
+    <generators>
+      <!-- We're only concerned with the SEI. -->
+      <generator name="SwitchYardSEIGenerator" />
+    </generators>
+  </frontend>
+</plugin>

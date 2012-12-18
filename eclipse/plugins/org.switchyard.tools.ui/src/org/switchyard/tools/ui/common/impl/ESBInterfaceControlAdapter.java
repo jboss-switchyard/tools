@@ -12,6 +12,7 @@ package org.switchyard.tools.ui.common.impl;
 
 import org.eclipse.core.runtime.IStatus;
 import org.eclipse.core.runtime.Status;
+import org.eclipse.jdt.core.IJavaElement;
 import org.eclipse.jdt.core.IJavaProject;
 import org.eclipse.jface.window.Window;
 import org.eclipse.soa.sca.sca1_1.model.sca.Interface;
@@ -66,7 +67,7 @@ public class ESBInterfaceControlAdapter implements IInterfaceControlAdapter {
     }
 
     @Override
-    public boolean browse(Shell shell, IJavaProject project) {
+    public boolean browse(Shell shell, IJavaElement element) {
         ESBInterfaceInputDialog dialog = new ESBInterfaceInputDialog(shell);
         if (_interface.getFaultType() != null && !_interface.getFaultType().trim().isEmpty()) {
             dialog.setFaultType(_interface.getFaultType());

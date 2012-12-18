@@ -10,6 +10,18 @@
  ************************************************************************************/
 package org.switchyard.tools.cxf;
 
+import java.io.File;
+import java.net.URL;
+import java.net.URLClassLoader;
+import java.util.ArrayList;
+import java.util.List;
+
+import org.eclipse.core.resources.IProject;
+import org.eclipse.core.resources.IWorkspaceRoot;
+import org.eclipse.core.runtime.IPath;
+import org.eclipse.jdt.core.IClasspathEntry;
+import org.eclipse.jdt.core.IJavaProject;
+import org.eclipse.jdt.core.JavaCore;
 import org.eclipse.ui.plugin.AbstractUIPlugin;
 import org.osgi.framework.BundleContext;
 
@@ -63,6 +75,26 @@ public class Activator extends AbstractUIPlugin {
      */
     public static Activator getDefault() {
         return plugin;
+    }
+
+    /* package */static ClassLoader getProjectBuildClassLoader(IJavaProject javaProject) throws Exception {
+        IProject project = javaProject.getProject();
+        IWorkspaceRoot root = project.getWorkspace().getRoot();
+        List<URL> urls = new ArrayList<URL>();
+        urls.add(new File(project.getLocation() + "/" + javaProject.getOutputLocation().removeFirstSegments(1) + "/")
+                .toURI().toURL());
+        for (IClasspathEntry classpathEntry : javaProject.getResolvedClasspath(true)) {
+            if (classpathEntry.getEntryKind() == IClasspathEntry.CPE_PROJECT) {
+                IPath projectPath = classpathEntry.getPath();
+                IProject otherProject = root.getProject(projectPath.segment(0));
+                IJavaProject otherJavaProject = JavaCore.create(otherProject);
+                urls.add(new File(otherProject.getLocation() + "/"
+                        + otherJavaProject.getOutputLocation().removeFirstSegments(1) + "/").toURI().toURL());
+            } else if (classpathEntry.getEntryKind() == IClasspathEntry.CPE_LIBRARY) {
+                urls.add(new File(classpathEntry.getPath().toOSString()).toURI().toURL());
+            }
+        }
+        return new URLClassLoader(urls.toArray(new URL[urls.size()]), Activator.class.getClassLoader());
     }
 
 }

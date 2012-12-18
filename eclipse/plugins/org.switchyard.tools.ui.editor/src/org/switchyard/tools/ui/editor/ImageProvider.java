@@ -180,8 +180,11 @@ public class ImageProvider extends AbstractImageProvider {
     /** Image for auto-layout floating toolbar button. **/
     public static final String IMG_16_TEST_CLASS = PREFIX + "TEST_CLASS" + DOT16;
 
-    /** Image for auto-layout floating toolbar button. **/
+    /** Image for Java2WSDL floating toolbar button. **/
     public static final String IMG_16_JAVA_2_WSDL = PREFIX + "JAVA_2_WSDL" + DOT16;
+
+    /** Image for WSDL2Javafloating toolbar button. **/
+    public static final String IMG_16_WSDL_2_JAVA = PREFIX + "WSDL_2_JAVA" + DOT16;
 
     /** Image for SCA binding. **/
     public static final String IMG_16_SCA = PREFIX + "SCA" + DOT16;
@@ -236,6 +239,7 @@ public class ImageProvider extends AbstractImageProvider {
         addImageFilePath(IMG_16_PROMOTE, ICONS_16 + "promote.png");
         addImageFilePath(IMG_16_AUTO_LAYOUT, ICONS_16 + "layout.png");
         addImageFilePath(IMG_16_JAVA_2_WSDL, ICONS_16 + "java2wsdl.png");
+        addImageFilePath(IMG_16_WSDL_2_JAVA, ICONS_16 + "wsdl2java.png");
         addImageFilePath(IMG_16_TEST_CLASS, ICONS_16 + "test-class.png");
         addImageFilePath(IMG_16_SCA, ICONS_16 + "sca.png");
     }

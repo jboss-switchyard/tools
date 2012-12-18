@@ -10,7 +10,9 @@ Require-Bundle: org.eclipse.ui,
  org.eclipse.core.resources,
  org.eclipse.jdt.core;bundle-version="3.6.0",
  javax.wsdl;bundle-version="1.6.2";visibility:=reexport,
- org.apache.xml.resolver;bundle-version="1.2.0"
+ org.apache.xml.resolver;bundle-version="1.2.0",
+ org.apache.commons.collections;bundle-version="3.2.0",
+ org.apache.commons.lang;bundle-version="2.4.0"
 Bundle-RequiredExecutionEnvironment: JavaSE-1.6
 Bundle-ActivationPolicy: lazy
 Bundle-ClassPath: .,
@@ -30,7 +32,8 @@ Bundle-ClassPath: .,
  lib/cxf-tools-wsdlto-databinding-jaxb-2.4.6.jar,
  lib/cxf-tools-wsdlto-frontend-jaxws-2.4.6.jar,
  lib/cxf-rt-databinding-jaxb-2.4.6.jar,
- lib/xmlschema-core-2.0.jar,
+ lib/xmlschema-core-2.0.1.jar,
  lib/cxf-rt-ws-addr-2.4.6.jar,
- lib/neethi-3.0.1.jar
+ lib/neethi-3.0.1.jar,
+ lib/velocity-1.7.jar
 Export-Package: org.switchyard.tools.cxf

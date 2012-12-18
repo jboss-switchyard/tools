@@ -1,5 +1,5 @@
 /*************************************************************************************
- * Copyright (c) 2012 Red Hat, Inc. and others.
+ * Copyright (c) 2013 Red Hat, Inc. and others.
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -23,33 +23,31 @@ import org.eclipse.jface.viewers.StructuredSelection;
 import org.eclipse.jface.wizard.WizardDialog;
 import org.eclipse.soa.sca.sca1_1.model.sca.Contract;
 import org.eclipse.soa.sca.sca1_1.model.sca.Interface;
+import org.eclipse.soa.sca.sca1_1.model.sca.WSDLPortType;
 import org.eclipse.ui.PlatformUI;
-import org.switchyard.tools.ui.PlatformResourceAdapterFactory;
 import org.switchyard.tools.ui.editor.ImageProvider;
-import org.switchyard.tools.ui.wizards.NewServiceTestClassWizard;
+import org.switchyard.tools.ui.wizards.WSDL2JavaWizard;
 
 /**
- * Java2WSDLCustomFeature
+ * WSDL2JavaCustomFeature
  * 
  * <p/>
  * Custom feature for creating WSDL from a Java interface.
- * 
- * @author Rob Cernich
  */
-public class CreateServiceTestCustomFeature extends AbstractCustomFeature implements ICustomFeature {
+public class WSDL2JavaCustomFeature extends AbstractCustomFeature implements ICustomFeature {
 
     /**
-     * Create a new Java2WSDLCustomFeature.
+     * Create a new WSDL2JavaCustomFeature.
      * 
      * @param fp the feature provider
      */
-    public CreateServiceTestCustomFeature(IFeatureProvider fp) {
+    public WSDL2JavaCustomFeature(IFeatureProvider fp) {
         super(fp);
     }
 
     @Override
     public String getDescription() {
-        return "Create a new service test class.";
+        return "Generate a Java interface from a WSDL file.";
     }
 
     @Override
@@ -62,12 +60,17 @@ public class CreateServiceTestCustomFeature extends AbstractCustomFeature implem
         if (!(bo instanceof Contract)) {
             return false;
         }
-        return true;
+        final Interface intf = ((Contract) bo).getInterface();
+        if (!(intf instanceof WSDLPortType)) {
+            return false;
+        }
+        final String wsdlIntf = ((WSDLPortType) intf).getInterface();
+        return wsdlIntf != null && wsdlIntf.length() > 0;
     }
 
     @Override
     public String getName() {
-        return "New Service Test Class";
+        return "Generate Java Interface";
     }
 
     @Override
@@ -83,28 +86,27 @@ public class CreateServiceTestCustomFeature extends AbstractCustomFeature implem
 
     @Override
     public void execute(ICustomContext context) {
-        final Contract contract = (Contract) getBusinessObjectForPictogramElement(context.getPictogramElements()[0]);
-        final NewServiceTestClassWizard wizard = new NewServiceTestClassWizard();
+        final Object bo = getBusinessObjectForPictogramElement(context.getPictogramElements()[0]);
+        final WSDLPortType wsdlIntf = (WSDLPortType) ((Contract) bo).getInterface();
+        final WSDL2JavaWizard wizard = new WSDL2JavaWizard();
         final WizardDialog dialog = new WizardDialog(PlatformUI.getWorkbench().getActiveWorkbenchWindow().getShell(),
                 wizard);
-        wizard.init(PlatformUI.getWorkbench(), getResourceForInterface(contract.getInterface()));
-        wizard.forceServiceContract(contract);
+        wizard.init(PlatformUI.getWorkbench(), getResourceForInterface(wsdlIntf));
         dialog.open();
     }
 
-    private IStructuredSelection getResourceForInterface(Interface intf) {
-        IResource file = (IResource) Platform.getAdapterManager().loadAdapter(intf, IResource.class.getCanonicalName());
+    private IStructuredSelection getResourceForInterface(WSDLPortType wsdlIntf) {
+        final IResource file = (IResource) Platform.getAdapterManager().loadAdapter(wsdlIntf,
+                IResource.class.getCanonicalName());
         if (file == null) {
-            file = PlatformResourceAdapterFactory.getContainingProject(intf);
-            if (file == null) {
-                return StructuredSelection.EMPTY;
-            }
+            return StructuredSelection.EMPTY;
         }
         return new StructuredSelection(file);
     }
 
     @Override
     public String getImageId() {
-        return ImageProvider.IMG_16_TEST_CLASS;
+        return ImageProvider.IMG_16_WSDL_2_JAVA;
     }
+
 }

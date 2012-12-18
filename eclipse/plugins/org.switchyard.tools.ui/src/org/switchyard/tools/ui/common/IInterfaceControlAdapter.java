@@ -11,6 +11,7 @@
 package org.switchyard.tools.ui.common;
 
 import org.eclipse.core.runtime.IStatus;
+import org.eclipse.jdt.core.IJavaElement;
 import org.eclipse.jdt.core.IJavaProject;
 import org.eclipse.soa.sca.sca1_1.model.sca.Interface;
 import org.eclipse.swt.widgets.Shell;
@@ -46,11 +47,11 @@ public interface IInterfaceControlAdapter {
      * supporting (e.g. select type for JavaInterface).
      * 
      * @param shell the parent shell
-     * @param project the containing project (may be used to reduce scope)
+     * @param element the containing element (may be used to reduce scope)
      * 
      * @return true if the data associated with this adapter has changed.
      */
-    public boolean browse(Shell shell, IJavaProject project);
+    public boolean browse(Shell shell, IJavaElement element);
 
     /**
      * The "open/create" link on the control has been pressed. Implementations

@@ -730,12 +730,14 @@ public class SCADiagramToolBehaviorProvider extends DefaultToolBehaviorProvider 
                 }
 
                 Java2WSDLCustomFeature java2WSDL = new Java2WSDLCustomFeature(getFeatureProvider());
-                ContextButtonEntry java2WSDLButton = new ContextButtonEntry(java2WSDL, customContext);
-                if (java2WSDLButton.canExecute()) {
-                    data.getDomainSpecificContextButtons().add(java2WSDLButton);
+                if (java2WSDL.canExecute(customContext)) {
+                    data.getDomainSpecificContextButtons().add(new ContextButtonEntry(java2WSDL, customContext));
+                } else {
+                    WSDL2JavaCustomFeature wsdl2Java = new WSDL2JavaCustomFeature(getFeatureProvider());
+                    if (wsdl2Java.canExecute(customContext)) {
+                        data.getDomainSpecificContextButtons().add(new ContextButtonEntry(wsdl2Java, customContext));
+                    }
                 }
-                
-                
             }
             setGenericContextButtons(data, pe, CONTEXT_BUTTON_DELETE);
         }

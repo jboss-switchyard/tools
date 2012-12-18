@@ -21,7 +21,6 @@ import org.eclipse.graphiti.mm.pictograms.PictogramElement;
 import org.eclipse.jface.viewers.IStructuredSelection;
 import org.eclipse.jface.viewers.StructuredSelection;
 import org.eclipse.jface.wizard.WizardDialog;
-import org.eclipse.soa.sca.sca1_1.model.sca.ComponentService;
 import org.eclipse.soa.sca.sca1_1.model.sca.Contract;
 import org.eclipse.soa.sca.sca1_1.model.sca.Interface;
 import org.eclipse.soa.sca.sca1_1.model.sca.JavaInterface;
@@ -90,7 +89,7 @@ public class Java2WSDLCustomFeature extends AbstractCustomFeature implements ICu
     @Override
     public void execute(ICustomContext context) {
         final Object bo = getBusinessObjectForPictogramElement(context.getPictogramElements()[0]);
-        final JavaInterface javaIntf = (JavaInterface) ((ComponentService) bo).getInterface();
+        final JavaInterface javaIntf = (JavaInterface) ((Contract) bo).getInterface();
         final Java2WSDLWizard wizard = new Java2WSDLWizard();
         final WizardDialog dialog = new WizardDialog(PlatformUI.getWorkbench().getActiveWorkbenchWindow().getShell(),
                 wizard);

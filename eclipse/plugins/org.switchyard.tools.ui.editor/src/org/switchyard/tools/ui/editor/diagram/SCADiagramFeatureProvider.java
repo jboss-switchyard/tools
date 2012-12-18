@@ -53,10 +53,13 @@ import org.eclipse.soa.sca.sca1_1.model.sca.Component;
 import org.eclipse.soa.sca.sca1_1.model.sca.ComponentReference;
 import org.eclipse.soa.sca.sca1_1.model.sca.ComponentService;
 import org.eclipse.soa.sca.sca1_1.model.sca.Composite;
+import org.eclipse.soa.sca.sca1_1.model.sca.Contract;
 import org.eclipse.soa.sca.sca1_1.model.sca.Implementation;
+import org.eclipse.soa.sca.sca1_1.model.sca.Interface;
 import org.eclipse.soa.sca.sca1_1.model.sca.JavaInterface;
 import org.eclipse.soa.sca.sca1_1.model.sca.Reference;
 import org.eclipse.soa.sca.sca1_1.model.sca.Service;
+import org.eclipse.soa.sca.sca1_1.model.sca.WSDLPortType;
 import org.switchyard.tools.models.switchyard1_0.switchyard.SwitchYardBindingType;
 import org.switchyard.tools.ui.editor.BindingTypeExtensionManager;
 import org.switchyard.tools.ui.editor.ComponentTypeExtensionManager;
@@ -341,16 +344,21 @@ public class SCADiagramFeatureProvider extends DefaultFeatureProvider {
             Object bo = getBusinessObjectForPictogramElement(pes[0]);
             if (bo instanceof ComponentService) {
                 features.add(new SCADiagramCustomPromoteServiceFeature(this));
-                if (((ComponentService) bo).getInterface() instanceof JavaInterface) {
-                    features.add(new Java2WSDLCustomFeature(this));
-                    features.add(new CreateServiceTestCustomFeature(this));
-                }
                 // features.add(new PropertiesDialogFeature(this));
             } else if (bo instanceof ComponentReference) {
                 features.add(new SCADiagramCustomPromoteReferenceFeature(this));
             } else if (bo instanceof Composite) {
                 features.add(new AutoLayoutFeature(this));
                 features.add(new CustomAddTransformFeature(this));
+            }
+            if (bo instanceof Contract) {
+                final Interface intf = ((Contract) bo).getInterface();
+                features.add(new CreateServiceTestCustomFeature(this));
+                if (intf instanceof JavaInterface) {
+                    features.add(new Java2WSDLCustomFeature(this));
+                } else if (intf instanceof WSDLPortType) {
+                    features.add(new WSDL2JavaCustomFeature(this));
+                }
             }
             // if (bo != null) {
             // features.add(new PropertiesDialogFeature(this));

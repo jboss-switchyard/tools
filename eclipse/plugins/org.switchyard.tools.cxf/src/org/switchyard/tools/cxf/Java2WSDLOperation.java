@@ -10,14 +10,9 @@
  ************************************************************************************/
 package org.switchyard.tools.cxf;
 
-import java.io.File;
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
-import java.net.URL;
-import java.net.URLClassLoader;
-import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 import java.util.Map.Entry;
 
@@ -39,14 +34,7 @@ import org.apache.cxf.service.model.ServiceInfo;
 import org.apache.cxf.tools.common.ToolConstants;
 import org.apache.cxf.tools.java2wsdl.processor.internal.ServiceBuilderFactory;
 import org.apache.cxf.wsdl11.ServiceWSDLBuilder;
-import org.eclipse.core.resources.IProject;
-import org.eclipse.core.resources.IWorkspaceRoot;
-import org.eclipse.core.runtime.IPath;
 import org.eclipse.core.runtime.IProgressMonitor;
-import org.eclipse.jdt.core.IClasspathEntry;
-import org.eclipse.jdt.core.IJavaProject;
-import org.eclipse.jdt.core.IType;
-import org.eclipse.jdt.core.JavaCore;
 import org.eclipse.jface.operation.IRunnableWithProgress;
 import org.w3c.dom.Element;
 
@@ -92,7 +80,7 @@ public class Java2WSDLOperation implements IRunnableWithProgress {
     public void run(IProgressMonitor monitor) throws InvocationTargetException, InterruptedException {
         ClassLoader oldLoader = Thread.currentThread().getContextClassLoader();
         try {
-            ClassLoader loader = getProjectBuildClassLoader(_options.getServiceInterface());
+            ClassLoader loader = Activator.getProjectBuildClassLoader(_options.getServiceInterface().getJavaProject());
             Thread.currentThread().setContextClassLoader(loader);
             ServiceBuilderFactory builderFactory = ServiceBuilderFactory.getInstance(null,
                     ToolConstants.JAXB_DATABINDING);
@@ -163,27 +151,6 @@ public class Java2WSDLOperation implements IRunnableWithProgress {
             }
         }
         serviceFactory.getConfigurations().add(0, new CustomSOAPServiceConfiguration());
-    }
-
-    private ClassLoader getProjectBuildClassLoader(IType interfaceType) throws Exception {
-        IJavaProject javaProject = interfaceType.getJavaProject();
-        IProject project = javaProject.getProject();
-        IWorkspaceRoot root = project.getWorkspace().getRoot();
-        List<URL> urls = new ArrayList<URL>();
-        urls.add(new File(project.getLocation() + "/" + javaProject.getOutputLocation().removeFirstSegments(1) + "/")
-                .toURI().toURL());
-        for (IClasspathEntry classpathEntry : javaProject.getResolvedClasspath(true)) {
-            if (classpathEntry.getEntryKind() == IClasspathEntry.CPE_PROJECT) {
-                IPath projectPath = classpathEntry.getPath();
-                IProject otherProject = root.getProject(projectPath.segment(0));
-                IJavaProject otherJavaProject = JavaCore.create(otherProject);
-                urls.add(new File(otherProject.getLocation() + "/"
-                        + otherJavaProject.getOutputLocation().removeFirstSegments(1) + "/").toURI().toURL());
-            } else if (classpathEntry.getEntryKind() == IClasspathEntry.CPE_LIBRARY) {
-                urls.add(new File(classpathEntry.getPath().toOSString()).toURI().toURL());
-            }
-        }
-        return new URLClassLoader(urls.toArray(new URL[urls.size()]), getClass().getClassLoader());
     }
 
     private Map<String, String> createNamepsaceMap() {
