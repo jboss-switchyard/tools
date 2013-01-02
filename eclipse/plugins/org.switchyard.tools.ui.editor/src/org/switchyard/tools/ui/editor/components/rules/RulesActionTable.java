@@ -291,11 +291,17 @@ public class RulesActionTable extends Composite implements ICellModifier {
                     @Override
                     protected void doExecute() {
                         impl.getActions().getAction().remove(actionToRemove);
+                        if (impl.getActions().getAction().isEmpty()) {
+                            impl.setActions(null);
+                        }
                         getTableViewer().refresh(true);
                     }
                 });
             } else {
                 impl.getActions().getAction().remove(actionToRemove);
+                if (impl.getActions().getAction().isEmpty()) {
+                    impl.setActions(null);
+                }
                 getTableViewer().refresh(true);
             }
             fireChangedEvent(this);

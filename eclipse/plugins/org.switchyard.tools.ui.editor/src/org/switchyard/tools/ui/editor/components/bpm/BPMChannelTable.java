@@ -17,10 +17,10 @@ import javax.swing.event.ChangeListener;
 
 import org.eclipse.core.runtime.ListenerList;
 import org.eclipse.emf.ecore.EObject;
+import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.transaction.RecordingCommand;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.eclipse.jface.viewers.CellEditor;
-import org.eclipse.jface.viewers.ComboBoxCellEditor;
 import org.eclipse.jface.viewers.ICellModifier;
 import org.eclipse.jface.viewers.ILabelProviderListener;
 import org.eclipse.jface.viewers.IStructuredContentProvider;
@@ -39,20 +39,19 @@ import org.eclipse.swt.widgets.Button;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.TableColumn;
 import org.eclipse.swt.widgets.TableItem;
-import org.switchyard.tools.models.switchyard1_0.bpm.ActionType;
-import org.switchyard.tools.models.switchyard1_0.bpm.ActionType1;
 import org.switchyard.tools.models.switchyard1_0.bpm.BPMFactory;
 import org.switchyard.tools.models.switchyard1_0.bpm.BPMImplementationType;
+import org.switchyard.tools.models.switchyard1_0.bpm.ChannelType;
+import org.switchyard.tools.ui.editor.diagram.shared.ClassDialogCellEditor;
 import org.switchyard.tools.ui.editor.impl.SwitchyardSCAEditor;
 
 /**
  * @author bfitzpat
  * 
  */
-public class BPMActionTable extends Composite implements ICellModifier {
+public class BPMChannelTable extends Composite implements ICellModifier {
 
     private class PropertyTreeContentProvider implements IStructuredContentProvider {
-
         @Override
         public void dispose() {
         }
@@ -65,8 +64,8 @@ public class BPMActionTable extends Composite implements ICellModifier {
         public Object[] getElements(Object inputElement) {
             if (inputElement instanceof BPMImplementationType) {
                 final BPMImplementationType bpmImpl = (BPMImplementationType) inputElement;
-                if (bpmImpl.getActions() != null) {
-                    return bpmImpl.getActions().getAction().toArray();
+                if (bpmImpl.getChannels() != null) {
+                    return bpmImpl.getChannels().getChannel().toArray();
                 }
             }
             return new Object[0];
@@ -84,9 +83,13 @@ public class BPMActionTable extends Composite implements ICellModifier {
 
         @Override
         public boolean isLabelProperty(Object element, String property) {
-            if (element instanceof ActionType1 && property.equalsIgnoreCase(VALUE_COLUMN)) {
+            if (element instanceof ChannelType && property.equalsIgnoreCase(NAME_COLUMN)) {
                 return true;
-            } else if (element instanceof ActionType1 && property.equalsIgnoreCase(ENTRY_POINT_COLUMN)) {
+            } else if (element instanceof ChannelType && property.equalsIgnoreCase(OPERATION_COLUMN)) {
+                return true;
+            } else if (element instanceof ChannelType && property.equalsIgnoreCase(REFERENCE_COLUMN)) {
+                return true;
+            } else if (element instanceof ChannelType && property.equalsIgnoreCase(CLASS_COLUMN)) {
                 return true;
             }
             return false;
@@ -103,12 +106,14 @@ public class BPMActionTable extends Composite implements ICellModifier {
 
         @Override
         public String getColumnText(Object element, int columnIndex) {
-            if (element instanceof ActionType1 && columnIndex == 0) {
-                ActionType1 tp = (ActionType1) element;
-                return (String) tp.getType().getLiteral();
-            } else if (element instanceof ActionType1 && columnIndex == 1) {
-                ActionType1 tp = (ActionType1) element;
-                return tp.getOperation();
+            if (element instanceof ChannelType && columnIndex == 0) {
+                return ((ChannelType) element).getName();
+            } else if (element instanceof ChannelType && columnIndex == 1) {
+                return ((ChannelType) element).getOperation();
+            } else if (element instanceof ChannelType && columnIndex == 2) {
+                return ((ChannelType) element).getReference();
+            } else if (element instanceof ChannelType && columnIndex == 3) {
+                return ((ChannelType) element).getClass_();
             }
             return null;
         }
@@ -116,16 +121,13 @@ public class BPMActionTable extends Composite implements ICellModifier {
 
     private TableViewer _propertyTreeTable;
 
-    /**
-     * Value column.
-     */
-    public static final String VALUE_COLUMN = "value";
-    /**
-     * Entry point column.
-     */
-    public static final String ENTRY_POINT_COLUMN = "entryPoint";
+    private static final String NAME_COLUMN = "name";
+    private static final String OPERATION_COLUMN = "operation";
+    private static final String REFERENCE_COLUMN = "reference";
+    private static final String CLASS_COLUMN = "class";
 
-    private static final String[] TREE_COLUMNS = new String[] {VALUE_COLUMN, ENTRY_POINT_COLUMN };
+    private static final String[] TREE_COLUMNS = new String[] {NAME_COLUMN, OPERATION_COLUMN, REFERENCE_COLUMN,
+            CLASS_COLUMN };
 
     private Button _mAddButton;
     private Button _mRemoveButton;
@@ -140,7 +142,7 @@ public class BPMActionTable extends Composite implements ICellModifier {
      * @param parent Composite parent
      * @param style any SWT style bits to pass along
      */
-    public BPMActionTable(Composite parent, int style) {
+    public BPMChannelTable(Composite parent, int style) {
         this(parent, style, false);
     }
 
@@ -151,7 +153,7 @@ public class BPMActionTable extends Composite implements ICellModifier {
      * @param style any SWT style bits
      * @param isReadOnly boolean flag
      */
-    public BPMActionTable(Composite parent, int style, boolean isReadOnly) {
+    public BPMChannelTable(Composite parent, int style, boolean isReadOnly) {
         super(parent, style);
         this._isReadOnly = isReadOnly;
         this._changeListeners = new ListenerList();
@@ -169,16 +171,22 @@ public class BPMActionTable extends Composite implements ICellModifier {
 
         _propertyTreeTable = new TableViewer(this, SWT.BORDER | SWT.WRAP | SWT.V_SCROLL | SWT.FULL_SELECTION
                 | additionalStyles);
-        GridData gd11 = new GridData(SWT.FILL, SWT.FILL, true, true, 1, 3);
+        GridData gd11 = new GridData(SWT.FILL, SWT.FILL, true, false, 1, 3);
         gd11.heightHint = 100;
         _propertyTreeTable.getTable().setLayoutData(gd11);
         _propertyTreeTable.getTable().setHeaderVisible(true);
+        TableColumn nameColumn = new TableColumn(_propertyTreeTable.getTable(), SWT.LEFT);
+        nameColumn.setText("Name");
+        nameColumn.setWidth(200);
+        TableColumn operationColumn = new TableColumn(_propertyTreeTable.getTable(), SWT.LEFT);
+        operationColumn.setText("Operation");
+        operationColumn.setWidth(200);
+        TableColumn referenceColumn = new TableColumn(_propertyTreeTable.getTable(), SWT.LEFT);
+        referenceColumn.setText("Reference");
+        referenceColumn.setWidth(200);
         TableColumn valueColumn = new TableColumn(_propertyTreeTable.getTable(), SWT.LEFT);
-        valueColumn.setText("Type");
-        valueColumn.setWidth(200);
-        TableColumn entryPointColumn = new TableColumn(_propertyTreeTable.getTable(), SWT.LEFT);
-        entryPointColumn.setText("Operation");
-        entryPointColumn.setWidth(200);
+        valueColumn.setText("Class");
+        valueColumn.setWidth(300);
 
         _propertyTreeTable.setColumnProperties(TREE_COLUMNS);
 
@@ -188,10 +196,15 @@ public class BPMActionTable extends Composite implements ICellModifier {
 
         _propertyTreeTable.setCellModifier(this);
         _propertyTreeTable.setCellEditors(new CellEditor[] {
-                new ComboBoxCellEditor(_propertyTreeTable.getTable(), new String[] {
-                        ActionType.STARTPROCESS.getLiteral(), ActionType.SIGNALEVENT.getLiteral(),
-                        ActionType.ABORTPROCESSINSTANCE.getLiteral() }),
-                new TextCellEditor(_propertyTreeTable.getTable()) });
+                new TextCellEditor(_propertyTreeTable.getTable()),
+                new TextCellEditor(_propertyTreeTable.getTable()),
+                new TextCellEditor(_propertyTreeTable.getTable()),
+                new ClassDialogCellEditor(_propertyTreeTable.getTable(), "org.kie.runtime.Channel", "Channel",
+                        "Select channel implementation.") {
+                    protected Resource getResource() {
+                        return _targetObj == null ? null : _targetObj.eResource();
+                    }
+                } });
 
         this._mAddButton = new Button(this, SWT.NONE);
         this._mAddButton.setLayoutData(new GridData(GridData.HORIZONTAL_ALIGN_FILL));
@@ -249,29 +262,28 @@ public class BPMActionTable extends Composite implements ICellModifier {
     protected void addPropertyToList() {
         if (getTargetObject() instanceof BPMImplementationType) {
             final BPMImplementationType impl = (BPMImplementationType) getTargetObject();
+            final ChannelType newAction = BPMFactory.eINSTANCE.createChannelType();
+            newAction.setName("ChannelName");
+            newAction.setOperation("ChannelOperation");
+            newAction.setReference("ChannelReference");
+            newAction.setClass("NewChannel");
             if (impl.eContainer() != null) {
                 TransactionalEditingDomain domain = SwitchyardSCAEditor.getActiveEditor().getEditingDomain();
                 domain.getCommandStack().execute(new RecordingCommand(domain) {
                     @Override
                     protected void doExecute() {
-                        ActionType1 newAction = BPMFactory.eINSTANCE.createActionType1();
-                        newAction.setType(ActionType.STARTPROCESS);
-                        newAction.setOperation("NewAction");
-                        if (impl.getActions() == null) {
-                            impl.setActions(BPMFactory.eINSTANCE.createActionsType());
+                        if (impl.getChannels() == null) {
+                            impl.setChannels(BPMFactory.eINSTANCE.createChannelsType());
                         }
-                        impl.getActions().getAction().add(newAction);
+                        impl.getChannels().getChannel().add(newAction);
                         getTableViewer().refresh(true);
                     }
                 });
             } else {
-                ActionType1 newAction = BPMFactory.eINSTANCE.createActionType1();
-                newAction.setType(ActionType.STARTPROCESS);
-                newAction.setOperation("NewAction");
-                if (impl.getActions() == null) {
-                    impl.setActions(BPMFactory.eINSTANCE.createActionsType());
+                if (impl.getChannels() == null) {
+                    impl.setChannels(BPMFactory.eINSTANCE.createChannelsType());
                 }
-                impl.getActions().getAction().add(newAction);
+                impl.getChannels().getChannel().add(newAction);
                 getTableViewer().refresh(true);
             }
             fireChangedEvent(this);
@@ -284,23 +296,23 @@ public class BPMActionTable extends Composite implements ICellModifier {
     protected void removeFromList() {
         if (getTargetObject() instanceof BPMImplementationType) {
             final BPMImplementationType impl = (BPMImplementationType) getTargetObject();
-            final ActionType1 actionToRemove = getTableSelection();
+            final ChannelType actionToRemove = getTableSelection();
             if (impl.eContainer() != null) {
                 TransactionalEditingDomain domain = SwitchyardSCAEditor.getActiveEditor().getEditingDomain();
                 domain.getCommandStack().execute(new RecordingCommand(domain) {
                     @Override
                     protected void doExecute() {
-                        impl.getActions().getAction().remove(actionToRemove);
-                        if (impl.getActions().getAction().isEmpty()) {
-                            impl.setActions(null);
+                        impl.getChannels().getChannel().remove(actionToRemove);
+                        if (impl.getChannels().getChannel().isEmpty()) {
+                            impl.setChannels(null);
                         }
                         getTableViewer().refresh(true);
                     }
                 });
             } else {
-                impl.getActions().getAction().remove(actionToRemove);
-                if (impl.getActions().getAction().isEmpty()) {
-                    impl.setActions(null);
+                impl.getChannels().getChannel().remove(actionToRemove);
+                if (impl.getChannels().getChannel().isEmpty()) {
+                    impl.setChannels(null);
                 }
                 getTableViewer().refresh(true);
             }
@@ -308,11 +320,11 @@ public class BPMActionTable extends Composite implements ICellModifier {
         }
     }
 
-    protected ActionType1 getTableSelection() {
+    protected ChannelType getTableSelection() {
         if (_propertyTreeTable != null && !_propertyTreeTable.getSelection().isEmpty()) {
             IStructuredSelection ssel = (IStructuredSelection) _propertyTreeTable.getSelection();
-            if (ssel.getFirstElement() instanceof ActionType1) {
-                return (ActionType1) ssel.getFirstElement();
+            if (ssel.getFirstElement() instanceof ChannelType) {
+                return (ChannelType) ssel.getFirstElement();
             }
         }
         return null;
@@ -405,11 +417,27 @@ public class BPMActionTable extends Composite implements ICellModifier {
      *      java.lang.String)
      */
     public Object getValue(Object element, String property) {
-        if (element instanceof ActionType1 && property.equalsIgnoreCase(VALUE_COLUMN)) {
-            return new Integer(((ActionType1) element).getType().getValue());
-        } else if (element instanceof ActionType1 && property.equalsIgnoreCase(ENTRY_POINT_COLUMN)) {
-            if (((ActionType1) element).getOperation() != null) {
-                return ((ActionType1) element).getOperation();
+        if (element instanceof ChannelType && property.equalsIgnoreCase(NAME_COLUMN)) {
+            if (((ChannelType) element).getName() != null) {
+                return ((ChannelType) element).getName();
+            } else {
+                return "";
+            }
+        } else if (element instanceof ChannelType && property.equalsIgnoreCase(OPERATION_COLUMN)) {
+            if (((ChannelType) element).getOperation() != null) {
+                return ((ChannelType) element).getOperation();
+            } else {
+                return "";
+            }
+        } else if (element instanceof ChannelType && property.equalsIgnoreCase(REFERENCE_COLUMN)) {
+            if (((ChannelType) element).getReference() != null) {
+                return ((ChannelType) element).getReference();
+            } else {
+                return "";
+            }
+        } else if (element instanceof ChannelType && property.equalsIgnoreCase(CLASS_COLUMN)) {
+            if (((ChannelType) element).getClass_() != null) {
+                return ((ChannelType) element).getClass_();
             } else {
                 return "";
             }
@@ -426,47 +454,102 @@ public class BPMActionTable extends Composite implements ICellModifier {
      *      java.lang.String, java.lang.Object)
      */
     public void modify(Object element, String property, final Object value) {
-        if (element instanceof TableItem && property.equalsIgnoreCase(VALUE_COLUMN)) {
+        if (element instanceof TableItem && property.equalsIgnoreCase(NAME_COLUMN)) {
             final TableItem ti = (TableItem) element;
             if (getTargetObject() instanceof BPMImplementationType) {
                 final BPMImplementationType impl = (BPMImplementationType) getTargetObject();
+                final ChannelType parm = (ChannelType) ti.getData();
+                if ((value == null && parm.getName() == null) || (value != null && value.equals(parm.getName()))) {
+                    return;
+                }
                 if (impl.eContainer() != null) {
                     TransactionalEditingDomain domain = SwitchyardSCAEditor.getActiveEditor().getEditingDomain();
                     domain.getCommandStack().execute(new RecordingCommand(domain) {
                         @Override
                         protected void doExecute() {
-                            ActionType1 parm = (ActionType1) ti.getData();
-                            ActionType atype = ActionType.get(((Integer) value).intValue());
-                            parm.setType(atype);
+                            parm.setName((String) value);
                             getTableViewer().refresh(true);
                         }
                     });
                 } else {
-                    ActionType1 parm = (ActionType1) ti.getData();
-                    ActionType atype = ActionType.get(((Integer) value).intValue());
-                    parm.setType(atype);
+                    parm.setName((String) value);
                     getTableViewer().refresh(true);
                 }
             }
             fireChangedEvent(this);
             // validate();
-        } else if (element instanceof TableItem && property.equalsIgnoreCase(ENTRY_POINT_COLUMN)) {
+        } else if (element instanceof TableItem && property.equalsIgnoreCase(OPERATION_COLUMN)) {
             final TableItem ti = (TableItem) element;
             if (getTargetObject() instanceof BPMImplementationType) {
                 final BPMImplementationType impl = (BPMImplementationType) getTargetObject();
+                final ChannelType parm = (ChannelType) ti.getData();
+                if ((value == null && parm.getOperation() == null)
+                        || (value != null && value.equals(parm.getOperation()))) {
+                    return;
+                }
                 if (impl.eContainer() != null) {
                     TransactionalEditingDomain domain = SwitchyardSCAEditor.getActiveEditor().getEditingDomain();
                     domain.getCommandStack().execute(new RecordingCommand(domain) {
                         @Override
                         protected void doExecute() {
-                            ActionType1 parm = (ActionType1) ti.getData();
+                            ChannelType parm = (ChannelType) ti.getData();
                             parm.setOperation((String) value);
                             getTableViewer().refresh(true);
                         }
                     });
                 } else {
-                    ActionType1 parm = (ActionType1) ti.getData();
-                    parm.setOperation((String) value);
+                    parm.setClass((String) value);
+                    getTableViewer().refresh(true);
+                }
+            }
+            fireChangedEvent(this);
+            // validate();
+        } else if (element instanceof TableItem && property.equalsIgnoreCase(REFERENCE_COLUMN)) {
+            final TableItem ti = (TableItem) element;
+            if (getTargetObject() instanceof BPMImplementationType) {
+                final BPMImplementationType impl = (BPMImplementationType) getTargetObject();
+                final ChannelType parm = (ChannelType) ti.getData();
+                if ((value == null && parm.getReference() == null)
+                        || (value != null && value.equals(parm.getReference()))) {
+                    return;
+                }
+                if (impl.eContainer() != null) {
+                    TransactionalEditingDomain domain = SwitchyardSCAEditor.getActiveEditor().getEditingDomain();
+                    domain.getCommandStack().execute(new RecordingCommand(domain) {
+                        @Override
+                        protected void doExecute() {
+                            ChannelType parm = (ChannelType) ti.getData();
+                            parm.setReference((String) value);
+                            getTableViewer().refresh(true);
+                        }
+                    });
+                } else {
+                    parm.setClass((String) value);
+                    getTableViewer().refresh(true);
+                }
+            }
+            fireChangedEvent(this);
+            // validate();
+        } else if (element instanceof TableItem && property.equalsIgnoreCase(CLASS_COLUMN)) {
+            final TableItem ti = (TableItem) element;
+            if (getTargetObject() instanceof BPMImplementationType) {
+                final BPMImplementationType impl = (BPMImplementationType) getTargetObject();
+                final ChannelType parm = (ChannelType) ti.getData();
+                if ((value == null && parm.getClass_() == null) || (value != null && value.equals(parm.getClass_()))) {
+                    return;
+                }
+                if (impl.eContainer() != null) {
+                    TransactionalEditingDomain domain = SwitchyardSCAEditor.getActiveEditor().getEditingDomain();
+                    domain.getCommandStack().execute(new RecordingCommand(domain) {
+                        @Override
+                        protected void doExecute() {
+                            ChannelType parm = (ChannelType) ti.getData();
+                            parm.setClass((String) value);
+                            getTableViewer().refresh(true);
+                        }
+                    });
+                } else {
+                    parm.setClass((String) value);
                     getTableViewer().refresh(true);
                 }
             }

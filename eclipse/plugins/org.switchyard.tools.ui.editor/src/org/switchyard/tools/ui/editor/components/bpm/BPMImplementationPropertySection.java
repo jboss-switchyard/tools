@@ -29,20 +29,21 @@ import org.eclipse.graphiti.ui.platform.GFPropertySection;
 import org.eclipse.jface.viewers.ISelectionChangedListener;
 import org.eclipse.jface.viewers.IStructuredSelection;
 import org.eclipse.jface.viewers.SelectionChangedEvent;
-import org.eclipse.jface.viewers.TableViewer;
 import org.eclipse.soa.sca.sca1_1.model.sca.Component;
 import org.eclipse.swt.SWT;
-import org.eclipse.swt.custom.CTabFolder;
-import org.eclipse.swt.custom.CTabItem;
 import org.eclipse.swt.events.ModifyEvent;
 import org.eclipse.swt.events.ModifyListener;
 import org.eclipse.swt.events.SelectionAdapter;
 import org.eclipse.swt.events.SelectionEvent;
+import org.eclipse.swt.graphics.Point;
+import org.eclipse.swt.graphics.Rectangle;
 import org.eclipse.swt.layout.GridData;
 import org.eclipse.swt.layout.GridLayout;
 import org.eclipse.swt.widgets.Button;
 import org.eclipse.swt.widgets.Composite;
-import org.eclipse.swt.widgets.Control;
+import org.eclipse.swt.widgets.Layout;
+import org.eclipse.swt.widgets.TabFolder;
+import org.eclipse.swt.widgets.TabItem;
 import org.eclipse.swt.widgets.Text;
 import org.eclipse.ui.forms.events.ExpansionAdapter;
 import org.eclipse.ui.forms.events.ExpansionEvent;
@@ -62,16 +63,21 @@ import org.switchyard.tools.ui.editor.Activator;
  */
 public class BPMImplementationPropertySection extends GFPropertySection implements ITabbedPropertyConstants {
 
+    private TabbedPropertySheetPage _page;
     private Composite _panel;
     private Text _processIDText;
     private Text _sessionIDText;
     private Button _persistentButton;
+    private BPMResourceTable _resourcesTable;
     private BPMActionTable _actionsTable;
     private BPMMappingsTable _inputsTable;
     private BPMMappingsTable _outputsTable;
     private BPMMappingsTable _globalsTable;
+    private BPMPropertyTable _propertiesTable;
+    private BPMLoggerTable _loggersTable;
     private BPMTaskHandlerTable _handlersTable;
     private BPMEventListenerTable _listenersTable;
+    private BPMChannelTable _channelsTable;
     private BPMImplementationType _implementation;
     private boolean _updating;
 
@@ -91,9 +97,13 @@ public class BPMImplementationPropertySection extends GFPropertySection implemen
         }
         _updating = true;
         try {
+            _resourcesTable.setTargetObject(_implementation);
             _actionsTable.setTargetObject(_implementation);
+            _propertiesTable.setTargetObject(_implementation);
+            _loggersTable.setTargetObject(_implementation);
             _handlersTable.setTargetObject(_implementation);
             _listenersTable.setTargetObject(_implementation);
+            _channelsTable.setTargetObject(_implementation);
             if (_implementation == null) {
                 _processIDText.setText("");
                 _sessionIDText.setText("");
@@ -113,17 +123,55 @@ public class BPMImplementationPropertySection extends GFPropertySection implemen
     public void createControls(Composite parent, TabbedPropertySheetPage tabbedPropertySheetPage) {
         super.createControls(parent, tabbedPropertySheetPage);
 
+        _page = tabbedPropertySheetPage;
+
         final TabbedPropertySheetWidgetFactory factory = getWidgetFactory();
         _panel = factory.createComposite(parent);
         _panel.setLayout(new GridLayout());
 
-        CTabFolder folder = factory.createTabFolder(_panel, SWT.TOP);
-        folder.setLayout(new GridLayout());
+        final TabFolder folder = new TabFolder(_panel, SWT.TOP);
+        factory.adapt(folder);
+        folder.setLayout(new Layout() {
+            @Override
+            protected void layout(Composite composite, boolean flushCache) {
+                Rectangle rect = composite.getClientArea();
+
+                TabItem[] selected = folder.getSelection();
+                if (selected == null || selected.length == 0) {
+                    return;
+                }
+                selected[0].getControl().setBounds(rect);
+            }
+
+            @Override
+            protected Point computeSize(Composite composite, int wHint, int hHint, boolean flushCache) {
+                if (wHint != SWT.DEFAULT && hHint != SWT.DEFAULT) {
+                    return new Point(wHint, hHint);
+                }
+
+                int maxWidth = 0, maxHeight = 0;
+                TabItem[] selected = folder.getSelection();
+                if (selected != null && selected.length > 0) {
+                    Point pt = selected[0].getControl().computeSize(SWT.DEFAULT, SWT.DEFAULT, flushCache);
+                    maxWidth = Math.max(0, pt.x);
+                    maxHeight = Math.max(0, pt.y);
+                }
+
+                if (wHint != SWT.DEFAULT) {
+                    maxWidth = wHint;
+                }
+                if (hHint != SWT.DEFAULT) {
+                    maxHeight = hHint;
+                }
+
+                return new Point(maxWidth, maxHeight);
+            }
+        });
         folder.setLayoutData(new GridData(SWT.FILL, SWT.FILL, true, true));
 
-        CTabItem general = factory.createTabItem(folder, SWT.NONE);
-        CTabItem actions = factory.createTabItem(folder, SWT.NONE);
-        CTabItem advanced = factory.createTabItem(folder, SWT.NONE);
+        TabItem general = new TabItem(folder, SWT.NONE);
+        TabItem actions = new TabItem(folder, SWT.NONE);
+        TabItem advanced = new TabItem(folder, SWT.NONE);
 
         general.setText("General");
         actions.setText("Actions");
@@ -133,17 +181,24 @@ public class BPMImplementationPropertySection extends GFPropertySection implemen
         createActionsControls(folder, actions);
         createAdvancedControls(folder, advanced);
 
+        folder.addSelectionListener(new SelectionAdapter() {
+            @Override
+            public void widgetSelected(SelectionEvent event) {
+                _page.resizeScrolledComposite();
+            }
+        });
+
         folder.setSelection(0);
     }
 
-    private void createGeneralControls(CTabFolder folder, CTabItem item) {
+    private void createGeneralControls(TabFolder folder, TabItem item) {
         final TabbedPropertySheetWidgetFactory factory = getWidgetFactory();
         Composite control = factory.createComposite(folder);
         control.setLayout(new GridLayout(2, false));
         control.setLayoutData(new GridData(SWT.FILL, SWT.FILL, true, true));
 
         factory.createLabel(control, "Process ID:");
-        _processIDText = factory.createText(control, "", SWT.BORDER);
+        _processIDText = factory.createText(control, "", SWT.NONE);
         _processIDText.setLayoutData(new GridData(SWT.FILL, SWT.CENTER, true, false));
         _processIDText.addModifyListener(new ModifyListener() {
             @Override
@@ -162,7 +217,7 @@ public class BPMImplementationPropertySection extends GFPropertySection implemen
         });
 
         factory.createLabel(control, "Session ID:");
-        _sessionIDText = factory.createText(control, "", SWT.BORDER);
+        _sessionIDText = factory.createText(control, "", SWT.NONE);
         _sessionIDText.setLayoutData(new GridData(SWT.FILL, SWT.CENTER, true, false));
         _sessionIDText.addModifyListener(new ModifyListener() {
             @Override
@@ -202,24 +257,13 @@ public class BPMImplementationPropertySection extends GFPropertySection implemen
         resourcesSection.setLayout(new GridLayout(2, false));
         resourcesSection.setLayoutData(new GridData(SWT.FILL, SWT.FILL, true, true, 2, 1));
 
-        Composite resourcesComposite = factory.createComposite(resourcesSection);
-        resourcesComposite.setLayout(new GridLayout(2, false));
-        resourcesComposite.setLayoutData(new GridData(SWT.FILL, SWT.FILL, true, false));
-        resourcesSection.setClient(resourcesComposite);
-
-        TableViewer _resourcesTable = new TableViewer(resourcesComposite, SWT.V_SCROLL | SWT.H_SCROLL | SWT.BORDER);
-        factory.adapt(_resourcesTable.getTable(), true, true);
-        _resourcesTable.getTable().setLayoutData(new GridData(SWT.FILL, SWT.FILL, true, true, 1, 2));
-
-        Button _addResourceButton = factory.createButton(resourcesComposite, "Add...", SWT.PUSH);
-        _addResourceButton.setLayoutData(new GridData(SWT.FILL, SWT.TOP, false, false));
-        Button _removeResourceButton = factory.createButton(resourcesComposite, "Remove...", SWT.PUSH);
-        _removeResourceButton.setLayoutData(new GridData(SWT.FILL, SWT.TOP, false, false));
+        _resourcesTable = new BPMResourceTable(resourcesSection, SWT.NONE);
+        resourcesSection.setClient(_resourcesTable);
 
         item.setControl(control);
     }
 
-    private void createActionsControls(CTabFolder folder, CTabItem item) {
+    private void createActionsControls(TabFolder folder, TabItem item) {
         final TabbedPropertySheetWidgetFactory factory = getWidgetFactory();
         final Composite control = factory.createComposite(folder);
         control.setLayout(new GridLayout(2, false));
@@ -233,7 +277,7 @@ public class BPMImplementationPropertySection extends GFPropertySection implemen
                 ExpandableComposite.TITLE_BAR | ExpandableComposite.EXPANDED);
         actionsSection.setText("Actions");
         actionsSection.setLayout(new GridLayout());
-        actionsSection.setLayoutData(new GridData(SWT.FILL, SWT.FILL, true, false));
+        actionsSection.setLayoutData(new GridData(SWT.FILL, SWT.FILL, true, true));
 
         _actionsTable = new BPMActionTable(actionsSection, SWT.NONE);
         actionsSection.setClient(_actionsTable);
@@ -264,7 +308,7 @@ public class BPMImplementationPropertySection extends GFPropertySection implemen
         inputsSection.addExpansionListener(new ExpansionAdapter() {
             @Override
             public void expansionStateChanged(ExpansionEvent e) {
-                control.layout(new Control[] {(ExpandableComposite) e.getSource() });
+                _page.resizeScrolledComposite();
             }
         });
 
@@ -280,7 +324,7 @@ public class BPMImplementationPropertySection extends GFPropertySection implemen
         outputsSection.addExpansionListener(new ExpansionAdapter() {
             @Override
             public void expansionStateChanged(ExpansionEvent e) {
-                control.layout(new Control[] {(ExpandableComposite) e.getSource() });
+                _page.resizeScrolledComposite();
             }
         });
 
@@ -289,14 +333,14 @@ public class BPMImplementationPropertySection extends GFPropertySection implemen
         outputsSection.setClient(_outputsTable);
 
         ExpandableComposite globalsSection = factory.createExpandableComposite(mappingsComposite,
-                ExpandableComposite.TWISTIE | ExpandableComposite.TITLE_BAR | ExpandableComposite.EXPANDED);
+                ExpandableComposite.TWISTIE | ExpandableComposite.TITLE_BAR);
         globalsSection.setText("Globals");
         globalsSection.setLayout(new GridLayout());
         globalsSection.setLayoutData(new GridData(SWT.FILL, SWT.FILL, true, false));
         globalsSection.addExpansionListener(new ExpansionAdapter() {
             @Override
             public void expansionStateChanged(ExpansionEvent e) {
-                control.layout(new Control[] {(ExpandableComposite) e.getSource() });
+                _page.resizeScrolledComposite();
             }
         });
 
@@ -307,7 +351,7 @@ public class BPMImplementationPropertySection extends GFPropertySection implemen
         item.setControl(control);
     }
 
-    private void createAdvancedControls(CTabFolder folder, CTabItem item) {
+    private void createAdvancedControls(TabFolder folder, TabItem item) {
         final TabbedPropertySheetWidgetFactory factory = getWidgetFactory();
         final Composite control = factory.createComposite(folder);
         control.setLayout(new GridLayout());
@@ -321,23 +365,12 @@ public class BPMImplementationPropertySection extends GFPropertySection implemen
         propertiesSection.addExpansionListener(new ExpansionAdapter() {
             @Override
             public void expansionStateChanged(ExpansionEvent e) {
-                _panel.layout(new Control[] {(ExpandableComposite) e.getSource() });
+                _page.resizeScrolledComposite();
             }
         });
 
-        Composite propertiesComposite = factory.createComposite(propertiesSection);
-        propertiesComposite.setLayout(new GridLayout(2, false));
-        propertiesComposite.setLayoutData(new GridData(SWT.FILL, SWT.FILL, true, false));
-        propertiesSection.setClient(propertiesComposite);
-
-        TableViewer _propertiesTable = new TableViewer(propertiesComposite, SWT.V_SCROLL | SWT.H_SCROLL | SWT.BORDER);
-        factory.adapt(_propertiesTable.getTable(), true, true);
-        _propertiesTable.getTable().setLayoutData(new GridData(SWT.FILL, SWT.FILL, true, true, 1, 2));
-
-        Button _addPropertyButton = factory.createButton(propertiesComposite, "Add...", SWT.PUSH);
-        _addPropertyButton.setLayoutData(new GridData(SWT.FILL, SWT.TOP, false, false));
-        Button _removePropertyButton = factory.createButton(propertiesComposite, "Remove...", SWT.PUSH);
-        _removePropertyButton.setLayoutData(new GridData(SWT.FILL, SWT.TOP, false, false));
+        _propertiesTable = new BPMPropertyTable(propertiesSection, SWT.NONE);
+        propertiesSection.setClient(_propertiesTable);
 
         ExpandableComposite loggersSection = factory.createExpandableComposite(control, ExpandableComposite.TWISTIE
                 | ExpandableComposite.TITLE_BAR);
@@ -347,23 +380,12 @@ public class BPMImplementationPropertySection extends GFPropertySection implemen
         loggersSection.addExpansionListener(new ExpansionAdapter() {
             @Override
             public void expansionStateChanged(ExpansionEvent e) {
-                _panel.layout(new Control[] {(ExpandableComposite) e.getSource() });
+                _page.resizeScrolledComposite();
             }
         });
 
-        Composite loggersComposite = factory.createComposite(loggersSection);
-        loggersComposite.setLayout(new GridLayout(2, false));
-        loggersComposite.setLayoutData(new GridData(SWT.FILL, SWT.FILL, true, false));
-        loggersSection.setClient(loggersComposite);
-
-        TableViewer _loggersTable = new TableViewer(loggersComposite, SWT.V_SCROLL | SWT.H_SCROLL | SWT.BORDER);
-        factory.adapt(_loggersTable.getTable(), true, true);
-        _loggersTable.getTable().setLayoutData(new GridData(SWT.FILL, SWT.FILL, true, true, 1, 2));
-
-        Button _addLoggerButton = factory.createButton(loggersComposite, "Add...", SWT.PUSH);
-        _addLoggerButton.setLayoutData(new GridData(SWT.FILL, SWT.TOP, false, false));
-        Button _removeLoggerButton = factory.createButton(loggersComposite, "Remove...", SWT.PUSH);
-        _removeLoggerButton.setLayoutData(new GridData(SWT.FILL, SWT.TOP, false, false));
+        _loggersTable = new BPMLoggerTable(loggersSection, SWT.NONE);
+        loggersSection.setClient(_loggersTable);
 
         final ExpandableComposite handlersSection = factory.createExpandableComposite(control,
                 ExpandableComposite.TWISTIE | ExpandableComposite.TITLE_BAR);
@@ -373,7 +395,7 @@ public class BPMImplementationPropertySection extends GFPropertySection implemen
         handlersSection.addExpansionListener(new ExpansionAdapter() {
             @Override
             public void expansionStateChanged(ExpansionEvent e) {
-                _panel.layout(new Control[] {(ExpandableComposite) e.getSource() });
+                _page.resizeScrolledComposite();
             }
         });
 
@@ -388,7 +410,7 @@ public class BPMImplementationPropertySection extends GFPropertySection implemen
         listenersSection.addExpansionListener(new ExpansionAdapter() {
             @Override
             public void expansionStateChanged(ExpansionEvent e) {
-                _panel.layout(new Control[] {(ExpandableComposite) e.getSource() });
+                _page.resizeScrolledComposite();
             }
         });
 
@@ -403,23 +425,12 @@ public class BPMImplementationPropertySection extends GFPropertySection implemen
         channelsSection.addExpansionListener(new ExpansionAdapter() {
             @Override
             public void expansionStateChanged(ExpansionEvent e) {
-                _panel.layout(new Control[] {(ExpandableComposite) e.getSource() });
+                _page.resizeScrolledComposite();
             }
         });
 
-        Composite channelsComposite = factory.createComposite(channelsSection);
-        channelsComposite.setLayout(new GridLayout(2, false));
-        channelsComposite.setLayoutData(new GridData(SWT.FILL, SWT.FILL, true, false));
-        channelsSection.setClient(channelsComposite);
-
-        TableViewer _channelsTable = new TableViewer(channelsComposite, SWT.V_SCROLL | SWT.H_SCROLL | SWT.BORDER);
-        factory.adapt(_channelsTable.getTable(), true, true);
-        _channelsTable.getTable().setLayoutData(new GridData(SWT.FILL, SWT.FILL, true, true, 1, 2));
-
-        Button _addChannelButton = factory.createButton(channelsComposite, "Add...", SWT.PUSH);
-        _addChannelButton.setLayoutData(new GridData(SWT.FILL, SWT.TOP, false, false));
-        Button _removeChannelButton = factory.createButton(channelsComposite, "Remove...", SWT.PUSH);
-        _removeChannelButton.setLayoutData(new GridData(SWT.FILL, SWT.TOP, false, false));
+        _channelsTable = new BPMChannelTable(channelsSection, SWT.NONE);
+        channelsSection.setClient(_channelsTable);
 
         item.setControl(control);
     }

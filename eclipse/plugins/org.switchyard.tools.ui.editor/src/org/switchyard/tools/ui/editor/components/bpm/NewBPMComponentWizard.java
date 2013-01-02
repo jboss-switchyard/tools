@@ -140,6 +140,9 @@ public class NewBPMComponentWizard extends BaseNewServiceFileWizard implements I
             startAction.setOutputs(outputs);
         }
 
+        _implementation.setActions(BPMFactory.eINSTANCE.createActionsType());
+        _implementation.getActions().getAction().add(startAction);
+
         _implementation.setPersistent(_processPage.isPersistent());
 
         if (_processPage.isAuditingEnabled()) {

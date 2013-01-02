@@ -10,7 +10,7 @@
  *
  * @author bfitzpat
  ******************************************************************************/
-package org.switchyard.tools.ui.editor.components.bpm;
+package org.switchyard.tools.ui.editor.components.rules;
 
 import javax.swing.event.ChangeEvent;
 import javax.swing.event.ChangeListener;
@@ -20,7 +20,6 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.transaction.RecordingCommand;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.eclipse.jface.viewers.CellEditor;
-import org.eclipse.jface.viewers.ComboBoxCellEditor;
 import org.eclipse.jface.viewers.ICellModifier;
 import org.eclipse.jface.viewers.ILabelProviderListener;
 import org.eclipse.jface.viewers.IStructuredContentProvider;
@@ -39,17 +38,16 @@ import org.eclipse.swt.widgets.Button;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.TableColumn;
 import org.eclipse.swt.widgets.TableItem;
-import org.switchyard.tools.models.switchyard1_0.bpm.ActionType;
-import org.switchyard.tools.models.switchyard1_0.bpm.ActionType1;
-import org.switchyard.tools.models.switchyard1_0.bpm.BPMFactory;
-import org.switchyard.tools.models.switchyard1_0.bpm.BPMImplementationType;
+import org.switchyard.tools.models.switchyard1_0.rules.ResourceType;
+import org.switchyard.tools.models.switchyard1_0.rules.RulesFactory;
+import org.switchyard.tools.models.switchyard1_0.rules.RulesImplementationType;
 import org.switchyard.tools.ui.editor.impl.SwitchyardSCAEditor;
 
 /**
  * @author bfitzpat
  * 
  */
-public class BPMActionTable extends Composite implements ICellModifier {
+public class RulesResourceTable extends Composite implements ICellModifier {
 
     private class PropertyTreeContentProvider implements IStructuredContentProvider {
 
@@ -63,10 +61,10 @@ public class BPMActionTable extends Composite implements ICellModifier {
 
         @Override
         public Object[] getElements(Object inputElement) {
-            if (inputElement instanceof BPMImplementationType) {
-                final BPMImplementationType bpmImpl = (BPMImplementationType) inputElement;
-                if (bpmImpl.getActions() != null) {
-                    return bpmImpl.getActions().getAction().toArray();
+            if (inputElement instanceof RulesImplementationType) {
+                final RulesImplementationType bpmImpl = (RulesImplementationType) inputElement;
+                if (bpmImpl.getManifest() != null && bpmImpl.getManifest().getResources() != null) {
+                    return bpmImpl.getManifest().getResources().getResource().toArray();
                 }
             }
             return new Object[0];
@@ -84,9 +82,9 @@ public class BPMActionTable extends Composite implements ICellModifier {
 
         @Override
         public boolean isLabelProperty(Object element, String property) {
-            if (element instanceof ActionType1 && property.equalsIgnoreCase(VALUE_COLUMN)) {
+            if (element instanceof ResourceType && property.equalsIgnoreCase(VALUE_COLUMN)) {
                 return true;
-            } else if (element instanceof ActionType1 && property.equalsIgnoreCase(ENTRY_POINT_COLUMN)) {
+            } else if (element instanceof ResourceType && property.equalsIgnoreCase(TYPE_COLUMN)) {
                 return true;
             }
             return false;
@@ -103,12 +101,10 @@ public class BPMActionTable extends Composite implements ICellModifier {
 
         @Override
         public String getColumnText(Object element, int columnIndex) {
-            if (element instanceof ActionType1 && columnIndex == 0) {
-                ActionType1 tp = (ActionType1) element;
-                return (String) tp.getType().getLiteral();
-            } else if (element instanceof ActionType1 && columnIndex == 1) {
-                ActionType1 tp = (ActionType1) element;
-                return tp.getOperation();
+            if (element instanceof ResourceType && columnIndex == 0) {
+                return ((ResourceType) element).getLocation();
+            } else if (element instanceof ResourceType && columnIndex == 1) {
+                return ((ResourceType) element).getType();
             }
             return null;
         }
@@ -123,9 +119,9 @@ public class BPMActionTable extends Composite implements ICellModifier {
     /**
      * Entry point column.
      */
-    public static final String ENTRY_POINT_COLUMN = "entryPoint";
+    public static final String TYPE_COLUMN = "type";
 
-    private static final String[] TREE_COLUMNS = new String[] {VALUE_COLUMN, ENTRY_POINT_COLUMN };
+    private static final String[] TREE_COLUMNS = new String[] {VALUE_COLUMN, TYPE_COLUMN };
 
     private Button _mAddButton;
     private Button _mRemoveButton;
@@ -140,7 +136,7 @@ public class BPMActionTable extends Composite implements ICellModifier {
      * @param parent Composite parent
      * @param style any SWT style bits to pass along
      */
-    public BPMActionTable(Composite parent, int style) {
+    public RulesResourceTable(Composite parent, int style) {
         this(parent, style, false);
     }
 
@@ -151,7 +147,7 @@ public class BPMActionTable extends Composite implements ICellModifier {
      * @param style any SWT style bits
      * @param isReadOnly boolean flag
      */
-    public BPMActionTable(Composite parent, int style, boolean isReadOnly) {
+    public RulesResourceTable(Composite parent, int style, boolean isReadOnly) {
         super(parent, style);
         this._isReadOnly = isReadOnly;
         this._changeListeners = new ListenerList();
@@ -174,10 +170,10 @@ public class BPMActionTable extends Composite implements ICellModifier {
         _propertyTreeTable.getTable().setLayoutData(gd11);
         _propertyTreeTable.getTable().setHeaderVisible(true);
         TableColumn valueColumn = new TableColumn(_propertyTreeTable.getTable(), SWT.LEFT);
-        valueColumn.setText("Type");
+        valueColumn.setText("Resource");
         valueColumn.setWidth(200);
         TableColumn entryPointColumn = new TableColumn(_propertyTreeTable.getTable(), SWT.LEFT);
-        entryPointColumn.setText("Operation");
+        entryPointColumn.setText("Type");
         entryPointColumn.setWidth(200);
 
         _propertyTreeTable.setColumnProperties(TREE_COLUMNS);
@@ -187,10 +183,7 @@ public class BPMActionTable extends Composite implements ICellModifier {
         _propertyTreeTable.setContentProvider(new PropertyTreeContentProvider());
 
         _propertyTreeTable.setCellModifier(this);
-        _propertyTreeTable.setCellEditors(new CellEditor[] {
-                new ComboBoxCellEditor(_propertyTreeTable.getTable(), new String[] {
-                        ActionType.STARTPROCESS.getLiteral(), ActionType.SIGNALEVENT.getLiteral(),
-                        ActionType.ABORTPROCESSINSTANCE.getLiteral() }),
+        _propertyTreeTable.setCellEditors(new CellEditor[] {new TextCellEditor(_propertyTreeTable.getTable()),
                 new TextCellEditor(_propertyTreeTable.getTable()) });
 
         this._mAddButton = new Button(this, SWT.NONE);
@@ -247,31 +240,34 @@ public class BPMActionTable extends Composite implements ICellModifier {
      * Add a new property to the list
      */
     protected void addPropertyToList() {
-        if (getTargetObject() instanceof BPMImplementationType) {
-            final BPMImplementationType impl = (BPMImplementationType) getTargetObject();
+        if (getTargetObject() instanceof RulesImplementationType) {
+            final RulesImplementationType impl = (RulesImplementationType) getTargetObject();
+            final ResourceType newAction = RulesFactory.eINSTANCE.createResourceType();
+            newAction.setLocation("process.bpmn2");
+            newAction.setType("BPMN2");
             if (impl.eContainer() != null) {
                 TransactionalEditingDomain domain = SwitchyardSCAEditor.getActiveEditor().getEditingDomain();
                 domain.getCommandStack().execute(new RecordingCommand(domain) {
                     @Override
                     protected void doExecute() {
-                        ActionType1 newAction = BPMFactory.eINSTANCE.createActionType1();
-                        newAction.setType(ActionType.STARTPROCESS);
-                        newAction.setOperation("NewAction");
-                        if (impl.getActions() == null) {
-                            impl.setActions(BPMFactory.eINSTANCE.createActionsType());
+                        if (impl.getManifest() == null) {
+                            impl.setManifest(RulesFactory.eINSTANCE.createManifestType());
+                            impl.getManifest().setResources(RulesFactory.eINSTANCE.createResourcesType());
+                        } else if (impl.getManifest().getResources() == null) {
+                            impl.getManifest().setResources(RulesFactory.eINSTANCE.createResourcesType());
                         }
-                        impl.getActions().getAction().add(newAction);
+                        impl.getManifest().getResources().getResource().add(newAction);
                         getTableViewer().refresh(true);
                     }
                 });
             } else {
-                ActionType1 newAction = BPMFactory.eINSTANCE.createActionType1();
-                newAction.setType(ActionType.STARTPROCESS);
-                newAction.setOperation("NewAction");
-                if (impl.getActions() == null) {
-                    impl.setActions(BPMFactory.eINSTANCE.createActionsType());
+                if (impl.getManifest() == null) {
+                    impl.setManifest(RulesFactory.eINSTANCE.createManifestType());
+                    impl.getManifest().setResources(RulesFactory.eINSTANCE.createResourcesType());
+                } else if (impl.getManifest().getResources() == null) {
+                    impl.getManifest().setResources(RulesFactory.eINSTANCE.createResourcesType());
                 }
-                impl.getActions().getAction().add(newAction);
+                impl.getManifest().getResources().getResource().add(newAction);
                 getTableViewer().refresh(true);
             }
             fireChangedEvent(this);
@@ -282,25 +278,25 @@ public class BPMActionTable extends Composite implements ICellModifier {
      * Remove a property from the list
      */
     protected void removeFromList() {
-        if (getTargetObject() instanceof BPMImplementationType) {
-            final BPMImplementationType impl = (BPMImplementationType) getTargetObject();
-            final ActionType1 actionToRemove = getTableSelection();
+        if (getTargetObject() instanceof RulesImplementationType) {
+            final RulesImplementationType impl = (RulesImplementationType) getTargetObject();
+            final ResourceType actionToRemove = getTableSelection();
             if (impl.eContainer() != null) {
                 TransactionalEditingDomain domain = SwitchyardSCAEditor.getActiveEditor().getEditingDomain();
                 domain.getCommandStack().execute(new RecordingCommand(domain) {
                     @Override
                     protected void doExecute() {
-                        impl.getActions().getAction().remove(actionToRemove);
-                        if (impl.getActions().getAction().isEmpty()) {
-                            impl.setActions(null);
+                        impl.getManifest().getResources().getResource().remove(actionToRemove);
+                        if (impl.getManifest().getResources().getResource().isEmpty()) {
+                            impl.getManifest().setResources(null);
                         }
                         getTableViewer().refresh(true);
                     }
                 });
             } else {
-                impl.getActions().getAction().remove(actionToRemove);
-                if (impl.getActions().getAction().isEmpty()) {
-                    impl.setActions(null);
+                impl.getManifest().getResources().getResource().remove(actionToRemove);
+                if (impl.getManifest().getResources().getResource().isEmpty()) {
+                    impl.getManifest().setResources(null);
                 }
                 getTableViewer().refresh(true);
             }
@@ -308,11 +304,11 @@ public class BPMActionTable extends Composite implements ICellModifier {
         }
     }
 
-    protected ActionType1 getTableSelection() {
+    protected ResourceType getTableSelection() {
         if (_propertyTreeTable != null && !_propertyTreeTable.getSelection().isEmpty()) {
             IStructuredSelection ssel = (IStructuredSelection) _propertyTreeTable.getSelection();
-            if (ssel.getFirstElement() instanceof ActionType1) {
-                return (ActionType1) ssel.getFirstElement();
+            if (ssel.getFirstElement() instanceof ResourceType) {
+                return (ResourceType) ssel.getFirstElement();
             }
         }
         return null;
@@ -405,11 +401,15 @@ public class BPMActionTable extends Composite implements ICellModifier {
      *      java.lang.String)
      */
     public Object getValue(Object element, String property) {
-        if (element instanceof ActionType1 && property.equalsIgnoreCase(VALUE_COLUMN)) {
-            return new Integer(((ActionType1) element).getType().getValue());
-        } else if (element instanceof ActionType1 && property.equalsIgnoreCase(ENTRY_POINT_COLUMN)) {
-            if (((ActionType1) element).getOperation() != null) {
-                return ((ActionType1) element).getOperation();
+        if (element instanceof ResourceType && property.equalsIgnoreCase(VALUE_COLUMN)) {
+            if (((ResourceType) element).getLocation() != null) {
+                return ((ResourceType) element).getLocation();
+            } else {
+                return "";
+            }
+        } else if (element instanceof ResourceType && property.equalsIgnoreCase(TYPE_COLUMN)) {
+            if (((ResourceType) element).getType() != null) {
+                return ((ResourceType) element).getType();
             } else {
                 return "";
             }
@@ -428,45 +428,49 @@ public class BPMActionTable extends Composite implements ICellModifier {
     public void modify(Object element, String property, final Object value) {
         if (element instanceof TableItem && property.equalsIgnoreCase(VALUE_COLUMN)) {
             final TableItem ti = (TableItem) element;
-            if (getTargetObject() instanceof BPMImplementationType) {
-                final BPMImplementationType impl = (BPMImplementationType) getTargetObject();
+            if (getTargetObject() instanceof RulesImplementationType) {
+                final RulesImplementationType impl = (RulesImplementationType) getTargetObject();
+                final ResourceType parm = (ResourceType) ti.getData();
+                if ((value == null && parm.getLocation() == null)
+                        || (value != null && value.equals(parm.getLocation()))) {
+                    return;
+                }
                 if (impl.eContainer() != null) {
                     TransactionalEditingDomain domain = SwitchyardSCAEditor.getActiveEditor().getEditingDomain();
                     domain.getCommandStack().execute(new RecordingCommand(domain) {
                         @Override
                         protected void doExecute() {
-                            ActionType1 parm = (ActionType1) ti.getData();
-                            ActionType atype = ActionType.get(((Integer) value).intValue());
-                            parm.setType(atype);
+                            parm.setLocation((String) value);
                             getTableViewer().refresh(true);
                         }
                     });
                 } else {
-                    ActionType1 parm = (ActionType1) ti.getData();
-                    ActionType atype = ActionType.get(((Integer) value).intValue());
-                    parm.setType(atype);
+                    parm.setLocation((String) value);
                     getTableViewer().refresh(true);
                 }
             }
             fireChangedEvent(this);
             // validate();
-        } else if (element instanceof TableItem && property.equalsIgnoreCase(ENTRY_POINT_COLUMN)) {
+        } else if (element instanceof TableItem && property.equalsIgnoreCase(TYPE_COLUMN)) {
             final TableItem ti = (TableItem) element;
-            if (getTargetObject() instanceof BPMImplementationType) {
-                final BPMImplementationType impl = (BPMImplementationType) getTargetObject();
+            if (getTargetObject() instanceof RulesImplementationType) {
+                final RulesImplementationType impl = (RulesImplementationType) getTargetObject();
+                final ResourceType parm = (ResourceType) ti.getData();
+                if ((value == null && parm.getType() == null) || (value != null && value.equals(parm.getType()))) {
+                    return;
+                }
                 if (impl.eContainer() != null) {
                     TransactionalEditingDomain domain = SwitchyardSCAEditor.getActiveEditor().getEditingDomain();
                     domain.getCommandStack().execute(new RecordingCommand(domain) {
                         @Override
                         protected void doExecute() {
-                            ActionType1 parm = (ActionType1) ti.getData();
-                            parm.setOperation((String) value);
+                            ResourceType parm = (ResourceType) ti.getData();
+                            parm.setType((String) value);
                             getTableViewer().refresh(true);
                         }
                     });
                 } else {
-                    ActionType1 parm = (ActionType1) ti.getData();
-                    parm.setOperation((String) value);
+                    parm.setType((String) value);
                     getTableViewer().refresh(true);
                 }
             }

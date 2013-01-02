@@ -10,13 +10,16 @@
  *
  * @author bfitzpat
  ******************************************************************************/
-package org.switchyard.tools.ui.editor.components.bpm;
+package org.switchyard.tools.ui.editor.components.rules;
+
+import java.math.BigInteger;
 
 import javax.swing.event.ChangeEvent;
 import javax.swing.event.ChangeListener;
 
 import org.eclipse.core.runtime.ListenerList;
 import org.eclipse.emf.ecore.EObject;
+import org.eclipse.emf.edit.ui.provider.PropertyDescriptor.EDataTypeCellEditor;
 import org.eclipse.emf.transaction.RecordingCommand;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.eclipse.jface.viewers.CellEditor;
@@ -39,17 +42,18 @@ import org.eclipse.swt.widgets.Button;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.TableColumn;
 import org.eclipse.swt.widgets.TableItem;
-import org.switchyard.tools.models.switchyard1_0.bpm.ActionType;
-import org.switchyard.tools.models.switchyard1_0.bpm.ActionType1;
-import org.switchyard.tools.models.switchyard1_0.bpm.BPMFactory;
-import org.switchyard.tools.models.switchyard1_0.bpm.BPMImplementationType;
+import org.switchyard.tools.models.switchyard1_0.rules.LoggerType;
+import org.switchyard.tools.models.switchyard1_0.rules.LoggerType1;
+import org.switchyard.tools.models.switchyard1_0.rules.RulesFactory;
+import org.switchyard.tools.models.switchyard1_0.rules.RulesImplementationType;
+import org.switchyard.tools.models.switchyard1_0.rules.RulesPackage;
 import org.switchyard.tools.ui.editor.impl.SwitchyardSCAEditor;
 
 /**
  * @author bfitzpat
  * 
  */
-public class BPMActionTable extends Composite implements ICellModifier {
+public class RulesLoggerTable extends Composite implements ICellModifier {
 
     private class PropertyTreeContentProvider implements IStructuredContentProvider {
 
@@ -63,10 +67,10 @@ public class BPMActionTable extends Composite implements ICellModifier {
 
         @Override
         public Object[] getElements(Object inputElement) {
-            if (inputElement instanceof BPMImplementationType) {
-                final BPMImplementationType bpmImpl = (BPMImplementationType) inputElement;
-                if (bpmImpl.getActions() != null) {
-                    return bpmImpl.getActions().getAction().toArray();
+            if (inputElement instanceof RulesImplementationType) {
+                final RulesImplementationType bpmImpl = (RulesImplementationType) inputElement;
+                if (bpmImpl.getLoggers() != null) {
+                    return bpmImpl.getLoggers().getLogger().toArray();
                 }
             }
             return new Object[0];
@@ -84,9 +88,9 @@ public class BPMActionTable extends Composite implements ICellModifier {
 
         @Override
         public boolean isLabelProperty(Object element, String property) {
-            if (element instanceof ActionType1 && property.equalsIgnoreCase(VALUE_COLUMN)) {
+            if (element instanceof LoggerType1 && property.equalsIgnoreCase(LOG_COLUMN)) {
                 return true;
-            } else if (element instanceof ActionType1 && property.equalsIgnoreCase(ENTRY_POINT_COLUMN)) {
+            } else if (element instanceof LoggerType1 && property.equalsIgnoreCase(TYPE_COLUMN)) {
                 return true;
             }
             return false;
@@ -103,12 +107,20 @@ public class BPMActionTable extends Composite implements ICellModifier {
 
         @Override
         public String getColumnText(Object element, int columnIndex) {
-            if (element instanceof ActionType1 && columnIndex == 0) {
-                ActionType1 tp = (ActionType1) element;
-                return (String) tp.getType().getLiteral();
-            } else if (element instanceof ActionType1 && columnIndex == 1) {
-                ActionType1 tp = (ActionType1) element;
-                return tp.getOperation();
+            if (element instanceof LoggerType1 && columnIndex == 0) {
+                if (((LoggerType1) element).getLog() != null) {
+                    return ((LoggerType1) element).getLog();
+                } else {
+                    return "";
+                }
+            } else if (element instanceof LoggerType1 && columnIndex == 1) {
+                return ((LoggerType1) element).getType().getLiteral();
+            } else if (element instanceof LoggerType1 && columnIndex == 2) {
+                if (((LoggerType1) element).getInterval() != null) {
+                    return ((LoggerType1) element).getInterval().toString();
+                } else {
+                    return "";
+                }
             }
             return null;
         }
@@ -116,16 +128,11 @@ public class BPMActionTable extends Composite implements ICellModifier {
 
     private TableViewer _propertyTreeTable;
 
-    /**
-     * Value column.
-     */
-    public static final String VALUE_COLUMN = "value";
-    /**
-     * Entry point column.
-     */
-    public static final String ENTRY_POINT_COLUMN = "entryPoint";
+    private static final String LOG_COLUMN = "log";
+    private static final String TYPE_COLUMN = "type";
+    private static final String INTERVAL_COLUMN = "interval";
 
-    private static final String[] TREE_COLUMNS = new String[] {VALUE_COLUMN, ENTRY_POINT_COLUMN };
+    private static final String[] TREE_COLUMNS = new String[] {LOG_COLUMN, TYPE_COLUMN, INTERVAL_COLUMN };
 
     private Button _mAddButton;
     private Button _mRemoveButton;
@@ -140,7 +147,7 @@ public class BPMActionTable extends Composite implements ICellModifier {
      * @param parent Composite parent
      * @param style any SWT style bits to pass along
      */
-    public BPMActionTable(Composite parent, int style) {
+    public RulesLoggerTable(Composite parent, int style) {
         this(parent, style, false);
     }
 
@@ -151,7 +158,7 @@ public class BPMActionTable extends Composite implements ICellModifier {
      * @param style any SWT style bits
      * @param isReadOnly boolean flag
      */
-    public BPMActionTable(Composite parent, int style, boolean isReadOnly) {
+    public RulesLoggerTable(Composite parent, int style, boolean isReadOnly) {
         super(parent, style);
         this._isReadOnly = isReadOnly;
         this._changeListeners = new ListenerList();
@@ -173,12 +180,15 @@ public class BPMActionTable extends Composite implements ICellModifier {
         gd11.heightHint = 100;
         _propertyTreeTable.getTable().setLayoutData(gd11);
         _propertyTreeTable.getTable().setHeaderVisible(true);
-        TableColumn valueColumn = new TableColumn(_propertyTreeTable.getTable(), SWT.LEFT);
-        valueColumn.setText("Type");
-        valueColumn.setWidth(200);
-        TableColumn entryPointColumn = new TableColumn(_propertyTreeTable.getTable(), SWT.LEFT);
-        entryPointColumn.setText("Operation");
-        entryPointColumn.setWidth(200);
+        TableColumn logColumn = new TableColumn(_propertyTreeTable.getTable(), SWT.LEFT);
+        logColumn.setText("Log");
+        logColumn.setWidth(200);
+        TableColumn typeColumn = new TableColumn(_propertyTreeTable.getTable(), SWT.LEFT);
+        typeColumn.setText("Type");
+        typeColumn.setWidth(200);
+        TableColumn intervalColumn = new TableColumn(_propertyTreeTable.getTable(), SWT.LEFT);
+        intervalColumn.setText("Interval");
+        intervalColumn.setWidth(200);
 
         _propertyTreeTable.setColumnProperties(TREE_COLUMNS);
 
@@ -188,10 +198,11 @@ public class BPMActionTable extends Composite implements ICellModifier {
 
         _propertyTreeTable.setCellModifier(this);
         _propertyTreeTable.setCellEditors(new CellEditor[] {
-                new ComboBoxCellEditor(_propertyTreeTable.getTable(), new String[] {
-                        ActionType.STARTPROCESS.getLiteral(), ActionType.SIGNALEVENT.getLiteral(),
-                        ActionType.ABORTPROCESSINSTANCE.getLiteral() }),
-                new TextCellEditor(_propertyTreeTable.getTable()) });
+                new TextCellEditor(_propertyTreeTable.getTable()),
+                new ComboBoxCellEditor(_propertyTreeTable.getTable(), new String[] {LoggerType.CONSOLE.getLiteral(),
+                        LoggerType.FILE.getLiteral(), LoggerType.THREADEDFILE.getLiteral() }),
+                new EDataTypeCellEditor(RulesPackage.eINSTANCE.getLoggerType1_Interval().getEAttributeType(),
+                        _propertyTreeTable.getTable()) });
 
         this._mAddButton = new Button(this, SWT.NONE);
         this._mAddButton.setLayoutData(new GridData(GridData.HORIZONTAL_ALIGN_FILL));
@@ -247,31 +258,29 @@ public class BPMActionTable extends Composite implements ICellModifier {
      * Add a new property to the list
      */
     protected void addPropertyToList() {
-        if (getTargetObject() instanceof BPMImplementationType) {
-            final BPMImplementationType impl = (BPMImplementationType) getTargetObject();
+        if (getTargetObject() instanceof RulesImplementationType) {
+            final RulesImplementationType impl = (RulesImplementationType) getTargetObject();
+            final LoggerType1 newLogger = RulesFactory.eINSTANCE.createLoggerType1();
+            newLogger.setType(LoggerType.CONSOLE);
+            newLogger.setLog("NewLogger");
+            newLogger.setInterval(BigInteger.valueOf(2000));
             if (impl.eContainer() != null) {
                 TransactionalEditingDomain domain = SwitchyardSCAEditor.getActiveEditor().getEditingDomain();
                 domain.getCommandStack().execute(new RecordingCommand(domain) {
                     @Override
                     protected void doExecute() {
-                        ActionType1 newAction = BPMFactory.eINSTANCE.createActionType1();
-                        newAction.setType(ActionType.STARTPROCESS);
-                        newAction.setOperation("NewAction");
-                        if (impl.getActions() == null) {
-                            impl.setActions(BPMFactory.eINSTANCE.createActionsType());
+                        if (impl.getLoggers() == null) {
+                            impl.setLoggers(RulesFactory.eINSTANCE.createLoggersType());
                         }
-                        impl.getActions().getAction().add(newAction);
+                        impl.getLoggers().getLogger().add(newLogger);
                         getTableViewer().refresh(true);
                     }
                 });
             } else {
-                ActionType1 newAction = BPMFactory.eINSTANCE.createActionType1();
-                newAction.setType(ActionType.STARTPROCESS);
-                newAction.setOperation("NewAction");
-                if (impl.getActions() == null) {
-                    impl.setActions(BPMFactory.eINSTANCE.createActionsType());
+                if (impl.getLoggers() == null) {
+                    impl.setLoggers(RulesFactory.eINSTANCE.createLoggersType());
                 }
-                impl.getActions().getAction().add(newAction);
+                impl.getLoggers().getLogger().add(newLogger);
                 getTableViewer().refresh(true);
             }
             fireChangedEvent(this);
@@ -282,25 +291,25 @@ public class BPMActionTable extends Composite implements ICellModifier {
      * Remove a property from the list
      */
     protected void removeFromList() {
-        if (getTargetObject() instanceof BPMImplementationType) {
-            final BPMImplementationType impl = (BPMImplementationType) getTargetObject();
-            final ActionType1 actionToRemove = getTableSelection();
+        if (getTargetObject() instanceof RulesImplementationType) {
+            final RulesImplementationType impl = (RulesImplementationType) getTargetObject();
+            final LoggerType1 actionToRemove = getTableSelection();
             if (impl.eContainer() != null) {
                 TransactionalEditingDomain domain = SwitchyardSCAEditor.getActiveEditor().getEditingDomain();
                 domain.getCommandStack().execute(new RecordingCommand(domain) {
                     @Override
                     protected void doExecute() {
-                        impl.getActions().getAction().remove(actionToRemove);
-                        if (impl.getActions().getAction().isEmpty()) {
-                            impl.setActions(null);
+                        impl.getLoggers().getLogger().remove(actionToRemove);
+                        if (impl.getLoggers().getLogger().isEmpty()) {
+                            impl.setLoggers(null);
                         }
                         getTableViewer().refresh(true);
                     }
                 });
             } else {
-                impl.getActions().getAction().remove(actionToRemove);
-                if (impl.getActions().getAction().isEmpty()) {
-                    impl.setActions(null);
+                impl.getLoggers().getLogger().remove(actionToRemove);
+                if (impl.getLoggers().getLogger().isEmpty()) {
+                    impl.setLoggers(null);
                 }
                 getTableViewer().refresh(true);
             }
@@ -308,11 +317,11 @@ public class BPMActionTable extends Composite implements ICellModifier {
         }
     }
 
-    protected ActionType1 getTableSelection() {
+    protected LoggerType1 getTableSelection() {
         if (_propertyTreeTable != null && !_propertyTreeTable.getSelection().isEmpty()) {
             IStructuredSelection ssel = (IStructuredSelection) _propertyTreeTable.getSelection();
-            if (ssel.getFirstElement() instanceof ActionType1) {
-                return (ActionType1) ssel.getFirstElement();
+            if (ssel.getFirstElement() instanceof LoggerType1) {
+                return (LoggerType1) ssel.getFirstElement();
             }
         }
         return null;
@@ -405,14 +414,16 @@ public class BPMActionTable extends Composite implements ICellModifier {
      *      java.lang.String)
      */
     public Object getValue(Object element, String property) {
-        if (element instanceof ActionType1 && property.equalsIgnoreCase(VALUE_COLUMN)) {
-            return new Integer(((ActionType1) element).getType().getValue());
-        } else if (element instanceof ActionType1 && property.equalsIgnoreCase(ENTRY_POINT_COLUMN)) {
-            if (((ActionType1) element).getOperation() != null) {
-                return ((ActionType1) element).getOperation();
+        if (element instanceof LoggerType1 && property.equalsIgnoreCase(LOG_COLUMN)) {
+            if (((LoggerType1) element).getLog() != null) {
+                return ((LoggerType1) element).getLog();
             } else {
                 return "";
             }
+        } else if (element instanceof LoggerType1 && property.equalsIgnoreCase(TYPE_COLUMN)) {
+            return new Integer(((LoggerType1) element).getType().getValue());
+        } else if (element instanceof LoggerType1 && property.equalsIgnoreCase(INTERVAL_COLUMN)) {
+            return ((LoggerType1) element).getInterval();
         }
         return null;
     }
@@ -426,47 +437,71 @@ public class BPMActionTable extends Composite implements ICellModifier {
      *      java.lang.String, java.lang.Object)
      */
     public void modify(Object element, String property, final Object value) {
-        if (element instanceof TableItem && property.equalsIgnoreCase(VALUE_COLUMN)) {
+        if (element instanceof TableItem && property.equalsIgnoreCase(LOG_COLUMN)) {
             final TableItem ti = (TableItem) element;
-            if (getTargetObject() instanceof BPMImplementationType) {
-                final BPMImplementationType impl = (BPMImplementationType) getTargetObject();
+            if (getTargetObject() instanceof RulesImplementationType) {
+                final RulesImplementationType impl = (RulesImplementationType) getTargetObject();
+                final LoggerType1 parm = (LoggerType1) ti.getData();
+                if ((value == null && parm.getLog() == null) || (value != null && value.equals(parm.getLog()))) {
+                    return;
+                }
                 if (impl.eContainer() != null) {
                     TransactionalEditingDomain domain = SwitchyardSCAEditor.getActiveEditor().getEditingDomain();
                     domain.getCommandStack().execute(new RecordingCommand(domain) {
                         @Override
                         protected void doExecute() {
-                            ActionType1 parm = (ActionType1) ti.getData();
-                            ActionType atype = ActionType.get(((Integer) value).intValue());
+                            parm.setLog((String) value);
+                            getTableViewer().refresh(true);
+                        }
+                    });
+                } else {
+                    parm.setLog((String) value);
+                    getTableViewer().refresh(true);
+                }
+            }
+            fireChangedEvent(this);
+            // validate();
+        } else if (element instanceof TableItem && property.equalsIgnoreCase(TYPE_COLUMN)) {
+            final TableItem ti = (TableItem) element;
+            if (getTargetObject() instanceof RulesImplementationType) {
+                final RulesImplementationType impl = (RulesImplementationType) getTargetObject();
+                if (impl.eContainer() != null) {
+                    TransactionalEditingDomain domain = SwitchyardSCAEditor.getActiveEditor().getEditingDomain();
+                    domain.getCommandStack().execute(new RecordingCommand(domain) {
+                        @Override
+                        protected void doExecute() {
+                            LoggerType1 parm = (LoggerType1) ti.getData();
+                            LoggerType atype = LoggerType.get(((Integer) value).intValue());
                             parm.setType(atype);
                             getTableViewer().refresh(true);
                         }
                     });
                 } else {
-                    ActionType1 parm = (ActionType1) ti.getData();
-                    ActionType atype = ActionType.get(((Integer) value).intValue());
+                    LoggerType1 parm = (LoggerType1) ti.getData();
+                    LoggerType atype = LoggerType.get(((Integer) value).intValue());
                     parm.setType(atype);
                     getTableViewer().refresh(true);
                 }
             }
             fireChangedEvent(this);
             // validate();
-        } else if (element instanceof TableItem && property.equalsIgnoreCase(ENTRY_POINT_COLUMN)) {
+        } else if (element instanceof TableItem && property.equalsIgnoreCase(INTERVAL_COLUMN)) {
             final TableItem ti = (TableItem) element;
-            if (getTargetObject() instanceof BPMImplementationType) {
-                final BPMImplementationType impl = (BPMImplementationType) getTargetObject();
+            if (getTargetObject() instanceof RulesImplementationType) {
+                final RulesImplementationType impl = (RulesImplementationType) getTargetObject();
                 if (impl.eContainer() != null) {
                     TransactionalEditingDomain domain = SwitchyardSCAEditor.getActiveEditor().getEditingDomain();
                     domain.getCommandStack().execute(new RecordingCommand(domain) {
                         @Override
                         protected void doExecute() {
-                            ActionType1 parm = (ActionType1) ti.getData();
-                            parm.setOperation((String) value);
+                            LoggerType1 parm = (LoggerType1) ti.getData();
+                            parm.setInterval((BigInteger) value);
                             getTableViewer().refresh(true);
                         }
                     });
                 } else {
-                    ActionType1 parm = (ActionType1) ti.getData();
-                    parm.setOperation((String) value);
+                    LoggerType1 parm = (LoggerType1) ti.getData();
+                    parm.setInterval((BigInteger) value);
                     getTableViewer().refresh(true);
                 }
             }

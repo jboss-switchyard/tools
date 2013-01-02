@@ -17,6 +17,7 @@ import javax.swing.event.ChangeListener;
 
 import org.eclipse.core.runtime.ListenerList;
 import org.eclipse.emf.ecore.EObject;
+import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.transaction.RecordingCommand;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.eclipse.jface.viewers.CellEditor;
@@ -41,6 +42,7 @@ import org.eclipse.swt.widgets.TableItem;
 import org.switchyard.tools.models.switchyard1_0.bpm.BPMFactory;
 import org.switchyard.tools.models.switchyard1_0.bpm.BPMImplementationType;
 import org.switchyard.tools.models.switchyard1_0.bpm.WorkItemHandlerType;
+import org.switchyard.tools.ui.editor.diagram.shared.ClassDialogCellEditor;
 import org.switchyard.tools.ui.editor.impl.SwitchyardSCAEditor;
 
 /**
@@ -184,8 +186,14 @@ public class BPMTaskHandlerTable extends Composite implements ICellModifier {
         _propertyTreeTable.setContentProvider(new PropertyTreeContentProvider());
 
         _propertyTreeTable.setCellModifier(this);
-        _propertyTreeTable.setCellEditors(new CellEditor[] {new TextCellEditor(_propertyTreeTable.getTable()),
-                new TextCellEditor(_propertyTreeTable.getTable()) });
+        _propertyTreeTable.setCellEditors(new CellEditor[] {
+                new TextCellEditor(_propertyTreeTable.getTable()),
+                new ClassDialogCellEditor(_propertyTreeTable.getTable(), "org.kie.runtime.process.WorkItemHandler",
+                        "Work Item Handler", "Select work item handler class.") {
+                    protected Resource getResource() {
+                        return _targetObj == null ? null : _targetObj.eResource();
+                    }
+                } });
 
         this._mAddButton = new Button(this, SWT.NONE);
         this._mAddButton.setLayoutData(new GridData(GridData.HORIZONTAL_ALIGN_FILL));
@@ -283,11 +291,17 @@ public class BPMTaskHandlerTable extends Composite implements ICellModifier {
                     @Override
                     protected void doExecute() {
                         impl.getWorkItemHandlers().getWorkItemHandler().remove(actionToRemove);
+                        if (impl.getWorkItemHandlers().getWorkItemHandler().isEmpty()) {
+                            impl.setWorkItemHandlers(null);
+                        }
                         getTableViewer().refresh(true);
                     }
                 });
             } else {
                 impl.getWorkItemHandlers().getWorkItemHandler().remove(actionToRemove);
+                if (impl.getWorkItemHandlers().getWorkItemHandler().isEmpty()) {
+                    impl.setWorkItemHandlers(null);
+                }
                 getTableViewer().refresh(true);
             }
             fireChangedEvent(this);
@@ -398,7 +412,11 @@ public class BPMTaskHandlerTable extends Composite implements ICellModifier {
                 return "";
             }
         } else if (element instanceof WorkItemHandlerType && property.equalsIgnoreCase(CLASS_COLUMN)) {
-            return new Integer(((WorkItemHandlerType) element).getClass_());
+            if (((WorkItemHandlerType) element).getClass_() != null) {
+                return ((WorkItemHandlerType) element).getClass_();
+            } else {
+                return "";
+            }
         }
         return null;
     }
@@ -416,18 +434,20 @@ public class BPMTaskHandlerTable extends Composite implements ICellModifier {
             final TableItem ti = (TableItem) element;
             if (getTargetObject() instanceof BPMImplementationType) {
                 final BPMImplementationType impl = (BPMImplementationType) getTargetObject();
+                final WorkItemHandlerType parm = (WorkItemHandlerType) ti.getData();
+                if ((value == null && parm.getName() == null) || (value != null && value.equals(parm.getName()))) {
+                    return;
+                }
                 if (impl.eContainer() != null) {
                     TransactionalEditingDomain domain = SwitchyardSCAEditor.getActiveEditor().getEditingDomain();
                     domain.getCommandStack().execute(new RecordingCommand(domain) {
                         @Override
                         protected void doExecute() {
-                            WorkItemHandlerType parm = (WorkItemHandlerType) ti.getData();
                             parm.setName((String) value);
                             getTableViewer().refresh(true);
                         }
                     });
                 } else {
-                    WorkItemHandlerType parm = (WorkItemHandlerType) ti.getData();
                     parm.setName((String) value);
                     getTableViewer().refresh(true);
                 }
@@ -438,6 +458,10 @@ public class BPMTaskHandlerTable extends Composite implements ICellModifier {
             final TableItem ti = (TableItem) element;
             if (getTargetObject() instanceof BPMImplementationType) {
                 final BPMImplementationType impl = (BPMImplementationType) getTargetObject();
+                final WorkItemHandlerType parm = (WorkItemHandlerType) ti.getData();
+                if ((value == null && parm.getClass_() == null) || (value != null && value.equals(parm.getClass_()))) {
+                    return;
+                }
                 if (impl.eContainer() != null) {
                     TransactionalEditingDomain domain = SwitchyardSCAEditor.getActiveEditor().getEditingDomain();
                     domain.getCommandStack().execute(new RecordingCommand(domain) {
@@ -449,7 +473,6 @@ public class BPMTaskHandlerTable extends Composite implements ICellModifier {
                         }
                     });
                 } else {
-                    WorkItemHandlerType parm = (WorkItemHandlerType) ti.getData();
                     parm.setClass((String) value);
                     getTableViewer().refresh(true);
                 }

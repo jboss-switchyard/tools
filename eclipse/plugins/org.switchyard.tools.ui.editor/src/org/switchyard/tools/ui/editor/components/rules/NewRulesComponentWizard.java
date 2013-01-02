@@ -142,6 +142,8 @@ public class NewRulesComponentWizard extends BaseNewServiceFileWizard implements
         action.setInputs(inputs);
 
         actions.getAction().add(action);
+        
+        _implementation.setActions(actions);
 
         if (_processPage.isAuditingEnabled()) {
             LoggerType1 auditSettings = _processPage.getAuditSettings();

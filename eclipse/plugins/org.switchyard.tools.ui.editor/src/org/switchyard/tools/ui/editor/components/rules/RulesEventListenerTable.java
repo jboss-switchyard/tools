@@ -17,6 +17,7 @@ import javax.swing.event.ChangeListener;
 
 import org.eclipse.core.runtime.ListenerList;
 import org.eclipse.emf.ecore.EObject;
+import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.transaction.RecordingCommand;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.eclipse.jface.viewers.CellEditor;
@@ -26,7 +27,6 @@ import org.eclipse.jface.viewers.IStructuredContentProvider;
 import org.eclipse.jface.viewers.IStructuredSelection;
 import org.eclipse.jface.viewers.ITableLabelProvider;
 import org.eclipse.jface.viewers.TableViewer;
-import org.eclipse.jface.viewers.TextCellEditor;
 import org.eclipse.jface.viewers.Viewer;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.events.SelectionAdapter;
@@ -41,6 +41,7 @@ import org.eclipse.swt.widgets.TableItem;
 import org.switchyard.tools.models.switchyard1_0.rules.ListenerType;
 import org.switchyard.tools.models.switchyard1_0.rules.RulesFactory;
 import org.switchyard.tools.models.switchyard1_0.rules.RulesImplementationType;
+import org.switchyard.tools.ui.editor.diagram.shared.ClassDialogCellEditor;
 import org.switchyard.tools.ui.editor.impl.SwitchyardSCAEditor;
 
 /**
@@ -172,7 +173,12 @@ public class RulesEventListenerTable extends Composite implements ICellModifier 
         _propertyTreeTable.setContentProvider(new PropertyTreeContentProvider());
 
         _propertyTreeTable.setCellModifier(this);
-        _propertyTreeTable.setCellEditors(new CellEditor[] {new TextCellEditor(_propertyTreeTable.getTable()) });
+        _propertyTreeTable.setCellEditors(new CellEditor[] {new ClassDialogCellEditor(_propertyTreeTable.getTable(),
+                "java.util.EventListener", "Event Listener", "Select event listener class.") {
+            protected Resource getResource() {
+                return _targetObj == null ? null : _targetObj.eResource();
+            }
+        } });
 
         this._mAddButton = new Button(this, SWT.NONE);
         this._mAddButton.setLayoutData(new GridData(GridData.HORIZONTAL_ALIGN_FILL));
@@ -269,11 +275,17 @@ public class RulesEventListenerTable extends Composite implements ICellModifier 
                     @Override
                     protected void doExecute() {
                         impl.getListeners().getListener().remove(actionToRemove);
+                        if (impl.getListeners().getListener().isEmpty()) {
+                            impl.setListeners(null);
+                        }
                         getTableViewer().refresh(true);
                     }
                 });
             } else {
                 impl.getListeners().getListener().remove(actionToRemove);
+                if (impl.getListeners().getListener().isEmpty()) {
+                    impl.setListeners(null);
+                }
                 getTableViewer().refresh(true);
             }
             fireChangedEvent(this);
@@ -400,18 +412,20 @@ public class RulesEventListenerTable extends Composite implements ICellModifier 
             final TableItem ti = (TableItem) element;
             if (getTargetObject() instanceof RulesImplementationType) {
                 final RulesImplementationType impl = (RulesImplementationType) getTargetObject();
+                final ListenerType parm = (ListenerType) ti.getData();
+                if ((value == null && parm.getClass_() == null) || (value != null && value.equals(parm.getClass_()))) {
+                    return;
+                }
                 if (impl.eContainer() != null) {
                     TransactionalEditingDomain domain = SwitchyardSCAEditor.getActiveEditor().getEditingDomain();
                     domain.getCommandStack().execute(new RecordingCommand(domain) {
                         @Override
                         protected void doExecute() {
-                            ListenerType parm = (ListenerType) ti.getData();
                             parm.setClass((String) value);
                             getTableViewer().refresh(true);
                         }
                     });
                 } else {
-                    ListenerType parm = (ListenerType) ti.getData();
                     parm.setClass((String) value);
                     getTableViewer().refresh(true);
                 }
