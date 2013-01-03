@@ -523,6 +523,7 @@
            scannerClass="org.switchyard.component.bean.config.model.BeanSwitchYardScanner">
      -->
      <component
+           category="implementation"
            id="org.switchyard.components:switchyard-component-bean"
            name="Bean">
         <description>
@@ -534,8 +535,9 @@
         </dependency>
      </component>
      <component
-           name="BPEL"
-           id="org.switchyard.components:switchyard-component-bpel">
+           category="implementation"
+           id="org.switchyard.components:switchyard-component-bpel"
+           name="BPEL">
         <description>
            Provides support for BPEL based service implementations.
         </description>
@@ -551,6 +553,7 @@
            scannerClass="org.switchyard.component.bpm.config.model.BPMSwitchYardScanner">
      -->
      <component
+           category="implementation"
            id="org.switchyard.components:switchyard-component-bpm"
            name="BPM (jBPM)">
         <description>
@@ -568,8 +571,9 @@
            scannerClass="org.switchyard.component.camel.config.model.RouteScanner">
      -->
      <component
+           category="implementation"
            id="org.switchyard.components:switchyard-component-camel"
-           name="Camel">
+           name="Camel Route">
         <description>
            Provides support for Camel based service implementations and Camel based gateways.
         </description>
@@ -590,19 +594,9 @@
         </dependency>
      </component> -->
      <component
-           name="HornetQ"
-           id="org.switchyard.components:switchyard-component-hornetq">
-        <description>
-           Provides support for HornetQ based gateways.
-        </description>
-        <dependency>
-           <groupId>org.switchyard.components</groupId>
-           <artifactId>switchyard-component-hornetq</artifactId>
-        </dependency>
-     </component>
-     <component
-           name="HTTP"
-           id="org.switchyard.components:switchyard-component-http">
+           category="gateway"
+           id="org.switchyard.components:switchyard-component-http"
+           name="HTTP">
         <description>
            Provides support for HTTP based service implementations.
         </description>
@@ -612,6 +606,7 @@
         </dependency>
      </component>
      <component
+           category="gateway"
            id="org.switchyard.components:switchyard-component-jca"
            name="JCA">
         <description>
@@ -627,6 +622,7 @@
         </dependency>
      </component>
      <component
+           category="gateway"
            id="org.switchyard.components:switchyard-component-resteasy"
            name="REST">
         <description>
@@ -648,6 +644,7 @@
            scannerClass="org.switchyard.component.rules.config.model.RulesSwitchYardScanner">
      -->
      <component
+           category="implementation"
            id="org.switchyard.components:switchyard-component-rules"
            name="Rules (Drools)">
         <description>
@@ -659,6 +656,7 @@
         </dependency>
      </component>
      <component
+           category="gateway"
            id="org.switchyard.components:switchyard-component-soap"
            name="SOAP">
         <description>
@@ -670,6 +668,7 @@
         </dependency>
      </component>
      <component
+           category="gateway"
            id="org.switchyard.components:switchyard-component-remote"
            name="Remote">
         <description>
@@ -680,22 +679,119 @@
            <artifactId>switchyard-component-remote</artifactId>
         </dependency>
      </component>
-     <!-- Test modules... -->
      <component
-           name="Test Mixin - AMQ"
-           id="org.switchyard.components:switchyard-component-test-mixin-amq">
+           category="gateway"
+           id="org.switchyard.components:switchyard-component-camel-core"
+           name="Camel Core (SEDA/Timer/URI)">
         <description>
-           Provides access to AMQ runtime features within unit tests, e.g. sending a message to a queue bound to a SwitchYard service.
+           Provides support for gateways defined using core Camel gateway types: SEDA, timer, generic URI.
         </description>
         <dependency>
            <groupId>org.switchyard.components</groupId>
-           <artifactId>switchyard-component-test-mixin-amq</artifactId>
-           <scope>test</scope>
+           <artifactId>switchyard-component-camel-core</artifactId>
         </dependency>
      </component>
      <component
-           name="Test Mixin - BPM"
-           id="org.switchyard.components:switchyard-component-test-mixin-bpm">
+           category="gateway"
+           id="org.switchyard.components:switchyard-component-camel-file"
+           name="File">
+        <description>
+           Provides support for file gateways.
+        </description>
+        <dependency>
+           <groupId>org.switchyard.components</groupId>
+           <artifactId>switchyard-component-camel-file</artifactId>
+        </dependency>
+     </component>
+     <component
+           category="gateway"
+           id="org.switchyard.components:switchyard-component-camel-ftp"
+           name="File Transfer (FTP/FTPS/SFTP)">
+        <description>
+           Provides support for FTP/FTPS/SFTP gateways.
+        </description>
+        <dependency>
+           <groupId>org.switchyard.components</groupId>
+           <artifactId>switchyard-component-camel-ftp</artifactId>
+        </dependency>
+     </component>
+     <component
+           category="gateway"
+           id="org.switchyard.components:switchyard-component-camel-jms"
+           name="JMS">
+        <description>
+           Provides support for JMS gateways.
+        </description>
+        <dependency>
+           <groupId>org.switchyard.components</groupId>
+           <artifactId>switchyard-component-camel-jms</artifactId>
+        </dependency>
+     </component>
+     <component
+           category="gateway"
+           id="org.switchyard.components:switchyard-component-camel-jpa"
+           name="JPA">
+        <description>
+           Provides support for JPA gateways.
+        </description>
+        <dependency>
+           <groupId>org.switchyard.components</groupId>
+           <artifactId>switchyard-component-camel-jpa</artifactId>
+        </dependency>
+     </component>
+     <component
+           category="gateway"
+           id="org.switchyard.components:switchyard-component-camel-mail"
+           name="Mail">
+        <description>
+           Provides support for e-mail (IMAP/POP3/SNMP) gateways.
+        </description>
+        <dependency>
+           <groupId>org.switchyard.components</groupId>
+           <artifactId>switchyard-component-camel-mail</artifactId>
+        </dependency>
+     </component>
+     <component
+           category="gateway"
+           id="org.switchyard.components:switchyard-component-camel-quartz"
+           name="Scheduler">
+        <description>
+           Provides support for Camel Quartz gateways.
+        </description>
+        <dependency>
+           <groupId>org.switchyard.components</groupId>
+           <artifactId>switchyard-component-camel-quartz</artifactId>
+        </dependency>
+     </component>
+     <component
+           category="gateway"
+           id="org.switchyard.components:switchyard-component-camel-sql"
+           name="SQL">
+        <description>
+           Provides support for SQL gateways.
+        </description>
+        <dependency>
+           <groupId>org.switchyard.components</groupId>
+           <artifactId>switchyard-component-camel-sql</artifactId>
+        </dependency>
+     </component>
+     <component
+           category="gateway"
+           id="org.switchyard.components:switchyard-component-camel-netty"
+           name="Network (TCP/UDP)">
+        <description>
+           Provides support for TCP/UDP (Camel Netty) gateways.
+        </description>
+        <dependency>
+           <groupId>org.switchyard.components</groupId>
+           <artifactId>switchyard-component-camel-netty</artifactId>
+        </dependency>
+     </component>
+     <!-- Test modules... -->
+     <component
+           category="test"
+           id="org.switchyard.components:switchyard-component-test-mixin-bpm"
+           name="BPM Mixin">
         <description>
            Provides access to BPM runtime features within unit tests, e.g. sending non-SwitchYard events into the BPM engine during a test.
         </description>
@@ -706,8 +802,9 @@
         </dependency>
      </component>
      <component
-           name="Test Mixin - HornetQ"
-           id="org.switchyard.components:switchyard-component-test-mixin-hornetq">
+           category="test"
+           id="org.switchyard.components:switchyard-component-test-mixin-hornetq"
+           name="HornetQ Mixin">
         <description>
            Provides access to HornetQ runtime features within unit tests, e.g. sending a message to a queue bound to a SwitchYard service.
         </description>
@@ -718,8 +815,9 @@
         </dependency>
      </component>
      <component
-           name="Test Mixin - HTTP"
-           id="org.switchyard.components:switchyard-component-test-mixin-http">
+           category="test"
+           id="org.switchyard.components:switchyard-component-test-mixin-http"
+           name="HTTP Mixin">
         <description>
            Provides access to HTTP runtime features within unit tests, e.g. sending a SOAP message via http to a SwitchYard service.
         </description>
@@ -730,8 +828,9 @@
         </dependency>
      </component>
      <component
-           name="Test Mixin - JCA"
-           id="org.switchyard.components:switchyard-component-test-mixin-jca">
+           category="test"
+           id="org.switchyard.components:switchyard-component-test-mixin-jca"
+           name="JCA Mixin">
         <description>
            Provides access to JCA runtime features within unit tests, e.g. creating resource adapters.
         </description>
@@ -742,8 +841,9 @@
         </dependency>
      </component>
      <component
-           name="Test Mixin - Naming"
-           id="org.switchyard.components:switchyard-component-test-mixin-naming">
+           category="test"
+           id="org.switchyard.components:switchyard-component-test-mixin-naming"
+           name="Naming Mixin">
         <description>
            Provides access to naming contexts within unit tests, e.g. binding resources to a name referenced by a service or binding.
         </description>
@@ -754,8 +854,9 @@
         </dependency>
      </component>
      <component
-           name="Test Mixin - Smooks"
-           id="org.switchyard.components:switchyard-component-test-mixin-smooks">
+           category="test"
+           id="org.switchyard.components:switchyard-component-test-mixin-smooks"
+           name="Smooks Mixin">
         <description>
            Provides access to Smooks features within unit tests, e.g. testing Smooks transformations.
         </description>

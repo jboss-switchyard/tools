@@ -234,8 +234,9 @@ public class SwitchYardProject implements ISwitchYardProject, IMavenProjectChang
                     final IFile newOutputFile = getOutputSwitchYardConfigurationFile();
                     final long outputTimestamp = newOutputFile == null ? 0L : newOutputFile.getModificationStamp();
                     if (outputTimestamp > _lastOutputTimestamp || (oldOutputFile == null && newOutputFile != null)
-                            || oldOutputFile.equals(newOutputFile)) {
+                            || (oldOutputFile != null && !oldOutputFile.equals(newOutputFile))) {
                         types = EnumSet.of(Type.POM, Type.CONFIG);
+                        _lastOutputTimestamp = outputTimestamp;
                     } else {
                         types = EnumSet.of(Type.POM);
                     }
@@ -271,6 +272,7 @@ public class SwitchYardProject implements ISwitchYardProject, IMavenProjectChang
                 if (event.getMavenProject() != null && event.getMavenProject().getMavenProject() != null) {
                     if (_loadLock.writeLock().tryLock()) {
                         try {
+                            _mavenProjectFacade = null;
                             // reload the model
                             load(new NullProgressMonitor());
                         } finally {

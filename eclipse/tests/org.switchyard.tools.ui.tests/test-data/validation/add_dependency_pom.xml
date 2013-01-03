@@ -7,7 +7,7 @@
   <version>0.0.1-SNAPSHOT</version>
   <name>test.project.group:CreateSwitchYardProjectTest</name>
   <properties>
-    <switchyard.version>0.6.0.Final</switchyard.version>
+    <switchyard.version>0.7.0.Final</switchyard.version>
   </properties>
   <dependencies>
     <dependency>
@@ -33,6 +33,12 @@
     <dependency>
       <groupId>org.switchyard</groupId>
       <artifactId>switchyard-test</artifactId>
+      <version>${switchyard.version}</version>
+      <scope>test</scope>
+    </dependency>
+    <dependency>
+      <groupId>org.switchyard.components</groupId>
+      <artifactId>switchyard-component-test-mixin-cdi</artifactId>
       <version>${switchyard.version}</version>
       <scope>test</scope>
     </dependency>

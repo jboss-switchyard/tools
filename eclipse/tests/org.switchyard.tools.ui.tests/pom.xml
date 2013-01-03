@@ -87,9 +87,9 @@
 <!--                 </artifactItem> -->
                 <artifactItem>
                   <groupId>org.switchyard.quickstarts</groupId>
-                  <artifactId>switchyard-quickstart-camel-rest-binding</artifactId>
+                  <artifactId>switchyard-quickstart-rest-binding</artifactId>
                   <version>${version.switchyard.runtime}</version>
-                  <outputDirectory>test-data/quickstart-configs/camel-rest-binding</outputDirectory>
+                  <outputDirectory>test-data/quickstart-configs/rest-binding</outputDirectory>
                 </artifactItem>
                 <artifactItem>
                   <groupId>org.switchyard.quickstarts</groupId>
@@ -135,9 +135,9 @@
                 </artifactItem>
                 <artifactItem>
                   <groupId>org.switchyard.quickstarts</groupId>
-                  <artifactId>switchyard-quickstart-rules-interview-agent</artifactId>
+                  <artifactId>switchyard-quickstart-rules-interview-container</artifactId>
                   <version>${version.switchyard.runtime}</version>
-                  <outputDirectory>test-data/quickstart-configs/rules-interview-agent</outputDirectory>
+                  <outputDirectory>test-data/quickstart-configs/rules-interview-container</outputDirectory>
                 </artifactItem>
                 <artifactItem>
                   <groupId>org.switchyard.quickstarts</groupId>

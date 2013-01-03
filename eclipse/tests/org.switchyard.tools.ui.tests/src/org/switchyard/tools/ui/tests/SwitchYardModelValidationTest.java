@@ -107,12 +107,12 @@ public class SwitchYardModelValidationTest extends AbstractMavenProjectTestCase 
      }
 
     /**
-     * Tests import and configuration of camel-rest-binding quickstart.
+     * Tests import and configuration of rest-binding quickstart.
      * 
      * @throws Exception if a failure occurs.
      */
-    public void testCamelRestBindingQuickstart() throws Exception {
-        runModelTest("camel-rest-binding");
+    public void testRestBindingQuickstart() throws Exception {
+        runModelTest("rest-binding");
     }
 
     /**
@@ -188,12 +188,12 @@ public class SwitchYardModelValidationTest extends AbstractMavenProjectTestCase 
     }
 
     /**
-     * Tests import and configuration of rules-interview-agent quickstart.
+     * Tests import and configuration of rules-interview-container quickstart.
      * 
      * @throws Exception if a failure occurs.
      */
-    public void testRulesInterviewAgentQuickstart() throws Exception {
-        runModelTest("rules-interview-agent");
+    public void testRulesInterviewContainerQuickstart() throws Exception {
+        runModelTest("rules-interview-container");
     }
 
     /**

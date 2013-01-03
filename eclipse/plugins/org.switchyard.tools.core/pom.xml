@@ -167,11 +167,6 @@
                 </artifactItem>
                 <artifactItem>
                   <groupId>org.switchyard.components</groupId>
-                  <artifactId>switchyard-component-common-rules</artifactId>
-                  <version>${version.switchyard.runtime}</version>
-                </artifactItem>
-                <artifactItem>
-                  <groupId>org.switchyard.components</groupId>
                   <artifactId>switchyard-component-common</artifactId>
                   <version>${version.switchyard.runtime}</version>
                 </artifactItem>

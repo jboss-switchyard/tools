@@ -36,7 +36,9 @@ import org.sonatype.aether.version.Version;
 import org.switchyard.tools.ui.Activator;
 import org.switchyard.tools.ui.common.ILayoutUtilities;
 import org.switchyard.tools.ui.common.ISwitchYardComponentExtension;
+import org.switchyard.tools.ui.common.ISwitchYardComponentExtension.Category;
 import org.switchyard.tools.ui.common.ISwitchYardProjectWorkingCopy;
+import org.switchyard.tools.ui.common.SwitchYardComponentExtensionManager;
 import org.switchyard.tools.ui.common.SwitchYardSettingsGroup;
 import org.switchyard.tools.ui.common.impl.SwitchYardProjectManager;
 import org.switchyard.tools.ui.operations.UpdateProjectPomOperation;
@@ -131,14 +133,24 @@ public class SwitchYardSettingsPropertyPage extends PropertyPage implements IWor
     }
 
     private void initComponentsTable() {
-        _settingsGroup.getComponentsTable().setCheckedElements(_switchYardProject.getComponents().toArray());
+        _settingsGroup.setCheckedComponents(_switchYardProject.getComponents(), true);
         _settingsGroup.getComponentsTable().addCheckStateListener(new ICheckStateListener() {
             @Override
             public void checkStateChanged(CheckStateChangedEvent event) {
-                if (event.getChecked()) {
-                    _switchYardProject.addComponent((ISwitchYardComponentExtension) event.getElement());
-                } else {
-                    _switchYardProject.removeComponent((ISwitchYardComponentExtension) event.getElement());
+                if (event.getElement() instanceof ISwitchYardComponentExtension) {
+                    if (event.getChecked()) {
+                        _switchYardProject.addComponent((ISwitchYardComponentExtension) event.getElement());
+                    } else {
+                        _switchYardProject.removeComponent((ISwitchYardComponentExtension) event.getElement());
+                    }
+                } else if (event.getElement() instanceof Category) {
+                    if (event.getChecked()) {
+                        _switchYardProject.addComponents(SwitchYardComponentExtensionManager.instance()
+                                .getComponentExtensions((Category) event.getElement()));
+                    } else {
+                        _switchYardProject.removeComponents(SwitchYardComponentExtensionManager.instance()
+                                .getComponentExtensions((Category) event.getElement()));
+                    }
                 }
             }
         });

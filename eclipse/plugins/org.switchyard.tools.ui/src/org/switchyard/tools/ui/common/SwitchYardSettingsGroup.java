@@ -17,6 +17,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.Comparator;
+import java.util.EnumSet;
 import java.util.LinkedHashSet;
 import java.util.List;
 import java.util.Set;
@@ -30,21 +31,23 @@ import org.eclipse.core.runtime.SubProgressMonitor;
 import org.eclipse.jface.operation.IRunnableContext;
 import org.eclipse.jface.operation.IRunnableWithProgress;
 import org.eclipse.jface.viewers.ArrayContentProvider;
-import org.eclipse.jface.viewers.CheckboxTableViewer;
+import org.eclipse.jface.viewers.CheckStateChangedEvent;
+import org.eclipse.jface.viewers.CheckboxTreeViewer;
 import org.eclipse.jface.viewers.ComboViewer;
+import org.eclipse.jface.viewers.ICheckStateListener;
 import org.eclipse.jface.viewers.ISelection;
 import org.eclipse.jface.viewers.ISelectionChangedListener;
 import org.eclipse.jface.viewers.IStructuredSelection;
+import org.eclipse.jface.viewers.ITreeContentProvider;
 import org.eclipse.jface.viewers.LabelProvider;
 import org.eclipse.jface.viewers.SelectionChangedEvent;
 import org.eclipse.jface.viewers.StructuredViewer;
 import org.eclipse.jface.viewers.Viewer;
 import org.eclipse.jface.viewers.ViewerFilter;
+import org.eclipse.jface.viewers.ViewerSorter;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.events.ModifyEvent;
 import org.eclipse.swt.events.ModifyListener;
-import org.eclipse.swt.events.SelectionAdapter;
-import org.eclipse.swt.events.SelectionEvent;
 import org.eclipse.swt.layout.GridData;
 import org.eclipse.swt.layout.GridLayout;
 import org.eclipse.swt.widgets.Button;
@@ -55,6 +58,7 @@ import org.eclipse.swt.widgets.Text;
 import org.sonatype.aether.util.version.GenericVersionScheme;
 import org.sonatype.aether.version.Version;
 import org.switchyard.tools.ui.Activator;
+import org.switchyard.tools.ui.common.ISwitchYardComponentExtension.Category;
 
 /**
  * SwitchYardSettingsGroup
@@ -69,7 +73,7 @@ public class SwitchYardSettingsGroup {
     private IRunnableContext _context;
     private ComboViewer _runtimeVersionsList;
     private Button _runtimeProvidedCheckbox;
-    private CheckboxTableViewer _componentsTable;
+    private CheckboxTreeViewer _componentsTable;
     private Text _descriptionText;
     private List<Version> _availableVersions;
 
@@ -101,36 +105,33 @@ public class SwitchYardSettingsGroup {
         _runtimeVersionsList.setContentProvider(ArrayContentProvider.getInstance());
 
         Composite componentControls = new Composite(content, SWT.NONE);
-        componentControls.setLayout(new GridLayout(2, false));
+        componentControls.setLayout(new GridLayout());
         componentControls.setLayoutData(new GridData(SWT.FILL, SWT.FILL, true, true));
 
         label = new Label(componentControls, SWT.NONE);
         label.setText("Components:");
         label.setLayoutData(new GridData(SWT.FILL, SWT.CENTER, false, false, 2, 1));
 
-        _componentsTable = CheckboxTableViewer.newCheckList(componentControls, SWT.SINGLE | SWT.BORDER | SWT.V_SCROLL
+        _componentsTable = new CheckboxTreeViewer(componentControls, SWT.SINGLE | SWT.BORDER | SWT.V_SCROLL
                 | SWT.V_SCROLL);
-        _componentsTable.setLabelProvider(new LabelProvider() {
-            public String getText(Object element) {
-                if (element instanceof ISwitchYardComponentExtension) {
-                    return ((ISwitchYardComponentExtension) element).getName();
-                }
-                return super.getText(element);
-            }
-        });
-        _componentsTable.setContentProvider(ArrayContentProvider.getInstance());
-        _componentsTable.getTable().setLayoutData(new GridData(SWT.FILL, SWT.FILL, true, true));
+        _componentsTable.setLabelProvider(new ComponentsLabelProvider());
+        _componentsTable.setContentProvider(new ComponentsContentProvider());
+        _componentsTable.getTree().setLayoutData(new GridData(SWT.FILL, SWT.FILL, true, true));
         _componentsTable.addSelectionChangedListener(new ISelectionChangedListener() {
             @Override
             public void selectionChanged(SelectionChangedEvent event) {
                 ISelection selection = _componentsTable.getSelection();
                 if (selection instanceof IStructuredSelection && !selection.isEmpty()) {
-                    String description = ((ISwitchYardComponentExtension) ((IStructuredSelection) selection)
-                            .getFirstElement()).getDescription();
-                    if (description == null || description.length() == 0) {
-                        description = "unavailable";
+                    Object selected = ((IStructuredSelection) selection).getFirstElement();
+                    if (selected instanceof ISwitchYardComponentExtension) {
+                        String description = ((ISwitchYardComponentExtension) selected).getDescription();
+                        if (description == null || description.length() == 0) {
+                            description = "unavailable";
+                        }
+                        _descriptionText.setText(description);
+                    } else {
+                        _descriptionText.setText("");
                     }
-                    _descriptionText.setText(description);
                 } else {
                     _descriptionText.setText("");
                 }
@@ -139,32 +140,19 @@ public class SwitchYardSettingsGroup {
         _componentsTable.addFilter(new ViewerFilter() {
             private final Object _runtimeComponent = SwitchYardComponentExtensionManager.instance()
                     .getRuntimeComponentExtension();
+            private final boolean _hasUnknownComponents = SwitchYardComponentExtensionManager.instance()
+                    .getComponentExtensions(Category.UNKNOWN).size() > 1;
 
             @Override
             public boolean select(Viewer viewer, Object parentElement, Object element) {
-                return element != _runtimeComponent;
+                return element != _runtimeComponent && (element != Category.UNKNOWN || _hasUnknownComponents);
             }
         });
-
-        Composite buttonControls = new Composite(componentControls, SWT.NONE);
-        buttonControls.setLayout(new GridLayout());
-        buttonControls.setLayoutData(new GridData(SWT.FILL, SWT.BEGINNING, false, false));
-
-        Button selectAll = new Button(buttonControls, SWT.PUSH);
-        layoutUtilities.setButtonLayoutData(selectAll);
-        selectAll.setText("&Select All");
-        selectAll.addSelectionListener(new SelectionAdapter() {
-            public void widgetSelected(SelectionEvent event) {
-                selectAllComponents();
-            }
-        });
-
-        Button deselectAll = new Button(buttonControls, SWT.PUSH);
-        layoutUtilities.setButtonLayoutData(deselectAll);
-        deselectAll.setText("&Deselect All");
-        deselectAll.addSelectionListener(new SelectionAdapter() {
-            public void widgetSelected(SelectionEvent event) {
-                deselectAllComponents();
+        _componentsTable.setSorter(new ComponentsSorter());
+        _componentsTable.addCheckStateListener(new ICheckStateListener() {
+            @Override
+            public void checkStateChanged(CheckStateChangedEvent event) {
+                updateCheckState(event.getElement(), event.getChecked());
             }
         });
 
@@ -191,7 +179,7 @@ public class SwitchYardSettingsGroup {
     /**
      * @return the components viewer.
      */
-    public CheckboxTableViewer getComponentsTable() {
+    public CheckboxTreeViewer getComponentsTable() {
         return _componentsTable;
     }
 
@@ -214,10 +202,27 @@ public class SwitchYardSettingsGroup {
      */
     @SuppressWarnings({"unchecked", "rawtypes" })
     public Set<ISwitchYardComponentExtension> getSelectedComponents() {
-        Set<ISwitchYardComponentExtension> selectedComponents = new LinkedHashSet<ISwitchYardComponentExtension>(
-                (List) Arrays.asList(_componentsTable.getCheckedElements()));
+        Set selectedComponents = new LinkedHashSet((List) Arrays.asList(_componentsTable.getCheckedElements()));
         selectedComponents.add(SwitchYardComponentExtensionManager.instance().getRuntimeComponentExtension());
+        selectedComponents.removeAll(Arrays.asList(Category.values()));
         return selectedComponents;
+    }
+
+    /**
+     * Set the check state for the set of components.
+     * 
+     * @param components the components to check/uncheck.
+     * @param checked true, checked; false, unchecked.
+     */
+    public void setCheckedComponents(Set<ISwitchYardComponentExtension> components, boolean checked) {
+        if (components == null || components.isEmpty() || _componentsTable == null
+                || _componentsTable.getTree().isDisposed()) {
+            return;
+        }
+        for (ISwitchYardComponentExtension component : components) {
+            _componentsTable.setChecked(component, checked);
+            updateCheckState(component, checked);
+        }
     }
 
     private void initControls() {
@@ -267,15 +272,33 @@ public class SwitchYardSettingsGroup {
     }
 
     private void populateComponentsTable() {
-        _componentsTable.setInput(SwitchYardComponentExtensionManager.instance().getComponentExtensions());
+        _componentsTable.setInput(SwitchYardComponentExtensionManager.instance());
+        _componentsTable.setExpandedElements(EnumSet.of(Category.IMPLEMENTATION).toArray());
     }
 
-    private void selectAllComponents() {
-        _componentsTable.setAllChecked(true);
-    }
-
-    private void deselectAllComponents() {
-        _componentsTable.setAllChecked(false);
+    private void updateCheckState(Object element, boolean checked) {
+        final ITreeContentProvider contentProvider = (ITreeContentProvider) _componentsTable.getContentProvider();
+        // ensure children are checked
+        _componentsTable.setSubtreeChecked(element, checked);
+        _componentsTable.setGrayed(element, false);
+        for (Object parent = contentProvider.getParent(element), input = _componentsTable.getInput(); parent != null
+                && parent != input; parent = contentProvider.getParent(parent)) {
+            final Object[] siblings = contentProvider.getChildren(parent);
+            int count = 0;
+            for (int i = 0; i < siblings.length; i++) {
+                if (_componentsTable.getChecked(siblings[i])) {
+                    count++;
+                }
+            }
+            if (count == 0) {
+                _componentsTable.setGrayChecked(parent, false);
+            } else if (count == siblings.length) {
+                _componentsTable.setChecked(parent, true);
+                _componentsTable.setGrayed(parent, false);
+            } else {
+                _componentsTable.setGrayChecked(parent, true);
+            }
+        }
     }
 
     private final class VersionComboViewer extends ComboViewer {
@@ -316,4 +339,90 @@ public class SwitchYardSettingsGroup {
             super.setSelectionToWidget(selection, reveal);
         }
     }
+
+    private final static class ComponentsLabelProvider extends LabelProvider {
+        public String getText(Object element) {
+            if (element instanceof Category) {
+                switch ((Category) element) {
+                case UNKNOWN:
+                    return "Unknown";
+                case IMPLEMENTATION:
+                    return "Implementation Support";
+                case GATEWAY:
+                    return "Gateway Bindings";
+                case TEST:
+                    return "Test Mixins";
+                }
+            } else if (element instanceof ISwitchYardComponentExtension) {
+                return ((ISwitchYardComponentExtension) element).getName();
+            }
+            return super.getText(element);
+        }
+    }
+
+    private final static class ComponentsContentProvider implements ITreeContentProvider {
+        @Override
+        public void inputChanged(Viewer viewer, Object oldInput, Object newInput) {
+        }
+
+        @Override
+        public void dispose() {
+        }
+
+        @Override
+        public boolean hasChildren(Object element) {
+            return getChildren(element).length > 0;
+        }
+
+        @Override
+        public Object getParent(Object element) {
+            if (element instanceof Category) {
+                return SwitchYardComponentExtensionManager.instance();
+            } else if (element instanceof ISwitchYardComponentExtension) {
+                return ((ISwitchYardComponentExtension) element).getCategory();
+            }
+            return null;
+        }
+
+        @Override
+        public Object[] getElements(Object inputElement) {
+            return getChildren(inputElement);
+        }
+
+        @Override
+        public Object[] getChildren(Object parentElement) {
+            if (parentElement instanceof SwitchYardComponentExtensionManager) {
+                return Category.values();
+            } else if (parentElement instanceof Category) {
+                return SwitchYardComponentExtensionManager.instance().getComponentExtensions((Category) parentElement)
+                        .toArray();
+            }
+            return new Object[0];
+        }
+    }
+
+    private final static class ComponentsSorter extends ViewerSorter {
+        public int category(Object element) {
+            final Category category;
+            if (element instanceof Category) {
+                category = (Category) element;
+            } else if (element instanceof ISwitchYardComponentExtension) {
+                category = ((ISwitchYardComponentExtension) element).getCategory();
+            } else {
+                category = Category.UNKNOWN;
+            }
+            switch (category) {
+            case IMPLEMENTATION:
+                return 0;
+            case GATEWAY:
+                return 1;
+            case TEST:
+                return 2;
+            case UNKNOWN:
+            default:
+                return 3;
+            }
+        }
+    }
+
 }

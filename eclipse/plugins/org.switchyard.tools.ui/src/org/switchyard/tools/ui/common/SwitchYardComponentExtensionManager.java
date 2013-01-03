@@ -13,6 +13,7 @@ package org.switchyard.tools.ui.common;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Collections;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.TreeMap;
@@ -25,6 +26,7 @@ import org.eclipse.core.runtime.Platform;
 import org.eclipse.core.runtime.Status;
 import org.switchyard.tools.ui.Activator;
 import org.switchyard.tools.ui.M2EUtils;
+import org.switchyard.tools.ui.common.ISwitchYardComponentExtension.Category;
 
 /**
  * SwitchYardComponentExtensionManager
@@ -49,8 +51,13 @@ public final class SwitchYardComponentExtensionManager {
     }
 
     private Map<String, ISwitchYardComponentExtension> _extensions = new TreeMap<String, ISwitchYardComponentExtension>();
+    private Map<Category, Collection<ISwitchYardComponentExtension>> _extensionsByCategory;
 
     private SwitchYardComponentExtensionManager() {
+        _extensionsByCategory = new HashMap<ISwitchYardComponentExtension.Category, Collection<ISwitchYardComponentExtension>>();
+        for (Category category : Category.values()) {
+            _extensionsByCategory.put(category, new ArrayList<ISwitchYardComponentExtension>());
+        }
         IExtensionPoint extensionPoint = Platform.getExtensionRegistry().getExtensionPoint(Activator.PLUGIN_ID,
                 "switchYardComponent");
         for (IExtension extension : extensionPoint.getExtensions()) {
@@ -78,6 +85,15 @@ public final class SwitchYardComponentExtensionManager {
     }
 
     /**
+     * @param category the component category.
+     * @return the list of registered component extensions for the specified
+     *         category.
+     */
+    public Collection<ISwitchYardComponentExtension> getComponentExtensions(Category category) {
+        return Collections.unmodifiableCollection(_extensionsByCategory.get(category));
+    }
+
+    /**
      * @param id the id of the component extension.
      * @return the component extension; null if no extension is registered with
      *         the specified id.
@@ -101,6 +117,7 @@ public final class SwitchYardComponentExtensionManager {
         }
         String id = element.getAttribute("id");
         String name = element.getAttribute("name");
+        Category category = parseCategory(element);
         String description = parseDescription(element);
         List<Dependency> dependencies = parseDependencies(element);
         if (id == null) {
@@ -122,8 +139,28 @@ public final class SwitchYardComponentExtensionManager {
         } else if (name == null || name.length() == 0) {
             name = id;
         }
-        _extensions.put(id, new SwitchYardComponentExtension(id, name, element.getAttribute("scannerClass"),
-                description, dependencies));
+        ISwitchYardComponentExtension extension = new SwitchYardComponentExtension(id, name, category,
+                element.getAttribute("scannerClass"), description, dependencies);
+        _extensions.put(id, extension);
+        _extensionsByCategory.get(category).add(extension);
+    }
+
+    private Category parseCategory(IConfigurationElement element) {
+        String categoryString = element.getAttribute("category");
+        if (categoryString == null || categoryString.length() == 0) {
+            return Category.UNKNOWN;
+        }
+        try {
+            return Category.valueOf(categoryString.toUpperCase());
+        } catch (Exception e) {
+            Activator
+                    .getDefault()
+                    .getLog()
+                    .log(new Status(Status.ERROR, Activator.PLUGIN_ID,
+                            "Invalid \"category\" specified in switchYardComponent extension: plugin="
+                                    + element.getContributor().getName() + ", id=" + element.getAttribute("id")));
+        }
+        return Category.UNKNOWN;
     }
 
     private String parseDescription(IConfigurationElement element) {
@@ -207,15 +244,17 @@ public final class SwitchYardComponentExtensionManager {
 
         private final String _id;
         private final String _name;
+        private final Category _category;
         private final String _scannerClassName;
         private final String _description;
         private final List<Dependency> _dependencies;
 
-        private SwitchYardComponentExtension(String id, String name, String scannerClassName, String description,
-                List<Dependency> dependencies) {
+        private SwitchYardComponentExtension(String id, String name, Category category, String scannerClassName,
+                String description, List<Dependency> dependencies) {
             super();
             _id = id;
             _name = name;
+            _category = category;
             _scannerClassName = scannerClassName;
             _description = description;
             _dependencies = Collections.unmodifiableList(dependencies);
@@ -229,6 +268,11 @@ public final class SwitchYardComponentExtensionManager {
         @Override
         public String getName() {
             return _name;
+        }
+
+        @Override
+        public Category getCategory() {
+            return _category;
         }
 
         @Override

@@ -77,6 +77,23 @@
                </documentation>
             </annotation>
          </attribute>
+         <attribute name="category">
+            <annotation>
+               <documentation>
+                  
+               </documentation>
+            </annotation>
+            <simpleType>
+               <restriction base="string">
+                  <enumeration value="implementation">
+                  </enumeration>
+                  <enumeration value="gateway">
+                  </enumeration>
+                  <enumeration value="test">
+                  </enumeration>
+               </restriction>
+            </simpleType>
+         </attribute>
       </complexType>
    </element>
 

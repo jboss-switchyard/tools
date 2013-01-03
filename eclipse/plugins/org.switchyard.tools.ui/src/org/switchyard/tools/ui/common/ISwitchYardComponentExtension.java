@@ -36,6 +36,11 @@ public interface ISwitchYardComponentExtension {
     public String getName();
 
     /**
+     * @return the category of the component
+     */
+    public Category getCategory();
+
+    /**
      * @return the description of this component.
      */
     public String getDescription();
@@ -50,4 +55,18 @@ public interface ISwitchYardComponentExtension {
      * @return the Maven dependencies required by this component.
      */
     public List<Dependency> getDependencies();
+
+    /**
+     * Represents a component category.
+     */
+    public enum Category {
+        /** Unknown category. */
+        UNKNOWN,
+        /** Implementation components (e.g. bean, bpm, etc.). */
+        IMPLEMENTATION,
+        /** Gateway components (e.g. SOAP, JMS, etc.). */
+        GATEWAY,
+        /** Test components (e.g. HTTP mixin, CDI mixin, etc.). */
+        TEST
+    };
 }
