@@ -66,31 +66,8 @@ public class ManifestTypeItemProvider
         if (itemPropertyDescriptors == null) {
             super.getPropertyDescriptors(object);
 
-            addScanPropertyDescriptor(object);
         }
         return itemPropertyDescriptors;
-    }
-
-    /**
-     * This adds a property descriptor for the Scan feature.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    protected void addScanPropertyDescriptor(Object object) {
-        itemPropertyDescriptors.add
-            (createItemPropertyDescriptor
-                (((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
-                 getResourceLocator(),
-                 getString("_UI_ManifestType_scan_feature"),
-                 getString("_UI_PropertyDescriptor_description", "_UI_ManifestType_scan_feature", "_UI_ManifestType_type"),
-                 RulesPackage.Literals.MANIFEST_TYPE__SCAN,
-                 true,
-                 false,
-                 false,
-                 ItemPropertyDescriptor.BOOLEAN_VALUE_IMAGE,
-                 null,
-                 null));
     }
 
     /**
@@ -143,8 +120,7 @@ public class ManifestTypeItemProvider
      */
     @Override
     public String getText(Object object) {
-        ManifestType manifestType = (ManifestType)object;
-        return getString("_UI_ManifestType_type") + " " + manifestType.isScan();
+        return getString("_UI_ManifestType_type");
     }
 
     /**
@@ -159,9 +135,6 @@ public class ManifestTypeItemProvider
         updateChildren(notification);
 
         switch (notification.getFeatureID(ManifestType.class)) {
-            case RulesPackage.MANIFEST_TYPE__SCAN:
-                fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
-                return;
             case RulesPackage.MANIFEST_TYPE__CONTAINER:
             case RulesPackage.MANIFEST_TYPE__RESOURCES:
                 fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), true, false));

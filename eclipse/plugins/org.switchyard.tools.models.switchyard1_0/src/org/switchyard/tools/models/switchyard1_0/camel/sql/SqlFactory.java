@@ -22,6 +22,15 @@ public interface SqlFactory extends EFactory {
     SqlFactory eINSTANCE = org.switchyard.tools.models.switchyard1_0.camel.sql.impl.SqlFactoryImpl.init();
 
     /**
+     * Returns a new object of class '<em>Base Camel Binding</em>'.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @return a new object of class '<em>Base Camel Binding</em>'.
+     * @generated
+     */
+    BaseCamelBinding createBaseCamelBinding();
+
+    /**
      * Returns a new object of class '<em>Camel Sql Binding Type</em>'.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->

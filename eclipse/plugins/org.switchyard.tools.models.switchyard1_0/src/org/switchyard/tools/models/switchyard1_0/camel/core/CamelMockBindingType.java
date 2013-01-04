@@ -11,7 +11,7 @@ package org.switchyard.tools.models.switchyard1_0.camel.core;
  * <p>
  * The following features are supported:
  * <ul>
- *   <li>{@link org.switchyard.tools.models.switchyard1_0.camel.core.CamelMockBindingType#getNameElement <em>Name Element</em>}</li>
+ *   <li>{@link org.switchyard.tools.models.switchyard1_0.camel.core.CamelMockBindingType#getCamelBindingName <em>Camel Binding Name</em>}</li>
  *   <li>{@link org.switchyard.tools.models.switchyard1_0.camel.core.CamelMockBindingType#getReportGroup <em>Report Group</em>}</li>
  * </ul>
  * </p>
@@ -22,31 +22,31 @@ package org.switchyard.tools.models.switchyard1_0.camel.core;
  */
 public interface CamelMockBindingType extends BaseCamelBinding {
     /**
-     * Returns the value of the '<em><b>Name Element</b></em>' attribute.
+     * Returns the value of the '<em><b>Camel Binding Name</b></em>' attribute.
      * <!-- begin-user-doc -->
      * <p>
-     * If the meaning of the '<em>Name Element</em>' attribute isn't clear,
+     * If the meaning of the '<em>Camel Binding Name</em>' attribute isn't clear,
      * there really should be more of a description here...
      * </p>
      * <!-- end-user-doc -->
-     * @return the value of the '<em>Name Element</em>' attribute.
-     * @see #setNameElement(String)
-     * @see org.switchyard.tools.models.switchyard1_0.camel.core.CorePackage#getCamelMockBindingType_NameElement()
+     * @return the value of the '<em>Camel Binding Name</em>' attribute.
+     * @see #setCamelBindingName(String)
+     * @see org.switchyard.tools.models.switchyard1_0.camel.core.CorePackage#getCamelMockBindingType_CamelBindingName()
      * @model dataType="org.eclipse.emf.ecore.xml.type.String" required="true"
      *        extendedMetaData="kind='element' name='name' namespace='##targetNamespace'"
      * @generated
      */
-    String getNameElement();
+    String getCamelBindingName();
 
     /**
-     * Sets the value of the '{@link org.switchyard.tools.models.switchyard1_0.camel.core.CamelMockBindingType#getNameElement <em>Name Element</em>}' attribute.
+     * Sets the value of the '{@link org.switchyard.tools.models.switchyard1_0.camel.core.CamelMockBindingType#getCamelBindingName <em>Camel Binding Name</em>}' attribute.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @param value the new value of the '<em>Name Element</em>' attribute.
-     * @see #getNameElement()
+     * @param value the new value of the '<em>Camel Binding Name</em>' attribute.
+     * @see #getCamelBindingName()
      * @generated
      */
-    void setNameElement(String value);
+    void setCamelBindingName(String value);
 
     /**
      * Returns the value of the '<em><b>Report Group</b></em>' attribute.

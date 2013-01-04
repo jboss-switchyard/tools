@@ -754,7 +754,7 @@
      <component
            category="gateway"
            id="org.switchyard.components:switchyard-component-camel-quartz"
-           name="Scheduler">
+           name="Scheduling">
         <description>
            Provides support for Camel Quartz gateways.
         </description>

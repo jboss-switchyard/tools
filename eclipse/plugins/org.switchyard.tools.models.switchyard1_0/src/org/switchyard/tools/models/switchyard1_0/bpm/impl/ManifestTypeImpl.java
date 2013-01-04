@@ -26,7 +26,6 @@ import org.switchyard.tools.models.switchyard1_0.bpm.ResourcesType;
  * <ul>
  *   <li>{@link org.switchyard.tools.models.switchyard1_0.bpm.impl.ManifestTypeImpl#getContainer <em>Container</em>}</li>
  *   <li>{@link org.switchyard.tools.models.switchyard1_0.bpm.impl.ManifestTypeImpl#getResources <em>Resources</em>}</li>
- *   <li>{@link org.switchyard.tools.models.switchyard1_0.bpm.impl.ManifestTypeImpl#isScan <em>Scan</em>}</li>
  * </ul>
  * </p>
  *
@@ -52,35 +51,6 @@ public class ManifestTypeImpl extends CommonExtensionBaseImpl implements Manifes
      * @ordered
      */
     protected ResourcesType resources;
-
-    /**
-     * The default value of the '{@link #isScan() <em>Scan</em>}' attribute.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @see #isScan()
-     * @generated
-     * @ordered
-     */
-    protected static final boolean SCAN_EDEFAULT = false;
-
-    /**
-     * The cached value of the '{@link #isScan() <em>Scan</em>}' attribute.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @see #isScan()
-     * @generated
-     * @ordered
-     */
-    protected boolean scan = SCAN_EDEFAULT;
-
-    /**
-     * This is true if the Scan attribute has been set.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     * @ordered
-     */
-    protected boolean scanESet;
 
     /**
      * <!-- begin-user-doc -->
@@ -192,52 +162,6 @@ public class ManifestTypeImpl extends CommonExtensionBaseImpl implements Manifes
      * <!-- end-user-doc -->
      * @generated
      */
-    public boolean isScan() {
-        return scan;
-    }
-
-    /**
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    public void setScan(boolean newScan) {
-        boolean oldScan = scan;
-        scan = newScan;
-        boolean oldScanESet = scanESet;
-        scanESet = true;
-        if (eNotificationRequired())
-            eNotify(new ENotificationImpl(this, Notification.SET, BPMPackage.MANIFEST_TYPE__SCAN, oldScan, scan, !oldScanESet));
-    }
-
-    /**
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    public void unsetScan() {
-        boolean oldScan = scan;
-        boolean oldScanESet = scanESet;
-        scan = SCAN_EDEFAULT;
-        scanESet = false;
-        if (eNotificationRequired())
-            eNotify(new ENotificationImpl(this, Notification.UNSET, BPMPackage.MANIFEST_TYPE__SCAN, oldScan, SCAN_EDEFAULT, oldScanESet));
-    }
-
-    /**
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    public boolean isSetScan() {
-        return scanESet;
-    }
-
-    /**
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
     @Override
     public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
         switch (featureID) {
@@ -261,8 +185,6 @@ public class ManifestTypeImpl extends CommonExtensionBaseImpl implements Manifes
                 return getContainer();
             case BPMPackage.MANIFEST_TYPE__RESOURCES:
                 return getResources();
-            case BPMPackage.MANIFEST_TYPE__SCAN:
-                return isScan();
         }
         return super.eGet(featureID, resolve, coreType);
     }
@@ -280,9 +202,6 @@ public class ManifestTypeImpl extends CommonExtensionBaseImpl implements Manifes
                 return;
             case BPMPackage.MANIFEST_TYPE__RESOURCES:
                 setResources((ResourcesType)newValue);
-                return;
-            case BPMPackage.MANIFEST_TYPE__SCAN:
-                setScan((Boolean)newValue);
                 return;
         }
         super.eSet(featureID, newValue);
@@ -302,9 +221,6 @@ public class ManifestTypeImpl extends CommonExtensionBaseImpl implements Manifes
             case BPMPackage.MANIFEST_TYPE__RESOURCES:
                 setResources((ResourcesType)null);
                 return;
-            case BPMPackage.MANIFEST_TYPE__SCAN:
-                unsetScan();
-                return;
         }
         super.eUnset(featureID);
     }
@@ -321,26 +237,8 @@ public class ManifestTypeImpl extends CommonExtensionBaseImpl implements Manifes
                 return container != null;
             case BPMPackage.MANIFEST_TYPE__RESOURCES:
                 return resources != null;
-            case BPMPackage.MANIFEST_TYPE__SCAN:
-                return isSetScan();
         }
         return super.eIsSet(featureID);
-    }
-
-    /**
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    @Override
-    public String toString() {
-        if (eIsProxy()) return super.toString();
-
-        StringBuffer result = new StringBuffer(super.toString());
-        result.append(" (scan: ");
-        if (scanESet) result.append(scan); else result.append("<unset>");
-        result.append(')');
-        return result.toString();
     }
 
 } //ManifestTypeImpl

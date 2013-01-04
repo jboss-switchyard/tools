@@ -311,6 +311,24 @@ public class QuartzPackageImpl extends EPackageImpl implements QuartzPackage {
      * <!-- end-user-doc -->
      * @generated
      */
+    public EReference getBaseCamelBinding_CamelContextMapper() {
+        return (EReference)baseCamelBindingEClass.getEStructuralFeatures().get(0);
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public EReference getBaseCamelBinding_CamelMessageComposer() {
+        return (EReference)baseCamelBindingEClass.getEStructuralFeatures().get(1);
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
     public EClass getCamelQuartzBindingType() {
         return camelQuartzBindingTypeEClass;
     }
@@ -320,7 +338,7 @@ public class QuartzPackageImpl extends EPackageImpl implements QuartzPackage {
      * <!-- end-user-doc -->
      * @generated
      */
-    public EAttribute getCamelQuartzBindingType_NameElement() {
+    public EAttribute getCamelQuartzBindingType_CamelBindingName() {
         return (EAttribute)camelQuartzBindingTypeEClass.getEStructuralFeatures().get(0);
     }
 
@@ -434,9 +452,11 @@ public class QuartzPackageImpl extends EPackageImpl implements QuartzPackage {
 
         // Create classes and their features
         baseCamelBindingEClass = createEClass(BASE_CAMEL_BINDING);
+        createEReference(baseCamelBindingEClass, BASE_CAMEL_BINDING__CAMEL_CONTEXT_MAPPER);
+        createEReference(baseCamelBindingEClass, BASE_CAMEL_BINDING__CAMEL_MESSAGE_COMPOSER);
 
         camelQuartzBindingTypeEClass = createEClass(CAMEL_QUARTZ_BINDING_TYPE);
-        createEAttribute(camelQuartzBindingTypeEClass, CAMEL_QUARTZ_BINDING_TYPE__NAME_ELEMENT);
+        createEAttribute(camelQuartzBindingTypeEClass, CAMEL_QUARTZ_BINDING_TYPE__CAMEL_BINDING_NAME);
         createEAttribute(camelQuartzBindingTypeEClass, CAMEL_QUARTZ_BINDING_TYPE__CRON);
         createEAttribute(camelQuartzBindingTypeEClass, CAMEL_QUARTZ_BINDING_TYPE__STATEFUL);
         createEAttribute(camelQuartzBindingTypeEClass, CAMEL_QUARTZ_BINDING_TYPE__TRIGGER_START_TIME);
@@ -485,10 +505,12 @@ public class QuartzPackageImpl extends EPackageImpl implements QuartzPackage {
         camelQuartzBindingTypeEClass.getESuperTypes().add(this.getBaseCamelBinding());
 
         // Initialize classes and features; add operations and parameters
-        initEClass(baseCamelBindingEClass, BaseCamelBinding.class, "BaseCamelBinding", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+        initEClass(baseCamelBindingEClass, BaseCamelBinding.class, "BaseCamelBinding", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+        initEReference(getBaseCamelBinding_CamelContextMapper(), theSwitchyardPackage.getContextMapperType(), null, "camelContextMapper", null, 0, 1, BaseCamelBinding.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+        initEReference(getBaseCamelBinding_CamelMessageComposer(), theSwitchyardPackage.getMessageComposerType(), null, "camelMessageComposer", null, 0, 1, BaseCamelBinding.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
         initEClass(camelQuartzBindingTypeEClass, CamelQuartzBindingType.class, "CamelQuartzBindingType", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-        initEAttribute(getCamelQuartzBindingType_NameElement(), theXMLTypePackage.getString(), "nameElement", null, 1, 1, CamelQuartzBindingType.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+        initEAttribute(getCamelQuartzBindingType_CamelBindingName(), theXMLTypePackage.getString(), "camelBindingName", null, 1, 1, CamelQuartzBindingType.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
         initEAttribute(getCamelQuartzBindingType_Cron(), theXMLTypePackage.getString(), "cron", null, 1, 1, CamelQuartzBindingType.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
         initEAttribute(getCamelQuartzBindingType_Stateful(), theXMLTypePackage.getBooleanObject(), "stateful", null, 0, 1, CamelQuartzBindingType.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
         initEAttribute(getCamelQuartzBindingType_TriggerStartTime(), theXMLTypePackage.getDateTime(), "triggerStartTime", null, 0, 1, CamelQuartzBindingType.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
@@ -524,6 +546,22 @@ public class QuartzPackageImpl extends EPackageImpl implements QuartzPackage {
              "kind", "elementOnly"
            });		
         addAnnotation
+          (getBaseCamelBinding_CamelContextMapper(), 
+           source, 
+           new String[] {
+             "kind", "element",
+             "name", "contextMapper",
+             "namespace", "##targetNamespace"
+           });		
+        addAnnotation
+          (getBaseCamelBinding_CamelMessageComposer(), 
+           source, 
+           new String[] {
+             "kind", "element",
+             "name", "messageComposer",
+             "namespace", "##targetNamespace"
+           });		
+        addAnnotation
           (camelQuartzBindingTypeEClass, 
            source, 
            new String[] {
@@ -531,7 +569,7 @@ public class QuartzPackageImpl extends EPackageImpl implements QuartzPackage {
              "kind", "elementOnly"
            });		
         addAnnotation
-          (getCamelQuartzBindingType_NameElement(), 
+          (getCamelQuartzBindingType_CamelBindingName(), 
            source, 
            new String[] {
              "kind", "element",

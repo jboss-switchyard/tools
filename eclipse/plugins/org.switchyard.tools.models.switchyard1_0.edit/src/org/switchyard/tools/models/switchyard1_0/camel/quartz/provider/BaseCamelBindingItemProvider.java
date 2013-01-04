@@ -11,6 +11,9 @@ import org.eclipse.emf.common.notify.Notification;
 
 import org.eclipse.emf.common.util.ResourceLocator;
 
+import org.eclipse.emf.ecore.EStructuralFeature;
+import org.eclipse.emf.ecore.util.FeatureMap;
+import org.eclipse.emf.ecore.util.FeatureMapUtil;
 import org.eclipse.emf.edit.provider.IEditingDomainItemProvider;
 import org.eclipse.emf.edit.provider.IItemLabelProvider;
 import org.eclipse.emf.edit.provider.IItemPropertyDescriptor;
@@ -18,10 +21,19 @@ import org.eclipse.emf.edit.provider.IItemPropertySource;
 import org.eclipse.emf.edit.provider.IStructuredItemContentProvider;
 import org.eclipse.emf.edit.provider.ITreeItemContentProvider;
 
+import org.eclipse.emf.edit.provider.ViewerNotification;
 import org.switchyard.tools.models.switchyard1_0.bean.provider.Switchyard_1EditPlugin;
 
 import org.switchyard.tools.models.switchyard1_0.camel.quartz.BaseCamelBinding;
 
+import org.switchyard.tools.models.switchyard1_0.camel.quartz.QuartzPackage;
+import org.switchyard.tools.models.switchyard1_0.hornetq.HornetQFactory;
+import org.switchyard.tools.models.switchyard1_0.http.HttpFactory;
+import org.switchyard.tools.models.switchyard1_0.jca.JcaFactory;
+import org.switchyard.tools.models.switchyard1_0.resteasy.ResteasyFactory;
+import org.switchyard.tools.models.switchyard1_0.soap.SOAPFactory;
+import org.switchyard.tools.models.switchyard1_0.switchyard.SwitchyardFactory;
+import org.switchyard.tools.models.switchyard1_0.switchyard.SwitchyardPackage;
 import org.switchyard.tools.models.switchyard1_0.switchyard.provider.SwitchYardBindingTypeItemProvider;
 
 /**
@@ -64,6 +76,37 @@ public class BaseCamelBindingItemProvider
     }
 
     /**
+     * This specifies how to implement {@link #getChildren} and is used to deduce an appropriate feature for an
+     * {@link org.eclipse.emf.edit.command.AddCommand}, {@link org.eclipse.emf.edit.command.RemoveCommand} or
+     * {@link org.eclipse.emf.edit.command.MoveCommand} in {@link #createCommand}.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    @Override
+    public Collection<? extends EStructuralFeature> getChildrenFeatures(Object object) {
+        if (childrenFeatures == null) {
+            super.getChildrenFeatures(object);
+            childrenFeatures.add(QuartzPackage.Literals.BASE_CAMEL_BINDING__CAMEL_CONTEXT_MAPPER);
+            childrenFeatures.add(QuartzPackage.Literals.BASE_CAMEL_BINDING__CAMEL_MESSAGE_COMPOSER);
+        }
+        return childrenFeatures;
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    @Override
+    protected EStructuralFeature getChildFeature(Object object, Object child) {
+        // Check the type of the specified child object and return the proper feature to use for
+        // adding (see {@link AddCommand}) it as a child.
+
+        return super.getChildFeature(object, child);
+    }
+
+    /**
      * This returns the label text for the adapted class.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
@@ -87,6 +130,13 @@ public class BaseCamelBindingItemProvider
     @Override
     public void notifyChanged(Notification notification) {
         updateChildren(notification);
+
+        switch (notification.getFeatureID(BaseCamelBinding.class)) {
+            case QuartzPackage.BASE_CAMEL_BINDING__CAMEL_CONTEXT_MAPPER:
+            case QuartzPackage.BASE_CAMEL_BINDING__CAMEL_MESSAGE_COMPOSER:
+                fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), true, false));
+                return;
+        }
         super.notifyChanged(notification);
     }
 
@@ -100,6 +150,97 @@ public class BaseCamelBindingItemProvider
     @Override
     protected void collectNewChildDescriptors(Collection<Object> newChildDescriptors, Object object) {
         super.collectNewChildDescriptors(newChildDescriptors, object);
+
+        newChildDescriptors.add
+            (createChildParameter
+                (QuartzPackage.Literals.BASE_CAMEL_BINDING__CAMEL_CONTEXT_MAPPER,
+                 SwitchyardFactory.eINSTANCE.createContextMapperType()));
+
+        newChildDescriptors.add
+            (createChildParameter
+                (QuartzPackage.Literals.BASE_CAMEL_BINDING__CAMEL_CONTEXT_MAPPER,
+                 HornetQFactory.eINSTANCE.createHornetQContextMapperType()));
+
+        newChildDescriptors.add
+            (createChildParameter
+                (QuartzPackage.Literals.BASE_CAMEL_BINDING__CAMEL_CONTEXT_MAPPER,
+                 SOAPFactory.eINSTANCE.createContextMapperType()));
+
+        newChildDescriptors.add
+            (createChildParameter
+                (QuartzPackage.Literals.BASE_CAMEL_BINDING__CAMEL_CONTEXT_MAPPER,
+                 JcaFactory.eINSTANCE.createJCAContextMapperType()));
+
+        newChildDescriptors.add
+            (createChildParameter
+                (QuartzPackage.Literals.BASE_CAMEL_BINDING__CAMEL_CONTEXT_MAPPER,
+                 ResteasyFactory.eINSTANCE.createRESTContextMapperType()));
+
+        newChildDescriptors.add
+            (createChildParameter
+                (QuartzPackage.Literals.BASE_CAMEL_BINDING__CAMEL_CONTEXT_MAPPER,
+                 HttpFactory.eINSTANCE.createHttpContextMapperType()));
+
+        newChildDescriptors.add
+            (createChildParameter
+                (QuartzPackage.Literals.BASE_CAMEL_BINDING__CAMEL_MESSAGE_COMPOSER,
+                 SwitchyardFactory.eINSTANCE.createMessageComposerType()));
+
+        newChildDescriptors.add
+            (createChildParameter
+                (QuartzPackage.Literals.BASE_CAMEL_BINDING__CAMEL_MESSAGE_COMPOSER,
+                 HornetQFactory.eINSTANCE.createHornetQMessageComposerType()));
+
+        newChildDescriptors.add
+            (createChildParameter
+                (QuartzPackage.Literals.BASE_CAMEL_BINDING__CAMEL_MESSAGE_COMPOSER,
+                 SOAPFactory.eINSTANCE.createSOAPMessageComposerType()));
+
+        newChildDescriptors.add
+            (createChildParameter
+                (QuartzPackage.Literals.BASE_CAMEL_BINDING__CAMEL_MESSAGE_COMPOSER,
+                 JcaFactory.eINSTANCE.createJCAMessageComposerType()));
+
+        newChildDescriptors.add
+            (createChildParameter
+                (QuartzPackage.Literals.BASE_CAMEL_BINDING__CAMEL_MESSAGE_COMPOSER,
+                 ResteasyFactory.eINSTANCE.createRESTMessageComposerType()));
+
+        newChildDescriptors.add
+            (createChildParameter
+                (QuartzPackage.Literals.BASE_CAMEL_BINDING__CAMEL_MESSAGE_COMPOSER,
+                 HttpFactory.eINSTANCE.createHttpMessageComposerType()));
+    }
+
+    /**
+     * This returns the label text for {@link org.eclipse.emf.edit.command.CreateChildCommand}.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    @Override
+    public String getCreateChildText(Object owner, Object feature, Object child, Collection<?> selection) {
+        Object childFeature = feature;
+        Object childObject = child;
+
+        if (childFeature instanceof EStructuralFeature && FeatureMapUtil.isFeatureMap((EStructuralFeature)childFeature)) {
+            FeatureMap.Entry entry = (FeatureMap.Entry)childObject;
+            childFeature = entry.getEStructuralFeature();
+            childObject = entry.getValue();
+        }
+
+        boolean qualify =
+            childFeature == SwitchyardPackage.Literals.SWITCH_YARD_BINDING_TYPE__CONTEXT_MAPPER ||
+            childFeature == QuartzPackage.Literals.BASE_CAMEL_BINDING__CAMEL_CONTEXT_MAPPER ||
+            childFeature == SwitchyardPackage.Literals.SWITCH_YARD_BINDING_TYPE__MESSAGE_COMPOSER ||
+            childFeature == QuartzPackage.Literals.BASE_CAMEL_BINDING__CAMEL_MESSAGE_COMPOSER;
+
+        if (qualify) {
+            return getString
+                ("_UI_CreateChild_text2",
+                 new Object[] { getTypeText(childObject), getFeatureText(childFeature), getTypeText(owner) });
+        }
+        return super.getCreateChildText(owner, feature, child, selection);
     }
 
     /**

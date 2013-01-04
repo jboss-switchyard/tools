@@ -22,6 +22,15 @@ public interface JpaFactory extends EFactory {
     JpaFactory eINSTANCE = org.switchyard.tools.models.switchyard1_0.camel.jpa.impl.JpaFactoryImpl.init();
 
     /**
+     * Returns a new object of class '<em>Base Camel Binding</em>'.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @return a new object of class '<em>Base Camel Binding</em>'.
+     * @generated
+     */
+    BaseCamelBinding createBaseCamelBinding();
+
+    /**
      * Returns a new object of class '<em>Document Root</em>'.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->

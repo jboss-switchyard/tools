@@ -329,6 +329,24 @@ public class FilePackageImpl extends EPackageImpl implements FilePackage {
      * <!-- end-user-doc -->
      * @generated
      */
+    public EReference getBaseCamelBinding_CamelContextMapper() {
+        return (EReference)baseCamelBindingEClass.getEStructuralFeatures().get(0);
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public EReference getBaseCamelBinding_CamelMessageComposer() {
+        return (EReference)baseCamelBindingEClass.getEStructuralFeatures().get(1);
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
     public EClass getCamelFileBindingType() {
         return camelFileBindingTypeEClass;
     }
@@ -821,6 +839,8 @@ public class FilePackageImpl extends EPackageImpl implements FilePackage {
 
         // Create classes and their features
         baseCamelBindingEClass = createEClass(BASE_CAMEL_BINDING);
+        createEReference(baseCamelBindingEClass, BASE_CAMEL_BINDING__CAMEL_CONTEXT_MAPPER);
+        createEReference(baseCamelBindingEClass, BASE_CAMEL_BINDING__CAMEL_MESSAGE_COMPOSER);
 
         camelFileBindingTypeEClass = createEClass(CAMEL_FILE_BINDING_TYPE);
         createEAttribute(camelFileBindingTypeEClass, CAMEL_FILE_BINDING_TYPE__DIRECTORY);
@@ -919,7 +939,9 @@ public class FilePackageImpl extends EPackageImpl implements FilePackage {
         camelFileBindingTypeEClass.getESuperTypes().add(this.getBaseCamelBinding());
 
         // Initialize classes and features; add operations and parameters
-        initEClass(baseCamelBindingEClass, BaseCamelBinding.class, "BaseCamelBinding", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+        initEClass(baseCamelBindingEClass, BaseCamelBinding.class, "BaseCamelBinding", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+        initEReference(getBaseCamelBinding_CamelContextMapper(), theSwitchyardPackage.getContextMapperType(), null, "camelContextMapper", null, 0, 1, BaseCamelBinding.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+        initEReference(getBaseCamelBinding_CamelMessageComposer(), theSwitchyardPackage.getMessageComposerType(), null, "camelMessageComposer", null, 0, 1, BaseCamelBinding.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
         initEClass(camelFileBindingTypeEClass, CamelFileBindingType.class, "CamelFileBindingType", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
         initEAttribute(getCamelFileBindingType_Directory(), theXMLTypePackage.getString(), "directory", null, 1, 1, CamelFileBindingType.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
@@ -1010,6 +1032,22 @@ public class FilePackageImpl extends EPackageImpl implements FilePackage {
            new String[] {
              "name", "BaseCamelBinding",
              "kind", "elementOnly"
+           });		
+        addAnnotation
+          (getBaseCamelBinding_CamelContextMapper(), 
+           source, 
+           new String[] {
+             "kind", "element",
+             "name", "contextMapper",
+             "namespace", "##targetNamespace"
+           });		
+        addAnnotation
+          (getBaseCamelBinding_CamelMessageComposer(), 
+           source, 
+           new String[] {
+             "kind", "element",
+             "name", "messageComposer",
+             "namespace", "##targetNamespace"
            });		
         addAnnotation
           (camelFileBindingTypeEClass, 

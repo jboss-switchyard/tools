@@ -57,6 +57,7 @@ public class MailFactoryImpl extends EFactoryImpl implements MailFactory {
     @Override
     public EObject create(EClass eClass) {
         switch (eClass.getClassifierID()) {
+            case MailPackage.BASE_CAMEL_BINDING: return createBaseCamelBinding();
             case MailPackage.CAMEL_MAIL_BINDING_TYPE: return createCamelMailBindingType();
             case MailPackage.DOCUMENT_ROOT: return createDocumentRoot();
             case MailPackage.CAMEL_MAIL_CONSUMER_TYPE: return createCamelMailConsumerType();
@@ -106,6 +107,16 @@ public class MailFactoryImpl extends EFactoryImpl implements MailFactory {
             default:
                 throw new IllegalArgumentException("The datatype '" + eDataType.getName() + "' is not a valid classifier");
         }
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public BaseCamelBinding createBaseCamelBinding() {
+        BaseCamelBindingImpl baseCamelBinding = new BaseCamelBindingImpl();
+        return baseCamelBinding;
     }
 
     /**

@@ -72,6 +72,29 @@ public class FileItemProviderAdapterFactory extends FileAdapterFactory implement
     }
 
     /**
+     * This keeps track of the one adapter used for all {@link org.switchyard.tools.models.switchyard1_0.camel.file.BaseCamelBinding} instances.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    protected BaseCamelBindingItemProvider baseCamelBindingItemProvider;
+
+    /**
+     * This creates an adapter for a {@link org.switchyard.tools.models.switchyard1_0.camel.file.BaseCamelBinding}.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    @Override
+    public Adapter createBaseCamelBindingAdapter() {
+        if (baseCamelBindingItemProvider == null) {
+            baseCamelBindingItemProvider = new BaseCamelBindingItemProvider(this);
+        }
+
+        return baseCamelBindingItemProvider;
+    }
+
+    /**
      * This keeps track of the one adapter used for all {@link org.switchyard.tools.models.switchyard1_0.camel.file.CamelFileBindingType} instances.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
@@ -262,6 +285,7 @@ public class FileItemProviderAdapterFactory extends FileAdapterFactory implement
      * @generated
      */
     public void dispose() {
+        if (baseCamelBindingItemProvider != null) baseCamelBindingItemProvider.dispose();
         if (camelFileBindingTypeItemProvider != null) camelFileBindingTypeItemProvider.dispose();
         if (fileConsumerTypeItemProvider != null) fileConsumerTypeItemProvider.dispose();
         if (fileProducerTypeItemProvider != null) fileProducerTypeItemProvider.dispose();

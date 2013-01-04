@@ -296,6 +296,24 @@ public class AmqpPackageImpl extends EPackageImpl implements AmqpPackage {
      * <!-- end-user-doc -->
      * @generated
      */
+    public EReference getBaseCamelBinding_CamelContextMapper() {
+        return (EReference)baseCamelBindingEClass.getEStructuralFeatures().get(0);
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public EReference getBaseCamelBinding_CamelMessageComposer() {
+        return (EReference)baseCamelBindingEClass.getEStructuralFeatures().get(1);
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
     public EClass getCamelAmqpBindingType() {
         return camelAmqpBindingTypeEClass;
     }
@@ -563,6 +581,8 @@ public class AmqpPackageImpl extends EPackageImpl implements AmqpPackage {
 
         // Create classes and their features
         baseCamelBindingEClass = createEClass(BASE_CAMEL_BINDING);
+        createEReference(baseCamelBindingEClass, BASE_CAMEL_BINDING__CAMEL_CONTEXT_MAPPER);
+        createEReference(baseCamelBindingEClass, BASE_CAMEL_BINDING__CAMEL_MESSAGE_COMPOSER);
 
         camelAmqpBindingTypeEClass = createEClass(CAMEL_AMQP_BINDING_TYPE);
         createEAttribute(camelAmqpBindingTypeEClass, CAMEL_AMQP_BINDING_TYPE__QUEUE);
@@ -630,7 +650,9 @@ public class AmqpPackageImpl extends EPackageImpl implements AmqpPackage {
         camelAmqpBindingTypeEClass.getESuperTypes().add(this.getBaseCamelBinding());
 
         // Initialize classes and features; add operations and parameters
-        initEClass(baseCamelBindingEClass, BaseCamelBinding.class, "BaseCamelBinding", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+        initEClass(baseCamelBindingEClass, BaseCamelBinding.class, "BaseCamelBinding", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+        initEReference(getBaseCamelBinding_CamelContextMapper(), theSwitchyardPackage.getContextMapperType(), null, "camelContextMapper", null, 0, 1, BaseCamelBinding.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+        initEReference(getBaseCamelBinding_CamelMessageComposer(), theSwitchyardPackage.getMessageComposerType(), null, "camelMessageComposer", null, 0, 1, BaseCamelBinding.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
         initEClass(camelAmqpBindingTypeEClass, CamelAmqpBindingType.class, "CamelAmqpBindingType", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
         initEAttribute(getCamelAmqpBindingType_Queue(), theXMLTypePackage.getString(), "queue", null, 0, 1, CamelAmqpBindingType.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
@@ -683,6 +705,22 @@ public class AmqpPackageImpl extends EPackageImpl implements AmqpPackage {
            new String[] {
              "name", "BaseCamelBinding",
              "kind", "elementOnly"
+           });		
+        addAnnotation
+          (getBaseCamelBinding_CamelContextMapper(), 
+           source, 
+           new String[] {
+             "kind", "element",
+             "name", "contextMapper",
+             "namespace", "##targetNamespace"
+           });		
+        addAnnotation
+          (getBaseCamelBinding_CamelMessageComposer(), 
+           source, 
+           new String[] {
+             "kind", "element",
+             "name", "messageComposer",
+             "namespace", "##targetNamespace"
            });		
         addAnnotation
           (camelAmqpBindingTypeEClass, 

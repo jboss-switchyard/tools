@@ -669,13 +669,31 @@ public interface BPMPackage extends EPackage {
     int CONTAINER_TYPE__RELEASE_ID = ScaPackage.COMMON_EXTENSION_BASE_FEATURE_COUNT + 1;
 
     /**
+     * The feature id for the '<em><b>Scan</b></em>' attribute.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int CONTAINER_TYPE__SCAN = ScaPackage.COMMON_EXTENSION_BASE_FEATURE_COUNT + 2;
+
+    /**
+     * The feature id for the '<em><b>Scan Interval</b></em>' attribute.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int CONTAINER_TYPE__SCAN_INTERVAL = ScaPackage.COMMON_EXTENSION_BASE_FEATURE_COUNT + 3;
+
+    /**
      * The feature id for the '<em><b>Session Name</b></em>' attribute.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @generated
      * @ordered
      */
-    int CONTAINER_TYPE__SESSION_NAME = ScaPackage.COMMON_EXTENSION_BASE_FEATURE_COUNT + 2;
+    int CONTAINER_TYPE__SESSION_NAME = ScaPackage.COMMON_EXTENSION_BASE_FEATURE_COUNT + 4;
 
     /**
      * The number of structural features of the '<em>Container Type</em>' class.
@@ -684,7 +702,7 @@ public interface BPMPackage extends EPackage {
      * @generated
      * @ordered
      */
-    int CONTAINER_TYPE_FEATURE_COUNT = ScaPackage.COMMON_EXTENSION_BASE_FEATURE_COUNT + 3;
+    int CONTAINER_TYPE_FEATURE_COUNT = ScaPackage.COMMON_EXTENSION_BASE_FEATURE_COUNT + 5;
 
     /**
      * The meta object id for the '{@link org.switchyard.tools.models.switchyard1_0.bpm.impl.DocumentRootImpl <em>Document Root</em>}' class.
@@ -1170,22 +1188,13 @@ public interface BPMPackage extends EPackage {
     int MANIFEST_TYPE__RESOURCES = ScaPackage.COMMON_EXTENSION_BASE_FEATURE_COUNT + 1;
 
     /**
-     * The feature id for the '<em><b>Scan</b></em>' attribute.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     * @ordered
-     */
-    int MANIFEST_TYPE__SCAN = ScaPackage.COMMON_EXTENSION_BASE_FEATURE_COUNT + 2;
-
-    /**
      * The number of structural features of the '<em>Manifest Type</em>' class.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @generated
      * @ordered
      */
-    int MANIFEST_TYPE_FEATURE_COUNT = ScaPackage.COMMON_EXTENSION_BASE_FEATURE_COUNT + 3;
+    int MANIFEST_TYPE_FEATURE_COUNT = ScaPackage.COMMON_EXTENSION_BASE_FEATURE_COUNT + 2;
 
     /**
      * The meta object id for the '{@link org.switchyard.tools.models.switchyard1_0.bpm.impl.MappingsTypeImpl <em>Mappings Type</em>}' class.
@@ -2016,6 +2025,28 @@ public interface BPMPackage extends EPackage {
     EAttribute getContainerType_ReleaseId();
 
     /**
+     * Returns the meta object for the attribute '{@link org.switchyard.tools.models.switchyard1_0.bpm.ContainerType#isScan <em>Scan</em>}'.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @return the meta object for the attribute '<em>Scan</em>'.
+     * @see org.switchyard.tools.models.switchyard1_0.bpm.ContainerType#isScan()
+     * @see #getContainerType()
+     * @generated
+     */
+    EAttribute getContainerType_Scan();
+
+    /**
+     * Returns the meta object for the attribute '{@link org.switchyard.tools.models.switchyard1_0.bpm.ContainerType#getScanInterval <em>Scan Interval</em>}'.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @return the meta object for the attribute '<em>Scan Interval</em>'.
+     * @see org.switchyard.tools.models.switchyard1_0.bpm.ContainerType#getScanInterval()
+     * @see #getContainerType()
+     * @generated
+     */
+    EAttribute getContainerType_ScanInterval();
+
+    /**
      * Returns the meta object for the attribute '{@link org.switchyard.tools.models.switchyard1_0.bpm.ContainerType#getSessionName <em>Session Name</em>}'.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
@@ -2437,17 +2468,6 @@ public interface BPMPackage extends EPackage {
      * @generated
      */
     EReference getManifestType_Resources();
-
-    /**
-     * Returns the meta object for the attribute '{@link org.switchyard.tools.models.switchyard1_0.bpm.ManifestType#isScan <em>Scan</em>}'.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @return the meta object for the attribute '<em>Scan</em>'.
-     * @see org.switchyard.tools.models.switchyard1_0.bpm.ManifestType#isScan()
-     * @see #getManifestType()
-     * @generated
-     */
-    EAttribute getManifestType_Scan();
 
     /**
      * Returns the meta object for class '{@link org.switchyard.tools.models.switchyard1_0.bpm.MappingsType <em>Mappings Type</em>}'.
@@ -3046,6 +3066,22 @@ public interface BPMPackage extends EPackage {
         EAttribute CONTAINER_TYPE__RELEASE_ID = eINSTANCE.getContainerType_ReleaseId();
 
         /**
+         * The meta object literal for the '<em><b>Scan</b></em>' attribute feature.
+         * <!-- begin-user-doc -->
+         * <!-- end-user-doc -->
+         * @generated
+         */
+        EAttribute CONTAINER_TYPE__SCAN = eINSTANCE.getContainerType_Scan();
+
+        /**
+         * The meta object literal for the '<em><b>Scan Interval</b></em>' attribute feature.
+         * <!-- begin-user-doc -->
+         * <!-- end-user-doc -->
+         * @generated
+         */
+        EAttribute CONTAINER_TYPE__SCAN_INTERVAL = eINSTANCE.getContainerType_ScanInterval();
+
+        /**
          * The meta object literal for the '<em><b>Session Name</b></em>' attribute feature.
          * <!-- begin-user-doc -->
          * <!-- end-user-doc -->
@@ -3368,14 +3404,6 @@ public interface BPMPackage extends EPackage {
          * @generated
          */
         EReference MANIFEST_TYPE__RESOURCES = eINSTANCE.getManifestType_Resources();
-
-        /**
-         * The meta object literal for the '<em><b>Scan</b></em>' attribute feature.
-         * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
-         * @generated
-         */
-        EAttribute MANIFEST_TYPE__SCAN = eINSTANCE.getManifestType_Scan();
 
         /**
          * The meta object literal for the '{@link org.switchyard.tools.models.switchyard1_0.bpm.impl.MappingsTypeImpl <em>Mappings Type</em>}' class.

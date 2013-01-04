@@ -57,6 +57,7 @@ public class FileFactoryImpl extends EFactoryImpl implements FileFactory {
     @Override
     public EObject create(EClass eClass) {
         switch (eClass.getClassifierID()) {
+            case FilePackage.BASE_CAMEL_BINDING: return createBaseCamelBinding();
             case FilePackage.CAMEL_FILE_BINDING_TYPE: return createCamelFileBindingType();
             case FilePackage.FILE_CONSUMER_TYPE: return createFileConsumerType();
             case FilePackage.FILE_PRODUCER_TYPE: return createFileProducerType();
@@ -98,6 +99,16 @@ public class FileFactoryImpl extends EFactoryImpl implements FileFactory {
             default:
                 throw new IllegalArgumentException("The datatype '" + eDataType.getName() + "' is not a valid classifier");
         }
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public BaseCamelBinding createBaseCamelBinding() {
+        BaseCamelBindingImpl baseCamelBinding = new BaseCamelBindingImpl();
+        return baseCamelBinding;
     }
 
     /**

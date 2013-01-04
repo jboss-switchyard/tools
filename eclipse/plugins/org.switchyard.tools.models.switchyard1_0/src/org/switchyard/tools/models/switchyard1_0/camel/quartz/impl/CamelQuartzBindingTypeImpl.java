@@ -20,7 +20,7 @@ import org.switchyard.tools.models.switchyard1_0.camel.quartz.QuartzPackage;
  * <p>
  * The following features are implemented:
  * <ul>
- *   <li>{@link org.switchyard.tools.models.switchyard1_0.camel.quartz.impl.CamelQuartzBindingTypeImpl#getNameElement <em>Name Element</em>}</li>
+ *   <li>{@link org.switchyard.tools.models.switchyard1_0.camel.quartz.impl.CamelQuartzBindingTypeImpl#getCamelBindingName <em>Camel Binding Name</em>}</li>
  *   <li>{@link org.switchyard.tools.models.switchyard1_0.camel.quartz.impl.CamelQuartzBindingTypeImpl#getCron <em>Cron</em>}</li>
  *   <li>{@link org.switchyard.tools.models.switchyard1_0.camel.quartz.impl.CamelQuartzBindingTypeImpl#getStateful <em>Stateful</em>}</li>
  *   <li>{@link org.switchyard.tools.models.switchyard1_0.camel.quartz.impl.CamelQuartzBindingTypeImpl#getTriggerStartTime <em>Trigger Start Time</em>}</li>
@@ -32,24 +32,24 @@ import org.switchyard.tools.models.switchyard1_0.camel.quartz.QuartzPackage;
  */
 public class CamelQuartzBindingTypeImpl extends BaseCamelBindingImpl implements CamelQuartzBindingType {
     /**
-     * The default value of the '{@link #getNameElement() <em>Name Element</em>}' attribute.
+     * The default value of the '{@link #getCamelBindingName() <em>Camel Binding Name</em>}' attribute.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @see #getNameElement()
+     * @see #getCamelBindingName()
      * @generated
      * @ordered
      */
-    protected static final String NAME_ELEMENT_EDEFAULT = null;
+    protected static final String CAMEL_BINDING_NAME_EDEFAULT = null;
 
     /**
-     * The cached value of the '{@link #getNameElement() <em>Name Element</em>}' attribute.
+     * The cached value of the '{@link #getCamelBindingName() <em>Camel Binding Name</em>}' attribute.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @see #getNameElement()
+     * @see #getCamelBindingName()
      * @generated
      * @ordered
      */
-    protected String nameElement = NAME_ELEMENT_EDEFAULT;
+    protected String camelBindingName = CAMEL_BINDING_NAME_EDEFAULT;
 
     /**
      * The default value of the '{@link #getCron() <em>Cron</em>}' attribute.
@@ -164,8 +164,8 @@ public class CamelQuartzBindingTypeImpl extends BaseCamelBindingImpl implements 
      * <!-- end-user-doc -->
      * @generated
      */
-    public String getNameElement() {
-        return nameElement;
+    public String getCamelBindingName() {
+        return camelBindingName;
     }
 
     /**
@@ -173,11 +173,11 @@ public class CamelQuartzBindingTypeImpl extends BaseCamelBindingImpl implements 
      * <!-- end-user-doc -->
      * @generated
      */
-    public void setNameElement(String newNameElement) {
-        String oldNameElement = nameElement;
-        nameElement = newNameElement;
+    public void setCamelBindingName(String newCamelBindingName) {
+        String oldCamelBindingName = camelBindingName;
+        camelBindingName = newCamelBindingName;
         if (eNotificationRequired())
-            eNotify(new ENotificationImpl(this, Notification.SET, QuartzPackage.CAMEL_QUARTZ_BINDING_TYPE__NAME_ELEMENT, oldNameElement, nameElement));
+            eNotify(new ENotificationImpl(this, Notification.SET, QuartzPackage.CAMEL_QUARTZ_BINDING_TYPE__CAMEL_BINDING_NAME, oldCamelBindingName, camelBindingName));
     }
 
     /**
@@ -297,8 +297,8 @@ public class CamelQuartzBindingTypeImpl extends BaseCamelBindingImpl implements 
     @Override
     public Object eGet(int featureID, boolean resolve, boolean coreType) {
         switch (featureID) {
-            case QuartzPackage.CAMEL_QUARTZ_BINDING_TYPE__NAME_ELEMENT:
-                return getNameElement();
+            case QuartzPackage.CAMEL_QUARTZ_BINDING_TYPE__CAMEL_BINDING_NAME:
+                return getCamelBindingName();
             case QuartzPackage.CAMEL_QUARTZ_BINDING_TYPE__CRON:
                 return getCron();
             case QuartzPackage.CAMEL_QUARTZ_BINDING_TYPE__STATEFUL:
@@ -319,8 +319,8 @@ public class CamelQuartzBindingTypeImpl extends BaseCamelBindingImpl implements 
     @Override
     public void eSet(int featureID, Object newValue) {
         switch (featureID) {
-            case QuartzPackage.CAMEL_QUARTZ_BINDING_TYPE__NAME_ELEMENT:
-                setNameElement((String)newValue);
+            case QuartzPackage.CAMEL_QUARTZ_BINDING_TYPE__CAMEL_BINDING_NAME:
+                setCamelBindingName((String)newValue);
                 return;
             case QuartzPackage.CAMEL_QUARTZ_BINDING_TYPE__CRON:
                 setCron((String)newValue);
@@ -346,8 +346,8 @@ public class CamelQuartzBindingTypeImpl extends BaseCamelBindingImpl implements 
     @Override
     public void eUnset(int featureID) {
         switch (featureID) {
-            case QuartzPackage.CAMEL_QUARTZ_BINDING_TYPE__NAME_ELEMENT:
-                setNameElement(NAME_ELEMENT_EDEFAULT);
+            case QuartzPackage.CAMEL_QUARTZ_BINDING_TYPE__CAMEL_BINDING_NAME:
+                setCamelBindingName(CAMEL_BINDING_NAME_EDEFAULT);
                 return;
             case QuartzPackage.CAMEL_QUARTZ_BINDING_TYPE__CRON:
                 setCron(CRON_EDEFAULT);
@@ -373,8 +373,8 @@ public class CamelQuartzBindingTypeImpl extends BaseCamelBindingImpl implements 
     @Override
     public boolean eIsSet(int featureID) {
         switch (featureID) {
-            case QuartzPackage.CAMEL_QUARTZ_BINDING_TYPE__NAME_ELEMENT:
-                return NAME_ELEMENT_EDEFAULT == null ? nameElement != null : !NAME_ELEMENT_EDEFAULT.equals(nameElement);
+            case QuartzPackage.CAMEL_QUARTZ_BINDING_TYPE__CAMEL_BINDING_NAME:
+                return CAMEL_BINDING_NAME_EDEFAULT == null ? camelBindingName != null : !CAMEL_BINDING_NAME_EDEFAULT.equals(camelBindingName);
             case QuartzPackage.CAMEL_QUARTZ_BINDING_TYPE__CRON:
                 return CRON_EDEFAULT == null ? cron != null : !CRON_EDEFAULT.equals(cron);
             case QuartzPackage.CAMEL_QUARTZ_BINDING_TYPE__STATEFUL:
@@ -397,8 +397,8 @@ public class CamelQuartzBindingTypeImpl extends BaseCamelBindingImpl implements 
         if (eIsProxy()) return super.toString();
 
         StringBuffer result = new StringBuffer(super.toString());
-        result.append(" (nameElement: ");
-        result.append(nameElement);
+        result.append(" (camelBindingName: ");
+        result.append(camelBindingName);
         result.append(", cron: ");
         result.append(cron);
         result.append(", stateful: ");

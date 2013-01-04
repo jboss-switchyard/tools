@@ -56,11 +56,22 @@ public class JmsFactoryImpl extends EFactoryImpl implements JmsFactory {
     @Override
     public EObject create(EClass eClass) {
         switch (eClass.getClassifierID()) {
+            case JmsPackage.BASE_CAMEL_BINDING: return createBaseCamelBinding();
             case JmsPackage.CAMEL_JMS_BINDING_TYPE: return createCamelJmsBindingType();
             case JmsPackage.DOCUMENT_ROOT: return createDocumentRoot();
             default:
                 throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier");
         }
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public BaseCamelBinding createBaseCamelBinding() {
+        BaseCamelBindingImpl baseCamelBinding = new BaseCamelBindingImpl();
+        return baseCamelBinding;
     }
 
     /**

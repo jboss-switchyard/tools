@@ -72,6 +72,29 @@ public class MailItemProviderAdapterFactory extends MailAdapterFactory implement
     }
 
     /**
+     * This keeps track of the one adapter used for all {@link org.switchyard.tools.models.switchyard1_0.camel.mail.BaseCamelBinding} instances.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    protected BaseCamelBindingItemProvider baseCamelBindingItemProvider;
+
+    /**
+     * This creates an adapter for a {@link org.switchyard.tools.models.switchyard1_0.camel.mail.BaseCamelBinding}.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    @Override
+    public Adapter createBaseCamelBindingAdapter() {
+        if (baseCamelBindingItemProvider == null) {
+            baseCamelBindingItemProvider = new BaseCamelBindingItemProvider(this);
+        }
+
+        return baseCamelBindingItemProvider;
+    }
+
+    /**
      * This keeps track of the one adapter used for all {@link org.switchyard.tools.models.switchyard1_0.camel.mail.DocumentRoot} instances.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
@@ -262,6 +285,7 @@ public class MailItemProviderAdapterFactory extends MailAdapterFactory implement
      * @generated
      */
     public void dispose() {
+        if (baseCamelBindingItemProvider != null) baseCamelBindingItemProvider.dispose();
         if (camelMailBindingTypeItemProvider != null) camelMailBindingTypeItemProvider.dispose();
         if (documentRootItemProvider != null) documentRootItemProvider.dispose();
         if (camelMailConsumerTypeItemProvider != null) camelMailConsumerTypeItemProvider.dispose();

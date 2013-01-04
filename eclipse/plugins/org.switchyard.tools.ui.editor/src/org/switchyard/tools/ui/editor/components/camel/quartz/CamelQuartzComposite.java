@@ -73,8 +73,8 @@ public class CamelQuartzComposite extends AbstractSYBindingComposite {
         if (impl instanceof CamelQuartzBindingType) {
             this._binding = (CamelQuartzBindingType) impl;
             setInUpdate(true);
-            if (this._binding.getNameElement() != null) {
-                _nameText.setText(this._binding.getNameElement());
+            if (this._binding.getCamelBindingName() != null) {
+                _nameText.setText(this._binding.getCamelBindingName());
             }
             if (this._binding.getCron() != null) {
                 _cronText.setText(this._binding.getCron());
@@ -92,7 +92,7 @@ public class CamelQuartzComposite extends AbstractSYBindingComposite {
             _opSelectorComposite.setOperation((SwitchYardOperationSelectorType) opSelector);
 
             setInUpdate(false);
-            if (this._binding.getNameElement() == null || this._binding.getNameElement().trim().isEmpty()) {
+            if (this._binding.getCamelBindingName() == null || this._binding.getCamelBindingName().trim().isEmpty()) {
                 if (getTargetObject() != null && getTargetObject() instanceof Contract) {
                     Contract contract = (Contract) getTargetObject();
                     if (contract.eContainer() != null && contract.eContainer() instanceof org.eclipse.soa.sca.sca1_1.model.sca.Composite) {
@@ -249,7 +249,7 @@ public class CamelQuartzComposite extends AbstractSYBindingComposite {
     protected void handleUndo(Control control) {
         if (_binding != null) {
             if (control.equals(_nameText)) {
-                _nameText.setText(this._binding.getNameElement());
+                _nameText.setText(this._binding.getCamelBindingName());
             } else if (control.equals(_cronText)) {
                 _cronText.setText(this._binding.getCron());
             } else if (control.equals(_endTimeText)) {

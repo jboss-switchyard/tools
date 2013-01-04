@@ -72,6 +72,29 @@ public class CoreItemProviderAdapterFactory extends CoreAdapterFactory implement
     }
 
     /**
+     * This keeps track of the one adapter used for all {@link org.switchyard.tools.models.switchyard1_0.camel.core.BaseCamelBinding} instances.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    protected BaseCamelBindingItemProvider baseCamelBindingItemProvider;
+
+    /**
+     * This creates an adapter for a {@link org.switchyard.tools.models.switchyard1_0.camel.core.BaseCamelBinding}.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    @Override
+    public Adapter createBaseCamelBindingAdapter() {
+        if (baseCamelBindingItemProvider == null) {
+            baseCamelBindingItemProvider = new BaseCamelBindingItemProvider(this);
+        }
+
+        return baseCamelBindingItemProvider;
+    }
+
+    /**
      * This keeps track of the one adapter used for all {@link org.switchyard.tools.models.switchyard1_0.camel.core.CamelBindingType} instances.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
@@ -308,6 +331,7 @@ public class CoreItemProviderAdapterFactory extends CoreAdapterFactory implement
      * @generated
      */
     public void dispose() {
+        if (baseCamelBindingItemProvider != null) baseCamelBindingItemProvider.dispose();
         if (camelBindingTypeItemProvider != null) camelBindingTypeItemProvider.dispose();
         if (camelDirectBindingTypeItemProvider != null) camelDirectBindingTypeItemProvider.dispose();
         if (camelTimerBindingTypeItemProvider != null) camelTimerBindingTypeItemProvider.dispose();

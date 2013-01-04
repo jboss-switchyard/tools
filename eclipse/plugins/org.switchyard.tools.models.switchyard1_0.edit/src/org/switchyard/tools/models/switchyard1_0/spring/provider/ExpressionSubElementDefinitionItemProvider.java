@@ -1758,6 +1758,11 @@ public class ExpressionSubElementDefinitionItemProvider
         newChildDescriptors.add
             (createChildParameter
                 (SpringPackage.eINSTANCE.getExpressionSubElementDefinition_Property(),
+                 CoreFactory.eINSTANCE.createBaseCamelBinding()));
+
+        newChildDescriptors.add
+            (createChildParameter
+                (SpringPackage.eINSTANCE.getExpressionSubElementDefinition_Property(),
                  CoreFactory.eINSTANCE.createCamelBindingType()));
 
         newChildDescriptors.add
@@ -1783,7 +1788,17 @@ public class ExpressionSubElementDefinitionItemProvider
         newChildDescriptors.add
             (createChildParameter
                 (SpringPackage.eINSTANCE.getExpressionSubElementDefinition_Property(),
+                 AmqpFactory.eINSTANCE.createBaseCamelBinding()));
+
+        newChildDescriptors.add
+            (createChildParameter
+                (SpringPackage.eINSTANCE.getExpressionSubElementDefinition_Property(),
                  AmqpFactory.eINSTANCE.createCamelAmqpBindingType()));
+
+        newChildDescriptors.add
+            (createChildParameter
+                (SpringPackage.eINSTANCE.getExpressionSubElementDefinition_Property(),
+                 AtomFactory.eINSTANCE.createBaseCamelBinding()));
 
         newChildDescriptors.add
             (createChildParameter
@@ -1794,6 +1809,11 @@ public class ExpressionSubElementDefinitionItemProvider
             (createChildParameter
                 (SpringPackage.eINSTANCE.getExpressionSubElementDefinition_Property(),
                  AtomFactory.eINSTANCE.createAtomScheduledPollConsumerType()));
+
+        newChildDescriptors.add
+            (createChildParameter
+                (SpringPackage.eINSTANCE.getExpressionSubElementDefinition_Property(),
+                 FileFactory.eINSTANCE.createBaseCamelBinding()));
 
         newChildDescriptors.add
             (createChildParameter
@@ -1809,6 +1829,11 @@ public class ExpressionSubElementDefinitionItemProvider
             (createChildParameter
                 (SpringPackage.eINSTANCE.getExpressionSubElementDefinition_Property(),
                  FileFactory.eINSTANCE.createFileProducerType()));
+
+        newChildDescriptors.add
+            (createChildParameter
+                (SpringPackage.eINSTANCE.getExpressionSubElementDefinition_Property(),
+                 FtpFactory.eINSTANCE.createBaseCamelBinding()));
 
         newChildDescriptors.add
             (createChildParameter
@@ -1838,7 +1863,17 @@ public class ExpressionSubElementDefinitionItemProvider
         newChildDescriptors.add
             (createChildParameter
                 (SpringPackage.eINSTANCE.getExpressionSubElementDefinition_Property(),
+                 JmsFactory.eINSTANCE.createBaseCamelBinding()));
+
+        newChildDescriptors.add
+            (createChildParameter
+                (SpringPackage.eINSTANCE.getExpressionSubElementDefinition_Property(),
                  JmsFactory.eINSTANCE.createCamelJmsBindingType()));
+
+        newChildDescriptors.add
+            (createChildParameter
+                (SpringPackage.eINSTANCE.getExpressionSubElementDefinition_Property(),
+                 JpaFactory.eINSTANCE.createBaseCamelBinding()));
 
         newChildDescriptors.add
             (createChildParameter
@@ -1858,6 +1893,11 @@ public class ExpressionSubElementDefinitionItemProvider
         newChildDescriptors.add
             (createChildParameter
                 (SpringPackage.eINSTANCE.getExpressionSubElementDefinition_Property(),
+                 MailFactory.eINSTANCE.createBaseCamelBinding()));
+
+        newChildDescriptors.add
+            (createChildParameter
+                (SpringPackage.eINSTANCE.getExpressionSubElementDefinition_Property(),
                  MailFactory.eINSTANCE.createCamelMailBindingType()));
 
         newChildDescriptors.add
@@ -1873,6 +1913,11 @@ public class ExpressionSubElementDefinitionItemProvider
         newChildDescriptors.add
             (createChildParameter
                 (SpringPackage.eINSTANCE.getExpressionSubElementDefinition_Property(),
+                 NettyFactory.eINSTANCE.createBaseCamelBinding()));
+
+        newChildDescriptors.add
+            (createChildParameter
+                (SpringPackage.eINSTANCE.getExpressionSubElementDefinition_Property(),
                  NettyFactory.eINSTANCE.createCamelNettyTcpBindingType()));
 
         newChildDescriptors.add
@@ -1883,7 +1928,17 @@ public class ExpressionSubElementDefinitionItemProvider
         newChildDescriptors.add
             (createChildParameter
                 (SpringPackage.eINSTANCE.getExpressionSubElementDefinition_Property(),
+                 QuartzFactory.eINSTANCE.createBaseCamelBinding()));
+
+        newChildDescriptors.add
+            (createChildParameter
+                (SpringPackage.eINSTANCE.getExpressionSubElementDefinition_Property(),
                  QuartzFactory.eINSTANCE.createCamelQuartzBindingType()));
+
+        newChildDescriptors.add
+            (createChildParameter
+                (SpringPackage.eINSTANCE.getExpressionSubElementDefinition_Property(),
+                 SqlFactory.eINSTANCE.createBaseCamelBinding()));
 
         newChildDescriptors.add
             (createChildParameter

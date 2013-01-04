@@ -33,6 +33,14 @@ public enum ActionType implements Enumerator {
 	EXECUTE(0, "EXECUTE", "EXECUTE"),
 
 	/**
+     * The '<em><b>INSERT</b></em>' literal object.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @see #INSERT_VALUE
+     * @generated
+     * @ordered
+     */
+    INSERT(1, "INSERT", "INSERT"), /**
      * The '<em><b>FIREALLRULES</b></em>' literal object.
      * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -40,7 +48,7 @@ public enum ActionType implements Enumerator {
      * @generated
      * @ordered
      */
-	FIREALLRULES(1, "FIREALLRULES", "FIRE_ALL_RULES"),
+	FIREALLRULES(2, "FIREALLRULES", "FIRE_ALL_RULES"),
 
 	/**
      * The '<em><b>FIREUNTILHALT</b></em>' literal object.
@@ -50,7 +58,7 @@ public enum ActionType implements Enumerator {
      * @generated
      * @ordered
      */
-	FIREUNTILHALT(2, "FIREUNTILHALT", "FIRE_UNTIL_HALT");
+	FIREUNTILHALT(3, "FIREUNTILHALT", "FIRE_UNTIL_HALT");
 
 	/**
      * The '<em><b>EXECUTE</b></em>' literal value.
@@ -68,6 +76,21 @@ public enum ActionType implements Enumerator {
 	public static final int EXECUTE_VALUE = 0;
 
 	/**
+     * The '<em><b>INSERT</b></em>' literal value.
+     * <!-- begin-user-doc -->
+     * <p>
+     * If the meaning of '<em><b>INSERT</b></em>' literal object isn't clear,
+     * there really should be more of a description here...
+     * </p>
+     * <!-- end-user-doc -->
+     * @see #INSERT
+     * @model
+     * @generated
+     * @ordered
+     */
+    public static final int INSERT_VALUE = 1;
+
+    /**
      * The '<em><b>FIREALLRULES</b></em>' literal value.
      * <!-- begin-user-doc -->
 	 * <p>
@@ -80,7 +103,7 @@ public enum ActionType implements Enumerator {
      * @generated
      * @ordered
      */
-	public static final int FIREALLRULES_VALUE = 1;
+	public static final int FIREALLRULES_VALUE = 2;
 
 	/**
      * The '<em><b>FIREUNTILHALT</b></em>' literal value.
@@ -95,7 +118,7 @@ public enum ActionType implements Enumerator {
      * @generated
      * @ordered
      */
-	public static final int FIREUNTILHALT_VALUE = 2;
+	public static final int FIREUNTILHALT_VALUE = 3;
 
 	/**
      * An array of all the '<em><b>Action Type</b></em>' enumerators.
@@ -106,6 +129,7 @@ public enum ActionType implements Enumerator {
 	private static final ActionType[] VALUES_ARRAY =
 		new ActionType[] {
             EXECUTE,
+            INSERT,
             FIREALLRULES,
             FIREUNTILHALT,
         };
@@ -159,6 +183,7 @@ public enum ActionType implements Enumerator {
 	public static ActionType get(int value) {
         switch (value) {
             case EXECUTE_VALUE: return EXECUTE;
+            case INSERT_VALUE: return INSERT;
             case FIREALLRULES_VALUE: return FIREALLRULES;
             case FIREUNTILHALT_VALUE: return FIREUNTILHALT;
         }

@@ -175,13 +175,31 @@ public interface QuartzPackage extends EPackage {
     int BASE_CAMEL_BINDING__MESSAGE_COMPOSER = SwitchyardPackage.SWITCH_YARD_BINDING_TYPE__MESSAGE_COMPOSER;
 
     /**
+     * The feature id for the '<em><b>Camel Context Mapper</b></em>' containment reference.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int BASE_CAMEL_BINDING__CAMEL_CONTEXT_MAPPER = SwitchyardPackage.SWITCH_YARD_BINDING_TYPE_FEATURE_COUNT + 0;
+
+    /**
+     * The feature id for the '<em><b>Camel Message Composer</b></em>' containment reference.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int BASE_CAMEL_BINDING__CAMEL_MESSAGE_COMPOSER = SwitchyardPackage.SWITCH_YARD_BINDING_TYPE_FEATURE_COUNT + 1;
+
+    /**
      * The number of structural features of the '<em>Base Camel Binding</em>' class.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @generated
      * @ordered
      */
-    int BASE_CAMEL_BINDING_FEATURE_COUNT = SwitchyardPackage.SWITCH_YARD_BINDING_TYPE_FEATURE_COUNT + 0;
+    int BASE_CAMEL_BINDING_FEATURE_COUNT = SwitchyardPackage.SWITCH_YARD_BINDING_TYPE_FEATURE_COUNT + 2;
 
     /**
      * The meta object id for the '{@link org.switchyard.tools.models.switchyard1_0.camel.quartz.impl.CamelQuartzBindingTypeImpl <em>Camel Quartz Binding Type</em>}' class.
@@ -302,13 +320,31 @@ public interface QuartzPackage extends EPackage {
     int CAMEL_QUARTZ_BINDING_TYPE__MESSAGE_COMPOSER = BASE_CAMEL_BINDING__MESSAGE_COMPOSER;
 
     /**
-     * The feature id for the '<em><b>Name Element</b></em>' attribute.
+     * The feature id for the '<em><b>Camel Context Mapper</b></em>' containment reference.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @generated
      * @ordered
      */
-    int CAMEL_QUARTZ_BINDING_TYPE__NAME_ELEMENT = BASE_CAMEL_BINDING_FEATURE_COUNT + 0;
+    int CAMEL_QUARTZ_BINDING_TYPE__CAMEL_CONTEXT_MAPPER = BASE_CAMEL_BINDING__CAMEL_CONTEXT_MAPPER;
+
+    /**
+     * The feature id for the '<em><b>Camel Message Composer</b></em>' containment reference.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int CAMEL_QUARTZ_BINDING_TYPE__CAMEL_MESSAGE_COMPOSER = BASE_CAMEL_BINDING__CAMEL_MESSAGE_COMPOSER;
+
+    /**
+     * The feature id for the '<em><b>Camel Binding Name</b></em>' attribute.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int CAMEL_QUARTZ_BINDING_TYPE__CAMEL_BINDING_NAME = BASE_CAMEL_BINDING_FEATURE_COUNT + 0;
 
     /**
      * The feature id for the '<em><b>Cron</b></em>' attribute.
@@ -422,6 +458,28 @@ public interface QuartzPackage extends EPackage {
     EClass getBaseCamelBinding();
 
     /**
+     * Returns the meta object for the containment reference '{@link org.switchyard.tools.models.switchyard1_0.camel.quartz.BaseCamelBinding#getCamelContextMapper <em>Camel Context Mapper</em>}'.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @return the meta object for the containment reference '<em>Camel Context Mapper</em>'.
+     * @see org.switchyard.tools.models.switchyard1_0.camel.quartz.BaseCamelBinding#getCamelContextMapper()
+     * @see #getBaseCamelBinding()
+     * @generated
+     */
+    EReference getBaseCamelBinding_CamelContextMapper();
+
+    /**
+     * Returns the meta object for the containment reference '{@link org.switchyard.tools.models.switchyard1_0.camel.quartz.BaseCamelBinding#getCamelMessageComposer <em>Camel Message Composer</em>}'.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @return the meta object for the containment reference '<em>Camel Message Composer</em>'.
+     * @see org.switchyard.tools.models.switchyard1_0.camel.quartz.BaseCamelBinding#getCamelMessageComposer()
+     * @see #getBaseCamelBinding()
+     * @generated
+     */
+    EReference getBaseCamelBinding_CamelMessageComposer();
+
+    /**
      * Returns the meta object for class '{@link org.switchyard.tools.models.switchyard1_0.camel.quartz.CamelQuartzBindingType <em>Camel Quartz Binding Type</em>}'.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
@@ -432,15 +490,15 @@ public interface QuartzPackage extends EPackage {
     EClass getCamelQuartzBindingType();
 
     /**
-     * Returns the meta object for the attribute '{@link org.switchyard.tools.models.switchyard1_0.camel.quartz.CamelQuartzBindingType#getNameElement <em>Name Element</em>}'.
+     * Returns the meta object for the attribute '{@link org.switchyard.tools.models.switchyard1_0.camel.quartz.CamelQuartzBindingType#getCamelBindingName <em>Camel Binding Name</em>}'.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @return the meta object for the attribute '<em>Name Element</em>'.
-     * @see org.switchyard.tools.models.switchyard1_0.camel.quartz.CamelQuartzBindingType#getNameElement()
+     * @return the meta object for the attribute '<em>Camel Binding Name</em>'.
+     * @see org.switchyard.tools.models.switchyard1_0.camel.quartz.CamelQuartzBindingType#getCamelBindingName()
      * @see #getCamelQuartzBindingType()
      * @generated
      */
-    EAttribute getCamelQuartzBindingType_NameElement();
+    EAttribute getCamelQuartzBindingType_CamelBindingName();
 
     /**
      * Returns the meta object for the attribute '{@link org.switchyard.tools.models.switchyard1_0.camel.quartz.CamelQuartzBindingType#getCron <em>Cron</em>}'.
@@ -573,6 +631,22 @@ public interface QuartzPackage extends EPackage {
         EClass BASE_CAMEL_BINDING = eINSTANCE.getBaseCamelBinding();
 
         /**
+         * The meta object literal for the '<em><b>Camel Context Mapper</b></em>' containment reference feature.
+         * <!-- begin-user-doc -->
+         * <!-- end-user-doc -->
+         * @generated
+         */
+        EReference BASE_CAMEL_BINDING__CAMEL_CONTEXT_MAPPER = eINSTANCE.getBaseCamelBinding_CamelContextMapper();
+
+        /**
+         * The meta object literal for the '<em><b>Camel Message Composer</b></em>' containment reference feature.
+         * <!-- begin-user-doc -->
+         * <!-- end-user-doc -->
+         * @generated
+         */
+        EReference BASE_CAMEL_BINDING__CAMEL_MESSAGE_COMPOSER = eINSTANCE.getBaseCamelBinding_CamelMessageComposer();
+
+        /**
          * The meta object literal for the '{@link org.switchyard.tools.models.switchyard1_0.camel.quartz.impl.CamelQuartzBindingTypeImpl <em>Camel Quartz Binding Type</em>}' class.
          * <!-- begin-user-doc -->
          * <!-- end-user-doc -->
@@ -583,12 +657,12 @@ public interface QuartzPackage extends EPackage {
         EClass CAMEL_QUARTZ_BINDING_TYPE = eINSTANCE.getCamelQuartzBindingType();
 
         /**
-         * The meta object literal for the '<em><b>Name Element</b></em>' attribute feature.
+         * The meta object literal for the '<em><b>Camel Binding Name</b></em>' attribute feature.
          * <!-- begin-user-doc -->
          * <!-- end-user-doc -->
          * @generated
          */
-        EAttribute CAMEL_QUARTZ_BINDING_TYPE__NAME_ELEMENT = eINSTANCE.getCamelQuartzBindingType_NameElement();
+        EAttribute CAMEL_QUARTZ_BINDING_TYPE__CAMEL_BINDING_NAME = eINSTANCE.getCamelQuartzBindingType_CamelBindingName();
 
         /**
          * The meta object literal for the '<em><b>Cron</b></em>' attribute feature.

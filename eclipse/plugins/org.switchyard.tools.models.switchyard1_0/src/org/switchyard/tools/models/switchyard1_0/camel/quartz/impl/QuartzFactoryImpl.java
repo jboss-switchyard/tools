@@ -56,11 +56,22 @@ public class QuartzFactoryImpl extends EFactoryImpl implements QuartzFactory {
     @Override
     public EObject create(EClass eClass) {
         switch (eClass.getClassifierID()) {
+            case QuartzPackage.BASE_CAMEL_BINDING: return createBaseCamelBinding();
             case QuartzPackage.CAMEL_QUARTZ_BINDING_TYPE: return createCamelQuartzBindingType();
             case QuartzPackage.DOCUMENT_ROOT: return createDocumentRoot();
             default:
                 throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier");
         }
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public BaseCamelBinding createBaseCamelBinding() {
+        BaseCamelBindingImpl baseCamelBinding = new BaseCamelBindingImpl();
+        return baseCamelBinding;
     }
 
     /**

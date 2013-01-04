@@ -57,6 +57,7 @@ public class JpaFactoryImpl extends EFactoryImpl implements JpaFactory {
     @Override
     public EObject create(EClass eClass) {
         switch (eClass.getClassifierID()) {
+            case JpaPackage.BASE_CAMEL_BINDING: return createBaseCamelBinding();
             case JpaPackage.CAMEL_JPA_BINDING_TYPE: return createCamelJPABindingType();
             case JpaPackage.DOCUMENT_ROOT: return createDocumentRoot();
             case JpaPackage.JPA_CONSUMER_TYPE: return createJpaConsumerType();
@@ -98,6 +99,16 @@ public class JpaFactoryImpl extends EFactoryImpl implements JpaFactory {
             default:
                 throw new IllegalArgumentException("The datatype '" + eDataType.getName() + "' is not a valid classifier");
         }
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public BaseCamelBinding createBaseCamelBinding() {
+        BaseCamelBindingImpl baseCamelBinding = new BaseCamelBindingImpl();
+        return baseCamelBinding;
     }
 
     /**

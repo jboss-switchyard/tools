@@ -23,8 +23,9 @@
       <details key="name" value="actionType"/>
     </eAnnotations>
     <eLiterals name="EXECUTE"/>
-    <eLiterals name="FIREALLRULES" value="1" literal="FIRE_ALL_RULES"/>
-    <eLiterals name="FIREUNTILHALT" value="2" literal="FIRE_UNTIL_HALT"/>
+    <eLiterals name="INSERT" value="1"/>
+    <eLiterals name="FIREALLRULES" value="2" literal="FIRE_ALL_RULES"/>
+    <eLiterals name="FIREUNTILHALT" value="3" literal="FIRE_UNTIL_HALT"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="ActionType1" eSuperTypes="platform:/plugin/org.switchyard.tools.models.sca.sca1_1/model/sca.ecore#//CommonExtensionBase">
     <eAnnotations source="http:///org/eclipse/emf/ecore/util/ExtendedMetaData">
@@ -61,14 +62,13 @@
         <details key="name" value="id"/>
       </eAnnotations>
     </eStructuralFeatures>
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="operation" lowerBound="1"
-        eType="ecore:EDataType http://www.eclipse.org/emf/2003/XMLType#//String">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="operation" eType="ecore:EDataType http://www.eclipse.org/emf/2003/XMLType#//String">
       <eAnnotations source="http:///org/eclipse/emf/ecore/util/ExtendedMetaData">
         <details key="kind" value="attribute"/>
         <details key="name" value="operation"/>
       </eAnnotations>
     </eStructuralFeatures>
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="type" lowerBound="1" eType="#//ActionType"
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="type" eType="#//ActionType"
         unsettable="true">
       <eAnnotations source="http:///org/eclipse/emf/ecore/util/ExtendedMetaData">
         <details key="kind" value="attribute"/>
@@ -141,6 +141,20 @@
       <eAnnotations source="http:///org/eclipse/emf/ecore/util/ExtendedMetaData">
         <details key="kind" value="attribute"/>
         <details key="name" value="releaseId"/>
+      </eAnnotations>
+    </eStructuralFeatures>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="scan" eType="ecore:EDataType http://www.eclipse.org/emf/2003/XMLType#//Boolean"
+        unsettable="true">
+      <eAnnotations source="http:///org/eclipse/emf/ecore/util/ExtendedMetaData">
+        <details key="kind" value="attribute"/>
+        <details key="name" value="scan"/>
+      </eAnnotations>
+    </eStructuralFeatures>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="scanInterval" eType="ecore:EDataType http://www.eclipse.org/emf/2003/XMLType#//Long"
+        unsettable="true">
+      <eAnnotations source="http:///org/eclipse/emf/ecore/util/ExtendedMetaData">
+        <details key="kind" value="attribute"/>
+        <details key="name" value="scanInterval"/>
       </eAnnotations>
     </eStructuralFeatures>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="sessionName" eType="ecore:EDataType http://www.eclipse.org/emf/2003/XMLType#//String">
@@ -461,13 +475,6 @@
         <details key="kind" value="element"/>
         <details key="name" value="resources"/>
         <details key="namespace" value="##targetNamespace"/>
-      </eAnnotations>
-    </eStructuralFeatures>
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="scan" eType="ecore:EDataType http://www.eclipse.org/emf/2003/XMLType#//Boolean"
-        unsettable="true">
-      <eAnnotations source="http:///org/eclipse/emf/ecore/util/ExtendedMetaData">
-        <details key="kind" value="attribute"/>
-        <details key="name" value="scan"/>
       </eAnnotations>
     </eStructuralFeatures>
   </eClassifiers>

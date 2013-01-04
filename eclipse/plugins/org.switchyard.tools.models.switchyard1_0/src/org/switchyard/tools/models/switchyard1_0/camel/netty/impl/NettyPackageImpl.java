@@ -327,6 +327,24 @@ public class NettyPackageImpl extends EPackageImpl implements NettyPackage {
      * <!-- end-user-doc -->
      * @generated
      */
+    public EReference getBaseCamelBinding_CamelContextMapper() {
+        return (EReference)baseCamelBindingEClass.getEStructuralFeatures().get(0);
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public EReference getBaseCamelBinding_CamelMessageComposer() {
+        return (EReference)baseCamelBindingEClass.getEStructuralFeatures().get(1);
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
     public EClass getCamelNettyTcpBindingType() {
         return camelNettyTcpBindingTypeEClass;
     }
@@ -567,6 +585,8 @@ public class NettyPackageImpl extends EPackageImpl implements NettyPackage {
 
         // Create classes and their features
         baseCamelBindingEClass = createEClass(BASE_CAMEL_BINDING);
+        createEReference(baseCamelBindingEClass, BASE_CAMEL_BINDING__CAMEL_CONTEXT_MAPPER);
+        createEReference(baseCamelBindingEClass, BASE_CAMEL_BINDING__CAMEL_MESSAGE_COMPOSER);
 
         camelNettyBindingTypeEClass = createEClass(CAMEL_NETTY_BINDING_TYPE);
         createEAttribute(camelNettyBindingTypeEClass, CAMEL_NETTY_BINDING_TYPE__HOST);
@@ -635,7 +655,9 @@ public class NettyPackageImpl extends EPackageImpl implements NettyPackage {
         camelNettyUdpBindingTypeEClass.getESuperTypes().add(this.getCamelNettyBindingType());
 
         // Initialize classes and features; add operations and parameters
-        initEClass(baseCamelBindingEClass, BaseCamelBinding.class, "BaseCamelBinding", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+        initEClass(baseCamelBindingEClass, BaseCamelBinding.class, "BaseCamelBinding", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+        initEReference(getBaseCamelBinding_CamelContextMapper(), theSwitchyardPackage.getContextMapperType(), null, "camelContextMapper", null, 0, 1, BaseCamelBinding.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+        initEReference(getBaseCamelBinding_CamelMessageComposer(), theSwitchyardPackage.getMessageComposerType(), null, "camelMessageComposer", null, 0, 1, BaseCamelBinding.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
         initEClass(camelNettyBindingTypeEClass, CamelNettyBindingType.class, "CamelNettyBindingType", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
         initEAttribute(getCamelNettyBindingType_Host(), theXMLTypePackage.getString(), "host", null, 1, 1, CamelNettyBindingType.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
@@ -687,6 +709,22 @@ public class NettyPackageImpl extends EPackageImpl implements NettyPackage {
            new String[] {
              "name", "BaseCamelBinding",
              "kind", "elementOnly"
+           });		
+        addAnnotation
+          (getBaseCamelBinding_CamelContextMapper(), 
+           source, 
+           new String[] {
+             "kind", "element",
+             "name", "contextMapper",
+             "namespace", "##targetNamespace"
+           });		
+        addAnnotation
+          (getBaseCamelBinding_CamelMessageComposer(), 
+           source, 
+           new String[] {
+             "kind", "element",
+             "name", "messageComposer",
+             "namespace", "##targetNamespace"
            });		
         addAnnotation
           (camelNettyBindingTypeEClass, 

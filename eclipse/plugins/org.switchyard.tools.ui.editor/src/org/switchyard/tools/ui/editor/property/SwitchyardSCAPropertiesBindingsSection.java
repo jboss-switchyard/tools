@@ -67,6 +67,7 @@ import org.switchyard.tools.ui.editor.property.adapters.LabelAdapter;
 public class SwitchyardSCAPropertiesBindingsSection extends GFPropertySection implements ITabbedPropertyConstants,
         ResourceSetListener {
 
+    private TabbedPropertySheetPage _page;
     private Binding _binding = null;
     private ListViewer _listViewer;
     private FormToolkit _toolkit = null;
@@ -98,6 +99,8 @@ public class SwitchyardSCAPropertiesBindingsSection extends GFPropertySection im
     @Override
     public void createControls(Composite parent, TabbedPropertySheetPage tabbedPropertySheetPage) {
         super.createControls(parent, tabbedPropertySheetPage);
+
+        _page = tabbedPropertySheetPage;
 
         parent.setLayout(new GridLayout(3, false));
         _toolkit = this.getWidgetFactory();
@@ -133,6 +136,7 @@ public class SwitchyardSCAPropertiesBindingsSection extends GFPropertySection im
                     _composite.setBinding(_binding);
                     _detailSection.setClient(((AbstractSwitchyardComposite) _composite).getPanel());
                     _detailSection.setExpanded(true);
+                    _page.resizeScrolledComposite();
                 }
             } else {
                 TabbedPropertySheetWidgetFactory factory = getWidgetFactory();
@@ -149,6 +153,7 @@ public class SwitchyardSCAPropertiesBindingsSection extends GFPropertySection im
                     composite.setBinding(_binding);
                     _detailSection.setClient(((AbstractSwitchyardComposite) composite).getPanel());
                     _detailSection.setExpanded(true);
+                    _page.resizeScrolledComposite();
                 } else {
                     _composite = null;
                     if (_detailSection.getClient() != null) {

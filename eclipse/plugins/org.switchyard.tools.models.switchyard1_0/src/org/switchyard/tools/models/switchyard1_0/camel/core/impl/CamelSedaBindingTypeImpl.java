@@ -15,7 +15,7 @@ import org.switchyard.tools.models.switchyard1_0.camel.core.CorePackage;
  * <p>
  * The following features are implemented:
  * <ul>
- *   <li>{@link org.switchyard.tools.models.switchyard1_0.camel.core.impl.CamelSedaBindingTypeImpl#getNameElement <em>Name Element</em>}</li>
+ *   <li>{@link org.switchyard.tools.models.switchyard1_0.camel.core.impl.CamelSedaBindingTypeImpl#getCamelBindingName <em>Camel Binding Name</em>}</li>
  *   <li>{@link org.switchyard.tools.models.switchyard1_0.camel.core.impl.CamelSedaBindingTypeImpl#getSize <em>Size</em>}</li>
  *   <li>{@link org.switchyard.tools.models.switchyard1_0.camel.core.impl.CamelSedaBindingTypeImpl#getConcurrentConsumers <em>Concurrent Consumers</em>}</li>
  *   <li>{@link org.switchyard.tools.models.switchyard1_0.camel.core.impl.CamelSedaBindingTypeImpl#getWaitForTaskToComplete <em>Wait For Task To Complete</em>}</li>
@@ -29,24 +29,24 @@ import org.switchyard.tools.models.switchyard1_0.camel.core.CorePackage;
  */
 public class CamelSedaBindingTypeImpl extends BaseCamelBindingImpl implements CamelSedaBindingType {
     /**
-     * The default value of the '{@link #getNameElement() <em>Name Element</em>}' attribute.
+     * The default value of the '{@link #getCamelBindingName() <em>Camel Binding Name</em>}' attribute.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @see #getNameElement()
+     * @see #getCamelBindingName()
      * @generated
      * @ordered
      */
-    protected static final String NAME_ELEMENT_EDEFAULT = null;
+    protected static final String CAMEL_BINDING_NAME_EDEFAULT = null;
 
     /**
-     * The cached value of the '{@link #getNameElement() <em>Name Element</em>}' attribute.
+     * The cached value of the '{@link #getCamelBindingName() <em>Camel Binding Name</em>}' attribute.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @see #getNameElement()
+     * @see #getCamelBindingName()
      * @generated
      * @ordered
      */
-    protected String nameElement = NAME_ELEMENT_EDEFAULT;
+    protected String camelBindingName = CAMEL_BINDING_NAME_EDEFAULT;
 
     /**
      * The default value of the '{@link #getSize() <em>Size</em>}' attribute.
@@ -219,8 +219,8 @@ public class CamelSedaBindingTypeImpl extends BaseCamelBindingImpl implements Ca
      * <!-- end-user-doc -->
      * @generated
      */
-    public String getNameElement() {
-        return nameElement;
+    public String getCamelBindingName() {
+        return camelBindingName;
     }
 
     /**
@@ -228,11 +228,11 @@ public class CamelSedaBindingTypeImpl extends BaseCamelBindingImpl implements Ca
      * <!-- end-user-doc -->
      * @generated
      */
-    public void setNameElement(String newNameElement) {
-        String oldNameElement = nameElement;
-        nameElement = newNameElement;
+    public void setCamelBindingName(String newCamelBindingName) {
+        String oldCamelBindingName = camelBindingName;
+        camelBindingName = newCamelBindingName;
         if (eNotificationRequired())
-            eNotify(new ENotificationImpl(this, Notification.SET, CorePackage.CAMEL_SEDA_BINDING_TYPE__NAME_ELEMENT, oldNameElement, nameElement));
+            eNotify(new ENotificationImpl(this, Notification.SET, CorePackage.CAMEL_SEDA_BINDING_TYPE__CAMEL_BINDING_NAME, oldCamelBindingName, camelBindingName));
     }
 
     /**
@@ -444,8 +444,8 @@ public class CamelSedaBindingTypeImpl extends BaseCamelBindingImpl implements Ca
     @Override
     public Object eGet(int featureID, boolean resolve, boolean coreType) {
         switch (featureID) {
-            case CorePackage.CAMEL_SEDA_BINDING_TYPE__NAME_ELEMENT:
-                return getNameElement();
+            case CorePackage.CAMEL_SEDA_BINDING_TYPE__CAMEL_BINDING_NAME:
+                return getCamelBindingName();
             case CorePackage.CAMEL_SEDA_BINDING_TYPE__SIZE:
                 return getSize();
             case CorePackage.CAMEL_SEDA_BINDING_TYPE__CONCURRENT_CONSUMERS:
@@ -470,8 +470,8 @@ public class CamelSedaBindingTypeImpl extends BaseCamelBindingImpl implements Ca
     @Override
     public void eSet(int featureID, Object newValue) {
         switch (featureID) {
-            case CorePackage.CAMEL_SEDA_BINDING_TYPE__NAME_ELEMENT:
-                setNameElement((String)newValue);
+            case CorePackage.CAMEL_SEDA_BINDING_TYPE__CAMEL_BINDING_NAME:
+                setCamelBindingName((String)newValue);
                 return;
             case CorePackage.CAMEL_SEDA_BINDING_TYPE__SIZE:
                 setSize((Integer)newValue);
@@ -503,8 +503,8 @@ public class CamelSedaBindingTypeImpl extends BaseCamelBindingImpl implements Ca
     @Override
     public void eUnset(int featureID) {
         switch (featureID) {
-            case CorePackage.CAMEL_SEDA_BINDING_TYPE__NAME_ELEMENT:
-                setNameElement(NAME_ELEMENT_EDEFAULT);
+            case CorePackage.CAMEL_SEDA_BINDING_TYPE__CAMEL_BINDING_NAME:
+                setCamelBindingName(CAMEL_BINDING_NAME_EDEFAULT);
                 return;
             case CorePackage.CAMEL_SEDA_BINDING_TYPE__SIZE:
                 setSize(SIZE_EDEFAULT);
@@ -536,8 +536,8 @@ public class CamelSedaBindingTypeImpl extends BaseCamelBindingImpl implements Ca
     @Override
     public boolean eIsSet(int featureID) {
         switch (featureID) {
-            case CorePackage.CAMEL_SEDA_BINDING_TYPE__NAME_ELEMENT:
-                return NAME_ELEMENT_EDEFAULT == null ? nameElement != null : !NAME_ELEMENT_EDEFAULT.equals(nameElement);
+            case CorePackage.CAMEL_SEDA_BINDING_TYPE__CAMEL_BINDING_NAME:
+                return CAMEL_BINDING_NAME_EDEFAULT == null ? camelBindingName != null : !CAMEL_BINDING_NAME_EDEFAULT.equals(camelBindingName);
             case CorePackage.CAMEL_SEDA_BINDING_TYPE__SIZE:
                 return SIZE_EDEFAULT == null ? size != null : !SIZE_EDEFAULT.equals(size);
             case CorePackage.CAMEL_SEDA_BINDING_TYPE__CONCURRENT_CONSUMERS:
@@ -564,8 +564,8 @@ public class CamelSedaBindingTypeImpl extends BaseCamelBindingImpl implements Ca
         if (eIsProxy()) return super.toString();
 
         StringBuffer result = new StringBuffer(super.toString());
-        result.append(" (nameElement: ");
-        result.append(nameElement);
+        result.append(" (camelBindingName: ");
+        result.append(camelBindingName);
         result.append(", size: ");
         result.append(size);
         result.append(", concurrentConsumers: ");

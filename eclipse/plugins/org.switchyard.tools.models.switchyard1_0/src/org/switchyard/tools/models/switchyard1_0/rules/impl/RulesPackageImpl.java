@@ -610,8 +610,26 @@ public class RulesPackageImpl extends EPackageImpl implements RulesPackage {
      * <!-- end-user-doc -->
      * @generated
      */
-    public EAttribute getContainerType_SessionName() {
+    public EAttribute getContainerType_Scan() {
         return (EAttribute)containerTypeEClass.getEStructuralFeatures().get(2);
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public EAttribute getContainerType_ScanInterval() {
+        return (EAttribute)containerTypeEClass.getEStructuralFeatures().get(3);
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public EAttribute getContainerType_SessionName() {
+        return (EAttribute)containerTypeEClass.getEStructuralFeatures().get(4);
     }
 
     /**
@@ -936,15 +954,6 @@ public class RulesPackageImpl extends EPackageImpl implements RulesPackage {
      */
     public EReference getManifestType_Resources() {
         return (EReference)manifestTypeEClass.getEStructuralFeatures().get(1);
-    }
-
-    /**
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    public EAttribute getManifestType_Scan() {
-        return (EAttribute)manifestTypeEClass.getEStructuralFeatures().get(2);
     }
 
     /**
@@ -1286,6 +1295,8 @@ public class RulesPackageImpl extends EPackageImpl implements RulesPackage {
         containerTypeEClass = createEClass(CONTAINER_TYPE);
         createEAttribute(containerTypeEClass, CONTAINER_TYPE__BASE_NAME);
         createEAttribute(containerTypeEClass, CONTAINER_TYPE__RELEASE_ID);
+        createEAttribute(containerTypeEClass, CONTAINER_TYPE__SCAN);
+        createEAttribute(containerTypeEClass, CONTAINER_TYPE__SCAN_INTERVAL);
         createEAttribute(containerTypeEClass, CONTAINER_TYPE__SESSION_NAME);
 
         documentRootEClass = createEClass(DOCUMENT_ROOT);
@@ -1329,7 +1340,6 @@ public class RulesPackageImpl extends EPackageImpl implements RulesPackage {
         manifestTypeEClass = createEClass(MANIFEST_TYPE);
         createEReference(manifestTypeEClass, MANIFEST_TYPE__CONTAINER);
         createEReference(manifestTypeEClass, MANIFEST_TYPE__RESOURCES);
-        createEAttribute(manifestTypeEClass, MANIFEST_TYPE__SCAN);
 
         mappingsTypeEClass = createEClass(MAPPINGS_TYPE);
         createEReference(mappingsTypeEClass, MAPPINGS_TYPE__MAPPING);
@@ -1434,8 +1444,8 @@ public class RulesPackageImpl extends EPackageImpl implements RulesPackage {
         initEReference(getActionType1_Inputs(), this.getMappingsType(), null, "inputs", null, 0, 1, ActionType1.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
         initEReference(getActionType1_Outputs(), this.getMappingsType(), null, "outputs", null, 0, 1, ActionType1.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
         initEAttribute(getActionType1_Id(), theXMLTypePackage.getString(), "id", null, 0, 1, ActionType1.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-        initEAttribute(getActionType1_Operation(), theXMLTypePackage.getString(), "operation", null, 1, 1, ActionType1.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-        initEAttribute(getActionType1_Type(), this.getActionType(), "type", null, 1, 1, ActionType1.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+        initEAttribute(getActionType1_Operation(), theXMLTypePackage.getString(), "operation", null, 0, 1, ActionType1.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+        initEAttribute(getActionType1_Type(), this.getActionType(), "type", null, 0, 1, ActionType1.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
         initEClass(channelsTypeEClass, ChannelsType.class, "ChannelsType", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
         initEReference(getChannelsType_Channel(), this.getChannelType(), null, "channel", null, 0, -1, ChannelsType.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
@@ -1449,6 +1459,8 @@ public class RulesPackageImpl extends EPackageImpl implements RulesPackage {
         initEClass(containerTypeEClass, ContainerType.class, "ContainerType", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
         initEAttribute(getContainerType_BaseName(), theXMLTypePackage.getString(), "baseName", null, 0, 1, ContainerType.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
         initEAttribute(getContainerType_ReleaseId(), theXMLTypePackage.getString(), "releaseId", null, 0, 1, ContainerType.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+        initEAttribute(getContainerType_Scan(), theXMLTypePackage.getBoolean(), "scan", null, 0, 1, ContainerType.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+        initEAttribute(getContainerType_ScanInterval(), theXMLTypePackage.getLong(), "scanInterval", null, 0, 1, ContainerType.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
         initEAttribute(getContainerType_SessionName(), theXMLTypePackage.getString(), "sessionName", null, 0, 1, ContainerType.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
         initEClass(documentRootEClass, DocumentRoot.class, "DocumentRoot", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
@@ -1492,7 +1504,6 @@ public class RulesPackageImpl extends EPackageImpl implements RulesPackage {
         initEClass(manifestTypeEClass, ManifestType.class, "ManifestType", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
         initEReference(getManifestType_Container(), this.getContainerType(), null, "container", null, 0, 1, ManifestType.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
         initEReference(getManifestType_Resources(), this.getResourcesType(), null, "resources", null, 0, 1, ManifestType.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-        initEAttribute(getManifestType_Scan(), theXMLTypePackage.getBoolean(), "scan", null, 0, 1, ManifestType.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
         initEClass(mappingsTypeEClass, MappingsType.class, "MappingsType", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
         initEReference(getMappingsType_Mapping(), this.getMappingType(), null, "mapping", null, 0, -1, MappingsType.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
@@ -1528,6 +1539,7 @@ public class RulesPackageImpl extends EPackageImpl implements RulesPackage {
         // Initialize enums and add enum literals
         initEEnum(actionTypeEEnum, ActionType.class, "ActionType");
         addEEnumLiteral(actionTypeEEnum, ActionType.EXECUTE);
+        addEEnumLiteral(actionTypeEEnum, ActionType.INSERT);
         addEEnumLiteral(actionTypeEEnum, ActionType.FIREALLRULES);
         addEEnumLiteral(actionTypeEEnum, ActionType.FIREUNTILHALT);
 
@@ -1716,6 +1728,20 @@ public class RulesPackageImpl extends EPackageImpl implements RulesPackage {
            new String[] {
              "kind", "attribute",
              "name", "releaseId"
+           });		
+        addAnnotation
+          (getContainerType_Scan(), 
+           source, 
+           new String[] {
+             "kind", "attribute",
+             "name", "scan"
+           });		
+        addAnnotation
+          (getContainerType_ScanInterval(), 
+           source, 
+           new String[] {
+             "kind", "attribute",
+             "name", "scanInterval"
            });		
         addAnnotation
           (getContainerType_SessionName(), 
@@ -2025,13 +2051,6 @@ public class RulesPackageImpl extends EPackageImpl implements RulesPackage {
              "kind", "element",
              "name", "resources",
              "namespace", "##targetNamespace"
-           });		
-        addAnnotation
-          (getManifestType_Scan(), 
-           source, 
-           new String[] {
-             "kind", "attribute",
-             "name", "scan"
            });		
         addAnnotation
           (mappingsTypeEClass, 

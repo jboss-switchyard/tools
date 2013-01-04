@@ -72,6 +72,29 @@ public class FtpItemProviderAdapterFactory extends FtpAdapterFactory implements 
     }
 
     /**
+     * This keeps track of the one adapter used for all {@link org.switchyard.tools.models.switchyard1_0.camel.ftp.BaseCamelBinding} instances.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    protected BaseCamelBindingItemProvider baseCamelBindingItemProvider;
+
+    /**
+     * This creates an adapter for a {@link org.switchyard.tools.models.switchyard1_0.camel.ftp.BaseCamelBinding}.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    @Override
+    public Adapter createBaseCamelBindingAdapter() {
+        if (baseCamelBindingItemProvider == null) {
+            baseCamelBindingItemProvider = new BaseCamelBindingItemProvider(this);
+        }
+
+        return baseCamelBindingItemProvider;
+    }
+
+    /**
      * This keeps track of the one adapter used for all {@link org.switchyard.tools.models.switchyard1_0.camel.ftp.CamelFtpBindingType} instances.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
@@ -308,6 +331,7 @@ public class FtpItemProviderAdapterFactory extends FtpAdapterFactory implements 
      * @generated
      */
     public void dispose() {
+        if (baseCamelBindingItemProvider != null) baseCamelBindingItemProvider.dispose();
         if (camelFtpBindingTypeItemProvider != null) camelFtpBindingTypeItemProvider.dispose();
         if (camelFtpsBindingTypeItemProvider != null) camelFtpsBindingTypeItemProvider.dispose();
         if (camelSftpBindingTypeItemProvider != null) camelSftpBindingTypeItemProvider.dispose();

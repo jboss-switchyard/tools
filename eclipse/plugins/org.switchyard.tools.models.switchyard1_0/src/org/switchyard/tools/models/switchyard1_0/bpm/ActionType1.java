@@ -150,7 +150,7 @@ public interface ActionType1 extends CommonExtensionBase {
      * @return the value of the '<em>Operation</em>' attribute.
      * @see #setOperation(String)
      * @see org.switchyard.tools.models.switchyard1_0.bpm.BPMPackage#getActionType1_Operation()
-     * @model dataType="org.eclipse.emf.ecore.xml.type.String" required="true"
+     * @model dataType="org.eclipse.emf.ecore.xml.type.String"
      *        extendedMetaData="kind='attribute' name='operation'"
      * @generated
      */
@@ -181,7 +181,7 @@ public interface ActionType1 extends CommonExtensionBase {
      * @see #unsetType()
      * @see #setType(ActionType)
      * @see org.switchyard.tools.models.switchyard1_0.bpm.BPMPackage#getActionType1_Type()
-     * @model unsettable="true" required="true"
+     * @model unsettable="true"
      *        extendedMetaData="kind='attribute' name='type'"
      * @generated
      */

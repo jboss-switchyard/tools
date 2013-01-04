@@ -72,6 +72,29 @@ public class QuartzItemProviderAdapterFactory extends QuartzAdapterFactory imple
     }
 
     /**
+     * This keeps track of the one adapter used for all {@link org.switchyard.tools.models.switchyard1_0.camel.quartz.BaseCamelBinding} instances.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    protected BaseCamelBindingItemProvider baseCamelBindingItemProvider;
+
+    /**
+     * This creates an adapter for a {@link org.switchyard.tools.models.switchyard1_0.camel.quartz.BaseCamelBinding}.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    @Override
+    public Adapter createBaseCamelBindingAdapter() {
+        if (baseCamelBindingItemProvider == null) {
+            baseCamelBindingItemProvider = new BaseCamelBindingItemProvider(this);
+        }
+
+        return baseCamelBindingItemProvider;
+    }
+
+    /**
      * This keeps track of the one adapter used for all {@link org.switchyard.tools.models.switchyard1_0.camel.quartz.CamelQuartzBindingType} instances.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
@@ -216,6 +239,7 @@ public class QuartzItemProviderAdapterFactory extends QuartzAdapterFactory imple
      * @generated
      */
     public void dispose() {
+        if (baseCamelBindingItemProvider != null) baseCamelBindingItemProvider.dispose();
         if (camelQuartzBindingTypeItemProvider != null) camelQuartzBindingTypeItemProvider.dispose();
         if (documentRootItemProvider != null) documentRootItemProvider.dispose();
     }

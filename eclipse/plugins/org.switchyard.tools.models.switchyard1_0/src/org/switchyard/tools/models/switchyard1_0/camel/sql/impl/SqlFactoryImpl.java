@@ -56,11 +56,22 @@ public class SqlFactoryImpl extends EFactoryImpl implements SqlFactory {
     @Override
     public EObject create(EClass eClass) {
         switch (eClass.getClassifierID()) {
+            case SqlPackage.BASE_CAMEL_BINDING: return createBaseCamelBinding();
             case SqlPackage.CAMEL_SQL_BINDING_TYPE: return createCamelSqlBindingType();
             case SqlPackage.DOCUMENT_ROOT: return createDocumentRoot();
             default:
                 throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier");
         }
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public BaseCamelBinding createBaseCamelBinding() {
+        BaseCamelBindingImpl baseCamelBinding = new BaseCamelBindingImpl();
+        return baseCamelBinding;
     }
 
     /**

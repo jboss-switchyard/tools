@@ -65,6 +65,8 @@ public class ContainerTypeItemProvider
 
             addBaseNamePropertyDescriptor(object);
             addReleaseIdPropertyDescriptor(object);
+            addScanPropertyDescriptor(object);
+            addScanIntervalPropertyDescriptor(object);
             addSessionNamePropertyDescriptor(object);
         }
         return itemPropertyDescriptors;
@@ -110,6 +112,50 @@ public class ContainerTypeItemProvider
                  false,
                  false,
                  ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
+                 null,
+                 null));
+    }
+
+    /**
+     * This adds a property descriptor for the Scan feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    protected void addScanPropertyDescriptor(Object object) {
+        itemPropertyDescriptors.add
+            (createItemPropertyDescriptor
+                (((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+                 getResourceLocator(),
+                 getString("_UI_ContainerType_scan_feature"),
+                 getString("_UI_PropertyDescriptor_description", "_UI_ContainerType_scan_feature", "_UI_ContainerType_type"),
+                 BPMPackage.Literals.CONTAINER_TYPE__SCAN,
+                 true,
+                 false,
+                 false,
+                 ItemPropertyDescriptor.BOOLEAN_VALUE_IMAGE,
+                 null,
+                 null));
+    }
+
+    /**
+     * This adds a property descriptor for the Scan Interval feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    protected void addScanIntervalPropertyDescriptor(Object object) {
+        itemPropertyDescriptors.add
+            (createItemPropertyDescriptor
+                (((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+                 getResourceLocator(),
+                 getString("_UI_ContainerType_scanInterval_feature"),
+                 getString("_UI_PropertyDescriptor_description", "_UI_ContainerType_scanInterval_feature", "_UI_ContainerType_type"),
+                 BPMPackage.Literals.CONTAINER_TYPE__SCAN_INTERVAL,
+                 true,
+                 false,
+                 false,
+                 ItemPropertyDescriptor.INTEGRAL_VALUE_IMAGE,
                  null,
                  null));
     }
@@ -175,6 +221,8 @@ public class ContainerTypeItemProvider
         switch (notification.getFeatureID(ContainerType.class)) {
             case BPMPackage.CONTAINER_TYPE__BASE_NAME:
             case BPMPackage.CONTAINER_TYPE__RELEASE_ID:
+            case BPMPackage.CONTAINER_TYPE__SCAN:
+            case BPMPackage.CONTAINER_TYPE__SCAN_INTERVAL:
             case BPMPackage.CONTAINER_TYPE__SESSION_NAME:
                 fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
                 return;

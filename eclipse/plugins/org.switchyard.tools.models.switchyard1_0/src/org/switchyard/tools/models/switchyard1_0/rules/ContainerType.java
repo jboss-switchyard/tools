@@ -14,6 +14,8 @@ import org.eclipse.soa.sca.sca1_1.model.sca.CommonExtensionBase;
  * <ul>
  *   <li>{@link org.switchyard.tools.models.switchyard1_0.rules.ContainerType#getBaseName <em>Base Name</em>}</li>
  *   <li>{@link org.switchyard.tools.models.switchyard1_0.rules.ContainerType#getReleaseId <em>Release Id</em>}</li>
+ *   <li>{@link org.switchyard.tools.models.switchyard1_0.rules.ContainerType#isScan <em>Scan</em>}</li>
+ *   <li>{@link org.switchyard.tools.models.switchyard1_0.rules.ContainerType#getScanInterval <em>Scan Interval</em>}</li>
  *   <li>{@link org.switchyard.tools.models.switchyard1_0.rules.ContainerType#getSessionName <em>Session Name</em>}</li>
  * </ul>
  * </p>
@@ -76,6 +78,114 @@ public interface ContainerType extends CommonExtensionBase {
      * @generated
      */
     void setReleaseId(String value);
+
+    /**
+     * Returns the value of the '<em><b>Scan</b></em>' attribute.
+     * <!-- begin-user-doc -->
+     * <p>
+     * If the meaning of the '<em>Scan</em>' attribute isn't clear,
+     * there really should be more of a description here...
+     * </p>
+     * <!-- end-user-doc -->
+     * @return the value of the '<em>Scan</em>' attribute.
+     * @see #isSetScan()
+     * @see #unsetScan()
+     * @see #setScan(boolean)
+     * @see org.switchyard.tools.models.switchyard1_0.rules.RulesPackage#getContainerType_Scan()
+     * @model unsettable="true" dataType="org.eclipse.emf.ecore.xml.type.Boolean"
+     *        extendedMetaData="kind='attribute' name='scan'"
+     * @generated
+     */
+    boolean isScan();
+
+    /**
+     * Sets the value of the '{@link org.switchyard.tools.models.switchyard1_0.rules.ContainerType#isScan <em>Scan</em>}' attribute.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @param value the new value of the '<em>Scan</em>' attribute.
+     * @see #isSetScan()
+     * @see #unsetScan()
+     * @see #isScan()
+     * @generated
+     */
+    void setScan(boolean value);
+
+    /**
+     * Unsets the value of the '{@link org.switchyard.tools.models.switchyard1_0.rules.ContainerType#isScan <em>Scan</em>}' attribute.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @see #isSetScan()
+     * @see #isScan()
+     * @see #setScan(boolean)
+     * @generated
+     */
+    void unsetScan();
+
+    /**
+     * Returns whether the value of the '{@link org.switchyard.tools.models.switchyard1_0.rules.ContainerType#isScan <em>Scan</em>}' attribute is set.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @return whether the value of the '<em>Scan</em>' attribute is set.
+     * @see #unsetScan()
+     * @see #isScan()
+     * @see #setScan(boolean)
+     * @generated
+     */
+    boolean isSetScan();
+
+    /**
+     * Returns the value of the '<em><b>Scan Interval</b></em>' attribute.
+     * <!-- begin-user-doc -->
+     * <p>
+     * If the meaning of the '<em>Scan Interval</em>' attribute isn't clear,
+     * there really should be more of a description here...
+     * </p>
+     * <!-- end-user-doc -->
+     * @return the value of the '<em>Scan Interval</em>' attribute.
+     * @see #isSetScanInterval()
+     * @see #unsetScanInterval()
+     * @see #setScanInterval(long)
+     * @see org.switchyard.tools.models.switchyard1_0.rules.RulesPackage#getContainerType_ScanInterval()
+     * @model unsettable="true" dataType="org.eclipse.emf.ecore.xml.type.Long"
+     *        extendedMetaData="kind='attribute' name='scanInterval'"
+     * @generated
+     */
+    long getScanInterval();
+
+    /**
+     * Sets the value of the '{@link org.switchyard.tools.models.switchyard1_0.rules.ContainerType#getScanInterval <em>Scan Interval</em>}' attribute.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @param value the new value of the '<em>Scan Interval</em>' attribute.
+     * @see #isSetScanInterval()
+     * @see #unsetScanInterval()
+     * @see #getScanInterval()
+     * @generated
+     */
+    void setScanInterval(long value);
+
+    /**
+     * Unsets the value of the '{@link org.switchyard.tools.models.switchyard1_0.rules.ContainerType#getScanInterval <em>Scan Interval</em>}' attribute.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @see #isSetScanInterval()
+     * @see #getScanInterval()
+     * @see #setScanInterval(long)
+     * @generated
+     */
+    void unsetScanInterval();
+
+    /**
+     * Returns whether the value of the '{@link org.switchyard.tools.models.switchyard1_0.rules.ContainerType#getScanInterval <em>Scan Interval</em>}' attribute is set.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @return whether the value of the '<em>Scan Interval</em>' attribute is set.
+     * @see #unsetScanInterval()
+     * @see #getScanInterval()
+     * @see #setScanInterval(long)
+     * @generated
+     */
+    boolean isSetScanInterval();
 
     /**
      * Returns the value of the '<em><b>Session Name</b></em>' attribute.

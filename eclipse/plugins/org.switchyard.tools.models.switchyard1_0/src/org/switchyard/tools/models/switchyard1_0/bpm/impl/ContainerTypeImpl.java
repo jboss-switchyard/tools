@@ -22,6 +22,8 @@ import org.switchyard.tools.models.switchyard1_0.bpm.ContainerType;
  * <ul>
  *   <li>{@link org.switchyard.tools.models.switchyard1_0.bpm.impl.ContainerTypeImpl#getBaseName <em>Base Name</em>}</li>
  *   <li>{@link org.switchyard.tools.models.switchyard1_0.bpm.impl.ContainerTypeImpl#getReleaseId <em>Release Id</em>}</li>
+ *   <li>{@link org.switchyard.tools.models.switchyard1_0.bpm.impl.ContainerTypeImpl#isScan <em>Scan</em>}</li>
+ *   <li>{@link org.switchyard.tools.models.switchyard1_0.bpm.impl.ContainerTypeImpl#getScanInterval <em>Scan Interval</em>}</li>
  *   <li>{@link org.switchyard.tools.models.switchyard1_0.bpm.impl.ContainerTypeImpl#getSessionName <em>Session Name</em>}</li>
  * </ul>
  * </p>
@@ -68,6 +70,64 @@ public class ContainerTypeImpl extends CommonExtensionBaseImpl implements Contai
      * @ordered
      */
     protected String releaseId = RELEASE_ID_EDEFAULT;
+
+    /**
+     * The default value of the '{@link #isScan() <em>Scan</em>}' attribute.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @see #isScan()
+     * @generated
+     * @ordered
+     */
+    protected static final boolean SCAN_EDEFAULT = false;
+
+    /**
+     * The cached value of the '{@link #isScan() <em>Scan</em>}' attribute.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @see #isScan()
+     * @generated
+     * @ordered
+     */
+    protected boolean scan = SCAN_EDEFAULT;
+
+    /**
+     * This is true if the Scan attribute has been set.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    protected boolean scanESet;
+
+    /**
+     * The default value of the '{@link #getScanInterval() <em>Scan Interval</em>}' attribute.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @see #getScanInterval()
+     * @generated
+     * @ordered
+     */
+    protected static final long SCAN_INTERVAL_EDEFAULT = 0L;
+
+    /**
+     * The cached value of the '{@link #getScanInterval() <em>Scan Interval</em>}' attribute.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @see #getScanInterval()
+     * @generated
+     * @ordered
+     */
+    protected long scanInterval = SCAN_INTERVAL_EDEFAULT;
+
+    /**
+     * This is true if the Scan Interval attribute has been set.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    protected boolean scanIntervalESet;
 
     /**
      * The default value of the '{@link #getSessionName() <em>Session Name</em>}' attribute.
@@ -155,6 +215,98 @@ public class ContainerTypeImpl extends CommonExtensionBaseImpl implements Contai
      * <!-- end-user-doc -->
      * @generated
      */
+    public boolean isScan() {
+        return scan;
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public void setScan(boolean newScan) {
+        boolean oldScan = scan;
+        scan = newScan;
+        boolean oldScanESet = scanESet;
+        scanESet = true;
+        if (eNotificationRequired())
+            eNotify(new ENotificationImpl(this, Notification.SET, BPMPackage.CONTAINER_TYPE__SCAN, oldScan, scan, !oldScanESet));
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public void unsetScan() {
+        boolean oldScan = scan;
+        boolean oldScanESet = scanESet;
+        scan = SCAN_EDEFAULT;
+        scanESet = false;
+        if (eNotificationRequired())
+            eNotify(new ENotificationImpl(this, Notification.UNSET, BPMPackage.CONTAINER_TYPE__SCAN, oldScan, SCAN_EDEFAULT, oldScanESet));
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public boolean isSetScan() {
+        return scanESet;
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public long getScanInterval() {
+        return scanInterval;
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public void setScanInterval(long newScanInterval) {
+        long oldScanInterval = scanInterval;
+        scanInterval = newScanInterval;
+        boolean oldScanIntervalESet = scanIntervalESet;
+        scanIntervalESet = true;
+        if (eNotificationRequired())
+            eNotify(new ENotificationImpl(this, Notification.SET, BPMPackage.CONTAINER_TYPE__SCAN_INTERVAL, oldScanInterval, scanInterval, !oldScanIntervalESet));
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public void unsetScanInterval() {
+        long oldScanInterval = scanInterval;
+        boolean oldScanIntervalESet = scanIntervalESet;
+        scanInterval = SCAN_INTERVAL_EDEFAULT;
+        scanIntervalESet = false;
+        if (eNotificationRequired())
+            eNotify(new ENotificationImpl(this, Notification.UNSET, BPMPackage.CONTAINER_TYPE__SCAN_INTERVAL, oldScanInterval, SCAN_INTERVAL_EDEFAULT, oldScanIntervalESet));
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public boolean isSetScanInterval() {
+        return scanIntervalESet;
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
     public String getSessionName() {
         return sessionName;
     }
@@ -183,6 +335,10 @@ public class ContainerTypeImpl extends CommonExtensionBaseImpl implements Contai
                 return getBaseName();
             case BPMPackage.CONTAINER_TYPE__RELEASE_ID:
                 return getReleaseId();
+            case BPMPackage.CONTAINER_TYPE__SCAN:
+                return isScan();
+            case BPMPackage.CONTAINER_TYPE__SCAN_INTERVAL:
+                return getScanInterval();
             case BPMPackage.CONTAINER_TYPE__SESSION_NAME:
                 return getSessionName();
         }
@@ -202,6 +358,12 @@ public class ContainerTypeImpl extends CommonExtensionBaseImpl implements Contai
                 return;
             case BPMPackage.CONTAINER_TYPE__RELEASE_ID:
                 setReleaseId((String)newValue);
+                return;
+            case BPMPackage.CONTAINER_TYPE__SCAN:
+                setScan((Boolean)newValue);
+                return;
+            case BPMPackage.CONTAINER_TYPE__SCAN_INTERVAL:
+                setScanInterval((Long)newValue);
                 return;
             case BPMPackage.CONTAINER_TYPE__SESSION_NAME:
                 setSessionName((String)newValue);
@@ -224,6 +386,12 @@ public class ContainerTypeImpl extends CommonExtensionBaseImpl implements Contai
             case BPMPackage.CONTAINER_TYPE__RELEASE_ID:
                 setReleaseId(RELEASE_ID_EDEFAULT);
                 return;
+            case BPMPackage.CONTAINER_TYPE__SCAN:
+                unsetScan();
+                return;
+            case BPMPackage.CONTAINER_TYPE__SCAN_INTERVAL:
+                unsetScanInterval();
+                return;
             case BPMPackage.CONTAINER_TYPE__SESSION_NAME:
                 setSessionName(SESSION_NAME_EDEFAULT);
                 return;
@@ -243,6 +411,10 @@ public class ContainerTypeImpl extends CommonExtensionBaseImpl implements Contai
                 return BASE_NAME_EDEFAULT == null ? baseName != null : !BASE_NAME_EDEFAULT.equals(baseName);
             case BPMPackage.CONTAINER_TYPE__RELEASE_ID:
                 return RELEASE_ID_EDEFAULT == null ? releaseId != null : !RELEASE_ID_EDEFAULT.equals(releaseId);
+            case BPMPackage.CONTAINER_TYPE__SCAN:
+                return isSetScan();
+            case BPMPackage.CONTAINER_TYPE__SCAN_INTERVAL:
+                return isSetScanInterval();
             case BPMPackage.CONTAINER_TYPE__SESSION_NAME:
                 return SESSION_NAME_EDEFAULT == null ? sessionName != null : !SESSION_NAME_EDEFAULT.equals(sessionName);
         }
@@ -263,6 +435,10 @@ public class ContainerTypeImpl extends CommonExtensionBaseImpl implements Contai
         result.append(baseName);
         result.append(", releaseId: ");
         result.append(releaseId);
+        result.append(", scan: ");
+        if (scanESet) result.append(scan); else result.append("<unset>");
+        result.append(", scanInterval: ");
+        if (scanIntervalESet) result.append(scanInterval); else result.append("<unset>");
         result.append(", sessionName: ");
         result.append(sessionName);
         result.append(')');

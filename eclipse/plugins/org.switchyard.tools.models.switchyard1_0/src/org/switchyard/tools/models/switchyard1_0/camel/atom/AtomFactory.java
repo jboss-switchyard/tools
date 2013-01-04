@@ -22,6 +22,15 @@ public interface AtomFactory extends EFactory {
     AtomFactory eINSTANCE = org.switchyard.tools.models.switchyard1_0.camel.atom.impl.AtomFactoryImpl.init();
 
     /**
+     * Returns a new object of class '<em>Base Camel Binding</em>'.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @return a new object of class '<em>Base Camel Binding</em>'.
+     * @generated
+     */
+    BaseCamelBinding createBaseCamelBinding();
+
+    /**
      * Returns a new object of class '<em>Camel Atom Binding Type</em>'.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->

@@ -57,6 +57,7 @@ public class AtomFactoryImpl extends EFactoryImpl implements AtomFactory {
     @Override
     public EObject create(EClass eClass) {
         switch (eClass.getClassifierID()) {
+            case AtomPackage.BASE_CAMEL_BINDING: return createBaseCamelBinding();
             case AtomPackage.CAMEL_ATOM_BINDING_TYPE: return createCamelAtomBindingType();
             case AtomPackage.ATOM_SCHEDULED_POLL_CONSUMER_TYPE: return createAtomScheduledPollConsumerType();
             case AtomPackage.DOCUMENT_ROOT: return createDocumentRoot();
@@ -97,6 +98,16 @@ public class AtomFactoryImpl extends EFactoryImpl implements AtomFactory {
             default:
                 throw new IllegalArgumentException("The datatype '" + eDataType.getName() + "' is not a valid classifier");
         }
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public BaseCamelBinding createBaseCamelBinding() {
+        BaseCamelBindingImpl baseCamelBinding = new BaseCamelBindingImpl();
+        return baseCamelBinding;
     }
 
     /**

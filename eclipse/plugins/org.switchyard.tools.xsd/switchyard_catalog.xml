@@ -2,67 +2,55 @@
 <catalog xmlns="urn:oasis:names:tc:entity:xmlns:xml:catalog" prefer="public"
   xml:base="platform:/plugin/org.switchyard.tools.xsd/schema/">
   <!-- Core SwitchYard schema. -->
-  <public publicId="urn:switchyard-config:switchyard:1.0" uri="org/switchyard/config/model/switchyard/v1/switchyard-v1.xsd" />
-  <public publicId="urn:switchyard-config:transform:1.0" uri="org/switchyard/transform/config/model/v1/transform-v1.xsd" />
-  <public publicId="urn:switchyard-config:validate:1.0" uri="org/switchyard/validate/config/model/v1/validate-v1.xsd" />
+  <public publicId="urn:switchyard-config:switchyard:1.0" uri="switchyard-v1.xsd" />
+  <public publicId="urn:switchyard-config:transform:1.0" uri="transform-v1.xsd" />
+  <public publicId="urn:switchyard-config:validate:1.0" uri="validate-v1.xsd" />
 
   <!-- Specialized SwitchYard component schema. -->
-  <public publicId="urn:switchyard-component-bean:config:1.0" uri="org/switchyard/component/bean/config/model/v1/bean-v1.xsd" />
-  <public publicId="http://docs.oasis-open.org/ns/opencsa/sca/200903" uri="org/switchyard/component/bpel/config/model/v1/bpel-v1.xsd" />
-  <public publicId="urn:switchyard-component-bpm:config:1.0" uri="org/switchyard/component/bpm/config/model/v1/bpm-v1.xsd" />
-  <public publicId="urn:switchyard-component-camel:config:1.0" uri="org/switchyard/component/camel/model/v1/camel-component-v1.xsd" />
-  <public publicId="urn:switchyard-component-camel-amqp:config:1.0" uri="org/switchyard/component/camel/amqp/model/v1/camel-amqp-v1.xsd" />
-  <public publicId="urn:switchyard-component-camel-atom:config:1.0" uri="org/switchyard/component/camel/atom/model/v1/camel-atom-v1.xsd" />
-  <public publicId="urn:switchyard-component-camel-core:config:1.0" uri="org/switchyard/component/camel/core/model/v1/camel-core-v1.xsd" />
-  <public publicId="urn:switchyard-component-camel-file:config:1.0" uri="org/switchyard/component/camel/file/model/v1/camel-file-v1.xsd" />
-  <public publicId="urn:switchyard-component-camel-ftp:config:1.0" uri="org/switchyard/component/camel/ftp/model/v1/camel-ftp-v1.xsd" />
-  <public publicId="urn:switchyard-component-camel-jms:config:1.0" uri="org/switchyard/component/camel/jms/model/v1/camel-jms-v1.xsd" />
-  <public publicId="urn:switchyard-component-camel-jpa:config:1.0" uri="org/switchyard/component/camel/jpa/model/v1/camel-jpa-v1.xsd" />
-  <public publicId="urn:switchyard-component-camel-mail:config:1.0" uri="org/switchyard/component/camel/mail/model/v1/camel-mail-v1.xsd" />
-  <public publicId="urn:switchyard-component-camel-netty:config:1.0" uri="org/switchyard/component/camel/netty/model/v1/camel-netty-v1.xsd" />
-  <public publicId="urn:switchyard-component-camel-quartz:config:1.0" uri="org/switchyard/component/camel/quartz/model/v1/camel-quartz-v1.xsd" />
-  <public publicId="urn:switchyard-component-camel-sql:config:1.0" uri="org/switchyard/component/camel/sql/model/v1/camel-sql-v1.xsd" />
-  <public publicId="urn:switchyard-component-clojure:config:1.0" uri="org/switchyard/component/clojure/config/model/v1/clojure-v1.xsd" />
-  <public publicId="urn:switchyard-component-hornetq:config:1.0" uri="org/switchyard/component/hornetq/config/model/v1/hornetq-v1.xsd" />
-  <public publicId="urn:switchyard-component-rules:config:1.0" uri="org/switchyard/component/rules/config/model/v1/rules-v1.xsd" />
-  <public publicId="urn:switchyard-component-soap:config:1.0" uri="org/switchyard/component/soap/config/model/v1/soap-v1.xsd" />
-  <public publicId="urn:switchyard-component-jca:config:1.0" uri="org/switchyard/component/jca/config/model/v1/jca-v1.xsd" />
-  <public publicId="urn:switchyard-component-resteasy:config:1.0" uri="org/switchyard/component/resteasy/config/model/v1/resteasy-v1.xsd" />
-  <public publicId="urn:switchyard-component-http:config:1.0" uri="org/switchyard/component/http/config/model/v1/http-v1.xsd" />
-  <public publicId="urn:switchyard-component-remote:config:1.0" uri="org/switchyard/component/remote/config/model/v1/remote-v1.xsd" />
+  <public publicId="urn:switchyard-component-bean:config:1.0" uri="bean-v1.xsd" />
+  <public publicId="http://docs.oasis-open.org/ns/opencsa/sca/200903" uri="bpel-v1.xsd" />
+  <public publicId="urn:switchyard-component-bpm:config:1.0" uri="bpm-v1.xsd" />
+  <public publicId="urn:switchyard-component-camel:config:1.0" uri="camel-component-v1.xsd" />
+  <public publicId="urn:switchyard-component-camel-amqp:config:1.0" uri="camel-amqp-v1.xsd" />
+  <public publicId="urn:switchyard-component-camel-atom:config:1.0" uri="camel-atom-v1.xsd" />
+  <public publicId="urn:switchyard-component-camel-core:config:1.0" uri="camel-core-v1.xsd" />
+  <public publicId="urn:switchyard-component-camel-file:config:1.0" uri="camel-file-v1.xsd" />
+  <public publicId="urn:switchyard-component-camel-ftp:config:1.0" uri="camel-ftp-v1.xsd" />
+  <public publicId="urn:switchyard-component-camel-jms:config:1.0" uri="camel-jms-v1.xsd" />
+  <public publicId="urn:switchyard-component-camel-jpa:config:1.0" uri="camel-jpa-v1.xsd" />
+  <public publicId="urn:switchyard-component-camel-mail:config:1.0" uri="camel-mail-v1.xsd" />
+  <public publicId="urn:switchyard-component-camel-netty:config:1.0" uri="camel-netty-v1.xsd" />
+  <public publicId="urn:switchyard-component-camel-quartz:config:1.0" uri="camel-quartz-v1.xsd" />
+  <public publicId="urn:switchyard-component-camel-sql:config:1.0" uri="camel-sql-v1.xsd" />
+  <public publicId="urn:switchyard-component-clojure:config:1.0" uri="clojure-v1.xsd" />
+  <public publicId="urn:switchyard-component-hornetq:config:1.0" uri="hornetq-v1.xsd" />
+  <public publicId="urn:switchyard-component-rules:config:1.0" uri="rules-v1.xsd" />
+  <public publicId="urn:switchyard-component-soap:config:1.0" uri="soap-v1.xsd" />
+  <public publicId="urn:switchyard-component-jca:config:1.0" uri="jca-v1.xsd" />
+  <public publicId="urn:switchyard-component-resteasy:config:1.0" uri="resteasy-v1.xsd" />
+  <public publicId="urn:switchyard-component-http:config:1.0" uri="http-v1.xsd" />
+  <public publicId="urn:switchyard-component-remote:config:1.0" uri="remote-v1.xsd" />
 
   <!-- Other dependencies -->
-  <public publicId="http://docs.oasis-open.org/ns/opencsa/sca/200912" uri="org/oasis-open/docs/ns/opencsa/sca/200912/sca-1.1-cd06.xsd" />
-  <system systemId="http://docs.oasis-open.org/opencsa/sca-assembly/sca-1.1-cd06.xsd" uri="org/oasis-open/docs/ns/opencsa/sca/200912/sca-1.1-cd06.xsd" />
+  <public publicId="http://docs.oasis-open.org/ns/opencsa/sca/200912" uri="sca-1.1-cd06.xsd" />
+  <system systemId="http://docs.oasis-open.org/opencsa/sca-assembly/sca-1.1-cd06.xsd" uri="sca-1.1-cd06.xsd" />
 
-  <public publicId="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-secext-1.0.xsd" uri="org/oasis-open/docs/wss/2004/01/oasis-200401-wss-wssecurity-secext-1.0.xsd" />
-  <public publicId="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-utility-1.0.xsd" uri="org/oasis-open/docs/wss/2004/01/oasis-200401-wss-wssecurity-utility-1.0.xsd" />
-  <rewriteSystem systemIdStartString="http://docs.oasis-open.org/wss/2004/01/" rewritePrefix="org/oasis-open/docs/wss/2004/01/" />
+  <public publicId="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-secext-1.0.xsd" uri="oasis-200401-wss-wssecurity-secext-1.0.xsd" />
+  <public publicId="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-utility-1.0.xsd" uri="oasis-200401-wss-wssecurity-utility-1.0.xsd" />
 
-  <public publicId="http://www.w3.org/2000/09/xmldsig#" uri="org/w3/www/TR/xmldsig-core/xmldsig-core-schema.xsd" />
-  <system systemId="http://www.w3.org/TR/xmldsig-core/xmldsig-core-schema.xsd" uri="org/w3/www/TR/xmldsig-core/xmldsig-core-schema.xsd" />
+  <public publicId="http://www.w3.org/2000/09/xmldsig#" uri="xmldsig-core-schema.xsd" />
+  <system systemId="http://www.w3.org/TR/xmldsig-core/xmldsig-core-schema.xsd" uri="xmldsig-core-schema.xsd" />
 
-  <public publicId="http://www.w3.org/ns/wsdl-instance" uri="org/w3/www/2007/05/wsdl/wsdl20-instance.xsd" />
-  <system systemId="http://www.w3.org/2007/05/wsdl/wsdl20-instance.xsd" uri="org/w3/www/2007/05/wsdl/wsdl20-instance.xsd" />
+  <public publicId="http://www.w3.org/ns/wsdl-instance" uri="wsdl20-instance.xsd" />
+  <system systemId="http://www.w3.org/2007/05/wsdl/wsdl20-instance.xsd" uri="wsdl20-instance.xsd" />
 
-  <public publicId="http://www.w3.org/ns/ws-policy" uri="org/w3/www/2007/02/ws-policy.xsd" />
-  <system systemId="http://www.w3.org/2007/02/ws-policy.xsd" uri="org/w3/www/2007/02/ws-policy.xsd" />
+  <public publicId="http://www.w3.org/ns/ws-policy" uri="ws-policy.xsd" />
+  <system systemId="http://www.w3.org/2007/02/ws-policy.xsd" uri="ws-policy.xsd" />
 
-  <public publicId="http://www.w3.org/2005/08/addressing" uri="org/w3/www/2006/03/addressing/ws-addr.xsd" />
-  <system systemId="http://www.w3.org/2006/03/addressing/ws-addr.xsd" uri="org/w3/www/2006/03/addressing/ws-addr.xsd" />
+  <public publicId="http://www.w3.org/2005/08/addressing" uri="ws-addr.xsd" />
+  <system systemId="http://www.w3.org/2006/03/addressing/ws-addr.xsd" uri="ws-addr.xsd" />
 
-  <public publicId="http://camel.apache.org/schema/spring" uri="org/apache/camel/schema/spring/camel-spring.xsd" />
-  <system systemId="http://camel.apache.org/schema/spring/camel-spring.xsd" uri="org/apache/camel/schema/spring/camel-spring.xsd" />
+  <public publicId="http://camel.apache.org/schema/spring" uri="camel-spring.xsd" />
+  <system systemId="http://camel.apache.org/schema/spring/camel-spring.xsd" uri="camel-spring.xsd" />
 
-  <system systemId="platform:/plugin/org.switchyard.tools.xsd/schema/org/switchyard/component/camel/amqp/model/v1/camel-common-v1.xsd" uri="org/switchyard/component/camel/common/model/v1/camel-common-v1.xsd" />
-  <system systemId="platform:/plugin/org.switchyard.tools.xsd/schema/org/switchyard/component/camel/atom/model/v1/camel-common-v1.xsd" uri="org/switchyard/component/camel/common/model/v1/camel-common-v1.xsd" />
-  <system systemId="platform:/plugin/org.switchyard.tools.xsd/schema/org/switchyard/component/camel/core/model/v1/camel-common-v1.xsd" uri="org/switchyard/component/camel/common/model/v1/camel-common-v1.xsd" />
-  <system systemId="platform:/plugin/org.switchyard.tools.xsd/schema/org/switchyard/component/camel/file/model/v1/camel-common-v1.xsd" uri="org/switchyard/component/camel/common/model/v1/camel-common-v1.xsd" />
-  <system systemId="platform:/plugin/org.switchyard.tools.xsd/schema/org/switchyard/component/camel/ftp/model/v1/camel-common-v1.xsd" uri="org/switchyard/component/camel/common/model/v1/camel-common-v1.xsd" />
-  <system systemId="platform:/plugin/org.switchyard.tools.xsd/schema/org/switchyard/component/camel/jms/model/v1/camel-common-v1.xsd" uri="org/switchyard/component/camel/common/model/v1/camel-common-v1.xsd" />
-  <system systemId="platform:/plugin/org.switchyard.tools.xsd/schema/org/switchyard/component/camel/jpa/model/v1/camel-common-v1.xsd" uri="org/switchyard/component/camel/common/model/v1/camel-common-v1.xsd" />
-  <system systemId="platform:/plugin/org.switchyard.tools.xsd/schema/org/switchyard/component/camel/mail/model/v1/camel-common-v1.xsd" uri="org/switchyard/component/camel/common/model/v1/camel-common-v1.xsd" />
-  <system systemId="platform:/plugin/org.switchyard.tools.xsd/schema/org/switchyard/component/camel/netty/model/v1/camel-common-v1.xsd" uri="org/switchyard/component/camel/common/model/v1/camel-common-v1.xsd" />
-  <system systemId="platform:/plugin/org.switchyard.tools.xsd/schema/org/switchyard/component/camel/quartz/model/v1/camel-common-v1.xsd" uri="org/switchyard/component/camel/common/model/v1/camel-common-v1.xsd" />
-  <system systemId="platform:/plugin/org.switchyard.tools.xsd/schema/org/switchyard/component/camel/sql/model/v1/camel-common-v1.xsd" uri="org/switchyard/component/camel/common/model/v1/camel-common-v1.xsd" />
 </catalog>

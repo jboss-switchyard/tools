@@ -22,6 +22,15 @@ public interface AmqpFactory extends EFactory {
     AmqpFactory eINSTANCE = org.switchyard.tools.models.switchyard1_0.camel.amqp.impl.AmqpFactoryImpl.init();
 
     /**
+     * Returns a new object of class '<em>Base Camel Binding</em>'.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @return a new object of class '<em>Base Camel Binding</em>'.
+     * @generated
+     */
+    BaseCamelBinding createBaseCamelBinding();
+
+    /**
      * Returns a new object of class '<em>Camel Amqp Binding Type</em>'.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->

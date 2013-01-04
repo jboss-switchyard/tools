@@ -72,6 +72,29 @@ public class JmsItemProviderAdapterFactory extends JmsAdapterFactory implements 
     }
 
     /**
+     * This keeps track of the one adapter used for all {@link org.switchyard.tools.models.switchyard1_0.camel.jms.BaseCamelBinding} instances.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    protected BaseCamelBindingItemProvider baseCamelBindingItemProvider;
+
+    /**
+     * This creates an adapter for a {@link org.switchyard.tools.models.switchyard1_0.camel.jms.BaseCamelBinding}.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    @Override
+    public Adapter createBaseCamelBindingAdapter() {
+        if (baseCamelBindingItemProvider == null) {
+            baseCamelBindingItemProvider = new BaseCamelBindingItemProvider(this);
+        }
+
+        return baseCamelBindingItemProvider;
+    }
+
+    /**
      * This keeps track of the one adapter used for all {@link org.switchyard.tools.models.switchyard1_0.camel.jms.CamelJmsBindingType} instances.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
@@ -216,6 +239,7 @@ public class JmsItemProviderAdapterFactory extends JmsAdapterFactory implements 
      * @generated
      */
     public void dispose() {
+        if (baseCamelBindingItemProvider != null) baseCamelBindingItemProvider.dispose();
         if (camelJmsBindingTypeItemProvider != null) camelJmsBindingTypeItemProvider.dispose();
         if (documentRootItemProvider != null) documentRootItemProvider.dispose();
     }

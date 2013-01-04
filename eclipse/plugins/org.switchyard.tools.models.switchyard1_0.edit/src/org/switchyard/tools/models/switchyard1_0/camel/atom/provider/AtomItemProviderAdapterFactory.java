@@ -72,6 +72,29 @@ public class AtomItemProviderAdapterFactory extends AtomAdapterFactory implement
     }
 
     /**
+     * This keeps track of the one adapter used for all {@link org.switchyard.tools.models.switchyard1_0.camel.atom.BaseCamelBinding} instances.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    protected BaseCamelBindingItemProvider baseCamelBindingItemProvider;
+
+    /**
+     * This creates an adapter for a {@link org.switchyard.tools.models.switchyard1_0.camel.atom.BaseCamelBinding}.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    @Override
+    public Adapter createBaseCamelBindingAdapter() {
+        if (baseCamelBindingItemProvider == null) {
+            baseCamelBindingItemProvider = new BaseCamelBindingItemProvider(this);
+        }
+
+        return baseCamelBindingItemProvider;
+    }
+
+    /**
      * This keeps track of the one adapter used for all {@link org.switchyard.tools.models.switchyard1_0.camel.atom.CamelAtomBindingType} instances.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
@@ -239,6 +262,7 @@ public class AtomItemProviderAdapterFactory extends AtomAdapterFactory implement
      * @generated
      */
     public void dispose() {
+        if (baseCamelBindingItemProvider != null) baseCamelBindingItemProvider.dispose();
         if (camelAtomBindingTypeItemProvider != null) camelAtomBindingTypeItemProvider.dispose();
         if (atomScheduledPollConsumerTypeItemProvider != null) atomScheduledPollConsumerTypeItemProvider.dispose();
         if (documentRootItemProvider != null) documentRootItemProvider.dispose();

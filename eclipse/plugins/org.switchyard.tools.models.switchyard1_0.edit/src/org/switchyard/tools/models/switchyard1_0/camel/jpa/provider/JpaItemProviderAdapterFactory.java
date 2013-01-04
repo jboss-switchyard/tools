@@ -72,6 +72,29 @@ public class JpaItemProviderAdapterFactory extends JpaAdapterFactory implements 
     }
 
     /**
+     * This keeps track of the one adapter used for all {@link org.switchyard.tools.models.switchyard1_0.camel.jpa.BaseCamelBinding} instances.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    protected BaseCamelBindingItemProvider baseCamelBindingItemProvider;
+
+    /**
+     * This creates an adapter for a {@link org.switchyard.tools.models.switchyard1_0.camel.jpa.BaseCamelBinding}.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    @Override
+    public Adapter createBaseCamelBindingAdapter() {
+        if (baseCamelBindingItemProvider == null) {
+            baseCamelBindingItemProvider = new BaseCamelBindingItemProvider(this);
+        }
+
+        return baseCamelBindingItemProvider;
+    }
+
+    /**
      * This keeps track of the one adapter used for all {@link org.switchyard.tools.models.switchyard1_0.camel.jpa.DocumentRoot} instances.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
@@ -262,6 +285,7 @@ public class JpaItemProviderAdapterFactory extends JpaAdapterFactory implements 
      * @generated
      */
     public void dispose() {
+        if (baseCamelBindingItemProvider != null) baseCamelBindingItemProvider.dispose();
         if (camelJPABindingTypeItemProvider != null) camelJPABindingTypeItemProvider.dispose();
         if (documentRootItemProvider != null) documentRootItemProvider.dispose();
         if (jpaConsumerTypeItemProvider != null) jpaConsumerTypeItemProvider.dispose();

@@ -56,12 +56,23 @@ public class NettyFactoryImpl extends EFactoryImpl implements NettyFactory {
     @Override
     public EObject create(EClass eClass) {
         switch (eClass.getClassifierID()) {
+            case NettyPackage.BASE_CAMEL_BINDING: return createBaseCamelBinding();
             case NettyPackage.CAMEL_NETTY_TCP_BINDING_TYPE: return createCamelNettyTcpBindingType();
             case NettyPackage.CAMEL_NETTY_UDP_BINDING_TYPE: return createCamelNettyUdpBindingType();
             case NettyPackage.DOCUMENT_ROOT: return createDocumentRoot();
             default:
                 throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier");
         }
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public BaseCamelBinding createBaseCamelBinding() {
+        BaseCamelBindingImpl baseCamelBinding = new BaseCamelBindingImpl();
+        return baseCamelBinding;
     }
 
     /**

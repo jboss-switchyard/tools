@@ -57,6 +57,7 @@ public class FtpFactoryImpl extends EFactoryImpl implements FtpFactory {
     @Override
     public EObject create(EClass eClass) {
         switch (eClass.getClassifierID()) {
+            case FtpPackage.BASE_CAMEL_BINDING: return createBaseCamelBinding();
             case FtpPackage.CAMEL_FTP_BINDING_TYPE: return createCamelFtpBindingType();
             case FtpPackage.CAMEL_FTPS_BINDING_TYPE: return createCamelFtpsBindingType();
             case FtpPackage.CAMEL_SFTP_BINDING_TYPE: return createCamelSftpBindingType();
@@ -100,6 +101,16 @@ public class FtpFactoryImpl extends EFactoryImpl implements FtpFactory {
             default:
                 throw new IllegalArgumentException("The datatype '" + eDataType.getName() + "' is not a valid classifier");
         }
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public BaseCamelBinding createBaseCamelBinding() {
+        BaseCamelBindingImpl baseCamelBinding = new BaseCamelBindingImpl();
+        return baseCamelBinding;
     }
 
     /**

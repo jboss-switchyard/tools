@@ -22,6 +22,15 @@ public interface JmsFactory extends EFactory {
     JmsFactory eINSTANCE = org.switchyard.tools.models.switchyard1_0.camel.jms.impl.JmsFactoryImpl.init();
 
     /**
+     * Returns a new object of class '<em>Base Camel Binding</em>'.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @return a new object of class '<em>Base Camel Binding</em>'.
+     * @generated
+     */
+    BaseCamelBinding createBaseCamelBinding();
+
+    /**
      * Returns a new object of class '<em>Camel Jms Binding Type</em>'.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->

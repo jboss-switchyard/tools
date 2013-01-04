@@ -9,6 +9,9 @@ import java.util.List;
 import org.eclipse.emf.common.notify.AdapterFactory;
 import org.eclipse.emf.common.notify.Notification;
 
+import org.eclipse.emf.ecore.EStructuralFeature;
+import org.eclipse.emf.ecore.util.FeatureMap;
+import org.eclipse.emf.ecore.util.FeatureMapUtil;
 import org.eclipse.emf.edit.provider.ComposeableAdapterFactory;
 import org.eclipse.emf.edit.provider.IEditingDomainItemProvider;
 import org.eclipse.emf.edit.provider.IItemLabelProvider;
@@ -21,6 +24,7 @@ import org.eclipse.emf.edit.provider.ViewerNotification;
 
 import org.switchyard.tools.models.switchyard1_0.camel.core.CamelDirectBindingType;
 import org.switchyard.tools.models.switchyard1_0.camel.core.CorePackage;
+import org.switchyard.tools.models.switchyard1_0.switchyard.SwitchyardPackage;
 
 /**
  * This is the item provider adapter for a {@link org.switchyard.tools.models.switchyard1_0.camel.core.CamelDirectBindingType} object.
@@ -57,25 +61,25 @@ public class CamelDirectBindingTypeItemProvider
         if (itemPropertyDescriptors == null) {
             super.getPropertyDescriptors(object);
 
-            addNameElementPropertyDescriptor(object);
+            addCamelBindingNamePropertyDescriptor(object);
         }
         return itemPropertyDescriptors;
     }
 
     /**
-     * This adds a property descriptor for the Name Element feature.
+     * This adds a property descriptor for the Camel Binding Name feature.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @generated
      */
-    protected void addNameElementPropertyDescriptor(Object object) {
+    protected void addCamelBindingNamePropertyDescriptor(Object object) {
         itemPropertyDescriptors.add
             (createItemPropertyDescriptor
                 (((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
                  getResourceLocator(),
-                 getString("_UI_CamelDirectBindingType_nameElement_feature"),
-                 getString("_UI_PropertyDescriptor_description", "_UI_CamelDirectBindingType_nameElement_feature", "_UI_CamelDirectBindingType_type"),
-                 CorePackage.Literals.CAMEL_DIRECT_BINDING_TYPE__NAME_ELEMENT,
+                 getString("_UI_CamelDirectBindingType_camelBindingName_feature"),
+                 getString("_UI_PropertyDescriptor_description", "_UI_CamelDirectBindingType_camelBindingName_feature", "_UI_CamelDirectBindingType_type"),
+                 CorePackage.Literals.CAMEL_DIRECT_BINDING_TYPE__CAMEL_BINDING_NAME,
                  true,
                  false,
                  false,
@@ -121,7 +125,7 @@ public class CamelDirectBindingTypeItemProvider
         updateChildren(notification);
 
         switch (notification.getFeatureID(CamelDirectBindingType.class)) {
-            case CorePackage.CAMEL_DIRECT_BINDING_TYPE__NAME_ELEMENT:
+            case CorePackage.CAMEL_DIRECT_BINDING_TYPE__CAMEL_BINDING_NAME:
                 fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
                 return;
         }
@@ -138,6 +142,37 @@ public class CamelDirectBindingTypeItemProvider
     @Override
     protected void collectNewChildDescriptors(Collection<Object> newChildDescriptors, Object object) {
         super.collectNewChildDescriptors(newChildDescriptors, object);
+    }
+
+    /**
+     * This returns the label text for {@link org.eclipse.emf.edit.command.CreateChildCommand}.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    @Override
+    public String getCreateChildText(Object owner, Object feature, Object child, Collection<?> selection) {
+        Object childFeature = feature;
+        Object childObject = child;
+
+        if (childFeature instanceof EStructuralFeature && FeatureMapUtil.isFeatureMap((EStructuralFeature)childFeature)) {
+            FeatureMap.Entry entry = (FeatureMap.Entry)childObject;
+            childFeature = entry.getEStructuralFeature();
+            childObject = entry.getValue();
+        }
+
+        boolean qualify =
+            childFeature == SwitchyardPackage.Literals.SWITCH_YARD_BINDING_TYPE__CONTEXT_MAPPER ||
+            childFeature == CorePackage.Literals.BASE_CAMEL_BINDING__CAMEL_CONTEXT_MAPPER ||
+            childFeature == SwitchyardPackage.Literals.SWITCH_YARD_BINDING_TYPE__MESSAGE_COMPOSER ||
+            childFeature == CorePackage.Literals.BASE_CAMEL_BINDING__CAMEL_MESSAGE_COMPOSER;
+
+        if (qualify) {
+            return getString
+                ("_UI_CreateChild_text2",
+                 new Object[] { getTypeText(childObject), getFeatureText(childFeature), getTypeText(owner) });
+        }
+        return super.getCreateChildText(owner, feature, child, selection);
     }
 
 }

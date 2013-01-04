@@ -56,11 +56,22 @@ public class AmqpFactoryImpl extends EFactoryImpl implements AmqpFactory {
     @Override
     public EObject create(EClass eClass) {
         switch (eClass.getClassifierID()) {
+            case AmqpPackage.BASE_CAMEL_BINDING: return createBaseCamelBinding();
             case AmqpPackage.CAMEL_AMQP_BINDING_TYPE: return createCamelAmqpBindingType();
             case AmqpPackage.DOCUMENT_ROOT: return createDocumentRoot();
             default:
                 throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier");
         }
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public BaseCamelBinding createBaseCamelBinding() {
+        BaseCamelBindingImpl baseCamelBinding = new BaseCamelBindingImpl();
+        return baseCamelBinding;
     }
 
     /**

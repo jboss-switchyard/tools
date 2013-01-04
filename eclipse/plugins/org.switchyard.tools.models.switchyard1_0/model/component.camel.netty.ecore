@@ -2,11 +2,27 @@
 <ecore:EPackage xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
     xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" name="netty" nsURI="urn:switchyard-component-camel-netty:config:1.0"
     nsPrefix="netty">
-  <eClassifiers xsi:type="ecore:EClass" name="BaseCamelBinding" abstract="true" eSuperTypes="config.switchyard.ecore#//SwitchYardBindingType">
+  <eClassifiers xsi:type="ecore:EClass" name="BaseCamelBinding" eSuperTypes="config.switchyard.ecore#//SwitchYardBindingType">
     <eAnnotations source="http:///org/eclipse/emf/ecore/util/ExtendedMetaData">
       <details key="name" value="BaseCamelBinding"/>
       <details key="kind" value="elementOnly"/>
     </eAnnotations>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="camelContextMapper" eType="ecore:EClass config.switchyard.ecore#//ContextMapperType"
+        containment="true" resolveProxies="false">
+      <eAnnotations source="http:///org/eclipse/emf/ecore/util/ExtendedMetaData">
+        <details key="kind" value="element"/>
+        <details key="name" value="contextMapper"/>
+        <details key="namespace" value="##targetNamespace"/>
+      </eAnnotations>
+    </eStructuralFeatures>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="camelMessageComposer" eType="ecore:EClass config.switchyard.ecore#//MessageComposerType"
+        containment="true" resolveProxies="false">
+      <eAnnotations source="http:///org/eclipse/emf/ecore/util/ExtendedMetaData">
+        <details key="kind" value="element"/>
+        <details key="name" value="messageComposer"/>
+        <details key="namespace" value="##targetNamespace"/>
+      </eAnnotations>
+    </eStructuralFeatures>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="CamelNettyBindingType" abstract="true"
       eSuperTypes="#//BaseCamelBinding">

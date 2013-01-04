@@ -56,6 +56,7 @@ public class CoreFactoryImpl extends EFactoryImpl implements CoreFactory {
     @Override
     public EObject create(EClass eClass) {
         switch (eClass.getClassifierID()) {
+            case CorePackage.BASE_CAMEL_BINDING: return createBaseCamelBinding();
             case CorePackage.CAMEL_BINDING_TYPE: return createCamelBindingType();
             case CorePackage.CAMEL_DIRECT_BINDING_TYPE: return createCamelDirectBindingType();
             case CorePackage.CAMEL_TIMER_BINDING_TYPE: return createCamelTimerBindingType();
@@ -65,6 +66,16 @@ public class CoreFactoryImpl extends EFactoryImpl implements CoreFactory {
             default:
                 throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier");
         }
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public BaseCamelBinding createBaseCamelBinding() {
+        BaseCamelBindingImpl baseCamelBinding = new BaseCamelBindingImpl();
+        return baseCamelBinding;
     }
 
     /**
