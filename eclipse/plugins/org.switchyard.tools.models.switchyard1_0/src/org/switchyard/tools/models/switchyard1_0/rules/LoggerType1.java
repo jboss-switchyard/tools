@@ -27,6 +27,7 @@ import org.eclipse.soa.sca.sca1_1.model.sca.CommonExtensionBase;
 public interface LoggerType1 extends CommonExtensionBase {
     /**
      * Returns the value of the '<em><b>Interval</b></em>' attribute.
+     * The default value is <code>"1000"</code>.
      * <!-- begin-user-doc -->
      * <p>
      * If the meaning of the '<em>Interval</em>' attribute isn't clear,
@@ -36,7 +37,7 @@ public interface LoggerType1 extends CommonExtensionBase {
      * @return the value of the '<em>Interval</em>' attribute.
      * @see #setInterval(BigInteger)
      * @see org.switchyard.tools.models.switchyard1_0.rules.RulesPackage#getLoggerType1_Interval()
-     * @model dataType="org.eclipse.emf.ecore.xml.type.Integer"
+     * @model default="1000" dataType="org.eclipse.emf.ecore.xml.type.Integer"
      *        extendedMetaData="kind='attribute' name='interval'"
      * @generated
      */
@@ -81,6 +82,7 @@ public interface LoggerType1 extends CommonExtensionBase {
 
     /**
      * Returns the value of the '<em><b>Type</b></em>' attribute.
+     * The default value is <code>"THREADED_FILE"</code>.
      * The literals are from the enumeration {@link org.switchyard.tools.models.switchyard1_0.rules.LoggerType}.
      * <!-- begin-user-doc -->
      * <p>
@@ -94,7 +96,7 @@ public interface LoggerType1 extends CommonExtensionBase {
      * @see #unsetType()
      * @see #setType(LoggerType)
      * @see org.switchyard.tools.models.switchyard1_0.rules.RulesPackage#getLoggerType1_Type()
-     * @model unsettable="true"
+     * @model default="THREADED_FILE" unsettable="true"
      *        extendedMetaData="kind='attribute' name='type'"
      * @generated
      */

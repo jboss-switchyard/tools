@@ -36,7 +36,6 @@ import org.switchyard.tools.models.switchyard1_0.bpm.MappingType;
 import org.switchyard.tools.models.switchyard1_0.bpm.MappingsType;
 import org.switchyard.tools.models.switchyard1_0.bpm.ResourceType;
 import org.switchyard.tools.models.switchyard1_0.bpm.ResourcesType;
-import org.switchyard.tools.models.switchyard1_0.bpm.ScopeType;
 import org.switchyard.tools.models.switchyard1_0.bpm.WorkItemHandlerType;
 import org.switchyard.tools.models.switchyard1_0.bpm.WorkItemHandlersType;
 import org.switchyard.tools.ui.editor.diagram.shared.BaseNewServiceFileWizard;
@@ -112,14 +111,12 @@ public class NewBPMComponentWizard extends BaseNewServiceFileWizard implements I
         _implementation.setProcessId(_processPage.getProcessId());
 
         final ActionType1 startAction = BPMFactory.eINSTANCE.createActionType1();
-        startAction.setOperation("");
         startAction.setType(ActionType.STARTPROCESS);
         if (_processPage.getMessageInName() == null) {
             startAction.setInputs(null);
         } else {
             final MappingsType inputs = BPMFactory.eINSTANCE.createMappingsType();
             final MappingType inputMapping = BPMFactory.eINSTANCE.createMappingType();
-            inputMapping.setScope(ScopeType.IN);
             inputMapping.setVariable(_processPage.getMessageInName());
             inputMapping.setExpression("message.content");
 
@@ -132,7 +129,6 @@ public class NewBPMComponentWizard extends BaseNewServiceFileWizard implements I
         } else {
             final MappingsType outputs = BPMFactory.eINSTANCE.createMappingsType();
             final MappingType outputMapping = BPMFactory.eINSTANCE.createMappingType();
-            outputMapping.setScope(ScopeType.IN);
             outputMapping.setVariable(_processPage.getMessageOutName());
             outputMapping.setExpression("message.content");
 
@@ -240,16 +236,24 @@ public class NewBPMComponentWizard extends BaseNewServiceFileWizard implements I
         buf.append(
                 "<definitions id=\"Definition_1\" xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\" xmlns=\"http://www.omg.org/spec/BPMN/20100524/MODEL\" xmlns:bpmndi=\"http://www.omg.org/spec/BPMN/20100524/DI\" xmlns:dc=\"http://www.omg.org/spec/DD/20100524/DC\" xmlns:di=\"http://www.omg.org/spec/DD/20100524/DI\" xmlns:tns=\"http://www.jboss.org/drools\" xsi:schemaLocation=\"http://www.omg.org/spec/BPMN/20100524/MODEL BPMN20.xsd\" targetNamespace=\"http://www.jboss.org/drools\">")
                 .append(lineSeparator);
-        buf.append("    <itemDefinition id=\"").append(messageInItem).append("\"/>").append(lineSeparator);
-        buf.append("    <itemDefinition id=\"").append(messageOutItem).append("\"/>").append(lineSeparator);
+        if (messageIn != null && messageIn.length() > 0) {
+            buf.append("    <itemDefinition id=\"").append(messageInItem).append("\"/>").append(lineSeparator);
+        }
+        if (messageOut != null && messageOut.length() > 0) {
+            buf.append("    <itemDefinition id=\"").append(messageOutItem).append("\"/>").append(lineSeparator);
+        }
         buf.append("    <process id=\"").append(_implementation.getProcessId()).append("\" tns:packageName=\"")
                 .append(_processPage.getPackageName()).append("\" name=\"").append(_processPage.getProcessName())
                 .append("\" isExecutable=\"true\" processType=\"Private\">").append(lineSeparator);
         buf.append("        <!-- process variables -->").append(lineSeparator);
-        buf.append("        <property id=\"").append(messageIn).append("\" itemSubjectRef=\"").append(messageInItem)
-                .append("\"/>").append(lineSeparator);
-        buf.append("        <property id=\"").append(messageOut).append("\" itemSubjectRef=\"").append(messageOutItem)
-                .append("\"/>").append(lineSeparator);
+        if (messageIn != null && messageIn.length() > 0) {
+            buf.append("        <property id=\"").append(messageIn).append("\" itemSubjectRef=\"")
+                    .append(messageInItem).append("\"/>").append(lineSeparator);
+        }
+        if (messageOut != null && messageOut.length() > 0) {
+            buf.append("        <property id=\"").append(messageOut).append("\" itemSubjectRef=\"")
+                    .append(messageOutItem).append("\"/>").append(lineSeparator);
+        }
         buf.append("        <startEvent id=\"StartEvent_1\">").append(lineSeparator);
         buf.append("            <outgoing>SequenceFlow_1</outgoing>").append(lineSeparator);
         buf.append("        </startEvent>").append(lineSeparator);

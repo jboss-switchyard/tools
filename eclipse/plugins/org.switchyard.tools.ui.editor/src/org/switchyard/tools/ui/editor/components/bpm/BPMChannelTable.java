@@ -21,6 +21,7 @@ import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.transaction.RecordingCommand;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.eclipse.jface.viewers.CellEditor;
+import org.eclipse.jface.viewers.ColumnWeightData;
 import org.eclipse.jface.viewers.ICellModifier;
 import org.eclipse.jface.viewers.ILabelProviderListener;
 import org.eclipse.jface.viewers.IStructuredContentProvider;
@@ -43,6 +44,7 @@ import org.switchyard.tools.models.switchyard1_0.bpm.BPMFactory;
 import org.switchyard.tools.models.switchyard1_0.bpm.BPMImplementationType;
 import org.switchyard.tools.models.switchyard1_0.bpm.ChannelType;
 import org.switchyard.tools.ui.editor.diagram.shared.ClassDialogCellEditor;
+import org.switchyard.tools.ui.editor.diagram.shared.TableColumnLayout;
 import org.switchyard.tools.ui.editor.impl.SwitchyardSCAEditor;
 
 /**
@@ -169,24 +171,30 @@ public class BPMChannelTable extends Composite implements ICellModifier {
         gridLayout.numColumns = 2;
         setLayout(gridLayout);
 
-        _propertyTreeTable = new TableViewer(this, SWT.BORDER | SWT.WRAP | SWT.V_SCROLL | SWT.FULL_SELECTION
-                | additionalStyles);
-        GridData gd11 = new GridData(SWT.FILL, SWT.FILL, true, false, 1, 3);
+        Composite tableComposite = new Composite(this, additionalStyles);
+        GridData gd11 = new GridData(SWT.FILL, SWT.FILL, true, false, 1, 2);
         gd11.heightHint = 100;
-        _propertyTreeTable.getTable().setLayoutData(gd11);
+        tableComposite.setLayoutData(gd11);
+
+        _propertyTreeTable = new TableViewer(tableComposite, SWT.BORDER | SWT.WRAP | SWT.V_SCROLL | SWT.FULL_SELECTION
+                | additionalStyles);
         _propertyTreeTable.getTable().setHeaderVisible(true);
+
+        TableColumnLayout tableLayout = new TableColumnLayout();
+        tableComposite.setLayout(tableLayout);
+
         TableColumn nameColumn = new TableColumn(_propertyTreeTable.getTable(), SWT.LEFT);
         nameColumn.setText("Name");
-        nameColumn.setWidth(200);
+        tableLayout.setColumnData(nameColumn, new ColumnWeightData(100, 150, true));
         TableColumn operationColumn = new TableColumn(_propertyTreeTable.getTable(), SWT.LEFT);
         operationColumn.setText("Operation");
-        operationColumn.setWidth(200);
+        tableLayout.setColumnData(operationColumn, new ColumnWeightData(100, 150, true));
         TableColumn referenceColumn = new TableColumn(_propertyTreeTable.getTable(), SWT.LEFT);
         referenceColumn.setText("Reference");
-        referenceColumn.setWidth(200);
+        tableLayout.setColumnData(referenceColumn, new ColumnWeightData(100, 150, true));
         TableColumn valueColumn = new TableColumn(_propertyTreeTable.getTable(), SWT.LEFT);
         valueColumn.setText("Class");
-        valueColumn.setWidth(300);
+        tableLayout.setColumnData(valueColumn, new ColumnWeightData(200, 300, true));
 
         _propertyTreeTable.setColumnProperties(TREE_COLUMNS);
 
@@ -206,10 +214,10 @@ public class BPMChannelTable extends Composite implements ICellModifier {
                     }
                 } });
 
-        this._mAddButton = new Button(this, SWT.NONE);
-        this._mAddButton.setLayoutData(new GridData(GridData.HORIZONTAL_ALIGN_FILL));
-        this._mAddButton.setText("Add");
-        this._mAddButton.addSelectionListener(new SelectionAdapter() {
+        _mAddButton = new Button(this, SWT.NONE);
+        _mAddButton.setLayoutData(new GridData(SWT.FILL, SWT.BEGINNING, false, false));
+        _mAddButton.setText("Add");
+        _mAddButton.addSelectionListener(new SelectionAdapter() {
 
             public void widgetSelected(SelectionEvent e) {
                 addPropertyToList();
@@ -221,7 +229,7 @@ public class BPMChannelTable extends Composite implements ICellModifier {
             }
         });
 
-        this._mAddButton.setEnabled(false);
+        _mAddButton.setEnabled(false);
 
         _propertyTreeTable.getTable().addSelectionListener(new SelectionAdapter() {
 
@@ -230,11 +238,11 @@ public class BPMChannelTable extends Composite implements ICellModifier {
             }
         });
 
-        this._mRemoveButton = new Button(this, SWT.NONE);
-        this._mRemoveButton.setLayoutData(new GridData(GridData.HORIZONTAL_ALIGN_FILL));
-        this._mRemoveButton.setText("Remove");
-        this._mRemoveButton.setEnabled(false);
-        this._mRemoveButton.addSelectionListener(new SelectionAdapter() {
+        _mRemoveButton = new Button(this, SWT.NONE);
+        _mRemoveButton.setLayoutData(new GridData(SWT.FILL, SWT.BEGINNING, false, false));
+        _mRemoveButton.setText("Remove");
+        _mRemoveButton.setEnabled(false);
+        _mRemoveButton.addSelectionListener(new SelectionAdapter() {
 
             public void widgetSelected(SelectionEvent e) {
                 removeFromList();

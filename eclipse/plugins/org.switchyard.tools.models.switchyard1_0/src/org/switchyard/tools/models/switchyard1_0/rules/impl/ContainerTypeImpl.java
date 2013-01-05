@@ -108,7 +108,7 @@ public class ContainerTypeImpl extends CommonExtensionBaseImpl implements Contai
      * @generated
      * @ordered
      */
-    protected static final long SCAN_INTERVAL_EDEFAULT = 0L;
+    protected static final long SCAN_INTERVAL_EDEFAULT = 60000L;
 
     /**
      * The cached value of the '{@link #getScanInterval() <em>Scan Interval</em>}' attribute.

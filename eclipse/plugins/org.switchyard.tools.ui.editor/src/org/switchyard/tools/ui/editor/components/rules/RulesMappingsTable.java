@@ -24,6 +24,7 @@ import org.eclipse.emf.ecore.EReference;
 import org.eclipse.emf.transaction.RecordingCommand;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.eclipse.jface.viewers.CellEditor;
+import org.eclipse.jface.viewers.ColumnWeightData;
 import org.eclipse.jface.viewers.ComboBoxCellEditor;
 import org.eclipse.jface.viewers.ICellModifier;
 import org.eclipse.jface.viewers.ILabelProviderListener;
@@ -48,6 +49,7 @@ import org.switchyard.tools.models.switchyard1_0.rules.ExpressionType;
 import org.switchyard.tools.models.switchyard1_0.rules.MappingType;
 import org.switchyard.tools.models.switchyard1_0.rules.RulesFactory;
 import org.switchyard.tools.models.switchyard1_0.rules.ScopeType;
+import org.switchyard.tools.ui.editor.diagram.shared.TableColumnLayout;
 import org.switchyard.tools.ui.editor.impl.SwitchyardSCAEditor;
 
 /**
@@ -119,7 +121,10 @@ public class RulesMappingsTable extends Composite implements ICellModifier {
                 return ((MappingType) element).getExpression();
             } else if (element instanceof MappingType && columnIndex == 1) {
                 MappingType tp = (MappingType) element;
-                return (String) tp.getScope().getLiteral();
+                if (tp.getScope() == null || !tp.isSetScope()) {
+                    return "";
+                }
+                return tp.getScope().getLiteral();
             } else if (element instanceof MappingType && columnIndex == 2) {
                 MappingType tp = (MappingType) element;
                 return tp.getVariable();
@@ -208,24 +213,30 @@ public class RulesMappingsTable extends Composite implements ICellModifier {
         gridLayout.numColumns = 2;
         setLayout(gridLayout);
 
-        _propertyTreeTable = new TableViewer(this, SWT.BORDER | SWT.WRAP | SWT.V_SCROLL | SWT.FULL_SELECTION
-                | additionalStyles);
-        GridData gd11 = new GridData(SWT.FILL, SWT.FILL, true, false, 1, 3);
+        Composite tableComposite = new Composite(this, additionalStyles);
+        GridData gd11 = new GridData(SWT.FILL, SWT.FILL, true, false, 1, 2);
         gd11.heightHint = 100;
-        _propertyTreeTable.getTable().setLayoutData(gd11);
+        tableComposite.setLayoutData(gd11);
+
+        _propertyTreeTable = new TableViewer(tableComposite, SWT.BORDER | SWT.WRAP | SWT.V_SCROLL | SWT.FULL_SELECTION
+                | additionalStyles);
         _propertyTreeTable.getTable().setHeaderVisible(true);
+
+        TableColumnLayout tableLayout = new TableColumnLayout();
+        tableComposite.setLayout(tableLayout);
+
         TableColumn nameColumn = new TableColumn(_propertyTreeTable.getTable(), SWT.LEFT);
         nameColumn.setText("Expression");
-        nameColumn.setWidth(200);
+        tableLayout.setColumnData(nameColumn, new ColumnWeightData(100, 150, true));
         TableColumn valueColumn = new TableColumn(_propertyTreeTable.getTable(), SWT.LEFT);
         valueColumn.setText("Context Scope");
-        valueColumn.setWidth(200);
+        tableLayout.setColumnData(valueColumn, new ColumnWeightData(100, 150, true));
         TableColumn entryPointColumn = new TableColumn(_propertyTreeTable.getTable(), SWT.LEFT);
         entryPointColumn.setText("Variable");
-        entryPointColumn.setWidth(200);
+        tableLayout.setColumnData(entryPointColumn, new ColumnWeightData(100, 150, true));
         TableColumn expressionTypeColumn = new TableColumn(_propertyTreeTable.getTable(), SWT.LEFT);
         expressionTypeColumn.setText("Expression Type");
-        expressionTypeColumn.setWidth(200);
+        tableLayout.setColumnData(expressionTypeColumn, new ColumnWeightData(100, 150, true));
 
         _propertyTreeTable.setColumnProperties(TREE_COLUMNS);
 
@@ -237,16 +248,17 @@ public class RulesMappingsTable extends Composite implements ICellModifier {
         _propertyTreeTable
                 .setCellEditors(new CellEditor[] {
                         new TextCellEditor(_propertyTreeTable.getTable()),
-                        new ComboBoxCellEditor(_propertyTreeTable.getTable(), new String[] {ScopeType.IN.getLiteral(),
-                                ScopeType.OUT.getLiteral(), ScopeType.EXCHANGE.getLiteral() }),
+                        new ComboBoxCellEditor(_propertyTreeTable.getTable(),
+                                new String[] {"", ScopeType.IN.getLiteral(), ScopeType.OUT.getLiteral(),
+                                        ScopeType.EXCHANGE.getLiteral() }),
                         new TextCellEditor(_propertyTreeTable.getTable()),
                         new ComboBoxCellEditor(_propertyTreeTable.getTable(), new String[] {ExpressionType.MVEL
                                 .getLiteral() }) });
 
-        this._mAddButton = new Button(this, SWT.NONE);
-        this._mAddButton.setLayoutData(new GridData(GridData.HORIZONTAL_ALIGN_FILL));
-        this._mAddButton.setText("Add");
-        this._mAddButton.addSelectionListener(new SelectionAdapter() {
+        _mAddButton = new Button(this, SWT.NONE);
+        _mAddButton.setLayoutData(new GridData(SWT.FILL, SWT.BEGINNING, false, false));
+        _mAddButton.setText("Add");
+        _mAddButton.addSelectionListener(new SelectionAdapter() {
 
             public void widgetSelected(SelectionEvent e) {
                 addPropertyToList();
@@ -258,7 +270,7 @@ public class RulesMappingsTable extends Composite implements ICellModifier {
             }
         });
 
-        this._mAddButton.setEnabled(false);
+        _mAddButton.setEnabled(false);
 
         _propertyTreeTable.getTable().addSelectionListener(new SelectionAdapter() {
 
@@ -267,11 +279,11 @@ public class RulesMappingsTable extends Composite implements ICellModifier {
             }
         });
 
-        this._mRemoveButton = new Button(this, SWT.NONE);
-        this._mRemoveButton.setLayoutData(new GridData(GridData.HORIZONTAL_ALIGN_FILL));
-        this._mRemoveButton.setText("Remove");
-        this._mRemoveButton.setEnabled(false);
-        this._mRemoveButton.addSelectionListener(new SelectionAdapter() {
+        _mRemoveButton = new Button(this, SWT.NONE);
+        _mRemoveButton.setLayoutData(new GridData(SWT.FILL, SWT.BEGINNING, false, false));
+        _mRemoveButton.setText("Remove");
+        _mRemoveButton.setEnabled(false);
+        _mRemoveButton.addSelectionListener(new SelectionAdapter() {
 
             public void widgetSelected(SelectionEvent e) {
                 removeFromList();
@@ -300,13 +312,15 @@ public class RulesMappingsTable extends Composite implements ICellModifier {
     protected void addPropertyToList() {
         if (getTargetObject() instanceof ActionType1) {
             final ActionType1 impl = (ActionType1) getTargetObject();
+            final MappingType newMapping = RulesFactory.eINSTANCE.createMappingType();
+            newMapping.setExpression("message.content");
+            newMapping.setVariable("variable");
+            newMapping.setExpressionType(ExpressionType.MVEL);
             if (impl.eContainer() != null) {
                 TransactionalEditingDomain domain = SwitchyardSCAEditor.getActiveEditor().getEditingDomain();
                 domain.getCommandStack().execute(new RecordingCommand(domain) {
                     @Override
                     protected void doExecute() {
-                        MappingType newMapping = RulesFactory.eINSTANCE.createMappingType();
-                        newMapping.setExpression("NewExpression");
                         Object variableContainer = impl.eGet(_actionVariableFeature);
                         if (variableContainer == null) {
                             final EClass variableContainerClass = _actionVariableFeature.getEReferenceType();
@@ -324,8 +338,6 @@ public class RulesMappingsTable extends Composite implements ICellModifier {
                     }
                 });
             } else {
-                MappingType newMapping = RulesFactory.eINSTANCE.createMappingType();
-                newMapping.setExpression("NewExpression");
                 Object variableContainer = impl.eGet(_actionVariableFeature);
                 if (variableContainer == null) {
                     final EClass variableContainerClass = _actionVariableFeature.getEReferenceType();
@@ -480,9 +492,16 @@ public class RulesMappingsTable extends Composite implements ICellModifier {
      */
     public Object getValue(Object element, String property) {
         if (element instanceof MappingType && property.equalsIgnoreCase(EXPRESSION_COLUMN)) {
-            return ((MappingType) element).getExpression();
+            if (((MappingType) element).getExpression() != null) {
+                return ((MappingType) element).getExpression();
+            } else {
+                return "";
+            }
         } else if (element instanceof MappingType && property.equalsIgnoreCase(CONTEXTSCOPE_COLUMN)) {
-            return new Integer(((MappingType) element).getScope().getValue());
+            if (((MappingType) element).getScope() == null || !((MappingType) element).isSetScope()) {
+                return 0;
+            }
+            return ((MappingType) element).getScope().getValue() + 1;
         } else if (element instanceof MappingType && property.equalsIgnoreCase(VARIABLE_COLUMN)) {
             if (((MappingType) element).getVariable() != null) {
                 return ((MappingType) element).getVariable();
@@ -490,7 +509,7 @@ public class RulesMappingsTable extends Composite implements ICellModifier {
                 return "";
             }
         } else if (element instanceof MappingType && property.equalsIgnoreCase(EXPRESSION_TYPE_COLUMN)) {
-            return new Integer(((MappingType) element).getExpressionType().getValue());
+            return ((MappingType) element).getExpressionType().getValue();
         }
         return null;
     }
@@ -508,19 +527,20 @@ public class RulesMappingsTable extends Composite implements ICellModifier {
             final TableItem ti = (TableItem) element;
             if (getTargetObject() instanceof ActionType1) {
                 final ActionType1 impl = (ActionType1) getTargetObject();
+                final String newValue = value == null || ((String) value).length() == 0 ? null : (String) value;
                 if (impl.eContainer() != null) {
                     TransactionalEditingDomain domain = SwitchyardSCAEditor.getActiveEditor().getEditingDomain();
                     domain.getCommandStack().execute(new RecordingCommand(domain) {
                         @Override
                         protected void doExecute() {
                             MappingType parm = (MappingType) ti.getData();
-                            parm.setExpression((String) value);
+                            parm.setExpression(newValue);
                             getTableViewer().refresh(true);
                         }
                     });
                 } else {
                     MappingType parm = (MappingType) ti.getData();
-                    parm.setExpression((String) value);
+                    parm.setExpression(newValue);
                     getTableViewer().refresh(true);
                 }
             }
@@ -536,15 +556,23 @@ public class RulesMappingsTable extends Composite implements ICellModifier {
                         @Override
                         protected void doExecute() {
                             MappingType parm = (MappingType) ti.getData();
-                            ScopeType atype = ScopeType.get(((Integer) value).intValue());
-                            parm.setScope(atype);
+                            ScopeType atype = ScopeType.get(((Integer) value).intValue() - 1);
+                            if (atype == null) {
+                                parm.unsetScope();
+                            } else {
+                                parm.setScope(atype);
+                            }
                             getTableViewer().refresh(true);
                         }
                     });
                 } else {
                     MappingType parm = (MappingType) ti.getData();
-                    ScopeType atype = ScopeType.get(((Integer) value).intValue());
-                    parm.setScope(atype);
+                    ScopeType atype = ScopeType.get(((Integer) value).intValue() - 1);
+                    if (atype == null) {
+                        parm.unsetScope();
+                    } else {
+                        parm.setScope(atype);
+                    }
                     getTableViewer().refresh(true);
                 }
             }
@@ -554,19 +582,20 @@ public class RulesMappingsTable extends Composite implements ICellModifier {
             final TableItem ti = (TableItem) element;
             if (getTargetObject() instanceof ActionType1) {
                 final ActionType1 impl = (ActionType1) getTargetObject();
+                final String newValue = value == null || ((String) value).length() == 0 ? null : (String) value;
                 if (impl.eContainer() != null) {
                     TransactionalEditingDomain domain = SwitchyardSCAEditor.getActiveEditor().getEditingDomain();
                     domain.getCommandStack().execute(new RecordingCommand(domain) {
                         @Override
                         protected void doExecute() {
                             MappingType parm = (MappingType) ti.getData();
-                            parm.setVariable((String) value);
+                            parm.setVariable(newValue);
                             getTableViewer().refresh(true);
                         }
                     });
                 } else {
                     MappingType parm = (MappingType) ti.getData();
-                    parm.setVariable((String) value);
+                    parm.setVariable(newValue);
                     getTableViewer().refresh(true);
                 }
             }

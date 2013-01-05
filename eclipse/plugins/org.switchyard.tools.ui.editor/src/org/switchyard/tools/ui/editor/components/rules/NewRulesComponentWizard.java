@@ -27,21 +27,14 @@ import org.eclipse.soa.sca.sca1_1.model.sca.ComponentReference;
 import org.eclipse.soa.sca.sca1_1.model.sca.Implementation;
 import org.eclipse.ui.INewWizard;
 import org.eclipse.ui.dialogs.WizardNewFileCreationPage;
-import org.switchyard.tools.models.switchyard1_0.rules.ActionType;
-import org.switchyard.tools.models.switchyard1_0.rules.ActionType1;
-import org.switchyard.tools.models.switchyard1_0.rules.ActionsType;
-import org.switchyard.tools.models.switchyard1_0.rules.ExpressionType;
 import org.switchyard.tools.models.switchyard1_0.rules.LoggerType1;
 import org.switchyard.tools.models.switchyard1_0.rules.LoggersType;
 import org.switchyard.tools.models.switchyard1_0.rules.ManifestType;
-import org.switchyard.tools.models.switchyard1_0.rules.MappingType;
-import org.switchyard.tools.models.switchyard1_0.rules.MappingsType;
 import org.switchyard.tools.models.switchyard1_0.rules.ResourceType;
 import org.switchyard.tools.models.switchyard1_0.rules.ResourcesType;
 import org.switchyard.tools.models.switchyard1_0.rules.RulesFactory;
 import org.switchyard.tools.models.switchyard1_0.rules.RulesImplementationType;
 import org.switchyard.tools.models.switchyard1_0.rules.RulesPackage;
-import org.switchyard.tools.models.switchyard1_0.rules.ScopeType;
 import org.switchyard.tools.ui.editor.Activator;
 import org.switchyard.tools.ui.editor.diagram.shared.BaseNewServiceFileWizard;
 
@@ -124,26 +117,6 @@ public class NewRulesComponentWizard extends BaseNewServiceFileWizard implements
     public boolean performFinish() {
         // make sure the implementation is initialized (to get correct defaults)
         _implementation = RulesFactory.eINSTANCE.createRulesImplementationType();
-
-        final ActionsType actions = RulesFactory.eINSTANCE.createActionsType();
-        final ActionType1 action = RulesFactory.eINSTANCE.createActionType1();
-        final MappingsType inputs = RulesFactory.eINSTANCE.createMappingsType();
-        final MappingType input = RulesFactory.eINSTANCE.createMappingType();
-
-        input.setExpression("message.content");
-        input.setScope(ScopeType.IN);
-        input.setVariable(_processPage.getMessageName());
-        input.setExpressionType(ExpressionType.MVEL);
-
-        inputs.getMapping().add(input);
-
-        action.setOperation("");
-        action.setType(ActionType.FIREALLRULES);
-        action.setInputs(inputs);
-
-        actions.getAction().add(action);
-        
-        _implementation.setActions(actions);
 
         if (_processPage.isAuditingEnabled()) {
             LoggerType1 auditSettings = _processPage.getAuditSettings();

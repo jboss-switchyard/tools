@@ -40,7 +40,7 @@ public class LoggerType1Impl extends CommonExtensionBaseImpl implements LoggerTy
      * @generated
      * @ordered
      */
-    protected static final BigInteger INTERVAL_EDEFAULT = null;
+    protected static final BigInteger INTERVAL_EDEFAULT = new BigInteger("1000");
 
     /**
      * The cached value of the '{@link #getInterval() <em>Interval</em>}' attribute.
@@ -80,7 +80,7 @@ public class LoggerType1Impl extends CommonExtensionBaseImpl implements LoggerTy
      * @generated
      * @ordered
      */
-    protected static final LoggerType TYPE_EDEFAULT = LoggerType.CONSOLE;
+    protected static final LoggerType TYPE_EDEFAULT = LoggerType.THREADEDFILE;
 
     /**
      * The cached value of the '{@link #getType() <em>Type</em>}' attribute.

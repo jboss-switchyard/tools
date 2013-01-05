@@ -23,6 +23,7 @@ import org.eclipse.emf.edit.ui.provider.PropertyDescriptor.EDataTypeCellEditor;
 import org.eclipse.emf.transaction.RecordingCommand;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.eclipse.jface.viewers.CellEditor;
+import org.eclipse.jface.viewers.ColumnWeightData;
 import org.eclipse.jface.viewers.ComboBoxCellEditor;
 import org.eclipse.jface.viewers.ICellModifier;
 import org.eclipse.jface.viewers.ILabelProviderListener;
@@ -47,6 +48,7 @@ import org.switchyard.tools.models.switchyard1_0.bpm.BPMImplementationType;
 import org.switchyard.tools.models.switchyard1_0.bpm.BPMPackage;
 import org.switchyard.tools.models.switchyard1_0.bpm.LoggerType;
 import org.switchyard.tools.models.switchyard1_0.bpm.LoggerType1;
+import org.switchyard.tools.ui.editor.diagram.shared.TableColumnLayout;
 import org.switchyard.tools.ui.editor.impl.SwitchyardSCAEditor;
 
 /**
@@ -174,21 +176,27 @@ public class BPMLoggerTable extends Composite implements ICellModifier {
         gridLayout.numColumns = 2;
         setLayout(gridLayout);
 
-        _propertyTreeTable = new TableViewer(this, SWT.BORDER | SWT.WRAP | SWT.V_SCROLL | SWT.FULL_SELECTION
-                | additionalStyles);
-        GridData gd11 = new GridData(SWT.FILL, SWT.FILL, true, true, 1, 3);
+        Composite tableComposite = new Composite(this, additionalStyles);
+        GridData gd11 = new GridData(SWT.FILL, SWT.FILL, true, false, 1, 2);
         gd11.heightHint = 100;
-        _propertyTreeTable.getTable().setLayoutData(gd11);
+        tableComposite.setLayoutData(gd11);
+
+        _propertyTreeTable = new TableViewer(tableComposite, SWT.BORDER | SWT.WRAP | SWT.V_SCROLL | SWT.FULL_SELECTION
+                | additionalStyles);
         _propertyTreeTable.getTable().setHeaderVisible(true);
+
+        TableColumnLayout tableLayout = new TableColumnLayout();
+        tableComposite.setLayout(tableLayout);
+
         TableColumn logColumn = new TableColumn(_propertyTreeTable.getTable(), SWT.LEFT);
         logColumn.setText("Log");
-        logColumn.setWidth(200);
+        tableLayout.setColumnData(logColumn, new ColumnWeightData(100, 150, true));
         TableColumn typeColumn = new TableColumn(_propertyTreeTable.getTable(), SWT.LEFT);
         typeColumn.setText("Type");
-        typeColumn.setWidth(200);
+        tableLayout.setColumnData(typeColumn, new ColumnWeightData(100, 150, true));
         TableColumn intervalColumn = new TableColumn(_propertyTreeTable.getTable(), SWT.LEFT);
         intervalColumn.setText("Interval");
-        intervalColumn.setWidth(200);
+        tableLayout.setColumnData(intervalColumn, new ColumnWeightData(100, 150, true));
 
         _propertyTreeTable.setColumnProperties(TREE_COLUMNS);
 
@@ -204,10 +212,10 @@ public class BPMLoggerTable extends Composite implements ICellModifier {
                 new EDataTypeCellEditor(BPMPackage.eINSTANCE.getLoggerType1_Interval().getEAttributeType(),
                         _propertyTreeTable.getTable()) });
 
-        this._mAddButton = new Button(this, SWT.NONE);
-        this._mAddButton.setLayoutData(new GridData(GridData.HORIZONTAL_ALIGN_FILL));
-        this._mAddButton.setText("Add");
-        this._mAddButton.addSelectionListener(new SelectionAdapter() {
+        _mAddButton = new Button(this, SWT.NONE);
+        _mAddButton.setLayoutData(new GridData(SWT.FILL, SWT.BEGINNING, false, false));
+        _mAddButton.setText("Add");
+        _mAddButton.addSelectionListener(new SelectionAdapter() {
 
             public void widgetSelected(SelectionEvent e) {
                 addPropertyToList();
@@ -219,7 +227,7 @@ public class BPMLoggerTable extends Composite implements ICellModifier {
             }
         });
 
-        this._mAddButton.setEnabled(false);
+        _mAddButton.setEnabled(false);
 
         _propertyTreeTable.getTable().addSelectionListener(new SelectionAdapter() {
 
@@ -228,11 +236,11 @@ public class BPMLoggerTable extends Composite implements ICellModifier {
             }
         });
 
-        this._mRemoveButton = new Button(this, SWT.NONE);
-        this._mRemoveButton.setLayoutData(new GridData(GridData.HORIZONTAL_ALIGN_FILL));
-        this._mRemoveButton.setText("Remove");
-        this._mRemoveButton.setEnabled(false);
-        this._mRemoveButton.addSelectionListener(new SelectionAdapter() {
+        _mRemoveButton = new Button(this, SWT.NONE);
+        _mRemoveButton.setLayoutData(new GridData(SWT.FILL, SWT.BEGINNING, false, false));
+        _mRemoveButton.setText("Remove");
+        _mRemoveButton.setEnabled(false);
+        _mRemoveButton.addSelectionListener(new SelectionAdapter() {
 
             public void widgetSelected(SelectionEvent e) {
                 removeFromList();
@@ -261,9 +269,7 @@ public class BPMLoggerTable extends Composite implements ICellModifier {
         if (getTargetObject() instanceof BPMImplementationType) {
             final BPMImplementationType impl = (BPMImplementationType) getTargetObject();
             final LoggerType1 newLogger = BPMFactory.eINSTANCE.createLoggerType1();
-            newLogger.setType(LoggerType.CONSOLE);
             newLogger.setLog("NewLogger");
-            newLogger.setInterval(BigInteger.valueOf(2000));
             if (impl.eContainer() != null) {
                 TransactionalEditingDomain domain = SwitchyardSCAEditor.getActiveEditor().getEditingDomain();
                 domain.getCommandStack().execute(new RecordingCommand(domain) {

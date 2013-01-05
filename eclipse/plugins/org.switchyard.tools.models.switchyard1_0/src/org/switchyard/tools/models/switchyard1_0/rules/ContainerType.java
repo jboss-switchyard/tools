@@ -135,6 +135,7 @@ public interface ContainerType extends CommonExtensionBase {
 
     /**
      * Returns the value of the '<em><b>Scan Interval</b></em>' attribute.
+     * The default value is <code>"60000"</code>.
      * <!-- begin-user-doc -->
      * <p>
      * If the meaning of the '<em>Scan Interval</em>' attribute isn't clear,
@@ -146,7 +147,7 @@ public interface ContainerType extends CommonExtensionBase {
      * @see #unsetScanInterval()
      * @see #setScanInterval(long)
      * @see org.switchyard.tools.models.switchyard1_0.rules.RulesPackage#getContainerType_ScanInterval()
-     * @model unsettable="true" dataType="org.eclipse.emf.ecore.xml.type.Long"
+     * @model default="60000" unsettable="true" dataType="org.eclipse.emf.ecore.xml.type.Long"
      *        extendedMetaData="kind='attribute' name='scanInterval'"
      * @generated
      */
