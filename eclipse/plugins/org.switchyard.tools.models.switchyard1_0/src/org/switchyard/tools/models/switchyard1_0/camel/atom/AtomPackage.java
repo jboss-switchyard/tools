@@ -615,22 +615,22 @@ public interface AtomPackage extends EPackage {
     EAttribute getCamelAtomBindingType_FeedURI();
 
     /**
-     * Returns the meta object for the attribute '{@link org.switchyard.tools.models.switchyard1_0.camel.atom.CamelAtomBindingType#getSplitEntries <em>Split Entries</em>}'.
+     * Returns the meta object for the attribute '{@link org.switchyard.tools.models.switchyard1_0.camel.atom.CamelAtomBindingType#isSplitEntries <em>Split Entries</em>}'.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @return the meta object for the attribute '<em>Split Entries</em>'.
-     * @see org.switchyard.tools.models.switchyard1_0.camel.atom.CamelAtomBindingType#getSplitEntries()
+     * @see org.switchyard.tools.models.switchyard1_0.camel.atom.CamelAtomBindingType#isSplitEntries()
      * @see #getCamelAtomBindingType()
      * @generated
      */
     EAttribute getCamelAtomBindingType_SplitEntries();
 
     /**
-     * Returns the meta object for the attribute '{@link org.switchyard.tools.models.switchyard1_0.camel.atom.CamelAtomBindingType#getFilter <em>Filter</em>}'.
+     * Returns the meta object for the attribute '{@link org.switchyard.tools.models.switchyard1_0.camel.atom.CamelAtomBindingType#isFilter <em>Filter</em>}'.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @return the meta object for the attribute '<em>Filter</em>'.
-     * @see org.switchyard.tools.models.switchyard1_0.camel.atom.CamelAtomBindingType#getFilter()
+     * @see org.switchyard.tools.models.switchyard1_0.camel.atom.CamelAtomBindingType#isFilter()
      * @see #getCamelAtomBindingType()
      * @generated
      */
@@ -648,33 +648,33 @@ public interface AtomPackage extends EPackage {
     EAttribute getCamelAtomBindingType_LastUpdate();
 
     /**
-     * Returns the meta object for the attribute '{@link org.switchyard.tools.models.switchyard1_0.camel.atom.CamelAtomBindingType#getThrottleEntries <em>Throttle Entries</em>}'.
+     * Returns the meta object for the attribute '{@link org.switchyard.tools.models.switchyard1_0.camel.atom.CamelAtomBindingType#isThrottleEntries <em>Throttle Entries</em>}'.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @return the meta object for the attribute '<em>Throttle Entries</em>'.
-     * @see org.switchyard.tools.models.switchyard1_0.camel.atom.CamelAtomBindingType#getThrottleEntries()
+     * @see org.switchyard.tools.models.switchyard1_0.camel.atom.CamelAtomBindingType#isThrottleEntries()
      * @see #getCamelAtomBindingType()
      * @generated
      */
     EAttribute getCamelAtomBindingType_ThrottleEntries();
 
     /**
-     * Returns the meta object for the attribute '{@link org.switchyard.tools.models.switchyard1_0.camel.atom.CamelAtomBindingType#getFeedHeader <em>Feed Header</em>}'.
+     * Returns the meta object for the attribute '{@link org.switchyard.tools.models.switchyard1_0.camel.atom.CamelAtomBindingType#isFeedHeader <em>Feed Header</em>}'.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @return the meta object for the attribute '<em>Feed Header</em>'.
-     * @see org.switchyard.tools.models.switchyard1_0.camel.atom.CamelAtomBindingType#getFeedHeader()
+     * @see org.switchyard.tools.models.switchyard1_0.camel.atom.CamelAtomBindingType#isFeedHeader()
      * @see #getCamelAtomBindingType()
      * @generated
      */
     EAttribute getCamelAtomBindingType_FeedHeader();
 
     /**
-     * Returns the meta object for the attribute '{@link org.switchyard.tools.models.switchyard1_0.camel.atom.CamelAtomBindingType#getSortEntries <em>Sort Entries</em>}'.
+     * Returns the meta object for the attribute '{@link org.switchyard.tools.models.switchyard1_0.camel.atom.CamelAtomBindingType#isSortEntries <em>Sort Entries</em>}'.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @return the meta object for the attribute '<em>Sort Entries</em>'.
-     * @see org.switchyard.tools.models.switchyard1_0.camel.atom.CamelAtomBindingType#getSortEntries()
+     * @see org.switchyard.tools.models.switchyard1_0.camel.atom.CamelAtomBindingType#isSortEntries()
      * @see #getCamelAtomBindingType()
      * @generated
      */
@@ -724,22 +724,22 @@ public interface AtomPackage extends EPackage {
     EAttribute getAtomScheduledPollConsumerType_Delay();
 
     /**
-     * Returns the meta object for the attribute '{@link org.switchyard.tools.models.switchyard1_0.camel.atom.AtomScheduledPollConsumerType#getUseFixedDelay <em>Use Fixed Delay</em>}'.
+     * Returns the meta object for the attribute '{@link org.switchyard.tools.models.switchyard1_0.camel.atom.AtomScheduledPollConsumerType#isUseFixedDelay <em>Use Fixed Delay</em>}'.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @return the meta object for the attribute '<em>Use Fixed Delay</em>'.
-     * @see org.switchyard.tools.models.switchyard1_0.camel.atom.AtomScheduledPollConsumerType#getUseFixedDelay()
+     * @see org.switchyard.tools.models.switchyard1_0.camel.atom.AtomScheduledPollConsumerType#isUseFixedDelay()
      * @see #getAtomScheduledPollConsumerType()
      * @generated
      */
     EAttribute getAtomScheduledPollConsumerType_UseFixedDelay();
 
     /**
-     * Returns the meta object for the attribute '{@link org.switchyard.tools.models.switchyard1_0.camel.atom.AtomScheduledPollConsumerType#getSendEmptyMessageWhenIdle <em>Send Empty Message When Idle</em>}'.
+     * Returns the meta object for the attribute '{@link org.switchyard.tools.models.switchyard1_0.camel.atom.AtomScheduledPollConsumerType#isSendEmptyMessageWhenIdle <em>Send Empty Message When Idle</em>}'.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @return the meta object for the attribute '<em>Send Empty Message When Idle</em>'.
-     * @see org.switchyard.tools.models.switchyard1_0.camel.atom.AtomScheduledPollConsumerType#getSendEmptyMessageWhenIdle()
+     * @see org.switchyard.tools.models.switchyard1_0.camel.atom.AtomScheduledPollConsumerType#isSendEmptyMessageWhenIdle()
      * @see #getAtomScheduledPollConsumerType()
      * @generated
      */

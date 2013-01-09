@@ -70,23 +70,17 @@ public class CamelMailConsumerComposite extends AbstractSYBindingComposite  {
             this._binding = (CamelMailBindingType) impl;
             setInUpdate(true);
             if (this._binding.getConsume() != null) {
-                if (this._binding.getConsume().getDelete() != null) {
-                    _deleteCheckbox.setSelection(this._binding.getConsume().getDelete().booleanValue());
-                }
-                if (this._binding.getConsume().getDisconnect() != null) {
-                    _disconnectCheckbox.setSelection(this._binding.getConsume().getDisconnect().booleanValue());
-                }
-                if (this._binding.getConsume().getUnseen() != null) {
-                    _unseenCheckbox.setSelection(this._binding.getConsume().getUnseen().booleanValue());
-                }
+                    _deleteCheckbox.setSelection(this._binding.getConsume().isDelete());
+                    _disconnectCheckbox.setSelection(this._binding.getConsume().isDisconnect());
+                    _unseenCheckbox.setSelection(this._binding.getConsume().isUnseen());
                 if (this._binding.getConsume().getAccountType() != null) {
                     _accountTypeCombo.select(this._binding.getConsume().getAccountType().getValue());
                 }
                 if (this._binding.getConsume().getCopyTo() != null) {
                     _copyToText.setText(this._binding.getConsume().getCopyTo());
                 }
-                if (this._binding.getConsume().getFetchSize() != null) {
-                    _fetchSizeText.setText(this._binding.getConsume().getFetchSize().toString());
+                if (this._binding.getConsume().isSetFetchSize()) {
+                    _fetchSizeText.setText(Integer.toString(this._binding.getConsume().getFetchSize()));
                 }
                 if (this._binding.getConsume().getFolderName() != null) {
                     _folderNameText.setText(this._binding.getConsume().getFolderName());
@@ -95,8 +89,8 @@ public class CamelMailConsumerComposite extends AbstractSYBindingComposite  {
             if (this._binding.getHost() != null) {
                 _hostText.setText(this._binding.getHost());
             }
-            if (this._binding.getPort() != null) {
-                _portText.setText(this._binding.getPort().toString());
+            if (this._binding.isSetPort()) {
+                _portText.setText(Integer.toString(this._binding.getPort()));
             }
             if (this._binding.getUsername() != null) {
                 _usernameText.setText(this._binding.getUsername());
@@ -264,24 +258,24 @@ public class CamelMailConsumerComposite extends AbstractSYBindingComposite  {
         if (_binding != null) {
             if (this._binding.getConsume() != null) {
                 if (control.equals(_deleteCheckbox)) {
-                    _deleteCheckbox.setSelection(this._binding.getConsume().getDelete().booleanValue());
+                    _deleteCheckbox.setSelection(this._binding.getConsume().isDelete());
                 } else if (control.equals(_disconnectCheckbox)) {
-                    _disconnectCheckbox.setSelection(this._binding.getConsume().getDisconnect().booleanValue());
+                    _disconnectCheckbox.setSelection(this._binding.getConsume().isDisconnect());
                 } else if (control.equals(_unseenCheckbox)) {
-                    _unseenCheckbox.setSelection(this._binding.getConsume().getUnseen().booleanValue());
+                    _unseenCheckbox.setSelection(this._binding.getConsume().isUnseen());
                 } else if (control.equals(_accountTypeCombo)) {
                     _accountTypeCombo.select(this._binding.getConsume().getAccountType().getValue());
                 } else if (control.equals(_copyToText)) {
                     _copyToText.setText(this._binding.getConsume().getCopyTo());
                 } else if (control.equals(_fetchSizeText)) {
-                    _fetchSizeText.setText(this._binding.getConsume().getFetchSize().toString());
+                    _fetchSizeText.setText(Integer.toString(this._binding.getConsume().getFetchSize()));
                 } else if (control.equals(_folderNameText)) {
                     _folderNameText.setText(this._binding.getConsume().getFolderName());
                 }
             } else if (control.equals(_hostText)) {
                 _hostText.setText(this._binding.getHost());
             } else if (control.equals(_portText)) {
-                _portText.setText(this._binding.getPort().toString());
+                _portText.setText(Integer.toString(this._binding.getPort()));
             } else if (control.equals(_usernameText)) {
                 _usernameText.setText(this._binding.getUsername());
             } else if (control.equals(_passwordText)) {

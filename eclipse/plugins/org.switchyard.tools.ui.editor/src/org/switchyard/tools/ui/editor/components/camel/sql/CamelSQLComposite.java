@@ -76,9 +76,7 @@ public class CamelSQLComposite extends AbstractSYBindingComposite {
             if (this._binding.getPlaceholder() != null) {
                 _placeholderText.setText(this._binding.getPlaceholder());
             }
-            if (this._binding.getBatch() != null) {
-                _batchCheckbox.setSelection(this._binding.getBatch().booleanValue());
-            }
+            _batchCheckbox.setSelection(this._binding.isBatch());
             
             OperationSelectorType opSelector = OperationSelectorUtil.getFirstOperationSelector(this._binding);
             _opSelectorComposite.setBinding(this._binding);
@@ -204,7 +202,7 @@ public class CamelSQLComposite extends AbstractSYBindingComposite {
             } else if (control.equals(_placeholderText)) {
                 _placeholderText.setText(this._binding.getPlaceholder());
             } else if (control.equals(_batchCheckbox)) {
-                _batchCheckbox.setSelection(this._binding.getBatch());
+                _batchCheckbox.setSelection(this._binding.isBatch());
 //            } else if (control.equals(_operationSelectionCombo)) {
 //                String opName = OperationSelectorUtil.getOperationNameForStaticOperationSelector(this._binding);
 //                setTextValue(_operationSelectionCombo, opName);

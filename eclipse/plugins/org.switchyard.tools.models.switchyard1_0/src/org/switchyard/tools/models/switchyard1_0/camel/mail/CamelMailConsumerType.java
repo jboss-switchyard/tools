@@ -14,16 +14,16 @@ import org.eclipse.emf.ecore.EObject;
  * <ul>
  *   <li>{@link org.switchyard.tools.models.switchyard1_0.camel.mail.CamelMailConsumerType#getInitialDelay <em>Initial Delay</em>}</li>
  *   <li>{@link org.switchyard.tools.models.switchyard1_0.camel.mail.CamelMailConsumerType#getDelay <em>Delay</em>}</li>
- *   <li>{@link org.switchyard.tools.models.switchyard1_0.camel.mail.CamelMailConsumerType#getUseFixedDelay <em>Use Fixed Delay</em>}</li>
- *   <li>{@link org.switchyard.tools.models.switchyard1_0.camel.mail.CamelMailConsumerType#getSendEmptyMessageWhenIdle <em>Send Empty Message When Idle</em>}</li>
+ *   <li>{@link org.switchyard.tools.models.switchyard1_0.camel.mail.CamelMailConsumerType#isUseFixedDelay <em>Use Fixed Delay</em>}</li>
+ *   <li>{@link org.switchyard.tools.models.switchyard1_0.camel.mail.CamelMailConsumerType#isSendEmptyMessageWhenIdle <em>Send Empty Message When Idle</em>}</li>
  *   <li>{@link org.switchyard.tools.models.switchyard1_0.camel.mail.CamelMailConsumerType#getTimeUnit <em>Time Unit</em>}</li>
  *   <li>{@link org.switchyard.tools.models.switchyard1_0.camel.mail.CamelMailConsumerType#getMaxMessagesPerPoll <em>Max Messages Per Poll</em>}</li>
  *   <li>{@link org.switchyard.tools.models.switchyard1_0.camel.mail.CamelMailConsumerType#getFolderName <em>Folder Name</em>}</li>
  *   <li>{@link org.switchyard.tools.models.switchyard1_0.camel.mail.CamelMailConsumerType#getFetchSize <em>Fetch Size</em>}</li>
- *   <li>{@link org.switchyard.tools.models.switchyard1_0.camel.mail.CamelMailConsumerType#getUnseen <em>Unseen</em>}</li>
- *   <li>{@link org.switchyard.tools.models.switchyard1_0.camel.mail.CamelMailConsumerType#getDelete <em>Delete</em>}</li>
+ *   <li>{@link org.switchyard.tools.models.switchyard1_0.camel.mail.CamelMailConsumerType#isUnseen <em>Unseen</em>}</li>
+ *   <li>{@link org.switchyard.tools.models.switchyard1_0.camel.mail.CamelMailConsumerType#isDelete <em>Delete</em>}</li>
  *   <li>{@link org.switchyard.tools.models.switchyard1_0.camel.mail.CamelMailConsumerType#getCopyTo <em>Copy To</em>}</li>
- *   <li>{@link org.switchyard.tools.models.switchyard1_0.camel.mail.CamelMailConsumerType#getDisconnect <em>Disconnect</em>}</li>
+ *   <li>{@link org.switchyard.tools.models.switchyard1_0.camel.mail.CamelMailConsumerType#isDisconnect <em>Disconnect</em>}</li>
  *   <li>{@link org.switchyard.tools.models.switchyard1_0.camel.mail.CamelMailConsumerType#getAccountType <em>Account Type</em>}</li>
  * </ul>
  * </p>
@@ -35,6 +35,7 @@ import org.eclipse.emf.ecore.EObject;
 public interface CamelMailConsumerType extends EObject {
     /**
      * Returns the value of the '<em><b>Initial Delay</b></em>' attribute.
+     * The default value is <code>"1000"</code>.
      * <!-- begin-user-doc -->
      * <p>
      * If the meaning of the '<em>Initial Delay</em>' attribute isn't clear,
@@ -42,26 +43,54 @@ public interface CamelMailConsumerType extends EObject {
      * </p>
      * <!-- end-user-doc -->
      * @return the value of the '<em>Initial Delay</em>' attribute.
-     * @see #setInitialDelay(Integer)
+     * @see #isSetInitialDelay()
+     * @see #unsetInitialDelay()
+     * @see #setInitialDelay(int)
      * @see org.switchyard.tools.models.switchyard1_0.camel.mail.MailPackage#getCamelMailConsumerType_InitialDelay()
-     * @model dataType="org.eclipse.emf.ecore.xml.type.IntObject"
+     * @model default="1000" unsettable="true" dataType="org.eclipse.emf.ecore.xml.type.Int"
      *        extendedMetaData="kind='element' name='initialDelay' namespace='##targetNamespace'"
      * @generated
      */
-    Integer getInitialDelay();
+    int getInitialDelay();
 
     /**
      * Sets the value of the '{@link org.switchyard.tools.models.switchyard1_0.camel.mail.CamelMailConsumerType#getInitialDelay <em>Initial Delay</em>}' attribute.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @param value the new value of the '<em>Initial Delay</em>' attribute.
+     * @see #isSetInitialDelay()
+     * @see #unsetInitialDelay()
      * @see #getInitialDelay()
      * @generated
      */
-    void setInitialDelay(Integer value);
+    void setInitialDelay(int value);
+
+    /**
+     * Unsets the value of the '{@link org.switchyard.tools.models.switchyard1_0.camel.mail.CamelMailConsumerType#getInitialDelay <em>Initial Delay</em>}' attribute.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @see #isSetInitialDelay()
+     * @see #getInitialDelay()
+     * @see #setInitialDelay(int)
+     * @generated
+     */
+    void unsetInitialDelay();
+
+    /**
+     * Returns whether the value of the '{@link org.switchyard.tools.models.switchyard1_0.camel.mail.CamelMailConsumerType#getInitialDelay <em>Initial Delay</em>}' attribute is set.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @return whether the value of the '<em>Initial Delay</em>' attribute is set.
+     * @see #unsetInitialDelay()
+     * @see #getInitialDelay()
+     * @see #setInitialDelay(int)
+     * @generated
+     */
+    boolean isSetInitialDelay();
 
     /**
      * Returns the value of the '<em><b>Delay</b></em>' attribute.
+     * The default value is <code>"60000"</code>.
      * <!-- begin-user-doc -->
      * <p>
      * If the meaning of the '<em>Delay</em>' attribute isn't clear,
@@ -69,26 +98,54 @@ public interface CamelMailConsumerType extends EObject {
      * </p>
      * <!-- end-user-doc -->
      * @return the value of the '<em>Delay</em>' attribute.
-     * @see #setDelay(Integer)
+     * @see #isSetDelay()
+     * @see #unsetDelay()
+     * @see #setDelay(int)
      * @see org.switchyard.tools.models.switchyard1_0.camel.mail.MailPackage#getCamelMailConsumerType_Delay()
-     * @model dataType="org.eclipse.emf.ecore.xml.type.IntObject"
+     * @model default="60000" unsettable="true" dataType="org.eclipse.emf.ecore.xml.type.Int"
      *        extendedMetaData="kind='element' name='delay' namespace='##targetNamespace'"
      * @generated
      */
-    Integer getDelay();
+    int getDelay();
 
     /**
      * Sets the value of the '{@link org.switchyard.tools.models.switchyard1_0.camel.mail.CamelMailConsumerType#getDelay <em>Delay</em>}' attribute.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @param value the new value of the '<em>Delay</em>' attribute.
+     * @see #isSetDelay()
+     * @see #unsetDelay()
      * @see #getDelay()
      * @generated
      */
-    void setDelay(Integer value);
+    void setDelay(int value);
+
+    /**
+     * Unsets the value of the '{@link org.switchyard.tools.models.switchyard1_0.camel.mail.CamelMailConsumerType#getDelay <em>Delay</em>}' attribute.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @see #isSetDelay()
+     * @see #getDelay()
+     * @see #setDelay(int)
+     * @generated
+     */
+    void unsetDelay();
+
+    /**
+     * Returns whether the value of the '{@link org.switchyard.tools.models.switchyard1_0.camel.mail.CamelMailConsumerType#getDelay <em>Delay</em>}' attribute is set.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @return whether the value of the '<em>Delay</em>' attribute is set.
+     * @see #unsetDelay()
+     * @see #getDelay()
+     * @see #setDelay(int)
+     * @generated
+     */
+    boolean isSetDelay();
 
     /**
      * Returns the value of the '<em><b>Use Fixed Delay</b></em>' attribute.
+     * The default value is <code>"false"</code>.
      * <!-- begin-user-doc -->
      * <p>
      * If the meaning of the '<em>Use Fixed Delay</em>' attribute isn't clear,
@@ -98,51 +155,52 @@ public interface CamelMailConsumerType extends EObject {
      * @return the value of the '<em>Use Fixed Delay</em>' attribute.
      * @see #isSetUseFixedDelay()
      * @see #unsetUseFixedDelay()
-     * @see #setUseFixedDelay(Boolean)
+     * @see #setUseFixedDelay(boolean)
      * @see org.switchyard.tools.models.switchyard1_0.camel.mail.MailPackage#getCamelMailConsumerType_UseFixedDelay()
-     * @model unsettable="true" dataType="org.eclipse.emf.ecore.xml.type.BooleanObject"
+     * @model default="false" unsettable="true" dataType="org.eclipse.emf.ecore.xml.type.Boolean"
      *        extendedMetaData="kind='element' name='useFixedDelay' namespace='##targetNamespace'"
      * @generated
      */
-    Boolean getUseFixedDelay();
+    boolean isUseFixedDelay();
 
     /**
-     * Sets the value of the '{@link org.switchyard.tools.models.switchyard1_0.camel.mail.CamelMailConsumerType#getUseFixedDelay <em>Use Fixed Delay</em>}' attribute.
+     * Sets the value of the '{@link org.switchyard.tools.models.switchyard1_0.camel.mail.CamelMailConsumerType#isUseFixedDelay <em>Use Fixed Delay</em>}' attribute.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @param value the new value of the '<em>Use Fixed Delay</em>' attribute.
      * @see #isSetUseFixedDelay()
      * @see #unsetUseFixedDelay()
-     * @see #getUseFixedDelay()
+     * @see #isUseFixedDelay()
      * @generated
      */
-    void setUseFixedDelay(Boolean value);
+    void setUseFixedDelay(boolean value);
 
     /**
-     * Unsets the value of the '{@link org.switchyard.tools.models.switchyard1_0.camel.mail.CamelMailConsumerType#getUseFixedDelay <em>Use Fixed Delay</em>}' attribute.
+     * Unsets the value of the '{@link org.switchyard.tools.models.switchyard1_0.camel.mail.CamelMailConsumerType#isUseFixedDelay <em>Use Fixed Delay</em>}' attribute.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @see #isSetUseFixedDelay()
-     * @see #getUseFixedDelay()
-     * @see #setUseFixedDelay(Boolean)
+     * @see #isUseFixedDelay()
+     * @see #setUseFixedDelay(boolean)
      * @generated
      */
     void unsetUseFixedDelay();
 
     /**
-     * Returns whether the value of the '{@link org.switchyard.tools.models.switchyard1_0.camel.mail.CamelMailConsumerType#getUseFixedDelay <em>Use Fixed Delay</em>}' attribute is set.
+     * Returns whether the value of the '{@link org.switchyard.tools.models.switchyard1_0.camel.mail.CamelMailConsumerType#isUseFixedDelay <em>Use Fixed Delay</em>}' attribute is set.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @return whether the value of the '<em>Use Fixed Delay</em>' attribute is set.
      * @see #unsetUseFixedDelay()
-     * @see #getUseFixedDelay()
-     * @see #setUseFixedDelay(Boolean)
+     * @see #isUseFixedDelay()
+     * @see #setUseFixedDelay(boolean)
      * @generated
      */
     boolean isSetUseFixedDelay();
 
     /**
      * Returns the value of the '<em><b>Send Empty Message When Idle</b></em>' attribute.
+     * The default value is <code>"false"</code>.
      * <!-- begin-user-doc -->
      * <p>
      * If the meaning of the '<em>Send Empty Message When Idle</em>' attribute isn't clear,
@@ -152,51 +210,52 @@ public interface CamelMailConsumerType extends EObject {
      * @return the value of the '<em>Send Empty Message When Idle</em>' attribute.
      * @see #isSetSendEmptyMessageWhenIdle()
      * @see #unsetSendEmptyMessageWhenIdle()
-     * @see #setSendEmptyMessageWhenIdle(Boolean)
+     * @see #setSendEmptyMessageWhenIdle(boolean)
      * @see org.switchyard.tools.models.switchyard1_0.camel.mail.MailPackage#getCamelMailConsumerType_SendEmptyMessageWhenIdle()
-     * @model unsettable="true" dataType="org.eclipse.emf.ecore.xml.type.BooleanObject"
+     * @model default="false" unsettable="true" dataType="org.eclipse.emf.ecore.xml.type.Boolean"
      *        extendedMetaData="kind='element' name='sendEmptyMessageWhenIdle' namespace='##targetNamespace'"
      * @generated
      */
-    Boolean getSendEmptyMessageWhenIdle();
+    boolean isSendEmptyMessageWhenIdle();
 
     /**
-     * Sets the value of the '{@link org.switchyard.tools.models.switchyard1_0.camel.mail.CamelMailConsumerType#getSendEmptyMessageWhenIdle <em>Send Empty Message When Idle</em>}' attribute.
+     * Sets the value of the '{@link org.switchyard.tools.models.switchyard1_0.camel.mail.CamelMailConsumerType#isSendEmptyMessageWhenIdle <em>Send Empty Message When Idle</em>}' attribute.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @param value the new value of the '<em>Send Empty Message When Idle</em>' attribute.
      * @see #isSetSendEmptyMessageWhenIdle()
      * @see #unsetSendEmptyMessageWhenIdle()
-     * @see #getSendEmptyMessageWhenIdle()
+     * @see #isSendEmptyMessageWhenIdle()
      * @generated
      */
-    void setSendEmptyMessageWhenIdle(Boolean value);
+    void setSendEmptyMessageWhenIdle(boolean value);
 
     /**
-     * Unsets the value of the '{@link org.switchyard.tools.models.switchyard1_0.camel.mail.CamelMailConsumerType#getSendEmptyMessageWhenIdle <em>Send Empty Message When Idle</em>}' attribute.
+     * Unsets the value of the '{@link org.switchyard.tools.models.switchyard1_0.camel.mail.CamelMailConsumerType#isSendEmptyMessageWhenIdle <em>Send Empty Message When Idle</em>}' attribute.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @see #isSetSendEmptyMessageWhenIdle()
-     * @see #getSendEmptyMessageWhenIdle()
-     * @see #setSendEmptyMessageWhenIdle(Boolean)
+     * @see #isSendEmptyMessageWhenIdle()
+     * @see #setSendEmptyMessageWhenIdle(boolean)
      * @generated
      */
     void unsetSendEmptyMessageWhenIdle();
 
     /**
-     * Returns whether the value of the '{@link org.switchyard.tools.models.switchyard1_0.camel.mail.CamelMailConsumerType#getSendEmptyMessageWhenIdle <em>Send Empty Message When Idle</em>}' attribute is set.
+     * Returns whether the value of the '{@link org.switchyard.tools.models.switchyard1_0.camel.mail.CamelMailConsumerType#isSendEmptyMessageWhenIdle <em>Send Empty Message When Idle</em>}' attribute is set.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @return whether the value of the '<em>Send Empty Message When Idle</em>' attribute is set.
      * @see #unsetSendEmptyMessageWhenIdle()
-     * @see #getSendEmptyMessageWhenIdle()
-     * @see #setSendEmptyMessageWhenIdle(Boolean)
+     * @see #isSendEmptyMessageWhenIdle()
+     * @see #setSendEmptyMessageWhenIdle(boolean)
      * @generated
      */
     boolean isSetSendEmptyMessageWhenIdle();
 
     /**
      * Returns the value of the '<em><b>Time Unit</b></em>' attribute.
+     * The default value is <code>"MILLISECONDS"</code>.
      * The literals are from the enumeration {@link org.switchyard.tools.models.switchyard1_0.camel.mail.TimeUnitType}.
      * <!-- begin-user-doc -->
      * <p>
@@ -210,7 +269,7 @@ public interface CamelMailConsumerType extends EObject {
      * @see #unsetTimeUnit()
      * @see #setTimeUnit(TimeUnitType)
      * @see org.switchyard.tools.models.switchyard1_0.camel.mail.MailPackage#getCamelMailConsumerType_TimeUnit()
-     * @model unsettable="true"
+     * @model default="MILLISECONDS" unsettable="true"
      *        extendedMetaData="kind='element' name='timeUnit' namespace='##targetNamespace'"
      * @generated
      */
@@ -254,6 +313,7 @@ public interface CamelMailConsumerType extends EObject {
 
     /**
      * Returns the value of the '<em><b>Max Messages Per Poll</b></em>' attribute.
+     * The default value is <code>"0"</code>.
      * <!-- begin-user-doc -->
      * <p>
      * If the meaning of the '<em>Max Messages Per Poll</em>' attribute isn't clear,
@@ -261,23 +321,50 @@ public interface CamelMailConsumerType extends EObject {
      * </p>
      * <!-- end-user-doc -->
      * @return the value of the '<em>Max Messages Per Poll</em>' attribute.
-     * @see #setMaxMessagesPerPoll(Integer)
+     * @see #isSetMaxMessagesPerPoll()
+     * @see #unsetMaxMessagesPerPoll()
+     * @see #setMaxMessagesPerPoll(int)
      * @see org.switchyard.tools.models.switchyard1_0.camel.mail.MailPackage#getCamelMailConsumerType_MaxMessagesPerPoll()
-     * @model dataType="org.eclipse.emf.ecore.xml.type.IntObject"
+     * @model default="0" unsettable="true" dataType="org.eclipse.emf.ecore.xml.type.Int"
      *        extendedMetaData="kind='element' name='maxMessagesPerPoll' namespace='##targetNamespace'"
      * @generated
      */
-    Integer getMaxMessagesPerPoll();
+    int getMaxMessagesPerPoll();
 
     /**
      * Sets the value of the '{@link org.switchyard.tools.models.switchyard1_0.camel.mail.CamelMailConsumerType#getMaxMessagesPerPoll <em>Max Messages Per Poll</em>}' attribute.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @param value the new value of the '<em>Max Messages Per Poll</em>' attribute.
+     * @see #isSetMaxMessagesPerPoll()
+     * @see #unsetMaxMessagesPerPoll()
      * @see #getMaxMessagesPerPoll()
      * @generated
      */
-    void setMaxMessagesPerPoll(Integer value);
+    void setMaxMessagesPerPoll(int value);
+
+    /**
+     * Unsets the value of the '{@link org.switchyard.tools.models.switchyard1_0.camel.mail.CamelMailConsumerType#getMaxMessagesPerPoll <em>Max Messages Per Poll</em>}' attribute.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @see #isSetMaxMessagesPerPoll()
+     * @see #getMaxMessagesPerPoll()
+     * @see #setMaxMessagesPerPoll(int)
+     * @generated
+     */
+    void unsetMaxMessagesPerPoll();
+
+    /**
+     * Returns whether the value of the '{@link org.switchyard.tools.models.switchyard1_0.camel.mail.CamelMailConsumerType#getMaxMessagesPerPoll <em>Max Messages Per Poll</em>}' attribute is set.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @return whether the value of the '<em>Max Messages Per Poll</em>' attribute is set.
+     * @see #unsetMaxMessagesPerPoll()
+     * @see #getMaxMessagesPerPoll()
+     * @see #setMaxMessagesPerPoll(int)
+     * @generated
+     */
+    boolean isSetMaxMessagesPerPoll();
 
     /**
      * Returns the value of the '<em><b>Folder Name</b></em>' attribute.
@@ -308,6 +395,7 @@ public interface CamelMailConsumerType extends EObject {
 
     /**
      * Returns the value of the '<em><b>Fetch Size</b></em>' attribute.
+     * The default value is <code>"-1"</code>.
      * <!-- begin-user-doc -->
      * <p>
      * If the meaning of the '<em>Fetch Size</em>' attribute isn't clear,
@@ -315,26 +403,54 @@ public interface CamelMailConsumerType extends EObject {
      * </p>
      * <!-- end-user-doc -->
      * @return the value of the '<em>Fetch Size</em>' attribute.
-     * @see #setFetchSize(Integer)
+     * @see #isSetFetchSize()
+     * @see #unsetFetchSize()
+     * @see #setFetchSize(int)
      * @see org.switchyard.tools.models.switchyard1_0.camel.mail.MailPackage#getCamelMailConsumerType_FetchSize()
-     * @model dataType="org.eclipse.emf.ecore.xml.type.IntObject"
+     * @model default="-1" unsettable="true" dataType="org.eclipse.emf.ecore.xml.type.Int"
      *        extendedMetaData="kind='element' name='fetchSize' namespace='##targetNamespace'"
      * @generated
      */
-    Integer getFetchSize();
+    int getFetchSize();
 
     /**
      * Sets the value of the '{@link org.switchyard.tools.models.switchyard1_0.camel.mail.CamelMailConsumerType#getFetchSize <em>Fetch Size</em>}' attribute.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @param value the new value of the '<em>Fetch Size</em>' attribute.
+     * @see #isSetFetchSize()
+     * @see #unsetFetchSize()
      * @see #getFetchSize()
      * @generated
      */
-    void setFetchSize(Integer value);
+    void setFetchSize(int value);
+
+    /**
+     * Unsets the value of the '{@link org.switchyard.tools.models.switchyard1_0.camel.mail.CamelMailConsumerType#getFetchSize <em>Fetch Size</em>}' attribute.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @see #isSetFetchSize()
+     * @see #getFetchSize()
+     * @see #setFetchSize(int)
+     * @generated
+     */
+    void unsetFetchSize();
+
+    /**
+     * Returns whether the value of the '{@link org.switchyard.tools.models.switchyard1_0.camel.mail.CamelMailConsumerType#getFetchSize <em>Fetch Size</em>}' attribute is set.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @return whether the value of the '<em>Fetch Size</em>' attribute is set.
+     * @see #unsetFetchSize()
+     * @see #getFetchSize()
+     * @see #setFetchSize(int)
+     * @generated
+     */
+    boolean isSetFetchSize();
 
     /**
      * Returns the value of the '<em><b>Unseen</b></em>' attribute.
+     * The default value is <code>"true"</code>.
      * <!-- begin-user-doc -->
      * <p>
      * If the meaning of the '<em>Unseen</em>' attribute isn't clear,
@@ -344,51 +460,52 @@ public interface CamelMailConsumerType extends EObject {
      * @return the value of the '<em>Unseen</em>' attribute.
      * @see #isSetUnseen()
      * @see #unsetUnseen()
-     * @see #setUnseen(Boolean)
+     * @see #setUnseen(boolean)
      * @see org.switchyard.tools.models.switchyard1_0.camel.mail.MailPackage#getCamelMailConsumerType_Unseen()
-     * @model unsettable="true" dataType="org.eclipse.emf.ecore.xml.type.BooleanObject"
+     * @model default="true" unsettable="true" dataType="org.eclipse.emf.ecore.xml.type.Boolean"
      *        extendedMetaData="kind='element' name='unseen' namespace='##targetNamespace'"
      * @generated
      */
-    Boolean getUnseen();
+    boolean isUnseen();
 
     /**
-     * Sets the value of the '{@link org.switchyard.tools.models.switchyard1_0.camel.mail.CamelMailConsumerType#getUnseen <em>Unseen</em>}' attribute.
+     * Sets the value of the '{@link org.switchyard.tools.models.switchyard1_0.camel.mail.CamelMailConsumerType#isUnseen <em>Unseen</em>}' attribute.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @param value the new value of the '<em>Unseen</em>' attribute.
      * @see #isSetUnseen()
      * @see #unsetUnseen()
-     * @see #getUnseen()
+     * @see #isUnseen()
      * @generated
      */
-    void setUnseen(Boolean value);
+    void setUnseen(boolean value);
 
     /**
-     * Unsets the value of the '{@link org.switchyard.tools.models.switchyard1_0.camel.mail.CamelMailConsumerType#getUnseen <em>Unseen</em>}' attribute.
+     * Unsets the value of the '{@link org.switchyard.tools.models.switchyard1_0.camel.mail.CamelMailConsumerType#isUnseen <em>Unseen</em>}' attribute.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @see #isSetUnseen()
-     * @see #getUnseen()
-     * @see #setUnseen(Boolean)
+     * @see #isUnseen()
+     * @see #setUnseen(boolean)
      * @generated
      */
     void unsetUnseen();
 
     /**
-     * Returns whether the value of the '{@link org.switchyard.tools.models.switchyard1_0.camel.mail.CamelMailConsumerType#getUnseen <em>Unseen</em>}' attribute is set.
+     * Returns whether the value of the '{@link org.switchyard.tools.models.switchyard1_0.camel.mail.CamelMailConsumerType#isUnseen <em>Unseen</em>}' attribute is set.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @return whether the value of the '<em>Unseen</em>' attribute is set.
      * @see #unsetUnseen()
-     * @see #getUnseen()
-     * @see #setUnseen(Boolean)
+     * @see #isUnseen()
+     * @see #setUnseen(boolean)
      * @generated
      */
     boolean isSetUnseen();
 
     /**
      * Returns the value of the '<em><b>Delete</b></em>' attribute.
+     * The default value is <code>"false"</code>.
      * <!-- begin-user-doc -->
      * <p>
      * If the meaning of the '<em>Delete</em>' attribute isn't clear,
@@ -398,45 +515,45 @@ public interface CamelMailConsumerType extends EObject {
      * @return the value of the '<em>Delete</em>' attribute.
      * @see #isSetDelete()
      * @see #unsetDelete()
-     * @see #setDelete(Boolean)
+     * @see #setDelete(boolean)
      * @see org.switchyard.tools.models.switchyard1_0.camel.mail.MailPackage#getCamelMailConsumerType_Delete()
-     * @model unsettable="true" dataType="org.eclipse.emf.ecore.xml.type.BooleanObject"
+     * @model default="false" unsettable="true" dataType="org.eclipse.emf.ecore.xml.type.Boolean"
      *        extendedMetaData="kind='element' name='delete' namespace='##targetNamespace'"
      * @generated
      */
-    Boolean getDelete();
+    boolean isDelete();
 
     /**
-     * Sets the value of the '{@link org.switchyard.tools.models.switchyard1_0.camel.mail.CamelMailConsumerType#getDelete <em>Delete</em>}' attribute.
+     * Sets the value of the '{@link org.switchyard.tools.models.switchyard1_0.camel.mail.CamelMailConsumerType#isDelete <em>Delete</em>}' attribute.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @param value the new value of the '<em>Delete</em>' attribute.
      * @see #isSetDelete()
      * @see #unsetDelete()
-     * @see #getDelete()
+     * @see #isDelete()
      * @generated
      */
-    void setDelete(Boolean value);
+    void setDelete(boolean value);
 
     /**
-     * Unsets the value of the '{@link org.switchyard.tools.models.switchyard1_0.camel.mail.CamelMailConsumerType#getDelete <em>Delete</em>}' attribute.
+     * Unsets the value of the '{@link org.switchyard.tools.models.switchyard1_0.camel.mail.CamelMailConsumerType#isDelete <em>Delete</em>}' attribute.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @see #isSetDelete()
-     * @see #getDelete()
-     * @see #setDelete(Boolean)
+     * @see #isDelete()
+     * @see #setDelete(boolean)
      * @generated
      */
     void unsetDelete();
 
     /**
-     * Returns whether the value of the '{@link org.switchyard.tools.models.switchyard1_0.camel.mail.CamelMailConsumerType#getDelete <em>Delete</em>}' attribute is set.
+     * Returns whether the value of the '{@link org.switchyard.tools.models.switchyard1_0.camel.mail.CamelMailConsumerType#isDelete <em>Delete</em>}' attribute is set.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @return whether the value of the '<em>Delete</em>' attribute is set.
      * @see #unsetDelete()
-     * @see #getDelete()
-     * @see #setDelete(Boolean)
+     * @see #isDelete()
+     * @see #setDelete(boolean)
      * @generated
      */
     boolean isSetDelete();
@@ -470,6 +587,7 @@ public interface CamelMailConsumerType extends EObject {
 
     /**
      * Returns the value of the '<em><b>Disconnect</b></em>' attribute.
+     * The default value is <code>"false"</code>.
      * <!-- begin-user-doc -->
      * <p>
      * If the meaning of the '<em>Disconnect</em>' attribute isn't clear,
@@ -479,45 +597,45 @@ public interface CamelMailConsumerType extends EObject {
      * @return the value of the '<em>Disconnect</em>' attribute.
      * @see #isSetDisconnect()
      * @see #unsetDisconnect()
-     * @see #setDisconnect(Boolean)
+     * @see #setDisconnect(boolean)
      * @see org.switchyard.tools.models.switchyard1_0.camel.mail.MailPackage#getCamelMailConsumerType_Disconnect()
-     * @model unsettable="true" dataType="org.eclipse.emf.ecore.xml.type.BooleanObject"
+     * @model default="false" unsettable="true" dataType="org.eclipse.emf.ecore.xml.type.Boolean"
      *        extendedMetaData="kind='element' name='disconnect' namespace='##targetNamespace'"
      * @generated
      */
-    Boolean getDisconnect();
+    boolean isDisconnect();
 
     /**
-     * Sets the value of the '{@link org.switchyard.tools.models.switchyard1_0.camel.mail.CamelMailConsumerType#getDisconnect <em>Disconnect</em>}' attribute.
+     * Sets the value of the '{@link org.switchyard.tools.models.switchyard1_0.camel.mail.CamelMailConsumerType#isDisconnect <em>Disconnect</em>}' attribute.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @param value the new value of the '<em>Disconnect</em>' attribute.
      * @see #isSetDisconnect()
      * @see #unsetDisconnect()
-     * @see #getDisconnect()
+     * @see #isDisconnect()
      * @generated
      */
-    void setDisconnect(Boolean value);
+    void setDisconnect(boolean value);
 
     /**
-     * Unsets the value of the '{@link org.switchyard.tools.models.switchyard1_0.camel.mail.CamelMailConsumerType#getDisconnect <em>Disconnect</em>}' attribute.
+     * Unsets the value of the '{@link org.switchyard.tools.models.switchyard1_0.camel.mail.CamelMailConsumerType#isDisconnect <em>Disconnect</em>}' attribute.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @see #isSetDisconnect()
-     * @see #getDisconnect()
-     * @see #setDisconnect(Boolean)
+     * @see #isDisconnect()
+     * @see #setDisconnect(boolean)
      * @generated
      */
     void unsetDisconnect();
 
     /**
-     * Returns whether the value of the '{@link org.switchyard.tools.models.switchyard1_0.camel.mail.CamelMailConsumerType#getDisconnect <em>Disconnect</em>}' attribute is set.
+     * Returns whether the value of the '{@link org.switchyard.tools.models.switchyard1_0.camel.mail.CamelMailConsumerType#isDisconnect <em>Disconnect</em>}' attribute is set.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @return whether the value of the '<em>Disconnect</em>' attribute is set.
      * @see #unsetDisconnect()
-     * @see #getDisconnect()
-     * @see #setDisconnect(Boolean)
+     * @see #isDisconnect()
+     * @see #setDisconnect(boolean)
      * @generated
      */
     boolean isSetDisconnect();

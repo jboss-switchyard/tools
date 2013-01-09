@@ -2,8 +2,6 @@
  */
 package org.switchyard.tools.models.switchyard1_0.camel.file.impl;
 
-import java.math.BigInteger;
-
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
@@ -21,19 +19,19 @@ import org.switchyard.tools.models.switchyard1_0.camel.file.TimeUnit;
  * <ul>
  *   <li>{@link org.switchyard.tools.models.switchyard1_0.camel.file.impl.FileConsumerTypeImpl#getInitialDelay <em>Initial Delay</em>}</li>
  *   <li>{@link org.switchyard.tools.models.switchyard1_0.camel.file.impl.FileConsumerTypeImpl#getDelay <em>Delay</em>}</li>
- *   <li>{@link org.switchyard.tools.models.switchyard1_0.camel.file.impl.FileConsumerTypeImpl#getUseFixedDelay <em>Use Fixed Delay</em>}</li>
- *   <li>{@link org.switchyard.tools.models.switchyard1_0.camel.file.impl.FileConsumerTypeImpl#getSendEmptyMessageWhenIdle <em>Send Empty Message When Idle</em>}</li>
+ *   <li>{@link org.switchyard.tools.models.switchyard1_0.camel.file.impl.FileConsumerTypeImpl#isUseFixedDelay <em>Use Fixed Delay</em>}</li>
+ *   <li>{@link org.switchyard.tools.models.switchyard1_0.camel.file.impl.FileConsumerTypeImpl#isSendEmptyMessageWhenIdle <em>Send Empty Message When Idle</em>}</li>
  *   <li>{@link org.switchyard.tools.models.switchyard1_0.camel.file.impl.FileConsumerTypeImpl#getTimeUnit <em>Time Unit</em>}</li>
  *   <li>{@link org.switchyard.tools.models.switchyard1_0.camel.file.impl.FileConsumerTypeImpl#getMaxMessagesPerPoll <em>Max Messages Per Poll</em>}</li>
- *   <li>{@link org.switchyard.tools.models.switchyard1_0.camel.file.impl.FileConsumerTypeImpl#getDelete <em>Delete</em>}</li>
- *   <li>{@link org.switchyard.tools.models.switchyard1_0.camel.file.impl.FileConsumerTypeImpl#getRecursive <em>Recursive</em>}</li>
- *   <li>{@link org.switchyard.tools.models.switchyard1_0.camel.file.impl.FileConsumerTypeImpl#getNoop <em>Noop</em>}</li>
+ *   <li>{@link org.switchyard.tools.models.switchyard1_0.camel.file.impl.FileConsumerTypeImpl#isDelete <em>Delete</em>}</li>
+ *   <li>{@link org.switchyard.tools.models.switchyard1_0.camel.file.impl.FileConsumerTypeImpl#isRecursive <em>Recursive</em>}</li>
+ *   <li>{@link org.switchyard.tools.models.switchyard1_0.camel.file.impl.FileConsumerTypeImpl#isNoop <em>Noop</em>}</li>
  *   <li>{@link org.switchyard.tools.models.switchyard1_0.camel.file.impl.FileConsumerTypeImpl#getPreMove <em>Pre Move</em>}</li>
  *   <li>{@link org.switchyard.tools.models.switchyard1_0.camel.file.impl.FileConsumerTypeImpl#getMove <em>Move</em>}</li>
  *   <li>{@link org.switchyard.tools.models.switchyard1_0.camel.file.impl.FileConsumerTypeImpl#getMoveFailed <em>Move Failed</em>}</li>
  *   <li>{@link org.switchyard.tools.models.switchyard1_0.camel.file.impl.FileConsumerTypeImpl#getInclude <em>Include</em>}</li>
  *   <li>{@link org.switchyard.tools.models.switchyard1_0.camel.file.impl.FileConsumerTypeImpl#getExclude <em>Exclude</em>}</li>
- *   <li>{@link org.switchyard.tools.models.switchyard1_0.camel.file.impl.FileConsumerTypeImpl#getIdempotent <em>Idempotent</em>}</li>
+ *   <li>{@link org.switchyard.tools.models.switchyard1_0.camel.file.impl.FileConsumerTypeImpl#isIdempotent <em>Idempotent</em>}</li>
  *   <li>{@link org.switchyard.tools.models.switchyard1_0.camel.file.impl.FileConsumerTypeImpl#getIdempotentRepository <em>Idempotent Repository</em>}</li>
  *   <li>{@link org.switchyard.tools.models.switchyard1_0.camel.file.impl.FileConsumerTypeImpl#getInProgressRepository <em>In Progress Repository</em>}</li>
  *   <li>{@link org.switchyard.tools.models.switchyard1_0.camel.file.impl.FileConsumerTypeImpl#getFilter <em>Filter</em>}</li>
@@ -44,8 +42,8 @@ import org.switchyard.tools.models.switchyard1_0.camel.file.TimeUnit;
  *   <li>{@link org.switchyard.tools.models.switchyard1_0.camel.file.impl.FileConsumerTypeImpl#getReadLockCheckInterval <em>Read Lock Check Interval</em>}</li>
  *   <li>{@link org.switchyard.tools.models.switchyard1_0.camel.file.impl.FileConsumerTypeImpl#getExclusiveReadLockStrategy <em>Exclusive Read Lock Strategy</em>}</li>
  *   <li>{@link org.switchyard.tools.models.switchyard1_0.camel.file.impl.FileConsumerTypeImpl#getProcessStrategy <em>Process Strategy</em>}</li>
- *   <li>{@link org.switchyard.tools.models.switchyard1_0.camel.file.impl.FileConsumerTypeImpl#getStartingDirectoryMustExist <em>Starting Directory Must Exist</em>}</li>
- *   <li>{@link org.switchyard.tools.models.switchyard1_0.camel.file.impl.FileConsumerTypeImpl#getDirectoryMustExist <em>Directory Must Exist</em>}</li>
+ *   <li>{@link org.switchyard.tools.models.switchyard1_0.camel.file.impl.FileConsumerTypeImpl#isStartingDirectoryMustExist <em>Starting Directory Must Exist</em>}</li>
+ *   <li>{@link org.switchyard.tools.models.switchyard1_0.camel.file.impl.FileConsumerTypeImpl#isDirectoryMustExist <em>Directory Must Exist</em>}</li>
  *   <li>{@link org.switchyard.tools.models.switchyard1_0.camel.file.impl.FileConsumerTypeImpl#getDoneFileName <em>Done File Name</em>}</li>
  * </ul>
  * </p>
@@ -61,7 +59,7 @@ public class FileConsumerTypeImpl extends EObjectImpl implements FileConsumerTyp
      * @generated
      * @ordered
      */
-    protected static final Integer INITIAL_DELAY_EDEFAULT = null;
+    protected static final int INITIAL_DELAY_EDEFAULT = 1000;
 
     /**
      * The cached value of the '{@link #getInitialDelay() <em>Initial Delay</em>}' attribute.
@@ -71,7 +69,16 @@ public class FileConsumerTypeImpl extends EObjectImpl implements FileConsumerTyp
      * @generated
      * @ordered
      */
-    protected Integer initialDelay = INITIAL_DELAY_EDEFAULT;
+    protected int initialDelay = INITIAL_DELAY_EDEFAULT;
+
+    /**
+     * This is true if the Initial Delay attribute has been set.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    protected boolean initialDelayESet;
 
     /**
      * The default value of the '{@link #getDelay() <em>Delay</em>}' attribute.
@@ -81,7 +88,7 @@ public class FileConsumerTypeImpl extends EObjectImpl implements FileConsumerTyp
      * @generated
      * @ordered
      */
-    protected static final Integer DELAY_EDEFAULT = null;
+    protected static final int DELAY_EDEFAULT = 500;
 
     /**
      * The cached value of the '{@link #getDelay() <em>Delay</em>}' attribute.
@@ -91,27 +98,36 @@ public class FileConsumerTypeImpl extends EObjectImpl implements FileConsumerTyp
      * @generated
      * @ordered
      */
-    protected Integer delay = DELAY_EDEFAULT;
+    protected int delay = DELAY_EDEFAULT;
 
     /**
-     * The default value of the '{@link #getUseFixedDelay() <em>Use Fixed Delay</em>}' attribute.
+     * This is true if the Delay attribute has been set.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @see #getUseFixedDelay()
      * @generated
      * @ordered
      */
-    protected static final Boolean USE_FIXED_DELAY_EDEFAULT = null;
+    protected boolean delayESet;
 
     /**
-     * The cached value of the '{@link #getUseFixedDelay() <em>Use Fixed Delay</em>}' attribute.
+     * The default value of the '{@link #isUseFixedDelay() <em>Use Fixed Delay</em>}' attribute.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @see #getUseFixedDelay()
+     * @see #isUseFixedDelay()
      * @generated
      * @ordered
      */
-    protected Boolean useFixedDelay = USE_FIXED_DELAY_EDEFAULT;
+    protected static final boolean USE_FIXED_DELAY_EDEFAULT = true;
+
+    /**
+     * The cached value of the '{@link #isUseFixedDelay() <em>Use Fixed Delay</em>}' attribute.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @see #isUseFixedDelay()
+     * @generated
+     * @ordered
+     */
+    protected boolean useFixedDelay = USE_FIXED_DELAY_EDEFAULT;
 
     /**
      * This is true if the Use Fixed Delay attribute has been set.
@@ -123,24 +139,24 @@ public class FileConsumerTypeImpl extends EObjectImpl implements FileConsumerTyp
     protected boolean useFixedDelayESet;
 
     /**
-     * The default value of the '{@link #getSendEmptyMessageWhenIdle() <em>Send Empty Message When Idle</em>}' attribute.
+     * The default value of the '{@link #isSendEmptyMessageWhenIdle() <em>Send Empty Message When Idle</em>}' attribute.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @see #getSendEmptyMessageWhenIdle()
+     * @see #isSendEmptyMessageWhenIdle()
      * @generated
      * @ordered
      */
-    protected static final Boolean SEND_EMPTY_MESSAGE_WHEN_IDLE_EDEFAULT = null;
+    protected static final boolean SEND_EMPTY_MESSAGE_WHEN_IDLE_EDEFAULT = false;
 
     /**
-     * The cached value of the '{@link #getSendEmptyMessageWhenIdle() <em>Send Empty Message When Idle</em>}' attribute.
+     * The cached value of the '{@link #isSendEmptyMessageWhenIdle() <em>Send Empty Message When Idle</em>}' attribute.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @see #getSendEmptyMessageWhenIdle()
+     * @see #isSendEmptyMessageWhenIdle()
      * @generated
      * @ordered
      */
-    protected Boolean sendEmptyMessageWhenIdle = SEND_EMPTY_MESSAGE_WHEN_IDLE_EDEFAULT;
+    protected boolean sendEmptyMessageWhenIdle = SEND_EMPTY_MESSAGE_WHEN_IDLE_EDEFAULT;
 
     /**
      * This is true if the Send Empty Message When Idle attribute has been set.
@@ -159,7 +175,7 @@ public class FileConsumerTypeImpl extends EObjectImpl implements FileConsumerTyp
      * @generated
      * @ordered
      */
-    protected static final TimeUnit TIME_UNIT_EDEFAULT = TimeUnit.NANOSECONDS;
+    protected static final TimeUnit TIME_UNIT_EDEFAULT = TimeUnit.MILLISECONDS;
 
     /**
      * The cached value of the '{@link #getTimeUnit() <em>Time Unit</em>}' attribute.
@@ -188,7 +204,7 @@ public class FileConsumerTypeImpl extends EObjectImpl implements FileConsumerTyp
      * @generated
      * @ordered
      */
-    protected static final Integer MAX_MESSAGES_PER_POLL_EDEFAULT = null;
+    protected static final int MAX_MESSAGES_PER_POLL_EDEFAULT = 0;
 
     /**
      * The cached value of the '{@link #getMaxMessagesPerPoll() <em>Max Messages Per Poll</em>}' attribute.
@@ -198,27 +214,36 @@ public class FileConsumerTypeImpl extends EObjectImpl implements FileConsumerTyp
      * @generated
      * @ordered
      */
-    protected Integer maxMessagesPerPoll = MAX_MESSAGES_PER_POLL_EDEFAULT;
+    protected int maxMessagesPerPoll = MAX_MESSAGES_PER_POLL_EDEFAULT;
 
     /**
-     * The default value of the '{@link #getDelete() <em>Delete</em>}' attribute.
+     * This is true if the Max Messages Per Poll attribute has been set.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @see #getDelete()
      * @generated
      * @ordered
      */
-    protected static final Boolean DELETE_EDEFAULT = null;
+    protected boolean maxMessagesPerPollESet;
 
     /**
-     * The cached value of the '{@link #getDelete() <em>Delete</em>}' attribute.
+     * The default value of the '{@link #isDelete() <em>Delete</em>}' attribute.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @see #getDelete()
+     * @see #isDelete()
      * @generated
      * @ordered
      */
-    protected Boolean delete = DELETE_EDEFAULT;
+    protected static final boolean DELETE_EDEFAULT = false;
+
+    /**
+     * The cached value of the '{@link #isDelete() <em>Delete</em>}' attribute.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @see #isDelete()
+     * @generated
+     * @ordered
+     */
+    protected boolean delete = DELETE_EDEFAULT;
 
     /**
      * This is true if the Delete attribute has been set.
@@ -230,24 +255,24 @@ public class FileConsumerTypeImpl extends EObjectImpl implements FileConsumerTyp
     protected boolean deleteESet;
 
     /**
-     * The default value of the '{@link #getRecursive() <em>Recursive</em>}' attribute.
+     * The default value of the '{@link #isRecursive() <em>Recursive</em>}' attribute.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @see #getRecursive()
+     * @see #isRecursive()
      * @generated
      * @ordered
      */
-    protected static final Boolean RECURSIVE_EDEFAULT = null;
+    protected static final boolean RECURSIVE_EDEFAULT = false;
 
     /**
-     * The cached value of the '{@link #getRecursive() <em>Recursive</em>}' attribute.
+     * The cached value of the '{@link #isRecursive() <em>Recursive</em>}' attribute.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @see #getRecursive()
+     * @see #isRecursive()
      * @generated
      * @ordered
      */
-    protected Boolean recursive = RECURSIVE_EDEFAULT;
+    protected boolean recursive = RECURSIVE_EDEFAULT;
 
     /**
      * This is true if the Recursive attribute has been set.
@@ -259,24 +284,24 @@ public class FileConsumerTypeImpl extends EObjectImpl implements FileConsumerTyp
     protected boolean recursiveESet;
 
     /**
-     * The default value of the '{@link #getNoop() <em>Noop</em>}' attribute.
+     * The default value of the '{@link #isNoop() <em>Noop</em>}' attribute.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @see #getNoop()
+     * @see #isNoop()
      * @generated
      * @ordered
      */
-    protected static final Boolean NOOP_EDEFAULT = null;
+    protected static final boolean NOOP_EDEFAULT = false;
 
     /**
-     * The cached value of the '{@link #getNoop() <em>Noop</em>}' attribute.
+     * The cached value of the '{@link #isNoop() <em>Noop</em>}' attribute.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @see #getNoop()
+     * @see #isNoop()
      * @generated
      * @ordered
      */
-    protected Boolean noop = NOOP_EDEFAULT;
+    protected boolean noop = NOOP_EDEFAULT;
 
     /**
      * This is true if the Noop attribute has been set.
@@ -315,7 +340,7 @@ public class FileConsumerTypeImpl extends EObjectImpl implements FileConsumerTyp
      * @generated
      * @ordered
      */
-    protected static final String MOVE_EDEFAULT = null;
+    protected static final String MOVE_EDEFAULT = "";
 
     /**
      * The cached value of the '{@link #getMove() <em>Move</em>}' attribute.
@@ -368,15 +393,6 @@ public class FileConsumerTypeImpl extends EObjectImpl implements FileConsumerTyp
     protected String include = INCLUDE_EDEFAULT;
 
     /**
-     * This is true if the Include attribute has been set.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     * @ordered
-     */
-    protected boolean includeESet;
-
-    /**
      * The default value of the '{@link #getExclude() <em>Exclude</em>}' attribute.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
@@ -397,33 +413,24 @@ public class FileConsumerTypeImpl extends EObjectImpl implements FileConsumerTyp
     protected String exclude = EXCLUDE_EDEFAULT;
 
     /**
-     * This is true if the Exclude attribute has been set.
+     * The default value of the '{@link #isIdempotent() <em>Idempotent</em>}' attribute.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
+     * @see #isIdempotent()
      * @generated
      * @ordered
      */
-    protected boolean excludeESet;
+    protected static final boolean IDEMPOTENT_EDEFAULT = false;
 
     /**
-     * The default value of the '{@link #getIdempotent() <em>Idempotent</em>}' attribute.
+     * The cached value of the '{@link #isIdempotent() <em>Idempotent</em>}' attribute.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @see #getIdempotent()
+     * @see #isIdempotent()
      * @generated
      * @ordered
      */
-    protected static final Boolean IDEMPOTENT_EDEFAULT = null;
-
-    /**
-     * The cached value of the '{@link #getIdempotent() <em>Idempotent</em>}' attribute.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @see #getIdempotent()
-     * @generated
-     * @ordered
-     */
-    protected Boolean idempotent = IDEMPOTENT_EDEFAULT;
+    protected boolean idempotent = IDEMPOTENT_EDEFAULT;
 
     /**
      * This is true if the Idempotent attribute has been set.
@@ -455,15 +462,6 @@ public class FileConsumerTypeImpl extends EObjectImpl implements FileConsumerTyp
     protected String idempotentRepository = IDEMPOTENT_REPOSITORY_EDEFAULT;
 
     /**
-     * This is true if the Idempotent Repository attribute has been set.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     * @ordered
-     */
-    protected boolean idempotentRepositoryESet;
-
-    /**
      * The default value of the '{@link #getInProgressRepository() <em>In Progress Repository</em>}' attribute.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
@@ -482,15 +480,6 @@ public class FileConsumerTypeImpl extends EObjectImpl implements FileConsumerTyp
      * @ordered
      */
     protected String inProgressRepository = IN_PROGRESS_REPOSITORY_EDEFAULT;
-
-    /**
-     * This is true if the In Progress Repository attribute has been set.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     * @ordered
-     */
-    protected boolean inProgressRepositoryESet;
 
     /**
      * The default value of the '{@link #getFilter() <em>Filter</em>}' attribute.
@@ -513,15 +502,6 @@ public class FileConsumerTypeImpl extends EObjectImpl implements FileConsumerTyp
     protected String filter = FILTER_EDEFAULT;
 
     /**
-     * This is true if the Filter attribute has been set.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     * @ordered
-     */
-    protected boolean filterESet;
-
-    /**
      * The default value of the '{@link #getSorter() <em>Sorter</em>}' attribute.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
@@ -540,15 +520,6 @@ public class FileConsumerTypeImpl extends EObjectImpl implements FileConsumerTyp
      * @ordered
      */
     protected String sorter = SORTER_EDEFAULT;
-
-    /**
-     * This is true if the Sorter attribute has been set.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     * @ordered
-     */
-    protected boolean sorterESet;
 
     /**
      * The default value of the '{@link #getSortBy() <em>Sort By</em>}' attribute.
@@ -571,15 +542,6 @@ public class FileConsumerTypeImpl extends EObjectImpl implements FileConsumerTyp
     protected String sortBy = SORT_BY_EDEFAULT;
 
     /**
-     * This is true if the Sort By attribute has been set.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     * @ordered
-     */
-    protected boolean sortByESet;
-
-    /**
      * The default value of the '{@link #getReadLock() <em>Read Lock</em>}' attribute.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
@@ -600,15 +562,6 @@ public class FileConsumerTypeImpl extends EObjectImpl implements FileConsumerTyp
     protected String readLock = READ_LOCK_EDEFAULT;
 
     /**
-     * This is true if the Read Lock attribute has been set.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     * @ordered
-     */
-    protected boolean readLockESet;
-
-    /**
      * The default value of the '{@link #getReadLockTimeout() <em>Read Lock Timeout</em>}' attribute.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
@@ -616,7 +569,7 @@ public class FileConsumerTypeImpl extends EObjectImpl implements FileConsumerTyp
      * @generated
      * @ordered
      */
-    protected static final Long READ_LOCK_TIMEOUT_EDEFAULT = null;
+    protected static final long READ_LOCK_TIMEOUT_EDEFAULT = 10000L;
 
     /**
      * The cached value of the '{@link #getReadLockTimeout() <em>Read Lock Timeout</em>}' attribute.
@@ -626,7 +579,7 @@ public class FileConsumerTypeImpl extends EObjectImpl implements FileConsumerTyp
      * @generated
      * @ordered
      */
-    protected Long readLockTimeout = READ_LOCK_TIMEOUT_EDEFAULT;
+    protected long readLockTimeout = READ_LOCK_TIMEOUT_EDEFAULT;
 
     /**
      * This is true if the Read Lock Timeout attribute has been set.
@@ -645,7 +598,7 @@ public class FileConsumerTypeImpl extends EObjectImpl implements FileConsumerTyp
      * @generated
      * @ordered
      */
-    protected static final BigInteger READ_LOCK_CHECK_INTERVAL_EDEFAULT = null;
+    protected static final int READ_LOCK_CHECK_INTERVAL_EDEFAULT = 1000;
 
     /**
      * The cached value of the '{@link #getReadLockCheckInterval() <em>Read Lock Check Interval</em>}' attribute.
@@ -655,7 +608,7 @@ public class FileConsumerTypeImpl extends EObjectImpl implements FileConsumerTyp
      * @generated
      * @ordered
      */
-    protected BigInteger readLockCheckInterval = READ_LOCK_CHECK_INTERVAL_EDEFAULT;
+    protected int readLockCheckInterval = READ_LOCK_CHECK_INTERVAL_EDEFAULT;
 
     /**
      * This is true if the Read Lock Check Interval attribute has been set.
@@ -687,15 +640,6 @@ public class FileConsumerTypeImpl extends EObjectImpl implements FileConsumerTyp
     protected String exclusiveReadLockStrategy = EXCLUSIVE_READ_LOCK_STRATEGY_EDEFAULT;
 
     /**
-     * This is true if the Exclusive Read Lock Strategy attribute has been set.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     * @ordered
-     */
-    protected boolean exclusiveReadLockStrategyESet;
-
-    /**
      * The default value of the '{@link #getProcessStrategy() <em>Process Strategy</em>}' attribute.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
@@ -716,33 +660,24 @@ public class FileConsumerTypeImpl extends EObjectImpl implements FileConsumerTyp
     protected String processStrategy = PROCESS_STRATEGY_EDEFAULT;
 
     /**
-     * This is true if the Process Strategy attribute has been set.
+     * The default value of the '{@link #isStartingDirectoryMustExist() <em>Starting Directory Must Exist</em>}' attribute.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
+     * @see #isStartingDirectoryMustExist()
      * @generated
      * @ordered
      */
-    protected boolean processStrategyESet;
+    protected static final boolean STARTING_DIRECTORY_MUST_EXIST_EDEFAULT = false;
 
     /**
-     * The default value of the '{@link #getStartingDirectoryMustExist() <em>Starting Directory Must Exist</em>}' attribute.
+     * The cached value of the '{@link #isStartingDirectoryMustExist() <em>Starting Directory Must Exist</em>}' attribute.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @see #getStartingDirectoryMustExist()
+     * @see #isStartingDirectoryMustExist()
      * @generated
      * @ordered
      */
-    protected static final Boolean STARTING_DIRECTORY_MUST_EXIST_EDEFAULT = null;
-
-    /**
-     * The cached value of the '{@link #getStartingDirectoryMustExist() <em>Starting Directory Must Exist</em>}' attribute.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @see #getStartingDirectoryMustExist()
-     * @generated
-     * @ordered
-     */
-    protected Boolean startingDirectoryMustExist = STARTING_DIRECTORY_MUST_EXIST_EDEFAULT;
+    protected boolean startingDirectoryMustExist = STARTING_DIRECTORY_MUST_EXIST_EDEFAULT;
 
     /**
      * This is true if the Starting Directory Must Exist attribute has been set.
@@ -754,24 +689,24 @@ public class FileConsumerTypeImpl extends EObjectImpl implements FileConsumerTyp
     protected boolean startingDirectoryMustExistESet;
 
     /**
-     * The default value of the '{@link #getDirectoryMustExist() <em>Directory Must Exist</em>}' attribute.
+     * The default value of the '{@link #isDirectoryMustExist() <em>Directory Must Exist</em>}' attribute.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @see #getDirectoryMustExist()
+     * @see #isDirectoryMustExist()
      * @generated
      * @ordered
      */
-    protected static final Boolean DIRECTORY_MUST_EXIST_EDEFAULT = null;
+    protected static final boolean DIRECTORY_MUST_EXIST_EDEFAULT = false;
 
     /**
-     * The cached value of the '{@link #getDirectoryMustExist() <em>Directory Must Exist</em>}' attribute.
+     * The cached value of the '{@link #isDirectoryMustExist() <em>Directory Must Exist</em>}' attribute.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @see #getDirectoryMustExist()
+     * @see #isDirectoryMustExist()
      * @generated
      * @ordered
      */
-    protected Boolean directoryMustExist = DIRECTORY_MUST_EXIST_EDEFAULT;
+    protected boolean directoryMustExist = DIRECTORY_MUST_EXIST_EDEFAULT;
 
     /**
      * This is true if the Directory Must Exist attribute has been set.
@@ -803,15 +738,6 @@ public class FileConsumerTypeImpl extends EObjectImpl implements FileConsumerTyp
     protected String doneFileName = DONE_FILE_NAME_EDEFAULT;
 
     /**
-     * This is true if the Done File Name attribute has been set.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     * @ordered
-     */
-    protected boolean doneFileNameESet;
-
-    /**
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @generated
@@ -835,7 +761,7 @@ public class FileConsumerTypeImpl extends EObjectImpl implements FileConsumerTyp
      * <!-- end-user-doc -->
      * @generated
      */
-    public Integer getInitialDelay() {
+    public int getInitialDelay() {
         return initialDelay;
     }
 
@@ -844,11 +770,13 @@ public class FileConsumerTypeImpl extends EObjectImpl implements FileConsumerTyp
      * <!-- end-user-doc -->
      * @generated
      */
-    public void setInitialDelay(Integer newInitialDelay) {
-        Integer oldInitialDelay = initialDelay;
+    public void setInitialDelay(int newInitialDelay) {
+        int oldInitialDelay = initialDelay;
         initialDelay = newInitialDelay;
+        boolean oldInitialDelayESet = initialDelayESet;
+        initialDelayESet = true;
         if (eNotificationRequired())
-            eNotify(new ENotificationImpl(this, Notification.SET, FilePackage.FILE_CONSUMER_TYPE__INITIAL_DELAY, oldInitialDelay, initialDelay));
+            eNotify(new ENotificationImpl(this, Notification.SET, FilePackage.FILE_CONSUMER_TYPE__INITIAL_DELAY, oldInitialDelay, initialDelay, !oldInitialDelayESet));
     }
 
     /**
@@ -856,7 +784,30 @@ public class FileConsumerTypeImpl extends EObjectImpl implements FileConsumerTyp
      * <!-- end-user-doc -->
      * @generated
      */
-    public Integer getDelay() {
+    public void unsetInitialDelay() {
+        int oldInitialDelay = initialDelay;
+        boolean oldInitialDelayESet = initialDelayESet;
+        initialDelay = INITIAL_DELAY_EDEFAULT;
+        initialDelayESet = false;
+        if (eNotificationRequired())
+            eNotify(new ENotificationImpl(this, Notification.UNSET, FilePackage.FILE_CONSUMER_TYPE__INITIAL_DELAY, oldInitialDelay, INITIAL_DELAY_EDEFAULT, oldInitialDelayESet));
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public boolean isSetInitialDelay() {
+        return initialDelayESet;
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public int getDelay() {
         return delay;
     }
 
@@ -865,11 +816,13 @@ public class FileConsumerTypeImpl extends EObjectImpl implements FileConsumerTyp
      * <!-- end-user-doc -->
      * @generated
      */
-    public void setDelay(Integer newDelay) {
-        Integer oldDelay = delay;
+    public void setDelay(int newDelay) {
+        int oldDelay = delay;
         delay = newDelay;
+        boolean oldDelayESet = delayESet;
+        delayESet = true;
         if (eNotificationRequired())
-            eNotify(new ENotificationImpl(this, Notification.SET, FilePackage.FILE_CONSUMER_TYPE__DELAY, oldDelay, delay));
+            eNotify(new ENotificationImpl(this, Notification.SET, FilePackage.FILE_CONSUMER_TYPE__DELAY, oldDelay, delay, !oldDelayESet));
     }
 
     /**
@@ -877,7 +830,30 @@ public class FileConsumerTypeImpl extends EObjectImpl implements FileConsumerTyp
      * <!-- end-user-doc -->
      * @generated
      */
-    public Boolean getUseFixedDelay() {
+    public void unsetDelay() {
+        int oldDelay = delay;
+        boolean oldDelayESet = delayESet;
+        delay = DELAY_EDEFAULT;
+        delayESet = false;
+        if (eNotificationRequired())
+            eNotify(new ENotificationImpl(this, Notification.UNSET, FilePackage.FILE_CONSUMER_TYPE__DELAY, oldDelay, DELAY_EDEFAULT, oldDelayESet));
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public boolean isSetDelay() {
+        return delayESet;
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public boolean isUseFixedDelay() {
         return useFixedDelay;
     }
 
@@ -886,8 +862,8 @@ public class FileConsumerTypeImpl extends EObjectImpl implements FileConsumerTyp
      * <!-- end-user-doc -->
      * @generated
      */
-    public void setUseFixedDelay(Boolean newUseFixedDelay) {
-        Boolean oldUseFixedDelay = useFixedDelay;
+    public void setUseFixedDelay(boolean newUseFixedDelay) {
+        boolean oldUseFixedDelay = useFixedDelay;
         useFixedDelay = newUseFixedDelay;
         boolean oldUseFixedDelayESet = useFixedDelayESet;
         useFixedDelayESet = true;
@@ -901,7 +877,7 @@ public class FileConsumerTypeImpl extends EObjectImpl implements FileConsumerTyp
      * @generated
      */
     public void unsetUseFixedDelay() {
-        Boolean oldUseFixedDelay = useFixedDelay;
+        boolean oldUseFixedDelay = useFixedDelay;
         boolean oldUseFixedDelayESet = useFixedDelayESet;
         useFixedDelay = USE_FIXED_DELAY_EDEFAULT;
         useFixedDelayESet = false;
@@ -923,7 +899,7 @@ public class FileConsumerTypeImpl extends EObjectImpl implements FileConsumerTyp
      * <!-- end-user-doc -->
      * @generated
      */
-    public Boolean getSendEmptyMessageWhenIdle() {
+    public boolean isSendEmptyMessageWhenIdle() {
         return sendEmptyMessageWhenIdle;
     }
 
@@ -932,8 +908,8 @@ public class FileConsumerTypeImpl extends EObjectImpl implements FileConsumerTyp
      * <!-- end-user-doc -->
      * @generated
      */
-    public void setSendEmptyMessageWhenIdle(Boolean newSendEmptyMessageWhenIdle) {
-        Boolean oldSendEmptyMessageWhenIdle = sendEmptyMessageWhenIdle;
+    public void setSendEmptyMessageWhenIdle(boolean newSendEmptyMessageWhenIdle) {
+        boolean oldSendEmptyMessageWhenIdle = sendEmptyMessageWhenIdle;
         sendEmptyMessageWhenIdle = newSendEmptyMessageWhenIdle;
         boolean oldSendEmptyMessageWhenIdleESet = sendEmptyMessageWhenIdleESet;
         sendEmptyMessageWhenIdleESet = true;
@@ -947,7 +923,7 @@ public class FileConsumerTypeImpl extends EObjectImpl implements FileConsumerTyp
      * @generated
      */
     public void unsetSendEmptyMessageWhenIdle() {
-        Boolean oldSendEmptyMessageWhenIdle = sendEmptyMessageWhenIdle;
+        boolean oldSendEmptyMessageWhenIdle = sendEmptyMessageWhenIdle;
         boolean oldSendEmptyMessageWhenIdleESet = sendEmptyMessageWhenIdleESet;
         sendEmptyMessageWhenIdle = SEND_EMPTY_MESSAGE_WHEN_IDLE_EDEFAULT;
         sendEmptyMessageWhenIdleESet = false;
@@ -1015,7 +991,7 @@ public class FileConsumerTypeImpl extends EObjectImpl implements FileConsumerTyp
      * <!-- end-user-doc -->
      * @generated
      */
-    public Integer getMaxMessagesPerPoll() {
+    public int getMaxMessagesPerPoll() {
         return maxMessagesPerPoll;
     }
 
@@ -1024,11 +1000,13 @@ public class FileConsumerTypeImpl extends EObjectImpl implements FileConsumerTyp
      * <!-- end-user-doc -->
      * @generated
      */
-    public void setMaxMessagesPerPoll(Integer newMaxMessagesPerPoll) {
-        Integer oldMaxMessagesPerPoll = maxMessagesPerPoll;
+    public void setMaxMessagesPerPoll(int newMaxMessagesPerPoll) {
+        int oldMaxMessagesPerPoll = maxMessagesPerPoll;
         maxMessagesPerPoll = newMaxMessagesPerPoll;
+        boolean oldMaxMessagesPerPollESet = maxMessagesPerPollESet;
+        maxMessagesPerPollESet = true;
         if (eNotificationRequired())
-            eNotify(new ENotificationImpl(this, Notification.SET, FilePackage.FILE_CONSUMER_TYPE__MAX_MESSAGES_PER_POLL, oldMaxMessagesPerPoll, maxMessagesPerPoll));
+            eNotify(new ENotificationImpl(this, Notification.SET, FilePackage.FILE_CONSUMER_TYPE__MAX_MESSAGES_PER_POLL, oldMaxMessagesPerPoll, maxMessagesPerPoll, !oldMaxMessagesPerPollESet));
     }
 
     /**
@@ -1036,7 +1014,30 @@ public class FileConsumerTypeImpl extends EObjectImpl implements FileConsumerTyp
      * <!-- end-user-doc -->
      * @generated
      */
-    public Boolean getDelete() {
+    public void unsetMaxMessagesPerPoll() {
+        int oldMaxMessagesPerPoll = maxMessagesPerPoll;
+        boolean oldMaxMessagesPerPollESet = maxMessagesPerPollESet;
+        maxMessagesPerPoll = MAX_MESSAGES_PER_POLL_EDEFAULT;
+        maxMessagesPerPollESet = false;
+        if (eNotificationRequired())
+            eNotify(new ENotificationImpl(this, Notification.UNSET, FilePackage.FILE_CONSUMER_TYPE__MAX_MESSAGES_PER_POLL, oldMaxMessagesPerPoll, MAX_MESSAGES_PER_POLL_EDEFAULT, oldMaxMessagesPerPollESet));
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public boolean isSetMaxMessagesPerPoll() {
+        return maxMessagesPerPollESet;
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public boolean isDelete() {
         return delete;
     }
 
@@ -1045,8 +1046,8 @@ public class FileConsumerTypeImpl extends EObjectImpl implements FileConsumerTyp
      * <!-- end-user-doc -->
      * @generated
      */
-    public void setDelete(Boolean newDelete) {
-        Boolean oldDelete = delete;
+    public void setDelete(boolean newDelete) {
+        boolean oldDelete = delete;
         delete = newDelete;
         boolean oldDeleteESet = deleteESet;
         deleteESet = true;
@@ -1060,7 +1061,7 @@ public class FileConsumerTypeImpl extends EObjectImpl implements FileConsumerTyp
      * @generated
      */
     public void unsetDelete() {
-        Boolean oldDelete = delete;
+        boolean oldDelete = delete;
         boolean oldDeleteESet = deleteESet;
         delete = DELETE_EDEFAULT;
         deleteESet = false;
@@ -1082,7 +1083,7 @@ public class FileConsumerTypeImpl extends EObjectImpl implements FileConsumerTyp
      * <!-- end-user-doc -->
      * @generated
      */
-    public Boolean getRecursive() {
+    public boolean isRecursive() {
         return recursive;
     }
 
@@ -1091,8 +1092,8 @@ public class FileConsumerTypeImpl extends EObjectImpl implements FileConsumerTyp
      * <!-- end-user-doc -->
      * @generated
      */
-    public void setRecursive(Boolean newRecursive) {
-        Boolean oldRecursive = recursive;
+    public void setRecursive(boolean newRecursive) {
+        boolean oldRecursive = recursive;
         recursive = newRecursive;
         boolean oldRecursiveESet = recursiveESet;
         recursiveESet = true;
@@ -1106,7 +1107,7 @@ public class FileConsumerTypeImpl extends EObjectImpl implements FileConsumerTyp
      * @generated
      */
     public void unsetRecursive() {
-        Boolean oldRecursive = recursive;
+        boolean oldRecursive = recursive;
         boolean oldRecursiveESet = recursiveESet;
         recursive = RECURSIVE_EDEFAULT;
         recursiveESet = false;
@@ -1128,7 +1129,7 @@ public class FileConsumerTypeImpl extends EObjectImpl implements FileConsumerTyp
      * <!-- end-user-doc -->
      * @generated
      */
-    public Boolean getNoop() {
+    public boolean isNoop() {
         return noop;
     }
 
@@ -1137,8 +1138,8 @@ public class FileConsumerTypeImpl extends EObjectImpl implements FileConsumerTyp
      * <!-- end-user-doc -->
      * @generated
      */
-    public void setNoop(Boolean newNoop) {
-        Boolean oldNoop = noop;
+    public void setNoop(boolean newNoop) {
+        boolean oldNoop = noop;
         noop = newNoop;
         boolean oldNoopESet = noopESet;
         noopESet = true;
@@ -1152,7 +1153,7 @@ public class FileConsumerTypeImpl extends EObjectImpl implements FileConsumerTyp
      * @generated
      */
     public void unsetNoop() {
-        Boolean oldNoop = noop;
+        boolean oldNoop = noop;
         boolean oldNoopESet = noopESet;
         noop = NOOP_EDEFAULT;
         noopESet = false;
@@ -1249,33 +1250,8 @@ public class FileConsumerTypeImpl extends EObjectImpl implements FileConsumerTyp
     public void setInclude(String newInclude) {
         String oldInclude = include;
         include = newInclude;
-        boolean oldIncludeESet = includeESet;
-        includeESet = true;
         if (eNotificationRequired())
-            eNotify(new ENotificationImpl(this, Notification.SET, FilePackage.FILE_CONSUMER_TYPE__INCLUDE, oldInclude, include, !oldIncludeESet));
-    }
-
-    /**
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    public void unsetInclude() {
-        String oldInclude = include;
-        boolean oldIncludeESet = includeESet;
-        include = INCLUDE_EDEFAULT;
-        includeESet = false;
-        if (eNotificationRequired())
-            eNotify(new ENotificationImpl(this, Notification.UNSET, FilePackage.FILE_CONSUMER_TYPE__INCLUDE, oldInclude, INCLUDE_EDEFAULT, oldIncludeESet));
-    }
-
-    /**
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    public boolean isSetInclude() {
-        return includeESet;
+            eNotify(new ENotificationImpl(this, Notification.SET, FilePackage.FILE_CONSUMER_TYPE__INCLUDE, oldInclude, include));
     }
 
     /**
@@ -1295,10 +1271,8 @@ public class FileConsumerTypeImpl extends EObjectImpl implements FileConsumerTyp
     public void setExclude(String newExclude) {
         String oldExclude = exclude;
         exclude = newExclude;
-        boolean oldExcludeESet = excludeESet;
-        excludeESet = true;
         if (eNotificationRequired())
-            eNotify(new ENotificationImpl(this, Notification.SET, FilePackage.FILE_CONSUMER_TYPE__EXCLUDE, oldExclude, exclude, !oldExcludeESet));
+            eNotify(new ENotificationImpl(this, Notification.SET, FilePackage.FILE_CONSUMER_TYPE__EXCLUDE, oldExclude, exclude));
     }
 
     /**
@@ -1306,30 +1280,7 @@ public class FileConsumerTypeImpl extends EObjectImpl implements FileConsumerTyp
      * <!-- end-user-doc -->
      * @generated
      */
-    public void unsetExclude() {
-        String oldExclude = exclude;
-        boolean oldExcludeESet = excludeESet;
-        exclude = EXCLUDE_EDEFAULT;
-        excludeESet = false;
-        if (eNotificationRequired())
-            eNotify(new ENotificationImpl(this, Notification.UNSET, FilePackage.FILE_CONSUMER_TYPE__EXCLUDE, oldExclude, EXCLUDE_EDEFAULT, oldExcludeESet));
-    }
-
-    /**
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    public boolean isSetExclude() {
-        return excludeESet;
-    }
-
-    /**
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    public Boolean getIdempotent() {
+    public boolean isIdempotent() {
         return idempotent;
     }
 
@@ -1338,8 +1289,8 @@ public class FileConsumerTypeImpl extends EObjectImpl implements FileConsumerTyp
      * <!-- end-user-doc -->
      * @generated
      */
-    public void setIdempotent(Boolean newIdempotent) {
-        Boolean oldIdempotent = idempotent;
+    public void setIdempotent(boolean newIdempotent) {
+        boolean oldIdempotent = idempotent;
         idempotent = newIdempotent;
         boolean oldIdempotentESet = idempotentESet;
         idempotentESet = true;
@@ -1353,7 +1304,7 @@ public class FileConsumerTypeImpl extends EObjectImpl implements FileConsumerTyp
      * @generated
      */
     public void unsetIdempotent() {
-        Boolean oldIdempotent = idempotent;
+        boolean oldIdempotent = idempotent;
         boolean oldIdempotentESet = idempotentESet;
         idempotent = IDEMPOTENT_EDEFAULT;
         idempotentESet = false;
@@ -1387,33 +1338,8 @@ public class FileConsumerTypeImpl extends EObjectImpl implements FileConsumerTyp
     public void setIdempotentRepository(String newIdempotentRepository) {
         String oldIdempotentRepository = idempotentRepository;
         idempotentRepository = newIdempotentRepository;
-        boolean oldIdempotentRepositoryESet = idempotentRepositoryESet;
-        idempotentRepositoryESet = true;
         if (eNotificationRequired())
-            eNotify(new ENotificationImpl(this, Notification.SET, FilePackage.FILE_CONSUMER_TYPE__IDEMPOTENT_REPOSITORY, oldIdempotentRepository, idempotentRepository, !oldIdempotentRepositoryESet));
-    }
-
-    /**
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    public void unsetIdempotentRepository() {
-        String oldIdempotentRepository = idempotentRepository;
-        boolean oldIdempotentRepositoryESet = idempotentRepositoryESet;
-        idempotentRepository = IDEMPOTENT_REPOSITORY_EDEFAULT;
-        idempotentRepositoryESet = false;
-        if (eNotificationRequired())
-            eNotify(new ENotificationImpl(this, Notification.UNSET, FilePackage.FILE_CONSUMER_TYPE__IDEMPOTENT_REPOSITORY, oldIdempotentRepository, IDEMPOTENT_REPOSITORY_EDEFAULT, oldIdempotentRepositoryESet));
-    }
-
-    /**
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    public boolean isSetIdempotentRepository() {
-        return idempotentRepositoryESet;
+            eNotify(new ENotificationImpl(this, Notification.SET, FilePackage.FILE_CONSUMER_TYPE__IDEMPOTENT_REPOSITORY, oldIdempotentRepository, idempotentRepository));
     }
 
     /**
@@ -1433,33 +1359,8 @@ public class FileConsumerTypeImpl extends EObjectImpl implements FileConsumerTyp
     public void setInProgressRepository(String newInProgressRepository) {
         String oldInProgressRepository = inProgressRepository;
         inProgressRepository = newInProgressRepository;
-        boolean oldInProgressRepositoryESet = inProgressRepositoryESet;
-        inProgressRepositoryESet = true;
         if (eNotificationRequired())
-            eNotify(new ENotificationImpl(this, Notification.SET, FilePackage.FILE_CONSUMER_TYPE__IN_PROGRESS_REPOSITORY, oldInProgressRepository, inProgressRepository, !oldInProgressRepositoryESet));
-    }
-
-    /**
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    public void unsetInProgressRepository() {
-        String oldInProgressRepository = inProgressRepository;
-        boolean oldInProgressRepositoryESet = inProgressRepositoryESet;
-        inProgressRepository = IN_PROGRESS_REPOSITORY_EDEFAULT;
-        inProgressRepositoryESet = false;
-        if (eNotificationRequired())
-            eNotify(new ENotificationImpl(this, Notification.UNSET, FilePackage.FILE_CONSUMER_TYPE__IN_PROGRESS_REPOSITORY, oldInProgressRepository, IN_PROGRESS_REPOSITORY_EDEFAULT, oldInProgressRepositoryESet));
-    }
-
-    /**
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    public boolean isSetInProgressRepository() {
-        return inProgressRepositoryESet;
+            eNotify(new ENotificationImpl(this, Notification.SET, FilePackage.FILE_CONSUMER_TYPE__IN_PROGRESS_REPOSITORY, oldInProgressRepository, inProgressRepository));
     }
 
     /**
@@ -1479,33 +1380,8 @@ public class FileConsumerTypeImpl extends EObjectImpl implements FileConsumerTyp
     public void setFilter(String newFilter) {
         String oldFilter = filter;
         filter = newFilter;
-        boolean oldFilterESet = filterESet;
-        filterESet = true;
         if (eNotificationRequired())
-            eNotify(new ENotificationImpl(this, Notification.SET, FilePackage.FILE_CONSUMER_TYPE__FILTER, oldFilter, filter, !oldFilterESet));
-    }
-
-    /**
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    public void unsetFilter() {
-        String oldFilter = filter;
-        boolean oldFilterESet = filterESet;
-        filter = FILTER_EDEFAULT;
-        filterESet = false;
-        if (eNotificationRequired())
-            eNotify(new ENotificationImpl(this, Notification.UNSET, FilePackage.FILE_CONSUMER_TYPE__FILTER, oldFilter, FILTER_EDEFAULT, oldFilterESet));
-    }
-
-    /**
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    public boolean isSetFilter() {
-        return filterESet;
+            eNotify(new ENotificationImpl(this, Notification.SET, FilePackage.FILE_CONSUMER_TYPE__FILTER, oldFilter, filter));
     }
 
     /**
@@ -1525,33 +1401,8 @@ public class FileConsumerTypeImpl extends EObjectImpl implements FileConsumerTyp
     public void setSorter(String newSorter) {
         String oldSorter = sorter;
         sorter = newSorter;
-        boolean oldSorterESet = sorterESet;
-        sorterESet = true;
         if (eNotificationRequired())
-            eNotify(new ENotificationImpl(this, Notification.SET, FilePackage.FILE_CONSUMER_TYPE__SORTER, oldSorter, sorter, !oldSorterESet));
-    }
-
-    /**
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    public void unsetSorter() {
-        String oldSorter = sorter;
-        boolean oldSorterESet = sorterESet;
-        sorter = SORTER_EDEFAULT;
-        sorterESet = false;
-        if (eNotificationRequired())
-            eNotify(new ENotificationImpl(this, Notification.UNSET, FilePackage.FILE_CONSUMER_TYPE__SORTER, oldSorter, SORTER_EDEFAULT, oldSorterESet));
-    }
-
-    /**
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    public boolean isSetSorter() {
-        return sorterESet;
+            eNotify(new ENotificationImpl(this, Notification.SET, FilePackage.FILE_CONSUMER_TYPE__SORTER, oldSorter, sorter));
     }
 
     /**
@@ -1571,33 +1422,8 @@ public class FileConsumerTypeImpl extends EObjectImpl implements FileConsumerTyp
     public void setSortBy(String newSortBy) {
         String oldSortBy = sortBy;
         sortBy = newSortBy;
-        boolean oldSortByESet = sortByESet;
-        sortByESet = true;
         if (eNotificationRequired())
-            eNotify(new ENotificationImpl(this, Notification.SET, FilePackage.FILE_CONSUMER_TYPE__SORT_BY, oldSortBy, sortBy, !oldSortByESet));
-    }
-
-    /**
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    public void unsetSortBy() {
-        String oldSortBy = sortBy;
-        boolean oldSortByESet = sortByESet;
-        sortBy = SORT_BY_EDEFAULT;
-        sortByESet = false;
-        if (eNotificationRequired())
-            eNotify(new ENotificationImpl(this, Notification.UNSET, FilePackage.FILE_CONSUMER_TYPE__SORT_BY, oldSortBy, SORT_BY_EDEFAULT, oldSortByESet));
-    }
-
-    /**
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    public boolean isSetSortBy() {
-        return sortByESet;
+            eNotify(new ENotificationImpl(this, Notification.SET, FilePackage.FILE_CONSUMER_TYPE__SORT_BY, oldSortBy, sortBy));
     }
 
     /**
@@ -1617,10 +1443,8 @@ public class FileConsumerTypeImpl extends EObjectImpl implements FileConsumerTyp
     public void setReadLock(String newReadLock) {
         String oldReadLock = readLock;
         readLock = newReadLock;
-        boolean oldReadLockESet = readLockESet;
-        readLockESet = true;
         if (eNotificationRequired())
-            eNotify(new ENotificationImpl(this, Notification.SET, FilePackage.FILE_CONSUMER_TYPE__READ_LOCK, oldReadLock, readLock, !oldReadLockESet));
+            eNotify(new ENotificationImpl(this, Notification.SET, FilePackage.FILE_CONSUMER_TYPE__READ_LOCK, oldReadLock, readLock));
     }
 
     /**
@@ -1628,30 +1452,7 @@ public class FileConsumerTypeImpl extends EObjectImpl implements FileConsumerTyp
      * <!-- end-user-doc -->
      * @generated
      */
-    public void unsetReadLock() {
-        String oldReadLock = readLock;
-        boolean oldReadLockESet = readLockESet;
-        readLock = READ_LOCK_EDEFAULT;
-        readLockESet = false;
-        if (eNotificationRequired())
-            eNotify(new ENotificationImpl(this, Notification.UNSET, FilePackage.FILE_CONSUMER_TYPE__READ_LOCK, oldReadLock, READ_LOCK_EDEFAULT, oldReadLockESet));
-    }
-
-    /**
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    public boolean isSetReadLock() {
-        return readLockESet;
-    }
-
-    /**
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    public Long getReadLockTimeout() {
+    public long getReadLockTimeout() {
         return readLockTimeout;
     }
 
@@ -1660,8 +1461,8 @@ public class FileConsumerTypeImpl extends EObjectImpl implements FileConsumerTyp
      * <!-- end-user-doc -->
      * @generated
      */
-    public void setReadLockTimeout(Long newReadLockTimeout) {
-        Long oldReadLockTimeout = readLockTimeout;
+    public void setReadLockTimeout(long newReadLockTimeout) {
+        long oldReadLockTimeout = readLockTimeout;
         readLockTimeout = newReadLockTimeout;
         boolean oldReadLockTimeoutESet = readLockTimeoutESet;
         readLockTimeoutESet = true;
@@ -1675,7 +1476,7 @@ public class FileConsumerTypeImpl extends EObjectImpl implements FileConsumerTyp
      * @generated
      */
     public void unsetReadLockTimeout() {
-        Long oldReadLockTimeout = readLockTimeout;
+        long oldReadLockTimeout = readLockTimeout;
         boolean oldReadLockTimeoutESet = readLockTimeoutESet;
         readLockTimeout = READ_LOCK_TIMEOUT_EDEFAULT;
         readLockTimeoutESet = false;
@@ -1697,7 +1498,7 @@ public class FileConsumerTypeImpl extends EObjectImpl implements FileConsumerTyp
      * <!-- end-user-doc -->
      * @generated
      */
-    public BigInteger getReadLockCheckInterval() {
+    public int getReadLockCheckInterval() {
         return readLockCheckInterval;
     }
 
@@ -1706,8 +1507,8 @@ public class FileConsumerTypeImpl extends EObjectImpl implements FileConsumerTyp
      * <!-- end-user-doc -->
      * @generated
      */
-    public void setReadLockCheckInterval(BigInteger newReadLockCheckInterval) {
-        BigInteger oldReadLockCheckInterval = readLockCheckInterval;
+    public void setReadLockCheckInterval(int newReadLockCheckInterval) {
+        int oldReadLockCheckInterval = readLockCheckInterval;
         readLockCheckInterval = newReadLockCheckInterval;
         boolean oldReadLockCheckIntervalESet = readLockCheckIntervalESet;
         readLockCheckIntervalESet = true;
@@ -1721,7 +1522,7 @@ public class FileConsumerTypeImpl extends EObjectImpl implements FileConsumerTyp
      * @generated
      */
     public void unsetReadLockCheckInterval() {
-        BigInteger oldReadLockCheckInterval = readLockCheckInterval;
+        int oldReadLockCheckInterval = readLockCheckInterval;
         boolean oldReadLockCheckIntervalESet = readLockCheckIntervalESet;
         readLockCheckInterval = READ_LOCK_CHECK_INTERVAL_EDEFAULT;
         readLockCheckIntervalESet = false;
@@ -1755,33 +1556,8 @@ public class FileConsumerTypeImpl extends EObjectImpl implements FileConsumerTyp
     public void setExclusiveReadLockStrategy(String newExclusiveReadLockStrategy) {
         String oldExclusiveReadLockStrategy = exclusiveReadLockStrategy;
         exclusiveReadLockStrategy = newExclusiveReadLockStrategy;
-        boolean oldExclusiveReadLockStrategyESet = exclusiveReadLockStrategyESet;
-        exclusiveReadLockStrategyESet = true;
         if (eNotificationRequired())
-            eNotify(new ENotificationImpl(this, Notification.SET, FilePackage.FILE_CONSUMER_TYPE__EXCLUSIVE_READ_LOCK_STRATEGY, oldExclusiveReadLockStrategy, exclusiveReadLockStrategy, !oldExclusiveReadLockStrategyESet));
-    }
-
-    /**
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    public void unsetExclusiveReadLockStrategy() {
-        String oldExclusiveReadLockStrategy = exclusiveReadLockStrategy;
-        boolean oldExclusiveReadLockStrategyESet = exclusiveReadLockStrategyESet;
-        exclusiveReadLockStrategy = EXCLUSIVE_READ_LOCK_STRATEGY_EDEFAULT;
-        exclusiveReadLockStrategyESet = false;
-        if (eNotificationRequired())
-            eNotify(new ENotificationImpl(this, Notification.UNSET, FilePackage.FILE_CONSUMER_TYPE__EXCLUSIVE_READ_LOCK_STRATEGY, oldExclusiveReadLockStrategy, EXCLUSIVE_READ_LOCK_STRATEGY_EDEFAULT, oldExclusiveReadLockStrategyESet));
-    }
-
-    /**
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    public boolean isSetExclusiveReadLockStrategy() {
-        return exclusiveReadLockStrategyESet;
+            eNotify(new ENotificationImpl(this, Notification.SET, FilePackage.FILE_CONSUMER_TYPE__EXCLUSIVE_READ_LOCK_STRATEGY, oldExclusiveReadLockStrategy, exclusiveReadLockStrategy));
     }
 
     /**
@@ -1801,10 +1577,8 @@ public class FileConsumerTypeImpl extends EObjectImpl implements FileConsumerTyp
     public void setProcessStrategy(String newProcessStrategy) {
         String oldProcessStrategy = processStrategy;
         processStrategy = newProcessStrategy;
-        boolean oldProcessStrategyESet = processStrategyESet;
-        processStrategyESet = true;
         if (eNotificationRequired())
-            eNotify(new ENotificationImpl(this, Notification.SET, FilePackage.FILE_CONSUMER_TYPE__PROCESS_STRATEGY, oldProcessStrategy, processStrategy, !oldProcessStrategyESet));
+            eNotify(new ENotificationImpl(this, Notification.SET, FilePackage.FILE_CONSUMER_TYPE__PROCESS_STRATEGY, oldProcessStrategy, processStrategy));
     }
 
     /**
@@ -1812,30 +1586,7 @@ public class FileConsumerTypeImpl extends EObjectImpl implements FileConsumerTyp
      * <!-- end-user-doc -->
      * @generated
      */
-    public void unsetProcessStrategy() {
-        String oldProcessStrategy = processStrategy;
-        boolean oldProcessStrategyESet = processStrategyESet;
-        processStrategy = PROCESS_STRATEGY_EDEFAULT;
-        processStrategyESet = false;
-        if (eNotificationRequired())
-            eNotify(new ENotificationImpl(this, Notification.UNSET, FilePackage.FILE_CONSUMER_TYPE__PROCESS_STRATEGY, oldProcessStrategy, PROCESS_STRATEGY_EDEFAULT, oldProcessStrategyESet));
-    }
-
-    /**
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    public boolean isSetProcessStrategy() {
-        return processStrategyESet;
-    }
-
-    /**
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    public Boolean getStartingDirectoryMustExist() {
+    public boolean isStartingDirectoryMustExist() {
         return startingDirectoryMustExist;
     }
 
@@ -1844,8 +1595,8 @@ public class FileConsumerTypeImpl extends EObjectImpl implements FileConsumerTyp
      * <!-- end-user-doc -->
      * @generated
      */
-    public void setStartingDirectoryMustExist(Boolean newStartingDirectoryMustExist) {
-        Boolean oldStartingDirectoryMustExist = startingDirectoryMustExist;
+    public void setStartingDirectoryMustExist(boolean newStartingDirectoryMustExist) {
+        boolean oldStartingDirectoryMustExist = startingDirectoryMustExist;
         startingDirectoryMustExist = newStartingDirectoryMustExist;
         boolean oldStartingDirectoryMustExistESet = startingDirectoryMustExistESet;
         startingDirectoryMustExistESet = true;
@@ -1859,7 +1610,7 @@ public class FileConsumerTypeImpl extends EObjectImpl implements FileConsumerTyp
      * @generated
      */
     public void unsetStartingDirectoryMustExist() {
-        Boolean oldStartingDirectoryMustExist = startingDirectoryMustExist;
+        boolean oldStartingDirectoryMustExist = startingDirectoryMustExist;
         boolean oldStartingDirectoryMustExistESet = startingDirectoryMustExistESet;
         startingDirectoryMustExist = STARTING_DIRECTORY_MUST_EXIST_EDEFAULT;
         startingDirectoryMustExistESet = false;
@@ -1881,7 +1632,7 @@ public class FileConsumerTypeImpl extends EObjectImpl implements FileConsumerTyp
      * <!-- end-user-doc -->
      * @generated
      */
-    public Boolean getDirectoryMustExist() {
+    public boolean isDirectoryMustExist() {
         return directoryMustExist;
     }
 
@@ -1890,8 +1641,8 @@ public class FileConsumerTypeImpl extends EObjectImpl implements FileConsumerTyp
      * <!-- end-user-doc -->
      * @generated
      */
-    public void setDirectoryMustExist(Boolean newDirectoryMustExist) {
-        Boolean oldDirectoryMustExist = directoryMustExist;
+    public void setDirectoryMustExist(boolean newDirectoryMustExist) {
+        boolean oldDirectoryMustExist = directoryMustExist;
         directoryMustExist = newDirectoryMustExist;
         boolean oldDirectoryMustExistESet = directoryMustExistESet;
         directoryMustExistESet = true;
@@ -1905,7 +1656,7 @@ public class FileConsumerTypeImpl extends EObjectImpl implements FileConsumerTyp
      * @generated
      */
     public void unsetDirectoryMustExist() {
-        Boolean oldDirectoryMustExist = directoryMustExist;
+        boolean oldDirectoryMustExist = directoryMustExist;
         boolean oldDirectoryMustExistESet = directoryMustExistESet;
         directoryMustExist = DIRECTORY_MUST_EXIST_EDEFAULT;
         directoryMustExistESet = false;
@@ -1939,33 +1690,8 @@ public class FileConsumerTypeImpl extends EObjectImpl implements FileConsumerTyp
     public void setDoneFileName(String newDoneFileName) {
         String oldDoneFileName = doneFileName;
         doneFileName = newDoneFileName;
-        boolean oldDoneFileNameESet = doneFileNameESet;
-        doneFileNameESet = true;
         if (eNotificationRequired())
-            eNotify(new ENotificationImpl(this, Notification.SET, FilePackage.FILE_CONSUMER_TYPE__DONE_FILE_NAME, oldDoneFileName, doneFileName, !oldDoneFileNameESet));
-    }
-
-    /**
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    public void unsetDoneFileName() {
-        String oldDoneFileName = doneFileName;
-        boolean oldDoneFileNameESet = doneFileNameESet;
-        doneFileName = DONE_FILE_NAME_EDEFAULT;
-        doneFileNameESet = false;
-        if (eNotificationRequired())
-            eNotify(new ENotificationImpl(this, Notification.UNSET, FilePackage.FILE_CONSUMER_TYPE__DONE_FILE_NAME, oldDoneFileName, DONE_FILE_NAME_EDEFAULT, oldDoneFileNameESet));
-    }
-
-    /**
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    public boolean isSetDoneFileName() {
-        return doneFileNameESet;
+            eNotify(new ENotificationImpl(this, Notification.SET, FilePackage.FILE_CONSUMER_TYPE__DONE_FILE_NAME, oldDoneFileName, doneFileName));
     }
 
     /**
@@ -1981,19 +1707,19 @@ public class FileConsumerTypeImpl extends EObjectImpl implements FileConsumerTyp
             case FilePackage.FILE_CONSUMER_TYPE__DELAY:
                 return getDelay();
             case FilePackage.FILE_CONSUMER_TYPE__USE_FIXED_DELAY:
-                return getUseFixedDelay();
+                return isUseFixedDelay();
             case FilePackage.FILE_CONSUMER_TYPE__SEND_EMPTY_MESSAGE_WHEN_IDLE:
-                return getSendEmptyMessageWhenIdle();
+                return isSendEmptyMessageWhenIdle();
             case FilePackage.FILE_CONSUMER_TYPE__TIME_UNIT:
                 return getTimeUnit();
             case FilePackage.FILE_CONSUMER_TYPE__MAX_MESSAGES_PER_POLL:
                 return getMaxMessagesPerPoll();
             case FilePackage.FILE_CONSUMER_TYPE__DELETE:
-                return getDelete();
+                return isDelete();
             case FilePackage.FILE_CONSUMER_TYPE__RECURSIVE:
-                return getRecursive();
+                return isRecursive();
             case FilePackage.FILE_CONSUMER_TYPE__NOOP:
-                return getNoop();
+                return isNoop();
             case FilePackage.FILE_CONSUMER_TYPE__PRE_MOVE:
                 return getPreMove();
             case FilePackage.FILE_CONSUMER_TYPE__MOVE:
@@ -2005,7 +1731,7 @@ public class FileConsumerTypeImpl extends EObjectImpl implements FileConsumerTyp
             case FilePackage.FILE_CONSUMER_TYPE__EXCLUDE:
                 return getExclude();
             case FilePackage.FILE_CONSUMER_TYPE__IDEMPOTENT:
-                return getIdempotent();
+                return isIdempotent();
             case FilePackage.FILE_CONSUMER_TYPE__IDEMPOTENT_REPOSITORY:
                 return getIdempotentRepository();
             case FilePackage.FILE_CONSUMER_TYPE__IN_PROGRESS_REPOSITORY:
@@ -2027,9 +1753,9 @@ public class FileConsumerTypeImpl extends EObjectImpl implements FileConsumerTyp
             case FilePackage.FILE_CONSUMER_TYPE__PROCESS_STRATEGY:
                 return getProcessStrategy();
             case FilePackage.FILE_CONSUMER_TYPE__STARTING_DIRECTORY_MUST_EXIST:
-                return getStartingDirectoryMustExist();
+                return isStartingDirectoryMustExist();
             case FilePackage.FILE_CONSUMER_TYPE__DIRECTORY_MUST_EXIST:
-                return getDirectoryMustExist();
+                return isDirectoryMustExist();
             case FilePackage.FILE_CONSUMER_TYPE__DONE_FILE_NAME:
                 return getDoneFileName();
         }
@@ -2111,7 +1837,7 @@ public class FileConsumerTypeImpl extends EObjectImpl implements FileConsumerTyp
                 setReadLockTimeout((Long)newValue);
                 return;
             case FilePackage.FILE_CONSUMER_TYPE__READ_LOCK_CHECK_INTERVAL:
-                setReadLockCheckInterval((BigInteger)newValue);
+                setReadLockCheckInterval((Integer)newValue);
                 return;
             case FilePackage.FILE_CONSUMER_TYPE__EXCLUSIVE_READ_LOCK_STRATEGY:
                 setExclusiveReadLockStrategy((String)newValue);
@@ -2141,10 +1867,10 @@ public class FileConsumerTypeImpl extends EObjectImpl implements FileConsumerTyp
     public void eUnset(int featureID) {
         switch (featureID) {
             case FilePackage.FILE_CONSUMER_TYPE__INITIAL_DELAY:
-                setInitialDelay(INITIAL_DELAY_EDEFAULT);
+                unsetInitialDelay();
                 return;
             case FilePackage.FILE_CONSUMER_TYPE__DELAY:
-                setDelay(DELAY_EDEFAULT);
+                unsetDelay();
                 return;
             case FilePackage.FILE_CONSUMER_TYPE__USE_FIXED_DELAY:
                 unsetUseFixedDelay();
@@ -2156,7 +1882,7 @@ public class FileConsumerTypeImpl extends EObjectImpl implements FileConsumerTyp
                 unsetTimeUnit();
                 return;
             case FilePackage.FILE_CONSUMER_TYPE__MAX_MESSAGES_PER_POLL:
-                setMaxMessagesPerPoll(MAX_MESSAGES_PER_POLL_EDEFAULT);
+                unsetMaxMessagesPerPoll();
                 return;
             case FilePackage.FILE_CONSUMER_TYPE__DELETE:
                 unsetDelete();
@@ -2177,31 +1903,31 @@ public class FileConsumerTypeImpl extends EObjectImpl implements FileConsumerTyp
                 setMoveFailed(MOVE_FAILED_EDEFAULT);
                 return;
             case FilePackage.FILE_CONSUMER_TYPE__INCLUDE:
-                unsetInclude();
+                setInclude(INCLUDE_EDEFAULT);
                 return;
             case FilePackage.FILE_CONSUMER_TYPE__EXCLUDE:
-                unsetExclude();
+                setExclude(EXCLUDE_EDEFAULT);
                 return;
             case FilePackage.FILE_CONSUMER_TYPE__IDEMPOTENT:
                 unsetIdempotent();
                 return;
             case FilePackage.FILE_CONSUMER_TYPE__IDEMPOTENT_REPOSITORY:
-                unsetIdempotentRepository();
+                setIdempotentRepository(IDEMPOTENT_REPOSITORY_EDEFAULT);
                 return;
             case FilePackage.FILE_CONSUMER_TYPE__IN_PROGRESS_REPOSITORY:
-                unsetInProgressRepository();
+                setInProgressRepository(IN_PROGRESS_REPOSITORY_EDEFAULT);
                 return;
             case FilePackage.FILE_CONSUMER_TYPE__FILTER:
-                unsetFilter();
+                setFilter(FILTER_EDEFAULT);
                 return;
             case FilePackage.FILE_CONSUMER_TYPE__SORTER:
-                unsetSorter();
+                setSorter(SORTER_EDEFAULT);
                 return;
             case FilePackage.FILE_CONSUMER_TYPE__SORT_BY:
-                unsetSortBy();
+                setSortBy(SORT_BY_EDEFAULT);
                 return;
             case FilePackage.FILE_CONSUMER_TYPE__READ_LOCK:
-                unsetReadLock();
+                setReadLock(READ_LOCK_EDEFAULT);
                 return;
             case FilePackage.FILE_CONSUMER_TYPE__READ_LOCK_TIMEOUT:
                 unsetReadLockTimeout();
@@ -2210,10 +1936,10 @@ public class FileConsumerTypeImpl extends EObjectImpl implements FileConsumerTyp
                 unsetReadLockCheckInterval();
                 return;
             case FilePackage.FILE_CONSUMER_TYPE__EXCLUSIVE_READ_LOCK_STRATEGY:
-                unsetExclusiveReadLockStrategy();
+                setExclusiveReadLockStrategy(EXCLUSIVE_READ_LOCK_STRATEGY_EDEFAULT);
                 return;
             case FilePackage.FILE_CONSUMER_TYPE__PROCESS_STRATEGY:
-                unsetProcessStrategy();
+                setProcessStrategy(PROCESS_STRATEGY_EDEFAULT);
                 return;
             case FilePackage.FILE_CONSUMER_TYPE__STARTING_DIRECTORY_MUST_EXIST:
                 unsetStartingDirectoryMustExist();
@@ -2222,7 +1948,7 @@ public class FileConsumerTypeImpl extends EObjectImpl implements FileConsumerTyp
                 unsetDirectoryMustExist();
                 return;
             case FilePackage.FILE_CONSUMER_TYPE__DONE_FILE_NAME:
-                unsetDoneFileName();
+                setDoneFileName(DONE_FILE_NAME_EDEFAULT);
                 return;
         }
         super.eUnset(featureID);
@@ -2237,9 +1963,9 @@ public class FileConsumerTypeImpl extends EObjectImpl implements FileConsumerTyp
     public boolean eIsSet(int featureID) {
         switch (featureID) {
             case FilePackage.FILE_CONSUMER_TYPE__INITIAL_DELAY:
-                return INITIAL_DELAY_EDEFAULT == null ? initialDelay != null : !INITIAL_DELAY_EDEFAULT.equals(initialDelay);
+                return isSetInitialDelay();
             case FilePackage.FILE_CONSUMER_TYPE__DELAY:
-                return DELAY_EDEFAULT == null ? delay != null : !DELAY_EDEFAULT.equals(delay);
+                return isSetDelay();
             case FilePackage.FILE_CONSUMER_TYPE__USE_FIXED_DELAY:
                 return isSetUseFixedDelay();
             case FilePackage.FILE_CONSUMER_TYPE__SEND_EMPTY_MESSAGE_WHEN_IDLE:
@@ -2247,7 +1973,7 @@ public class FileConsumerTypeImpl extends EObjectImpl implements FileConsumerTyp
             case FilePackage.FILE_CONSUMER_TYPE__TIME_UNIT:
                 return isSetTimeUnit();
             case FilePackage.FILE_CONSUMER_TYPE__MAX_MESSAGES_PER_POLL:
-                return MAX_MESSAGES_PER_POLL_EDEFAULT == null ? maxMessagesPerPoll != null : !MAX_MESSAGES_PER_POLL_EDEFAULT.equals(maxMessagesPerPoll);
+                return isSetMaxMessagesPerPoll();
             case FilePackage.FILE_CONSUMER_TYPE__DELETE:
                 return isSetDelete();
             case FilePackage.FILE_CONSUMER_TYPE__RECURSIVE:
@@ -2261,37 +1987,37 @@ public class FileConsumerTypeImpl extends EObjectImpl implements FileConsumerTyp
             case FilePackage.FILE_CONSUMER_TYPE__MOVE_FAILED:
                 return MOVE_FAILED_EDEFAULT == null ? moveFailed != null : !MOVE_FAILED_EDEFAULT.equals(moveFailed);
             case FilePackage.FILE_CONSUMER_TYPE__INCLUDE:
-                return isSetInclude();
+                return INCLUDE_EDEFAULT == null ? include != null : !INCLUDE_EDEFAULT.equals(include);
             case FilePackage.FILE_CONSUMER_TYPE__EXCLUDE:
-                return isSetExclude();
+                return EXCLUDE_EDEFAULT == null ? exclude != null : !EXCLUDE_EDEFAULT.equals(exclude);
             case FilePackage.FILE_CONSUMER_TYPE__IDEMPOTENT:
                 return isSetIdempotent();
             case FilePackage.FILE_CONSUMER_TYPE__IDEMPOTENT_REPOSITORY:
-                return isSetIdempotentRepository();
+                return IDEMPOTENT_REPOSITORY_EDEFAULT == null ? idempotentRepository != null : !IDEMPOTENT_REPOSITORY_EDEFAULT.equals(idempotentRepository);
             case FilePackage.FILE_CONSUMER_TYPE__IN_PROGRESS_REPOSITORY:
-                return isSetInProgressRepository();
+                return IN_PROGRESS_REPOSITORY_EDEFAULT == null ? inProgressRepository != null : !IN_PROGRESS_REPOSITORY_EDEFAULT.equals(inProgressRepository);
             case FilePackage.FILE_CONSUMER_TYPE__FILTER:
-                return isSetFilter();
+                return FILTER_EDEFAULT == null ? filter != null : !FILTER_EDEFAULT.equals(filter);
             case FilePackage.FILE_CONSUMER_TYPE__SORTER:
-                return isSetSorter();
+                return SORTER_EDEFAULT == null ? sorter != null : !SORTER_EDEFAULT.equals(sorter);
             case FilePackage.FILE_CONSUMER_TYPE__SORT_BY:
-                return isSetSortBy();
+                return SORT_BY_EDEFAULT == null ? sortBy != null : !SORT_BY_EDEFAULT.equals(sortBy);
             case FilePackage.FILE_CONSUMER_TYPE__READ_LOCK:
-                return isSetReadLock();
+                return READ_LOCK_EDEFAULT == null ? readLock != null : !READ_LOCK_EDEFAULT.equals(readLock);
             case FilePackage.FILE_CONSUMER_TYPE__READ_LOCK_TIMEOUT:
                 return isSetReadLockTimeout();
             case FilePackage.FILE_CONSUMER_TYPE__READ_LOCK_CHECK_INTERVAL:
                 return isSetReadLockCheckInterval();
             case FilePackage.FILE_CONSUMER_TYPE__EXCLUSIVE_READ_LOCK_STRATEGY:
-                return isSetExclusiveReadLockStrategy();
+                return EXCLUSIVE_READ_LOCK_STRATEGY_EDEFAULT == null ? exclusiveReadLockStrategy != null : !EXCLUSIVE_READ_LOCK_STRATEGY_EDEFAULT.equals(exclusiveReadLockStrategy);
             case FilePackage.FILE_CONSUMER_TYPE__PROCESS_STRATEGY:
-                return isSetProcessStrategy();
+                return PROCESS_STRATEGY_EDEFAULT == null ? processStrategy != null : !PROCESS_STRATEGY_EDEFAULT.equals(processStrategy);
             case FilePackage.FILE_CONSUMER_TYPE__STARTING_DIRECTORY_MUST_EXIST:
                 return isSetStartingDirectoryMustExist();
             case FilePackage.FILE_CONSUMER_TYPE__DIRECTORY_MUST_EXIST:
                 return isSetDirectoryMustExist();
             case FilePackage.FILE_CONSUMER_TYPE__DONE_FILE_NAME:
-                return isSetDoneFileName();
+                return DONE_FILE_NAME_EDEFAULT == null ? doneFileName != null : !DONE_FILE_NAME_EDEFAULT.equals(doneFileName);
         }
         return super.eIsSet(featureID);
     }
@@ -2307,9 +2033,9 @@ public class FileConsumerTypeImpl extends EObjectImpl implements FileConsumerTyp
 
         StringBuffer result = new StringBuffer(super.toString());
         result.append(" (initialDelay: ");
-        result.append(initialDelay);
+        if (initialDelayESet) result.append(initialDelay); else result.append("<unset>");
         result.append(", delay: ");
-        result.append(delay);
+        if (delayESet) result.append(delay); else result.append("<unset>");
         result.append(", useFixedDelay: ");
         if (useFixedDelayESet) result.append(useFixedDelay); else result.append("<unset>");
         result.append(", sendEmptyMessageWhenIdle: ");
@@ -2317,7 +2043,7 @@ public class FileConsumerTypeImpl extends EObjectImpl implements FileConsumerTyp
         result.append(", timeUnit: ");
         if (timeUnitESet) result.append(timeUnit); else result.append("<unset>");
         result.append(", maxMessagesPerPoll: ");
-        result.append(maxMessagesPerPoll);
+        if (maxMessagesPerPollESet) result.append(maxMessagesPerPoll); else result.append("<unset>");
         result.append(", delete: ");
         if (deleteESet) result.append(delete); else result.append("<unset>");
         result.append(", recursive: ");
@@ -2331,37 +2057,37 @@ public class FileConsumerTypeImpl extends EObjectImpl implements FileConsumerTyp
         result.append(", moveFailed: ");
         result.append(moveFailed);
         result.append(", include: ");
-        if (includeESet) result.append(include); else result.append("<unset>");
+        result.append(include);
         result.append(", exclude: ");
-        if (excludeESet) result.append(exclude); else result.append("<unset>");
+        result.append(exclude);
         result.append(", idempotent: ");
         if (idempotentESet) result.append(idempotent); else result.append("<unset>");
         result.append(", idempotentRepository: ");
-        if (idempotentRepositoryESet) result.append(idempotentRepository); else result.append("<unset>");
+        result.append(idempotentRepository);
         result.append(", inProgressRepository: ");
-        if (inProgressRepositoryESet) result.append(inProgressRepository); else result.append("<unset>");
+        result.append(inProgressRepository);
         result.append(", filter: ");
-        if (filterESet) result.append(filter); else result.append("<unset>");
+        result.append(filter);
         result.append(", sorter: ");
-        if (sorterESet) result.append(sorter); else result.append("<unset>");
+        result.append(sorter);
         result.append(", sortBy: ");
-        if (sortByESet) result.append(sortBy); else result.append("<unset>");
+        result.append(sortBy);
         result.append(", readLock: ");
-        if (readLockESet) result.append(readLock); else result.append("<unset>");
+        result.append(readLock);
         result.append(", readLockTimeout: ");
         if (readLockTimeoutESet) result.append(readLockTimeout); else result.append("<unset>");
         result.append(", readLockCheckInterval: ");
         if (readLockCheckIntervalESet) result.append(readLockCheckInterval); else result.append("<unset>");
         result.append(", exclusiveReadLockStrategy: ");
-        if (exclusiveReadLockStrategyESet) result.append(exclusiveReadLockStrategy); else result.append("<unset>");
+        result.append(exclusiveReadLockStrategy);
         result.append(", processStrategy: ");
-        if (processStrategyESet) result.append(processStrategy); else result.append("<unset>");
+        result.append(processStrategy);
         result.append(", startingDirectoryMustExist: ");
         if (startingDirectoryMustExistESet) result.append(startingDirectoryMustExist); else result.append("<unset>");
         result.append(", directoryMustExist: ");
         if (directoryMustExistESet) result.append(directoryMustExist); else result.append("<unset>");
         result.append(", doneFileName: ");
-        if (doneFileNameESet) result.append(doneFileName); else result.append("<unset>");
+        result.append(doneFileName);
         result.append(')');
         return result.toString();
     }

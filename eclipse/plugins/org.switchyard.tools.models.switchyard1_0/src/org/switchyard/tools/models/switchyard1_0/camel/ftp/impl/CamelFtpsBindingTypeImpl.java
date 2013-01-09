@@ -19,10 +19,10 @@ import org.switchyard.tools.models.switchyard1_0.camel.ftp.FtpPackage;
  * The following features are implemented:
  * <ul>
  *   <li>{@link org.switchyard.tools.models.switchyard1_0.camel.ftp.impl.CamelFtpsBindingTypeImpl#getSecurityProtocol <em>Security Protocol</em>}</li>
- *   <li>{@link org.switchyard.tools.models.switchyard1_0.camel.ftp.impl.CamelFtpsBindingTypeImpl#getIsImplicit <em>Is Implicit</em>}</li>
+ *   <li>{@link org.switchyard.tools.models.switchyard1_0.camel.ftp.impl.CamelFtpsBindingTypeImpl#isIsImplicit <em>Is Implicit</em>}</li>
  *   <li>{@link org.switchyard.tools.models.switchyard1_0.camel.ftp.impl.CamelFtpsBindingTypeImpl#getExecPbsz <em>Exec Pbsz</em>}</li>
  *   <li>{@link org.switchyard.tools.models.switchyard1_0.camel.ftp.impl.CamelFtpsBindingTypeImpl#getExecProt <em>Exec Prot</em>}</li>
- *   <li>{@link org.switchyard.tools.models.switchyard1_0.camel.ftp.impl.CamelFtpsBindingTypeImpl#getDisableSecureDataChannelDefaults <em>Disable Secure Data Channel Defaults</em>}</li>
+ *   <li>{@link org.switchyard.tools.models.switchyard1_0.camel.ftp.impl.CamelFtpsBindingTypeImpl#isDisableSecureDataChannelDefaults <em>Disable Secure Data Channel Defaults</em>}</li>
  * </ul>
  * </p>
  *
@@ -50,24 +50,24 @@ public class CamelFtpsBindingTypeImpl extends CamelFtpBindingTypeImpl implements
     protected String securityProtocol = SECURITY_PROTOCOL_EDEFAULT;
 
     /**
-     * The default value of the '{@link #getIsImplicit() <em>Is Implicit</em>}' attribute.
+     * The default value of the '{@link #isIsImplicit() <em>Is Implicit</em>}' attribute.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @see #getIsImplicit()
+     * @see #isIsImplicit()
      * @generated
      * @ordered
      */
-    protected static final Boolean IS_IMPLICIT_EDEFAULT = null;
+    protected static final boolean IS_IMPLICIT_EDEFAULT = false;
 
     /**
-     * The cached value of the '{@link #getIsImplicit() <em>Is Implicit</em>}' attribute.
+     * The cached value of the '{@link #isIsImplicit() <em>Is Implicit</em>}' attribute.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @see #getIsImplicit()
+     * @see #isIsImplicit()
      * @generated
      * @ordered
      */
-    protected Boolean isImplicit = IS_IMPLICIT_EDEFAULT;
+    protected boolean isImplicit = IS_IMPLICIT_EDEFAULT;
 
     /**
      * This is true if the Is Implicit attribute has been set.
@@ -86,7 +86,7 @@ public class CamelFtpsBindingTypeImpl extends CamelFtpBindingTypeImpl implements
      * @generated
      * @ordered
      */
-    protected static final Long EXEC_PBSZ_EDEFAULT = null;
+    protected static final long EXEC_PBSZ_EDEFAULT = 0L;
 
     /**
      * The cached value of the '{@link #getExecPbsz() <em>Exec Pbsz</em>}' attribute.
@@ -96,7 +96,7 @@ public class CamelFtpsBindingTypeImpl extends CamelFtpBindingTypeImpl implements
      * @generated
      * @ordered
      */
-    protected Long execPbsz = EXEC_PBSZ_EDEFAULT;
+    protected long execPbsz = EXEC_PBSZ_EDEFAULT;
 
     /**
      * This is true if the Exec Pbsz attribute has been set.
@@ -128,24 +128,24 @@ public class CamelFtpsBindingTypeImpl extends CamelFtpBindingTypeImpl implements
     protected String execProt = EXEC_PROT_EDEFAULT;
 
     /**
-     * The default value of the '{@link #getDisableSecureDataChannelDefaults() <em>Disable Secure Data Channel Defaults</em>}' attribute.
+     * The default value of the '{@link #isDisableSecureDataChannelDefaults() <em>Disable Secure Data Channel Defaults</em>}' attribute.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @see #getDisableSecureDataChannelDefaults()
+     * @see #isDisableSecureDataChannelDefaults()
      * @generated
      * @ordered
      */
-    protected static final Boolean DISABLE_SECURE_DATA_CHANNEL_DEFAULTS_EDEFAULT = null;
+    protected static final boolean DISABLE_SECURE_DATA_CHANNEL_DEFAULTS_EDEFAULT = false;
 
     /**
-     * The cached value of the '{@link #getDisableSecureDataChannelDefaults() <em>Disable Secure Data Channel Defaults</em>}' attribute.
+     * The cached value of the '{@link #isDisableSecureDataChannelDefaults() <em>Disable Secure Data Channel Defaults</em>}' attribute.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @see #getDisableSecureDataChannelDefaults()
+     * @see #isDisableSecureDataChannelDefaults()
      * @generated
      * @ordered
      */
-    protected Boolean disableSecureDataChannelDefaults = DISABLE_SECURE_DATA_CHANNEL_DEFAULTS_EDEFAULT;
+    protected boolean disableSecureDataChannelDefaults = DISABLE_SECURE_DATA_CHANNEL_DEFAULTS_EDEFAULT;
 
     /**
      * This is true if the Disable Secure Data Channel Defaults attribute has been set.
@@ -201,7 +201,7 @@ public class CamelFtpsBindingTypeImpl extends CamelFtpBindingTypeImpl implements
      * <!-- end-user-doc -->
      * @generated
      */
-    public Boolean getIsImplicit() {
+    public boolean isIsImplicit() {
         return isImplicit;
     }
 
@@ -210,8 +210,8 @@ public class CamelFtpsBindingTypeImpl extends CamelFtpBindingTypeImpl implements
      * <!-- end-user-doc -->
      * @generated
      */
-    public void setIsImplicit(Boolean newIsImplicit) {
-        Boolean oldIsImplicit = isImplicit;
+    public void setIsImplicit(boolean newIsImplicit) {
+        boolean oldIsImplicit = isImplicit;
         isImplicit = newIsImplicit;
         boolean oldIsImplicitESet = isImplicitESet;
         isImplicitESet = true;
@@ -225,7 +225,7 @@ public class CamelFtpsBindingTypeImpl extends CamelFtpBindingTypeImpl implements
      * @generated
      */
     public void unsetIsImplicit() {
-        Boolean oldIsImplicit = isImplicit;
+        boolean oldIsImplicit = isImplicit;
         boolean oldIsImplicitESet = isImplicitESet;
         isImplicit = IS_IMPLICIT_EDEFAULT;
         isImplicitESet = false;
@@ -247,7 +247,7 @@ public class CamelFtpsBindingTypeImpl extends CamelFtpBindingTypeImpl implements
      * <!-- end-user-doc -->
      * @generated
      */
-    public Long getExecPbsz() {
+    public long getExecPbsz() {
         return execPbsz;
     }
 
@@ -256,8 +256,8 @@ public class CamelFtpsBindingTypeImpl extends CamelFtpBindingTypeImpl implements
      * <!-- end-user-doc -->
      * @generated
      */
-    public void setExecPbsz(Long newExecPbsz) {
-        Long oldExecPbsz = execPbsz;
+    public void setExecPbsz(long newExecPbsz) {
+        long oldExecPbsz = execPbsz;
         execPbsz = newExecPbsz;
         boolean oldExecPbszESet = execPbszESet;
         execPbszESet = true;
@@ -271,7 +271,7 @@ public class CamelFtpsBindingTypeImpl extends CamelFtpBindingTypeImpl implements
      * @generated
      */
     public void unsetExecPbsz() {
-        Long oldExecPbsz = execPbsz;
+        long oldExecPbsz = execPbsz;
         boolean oldExecPbszESet = execPbszESet;
         execPbsz = EXEC_PBSZ_EDEFAULT;
         execPbszESet = false;
@@ -314,7 +314,7 @@ public class CamelFtpsBindingTypeImpl extends CamelFtpBindingTypeImpl implements
      * <!-- end-user-doc -->
      * @generated
      */
-    public Boolean getDisableSecureDataChannelDefaults() {
+    public boolean isDisableSecureDataChannelDefaults() {
         return disableSecureDataChannelDefaults;
     }
 
@@ -323,8 +323,8 @@ public class CamelFtpsBindingTypeImpl extends CamelFtpBindingTypeImpl implements
      * <!-- end-user-doc -->
      * @generated
      */
-    public void setDisableSecureDataChannelDefaults(Boolean newDisableSecureDataChannelDefaults) {
-        Boolean oldDisableSecureDataChannelDefaults = disableSecureDataChannelDefaults;
+    public void setDisableSecureDataChannelDefaults(boolean newDisableSecureDataChannelDefaults) {
+        boolean oldDisableSecureDataChannelDefaults = disableSecureDataChannelDefaults;
         disableSecureDataChannelDefaults = newDisableSecureDataChannelDefaults;
         boolean oldDisableSecureDataChannelDefaultsESet = disableSecureDataChannelDefaultsESet;
         disableSecureDataChannelDefaultsESet = true;
@@ -338,7 +338,7 @@ public class CamelFtpsBindingTypeImpl extends CamelFtpBindingTypeImpl implements
      * @generated
      */
     public void unsetDisableSecureDataChannelDefaults() {
-        Boolean oldDisableSecureDataChannelDefaults = disableSecureDataChannelDefaults;
+        boolean oldDisableSecureDataChannelDefaults = disableSecureDataChannelDefaults;
         boolean oldDisableSecureDataChannelDefaultsESet = disableSecureDataChannelDefaultsESet;
         disableSecureDataChannelDefaults = DISABLE_SECURE_DATA_CHANNEL_DEFAULTS_EDEFAULT;
         disableSecureDataChannelDefaultsESet = false;
@@ -366,13 +366,13 @@ public class CamelFtpsBindingTypeImpl extends CamelFtpBindingTypeImpl implements
             case FtpPackage.CAMEL_FTPS_BINDING_TYPE__SECURITY_PROTOCOL:
                 return getSecurityProtocol();
             case FtpPackage.CAMEL_FTPS_BINDING_TYPE__IS_IMPLICIT:
-                return getIsImplicit();
+                return isIsImplicit();
             case FtpPackage.CAMEL_FTPS_BINDING_TYPE__EXEC_PBSZ:
                 return getExecPbsz();
             case FtpPackage.CAMEL_FTPS_BINDING_TYPE__EXEC_PROT:
                 return getExecProt();
             case FtpPackage.CAMEL_FTPS_BINDING_TYPE__DISABLE_SECURE_DATA_CHANNEL_DEFAULTS:
-                return getDisableSecureDataChannelDefaults();
+                return isDisableSecureDataChannelDefaults();
         }
         return super.eGet(featureID, resolve, coreType);
     }

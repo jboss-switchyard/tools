@@ -19,8 +19,8 @@ import org.switchyard.tools.models.switchyard1_0.camel.file.FileProducerType;
  *   <li>{@link org.switchyard.tools.models.switchyard1_0.camel.file.impl.FileProducerTypeImpl#getFileExist <em>File Exist</em>}</li>
  *   <li>{@link org.switchyard.tools.models.switchyard1_0.camel.file.impl.FileProducerTypeImpl#getTempPrefix <em>Temp Prefix</em>}</li>
  *   <li>{@link org.switchyard.tools.models.switchyard1_0.camel.file.impl.FileProducerTypeImpl#getTempFileName <em>Temp File Name</em>}</li>
- *   <li>{@link org.switchyard.tools.models.switchyard1_0.camel.file.impl.FileProducerTypeImpl#getKeepLastModified <em>Keep Last Modified</em>}</li>
- *   <li>{@link org.switchyard.tools.models.switchyard1_0.camel.file.impl.FileProducerTypeImpl#getEagerDeleteTargetFile <em>Eager Delete Target File</em>}</li>
+ *   <li>{@link org.switchyard.tools.models.switchyard1_0.camel.file.impl.FileProducerTypeImpl#isKeepLastModified <em>Keep Last Modified</em>}</li>
+ *   <li>{@link org.switchyard.tools.models.switchyard1_0.camel.file.impl.FileProducerTypeImpl#isEagerDeleteTargetFile <em>Eager Delete Target File</em>}</li>
  *   <li>{@link org.switchyard.tools.models.switchyard1_0.camel.file.impl.FileProducerTypeImpl#getDoneFileName <em>Done File Name</em>}</li>
  * </ul>
  * </p>
@@ -83,23 +83,23 @@ public class FileProducerTypeImpl extends EObjectImpl implements FileProducerTyp
      */
     protected String tempFileName = TEMP_FILE_NAME_EDEFAULT;
     /**
-     * The default value of the '{@link #getKeepLastModified() <em>Keep Last Modified</em>}' attribute.
+     * The default value of the '{@link #isKeepLastModified() <em>Keep Last Modified</em>}' attribute.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @see #getKeepLastModified()
+     * @see #isKeepLastModified()
      * @generated
      * @ordered
      */
-    protected static final Boolean KEEP_LAST_MODIFIED_EDEFAULT = null;
+    protected static final boolean KEEP_LAST_MODIFIED_EDEFAULT = false;
     /**
-     * The cached value of the '{@link #getKeepLastModified() <em>Keep Last Modified</em>}' attribute.
+     * The cached value of the '{@link #isKeepLastModified() <em>Keep Last Modified</em>}' attribute.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @see #getKeepLastModified()
+     * @see #isKeepLastModified()
      * @generated
      * @ordered
      */
-    protected Boolean keepLastModified = KEEP_LAST_MODIFIED_EDEFAULT;
+    protected boolean keepLastModified = KEEP_LAST_MODIFIED_EDEFAULT;
     /**
      * This is true if the Keep Last Modified attribute has been set.
      * <!-- begin-user-doc -->
@@ -109,23 +109,23 @@ public class FileProducerTypeImpl extends EObjectImpl implements FileProducerTyp
      */
     protected boolean keepLastModifiedESet;
     /**
-     * The default value of the '{@link #getEagerDeleteTargetFile() <em>Eager Delete Target File</em>}' attribute.
+     * The default value of the '{@link #isEagerDeleteTargetFile() <em>Eager Delete Target File</em>}' attribute.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @see #getEagerDeleteTargetFile()
+     * @see #isEagerDeleteTargetFile()
      * @generated
      * @ordered
      */
-    protected static final Boolean EAGER_DELETE_TARGET_FILE_EDEFAULT = null;
+    protected static final boolean EAGER_DELETE_TARGET_FILE_EDEFAULT = true;
     /**
-     * The cached value of the '{@link #getEagerDeleteTargetFile() <em>Eager Delete Target File</em>}' attribute.
+     * The cached value of the '{@link #isEagerDeleteTargetFile() <em>Eager Delete Target File</em>}' attribute.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @see #getEagerDeleteTargetFile()
+     * @see #isEagerDeleteTargetFile()
      * @generated
      * @ordered
      */
-    protected Boolean eagerDeleteTargetFile = EAGER_DELETE_TARGET_FILE_EDEFAULT;
+    protected boolean eagerDeleteTargetFile = EAGER_DELETE_TARGET_FILE_EDEFAULT;
     /**
      * This is true if the Eager Delete Target File attribute has been set.
      * <!-- begin-user-doc -->
@@ -240,7 +240,7 @@ public class FileProducerTypeImpl extends EObjectImpl implements FileProducerTyp
      * <!-- end-user-doc -->
      * @generated
      */
-    public Boolean getKeepLastModified() {
+    public boolean isKeepLastModified() {
         return keepLastModified;
     }
 
@@ -249,8 +249,8 @@ public class FileProducerTypeImpl extends EObjectImpl implements FileProducerTyp
      * <!-- end-user-doc -->
      * @generated
      */
-    public void setKeepLastModified(Boolean newKeepLastModified) {
-        Boolean oldKeepLastModified = keepLastModified;
+    public void setKeepLastModified(boolean newKeepLastModified) {
+        boolean oldKeepLastModified = keepLastModified;
         keepLastModified = newKeepLastModified;
         boolean oldKeepLastModifiedESet = keepLastModifiedESet;
         keepLastModifiedESet = true;
@@ -264,7 +264,7 @@ public class FileProducerTypeImpl extends EObjectImpl implements FileProducerTyp
      * @generated
      */
     public void unsetKeepLastModified() {
-        Boolean oldKeepLastModified = keepLastModified;
+        boolean oldKeepLastModified = keepLastModified;
         boolean oldKeepLastModifiedESet = keepLastModifiedESet;
         keepLastModified = KEEP_LAST_MODIFIED_EDEFAULT;
         keepLastModifiedESet = false;
@@ -286,7 +286,7 @@ public class FileProducerTypeImpl extends EObjectImpl implements FileProducerTyp
      * <!-- end-user-doc -->
      * @generated
      */
-    public Boolean getEagerDeleteTargetFile() {
+    public boolean isEagerDeleteTargetFile() {
         return eagerDeleteTargetFile;
     }
 
@@ -295,8 +295,8 @@ public class FileProducerTypeImpl extends EObjectImpl implements FileProducerTyp
      * <!-- end-user-doc -->
      * @generated
      */
-    public void setEagerDeleteTargetFile(Boolean newEagerDeleteTargetFile) {
-        Boolean oldEagerDeleteTargetFile = eagerDeleteTargetFile;
+    public void setEagerDeleteTargetFile(boolean newEagerDeleteTargetFile) {
+        boolean oldEagerDeleteTargetFile = eagerDeleteTargetFile;
         eagerDeleteTargetFile = newEagerDeleteTargetFile;
         boolean oldEagerDeleteTargetFileESet = eagerDeleteTargetFileESet;
         eagerDeleteTargetFileESet = true;
@@ -310,7 +310,7 @@ public class FileProducerTypeImpl extends EObjectImpl implements FileProducerTyp
      * @generated
      */
     public void unsetEagerDeleteTargetFile() {
-        Boolean oldEagerDeleteTargetFile = eagerDeleteTargetFile;
+        boolean oldEagerDeleteTargetFile = eagerDeleteTargetFile;
         boolean oldEagerDeleteTargetFileESet = eagerDeleteTargetFileESet;
         eagerDeleteTargetFile = EAGER_DELETE_TARGET_FILE_EDEFAULT;
         eagerDeleteTargetFileESet = false;
@@ -363,9 +363,9 @@ public class FileProducerTypeImpl extends EObjectImpl implements FileProducerTyp
             case FilePackage.FILE_PRODUCER_TYPE__TEMP_FILE_NAME:
                 return getTempFileName();
             case FilePackage.FILE_PRODUCER_TYPE__KEEP_LAST_MODIFIED:
-                return getKeepLastModified();
+                return isKeepLastModified();
             case FilePackage.FILE_PRODUCER_TYPE__EAGER_DELETE_TARGET_FILE:
-                return getEagerDeleteTargetFile();
+                return isEagerDeleteTargetFile();
             case FilePackage.FILE_PRODUCER_TYPE__DONE_FILE_NAME:
                 return getDoneFileName();
         }

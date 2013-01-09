@@ -36,14 +36,14 @@ import org.switchyard.tools.models.switchyard1_0.camel.jpa.TimeUnitType;
  *   <li>{@link org.switchyard.tools.models.switchyard1_0.camel.jpa.impl.JpaConsumerTypeImpl#getTimeUnit <em>Time Unit</em>}</li>
  *   <li>{@link org.switchyard.tools.models.switchyard1_0.camel.jpa.impl.JpaConsumerTypeImpl#getScheduledBatchPollConsumerType <em>Scheduled Batch Poll Consumer Type</em>}</li>
  *   <li>{@link org.switchyard.tools.models.switchyard1_0.camel.jpa.impl.JpaConsumerTypeImpl#getMaxMessagesPerPoll <em>Max Messages Per Poll</em>}</li>
- *   <li>{@link org.switchyard.tools.models.switchyard1_0.camel.jpa.impl.JpaConsumerTypeImpl#getConsumeDelete <em>Consume Delete</em>}</li>
- *   <li>{@link org.switchyard.tools.models.switchyard1_0.camel.jpa.impl.JpaConsumerTypeImpl#getConsumeLockEntity <em>Consume Lock Entity</em>}</li>
+ *   <li>{@link org.switchyard.tools.models.switchyard1_0.camel.jpa.impl.JpaConsumerTypeImpl#isConsumeDelete <em>Consume Delete</em>}</li>
+ *   <li>{@link org.switchyard.tools.models.switchyard1_0.camel.jpa.impl.JpaConsumerTypeImpl#isConsumeLockEntity <em>Consume Lock Entity</em>}</li>
  *   <li>{@link org.switchyard.tools.models.switchyard1_0.camel.jpa.impl.JpaConsumerTypeImpl#getMaximumResults <em>Maximum Results</em>}</li>
  *   <li>{@link org.switchyard.tools.models.switchyard1_0.camel.jpa.impl.JpaConsumerTypeImpl#getConsumerQuery <em>Consumer Query</em>}</li>
  *   <li>{@link org.switchyard.tools.models.switchyard1_0.camel.jpa.impl.JpaConsumerTypeImpl#getConsumerNamedQuery <em>Consumer Named Query</em>}</li>
  *   <li>{@link org.switchyard.tools.models.switchyard1_0.camel.jpa.impl.JpaConsumerTypeImpl#getConsumerNativeQuery <em>Consumer Native Query</em>}</li>
  *   <li>{@link org.switchyard.tools.models.switchyard1_0.camel.jpa.impl.JpaConsumerTypeImpl#getConsumerResultClass <em>Consumer Result Class</em>}</li>
- *   <li>{@link org.switchyard.tools.models.switchyard1_0.camel.jpa.impl.JpaConsumerTypeImpl#getConsumerTransacted <em>Consumer Transacted</em>}</li>
+ *   <li>{@link org.switchyard.tools.models.switchyard1_0.camel.jpa.impl.JpaConsumerTypeImpl#isConsumerTransacted <em>Consumer Transacted</em>}</li>
  * </ul>
  * </p>
  *
@@ -71,24 +71,24 @@ public class JpaConsumerTypeImpl extends EObjectImpl implements JpaConsumerType 
     protected FeatureMap scheduledBatchPollConsumerType;
 
     /**
-     * The default value of the '{@link #getConsumeDelete() <em>Consume Delete</em>}' attribute.
+     * The default value of the '{@link #isConsumeDelete() <em>Consume Delete</em>}' attribute.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @see #getConsumeDelete()
+     * @see #isConsumeDelete()
      * @generated
      * @ordered
      */
-    protected static final Boolean CONSUME_DELETE_EDEFAULT = null;
+    protected static final boolean CONSUME_DELETE_EDEFAULT = true;
 
     /**
-     * The cached value of the '{@link #getConsumeDelete() <em>Consume Delete</em>}' attribute.
+     * The cached value of the '{@link #isConsumeDelete() <em>Consume Delete</em>}' attribute.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @see #getConsumeDelete()
+     * @see #isConsumeDelete()
      * @generated
      * @ordered
      */
-    protected Boolean consumeDelete = CONSUME_DELETE_EDEFAULT;
+    protected boolean consumeDelete = CONSUME_DELETE_EDEFAULT;
 
     /**
      * This is true if the Consume Delete attribute has been set.
@@ -100,24 +100,24 @@ public class JpaConsumerTypeImpl extends EObjectImpl implements JpaConsumerType 
     protected boolean consumeDeleteESet;
 
     /**
-     * The default value of the '{@link #getConsumeLockEntity() <em>Consume Lock Entity</em>}' attribute.
+     * The default value of the '{@link #isConsumeLockEntity() <em>Consume Lock Entity</em>}' attribute.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @see #getConsumeLockEntity()
+     * @see #isConsumeLockEntity()
      * @generated
      * @ordered
      */
-    protected static final Boolean CONSUME_LOCK_ENTITY_EDEFAULT = null;
+    protected static final boolean CONSUME_LOCK_ENTITY_EDEFAULT = true;
 
     /**
-     * The cached value of the '{@link #getConsumeLockEntity() <em>Consume Lock Entity</em>}' attribute.
+     * The cached value of the '{@link #isConsumeLockEntity() <em>Consume Lock Entity</em>}' attribute.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @see #getConsumeLockEntity()
+     * @see #isConsumeLockEntity()
      * @generated
      * @ordered
      */
-    protected Boolean consumeLockEntity = CONSUME_LOCK_ENTITY_EDEFAULT;
+    protected boolean consumeLockEntity = CONSUME_LOCK_ENTITY_EDEFAULT;
 
     /**
      * This is true if the Consume Lock Entity attribute has been set.
@@ -136,7 +136,7 @@ public class JpaConsumerTypeImpl extends EObjectImpl implements JpaConsumerType 
      * @generated
      * @ordered
      */
-    protected static final Integer MAXIMUM_RESULTS_EDEFAULT = null;
+    protected static final int MAXIMUM_RESULTS_EDEFAULT = -1;
 
     /**
      * The cached value of the '{@link #getMaximumResults() <em>Maximum Results</em>}' attribute.
@@ -146,7 +146,7 @@ public class JpaConsumerTypeImpl extends EObjectImpl implements JpaConsumerType 
      * @generated
      * @ordered
      */
-    protected Integer maximumResults = MAXIMUM_RESULTS_EDEFAULT;
+    protected int maximumResults = MAXIMUM_RESULTS_EDEFAULT;
 
     /**
      * This is true if the Maximum Results attribute has been set.
@@ -238,24 +238,24 @@ public class JpaConsumerTypeImpl extends EObjectImpl implements JpaConsumerType 
     protected String consumerResultClass = CONSUMER_RESULT_CLASS_EDEFAULT;
 
     /**
-     * The default value of the '{@link #getConsumerTransacted() <em>Consumer Transacted</em>}' attribute.
+     * The default value of the '{@link #isConsumerTransacted() <em>Consumer Transacted</em>}' attribute.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @see #getConsumerTransacted()
+     * @see #isConsumerTransacted()
      * @generated
      * @ordered
      */
-    protected static final Boolean CONSUMER_TRANSACTED_EDEFAULT = null;
+    protected static final boolean CONSUMER_TRANSACTED_EDEFAULT = false;
 
     /**
-     * The cached value of the '{@link #getConsumerTransacted() <em>Consumer Transacted</em>}' attribute.
+     * The cached value of the '{@link #isConsumerTransacted() <em>Consumer Transacted</em>}' attribute.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @see #getConsumerTransacted()
+     * @see #isConsumerTransacted()
      * @generated
      * @ordered
      */
-    protected Boolean consumerTransacted = CONSUMER_TRANSACTED_EDEFAULT;
+    protected boolean consumerTransacted = CONSUMER_TRANSACTED_EDEFAULT;
 
     /**
      * This is true if the Consumer Transacted attribute has been set.
@@ -311,8 +311,44 @@ public class JpaConsumerTypeImpl extends EObjectImpl implements JpaConsumerType 
      * <!-- end-user-doc -->
      * @generated
      */
+    public void unsetInitialDelay() {
+        ((FeatureMap.Internal)getScheduledPollConsumerType()).clear(JpaPackage.Literals.JPA_CONSUMER_TYPE__INITIAL_DELAY);
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public boolean isSetInitialDelay() {
+        return !((FeatureMap.Internal)getScheduledPollConsumerType()).isEmpty(JpaPackage.Literals.JPA_CONSUMER_TYPE__INITIAL_DELAY);
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
     public EList<Integer> getDelay() {
         return getScheduledPollConsumerType().list(JpaPackage.Literals.JPA_CONSUMER_TYPE__DELAY);
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public void unsetDelay() {
+        ((FeatureMap.Internal)getScheduledPollConsumerType()).clear(JpaPackage.Literals.JPA_CONSUMER_TYPE__DELAY);
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public boolean isSetDelay() {
+        return !((FeatureMap.Internal)getScheduledPollConsumerType()).isEmpty(JpaPackage.Literals.JPA_CONSUMER_TYPE__DELAY);
     }
 
     /**
@@ -329,8 +365,44 @@ public class JpaConsumerTypeImpl extends EObjectImpl implements JpaConsumerType 
      * <!-- end-user-doc -->
      * @generated
      */
+    public void unsetUseFixedDelay() {
+        ((FeatureMap.Internal)getScheduledPollConsumerType()).clear(JpaPackage.Literals.JPA_CONSUMER_TYPE__USE_FIXED_DELAY);
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public boolean isSetUseFixedDelay() {
+        return !((FeatureMap.Internal)getScheduledPollConsumerType()).isEmpty(JpaPackage.Literals.JPA_CONSUMER_TYPE__USE_FIXED_DELAY);
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
     public EList<Boolean> getSendEmptyMessageWhenIdle() {
         return getScheduledPollConsumerType().list(JpaPackage.Literals.JPA_CONSUMER_TYPE__SEND_EMPTY_MESSAGE_WHEN_IDLE);
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public void unsetSendEmptyMessageWhenIdle() {
+        ((FeatureMap.Internal)getScheduledPollConsumerType()).clear(JpaPackage.Literals.JPA_CONSUMER_TYPE__SEND_EMPTY_MESSAGE_WHEN_IDLE);
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public boolean isSetSendEmptyMessageWhenIdle() {
+        return !((FeatureMap.Internal)getScheduledPollConsumerType()).isEmpty(JpaPackage.Literals.JPA_CONSUMER_TYPE__SEND_EMPTY_MESSAGE_WHEN_IDLE);
     }
 
     /**
@@ -368,7 +440,25 @@ public class JpaConsumerTypeImpl extends EObjectImpl implements JpaConsumerType 
      * <!-- end-user-doc -->
      * @generated
      */
-    public Boolean getConsumeDelete() {
+    public void unsetMaxMessagesPerPoll() {
+        ((FeatureMap.Internal)getScheduledBatchPollConsumerType()).clear(JpaPackage.Literals.JPA_CONSUMER_TYPE__MAX_MESSAGES_PER_POLL);
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public boolean isSetMaxMessagesPerPoll() {
+        return !((FeatureMap.Internal)getScheduledBatchPollConsumerType()).isEmpty(JpaPackage.Literals.JPA_CONSUMER_TYPE__MAX_MESSAGES_PER_POLL);
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public boolean isConsumeDelete() {
         return consumeDelete;
     }
 
@@ -377,8 +467,8 @@ public class JpaConsumerTypeImpl extends EObjectImpl implements JpaConsumerType 
      * <!-- end-user-doc -->
      * @generated
      */
-    public void setConsumeDelete(Boolean newConsumeDelete) {
-        Boolean oldConsumeDelete = consumeDelete;
+    public void setConsumeDelete(boolean newConsumeDelete) {
+        boolean oldConsumeDelete = consumeDelete;
         consumeDelete = newConsumeDelete;
         boolean oldConsumeDeleteESet = consumeDeleteESet;
         consumeDeleteESet = true;
@@ -392,7 +482,7 @@ public class JpaConsumerTypeImpl extends EObjectImpl implements JpaConsumerType 
      * @generated
      */
     public void unsetConsumeDelete() {
-        Boolean oldConsumeDelete = consumeDelete;
+        boolean oldConsumeDelete = consumeDelete;
         boolean oldConsumeDeleteESet = consumeDeleteESet;
         consumeDelete = CONSUME_DELETE_EDEFAULT;
         consumeDeleteESet = false;
@@ -414,7 +504,7 @@ public class JpaConsumerTypeImpl extends EObjectImpl implements JpaConsumerType 
      * <!-- end-user-doc -->
      * @generated
      */
-    public Boolean getConsumeLockEntity() {
+    public boolean isConsumeLockEntity() {
         return consumeLockEntity;
     }
 
@@ -423,8 +513,8 @@ public class JpaConsumerTypeImpl extends EObjectImpl implements JpaConsumerType 
      * <!-- end-user-doc -->
      * @generated
      */
-    public void setConsumeLockEntity(Boolean newConsumeLockEntity) {
-        Boolean oldConsumeLockEntity = consumeLockEntity;
+    public void setConsumeLockEntity(boolean newConsumeLockEntity) {
+        boolean oldConsumeLockEntity = consumeLockEntity;
         consumeLockEntity = newConsumeLockEntity;
         boolean oldConsumeLockEntityESet = consumeLockEntityESet;
         consumeLockEntityESet = true;
@@ -438,7 +528,7 @@ public class JpaConsumerTypeImpl extends EObjectImpl implements JpaConsumerType 
      * @generated
      */
     public void unsetConsumeLockEntity() {
-        Boolean oldConsumeLockEntity = consumeLockEntity;
+        boolean oldConsumeLockEntity = consumeLockEntity;
         boolean oldConsumeLockEntityESet = consumeLockEntityESet;
         consumeLockEntity = CONSUME_LOCK_ENTITY_EDEFAULT;
         consumeLockEntityESet = false;
@@ -460,7 +550,7 @@ public class JpaConsumerTypeImpl extends EObjectImpl implements JpaConsumerType 
      * <!-- end-user-doc -->
      * @generated
      */
-    public Integer getMaximumResults() {
+    public int getMaximumResults() {
         return maximumResults;
     }
 
@@ -469,8 +559,8 @@ public class JpaConsumerTypeImpl extends EObjectImpl implements JpaConsumerType 
      * <!-- end-user-doc -->
      * @generated
      */
-    public void setMaximumResults(Integer newMaximumResults) {
-        Integer oldMaximumResults = maximumResults;
+    public void setMaximumResults(int newMaximumResults) {
+        int oldMaximumResults = maximumResults;
         maximumResults = newMaximumResults;
         boolean oldMaximumResultsESet = maximumResultsESet;
         maximumResultsESet = true;
@@ -484,7 +574,7 @@ public class JpaConsumerTypeImpl extends EObjectImpl implements JpaConsumerType 
      * @generated
      */
     public void unsetMaximumResults() {
-        Integer oldMaximumResults = maximumResults;
+        int oldMaximumResults = maximumResults;
         boolean oldMaximumResultsESet = maximumResultsESet;
         maximumResults = MAXIMUM_RESULTS_EDEFAULT;
         maximumResultsESet = false;
@@ -590,7 +680,7 @@ public class JpaConsumerTypeImpl extends EObjectImpl implements JpaConsumerType 
      * <!-- end-user-doc -->
      * @generated
      */
-    public Boolean getConsumerTransacted() {
+    public boolean isConsumerTransacted() {
         return consumerTransacted;
     }
 
@@ -599,8 +689,8 @@ public class JpaConsumerTypeImpl extends EObjectImpl implements JpaConsumerType 
      * <!-- end-user-doc -->
      * @generated
      */
-    public void setConsumerTransacted(Boolean newConsumerTransacted) {
-        Boolean oldConsumerTransacted = consumerTransacted;
+    public void setConsumerTransacted(boolean newConsumerTransacted) {
+        boolean oldConsumerTransacted = consumerTransacted;
         consumerTransacted = newConsumerTransacted;
         boolean oldConsumerTransactedESet = consumerTransactedESet;
         consumerTransactedESet = true;
@@ -614,7 +704,7 @@ public class JpaConsumerTypeImpl extends EObjectImpl implements JpaConsumerType 
      * @generated
      */
     public void unsetConsumerTransacted() {
-        Boolean oldConsumerTransacted = consumerTransacted;
+        boolean oldConsumerTransacted = consumerTransacted;
         boolean oldConsumerTransactedESet = consumerTransactedESet;
         consumerTransacted = CONSUMER_TRANSACTED_EDEFAULT;
         consumerTransactedESet = false;
@@ -674,9 +764,9 @@ public class JpaConsumerTypeImpl extends EObjectImpl implements JpaConsumerType 
             case JpaPackage.JPA_CONSUMER_TYPE__MAX_MESSAGES_PER_POLL:
                 return getMaxMessagesPerPoll();
             case JpaPackage.JPA_CONSUMER_TYPE__CONSUME_DELETE:
-                return getConsumeDelete();
+                return isConsumeDelete();
             case JpaPackage.JPA_CONSUMER_TYPE__CONSUME_LOCK_ENTITY:
-                return getConsumeLockEntity();
+                return isConsumeLockEntity();
             case JpaPackage.JPA_CONSUMER_TYPE__MAXIMUM_RESULTS:
                 return getMaximumResults();
             case JpaPackage.JPA_CONSUMER_TYPE__CONSUMER_QUERY:
@@ -688,7 +778,7 @@ public class JpaConsumerTypeImpl extends EObjectImpl implements JpaConsumerType 
             case JpaPackage.JPA_CONSUMER_TYPE__CONSUMER_RESULT_CLASS:
                 return getConsumerResultClass();
             case JpaPackage.JPA_CONSUMER_TYPE__CONSUMER_TRANSACTED:
-                return getConsumerTransacted();
+                return isConsumerTransacted();
         }
         return super.eGet(featureID, resolve, coreType);
     }
@@ -772,16 +862,16 @@ public class JpaConsumerTypeImpl extends EObjectImpl implements JpaConsumerType 
                 getScheduledPollConsumerType().clear();
                 return;
             case JpaPackage.JPA_CONSUMER_TYPE__INITIAL_DELAY:
-                getInitialDelay().clear();
+                unsetInitialDelay();
                 return;
             case JpaPackage.JPA_CONSUMER_TYPE__DELAY:
-                getDelay().clear();
+                unsetDelay();
                 return;
             case JpaPackage.JPA_CONSUMER_TYPE__USE_FIXED_DELAY:
-                getUseFixedDelay().clear();
+                unsetUseFixedDelay();
                 return;
             case JpaPackage.JPA_CONSUMER_TYPE__SEND_EMPTY_MESSAGE_WHEN_IDLE:
-                getSendEmptyMessageWhenIdle().clear();
+                unsetSendEmptyMessageWhenIdle();
                 return;
             case JpaPackage.JPA_CONSUMER_TYPE__TIME_UNIT:
                 getTimeUnit().clear();
@@ -790,7 +880,7 @@ public class JpaConsumerTypeImpl extends EObjectImpl implements JpaConsumerType 
                 getScheduledBatchPollConsumerType().clear();
                 return;
             case JpaPackage.JPA_CONSUMER_TYPE__MAX_MESSAGES_PER_POLL:
-                getMaxMessagesPerPoll().clear();
+                unsetMaxMessagesPerPoll();
                 return;
             case JpaPackage.JPA_CONSUMER_TYPE__CONSUME_DELETE:
                 unsetConsumeDelete();
@@ -831,19 +921,19 @@ public class JpaConsumerTypeImpl extends EObjectImpl implements JpaConsumerType 
             case JpaPackage.JPA_CONSUMER_TYPE__SCHEDULED_POLL_CONSUMER_TYPE:
                 return scheduledPollConsumerType != null && !scheduledPollConsumerType.isEmpty();
             case JpaPackage.JPA_CONSUMER_TYPE__INITIAL_DELAY:
-                return !getInitialDelay().isEmpty();
+                return isSetInitialDelay();
             case JpaPackage.JPA_CONSUMER_TYPE__DELAY:
-                return !getDelay().isEmpty();
+                return isSetDelay();
             case JpaPackage.JPA_CONSUMER_TYPE__USE_FIXED_DELAY:
-                return !getUseFixedDelay().isEmpty();
+                return isSetUseFixedDelay();
             case JpaPackage.JPA_CONSUMER_TYPE__SEND_EMPTY_MESSAGE_WHEN_IDLE:
-                return !getSendEmptyMessageWhenIdle().isEmpty();
+                return isSetSendEmptyMessageWhenIdle();
             case JpaPackage.JPA_CONSUMER_TYPE__TIME_UNIT:
                 return !getTimeUnit().isEmpty();
             case JpaPackage.JPA_CONSUMER_TYPE__SCHEDULED_BATCH_POLL_CONSUMER_TYPE:
                 return scheduledBatchPollConsumerType != null && !scheduledBatchPollConsumerType.isEmpty();
             case JpaPackage.JPA_CONSUMER_TYPE__MAX_MESSAGES_PER_POLL:
-                return !getMaxMessagesPerPoll().isEmpty();
+                return isSetMaxMessagesPerPoll();
             case JpaPackage.JPA_CONSUMER_TYPE__CONSUME_DELETE:
                 return isSetConsumeDelete();
             case JpaPackage.JPA_CONSUMER_TYPE__CONSUME_LOCK_ENTITY:

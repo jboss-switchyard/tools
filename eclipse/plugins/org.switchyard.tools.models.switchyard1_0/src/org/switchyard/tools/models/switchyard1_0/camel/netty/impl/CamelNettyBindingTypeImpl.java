@@ -25,10 +25,10 @@ import org.switchyard.tools.models.switchyard1_0.camel.netty.NettyPackage;
  *   <li>{@link org.switchyard.tools.models.switchyard1_0.camel.netty.impl.CamelNettyBindingTypeImpl#isReuseAddress <em>Reuse Address</em>}</li>
  *   <li>{@link org.switchyard.tools.models.switchyard1_0.camel.netty.impl.CamelNettyBindingTypeImpl#getEncoders <em>Encoders</em>}</li>
  *   <li>{@link org.switchyard.tools.models.switchyard1_0.camel.netty.impl.CamelNettyBindingTypeImpl#getDecoders <em>Decoders</em>}</li>
- *   <li>{@link org.switchyard.tools.models.switchyard1_0.camel.netty.impl.CamelNettyBindingTypeImpl#getAllowDefaultCodec <em>Allow Default Codec</em>}</li>
+ *   <li>{@link org.switchyard.tools.models.switchyard1_0.camel.netty.impl.CamelNettyBindingTypeImpl#isAllowDefaultCodec <em>Allow Default Codec</em>}</li>
  *   <li>{@link org.switchyard.tools.models.switchyard1_0.camel.netty.impl.CamelNettyBindingTypeImpl#getWorkerCount <em>Worker Count</em>}</li>
- *   <li>{@link org.switchyard.tools.models.switchyard1_0.camel.netty.impl.CamelNettyBindingTypeImpl#getSync <em>Sync</em>}</li>
- *   <li>{@link org.switchyard.tools.models.switchyard1_0.camel.netty.impl.CamelNettyBindingTypeImpl#getDisconnect <em>Disconnect</em>}</li>
+ *   <li>{@link org.switchyard.tools.models.switchyard1_0.camel.netty.impl.CamelNettyBindingTypeImpl#isSync <em>Sync</em>}</li>
+ *   <li>{@link org.switchyard.tools.models.switchyard1_0.camel.netty.impl.CamelNettyBindingTypeImpl#isDisconnect <em>Disconnect</em>}</li>
  * </ul>
  * </p>
  *
@@ -63,7 +63,7 @@ public abstract class CamelNettyBindingTypeImpl extends BaseCamelBindingImpl imp
      * @generated
      * @ordered
      */
-    protected static final Integer PORT_EDEFAULT = null;
+    protected static final int PORT_EDEFAULT = 0;
 
     /**
      * The cached value of the '{@link #getPort() <em>Port</em>}' attribute.
@@ -73,7 +73,7 @@ public abstract class CamelNettyBindingTypeImpl extends BaseCamelBindingImpl imp
      * @generated
      * @ordered
      */
-    protected Integer port = PORT_EDEFAULT;
+    protected int port = PORT_EDEFAULT;
 
     /**
      * This is true if the Port attribute has been set.
@@ -92,7 +92,7 @@ public abstract class CamelNettyBindingTypeImpl extends BaseCamelBindingImpl imp
      * @generated
      * @ordered
      */
-    protected static final Long RECEIVE_BUFFER_SIZE_EDEFAULT = null;
+    protected static final long RECEIVE_BUFFER_SIZE_EDEFAULT = 65536L;
 
     /**
      * The cached value of the '{@link #getReceiveBufferSize() <em>Receive Buffer Size</em>}' attribute.
@@ -102,7 +102,7 @@ public abstract class CamelNettyBindingTypeImpl extends BaseCamelBindingImpl imp
      * @generated
      * @ordered
      */
-    protected Long receiveBufferSize = RECEIVE_BUFFER_SIZE_EDEFAULT;
+    protected long receiveBufferSize = RECEIVE_BUFFER_SIZE_EDEFAULT;
 
     /**
      * This is true if the Receive Buffer Size attribute has been set.
@@ -121,7 +121,7 @@ public abstract class CamelNettyBindingTypeImpl extends BaseCamelBindingImpl imp
      * @generated
      * @ordered
      */
-    protected static final Long SEND_BUFFER_SIZE_EDEFAULT = null;
+    protected static final long SEND_BUFFER_SIZE_EDEFAULT = 65536L;
 
     /**
      * The cached value of the '{@link #getSendBufferSize() <em>Send Buffer Size</em>}' attribute.
@@ -131,7 +131,7 @@ public abstract class CamelNettyBindingTypeImpl extends BaseCamelBindingImpl imp
      * @generated
      * @ordered
      */
-    protected Long sendBufferSize = SEND_BUFFER_SIZE_EDEFAULT;
+    protected long sendBufferSize = SEND_BUFFER_SIZE_EDEFAULT;
 
     /**
      * This is true if the Send Buffer Size attribute has been set.
@@ -150,7 +150,7 @@ public abstract class CamelNettyBindingTypeImpl extends BaseCamelBindingImpl imp
      * @generated
      * @ordered
      */
-    protected static final boolean REUSE_ADDRESS_EDEFAULT = false;
+    protected static final boolean REUSE_ADDRESS_EDEFAULT = true;
 
     /**
      * The cached value of the '{@link #isReuseAddress() <em>Reuse Address</em>}' attribute.
@@ -212,24 +212,24 @@ public abstract class CamelNettyBindingTypeImpl extends BaseCamelBindingImpl imp
     protected String decoders = DECODERS_EDEFAULT;
 
     /**
-     * The default value of the '{@link #getAllowDefaultCodec() <em>Allow Default Codec</em>}' attribute.
+     * The default value of the '{@link #isAllowDefaultCodec() <em>Allow Default Codec</em>}' attribute.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @see #getAllowDefaultCodec()
+     * @see #isAllowDefaultCodec()
      * @generated
      * @ordered
      */
-    protected static final Boolean ALLOW_DEFAULT_CODEC_EDEFAULT = null;
+    protected static final boolean ALLOW_DEFAULT_CODEC_EDEFAULT = true;
 
     /**
-     * The cached value of the '{@link #getAllowDefaultCodec() <em>Allow Default Codec</em>}' attribute.
+     * The cached value of the '{@link #isAllowDefaultCodec() <em>Allow Default Codec</em>}' attribute.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @see #getAllowDefaultCodec()
+     * @see #isAllowDefaultCodec()
      * @generated
      * @ordered
      */
-    protected Boolean allowDefaultCodec = ALLOW_DEFAULT_CODEC_EDEFAULT;
+    protected boolean allowDefaultCodec = ALLOW_DEFAULT_CODEC_EDEFAULT;
 
     /**
      * This is true if the Allow Default Codec attribute has been set.
@@ -248,7 +248,7 @@ public abstract class CamelNettyBindingTypeImpl extends BaseCamelBindingImpl imp
      * @generated
      * @ordered
      */
-    protected static final Integer WORKER_COUNT_EDEFAULT = null;
+    protected static final int WORKER_COUNT_EDEFAULT = 0;
 
     /**
      * The cached value of the '{@link #getWorkerCount() <em>Worker Count</em>}' attribute.
@@ -258,7 +258,7 @@ public abstract class CamelNettyBindingTypeImpl extends BaseCamelBindingImpl imp
      * @generated
      * @ordered
      */
-    protected Integer workerCount = WORKER_COUNT_EDEFAULT;
+    protected int workerCount = WORKER_COUNT_EDEFAULT;
 
     /**
      * This is true if the Worker Count attribute has been set.
@@ -270,24 +270,24 @@ public abstract class CamelNettyBindingTypeImpl extends BaseCamelBindingImpl imp
     protected boolean workerCountESet;
 
     /**
-     * The default value of the '{@link #getSync() <em>Sync</em>}' attribute.
+     * The default value of the '{@link #isSync() <em>Sync</em>}' attribute.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @see #getSync()
+     * @see #isSync()
      * @generated
      * @ordered
      */
-    protected static final Boolean SYNC_EDEFAULT = null;
+    protected static final boolean SYNC_EDEFAULT = true;
 
     /**
-     * The cached value of the '{@link #getSync() <em>Sync</em>}' attribute.
+     * The cached value of the '{@link #isSync() <em>Sync</em>}' attribute.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @see #getSync()
+     * @see #isSync()
      * @generated
      * @ordered
      */
-    protected Boolean sync = SYNC_EDEFAULT;
+    protected boolean sync = SYNC_EDEFAULT;
 
     /**
      * This is true if the Sync attribute has been set.
@@ -299,24 +299,24 @@ public abstract class CamelNettyBindingTypeImpl extends BaseCamelBindingImpl imp
     protected boolean syncESet;
 
     /**
-     * The default value of the '{@link #getDisconnect() <em>Disconnect</em>}' attribute.
+     * The default value of the '{@link #isDisconnect() <em>Disconnect</em>}' attribute.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @see #getDisconnect()
+     * @see #isDisconnect()
      * @generated
      * @ordered
      */
-    protected static final Boolean DISCONNECT_EDEFAULT = null;
+    protected static final boolean DISCONNECT_EDEFAULT = false;
 
     /**
-     * The cached value of the '{@link #getDisconnect() <em>Disconnect</em>}' attribute.
+     * The cached value of the '{@link #isDisconnect() <em>Disconnect</em>}' attribute.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @see #getDisconnect()
+     * @see #isDisconnect()
      * @generated
      * @ordered
      */
-    protected Boolean disconnect = DISCONNECT_EDEFAULT;
+    protected boolean disconnect = DISCONNECT_EDEFAULT;
 
     /**
      * This is true if the Disconnect attribute has been set.
@@ -372,7 +372,7 @@ public abstract class CamelNettyBindingTypeImpl extends BaseCamelBindingImpl imp
      * <!-- end-user-doc -->
      * @generated
      */
-    public Integer getPort() {
+    public int getPort() {
         return port;
     }
 
@@ -381,8 +381,8 @@ public abstract class CamelNettyBindingTypeImpl extends BaseCamelBindingImpl imp
      * <!-- end-user-doc -->
      * @generated
      */
-    public void setPort(Integer newPort) {
-        Integer oldPort = port;
+    public void setPort(int newPort) {
+        int oldPort = port;
         port = newPort;
         boolean oldPortESet = portESet;
         portESet = true;
@@ -396,7 +396,7 @@ public abstract class CamelNettyBindingTypeImpl extends BaseCamelBindingImpl imp
      * @generated
      */
     public void unsetPort() {
-        Integer oldPort = port;
+        int oldPort = port;
         boolean oldPortESet = portESet;
         port = PORT_EDEFAULT;
         portESet = false;
@@ -418,7 +418,7 @@ public abstract class CamelNettyBindingTypeImpl extends BaseCamelBindingImpl imp
      * <!-- end-user-doc -->
      * @generated
      */
-    public Long getReceiveBufferSize() {
+    public long getReceiveBufferSize() {
         return receiveBufferSize;
     }
 
@@ -427,8 +427,8 @@ public abstract class CamelNettyBindingTypeImpl extends BaseCamelBindingImpl imp
      * <!-- end-user-doc -->
      * @generated
      */
-    public void setReceiveBufferSize(Long newReceiveBufferSize) {
-        Long oldReceiveBufferSize = receiveBufferSize;
+    public void setReceiveBufferSize(long newReceiveBufferSize) {
+        long oldReceiveBufferSize = receiveBufferSize;
         receiveBufferSize = newReceiveBufferSize;
         boolean oldReceiveBufferSizeESet = receiveBufferSizeESet;
         receiveBufferSizeESet = true;
@@ -442,7 +442,7 @@ public abstract class CamelNettyBindingTypeImpl extends BaseCamelBindingImpl imp
      * @generated
      */
     public void unsetReceiveBufferSize() {
-        Long oldReceiveBufferSize = receiveBufferSize;
+        long oldReceiveBufferSize = receiveBufferSize;
         boolean oldReceiveBufferSizeESet = receiveBufferSizeESet;
         receiveBufferSize = RECEIVE_BUFFER_SIZE_EDEFAULT;
         receiveBufferSizeESet = false;
@@ -464,7 +464,7 @@ public abstract class CamelNettyBindingTypeImpl extends BaseCamelBindingImpl imp
      * <!-- end-user-doc -->
      * @generated
      */
-    public Long getSendBufferSize() {
+    public long getSendBufferSize() {
         return sendBufferSize;
     }
 
@@ -473,8 +473,8 @@ public abstract class CamelNettyBindingTypeImpl extends BaseCamelBindingImpl imp
      * <!-- end-user-doc -->
      * @generated
      */
-    public void setSendBufferSize(Long newSendBufferSize) {
-        Long oldSendBufferSize = sendBufferSize;
+    public void setSendBufferSize(long newSendBufferSize) {
+        long oldSendBufferSize = sendBufferSize;
         sendBufferSize = newSendBufferSize;
         boolean oldSendBufferSizeESet = sendBufferSizeESet;
         sendBufferSizeESet = true;
@@ -488,7 +488,7 @@ public abstract class CamelNettyBindingTypeImpl extends BaseCamelBindingImpl imp
      * @generated
      */
     public void unsetSendBufferSize() {
-        Long oldSendBufferSize = sendBufferSize;
+        long oldSendBufferSize = sendBufferSize;
         boolean oldSendBufferSizeESet = sendBufferSizeESet;
         sendBufferSize = SEND_BUFFER_SIZE_EDEFAULT;
         sendBufferSizeESet = false;
@@ -598,7 +598,7 @@ public abstract class CamelNettyBindingTypeImpl extends BaseCamelBindingImpl imp
      * <!-- end-user-doc -->
      * @generated
      */
-    public Boolean getAllowDefaultCodec() {
+    public boolean isAllowDefaultCodec() {
         return allowDefaultCodec;
     }
 
@@ -607,8 +607,8 @@ public abstract class CamelNettyBindingTypeImpl extends BaseCamelBindingImpl imp
      * <!-- end-user-doc -->
      * @generated
      */
-    public void setAllowDefaultCodec(Boolean newAllowDefaultCodec) {
-        Boolean oldAllowDefaultCodec = allowDefaultCodec;
+    public void setAllowDefaultCodec(boolean newAllowDefaultCodec) {
+        boolean oldAllowDefaultCodec = allowDefaultCodec;
         allowDefaultCodec = newAllowDefaultCodec;
         boolean oldAllowDefaultCodecESet = allowDefaultCodecESet;
         allowDefaultCodecESet = true;
@@ -622,7 +622,7 @@ public abstract class CamelNettyBindingTypeImpl extends BaseCamelBindingImpl imp
      * @generated
      */
     public void unsetAllowDefaultCodec() {
-        Boolean oldAllowDefaultCodec = allowDefaultCodec;
+        boolean oldAllowDefaultCodec = allowDefaultCodec;
         boolean oldAllowDefaultCodecESet = allowDefaultCodecESet;
         allowDefaultCodec = ALLOW_DEFAULT_CODEC_EDEFAULT;
         allowDefaultCodecESet = false;
@@ -644,7 +644,7 @@ public abstract class CamelNettyBindingTypeImpl extends BaseCamelBindingImpl imp
      * <!-- end-user-doc -->
      * @generated
      */
-    public Integer getWorkerCount() {
+    public int getWorkerCount() {
         return workerCount;
     }
 
@@ -653,8 +653,8 @@ public abstract class CamelNettyBindingTypeImpl extends BaseCamelBindingImpl imp
      * <!-- end-user-doc -->
      * @generated
      */
-    public void setWorkerCount(Integer newWorkerCount) {
-        Integer oldWorkerCount = workerCount;
+    public void setWorkerCount(int newWorkerCount) {
+        int oldWorkerCount = workerCount;
         workerCount = newWorkerCount;
         boolean oldWorkerCountESet = workerCountESet;
         workerCountESet = true;
@@ -668,7 +668,7 @@ public abstract class CamelNettyBindingTypeImpl extends BaseCamelBindingImpl imp
      * @generated
      */
     public void unsetWorkerCount() {
-        Integer oldWorkerCount = workerCount;
+        int oldWorkerCount = workerCount;
         boolean oldWorkerCountESet = workerCountESet;
         workerCount = WORKER_COUNT_EDEFAULT;
         workerCountESet = false;
@@ -690,7 +690,7 @@ public abstract class CamelNettyBindingTypeImpl extends BaseCamelBindingImpl imp
      * <!-- end-user-doc -->
      * @generated
      */
-    public Boolean getSync() {
+    public boolean isSync() {
         return sync;
     }
 
@@ -699,8 +699,8 @@ public abstract class CamelNettyBindingTypeImpl extends BaseCamelBindingImpl imp
      * <!-- end-user-doc -->
      * @generated
      */
-    public void setSync(Boolean newSync) {
-        Boolean oldSync = sync;
+    public void setSync(boolean newSync) {
+        boolean oldSync = sync;
         sync = newSync;
         boolean oldSyncESet = syncESet;
         syncESet = true;
@@ -714,7 +714,7 @@ public abstract class CamelNettyBindingTypeImpl extends BaseCamelBindingImpl imp
      * @generated
      */
     public void unsetSync() {
-        Boolean oldSync = sync;
+        boolean oldSync = sync;
         boolean oldSyncESet = syncESet;
         sync = SYNC_EDEFAULT;
         syncESet = false;
@@ -736,7 +736,7 @@ public abstract class CamelNettyBindingTypeImpl extends BaseCamelBindingImpl imp
      * <!-- end-user-doc -->
      * @generated
      */
-    public Boolean getDisconnect() {
+    public boolean isDisconnect() {
         return disconnect;
     }
 
@@ -745,8 +745,8 @@ public abstract class CamelNettyBindingTypeImpl extends BaseCamelBindingImpl imp
      * <!-- end-user-doc -->
      * @generated
      */
-    public void setDisconnect(Boolean newDisconnect) {
-        Boolean oldDisconnect = disconnect;
+    public void setDisconnect(boolean newDisconnect) {
+        boolean oldDisconnect = disconnect;
         disconnect = newDisconnect;
         boolean oldDisconnectESet = disconnectESet;
         disconnectESet = true;
@@ -760,7 +760,7 @@ public abstract class CamelNettyBindingTypeImpl extends BaseCamelBindingImpl imp
      * @generated
      */
     public void unsetDisconnect() {
-        Boolean oldDisconnect = disconnect;
+        boolean oldDisconnect = disconnect;
         boolean oldDisconnectESet = disconnectESet;
         disconnect = DISCONNECT_EDEFAULT;
         disconnectESet = false;
@@ -800,13 +800,13 @@ public abstract class CamelNettyBindingTypeImpl extends BaseCamelBindingImpl imp
             case NettyPackage.CAMEL_NETTY_BINDING_TYPE__DECODERS:
                 return getDecoders();
             case NettyPackage.CAMEL_NETTY_BINDING_TYPE__ALLOW_DEFAULT_CODEC:
-                return getAllowDefaultCodec();
+                return isAllowDefaultCodec();
             case NettyPackage.CAMEL_NETTY_BINDING_TYPE__WORKER_COUNT:
                 return getWorkerCount();
             case NettyPackage.CAMEL_NETTY_BINDING_TYPE__SYNC:
-                return getSync();
+                return isSync();
             case NettyPackage.CAMEL_NETTY_BINDING_TYPE__DISCONNECT:
-                return getDisconnect();
+                return isDisconnect();
         }
         return super.eGet(featureID, resolve, coreType);
     }

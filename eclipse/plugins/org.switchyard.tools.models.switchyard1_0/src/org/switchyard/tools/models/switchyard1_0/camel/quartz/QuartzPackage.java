@@ -512,11 +512,11 @@ public interface QuartzPackage extends EPackage {
     EAttribute getCamelQuartzBindingType_Cron();
 
     /**
-     * Returns the meta object for the attribute '{@link org.switchyard.tools.models.switchyard1_0.camel.quartz.CamelQuartzBindingType#getStateful <em>Stateful</em>}'.
+     * Returns the meta object for the attribute '{@link org.switchyard.tools.models.switchyard1_0.camel.quartz.CamelQuartzBindingType#isStateful <em>Stateful</em>}'.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @return the meta object for the attribute '<em>Stateful</em>'.
-     * @see org.switchyard.tools.models.switchyard1_0.camel.quartz.CamelQuartzBindingType#getStateful()
+     * @see org.switchyard.tools.models.switchyard1_0.camel.quartz.CamelQuartzBindingType#isStateful()
      * @see #getCamelQuartzBindingType()
      * @generated
      */

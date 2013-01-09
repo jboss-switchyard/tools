@@ -22,8 +22,8 @@ import org.switchyard.tools.models.switchyard1_0.camel.core.CorePackage;
  *   <li>{@link org.switchyard.tools.models.switchyard1_0.camel.core.impl.CamelTimerBindingTypeImpl#getPattern <em>Pattern</em>}</li>
  *   <li>{@link org.switchyard.tools.models.switchyard1_0.camel.core.impl.CamelTimerBindingTypeImpl#getPeriod <em>Period</em>}</li>
  *   <li>{@link org.switchyard.tools.models.switchyard1_0.camel.core.impl.CamelTimerBindingTypeImpl#getDelay <em>Delay</em>}</li>
- *   <li>{@link org.switchyard.tools.models.switchyard1_0.camel.core.impl.CamelTimerBindingTypeImpl#getFixedRate <em>Fixed Rate</em>}</li>
- *   <li>{@link org.switchyard.tools.models.switchyard1_0.camel.core.impl.CamelTimerBindingTypeImpl#getDaemon <em>Daemon</em>}</li>
+ *   <li>{@link org.switchyard.tools.models.switchyard1_0.camel.core.impl.CamelTimerBindingTypeImpl#isFixedRate <em>Fixed Rate</em>}</li>
+ *   <li>{@link org.switchyard.tools.models.switchyard1_0.camel.core.impl.CamelTimerBindingTypeImpl#isDaemon <em>Daemon</em>}</li>
  * </ul>
  * </p>
  *
@@ -98,7 +98,7 @@ public class CamelTimerBindingTypeImpl extends BaseCamelBindingImpl implements C
      * @generated
      * @ordered
      */
-    protected static final Long PERIOD_EDEFAULT = null;
+    protected static final long PERIOD_EDEFAULT = 1000L;
 
     /**
      * The cached value of the '{@link #getPeriod() <em>Period</em>}' attribute.
@@ -108,7 +108,16 @@ public class CamelTimerBindingTypeImpl extends BaseCamelBindingImpl implements C
      * @generated
      * @ordered
      */
-    protected Long period = PERIOD_EDEFAULT;
+    protected long period = PERIOD_EDEFAULT;
+
+    /**
+     * This is true if the Period attribute has been set.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    protected boolean periodESet;
 
     /**
      * The default value of the '{@link #getDelay() <em>Delay</em>}' attribute.
@@ -118,7 +127,7 @@ public class CamelTimerBindingTypeImpl extends BaseCamelBindingImpl implements C
      * @generated
      * @ordered
      */
-    protected static final Long DELAY_EDEFAULT = null;
+    protected static final long DELAY_EDEFAULT = 0L;
 
     /**
      * The cached value of the '{@link #getDelay() <em>Delay</em>}' attribute.
@@ -128,27 +137,36 @@ public class CamelTimerBindingTypeImpl extends BaseCamelBindingImpl implements C
      * @generated
      * @ordered
      */
-    protected Long delay = DELAY_EDEFAULT;
+    protected long delay = DELAY_EDEFAULT;
 
     /**
-     * The default value of the '{@link #getFixedRate() <em>Fixed Rate</em>}' attribute.
+     * This is true if the Delay attribute has been set.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @see #getFixedRate()
      * @generated
      * @ordered
      */
-    protected static final Boolean FIXED_RATE_EDEFAULT = null;
+    protected boolean delayESet;
 
     /**
-     * The cached value of the '{@link #getFixedRate() <em>Fixed Rate</em>}' attribute.
+     * The default value of the '{@link #isFixedRate() <em>Fixed Rate</em>}' attribute.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @see #getFixedRate()
+     * @see #isFixedRate()
      * @generated
      * @ordered
      */
-    protected Boolean fixedRate = FIXED_RATE_EDEFAULT;
+    protected static final boolean FIXED_RATE_EDEFAULT = false;
+
+    /**
+     * The cached value of the '{@link #isFixedRate() <em>Fixed Rate</em>}' attribute.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @see #isFixedRate()
+     * @generated
+     * @ordered
+     */
+    protected boolean fixedRate = FIXED_RATE_EDEFAULT;
 
     /**
      * This is true if the Fixed Rate attribute has been set.
@@ -160,24 +178,24 @@ public class CamelTimerBindingTypeImpl extends BaseCamelBindingImpl implements C
     protected boolean fixedRateESet;
 
     /**
-     * The default value of the '{@link #getDaemon() <em>Daemon</em>}' attribute.
+     * The default value of the '{@link #isDaemon() <em>Daemon</em>}' attribute.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @see #getDaemon()
+     * @see #isDaemon()
      * @generated
      * @ordered
      */
-    protected static final Boolean DAEMON_EDEFAULT = null;
+    protected static final boolean DAEMON_EDEFAULT = true;
 
     /**
-     * The cached value of the '{@link #getDaemon() <em>Daemon</em>}' attribute.
+     * The cached value of the '{@link #isDaemon() <em>Daemon</em>}' attribute.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @see #getDaemon()
+     * @see #isDaemon()
      * @generated
      * @ordered
      */
-    protected Boolean daemon = DAEMON_EDEFAULT;
+    protected boolean daemon = DAEMON_EDEFAULT;
 
     /**
      * This is true if the Daemon attribute has been set.
@@ -275,7 +293,7 @@ public class CamelTimerBindingTypeImpl extends BaseCamelBindingImpl implements C
      * <!-- end-user-doc -->
      * @generated
      */
-    public Long getPeriod() {
+    public long getPeriod() {
         return period;
     }
 
@@ -284,11 +302,13 @@ public class CamelTimerBindingTypeImpl extends BaseCamelBindingImpl implements C
      * <!-- end-user-doc -->
      * @generated
      */
-    public void setPeriod(Long newPeriod) {
-        Long oldPeriod = period;
+    public void setPeriod(long newPeriod) {
+        long oldPeriod = period;
         period = newPeriod;
+        boolean oldPeriodESet = periodESet;
+        periodESet = true;
         if (eNotificationRequired())
-            eNotify(new ENotificationImpl(this, Notification.SET, CorePackage.CAMEL_TIMER_BINDING_TYPE__PERIOD, oldPeriod, period));
+            eNotify(new ENotificationImpl(this, Notification.SET, CorePackage.CAMEL_TIMER_BINDING_TYPE__PERIOD, oldPeriod, period, !oldPeriodESet));
     }
 
     /**
@@ -296,7 +316,30 @@ public class CamelTimerBindingTypeImpl extends BaseCamelBindingImpl implements C
      * <!-- end-user-doc -->
      * @generated
      */
-    public Long getDelay() {
+    public void unsetPeriod() {
+        long oldPeriod = period;
+        boolean oldPeriodESet = periodESet;
+        period = PERIOD_EDEFAULT;
+        periodESet = false;
+        if (eNotificationRequired())
+            eNotify(new ENotificationImpl(this, Notification.UNSET, CorePackage.CAMEL_TIMER_BINDING_TYPE__PERIOD, oldPeriod, PERIOD_EDEFAULT, oldPeriodESet));
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public boolean isSetPeriod() {
+        return periodESet;
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public long getDelay() {
         return delay;
     }
 
@@ -305,11 +348,13 @@ public class CamelTimerBindingTypeImpl extends BaseCamelBindingImpl implements C
      * <!-- end-user-doc -->
      * @generated
      */
-    public void setDelay(Long newDelay) {
-        Long oldDelay = delay;
+    public void setDelay(long newDelay) {
+        long oldDelay = delay;
         delay = newDelay;
+        boolean oldDelayESet = delayESet;
+        delayESet = true;
         if (eNotificationRequired())
-            eNotify(new ENotificationImpl(this, Notification.SET, CorePackage.CAMEL_TIMER_BINDING_TYPE__DELAY, oldDelay, delay));
+            eNotify(new ENotificationImpl(this, Notification.SET, CorePackage.CAMEL_TIMER_BINDING_TYPE__DELAY, oldDelay, delay, !oldDelayESet));
     }
 
     /**
@@ -317,7 +362,30 @@ public class CamelTimerBindingTypeImpl extends BaseCamelBindingImpl implements C
      * <!-- end-user-doc -->
      * @generated
      */
-    public Boolean getFixedRate() {
+    public void unsetDelay() {
+        long oldDelay = delay;
+        boolean oldDelayESet = delayESet;
+        delay = DELAY_EDEFAULT;
+        delayESet = false;
+        if (eNotificationRequired())
+            eNotify(new ENotificationImpl(this, Notification.UNSET, CorePackage.CAMEL_TIMER_BINDING_TYPE__DELAY, oldDelay, DELAY_EDEFAULT, oldDelayESet));
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public boolean isSetDelay() {
+        return delayESet;
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public boolean isFixedRate() {
         return fixedRate;
     }
 
@@ -326,8 +394,8 @@ public class CamelTimerBindingTypeImpl extends BaseCamelBindingImpl implements C
      * <!-- end-user-doc -->
      * @generated
      */
-    public void setFixedRate(Boolean newFixedRate) {
-        Boolean oldFixedRate = fixedRate;
+    public void setFixedRate(boolean newFixedRate) {
+        boolean oldFixedRate = fixedRate;
         fixedRate = newFixedRate;
         boolean oldFixedRateESet = fixedRateESet;
         fixedRateESet = true;
@@ -341,7 +409,7 @@ public class CamelTimerBindingTypeImpl extends BaseCamelBindingImpl implements C
      * @generated
      */
     public void unsetFixedRate() {
-        Boolean oldFixedRate = fixedRate;
+        boolean oldFixedRate = fixedRate;
         boolean oldFixedRateESet = fixedRateESet;
         fixedRate = FIXED_RATE_EDEFAULT;
         fixedRateESet = false;
@@ -363,7 +431,7 @@ public class CamelTimerBindingTypeImpl extends BaseCamelBindingImpl implements C
      * <!-- end-user-doc -->
      * @generated
      */
-    public Boolean getDaemon() {
+    public boolean isDaemon() {
         return daemon;
     }
 
@@ -372,8 +440,8 @@ public class CamelTimerBindingTypeImpl extends BaseCamelBindingImpl implements C
      * <!-- end-user-doc -->
      * @generated
      */
-    public void setDaemon(Boolean newDaemon) {
-        Boolean oldDaemon = daemon;
+    public void setDaemon(boolean newDaemon) {
+        boolean oldDaemon = daemon;
         daemon = newDaemon;
         boolean oldDaemonESet = daemonESet;
         daemonESet = true;
@@ -387,7 +455,7 @@ public class CamelTimerBindingTypeImpl extends BaseCamelBindingImpl implements C
      * @generated
      */
     public void unsetDaemon() {
-        Boolean oldDaemon = daemon;
+        boolean oldDaemon = daemon;
         boolean oldDaemonESet = daemonESet;
         daemon = DAEMON_EDEFAULT;
         daemonESet = false;
@@ -423,9 +491,9 @@ public class CamelTimerBindingTypeImpl extends BaseCamelBindingImpl implements C
             case CorePackage.CAMEL_TIMER_BINDING_TYPE__DELAY:
                 return getDelay();
             case CorePackage.CAMEL_TIMER_BINDING_TYPE__FIXED_RATE:
-                return getFixedRate();
+                return isFixedRate();
             case CorePackage.CAMEL_TIMER_BINDING_TYPE__DAEMON:
-                return getDaemon();
+                return isDaemon();
         }
         return super.eGet(featureID, resolve, coreType);
     }
@@ -481,10 +549,10 @@ public class CamelTimerBindingTypeImpl extends BaseCamelBindingImpl implements C
                 setPattern(PATTERN_EDEFAULT);
                 return;
             case CorePackage.CAMEL_TIMER_BINDING_TYPE__PERIOD:
-                setPeriod(PERIOD_EDEFAULT);
+                unsetPeriod();
                 return;
             case CorePackage.CAMEL_TIMER_BINDING_TYPE__DELAY:
-                setDelay(DELAY_EDEFAULT);
+                unsetDelay();
                 return;
             case CorePackage.CAMEL_TIMER_BINDING_TYPE__FIXED_RATE:
                 unsetFixedRate();
@@ -511,9 +579,9 @@ public class CamelTimerBindingTypeImpl extends BaseCamelBindingImpl implements C
             case CorePackage.CAMEL_TIMER_BINDING_TYPE__PATTERN:
                 return PATTERN_EDEFAULT == null ? pattern != null : !PATTERN_EDEFAULT.equals(pattern);
             case CorePackage.CAMEL_TIMER_BINDING_TYPE__PERIOD:
-                return PERIOD_EDEFAULT == null ? period != null : !PERIOD_EDEFAULT.equals(period);
+                return isSetPeriod();
             case CorePackage.CAMEL_TIMER_BINDING_TYPE__DELAY:
-                return DELAY_EDEFAULT == null ? delay != null : !DELAY_EDEFAULT.equals(delay);
+                return isSetDelay();
             case CorePackage.CAMEL_TIMER_BINDING_TYPE__FIXED_RATE:
                 return isSetFixedRate();
             case CorePackage.CAMEL_TIMER_BINDING_TYPE__DAEMON:
@@ -539,9 +607,9 @@ public class CamelTimerBindingTypeImpl extends BaseCamelBindingImpl implements C
         result.append(", pattern: ");
         result.append(pattern);
         result.append(", period: ");
-        result.append(period);
+        if (periodESet) result.append(period); else result.append("<unset>");
         result.append(", delay: ");
-        result.append(delay);
+        if (delayESet) result.append(delay); else result.append("<unset>");
         result.append(", fixedRate: ");
         if (fixedRateESet) result.append(fixedRate); else result.append("<unset>");
         result.append(", daemon: ");

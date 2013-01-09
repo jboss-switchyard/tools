@@ -77,11 +77,11 @@ public class CamelFileConsumerComposite extends AbstractSYBindingComposite  {
             this._binding = (CamelFileBindingType) impl;
             setInUpdate(true);
             if (this._binding.getConsume() != null) {
-                if (this._binding.getConsume().getDelay() != null) {
-                    _delayText.setText(this._binding.getConsume().getDelay().toString());
+                if (this._binding.getConsume().isSetDelay()) {
+                    _delayText.setText(Integer.toString(this._binding.getConsume().getDelay()));
                 }
-                if (this._binding.getConsume().getMaxMessagesPerPoll() != null) {
-                    _maxMessagesPerPollText.setText(this._binding.getConsume().getMaxMessagesPerPoll().toString());
+                if (this._binding.getConsume().isSetMaxMessagesPerPoll()) {
+                    _maxMessagesPerPollText.setText(Integer.toString(this._binding.getConsume().getMaxMessagesPerPoll()));
                 }
                 if (this._binding.getConsume().getExclude() != null) {
                     _excludeText.setText(this._binding.getConsume().getExclude());
@@ -105,9 +105,7 @@ public class CamelFileConsumerComposite extends AbstractSYBindingComposite  {
             if (this._binding.getFileName() != null) {
                 _fileNameText.setText(this._binding.getFileName());
             }
-            if (this._binding.getAutoCreate() != null) {
-                _autoCreateButton.setSelection(this._binding.getAutoCreate().booleanValue());
-            }
+            _autoCreateButton.setSelection(this._binding.isAutoCreate());
             OperationSelectorType opSelector = OperationSelectorUtil.getFirstOperationSelector(this._binding);
             _opSelectorComposite.setBinding(this._binding);
             _opSelectorComposite.setOperation((SwitchYardOperationSelectorType) opSelector);
@@ -287,15 +285,15 @@ public class CamelFileConsumerComposite extends AbstractSYBindingComposite  {
             } else if (control.equals(_fileNameText)) {
                 _fileNameText.setText(this._binding.getFileName());
             } else if (control.equals(_autoCreateButton)) {
-                _autoCreateButton.setSelection(this._binding.getAutoCreate());
+                _autoCreateButton.setSelection(this._binding.isAutoCreate());
 //            } else if (control.equals(_operationSelectionCombo)) {
 //                String opName = CamelBindingUtil.getOperationNameForStaticOperationSelector(this._binding);
 //                setTextValue(_operationSelectionCombo, opName);
             } else if (this._binding.getConsume() != null) {
                 if (control.equals(_delayText)) {
-                    _delayText.setText(this._binding.getConsume().getDelay().toString());
+                    _delayText.setText(Integer.toString(this._binding.getConsume().getDelay()));
                 } else if (control.equals(_maxMessagesPerPollText)) {
-                    _maxMessagesPerPollText.setText(this._binding.getConsume().getMaxMessagesPerPoll().toString());
+                    _maxMessagesPerPollText.setText(Integer.toString(this._binding.getConsume().getMaxMessagesPerPoll()));
                 } else if (control.equals(_excludeText)) {
                     _excludeText.setText(this._binding.getConsume().getExclude());
                 } else if (control.equals(_includeText)) {

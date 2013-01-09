@@ -18,9 +18,9 @@ import org.switchyard.tools.models.switchyard1_0.camel.netty.NettyPackage;
  * <p>
  * The following features are implemented:
  * <ul>
- *   <li>{@link org.switchyard.tools.models.switchyard1_0.camel.netty.impl.CamelNettyTcpBindingTypeImpl#getTextline <em>Textline</em>}</li>
- *   <li>{@link org.switchyard.tools.models.switchyard1_0.camel.netty.impl.CamelNettyTcpBindingTypeImpl#getTcpNoDelay <em>Tcp No Delay</em>}</li>
- *   <li>{@link org.switchyard.tools.models.switchyard1_0.camel.netty.impl.CamelNettyTcpBindingTypeImpl#getKeepAlive <em>Keep Alive</em>}</li>
+ *   <li>{@link org.switchyard.tools.models.switchyard1_0.camel.netty.impl.CamelNettyTcpBindingTypeImpl#isTextline <em>Textline</em>}</li>
+ *   <li>{@link org.switchyard.tools.models.switchyard1_0.camel.netty.impl.CamelNettyTcpBindingTypeImpl#isTcpNoDelay <em>Tcp No Delay</em>}</li>
+ *   <li>{@link org.switchyard.tools.models.switchyard1_0.camel.netty.impl.CamelNettyTcpBindingTypeImpl#isKeepAlive <em>Keep Alive</em>}</li>
  * </ul>
  * </p>
  *
@@ -28,24 +28,24 @@ import org.switchyard.tools.models.switchyard1_0.camel.netty.NettyPackage;
  */
 public class CamelNettyTcpBindingTypeImpl extends CamelNettyBindingTypeImpl implements CamelNettyTcpBindingType {
     /**
-     * The default value of the '{@link #getTextline() <em>Textline</em>}' attribute.
+     * The default value of the '{@link #isTextline() <em>Textline</em>}' attribute.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @see #getTextline()
+     * @see #isTextline()
      * @generated
      * @ordered
      */
-    protected static final Boolean TEXTLINE_EDEFAULT = null;
+    protected static final boolean TEXTLINE_EDEFAULT = false;
 
     /**
-     * The cached value of the '{@link #getTextline() <em>Textline</em>}' attribute.
+     * The cached value of the '{@link #isTextline() <em>Textline</em>}' attribute.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @see #getTextline()
+     * @see #isTextline()
      * @generated
      * @ordered
      */
-    protected Boolean textline = TEXTLINE_EDEFAULT;
+    protected boolean textline = TEXTLINE_EDEFAULT;
 
     /**
      * This is true if the Textline attribute has been set.
@@ -57,24 +57,24 @@ public class CamelNettyTcpBindingTypeImpl extends CamelNettyBindingTypeImpl impl
     protected boolean textlineESet;
 
     /**
-     * The default value of the '{@link #getTcpNoDelay() <em>Tcp No Delay</em>}' attribute.
+     * The default value of the '{@link #isTcpNoDelay() <em>Tcp No Delay</em>}' attribute.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @see #getTcpNoDelay()
+     * @see #isTcpNoDelay()
      * @generated
      * @ordered
      */
-    protected static final Boolean TCP_NO_DELAY_EDEFAULT = null;
+    protected static final boolean TCP_NO_DELAY_EDEFAULT = true;
 
     /**
-     * The cached value of the '{@link #getTcpNoDelay() <em>Tcp No Delay</em>}' attribute.
+     * The cached value of the '{@link #isTcpNoDelay() <em>Tcp No Delay</em>}' attribute.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @see #getTcpNoDelay()
+     * @see #isTcpNoDelay()
      * @generated
      * @ordered
      */
-    protected Boolean tcpNoDelay = TCP_NO_DELAY_EDEFAULT;
+    protected boolean tcpNoDelay = TCP_NO_DELAY_EDEFAULT;
 
     /**
      * This is true if the Tcp No Delay attribute has been set.
@@ -86,24 +86,24 @@ public class CamelNettyTcpBindingTypeImpl extends CamelNettyBindingTypeImpl impl
     protected boolean tcpNoDelayESet;
 
     /**
-     * The default value of the '{@link #getKeepAlive() <em>Keep Alive</em>}' attribute.
+     * The default value of the '{@link #isKeepAlive() <em>Keep Alive</em>}' attribute.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @see #getKeepAlive()
+     * @see #isKeepAlive()
      * @generated
      * @ordered
      */
-    protected static final Boolean KEEP_ALIVE_EDEFAULT = null;
+    protected static final boolean KEEP_ALIVE_EDEFAULT = true;
 
     /**
-     * The cached value of the '{@link #getKeepAlive() <em>Keep Alive</em>}' attribute.
+     * The cached value of the '{@link #isKeepAlive() <em>Keep Alive</em>}' attribute.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @see #getKeepAlive()
+     * @see #isKeepAlive()
      * @generated
      * @ordered
      */
-    protected Boolean keepAlive = KEEP_ALIVE_EDEFAULT;
+    protected boolean keepAlive = KEEP_ALIVE_EDEFAULT;
 
     /**
      * This is true if the Keep Alive attribute has been set.
@@ -138,7 +138,7 @@ public class CamelNettyTcpBindingTypeImpl extends CamelNettyBindingTypeImpl impl
      * <!-- end-user-doc -->
      * @generated
      */
-    public Boolean getTextline() {
+    public boolean isTextline() {
         return textline;
     }
 
@@ -147,8 +147,8 @@ public class CamelNettyTcpBindingTypeImpl extends CamelNettyBindingTypeImpl impl
      * <!-- end-user-doc -->
      * @generated
      */
-    public void setTextline(Boolean newTextline) {
-        Boolean oldTextline = textline;
+    public void setTextline(boolean newTextline) {
+        boolean oldTextline = textline;
         textline = newTextline;
         boolean oldTextlineESet = textlineESet;
         textlineESet = true;
@@ -162,7 +162,7 @@ public class CamelNettyTcpBindingTypeImpl extends CamelNettyBindingTypeImpl impl
      * @generated
      */
     public void unsetTextline() {
-        Boolean oldTextline = textline;
+        boolean oldTextline = textline;
         boolean oldTextlineESet = textlineESet;
         textline = TEXTLINE_EDEFAULT;
         textlineESet = false;
@@ -184,7 +184,7 @@ public class CamelNettyTcpBindingTypeImpl extends CamelNettyBindingTypeImpl impl
      * <!-- end-user-doc -->
      * @generated
      */
-    public Boolean getTcpNoDelay() {
+    public boolean isTcpNoDelay() {
         return tcpNoDelay;
     }
 
@@ -193,8 +193,8 @@ public class CamelNettyTcpBindingTypeImpl extends CamelNettyBindingTypeImpl impl
      * <!-- end-user-doc -->
      * @generated
      */
-    public void setTcpNoDelay(Boolean newTcpNoDelay) {
-        Boolean oldTcpNoDelay = tcpNoDelay;
+    public void setTcpNoDelay(boolean newTcpNoDelay) {
+        boolean oldTcpNoDelay = tcpNoDelay;
         tcpNoDelay = newTcpNoDelay;
         boolean oldTcpNoDelayESet = tcpNoDelayESet;
         tcpNoDelayESet = true;
@@ -208,7 +208,7 @@ public class CamelNettyTcpBindingTypeImpl extends CamelNettyBindingTypeImpl impl
      * @generated
      */
     public void unsetTcpNoDelay() {
-        Boolean oldTcpNoDelay = tcpNoDelay;
+        boolean oldTcpNoDelay = tcpNoDelay;
         boolean oldTcpNoDelayESet = tcpNoDelayESet;
         tcpNoDelay = TCP_NO_DELAY_EDEFAULT;
         tcpNoDelayESet = false;
@@ -230,7 +230,7 @@ public class CamelNettyTcpBindingTypeImpl extends CamelNettyBindingTypeImpl impl
      * <!-- end-user-doc -->
      * @generated
      */
-    public Boolean getKeepAlive() {
+    public boolean isKeepAlive() {
         return keepAlive;
     }
 
@@ -239,8 +239,8 @@ public class CamelNettyTcpBindingTypeImpl extends CamelNettyBindingTypeImpl impl
      * <!-- end-user-doc -->
      * @generated
      */
-    public void setKeepAlive(Boolean newKeepAlive) {
-        Boolean oldKeepAlive = keepAlive;
+    public void setKeepAlive(boolean newKeepAlive) {
+        boolean oldKeepAlive = keepAlive;
         keepAlive = newKeepAlive;
         boolean oldKeepAliveESet = keepAliveESet;
         keepAliveESet = true;
@@ -254,7 +254,7 @@ public class CamelNettyTcpBindingTypeImpl extends CamelNettyBindingTypeImpl impl
      * @generated
      */
     public void unsetKeepAlive() {
-        Boolean oldKeepAlive = keepAlive;
+        boolean oldKeepAlive = keepAlive;
         boolean oldKeepAliveESet = keepAliveESet;
         keepAlive = KEEP_ALIVE_EDEFAULT;
         keepAliveESet = false;
@@ -280,11 +280,11 @@ public class CamelNettyTcpBindingTypeImpl extends CamelNettyBindingTypeImpl impl
     public Object eGet(int featureID, boolean resolve, boolean coreType) {
         switch (featureID) {
             case NettyPackage.CAMEL_NETTY_TCP_BINDING_TYPE__TEXTLINE:
-                return getTextline();
+                return isTextline();
             case NettyPackage.CAMEL_NETTY_TCP_BINDING_TYPE__TCP_NO_DELAY:
-                return getTcpNoDelay();
+                return isTcpNoDelay();
             case NettyPackage.CAMEL_NETTY_TCP_BINDING_TYPE__KEEP_ALIVE:
-                return getKeepAlive();
+                return isKeepAlive();
         }
         return super.eGet(featureID, resolve, coreType);
     }

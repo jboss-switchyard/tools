@@ -18,7 +18,7 @@ import org.switchyard.tools.models.switchyard1_0.camel.netty.NettyPackage;
  * <p>
  * The following features are implemented:
  * <ul>
- *   <li>{@link org.switchyard.tools.models.switchyard1_0.camel.netty.impl.CamelNettyUdpBindingTypeImpl#getBroadcast <em>Broadcast</em>}</li>
+ *   <li>{@link org.switchyard.tools.models.switchyard1_0.camel.netty.impl.CamelNettyUdpBindingTypeImpl#isBroadcast <em>Broadcast</em>}</li>
  * </ul>
  * </p>
  *
@@ -26,24 +26,24 @@ import org.switchyard.tools.models.switchyard1_0.camel.netty.NettyPackage;
  */
 public class CamelNettyUdpBindingTypeImpl extends CamelNettyBindingTypeImpl implements CamelNettyUdpBindingType {
     /**
-     * The default value of the '{@link #getBroadcast() <em>Broadcast</em>}' attribute.
+     * The default value of the '{@link #isBroadcast() <em>Broadcast</em>}' attribute.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @see #getBroadcast()
+     * @see #isBroadcast()
      * @generated
      * @ordered
      */
-    protected static final Boolean BROADCAST_EDEFAULT = null;
+    protected static final boolean BROADCAST_EDEFAULT = false;
 
     /**
-     * The cached value of the '{@link #getBroadcast() <em>Broadcast</em>}' attribute.
+     * The cached value of the '{@link #isBroadcast() <em>Broadcast</em>}' attribute.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @see #getBroadcast()
+     * @see #isBroadcast()
      * @generated
      * @ordered
      */
-    protected Boolean broadcast = BROADCAST_EDEFAULT;
+    protected boolean broadcast = BROADCAST_EDEFAULT;
 
     /**
      * This is true if the Broadcast attribute has been set.
@@ -78,7 +78,7 @@ public class CamelNettyUdpBindingTypeImpl extends CamelNettyBindingTypeImpl impl
      * <!-- end-user-doc -->
      * @generated
      */
-    public Boolean getBroadcast() {
+    public boolean isBroadcast() {
         return broadcast;
     }
 
@@ -87,8 +87,8 @@ public class CamelNettyUdpBindingTypeImpl extends CamelNettyBindingTypeImpl impl
      * <!-- end-user-doc -->
      * @generated
      */
-    public void setBroadcast(Boolean newBroadcast) {
-        Boolean oldBroadcast = broadcast;
+    public void setBroadcast(boolean newBroadcast) {
+        boolean oldBroadcast = broadcast;
         broadcast = newBroadcast;
         boolean oldBroadcastESet = broadcastESet;
         broadcastESet = true;
@@ -102,7 +102,7 @@ public class CamelNettyUdpBindingTypeImpl extends CamelNettyBindingTypeImpl impl
      * @generated
      */
     public void unsetBroadcast() {
-        Boolean oldBroadcast = broadcast;
+        boolean oldBroadcast = broadcast;
         boolean oldBroadcastESet = broadcastESet;
         broadcast = BROADCAST_EDEFAULT;
         broadcastESet = false;
@@ -128,7 +128,7 @@ public class CamelNettyUdpBindingTypeImpl extends CamelNettyBindingTypeImpl impl
     public Object eGet(int featureID, boolean resolve, boolean coreType) {
         switch (featureID) {
             case NettyPackage.CAMEL_NETTY_UDP_BINDING_TYPE__BROADCAST:
-                return getBroadcast();
+                return isBroadcast();
         }
         return super.eGet(featureID, resolve, coreType);
     }

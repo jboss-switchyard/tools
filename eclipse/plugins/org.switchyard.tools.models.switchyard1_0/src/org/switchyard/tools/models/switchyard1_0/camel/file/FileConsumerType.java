@@ -2,7 +2,6 @@
  */
 package org.switchyard.tools.models.switchyard1_0.camel.file;
 
-import java.math.BigInteger;
 import org.eclipse.emf.ecore.EObject;
 
 /**
@@ -15,19 +14,19 @@ import org.eclipse.emf.ecore.EObject;
  * <ul>
  *   <li>{@link org.switchyard.tools.models.switchyard1_0.camel.file.FileConsumerType#getInitialDelay <em>Initial Delay</em>}</li>
  *   <li>{@link org.switchyard.tools.models.switchyard1_0.camel.file.FileConsumerType#getDelay <em>Delay</em>}</li>
- *   <li>{@link org.switchyard.tools.models.switchyard1_0.camel.file.FileConsumerType#getUseFixedDelay <em>Use Fixed Delay</em>}</li>
- *   <li>{@link org.switchyard.tools.models.switchyard1_0.camel.file.FileConsumerType#getSendEmptyMessageWhenIdle <em>Send Empty Message When Idle</em>}</li>
+ *   <li>{@link org.switchyard.tools.models.switchyard1_0.camel.file.FileConsumerType#isUseFixedDelay <em>Use Fixed Delay</em>}</li>
+ *   <li>{@link org.switchyard.tools.models.switchyard1_0.camel.file.FileConsumerType#isSendEmptyMessageWhenIdle <em>Send Empty Message When Idle</em>}</li>
  *   <li>{@link org.switchyard.tools.models.switchyard1_0.camel.file.FileConsumerType#getTimeUnit <em>Time Unit</em>}</li>
  *   <li>{@link org.switchyard.tools.models.switchyard1_0.camel.file.FileConsumerType#getMaxMessagesPerPoll <em>Max Messages Per Poll</em>}</li>
- *   <li>{@link org.switchyard.tools.models.switchyard1_0.camel.file.FileConsumerType#getDelete <em>Delete</em>}</li>
- *   <li>{@link org.switchyard.tools.models.switchyard1_0.camel.file.FileConsumerType#getRecursive <em>Recursive</em>}</li>
- *   <li>{@link org.switchyard.tools.models.switchyard1_0.camel.file.FileConsumerType#getNoop <em>Noop</em>}</li>
+ *   <li>{@link org.switchyard.tools.models.switchyard1_0.camel.file.FileConsumerType#isDelete <em>Delete</em>}</li>
+ *   <li>{@link org.switchyard.tools.models.switchyard1_0.camel.file.FileConsumerType#isRecursive <em>Recursive</em>}</li>
+ *   <li>{@link org.switchyard.tools.models.switchyard1_0.camel.file.FileConsumerType#isNoop <em>Noop</em>}</li>
  *   <li>{@link org.switchyard.tools.models.switchyard1_0.camel.file.FileConsumerType#getPreMove <em>Pre Move</em>}</li>
  *   <li>{@link org.switchyard.tools.models.switchyard1_0.camel.file.FileConsumerType#getMove <em>Move</em>}</li>
  *   <li>{@link org.switchyard.tools.models.switchyard1_0.camel.file.FileConsumerType#getMoveFailed <em>Move Failed</em>}</li>
  *   <li>{@link org.switchyard.tools.models.switchyard1_0.camel.file.FileConsumerType#getInclude <em>Include</em>}</li>
  *   <li>{@link org.switchyard.tools.models.switchyard1_0.camel.file.FileConsumerType#getExclude <em>Exclude</em>}</li>
- *   <li>{@link org.switchyard.tools.models.switchyard1_0.camel.file.FileConsumerType#getIdempotent <em>Idempotent</em>}</li>
+ *   <li>{@link org.switchyard.tools.models.switchyard1_0.camel.file.FileConsumerType#isIdempotent <em>Idempotent</em>}</li>
  *   <li>{@link org.switchyard.tools.models.switchyard1_0.camel.file.FileConsumerType#getIdempotentRepository <em>Idempotent Repository</em>}</li>
  *   <li>{@link org.switchyard.tools.models.switchyard1_0.camel.file.FileConsumerType#getInProgressRepository <em>In Progress Repository</em>}</li>
  *   <li>{@link org.switchyard.tools.models.switchyard1_0.camel.file.FileConsumerType#getFilter <em>Filter</em>}</li>
@@ -38,8 +37,8 @@ import org.eclipse.emf.ecore.EObject;
  *   <li>{@link org.switchyard.tools.models.switchyard1_0.camel.file.FileConsumerType#getReadLockCheckInterval <em>Read Lock Check Interval</em>}</li>
  *   <li>{@link org.switchyard.tools.models.switchyard1_0.camel.file.FileConsumerType#getExclusiveReadLockStrategy <em>Exclusive Read Lock Strategy</em>}</li>
  *   <li>{@link org.switchyard.tools.models.switchyard1_0.camel.file.FileConsumerType#getProcessStrategy <em>Process Strategy</em>}</li>
- *   <li>{@link org.switchyard.tools.models.switchyard1_0.camel.file.FileConsumerType#getStartingDirectoryMustExist <em>Starting Directory Must Exist</em>}</li>
- *   <li>{@link org.switchyard.tools.models.switchyard1_0.camel.file.FileConsumerType#getDirectoryMustExist <em>Directory Must Exist</em>}</li>
+ *   <li>{@link org.switchyard.tools.models.switchyard1_0.camel.file.FileConsumerType#isStartingDirectoryMustExist <em>Starting Directory Must Exist</em>}</li>
+ *   <li>{@link org.switchyard.tools.models.switchyard1_0.camel.file.FileConsumerType#isDirectoryMustExist <em>Directory Must Exist</em>}</li>
  *   <li>{@link org.switchyard.tools.models.switchyard1_0.camel.file.FileConsumerType#getDoneFileName <em>Done File Name</em>}</li>
  * </ul>
  * </p>
@@ -52,6 +51,7 @@ public interface FileConsumerType extends EObject {
 
     /**
      * Returns the value of the '<em><b>Initial Delay</b></em>' attribute.
+     * The default value is <code>"1000"</code>.
      * <!-- begin-user-doc -->
      * <p>
      * If the meaning of the '<em>Initial Delay</em>' attribute isn't clear,
@@ -59,26 +59,54 @@ public interface FileConsumerType extends EObject {
      * </p>
      * <!-- end-user-doc -->
      * @return the value of the '<em>Initial Delay</em>' attribute.
-     * @see #setInitialDelay(Integer)
+     * @see #isSetInitialDelay()
+     * @see #unsetInitialDelay()
+     * @see #setInitialDelay(int)
      * @see org.switchyard.tools.models.switchyard1_0.camel.file.FilePackage#getFileConsumerType_InitialDelay()
-     * @model dataType="org.eclipse.emf.ecore.xml.type.IntObject"
+     * @model default="1000" unsettable="true" dataType="org.eclipse.emf.ecore.xml.type.Int"
      *        extendedMetaData="kind='element' name='initialDelay' namespace='##targetNamespace'"
      * @generated
      */
-    Integer getInitialDelay();
+    int getInitialDelay();
 
     /**
      * Sets the value of the '{@link org.switchyard.tools.models.switchyard1_0.camel.file.FileConsumerType#getInitialDelay <em>Initial Delay</em>}' attribute.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @param value the new value of the '<em>Initial Delay</em>' attribute.
+     * @see #isSetInitialDelay()
+     * @see #unsetInitialDelay()
      * @see #getInitialDelay()
      * @generated
      */
-    void setInitialDelay(Integer value);
+    void setInitialDelay(int value);
+
+    /**
+     * Unsets the value of the '{@link org.switchyard.tools.models.switchyard1_0.camel.file.FileConsumerType#getInitialDelay <em>Initial Delay</em>}' attribute.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @see #isSetInitialDelay()
+     * @see #getInitialDelay()
+     * @see #setInitialDelay(int)
+     * @generated
+     */
+    void unsetInitialDelay();
+
+    /**
+     * Returns whether the value of the '{@link org.switchyard.tools.models.switchyard1_0.camel.file.FileConsumerType#getInitialDelay <em>Initial Delay</em>}' attribute is set.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @return whether the value of the '<em>Initial Delay</em>' attribute is set.
+     * @see #unsetInitialDelay()
+     * @see #getInitialDelay()
+     * @see #setInitialDelay(int)
+     * @generated
+     */
+    boolean isSetInitialDelay();
 
     /**
      * Returns the value of the '<em><b>Delay</b></em>' attribute.
+     * The default value is <code>"500"</code>.
      * <!-- begin-user-doc -->
      * <p>
      * If the meaning of the '<em>Delay</em>' attribute isn't clear,
@@ -86,26 +114,54 @@ public interface FileConsumerType extends EObject {
      * </p>
      * <!-- end-user-doc -->
      * @return the value of the '<em>Delay</em>' attribute.
-     * @see #setDelay(Integer)
+     * @see #isSetDelay()
+     * @see #unsetDelay()
+     * @see #setDelay(int)
      * @see org.switchyard.tools.models.switchyard1_0.camel.file.FilePackage#getFileConsumerType_Delay()
-     * @model dataType="org.eclipse.emf.ecore.xml.type.IntObject"
+     * @model default="500" unsettable="true" dataType="org.eclipse.emf.ecore.xml.type.Int"
      *        extendedMetaData="kind='element' name='delay' namespace='##targetNamespace'"
      * @generated
      */
-    Integer getDelay();
+    int getDelay();
 
     /**
      * Sets the value of the '{@link org.switchyard.tools.models.switchyard1_0.camel.file.FileConsumerType#getDelay <em>Delay</em>}' attribute.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @param value the new value of the '<em>Delay</em>' attribute.
+     * @see #isSetDelay()
+     * @see #unsetDelay()
      * @see #getDelay()
      * @generated
      */
-    void setDelay(Integer value);
+    void setDelay(int value);
+
+    /**
+     * Unsets the value of the '{@link org.switchyard.tools.models.switchyard1_0.camel.file.FileConsumerType#getDelay <em>Delay</em>}' attribute.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @see #isSetDelay()
+     * @see #getDelay()
+     * @see #setDelay(int)
+     * @generated
+     */
+    void unsetDelay();
+
+    /**
+     * Returns whether the value of the '{@link org.switchyard.tools.models.switchyard1_0.camel.file.FileConsumerType#getDelay <em>Delay</em>}' attribute is set.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @return whether the value of the '<em>Delay</em>' attribute is set.
+     * @see #unsetDelay()
+     * @see #getDelay()
+     * @see #setDelay(int)
+     * @generated
+     */
+    boolean isSetDelay();
 
     /**
      * Returns the value of the '<em><b>Use Fixed Delay</b></em>' attribute.
+     * The default value is <code>"true"</code>.
      * <!-- begin-user-doc -->
      * <p>
      * If the meaning of the '<em>Use Fixed Delay</em>' attribute isn't clear,
@@ -115,51 +171,52 @@ public interface FileConsumerType extends EObject {
      * @return the value of the '<em>Use Fixed Delay</em>' attribute.
      * @see #isSetUseFixedDelay()
      * @see #unsetUseFixedDelay()
-     * @see #setUseFixedDelay(Boolean)
+     * @see #setUseFixedDelay(boolean)
      * @see org.switchyard.tools.models.switchyard1_0.camel.file.FilePackage#getFileConsumerType_UseFixedDelay()
-     * @model unsettable="true" dataType="org.eclipse.emf.ecore.xml.type.BooleanObject"
+     * @model default="true" unsettable="true" dataType="org.eclipse.emf.ecore.xml.type.Boolean"
      *        extendedMetaData="kind='element' name='useFixedDelay' namespace='##targetNamespace'"
      * @generated
      */
-    Boolean getUseFixedDelay();
+    boolean isUseFixedDelay();
 
     /**
-     * Sets the value of the '{@link org.switchyard.tools.models.switchyard1_0.camel.file.FileConsumerType#getUseFixedDelay <em>Use Fixed Delay</em>}' attribute.
+     * Sets the value of the '{@link org.switchyard.tools.models.switchyard1_0.camel.file.FileConsumerType#isUseFixedDelay <em>Use Fixed Delay</em>}' attribute.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @param value the new value of the '<em>Use Fixed Delay</em>' attribute.
      * @see #isSetUseFixedDelay()
      * @see #unsetUseFixedDelay()
-     * @see #getUseFixedDelay()
+     * @see #isUseFixedDelay()
      * @generated
      */
-    void setUseFixedDelay(Boolean value);
+    void setUseFixedDelay(boolean value);
 
     /**
-     * Unsets the value of the '{@link org.switchyard.tools.models.switchyard1_0.camel.file.FileConsumerType#getUseFixedDelay <em>Use Fixed Delay</em>}' attribute.
+     * Unsets the value of the '{@link org.switchyard.tools.models.switchyard1_0.camel.file.FileConsumerType#isUseFixedDelay <em>Use Fixed Delay</em>}' attribute.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @see #isSetUseFixedDelay()
-     * @see #getUseFixedDelay()
-     * @see #setUseFixedDelay(Boolean)
+     * @see #isUseFixedDelay()
+     * @see #setUseFixedDelay(boolean)
      * @generated
      */
     void unsetUseFixedDelay();
 
     /**
-     * Returns whether the value of the '{@link org.switchyard.tools.models.switchyard1_0.camel.file.FileConsumerType#getUseFixedDelay <em>Use Fixed Delay</em>}' attribute is set.
+     * Returns whether the value of the '{@link org.switchyard.tools.models.switchyard1_0.camel.file.FileConsumerType#isUseFixedDelay <em>Use Fixed Delay</em>}' attribute is set.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @return whether the value of the '<em>Use Fixed Delay</em>' attribute is set.
      * @see #unsetUseFixedDelay()
-     * @see #getUseFixedDelay()
-     * @see #setUseFixedDelay(Boolean)
+     * @see #isUseFixedDelay()
+     * @see #setUseFixedDelay(boolean)
      * @generated
      */
     boolean isSetUseFixedDelay();
 
     /**
      * Returns the value of the '<em><b>Send Empty Message When Idle</b></em>' attribute.
+     * The default value is <code>"false"</code>.
      * <!-- begin-user-doc -->
      * <p>
      * If the meaning of the '<em>Send Empty Message When Idle</em>' attribute isn't clear,
@@ -169,51 +226,52 @@ public interface FileConsumerType extends EObject {
      * @return the value of the '<em>Send Empty Message When Idle</em>' attribute.
      * @see #isSetSendEmptyMessageWhenIdle()
      * @see #unsetSendEmptyMessageWhenIdle()
-     * @see #setSendEmptyMessageWhenIdle(Boolean)
+     * @see #setSendEmptyMessageWhenIdle(boolean)
      * @see org.switchyard.tools.models.switchyard1_0.camel.file.FilePackage#getFileConsumerType_SendEmptyMessageWhenIdle()
-     * @model unsettable="true" dataType="org.eclipse.emf.ecore.xml.type.BooleanObject"
+     * @model default="false" unsettable="true" dataType="org.eclipse.emf.ecore.xml.type.Boolean"
      *        extendedMetaData="kind='element' name='sendEmptyMessageWhenIdle' namespace='##targetNamespace'"
      * @generated
      */
-    Boolean getSendEmptyMessageWhenIdle();
+    boolean isSendEmptyMessageWhenIdle();
 
     /**
-     * Sets the value of the '{@link org.switchyard.tools.models.switchyard1_0.camel.file.FileConsumerType#getSendEmptyMessageWhenIdle <em>Send Empty Message When Idle</em>}' attribute.
+     * Sets the value of the '{@link org.switchyard.tools.models.switchyard1_0.camel.file.FileConsumerType#isSendEmptyMessageWhenIdle <em>Send Empty Message When Idle</em>}' attribute.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @param value the new value of the '<em>Send Empty Message When Idle</em>' attribute.
      * @see #isSetSendEmptyMessageWhenIdle()
      * @see #unsetSendEmptyMessageWhenIdle()
-     * @see #getSendEmptyMessageWhenIdle()
+     * @see #isSendEmptyMessageWhenIdle()
      * @generated
      */
-    void setSendEmptyMessageWhenIdle(Boolean value);
+    void setSendEmptyMessageWhenIdle(boolean value);
 
     /**
-     * Unsets the value of the '{@link org.switchyard.tools.models.switchyard1_0.camel.file.FileConsumerType#getSendEmptyMessageWhenIdle <em>Send Empty Message When Idle</em>}' attribute.
+     * Unsets the value of the '{@link org.switchyard.tools.models.switchyard1_0.camel.file.FileConsumerType#isSendEmptyMessageWhenIdle <em>Send Empty Message When Idle</em>}' attribute.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @see #isSetSendEmptyMessageWhenIdle()
-     * @see #getSendEmptyMessageWhenIdle()
-     * @see #setSendEmptyMessageWhenIdle(Boolean)
+     * @see #isSendEmptyMessageWhenIdle()
+     * @see #setSendEmptyMessageWhenIdle(boolean)
      * @generated
      */
     void unsetSendEmptyMessageWhenIdle();
 
     /**
-     * Returns whether the value of the '{@link org.switchyard.tools.models.switchyard1_0.camel.file.FileConsumerType#getSendEmptyMessageWhenIdle <em>Send Empty Message When Idle</em>}' attribute is set.
+     * Returns whether the value of the '{@link org.switchyard.tools.models.switchyard1_0.camel.file.FileConsumerType#isSendEmptyMessageWhenIdle <em>Send Empty Message When Idle</em>}' attribute is set.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @return whether the value of the '<em>Send Empty Message When Idle</em>' attribute is set.
      * @see #unsetSendEmptyMessageWhenIdle()
-     * @see #getSendEmptyMessageWhenIdle()
-     * @see #setSendEmptyMessageWhenIdle(Boolean)
+     * @see #isSendEmptyMessageWhenIdle()
+     * @see #setSendEmptyMessageWhenIdle(boolean)
      * @generated
      */
     boolean isSetSendEmptyMessageWhenIdle();
 
     /**
      * Returns the value of the '<em><b>Time Unit</b></em>' attribute.
+     * The default value is <code>"MILLISECONDS"</code>.
      * The literals are from the enumeration {@link org.switchyard.tools.models.switchyard1_0.camel.file.TimeUnit}.
      * <!-- begin-user-doc -->
      * <p>
@@ -227,7 +285,7 @@ public interface FileConsumerType extends EObject {
      * @see #unsetTimeUnit()
      * @see #setTimeUnit(TimeUnit)
      * @see org.switchyard.tools.models.switchyard1_0.camel.file.FilePackage#getFileConsumerType_TimeUnit()
-     * @model unsettable="true"
+     * @model default="MILLISECONDS" unsettable="true"
      *        extendedMetaData="kind='element' name='timeUnit' namespace='##targetNamespace'"
      * @generated
      */
@@ -278,26 +336,54 @@ public interface FileConsumerType extends EObject {
      * </p>
      * <!-- end-user-doc -->
      * @return the value of the '<em>Max Messages Per Poll</em>' attribute.
-     * @see #setMaxMessagesPerPoll(Integer)
+     * @see #isSetMaxMessagesPerPoll()
+     * @see #unsetMaxMessagesPerPoll()
+     * @see #setMaxMessagesPerPoll(int)
      * @see org.switchyard.tools.models.switchyard1_0.camel.file.FilePackage#getFileConsumerType_MaxMessagesPerPoll()
-     * @model dataType="org.eclipse.emf.ecore.xml.type.IntObject"
+     * @model unsettable="true" dataType="org.eclipse.emf.ecore.xml.type.Int"
      *        extendedMetaData="kind='element' name='maxMessagesPerPoll' namespace='##targetNamespace'"
      * @generated
      */
-    Integer getMaxMessagesPerPoll();
+    int getMaxMessagesPerPoll();
 
     /**
      * Sets the value of the '{@link org.switchyard.tools.models.switchyard1_0.camel.file.FileConsumerType#getMaxMessagesPerPoll <em>Max Messages Per Poll</em>}' attribute.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @param value the new value of the '<em>Max Messages Per Poll</em>' attribute.
+     * @see #isSetMaxMessagesPerPoll()
+     * @see #unsetMaxMessagesPerPoll()
      * @see #getMaxMessagesPerPoll()
      * @generated
      */
-    void setMaxMessagesPerPoll(Integer value);
+    void setMaxMessagesPerPoll(int value);
+
+    /**
+     * Unsets the value of the '{@link org.switchyard.tools.models.switchyard1_0.camel.file.FileConsumerType#getMaxMessagesPerPoll <em>Max Messages Per Poll</em>}' attribute.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @see #isSetMaxMessagesPerPoll()
+     * @see #getMaxMessagesPerPoll()
+     * @see #setMaxMessagesPerPoll(int)
+     * @generated
+     */
+    void unsetMaxMessagesPerPoll();
+
+    /**
+     * Returns whether the value of the '{@link org.switchyard.tools.models.switchyard1_0.camel.file.FileConsumerType#getMaxMessagesPerPoll <em>Max Messages Per Poll</em>}' attribute is set.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @return whether the value of the '<em>Max Messages Per Poll</em>' attribute is set.
+     * @see #unsetMaxMessagesPerPoll()
+     * @see #getMaxMessagesPerPoll()
+     * @see #setMaxMessagesPerPoll(int)
+     * @generated
+     */
+    boolean isSetMaxMessagesPerPoll();
 
     /**
      * Returns the value of the '<em><b>Delete</b></em>' attribute.
+     * The default value is <code>"false"</code>.
      * <!-- begin-user-doc -->
      * <p>
      * If the meaning of the '<em>Delete</em>' attribute isn't clear,
@@ -307,51 +393,52 @@ public interface FileConsumerType extends EObject {
      * @return the value of the '<em>Delete</em>' attribute.
      * @see #isSetDelete()
      * @see #unsetDelete()
-     * @see #setDelete(Boolean)
+     * @see #setDelete(boolean)
      * @see org.switchyard.tools.models.switchyard1_0.camel.file.FilePackage#getFileConsumerType_Delete()
-     * @model unsettable="true" dataType="org.eclipse.emf.ecore.xml.type.BooleanObject"
+     * @model default="false" unsettable="true" dataType="org.eclipse.emf.ecore.xml.type.Boolean"
      *        extendedMetaData="kind='element' name='delete' namespace='##targetNamespace'"
      * @generated
      */
-    Boolean getDelete();
+    boolean isDelete();
 
     /**
-     * Sets the value of the '{@link org.switchyard.tools.models.switchyard1_0.camel.file.FileConsumerType#getDelete <em>Delete</em>}' attribute.
+     * Sets the value of the '{@link org.switchyard.tools.models.switchyard1_0.camel.file.FileConsumerType#isDelete <em>Delete</em>}' attribute.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @param value the new value of the '<em>Delete</em>' attribute.
      * @see #isSetDelete()
      * @see #unsetDelete()
-     * @see #getDelete()
+     * @see #isDelete()
      * @generated
      */
-    void setDelete(Boolean value);
+    void setDelete(boolean value);
 
     /**
-     * Unsets the value of the '{@link org.switchyard.tools.models.switchyard1_0.camel.file.FileConsumerType#getDelete <em>Delete</em>}' attribute.
+     * Unsets the value of the '{@link org.switchyard.tools.models.switchyard1_0.camel.file.FileConsumerType#isDelete <em>Delete</em>}' attribute.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @see #isSetDelete()
-     * @see #getDelete()
-     * @see #setDelete(Boolean)
+     * @see #isDelete()
+     * @see #setDelete(boolean)
      * @generated
      */
     void unsetDelete();
 
     /**
-     * Returns whether the value of the '{@link org.switchyard.tools.models.switchyard1_0.camel.file.FileConsumerType#getDelete <em>Delete</em>}' attribute is set.
+     * Returns whether the value of the '{@link org.switchyard.tools.models.switchyard1_0.camel.file.FileConsumerType#isDelete <em>Delete</em>}' attribute is set.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @return whether the value of the '<em>Delete</em>' attribute is set.
      * @see #unsetDelete()
-     * @see #getDelete()
-     * @see #setDelete(Boolean)
+     * @see #isDelete()
+     * @see #setDelete(boolean)
      * @generated
      */
     boolean isSetDelete();
 
     /**
      * Returns the value of the '<em><b>Recursive</b></em>' attribute.
+     * The default value is <code>"false"</code>.
      * <!-- begin-user-doc -->
      * <p>
      * If the meaning of the '<em>Recursive</em>' attribute isn't clear,
@@ -361,51 +448,52 @@ public interface FileConsumerType extends EObject {
      * @return the value of the '<em>Recursive</em>' attribute.
      * @see #isSetRecursive()
      * @see #unsetRecursive()
-     * @see #setRecursive(Boolean)
+     * @see #setRecursive(boolean)
      * @see org.switchyard.tools.models.switchyard1_0.camel.file.FilePackage#getFileConsumerType_Recursive()
-     * @model unsettable="true" dataType="org.eclipse.emf.ecore.xml.type.BooleanObject"
+     * @model default="false" unsettable="true" dataType="org.eclipse.emf.ecore.xml.type.Boolean"
      *        extendedMetaData="kind='element' name='recursive' namespace='##targetNamespace'"
      * @generated
      */
-    Boolean getRecursive();
+    boolean isRecursive();
 
     /**
-     * Sets the value of the '{@link org.switchyard.tools.models.switchyard1_0.camel.file.FileConsumerType#getRecursive <em>Recursive</em>}' attribute.
+     * Sets the value of the '{@link org.switchyard.tools.models.switchyard1_0.camel.file.FileConsumerType#isRecursive <em>Recursive</em>}' attribute.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @param value the new value of the '<em>Recursive</em>' attribute.
      * @see #isSetRecursive()
      * @see #unsetRecursive()
-     * @see #getRecursive()
+     * @see #isRecursive()
      * @generated
      */
-    void setRecursive(Boolean value);
+    void setRecursive(boolean value);
 
     /**
-     * Unsets the value of the '{@link org.switchyard.tools.models.switchyard1_0.camel.file.FileConsumerType#getRecursive <em>Recursive</em>}' attribute.
+     * Unsets the value of the '{@link org.switchyard.tools.models.switchyard1_0.camel.file.FileConsumerType#isRecursive <em>Recursive</em>}' attribute.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @see #isSetRecursive()
-     * @see #getRecursive()
-     * @see #setRecursive(Boolean)
+     * @see #isRecursive()
+     * @see #setRecursive(boolean)
      * @generated
      */
     void unsetRecursive();
 
     /**
-     * Returns whether the value of the '{@link org.switchyard.tools.models.switchyard1_0.camel.file.FileConsumerType#getRecursive <em>Recursive</em>}' attribute is set.
+     * Returns whether the value of the '{@link org.switchyard.tools.models.switchyard1_0.camel.file.FileConsumerType#isRecursive <em>Recursive</em>}' attribute is set.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @return whether the value of the '<em>Recursive</em>' attribute is set.
      * @see #unsetRecursive()
-     * @see #getRecursive()
-     * @see #setRecursive(Boolean)
+     * @see #isRecursive()
+     * @see #setRecursive(boolean)
      * @generated
      */
     boolean isSetRecursive();
 
     /**
      * Returns the value of the '<em><b>Noop</b></em>' attribute.
+     * The default value is <code>"false"</code>.
      * <!-- begin-user-doc -->
      * <p>
      * If the meaning of the '<em>Noop</em>' attribute isn't clear,
@@ -415,45 +503,45 @@ public interface FileConsumerType extends EObject {
      * @return the value of the '<em>Noop</em>' attribute.
      * @see #isSetNoop()
      * @see #unsetNoop()
-     * @see #setNoop(Boolean)
+     * @see #setNoop(boolean)
      * @see org.switchyard.tools.models.switchyard1_0.camel.file.FilePackage#getFileConsumerType_Noop()
-     * @model unsettable="true" dataType="org.eclipse.emf.ecore.xml.type.BooleanObject"
+     * @model default="false" unsettable="true" dataType="org.eclipse.emf.ecore.xml.type.Boolean"
      *        extendedMetaData="kind='element' name='noop' namespace='##targetNamespace'"
      * @generated
      */
-    Boolean getNoop();
+    boolean isNoop();
 
     /**
-     * Sets the value of the '{@link org.switchyard.tools.models.switchyard1_0.camel.file.FileConsumerType#getNoop <em>Noop</em>}' attribute.
+     * Sets the value of the '{@link org.switchyard.tools.models.switchyard1_0.camel.file.FileConsumerType#isNoop <em>Noop</em>}' attribute.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @param value the new value of the '<em>Noop</em>' attribute.
      * @see #isSetNoop()
      * @see #unsetNoop()
-     * @see #getNoop()
+     * @see #isNoop()
      * @generated
      */
-    void setNoop(Boolean value);
+    void setNoop(boolean value);
 
     /**
-     * Unsets the value of the '{@link org.switchyard.tools.models.switchyard1_0.camel.file.FileConsumerType#getNoop <em>Noop</em>}' attribute.
+     * Unsets the value of the '{@link org.switchyard.tools.models.switchyard1_0.camel.file.FileConsumerType#isNoop <em>Noop</em>}' attribute.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @see #isSetNoop()
-     * @see #getNoop()
-     * @see #setNoop(Boolean)
+     * @see #isNoop()
+     * @see #setNoop(boolean)
      * @generated
      */
     void unsetNoop();
 
     /**
-     * Returns whether the value of the '{@link org.switchyard.tools.models.switchyard1_0.camel.file.FileConsumerType#getNoop <em>Noop</em>}' attribute is set.
+     * Returns whether the value of the '{@link org.switchyard.tools.models.switchyard1_0.camel.file.FileConsumerType#isNoop <em>Noop</em>}' attribute is set.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @return whether the value of the '<em>Noop</em>' attribute is set.
      * @see #unsetNoop()
-     * @see #getNoop()
-     * @see #setNoop(Boolean)
+     * @see #isNoop()
+     * @see #setNoop(boolean)
      * @generated
      */
     boolean isSetNoop();
@@ -487,6 +575,7 @@ public interface FileConsumerType extends EObject {
 
     /**
      * Returns the value of the '<em><b>Move</b></em>' attribute.
+     * The default value is <code>""</code>.
      * <!-- begin-user-doc -->
      * <p>
      * If the meaning of the '<em>Move</em>' attribute isn't clear,
@@ -496,7 +585,7 @@ public interface FileConsumerType extends EObject {
      * @return the value of the '<em>Move</em>' attribute.
      * @see #setMove(String)
      * @see org.switchyard.tools.models.switchyard1_0.camel.file.FilePackage#getFileConsumerType_Move()
-     * @model dataType="org.eclipse.emf.ecore.xml.type.String"
+     * @model default="" dataType="org.eclipse.emf.ecore.xml.type.String"
      *        extendedMetaData="kind='element' name='move' namespace='##targetNamespace'"
      * @generated
      */
@@ -548,11 +637,9 @@ public interface FileConsumerType extends EObject {
      * </p>
      * <!-- end-user-doc -->
      * @return the value of the '<em>Include</em>' attribute.
-     * @see #isSetInclude()
-     * @see #unsetInclude()
      * @see #setInclude(String)
      * @see org.switchyard.tools.models.switchyard1_0.camel.file.FilePackage#getFileConsumerType_Include()
-     * @model unsettable="true" dataType="org.eclipse.emf.ecore.xml.type.String"
+     * @model dataType="org.eclipse.emf.ecore.xml.type.String"
      *        extendedMetaData="kind='element' name='include' namespace='##targetNamespace'"
      * @generated
      */
@@ -563,35 +650,10 @@ public interface FileConsumerType extends EObject {
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @param value the new value of the '<em>Include</em>' attribute.
-     * @see #isSetInclude()
-     * @see #unsetInclude()
      * @see #getInclude()
      * @generated
      */
     void setInclude(String value);
-
-    /**
-     * Unsets the value of the '{@link org.switchyard.tools.models.switchyard1_0.camel.file.FileConsumerType#getInclude <em>Include</em>}' attribute.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @see #isSetInclude()
-     * @see #getInclude()
-     * @see #setInclude(String)
-     * @generated
-     */
-    void unsetInclude();
-
-    /**
-     * Returns whether the value of the '{@link org.switchyard.tools.models.switchyard1_0.camel.file.FileConsumerType#getInclude <em>Include</em>}' attribute is set.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @return whether the value of the '<em>Include</em>' attribute is set.
-     * @see #unsetInclude()
-     * @see #getInclude()
-     * @see #setInclude(String)
-     * @generated
-     */
-    boolean isSetInclude();
 
     /**
      * Returns the value of the '<em><b>Exclude</b></em>' attribute.
@@ -602,11 +664,9 @@ public interface FileConsumerType extends EObject {
      * </p>
      * <!-- end-user-doc -->
      * @return the value of the '<em>Exclude</em>' attribute.
-     * @see #isSetExclude()
-     * @see #unsetExclude()
      * @see #setExclude(String)
      * @see org.switchyard.tools.models.switchyard1_0.camel.file.FilePackage#getFileConsumerType_Exclude()
-     * @model unsettable="true" dataType="org.eclipse.emf.ecore.xml.type.String"
+     * @model dataType="org.eclipse.emf.ecore.xml.type.String"
      *        extendedMetaData="kind='element' name='exclude' namespace='##targetNamespace'"
      * @generated
      */
@@ -617,38 +677,14 @@ public interface FileConsumerType extends EObject {
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @param value the new value of the '<em>Exclude</em>' attribute.
-     * @see #isSetExclude()
-     * @see #unsetExclude()
      * @see #getExclude()
      * @generated
      */
     void setExclude(String value);
 
     /**
-     * Unsets the value of the '{@link org.switchyard.tools.models.switchyard1_0.camel.file.FileConsumerType#getExclude <em>Exclude</em>}' attribute.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @see #isSetExclude()
-     * @see #getExclude()
-     * @see #setExclude(String)
-     * @generated
-     */
-    void unsetExclude();
-
-    /**
-     * Returns whether the value of the '{@link org.switchyard.tools.models.switchyard1_0.camel.file.FileConsumerType#getExclude <em>Exclude</em>}' attribute is set.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @return whether the value of the '<em>Exclude</em>' attribute is set.
-     * @see #unsetExclude()
-     * @see #getExclude()
-     * @see #setExclude(String)
-     * @generated
-     */
-    boolean isSetExclude();
-
-    /**
      * Returns the value of the '<em><b>Idempotent</b></em>' attribute.
+     * The default value is <code>"false"</code>.
      * <!-- begin-user-doc -->
      * <p>
      * If the meaning of the '<em>Idempotent</em>' attribute isn't clear,
@@ -658,45 +694,45 @@ public interface FileConsumerType extends EObject {
      * @return the value of the '<em>Idempotent</em>' attribute.
      * @see #isSetIdempotent()
      * @see #unsetIdempotent()
-     * @see #setIdempotent(Boolean)
+     * @see #setIdempotent(boolean)
      * @see org.switchyard.tools.models.switchyard1_0.camel.file.FilePackage#getFileConsumerType_Idempotent()
-     * @model unsettable="true" dataType="org.eclipse.emf.ecore.xml.type.BooleanObject"
+     * @model default="false" unsettable="true" dataType="org.eclipse.emf.ecore.xml.type.Boolean"
      *        extendedMetaData="kind='element' name='idempotent' namespace='##targetNamespace'"
      * @generated
      */
-    Boolean getIdempotent();
+    boolean isIdempotent();
 
     /**
-     * Sets the value of the '{@link org.switchyard.tools.models.switchyard1_0.camel.file.FileConsumerType#getIdempotent <em>Idempotent</em>}' attribute.
+     * Sets the value of the '{@link org.switchyard.tools.models.switchyard1_0.camel.file.FileConsumerType#isIdempotent <em>Idempotent</em>}' attribute.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @param value the new value of the '<em>Idempotent</em>' attribute.
      * @see #isSetIdempotent()
      * @see #unsetIdempotent()
-     * @see #getIdempotent()
+     * @see #isIdempotent()
      * @generated
      */
-    void setIdempotent(Boolean value);
+    void setIdempotent(boolean value);
 
     /**
-     * Unsets the value of the '{@link org.switchyard.tools.models.switchyard1_0.camel.file.FileConsumerType#getIdempotent <em>Idempotent</em>}' attribute.
+     * Unsets the value of the '{@link org.switchyard.tools.models.switchyard1_0.camel.file.FileConsumerType#isIdempotent <em>Idempotent</em>}' attribute.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @see #isSetIdempotent()
-     * @see #getIdempotent()
-     * @see #setIdempotent(Boolean)
+     * @see #isIdempotent()
+     * @see #setIdempotent(boolean)
      * @generated
      */
     void unsetIdempotent();
 
     /**
-     * Returns whether the value of the '{@link org.switchyard.tools.models.switchyard1_0.camel.file.FileConsumerType#getIdempotent <em>Idempotent</em>}' attribute is set.
+     * Returns whether the value of the '{@link org.switchyard.tools.models.switchyard1_0.camel.file.FileConsumerType#isIdempotent <em>Idempotent</em>}' attribute is set.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @return whether the value of the '<em>Idempotent</em>' attribute is set.
      * @see #unsetIdempotent()
-     * @see #getIdempotent()
-     * @see #setIdempotent(Boolean)
+     * @see #isIdempotent()
+     * @see #setIdempotent(boolean)
      * @generated
      */
     boolean isSetIdempotent();
@@ -710,11 +746,9 @@ public interface FileConsumerType extends EObject {
      * </p>
      * <!-- end-user-doc -->
      * @return the value of the '<em>Idempotent Repository</em>' attribute.
-     * @see #isSetIdempotentRepository()
-     * @see #unsetIdempotentRepository()
      * @see #setIdempotentRepository(String)
      * @see org.switchyard.tools.models.switchyard1_0.camel.file.FilePackage#getFileConsumerType_IdempotentRepository()
-     * @model unsettable="true" dataType="org.eclipse.emf.ecore.xml.type.String"
+     * @model dataType="org.eclipse.emf.ecore.xml.type.String"
      *        extendedMetaData="kind='element' name='idempotentRepository' namespace='##targetNamespace'"
      * @generated
      */
@@ -725,35 +759,10 @@ public interface FileConsumerType extends EObject {
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @param value the new value of the '<em>Idempotent Repository</em>' attribute.
-     * @see #isSetIdempotentRepository()
-     * @see #unsetIdempotentRepository()
      * @see #getIdempotentRepository()
      * @generated
      */
     void setIdempotentRepository(String value);
-
-    /**
-     * Unsets the value of the '{@link org.switchyard.tools.models.switchyard1_0.camel.file.FileConsumerType#getIdempotentRepository <em>Idempotent Repository</em>}' attribute.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @see #isSetIdempotentRepository()
-     * @see #getIdempotentRepository()
-     * @see #setIdempotentRepository(String)
-     * @generated
-     */
-    void unsetIdempotentRepository();
-
-    /**
-     * Returns whether the value of the '{@link org.switchyard.tools.models.switchyard1_0.camel.file.FileConsumerType#getIdempotentRepository <em>Idempotent Repository</em>}' attribute is set.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @return whether the value of the '<em>Idempotent Repository</em>' attribute is set.
-     * @see #unsetIdempotentRepository()
-     * @see #getIdempotentRepository()
-     * @see #setIdempotentRepository(String)
-     * @generated
-     */
-    boolean isSetIdempotentRepository();
 
     /**
      * Returns the value of the '<em><b>In Progress Repository</b></em>' attribute.
@@ -764,11 +773,9 @@ public interface FileConsumerType extends EObject {
      * </p>
      * <!-- end-user-doc -->
      * @return the value of the '<em>In Progress Repository</em>' attribute.
-     * @see #isSetInProgressRepository()
-     * @see #unsetInProgressRepository()
      * @see #setInProgressRepository(String)
      * @see org.switchyard.tools.models.switchyard1_0.camel.file.FilePackage#getFileConsumerType_InProgressRepository()
-     * @model unsettable="true" dataType="org.eclipse.emf.ecore.xml.type.String"
+     * @model dataType="org.eclipse.emf.ecore.xml.type.String"
      *        extendedMetaData="kind='element' name='inProgressRepository' namespace='##targetNamespace'"
      * @generated
      */
@@ -779,35 +786,10 @@ public interface FileConsumerType extends EObject {
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @param value the new value of the '<em>In Progress Repository</em>' attribute.
-     * @see #isSetInProgressRepository()
-     * @see #unsetInProgressRepository()
      * @see #getInProgressRepository()
      * @generated
      */
     void setInProgressRepository(String value);
-
-    /**
-     * Unsets the value of the '{@link org.switchyard.tools.models.switchyard1_0.camel.file.FileConsumerType#getInProgressRepository <em>In Progress Repository</em>}' attribute.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @see #isSetInProgressRepository()
-     * @see #getInProgressRepository()
-     * @see #setInProgressRepository(String)
-     * @generated
-     */
-    void unsetInProgressRepository();
-
-    /**
-     * Returns whether the value of the '{@link org.switchyard.tools.models.switchyard1_0.camel.file.FileConsumerType#getInProgressRepository <em>In Progress Repository</em>}' attribute is set.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @return whether the value of the '<em>In Progress Repository</em>' attribute is set.
-     * @see #unsetInProgressRepository()
-     * @see #getInProgressRepository()
-     * @see #setInProgressRepository(String)
-     * @generated
-     */
-    boolean isSetInProgressRepository();
 
     /**
      * Returns the value of the '<em><b>Filter</b></em>' attribute.
@@ -818,11 +800,9 @@ public interface FileConsumerType extends EObject {
      * </p>
      * <!-- end-user-doc -->
      * @return the value of the '<em>Filter</em>' attribute.
-     * @see #isSetFilter()
-     * @see #unsetFilter()
      * @see #setFilter(String)
      * @see org.switchyard.tools.models.switchyard1_0.camel.file.FilePackage#getFileConsumerType_Filter()
-     * @model unsettable="true" dataType="org.eclipse.emf.ecore.xml.type.String"
+     * @model dataType="org.eclipse.emf.ecore.xml.type.String"
      *        extendedMetaData="kind='element' name='filter' namespace='##targetNamespace'"
      * @generated
      */
@@ -833,35 +813,10 @@ public interface FileConsumerType extends EObject {
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @param value the new value of the '<em>Filter</em>' attribute.
-     * @see #isSetFilter()
-     * @see #unsetFilter()
      * @see #getFilter()
      * @generated
      */
     void setFilter(String value);
-
-    /**
-     * Unsets the value of the '{@link org.switchyard.tools.models.switchyard1_0.camel.file.FileConsumerType#getFilter <em>Filter</em>}' attribute.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @see #isSetFilter()
-     * @see #getFilter()
-     * @see #setFilter(String)
-     * @generated
-     */
-    void unsetFilter();
-
-    /**
-     * Returns whether the value of the '{@link org.switchyard.tools.models.switchyard1_0.camel.file.FileConsumerType#getFilter <em>Filter</em>}' attribute is set.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @return whether the value of the '<em>Filter</em>' attribute is set.
-     * @see #unsetFilter()
-     * @see #getFilter()
-     * @see #setFilter(String)
-     * @generated
-     */
-    boolean isSetFilter();
 
     /**
      * Returns the value of the '<em><b>Sorter</b></em>' attribute.
@@ -872,11 +827,9 @@ public interface FileConsumerType extends EObject {
      * </p>
      * <!-- end-user-doc -->
      * @return the value of the '<em>Sorter</em>' attribute.
-     * @see #isSetSorter()
-     * @see #unsetSorter()
      * @see #setSorter(String)
      * @see org.switchyard.tools.models.switchyard1_0.camel.file.FilePackage#getFileConsumerType_Sorter()
-     * @model unsettable="true" dataType="org.eclipse.emf.ecore.xml.type.String"
+     * @model dataType="org.eclipse.emf.ecore.xml.type.String"
      *        extendedMetaData="kind='element' name='sorter' namespace='##targetNamespace'"
      * @generated
      */
@@ -887,35 +840,10 @@ public interface FileConsumerType extends EObject {
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @param value the new value of the '<em>Sorter</em>' attribute.
-     * @see #isSetSorter()
-     * @see #unsetSorter()
      * @see #getSorter()
      * @generated
      */
     void setSorter(String value);
-
-    /**
-     * Unsets the value of the '{@link org.switchyard.tools.models.switchyard1_0.camel.file.FileConsumerType#getSorter <em>Sorter</em>}' attribute.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @see #isSetSorter()
-     * @see #getSorter()
-     * @see #setSorter(String)
-     * @generated
-     */
-    void unsetSorter();
-
-    /**
-     * Returns whether the value of the '{@link org.switchyard.tools.models.switchyard1_0.camel.file.FileConsumerType#getSorter <em>Sorter</em>}' attribute is set.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @return whether the value of the '<em>Sorter</em>' attribute is set.
-     * @see #unsetSorter()
-     * @see #getSorter()
-     * @see #setSorter(String)
-     * @generated
-     */
-    boolean isSetSorter();
 
     /**
      * Returns the value of the '<em><b>Sort By</b></em>' attribute.
@@ -926,11 +854,9 @@ public interface FileConsumerType extends EObject {
      * </p>
      * <!-- end-user-doc -->
      * @return the value of the '<em>Sort By</em>' attribute.
-     * @see #isSetSortBy()
-     * @see #unsetSortBy()
      * @see #setSortBy(String)
      * @see org.switchyard.tools.models.switchyard1_0.camel.file.FilePackage#getFileConsumerType_SortBy()
-     * @model unsettable="true" dataType="org.eclipse.emf.ecore.xml.type.String"
+     * @model dataType="org.eclipse.emf.ecore.xml.type.String"
      *        extendedMetaData="kind='element' name='sortBy' namespace='##targetNamespace'"
      * @generated
      */
@@ -941,35 +867,10 @@ public interface FileConsumerType extends EObject {
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @param value the new value of the '<em>Sort By</em>' attribute.
-     * @see #isSetSortBy()
-     * @see #unsetSortBy()
      * @see #getSortBy()
      * @generated
      */
     void setSortBy(String value);
-
-    /**
-     * Unsets the value of the '{@link org.switchyard.tools.models.switchyard1_0.camel.file.FileConsumerType#getSortBy <em>Sort By</em>}' attribute.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @see #isSetSortBy()
-     * @see #getSortBy()
-     * @see #setSortBy(String)
-     * @generated
-     */
-    void unsetSortBy();
-
-    /**
-     * Returns whether the value of the '{@link org.switchyard.tools.models.switchyard1_0.camel.file.FileConsumerType#getSortBy <em>Sort By</em>}' attribute is set.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @return whether the value of the '<em>Sort By</em>' attribute is set.
-     * @see #unsetSortBy()
-     * @see #getSortBy()
-     * @see #setSortBy(String)
-     * @generated
-     */
-    boolean isSetSortBy();
 
     /**
      * Returns the value of the '<em><b>Read Lock</b></em>' attribute.
@@ -980,11 +881,9 @@ public interface FileConsumerType extends EObject {
      * </p>
      * <!-- end-user-doc -->
      * @return the value of the '<em>Read Lock</em>' attribute.
-     * @see #isSetReadLock()
-     * @see #unsetReadLock()
      * @see #setReadLock(String)
      * @see org.switchyard.tools.models.switchyard1_0.camel.file.FilePackage#getFileConsumerType_ReadLock()
-     * @model unsettable="true" dataType="org.eclipse.emf.ecore.xml.type.String"
+     * @model dataType="org.eclipse.emf.ecore.xml.type.String"
      *        extendedMetaData="kind='element' name='readLock' namespace='##targetNamespace'"
      * @generated
      */
@@ -995,38 +894,14 @@ public interface FileConsumerType extends EObject {
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @param value the new value of the '<em>Read Lock</em>' attribute.
-     * @see #isSetReadLock()
-     * @see #unsetReadLock()
      * @see #getReadLock()
      * @generated
      */
     void setReadLock(String value);
 
     /**
-     * Unsets the value of the '{@link org.switchyard.tools.models.switchyard1_0.camel.file.FileConsumerType#getReadLock <em>Read Lock</em>}' attribute.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @see #isSetReadLock()
-     * @see #getReadLock()
-     * @see #setReadLock(String)
-     * @generated
-     */
-    void unsetReadLock();
-
-    /**
-     * Returns whether the value of the '{@link org.switchyard.tools.models.switchyard1_0.camel.file.FileConsumerType#getReadLock <em>Read Lock</em>}' attribute is set.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @return whether the value of the '<em>Read Lock</em>' attribute is set.
-     * @see #unsetReadLock()
-     * @see #getReadLock()
-     * @see #setReadLock(String)
-     * @generated
-     */
-    boolean isSetReadLock();
-
-    /**
      * Returns the value of the '<em><b>Read Lock Timeout</b></em>' attribute.
+     * The default value is <code>"10000"</code>.
      * <!-- begin-user-doc -->
      * <p>
      * If the meaning of the '<em>Read Lock Timeout</em>' attribute isn't clear,
@@ -1036,13 +911,13 @@ public interface FileConsumerType extends EObject {
      * @return the value of the '<em>Read Lock Timeout</em>' attribute.
      * @see #isSetReadLockTimeout()
      * @see #unsetReadLockTimeout()
-     * @see #setReadLockTimeout(Long)
+     * @see #setReadLockTimeout(long)
      * @see org.switchyard.tools.models.switchyard1_0.camel.file.FilePackage#getFileConsumerType_ReadLockTimeout()
-     * @model unsettable="true" dataType="org.eclipse.emf.ecore.xml.type.LongObject"
+     * @model default="10000" unsettable="true" dataType="org.eclipse.emf.ecore.xml.type.Long"
      *        extendedMetaData="kind='element' name='readLockTimeout' namespace='##targetNamespace'"
      * @generated
      */
-    Long getReadLockTimeout();
+    long getReadLockTimeout();
 
     /**
      * Sets the value of the '{@link org.switchyard.tools.models.switchyard1_0.camel.file.FileConsumerType#getReadLockTimeout <em>Read Lock Timeout</em>}' attribute.
@@ -1054,7 +929,7 @@ public interface FileConsumerType extends EObject {
      * @see #getReadLockTimeout()
      * @generated
      */
-    void setReadLockTimeout(Long value);
+    void setReadLockTimeout(long value);
 
     /**
      * Unsets the value of the '{@link org.switchyard.tools.models.switchyard1_0.camel.file.FileConsumerType#getReadLockTimeout <em>Read Lock Timeout</em>}' attribute.
@@ -1062,7 +937,7 @@ public interface FileConsumerType extends EObject {
      * <!-- end-user-doc -->
      * @see #isSetReadLockTimeout()
      * @see #getReadLockTimeout()
-     * @see #setReadLockTimeout(Long)
+     * @see #setReadLockTimeout(long)
      * @generated
      */
     void unsetReadLockTimeout();
@@ -1074,13 +949,14 @@ public interface FileConsumerType extends EObject {
      * @return whether the value of the '<em>Read Lock Timeout</em>' attribute is set.
      * @see #unsetReadLockTimeout()
      * @see #getReadLockTimeout()
-     * @see #setReadLockTimeout(Long)
+     * @see #setReadLockTimeout(long)
      * @generated
      */
     boolean isSetReadLockTimeout();
 
     /**
      * Returns the value of the '<em><b>Read Lock Check Interval</b></em>' attribute.
+     * The default value is <code>"1000"</code>.
      * <!-- begin-user-doc -->
      * <p>
      * If the meaning of the '<em>Read Lock Check Interval</em>' attribute isn't clear,
@@ -1090,13 +966,13 @@ public interface FileConsumerType extends EObject {
      * @return the value of the '<em>Read Lock Check Interval</em>' attribute.
      * @see #isSetReadLockCheckInterval()
      * @see #unsetReadLockCheckInterval()
-     * @see #setReadLockCheckInterval(BigInteger)
+     * @see #setReadLockCheckInterval(int)
      * @see org.switchyard.tools.models.switchyard1_0.camel.file.FilePackage#getFileConsumerType_ReadLockCheckInterval()
-     * @model unsettable="true" dataType="org.eclipse.emf.ecore.xml.type.Integer"
+     * @model default="1000" unsettable="true" dataType="org.eclipse.emf.ecore.xml.type.Int"
      *        extendedMetaData="kind='element' name='readLockCheckInterval' namespace='##targetNamespace'"
      * @generated
      */
-    BigInteger getReadLockCheckInterval();
+    int getReadLockCheckInterval();
 
     /**
      * Sets the value of the '{@link org.switchyard.tools.models.switchyard1_0.camel.file.FileConsumerType#getReadLockCheckInterval <em>Read Lock Check Interval</em>}' attribute.
@@ -1108,7 +984,7 @@ public interface FileConsumerType extends EObject {
      * @see #getReadLockCheckInterval()
      * @generated
      */
-    void setReadLockCheckInterval(BigInteger value);
+    void setReadLockCheckInterval(int value);
 
     /**
      * Unsets the value of the '{@link org.switchyard.tools.models.switchyard1_0.camel.file.FileConsumerType#getReadLockCheckInterval <em>Read Lock Check Interval</em>}' attribute.
@@ -1116,7 +992,7 @@ public interface FileConsumerType extends EObject {
      * <!-- end-user-doc -->
      * @see #isSetReadLockCheckInterval()
      * @see #getReadLockCheckInterval()
-     * @see #setReadLockCheckInterval(BigInteger)
+     * @see #setReadLockCheckInterval(int)
      * @generated
      */
     void unsetReadLockCheckInterval();
@@ -1128,7 +1004,7 @@ public interface FileConsumerType extends EObject {
      * @return whether the value of the '<em>Read Lock Check Interval</em>' attribute is set.
      * @see #unsetReadLockCheckInterval()
      * @see #getReadLockCheckInterval()
-     * @see #setReadLockCheckInterval(BigInteger)
+     * @see #setReadLockCheckInterval(int)
      * @generated
      */
     boolean isSetReadLockCheckInterval();
@@ -1142,11 +1018,9 @@ public interface FileConsumerType extends EObject {
      * </p>
      * <!-- end-user-doc -->
      * @return the value of the '<em>Exclusive Read Lock Strategy</em>' attribute.
-     * @see #isSetExclusiveReadLockStrategy()
-     * @see #unsetExclusiveReadLockStrategy()
      * @see #setExclusiveReadLockStrategy(String)
      * @see org.switchyard.tools.models.switchyard1_0.camel.file.FilePackage#getFileConsumerType_ExclusiveReadLockStrategy()
-     * @model unsettable="true" dataType="org.eclipse.emf.ecore.xml.type.String"
+     * @model dataType="org.eclipse.emf.ecore.xml.type.String"
      *        extendedMetaData="kind='element' name='exclusiveReadLockStrategy' namespace='##targetNamespace'"
      * @generated
      */
@@ -1157,35 +1031,10 @@ public interface FileConsumerType extends EObject {
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @param value the new value of the '<em>Exclusive Read Lock Strategy</em>' attribute.
-     * @see #isSetExclusiveReadLockStrategy()
-     * @see #unsetExclusiveReadLockStrategy()
      * @see #getExclusiveReadLockStrategy()
      * @generated
      */
     void setExclusiveReadLockStrategy(String value);
-
-    /**
-     * Unsets the value of the '{@link org.switchyard.tools.models.switchyard1_0.camel.file.FileConsumerType#getExclusiveReadLockStrategy <em>Exclusive Read Lock Strategy</em>}' attribute.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @see #isSetExclusiveReadLockStrategy()
-     * @see #getExclusiveReadLockStrategy()
-     * @see #setExclusiveReadLockStrategy(String)
-     * @generated
-     */
-    void unsetExclusiveReadLockStrategy();
-
-    /**
-     * Returns whether the value of the '{@link org.switchyard.tools.models.switchyard1_0.camel.file.FileConsumerType#getExclusiveReadLockStrategy <em>Exclusive Read Lock Strategy</em>}' attribute is set.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @return whether the value of the '<em>Exclusive Read Lock Strategy</em>' attribute is set.
-     * @see #unsetExclusiveReadLockStrategy()
-     * @see #getExclusiveReadLockStrategy()
-     * @see #setExclusiveReadLockStrategy(String)
-     * @generated
-     */
-    boolean isSetExclusiveReadLockStrategy();
 
     /**
      * Returns the value of the '<em><b>Process Strategy</b></em>' attribute.
@@ -1196,11 +1045,9 @@ public interface FileConsumerType extends EObject {
      * </p>
      * <!-- end-user-doc -->
      * @return the value of the '<em>Process Strategy</em>' attribute.
-     * @see #isSetProcessStrategy()
-     * @see #unsetProcessStrategy()
      * @see #setProcessStrategy(String)
      * @see org.switchyard.tools.models.switchyard1_0.camel.file.FilePackage#getFileConsumerType_ProcessStrategy()
-     * @model unsettable="true" dataType="org.eclipse.emf.ecore.xml.type.String"
+     * @model dataType="org.eclipse.emf.ecore.xml.type.String"
      *        extendedMetaData="kind='element' name='processStrategy' namespace='##targetNamespace'"
      * @generated
      */
@@ -1211,38 +1058,14 @@ public interface FileConsumerType extends EObject {
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @param value the new value of the '<em>Process Strategy</em>' attribute.
-     * @see #isSetProcessStrategy()
-     * @see #unsetProcessStrategy()
      * @see #getProcessStrategy()
      * @generated
      */
     void setProcessStrategy(String value);
 
     /**
-     * Unsets the value of the '{@link org.switchyard.tools.models.switchyard1_0.camel.file.FileConsumerType#getProcessStrategy <em>Process Strategy</em>}' attribute.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @see #isSetProcessStrategy()
-     * @see #getProcessStrategy()
-     * @see #setProcessStrategy(String)
-     * @generated
-     */
-    void unsetProcessStrategy();
-
-    /**
-     * Returns whether the value of the '{@link org.switchyard.tools.models.switchyard1_0.camel.file.FileConsumerType#getProcessStrategy <em>Process Strategy</em>}' attribute is set.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @return whether the value of the '<em>Process Strategy</em>' attribute is set.
-     * @see #unsetProcessStrategy()
-     * @see #getProcessStrategy()
-     * @see #setProcessStrategy(String)
-     * @generated
-     */
-    boolean isSetProcessStrategy();
-
-    /**
      * Returns the value of the '<em><b>Starting Directory Must Exist</b></em>' attribute.
+     * The default value is <code>"false"</code>.
      * <!-- begin-user-doc -->
      * <p>
      * If the meaning of the '<em>Starting Directory Must Exist</em>' attribute isn't clear,
@@ -1252,51 +1075,52 @@ public interface FileConsumerType extends EObject {
      * @return the value of the '<em>Starting Directory Must Exist</em>' attribute.
      * @see #isSetStartingDirectoryMustExist()
      * @see #unsetStartingDirectoryMustExist()
-     * @see #setStartingDirectoryMustExist(Boolean)
+     * @see #setStartingDirectoryMustExist(boolean)
      * @see org.switchyard.tools.models.switchyard1_0.camel.file.FilePackage#getFileConsumerType_StartingDirectoryMustExist()
-     * @model unsettable="true" dataType="org.eclipse.emf.ecore.xml.type.BooleanObject"
+     * @model default="false" unsettable="true" dataType="org.eclipse.emf.ecore.xml.type.Boolean"
      *        extendedMetaData="kind='element' name='startingDirectoryMustExist' namespace='##targetNamespace'"
      * @generated
      */
-    Boolean getStartingDirectoryMustExist();
+    boolean isStartingDirectoryMustExist();
 
     /**
-     * Sets the value of the '{@link org.switchyard.tools.models.switchyard1_0.camel.file.FileConsumerType#getStartingDirectoryMustExist <em>Starting Directory Must Exist</em>}' attribute.
+     * Sets the value of the '{@link org.switchyard.tools.models.switchyard1_0.camel.file.FileConsumerType#isStartingDirectoryMustExist <em>Starting Directory Must Exist</em>}' attribute.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @param value the new value of the '<em>Starting Directory Must Exist</em>' attribute.
      * @see #isSetStartingDirectoryMustExist()
      * @see #unsetStartingDirectoryMustExist()
-     * @see #getStartingDirectoryMustExist()
+     * @see #isStartingDirectoryMustExist()
      * @generated
      */
-    void setStartingDirectoryMustExist(Boolean value);
+    void setStartingDirectoryMustExist(boolean value);
 
     /**
-     * Unsets the value of the '{@link org.switchyard.tools.models.switchyard1_0.camel.file.FileConsumerType#getStartingDirectoryMustExist <em>Starting Directory Must Exist</em>}' attribute.
+     * Unsets the value of the '{@link org.switchyard.tools.models.switchyard1_0.camel.file.FileConsumerType#isStartingDirectoryMustExist <em>Starting Directory Must Exist</em>}' attribute.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @see #isSetStartingDirectoryMustExist()
-     * @see #getStartingDirectoryMustExist()
-     * @see #setStartingDirectoryMustExist(Boolean)
+     * @see #isStartingDirectoryMustExist()
+     * @see #setStartingDirectoryMustExist(boolean)
      * @generated
      */
     void unsetStartingDirectoryMustExist();
 
     /**
-     * Returns whether the value of the '{@link org.switchyard.tools.models.switchyard1_0.camel.file.FileConsumerType#getStartingDirectoryMustExist <em>Starting Directory Must Exist</em>}' attribute is set.
+     * Returns whether the value of the '{@link org.switchyard.tools.models.switchyard1_0.camel.file.FileConsumerType#isStartingDirectoryMustExist <em>Starting Directory Must Exist</em>}' attribute is set.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @return whether the value of the '<em>Starting Directory Must Exist</em>' attribute is set.
      * @see #unsetStartingDirectoryMustExist()
-     * @see #getStartingDirectoryMustExist()
-     * @see #setStartingDirectoryMustExist(Boolean)
+     * @see #isStartingDirectoryMustExist()
+     * @see #setStartingDirectoryMustExist(boolean)
      * @generated
      */
     boolean isSetStartingDirectoryMustExist();
 
     /**
      * Returns the value of the '<em><b>Directory Must Exist</b></em>' attribute.
+     * The default value is <code>"false"</code>.
      * <!-- begin-user-doc -->
      * <p>
      * If the meaning of the '<em>Directory Must Exist</em>' attribute isn't clear,
@@ -1306,45 +1130,45 @@ public interface FileConsumerType extends EObject {
      * @return the value of the '<em>Directory Must Exist</em>' attribute.
      * @see #isSetDirectoryMustExist()
      * @see #unsetDirectoryMustExist()
-     * @see #setDirectoryMustExist(Boolean)
+     * @see #setDirectoryMustExist(boolean)
      * @see org.switchyard.tools.models.switchyard1_0.camel.file.FilePackage#getFileConsumerType_DirectoryMustExist()
-     * @model unsettable="true" dataType="org.eclipse.emf.ecore.xml.type.BooleanObject"
+     * @model default="false" unsettable="true" dataType="org.eclipse.emf.ecore.xml.type.Boolean"
      *        extendedMetaData="kind='element' name='directoryMustExist' namespace='##targetNamespace'"
      * @generated
      */
-    Boolean getDirectoryMustExist();
+    boolean isDirectoryMustExist();
 
     /**
-     * Sets the value of the '{@link org.switchyard.tools.models.switchyard1_0.camel.file.FileConsumerType#getDirectoryMustExist <em>Directory Must Exist</em>}' attribute.
+     * Sets the value of the '{@link org.switchyard.tools.models.switchyard1_0.camel.file.FileConsumerType#isDirectoryMustExist <em>Directory Must Exist</em>}' attribute.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @param value the new value of the '<em>Directory Must Exist</em>' attribute.
      * @see #isSetDirectoryMustExist()
      * @see #unsetDirectoryMustExist()
-     * @see #getDirectoryMustExist()
+     * @see #isDirectoryMustExist()
      * @generated
      */
-    void setDirectoryMustExist(Boolean value);
+    void setDirectoryMustExist(boolean value);
 
     /**
-     * Unsets the value of the '{@link org.switchyard.tools.models.switchyard1_0.camel.file.FileConsumerType#getDirectoryMustExist <em>Directory Must Exist</em>}' attribute.
+     * Unsets the value of the '{@link org.switchyard.tools.models.switchyard1_0.camel.file.FileConsumerType#isDirectoryMustExist <em>Directory Must Exist</em>}' attribute.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @see #isSetDirectoryMustExist()
-     * @see #getDirectoryMustExist()
-     * @see #setDirectoryMustExist(Boolean)
+     * @see #isDirectoryMustExist()
+     * @see #setDirectoryMustExist(boolean)
      * @generated
      */
     void unsetDirectoryMustExist();
 
     /**
-     * Returns whether the value of the '{@link org.switchyard.tools.models.switchyard1_0.camel.file.FileConsumerType#getDirectoryMustExist <em>Directory Must Exist</em>}' attribute is set.
+     * Returns whether the value of the '{@link org.switchyard.tools.models.switchyard1_0.camel.file.FileConsumerType#isDirectoryMustExist <em>Directory Must Exist</em>}' attribute is set.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @return whether the value of the '<em>Directory Must Exist</em>' attribute is set.
      * @see #unsetDirectoryMustExist()
-     * @see #getDirectoryMustExist()
-     * @see #setDirectoryMustExist(Boolean)
+     * @see #isDirectoryMustExist()
+     * @see #setDirectoryMustExist(boolean)
      * @generated
      */
     boolean isSetDirectoryMustExist();
@@ -1358,11 +1182,9 @@ public interface FileConsumerType extends EObject {
      * </p>
      * <!-- end-user-doc -->
      * @return the value of the '<em>Done File Name</em>' attribute.
-     * @see #isSetDoneFileName()
-     * @see #unsetDoneFileName()
      * @see #setDoneFileName(String)
      * @see org.switchyard.tools.models.switchyard1_0.camel.file.FilePackage#getFileConsumerType_DoneFileName()
-     * @model unsettable="true" dataType="org.eclipse.emf.ecore.xml.type.String"
+     * @model dataType="org.eclipse.emf.ecore.xml.type.String"
      *        extendedMetaData="kind='element' name='doneFileName' namespace='##targetNamespace'"
      * @generated
      */
@@ -1373,33 +1195,8 @@ public interface FileConsumerType extends EObject {
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @param value the new value of the '<em>Done File Name</em>' attribute.
-     * @see #isSetDoneFileName()
-     * @see #unsetDoneFileName()
      * @see #getDoneFileName()
      * @generated
      */
     void setDoneFileName(String value);
-
-    /**
-     * Unsets the value of the '{@link org.switchyard.tools.models.switchyard1_0.camel.file.FileConsumerType#getDoneFileName <em>Done File Name</em>}' attribute.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @see #isSetDoneFileName()
-     * @see #getDoneFileName()
-     * @see #setDoneFileName(String)
-     * @generated
-     */
-    void unsetDoneFileName();
-
-    /**
-     * Returns whether the value of the '{@link org.switchyard.tools.models.switchyard1_0.camel.file.FileConsumerType#getDoneFileName <em>Done File Name</em>}' attribute is set.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @return whether the value of the '<em>Done File Name</em>' attribute is set.
-     * @see #unsetDoneFileName()
-     * @see #getDoneFileName()
-     * @see #setDoneFileName(String)
-     * @generated
-     */
-    boolean isSetDoneFileName();
 } // FileConsumerType

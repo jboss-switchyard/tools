@@ -733,33 +733,33 @@ public interface AmqpPackage extends EPackage {
     EAttribute getCamelAmqpBindingType_MaxConcurrentConsumers();
 
     /**
-     * Returns the meta object for the attribute '{@link org.switchyard.tools.models.switchyard1_0.camel.amqp.CamelAmqpBindingType#getDisableReplyTo <em>Disable Reply To</em>}'.
+     * Returns the meta object for the attribute '{@link org.switchyard.tools.models.switchyard1_0.camel.amqp.CamelAmqpBindingType#isDisableReplyTo <em>Disable Reply To</em>}'.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @return the meta object for the attribute '<em>Disable Reply To</em>'.
-     * @see org.switchyard.tools.models.switchyard1_0.camel.amqp.CamelAmqpBindingType#getDisableReplyTo()
+     * @see org.switchyard.tools.models.switchyard1_0.camel.amqp.CamelAmqpBindingType#isDisableReplyTo()
      * @see #getCamelAmqpBindingType()
      * @generated
      */
     EAttribute getCamelAmqpBindingType_DisableReplyTo();
 
     /**
-     * Returns the meta object for the attribute '{@link org.switchyard.tools.models.switchyard1_0.camel.amqp.CamelAmqpBindingType#getPreserveMessageQos <em>Preserve Message Qos</em>}'.
+     * Returns the meta object for the attribute '{@link org.switchyard.tools.models.switchyard1_0.camel.amqp.CamelAmqpBindingType#isPreserveMessageQos <em>Preserve Message Qos</em>}'.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @return the meta object for the attribute '<em>Preserve Message Qos</em>'.
-     * @see org.switchyard.tools.models.switchyard1_0.camel.amqp.CamelAmqpBindingType#getPreserveMessageQos()
+     * @see org.switchyard.tools.models.switchyard1_0.camel.amqp.CamelAmqpBindingType#isPreserveMessageQos()
      * @see #getCamelAmqpBindingType()
      * @generated
      */
     EAttribute getCamelAmqpBindingType_PreserveMessageQos();
 
     /**
-     * Returns the meta object for the attribute '{@link org.switchyard.tools.models.switchyard1_0.camel.amqp.CamelAmqpBindingType#getDeliveryPersistent <em>Delivery Persistent</em>}'.
+     * Returns the meta object for the attribute '{@link org.switchyard.tools.models.switchyard1_0.camel.amqp.CamelAmqpBindingType#isDeliveryPersistent <em>Delivery Persistent</em>}'.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @return the meta object for the attribute '<em>Delivery Persistent</em>'.
-     * @see org.switchyard.tools.models.switchyard1_0.camel.amqp.CamelAmqpBindingType#getDeliveryPersistent()
+     * @see org.switchyard.tools.models.switchyard1_0.camel.amqp.CamelAmqpBindingType#isDeliveryPersistent()
      * @see #getCamelAmqpBindingType()
      * @generated
      */
@@ -777,11 +777,11 @@ public interface AmqpPackage extends EPackage {
     EAttribute getCamelAmqpBindingType_Priority();
 
     /**
-     * Returns the meta object for the attribute '{@link org.switchyard.tools.models.switchyard1_0.camel.amqp.CamelAmqpBindingType#getExplicitQosEnabled <em>Explicit Qos Enabled</em>}'.
+     * Returns the meta object for the attribute '{@link org.switchyard.tools.models.switchyard1_0.camel.amqp.CamelAmqpBindingType#isExplicitQosEnabled <em>Explicit Qos Enabled</em>}'.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @return the meta object for the attribute '<em>Explicit Qos Enabled</em>'.
-     * @see org.switchyard.tools.models.switchyard1_0.camel.amqp.CamelAmqpBindingType#getExplicitQosEnabled()
+     * @see org.switchyard.tools.models.switchyard1_0.camel.amqp.CamelAmqpBindingType#isExplicitQosEnabled()
      * @see #getCamelAmqpBindingType()
      * @generated
      */
@@ -843,11 +843,11 @@ public interface AmqpPackage extends EPackage {
     EAttribute getCamelAmqpBindingType_TimeToLive();
 
     /**
-     * Returns the meta object for the attribute '{@link org.switchyard.tools.models.switchyard1_0.camel.amqp.CamelAmqpBindingType#getTransacted <em>Transacted</em>}'.
+     * Returns the meta object for the attribute '{@link org.switchyard.tools.models.switchyard1_0.camel.amqp.CamelAmqpBindingType#isTransacted <em>Transacted</em>}'.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @return the meta object for the attribute '<em>Transacted</em>'.
-     * @see org.switchyard.tools.models.switchyard1_0.camel.amqp.CamelAmqpBindingType#getTransacted()
+     * @see org.switchyard.tools.models.switchyard1_0.camel.amqp.CamelAmqpBindingType#isTransacted()
      * @see #getCamelAmqpBindingType()
      * @generated
      */

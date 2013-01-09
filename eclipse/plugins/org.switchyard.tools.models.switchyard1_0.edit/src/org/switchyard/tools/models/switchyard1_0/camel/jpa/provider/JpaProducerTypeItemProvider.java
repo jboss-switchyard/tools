@@ -85,7 +85,7 @@ public class JpaProducerTypeItemProvider
                  true,
                  false,
                  false,
-                 ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
+                 ItemPropertyDescriptor.BOOLEAN_VALUE_IMAGE,
                  null,
                  null));
     }
@@ -107,7 +107,7 @@ public class JpaProducerTypeItemProvider
                  true,
                  false,
                  false,
-                 ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
+                 ItemPropertyDescriptor.BOOLEAN_VALUE_IMAGE,
                  null,
                  null));
     }
@@ -131,11 +131,8 @@ public class JpaProducerTypeItemProvider
      */
     @Override
     public String getText(Object object) {
-        Boolean labelValue = ((JpaProducerType)object).getFlushOnSend();
-        String label = labelValue == null ? null : labelValue.toString();
-        return label == null || label.length() == 0 ?
-            getString("_UI_JpaProducerType_type") :
-            getString("_UI_JpaProducerType_type") + " " + label;
+        JpaProducerType jpaProducerType = (JpaProducerType)object;
+        return getString("_UI_JpaProducerType_type") + " " + jpaProducerType.isFlushOnSend();
     }
 
     /**

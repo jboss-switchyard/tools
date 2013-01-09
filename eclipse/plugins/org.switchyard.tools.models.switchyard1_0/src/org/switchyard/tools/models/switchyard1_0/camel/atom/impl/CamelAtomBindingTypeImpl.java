@@ -24,12 +24,12 @@ import org.switchyard.tools.models.switchyard1_0.camel.atom.CamelAtomBindingType
  * The following features are implemented:
  * <ul>
  *   <li>{@link org.switchyard.tools.models.switchyard1_0.camel.atom.impl.CamelAtomBindingTypeImpl#getFeedURI <em>Feed URI</em>}</li>
- *   <li>{@link org.switchyard.tools.models.switchyard1_0.camel.atom.impl.CamelAtomBindingTypeImpl#getSplitEntries <em>Split Entries</em>}</li>
- *   <li>{@link org.switchyard.tools.models.switchyard1_0.camel.atom.impl.CamelAtomBindingTypeImpl#getFilter <em>Filter</em>}</li>
+ *   <li>{@link org.switchyard.tools.models.switchyard1_0.camel.atom.impl.CamelAtomBindingTypeImpl#isSplitEntries <em>Split Entries</em>}</li>
+ *   <li>{@link org.switchyard.tools.models.switchyard1_0.camel.atom.impl.CamelAtomBindingTypeImpl#isFilter <em>Filter</em>}</li>
  *   <li>{@link org.switchyard.tools.models.switchyard1_0.camel.atom.impl.CamelAtomBindingTypeImpl#getLastUpdate <em>Last Update</em>}</li>
- *   <li>{@link org.switchyard.tools.models.switchyard1_0.camel.atom.impl.CamelAtomBindingTypeImpl#getThrottleEntries <em>Throttle Entries</em>}</li>
- *   <li>{@link org.switchyard.tools.models.switchyard1_0.camel.atom.impl.CamelAtomBindingTypeImpl#getFeedHeader <em>Feed Header</em>}</li>
- *   <li>{@link org.switchyard.tools.models.switchyard1_0.camel.atom.impl.CamelAtomBindingTypeImpl#getSortEntries <em>Sort Entries</em>}</li>
+ *   <li>{@link org.switchyard.tools.models.switchyard1_0.camel.atom.impl.CamelAtomBindingTypeImpl#isThrottleEntries <em>Throttle Entries</em>}</li>
+ *   <li>{@link org.switchyard.tools.models.switchyard1_0.camel.atom.impl.CamelAtomBindingTypeImpl#isFeedHeader <em>Feed Header</em>}</li>
+ *   <li>{@link org.switchyard.tools.models.switchyard1_0.camel.atom.impl.CamelAtomBindingTypeImpl#isSortEntries <em>Sort Entries</em>}</li>
  *   <li>{@link org.switchyard.tools.models.switchyard1_0.camel.atom.impl.CamelAtomBindingTypeImpl#getConsume <em>Consume</em>}</li>
  * </ul>
  * </p>
@@ -58,24 +58,24 @@ public class CamelAtomBindingTypeImpl extends BaseCamelBindingImpl implements Ca
     protected String feedURI = FEED_URI_EDEFAULT;
 
     /**
-     * The default value of the '{@link #getSplitEntries() <em>Split Entries</em>}' attribute.
+     * The default value of the '{@link #isSplitEntries() <em>Split Entries</em>}' attribute.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @see #getSplitEntries()
+     * @see #isSplitEntries()
      * @generated
      * @ordered
      */
-    protected static final Boolean SPLIT_ENTRIES_EDEFAULT = null;
+    protected static final boolean SPLIT_ENTRIES_EDEFAULT = true;
 
     /**
-     * The cached value of the '{@link #getSplitEntries() <em>Split Entries</em>}' attribute.
+     * The cached value of the '{@link #isSplitEntries() <em>Split Entries</em>}' attribute.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @see #getSplitEntries()
+     * @see #isSplitEntries()
      * @generated
      * @ordered
      */
-    protected Boolean splitEntries = SPLIT_ENTRIES_EDEFAULT;
+    protected boolean splitEntries = SPLIT_ENTRIES_EDEFAULT;
 
     /**
      * This is true if the Split Entries attribute has been set.
@@ -87,24 +87,24 @@ public class CamelAtomBindingTypeImpl extends BaseCamelBindingImpl implements Ca
     protected boolean splitEntriesESet;
 
     /**
-     * The default value of the '{@link #getFilter() <em>Filter</em>}' attribute.
+     * The default value of the '{@link #isFilter() <em>Filter</em>}' attribute.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @see #getFilter()
+     * @see #isFilter()
      * @generated
      * @ordered
      */
-    protected static final Boolean FILTER_EDEFAULT = null;
+    protected static final boolean FILTER_EDEFAULT = true;
 
     /**
-     * The cached value of the '{@link #getFilter() <em>Filter</em>}' attribute.
+     * The cached value of the '{@link #isFilter() <em>Filter</em>}' attribute.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @see #getFilter()
+     * @see #isFilter()
      * @generated
      * @ordered
      */
-    protected Boolean filter = FILTER_EDEFAULT;
+    protected boolean filter = FILTER_EDEFAULT;
 
     /**
      * This is true if the Filter attribute has been set.
@@ -136,24 +136,24 @@ public class CamelAtomBindingTypeImpl extends BaseCamelBindingImpl implements Ca
     protected XMLGregorianCalendar lastUpdate = LAST_UPDATE_EDEFAULT;
 
     /**
-     * The default value of the '{@link #getThrottleEntries() <em>Throttle Entries</em>}' attribute.
+     * The default value of the '{@link #isThrottleEntries() <em>Throttle Entries</em>}' attribute.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @see #getThrottleEntries()
+     * @see #isThrottleEntries()
      * @generated
      * @ordered
      */
-    protected static final Boolean THROTTLE_ENTRIES_EDEFAULT = null;
+    protected static final boolean THROTTLE_ENTRIES_EDEFAULT = true;
 
     /**
-     * The cached value of the '{@link #getThrottleEntries() <em>Throttle Entries</em>}' attribute.
+     * The cached value of the '{@link #isThrottleEntries() <em>Throttle Entries</em>}' attribute.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @see #getThrottleEntries()
+     * @see #isThrottleEntries()
      * @generated
      * @ordered
      */
-    protected Boolean throttleEntries = THROTTLE_ENTRIES_EDEFAULT;
+    protected boolean throttleEntries = THROTTLE_ENTRIES_EDEFAULT;
 
     /**
      * This is true if the Throttle Entries attribute has been set.
@@ -165,24 +165,24 @@ public class CamelAtomBindingTypeImpl extends BaseCamelBindingImpl implements Ca
     protected boolean throttleEntriesESet;
 
     /**
-     * The default value of the '{@link #getFeedHeader() <em>Feed Header</em>}' attribute.
+     * The default value of the '{@link #isFeedHeader() <em>Feed Header</em>}' attribute.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @see #getFeedHeader()
+     * @see #isFeedHeader()
      * @generated
      * @ordered
      */
-    protected static final Boolean FEED_HEADER_EDEFAULT = null;
+    protected static final boolean FEED_HEADER_EDEFAULT = true;
 
     /**
-     * The cached value of the '{@link #getFeedHeader() <em>Feed Header</em>}' attribute.
+     * The cached value of the '{@link #isFeedHeader() <em>Feed Header</em>}' attribute.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @see #getFeedHeader()
+     * @see #isFeedHeader()
      * @generated
      * @ordered
      */
-    protected Boolean feedHeader = FEED_HEADER_EDEFAULT;
+    protected boolean feedHeader = FEED_HEADER_EDEFAULT;
 
     /**
      * This is true if the Feed Header attribute has been set.
@@ -194,24 +194,24 @@ public class CamelAtomBindingTypeImpl extends BaseCamelBindingImpl implements Ca
     protected boolean feedHeaderESet;
 
     /**
-     * The default value of the '{@link #getSortEntries() <em>Sort Entries</em>}' attribute.
+     * The default value of the '{@link #isSortEntries() <em>Sort Entries</em>}' attribute.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @see #getSortEntries()
+     * @see #isSortEntries()
      * @generated
      * @ordered
      */
-    protected static final Boolean SORT_ENTRIES_EDEFAULT = null;
+    protected static final boolean SORT_ENTRIES_EDEFAULT = false;
 
     /**
-     * The cached value of the '{@link #getSortEntries() <em>Sort Entries</em>}' attribute.
+     * The cached value of the '{@link #isSortEntries() <em>Sort Entries</em>}' attribute.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @see #getSortEntries()
+     * @see #isSortEntries()
      * @generated
      * @ordered
      */
-    protected Boolean sortEntries = SORT_ENTRIES_EDEFAULT;
+    protected boolean sortEntries = SORT_ENTRIES_EDEFAULT;
 
     /**
      * This is true if the Sort Entries attribute has been set.
@@ -277,7 +277,7 @@ public class CamelAtomBindingTypeImpl extends BaseCamelBindingImpl implements Ca
      * <!-- end-user-doc -->
      * @generated
      */
-    public Boolean getSplitEntries() {
+    public boolean isSplitEntries() {
         return splitEntries;
     }
 
@@ -286,8 +286,8 @@ public class CamelAtomBindingTypeImpl extends BaseCamelBindingImpl implements Ca
      * <!-- end-user-doc -->
      * @generated
      */
-    public void setSplitEntries(Boolean newSplitEntries) {
-        Boolean oldSplitEntries = splitEntries;
+    public void setSplitEntries(boolean newSplitEntries) {
+        boolean oldSplitEntries = splitEntries;
         splitEntries = newSplitEntries;
         boolean oldSplitEntriesESet = splitEntriesESet;
         splitEntriesESet = true;
@@ -301,7 +301,7 @@ public class CamelAtomBindingTypeImpl extends BaseCamelBindingImpl implements Ca
      * @generated
      */
     public void unsetSplitEntries() {
-        Boolean oldSplitEntries = splitEntries;
+        boolean oldSplitEntries = splitEntries;
         boolean oldSplitEntriesESet = splitEntriesESet;
         splitEntries = SPLIT_ENTRIES_EDEFAULT;
         splitEntriesESet = false;
@@ -323,7 +323,7 @@ public class CamelAtomBindingTypeImpl extends BaseCamelBindingImpl implements Ca
      * <!-- end-user-doc -->
      * @generated
      */
-    public Boolean getFilter() {
+    public boolean isFilter() {
         return filter;
     }
 
@@ -332,8 +332,8 @@ public class CamelAtomBindingTypeImpl extends BaseCamelBindingImpl implements Ca
      * <!-- end-user-doc -->
      * @generated
      */
-    public void setFilter(Boolean newFilter) {
-        Boolean oldFilter = filter;
+    public void setFilter(boolean newFilter) {
+        boolean oldFilter = filter;
         filter = newFilter;
         boolean oldFilterESet = filterESet;
         filterESet = true;
@@ -347,7 +347,7 @@ public class CamelAtomBindingTypeImpl extends BaseCamelBindingImpl implements Ca
      * @generated
      */
     public void unsetFilter() {
-        Boolean oldFilter = filter;
+        boolean oldFilter = filter;
         boolean oldFilterESet = filterESet;
         filter = FILTER_EDEFAULT;
         filterESet = false;
@@ -390,7 +390,7 @@ public class CamelAtomBindingTypeImpl extends BaseCamelBindingImpl implements Ca
      * <!-- end-user-doc -->
      * @generated
      */
-    public Boolean getThrottleEntries() {
+    public boolean isThrottleEntries() {
         return throttleEntries;
     }
 
@@ -399,8 +399,8 @@ public class CamelAtomBindingTypeImpl extends BaseCamelBindingImpl implements Ca
      * <!-- end-user-doc -->
      * @generated
      */
-    public void setThrottleEntries(Boolean newThrottleEntries) {
-        Boolean oldThrottleEntries = throttleEntries;
+    public void setThrottleEntries(boolean newThrottleEntries) {
+        boolean oldThrottleEntries = throttleEntries;
         throttleEntries = newThrottleEntries;
         boolean oldThrottleEntriesESet = throttleEntriesESet;
         throttleEntriesESet = true;
@@ -414,7 +414,7 @@ public class CamelAtomBindingTypeImpl extends BaseCamelBindingImpl implements Ca
      * @generated
      */
     public void unsetThrottleEntries() {
-        Boolean oldThrottleEntries = throttleEntries;
+        boolean oldThrottleEntries = throttleEntries;
         boolean oldThrottleEntriesESet = throttleEntriesESet;
         throttleEntries = THROTTLE_ENTRIES_EDEFAULT;
         throttleEntriesESet = false;
@@ -436,7 +436,7 @@ public class CamelAtomBindingTypeImpl extends BaseCamelBindingImpl implements Ca
      * <!-- end-user-doc -->
      * @generated
      */
-    public Boolean getFeedHeader() {
+    public boolean isFeedHeader() {
         return feedHeader;
     }
 
@@ -445,8 +445,8 @@ public class CamelAtomBindingTypeImpl extends BaseCamelBindingImpl implements Ca
      * <!-- end-user-doc -->
      * @generated
      */
-    public void setFeedHeader(Boolean newFeedHeader) {
-        Boolean oldFeedHeader = feedHeader;
+    public void setFeedHeader(boolean newFeedHeader) {
+        boolean oldFeedHeader = feedHeader;
         feedHeader = newFeedHeader;
         boolean oldFeedHeaderESet = feedHeaderESet;
         feedHeaderESet = true;
@@ -460,7 +460,7 @@ public class CamelAtomBindingTypeImpl extends BaseCamelBindingImpl implements Ca
      * @generated
      */
     public void unsetFeedHeader() {
-        Boolean oldFeedHeader = feedHeader;
+        boolean oldFeedHeader = feedHeader;
         boolean oldFeedHeaderESet = feedHeaderESet;
         feedHeader = FEED_HEADER_EDEFAULT;
         feedHeaderESet = false;
@@ -482,7 +482,7 @@ public class CamelAtomBindingTypeImpl extends BaseCamelBindingImpl implements Ca
      * <!-- end-user-doc -->
      * @generated
      */
-    public Boolean getSortEntries() {
+    public boolean isSortEntries() {
         return sortEntries;
     }
 
@@ -491,8 +491,8 @@ public class CamelAtomBindingTypeImpl extends BaseCamelBindingImpl implements Ca
      * <!-- end-user-doc -->
      * @generated
      */
-    public void setSortEntries(Boolean newSortEntries) {
-        Boolean oldSortEntries = sortEntries;
+    public void setSortEntries(boolean newSortEntries) {
+        boolean oldSortEntries = sortEntries;
         sortEntries = newSortEntries;
         boolean oldSortEntriesESet = sortEntriesESet;
         sortEntriesESet = true;
@@ -506,7 +506,7 @@ public class CamelAtomBindingTypeImpl extends BaseCamelBindingImpl implements Ca
      * @generated
      */
     public void unsetSortEntries() {
-        Boolean oldSortEntries = sortEntries;
+        boolean oldSortEntries = sortEntries;
         boolean oldSortEntriesESet = sortEntriesESet;
         sortEntries = SORT_ENTRIES_EDEFAULT;
         sortEntriesESet = false;
@@ -591,17 +591,17 @@ public class CamelAtomBindingTypeImpl extends BaseCamelBindingImpl implements Ca
             case AtomPackage.CAMEL_ATOM_BINDING_TYPE__FEED_URI:
                 return getFeedURI();
             case AtomPackage.CAMEL_ATOM_BINDING_TYPE__SPLIT_ENTRIES:
-                return getSplitEntries();
+                return isSplitEntries();
             case AtomPackage.CAMEL_ATOM_BINDING_TYPE__FILTER:
-                return getFilter();
+                return isFilter();
             case AtomPackage.CAMEL_ATOM_BINDING_TYPE__LAST_UPDATE:
                 return getLastUpdate();
             case AtomPackage.CAMEL_ATOM_BINDING_TYPE__THROTTLE_ENTRIES:
-                return getThrottleEntries();
+                return isThrottleEntries();
             case AtomPackage.CAMEL_ATOM_BINDING_TYPE__FEED_HEADER:
-                return getFeedHeader();
+                return isFeedHeader();
             case AtomPackage.CAMEL_ATOM_BINDING_TYPE__SORT_ENTRIES:
-                return getSortEntries();
+                return isSortEntries();
             case AtomPackage.CAMEL_ATOM_BINDING_TYPE__CONSUME:
                 return getConsume();
         }

@@ -73,21 +73,17 @@ public class CamelNettyTCPComposite extends AbstractSYBindingComposite {
             if (this._binding.getHost() != null) {
                 _hostText.setText(this._binding.getHost());
             }
-            if (this._binding.getPort() > 0) {
+            if (this._binding.isSetPort()) {
                 _portText.setText(""+this._binding.getPort());
             }
-            if (this._binding.getSendBufferSize() != null) {
+            if (this._binding.isSetSendBufferSize()) {
                 _sendBufferSizeText.setText(""+this._binding.getSendBufferSize());
             }
-            if (this._binding.getReceiveBufferSize() != null) {
+            if (this._binding.isSetReceiveBufferSize()) {
                 _receiveBufferSizeText.setText(""+this._binding.getReceiveBufferSize());
             }
-            if (this._binding.getSync() != null) {
-                _syncCheckbox.setSelection(this._binding.getSync().booleanValue());
-            }
-            if (this._binding.getKeepAlive() != null) {
-                _keepAliveCheckbox.setSelection(this._binding.getKeepAlive().booleanValue());
-            }
+            _syncCheckbox.setSelection(this._binding.isSync());
+            _keepAliveCheckbox.setSelection(this._binding.isKeepAlive());
 
             OperationSelectorType opSelector = OperationSelectorUtil.getFirstOperationSelector(this._binding);
             _opSelectorComposite.setBinding(this._binding);
@@ -271,9 +267,9 @@ public class CamelNettyTCPComposite extends AbstractSYBindingComposite {
             } else if (control.equals(_sendBufferSizeText)) {
                 _sendBufferSizeText.setText(Long.toString(this._binding.getSendBufferSize()));
             } else if (control.equals(_keepAliveCheckbox)) {
-                _keepAliveCheckbox.setSelection(this._binding.getKeepAlive());
+                _keepAliveCheckbox.setSelection(this._binding.isKeepAlive());
             } else if (control.equals(_syncCheckbox)) {
-                _syncCheckbox.setSelection(this._binding.getSync().booleanValue());
+                _syncCheckbox.setSelection(this._binding.isSync());
 //            } else if (control.equals(_operationSelectionCombo)) {
 //                String opName = OperationSelectorUtil.getOperationNameForStaticOperationSelector(this._binding);
 //                setTextValue(_operationSelectionCombo, opName);

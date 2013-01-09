@@ -51,7 +51,7 @@ public class CamelMockBindingTypeImpl extends BaseCamelBindingImpl implements Ca
      * @generated
      * @ordered
      */
-    protected static final Integer REPORT_GROUP_EDEFAULT = null;
+    protected static final int REPORT_GROUP_EDEFAULT = 0;
 
     /**
      * The cached value of the '{@link #getReportGroup() <em>Report Group</em>}' attribute.
@@ -61,7 +61,16 @@ public class CamelMockBindingTypeImpl extends BaseCamelBindingImpl implements Ca
      * @generated
      * @ordered
      */
-    protected Integer reportGroup = REPORT_GROUP_EDEFAULT;
+    protected int reportGroup = REPORT_GROUP_EDEFAULT;
+
+    /**
+     * This is true if the Report Group attribute has been set.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    protected boolean reportGroupESet;
 
     /**
      * <!-- begin-user-doc -->
@@ -108,7 +117,7 @@ public class CamelMockBindingTypeImpl extends BaseCamelBindingImpl implements Ca
      * <!-- end-user-doc -->
      * @generated
      */
-    public Integer getReportGroup() {
+    public int getReportGroup() {
         return reportGroup;
     }
 
@@ -117,11 +126,36 @@ public class CamelMockBindingTypeImpl extends BaseCamelBindingImpl implements Ca
      * <!-- end-user-doc -->
      * @generated
      */
-    public void setReportGroup(Integer newReportGroup) {
-        Integer oldReportGroup = reportGroup;
+    public void setReportGroup(int newReportGroup) {
+        int oldReportGroup = reportGroup;
         reportGroup = newReportGroup;
+        boolean oldReportGroupESet = reportGroupESet;
+        reportGroupESet = true;
         if (eNotificationRequired())
-            eNotify(new ENotificationImpl(this, Notification.SET, CorePackage.CAMEL_MOCK_BINDING_TYPE__REPORT_GROUP, oldReportGroup, reportGroup));
+            eNotify(new ENotificationImpl(this, Notification.SET, CorePackage.CAMEL_MOCK_BINDING_TYPE__REPORT_GROUP, oldReportGroup, reportGroup, !oldReportGroupESet));
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public void unsetReportGroup() {
+        int oldReportGroup = reportGroup;
+        boolean oldReportGroupESet = reportGroupESet;
+        reportGroup = REPORT_GROUP_EDEFAULT;
+        reportGroupESet = false;
+        if (eNotificationRequired())
+            eNotify(new ENotificationImpl(this, Notification.UNSET, CorePackage.CAMEL_MOCK_BINDING_TYPE__REPORT_GROUP, oldReportGroup, REPORT_GROUP_EDEFAULT, oldReportGroupESet));
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public boolean isSetReportGroup() {
+        return reportGroupESet;
     }
 
     /**
@@ -170,7 +204,7 @@ public class CamelMockBindingTypeImpl extends BaseCamelBindingImpl implements Ca
                 setCamelBindingName(CAMEL_BINDING_NAME_EDEFAULT);
                 return;
             case CorePackage.CAMEL_MOCK_BINDING_TYPE__REPORT_GROUP:
-                setReportGroup(REPORT_GROUP_EDEFAULT);
+                unsetReportGroup();
                 return;
         }
         super.eUnset(featureID);
@@ -187,7 +221,7 @@ public class CamelMockBindingTypeImpl extends BaseCamelBindingImpl implements Ca
             case CorePackage.CAMEL_MOCK_BINDING_TYPE__CAMEL_BINDING_NAME:
                 return CAMEL_BINDING_NAME_EDEFAULT == null ? camelBindingName != null : !CAMEL_BINDING_NAME_EDEFAULT.equals(camelBindingName);
             case CorePackage.CAMEL_MOCK_BINDING_TYPE__REPORT_GROUP:
-                return REPORT_GROUP_EDEFAULT == null ? reportGroup != null : !REPORT_GROUP_EDEFAULT.equals(reportGroup);
+                return isSetReportGroup();
         }
         return super.eIsSet(featureID);
     }
@@ -205,7 +239,7 @@ public class CamelMockBindingTypeImpl extends BaseCamelBindingImpl implements Ca
         result.append(" (camelBindingName: ");
         result.append(camelBindingName);
         result.append(", reportGroup: ");
-        result.append(reportGroup);
+        if (reportGroupESet) result.append(reportGroup); else result.append("<unset>");
         result.append(')');
         return result.toString();
     }

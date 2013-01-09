@@ -733,33 +733,33 @@ public interface JmsPackage extends EPackage {
     EAttribute getCamelJmsBindingType_MaxConcurrentConsumers();
 
     /**
-     * Returns the meta object for the attribute '{@link org.switchyard.tools.models.switchyard1_0.camel.jms.CamelJmsBindingType#getDisableReplyTo <em>Disable Reply To</em>}'.
+     * Returns the meta object for the attribute '{@link org.switchyard.tools.models.switchyard1_0.camel.jms.CamelJmsBindingType#isDisableReplyTo <em>Disable Reply To</em>}'.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @return the meta object for the attribute '<em>Disable Reply To</em>'.
-     * @see org.switchyard.tools.models.switchyard1_0.camel.jms.CamelJmsBindingType#getDisableReplyTo()
+     * @see org.switchyard.tools.models.switchyard1_0.camel.jms.CamelJmsBindingType#isDisableReplyTo()
      * @see #getCamelJmsBindingType()
      * @generated
      */
     EAttribute getCamelJmsBindingType_DisableReplyTo();
 
     /**
-     * Returns the meta object for the attribute '{@link org.switchyard.tools.models.switchyard1_0.camel.jms.CamelJmsBindingType#getPreserveMessageQos <em>Preserve Message Qos</em>}'.
+     * Returns the meta object for the attribute '{@link org.switchyard.tools.models.switchyard1_0.camel.jms.CamelJmsBindingType#isPreserveMessageQos <em>Preserve Message Qos</em>}'.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @return the meta object for the attribute '<em>Preserve Message Qos</em>'.
-     * @see org.switchyard.tools.models.switchyard1_0.camel.jms.CamelJmsBindingType#getPreserveMessageQos()
+     * @see org.switchyard.tools.models.switchyard1_0.camel.jms.CamelJmsBindingType#isPreserveMessageQos()
      * @see #getCamelJmsBindingType()
      * @generated
      */
     EAttribute getCamelJmsBindingType_PreserveMessageQos();
 
     /**
-     * Returns the meta object for the attribute '{@link org.switchyard.tools.models.switchyard1_0.camel.jms.CamelJmsBindingType#getDeliveryPersistent <em>Delivery Persistent</em>}'.
+     * Returns the meta object for the attribute '{@link org.switchyard.tools.models.switchyard1_0.camel.jms.CamelJmsBindingType#isDeliveryPersistent <em>Delivery Persistent</em>}'.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @return the meta object for the attribute '<em>Delivery Persistent</em>'.
-     * @see org.switchyard.tools.models.switchyard1_0.camel.jms.CamelJmsBindingType#getDeliveryPersistent()
+     * @see org.switchyard.tools.models.switchyard1_0.camel.jms.CamelJmsBindingType#isDeliveryPersistent()
      * @see #getCamelJmsBindingType()
      * @generated
      */
@@ -777,11 +777,11 @@ public interface JmsPackage extends EPackage {
     EAttribute getCamelJmsBindingType_Priority();
 
     /**
-     * Returns the meta object for the attribute '{@link org.switchyard.tools.models.switchyard1_0.camel.jms.CamelJmsBindingType#getExplicitQosEnabled <em>Explicit Qos Enabled</em>}'.
+     * Returns the meta object for the attribute '{@link org.switchyard.tools.models.switchyard1_0.camel.jms.CamelJmsBindingType#isExplicitQosEnabled <em>Explicit Qos Enabled</em>}'.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @return the meta object for the attribute '<em>Explicit Qos Enabled</em>'.
-     * @see org.switchyard.tools.models.switchyard1_0.camel.jms.CamelJmsBindingType#getExplicitQosEnabled()
+     * @see org.switchyard.tools.models.switchyard1_0.camel.jms.CamelJmsBindingType#isExplicitQosEnabled()
      * @see #getCamelJmsBindingType()
      * @generated
      */
@@ -843,11 +843,11 @@ public interface JmsPackage extends EPackage {
     EAttribute getCamelJmsBindingType_TimeToLive();
 
     /**
-     * Returns the meta object for the attribute '{@link org.switchyard.tools.models.switchyard1_0.camel.jms.CamelJmsBindingType#getTransacted <em>Transacted</em>}'.
+     * Returns the meta object for the attribute '{@link org.switchyard.tools.models.switchyard1_0.camel.jms.CamelJmsBindingType#isTransacted <em>Transacted</em>}'.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @return the meta object for the attribute '<em>Transacted</em>'.
-     * @see org.switchyard.tools.models.switchyard1_0.camel.jms.CamelJmsBindingType#getTransacted()
+     * @see org.switchyard.tools.models.switchyard1_0.camel.jms.CamelJmsBindingType#isTransacted()
      * @see #getCamelJmsBindingType()
      * @generated
      */

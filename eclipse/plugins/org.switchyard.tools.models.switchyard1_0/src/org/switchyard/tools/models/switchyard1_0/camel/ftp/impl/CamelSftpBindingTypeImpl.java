@@ -23,23 +23,23 @@ import org.switchyard.tools.models.switchyard1_0.camel.ftp.RemoteFileProducerTyp
  * The following features are implemented:
  * <ul>
  *   <li>{@link org.switchyard.tools.models.switchyard1_0.camel.ftp.impl.CamelSftpBindingTypeImpl#getDirectory <em>Directory</em>}</li>
- *   <li>{@link org.switchyard.tools.models.switchyard1_0.camel.ftp.impl.CamelSftpBindingTypeImpl#getAutoCreate <em>Auto Create</em>}</li>
+ *   <li>{@link org.switchyard.tools.models.switchyard1_0.camel.ftp.impl.CamelSftpBindingTypeImpl#isAutoCreate <em>Auto Create</em>}</li>
  *   <li>{@link org.switchyard.tools.models.switchyard1_0.camel.ftp.impl.CamelSftpBindingTypeImpl#getBufferSize <em>Buffer Size</em>}</li>
  *   <li>{@link org.switchyard.tools.models.switchyard1_0.camel.ftp.impl.CamelSftpBindingTypeImpl#getFileName <em>File Name</em>}</li>
- *   <li>{@link org.switchyard.tools.models.switchyard1_0.camel.ftp.impl.CamelSftpBindingTypeImpl#getFlatten <em>Flatten</em>}</li>
+ *   <li>{@link org.switchyard.tools.models.switchyard1_0.camel.ftp.impl.CamelSftpBindingTypeImpl#isFlatten <em>Flatten</em>}</li>
  *   <li>{@link org.switchyard.tools.models.switchyard1_0.camel.ftp.impl.CamelSftpBindingTypeImpl#getCharset <em>Charset</em>}</li>
  *   <li>{@link org.switchyard.tools.models.switchyard1_0.camel.ftp.impl.CamelSftpBindingTypeImpl#getHost <em>Host</em>}</li>
  *   <li>{@link org.switchyard.tools.models.switchyard1_0.camel.ftp.impl.CamelSftpBindingTypeImpl#getPort <em>Port</em>}</li>
  *   <li>{@link org.switchyard.tools.models.switchyard1_0.camel.ftp.impl.CamelSftpBindingTypeImpl#getUsername <em>Username</em>}</li>
  *   <li>{@link org.switchyard.tools.models.switchyard1_0.camel.ftp.impl.CamelSftpBindingTypeImpl#getPassword <em>Password</em>}</li>
- *   <li>{@link org.switchyard.tools.models.switchyard1_0.camel.ftp.impl.CamelSftpBindingTypeImpl#getBinary <em>Binary</em>}</li>
+ *   <li>{@link org.switchyard.tools.models.switchyard1_0.camel.ftp.impl.CamelSftpBindingTypeImpl#isBinary <em>Binary</em>}</li>
  *   <li>{@link org.switchyard.tools.models.switchyard1_0.camel.ftp.impl.CamelSftpBindingTypeImpl#getConnectTimeout <em>Connect Timeout</em>}</li>
- *   <li>{@link org.switchyard.tools.models.switchyard1_0.camel.ftp.impl.CamelSftpBindingTypeImpl#getDisconnect <em>Disconnect</em>}</li>
+ *   <li>{@link org.switchyard.tools.models.switchyard1_0.camel.ftp.impl.CamelSftpBindingTypeImpl#isDisconnect <em>Disconnect</em>}</li>
  *   <li>{@link org.switchyard.tools.models.switchyard1_0.camel.ftp.impl.CamelSftpBindingTypeImpl#getMaximumReconnectAttempts <em>Maximum Reconnect Attempts</em>}</li>
  *   <li>{@link org.switchyard.tools.models.switchyard1_0.camel.ftp.impl.CamelSftpBindingTypeImpl#getReconnectDelay <em>Reconnect Delay</em>}</li>
  *   <li>{@link org.switchyard.tools.models.switchyard1_0.camel.ftp.impl.CamelSftpBindingTypeImpl#getSeparator <em>Separator</em>}</li>
- *   <li>{@link org.switchyard.tools.models.switchyard1_0.camel.ftp.impl.CamelSftpBindingTypeImpl#getStepwise <em>Stepwise</em>}</li>
- *   <li>{@link org.switchyard.tools.models.switchyard1_0.camel.ftp.impl.CamelSftpBindingTypeImpl#getThrowExceptionOnConnectFailed <em>Throw Exception On Connect Failed</em>}</li>
+ *   <li>{@link org.switchyard.tools.models.switchyard1_0.camel.ftp.impl.CamelSftpBindingTypeImpl#isStepwise <em>Stepwise</em>}</li>
+ *   <li>{@link org.switchyard.tools.models.switchyard1_0.camel.ftp.impl.CamelSftpBindingTypeImpl#isThrowExceptionOnConnectFailed <em>Throw Exception On Connect Failed</em>}</li>
  *   <li>{@link org.switchyard.tools.models.switchyard1_0.camel.ftp.impl.CamelSftpBindingTypeImpl#getKnownHostsFile <em>Known Hosts File</em>}</li>
  *   <li>{@link org.switchyard.tools.models.switchyard1_0.camel.ftp.impl.CamelSftpBindingTypeImpl#getPrivateKeyFile <em>Private Key File</em>}</li>
  *   <li>{@link org.switchyard.tools.models.switchyard1_0.camel.ftp.impl.CamelSftpBindingTypeImpl#getPrivateKeyFilePassphrase <em>Private Key File Passphrase</em>}</li>
@@ -72,24 +72,24 @@ public class CamelSftpBindingTypeImpl extends BaseCamelBindingImpl implements Ca
     protected String directory = DIRECTORY_EDEFAULT;
 
     /**
-     * The default value of the '{@link #getAutoCreate() <em>Auto Create</em>}' attribute.
+     * The default value of the '{@link #isAutoCreate() <em>Auto Create</em>}' attribute.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @see #getAutoCreate()
+     * @see #isAutoCreate()
      * @generated
      * @ordered
      */
-    protected static final Boolean AUTO_CREATE_EDEFAULT = null;
+    protected static final boolean AUTO_CREATE_EDEFAULT = true;
 
     /**
-     * The cached value of the '{@link #getAutoCreate() <em>Auto Create</em>}' attribute.
+     * The cached value of the '{@link #isAutoCreate() <em>Auto Create</em>}' attribute.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @see #getAutoCreate()
+     * @see #isAutoCreate()
      * @generated
      * @ordered
      */
-    protected Boolean autoCreate = AUTO_CREATE_EDEFAULT;
+    protected boolean autoCreate = AUTO_CREATE_EDEFAULT;
 
     /**
      * This is true if the Auto Create attribute has been set.
@@ -108,7 +108,7 @@ public class CamelSftpBindingTypeImpl extends BaseCamelBindingImpl implements Ca
      * @generated
      * @ordered
      */
-    protected static final Integer BUFFER_SIZE_EDEFAULT = null;
+    protected static final int BUFFER_SIZE_EDEFAULT = 131072;
 
     /**
      * The cached value of the '{@link #getBufferSize() <em>Buffer Size</em>}' attribute.
@@ -118,7 +118,16 @@ public class CamelSftpBindingTypeImpl extends BaseCamelBindingImpl implements Ca
      * @generated
      * @ordered
      */
-    protected Integer bufferSize = BUFFER_SIZE_EDEFAULT;
+    protected int bufferSize = BUFFER_SIZE_EDEFAULT;
+
+    /**
+     * This is true if the Buffer Size attribute has been set.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    protected boolean bufferSizeESet;
 
     /**
      * The default value of the '{@link #getFileName() <em>File Name</em>}' attribute.
@@ -141,24 +150,24 @@ public class CamelSftpBindingTypeImpl extends BaseCamelBindingImpl implements Ca
     protected String fileName = FILE_NAME_EDEFAULT;
 
     /**
-     * The default value of the '{@link #getFlatten() <em>Flatten</em>}' attribute.
+     * The default value of the '{@link #isFlatten() <em>Flatten</em>}' attribute.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @see #getFlatten()
+     * @see #isFlatten()
      * @generated
      * @ordered
      */
-    protected static final Boolean FLATTEN_EDEFAULT = null;
+    protected static final boolean FLATTEN_EDEFAULT = false;
 
     /**
-     * The cached value of the '{@link #getFlatten() <em>Flatten</em>}' attribute.
+     * The cached value of the '{@link #isFlatten() <em>Flatten</em>}' attribute.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @see #getFlatten()
+     * @see #isFlatten()
      * @generated
      * @ordered
      */
-    protected Boolean flatten = FLATTEN_EDEFAULT;
+    protected boolean flatten = FLATTEN_EDEFAULT;
 
     /**
      * This is true if the Flatten attribute has been set.
@@ -217,7 +226,7 @@ public class CamelSftpBindingTypeImpl extends BaseCamelBindingImpl implements Ca
      * @generated
      * @ordered
      */
-    protected static final Integer PORT_EDEFAULT = null;
+    protected static final int PORT_EDEFAULT = 0;
 
     /**
      * The cached value of the '{@link #getPort() <em>Port</em>}' attribute.
@@ -227,7 +236,7 @@ public class CamelSftpBindingTypeImpl extends BaseCamelBindingImpl implements Ca
      * @generated
      * @ordered
      */
-    protected Integer port = PORT_EDEFAULT;
+    protected int port = PORT_EDEFAULT;
 
     /**
      * This is true if the Port attribute has been set.
@@ -279,24 +288,24 @@ public class CamelSftpBindingTypeImpl extends BaseCamelBindingImpl implements Ca
     protected String password = PASSWORD_EDEFAULT;
 
     /**
-     * The default value of the '{@link #getBinary() <em>Binary</em>}' attribute.
+     * The default value of the '{@link #isBinary() <em>Binary</em>}' attribute.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @see #getBinary()
+     * @see #isBinary()
      * @generated
      * @ordered
      */
-    protected static final Boolean BINARY_EDEFAULT = null;
+    protected static final boolean BINARY_EDEFAULT = false;
 
     /**
-     * The cached value of the '{@link #getBinary() <em>Binary</em>}' attribute.
+     * The cached value of the '{@link #isBinary() <em>Binary</em>}' attribute.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @see #getBinary()
+     * @see #isBinary()
      * @generated
      * @ordered
      */
-    protected Boolean binary = BINARY_EDEFAULT;
+    protected boolean binary = BINARY_EDEFAULT;
 
     /**
      * This is true if the Binary attribute has been set.
@@ -315,7 +324,7 @@ public class CamelSftpBindingTypeImpl extends BaseCamelBindingImpl implements Ca
      * @generated
      * @ordered
      */
-    protected static final Integer CONNECT_TIMEOUT_EDEFAULT = null;
+    protected static final int CONNECT_TIMEOUT_EDEFAULT = 10000;
 
     /**
      * The cached value of the '{@link #getConnectTimeout() <em>Connect Timeout</em>}' attribute.
@@ -325,7 +334,7 @@ public class CamelSftpBindingTypeImpl extends BaseCamelBindingImpl implements Ca
      * @generated
      * @ordered
      */
-    protected Integer connectTimeout = CONNECT_TIMEOUT_EDEFAULT;
+    protected int connectTimeout = CONNECT_TIMEOUT_EDEFAULT;
 
     /**
      * This is true if the Connect Timeout attribute has been set.
@@ -337,24 +346,24 @@ public class CamelSftpBindingTypeImpl extends BaseCamelBindingImpl implements Ca
     protected boolean connectTimeoutESet;
 
     /**
-     * The default value of the '{@link #getDisconnect() <em>Disconnect</em>}' attribute.
+     * The default value of the '{@link #isDisconnect() <em>Disconnect</em>}' attribute.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @see #getDisconnect()
+     * @see #isDisconnect()
      * @generated
      * @ordered
      */
-    protected static final Boolean DISCONNECT_EDEFAULT = null;
+    protected static final boolean DISCONNECT_EDEFAULT = false;
 
     /**
-     * The cached value of the '{@link #getDisconnect() <em>Disconnect</em>}' attribute.
+     * The cached value of the '{@link #isDisconnect() <em>Disconnect</em>}' attribute.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @see #getDisconnect()
+     * @see #isDisconnect()
      * @generated
      * @ordered
      */
-    protected Boolean disconnect = DISCONNECT_EDEFAULT;
+    protected boolean disconnect = DISCONNECT_EDEFAULT;
 
     /**
      * This is true if the Disconnect attribute has been set.
@@ -373,7 +382,7 @@ public class CamelSftpBindingTypeImpl extends BaseCamelBindingImpl implements Ca
      * @generated
      * @ordered
      */
-    protected static final Integer MAXIMUM_RECONNECT_ATTEMPTS_EDEFAULT = null;
+    protected static final int MAXIMUM_RECONNECT_ATTEMPTS_EDEFAULT = 3;
 
     /**
      * The cached value of the '{@link #getMaximumReconnectAttempts() <em>Maximum Reconnect Attempts</em>}' attribute.
@@ -383,7 +392,7 @@ public class CamelSftpBindingTypeImpl extends BaseCamelBindingImpl implements Ca
      * @generated
      * @ordered
      */
-    protected Integer maximumReconnectAttempts = MAXIMUM_RECONNECT_ATTEMPTS_EDEFAULT;
+    protected int maximumReconnectAttempts = MAXIMUM_RECONNECT_ATTEMPTS_EDEFAULT;
 
     /**
      * This is true if the Maximum Reconnect Attempts attribute has been set.
@@ -402,7 +411,7 @@ public class CamelSftpBindingTypeImpl extends BaseCamelBindingImpl implements Ca
      * @generated
      * @ordered
      */
-    protected static final Integer RECONNECT_DELAY_EDEFAULT = null;
+    protected static final int RECONNECT_DELAY_EDEFAULT = 1000;
 
     /**
      * The cached value of the '{@link #getReconnectDelay() <em>Reconnect Delay</em>}' attribute.
@@ -412,7 +421,7 @@ public class CamelSftpBindingTypeImpl extends BaseCamelBindingImpl implements Ca
      * @generated
      * @ordered
      */
-    protected Integer reconnectDelay = RECONNECT_DELAY_EDEFAULT;
+    protected int reconnectDelay = RECONNECT_DELAY_EDEFAULT;
 
     /**
      * This is true if the Reconnect Delay attribute has been set.
@@ -444,24 +453,24 @@ public class CamelSftpBindingTypeImpl extends BaseCamelBindingImpl implements Ca
     protected String separator = SEPARATOR_EDEFAULT;
 
     /**
-     * The default value of the '{@link #getStepwise() <em>Stepwise</em>}' attribute.
+     * The default value of the '{@link #isStepwise() <em>Stepwise</em>}' attribute.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @see #getStepwise()
+     * @see #isStepwise()
      * @generated
      * @ordered
      */
-    protected static final Boolean STEPWISE_EDEFAULT = null;
+    protected static final boolean STEPWISE_EDEFAULT = true;
 
     /**
-     * The cached value of the '{@link #getStepwise() <em>Stepwise</em>}' attribute.
+     * The cached value of the '{@link #isStepwise() <em>Stepwise</em>}' attribute.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @see #getStepwise()
+     * @see #isStepwise()
      * @generated
      * @ordered
      */
-    protected Boolean stepwise = STEPWISE_EDEFAULT;
+    protected boolean stepwise = STEPWISE_EDEFAULT;
 
     /**
      * This is true if the Stepwise attribute has been set.
@@ -473,24 +482,24 @@ public class CamelSftpBindingTypeImpl extends BaseCamelBindingImpl implements Ca
     protected boolean stepwiseESet;
 
     /**
-     * The default value of the '{@link #getThrowExceptionOnConnectFailed() <em>Throw Exception On Connect Failed</em>}' attribute.
+     * The default value of the '{@link #isThrowExceptionOnConnectFailed() <em>Throw Exception On Connect Failed</em>}' attribute.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @see #getThrowExceptionOnConnectFailed()
+     * @see #isThrowExceptionOnConnectFailed()
      * @generated
      * @ordered
      */
-    protected static final Boolean THROW_EXCEPTION_ON_CONNECT_FAILED_EDEFAULT = null;
+    protected static final boolean THROW_EXCEPTION_ON_CONNECT_FAILED_EDEFAULT = false;
 
     /**
-     * The cached value of the '{@link #getThrowExceptionOnConnectFailed() <em>Throw Exception On Connect Failed</em>}' attribute.
+     * The cached value of the '{@link #isThrowExceptionOnConnectFailed() <em>Throw Exception On Connect Failed</em>}' attribute.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @see #getThrowExceptionOnConnectFailed()
+     * @see #isThrowExceptionOnConnectFailed()
      * @generated
      * @ordered
      */
-    protected Boolean throwExceptionOnConnectFailed = THROW_EXCEPTION_ON_CONNECT_FAILED_EDEFAULT;
+    protected boolean throwExceptionOnConnectFailed = THROW_EXCEPTION_ON_CONNECT_FAILED_EDEFAULT;
 
     /**
      * This is true if the Throw Exception On Connect Failed attribute has been set.
@@ -626,7 +635,7 @@ public class CamelSftpBindingTypeImpl extends BaseCamelBindingImpl implements Ca
      * <!-- end-user-doc -->
      * @generated
      */
-    public Boolean getAutoCreate() {
+    public boolean isAutoCreate() {
         return autoCreate;
     }
 
@@ -635,8 +644,8 @@ public class CamelSftpBindingTypeImpl extends BaseCamelBindingImpl implements Ca
      * <!-- end-user-doc -->
      * @generated
      */
-    public void setAutoCreate(Boolean newAutoCreate) {
-        Boolean oldAutoCreate = autoCreate;
+    public void setAutoCreate(boolean newAutoCreate) {
+        boolean oldAutoCreate = autoCreate;
         autoCreate = newAutoCreate;
         boolean oldAutoCreateESet = autoCreateESet;
         autoCreateESet = true;
@@ -650,7 +659,7 @@ public class CamelSftpBindingTypeImpl extends BaseCamelBindingImpl implements Ca
      * @generated
      */
     public void unsetAutoCreate() {
-        Boolean oldAutoCreate = autoCreate;
+        boolean oldAutoCreate = autoCreate;
         boolean oldAutoCreateESet = autoCreateESet;
         autoCreate = AUTO_CREATE_EDEFAULT;
         autoCreateESet = false;
@@ -672,7 +681,7 @@ public class CamelSftpBindingTypeImpl extends BaseCamelBindingImpl implements Ca
      * <!-- end-user-doc -->
      * @generated
      */
-    public Integer getBufferSize() {
+    public int getBufferSize() {
         return bufferSize;
     }
 
@@ -681,11 +690,36 @@ public class CamelSftpBindingTypeImpl extends BaseCamelBindingImpl implements Ca
      * <!-- end-user-doc -->
      * @generated
      */
-    public void setBufferSize(Integer newBufferSize) {
-        Integer oldBufferSize = bufferSize;
+    public void setBufferSize(int newBufferSize) {
+        int oldBufferSize = bufferSize;
         bufferSize = newBufferSize;
+        boolean oldBufferSizeESet = bufferSizeESet;
+        bufferSizeESet = true;
         if (eNotificationRequired())
-            eNotify(new ENotificationImpl(this, Notification.SET, FtpPackage.CAMEL_SFTP_BINDING_TYPE__BUFFER_SIZE, oldBufferSize, bufferSize));
+            eNotify(new ENotificationImpl(this, Notification.SET, FtpPackage.CAMEL_SFTP_BINDING_TYPE__BUFFER_SIZE, oldBufferSize, bufferSize, !oldBufferSizeESet));
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public void unsetBufferSize() {
+        int oldBufferSize = bufferSize;
+        boolean oldBufferSizeESet = bufferSizeESet;
+        bufferSize = BUFFER_SIZE_EDEFAULT;
+        bufferSizeESet = false;
+        if (eNotificationRequired())
+            eNotify(new ENotificationImpl(this, Notification.UNSET, FtpPackage.CAMEL_SFTP_BINDING_TYPE__BUFFER_SIZE, oldBufferSize, BUFFER_SIZE_EDEFAULT, oldBufferSizeESet));
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public boolean isSetBufferSize() {
+        return bufferSizeESet;
     }
 
     /**
@@ -714,7 +748,7 @@ public class CamelSftpBindingTypeImpl extends BaseCamelBindingImpl implements Ca
      * <!-- end-user-doc -->
      * @generated
      */
-    public Boolean getFlatten() {
+    public boolean isFlatten() {
         return flatten;
     }
 
@@ -723,8 +757,8 @@ public class CamelSftpBindingTypeImpl extends BaseCamelBindingImpl implements Ca
      * <!-- end-user-doc -->
      * @generated
      */
-    public void setFlatten(Boolean newFlatten) {
-        Boolean oldFlatten = flatten;
+    public void setFlatten(boolean newFlatten) {
+        boolean oldFlatten = flatten;
         flatten = newFlatten;
         boolean oldFlattenESet = flattenESet;
         flattenESet = true;
@@ -738,7 +772,7 @@ public class CamelSftpBindingTypeImpl extends BaseCamelBindingImpl implements Ca
      * @generated
      */
     public void unsetFlatten() {
-        Boolean oldFlatten = flatten;
+        boolean oldFlatten = flatten;
         boolean oldFlattenESet = flattenESet;
         flatten = FLATTEN_EDEFAULT;
         flattenESet = false;
@@ -802,7 +836,7 @@ public class CamelSftpBindingTypeImpl extends BaseCamelBindingImpl implements Ca
      * <!-- end-user-doc -->
      * @generated
      */
-    public Integer getPort() {
+    public int getPort() {
         return port;
     }
 
@@ -811,8 +845,8 @@ public class CamelSftpBindingTypeImpl extends BaseCamelBindingImpl implements Ca
      * <!-- end-user-doc -->
      * @generated
      */
-    public void setPort(Integer newPort) {
-        Integer oldPort = port;
+    public void setPort(int newPort) {
+        int oldPort = port;
         port = newPort;
         boolean oldPortESet = portESet;
         portESet = true;
@@ -826,7 +860,7 @@ public class CamelSftpBindingTypeImpl extends BaseCamelBindingImpl implements Ca
      * @generated
      */
     public void unsetPort() {
-        Integer oldPort = port;
+        int oldPort = port;
         boolean oldPortESet = portESet;
         port = PORT_EDEFAULT;
         portESet = false;
@@ -890,7 +924,7 @@ public class CamelSftpBindingTypeImpl extends BaseCamelBindingImpl implements Ca
      * <!-- end-user-doc -->
      * @generated
      */
-    public Boolean getBinary() {
+    public boolean isBinary() {
         return binary;
     }
 
@@ -899,8 +933,8 @@ public class CamelSftpBindingTypeImpl extends BaseCamelBindingImpl implements Ca
      * <!-- end-user-doc -->
      * @generated
      */
-    public void setBinary(Boolean newBinary) {
-        Boolean oldBinary = binary;
+    public void setBinary(boolean newBinary) {
+        boolean oldBinary = binary;
         binary = newBinary;
         boolean oldBinaryESet = binaryESet;
         binaryESet = true;
@@ -914,7 +948,7 @@ public class CamelSftpBindingTypeImpl extends BaseCamelBindingImpl implements Ca
      * @generated
      */
     public void unsetBinary() {
-        Boolean oldBinary = binary;
+        boolean oldBinary = binary;
         boolean oldBinaryESet = binaryESet;
         binary = BINARY_EDEFAULT;
         binaryESet = false;
@@ -936,7 +970,7 @@ public class CamelSftpBindingTypeImpl extends BaseCamelBindingImpl implements Ca
      * <!-- end-user-doc -->
      * @generated
      */
-    public Integer getConnectTimeout() {
+    public int getConnectTimeout() {
         return connectTimeout;
     }
 
@@ -945,8 +979,8 @@ public class CamelSftpBindingTypeImpl extends BaseCamelBindingImpl implements Ca
      * <!-- end-user-doc -->
      * @generated
      */
-    public void setConnectTimeout(Integer newConnectTimeout) {
-        Integer oldConnectTimeout = connectTimeout;
+    public void setConnectTimeout(int newConnectTimeout) {
+        int oldConnectTimeout = connectTimeout;
         connectTimeout = newConnectTimeout;
         boolean oldConnectTimeoutESet = connectTimeoutESet;
         connectTimeoutESet = true;
@@ -960,7 +994,7 @@ public class CamelSftpBindingTypeImpl extends BaseCamelBindingImpl implements Ca
      * @generated
      */
     public void unsetConnectTimeout() {
-        Integer oldConnectTimeout = connectTimeout;
+        int oldConnectTimeout = connectTimeout;
         boolean oldConnectTimeoutESet = connectTimeoutESet;
         connectTimeout = CONNECT_TIMEOUT_EDEFAULT;
         connectTimeoutESet = false;
@@ -982,7 +1016,7 @@ public class CamelSftpBindingTypeImpl extends BaseCamelBindingImpl implements Ca
      * <!-- end-user-doc -->
      * @generated
      */
-    public Boolean getDisconnect() {
+    public boolean isDisconnect() {
         return disconnect;
     }
 
@@ -991,8 +1025,8 @@ public class CamelSftpBindingTypeImpl extends BaseCamelBindingImpl implements Ca
      * <!-- end-user-doc -->
      * @generated
      */
-    public void setDisconnect(Boolean newDisconnect) {
-        Boolean oldDisconnect = disconnect;
+    public void setDisconnect(boolean newDisconnect) {
+        boolean oldDisconnect = disconnect;
         disconnect = newDisconnect;
         boolean oldDisconnectESet = disconnectESet;
         disconnectESet = true;
@@ -1006,7 +1040,7 @@ public class CamelSftpBindingTypeImpl extends BaseCamelBindingImpl implements Ca
      * @generated
      */
     public void unsetDisconnect() {
-        Boolean oldDisconnect = disconnect;
+        boolean oldDisconnect = disconnect;
         boolean oldDisconnectESet = disconnectESet;
         disconnect = DISCONNECT_EDEFAULT;
         disconnectESet = false;
@@ -1028,7 +1062,7 @@ public class CamelSftpBindingTypeImpl extends BaseCamelBindingImpl implements Ca
      * <!-- end-user-doc -->
      * @generated
      */
-    public Integer getMaximumReconnectAttempts() {
+    public int getMaximumReconnectAttempts() {
         return maximumReconnectAttempts;
     }
 
@@ -1037,8 +1071,8 @@ public class CamelSftpBindingTypeImpl extends BaseCamelBindingImpl implements Ca
      * <!-- end-user-doc -->
      * @generated
      */
-    public void setMaximumReconnectAttempts(Integer newMaximumReconnectAttempts) {
-        Integer oldMaximumReconnectAttempts = maximumReconnectAttempts;
+    public void setMaximumReconnectAttempts(int newMaximumReconnectAttempts) {
+        int oldMaximumReconnectAttempts = maximumReconnectAttempts;
         maximumReconnectAttempts = newMaximumReconnectAttempts;
         boolean oldMaximumReconnectAttemptsESet = maximumReconnectAttemptsESet;
         maximumReconnectAttemptsESet = true;
@@ -1052,7 +1086,7 @@ public class CamelSftpBindingTypeImpl extends BaseCamelBindingImpl implements Ca
      * @generated
      */
     public void unsetMaximumReconnectAttempts() {
-        Integer oldMaximumReconnectAttempts = maximumReconnectAttempts;
+        int oldMaximumReconnectAttempts = maximumReconnectAttempts;
         boolean oldMaximumReconnectAttemptsESet = maximumReconnectAttemptsESet;
         maximumReconnectAttempts = MAXIMUM_RECONNECT_ATTEMPTS_EDEFAULT;
         maximumReconnectAttemptsESet = false;
@@ -1074,7 +1108,7 @@ public class CamelSftpBindingTypeImpl extends BaseCamelBindingImpl implements Ca
      * <!-- end-user-doc -->
      * @generated
      */
-    public Integer getReconnectDelay() {
+    public int getReconnectDelay() {
         return reconnectDelay;
     }
 
@@ -1083,8 +1117,8 @@ public class CamelSftpBindingTypeImpl extends BaseCamelBindingImpl implements Ca
      * <!-- end-user-doc -->
      * @generated
      */
-    public void setReconnectDelay(Integer newReconnectDelay) {
-        Integer oldReconnectDelay = reconnectDelay;
+    public void setReconnectDelay(int newReconnectDelay) {
+        int oldReconnectDelay = reconnectDelay;
         reconnectDelay = newReconnectDelay;
         boolean oldReconnectDelayESet = reconnectDelayESet;
         reconnectDelayESet = true;
@@ -1098,7 +1132,7 @@ public class CamelSftpBindingTypeImpl extends BaseCamelBindingImpl implements Ca
      * @generated
      */
     public void unsetReconnectDelay() {
-        Integer oldReconnectDelay = reconnectDelay;
+        int oldReconnectDelay = reconnectDelay;
         boolean oldReconnectDelayESet = reconnectDelayESet;
         reconnectDelay = RECONNECT_DELAY_EDEFAULT;
         reconnectDelayESet = false;
@@ -1141,7 +1175,7 @@ public class CamelSftpBindingTypeImpl extends BaseCamelBindingImpl implements Ca
      * <!-- end-user-doc -->
      * @generated
      */
-    public Boolean getStepwise() {
+    public boolean isStepwise() {
         return stepwise;
     }
 
@@ -1150,8 +1184,8 @@ public class CamelSftpBindingTypeImpl extends BaseCamelBindingImpl implements Ca
      * <!-- end-user-doc -->
      * @generated
      */
-    public void setStepwise(Boolean newStepwise) {
-        Boolean oldStepwise = stepwise;
+    public void setStepwise(boolean newStepwise) {
+        boolean oldStepwise = stepwise;
         stepwise = newStepwise;
         boolean oldStepwiseESet = stepwiseESet;
         stepwiseESet = true;
@@ -1165,7 +1199,7 @@ public class CamelSftpBindingTypeImpl extends BaseCamelBindingImpl implements Ca
      * @generated
      */
     public void unsetStepwise() {
-        Boolean oldStepwise = stepwise;
+        boolean oldStepwise = stepwise;
         boolean oldStepwiseESet = stepwiseESet;
         stepwise = STEPWISE_EDEFAULT;
         stepwiseESet = false;
@@ -1187,7 +1221,7 @@ public class CamelSftpBindingTypeImpl extends BaseCamelBindingImpl implements Ca
      * <!-- end-user-doc -->
      * @generated
      */
-    public Boolean getThrowExceptionOnConnectFailed() {
+    public boolean isThrowExceptionOnConnectFailed() {
         return throwExceptionOnConnectFailed;
     }
 
@@ -1196,8 +1230,8 @@ public class CamelSftpBindingTypeImpl extends BaseCamelBindingImpl implements Ca
      * <!-- end-user-doc -->
      * @generated
      */
-    public void setThrowExceptionOnConnectFailed(Boolean newThrowExceptionOnConnectFailed) {
-        Boolean oldThrowExceptionOnConnectFailed = throwExceptionOnConnectFailed;
+    public void setThrowExceptionOnConnectFailed(boolean newThrowExceptionOnConnectFailed) {
+        boolean oldThrowExceptionOnConnectFailed = throwExceptionOnConnectFailed;
         throwExceptionOnConnectFailed = newThrowExceptionOnConnectFailed;
         boolean oldThrowExceptionOnConnectFailedESet = throwExceptionOnConnectFailedESet;
         throwExceptionOnConnectFailedESet = true;
@@ -1211,7 +1245,7 @@ public class CamelSftpBindingTypeImpl extends BaseCamelBindingImpl implements Ca
      * @generated
      */
     public void unsetThrowExceptionOnConnectFailed() {
-        Boolean oldThrowExceptionOnConnectFailed = throwExceptionOnConnectFailed;
+        boolean oldThrowExceptionOnConnectFailed = throwExceptionOnConnectFailed;
         boolean oldThrowExceptionOnConnectFailedESet = throwExceptionOnConnectFailedESet;
         throwExceptionOnConnectFailed = THROW_EXCEPTION_ON_CONNECT_FAILED_EDEFAULT;
         throwExceptionOnConnectFailedESet = false;
@@ -1404,13 +1438,13 @@ public class CamelSftpBindingTypeImpl extends BaseCamelBindingImpl implements Ca
             case FtpPackage.CAMEL_SFTP_BINDING_TYPE__DIRECTORY:
                 return getDirectory();
             case FtpPackage.CAMEL_SFTP_BINDING_TYPE__AUTO_CREATE:
-                return getAutoCreate();
+                return isAutoCreate();
             case FtpPackage.CAMEL_SFTP_BINDING_TYPE__BUFFER_SIZE:
                 return getBufferSize();
             case FtpPackage.CAMEL_SFTP_BINDING_TYPE__FILE_NAME:
                 return getFileName();
             case FtpPackage.CAMEL_SFTP_BINDING_TYPE__FLATTEN:
-                return getFlatten();
+                return isFlatten();
             case FtpPackage.CAMEL_SFTP_BINDING_TYPE__CHARSET:
                 return getCharset();
             case FtpPackage.CAMEL_SFTP_BINDING_TYPE__HOST:
@@ -1422,11 +1456,11 @@ public class CamelSftpBindingTypeImpl extends BaseCamelBindingImpl implements Ca
             case FtpPackage.CAMEL_SFTP_BINDING_TYPE__PASSWORD:
                 return getPassword();
             case FtpPackage.CAMEL_SFTP_BINDING_TYPE__BINARY:
-                return getBinary();
+                return isBinary();
             case FtpPackage.CAMEL_SFTP_BINDING_TYPE__CONNECT_TIMEOUT:
                 return getConnectTimeout();
             case FtpPackage.CAMEL_SFTP_BINDING_TYPE__DISCONNECT:
-                return getDisconnect();
+                return isDisconnect();
             case FtpPackage.CAMEL_SFTP_BINDING_TYPE__MAXIMUM_RECONNECT_ATTEMPTS:
                 return getMaximumReconnectAttempts();
             case FtpPackage.CAMEL_SFTP_BINDING_TYPE__RECONNECT_DELAY:
@@ -1434,9 +1468,9 @@ public class CamelSftpBindingTypeImpl extends BaseCamelBindingImpl implements Ca
             case FtpPackage.CAMEL_SFTP_BINDING_TYPE__SEPARATOR:
                 return getSeparator();
             case FtpPackage.CAMEL_SFTP_BINDING_TYPE__STEPWISE:
-                return getStepwise();
+                return isStepwise();
             case FtpPackage.CAMEL_SFTP_BINDING_TYPE__THROW_EXCEPTION_ON_CONNECT_FAILED:
-                return getThrowExceptionOnConnectFailed();
+                return isThrowExceptionOnConnectFailed();
             case FtpPackage.CAMEL_SFTP_BINDING_TYPE__KNOWN_HOSTS_FILE:
                 return getKnownHostsFile();
             case FtpPackage.CAMEL_SFTP_BINDING_TYPE__PRIVATE_KEY_FILE:
@@ -1547,7 +1581,7 @@ public class CamelSftpBindingTypeImpl extends BaseCamelBindingImpl implements Ca
                 unsetAutoCreate();
                 return;
             case FtpPackage.CAMEL_SFTP_BINDING_TYPE__BUFFER_SIZE:
-                setBufferSize(BUFFER_SIZE_EDEFAULT);
+                unsetBufferSize();
                 return;
             case FtpPackage.CAMEL_SFTP_BINDING_TYPE__FILE_NAME:
                 setFileName(FILE_NAME_EDEFAULT);
@@ -1626,7 +1660,7 @@ public class CamelSftpBindingTypeImpl extends BaseCamelBindingImpl implements Ca
             case FtpPackage.CAMEL_SFTP_BINDING_TYPE__AUTO_CREATE:
                 return isSetAutoCreate();
             case FtpPackage.CAMEL_SFTP_BINDING_TYPE__BUFFER_SIZE:
-                return BUFFER_SIZE_EDEFAULT == null ? bufferSize != null : !BUFFER_SIZE_EDEFAULT.equals(bufferSize);
+                return isSetBufferSize();
             case FtpPackage.CAMEL_SFTP_BINDING_TYPE__FILE_NAME:
                 return FILE_NAME_EDEFAULT == null ? fileName != null : !FILE_NAME_EDEFAULT.equals(fileName);
             case FtpPackage.CAMEL_SFTP_BINDING_TYPE__FLATTEN:
@@ -1686,7 +1720,7 @@ public class CamelSftpBindingTypeImpl extends BaseCamelBindingImpl implements Ca
         result.append(", autoCreate: ");
         if (autoCreateESet) result.append(autoCreate); else result.append("<unset>");
         result.append(", bufferSize: ");
-        result.append(bufferSize);
+        if (bufferSizeESet) result.append(bufferSize); else result.append("<unset>");
         result.append(", fileName: ");
         result.append(fileName);
         result.append(", flatten: ");

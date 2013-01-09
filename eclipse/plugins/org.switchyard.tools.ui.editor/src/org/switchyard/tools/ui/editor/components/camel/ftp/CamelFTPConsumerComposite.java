@@ -83,8 +83,8 @@ public class CamelFTPConsumerComposite extends AbstractSYBindingComposite {
             this._binding = (CamelFtpBindingType) impl;
             setInUpdate(true);
             if (this._binding.getConsume() != null) {
-                if (this._binding.getConsume().getDelay() != null) {
-                    _delayText.setText(this._binding.getConsume().getDelay().toString());
+                if (this._binding.getConsume().isSetDelay()) {
+                    _delayText.setText(Integer.toString(this._binding.getConsume().getDelay()));
                 }
                 if (this._binding.getConsume().getExclude() != null) {
                     _excludeText.setText(this._binding.getConsume().getExclude());
@@ -101,12 +101,8 @@ public class CamelFTPConsumerComposite extends AbstractSYBindingComposite {
                 if (this._binding.getConsume().getPreMove() != null) {
                     _preMoveText.setText(this._binding.getConsume().getPreMove());
                 }
-                if (this._binding.getConsume().getDelete() != null) {
-                    _deleteButton.setSelection(this._binding.getConsume().getDelete().booleanValue());
-                }
-                if (this._binding.getConsume().getRecursive() != null) {
-                    _recursiveButton.setSelection(this._binding.getConsume().getRecursive().booleanValue());
-                }
+                _deleteButton.setSelection(this._binding.getConsume().isDelete());
+                _recursiveButton.setSelection(this._binding.getConsume().isRecursive());
             }
             if (this._binding.getDirectory() != null) {
                 _directoryText.setText(this._binding.getDirectory());
@@ -114,9 +110,7 @@ public class CamelFTPConsumerComposite extends AbstractSYBindingComposite {
             if (this._binding.getFileName() != null) {
                 _fileNameText.setText(this._binding.getFileName());
             }
-            if (this._binding.getAutoCreate() != null) {
-                _autoCreateButton.setSelection(this._binding.getAutoCreate().booleanValue());
-            }
+            _autoCreateButton.setSelection(this._binding.isAutoCreate());
             if (this._binding.getHost() != null) {
                 _hostText.setText(this._binding.getHost());
             }
@@ -129,9 +123,7 @@ public class CamelFTPConsumerComposite extends AbstractSYBindingComposite {
             if (this._binding.getPassword() != null) {
                 _pwdText.setText(this._binding.getPassword());
             }
-            if (this._binding.getBinary() != null) {
-                _binaryButton.setSelection(this._binding.getBinary().booleanValue());
-            }
+            _binaryButton.setSelection(this._binding.isBinary());
             OperationSelectorType opSelector = OperationSelectorUtil.getFirstOperationSelector(this._binding);
             _opSelectorComposite.setBinding(this._binding);
             _opSelectorComposite.setOperation((SwitchYardOperationSelectorType) opSelector);
@@ -340,7 +332,7 @@ public class CamelFTPConsumerComposite extends AbstractSYBindingComposite {
             } else if (control.equals(_fileNameText)) {
                 _fileNameText.setText(this._binding.getFileName());
             } else if (control.equals(_autoCreateButton)) {
-                _autoCreateButton.setSelection(this._binding.getAutoCreate().booleanValue());
+                _autoCreateButton.setSelection(this._binding.isAutoCreate());
             } else if (control.equals(_hostText)) {
                 _hostText.setText(this._binding.getHost());
             } else if (control.equals(_portText)) {
@@ -350,13 +342,13 @@ public class CamelFTPConsumerComposite extends AbstractSYBindingComposite {
             } else if (control.equals(_pwdText)) {
                 _pwdText.setText(this._binding.getPassword());
             } else if (control.equals(_binaryButton)) {
-                _binaryButton.setSelection(this._binding.getBinary().booleanValue());
+                _binaryButton.setSelection(this._binding.isBinary());
 //            } else if (control.equals(_operationSelectionCombo)) {
 //                String opName = OperationSelectorUtil.getOperationNameForStaticOperationSelector(this._binding);
 //                setTextValue(_operationSelectionCombo, opName);
             } else if (this._binding.getConsume() != null) {
                 if (control.equals(_delayText)) {
-                    _delayText.setText(this._binding.getConsume().getDelay().toString());
+                    _delayText.setText(Integer.toString(this._binding.getConsume().getDelay()));
                 } else if (control.equals(_excludeText)) {
                     _excludeText.setText(this._binding.getConsume().getExclude());
                 } else if (control.equals(_includeText)) {
@@ -368,9 +360,9 @@ public class CamelFTPConsumerComposite extends AbstractSYBindingComposite {
                 } else if (control.equals(_preMoveText)) {
                     _preMoveText.setText(this._binding.getConsume().getPreMove());
                 } else if (control.equals(_deleteButton)) {
-                    _deleteButton.setSelection(this._binding.getConsume().getDelete().booleanValue());
+                    _deleteButton.setSelection(this._binding.getConsume().isDelete());
                 } else if (control.equals(_recursiveButton)) {
-                    _recursiveButton.setSelection(this._binding.getConsume().getRecursive().booleanValue());
+                    _recursiveButton.setSelection(this._binding.getConsume().isRecursive());
                 }
             } else {
                 super.handleUndo(control);

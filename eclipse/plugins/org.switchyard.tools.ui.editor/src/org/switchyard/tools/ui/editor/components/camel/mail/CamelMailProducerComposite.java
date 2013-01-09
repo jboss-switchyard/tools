@@ -91,8 +91,8 @@ public class CamelMailProducerComposite extends AbstractSYBindingComposite {
             if (this._binding.getHost() != null) {
                 _hostText.setText(this._binding.getHost());
             }
-            if (this._binding.getPort() != null) {
-                _portText.setText(this._binding.getPort().toString());
+            if (this._binding.isSetPort()) {
+                _portText.setText(Integer.toString(this._binding.getPort()));
             }
             if (this._binding.getUsername() != null) {
                 _usernameText.setText(this._binding.getUsername());
@@ -237,7 +237,7 @@ public class CamelMailProducerComposite extends AbstractSYBindingComposite {
             if (control.equals(_hostText)) {
                 _hostText.setText(this._binding.getHost());
             } else if (control.equals(_portText)) {
-                _portText.setText(this._binding.getPort().toString());
+                _portText.setText(Integer.toString(this._binding.getPort()));
             } else if (control.equals(_usernameText)) {
                 _usernameText.setText(this._binding.getUsername());
             } else if (control.equals(_passwordText)) {

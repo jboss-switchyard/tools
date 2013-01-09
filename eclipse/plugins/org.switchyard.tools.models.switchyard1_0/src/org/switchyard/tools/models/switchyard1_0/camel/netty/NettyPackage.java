@@ -1077,33 +1077,33 @@ public interface NettyPackage extends EPackage {
     EClass getCamelNettyTcpBindingType();
 
     /**
-     * Returns the meta object for the attribute '{@link org.switchyard.tools.models.switchyard1_0.camel.netty.CamelNettyTcpBindingType#getTextline <em>Textline</em>}'.
+     * Returns the meta object for the attribute '{@link org.switchyard.tools.models.switchyard1_0.camel.netty.CamelNettyTcpBindingType#isTextline <em>Textline</em>}'.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @return the meta object for the attribute '<em>Textline</em>'.
-     * @see org.switchyard.tools.models.switchyard1_0.camel.netty.CamelNettyTcpBindingType#getTextline()
+     * @see org.switchyard.tools.models.switchyard1_0.camel.netty.CamelNettyTcpBindingType#isTextline()
      * @see #getCamelNettyTcpBindingType()
      * @generated
      */
     EAttribute getCamelNettyTcpBindingType_Textline();
 
     /**
-     * Returns the meta object for the attribute '{@link org.switchyard.tools.models.switchyard1_0.camel.netty.CamelNettyTcpBindingType#getTcpNoDelay <em>Tcp No Delay</em>}'.
+     * Returns the meta object for the attribute '{@link org.switchyard.tools.models.switchyard1_0.camel.netty.CamelNettyTcpBindingType#isTcpNoDelay <em>Tcp No Delay</em>}'.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @return the meta object for the attribute '<em>Tcp No Delay</em>'.
-     * @see org.switchyard.tools.models.switchyard1_0.camel.netty.CamelNettyTcpBindingType#getTcpNoDelay()
+     * @see org.switchyard.tools.models.switchyard1_0.camel.netty.CamelNettyTcpBindingType#isTcpNoDelay()
      * @see #getCamelNettyTcpBindingType()
      * @generated
      */
     EAttribute getCamelNettyTcpBindingType_TcpNoDelay();
 
     /**
-     * Returns the meta object for the attribute '{@link org.switchyard.tools.models.switchyard1_0.camel.netty.CamelNettyTcpBindingType#getKeepAlive <em>Keep Alive</em>}'.
+     * Returns the meta object for the attribute '{@link org.switchyard.tools.models.switchyard1_0.camel.netty.CamelNettyTcpBindingType#isKeepAlive <em>Keep Alive</em>}'.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @return the meta object for the attribute '<em>Keep Alive</em>'.
-     * @see org.switchyard.tools.models.switchyard1_0.camel.netty.CamelNettyTcpBindingType#getKeepAlive()
+     * @see org.switchyard.tools.models.switchyard1_0.camel.netty.CamelNettyTcpBindingType#isKeepAlive()
      * @see #getCamelNettyTcpBindingType()
      * @generated
      */
@@ -1120,11 +1120,11 @@ public interface NettyPackage extends EPackage {
     EClass getCamelNettyUdpBindingType();
 
     /**
-     * Returns the meta object for the attribute '{@link org.switchyard.tools.models.switchyard1_0.camel.netty.CamelNettyUdpBindingType#getBroadcast <em>Broadcast</em>}'.
+     * Returns the meta object for the attribute '{@link org.switchyard.tools.models.switchyard1_0.camel.netty.CamelNettyUdpBindingType#isBroadcast <em>Broadcast</em>}'.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @return the meta object for the attribute '<em>Broadcast</em>'.
-     * @see org.switchyard.tools.models.switchyard1_0.camel.netty.CamelNettyUdpBindingType#getBroadcast()
+     * @see org.switchyard.tools.models.switchyard1_0.camel.netty.CamelNettyUdpBindingType#isBroadcast()
      * @see #getCamelNettyUdpBindingType()
      * @generated
      */
@@ -1218,11 +1218,11 @@ public interface NettyPackage extends EPackage {
     EAttribute getCamelNettyBindingType_Decoders();
 
     /**
-     * Returns the meta object for the attribute '{@link org.switchyard.tools.models.switchyard1_0.camel.netty.CamelNettyBindingType#getAllowDefaultCodec <em>Allow Default Codec</em>}'.
+     * Returns the meta object for the attribute '{@link org.switchyard.tools.models.switchyard1_0.camel.netty.CamelNettyBindingType#isAllowDefaultCodec <em>Allow Default Codec</em>}'.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @return the meta object for the attribute '<em>Allow Default Codec</em>'.
-     * @see org.switchyard.tools.models.switchyard1_0.camel.netty.CamelNettyBindingType#getAllowDefaultCodec()
+     * @see org.switchyard.tools.models.switchyard1_0.camel.netty.CamelNettyBindingType#isAllowDefaultCodec()
      * @see #getCamelNettyBindingType()
      * @generated
      */
@@ -1240,22 +1240,22 @@ public interface NettyPackage extends EPackage {
     EAttribute getCamelNettyBindingType_WorkerCount();
 
     /**
-     * Returns the meta object for the attribute '{@link org.switchyard.tools.models.switchyard1_0.camel.netty.CamelNettyBindingType#getSync <em>Sync</em>}'.
+     * Returns the meta object for the attribute '{@link org.switchyard.tools.models.switchyard1_0.camel.netty.CamelNettyBindingType#isSync <em>Sync</em>}'.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @return the meta object for the attribute '<em>Sync</em>'.
-     * @see org.switchyard.tools.models.switchyard1_0.camel.netty.CamelNettyBindingType#getSync()
+     * @see org.switchyard.tools.models.switchyard1_0.camel.netty.CamelNettyBindingType#isSync()
      * @see #getCamelNettyBindingType()
      * @generated
      */
     EAttribute getCamelNettyBindingType_Sync();
 
     /**
-     * Returns the meta object for the attribute '{@link org.switchyard.tools.models.switchyard1_0.camel.netty.CamelNettyBindingType#getDisconnect <em>Disconnect</em>}'.
+     * Returns the meta object for the attribute '{@link org.switchyard.tools.models.switchyard1_0.camel.netty.CamelNettyBindingType#isDisconnect <em>Disconnect</em>}'.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @return the meta object for the attribute '<em>Disconnect</em>'.
-     * @see org.switchyard.tools.models.switchyard1_0.camel.netty.CamelNettyBindingType#getDisconnect()
+     * @see org.switchyard.tools.models.switchyard1_0.camel.netty.CamelNettyBindingType#isDisconnect()
      * @see #getCamelNettyBindingType()
      * @generated
      */

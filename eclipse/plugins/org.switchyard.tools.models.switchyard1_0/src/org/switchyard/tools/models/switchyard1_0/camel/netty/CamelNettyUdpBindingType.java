@@ -11,7 +11,7 @@ package org.switchyard.tools.models.switchyard1_0.camel.netty;
  * <p>
  * The following features are supported:
  * <ul>
- *   <li>{@link org.switchyard.tools.models.switchyard1_0.camel.netty.CamelNettyUdpBindingType#getBroadcast <em>Broadcast</em>}</li>
+ *   <li>{@link org.switchyard.tools.models.switchyard1_0.camel.netty.CamelNettyUdpBindingType#isBroadcast <em>Broadcast</em>}</li>
  * </ul>
  * </p>
  *
@@ -22,6 +22,7 @@ package org.switchyard.tools.models.switchyard1_0.camel.netty;
 public interface CamelNettyUdpBindingType extends CamelNettyBindingType {
     /**
      * Returns the value of the '<em><b>Broadcast</b></em>' attribute.
+     * The default value is <code>"false"</code>.
      * <!-- begin-user-doc -->
      * <p>
      * If the meaning of the '<em>Broadcast</em>' attribute isn't clear,
@@ -31,45 +32,45 @@ public interface CamelNettyUdpBindingType extends CamelNettyBindingType {
      * @return the value of the '<em>Broadcast</em>' attribute.
      * @see #isSetBroadcast()
      * @see #unsetBroadcast()
-     * @see #setBroadcast(Boolean)
+     * @see #setBroadcast(boolean)
      * @see org.switchyard.tools.models.switchyard1_0.camel.netty.NettyPackage#getCamelNettyUdpBindingType_Broadcast()
-     * @model unsettable="true" dataType="org.eclipse.emf.ecore.xml.type.BooleanObject"
+     * @model default="false" unsettable="true" dataType="org.eclipse.emf.ecore.xml.type.Boolean"
      *        extendedMetaData="kind='element' name='broadcast' namespace='##targetNamespace'"
      * @generated
      */
-    Boolean getBroadcast();
+    boolean isBroadcast();
 
     /**
-     * Sets the value of the '{@link org.switchyard.tools.models.switchyard1_0.camel.netty.CamelNettyUdpBindingType#getBroadcast <em>Broadcast</em>}' attribute.
+     * Sets the value of the '{@link org.switchyard.tools.models.switchyard1_0.camel.netty.CamelNettyUdpBindingType#isBroadcast <em>Broadcast</em>}' attribute.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @param value the new value of the '<em>Broadcast</em>' attribute.
      * @see #isSetBroadcast()
      * @see #unsetBroadcast()
-     * @see #getBroadcast()
+     * @see #isBroadcast()
      * @generated
      */
-    void setBroadcast(Boolean value);
+    void setBroadcast(boolean value);
 
     /**
-     * Unsets the value of the '{@link org.switchyard.tools.models.switchyard1_0.camel.netty.CamelNettyUdpBindingType#getBroadcast <em>Broadcast</em>}' attribute.
+     * Unsets the value of the '{@link org.switchyard.tools.models.switchyard1_0.camel.netty.CamelNettyUdpBindingType#isBroadcast <em>Broadcast</em>}' attribute.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @see #isSetBroadcast()
-     * @see #getBroadcast()
-     * @see #setBroadcast(Boolean)
+     * @see #isBroadcast()
+     * @see #setBroadcast(boolean)
      * @generated
      */
     void unsetBroadcast();
 
     /**
-     * Returns whether the value of the '{@link org.switchyard.tools.models.switchyard1_0.camel.netty.CamelNettyUdpBindingType#getBroadcast <em>Broadcast</em>}' attribute is set.
+     * Returns whether the value of the '{@link org.switchyard.tools.models.switchyard1_0.camel.netty.CamelNettyUdpBindingType#isBroadcast <em>Broadcast</em>}' attribute is set.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @return whether the value of the '<em>Broadcast</em>' attribute is set.
      * @see #unsetBroadcast()
-     * @see #getBroadcast()
-     * @see #setBroadcast(Boolean)
+     * @see #isBroadcast()
+     * @see #setBroadcast(boolean)
      * @generated
      */
     boolean isSetBroadcast();

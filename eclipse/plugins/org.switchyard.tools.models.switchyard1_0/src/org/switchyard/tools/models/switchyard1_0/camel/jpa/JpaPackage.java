@@ -767,22 +767,22 @@ public interface JpaPackage extends EPackage {
     EClass getJpaProducerType();
 
     /**
-     * Returns the meta object for the attribute '{@link org.switchyard.tools.models.switchyard1_0.camel.jpa.JpaProducerType#getFlushOnSend <em>Flush On Send</em>}'.
+     * Returns the meta object for the attribute '{@link org.switchyard.tools.models.switchyard1_0.camel.jpa.JpaProducerType#isFlushOnSend <em>Flush On Send</em>}'.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @return the meta object for the attribute '<em>Flush On Send</em>'.
-     * @see org.switchyard.tools.models.switchyard1_0.camel.jpa.JpaProducerType#getFlushOnSend()
+     * @see org.switchyard.tools.models.switchyard1_0.camel.jpa.JpaProducerType#isFlushOnSend()
      * @see #getJpaProducerType()
      * @generated
      */
     EAttribute getJpaProducerType_FlushOnSend();
 
     /**
-     * Returns the meta object for the attribute '{@link org.switchyard.tools.models.switchyard1_0.camel.jpa.JpaProducerType#getUsePersist <em>Use Persist</em>}'.
+     * Returns the meta object for the attribute '{@link org.switchyard.tools.models.switchyard1_0.camel.jpa.JpaProducerType#isUsePersist <em>Use Persist</em>}'.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @return the meta object for the attribute '<em>Use Persist</em>'.
-     * @see org.switchyard.tools.models.switchyard1_0.camel.jpa.JpaProducerType#getUsePersist()
+     * @see org.switchyard.tools.models.switchyard1_0.camel.jpa.JpaProducerType#isUsePersist()
      * @see #getJpaProducerType()
      * @generated
      */
@@ -909,22 +909,22 @@ public interface JpaPackage extends EPackage {
     EAttribute getJpaConsumerType_MaxMessagesPerPoll();
 
     /**
-     * Returns the meta object for the attribute '{@link org.switchyard.tools.models.switchyard1_0.camel.jpa.JpaConsumerType#getConsumeDelete <em>Consume Delete</em>}'.
+     * Returns the meta object for the attribute '{@link org.switchyard.tools.models.switchyard1_0.camel.jpa.JpaConsumerType#isConsumeDelete <em>Consume Delete</em>}'.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @return the meta object for the attribute '<em>Consume Delete</em>'.
-     * @see org.switchyard.tools.models.switchyard1_0.camel.jpa.JpaConsumerType#getConsumeDelete()
+     * @see org.switchyard.tools.models.switchyard1_0.camel.jpa.JpaConsumerType#isConsumeDelete()
      * @see #getJpaConsumerType()
      * @generated
      */
     EAttribute getJpaConsumerType_ConsumeDelete();
 
     /**
-     * Returns the meta object for the attribute '{@link org.switchyard.tools.models.switchyard1_0.camel.jpa.JpaConsumerType#getConsumeLockEntity <em>Consume Lock Entity</em>}'.
+     * Returns the meta object for the attribute '{@link org.switchyard.tools.models.switchyard1_0.camel.jpa.JpaConsumerType#isConsumeLockEntity <em>Consume Lock Entity</em>}'.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @return the meta object for the attribute '<em>Consume Lock Entity</em>'.
-     * @see org.switchyard.tools.models.switchyard1_0.camel.jpa.JpaConsumerType#getConsumeLockEntity()
+     * @see org.switchyard.tools.models.switchyard1_0.camel.jpa.JpaConsumerType#isConsumeLockEntity()
      * @see #getJpaConsumerType()
      * @generated
      */
@@ -986,11 +986,11 @@ public interface JpaPackage extends EPackage {
     EAttribute getJpaConsumerType_ConsumerResultClass();
 
     /**
-     * Returns the meta object for the attribute '{@link org.switchyard.tools.models.switchyard1_0.camel.jpa.JpaConsumerType#getConsumerTransacted <em>Consumer Transacted</em>}'.
+     * Returns the meta object for the attribute '{@link org.switchyard.tools.models.switchyard1_0.camel.jpa.JpaConsumerType#isConsumerTransacted <em>Consumer Transacted</em>}'.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @return the meta object for the attribute '<em>Consumer Transacted</em>'.
-     * @see org.switchyard.tools.models.switchyard1_0.camel.jpa.JpaConsumerType#getConsumerTransacted()
+     * @see org.switchyard.tools.models.switchyard1_0.camel.jpa.JpaConsumerType#isConsumerTransacted()
      * @see #getJpaConsumerType()
      * @generated
      */

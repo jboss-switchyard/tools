@@ -12,15 +12,15 @@ import org.eclipse.emf.ecore.EObject;
  * <p>
  * The following features are supported:
  * <ul>
- *   <li>{@link org.switchyard.tools.models.switchyard1_0.camel.ftp.RemoteFileConsumerType#getDelete <em>Delete</em>}</li>
- *   <li>{@link org.switchyard.tools.models.switchyard1_0.camel.ftp.RemoteFileConsumerType#getRecursive <em>Recursive</em>}</li>
- *   <li>{@link org.switchyard.tools.models.switchyard1_0.camel.ftp.RemoteFileConsumerType#getNoop <em>Noop</em>}</li>
+ *   <li>{@link org.switchyard.tools.models.switchyard1_0.camel.ftp.RemoteFileConsumerType#isDelete <em>Delete</em>}</li>
+ *   <li>{@link org.switchyard.tools.models.switchyard1_0.camel.ftp.RemoteFileConsumerType#isRecursive <em>Recursive</em>}</li>
+ *   <li>{@link org.switchyard.tools.models.switchyard1_0.camel.ftp.RemoteFileConsumerType#isNoop <em>Noop</em>}</li>
  *   <li>{@link org.switchyard.tools.models.switchyard1_0.camel.ftp.RemoteFileConsumerType#getPreMove <em>Pre Move</em>}</li>
  *   <li>{@link org.switchyard.tools.models.switchyard1_0.camel.ftp.RemoteFileConsumerType#getMove <em>Move</em>}</li>
  *   <li>{@link org.switchyard.tools.models.switchyard1_0.camel.ftp.RemoteFileConsumerType#getMoveFailed <em>Move Failed</em>}</li>
  *   <li>{@link org.switchyard.tools.models.switchyard1_0.camel.ftp.RemoteFileConsumerType#getInclude <em>Include</em>}</li>
  *   <li>{@link org.switchyard.tools.models.switchyard1_0.camel.ftp.RemoteFileConsumerType#getExclude <em>Exclude</em>}</li>
- *   <li>{@link org.switchyard.tools.models.switchyard1_0.camel.ftp.RemoteFileConsumerType#getIdempotent <em>Idempotent</em>}</li>
+ *   <li>{@link org.switchyard.tools.models.switchyard1_0.camel.ftp.RemoteFileConsumerType#isIdempotent <em>Idempotent</em>}</li>
  *   <li>{@link org.switchyard.tools.models.switchyard1_0.camel.ftp.RemoteFileConsumerType#getIdempotentRepository <em>Idempotent Repository</em>}</li>
  *   <li>{@link org.switchyard.tools.models.switchyard1_0.camel.ftp.RemoteFileConsumerType#getInProgressRepository <em>In Progress Repository</em>}</li>
  *   <li>{@link org.switchyard.tools.models.switchyard1_0.camel.ftp.RemoteFileConsumerType#getFilter <em>Filter</em>}</li>
@@ -31,14 +31,14 @@ import org.eclipse.emf.ecore.EObject;
  *   <li>{@link org.switchyard.tools.models.switchyard1_0.camel.ftp.RemoteFileConsumerType#getReadLockCheckInterval <em>Read Lock Check Interval</em>}</li>
  *   <li>{@link org.switchyard.tools.models.switchyard1_0.camel.ftp.RemoteFileConsumerType#getExclusiveReadLockStrategy <em>Exclusive Read Lock Strategy</em>}</li>
  *   <li>{@link org.switchyard.tools.models.switchyard1_0.camel.ftp.RemoteFileConsumerType#getProcessStrategy <em>Process Strategy</em>}</li>
- *   <li>{@link org.switchyard.tools.models.switchyard1_0.camel.ftp.RemoteFileConsumerType#getStartingDirectoryMustExist <em>Starting Directory Must Exist</em>}</li>
- *   <li>{@link org.switchyard.tools.models.switchyard1_0.camel.ftp.RemoteFileConsumerType#getDirectoryMustExist <em>Directory Must Exist</em>}</li>
+ *   <li>{@link org.switchyard.tools.models.switchyard1_0.camel.ftp.RemoteFileConsumerType#isStartingDirectoryMustExist <em>Starting Directory Must Exist</em>}</li>
+ *   <li>{@link org.switchyard.tools.models.switchyard1_0.camel.ftp.RemoteFileConsumerType#isDirectoryMustExist <em>Directory Must Exist</em>}</li>
  *   <li>{@link org.switchyard.tools.models.switchyard1_0.camel.ftp.RemoteFileConsumerType#getDoneFileName <em>Done File Name</em>}</li>
  *   <li>{@link org.switchyard.tools.models.switchyard1_0.camel.ftp.RemoteFileConsumerType#getMaxMessagesPerPoll <em>Max Messages Per Poll</em>}</li>
  *   <li>{@link org.switchyard.tools.models.switchyard1_0.camel.ftp.RemoteFileConsumerType#getInitialDelay <em>Initial Delay</em>}</li>
  *   <li>{@link org.switchyard.tools.models.switchyard1_0.camel.ftp.RemoteFileConsumerType#getDelay <em>Delay</em>}</li>
- *   <li>{@link org.switchyard.tools.models.switchyard1_0.camel.ftp.RemoteFileConsumerType#getUseFixedDelay <em>Use Fixed Delay</em>}</li>
- *   <li>{@link org.switchyard.tools.models.switchyard1_0.camel.ftp.RemoteFileConsumerType#getSendEmptyMessageWhenIdle <em>Send Empty Message When Idle</em>}</li>
+ *   <li>{@link org.switchyard.tools.models.switchyard1_0.camel.ftp.RemoteFileConsumerType#isUseFixedDelay <em>Use Fixed Delay</em>}</li>
+ *   <li>{@link org.switchyard.tools.models.switchyard1_0.camel.ftp.RemoteFileConsumerType#isSendEmptyMessageWhenIdle <em>Send Empty Message When Idle</em>}</li>
  *   <li>{@link org.switchyard.tools.models.switchyard1_0.camel.ftp.RemoteFileConsumerType#getTimeUnit <em>Time Unit</em>}</li>
  * </ul>
  * </p>
@@ -51,6 +51,7 @@ public interface RemoteFileConsumerType extends EObject {
 
     /**
      * Returns the value of the '<em><b>Delete</b></em>' attribute.
+     * The default value is <code>"false"</code>.
      * <!-- begin-user-doc -->
      * <p>
      * If the meaning of the '<em>Delete</em>' attribute isn't clear,
@@ -60,51 +61,52 @@ public interface RemoteFileConsumerType extends EObject {
      * @return the value of the '<em>Delete</em>' attribute.
      * @see #isSetDelete()
      * @see #unsetDelete()
-     * @see #setDelete(Boolean)
+     * @see #setDelete(boolean)
      * @see org.switchyard.tools.models.switchyard1_0.camel.ftp.FtpPackage#getRemoteFileConsumerType_Delete()
-     * @model unsettable="true" dataType="org.eclipse.emf.ecore.xml.type.BooleanObject"
+     * @model default="false" unsettable="true" dataType="org.eclipse.emf.ecore.xml.type.Boolean"
      *        extendedMetaData="kind='element' name='delete' namespace='##targetNamespace'"
      * @generated
      */
-    Boolean getDelete();
+    boolean isDelete();
 
     /**
-     * Sets the value of the '{@link org.switchyard.tools.models.switchyard1_0.camel.ftp.RemoteFileConsumerType#getDelete <em>Delete</em>}' attribute.
+     * Sets the value of the '{@link org.switchyard.tools.models.switchyard1_0.camel.ftp.RemoteFileConsumerType#isDelete <em>Delete</em>}' attribute.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @param value the new value of the '<em>Delete</em>' attribute.
      * @see #isSetDelete()
      * @see #unsetDelete()
-     * @see #getDelete()
+     * @see #isDelete()
      * @generated
      */
-    void setDelete(Boolean value);
+    void setDelete(boolean value);
 
     /**
-     * Unsets the value of the '{@link org.switchyard.tools.models.switchyard1_0.camel.ftp.RemoteFileConsumerType#getDelete <em>Delete</em>}' attribute.
+     * Unsets the value of the '{@link org.switchyard.tools.models.switchyard1_0.camel.ftp.RemoteFileConsumerType#isDelete <em>Delete</em>}' attribute.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @see #isSetDelete()
-     * @see #getDelete()
-     * @see #setDelete(Boolean)
+     * @see #isDelete()
+     * @see #setDelete(boolean)
      * @generated
      */
     void unsetDelete();
 
     /**
-     * Returns whether the value of the '{@link org.switchyard.tools.models.switchyard1_0.camel.ftp.RemoteFileConsumerType#getDelete <em>Delete</em>}' attribute is set.
+     * Returns whether the value of the '{@link org.switchyard.tools.models.switchyard1_0.camel.ftp.RemoteFileConsumerType#isDelete <em>Delete</em>}' attribute is set.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @return whether the value of the '<em>Delete</em>' attribute is set.
      * @see #unsetDelete()
-     * @see #getDelete()
-     * @see #setDelete(Boolean)
+     * @see #isDelete()
+     * @see #setDelete(boolean)
      * @generated
      */
     boolean isSetDelete();
 
     /**
      * Returns the value of the '<em><b>Recursive</b></em>' attribute.
+     * The default value is <code>"false"</code>.
      * <!-- begin-user-doc -->
      * <p>
      * If the meaning of the '<em>Recursive</em>' attribute isn't clear,
@@ -114,51 +116,52 @@ public interface RemoteFileConsumerType extends EObject {
      * @return the value of the '<em>Recursive</em>' attribute.
      * @see #isSetRecursive()
      * @see #unsetRecursive()
-     * @see #setRecursive(Boolean)
+     * @see #setRecursive(boolean)
      * @see org.switchyard.tools.models.switchyard1_0.camel.ftp.FtpPackage#getRemoteFileConsumerType_Recursive()
-     * @model unsettable="true" dataType="org.eclipse.emf.ecore.xml.type.BooleanObject"
+     * @model default="false" unsettable="true" dataType="org.eclipse.emf.ecore.xml.type.Boolean"
      *        extendedMetaData="kind='element' name='recursive' namespace='##targetNamespace'"
      * @generated
      */
-    Boolean getRecursive();
+    boolean isRecursive();
 
     /**
-     * Sets the value of the '{@link org.switchyard.tools.models.switchyard1_0.camel.ftp.RemoteFileConsumerType#getRecursive <em>Recursive</em>}' attribute.
+     * Sets the value of the '{@link org.switchyard.tools.models.switchyard1_0.camel.ftp.RemoteFileConsumerType#isRecursive <em>Recursive</em>}' attribute.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @param value the new value of the '<em>Recursive</em>' attribute.
      * @see #isSetRecursive()
      * @see #unsetRecursive()
-     * @see #getRecursive()
+     * @see #isRecursive()
      * @generated
      */
-    void setRecursive(Boolean value);
+    void setRecursive(boolean value);
 
     /**
-     * Unsets the value of the '{@link org.switchyard.tools.models.switchyard1_0.camel.ftp.RemoteFileConsumerType#getRecursive <em>Recursive</em>}' attribute.
+     * Unsets the value of the '{@link org.switchyard.tools.models.switchyard1_0.camel.ftp.RemoteFileConsumerType#isRecursive <em>Recursive</em>}' attribute.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @see #isSetRecursive()
-     * @see #getRecursive()
-     * @see #setRecursive(Boolean)
+     * @see #isRecursive()
+     * @see #setRecursive(boolean)
      * @generated
      */
     void unsetRecursive();
 
     /**
-     * Returns whether the value of the '{@link org.switchyard.tools.models.switchyard1_0.camel.ftp.RemoteFileConsumerType#getRecursive <em>Recursive</em>}' attribute is set.
+     * Returns whether the value of the '{@link org.switchyard.tools.models.switchyard1_0.camel.ftp.RemoteFileConsumerType#isRecursive <em>Recursive</em>}' attribute is set.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @return whether the value of the '<em>Recursive</em>' attribute is set.
      * @see #unsetRecursive()
-     * @see #getRecursive()
-     * @see #setRecursive(Boolean)
+     * @see #isRecursive()
+     * @see #setRecursive(boolean)
      * @generated
      */
     boolean isSetRecursive();
 
     /**
      * Returns the value of the '<em><b>Noop</b></em>' attribute.
+     * The default value is <code>"false"</code>.
      * <!-- begin-user-doc -->
      * <p>
      * If the meaning of the '<em>Noop</em>' attribute isn't clear,
@@ -168,45 +171,45 @@ public interface RemoteFileConsumerType extends EObject {
      * @return the value of the '<em>Noop</em>' attribute.
      * @see #isSetNoop()
      * @see #unsetNoop()
-     * @see #setNoop(Boolean)
+     * @see #setNoop(boolean)
      * @see org.switchyard.tools.models.switchyard1_0.camel.ftp.FtpPackage#getRemoteFileConsumerType_Noop()
-     * @model unsettable="true" dataType="org.eclipse.emf.ecore.xml.type.BooleanObject"
+     * @model default="false" unsettable="true" dataType="org.eclipse.emf.ecore.xml.type.Boolean"
      *        extendedMetaData="kind='element' name='noop' namespace='##targetNamespace'"
      * @generated
      */
-    Boolean getNoop();
+    boolean isNoop();
 
     /**
-     * Sets the value of the '{@link org.switchyard.tools.models.switchyard1_0.camel.ftp.RemoteFileConsumerType#getNoop <em>Noop</em>}' attribute.
+     * Sets the value of the '{@link org.switchyard.tools.models.switchyard1_0.camel.ftp.RemoteFileConsumerType#isNoop <em>Noop</em>}' attribute.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @param value the new value of the '<em>Noop</em>' attribute.
      * @see #isSetNoop()
      * @see #unsetNoop()
-     * @see #getNoop()
+     * @see #isNoop()
      * @generated
      */
-    void setNoop(Boolean value);
+    void setNoop(boolean value);
 
     /**
-     * Unsets the value of the '{@link org.switchyard.tools.models.switchyard1_0.camel.ftp.RemoteFileConsumerType#getNoop <em>Noop</em>}' attribute.
+     * Unsets the value of the '{@link org.switchyard.tools.models.switchyard1_0.camel.ftp.RemoteFileConsumerType#isNoop <em>Noop</em>}' attribute.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @see #isSetNoop()
-     * @see #getNoop()
-     * @see #setNoop(Boolean)
+     * @see #isNoop()
+     * @see #setNoop(boolean)
      * @generated
      */
     void unsetNoop();
 
     /**
-     * Returns whether the value of the '{@link org.switchyard.tools.models.switchyard1_0.camel.ftp.RemoteFileConsumerType#getNoop <em>Noop</em>}' attribute is set.
+     * Returns whether the value of the '{@link org.switchyard.tools.models.switchyard1_0.camel.ftp.RemoteFileConsumerType#isNoop <em>Noop</em>}' attribute is set.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @return whether the value of the '<em>Noop</em>' attribute is set.
      * @see #unsetNoop()
-     * @see #getNoop()
-     * @see #setNoop(Boolean)
+     * @see #isNoop()
+     * @see #setNoop(boolean)
      * @generated
      */
     boolean isSetNoop();
@@ -348,6 +351,7 @@ public interface RemoteFileConsumerType extends EObject {
 
     /**
      * Returns the value of the '<em><b>Idempotent</b></em>' attribute.
+     * The default value is <code>"false"</code>.
      * <!-- begin-user-doc -->
      * <p>
      * If the meaning of the '<em>Idempotent</em>' attribute isn't clear,
@@ -357,45 +361,45 @@ public interface RemoteFileConsumerType extends EObject {
      * @return the value of the '<em>Idempotent</em>' attribute.
      * @see #isSetIdempotent()
      * @see #unsetIdempotent()
-     * @see #setIdempotent(Boolean)
+     * @see #setIdempotent(boolean)
      * @see org.switchyard.tools.models.switchyard1_0.camel.ftp.FtpPackage#getRemoteFileConsumerType_Idempotent()
-     * @model unsettable="true" dataType="org.eclipse.emf.ecore.xml.type.BooleanObject"
+     * @model default="false" unsettable="true" dataType="org.eclipse.emf.ecore.xml.type.Boolean"
      *        extendedMetaData="kind='element' name='idempotent' namespace='##targetNamespace'"
      * @generated
      */
-    Boolean getIdempotent();
+    boolean isIdempotent();
 
     /**
-     * Sets the value of the '{@link org.switchyard.tools.models.switchyard1_0.camel.ftp.RemoteFileConsumerType#getIdempotent <em>Idempotent</em>}' attribute.
+     * Sets the value of the '{@link org.switchyard.tools.models.switchyard1_0.camel.ftp.RemoteFileConsumerType#isIdempotent <em>Idempotent</em>}' attribute.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @param value the new value of the '<em>Idempotent</em>' attribute.
      * @see #isSetIdempotent()
      * @see #unsetIdempotent()
-     * @see #getIdempotent()
+     * @see #isIdempotent()
      * @generated
      */
-    void setIdempotent(Boolean value);
+    void setIdempotent(boolean value);
 
     /**
-     * Unsets the value of the '{@link org.switchyard.tools.models.switchyard1_0.camel.ftp.RemoteFileConsumerType#getIdempotent <em>Idempotent</em>}' attribute.
+     * Unsets the value of the '{@link org.switchyard.tools.models.switchyard1_0.camel.ftp.RemoteFileConsumerType#isIdempotent <em>Idempotent</em>}' attribute.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @see #isSetIdempotent()
-     * @see #getIdempotent()
-     * @see #setIdempotent(Boolean)
+     * @see #isIdempotent()
+     * @see #setIdempotent(boolean)
      * @generated
      */
     void unsetIdempotent();
 
     /**
-     * Returns whether the value of the '{@link org.switchyard.tools.models.switchyard1_0.camel.ftp.RemoteFileConsumerType#getIdempotent <em>Idempotent</em>}' attribute is set.
+     * Returns whether the value of the '{@link org.switchyard.tools.models.switchyard1_0.camel.ftp.RemoteFileConsumerType#isIdempotent <em>Idempotent</em>}' attribute is set.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @return whether the value of the '<em>Idempotent</em>' attribute is set.
      * @see #unsetIdempotent()
-     * @see #getIdempotent()
-     * @see #setIdempotent(Boolean)
+     * @see #isIdempotent()
+     * @see #setIdempotent(boolean)
      * @generated
      */
     boolean isSetIdempotent();
@@ -537,6 +541,7 @@ public interface RemoteFileConsumerType extends EObject {
 
     /**
      * Returns the value of the '<em><b>Read Lock</b></em>' attribute.
+     * The default value is <code>""</code>.
      * <!-- begin-user-doc -->
      * <p>
      * If the meaning of the '<em>Read Lock</em>' attribute isn't clear,
@@ -546,7 +551,7 @@ public interface RemoteFileConsumerType extends EObject {
      * @return the value of the '<em>Read Lock</em>' attribute.
      * @see #setReadLock(String)
      * @see org.switchyard.tools.models.switchyard1_0.camel.ftp.FtpPackage#getRemoteFileConsumerType_ReadLock()
-     * @model dataType="org.eclipse.emf.ecore.xml.type.String"
+     * @model default="" dataType="org.eclipse.emf.ecore.xml.type.String"
      *        extendedMetaData="kind='element' name='readLock' namespace='##targetNamespace'"
      * @generated
      */
@@ -564,6 +569,7 @@ public interface RemoteFileConsumerType extends EObject {
 
     /**
      * Returns the value of the '<em><b>Read Lock Timeout</b></em>' attribute.
+     * The default value is <code>"10000"</code>.
      * <!-- begin-user-doc -->
      * <p>
      * If the meaning of the '<em>Read Lock Timeout</em>' attribute isn't clear,
@@ -573,13 +579,13 @@ public interface RemoteFileConsumerType extends EObject {
      * @return the value of the '<em>Read Lock Timeout</em>' attribute.
      * @see #isSetReadLockTimeout()
      * @see #unsetReadLockTimeout()
-     * @see #setReadLockTimeout(Long)
+     * @see #setReadLockTimeout(long)
      * @see org.switchyard.tools.models.switchyard1_0.camel.ftp.FtpPackage#getRemoteFileConsumerType_ReadLockTimeout()
-     * @model unsettable="true" dataType="org.eclipse.emf.ecore.xml.type.LongObject"
+     * @model default="10000" unsettable="true" dataType="org.eclipse.emf.ecore.xml.type.Long"
      *        extendedMetaData="kind='element' name='readLockTimeout' namespace='##targetNamespace'"
      * @generated
      */
-    Long getReadLockTimeout();
+    long getReadLockTimeout();
 
     /**
      * Sets the value of the '{@link org.switchyard.tools.models.switchyard1_0.camel.ftp.RemoteFileConsumerType#getReadLockTimeout <em>Read Lock Timeout</em>}' attribute.
@@ -591,7 +597,7 @@ public interface RemoteFileConsumerType extends EObject {
      * @see #getReadLockTimeout()
      * @generated
      */
-    void setReadLockTimeout(Long value);
+    void setReadLockTimeout(long value);
 
     /**
      * Unsets the value of the '{@link org.switchyard.tools.models.switchyard1_0.camel.ftp.RemoteFileConsumerType#getReadLockTimeout <em>Read Lock Timeout</em>}' attribute.
@@ -599,7 +605,7 @@ public interface RemoteFileConsumerType extends EObject {
      * <!-- end-user-doc -->
      * @see #isSetReadLockTimeout()
      * @see #getReadLockTimeout()
-     * @see #setReadLockTimeout(Long)
+     * @see #setReadLockTimeout(long)
      * @generated
      */
     void unsetReadLockTimeout();
@@ -611,13 +617,14 @@ public interface RemoteFileConsumerType extends EObject {
      * @return whether the value of the '<em>Read Lock Timeout</em>' attribute is set.
      * @see #unsetReadLockTimeout()
      * @see #getReadLockTimeout()
-     * @see #setReadLockTimeout(Long)
+     * @see #setReadLockTimeout(long)
      * @generated
      */
     boolean isSetReadLockTimeout();
 
     /**
      * Returns the value of the '<em><b>Read Lock Check Interval</b></em>' attribute.
+     * The default value is <code>"1000"</code>.
      * <!-- begin-user-doc -->
      * <p>
      * If the meaning of the '<em>Read Lock Check Interval</em>' attribute isn't clear,
@@ -625,23 +632,50 @@ public interface RemoteFileConsumerType extends EObject {
      * </p>
      * <!-- end-user-doc -->
      * @return the value of the '<em>Read Lock Check Interval</em>' attribute.
-     * @see #setReadLockCheckInterval(Integer)
+     * @see #isSetReadLockCheckInterval()
+     * @see #unsetReadLockCheckInterval()
+     * @see #setReadLockCheckInterval(int)
      * @see org.switchyard.tools.models.switchyard1_0.camel.ftp.FtpPackage#getRemoteFileConsumerType_ReadLockCheckInterval()
-     * @model dataType="org.eclipse.emf.ecore.xml.type.IntObject"
+     * @model default="1000" unsettable="true" dataType="org.eclipse.emf.ecore.xml.type.Int"
      *        extendedMetaData="kind='element' name='readLockCheckInterval' namespace='##targetNamespace'"
      * @generated
      */
-    Integer getReadLockCheckInterval();
+    int getReadLockCheckInterval();
 
     /**
      * Sets the value of the '{@link org.switchyard.tools.models.switchyard1_0.camel.ftp.RemoteFileConsumerType#getReadLockCheckInterval <em>Read Lock Check Interval</em>}' attribute.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @param value the new value of the '<em>Read Lock Check Interval</em>' attribute.
+     * @see #isSetReadLockCheckInterval()
+     * @see #unsetReadLockCheckInterval()
      * @see #getReadLockCheckInterval()
      * @generated
      */
-    void setReadLockCheckInterval(Integer value);
+    void setReadLockCheckInterval(int value);
+
+    /**
+     * Unsets the value of the '{@link org.switchyard.tools.models.switchyard1_0.camel.ftp.RemoteFileConsumerType#getReadLockCheckInterval <em>Read Lock Check Interval</em>}' attribute.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @see #isSetReadLockCheckInterval()
+     * @see #getReadLockCheckInterval()
+     * @see #setReadLockCheckInterval(int)
+     * @generated
+     */
+    void unsetReadLockCheckInterval();
+
+    /**
+     * Returns whether the value of the '{@link org.switchyard.tools.models.switchyard1_0.camel.ftp.RemoteFileConsumerType#getReadLockCheckInterval <em>Read Lock Check Interval</em>}' attribute is set.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @return whether the value of the '<em>Read Lock Check Interval</em>' attribute is set.
+     * @see #unsetReadLockCheckInterval()
+     * @see #getReadLockCheckInterval()
+     * @see #setReadLockCheckInterval(int)
+     * @generated
+     */
+    boolean isSetReadLockCheckInterval();
 
     /**
      * Returns the value of the '<em><b>Exclusive Read Lock Strategy</b></em>' attribute.
@@ -699,6 +733,7 @@ public interface RemoteFileConsumerType extends EObject {
 
     /**
      * Returns the value of the '<em><b>Starting Directory Must Exist</b></em>' attribute.
+     * The default value is <code>"false"</code>.
      * <!-- begin-user-doc -->
      * <p>
      * If the meaning of the '<em>Starting Directory Must Exist</em>' attribute isn't clear,
@@ -708,51 +743,52 @@ public interface RemoteFileConsumerType extends EObject {
      * @return the value of the '<em>Starting Directory Must Exist</em>' attribute.
      * @see #isSetStartingDirectoryMustExist()
      * @see #unsetStartingDirectoryMustExist()
-     * @see #setStartingDirectoryMustExist(Boolean)
+     * @see #setStartingDirectoryMustExist(boolean)
      * @see org.switchyard.tools.models.switchyard1_0.camel.ftp.FtpPackage#getRemoteFileConsumerType_StartingDirectoryMustExist()
-     * @model unsettable="true" dataType="org.eclipse.emf.ecore.xml.type.BooleanObject"
+     * @model default="false" unsettable="true" dataType="org.eclipse.emf.ecore.xml.type.Boolean"
      *        extendedMetaData="kind='element' name='startingDirectoryMustExist' namespace='##targetNamespace'"
      * @generated
      */
-    Boolean getStartingDirectoryMustExist();
+    boolean isStartingDirectoryMustExist();
 
     /**
-     * Sets the value of the '{@link org.switchyard.tools.models.switchyard1_0.camel.ftp.RemoteFileConsumerType#getStartingDirectoryMustExist <em>Starting Directory Must Exist</em>}' attribute.
+     * Sets the value of the '{@link org.switchyard.tools.models.switchyard1_0.camel.ftp.RemoteFileConsumerType#isStartingDirectoryMustExist <em>Starting Directory Must Exist</em>}' attribute.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @param value the new value of the '<em>Starting Directory Must Exist</em>' attribute.
      * @see #isSetStartingDirectoryMustExist()
      * @see #unsetStartingDirectoryMustExist()
-     * @see #getStartingDirectoryMustExist()
+     * @see #isStartingDirectoryMustExist()
      * @generated
      */
-    void setStartingDirectoryMustExist(Boolean value);
+    void setStartingDirectoryMustExist(boolean value);
 
     /**
-     * Unsets the value of the '{@link org.switchyard.tools.models.switchyard1_0.camel.ftp.RemoteFileConsumerType#getStartingDirectoryMustExist <em>Starting Directory Must Exist</em>}' attribute.
+     * Unsets the value of the '{@link org.switchyard.tools.models.switchyard1_0.camel.ftp.RemoteFileConsumerType#isStartingDirectoryMustExist <em>Starting Directory Must Exist</em>}' attribute.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @see #isSetStartingDirectoryMustExist()
-     * @see #getStartingDirectoryMustExist()
-     * @see #setStartingDirectoryMustExist(Boolean)
+     * @see #isStartingDirectoryMustExist()
+     * @see #setStartingDirectoryMustExist(boolean)
      * @generated
      */
     void unsetStartingDirectoryMustExist();
 
     /**
-     * Returns whether the value of the '{@link org.switchyard.tools.models.switchyard1_0.camel.ftp.RemoteFileConsumerType#getStartingDirectoryMustExist <em>Starting Directory Must Exist</em>}' attribute is set.
+     * Returns whether the value of the '{@link org.switchyard.tools.models.switchyard1_0.camel.ftp.RemoteFileConsumerType#isStartingDirectoryMustExist <em>Starting Directory Must Exist</em>}' attribute is set.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @return whether the value of the '<em>Starting Directory Must Exist</em>' attribute is set.
      * @see #unsetStartingDirectoryMustExist()
-     * @see #getStartingDirectoryMustExist()
-     * @see #setStartingDirectoryMustExist(Boolean)
+     * @see #isStartingDirectoryMustExist()
+     * @see #setStartingDirectoryMustExist(boolean)
      * @generated
      */
     boolean isSetStartingDirectoryMustExist();
 
     /**
      * Returns the value of the '<em><b>Directory Must Exist</b></em>' attribute.
+     * The default value is <code>"false"</code>.
      * <!-- begin-user-doc -->
      * <p>
      * If the meaning of the '<em>Directory Must Exist</em>' attribute isn't clear,
@@ -762,45 +798,45 @@ public interface RemoteFileConsumerType extends EObject {
      * @return the value of the '<em>Directory Must Exist</em>' attribute.
      * @see #isSetDirectoryMustExist()
      * @see #unsetDirectoryMustExist()
-     * @see #setDirectoryMustExist(Boolean)
+     * @see #setDirectoryMustExist(boolean)
      * @see org.switchyard.tools.models.switchyard1_0.camel.ftp.FtpPackage#getRemoteFileConsumerType_DirectoryMustExist()
-     * @model unsettable="true" dataType="org.eclipse.emf.ecore.xml.type.BooleanObject"
+     * @model default="false" unsettable="true" dataType="org.eclipse.emf.ecore.xml.type.Boolean"
      *        extendedMetaData="kind='element' name='directoryMustExist' namespace='##targetNamespace'"
      * @generated
      */
-    Boolean getDirectoryMustExist();
+    boolean isDirectoryMustExist();
 
     /**
-     * Sets the value of the '{@link org.switchyard.tools.models.switchyard1_0.camel.ftp.RemoteFileConsumerType#getDirectoryMustExist <em>Directory Must Exist</em>}' attribute.
+     * Sets the value of the '{@link org.switchyard.tools.models.switchyard1_0.camel.ftp.RemoteFileConsumerType#isDirectoryMustExist <em>Directory Must Exist</em>}' attribute.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @param value the new value of the '<em>Directory Must Exist</em>' attribute.
      * @see #isSetDirectoryMustExist()
      * @see #unsetDirectoryMustExist()
-     * @see #getDirectoryMustExist()
+     * @see #isDirectoryMustExist()
      * @generated
      */
-    void setDirectoryMustExist(Boolean value);
+    void setDirectoryMustExist(boolean value);
 
     /**
-     * Unsets the value of the '{@link org.switchyard.tools.models.switchyard1_0.camel.ftp.RemoteFileConsumerType#getDirectoryMustExist <em>Directory Must Exist</em>}' attribute.
+     * Unsets the value of the '{@link org.switchyard.tools.models.switchyard1_0.camel.ftp.RemoteFileConsumerType#isDirectoryMustExist <em>Directory Must Exist</em>}' attribute.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @see #isSetDirectoryMustExist()
-     * @see #getDirectoryMustExist()
-     * @see #setDirectoryMustExist(Boolean)
+     * @see #isDirectoryMustExist()
+     * @see #setDirectoryMustExist(boolean)
      * @generated
      */
     void unsetDirectoryMustExist();
 
     /**
-     * Returns whether the value of the '{@link org.switchyard.tools.models.switchyard1_0.camel.ftp.RemoteFileConsumerType#getDirectoryMustExist <em>Directory Must Exist</em>}' attribute is set.
+     * Returns whether the value of the '{@link org.switchyard.tools.models.switchyard1_0.camel.ftp.RemoteFileConsumerType#isDirectoryMustExist <em>Directory Must Exist</em>}' attribute is set.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @return whether the value of the '<em>Directory Must Exist</em>' attribute is set.
      * @see #unsetDirectoryMustExist()
-     * @see #getDirectoryMustExist()
-     * @see #setDirectoryMustExist(Boolean)
+     * @see #isDirectoryMustExist()
+     * @see #setDirectoryMustExist(boolean)
      * @generated
      */
     boolean isSetDirectoryMustExist();
@@ -834,6 +870,7 @@ public interface RemoteFileConsumerType extends EObject {
 
     /**
      * Returns the value of the '<em><b>Max Messages Per Poll</b></em>' attribute.
+     * The default value is <code>"0"</code>.
      * <!-- begin-user-doc -->
      * <p>
      * If the meaning of the '<em>Max Messages Per Poll</em>' attribute isn't clear,
@@ -841,26 +878,54 @@ public interface RemoteFileConsumerType extends EObject {
      * </p>
      * <!-- end-user-doc -->
      * @return the value of the '<em>Max Messages Per Poll</em>' attribute.
-     * @see #setMaxMessagesPerPoll(Integer)
+     * @see #isSetMaxMessagesPerPoll()
+     * @see #unsetMaxMessagesPerPoll()
+     * @see #setMaxMessagesPerPoll(int)
      * @see org.switchyard.tools.models.switchyard1_0.camel.ftp.FtpPackage#getRemoteFileConsumerType_MaxMessagesPerPoll()
-     * @model dataType="org.eclipse.emf.ecore.xml.type.IntObject"
+     * @model default="0" unsettable="true" dataType="org.eclipse.emf.ecore.xml.type.Int"
      *        extendedMetaData="kind='element' name='maxMessagesPerPoll' namespace='##targetNamespace'"
      * @generated
      */
-    Integer getMaxMessagesPerPoll();
+    int getMaxMessagesPerPoll();
 
     /**
      * Sets the value of the '{@link org.switchyard.tools.models.switchyard1_0.camel.ftp.RemoteFileConsumerType#getMaxMessagesPerPoll <em>Max Messages Per Poll</em>}' attribute.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @param value the new value of the '<em>Max Messages Per Poll</em>' attribute.
+     * @see #isSetMaxMessagesPerPoll()
+     * @see #unsetMaxMessagesPerPoll()
      * @see #getMaxMessagesPerPoll()
      * @generated
      */
-    void setMaxMessagesPerPoll(Integer value);
+    void setMaxMessagesPerPoll(int value);
+
+    /**
+     * Unsets the value of the '{@link org.switchyard.tools.models.switchyard1_0.camel.ftp.RemoteFileConsumerType#getMaxMessagesPerPoll <em>Max Messages Per Poll</em>}' attribute.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @see #isSetMaxMessagesPerPoll()
+     * @see #getMaxMessagesPerPoll()
+     * @see #setMaxMessagesPerPoll(int)
+     * @generated
+     */
+    void unsetMaxMessagesPerPoll();
+
+    /**
+     * Returns whether the value of the '{@link org.switchyard.tools.models.switchyard1_0.camel.ftp.RemoteFileConsumerType#getMaxMessagesPerPoll <em>Max Messages Per Poll</em>}' attribute is set.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @return whether the value of the '<em>Max Messages Per Poll</em>' attribute is set.
+     * @see #unsetMaxMessagesPerPoll()
+     * @see #getMaxMessagesPerPoll()
+     * @see #setMaxMessagesPerPoll(int)
+     * @generated
+     */
+    boolean isSetMaxMessagesPerPoll();
 
     /**
      * Returns the value of the '<em><b>Initial Delay</b></em>' attribute.
+     * The default value is <code>"1000"</code>.
      * <!-- begin-user-doc -->
      * <p>
      * If the meaning of the '<em>Initial Delay</em>' attribute isn't clear,
@@ -868,26 +933,54 @@ public interface RemoteFileConsumerType extends EObject {
      * </p>
      * <!-- end-user-doc -->
      * @return the value of the '<em>Initial Delay</em>' attribute.
-     * @see #setInitialDelay(Integer)
+     * @see #isSetInitialDelay()
+     * @see #unsetInitialDelay()
+     * @see #setInitialDelay(int)
      * @see org.switchyard.tools.models.switchyard1_0.camel.ftp.FtpPackage#getRemoteFileConsumerType_InitialDelay()
-     * @model dataType="org.eclipse.emf.ecore.xml.type.IntObject"
+     * @model default="1000" unsettable="true" dataType="org.eclipse.emf.ecore.xml.type.Int"
      *        extendedMetaData="kind='element' name='initialDelay' namespace='##targetNamespace'"
      * @generated
      */
-    Integer getInitialDelay();
+    int getInitialDelay();
 
     /**
      * Sets the value of the '{@link org.switchyard.tools.models.switchyard1_0.camel.ftp.RemoteFileConsumerType#getInitialDelay <em>Initial Delay</em>}' attribute.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @param value the new value of the '<em>Initial Delay</em>' attribute.
+     * @see #isSetInitialDelay()
+     * @see #unsetInitialDelay()
      * @see #getInitialDelay()
      * @generated
      */
-    void setInitialDelay(Integer value);
+    void setInitialDelay(int value);
+
+    /**
+     * Unsets the value of the '{@link org.switchyard.tools.models.switchyard1_0.camel.ftp.RemoteFileConsumerType#getInitialDelay <em>Initial Delay</em>}' attribute.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @see #isSetInitialDelay()
+     * @see #getInitialDelay()
+     * @see #setInitialDelay(int)
+     * @generated
+     */
+    void unsetInitialDelay();
+
+    /**
+     * Returns whether the value of the '{@link org.switchyard.tools.models.switchyard1_0.camel.ftp.RemoteFileConsumerType#getInitialDelay <em>Initial Delay</em>}' attribute is set.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @return whether the value of the '<em>Initial Delay</em>' attribute is set.
+     * @see #unsetInitialDelay()
+     * @see #getInitialDelay()
+     * @see #setInitialDelay(int)
+     * @generated
+     */
+    boolean isSetInitialDelay();
 
     /**
      * Returns the value of the '<em><b>Delay</b></em>' attribute.
+     * The default value is <code>"500"</code>.
      * <!-- begin-user-doc -->
      * <p>
      * If the meaning of the '<em>Delay</em>' attribute isn't clear,
@@ -895,26 +988,54 @@ public interface RemoteFileConsumerType extends EObject {
      * </p>
      * <!-- end-user-doc -->
      * @return the value of the '<em>Delay</em>' attribute.
-     * @see #setDelay(Integer)
+     * @see #isSetDelay()
+     * @see #unsetDelay()
+     * @see #setDelay(int)
      * @see org.switchyard.tools.models.switchyard1_0.camel.ftp.FtpPackage#getRemoteFileConsumerType_Delay()
-     * @model dataType="org.eclipse.emf.ecore.xml.type.IntObject"
+     * @model default="500" unsettable="true" dataType="org.eclipse.emf.ecore.xml.type.Int"
      *        extendedMetaData="kind='element' name='delay' namespace='##targetNamespace'"
      * @generated
      */
-    Integer getDelay();
+    int getDelay();
 
     /**
      * Sets the value of the '{@link org.switchyard.tools.models.switchyard1_0.camel.ftp.RemoteFileConsumerType#getDelay <em>Delay</em>}' attribute.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @param value the new value of the '<em>Delay</em>' attribute.
+     * @see #isSetDelay()
+     * @see #unsetDelay()
      * @see #getDelay()
      * @generated
      */
-    void setDelay(Integer value);
+    void setDelay(int value);
+
+    /**
+     * Unsets the value of the '{@link org.switchyard.tools.models.switchyard1_0.camel.ftp.RemoteFileConsumerType#getDelay <em>Delay</em>}' attribute.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @see #isSetDelay()
+     * @see #getDelay()
+     * @see #setDelay(int)
+     * @generated
+     */
+    void unsetDelay();
+
+    /**
+     * Returns whether the value of the '{@link org.switchyard.tools.models.switchyard1_0.camel.ftp.RemoteFileConsumerType#getDelay <em>Delay</em>}' attribute is set.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @return whether the value of the '<em>Delay</em>' attribute is set.
+     * @see #unsetDelay()
+     * @see #getDelay()
+     * @see #setDelay(int)
+     * @generated
+     */
+    boolean isSetDelay();
 
     /**
      * Returns the value of the '<em><b>Use Fixed Delay</b></em>' attribute.
+     * The default value is <code>"true"</code>.
      * <!-- begin-user-doc -->
      * <p>
      * If the meaning of the '<em>Use Fixed Delay</em>' attribute isn't clear,
@@ -924,51 +1045,52 @@ public interface RemoteFileConsumerType extends EObject {
      * @return the value of the '<em>Use Fixed Delay</em>' attribute.
      * @see #isSetUseFixedDelay()
      * @see #unsetUseFixedDelay()
-     * @see #setUseFixedDelay(Boolean)
+     * @see #setUseFixedDelay(boolean)
      * @see org.switchyard.tools.models.switchyard1_0.camel.ftp.FtpPackage#getRemoteFileConsumerType_UseFixedDelay()
-     * @model unsettable="true" dataType="org.eclipse.emf.ecore.xml.type.BooleanObject"
+     * @model default="true" unsettable="true" dataType="org.eclipse.emf.ecore.xml.type.Boolean"
      *        extendedMetaData="kind='element' name='useFixedDelay' namespace='##targetNamespace'"
      * @generated
      */
-    Boolean getUseFixedDelay();
+    boolean isUseFixedDelay();
 
     /**
-     * Sets the value of the '{@link org.switchyard.tools.models.switchyard1_0.camel.ftp.RemoteFileConsumerType#getUseFixedDelay <em>Use Fixed Delay</em>}' attribute.
+     * Sets the value of the '{@link org.switchyard.tools.models.switchyard1_0.camel.ftp.RemoteFileConsumerType#isUseFixedDelay <em>Use Fixed Delay</em>}' attribute.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @param value the new value of the '<em>Use Fixed Delay</em>' attribute.
      * @see #isSetUseFixedDelay()
      * @see #unsetUseFixedDelay()
-     * @see #getUseFixedDelay()
+     * @see #isUseFixedDelay()
      * @generated
      */
-    void setUseFixedDelay(Boolean value);
+    void setUseFixedDelay(boolean value);
 
     /**
-     * Unsets the value of the '{@link org.switchyard.tools.models.switchyard1_0.camel.ftp.RemoteFileConsumerType#getUseFixedDelay <em>Use Fixed Delay</em>}' attribute.
+     * Unsets the value of the '{@link org.switchyard.tools.models.switchyard1_0.camel.ftp.RemoteFileConsumerType#isUseFixedDelay <em>Use Fixed Delay</em>}' attribute.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @see #isSetUseFixedDelay()
-     * @see #getUseFixedDelay()
-     * @see #setUseFixedDelay(Boolean)
+     * @see #isUseFixedDelay()
+     * @see #setUseFixedDelay(boolean)
      * @generated
      */
     void unsetUseFixedDelay();
 
     /**
-     * Returns whether the value of the '{@link org.switchyard.tools.models.switchyard1_0.camel.ftp.RemoteFileConsumerType#getUseFixedDelay <em>Use Fixed Delay</em>}' attribute is set.
+     * Returns whether the value of the '{@link org.switchyard.tools.models.switchyard1_0.camel.ftp.RemoteFileConsumerType#isUseFixedDelay <em>Use Fixed Delay</em>}' attribute is set.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @return whether the value of the '<em>Use Fixed Delay</em>' attribute is set.
      * @see #unsetUseFixedDelay()
-     * @see #getUseFixedDelay()
-     * @see #setUseFixedDelay(Boolean)
+     * @see #isUseFixedDelay()
+     * @see #setUseFixedDelay(boolean)
      * @generated
      */
     boolean isSetUseFixedDelay();
 
     /**
      * Returns the value of the '<em><b>Send Empty Message When Idle</b></em>' attribute.
+     * The default value is <code>"false"</code>.
      * <!-- begin-user-doc -->
      * <p>
      * If the meaning of the '<em>Send Empty Message When Idle</em>' attribute isn't clear,
@@ -978,51 +1100,52 @@ public interface RemoteFileConsumerType extends EObject {
      * @return the value of the '<em>Send Empty Message When Idle</em>' attribute.
      * @see #isSetSendEmptyMessageWhenIdle()
      * @see #unsetSendEmptyMessageWhenIdle()
-     * @see #setSendEmptyMessageWhenIdle(Boolean)
+     * @see #setSendEmptyMessageWhenIdle(boolean)
      * @see org.switchyard.tools.models.switchyard1_0.camel.ftp.FtpPackage#getRemoteFileConsumerType_SendEmptyMessageWhenIdle()
-     * @model unsettable="true" dataType="org.eclipse.emf.ecore.xml.type.BooleanObject"
+     * @model default="false" unsettable="true" dataType="org.eclipse.emf.ecore.xml.type.Boolean"
      *        extendedMetaData="kind='element' name='sendEmptyMessageWhenIdle' namespace='##targetNamespace'"
      * @generated
      */
-    Boolean getSendEmptyMessageWhenIdle();
+    boolean isSendEmptyMessageWhenIdle();
 
     /**
-     * Sets the value of the '{@link org.switchyard.tools.models.switchyard1_0.camel.ftp.RemoteFileConsumerType#getSendEmptyMessageWhenIdle <em>Send Empty Message When Idle</em>}' attribute.
+     * Sets the value of the '{@link org.switchyard.tools.models.switchyard1_0.camel.ftp.RemoteFileConsumerType#isSendEmptyMessageWhenIdle <em>Send Empty Message When Idle</em>}' attribute.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @param value the new value of the '<em>Send Empty Message When Idle</em>' attribute.
      * @see #isSetSendEmptyMessageWhenIdle()
      * @see #unsetSendEmptyMessageWhenIdle()
-     * @see #getSendEmptyMessageWhenIdle()
+     * @see #isSendEmptyMessageWhenIdle()
      * @generated
      */
-    void setSendEmptyMessageWhenIdle(Boolean value);
+    void setSendEmptyMessageWhenIdle(boolean value);
 
     /**
-     * Unsets the value of the '{@link org.switchyard.tools.models.switchyard1_0.camel.ftp.RemoteFileConsumerType#getSendEmptyMessageWhenIdle <em>Send Empty Message When Idle</em>}' attribute.
+     * Unsets the value of the '{@link org.switchyard.tools.models.switchyard1_0.camel.ftp.RemoteFileConsumerType#isSendEmptyMessageWhenIdle <em>Send Empty Message When Idle</em>}' attribute.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @see #isSetSendEmptyMessageWhenIdle()
-     * @see #getSendEmptyMessageWhenIdle()
-     * @see #setSendEmptyMessageWhenIdle(Boolean)
+     * @see #isSendEmptyMessageWhenIdle()
+     * @see #setSendEmptyMessageWhenIdle(boolean)
      * @generated
      */
     void unsetSendEmptyMessageWhenIdle();
 
     /**
-     * Returns whether the value of the '{@link org.switchyard.tools.models.switchyard1_0.camel.ftp.RemoteFileConsumerType#getSendEmptyMessageWhenIdle <em>Send Empty Message When Idle</em>}' attribute is set.
+     * Returns whether the value of the '{@link org.switchyard.tools.models.switchyard1_0.camel.ftp.RemoteFileConsumerType#isSendEmptyMessageWhenIdle <em>Send Empty Message When Idle</em>}' attribute is set.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @return whether the value of the '<em>Send Empty Message When Idle</em>' attribute is set.
      * @see #unsetSendEmptyMessageWhenIdle()
-     * @see #getSendEmptyMessageWhenIdle()
-     * @see #setSendEmptyMessageWhenIdle(Boolean)
+     * @see #isSendEmptyMessageWhenIdle()
+     * @see #setSendEmptyMessageWhenIdle(boolean)
      * @generated
      */
     boolean isSetSendEmptyMessageWhenIdle();
 
     /**
      * Returns the value of the '<em><b>Time Unit</b></em>' attribute.
+     * The default value is <code>"MILLISECONDS"</code>.
      * The literals are from the enumeration {@link org.switchyard.tools.models.switchyard1_0.camel.ftp.TimeUnitType}.
      * <!-- begin-user-doc -->
      * <p>
@@ -1036,7 +1159,7 @@ public interface RemoteFileConsumerType extends EObject {
      * @see #unsetTimeUnit()
      * @see #setTimeUnit(TimeUnitType)
      * @see org.switchyard.tools.models.switchyard1_0.camel.ftp.FtpPackage#getRemoteFileConsumerType_TimeUnit()
-     * @model unsettable="true"
+     * @model default="MILLISECONDS" unsettable="true"
      *        extendedMetaData="kind='element' name='timeUnit' namespace='##targetNamespace'"
      * @generated
      */

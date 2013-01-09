@@ -20,10 +20,10 @@ import org.switchyard.tools.models.switchyard1_0.camel.file.FileProducerType;
  * The following features are implemented:
  * <ul>
  *   <li>{@link org.switchyard.tools.models.switchyard1_0.camel.file.impl.CamelFileBindingTypeImpl#getDirectory <em>Directory</em>}</li>
- *   <li>{@link org.switchyard.tools.models.switchyard1_0.camel.file.impl.CamelFileBindingTypeImpl#getAutoCreate <em>Auto Create</em>}</li>
+ *   <li>{@link org.switchyard.tools.models.switchyard1_0.camel.file.impl.CamelFileBindingTypeImpl#isAutoCreate <em>Auto Create</em>}</li>
  *   <li>{@link org.switchyard.tools.models.switchyard1_0.camel.file.impl.CamelFileBindingTypeImpl#getBufferSize <em>Buffer Size</em>}</li>
  *   <li>{@link org.switchyard.tools.models.switchyard1_0.camel.file.impl.CamelFileBindingTypeImpl#getFileName <em>File Name</em>}</li>
- *   <li>{@link org.switchyard.tools.models.switchyard1_0.camel.file.impl.CamelFileBindingTypeImpl#getFlatten <em>Flatten</em>}</li>
+ *   <li>{@link org.switchyard.tools.models.switchyard1_0.camel.file.impl.CamelFileBindingTypeImpl#isFlatten <em>Flatten</em>}</li>
  *   <li>{@link org.switchyard.tools.models.switchyard1_0.camel.file.impl.CamelFileBindingTypeImpl#getCharset <em>Charset</em>}</li>
  *   <li>{@link org.switchyard.tools.models.switchyard1_0.camel.file.impl.CamelFileBindingTypeImpl#getConsume <em>Consume</em>}</li>
  *   <li>{@link org.switchyard.tools.models.switchyard1_0.camel.file.impl.CamelFileBindingTypeImpl#getProduce <em>Produce</em>}</li>
@@ -54,24 +54,24 @@ public class CamelFileBindingTypeImpl extends BaseCamelBindingImpl implements Ca
     protected String directory = DIRECTORY_EDEFAULT;
 
     /**
-     * The default value of the '{@link #getAutoCreate() <em>Auto Create</em>}' attribute.
+     * The default value of the '{@link #isAutoCreate() <em>Auto Create</em>}' attribute.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @see #getAutoCreate()
+     * @see #isAutoCreate()
      * @generated
      * @ordered
      */
-    protected static final Boolean AUTO_CREATE_EDEFAULT = null;
+    protected static final boolean AUTO_CREATE_EDEFAULT = true;
 
     /**
-     * The cached value of the '{@link #getAutoCreate() <em>Auto Create</em>}' attribute.
+     * The cached value of the '{@link #isAutoCreate() <em>Auto Create</em>}' attribute.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @see #getAutoCreate()
+     * @see #isAutoCreate()
      * @generated
      * @ordered
      */
-    protected Boolean autoCreate = AUTO_CREATE_EDEFAULT;
+    protected boolean autoCreate = AUTO_CREATE_EDEFAULT;
 
     /**
      * This is true if the Auto Create attribute has been set.
@@ -90,7 +90,7 @@ public class CamelFileBindingTypeImpl extends BaseCamelBindingImpl implements Ca
      * @generated
      * @ordered
      */
-    protected static final Integer BUFFER_SIZE_EDEFAULT = null;
+    protected static final int BUFFER_SIZE_EDEFAULT = 131072;
 
     /**
      * The cached value of the '{@link #getBufferSize() <em>Buffer Size</em>}' attribute.
@@ -100,7 +100,7 @@ public class CamelFileBindingTypeImpl extends BaseCamelBindingImpl implements Ca
      * @generated
      * @ordered
      */
-    protected Integer bufferSize = BUFFER_SIZE_EDEFAULT;
+    protected int bufferSize = BUFFER_SIZE_EDEFAULT;
 
     /**
      * This is true if the Buffer Size attribute has been set.
@@ -132,24 +132,24 @@ public class CamelFileBindingTypeImpl extends BaseCamelBindingImpl implements Ca
     protected String fileName = FILE_NAME_EDEFAULT;
 
     /**
-     * The default value of the '{@link #getFlatten() <em>Flatten</em>}' attribute.
+     * The default value of the '{@link #isFlatten() <em>Flatten</em>}' attribute.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @see #getFlatten()
+     * @see #isFlatten()
      * @generated
      * @ordered
      */
-    protected static final Boolean FLATTEN_EDEFAULT = null;
+    protected static final boolean FLATTEN_EDEFAULT = false;
 
     /**
-     * The cached value of the '{@link #getFlatten() <em>Flatten</em>}' attribute.
+     * The cached value of the '{@link #isFlatten() <em>Flatten</em>}' attribute.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @see #getFlatten()
+     * @see #isFlatten()
      * @generated
      * @ordered
      */
-    protected Boolean flatten = FLATTEN_EDEFAULT;
+    protected boolean flatten = FLATTEN_EDEFAULT;
 
     /**
      * This is true if the Flatten attribute has been set.
@@ -245,7 +245,7 @@ public class CamelFileBindingTypeImpl extends BaseCamelBindingImpl implements Ca
      * <!-- end-user-doc -->
      * @generated
      */
-    public Boolean getAutoCreate() {
+    public boolean isAutoCreate() {
         return autoCreate;
     }
 
@@ -254,8 +254,8 @@ public class CamelFileBindingTypeImpl extends BaseCamelBindingImpl implements Ca
      * <!-- end-user-doc -->
      * @generated
      */
-    public void setAutoCreate(Boolean newAutoCreate) {
-        Boolean oldAutoCreate = autoCreate;
+    public void setAutoCreate(boolean newAutoCreate) {
+        boolean oldAutoCreate = autoCreate;
         autoCreate = newAutoCreate;
         boolean oldAutoCreateESet = autoCreateESet;
         autoCreateESet = true;
@@ -269,7 +269,7 @@ public class CamelFileBindingTypeImpl extends BaseCamelBindingImpl implements Ca
      * @generated
      */
     public void unsetAutoCreate() {
-        Boolean oldAutoCreate = autoCreate;
+        boolean oldAutoCreate = autoCreate;
         boolean oldAutoCreateESet = autoCreateESet;
         autoCreate = AUTO_CREATE_EDEFAULT;
         autoCreateESet = false;
@@ -291,7 +291,7 @@ public class CamelFileBindingTypeImpl extends BaseCamelBindingImpl implements Ca
      * <!-- end-user-doc -->
      * @generated
      */
-    public Integer getBufferSize() {
+    public int getBufferSize() {
         return bufferSize;
     }
 
@@ -300,8 +300,8 @@ public class CamelFileBindingTypeImpl extends BaseCamelBindingImpl implements Ca
      * <!-- end-user-doc -->
      * @generated
      */
-    public void setBufferSize(Integer newBufferSize) {
-        Integer oldBufferSize = bufferSize;
+    public void setBufferSize(int newBufferSize) {
+        int oldBufferSize = bufferSize;
         bufferSize = newBufferSize;
         boolean oldBufferSizeESet = bufferSizeESet;
         bufferSizeESet = true;
@@ -315,7 +315,7 @@ public class CamelFileBindingTypeImpl extends BaseCamelBindingImpl implements Ca
      * @generated
      */
     public void unsetBufferSize() {
-        Integer oldBufferSize = bufferSize;
+        int oldBufferSize = bufferSize;
         boolean oldBufferSizeESet = bufferSizeESet;
         bufferSize = BUFFER_SIZE_EDEFAULT;
         bufferSizeESet = false;
@@ -358,7 +358,7 @@ public class CamelFileBindingTypeImpl extends BaseCamelBindingImpl implements Ca
      * <!-- end-user-doc -->
      * @generated
      */
-    public Boolean getFlatten() {
+    public boolean isFlatten() {
         return flatten;
     }
 
@@ -367,8 +367,8 @@ public class CamelFileBindingTypeImpl extends BaseCamelBindingImpl implements Ca
      * <!-- end-user-doc -->
      * @generated
      */
-    public void setFlatten(Boolean newFlatten) {
-        Boolean oldFlatten = flatten;
+    public void setFlatten(boolean newFlatten) {
+        boolean oldFlatten = flatten;
         flatten = newFlatten;
         boolean oldFlattenESet = flattenESet;
         flattenESet = true;
@@ -382,7 +382,7 @@ public class CamelFileBindingTypeImpl extends BaseCamelBindingImpl implements Ca
      * @generated
      */
     public void unsetFlatten() {
-        Boolean oldFlatten = flatten;
+        boolean oldFlatten = flatten;
         boolean oldFlattenESet = flattenESet;
         flatten = FLATTEN_EDEFAULT;
         flattenESet = false;
@@ -533,13 +533,13 @@ public class CamelFileBindingTypeImpl extends BaseCamelBindingImpl implements Ca
             case FilePackage.CAMEL_FILE_BINDING_TYPE__DIRECTORY:
                 return getDirectory();
             case FilePackage.CAMEL_FILE_BINDING_TYPE__AUTO_CREATE:
-                return getAutoCreate();
+                return isAutoCreate();
             case FilePackage.CAMEL_FILE_BINDING_TYPE__BUFFER_SIZE:
                 return getBufferSize();
             case FilePackage.CAMEL_FILE_BINDING_TYPE__FILE_NAME:
                 return getFileName();
             case FilePackage.CAMEL_FILE_BINDING_TYPE__FLATTEN:
-                return getFlatten();
+                return isFlatten();
             case FilePackage.CAMEL_FILE_BINDING_TYPE__CHARSET:
                 return getCharset();
             case FilePackage.CAMEL_FILE_BINDING_TYPE__CONSUME:

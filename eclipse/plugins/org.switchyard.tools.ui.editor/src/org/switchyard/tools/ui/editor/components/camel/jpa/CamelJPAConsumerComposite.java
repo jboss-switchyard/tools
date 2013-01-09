@@ -68,14 +68,10 @@ public class CamelJPAConsumerComposite extends AbstractSYBindingComposite {
             this._binding = (CamelJPABindingType) impl;
             setInUpdate(true);
             if (this._binding.getConsume() != null) {
-                if (this._binding.getConsume().getConsumeDelete() != null) {
-                    _deleteCheckbox.setSelection(this._binding.getConsume().getConsumeDelete().booleanValue());
-                }
-                if (this._binding.getConsume().getConsumeLockEntity() != null) {
-                    _lockEntityCheckbox.setSelection(this._binding.getConsume().getConsumeLockEntity().booleanValue());
-                }
-                if (this._binding.getConsume().getMaximumResults() != null) {
-                    _maximumResultsText.setText(this._binding.getConsume().getMaximumResults().toString());
+                _deleteCheckbox.setSelection(this._binding.getConsume().isConsumeDelete());
+                _lockEntityCheckbox.setSelection(this._binding.getConsume().isConsumeLockEntity());
+                if (this._binding.getConsume().isSetMaximumResults()) {
+                    _maximumResultsText.setText(Integer.toString(this._binding.getConsume().getMaximumResults()));
                 }
                 if (this._binding.getConsume().getConsumerQuery() != null) {
                     _queryText.setText(this._binding.getConsume().getConsumerQuery());
@@ -89,9 +85,7 @@ public class CamelJPAConsumerComposite extends AbstractSYBindingComposite {
                 if (this._binding.getConsume().getConsumerResultClass() != null) {
                     _resultClassText.setText(this._binding.getConsume().getConsumerResultClass());
                 }
-                if (this._binding.getConsume().getConsumerTransacted() != null) {
-                    _transactedCheckbox.setSelection(this._binding.getConsume().getConsumerTransacted().booleanValue());
-                }
+                _transactedCheckbox.setSelection(this._binding.getConsume().isConsumerTransacted());
             }
             if (this._binding.getEntityClassName() != null) {
                 _entityClassNameText.setText(this._binding.getEntityClassName());
@@ -252,11 +246,11 @@ public class CamelJPAConsumerComposite extends AbstractSYBindingComposite {
             } else if (control.equals(_transcationManagerText)) {
                 _transcationManagerText.setText(this._binding.getTransactionManager());
             } else if (control.equals(_deleteCheckbox)) {
-                _deleteCheckbox.setSelection(this._binding.getConsume().getConsumeDelete().booleanValue());
+                _deleteCheckbox.setSelection(this._binding.getConsume().isConsumeDelete());
             } else if (control.equals(_lockEntityCheckbox)) {
-                _lockEntityCheckbox.setSelection(this._binding.getConsume().getConsumeLockEntity().booleanValue());
+                _lockEntityCheckbox.setSelection(this._binding.getConsume().isConsumeLockEntity());
             } else if (control.equals(_maximumResultsText)) {
-                _maximumResultsText.setText(this._binding.getConsume().getMaximumResults().toString());
+                _maximumResultsText.setText(Integer.toString(this._binding.getConsume().getMaximumResults()));
             } else if (control.equals(_queryText)) {
                 _queryText.setText(this._binding.getConsume().getConsumerQuery());
             } else if (control.equals(_namedQueryText)) {
@@ -266,7 +260,7 @@ public class CamelJPAConsumerComposite extends AbstractSYBindingComposite {
             } else if (control.equals(_resultClassText)) {
                 _resultClassText.setText(this._binding.getConsume().getConsumerResultClass());
             } else if (control.equals(_transactedCheckbox)) {
-                _transactedCheckbox.setSelection(this._binding.getConsume().getConsumerTransacted().booleanValue());
+                _transactedCheckbox.setSelection(this._binding.getConsume().isConsumerTransacted());
             } else {
                 super.handleUndo(control);
             }

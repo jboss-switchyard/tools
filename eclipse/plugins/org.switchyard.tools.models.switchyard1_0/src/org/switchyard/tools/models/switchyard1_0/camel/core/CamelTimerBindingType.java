@@ -17,8 +17,8 @@ import javax.xml.datatype.XMLGregorianCalendar;
  *   <li>{@link org.switchyard.tools.models.switchyard1_0.camel.core.CamelTimerBindingType#getPattern <em>Pattern</em>}</li>
  *   <li>{@link org.switchyard.tools.models.switchyard1_0.camel.core.CamelTimerBindingType#getPeriod <em>Period</em>}</li>
  *   <li>{@link org.switchyard.tools.models.switchyard1_0.camel.core.CamelTimerBindingType#getDelay <em>Delay</em>}</li>
- *   <li>{@link org.switchyard.tools.models.switchyard1_0.camel.core.CamelTimerBindingType#getFixedRate <em>Fixed Rate</em>}</li>
- *   <li>{@link org.switchyard.tools.models.switchyard1_0.camel.core.CamelTimerBindingType#getDaemon <em>Daemon</em>}</li>
+ *   <li>{@link org.switchyard.tools.models.switchyard1_0.camel.core.CamelTimerBindingType#isFixedRate <em>Fixed Rate</em>}</li>
+ *   <li>{@link org.switchyard.tools.models.switchyard1_0.camel.core.CamelTimerBindingType#isDaemon <em>Daemon</em>}</li>
  * </ul>
  * </p>
  *
@@ -110,6 +110,7 @@ public interface CamelTimerBindingType extends BaseCamelBinding {
 
     /**
      * Returns the value of the '<em><b>Period</b></em>' attribute.
+     * The default value is <code>"1000"</code>.
      * <!-- begin-user-doc -->
      * <p>
      * If the meaning of the '<em>Period</em>' attribute isn't clear,
@@ -117,26 +118,54 @@ public interface CamelTimerBindingType extends BaseCamelBinding {
      * </p>
      * <!-- end-user-doc -->
      * @return the value of the '<em>Period</em>' attribute.
-     * @see #setPeriod(Long)
+     * @see #isSetPeriod()
+     * @see #unsetPeriod()
+     * @see #setPeriod(long)
      * @see org.switchyard.tools.models.switchyard1_0.camel.core.CorePackage#getCamelTimerBindingType_Period()
-     * @model dataType="org.eclipse.emf.ecore.xml.type.LongObject"
+     * @model default="1000" unsettable="true" dataType="org.eclipse.emf.ecore.xml.type.Long"
      *        extendedMetaData="kind='element' name='period' namespace='##targetNamespace'"
      * @generated
      */
-    Long getPeriod();
+    long getPeriod();
 
     /**
      * Sets the value of the '{@link org.switchyard.tools.models.switchyard1_0.camel.core.CamelTimerBindingType#getPeriod <em>Period</em>}' attribute.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @param value the new value of the '<em>Period</em>' attribute.
+     * @see #isSetPeriod()
+     * @see #unsetPeriod()
      * @see #getPeriod()
      * @generated
      */
-    void setPeriod(Long value);
+    void setPeriod(long value);
+
+    /**
+     * Unsets the value of the '{@link org.switchyard.tools.models.switchyard1_0.camel.core.CamelTimerBindingType#getPeriod <em>Period</em>}' attribute.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @see #isSetPeriod()
+     * @see #getPeriod()
+     * @see #setPeriod(long)
+     * @generated
+     */
+    void unsetPeriod();
+
+    /**
+     * Returns whether the value of the '{@link org.switchyard.tools.models.switchyard1_0.camel.core.CamelTimerBindingType#getPeriod <em>Period</em>}' attribute is set.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @return whether the value of the '<em>Period</em>' attribute is set.
+     * @see #unsetPeriod()
+     * @see #getPeriod()
+     * @see #setPeriod(long)
+     * @generated
+     */
+    boolean isSetPeriod();
 
     /**
      * Returns the value of the '<em><b>Delay</b></em>' attribute.
+     * The default value is <code>"0"</code>.
      * <!-- begin-user-doc -->
      * <p>
      * If the meaning of the '<em>Delay</em>' attribute isn't clear,
@@ -144,26 +173,54 @@ public interface CamelTimerBindingType extends BaseCamelBinding {
      * </p>
      * <!-- end-user-doc -->
      * @return the value of the '<em>Delay</em>' attribute.
-     * @see #setDelay(Long)
+     * @see #isSetDelay()
+     * @see #unsetDelay()
+     * @see #setDelay(long)
      * @see org.switchyard.tools.models.switchyard1_0.camel.core.CorePackage#getCamelTimerBindingType_Delay()
-     * @model dataType="org.eclipse.emf.ecore.xml.type.LongObject"
+     * @model default="0" unsettable="true" dataType="org.eclipse.emf.ecore.xml.type.Long"
      *        extendedMetaData="kind='element' name='delay' namespace='##targetNamespace'"
      * @generated
      */
-    Long getDelay();
+    long getDelay();
 
     /**
      * Sets the value of the '{@link org.switchyard.tools.models.switchyard1_0.camel.core.CamelTimerBindingType#getDelay <em>Delay</em>}' attribute.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @param value the new value of the '<em>Delay</em>' attribute.
+     * @see #isSetDelay()
+     * @see #unsetDelay()
      * @see #getDelay()
      * @generated
      */
-    void setDelay(Long value);
+    void setDelay(long value);
+
+    /**
+     * Unsets the value of the '{@link org.switchyard.tools.models.switchyard1_0.camel.core.CamelTimerBindingType#getDelay <em>Delay</em>}' attribute.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @see #isSetDelay()
+     * @see #getDelay()
+     * @see #setDelay(long)
+     * @generated
+     */
+    void unsetDelay();
+
+    /**
+     * Returns whether the value of the '{@link org.switchyard.tools.models.switchyard1_0.camel.core.CamelTimerBindingType#getDelay <em>Delay</em>}' attribute is set.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @return whether the value of the '<em>Delay</em>' attribute is set.
+     * @see #unsetDelay()
+     * @see #getDelay()
+     * @see #setDelay(long)
+     * @generated
+     */
+    boolean isSetDelay();
 
     /**
      * Returns the value of the '<em><b>Fixed Rate</b></em>' attribute.
+     * The default value is <code>"false"</code>.
      * <!-- begin-user-doc -->
      * <p>
      * If the meaning of the '<em>Fixed Rate</em>' attribute isn't clear,
@@ -173,51 +230,52 @@ public interface CamelTimerBindingType extends BaseCamelBinding {
      * @return the value of the '<em>Fixed Rate</em>' attribute.
      * @see #isSetFixedRate()
      * @see #unsetFixedRate()
-     * @see #setFixedRate(Boolean)
+     * @see #setFixedRate(boolean)
      * @see org.switchyard.tools.models.switchyard1_0.camel.core.CorePackage#getCamelTimerBindingType_FixedRate()
-     * @model unsettable="true" dataType="org.eclipse.emf.ecore.xml.type.BooleanObject"
+     * @model default="false" unsettable="true" dataType="org.eclipse.emf.ecore.xml.type.Boolean"
      *        extendedMetaData="kind='element' name='fixedRate' namespace='##targetNamespace'"
      * @generated
      */
-    Boolean getFixedRate();
+    boolean isFixedRate();
 
     /**
-     * Sets the value of the '{@link org.switchyard.tools.models.switchyard1_0.camel.core.CamelTimerBindingType#getFixedRate <em>Fixed Rate</em>}' attribute.
+     * Sets the value of the '{@link org.switchyard.tools.models.switchyard1_0.camel.core.CamelTimerBindingType#isFixedRate <em>Fixed Rate</em>}' attribute.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @param value the new value of the '<em>Fixed Rate</em>' attribute.
      * @see #isSetFixedRate()
      * @see #unsetFixedRate()
-     * @see #getFixedRate()
+     * @see #isFixedRate()
      * @generated
      */
-    void setFixedRate(Boolean value);
+    void setFixedRate(boolean value);
 
     /**
-     * Unsets the value of the '{@link org.switchyard.tools.models.switchyard1_0.camel.core.CamelTimerBindingType#getFixedRate <em>Fixed Rate</em>}' attribute.
+     * Unsets the value of the '{@link org.switchyard.tools.models.switchyard1_0.camel.core.CamelTimerBindingType#isFixedRate <em>Fixed Rate</em>}' attribute.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @see #isSetFixedRate()
-     * @see #getFixedRate()
-     * @see #setFixedRate(Boolean)
+     * @see #isFixedRate()
+     * @see #setFixedRate(boolean)
      * @generated
      */
     void unsetFixedRate();
 
     /**
-     * Returns whether the value of the '{@link org.switchyard.tools.models.switchyard1_0.camel.core.CamelTimerBindingType#getFixedRate <em>Fixed Rate</em>}' attribute is set.
+     * Returns whether the value of the '{@link org.switchyard.tools.models.switchyard1_0.camel.core.CamelTimerBindingType#isFixedRate <em>Fixed Rate</em>}' attribute is set.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @return whether the value of the '<em>Fixed Rate</em>' attribute is set.
      * @see #unsetFixedRate()
-     * @see #getFixedRate()
-     * @see #setFixedRate(Boolean)
+     * @see #isFixedRate()
+     * @see #setFixedRate(boolean)
      * @generated
      */
     boolean isSetFixedRate();
 
     /**
      * Returns the value of the '<em><b>Daemon</b></em>' attribute.
+     * The default value is <code>"true"</code>.
      * <!-- begin-user-doc -->
      * <p>
      * If the meaning of the '<em>Daemon</em>' attribute isn't clear,
@@ -227,45 +285,45 @@ public interface CamelTimerBindingType extends BaseCamelBinding {
      * @return the value of the '<em>Daemon</em>' attribute.
      * @see #isSetDaemon()
      * @see #unsetDaemon()
-     * @see #setDaemon(Boolean)
+     * @see #setDaemon(boolean)
      * @see org.switchyard.tools.models.switchyard1_0.camel.core.CorePackage#getCamelTimerBindingType_Daemon()
-     * @model unsettable="true" dataType="org.eclipse.emf.ecore.xml.type.BooleanObject"
+     * @model default="true" unsettable="true" dataType="org.eclipse.emf.ecore.xml.type.Boolean"
      *        extendedMetaData="kind='element' name='daemon' namespace='##targetNamespace'"
      * @generated
      */
-    Boolean getDaemon();
+    boolean isDaemon();
 
     /**
-     * Sets the value of the '{@link org.switchyard.tools.models.switchyard1_0.camel.core.CamelTimerBindingType#getDaemon <em>Daemon</em>}' attribute.
+     * Sets the value of the '{@link org.switchyard.tools.models.switchyard1_0.camel.core.CamelTimerBindingType#isDaemon <em>Daemon</em>}' attribute.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @param value the new value of the '<em>Daemon</em>' attribute.
      * @see #isSetDaemon()
      * @see #unsetDaemon()
-     * @see #getDaemon()
+     * @see #isDaemon()
      * @generated
      */
-    void setDaemon(Boolean value);
+    void setDaemon(boolean value);
 
     /**
-     * Unsets the value of the '{@link org.switchyard.tools.models.switchyard1_0.camel.core.CamelTimerBindingType#getDaemon <em>Daemon</em>}' attribute.
+     * Unsets the value of the '{@link org.switchyard.tools.models.switchyard1_0.camel.core.CamelTimerBindingType#isDaemon <em>Daemon</em>}' attribute.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @see #isSetDaemon()
-     * @see #getDaemon()
-     * @see #setDaemon(Boolean)
+     * @see #isDaemon()
+     * @see #setDaemon(boolean)
      * @generated
      */
     void unsetDaemon();
 
     /**
-     * Returns whether the value of the '{@link org.switchyard.tools.models.switchyard1_0.camel.core.CamelTimerBindingType#getDaemon <em>Daemon</em>}' attribute is set.
+     * Returns whether the value of the '{@link org.switchyard.tools.models.switchyard1_0.camel.core.CamelTimerBindingType#isDaemon <em>Daemon</em>}' attribute is set.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @return whether the value of the '<em>Daemon</em>' attribute is set.
      * @see #unsetDaemon()
-     * @see #getDaemon()
-     * @see #setDaemon(Boolean)
+     * @see #isDaemon()
+     * @see #setDaemon(boolean)
      * @generated
      */
     boolean isSetDaemon();

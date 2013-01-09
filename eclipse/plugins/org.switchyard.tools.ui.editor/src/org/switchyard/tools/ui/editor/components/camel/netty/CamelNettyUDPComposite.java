@@ -76,18 +76,14 @@ public class CamelNettyUDPComposite extends AbstractSYBindingComposite {
             if (this._binding.getPort() > 0) {
                 _portText.setText(""+this._binding.getPort());
             }
-            if (this._binding.getSendBufferSize() != null) {
+            if (this._binding.isSetSendBufferSize()) {
                 _sendBufferSizeText.setText(""+this._binding.getSendBufferSize());
             }
-            if (this._binding.getReceiveBufferSize() != null) {
+            if (this._binding.isSetReceiveBufferSize()) {
                 _receiveBufferSizeText.setText(""+this._binding.getReceiveBufferSize());
             }
-            if (this._binding.getSync() != null) {
-                _syncCheckbox.setSelection(this._binding.getSync().booleanValue());
-            }
-            if (this._binding.getBroadcast() != null) {
-                _broadcastCheckbox.setSelection(this._binding.getBroadcast().booleanValue());
-            }
+            _syncCheckbox.setSelection(this._binding.isSync());
+            _broadcastCheckbox.setSelection(this._binding.isBroadcast());
 
             OperationSelectorType opSelector = OperationSelectorUtil.getFirstOperationSelector(this._binding);
             _opSelectorComposite.setBinding(this._binding);
@@ -266,9 +262,9 @@ public class CamelNettyUDPComposite extends AbstractSYBindingComposite {
             } else if (control.equals(_sendBufferSizeText)) {
                 _sendBufferSizeText.setText(Long.toString(this._binding.getSendBufferSize()));
             } else if (control.equals(_broadcastCheckbox)) {
-                _broadcastCheckbox.setSelection(this._binding.getBroadcast());
+                _broadcastCheckbox.setSelection(this._binding.isBroadcast());
             } else if (control.equals(_syncCheckbox)) {
-                _syncCheckbox.setSelection(this._binding.getSync().booleanValue());
+                _syncCheckbox.setSelection(this._binding.isSync());
 //            } else if (control.equals(_operationSelectionCombo)) {
 //                String opName = OperationSelectorUtil.getOperationNameForStaticOperationSelector(this._binding);
 //                setTextValue(_operationSelectionCombo, opName);

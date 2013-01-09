@@ -62,12 +62,8 @@ public class CamelJPAProducerComposite extends AbstractSYBindingComposite {
             this._binding = (CamelJPABindingType) impl;
             setInUpdate(true);
             if (this._binding.getProduce() != null) {
-                if (this._binding.getProduce().getFlushOnSend() != null) {
-                    _flushOnSendCheckbox.setSelection(this._binding.getProduce().getFlushOnSend().booleanValue());
-                }
-                if (this._binding.getProduce().getUsePersist() != null) {
-                    _usePersistCheckbox.setSelection(this._binding.getProduce().getUsePersist().booleanValue());
-                }
+                _flushOnSendCheckbox.setSelection(this._binding.getProduce().isFlushOnSend());
+                _usePersistCheckbox.setSelection(this._binding.getProduce().isUsePersist());
             }
             if (this._binding.getEntityClassName() != null) {
                 _entityClassNameText.setText(this._binding.getEntityClassName());
@@ -193,9 +189,9 @@ public class CamelJPAProducerComposite extends AbstractSYBindingComposite {
                 } else if (control.equals(_transcationManagerText)) {
                     _transcationManagerText.setText(this._binding.getTransactionManager());
                 } else if (control.equals(_flushOnSendCheckbox)) {
-                    _flushOnSendCheckbox.setSelection(this._binding.getProduce().getFlushOnSend().booleanValue());
+                    _flushOnSendCheckbox.setSelection(this._binding.getProduce().isFlushOnSend());
                 } else if (control.equals(_usePersistCheckbox)) {
-                    _usePersistCheckbox.setSelection(this._binding.getProduce().getUsePersist().booleanValue());
+                    _usePersistCheckbox.setSelection(this._binding.getProduce().isUsePersist());
                 } else {
                     super.handleUndo(control);
                 }

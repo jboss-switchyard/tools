@@ -221,7 +221,7 @@ public class SCADiagramToolBehaviorProvider extends DefaultToolBehaviorProvider 
                 for (Binding binding : bindings) {
                     ImageDecorator imageRenderingDecorator = LabelAdapter.getImageDecoratorForBinding(binding);
                     if (x > 0) {
-                        x = imageRenderingDecorator.getX() + 20;
+                        x += 20;
                         imageRenderingDecorator.setX(x);
                     } else {
                         x = imageRenderingDecorator.getX();
@@ -267,7 +267,7 @@ public class SCADiagramToolBehaviorProvider extends DefaultToolBehaviorProvider 
                 for (Binding binding : bindings) {
                     ImageDecorator imageRenderingDecorator = LabelAdapter.getImageDecoratorForBinding(binding);
                     if (x > 0) {
-                        x = imageRenderingDecorator.getX() + 20;
+                        x += 20;
                         imageRenderingDecorator.setX(x);
                     } else {
                         x = imageRenderingDecorator.getX();

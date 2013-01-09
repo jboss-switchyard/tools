@@ -22,7 +22,7 @@ import org.switchyard.tools.models.switchyard1_0.camel.quartz.QuartzPackage;
  * <ul>
  *   <li>{@link org.switchyard.tools.models.switchyard1_0.camel.quartz.impl.CamelQuartzBindingTypeImpl#getCamelBindingName <em>Camel Binding Name</em>}</li>
  *   <li>{@link org.switchyard.tools.models.switchyard1_0.camel.quartz.impl.CamelQuartzBindingTypeImpl#getCron <em>Cron</em>}</li>
- *   <li>{@link org.switchyard.tools.models.switchyard1_0.camel.quartz.impl.CamelQuartzBindingTypeImpl#getStateful <em>Stateful</em>}</li>
+ *   <li>{@link org.switchyard.tools.models.switchyard1_0.camel.quartz.impl.CamelQuartzBindingTypeImpl#isStateful <em>Stateful</em>}</li>
  *   <li>{@link org.switchyard.tools.models.switchyard1_0.camel.quartz.impl.CamelQuartzBindingTypeImpl#getTriggerStartTime <em>Trigger Start Time</em>}</li>
  *   <li>{@link org.switchyard.tools.models.switchyard1_0.camel.quartz.impl.CamelQuartzBindingTypeImpl#getTriggerEndTime <em>Trigger End Time</em>}</li>
  * </ul>
@@ -72,24 +72,24 @@ public class CamelQuartzBindingTypeImpl extends BaseCamelBindingImpl implements 
     protected String cron = CRON_EDEFAULT;
 
     /**
-     * The default value of the '{@link #getStateful() <em>Stateful</em>}' attribute.
+     * The default value of the '{@link #isStateful() <em>Stateful</em>}' attribute.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @see #getStateful()
+     * @see #isStateful()
      * @generated
      * @ordered
      */
-    protected static final Boolean STATEFUL_EDEFAULT = null;
+    protected static final boolean STATEFUL_EDEFAULT = false;
 
     /**
-     * The cached value of the '{@link #getStateful() <em>Stateful</em>}' attribute.
+     * The cached value of the '{@link #isStateful() <em>Stateful</em>}' attribute.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @see #getStateful()
+     * @see #isStateful()
      * @generated
      * @ordered
      */
-    protected Boolean stateful = STATEFUL_EDEFAULT;
+    protected boolean stateful = STATEFUL_EDEFAULT;
 
     /**
      * This is true if the Stateful attribute has been set.
@@ -206,7 +206,7 @@ public class CamelQuartzBindingTypeImpl extends BaseCamelBindingImpl implements 
      * <!-- end-user-doc -->
      * @generated
      */
-    public Boolean getStateful() {
+    public boolean isStateful() {
         return stateful;
     }
 
@@ -215,8 +215,8 @@ public class CamelQuartzBindingTypeImpl extends BaseCamelBindingImpl implements 
      * <!-- end-user-doc -->
      * @generated
      */
-    public void setStateful(Boolean newStateful) {
-        Boolean oldStateful = stateful;
+    public void setStateful(boolean newStateful) {
+        boolean oldStateful = stateful;
         stateful = newStateful;
         boolean oldStatefulESet = statefulESet;
         statefulESet = true;
@@ -230,7 +230,7 @@ public class CamelQuartzBindingTypeImpl extends BaseCamelBindingImpl implements 
      * @generated
      */
     public void unsetStateful() {
-        Boolean oldStateful = stateful;
+        boolean oldStateful = stateful;
         boolean oldStatefulESet = statefulESet;
         stateful = STATEFUL_EDEFAULT;
         statefulESet = false;
@@ -302,7 +302,7 @@ public class CamelQuartzBindingTypeImpl extends BaseCamelBindingImpl implements 
             case QuartzPackage.CAMEL_QUARTZ_BINDING_TYPE__CRON:
                 return getCron();
             case QuartzPackage.CAMEL_QUARTZ_BINDING_TYPE__STATEFUL:
-                return getStateful();
+                return isStateful();
             case QuartzPackage.CAMEL_QUARTZ_BINDING_TYPE__TRIGGER_START_TIME:
                 return getTriggerStartTime();
             case QuartzPackage.CAMEL_QUARTZ_BINDING_TYPE__TRIGGER_END_TIME:

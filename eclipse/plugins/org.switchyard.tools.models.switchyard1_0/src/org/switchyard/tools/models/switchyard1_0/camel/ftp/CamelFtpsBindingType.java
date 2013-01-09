@@ -12,10 +12,10 @@ package org.switchyard.tools.models.switchyard1_0.camel.ftp;
  * The following features are supported:
  * <ul>
  *   <li>{@link org.switchyard.tools.models.switchyard1_0.camel.ftp.CamelFtpsBindingType#getSecurityProtocol <em>Security Protocol</em>}</li>
- *   <li>{@link org.switchyard.tools.models.switchyard1_0.camel.ftp.CamelFtpsBindingType#getIsImplicit <em>Is Implicit</em>}</li>
+ *   <li>{@link org.switchyard.tools.models.switchyard1_0.camel.ftp.CamelFtpsBindingType#isIsImplicit <em>Is Implicit</em>}</li>
  *   <li>{@link org.switchyard.tools.models.switchyard1_0.camel.ftp.CamelFtpsBindingType#getExecPbsz <em>Exec Pbsz</em>}</li>
  *   <li>{@link org.switchyard.tools.models.switchyard1_0.camel.ftp.CamelFtpsBindingType#getExecProt <em>Exec Prot</em>}</li>
- *   <li>{@link org.switchyard.tools.models.switchyard1_0.camel.ftp.CamelFtpsBindingType#getDisableSecureDataChannelDefaults <em>Disable Secure Data Channel Defaults</em>}</li>
+ *   <li>{@link org.switchyard.tools.models.switchyard1_0.camel.ftp.CamelFtpsBindingType#isDisableSecureDataChannelDefaults <em>Disable Secure Data Channel Defaults</em>}</li>
  * </ul>
  * </p>
  *
@@ -53,6 +53,7 @@ public interface CamelFtpsBindingType extends CamelFtpBindingType {
 
     /**
      * Returns the value of the '<em><b>Is Implicit</b></em>' attribute.
+     * The default value is <code>"false"</code>.
      * <!-- begin-user-doc -->
      * <p>
      * If the meaning of the '<em>Is Implicit</em>' attribute isn't clear,
@@ -62,45 +63,45 @@ public interface CamelFtpsBindingType extends CamelFtpBindingType {
      * @return the value of the '<em>Is Implicit</em>' attribute.
      * @see #isSetIsImplicit()
      * @see #unsetIsImplicit()
-     * @see #setIsImplicit(Boolean)
+     * @see #setIsImplicit(boolean)
      * @see org.switchyard.tools.models.switchyard1_0.camel.ftp.FtpPackage#getCamelFtpsBindingType_IsImplicit()
-     * @model unsettable="true" dataType="org.eclipse.emf.ecore.xml.type.BooleanObject"
+     * @model default="false" unsettable="true" dataType="org.eclipse.emf.ecore.xml.type.Boolean"
      *        extendedMetaData="kind='element' name='isImplicit' namespace='##targetNamespace'"
      * @generated
      */
-    Boolean getIsImplicit();
+    boolean isIsImplicit();
 
     /**
-     * Sets the value of the '{@link org.switchyard.tools.models.switchyard1_0.camel.ftp.CamelFtpsBindingType#getIsImplicit <em>Is Implicit</em>}' attribute.
+     * Sets the value of the '{@link org.switchyard.tools.models.switchyard1_0.camel.ftp.CamelFtpsBindingType#isIsImplicit <em>Is Implicit</em>}' attribute.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @param value the new value of the '<em>Is Implicit</em>' attribute.
      * @see #isSetIsImplicit()
      * @see #unsetIsImplicit()
-     * @see #getIsImplicit()
+     * @see #isIsImplicit()
      * @generated
      */
-    void setIsImplicit(Boolean value);
+    void setIsImplicit(boolean value);
 
     /**
-     * Unsets the value of the '{@link org.switchyard.tools.models.switchyard1_0.camel.ftp.CamelFtpsBindingType#getIsImplicit <em>Is Implicit</em>}' attribute.
+     * Unsets the value of the '{@link org.switchyard.tools.models.switchyard1_0.camel.ftp.CamelFtpsBindingType#isIsImplicit <em>Is Implicit</em>}' attribute.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @see #isSetIsImplicit()
-     * @see #getIsImplicit()
-     * @see #setIsImplicit(Boolean)
+     * @see #isIsImplicit()
+     * @see #setIsImplicit(boolean)
      * @generated
      */
     void unsetIsImplicit();
 
     /**
-     * Returns whether the value of the '{@link org.switchyard.tools.models.switchyard1_0.camel.ftp.CamelFtpsBindingType#getIsImplicit <em>Is Implicit</em>}' attribute is set.
+     * Returns whether the value of the '{@link org.switchyard.tools.models.switchyard1_0.camel.ftp.CamelFtpsBindingType#isIsImplicit <em>Is Implicit</em>}' attribute is set.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @return whether the value of the '<em>Is Implicit</em>' attribute is set.
      * @see #unsetIsImplicit()
-     * @see #getIsImplicit()
-     * @see #setIsImplicit(Boolean)
+     * @see #isIsImplicit()
+     * @see #setIsImplicit(boolean)
      * @generated
      */
     boolean isSetIsImplicit();
@@ -116,13 +117,13 @@ public interface CamelFtpsBindingType extends CamelFtpBindingType {
      * @return the value of the '<em>Exec Pbsz</em>' attribute.
      * @see #isSetExecPbsz()
      * @see #unsetExecPbsz()
-     * @see #setExecPbsz(Long)
+     * @see #setExecPbsz(long)
      * @see org.switchyard.tools.models.switchyard1_0.camel.ftp.FtpPackage#getCamelFtpsBindingType_ExecPbsz()
-     * @model unsettable="true" dataType="org.eclipse.emf.ecore.xml.type.LongObject"
+     * @model unsettable="true" dataType="org.eclipse.emf.ecore.xml.type.Long"
      *        extendedMetaData="kind='element' name='execPbsz' namespace='##targetNamespace'"
      * @generated
      */
-    Long getExecPbsz();
+    long getExecPbsz();
 
     /**
      * Sets the value of the '{@link org.switchyard.tools.models.switchyard1_0.camel.ftp.CamelFtpsBindingType#getExecPbsz <em>Exec Pbsz</em>}' attribute.
@@ -134,7 +135,7 @@ public interface CamelFtpsBindingType extends CamelFtpBindingType {
      * @see #getExecPbsz()
      * @generated
      */
-    void setExecPbsz(Long value);
+    void setExecPbsz(long value);
 
     /**
      * Unsets the value of the '{@link org.switchyard.tools.models.switchyard1_0.camel.ftp.CamelFtpsBindingType#getExecPbsz <em>Exec Pbsz</em>}' attribute.
@@ -142,7 +143,7 @@ public interface CamelFtpsBindingType extends CamelFtpBindingType {
      * <!-- end-user-doc -->
      * @see #isSetExecPbsz()
      * @see #getExecPbsz()
-     * @see #setExecPbsz(Long)
+     * @see #setExecPbsz(long)
      * @generated
      */
     void unsetExecPbsz();
@@ -154,7 +155,7 @@ public interface CamelFtpsBindingType extends CamelFtpBindingType {
      * @return whether the value of the '<em>Exec Pbsz</em>' attribute is set.
      * @see #unsetExecPbsz()
      * @see #getExecPbsz()
-     * @see #setExecPbsz(Long)
+     * @see #setExecPbsz(long)
      * @generated
      */
     boolean isSetExecPbsz();
@@ -188,6 +189,7 @@ public interface CamelFtpsBindingType extends CamelFtpBindingType {
 
     /**
      * Returns the value of the '<em><b>Disable Secure Data Channel Defaults</b></em>' attribute.
+     * The default value is <code>"false"</code>.
      * <!-- begin-user-doc -->
      * <p>
      * If the meaning of the '<em>Disable Secure Data Channel Defaults</em>' attribute isn't clear,
@@ -197,45 +199,45 @@ public interface CamelFtpsBindingType extends CamelFtpBindingType {
      * @return the value of the '<em>Disable Secure Data Channel Defaults</em>' attribute.
      * @see #isSetDisableSecureDataChannelDefaults()
      * @see #unsetDisableSecureDataChannelDefaults()
-     * @see #setDisableSecureDataChannelDefaults(Boolean)
+     * @see #setDisableSecureDataChannelDefaults(boolean)
      * @see org.switchyard.tools.models.switchyard1_0.camel.ftp.FtpPackage#getCamelFtpsBindingType_DisableSecureDataChannelDefaults()
-     * @model unsettable="true" dataType="org.eclipse.emf.ecore.xml.type.BooleanObject"
+     * @model default="false" unsettable="true" dataType="org.eclipse.emf.ecore.xml.type.Boolean"
      *        extendedMetaData="kind='element' name='disableSecureDataChannelDefaults' namespace='##targetNamespace'"
      * @generated
      */
-    Boolean getDisableSecureDataChannelDefaults();
+    boolean isDisableSecureDataChannelDefaults();
 
     /**
-     * Sets the value of the '{@link org.switchyard.tools.models.switchyard1_0.camel.ftp.CamelFtpsBindingType#getDisableSecureDataChannelDefaults <em>Disable Secure Data Channel Defaults</em>}' attribute.
+     * Sets the value of the '{@link org.switchyard.tools.models.switchyard1_0.camel.ftp.CamelFtpsBindingType#isDisableSecureDataChannelDefaults <em>Disable Secure Data Channel Defaults</em>}' attribute.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @param value the new value of the '<em>Disable Secure Data Channel Defaults</em>' attribute.
      * @see #isSetDisableSecureDataChannelDefaults()
      * @see #unsetDisableSecureDataChannelDefaults()
-     * @see #getDisableSecureDataChannelDefaults()
+     * @see #isDisableSecureDataChannelDefaults()
      * @generated
      */
-    void setDisableSecureDataChannelDefaults(Boolean value);
+    void setDisableSecureDataChannelDefaults(boolean value);
 
     /**
-     * Unsets the value of the '{@link org.switchyard.tools.models.switchyard1_0.camel.ftp.CamelFtpsBindingType#getDisableSecureDataChannelDefaults <em>Disable Secure Data Channel Defaults</em>}' attribute.
+     * Unsets the value of the '{@link org.switchyard.tools.models.switchyard1_0.camel.ftp.CamelFtpsBindingType#isDisableSecureDataChannelDefaults <em>Disable Secure Data Channel Defaults</em>}' attribute.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @see #isSetDisableSecureDataChannelDefaults()
-     * @see #getDisableSecureDataChannelDefaults()
-     * @see #setDisableSecureDataChannelDefaults(Boolean)
+     * @see #isDisableSecureDataChannelDefaults()
+     * @see #setDisableSecureDataChannelDefaults(boolean)
      * @generated
      */
     void unsetDisableSecureDataChannelDefaults();
 
     /**
-     * Returns whether the value of the '{@link org.switchyard.tools.models.switchyard1_0.camel.ftp.CamelFtpsBindingType#getDisableSecureDataChannelDefaults <em>Disable Secure Data Channel Defaults</em>}' attribute is set.
+     * Returns whether the value of the '{@link org.switchyard.tools.models.switchyard1_0.camel.ftp.CamelFtpsBindingType#isDisableSecureDataChannelDefaults <em>Disable Secure Data Channel Defaults</em>}' attribute is set.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @return whether the value of the '<em>Disable Secure Data Channel Defaults</em>' attribute is set.
      * @see #unsetDisableSecureDataChannelDefaults()
-     * @see #getDisableSecureDataChannelDefaults()
-     * @see #setDisableSecureDataChannelDefaults(Boolean)
+     * @see #isDisableSecureDataChannelDefaults()
+     * @see #setDisableSecureDataChannelDefaults(boolean)
      * @generated
      */
     boolean isSetDisableSecureDataChannelDefaults();

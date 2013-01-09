@@ -102,7 +102,7 @@ public class JpaConsumerTypeItemProvider
                  true,
                  false,
                  false,
-                 ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
+                 ItemPropertyDescriptor.INTEGRAL_VALUE_IMAGE,
                  null,
                  null));
     }
@@ -124,7 +124,7 @@ public class JpaConsumerTypeItemProvider
                  true,
                  false,
                  false,
-                 ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
+                 ItemPropertyDescriptor.INTEGRAL_VALUE_IMAGE,
                  null,
                  null));
     }
@@ -146,7 +146,7 @@ public class JpaConsumerTypeItemProvider
                  true,
                  false,
                  false,
-                 ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
+                 ItemPropertyDescriptor.BOOLEAN_VALUE_IMAGE,
                  null,
                  null));
     }
@@ -168,7 +168,7 @@ public class JpaConsumerTypeItemProvider
                  true,
                  false,
                  false,
-                 ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
+                 ItemPropertyDescriptor.BOOLEAN_VALUE_IMAGE,
                  null,
                  null));
     }
@@ -212,7 +212,7 @@ public class JpaConsumerTypeItemProvider
                  true,
                  false,
                  false,
-                 ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
+                 ItemPropertyDescriptor.INTEGRAL_VALUE_IMAGE,
                  null,
                  null));
     }
@@ -234,7 +234,7 @@ public class JpaConsumerTypeItemProvider
                  true,
                  false,
                  false,
-                 ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
+                 ItemPropertyDescriptor.BOOLEAN_VALUE_IMAGE,
                  null,
                  null));
     }
@@ -256,7 +256,7 @@ public class JpaConsumerTypeItemProvider
                  true,
                  false,
                  false,
-                 ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
+                 ItemPropertyDescriptor.BOOLEAN_VALUE_IMAGE,
                  null,
                  null));
     }
@@ -278,7 +278,7 @@ public class JpaConsumerTypeItemProvider
                  true,
                  false,
                  false,
-                 ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
+                 ItemPropertyDescriptor.INTEGRAL_VALUE_IMAGE,
                  null,
                  null));
     }
@@ -388,7 +388,7 @@ public class JpaConsumerTypeItemProvider
                  true,
                  false,
                  false,
-                 ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
+                 ItemPropertyDescriptor.BOOLEAN_VALUE_IMAGE,
                  null,
                  null));
     }
@@ -501,42 +501,42 @@ public class JpaConsumerTypeItemProvider
                 (JpaPackage.Literals.JPA_CONSUMER_TYPE__SCHEDULED_POLL_CONSUMER_TYPE,
                  FeatureMapUtil.createEntry
                     (JpaPackage.Literals.JPA_CONSUMER_TYPE__INITIAL_DELAY,
-                     XMLTypeFactory.eINSTANCE.createFromString(XMLTypePackage.Literals.INT_OBJECT, "0"))));
+                     XMLTypeFactory.eINSTANCE.createFromString(XMLTypePackage.Literals.INT, "1000"))));
 
         newChildDescriptors.add
             (createChildParameter
                 (JpaPackage.Literals.JPA_CONSUMER_TYPE__SCHEDULED_POLL_CONSUMER_TYPE,
                  FeatureMapUtil.createEntry
                     (JpaPackage.Literals.JPA_CONSUMER_TYPE__DELAY,
-                     XMLTypeFactory.eINSTANCE.createFromString(XMLTypePackage.Literals.INT_OBJECT, "0"))));
+                     XMLTypeFactory.eINSTANCE.createFromString(XMLTypePackage.Literals.INT, "500"))));
 
         newChildDescriptors.add
             (createChildParameter
                 (JpaPackage.Literals.JPA_CONSUMER_TYPE__SCHEDULED_POLL_CONSUMER_TYPE,
                  FeatureMapUtil.createEntry
                     (JpaPackage.Literals.JPA_CONSUMER_TYPE__USE_FIXED_DELAY,
-                     XMLTypeFactory.eINSTANCE.createFromString(XMLTypePackage.Literals.BOOLEAN_OBJECT, "false"))));
+                     XMLTypeFactory.eINSTANCE.createFromString(XMLTypePackage.Literals.BOOLEAN, "false"))));
 
         newChildDescriptors.add
             (createChildParameter
                 (JpaPackage.Literals.JPA_CONSUMER_TYPE__SCHEDULED_POLL_CONSUMER_TYPE,
                  FeatureMapUtil.createEntry
                     (JpaPackage.Literals.JPA_CONSUMER_TYPE__SEND_EMPTY_MESSAGE_WHEN_IDLE,
-                     XMLTypeFactory.eINSTANCE.createFromString(XMLTypePackage.Literals.BOOLEAN_OBJECT, "false"))));
+                     XMLTypeFactory.eINSTANCE.createFromString(XMLTypePackage.Literals.BOOLEAN, "false"))));
 
         newChildDescriptors.add
             (createChildParameter
                 (JpaPackage.Literals.JPA_CONSUMER_TYPE__SCHEDULED_POLL_CONSUMER_TYPE,
                  FeatureMapUtil.createEntry
                     (JpaPackage.Literals.JPA_CONSUMER_TYPE__TIME_UNIT,
-                     TimeUnitType.NANOSECONDS)));
+                     TimeUnitType.MILLISECONDS)));
 
         newChildDescriptors.add
             (createChildParameter
                 (JpaPackage.Literals.JPA_CONSUMER_TYPE__SCHEDULED_BATCH_POLL_CONSUMER_TYPE,
                  FeatureMapUtil.createEntry
                     (JpaPackage.Literals.JPA_CONSUMER_TYPE__MAX_MESSAGES_PER_POLL,
-                     XMLTypeFactory.eINSTANCE.createFromString(XMLTypePackage.Literals.INT_OBJECT, "0"))));
+                     XMLTypeFactory.eINSTANCE.createFromString(XMLTypePackage.Literals.INT, "0"))));
     }
 
     /**

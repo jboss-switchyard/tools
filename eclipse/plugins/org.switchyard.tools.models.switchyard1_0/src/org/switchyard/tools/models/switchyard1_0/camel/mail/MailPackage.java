@@ -845,22 +845,22 @@ public interface MailPackage extends EPackage {
     EAttribute getCamelMailConsumerType_Delay();
 
     /**
-     * Returns the meta object for the attribute '{@link org.switchyard.tools.models.switchyard1_0.camel.mail.CamelMailConsumerType#getUseFixedDelay <em>Use Fixed Delay</em>}'.
+     * Returns the meta object for the attribute '{@link org.switchyard.tools.models.switchyard1_0.camel.mail.CamelMailConsumerType#isUseFixedDelay <em>Use Fixed Delay</em>}'.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @return the meta object for the attribute '<em>Use Fixed Delay</em>'.
-     * @see org.switchyard.tools.models.switchyard1_0.camel.mail.CamelMailConsumerType#getUseFixedDelay()
+     * @see org.switchyard.tools.models.switchyard1_0.camel.mail.CamelMailConsumerType#isUseFixedDelay()
      * @see #getCamelMailConsumerType()
      * @generated
      */
     EAttribute getCamelMailConsumerType_UseFixedDelay();
 
     /**
-     * Returns the meta object for the attribute '{@link org.switchyard.tools.models.switchyard1_0.camel.mail.CamelMailConsumerType#getSendEmptyMessageWhenIdle <em>Send Empty Message When Idle</em>}'.
+     * Returns the meta object for the attribute '{@link org.switchyard.tools.models.switchyard1_0.camel.mail.CamelMailConsumerType#isSendEmptyMessageWhenIdle <em>Send Empty Message When Idle</em>}'.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @return the meta object for the attribute '<em>Send Empty Message When Idle</em>'.
-     * @see org.switchyard.tools.models.switchyard1_0.camel.mail.CamelMailConsumerType#getSendEmptyMessageWhenIdle()
+     * @see org.switchyard.tools.models.switchyard1_0.camel.mail.CamelMailConsumerType#isSendEmptyMessageWhenIdle()
      * @see #getCamelMailConsumerType()
      * @generated
      */
@@ -911,22 +911,22 @@ public interface MailPackage extends EPackage {
     EAttribute getCamelMailConsumerType_FetchSize();
 
     /**
-     * Returns the meta object for the attribute '{@link org.switchyard.tools.models.switchyard1_0.camel.mail.CamelMailConsumerType#getUnseen <em>Unseen</em>}'.
+     * Returns the meta object for the attribute '{@link org.switchyard.tools.models.switchyard1_0.camel.mail.CamelMailConsumerType#isUnseen <em>Unseen</em>}'.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @return the meta object for the attribute '<em>Unseen</em>'.
-     * @see org.switchyard.tools.models.switchyard1_0.camel.mail.CamelMailConsumerType#getUnseen()
+     * @see org.switchyard.tools.models.switchyard1_0.camel.mail.CamelMailConsumerType#isUnseen()
      * @see #getCamelMailConsumerType()
      * @generated
      */
     EAttribute getCamelMailConsumerType_Unseen();
 
     /**
-     * Returns the meta object for the attribute '{@link org.switchyard.tools.models.switchyard1_0.camel.mail.CamelMailConsumerType#getDelete <em>Delete</em>}'.
+     * Returns the meta object for the attribute '{@link org.switchyard.tools.models.switchyard1_0.camel.mail.CamelMailConsumerType#isDelete <em>Delete</em>}'.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @return the meta object for the attribute '<em>Delete</em>'.
-     * @see org.switchyard.tools.models.switchyard1_0.camel.mail.CamelMailConsumerType#getDelete()
+     * @see org.switchyard.tools.models.switchyard1_0.camel.mail.CamelMailConsumerType#isDelete()
      * @see #getCamelMailConsumerType()
      * @generated
      */
@@ -944,11 +944,11 @@ public interface MailPackage extends EPackage {
     EAttribute getCamelMailConsumerType_CopyTo();
 
     /**
-     * Returns the meta object for the attribute '{@link org.switchyard.tools.models.switchyard1_0.camel.mail.CamelMailConsumerType#getDisconnect <em>Disconnect</em>}'.
+     * Returns the meta object for the attribute '{@link org.switchyard.tools.models.switchyard1_0.camel.mail.CamelMailConsumerType#isDisconnect <em>Disconnect</em>}'.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @return the meta object for the attribute '<em>Disconnect</em>'.
-     * @see org.switchyard.tools.models.switchyard1_0.camel.mail.CamelMailConsumerType#getDisconnect()
+     * @see org.switchyard.tools.models.switchyard1_0.camel.mail.CamelMailConsumerType#isDisconnect()
      * @see #getCamelMailConsumerType()
      * @generated
      */
@@ -1129,11 +1129,11 @@ public interface MailPackage extends EPackage {
     EReference getCamelMailBindingType_Produce();
 
     /**
-     * Returns the meta object for the attribute '{@link org.switchyard.tools.models.switchyard1_0.camel.mail.CamelMailBindingType#getSecure <em>Secure</em>}'.
+     * Returns the meta object for the attribute '{@link org.switchyard.tools.models.switchyard1_0.camel.mail.CamelMailBindingType#isSecure <em>Secure</em>}'.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @return the meta object for the attribute '<em>Secure</em>'.
-     * @see org.switchyard.tools.models.switchyard1_0.camel.mail.CamelMailBindingType#getSecure()
+     * @see org.switchyard.tools.models.switchyard1_0.camel.mail.CamelMailBindingType#isSecure()
      * @see #getCamelMailBindingType()
      * @generated
      */

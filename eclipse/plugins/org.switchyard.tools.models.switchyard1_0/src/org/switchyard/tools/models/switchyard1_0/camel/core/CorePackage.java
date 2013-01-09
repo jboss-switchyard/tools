@@ -1320,22 +1320,22 @@ public interface CorePackage extends EPackage {
     EAttribute getCamelTimerBindingType_Delay();
 
     /**
-     * Returns the meta object for the attribute '{@link org.switchyard.tools.models.switchyard1_0.camel.core.CamelTimerBindingType#getFixedRate <em>Fixed Rate</em>}'.
+     * Returns the meta object for the attribute '{@link org.switchyard.tools.models.switchyard1_0.camel.core.CamelTimerBindingType#isFixedRate <em>Fixed Rate</em>}'.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @return the meta object for the attribute '<em>Fixed Rate</em>'.
-     * @see org.switchyard.tools.models.switchyard1_0.camel.core.CamelTimerBindingType#getFixedRate()
+     * @see org.switchyard.tools.models.switchyard1_0.camel.core.CamelTimerBindingType#isFixedRate()
      * @see #getCamelTimerBindingType()
      * @generated
      */
     EAttribute getCamelTimerBindingType_FixedRate();
 
     /**
-     * Returns the meta object for the attribute '{@link org.switchyard.tools.models.switchyard1_0.camel.core.CamelTimerBindingType#getDaemon <em>Daemon</em>}'.
+     * Returns the meta object for the attribute '{@link org.switchyard.tools.models.switchyard1_0.camel.core.CamelTimerBindingType#isDaemon <em>Daemon</em>}'.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @return the meta object for the attribute '<em>Daemon</em>'.
-     * @see org.switchyard.tools.models.switchyard1_0.camel.core.CamelTimerBindingType#getDaemon()
+     * @see org.switchyard.tools.models.switchyard1_0.camel.core.CamelTimerBindingType#isDaemon()
      * @see #getCamelTimerBindingType()
      * @generated
      */
@@ -1407,22 +1407,22 @@ public interface CorePackage extends EPackage {
     EAttribute getCamelSedaBindingType_Timeout();
 
     /**
-     * Returns the meta object for the attribute '{@link org.switchyard.tools.models.switchyard1_0.camel.core.CamelSedaBindingType#getMultipleConsumers <em>Multiple Consumers</em>}'.
+     * Returns the meta object for the attribute '{@link org.switchyard.tools.models.switchyard1_0.camel.core.CamelSedaBindingType#isMultipleConsumers <em>Multiple Consumers</em>}'.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @return the meta object for the attribute '<em>Multiple Consumers</em>'.
-     * @see org.switchyard.tools.models.switchyard1_0.camel.core.CamelSedaBindingType#getMultipleConsumers()
+     * @see org.switchyard.tools.models.switchyard1_0.camel.core.CamelSedaBindingType#isMultipleConsumers()
      * @see #getCamelSedaBindingType()
      * @generated
      */
     EAttribute getCamelSedaBindingType_MultipleConsumers();
 
     /**
-     * Returns the meta object for the attribute '{@link org.switchyard.tools.models.switchyard1_0.camel.core.CamelSedaBindingType#getLimitConcurrentConsumers <em>Limit Concurrent Consumers</em>}'.
+     * Returns the meta object for the attribute '{@link org.switchyard.tools.models.switchyard1_0.camel.core.CamelSedaBindingType#isLimitConcurrentConsumers <em>Limit Concurrent Consumers</em>}'.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @return the meta object for the attribute '<em>Limit Concurrent Consumers</em>'.
-     * @see org.switchyard.tools.models.switchyard1_0.camel.core.CamelSedaBindingType#getLimitConcurrentConsumers()
+     * @see org.switchyard.tools.models.switchyard1_0.camel.core.CamelSedaBindingType#isLimitConcurrentConsumers()
      * @see #getCamelSedaBindingType()
      * @generated
      */

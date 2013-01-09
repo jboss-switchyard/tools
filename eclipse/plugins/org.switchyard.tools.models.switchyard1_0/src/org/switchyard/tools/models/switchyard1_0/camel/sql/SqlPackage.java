@@ -503,11 +503,11 @@ public interface SqlPackage extends EPackage {
     EAttribute getCamelSqlBindingType_DataSourceRef();
 
     /**
-     * Returns the meta object for the attribute '{@link org.switchyard.tools.models.switchyard1_0.camel.sql.CamelSqlBindingType#getBatch <em>Batch</em>}'.
+     * Returns the meta object for the attribute '{@link org.switchyard.tools.models.switchyard1_0.camel.sql.CamelSqlBindingType#isBatch <em>Batch</em>}'.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @return the meta object for the attribute '<em>Batch</em>'.
-     * @see org.switchyard.tools.models.switchyard1_0.camel.sql.CamelSqlBindingType#getBatch()
+     * @see org.switchyard.tools.models.switchyard1_0.camel.sql.CamelSqlBindingType#isBatch()
      * @see #getCamelSqlBindingType()
      * @generated
      */

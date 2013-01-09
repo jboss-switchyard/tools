@@ -13,12 +13,12 @@ import javax.xml.datatype.XMLGregorianCalendar;
  * The following features are supported:
  * <ul>
  *   <li>{@link org.switchyard.tools.models.switchyard1_0.camel.atom.CamelAtomBindingType#getFeedURI <em>Feed URI</em>}</li>
- *   <li>{@link org.switchyard.tools.models.switchyard1_0.camel.atom.CamelAtomBindingType#getSplitEntries <em>Split Entries</em>}</li>
- *   <li>{@link org.switchyard.tools.models.switchyard1_0.camel.atom.CamelAtomBindingType#getFilter <em>Filter</em>}</li>
+ *   <li>{@link org.switchyard.tools.models.switchyard1_0.camel.atom.CamelAtomBindingType#isSplitEntries <em>Split Entries</em>}</li>
+ *   <li>{@link org.switchyard.tools.models.switchyard1_0.camel.atom.CamelAtomBindingType#isFilter <em>Filter</em>}</li>
  *   <li>{@link org.switchyard.tools.models.switchyard1_0.camel.atom.CamelAtomBindingType#getLastUpdate <em>Last Update</em>}</li>
- *   <li>{@link org.switchyard.tools.models.switchyard1_0.camel.atom.CamelAtomBindingType#getThrottleEntries <em>Throttle Entries</em>}</li>
- *   <li>{@link org.switchyard.tools.models.switchyard1_0.camel.atom.CamelAtomBindingType#getFeedHeader <em>Feed Header</em>}</li>
- *   <li>{@link org.switchyard.tools.models.switchyard1_0.camel.atom.CamelAtomBindingType#getSortEntries <em>Sort Entries</em>}</li>
+ *   <li>{@link org.switchyard.tools.models.switchyard1_0.camel.atom.CamelAtomBindingType#isThrottleEntries <em>Throttle Entries</em>}</li>
+ *   <li>{@link org.switchyard.tools.models.switchyard1_0.camel.atom.CamelAtomBindingType#isFeedHeader <em>Feed Header</em>}</li>
+ *   <li>{@link org.switchyard.tools.models.switchyard1_0.camel.atom.CamelAtomBindingType#isSortEntries <em>Sort Entries</em>}</li>
  *   <li>{@link org.switchyard.tools.models.switchyard1_0.camel.atom.CamelAtomBindingType#getConsume <em>Consume</em>}</li>
  * </ul>
  * </p>
@@ -57,6 +57,7 @@ public interface CamelAtomBindingType extends BaseCamelBinding {
 
     /**
      * Returns the value of the '<em><b>Split Entries</b></em>' attribute.
+     * The default value is <code>"true"</code>.
      * <!-- begin-user-doc -->
      * <p>
      * If the meaning of the '<em>Split Entries</em>' attribute isn't clear,
@@ -66,51 +67,52 @@ public interface CamelAtomBindingType extends BaseCamelBinding {
      * @return the value of the '<em>Split Entries</em>' attribute.
      * @see #isSetSplitEntries()
      * @see #unsetSplitEntries()
-     * @see #setSplitEntries(Boolean)
+     * @see #setSplitEntries(boolean)
      * @see org.switchyard.tools.models.switchyard1_0.camel.atom.AtomPackage#getCamelAtomBindingType_SplitEntries()
-     * @model unsettable="true" dataType="org.eclipse.emf.ecore.xml.type.BooleanObject"
+     * @model default="true" unsettable="true" dataType="org.eclipse.emf.ecore.xml.type.Boolean"
      *        extendedMetaData="kind='element' name='splitEntries' namespace='##targetNamespace'"
      * @generated
      */
-    Boolean getSplitEntries();
+    boolean isSplitEntries();
 
     /**
-     * Sets the value of the '{@link org.switchyard.tools.models.switchyard1_0.camel.atom.CamelAtomBindingType#getSplitEntries <em>Split Entries</em>}' attribute.
+     * Sets the value of the '{@link org.switchyard.tools.models.switchyard1_0.camel.atom.CamelAtomBindingType#isSplitEntries <em>Split Entries</em>}' attribute.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @param value the new value of the '<em>Split Entries</em>' attribute.
      * @see #isSetSplitEntries()
      * @see #unsetSplitEntries()
-     * @see #getSplitEntries()
+     * @see #isSplitEntries()
      * @generated
      */
-    void setSplitEntries(Boolean value);
+    void setSplitEntries(boolean value);
 
     /**
-     * Unsets the value of the '{@link org.switchyard.tools.models.switchyard1_0.camel.atom.CamelAtomBindingType#getSplitEntries <em>Split Entries</em>}' attribute.
+     * Unsets the value of the '{@link org.switchyard.tools.models.switchyard1_0.camel.atom.CamelAtomBindingType#isSplitEntries <em>Split Entries</em>}' attribute.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @see #isSetSplitEntries()
-     * @see #getSplitEntries()
-     * @see #setSplitEntries(Boolean)
+     * @see #isSplitEntries()
+     * @see #setSplitEntries(boolean)
      * @generated
      */
     void unsetSplitEntries();
 
     /**
-     * Returns whether the value of the '{@link org.switchyard.tools.models.switchyard1_0.camel.atom.CamelAtomBindingType#getSplitEntries <em>Split Entries</em>}' attribute is set.
+     * Returns whether the value of the '{@link org.switchyard.tools.models.switchyard1_0.camel.atom.CamelAtomBindingType#isSplitEntries <em>Split Entries</em>}' attribute is set.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @return whether the value of the '<em>Split Entries</em>' attribute is set.
      * @see #unsetSplitEntries()
-     * @see #getSplitEntries()
-     * @see #setSplitEntries(Boolean)
+     * @see #isSplitEntries()
+     * @see #setSplitEntries(boolean)
      * @generated
      */
     boolean isSetSplitEntries();
 
     /**
      * Returns the value of the '<em><b>Filter</b></em>' attribute.
+     * The default value is <code>"true"</code>.
      * <!-- begin-user-doc -->
      * <p>
      * If the meaning of the '<em>Filter</em>' attribute isn't clear,
@@ -120,45 +122,45 @@ public interface CamelAtomBindingType extends BaseCamelBinding {
      * @return the value of the '<em>Filter</em>' attribute.
      * @see #isSetFilter()
      * @see #unsetFilter()
-     * @see #setFilter(Boolean)
+     * @see #setFilter(boolean)
      * @see org.switchyard.tools.models.switchyard1_0.camel.atom.AtomPackage#getCamelAtomBindingType_Filter()
-     * @model unsettable="true" dataType="org.eclipse.emf.ecore.xml.type.BooleanObject"
+     * @model default="true" unsettable="true" dataType="org.eclipse.emf.ecore.xml.type.Boolean"
      *        extendedMetaData="kind='element' name='filter' namespace='##targetNamespace'"
      * @generated
      */
-    Boolean getFilter();
+    boolean isFilter();
 
     /**
-     * Sets the value of the '{@link org.switchyard.tools.models.switchyard1_0.camel.atom.CamelAtomBindingType#getFilter <em>Filter</em>}' attribute.
+     * Sets the value of the '{@link org.switchyard.tools.models.switchyard1_0.camel.atom.CamelAtomBindingType#isFilter <em>Filter</em>}' attribute.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @param value the new value of the '<em>Filter</em>' attribute.
      * @see #isSetFilter()
      * @see #unsetFilter()
-     * @see #getFilter()
+     * @see #isFilter()
      * @generated
      */
-    void setFilter(Boolean value);
+    void setFilter(boolean value);
 
     /**
-     * Unsets the value of the '{@link org.switchyard.tools.models.switchyard1_0.camel.atom.CamelAtomBindingType#getFilter <em>Filter</em>}' attribute.
+     * Unsets the value of the '{@link org.switchyard.tools.models.switchyard1_0.camel.atom.CamelAtomBindingType#isFilter <em>Filter</em>}' attribute.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @see #isSetFilter()
-     * @see #getFilter()
-     * @see #setFilter(Boolean)
+     * @see #isFilter()
+     * @see #setFilter(boolean)
      * @generated
      */
     void unsetFilter();
 
     /**
-     * Returns whether the value of the '{@link org.switchyard.tools.models.switchyard1_0.camel.atom.CamelAtomBindingType#getFilter <em>Filter</em>}' attribute is set.
+     * Returns whether the value of the '{@link org.switchyard.tools.models.switchyard1_0.camel.atom.CamelAtomBindingType#isFilter <em>Filter</em>}' attribute is set.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @return whether the value of the '<em>Filter</em>' attribute is set.
      * @see #unsetFilter()
-     * @see #getFilter()
-     * @see #setFilter(Boolean)
+     * @see #isFilter()
+     * @see #setFilter(boolean)
      * @generated
      */
     boolean isSetFilter();
@@ -192,6 +194,7 @@ public interface CamelAtomBindingType extends BaseCamelBinding {
 
     /**
      * Returns the value of the '<em><b>Throttle Entries</b></em>' attribute.
+     * The default value is <code>"true"</code>.
      * <!-- begin-user-doc -->
      * <p>
      * If the meaning of the '<em>Throttle Entries</em>' attribute isn't clear,
@@ -201,51 +204,52 @@ public interface CamelAtomBindingType extends BaseCamelBinding {
      * @return the value of the '<em>Throttle Entries</em>' attribute.
      * @see #isSetThrottleEntries()
      * @see #unsetThrottleEntries()
-     * @see #setThrottleEntries(Boolean)
+     * @see #setThrottleEntries(boolean)
      * @see org.switchyard.tools.models.switchyard1_0.camel.atom.AtomPackage#getCamelAtomBindingType_ThrottleEntries()
-     * @model unsettable="true" dataType="org.eclipse.emf.ecore.xml.type.BooleanObject"
+     * @model default="true" unsettable="true" dataType="org.eclipse.emf.ecore.xml.type.Boolean"
      *        extendedMetaData="kind='element' name='throttleEntries' namespace='##targetNamespace'"
      * @generated
      */
-    Boolean getThrottleEntries();
+    boolean isThrottleEntries();
 
     /**
-     * Sets the value of the '{@link org.switchyard.tools.models.switchyard1_0.camel.atom.CamelAtomBindingType#getThrottleEntries <em>Throttle Entries</em>}' attribute.
+     * Sets the value of the '{@link org.switchyard.tools.models.switchyard1_0.camel.atom.CamelAtomBindingType#isThrottleEntries <em>Throttle Entries</em>}' attribute.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @param value the new value of the '<em>Throttle Entries</em>' attribute.
      * @see #isSetThrottleEntries()
      * @see #unsetThrottleEntries()
-     * @see #getThrottleEntries()
+     * @see #isThrottleEntries()
      * @generated
      */
-    void setThrottleEntries(Boolean value);
+    void setThrottleEntries(boolean value);
 
     /**
-     * Unsets the value of the '{@link org.switchyard.tools.models.switchyard1_0.camel.atom.CamelAtomBindingType#getThrottleEntries <em>Throttle Entries</em>}' attribute.
+     * Unsets the value of the '{@link org.switchyard.tools.models.switchyard1_0.camel.atom.CamelAtomBindingType#isThrottleEntries <em>Throttle Entries</em>}' attribute.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @see #isSetThrottleEntries()
-     * @see #getThrottleEntries()
-     * @see #setThrottleEntries(Boolean)
+     * @see #isThrottleEntries()
+     * @see #setThrottleEntries(boolean)
      * @generated
      */
     void unsetThrottleEntries();
 
     /**
-     * Returns whether the value of the '{@link org.switchyard.tools.models.switchyard1_0.camel.atom.CamelAtomBindingType#getThrottleEntries <em>Throttle Entries</em>}' attribute is set.
+     * Returns whether the value of the '{@link org.switchyard.tools.models.switchyard1_0.camel.atom.CamelAtomBindingType#isThrottleEntries <em>Throttle Entries</em>}' attribute is set.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @return whether the value of the '<em>Throttle Entries</em>' attribute is set.
      * @see #unsetThrottleEntries()
-     * @see #getThrottleEntries()
-     * @see #setThrottleEntries(Boolean)
+     * @see #isThrottleEntries()
+     * @see #setThrottleEntries(boolean)
      * @generated
      */
     boolean isSetThrottleEntries();
 
     /**
      * Returns the value of the '<em><b>Feed Header</b></em>' attribute.
+     * The default value is <code>"true"</code>.
      * <!-- begin-user-doc -->
      * <p>
      * If the meaning of the '<em>Feed Header</em>' attribute isn't clear,
@@ -255,51 +259,52 @@ public interface CamelAtomBindingType extends BaseCamelBinding {
      * @return the value of the '<em>Feed Header</em>' attribute.
      * @see #isSetFeedHeader()
      * @see #unsetFeedHeader()
-     * @see #setFeedHeader(Boolean)
+     * @see #setFeedHeader(boolean)
      * @see org.switchyard.tools.models.switchyard1_0.camel.atom.AtomPackage#getCamelAtomBindingType_FeedHeader()
-     * @model unsettable="true" dataType="org.eclipse.emf.ecore.xml.type.BooleanObject"
+     * @model default="true" unsettable="true" dataType="org.eclipse.emf.ecore.xml.type.Boolean"
      *        extendedMetaData="kind='element' name='feedHeader' namespace='##targetNamespace'"
      * @generated
      */
-    Boolean getFeedHeader();
+    boolean isFeedHeader();
 
     /**
-     * Sets the value of the '{@link org.switchyard.tools.models.switchyard1_0.camel.atom.CamelAtomBindingType#getFeedHeader <em>Feed Header</em>}' attribute.
+     * Sets the value of the '{@link org.switchyard.tools.models.switchyard1_0.camel.atom.CamelAtomBindingType#isFeedHeader <em>Feed Header</em>}' attribute.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @param value the new value of the '<em>Feed Header</em>' attribute.
      * @see #isSetFeedHeader()
      * @see #unsetFeedHeader()
-     * @see #getFeedHeader()
+     * @see #isFeedHeader()
      * @generated
      */
-    void setFeedHeader(Boolean value);
+    void setFeedHeader(boolean value);
 
     /**
-     * Unsets the value of the '{@link org.switchyard.tools.models.switchyard1_0.camel.atom.CamelAtomBindingType#getFeedHeader <em>Feed Header</em>}' attribute.
+     * Unsets the value of the '{@link org.switchyard.tools.models.switchyard1_0.camel.atom.CamelAtomBindingType#isFeedHeader <em>Feed Header</em>}' attribute.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @see #isSetFeedHeader()
-     * @see #getFeedHeader()
-     * @see #setFeedHeader(Boolean)
+     * @see #isFeedHeader()
+     * @see #setFeedHeader(boolean)
      * @generated
      */
     void unsetFeedHeader();
 
     /**
-     * Returns whether the value of the '{@link org.switchyard.tools.models.switchyard1_0.camel.atom.CamelAtomBindingType#getFeedHeader <em>Feed Header</em>}' attribute is set.
+     * Returns whether the value of the '{@link org.switchyard.tools.models.switchyard1_0.camel.atom.CamelAtomBindingType#isFeedHeader <em>Feed Header</em>}' attribute is set.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @return whether the value of the '<em>Feed Header</em>' attribute is set.
      * @see #unsetFeedHeader()
-     * @see #getFeedHeader()
-     * @see #setFeedHeader(Boolean)
+     * @see #isFeedHeader()
+     * @see #setFeedHeader(boolean)
      * @generated
      */
     boolean isSetFeedHeader();
 
     /**
      * Returns the value of the '<em><b>Sort Entries</b></em>' attribute.
+     * The default value is <code>"false"</code>.
      * <!-- begin-user-doc -->
      * <p>
      * If the meaning of the '<em>Sort Entries</em>' attribute isn't clear,
@@ -309,45 +314,45 @@ public interface CamelAtomBindingType extends BaseCamelBinding {
      * @return the value of the '<em>Sort Entries</em>' attribute.
      * @see #isSetSortEntries()
      * @see #unsetSortEntries()
-     * @see #setSortEntries(Boolean)
+     * @see #setSortEntries(boolean)
      * @see org.switchyard.tools.models.switchyard1_0.camel.atom.AtomPackage#getCamelAtomBindingType_SortEntries()
-     * @model unsettable="true" dataType="org.eclipse.emf.ecore.xml.type.BooleanObject"
+     * @model default="false" unsettable="true" dataType="org.eclipse.emf.ecore.xml.type.Boolean"
      *        extendedMetaData="kind='element' name='sortEntries' namespace='##targetNamespace'"
      * @generated
      */
-    Boolean getSortEntries();
+    boolean isSortEntries();
 
     /**
-     * Sets the value of the '{@link org.switchyard.tools.models.switchyard1_0.camel.atom.CamelAtomBindingType#getSortEntries <em>Sort Entries</em>}' attribute.
+     * Sets the value of the '{@link org.switchyard.tools.models.switchyard1_0.camel.atom.CamelAtomBindingType#isSortEntries <em>Sort Entries</em>}' attribute.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @param value the new value of the '<em>Sort Entries</em>' attribute.
      * @see #isSetSortEntries()
      * @see #unsetSortEntries()
-     * @see #getSortEntries()
+     * @see #isSortEntries()
      * @generated
      */
-    void setSortEntries(Boolean value);
+    void setSortEntries(boolean value);
 
     /**
-     * Unsets the value of the '{@link org.switchyard.tools.models.switchyard1_0.camel.atom.CamelAtomBindingType#getSortEntries <em>Sort Entries</em>}' attribute.
+     * Unsets the value of the '{@link org.switchyard.tools.models.switchyard1_0.camel.atom.CamelAtomBindingType#isSortEntries <em>Sort Entries</em>}' attribute.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @see #isSetSortEntries()
-     * @see #getSortEntries()
-     * @see #setSortEntries(Boolean)
+     * @see #isSortEntries()
+     * @see #setSortEntries(boolean)
      * @generated
      */
     void unsetSortEntries();
 
     /**
-     * Returns whether the value of the '{@link org.switchyard.tools.models.switchyard1_0.camel.atom.CamelAtomBindingType#getSortEntries <em>Sort Entries</em>}' attribute is set.
+     * Returns whether the value of the '{@link org.switchyard.tools.models.switchyard1_0.camel.atom.CamelAtomBindingType#isSortEntries <em>Sort Entries</em>}' attribute is set.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @return whether the value of the '<em>Sort Entries</em>' attribute is set.
      * @see #unsetSortEntries()
-     * @see #getSortEntries()
-     * @see #setSortEntries(Boolean)
+     * @see #isSortEntries()
+     * @see #setSortEntries(boolean)
      * @generated
      */
     boolean isSetSortEntries();

@@ -17,7 +17,7 @@ package org.switchyard.tools.models.switchyard1_0.camel.mail;
  *   <li>{@link org.switchyard.tools.models.switchyard1_0.camel.mail.CamelMailBindingType#getConnectionTimeout <em>Connection Timeout</em>}</li>
  *   <li>{@link org.switchyard.tools.models.switchyard1_0.camel.mail.CamelMailBindingType#getConsume <em>Consume</em>}</li>
  *   <li>{@link org.switchyard.tools.models.switchyard1_0.camel.mail.CamelMailBindingType#getProduce <em>Produce</em>}</li>
- *   <li>{@link org.switchyard.tools.models.switchyard1_0.camel.mail.CamelMailBindingType#getSecure <em>Secure</em>}</li>
+ *   <li>{@link org.switchyard.tools.models.switchyard1_0.camel.mail.CamelMailBindingType#isSecure <em>Secure</em>}</li>
  * </ul>
  * </p>
  *
@@ -62,23 +62,50 @@ public interface CamelMailBindingType extends BaseCamelBinding {
      * </p>
      * <!-- end-user-doc -->
      * @return the value of the '<em>Port</em>' attribute.
-     * @see #setPort(Integer)
+     * @see #isSetPort()
+     * @see #unsetPort()
+     * @see #setPort(int)
      * @see org.switchyard.tools.models.switchyard1_0.camel.mail.MailPackage#getCamelMailBindingType_Port()
-     * @model dataType="org.eclipse.emf.ecore.xml.type.IntObject"
+     * @model unsettable="true" dataType="org.eclipse.emf.ecore.xml.type.Int"
      *        extendedMetaData="kind='element' name='port' namespace='##targetNamespace'"
      * @generated
      */
-    Integer getPort();
+    int getPort();
 
     /**
      * Sets the value of the '{@link org.switchyard.tools.models.switchyard1_0.camel.mail.CamelMailBindingType#getPort <em>Port</em>}' attribute.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @param value the new value of the '<em>Port</em>' attribute.
+     * @see #isSetPort()
+     * @see #unsetPort()
      * @see #getPort()
      * @generated
      */
-    void setPort(Integer value);
+    void setPort(int value);
+
+    /**
+     * Unsets the value of the '{@link org.switchyard.tools.models.switchyard1_0.camel.mail.CamelMailBindingType#getPort <em>Port</em>}' attribute.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @see #isSetPort()
+     * @see #getPort()
+     * @see #setPort(int)
+     * @generated
+     */
+    void unsetPort();
+
+    /**
+     * Returns whether the value of the '{@link org.switchyard.tools.models.switchyard1_0.camel.mail.CamelMailBindingType#getPort <em>Port</em>}' attribute is set.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @return whether the value of the '<em>Port</em>' attribute is set.
+     * @see #unsetPort()
+     * @see #getPort()
+     * @see #setPort(int)
+     * @generated
+     */
+    boolean isSetPort();
 
     /**
      * Returns the value of the '<em><b>Username</b></em>' attribute.
@@ -136,6 +163,7 @@ public interface CamelMailBindingType extends BaseCamelBinding {
 
     /**
      * Returns the value of the '<em><b>Connection Timeout</b></em>' attribute.
+     * The default value is <code>"30000"</code>.
      * <!-- begin-user-doc -->
      * <p>
      * If the meaning of the '<em>Connection Timeout</em>' attribute isn't clear,
@@ -145,13 +173,13 @@ public interface CamelMailBindingType extends BaseCamelBinding {
      * @return the value of the '<em>Connection Timeout</em>' attribute.
      * @see #isSetConnectionTimeout()
      * @see #unsetConnectionTimeout()
-     * @see #setConnectionTimeout(Integer)
+     * @see #setConnectionTimeout(int)
      * @see org.switchyard.tools.models.switchyard1_0.camel.mail.MailPackage#getCamelMailBindingType_ConnectionTimeout()
-     * @model unsettable="true" dataType="org.eclipse.emf.ecore.xml.type.IntObject"
+     * @model default="30000" unsettable="true" dataType="org.eclipse.emf.ecore.xml.type.Int"
      *        extendedMetaData="kind='element' name='connectionTimeout' namespace='##targetNamespace'"
      * @generated
      */
-    Integer getConnectionTimeout();
+    int getConnectionTimeout();
 
     /**
      * Sets the value of the '{@link org.switchyard.tools.models.switchyard1_0.camel.mail.CamelMailBindingType#getConnectionTimeout <em>Connection Timeout</em>}' attribute.
@@ -163,7 +191,7 @@ public interface CamelMailBindingType extends BaseCamelBinding {
      * @see #getConnectionTimeout()
      * @generated
      */
-    void setConnectionTimeout(Integer value);
+    void setConnectionTimeout(int value);
 
     /**
      * Unsets the value of the '{@link org.switchyard.tools.models.switchyard1_0.camel.mail.CamelMailBindingType#getConnectionTimeout <em>Connection Timeout</em>}' attribute.
@@ -171,7 +199,7 @@ public interface CamelMailBindingType extends BaseCamelBinding {
      * <!-- end-user-doc -->
      * @see #isSetConnectionTimeout()
      * @see #getConnectionTimeout()
-     * @see #setConnectionTimeout(Integer)
+     * @see #setConnectionTimeout(int)
      * @generated
      */
     void unsetConnectionTimeout();
@@ -183,7 +211,7 @@ public interface CamelMailBindingType extends BaseCamelBinding {
      * @return whether the value of the '<em>Connection Timeout</em>' attribute is set.
      * @see #unsetConnectionTimeout()
      * @see #getConnectionTimeout()
-     * @see #setConnectionTimeout(Integer)
+     * @see #setConnectionTimeout(int)
      * @generated
      */
     boolean isSetConnectionTimeout();
@@ -252,22 +280,49 @@ public interface CamelMailBindingType extends BaseCamelBinding {
      * </p>
      * <!-- end-user-doc -->
      * @return the value of the '<em>Secure</em>' attribute.
-     * @see #setSecure(Boolean)
+     * @see #isSetSecure()
+     * @see #unsetSecure()
+     * @see #setSecure(boolean)
      * @see org.switchyard.tools.models.switchyard1_0.camel.mail.MailPackage#getCamelMailBindingType_Secure()
-     * @model default="false" dataType="org.eclipse.emf.ecore.xml.type.BooleanObject"
+     * @model default="false" unsettable="true" dataType="org.eclipse.emf.ecore.xml.type.Boolean"
      *        extendedMetaData="kind='attribute' name='secure'"
      * @generated
      */
-    Boolean getSecure();
+    boolean isSecure();
 
     /**
-     * Sets the value of the '{@link org.switchyard.tools.models.switchyard1_0.camel.mail.CamelMailBindingType#getSecure <em>Secure</em>}' attribute.
+     * Sets the value of the '{@link org.switchyard.tools.models.switchyard1_0.camel.mail.CamelMailBindingType#isSecure <em>Secure</em>}' attribute.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @param value the new value of the '<em>Secure</em>' attribute.
-     * @see #getSecure()
+     * @see #isSetSecure()
+     * @see #unsetSecure()
+     * @see #isSecure()
      * @generated
      */
-    void setSecure(Boolean value);
+    void setSecure(boolean value);
+
+    /**
+     * Unsets the value of the '{@link org.switchyard.tools.models.switchyard1_0.camel.mail.CamelMailBindingType#isSecure <em>Secure</em>}' attribute.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @see #isSetSecure()
+     * @see #isSecure()
+     * @see #setSecure(boolean)
+     * @generated
+     */
+    void unsetSecure();
+
+    /**
+     * Returns whether the value of the '{@link org.switchyard.tools.models.switchyard1_0.camel.mail.CamelMailBindingType#isSecure <em>Secure</em>}' attribute is set.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @return whether the value of the '<em>Secure</em>' attribute is set.
+     * @see #unsetSecure()
+     * @see #isSecure()
+     * @see #setSecure(boolean)
+     * @generated
+     */
+    boolean isSetSecure();
 
 } // CamelMailBindingType

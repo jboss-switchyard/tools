@@ -11,10 +11,10 @@ package org.switchyard.tools.models.switchyard1_0.camel.file;
  * The following features are supported:
  * <ul>
  *   <li>{@link org.switchyard.tools.models.switchyard1_0.camel.file.CamelFileBindingType#getDirectory <em>Directory</em>}</li>
- *   <li>{@link org.switchyard.tools.models.switchyard1_0.camel.file.CamelFileBindingType#getAutoCreate <em>Auto Create</em>}</li>
+ *   <li>{@link org.switchyard.tools.models.switchyard1_0.camel.file.CamelFileBindingType#isAutoCreate <em>Auto Create</em>}</li>
  *   <li>{@link org.switchyard.tools.models.switchyard1_0.camel.file.CamelFileBindingType#getBufferSize <em>Buffer Size</em>}</li>
  *   <li>{@link org.switchyard.tools.models.switchyard1_0.camel.file.CamelFileBindingType#getFileName <em>File Name</em>}</li>
- *   <li>{@link org.switchyard.tools.models.switchyard1_0.camel.file.CamelFileBindingType#getFlatten <em>Flatten</em>}</li>
+ *   <li>{@link org.switchyard.tools.models.switchyard1_0.camel.file.CamelFileBindingType#isFlatten <em>Flatten</em>}</li>
  *   <li>{@link org.switchyard.tools.models.switchyard1_0.camel.file.CamelFileBindingType#getCharset <em>Charset</em>}</li>
  *   <li>{@link org.switchyard.tools.models.switchyard1_0.camel.file.CamelFileBindingType#getConsume <em>Consume</em>}</li>
  *   <li>{@link org.switchyard.tools.models.switchyard1_0.camel.file.CamelFileBindingType#getProduce <em>Produce</em>}</li>
@@ -55,6 +55,7 @@ public interface CamelFileBindingType extends BaseCamelBinding {
 
     /**
      * Returns the value of the '<em><b>Auto Create</b></em>' attribute.
+     * The default value is <code>"true"</code>.
      * <!-- begin-user-doc -->
      * <p>
      * If the meaning of the '<em>Auto Create</em>' attribute isn't clear,
@@ -64,51 +65,52 @@ public interface CamelFileBindingType extends BaseCamelBinding {
      * @return the value of the '<em>Auto Create</em>' attribute.
      * @see #isSetAutoCreate()
      * @see #unsetAutoCreate()
-     * @see #setAutoCreate(Boolean)
+     * @see #setAutoCreate(boolean)
      * @see org.switchyard.tools.models.switchyard1_0.camel.file.FilePackage#getCamelFileBindingType_AutoCreate()
-     * @model unsettable="true" dataType="org.eclipse.emf.ecore.xml.type.BooleanObject"
+     * @model default="true" unsettable="true" dataType="org.eclipse.emf.ecore.xml.type.Boolean"
      *        extendedMetaData="kind='element' name='autoCreate' namespace='##targetNamespace'"
      * @generated
      */
-    Boolean getAutoCreate();
+    boolean isAutoCreate();
 
     /**
-     * Sets the value of the '{@link org.switchyard.tools.models.switchyard1_0.camel.file.CamelFileBindingType#getAutoCreate <em>Auto Create</em>}' attribute.
+     * Sets the value of the '{@link org.switchyard.tools.models.switchyard1_0.camel.file.CamelFileBindingType#isAutoCreate <em>Auto Create</em>}' attribute.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @param value the new value of the '<em>Auto Create</em>' attribute.
      * @see #isSetAutoCreate()
      * @see #unsetAutoCreate()
-     * @see #getAutoCreate()
+     * @see #isAutoCreate()
      * @generated
      */
-    void setAutoCreate(Boolean value);
+    void setAutoCreate(boolean value);
 
     /**
-     * Unsets the value of the '{@link org.switchyard.tools.models.switchyard1_0.camel.file.CamelFileBindingType#getAutoCreate <em>Auto Create</em>}' attribute.
+     * Unsets the value of the '{@link org.switchyard.tools.models.switchyard1_0.camel.file.CamelFileBindingType#isAutoCreate <em>Auto Create</em>}' attribute.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @see #isSetAutoCreate()
-     * @see #getAutoCreate()
-     * @see #setAutoCreate(Boolean)
+     * @see #isAutoCreate()
+     * @see #setAutoCreate(boolean)
      * @generated
      */
     void unsetAutoCreate();
 
     /**
-     * Returns whether the value of the '{@link org.switchyard.tools.models.switchyard1_0.camel.file.CamelFileBindingType#getAutoCreate <em>Auto Create</em>}' attribute is set.
+     * Returns whether the value of the '{@link org.switchyard.tools.models.switchyard1_0.camel.file.CamelFileBindingType#isAutoCreate <em>Auto Create</em>}' attribute is set.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @return whether the value of the '<em>Auto Create</em>' attribute is set.
      * @see #unsetAutoCreate()
-     * @see #getAutoCreate()
-     * @see #setAutoCreate(Boolean)
+     * @see #isAutoCreate()
+     * @see #setAutoCreate(boolean)
      * @generated
      */
     boolean isSetAutoCreate();
 
     /**
      * Returns the value of the '<em><b>Buffer Size</b></em>' attribute.
+     * The default value is <code>"131072"</code>.
      * <!-- begin-user-doc -->
      * <p>
      * If the meaning of the '<em>Buffer Size</em>' attribute isn't clear,
@@ -118,13 +120,13 @@ public interface CamelFileBindingType extends BaseCamelBinding {
      * @return the value of the '<em>Buffer Size</em>' attribute.
      * @see #isSetBufferSize()
      * @see #unsetBufferSize()
-     * @see #setBufferSize(Integer)
+     * @see #setBufferSize(int)
      * @see org.switchyard.tools.models.switchyard1_0.camel.file.FilePackage#getCamelFileBindingType_BufferSize()
-     * @model unsettable="true" dataType="org.eclipse.emf.ecore.xml.type.IntObject"
+     * @model default="131072" unsettable="true" dataType="org.eclipse.emf.ecore.xml.type.Int"
      *        extendedMetaData="kind='element' name='bufferSize' namespace='##targetNamespace'"
      * @generated
      */
-    Integer getBufferSize();
+    int getBufferSize();
 
     /**
      * Sets the value of the '{@link org.switchyard.tools.models.switchyard1_0.camel.file.CamelFileBindingType#getBufferSize <em>Buffer Size</em>}' attribute.
@@ -136,7 +138,7 @@ public interface CamelFileBindingType extends BaseCamelBinding {
      * @see #getBufferSize()
      * @generated
      */
-    void setBufferSize(Integer value);
+    void setBufferSize(int value);
 
     /**
      * Unsets the value of the '{@link org.switchyard.tools.models.switchyard1_0.camel.file.CamelFileBindingType#getBufferSize <em>Buffer Size</em>}' attribute.
@@ -144,7 +146,7 @@ public interface CamelFileBindingType extends BaseCamelBinding {
      * <!-- end-user-doc -->
      * @see #isSetBufferSize()
      * @see #getBufferSize()
-     * @see #setBufferSize(Integer)
+     * @see #setBufferSize(int)
      * @generated
      */
     void unsetBufferSize();
@@ -156,7 +158,7 @@ public interface CamelFileBindingType extends BaseCamelBinding {
      * @return whether the value of the '<em>Buffer Size</em>' attribute is set.
      * @see #unsetBufferSize()
      * @see #getBufferSize()
-     * @see #setBufferSize(Integer)
+     * @see #setBufferSize(int)
      * @generated
      */
     boolean isSetBufferSize();
@@ -190,6 +192,7 @@ public interface CamelFileBindingType extends BaseCamelBinding {
 
     /**
      * Returns the value of the '<em><b>Flatten</b></em>' attribute.
+     * The default value is <code>"false"</code>.
      * <!-- begin-user-doc -->
      * <p>
      * If the meaning of the '<em>Flatten</em>' attribute isn't clear,
@@ -199,45 +202,45 @@ public interface CamelFileBindingType extends BaseCamelBinding {
      * @return the value of the '<em>Flatten</em>' attribute.
      * @see #isSetFlatten()
      * @see #unsetFlatten()
-     * @see #setFlatten(Boolean)
+     * @see #setFlatten(boolean)
      * @see org.switchyard.tools.models.switchyard1_0.camel.file.FilePackage#getCamelFileBindingType_Flatten()
-     * @model unsettable="true" dataType="org.eclipse.emf.ecore.xml.type.BooleanObject"
+     * @model default="false" unsettable="true" dataType="org.eclipse.emf.ecore.xml.type.Boolean"
      *        extendedMetaData="kind='element' name='flatten' namespace='##targetNamespace'"
      * @generated
      */
-    Boolean getFlatten();
+    boolean isFlatten();
 
     /**
-     * Sets the value of the '{@link org.switchyard.tools.models.switchyard1_0.camel.file.CamelFileBindingType#getFlatten <em>Flatten</em>}' attribute.
+     * Sets the value of the '{@link org.switchyard.tools.models.switchyard1_0.camel.file.CamelFileBindingType#isFlatten <em>Flatten</em>}' attribute.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @param value the new value of the '<em>Flatten</em>' attribute.
      * @see #isSetFlatten()
      * @see #unsetFlatten()
-     * @see #getFlatten()
+     * @see #isFlatten()
      * @generated
      */
-    void setFlatten(Boolean value);
+    void setFlatten(boolean value);
 
     /**
-     * Unsets the value of the '{@link org.switchyard.tools.models.switchyard1_0.camel.file.CamelFileBindingType#getFlatten <em>Flatten</em>}' attribute.
+     * Unsets the value of the '{@link org.switchyard.tools.models.switchyard1_0.camel.file.CamelFileBindingType#isFlatten <em>Flatten</em>}' attribute.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @see #isSetFlatten()
-     * @see #getFlatten()
-     * @see #setFlatten(Boolean)
+     * @see #isFlatten()
+     * @see #setFlatten(boolean)
      * @generated
      */
     void unsetFlatten();
 
     /**
-     * Returns whether the value of the '{@link org.switchyard.tools.models.switchyard1_0.camel.file.CamelFileBindingType#getFlatten <em>Flatten</em>}' attribute is set.
+     * Returns whether the value of the '{@link org.switchyard.tools.models.switchyard1_0.camel.file.CamelFileBindingType#isFlatten <em>Flatten</em>}' attribute is set.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @return whether the value of the '<em>Flatten</em>' attribute is set.
      * @see #unsetFlatten()
-     * @see #getFlatten()
-     * @see #setFlatten(Boolean)
+     * @see #isFlatten()
+     * @see #setFlatten(boolean)
      * @generated
      */
     boolean isSetFlatten();

@@ -57,22 +57,49 @@ public interface CamelMockBindingType extends BaseCamelBinding {
      * </p>
      * <!-- end-user-doc -->
      * @return the value of the '<em>Report Group</em>' attribute.
-     * @see #setReportGroup(Integer)
+     * @see #isSetReportGroup()
+     * @see #unsetReportGroup()
+     * @see #setReportGroup(int)
      * @see org.switchyard.tools.models.switchyard1_0.camel.core.CorePackage#getCamelMockBindingType_ReportGroup()
-     * @model dataType="org.eclipse.emf.ecore.xml.type.IntObject"
+     * @model unsettable="true" dataType="org.eclipse.emf.ecore.xml.type.Int"
      *        extendedMetaData="kind='element' name='reportGroup' namespace='##targetNamespace'"
      * @generated
      */
-    Integer getReportGroup();
+    int getReportGroup();
 
     /**
      * Sets the value of the '{@link org.switchyard.tools.models.switchyard1_0.camel.core.CamelMockBindingType#getReportGroup <em>Report Group</em>}' attribute.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @param value the new value of the '<em>Report Group</em>' attribute.
+     * @see #isSetReportGroup()
+     * @see #unsetReportGroup()
      * @see #getReportGroup()
      * @generated
      */
-    void setReportGroup(Integer value);
+    void setReportGroup(int value);
+
+    /**
+     * Unsets the value of the '{@link org.switchyard.tools.models.switchyard1_0.camel.core.CamelMockBindingType#getReportGroup <em>Report Group</em>}' attribute.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @see #isSetReportGroup()
+     * @see #getReportGroup()
+     * @see #setReportGroup(int)
+     * @generated
+     */
+    void unsetReportGroup();
+
+    /**
+     * Returns whether the value of the '{@link org.switchyard.tools.models.switchyard1_0.camel.core.CamelMockBindingType#getReportGroup <em>Report Group</em>}' attribute is set.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @return whether the value of the '<em>Report Group</em>' attribute is set.
+     * @see #unsetReportGroup()
+     * @see #getReportGroup()
+     * @see #setReportGroup(int)
+     * @generated
+     */
+    boolean isSetReportGroup();
 
 } // CamelMockBindingType

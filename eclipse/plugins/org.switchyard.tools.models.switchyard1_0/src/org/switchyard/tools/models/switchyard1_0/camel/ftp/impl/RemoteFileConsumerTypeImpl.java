@@ -19,15 +19,15 @@ import org.switchyard.tools.models.switchyard1_0.camel.ftp.TimeUnitType;
  * <p>
  * The following features are implemented:
  * <ul>
- *   <li>{@link org.switchyard.tools.models.switchyard1_0.camel.ftp.impl.RemoteFileConsumerTypeImpl#getDelete <em>Delete</em>}</li>
- *   <li>{@link org.switchyard.tools.models.switchyard1_0.camel.ftp.impl.RemoteFileConsumerTypeImpl#getRecursive <em>Recursive</em>}</li>
- *   <li>{@link org.switchyard.tools.models.switchyard1_0.camel.ftp.impl.RemoteFileConsumerTypeImpl#getNoop <em>Noop</em>}</li>
+ *   <li>{@link org.switchyard.tools.models.switchyard1_0.camel.ftp.impl.RemoteFileConsumerTypeImpl#isDelete <em>Delete</em>}</li>
+ *   <li>{@link org.switchyard.tools.models.switchyard1_0.camel.ftp.impl.RemoteFileConsumerTypeImpl#isRecursive <em>Recursive</em>}</li>
+ *   <li>{@link org.switchyard.tools.models.switchyard1_0.camel.ftp.impl.RemoteFileConsumerTypeImpl#isNoop <em>Noop</em>}</li>
  *   <li>{@link org.switchyard.tools.models.switchyard1_0.camel.ftp.impl.RemoteFileConsumerTypeImpl#getPreMove <em>Pre Move</em>}</li>
  *   <li>{@link org.switchyard.tools.models.switchyard1_0.camel.ftp.impl.RemoteFileConsumerTypeImpl#getMove <em>Move</em>}</li>
  *   <li>{@link org.switchyard.tools.models.switchyard1_0.camel.ftp.impl.RemoteFileConsumerTypeImpl#getMoveFailed <em>Move Failed</em>}</li>
  *   <li>{@link org.switchyard.tools.models.switchyard1_0.camel.ftp.impl.RemoteFileConsumerTypeImpl#getInclude <em>Include</em>}</li>
  *   <li>{@link org.switchyard.tools.models.switchyard1_0.camel.ftp.impl.RemoteFileConsumerTypeImpl#getExclude <em>Exclude</em>}</li>
- *   <li>{@link org.switchyard.tools.models.switchyard1_0.camel.ftp.impl.RemoteFileConsumerTypeImpl#getIdempotent <em>Idempotent</em>}</li>
+ *   <li>{@link org.switchyard.tools.models.switchyard1_0.camel.ftp.impl.RemoteFileConsumerTypeImpl#isIdempotent <em>Idempotent</em>}</li>
  *   <li>{@link org.switchyard.tools.models.switchyard1_0.camel.ftp.impl.RemoteFileConsumerTypeImpl#getIdempotentRepository <em>Idempotent Repository</em>}</li>
  *   <li>{@link org.switchyard.tools.models.switchyard1_0.camel.ftp.impl.RemoteFileConsumerTypeImpl#getInProgressRepository <em>In Progress Repository</em>}</li>
  *   <li>{@link org.switchyard.tools.models.switchyard1_0.camel.ftp.impl.RemoteFileConsumerTypeImpl#getFilter <em>Filter</em>}</li>
@@ -38,14 +38,14 @@ import org.switchyard.tools.models.switchyard1_0.camel.ftp.TimeUnitType;
  *   <li>{@link org.switchyard.tools.models.switchyard1_0.camel.ftp.impl.RemoteFileConsumerTypeImpl#getReadLockCheckInterval <em>Read Lock Check Interval</em>}</li>
  *   <li>{@link org.switchyard.tools.models.switchyard1_0.camel.ftp.impl.RemoteFileConsumerTypeImpl#getExclusiveReadLockStrategy <em>Exclusive Read Lock Strategy</em>}</li>
  *   <li>{@link org.switchyard.tools.models.switchyard1_0.camel.ftp.impl.RemoteFileConsumerTypeImpl#getProcessStrategy <em>Process Strategy</em>}</li>
- *   <li>{@link org.switchyard.tools.models.switchyard1_0.camel.ftp.impl.RemoteFileConsumerTypeImpl#getStartingDirectoryMustExist <em>Starting Directory Must Exist</em>}</li>
- *   <li>{@link org.switchyard.tools.models.switchyard1_0.camel.ftp.impl.RemoteFileConsumerTypeImpl#getDirectoryMustExist <em>Directory Must Exist</em>}</li>
+ *   <li>{@link org.switchyard.tools.models.switchyard1_0.camel.ftp.impl.RemoteFileConsumerTypeImpl#isStartingDirectoryMustExist <em>Starting Directory Must Exist</em>}</li>
+ *   <li>{@link org.switchyard.tools.models.switchyard1_0.camel.ftp.impl.RemoteFileConsumerTypeImpl#isDirectoryMustExist <em>Directory Must Exist</em>}</li>
  *   <li>{@link org.switchyard.tools.models.switchyard1_0.camel.ftp.impl.RemoteFileConsumerTypeImpl#getDoneFileName <em>Done File Name</em>}</li>
  *   <li>{@link org.switchyard.tools.models.switchyard1_0.camel.ftp.impl.RemoteFileConsumerTypeImpl#getMaxMessagesPerPoll <em>Max Messages Per Poll</em>}</li>
  *   <li>{@link org.switchyard.tools.models.switchyard1_0.camel.ftp.impl.RemoteFileConsumerTypeImpl#getInitialDelay <em>Initial Delay</em>}</li>
  *   <li>{@link org.switchyard.tools.models.switchyard1_0.camel.ftp.impl.RemoteFileConsumerTypeImpl#getDelay <em>Delay</em>}</li>
- *   <li>{@link org.switchyard.tools.models.switchyard1_0.camel.ftp.impl.RemoteFileConsumerTypeImpl#getUseFixedDelay <em>Use Fixed Delay</em>}</li>
- *   <li>{@link org.switchyard.tools.models.switchyard1_0.camel.ftp.impl.RemoteFileConsumerTypeImpl#getSendEmptyMessageWhenIdle <em>Send Empty Message When Idle</em>}</li>
+ *   <li>{@link org.switchyard.tools.models.switchyard1_0.camel.ftp.impl.RemoteFileConsumerTypeImpl#isUseFixedDelay <em>Use Fixed Delay</em>}</li>
+ *   <li>{@link org.switchyard.tools.models.switchyard1_0.camel.ftp.impl.RemoteFileConsumerTypeImpl#isSendEmptyMessageWhenIdle <em>Send Empty Message When Idle</em>}</li>
  *   <li>{@link org.switchyard.tools.models.switchyard1_0.camel.ftp.impl.RemoteFileConsumerTypeImpl#getTimeUnit <em>Time Unit</em>}</li>
  * </ul>
  * </p>
@@ -54,23 +54,23 @@ import org.switchyard.tools.models.switchyard1_0.camel.ftp.TimeUnitType;
  */
 public class RemoteFileConsumerTypeImpl extends EObjectImpl implements RemoteFileConsumerType {
     /**
-     * The default value of the '{@link #getDelete() <em>Delete</em>}' attribute.
+     * The default value of the '{@link #isDelete() <em>Delete</em>}' attribute.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @see #getDelete()
+     * @see #isDelete()
      * @generated
      * @ordered
      */
-    protected static final Boolean DELETE_EDEFAULT = null;
+    protected static final boolean DELETE_EDEFAULT = false;
     /**
-     * The cached value of the '{@link #getDelete() <em>Delete</em>}' attribute.
+     * The cached value of the '{@link #isDelete() <em>Delete</em>}' attribute.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @see #getDelete()
+     * @see #isDelete()
      * @generated
      * @ordered
      */
-    protected Boolean delete = DELETE_EDEFAULT;
+    protected boolean delete = DELETE_EDEFAULT;
     /**
      * This is true if the Delete attribute has been set.
      * <!-- begin-user-doc -->
@@ -80,23 +80,23 @@ public class RemoteFileConsumerTypeImpl extends EObjectImpl implements RemoteFil
      */
     protected boolean deleteESet;
     /**
-     * The default value of the '{@link #getRecursive() <em>Recursive</em>}' attribute.
+     * The default value of the '{@link #isRecursive() <em>Recursive</em>}' attribute.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @see #getRecursive()
+     * @see #isRecursive()
      * @generated
      * @ordered
      */
-    protected static final Boolean RECURSIVE_EDEFAULT = null;
+    protected static final boolean RECURSIVE_EDEFAULT = false;
     /**
-     * The cached value of the '{@link #getRecursive() <em>Recursive</em>}' attribute.
+     * The cached value of the '{@link #isRecursive() <em>Recursive</em>}' attribute.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @see #getRecursive()
+     * @see #isRecursive()
      * @generated
      * @ordered
      */
-    protected Boolean recursive = RECURSIVE_EDEFAULT;
+    protected boolean recursive = RECURSIVE_EDEFAULT;
     /**
      * This is true if the Recursive attribute has been set.
      * <!-- begin-user-doc -->
@@ -106,23 +106,23 @@ public class RemoteFileConsumerTypeImpl extends EObjectImpl implements RemoteFil
      */
     protected boolean recursiveESet;
     /**
-     * The default value of the '{@link #getNoop() <em>Noop</em>}' attribute.
+     * The default value of the '{@link #isNoop() <em>Noop</em>}' attribute.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @see #getNoop()
+     * @see #isNoop()
      * @generated
      * @ordered
      */
-    protected static final Boolean NOOP_EDEFAULT = null;
+    protected static final boolean NOOP_EDEFAULT = false;
     /**
-     * The cached value of the '{@link #getNoop() <em>Noop</em>}' attribute.
+     * The cached value of the '{@link #isNoop() <em>Noop</em>}' attribute.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @see #getNoop()
+     * @see #isNoop()
      * @generated
      * @ordered
      */
-    protected Boolean noop = NOOP_EDEFAULT;
+    protected boolean noop = NOOP_EDEFAULT;
     /**
      * This is true if the Noop attribute has been set.
      * <!-- begin-user-doc -->
@@ -222,23 +222,23 @@ public class RemoteFileConsumerTypeImpl extends EObjectImpl implements RemoteFil
      */
     protected String exclude = EXCLUDE_EDEFAULT;
     /**
-     * The default value of the '{@link #getIdempotent() <em>Idempotent</em>}' attribute.
+     * The default value of the '{@link #isIdempotent() <em>Idempotent</em>}' attribute.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @see #getIdempotent()
+     * @see #isIdempotent()
      * @generated
      * @ordered
      */
-    protected static final Boolean IDEMPOTENT_EDEFAULT = null;
+    protected static final boolean IDEMPOTENT_EDEFAULT = false;
     /**
-     * The cached value of the '{@link #getIdempotent() <em>Idempotent</em>}' attribute.
+     * The cached value of the '{@link #isIdempotent() <em>Idempotent</em>}' attribute.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @see #getIdempotent()
+     * @see #isIdempotent()
      * @generated
      * @ordered
      */
-    protected Boolean idempotent = IDEMPOTENT_EDEFAULT;
+    protected boolean idempotent = IDEMPOTENT_EDEFAULT;
     /**
      * This is true if the Idempotent attribute has been set.
      * <!-- begin-user-doc -->
@@ -345,7 +345,7 @@ public class RemoteFileConsumerTypeImpl extends EObjectImpl implements RemoteFil
      * @generated
      * @ordered
      */
-    protected static final String READ_LOCK_EDEFAULT = null;
+    protected static final String READ_LOCK_EDEFAULT = "";
     /**
      * The cached value of the '{@link #getReadLock() <em>Read Lock</em>}' attribute.
      * <!-- begin-user-doc -->
@@ -363,7 +363,7 @@ public class RemoteFileConsumerTypeImpl extends EObjectImpl implements RemoteFil
      * @generated
      * @ordered
      */
-    protected static final Long READ_LOCK_TIMEOUT_EDEFAULT = null;
+    protected static final long READ_LOCK_TIMEOUT_EDEFAULT = 10000L;
     /**
      * The cached value of the '{@link #getReadLockTimeout() <em>Read Lock Timeout</em>}' attribute.
      * <!-- begin-user-doc -->
@@ -372,7 +372,7 @@ public class RemoteFileConsumerTypeImpl extends EObjectImpl implements RemoteFil
      * @generated
      * @ordered
      */
-    protected Long readLockTimeout = READ_LOCK_TIMEOUT_EDEFAULT;
+    protected long readLockTimeout = READ_LOCK_TIMEOUT_EDEFAULT;
     /**
      * This is true if the Read Lock Timeout attribute has been set.
      * <!-- begin-user-doc -->
@@ -389,7 +389,7 @@ public class RemoteFileConsumerTypeImpl extends EObjectImpl implements RemoteFil
      * @generated
      * @ordered
      */
-    protected static final Integer READ_LOCK_CHECK_INTERVAL_EDEFAULT = null;
+    protected static final int READ_LOCK_CHECK_INTERVAL_EDEFAULT = 1000;
     /**
      * The cached value of the '{@link #getReadLockCheckInterval() <em>Read Lock Check Interval</em>}' attribute.
      * <!-- begin-user-doc -->
@@ -398,7 +398,15 @@ public class RemoteFileConsumerTypeImpl extends EObjectImpl implements RemoteFil
      * @generated
      * @ordered
      */
-    protected Integer readLockCheckInterval = READ_LOCK_CHECK_INTERVAL_EDEFAULT;
+    protected int readLockCheckInterval = READ_LOCK_CHECK_INTERVAL_EDEFAULT;
+    /**
+     * This is true if the Read Lock Check Interval attribute has been set.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    protected boolean readLockCheckIntervalESet;
     /**
      * The default value of the '{@link #getExclusiveReadLockStrategy() <em>Exclusive Read Lock Strategy</em>}' attribute.
      * <!-- begin-user-doc -->
@@ -436,23 +444,23 @@ public class RemoteFileConsumerTypeImpl extends EObjectImpl implements RemoteFil
      */
     protected String processStrategy = PROCESS_STRATEGY_EDEFAULT;
     /**
-     * The default value of the '{@link #getStartingDirectoryMustExist() <em>Starting Directory Must Exist</em>}' attribute.
+     * The default value of the '{@link #isStartingDirectoryMustExist() <em>Starting Directory Must Exist</em>}' attribute.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @see #getStartingDirectoryMustExist()
+     * @see #isStartingDirectoryMustExist()
      * @generated
      * @ordered
      */
-    protected static final Boolean STARTING_DIRECTORY_MUST_EXIST_EDEFAULT = null;
+    protected static final boolean STARTING_DIRECTORY_MUST_EXIST_EDEFAULT = false;
     /**
-     * The cached value of the '{@link #getStartingDirectoryMustExist() <em>Starting Directory Must Exist</em>}' attribute.
+     * The cached value of the '{@link #isStartingDirectoryMustExist() <em>Starting Directory Must Exist</em>}' attribute.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @see #getStartingDirectoryMustExist()
+     * @see #isStartingDirectoryMustExist()
      * @generated
      * @ordered
      */
-    protected Boolean startingDirectoryMustExist = STARTING_DIRECTORY_MUST_EXIST_EDEFAULT;
+    protected boolean startingDirectoryMustExist = STARTING_DIRECTORY_MUST_EXIST_EDEFAULT;
     /**
      * This is true if the Starting Directory Must Exist attribute has been set.
      * <!-- begin-user-doc -->
@@ -462,23 +470,23 @@ public class RemoteFileConsumerTypeImpl extends EObjectImpl implements RemoteFil
      */
     protected boolean startingDirectoryMustExistESet;
     /**
-     * The default value of the '{@link #getDirectoryMustExist() <em>Directory Must Exist</em>}' attribute.
+     * The default value of the '{@link #isDirectoryMustExist() <em>Directory Must Exist</em>}' attribute.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @see #getDirectoryMustExist()
+     * @see #isDirectoryMustExist()
      * @generated
      * @ordered
      */
-    protected static final Boolean DIRECTORY_MUST_EXIST_EDEFAULT = null;
+    protected static final boolean DIRECTORY_MUST_EXIST_EDEFAULT = false;
     /**
-     * The cached value of the '{@link #getDirectoryMustExist() <em>Directory Must Exist</em>}' attribute.
+     * The cached value of the '{@link #isDirectoryMustExist() <em>Directory Must Exist</em>}' attribute.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @see #getDirectoryMustExist()
+     * @see #isDirectoryMustExist()
      * @generated
      * @ordered
      */
-    protected Boolean directoryMustExist = DIRECTORY_MUST_EXIST_EDEFAULT;
+    protected boolean directoryMustExist = DIRECTORY_MUST_EXIST_EDEFAULT;
     /**
      * This is true if the Directory Must Exist attribute has been set.
      * <!-- begin-user-doc -->
@@ -513,7 +521,7 @@ public class RemoteFileConsumerTypeImpl extends EObjectImpl implements RemoteFil
      * @generated
      * @ordered
      */
-    protected static final Integer MAX_MESSAGES_PER_POLL_EDEFAULT = null;
+    protected static final int MAX_MESSAGES_PER_POLL_EDEFAULT = 0;
     /**
      * The cached value of the '{@link #getMaxMessagesPerPoll() <em>Max Messages Per Poll</em>}' attribute.
      * <!-- begin-user-doc -->
@@ -522,7 +530,15 @@ public class RemoteFileConsumerTypeImpl extends EObjectImpl implements RemoteFil
      * @generated
      * @ordered
      */
-    protected Integer maxMessagesPerPoll = MAX_MESSAGES_PER_POLL_EDEFAULT;
+    protected int maxMessagesPerPoll = MAX_MESSAGES_PER_POLL_EDEFAULT;
+    /**
+     * This is true if the Max Messages Per Poll attribute has been set.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    protected boolean maxMessagesPerPollESet;
     /**
      * The default value of the '{@link #getInitialDelay() <em>Initial Delay</em>}' attribute.
      * <!-- begin-user-doc -->
@@ -531,7 +547,7 @@ public class RemoteFileConsumerTypeImpl extends EObjectImpl implements RemoteFil
      * @generated
      * @ordered
      */
-    protected static final Integer INITIAL_DELAY_EDEFAULT = null;
+    protected static final int INITIAL_DELAY_EDEFAULT = 1000;
     /**
      * The cached value of the '{@link #getInitialDelay() <em>Initial Delay</em>}' attribute.
      * <!-- begin-user-doc -->
@@ -540,7 +556,15 @@ public class RemoteFileConsumerTypeImpl extends EObjectImpl implements RemoteFil
      * @generated
      * @ordered
      */
-    protected Integer initialDelay = INITIAL_DELAY_EDEFAULT;
+    protected int initialDelay = INITIAL_DELAY_EDEFAULT;
+    /**
+     * This is true if the Initial Delay attribute has been set.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    protected boolean initialDelayESet;
     /**
      * The default value of the '{@link #getDelay() <em>Delay</em>}' attribute.
      * <!-- begin-user-doc -->
@@ -549,7 +573,7 @@ public class RemoteFileConsumerTypeImpl extends EObjectImpl implements RemoteFil
      * @generated
      * @ordered
      */
-    protected static final Integer DELAY_EDEFAULT = null;
+    protected static final int DELAY_EDEFAULT = 500;
     /**
      * The cached value of the '{@link #getDelay() <em>Delay</em>}' attribute.
      * <!-- begin-user-doc -->
@@ -558,25 +582,33 @@ public class RemoteFileConsumerTypeImpl extends EObjectImpl implements RemoteFil
      * @generated
      * @ordered
      */
-    protected Integer delay = DELAY_EDEFAULT;
+    protected int delay = DELAY_EDEFAULT;
     /**
-     * The default value of the '{@link #getUseFixedDelay() <em>Use Fixed Delay</em>}' attribute.
+     * This is true if the Delay attribute has been set.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @see #getUseFixedDelay()
      * @generated
      * @ordered
      */
-    protected static final Boolean USE_FIXED_DELAY_EDEFAULT = null;
+    protected boolean delayESet;
     /**
-     * The cached value of the '{@link #getUseFixedDelay() <em>Use Fixed Delay</em>}' attribute.
+     * The default value of the '{@link #isUseFixedDelay() <em>Use Fixed Delay</em>}' attribute.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @see #getUseFixedDelay()
+     * @see #isUseFixedDelay()
      * @generated
      * @ordered
      */
-    protected Boolean useFixedDelay = USE_FIXED_DELAY_EDEFAULT;
+    protected static final boolean USE_FIXED_DELAY_EDEFAULT = true;
+    /**
+     * The cached value of the '{@link #isUseFixedDelay() <em>Use Fixed Delay</em>}' attribute.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @see #isUseFixedDelay()
+     * @generated
+     * @ordered
+     */
+    protected boolean useFixedDelay = USE_FIXED_DELAY_EDEFAULT;
     /**
      * This is true if the Use Fixed Delay attribute has been set.
      * <!-- begin-user-doc -->
@@ -586,23 +618,23 @@ public class RemoteFileConsumerTypeImpl extends EObjectImpl implements RemoteFil
      */
     protected boolean useFixedDelayESet;
     /**
-     * The default value of the '{@link #getSendEmptyMessageWhenIdle() <em>Send Empty Message When Idle</em>}' attribute.
+     * The default value of the '{@link #isSendEmptyMessageWhenIdle() <em>Send Empty Message When Idle</em>}' attribute.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @see #getSendEmptyMessageWhenIdle()
+     * @see #isSendEmptyMessageWhenIdle()
      * @generated
      * @ordered
      */
-    protected static final Boolean SEND_EMPTY_MESSAGE_WHEN_IDLE_EDEFAULT = null;
+    protected static final boolean SEND_EMPTY_MESSAGE_WHEN_IDLE_EDEFAULT = false;
     /**
-     * The cached value of the '{@link #getSendEmptyMessageWhenIdle() <em>Send Empty Message When Idle</em>}' attribute.
+     * The cached value of the '{@link #isSendEmptyMessageWhenIdle() <em>Send Empty Message When Idle</em>}' attribute.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @see #getSendEmptyMessageWhenIdle()
+     * @see #isSendEmptyMessageWhenIdle()
      * @generated
      * @ordered
      */
-    protected Boolean sendEmptyMessageWhenIdle = SEND_EMPTY_MESSAGE_WHEN_IDLE_EDEFAULT;
+    protected boolean sendEmptyMessageWhenIdle = SEND_EMPTY_MESSAGE_WHEN_IDLE_EDEFAULT;
     /**
      * This is true if the Send Empty Message When Idle attribute has been set.
      * <!-- begin-user-doc -->
@@ -619,7 +651,7 @@ public class RemoteFileConsumerTypeImpl extends EObjectImpl implements RemoteFil
      * @generated
      * @ordered
      */
-    protected static final TimeUnitType TIME_UNIT_EDEFAULT = TimeUnitType.NANOSECONDS;
+    protected static final TimeUnitType TIME_UNIT_EDEFAULT = TimeUnitType.MILLISECONDS;
     /**
      * The cached value of the '{@link #getTimeUnit() <em>Time Unit</em>}' attribute.
      * <!-- begin-user-doc -->
@@ -662,7 +694,7 @@ public class RemoteFileConsumerTypeImpl extends EObjectImpl implements RemoteFil
      * <!-- end-user-doc -->
      * @generated
      */
-    public Boolean getDelete() {
+    public boolean isDelete() {
         return delete;
     }
 
@@ -671,8 +703,8 @@ public class RemoteFileConsumerTypeImpl extends EObjectImpl implements RemoteFil
      * <!-- end-user-doc -->
      * @generated
      */
-    public void setDelete(Boolean newDelete) {
-        Boolean oldDelete = delete;
+    public void setDelete(boolean newDelete) {
+        boolean oldDelete = delete;
         delete = newDelete;
         boolean oldDeleteESet = deleteESet;
         deleteESet = true;
@@ -686,7 +718,7 @@ public class RemoteFileConsumerTypeImpl extends EObjectImpl implements RemoteFil
      * @generated
      */
     public void unsetDelete() {
-        Boolean oldDelete = delete;
+        boolean oldDelete = delete;
         boolean oldDeleteESet = deleteESet;
         delete = DELETE_EDEFAULT;
         deleteESet = false;
@@ -708,7 +740,7 @@ public class RemoteFileConsumerTypeImpl extends EObjectImpl implements RemoteFil
      * <!-- end-user-doc -->
      * @generated
      */
-    public Boolean getRecursive() {
+    public boolean isRecursive() {
         return recursive;
     }
 
@@ -717,8 +749,8 @@ public class RemoteFileConsumerTypeImpl extends EObjectImpl implements RemoteFil
      * <!-- end-user-doc -->
      * @generated
      */
-    public void setRecursive(Boolean newRecursive) {
-        Boolean oldRecursive = recursive;
+    public void setRecursive(boolean newRecursive) {
+        boolean oldRecursive = recursive;
         recursive = newRecursive;
         boolean oldRecursiveESet = recursiveESet;
         recursiveESet = true;
@@ -732,7 +764,7 @@ public class RemoteFileConsumerTypeImpl extends EObjectImpl implements RemoteFil
      * @generated
      */
     public void unsetRecursive() {
-        Boolean oldRecursive = recursive;
+        boolean oldRecursive = recursive;
         boolean oldRecursiveESet = recursiveESet;
         recursive = RECURSIVE_EDEFAULT;
         recursiveESet = false;
@@ -754,7 +786,7 @@ public class RemoteFileConsumerTypeImpl extends EObjectImpl implements RemoteFil
      * <!-- end-user-doc -->
      * @generated
      */
-    public Boolean getNoop() {
+    public boolean isNoop() {
         return noop;
     }
 
@@ -763,8 +795,8 @@ public class RemoteFileConsumerTypeImpl extends EObjectImpl implements RemoteFil
      * <!-- end-user-doc -->
      * @generated
      */
-    public void setNoop(Boolean newNoop) {
-        Boolean oldNoop = noop;
+    public void setNoop(boolean newNoop) {
+        boolean oldNoop = noop;
         noop = newNoop;
         boolean oldNoopESet = noopESet;
         noopESet = true;
@@ -778,7 +810,7 @@ public class RemoteFileConsumerTypeImpl extends EObjectImpl implements RemoteFil
      * @generated
      */
     public void unsetNoop() {
-        Boolean oldNoop = noop;
+        boolean oldNoop = noop;
         boolean oldNoopESet = noopESet;
         noop = NOOP_EDEFAULT;
         noopESet = false;
@@ -905,7 +937,7 @@ public class RemoteFileConsumerTypeImpl extends EObjectImpl implements RemoteFil
      * <!-- end-user-doc -->
      * @generated
      */
-    public Boolean getIdempotent() {
+    public boolean isIdempotent() {
         return idempotent;
     }
 
@@ -914,8 +946,8 @@ public class RemoteFileConsumerTypeImpl extends EObjectImpl implements RemoteFil
      * <!-- end-user-doc -->
      * @generated
      */
-    public void setIdempotent(Boolean newIdempotent) {
-        Boolean oldIdempotent = idempotent;
+    public void setIdempotent(boolean newIdempotent) {
+        boolean oldIdempotent = idempotent;
         idempotent = newIdempotent;
         boolean oldIdempotentESet = idempotentESet;
         idempotentESet = true;
@@ -929,7 +961,7 @@ public class RemoteFileConsumerTypeImpl extends EObjectImpl implements RemoteFil
      * @generated
      */
     public void unsetIdempotent() {
-        Boolean oldIdempotent = idempotent;
+        boolean oldIdempotent = idempotent;
         boolean oldIdempotentESet = idempotentESet;
         idempotent = IDEMPOTENT_EDEFAULT;
         idempotentESet = false;
@@ -1077,7 +1109,7 @@ public class RemoteFileConsumerTypeImpl extends EObjectImpl implements RemoteFil
      * <!-- end-user-doc -->
      * @generated
      */
-    public Long getReadLockTimeout() {
+    public long getReadLockTimeout() {
         return readLockTimeout;
     }
 
@@ -1086,8 +1118,8 @@ public class RemoteFileConsumerTypeImpl extends EObjectImpl implements RemoteFil
      * <!-- end-user-doc -->
      * @generated
      */
-    public void setReadLockTimeout(Long newReadLockTimeout) {
-        Long oldReadLockTimeout = readLockTimeout;
+    public void setReadLockTimeout(long newReadLockTimeout) {
+        long oldReadLockTimeout = readLockTimeout;
         readLockTimeout = newReadLockTimeout;
         boolean oldReadLockTimeoutESet = readLockTimeoutESet;
         readLockTimeoutESet = true;
@@ -1101,7 +1133,7 @@ public class RemoteFileConsumerTypeImpl extends EObjectImpl implements RemoteFil
      * @generated
      */
     public void unsetReadLockTimeout() {
-        Long oldReadLockTimeout = readLockTimeout;
+        long oldReadLockTimeout = readLockTimeout;
         boolean oldReadLockTimeoutESet = readLockTimeoutESet;
         readLockTimeout = READ_LOCK_TIMEOUT_EDEFAULT;
         readLockTimeoutESet = false;
@@ -1123,7 +1155,7 @@ public class RemoteFileConsumerTypeImpl extends EObjectImpl implements RemoteFil
      * <!-- end-user-doc -->
      * @generated
      */
-    public Integer getReadLockCheckInterval() {
+    public int getReadLockCheckInterval() {
         return readLockCheckInterval;
     }
 
@@ -1132,11 +1164,36 @@ public class RemoteFileConsumerTypeImpl extends EObjectImpl implements RemoteFil
      * <!-- end-user-doc -->
      * @generated
      */
-    public void setReadLockCheckInterval(Integer newReadLockCheckInterval) {
-        Integer oldReadLockCheckInterval = readLockCheckInterval;
+    public void setReadLockCheckInterval(int newReadLockCheckInterval) {
+        int oldReadLockCheckInterval = readLockCheckInterval;
         readLockCheckInterval = newReadLockCheckInterval;
+        boolean oldReadLockCheckIntervalESet = readLockCheckIntervalESet;
+        readLockCheckIntervalESet = true;
         if (eNotificationRequired())
-            eNotify(new ENotificationImpl(this, Notification.SET, FtpPackage.REMOTE_FILE_CONSUMER_TYPE__READ_LOCK_CHECK_INTERVAL, oldReadLockCheckInterval, readLockCheckInterval));
+            eNotify(new ENotificationImpl(this, Notification.SET, FtpPackage.REMOTE_FILE_CONSUMER_TYPE__READ_LOCK_CHECK_INTERVAL, oldReadLockCheckInterval, readLockCheckInterval, !oldReadLockCheckIntervalESet));
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public void unsetReadLockCheckInterval() {
+        int oldReadLockCheckInterval = readLockCheckInterval;
+        boolean oldReadLockCheckIntervalESet = readLockCheckIntervalESet;
+        readLockCheckInterval = READ_LOCK_CHECK_INTERVAL_EDEFAULT;
+        readLockCheckIntervalESet = false;
+        if (eNotificationRequired())
+            eNotify(new ENotificationImpl(this, Notification.UNSET, FtpPackage.REMOTE_FILE_CONSUMER_TYPE__READ_LOCK_CHECK_INTERVAL, oldReadLockCheckInterval, READ_LOCK_CHECK_INTERVAL_EDEFAULT, oldReadLockCheckIntervalESet));
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public boolean isSetReadLockCheckInterval() {
+        return readLockCheckIntervalESet;
     }
 
     /**
@@ -1186,7 +1243,7 @@ public class RemoteFileConsumerTypeImpl extends EObjectImpl implements RemoteFil
      * <!-- end-user-doc -->
      * @generated
      */
-    public Boolean getStartingDirectoryMustExist() {
+    public boolean isStartingDirectoryMustExist() {
         return startingDirectoryMustExist;
     }
 
@@ -1195,8 +1252,8 @@ public class RemoteFileConsumerTypeImpl extends EObjectImpl implements RemoteFil
      * <!-- end-user-doc -->
      * @generated
      */
-    public void setStartingDirectoryMustExist(Boolean newStartingDirectoryMustExist) {
-        Boolean oldStartingDirectoryMustExist = startingDirectoryMustExist;
+    public void setStartingDirectoryMustExist(boolean newStartingDirectoryMustExist) {
+        boolean oldStartingDirectoryMustExist = startingDirectoryMustExist;
         startingDirectoryMustExist = newStartingDirectoryMustExist;
         boolean oldStartingDirectoryMustExistESet = startingDirectoryMustExistESet;
         startingDirectoryMustExistESet = true;
@@ -1210,7 +1267,7 @@ public class RemoteFileConsumerTypeImpl extends EObjectImpl implements RemoteFil
      * @generated
      */
     public void unsetStartingDirectoryMustExist() {
-        Boolean oldStartingDirectoryMustExist = startingDirectoryMustExist;
+        boolean oldStartingDirectoryMustExist = startingDirectoryMustExist;
         boolean oldStartingDirectoryMustExistESet = startingDirectoryMustExistESet;
         startingDirectoryMustExist = STARTING_DIRECTORY_MUST_EXIST_EDEFAULT;
         startingDirectoryMustExistESet = false;
@@ -1232,7 +1289,7 @@ public class RemoteFileConsumerTypeImpl extends EObjectImpl implements RemoteFil
      * <!-- end-user-doc -->
      * @generated
      */
-    public Boolean getDirectoryMustExist() {
+    public boolean isDirectoryMustExist() {
         return directoryMustExist;
     }
 
@@ -1241,8 +1298,8 @@ public class RemoteFileConsumerTypeImpl extends EObjectImpl implements RemoteFil
      * <!-- end-user-doc -->
      * @generated
      */
-    public void setDirectoryMustExist(Boolean newDirectoryMustExist) {
-        Boolean oldDirectoryMustExist = directoryMustExist;
+    public void setDirectoryMustExist(boolean newDirectoryMustExist) {
+        boolean oldDirectoryMustExist = directoryMustExist;
         directoryMustExist = newDirectoryMustExist;
         boolean oldDirectoryMustExistESet = directoryMustExistESet;
         directoryMustExistESet = true;
@@ -1256,7 +1313,7 @@ public class RemoteFileConsumerTypeImpl extends EObjectImpl implements RemoteFil
      * @generated
      */
     public void unsetDirectoryMustExist() {
-        Boolean oldDirectoryMustExist = directoryMustExist;
+        boolean oldDirectoryMustExist = directoryMustExist;
         boolean oldDirectoryMustExistESet = directoryMustExistESet;
         directoryMustExist = DIRECTORY_MUST_EXIST_EDEFAULT;
         directoryMustExistESet = false;
@@ -1299,7 +1356,7 @@ public class RemoteFileConsumerTypeImpl extends EObjectImpl implements RemoteFil
      * <!-- end-user-doc -->
      * @generated
      */
-    public Integer getMaxMessagesPerPoll() {
+    public int getMaxMessagesPerPoll() {
         return maxMessagesPerPoll;
     }
 
@@ -1308,11 +1365,13 @@ public class RemoteFileConsumerTypeImpl extends EObjectImpl implements RemoteFil
      * <!-- end-user-doc -->
      * @generated
      */
-    public void setMaxMessagesPerPoll(Integer newMaxMessagesPerPoll) {
-        Integer oldMaxMessagesPerPoll = maxMessagesPerPoll;
+    public void setMaxMessagesPerPoll(int newMaxMessagesPerPoll) {
+        int oldMaxMessagesPerPoll = maxMessagesPerPoll;
         maxMessagesPerPoll = newMaxMessagesPerPoll;
+        boolean oldMaxMessagesPerPollESet = maxMessagesPerPollESet;
+        maxMessagesPerPollESet = true;
         if (eNotificationRequired())
-            eNotify(new ENotificationImpl(this, Notification.SET, FtpPackage.REMOTE_FILE_CONSUMER_TYPE__MAX_MESSAGES_PER_POLL, oldMaxMessagesPerPoll, maxMessagesPerPoll));
+            eNotify(new ENotificationImpl(this, Notification.SET, FtpPackage.REMOTE_FILE_CONSUMER_TYPE__MAX_MESSAGES_PER_POLL, oldMaxMessagesPerPoll, maxMessagesPerPoll, !oldMaxMessagesPerPollESet));
     }
 
     /**
@@ -1320,7 +1379,30 @@ public class RemoteFileConsumerTypeImpl extends EObjectImpl implements RemoteFil
      * <!-- end-user-doc -->
      * @generated
      */
-    public Integer getInitialDelay() {
+    public void unsetMaxMessagesPerPoll() {
+        int oldMaxMessagesPerPoll = maxMessagesPerPoll;
+        boolean oldMaxMessagesPerPollESet = maxMessagesPerPollESet;
+        maxMessagesPerPoll = MAX_MESSAGES_PER_POLL_EDEFAULT;
+        maxMessagesPerPollESet = false;
+        if (eNotificationRequired())
+            eNotify(new ENotificationImpl(this, Notification.UNSET, FtpPackage.REMOTE_FILE_CONSUMER_TYPE__MAX_MESSAGES_PER_POLL, oldMaxMessagesPerPoll, MAX_MESSAGES_PER_POLL_EDEFAULT, oldMaxMessagesPerPollESet));
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public boolean isSetMaxMessagesPerPoll() {
+        return maxMessagesPerPollESet;
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public int getInitialDelay() {
         return initialDelay;
     }
 
@@ -1329,11 +1411,13 @@ public class RemoteFileConsumerTypeImpl extends EObjectImpl implements RemoteFil
      * <!-- end-user-doc -->
      * @generated
      */
-    public void setInitialDelay(Integer newInitialDelay) {
-        Integer oldInitialDelay = initialDelay;
+    public void setInitialDelay(int newInitialDelay) {
+        int oldInitialDelay = initialDelay;
         initialDelay = newInitialDelay;
+        boolean oldInitialDelayESet = initialDelayESet;
+        initialDelayESet = true;
         if (eNotificationRequired())
-            eNotify(new ENotificationImpl(this, Notification.SET, FtpPackage.REMOTE_FILE_CONSUMER_TYPE__INITIAL_DELAY, oldInitialDelay, initialDelay));
+            eNotify(new ENotificationImpl(this, Notification.SET, FtpPackage.REMOTE_FILE_CONSUMER_TYPE__INITIAL_DELAY, oldInitialDelay, initialDelay, !oldInitialDelayESet));
     }
 
     /**
@@ -1341,7 +1425,30 @@ public class RemoteFileConsumerTypeImpl extends EObjectImpl implements RemoteFil
      * <!-- end-user-doc -->
      * @generated
      */
-    public Integer getDelay() {
+    public void unsetInitialDelay() {
+        int oldInitialDelay = initialDelay;
+        boolean oldInitialDelayESet = initialDelayESet;
+        initialDelay = INITIAL_DELAY_EDEFAULT;
+        initialDelayESet = false;
+        if (eNotificationRequired())
+            eNotify(new ENotificationImpl(this, Notification.UNSET, FtpPackage.REMOTE_FILE_CONSUMER_TYPE__INITIAL_DELAY, oldInitialDelay, INITIAL_DELAY_EDEFAULT, oldInitialDelayESet));
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public boolean isSetInitialDelay() {
+        return initialDelayESet;
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public int getDelay() {
         return delay;
     }
 
@@ -1350,11 +1457,13 @@ public class RemoteFileConsumerTypeImpl extends EObjectImpl implements RemoteFil
      * <!-- end-user-doc -->
      * @generated
      */
-    public void setDelay(Integer newDelay) {
-        Integer oldDelay = delay;
+    public void setDelay(int newDelay) {
+        int oldDelay = delay;
         delay = newDelay;
+        boolean oldDelayESet = delayESet;
+        delayESet = true;
         if (eNotificationRequired())
-            eNotify(new ENotificationImpl(this, Notification.SET, FtpPackage.REMOTE_FILE_CONSUMER_TYPE__DELAY, oldDelay, delay));
+            eNotify(new ENotificationImpl(this, Notification.SET, FtpPackage.REMOTE_FILE_CONSUMER_TYPE__DELAY, oldDelay, delay, !oldDelayESet));
     }
 
     /**
@@ -1362,7 +1471,30 @@ public class RemoteFileConsumerTypeImpl extends EObjectImpl implements RemoteFil
      * <!-- end-user-doc -->
      * @generated
      */
-    public Boolean getUseFixedDelay() {
+    public void unsetDelay() {
+        int oldDelay = delay;
+        boolean oldDelayESet = delayESet;
+        delay = DELAY_EDEFAULT;
+        delayESet = false;
+        if (eNotificationRequired())
+            eNotify(new ENotificationImpl(this, Notification.UNSET, FtpPackage.REMOTE_FILE_CONSUMER_TYPE__DELAY, oldDelay, DELAY_EDEFAULT, oldDelayESet));
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public boolean isSetDelay() {
+        return delayESet;
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public boolean isUseFixedDelay() {
         return useFixedDelay;
     }
 
@@ -1371,8 +1503,8 @@ public class RemoteFileConsumerTypeImpl extends EObjectImpl implements RemoteFil
      * <!-- end-user-doc -->
      * @generated
      */
-    public void setUseFixedDelay(Boolean newUseFixedDelay) {
-        Boolean oldUseFixedDelay = useFixedDelay;
+    public void setUseFixedDelay(boolean newUseFixedDelay) {
+        boolean oldUseFixedDelay = useFixedDelay;
         useFixedDelay = newUseFixedDelay;
         boolean oldUseFixedDelayESet = useFixedDelayESet;
         useFixedDelayESet = true;
@@ -1386,7 +1518,7 @@ public class RemoteFileConsumerTypeImpl extends EObjectImpl implements RemoteFil
      * @generated
      */
     public void unsetUseFixedDelay() {
-        Boolean oldUseFixedDelay = useFixedDelay;
+        boolean oldUseFixedDelay = useFixedDelay;
         boolean oldUseFixedDelayESet = useFixedDelayESet;
         useFixedDelay = USE_FIXED_DELAY_EDEFAULT;
         useFixedDelayESet = false;
@@ -1408,7 +1540,7 @@ public class RemoteFileConsumerTypeImpl extends EObjectImpl implements RemoteFil
      * <!-- end-user-doc -->
      * @generated
      */
-    public Boolean getSendEmptyMessageWhenIdle() {
+    public boolean isSendEmptyMessageWhenIdle() {
         return sendEmptyMessageWhenIdle;
     }
 
@@ -1417,8 +1549,8 @@ public class RemoteFileConsumerTypeImpl extends EObjectImpl implements RemoteFil
      * <!-- end-user-doc -->
      * @generated
      */
-    public void setSendEmptyMessageWhenIdle(Boolean newSendEmptyMessageWhenIdle) {
-        Boolean oldSendEmptyMessageWhenIdle = sendEmptyMessageWhenIdle;
+    public void setSendEmptyMessageWhenIdle(boolean newSendEmptyMessageWhenIdle) {
+        boolean oldSendEmptyMessageWhenIdle = sendEmptyMessageWhenIdle;
         sendEmptyMessageWhenIdle = newSendEmptyMessageWhenIdle;
         boolean oldSendEmptyMessageWhenIdleESet = sendEmptyMessageWhenIdleESet;
         sendEmptyMessageWhenIdleESet = true;
@@ -1432,7 +1564,7 @@ public class RemoteFileConsumerTypeImpl extends EObjectImpl implements RemoteFil
      * @generated
      */
     public void unsetSendEmptyMessageWhenIdle() {
-        Boolean oldSendEmptyMessageWhenIdle = sendEmptyMessageWhenIdle;
+        boolean oldSendEmptyMessageWhenIdle = sendEmptyMessageWhenIdle;
         boolean oldSendEmptyMessageWhenIdleESet = sendEmptyMessageWhenIdleESet;
         sendEmptyMessageWhenIdle = SEND_EMPTY_MESSAGE_WHEN_IDLE_EDEFAULT;
         sendEmptyMessageWhenIdleESet = false;
@@ -1504,11 +1636,11 @@ public class RemoteFileConsumerTypeImpl extends EObjectImpl implements RemoteFil
     public Object eGet(int featureID, boolean resolve, boolean coreType) {
         switch (featureID) {
             case FtpPackage.REMOTE_FILE_CONSUMER_TYPE__DELETE:
-                return getDelete();
+                return isDelete();
             case FtpPackage.REMOTE_FILE_CONSUMER_TYPE__RECURSIVE:
-                return getRecursive();
+                return isRecursive();
             case FtpPackage.REMOTE_FILE_CONSUMER_TYPE__NOOP:
-                return getNoop();
+                return isNoop();
             case FtpPackage.REMOTE_FILE_CONSUMER_TYPE__PRE_MOVE:
                 return getPreMove();
             case FtpPackage.REMOTE_FILE_CONSUMER_TYPE__MOVE:
@@ -1520,7 +1652,7 @@ public class RemoteFileConsumerTypeImpl extends EObjectImpl implements RemoteFil
             case FtpPackage.REMOTE_FILE_CONSUMER_TYPE__EXCLUDE:
                 return getExclude();
             case FtpPackage.REMOTE_FILE_CONSUMER_TYPE__IDEMPOTENT:
-                return getIdempotent();
+                return isIdempotent();
             case FtpPackage.REMOTE_FILE_CONSUMER_TYPE__IDEMPOTENT_REPOSITORY:
                 return getIdempotentRepository();
             case FtpPackage.REMOTE_FILE_CONSUMER_TYPE__IN_PROGRESS_REPOSITORY:
@@ -1542,9 +1674,9 @@ public class RemoteFileConsumerTypeImpl extends EObjectImpl implements RemoteFil
             case FtpPackage.REMOTE_FILE_CONSUMER_TYPE__PROCESS_STRATEGY:
                 return getProcessStrategy();
             case FtpPackage.REMOTE_FILE_CONSUMER_TYPE__STARTING_DIRECTORY_MUST_EXIST:
-                return getStartingDirectoryMustExist();
+                return isStartingDirectoryMustExist();
             case FtpPackage.REMOTE_FILE_CONSUMER_TYPE__DIRECTORY_MUST_EXIST:
-                return getDirectoryMustExist();
+                return isDirectoryMustExist();
             case FtpPackage.REMOTE_FILE_CONSUMER_TYPE__DONE_FILE_NAME:
                 return getDoneFileName();
             case FtpPackage.REMOTE_FILE_CONSUMER_TYPE__MAX_MESSAGES_PER_POLL:
@@ -1554,9 +1686,9 @@ public class RemoteFileConsumerTypeImpl extends EObjectImpl implements RemoteFil
             case FtpPackage.REMOTE_FILE_CONSUMER_TYPE__DELAY:
                 return getDelay();
             case FtpPackage.REMOTE_FILE_CONSUMER_TYPE__USE_FIXED_DELAY:
-                return getUseFixedDelay();
+                return isUseFixedDelay();
             case FtpPackage.REMOTE_FILE_CONSUMER_TYPE__SEND_EMPTY_MESSAGE_WHEN_IDLE:
-                return getSendEmptyMessageWhenIdle();
+                return isSendEmptyMessageWhenIdle();
             case FtpPackage.REMOTE_FILE_CONSUMER_TYPE__TIME_UNIT:
                 return getTimeUnit();
         }
@@ -1716,7 +1848,7 @@ public class RemoteFileConsumerTypeImpl extends EObjectImpl implements RemoteFil
                 unsetReadLockTimeout();
                 return;
             case FtpPackage.REMOTE_FILE_CONSUMER_TYPE__READ_LOCK_CHECK_INTERVAL:
-                setReadLockCheckInterval(READ_LOCK_CHECK_INTERVAL_EDEFAULT);
+                unsetReadLockCheckInterval();
                 return;
             case FtpPackage.REMOTE_FILE_CONSUMER_TYPE__EXCLUSIVE_READ_LOCK_STRATEGY:
                 setExclusiveReadLockStrategy(EXCLUSIVE_READ_LOCK_STRATEGY_EDEFAULT);
@@ -1734,13 +1866,13 @@ public class RemoteFileConsumerTypeImpl extends EObjectImpl implements RemoteFil
                 setDoneFileName(DONE_FILE_NAME_EDEFAULT);
                 return;
             case FtpPackage.REMOTE_FILE_CONSUMER_TYPE__MAX_MESSAGES_PER_POLL:
-                setMaxMessagesPerPoll(MAX_MESSAGES_PER_POLL_EDEFAULT);
+                unsetMaxMessagesPerPoll();
                 return;
             case FtpPackage.REMOTE_FILE_CONSUMER_TYPE__INITIAL_DELAY:
-                setInitialDelay(INITIAL_DELAY_EDEFAULT);
+                unsetInitialDelay();
                 return;
             case FtpPackage.REMOTE_FILE_CONSUMER_TYPE__DELAY:
-                setDelay(DELAY_EDEFAULT);
+                unsetDelay();
                 return;
             case FtpPackage.REMOTE_FILE_CONSUMER_TYPE__USE_FIXED_DELAY:
                 unsetUseFixedDelay();
@@ -1796,7 +1928,7 @@ public class RemoteFileConsumerTypeImpl extends EObjectImpl implements RemoteFil
             case FtpPackage.REMOTE_FILE_CONSUMER_TYPE__READ_LOCK_TIMEOUT:
                 return isSetReadLockTimeout();
             case FtpPackage.REMOTE_FILE_CONSUMER_TYPE__READ_LOCK_CHECK_INTERVAL:
-                return READ_LOCK_CHECK_INTERVAL_EDEFAULT == null ? readLockCheckInterval != null : !READ_LOCK_CHECK_INTERVAL_EDEFAULT.equals(readLockCheckInterval);
+                return isSetReadLockCheckInterval();
             case FtpPackage.REMOTE_FILE_CONSUMER_TYPE__EXCLUSIVE_READ_LOCK_STRATEGY:
                 return EXCLUSIVE_READ_LOCK_STRATEGY_EDEFAULT == null ? exclusiveReadLockStrategy != null : !EXCLUSIVE_READ_LOCK_STRATEGY_EDEFAULT.equals(exclusiveReadLockStrategy);
             case FtpPackage.REMOTE_FILE_CONSUMER_TYPE__PROCESS_STRATEGY:
@@ -1808,11 +1940,11 @@ public class RemoteFileConsumerTypeImpl extends EObjectImpl implements RemoteFil
             case FtpPackage.REMOTE_FILE_CONSUMER_TYPE__DONE_FILE_NAME:
                 return DONE_FILE_NAME_EDEFAULT == null ? doneFileName != null : !DONE_FILE_NAME_EDEFAULT.equals(doneFileName);
             case FtpPackage.REMOTE_FILE_CONSUMER_TYPE__MAX_MESSAGES_PER_POLL:
-                return MAX_MESSAGES_PER_POLL_EDEFAULT == null ? maxMessagesPerPoll != null : !MAX_MESSAGES_PER_POLL_EDEFAULT.equals(maxMessagesPerPoll);
+                return isSetMaxMessagesPerPoll();
             case FtpPackage.REMOTE_FILE_CONSUMER_TYPE__INITIAL_DELAY:
-                return INITIAL_DELAY_EDEFAULT == null ? initialDelay != null : !INITIAL_DELAY_EDEFAULT.equals(initialDelay);
+                return isSetInitialDelay();
             case FtpPackage.REMOTE_FILE_CONSUMER_TYPE__DELAY:
-                return DELAY_EDEFAULT == null ? delay != null : !DELAY_EDEFAULT.equals(delay);
+                return isSetDelay();
             case FtpPackage.REMOTE_FILE_CONSUMER_TYPE__USE_FIXED_DELAY:
                 return isSetUseFixedDelay();
             case FtpPackage.REMOTE_FILE_CONSUMER_TYPE__SEND_EMPTY_MESSAGE_WHEN_IDLE:
@@ -1866,7 +1998,7 @@ public class RemoteFileConsumerTypeImpl extends EObjectImpl implements RemoteFil
         result.append(", readLockTimeout: ");
         if (readLockTimeoutESet) result.append(readLockTimeout); else result.append("<unset>");
         result.append(", readLockCheckInterval: ");
-        result.append(readLockCheckInterval);
+        if (readLockCheckIntervalESet) result.append(readLockCheckInterval); else result.append("<unset>");
         result.append(", exclusiveReadLockStrategy: ");
         result.append(exclusiveReadLockStrategy);
         result.append(", processStrategy: ");
@@ -1878,11 +2010,11 @@ public class RemoteFileConsumerTypeImpl extends EObjectImpl implements RemoteFil
         result.append(", doneFileName: ");
         result.append(doneFileName);
         result.append(", maxMessagesPerPoll: ");
-        result.append(maxMessagesPerPoll);
+        if (maxMessagesPerPollESet) result.append(maxMessagesPerPoll); else result.append("<unset>");
         result.append(", initialDelay: ");
-        result.append(initialDelay);
+        if (initialDelayESet) result.append(initialDelay); else result.append("<unset>");
         result.append(", delay: ");
-        result.append(delay);
+        if (delayESet) result.append(delay); else result.append("<unset>");
         result.append(", useFixedDelay: ");
         if (useFixedDelayESet) result.append(useFixedDelay); else result.append("<unset>");
         result.append(", sendEmptyMessageWhenIdle: ");

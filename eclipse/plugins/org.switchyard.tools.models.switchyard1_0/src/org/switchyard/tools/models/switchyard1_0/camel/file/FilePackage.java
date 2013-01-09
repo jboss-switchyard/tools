@@ -895,11 +895,11 @@ public interface FilePackage extends EPackage {
     EAttribute getCamelFileBindingType_Directory();
 
     /**
-     * Returns the meta object for the attribute '{@link org.switchyard.tools.models.switchyard1_0.camel.file.CamelFileBindingType#getAutoCreate <em>Auto Create</em>}'.
+     * Returns the meta object for the attribute '{@link org.switchyard.tools.models.switchyard1_0.camel.file.CamelFileBindingType#isAutoCreate <em>Auto Create</em>}'.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @return the meta object for the attribute '<em>Auto Create</em>'.
-     * @see org.switchyard.tools.models.switchyard1_0.camel.file.CamelFileBindingType#getAutoCreate()
+     * @see org.switchyard.tools.models.switchyard1_0.camel.file.CamelFileBindingType#isAutoCreate()
      * @see #getCamelFileBindingType()
      * @generated
      */
@@ -928,11 +928,11 @@ public interface FilePackage extends EPackage {
     EAttribute getCamelFileBindingType_FileName();
 
     /**
-     * Returns the meta object for the attribute '{@link org.switchyard.tools.models.switchyard1_0.camel.file.CamelFileBindingType#getFlatten <em>Flatten</em>}'.
+     * Returns the meta object for the attribute '{@link org.switchyard.tools.models.switchyard1_0.camel.file.CamelFileBindingType#isFlatten <em>Flatten</em>}'.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @return the meta object for the attribute '<em>Flatten</em>'.
-     * @see org.switchyard.tools.models.switchyard1_0.camel.file.CamelFileBindingType#getFlatten()
+     * @see org.switchyard.tools.models.switchyard1_0.camel.file.CamelFileBindingType#isFlatten()
      * @see #getCamelFileBindingType()
      * @generated
      */
@@ -1004,22 +1004,22 @@ public interface FilePackage extends EPackage {
     EAttribute getFileConsumerType_Delay();
 
     /**
-     * Returns the meta object for the attribute '{@link org.switchyard.tools.models.switchyard1_0.camel.file.FileConsumerType#getUseFixedDelay <em>Use Fixed Delay</em>}'.
+     * Returns the meta object for the attribute '{@link org.switchyard.tools.models.switchyard1_0.camel.file.FileConsumerType#isUseFixedDelay <em>Use Fixed Delay</em>}'.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @return the meta object for the attribute '<em>Use Fixed Delay</em>'.
-     * @see org.switchyard.tools.models.switchyard1_0.camel.file.FileConsumerType#getUseFixedDelay()
+     * @see org.switchyard.tools.models.switchyard1_0.camel.file.FileConsumerType#isUseFixedDelay()
      * @see #getFileConsumerType()
      * @generated
      */
     EAttribute getFileConsumerType_UseFixedDelay();
 
     /**
-     * Returns the meta object for the attribute '{@link org.switchyard.tools.models.switchyard1_0.camel.file.FileConsumerType#getSendEmptyMessageWhenIdle <em>Send Empty Message When Idle</em>}'.
+     * Returns the meta object for the attribute '{@link org.switchyard.tools.models.switchyard1_0.camel.file.FileConsumerType#isSendEmptyMessageWhenIdle <em>Send Empty Message When Idle</em>}'.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @return the meta object for the attribute '<em>Send Empty Message When Idle</em>'.
-     * @see org.switchyard.tools.models.switchyard1_0.camel.file.FileConsumerType#getSendEmptyMessageWhenIdle()
+     * @see org.switchyard.tools.models.switchyard1_0.camel.file.FileConsumerType#isSendEmptyMessageWhenIdle()
      * @see #getFileConsumerType()
      * @generated
      */
@@ -1048,33 +1048,33 @@ public interface FilePackage extends EPackage {
     EAttribute getFileConsumerType_MaxMessagesPerPoll();
 
     /**
-     * Returns the meta object for the attribute '{@link org.switchyard.tools.models.switchyard1_0.camel.file.FileConsumerType#getDelete <em>Delete</em>}'.
+     * Returns the meta object for the attribute '{@link org.switchyard.tools.models.switchyard1_0.camel.file.FileConsumerType#isDelete <em>Delete</em>}'.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @return the meta object for the attribute '<em>Delete</em>'.
-     * @see org.switchyard.tools.models.switchyard1_0.camel.file.FileConsumerType#getDelete()
+     * @see org.switchyard.tools.models.switchyard1_0.camel.file.FileConsumerType#isDelete()
      * @see #getFileConsumerType()
      * @generated
      */
     EAttribute getFileConsumerType_Delete();
 
     /**
-     * Returns the meta object for the attribute '{@link org.switchyard.tools.models.switchyard1_0.camel.file.FileConsumerType#getRecursive <em>Recursive</em>}'.
+     * Returns the meta object for the attribute '{@link org.switchyard.tools.models.switchyard1_0.camel.file.FileConsumerType#isRecursive <em>Recursive</em>}'.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @return the meta object for the attribute '<em>Recursive</em>'.
-     * @see org.switchyard.tools.models.switchyard1_0.camel.file.FileConsumerType#getRecursive()
+     * @see org.switchyard.tools.models.switchyard1_0.camel.file.FileConsumerType#isRecursive()
      * @see #getFileConsumerType()
      * @generated
      */
     EAttribute getFileConsumerType_Recursive();
 
     /**
-     * Returns the meta object for the attribute '{@link org.switchyard.tools.models.switchyard1_0.camel.file.FileConsumerType#getNoop <em>Noop</em>}'.
+     * Returns the meta object for the attribute '{@link org.switchyard.tools.models.switchyard1_0.camel.file.FileConsumerType#isNoop <em>Noop</em>}'.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @return the meta object for the attribute '<em>Noop</em>'.
-     * @see org.switchyard.tools.models.switchyard1_0.camel.file.FileConsumerType#getNoop()
+     * @see org.switchyard.tools.models.switchyard1_0.camel.file.FileConsumerType#isNoop()
      * @see #getFileConsumerType()
      * @generated
      */
@@ -1136,11 +1136,11 @@ public interface FilePackage extends EPackage {
     EAttribute getFileConsumerType_Exclude();
 
     /**
-     * Returns the meta object for the attribute '{@link org.switchyard.tools.models.switchyard1_0.camel.file.FileConsumerType#getIdempotent <em>Idempotent</em>}'.
+     * Returns the meta object for the attribute '{@link org.switchyard.tools.models.switchyard1_0.camel.file.FileConsumerType#isIdempotent <em>Idempotent</em>}'.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @return the meta object for the attribute '<em>Idempotent</em>'.
-     * @see org.switchyard.tools.models.switchyard1_0.camel.file.FileConsumerType#getIdempotent()
+     * @see org.switchyard.tools.models.switchyard1_0.camel.file.FileConsumerType#isIdempotent()
      * @see #getFileConsumerType()
      * @generated
      */
@@ -1257,22 +1257,22 @@ public interface FilePackage extends EPackage {
     EAttribute getFileConsumerType_ProcessStrategy();
 
     /**
-     * Returns the meta object for the attribute '{@link org.switchyard.tools.models.switchyard1_0.camel.file.FileConsumerType#getStartingDirectoryMustExist <em>Starting Directory Must Exist</em>}'.
+     * Returns the meta object for the attribute '{@link org.switchyard.tools.models.switchyard1_0.camel.file.FileConsumerType#isStartingDirectoryMustExist <em>Starting Directory Must Exist</em>}'.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @return the meta object for the attribute '<em>Starting Directory Must Exist</em>'.
-     * @see org.switchyard.tools.models.switchyard1_0.camel.file.FileConsumerType#getStartingDirectoryMustExist()
+     * @see org.switchyard.tools.models.switchyard1_0.camel.file.FileConsumerType#isStartingDirectoryMustExist()
      * @see #getFileConsumerType()
      * @generated
      */
     EAttribute getFileConsumerType_StartingDirectoryMustExist();
 
     /**
-     * Returns the meta object for the attribute '{@link org.switchyard.tools.models.switchyard1_0.camel.file.FileConsumerType#getDirectoryMustExist <em>Directory Must Exist</em>}'.
+     * Returns the meta object for the attribute '{@link org.switchyard.tools.models.switchyard1_0.camel.file.FileConsumerType#isDirectoryMustExist <em>Directory Must Exist</em>}'.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @return the meta object for the attribute '<em>Directory Must Exist</em>'.
-     * @see org.switchyard.tools.models.switchyard1_0.camel.file.FileConsumerType#getDirectoryMustExist()
+     * @see org.switchyard.tools.models.switchyard1_0.camel.file.FileConsumerType#isDirectoryMustExist()
      * @see #getFileConsumerType()
      * @generated
      */
@@ -1333,22 +1333,22 @@ public interface FilePackage extends EPackage {
     EAttribute getFileProducerType_TempFileName();
 
     /**
-     * Returns the meta object for the attribute '{@link org.switchyard.tools.models.switchyard1_0.camel.file.FileProducerType#getKeepLastModified <em>Keep Last Modified</em>}'.
+     * Returns the meta object for the attribute '{@link org.switchyard.tools.models.switchyard1_0.camel.file.FileProducerType#isKeepLastModified <em>Keep Last Modified</em>}'.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @return the meta object for the attribute '<em>Keep Last Modified</em>'.
-     * @see org.switchyard.tools.models.switchyard1_0.camel.file.FileProducerType#getKeepLastModified()
+     * @see org.switchyard.tools.models.switchyard1_0.camel.file.FileProducerType#isKeepLastModified()
      * @see #getFileProducerType()
      * @generated
      */
     EAttribute getFileProducerType_KeepLastModified();
 
     /**
-     * Returns the meta object for the attribute '{@link org.switchyard.tools.models.switchyard1_0.camel.file.FileProducerType#getEagerDeleteTargetFile <em>Eager Delete Target File</em>}'.
+     * Returns the meta object for the attribute '{@link org.switchyard.tools.models.switchyard1_0.camel.file.FileProducerType#isEagerDeleteTargetFile <em>Eager Delete Target File</em>}'.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @return the meta object for the attribute '<em>Eager Delete Target File</em>'.
-     * @see org.switchyard.tools.models.switchyard1_0.camel.file.FileProducerType#getEagerDeleteTargetFile()
+     * @see org.switchyard.tools.models.switchyard1_0.camel.file.FileProducerType#isEagerDeleteTargetFile()
      * @see #getFileProducerType()
      * @generated
      */

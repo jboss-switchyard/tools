@@ -19,8 +19,8 @@ import org.switchyard.tools.models.switchyard1_0.camel.jpa.JpaProducerType;
  * <p>
  * The following features are implemented:
  * <ul>
- *   <li>{@link org.switchyard.tools.models.switchyard1_0.camel.jpa.impl.JpaProducerTypeImpl#getFlushOnSend <em>Flush On Send</em>}</li>
- *   <li>{@link org.switchyard.tools.models.switchyard1_0.camel.jpa.impl.JpaProducerTypeImpl#getUsePersist <em>Use Persist</em>}</li>
+ *   <li>{@link org.switchyard.tools.models.switchyard1_0.camel.jpa.impl.JpaProducerTypeImpl#isFlushOnSend <em>Flush On Send</em>}</li>
+ *   <li>{@link org.switchyard.tools.models.switchyard1_0.camel.jpa.impl.JpaProducerTypeImpl#isUsePersist <em>Use Persist</em>}</li>
  * </ul>
  * </p>
  *
@@ -28,24 +28,24 @@ import org.switchyard.tools.models.switchyard1_0.camel.jpa.JpaProducerType;
  */
 public class JpaProducerTypeImpl extends EObjectImpl implements JpaProducerType {
     /**
-     * The default value of the '{@link #getFlushOnSend() <em>Flush On Send</em>}' attribute.
+     * The default value of the '{@link #isFlushOnSend() <em>Flush On Send</em>}' attribute.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @see #getFlushOnSend()
+     * @see #isFlushOnSend()
      * @generated
      * @ordered
      */
-    protected static final Boolean FLUSH_ON_SEND_EDEFAULT = null;
+    protected static final boolean FLUSH_ON_SEND_EDEFAULT = true;
 
     /**
-     * The cached value of the '{@link #getFlushOnSend() <em>Flush On Send</em>}' attribute.
+     * The cached value of the '{@link #isFlushOnSend() <em>Flush On Send</em>}' attribute.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @see #getFlushOnSend()
+     * @see #isFlushOnSend()
      * @generated
      * @ordered
      */
-    protected Boolean flushOnSend = FLUSH_ON_SEND_EDEFAULT;
+    protected boolean flushOnSend = FLUSH_ON_SEND_EDEFAULT;
 
     /**
      * This is true if the Flush On Send attribute has been set.
@@ -57,24 +57,24 @@ public class JpaProducerTypeImpl extends EObjectImpl implements JpaProducerType 
     protected boolean flushOnSendESet;
 
     /**
-     * The default value of the '{@link #getUsePersist() <em>Use Persist</em>}' attribute.
+     * The default value of the '{@link #isUsePersist() <em>Use Persist</em>}' attribute.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @see #getUsePersist()
+     * @see #isUsePersist()
      * @generated
      * @ordered
      */
-    protected static final Boolean USE_PERSIST_EDEFAULT = null;
+    protected static final boolean USE_PERSIST_EDEFAULT = false;
 
     /**
-     * The cached value of the '{@link #getUsePersist() <em>Use Persist</em>}' attribute.
+     * The cached value of the '{@link #isUsePersist() <em>Use Persist</em>}' attribute.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @see #getUsePersist()
+     * @see #isUsePersist()
      * @generated
      * @ordered
      */
-    protected Boolean usePersist = USE_PERSIST_EDEFAULT;
+    protected boolean usePersist = USE_PERSIST_EDEFAULT;
 
     /**
      * This is true if the Use Persist attribute has been set.
@@ -109,7 +109,7 @@ public class JpaProducerTypeImpl extends EObjectImpl implements JpaProducerType 
      * <!-- end-user-doc -->
      * @generated
      */
-    public Boolean getFlushOnSend() {
+    public boolean isFlushOnSend() {
         return flushOnSend;
     }
 
@@ -118,8 +118,8 @@ public class JpaProducerTypeImpl extends EObjectImpl implements JpaProducerType 
      * <!-- end-user-doc -->
      * @generated
      */
-    public void setFlushOnSend(Boolean newFlushOnSend) {
-        Boolean oldFlushOnSend = flushOnSend;
+    public void setFlushOnSend(boolean newFlushOnSend) {
+        boolean oldFlushOnSend = flushOnSend;
         flushOnSend = newFlushOnSend;
         boolean oldFlushOnSendESet = flushOnSendESet;
         flushOnSendESet = true;
@@ -133,7 +133,7 @@ public class JpaProducerTypeImpl extends EObjectImpl implements JpaProducerType 
      * @generated
      */
     public void unsetFlushOnSend() {
-        Boolean oldFlushOnSend = flushOnSend;
+        boolean oldFlushOnSend = flushOnSend;
         boolean oldFlushOnSendESet = flushOnSendESet;
         flushOnSend = FLUSH_ON_SEND_EDEFAULT;
         flushOnSendESet = false;
@@ -155,7 +155,7 @@ public class JpaProducerTypeImpl extends EObjectImpl implements JpaProducerType 
      * <!-- end-user-doc -->
      * @generated
      */
-    public Boolean getUsePersist() {
+    public boolean isUsePersist() {
         return usePersist;
     }
 
@@ -164,8 +164,8 @@ public class JpaProducerTypeImpl extends EObjectImpl implements JpaProducerType 
      * <!-- end-user-doc -->
      * @generated
      */
-    public void setUsePersist(Boolean newUsePersist) {
-        Boolean oldUsePersist = usePersist;
+    public void setUsePersist(boolean newUsePersist) {
+        boolean oldUsePersist = usePersist;
         usePersist = newUsePersist;
         boolean oldUsePersistESet = usePersistESet;
         usePersistESet = true;
@@ -179,7 +179,7 @@ public class JpaProducerTypeImpl extends EObjectImpl implements JpaProducerType 
      * @generated
      */
     public void unsetUsePersist() {
-        Boolean oldUsePersist = usePersist;
+        boolean oldUsePersist = usePersist;
         boolean oldUsePersistESet = usePersistESet;
         usePersist = USE_PERSIST_EDEFAULT;
         usePersistESet = false;
@@ -205,9 +205,9 @@ public class JpaProducerTypeImpl extends EObjectImpl implements JpaProducerType 
     public Object eGet(int featureID, boolean resolve, boolean coreType) {
         switch (featureID) {
             case JpaPackage.JPA_PRODUCER_TYPE__FLUSH_ON_SEND:
-                return getFlushOnSend();
+                return isFlushOnSend();
             case JpaPackage.JPA_PRODUCER_TYPE__USE_PERSIST:
-                return getUsePersist();
+                return isUsePersist();
         }
         return super.eGet(featureID, resolve, coreType);
     }

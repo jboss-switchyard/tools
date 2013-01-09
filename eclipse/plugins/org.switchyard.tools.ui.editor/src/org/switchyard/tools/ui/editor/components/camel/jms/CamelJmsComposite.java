@@ -86,25 +86,22 @@ public class CamelJmsComposite extends AbstractSYBindingComposite {
                 _typeCombo.select(TOPIC);
                 _typeNameText.setText(this._binding.getTopic());
             }
-            if (this._binding.getConcurrentConsumers() != null) {
+            if (this._binding.isSetConcurrentConsumers()) {
                 _concurrentConsumersText.setText(Integer.toString(this._binding.getConcurrentConsumers()));
             }
-            if (_requestTimeOutText != null && this._binding.getRequestTimeout() != null 
-                    && this._binding.getRequestTimeout().intValue() > 0
-                    && this._binding.getRequestTimeout() != 2000) {
+            if (_requestTimeOutText != null && this._binding.isSetRequestTimeout()
+                    && this._binding.getRequestTimeout() > 0) {
                 _requestTimeOutText.setText(Integer.toString(this._binding.getRequestTimeout()));
             }
             if (_maxConcurrentConsumersText != null) {
-                if (this._binding.getMaxConcurrentConsumers() != null) {
+                if (this._binding.isSetMaxConcurrentConsumers()) {
                     _maxConcurrentConsumersText.setText(Integer.toString(this._binding.getMaxConcurrentConsumers()));
                 }
             }
             if (this._binding.getConnectionFactory() != null && !this._binding.getConnectionFactory().trim().isEmpty()) {
                 _connectionFactoryText.setText(this._binding.getConnectionFactory());
             }
-            if (this._binding.getTransacted() != null) {
-                _transactedButton.setSelection(this._binding.getTransacted().booleanValue());
-            }
+            _transactedButton.setSelection(this._binding.isTransacted());
             if (this._binding.getTransactionManager() != null
                     && !this._binding.getTransactionManager().trim().isEmpty()) {
                 _transactionManagerText.setText(this._binding.getTransactionManager());
@@ -360,13 +357,13 @@ public class CamelJmsComposite extends AbstractSYBindingComposite {
             } else if (control.equals(_selectorText)) {
                 _selectorText.setText(this._binding.getSelector());
             } else if (control.equals(_requestTimeOutText)) {
-                if (this._binding.getMaxConcurrentConsumers() > 0 && this._binding.getMaxConcurrentConsumers() != 2000) {
+                if (this._binding.getMaxConcurrentConsumers() > 0 && this._binding.isSetMaxConcurrentConsumers()) {
                     _maxConcurrentConsumersText.setText(Integer.toString(this._binding.getMaxConcurrentConsumers()));
                 } else {
                     _maxConcurrentConsumersText.setText("2000");
                 }
             } else if (control.equals(_transactedButton)) {
-                _transactedButton.setSelection(this._binding.getTransacted());
+                _transactedButton.setSelection(this._binding.isTransacted());
             } else if (control.equals(_typeCombo) || control.equals(_typeNameText)) {
                 if (this._binding.getQueue() != null && !this._binding.getQueue().trim().isEmpty()) {
                     _typeCombo.select(QUEUE);

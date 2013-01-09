@@ -25,17 +25,17 @@ import org.switchyard.tools.models.switchyard1_0.camel.amqp.CamelAmqpBindingType
  *   <li>{@link org.switchyard.tools.models.switchyard1_0.camel.amqp.impl.CamelAmqpBindingTypeImpl#getDurableSubscriptionName <em>Durable Subscription Name</em>}</li>
  *   <li>{@link org.switchyard.tools.models.switchyard1_0.camel.amqp.impl.CamelAmqpBindingTypeImpl#getConcurrentConsumers <em>Concurrent Consumers</em>}</li>
  *   <li>{@link org.switchyard.tools.models.switchyard1_0.camel.amqp.impl.CamelAmqpBindingTypeImpl#getMaxConcurrentConsumers <em>Max Concurrent Consumers</em>}</li>
- *   <li>{@link org.switchyard.tools.models.switchyard1_0.camel.amqp.impl.CamelAmqpBindingTypeImpl#getDisableReplyTo <em>Disable Reply To</em>}</li>
- *   <li>{@link org.switchyard.tools.models.switchyard1_0.camel.amqp.impl.CamelAmqpBindingTypeImpl#getPreserveMessageQos <em>Preserve Message Qos</em>}</li>
- *   <li>{@link org.switchyard.tools.models.switchyard1_0.camel.amqp.impl.CamelAmqpBindingTypeImpl#getDeliveryPersistent <em>Delivery Persistent</em>}</li>
+ *   <li>{@link org.switchyard.tools.models.switchyard1_0.camel.amqp.impl.CamelAmqpBindingTypeImpl#isDisableReplyTo <em>Disable Reply To</em>}</li>
+ *   <li>{@link org.switchyard.tools.models.switchyard1_0.camel.amqp.impl.CamelAmqpBindingTypeImpl#isPreserveMessageQos <em>Preserve Message Qos</em>}</li>
+ *   <li>{@link org.switchyard.tools.models.switchyard1_0.camel.amqp.impl.CamelAmqpBindingTypeImpl#isDeliveryPersistent <em>Delivery Persistent</em>}</li>
  *   <li>{@link org.switchyard.tools.models.switchyard1_0.camel.amqp.impl.CamelAmqpBindingTypeImpl#getPriority <em>Priority</em>}</li>
- *   <li>{@link org.switchyard.tools.models.switchyard1_0.camel.amqp.impl.CamelAmqpBindingTypeImpl#getExplicitQosEnabled <em>Explicit Qos Enabled</em>}</li>
+ *   <li>{@link org.switchyard.tools.models.switchyard1_0.camel.amqp.impl.CamelAmqpBindingTypeImpl#isExplicitQosEnabled <em>Explicit Qos Enabled</em>}</li>
  *   <li>{@link org.switchyard.tools.models.switchyard1_0.camel.amqp.impl.CamelAmqpBindingTypeImpl#getReplyTo <em>Reply To</em>}</li>
  *   <li>{@link org.switchyard.tools.models.switchyard1_0.camel.amqp.impl.CamelAmqpBindingTypeImpl#getReplyToType <em>Reply To Type</em>}</li>
  *   <li>{@link org.switchyard.tools.models.switchyard1_0.camel.amqp.impl.CamelAmqpBindingTypeImpl#getRequestTimeout <em>Request Timeout</em>}</li>
  *   <li>{@link org.switchyard.tools.models.switchyard1_0.camel.amqp.impl.CamelAmqpBindingTypeImpl#getSelector <em>Selector</em>}</li>
  *   <li>{@link org.switchyard.tools.models.switchyard1_0.camel.amqp.impl.CamelAmqpBindingTypeImpl#getTimeToLive <em>Time To Live</em>}</li>
- *   <li>{@link org.switchyard.tools.models.switchyard1_0.camel.amqp.impl.CamelAmqpBindingTypeImpl#getTransacted <em>Transacted</em>}</li>
+ *   <li>{@link org.switchyard.tools.models.switchyard1_0.camel.amqp.impl.CamelAmqpBindingTypeImpl#isTransacted <em>Transacted</em>}</li>
  *   <li>{@link org.switchyard.tools.models.switchyard1_0.camel.amqp.impl.CamelAmqpBindingTypeImpl#getTransactionManager <em>Transaction Manager</em>}</li>
  * </ul>
  * </p>
@@ -177,7 +177,7 @@ public class CamelAmqpBindingTypeImpl extends BaseCamelBindingImpl implements Ca
      * @generated
      * @ordered
      */
-    protected static final Integer CONCURRENT_CONSUMERS_EDEFAULT = null;
+    protected static final int CONCURRENT_CONSUMERS_EDEFAULT = 1;
     /**
      * The cached value of the '{@link #getConcurrentConsumers() <em>Concurrent Consumers</em>}' attribute.
      * <!-- begin-user-doc -->
@@ -186,7 +186,7 @@ public class CamelAmqpBindingTypeImpl extends BaseCamelBindingImpl implements Ca
      * @generated
      * @ordered
      */
-    protected Integer concurrentConsumers = CONCURRENT_CONSUMERS_EDEFAULT;
+    protected int concurrentConsumers = CONCURRENT_CONSUMERS_EDEFAULT;
     /**
      * This is true if the Concurrent Consumers attribute has been set.
      * <!-- begin-user-doc -->
@@ -203,7 +203,7 @@ public class CamelAmqpBindingTypeImpl extends BaseCamelBindingImpl implements Ca
      * @generated
      * @ordered
      */
-    protected static final Integer MAX_CONCURRENT_CONSUMERS_EDEFAULT = null;
+    protected static final int MAX_CONCURRENT_CONSUMERS_EDEFAULT = 1;
     /**
      * The cached value of the '{@link #getMaxConcurrentConsumers() <em>Max Concurrent Consumers</em>}' attribute.
      * <!-- begin-user-doc -->
@@ -212,7 +212,7 @@ public class CamelAmqpBindingTypeImpl extends BaseCamelBindingImpl implements Ca
      * @generated
      * @ordered
      */
-    protected Integer maxConcurrentConsumers = MAX_CONCURRENT_CONSUMERS_EDEFAULT;
+    protected int maxConcurrentConsumers = MAX_CONCURRENT_CONSUMERS_EDEFAULT;
     /**
      * This is true if the Max Concurrent Consumers attribute has been set.
      * <!-- begin-user-doc -->
@@ -222,23 +222,23 @@ public class CamelAmqpBindingTypeImpl extends BaseCamelBindingImpl implements Ca
      */
     protected boolean maxConcurrentConsumersESet;
     /**
-     * The default value of the '{@link #getDisableReplyTo() <em>Disable Reply To</em>}' attribute.
+     * The default value of the '{@link #isDisableReplyTo() <em>Disable Reply To</em>}' attribute.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @see #getDisableReplyTo()
+     * @see #isDisableReplyTo()
      * @generated
      * @ordered
      */
-    protected static final Boolean DISABLE_REPLY_TO_EDEFAULT = null;
+    protected static final boolean DISABLE_REPLY_TO_EDEFAULT = false;
     /**
-     * The cached value of the '{@link #getDisableReplyTo() <em>Disable Reply To</em>}' attribute.
+     * The cached value of the '{@link #isDisableReplyTo() <em>Disable Reply To</em>}' attribute.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @see #getDisableReplyTo()
+     * @see #isDisableReplyTo()
      * @generated
      * @ordered
      */
-    protected Boolean disableReplyTo = DISABLE_REPLY_TO_EDEFAULT;
+    protected boolean disableReplyTo = DISABLE_REPLY_TO_EDEFAULT;
     /**
      * This is true if the Disable Reply To attribute has been set.
      * <!-- begin-user-doc -->
@@ -248,23 +248,23 @@ public class CamelAmqpBindingTypeImpl extends BaseCamelBindingImpl implements Ca
      */
     protected boolean disableReplyToESet;
     /**
-     * The default value of the '{@link #getPreserveMessageQos() <em>Preserve Message Qos</em>}' attribute.
+     * The default value of the '{@link #isPreserveMessageQos() <em>Preserve Message Qos</em>}' attribute.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @see #getPreserveMessageQos()
+     * @see #isPreserveMessageQos()
      * @generated
      * @ordered
      */
-    protected static final Boolean PRESERVE_MESSAGE_QOS_EDEFAULT = null;
+    protected static final boolean PRESERVE_MESSAGE_QOS_EDEFAULT = false;
     /**
-     * The cached value of the '{@link #getPreserveMessageQos() <em>Preserve Message Qos</em>}' attribute.
+     * The cached value of the '{@link #isPreserveMessageQos() <em>Preserve Message Qos</em>}' attribute.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @see #getPreserveMessageQos()
+     * @see #isPreserveMessageQos()
      * @generated
      * @ordered
      */
-    protected Boolean preserveMessageQos = PRESERVE_MESSAGE_QOS_EDEFAULT;
+    protected boolean preserveMessageQos = PRESERVE_MESSAGE_QOS_EDEFAULT;
     /**
      * This is true if the Preserve Message Qos attribute has been set.
      * <!-- begin-user-doc -->
@@ -274,23 +274,23 @@ public class CamelAmqpBindingTypeImpl extends BaseCamelBindingImpl implements Ca
      */
     protected boolean preserveMessageQosESet;
     /**
-     * The default value of the '{@link #getDeliveryPersistent() <em>Delivery Persistent</em>}' attribute.
+     * The default value of the '{@link #isDeliveryPersistent() <em>Delivery Persistent</em>}' attribute.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @see #getDeliveryPersistent()
+     * @see #isDeliveryPersistent()
      * @generated
      * @ordered
      */
-    protected static final Boolean DELIVERY_PERSISTENT_EDEFAULT = null;
+    protected static final boolean DELIVERY_PERSISTENT_EDEFAULT = true;
     /**
-     * The cached value of the '{@link #getDeliveryPersistent() <em>Delivery Persistent</em>}' attribute.
+     * The cached value of the '{@link #isDeliveryPersistent() <em>Delivery Persistent</em>}' attribute.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @see #getDeliveryPersistent()
+     * @see #isDeliveryPersistent()
      * @generated
      * @ordered
      */
-    protected Boolean deliveryPersistent = DELIVERY_PERSISTENT_EDEFAULT;
+    protected boolean deliveryPersistent = DELIVERY_PERSISTENT_EDEFAULT;
     /**
      * This is true if the Delivery Persistent attribute has been set.
      * <!-- begin-user-doc -->
@@ -307,7 +307,7 @@ public class CamelAmqpBindingTypeImpl extends BaseCamelBindingImpl implements Ca
      * @generated
      * @ordered
      */
-    protected static final Integer PRIORITY_EDEFAULT = null;
+    protected static final int PRIORITY_EDEFAULT = 4;
     /**
      * The cached value of the '{@link #getPriority() <em>Priority</em>}' attribute.
      * <!-- begin-user-doc -->
@@ -316,7 +316,7 @@ public class CamelAmqpBindingTypeImpl extends BaseCamelBindingImpl implements Ca
      * @generated
      * @ordered
      */
-    protected Integer priority = PRIORITY_EDEFAULT;
+    protected int priority = PRIORITY_EDEFAULT;
     /**
      * This is true if the Priority attribute has been set.
      * <!-- begin-user-doc -->
@@ -326,23 +326,23 @@ public class CamelAmqpBindingTypeImpl extends BaseCamelBindingImpl implements Ca
      */
     protected boolean priorityESet;
     /**
-     * The default value of the '{@link #getExplicitQosEnabled() <em>Explicit Qos Enabled</em>}' attribute.
+     * The default value of the '{@link #isExplicitQosEnabled() <em>Explicit Qos Enabled</em>}' attribute.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @see #getExplicitQosEnabled()
+     * @see #isExplicitQosEnabled()
      * @generated
      * @ordered
      */
-    protected static final Boolean EXPLICIT_QOS_ENABLED_EDEFAULT = null;
+    protected static final boolean EXPLICIT_QOS_ENABLED_EDEFAULT = false;
     /**
-     * The cached value of the '{@link #getExplicitQosEnabled() <em>Explicit Qos Enabled</em>}' attribute.
+     * The cached value of the '{@link #isExplicitQosEnabled() <em>Explicit Qos Enabled</em>}' attribute.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @see #getExplicitQosEnabled()
+     * @see #isExplicitQosEnabled()
      * @generated
      * @ordered
      */
-    protected Boolean explicitQosEnabled = EXPLICIT_QOS_ENABLED_EDEFAULT;
+    protected boolean explicitQosEnabled = EXPLICIT_QOS_ENABLED_EDEFAULT;
     /**
      * This is true if the Explicit Qos Enabled attribute has been set.
      * <!-- begin-user-doc -->
@@ -395,7 +395,7 @@ public class CamelAmqpBindingTypeImpl extends BaseCamelBindingImpl implements Ca
      * @generated
      * @ordered
      */
-    protected static final Integer REQUEST_TIMEOUT_EDEFAULT = null;
+    protected static final int REQUEST_TIMEOUT_EDEFAULT = 20000;
     /**
      * The cached value of the '{@link #getRequestTimeout() <em>Request Timeout</em>}' attribute.
      * <!-- begin-user-doc -->
@@ -404,7 +404,7 @@ public class CamelAmqpBindingTypeImpl extends BaseCamelBindingImpl implements Ca
      * @generated
      * @ordered
      */
-    protected Integer requestTimeout = REQUEST_TIMEOUT_EDEFAULT;
+    protected int requestTimeout = REQUEST_TIMEOUT_EDEFAULT;
     /**
      * This is true if the Request Timeout attribute has been set.
      * <!-- begin-user-doc -->
@@ -439,7 +439,7 @@ public class CamelAmqpBindingTypeImpl extends BaseCamelBindingImpl implements Ca
      * @generated
      * @ordered
      */
-    protected static final Integer TIME_TO_LIVE_EDEFAULT = null;
+    protected static final int TIME_TO_LIVE_EDEFAULT = 0;
     /**
      * The cached value of the '{@link #getTimeToLive() <em>Time To Live</em>}' attribute.
      * <!-- begin-user-doc -->
@@ -448,7 +448,7 @@ public class CamelAmqpBindingTypeImpl extends BaseCamelBindingImpl implements Ca
      * @generated
      * @ordered
      */
-    protected Integer timeToLive = TIME_TO_LIVE_EDEFAULT;
+    protected int timeToLive = TIME_TO_LIVE_EDEFAULT;
     /**
      * This is true if the Time To Live attribute has been set.
      * <!-- begin-user-doc -->
@@ -458,23 +458,23 @@ public class CamelAmqpBindingTypeImpl extends BaseCamelBindingImpl implements Ca
      */
     protected boolean timeToLiveESet;
     /**
-     * The default value of the '{@link #getTransacted() <em>Transacted</em>}' attribute.
+     * The default value of the '{@link #isTransacted() <em>Transacted</em>}' attribute.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @see #getTransacted()
+     * @see #isTransacted()
      * @generated
      * @ordered
      */
-    protected static final Boolean TRANSACTED_EDEFAULT = null;
+    protected static final boolean TRANSACTED_EDEFAULT = false;
     /**
-     * The cached value of the '{@link #getTransacted() <em>Transacted</em>}' attribute.
+     * The cached value of the '{@link #isTransacted() <em>Transacted</em>}' attribute.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @see #getTransacted()
+     * @see #isTransacted()
      * @generated
      * @ordered
      */
-    protected Boolean transacted = TRANSACTED_EDEFAULT;
+    protected boolean transacted = TRANSACTED_EDEFAULT;
     /**
      * This is true if the Transacted attribute has been set.
      * <!-- begin-user-doc -->
@@ -673,7 +673,7 @@ public class CamelAmqpBindingTypeImpl extends BaseCamelBindingImpl implements Ca
      * <!-- end-user-doc -->
      * @generated
      */
-    public Integer getConcurrentConsumers() {
+    public int getConcurrentConsumers() {
         return concurrentConsumers;
     }
 
@@ -682,8 +682,8 @@ public class CamelAmqpBindingTypeImpl extends BaseCamelBindingImpl implements Ca
      * <!-- end-user-doc -->
      * @generated
      */
-    public void setConcurrentConsumers(Integer newConcurrentConsumers) {
-        Integer oldConcurrentConsumers = concurrentConsumers;
+    public void setConcurrentConsumers(int newConcurrentConsumers) {
+        int oldConcurrentConsumers = concurrentConsumers;
         concurrentConsumers = newConcurrentConsumers;
         boolean oldConcurrentConsumersESet = concurrentConsumersESet;
         concurrentConsumersESet = true;
@@ -697,7 +697,7 @@ public class CamelAmqpBindingTypeImpl extends BaseCamelBindingImpl implements Ca
      * @generated
      */
     public void unsetConcurrentConsumers() {
-        Integer oldConcurrentConsumers = concurrentConsumers;
+        int oldConcurrentConsumers = concurrentConsumers;
         boolean oldConcurrentConsumersESet = concurrentConsumersESet;
         concurrentConsumers = CONCURRENT_CONSUMERS_EDEFAULT;
         concurrentConsumersESet = false;
@@ -719,7 +719,7 @@ public class CamelAmqpBindingTypeImpl extends BaseCamelBindingImpl implements Ca
      * <!-- end-user-doc -->
      * @generated
      */
-    public Integer getMaxConcurrentConsumers() {
+    public int getMaxConcurrentConsumers() {
         return maxConcurrentConsumers;
     }
 
@@ -728,8 +728,8 @@ public class CamelAmqpBindingTypeImpl extends BaseCamelBindingImpl implements Ca
      * <!-- end-user-doc -->
      * @generated
      */
-    public void setMaxConcurrentConsumers(Integer newMaxConcurrentConsumers) {
-        Integer oldMaxConcurrentConsumers = maxConcurrentConsumers;
+    public void setMaxConcurrentConsumers(int newMaxConcurrentConsumers) {
+        int oldMaxConcurrentConsumers = maxConcurrentConsumers;
         maxConcurrentConsumers = newMaxConcurrentConsumers;
         boolean oldMaxConcurrentConsumersESet = maxConcurrentConsumersESet;
         maxConcurrentConsumersESet = true;
@@ -743,7 +743,7 @@ public class CamelAmqpBindingTypeImpl extends BaseCamelBindingImpl implements Ca
      * @generated
      */
     public void unsetMaxConcurrentConsumers() {
-        Integer oldMaxConcurrentConsumers = maxConcurrentConsumers;
+        int oldMaxConcurrentConsumers = maxConcurrentConsumers;
         boolean oldMaxConcurrentConsumersESet = maxConcurrentConsumersESet;
         maxConcurrentConsumers = MAX_CONCURRENT_CONSUMERS_EDEFAULT;
         maxConcurrentConsumersESet = false;
@@ -765,7 +765,7 @@ public class CamelAmqpBindingTypeImpl extends BaseCamelBindingImpl implements Ca
      * <!-- end-user-doc -->
      * @generated
      */
-    public Boolean getDisableReplyTo() {
+    public boolean isDisableReplyTo() {
         return disableReplyTo;
     }
 
@@ -774,8 +774,8 @@ public class CamelAmqpBindingTypeImpl extends BaseCamelBindingImpl implements Ca
      * <!-- end-user-doc -->
      * @generated
      */
-    public void setDisableReplyTo(Boolean newDisableReplyTo) {
-        Boolean oldDisableReplyTo = disableReplyTo;
+    public void setDisableReplyTo(boolean newDisableReplyTo) {
+        boolean oldDisableReplyTo = disableReplyTo;
         disableReplyTo = newDisableReplyTo;
         boolean oldDisableReplyToESet = disableReplyToESet;
         disableReplyToESet = true;
@@ -789,7 +789,7 @@ public class CamelAmqpBindingTypeImpl extends BaseCamelBindingImpl implements Ca
      * @generated
      */
     public void unsetDisableReplyTo() {
-        Boolean oldDisableReplyTo = disableReplyTo;
+        boolean oldDisableReplyTo = disableReplyTo;
         boolean oldDisableReplyToESet = disableReplyToESet;
         disableReplyTo = DISABLE_REPLY_TO_EDEFAULT;
         disableReplyToESet = false;
@@ -811,7 +811,7 @@ public class CamelAmqpBindingTypeImpl extends BaseCamelBindingImpl implements Ca
      * <!-- end-user-doc -->
      * @generated
      */
-    public Boolean getPreserveMessageQos() {
+    public boolean isPreserveMessageQos() {
         return preserveMessageQos;
     }
 
@@ -820,8 +820,8 @@ public class CamelAmqpBindingTypeImpl extends BaseCamelBindingImpl implements Ca
      * <!-- end-user-doc -->
      * @generated
      */
-    public void setPreserveMessageQos(Boolean newPreserveMessageQos) {
-        Boolean oldPreserveMessageQos = preserveMessageQos;
+    public void setPreserveMessageQos(boolean newPreserveMessageQos) {
+        boolean oldPreserveMessageQos = preserveMessageQos;
         preserveMessageQos = newPreserveMessageQos;
         boolean oldPreserveMessageQosESet = preserveMessageQosESet;
         preserveMessageQosESet = true;
@@ -835,7 +835,7 @@ public class CamelAmqpBindingTypeImpl extends BaseCamelBindingImpl implements Ca
      * @generated
      */
     public void unsetPreserveMessageQos() {
-        Boolean oldPreserveMessageQos = preserveMessageQos;
+        boolean oldPreserveMessageQos = preserveMessageQos;
         boolean oldPreserveMessageQosESet = preserveMessageQosESet;
         preserveMessageQos = PRESERVE_MESSAGE_QOS_EDEFAULT;
         preserveMessageQosESet = false;
@@ -857,7 +857,7 @@ public class CamelAmqpBindingTypeImpl extends BaseCamelBindingImpl implements Ca
      * <!-- end-user-doc -->
      * @generated
      */
-    public Boolean getDeliveryPersistent() {
+    public boolean isDeliveryPersistent() {
         return deliveryPersistent;
     }
 
@@ -866,8 +866,8 @@ public class CamelAmqpBindingTypeImpl extends BaseCamelBindingImpl implements Ca
      * <!-- end-user-doc -->
      * @generated
      */
-    public void setDeliveryPersistent(Boolean newDeliveryPersistent) {
-        Boolean oldDeliveryPersistent = deliveryPersistent;
+    public void setDeliveryPersistent(boolean newDeliveryPersistent) {
+        boolean oldDeliveryPersistent = deliveryPersistent;
         deliveryPersistent = newDeliveryPersistent;
         boolean oldDeliveryPersistentESet = deliveryPersistentESet;
         deliveryPersistentESet = true;
@@ -881,7 +881,7 @@ public class CamelAmqpBindingTypeImpl extends BaseCamelBindingImpl implements Ca
      * @generated
      */
     public void unsetDeliveryPersistent() {
-        Boolean oldDeliveryPersistent = deliveryPersistent;
+        boolean oldDeliveryPersistent = deliveryPersistent;
         boolean oldDeliveryPersistentESet = deliveryPersistentESet;
         deliveryPersistent = DELIVERY_PERSISTENT_EDEFAULT;
         deliveryPersistentESet = false;
@@ -903,7 +903,7 @@ public class CamelAmqpBindingTypeImpl extends BaseCamelBindingImpl implements Ca
      * <!-- end-user-doc -->
      * @generated
      */
-    public Integer getPriority() {
+    public int getPriority() {
         return priority;
     }
 
@@ -912,8 +912,8 @@ public class CamelAmqpBindingTypeImpl extends BaseCamelBindingImpl implements Ca
      * <!-- end-user-doc -->
      * @generated
      */
-    public void setPriority(Integer newPriority) {
-        Integer oldPriority = priority;
+    public void setPriority(int newPriority) {
+        int oldPriority = priority;
         priority = newPriority;
         boolean oldPriorityESet = priorityESet;
         priorityESet = true;
@@ -927,7 +927,7 @@ public class CamelAmqpBindingTypeImpl extends BaseCamelBindingImpl implements Ca
      * @generated
      */
     public void unsetPriority() {
-        Integer oldPriority = priority;
+        int oldPriority = priority;
         boolean oldPriorityESet = priorityESet;
         priority = PRIORITY_EDEFAULT;
         priorityESet = false;
@@ -949,7 +949,7 @@ public class CamelAmqpBindingTypeImpl extends BaseCamelBindingImpl implements Ca
      * <!-- end-user-doc -->
      * @generated
      */
-    public Boolean getExplicitQosEnabled() {
+    public boolean isExplicitQosEnabled() {
         return explicitQosEnabled;
     }
 
@@ -958,8 +958,8 @@ public class CamelAmqpBindingTypeImpl extends BaseCamelBindingImpl implements Ca
      * <!-- end-user-doc -->
      * @generated
      */
-    public void setExplicitQosEnabled(Boolean newExplicitQosEnabled) {
-        Boolean oldExplicitQosEnabled = explicitQosEnabled;
+    public void setExplicitQosEnabled(boolean newExplicitQosEnabled) {
+        boolean oldExplicitQosEnabled = explicitQosEnabled;
         explicitQosEnabled = newExplicitQosEnabled;
         boolean oldExplicitQosEnabledESet = explicitQosEnabledESet;
         explicitQosEnabledESet = true;
@@ -973,7 +973,7 @@ public class CamelAmqpBindingTypeImpl extends BaseCamelBindingImpl implements Ca
      * @generated
      */
     public void unsetExplicitQosEnabled() {
-        Boolean oldExplicitQosEnabled = explicitQosEnabled;
+        boolean oldExplicitQosEnabled = explicitQosEnabled;
         boolean oldExplicitQosEnabledESet = explicitQosEnabledESet;
         explicitQosEnabled = EXPLICIT_QOS_ENABLED_EDEFAULT;
         explicitQosEnabledESet = false;
@@ -1037,7 +1037,7 @@ public class CamelAmqpBindingTypeImpl extends BaseCamelBindingImpl implements Ca
      * <!-- end-user-doc -->
      * @generated
      */
-    public Integer getRequestTimeout() {
+    public int getRequestTimeout() {
         return requestTimeout;
     }
 
@@ -1046,8 +1046,8 @@ public class CamelAmqpBindingTypeImpl extends BaseCamelBindingImpl implements Ca
      * <!-- end-user-doc -->
      * @generated
      */
-    public void setRequestTimeout(Integer newRequestTimeout) {
-        Integer oldRequestTimeout = requestTimeout;
+    public void setRequestTimeout(int newRequestTimeout) {
+        int oldRequestTimeout = requestTimeout;
         requestTimeout = newRequestTimeout;
         boolean oldRequestTimeoutESet = requestTimeoutESet;
         requestTimeoutESet = true;
@@ -1061,7 +1061,7 @@ public class CamelAmqpBindingTypeImpl extends BaseCamelBindingImpl implements Ca
      * @generated
      */
     public void unsetRequestTimeout() {
-        Integer oldRequestTimeout = requestTimeout;
+        int oldRequestTimeout = requestTimeout;
         boolean oldRequestTimeoutESet = requestTimeoutESet;
         requestTimeout = REQUEST_TIMEOUT_EDEFAULT;
         requestTimeoutESet = false;
@@ -1104,7 +1104,7 @@ public class CamelAmqpBindingTypeImpl extends BaseCamelBindingImpl implements Ca
      * <!-- end-user-doc -->
      * @generated
      */
-    public Integer getTimeToLive() {
+    public int getTimeToLive() {
         return timeToLive;
     }
 
@@ -1113,8 +1113,8 @@ public class CamelAmqpBindingTypeImpl extends BaseCamelBindingImpl implements Ca
      * <!-- end-user-doc -->
      * @generated
      */
-    public void setTimeToLive(Integer newTimeToLive) {
-        Integer oldTimeToLive = timeToLive;
+    public void setTimeToLive(int newTimeToLive) {
+        int oldTimeToLive = timeToLive;
         timeToLive = newTimeToLive;
         boolean oldTimeToLiveESet = timeToLiveESet;
         timeToLiveESet = true;
@@ -1128,7 +1128,7 @@ public class CamelAmqpBindingTypeImpl extends BaseCamelBindingImpl implements Ca
      * @generated
      */
     public void unsetTimeToLive() {
-        Integer oldTimeToLive = timeToLive;
+        int oldTimeToLive = timeToLive;
         boolean oldTimeToLiveESet = timeToLiveESet;
         timeToLive = TIME_TO_LIVE_EDEFAULT;
         timeToLiveESet = false;
@@ -1150,7 +1150,7 @@ public class CamelAmqpBindingTypeImpl extends BaseCamelBindingImpl implements Ca
      * <!-- end-user-doc -->
      * @generated
      */
-    public Boolean getTransacted() {
+    public boolean isTransacted() {
         return transacted;
     }
 
@@ -1159,8 +1159,8 @@ public class CamelAmqpBindingTypeImpl extends BaseCamelBindingImpl implements Ca
      * <!-- end-user-doc -->
      * @generated
      */
-    public void setTransacted(Boolean newTransacted) {
-        Boolean oldTransacted = transacted;
+    public void setTransacted(boolean newTransacted) {
+        boolean oldTransacted = transacted;
         transacted = newTransacted;
         boolean oldTransactedESet = transactedESet;
         transactedESet = true;
@@ -1174,7 +1174,7 @@ public class CamelAmqpBindingTypeImpl extends BaseCamelBindingImpl implements Ca
      * @generated
      */
     public void unsetTransacted() {
-        Boolean oldTransacted = transacted;
+        boolean oldTransacted = transacted;
         boolean oldTransactedESet = transactedESet;
         transacted = TRANSACTED_EDEFAULT;
         transactedESet = false;
@@ -1239,15 +1239,15 @@ public class CamelAmqpBindingTypeImpl extends BaseCamelBindingImpl implements Ca
             case AmqpPackage.CAMEL_AMQP_BINDING_TYPE__MAX_CONCURRENT_CONSUMERS:
                 return getMaxConcurrentConsumers();
             case AmqpPackage.CAMEL_AMQP_BINDING_TYPE__DISABLE_REPLY_TO:
-                return getDisableReplyTo();
+                return isDisableReplyTo();
             case AmqpPackage.CAMEL_AMQP_BINDING_TYPE__PRESERVE_MESSAGE_QOS:
-                return getPreserveMessageQos();
+                return isPreserveMessageQos();
             case AmqpPackage.CAMEL_AMQP_BINDING_TYPE__DELIVERY_PERSISTENT:
-                return getDeliveryPersistent();
+                return isDeliveryPersistent();
             case AmqpPackage.CAMEL_AMQP_BINDING_TYPE__PRIORITY:
                 return getPriority();
             case AmqpPackage.CAMEL_AMQP_BINDING_TYPE__EXPLICIT_QOS_ENABLED:
-                return getExplicitQosEnabled();
+                return isExplicitQosEnabled();
             case AmqpPackage.CAMEL_AMQP_BINDING_TYPE__REPLY_TO:
                 return getReplyTo();
             case AmqpPackage.CAMEL_AMQP_BINDING_TYPE__REPLY_TO_TYPE:
@@ -1259,7 +1259,7 @@ public class CamelAmqpBindingTypeImpl extends BaseCamelBindingImpl implements Ca
             case AmqpPackage.CAMEL_AMQP_BINDING_TYPE__TIME_TO_LIVE:
                 return getTimeToLive();
             case AmqpPackage.CAMEL_AMQP_BINDING_TYPE__TRANSACTED:
-                return getTransacted();
+                return isTransacted();
             case AmqpPackage.CAMEL_AMQP_BINDING_TYPE__TRANSACTION_MANAGER:
                 return getTransactionManager();
         }

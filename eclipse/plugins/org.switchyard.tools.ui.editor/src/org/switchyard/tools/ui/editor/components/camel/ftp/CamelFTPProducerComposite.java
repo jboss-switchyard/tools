@@ -80,9 +80,7 @@ public class CamelFTPProducerComposite extends AbstractSYBindingComposite {
             if (this._binding.getFileName() != null) {
                 _fileNameText.setText(this._binding.getFileName());
             }
-            if (this._binding.getAutoCreate().booleanValue()) {
-                _autoCreateButton.setSelection(this._binding.getAutoCreate());
-            }
+            _autoCreateButton.setSelection(this._binding.isAutoCreate());
             if (this._binding.getHost() != null) {
                 _hostText.setText(this._binding.getHost());
             }
@@ -95,9 +93,7 @@ public class CamelFTPProducerComposite extends AbstractSYBindingComposite {
             if (this._binding.getPassword() != null) {
                 _pwdText.setText(this._binding.getPassword());
             }
-            if (this._binding.getBinary() != null) {
-                _binaryButton.setSelection(this._binding.getBinary().booleanValue());
-            }
+            _binaryButton.setSelection(this._binding.isBinary());
             super.setTabsBinding(_binding);
             setInUpdate(false);
             validate();
@@ -235,7 +231,7 @@ public class CamelFTPProducerComposite extends AbstractSYBindingComposite {
             } else if (control.equals(_fileNameText)) {
                 _fileNameText.setText(this._binding.getFileName());
             } else if (control.equals(_autoCreateButton)) {
-                _autoCreateButton.setSelection(this._binding.getAutoCreate().booleanValue());
+                _autoCreateButton.setSelection(this._binding.isAutoCreate());
             } else if (control.equals(_hostText)) {
                 _hostText.setText(this._binding.getHost());
             } else if (control.equals(_portText)) {
@@ -245,7 +241,7 @@ public class CamelFTPProducerComposite extends AbstractSYBindingComposite {
             } else if (control.equals(_pwdText)) {
                 _pwdText.setText(this._binding.getPassword());
             } else if (control.equals(_binaryButton)) {
-                _binaryButton.setSelection(this._binding.getBinary().booleanValue());
+                _binaryButton.setSelection(this._binding.isBinary());
             } else if (this._binding.getProduce() != null) {
                 if (control.equals(_fileExistText)) {
                     _fileExistText.setText(this._binding.getProduce().getFileExist());

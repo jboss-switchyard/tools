@@ -20,7 +20,7 @@ import org.switchyard.tools.models.switchyard1_0.camel.sql.SqlPackage;
  * <ul>
  *   <li>{@link org.switchyard.tools.models.switchyard1_0.camel.sql.impl.CamelSqlBindingTypeImpl#getQuery <em>Query</em>}</li>
  *   <li>{@link org.switchyard.tools.models.switchyard1_0.camel.sql.impl.CamelSqlBindingTypeImpl#getDataSourceRef <em>Data Source Ref</em>}</li>
- *   <li>{@link org.switchyard.tools.models.switchyard1_0.camel.sql.impl.CamelSqlBindingTypeImpl#getBatch <em>Batch</em>}</li>
+ *   <li>{@link org.switchyard.tools.models.switchyard1_0.camel.sql.impl.CamelSqlBindingTypeImpl#isBatch <em>Batch</em>}</li>
  *   <li>{@link org.switchyard.tools.models.switchyard1_0.camel.sql.impl.CamelSqlBindingTypeImpl#getPlaceholder <em>Placeholder</em>}</li>
  * </ul>
  * </p>
@@ -69,24 +69,24 @@ public class CamelSqlBindingTypeImpl extends BaseCamelBindingImpl implements Cam
     protected String dataSourceRef = DATA_SOURCE_REF_EDEFAULT;
 
     /**
-     * The default value of the '{@link #getBatch() <em>Batch</em>}' attribute.
+     * The default value of the '{@link #isBatch() <em>Batch</em>}' attribute.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @see #getBatch()
+     * @see #isBatch()
      * @generated
      * @ordered
      */
-    protected static final Boolean BATCH_EDEFAULT = null;
+    protected static final boolean BATCH_EDEFAULT = false;
 
     /**
-     * The cached value of the '{@link #getBatch() <em>Batch</em>}' attribute.
+     * The cached value of the '{@link #isBatch() <em>Batch</em>}' attribute.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @see #getBatch()
+     * @see #isBatch()
      * @generated
      * @ordered
      */
-    protected Boolean batch = BATCH_EDEFAULT;
+    protected boolean batch = BATCH_EDEFAULT;
 
     /**
      * This is true if the Batch attribute has been set.
@@ -183,7 +183,7 @@ public class CamelSqlBindingTypeImpl extends BaseCamelBindingImpl implements Cam
      * <!-- end-user-doc -->
      * @generated
      */
-    public Boolean getBatch() {
+    public boolean isBatch() {
         return batch;
     }
 
@@ -192,8 +192,8 @@ public class CamelSqlBindingTypeImpl extends BaseCamelBindingImpl implements Cam
      * <!-- end-user-doc -->
      * @generated
      */
-    public void setBatch(Boolean newBatch) {
-        Boolean oldBatch = batch;
+    public void setBatch(boolean newBatch) {
+        boolean oldBatch = batch;
         batch = newBatch;
         boolean oldBatchESet = batchESet;
         batchESet = true;
@@ -207,7 +207,7 @@ public class CamelSqlBindingTypeImpl extends BaseCamelBindingImpl implements Cam
      * @generated
      */
     public void unsetBatch() {
-        Boolean oldBatch = batch;
+        boolean oldBatch = batch;
         boolean oldBatchESet = batchESet;
         batch = BATCH_EDEFAULT;
         batchESet = false;
@@ -258,7 +258,7 @@ public class CamelSqlBindingTypeImpl extends BaseCamelBindingImpl implements Cam
             case SqlPackage.CAMEL_SQL_BINDING_TYPE__DATA_SOURCE_REF:
                 return getDataSourceRef();
             case SqlPackage.CAMEL_SQL_BINDING_TYPE__BATCH:
-                return getBatch();
+                return isBatch();
             case SqlPackage.CAMEL_SQL_BINDING_TYPE__PLACEHOLDER:
                 return getPlaceholder();
         }

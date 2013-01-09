@@ -1815,11 +1815,11 @@ public interface FtpPackage extends EPackage {
     EAttribute getCamelFtpBindingType_Directory();
 
     /**
-     * Returns the meta object for the attribute '{@link org.switchyard.tools.models.switchyard1_0.camel.ftp.CamelFtpBindingType#getAutoCreate <em>Auto Create</em>}'.
+     * Returns the meta object for the attribute '{@link org.switchyard.tools.models.switchyard1_0.camel.ftp.CamelFtpBindingType#isAutoCreate <em>Auto Create</em>}'.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @return the meta object for the attribute '<em>Auto Create</em>'.
-     * @see org.switchyard.tools.models.switchyard1_0.camel.ftp.CamelFtpBindingType#getAutoCreate()
+     * @see org.switchyard.tools.models.switchyard1_0.camel.ftp.CamelFtpBindingType#isAutoCreate()
      * @see #getCamelFtpBindingType()
      * @generated
      */
@@ -1848,11 +1848,11 @@ public interface FtpPackage extends EPackage {
     EAttribute getCamelFtpBindingType_FileName();
 
     /**
-     * Returns the meta object for the attribute '{@link org.switchyard.tools.models.switchyard1_0.camel.ftp.CamelFtpBindingType#getFlatten <em>Flatten</em>}'.
+     * Returns the meta object for the attribute '{@link org.switchyard.tools.models.switchyard1_0.camel.ftp.CamelFtpBindingType#isFlatten <em>Flatten</em>}'.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @return the meta object for the attribute '<em>Flatten</em>'.
-     * @see org.switchyard.tools.models.switchyard1_0.camel.ftp.CamelFtpBindingType#getFlatten()
+     * @see org.switchyard.tools.models.switchyard1_0.camel.ftp.CamelFtpBindingType#isFlatten()
      * @see #getCamelFtpBindingType()
      * @generated
      */
@@ -1914,11 +1914,11 @@ public interface FtpPackage extends EPackage {
     EAttribute getCamelFtpBindingType_Password();
 
     /**
-     * Returns the meta object for the attribute '{@link org.switchyard.tools.models.switchyard1_0.camel.ftp.CamelFtpBindingType#getBinary <em>Binary</em>}'.
+     * Returns the meta object for the attribute '{@link org.switchyard.tools.models.switchyard1_0.camel.ftp.CamelFtpBindingType#isBinary <em>Binary</em>}'.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @return the meta object for the attribute '<em>Binary</em>'.
-     * @see org.switchyard.tools.models.switchyard1_0.camel.ftp.CamelFtpBindingType#getBinary()
+     * @see org.switchyard.tools.models.switchyard1_0.camel.ftp.CamelFtpBindingType#isBinary()
      * @see #getCamelFtpBindingType()
      * @generated
      */
@@ -1936,11 +1936,11 @@ public interface FtpPackage extends EPackage {
     EAttribute getCamelFtpBindingType_ConnectTimeout();
 
     /**
-     * Returns the meta object for the attribute '{@link org.switchyard.tools.models.switchyard1_0.camel.ftp.CamelFtpBindingType#getDisconnect <em>Disconnect</em>}'.
+     * Returns the meta object for the attribute '{@link org.switchyard.tools.models.switchyard1_0.camel.ftp.CamelFtpBindingType#isDisconnect <em>Disconnect</em>}'.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @return the meta object for the attribute '<em>Disconnect</em>'.
-     * @see org.switchyard.tools.models.switchyard1_0.camel.ftp.CamelFtpBindingType#getDisconnect()
+     * @see org.switchyard.tools.models.switchyard1_0.camel.ftp.CamelFtpBindingType#isDisconnect()
      * @see #getCamelFtpBindingType()
      * @generated
      */
@@ -1980,33 +1980,33 @@ public interface FtpPackage extends EPackage {
     EAttribute getCamelFtpBindingType_Separator();
 
     /**
-     * Returns the meta object for the attribute '{@link org.switchyard.tools.models.switchyard1_0.camel.ftp.CamelFtpBindingType#getStepwise <em>Stepwise</em>}'.
+     * Returns the meta object for the attribute '{@link org.switchyard.tools.models.switchyard1_0.camel.ftp.CamelFtpBindingType#isStepwise <em>Stepwise</em>}'.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @return the meta object for the attribute '<em>Stepwise</em>'.
-     * @see org.switchyard.tools.models.switchyard1_0.camel.ftp.CamelFtpBindingType#getStepwise()
+     * @see org.switchyard.tools.models.switchyard1_0.camel.ftp.CamelFtpBindingType#isStepwise()
      * @see #getCamelFtpBindingType()
      * @generated
      */
     EAttribute getCamelFtpBindingType_Stepwise();
 
     /**
-     * Returns the meta object for the attribute '{@link org.switchyard.tools.models.switchyard1_0.camel.ftp.CamelFtpBindingType#getThrowExceptionOnConnectFailed <em>Throw Exception On Connect Failed</em>}'.
+     * Returns the meta object for the attribute '{@link org.switchyard.tools.models.switchyard1_0.camel.ftp.CamelFtpBindingType#isThrowExceptionOnConnectFailed <em>Throw Exception On Connect Failed</em>}'.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @return the meta object for the attribute '<em>Throw Exception On Connect Failed</em>'.
-     * @see org.switchyard.tools.models.switchyard1_0.camel.ftp.CamelFtpBindingType#getThrowExceptionOnConnectFailed()
+     * @see org.switchyard.tools.models.switchyard1_0.camel.ftp.CamelFtpBindingType#isThrowExceptionOnConnectFailed()
      * @see #getCamelFtpBindingType()
      * @generated
      */
     EAttribute getCamelFtpBindingType_ThrowExceptionOnConnectFailed();
 
     /**
-     * Returns the meta object for the attribute '{@link org.switchyard.tools.models.switchyard1_0.camel.ftp.CamelFtpBindingType#getPassiveMode <em>Passive Mode</em>}'.
+     * Returns the meta object for the attribute '{@link org.switchyard.tools.models.switchyard1_0.camel.ftp.CamelFtpBindingType#isPassiveMode <em>Passive Mode</em>}'.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @return the meta object for the attribute '<em>Passive Mode</em>'.
-     * @see org.switchyard.tools.models.switchyard1_0.camel.ftp.CamelFtpBindingType#getPassiveMode()
+     * @see org.switchyard.tools.models.switchyard1_0.camel.ftp.CamelFtpBindingType#isPassiveMode()
      * @see #getCamelFtpBindingType()
      * @generated
      */
@@ -2089,11 +2089,11 @@ public interface FtpPackage extends EPackage {
     EAttribute getCamelFtpsBindingType_SecurityProtocol();
 
     /**
-     * Returns the meta object for the attribute '{@link org.switchyard.tools.models.switchyard1_0.camel.ftp.CamelFtpsBindingType#getIsImplicit <em>Is Implicit</em>}'.
+     * Returns the meta object for the attribute '{@link org.switchyard.tools.models.switchyard1_0.camel.ftp.CamelFtpsBindingType#isIsImplicit <em>Is Implicit</em>}'.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @return the meta object for the attribute '<em>Is Implicit</em>'.
-     * @see org.switchyard.tools.models.switchyard1_0.camel.ftp.CamelFtpsBindingType#getIsImplicit()
+     * @see org.switchyard.tools.models.switchyard1_0.camel.ftp.CamelFtpsBindingType#isIsImplicit()
      * @see #getCamelFtpsBindingType()
      * @generated
      */
@@ -2122,11 +2122,11 @@ public interface FtpPackage extends EPackage {
     EAttribute getCamelFtpsBindingType_ExecProt();
 
     /**
-     * Returns the meta object for the attribute '{@link org.switchyard.tools.models.switchyard1_0.camel.ftp.CamelFtpsBindingType#getDisableSecureDataChannelDefaults <em>Disable Secure Data Channel Defaults</em>}'.
+     * Returns the meta object for the attribute '{@link org.switchyard.tools.models.switchyard1_0.camel.ftp.CamelFtpsBindingType#isDisableSecureDataChannelDefaults <em>Disable Secure Data Channel Defaults</em>}'.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @return the meta object for the attribute '<em>Disable Secure Data Channel Defaults</em>'.
-     * @see org.switchyard.tools.models.switchyard1_0.camel.ftp.CamelFtpsBindingType#getDisableSecureDataChannelDefaults()
+     * @see org.switchyard.tools.models.switchyard1_0.camel.ftp.CamelFtpsBindingType#isDisableSecureDataChannelDefaults()
      * @see #getCamelFtpsBindingType()
      * @generated
      */
@@ -2154,11 +2154,11 @@ public interface FtpPackage extends EPackage {
     EAttribute getCamelSftpBindingType_Directory();
 
     /**
-     * Returns the meta object for the attribute '{@link org.switchyard.tools.models.switchyard1_0.camel.ftp.CamelSftpBindingType#getAutoCreate <em>Auto Create</em>}'.
+     * Returns the meta object for the attribute '{@link org.switchyard.tools.models.switchyard1_0.camel.ftp.CamelSftpBindingType#isAutoCreate <em>Auto Create</em>}'.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @return the meta object for the attribute '<em>Auto Create</em>'.
-     * @see org.switchyard.tools.models.switchyard1_0.camel.ftp.CamelSftpBindingType#getAutoCreate()
+     * @see org.switchyard.tools.models.switchyard1_0.camel.ftp.CamelSftpBindingType#isAutoCreate()
      * @see #getCamelSftpBindingType()
      * @generated
      */
@@ -2187,11 +2187,11 @@ public interface FtpPackage extends EPackage {
     EAttribute getCamelSftpBindingType_FileName();
 
     /**
-     * Returns the meta object for the attribute '{@link org.switchyard.tools.models.switchyard1_0.camel.ftp.CamelSftpBindingType#getFlatten <em>Flatten</em>}'.
+     * Returns the meta object for the attribute '{@link org.switchyard.tools.models.switchyard1_0.camel.ftp.CamelSftpBindingType#isFlatten <em>Flatten</em>}'.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @return the meta object for the attribute '<em>Flatten</em>'.
-     * @see org.switchyard.tools.models.switchyard1_0.camel.ftp.CamelSftpBindingType#getFlatten()
+     * @see org.switchyard.tools.models.switchyard1_0.camel.ftp.CamelSftpBindingType#isFlatten()
      * @see #getCamelSftpBindingType()
      * @generated
      */
@@ -2253,11 +2253,11 @@ public interface FtpPackage extends EPackage {
     EAttribute getCamelSftpBindingType_Password();
 
     /**
-     * Returns the meta object for the attribute '{@link org.switchyard.tools.models.switchyard1_0.camel.ftp.CamelSftpBindingType#getBinary <em>Binary</em>}'.
+     * Returns the meta object for the attribute '{@link org.switchyard.tools.models.switchyard1_0.camel.ftp.CamelSftpBindingType#isBinary <em>Binary</em>}'.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @return the meta object for the attribute '<em>Binary</em>'.
-     * @see org.switchyard.tools.models.switchyard1_0.camel.ftp.CamelSftpBindingType#getBinary()
+     * @see org.switchyard.tools.models.switchyard1_0.camel.ftp.CamelSftpBindingType#isBinary()
      * @see #getCamelSftpBindingType()
      * @generated
      */
@@ -2275,11 +2275,11 @@ public interface FtpPackage extends EPackage {
     EAttribute getCamelSftpBindingType_ConnectTimeout();
 
     /**
-     * Returns the meta object for the attribute '{@link org.switchyard.tools.models.switchyard1_0.camel.ftp.CamelSftpBindingType#getDisconnect <em>Disconnect</em>}'.
+     * Returns the meta object for the attribute '{@link org.switchyard.tools.models.switchyard1_0.camel.ftp.CamelSftpBindingType#isDisconnect <em>Disconnect</em>}'.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @return the meta object for the attribute '<em>Disconnect</em>'.
-     * @see org.switchyard.tools.models.switchyard1_0.camel.ftp.CamelSftpBindingType#getDisconnect()
+     * @see org.switchyard.tools.models.switchyard1_0.camel.ftp.CamelSftpBindingType#isDisconnect()
      * @see #getCamelSftpBindingType()
      * @generated
      */
@@ -2319,22 +2319,22 @@ public interface FtpPackage extends EPackage {
     EAttribute getCamelSftpBindingType_Separator();
 
     /**
-     * Returns the meta object for the attribute '{@link org.switchyard.tools.models.switchyard1_0.camel.ftp.CamelSftpBindingType#getStepwise <em>Stepwise</em>}'.
+     * Returns the meta object for the attribute '{@link org.switchyard.tools.models.switchyard1_0.camel.ftp.CamelSftpBindingType#isStepwise <em>Stepwise</em>}'.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @return the meta object for the attribute '<em>Stepwise</em>'.
-     * @see org.switchyard.tools.models.switchyard1_0.camel.ftp.CamelSftpBindingType#getStepwise()
+     * @see org.switchyard.tools.models.switchyard1_0.camel.ftp.CamelSftpBindingType#isStepwise()
      * @see #getCamelSftpBindingType()
      * @generated
      */
     EAttribute getCamelSftpBindingType_Stepwise();
 
     /**
-     * Returns the meta object for the attribute '{@link org.switchyard.tools.models.switchyard1_0.camel.ftp.CamelSftpBindingType#getThrowExceptionOnConnectFailed <em>Throw Exception On Connect Failed</em>}'.
+     * Returns the meta object for the attribute '{@link org.switchyard.tools.models.switchyard1_0.camel.ftp.CamelSftpBindingType#isThrowExceptionOnConnectFailed <em>Throw Exception On Connect Failed</em>}'.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @return the meta object for the attribute '<em>Throw Exception On Connect Failed</em>'.
-     * @see org.switchyard.tools.models.switchyard1_0.camel.ftp.CamelSftpBindingType#getThrowExceptionOnConnectFailed()
+     * @see org.switchyard.tools.models.switchyard1_0.camel.ftp.CamelSftpBindingType#isThrowExceptionOnConnectFailed()
      * @see #getCamelSftpBindingType()
      * @generated
      */
@@ -2406,33 +2406,33 @@ public interface FtpPackage extends EPackage {
     EClass getRemoteFileConsumerType();
 
     /**
-     * Returns the meta object for the attribute '{@link org.switchyard.tools.models.switchyard1_0.camel.ftp.RemoteFileConsumerType#getDelete <em>Delete</em>}'.
+     * Returns the meta object for the attribute '{@link org.switchyard.tools.models.switchyard1_0.camel.ftp.RemoteFileConsumerType#isDelete <em>Delete</em>}'.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @return the meta object for the attribute '<em>Delete</em>'.
-     * @see org.switchyard.tools.models.switchyard1_0.camel.ftp.RemoteFileConsumerType#getDelete()
+     * @see org.switchyard.tools.models.switchyard1_0.camel.ftp.RemoteFileConsumerType#isDelete()
      * @see #getRemoteFileConsumerType()
      * @generated
      */
     EAttribute getRemoteFileConsumerType_Delete();
 
     /**
-     * Returns the meta object for the attribute '{@link org.switchyard.tools.models.switchyard1_0.camel.ftp.RemoteFileConsumerType#getRecursive <em>Recursive</em>}'.
+     * Returns the meta object for the attribute '{@link org.switchyard.tools.models.switchyard1_0.camel.ftp.RemoteFileConsumerType#isRecursive <em>Recursive</em>}'.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @return the meta object for the attribute '<em>Recursive</em>'.
-     * @see org.switchyard.tools.models.switchyard1_0.camel.ftp.RemoteFileConsumerType#getRecursive()
+     * @see org.switchyard.tools.models.switchyard1_0.camel.ftp.RemoteFileConsumerType#isRecursive()
      * @see #getRemoteFileConsumerType()
      * @generated
      */
     EAttribute getRemoteFileConsumerType_Recursive();
 
     /**
-     * Returns the meta object for the attribute '{@link org.switchyard.tools.models.switchyard1_0.camel.ftp.RemoteFileConsumerType#getNoop <em>Noop</em>}'.
+     * Returns the meta object for the attribute '{@link org.switchyard.tools.models.switchyard1_0.camel.ftp.RemoteFileConsumerType#isNoop <em>Noop</em>}'.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @return the meta object for the attribute '<em>Noop</em>'.
-     * @see org.switchyard.tools.models.switchyard1_0.camel.ftp.RemoteFileConsumerType#getNoop()
+     * @see org.switchyard.tools.models.switchyard1_0.camel.ftp.RemoteFileConsumerType#isNoop()
      * @see #getRemoteFileConsumerType()
      * @generated
      */
@@ -2494,11 +2494,11 @@ public interface FtpPackage extends EPackage {
     EAttribute getRemoteFileConsumerType_Exclude();
 
     /**
-     * Returns the meta object for the attribute '{@link org.switchyard.tools.models.switchyard1_0.camel.ftp.RemoteFileConsumerType#getIdempotent <em>Idempotent</em>}'.
+     * Returns the meta object for the attribute '{@link org.switchyard.tools.models.switchyard1_0.camel.ftp.RemoteFileConsumerType#isIdempotent <em>Idempotent</em>}'.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @return the meta object for the attribute '<em>Idempotent</em>'.
-     * @see org.switchyard.tools.models.switchyard1_0.camel.ftp.RemoteFileConsumerType#getIdempotent()
+     * @see org.switchyard.tools.models.switchyard1_0.camel.ftp.RemoteFileConsumerType#isIdempotent()
      * @see #getRemoteFileConsumerType()
      * @generated
      */
@@ -2615,22 +2615,22 @@ public interface FtpPackage extends EPackage {
     EAttribute getRemoteFileConsumerType_ProcessStrategy();
 
     /**
-     * Returns the meta object for the attribute '{@link org.switchyard.tools.models.switchyard1_0.camel.ftp.RemoteFileConsumerType#getStartingDirectoryMustExist <em>Starting Directory Must Exist</em>}'.
+     * Returns the meta object for the attribute '{@link org.switchyard.tools.models.switchyard1_0.camel.ftp.RemoteFileConsumerType#isStartingDirectoryMustExist <em>Starting Directory Must Exist</em>}'.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @return the meta object for the attribute '<em>Starting Directory Must Exist</em>'.
-     * @see org.switchyard.tools.models.switchyard1_0.camel.ftp.RemoteFileConsumerType#getStartingDirectoryMustExist()
+     * @see org.switchyard.tools.models.switchyard1_0.camel.ftp.RemoteFileConsumerType#isStartingDirectoryMustExist()
      * @see #getRemoteFileConsumerType()
      * @generated
      */
     EAttribute getRemoteFileConsumerType_StartingDirectoryMustExist();
 
     /**
-     * Returns the meta object for the attribute '{@link org.switchyard.tools.models.switchyard1_0.camel.ftp.RemoteFileConsumerType#getDirectoryMustExist <em>Directory Must Exist</em>}'.
+     * Returns the meta object for the attribute '{@link org.switchyard.tools.models.switchyard1_0.camel.ftp.RemoteFileConsumerType#isDirectoryMustExist <em>Directory Must Exist</em>}'.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @return the meta object for the attribute '<em>Directory Must Exist</em>'.
-     * @see org.switchyard.tools.models.switchyard1_0.camel.ftp.RemoteFileConsumerType#getDirectoryMustExist()
+     * @see org.switchyard.tools.models.switchyard1_0.camel.ftp.RemoteFileConsumerType#isDirectoryMustExist()
      * @see #getRemoteFileConsumerType()
      * @generated
      */
@@ -2681,22 +2681,22 @@ public interface FtpPackage extends EPackage {
     EAttribute getRemoteFileConsumerType_Delay();
 
     /**
-     * Returns the meta object for the attribute '{@link org.switchyard.tools.models.switchyard1_0.camel.ftp.RemoteFileConsumerType#getUseFixedDelay <em>Use Fixed Delay</em>}'.
+     * Returns the meta object for the attribute '{@link org.switchyard.tools.models.switchyard1_0.camel.ftp.RemoteFileConsumerType#isUseFixedDelay <em>Use Fixed Delay</em>}'.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @return the meta object for the attribute '<em>Use Fixed Delay</em>'.
-     * @see org.switchyard.tools.models.switchyard1_0.camel.ftp.RemoteFileConsumerType#getUseFixedDelay()
+     * @see org.switchyard.tools.models.switchyard1_0.camel.ftp.RemoteFileConsumerType#isUseFixedDelay()
      * @see #getRemoteFileConsumerType()
      * @generated
      */
     EAttribute getRemoteFileConsumerType_UseFixedDelay();
 
     /**
-     * Returns the meta object for the attribute '{@link org.switchyard.tools.models.switchyard1_0.camel.ftp.RemoteFileConsumerType#getSendEmptyMessageWhenIdle <em>Send Empty Message When Idle</em>}'.
+     * Returns the meta object for the attribute '{@link org.switchyard.tools.models.switchyard1_0.camel.ftp.RemoteFileConsumerType#isSendEmptyMessageWhenIdle <em>Send Empty Message When Idle</em>}'.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @return the meta object for the attribute '<em>Send Empty Message When Idle</em>'.
-     * @see org.switchyard.tools.models.switchyard1_0.camel.ftp.RemoteFileConsumerType#getSendEmptyMessageWhenIdle()
+     * @see org.switchyard.tools.models.switchyard1_0.camel.ftp.RemoteFileConsumerType#isSendEmptyMessageWhenIdle()
      * @see #getRemoteFileConsumerType()
      * @generated
      */
@@ -2757,22 +2757,22 @@ public interface FtpPackage extends EPackage {
     EAttribute getRemoteFileProducerType_TempFileName();
 
     /**
-     * Returns the meta object for the attribute '{@link org.switchyard.tools.models.switchyard1_0.camel.ftp.RemoteFileProducerType#getKeepLastModified <em>Keep Last Modified</em>}'.
+     * Returns the meta object for the attribute '{@link org.switchyard.tools.models.switchyard1_0.camel.ftp.RemoteFileProducerType#isKeepLastModified <em>Keep Last Modified</em>}'.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @return the meta object for the attribute '<em>Keep Last Modified</em>'.
-     * @see org.switchyard.tools.models.switchyard1_0.camel.ftp.RemoteFileProducerType#getKeepLastModified()
+     * @see org.switchyard.tools.models.switchyard1_0.camel.ftp.RemoteFileProducerType#isKeepLastModified()
      * @see #getRemoteFileProducerType()
      * @generated
      */
     EAttribute getRemoteFileProducerType_KeepLastModified();
 
     /**
-     * Returns the meta object for the attribute '{@link org.switchyard.tools.models.switchyard1_0.camel.ftp.RemoteFileProducerType#getEagerDeleteTargetFile <em>Eager Delete Target File</em>}'.
+     * Returns the meta object for the attribute '{@link org.switchyard.tools.models.switchyard1_0.camel.ftp.RemoteFileProducerType#isEagerDeleteTargetFile <em>Eager Delete Target File</em>}'.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @return the meta object for the attribute '<em>Eager Delete Target File</em>'.
-     * @see org.switchyard.tools.models.switchyard1_0.camel.ftp.RemoteFileProducerType#getEagerDeleteTargetFile()
+     * @see org.switchyard.tools.models.switchyard1_0.camel.ftp.RemoteFileProducerType#isEagerDeleteTargetFile()
      * @see #getRemoteFileProducerType()
      * @generated
      */

@@ -21,8 +21,8 @@ import org.switchyard.tools.models.switchyard1_0.camel.atom.TimeUnitType;
  * <ul>
  *   <li>{@link org.switchyard.tools.models.switchyard1_0.camel.atom.impl.AtomScheduledPollConsumerTypeImpl#getInitialDelay <em>Initial Delay</em>}</li>
  *   <li>{@link org.switchyard.tools.models.switchyard1_0.camel.atom.impl.AtomScheduledPollConsumerTypeImpl#getDelay <em>Delay</em>}</li>
- *   <li>{@link org.switchyard.tools.models.switchyard1_0.camel.atom.impl.AtomScheduledPollConsumerTypeImpl#getUseFixedDelay <em>Use Fixed Delay</em>}</li>
- *   <li>{@link org.switchyard.tools.models.switchyard1_0.camel.atom.impl.AtomScheduledPollConsumerTypeImpl#getSendEmptyMessageWhenIdle <em>Send Empty Message When Idle</em>}</li>
+ *   <li>{@link org.switchyard.tools.models.switchyard1_0.camel.atom.impl.AtomScheduledPollConsumerTypeImpl#isUseFixedDelay <em>Use Fixed Delay</em>}</li>
+ *   <li>{@link org.switchyard.tools.models.switchyard1_0.camel.atom.impl.AtomScheduledPollConsumerTypeImpl#isSendEmptyMessageWhenIdle <em>Send Empty Message When Idle</em>}</li>
  *   <li>{@link org.switchyard.tools.models.switchyard1_0.camel.atom.impl.AtomScheduledPollConsumerTypeImpl#getTimeUnit <em>Time Unit</em>}</li>
  * </ul>
  * </p>
@@ -38,7 +38,7 @@ public class AtomScheduledPollConsumerTypeImpl extends EObjectImpl implements At
      * @generated
      * @ordered
      */
-    protected static final Integer INITIAL_DELAY_EDEFAULT = null;
+    protected static final int INITIAL_DELAY_EDEFAULT = 1000;
     /**
      * The cached value of the '{@link #getInitialDelay() <em>Initial Delay</em>}' attribute.
      * <!-- begin-user-doc -->
@@ -47,7 +47,15 @@ public class AtomScheduledPollConsumerTypeImpl extends EObjectImpl implements At
      * @generated
      * @ordered
      */
-    protected Integer initialDelay = INITIAL_DELAY_EDEFAULT;
+    protected int initialDelay = INITIAL_DELAY_EDEFAULT;
+    /**
+     * This is true if the Initial Delay attribute has been set.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    protected boolean initialDelayESet;
     /**
      * The default value of the '{@link #getDelay() <em>Delay</em>}' attribute.
      * <!-- begin-user-doc -->
@@ -56,7 +64,7 @@ public class AtomScheduledPollConsumerTypeImpl extends EObjectImpl implements At
      * @generated
      * @ordered
      */
-    protected static final Integer DELAY_EDEFAULT = null;
+    protected static final int DELAY_EDEFAULT = 60000;
     /**
      * The cached value of the '{@link #getDelay() <em>Delay</em>}' attribute.
      * <!-- begin-user-doc -->
@@ -65,25 +73,33 @@ public class AtomScheduledPollConsumerTypeImpl extends EObjectImpl implements At
      * @generated
      * @ordered
      */
-    protected Integer delay = DELAY_EDEFAULT;
+    protected int delay = DELAY_EDEFAULT;
     /**
-     * The default value of the '{@link #getUseFixedDelay() <em>Use Fixed Delay</em>}' attribute.
+     * This is true if the Delay attribute has been set.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @see #getUseFixedDelay()
      * @generated
      * @ordered
      */
-    protected static final Boolean USE_FIXED_DELAY_EDEFAULT = null;
+    protected boolean delayESet;
     /**
-     * The cached value of the '{@link #getUseFixedDelay() <em>Use Fixed Delay</em>}' attribute.
+     * The default value of the '{@link #isUseFixedDelay() <em>Use Fixed Delay</em>}' attribute.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @see #getUseFixedDelay()
+     * @see #isUseFixedDelay()
      * @generated
      * @ordered
      */
-    protected Boolean useFixedDelay = USE_FIXED_DELAY_EDEFAULT;
+    protected static final boolean USE_FIXED_DELAY_EDEFAULT = false;
+    /**
+     * The cached value of the '{@link #isUseFixedDelay() <em>Use Fixed Delay</em>}' attribute.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @see #isUseFixedDelay()
+     * @generated
+     * @ordered
+     */
+    protected boolean useFixedDelay = USE_FIXED_DELAY_EDEFAULT;
     /**
      * This is true if the Use Fixed Delay attribute has been set.
      * <!-- begin-user-doc -->
@@ -93,23 +109,23 @@ public class AtomScheduledPollConsumerTypeImpl extends EObjectImpl implements At
      */
     protected boolean useFixedDelayESet;
     /**
-     * The default value of the '{@link #getSendEmptyMessageWhenIdle() <em>Send Empty Message When Idle</em>}' attribute.
+     * The default value of the '{@link #isSendEmptyMessageWhenIdle() <em>Send Empty Message When Idle</em>}' attribute.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @see #getSendEmptyMessageWhenIdle()
+     * @see #isSendEmptyMessageWhenIdle()
      * @generated
      * @ordered
      */
-    protected static final Boolean SEND_EMPTY_MESSAGE_WHEN_IDLE_EDEFAULT = null;
+    protected static final boolean SEND_EMPTY_MESSAGE_WHEN_IDLE_EDEFAULT = false;
     /**
-     * The cached value of the '{@link #getSendEmptyMessageWhenIdle() <em>Send Empty Message When Idle</em>}' attribute.
+     * The cached value of the '{@link #isSendEmptyMessageWhenIdle() <em>Send Empty Message When Idle</em>}' attribute.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @see #getSendEmptyMessageWhenIdle()
+     * @see #isSendEmptyMessageWhenIdle()
      * @generated
      * @ordered
      */
-    protected Boolean sendEmptyMessageWhenIdle = SEND_EMPTY_MESSAGE_WHEN_IDLE_EDEFAULT;
+    protected boolean sendEmptyMessageWhenIdle = SEND_EMPTY_MESSAGE_WHEN_IDLE_EDEFAULT;
     /**
      * This is true if the Send Empty Message When Idle attribute has been set.
      * <!-- begin-user-doc -->
@@ -126,7 +142,7 @@ public class AtomScheduledPollConsumerTypeImpl extends EObjectImpl implements At
      * @generated
      * @ordered
      */
-    protected static final TimeUnitType TIME_UNIT_EDEFAULT = TimeUnitType.NANOSECONDS;
+    protected static final TimeUnitType TIME_UNIT_EDEFAULT = TimeUnitType.MILLISECONDS;
     /**
      * The cached value of the '{@link #getTimeUnit() <em>Time Unit</em>}' attribute.
      * <!-- begin-user-doc -->
@@ -169,7 +185,7 @@ public class AtomScheduledPollConsumerTypeImpl extends EObjectImpl implements At
      * <!-- end-user-doc -->
      * @generated
      */
-    public Integer getInitialDelay() {
+    public int getInitialDelay() {
         return initialDelay;
     }
 
@@ -178,11 +194,13 @@ public class AtomScheduledPollConsumerTypeImpl extends EObjectImpl implements At
      * <!-- end-user-doc -->
      * @generated
      */
-    public void setInitialDelay(Integer newInitialDelay) {
-        Integer oldInitialDelay = initialDelay;
+    public void setInitialDelay(int newInitialDelay) {
+        int oldInitialDelay = initialDelay;
         initialDelay = newInitialDelay;
+        boolean oldInitialDelayESet = initialDelayESet;
+        initialDelayESet = true;
         if (eNotificationRequired())
-            eNotify(new ENotificationImpl(this, Notification.SET, AtomPackage.ATOM_SCHEDULED_POLL_CONSUMER_TYPE__INITIAL_DELAY, oldInitialDelay, initialDelay));
+            eNotify(new ENotificationImpl(this, Notification.SET, AtomPackage.ATOM_SCHEDULED_POLL_CONSUMER_TYPE__INITIAL_DELAY, oldInitialDelay, initialDelay, !oldInitialDelayESet));
     }
 
     /**
@@ -190,7 +208,30 @@ public class AtomScheduledPollConsumerTypeImpl extends EObjectImpl implements At
      * <!-- end-user-doc -->
      * @generated
      */
-    public Integer getDelay() {
+    public void unsetInitialDelay() {
+        int oldInitialDelay = initialDelay;
+        boolean oldInitialDelayESet = initialDelayESet;
+        initialDelay = INITIAL_DELAY_EDEFAULT;
+        initialDelayESet = false;
+        if (eNotificationRequired())
+            eNotify(new ENotificationImpl(this, Notification.UNSET, AtomPackage.ATOM_SCHEDULED_POLL_CONSUMER_TYPE__INITIAL_DELAY, oldInitialDelay, INITIAL_DELAY_EDEFAULT, oldInitialDelayESet));
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public boolean isSetInitialDelay() {
+        return initialDelayESet;
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public int getDelay() {
         return delay;
     }
 
@@ -199,11 +240,13 @@ public class AtomScheduledPollConsumerTypeImpl extends EObjectImpl implements At
      * <!-- end-user-doc -->
      * @generated
      */
-    public void setDelay(Integer newDelay) {
-        Integer oldDelay = delay;
+    public void setDelay(int newDelay) {
+        int oldDelay = delay;
         delay = newDelay;
+        boolean oldDelayESet = delayESet;
+        delayESet = true;
         if (eNotificationRequired())
-            eNotify(new ENotificationImpl(this, Notification.SET, AtomPackage.ATOM_SCHEDULED_POLL_CONSUMER_TYPE__DELAY, oldDelay, delay));
+            eNotify(new ENotificationImpl(this, Notification.SET, AtomPackage.ATOM_SCHEDULED_POLL_CONSUMER_TYPE__DELAY, oldDelay, delay, !oldDelayESet));
     }
 
     /**
@@ -211,7 +254,30 @@ public class AtomScheduledPollConsumerTypeImpl extends EObjectImpl implements At
      * <!-- end-user-doc -->
      * @generated
      */
-    public Boolean getUseFixedDelay() {
+    public void unsetDelay() {
+        int oldDelay = delay;
+        boolean oldDelayESet = delayESet;
+        delay = DELAY_EDEFAULT;
+        delayESet = false;
+        if (eNotificationRequired())
+            eNotify(new ENotificationImpl(this, Notification.UNSET, AtomPackage.ATOM_SCHEDULED_POLL_CONSUMER_TYPE__DELAY, oldDelay, DELAY_EDEFAULT, oldDelayESet));
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public boolean isSetDelay() {
+        return delayESet;
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public boolean isUseFixedDelay() {
         return useFixedDelay;
     }
 
@@ -220,8 +286,8 @@ public class AtomScheduledPollConsumerTypeImpl extends EObjectImpl implements At
      * <!-- end-user-doc -->
      * @generated
      */
-    public void setUseFixedDelay(Boolean newUseFixedDelay) {
-        Boolean oldUseFixedDelay = useFixedDelay;
+    public void setUseFixedDelay(boolean newUseFixedDelay) {
+        boolean oldUseFixedDelay = useFixedDelay;
         useFixedDelay = newUseFixedDelay;
         boolean oldUseFixedDelayESet = useFixedDelayESet;
         useFixedDelayESet = true;
@@ -235,7 +301,7 @@ public class AtomScheduledPollConsumerTypeImpl extends EObjectImpl implements At
      * @generated
      */
     public void unsetUseFixedDelay() {
-        Boolean oldUseFixedDelay = useFixedDelay;
+        boolean oldUseFixedDelay = useFixedDelay;
         boolean oldUseFixedDelayESet = useFixedDelayESet;
         useFixedDelay = USE_FIXED_DELAY_EDEFAULT;
         useFixedDelayESet = false;
@@ -257,7 +323,7 @@ public class AtomScheduledPollConsumerTypeImpl extends EObjectImpl implements At
      * <!-- end-user-doc -->
      * @generated
      */
-    public Boolean getSendEmptyMessageWhenIdle() {
+    public boolean isSendEmptyMessageWhenIdle() {
         return sendEmptyMessageWhenIdle;
     }
 
@@ -266,8 +332,8 @@ public class AtomScheduledPollConsumerTypeImpl extends EObjectImpl implements At
      * <!-- end-user-doc -->
      * @generated
      */
-    public void setSendEmptyMessageWhenIdle(Boolean newSendEmptyMessageWhenIdle) {
-        Boolean oldSendEmptyMessageWhenIdle = sendEmptyMessageWhenIdle;
+    public void setSendEmptyMessageWhenIdle(boolean newSendEmptyMessageWhenIdle) {
+        boolean oldSendEmptyMessageWhenIdle = sendEmptyMessageWhenIdle;
         sendEmptyMessageWhenIdle = newSendEmptyMessageWhenIdle;
         boolean oldSendEmptyMessageWhenIdleESet = sendEmptyMessageWhenIdleESet;
         sendEmptyMessageWhenIdleESet = true;
@@ -281,7 +347,7 @@ public class AtomScheduledPollConsumerTypeImpl extends EObjectImpl implements At
      * @generated
      */
     public void unsetSendEmptyMessageWhenIdle() {
-        Boolean oldSendEmptyMessageWhenIdle = sendEmptyMessageWhenIdle;
+        boolean oldSendEmptyMessageWhenIdle = sendEmptyMessageWhenIdle;
         boolean oldSendEmptyMessageWhenIdleESet = sendEmptyMessageWhenIdleESet;
         sendEmptyMessageWhenIdle = SEND_EMPTY_MESSAGE_WHEN_IDLE_EDEFAULT;
         sendEmptyMessageWhenIdleESet = false;
@@ -357,9 +423,9 @@ public class AtomScheduledPollConsumerTypeImpl extends EObjectImpl implements At
             case AtomPackage.ATOM_SCHEDULED_POLL_CONSUMER_TYPE__DELAY:
                 return getDelay();
             case AtomPackage.ATOM_SCHEDULED_POLL_CONSUMER_TYPE__USE_FIXED_DELAY:
-                return getUseFixedDelay();
+                return isUseFixedDelay();
             case AtomPackage.ATOM_SCHEDULED_POLL_CONSUMER_TYPE__SEND_EMPTY_MESSAGE_WHEN_IDLE:
-                return getSendEmptyMessageWhenIdle();
+                return isSendEmptyMessageWhenIdle();
             case AtomPackage.ATOM_SCHEDULED_POLL_CONSUMER_TYPE__TIME_UNIT:
                 return getTimeUnit();
         }
@@ -402,10 +468,10 @@ public class AtomScheduledPollConsumerTypeImpl extends EObjectImpl implements At
     public void eUnset(int featureID) {
         switch (featureID) {
             case AtomPackage.ATOM_SCHEDULED_POLL_CONSUMER_TYPE__INITIAL_DELAY:
-                setInitialDelay(INITIAL_DELAY_EDEFAULT);
+                unsetInitialDelay();
                 return;
             case AtomPackage.ATOM_SCHEDULED_POLL_CONSUMER_TYPE__DELAY:
-                setDelay(DELAY_EDEFAULT);
+                unsetDelay();
                 return;
             case AtomPackage.ATOM_SCHEDULED_POLL_CONSUMER_TYPE__USE_FIXED_DELAY:
                 unsetUseFixedDelay();
@@ -429,9 +495,9 @@ public class AtomScheduledPollConsumerTypeImpl extends EObjectImpl implements At
     public boolean eIsSet(int featureID) {
         switch (featureID) {
             case AtomPackage.ATOM_SCHEDULED_POLL_CONSUMER_TYPE__INITIAL_DELAY:
-                return INITIAL_DELAY_EDEFAULT == null ? initialDelay != null : !INITIAL_DELAY_EDEFAULT.equals(initialDelay);
+                return isSetInitialDelay();
             case AtomPackage.ATOM_SCHEDULED_POLL_CONSUMER_TYPE__DELAY:
-                return DELAY_EDEFAULT == null ? delay != null : !DELAY_EDEFAULT.equals(delay);
+                return isSetDelay();
             case AtomPackage.ATOM_SCHEDULED_POLL_CONSUMER_TYPE__USE_FIXED_DELAY:
                 return isSetUseFixedDelay();
             case AtomPackage.ATOM_SCHEDULED_POLL_CONSUMER_TYPE__SEND_EMPTY_MESSAGE_WHEN_IDLE:
@@ -453,9 +519,9 @@ public class AtomScheduledPollConsumerTypeImpl extends EObjectImpl implements At
 
         StringBuffer result = new StringBuffer(super.toString());
         result.append(" (initialDelay: ");
-        result.append(initialDelay);
+        if (initialDelayESet) result.append(initialDelay); else result.append("<unset>");
         result.append(", delay: ");
-        result.append(delay);
+        if (delayESet) result.append(delay); else result.append("<unset>");
         result.append(", useFixedDelay: ");
         if (useFixedDelayESet) result.append(useFixedDelay); else result.append("<unset>");
         result.append(", sendEmptyMessageWhenIdle: ");

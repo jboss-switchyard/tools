@@ -29,7 +29,7 @@ import org.switchyard.tools.models.switchyard1_0.camel.mail.MailPackage;
  *   <li>{@link org.switchyard.tools.models.switchyard1_0.camel.mail.impl.CamelMailBindingTypeImpl#getConnectionTimeout <em>Connection Timeout</em>}</li>
  *   <li>{@link org.switchyard.tools.models.switchyard1_0.camel.mail.impl.CamelMailBindingTypeImpl#getConsume <em>Consume</em>}</li>
  *   <li>{@link org.switchyard.tools.models.switchyard1_0.camel.mail.impl.CamelMailBindingTypeImpl#getProduce <em>Produce</em>}</li>
- *   <li>{@link org.switchyard.tools.models.switchyard1_0.camel.mail.impl.CamelMailBindingTypeImpl#getSecure <em>Secure</em>}</li>
+ *   <li>{@link org.switchyard.tools.models.switchyard1_0.camel.mail.impl.CamelMailBindingTypeImpl#isSecure <em>Secure</em>}</li>
  * </ul>
  * </p>
  *
@@ -64,7 +64,7 @@ public class CamelMailBindingTypeImpl extends BaseCamelBindingImpl implements Ca
      * @generated
      * @ordered
      */
-    protected static final Integer PORT_EDEFAULT = null;
+    protected static final int PORT_EDEFAULT = 0;
 
     /**
      * The cached value of the '{@link #getPort() <em>Port</em>}' attribute.
@@ -74,7 +74,16 @@ public class CamelMailBindingTypeImpl extends BaseCamelBindingImpl implements Ca
      * @generated
      * @ordered
      */
-    protected Integer port = PORT_EDEFAULT;
+    protected int port = PORT_EDEFAULT;
+
+    /**
+     * This is true if the Port attribute has been set.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    protected boolean portESet;
 
     /**
      * The default value of the '{@link #getUsername() <em>Username</em>}' attribute.
@@ -124,7 +133,7 @@ public class CamelMailBindingTypeImpl extends BaseCamelBindingImpl implements Ca
      * @generated
      * @ordered
      */
-    protected static final Integer CONNECTION_TIMEOUT_EDEFAULT = null;
+    protected static final int CONNECTION_TIMEOUT_EDEFAULT = 30000;
 
     /**
      * The cached value of the '{@link #getConnectionTimeout() <em>Connection Timeout</em>}' attribute.
@@ -134,7 +143,7 @@ public class CamelMailBindingTypeImpl extends BaseCamelBindingImpl implements Ca
      * @generated
      * @ordered
      */
-    protected Integer connectionTimeout = CONNECTION_TIMEOUT_EDEFAULT;
+    protected int connectionTimeout = CONNECTION_TIMEOUT_EDEFAULT;
 
     /**
      * This is true if the Connection Timeout attribute has been set.
@@ -166,24 +175,33 @@ public class CamelMailBindingTypeImpl extends BaseCamelBindingImpl implements Ca
     protected CamelMailProducerType produce;
 
     /**
-     * The default value of the '{@link #getSecure() <em>Secure</em>}' attribute.
+     * The default value of the '{@link #isSecure() <em>Secure</em>}' attribute.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @see #getSecure()
+     * @see #isSecure()
      * @generated
      * @ordered
      */
-    protected static final Boolean SECURE_EDEFAULT = Boolean.FALSE;
+    protected static final boolean SECURE_EDEFAULT = false;
 
     /**
-     * The cached value of the '{@link #getSecure() <em>Secure</em>}' attribute.
+     * The cached value of the '{@link #isSecure() <em>Secure</em>}' attribute.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @see #getSecure()
+     * @see #isSecure()
      * @generated
      * @ordered
      */
-    protected Boolean secure = SECURE_EDEFAULT;
+    protected boolean secure = SECURE_EDEFAULT;
+
+    /**
+     * This is true if the Secure attribute has been set.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    protected boolean secureESet;
 
     /**
      * <!-- begin-user-doc -->
@@ -230,7 +248,7 @@ public class CamelMailBindingTypeImpl extends BaseCamelBindingImpl implements Ca
      * <!-- end-user-doc -->
      * @generated
      */
-    public Integer getPort() {
+    public int getPort() {
         return port;
     }
 
@@ -239,11 +257,36 @@ public class CamelMailBindingTypeImpl extends BaseCamelBindingImpl implements Ca
      * <!-- end-user-doc -->
      * @generated
      */
-    public void setPort(Integer newPort) {
-        Integer oldPort = port;
+    public void setPort(int newPort) {
+        int oldPort = port;
         port = newPort;
+        boolean oldPortESet = portESet;
+        portESet = true;
         if (eNotificationRequired())
-            eNotify(new ENotificationImpl(this, Notification.SET, MailPackage.CAMEL_MAIL_BINDING_TYPE__PORT, oldPort, port));
+            eNotify(new ENotificationImpl(this, Notification.SET, MailPackage.CAMEL_MAIL_BINDING_TYPE__PORT, oldPort, port, !oldPortESet));
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public void unsetPort() {
+        int oldPort = port;
+        boolean oldPortESet = portESet;
+        port = PORT_EDEFAULT;
+        portESet = false;
+        if (eNotificationRequired())
+            eNotify(new ENotificationImpl(this, Notification.UNSET, MailPackage.CAMEL_MAIL_BINDING_TYPE__PORT, oldPort, PORT_EDEFAULT, oldPortESet));
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public boolean isSetPort() {
+        return portESet;
     }
 
     /**
@@ -293,7 +336,7 @@ public class CamelMailBindingTypeImpl extends BaseCamelBindingImpl implements Ca
      * <!-- end-user-doc -->
      * @generated
      */
-    public Integer getConnectionTimeout() {
+    public int getConnectionTimeout() {
         return connectionTimeout;
     }
 
@@ -302,8 +345,8 @@ public class CamelMailBindingTypeImpl extends BaseCamelBindingImpl implements Ca
      * <!-- end-user-doc -->
      * @generated
      */
-    public void setConnectionTimeout(Integer newConnectionTimeout) {
-        Integer oldConnectionTimeout = connectionTimeout;
+    public void setConnectionTimeout(int newConnectionTimeout) {
+        int oldConnectionTimeout = connectionTimeout;
         connectionTimeout = newConnectionTimeout;
         boolean oldConnectionTimeoutESet = connectionTimeoutESet;
         connectionTimeoutESet = true;
@@ -317,7 +360,7 @@ public class CamelMailBindingTypeImpl extends BaseCamelBindingImpl implements Ca
      * @generated
      */
     public void unsetConnectionTimeout() {
-        Integer oldConnectionTimeout = connectionTimeout;
+        int oldConnectionTimeout = connectionTimeout;
         boolean oldConnectionTimeoutESet = connectionTimeoutESet;
         connectionTimeout = CONNECTION_TIMEOUT_EDEFAULT;
         connectionTimeoutESet = false;
@@ -425,7 +468,7 @@ public class CamelMailBindingTypeImpl extends BaseCamelBindingImpl implements Ca
      * <!-- end-user-doc -->
      * @generated
      */
-    public Boolean getSecure() {
+    public boolean isSecure() {
         return secure;
     }
 
@@ -434,11 +477,36 @@ public class CamelMailBindingTypeImpl extends BaseCamelBindingImpl implements Ca
      * <!-- end-user-doc -->
      * @generated
      */
-    public void setSecure(Boolean newSecure) {
-        Boolean oldSecure = secure;
+    public void setSecure(boolean newSecure) {
+        boolean oldSecure = secure;
         secure = newSecure;
+        boolean oldSecureESet = secureESet;
+        secureESet = true;
         if (eNotificationRequired())
-            eNotify(new ENotificationImpl(this, Notification.SET, MailPackage.CAMEL_MAIL_BINDING_TYPE__SECURE, oldSecure, secure));
+            eNotify(new ENotificationImpl(this, Notification.SET, MailPackage.CAMEL_MAIL_BINDING_TYPE__SECURE, oldSecure, secure, !oldSecureESet));
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public void unsetSecure() {
+        boolean oldSecure = secure;
+        boolean oldSecureESet = secureESet;
+        secure = SECURE_EDEFAULT;
+        secureESet = false;
+        if (eNotificationRequired())
+            eNotify(new ENotificationImpl(this, Notification.UNSET, MailPackage.CAMEL_MAIL_BINDING_TYPE__SECURE, oldSecure, SECURE_EDEFAULT, oldSecureESet));
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public boolean isSetSecure() {
+        return secureESet;
     }
 
     /**
@@ -480,7 +548,7 @@ public class CamelMailBindingTypeImpl extends BaseCamelBindingImpl implements Ca
             case MailPackage.CAMEL_MAIL_BINDING_TYPE__PRODUCE:
                 return getProduce();
             case MailPackage.CAMEL_MAIL_BINDING_TYPE__SECURE:
-                return getSecure();
+                return isSecure();
         }
         return super.eGet(featureID, resolve, coreType);
     }
@@ -533,7 +601,7 @@ public class CamelMailBindingTypeImpl extends BaseCamelBindingImpl implements Ca
                 setHost(HOST_EDEFAULT);
                 return;
             case MailPackage.CAMEL_MAIL_BINDING_TYPE__PORT:
-                setPort(PORT_EDEFAULT);
+                unsetPort();
                 return;
             case MailPackage.CAMEL_MAIL_BINDING_TYPE__USERNAME:
                 setUsername(USERNAME_EDEFAULT);
@@ -551,7 +619,7 @@ public class CamelMailBindingTypeImpl extends BaseCamelBindingImpl implements Ca
                 setProduce((CamelMailProducerType)null);
                 return;
             case MailPackage.CAMEL_MAIL_BINDING_TYPE__SECURE:
-                setSecure(SECURE_EDEFAULT);
+                unsetSecure();
                 return;
         }
         super.eUnset(featureID);
@@ -568,7 +636,7 @@ public class CamelMailBindingTypeImpl extends BaseCamelBindingImpl implements Ca
             case MailPackage.CAMEL_MAIL_BINDING_TYPE__HOST:
                 return HOST_EDEFAULT == null ? host != null : !HOST_EDEFAULT.equals(host);
             case MailPackage.CAMEL_MAIL_BINDING_TYPE__PORT:
-                return PORT_EDEFAULT == null ? port != null : !PORT_EDEFAULT.equals(port);
+                return isSetPort();
             case MailPackage.CAMEL_MAIL_BINDING_TYPE__USERNAME:
                 return USERNAME_EDEFAULT == null ? username != null : !USERNAME_EDEFAULT.equals(username);
             case MailPackage.CAMEL_MAIL_BINDING_TYPE__PASSWORD:
@@ -580,7 +648,7 @@ public class CamelMailBindingTypeImpl extends BaseCamelBindingImpl implements Ca
             case MailPackage.CAMEL_MAIL_BINDING_TYPE__PRODUCE:
                 return produce != null;
             case MailPackage.CAMEL_MAIL_BINDING_TYPE__SECURE:
-                return SECURE_EDEFAULT == null ? secure != null : !SECURE_EDEFAULT.equals(secure);
+                return isSetSecure();
         }
         return super.eIsSet(featureID);
     }
@@ -598,7 +666,7 @@ public class CamelMailBindingTypeImpl extends BaseCamelBindingImpl implements Ca
         result.append(" (host: ");
         result.append(host);
         result.append(", port: ");
-        result.append(port);
+        if (portESet) result.append(port); else result.append("<unset>");
         result.append(", username: ");
         result.append(username);
         result.append(", password: ");
@@ -606,7 +674,7 @@ public class CamelMailBindingTypeImpl extends BaseCamelBindingImpl implements Ca
         result.append(", connectionTimeout: ");
         if (connectionTimeoutESet) result.append(connectionTimeout); else result.append("<unset>");
         result.append(", secure: ");
-        result.append(secure);
+        if (secureESet) result.append(secure); else result.append("<unset>");
         result.append(')');
         return result.toString();
     }

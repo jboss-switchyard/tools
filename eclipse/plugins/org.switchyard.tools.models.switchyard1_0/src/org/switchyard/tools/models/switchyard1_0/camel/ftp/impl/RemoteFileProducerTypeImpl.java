@@ -21,8 +21,8 @@ import org.switchyard.tools.models.switchyard1_0.camel.ftp.RemoteFileProducerTyp
  *   <li>{@link org.switchyard.tools.models.switchyard1_0.camel.ftp.impl.RemoteFileProducerTypeImpl#getFileExist <em>File Exist</em>}</li>
  *   <li>{@link org.switchyard.tools.models.switchyard1_0.camel.ftp.impl.RemoteFileProducerTypeImpl#getTempPrefix <em>Temp Prefix</em>}</li>
  *   <li>{@link org.switchyard.tools.models.switchyard1_0.camel.ftp.impl.RemoteFileProducerTypeImpl#getTempFileName <em>Temp File Name</em>}</li>
- *   <li>{@link org.switchyard.tools.models.switchyard1_0.camel.ftp.impl.RemoteFileProducerTypeImpl#getKeepLastModified <em>Keep Last Modified</em>}</li>
- *   <li>{@link org.switchyard.tools.models.switchyard1_0.camel.ftp.impl.RemoteFileProducerTypeImpl#getEagerDeleteTargetFile <em>Eager Delete Target File</em>}</li>
+ *   <li>{@link org.switchyard.tools.models.switchyard1_0.camel.ftp.impl.RemoteFileProducerTypeImpl#isKeepLastModified <em>Keep Last Modified</em>}</li>
+ *   <li>{@link org.switchyard.tools.models.switchyard1_0.camel.ftp.impl.RemoteFileProducerTypeImpl#isEagerDeleteTargetFile <em>Eager Delete Target File</em>}</li>
  *   <li>{@link org.switchyard.tools.models.switchyard1_0.camel.ftp.impl.RemoteFileProducerTypeImpl#getDoneFileName <em>Done File Name</em>}</li>
  * </ul>
  * </p>
@@ -85,23 +85,23 @@ public class RemoteFileProducerTypeImpl extends EObjectImpl implements RemoteFil
      */
     protected String tempFileName = TEMP_FILE_NAME_EDEFAULT;
     /**
-     * The default value of the '{@link #getKeepLastModified() <em>Keep Last Modified</em>}' attribute.
+     * The default value of the '{@link #isKeepLastModified() <em>Keep Last Modified</em>}' attribute.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @see #getKeepLastModified()
+     * @see #isKeepLastModified()
      * @generated
      * @ordered
      */
-    protected static final Boolean KEEP_LAST_MODIFIED_EDEFAULT = null;
+    protected static final boolean KEEP_LAST_MODIFIED_EDEFAULT = false;
     /**
-     * The cached value of the '{@link #getKeepLastModified() <em>Keep Last Modified</em>}' attribute.
+     * The cached value of the '{@link #isKeepLastModified() <em>Keep Last Modified</em>}' attribute.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @see #getKeepLastModified()
+     * @see #isKeepLastModified()
      * @generated
      * @ordered
      */
-    protected Boolean keepLastModified = KEEP_LAST_MODIFIED_EDEFAULT;
+    protected boolean keepLastModified = KEEP_LAST_MODIFIED_EDEFAULT;
     /**
      * This is true if the Keep Last Modified attribute has been set.
      * <!-- begin-user-doc -->
@@ -111,23 +111,23 @@ public class RemoteFileProducerTypeImpl extends EObjectImpl implements RemoteFil
      */
     protected boolean keepLastModifiedESet;
     /**
-     * The default value of the '{@link #getEagerDeleteTargetFile() <em>Eager Delete Target File</em>}' attribute.
+     * The default value of the '{@link #isEagerDeleteTargetFile() <em>Eager Delete Target File</em>}' attribute.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @see #getEagerDeleteTargetFile()
+     * @see #isEagerDeleteTargetFile()
      * @generated
      * @ordered
      */
-    protected static final Boolean EAGER_DELETE_TARGET_FILE_EDEFAULT = null;
+    protected static final boolean EAGER_DELETE_TARGET_FILE_EDEFAULT = true;
     /**
-     * The cached value of the '{@link #getEagerDeleteTargetFile() <em>Eager Delete Target File</em>}' attribute.
+     * The cached value of the '{@link #isEagerDeleteTargetFile() <em>Eager Delete Target File</em>}' attribute.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @see #getEagerDeleteTargetFile()
+     * @see #isEagerDeleteTargetFile()
      * @generated
      * @ordered
      */
-    protected Boolean eagerDeleteTargetFile = EAGER_DELETE_TARGET_FILE_EDEFAULT;
+    protected boolean eagerDeleteTargetFile = EAGER_DELETE_TARGET_FILE_EDEFAULT;
     /**
      * This is true if the Eager Delete Target File attribute has been set.
      * <!-- begin-user-doc -->
@@ -242,7 +242,7 @@ public class RemoteFileProducerTypeImpl extends EObjectImpl implements RemoteFil
      * <!-- end-user-doc -->
      * @generated
      */
-    public Boolean getKeepLastModified() {
+    public boolean isKeepLastModified() {
         return keepLastModified;
     }
 
@@ -251,8 +251,8 @@ public class RemoteFileProducerTypeImpl extends EObjectImpl implements RemoteFil
      * <!-- end-user-doc -->
      * @generated
      */
-    public void setKeepLastModified(Boolean newKeepLastModified) {
-        Boolean oldKeepLastModified = keepLastModified;
+    public void setKeepLastModified(boolean newKeepLastModified) {
+        boolean oldKeepLastModified = keepLastModified;
         keepLastModified = newKeepLastModified;
         boolean oldKeepLastModifiedESet = keepLastModifiedESet;
         keepLastModifiedESet = true;
@@ -266,7 +266,7 @@ public class RemoteFileProducerTypeImpl extends EObjectImpl implements RemoteFil
      * @generated
      */
     public void unsetKeepLastModified() {
-        Boolean oldKeepLastModified = keepLastModified;
+        boolean oldKeepLastModified = keepLastModified;
         boolean oldKeepLastModifiedESet = keepLastModifiedESet;
         keepLastModified = KEEP_LAST_MODIFIED_EDEFAULT;
         keepLastModifiedESet = false;
@@ -288,7 +288,7 @@ public class RemoteFileProducerTypeImpl extends EObjectImpl implements RemoteFil
      * <!-- end-user-doc -->
      * @generated
      */
-    public Boolean getEagerDeleteTargetFile() {
+    public boolean isEagerDeleteTargetFile() {
         return eagerDeleteTargetFile;
     }
 
@@ -297,8 +297,8 @@ public class RemoteFileProducerTypeImpl extends EObjectImpl implements RemoteFil
      * <!-- end-user-doc -->
      * @generated
      */
-    public void setEagerDeleteTargetFile(Boolean newEagerDeleteTargetFile) {
-        Boolean oldEagerDeleteTargetFile = eagerDeleteTargetFile;
+    public void setEagerDeleteTargetFile(boolean newEagerDeleteTargetFile) {
+        boolean oldEagerDeleteTargetFile = eagerDeleteTargetFile;
         eagerDeleteTargetFile = newEagerDeleteTargetFile;
         boolean oldEagerDeleteTargetFileESet = eagerDeleteTargetFileESet;
         eagerDeleteTargetFileESet = true;
@@ -312,7 +312,7 @@ public class RemoteFileProducerTypeImpl extends EObjectImpl implements RemoteFil
      * @generated
      */
     public void unsetEagerDeleteTargetFile() {
-        Boolean oldEagerDeleteTargetFile = eagerDeleteTargetFile;
+        boolean oldEagerDeleteTargetFile = eagerDeleteTargetFile;
         boolean oldEagerDeleteTargetFileESet = eagerDeleteTargetFileESet;
         eagerDeleteTargetFile = EAGER_DELETE_TARGET_FILE_EDEFAULT;
         eagerDeleteTargetFileESet = false;
@@ -365,9 +365,9 @@ public class RemoteFileProducerTypeImpl extends EObjectImpl implements RemoteFil
             case FtpPackage.REMOTE_FILE_PRODUCER_TYPE__TEMP_FILE_NAME:
                 return getTempFileName();
             case FtpPackage.REMOTE_FILE_PRODUCER_TYPE__KEEP_LAST_MODIFIED:
-                return getKeepLastModified();
+                return isKeepLastModified();
             case FtpPackage.REMOTE_FILE_PRODUCER_TYPE__EAGER_DELETE_TARGET_FILE:
-                return getEagerDeleteTargetFile();
+                return isEagerDeleteTargetFile();
             case FtpPackage.REMOTE_FILE_PRODUCER_TYPE__DONE_FILE_NAME:
                 return getDoneFileName();
         }

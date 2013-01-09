@@ -11,24 +11,24 @@ package org.switchyard.tools.models.switchyard1_0.camel.ftp;
  * The following features are supported:
  * <ul>
  *   <li>{@link org.switchyard.tools.models.switchyard1_0.camel.ftp.CamelFtpBindingType#getDirectory <em>Directory</em>}</li>
- *   <li>{@link org.switchyard.tools.models.switchyard1_0.camel.ftp.CamelFtpBindingType#getAutoCreate <em>Auto Create</em>}</li>
+ *   <li>{@link org.switchyard.tools.models.switchyard1_0.camel.ftp.CamelFtpBindingType#isAutoCreate <em>Auto Create</em>}</li>
  *   <li>{@link org.switchyard.tools.models.switchyard1_0.camel.ftp.CamelFtpBindingType#getBufferSize <em>Buffer Size</em>}</li>
  *   <li>{@link org.switchyard.tools.models.switchyard1_0.camel.ftp.CamelFtpBindingType#getFileName <em>File Name</em>}</li>
- *   <li>{@link org.switchyard.tools.models.switchyard1_0.camel.ftp.CamelFtpBindingType#getFlatten <em>Flatten</em>}</li>
+ *   <li>{@link org.switchyard.tools.models.switchyard1_0.camel.ftp.CamelFtpBindingType#isFlatten <em>Flatten</em>}</li>
  *   <li>{@link org.switchyard.tools.models.switchyard1_0.camel.ftp.CamelFtpBindingType#getCharset <em>Charset</em>}</li>
  *   <li>{@link org.switchyard.tools.models.switchyard1_0.camel.ftp.CamelFtpBindingType#getHost <em>Host</em>}</li>
  *   <li>{@link org.switchyard.tools.models.switchyard1_0.camel.ftp.CamelFtpBindingType#getPort <em>Port</em>}</li>
  *   <li>{@link org.switchyard.tools.models.switchyard1_0.camel.ftp.CamelFtpBindingType#getUsername <em>Username</em>}</li>
  *   <li>{@link org.switchyard.tools.models.switchyard1_0.camel.ftp.CamelFtpBindingType#getPassword <em>Password</em>}</li>
- *   <li>{@link org.switchyard.tools.models.switchyard1_0.camel.ftp.CamelFtpBindingType#getBinary <em>Binary</em>}</li>
+ *   <li>{@link org.switchyard.tools.models.switchyard1_0.camel.ftp.CamelFtpBindingType#isBinary <em>Binary</em>}</li>
  *   <li>{@link org.switchyard.tools.models.switchyard1_0.camel.ftp.CamelFtpBindingType#getConnectTimeout <em>Connect Timeout</em>}</li>
- *   <li>{@link org.switchyard.tools.models.switchyard1_0.camel.ftp.CamelFtpBindingType#getDisconnect <em>Disconnect</em>}</li>
+ *   <li>{@link org.switchyard.tools.models.switchyard1_0.camel.ftp.CamelFtpBindingType#isDisconnect <em>Disconnect</em>}</li>
  *   <li>{@link org.switchyard.tools.models.switchyard1_0.camel.ftp.CamelFtpBindingType#getMaximumReconnectAttempts <em>Maximum Reconnect Attempts</em>}</li>
  *   <li>{@link org.switchyard.tools.models.switchyard1_0.camel.ftp.CamelFtpBindingType#getReconnectDelay <em>Reconnect Delay</em>}</li>
  *   <li>{@link org.switchyard.tools.models.switchyard1_0.camel.ftp.CamelFtpBindingType#getSeparator <em>Separator</em>}</li>
- *   <li>{@link org.switchyard.tools.models.switchyard1_0.camel.ftp.CamelFtpBindingType#getStepwise <em>Stepwise</em>}</li>
- *   <li>{@link org.switchyard.tools.models.switchyard1_0.camel.ftp.CamelFtpBindingType#getThrowExceptionOnConnectFailed <em>Throw Exception On Connect Failed</em>}</li>
- *   <li>{@link org.switchyard.tools.models.switchyard1_0.camel.ftp.CamelFtpBindingType#getPassiveMode <em>Passive Mode</em>}</li>
+ *   <li>{@link org.switchyard.tools.models.switchyard1_0.camel.ftp.CamelFtpBindingType#isStepwise <em>Stepwise</em>}</li>
+ *   <li>{@link org.switchyard.tools.models.switchyard1_0.camel.ftp.CamelFtpBindingType#isThrowExceptionOnConnectFailed <em>Throw Exception On Connect Failed</em>}</li>
+ *   <li>{@link org.switchyard.tools.models.switchyard1_0.camel.ftp.CamelFtpBindingType#isPassiveMode <em>Passive Mode</em>}</li>
  *   <li>{@link org.switchyard.tools.models.switchyard1_0.camel.ftp.CamelFtpBindingType#getTimeout <em>Timeout</em>}</li>
  *   <li>{@link org.switchyard.tools.models.switchyard1_0.camel.ftp.CamelFtpBindingType#getSoTimeout <em>So Timeout</em>}</li>
  *   <li>{@link org.switchyard.tools.models.switchyard1_0.camel.ftp.CamelFtpBindingType#getSiteCommand <em>Site Command</em>}</li>
@@ -71,6 +71,7 @@ public interface CamelFtpBindingType extends BaseCamelBinding {
 
     /**
      * Returns the value of the '<em><b>Auto Create</b></em>' attribute.
+     * The default value is <code>"true"</code>.
      * <!-- begin-user-doc -->
      * <p>
      * If the meaning of the '<em>Auto Create</em>' attribute isn't clear,
@@ -80,51 +81,52 @@ public interface CamelFtpBindingType extends BaseCamelBinding {
      * @return the value of the '<em>Auto Create</em>' attribute.
      * @see #isSetAutoCreate()
      * @see #unsetAutoCreate()
-     * @see #setAutoCreate(Boolean)
+     * @see #setAutoCreate(boolean)
      * @see org.switchyard.tools.models.switchyard1_0.camel.ftp.FtpPackage#getCamelFtpBindingType_AutoCreate()
-     * @model unsettable="true" dataType="org.eclipse.emf.ecore.xml.type.BooleanObject"
+     * @model default="true" unsettable="true" dataType="org.eclipse.emf.ecore.xml.type.Boolean"
      *        extendedMetaData="kind='element' name='autoCreate' namespace='##targetNamespace'"
      * @generated
      */
-    Boolean getAutoCreate();
+    boolean isAutoCreate();
 
     /**
-     * Sets the value of the '{@link org.switchyard.tools.models.switchyard1_0.camel.ftp.CamelFtpBindingType#getAutoCreate <em>Auto Create</em>}' attribute.
+     * Sets the value of the '{@link org.switchyard.tools.models.switchyard1_0.camel.ftp.CamelFtpBindingType#isAutoCreate <em>Auto Create</em>}' attribute.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @param value the new value of the '<em>Auto Create</em>' attribute.
      * @see #isSetAutoCreate()
      * @see #unsetAutoCreate()
-     * @see #getAutoCreate()
+     * @see #isAutoCreate()
      * @generated
      */
-    void setAutoCreate(Boolean value);
+    void setAutoCreate(boolean value);
 
     /**
-     * Unsets the value of the '{@link org.switchyard.tools.models.switchyard1_0.camel.ftp.CamelFtpBindingType#getAutoCreate <em>Auto Create</em>}' attribute.
+     * Unsets the value of the '{@link org.switchyard.tools.models.switchyard1_0.camel.ftp.CamelFtpBindingType#isAutoCreate <em>Auto Create</em>}' attribute.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @see #isSetAutoCreate()
-     * @see #getAutoCreate()
-     * @see #setAutoCreate(Boolean)
+     * @see #isAutoCreate()
+     * @see #setAutoCreate(boolean)
      * @generated
      */
     void unsetAutoCreate();
 
     /**
-     * Returns whether the value of the '{@link org.switchyard.tools.models.switchyard1_0.camel.ftp.CamelFtpBindingType#getAutoCreate <em>Auto Create</em>}' attribute is set.
+     * Returns whether the value of the '{@link org.switchyard.tools.models.switchyard1_0.camel.ftp.CamelFtpBindingType#isAutoCreate <em>Auto Create</em>}' attribute is set.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @return whether the value of the '<em>Auto Create</em>' attribute is set.
      * @see #unsetAutoCreate()
-     * @see #getAutoCreate()
-     * @see #setAutoCreate(Boolean)
+     * @see #isAutoCreate()
+     * @see #setAutoCreate(boolean)
      * @generated
      */
     boolean isSetAutoCreate();
 
     /**
      * Returns the value of the '<em><b>Buffer Size</b></em>' attribute.
+     * The default value is <code>"131072"</code>.
      * <!-- begin-user-doc -->
      * <p>
      * If the meaning of the '<em>Buffer Size</em>' attribute isn't clear,
@@ -132,23 +134,50 @@ public interface CamelFtpBindingType extends BaseCamelBinding {
      * </p>
      * <!-- end-user-doc -->
      * @return the value of the '<em>Buffer Size</em>' attribute.
-     * @see #setBufferSize(Integer)
+     * @see #isSetBufferSize()
+     * @see #unsetBufferSize()
+     * @see #setBufferSize(int)
      * @see org.switchyard.tools.models.switchyard1_0.camel.ftp.FtpPackage#getCamelFtpBindingType_BufferSize()
-     * @model dataType="org.eclipse.emf.ecore.xml.type.IntObject"
+     * @model default="131072" unsettable="true" dataType="org.eclipse.emf.ecore.xml.type.Int"
      *        extendedMetaData="kind='element' name='bufferSize' namespace='##targetNamespace'"
      * @generated
      */
-    Integer getBufferSize();
+    int getBufferSize();
 
     /**
      * Sets the value of the '{@link org.switchyard.tools.models.switchyard1_0.camel.ftp.CamelFtpBindingType#getBufferSize <em>Buffer Size</em>}' attribute.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @param value the new value of the '<em>Buffer Size</em>' attribute.
+     * @see #isSetBufferSize()
+     * @see #unsetBufferSize()
      * @see #getBufferSize()
      * @generated
      */
-    void setBufferSize(Integer value);
+    void setBufferSize(int value);
+
+    /**
+     * Unsets the value of the '{@link org.switchyard.tools.models.switchyard1_0.camel.ftp.CamelFtpBindingType#getBufferSize <em>Buffer Size</em>}' attribute.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @see #isSetBufferSize()
+     * @see #getBufferSize()
+     * @see #setBufferSize(int)
+     * @generated
+     */
+    void unsetBufferSize();
+
+    /**
+     * Returns whether the value of the '{@link org.switchyard.tools.models.switchyard1_0.camel.ftp.CamelFtpBindingType#getBufferSize <em>Buffer Size</em>}' attribute is set.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @return whether the value of the '<em>Buffer Size</em>' attribute is set.
+     * @see #unsetBufferSize()
+     * @see #getBufferSize()
+     * @see #setBufferSize(int)
+     * @generated
+     */
+    boolean isSetBufferSize();
 
     /**
      * Returns the value of the '<em><b>File Name</b></em>' attribute.
@@ -179,6 +208,7 @@ public interface CamelFtpBindingType extends BaseCamelBinding {
 
     /**
      * Returns the value of the '<em><b>Flatten</b></em>' attribute.
+     * The default value is <code>"false"</code>.
      * <!-- begin-user-doc -->
      * <p>
      * If the meaning of the '<em>Flatten</em>' attribute isn't clear,
@@ -188,45 +218,45 @@ public interface CamelFtpBindingType extends BaseCamelBinding {
      * @return the value of the '<em>Flatten</em>' attribute.
      * @see #isSetFlatten()
      * @see #unsetFlatten()
-     * @see #setFlatten(Boolean)
+     * @see #setFlatten(boolean)
      * @see org.switchyard.tools.models.switchyard1_0.camel.ftp.FtpPackage#getCamelFtpBindingType_Flatten()
-     * @model unsettable="true" dataType="org.eclipse.emf.ecore.xml.type.BooleanObject"
+     * @model default="false" unsettable="true" dataType="org.eclipse.emf.ecore.xml.type.Boolean"
      *        extendedMetaData="kind='element' name='flatten' namespace='##targetNamespace'"
      * @generated
      */
-    Boolean getFlatten();
+    boolean isFlatten();
 
     /**
-     * Sets the value of the '{@link org.switchyard.tools.models.switchyard1_0.camel.ftp.CamelFtpBindingType#getFlatten <em>Flatten</em>}' attribute.
+     * Sets the value of the '{@link org.switchyard.tools.models.switchyard1_0.camel.ftp.CamelFtpBindingType#isFlatten <em>Flatten</em>}' attribute.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @param value the new value of the '<em>Flatten</em>' attribute.
      * @see #isSetFlatten()
      * @see #unsetFlatten()
-     * @see #getFlatten()
+     * @see #isFlatten()
      * @generated
      */
-    void setFlatten(Boolean value);
+    void setFlatten(boolean value);
 
     /**
-     * Unsets the value of the '{@link org.switchyard.tools.models.switchyard1_0.camel.ftp.CamelFtpBindingType#getFlatten <em>Flatten</em>}' attribute.
+     * Unsets the value of the '{@link org.switchyard.tools.models.switchyard1_0.camel.ftp.CamelFtpBindingType#isFlatten <em>Flatten</em>}' attribute.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @see #isSetFlatten()
-     * @see #getFlatten()
-     * @see #setFlatten(Boolean)
+     * @see #isFlatten()
+     * @see #setFlatten(boolean)
      * @generated
      */
     void unsetFlatten();
 
     /**
-     * Returns whether the value of the '{@link org.switchyard.tools.models.switchyard1_0.camel.ftp.CamelFtpBindingType#getFlatten <em>Flatten</em>}' attribute is set.
+     * Returns whether the value of the '{@link org.switchyard.tools.models.switchyard1_0.camel.ftp.CamelFtpBindingType#isFlatten <em>Flatten</em>}' attribute is set.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @return whether the value of the '<em>Flatten</em>' attribute is set.
      * @see #unsetFlatten()
-     * @see #getFlatten()
-     * @see #setFlatten(Boolean)
+     * @see #isFlatten()
+     * @see #setFlatten(boolean)
      * @generated
      */
     boolean isSetFlatten();
@@ -260,6 +290,7 @@ public interface CamelFtpBindingType extends BaseCamelBinding {
 
     /**
      * Returns the value of the '<em><b>Host</b></em>' attribute.
+     * The default value is <code>""</code>.
      * <!-- begin-user-doc -->
      * <p>
      * If the meaning of the '<em>Host</em>' attribute isn't clear,
@@ -269,7 +300,7 @@ public interface CamelFtpBindingType extends BaseCamelBinding {
      * @return the value of the '<em>Host</em>' attribute.
      * @see #setHost(String)
      * @see org.switchyard.tools.models.switchyard1_0.camel.ftp.FtpPackage#getCamelFtpBindingType_Host()
-     * @model dataType="org.eclipse.emf.ecore.xml.type.String"
+     * @model default="" dataType="org.eclipse.emf.ecore.xml.type.String"
      *        extendedMetaData="kind='element' name='host' namespace='##targetNamespace'"
      * @generated
      */
@@ -296,13 +327,13 @@ public interface CamelFtpBindingType extends BaseCamelBinding {
      * @return the value of the '<em>Port</em>' attribute.
      * @see #isSetPort()
      * @see #unsetPort()
-     * @see #setPort(Integer)
+     * @see #setPort(int)
      * @see org.switchyard.tools.models.switchyard1_0.camel.ftp.FtpPackage#getCamelFtpBindingType_Port()
-     * @model unsettable="true" dataType="org.eclipse.emf.ecore.xml.type.IntObject"
+     * @model unsettable="true" dataType="org.eclipse.emf.ecore.xml.type.Int"
      *        extendedMetaData="kind='element' name='port' namespace='##targetNamespace'"
      * @generated
      */
-    Integer getPort();
+    int getPort();
 
     /**
      * Sets the value of the '{@link org.switchyard.tools.models.switchyard1_0.camel.ftp.CamelFtpBindingType#getPort <em>Port</em>}' attribute.
@@ -314,7 +345,7 @@ public interface CamelFtpBindingType extends BaseCamelBinding {
      * @see #getPort()
      * @generated
      */
-    void setPort(Integer value);
+    void setPort(int value);
 
     /**
      * Unsets the value of the '{@link org.switchyard.tools.models.switchyard1_0.camel.ftp.CamelFtpBindingType#getPort <em>Port</em>}' attribute.
@@ -322,7 +353,7 @@ public interface CamelFtpBindingType extends BaseCamelBinding {
      * <!-- end-user-doc -->
      * @see #isSetPort()
      * @see #getPort()
-     * @see #setPort(Integer)
+     * @see #setPort(int)
      * @generated
      */
     void unsetPort();
@@ -334,7 +365,7 @@ public interface CamelFtpBindingType extends BaseCamelBinding {
      * @return whether the value of the '<em>Port</em>' attribute is set.
      * @see #unsetPort()
      * @see #getPort()
-     * @see #setPort(Integer)
+     * @see #setPort(int)
      * @generated
      */
     boolean isSetPort();
@@ -395,6 +426,7 @@ public interface CamelFtpBindingType extends BaseCamelBinding {
 
     /**
      * Returns the value of the '<em><b>Binary</b></em>' attribute.
+     * The default value is <code>"false"</code>.
      * <!-- begin-user-doc -->
      * <p>
      * If the meaning of the '<em>Binary</em>' attribute isn't clear,
@@ -404,51 +436,52 @@ public interface CamelFtpBindingType extends BaseCamelBinding {
      * @return the value of the '<em>Binary</em>' attribute.
      * @see #isSetBinary()
      * @see #unsetBinary()
-     * @see #setBinary(Boolean)
+     * @see #setBinary(boolean)
      * @see org.switchyard.tools.models.switchyard1_0.camel.ftp.FtpPackage#getCamelFtpBindingType_Binary()
-     * @model unsettable="true" dataType="org.eclipse.emf.ecore.xml.type.BooleanObject"
+     * @model default="false" unsettable="true" dataType="org.eclipse.emf.ecore.xml.type.Boolean"
      *        extendedMetaData="kind='element' name='binary' namespace='##targetNamespace'"
      * @generated
      */
-    Boolean getBinary();
+    boolean isBinary();
 
     /**
-     * Sets the value of the '{@link org.switchyard.tools.models.switchyard1_0.camel.ftp.CamelFtpBindingType#getBinary <em>Binary</em>}' attribute.
+     * Sets the value of the '{@link org.switchyard.tools.models.switchyard1_0.camel.ftp.CamelFtpBindingType#isBinary <em>Binary</em>}' attribute.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @param value the new value of the '<em>Binary</em>' attribute.
      * @see #isSetBinary()
      * @see #unsetBinary()
-     * @see #getBinary()
+     * @see #isBinary()
      * @generated
      */
-    void setBinary(Boolean value);
+    void setBinary(boolean value);
 
     /**
-     * Unsets the value of the '{@link org.switchyard.tools.models.switchyard1_0.camel.ftp.CamelFtpBindingType#getBinary <em>Binary</em>}' attribute.
+     * Unsets the value of the '{@link org.switchyard.tools.models.switchyard1_0.camel.ftp.CamelFtpBindingType#isBinary <em>Binary</em>}' attribute.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @see #isSetBinary()
-     * @see #getBinary()
-     * @see #setBinary(Boolean)
+     * @see #isBinary()
+     * @see #setBinary(boolean)
      * @generated
      */
     void unsetBinary();
 
     /**
-     * Returns whether the value of the '{@link org.switchyard.tools.models.switchyard1_0.camel.ftp.CamelFtpBindingType#getBinary <em>Binary</em>}' attribute is set.
+     * Returns whether the value of the '{@link org.switchyard.tools.models.switchyard1_0.camel.ftp.CamelFtpBindingType#isBinary <em>Binary</em>}' attribute is set.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @return whether the value of the '<em>Binary</em>' attribute is set.
      * @see #unsetBinary()
-     * @see #getBinary()
-     * @see #setBinary(Boolean)
+     * @see #isBinary()
+     * @see #setBinary(boolean)
      * @generated
      */
     boolean isSetBinary();
 
     /**
      * Returns the value of the '<em><b>Connect Timeout</b></em>' attribute.
+     * The default value is <code>"10000"</code>.
      * <!-- begin-user-doc -->
      * <p>
      * If the meaning of the '<em>Connect Timeout</em>' attribute isn't clear,
@@ -458,13 +491,13 @@ public interface CamelFtpBindingType extends BaseCamelBinding {
      * @return the value of the '<em>Connect Timeout</em>' attribute.
      * @see #isSetConnectTimeout()
      * @see #unsetConnectTimeout()
-     * @see #setConnectTimeout(Integer)
+     * @see #setConnectTimeout(int)
      * @see org.switchyard.tools.models.switchyard1_0.camel.ftp.FtpPackage#getCamelFtpBindingType_ConnectTimeout()
-     * @model unsettable="true" dataType="org.eclipse.emf.ecore.xml.type.IntObject"
+     * @model default="10000" unsettable="true" dataType="org.eclipse.emf.ecore.xml.type.Int"
      *        extendedMetaData="kind='element' name='connectTimeout' namespace='##targetNamespace'"
      * @generated
      */
-    Integer getConnectTimeout();
+    int getConnectTimeout();
 
     /**
      * Sets the value of the '{@link org.switchyard.tools.models.switchyard1_0.camel.ftp.CamelFtpBindingType#getConnectTimeout <em>Connect Timeout</em>}' attribute.
@@ -476,7 +509,7 @@ public interface CamelFtpBindingType extends BaseCamelBinding {
      * @see #getConnectTimeout()
      * @generated
      */
-    void setConnectTimeout(Integer value);
+    void setConnectTimeout(int value);
 
     /**
      * Unsets the value of the '{@link org.switchyard.tools.models.switchyard1_0.camel.ftp.CamelFtpBindingType#getConnectTimeout <em>Connect Timeout</em>}' attribute.
@@ -484,7 +517,7 @@ public interface CamelFtpBindingType extends BaseCamelBinding {
      * <!-- end-user-doc -->
      * @see #isSetConnectTimeout()
      * @see #getConnectTimeout()
-     * @see #setConnectTimeout(Integer)
+     * @see #setConnectTimeout(int)
      * @generated
      */
     void unsetConnectTimeout();
@@ -496,13 +529,14 @@ public interface CamelFtpBindingType extends BaseCamelBinding {
      * @return whether the value of the '<em>Connect Timeout</em>' attribute is set.
      * @see #unsetConnectTimeout()
      * @see #getConnectTimeout()
-     * @see #setConnectTimeout(Integer)
+     * @see #setConnectTimeout(int)
      * @generated
      */
     boolean isSetConnectTimeout();
 
     /**
      * Returns the value of the '<em><b>Disconnect</b></em>' attribute.
+     * The default value is <code>"false"</code>.
      * <!-- begin-user-doc -->
      * <p>
      * If the meaning of the '<em>Disconnect</em>' attribute isn't clear,
@@ -512,51 +546,52 @@ public interface CamelFtpBindingType extends BaseCamelBinding {
      * @return the value of the '<em>Disconnect</em>' attribute.
      * @see #isSetDisconnect()
      * @see #unsetDisconnect()
-     * @see #setDisconnect(Boolean)
+     * @see #setDisconnect(boolean)
      * @see org.switchyard.tools.models.switchyard1_0.camel.ftp.FtpPackage#getCamelFtpBindingType_Disconnect()
-     * @model unsettable="true" dataType="org.eclipse.emf.ecore.xml.type.BooleanObject"
+     * @model default="false" unsettable="true" dataType="org.eclipse.emf.ecore.xml.type.Boolean"
      *        extendedMetaData="kind='element' name='disconnect' namespace='##targetNamespace'"
      * @generated
      */
-    Boolean getDisconnect();
+    boolean isDisconnect();
 
     /**
-     * Sets the value of the '{@link org.switchyard.tools.models.switchyard1_0.camel.ftp.CamelFtpBindingType#getDisconnect <em>Disconnect</em>}' attribute.
+     * Sets the value of the '{@link org.switchyard.tools.models.switchyard1_0.camel.ftp.CamelFtpBindingType#isDisconnect <em>Disconnect</em>}' attribute.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @param value the new value of the '<em>Disconnect</em>' attribute.
      * @see #isSetDisconnect()
      * @see #unsetDisconnect()
-     * @see #getDisconnect()
+     * @see #isDisconnect()
      * @generated
      */
-    void setDisconnect(Boolean value);
+    void setDisconnect(boolean value);
 
     /**
-     * Unsets the value of the '{@link org.switchyard.tools.models.switchyard1_0.camel.ftp.CamelFtpBindingType#getDisconnect <em>Disconnect</em>}' attribute.
+     * Unsets the value of the '{@link org.switchyard.tools.models.switchyard1_0.camel.ftp.CamelFtpBindingType#isDisconnect <em>Disconnect</em>}' attribute.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @see #isSetDisconnect()
-     * @see #getDisconnect()
-     * @see #setDisconnect(Boolean)
+     * @see #isDisconnect()
+     * @see #setDisconnect(boolean)
      * @generated
      */
     void unsetDisconnect();
 
     /**
-     * Returns whether the value of the '{@link org.switchyard.tools.models.switchyard1_0.camel.ftp.CamelFtpBindingType#getDisconnect <em>Disconnect</em>}' attribute is set.
+     * Returns whether the value of the '{@link org.switchyard.tools.models.switchyard1_0.camel.ftp.CamelFtpBindingType#isDisconnect <em>Disconnect</em>}' attribute is set.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @return whether the value of the '<em>Disconnect</em>' attribute is set.
      * @see #unsetDisconnect()
-     * @see #getDisconnect()
-     * @see #setDisconnect(Boolean)
+     * @see #isDisconnect()
+     * @see #setDisconnect(boolean)
      * @generated
      */
     boolean isSetDisconnect();
 
     /**
      * Returns the value of the '<em><b>Maximum Reconnect Attempts</b></em>' attribute.
+     * The default value is <code>"3"</code>.
      * <!-- begin-user-doc -->
      * <p>
      * If the meaning of the '<em>Maximum Reconnect Attempts</em>' attribute isn't clear,
@@ -566,13 +601,13 @@ public interface CamelFtpBindingType extends BaseCamelBinding {
      * @return the value of the '<em>Maximum Reconnect Attempts</em>' attribute.
      * @see #isSetMaximumReconnectAttempts()
      * @see #unsetMaximumReconnectAttempts()
-     * @see #setMaximumReconnectAttempts(Integer)
+     * @see #setMaximumReconnectAttempts(int)
      * @see org.switchyard.tools.models.switchyard1_0.camel.ftp.FtpPackage#getCamelFtpBindingType_MaximumReconnectAttempts()
-     * @model unsettable="true" dataType="org.eclipse.emf.ecore.xml.type.IntObject"
+     * @model default="3" unsettable="true" dataType="org.eclipse.emf.ecore.xml.type.Int"
      *        extendedMetaData="kind='element' name='maximumReconnectAttempts' namespace='##targetNamespace'"
      * @generated
      */
-    Integer getMaximumReconnectAttempts();
+    int getMaximumReconnectAttempts();
 
     /**
      * Sets the value of the '{@link org.switchyard.tools.models.switchyard1_0.camel.ftp.CamelFtpBindingType#getMaximumReconnectAttempts <em>Maximum Reconnect Attempts</em>}' attribute.
@@ -584,7 +619,7 @@ public interface CamelFtpBindingType extends BaseCamelBinding {
      * @see #getMaximumReconnectAttempts()
      * @generated
      */
-    void setMaximumReconnectAttempts(Integer value);
+    void setMaximumReconnectAttempts(int value);
 
     /**
      * Unsets the value of the '{@link org.switchyard.tools.models.switchyard1_0.camel.ftp.CamelFtpBindingType#getMaximumReconnectAttempts <em>Maximum Reconnect Attempts</em>}' attribute.
@@ -592,7 +627,7 @@ public interface CamelFtpBindingType extends BaseCamelBinding {
      * <!-- end-user-doc -->
      * @see #isSetMaximumReconnectAttempts()
      * @see #getMaximumReconnectAttempts()
-     * @see #setMaximumReconnectAttempts(Integer)
+     * @see #setMaximumReconnectAttempts(int)
      * @generated
      */
     void unsetMaximumReconnectAttempts();
@@ -604,13 +639,14 @@ public interface CamelFtpBindingType extends BaseCamelBinding {
      * @return whether the value of the '<em>Maximum Reconnect Attempts</em>' attribute is set.
      * @see #unsetMaximumReconnectAttempts()
      * @see #getMaximumReconnectAttempts()
-     * @see #setMaximumReconnectAttempts(Integer)
+     * @see #setMaximumReconnectAttempts(int)
      * @generated
      */
     boolean isSetMaximumReconnectAttempts();
 
     /**
      * Returns the value of the '<em><b>Reconnect Delay</b></em>' attribute.
+     * The default value is <code>"1000"</code>.
      * <!-- begin-user-doc -->
      * <p>
      * If the meaning of the '<em>Reconnect Delay</em>' attribute isn't clear,
@@ -620,13 +656,13 @@ public interface CamelFtpBindingType extends BaseCamelBinding {
      * @return the value of the '<em>Reconnect Delay</em>' attribute.
      * @see #isSetReconnectDelay()
      * @see #unsetReconnectDelay()
-     * @see #setReconnectDelay(Integer)
+     * @see #setReconnectDelay(int)
      * @see org.switchyard.tools.models.switchyard1_0.camel.ftp.FtpPackage#getCamelFtpBindingType_ReconnectDelay()
-     * @model unsettable="true" dataType="org.eclipse.emf.ecore.xml.type.IntObject"
+     * @model default="1000" unsettable="true" dataType="org.eclipse.emf.ecore.xml.type.Int"
      *        extendedMetaData="kind='element' name='reconnectDelay' namespace='##targetNamespace'"
      * @generated
      */
-    Integer getReconnectDelay();
+    int getReconnectDelay();
 
     /**
      * Sets the value of the '{@link org.switchyard.tools.models.switchyard1_0.camel.ftp.CamelFtpBindingType#getReconnectDelay <em>Reconnect Delay</em>}' attribute.
@@ -638,7 +674,7 @@ public interface CamelFtpBindingType extends BaseCamelBinding {
      * @see #getReconnectDelay()
      * @generated
      */
-    void setReconnectDelay(Integer value);
+    void setReconnectDelay(int value);
 
     /**
      * Unsets the value of the '{@link org.switchyard.tools.models.switchyard1_0.camel.ftp.CamelFtpBindingType#getReconnectDelay <em>Reconnect Delay</em>}' attribute.
@@ -646,7 +682,7 @@ public interface CamelFtpBindingType extends BaseCamelBinding {
      * <!-- end-user-doc -->
      * @see #isSetReconnectDelay()
      * @see #getReconnectDelay()
-     * @see #setReconnectDelay(Integer)
+     * @see #setReconnectDelay(int)
      * @generated
      */
     void unsetReconnectDelay();
@@ -658,7 +694,7 @@ public interface CamelFtpBindingType extends BaseCamelBinding {
      * @return whether the value of the '<em>Reconnect Delay</em>' attribute is set.
      * @see #unsetReconnectDelay()
      * @see #getReconnectDelay()
-     * @see #setReconnectDelay(Integer)
+     * @see #setReconnectDelay(int)
      * @generated
      */
     boolean isSetReconnectDelay();
@@ -692,6 +728,7 @@ public interface CamelFtpBindingType extends BaseCamelBinding {
 
     /**
      * Returns the value of the '<em><b>Stepwise</b></em>' attribute.
+     * The default value is <code>"true"</code>.
      * <!-- begin-user-doc -->
      * <p>
      * If the meaning of the '<em>Stepwise</em>' attribute isn't clear,
@@ -701,51 +738,52 @@ public interface CamelFtpBindingType extends BaseCamelBinding {
      * @return the value of the '<em>Stepwise</em>' attribute.
      * @see #isSetStepwise()
      * @see #unsetStepwise()
-     * @see #setStepwise(Boolean)
+     * @see #setStepwise(boolean)
      * @see org.switchyard.tools.models.switchyard1_0.camel.ftp.FtpPackage#getCamelFtpBindingType_Stepwise()
-     * @model unsettable="true" dataType="org.eclipse.emf.ecore.xml.type.BooleanObject"
+     * @model default="true" unsettable="true" dataType="org.eclipse.emf.ecore.xml.type.Boolean"
      *        extendedMetaData="kind='element' name='stepwise' namespace='##targetNamespace'"
      * @generated
      */
-    Boolean getStepwise();
+    boolean isStepwise();
 
     /**
-     * Sets the value of the '{@link org.switchyard.tools.models.switchyard1_0.camel.ftp.CamelFtpBindingType#getStepwise <em>Stepwise</em>}' attribute.
+     * Sets the value of the '{@link org.switchyard.tools.models.switchyard1_0.camel.ftp.CamelFtpBindingType#isStepwise <em>Stepwise</em>}' attribute.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @param value the new value of the '<em>Stepwise</em>' attribute.
      * @see #isSetStepwise()
      * @see #unsetStepwise()
-     * @see #getStepwise()
+     * @see #isStepwise()
      * @generated
      */
-    void setStepwise(Boolean value);
+    void setStepwise(boolean value);
 
     /**
-     * Unsets the value of the '{@link org.switchyard.tools.models.switchyard1_0.camel.ftp.CamelFtpBindingType#getStepwise <em>Stepwise</em>}' attribute.
+     * Unsets the value of the '{@link org.switchyard.tools.models.switchyard1_0.camel.ftp.CamelFtpBindingType#isStepwise <em>Stepwise</em>}' attribute.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @see #isSetStepwise()
-     * @see #getStepwise()
-     * @see #setStepwise(Boolean)
+     * @see #isStepwise()
+     * @see #setStepwise(boolean)
      * @generated
      */
     void unsetStepwise();
 
     /**
-     * Returns whether the value of the '{@link org.switchyard.tools.models.switchyard1_0.camel.ftp.CamelFtpBindingType#getStepwise <em>Stepwise</em>}' attribute is set.
+     * Returns whether the value of the '{@link org.switchyard.tools.models.switchyard1_0.camel.ftp.CamelFtpBindingType#isStepwise <em>Stepwise</em>}' attribute is set.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @return whether the value of the '<em>Stepwise</em>' attribute is set.
      * @see #unsetStepwise()
-     * @see #getStepwise()
-     * @see #setStepwise(Boolean)
+     * @see #isStepwise()
+     * @see #setStepwise(boolean)
      * @generated
      */
     boolean isSetStepwise();
 
     /**
      * Returns the value of the '<em><b>Throw Exception On Connect Failed</b></em>' attribute.
+     * The default value is <code>"false"</code>.
      * <!-- begin-user-doc -->
      * <p>
      * If the meaning of the '<em>Throw Exception On Connect Failed</em>' attribute isn't clear,
@@ -755,51 +793,52 @@ public interface CamelFtpBindingType extends BaseCamelBinding {
      * @return the value of the '<em>Throw Exception On Connect Failed</em>' attribute.
      * @see #isSetThrowExceptionOnConnectFailed()
      * @see #unsetThrowExceptionOnConnectFailed()
-     * @see #setThrowExceptionOnConnectFailed(Boolean)
+     * @see #setThrowExceptionOnConnectFailed(boolean)
      * @see org.switchyard.tools.models.switchyard1_0.camel.ftp.FtpPackage#getCamelFtpBindingType_ThrowExceptionOnConnectFailed()
-     * @model unsettable="true" dataType="org.eclipse.emf.ecore.xml.type.BooleanObject"
+     * @model default="false" unsettable="true" dataType="org.eclipse.emf.ecore.xml.type.Boolean"
      *        extendedMetaData="kind='element' name='throwExceptionOnConnectFailed' namespace='##targetNamespace'"
      * @generated
      */
-    Boolean getThrowExceptionOnConnectFailed();
+    boolean isThrowExceptionOnConnectFailed();
 
     /**
-     * Sets the value of the '{@link org.switchyard.tools.models.switchyard1_0.camel.ftp.CamelFtpBindingType#getThrowExceptionOnConnectFailed <em>Throw Exception On Connect Failed</em>}' attribute.
+     * Sets the value of the '{@link org.switchyard.tools.models.switchyard1_0.camel.ftp.CamelFtpBindingType#isThrowExceptionOnConnectFailed <em>Throw Exception On Connect Failed</em>}' attribute.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @param value the new value of the '<em>Throw Exception On Connect Failed</em>' attribute.
      * @see #isSetThrowExceptionOnConnectFailed()
      * @see #unsetThrowExceptionOnConnectFailed()
-     * @see #getThrowExceptionOnConnectFailed()
+     * @see #isThrowExceptionOnConnectFailed()
      * @generated
      */
-    void setThrowExceptionOnConnectFailed(Boolean value);
+    void setThrowExceptionOnConnectFailed(boolean value);
 
     /**
-     * Unsets the value of the '{@link org.switchyard.tools.models.switchyard1_0.camel.ftp.CamelFtpBindingType#getThrowExceptionOnConnectFailed <em>Throw Exception On Connect Failed</em>}' attribute.
+     * Unsets the value of the '{@link org.switchyard.tools.models.switchyard1_0.camel.ftp.CamelFtpBindingType#isThrowExceptionOnConnectFailed <em>Throw Exception On Connect Failed</em>}' attribute.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @see #isSetThrowExceptionOnConnectFailed()
-     * @see #getThrowExceptionOnConnectFailed()
-     * @see #setThrowExceptionOnConnectFailed(Boolean)
+     * @see #isThrowExceptionOnConnectFailed()
+     * @see #setThrowExceptionOnConnectFailed(boolean)
      * @generated
      */
     void unsetThrowExceptionOnConnectFailed();
 
     /**
-     * Returns whether the value of the '{@link org.switchyard.tools.models.switchyard1_0.camel.ftp.CamelFtpBindingType#getThrowExceptionOnConnectFailed <em>Throw Exception On Connect Failed</em>}' attribute is set.
+     * Returns whether the value of the '{@link org.switchyard.tools.models.switchyard1_0.camel.ftp.CamelFtpBindingType#isThrowExceptionOnConnectFailed <em>Throw Exception On Connect Failed</em>}' attribute is set.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @return whether the value of the '<em>Throw Exception On Connect Failed</em>' attribute is set.
      * @see #unsetThrowExceptionOnConnectFailed()
-     * @see #getThrowExceptionOnConnectFailed()
-     * @see #setThrowExceptionOnConnectFailed(Boolean)
+     * @see #isThrowExceptionOnConnectFailed()
+     * @see #setThrowExceptionOnConnectFailed(boolean)
      * @generated
      */
     boolean isSetThrowExceptionOnConnectFailed();
 
     /**
      * Returns the value of the '<em><b>Passive Mode</b></em>' attribute.
+     * The default value is <code>"false"</code>.
      * <!-- begin-user-doc -->
      * <p>
      * If the meaning of the '<em>Passive Mode</em>' attribute isn't clear,
@@ -809,51 +848,52 @@ public interface CamelFtpBindingType extends BaseCamelBinding {
      * @return the value of the '<em>Passive Mode</em>' attribute.
      * @see #isSetPassiveMode()
      * @see #unsetPassiveMode()
-     * @see #setPassiveMode(Boolean)
+     * @see #setPassiveMode(boolean)
      * @see org.switchyard.tools.models.switchyard1_0.camel.ftp.FtpPackage#getCamelFtpBindingType_PassiveMode()
-     * @model unsettable="true" dataType="org.eclipse.emf.ecore.xml.type.BooleanObject"
+     * @model default="false" unsettable="true" dataType="org.eclipse.emf.ecore.xml.type.Boolean"
      *        extendedMetaData="kind='element' name='passiveMode' namespace='##targetNamespace'"
      * @generated
      */
-    Boolean getPassiveMode();
+    boolean isPassiveMode();
 
     /**
-     * Sets the value of the '{@link org.switchyard.tools.models.switchyard1_0.camel.ftp.CamelFtpBindingType#getPassiveMode <em>Passive Mode</em>}' attribute.
+     * Sets the value of the '{@link org.switchyard.tools.models.switchyard1_0.camel.ftp.CamelFtpBindingType#isPassiveMode <em>Passive Mode</em>}' attribute.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @param value the new value of the '<em>Passive Mode</em>' attribute.
      * @see #isSetPassiveMode()
      * @see #unsetPassiveMode()
-     * @see #getPassiveMode()
+     * @see #isPassiveMode()
      * @generated
      */
-    void setPassiveMode(Boolean value);
+    void setPassiveMode(boolean value);
 
     /**
-     * Unsets the value of the '{@link org.switchyard.tools.models.switchyard1_0.camel.ftp.CamelFtpBindingType#getPassiveMode <em>Passive Mode</em>}' attribute.
+     * Unsets the value of the '{@link org.switchyard.tools.models.switchyard1_0.camel.ftp.CamelFtpBindingType#isPassiveMode <em>Passive Mode</em>}' attribute.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @see #isSetPassiveMode()
-     * @see #getPassiveMode()
-     * @see #setPassiveMode(Boolean)
+     * @see #isPassiveMode()
+     * @see #setPassiveMode(boolean)
      * @generated
      */
     void unsetPassiveMode();
 
     /**
-     * Returns whether the value of the '{@link org.switchyard.tools.models.switchyard1_0.camel.ftp.CamelFtpBindingType#getPassiveMode <em>Passive Mode</em>}' attribute is set.
+     * Returns whether the value of the '{@link org.switchyard.tools.models.switchyard1_0.camel.ftp.CamelFtpBindingType#isPassiveMode <em>Passive Mode</em>}' attribute is set.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @return whether the value of the '<em>Passive Mode</em>' attribute is set.
      * @see #unsetPassiveMode()
-     * @see #getPassiveMode()
-     * @see #setPassiveMode(Boolean)
+     * @see #isPassiveMode()
+     * @see #setPassiveMode(boolean)
      * @generated
      */
     boolean isSetPassiveMode();
 
     /**
      * Returns the value of the '<em><b>Timeout</b></em>' attribute.
+     * The default value is <code>"30000"</code>.
      * <!-- begin-user-doc -->
      * <p>
      * If the meaning of the '<em>Timeout</em>' attribute isn't clear,
@@ -863,13 +903,13 @@ public interface CamelFtpBindingType extends BaseCamelBinding {
      * @return the value of the '<em>Timeout</em>' attribute.
      * @see #isSetTimeout()
      * @see #unsetTimeout()
-     * @see #setTimeout(Integer)
+     * @see #setTimeout(int)
      * @see org.switchyard.tools.models.switchyard1_0.camel.ftp.FtpPackage#getCamelFtpBindingType_Timeout()
-     * @model unsettable="true" dataType="org.eclipse.emf.ecore.xml.type.IntObject"
+     * @model default="30000" unsettable="true" dataType="org.eclipse.emf.ecore.xml.type.Int"
      *        extendedMetaData="kind='element' name='timeout' namespace='##targetNamespace'"
      * @generated
      */
-    Integer getTimeout();
+    int getTimeout();
 
     /**
      * Sets the value of the '{@link org.switchyard.tools.models.switchyard1_0.camel.ftp.CamelFtpBindingType#getTimeout <em>Timeout</em>}' attribute.
@@ -881,7 +921,7 @@ public interface CamelFtpBindingType extends BaseCamelBinding {
      * @see #getTimeout()
      * @generated
      */
-    void setTimeout(Integer value);
+    void setTimeout(int value);
 
     /**
      * Unsets the value of the '{@link org.switchyard.tools.models.switchyard1_0.camel.ftp.CamelFtpBindingType#getTimeout <em>Timeout</em>}' attribute.
@@ -889,7 +929,7 @@ public interface CamelFtpBindingType extends BaseCamelBinding {
      * <!-- end-user-doc -->
      * @see #isSetTimeout()
      * @see #getTimeout()
-     * @see #setTimeout(Integer)
+     * @see #setTimeout(int)
      * @generated
      */
     void unsetTimeout();
@@ -901,7 +941,7 @@ public interface CamelFtpBindingType extends BaseCamelBinding {
      * @return whether the value of the '<em>Timeout</em>' attribute is set.
      * @see #unsetTimeout()
      * @see #getTimeout()
-     * @see #setTimeout(Integer)
+     * @see #setTimeout(int)
      * @generated
      */
     boolean isSetTimeout();
@@ -917,13 +957,13 @@ public interface CamelFtpBindingType extends BaseCamelBinding {
      * @return the value of the '<em>So Timeout</em>' attribute.
      * @see #isSetSoTimeout()
      * @see #unsetSoTimeout()
-     * @see #setSoTimeout(Integer)
+     * @see #setSoTimeout(int)
      * @see org.switchyard.tools.models.switchyard1_0.camel.ftp.FtpPackage#getCamelFtpBindingType_SoTimeout()
-     * @model unsettable="true" dataType="org.eclipse.emf.ecore.xml.type.IntObject"
+     * @model unsettable="true" dataType="org.eclipse.emf.ecore.xml.type.Int"
      *        extendedMetaData="kind='element' name='soTimeout' namespace='##targetNamespace'"
      * @generated
      */
-    Integer getSoTimeout();
+    int getSoTimeout();
 
     /**
      * Sets the value of the '{@link org.switchyard.tools.models.switchyard1_0.camel.ftp.CamelFtpBindingType#getSoTimeout <em>So Timeout</em>}' attribute.
@@ -935,7 +975,7 @@ public interface CamelFtpBindingType extends BaseCamelBinding {
      * @see #getSoTimeout()
      * @generated
      */
-    void setSoTimeout(Integer value);
+    void setSoTimeout(int value);
 
     /**
      * Unsets the value of the '{@link org.switchyard.tools.models.switchyard1_0.camel.ftp.CamelFtpBindingType#getSoTimeout <em>So Timeout</em>}' attribute.
@@ -943,7 +983,7 @@ public interface CamelFtpBindingType extends BaseCamelBinding {
      * <!-- end-user-doc -->
      * @see #isSetSoTimeout()
      * @see #getSoTimeout()
-     * @see #setSoTimeout(Integer)
+     * @see #setSoTimeout(int)
      * @generated
      */
     void unsetSoTimeout();
@@ -955,7 +995,7 @@ public interface CamelFtpBindingType extends BaseCamelBinding {
      * @return whether the value of the '<em>So Timeout</em>' attribute is set.
      * @see #unsetSoTimeout()
      * @see #getSoTimeout()
-     * @see #setSoTimeout(Integer)
+     * @see #setSoTimeout(int)
      * @generated
      */
     boolean isSetSoTimeout();

@@ -89,7 +89,7 @@ public class AtomScheduledPollConsumerTypeItemProvider
                  true,
                  false,
                  false,
-                 ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
+                 ItemPropertyDescriptor.INTEGRAL_VALUE_IMAGE,
                  null,
                  null));
     }
@@ -111,7 +111,7 @@ public class AtomScheduledPollConsumerTypeItemProvider
                  true,
                  false,
                  false,
-                 ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
+                 ItemPropertyDescriptor.INTEGRAL_VALUE_IMAGE,
                  null,
                  null));
     }
@@ -133,7 +133,7 @@ public class AtomScheduledPollConsumerTypeItemProvider
                  true,
                  false,
                  false,
-                 ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
+                 ItemPropertyDescriptor.BOOLEAN_VALUE_IMAGE,
                  null,
                  null));
     }
@@ -155,7 +155,7 @@ public class AtomScheduledPollConsumerTypeItemProvider
                  true,
                  false,
                  false,
-                 ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
+                 ItemPropertyDescriptor.BOOLEAN_VALUE_IMAGE,
                  null,
                  null));
     }
@@ -201,11 +201,8 @@ public class AtomScheduledPollConsumerTypeItemProvider
      */
     @Override
     public String getText(Object object) {
-        Integer labelValue = ((AtomScheduledPollConsumerType)object).getInitialDelay();
-        String label = labelValue == null ? null : labelValue.toString();
-        return label == null || label.length() == 0 ?
-            getString("_UI_AtomScheduledPollConsumerType_type") :
-            getString("_UI_AtomScheduledPollConsumerType_type") + " " + label;
+        AtomScheduledPollConsumerType atomScheduledPollConsumerType = (AtomScheduledPollConsumerType)object;
+        return getString("_UI_AtomScheduledPollConsumerType_type") + " " + atomScheduledPollConsumerType.getInitialDelay();
     }
 
     /**

@@ -24,16 +24,16 @@ import org.switchyard.tools.models.switchyard1_0.camel.mail.TimeUnitType;
  * <ul>
  *   <li>{@link org.switchyard.tools.models.switchyard1_0.camel.mail.impl.CamelMailConsumerTypeImpl#getInitialDelay <em>Initial Delay</em>}</li>
  *   <li>{@link org.switchyard.tools.models.switchyard1_0.camel.mail.impl.CamelMailConsumerTypeImpl#getDelay <em>Delay</em>}</li>
- *   <li>{@link org.switchyard.tools.models.switchyard1_0.camel.mail.impl.CamelMailConsumerTypeImpl#getUseFixedDelay <em>Use Fixed Delay</em>}</li>
- *   <li>{@link org.switchyard.tools.models.switchyard1_0.camel.mail.impl.CamelMailConsumerTypeImpl#getSendEmptyMessageWhenIdle <em>Send Empty Message When Idle</em>}</li>
+ *   <li>{@link org.switchyard.tools.models.switchyard1_0.camel.mail.impl.CamelMailConsumerTypeImpl#isUseFixedDelay <em>Use Fixed Delay</em>}</li>
+ *   <li>{@link org.switchyard.tools.models.switchyard1_0.camel.mail.impl.CamelMailConsumerTypeImpl#isSendEmptyMessageWhenIdle <em>Send Empty Message When Idle</em>}</li>
  *   <li>{@link org.switchyard.tools.models.switchyard1_0.camel.mail.impl.CamelMailConsumerTypeImpl#getTimeUnit <em>Time Unit</em>}</li>
  *   <li>{@link org.switchyard.tools.models.switchyard1_0.camel.mail.impl.CamelMailConsumerTypeImpl#getMaxMessagesPerPoll <em>Max Messages Per Poll</em>}</li>
  *   <li>{@link org.switchyard.tools.models.switchyard1_0.camel.mail.impl.CamelMailConsumerTypeImpl#getFolderName <em>Folder Name</em>}</li>
  *   <li>{@link org.switchyard.tools.models.switchyard1_0.camel.mail.impl.CamelMailConsumerTypeImpl#getFetchSize <em>Fetch Size</em>}</li>
- *   <li>{@link org.switchyard.tools.models.switchyard1_0.camel.mail.impl.CamelMailConsumerTypeImpl#getUnseen <em>Unseen</em>}</li>
- *   <li>{@link org.switchyard.tools.models.switchyard1_0.camel.mail.impl.CamelMailConsumerTypeImpl#getDelete <em>Delete</em>}</li>
+ *   <li>{@link org.switchyard.tools.models.switchyard1_0.camel.mail.impl.CamelMailConsumerTypeImpl#isUnseen <em>Unseen</em>}</li>
+ *   <li>{@link org.switchyard.tools.models.switchyard1_0.camel.mail.impl.CamelMailConsumerTypeImpl#isDelete <em>Delete</em>}</li>
  *   <li>{@link org.switchyard.tools.models.switchyard1_0.camel.mail.impl.CamelMailConsumerTypeImpl#getCopyTo <em>Copy To</em>}</li>
- *   <li>{@link org.switchyard.tools.models.switchyard1_0.camel.mail.impl.CamelMailConsumerTypeImpl#getDisconnect <em>Disconnect</em>}</li>
+ *   <li>{@link org.switchyard.tools.models.switchyard1_0.camel.mail.impl.CamelMailConsumerTypeImpl#isDisconnect <em>Disconnect</em>}</li>
  *   <li>{@link org.switchyard.tools.models.switchyard1_0.camel.mail.impl.CamelMailConsumerTypeImpl#getAccountType <em>Account Type</em>}</li>
  * </ul>
  * </p>
@@ -49,7 +49,7 @@ public class CamelMailConsumerTypeImpl extends EObjectImpl implements CamelMailC
      * @generated
      * @ordered
      */
-    protected static final Integer INITIAL_DELAY_EDEFAULT = null;
+    protected static final int INITIAL_DELAY_EDEFAULT = 1000;
 
     /**
      * The cached value of the '{@link #getInitialDelay() <em>Initial Delay</em>}' attribute.
@@ -59,7 +59,16 @@ public class CamelMailConsumerTypeImpl extends EObjectImpl implements CamelMailC
      * @generated
      * @ordered
      */
-    protected Integer initialDelay = INITIAL_DELAY_EDEFAULT;
+    protected int initialDelay = INITIAL_DELAY_EDEFAULT;
+
+    /**
+     * This is true if the Initial Delay attribute has been set.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    protected boolean initialDelayESet;
 
     /**
      * The default value of the '{@link #getDelay() <em>Delay</em>}' attribute.
@@ -69,7 +78,7 @@ public class CamelMailConsumerTypeImpl extends EObjectImpl implements CamelMailC
      * @generated
      * @ordered
      */
-    protected static final Integer DELAY_EDEFAULT = null;
+    protected static final int DELAY_EDEFAULT = 60000;
 
     /**
      * The cached value of the '{@link #getDelay() <em>Delay</em>}' attribute.
@@ -79,27 +88,36 @@ public class CamelMailConsumerTypeImpl extends EObjectImpl implements CamelMailC
      * @generated
      * @ordered
      */
-    protected Integer delay = DELAY_EDEFAULT;
+    protected int delay = DELAY_EDEFAULT;
 
     /**
-     * The default value of the '{@link #getUseFixedDelay() <em>Use Fixed Delay</em>}' attribute.
+     * This is true if the Delay attribute has been set.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @see #getUseFixedDelay()
      * @generated
      * @ordered
      */
-    protected static final Boolean USE_FIXED_DELAY_EDEFAULT = null;
+    protected boolean delayESet;
 
     /**
-     * The cached value of the '{@link #getUseFixedDelay() <em>Use Fixed Delay</em>}' attribute.
+     * The default value of the '{@link #isUseFixedDelay() <em>Use Fixed Delay</em>}' attribute.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @see #getUseFixedDelay()
+     * @see #isUseFixedDelay()
      * @generated
      * @ordered
      */
-    protected Boolean useFixedDelay = USE_FIXED_DELAY_EDEFAULT;
+    protected static final boolean USE_FIXED_DELAY_EDEFAULT = false;
+
+    /**
+     * The cached value of the '{@link #isUseFixedDelay() <em>Use Fixed Delay</em>}' attribute.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @see #isUseFixedDelay()
+     * @generated
+     * @ordered
+     */
+    protected boolean useFixedDelay = USE_FIXED_DELAY_EDEFAULT;
 
     /**
      * This is true if the Use Fixed Delay attribute has been set.
@@ -111,24 +129,24 @@ public class CamelMailConsumerTypeImpl extends EObjectImpl implements CamelMailC
     protected boolean useFixedDelayESet;
 
     /**
-     * The default value of the '{@link #getSendEmptyMessageWhenIdle() <em>Send Empty Message When Idle</em>}' attribute.
+     * The default value of the '{@link #isSendEmptyMessageWhenIdle() <em>Send Empty Message When Idle</em>}' attribute.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @see #getSendEmptyMessageWhenIdle()
+     * @see #isSendEmptyMessageWhenIdle()
      * @generated
      * @ordered
      */
-    protected static final Boolean SEND_EMPTY_MESSAGE_WHEN_IDLE_EDEFAULT = null;
+    protected static final boolean SEND_EMPTY_MESSAGE_WHEN_IDLE_EDEFAULT = false;
 
     /**
-     * The cached value of the '{@link #getSendEmptyMessageWhenIdle() <em>Send Empty Message When Idle</em>}' attribute.
+     * The cached value of the '{@link #isSendEmptyMessageWhenIdle() <em>Send Empty Message When Idle</em>}' attribute.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @see #getSendEmptyMessageWhenIdle()
+     * @see #isSendEmptyMessageWhenIdle()
      * @generated
      * @ordered
      */
-    protected Boolean sendEmptyMessageWhenIdle = SEND_EMPTY_MESSAGE_WHEN_IDLE_EDEFAULT;
+    protected boolean sendEmptyMessageWhenIdle = SEND_EMPTY_MESSAGE_WHEN_IDLE_EDEFAULT;
 
     /**
      * This is true if the Send Empty Message When Idle attribute has been set.
@@ -147,7 +165,7 @@ public class CamelMailConsumerTypeImpl extends EObjectImpl implements CamelMailC
      * @generated
      * @ordered
      */
-    protected static final TimeUnitType TIME_UNIT_EDEFAULT = TimeUnitType.NANOSECONDS;
+    protected static final TimeUnitType TIME_UNIT_EDEFAULT = TimeUnitType.MILLISECONDS;
 
     /**
      * The cached value of the '{@link #getTimeUnit() <em>Time Unit</em>}' attribute.
@@ -176,7 +194,7 @@ public class CamelMailConsumerTypeImpl extends EObjectImpl implements CamelMailC
      * @generated
      * @ordered
      */
-    protected static final Integer MAX_MESSAGES_PER_POLL_EDEFAULT = null;
+    protected static final int MAX_MESSAGES_PER_POLL_EDEFAULT = 0;
 
     /**
      * The cached value of the '{@link #getMaxMessagesPerPoll() <em>Max Messages Per Poll</em>}' attribute.
@@ -186,7 +204,16 @@ public class CamelMailConsumerTypeImpl extends EObjectImpl implements CamelMailC
      * @generated
      * @ordered
      */
-    protected Integer maxMessagesPerPoll = MAX_MESSAGES_PER_POLL_EDEFAULT;
+    protected int maxMessagesPerPoll = MAX_MESSAGES_PER_POLL_EDEFAULT;
+
+    /**
+     * This is true if the Max Messages Per Poll attribute has been set.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    protected boolean maxMessagesPerPollESet;
 
     /**
      * The default value of the '{@link #getFolderName() <em>Folder Name</em>}' attribute.
@@ -216,7 +243,7 @@ public class CamelMailConsumerTypeImpl extends EObjectImpl implements CamelMailC
      * @generated
      * @ordered
      */
-    protected static final Integer FETCH_SIZE_EDEFAULT = null;
+    protected static final int FETCH_SIZE_EDEFAULT = -1;
 
     /**
      * The cached value of the '{@link #getFetchSize() <em>Fetch Size</em>}' attribute.
@@ -226,27 +253,36 @@ public class CamelMailConsumerTypeImpl extends EObjectImpl implements CamelMailC
      * @generated
      * @ordered
      */
-    protected Integer fetchSize = FETCH_SIZE_EDEFAULT;
+    protected int fetchSize = FETCH_SIZE_EDEFAULT;
 
     /**
-     * The default value of the '{@link #getUnseen() <em>Unseen</em>}' attribute.
+     * This is true if the Fetch Size attribute has been set.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @see #getUnseen()
      * @generated
      * @ordered
      */
-    protected static final Boolean UNSEEN_EDEFAULT = null;
+    protected boolean fetchSizeESet;
 
     /**
-     * The cached value of the '{@link #getUnseen() <em>Unseen</em>}' attribute.
+     * The default value of the '{@link #isUnseen() <em>Unseen</em>}' attribute.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @see #getUnseen()
+     * @see #isUnseen()
      * @generated
      * @ordered
      */
-    protected Boolean unseen = UNSEEN_EDEFAULT;
+    protected static final boolean UNSEEN_EDEFAULT = true;
+
+    /**
+     * The cached value of the '{@link #isUnseen() <em>Unseen</em>}' attribute.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @see #isUnseen()
+     * @generated
+     * @ordered
+     */
+    protected boolean unseen = UNSEEN_EDEFAULT;
 
     /**
      * This is true if the Unseen attribute has been set.
@@ -258,24 +294,24 @@ public class CamelMailConsumerTypeImpl extends EObjectImpl implements CamelMailC
     protected boolean unseenESet;
 
     /**
-     * The default value of the '{@link #getDelete() <em>Delete</em>}' attribute.
+     * The default value of the '{@link #isDelete() <em>Delete</em>}' attribute.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @see #getDelete()
+     * @see #isDelete()
      * @generated
      * @ordered
      */
-    protected static final Boolean DELETE_EDEFAULT = null;
+    protected static final boolean DELETE_EDEFAULT = false;
 
     /**
-     * The cached value of the '{@link #getDelete() <em>Delete</em>}' attribute.
+     * The cached value of the '{@link #isDelete() <em>Delete</em>}' attribute.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @see #getDelete()
+     * @see #isDelete()
      * @generated
      * @ordered
      */
-    protected Boolean delete = DELETE_EDEFAULT;
+    protected boolean delete = DELETE_EDEFAULT;
 
     /**
      * This is true if the Delete attribute has been set.
@@ -307,24 +343,24 @@ public class CamelMailConsumerTypeImpl extends EObjectImpl implements CamelMailC
     protected String copyTo = COPY_TO_EDEFAULT;
 
     /**
-     * The default value of the '{@link #getDisconnect() <em>Disconnect</em>}' attribute.
+     * The default value of the '{@link #isDisconnect() <em>Disconnect</em>}' attribute.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @see #getDisconnect()
+     * @see #isDisconnect()
      * @generated
      * @ordered
      */
-    protected static final Boolean DISCONNECT_EDEFAULT = null;
+    protected static final boolean DISCONNECT_EDEFAULT = false;
 
     /**
-     * The cached value of the '{@link #getDisconnect() <em>Disconnect</em>}' attribute.
+     * The cached value of the '{@link #isDisconnect() <em>Disconnect</em>}' attribute.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @see #getDisconnect()
+     * @see #isDisconnect()
      * @generated
      * @ordered
      */
-    protected Boolean disconnect = DISCONNECT_EDEFAULT;
+    protected boolean disconnect = DISCONNECT_EDEFAULT;
 
     /**
      * This is true if the Disconnect attribute has been set.
@@ -388,7 +424,7 @@ public class CamelMailConsumerTypeImpl extends EObjectImpl implements CamelMailC
      * <!-- end-user-doc -->
      * @generated
      */
-    public Integer getInitialDelay() {
+    public int getInitialDelay() {
         return initialDelay;
     }
 
@@ -397,11 +433,13 @@ public class CamelMailConsumerTypeImpl extends EObjectImpl implements CamelMailC
      * <!-- end-user-doc -->
      * @generated
      */
-    public void setInitialDelay(Integer newInitialDelay) {
-        Integer oldInitialDelay = initialDelay;
+    public void setInitialDelay(int newInitialDelay) {
+        int oldInitialDelay = initialDelay;
         initialDelay = newInitialDelay;
+        boolean oldInitialDelayESet = initialDelayESet;
+        initialDelayESet = true;
         if (eNotificationRequired())
-            eNotify(new ENotificationImpl(this, Notification.SET, MailPackage.CAMEL_MAIL_CONSUMER_TYPE__INITIAL_DELAY, oldInitialDelay, initialDelay));
+            eNotify(new ENotificationImpl(this, Notification.SET, MailPackage.CAMEL_MAIL_CONSUMER_TYPE__INITIAL_DELAY, oldInitialDelay, initialDelay, !oldInitialDelayESet));
     }
 
     /**
@@ -409,7 +447,30 @@ public class CamelMailConsumerTypeImpl extends EObjectImpl implements CamelMailC
      * <!-- end-user-doc -->
      * @generated
      */
-    public Integer getDelay() {
+    public void unsetInitialDelay() {
+        int oldInitialDelay = initialDelay;
+        boolean oldInitialDelayESet = initialDelayESet;
+        initialDelay = INITIAL_DELAY_EDEFAULT;
+        initialDelayESet = false;
+        if (eNotificationRequired())
+            eNotify(new ENotificationImpl(this, Notification.UNSET, MailPackage.CAMEL_MAIL_CONSUMER_TYPE__INITIAL_DELAY, oldInitialDelay, INITIAL_DELAY_EDEFAULT, oldInitialDelayESet));
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public boolean isSetInitialDelay() {
+        return initialDelayESet;
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public int getDelay() {
         return delay;
     }
 
@@ -418,11 +479,13 @@ public class CamelMailConsumerTypeImpl extends EObjectImpl implements CamelMailC
      * <!-- end-user-doc -->
      * @generated
      */
-    public void setDelay(Integer newDelay) {
-        Integer oldDelay = delay;
+    public void setDelay(int newDelay) {
+        int oldDelay = delay;
         delay = newDelay;
+        boolean oldDelayESet = delayESet;
+        delayESet = true;
         if (eNotificationRequired())
-            eNotify(new ENotificationImpl(this, Notification.SET, MailPackage.CAMEL_MAIL_CONSUMER_TYPE__DELAY, oldDelay, delay));
+            eNotify(new ENotificationImpl(this, Notification.SET, MailPackage.CAMEL_MAIL_CONSUMER_TYPE__DELAY, oldDelay, delay, !oldDelayESet));
     }
 
     /**
@@ -430,7 +493,30 @@ public class CamelMailConsumerTypeImpl extends EObjectImpl implements CamelMailC
      * <!-- end-user-doc -->
      * @generated
      */
-    public Boolean getUseFixedDelay() {
+    public void unsetDelay() {
+        int oldDelay = delay;
+        boolean oldDelayESet = delayESet;
+        delay = DELAY_EDEFAULT;
+        delayESet = false;
+        if (eNotificationRequired())
+            eNotify(new ENotificationImpl(this, Notification.UNSET, MailPackage.CAMEL_MAIL_CONSUMER_TYPE__DELAY, oldDelay, DELAY_EDEFAULT, oldDelayESet));
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public boolean isSetDelay() {
+        return delayESet;
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public boolean isUseFixedDelay() {
         return useFixedDelay;
     }
 
@@ -439,8 +525,8 @@ public class CamelMailConsumerTypeImpl extends EObjectImpl implements CamelMailC
      * <!-- end-user-doc -->
      * @generated
      */
-    public void setUseFixedDelay(Boolean newUseFixedDelay) {
-        Boolean oldUseFixedDelay = useFixedDelay;
+    public void setUseFixedDelay(boolean newUseFixedDelay) {
+        boolean oldUseFixedDelay = useFixedDelay;
         useFixedDelay = newUseFixedDelay;
         boolean oldUseFixedDelayESet = useFixedDelayESet;
         useFixedDelayESet = true;
@@ -454,7 +540,7 @@ public class CamelMailConsumerTypeImpl extends EObjectImpl implements CamelMailC
      * @generated
      */
     public void unsetUseFixedDelay() {
-        Boolean oldUseFixedDelay = useFixedDelay;
+        boolean oldUseFixedDelay = useFixedDelay;
         boolean oldUseFixedDelayESet = useFixedDelayESet;
         useFixedDelay = USE_FIXED_DELAY_EDEFAULT;
         useFixedDelayESet = false;
@@ -476,7 +562,7 @@ public class CamelMailConsumerTypeImpl extends EObjectImpl implements CamelMailC
      * <!-- end-user-doc -->
      * @generated
      */
-    public Boolean getSendEmptyMessageWhenIdle() {
+    public boolean isSendEmptyMessageWhenIdle() {
         return sendEmptyMessageWhenIdle;
     }
 
@@ -485,8 +571,8 @@ public class CamelMailConsumerTypeImpl extends EObjectImpl implements CamelMailC
      * <!-- end-user-doc -->
      * @generated
      */
-    public void setSendEmptyMessageWhenIdle(Boolean newSendEmptyMessageWhenIdle) {
-        Boolean oldSendEmptyMessageWhenIdle = sendEmptyMessageWhenIdle;
+    public void setSendEmptyMessageWhenIdle(boolean newSendEmptyMessageWhenIdle) {
+        boolean oldSendEmptyMessageWhenIdle = sendEmptyMessageWhenIdle;
         sendEmptyMessageWhenIdle = newSendEmptyMessageWhenIdle;
         boolean oldSendEmptyMessageWhenIdleESet = sendEmptyMessageWhenIdleESet;
         sendEmptyMessageWhenIdleESet = true;
@@ -500,7 +586,7 @@ public class CamelMailConsumerTypeImpl extends EObjectImpl implements CamelMailC
      * @generated
      */
     public void unsetSendEmptyMessageWhenIdle() {
-        Boolean oldSendEmptyMessageWhenIdle = sendEmptyMessageWhenIdle;
+        boolean oldSendEmptyMessageWhenIdle = sendEmptyMessageWhenIdle;
         boolean oldSendEmptyMessageWhenIdleESet = sendEmptyMessageWhenIdleESet;
         sendEmptyMessageWhenIdle = SEND_EMPTY_MESSAGE_WHEN_IDLE_EDEFAULT;
         sendEmptyMessageWhenIdleESet = false;
@@ -568,7 +654,7 @@ public class CamelMailConsumerTypeImpl extends EObjectImpl implements CamelMailC
      * <!-- end-user-doc -->
      * @generated
      */
-    public Integer getMaxMessagesPerPoll() {
+    public int getMaxMessagesPerPoll() {
         return maxMessagesPerPoll;
     }
 
@@ -577,11 +663,36 @@ public class CamelMailConsumerTypeImpl extends EObjectImpl implements CamelMailC
      * <!-- end-user-doc -->
      * @generated
      */
-    public void setMaxMessagesPerPoll(Integer newMaxMessagesPerPoll) {
-        Integer oldMaxMessagesPerPoll = maxMessagesPerPoll;
+    public void setMaxMessagesPerPoll(int newMaxMessagesPerPoll) {
+        int oldMaxMessagesPerPoll = maxMessagesPerPoll;
         maxMessagesPerPoll = newMaxMessagesPerPoll;
+        boolean oldMaxMessagesPerPollESet = maxMessagesPerPollESet;
+        maxMessagesPerPollESet = true;
         if (eNotificationRequired())
-            eNotify(new ENotificationImpl(this, Notification.SET, MailPackage.CAMEL_MAIL_CONSUMER_TYPE__MAX_MESSAGES_PER_POLL, oldMaxMessagesPerPoll, maxMessagesPerPoll));
+            eNotify(new ENotificationImpl(this, Notification.SET, MailPackage.CAMEL_MAIL_CONSUMER_TYPE__MAX_MESSAGES_PER_POLL, oldMaxMessagesPerPoll, maxMessagesPerPoll, !oldMaxMessagesPerPollESet));
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public void unsetMaxMessagesPerPoll() {
+        int oldMaxMessagesPerPoll = maxMessagesPerPoll;
+        boolean oldMaxMessagesPerPollESet = maxMessagesPerPollESet;
+        maxMessagesPerPoll = MAX_MESSAGES_PER_POLL_EDEFAULT;
+        maxMessagesPerPollESet = false;
+        if (eNotificationRequired())
+            eNotify(new ENotificationImpl(this, Notification.UNSET, MailPackage.CAMEL_MAIL_CONSUMER_TYPE__MAX_MESSAGES_PER_POLL, oldMaxMessagesPerPoll, MAX_MESSAGES_PER_POLL_EDEFAULT, oldMaxMessagesPerPollESet));
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public boolean isSetMaxMessagesPerPoll() {
+        return maxMessagesPerPollESet;
     }
 
     /**
@@ -610,7 +721,7 @@ public class CamelMailConsumerTypeImpl extends EObjectImpl implements CamelMailC
      * <!-- end-user-doc -->
      * @generated
      */
-    public Integer getFetchSize() {
+    public int getFetchSize() {
         return fetchSize;
     }
 
@@ -619,11 +730,13 @@ public class CamelMailConsumerTypeImpl extends EObjectImpl implements CamelMailC
      * <!-- end-user-doc -->
      * @generated
      */
-    public void setFetchSize(Integer newFetchSize) {
-        Integer oldFetchSize = fetchSize;
+    public void setFetchSize(int newFetchSize) {
+        int oldFetchSize = fetchSize;
         fetchSize = newFetchSize;
+        boolean oldFetchSizeESet = fetchSizeESet;
+        fetchSizeESet = true;
         if (eNotificationRequired())
-            eNotify(new ENotificationImpl(this, Notification.SET, MailPackage.CAMEL_MAIL_CONSUMER_TYPE__FETCH_SIZE, oldFetchSize, fetchSize));
+            eNotify(new ENotificationImpl(this, Notification.SET, MailPackage.CAMEL_MAIL_CONSUMER_TYPE__FETCH_SIZE, oldFetchSize, fetchSize, !oldFetchSizeESet));
     }
 
     /**
@@ -631,7 +744,30 @@ public class CamelMailConsumerTypeImpl extends EObjectImpl implements CamelMailC
      * <!-- end-user-doc -->
      * @generated
      */
-    public Boolean getUnseen() {
+    public void unsetFetchSize() {
+        int oldFetchSize = fetchSize;
+        boolean oldFetchSizeESet = fetchSizeESet;
+        fetchSize = FETCH_SIZE_EDEFAULT;
+        fetchSizeESet = false;
+        if (eNotificationRequired())
+            eNotify(new ENotificationImpl(this, Notification.UNSET, MailPackage.CAMEL_MAIL_CONSUMER_TYPE__FETCH_SIZE, oldFetchSize, FETCH_SIZE_EDEFAULT, oldFetchSizeESet));
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public boolean isSetFetchSize() {
+        return fetchSizeESet;
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public boolean isUnseen() {
         return unseen;
     }
 
@@ -640,8 +776,8 @@ public class CamelMailConsumerTypeImpl extends EObjectImpl implements CamelMailC
      * <!-- end-user-doc -->
      * @generated
      */
-    public void setUnseen(Boolean newUnseen) {
-        Boolean oldUnseen = unseen;
+    public void setUnseen(boolean newUnseen) {
+        boolean oldUnseen = unseen;
         unseen = newUnseen;
         boolean oldUnseenESet = unseenESet;
         unseenESet = true;
@@ -655,7 +791,7 @@ public class CamelMailConsumerTypeImpl extends EObjectImpl implements CamelMailC
      * @generated
      */
     public void unsetUnseen() {
-        Boolean oldUnseen = unseen;
+        boolean oldUnseen = unseen;
         boolean oldUnseenESet = unseenESet;
         unseen = UNSEEN_EDEFAULT;
         unseenESet = false;
@@ -677,7 +813,7 @@ public class CamelMailConsumerTypeImpl extends EObjectImpl implements CamelMailC
      * <!-- end-user-doc -->
      * @generated
      */
-    public Boolean getDelete() {
+    public boolean isDelete() {
         return delete;
     }
 
@@ -686,8 +822,8 @@ public class CamelMailConsumerTypeImpl extends EObjectImpl implements CamelMailC
      * <!-- end-user-doc -->
      * @generated
      */
-    public void setDelete(Boolean newDelete) {
-        Boolean oldDelete = delete;
+    public void setDelete(boolean newDelete) {
+        boolean oldDelete = delete;
         delete = newDelete;
         boolean oldDeleteESet = deleteESet;
         deleteESet = true;
@@ -701,7 +837,7 @@ public class CamelMailConsumerTypeImpl extends EObjectImpl implements CamelMailC
      * @generated
      */
     public void unsetDelete() {
-        Boolean oldDelete = delete;
+        boolean oldDelete = delete;
         boolean oldDeleteESet = deleteESet;
         delete = DELETE_EDEFAULT;
         deleteESet = false;
@@ -744,7 +880,7 @@ public class CamelMailConsumerTypeImpl extends EObjectImpl implements CamelMailC
      * <!-- end-user-doc -->
      * @generated
      */
-    public Boolean getDisconnect() {
+    public boolean isDisconnect() {
         return disconnect;
     }
 
@@ -753,8 +889,8 @@ public class CamelMailConsumerTypeImpl extends EObjectImpl implements CamelMailC
      * <!-- end-user-doc -->
      * @generated
      */
-    public void setDisconnect(Boolean newDisconnect) {
-        Boolean oldDisconnect = disconnect;
+    public void setDisconnect(boolean newDisconnect) {
+        boolean oldDisconnect = disconnect;
         disconnect = newDisconnect;
         boolean oldDisconnectESet = disconnectESet;
         disconnectESet = true;
@@ -768,7 +904,7 @@ public class CamelMailConsumerTypeImpl extends EObjectImpl implements CamelMailC
      * @generated
      */
     public void unsetDisconnect() {
-        Boolean oldDisconnect = disconnect;
+        boolean oldDisconnect = disconnect;
         boolean oldDisconnectESet = disconnectESet;
         disconnect = DISCONNECT_EDEFAULT;
         disconnectESet = false;
@@ -844,9 +980,9 @@ public class CamelMailConsumerTypeImpl extends EObjectImpl implements CamelMailC
             case MailPackage.CAMEL_MAIL_CONSUMER_TYPE__DELAY:
                 return getDelay();
             case MailPackage.CAMEL_MAIL_CONSUMER_TYPE__USE_FIXED_DELAY:
-                return getUseFixedDelay();
+                return isUseFixedDelay();
             case MailPackage.CAMEL_MAIL_CONSUMER_TYPE__SEND_EMPTY_MESSAGE_WHEN_IDLE:
-                return getSendEmptyMessageWhenIdle();
+                return isSendEmptyMessageWhenIdle();
             case MailPackage.CAMEL_MAIL_CONSUMER_TYPE__TIME_UNIT:
                 return getTimeUnit();
             case MailPackage.CAMEL_MAIL_CONSUMER_TYPE__MAX_MESSAGES_PER_POLL:
@@ -856,13 +992,13 @@ public class CamelMailConsumerTypeImpl extends EObjectImpl implements CamelMailC
             case MailPackage.CAMEL_MAIL_CONSUMER_TYPE__FETCH_SIZE:
                 return getFetchSize();
             case MailPackage.CAMEL_MAIL_CONSUMER_TYPE__UNSEEN:
-                return getUnseen();
+                return isUnseen();
             case MailPackage.CAMEL_MAIL_CONSUMER_TYPE__DELETE:
-                return getDelete();
+                return isDelete();
             case MailPackage.CAMEL_MAIL_CONSUMER_TYPE__COPY_TO:
                 return getCopyTo();
             case MailPackage.CAMEL_MAIL_CONSUMER_TYPE__DISCONNECT:
-                return getDisconnect();
+                return isDisconnect();
             case MailPackage.CAMEL_MAIL_CONSUMER_TYPE__ACCOUNT_TYPE:
                 return getAccountType();
         }
@@ -929,10 +1065,10 @@ public class CamelMailConsumerTypeImpl extends EObjectImpl implements CamelMailC
     public void eUnset(int featureID) {
         switch (featureID) {
             case MailPackage.CAMEL_MAIL_CONSUMER_TYPE__INITIAL_DELAY:
-                setInitialDelay(INITIAL_DELAY_EDEFAULT);
+                unsetInitialDelay();
                 return;
             case MailPackage.CAMEL_MAIL_CONSUMER_TYPE__DELAY:
-                setDelay(DELAY_EDEFAULT);
+                unsetDelay();
                 return;
             case MailPackage.CAMEL_MAIL_CONSUMER_TYPE__USE_FIXED_DELAY:
                 unsetUseFixedDelay();
@@ -944,13 +1080,13 @@ public class CamelMailConsumerTypeImpl extends EObjectImpl implements CamelMailC
                 unsetTimeUnit();
                 return;
             case MailPackage.CAMEL_MAIL_CONSUMER_TYPE__MAX_MESSAGES_PER_POLL:
-                setMaxMessagesPerPoll(MAX_MESSAGES_PER_POLL_EDEFAULT);
+                unsetMaxMessagesPerPoll();
                 return;
             case MailPackage.CAMEL_MAIL_CONSUMER_TYPE__FOLDER_NAME:
                 setFolderName(FOLDER_NAME_EDEFAULT);
                 return;
             case MailPackage.CAMEL_MAIL_CONSUMER_TYPE__FETCH_SIZE:
-                setFetchSize(FETCH_SIZE_EDEFAULT);
+                unsetFetchSize();
                 return;
             case MailPackage.CAMEL_MAIL_CONSUMER_TYPE__UNSEEN:
                 unsetUnseen();
@@ -980,9 +1116,9 @@ public class CamelMailConsumerTypeImpl extends EObjectImpl implements CamelMailC
     public boolean eIsSet(int featureID) {
         switch (featureID) {
             case MailPackage.CAMEL_MAIL_CONSUMER_TYPE__INITIAL_DELAY:
-                return INITIAL_DELAY_EDEFAULT == null ? initialDelay != null : !INITIAL_DELAY_EDEFAULT.equals(initialDelay);
+                return isSetInitialDelay();
             case MailPackage.CAMEL_MAIL_CONSUMER_TYPE__DELAY:
-                return DELAY_EDEFAULT == null ? delay != null : !DELAY_EDEFAULT.equals(delay);
+                return isSetDelay();
             case MailPackage.CAMEL_MAIL_CONSUMER_TYPE__USE_FIXED_DELAY:
                 return isSetUseFixedDelay();
             case MailPackage.CAMEL_MAIL_CONSUMER_TYPE__SEND_EMPTY_MESSAGE_WHEN_IDLE:
@@ -990,11 +1126,11 @@ public class CamelMailConsumerTypeImpl extends EObjectImpl implements CamelMailC
             case MailPackage.CAMEL_MAIL_CONSUMER_TYPE__TIME_UNIT:
                 return isSetTimeUnit();
             case MailPackage.CAMEL_MAIL_CONSUMER_TYPE__MAX_MESSAGES_PER_POLL:
-                return MAX_MESSAGES_PER_POLL_EDEFAULT == null ? maxMessagesPerPoll != null : !MAX_MESSAGES_PER_POLL_EDEFAULT.equals(maxMessagesPerPoll);
+                return isSetMaxMessagesPerPoll();
             case MailPackage.CAMEL_MAIL_CONSUMER_TYPE__FOLDER_NAME:
                 return FOLDER_NAME_EDEFAULT == null ? folderName != null : !FOLDER_NAME_EDEFAULT.equals(folderName);
             case MailPackage.CAMEL_MAIL_CONSUMER_TYPE__FETCH_SIZE:
-                return FETCH_SIZE_EDEFAULT == null ? fetchSize != null : !FETCH_SIZE_EDEFAULT.equals(fetchSize);
+                return isSetFetchSize();
             case MailPackage.CAMEL_MAIL_CONSUMER_TYPE__UNSEEN:
                 return isSetUnseen();
             case MailPackage.CAMEL_MAIL_CONSUMER_TYPE__DELETE:
@@ -1020,9 +1156,9 @@ public class CamelMailConsumerTypeImpl extends EObjectImpl implements CamelMailC
 
         StringBuffer result = new StringBuffer(super.toString());
         result.append(" (initialDelay: ");
-        result.append(initialDelay);
+        if (initialDelayESet) result.append(initialDelay); else result.append("<unset>");
         result.append(", delay: ");
-        result.append(delay);
+        if (delayESet) result.append(delay); else result.append("<unset>");
         result.append(", useFixedDelay: ");
         if (useFixedDelayESet) result.append(useFixedDelay); else result.append("<unset>");
         result.append(", sendEmptyMessageWhenIdle: ");
@@ -1030,11 +1166,11 @@ public class CamelMailConsumerTypeImpl extends EObjectImpl implements CamelMailC
         result.append(", timeUnit: ");
         if (timeUnitESet) result.append(timeUnit); else result.append("<unset>");
         result.append(", maxMessagesPerPoll: ");
-        result.append(maxMessagesPerPoll);
+        if (maxMessagesPerPollESet) result.append(maxMessagesPerPoll); else result.append("<unset>");
         result.append(", folderName: ");
         result.append(folderName);
         result.append(", fetchSize: ");
-        result.append(fetchSize);
+        if (fetchSizeESet) result.append(fetchSize); else result.append("<unset>");
         result.append(", unseen: ");
         if (unseenESet) result.append(unseen); else result.append("<unset>");
         result.append(", delete: ");

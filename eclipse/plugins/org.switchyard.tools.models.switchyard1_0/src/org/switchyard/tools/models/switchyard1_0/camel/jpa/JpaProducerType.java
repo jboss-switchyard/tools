@@ -12,8 +12,8 @@ import org.eclipse.emf.ecore.EObject;
  * <p>
  * The following features are supported:
  * <ul>
- *   <li>{@link org.switchyard.tools.models.switchyard1_0.camel.jpa.JpaProducerType#getFlushOnSend <em>Flush On Send</em>}</li>
- *   <li>{@link org.switchyard.tools.models.switchyard1_0.camel.jpa.JpaProducerType#getUsePersist <em>Use Persist</em>}</li>
+ *   <li>{@link org.switchyard.tools.models.switchyard1_0.camel.jpa.JpaProducerType#isFlushOnSend <em>Flush On Send</em>}</li>
+ *   <li>{@link org.switchyard.tools.models.switchyard1_0.camel.jpa.JpaProducerType#isUsePersist <em>Use Persist</em>}</li>
  * </ul>
  * </p>
  *
@@ -24,6 +24,7 @@ import org.eclipse.emf.ecore.EObject;
 public interface JpaProducerType extends EObject {
     /**
      * Returns the value of the '<em><b>Flush On Send</b></em>' attribute.
+     * The default value is <code>"true"</code>.
      * <!-- begin-user-doc -->
      * <p>
      * If the meaning of the '<em>Flush On Send</em>' attribute isn't clear,
@@ -33,51 +34,52 @@ public interface JpaProducerType extends EObject {
      * @return the value of the '<em>Flush On Send</em>' attribute.
      * @see #isSetFlushOnSend()
      * @see #unsetFlushOnSend()
-     * @see #setFlushOnSend(Boolean)
+     * @see #setFlushOnSend(boolean)
      * @see org.switchyard.tools.models.switchyard1_0.camel.jpa.JpaPackage#getJpaProducerType_FlushOnSend()
-     * @model unsettable="true" dataType="org.eclipse.emf.ecore.xml.type.BooleanObject"
+     * @model default="true" unsettable="true" dataType="org.eclipse.emf.ecore.xml.type.Boolean"
      *        extendedMetaData="kind='element' name='flushOnSend' namespace='##targetNamespace'"
      * @generated
      */
-    Boolean getFlushOnSend();
+    boolean isFlushOnSend();
 
     /**
-     * Sets the value of the '{@link org.switchyard.tools.models.switchyard1_0.camel.jpa.JpaProducerType#getFlushOnSend <em>Flush On Send</em>}' attribute.
+     * Sets the value of the '{@link org.switchyard.tools.models.switchyard1_0.camel.jpa.JpaProducerType#isFlushOnSend <em>Flush On Send</em>}' attribute.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @param value the new value of the '<em>Flush On Send</em>' attribute.
      * @see #isSetFlushOnSend()
      * @see #unsetFlushOnSend()
-     * @see #getFlushOnSend()
+     * @see #isFlushOnSend()
      * @generated
      */
-    void setFlushOnSend(Boolean value);
+    void setFlushOnSend(boolean value);
 
     /**
-     * Unsets the value of the '{@link org.switchyard.tools.models.switchyard1_0.camel.jpa.JpaProducerType#getFlushOnSend <em>Flush On Send</em>}' attribute.
+     * Unsets the value of the '{@link org.switchyard.tools.models.switchyard1_0.camel.jpa.JpaProducerType#isFlushOnSend <em>Flush On Send</em>}' attribute.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @see #isSetFlushOnSend()
-     * @see #getFlushOnSend()
-     * @see #setFlushOnSend(Boolean)
+     * @see #isFlushOnSend()
+     * @see #setFlushOnSend(boolean)
      * @generated
      */
     void unsetFlushOnSend();
 
     /**
-     * Returns whether the value of the '{@link org.switchyard.tools.models.switchyard1_0.camel.jpa.JpaProducerType#getFlushOnSend <em>Flush On Send</em>}' attribute is set.
+     * Returns whether the value of the '{@link org.switchyard.tools.models.switchyard1_0.camel.jpa.JpaProducerType#isFlushOnSend <em>Flush On Send</em>}' attribute is set.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @return whether the value of the '<em>Flush On Send</em>' attribute is set.
      * @see #unsetFlushOnSend()
-     * @see #getFlushOnSend()
-     * @see #setFlushOnSend(Boolean)
+     * @see #isFlushOnSend()
+     * @see #setFlushOnSend(boolean)
      * @generated
      */
     boolean isSetFlushOnSend();
 
     /**
      * Returns the value of the '<em><b>Use Persist</b></em>' attribute.
+     * The default value is <code>"false"</code>.
      * <!-- begin-user-doc -->
      * <p>
      * If the meaning of the '<em>Use Persist</em>' attribute isn't clear,
@@ -87,45 +89,45 @@ public interface JpaProducerType extends EObject {
      * @return the value of the '<em>Use Persist</em>' attribute.
      * @see #isSetUsePersist()
      * @see #unsetUsePersist()
-     * @see #setUsePersist(Boolean)
+     * @see #setUsePersist(boolean)
      * @see org.switchyard.tools.models.switchyard1_0.camel.jpa.JpaPackage#getJpaProducerType_UsePersist()
-     * @model unsettable="true" dataType="org.eclipse.emf.ecore.xml.type.BooleanObject"
+     * @model default="false" unsettable="true" dataType="org.eclipse.emf.ecore.xml.type.Boolean"
      *        extendedMetaData="kind='element' name='usePersist' namespace='##targetNamespace'"
      * @generated
      */
-    Boolean getUsePersist();
+    boolean isUsePersist();
 
     /**
-     * Sets the value of the '{@link org.switchyard.tools.models.switchyard1_0.camel.jpa.JpaProducerType#getUsePersist <em>Use Persist</em>}' attribute.
+     * Sets the value of the '{@link org.switchyard.tools.models.switchyard1_0.camel.jpa.JpaProducerType#isUsePersist <em>Use Persist</em>}' attribute.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @param value the new value of the '<em>Use Persist</em>' attribute.
      * @see #isSetUsePersist()
      * @see #unsetUsePersist()
-     * @see #getUsePersist()
+     * @see #isUsePersist()
      * @generated
      */
-    void setUsePersist(Boolean value);
+    void setUsePersist(boolean value);
 
     /**
-     * Unsets the value of the '{@link org.switchyard.tools.models.switchyard1_0.camel.jpa.JpaProducerType#getUsePersist <em>Use Persist</em>}' attribute.
+     * Unsets the value of the '{@link org.switchyard.tools.models.switchyard1_0.camel.jpa.JpaProducerType#isUsePersist <em>Use Persist</em>}' attribute.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @see #isSetUsePersist()
-     * @see #getUsePersist()
-     * @see #setUsePersist(Boolean)
+     * @see #isUsePersist()
+     * @see #setUsePersist(boolean)
      * @generated
      */
     void unsetUsePersist();
 
     /**
-     * Returns whether the value of the '{@link org.switchyard.tools.models.switchyard1_0.camel.jpa.JpaProducerType#getUsePersist <em>Use Persist</em>}' attribute is set.
+     * Returns whether the value of the '{@link org.switchyard.tools.models.switchyard1_0.camel.jpa.JpaProducerType#isUsePersist <em>Use Persist</em>}' attribute is set.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @return whether the value of the '<em>Use Persist</em>' attribute is set.
      * @see #unsetUsePersist()
-     * @see #getUsePersist()
-     * @see #setUsePersist(Boolean)
+     * @see #isUsePersist()
+     * @see #setUsePersist(boolean)
      * @generated
      */
     boolean isSetUsePersist();

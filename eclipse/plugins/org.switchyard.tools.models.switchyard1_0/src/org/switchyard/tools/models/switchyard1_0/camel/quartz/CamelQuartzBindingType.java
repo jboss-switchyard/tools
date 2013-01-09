@@ -14,7 +14,7 @@ import javax.xml.datatype.XMLGregorianCalendar;
  * <ul>
  *   <li>{@link org.switchyard.tools.models.switchyard1_0.camel.quartz.CamelQuartzBindingType#getCamelBindingName <em>Camel Binding Name</em>}</li>
  *   <li>{@link org.switchyard.tools.models.switchyard1_0.camel.quartz.CamelQuartzBindingType#getCron <em>Cron</em>}</li>
- *   <li>{@link org.switchyard.tools.models.switchyard1_0.camel.quartz.CamelQuartzBindingType#getStateful <em>Stateful</em>}</li>
+ *   <li>{@link org.switchyard.tools.models.switchyard1_0.camel.quartz.CamelQuartzBindingType#isStateful <em>Stateful</em>}</li>
  *   <li>{@link org.switchyard.tools.models.switchyard1_0.camel.quartz.CamelQuartzBindingType#getTriggerStartTime <em>Trigger Start Time</em>}</li>
  *   <li>{@link org.switchyard.tools.models.switchyard1_0.camel.quartz.CamelQuartzBindingType#getTriggerEndTime <em>Trigger End Time</em>}</li>
  * </ul>
@@ -81,6 +81,7 @@ public interface CamelQuartzBindingType extends BaseCamelBinding {
 
     /**
      * Returns the value of the '<em><b>Stateful</b></em>' attribute.
+     * The default value is <code>"false"</code>.
      * <!-- begin-user-doc -->
      * <p>
      * If the meaning of the '<em>Stateful</em>' attribute isn't clear,
@@ -90,45 +91,45 @@ public interface CamelQuartzBindingType extends BaseCamelBinding {
      * @return the value of the '<em>Stateful</em>' attribute.
      * @see #isSetStateful()
      * @see #unsetStateful()
-     * @see #setStateful(Boolean)
+     * @see #setStateful(boolean)
      * @see org.switchyard.tools.models.switchyard1_0.camel.quartz.QuartzPackage#getCamelQuartzBindingType_Stateful()
-     * @model unsettable="true" dataType="org.eclipse.emf.ecore.xml.type.BooleanObject"
+     * @model default="false" unsettable="true" dataType="org.eclipse.emf.ecore.xml.type.Boolean"
      *        extendedMetaData="kind='element' name='stateful' namespace='##targetNamespace'"
      * @generated
      */
-    Boolean getStateful();
+    boolean isStateful();
 
     /**
-     * Sets the value of the '{@link org.switchyard.tools.models.switchyard1_0.camel.quartz.CamelQuartzBindingType#getStateful <em>Stateful</em>}' attribute.
+     * Sets the value of the '{@link org.switchyard.tools.models.switchyard1_0.camel.quartz.CamelQuartzBindingType#isStateful <em>Stateful</em>}' attribute.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @param value the new value of the '<em>Stateful</em>' attribute.
      * @see #isSetStateful()
      * @see #unsetStateful()
-     * @see #getStateful()
+     * @see #isStateful()
      * @generated
      */
-    void setStateful(Boolean value);
+    void setStateful(boolean value);
 
     /**
-     * Unsets the value of the '{@link org.switchyard.tools.models.switchyard1_0.camel.quartz.CamelQuartzBindingType#getStateful <em>Stateful</em>}' attribute.
+     * Unsets the value of the '{@link org.switchyard.tools.models.switchyard1_0.camel.quartz.CamelQuartzBindingType#isStateful <em>Stateful</em>}' attribute.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @see #isSetStateful()
-     * @see #getStateful()
-     * @see #setStateful(Boolean)
+     * @see #isStateful()
+     * @see #setStateful(boolean)
      * @generated
      */
     void unsetStateful();
 
     /**
-     * Returns whether the value of the '{@link org.switchyard.tools.models.switchyard1_0.camel.quartz.CamelQuartzBindingType#getStateful <em>Stateful</em>}' attribute is set.
+     * Returns whether the value of the '{@link org.switchyard.tools.models.switchyard1_0.camel.quartz.CamelQuartzBindingType#isStateful <em>Stateful</em>}' attribute is set.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @return whether the value of the '<em>Stateful</em>' attribute is set.
      * @see #unsetStateful()
-     * @see #getStateful()
-     * @see #setStateful(Boolean)
+     * @see #isStateful()
+     * @see #setStateful(boolean)
      * @generated
      */
     boolean isSetStateful();
