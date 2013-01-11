@@ -3,7 +3,7 @@
   <parent>
     <artifactId>switchyard-tools-eclipse-tests</artifactId>
     <groupId>org.switchyard.tools</groupId>
-    <version>0.7.0-SNAPSHOT</version>
+    <version>0.8.0-SNAPSHOT</version>
     <relativePath>..</relativePath>
   </parent>
   <artifactId>org.switchyard.tools.ui.tests</artifactId>

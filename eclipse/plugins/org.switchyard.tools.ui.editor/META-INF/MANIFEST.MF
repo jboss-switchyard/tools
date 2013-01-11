@@ -2,7 +2,7 @@ Manifest-Version: 1.0
 Bundle-ManifestVersion: 2
 Bundle-Name: SwitchYard Editor
 Bundle-SymbolicName: org.switchyard.tools.ui.editor;singleton:=true
-Bundle-Version: 0.7.0.qualifier
+Bundle-Version: 0.8.0.qualifier
 Bundle-Activator: org.switchyard.tools.ui.editor.Activator
 Bundle-Vendor: JBoss.org
 Require-Bundle: org.eclipse.graphiti,
@@ -13,8 +13,8 @@ Require-Bundle: org.eclipse.graphiti,
  org.eclipse.ui.views.properties.tabbed,
  org.eclipse.ui.ide,
  org.switchyard.tools.models.switchyard1_0,
- org.switchyard.tools.ui;bundle-version="0.7.0",
- org.switchyard.tools.m2e;bundle-version="0.7.0",
+ org.switchyard.tools.ui;bundle-version="0.8.0",
+ org.switchyard.tools.m2e;bundle-version="0.8.0",
  org.eclipse.gef,
  org.eclipse.zest.core,
  org.eclipse.zest.layouts,
