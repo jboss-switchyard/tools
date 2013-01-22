@@ -222,6 +222,7 @@ public class HttpBindingComposite extends AbstractSYBindingComposite {
      */
     public void setBinding(Binding switchYardBindingType) {
         if (switchYardBindingType instanceof HttpBindingType) {
+            setTargetObject(switchYardBindingType.eContainer());
             this._binding = (HttpBindingType) switchYardBindingType;
             setInUpdate(true);
             

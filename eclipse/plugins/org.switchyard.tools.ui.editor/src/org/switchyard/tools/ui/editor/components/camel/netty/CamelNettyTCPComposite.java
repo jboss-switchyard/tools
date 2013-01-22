@@ -72,15 +72,23 @@ public class CamelNettyTCPComposite extends AbstractSYBindingComposite {
             setInUpdate(true);
             if (this._binding.getHost() != null) {
                 _hostText.setText(this._binding.getHost());
+            } else {
+                _hostText.setText("");
             }
             if (this._binding.isSetPort()) {
                 _portText.setText(""+this._binding.getPort());
+            } else {
+                _portText.setText("");
             }
             if (this._binding.isSetSendBufferSize()) {
                 _sendBufferSizeText.setText(""+this._binding.getSendBufferSize());
+            } else {
+                _sendBufferSizeText.setText("");
             }
             if (this._binding.isSetReceiveBufferSize()) {
                 _receiveBufferSizeText.setText(""+this._binding.getReceiveBufferSize());
+            } else {
+                _receiveBufferSizeText.setText("");
             }
             _syncCheckbox.setSelection(this._binding.isSync());
             _keepAliveCheckbox.setSelection(this._binding.isKeepAlive());

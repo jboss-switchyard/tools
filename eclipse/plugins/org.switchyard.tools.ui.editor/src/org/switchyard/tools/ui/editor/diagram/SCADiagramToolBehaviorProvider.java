@@ -67,6 +67,9 @@ import org.eclipse.soa.sca.sca1_1.model.sca.Service;
 import org.switchyard.tools.models.switchyard1_0.hornetq.BindingType;
 import org.switchyard.tools.models.switchyard1_0.soap.SOAPBindingType;
 import org.switchyard.tools.models.switchyard1_0.switchyard.SwitchYardBindingType;
+import org.switchyard.tools.ui.editor.BindingTypeExtensionManager;
+import org.switchyard.tools.ui.editor.ComponentTypeExtensionManager;
+import org.switchyard.tools.ui.editor.ImageProvider;
 import org.switchyard.tools.ui.editor.property.adapters.LabelAdapter;
 import org.switchyard.tools.ui.validation.ValidationStatusAdapter;
 
@@ -213,115 +216,18 @@ public class SCADiagramToolBehaviorProvider extends DefaultToolBehaviorProvider 
             return super.getDecorators(pe);
         }
         List<IDecorator> decorators = new ArrayList<IDecorator>();
-        if (bo instanceof Service) {
-            Service service = (Service) bo;
-            if (!service.getBinding().isEmpty()) {
-                EList<Binding> bindings = service.getBinding();
-                int x = 0;
-                for (Binding binding : bindings) {
-                    ImageDecorator imageRenderingDecorator = LabelAdapter.getImageDecoratorForBinding(binding);
-                    if (x > 0) {
-                        x += 20;
-                        imageRenderingDecorator.setX(x);
-                    } else {
-                        x = imageRenderingDecorator.getX();
-                    }
-                    String text = LabelAdapter.getLabel(binding);
-                    if (binding instanceof SwitchYardBindingType) {
-                        text = "Binding: " + LabelAdapter.getLabel(binding);
-                    }
-                    if (binding instanceof SOAPBindingType) {
-                        SOAPBindingType soapBinding = (SOAPBindingType) binding;
-                        text = text + "\n" + soapBinding.getWsdl();
-                    } else if (binding instanceof BindingType) {
-                        BindingType hornetQBinding = (BindingType) binding;
-                        text = text + "\n" + hornetQBinding.getUri();
-                    }
-                    imageRenderingDecorator.setMessage(text);
-                    decorators.add(imageRenderingDecorator);
-                }
-            }
-            if (!(service.getInterface() == null)) {
-                ImageDecorator imageRenderingDecorator = LabelAdapter.getImageDecoratorForInterface(service.getInterface());
-                Interface intfc = service.getInterface();
-                String text = LabelAdapter.getLabel(intfc);
-                imageRenderingDecorator.setMessage("Interface: " + text);
-                Location loc = getDecoratorLocationLowerLeft(pe);
-                imageRenderingDecorator.setY(loc.getY() - 18);
-                decorators.add(imageRenderingDecorator);
-            } else if (service.getPromote() != null && service.getPromote().getInterface() != null) {
-                ImageDecorator imageRenderingDecorator = LabelAdapter.getImageDecoratorForInterface(service.getPromote().getInterface());
-                // ImageDecorator imageRenderingDecorator = new ImageDecorator(ImageProvider.IMG_16_INTERFACE);
-                Interface intfc = service.getPromote().getInterface();
-                String text = LabelAdapter.getLabel(intfc);
-                Location loc = getDecoratorLocationLowerLeft(pe);
-                imageRenderingDecorator.setY(loc.getY() - 18);
-                imageRenderingDecorator.setMessage("Interface (Inherited): " + text);
-                decorators.add(imageRenderingDecorator);
-            }
-        } else if (bo instanceof Reference) {
-            Reference reference = (Reference) bo;
-            if (!reference.getBinding().isEmpty()) {
-                EList<Binding> bindings = reference.getBinding();
-                int x = 0;
-                for (Binding binding : bindings) {
-                    ImageDecorator imageRenderingDecorator = LabelAdapter.getImageDecoratorForBinding(binding);
-                    if (x > 0) {
-                        x += 20;
-                        imageRenderingDecorator.setX(x);
-                    } else {
-                        x = imageRenderingDecorator.getX();
-                    }
-                    String text = LabelAdapter.getLabel(binding);
-                    if (binding instanceof SwitchYardBindingType) {
-                        text = "Binding: " + LabelAdapter.getLabel(binding);
-                    }
-                    if (binding instanceof SOAPBindingType) {
-                        SOAPBindingType soapBinding = (SOAPBindingType) binding;
-                        text = text + "\n" + soapBinding.getWsdl();
-                    } else if (binding instanceof BindingType) {
-                        BindingType hornetQBinding = (BindingType) binding;
-                        text = text + "\n" + hornetQBinding.getUri();
-                    }
-                    imageRenderingDecorator.setMessage(text);
-                    decorators.add(imageRenderingDecorator);
-                }
-            }
-            if (!(reference.getInterface() == null)) {
-                ImageDecorator imageRenderingDecorator = LabelAdapter.getImageDecoratorForInterface(reference.getInterface());
-                Interface intfc = reference.getInterface();
-                Location loc = getDecoratorLocationLowerLeft(pe);
-                imageRenderingDecorator.setY(loc.getY() - 18);
-                String text = LabelAdapter.getLabel(intfc);
-                imageRenderingDecorator.setMessage("Interface: " + text);
-                decorators.add(imageRenderingDecorator);
-            } else if (reference.getPromote() != null) {
-                EList<ComponentReference> references = reference.getPromote();
-                boolean hasInterface = false;
-                Interface intfc = null;
-                for (Iterator<ComponentReference> iterator = references.iterator(); iterator.hasNext();) {
-                    ComponentReference componentReference = (ComponentReference) iterator.next();
-                    if (componentReference.getInterface() != null) {
-                        hasInterface = true;
-                        intfc = componentReference.getInterface();
-                        break;
-                    }
-                }
-                if (hasInterface) {
-                    String text = LabelAdapter.getLabel(intfc);
-                    ImageDecorator imageRenderingDecorator = LabelAdapter.getImageDecoratorForInterface(intfc);
-                    imageRenderingDecorator.setMessage("Inherited Interface(s): " + text);
-                    Location loc = getDecoratorLocationLowerLeft(pe);
-                    imageRenderingDecorator.setY(loc.getY() - 18);
-                    decorators.add(imageRenderingDecorator);
-                }
-            }
+        if (bo instanceof Service || bo instanceof Reference) {
+            decorators.addAll(addDecoratorsForCompositeContract((Contract) bo, pe));
         } else if (bo instanceof Component) {
             Component component = (Component) bo;
             if (component.getImplementation() != null) {
                 Implementation implementation = component.getImplementation();
                 String text = LabelAdapter.getLabel(implementation);
-                IImageDecorator imageRenderingDecorator = LabelAdapter.getImageDecoratorForImplementation(implementation);
+                IImageDecorator imageRenderingDecorator = ComponentTypeExtensionManager.instance()
+                        .getExtensionFor(implementation.getClass()).getImageDecorator(implementation);
+                if (imageRenderingDecorator == null) {
+                    imageRenderingDecorator = new ImageDecorator(ImageProvider.IMG_16_UNKNOWN_IMPL);
+                }
                 imageRenderingDecorator.setMessage("Implementation: " + text);
                 Location loc = getDecoratorLocationTopLeft(pe);
                 imageRenderingDecorator.setX(loc.getX() + 10);
@@ -349,6 +255,70 @@ public class SCADiagramToolBehaviorProvider extends DefaultToolBehaviorProvider 
             decorators.add(new BorderDecorator(IColorConstant.GRAY, null, Graphics.LINE_DASH));
         }
         return decorators.toArray(new IDecorator[decorators.size()]);
+    }
+
+    private List<IDecorator> addDecoratorsForCompositeContract(Contract contract, PictogramElement pe) {
+        final List<IDecorator> decorators = new ArrayList<IDecorator>();
+        if (!contract.getBinding().isEmpty()) {
+            EList<Binding> bindings = contract.getBinding();
+            int x = 0;
+            for (Binding binding : bindings) {
+                IImageDecorator imageRenderingDecorator = BindingTypeExtensionManager.instance()
+                        .getExtensionFor(binding.getClass()).getImageDecorator(binding);
+                if (x > 0) {
+                    x += 20;
+                    imageRenderingDecorator.setX(x);
+                } else {
+                    x = imageRenderingDecorator.getX();
+                }
+                String text = LabelAdapter.getLabel(binding);
+                if (binding instanceof SwitchYardBindingType) {
+                    text = "Binding: " + LabelAdapter.getLabel(binding);
+                }
+                if (binding instanceof SOAPBindingType) {
+                    SOAPBindingType soapBinding = (SOAPBindingType) binding;
+                    text = text + "\n" + soapBinding.getWsdl();
+                } else if (binding instanceof BindingType) {
+                    BindingType hornetQBinding = (BindingType) binding;
+                    text = text + "\n" + hornetQBinding.getUri();
+                }
+                imageRenderingDecorator.setMessage(text);
+                decorators.add(imageRenderingDecorator);
+            }
+        }
+        if (contract.getInterface() != null) {
+            ImageDecorator imageRenderingDecorator = LabelAdapter
+                    .getImageDecoratorForInterface(contract.getInterface());
+            Interface intfc = contract.getInterface();
+            String text = LabelAdapter.getLabel(intfc);
+            imageRenderingDecorator.setMessage("Interface: " + text);
+            Location loc = getDecoratorLocationLowerLeft(pe);
+            imageRenderingDecorator.setY(loc.getY() - 18);
+            decorators.add(imageRenderingDecorator);
+        } else {
+            Interface intfc = null;
+            if (contract instanceof Service && ((Service) contract).getPromote() != null) {
+                intfc = ((Service) contract).getPromote().getInterface();
+            } else if (contract instanceof Reference) {
+                for (Contract promoted : ((Reference) contract).getPromote()) {
+                    if (promoted != null && promoted.getInterface() != null) {
+                        intfc = promoted.getInterface();
+                        break;
+                    }
+                }
+            }
+            if (intfc != null) {
+                ImageDecorator imageRenderingDecorator = LabelAdapter.getImageDecoratorForInterface(intfc);
+                // ImageDecorator imageRenderingDecorator = new
+                // ImageDecorator(ImageProvider.IMG_16_INTERFACE);
+                String text = LabelAdapter.getLabel(intfc);
+                Location loc = getDecoratorLocationLowerLeft(pe);
+                imageRenderingDecorator.setY(loc.getY() - 18);
+                imageRenderingDecorator.setMessage("Interface (Inherited): " + text);
+                decorators.add(imageRenderingDecorator);
+            }
+        }
+        return decorators;
     }
 
     private IDecorator[] getDecoratorsForConnection(ConnectionDecorator pe) {

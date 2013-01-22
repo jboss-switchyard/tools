@@ -89,9 +89,13 @@ public class JCABindingOutboundComposite extends AbstractSYBindingComposite {
                 JCAOutboundConnection outbound = this._binding.getOutboundConnection();
                 if (outbound.getResourceAdapter() != null) {
                     this._resourceAdapterText.setText(outbound.getResourceAdapter().getName());
+                } else {
+                    _resourceAdapterText.setText("");
                 }
                 if (outbound.getConnection() != null) {
                     this._connectionJNDINameText.setText(outbound.getConnection().getJndiName());
+                } else {
+                    _connectionJNDINameText.setText("");
                 }
 
                 if (_binding.getOutboundInteraction() != null) {

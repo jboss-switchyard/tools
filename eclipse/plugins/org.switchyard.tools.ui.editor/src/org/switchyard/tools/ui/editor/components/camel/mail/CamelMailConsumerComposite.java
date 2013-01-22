@@ -78,25 +78,39 @@ public class CamelMailConsumerComposite extends AbstractSYBindingComposite  {
                 }
                 if (this._binding.getConsume().getCopyTo() != null) {
                     _copyToText.setText(this._binding.getConsume().getCopyTo());
+                } else {
+                    _copyToText.setText("");
                 }
                 if (this._binding.getConsume().isSetFetchSize()) {
                     _fetchSizeText.setText(Integer.toString(this._binding.getConsume().getFetchSize()));
+                } else {
+                    _fetchSizeText.setText("");
                 }
                 if (this._binding.getConsume().getFolderName() != null) {
                     _folderNameText.setText(this._binding.getConsume().getFolderName());
+                } else {
+                    _folderNameText.setText("");
                 }
             }
             if (this._binding.getHost() != null) {
                 _hostText.setText(this._binding.getHost());
+            } else {
+                _hostText.setText("");
             }
             if (this._binding.isSetPort()) {
                 _portText.setText(Integer.toString(this._binding.getPort()));
+            } else {
+                _portText.setText("");
             }
             if (this._binding.getUsername() != null) {
                 _usernameText.setText(this._binding.getUsername());
+            } else {
+                _usernameText.setText("");
             }
             if (this._binding.getPassword() != null) {
                 _passwordText.setText(this._binding.getPassword());
+            } else {
+                _passwordText.setText("");
             }
 
             super.setTabsBinding(_binding);

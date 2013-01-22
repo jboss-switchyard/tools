@@ -188,11 +188,14 @@ public class ResteasyBindingComposite extends AbstractSYBindingComposite {
      */
     public void setBinding(Binding switchYardBindingType) {
         if (switchYardBindingType instanceof RESTBindingType) {
+            setTargetObject(switchYardBindingType.eContainer());
             this._binding = (RESTBindingType) switchYardBindingType;
             setInUpdate(true);
             String addressUrl = _binding.getAddress();
             if (_mAddressURLText != null && !_mAddressURLText.isDisposed() && addressUrl != null && addressUrl.trim().length() > 0) {
                 _mAddressURLText.setText(addressUrl);
+            } else {
+                _mAddressURLText.setText("");
             }
             if (_contextPathText != null && !_contextPathText.isDisposed()) {
                 if (_binding.getContextPath() != null) {

@@ -583,6 +583,10 @@ public class SwitchyardSCAEditor extends DiagramEditor implements IGotoMarker {
                     getEditorSite().getShell().getDisplay().asyncExec(new Runnable() {
                         @Override
                         public void run() {
+                            if (getEditingDomain() == null) {
+                                // we've been closed
+                                return;
+                            }
                             try {
                                 TransactionUtil.runExclusive(getEditingDomain(), new RunnableWithResult.Impl<Object>() {
                                     public void run() {

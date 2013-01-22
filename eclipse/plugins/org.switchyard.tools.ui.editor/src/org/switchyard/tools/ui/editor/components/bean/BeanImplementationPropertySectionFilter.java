@@ -10,29 +10,24 @@
  *
  * @author bfitzpat
  ******************************************************************************/
-package org.switchyard.tools.ui.editor.property;
+package org.switchyard.tools.ui.editor.components.bean;
 
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.graphiti.mm.pictograms.PictogramElement;
 import org.eclipse.graphiti.services.Graphiti;
 import org.eclipse.graphiti.ui.platform.AbstractPropertySectionFilter;
 import org.eclipse.soa.sca.sca1_1.model.sca.Component;
-import org.switchyard.tools.models.switchyard1_0.bpm.BPMImplementationType;
-import org.switchyard.tools.models.switchyard1_0.rules.RulesImplementationType;
+import org.switchyard.tools.models.switchyard1_0.bean.BeanImplementationType;
 
 /**
  * @author bfitzpat
  * 
  */
-public class SwitchyardSCAPropertiesImplementationsFilter extends AbstractPropertySectionFilter {
+public class BeanImplementationPropertySectionFilter extends AbstractPropertySectionFilter {
 
     @Override
     protected boolean accept(PictogramElement pe) {
         EObject bo = Graphiti.getLinkService().getBusinessObjectForLinkedPictogramElement(pe);
-        if (bo instanceof Component && !(((Component) bo).getImplementation() instanceof BPMImplementationType)
-                && !(((Component) bo).getImplementation() instanceof RulesImplementationType)) {
-            return true;
-        }
-        return false;
+        return bo instanceof Component && ((Component) bo).getImplementation() instanceof BeanImplementationType;
     }
 }

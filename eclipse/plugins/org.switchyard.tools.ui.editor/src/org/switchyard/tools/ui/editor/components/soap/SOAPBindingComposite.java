@@ -369,6 +369,7 @@ public class SOAPBindingComposite extends AbstractSYBindingComposite {
      */
     public void setBinding(Binding switchYardBindingType) {
         if (switchYardBindingType instanceof SOAPBindingType) {
+            setTargetObject(switchYardBindingType.eContainer());
             this._binding = (SOAPBindingType) switchYardBindingType;
             _sWSDLURI = _binding.getWsdl();
             setInUpdate(true);
@@ -377,18 +378,24 @@ public class SOAPBindingComposite extends AbstractSYBindingComposite {
                 String wsdlURI = _binding.getWsdl();
                 if (wsdlURI != null) {
                     _mWSDLURIText.setText(wsdlURI);
+                } else {
+                    _mWSDLURIText.setText("");
                 }
             }
             if (_portNameText != null && !_portNameText.isDisposed()) {
                 String portName = _binding.getWsdlPort();
                 if (portName != null) {
                     _portNameText.setText(portName);
+                } else {
+                    _portNameText.setText("");
                 }
             }
             if (_mWSDLSocketText != null && !_mWSDLSocketText.isDisposed()) {
                 _bindingSocket = _binding.getSocketAddr();
                 if (_bindingSocket != null) {
                     _mWSDLSocketText.setText(_bindingSocket);
+                } else {
+                    _mWSDLSocketText.setText("");
                 }
             }
             if (_contextPathText != null && !_contextPathText.isDisposed()) {
@@ -437,6 +444,8 @@ public class SOAPBindingComposite extends AbstractSYBindingComposite {
                 _endpointAddress  = _binding.getEndpointAddress();
                 if (_endpointAddress != null) {
                     _endpointAddressText.setText(_endpointAddress);
+                } else {
+                    _endpointAddressText.setText("");
                 }
             }
             super.setTabsBinding(_binding);

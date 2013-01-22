@@ -238,33 +238,6 @@ public final class LabelAdapter {
     }
 
     /**
-     * @param intfc Implementation to check
-     * @return IDecorator decorator image
-     */
-    public static ImageDecorator getImageDecoratorForImplementation(Implementation intfc) {
-        ImageDecorator imageRenderingDecorator = 
-                new ImageDecorator(ImageProvider.IMG_16_IMPLEMENTATION_TYPE);
-        if (intfc instanceof BeanImplementationType) {
-            imageRenderingDecorator = new ImageDecorator(ImageProvider.IMG_16_BEAN);
-        } else if (intfc instanceof BPELImplementation) {
-            imageRenderingDecorator = new ImageDecorator(ImageProvider.IMG_16_BPEL);
-        } else if (intfc instanceof CamelImplementationType) {
-            CamelImplementationType camelIntfc = (CamelImplementationType) intfc;
-            if (camelIntfc.getJava() != null) {
-                imageRenderingDecorator = new ImageDecorator(ImageProvider.IMG_16_CAMEL_JAVA);
-            } else if (camelIntfc.getRoute() != null) {
-                imageRenderingDecorator = new ImageDecorator(ImageProvider.IMG_16_CAMEL_XML);
-            } else {
-                imageRenderingDecorator = new ImageDecorator(ImageProvider.IMG_16_CAMEL);
-            }
-        } else if (intfc instanceof BPMImplementationType) {
-            imageRenderingDecorator = new ImageDecorator(ImageProvider.IMG_16_BPMN);
-        } else if (intfc instanceof RulesImplementationType) {
-            imageRenderingDecorator = new ImageDecorator(ImageProvider.IMG_16_RULES);
-        }
-        return imageRenderingDecorator;
-    }
-    /**
      * @param transform transform to check
      * @return String label
      */

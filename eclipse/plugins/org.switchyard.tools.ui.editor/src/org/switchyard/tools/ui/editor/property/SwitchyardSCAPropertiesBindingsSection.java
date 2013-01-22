@@ -12,6 +12,9 @@
  ******************************************************************************/
 package org.switchyard.tools.ui.editor.property;
 
+import java.util.HashMap;
+import java.util.Map;
+
 import org.eclipse.emf.common.command.Command;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.transaction.NotificationFilter;
@@ -53,11 +56,11 @@ import org.eclipse.ui.forms.widgets.Section;
 import org.eclipse.ui.views.properties.tabbed.ITabbedPropertyConstants;
 import org.eclipse.ui.views.properties.tabbed.TabbedPropertySheetPage;
 import org.eclipse.ui.views.properties.tabbed.TabbedPropertySheetWidgetFactory;
+import org.switchyard.tools.ui.editor.BindingTypeExtensionManager;
 import org.switchyard.tools.ui.editor.diagram.binding.AbstractSYBindingComposite;
 import org.switchyard.tools.ui.editor.diagram.shared.AbstractSwitchyardComposite;
 import org.switchyard.tools.ui.editor.diagram.shared.IBindingComposite;
 import org.switchyard.tools.ui.editor.impl.SwitchyardSCAEditor;
-import org.switchyard.tools.ui.editor.property.adapters.BindingCompositeAdapter;
 import org.switchyard.tools.ui.editor.property.adapters.LabelAdapter;
 
 /**
@@ -80,6 +83,7 @@ public class SwitchyardSCAPropertiesBindingsSection extends GFPropertySection im
     private Object _targetBO;
     private TransactionalEditingDomain _domain = null;
     private IBindingComposite _composite = null;
+    private Map<String, IBindingComposite> _composites = new HashMap<String, IBindingComposite>();
 
     /**
      * Constructor.
@@ -131,36 +135,23 @@ public class SwitchyardSCAPropertiesBindingsSection extends GFPropertySection im
             _removeButton.setEnabled(_binding != null);
         }
         if (_binding != null) {
-            if (justRefresh && _composite.getBinding().equals(_binding)) {
-                if (_composite != null) {
-                    _composite.setBinding(_binding);
-                    _detailSection.setClient(((AbstractSwitchyardComposite) _composite).getPanel());
-                    _detailSection.setExpanded(true);
-                    _page.resizeScrolledComposite();
-                }
-            } else {
-                TabbedPropertySheetWidgetFactory factory = getWidgetFactory();
-                IBindingComposite composite = (IBindingComposite) BindingCompositeAdapter.adaptModelToComposite(_binding);
-                if (composite != null) {
-                    if (_detailSection.getClient() != null) {
-                        _detailSection.getClient().setVisible(false);
-                    }
-                    ((AbstractSwitchyardComposite) composite).setOpenOnCreate(true);
-                    ((AbstractSwitchyardComposite) composite).createContents(_detailSection, SWT.NONE);
-                    ((AbstractSwitchyardComposite) composite).setRootGridData(new GridData(SWT.FILL, SWT.FILL, true, true));
-                    factory.adapt(((AbstractSwitchyardComposite) composite).getPanel());
-                    _composite = composite;
-                    composite.setBinding(_binding);
-                    _detailSection.setClient(((AbstractSwitchyardComposite) composite).getPanel());
-                    _detailSection.setExpanded(true);
-                    _page.resizeScrolledComposite();
-                } else {
-                    _composite = null;
-                    if (_detailSection.getClient() != null) {
-                        _detailSection.getClient().setVisible(false);
-                    }
-                }
+            TabbedPropertySheetWidgetFactory factory = getWidgetFactory();
+            IBindingComposite composite = _composites.get(createKey(_binding));
+            if (_detailSection.getClient() != null) {
+                _detailSection.getClient().setVisible(false);
             }
+            if (((AbstractSwitchyardComposite) composite).getPanel() == null) {
+                ((AbstractSwitchyardComposite) composite).setOpenOnCreate(true);
+                ((AbstractSwitchyardComposite) composite).createContents(_detailSection, SWT.NONE);
+                ((AbstractSwitchyardComposite) composite).setRootGridData(new GridData(SWT.FILL, SWT.FILL, true, true));
+                factory.adapt(((AbstractSwitchyardComposite) composite).getPanel());
+            }
+            _composite = composite;
+            composite.setBinding(_binding);
+            _detailSection.setClient(((AbstractSwitchyardComposite) composite).getPanel());
+            _detailSection.getClient().setVisible(true);
+            _detailSection.setExpanded(true);
+            _page.resizeScrolledComposite();
         } else {
             if (_detailSection.getClient() != null) {
                 _detailSection.getClient().setVisible(false);
@@ -284,11 +275,13 @@ public class SwitchyardSCAPropertiesBindingsSection extends GFPropertySection im
                 if (!ssel.isEmpty() && ssel.getFirstElement() instanceof Binding) {
                     boolean justRefresh = true;
                     Binding testBinding = (Binding) ssel.getFirstElement();
-                    IBindingComposite testcomposite = 
-                            (IBindingComposite) BindingCompositeAdapter.adaptModelToComposite(testBinding);
-                    if (_composite == null) {
-                        justRefresh = false;
-                    } else if (!(_composite.getClass().getName().equalsIgnoreCase(testcomposite.getClass().getName()))) {
+                    String key = createKey(testBinding);
+                    IBindingComposite testcomposite = _composites.get(key);
+                    if (testcomposite == null) {
+                        testcomposite = BindingTypeExtensionManager.instance().getExtensionFor(testBinding.getClass()).createComposite(testBinding);
+                        _composites.put(key, testcomposite);
+                    }
+                    if (_composite == null || _composite != testcomposite) {
                         justRefresh = false;
                     }
                     _binding = testBinding;
@@ -416,6 +409,11 @@ public class SwitchyardSCAPropertiesBindingsSection extends GFPropertySection im
     @Override
     public void dispose() {
         removeDomainListener();
+        _composites.clear();
         super.dispose();
+    }
+    
+    private String createKey(Binding binding) {
+        return binding.getClass().getCanonicalName() + binding.eContainer().getClass().getCanonicalName();
     }
 }

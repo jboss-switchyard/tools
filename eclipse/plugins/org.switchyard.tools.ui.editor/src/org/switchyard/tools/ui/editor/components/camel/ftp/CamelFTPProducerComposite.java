@@ -69,29 +69,45 @@ public class CamelFTPProducerComposite extends AbstractSYBindingComposite {
             if (this._binding.getProduce() != null) {
                 if (this._binding.getProduce().getFileExist() != null) {
                     _fileExistText.setText(this._binding.getProduce().getFileExist());
+                } else {
+                    _fileExistText.setText("");
                 }
                 if (this._binding.getProduce().getTempPrefix() != null) {
                     _tempPrefixText.setText(this._binding.getProduce().getTempPrefix());
+                } else {
+                    _tempPrefixText.setText("");
                 }
             }
             if (this._binding.getDirectory() != null) {
                 _directoryText.setText(this._binding.getDirectory());
+            } else {
+                _directoryText.setText("");
             }
             if (this._binding.getFileName() != null) {
                 _fileNameText.setText(this._binding.getFileName());
+            } else {
+                _fileNameText.setText("");
             }
             _autoCreateButton.setSelection(this._binding.isAutoCreate());
             if (this._binding.getHost() != null) {
                 _hostText.setText(this._binding.getHost());
+            } else {
+                _hostText.setText("");
             }
             if (this._binding.isSetPort()) {
                 _portText.setText(Integer.toString(this._binding.getPort()));
+            } else {
+                _portText.setText("");
             }
             if (this._binding.getUsername() != null) {
                 _usernameText.setText(this._binding.getUsername());
+            } else {
+                _usernameText.setText("");
             }
             if (this._binding.getPassword() != null) {
                 _pwdText.setText(this._binding.getPassword());
+            } else {
+                _pwdText.setText("");
             }
             _binaryButton.setSelection(this._binding.isBinary());
             super.setTabsBinding(_binding);

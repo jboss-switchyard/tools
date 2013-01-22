@@ -79,31 +79,49 @@ public class CamelFileConsumerComposite extends AbstractSYBindingComposite  {
             if (this._binding.getConsume() != null) {
                 if (this._binding.getConsume().isSetDelay()) {
                     _delayText.setText(Integer.toString(this._binding.getConsume().getDelay()));
+                } else {
+                    _delayText.setText("");
                 }
                 if (this._binding.getConsume().isSetMaxMessagesPerPoll()) {
                     _maxMessagesPerPollText.setText(Integer.toString(this._binding.getConsume().getMaxMessagesPerPoll()));
+                } else {
+                    _maxMessagesPerPollText.setText("");
                 }
                 if (this._binding.getConsume().getExclude() != null) {
                     _excludeText.setText(this._binding.getConsume().getExclude());
+                } else {
+                    _excludeText.setText("");
                 }
                 if (this._binding.getConsume().getInclude() != null) {
                     _includeText.setText(this._binding.getConsume().getInclude());
+                } else {
+                    _includeText.setText("");
                 }
                 if (this._binding.getConsume().getMoveFailed() != null) {
                     _moveFailedText.setText(this._binding.getConsume().getMoveFailed());
+                } else {
+                    _moveFailedText.setText("");
                 }
                 if (this._binding.getConsume().getMove() != null) {
                     _moveText.setText(this._binding.getConsume().getMove());
+                } else {
+                    _moveText.setText("");
                 }
                 if (this._binding.getConsume().getPreMove() != null) {
                     _preMoveText.setText(this._binding.getConsume().getPreMove());
+                } else {
+                    _preMoveText.setText("");
                 }
             }
             if (this._binding.getDirectory() != null) {
                 _directoryText.setText(this._binding.getDirectory());
+            } else {
+                _directoryText.setText("");
             }
             if (this._binding.getFileName() != null) {
                 _fileNameText.setText(this._binding.getFileName());
+            } else {
+                _fileNameText.setText("");
             }
             _autoCreateButton.setSelection(this._binding.isAutoCreate());
             OperationSelectorType opSelector = OperationSelectorUtil.getFirstOperationSelector(this._binding);

@@ -95,6 +95,8 @@ public class JCABindingInboundComposite extends AbstractSYBindingComposite {
                 JCAInboundConnection inbound = this._binding.getInboundConnection();
                 if (inbound.getResourceAdapter() != null) {
                     this._resourceAdapterText.setText(inbound.getResourceAdapter().getName());
+                } else {
+                    _resourceAdapterText.setText("");
                 }
 
                 if (inbound.getActivationSpec() != null && inbound.getActivationSpec().getProperty().size() > 0) {

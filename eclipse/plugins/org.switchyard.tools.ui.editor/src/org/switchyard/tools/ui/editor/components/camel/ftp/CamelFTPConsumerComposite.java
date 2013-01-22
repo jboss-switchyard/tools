@@ -85,43 +85,67 @@ public class CamelFTPConsumerComposite extends AbstractSYBindingComposite {
             if (this._binding.getConsume() != null) {
                 if (this._binding.getConsume().isSetDelay()) {
                     _delayText.setText(Integer.toString(this._binding.getConsume().getDelay()));
+                } else {
+                    _delayText.setText("");
                 }
                 if (this._binding.getConsume().getExclude() != null) {
                     _excludeText.setText(this._binding.getConsume().getExclude());
+                } else {
+                    _excludeText.setText("");
                 }
                 if (this._binding.getConsume().getInclude() != null) {
                     _includeText.setText(this._binding.getConsume().getInclude());
+                } else {
+                    _includeText.setText("");
                 }
                 if (this._binding.getConsume().getMoveFailed() != null) {
                     _moveFailedText.setText(this._binding.getConsume().getMoveFailed());
+                } else {
+                    _moveFailedText.setText("");
                 }
                 if (this._binding.getConsume().getMove() != null) {
                     _moveText.setText(this._binding.getConsume().getMove());
+                } else {
+                    _moveText.setText("");
                 }
                 if (this._binding.getConsume().getPreMove() != null) {
                     _preMoveText.setText(this._binding.getConsume().getPreMove());
+                } else {
+                    _preMoveText.setText("");
                 }
                 _deleteButton.setSelection(this._binding.getConsume().isDelete());
                 _recursiveButton.setSelection(this._binding.getConsume().isRecursive());
             }
             if (this._binding.getDirectory() != null) {
                 _directoryText.setText(this._binding.getDirectory());
+            } else {
+                _directoryText.setText("");
             }
             if (this._binding.getFileName() != null) {
                 _fileNameText.setText(this._binding.getFileName());
+            } else {
+                _fileNameText.setText("");
             }
             _autoCreateButton.setSelection(this._binding.isAutoCreate());
             if (this._binding.getHost() != null) {
                 _hostText.setText(this._binding.getHost());
+            } else {
+                _hostText.setText("");
             }
             if (this._binding.isSetPort()) {
                 _portText.setText(Integer.toString(this._binding.getPort()));
+            } else {
+                _portText.setText("");
             }
             if (this._binding.getUsername() != null) {
                 _usernameText.setText(this._binding.getUsername());
+            } else {
+                _usernameText.setText("");
             }
             if (this._binding.getPassword() != null) {
                 _pwdText.setText(this._binding.getPassword());
+            } else {
+                _pwdText.setText("");
             }
             _binaryButton.setSelection(this._binding.isBinary());
             OperationSelectorType opSelector = OperationSelectorUtil.getFirstOperationSelector(this._binding);

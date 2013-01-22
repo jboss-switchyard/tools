@@ -13,7 +13,9 @@
 package org.switchyard.tools.ui.editor.diagram;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Collections;
+import java.util.Comparator;
 import java.util.List;
 
 import org.eclipse.emf.ecore.EObject;
@@ -30,7 +32,6 @@ import org.eclipse.graphiti.features.IRemoveFeature;
 import org.eclipse.graphiti.features.IResizeShapeFeature;
 import org.eclipse.graphiti.features.IUpdateFeature;
 import org.eclipse.graphiti.features.context.IAddContext;
-import org.eclipse.graphiti.features.context.ICreateContext;
 import org.eclipse.graphiti.features.context.ICustomContext;
 import org.eclipse.graphiti.features.context.IDeleteContext;
 import org.eclipse.graphiti.features.context.IDirectEditingContext;
@@ -57,31 +58,10 @@ import org.eclipse.soa.sca.sca1_1.model.sca.JavaInterface;
 import org.eclipse.soa.sca.sca1_1.model.sca.Reference;
 import org.eclipse.soa.sca.sca1_1.model.sca.Service;
 import org.switchyard.tools.models.switchyard1_0.switchyard.SwitchYardBindingType;
-import org.switchyard.tools.ui.editor.ImageProvider;
-import org.switchyard.tools.ui.editor.components.bean.BeanComponentFactory;
-import org.switchyard.tools.ui.editor.components.bean.BeanImplementationFactory;
-import org.switchyard.tools.ui.editor.components.bpm.BPMComponentFactory;
-import org.switchyard.tools.ui.editor.components.bpm.BPMImplementationFactory;
-import org.switchyard.tools.ui.editor.components.camel.file.CamelFileBindingFactory;
-import org.switchyard.tools.ui.editor.components.camel.ftp.CamelFTPBindingFactory;
-import org.switchyard.tools.ui.editor.components.camel.java.CamelJavaComponentFactory;
-import org.switchyard.tools.ui.editor.components.camel.java.CamelJavaImplementationFactory;
-import org.switchyard.tools.ui.editor.components.camel.jms.CamelJmsBindingFactory;
-import org.switchyard.tools.ui.editor.components.camel.jpa.CamelJPABindingFactory;
-import org.switchyard.tools.ui.editor.components.camel.mail.CamelMailBindingFactory;
-import org.switchyard.tools.ui.editor.components.camel.netty.CamelNettyTCPBindingFactory;
-import org.switchyard.tools.ui.editor.components.camel.netty.CamelNettyUDPBindingFactory;
-import org.switchyard.tools.ui.editor.components.camel.quartz.CamelQuartzBindingFactory;
-import org.switchyard.tools.ui.editor.components.camel.sql.CamelSqlBindingFactory;
-import org.switchyard.tools.ui.editor.components.camel.xml.CamelXMLComponentFactory;
-import org.switchyard.tools.ui.editor.components.camel.xml.CamelXMLImplementationFactory;
-import org.switchyard.tools.ui.editor.components.http.HttpBindingFactory;
-import org.switchyard.tools.ui.editor.components.jca.JCABindingFactory;
-import org.switchyard.tools.ui.editor.components.resteasy.ResteasyBindingFactory;
-import org.switchyard.tools.ui.editor.components.rules.RulesComponentFactory;
-import org.switchyard.tools.ui.editor.components.rules.RulesImplementationFactory;
-import org.switchyard.tools.ui.editor.components.soap.SOAPBindingFactory;
-import org.switchyard.tools.ui.editor.diagram.binding.CreateBindingFeature;
+import org.switchyard.tools.ui.editor.BindingTypeExtensionManager;
+import org.switchyard.tools.ui.editor.ComponentTypeExtensionManager;
+import org.switchyard.tools.ui.editor.IBindingTypeExtension;
+import org.switchyard.tools.ui.editor.IComponentTypeExtension;
 import org.switchyard.tools.ui.editor.diagram.binding.SCADiagramAddBindingFeature;
 import org.switchyard.tools.ui.editor.diagram.component.AbstractComponentFactory;
 import org.switchyard.tools.ui.editor.diagram.component.CreateComponentFeature;
@@ -114,7 +94,6 @@ import org.switchyard.tools.ui.editor.diagram.connections.SCADiagramAddComponent
 import org.switchyard.tools.ui.editor.diagram.connections.SCADiagramAddReferenceLinkFeature;
 import org.switchyard.tools.ui.editor.diagram.connections.SCADiagramCreateComponentServiceLinkFeature;
 import org.switchyard.tools.ui.editor.diagram.connections.SCADiagramCreateReferenceLinkFeature;
-import org.switchyard.tools.ui.editor.diagram.implementation.CreateImplementationFeature;
 import org.switchyard.tools.ui.editor.diagram.implementation.SCADiagramAddImplementationFeature;
 import org.switchyard.tools.ui.editor.diagram.service.SCADiagramAddServiceFeature;
 import org.switchyard.tools.ui.editor.diagram.service.SCADiagramCreateServiceFeature;
@@ -193,54 +172,16 @@ public class SCADiagramFeatureProvider extends DefaultFeatureProvider {
 
     /* package */List<ICreateFeature> getCreateComponentFeatures() {
         List<ICreateFeature> features = new ArrayList<ICreateFeature>(5);
-        // component types
-        features.add(new CompositeCreateFeature(this, "Camel (Java)",
-                "A Java based Camel route component/implementation", new CreateComponentFeature(this,
-                        new CamelJavaComponentFactory(), "Camel (Java)",
-                        "Create a component implemented as a Java based Camel route.", ImageProvider.IMG_16_CAMEL_JAVA),
-                new CreateImplementationFeature(this, new CamelJavaImplementationFactory(), "Camel (Java)",
-                        "An implementation using a Java based Camel route.")));
-        features.add(new CompositeCreateFeature(this, "Camel (XML)",
-                "An XML based Camel route component/implementation.", new CreateComponentFeature(this,
-                        new CamelXMLComponentFactory(), "Camel (XML)",
-                        "Create a component implemented as an XML based Camel route.", ImageProvider.IMG_16_CAMEL_XML),
-                new CreateImplementationFeature(this, new CamelXMLImplementationFactory(), "Camel (XML)",
-                        "An implementation using an XML based Camel route.")));
-        features.add(new CompositeCreateFeature(this, "Bean", "A Java Bean (CDI)  based component/implementation.",
-                new CreateComponentFeature(this, new BeanComponentFactory(), "Bean",
-                        "Create a component with a Java Bean (CDI) implementation.", ImageProvider.IMG_16_BEAN), new CreateImplementationFeature(
-                        this, new BeanImplementationFactory(), "Bean", "An implementation using a Java Bean (CDI).") {
-                    @Override
-                    public boolean canCreate(ICreateContext context) {
-                        if (super.canCreate(context)) {
-                            Component component = (Component) getBusinessObjectForPictogramElement(context
-                                    .getTargetContainer());
-                            if (component.getService() == null) {
-                                // no service contract defined
-                                return true;
-                            }
-                            for (ComponentService service : component.getService()) {
-                                // only allow this if the component has a java
-                                // contract
-                                // defined
-                                return service.getInterface() == null
-                                        || service.getInterface() instanceof JavaInterface;
-                            }
-                            // no service contract defined
-                            return true;
-                        }
-                        return false;
-                    }
-                }));
-        features.add(new CompositeCreateFeature(this, "Process (BPMN)",
-                "A BPMN process based component/implementation.", new CreateComponentFeature(this,
-                        new BPMComponentFactory(), "Process (BPMN)",
-                        "Create a component implemented as a BPMN process.", ImageProvider.IMG_16_BPMN), new CreateImplementationFeature(this,
-                        new BPMImplementationFactory(), "Process (BPMN)", "An implementation using a BPMN process.")));
-        features.add(new CompositeCreateFeature(this, "Rules (DRL)", "A rules based component/implementation.",
-                new CreateComponentFeature(this, new RulesComponentFactory(), "Rules (DRL)",
-                        "Create a component implemented using rules.", ImageProvider.IMG_16_RULES), new CreateImplementationFeature(this,
-                        new RulesImplementationFactory(), "Rules (DRL)", "An implementation using rules.")));
+        for (IComponentTypeExtension extension : ComponentTypeExtensionManager.instance().getExtensions()) {
+            features.addAll(Arrays.asList(extension.newCreateFeatures(this)));
+        }
+
+        Collections.sort(features, new Comparator<ICreateFeature>() {
+            @Override
+             public int compare(ICreateFeature o1, ICreateFeature o2) {
+                 return o1.getName().compareTo(o2.getName());
+             } 
+         });
 
         return features;
     }
@@ -259,23 +200,16 @@ public class SCADiagramFeatureProvider extends DefaultFeatureProvider {
 
     /* package */List<ICreateFeature> getCreateBindingFeatures() {
         List<ICreateFeature> features = new ArrayList<ICreateFeature>(10);
-        features.add(new CreateBindingFeature(this, new CamelFileBindingFactory(), "File",
-                "A Camel File based endpoint.", ImageProvider.IMG_16_FILE));
-        features.add(new CreateBindingFeature(this, new CamelFTPBindingFactory(), "FTP", "A Camel FTP based endpoint.", ImageProvider.IMG_16_FTP));
-        features.add(new CreateBindingFeature(this, new HttpBindingFactory(), "HTTP", "A HTTP based endpoint.", ImageProvider.IMG_16_HTTP));
-        features.add(new CreateBindingFeature(this, new JCABindingFactory(), "JCA", "A JCA based endpoint.", ImageProvider.IMG_16_JCA));
-        features.add(new CreateBindingFeature(this, new CamelJmsBindingFactory(), "JMS", "A Camel JMS based endpoint.", ImageProvider.IMG_16_QUEUE));
-        features.add(new CreateBindingFeature(this, new CamelJPABindingFactory(), "JPA", "A Camel JPA based endpoint.", ImageProvider.IMG_16_JPA));
-        features.add(new CreateBindingFeature(this, new CamelMailBindingFactory(), "Mail", "A Camel Mail based endpoint.", ImageProvider.IMG_16_MAIL));
-        features.add(new CreateBindingFeature(this, new CamelNettyTCPBindingFactory(), "Netty TCP",
-                "A Camel Netty TCP based endpoint.", ImageProvider.IMG_16_NETTY_TCP));
-        features.add(new CreateBindingFeature(this, new CamelNettyUDPBindingFactory(), "Netty UDP",
-                "A Camel Netty UDP based endpoint.", ImageProvider.IMG_16_NETTY_UDP));
-        features.add(new CreateBindingFeature(this, new ResteasyBindingFactory(), "REST", "A REST based endpoint.", ImageProvider.IMG_16_RESTEASY));
-        features.add(new CreateBindingFeature(this, new CamelQuartzBindingFactory(), "Scheduling",
-                "A Camel Scheduling based endpoint.", ImageProvider.IMG_16_SCHEDULER));
-        features.add(new CreateBindingFeature(this, new SOAPBindingFactory(), "SOAP", "A SOAP based endpoint.", ImageProvider.IMG_16_SOAP));
-        features.add(new CreateBindingFeature(this, new CamelSqlBindingFactory(), "SQL", "A Camel SQL based endpoint.", ImageProvider.IMG_16_SQL));
+        for (IBindingTypeExtension extension : BindingTypeExtensionManager.instance().getExtensions()) {
+            features.addAll(Arrays.asList(extension.newCreateFeatures(this)));
+        }
+        Collections.sort(features, new Comparator<ICreateFeature>() {
+           @Override
+            public int compare(ICreateFeature o1, ICreateFeature o2) {
+                return o1.getName().compareTo(o2.getName());
+            } 
+        });
+
         return features;
     }
 

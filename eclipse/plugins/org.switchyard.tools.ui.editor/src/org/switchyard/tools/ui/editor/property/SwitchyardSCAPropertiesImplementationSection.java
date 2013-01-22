@@ -17,27 +17,21 @@ import org.eclipse.graphiti.services.Graphiti;
 import org.eclipse.graphiti.ui.platform.GFPropertySection;
 import org.eclipse.soa.sca.sca1_1.model.sca.Component;
 import org.eclipse.soa.sca.sca1_1.model.sca.Implementation;
-import org.eclipse.swt.SWT;
 import org.eclipse.swt.widgets.Composite;
-import org.eclipse.ui.part.PageBook;
 import org.eclipse.ui.views.properties.tabbed.ITabbedPropertyConstants;
 import org.eclipse.ui.views.properties.tabbed.TabbedPropertySheetPage;
-import org.eclipse.ui.views.properties.tabbed.TabbedPropertySheetWidgetFactory;
-import org.switchyard.tools.ui.editor.diagram.shared.AbstractSwitchyardComposite;
 import org.switchyard.tools.ui.editor.diagram.shared.IImplementationComposite;
-import org.switchyard.tools.ui.editor.property.adapters.ImplementationCompositeAdapter;
 
 /**
  * @author bfitzpat
  * 
  */
-public class SwitchyardSCAPropertiesImplementationSection extends GFPropertySection implements ITabbedPropertyConstants {
+public abstract class SwitchyardSCAPropertiesImplementationSection extends GFPropertySection implements
+        ITabbedPropertyConstants {
 
     private Implementation _implementation;
+    private IImplementationComposite _composite;
 
-    private PageBook _composite;
-    private Composite _blank = null;
-    
     /**
      * Constructor.
      */
@@ -56,13 +50,7 @@ public class SwitchyardSCAPropertiesImplementationSection extends GFPropertySect
     @Override
     public void createControls(Composite parent, TabbedPropertySheetPage tabbedPropertySheetPage) {
         super.createControls(parent, tabbedPropertySheetPage);
-
-        TabbedPropertySheetWidgetFactory factory = getWidgetFactory();
-        _composite = new PageBook(parent, SWT.NONE);
-        factory.adapt(_composite);
-
-        _blank = factory.createFlatFormComposite(_composite);
-        _composite.showPage(_blank);
+        _composite = createComposite(parent);
     }
 
     @Override
@@ -72,32 +60,14 @@ public class SwitchyardSCAPropertiesImplementationSection extends GFPropertySect
             Object bo = Graphiti.getLinkService().getBusinessObjectForLinkedPictogramElement(pe);
             _implementation = null;
 
-            // the filter assured, that it is a Service or Reference
-            if (bo == null) {
-                return;
-            }
-            if (bo instanceof Component) {
-                Component component = (Component) bo;
-                _implementation = component.getImplementation();
-            }
-            
+            Component component = (Component) bo;
+            _implementation = component.getImplementation();
+
             if (_implementation != null) {
-                TabbedPropertySheetWidgetFactory factory = getWidgetFactory();
-                IImplementationComposite composite = 
-                        (IImplementationComposite) ImplementationCompositeAdapter.adaptModelToComposite(_implementation);
-                if (composite != null) {
-                    ((AbstractSwitchyardComposite) composite).createContents(_composite, SWT.NONE);
-                    factory.adapt(((AbstractSwitchyardComposite) composite).getPanel());
-                }
-                if (composite != null) {
-                    composite.setImplementation(_implementation);
-                    _composite.showPage(((AbstractSwitchyardComposite)composite).getPanel());
-                    _composite.redraw();
-                } else {
-                    _composite.showPage(_blank);
-                    _composite.redraw();
-                }
+                _composite.setImplementation(_implementation);
             }
         }
     }
+
+    protected abstract IImplementationComposite createComposite(Composite parent);
 }

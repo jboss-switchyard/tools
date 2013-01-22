@@ -68,37 +68,54 @@ public class CamelMailProducerComposite extends AbstractSYBindingComposite {
             if (this._binding.getProduce() != null) {
                 if (this._binding.getProduce().getSubject() != null) {
                     _subjectText.setText(this._binding.getProduce().getSubject());
+                } else {
+                    _subjectText.setText("");
                 }
                 if (this._binding.getProduce().getFrom() != null) {
                     _fromText.setText(this._binding.getProduce().getFrom());
+                } else {
+                    _fromText.setText("");
                 }
                 if (this._binding.getProduce().getTo() != null) {
                     _toText.setText(this._binding.getProduce().getTo());
+                } else {
+                    _toText.setText("");
                 }
                 if (this._binding.getProduce().getCC() != null) {
                     _ccText.setText(this._binding.getProduce().getCC());
-                }
-                if (this._binding.getProduce().getCC() != null) {
-                    _ccText.setText(this._binding.getProduce().getCC());
+                } else {
+                    _ccText.setText("");
                 }
                 if (this._binding.getProduce().getBCC() != null) {
                     _bccText.setText(this._binding.getProduce().getBCC());
+                } else {
+                    _bccText.setText("");
                 }
                 if (this._binding.getProduce().getReplyTo() != null) {
                     _replyToText.setText(this._binding.getProduce().getReplyTo());
+                } else {
+                    _replyToText.setText("");
                 }
             }
             if (this._binding.getHost() != null) {
                 _hostText.setText(this._binding.getHost());
+            } else {
+                _hostText.setText("");
             }
             if (this._binding.isSetPort()) {
                 _portText.setText(Integer.toString(this._binding.getPort()));
+            } else {
+                _portText.setText("");
             }
             if (this._binding.getUsername() != null) {
                 _usernameText.setText(this._binding.getUsername());
+            } else {
+                _usernameText.setText("");
             }
             if (this._binding.getPassword() != null) {
                 _passwordText.setText(this._binding.getPassword());
+            } else {
+                _passwordText.setText("");
             }
             super.setTabsBinding(_binding);
             setInUpdate(false);

@@ -75,16 +75,23 @@ public class CamelQuartzComposite extends AbstractSYBindingComposite {
             setInUpdate(true);
             if (this._binding.getCamelBindingName() != null) {
                 _nameText.setText(this._binding.getCamelBindingName());
+            } else {
+                _nameText.setText("");
             }
             if (this._binding.getCron() != null) {
                 _cronText.setText(this._binding.getCron());
+            } else {
+                _cronText.setText("");
             }
             if (this._binding.getTriggerStartTime() != null) {
-                
                 _startTimeText.setText(this._binding.getTriggerStartTime().toString());
+            } else {
+                _startTimeText.setText("");
             }
             if (this._binding.getTriggerEndTime() != null) {
                 _endTimeText.setText(this._binding.getTriggerEndTime().toString());
+            } else {
+                _endTimeText.setText("");
             }
 
             OperationSelectorType opSelector = OperationSelectorUtil.getFirstOperationSelector(this._binding);

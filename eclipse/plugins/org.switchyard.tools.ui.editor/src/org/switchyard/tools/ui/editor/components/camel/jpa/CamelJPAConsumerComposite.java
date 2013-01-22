@@ -72,29 +72,45 @@ public class CamelJPAConsumerComposite extends AbstractSYBindingComposite {
                 _lockEntityCheckbox.setSelection(this._binding.getConsume().isConsumeLockEntity());
                 if (this._binding.getConsume().isSetMaximumResults()) {
                     _maximumResultsText.setText(Integer.toString(this._binding.getConsume().getMaximumResults()));
+                } else {
+                    _maximumResultsText.setText("");
                 }
                 if (this._binding.getConsume().getConsumerQuery() != null) {
                     _queryText.setText(this._binding.getConsume().getConsumerQuery());
+                } else {
+                    _queryText.setText("");
                 }
                 if (this._binding.getConsume().getConsumerNamedQuery() != null) {
                     _namedQueryText.setText(this._binding.getConsume().getConsumerNamedQuery());
+                } else {
+                    _namedQueryText.setText("");
                 }
                 if (this._binding.getConsume().getConsumerNativeQuery() != null) {
                     _nativeQueryText.setText(this._binding.getConsume().getConsumerNativeQuery());
+                } else {
+                    _nativeQueryText.setText("");
                 }
                 if (this._binding.getConsume().getConsumerResultClass() != null) {
                     _resultClassText.setText(this._binding.getConsume().getConsumerResultClass());
+                } else {
+                    _resultClassText.setText("");
                 }
                 _transactedCheckbox.setSelection(this._binding.getConsume().isConsumerTransacted());
             }
             if (this._binding.getEntityClassName() != null) {
                 _entityClassNameText.setText(this._binding.getEntityClassName());
+            } else {
+                _entityClassNameText.setText("");
             }
             if (this._binding.getPersistenceUnit() != null) {
                 _persistenceUnitText.setText(this._binding.getPersistenceUnit().toString());
+            } else {
+                _persistenceUnitText.setText("");
             }
             if (this._binding.getTransactionManager() != null) {
                 _transcationManagerText.setText(this._binding.getTransactionManager());
+            } else {
+                _transcationManagerText.setText("");
             }
 
             super.setTabsBinding(_binding);

@@ -67,12 +67,18 @@ public class CamelJPAProducerComposite extends AbstractSYBindingComposite {
             }
             if (this._binding.getEntityClassName() != null) {
                 _entityClassNameText.setText(this._binding.getEntityClassName());
+            } else {
+                _entityClassNameText.setText("");
             }
             if (this._binding.getPersistenceUnit() != null) {
                 _persistenceUnitText.setText(this._binding.getPersistenceUnit().toString());
+            } else {
+                _persistenceUnitText.setText("");
             }
             if (this._binding.getTransactionManager() != null) {
                 _transcationManagerText.setText(this._binding.getTransactionManager());
+            } else {
+                _transcationManagerText.setText("");
             }
             super.setTabsBinding(_binding);
             setInUpdate(false);

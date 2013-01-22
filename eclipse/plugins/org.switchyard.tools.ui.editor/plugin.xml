@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <?eclipse version="3.4"?>
 <plugin>
+   <extension-point id="editorExtension" name="editorExtension" schema="schema/editorExtension.exsd"/>
    <extension
          point="org.eclipse.graphiti.ui.diagramTypes">
       <diagramType
@@ -45,15 +46,27 @@
               label="Interface">
         </propertyTab>
         <propertyTab
-              afterTab="switchyard.implementation.tab"
+              afterTab="switchyard.implementation.bean.tab"
               category="SwitchyardSCA"
-              id="switchyard.implementation.tab"
+              id="switchyard.implementation.bean.tab"
               label="Implementation">
         </propertyTab>
         <propertyTab
               afterTab="switchyard.implementation.bpm.tab"
               category="SwitchyardSCA"
               id="switchyard.implementation.bpm.tab"
+              label="Implementation">
+        </propertyTab>
+        <propertyTab
+              afterTab="switchyard.implementation.camel.java.tab"
+              category="SwitchyardSCA"
+              id="switchyard.implementation.camel.java.tab"
+              label="Implementation">
+        </propertyTab>
+        <propertyTab
+              afterTab="switchyard.implementation.camel.xml.tab"
+              category="SwitchyardSCA"
+              id="switchyard.implementation.camel.xml.tab"
               label="Implementation">
         </propertyTab>
         <propertyTab
@@ -124,16 +137,28 @@
                tab="switchyard.interface.tab">
          </propertySection>
          <propertySection
-               class="org.switchyard.tools.ui.editor.property.SwitchyardSCAPropertiesImplementationSection"
-               filter="org.switchyard.tools.ui.editor.property.SwitchyardSCAPropertiesImplementationsFilter"
-               id="switchyard.implementation.tab.details"
-               tab="switchyard.implementation.tab">
+               class="org.switchyard.tools.ui.editor.components.bean.BeanImplementationComposite"
+               filter="org.switchyard.tools.ui.editor.components.bean.BeanImplementationPropertySectionFilter"
+               id="switchyard.implementation.bean.tab.details"
+               tab="switchyard.implementation.bean.tab">
          </propertySection>
          <propertySection
                class="org.switchyard.tools.ui.editor.components.bpm.BPMImplementationPropertySection"
                filter="org.switchyard.tools.ui.editor.components.bpm.BPMImplementationPropertySectionFilter"
                id="switchyard.implementation.bpm.tab.details"
                tab="switchyard.implementation.bpm.tab">
+         </propertySection>
+         <propertySection
+               class="org.switchyard.tools.ui.editor.components.camel.java.CamelJavaImplementationPropertySection"
+               filter="org.switchyard.tools.ui.editor.components.camel.java.CamelJavaImplementationPropertySectionFilter"
+               id="switchyard.implementation.camel.java.tab.details"
+               tab="switchyard.implementation.camel.java.tab">
+         </propertySection>
+         <propertySection
+               class="org.switchyard.tools.ui.editor.components.camel.xml.CamelXMLImplementationPropertySection"
+               filter="org.switchyard.tools.ui.editor.components.camel.xml.CamelXMLImplementationPropertySectionFilter"
+               id="switchyard.implementation.camel.xml.tab.details"
+               tab="switchyard.implementation.camel.xml.tab">
          </propertySection>
          <propertySection
                class="org.switchyard.tools.ui.editor.components.rules.RulesImplementationPropertySection"
@@ -245,6 +270,60 @@
           mergerProviderClass="org.switchyard.tools.ui.editor.model.merge.SwitchYardMergerProvider"
           priority="normal">
     </mergerprovider>
+ </extension>
+ <extension
+       point="org.switchyard.tools.ui.editor.editorExtension">
+    <componentExtension
+          class="org.switchyard.tools.ui.editor.components.bean.BeanComponentTypeExtension">
+    </componentExtension>
+    <componentExtension
+          class="org.switchyard.tools.ui.editor.components.camel.CamelComponentTypeExtension">
+    </componentExtension>
+    <componentExtension
+          class="org.switchyard.tools.ui.editor.components.bpm.BPMComponentTypeExtension">
+    </componentExtension>
+    <componentExtension
+          class="org.switchyard.tools.ui.editor.components.rules.RulesComponentTypeExtension">
+    </componentExtension>
+    <bindingExtension
+          class="org.switchyard.tools.ui.editor.components.camel.file.CamelFileBindingTypeExtension">
+    </bindingExtension>
+    <bindingExtension
+          class="org.switchyard.tools.ui.editor.components.camel.ftp.CamelFTPBindingTypeExtension">
+    </bindingExtension>
+    <bindingExtension
+          class="org.switchyard.tools.ui.editor.components.camel.jms.CamelJMSBindingTypeExtension">
+    </bindingExtension>
+    <bindingExtension
+          class="org.switchyard.tools.ui.editor.components.camel.jpa.CamelJPABindingTypeExtension">
+    </bindingExtension>
+    <bindingExtension
+          class="org.switchyard.tools.ui.editor.components.camel.mail.CamelMailBindingTypeExtension">
+    </bindingExtension>
+    <bindingExtension
+          class="org.switchyard.tools.ui.editor.components.camel.netty.CamelNettyTCPBindingTypeExtension">
+    </bindingExtension>
+    <bindingExtension
+          class="org.switchyard.tools.ui.editor.components.camel.netty.CamelNettyUDPBindingTypeExtension">
+    </bindingExtension>
+    <bindingExtension
+          class="org.switchyard.tools.ui.editor.components.camel.quartz.CamelQuartzBindingTypeExtension">
+    </bindingExtension>
+    <bindingExtension
+          class="org.switchyard.tools.ui.editor.components.camel.sql.CamelSQLBindingTypeExtension">
+    </bindingExtension>
+    <bindingExtension
+          class="org.switchyard.tools.ui.editor.components.http.HttpBindingTypeExtension">
+    </bindingExtension>
+    <bindingExtension
+          class="org.switchyard.tools.ui.editor.components.jca.JCABindingTypeExtension">
+    </bindingExtension>
+    <bindingExtension
+          class="org.switchyard.tools.ui.editor.components.resteasy.ResteasyBindingTypeExtension">
+    </bindingExtension>
+    <bindingExtension
+          class="org.switchyard.tools.ui.editor.components.soap.SOAPBindingTypeExtension">
+    </bindingExtension>
  </extension>
 
 </plugin>

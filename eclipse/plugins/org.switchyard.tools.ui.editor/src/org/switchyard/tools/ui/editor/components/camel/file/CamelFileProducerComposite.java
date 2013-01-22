@@ -64,16 +64,24 @@ public class CamelFileProducerComposite extends AbstractSYBindingComposite {
             if (this._binding.getProduce() != null) {
                 if (this._binding.getProduce().getFileExist() != null) {
                     _fileExistText.setText(this._binding.getProduce().getFileExist());
+                } else {
+                    _fileExistText.setText("");
                 }
                 if (this._binding.getProduce().getTempPrefix() != null) {
                     _tempPrefixText.setText(this._binding.getProduce().getTempPrefix());
+                } else {
+                    _tempPrefixText.setText("");
                 }
             }
             if (this._binding.getDirectory() != null) {
                 _directoryText.setText(this._binding.getDirectory());
+            } else {
+                _directoryText.setText("");
             }
             if (this._binding.getFileName() != null) {
                 _fileNameText.setText(this._binding.getFileName());
+            } else {
+                _fileNameText.setText("");
             }
             _autoCreateButton.setSelection(this._binding.isAutoCreate());
             super.setTabsBinding(_binding);

@@ -77,6 +77,7 @@ public class CamelJmsComposite extends AbstractSYBindingComposite {
     @Override
     public void setBinding(Binding impl) {
         if (impl instanceof CamelJmsBindingType) {
+            setTargetObject(impl.eContainer());
             this._binding = (CamelJmsBindingType) impl;
             setInUpdate(true);
             if (this._binding.getQueue() != null && !this._binding.getQueue().trim().isEmpty()) {
@@ -92,25 +93,37 @@ public class CamelJmsComposite extends AbstractSYBindingComposite {
             if (_requestTimeOutText != null && this._binding.isSetRequestTimeout()
                     && this._binding.getRequestTimeout() > 0) {
                 _requestTimeOutText.setText(Integer.toString(this._binding.getRequestTimeout()));
+            } else {
+                _requestTimeOutText.setText("");
             }
             if (_maxConcurrentConsumersText != null) {
                 if (this._binding.isSetMaxConcurrentConsumers()) {
                     _maxConcurrentConsumersText.setText(Integer.toString(this._binding.getMaxConcurrentConsumers()));
+                } else {
+                    _maxConcurrentConsumersText.setText("");
                 }
             }
             if (this._binding.getConnectionFactory() != null && !this._binding.getConnectionFactory().trim().isEmpty()) {
                 _connectionFactoryText.setText(this._binding.getConnectionFactory());
+            } else {
+                _connectionFactoryText.setText("");
             }
             _transactedButton.setSelection(this._binding.isTransacted());
             if (this._binding.getTransactionManager() != null
                     && !this._binding.getTransactionManager().trim().isEmpty()) {
                 _transactionManagerText.setText(this._binding.getTransactionManager());
+            } else {
+                _transactionManagerText.setText("");
             }
             if (this._binding.getReplyTo() != null && !this._binding.getReplyTo().trim().isEmpty()) {
                 _replyToText.setText(this._binding.getReplyTo());
+            } else {
+                _replyToText.setText("");
             }
             if (this._binding.getSelector() != null && !this._binding.getSelector().trim().isEmpty()) {
                 _selectorText.setText(this._binding.getSelector());
+            } else {
+                _selectorText.setText("");
             }
             OperationSelectorType opSelector = OperationSelectorUtil.getFirstOperationSelector(this._binding);
             _opSelectorComposite.setBinding(this._binding);
@@ -184,7 +197,7 @@ public class CamelJmsComposite extends AbstractSYBindingComposite {
         _tabFolder = new TabFolder(_panel, SWT.NONE);
 
         TabItem one = new TabItem(_tabFolder, SWT.NONE);
-        if (getTargetObject() == null && this._binding.eContainer() != null) {
+        if (getTargetObject() == null && _binding != null && this._binding.eContainer() != null) {
             setTargetObject(this._binding.eContainer());
         }
         if (getTargetObject() != null && getTargetObject() instanceof Service) {
