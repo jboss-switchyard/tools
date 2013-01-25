@@ -10,12 +10,15 @@
  ************************************************************************************/
 package org.switchyard.tools.ui.editor.diagram.binding;
 
+import java.util.Collection;
+
 import org.eclipse.graphiti.features.IFeatureProvider;
 import org.eclipse.graphiti.features.context.ICreateContext;
 import org.eclipse.soa.sca.sca1_1.model.sca.Binding;
 import org.eclipse.soa.sca.sca1_1.model.sca.Contract;
 import org.eclipse.soa.sca.sca1_1.model.sca.Reference;
 import org.eclipse.soa.sca.sca1_1.model.sca.Service;
+import org.switchyard.tools.ui.editor.BindingTypeExtensionManager;
 import org.switchyard.tools.ui.editor.ImageProvider;
 import org.switchyard.tools.ui.editor.diagram.shared.CreateTypeFeature;
 import org.switchyard.tools.ui.editor.diagram.shared.ITypeFactory;
@@ -31,7 +34,7 @@ import org.switchyard.tools.ui.editor.diagram.shared.ITypeFactory;
 public class CreateBindingFeature extends CreateTypeFeature<Binding, Contract> {
 
     private String _imageProvider = ImageProvider.IMG_16_CHAIN;
-    
+
     /**
      * Create a new CreateBindingFeature.
      * 
@@ -76,6 +79,12 @@ public class CreateBindingFeature extends CreateTypeFeature<Binding, Contract> {
     @Override
     public String getCreateImageId() {
         return _imageProvider;
+    }
+
+    @Override
+    protected Collection<String> getRequiredCapabilities(Binding newObject) {
+        return BindingTypeExtensionManager.instance().getExtensionFor(newObject.getClass())
+                .getRequiredCapabilities(newObject);
     }
 
 }

@@ -11,6 +11,9 @@
  ******************************************************************************/
 package org.switchyard.tools.ui.editor.components.bpm;
 
+import java.util.Collections;
+import java.util.List;
+
 import org.eclipse.graphiti.features.ICreateFeature;
 import org.eclipse.graphiti.features.IFeatureProvider;
 import org.eclipse.graphiti.tb.IImageDecorator;
@@ -51,4 +54,9 @@ public class BPMComponentTypeExtension implements IComponentTypeExtension {
         return BPMImplementationType.class.isAssignableFrom(type);
     }
 
+
+    @Override
+    public List<String> getRequiredCapabilities(Implementation object) {
+        return Collections.singletonList("org.switchyard.components:switchyard-component-bpm");
+    }
 }

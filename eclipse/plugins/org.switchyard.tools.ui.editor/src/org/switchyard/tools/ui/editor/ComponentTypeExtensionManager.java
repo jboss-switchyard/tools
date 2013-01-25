@@ -116,5 +116,9 @@ public final class ComponentTypeExtensionManager {
             return false;
         }
 
+        @Override
+        public List<String> getRequiredCapabilities(Implementation object) {
+            return Collections.emptyList();
+        }
     }
 }

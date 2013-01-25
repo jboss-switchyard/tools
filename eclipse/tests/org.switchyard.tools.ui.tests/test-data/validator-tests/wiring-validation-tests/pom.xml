@@ -7,14 +7,9 @@
   <version>0.0.1-SNAPSHOT</version>
   <name>org.switchyard.tools.tests:wiring-validation-tests</name>
   <properties>
-    <switchyard.version>0.6.0-SNAPSHOT</switchyard.version>
+    <switchyard.version>0.8.0-SNAPSHOT</switchyard.version>
   </properties>
   <dependencies>
-    <dependency>
-      <groupId>org.switchyard.components</groupId>
-      <artifactId>switchyard-component-bean</artifactId>
-      <version>${switchyard.version}</version>
-    </dependency>
     <dependency>
       <groupId>org.switchyard</groupId>
       <artifactId>switchyard-api</artifactId>
@@ -38,6 +33,17 @@
     <dependency>
       <groupId>org.switchyard</groupId>
       <artifactId>switchyard-test</artifactId>
+      <version>${switchyard.version}</version>
+      <scope>test</scope>
+    </dependency>
+    <dependency>
+      <groupId>org.switchyard.components</groupId>
+      <artifactId>switchyard-component-camel</artifactId>
+      <version>${switchyard.version}</version>
+    </dependency>
+    <dependency>
+      <groupId>org.switchyard.components</groupId>
+      <artifactId>switchyard-component-test-mixin-cdi</artifactId>
       <version>${switchyard.version}</version>
       <scope>test</scope>
     </dependency>

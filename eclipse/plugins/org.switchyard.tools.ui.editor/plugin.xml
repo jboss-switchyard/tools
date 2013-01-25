@@ -326,4 +326,43 @@
     </bindingExtension>
  </extension>
 
+  <!-- Validation Extensions -->
+  <extension
+       point="org.eclipse.emf.validation.constraintBindings">
+    <binding
+          category="org.switchyard.tools.validationCategory/capabilities"
+          context="org.switchyard.tools.validationContext">
+    </binding>
+  </extension>
+  <extension
+       point="org.eclipse.emf.validation.constraintProviders">
+    <category
+          id="org.switchyard.tools.validationCategory/capabilities"
+          name="SwitchYard Project Capability Validation">
+    </category>
+    <constraintProvider
+          cache="true">
+       <package
+             namespaceUri="http://docs.oasis-open.org/ns/opencsa/sca/200912">
+       </package>
+       <constraints
+             categories="org.switchyard.tools.validationCategory/capabilities">
+          <constraint
+                class="org.switchyard.tools.ui.editor.validation.CapabilitiesValidation"
+                id="org.switchyard.tools.validation.constraint/capabilities"
+                isEnabledByDefault="true"
+                lang="Java"
+                mode="Batch"
+                name="SwitchYard Capability Usage Validator"
+                statusCode="1002">
+             <message>
+                Validates that capabilities required for using specific components are defined on the project.  Validation is also performed to identify unused capabilities.
+             </message>
+             <target
+                   class="Composite">
+             </target>
+          </constraint>
+       </constraints>
+    </constraintProvider>
+  </extension>
 </plugin>

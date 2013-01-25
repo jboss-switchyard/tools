@@ -11,6 +11,8 @@
  ******************************************************************************/
 package org.switchyard.tools.ui.editor;
 
+import java.util.List;
+
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.graphiti.features.ICreateFeature;
 import org.eclipse.graphiti.features.IFeatureProvider;
@@ -47,4 +49,16 @@ public interface IEditorTypeExtension<T extends EObject> {
      * @return true if this extension supports the specified type.
      */
     public boolean supports(Class<? extends T> type);
+
+    /**
+     * Returns a list of capabilities required to use this object within a
+     * project. The ID's returned will be used to resolve component extensions,
+     * adding the listed dependencies to the project's pom.
+     * 
+     * @param object the object being used.
+     * @return a list of SwitchYard component extension IDs that are required to
+     *         use this object within a project.
+     * @See {@link org.switchyard.tools.ui.common.SwitchYardComponentExtensionManager#getComponentExtension(String)}
+     */
+    public List<String> getRequiredCapabilities(T object);
 }

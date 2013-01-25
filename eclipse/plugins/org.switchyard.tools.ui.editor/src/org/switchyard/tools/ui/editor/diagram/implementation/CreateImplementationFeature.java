@@ -11,6 +11,7 @@
 package org.switchyard.tools.ui.editor.diagram.implementation;
 
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.List;
 
 import org.eclipse.graphiti.features.IFeatureProvider;
@@ -20,6 +21,7 @@ import org.eclipse.soa.sca.sca1_1.model.sca.Component;
 import org.eclipse.soa.sca.sca1_1.model.sca.ComponentReference;
 import org.eclipse.soa.sca.sca1_1.model.sca.ComponentService;
 import org.eclipse.soa.sca.sca1_1.model.sca.Implementation;
+import org.switchyard.tools.ui.editor.ComponentTypeExtensionManager;
 import org.switchyard.tools.ui.editor.ImageProvider;
 import org.switchyard.tools.ui.editor.diagram.shared.CreateTypeFeature;
 
@@ -34,7 +36,7 @@ import org.switchyard.tools.ui.editor.diagram.shared.CreateTypeFeature;
 public class CreateImplementationFeature extends CreateTypeFeature<Implementation, Component> {
 
     private String _imageId = ImageProvider.IMG_16_IMPLEMENTATION_TYPE;
-    
+
     /**
      * Create a new CreateImplementationFeature.
      * 
@@ -115,4 +117,9 @@ public class CreateImplementationFeature extends CreateTypeFeature<Implementatio
         return _imageId;
     }
 
+    @Override
+    protected Collection<String> getRequiredCapabilities(Implementation newObject) {
+        return ComponentTypeExtensionManager.instance().getExtensionFor(newObject.getClass())
+                .getRequiredCapabilities(newObject);
+    }
 }

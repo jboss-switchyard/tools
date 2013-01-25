@@ -575,7 +575,7 @@
            id="org.switchyard.components:switchyard-component-camel"
            name="Camel Route">
         <description>
-           Provides support for Camel based service implementations and Camel based gateways.
+           Provides support for Camel route based service implementations.
         </description>
         <dependency>
            <groupId>org.switchyard.components</groupId>

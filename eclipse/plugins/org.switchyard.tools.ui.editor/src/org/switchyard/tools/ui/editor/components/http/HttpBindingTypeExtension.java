@@ -11,6 +11,9 @@
  ******************************************************************************/
 package org.switchyard.tools.ui.editor.components.http;
 
+import java.util.Collections;
+import java.util.List;
+
 import org.eclipse.graphiti.features.ICreateFeature;
 import org.eclipse.graphiti.features.IFeatureProvider;
 import org.eclipse.graphiti.tb.IImageDecorator;
@@ -51,4 +54,8 @@ public class HttpBindingTypeExtension implements IBindingTypeExtension {
         return new HttpBindingComposite();
     }
 
+    @Override
+    public List<String> getRequiredCapabilities(Binding object) {
+        return Collections.singletonList("org.switchyard.components:switchyard-component-http");
+    }
 }

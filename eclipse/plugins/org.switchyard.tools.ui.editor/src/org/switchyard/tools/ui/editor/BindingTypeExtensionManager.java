@@ -123,6 +123,11 @@ public final class BindingTypeExtensionManager {
         public IBindingComposite createComposite(Binding binding) {
             return new DefaultBindingComposite();
         }
+
+        @Override
+        public List<String> getRequiredCapabilities(Binding object) {
+            return Collections.emptyList();
+        }
     }
 
     private static final class DefaultBindingComposite extends AbstractSwitchyardComposite implements IBindingComposite {

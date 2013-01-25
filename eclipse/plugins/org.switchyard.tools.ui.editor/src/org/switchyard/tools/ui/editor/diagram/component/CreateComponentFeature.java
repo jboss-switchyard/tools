@@ -10,10 +10,14 @@
  ************************************************************************************/
 package org.switchyard.tools.ui.editor.diagram.component;
 
+import java.util.Collection;
+
 import org.eclipse.graphiti.features.IFeatureProvider;
 import org.eclipse.graphiti.features.context.ICreateContext;
 import org.eclipse.soa.sca.sca1_1.model.sca.Component;
 import org.eclipse.soa.sca.sca1_1.model.sca.Composite;
+import org.eclipse.soa.sca.sca1_1.model.sca.Implementation;
+import org.switchyard.tools.ui.editor.ComponentTypeExtensionManager;
 import org.switchyard.tools.ui.editor.ImageProvider;
 import org.switchyard.tools.ui.editor.diagram.shared.CreateTypeFeature;
 import org.switchyard.tools.ui.editor.diagram.shared.ITypeFactory;
@@ -67,6 +71,13 @@ public class CreateComponentFeature extends CreateTypeFeature<Component, Composi
     @Override
     public String getCreateImageId() {
         return this._imageId;
+    }
+
+    @Override
+    protected Collection<String> getRequiredCapabilities(Component newObject) {
+        final Implementation implementation = newObject.getImplementation();
+        return ComponentTypeExtensionManager.instance().getExtensionFor(implementation.getClass())
+                .getRequiredCapabilities(implementation);
     }
 
 }

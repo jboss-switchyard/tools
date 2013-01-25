@@ -11,6 +11,9 @@
  ******************************************************************************/
 package org.switchyard.tools.ui.editor.components.jca;
 
+import java.util.Collections;
+import java.util.List;
+
 import org.eclipse.graphiti.features.ICreateFeature;
 import org.eclipse.graphiti.features.IFeatureProvider;
 import org.eclipse.graphiti.tb.IImageDecorator;
@@ -55,4 +58,8 @@ public class JCABindingTypeExtension implements IBindingTypeExtension {
         return new JCABindingOutboundComposite();
     }
 
+    @Override
+    public List<String> getRequiredCapabilities(Binding object) {
+        return Collections.singletonList("org.switchyard.components:switchyard-component-jca");
+    }
 }

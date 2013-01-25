@@ -10,13 +10,30 @@
  ************************************************************************************/
 package org.switchyard.tools.ui.editor.diagram.shared;
 
+import java.util.Collection;
+import java.util.HashSet;
+import java.util.Set;
+
+import org.eclipse.core.resources.IFile;
+import org.eclipse.core.resources.IProject;
+import org.eclipse.core.resources.ResourcesPlugin;
+import org.eclipse.core.runtime.CoreException;
+import org.eclipse.core.runtime.IProgressMonitor;
+import org.eclipse.core.runtime.NullProgressMonitor;
+import org.eclipse.core.runtime.Path;
 import org.eclipse.emf.ecore.EObject;
+import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.graphiti.features.IFeatureProvider;
 import org.eclipse.graphiti.features.context.ICreateContext;
 import org.eclipse.graphiti.features.impl.AbstractCreateFeature;
 import org.eclipse.graphiti.mm.pictograms.PictogramElement;
 import org.eclipse.swt.widgets.Shell;
 import org.eclipse.ui.PlatformUI;
+import org.switchyard.tools.ui.common.ISwitchYardComponentExtension;
+import org.switchyard.tools.ui.common.SwitchYardComponentExtensionManager;
+import org.switchyard.tools.ui.editor.Activator;
+import org.switchyard.tools.ui.editor.model.merge.MergedModelUtil;
+import org.switchyard.tools.ui.operations.AbstractSwitchYardProjectOperation;
 
 /**
  * CreateTypeFeature
@@ -85,6 +102,9 @@ public abstract class CreateTypeFeature<T extends EObject, C extends EObject> ex
         for (Object object : addedObjects) {
             addGraphicalRepresentation(context, object);
         }
+
+        updateProjectCapabilities(newObject);
+
         return addedObjects;
     }
 
@@ -97,6 +117,13 @@ public abstract class CreateTypeFeature<T extends EObject, C extends EObject> ex
      * @return objects added to the model.
      */
     protected abstract Object[] updateContainer(ICreateContext context, T newObject);
+
+    /**
+     * @param newObject the newly created object
+     * @return a list of SwitchYard component extension IDs that are required to
+     *         use this object within a project.
+     */
+    protected abstract Collection<String> getRequiredCapabilities(T newObject);
 
     /**
      * @param context the create context
@@ -119,5 +146,52 @@ public abstract class CreateTypeFeature<T extends EObject, C extends EObject> ex
      */
     protected Shell getShell() {
         return PlatformUI.getWorkbench().getActiveWorkbenchWindow().getShell();
+    }
+
+    protected void updateProjectCapabilities(T newObject) {
+        final IProject project = getContainingProject(newObject);
+        if (project == null) {
+            return;
+        }
+        final Collection<String> componentIDs = getRequiredCapabilities(newObject);
+        if (componentIDs == null || componentIDs.isEmpty()) {
+            return;
+        }
+        final Set<ISwitchYardComponentExtension> capabilities = new HashSet<ISwitchYardComponentExtension>();
+        for (String id : componentIDs) {
+            final ISwitchYardComponentExtension capability = SwitchYardComponentExtensionManager.instance()
+                    .getComponentExtension(id);
+            if (capability != null) {
+                capabilities.add(capability);
+            }
+        }
+        try {
+            ResourcesPlugin.getWorkspace().run(
+                    new AbstractSwitchYardProjectOperation(null, capabilities, false,
+                            "Updating SwitchYard project capabilities", null) {
+                        @Override
+                        protected IProject getProject() {
+                            return project;
+                        }
+
+                        @Override
+                        protected void execute(IProgressMonitor monitor) throws CoreException {
+                            // no extra work
+                        }
+                    }, new NullProgressMonitor());
+        } catch (CoreException e) {
+            Activator.logStatus(e.getStatus());
+        }
+    }
+
+    private IProject getContainingProject(T newObject) {
+        // get the source resource
+        final Resource resource = MergedModelUtil.getSwitchYard(newObject.eContainer()).eResource();
+        final IFile file = ResourcesPlugin.getWorkspace().getRoot()
+                .getFile(new Path(resource.getURI().toPlatformString(true)));
+        if (file == null || !file.getProject().isAccessible()) {
+            return null;
+        }
+        return file.getProject();
     }
 }

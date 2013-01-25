@@ -93,6 +93,12 @@ public class SwitchYardProjectValidator extends AbstractValidator {
                 // couldn't locate the output file, so just validate the input.
                 switchYardOutput = event.getResource();
             } else {
+                /*
+                 * TODO: see if we need to add the pom.xml as a dependency (to
+                 * make sure we revalidate capability usage). i assume a build
+                 * will be kicked off if the pom changes, which should produce a
+                 * new output switchyard.xml, so...
+                 */
                 result.setDependsOn(new IResource[] {switchYardOutput });
                 if (!switchYardOutput.exists()
                         || switchYardOutput.getModificationStamp() < event.getResource().getModificationStamp()

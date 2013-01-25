@@ -67,6 +67,14 @@ public enum ValidationProblem {
     /** A failure occurred while trying to load the available transformers. */
     UnableToValidateTransformers(
             "Unable to Validate Tranformers: Could not load declared transformers from output switchyard.xml to validate whether or not required transforms are missing from service interactions.",
+            IStatus.WARNING, false),
+    /** Missing capability, e.g. SOAP binding, but no SOAP capability. */
+    RequiredCapabilityMissing(
+            "Required Capability Missing: The \"{0}\" capability should be configured on the project when using this type of {1}.", IStatus.ERROR,
+            false),
+    /** Missing capability, e.g. SOAP binding, but no SOAP capability. */
+    UnusedCapability(
+            "Unused Capability: The \"{0}\" capability is configured on the project, but is not required by any SwitchYard binding or implementation types used in the project.",
             IStatus.WARNING, false);
 
     /** Used to identify the problem code attribute in IMarker objects. */
