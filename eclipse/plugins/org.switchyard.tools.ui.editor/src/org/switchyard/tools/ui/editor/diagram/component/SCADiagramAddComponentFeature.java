@@ -26,6 +26,7 @@ import org.eclipse.graphiti.mm.pictograms.PictogramElement;
 import org.eclipse.graphiti.services.Graphiti;
 import org.eclipse.graphiti.services.IGaService;
 import org.eclipse.graphiti.services.IPeCreateService;
+import org.eclipse.graphiti.util.ColorConstant;
 import org.eclipse.soa.sca.sca1_1.model.sca.Component;
 import org.eclipse.soa.sca.sca1_1.model.sca.ComponentReference;
 import org.eclipse.soa.sca.sca1_1.model.sca.ComponentService;
@@ -87,9 +88,10 @@ public class SCADiagramAddComponentFeature extends AbstractAddShapeFeature {
         RoundedRectangle roundedRectangle;
 
         // create and set graphics algorithm
-        roundedRectangle = gaService.createRoundedRectangle(invisibleRectangle, 6, 0);
+        roundedRectangle = gaService.createRoundedRectangle(invisibleRectangle, 12, 12);
         roundedRectangle.setStyle(StyleUtil.getStyleForComponent(getDiagram()));
         roundedRectangle.setParentGraphicsAlgorithm(invisibleRectangle);
+        roundedRectangle.setLineWidth(roundedRectangle.getStyle().getLineWidth());
 
         gaService.setLocationAndSize(roundedRectangle, StyleUtil.COMPONENT_EDGE, StyleUtil.COMPONENT_EDGE, width,
                 height);
@@ -101,7 +103,7 @@ public class SCADiagramAddComponentFeature extends AbstractAddShapeFeature {
         // SHAPE WITH TEXT
         // create and set text graphics algorithm
         Text text = gaService.createDefaultText(getDiagram(), roundedRectangle, addedComponent.getName());
-        text.setForeground(manageColor(StyleUtil.BLACK));
+        text.setForeground(manageColor(new ColorConstant(StyleUtil.COMPONENT_PALETTE.getTextForeground())));
         text.setHorizontalAlignment(Orientation.ALIGNMENT_CENTER);
         text.setVerticalAlignment(Orientation.ALIGNMENT_CENTER);
         Font font = text.getFont();

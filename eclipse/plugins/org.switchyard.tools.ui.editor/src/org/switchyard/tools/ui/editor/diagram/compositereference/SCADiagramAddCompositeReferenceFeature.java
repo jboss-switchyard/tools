@@ -26,6 +26,7 @@ import org.eclipse.graphiti.mm.pictograms.PictogramElement;
 import org.eclipse.graphiti.services.Graphiti;
 import org.eclipse.graphiti.services.IGaService;
 import org.eclipse.graphiti.services.IPeCreateService;
+import org.eclipse.graphiti.util.ColorConstant;
 import org.eclipse.soa.sca.sca1_1.model.sca.Composite;
 import org.eclipse.soa.sca.sca1_1.model.sca.Reference;
 import org.switchyard.tools.ui.editor.diagram.StyleUtil;
@@ -84,9 +85,10 @@ public class SCADiagramAddCompositeReferenceFeature extends AbstractAddShapeFeat
         // create service
 
         // arrow through points: top-middle, bottom-right, bottom-left
-        p = gaService.createPolygon(invisibleRectangle, StyleUtil.LARGE_RIGHT_ARROW);
+        p = gaService.createPolygon(invisibleRectangle, StyleUtil.LARGE_RIGHT_ARROW[0], StyleUtil.LARGE_RIGHT_ARROW[1]);
         p.setStyle(StyleUtil.getStyleForCompositeReference(getDiagram()));
         p.setParentGraphicsAlgorithm(invisibleRectangle);
+        p.setLineWidth(p.getStyle().getLineWidth());
 
         gaService.setLocationAndSize(p, 0, 0, width, height);
 
@@ -106,12 +108,12 @@ public class SCADiagramAddCompositeReferenceFeature extends AbstractAddShapeFeat
         Font font = gaService.manageFont(getDiagram(), text.getFont().getName(), text.getFont().getSize(), false, true);
         text.setFont(font);
 
-        text.setForeground(manageColor(StyleUtil.BLACK));
+        text.setForeground(manageColor(new ColorConstant(StyleUtil.REFERENCE_PALETTE.getTextForeground())));
         int left = p.getPoints().get(5).getX();
-        int right = p.getPoints().get(1).getX();
+        int right = p.getPoints().get(2).getX();
         text.setHorizontalAlignment(Orientation.ALIGNMENT_CENTER);
         text.setVerticalAlignment(Orientation.ALIGNMENT_CENTER);
-        gaService.setLocationAndSize(text, left + 10, 0, right - left - 10, height);
+        gaService.setLocationAndSize(text, left + 5, 0, right - left - 10, height);
 
         layoutPictogramElement(containerShape);
         if (updatePictogramElementNeeded(containerShape)) {

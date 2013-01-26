@@ -24,7 +24,7 @@ import org.eclipse.graphiti.util.PredefinedColoredAreas;
 
 /**
  * @author bfitzpat
- *
+ * 
  */
 public class SCADiagramColoredAreas extends PredefinedColoredAreas implements ISCADiagramRenderingStyle {
 
@@ -38,9 +38,9 @@ public class SCADiagramColoredAreas extends PredefinedColoredAreas implements IS
         agca.getAdaptedGradientColoredAreas().add(IPredefinedRenderingStyle.STYLE_ADAPTATION_DEFAULT,
                 getCompositeDefaultAreas());
         agca.getAdaptedGradientColoredAreas().add(IPredefinedRenderingStyle.STYLE_ADAPTATION_PRIMARY_SELECTED,
-                getCompositePrimarySelectedAreas());
+                getPrimarySelectedAreas());
         agca.getAdaptedGradientColoredAreas().add(IPredefinedRenderingStyle.STYLE_ADAPTATION_SECONDARY_SELECTED,
-                getCompositeSecondarySelectedAreas());
+                getSecondarySelectedAreas());
         return agca;
     }
 
@@ -49,34 +49,8 @@ public class SCADiagramColoredAreas extends PredefinedColoredAreas implements IS
         gradientColoredAreas.setStyleAdaption(IPredefinedRenderingStyle.STYLE_ADAPTATION_DEFAULT);
         final EList<GradientColoredArea> gcas = gradientColoredAreas.getGradientColor();
 
-        addGradientColoredArea(gcas, "FAFBFC", //$NON-NLS-1$
-                0, LocationType.LOCATION_TYPE_ABSOLUTE_START, "6670FF", 0, //"D4E7F8", 0, //$NON-NLS-2$
-                LocationType.LOCATION_TYPE_ABSOLUTE_END);
-        return gradientColoredAreas;
-    }
-
-    private static GradientColoredAreas getCompositePrimarySelectedAreas() {
-        final GradientColoredAreas gradientColoredAreas = StylesFactory.eINSTANCE.createGradientColoredAreas();
-        gradientColoredAreas.setStyleAdaption(IPredefinedRenderingStyle.STYLE_ADAPTATION_PRIMARY_SELECTED);
-        final EList<GradientColoredArea> gcas = gradientColoredAreas.getGradientColor();
-
-        addGradientColoredArea(gcas, "AAD0F2", //$NON-NLS-1$
-                0, LocationType.LOCATION_TYPE_ABSOLUTE_START, "81B9EA", 0, //$NON-NLS-1$ 
-                LocationType.LOCATION_TYPE_ABSOLUTE_END);
-        return gradientColoredAreas;
-    }
-
-    /**
-     * The color-areas, which are used for secondary selected elements with the
-     * ID {@link #BLUE_WHITE_ID}.
-     */
-    private static GradientColoredAreas getCompositeSecondarySelectedAreas() {
-        final GradientColoredAreas gradientColoredAreas = StylesFactory.eINSTANCE.createGradientColoredAreas();
-        gradientColoredAreas.setStyleAdaption(IPredefinedRenderingStyle.STYLE_ADAPTATION_SECONDARY_SELECTED);
-        final EList<GradientColoredArea> gcas = gradientColoredAreas.getGradientColor();
-
-        addGradientColoredArea(gcas, "C5E0F7", //$NON-NLS-1$
-                0, LocationType.LOCATION_TYPE_ABSOLUTE_START, "BBDAF7", 0, //$NON-NLS-1$ 
+        addGradientColoredArea(gcas, StyleUtil.COMPOSITE_PALETTE.getBackgroundDark(), 0,
+                LocationType.LOCATION_TYPE_ABSOLUTE_START, StyleUtil.COMPOSITE_PALETTE.getBackgroundLight(), 0,
                 LocationType.LOCATION_TYPE_ABSOLUTE_END);
         return gradientColoredAreas;
     }
@@ -91,9 +65,9 @@ public class SCADiagramColoredAreas extends PredefinedColoredAreas implements IS
         agca.getAdaptedGradientColoredAreas().add(IPredefinedRenderingStyle.STYLE_ADAPTATION_DEFAULT,
                 getComponentDefaultAreas());
         agca.getAdaptedGradientColoredAreas().add(IPredefinedRenderingStyle.STYLE_ADAPTATION_PRIMARY_SELECTED,
-                getComponentPrimarySelectedAreas());
+                getPrimarySelectedAreas());
         agca.getAdaptedGradientColoredAreas().add(IPredefinedRenderingStyle.STYLE_ADAPTATION_SECONDARY_SELECTED,
-                getComponentSecondarySelectedAreas());
+                getSecondarySelectedAreas());
         return agca;
     }
 
@@ -102,13 +76,13 @@ public class SCADiagramColoredAreas extends PredefinedColoredAreas implements IS
         gradientColoredAreas.setStyleAdaption(IPredefinedRenderingStyle.STYLE_ADAPTATION_DEFAULT);
         final EList<GradientColoredArea> gcas = gradientColoredAreas.getGradientColor();
 
-        addGradientColoredArea(gcas, "FAFBFC", //$NON-NLS-1$
-                0, LocationType.LOCATION_TYPE_ABSOLUTE_START, "c7eafb", 0, //$NON-NLS-2$
+        addGradientColoredArea(gcas, StyleUtil.COMPONENT_PALETTE.getBackgroundDark(), 0,
+                LocationType.LOCATION_TYPE_ABSOLUTE_START, StyleUtil.COMPONENT_PALETTE.getBackgroundLight(), 0,
                 LocationType.LOCATION_TYPE_ABSOLUTE_END);
         return gradientColoredAreas;
     }
 
-    private static GradientColoredAreas getComponentPrimarySelectedAreas() {
+    private static GradientColoredAreas getPrimarySelectedAreas() {
         final GradientColoredAreas gradientColoredAreas = StylesFactory.eINSTANCE.createGradientColoredAreas();
         gradientColoredAreas.setStyleAdaption(IPredefinedRenderingStyle.STYLE_ADAPTATION_PRIMARY_SELECTED);
         final EList<GradientColoredArea> gcas = gradientColoredAreas.getGradientColor();
@@ -123,7 +97,7 @@ public class SCADiagramColoredAreas extends PredefinedColoredAreas implements IS
      * The color-areas, which are used for secondary selected elements with the
      * ID {@link #BLUE_WHITE_ID}.
      */
-    private static GradientColoredAreas getComponentSecondarySelectedAreas() {
+    private static GradientColoredAreas getSecondarySelectedAreas() {
         final GradientColoredAreas gradientColoredAreas = StylesFactory.eINSTANCE.createGradientColoredAreas();
         gradientColoredAreas.setStyleAdaption(IPredefinedRenderingStyle.STYLE_ADAPTATION_SECONDARY_SELECTED);
         final EList<GradientColoredArea> gcas = gradientColoredAreas.getGradientColor();
@@ -144,9 +118,9 @@ public class SCADiagramColoredAreas extends PredefinedColoredAreas implements IS
         agca.getAdaptedGradientColoredAreas().add(IPredefinedRenderingStyle.STYLE_ADAPTATION_DEFAULT,
                 getServiceDefaultAreas());
         agca.getAdaptedGradientColoredAreas().add(IPredefinedRenderingStyle.STYLE_ADAPTATION_PRIMARY_SELECTED,
-                getServicePrimarySelectedAreas());
+                getPrimarySelectedAreas());
         agca.getAdaptedGradientColoredAreas().add(IPredefinedRenderingStyle.STYLE_ADAPTATION_SECONDARY_SELECTED,
-                getServiceSecondarySelectedAreas());
+                getSecondarySelectedAreas());
         return agca;
     }
 
@@ -155,34 +129,8 @@ public class SCADiagramColoredAreas extends PredefinedColoredAreas implements IS
         gradientColoredAreas.setStyleAdaption(IPredefinedRenderingStyle.STYLE_ADAPTATION_DEFAULT);
         final EList<GradientColoredArea> gcas = gradientColoredAreas.getGradientColor();
 
-        addGradientColoredArea(gcas, "FAFBFC", //$NON-NLS-1$
-                0, LocationType.LOCATION_TYPE_ABSOLUTE_START, "99cc99", 0, //$NON-NLS-2$
-                LocationType.LOCATION_TYPE_ABSOLUTE_END);
-        return gradientColoredAreas;
-    }
-
-    private static GradientColoredAreas getServicePrimarySelectedAreas() {
-        final GradientColoredAreas gradientColoredAreas = StylesFactory.eINSTANCE.createGradientColoredAreas();
-        gradientColoredAreas.setStyleAdaption(IPredefinedRenderingStyle.STYLE_ADAPTATION_PRIMARY_SELECTED);
-        final EList<GradientColoredArea> gcas = gradientColoredAreas.getGradientColor();
-
-        addGradientColoredArea(gcas, "99cc99", //$NON-NLS-1$
-                0, LocationType.LOCATION_TYPE_ABSOLUTE_START, "6E956E", 0, //$NON-NLS-1$ 
-                LocationType.LOCATION_TYPE_ABSOLUTE_END);
-        return gradientColoredAreas;
-    }
-
-    /**
-     * The color-areas, which are used for secondary selected elements with the
-     * ID {@link #BLUE_WHITE_ID}.
-     */
-    private static GradientColoredAreas getServiceSecondarySelectedAreas() {
-        final GradientColoredAreas gradientColoredAreas = StylesFactory.eINSTANCE.createGradientColoredAreas();
-        gradientColoredAreas.setStyleAdaption(IPredefinedRenderingStyle.STYLE_ADAPTATION_SECONDARY_SELECTED);
-        final EList<GradientColoredArea> gcas = gradientColoredAreas.getGradientColor();
-
-        addGradientColoredArea(gcas, "C5E0F7", //$NON-NLS-1$
-                0, LocationType.LOCATION_TYPE_ABSOLUTE_START, "BBDAF7", 0, //$NON-NLS-1$ 
+        addGradientColoredArea(gcas, StyleUtil.SERVICE_PALETTE.getBackgroundDark(), 0,
+                LocationType.LOCATION_TYPE_ABSOLUTE_START, StyleUtil.SERVICE_PALETTE.getBackgroundLight(), 0,
                 LocationType.LOCATION_TYPE_ABSOLUTE_END);
         return gradientColoredAreas;
     }
@@ -197,9 +145,9 @@ public class SCADiagramColoredAreas extends PredefinedColoredAreas implements IS
         agca.getAdaptedGradientColoredAreas().add(IPredefinedRenderingStyle.STYLE_ADAPTATION_DEFAULT,
                 getReferenceDefaultAreas());
         agca.getAdaptedGradientColoredAreas().add(IPredefinedRenderingStyle.STYLE_ADAPTATION_PRIMARY_SELECTED,
-                getReferencePrimarySelectedAreas());
+                getPrimarySelectedAreas());
         agca.getAdaptedGradientColoredAreas().add(IPredefinedRenderingStyle.STYLE_ADAPTATION_SECONDARY_SELECTED,
-                getReferenceSecondarySelectedAreas());
+                getSecondarySelectedAreas());
         return agca;
     }
 
@@ -208,35 +156,10 @@ public class SCADiagramColoredAreas extends PredefinedColoredAreas implements IS
         gradientColoredAreas.setStyleAdaption(IPredefinedRenderingStyle.STYLE_ADAPTATION_DEFAULT);
         final EList<GradientColoredArea> gcas = gradientColoredAreas.getGradientColor();
 
-        addGradientColoredArea(gcas, "F7EEEB", //$NON-NLS-1$
-                0, LocationType.LOCATION_TYPE_ABSOLUTE_START, "F69679", 0, //$NON-NLS-2$
+        addGradientColoredArea(gcas, StyleUtil.REFERENCE_PALETTE.getBackgroundDark(), 0,
+                LocationType.LOCATION_TYPE_ABSOLUTE_START, StyleUtil.REFERENCE_PALETTE.getBackgroundLight(), 0,
                 LocationType.LOCATION_TYPE_ABSOLUTE_END);
         return gradientColoredAreas;
     }
 
-    private static GradientColoredAreas getReferencePrimarySelectedAreas() {
-        final GradientColoredAreas gradientColoredAreas = StylesFactory.eINSTANCE.createGradientColoredAreas();
-        gradientColoredAreas.setStyleAdaption(IPredefinedRenderingStyle.STYLE_ADAPTATION_PRIMARY_SELECTED);
-        final EList<GradientColoredArea> gcas = gradientColoredAreas.getGradientColor();
-
-        addGradientColoredArea(gcas, "99cc99", //$NON-NLS-1$
-                0, LocationType.LOCATION_TYPE_ABSOLUTE_START, "6E956E", 0, //$NON-NLS-1$ 
-                LocationType.LOCATION_TYPE_ABSOLUTE_END);
-        return gradientColoredAreas;
-    }
-
-    /**
-     * The color-areas, which are used for secondary selected elements with the
-     * ID {@link #BLUE_WHITE_ID}.
-     */
-    private static GradientColoredAreas getReferenceSecondarySelectedAreas() {
-        final GradientColoredAreas gradientColoredAreas = StylesFactory.eINSTANCE.createGradientColoredAreas();
-        gradientColoredAreas.setStyleAdaption(IPredefinedRenderingStyle.STYLE_ADAPTATION_SECONDARY_SELECTED);
-        final EList<GradientColoredArea> gcas = gradientColoredAreas.getGradientColor();
-
-        addGradientColoredArea(gcas, "C5E0F7", //$NON-NLS-1$
-                0, LocationType.LOCATION_TYPE_ABSOLUTE_START, "BBDAF7", 0, //$NON-NLS-1$ 
-                LocationType.LOCATION_TYPE_ABSOLUTE_END);
-        return gradientColoredAreas;
-    }
 }

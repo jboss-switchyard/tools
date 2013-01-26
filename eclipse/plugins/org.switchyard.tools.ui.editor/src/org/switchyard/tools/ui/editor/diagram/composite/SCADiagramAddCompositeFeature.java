@@ -29,6 +29,7 @@ import org.eclipse.graphiti.mm.pictograms.Shape;
 import org.eclipse.graphiti.services.Graphiti;
 import org.eclipse.graphiti.services.IGaService;
 import org.eclipse.graphiti.services.IPeCreateService;
+import org.eclipse.graphiti.util.ColorConstant;
 import org.eclipse.soa.sca.sca1_1.model.sca.Component;
 import org.eclipse.soa.sca.sca1_1.model.sca.Composite;
 import org.eclipse.soa.sca.sca1_1.model.sca.Reference;
@@ -87,9 +88,9 @@ public class SCADiagramAddCompositeFeature extends AbstractAddShapeFeature {
         RoundedRectangle roundedRectangle = null;
 
         // create and set graphics algorithm
-        roundedRectangle = gaService.createRoundedRectangle(invisibleRectangle, 6, 0);
+        roundedRectangle = gaService.createRoundedRectangle(invisibleRectangle, 12, 12);
         roundedRectangle.setStyle(StyleUtil.getStyleForComposite(getDiagram()));
-        roundedRectangle.setLineWidth(2);
+        roundedRectangle.setLineWidth(roundedRectangle.getStyle().getLineWidth());
 
         gaService.setLocationAndSize(roundedRectangle, StyleUtil.COMPOSITE_OUTER_EDGE, StyleUtil.COMPOSITE_OUTER_EDGE,
                 width, height);
@@ -111,7 +112,7 @@ public class SCADiagramAddCompositeFeature extends AbstractAddShapeFeature {
 
         // create and set text graphics algorithm
         Text text = gaService.createDefaultText(getDiagram(), roundedRectangle, addedComposite.getName());
-        text.setForeground(manageColor(StyleUtil.BLACK));
+        text.setForeground(manageColor(new ColorConstant(StyleUtil.COMPOSITE_PALETTE.getTextForeground())));
         text.setHorizontalAlignment(Orientation.ALIGNMENT_LEFT);
         text.setVerticalAlignment(Orientation.ALIGNMENT_CENTER);
         Font font = gaService.manageFont(getDiagram(), text.getFont().getName(), text.getFont().getSize(), false, true);

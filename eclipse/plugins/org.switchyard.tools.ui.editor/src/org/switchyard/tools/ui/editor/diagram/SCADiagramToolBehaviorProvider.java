@@ -215,8 +215,10 @@ public class SCADiagramToolBehaviorProvider extends DefaultToolBehaviorProvider 
         if (bo == null || !(bo instanceof EObject)) {
             return super.getDecorators(pe);
         }
+        boolean needsOffset = false;
         List<IDecorator> decorators = new ArrayList<IDecorator>();
         if (bo instanceof Service || bo instanceof Reference) {
+            needsOffset = true;
             decorators.addAll(addDecoratorsForCompositeContract((Contract) bo, pe));
         } else if (bo instanceof Component) {
             Component component = (Component) bo;
@@ -245,8 +247,13 @@ public class SCADiagramToolBehaviorProvider extends DefaultToolBehaviorProvider 
                 if (ga == null) {
                     ga = pe.getGraphicsAlgorithm();
                 }
-                decorator.setX(ga.getWidth() - 10);
-                decorator.setY(ga.getHeight() - 10);
+                if (bo instanceof Composite) {
+                    decorator.setX(ga.getX()+5);
+                    decorator.setY(ga.getY()+5);
+                } else {
+                    decorator.setX(ga.getWidth() - 10 - (needsOffset ? 28 : 0));
+                    decorator.setY(ga.getHeight() - 10 - (needsOffset ? 8 : 0));
+                }
                 decorators.add(decorator);
             }
         }
@@ -261,16 +268,12 @@ public class SCADiagramToolBehaviorProvider extends DefaultToolBehaviorProvider 
         final List<IDecorator> decorators = new ArrayList<IDecorator>();
         if (!contract.getBinding().isEmpty()) {
             EList<Binding> bindings = contract.getBinding();
-            int x = 0;
+            int x = 15;
             for (Binding binding : bindings) {
                 IImageDecorator imageRenderingDecorator = BindingTypeExtensionManager.instance()
                         .getExtensionFor(binding.getClass()).getImageDecorator(binding);
-                if (x > 0) {
-                    x += 20;
-                    imageRenderingDecorator.setX(x);
-                } else {
-                    x = imageRenderingDecorator.getX();
-                }
+                imageRenderingDecorator.setX(x);
+                x += 20;
                 String text = LabelAdapter.getLabel(binding);
                 if (binding instanceof SwitchYardBindingType) {
                     text = "Binding: " + LabelAdapter.getLabel(binding);
@@ -294,6 +297,7 @@ public class SCADiagramToolBehaviorProvider extends DefaultToolBehaviorProvider 
             imageRenderingDecorator.setMessage("Interface: " + text);
             Location loc = getDecoratorLocationLowerLeft(pe);
             imageRenderingDecorator.setY(loc.getY() - 18);
+            imageRenderingDecorator.setX(15);
             decorators.add(imageRenderingDecorator);
         } else {
             Interface intfc = null;

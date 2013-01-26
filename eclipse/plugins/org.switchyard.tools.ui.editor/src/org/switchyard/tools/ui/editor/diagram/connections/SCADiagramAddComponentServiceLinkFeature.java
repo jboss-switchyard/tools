@@ -23,7 +23,8 @@ import org.eclipse.graphiti.mm.pictograms.PictogramElement;
 import org.eclipse.graphiti.services.Graphiti;
 import org.eclipse.graphiti.services.IGaService;
 import org.eclipse.graphiti.services.IPeCreateService;
-import org.eclipse.graphiti.util.IColorConstant;
+import org.eclipse.graphiti.util.ColorConstant;
+import org.switchyard.tools.ui.editor.diagram.StyleUtil;
 
 /**
  * @author bfitzpat
@@ -62,8 +63,8 @@ public class SCADiagramAddComponentServiceLinkFeature extends AbstractAddFeature
         IGaService gaService = Graphiti.getGaService();
         Polyline polyline = gaService.createPolyline(connection);
         polyline.setLineWidth(2);
-        polyline.setLineStyle(LineStyle.DOT);
-        polyline.setForeground(manageColor(IColorConstant.BLACK));
+        polyline.setLineStyle(LineStyle.SOLID);
+        polyline.setForeground(manageColor(new ColorConstant(StyleUtil.COMPOSITE_PALETTE.getTextForeground())));
 
         return connection;
     }

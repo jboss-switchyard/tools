@@ -18,18 +18,14 @@ import org.eclipse.graphiti.features.IFeatureProvider;
 import org.eclipse.graphiti.features.context.ILayoutContext;
 import org.eclipse.graphiti.features.impl.AbstractLayoutFeature;
 import org.eclipse.graphiti.mm.algorithms.GraphicsAlgorithm;
-import org.eclipse.graphiti.mm.algorithms.Text;
-import org.eclipse.graphiti.mm.algorithms.styles.Orientation;
 import org.eclipse.graphiti.mm.pictograms.ContainerShape;
 import org.eclipse.graphiti.mm.pictograms.PictogramElement;
-import org.eclipse.graphiti.services.Graphiti;
-import org.eclipse.graphiti.services.IGaService;
 import org.eclipse.soa.sca.sca1_1.model.sca.Reference;
 import org.switchyard.tools.ui.editor.diagram.StyleUtil;
 
 /**
  * @author bfitzpat
- *
+ * 
  */
 public class SCADiagramLayoutCompositeReferenceFeature extends AbstractLayoutFeature {
 
@@ -60,8 +56,6 @@ public class SCADiagramLayoutCompositeReferenceFeature extends AbstractLayoutFea
 
         ContainerShape containerShape = (ContainerShape) context.getPictogramElement();
         GraphicsAlgorithm containerGa = containerShape.getGraphicsAlgorithm();
-        int containerWidth = containerGa.getWidth();
-        int containerHeight = containerGa.getHeight();
 
         // height
         if (containerGa.getHeight() < MIN_HEIGHT) {
@@ -75,15 +69,28 @@ public class SCADiagramLayoutCompositeReferenceFeature extends AbstractLayoutFea
             anythingChanged = true;
         }
 
-        IGaService gaService = Graphiti.getGaService();
-        GraphicsAlgorithm gaFound = StyleUtil.findChildGA(containerGa, Text.class);
-        if (gaFound != null && gaFound instanceof Text) {
-            Text text = (Text) gaFound;
-            text.setHorizontalAlignment(Orientation.ALIGNMENT_CENTER);
-            text.setVerticalAlignment(Orientation.ALIGNMENT_CENTER);
-            gaService.setLocationAndSize(text, 5, containerHeight / 4, containerWidth - 15, containerHeight / 2);
-            anythingChanged = true;
-        }
+        // IGaService gaService = Graphiti.getGaService();
+        // Text text = StyleUtil.findChildGA(containerGa, Text.class);
+        // Polygon polygon = StyleUtil.findChildGA(containerGa, Polygon.class);
+        // if (text != null) {
+        // text.setHorizontalAlignment(Orientation.ALIGNMENT_CENTER);
+        // text.setVerticalAlignment(Orientation.ALIGNMENT_CENTER);
+        // if (polygon == null) {
+        // gaService.setLocationAndSize(text, 5, containerGa.getHeight() / 4,
+        // containerGa.getWidth() - 15,
+        // containerGa.getHeight() / 2);
+        // } else {
+        // double scale = containerGa.getWidth() / 100.0;
+        // int left = (int) (15 * scale);
+        // int right = containerGa.getWidth();
+        // int width = right - left - 10;
+        // text.setHorizontalAlignment(Orientation.ALIGNMENT_CENTER);
+        // text.setVerticalAlignment(Orientation.ALIGNMENT_CENTER);
+        // gaService.setLocationAndSize(text, left + 5, 0, width,
+        // containerGa.getHeight());
+        // }
+        // anythingChanged = true;
+        // }
 
         return anythingChanged;
     }

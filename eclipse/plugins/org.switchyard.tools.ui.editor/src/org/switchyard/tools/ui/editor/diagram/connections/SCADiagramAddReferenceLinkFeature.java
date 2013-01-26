@@ -24,9 +24,10 @@ import org.eclipse.graphiti.mm.pictograms.PictogramElement;
 import org.eclipse.graphiti.services.Graphiti;
 import org.eclipse.graphiti.services.IGaService;
 import org.eclipse.graphiti.services.IPeCreateService;
-import org.eclipse.graphiti.util.IColorConstant;
+import org.eclipse.graphiti.util.ColorConstant;
 import org.eclipse.soa.sca.sca1_1.model.sca.ComponentReference;
 import org.eclipse.soa.sca.sca1_1.model.sca.Reference;
+import org.switchyard.tools.ui.editor.diagram.StyleUtil;
 
 /**
  * @author bfitzpat
@@ -75,8 +76,8 @@ public class SCADiagramAddReferenceLinkFeature extends AbstractAddFeature {
         IGaService gaService = Graphiti.getGaService();
         Polyline polyline = gaService.createPolyline(connection);
         polyline.setLineWidth(2);
-        polyline.setLineStyle(LineStyle.DASH);
-        polyline.setForeground(manageColor(IColorConstant.BLACK));
+        polyline.setLineStyle(LineStyle.SOLID);
+        polyline.setForeground(manageColor(new ColorConstant(StyleUtil.COMPOSITE_PALETTE.getTextForeground())));
 
         // create link and wire it
         if (addedReference != null) {

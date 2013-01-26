@@ -18,12 +18,8 @@ import org.eclipse.graphiti.features.IFeatureProvider;
 import org.eclipse.graphiti.features.context.ILayoutContext;
 import org.eclipse.graphiti.features.impl.AbstractLayoutFeature;
 import org.eclipse.graphiti.mm.algorithms.GraphicsAlgorithm;
-import org.eclipse.graphiti.mm.algorithms.Text;
-import org.eclipse.graphiti.mm.algorithms.styles.Orientation;
 import org.eclipse.graphiti.mm.pictograms.ContainerShape;
 import org.eclipse.graphiti.mm.pictograms.PictogramElement;
-import org.eclipse.graphiti.services.Graphiti;
-import org.eclipse.graphiti.services.IGaService;
 import org.eclipse.soa.sca.sca1_1.model.sca.Service;
 import org.switchyard.tools.ui.editor.diagram.StyleUtil;
 
@@ -75,15 +71,17 @@ public class SCADiagramLayoutServiceFeature extends AbstractLayoutFeature {
             anythingChanged = true;
         }
 
-        IGaService gaService = Graphiti.getGaService();
-        GraphicsAlgorithm gaFound = StyleUtil.findChildGA(containerGa, Text.class);
-        if (gaFound != null && gaFound instanceof Text) {
-            Text text = (Text) gaFound;
-            text.setHorizontalAlignment(Orientation.ALIGNMENT_CENTER);
-            text.setVerticalAlignment(Orientation.ALIGNMENT_CENTER);
-            gaService.setLocationAndSize(text, 5, containerHeight / 4, containerWidth - 15, containerHeight / 2);
-            anythingChanged = true;
-        }
+        // IGaService gaService = Graphiti.getGaService();
+        // GraphicsAlgorithm gaFound = StyleUtil.findChildGA(containerGa,
+        // Text.class);
+        // if (gaFound != null && gaFound instanceof Text) {
+        // Text text = (Text) gaFound;
+        // text.setHorizontalAlignment(Orientation.ALIGNMENT_CENTER);
+        // text.setVerticalAlignment(Orientation.ALIGNMENT_CENTER);
+        // gaService.setLocationAndSize(text, 5, containerHeight / 4,
+        // containerWidth - 15, containerHeight / 2);
+        // anythingChanged = true;
+        // }
 
         return anythingChanged;
     }
