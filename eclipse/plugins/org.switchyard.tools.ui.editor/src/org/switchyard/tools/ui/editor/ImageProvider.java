@@ -30,6 +30,7 @@ public class ImageProvider extends AbstractImageProvider {
 
     private static final String DOT16 = ".16";
     private static final String ICONS_16 = "icons/16/";
+    private static final String ICONS_SCALE = "icons/scale/";
     private static final String PREFIX = ImageProvider.class.getPackage().getName() + ".";
 
     /** Image for Composite. **/
@@ -52,10 +53,16 @@ public class ImageProvider extends AbstractImageProvider {
     public static final String IMG_16_COMPONENT_SERVICE = PREFIX + ComponentService.class.getSimpleName().toLowerCase()
             + DOT16;
     
+    /** Image for Component Service 24. **/
+    public static final String IMG_COMPONENT_SERVICE_SCALEABLE = PREFIX + Service.class.getSimpleName().toLowerCase() + ".scale";
+
     /** Image for Component Reference. **/
     public static final String IMG_16_COMPONENT_REFERENCE = PREFIX
             + ComponentReference.class.getSimpleName().toLowerCase() + DOT16;
     
+    /** Image for Component Service 24. **/
+    public static final String IMG_COMPONENT_REFERENCE_SCALEABLE = PREFIX + Reference.class.getSimpleName().toLowerCase() + ".scale";
+
     /** Image for Connection. **/
     public static final String IMG_16_CONNECTION = PREFIX + "connection" + DOT16;
 
@@ -157,6 +164,18 @@ public class ImageProvider extends AbstractImageProvider {
 
     /** Image for JPA. **/
     public static final String IMG_16_UNKNOWN_IMPL = PREFIX + "UNKNOWN_IMPL" + DOT16;
+    
+    /** Image for Change Interface floating toolbar button. **/
+    public static final String IMG_16_INTERFACE_DELTA = PREFIX + "INTERFACE-DELTA" + DOT16;
+
+    /** Image for Edit Interface floating toolbar button. **/
+    public static final String IMG_16_EDIT_INTERFACE = PREFIX + "EDIT_INTERFACE" + DOT16;
+
+    /** Image for promote floating toolbar button. **/
+    public static final String IMG_16_PROMOTE = PREFIX + "PROMOTE" + DOT16;
+
+    /** Image for auto-layout floating toolbar button. **/
+    public static final String IMG_16_AUTO_LAYOUT = PREFIX + "AUTO_LAYOUT" + DOT16;
 
     @Override
     protected void addAvailableImages() {
@@ -165,7 +184,9 @@ public class ImageProvider extends AbstractImageProvider {
         addImageFilePath(IMG_16_SERVICE, ICONS_16 + "Service.gif");
         addImageFilePath(IMG_16_REFERENCE, ICONS_16 + "Reference.gif");
         addImageFilePath(IMG_16_COMPONENT_SERVICE, ICONS_16 + "Service.gif");
+        addImageFilePath(IMG_COMPONENT_SERVICE_SCALEABLE, ICONS_SCALE + "shaded-service.png");
         addImageFilePath(IMG_16_COMPONENT_REFERENCE, ICONS_16 + "Reference.gif");
+        addImageFilePath(IMG_COMPONENT_REFERENCE_SCALEABLE, ICONS_SCALE + "shaded-reference.png");
         addImageFilePath(IMG_16_CONNECTION, ICONS_16 + "Wire.gif");
         addImageFilePath(IMG_16_CHAIN, ICONS_16 + "chain_small.png");
         addImageFilePath(IMG_16_PLUS, ICONS_16 + "plus.png");
@@ -201,6 +222,10 @@ public class ImageProvider extends AbstractImageProvider {
         addImageFilePath(IMG_16_MAIL, ICONS_16 + "mail.png");
         addImageFilePath(IMG_16_JPA, ICONS_16 + "jpa.png");
         addImageFilePath(IMG_16_UNKNOWN_IMPL, ICONS_16 + "unknown_impl.gif");
+        addImageFilePath(IMG_16_INTERFACE_DELTA, ICONS_16 + "interface-delta.png");
+        addImageFilePath(IMG_16_EDIT_INTERFACE, ICONS_16 + "intfc-edit.png");
+        addImageFilePath(IMG_16_PROMOTE, ICONS_16 + "promote.png");
+        addImageFilePath(IMG_16_AUTO_LAYOUT, ICONS_16 + "refresh-16.png");
     }
 
 }

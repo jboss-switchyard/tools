@@ -79,11 +79,16 @@ public class SCADiagramAddComponentServiceFeature extends AbstractAddShapeFeatur
 
         int anchorY = 2 * StyleUtil.COMPONENT_EDGE + (services.indexOf(service))
                 * StyleUtil.COMPONENT_CHILD_V_SPACING;
-        int anchorX = StyleUtil.COMPONENT_EDGE - 8;
+        int anchorX = StyleUtil.COMPONENT_EDGE - 5;
         final ContainerShape container = peCreateService.createContainerShape(targetContainer, true);
         // use the image to represent the service component
-        final Image image = gaService.createImage(container, ImageProvider.IMG_16_COMPONENT_SERVICE);
-        gaService.setLocationAndSize(image, anchorX, anchorY, 16, 16);
+        final Image image = gaService.createImage(container, ImageProvider.IMG_COMPONENT_SERVICE_SCALEABLE);
+//        final Image image = gaService.createImage(container, ImageProvider.IMG_16_COMPONENT_SERVICE);
+//        gaService.setLocationAndSize(image, anchorX, anchorY, 16, 16);
+        gaService.setLocationAndSize(image, anchorX, anchorY, 20, 20);
+        image.setStretchH(true);
+        image.setStretchV(true);
+        image.setProportional(true); 
         // the anchor (note, box relative supports drag/drop for connections)
         final ChopboxAnchor anchor = peCreateService.createChopboxAnchor(container);
 

@@ -70,6 +70,8 @@ import org.switchyard.tools.models.switchyard1_0.switchyard.SwitchYardBindingTyp
 import org.switchyard.tools.ui.editor.BindingTypeExtensionManager;
 import org.switchyard.tools.ui.editor.ComponentTypeExtensionManager;
 import org.switchyard.tools.ui.editor.ImageProvider;
+import org.switchyard.tools.ui.editor.diagram.componentreference.SCADiagramCustomPromoteReferenceFeature;
+import org.switchyard.tools.ui.editor.diagram.service.SCADiagramCustomPromoteServiceFeature;
 import org.switchyard.tools.ui.editor.property.adapters.LabelAdapter;
 import org.switchyard.tools.ui.validation.ValidationStatusAdapter;
 
@@ -95,12 +97,20 @@ public class SCADiagramToolBehaviorProvider extends DefaultToolBehaviorProvider 
         List<IContextMenuEntry> menuList = new ArrayList<IContextMenuEntry>();
         if (context.getPictogramElements() != null) {
             Object bo = getFeatureProvider().getBusinessObjectForPictogramElement(context.getPictogramElements()[0]);
-            if (bo != null && (bo instanceof Component || bo instanceof Contract)) {
-                ContextMenuEntry openMenu = new ContextMenuEntry(new SCADiagramOpenOnDoubleClickFeature(
-                        getFeatureProvider()), context);
-                openMenu.setText("Open");
-                openMenu.setSubmenu(false);
-                menuList.add(openMenu);
+            if (bo != null) {
+                if (bo instanceof Component || bo instanceof Contract) {
+                    ContextMenuEntry openMenu = new ContextMenuEntry(new SCADiagramOpenOnDoubleClickFeature(
+                            getFeatureProvider()), context);
+                    openMenu.setText("Open");
+                    openMenu.setSubmenu(false);
+                    menuList.add(openMenu);
+                }
+                if (bo instanceof Contract) {
+                    ContextMenuEntry openMenu = new ContextMenuEntry(new ChangeInterfaceCustomFeature(
+                            getFeatureProvider()), context);
+                    openMenu.setSubmenu(false);
+                    menuList.add(openMenu);
+                }
             }
         }
         menuList.addAll(Arrays.asList(super.getContextMenu(context)));
@@ -455,6 +465,9 @@ public class SCADiagramToolBehaviorProvider extends DefaultToolBehaviorProvider 
         return ret.toArray(new IPaletteCompartmentEntry[ret.size()]);
     }
 
+    /* (non-Javadoc)
+     * @see org.eclipse.graphiti.tb.DefaultToolBehaviorProvider#getContextButtonPad(org.eclipse.graphiti.features.context.IPictogramElementContext)
+     */
     @Override
     public IContextButtonPadData getContextButtonPad(IPictogramElementContext context) {
 
@@ -462,6 +475,7 @@ public class SCADiagramToolBehaviorProvider extends DefaultToolBehaviorProvider 
         PictogramElement pe = context.getPictogramElement();
         Object bo = getFeatureProvider().getBusinessObjectForPictogramElement(pe);
 
+        ICustomContext customContext = new CustomContext(new PictogramElement[] {context.getPictogramElement() });
         if (bo instanceof Composite) {
             // just update, no delete
             setGenericContextButtons(data, pe, CONTEXT_BUTTON_UPDATE);
@@ -470,10 +484,32 @@ public class SCADiagramToolBehaviorProvider extends DefaultToolBehaviorProvider 
             data.getDomainSpecificContextButtons().add(
                     new ContextButtonEntry(new SynchronizeGeneratedModelFeature(getFeatureProvider()),
                             new CustomContext(new PictogramElement[] {context.getPictogramElement() })));
+            
+            AutoLayoutFeature autoLayout = new AutoLayoutFeature(getFeatureProvider());
+            ContextButtonEntry button = new ContextButtonEntry(autoLayout, customContext);
+            data.getDomainSpecificContextButtons().add(button);
         } else {
-            setGenericContextButtons(data, pe, CONTEXT_BUTTON_DELETE | CONTEXT_BUTTON_UPDATE);
+            if (bo instanceof ComponentService) {
+                SCADiagramCustomPromoteServiceFeature promote = new SCADiagramCustomPromoteServiceFeature(getFeatureProvider());
+                ContextButtonEntry button = new ContextButtonEntry(promote, customContext);
+                data.getDomainSpecificContextButtons().add(button);
+                data.getPadLocation().setHeight(40);
+                data.getPadLocation().setWidth(data.getPadLocation().getWidth() + 10);
+            } else if (bo instanceof ComponentReference) {
+                SCADiagramCustomPromoteReferenceFeature promote = new SCADiagramCustomPromoteReferenceFeature(getFeatureProvider());
+                ContextButtonEntry button = new ContextButtonEntry(promote, customContext);
+                data.getDomainSpecificContextButtons().add(button);
+                data.getPadLocation().setHeight(40);
+                data.getPadLocation().setWidth(data.getPadLocation().getWidth() + 10);
+            }
+            if (bo instanceof Contract) {
+                ChangeInterfaceCustomFeature intfChangeFeature = new ChangeInterfaceCustomFeature(getFeatureProvider());
+                ContextButtonEntry button = new ContextButtonEntry(intfChangeFeature, customContext);
+                data.getDomainSpecificContextButtons().add(button);
+            }
+            setGenericContextButtons(data, pe, CONTEXT_BUTTON_DELETE);
         }
-
+        
         return data;
     }
 

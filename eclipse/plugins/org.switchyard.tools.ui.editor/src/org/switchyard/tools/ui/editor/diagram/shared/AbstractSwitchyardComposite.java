@@ -159,7 +159,9 @@ public abstract class AbstractSwitchyardComposite implements FocusListener, KeyL
      * @param listener to remove
      */
     public void removeChangeListener(ChangeListener listener) {
-        this._changeListeners.remove(listener);
+        if (this._changeListeners != null && !this._changeListeners.isEmpty()) {
+            this._changeListeners.remove(listener);
+        }
     }
 
     /**

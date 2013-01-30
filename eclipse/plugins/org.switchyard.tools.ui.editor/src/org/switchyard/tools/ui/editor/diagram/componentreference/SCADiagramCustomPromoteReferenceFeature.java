@@ -121,7 +121,7 @@ public class SCADiagramCustomPromoteReferenceFeature extends AbstractCustomFeatu
 
     @Override
     public String getDescription() {
-        return "Promote Component Reference";
+        return "Promote the reference";
     }
 
     @Override
@@ -136,7 +136,7 @@ public class SCADiagramCustomPromoteReferenceFeature extends AbstractCustomFeatu
 
     @Override
     public String getName() {
-        return "Promote Component Reference";
+        return "Promote Reference";
     }
 
     @Override
@@ -146,7 +146,7 @@ public class SCADiagramCustomPromoteReferenceFeature extends AbstractCustomFeatu
 
     @Override
     public String getImageId() {
-        return ImageProvider.IMG_16_PLUS;
+        return ImageProvider.IMG_16_PROMOTE;
     }
 
     @Override

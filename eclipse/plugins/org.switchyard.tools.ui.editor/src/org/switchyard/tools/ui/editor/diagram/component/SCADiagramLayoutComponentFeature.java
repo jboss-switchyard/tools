@@ -110,8 +110,8 @@ public class SCADiagramLayoutComponentFeature extends AbstractLayoutFeature {
                     rt.setHeight(minHeight);
                     rt.setWidth(minWidth);
                     // make sure the references are on the edge
-                    final int serviceX = StyleUtil.COMPONENT_EDGE - 8;
-                    final int referenceX = containerGa.getWidth() - StyleUtil.COMPONENT_EDGE - 8;
+                    final int serviceX = StyleUtil.COMPONENT_EDGE - 9;
+                    final int referenceX = containerGa.getWidth() - StyleUtil.COMPONENT_EDGE - 11;
                     for (Shape child : containerShape.getChildren()) {
                         Object bo = getBusinessObjectForPictogramElement(child);
                         if (bo instanceof ComponentReference) {

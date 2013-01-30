@@ -117,7 +117,7 @@ public class SCADiagramCustomPromoteServiceFeature extends AbstractCustomFeature
 
     @Override
     public String getDescription() {
-        return "Promote Component Service";
+        return "Promote the service";
     }
 
     @Override
@@ -132,7 +132,7 @@ public class SCADiagramCustomPromoteServiceFeature extends AbstractCustomFeature
 
     @Override
     public String getName() {
-        return "Promote Component Service";
+        return "Promote Service";
     }
 
     @Override
@@ -142,7 +142,7 @@ public class SCADiagramCustomPromoteServiceFeature extends AbstractCustomFeature
 
     @Override
     public String getImageId() {
-        return ImageProvider.IMG_16_PLUS;
+        return ImageProvider.IMG_16_PROMOTE;
     }
 
     @Override

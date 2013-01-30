@@ -46,6 +46,7 @@ import org.eclipse.zest.layouts.LayoutStyles;
 import org.eclipse.zest.layouts.algorithms.HorizontalTreeLayoutAlgorithm;
 import org.eclipse.zest.layouts.exampleStructures.SimpleNode;
 import org.eclipse.zest.layouts.exampleStructures.SimpleRelationship;
+import org.switchyard.tools.ui.editor.ImageProvider;
 
 /**
  * AutoLayoutFeature
@@ -264,4 +265,10 @@ public class AutoLayoutFeature extends AbstractCustomFeature {
         }
 
     }
+
+    @Override
+    public String getImageId() {
+        return ImageProvider.IMG_16_AUTO_LAYOUT;
+    }
+
 }

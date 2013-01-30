@@ -68,6 +68,15 @@ public class ESBInterfaceControlAdapter implements IInterfaceControlAdapter {
     @Override
     public boolean browse(Shell shell, IJavaProject project) {
         ESBInterfaceInputDialog dialog = new ESBInterfaceInputDialog(shell);
+        if (_interface.getFaultType() != null && !_interface.getFaultType().trim().isEmpty()) {
+            dialog.setFaultType(_interface.getFaultType());
+        }
+        if (_interface.getOutputType() != null && !_interface.getOutputType().trim().isEmpty()) {
+            dialog.setOutputType(_interface.getOutputType());
+        }
+        if (_interface.getInputType() != null && !_interface.getInputType().trim().isEmpty()) {
+            dialog.setInputType(_interface.getInputType());
+        }
         int rtn_code = dialog.open();
         if (rtn_code == Window.OK) {
             if (dialog.getFaultType() != null && !dialog.getFaultType().trim().isEmpty()) {

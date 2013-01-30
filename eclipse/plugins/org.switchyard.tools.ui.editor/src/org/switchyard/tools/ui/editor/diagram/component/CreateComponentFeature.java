@@ -10,6 +10,7 @@
  ************************************************************************************/
 package org.switchyard.tools.ui.editor.diagram.component;
 
+import java.util.ArrayList;
 import java.util.Collection;
 
 import org.eclipse.graphiti.features.IFeatureProvider;
@@ -76,8 +77,11 @@ public class CreateComponentFeature extends CreateTypeFeature<Component, Composi
     @Override
     protected Collection<String> getRequiredCapabilities(Component newObject) {
         final Implementation implementation = newObject.getImplementation();
-        return ComponentTypeExtensionManager.instance().getExtensionFor(implementation.getClass())
+        if (implementation != null) {
+            return ComponentTypeExtensionManager.instance().getExtensionFor(implementation.getClass())
                 .getRequiredCapabilities(implementation);
+        }
+        return new ArrayList<String>(0); 
     }
 
 }
