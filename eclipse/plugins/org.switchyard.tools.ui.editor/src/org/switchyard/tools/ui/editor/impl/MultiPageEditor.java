@@ -12,8 +12,6 @@
  ******************************************************************************/
 package org.switchyard.tools.ui.editor.impl;
 
-import org.eclipse.core.databinding.observable.value.IValueChangeListener;
-import org.eclipse.core.databinding.observable.value.ValueChangeEvent;
 import org.eclipse.core.resources.IMarker;
 import org.eclipse.core.resources.IProject;
 import org.eclipse.core.runtime.IProgressMonitor;
@@ -43,7 +41,6 @@ import org.eclipse.jface.action.IAction;
 import org.eclipse.jface.action.IMenuManager;
 import org.eclipse.jface.databinding.swt.ISWTObservableValue;
 import org.eclipse.jface.databinding.swt.SWTObservables;
-import org.eclipse.jface.internal.databinding.swt.SWTVetoableValueDecorator;
 import org.eclipse.jface.viewers.ISelection;
 import org.eclipse.jface.viewers.ISelectionProvider;
 import org.eclipse.jface.viewers.IStructuredSelection;
@@ -93,7 +90,6 @@ import org.switchyard.tools.ui.editor.diagram.shared.DomainPropertyInputDialog;
 import org.switchyard.tools.ui.editor.diagram.shared.DomainPropertyTable;
 import org.switchyard.tools.ui.editor.model.merge.MergedModelUtil;
 import org.switchyard.tools.ui.editor.model.merge.SwitchYardMergedModelAdapter;
-import org.switchyard.tools.ui.editor.util.ErrorUtils;
 import org.w3c.dom.Attr;
 import org.w3c.dom.Node;
 
@@ -101,7 +97,6 @@ import org.w3c.dom.Node;
  * @author bfitzpat
  * 
  */
-@SuppressWarnings("restriction")
 public class MultiPageEditor extends MultiPageEditorPart implements IGotoMarker, ResourceSetListener {
 
     /** The text editor used in page 0. */
@@ -118,6 +113,14 @@ public class MultiPageEditor extends MultiPageEditorPart implements IGotoMarker,
     private DomainPropertyTable _securityProperties = null;
     private Text _callbackHandlerText;
     private Text _moduleNameText;
+    private Text _runAsText;
+    private Text _rolesAllowedText;
+    private ModuleNameTextValueChangeListener _moduleNameListener;
+    private ISWTObservableValue _moduleNameFocusObserver;
+    private RolesAllowedTextValueChangeListener _rolesAllowedListener;
+    private ISWTObservableValue _rolesAllowedFocusObserver;
+    private RunAsTextValueChangeListener _runAsListener;
+    private ISWTObservableValue _runAsFocusObserver;
 
     /**
      * Creates a multi-page editor example.
@@ -134,6 +137,7 @@ public class MultiPageEditor extends MultiPageEditorPart implements IGotoMarker,
     @Override
     public void dispose() {
         removeDomainListener();
+        removeObservableListeners();
         super.dispose();
     }
 
@@ -476,22 +480,60 @@ public class MultiPageEditor extends MultiPageEditorPart implements IGotoMarker,
         }
     }
 
+    private DomainType getDomain(final SwitchYardType root) {
+        DomainType domain = root.getDomain();
+        if (domain == null) {
+            domain = SwitchyardFactory.eINSTANCE.createDomainType();
+            root.setDomain(domain);
+        }
+        return root.getDomain();
+    }
+    
+    private SecurityType getSecurity(final DomainType domain) {
+        SecurityType security = domain.getSecurity();
+        if (security == null) {
+            security = SwitchyardFactory.eINSTANCE.createSecurityType();
+            domain.setSecurity(security);
+        }
+        return domain.getSecurity();
+    }
+    
+    private void updateRolesAllowed(final String value) {
+        if (_syRoot != null) {
+            final SwitchYardType finalRoot = _syRoot;
+            _editDomain.getCommandStack().execute(new RecordingCommand(_editDomain) {
+                @Override
+                protected void doExecute() {
+                    DomainType domain = getDomain(finalRoot);
+                    SecurityType security = getSecurity(domain);
+                    security.setRolesAllowed(value);
+                }
+            });
+        }
+    }
+
+    private void updateRunAs(final String value) {
+        if (_syRoot != null) {
+            final SwitchYardType finalRoot = _syRoot;
+            _editDomain.getCommandStack().execute(new RecordingCommand(_editDomain) {
+                @Override
+                protected void doExecute() {
+                    DomainType domain = getDomain(finalRoot);
+                    SecurityType security = getSecurity(domain);
+                    security.setRunAs(value);
+                }
+            });
+        }
+    }
+    
     private void updateModuleName(final String value) {
         if (_syRoot != null) {
             final SwitchYardType finalRoot = _syRoot;
             _editDomain.getCommandStack().execute(new RecordingCommand(_editDomain) {
                 @Override
                 protected void doExecute() {
-                    DomainType domain = finalRoot.getDomain();
-                    if (domain == null) {
-                        domain = SwitchyardFactory.eINSTANCE.createDomainType();
-                        finalRoot.setDomain(domain);
-                    }
-                    SecurityType security = domain.getSecurity();
-                    if (security == null) {
-                        security = SwitchyardFactory.eINSTANCE.createSecurityType();
-                        domain.setSecurity(security);
-                    }
+                    DomainType domain = getDomain(finalRoot);
+                    SecurityType security = getSecurity(domain);
                     security.setModuleName(value);
                 }
             });
@@ -690,6 +732,47 @@ public class MultiPageEditor extends MultiPageEditorPart implements IGotoMarker,
         }
     }
 
+    private void updateListener(DomainPropertyTextValueChangeListener listener, 
+            ISWTObservableValue focus, Text control) {
+        if (listener != null && focus != null) {
+            focus.removeValueChangeListener(listener);
+        }
+        if (focus == null) {
+            focus = SWTObservables.observeText(control, SWT.FocusOut);
+        }
+        focus.addValueChangeListener(listener);
+    }
+
+    private void removeListener(DomainPropertyTextValueChangeListener listener, 
+            ISWTObservableValue focus) {
+        if (listener != null && focus != null) {
+            focus.removeValueChangeListener(listener);
+            focus.dispose();
+            listener = null;
+        }
+    }
+    
+    private void addObservableListeners() {
+        if (_moduleNameListener == null) {
+            _moduleNameListener = new ModuleNameTextValueChangeListener();
+        }
+        updateListener(_moduleNameListener, _moduleNameFocusObserver, _moduleNameText);
+        if (_rolesAllowedListener == null) {
+            _rolesAllowedListener = new RolesAllowedTextValueChangeListener();
+        }
+        updateListener(_rolesAllowedListener, _rolesAllowedFocusObserver, _rolesAllowedText);
+        if (_runAsListener == null) {
+            _runAsListener = new RunAsTextValueChangeListener();
+        }
+        updateListener(_runAsListener, _runAsFocusObserver, _runAsText);
+    }
+    
+    private void removeObservableListeners() {
+        removeListener(_moduleNameListener, _moduleNameFocusObserver);
+        removeListener(_rolesAllowedListener, _rolesAllowedFocusObserver);
+        removeListener(_runAsListener, _runAsFocusObserver);
+    }
+    
     private void createDomainSecuritySettingsSection(FormToolkit toolkit, Composite parent) {
         Section section3 = toolkit.createSection(_domainPage, Section.TITLE_BAR);
         section3.setText("Security Properties"); //$NON-NLS-1$
@@ -725,9 +808,13 @@ public class MultiPageEditor extends MultiPageEditorPart implements IGotoMarker,
         _moduleNameText = toolkit.createText(client3, "");
         _moduleNameText.setLayoutData(new GridData(GridData.FILL, GridData.BEGINNING, true, false, 2, 1));
 
-        ModuleNameTextValueChangeListener moduleNameListener = new ModuleNameTextValueChangeListener();
-        ISWTObservableValue mnfocusObserver = SWTObservables.observeText(_moduleNameText, SWT.FocusOut);
-        mnfocusObserver.addValueChangeListener(moduleNameListener);
+        toolkit.createLabel(client3, "Roles Allowed");
+        _rolesAllowedText = toolkit.createText(client3, "");
+        _rolesAllowedText.setLayoutData(new GridData(GridData.FILL, GridData.BEGINNING, true, false, 2, 1));
+
+        toolkit.createLabel(client3, "Run As");
+        _runAsText = toolkit.createText(client3, "");
+        _runAsText.setLayoutData(new GridData(GridData.FILL, GridData.BEGINNING, true, false, 2, 1));
 
         Label separator = toolkit.createLabel(client3, null, SWT.HORIZONTAL);
         separator.setLayoutData(new GridData(GridData.FILL, GridData.BEGINNING, true, false, 3, 1));
@@ -1011,16 +1098,37 @@ public class MultiPageEditor extends MultiPageEditorPart implements IGotoMarker,
         createSourceViewer();
     }
 
-    class ModuleNameTextValueChangeListener implements IValueChangeListener {
+    class ModuleNameTextValueChangeListener extends DomainPropertyTextValueChangeListener {
+        
         @Override
-        public void handleValueChange(final ValueChangeEvent e) {
-            if (e.diff != null && !e.diff.getOldValue().equals(e.diff.getNewValue())) {
-                System.out.println("MultiPageEditor/Domain page: " + e.diff);
-                SWTVetoableValueDecorator decorator = (SWTVetoableValueDecorator) e.getSource();
-                Text textControl = (Text) decorator.getWidget();
-                updateModuleName(textControl.getText());
-                ErrorUtils.showErrorMessage(null);
+        protected void updateField(Text control) {
+            String value = control.getText();
+            if (value.trim().isEmpty()) {
+                value = null;
             }
+            updateModuleName(value);
+        }
+    }
+
+    class RolesAllowedTextValueChangeListener extends DomainPropertyTextValueChangeListener {
+        @Override
+        protected void updateField(Text control) {
+            String value = control.getText();
+            if (value.trim().isEmpty()) {
+                value = null;
+            }
+            updateRolesAllowed(value);
+        }
+    }
+
+    class RunAsTextValueChangeListener extends DomainPropertyTextValueChangeListener {
+        @Override
+        protected void updateField(Text control) {
+            String value = control.getText();
+            if (value.trim().isEmpty()) {
+                value = null;
+            }
+            updateRunAs(value);
         }
     }
 
@@ -1042,6 +1150,13 @@ public class MultiPageEditor extends MultiPageEditorPart implements IGotoMarker,
                             if (domain.getSecurity().getModuleName() != null) {
                                 _moduleNameText.setText(domain.getSecurity().getModuleName());
                             }
+                            if (domain.getSecurity().getRolesAllowed() != null) {
+                                _rolesAllowedText.setText(domain.getSecurity().getRolesAllowed());
+                            }
+                            if (domain.getSecurity().getRunAs() != null) {
+                                _runAsText.setText(domain.getSecurity().getRunAs());
+                            }
+                            addObservableListeners();
                         }
                     }
                 }

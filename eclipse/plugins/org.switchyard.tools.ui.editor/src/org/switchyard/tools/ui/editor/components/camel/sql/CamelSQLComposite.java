@@ -12,6 +12,7 @@
  ******************************************************************************/
 package org.switchyard.tools.ui.editor.components.camel.sql;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.swing.event.ChangeEvent;
@@ -221,6 +222,12 @@ public class CamelSQLComposite extends AbstractSYBindingComposite {
     
     @Override
     protected List<String> getAdvancedPropertiesFilterList() {
+        if (_advancedPropsFilterList == null) {
+            _advancedPropsFilterList = new ArrayList<String>();
+            _advancedPropsFilterList.add("timerName");
+            _advancedPropsFilterList.add("period");
+            _advancedPropsFilterList.add("initialDelay");
+        }
         return _advancedPropsFilterList;
     }
 

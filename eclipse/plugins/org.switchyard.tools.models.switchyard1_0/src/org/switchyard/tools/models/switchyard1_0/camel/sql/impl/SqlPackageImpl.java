@@ -374,6 +374,33 @@ public class SqlPackageImpl extends EPackageImpl implements SqlPackage {
      * <!-- end-user-doc -->
      * @generated
      */
+    public EAttribute getCamelSqlBindingType_TimerName() {
+        return (EAttribute)camelSqlBindingTypeEClass.getEStructuralFeatures().get(4);
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public EAttribute getCamelSqlBindingType_Period() {
+        return (EAttribute)camelSqlBindingTypeEClass.getEStructuralFeatures().get(5);
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public EAttribute getCamelSqlBindingType_InitialDelay() {
+        return (EAttribute)camelSqlBindingTypeEClass.getEStructuralFeatures().get(6);
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
     public EClass getDocumentRoot() {
         return documentRootEClass;
     }
@@ -451,6 +478,9 @@ public class SqlPackageImpl extends EPackageImpl implements SqlPackage {
         createEAttribute(camelSqlBindingTypeEClass, CAMEL_SQL_BINDING_TYPE__DATA_SOURCE_REF);
         createEAttribute(camelSqlBindingTypeEClass, CAMEL_SQL_BINDING_TYPE__BATCH);
         createEAttribute(camelSqlBindingTypeEClass, CAMEL_SQL_BINDING_TYPE__PLACEHOLDER);
+        createEAttribute(camelSqlBindingTypeEClass, CAMEL_SQL_BINDING_TYPE__TIMER_NAME);
+        createEAttribute(camelSqlBindingTypeEClass, CAMEL_SQL_BINDING_TYPE__PERIOD);
+        createEAttribute(camelSqlBindingTypeEClass, CAMEL_SQL_BINDING_TYPE__INITIAL_DELAY);
 
         documentRootEClass = createEClass(DOCUMENT_ROOT);
         createEAttribute(documentRootEClass, DOCUMENT_ROOT__MIXED);
@@ -504,6 +534,9 @@ public class SqlPackageImpl extends EPackageImpl implements SqlPackage {
         initEAttribute(getCamelSqlBindingType_DataSourceRef(), theXMLTypePackage.getString(), "dataSourceRef", null, 1, 1, CamelSqlBindingType.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
         initEAttribute(getCamelSqlBindingType_Batch(), theXMLTypePackage.getBoolean(), "batch", "false", 0, 1, CamelSqlBindingType.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
         initEAttribute(getCamelSqlBindingType_Placeholder(), theXMLTypePackage.getString(), "placeholder", null, 0, 1, CamelSqlBindingType.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+        initEAttribute(getCamelSqlBindingType_TimerName(), theXMLTypePackage.getString(), "timerName", null, 0, 1, CamelSqlBindingType.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+        initEAttribute(getCamelSqlBindingType_Period(), theXMLTypePackage.getString(), "period", null, 0, 1, CamelSqlBindingType.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+        initEAttribute(getCamelSqlBindingType_InitialDelay(), theXMLTypePackage.getLong(), "initialDelay", null, 0, 1, CamelSqlBindingType.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
         initEClass(documentRootEClass, DocumentRoot.class, "DocumentRoot", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
         initEAttribute(getDocumentRoot_Mixed(), ecorePackage.getEFeatureMapEntry(), "mixed", null, 0, -1, null, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
@@ -588,6 +621,27 @@ public class SqlPackageImpl extends EPackageImpl implements SqlPackage {
              "kind", "element",
              "name", "placeholder",
              "namespace", "##targetNamespace"
+           });		
+        addAnnotation
+          (getCamelSqlBindingType_TimerName(), 
+           source, 
+           new String[] {
+             "kind", "attribute",
+             "name", "timerName"
+           });		
+        addAnnotation
+          (getCamelSqlBindingType_Period(), 
+           source, 
+           new String[] {
+             "kind", "attribute",
+             "name", "period"
+           });		
+        addAnnotation
+          (getCamelSqlBindingType_InitialDelay(), 
+           source, 
+           new String[] {
+             "kind", "attribute",
+             "name", "initialDelay"
            });		
         addAnnotation
           (documentRootEClass, 

@@ -14,6 +14,9 @@ package org.switchyard.tools.models.switchyard1_0.camel.sql;
  *   <li>{@link org.switchyard.tools.models.switchyard1_0.camel.sql.CamelSqlBindingType#getDataSourceRef <em>Data Source Ref</em>}</li>
  *   <li>{@link org.switchyard.tools.models.switchyard1_0.camel.sql.CamelSqlBindingType#isBatch <em>Batch</em>}</li>
  *   <li>{@link org.switchyard.tools.models.switchyard1_0.camel.sql.CamelSqlBindingType#getPlaceholder <em>Placeholder</em>}</li>
+ *   <li>{@link org.switchyard.tools.models.switchyard1_0.camel.sql.CamelSqlBindingType#getTimerName <em>Timer Name</em>}</li>
+ *   <li>{@link org.switchyard.tools.models.switchyard1_0.camel.sql.CamelSqlBindingType#getPeriod <em>Period</em>}</li>
+ *   <li>{@link org.switchyard.tools.models.switchyard1_0.camel.sql.CamelSqlBindingType#getInitialDelay <em>Initial Delay</em>}</li>
  * </ul>
  * </p>
  *
@@ -157,5 +160,86 @@ public interface CamelSqlBindingType extends BaseCamelBinding {
      * @generated
      */
     void setPlaceholder(String value);
+
+    /**
+     * Returns the value of the '<em><b>Timer Name</b></em>' attribute.
+     * <!-- begin-user-doc -->
+     * <p>
+     * If the meaning of the '<em>Timer Name</em>' attribute isn't clear,
+     * there really should be more of a description here...
+     * </p>
+     * <!-- end-user-doc -->
+     * @return the value of the '<em>Timer Name</em>' attribute.
+     * @see #setTimerName(String)
+     * @see org.switchyard.tools.models.switchyard1_0.camel.sql.SqlPackage#getCamelSqlBindingType_TimerName()
+     * @model dataType="org.eclipse.emf.ecore.xml.type.String"
+     *        extendedMetaData="kind='attribute' name='timerName'"
+     * @generated
+     */
+    String getTimerName();
+
+    /**
+     * Sets the value of the '{@link org.switchyard.tools.models.switchyard1_0.camel.sql.CamelSqlBindingType#getTimerName <em>Timer Name</em>}' attribute.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @param value the new value of the '<em>Timer Name</em>' attribute.
+     * @see #getTimerName()
+     * @generated
+     */
+    void setTimerName(String value);
+
+    /**
+     * Returns the value of the '<em><b>Period</b></em>' attribute.
+     * <!-- begin-user-doc -->
+     * <p>
+     * If the meaning of the '<em>Period</em>' attribute isn't clear,
+     * there really should be more of a description here...
+     * </p>
+     * <!-- end-user-doc -->
+     * @return the value of the '<em>Period</em>' attribute.
+     * @see #setPeriod(String)
+     * @see org.switchyard.tools.models.switchyard1_0.camel.sql.SqlPackage#getCamelSqlBindingType_Period()
+     * @model dataType="org.eclipse.emf.ecore.xml.type.String"
+     *        extendedMetaData="kind='attribute' name='period'"
+     * @generated
+     */
+    String getPeriod();
+
+    /**
+     * Sets the value of the '{@link org.switchyard.tools.models.switchyard1_0.camel.sql.CamelSqlBindingType#getPeriod <em>Period</em>}' attribute.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @param value the new value of the '<em>Period</em>' attribute.
+     * @see #getPeriod()
+     * @generated
+     */
+    void setPeriod(String value);
+
+    /**
+     * Returns the value of the '<em><b>Initial Delay</b></em>' attribute.
+     * <!-- begin-user-doc -->
+     * <p>
+     * If the meaning of the '<em>Initial Delay</em>' attribute isn't clear,
+     * there really should be more of a description here...
+     * </p>
+     * <!-- end-user-doc -->
+     * @return the value of the '<em>Initial Delay</em>' attribute.
+     * @see #setInitialDelay(long)
+     * @see org.switchyard.tools.models.switchyard1_0.camel.sql.SqlPackage#getCamelSqlBindingType_InitialDelay()
+     * @model dataType="org.eclipse.emf.ecore.xml.type.Long"
+     *        extendedMetaData="kind='attribute' name='initialDelay'"
+     * @generated
+     */
+    long getInitialDelay();
+
+    /**
+     * Sets the value of the '{@link org.switchyard.tools.models.switchyard1_0.camel.sql.CamelSqlBindingType#getInitialDelay <em>Initial Delay</em>}' attribute.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @param value the new value of the '<em>Initial Delay</em>' attribute.
+     * @see #getInitialDelay()
+     * @generated
+     */
+    void setInitialDelay(long value);
 
 } // CamelSqlBindingType

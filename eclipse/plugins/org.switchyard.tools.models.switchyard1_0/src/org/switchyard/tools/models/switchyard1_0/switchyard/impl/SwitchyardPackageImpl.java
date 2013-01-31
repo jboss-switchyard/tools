@@ -1308,6 +1308,24 @@ public class SwitchyardPackageImpl extends EPackageImpl implements SwitchyardPac
      * <!-- end-user-doc -->
      * @generated
      */
+    public EAttribute getSecurityType_RolesAllowed() {
+        return (EAttribute)securityTypeEClass.getEStructuralFeatures().get(3);
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public EAttribute getSecurityType_RunAs() {
+        return (EAttribute)securityTypeEClass.getEStructuralFeatures().get(4);
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
     public EClass getSwitchYardOperationSelectorType() {
         return switchYardOperationSelectorTypeEClass;
     }
@@ -1462,6 +1480,8 @@ public class SwitchyardPackageImpl extends EPackageImpl implements SwitchyardPac
         createEAttribute(securityTypeEClass, SECURITY_TYPE__CALLBACK_HANDLER);
         createEAttribute(securityTypeEClass, SECURITY_TYPE__MODULE_NAME);
         createEReference(securityTypeEClass, SECURITY_TYPE__PROPERTIES);
+        createEAttribute(securityTypeEClass, SECURITY_TYPE__ROLES_ALLOWED);
+        createEAttribute(securityTypeEClass, SECURITY_TYPE__RUN_AS);
     }
 
 	/**
@@ -1627,6 +1647,8 @@ public class SwitchyardPackageImpl extends EPackageImpl implements SwitchyardPac
         initEAttribute(getSecurityType_CallbackHandler(), theXMLTypePackage.getString(), "callbackHandler", null, 0, 1, SecurityType.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
         initEAttribute(getSecurityType_ModuleName(), theXMLTypePackage.getString(), "moduleName", null, 0, 1, SecurityType.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
         initEReference(getSecurityType_Properties(), this.getPropertiesType(), null, "properties", null, 0, 1, SecurityType.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+        initEAttribute(getSecurityType_RolesAllowed(), theXMLTypePackage.getString(), "rolesAllowed", null, 0, 1, SecurityType.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+        initEAttribute(getSecurityType_RunAs(), theXMLTypePackage.getString(), "runAs", null, 0, 1, SecurityType.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
         // Create resource
         createResource(eNS_URI);
@@ -2388,6 +2410,20 @@ public class SwitchyardPackageImpl extends EPackageImpl implements SwitchyardPac
              "kind", "element",
              "name", "properties",
              "namespace", "##targetNamespace"
+           });		
+        addAnnotation
+          (getSecurityType_RolesAllowed(), 
+           source, 
+           new String[] {
+             "kind", "attribute",
+             "name", "rolesAllowed"
+           });		
+        addAnnotation
+          (getSecurityType_RunAs(), 
+           source, 
+           new String[] {
+             "kind", "attribute",
+             "name", "runAs"
            });
     }
 

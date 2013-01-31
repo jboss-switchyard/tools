@@ -1411,13 +1411,31 @@ public interface SwitchyardPackage extends EPackage {
     int SECURITY_TYPE__PROPERTIES = 2;
 
                 /**
+     * The feature id for the '<em><b>Roles Allowed</b></em>' attribute.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int SECURITY_TYPE__ROLES_ALLOWED = 3;
+
+                /**
+     * The feature id for the '<em><b>Run As</b></em>' attribute.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int SECURITY_TYPE__RUN_AS = 4;
+
+                /**
      * The number of structural features of the '<em>Security Type</em>' class.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @generated
      * @ordered
      */
-    int SECURITY_TYPE_FEATURE_COUNT = 3;
+    int SECURITY_TYPE_FEATURE_COUNT = 5;
 
 
                 /**
@@ -2476,6 +2494,28 @@ public interface SwitchyardPackage extends EPackage {
     EReference getSecurityType_Properties();
 
     /**
+     * Returns the meta object for the attribute '{@link org.switchyard.tools.models.switchyard1_0.switchyard.SecurityType#getRolesAllowed <em>Roles Allowed</em>}'.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @return the meta object for the attribute '<em>Roles Allowed</em>'.
+     * @see org.switchyard.tools.models.switchyard1_0.switchyard.SecurityType#getRolesAllowed()
+     * @see #getSecurityType()
+     * @generated
+     */
+    EAttribute getSecurityType_RolesAllowed();
+
+    /**
+     * Returns the meta object for the attribute '{@link org.switchyard.tools.models.switchyard1_0.switchyard.SecurityType#getRunAs <em>Run As</em>}'.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @return the meta object for the attribute '<em>Run As</em>'.
+     * @see org.switchyard.tools.models.switchyard1_0.switchyard.SecurityType#getRunAs()
+     * @see #getSecurityType()
+     * @generated
+     */
+    EAttribute getSecurityType_RunAs();
+
+    /**
      * Returns the meta object for class '{@link org.switchyard.tools.models.switchyard1_0.switchyard.SwitchYardOperationSelectorType <em>Switch Yard Operation Selector Type</em>}'.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
@@ -3336,6 +3376,22 @@ public interface SwitchyardPackage extends EPackage {
          * @generated
          */
         EReference SECURITY_TYPE__PROPERTIES = eINSTANCE.getSecurityType_Properties();
+
+                                /**
+         * The meta object literal for the '<em><b>Roles Allowed</b></em>' attribute feature.
+         * <!-- begin-user-doc -->
+         * <!-- end-user-doc -->
+         * @generated
+         */
+        EAttribute SECURITY_TYPE__ROLES_ALLOWED = eINSTANCE.getSecurityType_RolesAllowed();
+
+        /**
+         * The meta object literal for the '<em><b>Run As</b></em>' attribute feature.
+         * <!-- begin-user-doc -->
+         * <!-- end-user-doc -->
+         * @generated
+         */
+        EAttribute SECURITY_TYPE__RUN_AS = eINSTANCE.getSecurityType_RunAs();
 
                                 /**
          * The meta object literal for the '{@link org.switchyard.tools.models.switchyard1_0.switchyard.impl.SwitchYardOperationSelectorTypeImpl <em>Switch Yard Operation Selector Type</em>}' class.

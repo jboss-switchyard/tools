@@ -25,6 +25,8 @@ import org.switchyard.tools.models.switchyard1_0.switchyard.SwitchyardPackage;
  *   <li>{@link org.switchyard.tools.models.switchyard1_0.switchyard.impl.SecurityTypeImpl#getCallbackHandler <em>Callback Handler</em>}</li>
  *   <li>{@link org.switchyard.tools.models.switchyard1_0.switchyard.impl.SecurityTypeImpl#getModuleName <em>Module Name</em>}</li>
  *   <li>{@link org.switchyard.tools.models.switchyard1_0.switchyard.impl.SecurityTypeImpl#getProperties <em>Properties</em>}</li>
+ *   <li>{@link org.switchyard.tools.models.switchyard1_0.switchyard.impl.SecurityTypeImpl#getRolesAllowed <em>Roles Allowed</em>}</li>
+ *   <li>{@link org.switchyard.tools.models.switchyard1_0.switchyard.impl.SecurityTypeImpl#getRunAs <em>Run As</em>}</li>
  * </ul>
  * </p>
  *
@@ -80,6 +82,46 @@ public class SecurityTypeImpl extends EObjectImpl implements SecurityType {
      * @ordered
      */
     protected PropertiesType properties;
+
+    /**
+     * The default value of the '{@link #getRolesAllowed() <em>Roles Allowed</em>}' attribute.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @see #getRolesAllowed()
+     * @generated
+     * @ordered
+     */
+    protected static final String ROLES_ALLOWED_EDEFAULT = null;
+
+    /**
+     * The cached value of the '{@link #getRolesAllowed() <em>Roles Allowed</em>}' attribute.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @see #getRolesAllowed()
+     * @generated
+     * @ordered
+     */
+    protected String rolesAllowed = ROLES_ALLOWED_EDEFAULT;
+
+    /**
+     * The default value of the '{@link #getRunAs() <em>Run As</em>}' attribute.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @see #getRunAs()
+     * @generated
+     * @ordered
+     */
+    protected static final String RUN_AS_EDEFAULT = null;
+
+    /**
+     * The cached value of the '{@link #getRunAs() <em>Run As</em>}' attribute.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @see #getRunAs()
+     * @generated
+     * @ordered
+     */
+    protected String runAs = RUN_AS_EDEFAULT;
 
     /**
      * <!-- begin-user-doc -->
@@ -190,6 +232,48 @@ public class SecurityTypeImpl extends EObjectImpl implements SecurityType {
      * <!-- end-user-doc -->
      * @generated
      */
+    public String getRolesAllowed() {
+        return rolesAllowed;
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public void setRolesAllowed(String newRolesAllowed) {
+        String oldRolesAllowed = rolesAllowed;
+        rolesAllowed = newRolesAllowed;
+        if (eNotificationRequired())
+            eNotify(new ENotificationImpl(this, Notification.SET, SwitchyardPackage.SECURITY_TYPE__ROLES_ALLOWED, oldRolesAllowed, rolesAllowed));
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public String getRunAs() {
+        return runAs;
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public void setRunAs(String newRunAs) {
+        String oldRunAs = runAs;
+        runAs = newRunAs;
+        if (eNotificationRequired())
+            eNotify(new ENotificationImpl(this, Notification.SET, SwitchyardPackage.SECURITY_TYPE__RUN_AS, oldRunAs, runAs));
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
     @Override
     public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
         switch (featureID) {
@@ -213,6 +297,10 @@ public class SecurityTypeImpl extends EObjectImpl implements SecurityType {
                 return getModuleName();
             case SwitchyardPackage.SECURITY_TYPE__PROPERTIES:
                 return getProperties();
+            case SwitchyardPackage.SECURITY_TYPE__ROLES_ALLOWED:
+                return getRolesAllowed();
+            case SwitchyardPackage.SECURITY_TYPE__RUN_AS:
+                return getRunAs();
         }
         return super.eGet(featureID, resolve, coreType);
     }
@@ -233,6 +321,12 @@ public class SecurityTypeImpl extends EObjectImpl implements SecurityType {
                 return;
             case SwitchyardPackage.SECURITY_TYPE__PROPERTIES:
                 setProperties((PropertiesType)newValue);
+                return;
+            case SwitchyardPackage.SECURITY_TYPE__ROLES_ALLOWED:
+                setRolesAllowed((String)newValue);
+                return;
+            case SwitchyardPackage.SECURITY_TYPE__RUN_AS:
+                setRunAs((String)newValue);
                 return;
         }
         super.eSet(featureID, newValue);
@@ -255,6 +349,12 @@ public class SecurityTypeImpl extends EObjectImpl implements SecurityType {
             case SwitchyardPackage.SECURITY_TYPE__PROPERTIES:
                 setProperties((PropertiesType)null);
                 return;
+            case SwitchyardPackage.SECURITY_TYPE__ROLES_ALLOWED:
+                setRolesAllowed(ROLES_ALLOWED_EDEFAULT);
+                return;
+            case SwitchyardPackage.SECURITY_TYPE__RUN_AS:
+                setRunAs(RUN_AS_EDEFAULT);
+                return;
         }
         super.eUnset(featureID);
     }
@@ -273,6 +373,10 @@ public class SecurityTypeImpl extends EObjectImpl implements SecurityType {
                 return MODULE_NAME_EDEFAULT == null ? moduleName != null : !MODULE_NAME_EDEFAULT.equals(moduleName);
             case SwitchyardPackage.SECURITY_TYPE__PROPERTIES:
                 return properties != null;
+            case SwitchyardPackage.SECURITY_TYPE__ROLES_ALLOWED:
+                return ROLES_ALLOWED_EDEFAULT == null ? rolesAllowed != null : !ROLES_ALLOWED_EDEFAULT.equals(rolesAllowed);
+            case SwitchyardPackage.SECURITY_TYPE__RUN_AS:
+                return RUN_AS_EDEFAULT == null ? runAs != null : !RUN_AS_EDEFAULT.equals(runAs);
         }
         return super.eIsSet(featureID);
     }
@@ -291,6 +395,10 @@ public class SecurityTypeImpl extends EObjectImpl implements SecurityType {
         result.append(callbackHandler);
         result.append(", moduleName: ");
         result.append(moduleName);
+        result.append(", rolesAllowed: ");
+        result.append(rolesAllowed);
+        result.append(", runAs: ");
+        result.append(runAs);
         result.append(')');
         return result.toString();
     }

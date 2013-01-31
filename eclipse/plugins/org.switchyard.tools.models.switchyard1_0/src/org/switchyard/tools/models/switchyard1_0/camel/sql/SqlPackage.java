@@ -374,13 +374,40 @@ public interface SqlPackage extends EPackage {
     int CAMEL_SQL_BINDING_TYPE__PLACEHOLDER = BASE_CAMEL_BINDING_FEATURE_COUNT + 3;
 
     /**
+     * The feature id for the '<em><b>Timer Name</b></em>' attribute.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int CAMEL_SQL_BINDING_TYPE__TIMER_NAME = BASE_CAMEL_BINDING_FEATURE_COUNT + 4;
+
+    /**
+     * The feature id for the '<em><b>Period</b></em>' attribute.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int CAMEL_SQL_BINDING_TYPE__PERIOD = BASE_CAMEL_BINDING_FEATURE_COUNT + 5;
+
+    /**
+     * The feature id for the '<em><b>Initial Delay</b></em>' attribute.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int CAMEL_SQL_BINDING_TYPE__INITIAL_DELAY = BASE_CAMEL_BINDING_FEATURE_COUNT + 6;
+
+    /**
      * The number of structural features of the '<em>Camel Sql Binding Type</em>' class.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @generated
      * @ordered
      */
-    int CAMEL_SQL_BINDING_TYPE_FEATURE_COUNT = BASE_CAMEL_BINDING_FEATURE_COUNT + 4;
+    int CAMEL_SQL_BINDING_TYPE_FEATURE_COUNT = BASE_CAMEL_BINDING_FEATURE_COUNT + 7;
 
     /**
      * The meta object id for the '{@link org.switchyard.tools.models.switchyard1_0.camel.sql.impl.DocumentRootImpl <em>Document Root</em>}' class.
@@ -525,6 +552,39 @@ public interface SqlPackage extends EPackage {
     EAttribute getCamelSqlBindingType_Placeholder();
 
     /**
+     * Returns the meta object for the attribute '{@link org.switchyard.tools.models.switchyard1_0.camel.sql.CamelSqlBindingType#getTimerName <em>Timer Name</em>}'.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @return the meta object for the attribute '<em>Timer Name</em>'.
+     * @see org.switchyard.tools.models.switchyard1_0.camel.sql.CamelSqlBindingType#getTimerName()
+     * @see #getCamelSqlBindingType()
+     * @generated
+     */
+    EAttribute getCamelSqlBindingType_TimerName();
+
+    /**
+     * Returns the meta object for the attribute '{@link org.switchyard.tools.models.switchyard1_0.camel.sql.CamelSqlBindingType#getPeriod <em>Period</em>}'.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @return the meta object for the attribute '<em>Period</em>'.
+     * @see org.switchyard.tools.models.switchyard1_0.camel.sql.CamelSqlBindingType#getPeriod()
+     * @see #getCamelSqlBindingType()
+     * @generated
+     */
+    EAttribute getCamelSqlBindingType_Period();
+
+    /**
+     * Returns the meta object for the attribute '{@link org.switchyard.tools.models.switchyard1_0.camel.sql.CamelSqlBindingType#getInitialDelay <em>Initial Delay</em>}'.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @return the meta object for the attribute '<em>Initial Delay</em>'.
+     * @see org.switchyard.tools.models.switchyard1_0.camel.sql.CamelSqlBindingType#getInitialDelay()
+     * @see #getCamelSqlBindingType()
+     * @generated
+     */
+    EAttribute getCamelSqlBindingType_InitialDelay();
+
+    /**
      * Returns the meta object for class '{@link org.switchyard.tools.models.switchyard1_0.camel.sql.DocumentRoot <em>Document Root</em>}'.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
@@ -667,6 +727,30 @@ public interface SqlPackage extends EPackage {
          * @generated
          */
         EAttribute CAMEL_SQL_BINDING_TYPE__PLACEHOLDER = eINSTANCE.getCamelSqlBindingType_Placeholder();
+
+        /**
+         * The meta object literal for the '<em><b>Timer Name</b></em>' attribute feature.
+         * <!-- begin-user-doc -->
+         * <!-- end-user-doc -->
+         * @generated
+         */
+        EAttribute CAMEL_SQL_BINDING_TYPE__TIMER_NAME = eINSTANCE.getCamelSqlBindingType_TimerName();
+
+        /**
+         * The meta object literal for the '<em><b>Period</b></em>' attribute feature.
+         * <!-- begin-user-doc -->
+         * <!-- end-user-doc -->
+         * @generated
+         */
+        EAttribute CAMEL_SQL_BINDING_TYPE__PERIOD = eINSTANCE.getCamelSqlBindingType_Period();
+
+        /**
+         * The meta object literal for the '<em><b>Initial Delay</b></em>' attribute feature.
+         * <!-- begin-user-doc -->
+         * <!-- end-user-doc -->
+         * @generated
+         */
+        EAttribute CAMEL_SQL_BINDING_TYPE__INITIAL_DELAY = eINSTANCE.getCamelSqlBindingType_InitialDelay();
 
         /**
          * The meta object literal for the '{@link org.switchyard.tools.models.switchyard1_0.camel.sql.impl.DocumentRootImpl <em>Document Root</em>}' class.

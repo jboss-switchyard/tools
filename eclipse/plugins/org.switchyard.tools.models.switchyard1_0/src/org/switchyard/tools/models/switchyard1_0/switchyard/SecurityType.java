@@ -15,6 +15,8 @@ import org.eclipse.emf.ecore.EObject;
  *   <li>{@link org.switchyard.tools.models.switchyard1_0.switchyard.SecurityType#getCallbackHandler <em>Callback Handler</em>}</li>
  *   <li>{@link org.switchyard.tools.models.switchyard1_0.switchyard.SecurityType#getModuleName <em>Module Name</em>}</li>
  *   <li>{@link org.switchyard.tools.models.switchyard1_0.switchyard.SecurityType#getProperties <em>Properties</em>}</li>
+ *   <li>{@link org.switchyard.tools.models.switchyard1_0.switchyard.SecurityType#getRolesAllowed <em>Roles Allowed</em>}</li>
+ *   <li>{@link org.switchyard.tools.models.switchyard1_0.switchyard.SecurityType#getRunAs <em>Run As</em>}</li>
  * </ul>
  * </p>
  *
@@ -103,5 +105,59 @@ public interface SecurityType extends EObject {
      * @generated
      */
     void setProperties(PropertiesType value);
+
+    /**
+     * Returns the value of the '<em><b>Roles Allowed</b></em>' attribute.
+     * <!-- begin-user-doc -->
+     * <p>
+     * If the meaning of the '<em>Roles Allowed</em>' attribute isn't clear,
+     * there really should be more of a description here...
+     * </p>
+     * <!-- end-user-doc -->
+     * @return the value of the '<em>Roles Allowed</em>' attribute.
+     * @see #setRolesAllowed(String)
+     * @see org.switchyard.tools.models.switchyard1_0.switchyard.SwitchyardPackage#getSecurityType_RolesAllowed()
+     * @model dataType="org.eclipse.emf.ecore.xml.type.String"
+     *        extendedMetaData="kind='attribute' name='rolesAllowed'"
+     * @generated
+     */
+    String getRolesAllowed();
+
+    /**
+     * Sets the value of the '{@link org.switchyard.tools.models.switchyard1_0.switchyard.SecurityType#getRolesAllowed <em>Roles Allowed</em>}' attribute.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @param value the new value of the '<em>Roles Allowed</em>' attribute.
+     * @see #getRolesAllowed()
+     * @generated
+     */
+    void setRolesAllowed(String value);
+
+    /**
+     * Returns the value of the '<em><b>Run As</b></em>' attribute.
+     * <!-- begin-user-doc -->
+     * <p>
+     * If the meaning of the '<em>Run As</em>' attribute isn't clear,
+     * there really should be more of a description here...
+     * </p>
+     * <!-- end-user-doc -->
+     * @return the value of the '<em>Run As</em>' attribute.
+     * @see #setRunAs(String)
+     * @see org.switchyard.tools.models.switchyard1_0.switchyard.SwitchyardPackage#getSecurityType_RunAs()
+     * @model dataType="org.eclipse.emf.ecore.xml.type.String"
+     *        extendedMetaData="kind='attribute' name='runAs'"
+     * @generated
+     */
+    String getRunAs();
+
+    /**
+     * Sets the value of the '{@link org.switchyard.tools.models.switchyard1_0.switchyard.SecurityType#getRunAs <em>Run As</em>}' attribute.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @param value the new value of the '<em>Run As</em>' attribute.
+     * @see #getRunAs()
+     * @generated
+     */
+    void setRunAs(String value);
 
 } // SecurityType
