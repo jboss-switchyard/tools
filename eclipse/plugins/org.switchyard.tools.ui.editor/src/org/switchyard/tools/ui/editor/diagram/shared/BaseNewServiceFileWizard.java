@@ -15,6 +15,7 @@ package org.switchyard.tools.ui.editor.diagram.shared;
 import java.io.InputStream;
 import java.util.EnumSet;
 import java.util.List;
+import java.util.Set;
 
 import org.eclipse.core.resources.IFile;
 import org.eclipse.core.resources.IProject;
@@ -65,6 +66,7 @@ import org.switchyard.tools.ui.editor.diagram.component.IComponentWizard;
  */
 public abstract class BaseNewServiceFileWizard extends BasicNewFileResourceWizard implements IComponentWizard {
 
+    private final Set<InterfaceType> _supportedInterfaceTypes;
     private ServiceImplementationFileCreationPage _page;
     private Component _component;
     private ComponentService _service;
@@ -72,6 +74,7 @@ public abstract class BaseNewServiceFileWizard extends BasicNewFileResourceWizar
     private String _createdFilePath = null;
     private String _fileExtension;
     private IJavaProject _project;
+    private IFile _newFile;
 
     /**
      * Create a new BaseNewServiceFileWizard.
@@ -80,9 +83,23 @@ public abstract class BaseNewServiceFileWizard extends BasicNewFileResourceWizar
      *            editor.
      */
     protected BaseNewServiceFileWizard(boolean openAfterCreate, String fileExtension) {
+        this(openAfterCreate, fileExtension, EnumSet.of(InterfaceType.Java, InterfaceType.WSDL, InterfaceType.ESB));
+    }
+
+    /**
+     * Create a new BaseNewServiceFileWizard.
+     * 
+     * @param openAfterCreate true if the new file should be opened in an
+     *            editor.
+     * @param fileExtension the file extension
+     * @param supportedInterfaceTypes the set of supported interface types
+     */
+    protected BaseNewServiceFileWizard(boolean openAfterCreate, String fileExtension,
+            Set<InterfaceType> supportedInterfaceTypes) {
         super();
         _openFileAfterCreate = openAfterCreate;
         _fileExtension = fileExtension;
+        _supportedInterfaceTypes = supportedInterfaceTypes;
     }
 
     @Override
@@ -100,14 +117,14 @@ public abstract class BaseNewServiceFileWizard extends BasicNewFileResourceWizar
     @Override
     public boolean performFinish() {
         if (_page != null) {
-            IFile file = _page.createNewFile();
-            if (file == null) {
+            _newFile = _page.createNewFile();
+            if (_newFile == null) {
                 return false;
             }
 
-            _createdFilePath = JavaUtil.getJavaPathForResource(file).toString();
+            _createdFilePath = JavaUtil.getJavaPathForResource(_newFile).toString();
 
-            selectAndReveal(file);
+            selectAndReveal(_newFile);
 
             if (_openFileAfterCreate) {
                 // Open editor on new file.
@@ -116,7 +133,7 @@ public abstract class BaseNewServiceFileWizard extends BasicNewFileResourceWizar
                     if (dw != null) {
                         IWorkbenchPage page = dw.getActivePage();
                         if (page != null) {
-                            IDE.openEditor(page, file, true);
+                            IDE.openEditor(page, _newFile, true);
                         }
                     }
                 } catch (PartInitException e) {
@@ -129,7 +146,7 @@ public abstract class BaseNewServiceFileWizard extends BasicNewFileResourceWizar
             List<ComponentReference> references = createReferences();
 
             _component = ScaFactory.eINSTANCE.createComponent();
-            _component.setName(getComponentName(file.getFullPath()));
+            _component.setName(getComponentName(_newFile.getFullPath()));
             _component.getService().add(_service);
             _component.setImplementation(implementation);
             if (references != null) {
@@ -153,6 +170,13 @@ public abstract class BaseNewServiceFileWizard extends BasicNewFileResourceWizar
      */
     public void setCreatedFilePath(String inPath) {
         _createdFilePath = inPath;
+    }
+
+    /**
+     * @return the newly created resource
+     */
+    public IFile getCreatedFile() {
+        return _newFile;
     }
 
     @Override
@@ -275,7 +299,7 @@ public abstract class BaseNewServiceFileWizard extends BasicNewFileResourceWizar
             contents.setLayoutData(new GridData(GridData.FILL_HORIZONTAL));
 
             _contractControl = new ContractControl(ScaPackage.eINSTANCE.getComponentService(), getJavaProject(),
-                    EnumSet.of(InterfaceType.Java, InterfaceType.WSDL, InterfaceType.ESB));
+                    _supportedInterfaceTypes);
             _contractControl.createControl(contents, 3);
             _contractControl.addSelectionChangedListener(new ISelectionChangedListener() {
                 @Override

@@ -18,6 +18,7 @@ import org.eclipse.core.resources.IResource;
 import org.eclipse.core.resources.ResourcesPlugin;
 import org.eclipse.core.runtime.IAdapterFactory;
 import org.eclipse.core.runtime.Path;
+import org.eclipse.core.runtime.Platform;
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.resource.Resource;
@@ -29,7 +30,6 @@ import org.eclipse.soa.sca.sca1_1.model.sca.JavaInterface;
 import org.eclipse.soa.sca.sca1_1.model.sca.Reference;
 import org.eclipse.soa.sca.sca1_1.model.sca.Service;
 import org.eclipse.soa.sca.sca1_1.model.sca.WSDLPortType;
-import org.open.oasis.docs.ns.opencsa.sca.bpel.BPELImplementation;
 import org.switchyard.tools.models.switchyard1_0.bean.BeanImplementationType;
 import org.switchyard.tools.models.switchyard1_0.bpm.BPMImplementationType;
 import org.switchyard.tools.models.switchyard1_0.camel.CamelImplementationType;
@@ -54,6 +54,11 @@ public class PlatformResourceAdapterFactory implements IAdapterFactory {
         if (!adapterType.isAssignableFrom(IFile.class)) {
             return null;
         }
+        if (adaptableObject instanceof Component) {
+            final Component component = (Component) adaptableObject;
+            return component.getImplementation() == null ? null : Platform.getAdapterManager().loadAdapter(
+                    component.getImplementation(), adapterType.getCanonicalName());
+        }
         IProject project = getContainingProject(adaptableObject);
         if (project == null) {
             return null;
@@ -67,31 +72,30 @@ public class PlatformResourceAdapterFactory implements IAdapterFactory {
      * @return the file, if it can be resolved.
      */
     public static IFile getFileForObject(Object adaptableObject, IProject project) {
-        if (adaptableObject instanceof Component) {
-            Implementation impl = ((Component) adaptableObject).getImplementation();
+        if (adaptableObject instanceof Implementation) {
+            Implementation impl = (Implementation) adaptableObject;
             if (impl instanceof BeanImplementationType) {
                 return (IFile) SwitchYardModelUtils.getJavaType(project, ((BeanImplementationType) impl).getClass_());
-            } else if (impl instanceof BPELImplementation) {
-                // TODO: figure this out
-                // return SwitchYardModelUtils.getJavaResource(project,
-                // ((BPELImplementation) impl).getProcess());
-                return null;
             } else if (impl instanceof BPMImplementationType) {
-                org.switchyard.tools.models.switchyard1_0.bpm.ManifestType manifest = ((BPMImplementationType) impl).getManifest();
+                org.switchyard.tools.models.switchyard1_0.bpm.ManifestType manifest = ((BPMImplementationType) impl)
+                        .getManifest();
                 if (manifest == null || manifest.getResources() == null) {
                     return null;
                 }
-                for (org.switchyard.tools.models.switchyard1_0.bpm.ResourceType resource : manifest.getResources().getResource()) {
+                for (org.switchyard.tools.models.switchyard1_0.bpm.ResourceType resource : manifest.getResources()
+                        .getResource()) {
                     // TODO: should we verify this is a bpmn2 file?
                     return (IFile) SwitchYardModelUtils.getJavaResource(project, resource.getLocation());
                 }
                 return null;
             } else if (impl instanceof RulesImplementationType) {
-                org.switchyard.tools.models.switchyard1_0.rules.ManifestType manifest = ((RulesImplementationType) impl).getManifest();
+                org.switchyard.tools.models.switchyard1_0.rules.ManifestType manifest = ((RulesImplementationType) impl)
+                        .getManifest();
                 if (manifest == null || manifest.getResources() == null) {
                     return null;
                 }
-                for (org.switchyard.tools.models.switchyard1_0.rules.ResourceType resource : manifest.getResources().getResource()) {
+                for (org.switchyard.tools.models.switchyard1_0.rules.ResourceType resource : manifest.getResources()
+                        .getResource()) {
                     // TODO: should we verify this is a drl file?
                     return (IFile) SwitchYardModelUtils.getJavaResource(project, resource.getLocation());
                 }

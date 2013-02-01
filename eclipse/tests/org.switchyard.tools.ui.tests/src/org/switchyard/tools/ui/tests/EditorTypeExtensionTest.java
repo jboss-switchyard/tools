@@ -21,6 +21,7 @@ import java.util.Set;
 
 import junit.framework.TestCase;
 
+import org.eclipse.soa.sca.sca1_1.model.sca.BPELImplementation;
 import org.eclipse.soa.sca.sca1_1.model.sca.Binding;
 import org.eclipse.soa.sca.sca1_1.model.sca.Implementation;
 import org.junit.Assert;
@@ -88,6 +89,7 @@ public class EditorTypeExtensionTest extends TestCase {
     public void testImplementationTypeCapabilities() {
         Assert.assertTrue(getRequiredImplementationCapabilities(BeanImplementationType.class).size() > 0);
         Assert.assertTrue(getRequiredImplementationCapabilities(BPMImplementationType.class).size() > 0);
+        Assert.assertTrue(getRequiredImplementationCapabilities(BPELImplementation.class).size() > 0);
         Assert.assertTrue(getRequiredImplementationCapabilities(CamelImplementationType.class).size() > 0);
         Assert.assertTrue(getRequiredImplementationCapabilities(RulesImplementationType.class).size() > 0);
     }

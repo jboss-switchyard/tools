@@ -27,6 +27,7 @@
     <module>org.switchyard.tools.ui</module>
     <module>org.switchyard.tools.ui.editor</module>
     <module>org.switchyard.tools.ui.bpmn2</module>
+    <module>org.switchyard.tools.ui.bpel</module>
   </modules>
 
 </project>

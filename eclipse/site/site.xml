@@ -9,6 +9,9 @@
    <feature url="features/org.switchyard.tools.editor.feature_0.0.0.jar" id="org.switchyard.tools.editor.feature" version="0.0.0">
       <category name="switchyard.category"/>
    </feature>
+   <feature url="features/org.switchyard.tools.bpel.feature_0.0.0.jar" id="org.switchyard.tools.bpel.feature" version="0.0.0">
+      <category name="switchyard.category"/>
+   </feature>
    <category-def name="switchyard.category" label="SwitchYard Tools">
       <description>
          Tools for creating, testing, and debugging SwitchYard applications.

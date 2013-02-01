@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.4"?>
+<plugin>
+  <extension
+        point="org.eclipse.core.runtime.adapters">
+     <factory
+           adaptableType="org.open.oasis.docs.ns.opencsa.sca.bpel.BPELImplementation"
+           class="org.switchyard.tools.ui.bpel.BPELResourceAdapterFactory">
+        <adapter
+              type="org.eclipse.core.resources.IResource">
+        </adapter>
+     </factory>
+  </extension>
+	<extension
+	    point="org.eclipse.ui.views.properties.tabbed.propertyTabs">
+	    <propertyTabs contributorId="org.switchyard.tools.ui.bpel.PropertyContributor">
+        <propertyTab
+              afterTab="switchyard.implementation.bpel.tab"
+              category="SwitchyardSCA"
+              id="switchyard.implementation.bpel.tab"
+              label="Implementation">
+        </propertyTab>
+        </propertyTabs>
+        </extension>
+
+	<extension
+	    point="org.eclipse.ui.views.properties.tabbed.propertySections">
+	    <propertySections contributorId="org.switchyard.tools.ui.bpel.PropertyContributor">
+         <propertySection
+               class="org.switchyard.tools.ui.bpel.BPELImplementationPropertySection"
+               filter="org.switchyard.tools.ui.bpel.BPELImplementationPropertySectionFilter"
+               id="switchyard.implementation.bpel.tab.details"
+               tab="switchyard.implementation.bpel.tab">
+         </propertySection>
+         </propertySections>
+         </extension>
+
+   <extension
+         point="org.switchyard.tools.ui.editor.editorExtension">
+    <componentExtension
+          class="org.switchyard.tools.ui.bpel.BPELComponentTypeExtension">
+    </componentExtension>
+   </extension>
+
+</plugin>

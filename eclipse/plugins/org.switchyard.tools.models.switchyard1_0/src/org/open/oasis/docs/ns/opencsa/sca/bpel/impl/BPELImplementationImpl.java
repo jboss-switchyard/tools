@@ -11,6 +11,7 @@ import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.ecore.EClass;
 
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
+import org.eclipse.emf.ecore.xml.type.XMLTypeFactory;
 import org.eclipse.soa.sca.sca1_1.model.sca.impl.ImplementationImpl;
 
 import org.open.oasis.docs.ns.opencsa.sca.bpel.BPELImplementation;
@@ -77,12 +78,17 @@ public class BPELImplementationImpl extends ImplementationImpl implements BPELIm
         return process;
     }
 
+    public void setProcess(QName newProcess) {
+        setProcessGen(newProcess == null ? null : XMLTypeFactory.eINSTANCE.createQName(newProcess.getNamespaceURI(),
+                newProcess.getLocalPart(), newProcess.getPrefix()));
+    }
+
     /**
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @generated
      */
-    public void setProcess(QName newProcess) {
+    public void setProcessGen(QName newProcess) {
         QName oldProcess = process;
         process = newProcess;
         if (eNotificationRequired())

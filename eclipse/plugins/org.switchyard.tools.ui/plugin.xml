@@ -936,6 +936,41 @@
               type="org.eclipse.core.resources.IResource">
         </adapter>
      </factory>
+     <factory
+           adaptableType="org.switchyard.tools.models.switchyard1_0.bean.BeanImplementationType"
+           class="org.switchyard.tools.ui.PlatformResourceAdapterFactory">
+        <adapter
+              type="org.eclipse.core.resources.IResource">
+        </adapter>
+     </factory>
+     <factory
+           adaptableType="org.switchyard.tools.models.switchyard1_0.bpm.BPMImplementationType"
+           class="org.switchyard.tools.ui.PlatformResourceAdapterFactory">
+        <adapter
+              type="org.eclipse.core.resources.IResource">
+        </adapter>
+     </factory>
+     <factory
+           adaptableType="org.switchyard.tools.models.switchyard1_0.rules.RulesImplementationType"
+           class="org.switchyard.tools.ui.PlatformResourceAdapterFactory">
+        <adapter
+              type="org.eclipse.core.resources.IResource">
+        </adapter>
+     </factory>
+     <factory
+           adaptableType="org.switchyard.tools.models.switchyard1_0.camel.CamelImplementationType"
+           class="org.switchyard.tools.ui.PlatformResourceAdapterFactory">
+        <adapter
+              type="org.eclipse.core.resources.IResource">
+        </adapter>
+     </factory>
+     <factory
+           adaptableType="org.switchyard.tools.models.switchyard1_0.clojure.ClojureImplementationType"
+           class="org.switchyard.tools.ui.PlatformResourceAdapterFactory">
+        <adapter
+              type="org.eclipse.core.resources.IResource">
+        </adapter>
+     </factory>
   </extension>
   <extension
         id="projectValidator"
