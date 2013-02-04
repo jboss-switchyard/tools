@@ -26,6 +26,7 @@ import org.eclipse.soa.sca.sca1_1.model.sca.Contract;
 import org.eclipse.soa.sca.sca1_1.model.sca.Interface;
 import org.eclipse.ui.PlatformUI;
 import org.switchyard.tools.ui.PlatformResourceAdapterFactory;
+import org.switchyard.tools.ui.editor.ImageProvider;
 import org.switchyard.tools.ui.wizards.NewServiceTestClassWizard;
 
 /**
@@ -101,5 +102,10 @@ public class CreateServiceTestCustomFeature extends AbstractCustomFeature implem
             }
         }
         return new StructuredSelection(file);
+    }
+
+    @Override
+    public String getImageId() {
+        return ImageProvider.IMG_16_TEST_CLASS;
     }
 }

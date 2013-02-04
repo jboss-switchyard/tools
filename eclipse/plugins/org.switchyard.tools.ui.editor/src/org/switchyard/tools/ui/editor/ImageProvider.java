@@ -177,6 +177,12 @@ public class ImageProvider extends AbstractImageProvider {
     /** Image for auto-layout floating toolbar button. **/
     public static final String IMG_16_AUTO_LAYOUT = PREFIX + "AUTO_LAYOUT" + DOT16;
 
+    /** Image for auto-layout floating toolbar button. **/
+    public static final String IMG_16_TEST_CLASS = PREFIX + "TEST_CLASS" + DOT16;
+
+    /** Image for auto-layout floating toolbar button. **/
+    public static final String IMG_16_JAVA_2_WSDL = PREFIX + "JAVA_2_WSDL" + DOT16;
+
     @Override
     protected void addAvailableImages() {
         addImageFilePath(IMG_16_COMPOSITE, ICONS_16 + "Composite.gif");
@@ -225,7 +231,9 @@ public class ImageProvider extends AbstractImageProvider {
         addImageFilePath(IMG_16_INTERFACE_DELTA, ICONS_16 + "interface-delta.png");
         addImageFilePath(IMG_16_EDIT_INTERFACE, ICONS_16 + "intfc-edit.png");
         addImageFilePath(IMG_16_PROMOTE, ICONS_16 + "promote.png");
-        addImageFilePath(IMG_16_AUTO_LAYOUT, ICONS_16 + "refresh-16.png");
+        addImageFilePath(IMG_16_AUTO_LAYOUT, ICONS_16 + "layout.png");
+        addImageFilePath(IMG_16_JAVA_2_WSDL, ICONS_16 + "java2wsdl.png");
+        addImageFilePath(IMG_16_TEST_CLASS, ICONS_16 + "test-class.png");
     }
 
 }

@@ -22,9 +22,11 @@ import org.eclipse.jface.viewers.IStructuredSelection;
 import org.eclipse.jface.viewers.StructuredSelection;
 import org.eclipse.jface.wizard.WizardDialog;
 import org.eclipse.soa.sca.sca1_1.model.sca.ComponentService;
+import org.eclipse.soa.sca.sca1_1.model.sca.Contract;
 import org.eclipse.soa.sca.sca1_1.model.sca.Interface;
 import org.eclipse.soa.sca.sca1_1.model.sca.JavaInterface;
 import org.eclipse.ui.PlatformUI;
+import org.switchyard.tools.ui.editor.ImageProvider;
 import org.switchyard.tools.ui.wizards.Java2WSDLWizard;
 
 /**
@@ -58,10 +60,10 @@ public class Java2WSDLCustomFeature extends AbstractCustomFeature implements ICu
             return false;
         }
         final Object bo = getBusinessObjectForPictogramElement(pes[0]);
-        if (!(bo instanceof ComponentService)) {
+        if (!(bo instanceof Contract)) {
             return false;
         }
-        final Interface intf = ((ComponentService) bo).getInterface();
+        final Interface intf = ((Contract) bo).getInterface();
         if (!(intf instanceof JavaInterface)) {
             return false;
         }
@@ -104,4 +106,10 @@ public class Java2WSDLCustomFeature extends AbstractCustomFeature implements ICu
         }
         return new StructuredSelection(file);
     }
+
+    @Override
+    public String getImageId() {
+        return ImageProvider.IMG_16_JAVA_2_WSDL;
+    }
+
 }
