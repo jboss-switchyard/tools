@@ -43,14 +43,4 @@ public class SwitchYardServiceTaskPropertiesComposite extends JbpmCustomTaskDeta
     public SwitchYardServiceTaskPropertiesComposite(AbstractBpmn2PropertySection section) {
         super(section);
     }
-
-    @Override
-    public void createBindings(EObject be) {
-        super.createBindings(be);
-
-        // TODO:
-        // custom controls for setting service, operation, input/output param
-        // names, input/output values.
-    }
-
 }

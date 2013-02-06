@@ -6,7 +6,9 @@
 
 		<propertyTab
 			id="org.switchyard.tools.ui.bpmn2.switchYardServiceTask.tab"
-			replaceTab="bpmn2.jbpm.customTask.tab"
+            runtimeId="org.jboss.runtime.jbpm5"
+			replaceTab="bpmn2.jbpm.task.tab org.eclipse.bpmn2.modeler.task.tab"
+			afterTab="org.eclipse.bpmn2.modeler.description.tab"
 			class="org.switchyard.tools.ui.bpmn2.SwitchYardServiceTaskPropertySection"
 			label="SwitchYard Service Task">
 		</propertyTab>
@@ -16,6 +18,9 @@
             featureContainer="org.switchyard.tools.ui.bpmn2.SwitchYardServiceTaskFeatureContainer"
             id="org.switchyard.tools.ui.bpmn2.switchYardServiceTask"
             name="SwitchYard Service"
+            icon="switchyard_task.png"
+            propertyTabs="org.switchyard.tools.ui.bpmn2.switchYardServiceTask.tab"
+            category="Switchyard"
             runtimeId="org.jboss.runtime.jbpm5"
             type="Task">
 
@@ -67,7 +72,7 @@
 							<property
              description="CompleteAfterFault"
              name="name"
-             value="CompleteAfterFault"/>
+             value="CompleteAfterFault" type="EBoolean"/>
 						</value>
 					</property>
 					<property name="dataInputs">
@@ -125,14 +130,4 @@
 			</property>
       </customTask>
    </extension>
-   <!-- This could be fragile.  We do this to make sure the SwitchYard images are loaded for use in the BPMN2 Editor. -->
-   <!-- Make sure class is null so it doesn't hork up the real diagram provider. -->
-	<extension point="org.eclipse.graphiti.ui.diagramTypeProviders">
-		<diagramTypeProvider
-			description="This is the editor for the BPMN2 diagram"
-			id="org.eclipse.bpmn2.modeler.ui.diagram.MainBPMNDiagramType" name="BPMN2 Editor">
-			<imageProvider id="org.switchyard.tools.ui.editor.ImageProvider"/>
-		</diagramTypeProvider>
-	</extension>
-
 </plugin>

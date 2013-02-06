@@ -34,7 +34,11 @@ import org.eclipse.ui.IWorkbenchPart;
  */
 public class SwitchYardServiceTaskPropertySection extends JbpmCustomTaskPropertySection {
 
-    @Override
+    public SwitchYardServiceTaskPropertySection() {
+		super();
+	}
+
+	@Override
     public boolean appliesTo(IWorkbenchPart part, ISelection selection) {
         // only show this property section if the selected Task is a custom
         // "SwitchYard Service" task. that is, it has a "taskName" extension
