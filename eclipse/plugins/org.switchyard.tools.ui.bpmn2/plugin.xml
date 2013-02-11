@@ -130,4 +130,53 @@
 			</property>
       </customTask>
    </extension>
+   <extension
+         point="org.eclipse.ui.views.properties.tabbed.propertyTabs">
+	    <propertyTabs contributorId="org.switchyard.tools.ui.bpmn2.PropertyContributor">
+        <propertyTab
+              afterTab="switchyard.implementation.bpm.tab"
+              category="SwitchyardSCA"
+              id="switchyard.implementation.bpm.tab"
+              label="Implementation">
+        </propertyTab>
+        </propertyTabs>
+   </extension>
+   <extension
+         point="org.eclipse.ui.views.properties.tabbed.propertySections">
+         <propertySections contributorId="org.switchyard.tools.ui.bpmn2.PropertyContributor">
+         <propertySection
+               class="org.switchyard.tools.ui.bpmn2.component.BPMImplementationPropertySection"
+               filter="org.switchyard.tools.ui.bpmn2.component.BPMImplementationPropertySectionFilter"
+               id="switchyard.implementation.bpm.tab.details"
+               tab="switchyard.implementation.bpm.tab">
+         </propertySection>
+         </propertySections>
+   </extension>
+   <extension
+         point="org.switchyard.tools.ui.switchYardComponent">
+     <!--
+     <component
+           id="org.switchyard.components:switchyard-component-bpm"
+           name="BPM (jBPM)"
+           scannerClass="org.switchyard.component.bpm.config.model.BPMSwitchYardScanner">
+     -->
+     <component
+           category="implementation"
+           id="org.switchyard.components:switchyard-component-bpm"
+           name="BPM (jBPM)">
+        <description>
+           Provides support for BPM based service implementations.
+        </description>
+        <dependency>
+           <groupId>org.switchyard.components</groupId>
+           <artifactId>switchyard-component-bpm</artifactId>
+        </dependency>
+     </component>
+   </extension>
+   <extension
+         point="org.switchyard.tools.ui.editor.editorExtension">
+    <componentExtension
+          class="org.switchyard.tools.ui.bpmn2.component.BPMComponentTypeExtension">
+    </componentExtension>
+   </extension>
 </plugin>

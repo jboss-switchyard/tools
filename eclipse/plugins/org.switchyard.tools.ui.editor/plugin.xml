@@ -52,12 +52,6 @@
               label="Implementation">
         </propertyTab>
         <propertyTab
-              afterTab="switchyard.implementation.bpm.tab"
-              category="SwitchyardSCA"
-              id="switchyard.implementation.bpm.tab"
-              label="Implementation">
-        </propertyTab>
-        <propertyTab
               afterTab="switchyard.implementation.camel.java.tab"
               category="SwitchyardSCA"
               id="switchyard.implementation.camel.java.tab"
@@ -141,12 +135,6 @@
                filter="org.switchyard.tools.ui.editor.components.bean.BeanImplementationPropertySectionFilter"
                id="switchyard.implementation.bean.tab.details"
                tab="switchyard.implementation.bean.tab">
-         </propertySection>
-         <propertySection
-               class="org.switchyard.tools.ui.editor.components.bpm.BPMImplementationPropertySection"
-               filter="org.switchyard.tools.ui.editor.components.bpm.BPMImplementationPropertySectionFilter"
-               id="switchyard.implementation.bpm.tab.details"
-               tab="switchyard.implementation.bpm.tab">
          </propertySection>
          <propertySection
                class="org.switchyard.tools.ui.editor.components.camel.java.CamelJavaImplementationPropertySection"
@@ -278,9 +266,6 @@
     </componentExtension>
     <componentExtension
           class="org.switchyard.tools.ui.editor.components.camel.CamelComponentTypeExtension">
-    </componentExtension>
-    <componentExtension
-          class="org.switchyard.tools.ui.editor.components.bpm.BPMComponentTypeExtension">
     </componentExtension>
     <componentExtension
           class="org.switchyard.tools.ui.editor.components.rules.RulesComponentTypeExtension">

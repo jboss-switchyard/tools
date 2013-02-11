@@ -534,36 +534,6 @@
            <artifactId>switchyard-component-bean</artifactId>
         </dependency>
      </component>
-     <component
-           category="implementation"
-           id="org.switchyard.components:switchyard-component-bpel"
-           name="BPEL">
-        <description>
-           Provides support for BPEL based service implementations.
-        </description>
-        <dependency>
-           <groupId>org.switchyard.components</groupId>
-           <artifactId>switchyard-component-bpel</artifactId>
-        </dependency>
-     </component>
-     <!--
-     <component
-           id="org.switchyard.components:switchyard-component-bpm"
-           name="BPM (jBPM)"
-           scannerClass="org.switchyard.component.bpm.config.model.BPMSwitchYardScanner">
-     -->
-     <component
-           category="implementation"
-           id="org.switchyard.components:switchyard-component-bpm"
-           name="BPM (jBPM)">
-        <description>
-           Provides support for BPM based service implementations.
-        </description>
-        <dependency>
-           <groupId>org.switchyard.components</groupId>
-           <artifactId>switchyard-component-bpm</artifactId>
-        </dependency>
-     </component>
      <!--
      <component
            id="org.switchyard.components:switchyard-component-camel"

@@ -38,6 +38,7 @@ public class SwitchYardValidatorTest extends AbstractMavenProjectTestCase {
         waitForJobsToComplete();
 
         project.build(IncrementalProjectBuilder.FULL_BUILD, monitor);
+        waitForJobsToComplete();
         project.build(IncrementalProjectBuilder.INCREMENTAL_BUILD, monitor);
         waitForJobsToComplete();
 

@@ -41,5 +41,20 @@
           class="org.switchyard.tools.ui.bpel.BPELComponentTypeExtension">
     </componentExtension>
    </extension>
+   <extension
+         point="org.switchyard.tools.ui.switchYardComponent">
+     <component
+           category="implementation"
+           id="org.switchyard.components:switchyard-component-bpel"
+           name="BPEL">
+        <description>
+           Provides support for BPEL based service implementations.
+        </description>
+        <dependency>
+           <groupId>org.switchyard.components</groupId>
+           <artifactId>switchyard-component-bpel</artifactId>
+        </dependency>
+     </component>
+   </extension>
 
 </plugin>

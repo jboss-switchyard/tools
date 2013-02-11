@@ -34,45 +34,44 @@ import org.eclipse.bpmn2.modeler.runtime.jboss.jbpm5.features.JbpmTaskFeatureCon
  * @author Rob Cernich
  */
 public class SwitchYardServiceTaskFeatureContainer extends JbpmCustomTaskFeatureContainer {
-	
-	@Override
-	public boolean isAvailable(IFeatureProvider fp) {
-		return isSwitchYardProject(fp);
-	}
 
-	@Override
-	protected FeatureContainer createFeatureContainer(IFeatureProvider fp) {
-		
-		return new TaskFeatureContainer() {
-			@Override
-			public ICreateFeature getCreateFeature(final IFeatureProvider fp) {
-				return new JbpmCreateCustomTaskFeature(fp) {
+    @Override
+    public boolean isAvailable(IFeatureProvider fp) {
+        return isSwitchYardProject(fp);
+    }
 
-					@Override
-					public boolean isAvailable(IContext context) {
-						return super.isAvailable(context) && isSwitchYardProject(fp);
-					}
-			    };
-			}
-			
-			@Override
-			public IAddFeature getAddFeature(IFeatureProvider fp) {
-		        return new JbpmAddTaskFeature(fp);
-			}
-			
-			@Override
-			public ICustomFeature[] getCustomFeatures(IFeatureProvider fp) {
-				return new ICustomFeature[] {new ConfigureWorkItemFeature(fp)};
-			}
+    @Override
+    protected FeatureContainer createFeatureContainer(IFeatureProvider fp) {
 
-		};
-	}
+        return new TaskFeatureContainer() {
+            @Override
+            public ICreateFeature getCreateFeature(final IFeatureProvider fp) {
+                return new JbpmCreateCustomTaskFeature(fp) {
+
+                    @Override
+                    public boolean isAvailable(IContext context) {
+                        return super.isAvailable(context) && isSwitchYardProject(fp);
+                    }
+                };
+            }
+
+            @Override
+            public IAddFeature getAddFeature(IFeatureProvider fp) {
+                return new JbpmAddTaskFeature(fp);
+            }
+
+            @Override
+            public ICustomFeature[] getCustomFeatures(IFeatureProvider fp) {
+                return new ICustomFeature[] {new ConfigureWorkItemFeature(fp) };
+            }
+
+        };
+    }
 
     private boolean isSwitchYardProject(IFeatureProvider fp) {
         try {
-        	BPMN2Editor editor = (BPMN2Editor)fp.getDiagramTypeProvider().getDiagramEditor();
-            return FacetedProjectFramework.hasProjectFacet(
-            		editor.getModelFile().getProject(),
+            BPMN2Editor editor = (BPMN2Editor) fp.getDiagramTypeProvider().getDiagramEditor();
+            return FacetedProjectFramework.hasProjectFacet(editor.getModelFile().getProject(),
                     ISwitchYardFacetConstants.SWITCHYARD_FACET_ID);
         } catch (CoreException e) {
             return false;

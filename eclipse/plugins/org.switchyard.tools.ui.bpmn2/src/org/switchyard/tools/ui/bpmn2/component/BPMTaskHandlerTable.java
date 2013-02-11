@@ -10,13 +10,14 @@
  *
  * @author bfitzpat
  ******************************************************************************/
-package org.switchyard.tools.ui.editor.components.bpm;
+package org.switchyard.tools.ui.bpmn2.component;
 
 import javax.swing.event.ChangeEvent;
 import javax.swing.event.ChangeListener;
 
 import org.eclipse.core.runtime.ListenerList;
 import org.eclipse.emf.ecore.EObject;
+import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.transaction.RecordingCommand;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.eclipse.jface.viewers.CellEditor;
@@ -41,7 +42,8 @@ import org.eclipse.swt.widgets.TableColumn;
 import org.eclipse.swt.widgets.TableItem;
 import org.switchyard.tools.models.switchyard1_0.bpm.BPMFactory;
 import org.switchyard.tools.models.switchyard1_0.bpm.BPMImplementationType;
-import org.switchyard.tools.models.switchyard1_0.bpm.PropertyType;
+import org.switchyard.tools.models.switchyard1_0.bpm.WorkItemHandlerType;
+import org.switchyard.tools.ui.editor.diagram.shared.ClassDialogCellEditor;
 import org.switchyard.tools.ui.editor.diagram.shared.TableColumnLayout;
 import org.switchyard.tools.ui.editor.impl.SwitchyardSCAEditor;
 
@@ -49,10 +51,9 @@ import org.switchyard.tools.ui.editor.impl.SwitchyardSCAEditor;
  * @author bfitzpat
  * 
  */
-public class BPMPropertyTable extends Composite implements ICellModifier {
+public class BPMTaskHandlerTable extends Composite implements ICellModifier {
 
     private class PropertyTreeContentProvider implements IStructuredContentProvider {
-
         @Override
         public void dispose() {
         }
@@ -65,8 +66,8 @@ public class BPMPropertyTable extends Composite implements ICellModifier {
         public Object[] getElements(Object inputElement) {
             if (inputElement instanceof BPMImplementationType) {
                 final BPMImplementationType bpmImpl = (BPMImplementationType) inputElement;
-                if (bpmImpl.getProperties() != null) {
-                    return bpmImpl.getProperties().getProperty().toArray();
+                if (bpmImpl.getWorkItemHandlers() != null) {
+                    return bpmImpl.getWorkItemHandlers().getWorkItemHandler().toArray();
                 }
             }
             return new Object[0];
@@ -84,9 +85,9 @@ public class BPMPropertyTable extends Composite implements ICellModifier {
 
         @Override
         public boolean isLabelProperty(Object element, String property) {
-            if (element instanceof PropertyType && property.equalsIgnoreCase(NAME_COLUMN)) {
+            if (element instanceof WorkItemHandlerType && property.equalsIgnoreCase(NAME_COLUMN)) {
                 return true;
-            } else if (element instanceof PropertyType && property.equalsIgnoreCase(VALUE_COLUMN)) {
+            } else if (element instanceof WorkItemHandlerType && property.equalsIgnoreCase(CLASS_COLUMN)) {
                 return true;
             }
             return false;
@@ -103,10 +104,11 @@ public class BPMPropertyTable extends Composite implements ICellModifier {
 
         @Override
         public String getColumnText(Object element, int columnIndex) {
-            if (element instanceof PropertyType && columnIndex == 0) {
-                return ((PropertyType) element).getName();
-            } else if (element instanceof PropertyType && columnIndex == 1) {
-                return ((PropertyType) element).getValue();
+            if (element instanceof WorkItemHandlerType && columnIndex == 0) {
+                return ((WorkItemHandlerType) element).getName();
+            } else if (element instanceof WorkItemHandlerType && columnIndex == 1) {
+                WorkItemHandlerType tp = (WorkItemHandlerType) element;
+                return (String) tp.getClass_();
             }
             return null;
         }
@@ -115,15 +117,16 @@ public class BPMPropertyTable extends Composite implements ICellModifier {
     private TableViewer _propertyTreeTable;
 
     /**
-     * Value column.
+     * Name column.
      */
     public static final String NAME_COLUMN = "name";
-    /**
-     * Entry point column.
-     */
-    public static final String VALUE_COLUMN = "value";
 
-    private static final String[] TREE_COLUMNS = new String[] {NAME_COLUMN, VALUE_COLUMN };
+    /**
+     * Value column.
+     */
+    public static final String CLASS_COLUMN = "class";
+
+    private static final String[] TREE_COLUMNS = new String[] {NAME_COLUMN, CLASS_COLUMN };
 
     private Button _mAddButton;
     private Button _mRemoveButton;
@@ -138,7 +141,7 @@ public class BPMPropertyTable extends Composite implements ICellModifier {
      * @param parent Composite parent
      * @param style any SWT style bits to pass along
      */
-    public BPMPropertyTable(Composite parent, int style) {
+    public BPMTaskHandlerTable(Composite parent, int style) {
         this(parent, style, false);
     }
 
@@ -149,7 +152,7 @@ public class BPMPropertyTable extends Composite implements ICellModifier {
      * @param style any SWT style bits
      * @param isReadOnly boolean flag
      */
-    public BPMPropertyTable(Composite parent, int style, boolean isReadOnly) {
+    public BPMTaskHandlerTable(Composite parent, int style, boolean isReadOnly) {
         super(parent, style);
         this._isReadOnly = isReadOnly;
         this._changeListeners = new ListenerList();
@@ -181,8 +184,8 @@ public class BPMPropertyTable extends Composite implements ICellModifier {
         nameColumn.setText("Name");
         tableLayout.setColumnData(nameColumn, new ColumnWeightData(100, 150, true));
         TableColumn valueColumn = new TableColumn(_propertyTreeTable.getTable(), SWT.LEFT);
-        valueColumn.setText("Value");
-        tableLayout.setColumnData(valueColumn, new ColumnWeightData(100, 150, true));
+        valueColumn.setText("Class");
+        tableLayout.setColumnData(valueColumn, new ColumnWeightData(200, 300, true));
 
         _propertyTreeTable.setColumnProperties(TREE_COLUMNS);
 
@@ -191,8 +194,14 @@ public class BPMPropertyTable extends Composite implements ICellModifier {
         _propertyTreeTable.setContentProvider(new PropertyTreeContentProvider());
 
         _propertyTreeTable.setCellModifier(this);
-        _propertyTreeTable.setCellEditors(new CellEditor[] {new TextCellEditor(_propertyTreeTable.getTable()),
-                new TextCellEditor(_propertyTreeTable.getTable()) });
+        _propertyTreeTable.setCellEditors(new CellEditor[] {
+                new TextCellEditor(_propertyTreeTable.getTable()),
+                new ClassDialogCellEditor(_propertyTreeTable.getTable(), "org.kie.runtime.process.WorkItemHandler",
+                        "Work Item Handler", "Select work item handler class.") {
+                    protected Resource getResource() {
+                        return _targetObj == null ? null : _targetObj.eResource();
+                    }
+                } });
 
         _mAddButton = new Button(this, SWT.NONE);
         _mAddButton.setLayoutData(new GridData(SWT.FILL, SWT.BEGINNING, false, false));
@@ -250,26 +259,27 @@ public class BPMPropertyTable extends Composite implements ICellModifier {
     protected void addPropertyToList() {
         if (getTargetObject() instanceof BPMImplementationType) {
             final BPMImplementationType impl = (BPMImplementationType) getTargetObject();
-            final PropertyType newAction = BPMFactory.eINSTANCE.createPropertyType();
-            newAction.setName("property");
-            newAction.setValue("value");
             if (impl.eContainer() != null) {
                 TransactionalEditingDomain domain = SwitchyardSCAEditor.getActiveEditor().getEditingDomain();
                 domain.getCommandStack().execute(new RecordingCommand(domain) {
                     @Override
                     protected void doExecute() {
-                        if (impl.getProperties() == null) {
-                            impl.setProperties(BPMFactory.eINSTANCE.createPropertiesType());
+                        WorkItemHandlerType newAction = BPMFactory.eINSTANCE.createWorkItemHandlerType();
+                        newAction.setClass("NewTaskHandler");
+                        if (impl.getWorkItemHandlers() == null) {
+                            impl.setWorkItemHandlers(BPMFactory.eINSTANCE.createWorkItemHandlersType());
                         }
-                        impl.getProperties().getProperty().add(newAction);
+                        impl.getWorkItemHandlers().getWorkItemHandler().add(newAction);
                         getTableViewer().refresh(true);
                     }
                 });
             } else {
-                if (impl.getProperties() == null) {
-                    impl.setProperties(BPMFactory.eINSTANCE.createPropertiesType());
+                WorkItemHandlerType newAction = BPMFactory.eINSTANCE.createWorkItemHandlerType();
+                newAction.setClass("NewTaskHandler");
+                if (impl.getWorkItemHandlers() == null) {
+                    impl.setWorkItemHandlers(BPMFactory.eINSTANCE.createWorkItemHandlersType());
                 }
-                impl.getProperties().getProperty().add(newAction);
+                impl.getWorkItemHandlers().getWorkItemHandler().add(newAction);
                 getTableViewer().refresh(true);
             }
             fireChangedEvent(this);
@@ -282,23 +292,23 @@ public class BPMPropertyTable extends Composite implements ICellModifier {
     protected void removeFromList() {
         if (getTargetObject() instanceof BPMImplementationType) {
             final BPMImplementationType impl = (BPMImplementationType) getTargetObject();
-            final PropertyType actionToRemove = getTableSelection();
+            final WorkItemHandlerType actionToRemove = getTableSelection();
             if (impl.eContainer() != null) {
                 TransactionalEditingDomain domain = SwitchyardSCAEditor.getActiveEditor().getEditingDomain();
                 domain.getCommandStack().execute(new RecordingCommand(domain) {
                     @Override
                     protected void doExecute() {
-                        impl.getProperties().getProperty().remove(actionToRemove);
-                        if (impl.getProperties().getProperty().isEmpty()) {
-                            impl.setProperties(null);
+                        impl.getWorkItemHandlers().getWorkItemHandler().remove(actionToRemove);
+                        if (impl.getWorkItemHandlers().getWorkItemHandler().isEmpty()) {
+                            impl.setWorkItemHandlers(null);
                         }
                         getTableViewer().refresh(true);
                     }
                 });
             } else {
-                impl.getProperties().getProperty().remove(actionToRemove);
-                if (impl.getProperties().getProperty().isEmpty()) {
-                    impl.setProperties(null);
+                impl.getWorkItemHandlers().getWorkItemHandler().remove(actionToRemove);
+                if (impl.getWorkItemHandlers().getWorkItemHandler().isEmpty()) {
+                    impl.setWorkItemHandlers(null);
                 }
                 getTableViewer().refresh(true);
             }
@@ -306,11 +316,11 @@ public class BPMPropertyTable extends Composite implements ICellModifier {
         }
     }
 
-    protected PropertyType getTableSelection() {
+    protected WorkItemHandlerType getTableSelection() {
         if (_propertyTreeTable != null && !_propertyTreeTable.getSelection().isEmpty()) {
             IStructuredSelection ssel = (IStructuredSelection) _propertyTreeTable.getSelection();
-            if (ssel.getFirstElement() instanceof PropertyType) {
-                return (PropertyType) ssel.getFirstElement();
+            if (ssel.getFirstElement() instanceof WorkItemHandlerType) {
+                return (WorkItemHandlerType) ssel.getFirstElement();
             }
         }
         return null;
@@ -403,15 +413,15 @@ public class BPMPropertyTable extends Composite implements ICellModifier {
      *      java.lang.String)
      */
     public Object getValue(Object element, String property) {
-        if (element instanceof PropertyType && property.equalsIgnoreCase(NAME_COLUMN)) {
-            if (((PropertyType) element).getName() != null) {
-                return ((PropertyType) element).getName();
+        if (element instanceof WorkItemHandlerType && property.equalsIgnoreCase(NAME_COLUMN)) {
+            if (((WorkItemHandlerType) element).getName() != null) {
+                return ((WorkItemHandlerType) element).getName();
             } else {
                 return "";
             }
-        } else if (element instanceof PropertyType && property.equalsIgnoreCase(VALUE_COLUMN)) {
-            if (((PropertyType) element).getValue() != null) {
-                return ((PropertyType) element).getValue();
+        } else if (element instanceof WorkItemHandlerType && property.equalsIgnoreCase(CLASS_COLUMN)) {
+            if (((WorkItemHandlerType) element).getClass_() != null) {
+                return ((WorkItemHandlerType) element).getClass_();
             } else {
                 return "";
             }
@@ -432,7 +442,7 @@ public class BPMPropertyTable extends Composite implements ICellModifier {
             final TableItem ti = (TableItem) element;
             if (getTargetObject() instanceof BPMImplementationType) {
                 final BPMImplementationType impl = (BPMImplementationType) getTargetObject();
-                final PropertyType parm = (PropertyType) ti.getData();
+                final WorkItemHandlerType parm = (WorkItemHandlerType) ti.getData();
                 if ((value == null && parm.getName() == null) || (value != null && value.equals(parm.getName()))) {
                     return;
                 }
@@ -452,12 +462,12 @@ public class BPMPropertyTable extends Composite implements ICellModifier {
             }
             fireChangedEvent(this);
             // validate();
-        } else if (element instanceof TableItem && property.equalsIgnoreCase(VALUE_COLUMN)) {
+        } else if (element instanceof TableItem && property.equalsIgnoreCase(CLASS_COLUMN)) {
             final TableItem ti = (TableItem) element;
             if (getTargetObject() instanceof BPMImplementationType) {
                 final BPMImplementationType impl = (BPMImplementationType) getTargetObject();
-                final PropertyType parm = (PropertyType) ti.getData();
-                if ((value == null && parm.getValue() == null) || (value != null && value.equals(parm.getValue()))) {
+                final WorkItemHandlerType parm = (WorkItemHandlerType) ti.getData();
+                if ((value == null && parm.getClass_() == null) || (value != null && value.equals(parm.getClass_()))) {
                     return;
                 }
                 if (impl.eContainer() != null) {
@@ -465,13 +475,13 @@ public class BPMPropertyTable extends Composite implements ICellModifier {
                     domain.getCommandStack().execute(new RecordingCommand(domain) {
                         @Override
                         protected void doExecute() {
-                            PropertyType parm = (PropertyType) ti.getData();
-                            parm.setValue((String) value);
+                            WorkItemHandlerType parm = (WorkItemHandlerType) ti.getData();
+                            parm.setClass((String) value);
                             getTableViewer().refresh(true);
                         }
                     });
                 } else {
-                    parm.setValue((String) value);
+                    parm.setClass((String) value);
                     getTableViewer().refresh(true);
                 }
             }

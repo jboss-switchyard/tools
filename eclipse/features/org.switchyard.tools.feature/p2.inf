@@ -1,0 +1,24 @@
+# the editor feature has been removed and the editor has moved into the root feature
+update.match=(id=='org.switchyard.tools.feature.feature.group' && version~=range('[0.0.0,$version$)')) || (id=='org.switchyard.tools.editor.feature.feature.group' && version~=range('[0.0.0,$version$)'))
+update.severity=1
+
+# the following does not set bundle preferences
+#instructions.configure=org.eclipse.equinox.p2.touchpoint.eclipse.setProgramProperty(propName:org.eclipse.wst.xml.core/honourAllSchemaLocations,propValue:false);
+
+# the problem with the following is that the old SwitchYard Editor feature is propagated, requiring the user to uninstall it after updating
+# the following provides backward compatibility for the old SwitchYard Editor feature
+#units.1.id=org.switchyard.tools.editor.feature.feature.group
+#units.1.version=$version$
+#units.1.properties.0.name=org.eclipse.equinox.p2.name
+#units.1.properties.0.value=SwitchYard Editor (legacy feature)
+#units.1.properties.1.name=org.eclipse.equinox.p2.description
+#units.1.properties.1.value=Original SwitchYard editor feature.  The editor has been incorporated into the main "SwitchYard" feature.  If you require BPMN2 support, please install the "SwitchYard BPMN2 Support" feature separately.
+#units.1.update.id=org.switchyard.tools.editor.feature.feature.group
+#units.1.update.range=[0.0.0,$version$)
+#units.1.provides.0.namespace=org.eclipse.equinox.p2.iu
+#units.1.provides.0.name=org.switchyard.tools.editor.feature.feature.group
+#units.1.provides.0.version=$version$
+#units.1.requires.0.namespace=org.eclipse.equinox.p2.iu
+#units.1.requires.0.name=org.switchyard.tools.feature.feature.group
+#units.1.requires.0.range=[$version$,$version$]
+#units.1.requires.0.filter=(org.eclipse.update.install.features=true)

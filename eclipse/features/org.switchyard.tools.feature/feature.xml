@@ -26,12 +26,15 @@
       <import feature="org.eclipse.wst.common_core.feature" version="3.2.0" match="greaterOrEqual"/>
       <import feature="org.eclipse.wst.common.fproj" version="3.2.0" match="greaterOrEqual"/>
       <import feature="org.eclipse.wst.server_core.feature" version="3.2.0" match="greaterOrEqual"/>
+      <import feature="org.eclipse.wst.ws_ui.feature" version="3.3.0" match="greaterOrEqual"/>
       <import feature="org.eclipse.wst.xml_core.feature" version="3.3.0" match="greaterOrEqual"/>
       <import feature="org.eclipse.wst.xml_ui.feature" version="3.3.0" match="greaterOrEqual"/>
       <import feature="org.eclipse.emf" version="2.6.0" match="greaterOrEqual"/>
+      <import feature="org.eclipse.emf.compare" version="1.2.0" match="compatible"/>
+      <import feature="org.eclipse.graphiti.feature" version="0.9.0" match="equivalent"/>
       <import feature="org.eclipse.m2e.wtp.feature" version="0.16.0" match="greaterOrEqual"/>
       <import plugin="javax.wsdl" version="1.6.2" match="equivalent"/>
-      <import feature="org.eclipse.wst.ws_ui.feature" version="3.3.0" match="greaterOrEqual"/>
+      <import feature="org.jboss.ide.eclipse.freemarker.feature" version="1.2.0" match="greaterOrEqual"/>
    </requires>
 
    <plugin
@@ -112,6 +115,13 @@
 
    <plugin
          id="org.switchyard.tools.models.switchyard1_0.edit"
+         download-size="0"
+         install-size="0"
+         version="0.0.0"
+         unpack="false"/>
+
+   <plugin
+         id="org.switchyard.tools.ui.editor"
          download-size="0"
          install-size="0"
          version="0.0.0"

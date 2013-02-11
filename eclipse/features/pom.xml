@@ -14,8 +14,8 @@
 
   <modules>
     <module>org.switchyard.tools.feature</module>
-    <module>org.switchyard.tools.editor.feature</module>
     <module>org.switchyard.tools.bpel.feature</module>
+    <module>org.switchyard.tools.bpmn2.feature</module>
   </modules>
 
 </project>

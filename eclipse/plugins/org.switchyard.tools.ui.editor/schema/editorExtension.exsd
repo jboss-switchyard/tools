@@ -102,7 +102,7 @@
           class=&quot;org.switchyard.tools.ui.editor.components.camel.CamelComponentTypeExtension&quot;&gt;
     &lt;/componentExtension&gt;
     &lt;componentExtension
-          class=&quot;org.switchyard.tools.ui.editor.components.bpm.BPMComponentTypeExtension&quot;&gt;
+          class=&quot;org.switchyard.tools.ui.bpmn2.component.BPMComponentTypeExtension&quot;&gt;
     &lt;/componentExtension&gt;
     &lt;componentExtension
           class=&quot;org.switchyard.tools.ui.editor.components.rules.RulesComponentTypeExtension&quot;&gt;
