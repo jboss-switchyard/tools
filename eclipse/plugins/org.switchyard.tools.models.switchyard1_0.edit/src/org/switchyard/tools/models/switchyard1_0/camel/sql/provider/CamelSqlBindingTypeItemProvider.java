@@ -65,6 +65,9 @@ public class CamelSqlBindingTypeItemProvider
             addDataSourceRefPropertyDescriptor(object);
             addBatchPropertyDescriptor(object);
             addPlaceholderPropertyDescriptor(object);
+            addTimerNamePropertyDescriptor(object);
+            addPeriodPropertyDescriptor(object);
+            addInitialDelayPropertyDescriptor(object);
         }
         return itemPropertyDescriptors;
     }
@@ -158,6 +161,72 @@ public class CamelSqlBindingTypeItemProvider
     }
 
     /**
+     * This adds a property descriptor for the Timer Name feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    protected void addTimerNamePropertyDescriptor(Object object) {
+        itemPropertyDescriptors.add
+            (createItemPropertyDescriptor
+                (((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+                 getResourceLocator(),
+                 getString("_UI_CamelSqlBindingType_timerName_feature"),
+                 getString("_UI_PropertyDescriptor_description", "_UI_CamelSqlBindingType_timerName_feature", "_UI_CamelSqlBindingType_type"),
+                 SqlPackage.Literals.CAMEL_SQL_BINDING_TYPE__TIMER_NAME,
+                 true,
+                 false,
+                 false,
+                 ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
+                 null,
+                 null));
+    }
+
+    /**
+     * This adds a property descriptor for the Period feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    protected void addPeriodPropertyDescriptor(Object object) {
+        itemPropertyDescriptors.add
+            (createItemPropertyDescriptor
+                (((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+                 getResourceLocator(),
+                 getString("_UI_CamelSqlBindingType_period_feature"),
+                 getString("_UI_PropertyDescriptor_description", "_UI_CamelSqlBindingType_period_feature", "_UI_CamelSqlBindingType_type"),
+                 SqlPackage.Literals.CAMEL_SQL_BINDING_TYPE__PERIOD,
+                 true,
+                 false,
+                 false,
+                 ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
+                 null,
+                 null));
+    }
+
+    /**
+     * This adds a property descriptor for the Initial Delay feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    protected void addInitialDelayPropertyDescriptor(Object object) {
+        itemPropertyDescriptors.add
+            (createItemPropertyDescriptor
+                (((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+                 getResourceLocator(),
+                 getString("_UI_CamelSqlBindingType_initialDelay_feature"),
+                 getString("_UI_PropertyDescriptor_description", "_UI_CamelSqlBindingType_initialDelay_feature", "_UI_CamelSqlBindingType_type"),
+                 SqlPackage.Literals.CAMEL_SQL_BINDING_TYPE__INITIAL_DELAY,
+                 true,
+                 false,
+                 false,
+                 ItemPropertyDescriptor.INTEGRAL_VALUE_IMAGE,
+                 null,
+                 null));
+    }
+
+    /**
      * This returns CamelSqlBindingType.gif.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
@@ -198,6 +267,9 @@ public class CamelSqlBindingTypeItemProvider
             case SqlPackage.CAMEL_SQL_BINDING_TYPE__DATA_SOURCE_REF:
             case SqlPackage.CAMEL_SQL_BINDING_TYPE__BATCH:
             case SqlPackage.CAMEL_SQL_BINDING_TYPE__PLACEHOLDER:
+            case SqlPackage.CAMEL_SQL_BINDING_TYPE__TIMER_NAME:
+            case SqlPackage.CAMEL_SQL_BINDING_TYPE__PERIOD:
+            case SqlPackage.CAMEL_SQL_BINDING_TYPE__INITIAL_DELAY:
                 fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
                 return;
         }

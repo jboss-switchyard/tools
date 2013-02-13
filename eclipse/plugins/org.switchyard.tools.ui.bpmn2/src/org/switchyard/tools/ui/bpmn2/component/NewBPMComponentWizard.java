@@ -36,8 +36,6 @@ import org.switchyard.tools.models.switchyard1_0.bpm.MappingType;
 import org.switchyard.tools.models.switchyard1_0.bpm.MappingsType;
 import org.switchyard.tools.models.switchyard1_0.bpm.ResourceType;
 import org.switchyard.tools.models.switchyard1_0.bpm.ResourcesType;
-import org.switchyard.tools.models.switchyard1_0.bpm.WorkItemHandlerType;
-import org.switchyard.tools.models.switchyard1_0.bpm.WorkItemHandlersType;
 import org.switchyard.tools.ui.editor.diagram.shared.BaseNewServiceFileWizard;
 
 /**
@@ -56,18 +54,6 @@ public class NewBPMComponentWizard extends BaseNewServiceFileWizard implements I
 
     // private NewBPMActionConfigurationWizardPage _actionsPage;
     // private NewBPMExtraResourcesWizardPage _resourcesPage;
-
-    /**
-     * TODO: move this someplace more sensible.
-     * 
-     * @return a configured TaskHandler for handling "SwitchYard Service" tasks.
-     */
-    public static WorkItemHandlerType createSwitchYardServiceTaskHandler() {
-        WorkItemHandlerType switchYardServiceHandler = BPMFactory.eINSTANCE.createWorkItemHandlerType();
-        switchYardServiceHandler.setClass("org.switchyard.component.bpm.work.SwitchYardServiceWorkItemHandler");
-        switchYardServiceHandler.setName("SwitchYard Service");
-        return switchYardServiceHandler;
-    }
 
     /**
      * Create a new NewBPMComponentWizard.
@@ -153,12 +139,6 @@ public class NewBPMComponentWizard extends BaseNewServiceFileWizard implements I
         } else {
             _implementation.setLoggers(null);
         }
-
-        // TODO: prompt user for TaskHandler configuration
-        // add the required "SwitchYard Service" task handler
-        final WorkItemHandlersType workItemHandlers = BPMFactory.eINSTANCE.createWorkItemHandlersType();
-        workItemHandlers.getWorkItemHandler().add(createSwitchYardServiceTaskHandler());
-        _implementation.setWorkItemHandlers(workItemHandlers);
 
         if (!super.performFinish()) {
             return false;

@@ -18,9 +18,6 @@
  */
 package org.switchyard.tools.ui.editor.components.rules;
 
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
-
 import org.eclipse.emf.transaction.RecordingCommand;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.eclipse.emf.transaction.util.TransactionUtil;
@@ -33,8 +30,6 @@ import org.eclipse.jface.viewers.SelectionChangedEvent;
 import org.eclipse.soa.sca.sca1_1.model.sca.Component;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.custom.StackLayout;
-import org.eclipse.swt.events.ModifyEvent;
-import org.eclipse.swt.events.ModifyListener;
 import org.eclipse.swt.events.SelectionAdapter;
 import org.eclipse.swt.events.SelectionEvent;
 import org.eclipse.swt.events.SelectionListener;
@@ -45,12 +40,9 @@ import org.eclipse.swt.layout.GridLayout;
 import org.eclipse.swt.layout.RowLayout;
 import org.eclipse.swt.widgets.Button;
 import org.eclipse.swt.widgets.Composite;
-import org.eclipse.swt.widgets.Group;
-import org.eclipse.swt.widgets.Label;
 import org.eclipse.swt.widgets.Layout;
 import org.eclipse.swt.widgets.TabFolder;
 import org.eclipse.swt.widgets.TabItem;
-import org.eclipse.swt.widgets.Text;
 import org.eclipse.ui.forms.events.ExpansionAdapter;
 import org.eclipse.ui.forms.events.ExpansionEvent;
 import org.eclipse.ui.forms.widgets.Section;
@@ -72,22 +64,13 @@ import org.switchyard.tools.ui.editor.Activator;
  */
 public class RulesImplementationPropertySection extends GFPropertySection implements ITabbedPropertyConstants {
 
-    private static final Pattern GAV_PATTERN = Pattern.compile("([^: ]*)(:([^: ]*)(:([^: ]*))?)?");
-
     private TabbedPropertySheetPage _page;
     private Composite _panel;
     private Button _resourcesRadio;
     private Button _containerRadio;
     private StackLayout _manifestLayout;
     private RulesResourceTable _resourcesTable;
-    private Composite _containerDetailsControls;
-    private Text _sessionNameText;
-    private Text _baseNameText;
-    private Text _groupIdText;
-    private Text _artifactIdText;
-    private Text _versionText;
-    private Button _scanCheckbox;
-    private Text _scanIntervalText;
+    private KIEContainerDetailsComposite _containerDetailsControls;
     private RulesActionTable _actionsTable;
     private RulesMappingsTable _inputsTable;
     private RulesMappingsTable _outputsTable;
@@ -142,33 +125,7 @@ public class RulesImplementationPropertySection extends GFPropertySection implem
                 _containerDetailsControls.getParent().layout();
             }
             // initialize container controls
-            _sessionNameText.setText(_container.getSessionName() == null ? "" : _container.getSessionName());
-            _baseNameText.setText(_container.getBaseName() == null ? "" : _container.getBaseName());
-            _scanCheckbox.setSelection(_container.isScan());
-            _scanIntervalText.setEnabled(_container.isScan());
-            _scanIntervalText.setText(Long.toString(_container.getScanInterval()));
-            if (_container.getReleaseId() == null) {
-                _groupIdText.setText("");
-                _artifactIdText.setText("");
-                _versionText.setText("");
-            } else {
-                final Matcher matcher = GAV_PATTERN.matcher(_container.getReleaseId());
-                final String groupId;
-                final String artifactId;
-                final String version;
-                if (matcher.matches()) {
-                    groupId = matcher.group(1);
-                    artifactId = matcher.group(3);
-                    version = matcher.group(5);
-                } else {
-                    groupId = "";
-                    artifactId = "";
-                    version = "";
-                }
-                _groupIdText.setText(groupId == null ? "" : groupId);
-                _artifactIdText.setText(artifactId == null ? "" : artifactId);
-                _versionText.setText(version == null ? "" : version);
-            }
+            _containerDetailsControls.setContainer(_container);
         } finally {
             _updating = false;
         }
@@ -322,148 +279,7 @@ public class RulesImplementationPropertySection extends GFPropertySection implem
     }
 
     private void createContainerDetailsControls(Composite parent) {
-        final TabbedPropertySheetWidgetFactory factory = getWidgetFactory();
-
-        _containerDetailsControls = factory.createComposite(parent);
-        _containerDetailsControls.setLayout(new GridLayout(3, false));
-
-        factory.createLabel(_containerDetailsControls, "Session Name:");
-        _sessionNameText = factory.createText(_containerDetailsControls, "");
-        _sessionNameText.setLayoutData(new GridData(SWT.FILL, SWT.CENTER, true, false));
-        _sessionNameText.addModifyListener(new ModifyListener() {
-            @Override
-            public void modifyText(ModifyEvent e) {
-                final String newValue = _sessionNameText.getText().length() == 0 ? null : _sessionNameText.getText();
-                if (!_updating
-                        && ((newValue == null && _container.getSessionName() != null) || (newValue != null && !newValue
-                                .equals(_container.getSessionName())))) {
-                    wrapOperation(new Runnable() {
-                        public void run() {
-                            _container.setSessionName(newValue);
-                        }
-                    });
-                }
-            }
-        });
-
-        Group releaseGroup = factory.createGroup(_containerDetailsControls, "Release ID");
-        factory.paintBordersFor(releaseGroup);
-        releaseGroup.setLayout(new GridLayout(2, false));
-        releaseGroup.setLayoutData(new GridData(SWT.FILL, SWT.FILL, true, false, 1, 4));
-
-        ModifyListener releaseIdListener = new ModifyListener() {
-            @Override
-            public void modifyText(ModifyEvent e) {
-                if (_updating) {
-                    return;
-                }
-                final String artifactId = _artifactIdText.getText();
-                final String groupId = _groupIdText.getText();
-                final String version = _versionText.getText();
-                final String newValue;
-                if (artifactId.length() == 0 && groupId.length() == 0 && version.length() == 0) {
-                    newValue = null;
-                } else {
-                    final StringBuffer buf = new StringBuffer();
-                    if (groupId.length() > 0) {
-                        buf.append(groupId);
-                    }
-                    buf.append(":");
-                    if (artifactId.length() > 0) {
-                        buf.append(artifactId);
-                    }
-                    if (version.length() > 0) {
-                        buf.append(":").append(version);
-                    }
-                    newValue = buf.toString();
-                }
-                if ((newValue == null && _container.getReleaseId() != null)
-                        || (newValue != null && !newValue.equals(_container.getReleaseId()))) {
-                    wrapOperation(new Runnable() {
-                        public void run() {
-                            _container.setReleaseId(newValue);
-                        }
-                    });
-                }
-            }
-        };
-
-        factory.createLabel(releaseGroup, "Group ID:");
-        _groupIdText = factory.createText(releaseGroup, "");
-        _groupIdText.setLayoutData(new GridData(SWT.FILL, SWT.CENTER, true, false));
-        _groupIdText.addModifyListener(releaseIdListener);
-
-        factory.createLabel(releaseGroup, "Artifact ID:");
-        _artifactIdText = factory.createText(releaseGroup, "");
-        _artifactIdText.setLayoutData(new GridData(SWT.FILL, SWT.CENTER, true, false));
-        _artifactIdText.addModifyListener(releaseIdListener);
-
-        factory.createLabel(releaseGroup, "Version:");
-        _versionText = factory.createText(releaseGroup, "");
-        _versionText.setLayoutData(new GridData(SWT.FILL, SWT.CENTER, true, false));
-        _versionText.addModifyListener(releaseIdListener);
-
-        factory.createLabel(_containerDetailsControls, "Base Name:");
-        _baseNameText = factory.createText(_containerDetailsControls, "");
-        _baseNameText.setLayoutData(new GridData(SWT.FILL, SWT.CENTER, true, false));
-        _baseNameText.addModifyListener(new ModifyListener() {
-            @Override
-            public void modifyText(ModifyEvent e) {
-                final String newValue = _baseNameText.getText().length() == 0 ? null : _baseNameText.getText();
-                if (!_updating
-                        && ((newValue == null && _container.getBaseName() != null) || (newValue != null && !newValue
-                                .equals(_container.getBaseName())))) {
-                    wrapOperation(new Runnable() {
-                        public void run() {
-                            _container.setBaseName(newValue);
-                        }
-                    });
-                }
-            }
-        });
-
-        _scanCheckbox = factory.createButton(_containerDetailsControls, "Scan for updates", SWT.CHECK);
-        _scanCheckbox.setLayoutData(new GridData(SWT.FILL, SWT.CENTER, true, false, 2, 1));
-        _scanCheckbox.addSelectionListener(new SelectionAdapter() {
-            @Override
-            public void widgetSelected(SelectionEvent event) {
-                final boolean scan = _scanCheckbox.getSelection();
-                _scanIntervalText.setEnabled(scan);
-                if (!_updating && scan != _container.isScan()) {
-                    wrapOperation(new Runnable() {
-                        @Override
-                        public void run() {
-                            _container.setScan(scan);
-                        }
-                    });
-                }
-            }
-        });
-
-        Label label = factory.createLabel(_containerDetailsControls, "Scan Interval:");
-        GridData gd = new GridData();
-        gd.horizontalIndent = 20;
-        label.setLayoutData(gd);
-        _scanIntervalText = factory.createText(_containerDetailsControls, "");
-        _scanIntervalText.setLayoutData(new GridData(SWT.FILL, SWT.CENTER, true, false));
-        _scanIntervalText.addModifyListener(new ModifyListener() {
-            @Override
-            public void modifyText(ModifyEvent event) {
-                try {
-                    final long newValue = _scanIntervalText.getText().length() == 0 ? 0 : Long
-                            .valueOf(_scanIntervalText.getText());
-                    if (!_updating && newValue != _container.getScanInterval()) {
-                        wrapOperation(new Runnable() {
-                            public void run() {
-                                _container.setScanInterval(newValue);
-                            }
-                        });
-                    }
-                } catch (Exception e) {
-                    e.fillInStackTrace();
-                }
-            }
-        });
+        _containerDetailsControls = new KIEContainerDetailsComposite(parent, getWidgetFactory());
     }
 
     private void createActionsControls(TabFolder folder, TabItem item) {

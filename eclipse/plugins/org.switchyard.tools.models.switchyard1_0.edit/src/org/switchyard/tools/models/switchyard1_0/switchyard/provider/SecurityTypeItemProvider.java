@@ -66,6 +66,8 @@ public class SecurityTypeItemProvider
 
             addCallbackHandlerPropertyDescriptor(object);
             addModuleNamePropertyDescriptor(object);
+            addRolesAllowedPropertyDescriptor(object);
+            addRunAsPropertyDescriptor(object);
         }
         return itemPropertyDescriptors;
     }
@@ -106,6 +108,50 @@ public class SecurityTypeItemProvider
                  getString("_UI_SecurityType_moduleName_feature"),
                  getString("_UI_PropertyDescriptor_description", "_UI_SecurityType_moduleName_feature", "_UI_SecurityType_type"),
                  SwitchyardPackage.Literals.SECURITY_TYPE__MODULE_NAME,
+                 true,
+                 false,
+                 false,
+                 ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
+                 null,
+                 null));
+    }
+
+    /**
+     * This adds a property descriptor for the Roles Allowed feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    protected void addRolesAllowedPropertyDescriptor(Object object) {
+        itemPropertyDescriptors.add
+            (createItemPropertyDescriptor
+                (((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+                 getResourceLocator(),
+                 getString("_UI_SecurityType_rolesAllowed_feature"),
+                 getString("_UI_PropertyDescriptor_description", "_UI_SecurityType_rolesAllowed_feature", "_UI_SecurityType_type"),
+                 SwitchyardPackage.Literals.SECURITY_TYPE__ROLES_ALLOWED,
+                 true,
+                 false,
+                 false,
+                 ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
+                 null,
+                 null));
+    }
+
+    /**
+     * This adds a property descriptor for the Run As feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    protected void addRunAsPropertyDescriptor(Object object) {
+        itemPropertyDescriptors.add
+            (createItemPropertyDescriptor
+                (((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+                 getResourceLocator(),
+                 getString("_UI_SecurityType_runAs_feature"),
+                 getString("_UI_PropertyDescriptor_description", "_UI_SecurityType_runAs_feature", "_UI_SecurityType_type"),
+                 SwitchyardPackage.Literals.SECURITY_TYPE__RUN_AS,
                  true,
                  false,
                  false,
@@ -183,6 +229,8 @@ public class SecurityTypeItemProvider
         switch (notification.getFeatureID(SecurityType.class)) {
             case SwitchyardPackage.SECURITY_TYPE__CALLBACK_HANDLER:
             case SwitchyardPackage.SECURITY_TYPE__MODULE_NAME:
+            case SwitchyardPackage.SECURITY_TYPE__ROLES_ALLOWED:
+            case SwitchyardPackage.SECURITY_TYPE__RUN_AS:
                 fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
                 return;
             case SwitchyardPackage.SECURITY_TYPE__PROPERTIES:

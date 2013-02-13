@@ -26,7 +26,6 @@ import org.eclipse.soa.sca.sca1_1.model.sca.Implementation;
  *   <li>{@link org.switchyard.tools.models.switchyard1_0.bpm.BPMImplementationType#getWorkItemHandlers <em>Work Item Handlers</em>}</li>
  *   <li>{@link org.switchyard.tools.models.switchyard1_0.bpm.BPMImplementationType#isPersistent <em>Persistent</em>}</li>
  *   <li>{@link org.switchyard.tools.models.switchyard1_0.bpm.BPMImplementationType#getProcessId <em>Process Id</em>}</li>
- *   <li>{@link org.switchyard.tools.models.switchyard1_0.bpm.BPMImplementationType#getSessionId <em>Session Id</em>}</li>
  * </ul>
  * </p>
  *
@@ -304,32 +303,5 @@ public interface BPMImplementationType extends Implementation {
      * @generated
      */
     boolean isSetPersistent();
-
-    /**
-     * Returns the value of the '<em><b>Session Id</b></em>' attribute.
-     * <!-- begin-user-doc -->
-     * <p>
-     * If the meaning of the '<em>Session Id</em>' attribute isn't clear,
-     * there really should be more of a description here...
-     * </p>
-     * <!-- end-user-doc -->
-     * @return the value of the '<em>Session Id</em>' attribute.
-     * @see #setSessionId(BigInteger)
-     * @see org.switchyard.tools.models.switchyard1_0.bpm.BPMPackage#getBPMImplementationType_SessionId()
-     * @model dataType="org.eclipse.emf.ecore.xml.type.Integer"
-     *        extendedMetaData="kind='attribute' name='sessionId'"
-     * @generated
-     */
-    BigInteger getSessionId();
-
-    /**
-     * Sets the value of the '{@link org.switchyard.tools.models.switchyard1_0.bpm.BPMImplementationType#getSessionId <em>Session Id</em>}' attribute.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @param value the new value of the '<em>Session Id</em>' attribute.
-     * @see #getSessionId()
-     * @generated
-     */
-    void setSessionId(BigInteger value);
 
 } // BPMImplementationType

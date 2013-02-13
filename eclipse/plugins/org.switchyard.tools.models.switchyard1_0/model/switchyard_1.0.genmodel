@@ -102,7 +102,6 @@
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference component.bpm.ecore#//BPMImplementationType/workItemHandlers"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute component.bpm.ecore#//BPMImplementationType/persistent"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute component.bpm.ecore#//BPMImplementationType/processId"/>
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute component.bpm.ecore#//BPMImplementationType/sessionId"/>
     </genClasses>
     <genClasses ecoreClass="component.bpm.ecore#//ChannelsType">
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference component.bpm.ecore#//ChannelsType/channel"/>
@@ -319,6 +318,8 @@
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute config.switchyard.ecore#//SecurityType/callbackHandler"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute config.switchyard.ecore#//SecurityType/moduleName"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference config.switchyard.ecore#//SecurityType/properties"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute config.switchyard.ecore#//SecurityType/rolesAllowed"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute config.switchyard.ecore#//SecurityType/runAs"/>
     </genClasses>
   </genPackages>
   <genPackages prefix="Clojure" basePackage="org.switchyard.tools.models.switchyard1_0"
@@ -3103,6 +3104,9 @@
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute component.camel.sql.ecore#//CamelSqlBindingType/dataSourceRef"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute component.camel.sql.ecore#//CamelSqlBindingType/batch"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute component.camel.sql.ecore#//CamelSqlBindingType/placeholder"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute component.camel.sql.ecore#//CamelSqlBindingType/timerName"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute component.camel.sql.ecore#//CamelSqlBindingType/period"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute component.camel.sql.ecore#//CamelSqlBindingType/initialDelay"/>
     </genClasses>
     <genClasses ecoreClass="component.camel.sql.ecore#//DocumentRoot">
       <genFeatures property="None" notify="false" createChild="false" ecoreFeature="ecore:EAttribute component.camel.sql.ecore#//DocumentRoot/mixed"/>

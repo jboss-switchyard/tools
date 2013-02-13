@@ -486,22 +486,13 @@ public interface BPMPackage extends EPackage {
     int BPM_IMPLEMENTATION_TYPE__PROCESS_ID = ScaPackage.IMPLEMENTATION_FEATURE_COUNT + 8;
 
     /**
-     * The feature id for the '<em><b>Session Id</b></em>' attribute.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     * @ordered
-     */
-    int BPM_IMPLEMENTATION_TYPE__SESSION_ID = ScaPackage.IMPLEMENTATION_FEATURE_COUNT + 9;
-
-    /**
      * The number of structural features of the '<em>Implementation Type</em>' class.
      * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
      * @generated
      * @ordered
      */
-	int BPM_IMPLEMENTATION_TYPE_FEATURE_COUNT = ScaPackage.IMPLEMENTATION_FEATURE_COUNT + 10;
+	int BPM_IMPLEMENTATION_TYPE_FEATURE_COUNT = ScaPackage.IMPLEMENTATION_FEATURE_COUNT + 9;
 
 	/**
      * The meta object id for the '{@link org.switchyard.tools.models.switchyard1_0.bpm.impl.ChannelsTypeImpl <em>Channels Type</em>}' class.
@@ -1907,17 +1898,6 @@ public interface BPMPackage extends EPackage {
     EAttribute getBPMImplementationType_Persistent();
 
     /**
-     * Returns the meta object for the attribute '{@link org.switchyard.tools.models.switchyard1_0.bpm.BPMImplementationType#getSessionId <em>Session Id</em>}'.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @return the meta object for the attribute '<em>Session Id</em>'.
-     * @see org.switchyard.tools.models.switchyard1_0.bpm.BPMImplementationType#getSessionId()
-     * @see #getBPMImplementationType()
-     * @generated
-     */
-    EAttribute getBPMImplementationType_SessionId();
-
-    /**
      * Returns the meta object for class '{@link org.switchyard.tools.models.switchyard1_0.bpm.ChannelsType <em>Channels Type</em>}'.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
@@ -2970,14 +2950,6 @@ public interface BPMPackage extends EPackage {
          * @generated
          */
         EAttribute BPM_IMPLEMENTATION_TYPE__PERSISTENT = eINSTANCE.getBPMImplementationType_Persistent();
-
-        /**
-         * The meta object literal for the '<em><b>Session Id</b></em>' attribute feature.
-         * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
-         * @generated
-         */
-        EAttribute BPM_IMPLEMENTATION_TYPE__SESSION_ID = eINSTANCE.getBPMImplementationType_SessionId();
 
         /**
          * The meta object literal for the '{@link org.switchyard.tools.models.switchyard1_0.bpm.impl.ChannelsTypeImpl <em>Channels Type</em>}' class.

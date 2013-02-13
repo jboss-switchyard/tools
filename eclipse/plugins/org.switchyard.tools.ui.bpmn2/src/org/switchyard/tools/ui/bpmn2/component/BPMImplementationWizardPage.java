@@ -14,8 +14,6 @@ import org.eclipse.core.resources.IContainer;
 import org.eclipse.core.resources.IProject;
 import org.eclipse.core.resources.IResource;
 import org.eclipse.core.resources.ResourcesPlugin;
-import org.eclipse.emf.ecore.resource.Resource;
-import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.jdt.core.IJavaProject;
 import org.eclipse.jdt.core.JavaCore;
 import org.eclipse.jface.viewers.IStructuredSelection;
@@ -25,12 +23,15 @@ import org.eclipse.jface.wizard.WizardPage;
 import org.eclipse.soa.sca.sca1_1.model.sca.Component;
 import org.eclipse.soa.sca.sca1_1.model.sca.ComponentService;
 import org.eclipse.swt.SWT;
+import org.eclipse.swt.custom.StackLayout;
 import org.eclipse.swt.events.ModifyEvent;
 import org.eclipse.swt.events.ModifyListener;
 import org.eclipse.swt.events.SelectionAdapter;
 import org.eclipse.swt.events.SelectionEvent;
+import org.eclipse.swt.events.SelectionListener;
 import org.eclipse.swt.layout.GridData;
 import org.eclipse.swt.layout.GridLayout;
+import org.eclipse.swt.layout.RowLayout;
 import org.eclipse.swt.widgets.Button;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Link;
@@ -38,12 +39,16 @@ import org.eclipse.swt.widgets.Text;
 import org.eclipse.ui.IWorkbench;
 import org.eclipse.ui.PlatformUI;
 import org.eclipse.ui.dialogs.SelectionDialog;
+import org.eclipse.ui.forms.FormColors;
+import org.eclipse.ui.views.properties.tabbed.TabbedPropertySheetWidgetFactory;
 import org.switchyard.tools.models.switchyard1_0.bpm.BPMFactory;
 import org.switchyard.tools.models.switchyard1_0.bpm.BPMImplementationType;
+import org.switchyard.tools.models.switchyard1_0.bpm.ContainerType;
 import org.switchyard.tools.models.switchyard1_0.bpm.ManifestType;
 import org.switchyard.tools.models.switchyard1_0.bpm.ResourceType;
 import org.switchyard.tools.models.switchyard1_0.bpm.ResourcesType;
 import org.switchyard.tools.ui.JavaUtil;
+import org.switchyard.tools.ui.PlatformResourceAdapterFactory;
 import org.switchyard.tools.ui.common.ClasspathResourceSelectionDialog;
 import org.switchyard.tools.ui.editor.impl.SwitchyardSCAEditor;
 
@@ -64,6 +69,8 @@ public class BPMImplementationWizardPage extends WizardPage {
     private Button _browseBPMNButton;
     private IJavaProject _project;
     private BPMImplementationType _implementation;
+    private ResourcesType _resources = BPMFactory.eINSTANCE.createResourcesType();
+    private ContainerType _container = BPMFactory.eINSTANCE.createContainerType();
     private ComponentService _service;
 
     /**
@@ -74,25 +81,8 @@ public class BPMImplementationWizardPage extends WizardPage {
     public BPMImplementationWizardPage(String pageName) {
         super(pageName);
         setTitle("BPM Implementation Details");
-        setDescription("Select a BPMN file.");
+        setDescription("Select a BPMN file or knowledge container.");
         setPageComplete(false);
-        ResourceSet resourceSet = (ResourceSet) SwitchyardSCAEditor.getActiveEditor().getEditorInput()
-                .getAdapter(ResourceSet.class);
-        if (resourceSet != null && resourceSet.getResources().size() > 0) {
-            for (Resource emfResource : resourceSet.getResources()) {
-                String path = resourceSet.getURIConverter().normalize(emfResource.getURI()).toPlatformString(true);
-                if (path != null) {
-                    IResource resource = ResourcesPlugin.getWorkspace().getRoot().findMember(path);
-                    if (resource != null) {
-                        IProject project = resource.getProject();
-                        if (project != null) {
-                            _project = JavaCore.create(project);
-                            break;
-                        }
-                    }
-                }
-            }
-        }
     }
 
     /**
@@ -117,7 +107,12 @@ public class BPMImplementationWizardPage extends WizardPage {
      */
     public void init(Component component) {
         _component = component;
-        if (component == null || component.getService() == null) {
+        if (component == null) {
+            return;
+        }
+        IProject project = PlatformResourceAdapterFactory.getContainingProject(component);
+        _project = project == null ? null : JavaCore.create(project);
+        if (component.getService() == null) {
             return;
         }
         for (ComponentService service : component.getService()) {
@@ -129,7 +124,68 @@ public class BPMImplementationWizardPage extends WizardPage {
     @Override
     public void createControl(Composite parent) {
         Composite contents = new Composite(parent, SWT.NONE);
+        contents.setLayout(new GridLayout());
+        contents.setLayoutData(new GridData(SWT.FILL, SWT.FILL, true, true));
+
+        TabbedPropertySheetWidgetFactory factory = new TabbedPropertySheetWidgetFactory();
+        FormColors colors = factory.getColors();
+        colors.setBackground(null);
+        colors.setForeground(null);
+
+        Composite resourceButtonsComposite = factory.createComposite(contents);
+        resourceButtonsComposite.setLayout(new RowLayout());
+        resourceButtonsComposite.setLayoutData(new GridData(SWT.FILL, SWT.FILL, false, false));
+
+        final StackLayout manifestLayout = new StackLayout();
+        final Button resourcesRadio = factory.createButton(resourceButtonsComposite, "Project Resource", SWT.RADIO);
+        final Button containerRadio = factory.createButton(resourceButtonsComposite, "Knowledge Container", SWT.RADIO);
+
+        Composite resourceDetailsComposite = factory.createComposite(contents);
+        resourceDetailsComposite.setLayout(manifestLayout);
+        resourceDetailsComposite.setLayoutData(new GridData(SWT.FILL, SWT.FILL, true, true));
+
+        final Composite resourceControls = createResourceControls(resourceDetailsComposite);
+        final KIEContainerDetailsComposite containerControls = new KIEContainerDetailsComposite(
+                resourceDetailsComposite, factory);
+        containerControls.setContainer(_container);
+
+        resourcesRadio.setSelection(true);
+        manifestLayout.topControl = resourceControls;
+
+        SelectionListener radioListener = new SelectionAdapter() {
+            @Override
+            public void widgetSelected(SelectionEvent event) {
+                if (_implementation == null) {
+                    _implementation = BPMFactory.eINSTANCE.createBPMImplementationType();
+                }
+                if (_implementation.getManifest() == null) {
+                    _implementation.setManifest(BPMFactory.eINSTANCE.createManifestType());
+                }
+                if (resourcesRadio.getSelection()) {
+                    manifestLayout.topControl = resourceControls;
+                    resourceControls.getParent().layout();
+                    _implementation.getManifest().setContainer(null);
+                    _implementation.getManifest().setResources(_resources);
+                } else {
+                    manifestLayout.topControl = containerControls;
+                    containerControls.getParent().layout();
+                    _implementation.getManifest().setResources(null);
+                    _implementation.getManifest().setContainer(_container);
+                }
+                validate();
+            }
+        };
+
+        resourcesRadio.addSelectionListener(radioListener);
+        containerRadio.addSelectionListener(radioListener);
+
+        setControl(contents);
+    }
+
+    private Composite createResourceControls(Composite parent) {
+        Composite contents = new Composite(parent, SWT.NONE);
         contents.setLayout(new GridLayout(3, false));
+        contents.setLayoutData(new GridData(SWT.FILL, SWT.TOP, true, false));
 
         _newBPMNLink = new Link(contents, SWT.NONE);
         _newBPMNLink.setText("<a>BPMN File:</a>");
@@ -161,7 +217,7 @@ public class BPMImplementationWizardPage extends WizardPage {
 
         });
 
-        setControl(contents);
+        return contents;
     }
 
     private void validate() {
@@ -180,6 +236,7 @@ public class BPMImplementationWizardPage extends WizardPage {
             container = _project.getProject();
         }
         ClasspathResourceSelectionDialog dialog = new ClasspathResourceSelectionDialog(getShell(), container, "bpmn");
+        dialog.setInitialPattern("*.bpmn");
         if (dialog.open() == SelectionDialog.OK) {
             Object[] result = dialog.getResult();
             if (result.length > 0 && result[0] instanceof IResource) {
@@ -188,13 +245,13 @@ public class BPMImplementationWizardPage extends WizardPage {
                 _implementation = BPMFactory.eINSTANCE.createBPMImplementationType();
 
                 final ManifestType manifest = BPMFactory.eINSTANCE.createManifestType();
-                final ResourcesType resources = BPMFactory.eINSTANCE.createResourcesType();
                 final ResourceType resource = BPMFactory.eINSTANCE.createResourceType();
                 resource.setLocation(bpmnFilePath);
                 resource.setType("BPMN2");
 
-                resources.getResource().add(resource);
-                manifest.setResources(resources);
+                _resources.getResource().clear();
+                _resources.getResource().add(resource);
+                manifest.setResources(_resources);
                 _implementation.setManifest(manifest);
 
                 // TODO: see if we can get the processId
@@ -226,6 +283,7 @@ public class BPMImplementationWizardPage extends WizardPage {
             _implementation = (BPMImplementationType) wizard.getCreatedObject().getImplementation();
             _service = wizard.getService();
             _bpmnFileText.setText(_implementation.getManifest().getResources().getResource().get(0).getLocation());
+            _resources = _implementation.getManifest().getResources();
         }
     }
 

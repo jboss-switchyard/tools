@@ -71,7 +71,6 @@ public class BPMImplementationTypeItemProvider
 
             addPersistentPropertyDescriptor(object);
             addProcessIdPropertyDescriptor(object);
-            addSessionIdPropertyDescriptor(object);
         }
         return itemPropertyDescriptors;
     }
@@ -116,28 +115,6 @@ public class BPMImplementationTypeItemProvider
                  false,
                  false,
                  ItemPropertyDescriptor.BOOLEAN_VALUE_IMAGE,
-                 null,
-                 null));
-    }
-
-    /**
-     * This adds a property descriptor for the Session Id feature.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    protected void addSessionIdPropertyDescriptor(Object object) {
-        itemPropertyDescriptors.add
-            (createItemPropertyDescriptor
-                (((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
-                 getResourceLocator(),
-                 getString("_UI_BPMImplementationType_sessionId_feature"),
-                 getString("_UI_PropertyDescriptor_description", "_UI_BPMImplementationType_sessionId_feature", "_UI_BPMImplementationType_type"),
-                 BPMPackage.Literals.BPM_IMPLEMENTATION_TYPE__SESSION_ID,
-                 true,
-                 false,
-                 false,
-                 ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
                  null,
                  null));
     }
@@ -218,7 +195,6 @@ public class BPMImplementationTypeItemProvider
         switch (notification.getFeatureID(BPMImplementationType.class)) {
             case BPMPackage.BPM_IMPLEMENTATION_TYPE__PERSISTENT:
             case BPMPackage.BPM_IMPLEMENTATION_TYPE__PROCESS_ID:
-            case BPMPackage.BPM_IMPLEMENTATION_TYPE__SESSION_ID:
                 fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
                 return;
             case BPMPackage.BPM_IMPLEMENTATION_TYPE__ACTIONS:

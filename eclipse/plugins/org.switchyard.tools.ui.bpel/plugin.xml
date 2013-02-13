@@ -13,7 +13,7 @@
   </extension>
 	<extension
 	    point="org.eclipse.ui.views.properties.tabbed.propertyTabs">
-	    <propertyTabs contributorId="org.switchyard.tools.ui.bpel.PropertyContributor">
+	    <propertyTabs contributorId="org.switchyard.tools.ui.editor.diagram.PropertyContributor">
         <propertyTab
               afterTab="switchyard.implementation.bpel.tab"
               category="SwitchyardSCA"
@@ -25,7 +25,7 @@
 
 	<extension
 	    point="org.eclipse.ui.views.properties.tabbed.propertySections">
-	    <propertySections contributorId="org.switchyard.tools.ui.bpel.PropertyContributor">
+	    <propertySections contributorId="org.switchyard.tools.ui.editor.diagram.PropertyContributor">
          <propertySection
                class="org.switchyard.tools.ui.bpel.BPELImplementationPropertySection"
                filter="org.switchyard.tools.ui.bpel.BPELImplementationPropertySectionFilter"

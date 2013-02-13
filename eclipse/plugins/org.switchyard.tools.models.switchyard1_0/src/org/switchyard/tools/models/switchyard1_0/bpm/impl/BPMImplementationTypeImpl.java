@@ -44,7 +44,6 @@ import org.switchyard.tools.models.switchyard1_0.bpm.WorkItemHandlersType;
  *   <li>{@link org.switchyard.tools.models.switchyard1_0.bpm.impl.BPMImplementationTypeImpl#getWorkItemHandlers <em>Work Item Handlers</em>}</li>
  *   <li>{@link org.switchyard.tools.models.switchyard1_0.bpm.impl.BPMImplementationTypeImpl#isPersistent <em>Persistent</em>}</li>
  *   <li>{@link org.switchyard.tools.models.switchyard1_0.bpm.impl.BPMImplementationTypeImpl#getProcessId <em>Process Id</em>}</li>
- *   <li>{@link org.switchyard.tools.models.switchyard1_0.bpm.impl.BPMImplementationTypeImpl#getSessionId <em>Session Id</em>}</li>
  * </ul>
  * </p>
  *
@@ -169,26 +168,6 @@ public class BPMImplementationTypeImpl extends ImplementationImpl implements BPM
      * @ordered
      */
     protected String processId = PROCESS_ID_EDEFAULT;
-
-    /**
-     * The default value of the '{@link #getSessionId() <em>Session Id</em>}' attribute.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @see #getSessionId()
-     * @generated
-     * @ordered
-     */
-    protected static final BigInteger SESSION_ID_EDEFAULT = null;
-
-    /**
-     * The cached value of the '{@link #getSessionId() <em>Session Id</em>}' attribute.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @see #getSessionId()
-     * @generated
-     * @ordered
-     */
-    protected BigInteger sessionId = SESSION_ID_EDEFAULT;
 
     /**
      * <!-- begin-user-doc -->
@@ -579,27 +558,6 @@ public class BPMImplementationTypeImpl extends ImplementationImpl implements BPM
 
     /**
      * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    public BigInteger getSessionId() {
-        return sessionId;
-    }
-
-    /**
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    public void setSessionId(BigInteger newSessionId) {
-        BigInteger oldSessionId = sessionId;
-        sessionId = newSessionId;
-        if (eNotificationRequired())
-            eNotify(new ENotificationImpl(this, Notification.SET, BPMPackage.BPM_IMPLEMENTATION_TYPE__SESSION_ID, oldSessionId, sessionId));
-    }
-
-    /**
-     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
      * @generated
      */
@@ -650,8 +608,6 @@ public class BPMImplementationTypeImpl extends ImplementationImpl implements BPM
                 return isPersistent();
             case BPMPackage.BPM_IMPLEMENTATION_TYPE__PROCESS_ID:
                 return getProcessId();
-            case BPMPackage.BPM_IMPLEMENTATION_TYPE__SESSION_ID:
-                return getSessionId();
         }
         return super.eGet(featureID, resolve, coreType);
     }
@@ -690,9 +646,6 @@ public class BPMImplementationTypeImpl extends ImplementationImpl implements BPM
                 return;
             case BPMPackage.BPM_IMPLEMENTATION_TYPE__PROCESS_ID:
                 setProcessId((String)newValue);
-                return;
-            case BPMPackage.BPM_IMPLEMENTATION_TYPE__SESSION_ID:
-                setSessionId((BigInteger)newValue);
                 return;
         }
         super.eSet(featureID, newValue);
@@ -733,9 +686,6 @@ public class BPMImplementationTypeImpl extends ImplementationImpl implements BPM
             case BPMPackage.BPM_IMPLEMENTATION_TYPE__PROCESS_ID:
                 setProcessId(PROCESS_ID_EDEFAULT);
                 return;
-            case BPMPackage.BPM_IMPLEMENTATION_TYPE__SESSION_ID:
-                setSessionId(SESSION_ID_EDEFAULT);
-                return;
         }
         super.eUnset(featureID);
     }
@@ -766,8 +716,6 @@ public class BPMImplementationTypeImpl extends ImplementationImpl implements BPM
                 return isSetPersistent();
             case BPMPackage.BPM_IMPLEMENTATION_TYPE__PROCESS_ID:
                 return PROCESS_ID_EDEFAULT == null ? processId != null : !PROCESS_ID_EDEFAULT.equals(processId);
-            case BPMPackage.BPM_IMPLEMENTATION_TYPE__SESSION_ID:
-                return SESSION_ID_EDEFAULT == null ? sessionId != null : !SESSION_ID_EDEFAULT.equals(sessionId);
         }
         return super.eIsSet(featureID);
     }
@@ -786,8 +734,6 @@ public class BPMImplementationTypeImpl extends ImplementationImpl implements BPM
         if (persistentESet) result.append(persistent); else result.append("<unset>");
         result.append(", processId: ");
         result.append(processId);
-        result.append(", sessionId: ");
-        result.append(sessionId);
         result.append(')');
         return result.toString();
     }

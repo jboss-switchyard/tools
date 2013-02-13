@@ -64,15 +64,15 @@
 							<property
              description="The name of the fault event type to be invoked on the SwitchYard service."
              name="name"
-             value="FaultEventType"/>
+             value="FaultSignalId"/>
 						</value>
 					</property>
 					<property name="dataInputs">
 						<value>
 							<property
-             description="CompleteAfterFault"
+             description="The action to take when a fault occurs.  Acceptbable values are: abort, complete or &lt;unset&gt;."
              name="name"
-             value="CompleteAfterFault" type="EBoolean"/>
+             value="FaultWorkItemAction"/>
 						</value>
 					</property>
 					<property name="dataInputs">
@@ -132,7 +132,7 @@
    </extension>
    <extension
          point="org.eclipse.ui.views.properties.tabbed.propertyTabs">
-	    <propertyTabs contributorId="org.switchyard.tools.ui.bpmn2.PropertyContributor">
+	    <propertyTabs contributorId="org.switchyard.tools.ui.editor.diagram.PropertyContributor">
         <propertyTab
               afterTab="switchyard.implementation.bpm.tab"
               category="SwitchyardSCA"
@@ -143,7 +143,7 @@
    </extension>
    <extension
          point="org.eclipse.ui.views.properties.tabbed.propertySections">
-         <propertySections contributorId="org.switchyard.tools.ui.bpmn2.PropertyContributor">
+         <propertySections contributorId="org.switchyard.tools.ui.editor.diagram.PropertyContributor">
          <propertySection
                class="org.switchyard.tools.ui.bpmn2.component.BPMImplementationPropertySection"
                filter="org.switchyard.tools.ui.bpmn2.component.BPMImplementationPropertySectionFilter"
