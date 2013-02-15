@@ -91,7 +91,7 @@
     </repository>
     <repository>
       <id>bpmn2-editor-update-site</id>
-      <url>http://download.eclipse.org/bpmn2-modeler/site/0.2.2</url>
+      <url>http://download.eclipse.org/bpmn2-modeler/site/0.2.4/</url>
       <layout>p2</layout>
       <snapshots>
         <enabled>true</enabled>
@@ -100,7 +100,7 @@
         <enabled>true</enabled>
       </releases>
     </repository>
-    <repository>
+     <repository>
       <id>bpel-editor-update-site</id>
       <url>http://download.eclipse.org/bpel/site/</url>
       <layout>p2</layout>

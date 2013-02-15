@@ -8,7 +8,7 @@
  * Contributors:
  *     JBoss by Red Hat - Initial implementation.
  ************************************************************************************/
-package org.switchyard.tools.ui.bpmn2;
+package org.switchyard.tools.ui.bpmn2.editor;
 
 import java.util.List;
 
@@ -32,12 +32,12 @@ import org.eclipse.ui.IWorkbenchPart;
  * 
  * @author Rob Cernich
  */
-public class SwitchYardServiceTaskPropertySection extends JbpmCustomTaskPropertySection {
+public class SwitchYardCustomTaskPropertySection extends JbpmCustomTaskPropertySection {
 
     /**
      * Create a new SwitchYardServiceTaskPropertySection.
      */
-    public SwitchYardServiceTaskPropertySection() {
+    public SwitchYardCustomTaskPropertySection() {
         super();
     }
 
@@ -68,7 +68,12 @@ public class SwitchYardServiceTaskPropertySection extends JbpmCustomTaskProperty
 
     @Override
     protected AbstractDetailComposite createSectionRoot() {
-        return new SwitchYardServiceTaskPropertiesComposite(this);
+        return new SwitchYardCustomTaskPropertiesComposite(this);
+    }
+
+    @Override
+    public boolean doReplaceTab(String id, IWorkbenchPart part, ISelection selection) {
+        return appliesTo(part, selection);
     }
 
 }

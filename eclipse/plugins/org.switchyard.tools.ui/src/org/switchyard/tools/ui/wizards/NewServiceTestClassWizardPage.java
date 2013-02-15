@@ -131,6 +131,9 @@ public class NewServiceTestClassWizardPage extends NewTypeWizardPage {
         }
         initContainerPage(getInitialContainerElement(selection, elem));
         initTypePage(elem);
+        // clear out super types
+        setSuperClass("", true);
+        setSuperInterfaces(Collections.<String>emptyList(), true);
         setModifiers(Flags.AccPublic, false);
         if (getTypeName().length() == 0) {
             String simpleServiceInterfaceName = getSimpleServiceInterfaceName();

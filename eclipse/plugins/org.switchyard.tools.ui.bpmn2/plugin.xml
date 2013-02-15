@@ -1,26 +1,136 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <?eclipse version="3.4"?>
 <plugin>
+   <!-- BPMN2 editor integration -->
    <extension
          point="org.eclipse.bpmn2.modeler.runtime">
 
 		<propertyTab
-			id="org.switchyard.tools.ui.bpmn2.switchYardServiceTask.tab"
-            runtimeId="org.jboss.runtime.jbpm5"
-			replaceTab="bpmn2.jbpm.task.tab org.eclipse.bpmn2.modeler.task.tab"
-			afterTab="org.eclipse.bpmn2.modeler.description.tab"
-			class="org.switchyard.tools.ui.bpmn2.SwitchYardServiceTaskPropertySection"
-			label="SwitchYard Service Task">
+        afterTab="org.eclipse.bpmn2.modeler.description.tab"
+        class="org.switchyard.tools.ui.bpmn2.editor.SwitchYardServiceTaskPropertySection"
+        features="ioSpecification dataInputAssociations dataOutputAssociations sourceRef"
+        id="org.switchyard.tools.ui.bpmn2.switchYardServiceTask.tab"
+        label="SwitchYard Service Task"
+        replaceTab="org.eclipse.bpmn2.modeler.serviceTask.tab org.eclipse.bpmn2.modeler.activity.io.tab org.jboss.runtime.jbpm5.activitiy.io.tab"
+        type="org.eclipse.bpmn2.ServiceTask">
 		</propertyTab>
 
       <customTask
             description="This task represents the invocation of a SwitchYard service."
-            featureContainer="org.switchyard.tools.ui.bpmn2.SwitchYardServiceTaskFeatureContainer"
+            featureContainer="org.switchyard.tools.ui.bpmn2.editor.SwitchYardServiceTaskFeatureContainer"
             id="org.switchyard.tools.ui.bpmn2.switchYardServiceTask"
             name="SwitchYard Service"
             icon="switchyard_task.png"
             propertyTabs="org.switchyard.tools.ui.bpmn2.switchYardServiceTask.tab"
-            category="Switchyard"
+            category="SwitchYard"
+            runtimeId="org.jboss.runtime.jbpm5"
+            type="ServiceTask">
+
+			<property
+         name="implementation"
+         value="##SwitchYard">
+			</property>
+			<property
+         name="icon"
+         value="org.switchyard.tools.ui.editor.SwitchYard.16">
+			</property>
+
+			<property name="ioSpecification">
+				<value>
+					<property name="dataInputs">
+						<value>
+							<property
+             description="The input to the service."
+             name="name"
+             value="Parameter"/>
+						</value>
+					</property>
+					<property name="dataInputs">
+						<value>
+							<property
+             description="The name of the fault event type to be invoked on the SwitchYard service."
+             name="name"
+             value="FaultSignalId"/>
+						</value>
+					</property>
+					<property name="dataInputs">
+						<value>
+							<property
+             description="The action to take when a fault occurs.  Acceptbable values are: abort, complete or &lt;unset&gt;."
+             name="name"
+             value="FaultWorkItemAction"/>
+						</value>
+					</property>
+
+					<property name="dataOutputs">
+						<value>
+							<property
+             description="The result of the service invocation."
+             name="name"
+             value="Result"/>
+						</value>
+					</property>
+					<property name="dataOutputs">
+						<value>
+							<property
+             description="The fault thrown by the service invocation."
+             name="name"
+             value="Fault"/>
+						</value>
+					</property>
+
+					<property name="inputSets">
+						<value>
+							<property name="dataInputRefs" ref="ioSpecification/dataInputs#0"/>
+							<property name="dataInputRefs" ref="ioSpecification/dataInputs#1"/>
+							<property name="dataInputRefs" ref="ioSpecification/dataInputs#2"/>
+						</value>
+					</property>
+
+					<property name="outputSets">
+						<value>
+							<property name="dataOutputRefs" ref="ioSpecification/dataOutputs#0"/>
+							<property name="dataOutputRefs" ref="ioSpecification/dataOutputs#1"/>
+						</value>
+					</property>
+				</value>
+			</property>
+
+			<property name="dataInputAssociations">
+				<value>
+					<property name="targetRef" ref="ioSpecification/dataInputs#0"/>
+				</value>
+			</property>
+			<property name="dataInputAssociations">
+				<value>
+					<property name="targetRef" ref="ioSpecification/dataInputs#1"/>
+				</value>
+			</property>
+			<property name="dataInputAssociations">
+				<value>
+					<property name="targetRef" ref="ioSpecification/dataInputs#2"/>
+				</value>
+			</property>
+      </customTask>
+
+      <!-- legacy custom Task -->
+		<propertyTab
+        afterTab="org.eclipse.bpmn2.modeler.description.tab"
+        class="org.switchyard.tools.ui.bpmn2.editor.SwitchYardCustomTaskPropertySection"
+        id="org.switchyard.tools.ui.bpmn2.switchYardCustomTask.tab"
+        label="SwitchYard Dynamic Service Task"
+        replaceTab="bpmn2.jbpm.task.tab org.eclipse.bpmn2.modeler.task.tab"
+        runtimeId="org.jboss.runtime.jbpm5">
+		</propertyTab>
+
+      <customTask
+            description="This task represents the invocation of a SwitchYard service."
+            featureContainer="org.switchyard.tools.ui.bpmn2.editor.SwitchYardCustomTaskFeatureContainer"
+            id="org.switchyard.tools.ui.bpmn2.switchYardCustomTask"
+            name="SwitchYard Dynamic Service Task"
+            icon="switchyard_task.png"
+            propertyTabs="org.switchyard.tools.ui.bpmn2.switchYardCustomTask.tab"
+            category="SwitchYard"
             runtimeId="org.jboss.runtime.jbpm5"
             type="Task">
 
@@ -54,6 +164,22 @@
 					<property name="dataInputs">
 						<value>
 							<property
+             description="The name of the variable used to store the input message to be passed to the SwitchYard servce.  It must match the &quot;ContentInputName&quot; property."
+             name="name"
+             value="ContentInputName"/>
+						</value>
+					</property>
+					<property name="dataInputs">
+						<value>
+							<property
+             description="The name of the variable used to store the output message from the SwitchYard servce.  It must match the &quot;ContentOutputName&quot; property."
+             name="name"
+             value="ContentOutputName"/>
+						</value>
+					</property>
+					<property name="dataInputs">
+						<value>
+							<property
              description="The name of the fault result to be invoked on the SwitchYard service."
              name="name"
              value="FaultResultName"/>
@@ -75,14 +201,6 @@
              value="FaultWorkItemAction"/>
 						</value>
 					</property>
-					<property name="dataInputs">
-						<value>
-							<property
-             description="This is used to store the input message to be passed to the SwitchYard servce.  It must match the &quot;MessageContentInName&quot; property."
-             name="name"
-             value="messageContentIn"/>
-						</value>
-					</property>
 
 					<property name="inputSets">
 						<value>
@@ -92,6 +210,7 @@
 							<property name="dataInputRefs" ref="ioSpecification/dataInputs#3"/>
 							<property name="dataInputRefs" ref="ioSpecification/dataInputs#4"/>
 							<property name="dataInputRefs" ref="ioSpecification/dataInputs#5"/>
+							<property name="dataInputRefs" ref="ioSpecification/dataInputs#6"/>
 						</value>
 					</property>
 					<property name="outputSets">
@@ -111,11 +230,39 @@
 			<property name="dataInputAssociations">
 				<value>
 					<property name="targetRef" ref="ioSpecification/dataInputs#2"/>
+					<property name="assignment">
+						<value>
+							<property name="to" type="FormalExpression">
+								<value>
+									<property name="body"/>
+								</value>
+							</property>
+							<property name="from" type="FormalExpression">
+								<value>
+									<property name="body" value="contentInput"/>
+								</value>
+							</property>
+						</value>
+					</property>
 				</value>
 			</property>
 			<property name="dataInputAssociations">
 				<value>
 					<property name="targetRef" ref="ioSpecification/dataInputs#3"/>
+					<property name="assignment">
+						<value>
+							<property name="to" type="FormalExpression">
+								<value>
+									<property name="body"/>
+								</value>
+							</property>
+							<property name="from" type="FormalExpression">
+								<value>
+									<property name="body" value="contentOutput"/>
+								</value>
+							</property>
+						</value>
+					</property>
 				</value>
 			</property>
 			<property name="dataInputAssociations">
@@ -128,8 +275,14 @@
 					<property name="targetRef" ref="ioSpecification/dataInputs#5"/>
 				</value>
 			</property>
+			<property name="dataInputAssociations">
+				<value>
+					<property name="targetRef" ref="ioSpecification/dataInputs#6"/>
+				</value>
+			</property>
       </customTask>
    </extension>
+   <!-- SwitchYard integration -->
    <extension
          point="org.eclipse.ui.views.properties.tabbed.propertyTabs">
 	    <propertyTabs contributorId="org.switchyard.tools.ui.editor.diagram.PropertyContributor">

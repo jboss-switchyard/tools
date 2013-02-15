@@ -19,7 +19,8 @@
 
    <requires>
       <import feature="org.switchyard.tools.feature" version="0.8.0.qualifier"/>
-      <import plugin="org.eclipse.bpmn2.modeler.ui" version="0.2.2" match="equivalent"/>
+      <import feature="org.eclipse.bpmn2.modeler.feature" version="0.2.4" match="equivalent"/>
+      <import feature="org.eclipse.bpmn2.modeler.jboss.runtime.feature" version="0.2.4" match="equivalent"/>
    </requires>
 
    <plugin
