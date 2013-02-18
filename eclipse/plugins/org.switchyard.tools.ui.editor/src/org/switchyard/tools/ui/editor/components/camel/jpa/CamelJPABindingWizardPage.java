@@ -40,8 +40,8 @@ public class CamelJPABindingWizardPage extends WizardPage {
      */
     public CamelJPABindingWizardPage(String pageName) {
         super(pageName);
-        setTitle("Specify Mail Binding Details");
-        setDescription("Specify pertinent details for your Mail Binding.");
+        setTitle("Specify JPA Binding Details");
+        setDescription("Specify pertinent details for your JPA Binding.");
     }
 
     /**
@@ -90,6 +90,7 @@ public class CamelJPABindingWizardPage extends WizardPage {
                 }
             });
             _producerComposite.createContents(parent, SWT.NONE);
+            _producerComposite.setTargetObject(_targetContainer);
             _producerComposite.setBinding(_binding);
 
             setControl(_producerComposite.getPanel());

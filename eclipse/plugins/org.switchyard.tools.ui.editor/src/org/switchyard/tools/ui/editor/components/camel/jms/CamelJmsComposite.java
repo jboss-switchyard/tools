@@ -93,7 +93,7 @@ public class CamelJmsComposite extends AbstractSYBindingComposite {
             if (_requestTimeOutText != null && this._binding.isSetRequestTimeout()
                     && this._binding.getRequestTimeout() > 0) {
                 _requestTimeOutText.setText(Integer.toString(this._binding.getRequestTimeout()));
-            } else {
+            } else  if (_requestTimeOutText != null) {
                 _requestTimeOutText.setText("");
             }
             if (_maxConcurrentConsumersText != null) {

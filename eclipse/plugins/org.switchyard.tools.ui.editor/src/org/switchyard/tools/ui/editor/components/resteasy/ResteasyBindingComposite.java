@@ -194,7 +194,7 @@ public class ResteasyBindingComposite extends AbstractSYBindingComposite {
             String addressUrl = _binding.getAddress();
             if (_mAddressURLText != null && !_mAddressURLText.isDisposed() && addressUrl != null && addressUrl.trim().length() > 0) {
                 _mAddressURLText.setText(addressUrl);
-            } else {
+            } else if (_mAddressURLText != null) {
                 _mAddressURLText.setText("");
             }
             if (_contextPathText != null && !_contextPathText.isDisposed()) {

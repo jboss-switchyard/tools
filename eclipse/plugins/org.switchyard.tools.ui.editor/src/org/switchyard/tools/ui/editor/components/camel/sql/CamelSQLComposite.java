@@ -78,9 +78,9 @@ public class CamelSQLComposite extends AbstractSYBindingComposite {
             } else {
                 _dataSourceRefText.setText("");
             }
-            if (this._binding.getPlaceholder() != null) {
+            if (this._binding.getPlaceholder() != null && _placeholderText != null) {
                 _placeholderText.setText(this._binding.getPlaceholder());
-            } else {
+            } else if (_placeholderText != null) {
                 _placeholderText.setText("");
             }
             _batchCheckbox.setSelection(this._binding.isBatch());

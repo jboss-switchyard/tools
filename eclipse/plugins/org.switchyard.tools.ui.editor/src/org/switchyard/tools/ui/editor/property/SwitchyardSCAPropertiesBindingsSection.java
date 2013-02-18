@@ -147,6 +147,10 @@ public class SwitchyardSCAPropertiesBindingsSection extends GFPropertySection im
                 factory.adapt(((AbstractSwitchyardComposite) composite).getPanel());
             }
             _composite = composite;
+            if (composite instanceof AbstractSYBindingComposite) {
+                AbstractSYBindingComposite bindingComposite = (AbstractSYBindingComposite) composite;
+                bindingComposite.setTargetObject(_binding.eContainer());
+            }
             composite.setBinding(_binding);
             _detailSection.setClient(((AbstractSwitchyardComposite) composite).getPanel());
             _detailSection.getClient().setVisible(true);

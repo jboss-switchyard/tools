@@ -15,18 +15,36 @@ package org.switchyard.tools.ui.editor.components.camel.jpa;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.eclipse.core.resources.IFile;
+import org.eclipse.core.resources.ResourcesPlugin;
+import org.eclipse.core.runtime.Path;
+import org.eclipse.emf.ecore.EObject;
+import org.eclipse.emf.ecore.resource.Resource;
+import org.eclipse.jdt.core.IJavaElement;
+import org.eclipse.jdt.core.IJavaProject;
+import org.eclipse.jdt.core.IType;
+import org.eclipse.jdt.core.JavaCore;
+import org.eclipse.jdt.core.JavaModelException;
+import org.eclipse.jdt.core.search.IJavaSearchScope;
+import org.eclipse.jdt.core.search.SearchEngine;
+import org.eclipse.jdt.ui.IJavaElementSearchConstants;
+import org.eclipse.jdt.ui.JavaUI;
 import org.eclipse.soa.sca.sca1_1.model.sca.Binding;
 import org.eclipse.swt.SWT;
+import org.eclipse.swt.events.SelectionAdapter;
+import org.eclipse.swt.events.SelectionEvent;
 import org.eclipse.swt.layout.FillLayout;
 import org.eclipse.swt.layout.GridData;
 import org.eclipse.swt.layout.GridLayout;
 import org.eclipse.swt.widgets.Button;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Control;
+import org.eclipse.swt.widgets.Display;
 import org.eclipse.swt.widgets.Group;
 import org.eclipse.swt.widgets.TabFolder;
 import org.eclipse.swt.widgets.TabItem;
 import org.eclipse.swt.widgets.Text;
+import org.eclipse.ui.dialogs.SelectionDialog;
 import org.switchyard.tools.models.switchyard1_0.camel.jpa.CamelJPABindingType;
 import org.switchyard.tools.models.switchyard1_0.camel.jpa.JpaFactory;
 import org.switchyard.tools.models.switchyard1_0.switchyard.ContextMapperType;
@@ -34,6 +52,7 @@ import org.switchyard.tools.models.switchyard1_0.switchyard.MessageComposerType;
 import org.switchyard.tools.models.switchyard1_0.switchyard.SwitchyardFactory;
 import org.switchyard.tools.ui.editor.diagram.binding.AbstractSYBindingComposite;
 import org.switchyard.tools.ui.editor.diagram.shared.ModelOperation;
+import org.switchyard.tools.ui.editor.model.merge.MergedModelUtil;
 
 /**
  * @author bfitzpat
@@ -46,8 +65,10 @@ public class CamelJPAConsumerComposite extends AbstractSYBindingComposite {
     private TabFolder _tabFolder;
     private List<String> _advancedPropsFilterList;
     private Text _entityClassNameText;
+    private Button _browseEntityClassButton;
     private Text _persistenceUnitText;
     private Text _transcationManagerText;
+    private Button _transactionManagerClassButton;
     private Button _deleteCheckbox;
     private Button _lockEntityCheckbox;
     private Text _maximumResultsText;
@@ -55,7 +76,9 @@ public class CamelJPAConsumerComposite extends AbstractSYBindingComposite {
     private Text _namedQueryText;
     private Text _nativeQueryText;
     private Text _resultClassText;
+    private Button _resultClassBrowseButton;
     private Button _transactedCheckbox;
+    private IJavaProject _project;
 
     @Override
     public Binding getBinding() {
@@ -111,6 +134,15 @@ public class CamelJPAConsumerComposite extends AbstractSYBindingComposite {
                 _transcationManagerText.setText(this._binding.getTransactionManager());
             } else {
                 _transcationManagerText.setText("");
+            }
+
+            final Resource resource = MergedModelUtil.getSwitchYard((EObject) getTargetObject()).eResource();
+            if (resource.getURI().isPlatformResource()) {
+                final IFile file = ResourcesPlugin.getWorkspace().getRoot()
+                        .getFile(new Path(resource.getURI().toPlatformString(true)));
+                if (file != null) {
+                    _project = JavaCore.create(file.getProject());
+                }
             }
 
             super.setTabsBinding(_binding);
@@ -171,26 +203,88 @@ public class CamelJPAConsumerComposite extends AbstractSYBindingComposite {
 
         Group jpaGroup = new Group(composite, SWT.NONE);
         jpaGroup.setLayoutData(new GridData(SWT.FILL, SWT.FILL, true, true));
-        jpaGroup.setLayout(new GridLayout(2, false));
+        jpaGroup.setLayout(new GridLayout(3, false));
         jpaGroup.setText("JPA Options");
 
         _entityClassNameText = createLabelAndText(jpaGroup, "Entity Class Name");
+
+        _browseEntityClassButton = new Button(jpaGroup, SWT.PUSH);
+        _browseEntityClassButton.setText("Browse...");
+        GridData btnGD = new GridData();
+        _browseEntityClassButton.setLayoutData(btnGD);
+        _browseEntityClassButton.addSelectionListener(new SelectionAdapter() {
+            @Override
+            public void widgetSelected(SelectionEvent event) {
+                String newClass = handleBrowse(_entityClassNameText.getText());
+                if (newClass != null) {
+                    _entityClassNameText.setText(newClass);
+                    setHasChanged(true);
+                    handleModify(_entityClassNameText);
+                    fireChangedEvent(_entityClassNameText);
+                }
+            }
+        });
+
         _persistenceUnitText = createLabelAndText(jpaGroup, "Persistence Unit");
+        addGridData(_persistenceUnitText, 2, GridData.FILL_HORIZONTAL);
+        
         _transcationManagerText = createLabelAndText(jpaGroup, "Transaction Manager");
+
+        _transactionManagerClassButton = new Button(jpaGroup, SWT.PUSH);
+        _transactionManagerClassButton.setText("Browse...");
+        GridData btnTMGD = new GridData();
+        _transactionManagerClassButton.setLayoutData(btnTMGD);
+        _transactionManagerClassButton.addSelectionListener(new SelectionAdapter() {
+            @Override
+            public void widgetSelected(SelectionEvent event) {
+                String newClass = handleBrowse(_transcationManagerText.getText());
+                if (newClass != null) {
+                    _transcationManagerText.setText(newClass);
+                    setHasChanged(true);
+                    handleModify(_transcationManagerText);
+                    fireChangedEvent(_transcationManagerText);
+                }
+            }
+        });
 
         Group consumeGroup = new Group(composite, SWT.NONE);
         consumeGroup.setLayoutData(new GridData(SWT.FILL, SWT.FILL, true, true));
-        consumeGroup.setLayout(new GridLayout(2, false));
+        consumeGroup.setLayout(new GridLayout(3, false));
         consumeGroup.setText("Consumer Options");
 
         _deleteCheckbox = createCheckbox(consumeGroup, "Delete");
+        addGridData(_deleteCheckbox, 3, GridData.FILL_HORIZONTAL);
         _lockEntityCheckbox = createCheckbox(consumeGroup, "Lock Entity");
+        addGridData(_lockEntityCheckbox, 3, GridData.FILL_HORIZONTAL);
         _maximumResultsText = createLabelAndText(consumeGroup, "Maximum Results");
+        addGridData(_maximumResultsText, 2, GridData.FILL_HORIZONTAL);
         _queryText = createLabelAndText(consumeGroup, "Query");
+        addGridData(_queryText, 2, GridData.FILL_HORIZONTAL);
         _namedQueryText = createLabelAndText(consumeGroup, "Named Query");
+        addGridData(_namedQueryText, 2, GridData.FILL_HORIZONTAL);
         _nativeQueryText = createLabelAndText(consumeGroup, "Native Query");
+        addGridData(_nativeQueryText, 2, GridData.FILL_HORIZONTAL);
         _resultClassText = createLabelAndText(consumeGroup, "Result Class");
+
+        _resultClassBrowseButton = new Button(consumeGroup, SWT.PUSH);
+        _resultClassBrowseButton.setText("Browse...");
+        GridData btnECGD = new GridData();
+        _resultClassBrowseButton.setLayoutData(btnECGD);
+        _resultClassBrowseButton.addSelectionListener(new SelectionAdapter() {
+            @Override
+            public void widgetSelected(SelectionEvent event) {
+                String newClass = handleBrowse(_resultClassText.getText());
+                if (newClass != null) {
+                    _resultClassText.setText(newClass);
+                    setHasChanged(true);
+                    handleModify(_resultClassText);
+                    fireChangedEvent(_resultClassText);
+                }
+            }
+        });
+
         _transactedCheckbox = createCheckbox(consumeGroup, "Transacted");
+        addGridData(_transactedCheckbox, 3, GridData.FILL_HORIZONTAL);
 
         return composite;
     }
@@ -308,4 +402,25 @@ public class CamelJPAConsumerComposite extends AbstractSYBindingComposite {
         return SwitchyardFactory.eINSTANCE.createMessageComposerType();
     }
 
+    private String handleBrowse(String filter) {
+        IJavaSearchScope scope = null;
+        if (_project == null) {
+            scope = SearchEngine.createWorkspaceScope();
+        } else {
+            scope = SearchEngine.createJavaSearchScope(new IJavaElement[] {_project });
+        }
+        try {
+            SelectionDialog dialog = JavaUI.createTypeDialog(Display.getCurrent().getActiveShell(), null, scope,
+                    IJavaElementSearchConstants.CONSIDER_CLASSES, false, filter.isEmpty() ? "* " : filter);
+            if (dialog.open() == SelectionDialog.OK) {
+                Object[] result = dialog.getResult();
+                if (result.length > 0 && result[0] instanceof IType) {
+                    return ((IType) result[0]).getFullyQualifiedName();
+                }
+            }
+        } catch (JavaModelException e) {
+            e.printStackTrace();
+        }
+        return null;
+    }
 }

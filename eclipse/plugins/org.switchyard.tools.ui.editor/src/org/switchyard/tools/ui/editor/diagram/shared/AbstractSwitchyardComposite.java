@@ -671,4 +671,10 @@ public abstract class AbstractSwitchyardComposite implements FocusListener, KeyL
         ops.add(new BasicEObjectOperation(eObject, featureId, value));
         wrapOperation(eObject, ops);
     }
+
+    protected void addGridData(Control control, int columns, int style) {
+        GridData controlGD = new GridData(style);
+        controlGD.horizontalSpan = columns;
+        control.setLayoutData(controlGD);
+    }
 }

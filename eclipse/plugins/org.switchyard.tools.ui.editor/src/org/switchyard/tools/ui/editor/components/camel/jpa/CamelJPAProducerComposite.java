@@ -15,18 +15,36 @@ package org.switchyard.tools.ui.editor.components.camel.jpa;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.eclipse.core.resources.IFile;
+import org.eclipse.core.resources.ResourcesPlugin;
+import org.eclipse.core.runtime.Path;
+import org.eclipse.emf.ecore.EObject;
+import org.eclipse.emf.ecore.resource.Resource;
+import org.eclipse.jdt.core.IJavaElement;
+import org.eclipse.jdt.core.IJavaProject;
+import org.eclipse.jdt.core.IType;
+import org.eclipse.jdt.core.JavaCore;
+import org.eclipse.jdt.core.JavaModelException;
+import org.eclipse.jdt.core.search.IJavaSearchScope;
+import org.eclipse.jdt.core.search.SearchEngine;
+import org.eclipse.jdt.ui.IJavaElementSearchConstants;
+import org.eclipse.jdt.ui.JavaUI;
 import org.eclipse.soa.sca.sca1_1.model.sca.Binding;
 import org.eclipse.swt.SWT;
+import org.eclipse.swt.events.SelectionAdapter;
+import org.eclipse.swt.events.SelectionEvent;
 import org.eclipse.swt.layout.FillLayout;
 import org.eclipse.swt.layout.GridData;
 import org.eclipse.swt.layout.GridLayout;
 import org.eclipse.swt.widgets.Button;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Control;
+import org.eclipse.swt.widgets.Display;
 import org.eclipse.swt.widgets.Group;
 import org.eclipse.swt.widgets.TabFolder;
 import org.eclipse.swt.widgets.TabItem;
 import org.eclipse.swt.widgets.Text;
+import org.eclipse.ui.dialogs.SelectionDialog;
 import org.switchyard.tools.models.switchyard1_0.camel.jpa.CamelJPABindingType;
 import org.switchyard.tools.models.switchyard1_0.camel.jpa.JpaFactory;
 import org.switchyard.tools.models.switchyard1_0.switchyard.ContextMapperType;
@@ -34,6 +52,7 @@ import org.switchyard.tools.models.switchyard1_0.switchyard.MessageComposerType;
 import org.switchyard.tools.models.switchyard1_0.switchyard.SwitchyardFactory;
 import org.switchyard.tools.ui.editor.diagram.binding.AbstractSYBindingComposite;
 import org.switchyard.tools.ui.editor.diagram.shared.ModelOperation;
+import org.switchyard.tools.ui.editor.model.merge.MergedModelUtil;
 
 /**
  * @author bfitzpat
@@ -46,10 +65,13 @@ public class CamelJPAProducerComposite extends AbstractSYBindingComposite {
     private TabFolder _tabFolder;
     private List<String> _advancedPropsFilterList;
     private Text _entityClassNameText;
+    private Button _browseEntityClassButton;
     private Text _persistenceUnitText;
     private Text _transcationManagerText;
+    private Button _transactionManagerClassButton;
     private Button _flushOnSendCheckbox;
     private Button _usePersistCheckbox;
+    private IJavaProject _project;
 
     @Override
     public Binding getBinding() {
@@ -79,6 +101,14 @@ public class CamelJPAProducerComposite extends AbstractSYBindingComposite {
                 _transcationManagerText.setText(this._binding.getTransactionManager());
             } else {
                 _transcationManagerText.setText("");
+            }
+            final Resource resource = MergedModelUtil.getSwitchYard((EObject) getTargetObject()).eResource();
+            if (resource.getURI().isPlatformResource()) {
+                final IFile file = ResourcesPlugin.getWorkspace().getRoot()
+                        .getFile(new Path(resource.getURI().toPlatformString(true)));
+                if (file != null) {
+                    _project = JavaCore.create(file.getProject());
+                }
             }
             super.setTabsBinding(_binding);
             setInUpdate(false);
@@ -127,13 +157,49 @@ public class CamelJPAProducerComposite extends AbstractSYBindingComposite {
 
         Group jpaGroup = new Group(composite, SWT.NONE);
         jpaGroup.setLayoutData(new GridData(SWT.FILL, SWT.FILL, true, true));
-        jpaGroup.setLayout(new GridLayout(2, false));
+        jpaGroup.setLayout(new GridLayout(3, false));
         jpaGroup.setText("JPA Options");
 
         _entityClassNameText = createLabelAndText(jpaGroup, "Entity Class Name");
+        _browseEntityClassButton = new Button(jpaGroup, SWT.PUSH);
+        _browseEntityClassButton.setText("Browse...");
+        GridData btnGD = new GridData();
+        _browseEntityClassButton.setLayoutData(btnGD);
+        _browseEntityClassButton.addSelectionListener(new SelectionAdapter() {
+            @Override
+            public void widgetSelected(SelectionEvent event) {
+                String newClass = handleBrowse(_entityClassNameText.getText());
+                if (newClass != null) {
+                    _entityClassNameText.setText(newClass);
+                    setHasChanged(true);
+                    handleModify(_entityClassNameText);
+                    fireChangedEvent(_entityClassNameText);
+                }
+            }
+        });
+
         _persistenceUnitText = createLabelAndText(jpaGroup, "Persistence Unit");
+        addGridData(_persistenceUnitText, 2, GridData.FILL_HORIZONTAL);
+        
         _transcationManagerText = createLabelAndText(jpaGroup, "Transaction Manager");
 
+        _transactionManagerClassButton = new Button(jpaGroup, SWT.PUSH);
+        _transactionManagerClassButton.setText("Browse...");
+        GridData btnTMGD = new GridData();
+        _transactionManagerClassButton.setLayoutData(btnTMGD);
+        _transactionManagerClassButton.addSelectionListener(new SelectionAdapter() {
+            @Override
+            public void widgetSelected(SelectionEvent event) {
+                String newClass = handleBrowse(_transcationManagerText.getText());
+                if (newClass != null) {
+                    _transcationManagerText.setText(newClass);
+                    setHasChanged(true);
+                    handleModify(_transcationManagerText);
+                    fireChangedEvent(_transcationManagerText);
+                }
+            }
+        });
+        
         Group producerGroup = new Group(composite, SWT.NONE);
         producerGroup.setLayoutData(new GridData(SWT.FILL, SWT.FILL, true, true));
         producerGroup.setLayout(new GridLayout(2, false));
@@ -224,4 +290,30 @@ public class CamelJPAProducerComposite extends AbstractSYBindingComposite {
         return SwitchyardFactory.eINSTANCE.createMessageComposerType();
     }
 
+    private String handleBrowse(String filter) {
+        IJavaSearchScope scope = null;
+        if (_project == null) {
+            scope = SearchEngine.createWorkspaceScope();
+        } else {
+            scope = SearchEngine.createJavaSearchScope(new IJavaElement[] {_project });
+        }
+        try {
+            SelectionDialog dialog = JavaUI.createTypeDialog(Display.getCurrent().getActiveShell(), null, scope,
+                    IJavaElementSearchConstants.CONSIDER_CLASSES, false, filter.isEmpty() ? "* " : filter);
+            if (dialog.open() == SelectionDialog.OK) {
+                Object[] result = dialog.getResult();
+                if (result.length > 0 && result[0] instanceof IType) {
+                    return ((IType) result[0]).getFullyQualifiedName();
+                }
+            }
+        } catch (JavaModelException e) {
+            e.printStackTrace();
+        }
+        return null;
+    }
+
+    @Override
+    public void setTargetObject(Object target) {
+        super.setTargetObject(target);
+    }
 }
