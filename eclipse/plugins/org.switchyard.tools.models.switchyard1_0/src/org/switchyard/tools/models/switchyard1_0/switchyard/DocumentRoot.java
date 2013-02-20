@@ -46,6 +46,10 @@ import org.eclipse.emf.ecore.util.FeatureMap;
  *   <li>{@link org.switchyard.tools.models.switchyard1_0.switchyard.DocumentRoot#getXpathOperationSelectorSwitchyard <em>Xpath Operation Selector Switchyard</em>}</li>
  *   <li>{@link org.switchyard.tools.models.switchyard1_0.switchyard.DocumentRoot#getStaticOperationSelectorSwitchyard <em>Static Operation Selector Switchyard</em>}</li>
  *   <li>{@link org.switchyard.tools.models.switchyard1_0.switchyard.DocumentRoot#getSecurity <em>Security</em>}</li>
+ *   <li>{@link org.switchyard.tools.models.switchyard1_0.switchyard.DocumentRoot#getTarget <em>Target</em>}</li>
+ *   <li>{@link org.switchyard.tools.models.switchyard1_0.switchyard.DocumentRoot#getTargetNamespace <em>Target Namespace</em>}</li>
+ *   <li>{@link org.switchyard.tools.models.switchyard1_0.switchyard.DocumentRoot#isClustered <em>Clustered</em>}</li>
+ *   <li>{@link org.switchyard.tools.models.switchyard1_0.switchyard.DocumentRoot#getLoadBalance <em>Load Balance</em>}</li>
  * </ul>
  * </p>
  *
@@ -683,5 +687,113 @@ public interface DocumentRoot extends EObject {
      * @generated
      */
     void setSecurity(SecurityType value);
+
+                /**
+     * Returns the value of the '<em><b>Target</b></em>' attribute.
+     * <!-- begin-user-doc -->
+     * <p>
+     * If the meaning of the '<em>Target</em>' attribute isn't clear,
+     * there really should be more of a description here...
+     * </p>
+     * <!-- end-user-doc -->
+     * @return the value of the '<em>Target</em>' attribute.
+     * @see #setTarget(String)
+     * @see org.switchyard.tools.models.switchyard1_0.switchyard.SwitchyardPackage#getDocumentRoot_Target()
+     * @model dataType="org.eclipse.emf.ecore.xml.type.String"
+     *        extendedMetaData="kind='attribute' name='target' namespace='##targetNamespace'"
+     * @generated
+     */
+    String getTarget();
+
+                /**
+     * Sets the value of the '{@link org.switchyard.tools.models.switchyard1_0.switchyard.DocumentRoot#getTarget <em>Target</em>}' attribute.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @param value the new value of the '<em>Target</em>' attribute.
+     * @see #getTarget()
+     * @generated
+     */
+    void setTarget(String value);
+
+                /**
+     * Returns the value of the '<em><b>Target Namespace</b></em>' attribute.
+     * <!-- begin-user-doc -->
+     * <p>
+     * If the meaning of the '<em>Target Namespace</em>' attribute isn't clear,
+     * there really should be more of a description here...
+     * </p>
+     * <!-- end-user-doc -->
+     * @return the value of the '<em>Target Namespace</em>' attribute.
+     * @see #setTargetNamespace(String)
+     * @see org.switchyard.tools.models.switchyard1_0.switchyard.SwitchyardPackage#getDocumentRoot_TargetNamespace()
+     * @model dataType="org.eclipse.emf.ecore.xml.type.String"
+     *        extendedMetaData="kind='attribute' name='targetNamespace' namespace='##targetNamespace'"
+     * @generated
+     */
+    String getTargetNamespace();
+
+                /**
+     * Sets the value of the '{@link org.switchyard.tools.models.switchyard1_0.switchyard.DocumentRoot#getTargetNamespace <em>Target Namespace</em>}' attribute.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @param value the new value of the '<em>Target Namespace</em>' attribute.
+     * @see #getTargetNamespace()
+     * @generated
+     */
+    void setTargetNamespace(String value);
+
+                /**
+     * Returns the value of the '<em><b>Clustered</b></em>' attribute.
+     * <!-- begin-user-doc -->
+     * <p>
+     * If the meaning of the '<em>Clustered</em>' attribute isn't clear,
+     * there really should be more of a description here...
+     * </p>
+     * <!-- end-user-doc -->
+     * @return the value of the '<em>Clustered</em>' attribute.
+     * @see #setClustered(boolean)
+     * @see org.switchyard.tools.models.switchyard1_0.switchyard.SwitchyardPackage#getDocumentRoot_Clustered()
+     * @model dataType="org.eclipse.emf.ecore.xml.type.Boolean"
+     *        extendedMetaData="kind='attribute' name='clustered' namespace='##targetNamespace'"
+     * @generated
+     */
+    boolean isClustered();
+
+                /**
+     * Sets the value of the '{@link org.switchyard.tools.models.switchyard1_0.switchyard.DocumentRoot#isClustered <em>Clustered</em>}' attribute.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @param value the new value of the '<em>Clustered</em>' attribute.
+     * @see #isClustered()
+     * @generated
+     */
+    void setClustered(boolean value);
+
+                /**
+     * Returns the value of the '<em><b>Load Balance</b></em>' attribute.
+     * <!-- begin-user-doc -->
+     * <p>
+     * If the meaning of the '<em>Load Balance</em>' attribute isn't clear,
+     * there really should be more of a description here...
+     * </p>
+     * <!-- end-user-doc -->
+     * @return the value of the '<em>Load Balance</em>' attribute.
+     * @see #setLoadBalance(String)
+     * @see org.switchyard.tools.models.switchyard1_0.switchyard.SwitchyardPackage#getDocumentRoot_LoadBalance()
+     * @model dataType="org.eclipse.emf.ecore.xml.type.String"
+     *        extendedMetaData="kind='attribute' name='loadBalance' namespace='##targetNamespace'"
+     * @generated
+     */
+    String getLoadBalance();
+
+                /**
+     * Sets the value of the '{@link org.switchyard.tools.models.switchyard1_0.switchyard.DocumentRoot#getLoadBalance <em>Load Balance</em>}' attribute.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @param value the new value of the '<em>Load Balance</em>' attribute.
+     * @see #getLoadBalance()
+     * @generated
+     */
+    void setLoadBalance(String value);
 
 } // DocumentRoot

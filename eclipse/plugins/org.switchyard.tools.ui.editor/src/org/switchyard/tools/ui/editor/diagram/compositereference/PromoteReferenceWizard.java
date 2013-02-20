@@ -93,10 +93,10 @@ public class PromoteReferenceWizard extends Wizard {
         return canFinish;
     }
 
-    /**
-     * @return true/false if remoted checkbox is clicked
-     */
-    public boolean isRemoted() {
-        return _page.isRemoted();
-    }
+//    /**
+//     * @return true/false if remoted checkbox is clicked
+//     */
+//    public boolean isRemoted() {
+//        return _page.isRemoted();
+//    }
 }

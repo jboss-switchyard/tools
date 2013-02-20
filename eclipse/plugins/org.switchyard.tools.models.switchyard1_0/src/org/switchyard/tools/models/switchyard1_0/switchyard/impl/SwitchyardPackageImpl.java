@@ -56,8 +56,6 @@ import org.switchyard.tools.models.switchyard1_0.http.HttpPackage;
 import org.switchyard.tools.models.switchyard1_0.http.impl.HttpPackageImpl;
 import org.switchyard.tools.models.switchyard1_0.jca.JcaPackage;
 import org.switchyard.tools.models.switchyard1_0.jca.impl.JcaPackageImpl;
-import org.switchyard.tools.models.switchyard1_0.remote.RemotePackage;
-import org.switchyard.tools.models.switchyard1_0.remote.impl.RemotePackageImpl;
 import org.switchyard.tools.models.switchyard1_0.resteasy.ResteasyPackage;
 import org.switchyard.tools.models.switchyard1_0.resteasy.impl.ResteasyPackageImpl;
 import org.switchyard.tools.models.switchyard1_0.rules.RulesPackage;
@@ -337,7 +335,6 @@ public class SwitchyardPackageImpl extends EPackageImpl implements SwitchyardPac
         JcaPackageImpl theJcaPackage = (JcaPackageImpl)(EPackage.Registry.INSTANCE.getEPackage(JcaPackage.eNS_URI) instanceof JcaPackageImpl ? EPackage.Registry.INSTANCE.getEPackage(JcaPackage.eNS_URI) : JcaPackage.eINSTANCE);
         ResteasyPackageImpl theResteasyPackage = (ResteasyPackageImpl)(EPackage.Registry.INSTANCE.getEPackage(ResteasyPackage.eNS_URI) instanceof ResteasyPackageImpl ? EPackage.Registry.INSTANCE.getEPackage(ResteasyPackage.eNS_URI) : ResteasyPackage.eINSTANCE);
         HttpPackageImpl theHttpPackage = (HttpPackageImpl)(EPackage.Registry.INSTANCE.getEPackage(HttpPackage.eNS_URI) instanceof HttpPackageImpl ? EPackage.Registry.INSTANCE.getEPackage(HttpPackage.eNS_URI) : HttpPackage.eINSTANCE);
-        RemotePackageImpl theRemotePackage = (RemotePackageImpl)(EPackage.Registry.INSTANCE.getEPackage(RemotePackage.eNS_URI) instanceof RemotePackageImpl ? EPackage.Registry.INSTANCE.getEPackage(RemotePackage.eNS_URI) : RemotePackage.eINSTANCE);
         CorePackageImpl theCorePackage = (CorePackageImpl)(EPackage.Registry.INSTANCE.getEPackage(CorePackage.eNS_URI) instanceof CorePackageImpl ? EPackage.Registry.INSTANCE.getEPackage(CorePackage.eNS_URI) : CorePackage.eINSTANCE);
         AmqpPackageImpl theAmqpPackage = (AmqpPackageImpl)(EPackage.Registry.INSTANCE.getEPackage(AmqpPackage.eNS_URI) instanceof AmqpPackageImpl ? EPackage.Registry.INSTANCE.getEPackage(AmqpPackage.eNS_URI) : AmqpPackage.eINSTANCE);
         AtomPackageImpl theAtomPackage = (AtomPackageImpl)(EPackage.Registry.INSTANCE.getEPackage(AtomPackage.eNS_URI) instanceof AtomPackageImpl ? EPackage.Registry.INSTANCE.getEPackage(AtomPackage.eNS_URI) : AtomPackage.eINSTANCE);
@@ -368,7 +365,6 @@ public class SwitchyardPackageImpl extends EPackageImpl implements SwitchyardPac
         theJcaPackage.createPackageContents();
         theResteasyPackage.createPackageContents();
         theHttpPackage.createPackageContents();
-        theRemotePackage.createPackageContents();
         theCorePackage.createPackageContents();
         theAmqpPackage.createPackageContents();
         theAtomPackage.createPackageContents();
@@ -396,7 +392,6 @@ public class SwitchyardPackageImpl extends EPackageImpl implements SwitchyardPac
         theJcaPackage.initializePackageContents();
         theResteasyPackage.initializePackageContents();
         theHttpPackage.initializePackageContents();
-        theRemotePackage.initializePackageContents();
         theCorePackage.initializePackageContents();
         theAmqpPackage.initializePackageContents();
         theAtomPackage.initializePackageContents();
@@ -761,6 +756,42 @@ public class SwitchyardPackageImpl extends EPackageImpl implements SwitchyardPac
      */
     public EReference getDocumentRoot_Security() {
         return (EReference)documentRootEClass.getEStructuralFeatures().get(25);
+    }
+
+                /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public EAttribute getDocumentRoot_Target() {
+        return (EAttribute)documentRootEClass.getEStructuralFeatures().get(26);
+    }
+
+                /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public EAttribute getDocumentRoot_TargetNamespace() {
+        return (EAttribute)documentRootEClass.getEStructuralFeatures().get(27);
+    }
+
+                /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public EAttribute getDocumentRoot_Clustered() {
+        return (EAttribute)documentRootEClass.getEStructuralFeatures().get(28);
+    }
+
+                /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public EAttribute getDocumentRoot_LoadBalance() {
+        return (EAttribute)documentRootEClass.getEStructuralFeatures().get(29);
     }
 
                 /**
@@ -1399,6 +1430,10 @@ public class SwitchyardPackageImpl extends EPackageImpl implements SwitchyardPac
         createEReference(documentRootEClass, DOCUMENT_ROOT__XPATH_OPERATION_SELECTOR_SWITCHYARD);
         createEReference(documentRootEClass, DOCUMENT_ROOT__STATIC_OPERATION_SELECTOR_SWITCHYARD);
         createEReference(documentRootEClass, DOCUMENT_ROOT__SECURITY);
+        createEAttribute(documentRootEClass, DOCUMENT_ROOT__TARGET);
+        createEAttribute(documentRootEClass, DOCUMENT_ROOT__TARGET_NAMESPACE);
+        createEAttribute(documentRootEClass, DOCUMENT_ROOT__CLUSTERED);
+        createEAttribute(documentRootEClass, DOCUMENT_ROOT__LOAD_BALANCE);
 
         domainTypeEClass = createEClass(DOMAIN_TYPE);
         createEReference(domainTypeEClass, DOMAIN_TYPE__TRANSFORMS);
@@ -1566,6 +1601,10 @@ public class SwitchyardPackageImpl extends EPackageImpl implements SwitchyardPac
         initEReference(getDocumentRoot_XpathOperationSelectorSwitchyard(), this.getXPathOperationSelectorType(), null, "xpathOperationSelectorSwitchyard", null, 0, -2, null, IS_TRANSIENT, IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, IS_DERIVED, IS_ORDERED);
         initEReference(getDocumentRoot_StaticOperationSelectorSwitchyard(), this.getStaticOperationSelectorType(), null, "staticOperationSelectorSwitchyard", null, 0, -2, null, IS_TRANSIENT, IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, IS_DERIVED, IS_ORDERED);
         initEReference(getDocumentRoot_Security(), this.getSecurityType(), null, "security", null, 0, -2, null, IS_TRANSIENT, IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, IS_DERIVED, IS_ORDERED);
+        initEAttribute(getDocumentRoot_Target(), theXMLTypePackage.getString(), "target", null, 0, 1, null, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+        initEAttribute(getDocumentRoot_TargetNamespace(), theXMLTypePackage.getString(), "targetNamespace", null, 0, 1, null, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+        initEAttribute(getDocumentRoot_Clustered(), theXMLTypePackage.getBoolean(), "clustered", null, 0, 1, null, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+        initEAttribute(getDocumentRoot_LoadBalance(), theXMLTypePackage.getString(), "loadBalance", null, 0, 1, null, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
         initEClass(domainTypeEClass, DomainType.class, "DomainType", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
         initEReference(getDomainType_Transforms(), this.getTransformsType(), null, "transforms", null, 0, 1, DomainType.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
@@ -1961,6 +2000,38 @@ public class SwitchyardPackageImpl extends EPackageImpl implements SwitchyardPac
            new String[] {
              "kind", "element",
              "name", "security",
+             "namespace", "##targetNamespace"
+           });		
+        addAnnotation
+          (getDocumentRoot_Target(), 
+           source, 
+           new String[] {
+             "kind", "attribute",
+             "name", "target",
+             "namespace", "##targetNamespace"
+           });		
+        addAnnotation
+          (getDocumentRoot_TargetNamespace(), 
+           source, 
+           new String[] {
+             "kind", "attribute",
+             "name", "targetNamespace",
+             "namespace", "##targetNamespace"
+           });		
+        addAnnotation
+          (getDocumentRoot_Clustered(), 
+           source, 
+           new String[] {
+             "kind", "attribute",
+             "name", "clustered",
+             "namespace", "##targetNamespace"
+           });		
+        addAnnotation
+          (getDocumentRoot_LoadBalance(), 
+           source, 
+           new String[] {
+             "kind", "attribute",
+             "name", "loadBalance",
              "namespace", "##targetNamespace"
            });		
         addAnnotation

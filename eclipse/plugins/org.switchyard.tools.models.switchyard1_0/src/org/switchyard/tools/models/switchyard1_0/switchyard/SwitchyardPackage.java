@@ -435,13 +435,49 @@ public interface SwitchyardPackage extends EPackage {
     int DOCUMENT_ROOT__SECURITY = 25;
 
                 /**
+     * The feature id for the '<em><b>Target</b></em>' attribute.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int DOCUMENT_ROOT__TARGET = 26;
+
+                /**
+     * The feature id for the '<em><b>Target Namespace</b></em>' attribute.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int DOCUMENT_ROOT__TARGET_NAMESPACE = 27;
+
+                /**
+     * The feature id for the '<em><b>Clustered</b></em>' attribute.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int DOCUMENT_ROOT__CLUSTERED = 28;
+
+                /**
+     * The feature id for the '<em><b>Load Balance</b></em>' attribute.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int DOCUMENT_ROOT__LOAD_BALANCE = 29;
+
+                /**
      * The number of structural features of the '<em>Document Root</em>' class.
      * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
      * @generated
      * @ordered
      */
-	int DOCUMENT_ROOT_FEATURE_COUNT = 26;
+	int DOCUMENT_ROOT_FEATURE_COUNT = 30;
 
 	/**
      * The meta object id for the '{@link org.switchyard.tools.models.switchyard1_0.switchyard.impl.DomainTypeImpl <em>Domain Type</em>}' class.
@@ -1853,6 +1889,50 @@ public interface SwitchyardPackage extends EPackage {
     EReference getDocumentRoot_Security();
 
                 /**
+     * Returns the meta object for the attribute '{@link org.switchyard.tools.models.switchyard1_0.switchyard.DocumentRoot#getTarget <em>Target</em>}'.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @return the meta object for the attribute '<em>Target</em>'.
+     * @see org.switchyard.tools.models.switchyard1_0.switchyard.DocumentRoot#getTarget()
+     * @see #getDocumentRoot()
+     * @generated
+     */
+    EAttribute getDocumentRoot_Target();
+
+                /**
+     * Returns the meta object for the attribute '{@link org.switchyard.tools.models.switchyard1_0.switchyard.DocumentRoot#getTargetNamespace <em>Target Namespace</em>}'.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @return the meta object for the attribute '<em>Target Namespace</em>'.
+     * @see org.switchyard.tools.models.switchyard1_0.switchyard.DocumentRoot#getTargetNamespace()
+     * @see #getDocumentRoot()
+     * @generated
+     */
+    EAttribute getDocumentRoot_TargetNamespace();
+
+                /**
+     * Returns the meta object for the attribute '{@link org.switchyard.tools.models.switchyard1_0.switchyard.DocumentRoot#isClustered <em>Clustered</em>}'.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @return the meta object for the attribute '<em>Clustered</em>'.
+     * @see org.switchyard.tools.models.switchyard1_0.switchyard.DocumentRoot#isClustered()
+     * @see #getDocumentRoot()
+     * @generated
+     */
+    EAttribute getDocumentRoot_Clustered();
+
+                /**
+     * Returns the meta object for the attribute '{@link org.switchyard.tools.models.switchyard1_0.switchyard.DocumentRoot#getLoadBalance <em>Load Balance</em>}'.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @return the meta object for the attribute '<em>Load Balance</em>'.
+     * @see org.switchyard.tools.models.switchyard1_0.switchyard.DocumentRoot#getLoadBalance()
+     * @see #getDocumentRoot()
+     * @generated
+     */
+    EAttribute getDocumentRoot_LoadBalance();
+
+                /**
      * Returns the meta object for class '{@link org.switchyard.tools.models.switchyard1_0.switchyard.DomainType <em>Domain Type</em>}'.
      * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -2858,6 +2938,38 @@ public interface SwitchyardPackage extends EPackage {
          * @generated
          */
         EReference DOCUMENT_ROOT__SECURITY = eINSTANCE.getDocumentRoot_Security();
+
+                                /**
+         * The meta object literal for the '<em><b>Target</b></em>' attribute feature.
+         * <!-- begin-user-doc -->
+         * <!-- end-user-doc -->
+         * @generated
+         */
+        EAttribute DOCUMENT_ROOT__TARGET = eINSTANCE.getDocumentRoot_Target();
+
+                                /**
+         * The meta object literal for the '<em><b>Target Namespace</b></em>' attribute feature.
+         * <!-- begin-user-doc -->
+         * <!-- end-user-doc -->
+         * @generated
+         */
+        EAttribute DOCUMENT_ROOT__TARGET_NAMESPACE = eINSTANCE.getDocumentRoot_TargetNamespace();
+
+                                /**
+         * The meta object literal for the '<em><b>Clustered</b></em>' attribute feature.
+         * <!-- begin-user-doc -->
+         * <!-- end-user-doc -->
+         * @generated
+         */
+        EAttribute DOCUMENT_ROOT__CLUSTERED = eINSTANCE.getDocumentRoot_Clustered();
+
+                                /**
+         * The meta object literal for the '<em><b>Load Balance</b></em>' attribute feature.
+         * <!-- begin-user-doc -->
+         * <!-- end-user-doc -->
+         * @generated
+         */
+        EAttribute DOCUMENT_ROOT__LOAD_BALANCE = eINSTANCE.getDocumentRoot_LoadBalance();
 
                                 /**
          * The meta object literal for the '{@link org.switchyard.tools.models.switchyard1_0.switchyard.impl.DomainTypeImpl <em>Domain Type</em>}' class.

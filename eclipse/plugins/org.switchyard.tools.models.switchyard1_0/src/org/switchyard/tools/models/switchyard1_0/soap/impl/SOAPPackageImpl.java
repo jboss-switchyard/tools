@@ -72,8 +72,6 @@ import org.switchyard.tools.models.switchyard1_0.jca.JcaPackage;
 
 import org.switchyard.tools.models.switchyard1_0.jca.impl.JcaPackageImpl;
 
-import org.switchyard.tools.models.switchyard1_0.remote.RemotePackage;
-import org.switchyard.tools.models.switchyard1_0.remote.impl.RemotePackageImpl;
 import org.switchyard.tools.models.switchyard1_0.resteasy.ResteasyPackage;
 
 import org.switchyard.tools.models.switchyard1_0.resteasy.impl.ResteasyPackageImpl;
@@ -229,7 +227,6 @@ public class SOAPPackageImpl extends EPackageImpl implements SOAPPackage {
         JcaPackageImpl theJcaPackage = (JcaPackageImpl)(EPackage.Registry.INSTANCE.getEPackage(JcaPackage.eNS_URI) instanceof JcaPackageImpl ? EPackage.Registry.INSTANCE.getEPackage(JcaPackage.eNS_URI) : JcaPackage.eINSTANCE);
         ResteasyPackageImpl theResteasyPackage = (ResteasyPackageImpl)(EPackage.Registry.INSTANCE.getEPackage(ResteasyPackage.eNS_URI) instanceof ResteasyPackageImpl ? EPackage.Registry.INSTANCE.getEPackage(ResteasyPackage.eNS_URI) : ResteasyPackage.eINSTANCE);
         HttpPackageImpl theHttpPackage = (HttpPackageImpl)(EPackage.Registry.INSTANCE.getEPackage(HttpPackage.eNS_URI) instanceof HttpPackageImpl ? EPackage.Registry.INSTANCE.getEPackage(HttpPackage.eNS_URI) : HttpPackage.eINSTANCE);
-        RemotePackageImpl theRemotePackage = (RemotePackageImpl)(EPackage.Registry.INSTANCE.getEPackage(RemotePackage.eNS_URI) instanceof RemotePackageImpl ? EPackage.Registry.INSTANCE.getEPackage(RemotePackage.eNS_URI) : RemotePackage.eINSTANCE);
         CorePackageImpl theCorePackage = (CorePackageImpl)(EPackage.Registry.INSTANCE.getEPackage(CorePackage.eNS_URI) instanceof CorePackageImpl ? EPackage.Registry.INSTANCE.getEPackage(CorePackage.eNS_URI) : CorePackage.eINSTANCE);
         AmqpPackageImpl theAmqpPackage = (AmqpPackageImpl)(EPackage.Registry.INSTANCE.getEPackage(AmqpPackage.eNS_URI) instanceof AmqpPackageImpl ? EPackage.Registry.INSTANCE.getEPackage(AmqpPackage.eNS_URI) : AmqpPackage.eINSTANCE);
         AtomPackageImpl theAtomPackage = (AtomPackageImpl)(EPackage.Registry.INSTANCE.getEPackage(AtomPackage.eNS_URI) instanceof AtomPackageImpl ? EPackage.Registry.INSTANCE.getEPackage(AtomPackage.eNS_URI) : AtomPackage.eINSTANCE);
@@ -260,7 +257,6 @@ public class SOAPPackageImpl extends EPackageImpl implements SOAPPackage {
         theJcaPackage.createPackageContents();
         theResteasyPackage.createPackageContents();
         theHttpPackage.createPackageContents();
-        theRemotePackage.createPackageContents();
         theCorePackage.createPackageContents();
         theAmqpPackage.createPackageContents();
         theAtomPackage.createPackageContents();
@@ -288,7 +284,6 @@ public class SOAPPackageImpl extends EPackageImpl implements SOAPPackage {
         theJcaPackage.initializePackageContents();
         theResteasyPackage.initializePackageContents();
         theHttpPackage.initializePackageContents();
-        theRemotePackage.initializePackageContents();
         theCorePackage.initializePackageContents();
         theAmqpPackage.initializePackageContents();
         theAtomPackage.initializePackageContents();

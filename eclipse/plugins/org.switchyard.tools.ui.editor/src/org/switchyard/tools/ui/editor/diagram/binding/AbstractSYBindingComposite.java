@@ -135,6 +135,34 @@ public abstract class AbstractSYBindingComposite extends AbstractSwitchyardCompo
         });
     }
 
+    /**
+     * @param tabFolder folder to add tabs to
+     * @param composer Show composer tab
+     * @param advanced Show advanced tab
+     */
+    public void addTabs(final TabFolder tabFolder, boolean composer, boolean advanced) {
+        _tabFolder = tabFolder;
+        if (composer) {
+            createComposerTab(_tabFolder);
+        }
+        
+        if (advanced) {
+            createAdvancedTab(_tabFolder);
+        }
+
+        _tabFolder.addSelectionListener(new SelectionListener() {
+            @Override
+            public void widgetSelected(SelectionEvent e) {
+                _selectedTab = _tabFolder.getSelectionIndex();
+            }
+
+            @Override
+            public void widgetDefaultSelected(SelectionEvent e) {
+                widgetSelected(e);
+            }
+        });
+    }
+
     protected void resetSelectedTab() {
         if (_tabFolder != null) {
             _tabFolder.setSelection(getSelectedTabIndex());
@@ -370,38 +398,41 @@ public abstract class AbstractSYBindingComposite extends AbstractSwitchyardCompo
      * @return true/false if tab is valid or not
      */
     public boolean validateTabs() {
-        String cmClass = _mapperClassText.getText().trim();
-        boolean regexEnabled = true;
-        if (cmClass != null && cmClass.length() > 0) {
-            regexEnabled = cmClassSupportsRegEx(cmClass);
-        }
-        _includesText.setEnabled(regexEnabled);
-        _includesNSText.setEnabled(regexEnabled);
-        _excludesText.setEnabled(regexEnabled);
-        _excludesNSText.setEnabled(regexEnabled);
+        if (_mapperClassText != null && !_mapperClassText.isDisposed()) {
+            String cmClass = _mapperClassText.getText().trim();
+            boolean regexEnabled = true;
+            if (cmClass != null && cmClass.length() > 0) {
+                regexEnabled = cmClassSupportsRegEx(cmClass);
+            }
+            
+            _includesText.setEnabled(regexEnabled);
+            _includesNSText.setEnabled(regexEnabled);
+            _excludesText.setEnabled(regexEnabled);
+            _excludesNSText.setEnabled(regexEnabled);
 
-        String includesMsg = validateRegExField(_includesText);
-        if (includesMsg != null) {
-            setErrorMessage(includesMsg);
-            return false;
-        }
+            String includesMsg = validateRegExField(_includesText);
+            if (includesMsg != null) {
+                setErrorMessage(includesMsg);
+                return false;
+            }
 
-        String includesNSMsg = validateRegExField(_includesNSText);
-        if (includesNSMsg != null) {
-            setErrorMessage(includesNSMsg);
-            return false;
-        }
+            String includesNSMsg = validateRegExField(_includesNSText);
+            if (includesNSMsg != null) {
+                setErrorMessage(includesNSMsg);
+                return false;
+            }
 
-        String excludesMsg = validateRegExField(_excludesText);
-        if (excludesMsg != null) {
-            setErrorMessage(excludesMsg);
-            return false;
-        }
+            String excludesMsg = validateRegExField(_excludesText);
+            if (excludesMsg != null) {
+                setErrorMessage(excludesMsg);
+                return false;
+            }
 
-        String excludesNSMsg = validateRegExField(_excludesNSText);
-        if (excludesNSMsg != null) {
-            setErrorMessage(excludesNSMsg);
-            return false;
+            String excludesNSMsg = validateRegExField(_excludesNSText);
+            if (excludesNSMsg != null) {
+                setErrorMessage(excludesNSMsg);
+                return false;
+            }
         }
 
         return (getErrorMessage() == null);

@@ -54,10 +54,10 @@ public class PromoteServiceWizardPage extends NewContractWizardPage {
     private IResource _targetResource;
     private IResource _sourceResource;
     private Button _createTransformersCheck;
-    private Button _isRemotedCheck;
+//    private Button _isRemotedCheck;
     private NewTransformWizard _transformWizard;
     private boolean _creatingTransformers;
-    private boolean _isRemoted = false;
+//    private boolean _isRemoted = false;
 
     /**
      * Create a new PromoteServiceWizardPage.
@@ -87,12 +87,12 @@ public class PromoteServiceWizardPage extends NewContractWizardPage {
         return Collections.emptyList();
     }
     
-    /**
-     * @return true/false if remoted checkbox is clicked
-     */
-    public boolean isRemoted() {
-        return _isRemoted;
-    }
+//    /**
+//     * @return true/false if remoted checkbox is clicked
+//     */
+//    public boolean isRemoted() {
+//        return _isRemoted;
+//    }
 
     @Override
     protected void createAdditionalControls(Composite content, int nColumns) {
@@ -113,16 +113,16 @@ public class PromoteServiceWizardPage extends NewContractWizardPage {
         if (nColumns > 1) {
             new Label(content, SWT.NONE);
         }
-        _isRemotedCheck = new Button(content, SWT.CHECK);
-        _isRemotedCheck.setText("Enable remote channel");
-        _isRemotedCheck.setLayoutData(new GridData(SWT.FILL, SWT.CENTER, true, false, nColumns - 1, 1));
-        _isRemotedCheck.setSelection(false);
-        _isRemotedCheck.addSelectionListener(new SelectionAdapter() {
-            @Override
-            public void widgetSelected(SelectionEvent event) {
-                _isRemoted = _isRemotedCheck.getSelection();
-            }
-        });
+//        _isRemotedCheck = new Button(content, SWT.CHECK);
+//        _isRemotedCheck.setText("Enable remote channel");
+//        _isRemotedCheck.setLayoutData(new GridData(SWT.FILL, SWT.CENTER, true, false, nColumns - 1, 1));
+//        _isRemotedCheck.setSelection(false);
+//        _isRemotedCheck.addSelectionListener(new SelectionAdapter() {
+//            @Override
+//            public void widgetSelected(SelectionEvent event) {
+//                _isRemoted = _isRemotedCheck.getSelection();
+//            }
+//        });
 
         _transformWizard.addPages();
     }

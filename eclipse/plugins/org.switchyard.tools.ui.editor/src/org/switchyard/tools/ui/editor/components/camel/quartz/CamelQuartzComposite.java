@@ -120,7 +120,9 @@ public class CamelQuartzComposite extends AbstractSYBindingComposite {
     @Override
     public void setTargetObject(Object target) {
         super.setTargetObject(target);
-        _opSelectorComposite.setTargetObject((EObject) target);
+        if (_opSelectorComposite != null && !_opSelectorComposite.isDisposed()) {
+            _opSelectorComposite.setTargetObject((EObject) target);
+        }
     }
 
     @Override

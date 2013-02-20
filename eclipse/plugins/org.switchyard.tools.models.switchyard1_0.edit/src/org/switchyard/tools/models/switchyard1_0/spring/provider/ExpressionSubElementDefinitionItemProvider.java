@@ -60,7 +60,6 @@ import org.switchyard.tools.models.switchyard1_0.hornetq.HornetQFactory;
 import org.switchyard.tools.models.switchyard1_0.http.HttpFactory;
 import org.switchyard.tools.models.switchyard1_0.jca.JcaFactory;
 
-import org.switchyard.tools.models.switchyard1_0.remote.RemoteFactory;
 import org.switchyard.tools.models.switchyard1_0.resteasy.ResteasyFactory;
 
 import org.switchyard.tools.models.switchyard1_0.rules.RulesFactory;
@@ -1749,11 +1748,6 @@ public class ExpressionSubElementDefinitionItemProvider
             (createChildParameter
                 (SpringPackage.eINSTANCE.getExpressionSubElementDefinition_Property(),
                  HttpFactory.eINSTANCE.createHttpMessageComposerType()));
-
-        newChildDescriptors.add
-            (createChildParameter
-                (SpringPackage.eINSTANCE.getExpressionSubElementDefinition_Property(),
-                 RemoteFactory.eINSTANCE.createRemoteBindingType()));
 
         newChildDescriptors.add
             (createChildParameter

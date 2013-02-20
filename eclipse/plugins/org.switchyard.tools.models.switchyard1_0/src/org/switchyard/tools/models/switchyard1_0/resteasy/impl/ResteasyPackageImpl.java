@@ -67,8 +67,6 @@ import org.switchyard.tools.models.switchyard1_0.jca.JcaPackage;
 
 import org.switchyard.tools.models.switchyard1_0.jca.impl.JcaPackageImpl;
 
-import org.switchyard.tools.models.switchyard1_0.remote.RemotePackage;
-import org.switchyard.tools.models.switchyard1_0.remote.impl.RemotePackageImpl;
 import org.switchyard.tools.models.switchyard1_0.resteasy.DocumentRoot;
 import org.switchyard.tools.models.switchyard1_0.resteasy.RESTBindingType;
 import org.switchyard.tools.models.switchyard1_0.resteasy.RESTContextMapperType;
@@ -199,7 +197,6 @@ public class ResteasyPackageImpl extends EPackageImpl implements ResteasyPackage
         SpringPackageImpl theSpringPackage = (SpringPackageImpl)(EPackage.Registry.INSTANCE.getEPackage(SpringPackage.eNS_URI) instanceof SpringPackageImpl ? EPackage.Registry.INSTANCE.getEPackage(SpringPackage.eNS_URI) : SpringPackage.eINSTANCE);
         JcaPackageImpl theJcaPackage = (JcaPackageImpl)(EPackage.Registry.INSTANCE.getEPackage(JcaPackage.eNS_URI) instanceof JcaPackageImpl ? EPackage.Registry.INSTANCE.getEPackage(JcaPackage.eNS_URI) : JcaPackage.eINSTANCE);
         HttpPackageImpl theHttpPackage = (HttpPackageImpl)(EPackage.Registry.INSTANCE.getEPackage(HttpPackage.eNS_URI) instanceof HttpPackageImpl ? EPackage.Registry.INSTANCE.getEPackage(HttpPackage.eNS_URI) : HttpPackage.eINSTANCE);
-        RemotePackageImpl theRemotePackage = (RemotePackageImpl)(EPackage.Registry.INSTANCE.getEPackage(RemotePackage.eNS_URI) instanceof RemotePackageImpl ? EPackage.Registry.INSTANCE.getEPackage(RemotePackage.eNS_URI) : RemotePackage.eINSTANCE);
         CorePackageImpl theCorePackage = (CorePackageImpl)(EPackage.Registry.INSTANCE.getEPackage(CorePackage.eNS_URI) instanceof CorePackageImpl ? EPackage.Registry.INSTANCE.getEPackage(CorePackage.eNS_URI) : CorePackage.eINSTANCE);
         AmqpPackageImpl theAmqpPackage = (AmqpPackageImpl)(EPackage.Registry.INSTANCE.getEPackage(AmqpPackage.eNS_URI) instanceof AmqpPackageImpl ? EPackage.Registry.INSTANCE.getEPackage(AmqpPackage.eNS_URI) : AmqpPackage.eINSTANCE);
         AtomPackageImpl theAtomPackage = (AtomPackageImpl)(EPackage.Registry.INSTANCE.getEPackage(AtomPackage.eNS_URI) instanceof AtomPackageImpl ? EPackage.Registry.INSTANCE.getEPackage(AtomPackage.eNS_URI) : AtomPackage.eINSTANCE);
@@ -230,7 +227,6 @@ public class ResteasyPackageImpl extends EPackageImpl implements ResteasyPackage
         theCamelPackage.createPackageContents();
         theJcaPackage.createPackageContents();
         theHttpPackage.createPackageContents();
-        theRemotePackage.createPackageContents();
         theCorePackage.createPackageContents();
         theAmqpPackage.createPackageContents();
         theAtomPackage.createPackageContents();
@@ -258,7 +254,6 @@ public class ResteasyPackageImpl extends EPackageImpl implements ResteasyPackage
         theCamelPackage.initializePackageContents();
         theJcaPackage.initializePackageContents();
         theHttpPackage.initializePackageContents();
-        theRemotePackage.initializePackageContents();
         theCorePackage.initializePackageContents();
         theAmqpPackage.initializePackageContents();
         theAtomPackage.initializePackageContents();

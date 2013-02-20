@@ -309,6 +309,9 @@
     <bindingExtension
           class="org.switchyard.tools.ui.editor.components.soap.SOAPBindingTypeExtension">
     </bindingExtension>
+    <bindingExtension
+          class="org.switchyard.tools.ui.editor.components.binding.sca.BindingSCATypeExtension">
+    </bindingExtension>
  </extension>
 
   <!-- Validation Extensions -->

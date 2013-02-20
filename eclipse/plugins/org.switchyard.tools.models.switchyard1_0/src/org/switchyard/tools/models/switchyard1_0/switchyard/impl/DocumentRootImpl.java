@@ -13,6 +13,7 @@ import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.ecore.EcorePackage;
 import org.eclipse.emf.ecore.InternalEObject;
+import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.impl.EObjectImpl;
 import org.eclipse.emf.ecore.impl.EStringToStringMapEntryImpl;
 import org.eclipse.emf.ecore.util.BasicFeatureMap;
@@ -78,6 +79,10 @@ import org.switchyard.tools.models.switchyard1_0.switchyard.XPathOperationSelect
  *   <li>{@link org.switchyard.tools.models.switchyard1_0.switchyard.impl.DocumentRootImpl#getXpathOperationSelectorSwitchyard <em>Xpath Operation Selector Switchyard</em>}</li>
  *   <li>{@link org.switchyard.tools.models.switchyard1_0.switchyard.impl.DocumentRootImpl#getStaticOperationSelectorSwitchyard <em>Static Operation Selector Switchyard</em>}</li>
  *   <li>{@link org.switchyard.tools.models.switchyard1_0.switchyard.impl.DocumentRootImpl#getSecurity <em>Security</em>}</li>
+ *   <li>{@link org.switchyard.tools.models.switchyard1_0.switchyard.impl.DocumentRootImpl#getTarget <em>Target</em>}</li>
+ *   <li>{@link org.switchyard.tools.models.switchyard1_0.switchyard.impl.DocumentRootImpl#getTargetNamespace <em>Target Namespace</em>}</li>
+ *   <li>{@link org.switchyard.tools.models.switchyard1_0.switchyard.impl.DocumentRootImpl#isClustered <em>Clustered</em>}</li>
+ *   <li>{@link org.switchyard.tools.models.switchyard1_0.switchyard.impl.DocumentRootImpl#getLoadBalance <em>Load Balance</em>}</li>
  * </ul>
  * </p>
  *
@@ -115,6 +120,86 @@ public class DocumentRootImpl extends EObjectImpl implements DocumentRoot {
 	protected EMap<String, String> xSISchemaLocation;
 
 	/**
+     * The default value of the '{@link #getTarget() <em>Target</em>}' attribute.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @see #getTarget()
+     * @generated
+     * @ordered
+     */
+    protected static final String TARGET_EDEFAULT = null;
+
+    /**
+     * The cached value of the '{@link #getTarget() <em>Target</em>}' attribute.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @see #getTarget()
+     * @generated
+     * @ordered
+     */
+    protected String target = TARGET_EDEFAULT;
+
+    /**
+     * The default value of the '{@link #getTargetNamespace() <em>Target Namespace</em>}' attribute.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @see #getTargetNamespace()
+     * @generated
+     * @ordered
+     */
+    protected static final String TARGET_NAMESPACE_EDEFAULT = null;
+
+    /**
+     * The cached value of the '{@link #getTargetNamespace() <em>Target Namespace</em>}' attribute.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @see #getTargetNamespace()
+     * @generated
+     * @ordered
+     */
+    protected String targetNamespace = TARGET_NAMESPACE_EDEFAULT;
+
+    /**
+     * The default value of the '{@link #isClustered() <em>Clustered</em>}' attribute.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @see #isClustered()
+     * @generated
+     * @ordered
+     */
+    protected static final boolean CLUSTERED_EDEFAULT = false;
+
+    /**
+     * The cached value of the '{@link #isClustered() <em>Clustered</em>}' attribute.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @see #isClustered()
+     * @generated
+     * @ordered
+     */
+    protected boolean clustered = CLUSTERED_EDEFAULT;
+
+    /**
+     * The default value of the '{@link #getLoadBalance() <em>Load Balance</em>}' attribute.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @see #getLoadBalance()
+     * @generated
+     * @ordered
+     */
+    protected static final String LOAD_BALANCE_EDEFAULT = null;
+
+    /**
+     * The cached value of the '{@link #getLoadBalance() <em>Load Balance</em>}' attribute.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @see #getLoadBalance()
+     * @generated
+     * @ordered
+     */
+    protected String loadBalance = LOAD_BALANCE_EDEFAULT;
+
+    /**
      * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
      * @generated
@@ -772,6 +857,90 @@ public class DocumentRootImpl extends EObjectImpl implements DocumentRoot {
 
                 /**
      * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public String getTarget() {
+        return target;
+    }
+
+                /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public void setTarget(String newTarget) {
+        String oldTarget = target;
+        target = newTarget;
+        if (eNotificationRequired())
+            eNotify(new ENotificationImpl(this, Notification.SET, SwitchyardPackage.DOCUMENT_ROOT__TARGET, oldTarget, target));
+    }
+
+                /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public String getTargetNamespace() {
+        return targetNamespace;
+    }
+
+                /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public void setTargetNamespace(String newTargetNamespace) {
+        String oldTargetNamespace = targetNamespace;
+        targetNamespace = newTargetNamespace;
+        if (eNotificationRequired())
+            eNotify(new ENotificationImpl(this, Notification.SET, SwitchyardPackage.DOCUMENT_ROOT__TARGET_NAMESPACE, oldTargetNamespace, targetNamespace));
+    }
+
+                /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public boolean isClustered() {
+        return clustered;
+    }
+
+                /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public void setClustered(boolean newClustered) {
+        boolean oldClustered = clustered;
+        clustered = newClustered;
+        if (eNotificationRequired())
+            eNotify(new ENotificationImpl(this, Notification.SET, SwitchyardPackage.DOCUMENT_ROOT__CLUSTERED, oldClustered, clustered));
+    }
+
+                /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public String getLoadBalance() {
+        return loadBalance;
+    }
+
+                /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public void setLoadBalance(String newLoadBalance) {
+        String oldLoadBalance = loadBalance;
+        loadBalance = newLoadBalance;
+        if (eNotificationRequired())
+            eNotify(new ENotificationImpl(this, Notification.SET, SwitchyardPackage.DOCUMENT_ROOT__LOAD_BALANCE, oldLoadBalance, loadBalance));
+    }
+
+                /**
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
      * @generated
      */
@@ -897,6 +1066,14 @@ public class DocumentRootImpl extends EObjectImpl implements DocumentRoot {
                 return getStaticOperationSelectorSwitchyard();
             case SwitchyardPackage.DOCUMENT_ROOT__SECURITY:
                 return getSecurity();
+            case SwitchyardPackage.DOCUMENT_ROOT__TARGET:
+                return getTarget();
+            case SwitchyardPackage.DOCUMENT_ROOT__TARGET_NAMESPACE:
+                return getTargetNamespace();
+            case SwitchyardPackage.DOCUMENT_ROOT__CLUSTERED:
+                return isClustered();
+            case SwitchyardPackage.DOCUMENT_ROOT__LOAD_BALANCE:
+                return getLoadBalance();
         }
         return super.eGet(featureID, resolve, coreType);
     }
@@ -974,6 +1151,18 @@ public class DocumentRootImpl extends EObjectImpl implements DocumentRoot {
                 return;
             case SwitchyardPackage.DOCUMENT_ROOT__SECURITY:
                 setSecurity((SecurityType)newValue);
+                return;
+            case SwitchyardPackage.DOCUMENT_ROOT__TARGET:
+                setTarget((String)newValue);
+                return;
+            case SwitchyardPackage.DOCUMENT_ROOT__TARGET_NAMESPACE:
+                setTargetNamespace((String)newValue);
+                return;
+            case SwitchyardPackage.DOCUMENT_ROOT__CLUSTERED:
+                setClustered((Boolean)newValue);
+                return;
+            case SwitchyardPackage.DOCUMENT_ROOT__LOAD_BALANCE:
+                setLoadBalance((String)newValue);
                 return;
         }
         super.eSet(featureID, newValue);
@@ -1053,6 +1242,18 @@ public class DocumentRootImpl extends EObjectImpl implements DocumentRoot {
             case SwitchyardPackage.DOCUMENT_ROOT__SECURITY:
                 setSecurity((SecurityType)null);
                 return;
+            case SwitchyardPackage.DOCUMENT_ROOT__TARGET:
+                setTarget(TARGET_EDEFAULT);
+                return;
+            case SwitchyardPackage.DOCUMENT_ROOT__TARGET_NAMESPACE:
+                setTargetNamespace(TARGET_NAMESPACE_EDEFAULT);
+                return;
+            case SwitchyardPackage.DOCUMENT_ROOT__CLUSTERED:
+                setClustered(CLUSTERED_EDEFAULT);
+                return;
+            case SwitchyardPackage.DOCUMENT_ROOT__LOAD_BALANCE:
+                setLoadBalance(LOAD_BALANCE_EDEFAULT);
+                return;
         }
         super.eUnset(featureID);
     }
@@ -1117,6 +1318,14 @@ public class DocumentRootImpl extends EObjectImpl implements DocumentRoot {
                 return getStaticOperationSelectorSwitchyard() != null;
             case SwitchyardPackage.DOCUMENT_ROOT__SECURITY:
                 return getSecurity() != null;
+            case SwitchyardPackage.DOCUMENT_ROOT__TARGET:
+                return TARGET_EDEFAULT == null ? target != null : !TARGET_EDEFAULT.equals(target);
+            case SwitchyardPackage.DOCUMENT_ROOT__TARGET_NAMESPACE:
+                return TARGET_NAMESPACE_EDEFAULT == null ? targetNamespace != null : !TARGET_NAMESPACE_EDEFAULT.equals(targetNamespace);
+            case SwitchyardPackage.DOCUMENT_ROOT__CLUSTERED:
+                return clustered != CLUSTERED_EDEFAULT;
+            case SwitchyardPackage.DOCUMENT_ROOT__LOAD_BALANCE:
+                return LOAD_BALANCE_EDEFAULT == null ? loadBalance != null : !LOAD_BALANCE_EDEFAULT.equals(loadBalance);
         }
         return super.eIsSet(featureID);
     }
@@ -1133,6 +1342,14 @@ public class DocumentRootImpl extends EObjectImpl implements DocumentRoot {
         StringBuffer result = new StringBuffer(super.toString());
         result.append(" (mixed: ");
         result.append(mixed);
+        result.append(", target: ");
+        result.append(target);
+        result.append(", targetNamespace: ");
+        result.append(targetNamespace);
+        result.append(", clustered: ");
+        result.append(clustered);
+        result.append(", loadBalance: ");
+        result.append(loadBalance);
         result.append(')');
         return result.toString();
     }

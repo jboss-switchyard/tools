@@ -231,8 +231,6 @@ public class DocumentRootItemProvider
             case SwitchyardPackage.DOCUMENT_ROOT__XPATH_OPERATION_SELECTOR_SWITCHYARD:
             case SwitchyardPackage.DOCUMENT_ROOT__STATIC_OPERATION_SELECTOR_SWITCHYARD:
             case SwitchyardPackage.DOCUMENT_ROOT__SECURITY:
-                fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), true, false));
-                return;
         }
         super.notifyChanged(notification);
     }

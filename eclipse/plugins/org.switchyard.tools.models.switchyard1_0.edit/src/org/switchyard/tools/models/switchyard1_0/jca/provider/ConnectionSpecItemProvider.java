@@ -63,8 +63,6 @@ import org.switchyard.tools.models.switchyard1_0.jca.ConnectionSpec;
 import org.switchyard.tools.models.switchyard1_0.jca.JcaFactory;
 import org.switchyard.tools.models.switchyard1_0.jca.JcaPackage;
 
-import org.switchyard.tools.models.switchyard1_0.remote.RemoteFactory;
-import org.switchyard.tools.models.switchyard1_0.remote.RemotePackage;
 import org.switchyard.tools.models.switchyard1_0.resteasy.ResteasyFactory;
 import org.switchyard.tools.models.switchyard1_0.resteasy.ResteasyPackage;
 
@@ -275,13 +273,6 @@ public class ConnectionSpecItemProvider
                  FeatureMapUtil.createEntry
                     (HttpPackage.Literals.DOCUMENT_ROOT__MESSAGE_COMPOSER,
                      HttpFactory.eINSTANCE.createHttpMessageComposerType())));
-
-        newChildDescriptors.add
-            (createChildParameter
-                (JcaPackage.Literals.CONNECTION_SPEC__ANY,
-                 FeatureMapUtil.createEntry
-                    (RemotePackage.Literals.DOCUMENT_ROOT__REMOTE_BINDING,
-                     RemoteFactory.eINSTANCE.createRemoteBindingType())));
 
         newChildDescriptors.add
             (createChildParameter

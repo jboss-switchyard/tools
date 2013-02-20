@@ -62,8 +62,6 @@ import org.switchyard.tools.models.switchyard1_0.http.HttpPackage;
 import org.switchyard.tools.models.switchyard1_0.jca.InboundOperation;
 import org.switchyard.tools.models.switchyard1_0.jca.JcaPackage;
 
-import org.switchyard.tools.models.switchyard1_0.remote.RemoteFactory;
-import org.switchyard.tools.models.switchyard1_0.remote.RemotePackage;
 import org.switchyard.tools.models.switchyard1_0.resteasy.ResteasyFactory;
 import org.switchyard.tools.models.switchyard1_0.resteasy.ResteasyPackage;
 
@@ -291,13 +289,6 @@ public class InboundOperationItemProvider
                  FeatureMapUtil.createEntry
                     (HttpPackage.Literals.DOCUMENT_ROOT__MESSAGE_COMPOSER,
                      HttpFactory.eINSTANCE.createHttpMessageComposerType())));
-
-        newChildDescriptors.add
-            (createChildParameter
-                (JcaPackage.Literals.INBOUND_OPERATION__ANY,
-                 FeatureMapUtil.createEntry
-                    (RemotePackage.Literals.DOCUMENT_ROOT__REMOTE_BINDING,
-                     RemoteFactory.eINSTANCE.createRemoteBindingType())));
 
         newChildDescriptors.add
             (createChildParameter

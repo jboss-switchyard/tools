@@ -2566,16 +2566,6 @@
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference component.http.ecore#//DocumentRoot/messageComposer"/>
     </genClasses>
   </genPackages>
-  <genPackages prefix="Remote" basePackage="org.switchyard.tools.models.switchyard1_0"
-      resource="XML" disposableProviderFactory="true" ecorePackage="component.remote.ecore#/">
-    <genClasses ecoreClass="component.remote.ecore#//RemoteBindingType"/>
-    <genClasses ecoreClass="component.remote.ecore#//DocumentRoot">
-      <genFeatures property="None" notify="false" createChild="false" ecoreFeature="ecore:EAttribute component.remote.ecore#//DocumentRoot/mixed"/>
-      <genFeatures property="None" notify="false" createChild="false" ecoreFeature="ecore:EReference component.remote.ecore#//DocumentRoot/xMLNSPrefixMap"/>
-      <genFeatures property="None" notify="false" createChild="false" ecoreFeature="ecore:EReference component.remote.ecore#//DocumentRoot/xSISchemaLocation"/>
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference component.remote.ecore#//DocumentRoot/remoteBinding"/>
-    </genClasses>
-  </genPackages>
   <genPackages prefix="Core" basePackage="org.switchyard.tools.models.switchyard1_0.camel"
       resource="XML" disposableProviderFactory="true" ecorePackage="component.camel.core.ecore#/">
     <genClasses image="false" ecoreClass="component.camel.core.ecore#//BaseCamelBinding">

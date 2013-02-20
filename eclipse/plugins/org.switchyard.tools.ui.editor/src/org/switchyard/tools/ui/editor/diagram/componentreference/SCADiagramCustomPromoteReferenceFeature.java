@@ -30,8 +30,6 @@ import org.eclipse.soa.sca.sca1_1.model.sca.Multiplicity;
 import org.eclipse.soa.sca.sca1_1.model.sca.Reference;
 import org.eclipse.swt.widgets.Shell;
 import org.eclipse.ui.PlatformUI;
-import org.switchyard.tools.models.switchyard1_0.remote.RemoteBindingType;
-import org.switchyard.tools.models.switchyard1_0.remote.RemoteFactory;
 import org.switchyard.tools.models.switchyard1_0.switchyard.SwitchYardType;
 import org.switchyard.tools.models.switchyard1_0.switchyard.SwitchyardFactory;
 import org.switchyard.tools.models.switchyard1_0.switchyard.TransformType;
@@ -74,11 +72,11 @@ public class SCADiagramCustomPromoteReferenceFeature extends AbstractCustomFeatu
                     newReference.setMultiplicity(Multiplicity._01);
                     newReference.getPromote().add(componentReference);
 
-                    if (wizard.isRemoted()) {
-                        RemoteBindingType remoteBinding =
-                                RemoteFactory.eINSTANCE.createRemoteBindingType();
-                        newReference.getBinding().add(remoteBinding);
-                    }
+//                    if (wizard.isRemoted()) {
+//                        RemoteBindingType remoteBinding =
+//                                RemoteFactory.eINSTANCE.createRemoteBindingType();
+//                        newReference.getBinding().add(remoteBinding);
+//                    }
                 } else {
                     _hasDoneChanges = false;
                     return;

@@ -52,8 +52,6 @@ import org.switchyard.tools.models.switchyard1_0.camel.sql.SqlFactory;
 import org.switchyard.tools.models.switchyard1_0.camel.sql.SqlPackage;
 import org.switchyard.tools.models.switchyard1_0.http.HttpFactory;
 import org.switchyard.tools.models.switchyard1_0.http.HttpPackage;
-import org.switchyard.tools.models.switchyard1_0.remote.RemoteFactory;
-import org.switchyard.tools.models.switchyard1_0.remote.RemotePackage;
 import org.switchyard.tools.models.switchyard1_0.resteasy.ResteasyFactory;
 import org.switchyard.tools.models.switchyard1_0.resteasy.ResteasyPackage;
 
@@ -179,13 +177,6 @@ public class SwitchYardOperationSelectorTypeItemProvider
                  FeatureMapUtil.createEntry
                     (HttpPackage.Literals.DOCUMENT_ROOT__MESSAGE_COMPOSER,
                      HttpFactory.eINSTANCE.createHttpMessageComposerType())));
-
-        newChildDescriptors.add
-            (createChildParameter
-                (ScaPackage.eINSTANCE.getOperationSelectorType_Any(),
-                 FeatureMapUtil.createEntry
-                    (RemotePackage.Literals.DOCUMENT_ROOT__REMOTE_BINDING,
-                     RemoteFactory.eINSTANCE.createRemoteBindingType())));
 
         newChildDescriptors.add
             (createChildParameter

@@ -18,6 +18,7 @@ import org.eclipse.soa.sca.sca1_1.model.sca.Binding;
 import org.eclipse.soa.sca.sca1_1.model.sca.Implementation;
 import org.eclipse.soa.sca.sca1_1.model.sca.Interface;
 import org.eclipse.soa.sca.sca1_1.model.sca.JavaInterface;
+import org.eclipse.soa.sca.sca1_1.model.sca.SCABinding;
 import org.eclipse.soa.sca.sca1_1.model.sca.WSDLPortType;
 import org.switchyard.tools.models.switchyard1_0.bean.BeanImplementationType;
 import org.switchyard.tools.models.switchyard1_0.bpm.BPMImplementationType;
@@ -40,7 +41,6 @@ import org.switchyard.tools.models.switchyard1_0.camel.sql.CamelSqlBindingType;
 import org.switchyard.tools.models.switchyard1_0.hornetq.BindingType;
 import org.switchyard.tools.models.switchyard1_0.http.HttpBindingType;
 import org.switchyard.tools.models.switchyard1_0.jca.JCABinding;
-import org.switchyard.tools.models.switchyard1_0.remote.RemoteBindingType;
 import org.switchyard.tools.models.switchyard1_0.resteasy.RESTBindingType;
 import org.switchyard.tools.models.switchyard1_0.rules.RulesImplementationType;
 import org.switchyard.tools.models.switchyard1_0.soap.SOAPBindingType;
@@ -133,6 +133,8 @@ public final class LabelAdapter {
             return "Mail";
         } else if (binding instanceof CamelJPABindingType) {
             return "JPA";
+        } else if (binding instanceof SCABinding) {
+            return "SCA Binding";
         } else {
             return "Unsupported (" + binding.eClass().getClass().getName() + ")";
         }
@@ -210,8 +212,8 @@ public final class LabelAdapter {
             imageRenderingDecorator = new ImageDecorator(ImageProvider.IMG_16_HTTP);
         } else if (binding instanceof CamelBindingType) {
             imageRenderingDecorator = new ImageDecorator(ImageProvider.IMG_16_CAMEL);
-        } else if (binding instanceof RemoteBindingType) {
-            imageRenderingDecorator = new ImageDecorator(ImageProvider.IMG_16_REMOTE);
+//        } else if (binding instanceof RemoteBindingType) {
+//            imageRenderingDecorator = new ImageDecorator(ImageProvider.IMG_16_REMOTE);
         } else if (binding instanceof CamelMailBindingType) {
             imageRenderingDecorator = new ImageDecorator(ImageProvider.IMG_16_MAIL);
         } else if (binding instanceof CamelJPABindingType) {
