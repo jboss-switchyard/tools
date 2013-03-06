@@ -35,7 +35,7 @@ public class BindingSCATypeExtension implements IBindingTypeExtension {
 
     @Override
     public ICreateFeature[] newCreateFeatures(IFeatureProvider fp) {
-        return new ICreateFeature[] {new CreateBindingFeature(fp, new BindingSCAFactory(), "SCA Binding",
+        return new ICreateFeature[] {new CreateBindingFeature(fp, new BindingSCAFactory(), "SCA",
                 "A SCA Binding based endpoint.", ImageProvider.IMG_16_SCA) };
     }
 

@@ -28,6 +28,8 @@ import org.eclipse.emf.transaction.impl.TransactionalEditingDomainImpl;
 import org.eclipse.graphiti.mm.pictograms.PictogramElement;
 import org.eclipse.graphiti.services.Graphiti;
 import org.eclipse.graphiti.ui.platform.GFPropertySection;
+import org.eclipse.soa.sca.sca1_1.model.sca.Component;
+import org.eclipse.soa.sca.sca1_1.model.sca.ComponentReference;
 import org.eclipse.soa.sca.sca1_1.model.sca.Contract;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.events.SelectionEvent;
@@ -177,7 +179,13 @@ public class SecurityPolicyPropertySection extends GFPropertySection implements 
                             }
                         }
                     }
-                    if (clientAuthentication && !_clientAuthCheckbox.isDisposed())  {
+                    boolean showClientAuthCheckbox = true;
+                    if (contract.eContainer() instanceof Component && contract instanceof ComponentReference) {
+                        showClientAuthCheckbox = false;
+                    }
+                    _clientAuthCheckbox.setEnabled(showClientAuthCheckbox);
+
+                    if (clientAuthentication && _clientAuthCheckbox != null && !_clientAuthCheckbox.isDisposed())  {
                         _clientAuthCheckbox.setSelection(clientAuthentication);
                     }
                     

@@ -134,7 +134,7 @@ public final class LabelAdapter {
         } else if (binding instanceof CamelJPABindingType) {
             return "JPA";
         } else if (binding instanceof SCABinding) {
-            return "SCA Binding";
+            return "SCA";
         } else {
             return "Unsupported (" + binding.eClass().getClass().getName() + ")";
         }

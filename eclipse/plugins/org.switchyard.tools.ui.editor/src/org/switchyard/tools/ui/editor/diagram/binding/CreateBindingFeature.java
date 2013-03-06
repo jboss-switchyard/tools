@@ -20,6 +20,7 @@ import org.eclipse.soa.sca.sca1_1.model.sca.Reference;
 import org.eclipse.soa.sca.sca1_1.model.sca.Service;
 import org.switchyard.tools.ui.editor.BindingTypeExtensionManager;
 import org.switchyard.tools.ui.editor.ImageProvider;
+import org.switchyard.tools.ui.editor.components.camel.quartz.CamelQuartzBindingFactory;
 import org.switchyard.tools.ui.editor.diagram.shared.CreateTypeFeature;
 import org.switchyard.tools.ui.editor.diagram.shared.ITypeFactory;
 
@@ -67,6 +68,9 @@ public class CreateBindingFeature extends CreateTypeFeature<Binding, Contract> {
     public boolean canCreate(ICreateContext context) {
         Object bo = getBusinessObjectForPictogramElement(context.getTargetContainer());
         // we don't allow bindings for all Contract types
+        if (bo instanceof Reference && getFactory() instanceof CamelQuartzBindingFactory) {
+            return false;
+        }
         return super.canCreate(context) && (bo instanceof Reference || bo instanceof Service);
     }
 

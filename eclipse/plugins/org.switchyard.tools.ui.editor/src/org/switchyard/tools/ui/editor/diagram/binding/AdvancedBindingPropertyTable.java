@@ -88,7 +88,7 @@ public class AdvancedBindingPropertyTable extends Composite implements ICellModi
                     String type = feature.getEType().getName();
                     System.out.println("Creating cell editor for: " + type);
                     boolean isEnum = feature.getEType().getInstanceClass().isEnum();
-                    if (type.equalsIgnoreCase("String")) {
+                    if (type.equalsIgnoreCase("String") || type.equalsIgnoreCase("AnyURI")) {
                         ce = new TextCellEditor(_viewer.getTable());
                     } else if (type.equalsIgnoreCase("BooleanObject") || type.equalsIgnoreCase("Boolean")) {
                         if (feature.getDefaultValueLiteral() == null) {
@@ -98,7 +98,7 @@ public class AdvancedBindingPropertyTable extends Composite implements ICellModi
                             ce = new ComboBoxCellEditor(_viewer.getTable(), new String[] {"false", "true" },
                                     SWT.READ_ONLY);
                         }
-                    } else if ((type.equalsIgnoreCase("Integer") || type.equalsIgnoreCase("IntObject"))) {
+                    } else if ((type.equalsIgnoreCase("Integer") || type.equalsIgnoreCase("IntObject") || type.equalsIgnoreCase("Int"))) {
                         ce = new TextCellEditor(_viewer.getTable());
                         ce.setValidator(new ICellEditorValidator() {
                             @Override
@@ -134,7 +134,7 @@ public class AdvancedBindingPropertyTable extends Composite implements ICellModi
                                 return null;
                             }
                         });
-                    } else if (type.equalsIgnoreCase("LongObject")) {
+                    } else if (type.equalsIgnoreCase("LongObject") || type.equalsIgnoreCase("Long")) {
                         ce = new TextCellEditor(_viewer.getTable());
                         ce.setValidator(new ICellEditorValidator() {
                             @Override
@@ -209,7 +209,7 @@ public class AdvancedBindingPropertyTable extends Composite implements ICellModi
                             } else {
                                 return "";
                             }
-                        } else if (type.equalsIgnoreCase("IntObject")) {
+                        } else if (type.equalsIgnoreCase("IntObject") || type.equalsIgnoreCase("Int")) {
                             return ((Integer) value).toString();
                         }
                         return value;
@@ -242,13 +242,13 @@ public class AdvancedBindingPropertyTable extends Composite implements ICellModi
                     String type = feature.getEType().getName();
                     boolean isEnum = feature.getEType().getInstanceClass().isEnum();
                     Object realValue = null;
-                    if (type.equalsIgnoreCase("String")) {
+                    if (type.equalsIgnoreCase("String") || type.equalsIgnoreCase("AnyURI")) {
                         if (((String) value).trim().isEmpty()) {
                             realValue = null;
                         } else {
                             realValue = (String) value;
                         }
-                    } else if (type.equalsIgnoreCase("BooleanObject")) {
+                    } else if (type.equalsIgnoreCase("BooleanObject") || type.equalsIgnoreCase("Boolean")) {
                         Integer num = (Integer) value;
                         if (num.intValue() == 0) {
                             value = "false";
@@ -259,7 +259,7 @@ public class AdvancedBindingPropertyTable extends Composite implements ICellModi
                         } else {
                             realValue = null;
                         }
-                    } else if ((type.equalsIgnoreCase("Integer") || type.equalsIgnoreCase("IntObject"))) {
+                    } else if ((type.equalsIgnoreCase("Integer") || type.equalsIgnoreCase("IntObject") || type.equalsIgnoreCase("Int"))) {
                         if (((String) value).trim().isEmpty()) {
                             realValue = null;
                         } else if (feature.getEType().getInstanceClass().isAssignableFrom(BigInteger.class)) {
@@ -271,7 +271,7 @@ public class AdvancedBindingPropertyTable extends Composite implements ICellModi
                         } else {
                             realValue = Integer.parseInt((String) value);
                         }
-                    } else if (type.equalsIgnoreCase("LongObject")) {
+                    } else if (type.equalsIgnoreCase("LongObject") || type.equalsIgnoreCase("Long")) {
                         if (((String) value).trim().isEmpty()) {
                             realValue = null;
                         } else {
