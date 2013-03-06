@@ -109,7 +109,7 @@ public class XmlValidateTypeItemProvider
                  getResourceLocator(),
                  getString("_UI_XmlValidateType_schemaFile_feature"),
                  getString("_UI_PropertyDescriptor_description", "_UI_XmlValidateType_schemaFile_feature", "_UI_XmlValidateType_type"),
-                 ValidatePackage.Literals.XML_VALIDATE_TYPE__SCHEMA_FILE,
+                 ValidatePackage.Literals.XML_VALIDATE_TYPE__SCHEMA_FILES,
                  true,
                  false,
                  false,
@@ -178,7 +178,7 @@ public class XmlValidateTypeItemProvider
 
         switch (notification.getFeatureID(XmlValidateType.class)) {
             case ValidatePackage.XML_VALIDATE_TYPE__SCHEMA_TYPE:
-            case ValidatePackage.XML_VALIDATE_TYPE__SCHEMA_FILE:
+            case ValidatePackage.XML_VALIDATE_TYPE__SCHEMA_FILES:
             case ValidatePackage.XML_VALIDATE_TYPE__FAIL_ON_WARNING:
                 fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
                 return;

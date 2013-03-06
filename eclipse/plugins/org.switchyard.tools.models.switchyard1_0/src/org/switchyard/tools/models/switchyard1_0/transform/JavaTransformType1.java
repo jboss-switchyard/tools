@@ -23,6 +23,7 @@ import org.switchyard.tools.models.switchyard1_0.switchyard.TransformType;
  * The following features are supported:
  * <ul>
  *   <li>{@link org.switchyard.tools.models.switchyard1_0.transform.JavaTransformType1#getClass_ <em>Class</em>}</li>
+ *   <li>{@link org.switchyard.tools.models.switchyard1_0.transform.JavaTransformType1#getBean <em>Bean</em>}</li>
  * </ul>
  * </p>
  *
@@ -42,7 +43,7 @@ public interface JavaTransformType1 extends TransformType {
      * @return the value of the '<em>Class</em>' attribute.
      * @see #setClass(String)
      * @see org.switchyard.tools.models.switchyard1_0.transform.TransformPackage#getJavaTransformType1_Class()
-     * @model dataType="org.eclipse.emf.ecore.xml.type.String" required="true"
+     * @model dataType="org.eclipse.emf.ecore.xml.type.String"
      *        extendedMetaData="kind='attribute' name='class'"
      * @generated
      */
@@ -57,5 +58,32 @@ public interface JavaTransformType1 extends TransformType {
      * @generated
      */
 	void setClass(String value);
+
+    /**
+     * Returns the value of the '<em><b>Bean</b></em>' attribute.
+     * <!-- begin-user-doc -->
+     * <p>
+     * If the meaning of the '<em>Bean</em>' attribute isn't clear,
+     * there really should be more of a description here...
+     * </p>
+     * <!-- end-user-doc -->
+     * @return the value of the '<em>Bean</em>' attribute.
+     * @see #setBean(String)
+     * @see org.switchyard.tools.models.switchyard1_0.transform.TransformPackage#getJavaTransformType1_Bean()
+     * @model dataType="org.eclipse.emf.ecore.xml.type.String"
+     *        extendedMetaData="kind='attribute' name='bean'"
+     * @generated
+     */
+    String getBean();
+
+    /**
+     * Sets the value of the '{@link org.switchyard.tools.models.switchyard1_0.transform.JavaTransformType1#getBean <em>Bean</em>}' attribute.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @param value the new value of the '<em>Bean</em>' attribute.
+     * @see #getBean()
+     * @generated
+     */
+    void setBean(String value);
 
 } // JavaTransformType1

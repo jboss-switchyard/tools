@@ -27,6 +27,7 @@ public class AddValidatorWizard extends BaseWizard {
     private AddValidatorWizardStartPage _startPage = null;
     private AddValidatorWizardXMLPage _xmlPage = null;
     private AddValidatorWizardJavaPage _javaPage = null;
+    private ValidateType _validator = null;
 
     /**
      * Opens the add transform wizard.
@@ -48,25 +49,44 @@ public class AddValidatorWizard extends BaseWizard {
     public boolean performFinish() {
         if (_startPage != null && _startPage.getValidator() != null) {
             return true;
+        } else if (this._validator != null) {
+            return true;
         }
         return false;
     }
 
     @Override
     public void addPages() {
-        addPage(_startPage);
-        addPage(_xmlPage);
-        addPage(_javaPage);
+        if (_validator == null) {
+            addPage(_startPage);
+            addPage(_xmlPage);
+            addPage(_javaPage);
+        } else if (_validator instanceof XmlValidateType) {
+            addPage(_xmlPage);
+        } else if (_validator instanceof JavaValidateType) {
+            addPage(_javaPage);
+        }
     }
 
     /**
-     * @return selected binding
+     * @return selected validator
      */
     public ValidateType getValidator() {
-        if (_startPage != null) {
+        if (_startPage != null && _startPage.getValidator() != null) {
             return _startPage.getValidator();
+        } else if (_validator != null) {
+            return _validator;
         }
         return null;
+    }
+    
+    /**
+     * @param validator set initial validator
+     */
+    public void setValidator(ValidateType validator) {
+        if (_startPage != null) {
+            _validator = validator;
+        }
     }
 
     @Override

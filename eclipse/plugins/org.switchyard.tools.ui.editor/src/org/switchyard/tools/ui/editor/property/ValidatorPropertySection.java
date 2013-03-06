@@ -100,6 +100,7 @@ public class ValidatorPropertySection extends GFPropertySection implements ITabb
     private Section _tableSection;
     private Composite _tableComposite;
     private Button _addButton;
+    private Button _editButton;
     private Button _removeButton;
     private TransactionalEditingDomain _domain = null;
 
@@ -140,12 +141,15 @@ public class ValidatorPropertySection extends GFPropertySection implements ITabb
     }
 
     private void handleSelectListItem() {
-        if (_removeButton != null && !_removeButton.isDisposed()) {
-            URI _modelUri = URI.createPlatformResourceURI(SwitchyardSCAEditor.getActiveEditor().getModelFile().getFullPath().toString(), true);
+        if (_removeButton != null && !_removeButton.isDisposed() && _editButton != null && !_editButton.isDisposed()) {
+            URI _modelUri = URI.createPlatformResourceURI(
+                SwitchyardSCAEditor.getActiveEditor().getModelFile().getFullPath().toString(), true);
             if (_validator.eResource().getURI().equals(_modelUri)) {
                 _removeButton.setEnabled(_validator != null);
+                _editButton.setEnabled(_validator != null);
             } else {
                 _removeButton.setEnabled(false);
+                _editButton.setEnabled(false);
             }
         }
     }
@@ -175,7 +179,7 @@ public class ValidatorPropertySection extends GFPropertySection implements ITabb
                 SwitchYardType switchYardRoot = getSwitchYardRoot();
                 ValidatesType transforms = null;
                 _tableViewer.setInput(null);
-                if (switchYardRoot.getTransforms() != null) {
+                if (switchYardRoot.getValidates() != null) {
                     transforms = switchYardRoot.getValidates();
                 }
                 ValidatesType targetTransforms = getValidatesFromTarget();
@@ -216,7 +220,9 @@ public class ValidatorPropertySection extends GFPropertySection implements ITabb
         if (target != null) {
             try {
                 SwitchYardType switchyard = loadModelFile(target);
-                return switchyard.getValidates();
+                if (switchyard != null && switchyard.getValidates() != null) {
+                    return switchyard.getValidates();
+                }
             } catch (IOException e) {
                 e.fillInStackTrace();
             }
@@ -247,11 +253,13 @@ public class ValidatorPropertySection extends GFPropertySection implements ITabb
         }
         
         if (resource != null) {
-            DocumentRoot docroot = (DocumentRoot) resource.getContents().get(0);
-            
-            if (docroot != null) {
-                SwitchYardType switchyard = docroot.getSwitchyard();
-                return switchyard;
+            if (resource.getContents() != null && resource.getContents().size() > 0) {
+                DocumentRoot docroot = (DocumentRoot) resource.getContents().get(0);
+                
+                if (docroot != null) {
+                    SwitchYardType switchyard = docroot.getSwitchyard();
+                    return switchyard;
+                }
             }
         }
         return null;
@@ -340,7 +348,20 @@ public class ValidatorPropertySection extends GFPropertySection implements ITabb
         _addButton.addSelectionListener(new SelectionListener() {
             @Override
             public void widgetSelected(SelectionEvent e) {
-                addTransform();
+                addValidator();
+            }
+
+            @Override
+            public void widgetDefaultSelected(SelectionEvent e) {
+                widgetSelected(e);
+            }
+        });
+        _editButton = _toolkit.createButton(buttonsComposite, "Edit", SWT.PUSH);
+        _editButton.setEnabled(false);
+        _editButton.addSelectionListener(new SelectionListener() {
+            @Override
+            public void widgetSelected(SelectionEvent e) {
+                editValidator();
             }
 
             @Override
@@ -354,7 +375,7 @@ public class ValidatorPropertySection extends GFPropertySection implements ITabb
             @Override
             public void widgetSelected(SelectionEvent e) {
                 IStructuredSelection ssel = (IStructuredSelection) _tableViewer.getSelection();
-                removeTransform((ValidateType) ssel.getFirstElement());
+                removeValidator((ValidateType) ssel.getFirstElement());
             }
 
             @Override
@@ -370,40 +391,75 @@ public class ValidatorPropertySection extends GFPropertySection implements ITabb
         return list.remove(index);
     }
 
-    private ValidateType addTransform() {
-        ValidateType newTransform = null;
+    private ValidateType addValidator() {
+        ValidateType newValidator = null;
         AddValidatorWizard wizard = new AddValidatorWizard();
         Shell shell = PlatformUI.getWorkbench().getActiveWorkbenchWindow().getShell();
         WizardDialog wizDialog = new WizardDialog(shell, wizard);
         int rtn_code = wizDialog.open();
         if (rtn_code == Window.OK) {
-            newTransform = wizard.getValidator();
+            newValidator = wizard.getValidator();
             if (_domain != null) {
-                final ValidateType transform = newTransform;
+                final ValidateType validator = newValidator;
                 _domain.getCommandStack().execute(new RecordingCommand(_domain) {
                     @Override
                     protected void doExecute() {
                         SwitchYardType switchYardRoot = getSwitchYardRoot();
-                        ValidatesType transforms = switchYardRoot.getValidates();
-                        if (transforms == null) {
-                            switchYardRoot.setTransforms(SwitchyardFactory.eINSTANCE.createTransformsType());
-                            transforms = switchYardRoot.getValidates();
+                        ValidatesType validates = switchYardRoot.getValidates();
+                        if (validates == null) {
+                            switchYardRoot.setValidates(SwitchyardFactory.eINSTANCE.createValidatesType());
+                            validates = switchYardRoot.getValidates();
                         }
-                        FeatureMap transformGroup = transforms.getValidateGroup();
-                        if (transform instanceof JavaValidateType) {
-                            transformGroup.add(ValidatePackage.eINSTANCE.getDocumentRoot_ValidateJava(), transform);
-                        } else if (transform instanceof XmlValidateType) {
-                            transformGroup.add(ValidatePackage.eINSTANCE.getDocumentRoot_ValidateXml(), transform);
+                        FeatureMap validatorGroup = validates.getValidateGroup();
+                        if (validator instanceof JavaValidateType) {
+                            validatorGroup.add(ValidatePackage.eINSTANCE.getDocumentRoot_ValidateJava(), validator);
+                        } else if (validator instanceof XmlValidateType) {
+                            validatorGroup.add(ValidatePackage.eINSTANCE.getDocumentRoot_ValidateXml(), validator);
                         }
                     }
                 });
                 refresh();
             }
         }
-        return newTransform;
+        return newValidator;
     }
 
-    private void removeTransform(final ValidateType selected) {
+    private ValidateType editValidator() {
+        IStructuredSelection selected = (IStructuredSelection) _tableViewer.getSelection();
+        if (selected != null && _domain != null) {
+            AddValidatorWizard wizard = new AddValidatorWizard();
+            wizard.setValidator((ValidateType)selected.getFirstElement());
+            Shell shell = PlatformUI.getWorkbench().getActiveWorkbenchWindow().getShell();
+            WizardDialog wizDialog = new WizardDialog(shell, wizard);
+            int rtn_code = wizDialog.open();
+            if (rtn_code == Window.OK) {
+                final ValidateType oldValidator = (ValidateType)selected.getFirstElement();
+                final ValidateType validator = wizard.getValidator();
+                _domain.getCommandStack().execute(new RecordingCommand(_domain) {
+                    @Override
+                    protected void doExecute() {
+                        SwitchYardType switchYardRoot = getSwitchYardRoot();
+                        ValidatesType validates = switchYardRoot.getValidates();
+                        if (validates == null) {
+                            switchYardRoot.setValidates(SwitchyardFactory.eINSTANCE.createValidatesType());
+                            validates = switchYardRoot.getValidates();
+                        }
+                        FeatureMap validatorGroup = validates.getValidateGroup();
+                        validatorGroup.remove(oldValidator);
+                        if (validator instanceof JavaValidateType) {
+                            validatorGroup.add(ValidatePackage.eINSTANCE.getDocumentRoot_ValidateJava(), validator);
+                        } else if (validator instanceof XmlValidateType) {
+                            validatorGroup.add(ValidatePackage.eINSTANCE.getDocumentRoot_ValidateXml(), validator);
+                        }
+                    }
+                });
+                refresh();
+            }
+        }
+        return null;
+    }
+
+    private void removeValidator(final ValidateType selected) {
         if (selected != null && _domain != null) {
             _domain.getCommandStack().execute(new RecordingCommand(_domain) {
                 @Override

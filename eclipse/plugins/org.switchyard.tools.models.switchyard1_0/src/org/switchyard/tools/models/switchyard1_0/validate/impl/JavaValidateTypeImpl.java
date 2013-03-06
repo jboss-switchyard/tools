@@ -23,6 +23,7 @@ import org.switchyard.tools.models.switchyard1_0.validate.ValidatePackage;
  * The following features are implemented:
  * <ul>
  *   <li>{@link org.switchyard.tools.models.switchyard1_0.validate.impl.JavaValidateTypeImpl#getClass_ <em>Class</em>}</li>
+ *   <li>{@link org.switchyard.tools.models.switchyard1_0.validate.impl.JavaValidateTypeImpl#getBean <em>Bean</em>}</li>
  * </ul>
  * </p>
  *
@@ -49,6 +50,25 @@ public class JavaValidateTypeImpl extends ValidateTypeImpl implements JavaValida
 	protected String class_ = CLASS_EDEFAULT;
 
 	/**
+     * The default value of the '{@link #getBean() <em>Bean</em>}' attribute.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @see #getBean()
+     * @generated
+     * @ordered
+     */
+    protected static final String BEAN_EDEFAULT = null;
+    /**
+     * The cached value of the '{@link #getBean() <em>Bean</em>}' attribute.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @see #getBean()
+     * @generated
+     * @ordered
+     */
+    protected String bean = BEAN_EDEFAULT;
+
+    /**
      * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
      * @generated
@@ -90,6 +110,27 @@ public class JavaValidateTypeImpl extends ValidateTypeImpl implements JavaValida
 
 	/**
      * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public String getBean() {
+        return bean;
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public void setBean(String newBean) {
+        String oldBean = bean;
+        bean = newBean;
+        if (eNotificationRequired())
+            eNotify(new ENotificationImpl(this, Notification.SET, ValidatePackage.JAVA_VALIDATE_TYPE__BEAN, oldBean, bean));
+    }
+
+    /**
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
      * @generated
      */
@@ -98,6 +139,8 @@ public class JavaValidateTypeImpl extends ValidateTypeImpl implements JavaValida
         switch (featureID) {
             case ValidatePackage.JAVA_VALIDATE_TYPE__CLASS:
                 return getClass_();
+            case ValidatePackage.JAVA_VALIDATE_TYPE__BEAN:
+                return getBean();
         }
         return super.eGet(featureID, resolve, coreType);
     }
@@ -112,6 +155,9 @@ public class JavaValidateTypeImpl extends ValidateTypeImpl implements JavaValida
         switch (featureID) {
             case ValidatePackage.JAVA_VALIDATE_TYPE__CLASS:
                 setClass((String)newValue);
+                return;
+            case ValidatePackage.JAVA_VALIDATE_TYPE__BEAN:
+                setBean((String)newValue);
                 return;
         }
         super.eSet(featureID, newValue);
@@ -128,6 +174,9 @@ public class JavaValidateTypeImpl extends ValidateTypeImpl implements JavaValida
             case ValidatePackage.JAVA_VALIDATE_TYPE__CLASS:
                 setClass(CLASS_EDEFAULT);
                 return;
+            case ValidatePackage.JAVA_VALIDATE_TYPE__BEAN:
+                setBean(BEAN_EDEFAULT);
+                return;
         }
         super.eUnset(featureID);
     }
@@ -142,6 +191,8 @@ public class JavaValidateTypeImpl extends ValidateTypeImpl implements JavaValida
         switch (featureID) {
             case ValidatePackage.JAVA_VALIDATE_TYPE__CLASS:
                 return CLASS_EDEFAULT == null ? class_ != null : !CLASS_EDEFAULT.equals(class_);
+            case ValidatePackage.JAVA_VALIDATE_TYPE__BEAN:
+                return BEAN_EDEFAULT == null ? bean != null : !BEAN_EDEFAULT.equals(bean);
         }
         return super.eIsSet(featureID);
     }
@@ -158,6 +209,8 @@ public class JavaValidateTypeImpl extends ValidateTypeImpl implements JavaValida
         StringBuffer result = new StringBuffer(super.toString());
         result.append(" (class: ");
         result.append(class_);
+        result.append(", bean: ");
+        result.append(bean);
         result.append(')');
         return result.toString();
     }

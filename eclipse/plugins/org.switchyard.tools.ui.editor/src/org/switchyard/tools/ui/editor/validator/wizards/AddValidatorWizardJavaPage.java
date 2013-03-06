@@ -49,9 +49,13 @@ public class AddValidatorWizardJavaPage extends BaseWizardPage implements IRefre
     @Override
     public void createControl(Composite parent) {
         _javaComposite = new JavaValidatorComposite();
+        _javaComposite.setWizardPage(this);
+        _javaComposite.createContents(parent, SWT.NONE);
         if (_startPage != null && _startPage.getValidator() != null
                 && _startPage.getValidator() instanceof JavaValidateType) {
             _javaComposite.setValidator((JavaValidateType) _startPage.getValidator());
+        } else if (getWizard() != null && getWizard() instanceof AddValidatorWizard) {
+            _javaComposite.setValidator(((AddValidatorWizard)getWizard()).getValidator());
         }
         _javaComposite.addChangeListener(new ChangeListener() {
             @Override
@@ -61,7 +65,6 @@ public class AddValidatorWizardJavaPage extends BaseWizardPage implements IRefre
                 setPageComplete(_javaComposite.getErrorMessage() == null);
             }
         });
-        _javaComposite.createContents(parent, SWT.NONE);
 
         setControl(_javaComposite.getPanel());
 

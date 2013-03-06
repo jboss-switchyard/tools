@@ -21,6 +21,7 @@ import org.eclipse.emf.ecore.util.FeatureMap;
  *   <li>{@link org.switchyard.tools.models.switchyard1_0.jca.JCAInboundInteraction#getListener <em>Listener</em>}</li>
  *   <li>{@link org.switchyard.tools.models.switchyard1_0.jca.JCAInboundInteraction#getEndpoint <em>Endpoint</em>}</li>
  *   <li>{@link org.switchyard.tools.models.switchyard1_0.jca.JCAInboundInteraction#isTransacted <em>Transacted</em>}</li>
+ *   <li>{@link org.switchyard.tools.models.switchyard1_0.jca.JCAInboundInteraction#getBatchCommit <em>Batch Commit</em>}</li>
  *   <li>{@link org.switchyard.tools.models.switchyard1_0.jca.JCAInboundInteraction#getAny <em>Any</em>}</li>
  *   <li>{@link org.switchyard.tools.models.switchyard1_0.jca.JCAInboundInteraction#getAnyAttribute <em>Any Attribute</em>}</li>
  * </ul>
@@ -138,6 +139,33 @@ public interface JCAInboundInteraction extends EObject {
      * @generated
      */
     boolean isSetTransacted();
+
+    /**
+     * Returns the value of the '<em><b>Batch Commit</b></em>' containment reference.
+     * <!-- begin-user-doc -->
+     * <p>
+     * If the meaning of the '<em>Batch Commit</em>' containment reference isn't clear,
+     * there really should be more of a description here...
+     * </p>
+     * <!-- end-user-doc -->
+     * @return the value of the '<em>Batch Commit</em>' containment reference.
+     * @see #setBatchCommit(BatchCommit)
+     * @see org.switchyard.tools.models.switchyard1_0.jca.JcaPackage#getJCAInboundInteraction_BatchCommit()
+     * @model containment="true"
+     *        extendedMetaData="kind='element' name='batchCommit' namespace='##targetNamespace'"
+     * @generated
+     */
+    BatchCommit getBatchCommit();
+
+    /**
+     * Sets the value of the '{@link org.switchyard.tools.models.switchyard1_0.jca.JCAInboundInteraction#getBatchCommit <em>Batch Commit</em>}' containment reference.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @param value the new value of the '<em>Batch Commit</em>' containment reference.
+     * @see #getBatchCommit()
+     * @generated
+     */
+    void setBatchCommit(BatchCommit value);
 
     /**
      * Returns the value of the '<em><b>Any</b></em>' attribute list.

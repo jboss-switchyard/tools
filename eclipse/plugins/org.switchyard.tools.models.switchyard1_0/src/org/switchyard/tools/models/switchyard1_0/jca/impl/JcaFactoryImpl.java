@@ -79,6 +79,7 @@ public class JcaFactoryImpl extends EFactoryImpl implements JcaFactory {
             case JcaPackage.DOCUMENT_ROOT: return createDocumentRoot();
             case JcaPackage.JCA_CONTEXT_MAPPER_TYPE: return createJCAContextMapperType();
             case JcaPackage.JCA_MESSAGE_COMPOSER_TYPE: return createJCAMessageComposerType();
+            case JcaPackage.BATCH_COMMIT: return createBatchCommit();
             default:
                 throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier");
         }
@@ -184,6 +185,16 @@ public class JcaFactoryImpl extends EFactoryImpl implements JcaFactory {
     public JCAMessageComposerType createJCAMessageComposerType() {
         JCAMessageComposerTypeImpl jcaMessageComposerType = new JCAMessageComposerTypeImpl();
         return jcaMessageComposerType;
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public BatchCommit createBatchCommit() {
+        BatchCommitImpl batchCommit = new BatchCommitImpl();
+        return batchCommit;
     }
 
     /**

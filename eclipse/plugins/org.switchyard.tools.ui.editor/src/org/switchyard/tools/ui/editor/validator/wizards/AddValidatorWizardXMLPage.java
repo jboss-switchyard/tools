@@ -49,9 +49,12 @@ public class AddValidatorWizardXMLPage extends BaseWizardPage implements IRefres
     @Override
     public void createControl(Composite parent) {
         _xmlComposite = new XMLValidatorComposite();
+        _xmlComposite.setWizardPage(this);
         if (_startPage != null && _startPage.getValidator() != null
                 && _startPage.getValidator() instanceof XmlValidateType) {
             _xmlComposite.setValidator((XmlValidateType) _startPage.getValidator());
+        } else if (getWizard() != null && getWizard() instanceof AddValidatorWizard) {
+            _xmlComposite.setValidator(((AddValidatorWizard)getWizard()).getValidator());
         }
         _xmlComposite.addChangeListener(new ChangeListener() {
             @Override

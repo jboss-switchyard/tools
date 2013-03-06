@@ -30,6 +30,7 @@ import org.eclipse.soa.sca.sca1_1.model.sca.OperationSelectorType;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.events.SelectionAdapter;
 import org.eclipse.swt.events.SelectionEvent;
+import org.eclipse.swt.events.SelectionListener;
 import org.eclipse.swt.layout.FillLayout;
 import org.eclipse.swt.layout.GridData;
 import org.eclipse.swt.layout.GridLayout;
@@ -42,6 +43,7 @@ import org.eclipse.swt.widgets.Shell;
 import org.eclipse.swt.widgets.TabFolder;
 import org.eclipse.swt.widgets.TabItem;
 import org.eclipse.swt.widgets.Text;
+import org.switchyard.tools.models.switchyard1_0.jca.BatchCommit;
 import org.switchyard.tools.models.switchyard1_0.jca.Endpoint;
 import org.switchyard.tools.models.switchyard1_0.jca.JCABinding;
 import org.switchyard.tools.models.switchyard1_0.jca.JCAInboundConnection;
@@ -75,6 +77,10 @@ public class JCABindingInboundComposite extends AbstractSYBindingComposite {
     private OperationSelectorComposite _opSelectorComposite;
     private TabFolder _tabFolder;
     private List<String> _advancedPropsFilterList;
+    private Group _batchGroup;
+    private Button _batchEnabledCheckbox;
+    private Text _batchSizeText;
+    private Text _batchTimeoutText;
 
     private enum ENDPOINT_MAPPING_TYPE {
         JMSENDPOINT, CCIENDPOINT
@@ -114,6 +120,13 @@ public class JCABindingInboundComposite extends AbstractSYBindingComposite {
                         } else if (className.equalsIgnoreCase("cciendpoint")) {
                             _endpointMappingTypeCombo.select(ENDPOINT_MAPPING_TYPE.CCIENDPOINT.ordinal());
                         }
+                    }
+                    if (interaction.getBatchCommit() != null) {
+                        _batchEnabledCheckbox.setSelection(true);
+                        setTextValue(_batchSizeText, _binding.getInboundInteraction().getBatchCommit().getBatchSize());
+                        setTextValue(_batchTimeoutText, _binding.getInboundInteraction().getBatchCommit().getBatchTimeout());
+                    } else {
+                        _batchEnabledCheckbox.setSelection(false);
                     }
                     if (interaction.isTransacted()) {
                         _transactedButton.setSelection(interaction.isTransacted());
@@ -232,6 +245,30 @@ public class JCABindingInboundComposite extends AbstractSYBindingComposite {
         _endpointMappingTypeCombo.setData("CCI Endpoint", ENDPOINT_MAPPING_TYPE.CCIENDPOINT);
 
         _transactedButton = createCheckbox(inboundInteractionGroup, "Transacted");
+        
+        _batchGroup = new Group(inboundInteractionGroup, SWT.NONE);
+        GridData bgGridData = new GridData(SWT.FILL, SWT.FILL, true, true);
+        bgGridData.horizontalSpan = 2;
+        _batchGroup.setLayoutData(bgGridData);
+        _batchGroup.setLayout(new GridLayout(2, false));
+        _batchGroup.setText("Batch Commit Options");
+        
+        _batchEnabledCheckbox = createCheckbox(_batchGroup, "Enable Batch Commit");
+        _batchSizeText = createLabelAndText(_batchGroup, "Batch Size");
+        _batchTimeoutText = createLabelAndText(_batchGroup, "Batch Timeout (in MS)");
+        _batchEnabledCheckbox.addSelectionListener(new SelectionListener(){
+
+            @Override
+            public void widgetDefaultSelected(SelectionEvent arg0) {
+            }
+
+            @Override
+            public void widgetSelected(SelectionEvent e) {
+                _batchSizeText.setEnabled(_batchEnabledCheckbox.getSelection());
+                _batchTimeoutText.setEnabled(_batchEnabledCheckbox.getSelection());
+                handleModify(_batchEnabledCheckbox);
+            }
+        });
 
         _opSelectorComposite = new OperationSelectorComposite(composite, SWT.NONE);
         _opSelectorComposite.setLayoutData(new GridData(SWT.FILL, SWT.FILL, true, true));
@@ -279,6 +316,33 @@ public class JCABindingInboundComposite extends AbstractSYBindingComposite {
                 ResourceAdapter resAdapter = JcaFactory.eINSTANCE.createResourceAdapter();
                 resAdapter.setType("javax.resource.spi.ResourceAdapter");
                 setFeatureValue(_binding.getInboundConnection(), "resourceAdapter", resAdapter);
+            }
+        }
+    }
+
+    class BatchCommitOp extends ModelOperation {
+        @Override
+        public void run() throws Exception {
+            JCAInboundInteraction interaction = _binding.getInboundInteraction();
+            if (interaction != null) {
+                BatchCommit batchCommit = interaction.getBatchCommit();
+                if (batchCommit == null) {
+                    batchCommit = JcaFactory.eINSTANCE.createBatchCommit();
+                    setFeatureValue(_binding.getInboundInteraction(), "batchCommit", batchCommit);
+                }
+            }
+        }
+    }
+
+    class RemoveBatchCommitOp extends ModelOperation {
+        @Override
+        public void run() throws Exception {
+            JCAInboundInteraction interaction = _binding.getInboundInteraction();
+            if (interaction != null) {
+                BatchCommit batchCommit = interaction.getBatchCommit();
+                if (batchCommit != null) {
+                    setFeatureValue(_binding.getInboundInteraction(), "batchCommit", null);
+                }
             }
         }
     }
@@ -344,6 +408,23 @@ public class JCABindingInboundComposite extends AbstractSYBindingComposite {
         wrapOperation(ops);
     }
 
+    protected void updateInboundInteractionBatchCommitFeature(String featureId, Object value) {
+        ArrayList<ModelOperation> ops = new ArrayList<ModelOperation>();
+        ops.add(new InboundInteractionOp());
+        ops.add(new BatchCommitOp());
+        if (featureId != null) {
+            ops.add(new BasicOperation("inboundInteraction/batchCommit", featureId, value));
+        }
+        wrapOperation(ops);
+    }
+
+    protected void removeInboundInteractionBatchCommitFeature() {
+        ArrayList<ModelOperation> ops = new ArrayList<ModelOperation>();
+        ops.add(new InboundInteractionOp());
+        ops.add(new RemoveBatchCommitOp());
+        wrapOperation(ops);
+    }
+
     protected void updateEndpoint() {
         ArrayList<ModelOperation> ops = new ArrayList<ModelOperation>();
         ops.add(new InboundInteractionOp());
@@ -358,6 +439,16 @@ public class JCABindingInboundComposite extends AbstractSYBindingComposite {
             updateEndpoint();
         } else if (control.equals(_transactedButton)) {
             updateInboundInteractionFeature("transacted", Boolean.valueOf(_transactedButton.getSelection()));
+        } else if (control.equals(_batchEnabledCheckbox)) {
+            if (!_batchEnabledCheckbox.getSelection()) {
+                removeInboundInteractionBatchCommitFeature();
+            } else {
+                updateInboundInteractionBatchCommitFeature(null,  null);
+            }
+        } else if (control.equals(_batchSizeText)) {
+            updateInboundInteractionBatchCommitFeature("batchSize", _batchSizeText.getText().trim());
+        } else if (control.equals(_batchTimeoutText)) {
+            updateInboundInteractionBatchCommitFeature("batchTimeout", _batchTimeoutText.getText().trim());
         } else if (control.equals(_opSelectorComposite)) {
             int opType = _opSelectorComposite.getSelectedOperationSelectorType();
             updateOperationSelectorFeature(opType, _opSelectorComposite.getSelectedOperationSelectorValue());
@@ -373,6 +464,10 @@ public class JCABindingInboundComposite extends AbstractSYBindingComposite {
         if (_binding != null) {
             if (control.equals(_resourceAdapterText)) {
                 _resourceAdapterText.setText(_binding.getInboundConnection().getResourceAdapter().getName());
+            } else if (control.equals(_batchSizeText)) {
+                setTextValue(_batchSizeText, _binding.getInboundInteraction().getBatchCommit().getBatchSize());
+            } else if (control.equals(_batchTimeoutText)) {
+                setTextValue(_batchTimeoutText, _binding.getInboundInteraction().getBatchCommit().getBatchTimeout());
 //            } else if (control.equals(_operationSelectionCombo)) {
 //                String opName = OperationSelectorUtil.getOperationNameForStaticOperationSelector(this._binding);
 //                setTextValue(_operationSelectionCombo, opName);

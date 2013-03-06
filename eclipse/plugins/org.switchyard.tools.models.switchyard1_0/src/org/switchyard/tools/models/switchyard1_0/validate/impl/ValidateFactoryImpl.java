@@ -64,6 +64,9 @@ public class ValidateFactoryImpl extends EFactoryImpl implements ValidateFactory
             case ValidatePackage.DOCUMENT_ROOT: return createDocumentRoot();
             case ValidatePackage.JAVA_VALIDATE_TYPE: return createJavaValidateType();
             case ValidatePackage.XML_VALIDATE_TYPE: return createXmlValidateType();
+            case ValidatePackage.SCHEMA_FILES_TYPE: return createSchemaFilesType();
+            case ValidatePackage.SCHEMA_CATALOGS_TYPE: return createSchemaCatalogsType();
+            case ValidatePackage.FILE_ENTRY_TYPE: return createFileEntryType();
             default:
                 throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier");
         }
@@ -134,6 +137,36 @@ public class ValidateFactoryImpl extends EFactoryImpl implements ValidateFactory
     }
 
 	/**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public SchemaFilesType createSchemaFilesType() {
+        SchemaFilesTypeImpl schemaFilesType = new SchemaFilesTypeImpl();
+        return schemaFilesType;
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public SchemaCatalogsType createSchemaCatalogsType() {
+        SchemaCatalogsTypeImpl schemaCatalogsType = new SchemaCatalogsTypeImpl();
+        return schemaCatalogsType;
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public FileEntryType createFileEntryType() {
+        FileEntryTypeImpl fileEntryType = new FileEntryTypeImpl();
+        return fileEntryType;
+    }
+
+    /**
      * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
      * @generated

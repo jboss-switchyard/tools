@@ -192,13 +192,22 @@ public interface TransformPackage extends EPackage {
 	int JAVA_TRANSFORM_TYPE1__CLASS = SwitchyardPackage.TRANSFORM_TYPE_FEATURE_COUNT + 0;
 
 	/**
+     * The feature id for the '<em><b>Bean</b></em>' attribute.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int JAVA_TRANSFORM_TYPE1__BEAN = SwitchyardPackage.TRANSFORM_TYPE_FEATURE_COUNT + 1;
+
+    /**
      * The number of structural features of the '<em>Java Transform Type1</em>' class.
      * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
      * @generated
      * @ordered
      */
-	int JAVA_TRANSFORM_TYPE1_FEATURE_COUNT = SwitchyardPackage.TRANSFORM_TYPE_FEATURE_COUNT + 1;
+	int JAVA_TRANSFORM_TYPE1_FEATURE_COUNT = SwitchyardPackage.TRANSFORM_TYPE_FEATURE_COUNT + 2;
 
 	/**
      * The meta object id for the '{@link org.switchyard.tools.models.switchyard1_0.transform.impl.JAXBTransformTypeImpl <em>JAXB Transform Type</em>}' class.
@@ -563,6 +572,17 @@ public interface TransformPackage extends EPackage {
 	EAttribute getJavaTransformType1_Class();
 
 	/**
+     * Returns the meta object for the attribute '{@link org.switchyard.tools.models.switchyard1_0.transform.JavaTransformType1#getBean <em>Bean</em>}'.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @return the meta object for the attribute '<em>Bean</em>'.
+     * @see org.switchyard.tools.models.switchyard1_0.transform.JavaTransformType1#getBean()
+     * @see #getJavaTransformType1()
+     * @generated
+     */
+    EAttribute getJavaTransformType1_Bean();
+
+    /**
      * Returns the meta object for class '{@link org.switchyard.tools.models.switchyard1_0.transform.JAXBTransformType <em>JAXB Transform Type</em>}'.
      * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -827,6 +847,14 @@ public interface TransformPackage extends EPackage {
 		EAttribute JAVA_TRANSFORM_TYPE1__CLASS = eINSTANCE.getJavaTransformType1_Class();
 
 		/**
+         * The meta object literal for the '<em><b>Bean</b></em>' attribute feature.
+         * <!-- begin-user-doc -->
+         * <!-- end-user-doc -->
+         * @generated
+         */
+        EAttribute JAVA_TRANSFORM_TYPE1__BEAN = eINSTANCE.getJavaTransformType1_Bean();
+
+        /**
          * The meta object literal for the '{@link org.switchyard.tools.models.switchyard1_0.transform.impl.JAXBTransformTypeImpl <em>JAXB Transform Type</em>}' class.
          * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->

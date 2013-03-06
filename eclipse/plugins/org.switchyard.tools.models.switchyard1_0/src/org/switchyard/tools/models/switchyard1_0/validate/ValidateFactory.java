@@ -53,6 +53,33 @@ public interface ValidateFactory extends EFactory {
 	XmlValidateType createXmlValidateType();
 
 	/**
+     * Returns a new object of class '<em>Schema Files Type</em>'.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @return a new object of class '<em>Schema Files Type</em>'.
+     * @generated
+     */
+    SchemaFilesType createSchemaFilesType();
+
+    /**
+     * Returns a new object of class '<em>Schema Catalogs Type</em>'.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @return a new object of class '<em>Schema Catalogs Type</em>'.
+     * @generated
+     */
+    SchemaCatalogsType createSchemaCatalogsType();
+
+    /**
+     * Returns a new object of class '<em>File Entry Type</em>'.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @return a new object of class '<em>File Entry Type</em>'.
+     * @generated
+     */
+    FileEntryType createFileEntryType();
+
+    /**
      * Returns the package supported by this factory.
      * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->

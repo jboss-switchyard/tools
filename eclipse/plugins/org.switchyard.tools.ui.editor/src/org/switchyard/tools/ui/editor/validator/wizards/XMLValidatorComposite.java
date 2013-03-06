@@ -15,12 +15,14 @@ package org.switchyard.tools.ui.editor.validator.wizards;
 import org.eclipse.core.resources.IFile;
 import org.eclipse.core.resources.IResource;
 import org.eclipse.core.resources.ResourcesPlugin;
+import org.eclipse.emf.ecore.EObject;
+import org.eclipse.emf.transaction.RecordingCommand;
+import org.eclipse.emf.transaction.TransactionalEditingDomain;
+import org.eclipse.emf.transaction.impl.TransactionalEditingDomainImpl;
+import org.eclipse.emf.transaction.util.TransactionUtil;
 import org.eclipse.jdt.core.IJavaProject;
 import org.eclipse.jdt.core.JavaCore;
 import org.eclipse.swt.SWT;
-import org.eclipse.swt.events.ModifyEvent;
-import org.eclipse.swt.events.ModifyListener;
-import org.eclipse.swt.events.SelectionAdapter;
 import org.eclipse.swt.events.SelectionEvent;
 import org.eclipse.swt.events.SelectionListener;
 import org.eclipse.swt.layout.GridData;
@@ -30,12 +32,19 @@ import org.eclipse.swt.widgets.Combo;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Control;
 import org.eclipse.swt.widgets.Display;
+import org.eclipse.swt.widgets.Label;
 import org.eclipse.swt.widgets.Text;
 import org.switchyard.tools.models.switchyard1_0.switchyard.ValidateType;
+import org.switchyard.tools.models.switchyard1_0.validate.FileEntryType;
+import org.switchyard.tools.models.switchyard1_0.validate.SchemaCatalogsType;
+import org.switchyard.tools.models.switchyard1_0.validate.SchemaFilesType;
+import org.switchyard.tools.models.switchyard1_0.validate.ValidateFactory;
 import org.switchyard.tools.models.switchyard1_0.validate.XmlSchemaType;
 import org.switchyard.tools.models.switchyard1_0.validate.XmlValidateType;
 import org.switchyard.tools.ui.JavaUtil;
 import org.switchyard.tools.ui.common.ClasspathResourceSelectionDialog;
+import org.switchyard.tools.ui.editor.Activator;
+import org.switchyard.tools.ui.editor.diagram.shared.ModelOperation;
 import org.switchyard.tools.ui.editor.impl.SwitchyardSCAEditor;
 
 /**
@@ -46,15 +55,18 @@ public class XMLValidatorComposite extends BaseValidatorComposite {
 
     private Button _failOnWarningText;
     private Text _xsdFileText;
-    private Button _browseButton;
+//    private Button _browseButton;
     private Combo _schemaTypeCombo;
+    private FileEntryTable _schemaFileTable;
+    private FileEntryTable _catalogFileTable;
+    private Button _namespaceAwareCheckbox;
 
     @Override
     public void createContents(Composite parent, int style) {
         super.createContents(parent, style);
 
         Composite outer = new Composite(getPanel(), SWT.NONE);
-        GridData outerGD = new GridData(SWT.FILL, SWT.NULL, true, false, 2, 1);
+        GridData outerGD = new GridData(SWT.FILL, SWT.NULL, true, true, 2, 1);
         outerGD.horizontalIndent = -5;
         outerGD.verticalIndent = -5;
         outer.setLayoutData(outerGD);
@@ -70,32 +82,85 @@ public class XMLValidatorComposite extends BaseValidatorComposite {
         _schemaTypeCombo.select(XmlSchemaType.DTD_VALUE);
 
         Composite inner = new Composite(getPanel(), SWT.NONE);
-        GridData innerGD = new GridData(SWT.FILL, SWT.NULL, true, false, 2, 1);
+        GridData innerGD = new GridData(SWT.FILL, SWT.NULL, true, true, 2, 1);
         innerGD.horizontalIndent = -5;
         innerGD.verticalIndent = -5;
         inner.setLayoutData(innerGD);
-        inner.setLayout(new GridLayout(3, false));
-        _xsdFileText = createLabelAndText(inner, "Schema File");
-        _xsdFileText.addModifyListener(new ModifyListener() {
-            public void modifyText(ModifyEvent e) {
-                if (!inUpdate()) {
-                    handleModify(_xsdFileText);
-                    fireChangedEvent(_xsdFileText);
+        inner.setLayout(new GridLayout(1, false));
+        
+        new Label(inner, SWT.NULL).setText("Schema Files");
+        
+        _schemaFileTable = new FileEntryTable(inner, SWT.NONE) {
+
+            @Override
+            protected void removeFromList() {
+                final FileEntryType toRemove = _schemaFileTable.getTableSelection();
+                if (toRemove != null) {
+                    removeFileEntry(toRemove);
                 }
             }
-        });
-        _browseButton = new Button(inner, SWT.PUSH);
-        _browseButton.setText("Browse...");
-        _browseButton.addSelectionListener(new SelectionAdapter() {
+
             @Override
-            public void widgetSelected(SelectionEvent e) {
-                handleBrowse();
-                validate();
-                fireChangedEvent((Control) e.getSource());
+            protected void addFileEntryTypeToList() {
+                wrapOperation(new Runnable(){
+                    public void run() {
+                        String filepath = handleBrowse(_schemaTypeCombo.getText().trim());
+                        if (filepath != null) {
+                            FileEntryType fileEntry = ValidateFactory.eINSTANCE.createFileEntryType();
+                            fileEntry.setFile(filepath);
+                            if (_schemaFileTable.getSelection() == null) {
+                                XmlValidateType xmlValidator = (XmlValidateType) getValidator();
+                                xmlValidator.setSchemaFiles(ValidateFactory.eINSTANCE.createSchemaFilesType());
+                                _schemaFileTable.setSelection(xmlValidator.getSchemaFiles().getEntry());
+                            }
+                            _schemaFileTable.getSelection().add(fileEntry);
+                            fireChangedEvent(this);
+                            handleModify(_schemaFileTable);
+                            _schemaFileTable.getTreeViewer().refresh(true);
+                        }
+                    }
+                });
+            }
+        };
+
+        _schemaFileTable.setLayoutData(new GridData(SWT.FILL, SWT.FILL, true, true, 1, 2));
+        
+        new Label(inner, SWT.NULL).setText("Catalog Files");
+        _catalogFileTable = new FileEntryTable(inner, SWT.NONE) {
+
+            @Override
+            protected void removeFromList() {
+                final FileEntryType toRemove = _catalogFileTable.getTableSelection();
+                if (toRemove != null) {
+                    removeCatalogFileEntry(toRemove);
+                }
             }
 
-        });
+            @Override
+            protected void addFileEntryTypeToList() {
+                wrapOperation(new Runnable(){
+                    public void run() {
+                        String filepath = handleBrowse(_schemaTypeCombo.getText().trim());
+                        if (filepath != null) {
+                            FileEntryType fileEntry = ValidateFactory.eINSTANCE.createFileEntryType();
+                            fileEntry.setFile(filepath);
+                            if (_catalogFileTable.getSelection() == null) {
+                                XmlValidateType xmlValidator = (XmlValidateType) getValidator();
+                                xmlValidator.setSchemaCatalogs(ValidateFactory.eINSTANCE.createSchemaCatalogsType());
+                                _catalogFileTable.setSelection(xmlValidator.getSchemaCatalogs().getEntry());
+                            }
+                            _catalogFileTable.getSelection().add(fileEntry);
+                            fireChangedEvent(this);
+                            handleModify(_schemaFileTable);
+                            _catalogFileTable.getTreeViewer().refresh(true);
+                        }
+                    }
+                });
+            }
+        };
 
+        _catalogFileTable.setLayoutData(new GridData(SWT.FILL, SWT.FILL, true, true, 1, 2));
+ 
         _failOnWarningText = createCheckbox(getPanel(), "Fail on Warning");
         _failOnWarningText.addSelectionListener(new SelectionListener() {
             @Override
@@ -111,6 +176,80 @@ public class XMLValidatorComposite extends BaseValidatorComposite {
                 widgetSelected(e);
             }
         });
+        
+        _namespaceAwareCheckbox = createCheckbox(getPanel(), "Namespace Aware");
+        _namespaceAwareCheckbox.addSelectionListener(new SelectionListener() {
+            @Override
+            public void widgetSelected(SelectionEvent e) {
+                if (!inUpdate()) {
+                    handleModify(_namespaceAwareCheckbox);
+                    fireChangedEvent(_namespaceAwareCheckbox);
+                }
+            }
+
+            @Override
+            public void widgetDefaultSelected(SelectionEvent e) {
+                widgetSelected(e);
+            }
+        });
+        
+        setValidator(getValidator());
+    }
+
+    private void wrapOperation(final Runnable runner) {
+        TransactionalEditingDomain domain = TransactionUtil.getEditingDomain(getValidator());
+        if (domain != null) {
+            domain.getCommandStack().execute(new RecordingCommand(domain) {
+                @Override
+                protected void doExecute() {
+                    try {
+                        runner.run();
+                    } catch (Exception e) {
+                        Activator.logError(e);
+                    }
+                }
+            });
+        } else {
+            try {
+                runner.run();
+            } catch (Exception e) {
+                Activator.logError(e);
+            }
+        }
+    }
+    
+    private void removeFileEntry(final FileEntryType fileEntry) {
+        if (getValidator() != null) {
+            final XmlValidateType xmlValidator = (XmlValidateType) getValidator();
+            final SchemaFilesType schemaFiles = xmlValidator.getSchemaFiles();
+            final TransactionalEditingDomainImpl _editDomain = 
+                    (TransactionalEditingDomainImpl) SwitchyardSCAEditor.getActiveEditor().getEditingDomain();
+            if (schemaFiles != null) {
+                _editDomain.getCommandStack().execute(new RecordingCommand(_editDomain) {
+                    @Override
+                    protected void doExecute() {
+                        schemaFiles.getEntry().remove(fileEntry);
+                    }
+                });
+            }
+         }
+    }
+
+    private void removeCatalogFileEntry(final FileEntryType fileEntry) {
+        if (getValidator() != null) {
+            final XmlValidateType xmlValidator = (XmlValidateType) getValidator();
+            final SchemaCatalogsType catalogFiles = xmlValidator.getSchemaCatalogs();
+            final TransactionalEditingDomainImpl _editDomain = 
+                    (TransactionalEditingDomainImpl) SwitchyardSCAEditor.getActiveEditor().getEditingDomain();
+            if (catalogFiles != null) {
+                _editDomain.getCommandStack().execute(new RecordingCommand(_editDomain) {
+                    @Override
+                    protected void doExecute() {
+                        catalogFiles.getEntry().remove(fileEntry);
+                    }
+                });
+            }
+         }
     }
 
     protected boolean validate() {
@@ -130,6 +269,9 @@ public class XMLValidatorComposite extends BaseValidatorComposite {
         if (control.equals(_failOnWarningText)) {
             String value = Boolean.toString(_failOnWarningText.getSelection());                        
             updateFeature((XmlValidateType) getValidator(), "failOnWarning", value);
+        } else if (control.equals(_namespaceAwareCheckbox)) {
+            String value = Boolean.toString(_namespaceAwareCheckbox.getSelection());                        
+            updateFeature((XmlValidateType) getValidator(), "namespaceAware", value);
         } else if (control.equals(_xsdFileText)) {
             updateFeature((XmlValidateType) getValidator(), "schemaFile", _xsdFileText.getText().trim());
         } else if (control.equals(_schemaTypeCombo)) {
@@ -146,11 +288,12 @@ public class XMLValidatorComposite extends BaseValidatorComposite {
         setInUpdate(true);
         if (getValidator() != null) {
             XmlValidateType xmlValidator = (XmlValidateType) getValidator();
-            if (control.equals(_xsdFileText)) {
-                _xsdFileText.setText(xmlValidator.getSchemaFile());
-            } else if (control.equals(_failOnWarningText)) { 
+            if (control.equals(_failOnWarningText)) { 
                 boolean value = Boolean.parseBoolean(xmlValidator.getFailOnWarning());                        
                 _failOnWarningText.setSelection(value);
+            } else if (control.equals(_namespaceAwareCheckbox)) {
+                boolean value = Boolean.parseBoolean(xmlValidator.getNamespaceAware());                        
+                _namespaceAwareCheckbox.setSelection(value);
             } else if (control.equals(_schemaTypeCombo)) {
                 _schemaTypeCombo.select(xmlValidator.getSchemaType().getValue());
             }
@@ -165,21 +308,77 @@ public class XMLValidatorComposite extends BaseValidatorComposite {
         setInUpdate(true);
         super.setValidator(validator);
         XmlValidateType xmlValidator = (XmlValidateType) getValidator();
-        if (_failOnWarningText != null && !_failOnWarningText.isDisposed() && xmlValidator.getFailOnWarning() != null) {
-            boolean value = Boolean.parseBoolean(xmlValidator.getFailOnWarning());                        
-            _failOnWarningText.setSelection(value);
-        }
-        if (_xsdFileText != null && !_xsdFileText.isDisposed() && xmlValidator.getSchemaFile() != null) {
-            _xsdFileText.setText(xmlValidator.getSchemaFile());
-        }
-        if (_schemaTypeCombo != null && !_schemaTypeCombo.isDisposed() && xmlValidator.getSchemaType() != null) {
-            _schemaTypeCombo.select(xmlValidator.getSchemaType().getValue());
+        if (xmlValidator != null) {
+            if (_failOnWarningText != null && !_failOnWarningText.isDisposed() && xmlValidator.getFailOnWarning() != null) {
+                boolean value = Boolean.parseBoolean(xmlValidator.getFailOnWarning());                        
+                _failOnWarningText.setSelection(value);
+            }
+            if (_namespaceAwareCheckbox != null && !_namespaceAwareCheckbox.isDisposed() && xmlValidator.getNamespaceAware() != null) {
+                boolean value = Boolean.parseBoolean(xmlValidator.getNamespaceAware());                        
+                _namespaceAwareCheckbox.setSelection(value);
+            }
+            if (_schemaFileTable != null && !_schemaFileTable.isDisposed() && xmlValidator != null && xmlValidator.getSchemaFiles() != null) {
+                SchemaFilesType schemaFiles = xmlValidator.getSchemaFiles();
+                if (schemaFiles.getEntry() != null) {
+                    _schemaFileTable.setTargetObject(schemaFiles);
+                    _schemaFileTable.setSelection(schemaFiles.getEntry());
+                }
+            }
+            if (_catalogFileTable != null && !_catalogFileTable.isDisposed() && xmlValidator != null && xmlValidator.getSchemaCatalogs() !=  null) {
+                SchemaCatalogsType catalogFiles = xmlValidator.getSchemaCatalogs();
+                if (catalogFiles.getEntry() != null) {
+                    _catalogFileTable.setTargetObject(catalogFiles);
+                    _catalogFileTable.setSelection(catalogFiles.getEntry());
+                }
+            }
+            if (_schemaTypeCombo != null && !_schemaTypeCombo.isDisposed() && xmlValidator.getSchemaType() != null) {
+                _schemaTypeCombo.select(xmlValidator.getSchemaType().getValue());
+            }
         }
         setInUpdate(false);
         addObservableListeners();
     }
 
-    private void handleBrowse() {
+    /**
+     * @author bfitzpat
+     */
+    public class BasicOperation extends ModelOperation {
+
+        private String _localObjectPath;
+        private String _localFeature;
+        private Object _localValue;
+
+        /**
+         * @param objectpath incoming path to the object with the feature
+         * @param featureId feature id
+         * @param value incoming value
+         */
+        public BasicOperation(String objectpath, String featureId, Object value) {
+            _localObjectPath = objectpath;
+            _localFeature = featureId;
+            _localValue = value;
+        }
+
+        @Override
+        public void run() throws Exception {
+            String[] path = parseString(_localObjectPath, "/");
+            EObject object = getValidator();
+            for (int i = 0; i < path.length; i++) {
+                object = (EObject) getFeatureValue(object, path[i]);
+            }
+            if (object != null) {
+                if (_localValue instanceof String && ((String) _localValue).length() == 0) {
+                    setFeatureValue(object, _localFeature, null);
+                } else {
+                    setFeatureValue(object, _localFeature, _localValue);
+                }
+            } else {
+                throw new Exception();
+            }
+        }
+    }
+
+    private String handleBrowse(String type) {
 
         IFile modelFile = SwitchyardSCAEditor.getActiveEditor().getModelFile();
         IJavaProject javaProject = null;
@@ -195,9 +394,9 @@ public class XMLValidatorComposite extends BaseValidatorComposite {
             dialog = new ClasspathResourceSelectionDialog(Display.getCurrent().getActiveShell(), javaProject.getProject());
         }
         String title = "Select XSD, DTD, or RNG file from Project";
-        String extension = "*.xsd;*.dtd;*.rng;*.rnc";
-        if (_schemaTypeCombo.getText().trim() != null) {
-            String value = _schemaTypeCombo.getText().trim();
+        String extension = "*.xsd,*.dtd,*.rng,*.rnc";
+        if (type != null) {
+            String value = type.trim();
             if (value.contentEquals("DTD")) {
                 title = "Select DTD file from Project";
                 extension = "*.dtd";
@@ -214,10 +413,9 @@ public class XMLValidatorComposite extends BaseValidatorComposite {
         dialog.open();
         Object[] result = dialog.getResult();
         if (result == null || result.length == 0 || !(result[0] instanceof IResource)) {
-            return;
+            return null;
         }
         String filepath = JavaUtil.getJavaPathForResource((IResource) result[0]).toString();
-        _xsdFileText.setText(filepath);
-        handleModify(_xsdFileText);
+        return filepath;
     }
 }

@@ -18,6 +18,7 @@ import java.util.List;
 import javax.xml.namespace.QName;
 
 import org.eclipse.emf.ecore.EObject;
+import org.eclipse.jface.wizard.WizardPage;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.layout.GridLayout;
 import org.eclipse.swt.widgets.Combo;
@@ -39,6 +40,7 @@ public class BaseValidatorComposite extends AbstractSwitchyardComposite {
     private Combo _nameText;
     private static ValidatorTypesUtil _typesUtil = null;
     private String _warningMessage = null;
+    private WizardPage _wizPage = null;
     
     /**
      * Basic constructor.
@@ -66,8 +68,14 @@ public class BaseValidatorComposite extends AbstractSwitchyardComposite {
                 }
             }
             if (!text.isEmpty()) {
-                if (_typesUtil.validatorExists(text)) {
-                    setWarningMessage("A transform already exists with the selected name.");
+                boolean inEdit = false;
+                if (_wizPage != null && _wizPage.getWizard() instanceof AddValidatorWizard) {
+                    if (((AddValidatorWizard)_wizPage.getWizard()).getValidator() != null) {
+                        inEdit = true;
+                    }
+                }
+                if (_typesUtil.validatorExists(text) && !inEdit) {
+                    setWarningMessage("A validator already exists with the selected name.");
                 }
             }
         }
@@ -102,7 +110,9 @@ public class BaseValidatorComposite extends AbstractSwitchyardComposite {
         } catch (Exception e) {
             e.fillInStackTrace();
         }
-        setTextValue(_nameText, transform.getName());
+        if (transform != null) {
+            setTextValue(_nameText, transform.getName());
+        }
         setInUpdate(false);
     }
 
@@ -158,5 +168,12 @@ public class BaseValidatorComposite extends AbstractSwitchyardComposite {
 
     protected String getWarningMessage() {
         return _warningMessage;
+    }
+    
+    /**
+     * @param page Need reference to parent wizard page
+     */
+    public void setWizardPage(WizardPage page) {
+        this._wizPage = page;
     }
 }

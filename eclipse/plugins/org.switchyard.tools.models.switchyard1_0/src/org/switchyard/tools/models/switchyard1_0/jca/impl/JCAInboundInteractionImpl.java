@@ -19,6 +19,7 @@ import org.eclipse.emf.ecore.util.BasicFeatureMap;
 import org.eclipse.emf.ecore.util.FeatureMap;
 import org.eclipse.emf.ecore.util.InternalEList;
 
+import org.switchyard.tools.models.switchyard1_0.jca.BatchCommit;
 import org.switchyard.tools.models.switchyard1_0.jca.Endpoint;
 import org.switchyard.tools.models.switchyard1_0.jca.JCAInboundInteraction;
 import org.switchyard.tools.models.switchyard1_0.jca.JcaPackage;
@@ -33,6 +34,7 @@ import org.switchyard.tools.models.switchyard1_0.jca.JcaPackage;
  *   <li>{@link org.switchyard.tools.models.switchyard1_0.jca.impl.JCAInboundInteractionImpl#getListener <em>Listener</em>}</li>
  *   <li>{@link org.switchyard.tools.models.switchyard1_0.jca.impl.JCAInboundInteractionImpl#getEndpoint <em>Endpoint</em>}</li>
  *   <li>{@link org.switchyard.tools.models.switchyard1_0.jca.impl.JCAInboundInteractionImpl#isTransacted <em>Transacted</em>}</li>
+ *   <li>{@link org.switchyard.tools.models.switchyard1_0.jca.impl.JCAInboundInteractionImpl#getBatchCommit <em>Batch Commit</em>}</li>
  *   <li>{@link org.switchyard.tools.models.switchyard1_0.jca.impl.JCAInboundInteractionImpl#getAny <em>Any</em>}</li>
  *   <li>{@link org.switchyard.tools.models.switchyard1_0.jca.impl.JCAInboundInteractionImpl#getAnyAttribute <em>Any Attribute</em>}</li>
  * </ul>
@@ -99,6 +101,16 @@ public class JCAInboundInteractionImpl extends EObjectImpl implements JCAInbound
      * @ordered
      */
     protected boolean transactedESet;
+
+    /**
+     * The cached value of the '{@link #getBatchCommit() <em>Batch Commit</em>}' containment reference.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @see #getBatchCommit()
+     * @generated
+     * @ordered
+     */
+    protected BatchCommit batchCommit;
 
     /**
      * The cached value of the '{@link #getAny() <em>Any</em>}' attribute list.
@@ -254,6 +266,49 @@ public class JCAInboundInteractionImpl extends EObjectImpl implements JCAInbound
      * <!-- end-user-doc -->
      * @generated
      */
+    public BatchCommit getBatchCommit() {
+        return batchCommit;
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public NotificationChain basicSetBatchCommit(BatchCommit newBatchCommit, NotificationChain msgs) {
+        BatchCommit oldBatchCommit = batchCommit;
+        batchCommit = newBatchCommit;
+        if (eNotificationRequired()) {
+            ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, JcaPackage.JCA_INBOUND_INTERACTION__BATCH_COMMIT, oldBatchCommit, newBatchCommit);
+            if (msgs == null) msgs = notification; else msgs.add(notification);
+        }
+        return msgs;
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public void setBatchCommit(BatchCommit newBatchCommit) {
+        if (newBatchCommit != batchCommit) {
+            NotificationChain msgs = null;
+            if (batchCommit != null)
+                msgs = ((InternalEObject)batchCommit).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - JcaPackage.JCA_INBOUND_INTERACTION__BATCH_COMMIT, null, msgs);
+            if (newBatchCommit != null)
+                msgs = ((InternalEObject)newBatchCommit).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - JcaPackage.JCA_INBOUND_INTERACTION__BATCH_COMMIT, null, msgs);
+            msgs = basicSetBatchCommit(newBatchCommit, msgs);
+            if (msgs != null) msgs.dispatch();
+        }
+        else if (eNotificationRequired())
+            eNotify(new ENotificationImpl(this, Notification.SET, JcaPackage.JCA_INBOUND_INTERACTION__BATCH_COMMIT, newBatchCommit, newBatchCommit));
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
     public FeatureMap getAny() {
         if (any == null) {
             any = new BasicFeatureMap(this, JcaPackage.JCA_INBOUND_INTERACTION__ANY);
@@ -283,6 +338,8 @@ public class JCAInboundInteractionImpl extends EObjectImpl implements JCAInbound
         switch (featureID) {
             case JcaPackage.JCA_INBOUND_INTERACTION__ENDPOINT:
                 return basicSetEndpoint(null, msgs);
+            case JcaPackage.JCA_INBOUND_INTERACTION__BATCH_COMMIT:
+                return basicSetBatchCommit(null, msgs);
             case JcaPackage.JCA_INBOUND_INTERACTION__ANY:
                 return ((InternalEList<?>)getAny()).basicRemove(otherEnd, msgs);
             case JcaPackage.JCA_INBOUND_INTERACTION__ANY_ATTRIBUTE:
@@ -305,6 +362,8 @@ public class JCAInboundInteractionImpl extends EObjectImpl implements JCAInbound
                 return getEndpoint();
             case JcaPackage.JCA_INBOUND_INTERACTION__TRANSACTED:
                 return isTransacted();
+            case JcaPackage.JCA_INBOUND_INTERACTION__BATCH_COMMIT:
+                return getBatchCommit();
             case JcaPackage.JCA_INBOUND_INTERACTION__ANY:
                 if (coreType) return getAny();
                 return ((FeatureMap.Internal)getAny()).getWrapper();
@@ -331,6 +390,9 @@ public class JCAInboundInteractionImpl extends EObjectImpl implements JCAInbound
                 return;
             case JcaPackage.JCA_INBOUND_INTERACTION__TRANSACTED:
                 setTransacted((Boolean)newValue);
+                return;
+            case JcaPackage.JCA_INBOUND_INTERACTION__BATCH_COMMIT:
+                setBatchCommit((BatchCommit)newValue);
                 return;
             case JcaPackage.JCA_INBOUND_INTERACTION__ANY:
                 ((FeatureMap.Internal)getAny()).set(newValue);
@@ -359,6 +421,9 @@ public class JCAInboundInteractionImpl extends EObjectImpl implements JCAInbound
             case JcaPackage.JCA_INBOUND_INTERACTION__TRANSACTED:
                 unsetTransacted();
                 return;
+            case JcaPackage.JCA_INBOUND_INTERACTION__BATCH_COMMIT:
+                setBatchCommit((BatchCommit)null);
+                return;
             case JcaPackage.JCA_INBOUND_INTERACTION__ANY:
                 getAny().clear();
                 return;
@@ -383,6 +448,8 @@ public class JCAInboundInteractionImpl extends EObjectImpl implements JCAInbound
                 return endpoint != null;
             case JcaPackage.JCA_INBOUND_INTERACTION__TRANSACTED:
                 return isSetTransacted();
+            case JcaPackage.JCA_INBOUND_INTERACTION__BATCH_COMMIT:
+                return batchCommit != null;
             case JcaPackage.JCA_INBOUND_INTERACTION__ANY:
                 return any != null && !any.isEmpty();
             case JcaPackage.JCA_INBOUND_INTERACTION__ANY_ATTRIBUTE:

@@ -91,6 +91,24 @@ public class ValidateSwitch<T> extends Switch<T> {
                 if (result == null) result = defaultCase(theEObject);
                 return result;
             }
+            case ValidatePackage.SCHEMA_FILES_TYPE: {
+                SchemaFilesType schemaFilesType = (SchemaFilesType)theEObject;
+                T result = caseSchemaFilesType(schemaFilesType);
+                if (result == null) result = defaultCase(theEObject);
+                return result;
+            }
+            case ValidatePackage.SCHEMA_CATALOGS_TYPE: {
+                SchemaCatalogsType schemaCatalogsType = (SchemaCatalogsType)theEObject;
+                T result = caseSchemaCatalogsType(schemaCatalogsType);
+                if (result == null) result = defaultCase(theEObject);
+                return result;
+            }
+            case ValidatePackage.FILE_ENTRY_TYPE: {
+                FileEntryType fileEntryType = (FileEntryType)theEObject;
+                T result = caseFileEntryType(fileEntryType);
+                if (result == null) result = defaultCase(theEObject);
+                return result;
+            }
             default: return defaultCase(theEObject);
         }
     }
@@ -141,6 +159,51 @@ public class ValidateSwitch<T> extends Switch<T> {
     }
 
 	/**
+     * Returns the result of interpreting the object as an instance of '<em>Schema Files Type</em>'.
+     * <!-- begin-user-doc -->
+     * This implementation returns null;
+     * returning a non-null result will terminate the switch.
+     * <!-- end-user-doc -->
+     * @param object the target of the switch.
+     * @return the result of interpreting the object as an instance of '<em>Schema Files Type</em>'.
+     * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+     * @generated
+     */
+    public T caseSchemaFilesType(SchemaFilesType object) {
+        return null;
+    }
+
+    /**
+     * Returns the result of interpreting the object as an instance of '<em>Schema Catalogs Type</em>'.
+     * <!-- begin-user-doc -->
+     * This implementation returns null;
+     * returning a non-null result will terminate the switch.
+     * <!-- end-user-doc -->
+     * @param object the target of the switch.
+     * @return the result of interpreting the object as an instance of '<em>Schema Catalogs Type</em>'.
+     * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+     * @generated
+     */
+    public T caseSchemaCatalogsType(SchemaCatalogsType object) {
+        return null;
+    }
+
+    /**
+     * Returns the result of interpreting the object as an instance of '<em>File Entry Type</em>'.
+     * <!-- begin-user-doc -->
+     * This implementation returns null;
+     * returning a non-null result will terminate the switch.
+     * <!-- end-user-doc -->
+     * @param object the target of the switch.
+     * @return the result of interpreting the object as an instance of '<em>File Entry Type</em>'.
+     * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+     * @generated
+     */
+    public T caseFileEntryType(FileEntryType object) {
+        return null;
+    }
+
+    /**
      * Returns the result of interpreting the object as an instance of '<em>Validate Type</em>'.
      * <!-- begin-user-doc -->
      * This implementation returns null;

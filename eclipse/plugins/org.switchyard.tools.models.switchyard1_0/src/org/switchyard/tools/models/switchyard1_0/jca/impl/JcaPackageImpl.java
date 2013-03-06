@@ -68,6 +68,7 @@ import org.switchyard.tools.models.switchyard1_0.hornetq.impl.HornetQPackageImpl
 import org.switchyard.tools.models.switchyard1_0.http.HttpPackage;
 import org.switchyard.tools.models.switchyard1_0.http.impl.HttpPackageImpl;
 import org.switchyard.tools.models.switchyard1_0.jca.ActivationSpec;
+import org.switchyard.tools.models.switchyard1_0.jca.BatchCommit;
 import org.switchyard.tools.models.switchyard1_0.jca.Connection;
 import org.switchyard.tools.models.switchyard1_0.jca.ConnectionSpec;
 import org.switchyard.tools.models.switchyard1_0.jca.DocumentRoot;
@@ -164,6 +165,13 @@ public class JcaPackageImpl extends EPackageImpl implements JcaPackage {
      * @generated
      */
     private EClass jcaMessageComposerTypeEClass = null;
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    private EClass batchCommitEClass = null;
 
     /**
      * <!-- begin-user-doc -->
@@ -680,6 +688,33 @@ public class JcaPackageImpl extends EPackageImpl implements JcaPackage {
      * <!-- end-user-doc -->
      * @generated
      */
+    public EClass getBatchCommit() {
+        return batchCommitEClass;
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public EAttribute getBatchCommit_BatchSize() {
+        return (EAttribute)batchCommitEClass.getEStructuralFeatures().get(0);
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public EAttribute getBatchCommit_BatchTimeout() {
+        return (EAttribute)batchCommitEClass.getEStructuralFeatures().get(1);
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
     public EClass getInboundOperation() {
         return inboundOperationEClass;
     }
@@ -932,8 +967,17 @@ public class JcaPackageImpl extends EPackageImpl implements JcaPackage {
      * <!-- end-user-doc -->
      * @generated
      */
+    public EReference getJCAInboundInteraction_BatchCommit() {
+        return (EReference)jcaInboundInteractionEClass.getEStructuralFeatures().get(3);
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
     public EAttribute getJCAInboundInteraction_Any() {
-        return (EAttribute)jcaInboundInteractionEClass.getEStructuralFeatures().get(3);
+        return (EAttribute)jcaInboundInteractionEClass.getEStructuralFeatures().get(4);
     }
 
     /**
@@ -942,7 +986,7 @@ public class JcaPackageImpl extends EPackageImpl implements JcaPackage {
      * @generated
      */
     public EAttribute getJCAInboundInteraction_AnyAttribute() {
-        return (EAttribute)jcaInboundInteractionEClass.getEStructuralFeatures().get(4);
+        return (EAttribute)jcaInboundInteractionEClass.getEStructuralFeatures().get(5);
     }
 
     /**
@@ -1411,6 +1455,7 @@ public class JcaPackageImpl extends EPackageImpl implements JcaPackage {
         createEAttribute(jcaInboundInteractionEClass, JCA_INBOUND_INTERACTION__LISTENER);
         createEReference(jcaInboundInteractionEClass, JCA_INBOUND_INTERACTION__ENDPOINT);
         createEAttribute(jcaInboundInteractionEClass, JCA_INBOUND_INTERACTION__TRANSACTED);
+        createEReference(jcaInboundInteractionEClass, JCA_INBOUND_INTERACTION__BATCH_COMMIT);
         createEAttribute(jcaInboundInteractionEClass, JCA_INBOUND_INTERACTION__ANY);
         createEAttribute(jcaInboundInteractionEClass, JCA_INBOUND_INTERACTION__ANY_ATTRIBUTE);
 
@@ -1464,6 +1509,10 @@ public class JcaPackageImpl extends EPackageImpl implements JcaPackage {
         jcaContextMapperTypeEClass = createEClass(JCA_CONTEXT_MAPPER_TYPE);
 
         jcaMessageComposerTypeEClass = createEClass(JCA_MESSAGE_COMPOSER_TYPE);
+
+        batchCommitEClass = createEClass(BATCH_COMMIT);
+        createEAttribute(batchCommitEClass, BATCH_COMMIT__BATCH_SIZE);
+        createEAttribute(batchCommitEClass, BATCH_COMMIT__BATCH_TIMEOUT);
 
         // Create enums
         jcaCreateResourceEEnum = createEEnum(JCA_CREATE_RESOURCE);
@@ -1571,6 +1620,7 @@ public class JcaPackageImpl extends EPackageImpl implements JcaPackage {
         initEAttribute(getJCAInboundInteraction_Listener(), theXMLTypePackage.getString(), "listener", null, 0, 1, JCAInboundInteraction.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
         initEReference(getJCAInboundInteraction_Endpoint(), this.getEndpoint(), null, "endpoint", null, 0, 1, JCAInboundInteraction.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
         initEAttribute(getJCAInboundInteraction_Transacted(), theXMLTypePackage.getBoolean(), "transacted", null, 0, 1, JCAInboundInteraction.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+        initEReference(getJCAInboundInteraction_BatchCommit(), this.getBatchCommit(), null, "batchCommit", null, 0, 1, JCAInboundInteraction.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
         initEAttribute(getJCAInboundInteraction_Any(), ecorePackage.getEFeatureMapEntry(), "any", null, 0, -1, JCAInboundInteraction.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
         initEAttribute(getJCAInboundInteraction_AnyAttribute(), ecorePackage.getEFeatureMapEntry(), "anyAttribute", null, 0, -1, JCAInboundInteraction.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
@@ -1624,6 +1674,10 @@ public class JcaPackageImpl extends EPackageImpl implements JcaPackage {
         initEClass(jcaContextMapperTypeEClass, JCAContextMapperType.class, "JCAContextMapperType", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 
         initEClass(jcaMessageComposerTypeEClass, JCAMessageComposerType.class, "JCAMessageComposerType", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+
+        initEClass(batchCommitEClass, BatchCommit.class, "BatchCommit", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+        initEAttribute(getBatchCommit_BatchSize(), theXMLTypePackage.getString(), "batchSize", null, 1, 1, BatchCommit.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+        initEAttribute(getBatchCommit_BatchTimeout(), theXMLTypePackage.getString(), "batchTimeout", null, 1, 1, BatchCommit.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
         // Initialize enums and add enum literals
         initEEnum(jcaCreateResourceEEnum, JCACreateResource.class, "JCACreateResource");
@@ -2064,6 +2118,14 @@ public class JcaPackageImpl extends EPackageImpl implements JcaPackage {
              "namespace", "##targetNamespace"
            });		
         addAnnotation
+          (getJCAInboundInteraction_BatchCommit(), 
+           source, 
+           new String[] {
+             "kind", "element",
+             "name", "batchCommit",
+             "namespace", "##targetNamespace"
+           });		
+        addAnnotation
           (getJCAInboundInteraction_Any(), 
            source, 
            new String[] {
@@ -2438,6 +2500,27 @@ public class JcaPackageImpl extends EPackageImpl implements JcaPackage {
              "name", "MessageComposerType",
              "kind", "empty",
              "namespace", "##targetNamespace"
+           });		
+        addAnnotation
+          (batchCommitEClass, 
+           source, 
+           new String[] {
+             "name", "batchCommit",
+             "kind", "empty"
+           });		
+        addAnnotation
+          (getBatchCommit_BatchSize(), 
+           source, 
+           new String[] {
+             "kind", "attribute",
+             "name", "batchSize"
+           });		
+        addAnnotation
+          (getBatchCommit_BatchTimeout(), 
+           source, 
+           new String[] {
+             "kind", "attribute",
+             "name", "batchTimeout"
            });
     }
 

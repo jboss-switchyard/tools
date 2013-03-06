@@ -12,25 +12,16 @@
  ******************************************************************************/
 package org.switchyard.tools.ui.editor.validator.wizards;
 
-import org.eclipse.core.resources.IFile;
 import org.eclipse.core.resources.IProject;
-import org.eclipse.core.runtime.CoreException;
-import org.eclipse.jdt.core.ICompilationUnit;
 import org.eclipse.jdt.core.IJavaElement;
 import org.eclipse.jdt.core.IJavaProject;
 import org.eclipse.jdt.core.IType;
 import org.eclipse.jdt.core.JavaCore;
 import org.eclipse.jdt.core.JavaModelException;
-import org.eclipse.jdt.core.dom.AST;
-import org.eclipse.jdt.core.dom.ASTParser;
-import org.eclipse.jdt.core.dom.CompilationUnit;
 import org.eclipse.jdt.core.search.IJavaSearchScope;
 import org.eclipse.jdt.core.search.SearchEngine;
 import org.eclipse.jdt.ui.IJavaElementSearchConstants;
 import org.eclipse.jdt.ui.JavaUI;
-import org.eclipse.jface.viewers.ISelection;
-import org.eclipse.jface.viewers.IStructuredSelection;
-import org.eclipse.jface.viewers.StructuredSelection;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.events.SelectionAdapter;
 import org.eclipse.swt.events.SelectionEvent;
@@ -41,12 +32,10 @@ import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Control;
 import org.eclipse.swt.widgets.Display;
 import org.eclipse.swt.widgets.Text;
-import org.eclipse.ui.PlatformUI;
 import org.eclipse.ui.dialogs.SelectionDialog;
 import org.switchyard.tools.models.switchyard1_0.switchyard.ValidateType;
 import org.switchyard.tools.models.switchyard1_0.validate.JavaValidateType;
 import org.switchyard.tools.ui.editor.impl.SwitchyardSCAEditor;
-import org.switchyard.tools.ui.editor.util.AnnotationVisitor;
 
 /**
  * @author bfitzpat
@@ -56,6 +45,8 @@ public class JavaValidatorComposite extends BaseValidatorComposite {
 
     private Text _classText;
     private Button _browseButton;
+    private Text _beanText;
+    private Button _browseBeanButton;
 
     @Override
     public void createContents(Composite parent, int style) {
@@ -73,9 +64,23 @@ public class JavaValidatorComposite extends BaseValidatorComposite {
         _browseButton.addSelectionListener(new SelectionAdapter() {
             @Override
             public void widgetSelected(SelectionEvent e) {
-                handleBrowse();
+                handleBrowse(_classText);
                 validate();
                 fireChangedEvent(_browseButton);
+            }
+
+        });
+
+        _beanText = createLabelAndText(inner, "Bean");
+
+        _browseBeanButton = new Button(inner, SWT.PUSH);
+        _browseBeanButton.setText("Browse...");
+        _browseBeanButton.addSelectionListener(new SelectionAdapter() {
+            @Override
+            public void widgetSelected(SelectionEvent e) {
+                handleBrowse(_beanText);
+                validate();
+                fireChangedEvent(_browseBeanButton);
             }
 
         });
@@ -85,75 +90,80 @@ public class JavaValidatorComposite extends BaseValidatorComposite {
         super.validate();
         if (getErrorMessage() == null) {
             String className = _classText.getText().trim();
+            String beanName = _beanText.getText().trim();
 
             // check to see if class is valid
-            if (className.isEmpty()) {
-                setErrorMessage("Java validator class must be specified.");
-            } else {
-                try {
-                    if (canFindClass(className) == null) {
-                        setErrorMessage("Class specified must exist in project.");
-                    }
-                } catch (JavaModelException e) {
-                    e.fillInStackTrace();
-                }
+            if (className.isEmpty() && beanName.isEmpty()) {
+                setErrorMessage("Java validator class or bean name must be specified.");
+//            } else {
+//                try {
+//                    if (canFindClass(className) == null) {
+//                        setErrorMessage("Class specified must exist in project.");
+//                    }
+//                } catch (JavaModelException e) {
+//                    e.fillInStackTrace();
+//                }
             }
-            if (!className.isEmpty()) {
-                IProject project = SwitchyardSCAEditor.getActiveEditor().getModelFile().getProject();
-                try {
-                    boolean hasRightLineage = classHasRightAnnotationsOrSuperclass(project, className);
-                    if (!hasRightLineage) {
-                        setErrorMessage("Class specified must use the @Transformer annotation or implement the org.switchyard.transform.Transformer interface.");
-                    }
-                } catch (CoreException e) {
-                    e.printStackTrace();
-                }
-            }
+//            if (!className.isEmpty()) {
+//                IProject project = SwitchyardSCAEditor.getActiveEditor().getModelFile().getProject();
+//                try {
+//                    boolean hasRightLineage = classHasRightAnnotationsOrSuperclass(project, className);
+//                    if (!hasRightLineage) {
+//                        setErrorMessage("Class specified must use the @Transformer annotation or implement the org.switchyard.transform.Transformer interface.");
+//                    }
+//                } catch (CoreException e) {
+//                    e.printStackTrace();
+//                }
+//            }
         }
         return (getErrorMessage() == null);
     }
 
-    private IType canFindClass(String classname) throws JavaModelException {
-        IProject project = null;
-        ISelection selection = PlatformUI.getWorkbench().getActiveWorkbenchWindow().getSelectionService()
-                .getSelection();
-        IStructuredSelection selectionToPass = StructuredSelection.EMPTY;
-        if (selection instanceof IStructuredSelection) {
-            selectionToPass = (IStructuredSelection) selection;
-            if (selectionToPass.getFirstElement() instanceof IFile) {
-                project = ((IFile) selectionToPass.getFirstElement()).getProject();
-            }
-        }
-        if (selectionToPass == StructuredSelection.EMPTY) {
-            project = SwitchyardSCAEditor.getActiveEditor().getModelFile().getProject();
-        }
-        if (project != null && classname != null) { //$NON-NLS-1$
-            IJavaProject javaProject = JavaCore.create(project);
-            IType superType = javaProject.findType(classname);
-            if (superType != null) {
-                return superType;
-            }
-        }
-        return null;
-    }
+//    private IType canFindClass(String classname) throws JavaModelException {
+//        IProject project = null;
+//        ISelection selection = PlatformUI.getWorkbench().getActiveWorkbenchWindow().getSelectionService()
+//                .getSelection();
+//        IStructuredSelection selectionToPass = StructuredSelection.EMPTY;
+//        if (selection instanceof IStructuredSelection) {
+//            selectionToPass = (IStructuredSelection) selection;
+//            if (selectionToPass.getFirstElement() instanceof IFile) {
+//                project = ((IFile) selectionToPass.getFirstElement()).getProject();
+//            }
+//        }
+//        if (selectionToPass == StructuredSelection.EMPTY) {
+//            project = SwitchyardSCAEditor.getActiveEditor().getModelFile().getProject();
+//        }
+//        if (project != null && classname != null) { //$NON-NLS-1$
+//            IJavaProject javaProject = JavaCore.create(project);
+//            IType superType = javaProject.findType(classname);
+//            if (superType != null) {
+//                return superType;
+//            }
+//        }
+//        return null;
+//    }
 
     protected void handleModify(final Control control) {
         super.handleModify(control);
         if (control.equals(_classText)) {
             updateFeature((JavaValidateType) getValidator(), "class", _classText.getText().trim());
+        } else if (control.equals(_beanText)) {
+                updateFeature((JavaValidateType) getValidator(), "bean", _beanText.getText().trim());
         } else {
             super.handleModify(control);
         }
         validate();
     }
 
-    protected void handleUndo(Control control) {
+    protected void handleUndo(final Control control) {
         super.handleUndo(control);
         setInUpdate(true);
         if (getValidator() != null) {
             JavaValidateType javaValidator = (JavaValidateType) getValidator();
             if (control.equals(_classText)) {
                 _classText.setText(javaValidator.getClass_());
+            } else if (control.equals(_beanText)) {
+                _beanText.setText(javaValidator.getBean());
             }
         }
         setInUpdate(false);
@@ -166,12 +176,15 @@ public class JavaValidatorComposite extends BaseValidatorComposite {
         super.setValidator(validator);
         setInUpdate(true);
         JavaValidateType javaValidator = (JavaValidateType) getValidator();
-        setTextValue(_classText, javaValidator.getClass_());
+        if (javaValidator != null) {
+            setTextValue(_classText, javaValidator.getClass_());
+            setTextValue(_beanText, javaValidator.getBean());
+        }
         setInUpdate(false);
         addObservableListeners();
     }
 
-    private void handleBrowse() {
+    private void handleBrowse(final Text control) {
         IJavaSearchScope scope = null;
         IProject project = SwitchyardSCAEditor.getActiveEditor().getModelFile().getProject();
         IJavaProject javaProject = JavaCore.create(project);
@@ -187,8 +200,8 @@ public class JavaValidatorComposite extends BaseValidatorComposite {
                 Object[] result = dialog.getResult();
                 if (result.length > 0 && result[0] instanceof IType) {
                     IType clazz = (IType) result[0];
-                    _classText.setText(clazz.getFullyQualifiedName());
-                    handleModify(_classText);
+                    control.setText(clazz.getFullyQualifiedName());
+                    handleModify(control);
                 }
             }
         } catch (JavaModelException e) {
@@ -196,43 +209,43 @@ public class JavaValidatorComposite extends BaseValidatorComposite {
         }
     }
 
-    private boolean classHasRightAnnotationsOrSuperclass(IProject project, String className) throws JavaModelException {
-        IType classType = JavaCore.create(project).findType(className);
-
-        boolean isTransformClass = false;
-        String[] interfaceSignatures = classType.getSuperInterfaceNames();
-        for (String signature : interfaceSignatures) {
-            if (signature.contentEquals("Validator")) {
-                isTransformClass = true;
-                break;
-            }
-        }
-
-        ICompilationUnit cu = classType.getCompilationUnit();
-        CompilationUnit parse = parse(cu);
-        AnnotationVisitor visitor = new AnnotationVisitor("Validator");
-        parse.accept(visitor);
-
-        boolean hasTransformAnnotation = visitor.didFindOne();
-
-        if (isTransformClass || hasTransformAnnotation) {
-            return true;
-        }
-        return false;
-    }
-
-    /**
-     * Reads a ICompilationUnit and creates the AST DOM for manipulating the
-     * Java source file
-     * 
-     * @param unit
-     * @return
-     */
-    private static CompilationUnit parse(ICompilationUnit unit) {
-        ASTParser parser = ASTParser.newParser(AST.JLS4);
-        parser.setKind(ASTParser.K_COMPILATION_UNIT);
-        parser.setSource(unit);
-        parser.setResolveBindings(true);
-        return (CompilationUnit) parser.createAST(null); // parse
-    }
+//    private boolean classHasRightAnnotationsOrSuperclass(IProject project, String className) throws JavaModelException {
+//        IType classType = JavaCore.create(project).findType(className);
+//
+//        boolean isTransformClass = false;
+//        String[] interfaceSignatures = classType.getSuperInterfaceNames();
+//        for (String signature : interfaceSignatures) {
+//            if (signature.contentEquals("Validator")) {
+//                isTransformClass = true;
+//                break;
+//            }
+//        }
+//
+//        ICompilationUnit cu = classType.getCompilationUnit();
+//        CompilationUnit parse = parse(cu);
+//        AnnotationVisitor visitor = new AnnotationVisitor("Validator");
+//        parse.accept(visitor);
+//
+//        boolean hasTransformAnnotation = visitor.didFindOne();
+//
+//        if (isTransformClass || hasTransformAnnotation) {
+//            return true;
+//        }
+//        return false;
+//    }
+//
+//    /**
+//     * Reads a ICompilationUnit and creates the AST DOM for manipulating the
+//     * Java source file
+//     * 
+//     * @param unit
+//     * @return
+//     */
+//    private static CompilationUnit parse(ICompilationUnit unit) {
+//        ASTParser parser = ASTParser.newParser(AST.JLS4);
+//        parser.setKind(ASTParser.K_COMPILATION_UNIT);
+//        parser.setSource(unit);
+//        parser.setResolveBindings(true);
+//        return (CompilationUnit) parser.createAST(null); // parse
+//    }
 }

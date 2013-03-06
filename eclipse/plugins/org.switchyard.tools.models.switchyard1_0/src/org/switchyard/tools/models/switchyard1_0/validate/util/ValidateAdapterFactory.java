@@ -85,6 +85,18 @@ public class ValidateAdapterFactory extends AdapterFactoryImpl {
                 return createXmlValidateTypeAdapter();
             }
             @Override
+            public Adapter caseSchemaFilesType(SchemaFilesType object) {
+                return createSchemaFilesTypeAdapter();
+            }
+            @Override
+            public Adapter caseSchemaCatalogsType(SchemaCatalogsType object) {
+                return createSchemaCatalogsTypeAdapter();
+            }
+            @Override
+            public Adapter caseFileEntryType(FileEntryType object) {
+                return createFileEntryTypeAdapter();
+            }
+            @Override
             public Adapter caseValidateType(ValidateType object) {
                 return createValidateTypeAdapter();
             }
@@ -151,6 +163,48 @@ public class ValidateAdapterFactory extends AdapterFactoryImpl {
     }
 
 	/**
+     * Creates a new adapter for an object of class '{@link org.switchyard.tools.models.switchyard1_0.validate.SchemaFilesType <em>Schema Files Type</em>}'.
+     * <!-- begin-user-doc -->
+     * This default implementation returns null so that we can easily ignore cases;
+     * it's useful to ignore a case when inheritance will catch all the cases anyway.
+     * <!-- end-user-doc -->
+     * @return the new adapter.
+     * @see org.switchyard.tools.models.switchyard1_0.validate.SchemaFilesType
+     * @generated
+     */
+    public Adapter createSchemaFilesTypeAdapter() {
+        return null;
+    }
+
+    /**
+     * Creates a new adapter for an object of class '{@link org.switchyard.tools.models.switchyard1_0.validate.SchemaCatalogsType <em>Schema Catalogs Type</em>}'.
+     * <!-- begin-user-doc -->
+     * This default implementation returns null so that we can easily ignore cases;
+     * it's useful to ignore a case when inheritance will catch all the cases anyway.
+     * <!-- end-user-doc -->
+     * @return the new adapter.
+     * @see org.switchyard.tools.models.switchyard1_0.validate.SchemaCatalogsType
+     * @generated
+     */
+    public Adapter createSchemaCatalogsTypeAdapter() {
+        return null;
+    }
+
+    /**
+     * Creates a new adapter for an object of class '{@link org.switchyard.tools.models.switchyard1_0.validate.FileEntryType <em>File Entry Type</em>}'.
+     * <!-- begin-user-doc -->
+     * This default implementation returns null so that we can easily ignore cases;
+     * it's useful to ignore a case when inheritance will catch all the cases anyway.
+     * <!-- end-user-doc -->
+     * @return the new adapter.
+     * @see org.switchyard.tools.models.switchyard1_0.validate.FileEntryType
+     * @generated
+     */
+    public Adapter createFileEntryTypeAdapter() {
+        return null;
+    }
+
+    /**
      * Creates a new adapter for an object of class '{@link org.switchyard.tools.models.switchyard1_0.switchyard.ValidateType <em>Validate Type</em>}'.
      * <!-- begin-user-doc -->
      * This default implementation returns null so that we can easily ignore cases;

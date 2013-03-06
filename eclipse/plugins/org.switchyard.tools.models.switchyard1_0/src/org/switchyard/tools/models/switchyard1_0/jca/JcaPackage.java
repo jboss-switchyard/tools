@@ -791,13 +791,22 @@ public interface JcaPackage extends EPackage {
     int JCA_INBOUND_INTERACTION__TRANSACTED = 2;
 
     /**
+     * The feature id for the '<em><b>Batch Commit</b></em>' containment reference.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int JCA_INBOUND_INTERACTION__BATCH_COMMIT = 3;
+
+    /**
      * The feature id for the '<em><b>Any</b></em>' attribute list.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @generated
      * @ordered
      */
-    int JCA_INBOUND_INTERACTION__ANY = 3;
+    int JCA_INBOUND_INTERACTION__ANY = 4;
 
     /**
      * The feature id for the '<em><b>Any Attribute</b></em>' attribute list.
@@ -806,7 +815,7 @@ public interface JcaPackage extends EPackage {
      * @generated
      * @ordered
      */
-    int JCA_INBOUND_INTERACTION__ANY_ATTRIBUTE = 4;
+    int JCA_INBOUND_INTERACTION__ANY_ATTRIBUTE = 5;
 
     /**
      * The number of structural features of the '<em>JCA Inbound Interaction</em>' class.
@@ -815,7 +824,7 @@ public interface JcaPackage extends EPackage {
      * @generated
      * @ordered
      */
-    int JCA_INBOUND_INTERACTION_FEATURE_COUNT = 5;
+    int JCA_INBOUND_INTERACTION_FEATURE_COUNT = 6;
 
     /**
      * The feature id for the '<em><b>Resource Adapter</b></em>' containment reference.
@@ -1270,6 +1279,43 @@ public interface JcaPackage extends EPackage {
     int JCA_MESSAGE_COMPOSER_TYPE_FEATURE_COUNT = SwitchyardPackage.MESSAGE_COMPOSER_TYPE_FEATURE_COUNT + 0;
 
     /**
+     * The meta object id for the '{@link org.switchyard.tools.models.switchyard1_0.jca.impl.BatchCommitImpl <em>Batch Commit</em>}' class.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @see org.switchyard.tools.models.switchyard1_0.jca.impl.BatchCommitImpl
+     * @see org.switchyard.tools.models.switchyard1_0.jca.impl.JcaPackageImpl#getBatchCommit()
+     * @generated
+     */
+    int BATCH_COMMIT = 18;
+
+    /**
+     * The feature id for the '<em><b>Batch Size</b></em>' attribute.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int BATCH_COMMIT__BATCH_SIZE = 0;
+
+    /**
+     * The feature id for the '<em><b>Batch Timeout</b></em>' attribute.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int BATCH_COMMIT__BATCH_TIMEOUT = 1;
+
+    /**
+     * The number of structural features of the '<em>Batch Commit</em>' class.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int BATCH_COMMIT_FEATURE_COUNT = 2;
+
+    /**
      * The meta object id for the '{@link org.switchyard.tools.models.switchyard1_0.jca.JCACreateResource <em>JCA Create Resource</em>}' enum.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
@@ -1277,7 +1323,7 @@ public interface JcaPackage extends EPackage {
      * @see org.switchyard.tools.models.switchyard1_0.jca.impl.JcaPackageImpl#getJCACreateResource()
      * @generated
      */
-    int JCA_CREATE_RESOURCE = 18;
+    int JCA_CREATE_RESOURCE = 19;
 
     /**
      * The meta object id for the '{@link org.switchyard.tools.models.switchyard1_0.jca.ResAuth <em>Res Auth</em>}' enum.
@@ -1287,7 +1333,7 @@ public interface JcaPackage extends EPackage {
      * @see org.switchyard.tools.models.switchyard1_0.jca.impl.JcaPackageImpl#getResAuth()
      * @generated
      */
-    int RES_AUTH = 19;
+    int RES_AUTH = 20;
 
     /**
      * The meta object id for the '<em>JCA Create Resource Object</em>' data type.
@@ -1297,7 +1343,7 @@ public interface JcaPackage extends EPackage {
      * @see org.switchyard.tools.models.switchyard1_0.jca.impl.JcaPackageImpl#getJCACreateResourceObject()
      * @generated
      */
-    int JCA_CREATE_RESOURCE_OBJECT = 20;
+    int JCA_CREATE_RESOURCE_OBJECT = 21;
 
     /**
      * The meta object id for the '<em>Res Auth Object</em>' data type.
@@ -1307,7 +1353,7 @@ public interface JcaPackage extends EPackage {
      * @see org.switchyard.tools.models.switchyard1_0.jca.impl.JcaPackageImpl#getResAuthObject()
      * @generated
      */
-    int RES_AUTH_OBJECT = 21;
+    int RES_AUTH_OBJECT = 22;
 
 
     /**
@@ -1613,6 +1659,38 @@ public interface JcaPackage extends EPackage {
     EClass getJCAMessageComposerType();
 
     /**
+     * Returns the meta object for class '{@link org.switchyard.tools.models.switchyard1_0.jca.BatchCommit <em>Batch Commit</em>}'.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @return the meta object for class '<em>Batch Commit</em>'.
+     * @see org.switchyard.tools.models.switchyard1_0.jca.BatchCommit
+     * @generated
+     */
+    EClass getBatchCommit();
+
+    /**
+     * Returns the meta object for the attribute '{@link org.switchyard.tools.models.switchyard1_0.jca.BatchCommit#getBatchSize <em>Batch Size</em>}'.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @return the meta object for the attribute '<em>Batch Size</em>'.
+     * @see org.switchyard.tools.models.switchyard1_0.jca.BatchCommit#getBatchSize()
+     * @see #getBatchCommit()
+     * @generated
+     */
+    EAttribute getBatchCommit_BatchSize();
+
+    /**
+     * Returns the meta object for the attribute '{@link org.switchyard.tools.models.switchyard1_0.jca.BatchCommit#getBatchTimeout <em>Batch Timeout</em>}'.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @return the meta object for the attribute '<em>Batch Timeout</em>'.
+     * @see org.switchyard.tools.models.switchyard1_0.jca.BatchCommit#getBatchTimeout()
+     * @see #getBatchCommit()
+     * @generated
+     */
+    EAttribute getBatchCommit_BatchTimeout();
+
+    /**
      * Returns the meta object for class '{@link org.switchyard.tools.models.switchyard1_0.jca.InboundOperation <em>Inbound Operation</em>}'.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
@@ -1914,6 +1992,17 @@ public interface JcaPackage extends EPackage {
      * @generated
      */
     EAttribute getJCAInboundInteraction_Transacted();
+
+    /**
+     * Returns the meta object for the containment reference '{@link org.switchyard.tools.models.switchyard1_0.jca.JCAInboundInteraction#getBatchCommit <em>Batch Commit</em>}'.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @return the meta object for the containment reference '<em>Batch Commit</em>'.
+     * @see org.switchyard.tools.models.switchyard1_0.jca.JCAInboundInteraction#getBatchCommit()
+     * @see #getJCAInboundInteraction()
+     * @generated
+     */
+    EReference getJCAInboundInteraction_BatchCommit();
 
     /**
      * Returns the meta object for the attribute list '{@link org.switchyard.tools.models.switchyard1_0.jca.JCAInboundInteraction#getAny <em>Any</em>}'.
@@ -2651,6 +2740,32 @@ public interface JcaPackage extends EPackage {
         EClass JCA_MESSAGE_COMPOSER_TYPE = eINSTANCE.getJCAMessageComposerType();
 
         /**
+         * The meta object literal for the '{@link org.switchyard.tools.models.switchyard1_0.jca.impl.BatchCommitImpl <em>Batch Commit</em>}' class.
+         * <!-- begin-user-doc -->
+         * <!-- end-user-doc -->
+         * @see org.switchyard.tools.models.switchyard1_0.jca.impl.BatchCommitImpl
+         * @see org.switchyard.tools.models.switchyard1_0.jca.impl.JcaPackageImpl#getBatchCommit()
+         * @generated
+         */
+        EClass BATCH_COMMIT = eINSTANCE.getBatchCommit();
+
+        /**
+         * The meta object literal for the '<em><b>Batch Size</b></em>' attribute feature.
+         * <!-- begin-user-doc -->
+         * <!-- end-user-doc -->
+         * @generated
+         */
+        EAttribute BATCH_COMMIT__BATCH_SIZE = eINSTANCE.getBatchCommit_BatchSize();
+
+        /**
+         * The meta object literal for the '<em><b>Batch Timeout</b></em>' attribute feature.
+         * <!-- begin-user-doc -->
+         * <!-- end-user-doc -->
+         * @generated
+         */
+        EAttribute BATCH_COMMIT__BATCH_TIMEOUT = eINSTANCE.getBatchCommit_BatchTimeout();
+
+        /**
          * The meta object literal for the '{@link org.switchyard.tools.models.switchyard1_0.jca.impl.InboundOperationImpl <em>Inbound Operation</em>}' class.
          * <!-- begin-user-doc -->
          * <!-- end-user-doc -->
@@ -2883,6 +2998,14 @@ public interface JcaPackage extends EPackage {
          * @generated
          */
         EAttribute JCA_INBOUND_INTERACTION__TRANSACTED = eINSTANCE.getJCAInboundInteraction_Transacted();
+
+        /**
+         * The meta object literal for the '<em><b>Batch Commit</b></em>' containment reference feature.
+         * <!-- begin-user-doc -->
+         * <!-- end-user-doc -->
+         * @generated
+         */
+        EReference JCA_INBOUND_INTERACTION__BATCH_COMMIT = eINSTANCE.getJCAInboundInteraction_BatchCommit();
 
         /**
          * The meta object literal for the '<em><b>Any</b></em>' attribute list feature.

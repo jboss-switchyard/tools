@@ -156,13 +156,22 @@ public interface ValidatePackage extends EPackage {
 	int JAVA_VALIDATE_TYPE__CLASS = SwitchyardPackage.VALIDATE_TYPE_FEATURE_COUNT + 0;
 
 	/**
+     * The feature id for the '<em><b>Bean</b></em>' attribute.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int JAVA_VALIDATE_TYPE__BEAN = SwitchyardPackage.VALIDATE_TYPE_FEATURE_COUNT + 1;
+
+    /**
      * The number of structural features of the '<em>Java Validate Type</em>' class.
      * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
      * @generated
      * @ordered
      */
-	int JAVA_VALIDATE_TYPE_FEATURE_COUNT = SwitchyardPackage.VALIDATE_TYPE_FEATURE_COUNT + 1;
+	int JAVA_VALIDATE_TYPE_FEATURE_COUNT = SwitchyardPackage.VALIDATE_TYPE_FEATURE_COUNT + 2;
 
 	/**
      * The meta object id for the '{@link org.switchyard.tools.models.switchyard1_0.validate.impl.XmlValidateTypeImpl <em>Xml Validate Type</em>}' class.
@@ -184,22 +193,31 @@ public interface ValidatePackage extends EPackage {
 	int XML_VALIDATE_TYPE__NAME = SwitchyardPackage.VALIDATE_TYPE__NAME;
 
 	/**
+     * The feature id for the '<em><b>Schema Files</b></em>' containment reference.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int XML_VALIDATE_TYPE__SCHEMA_FILES = SwitchyardPackage.VALIDATE_TYPE_FEATURE_COUNT + 0;
+
+    /**
+     * The feature id for the '<em><b>Schema Catalogs</b></em>' containment reference.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int XML_VALIDATE_TYPE__SCHEMA_CATALOGS = SwitchyardPackage.VALIDATE_TYPE_FEATURE_COUNT + 1;
+
+    /**
      * The feature id for the '<em><b>Schema Type</b></em>' attribute.
      * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
      * @generated
      * @ordered
      */
-	int XML_VALIDATE_TYPE__SCHEMA_TYPE = SwitchyardPackage.VALIDATE_TYPE_FEATURE_COUNT + 0;
-
-	/**
-     * The feature id for the '<em><b>Schema File</b></em>' attribute.
-     * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-     * @generated
-     * @ordered
-     */
-	int XML_VALIDATE_TYPE__SCHEMA_FILE = SwitchyardPackage.VALIDATE_TYPE_FEATURE_COUNT + 1;
+	int XML_VALIDATE_TYPE__SCHEMA_TYPE = SwitchyardPackage.VALIDATE_TYPE_FEATURE_COUNT + 2;
 
 	/**
      * The feature id for the '<em><b>Fail On Warning</b></em>' attribute.
@@ -208,18 +226,129 @@ public interface ValidatePackage extends EPackage {
      * @generated
      * @ordered
      */
-	int XML_VALIDATE_TYPE__FAIL_ON_WARNING = SwitchyardPackage.VALIDATE_TYPE_FEATURE_COUNT + 2;
+	int XML_VALIDATE_TYPE__FAIL_ON_WARNING = SwitchyardPackage.VALIDATE_TYPE_FEATURE_COUNT + 3;
 
 	/**
+     * The feature id for the '<em><b>Namespace Aware</b></em>' attribute.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int XML_VALIDATE_TYPE__NAMESPACE_AWARE = SwitchyardPackage.VALIDATE_TYPE_FEATURE_COUNT + 4;
+
+    /**
      * The number of structural features of the '<em>Xml Validate Type</em>' class.
      * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
      * @generated
      * @ordered
      */
-	int XML_VALIDATE_TYPE_FEATURE_COUNT = SwitchyardPackage.VALIDATE_TYPE_FEATURE_COUNT + 3;
+	int XML_VALIDATE_TYPE_FEATURE_COUNT = SwitchyardPackage.VALIDATE_TYPE_FEATURE_COUNT + 5;
 
 	/**
+     * The meta object id for the '{@link org.switchyard.tools.models.switchyard1_0.validate.impl.SchemaFilesTypeImpl <em>Schema Files Type</em>}' class.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @see org.switchyard.tools.models.switchyard1_0.validate.impl.SchemaFilesTypeImpl
+     * @see org.switchyard.tools.models.switchyard1_0.validate.impl.ValidatePackageImpl#getSchemaFilesType()
+     * @generated
+     */
+    int SCHEMA_FILES_TYPE = 3;
+
+    /**
+     * The feature id for the '<em><b>Entry Group</b></em>' attribute list.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int SCHEMA_FILES_TYPE__ENTRY_GROUP = 0;
+
+    /**
+     * The feature id for the '<em><b>Entry</b></em>' containment reference list.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int SCHEMA_FILES_TYPE__ENTRY = 1;
+
+    /**
+     * The number of structural features of the '<em>Schema Files Type</em>' class.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int SCHEMA_FILES_TYPE_FEATURE_COUNT = 2;
+
+    /**
+     * The meta object id for the '{@link org.switchyard.tools.models.switchyard1_0.validate.impl.SchemaCatalogsTypeImpl <em>Schema Catalogs Type</em>}' class.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @see org.switchyard.tools.models.switchyard1_0.validate.impl.SchemaCatalogsTypeImpl
+     * @see org.switchyard.tools.models.switchyard1_0.validate.impl.ValidatePackageImpl#getSchemaCatalogsType()
+     * @generated
+     */
+    int SCHEMA_CATALOGS_TYPE = 4;
+
+    /**
+     * The feature id for the '<em><b>Entry Group</b></em>' attribute list.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int SCHEMA_CATALOGS_TYPE__ENTRY_GROUP = 0;
+
+    /**
+     * The feature id for the '<em><b>Entry</b></em>' containment reference list.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int SCHEMA_CATALOGS_TYPE__ENTRY = 1;
+
+    /**
+     * The number of structural features of the '<em>Schema Catalogs Type</em>' class.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int SCHEMA_CATALOGS_TYPE_FEATURE_COUNT = 2;
+
+    /**
+     * The meta object id for the '{@link org.switchyard.tools.models.switchyard1_0.validate.impl.FileEntryTypeImpl <em>File Entry Type</em>}' class.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @see org.switchyard.tools.models.switchyard1_0.validate.impl.FileEntryTypeImpl
+     * @see org.switchyard.tools.models.switchyard1_0.validate.impl.ValidatePackageImpl#getFileEntryType()
+     * @generated
+     */
+    int FILE_ENTRY_TYPE = 5;
+
+    /**
+     * The feature id for the '<em><b>File</b></em>' attribute.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int FILE_ENTRY_TYPE__FILE = 0;
+
+    /**
+     * The number of structural features of the '<em>File Entry Type</em>' class.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int FILE_ENTRY_TYPE_FEATURE_COUNT = 1;
+
+    /**
      * The meta object id for the '{@link org.switchyard.tools.models.switchyard1_0.validate.XmlSchemaType <em>Xml Schema Type</em>}' enum.
      * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -227,7 +356,7 @@ public interface ValidatePackage extends EPackage {
      * @see org.switchyard.tools.models.switchyard1_0.validate.impl.ValidatePackageImpl#getXmlSchemaType()
      * @generated
      */
-	int XML_SCHEMA_TYPE = 3;
+	int XML_SCHEMA_TYPE = 6;
 
 	/**
      * The meta object id for the '<em>Xml Schema Type Object</em>' data type.
@@ -237,7 +366,7 @@ public interface ValidatePackage extends EPackage {
      * @see org.switchyard.tools.models.switchyard1_0.validate.impl.ValidatePackageImpl#getXmlSchemaTypeObject()
      * @generated
      */
-	int XML_SCHEMA_TYPE_OBJECT = 4;
+	int XML_SCHEMA_TYPE_OBJECT = 7;
 
 
 	/**
@@ -327,6 +456,17 @@ public interface ValidatePackage extends EPackage {
 	EAttribute getJavaValidateType_Class();
 
 	/**
+     * Returns the meta object for the attribute '{@link org.switchyard.tools.models.switchyard1_0.validate.JavaValidateType#getBean <em>Bean</em>}'.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @return the meta object for the attribute '<em>Bean</em>'.
+     * @see org.switchyard.tools.models.switchyard1_0.validate.JavaValidateType#getBean()
+     * @see #getJavaValidateType()
+     * @generated
+     */
+    EAttribute getJavaValidateType_Bean();
+
+    /**
      * Returns the meta object for class '{@link org.switchyard.tools.models.switchyard1_0.validate.XmlValidateType <em>Xml Validate Type</em>}'.
      * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -337,6 +477,28 @@ public interface ValidatePackage extends EPackage {
 	EClass getXmlValidateType();
 
 	/**
+     * Returns the meta object for the containment reference '{@link org.switchyard.tools.models.switchyard1_0.validate.XmlValidateType#getSchemaFiles <em>Schema Files</em>}'.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @return the meta object for the containment reference '<em>Schema Files</em>'.
+     * @see org.switchyard.tools.models.switchyard1_0.validate.XmlValidateType#getSchemaFiles()
+     * @see #getXmlValidateType()
+     * @generated
+     */
+    EReference getXmlValidateType_SchemaFiles();
+
+    /**
+     * Returns the meta object for the containment reference '{@link org.switchyard.tools.models.switchyard1_0.validate.XmlValidateType#getSchemaCatalogs <em>Schema Catalogs</em>}'.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @return the meta object for the containment reference '<em>Schema Catalogs</em>'.
+     * @see org.switchyard.tools.models.switchyard1_0.validate.XmlValidateType#getSchemaCatalogs()
+     * @see #getXmlValidateType()
+     * @generated
+     */
+    EReference getXmlValidateType_SchemaCatalogs();
+
+    /**
      * Returns the meta object for the attribute '{@link org.switchyard.tools.models.switchyard1_0.validate.XmlValidateType#getSchemaType <em>Schema Type</em>}'.
      * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -346,17 +508,6 @@ public interface ValidatePackage extends EPackage {
      * @generated
      */
 	EAttribute getXmlValidateType_SchemaType();
-
-	/**
-     * Returns the meta object for the attribute '{@link org.switchyard.tools.models.switchyard1_0.validate.XmlValidateType#getSchemaFile <em>Schema File</em>}'.
-     * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-     * @return the meta object for the attribute '<em>Schema File</em>'.
-     * @see org.switchyard.tools.models.switchyard1_0.validate.XmlValidateType#getSchemaFile()
-     * @see #getXmlValidateType()
-     * @generated
-     */
-	EAttribute getXmlValidateType_SchemaFile();
 
 	/**
      * Returns the meta object for the attribute '{@link org.switchyard.tools.models.switchyard1_0.validate.XmlValidateType#getFailOnWarning <em>Fail On Warning</em>}'.
@@ -370,6 +521,102 @@ public interface ValidatePackage extends EPackage {
 	EAttribute getXmlValidateType_FailOnWarning();
 
 	/**
+     * Returns the meta object for the attribute '{@link org.switchyard.tools.models.switchyard1_0.validate.XmlValidateType#getNamespaceAware <em>Namespace Aware</em>}'.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @return the meta object for the attribute '<em>Namespace Aware</em>'.
+     * @see org.switchyard.tools.models.switchyard1_0.validate.XmlValidateType#getNamespaceAware()
+     * @see #getXmlValidateType()
+     * @generated
+     */
+    EAttribute getXmlValidateType_NamespaceAware();
+
+    /**
+     * Returns the meta object for class '{@link org.switchyard.tools.models.switchyard1_0.validate.SchemaFilesType <em>Schema Files Type</em>}'.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @return the meta object for class '<em>Schema Files Type</em>'.
+     * @see org.switchyard.tools.models.switchyard1_0.validate.SchemaFilesType
+     * @generated
+     */
+    EClass getSchemaFilesType();
+
+    /**
+     * Returns the meta object for the attribute list '{@link org.switchyard.tools.models.switchyard1_0.validate.SchemaFilesType#getEntryGroup <em>Entry Group</em>}'.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @return the meta object for the attribute list '<em>Entry Group</em>'.
+     * @see org.switchyard.tools.models.switchyard1_0.validate.SchemaFilesType#getEntryGroup()
+     * @see #getSchemaFilesType()
+     * @generated
+     */
+    EAttribute getSchemaFilesType_EntryGroup();
+
+    /**
+     * Returns the meta object for the containment reference list '{@link org.switchyard.tools.models.switchyard1_0.validate.SchemaFilesType#getEntry <em>Entry</em>}'.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @return the meta object for the containment reference list '<em>Entry</em>'.
+     * @see org.switchyard.tools.models.switchyard1_0.validate.SchemaFilesType#getEntry()
+     * @see #getSchemaFilesType()
+     * @generated
+     */
+    EReference getSchemaFilesType_Entry();
+
+    /**
+     * Returns the meta object for class '{@link org.switchyard.tools.models.switchyard1_0.validate.SchemaCatalogsType <em>Schema Catalogs Type</em>}'.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @return the meta object for class '<em>Schema Catalogs Type</em>'.
+     * @see org.switchyard.tools.models.switchyard1_0.validate.SchemaCatalogsType
+     * @generated
+     */
+    EClass getSchemaCatalogsType();
+
+    /**
+     * Returns the meta object for the attribute list '{@link org.switchyard.tools.models.switchyard1_0.validate.SchemaCatalogsType#getEntryGroup <em>Entry Group</em>}'.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @return the meta object for the attribute list '<em>Entry Group</em>'.
+     * @see org.switchyard.tools.models.switchyard1_0.validate.SchemaCatalogsType#getEntryGroup()
+     * @see #getSchemaCatalogsType()
+     * @generated
+     */
+    EAttribute getSchemaCatalogsType_EntryGroup();
+
+    /**
+     * Returns the meta object for the containment reference list '{@link org.switchyard.tools.models.switchyard1_0.validate.SchemaCatalogsType#getEntry <em>Entry</em>}'.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @return the meta object for the containment reference list '<em>Entry</em>'.
+     * @see org.switchyard.tools.models.switchyard1_0.validate.SchemaCatalogsType#getEntry()
+     * @see #getSchemaCatalogsType()
+     * @generated
+     */
+    EReference getSchemaCatalogsType_Entry();
+
+    /**
+     * Returns the meta object for class '{@link org.switchyard.tools.models.switchyard1_0.validate.FileEntryType <em>File Entry Type</em>}'.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @return the meta object for class '<em>File Entry Type</em>'.
+     * @see org.switchyard.tools.models.switchyard1_0.validate.FileEntryType
+     * @generated
+     */
+    EClass getFileEntryType();
+
+    /**
+     * Returns the meta object for the attribute '{@link org.switchyard.tools.models.switchyard1_0.validate.FileEntryType#getFile <em>File</em>}'.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @return the meta object for the attribute '<em>File</em>'.
+     * @see org.switchyard.tools.models.switchyard1_0.validate.FileEntryType#getFile()
+     * @see #getFileEntryType()
+     * @generated
+     */
+    EAttribute getFileEntryType_File();
+
+    /**
      * Returns the meta object for enum '{@link org.switchyard.tools.models.switchyard1_0.validate.XmlSchemaType <em>Xml Schema Type</em>}'.
      * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -482,6 +729,14 @@ public interface ValidatePackage extends EPackage {
 		EAttribute JAVA_VALIDATE_TYPE__CLASS = eINSTANCE.getJavaValidateType_Class();
 
 		/**
+         * The meta object literal for the '<em><b>Bean</b></em>' attribute feature.
+         * <!-- begin-user-doc -->
+         * <!-- end-user-doc -->
+         * @generated
+         */
+        EAttribute JAVA_VALIDATE_TYPE__BEAN = eINSTANCE.getJavaValidateType_Bean();
+
+        /**
          * The meta object literal for the '{@link org.switchyard.tools.models.switchyard1_0.validate.impl.XmlValidateTypeImpl <em>Xml Validate Type</em>}' class.
          * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
@@ -492,20 +747,28 @@ public interface ValidatePackage extends EPackage {
 		EClass XML_VALIDATE_TYPE = eINSTANCE.getXmlValidateType();
 
 		/**
+         * The meta object literal for the '<em><b>Schema Files</b></em>' containment reference feature.
+         * <!-- begin-user-doc -->
+         * <!-- end-user-doc -->
+         * @generated
+         */
+        EReference XML_VALIDATE_TYPE__SCHEMA_FILES = eINSTANCE.getXmlValidateType_SchemaFiles();
+
+        /**
+         * The meta object literal for the '<em><b>Schema Catalogs</b></em>' containment reference feature.
+         * <!-- begin-user-doc -->
+         * <!-- end-user-doc -->
+         * @generated
+         */
+        EReference XML_VALIDATE_TYPE__SCHEMA_CATALOGS = eINSTANCE.getXmlValidateType_SchemaCatalogs();
+
+        /**
          * The meta object literal for the '<em><b>Schema Type</b></em>' attribute feature.
          * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
          * @generated
          */
 		EAttribute XML_VALIDATE_TYPE__SCHEMA_TYPE = eINSTANCE.getXmlValidateType_SchemaType();
-
-		/**
-         * The meta object literal for the '<em><b>Schema File</b></em>' attribute feature.
-         * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-         * @generated
-         */
-		EAttribute XML_VALIDATE_TYPE__SCHEMA_FILE = eINSTANCE.getXmlValidateType_SchemaFile();
 
 		/**
          * The meta object literal for the '<em><b>Fail On Warning</b></em>' attribute feature.
@@ -516,6 +779,84 @@ public interface ValidatePackage extends EPackage {
 		EAttribute XML_VALIDATE_TYPE__FAIL_ON_WARNING = eINSTANCE.getXmlValidateType_FailOnWarning();
 
 		/**
+         * The meta object literal for the '<em><b>Namespace Aware</b></em>' attribute feature.
+         * <!-- begin-user-doc -->
+         * <!-- end-user-doc -->
+         * @generated
+         */
+        EAttribute XML_VALIDATE_TYPE__NAMESPACE_AWARE = eINSTANCE.getXmlValidateType_NamespaceAware();
+
+        /**
+         * The meta object literal for the '{@link org.switchyard.tools.models.switchyard1_0.validate.impl.SchemaFilesTypeImpl <em>Schema Files Type</em>}' class.
+         * <!-- begin-user-doc -->
+         * <!-- end-user-doc -->
+         * @see org.switchyard.tools.models.switchyard1_0.validate.impl.SchemaFilesTypeImpl
+         * @see org.switchyard.tools.models.switchyard1_0.validate.impl.ValidatePackageImpl#getSchemaFilesType()
+         * @generated
+         */
+        EClass SCHEMA_FILES_TYPE = eINSTANCE.getSchemaFilesType();
+
+        /**
+         * The meta object literal for the '<em><b>Entry Group</b></em>' attribute list feature.
+         * <!-- begin-user-doc -->
+         * <!-- end-user-doc -->
+         * @generated
+         */
+        EAttribute SCHEMA_FILES_TYPE__ENTRY_GROUP = eINSTANCE.getSchemaFilesType_EntryGroup();
+
+        /**
+         * The meta object literal for the '<em><b>Entry</b></em>' containment reference list feature.
+         * <!-- begin-user-doc -->
+         * <!-- end-user-doc -->
+         * @generated
+         */
+        EReference SCHEMA_FILES_TYPE__ENTRY = eINSTANCE.getSchemaFilesType_Entry();
+
+        /**
+         * The meta object literal for the '{@link org.switchyard.tools.models.switchyard1_0.validate.impl.SchemaCatalogsTypeImpl <em>Schema Catalogs Type</em>}' class.
+         * <!-- begin-user-doc -->
+         * <!-- end-user-doc -->
+         * @see org.switchyard.tools.models.switchyard1_0.validate.impl.SchemaCatalogsTypeImpl
+         * @see org.switchyard.tools.models.switchyard1_0.validate.impl.ValidatePackageImpl#getSchemaCatalogsType()
+         * @generated
+         */
+        EClass SCHEMA_CATALOGS_TYPE = eINSTANCE.getSchemaCatalogsType();
+
+        /**
+         * The meta object literal for the '<em><b>Entry Group</b></em>' attribute list feature.
+         * <!-- begin-user-doc -->
+         * <!-- end-user-doc -->
+         * @generated
+         */
+        EAttribute SCHEMA_CATALOGS_TYPE__ENTRY_GROUP = eINSTANCE.getSchemaCatalogsType_EntryGroup();
+
+        /**
+         * The meta object literal for the '<em><b>Entry</b></em>' containment reference list feature.
+         * <!-- begin-user-doc -->
+         * <!-- end-user-doc -->
+         * @generated
+         */
+        EReference SCHEMA_CATALOGS_TYPE__ENTRY = eINSTANCE.getSchemaCatalogsType_Entry();
+
+        /**
+         * The meta object literal for the '{@link org.switchyard.tools.models.switchyard1_0.validate.impl.FileEntryTypeImpl <em>File Entry Type</em>}' class.
+         * <!-- begin-user-doc -->
+         * <!-- end-user-doc -->
+         * @see org.switchyard.tools.models.switchyard1_0.validate.impl.FileEntryTypeImpl
+         * @see org.switchyard.tools.models.switchyard1_0.validate.impl.ValidatePackageImpl#getFileEntryType()
+         * @generated
+         */
+        EClass FILE_ENTRY_TYPE = eINSTANCE.getFileEntryType();
+
+        /**
+         * The meta object literal for the '<em><b>File</b></em>' attribute feature.
+         * <!-- begin-user-doc -->
+         * <!-- end-user-doc -->
+         * @generated
+         */
+        EAttribute FILE_ENTRY_TYPE__FILE = eINSTANCE.getFileEntryType_File();
+
+        /**
          * The meta object literal for the '{@link org.switchyard.tools.models.switchyard1_0.validate.XmlSchemaType <em>Xml Schema Type</em>}' enum.
          * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->

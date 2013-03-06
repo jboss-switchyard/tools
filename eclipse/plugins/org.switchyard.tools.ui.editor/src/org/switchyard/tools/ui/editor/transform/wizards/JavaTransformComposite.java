@@ -51,6 +51,8 @@ public class JavaTransformComposite extends BaseTransformComposite {
 
     private Text _classText;
     private Button _browseButton;
+    private Text _beanText;
+    private Button _browseBeanButton;
 
     @Override
     public void createContents(Composite parent, int style) {
@@ -69,9 +71,22 @@ public class JavaTransformComposite extends BaseTransformComposite {
         _browseButton.addSelectionListener(new SelectionAdapter() {
             @Override
             public void widgetSelected(SelectionEvent e) {
-                handleBrowse();
+                handleBrowse(_classText);
                 validate();
                 fireChangedEvent(_browseButton);
+            }
+
+        });
+        _beanText = createLabelAndText(inner, "Bean");
+
+        _browseBeanButton = new Button(inner, SWT.PUSH);
+        _browseBeanButton.setText("Browse...");
+        _browseBeanButton.addSelectionListener(new SelectionAdapter() {
+            @Override
+            public void widgetSelected(SelectionEvent e) {
+                handleBrowse(_beanText);
+                validate();
+                fireChangedEvent(_browseBeanButton);
             }
 
         });
@@ -114,6 +129,8 @@ public class JavaTransformComposite extends BaseTransformComposite {
         super.handleModify(control);
         if (control.equals(_classText)) {
             updateFeature((JavaTransformType1) getTransform(), "class", _classText.getText().trim());
+        } else if (control.equals(_beanText)) {
+            updateFeature((JavaTransformType1) getTransform(), "bean", _beanText.getText().trim());
         } else {
             super.handleModify(control);
         }
@@ -127,6 +144,8 @@ public class JavaTransformComposite extends BaseTransformComposite {
             JavaTransformType1 javaTransform = (JavaTransformType1) getTransform();
             if (control.equals(_classText)) {
                 _classText.setText(javaTransform.getClass_());
+            } else if (control.equals(_beanText)) {
+                _beanText.setText(javaTransform.getBean());
             }
         }
         setInUpdate(false);
@@ -140,11 +159,12 @@ public class JavaTransformComposite extends BaseTransformComposite {
         setInUpdate(true);
         JavaTransformType1 javaTransform = (JavaTransformType1) getTransform();
         setTextValue(_classText, javaTransform.getClass_());
+        setTextValue(_beanText, javaTransform.getBean());
         setInUpdate(false);
         addObservableListeners();
     }
 
-    private void handleBrowse() {
+    private void handleBrowse(final Text control) {
         IJavaSearchScope scope = null;
         IProject project = SwitchyardSCAEditor.getActiveEditor().getModelFile().getProject();
         IJavaProject javaProject = JavaCore.create(project);
@@ -160,8 +180,8 @@ public class JavaTransformComposite extends BaseTransformComposite {
                 Object[] result = dialog.getResult();
                 if (result.length > 0 && result[0] instanceof IType) {
                     IType clazz = (IType) result[0];
-                    _classText.setText(clazz.getFullyQualifiedName());
-                    handleModify(_classText);
+                    control.setText(clazz.getFullyQualifiedName());
+                    handleModify(control);
                 }
             }
         } catch (JavaModelException e) {

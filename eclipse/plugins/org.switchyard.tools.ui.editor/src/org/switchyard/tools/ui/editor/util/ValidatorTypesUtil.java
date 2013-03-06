@@ -181,11 +181,13 @@ public final class ValidatorTypesUtil {
         }
 
         if (resource != null) {
-            DocumentRoot docroot = (DocumentRoot) resource.getContents().get(0);
-
-            if (docroot != null) {
-                SwitchYardType switchyard = docroot.getSwitchyard();
-                return switchyard;
+            if (resource.getContents() != null && resource.getContents().size() > 0) {
+                DocumentRoot docroot = (DocumentRoot) resource.getContents().get(0);
+    
+                if (docroot != null) {
+                    SwitchYardType switchyard = docroot.getSwitchyard();
+                    return switchyard;
+                }
             }
         }
         return null;
@@ -214,7 +216,9 @@ public final class ValidatorTypesUtil {
         if (target != null) {
             try {
                 SwitchYardType switchyard = loadModelFile(target);
-                return switchyard.getValidates();
+                if (switchyard != null && switchyard.getValidates() != null) {
+                    return switchyard.getValidates();
+                }
             } catch (IOException e) {
                 e.fillInStackTrace();
             }
@@ -237,10 +241,12 @@ public final class ValidatorTypesUtil {
      * @return true/false if the validator already exists
      */
     public boolean validatorExists(String name) {
-        for (ValidateType targetValidatorType : loadValidatorsFromTarget().getValidate()) {
-            boolean testToMatch = targetValidatorType.getName().equals(name);
-            if (testToMatch) {
-                return true;
+        if (loadValidatorsFromTarget() != null && loadValidatorsFromTarget().getValidate() != null) {
+            for (ValidateType targetValidatorType : loadValidatorsFromTarget().getValidate()) {
+                boolean testToMatch = targetValidatorType.getName().equals(name);
+                if (testToMatch) {
+                    return true;
+                }
             }
         }
         return false;

@@ -80,6 +80,15 @@ public interface JcaFactory extends EFactory {
     JCAMessageComposerType createJCAMessageComposerType();
 
     /**
+     * Returns a new object of class '<em>Batch Commit</em>'.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @return a new object of class '<em>Batch Commit</em>'.
+     * @generated
+     */
+    BatchCommit createBatchCommit();
+
+    /**
      * Returns a new object of class '<em>Inbound Operation</em>'.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->

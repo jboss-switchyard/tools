@@ -70,7 +70,10 @@ import org.switchyard.tools.models.switchyard1_0.switchyard.impl.SwitchyardPacka
 import org.switchyard.tools.models.switchyard1_0.transform.TransformPackage;
 import org.switchyard.tools.models.switchyard1_0.transform.impl.TransformPackageImpl;
 import org.switchyard.tools.models.switchyard1_0.validate.DocumentRoot;
+import org.switchyard.tools.models.switchyard1_0.validate.FileEntryType;
 import org.switchyard.tools.models.switchyard1_0.validate.JavaValidateType;
+import org.switchyard.tools.models.switchyard1_0.validate.SchemaCatalogsType;
+import org.switchyard.tools.models.switchyard1_0.validate.SchemaFilesType;
 import org.switchyard.tools.models.switchyard1_0.validate.ValidateFactory;
 import org.switchyard.tools.models.switchyard1_0.validate.ValidatePackage;
 import org.switchyard.tools.models.switchyard1_0.validate.XmlSchemaType;
@@ -105,6 +108,27 @@ public class ValidatePackageImpl extends EPackageImpl implements ValidatePackage
 	private EClass xmlValidateTypeEClass = null;
 
 	/**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    private EClass schemaFilesTypeEClass = null;
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    private EClass schemaCatalogsTypeEClass = null;
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    private EClass fileEntryTypeEClass = null;
+
+    /**
      * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
      * @generated
@@ -338,6 +362,15 @@ public class ValidatePackageImpl extends EPackageImpl implements ValidatePackage
 
 	/**
      * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public EAttribute getJavaValidateType_Bean() {
+        return (EAttribute)javaValidateTypeEClass.getEStructuralFeatures().get(1);
+    }
+
+    /**
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
      * @generated
      */
@@ -347,20 +380,29 @@ public class ValidatePackageImpl extends EPackageImpl implements ValidatePackage
 
 	/**
      * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
      * @generated
      */
-	public EAttribute getXmlValidateType_SchemaType() {
-        return (EAttribute)xmlValidateTypeEClass.getEStructuralFeatures().get(0);
+    public EReference getXmlValidateType_SchemaFiles() {
+        return (EReference)xmlValidateTypeEClass.getEStructuralFeatures().get(0);
     }
 
-	/**
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public EReference getXmlValidateType_SchemaCatalogs() {
+        return (EReference)xmlValidateTypeEClass.getEStructuralFeatures().get(1);
+    }
+
+    /**
      * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
      * @generated
      */
-	public EAttribute getXmlValidateType_SchemaFile() {
-        return (EAttribute)xmlValidateTypeEClass.getEStructuralFeatures().get(1);
+	public EAttribute getXmlValidateType_SchemaType() {
+        return (EAttribute)xmlValidateTypeEClass.getEStructuralFeatures().get(2);
     }
 
 	/**
@@ -369,10 +411,91 @@ public class ValidatePackageImpl extends EPackageImpl implements ValidatePackage
      * @generated
      */
 	public EAttribute getXmlValidateType_FailOnWarning() {
-        return (EAttribute)xmlValidateTypeEClass.getEStructuralFeatures().get(2);
+        return (EAttribute)xmlValidateTypeEClass.getEStructuralFeatures().get(3);
     }
 
 	/**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public EAttribute getXmlValidateType_NamespaceAware() {
+        return (EAttribute)xmlValidateTypeEClass.getEStructuralFeatures().get(4);
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public EClass getSchemaFilesType() {
+        return schemaFilesTypeEClass;
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public EAttribute getSchemaFilesType_EntryGroup() {
+        return (EAttribute)schemaFilesTypeEClass.getEStructuralFeatures().get(0);
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public EReference getSchemaFilesType_Entry() {
+        return (EReference)schemaFilesTypeEClass.getEStructuralFeatures().get(1);
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public EClass getSchemaCatalogsType() {
+        return schemaCatalogsTypeEClass;
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public EAttribute getSchemaCatalogsType_EntryGroup() {
+        return (EAttribute)schemaCatalogsTypeEClass.getEStructuralFeatures().get(0);
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public EReference getSchemaCatalogsType_Entry() {
+        return (EReference)schemaCatalogsTypeEClass.getEStructuralFeatures().get(1);
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public EClass getFileEntryType() {
+        return fileEntryTypeEClass;
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public EAttribute getFileEntryType_File() {
+        return (EAttribute)fileEntryTypeEClass.getEStructuralFeatures().get(0);
+    }
+
+    /**
      * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
      * @generated
@@ -427,11 +550,25 @@ public class ValidatePackageImpl extends EPackageImpl implements ValidatePackage
 
         javaValidateTypeEClass = createEClass(JAVA_VALIDATE_TYPE);
         createEAttribute(javaValidateTypeEClass, JAVA_VALIDATE_TYPE__CLASS);
+        createEAttribute(javaValidateTypeEClass, JAVA_VALIDATE_TYPE__BEAN);
 
         xmlValidateTypeEClass = createEClass(XML_VALIDATE_TYPE);
+        createEReference(xmlValidateTypeEClass, XML_VALIDATE_TYPE__SCHEMA_FILES);
+        createEReference(xmlValidateTypeEClass, XML_VALIDATE_TYPE__SCHEMA_CATALOGS);
         createEAttribute(xmlValidateTypeEClass, XML_VALIDATE_TYPE__SCHEMA_TYPE);
-        createEAttribute(xmlValidateTypeEClass, XML_VALIDATE_TYPE__SCHEMA_FILE);
         createEAttribute(xmlValidateTypeEClass, XML_VALIDATE_TYPE__FAIL_ON_WARNING);
+        createEAttribute(xmlValidateTypeEClass, XML_VALIDATE_TYPE__NAMESPACE_AWARE);
+
+        schemaFilesTypeEClass = createEClass(SCHEMA_FILES_TYPE);
+        createEAttribute(schemaFilesTypeEClass, SCHEMA_FILES_TYPE__ENTRY_GROUP);
+        createEReference(schemaFilesTypeEClass, SCHEMA_FILES_TYPE__ENTRY);
+
+        schemaCatalogsTypeEClass = createEClass(SCHEMA_CATALOGS_TYPE);
+        createEAttribute(schemaCatalogsTypeEClass, SCHEMA_CATALOGS_TYPE__ENTRY_GROUP);
+        createEReference(schemaCatalogsTypeEClass, SCHEMA_CATALOGS_TYPE__ENTRY);
+
+        fileEntryTypeEClass = createEClass(FILE_ENTRY_TYPE);
+        createEAttribute(fileEntryTypeEClass, FILE_ENTRY_TYPE__FILE);
 
         // Create enums
         xmlSchemaTypeEEnum = createEEnum(XML_SCHEMA_TYPE);
@@ -484,12 +621,26 @@ public class ValidatePackageImpl extends EPackageImpl implements ValidatePackage
         initEReference(getDocumentRoot_ValidateXml(), this.getXmlValidateType(), null, "validateXml", null, 0, -2, null, IS_TRANSIENT, IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, IS_DERIVED, IS_ORDERED);
 
         initEClass(javaValidateTypeEClass, JavaValidateType.class, "JavaValidateType", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-        initEAttribute(getJavaValidateType_Class(), theXMLTypePackage.getString(), "class", null, 1, 1, JavaValidateType.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+        initEAttribute(getJavaValidateType_Class(), theXMLTypePackage.getString(), "class", null, 0, 1, JavaValidateType.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+        initEAttribute(getJavaValidateType_Bean(), theXMLTypePackage.getString(), "bean", null, 0, 1, JavaValidateType.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
         initEClass(xmlValidateTypeEClass, XmlValidateType.class, "XmlValidateType", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+        initEReference(getXmlValidateType_SchemaFiles(), this.getSchemaFilesType(), null, "SchemaFiles", null, 0, 1, XmlValidateType.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+        initEReference(getXmlValidateType_SchemaCatalogs(), this.getSchemaCatalogsType(), null, "SchemaCatalogs", null, 0, 1, XmlValidateType.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
         initEAttribute(getXmlValidateType_SchemaType(), this.getXmlSchemaType(), "schemaType", null, 1, 1, XmlValidateType.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-        initEAttribute(getXmlValidateType_SchemaFile(), theXMLTypePackage.getString(), "schemaFile", null, 1, 1, XmlValidateType.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
         initEAttribute(getXmlValidateType_FailOnWarning(), theXMLTypePackage.getString(), "failOnWarning", null, 0, 1, XmlValidateType.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+        initEAttribute(getXmlValidateType_NamespaceAware(), theXMLTypePackage.getString(), "namespaceAware", null, 0, 1, XmlValidateType.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+        initEClass(schemaFilesTypeEClass, SchemaFilesType.class, "SchemaFilesType", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+        initEAttribute(getSchemaFilesType_EntryGroup(), ecorePackage.getEFeatureMapEntry(), "EntryGroup", null, 0, -1, SchemaFilesType.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+        initEReference(getSchemaFilesType_Entry(), this.getFileEntryType(), null, "Entry", null, 0, -1, SchemaFilesType.class, IS_TRANSIENT, IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, IS_DERIVED, IS_ORDERED);
+
+        initEClass(schemaCatalogsTypeEClass, SchemaCatalogsType.class, "SchemaCatalogsType", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+        initEAttribute(getSchemaCatalogsType_EntryGroup(), ecorePackage.getEFeatureMapEntry(), "EntryGroup", null, 0, -1, SchemaCatalogsType.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+        initEReference(getSchemaCatalogsType_Entry(), this.getFileEntryType(), null, "Entry", null, 0, -1, SchemaCatalogsType.class, IS_TRANSIENT, IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, IS_DERIVED, IS_ORDERED);
+
+        initEClass(fileEntryTypeEClass, FileEntryType.class, "FileEntryType", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+        initEAttribute(getFileEntryType_File(), theXMLTypePackage.getString(), "file", null, 1, 1, FileEntryType.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
         // Initialize enums and add enum literals
         initEEnum(xmlSchemaTypeEEnum, XmlSchemaType.class, "XmlSchemaType");
@@ -577,6 +728,13 @@ public class ValidatePackageImpl extends EPackageImpl implements ValidatePackage
              "name", "class"
            });		
         addAnnotation
+          (getJavaValidateType_Bean(), 
+           source, 
+           new String[] {
+             "kind", "attribute",
+             "name", "bean"
+           });		
+        addAnnotation
           (xmlSchemaTypeEEnum, 
            source, 
            new String[] {
@@ -597,6 +755,22 @@ public class ValidatePackageImpl extends EPackageImpl implements ValidatePackage
              "kind", "empty"
            });		
         addAnnotation
+          (getXmlValidateType_SchemaFiles(), 
+           source, 
+           new String[] {
+             "kind", "element",
+             "name", "schemaFiles",
+             "namespace", "##targetNamespace"
+           });		
+        addAnnotation
+          (getXmlValidateType_SchemaCatalogs(), 
+           source, 
+           new String[] {
+             "kind", "element",
+             "name", "schemaCatalogs",
+             "namespace", "##targetNamespace"
+           });		
+        addAnnotation
           (getXmlValidateType_SchemaType(), 
            source, 
            new String[] {
@@ -604,18 +778,80 @@ public class ValidatePackageImpl extends EPackageImpl implements ValidatePackage
              "name", "schemaType"
            });		
         addAnnotation
-          (getXmlValidateType_SchemaFile(), 
-           source, 
-           new String[] {
-             "kind", "attribute",
-             "name", "schemaFile"
-           });		
-        addAnnotation
           (getXmlValidateType_FailOnWarning(), 
            source, 
            new String[] {
              "kind", "attribute",
              "name", "failOnWarning"
+           });		
+        addAnnotation
+          (getXmlValidateType_NamespaceAware(), 
+           source, 
+           new String[] {
+             "kind", "attribute",
+             "name", "namespaceAware"
+           });		
+        addAnnotation
+          (schemaFilesTypeEClass, 
+           source, 
+           new String[] {
+             "name", "schemaFilesType",
+             "kind", "elementOnly"
+           });		
+        addAnnotation
+          (getSchemaFilesType_EntryGroup(), 
+           source, 
+           new String[] {
+             "kind", "group",
+             "name", "entry:group",
+             "namespace", "##targetNamespace"
+           });		
+        addAnnotation
+          (getSchemaFilesType_Entry(), 
+           source, 
+           new String[] {
+             "kind", "element",
+             "name", "entry",
+             "namespace", "##targetNamespace",
+             "group", "entry:group"
+           });		
+        addAnnotation
+          (schemaCatalogsTypeEClass, 
+           source, 
+           new String[] {
+             "name", "schemaCatalogsType",
+             "kind", "empty"
+           });		
+        addAnnotation
+          (getSchemaCatalogsType_EntryGroup(), 
+           source, 
+           new String[] {
+             "kind", "group",
+             "name", "entry:group",
+             "namespace", "##targetNamespace"
+           });		
+        addAnnotation
+          (getSchemaCatalogsType_Entry(), 
+           source, 
+           new String[] {
+             "kind", "element",
+             "name", "entry",
+             "namespace", "##targetNamespace",
+             "group", "entry:group"
+           });		
+        addAnnotation
+          (fileEntryTypeEClass, 
+           source, 
+           new String[] {
+             "name", "FileEntryType",
+             "kind", "empty"
+           });		
+        addAnnotation
+          (getFileEntryType_File(), 
+           source, 
+           new String[] {
+             "kind", "attribute",
+             "name", "file"
            });
     }
 
