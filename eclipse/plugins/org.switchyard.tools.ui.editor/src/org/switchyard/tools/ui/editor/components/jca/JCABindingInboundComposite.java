@@ -18,17 +18,14 @@ import java.util.List;
 import javax.swing.event.ChangeEvent;
 import javax.swing.event.ChangeListener;
 
-import org.eclipse.core.resources.IFile;
 import org.eclipse.core.resources.IResource;
 import org.eclipse.core.resources.ResourcesPlugin;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.jdt.core.IJavaProject;
-import org.eclipse.jdt.core.JavaCore;
 import org.eclipse.soa.sca.sca1_1.model.sca.Binding;
 import org.eclipse.soa.sca.sca1_1.model.sca.OperationSelectorType;
 import org.eclipse.swt.SWT;
-import org.eclipse.swt.events.SelectionAdapter;
 import org.eclipse.swt.events.SelectionEvent;
 import org.eclipse.swt.events.SelectionListener;
 import org.eclipse.swt.layout.FillLayout;
@@ -59,7 +56,6 @@ import org.switchyard.tools.ui.editor.diagram.binding.AbstractSYBindingComposite
 import org.switchyard.tools.ui.editor.diagram.binding.OperationSelectorComposite;
 import org.switchyard.tools.ui.editor.diagram.binding.OperationSelectorUtil;
 import org.switchyard.tools.ui.editor.diagram.shared.ModelOperation;
-import org.switchyard.tools.ui.editor.impl.SwitchyardSCAEditor;
 
 /**
  * @author bfitzpat
@@ -69,14 +65,14 @@ public class JCABindingInboundComposite extends AbstractSYBindingComposite {
 
     private Composite _panel;
     private JCABinding _binding = null;
-    private Text _resourceAdapterText;
-    private Button _browseResourceAdapterButton;
+    private Combo _resourceAdapterText;
+//    private Button _browseResourceAdapterButton;
     private JCAPropertyTable _propsList;
     private Combo _endpointMappingTypeCombo;
     private Button _transactedButton;
     private OperationSelectorComposite _opSelectorComposite;
     private TabFolder _tabFolder;
-    private List<String> _advancedPropsFilterList;
+//    private List<String> _advancedPropsFilterList;
     private Group _batchGroup;
     private Button _batchEnabledCheckbox;
     private Text _batchSizeText;
@@ -102,7 +98,8 @@ public class JCABindingInboundComposite extends AbstractSYBindingComposite {
                 if (inbound.getResourceAdapter() != null) {
                     this._resourceAdapterText.setText(inbound.getResourceAdapter().getName());
                 } else {
-                    _resourceAdapterText.setText("");
+                    _resourceAdapterText.setText("hornetq-ra.rar");
+                    handleModify(_resourceAdapterText);
                 }
 
                 if (inbound.getActivationSpec() != null && inbound.getActivationSpec().getProperty().size() > 0) {
@@ -191,29 +188,30 @@ public class JCABindingInboundComposite extends AbstractSYBindingComposite {
 
         Group inboundConnectionGroup = new Group(composite, SWT.NONE);
         inboundConnectionGroup.setLayoutData(new GridData(SWT.FILL, SWT.FILL, true, true));
-        inboundConnectionGroup.setLayout(new GridLayout(3, false));
+        inboundConnectionGroup.setLayout(new GridLayout(2, false));
         inboundConnectionGroup.setText("Inbound Connection Options");
 
-        _resourceAdapterText = createLabelAndText(inboundConnectionGroup, "Resource Adapter Archive");
-        _browseResourceAdapterButton = new Button(inboundConnectionGroup, SWT.PUSH);
-        _browseResourceAdapterButton.setText("Browse...");
-        _browseResourceAdapterButton.addSelectionListener(new SelectionAdapter() {
-            public void widgetSelected(final SelectionEvent e) {
-                IFile modelFile = SwitchyardSCAEditor.getActiveEditor().getModelFile();
-                IJavaProject javaProject = null;
-                if (modelFile != null) {
-                    if (modelFile.getProject() != null) { //$NON-NLS-1$
-                        javaProject = JavaCore.create(modelFile.getProject());
-                    }
-                }
-                IResource result = browse(_panel.getShell(), javaProject);
-                if (result != null) {
-                    setHasChanged(true);
-                    handleModify(_browseResourceAdapterButton);
-                    fireChangedEvent(_browseResourceAdapterButton);
-                }
-            }
-        });
+        _resourceAdapterText = createLabelAndCombo(inboundConnectionGroup, "Resource Adapter Archive", false);
+        _resourceAdapterText.add("hornetq-ra.rar");
+//        _browseResourceAdapterButton = new Button(inboundConnectionGroup, SWT.PUSH);
+//        _browseResourceAdapterButton.setText("Browse...");
+//        _browseResourceAdapterButton.addSelectionListener(new SelectionAdapter() {
+//            public void widgetSelected(final SelectionEvent e) {
+//                IFile modelFile = SwitchyardSCAEditor.getActiveEditor().getModelFile();
+//                IJavaProject javaProject = null;
+//                if (modelFile != null) {
+//                    if (modelFile.getProject() != null) { //$NON-NLS-1$
+//                        javaProject = JavaCore.create(modelFile.getProject());
+//                    }
+//                }
+//                IResource result = browse(_panel.getShell(), javaProject);
+//                if (result != null) {
+//                    setHasChanged(true);
+//                    handleModify(_browseResourceAdapterButton);
+//                    fireChangedEvent(_browseResourceAdapterButton);
+//                }
+//            }
+//        });
 
         Group activationPropsGroup = new Group(inboundConnectionGroup, SWT.NONE);
         activationPropsGroup.setText("Activation Properties");
@@ -433,7 +431,7 @@ public class JCABindingInboundComposite extends AbstractSYBindingComposite {
     }
 
     protected void handleModify(final Control control) {
-        if (control.equals(_resourceAdapterText) || control.equals(_browseResourceAdapterButton)) {
+        if (control.equals(_resourceAdapterText) /*|| control.equals(_browseResourceAdapterButton)*/) {
             updateInboundConnectionResourceAdapterFeature("name", _resourceAdapterText.getText().trim());
         } else if (control.equals(_endpointMappingTypeCombo)) {
             updateEndpoint();
@@ -498,12 +496,13 @@ public class JCABindingInboundComposite extends AbstractSYBindingComposite {
 
     @Override
     protected List<String> getAdvancedPropertiesFilterList() {
-        if (_advancedPropsFilterList == null) {
-            _advancedPropsFilterList = new ArrayList<String>();
-            _advancedPropsFilterList.add("jndiURL");
-            _advancedPropsFilterList.add("initialContextFactory");
-        }
-        return _advancedPropsFilterList;
+        return null;
+//        if (_advancedPropsFilterList == null) {
+//            _advancedPropsFilterList = new ArrayList<String>();
+//            _advancedPropsFilterList.add("jndiURL");
+//            _advancedPropsFilterList.add("initialContextFactory");
+//        }
+//        return _advancedPropsFilterList;
     }
 
     @Override

@@ -18,20 +18,15 @@ import java.util.List;
 import javax.swing.event.ChangeEvent;
 import javax.swing.event.ChangeListener;
 
-import org.eclipse.core.resources.IFile;
 import org.eclipse.core.resources.IResource;
 import org.eclipse.core.resources.ResourcesPlugin;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.jdt.core.IJavaProject;
-import org.eclipse.jdt.core.JavaCore;
 import org.eclipse.soa.sca.sca1_1.model.sca.Binding;
 import org.eclipse.swt.SWT;
-import org.eclipse.swt.events.SelectionAdapter;
-import org.eclipse.swt.events.SelectionEvent;
 import org.eclipse.swt.layout.FillLayout;
 import org.eclipse.swt.layout.GridData;
 import org.eclipse.swt.layout.GridLayout;
-import org.eclipse.swt.widgets.Button;
 import org.eclipse.swt.widgets.Combo;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Control;
@@ -53,7 +48,6 @@ import org.switchyard.tools.models.switchyard1_0.switchyard.MessageComposerType;
 import org.switchyard.tools.ui.common.ClasspathResourceSelectionDialog;
 import org.switchyard.tools.ui.editor.diagram.binding.AbstractSYBindingComposite;
 import org.switchyard.tools.ui.editor.diagram.shared.ModelOperation;
-import org.switchyard.tools.ui.editor.impl.SwitchyardSCAEditor;
 
 /**
  * @author bfitzpat
@@ -63,16 +57,16 @@ public class JCABindingOutboundComposite extends AbstractSYBindingComposite {
 
     private Composite _panel;
     private JCABinding _binding = null;
-    private Text _resourceAdapterText;
+    private Combo _resourceAdapterText;
     private Text _connectionJNDINameText;
-    private Button _browseResourceAdapterButton;
+//    private Button _browseResourceAdapterButton;
     private JCAPropertyTable _propsList;
     private Combo _processorMappingTypeCombo;
     private enum ENDPOINT_MAPPING_TYPE {
         JMSPROCESSOR, CCIPROCESSOR
     }
     private TabFolder _tabFolder;
-    private List<String> _advancedPropsFilterList;
+//    private List<String> _advancedPropsFilterList;
 
     @Override
     public Binding getBinding() {
@@ -90,7 +84,8 @@ public class JCABindingOutboundComposite extends AbstractSYBindingComposite {
                 if (outbound.getResourceAdapter() != null) {
                     this._resourceAdapterText.setText(outbound.getResourceAdapter().getName());
                 } else {
-                    _resourceAdapterText.setText("");
+                    _resourceAdapterText.setText("hornetq-ra.rar");
+                    handleModify(_resourceAdapterText);
                 }
                 if (outbound.getConnection() != null) {
                     this._connectionJNDINameText.setText(outbound.getConnection().getJndiName());
@@ -151,29 +146,30 @@ public class JCABindingOutboundComposite extends AbstractSYBindingComposite {
 
         Group outboundConnectionGroup = new Group(composite, SWT.NONE);
         outboundConnectionGroup.setLayoutData(new GridData(SWT.FILL, SWT.FILL, true, true));
-        outboundConnectionGroup.setLayout(new GridLayout(3, false));
+        outboundConnectionGroup.setLayout(new GridLayout(2, false));
         outboundConnectionGroup.setText("Outbound Connection Options");
 
-        _resourceAdapterText = createLabelAndText(outboundConnectionGroup, "Resource Adapter Archive");
-        _browseResourceAdapterButton = new Button(outboundConnectionGroup, SWT.PUSH);
-        _browseResourceAdapterButton.setText("Browse...");
-        _browseResourceAdapterButton.addSelectionListener(new SelectionAdapter() {
-            public void widgetSelected(final SelectionEvent e) {
-                IFile modelFile = SwitchyardSCAEditor.getActiveEditor().getModelFile();
-                IJavaProject javaProject = null;
-                if (modelFile != null) {
-                    if (modelFile.getProject() != null) { //$NON-NLS-1$
-                        javaProject = JavaCore.create(modelFile.getProject());
-                    }
-                }
-                IResource result = browse(_panel.getShell(), javaProject);
-                if (result != null) {
-                    setHasChanged(true);
-                    handleModify(_browseResourceAdapterButton);
-                    fireChangedEvent(_browseResourceAdapterButton);
-                }
-            }
-        });
+        _resourceAdapterText = createLabelAndCombo(outboundConnectionGroup, "Resource Adapter Archive", false);
+        _resourceAdapterText.add("hornetq-ra.rar");
+//        _browseResourceAdapterButton = new Button(outboundConnectionGroup, SWT.PUSH);
+//        _browseResourceAdapterButton.setText("Browse...");
+//        _browseResourceAdapterButton.addSelectionListener(new SelectionAdapter() {
+//            public void widgetSelected(final SelectionEvent e) {
+//                IFile modelFile = SwitchyardSCAEditor.getActiveEditor().getModelFile();
+//                IJavaProject javaProject = null;
+//                if (modelFile != null) {
+//                    if (modelFile.getProject() != null) { //$NON-NLS-1$
+//                        javaProject = JavaCore.create(modelFile.getProject());
+//                    }
+//                }
+//                IResource result = browse(_panel.getShell(), javaProject);
+//                if (result != null) {
+//                    setHasChanged(true);
+//                    handleModify(_browseResourceAdapterButton);
+//                    fireChangedEvent(_browseResourceAdapterButton);
+//                }
+//            }
+//        });
 
         _connectionJNDINameText = createLabelAndText(outboundConnectionGroup, "JNDI Name");
 
@@ -325,7 +321,7 @@ public class JCABindingOutboundComposite extends AbstractSYBindingComposite {
     }
 
     protected void handleModify(final Control control) {
-        if (control.equals(_resourceAdapterText) || control.equals(_browseResourceAdapterButton)) {
+        if (control.equals(_resourceAdapterText) /*|| control.equals(_browseResourceAdapterButton) */) {
             updateOutboundConnectionResourceAdapterFeature("name", _resourceAdapterText.getText().trim());
         } else if (control.equals(_connectionJNDINameText)) {
             updateOutboundConnectionConnectionFeature("jndiName", _connectionJNDINameText.getText().trim());
@@ -371,14 +367,15 @@ public class JCABindingOutboundComposite extends AbstractSYBindingComposite {
 
     @Override
     protected List<String> getAdvancedPropertiesFilterList() {
-        if (_advancedPropsFilterList == null) {
-            _advancedPropsFilterList = new ArrayList<String>();
-            _advancedPropsFilterList.add("jndiURL");
-            _advancedPropsFilterList.add("initialContextFactory");
-            _advancedPropsFilterList.add("resAuth");
-            _advancedPropsFilterList.add("managed");
-        }
-        return _advancedPropsFilterList;
+        return null;
+//        if (_advancedPropsFilterList == null) {
+//            _advancedPropsFilterList = new ArrayList<String>();
+//            _advancedPropsFilterList.add("jndiURL");
+//            _advancedPropsFilterList.add("initialContextFactory");
+//            _advancedPropsFilterList.add("resAuth");
+//            _advancedPropsFilterList.add("managed");
+//        }
+//        return _advancedPropsFilterList;
     }
 
     @Override

@@ -312,6 +312,9 @@
     <bindingExtension
           class="org.switchyard.tools.ui.editor.components.binding.sca.BindingSCATypeExtension">
     </bindingExtension>
+    <bindingExtension
+          class="org.switchyard.tools.ui.editor.components.camel.binding.CamelBindingTypeExtension">
+    </bindingExtension>
  </extension>
 
   <!-- Validation Extensions -->

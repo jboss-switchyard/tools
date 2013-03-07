@@ -54,7 +54,7 @@ public class CamelNettyUDPComposite extends AbstractSYBindingComposite {
     private Text _portText;
     private Text _sendBufferSizeText;
     private Text _receiveBufferSizeText;
-    private Button _syncCheckbox;
+//    private Button _syncCheckbox;
     private Button _broadcastCheckbox;
     private TabFolder _tabFolder;
     private List<String> _advancedPropsFilterList;
@@ -90,7 +90,7 @@ public class CamelNettyUDPComposite extends AbstractSYBindingComposite {
             } else {
                 _receiveBufferSizeText.setText("");
             }
-            _syncCheckbox.setSelection(this._binding.isSync());
+//            _syncCheckbox.setSelection(this._binding.isSync());
             _broadcastCheckbox.setSelection(this._binding.isBroadcast());
 
             OperationSelectorType opSelector = OperationSelectorUtil.getFirstOperationSelector(this._binding);
@@ -178,7 +178,7 @@ public class CamelNettyUDPComposite extends AbstractSYBindingComposite {
 
         _hostText = createLabelAndText(udpGroup, "Host*");
         _portText = createLabelAndText(udpGroup, "Port*");
-        _syncCheckbox = createCheckbox(udpGroup, "Sync");
+//        _syncCheckbox = createCheckbox(udpGroup, "Sync");
         _broadcastCheckbox = createCheckbox(udpGroup, "Broadcast");
         _sendBufferSizeText = createLabelAndText(udpGroup, "Send Buffer Size");
         _receiveBufferSizeText = createLabelAndText(udpGroup, "Receive Buffer Size");
@@ -246,9 +246,9 @@ public class CamelNettyUDPComposite extends AbstractSYBindingComposite {
                 // ignore
                 nfe.fillInStackTrace();
             }
-        } else if (control.equals(_syncCheckbox)) {
-            boolean value = _syncCheckbox.getSelection();
-            updateFeature(_binding, "sync", value);
+//        } else if (control.equals(_syncCheckbox)) {
+//            boolean value = _syncCheckbox.getSelection();
+//            updateFeature(_binding, "sync", value);
         } else if (control.equals(_broadcastCheckbox)) {
             boolean value = _broadcastCheckbox.getSelection();
             updateFeature(_binding, "broadcast", value);
@@ -273,8 +273,8 @@ public class CamelNettyUDPComposite extends AbstractSYBindingComposite {
                 _sendBufferSizeText.setText(Long.toString(this._binding.getSendBufferSize()));
             } else if (control.equals(_broadcastCheckbox)) {
                 _broadcastCheckbox.setSelection(this._binding.isBroadcast());
-            } else if (control.equals(_syncCheckbox)) {
-                _syncCheckbox.setSelection(this._binding.isSync());
+//            } else if (control.equals(_syncCheckbox)) {
+//                _syncCheckbox.setSelection(this._binding.isSync());
 //            } else if (control.equals(_operationSelectionCombo)) {
 //                String opName = OperationSelectorUtil.getOperationNameForStaticOperationSelector(this._binding);
 //                setTextValue(_operationSelectionCombo, opName);
@@ -295,6 +295,7 @@ public class CamelNettyUDPComposite extends AbstractSYBindingComposite {
             _advancedPropsFilterList.add("allowDefaultCodec");
             _advancedPropsFilterList.add("workerCount");
             _advancedPropsFilterList.add("disconnect");
+            _advancedPropsFilterList.add("sync");
         }
         return _advancedPropsFilterList;
     }

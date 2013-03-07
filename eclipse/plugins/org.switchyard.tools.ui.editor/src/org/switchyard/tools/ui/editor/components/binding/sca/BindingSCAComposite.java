@@ -124,6 +124,7 @@ public class BindingSCAComposite extends AbstractSYBindingComposite  {
                 // custom class
                 setTextValue(_loadBalancingCombo, "Custom Load Balance Strategy");
                 _loadBalancingCustomClassText.setEnabled(true);
+                _browseLoadBalancingClassButton.setEnabled(true);
                 setTextValue(_loadBalancingCustomClassText, loadBalanceValue);
             } else {
                 if (loadBalanceValue == null) {
@@ -132,6 +133,7 @@ public class BindingSCAComposite extends AbstractSYBindingComposite  {
                 } else {
                     setTextValue(_loadBalancingCombo, loadBalanceValue);
                     _loadBalancingCustomClassText.setEnabled(false);
+                    _browseLoadBalancingClassButton.setEnabled(false);
                     setTextValue(_loadBalancingCustomClassText, "");
                 }
             }
@@ -144,11 +146,12 @@ public class BindingSCAComposite extends AbstractSYBindingComposite  {
             if (_clusteredCheckbox.getSelection() 
                     && _loadBalancingCombo.getText().equalsIgnoreCase("Custom Load Balance Strategy")) {
                 _loadBalancingCustomClassText.setEnabled(true);
+                _browseLoadBalancingClassButton.setEnabled(true);
+                
             } else {
                 _loadBalancingCustomClassText.setEnabled(false);
+                _browseLoadBalancingClassButton.setEnabled(false);
             }
-            _targetServiceText.setEnabled(_clusteredCheckbox.getSelection());
-            _targetNamespaceText.setEnabled(_clusteredCheckbox.getSelection());
         }
     }
     
@@ -191,11 +194,11 @@ public class BindingSCAComposite extends AbstractSYBindingComposite  {
 
     private Control getConsumerTabControl(TabFolder tabFolder) {
         Composite composite = new Composite(tabFolder, SWT.NONE);
-        GridLayout gl = new GridLayout(1, false);
+        GridLayout gl = new GridLayout(2, false);
         composite.setLayout(gl);
 
         Group clusteringGroup = new Group(composite, SWT.NONE);
-        clusteringGroup.setLayoutData(new GridData(SWT.FILL, SWT.FILL, true, true));
+        clusteringGroup.setLayoutData(new GridData(SWT.FILL, SWT.FILL, true, true, 2, 1));
         clusteringGroup.setLayout(new GridLayout(3, false));
         clusteringGroup.setText("Clustering");
         
@@ -230,10 +233,10 @@ public class BindingSCAComposite extends AbstractSYBindingComposite  {
                 }
             });
             
-            _targetServiceText = createLabelAndText(clusteringGroup, "Target Service");
+            _targetServiceText = createLabelAndText(composite, "Target Service");
             addGridData(_targetServiceText, 3, GridData.FILL_HORIZONTAL);
 
-            _targetNamespaceText = createLabelAndText(clusteringGroup, "Target Namespace");
+            _targetNamespaceText = createLabelAndText(composite, "Target Namespace");
             addGridData(_targetNamespaceText, 3, GridData.FILL_HORIZONTAL);
         }
 
@@ -335,6 +338,9 @@ public class BindingSCAComposite extends AbstractSYBindingComposite  {
             String value = _loadBalancingCombo.getText().trim();
             if (value.contentEquals("Custom Load Balance Strategy")) {
                 value = _loadBalancingCustomClassText.getText().trim();
+                if (value.trim().isEmpty()) {
+                    value = "CustomLoadBalanceStrategyClass";
+                }
             }
             updateFeature(_binding, "loadBalance", value);
         } else if (control.equals(_loadBalancingCustomClassText)) {

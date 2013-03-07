@@ -20,6 +20,7 @@ import org.eclipse.swt.SWT;
 import org.eclipse.swt.layout.FillLayout;
 import org.eclipse.swt.layout.GridData;
 import org.eclipse.swt.layout.GridLayout;
+import org.eclipse.swt.widgets.Button;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Control;
 import org.eclipse.swt.widgets.Group;
@@ -54,6 +55,7 @@ public class CamelMailProducerComposite extends AbstractSYBindingComposite {
     private Text _ccText;
     private Text _bccText;
     private Text _replyToText;
+    private Button _securedCheckbox;
 
     @Override
     public Binding getBinding() {
@@ -117,6 +119,7 @@ public class CamelMailProducerComposite extends AbstractSYBindingComposite {
             } else {
                 _passwordText.setText("");
             }
+            _securedCheckbox.setSelection(this._binding.isSecure());
             super.setTabsBinding(_binding);
             setInUpdate(false);
             validate();
@@ -176,6 +179,7 @@ public class CamelMailProducerComposite extends AbstractSYBindingComposite {
         _usernameText = createLabelAndText(mailGroup, "User Name");
         _passwordText = createLabelAndText(mailGroup, "Password");
         _passwordText.setEchoChar('*');
+        _securedCheckbox = createCheckbox(mailGroup, "Secured");
 
         Group producerGroup = new Group(composite, SWT.NONE);
         producerGroup.setLayoutData(new GridData(SWT.FILL, SWT.FILL, true, true));
@@ -241,6 +245,8 @@ public class CamelMailProducerComposite extends AbstractSYBindingComposite {
             updateProduceFeature("bcc", _bccText.getText().trim());
         } else if (control.equals(_replyToText)) {
             updateProduceFeature("replyTo", _replyToText.getText().trim());
+        } else if (control.equals(_securedCheckbox)) {
+            updateFeature(_binding, "secure", _securedCheckbox.getSelection());
         } else {
             super.handleModify(control);
         }
@@ -271,6 +277,8 @@ public class CamelMailProducerComposite extends AbstractSYBindingComposite {
                 _bccText.setText(this._binding.getProduce().getBCC());
             } else if (control.equals(_replyToText)) {
                 _replyToText.setText(this._binding.getProduce().getReplyTo());
+            } else if (control.equals(_securedCheckbox)) {
+                _securedCheckbox.setSelection(this._binding.isSecure());
             } else {
                 super.handleUndo(control);
             }

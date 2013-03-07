@@ -58,6 +58,7 @@ public class CamelMailConsumerComposite extends AbstractSYBindingComposite  {
     private Button _deleteCheckbox;
     private Text _copyToText;
     private Button _disconnectCheckbox;
+    private Button _securedCheckbox;
 
     @Override
     public Binding getBinding() {
@@ -112,6 +113,7 @@ public class CamelMailConsumerComposite extends AbstractSYBindingComposite  {
             } else {
                 _passwordText.setText("");
             }
+            _securedCheckbox.setSelection(this._binding.isSecure());
 
             super.setTabsBinding(_binding);
             setInUpdate(false);
@@ -183,6 +185,7 @@ public class CamelMailConsumerComposite extends AbstractSYBindingComposite  {
         _usernameText = createLabelAndText(mailGroup, "User Name");
         _passwordText = createLabelAndText(mailGroup, "Password");
         _passwordText.setEchoChar('*');
+        _securedCheckbox = createCheckbox(mailGroup, "Secured");
 
         Group consumeGroup = new Group(composite, SWT.NONE);
         consumeGroup.setLayoutData(new GridData(SWT.FILL, SWT.FILL, true, true));
@@ -260,6 +263,8 @@ public class CamelMailConsumerComposite extends AbstractSYBindingComposite  {
         } else if (control.equals(_accountTypeCombo)) {
             MailConsumerAccountType acctType = MailConsumerAccountType.get(_accountTypeCombo.getSelectionIndex());
             updateConsumeFeature("accountType", acctType);
+        } else if (control.equals(_securedCheckbox)) {
+            updateFeature(_binding, "secure", _securedCheckbox.getSelection());
         } else {
             super.handleModify(control);
         }
@@ -294,6 +299,8 @@ public class CamelMailConsumerComposite extends AbstractSYBindingComposite  {
                 _usernameText.setText(this._binding.getUsername());
             } else if (control.equals(_passwordText)) {
                 _passwordText.setText(this._binding.getPassword());
+            } else if (control.equals(_securedCheckbox)) {
+                _securedCheckbox.setSelection(this._binding.isSecure());
             } else {
                 super.handleUndo(control);
             }
