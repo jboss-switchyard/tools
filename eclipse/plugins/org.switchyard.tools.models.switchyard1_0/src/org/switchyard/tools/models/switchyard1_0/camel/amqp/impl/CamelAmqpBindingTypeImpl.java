@@ -8,6 +8,8 @@ import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.switchyard.tools.models.switchyard1_0.camel.amqp.AmqpPackage;
 import org.switchyard.tools.models.switchyard1_0.camel.amqp.CamelAmqpBindingType;
+import org.switchyard.tools.models.switchyard1_0.switchyard.SwitchyardFactory;
+import org.switchyard.tools.models.switchyard1_0.switchyard.SwitchyardPackage;
 
 /**
  * <!-- begin-user-doc -->
@@ -177,7 +179,7 @@ public class CamelAmqpBindingTypeImpl extends BaseCamelBindingImpl implements Ca
      * @generated
      * @ordered
      */
-    protected static final int CONCURRENT_CONSUMERS_EDEFAULT = 1;
+    protected static final Object CONCURRENT_CONSUMERS_EDEFAULT = SwitchyardFactory.eINSTANCE.createFromString(SwitchyardPackage.eINSTANCE.getPropInteger(), "1");
     /**
      * The cached value of the '{@link #getConcurrentConsumers() <em>Concurrent Consumers</em>}' attribute.
      * <!-- begin-user-doc -->
@@ -186,7 +188,7 @@ public class CamelAmqpBindingTypeImpl extends BaseCamelBindingImpl implements Ca
      * @generated
      * @ordered
      */
-    protected int concurrentConsumers = CONCURRENT_CONSUMERS_EDEFAULT;
+    protected Object concurrentConsumers = CONCURRENT_CONSUMERS_EDEFAULT;
     /**
      * This is true if the Concurrent Consumers attribute has been set.
      * <!-- begin-user-doc -->
@@ -203,7 +205,7 @@ public class CamelAmqpBindingTypeImpl extends BaseCamelBindingImpl implements Ca
      * @generated
      * @ordered
      */
-    protected static final int MAX_CONCURRENT_CONSUMERS_EDEFAULT = 1;
+    protected static final Object MAX_CONCURRENT_CONSUMERS_EDEFAULT = SwitchyardFactory.eINSTANCE.createFromString(SwitchyardPackage.eINSTANCE.getPropInteger(), "1");
     /**
      * The cached value of the '{@link #getMaxConcurrentConsumers() <em>Max Concurrent Consumers</em>}' attribute.
      * <!-- begin-user-doc -->
@@ -212,7 +214,7 @@ public class CamelAmqpBindingTypeImpl extends BaseCamelBindingImpl implements Ca
      * @generated
      * @ordered
      */
-    protected int maxConcurrentConsumers = MAX_CONCURRENT_CONSUMERS_EDEFAULT;
+    protected Object maxConcurrentConsumers = MAX_CONCURRENT_CONSUMERS_EDEFAULT;
     /**
      * This is true if the Max Concurrent Consumers attribute has been set.
      * <!-- begin-user-doc -->
@@ -673,7 +675,7 @@ public class CamelAmqpBindingTypeImpl extends BaseCamelBindingImpl implements Ca
      * <!-- end-user-doc -->
      * @generated
      */
-    public int getConcurrentConsumers() {
+    public Object getConcurrentConsumers() {
         return concurrentConsumers;
     }
 
@@ -682,8 +684,8 @@ public class CamelAmqpBindingTypeImpl extends BaseCamelBindingImpl implements Ca
      * <!-- end-user-doc -->
      * @generated
      */
-    public void setConcurrentConsumers(int newConcurrentConsumers) {
-        int oldConcurrentConsumers = concurrentConsumers;
+    public void setConcurrentConsumers(Object newConcurrentConsumers) {
+        Object oldConcurrentConsumers = concurrentConsumers;
         concurrentConsumers = newConcurrentConsumers;
         boolean oldConcurrentConsumersESet = concurrentConsumersESet;
         concurrentConsumersESet = true;
@@ -697,7 +699,7 @@ public class CamelAmqpBindingTypeImpl extends BaseCamelBindingImpl implements Ca
      * @generated
      */
     public void unsetConcurrentConsumers() {
-        int oldConcurrentConsumers = concurrentConsumers;
+        Object oldConcurrentConsumers = concurrentConsumers;
         boolean oldConcurrentConsumersESet = concurrentConsumersESet;
         concurrentConsumers = CONCURRENT_CONSUMERS_EDEFAULT;
         concurrentConsumersESet = false;
@@ -719,7 +721,7 @@ public class CamelAmqpBindingTypeImpl extends BaseCamelBindingImpl implements Ca
      * <!-- end-user-doc -->
      * @generated
      */
-    public int getMaxConcurrentConsumers() {
+    public Object getMaxConcurrentConsumers() {
         return maxConcurrentConsumers;
     }
 
@@ -728,8 +730,8 @@ public class CamelAmqpBindingTypeImpl extends BaseCamelBindingImpl implements Ca
      * <!-- end-user-doc -->
      * @generated
      */
-    public void setMaxConcurrentConsumers(int newMaxConcurrentConsumers) {
-        int oldMaxConcurrentConsumers = maxConcurrentConsumers;
+    public void setMaxConcurrentConsumers(Object newMaxConcurrentConsumers) {
+        Object oldMaxConcurrentConsumers = maxConcurrentConsumers;
         maxConcurrentConsumers = newMaxConcurrentConsumers;
         boolean oldMaxConcurrentConsumersESet = maxConcurrentConsumersESet;
         maxConcurrentConsumersESet = true;
@@ -743,7 +745,7 @@ public class CamelAmqpBindingTypeImpl extends BaseCamelBindingImpl implements Ca
      * @generated
      */
     public void unsetMaxConcurrentConsumers() {
-        int oldMaxConcurrentConsumers = maxConcurrentConsumers;
+        Object oldMaxConcurrentConsumers = maxConcurrentConsumers;
         boolean oldMaxConcurrentConsumersESet = maxConcurrentConsumersESet;
         maxConcurrentConsumers = MAX_CONCURRENT_CONSUMERS_EDEFAULT;
         maxConcurrentConsumersESet = false;
@@ -1296,10 +1298,10 @@ public class CamelAmqpBindingTypeImpl extends BaseCamelBindingImpl implements Ca
                 setDurableSubscriptionName((String)newValue);
                 return;
             case AmqpPackage.CAMEL_AMQP_BINDING_TYPE__CONCURRENT_CONSUMERS:
-                setConcurrentConsumers((Integer)newValue);
+                setConcurrentConsumers(newValue);
                 return;
             case AmqpPackage.CAMEL_AMQP_BINDING_TYPE__MAX_CONCURRENT_CONSUMERS:
-                setMaxConcurrentConsumers((Integer)newValue);
+                setMaxConcurrentConsumers(newValue);
                 return;
             case AmqpPackage.CAMEL_AMQP_BINDING_TYPE__DISABLE_REPLY_TO:
                 setDisableReplyTo((Boolean)newValue);

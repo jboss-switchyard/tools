@@ -12,7 +12,6 @@
  ******************************************************************************/
 package org.switchyard.tools.ui.editor.components.soap;
 
-import java.net.URI;
 import java.util.ArrayList;
 
 import org.eclipse.core.resources.IFile;
@@ -306,37 +305,37 @@ public class SOAPBindingComposite extends AbstractSYBindingComposite {
             setErrorMessage("No uri specified");
         } else if (uriString.trim().length() < uriString.length()) {
             setErrorMessage("No spaces allowed in uri");
-        } else {
-            try {
-                URI.create(uriString);
-            } catch (IllegalArgumentException e) {
-                setErrorMessage("Invalid URI");
-            }
+//        } else {
+//            try {
+//                URI.create(uriString);
+//            } catch (IllegalArgumentException e) {
+//                setErrorMessage("Invalid URI");
+//            }
         }
 
-        if (getBinding() != null && _mWSDLSocketText != null) {
-            String portString = _bindingSocket;
-            if (portString != null && portString.trim().length() > 0) {
-                int pos = portString.indexOf(':');
-                if (pos == -1) {
-                    setErrorMessage("Socket string should match one of these patterns: localhost:8080, 0.0.0.0:8080, or :8080");
-                } else {
-                    String left = portString.substring(0, pos).trim();
-                    if (left.length() > 0
-                            && !left.matches("^([a-zA-Z0-9]|[a-zA-Z0-9][a-zA-Z0-9\\-]{0,61}[a-zA-Z0-9])(\\.([a-zA-Z0-9]|[a-zA-Z0-9][a-zA-Z0-9\\-]{0,61}[a-zA-Z0-9]))*$")) {
-                        setErrorMessage("Socket string should match one of these patterns: localhost:8080, 0.0.0.0:8080, or :8080");
-                    }
-                    String right = portString.substring(pos + 1, portString.length()).trim();
-                    try {
-                        Integer.parseInt(right);
-                    } catch (NumberFormatException nfe) {
-                        setErrorMessage("The port number right of the : must be a valid integer.");
-                    }
-                }
-//            } else {
-//                setErrorMessage("No socket specified");
-            }
-        }
+//        if (getBinding() != null && _mWSDLSocketText != null) {
+//            String portString = _bindingSocket;
+//            if (portString != null && portString.trim().length() > 0) {
+//                int pos = portString.indexOf(':');
+//                if (pos == -1) {
+//                    setErrorMessage("Socket string should match one of these patterns: localhost:8080, 0.0.0.0:8080, or :8080");
+//                } else {
+//                    String left = portString.substring(0, pos).trim();
+//                    if (left.length() > 0
+//                            && !left.matches("^([a-zA-Z0-9]|[a-zA-Z0-9][a-zA-Z0-9\\-]{0,61}[a-zA-Z0-9])(\\.([a-zA-Z0-9]|[a-zA-Z0-9][a-zA-Z0-9\\-]{0,61}[a-zA-Z0-9]))*$")) {
+//                        setErrorMessage("Socket string should match one of these patterns: localhost:8080, 0.0.0.0:8080, or :8080");
+//                    }
+//                    String right = portString.substring(pos + 1, portString.length()).trim();
+//                    try {
+//                        Integer.parseInt(right);
+//                    } catch (NumberFormatException nfe) {
+//                        setErrorMessage("The port number right of the : must be a valid integer.");
+//                    }
+//                }
+////            } else {
+////                setErrorMessage("No socket specified");
+//            }
+//        }
 
         super.validateTabs();
 

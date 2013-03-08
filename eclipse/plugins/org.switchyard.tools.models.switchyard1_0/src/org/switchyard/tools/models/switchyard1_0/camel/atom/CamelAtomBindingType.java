@@ -39,7 +39,7 @@ public interface CamelAtomBindingType extends BaseCamelBinding {
      * @return the value of the '<em>Feed URI</em>' attribute.
      * @see #setFeedURI(String)
      * @see org.switchyard.tools.models.switchyard1_0.camel.atom.AtomPackage#getCamelAtomBindingType_FeedURI()
-     * @model dataType="org.eclipse.emf.ecore.xml.type.AnyURI" required="true"
+     * @model dataType="org.eclipse.emf.ecore.xml.type.String" required="true"
      *        extendedMetaData="kind='element' name='feedURI' namespace='##targetNamespace'"
      * @generated
      */

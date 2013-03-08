@@ -12,7 +12,6 @@
  ******************************************************************************/
 package org.switchyard.tools.ui.editor.components.http;
 
-import java.net.URI;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -122,7 +121,7 @@ public class HttpBindingComposite extends AbstractSYBindingComposite {
             uriGD.horizontalSpan = 2;
             _mAddressURLText.setLayoutData(uriGD);
             
-            _methodCombo = createLabelAndCombo(httpGroup, "Method", true);
+            _methodCombo = createLabelAndCombo(httpGroup, "Method", false);
             _methodCombo.add("GET");
             _methodCombo.add("POST");
             _methodCombo.add("PUT");
@@ -188,13 +187,13 @@ public class HttpBindingComposite extends AbstractSYBindingComposite {
             if (urlString != null && urlString.trim().length() > 0) {
                 if (urlString.trim().length() < urlString.length()) {
                     setErrorMessage("No spaces allowed in address URL");
-                } else {
-                    try {
-                        URI.create(urlString);
-                    } catch (IllegalArgumentException e) {
-                        setErrorMessage("Invalid address URL");
-                        return false;
-                    }
+//                } else {
+//                    try {
+//                        URI.create(urlString);
+//                    } catch (IllegalArgumentException e) {
+//                        setErrorMessage("Invalid address URL");
+//                        return false;
+//                    }
                 }
             }
         }

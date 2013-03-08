@@ -120,13 +120,13 @@ public interface CamelTimerBindingType extends BaseCamelBinding {
      * @return the value of the '<em>Period</em>' attribute.
      * @see #isSetPeriod()
      * @see #unsetPeriod()
-     * @see #setPeriod(long)
+     * @see #setPeriod(Object)
      * @see org.switchyard.tools.models.switchyard1_0.camel.core.CorePackage#getCamelTimerBindingType_Period()
-     * @model default="1000" unsettable="true" dataType="org.eclipse.emf.ecore.xml.type.Long"
+     * @model default="1000" unsettable="true" dataType="org.switchyard.tools.models.switchyard1_0.switchyard.PropLong"
      *        extendedMetaData="kind='element' name='period' namespace='##targetNamespace'"
      * @generated
      */
-    long getPeriod();
+    Object getPeriod();
 
     /**
      * Sets the value of the '{@link org.switchyard.tools.models.switchyard1_0.camel.core.CamelTimerBindingType#getPeriod <em>Period</em>}' attribute.
@@ -138,7 +138,7 @@ public interface CamelTimerBindingType extends BaseCamelBinding {
      * @see #getPeriod()
      * @generated
      */
-    void setPeriod(long value);
+    void setPeriod(Object value);
 
     /**
      * Unsets the value of the '{@link org.switchyard.tools.models.switchyard1_0.camel.core.CamelTimerBindingType#getPeriod <em>Period</em>}' attribute.
@@ -146,7 +146,7 @@ public interface CamelTimerBindingType extends BaseCamelBinding {
      * <!-- end-user-doc -->
      * @see #isSetPeriod()
      * @see #getPeriod()
-     * @see #setPeriod(long)
+     * @see #setPeriod(Object)
      * @generated
      */
     void unsetPeriod();
@@ -158,7 +158,7 @@ public interface CamelTimerBindingType extends BaseCamelBinding {
      * @return whether the value of the '<em>Period</em>' attribute is set.
      * @see #unsetPeriod()
      * @see #getPeriod()
-     * @see #setPeriod(long)
+     * @see #setPeriod(Object)
      * @generated
      */
     boolean isSetPeriod();
@@ -175,13 +175,13 @@ public interface CamelTimerBindingType extends BaseCamelBinding {
      * @return the value of the '<em>Delay</em>' attribute.
      * @see #isSetDelay()
      * @see #unsetDelay()
-     * @see #setDelay(long)
+     * @see #setDelay(Object)
      * @see org.switchyard.tools.models.switchyard1_0.camel.core.CorePackage#getCamelTimerBindingType_Delay()
-     * @model default="0" unsettable="true" dataType="org.eclipse.emf.ecore.xml.type.Long"
+     * @model default="0" unsettable="true" dataType="org.switchyard.tools.models.switchyard1_0.switchyard.PropLong"
      *        extendedMetaData="kind='element' name='delay' namespace='##targetNamespace'"
      * @generated
      */
-    long getDelay();
+    Object getDelay();
 
     /**
      * Sets the value of the '{@link org.switchyard.tools.models.switchyard1_0.camel.core.CamelTimerBindingType#getDelay <em>Delay</em>}' attribute.
@@ -193,7 +193,7 @@ public interface CamelTimerBindingType extends BaseCamelBinding {
      * @see #getDelay()
      * @generated
      */
-    void setDelay(long value);
+    void setDelay(Object value);
 
     /**
      * Unsets the value of the '{@link org.switchyard.tools.models.switchyard1_0.camel.core.CamelTimerBindingType#getDelay <em>Delay</em>}' attribute.
@@ -201,7 +201,7 @@ public interface CamelTimerBindingType extends BaseCamelBinding {
      * <!-- end-user-doc -->
      * @see #isSetDelay()
      * @see #getDelay()
-     * @see #setDelay(long)
+     * @see #setDelay(Object)
      * @generated
      */
     void unsetDelay();
@@ -213,7 +213,7 @@ public interface CamelTimerBindingType extends BaseCamelBinding {
      * @return whether the value of the '<em>Delay</em>' attribute is set.
      * @see #unsetDelay()
      * @see #getDelay()
-     * @see #setDelay(long)
+     * @see #setDelay(Object)
      * @generated
      */
     boolean isSetDelay();

@@ -145,13 +145,13 @@ public interface ContainerType extends CommonExtensionBase {
      * @return the value of the '<em>Scan Interval</em>' attribute.
      * @see #isSetScanInterval()
      * @see #unsetScanInterval()
-     * @see #setScanInterval(long)
+     * @see #setScanInterval(Object)
      * @see org.switchyard.tools.models.switchyard1_0.rules.RulesPackage#getContainerType_ScanInterval()
-     * @model default="60000" unsettable="true" dataType="org.eclipse.emf.ecore.xml.type.Long"
+     * @model default="60000" unsettable="true" dataType="org.switchyard.tools.models.switchyard1_0.switchyard.PropLong"
      *        extendedMetaData="kind='attribute' name='scanInterval'"
      * @generated
      */
-    long getScanInterval();
+    Object getScanInterval();
 
     /**
      * Sets the value of the '{@link org.switchyard.tools.models.switchyard1_0.rules.ContainerType#getScanInterval <em>Scan Interval</em>}' attribute.
@@ -163,7 +163,7 @@ public interface ContainerType extends CommonExtensionBase {
      * @see #getScanInterval()
      * @generated
      */
-    void setScanInterval(long value);
+    void setScanInterval(Object value);
 
     /**
      * Unsets the value of the '{@link org.switchyard.tools.models.switchyard1_0.rules.ContainerType#getScanInterval <em>Scan Interval</em>}' attribute.
@@ -171,7 +171,7 @@ public interface ContainerType extends CommonExtensionBase {
      * <!-- end-user-doc -->
      * @see #isSetScanInterval()
      * @see #getScanInterval()
-     * @see #setScanInterval(long)
+     * @see #setScanInterval(Object)
      * @generated
      */
     void unsetScanInterval();
@@ -183,7 +183,7 @@ public interface ContainerType extends CommonExtensionBase {
      * @return whether the value of the '<em>Scan Interval</em>' attribute is set.
      * @see #unsetScanInterval()
      * @see #getScanInterval()
-     * @see #setScanInterval(long)
+     * @see #setScanInterval(Object)
      * @generated
      */
     boolean isSetScanInterval();

@@ -36,6 +36,7 @@ import org.switchyard.tools.models.switchyard1_0.switchyard.MessageComposerType;
 import org.switchyard.tools.models.switchyard1_0.switchyard.SwitchyardFactory;
 import org.switchyard.tools.ui.editor.diagram.binding.AbstractSYBindingComposite;
 import org.switchyard.tools.ui.editor.diagram.shared.ModelOperation;
+import org.switchyard.tools.ui.editor.util.PropTypeUtil;
 
 /**
  * @author bfitzpat
@@ -83,7 +84,8 @@ public class CamelMailConsumerComposite extends AbstractSYBindingComposite  {
                     _copyToText.setText("");
                 }
                 if (this._binding.getConsume().isSetFetchSize()) {
-                    _fetchSizeText.setText(Integer.toString(this._binding.getConsume().getFetchSize()));
+                    setTextValue(_fetchSizeText, PropTypeUtil.getPropValueString(this._binding.getConsume().getFetchSize()));
+//                    _fetchSizeText.setText(Integer.toString(this._binding.getConsume().getFetchSize()));
                 } else {
                     _fetchSizeText.setText("");
                 }
@@ -99,7 +101,8 @@ public class CamelMailConsumerComposite extends AbstractSYBindingComposite  {
                 _hostText.setText("");
             }
             if (this._binding.isSetPort()) {
-                _portText.setText(Integer.toString(this._binding.getPort()));
+                setTextValue(_portText, PropTypeUtil.getPropValueString(this._binding.getPort()));
+//                _portText.setText(Integer.toString(this._binding.getPort()));
             } else {
                 _portText.setText("");
             }
@@ -135,18 +138,18 @@ public class CamelMailConsumerComposite extends AbstractSYBindingComposite  {
         if (getBinding() != null) {
             if (_hostText.getText().trim().isEmpty()) {
                 setErrorMessage("Host may not be empty.");
-            } else if (!_portText.getText().trim().isEmpty()) {
-                try {
-                    new Integer(_portText.getText().trim());
-                } catch (NumberFormatException nfe) {
-                    setErrorMessage("Port value must be a valid number.");
-                }
-            } else if (!_fetchSizeText.getText().trim().isEmpty()) {
-                try {
-                    new Integer(_fetchSizeText.getText().trim());
-                } catch (NumberFormatException nfe) {
-                    setErrorMessage("Fetch Size value must be a valid number.");
-                }
+//            } else if (!_portText.getText().trim().isEmpty()) {
+//                try {
+//                    new Integer(_portText.getText().trim());
+//                } catch (NumberFormatException nfe) {
+//                    setErrorMessage("Port value must be a valid number.");
+//                }
+//            } else if (!_fetchSizeText.getText().trim().isEmpty()) {
+//                try {
+//                    new Integer(_fetchSizeText.getText().trim());
+//                } catch (NumberFormatException nfe) {
+//                    setErrorMessage("Fetch Size value must be a valid number.");
+//                }
             }
         }
         super.validateTabs();
@@ -234,8 +237,7 @@ public class CamelMailConsumerComposite extends AbstractSYBindingComposite  {
                 Integer port = new Integer(_portText.getText().trim());
                 updateFeature(_binding, "port", port.intValue());
             } catch (NumberFormatException nfe) {
-                // ignore
-                nfe.fillInStackTrace();
+                updateFeature(_binding, "port", _portText.getText().trim());
             }
             updateFeature(_binding, "port", _portText.getText().trim());
         } else if (control.equals(_usernameText)) {
@@ -249,8 +251,7 @@ public class CamelMailConsumerComposite extends AbstractSYBindingComposite  {
                 Integer fetchSize = new Integer(_fetchSizeText.getText().trim());
                 updateConsumeFeature("fetchSize", fetchSize);
             } catch (NumberFormatException nfe) {
-                // ignore
-                nfe.fillInStackTrace();
+                updateConsumeFeature("fetchSize", _fetchSizeText.getText().trim());
             }
         } else if (control.equals(_unseenCheckbox)) {
             updateConsumeFeature("unseen", new Boolean(_unseenCheckbox.getSelection()));
@@ -287,14 +288,16 @@ public class CamelMailConsumerComposite extends AbstractSYBindingComposite  {
                 } else if (control.equals(_copyToText)) {
                     _copyToText.setText(this._binding.getConsume().getCopyTo());
                 } else if (control.equals(_fetchSizeText)) {
-                    _fetchSizeText.setText(Integer.toString(this._binding.getConsume().getFetchSize()));
+                    setTextValue(_fetchSizeText, PropTypeUtil.getPropValueString(this._binding.getConsume().getFetchSize()));
+//                    _fetchSizeText.setText(Integer.toString(this._binding.getConsume().getFetchSize()));
                 } else if (control.equals(_folderNameText)) {
                     _folderNameText.setText(this._binding.getConsume().getFolderName());
                 }
             } else if (control.equals(_hostText)) {
                 _hostText.setText(this._binding.getHost());
             } else if (control.equals(_portText)) {
-                _portText.setText(Integer.toString(this._binding.getPort()));
+                setTextValue(_portText, PropTypeUtil.getPropValueString(this._binding.getPort()));
+//                _portText.setText(Integer.toString(this._binding.getPort()));
             } else if (control.equals(_usernameText)) {
                 _usernameText.setText(this._binding.getUsername());
             } else if (control.equals(_passwordText)) {

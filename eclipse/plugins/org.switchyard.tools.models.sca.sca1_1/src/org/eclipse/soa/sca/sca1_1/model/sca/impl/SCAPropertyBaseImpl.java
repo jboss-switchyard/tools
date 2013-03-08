@@ -37,6 +37,7 @@ import org.eclipse.soa.sca.sca1_1.model.sca.ScaPackage;
  *   <li>{@link org.eclipse.soa.sca.sca1_1.model.sca.impl.SCAPropertyBaseImpl#getAny <em>Any</em>}</li>
  *   <li>{@link org.eclipse.soa.sca.sca1_1.model.sca.impl.SCAPropertyBaseImpl#getPolicySets <em>Policy Sets</em>}</li>
  *   <li>{@link org.eclipse.soa.sca.sca1_1.model.sca.impl.SCAPropertyBaseImpl#getRequires <em>Requires</em>}</li>
+ *   <li>{@link org.eclipse.soa.sca.sca1_1.model.sca.impl.SCAPropertyBaseImpl#getValue <em>Value</em>}</li>
  * </ul>
  * </p>
  *
@@ -94,6 +95,26 @@ public class SCAPropertyBaseImpl extends EObjectImpl implements SCAPropertyBase 
 	protected List<QName> requires = REQUIRES_EDEFAULT;
 
 	/**
+     * The default value of the '{@link #getValue() <em>Value</em>}' attribute.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @see #getValue()
+     * @generated
+     * @ordered
+     */
+    protected static final String VALUE_EDEFAULT = null;
+
+    /**
+     * The cached value of the '{@link #getValue() <em>Value</em>}' attribute.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @see #getValue()
+     * @generated
+     * @ordered
+     */
+    protected String value = VALUE_EDEFAULT;
+
+    /**
      * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
      * @generated
@@ -177,6 +198,27 @@ public class SCAPropertyBaseImpl extends EObjectImpl implements SCAPropertyBase 
 
 	/**
      * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public String getValue() {
+        return value;
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public void setValue(String newValue) {
+        String oldValue = value;
+        value = newValue;
+        if (eNotificationRequired())
+            eNotify(new ENotificationImpl(this, Notification.SET, ScaPackage.SCA_PROPERTY_BASE__VALUE, oldValue, value));
+    }
+
+    /**
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
      * @generated
      */
@@ -209,6 +251,8 @@ public class SCAPropertyBaseImpl extends EObjectImpl implements SCAPropertyBase 
                 return getPolicySets();
             case ScaPackage.SCA_PROPERTY_BASE__REQUIRES:
                 return getRequires();
+            case ScaPackage.SCA_PROPERTY_BASE__VALUE:
+                return getValue();
         }
         return super.eGet(featureID, resolve, coreType);
     }
@@ -234,6 +278,9 @@ public class SCAPropertyBaseImpl extends EObjectImpl implements SCAPropertyBase 
             case ScaPackage.SCA_PROPERTY_BASE__REQUIRES:
                 setRequires((List<QName>)newValue);
                 return;
+            case ScaPackage.SCA_PROPERTY_BASE__VALUE:
+                setValue((String)newValue);
+                return;
         }
         super.eSet(featureID, newValue);
     }
@@ -258,6 +305,9 @@ public class SCAPropertyBaseImpl extends EObjectImpl implements SCAPropertyBase 
             case ScaPackage.SCA_PROPERTY_BASE__REQUIRES:
                 setRequires(REQUIRES_EDEFAULT);
                 return;
+            case ScaPackage.SCA_PROPERTY_BASE__VALUE:
+                setValue(VALUE_EDEFAULT);
+                return;
         }
         super.eUnset(featureID);
     }
@@ -278,6 +328,8 @@ public class SCAPropertyBaseImpl extends EObjectImpl implements SCAPropertyBase 
                 return POLICY_SETS_EDEFAULT == null ? policySets != null : !POLICY_SETS_EDEFAULT.equals(policySets);
             case ScaPackage.SCA_PROPERTY_BASE__REQUIRES:
                 return REQUIRES_EDEFAULT == null ? requires != null : !REQUIRES_EDEFAULT.equals(requires);
+            case ScaPackage.SCA_PROPERTY_BASE__VALUE:
+                return VALUE_EDEFAULT == null ? value != null : !VALUE_EDEFAULT.equals(value);
         }
         return super.eIsSet(featureID);
     }
@@ -298,6 +350,8 @@ public class SCAPropertyBaseImpl extends EObjectImpl implements SCAPropertyBase 
         result.append(policySets);
         result.append(", requires: ");
         result.append(requires);
+        result.append(", value: ");
+        result.append(value);
         result.append(')');
         return result.toString();
     }

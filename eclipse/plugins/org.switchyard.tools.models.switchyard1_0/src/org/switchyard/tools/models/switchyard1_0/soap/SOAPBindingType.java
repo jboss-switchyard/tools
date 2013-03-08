@@ -41,7 +41,7 @@ public interface SOAPBindingType extends SwitchYardBindingType {
      * @return the value of the '<em>Wsdl</em>' attribute.
      * @see #setWsdl(String)
      * @see org.switchyard.tools.models.switchyard1_0.soap.SOAPPackage#getSOAPBindingType_Wsdl()
-     * @model dataType="org.eclipse.emf.ecore.xml.type.AnyURI" required="true"
+     * @model dataType="org.eclipse.emf.ecore.xml.type.String" required="true"
      *        extendedMetaData="kind='element' name='wsdl' namespace='##targetNamespace'"
      * @generated
      */

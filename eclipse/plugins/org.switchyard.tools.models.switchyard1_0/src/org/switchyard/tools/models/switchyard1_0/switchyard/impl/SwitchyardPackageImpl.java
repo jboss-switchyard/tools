@@ -8,9 +8,11 @@ package org.switchyard.tools.models.switchyard1_0.switchyard.impl;
 
 import org.eclipse.emf.ecore.EAttribute;
 import org.eclipse.emf.ecore.EClass;
+import org.eclipse.emf.ecore.EDataType;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.EReference;
 
+import org.eclipse.emf.ecore.EValidator;
 import org.eclipse.emf.ecore.impl.EPackageImpl;
 
 import org.eclipse.emf.ecore.xml.type.XMLTypePackage;
@@ -90,6 +92,7 @@ import org.switchyard.tools.models.switchyard1_0.switchyard.TransformsType;
 import org.switchyard.tools.models.switchyard1_0.switchyard.ValidateType;
 import org.switchyard.tools.models.switchyard1_0.switchyard.ValidatesType;
 import org.switchyard.tools.models.switchyard1_0.switchyard.XPathOperationSelectorType;
+import org.switchyard.tools.models.switchyard1_0.switchyard.util.SwitchyardValidator;
 import org.switchyard.tools.models.switchyard1_0.transform.TransformPackage;
 import org.switchyard.tools.models.switchyard1_0.transform.impl.TransformPackageImpl;
 import org.switchyard.tools.models.switchyard1_0.validate.ValidatePackage;
@@ -268,6 +271,34 @@ public class SwitchyardPackageImpl extends EPackageImpl implements SwitchyardPac
      * <!-- end-user-doc -->
      * @generated
      */
+    private EDataType propBooleanEDataType = null;
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    private EDataType propertyValueEDataType = null;
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    private EDataType propIntegerEDataType = null;
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    private EDataType propLongEDataType = null;
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
     private EClass switchYardOperationSelectorTypeEClass = null;
 
     /**
@@ -406,6 +437,15 @@ public class SwitchyardPackageImpl extends EPackageImpl implements SwitchyardPac
 
         // Fix loaded packages
         theSpringPackage.fixPackageContents();
+
+        // Register package validator
+        EValidator.Registry.INSTANCE.put
+            (theSwitchyardPackage, 
+             new EValidator.Descriptor() {
+                 public EValidator getEValidator() {
+                     return SwitchyardValidator.INSTANCE;
+                 }
+             });
 
         // Mark meta-data to indicate it can't be changed
         theSwitchyardPackage.freeze();
@@ -1357,6 +1397,42 @@ public class SwitchyardPackageImpl extends EPackageImpl implements SwitchyardPac
      * <!-- end-user-doc -->
      * @generated
      */
+    public EDataType getPropBoolean() {
+        return propBooleanEDataType;
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public EDataType getPropertyValue() {
+        return propertyValueEDataType;
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public EDataType getPropInteger() {
+        return propIntegerEDataType;
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public EDataType getPropLong() {
+        return propLongEDataType;
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
     public EClass getSwitchYardOperationSelectorType() {
         return switchYardOperationSelectorTypeEClass;
     }
@@ -1517,6 +1593,12 @@ public class SwitchyardPackageImpl extends EPackageImpl implements SwitchyardPac
         createEReference(securityTypeEClass, SECURITY_TYPE__PROPERTIES);
         createEAttribute(securityTypeEClass, SECURITY_TYPE__ROLES_ALLOWED);
         createEAttribute(securityTypeEClass, SECURITY_TYPE__RUN_AS);
+
+        // Create data types
+        propBooleanEDataType = createEDataType(PROP_BOOLEAN);
+        propertyValueEDataType = createEDataType(PROPERTY_VALUE);
+        propIntegerEDataType = createEDataType(PROP_INTEGER);
+        propLongEDataType = createEDataType(PROP_LONG);
     }
 
 	/**
@@ -1688,6 +1770,12 @@ public class SwitchyardPackageImpl extends EPackageImpl implements SwitchyardPac
         initEReference(getSecurityType_Properties(), this.getPropertiesType(), null, "properties", null, 0, 1, SecurityType.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
         initEAttribute(getSecurityType_RolesAllowed(), theXMLTypePackage.getString(), "rolesAllowed", null, 0, 1, SecurityType.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
         initEAttribute(getSecurityType_RunAs(), theXMLTypePackage.getString(), "runAs", null, 0, 1, SecurityType.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+        // Initialize data types
+        initEDataType(propBooleanEDataType, Object.class, "PropBoolean", IS_SERIALIZABLE, !IS_GENERATED_INSTANCE_CLASS);
+        initEDataType(propertyValueEDataType, String.class, "PropertyValue", IS_SERIALIZABLE, !IS_GENERATED_INSTANCE_CLASS);
+        initEDataType(propIntegerEDataType, Object.class, "PropInteger", IS_SERIALIZABLE, !IS_GENERATED_INSTANCE_CLASS);
+        initEDataType(propLongEDataType, Object.class, "PropLong", IS_SERIALIZABLE, !IS_GENERATED_INSTANCE_CLASS);
 
         // Create resource
         createResource(eNS_URI);
@@ -2495,6 +2583,35 @@ public class SwitchyardPackageImpl extends EPackageImpl implements SwitchyardPac
            new String[] {
              "kind", "attribute",
              "name", "runAs"
+           });		
+        addAnnotation
+          (propBooleanEDataType, 
+           source, 
+           new String[] {
+             "name", "propBoolean",
+             "memberTypes", "http://www.eclipse.org/emf/2003/XMLType#boolean propertyValue"
+           });		
+        addAnnotation
+          (propertyValueEDataType, 
+           source, 
+           new String[] {
+             "name", "propertyValue",
+             "baseType", "http://www.eclipse.org/emf/2003/XMLType#string",
+             "pattern", "\\$\\{([a-zA-Z0-9])*(:([a-zA-Z0-9])*)?\\}"
+           });		
+        addAnnotation
+          (propIntegerEDataType, 
+           source, 
+           new String[] {
+             "name", "propInteger",
+             "memberTypes", "http://www.eclipse.org/emf/2003/XMLType#integer propertyValue"
+           });		
+        addAnnotation
+          (propLongEDataType, 
+           source, 
+           new String[] {
+             "name", "propLong",
+             "memberTypes", "http://www.eclipse.org/emf/2003/XMLType#long propertyValue"
            });
     }
 

@@ -12,6 +12,8 @@ import org.eclipse.soa.sca.sca1_1.model.sca.impl.CommonExtensionBaseImpl;
 
 import org.switchyard.tools.models.switchyard1_0.rules.ContainerType;
 import org.switchyard.tools.models.switchyard1_0.rules.RulesPackage;
+import org.switchyard.tools.models.switchyard1_0.switchyard.SwitchyardFactory;
+import org.switchyard.tools.models.switchyard1_0.switchyard.SwitchyardPackage;
 
 /**
  * <!-- begin-user-doc -->
@@ -108,7 +110,7 @@ public class ContainerTypeImpl extends CommonExtensionBaseImpl implements Contai
      * @generated
      * @ordered
      */
-    protected static final long SCAN_INTERVAL_EDEFAULT = 60000L;
+    protected static final Object SCAN_INTERVAL_EDEFAULT = SwitchyardFactory.eINSTANCE.createFromString(SwitchyardPackage.eINSTANCE.getPropLong(), "60000");
 
     /**
      * The cached value of the '{@link #getScanInterval() <em>Scan Interval</em>}' attribute.
@@ -118,7 +120,7 @@ public class ContainerTypeImpl extends CommonExtensionBaseImpl implements Contai
      * @generated
      * @ordered
      */
-    protected long scanInterval = SCAN_INTERVAL_EDEFAULT;
+    protected Object scanInterval = SCAN_INTERVAL_EDEFAULT;
 
     /**
      * This is true if the Scan Interval attribute has been set.
@@ -261,7 +263,7 @@ public class ContainerTypeImpl extends CommonExtensionBaseImpl implements Contai
      * <!-- end-user-doc -->
      * @generated
      */
-    public long getScanInterval() {
+    public Object getScanInterval() {
         return scanInterval;
     }
 
@@ -270,8 +272,8 @@ public class ContainerTypeImpl extends CommonExtensionBaseImpl implements Contai
      * <!-- end-user-doc -->
      * @generated
      */
-    public void setScanInterval(long newScanInterval) {
-        long oldScanInterval = scanInterval;
+    public void setScanInterval(Object newScanInterval) {
+        Object oldScanInterval = scanInterval;
         scanInterval = newScanInterval;
         boolean oldScanIntervalESet = scanIntervalESet;
         scanIntervalESet = true;
@@ -285,7 +287,7 @@ public class ContainerTypeImpl extends CommonExtensionBaseImpl implements Contai
      * @generated
      */
     public void unsetScanInterval() {
-        long oldScanInterval = scanInterval;
+        Object oldScanInterval = scanInterval;
         boolean oldScanIntervalESet = scanIntervalESet;
         scanInterval = SCAN_INTERVAL_EDEFAULT;
         scanIntervalESet = false;
@@ -363,7 +365,7 @@ public class ContainerTypeImpl extends CommonExtensionBaseImpl implements Contai
                 setScan((Boolean)newValue);
                 return;
             case RulesPackage.CONTAINER_TYPE__SCAN_INTERVAL:
-                setScanInterval((Long)newValue);
+                setScanInterval(newValue);
                 return;
             case RulesPackage.CONTAINER_TYPE__SESSION_NAME:
                 setSessionName((String)newValue);

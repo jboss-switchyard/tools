@@ -345,9 +345,9 @@ public class JavaInterfaceSelectionComposite extends AbstractSwitchyardComposite
         if (this._interface != null && this._interface instanceof JavaInterface) {
             JavaInterface javaIntfc = (JavaInterface) this._interface;
             setInUpdate(true);
-            if (javaIntfc.getInterface() != null) {
+            if (javaIntfc.getInterface() != null && !this._mClassText.isDisposed()) {
                 this._mClassText.setText(javaIntfc.getInterface());
-            } else {
+            } else if (javaIntfc.getInterface() == null && !this._mClassText.isDisposed()) {
                 this._mClassText.setText("org.example.IServiceInterface");
             }
             setInUpdate(false);

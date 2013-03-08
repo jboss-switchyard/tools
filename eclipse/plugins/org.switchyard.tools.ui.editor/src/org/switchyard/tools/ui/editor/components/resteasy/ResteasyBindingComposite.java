@@ -12,7 +12,6 @@
  ******************************************************************************/
 package org.switchyard.tools.ui.editor.components.resteasy;
 
-import java.net.URI;
 import java.util.List;
 
 import javax.swing.event.ChangeEvent;
@@ -150,12 +149,12 @@ public class ResteasyBindingComposite extends AbstractSYBindingComposite {
             if (urlString != null && urlString.trim().length() > 0) {
                 if (urlString.trim().length() < urlString.length()) {
                     setErrorMessage("No spaces allowed in address URL");
-                } else {
-                    try {
-                        URI.create(urlString);
-                    } catch (IllegalArgumentException e) {
-                        setErrorMessage("Invalid address URL");
-                    }
+//                } else {
+//                    try {
+//                        URI.create(urlString);
+//                    } catch (IllegalArgumentException e) {
+//                        setErrorMessage("Invalid address URL");
+//                    }
                 }
             }
         }

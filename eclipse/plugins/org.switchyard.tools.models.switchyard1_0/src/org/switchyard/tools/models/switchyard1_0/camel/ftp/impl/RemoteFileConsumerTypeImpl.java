@@ -11,6 +11,8 @@ import org.eclipse.emf.ecore.impl.EObjectImpl;
 import org.switchyard.tools.models.switchyard1_0.camel.ftp.FtpPackage;
 import org.switchyard.tools.models.switchyard1_0.camel.ftp.RemoteFileConsumerType;
 import org.switchyard.tools.models.switchyard1_0.camel.ftp.TimeUnitType;
+import org.switchyard.tools.models.switchyard1_0.switchyard.SwitchyardFactory;
+import org.switchyard.tools.models.switchyard1_0.switchyard.SwitchyardPackage;
 
 /**
  * <!-- begin-user-doc -->
@@ -363,7 +365,7 @@ public class RemoteFileConsumerTypeImpl extends EObjectImpl implements RemoteFil
      * @generated
      * @ordered
      */
-    protected static final long READ_LOCK_TIMEOUT_EDEFAULT = 10000L;
+    protected static final Object READ_LOCK_TIMEOUT_EDEFAULT = SwitchyardFactory.eINSTANCE.createFromString(SwitchyardPackage.eINSTANCE.getPropLong(), "10000");
     /**
      * The cached value of the '{@link #getReadLockTimeout() <em>Read Lock Timeout</em>}' attribute.
      * <!-- begin-user-doc -->
@@ -372,7 +374,7 @@ public class RemoteFileConsumerTypeImpl extends EObjectImpl implements RemoteFil
      * @generated
      * @ordered
      */
-    protected long readLockTimeout = READ_LOCK_TIMEOUT_EDEFAULT;
+    protected Object readLockTimeout = READ_LOCK_TIMEOUT_EDEFAULT;
     /**
      * This is true if the Read Lock Timeout attribute has been set.
      * <!-- begin-user-doc -->
@@ -389,7 +391,7 @@ public class RemoteFileConsumerTypeImpl extends EObjectImpl implements RemoteFil
      * @generated
      * @ordered
      */
-    protected static final int READ_LOCK_CHECK_INTERVAL_EDEFAULT = 1000;
+    protected static final Object READ_LOCK_CHECK_INTERVAL_EDEFAULT = SwitchyardFactory.eINSTANCE.createFromString(SwitchyardPackage.eINSTANCE.getPropInteger(), "1000");
     /**
      * The cached value of the '{@link #getReadLockCheckInterval() <em>Read Lock Check Interval</em>}' attribute.
      * <!-- begin-user-doc -->
@@ -398,7 +400,7 @@ public class RemoteFileConsumerTypeImpl extends EObjectImpl implements RemoteFil
      * @generated
      * @ordered
      */
-    protected int readLockCheckInterval = READ_LOCK_CHECK_INTERVAL_EDEFAULT;
+    protected Object readLockCheckInterval = READ_LOCK_CHECK_INTERVAL_EDEFAULT;
     /**
      * This is true if the Read Lock Check Interval attribute has been set.
      * <!-- begin-user-doc -->
@@ -521,7 +523,7 @@ public class RemoteFileConsumerTypeImpl extends EObjectImpl implements RemoteFil
      * @generated
      * @ordered
      */
-    protected static final int MAX_MESSAGES_PER_POLL_EDEFAULT = 0;
+    protected static final Object MAX_MESSAGES_PER_POLL_EDEFAULT = SwitchyardFactory.eINSTANCE.createFromString(SwitchyardPackage.eINSTANCE.getPropInteger(), "0");
     /**
      * The cached value of the '{@link #getMaxMessagesPerPoll() <em>Max Messages Per Poll</em>}' attribute.
      * <!-- begin-user-doc -->
@@ -530,7 +532,7 @@ public class RemoteFileConsumerTypeImpl extends EObjectImpl implements RemoteFil
      * @generated
      * @ordered
      */
-    protected int maxMessagesPerPoll = MAX_MESSAGES_PER_POLL_EDEFAULT;
+    protected Object maxMessagesPerPoll = MAX_MESSAGES_PER_POLL_EDEFAULT;
     /**
      * This is true if the Max Messages Per Poll attribute has been set.
      * <!-- begin-user-doc -->
@@ -547,7 +549,7 @@ public class RemoteFileConsumerTypeImpl extends EObjectImpl implements RemoteFil
      * @generated
      * @ordered
      */
-    protected static final int INITIAL_DELAY_EDEFAULT = 1000;
+    protected static final Object INITIAL_DELAY_EDEFAULT = SwitchyardFactory.eINSTANCE.createFromString(SwitchyardPackage.eINSTANCE.getPropInteger(), "1000");
     /**
      * The cached value of the '{@link #getInitialDelay() <em>Initial Delay</em>}' attribute.
      * <!-- begin-user-doc -->
@@ -556,7 +558,7 @@ public class RemoteFileConsumerTypeImpl extends EObjectImpl implements RemoteFil
      * @generated
      * @ordered
      */
-    protected int initialDelay = INITIAL_DELAY_EDEFAULT;
+    protected Object initialDelay = INITIAL_DELAY_EDEFAULT;
     /**
      * This is true if the Initial Delay attribute has been set.
      * <!-- begin-user-doc -->
@@ -573,7 +575,7 @@ public class RemoteFileConsumerTypeImpl extends EObjectImpl implements RemoteFil
      * @generated
      * @ordered
      */
-    protected static final int DELAY_EDEFAULT = 500;
+    protected static final Object DELAY_EDEFAULT = SwitchyardFactory.eINSTANCE.createFromString(SwitchyardPackage.eINSTANCE.getPropInteger(), "500");
     /**
      * The cached value of the '{@link #getDelay() <em>Delay</em>}' attribute.
      * <!-- begin-user-doc -->
@@ -582,7 +584,7 @@ public class RemoteFileConsumerTypeImpl extends EObjectImpl implements RemoteFil
      * @generated
      * @ordered
      */
-    protected int delay = DELAY_EDEFAULT;
+    protected Object delay = DELAY_EDEFAULT;
     /**
      * This is true if the Delay attribute has been set.
      * <!-- begin-user-doc -->
@@ -1109,7 +1111,7 @@ public class RemoteFileConsumerTypeImpl extends EObjectImpl implements RemoteFil
      * <!-- end-user-doc -->
      * @generated
      */
-    public long getReadLockTimeout() {
+    public Object getReadLockTimeout() {
         return readLockTimeout;
     }
 
@@ -1118,8 +1120,8 @@ public class RemoteFileConsumerTypeImpl extends EObjectImpl implements RemoteFil
      * <!-- end-user-doc -->
      * @generated
      */
-    public void setReadLockTimeout(long newReadLockTimeout) {
-        long oldReadLockTimeout = readLockTimeout;
+    public void setReadLockTimeout(Object newReadLockTimeout) {
+        Object oldReadLockTimeout = readLockTimeout;
         readLockTimeout = newReadLockTimeout;
         boolean oldReadLockTimeoutESet = readLockTimeoutESet;
         readLockTimeoutESet = true;
@@ -1133,7 +1135,7 @@ public class RemoteFileConsumerTypeImpl extends EObjectImpl implements RemoteFil
      * @generated
      */
     public void unsetReadLockTimeout() {
-        long oldReadLockTimeout = readLockTimeout;
+        Object oldReadLockTimeout = readLockTimeout;
         boolean oldReadLockTimeoutESet = readLockTimeoutESet;
         readLockTimeout = READ_LOCK_TIMEOUT_EDEFAULT;
         readLockTimeoutESet = false;
@@ -1155,7 +1157,7 @@ public class RemoteFileConsumerTypeImpl extends EObjectImpl implements RemoteFil
      * <!-- end-user-doc -->
      * @generated
      */
-    public int getReadLockCheckInterval() {
+    public Object getReadLockCheckInterval() {
         return readLockCheckInterval;
     }
 
@@ -1164,8 +1166,8 @@ public class RemoteFileConsumerTypeImpl extends EObjectImpl implements RemoteFil
      * <!-- end-user-doc -->
      * @generated
      */
-    public void setReadLockCheckInterval(int newReadLockCheckInterval) {
-        int oldReadLockCheckInterval = readLockCheckInterval;
+    public void setReadLockCheckInterval(Object newReadLockCheckInterval) {
+        Object oldReadLockCheckInterval = readLockCheckInterval;
         readLockCheckInterval = newReadLockCheckInterval;
         boolean oldReadLockCheckIntervalESet = readLockCheckIntervalESet;
         readLockCheckIntervalESet = true;
@@ -1179,7 +1181,7 @@ public class RemoteFileConsumerTypeImpl extends EObjectImpl implements RemoteFil
      * @generated
      */
     public void unsetReadLockCheckInterval() {
-        int oldReadLockCheckInterval = readLockCheckInterval;
+        Object oldReadLockCheckInterval = readLockCheckInterval;
         boolean oldReadLockCheckIntervalESet = readLockCheckIntervalESet;
         readLockCheckInterval = READ_LOCK_CHECK_INTERVAL_EDEFAULT;
         readLockCheckIntervalESet = false;
@@ -1356,7 +1358,7 @@ public class RemoteFileConsumerTypeImpl extends EObjectImpl implements RemoteFil
      * <!-- end-user-doc -->
      * @generated
      */
-    public int getMaxMessagesPerPoll() {
+    public Object getMaxMessagesPerPoll() {
         return maxMessagesPerPoll;
     }
 
@@ -1365,8 +1367,8 @@ public class RemoteFileConsumerTypeImpl extends EObjectImpl implements RemoteFil
      * <!-- end-user-doc -->
      * @generated
      */
-    public void setMaxMessagesPerPoll(int newMaxMessagesPerPoll) {
-        int oldMaxMessagesPerPoll = maxMessagesPerPoll;
+    public void setMaxMessagesPerPoll(Object newMaxMessagesPerPoll) {
+        Object oldMaxMessagesPerPoll = maxMessagesPerPoll;
         maxMessagesPerPoll = newMaxMessagesPerPoll;
         boolean oldMaxMessagesPerPollESet = maxMessagesPerPollESet;
         maxMessagesPerPollESet = true;
@@ -1380,7 +1382,7 @@ public class RemoteFileConsumerTypeImpl extends EObjectImpl implements RemoteFil
      * @generated
      */
     public void unsetMaxMessagesPerPoll() {
-        int oldMaxMessagesPerPoll = maxMessagesPerPoll;
+        Object oldMaxMessagesPerPoll = maxMessagesPerPoll;
         boolean oldMaxMessagesPerPollESet = maxMessagesPerPollESet;
         maxMessagesPerPoll = MAX_MESSAGES_PER_POLL_EDEFAULT;
         maxMessagesPerPollESet = false;
@@ -1402,7 +1404,7 @@ public class RemoteFileConsumerTypeImpl extends EObjectImpl implements RemoteFil
      * <!-- end-user-doc -->
      * @generated
      */
-    public int getInitialDelay() {
+    public Object getInitialDelay() {
         return initialDelay;
     }
 
@@ -1411,8 +1413,8 @@ public class RemoteFileConsumerTypeImpl extends EObjectImpl implements RemoteFil
      * <!-- end-user-doc -->
      * @generated
      */
-    public void setInitialDelay(int newInitialDelay) {
-        int oldInitialDelay = initialDelay;
+    public void setInitialDelay(Object newInitialDelay) {
+        Object oldInitialDelay = initialDelay;
         initialDelay = newInitialDelay;
         boolean oldInitialDelayESet = initialDelayESet;
         initialDelayESet = true;
@@ -1426,7 +1428,7 @@ public class RemoteFileConsumerTypeImpl extends EObjectImpl implements RemoteFil
      * @generated
      */
     public void unsetInitialDelay() {
-        int oldInitialDelay = initialDelay;
+        Object oldInitialDelay = initialDelay;
         boolean oldInitialDelayESet = initialDelayESet;
         initialDelay = INITIAL_DELAY_EDEFAULT;
         initialDelayESet = false;
@@ -1448,7 +1450,7 @@ public class RemoteFileConsumerTypeImpl extends EObjectImpl implements RemoteFil
      * <!-- end-user-doc -->
      * @generated
      */
-    public int getDelay() {
+    public Object getDelay() {
         return delay;
     }
 
@@ -1457,8 +1459,8 @@ public class RemoteFileConsumerTypeImpl extends EObjectImpl implements RemoteFil
      * <!-- end-user-doc -->
      * @generated
      */
-    public void setDelay(int newDelay) {
-        int oldDelay = delay;
+    public void setDelay(Object newDelay) {
+        Object oldDelay = delay;
         delay = newDelay;
         boolean oldDelayESet = delayESet;
         delayESet = true;
@@ -1472,7 +1474,7 @@ public class RemoteFileConsumerTypeImpl extends EObjectImpl implements RemoteFil
      * @generated
      */
     public void unsetDelay() {
-        int oldDelay = delay;
+        Object oldDelay = delay;
         boolean oldDelayESet = delayESet;
         delay = DELAY_EDEFAULT;
         delayESet = false;
@@ -1749,10 +1751,10 @@ public class RemoteFileConsumerTypeImpl extends EObjectImpl implements RemoteFil
                 setReadLock((String)newValue);
                 return;
             case FtpPackage.REMOTE_FILE_CONSUMER_TYPE__READ_LOCK_TIMEOUT:
-                setReadLockTimeout((Long)newValue);
+                setReadLockTimeout(newValue);
                 return;
             case FtpPackage.REMOTE_FILE_CONSUMER_TYPE__READ_LOCK_CHECK_INTERVAL:
-                setReadLockCheckInterval((Integer)newValue);
+                setReadLockCheckInterval(newValue);
                 return;
             case FtpPackage.REMOTE_FILE_CONSUMER_TYPE__EXCLUSIVE_READ_LOCK_STRATEGY:
                 setExclusiveReadLockStrategy((String)newValue);
@@ -1770,13 +1772,13 @@ public class RemoteFileConsumerTypeImpl extends EObjectImpl implements RemoteFil
                 setDoneFileName((String)newValue);
                 return;
             case FtpPackage.REMOTE_FILE_CONSUMER_TYPE__MAX_MESSAGES_PER_POLL:
-                setMaxMessagesPerPoll((Integer)newValue);
+                setMaxMessagesPerPoll(newValue);
                 return;
             case FtpPackage.REMOTE_FILE_CONSUMER_TYPE__INITIAL_DELAY:
-                setInitialDelay((Integer)newValue);
+                setInitialDelay(newValue);
                 return;
             case FtpPackage.REMOTE_FILE_CONSUMER_TYPE__DELAY:
-                setDelay((Integer)newValue);
+                setDelay(newValue);
                 return;
             case FtpPackage.REMOTE_FILE_CONSUMER_TYPE__USE_FIXED_DELAY:
                 setUseFixedDelay((Boolean)newValue);

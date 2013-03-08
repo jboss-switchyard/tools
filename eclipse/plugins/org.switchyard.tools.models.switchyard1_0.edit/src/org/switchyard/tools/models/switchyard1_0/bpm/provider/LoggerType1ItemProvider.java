@@ -157,7 +157,7 @@ public class LoggerType1ItemProvider
      */
     @Override
     public String getText(Object object) {
-        BigInteger labelValue = ((LoggerType1)object).getInterval();
+        Object labelValue = ((LoggerType1)object).getInterval();
         String label = labelValue == null ? null : labelValue.toString();
         return label == null || label.length() == 0 ?
             getString("_UI_LoggerType1_type") :

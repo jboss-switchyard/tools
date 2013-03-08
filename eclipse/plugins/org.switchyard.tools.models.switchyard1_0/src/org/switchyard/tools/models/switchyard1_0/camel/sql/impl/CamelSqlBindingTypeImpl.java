@@ -168,7 +168,7 @@ public class CamelSqlBindingTypeImpl extends BaseCamelBindingImpl implements Cam
      * @generated
      * @ordered
      */
-    protected static final long INITIAL_DELAY_EDEFAULT = 0L;
+    protected static final Object INITIAL_DELAY_EDEFAULT = null;
 
     /**
      * The cached value of the '{@link #getInitialDelay() <em>Initial Delay</em>}' attribute.
@@ -178,7 +178,7 @@ public class CamelSqlBindingTypeImpl extends BaseCamelBindingImpl implements Cam
      * @generated
      * @ordered
      */
-    protected long initialDelay = INITIAL_DELAY_EDEFAULT;
+    protected Object initialDelay = INITIAL_DELAY_EDEFAULT;
 
     /**
      * <!-- begin-user-doc -->
@@ -355,7 +355,7 @@ public class CamelSqlBindingTypeImpl extends BaseCamelBindingImpl implements Cam
      * <!-- end-user-doc -->
      * @generated
      */
-    public long getInitialDelay() {
+    public Object getInitialDelay() {
         return initialDelay;
     }
 
@@ -364,8 +364,8 @@ public class CamelSqlBindingTypeImpl extends BaseCamelBindingImpl implements Cam
      * <!-- end-user-doc -->
      * @generated
      */
-    public void setInitialDelay(long newInitialDelay) {
-        long oldInitialDelay = initialDelay;
+    public void setInitialDelay(Object newInitialDelay) {
+        Object oldInitialDelay = initialDelay;
         initialDelay = newInitialDelay;
         if (eNotificationRequired())
             eNotify(new ENotificationImpl(this, Notification.SET, SqlPackage.CAMEL_SQL_BINDING_TYPE__INITIAL_DELAY, oldInitialDelay, initialDelay));
@@ -424,7 +424,7 @@ public class CamelSqlBindingTypeImpl extends BaseCamelBindingImpl implements Cam
                 setPeriod((String)newValue);
                 return;
             case SqlPackage.CAMEL_SQL_BINDING_TYPE__INITIAL_DELAY:
-                setInitialDelay((Long)newValue);
+                setInitialDelay(newValue);
                 return;
         }
         super.eSet(featureID, newValue);
@@ -484,7 +484,7 @@ public class CamelSqlBindingTypeImpl extends BaseCamelBindingImpl implements Cam
             case SqlPackage.CAMEL_SQL_BINDING_TYPE__PERIOD:
                 return PERIOD_EDEFAULT == null ? period != null : !PERIOD_EDEFAULT.equals(period);
             case SqlPackage.CAMEL_SQL_BINDING_TYPE__INITIAL_DELAY:
-                return initialDelay != INITIAL_DELAY_EDEFAULT;
+                return INITIAL_DELAY_EDEFAULT == null ? initialDelay != null : !INITIAL_DELAY_EDEFAULT.equals(initialDelay);
         }
         return super.eIsSet(featureID);
     }

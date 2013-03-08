@@ -224,13 +224,13 @@ public interface CamelSqlBindingType extends BaseCamelBinding {
      * </p>
      * <!-- end-user-doc -->
      * @return the value of the '<em>Initial Delay</em>' attribute.
-     * @see #setInitialDelay(long)
+     * @see #setInitialDelay(Object)
      * @see org.switchyard.tools.models.switchyard1_0.camel.sql.SqlPackage#getCamelSqlBindingType_InitialDelay()
-     * @model dataType="org.eclipse.emf.ecore.xml.type.Long"
+     * @model dataType="org.switchyard.tools.models.switchyard1_0.switchyard.PropLong"
      *        extendedMetaData="kind='attribute' name='initialDelay'"
      * @generated
      */
-    long getInitialDelay();
+    Object getInitialDelay();
 
     /**
      * Sets the value of the '{@link org.switchyard.tools.models.switchyard1_0.camel.sql.CamelSqlBindingType#getInitialDelay <em>Initial Delay</em>}' attribute.
@@ -240,6 +240,6 @@ public interface CamelSqlBindingType extends BaseCamelBinding {
      * @see #getInitialDelay()
      * @generated
      */
-    void setInitialDelay(long value);
+    void setInitialDelay(Object value);
 
 } // CamelSqlBindingType

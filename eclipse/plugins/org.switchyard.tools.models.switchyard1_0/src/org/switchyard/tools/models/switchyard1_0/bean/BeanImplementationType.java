@@ -21,7 +21,7 @@ import org.eclipse.soa.sca.sca1_1.model.sca.Implementation;
  * </p>
  *
  * @see org.switchyard.tools.models.switchyard1_0.bean.BeanPackage#getBeanImplementationType()
- * @model extendedMetaData="name='BeanImplementationType' kind='empty'"
+ * @model extendedMetaData="name='BeanImplementationType' kind='elementOnly'"
  * @generated
  */
 public interface BeanImplementationType extends Implementation {
@@ -36,7 +36,7 @@ public interface BeanImplementationType extends Implementation {
      * @return the value of the '<em>Class</em>' attribute.
      * @see #setClass(String)
      * @see org.switchyard.tools.models.switchyard1_0.bean.BeanPackage#getBeanImplementationType_Class()
-     * @model dataType="org.eclipse.emf.ecore.xml.type.NCName" required="true"
+     * @model dataType="org.eclipse.emf.ecore.xml.type.String" required="true"
      *        extendedMetaData="kind='attribute' name='class'"
      * @generated
      */

@@ -35,7 +35,7 @@ public class BatchCommitImpl extends EObjectImpl implements BatchCommit {
      * @generated
      * @ordered
      */
-    protected static final String BATCH_SIZE_EDEFAULT = null;
+    protected static final Object BATCH_SIZE_EDEFAULT = null;
 
     /**
      * The cached value of the '{@link #getBatchSize() <em>Batch Size</em>}' attribute.
@@ -45,7 +45,7 @@ public class BatchCommitImpl extends EObjectImpl implements BatchCommit {
      * @generated
      * @ordered
      */
-    protected String batchSize = BATCH_SIZE_EDEFAULT;
+    protected Object batchSize = BATCH_SIZE_EDEFAULT;
 
     /**
      * The default value of the '{@link #getBatchTimeout() <em>Batch Timeout</em>}' attribute.
@@ -55,7 +55,7 @@ public class BatchCommitImpl extends EObjectImpl implements BatchCommit {
      * @generated
      * @ordered
      */
-    protected static final String BATCH_TIMEOUT_EDEFAULT = null;
+    protected static final Object BATCH_TIMEOUT_EDEFAULT = null;
 
     /**
      * The cached value of the '{@link #getBatchTimeout() <em>Batch Timeout</em>}' attribute.
@@ -65,7 +65,7 @@ public class BatchCommitImpl extends EObjectImpl implements BatchCommit {
      * @generated
      * @ordered
      */
-    protected String batchTimeout = BATCH_TIMEOUT_EDEFAULT;
+    protected Object batchTimeout = BATCH_TIMEOUT_EDEFAULT;
 
     /**
      * <!-- begin-user-doc -->
@@ -91,7 +91,7 @@ public class BatchCommitImpl extends EObjectImpl implements BatchCommit {
      * <!-- end-user-doc -->
      * @generated
      */
-    public String getBatchSize() {
+    public Object getBatchSize() {
         return batchSize;
     }
 
@@ -100,8 +100,8 @@ public class BatchCommitImpl extends EObjectImpl implements BatchCommit {
      * <!-- end-user-doc -->
      * @generated
      */
-    public void setBatchSize(String newBatchSize) {
-        String oldBatchSize = batchSize;
+    public void setBatchSize(Object newBatchSize) {
+        Object oldBatchSize = batchSize;
         batchSize = newBatchSize;
         if (eNotificationRequired())
             eNotify(new ENotificationImpl(this, Notification.SET, JcaPackage.BATCH_COMMIT__BATCH_SIZE, oldBatchSize, batchSize));
@@ -112,7 +112,7 @@ public class BatchCommitImpl extends EObjectImpl implements BatchCommit {
      * <!-- end-user-doc -->
      * @generated
      */
-    public String getBatchTimeout() {
+    public Object getBatchTimeout() {
         return batchTimeout;
     }
 
@@ -121,8 +121,8 @@ public class BatchCommitImpl extends EObjectImpl implements BatchCommit {
      * <!-- end-user-doc -->
      * @generated
      */
-    public void setBatchTimeout(String newBatchTimeout) {
-        String oldBatchTimeout = batchTimeout;
+    public void setBatchTimeout(Object newBatchTimeout) {
+        Object oldBatchTimeout = batchTimeout;
         batchTimeout = newBatchTimeout;
         if (eNotificationRequired())
             eNotify(new ENotificationImpl(this, Notification.SET, JcaPackage.BATCH_COMMIT__BATCH_TIMEOUT, oldBatchTimeout, batchTimeout));
@@ -153,10 +153,10 @@ public class BatchCommitImpl extends EObjectImpl implements BatchCommit {
     public void eSet(int featureID, Object newValue) {
         switch (featureID) {
             case JcaPackage.BATCH_COMMIT__BATCH_SIZE:
-                setBatchSize((String)newValue);
+                setBatchSize(newValue);
                 return;
             case JcaPackage.BATCH_COMMIT__BATCH_TIMEOUT:
-                setBatchTimeout((String)newValue);
+                setBatchTimeout(newValue);
                 return;
         }
         super.eSet(featureID, newValue);

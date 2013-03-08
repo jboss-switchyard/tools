@@ -392,7 +392,7 @@
       </eAnnotations>
     </eStructuralFeatures>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="EsbInterface" eSuperTypes="platform:/plugin/org.switchyard.tools.models.sca.sca1_1/model/sca.ecore#//Interface">
+  <eClassifiers xsi:type="ecore:EClass" name="EsbInterface" eSuperTypes="../../org.switchyard.tools.models.sca.sca1_1/model/sca.ecore#//Interface">
     <eAnnotations source="http:///org/eclipse/emf/ecore/util/ExtendedMetaData">
       <details key="name" value="EsbInterface"/>
       <details key="kind" value="empty"/>
@@ -512,7 +512,7 @@
     </eStructuralFeatures>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="SwitchYardBindingType" abstract="true"
-      eSuperTypes="platform:/plugin/org.switchyard.tools.models.sca.sca1_1/model/sca.ecore#//Binding">
+      eSuperTypes="../../org.switchyard.tools.models.sca.sca1_1/model/sca.ecore#//Binding">
     <eAnnotations source="http:///org/eclipse/emf/ecore/util/ExtendedMetaData">
       <details key="name" value="SwitchYardBindingType"/>
       <details key="kind" value="elementOnly"/>
@@ -535,7 +535,7 @@
     </eStructuralFeatures>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="SwitchYardOperationSelectorType" abstract="true"
-      eSuperTypes="platform:/plugin/org.switchyard.tools.models.sca.sca1_1/model/sca.ecore#//OperationSelectorType">
+      eSuperTypes="../../org.switchyard.tools.models.sca.sca1_1/model/sca.ecore#//OperationSelectorType">
     <eAnnotations source="http:///org/eclipse/emf/ecore/util/ExtendedMetaData">
       <details key="name" value="SwitchYardOperationSelectorType"/>
       <details key="kind" value="elementOnly"/>
@@ -558,7 +558,7 @@
         <details key="name" value="targetNamespace"/>
       </eAnnotations>
     </eStructuralFeatures>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="composite" eType="ecore:EClass platform:/plugin/org.switchyard.tools.models.sca.sca1_1/model/sca.ecore#//Composite"
+    <eStructuralFeatures xsi:type="ecore:EReference" name="composite" eType="ecore:EClass ../../org.switchyard.tools.models.sca.sca1_1/model/sca.ecore#//Composite"
         containment="true">
       <eAnnotations source="http:///org/eclipse/emf/ecore/util/ExtendedMetaData">
         <details key="kind" value="element"/>
@@ -762,5 +762,30 @@
         <details key="name" value="runAs"/>
       </eAnnotations>
     </eStructuralFeatures>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EDataType" name="PropBoolean" instanceClassName="java.lang.Object">
+    <eAnnotations source="http:///org/eclipse/emf/ecore/util/ExtendedMetaData">
+      <details key="name" value="propBoolean"/>
+      <details key="memberTypes" value="http://www.eclipse.org/emf/2003/XMLType#boolean propertyValue"/>
+    </eAnnotations>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EDataType" name="PropertyValue" instanceClassName="java.lang.String">
+    <eAnnotations source="http:///org/eclipse/emf/ecore/util/ExtendedMetaData">
+      <details key="name" value="propertyValue"/>
+      <details key="baseType" value="http://www.eclipse.org/emf/2003/XMLType#string"/>
+      <details key="pattern" value="\$\{([a-zA-Z0-9])*(:([a-zA-Z0-9])*)?\}"/>
+    </eAnnotations>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EDataType" name="PropInteger" instanceClassName="java.lang.Object">
+    <eAnnotations source="http:///org/eclipse/emf/ecore/util/ExtendedMetaData">
+      <details key="name" value="propInteger"/>
+      <details key="memberTypes" value="http://www.eclipse.org/emf/2003/XMLType#integer propertyValue"/>
+    </eAnnotations>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EDataType" name="PropLong" instanceClassName="java.lang.Object">
+    <eAnnotations source="http:///org/eclipse/emf/ecore/util/ExtendedMetaData">
+      <details key="name" value="propLong"/>
+      <details key="memberTypes" value="http://www.eclipse.org/emf/2003/XMLType#long propertyValue"/>
+    </eAnnotations>
   </eClassifiers>
 </ecore:EPackage>

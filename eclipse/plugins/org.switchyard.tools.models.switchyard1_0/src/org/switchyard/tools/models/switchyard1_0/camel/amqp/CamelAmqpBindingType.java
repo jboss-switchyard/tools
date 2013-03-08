@@ -241,13 +241,13 @@ public interface CamelAmqpBindingType extends BaseCamelBinding {
      * @return the value of the '<em>Concurrent Consumers</em>' attribute.
      * @see #isSetConcurrentConsumers()
      * @see #unsetConcurrentConsumers()
-     * @see #setConcurrentConsumers(int)
+     * @see #setConcurrentConsumers(Object)
      * @see org.switchyard.tools.models.switchyard1_0.camel.amqp.AmqpPackage#getCamelAmqpBindingType_ConcurrentConsumers()
-     * @model default="1" unsettable="true" dataType="org.eclipse.emf.ecore.xml.type.Int"
+     * @model default="1" unsettable="true" dataType="org.switchyard.tools.models.switchyard1_0.switchyard.PropInteger"
      *        extendedMetaData="kind='element' name='concurrentConsumers' namespace='##targetNamespace'"
      * @generated
      */
-    int getConcurrentConsumers();
+    Object getConcurrentConsumers();
 
     /**
      * Sets the value of the '{@link org.switchyard.tools.models.switchyard1_0.camel.amqp.CamelAmqpBindingType#getConcurrentConsumers <em>Concurrent Consumers</em>}' attribute.
@@ -259,7 +259,7 @@ public interface CamelAmqpBindingType extends BaseCamelBinding {
      * @see #getConcurrentConsumers()
      * @generated
      */
-    void setConcurrentConsumers(int value);
+    void setConcurrentConsumers(Object value);
 
     /**
      * Unsets the value of the '{@link org.switchyard.tools.models.switchyard1_0.camel.amqp.CamelAmqpBindingType#getConcurrentConsumers <em>Concurrent Consumers</em>}' attribute.
@@ -267,7 +267,7 @@ public interface CamelAmqpBindingType extends BaseCamelBinding {
      * <!-- end-user-doc -->
      * @see #isSetConcurrentConsumers()
      * @see #getConcurrentConsumers()
-     * @see #setConcurrentConsumers(int)
+     * @see #setConcurrentConsumers(Object)
      * @generated
      */
     void unsetConcurrentConsumers();
@@ -279,7 +279,7 @@ public interface CamelAmqpBindingType extends BaseCamelBinding {
      * @return whether the value of the '<em>Concurrent Consumers</em>' attribute is set.
      * @see #unsetConcurrentConsumers()
      * @see #getConcurrentConsumers()
-     * @see #setConcurrentConsumers(int)
+     * @see #setConcurrentConsumers(Object)
      * @generated
      */
     boolean isSetConcurrentConsumers();
@@ -296,13 +296,13 @@ public interface CamelAmqpBindingType extends BaseCamelBinding {
      * @return the value of the '<em>Max Concurrent Consumers</em>' attribute.
      * @see #isSetMaxConcurrentConsumers()
      * @see #unsetMaxConcurrentConsumers()
-     * @see #setMaxConcurrentConsumers(int)
+     * @see #setMaxConcurrentConsumers(Object)
      * @see org.switchyard.tools.models.switchyard1_0.camel.amqp.AmqpPackage#getCamelAmqpBindingType_MaxConcurrentConsumers()
-     * @model default="1" unsettable="true" dataType="org.eclipse.emf.ecore.xml.type.Int"
+     * @model default="1" unsettable="true" dataType="org.switchyard.tools.models.switchyard1_0.switchyard.PropInteger"
      *        extendedMetaData="kind='element' name='maxConcurrentConsumers' namespace='##targetNamespace'"
      * @generated
      */
-    int getMaxConcurrentConsumers();
+    Object getMaxConcurrentConsumers();
 
     /**
      * Sets the value of the '{@link org.switchyard.tools.models.switchyard1_0.camel.amqp.CamelAmqpBindingType#getMaxConcurrentConsumers <em>Max Concurrent Consumers</em>}' attribute.
@@ -314,7 +314,7 @@ public interface CamelAmqpBindingType extends BaseCamelBinding {
      * @see #getMaxConcurrentConsumers()
      * @generated
      */
-    void setMaxConcurrentConsumers(int value);
+    void setMaxConcurrentConsumers(Object value);
 
     /**
      * Unsets the value of the '{@link org.switchyard.tools.models.switchyard1_0.camel.amqp.CamelAmqpBindingType#getMaxConcurrentConsumers <em>Max Concurrent Consumers</em>}' attribute.
@@ -322,7 +322,7 @@ public interface CamelAmqpBindingType extends BaseCamelBinding {
      * <!-- end-user-doc -->
      * @see #isSetMaxConcurrentConsumers()
      * @see #getMaxConcurrentConsumers()
-     * @see #setMaxConcurrentConsumers(int)
+     * @see #setMaxConcurrentConsumers(Object)
      * @generated
      */
     void unsetMaxConcurrentConsumers();
@@ -334,7 +334,7 @@ public interface CamelAmqpBindingType extends BaseCamelBinding {
      * @return whether the value of the '<em>Max Concurrent Consumers</em>' attribute is set.
      * @see #unsetMaxConcurrentConsumers()
      * @see #getMaxConcurrentConsumers()
-     * @see #setMaxConcurrentConsumers(int)
+     * @see #setMaxConcurrentConsumers(Object)
      * @generated
      */
     boolean isSetMaxConcurrentConsumers();

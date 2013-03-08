@@ -259,6 +259,15 @@ public class BPELPackageImpl extends EPackageImpl implements BPELPackage {
 
     /**
      * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public EAttribute getBPELImplementation_AnyAttribute1() {
+        return (EAttribute)bpelImplementationEClass.getEStructuralFeatures().get(1);
+    }
+
+    /**
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
      * @generated
      */
@@ -332,6 +341,7 @@ public class BPELPackageImpl extends EPackageImpl implements BPELPackage {
         // Create classes and their features
         bpelImplementationEClass = createEClass(BPEL_IMPLEMENTATION);
         createEAttribute(bpelImplementationEClass, BPEL_IMPLEMENTATION__PROCESS);
+        createEAttribute(bpelImplementationEClass, BPEL_IMPLEMENTATION__ANY_ATTRIBUTE1);
 
         documentRootEClass = createEClass(DOCUMENT_ROOT);
         createEAttribute(documentRootEClass, DOCUMENT_ROOT__MIXED);
@@ -377,6 +387,7 @@ public class BPELPackageImpl extends EPackageImpl implements BPELPackage {
         // Initialize classes and features; add operations and parameters
         initEClass(bpelImplementationEClass, BPELImplementation.class, "BPELImplementation", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
         initEAttribute(getBPELImplementation_Process(), theXMLTypePackage.getQName(), "process", null, 1, 1, BPELImplementation.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+        initEAttribute(getBPELImplementation_AnyAttribute1(), ecorePackage.getEFeatureMapEntry(), "anyAttribute1", null, 0, -1, BPELImplementation.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
         initEClass(documentRootEClass, DocumentRoot.class, "DocumentRoot", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
         initEAttribute(getDocumentRoot_Mixed(), ecorePackage.getEFeatureMapEntry(), "mixed", null, 0, -1, null, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
@@ -405,7 +416,7 @@ public class BPELPackageImpl extends EPackageImpl implements BPELPackage {
            source, 
            new String[] {
              "name", "BPELImplementation",
-             "kind", "empty"
+             "kind", "elementOnly"
            });		
         addAnnotation
           (getBPELImplementation_Process(), 
@@ -413,6 +424,15 @@ public class BPELPackageImpl extends EPackageImpl implements BPELPackage {
            new String[] {
              "kind", "attribute",
              "name", "process"
+           });		
+        addAnnotation
+          (getBPELImplementation_AnyAttribute1(), 
+           source, 
+           new String[] {
+             "kind", "attributeWildcard",
+             "wildcards", "##any",
+             "name", ":8",
+             "processing", "lax"
            });		
         addAnnotation
           (documentRootEClass, 

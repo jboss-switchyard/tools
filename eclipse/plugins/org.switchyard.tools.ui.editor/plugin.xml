@@ -102,6 +102,18 @@
               indented="true"
               label="Security Policy">
         </propertyTab>
+        <propertyTab
+              afterTab="switchyard.composite.property.tab"
+              category="SwitchyardSCA"
+              id="switchyard.composite.property.tab"
+              label="Composite Properties">
+        </propertyTab>
+        <propertyTab
+              afterTab="switchyard.component.property.tab"
+              category="SwitchyardSCA"
+              id="switchyard.component.property.tab"
+              label="Component Properties">
+        </propertyTab>
 <!--       <propertyTab
             afterTab="switchyard.advanced.tab"
             category="SwitchyardSCA"
@@ -183,6 +195,18 @@
                filter="org.switchyard.tools.ui.editor.property.SecurityPolicyPropertyFilter"
                id="switchyard.security.policy.tab.details"
                tab="switchyard.security.policy.tab">
+         </propertySection>
+         <propertySection
+               class="org.switchyard.tools.ui.editor.property.CompositePropertiesPropertySection"
+               filter="org.switchyard.tools.ui.editor.property.CompositePropertiesPropertyFilter"
+               id="switchyard.composite.property.tab.details"
+               tab="switchyard.composite.property.tab">
+         </propertySection>
+         <propertySection
+               class="org.switchyard.tools.ui.editor.property.ComponentPropertiesPropertySection"
+               filter="org.switchyard.tools.ui.editor.property.ComponentPropertiesPropertyFilter"
+               id="switchyard.component.property.tab.details"
+               tab="switchyard.component.property.tab">
          </propertySection>
 <!--        <propertySection
                class="org.switchyard.tools.ui.editor.property.SwitchyardAdvancedPropertySection"

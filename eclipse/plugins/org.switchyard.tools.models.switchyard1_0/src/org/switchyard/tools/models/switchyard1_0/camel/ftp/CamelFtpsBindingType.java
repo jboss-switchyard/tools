@@ -117,13 +117,13 @@ public interface CamelFtpsBindingType extends CamelFtpBindingType {
      * @return the value of the '<em>Exec Pbsz</em>' attribute.
      * @see #isSetExecPbsz()
      * @see #unsetExecPbsz()
-     * @see #setExecPbsz(long)
+     * @see #setExecPbsz(Object)
      * @see org.switchyard.tools.models.switchyard1_0.camel.ftp.FtpPackage#getCamelFtpsBindingType_ExecPbsz()
-     * @model unsettable="true" dataType="org.eclipse.emf.ecore.xml.type.Long"
+     * @model unsettable="true" dataType="org.switchyard.tools.models.switchyard1_0.switchyard.PropLong"
      *        extendedMetaData="kind='element' name='execPbsz' namespace='##targetNamespace'"
      * @generated
      */
-    long getExecPbsz();
+    Object getExecPbsz();
 
     /**
      * Sets the value of the '{@link org.switchyard.tools.models.switchyard1_0.camel.ftp.CamelFtpsBindingType#getExecPbsz <em>Exec Pbsz</em>}' attribute.
@@ -135,7 +135,7 @@ public interface CamelFtpsBindingType extends CamelFtpBindingType {
      * @see #getExecPbsz()
      * @generated
      */
-    void setExecPbsz(long value);
+    void setExecPbsz(Object value);
 
     /**
      * Unsets the value of the '{@link org.switchyard.tools.models.switchyard1_0.camel.ftp.CamelFtpsBindingType#getExecPbsz <em>Exec Pbsz</em>}' attribute.
@@ -143,7 +143,7 @@ public interface CamelFtpsBindingType extends CamelFtpBindingType {
      * <!-- end-user-doc -->
      * @see #isSetExecPbsz()
      * @see #getExecPbsz()
-     * @see #setExecPbsz(long)
+     * @see #setExecPbsz(Object)
      * @generated
      */
     void unsetExecPbsz();
@@ -155,7 +155,7 @@ public interface CamelFtpsBindingType extends CamelFtpBindingType {
      * @return whether the value of the '<em>Exec Pbsz</em>' attribute is set.
      * @see #unsetExecPbsz()
      * @see #getExecPbsz()
-     * @see #setExecPbsz(long)
+     * @see #setExecPbsz(Object)
      * @generated
      */
     boolean isSetExecPbsz();

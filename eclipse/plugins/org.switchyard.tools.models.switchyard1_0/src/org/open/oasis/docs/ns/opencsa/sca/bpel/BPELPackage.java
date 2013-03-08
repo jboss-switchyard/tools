@@ -117,13 +117,22 @@ public interface BPELPackage extends EPackage {
     int BPEL_IMPLEMENTATION__PROCESS = ScaPackage.IMPLEMENTATION_FEATURE_COUNT + 0;
 
     /**
+     * The feature id for the '<em><b>Any Attribute1</b></em>' attribute list.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int BPEL_IMPLEMENTATION__ANY_ATTRIBUTE1 = ScaPackage.IMPLEMENTATION_FEATURE_COUNT + 1;
+
+    /**
      * The number of structural features of the '<em>Implementation</em>' class.
      * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
      * @generated
      * @ordered
      */
-	int BPEL_IMPLEMENTATION_FEATURE_COUNT = ScaPackage.IMPLEMENTATION_FEATURE_COUNT + 1;
+	int BPEL_IMPLEMENTATION_FEATURE_COUNT = ScaPackage.IMPLEMENTATION_FEATURE_COUNT + 2;
 
 	/**
      * The meta object id for the '{@link org.open.oasis.docs.ns.opencsa.sca.bpel.impl.DocumentRootImpl <em>Document Root</em>}' class.
@@ -201,6 +210,17 @@ public interface BPELPackage extends EPackage {
      * @generated
      */
     EAttribute getBPELImplementation_Process();
+
+    /**
+     * Returns the meta object for the attribute list '{@link org.open.oasis.docs.ns.opencsa.sca.bpel.BPELImplementation#getAnyAttribute1 <em>Any Attribute1</em>}'.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @return the meta object for the attribute list '<em>Any Attribute1</em>'.
+     * @see org.open.oasis.docs.ns.opencsa.sca.bpel.BPELImplementation#getAnyAttribute1()
+     * @see #getBPELImplementation()
+     * @generated
+     */
+    EAttribute getBPELImplementation_AnyAttribute1();
 
     /**
      * Returns the meta object for class '{@link org.open.oasis.docs.ns.opencsa.sca.bpel.DocumentRoot <em>Document Root</em>}'.
@@ -295,6 +315,14 @@ public interface BPELPackage extends EPackage {
          * @generated
          */
         EAttribute BPEL_IMPLEMENTATION__PROCESS = eINSTANCE.getBPELImplementation_Process();
+
+        /**
+         * The meta object literal for the '<em><b>Any Attribute1</b></em>' attribute list feature.
+         * <!-- begin-user-doc -->
+         * <!-- end-user-doc -->
+         * @generated
+         */
+        EAttribute BPEL_IMPLEMENTATION__ANY_ATTRIBUTE1 = eINSTANCE.getBPELImplementation_AnyAttribute1();
 
         /**
          * The meta object literal for the '{@link org.open.oasis.docs.ns.opencsa.sca.bpel.impl.DocumentRootImpl <em>Document Root</em>}' class.

@@ -374,13 +374,85 @@ public interface NettyPackage extends EPackage {
     int CAMEL_NETTY_BINDING_TYPE__SEND_BUFFER_SIZE = BASE_CAMEL_BINDING_FEATURE_COUNT + 3;
 
     /**
+     * The feature id for the '<em><b>Ssl</b></em>' attribute.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int CAMEL_NETTY_BINDING_TYPE__SSL = BASE_CAMEL_BINDING_FEATURE_COUNT + 4;
+
+    /**
+     * The feature id for the '<em><b>Ssl Handler</b></em>' attribute.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int CAMEL_NETTY_BINDING_TYPE__SSL_HANDLER = BASE_CAMEL_BINDING_FEATURE_COUNT + 5;
+
+    /**
+     * The feature id for the '<em><b>Passphrase</b></em>' attribute.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int CAMEL_NETTY_BINDING_TYPE__PASSPHRASE = BASE_CAMEL_BINDING_FEATURE_COUNT + 6;
+
+    /**
+     * The feature id for the '<em><b>Security Provider</b></em>' attribute.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int CAMEL_NETTY_BINDING_TYPE__SECURITY_PROVIDER = BASE_CAMEL_BINDING_FEATURE_COUNT + 7;
+
+    /**
+     * The feature id for the '<em><b>Key Store Format</b></em>' attribute.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int CAMEL_NETTY_BINDING_TYPE__KEY_STORE_FORMAT = BASE_CAMEL_BINDING_FEATURE_COUNT + 8;
+
+    /**
+     * The feature id for the '<em><b>Key Store File</b></em>' attribute.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int CAMEL_NETTY_BINDING_TYPE__KEY_STORE_FILE = BASE_CAMEL_BINDING_FEATURE_COUNT + 9;
+
+    /**
+     * The feature id for the '<em><b>Trust Store File</b></em>' attribute.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int CAMEL_NETTY_BINDING_TYPE__TRUST_STORE_FILE = BASE_CAMEL_BINDING_FEATURE_COUNT + 10;
+
+    /**
+     * The feature id for the '<em><b>Ssl Context Parameters Ref</b></em>' attribute.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int CAMEL_NETTY_BINDING_TYPE__SSL_CONTEXT_PARAMETERS_REF = BASE_CAMEL_BINDING_FEATURE_COUNT + 11;
+
+    /**
      * The feature id for the '<em><b>Reuse Address</b></em>' attribute.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @generated
      * @ordered
      */
-    int CAMEL_NETTY_BINDING_TYPE__REUSE_ADDRESS = BASE_CAMEL_BINDING_FEATURE_COUNT + 4;
+    int CAMEL_NETTY_BINDING_TYPE__REUSE_ADDRESS = BASE_CAMEL_BINDING_FEATURE_COUNT + 12;
 
     /**
      * The feature id for the '<em><b>Encoders</b></em>' attribute.
@@ -389,7 +461,7 @@ public interface NettyPackage extends EPackage {
      * @generated
      * @ordered
      */
-    int CAMEL_NETTY_BINDING_TYPE__ENCODERS = BASE_CAMEL_BINDING_FEATURE_COUNT + 5;
+    int CAMEL_NETTY_BINDING_TYPE__ENCODERS = BASE_CAMEL_BINDING_FEATURE_COUNT + 13;
 
     /**
      * The feature id for the '<em><b>Decoders</b></em>' attribute.
@@ -398,7 +470,7 @@ public interface NettyPackage extends EPackage {
      * @generated
      * @ordered
      */
-    int CAMEL_NETTY_BINDING_TYPE__DECODERS = BASE_CAMEL_BINDING_FEATURE_COUNT + 6;
+    int CAMEL_NETTY_BINDING_TYPE__DECODERS = BASE_CAMEL_BINDING_FEATURE_COUNT + 14;
 
     /**
      * The feature id for the '<em><b>Allow Default Codec</b></em>' attribute.
@@ -407,7 +479,7 @@ public interface NettyPackage extends EPackage {
      * @generated
      * @ordered
      */
-    int CAMEL_NETTY_BINDING_TYPE__ALLOW_DEFAULT_CODEC = BASE_CAMEL_BINDING_FEATURE_COUNT + 7;
+    int CAMEL_NETTY_BINDING_TYPE__ALLOW_DEFAULT_CODEC = BASE_CAMEL_BINDING_FEATURE_COUNT + 15;
 
     /**
      * The feature id for the '<em><b>Worker Count</b></em>' attribute.
@@ -416,7 +488,7 @@ public interface NettyPackage extends EPackage {
      * @generated
      * @ordered
      */
-    int CAMEL_NETTY_BINDING_TYPE__WORKER_COUNT = BASE_CAMEL_BINDING_FEATURE_COUNT + 8;
+    int CAMEL_NETTY_BINDING_TYPE__WORKER_COUNT = BASE_CAMEL_BINDING_FEATURE_COUNT + 16;
 
     /**
      * The feature id for the '<em><b>Sync</b></em>' attribute.
@@ -425,7 +497,7 @@ public interface NettyPackage extends EPackage {
      * @generated
      * @ordered
      */
-    int CAMEL_NETTY_BINDING_TYPE__SYNC = BASE_CAMEL_BINDING_FEATURE_COUNT + 9;
+    int CAMEL_NETTY_BINDING_TYPE__SYNC = BASE_CAMEL_BINDING_FEATURE_COUNT + 17;
 
     /**
      * The feature id for the '<em><b>Disconnect</b></em>' attribute.
@@ -434,7 +506,7 @@ public interface NettyPackage extends EPackage {
      * @generated
      * @ordered
      */
-    int CAMEL_NETTY_BINDING_TYPE__DISCONNECT = BASE_CAMEL_BINDING_FEATURE_COUNT + 10;
+    int CAMEL_NETTY_BINDING_TYPE__DISCONNECT = BASE_CAMEL_BINDING_FEATURE_COUNT + 18;
 
     /**
      * The number of structural features of the '<em>Camel Netty Binding Type</em>' class.
@@ -443,7 +515,7 @@ public interface NettyPackage extends EPackage {
      * @generated
      * @ordered
      */
-    int CAMEL_NETTY_BINDING_TYPE_FEATURE_COUNT = BASE_CAMEL_BINDING_FEATURE_COUNT + 11;
+    int CAMEL_NETTY_BINDING_TYPE_FEATURE_COUNT = BASE_CAMEL_BINDING_FEATURE_COUNT + 19;
 
     /**
      * The meta object id for the '{@link org.switchyard.tools.models.switchyard1_0.camel.netty.impl.CamelNettyTcpBindingTypeImpl <em>Camel Netty Tcp Binding Type</em>}' class.
@@ -616,6 +688,78 @@ public interface NettyPackage extends EPackage {
      * @ordered
      */
     int CAMEL_NETTY_TCP_BINDING_TYPE__SEND_BUFFER_SIZE = CAMEL_NETTY_BINDING_TYPE__SEND_BUFFER_SIZE;
+
+    /**
+     * The feature id for the '<em><b>Ssl</b></em>' attribute.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int CAMEL_NETTY_TCP_BINDING_TYPE__SSL = CAMEL_NETTY_BINDING_TYPE__SSL;
+
+    /**
+     * The feature id for the '<em><b>Ssl Handler</b></em>' attribute.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int CAMEL_NETTY_TCP_BINDING_TYPE__SSL_HANDLER = CAMEL_NETTY_BINDING_TYPE__SSL_HANDLER;
+
+    /**
+     * The feature id for the '<em><b>Passphrase</b></em>' attribute.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int CAMEL_NETTY_TCP_BINDING_TYPE__PASSPHRASE = CAMEL_NETTY_BINDING_TYPE__PASSPHRASE;
+
+    /**
+     * The feature id for the '<em><b>Security Provider</b></em>' attribute.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int CAMEL_NETTY_TCP_BINDING_TYPE__SECURITY_PROVIDER = CAMEL_NETTY_BINDING_TYPE__SECURITY_PROVIDER;
+
+    /**
+     * The feature id for the '<em><b>Key Store Format</b></em>' attribute.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int CAMEL_NETTY_TCP_BINDING_TYPE__KEY_STORE_FORMAT = CAMEL_NETTY_BINDING_TYPE__KEY_STORE_FORMAT;
+
+    /**
+     * The feature id for the '<em><b>Key Store File</b></em>' attribute.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int CAMEL_NETTY_TCP_BINDING_TYPE__KEY_STORE_FILE = CAMEL_NETTY_BINDING_TYPE__KEY_STORE_FILE;
+
+    /**
+     * The feature id for the '<em><b>Trust Store File</b></em>' attribute.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int CAMEL_NETTY_TCP_BINDING_TYPE__TRUST_STORE_FILE = CAMEL_NETTY_BINDING_TYPE__TRUST_STORE_FILE;
+
+    /**
+     * The feature id for the '<em><b>Ssl Context Parameters Ref</b></em>' attribute.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int CAMEL_NETTY_TCP_BINDING_TYPE__SSL_CONTEXT_PARAMETERS_REF = CAMEL_NETTY_BINDING_TYPE__SSL_CONTEXT_PARAMETERS_REF;
 
     /**
      * The feature id for the '<em><b>Reuse Address</b></em>' attribute.
@@ -887,6 +1031,78 @@ public interface NettyPackage extends EPackage {
      * @ordered
      */
     int CAMEL_NETTY_UDP_BINDING_TYPE__SEND_BUFFER_SIZE = CAMEL_NETTY_BINDING_TYPE__SEND_BUFFER_SIZE;
+
+    /**
+     * The feature id for the '<em><b>Ssl</b></em>' attribute.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int CAMEL_NETTY_UDP_BINDING_TYPE__SSL = CAMEL_NETTY_BINDING_TYPE__SSL;
+
+    /**
+     * The feature id for the '<em><b>Ssl Handler</b></em>' attribute.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int CAMEL_NETTY_UDP_BINDING_TYPE__SSL_HANDLER = CAMEL_NETTY_BINDING_TYPE__SSL_HANDLER;
+
+    /**
+     * The feature id for the '<em><b>Passphrase</b></em>' attribute.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int CAMEL_NETTY_UDP_BINDING_TYPE__PASSPHRASE = CAMEL_NETTY_BINDING_TYPE__PASSPHRASE;
+
+    /**
+     * The feature id for the '<em><b>Security Provider</b></em>' attribute.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int CAMEL_NETTY_UDP_BINDING_TYPE__SECURITY_PROVIDER = CAMEL_NETTY_BINDING_TYPE__SECURITY_PROVIDER;
+
+    /**
+     * The feature id for the '<em><b>Key Store Format</b></em>' attribute.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int CAMEL_NETTY_UDP_BINDING_TYPE__KEY_STORE_FORMAT = CAMEL_NETTY_BINDING_TYPE__KEY_STORE_FORMAT;
+
+    /**
+     * The feature id for the '<em><b>Key Store File</b></em>' attribute.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int CAMEL_NETTY_UDP_BINDING_TYPE__KEY_STORE_FILE = CAMEL_NETTY_BINDING_TYPE__KEY_STORE_FILE;
+
+    /**
+     * The feature id for the '<em><b>Trust Store File</b></em>' attribute.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int CAMEL_NETTY_UDP_BINDING_TYPE__TRUST_STORE_FILE = CAMEL_NETTY_BINDING_TYPE__TRUST_STORE_FILE;
+
+    /**
+     * The feature id for the '<em><b>Ssl Context Parameters Ref</b></em>' attribute.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int CAMEL_NETTY_UDP_BINDING_TYPE__SSL_CONTEXT_PARAMETERS_REF = CAMEL_NETTY_BINDING_TYPE__SSL_CONTEXT_PARAMETERS_REF;
 
     /**
      * The feature id for the '<em><b>Reuse Address</b></em>' attribute.
@@ -1185,6 +1401,94 @@ public interface NettyPackage extends EPackage {
     EAttribute getCamelNettyBindingType_SendBufferSize();
 
     /**
+     * Returns the meta object for the attribute '{@link org.switchyard.tools.models.switchyard1_0.camel.netty.CamelNettyBindingType#isSsl <em>Ssl</em>}'.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @return the meta object for the attribute '<em>Ssl</em>'.
+     * @see org.switchyard.tools.models.switchyard1_0.camel.netty.CamelNettyBindingType#isSsl()
+     * @see #getCamelNettyBindingType()
+     * @generated
+     */
+    EAttribute getCamelNettyBindingType_Ssl();
+
+    /**
+     * Returns the meta object for the attribute '{@link org.switchyard.tools.models.switchyard1_0.camel.netty.CamelNettyBindingType#getSslHandler <em>Ssl Handler</em>}'.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @return the meta object for the attribute '<em>Ssl Handler</em>'.
+     * @see org.switchyard.tools.models.switchyard1_0.camel.netty.CamelNettyBindingType#getSslHandler()
+     * @see #getCamelNettyBindingType()
+     * @generated
+     */
+    EAttribute getCamelNettyBindingType_SslHandler();
+
+    /**
+     * Returns the meta object for the attribute '{@link org.switchyard.tools.models.switchyard1_0.camel.netty.CamelNettyBindingType#getPassphrase <em>Passphrase</em>}'.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @return the meta object for the attribute '<em>Passphrase</em>'.
+     * @see org.switchyard.tools.models.switchyard1_0.camel.netty.CamelNettyBindingType#getPassphrase()
+     * @see #getCamelNettyBindingType()
+     * @generated
+     */
+    EAttribute getCamelNettyBindingType_Passphrase();
+
+    /**
+     * Returns the meta object for the attribute '{@link org.switchyard.tools.models.switchyard1_0.camel.netty.CamelNettyBindingType#getSecurityProvider <em>Security Provider</em>}'.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @return the meta object for the attribute '<em>Security Provider</em>'.
+     * @see org.switchyard.tools.models.switchyard1_0.camel.netty.CamelNettyBindingType#getSecurityProvider()
+     * @see #getCamelNettyBindingType()
+     * @generated
+     */
+    EAttribute getCamelNettyBindingType_SecurityProvider();
+
+    /**
+     * Returns the meta object for the attribute '{@link org.switchyard.tools.models.switchyard1_0.camel.netty.CamelNettyBindingType#getKeyStoreFormat <em>Key Store Format</em>}'.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @return the meta object for the attribute '<em>Key Store Format</em>'.
+     * @see org.switchyard.tools.models.switchyard1_0.camel.netty.CamelNettyBindingType#getKeyStoreFormat()
+     * @see #getCamelNettyBindingType()
+     * @generated
+     */
+    EAttribute getCamelNettyBindingType_KeyStoreFormat();
+
+    /**
+     * Returns the meta object for the attribute '{@link org.switchyard.tools.models.switchyard1_0.camel.netty.CamelNettyBindingType#getKeyStoreFile <em>Key Store File</em>}'.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @return the meta object for the attribute '<em>Key Store File</em>'.
+     * @see org.switchyard.tools.models.switchyard1_0.camel.netty.CamelNettyBindingType#getKeyStoreFile()
+     * @see #getCamelNettyBindingType()
+     * @generated
+     */
+    EAttribute getCamelNettyBindingType_KeyStoreFile();
+
+    /**
+     * Returns the meta object for the attribute '{@link org.switchyard.tools.models.switchyard1_0.camel.netty.CamelNettyBindingType#getTrustStoreFile <em>Trust Store File</em>}'.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @return the meta object for the attribute '<em>Trust Store File</em>'.
+     * @see org.switchyard.tools.models.switchyard1_0.camel.netty.CamelNettyBindingType#getTrustStoreFile()
+     * @see #getCamelNettyBindingType()
+     * @generated
+     */
+    EAttribute getCamelNettyBindingType_TrustStoreFile();
+
+    /**
+     * Returns the meta object for the attribute '{@link org.switchyard.tools.models.switchyard1_0.camel.netty.CamelNettyBindingType#getSslContextParametersRef <em>Ssl Context Parameters Ref</em>}'.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @return the meta object for the attribute '<em>Ssl Context Parameters Ref</em>'.
+     * @see org.switchyard.tools.models.switchyard1_0.camel.netty.CamelNettyBindingType#getSslContextParametersRef()
+     * @see #getCamelNettyBindingType()
+     * @generated
+     */
+    EAttribute getCamelNettyBindingType_SslContextParametersRef();
+
+    /**
      * Returns the meta object for the attribute '{@link org.switchyard.tools.models.switchyard1_0.camel.netty.CamelNettyBindingType#isReuseAddress <em>Reuse Address</em>}'.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
@@ -1467,6 +1771,70 @@ public interface NettyPackage extends EPackage {
          * @generated
          */
         EAttribute CAMEL_NETTY_BINDING_TYPE__SEND_BUFFER_SIZE = eINSTANCE.getCamelNettyBindingType_SendBufferSize();
+
+        /**
+         * The meta object literal for the '<em><b>Ssl</b></em>' attribute feature.
+         * <!-- begin-user-doc -->
+         * <!-- end-user-doc -->
+         * @generated
+         */
+        EAttribute CAMEL_NETTY_BINDING_TYPE__SSL = eINSTANCE.getCamelNettyBindingType_Ssl();
+
+        /**
+         * The meta object literal for the '<em><b>Ssl Handler</b></em>' attribute feature.
+         * <!-- begin-user-doc -->
+         * <!-- end-user-doc -->
+         * @generated
+         */
+        EAttribute CAMEL_NETTY_BINDING_TYPE__SSL_HANDLER = eINSTANCE.getCamelNettyBindingType_SslHandler();
+
+        /**
+         * The meta object literal for the '<em><b>Passphrase</b></em>' attribute feature.
+         * <!-- begin-user-doc -->
+         * <!-- end-user-doc -->
+         * @generated
+         */
+        EAttribute CAMEL_NETTY_BINDING_TYPE__PASSPHRASE = eINSTANCE.getCamelNettyBindingType_Passphrase();
+
+        /**
+         * The meta object literal for the '<em><b>Security Provider</b></em>' attribute feature.
+         * <!-- begin-user-doc -->
+         * <!-- end-user-doc -->
+         * @generated
+         */
+        EAttribute CAMEL_NETTY_BINDING_TYPE__SECURITY_PROVIDER = eINSTANCE.getCamelNettyBindingType_SecurityProvider();
+
+        /**
+         * The meta object literal for the '<em><b>Key Store Format</b></em>' attribute feature.
+         * <!-- begin-user-doc -->
+         * <!-- end-user-doc -->
+         * @generated
+         */
+        EAttribute CAMEL_NETTY_BINDING_TYPE__KEY_STORE_FORMAT = eINSTANCE.getCamelNettyBindingType_KeyStoreFormat();
+
+        /**
+         * The meta object literal for the '<em><b>Key Store File</b></em>' attribute feature.
+         * <!-- begin-user-doc -->
+         * <!-- end-user-doc -->
+         * @generated
+         */
+        EAttribute CAMEL_NETTY_BINDING_TYPE__KEY_STORE_FILE = eINSTANCE.getCamelNettyBindingType_KeyStoreFile();
+
+        /**
+         * The meta object literal for the '<em><b>Trust Store File</b></em>' attribute feature.
+         * <!-- begin-user-doc -->
+         * <!-- end-user-doc -->
+         * @generated
+         */
+        EAttribute CAMEL_NETTY_BINDING_TYPE__TRUST_STORE_FILE = eINSTANCE.getCamelNettyBindingType_TrustStoreFile();
+
+        /**
+         * The meta object literal for the '<em><b>Ssl Context Parameters Ref</b></em>' attribute feature.
+         * <!-- begin-user-doc -->
+         * <!-- end-user-doc -->
+         * @generated
+         */
+        EAttribute CAMEL_NETTY_BINDING_TYPE__SSL_CONTEXT_PARAMETERS_REF = eINSTANCE.getCamelNettyBindingType_SslContextParametersRef();
 
         /**
          * The meta object literal for the '<em><b>Reuse Address</b></em>' attribute feature.

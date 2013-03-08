@@ -11,6 +11,8 @@ import org.switchyard.tools.models.switchyard1_0.camel.file.CamelFileBindingType
 import org.switchyard.tools.models.switchyard1_0.camel.file.FileConsumerType;
 import org.switchyard.tools.models.switchyard1_0.camel.file.FilePackage;
 import org.switchyard.tools.models.switchyard1_0.camel.file.FileProducerType;
+import org.switchyard.tools.models.switchyard1_0.switchyard.SwitchyardFactory;
+import org.switchyard.tools.models.switchyard1_0.switchyard.SwitchyardPackage;
 
 /**
  * <!-- begin-user-doc -->
@@ -90,7 +92,7 @@ public class CamelFileBindingTypeImpl extends BaseCamelBindingImpl implements Ca
      * @generated
      * @ordered
      */
-    protected static final int BUFFER_SIZE_EDEFAULT = 131072;
+    protected static final Object BUFFER_SIZE_EDEFAULT = SwitchyardFactory.eINSTANCE.createFromString(SwitchyardPackage.eINSTANCE.getPropInteger(), "131072");
 
     /**
      * The cached value of the '{@link #getBufferSize() <em>Buffer Size</em>}' attribute.
@@ -100,7 +102,7 @@ public class CamelFileBindingTypeImpl extends BaseCamelBindingImpl implements Ca
      * @generated
      * @ordered
      */
-    protected int bufferSize = BUFFER_SIZE_EDEFAULT;
+    protected Object bufferSize = BUFFER_SIZE_EDEFAULT;
 
     /**
      * This is true if the Buffer Size attribute has been set.
@@ -291,7 +293,7 @@ public class CamelFileBindingTypeImpl extends BaseCamelBindingImpl implements Ca
      * <!-- end-user-doc -->
      * @generated
      */
-    public int getBufferSize() {
+    public Object getBufferSize() {
         return bufferSize;
     }
 
@@ -300,8 +302,8 @@ public class CamelFileBindingTypeImpl extends BaseCamelBindingImpl implements Ca
      * <!-- end-user-doc -->
      * @generated
      */
-    public void setBufferSize(int newBufferSize) {
-        int oldBufferSize = bufferSize;
+    public void setBufferSize(Object newBufferSize) {
+        Object oldBufferSize = bufferSize;
         bufferSize = newBufferSize;
         boolean oldBufferSizeESet = bufferSizeESet;
         bufferSizeESet = true;
@@ -315,7 +317,7 @@ public class CamelFileBindingTypeImpl extends BaseCamelBindingImpl implements Ca
      * @generated
      */
     public void unsetBufferSize() {
-        int oldBufferSize = bufferSize;
+        Object oldBufferSize = bufferSize;
         boolean oldBufferSizeESet = bufferSizeESet;
         bufferSize = BUFFER_SIZE_EDEFAULT;
         bufferSizeESet = false;
@@ -565,7 +567,7 @@ public class CamelFileBindingTypeImpl extends BaseCamelBindingImpl implements Ca
                 setAutoCreate((Boolean)newValue);
                 return;
             case FilePackage.CAMEL_FILE_BINDING_TYPE__BUFFER_SIZE:
-                setBufferSize((Integer)newValue);
+                setBufferSize(newValue);
                 return;
             case FilePackage.CAMEL_FILE_BINDING_TYPE__FILE_NAME:
                 setFileName((String)newValue);

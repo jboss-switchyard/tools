@@ -579,13 +579,13 @@ public interface RemoteFileConsumerType extends EObject {
      * @return the value of the '<em>Read Lock Timeout</em>' attribute.
      * @see #isSetReadLockTimeout()
      * @see #unsetReadLockTimeout()
-     * @see #setReadLockTimeout(long)
+     * @see #setReadLockTimeout(Object)
      * @see org.switchyard.tools.models.switchyard1_0.camel.ftp.FtpPackage#getRemoteFileConsumerType_ReadLockTimeout()
-     * @model default="10000" unsettable="true" dataType="org.eclipse.emf.ecore.xml.type.Long"
+     * @model default="10000" unsettable="true" dataType="org.switchyard.tools.models.switchyard1_0.switchyard.PropLong"
      *        extendedMetaData="kind='element' name='readLockTimeout' namespace='##targetNamespace'"
      * @generated
      */
-    long getReadLockTimeout();
+    Object getReadLockTimeout();
 
     /**
      * Sets the value of the '{@link org.switchyard.tools.models.switchyard1_0.camel.ftp.RemoteFileConsumerType#getReadLockTimeout <em>Read Lock Timeout</em>}' attribute.
@@ -597,7 +597,7 @@ public interface RemoteFileConsumerType extends EObject {
      * @see #getReadLockTimeout()
      * @generated
      */
-    void setReadLockTimeout(long value);
+    void setReadLockTimeout(Object value);
 
     /**
      * Unsets the value of the '{@link org.switchyard.tools.models.switchyard1_0.camel.ftp.RemoteFileConsumerType#getReadLockTimeout <em>Read Lock Timeout</em>}' attribute.
@@ -605,7 +605,7 @@ public interface RemoteFileConsumerType extends EObject {
      * <!-- end-user-doc -->
      * @see #isSetReadLockTimeout()
      * @see #getReadLockTimeout()
-     * @see #setReadLockTimeout(long)
+     * @see #setReadLockTimeout(Object)
      * @generated
      */
     void unsetReadLockTimeout();
@@ -617,7 +617,7 @@ public interface RemoteFileConsumerType extends EObject {
      * @return whether the value of the '<em>Read Lock Timeout</em>' attribute is set.
      * @see #unsetReadLockTimeout()
      * @see #getReadLockTimeout()
-     * @see #setReadLockTimeout(long)
+     * @see #setReadLockTimeout(Object)
      * @generated
      */
     boolean isSetReadLockTimeout();
@@ -634,13 +634,13 @@ public interface RemoteFileConsumerType extends EObject {
      * @return the value of the '<em>Read Lock Check Interval</em>' attribute.
      * @see #isSetReadLockCheckInterval()
      * @see #unsetReadLockCheckInterval()
-     * @see #setReadLockCheckInterval(int)
+     * @see #setReadLockCheckInterval(Object)
      * @see org.switchyard.tools.models.switchyard1_0.camel.ftp.FtpPackage#getRemoteFileConsumerType_ReadLockCheckInterval()
-     * @model default="1000" unsettable="true" dataType="org.eclipse.emf.ecore.xml.type.Int"
+     * @model default="1000" unsettable="true" dataType="org.switchyard.tools.models.switchyard1_0.switchyard.PropInteger"
      *        extendedMetaData="kind='element' name='readLockCheckInterval' namespace='##targetNamespace'"
      * @generated
      */
-    int getReadLockCheckInterval();
+    Object getReadLockCheckInterval();
 
     /**
      * Sets the value of the '{@link org.switchyard.tools.models.switchyard1_0.camel.ftp.RemoteFileConsumerType#getReadLockCheckInterval <em>Read Lock Check Interval</em>}' attribute.
@@ -652,7 +652,7 @@ public interface RemoteFileConsumerType extends EObject {
      * @see #getReadLockCheckInterval()
      * @generated
      */
-    void setReadLockCheckInterval(int value);
+    void setReadLockCheckInterval(Object value);
 
     /**
      * Unsets the value of the '{@link org.switchyard.tools.models.switchyard1_0.camel.ftp.RemoteFileConsumerType#getReadLockCheckInterval <em>Read Lock Check Interval</em>}' attribute.
@@ -660,7 +660,7 @@ public interface RemoteFileConsumerType extends EObject {
      * <!-- end-user-doc -->
      * @see #isSetReadLockCheckInterval()
      * @see #getReadLockCheckInterval()
-     * @see #setReadLockCheckInterval(int)
+     * @see #setReadLockCheckInterval(Object)
      * @generated
      */
     void unsetReadLockCheckInterval();
@@ -672,7 +672,7 @@ public interface RemoteFileConsumerType extends EObject {
      * @return whether the value of the '<em>Read Lock Check Interval</em>' attribute is set.
      * @see #unsetReadLockCheckInterval()
      * @see #getReadLockCheckInterval()
-     * @see #setReadLockCheckInterval(int)
+     * @see #setReadLockCheckInterval(Object)
      * @generated
      */
     boolean isSetReadLockCheckInterval();
@@ -880,13 +880,13 @@ public interface RemoteFileConsumerType extends EObject {
      * @return the value of the '<em>Max Messages Per Poll</em>' attribute.
      * @see #isSetMaxMessagesPerPoll()
      * @see #unsetMaxMessagesPerPoll()
-     * @see #setMaxMessagesPerPoll(int)
+     * @see #setMaxMessagesPerPoll(Object)
      * @see org.switchyard.tools.models.switchyard1_0.camel.ftp.FtpPackage#getRemoteFileConsumerType_MaxMessagesPerPoll()
-     * @model default="0" unsettable="true" dataType="org.eclipse.emf.ecore.xml.type.Int"
+     * @model default="0" unsettable="true" dataType="org.switchyard.tools.models.switchyard1_0.switchyard.PropInteger"
      *        extendedMetaData="kind='element' name='maxMessagesPerPoll' namespace='##targetNamespace'"
      * @generated
      */
-    int getMaxMessagesPerPoll();
+    Object getMaxMessagesPerPoll();
 
     /**
      * Sets the value of the '{@link org.switchyard.tools.models.switchyard1_0.camel.ftp.RemoteFileConsumerType#getMaxMessagesPerPoll <em>Max Messages Per Poll</em>}' attribute.
@@ -898,7 +898,7 @@ public interface RemoteFileConsumerType extends EObject {
      * @see #getMaxMessagesPerPoll()
      * @generated
      */
-    void setMaxMessagesPerPoll(int value);
+    void setMaxMessagesPerPoll(Object value);
 
     /**
      * Unsets the value of the '{@link org.switchyard.tools.models.switchyard1_0.camel.ftp.RemoteFileConsumerType#getMaxMessagesPerPoll <em>Max Messages Per Poll</em>}' attribute.
@@ -906,7 +906,7 @@ public interface RemoteFileConsumerType extends EObject {
      * <!-- end-user-doc -->
      * @see #isSetMaxMessagesPerPoll()
      * @see #getMaxMessagesPerPoll()
-     * @see #setMaxMessagesPerPoll(int)
+     * @see #setMaxMessagesPerPoll(Object)
      * @generated
      */
     void unsetMaxMessagesPerPoll();
@@ -918,7 +918,7 @@ public interface RemoteFileConsumerType extends EObject {
      * @return whether the value of the '<em>Max Messages Per Poll</em>' attribute is set.
      * @see #unsetMaxMessagesPerPoll()
      * @see #getMaxMessagesPerPoll()
-     * @see #setMaxMessagesPerPoll(int)
+     * @see #setMaxMessagesPerPoll(Object)
      * @generated
      */
     boolean isSetMaxMessagesPerPoll();
@@ -935,13 +935,13 @@ public interface RemoteFileConsumerType extends EObject {
      * @return the value of the '<em>Initial Delay</em>' attribute.
      * @see #isSetInitialDelay()
      * @see #unsetInitialDelay()
-     * @see #setInitialDelay(int)
+     * @see #setInitialDelay(Object)
      * @see org.switchyard.tools.models.switchyard1_0.camel.ftp.FtpPackage#getRemoteFileConsumerType_InitialDelay()
-     * @model default="1000" unsettable="true" dataType="org.eclipse.emf.ecore.xml.type.Int"
+     * @model default="1000" unsettable="true" dataType="org.switchyard.tools.models.switchyard1_0.switchyard.PropInteger"
      *        extendedMetaData="kind='element' name='initialDelay' namespace='##targetNamespace'"
      * @generated
      */
-    int getInitialDelay();
+    Object getInitialDelay();
 
     /**
      * Sets the value of the '{@link org.switchyard.tools.models.switchyard1_0.camel.ftp.RemoteFileConsumerType#getInitialDelay <em>Initial Delay</em>}' attribute.
@@ -953,7 +953,7 @@ public interface RemoteFileConsumerType extends EObject {
      * @see #getInitialDelay()
      * @generated
      */
-    void setInitialDelay(int value);
+    void setInitialDelay(Object value);
 
     /**
      * Unsets the value of the '{@link org.switchyard.tools.models.switchyard1_0.camel.ftp.RemoteFileConsumerType#getInitialDelay <em>Initial Delay</em>}' attribute.
@@ -961,7 +961,7 @@ public interface RemoteFileConsumerType extends EObject {
      * <!-- end-user-doc -->
      * @see #isSetInitialDelay()
      * @see #getInitialDelay()
-     * @see #setInitialDelay(int)
+     * @see #setInitialDelay(Object)
      * @generated
      */
     void unsetInitialDelay();
@@ -973,7 +973,7 @@ public interface RemoteFileConsumerType extends EObject {
      * @return whether the value of the '<em>Initial Delay</em>' attribute is set.
      * @see #unsetInitialDelay()
      * @see #getInitialDelay()
-     * @see #setInitialDelay(int)
+     * @see #setInitialDelay(Object)
      * @generated
      */
     boolean isSetInitialDelay();
@@ -990,13 +990,13 @@ public interface RemoteFileConsumerType extends EObject {
      * @return the value of the '<em>Delay</em>' attribute.
      * @see #isSetDelay()
      * @see #unsetDelay()
-     * @see #setDelay(int)
+     * @see #setDelay(Object)
      * @see org.switchyard.tools.models.switchyard1_0.camel.ftp.FtpPackage#getRemoteFileConsumerType_Delay()
-     * @model default="500" unsettable="true" dataType="org.eclipse.emf.ecore.xml.type.Int"
+     * @model default="500" unsettable="true" dataType="org.switchyard.tools.models.switchyard1_0.switchyard.PropInteger"
      *        extendedMetaData="kind='element' name='delay' namespace='##targetNamespace'"
      * @generated
      */
-    int getDelay();
+    Object getDelay();
 
     /**
      * Sets the value of the '{@link org.switchyard.tools.models.switchyard1_0.camel.ftp.RemoteFileConsumerType#getDelay <em>Delay</em>}' attribute.
@@ -1008,7 +1008,7 @@ public interface RemoteFileConsumerType extends EObject {
      * @see #getDelay()
      * @generated
      */
-    void setDelay(int value);
+    void setDelay(Object value);
 
     /**
      * Unsets the value of the '{@link org.switchyard.tools.models.switchyard1_0.camel.ftp.RemoteFileConsumerType#getDelay <em>Delay</em>}' attribute.
@@ -1016,7 +1016,7 @@ public interface RemoteFileConsumerType extends EObject {
      * <!-- end-user-doc -->
      * @see #isSetDelay()
      * @see #getDelay()
-     * @see #setDelay(int)
+     * @see #setDelay(Object)
      * @generated
      */
     void unsetDelay();
@@ -1028,7 +1028,7 @@ public interface RemoteFileConsumerType extends EObject {
      * @return whether the value of the '<em>Delay</em>' attribute is set.
      * @see #unsetDelay()
      * @see #getDelay()
-     * @see #setDelay(int)
+     * @see #setDelay(Object)
      * @generated
      */
     boolean isSetDelay();

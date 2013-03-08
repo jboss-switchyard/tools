@@ -15,6 +15,8 @@ import org.eclipse.soa.sca.sca1_1.model.sca.impl.CommonExtensionBaseImpl;
 import org.switchyard.tools.models.switchyard1_0.rules.LoggerType;
 import org.switchyard.tools.models.switchyard1_0.rules.LoggerType1;
 import org.switchyard.tools.models.switchyard1_0.rules.RulesPackage;
+import org.switchyard.tools.models.switchyard1_0.switchyard.SwitchyardFactory;
+import org.switchyard.tools.models.switchyard1_0.switchyard.SwitchyardPackage;
 
 /**
  * <!-- begin-user-doc -->
@@ -40,7 +42,7 @@ public class LoggerType1Impl extends CommonExtensionBaseImpl implements LoggerTy
      * @generated
      * @ordered
      */
-    protected static final BigInteger INTERVAL_EDEFAULT = new BigInteger("1000");
+    protected static final Object INTERVAL_EDEFAULT = SwitchyardFactory.eINSTANCE.createFromString(SwitchyardPackage.eINSTANCE.getPropInteger(), "1000");
 
     /**
      * The cached value of the '{@link #getInterval() <em>Interval</em>}' attribute.
@@ -50,7 +52,7 @@ public class LoggerType1Impl extends CommonExtensionBaseImpl implements LoggerTy
      * @generated
      * @ordered
      */
-    protected BigInteger interval = INTERVAL_EDEFAULT;
+    protected Object interval = INTERVAL_EDEFAULT;
 
     /**
      * The default value of the '{@link #getLog() <em>Log</em>}' attribute.
@@ -125,7 +127,7 @@ public class LoggerType1Impl extends CommonExtensionBaseImpl implements LoggerTy
      * <!-- end-user-doc -->
      * @generated
      */
-    public BigInteger getInterval() {
+    public Object getInterval() {
         return interval;
     }
 
@@ -134,8 +136,8 @@ public class LoggerType1Impl extends CommonExtensionBaseImpl implements LoggerTy
      * <!-- end-user-doc -->
      * @generated
      */
-    public void setInterval(BigInteger newInterval) {
-        BigInteger oldInterval = interval;
+    public void setInterval(Object newInterval) {
+        Object oldInterval = interval;
         interval = newInterval;
         if (eNotificationRequired())
             eNotify(new ENotificationImpl(this, Notification.SET, RulesPackage.LOGGER_TYPE1__INTERVAL, oldInterval, interval));
@@ -235,7 +237,7 @@ public class LoggerType1Impl extends CommonExtensionBaseImpl implements LoggerTy
     public void eSet(int featureID, Object newValue) {
         switch (featureID) {
             case RulesPackage.LOGGER_TYPE1__INTERVAL:
-                setInterval((BigInteger)newValue);
+                setInterval(newValue);
                 return;
             case RulesPackage.LOGGER_TYPE1__LOG:
                 setLog((String)newValue);

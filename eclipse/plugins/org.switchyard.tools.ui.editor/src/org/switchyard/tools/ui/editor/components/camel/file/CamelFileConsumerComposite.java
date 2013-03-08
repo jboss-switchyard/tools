@@ -43,6 +43,7 @@ import org.switchyard.tools.ui.editor.diagram.binding.AbstractSYBindingComposite
 import org.switchyard.tools.ui.editor.diagram.binding.OperationSelectorComposite;
 import org.switchyard.tools.ui.editor.diagram.binding.OperationSelectorUtil;
 import org.switchyard.tools.ui.editor.diagram.shared.ModelOperation;
+import org.switchyard.tools.ui.editor.util.PropTypeUtil;
 
 /**
  * @author bfitzpat
@@ -78,12 +79,14 @@ public class CamelFileConsumerComposite extends AbstractSYBindingComposite  {
             setInUpdate(true);
             if (this._binding.getConsume() != null) {
                 if (this._binding.getConsume().isSetDelay()) {
-                    _delayText.setText(Integer.toString(this._binding.getConsume().getDelay()));
+                    setTextValue(_delayText, PropTypeUtil.getPropValueString(this._binding.getConsume().getDelay()));
+//                    _delayText.setText(Integer.toString(this._binding.getConsume().getDelay()));
                 } else {
                     _delayText.setText("");
                 }
                 if (this._binding.getConsume().isSetMaxMessagesPerPoll()) {
-                    _maxMessagesPerPollText.setText(Integer.toString(this._binding.getConsume().getMaxMessagesPerPoll()));
+                    setTextValue(_maxMessagesPerPollText, PropTypeUtil.getPropValueString(this._binding.getConsume().getMaxMessagesPerPoll()));
+//                    _maxMessagesPerPollText.setText(Integer.toString(this._binding.getConsume().getMaxMessagesPerPoll()));
                 } else {
                     _maxMessagesPerPollText.setText("");
                 }
@@ -151,18 +154,18 @@ public class CamelFileConsumerComposite extends AbstractSYBindingComposite  {
         if (getBinding() != null) {
             if (_directoryText.getText().trim().isEmpty()) {
                 setErrorMessage("Directory may not be empty.");
-            } else if (!_delayText.getText().trim().isEmpty()) {
-                try {
-                    new BigInteger(_delayText.getText().trim());
-                } catch (NumberFormatException nfe) {
-                    setErrorMessage("Delay value must be a valid number.");
-                }
-            } else if (!_maxMessagesPerPollText.getText().trim().isEmpty()) {
-                try {
-                    new BigInteger(_maxMessagesPerPollText.getText().trim());
-                } catch (NumberFormatException nfe) {
-                    setErrorMessage("Max Messages per Poll value must be a valid number.");
-                }
+//            } else if (!_delayText.getText().trim().isEmpty()) {
+//                try {
+//                    new BigInteger(_delayText.getText().trim());
+//                } catch (NumberFormatException nfe) {
+//                    setErrorMessage("Delay value must be a valid number.");
+//                }
+//            } else if (!_maxMessagesPerPollText.getText().trim().isEmpty()) {
+//                try {
+//                    new BigInteger(_maxMessagesPerPollText.getText().trim());
+//                } catch (NumberFormatException nfe) {
+//                    setErrorMessage("Max Messages per Poll value must be a valid number.");
+//                }
             }
         }
         super.validateTabs();
@@ -266,8 +269,7 @@ public class CamelFileConsumerComposite extends AbstractSYBindingComposite  {
                 BigInteger delay = new BigInteger(_delayText.getText().trim());
                 updateConsumeFeature("delay", delay);
             } catch (NumberFormatException nfe) {
-                // ignore
-                nfe.fillInStackTrace();
+                updateConsumeFeature("delay", _delayText.getText().trim());
             }
         } else if (control.equals(_excludeText)) {
             updateConsumeFeature("exclude", _excludeText.getText().trim());
@@ -278,8 +280,7 @@ public class CamelFileConsumerComposite extends AbstractSYBindingComposite  {
                 BigInteger max = new BigInteger(_maxMessagesPerPollText.getText().trim());
                 updateConsumeFeature("maxMessagesPerPoll", max);
             } catch (NumberFormatException nfe) {
-                // ignore
-                nfe.fillInStackTrace();
+                updateConsumeFeature("maxMessagesPerPoll", _maxMessagesPerPollText.getText().trim());
             }
         } else if (control.equals(_moveFailedText)) {
             updateConsumeFeature("moveFailed", _moveFailedText.getText().trim());
@@ -311,9 +312,11 @@ public class CamelFileConsumerComposite extends AbstractSYBindingComposite  {
 //                setTextValue(_operationSelectionCombo, opName);
             } else if (this._binding.getConsume() != null) {
                 if (control.equals(_delayText)) {
-                    _delayText.setText(Integer.toString(this._binding.getConsume().getDelay()));
+                    setTextValue(_delayText, PropTypeUtil.getPropValueString(this._binding.getConsume().getDelay()));
+//                    _delayText.setText(Integer.toString(this._binding.getConsume().getDelay()));
                 } else if (control.equals(_maxMessagesPerPollText)) {
-                    _maxMessagesPerPollText.setText(Integer.toString(this._binding.getConsume().getMaxMessagesPerPoll()));
+                    setTextValue(_maxMessagesPerPollText, PropTypeUtil.getPropValueString(this._binding.getConsume().getMaxMessagesPerPoll()));
+//                    _maxMessagesPerPollText.setText(Integer.toString(this._binding.getConsume().getMaxMessagesPerPoll()));
                 } else if (control.equals(_excludeText)) {
                     _excludeText.setText(this._binding.getConsume().getExclude());
                 } else if (control.equals(_includeText)) {

@@ -8,6 +8,7 @@ package org.switchyard.tools.models.switchyard1_0.switchyard;
 
 import org.eclipse.emf.ecore.EAttribute;
 import org.eclipse.emf.ecore.EClass;
+import org.eclipse.emf.ecore.EDataType;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.EReference;
 
@@ -1475,6 +1476,47 @@ public interface SwitchyardPackage extends EPackage {
 
 
                 /**
+     * The meta object id for the '<em>Prop Boolean</em>' data type.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @see java.lang.Object
+     * @see org.switchyard.tools.models.switchyard1_0.switchyard.impl.SwitchyardPackageImpl#getPropBoolean()
+     * @generated
+     */
+    int PROP_BOOLEAN = 24;
+
+                /**
+     * The meta object id for the '<em>Property Value</em>' data type.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @see java.lang.String
+     * @see org.switchyard.tools.models.switchyard1_0.switchyard.impl.SwitchyardPackageImpl#getPropertyValue()
+     * @generated
+     */
+    int PROPERTY_VALUE = 25;
+
+                /**
+     * The meta object id for the '<em>Prop Integer</em>' data type.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @see java.lang.Object
+     * @see org.switchyard.tools.models.switchyard1_0.switchyard.impl.SwitchyardPackageImpl#getPropInteger()
+     * @generated
+     */
+    int PROP_INTEGER = 26;
+
+                /**
+     * The meta object id for the '<em>Prop Long</em>' data type.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @see java.lang.Object
+     * @see org.switchyard.tools.models.switchyard1_0.switchyard.impl.SwitchyardPackageImpl#getPropLong()
+     * @generated
+     */
+    int PROP_LONG = 27;
+
+
+                /**
      * Returns the meta object for class '{@link org.switchyard.tools.models.switchyard1_0.switchyard.ArtifactsType <em>Artifacts Type</em>}'.
      * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -2596,6 +2638,54 @@ public interface SwitchyardPackage extends EPackage {
     EAttribute getSecurityType_RunAs();
 
     /**
+     * Returns the meta object for data type '{@link java.lang.Object <em>Prop Boolean</em>}'.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @return the meta object for data type '<em>Prop Boolean</em>'.
+     * @see java.lang.Object
+     * @model instanceClass="java.lang.Object"
+     *        extendedMetaData="name='propBoolean' memberTypes='http://www.eclipse.org/emf/2003/XMLType#boolean propertyValue'"
+     * @generated
+     */
+    EDataType getPropBoolean();
+
+    /**
+     * Returns the meta object for data type '{@link java.lang.String <em>Property Value</em>}'.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @return the meta object for data type '<em>Property Value</em>'.
+     * @see java.lang.String
+     * @model instanceClass="java.lang.String"
+     *        extendedMetaData="name='propertyValue' baseType='http://www.eclipse.org/emf/2003/XMLType#string' pattern='\\$\\{([a-zA-Z0-9])*(:([a-zA-Z0-9])*)?\\}'"
+     * @generated
+     */
+    EDataType getPropertyValue();
+
+    /**
+     * Returns the meta object for data type '{@link java.lang.Object <em>Prop Integer</em>}'.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @return the meta object for data type '<em>Prop Integer</em>'.
+     * @see java.lang.Object
+     * @model instanceClass="java.lang.Object"
+     *        extendedMetaData="name='propInteger' memberTypes='http://www.eclipse.org/emf/2003/XMLType#integer propertyValue'"
+     * @generated
+     */
+    EDataType getPropInteger();
+
+    /**
+     * Returns the meta object for data type '{@link java.lang.Object <em>Prop Long</em>}'.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @return the meta object for data type '<em>Prop Long</em>'.
+     * @see java.lang.Object
+     * @model instanceClass="java.lang.Object"
+     *        extendedMetaData="name='propLong' memberTypes='http://www.eclipse.org/emf/2003/XMLType#long propertyValue'"
+     * @generated
+     */
+    EDataType getPropLong();
+
+    /**
      * Returns the meta object for class '{@link org.switchyard.tools.models.switchyard1_0.switchyard.SwitchYardOperationSelectorType <em>Switch Yard Operation Selector Type</em>}'.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
@@ -3504,6 +3594,46 @@ public interface SwitchyardPackage extends EPackage {
          * @generated
          */
         EAttribute SECURITY_TYPE__RUN_AS = eINSTANCE.getSecurityType_RunAs();
+
+                                /**
+         * The meta object literal for the '<em>Prop Boolean</em>' data type.
+         * <!-- begin-user-doc -->
+         * <!-- end-user-doc -->
+         * @see java.lang.Object
+         * @see org.switchyard.tools.models.switchyard1_0.switchyard.impl.SwitchyardPackageImpl#getPropBoolean()
+         * @generated
+         */
+        EDataType PROP_BOOLEAN = eINSTANCE.getPropBoolean();
+
+        /**
+         * The meta object literal for the '<em>Property Value</em>' data type.
+         * <!-- begin-user-doc -->
+         * <!-- end-user-doc -->
+         * @see java.lang.String
+         * @see org.switchyard.tools.models.switchyard1_0.switchyard.impl.SwitchyardPackageImpl#getPropertyValue()
+         * @generated
+         */
+        EDataType PROPERTY_VALUE = eINSTANCE.getPropertyValue();
+
+        /**
+         * The meta object literal for the '<em>Prop Integer</em>' data type.
+         * <!-- begin-user-doc -->
+         * <!-- end-user-doc -->
+         * @see java.lang.Object
+         * @see org.switchyard.tools.models.switchyard1_0.switchyard.impl.SwitchyardPackageImpl#getPropInteger()
+         * @generated
+         */
+        EDataType PROP_INTEGER = eINSTANCE.getPropInteger();
+
+        /**
+         * The meta object literal for the '<em>Prop Long</em>' data type.
+         * <!-- begin-user-doc -->
+         * <!-- end-user-doc -->
+         * @see java.lang.Object
+         * @see org.switchyard.tools.models.switchyard1_0.switchyard.impl.SwitchyardPackageImpl#getPropLong()
+         * @generated
+         */
+        EDataType PROP_LONG = eINSTANCE.getPropLong();
 
                                 /**
          * The meta object literal for the '{@link org.switchyard.tools.models.switchyard1_0.switchyard.impl.SwitchYardOperationSelectorTypeImpl <em>Switch Yard Operation Selector Type</em>}' class.

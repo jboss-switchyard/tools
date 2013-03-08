@@ -135,22 +135,22 @@ public class CamelQuartzComposite extends AbstractSYBindingComposite {
             if (_cronText.getText().trim().isEmpty()) {
                 setErrorMessage("Cron may not be empty.");
             }
-            if (!_startTimeText.getText().trim().isEmpty()) {
-                SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss");
-                try {
-                    sdf.parse(_startTimeText.getText().trim());
-                } catch (ParseException pe) {
-                    setErrorMessage("Start time must match the format yyyy-MM-ddTHH:mm:ss");
-                }
-            }
-            if (!_endTimeText.getText().trim().isEmpty()) {
-                SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss");
-                try {
-                    sdf.parse(_endTimeText.getText().trim());
-                } catch (ParseException pe) {
-                    setErrorMessage("End time must match the format yyyy-MM-ddTHH:mm:ss");
-                }
-            }
+//            if (!_startTimeText.getText().trim().isEmpty()) {
+//                SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss");
+//                try {
+//                    sdf.parse(_startTimeText.getText().trim());
+//                } catch (ParseException pe) {
+//                    setErrorMessage("Start time must match the format yyyy-MM-ddTHH:mm:ss");
+//                }
+//            }
+//            if (!_endTimeText.getText().trim().isEmpty()) {
+//                SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss");
+//                try {
+//                    sdf.parse(_endTimeText.getText().trim());
+//                } catch (ParseException pe) {
+//                    setErrorMessage("End time must match the format yyyy-MM-ddTHH:mm:ss");
+//                }
+//            }
         }
         super.validateTabs();
         return (getErrorMessage() == null);

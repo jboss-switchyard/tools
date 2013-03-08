@@ -2504,13 +2504,22 @@ public interface ScaPackage extends EPackage {
 	int SCA_PROPERTY_BASE__REQUIRES = 3;
 
 	/**
+     * The feature id for the '<em><b>Value</b></em>' attribute.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int SCA_PROPERTY_BASE__VALUE = 4;
+
+    /**
      * The number of structural features of the '<em>SCA Property Base</em>' class.
      * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
      * @generated
      * @ordered
      */
-	int SCA_PROPERTY_BASE_FEATURE_COUNT = 4;
+	int SCA_PROPERTY_BASE_FEATURE_COUNT = 5;
 
 	/**
      * The meta object id for the '{@link org.eclipse.soa.sca.sca1_1.model.sca.impl.PropertyImpl <em>Property</em>}' class.
@@ -2559,6 +2568,15 @@ public interface ScaPackage extends EPackage {
 	int PROPERTY__REQUIRES = SCA_PROPERTY_BASE__REQUIRES;
 
 	/**
+     * The feature id for the '<em><b>Value</b></em>' attribute.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int PROPERTY__VALUE = SCA_PROPERTY_BASE__VALUE;
+
+    /**
      * The feature id for the '<em><b>Element</b></em>' attribute.
      * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -2668,6 +2686,15 @@ public interface ScaPackage extends EPackage {
 	int CONSTRAINING_PROPERTY__REQUIRES = PROPERTY__REQUIRES;
 
 	/**
+     * The feature id for the '<em><b>Value</b></em>' attribute.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int CONSTRAINING_PROPERTY__VALUE = PROPERTY__VALUE;
+
+    /**
      * The feature id for the '<em><b>Element</b></em>' attribute.
      * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -6929,6 +6956,15 @@ public interface ScaPackage extends EPackage {
 	int PROPERTY_VALUE__REQUIRES = SCA_PROPERTY_BASE__REQUIRES;
 
 	/**
+     * The feature id for the '<em><b>Value</b></em>' attribute.
+     * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+	int PROPERTY_VALUE__VALUE = SCA_PROPERTY_BASE__VALUE;
+
+    /**
      * The feature id for the '<em><b>Element</b></em>' attribute.
      * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -6937,7 +6973,7 @@ public interface ScaPackage extends EPackage {
      */
 	int PROPERTY_VALUE__ELEMENT = SCA_PROPERTY_BASE_FEATURE_COUNT + 0;
 
-	/**
+    /**
      * The feature id for the '<em><b>File</b></em>' attribute.
      * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -6946,7 +6982,7 @@ public interface ScaPackage extends EPackage {
      */
 	int PROPERTY_VALUE__FILE = SCA_PROPERTY_BASE_FEATURE_COUNT + 1;
 
-	/**
+    /**
      * The feature id for the '<em><b>Many</b></em>' attribute.
      * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -6955,7 +6991,7 @@ public interface ScaPackage extends EPackage {
      */
 	int PROPERTY_VALUE__MANY = SCA_PROPERTY_BASE_FEATURE_COUNT + 2;
 
-	/**
+    /**
      * The feature id for the '<em><b>Name</b></em>' attribute.
      * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -6964,7 +7000,7 @@ public interface ScaPackage extends EPackage {
      */
 	int PROPERTY_VALUE__NAME = SCA_PROPERTY_BASE_FEATURE_COUNT + 3;
 
-	/**
+    /**
      * The feature id for the '<em><b>Source</b></em>' attribute.
      * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -6973,7 +7009,7 @@ public interface ScaPackage extends EPackage {
      */
 	int PROPERTY_VALUE__SOURCE = SCA_PROPERTY_BASE_FEATURE_COUNT + 4;
 
-	/**
+    /**
      * The feature id for the '<em><b>Type</b></em>' attribute.
      * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -6983,22 +7019,13 @@ public interface ScaPackage extends EPackage {
 	int PROPERTY_VALUE__TYPE = SCA_PROPERTY_BASE_FEATURE_COUNT + 5;
 
 	/**
-     * The feature id for the '<em><b>Value</b></em>' attribute.
-     * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-     * @generated
-     * @ordered
-     */
-	int PROPERTY_VALUE__VALUE = SCA_PROPERTY_BASE_FEATURE_COUNT + 6;
-
-	/**
      * The feature id for the '<em><b>Any Attribute</b></em>' attribute list.
      * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
      * @generated
      * @ordered
      */
-	int PROPERTY_VALUE__ANY_ATTRIBUTE = SCA_PROPERTY_BASE_FEATURE_COUNT + 7;
+	int PROPERTY_VALUE__ANY_ATTRIBUTE = SCA_PROPERTY_BASE_FEATURE_COUNT + 6;
 
 	/**
      * The number of structural features of the '<em>Property Value</em>' class.
@@ -7007,7 +7034,7 @@ public interface ScaPackage extends EPackage {
      * @generated
      * @ordered
      */
-	int PROPERTY_VALUE_FEATURE_COUNT = SCA_PROPERTY_BASE_FEATURE_COUNT + 8;
+	int PROPERTY_VALUE_FEATURE_COUNT = SCA_PROPERTY_BASE_FEATURE_COUNT + 7;
 
 	/**
      * The meta object id for the '{@link org.eclipse.soa.sca.sca1_1.model.sca.impl.QualifierImpl <em>Qualifier</em>}' class.
@@ -13700,17 +13727,6 @@ public interface ScaPackage extends EPackage {
 	EAttribute getPropertyValue_Type();
 
 	/**
-     * Returns the meta object for the attribute '{@link org.eclipse.soa.sca.sca1_1.model.sca.PropertyValue#getValue <em>Value</em>}'.
-     * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-     * @return the meta object for the attribute '<em>Value</em>'.
-     * @see org.eclipse.soa.sca.sca1_1.model.sca.PropertyValue#getValue()
-     * @see #getPropertyValue()
-     * @generated
-     */
-	EAttribute getPropertyValue_Value();
-
-	/**
      * Returns the meta object for the attribute list '{@link org.eclipse.soa.sca.sca1_1.model.sca.PropertyValue#getAnyAttribute <em>Any Attribute</em>}'.
      * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -14002,6 +14018,17 @@ public interface ScaPackage extends EPackage {
 	EAttribute getSCAPropertyBase_Requires();
 
 	/**
+     * Returns the meta object for the attribute '{@link org.eclipse.soa.sca.sca1_1.model.sca.SCAPropertyBase#getValue <em>Value</em>}'.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @return the meta object for the attribute '<em>Value</em>'.
+     * @see org.eclipse.soa.sca.sca1_1.model.sca.SCAPropertyBase#getValue()
+     * @see #getSCAPropertyBase()
+     * @generated
+     */
+    EAttribute getSCAPropertyBase_Value();
+
+    /**
      * Returns the meta object for class '{@link org.eclipse.soa.sca.sca1_1.model.sca.Service <em>Service</em>}'.
      * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->

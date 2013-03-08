@@ -43,6 +43,7 @@ import org.switchyard.tools.models.switchyard1_0.switchyard.SwitchyardFactory;
 import org.switchyard.tools.ui.editor.diagram.binding.AbstractSYBindingComposite;
 import org.switchyard.tools.ui.editor.diagram.binding.OperationSelectorComposite;
 import org.switchyard.tools.ui.editor.diagram.binding.OperationSelectorUtil;
+import org.switchyard.tools.ui.editor.util.PropTypeUtil;
 
 /**
  * @author bfitzpat
@@ -88,17 +89,19 @@ public class CamelJmsComposite extends AbstractSYBindingComposite {
                 _typeNameText.setText(this._binding.getTopic());
             }
             if (this._binding.isSetConcurrentConsumers()) {
-                _concurrentConsumersText.setText(Integer.toString(this._binding.getConcurrentConsumers()));
+                setTextValue(_concurrentConsumersText, PropTypeUtil.getPropValueString(this._binding.getConcurrentConsumers()));
+//                _concurrentConsumersText.setText(Integer.toString(this._binding.getConcurrentConsumers()));
             }
-            if (_requestTimeOutText != null && this._binding.isSetRequestTimeout()
-                    && this._binding.getRequestTimeout() > 0) {
-                _requestTimeOutText.setText(Integer.toString(this._binding.getRequestTimeout()));
+            if (_requestTimeOutText != null && this._binding.isSetRequestTimeout()) {
+                setTextValue(_requestTimeOutText, PropTypeUtil.getPropValueString(this._binding.getRequestTimeout()));
+//                _requestTimeOutText.setText(Integer.toString(this._binding.getRequestTimeout()));
             } else  if (_requestTimeOutText != null) {
                 _requestTimeOutText.setText("");
             }
             if (_maxConcurrentConsumersText != null) {
                 if (this._binding.isSetMaxConcurrentConsumers()) {
-                    _maxConcurrentConsumersText.setText(Integer.toString(this._binding.getMaxConcurrentConsumers()));
+                    setTextValue(_maxConcurrentConsumersText, PropTypeUtil.getPropValueString(this._binding.getMaxConcurrentConsumers()));
+//                    _maxConcurrentConsumersText.setText(Integer.toString(this._binding.getMaxConcurrentConsumers()));
                 } else {
                     _maxConcurrentConsumersText.setText("");
                 }
@@ -160,27 +163,27 @@ public class CamelJmsComposite extends AbstractSYBindingComposite {
             if (_connectionFactoryText.getText().trim().isEmpty()) {
                 setErrorMessage("Connection Factory may not be empty.");
             }
-            if (!_concurrentConsumersText.getText().trim().isEmpty()) {
-                try {
-                    Integer.valueOf(_concurrentConsumersText.getText().trim());
-                } catch (NumberFormatException nfe) {
-                    setErrorMessage("Concurrent Consumers must be a valid integer.");
-                }
-            }
-            if (!_maxConcurrentConsumersText.getText().trim().isEmpty()) {
-                try {
-                    Integer.valueOf(_maxConcurrentConsumersText.getText().trim());
-                } catch (NumberFormatException nfe) {
-                    setErrorMessage("Maximum Concurrent Consumers must be a valid integer.");
-                }
-            }
-            if (_requestTimeOutText != null && _requestTimeOutText.getText().trim().isEmpty()) {
-                try {
-                    Integer.valueOf(_requestTimeOutText.getText().trim());
-                } catch (NumberFormatException nfe) {
-                    setErrorMessage("Request Timeout must be a valid integer.");
-                }
-            }
+//            if (!_concurrentConsumersText.getText().trim().isEmpty()) {
+//                try {
+//                    Integer.valueOf(_concurrentConsumersText.getText().trim());
+//                } catch (NumberFormatException nfe) {
+//                    setErrorMessage("Concurrent Consumers must be a valid integer.");
+//                }
+//            }
+//            if (!_maxConcurrentConsumersText.getText().trim().isEmpty()) {
+//                try {
+//                    Integer.valueOf(_maxConcurrentConsumersText.getText().trim());
+//                } catch (NumberFormatException nfe) {
+//                    setErrorMessage("Maximum Concurrent Consumers must be a valid integer.");
+//                }
+//            }
+//            if (_requestTimeOutText != null && _requestTimeOutText.getText().trim().isEmpty()) {
+//                try {
+//                    Integer.valueOf(_requestTimeOutText.getText().trim());
+//                } catch (NumberFormatException nfe) {
+//                    setErrorMessage("Request Timeout must be a valid integer.");
+//                }
+//            }
         }
         super.validateTabs();
         return (getErrorMessage() == null);
@@ -292,8 +295,7 @@ public class CamelJmsComposite extends AbstractSYBindingComposite {
                     updateFeature(_binding, "concurrentConsumers", value.intValue());
                 }
             } catch (NumberFormatException nfe) {
-                // ignore
-                nfe.fillInStackTrace();
+                updateFeature(_binding, "concurrentConsumers", _concurrentConsumersText.getText().trim());
             }
         } else if (control.equals(_maxConcurrentConsumersText)) {
             Integer value = null;
@@ -303,8 +305,7 @@ public class CamelJmsComposite extends AbstractSYBindingComposite {
                     updateFeature(_binding, "maxConcurrentConsumers", value.intValue());
                 }
             } catch (NumberFormatException nfe) {
-                // ignore
-                nfe.fillInStackTrace();
+                updateFeature(_binding, "maxConcurrentConsumers", _maxConcurrentConsumersText.getText().trim());
             }
         } else if (control.equals(_replyToText)) {
             String value = null;
@@ -326,8 +327,7 @@ public class CamelJmsComposite extends AbstractSYBindingComposite {
                     updateFeature(_binding, "requestTimeout", value.intValue());
                 }
             } catch (NumberFormatException nfe) {
-                // ignore
-                nfe.fillInStackTrace();
+                updateFeature(_binding, "requestTimeout", _requestTimeOutText.getText().trim());
             }
         } else if (control.equals(_transactedButton)) {
             boolean value = _transactedButton.getSelection();
@@ -352,16 +352,18 @@ public class CamelJmsComposite extends AbstractSYBindingComposite {
     protected void handleUndo(Control control) {
         if (_binding != null) {
             if (control.equals(_concurrentConsumersText)) {
-                if (this._binding.getConcurrentConsumers() > 0) {
-                    _concurrentConsumersText.setText(Integer.toString(this._binding.getConcurrentConsumers()));
+                if (this._binding.getConcurrentConsumers() != null) {
+                    setTextValue(_concurrentConsumersText, PropTypeUtil.getPropValueString(this._binding.getConcurrentConsumers()));
+//                    _concurrentConsumersText.setText(Integer.toString(this._binding.getConcurrentConsumers()));
                 } else {
                     _concurrentConsumersText.setText("1");
                 }
             } else if (control.equals(_connectionFactoryText)) {
                 _connectionFactoryText.setText(this._binding.getConnectionFactory());
             } else if (control.equals(_maxConcurrentConsumersText)) {
-                if (this._binding.getMaxConcurrentConsumers() > 0) {
-                    _maxConcurrentConsumersText.setText(Integer.toString(this._binding.getMaxConcurrentConsumers()));
+                if (this._binding.getMaxConcurrentConsumers() != null) {
+                    setTextValue(_maxConcurrentConsumersText, PropTypeUtil.getPropValueString(this._binding.getMaxConcurrentConsumers()));
+//                    _maxConcurrentConsumersText.setText(Integer.toString(this._binding.getMaxConcurrentConsumers()));
                 } else {
                     _maxConcurrentConsumersText.setText("1");
                 }
@@ -370,8 +372,9 @@ public class CamelJmsComposite extends AbstractSYBindingComposite {
             } else if (control.equals(_selectorText)) {
                 _selectorText.setText(this._binding.getSelector());
             } else if (control.equals(_requestTimeOutText)) {
-                if (this._binding.getMaxConcurrentConsumers() > 0 && this._binding.isSetMaxConcurrentConsumers()) {
-                    _maxConcurrentConsumersText.setText(Integer.toString(this._binding.getMaxConcurrentConsumers()));
+                if (this._binding.getRequestTimeout() != null) {
+                    setTextValue(_requestTimeOutText, PropTypeUtil.getPropValueString(this._binding.getRequestTimeout()));
+//                    _maxConcurrentConsumersText.setText(Integer.toString(this._binding.getMaxConcurrentConsumers()));
                 } else {
                     _maxConcurrentConsumersText.setText("2000");
                 }

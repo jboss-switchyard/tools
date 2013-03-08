@@ -64,13 +64,13 @@ public interface CamelMailBindingType extends BaseCamelBinding {
      * @return the value of the '<em>Port</em>' attribute.
      * @see #isSetPort()
      * @see #unsetPort()
-     * @see #setPort(int)
+     * @see #setPort(Object)
      * @see org.switchyard.tools.models.switchyard1_0.camel.mail.MailPackage#getCamelMailBindingType_Port()
-     * @model unsettable="true" dataType="org.eclipse.emf.ecore.xml.type.Int"
+     * @model unsettable="true" dataType="org.switchyard.tools.models.switchyard1_0.switchyard.PropInteger"
      *        extendedMetaData="kind='element' name='port' namespace='##targetNamespace'"
      * @generated
      */
-    int getPort();
+    Object getPort();
 
     /**
      * Sets the value of the '{@link org.switchyard.tools.models.switchyard1_0.camel.mail.CamelMailBindingType#getPort <em>Port</em>}' attribute.
@@ -82,7 +82,7 @@ public interface CamelMailBindingType extends BaseCamelBinding {
      * @see #getPort()
      * @generated
      */
-    void setPort(int value);
+    void setPort(Object value);
 
     /**
      * Unsets the value of the '{@link org.switchyard.tools.models.switchyard1_0.camel.mail.CamelMailBindingType#getPort <em>Port</em>}' attribute.
@@ -90,7 +90,7 @@ public interface CamelMailBindingType extends BaseCamelBinding {
      * <!-- end-user-doc -->
      * @see #isSetPort()
      * @see #getPort()
-     * @see #setPort(int)
+     * @see #setPort(Object)
      * @generated
      */
     void unsetPort();
@@ -102,7 +102,7 @@ public interface CamelMailBindingType extends BaseCamelBinding {
      * @return whether the value of the '<em>Port</em>' attribute is set.
      * @see #unsetPort()
      * @see #getPort()
-     * @see #setPort(int)
+     * @see #setPort(Object)
      * @generated
      */
     boolean isSetPort();
@@ -173,13 +173,13 @@ public interface CamelMailBindingType extends BaseCamelBinding {
      * @return the value of the '<em>Connection Timeout</em>' attribute.
      * @see #isSetConnectionTimeout()
      * @see #unsetConnectionTimeout()
-     * @see #setConnectionTimeout(int)
+     * @see #setConnectionTimeout(Object)
      * @see org.switchyard.tools.models.switchyard1_0.camel.mail.MailPackage#getCamelMailBindingType_ConnectionTimeout()
-     * @model default="30000" unsettable="true" dataType="org.eclipse.emf.ecore.xml.type.Int"
+     * @model default="30000" unsettable="true" dataType="org.switchyard.tools.models.switchyard1_0.switchyard.PropInteger"
      *        extendedMetaData="kind='element' name='connectionTimeout' namespace='##targetNamespace'"
      * @generated
      */
-    int getConnectionTimeout();
+    Object getConnectionTimeout();
 
     /**
      * Sets the value of the '{@link org.switchyard.tools.models.switchyard1_0.camel.mail.CamelMailBindingType#getConnectionTimeout <em>Connection Timeout</em>}' attribute.
@@ -191,7 +191,7 @@ public interface CamelMailBindingType extends BaseCamelBinding {
      * @see #getConnectionTimeout()
      * @generated
      */
-    void setConnectionTimeout(int value);
+    void setConnectionTimeout(Object value);
 
     /**
      * Unsets the value of the '{@link org.switchyard.tools.models.switchyard1_0.camel.mail.CamelMailBindingType#getConnectionTimeout <em>Connection Timeout</em>}' attribute.
@@ -199,7 +199,7 @@ public interface CamelMailBindingType extends BaseCamelBinding {
      * <!-- end-user-doc -->
      * @see #isSetConnectionTimeout()
      * @see #getConnectionTimeout()
-     * @see #setConnectionTimeout(int)
+     * @see #setConnectionTimeout(Object)
      * @generated
      */
     void unsetConnectionTimeout();
@@ -211,7 +211,7 @@ public interface CamelMailBindingType extends BaseCamelBinding {
      * @return whether the value of the '<em>Connection Timeout</em>' attribute is set.
      * @see #unsetConnectionTimeout()
      * @see #getConnectionTimeout()
-     * @see #setConnectionTimeout(int)
+     * @see #setConnectionTimeout(Object)
      * @generated
      */
     boolean isSetConnectionTimeout();

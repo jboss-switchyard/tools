@@ -120,13 +120,13 @@ public interface CamelFileBindingType extends BaseCamelBinding {
      * @return the value of the '<em>Buffer Size</em>' attribute.
      * @see #isSetBufferSize()
      * @see #unsetBufferSize()
-     * @see #setBufferSize(int)
+     * @see #setBufferSize(Object)
      * @see org.switchyard.tools.models.switchyard1_0.camel.file.FilePackage#getCamelFileBindingType_BufferSize()
-     * @model default="131072" unsettable="true" dataType="org.eclipse.emf.ecore.xml.type.Int"
+     * @model default="131072" unsettable="true" dataType="org.switchyard.tools.models.switchyard1_0.switchyard.PropInteger"
      *        extendedMetaData="kind='element' name='bufferSize' namespace='##targetNamespace'"
      * @generated
      */
-    int getBufferSize();
+    Object getBufferSize();
 
     /**
      * Sets the value of the '{@link org.switchyard.tools.models.switchyard1_0.camel.file.CamelFileBindingType#getBufferSize <em>Buffer Size</em>}' attribute.
@@ -138,7 +138,7 @@ public interface CamelFileBindingType extends BaseCamelBinding {
      * @see #getBufferSize()
      * @generated
      */
-    void setBufferSize(int value);
+    void setBufferSize(Object value);
 
     /**
      * Unsets the value of the '{@link org.switchyard.tools.models.switchyard1_0.camel.file.CamelFileBindingType#getBufferSize <em>Buffer Size</em>}' attribute.
@@ -146,7 +146,7 @@ public interface CamelFileBindingType extends BaseCamelBinding {
      * <!-- end-user-doc -->
      * @see #isSetBufferSize()
      * @see #getBufferSize()
-     * @see #setBufferSize(int)
+     * @see #setBufferSize(Object)
      * @generated
      */
     void unsetBufferSize();
@@ -158,7 +158,7 @@ public interface CamelFileBindingType extends BaseCamelBinding {
      * @return whether the value of the '<em>Buffer Size</em>' attribute is set.
      * @see #unsetBufferSize()
      * @see #getBufferSize()
-     * @see #setBufferSize(int)
+     * @see #setBufferSize(Object)
      * @generated
      */
     boolean isSetBufferSize();

@@ -57,7 +57,7 @@ public interface JpaConsumerType extends EObject {
 
     /**
      * Returns the value of the '<em><b>Initial Delay</b></em>' attribute list.
-     * The list contents are of type {@link java.lang.Integer}.
+     * The list contents are of type {@link java.lang.Object}.
      * <!-- begin-user-doc -->
      * <p>
      * If the meaning of the '<em>Initial Delay</em>' attribute list isn't clear,
@@ -68,11 +68,11 @@ public interface JpaConsumerType extends EObject {
      * @see #isSetInitialDelay()
      * @see #unsetInitialDelay()
      * @see org.switchyard.tools.models.switchyard1_0.camel.jpa.JpaPackage#getJpaConsumerType_InitialDelay()
-     * @model default="1000" unique="false" unsettable="true" dataType="org.eclipse.emf.ecore.xml.type.Int" transient="true" volatile="true" derived="true"
+     * @model default="1000" unique="false" unsettable="true" dataType="org.switchyard.tools.models.switchyard1_0.switchyard.PropInteger" transient="true" volatile="true" derived="true"
      *        extendedMetaData="kind='element' name='initialDelay' namespace='##targetNamespace' group='#ScheduledPollConsumerType:0'"
      * @generated
      */
-    EList<Integer> getInitialDelay();
+    EList<Object> getInitialDelay();
 
     /**
      * Unsets the value of the '{@link org.switchyard.tools.models.switchyard1_0.camel.jpa.JpaConsumerType#getInitialDelay <em>Initial Delay</em>}' attribute list.
@@ -97,7 +97,7 @@ public interface JpaConsumerType extends EObject {
 
     /**
      * Returns the value of the '<em><b>Delay</b></em>' attribute list.
-     * The list contents are of type {@link java.lang.Integer}.
+     * The list contents are of type {@link java.lang.Object}.
      * <!-- begin-user-doc -->
      * <p>
      * If the meaning of the '<em>Delay</em>' attribute list isn't clear,
@@ -108,11 +108,11 @@ public interface JpaConsumerType extends EObject {
      * @see #isSetDelay()
      * @see #unsetDelay()
      * @see org.switchyard.tools.models.switchyard1_0.camel.jpa.JpaPackage#getJpaConsumerType_Delay()
-     * @model default="500" unique="false" unsettable="true" dataType="org.eclipse.emf.ecore.xml.type.Int" transient="true" volatile="true" derived="true"
+     * @model default="500" unique="false" unsettable="true" dataType="org.switchyard.tools.models.switchyard1_0.switchyard.PropInteger" transient="true" volatile="true" derived="true"
      *        extendedMetaData="kind='element' name='delay' namespace='##targetNamespace' group='#ScheduledPollConsumerType:0'"
      * @generated
      */
-    EList<Integer> getDelay();
+    EList<Object> getDelay();
 
     /**
      * Unsets the value of the '{@link org.switchyard.tools.models.switchyard1_0.camel.jpa.JpaConsumerType#getDelay <em>Delay</em>}' attribute list.
@@ -253,7 +253,7 @@ public interface JpaConsumerType extends EObject {
 
     /**
      * Returns the value of the '<em><b>Max Messages Per Poll</b></em>' attribute list.
-     * The list contents are of type {@link java.lang.Integer}.
+     * The list contents are of type {@link java.lang.Object}.
      * <!-- begin-user-doc -->
      * <p>
      * If the meaning of the '<em>Max Messages Per Poll</em>' attribute list isn't clear,
@@ -264,11 +264,11 @@ public interface JpaConsumerType extends EObject {
      * @see #isSetMaxMessagesPerPoll()
      * @see #unsetMaxMessagesPerPoll()
      * @see org.switchyard.tools.models.switchyard1_0.camel.jpa.JpaPackage#getJpaConsumerType_MaxMessagesPerPoll()
-     * @model default="0" unique="false" unsettable="true" dataType="org.eclipse.emf.ecore.xml.type.Int" transient="true" volatile="true" derived="true"
+     * @model default="0" unique="false" unsettable="true" dataType="org.switchyard.tools.models.switchyard1_0.switchyard.PropInteger" transient="true" volatile="true" derived="true"
      *        extendedMetaData="kind='element' name='maxMessagesPerPoll' namespace='##targetNamespace' group='#ScheduledBatchPollConsumerType:6'"
      * @generated
      */
-    EList<Integer> getMaxMessagesPerPoll();
+    EList<Object> getMaxMessagesPerPoll();
 
     /**
      * Unsets the value of the '{@link org.switchyard.tools.models.switchyard1_0.camel.jpa.JpaConsumerType#getMaxMessagesPerPoll <em>Max Messages Per Poll</em>}' attribute list.
@@ -413,13 +413,13 @@ public interface JpaConsumerType extends EObject {
      * @return the value of the '<em>Maximum Results</em>' attribute.
      * @see #isSetMaximumResults()
      * @see #unsetMaximumResults()
-     * @see #setMaximumResults(int)
+     * @see #setMaximumResults(Object)
      * @see org.switchyard.tools.models.switchyard1_0.camel.jpa.JpaPackage#getJpaConsumerType_MaximumResults()
-     * @model default="-1" unsettable="true" dataType="org.eclipse.emf.ecore.xml.type.Int"
+     * @model default="-1" unsettable="true" dataType="org.switchyard.tools.models.switchyard1_0.switchyard.PropInteger"
      *        extendedMetaData="kind='element' name='maximumResults' namespace='##targetNamespace'"
      * @generated
      */
-    int getMaximumResults();
+    Object getMaximumResults();
 
     /**
      * Sets the value of the '{@link org.switchyard.tools.models.switchyard1_0.camel.jpa.JpaConsumerType#getMaximumResults <em>Maximum Results</em>}' attribute.
@@ -431,7 +431,7 @@ public interface JpaConsumerType extends EObject {
      * @see #getMaximumResults()
      * @generated
      */
-    void setMaximumResults(int value);
+    void setMaximumResults(Object value);
 
     /**
      * Unsets the value of the '{@link org.switchyard.tools.models.switchyard1_0.camel.jpa.JpaConsumerType#getMaximumResults <em>Maximum Results</em>}' attribute.
@@ -439,7 +439,7 @@ public interface JpaConsumerType extends EObject {
      * <!-- end-user-doc -->
      * @see #isSetMaximumResults()
      * @see #getMaximumResults()
-     * @see #setMaximumResults(int)
+     * @see #setMaximumResults(Object)
      * @generated
      */
     void unsetMaximumResults();
@@ -451,7 +451,7 @@ public interface JpaConsumerType extends EObject {
      * @return whether the value of the '<em>Maximum Results</em>' attribute is set.
      * @see #unsetMaximumResults()
      * @see #getMaximumResults()
-     * @see #setMaximumResults(int)
+     * @see #setMaximumResults(Object)
      * @generated
      */
     boolean isSetMaximumResults();

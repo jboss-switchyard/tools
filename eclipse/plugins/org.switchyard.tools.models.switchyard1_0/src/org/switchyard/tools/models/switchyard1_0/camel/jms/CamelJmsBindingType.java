@@ -241,13 +241,13 @@ public interface CamelJmsBindingType extends BaseCamelBinding {
      * @return the value of the '<em>Concurrent Consumers</em>' attribute.
      * @see #isSetConcurrentConsumers()
      * @see #unsetConcurrentConsumers()
-     * @see #setConcurrentConsumers(int)
+     * @see #setConcurrentConsumers(Object)
      * @see org.switchyard.tools.models.switchyard1_0.camel.jms.JmsPackage#getCamelJmsBindingType_ConcurrentConsumers()
-     * @model default="1" unsettable="true" dataType="org.eclipse.emf.ecore.xml.type.Int"
+     * @model default="1" unsettable="true" dataType="org.switchyard.tools.models.switchyard1_0.switchyard.PropInteger"
      *        extendedMetaData="kind='element' name='concurrentConsumers' namespace='##targetNamespace'"
      * @generated
      */
-    int getConcurrentConsumers();
+    Object getConcurrentConsumers();
 
     /**
      * Sets the value of the '{@link org.switchyard.tools.models.switchyard1_0.camel.jms.CamelJmsBindingType#getConcurrentConsumers <em>Concurrent Consumers</em>}' attribute.
@@ -259,7 +259,7 @@ public interface CamelJmsBindingType extends BaseCamelBinding {
      * @see #getConcurrentConsumers()
      * @generated
      */
-    void setConcurrentConsumers(int value);
+    void setConcurrentConsumers(Object value);
 
     /**
      * Unsets the value of the '{@link org.switchyard.tools.models.switchyard1_0.camel.jms.CamelJmsBindingType#getConcurrentConsumers <em>Concurrent Consumers</em>}' attribute.
@@ -267,7 +267,7 @@ public interface CamelJmsBindingType extends BaseCamelBinding {
      * <!-- end-user-doc -->
      * @see #isSetConcurrentConsumers()
      * @see #getConcurrentConsumers()
-     * @see #setConcurrentConsumers(int)
+     * @see #setConcurrentConsumers(Object)
      * @generated
      */
     void unsetConcurrentConsumers();
@@ -279,7 +279,7 @@ public interface CamelJmsBindingType extends BaseCamelBinding {
      * @return whether the value of the '<em>Concurrent Consumers</em>' attribute is set.
      * @see #unsetConcurrentConsumers()
      * @see #getConcurrentConsumers()
-     * @see #setConcurrentConsumers(int)
+     * @see #setConcurrentConsumers(Object)
      * @generated
      */
     boolean isSetConcurrentConsumers();
@@ -296,13 +296,13 @@ public interface CamelJmsBindingType extends BaseCamelBinding {
      * @return the value of the '<em>Max Concurrent Consumers</em>' attribute.
      * @see #isSetMaxConcurrentConsumers()
      * @see #unsetMaxConcurrentConsumers()
-     * @see #setMaxConcurrentConsumers(int)
+     * @see #setMaxConcurrentConsumers(Object)
      * @see org.switchyard.tools.models.switchyard1_0.camel.jms.JmsPackage#getCamelJmsBindingType_MaxConcurrentConsumers()
-     * @model default="1" unsettable="true" dataType="org.eclipse.emf.ecore.xml.type.Int"
+     * @model default="1" unsettable="true" dataType="org.switchyard.tools.models.switchyard1_0.switchyard.PropInteger"
      *        extendedMetaData="kind='element' name='maxConcurrentConsumers' namespace='##targetNamespace'"
      * @generated
      */
-    int getMaxConcurrentConsumers();
+    Object getMaxConcurrentConsumers();
 
     /**
      * Sets the value of the '{@link org.switchyard.tools.models.switchyard1_0.camel.jms.CamelJmsBindingType#getMaxConcurrentConsumers <em>Max Concurrent Consumers</em>}' attribute.
@@ -314,7 +314,7 @@ public interface CamelJmsBindingType extends BaseCamelBinding {
      * @see #getMaxConcurrentConsumers()
      * @generated
      */
-    void setMaxConcurrentConsumers(int value);
+    void setMaxConcurrentConsumers(Object value);
 
     /**
      * Unsets the value of the '{@link org.switchyard.tools.models.switchyard1_0.camel.jms.CamelJmsBindingType#getMaxConcurrentConsumers <em>Max Concurrent Consumers</em>}' attribute.
@@ -322,7 +322,7 @@ public interface CamelJmsBindingType extends BaseCamelBinding {
      * <!-- end-user-doc -->
      * @see #isSetMaxConcurrentConsumers()
      * @see #getMaxConcurrentConsumers()
-     * @see #setMaxConcurrentConsumers(int)
+     * @see #setMaxConcurrentConsumers(Object)
      * @generated
      */
     void unsetMaxConcurrentConsumers();
@@ -334,7 +334,7 @@ public interface CamelJmsBindingType extends BaseCamelBinding {
      * @return whether the value of the '<em>Max Concurrent Consumers</em>' attribute is set.
      * @see #unsetMaxConcurrentConsumers()
      * @see #getMaxConcurrentConsumers()
-     * @see #setMaxConcurrentConsumers(int)
+     * @see #setMaxConcurrentConsumers(Object)
      * @generated
      */
     boolean isSetMaxConcurrentConsumers();
@@ -516,13 +516,13 @@ public interface CamelJmsBindingType extends BaseCamelBinding {
      * @return the value of the '<em>Priority</em>' attribute.
      * @see #isSetPriority()
      * @see #unsetPriority()
-     * @see #setPriority(int)
+     * @see #setPriority(Object)
      * @see org.switchyard.tools.models.switchyard1_0.camel.jms.JmsPackage#getCamelJmsBindingType_Priority()
-     * @model default="4" unsettable="true" dataType="org.eclipse.emf.ecore.xml.type.Int"
+     * @model default="4" unsettable="true" dataType="org.switchyard.tools.models.switchyard1_0.switchyard.PropInteger"
      *        extendedMetaData="kind='element' name='priority' namespace='##targetNamespace'"
      * @generated
      */
-    int getPriority();
+    Object getPriority();
 
     /**
      * Sets the value of the '{@link org.switchyard.tools.models.switchyard1_0.camel.jms.CamelJmsBindingType#getPriority <em>Priority</em>}' attribute.
@@ -534,7 +534,7 @@ public interface CamelJmsBindingType extends BaseCamelBinding {
      * @see #getPriority()
      * @generated
      */
-    void setPriority(int value);
+    void setPriority(Object value);
 
     /**
      * Unsets the value of the '{@link org.switchyard.tools.models.switchyard1_0.camel.jms.CamelJmsBindingType#getPriority <em>Priority</em>}' attribute.
@@ -542,7 +542,7 @@ public interface CamelJmsBindingType extends BaseCamelBinding {
      * <!-- end-user-doc -->
      * @see #isSetPriority()
      * @see #getPriority()
-     * @see #setPriority(int)
+     * @see #setPriority(Object)
      * @generated
      */
     void unsetPriority();
@@ -554,7 +554,7 @@ public interface CamelJmsBindingType extends BaseCamelBinding {
      * @return whether the value of the '<em>Priority</em>' attribute is set.
      * @see #unsetPriority()
      * @see #getPriority()
-     * @see #setPriority(int)
+     * @see #setPriority(Object)
      * @generated
      */
     boolean isSetPriority();
@@ -680,13 +680,13 @@ public interface CamelJmsBindingType extends BaseCamelBinding {
      * @return the value of the '<em>Request Timeout</em>' attribute.
      * @see #isSetRequestTimeout()
      * @see #unsetRequestTimeout()
-     * @see #setRequestTimeout(int)
+     * @see #setRequestTimeout(Object)
      * @see org.switchyard.tools.models.switchyard1_0.camel.jms.JmsPackage#getCamelJmsBindingType_RequestTimeout()
-     * @model default="20000" unsettable="true" dataType="org.eclipse.emf.ecore.xml.type.Int"
+     * @model default="20000" unsettable="true" dataType="org.switchyard.tools.models.switchyard1_0.switchyard.PropInteger"
      *        extendedMetaData="kind='element' name='requestTimeout' namespace='##targetNamespace'"
      * @generated
      */
-    int getRequestTimeout();
+    Object getRequestTimeout();
 
     /**
      * Sets the value of the '{@link org.switchyard.tools.models.switchyard1_0.camel.jms.CamelJmsBindingType#getRequestTimeout <em>Request Timeout</em>}' attribute.
@@ -698,7 +698,7 @@ public interface CamelJmsBindingType extends BaseCamelBinding {
      * @see #getRequestTimeout()
      * @generated
      */
-    void setRequestTimeout(int value);
+    void setRequestTimeout(Object value);
 
     /**
      * Unsets the value of the '{@link org.switchyard.tools.models.switchyard1_0.camel.jms.CamelJmsBindingType#getRequestTimeout <em>Request Timeout</em>}' attribute.
@@ -706,7 +706,7 @@ public interface CamelJmsBindingType extends BaseCamelBinding {
      * <!-- end-user-doc -->
      * @see #isSetRequestTimeout()
      * @see #getRequestTimeout()
-     * @see #setRequestTimeout(int)
+     * @see #setRequestTimeout(Object)
      * @generated
      */
     void unsetRequestTimeout();
@@ -718,7 +718,7 @@ public interface CamelJmsBindingType extends BaseCamelBinding {
      * @return whether the value of the '<em>Request Timeout</em>' attribute is set.
      * @see #unsetRequestTimeout()
      * @see #getRequestTimeout()
-     * @see #setRequestTimeout(int)
+     * @see #setRequestTimeout(Object)
      * @generated
      */
     boolean isSetRequestTimeout();
@@ -761,13 +761,13 @@ public interface CamelJmsBindingType extends BaseCamelBinding {
      * @return the value of the '<em>Time To Live</em>' attribute.
      * @see #isSetTimeToLive()
      * @see #unsetTimeToLive()
-     * @see #setTimeToLive(int)
+     * @see #setTimeToLive(Object)
      * @see org.switchyard.tools.models.switchyard1_0.camel.jms.JmsPackage#getCamelJmsBindingType_TimeToLive()
-     * @model unsettable="true" dataType="org.eclipse.emf.ecore.xml.type.Int"
+     * @model unsettable="true" dataType="org.switchyard.tools.models.switchyard1_0.switchyard.PropInteger"
      *        extendedMetaData="kind='element' name='timeToLive' namespace='##targetNamespace'"
      * @generated
      */
-    int getTimeToLive();
+    Object getTimeToLive();
 
     /**
      * Sets the value of the '{@link org.switchyard.tools.models.switchyard1_0.camel.jms.CamelJmsBindingType#getTimeToLive <em>Time To Live</em>}' attribute.
@@ -779,7 +779,7 @@ public interface CamelJmsBindingType extends BaseCamelBinding {
      * @see #getTimeToLive()
      * @generated
      */
-    void setTimeToLive(int value);
+    void setTimeToLive(Object value);
 
     /**
      * Unsets the value of the '{@link org.switchyard.tools.models.switchyard1_0.camel.jms.CamelJmsBindingType#getTimeToLive <em>Time To Live</em>}' attribute.
@@ -787,7 +787,7 @@ public interface CamelJmsBindingType extends BaseCamelBinding {
      * <!-- end-user-doc -->
      * @see #isSetTimeToLive()
      * @see #getTimeToLive()
-     * @see #setTimeToLive(int)
+     * @see #setTimeToLive(Object)
      * @generated
      */
     void unsetTimeToLive();
@@ -799,7 +799,7 @@ public interface CamelJmsBindingType extends BaseCamelBinding {
      * @return whether the value of the '<em>Time To Live</em>' attribute is set.
      * @see #unsetTimeToLive()
      * @see #getTimeToLive()
-     * @see #setTimeToLive(int)
+     * @see #setTimeToLive(Object)
      * @generated
      */
     boolean isSetTimeToLive();

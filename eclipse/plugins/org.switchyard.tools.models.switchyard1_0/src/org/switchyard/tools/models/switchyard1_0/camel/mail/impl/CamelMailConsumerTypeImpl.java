@@ -14,6 +14,8 @@ import org.switchyard.tools.models.switchyard1_0.camel.mail.CamelMailConsumerTyp
 import org.switchyard.tools.models.switchyard1_0.camel.mail.MailConsumerAccountType;
 import org.switchyard.tools.models.switchyard1_0.camel.mail.MailPackage;
 import org.switchyard.tools.models.switchyard1_0.camel.mail.TimeUnitType;
+import org.switchyard.tools.models.switchyard1_0.switchyard.SwitchyardFactory;
+import org.switchyard.tools.models.switchyard1_0.switchyard.SwitchyardPackage;
 
 /**
  * <!-- begin-user-doc -->
@@ -49,7 +51,7 @@ public class CamelMailConsumerTypeImpl extends EObjectImpl implements CamelMailC
      * @generated
      * @ordered
      */
-    protected static final int INITIAL_DELAY_EDEFAULT = 1000;
+    protected static final Object INITIAL_DELAY_EDEFAULT = SwitchyardFactory.eINSTANCE.createFromString(SwitchyardPackage.eINSTANCE.getPropInteger(), "1000");
 
     /**
      * The cached value of the '{@link #getInitialDelay() <em>Initial Delay</em>}' attribute.
@@ -59,7 +61,7 @@ public class CamelMailConsumerTypeImpl extends EObjectImpl implements CamelMailC
      * @generated
      * @ordered
      */
-    protected int initialDelay = INITIAL_DELAY_EDEFAULT;
+    protected Object initialDelay = INITIAL_DELAY_EDEFAULT;
 
     /**
      * This is true if the Initial Delay attribute has been set.
@@ -78,7 +80,7 @@ public class CamelMailConsumerTypeImpl extends EObjectImpl implements CamelMailC
      * @generated
      * @ordered
      */
-    protected static final int DELAY_EDEFAULT = 60000;
+    protected static final Object DELAY_EDEFAULT = SwitchyardFactory.eINSTANCE.createFromString(SwitchyardPackage.eINSTANCE.getPropInteger(), "60000");
 
     /**
      * The cached value of the '{@link #getDelay() <em>Delay</em>}' attribute.
@@ -88,7 +90,7 @@ public class CamelMailConsumerTypeImpl extends EObjectImpl implements CamelMailC
      * @generated
      * @ordered
      */
-    protected int delay = DELAY_EDEFAULT;
+    protected Object delay = DELAY_EDEFAULT;
 
     /**
      * This is true if the Delay attribute has been set.
@@ -194,7 +196,7 @@ public class CamelMailConsumerTypeImpl extends EObjectImpl implements CamelMailC
      * @generated
      * @ordered
      */
-    protected static final int MAX_MESSAGES_PER_POLL_EDEFAULT = 0;
+    protected static final Object MAX_MESSAGES_PER_POLL_EDEFAULT = SwitchyardFactory.eINSTANCE.createFromString(SwitchyardPackage.eINSTANCE.getPropInteger(), "0");
 
     /**
      * The cached value of the '{@link #getMaxMessagesPerPoll() <em>Max Messages Per Poll</em>}' attribute.
@@ -204,7 +206,7 @@ public class CamelMailConsumerTypeImpl extends EObjectImpl implements CamelMailC
      * @generated
      * @ordered
      */
-    protected int maxMessagesPerPoll = MAX_MESSAGES_PER_POLL_EDEFAULT;
+    protected Object maxMessagesPerPoll = MAX_MESSAGES_PER_POLL_EDEFAULT;
 
     /**
      * This is true if the Max Messages Per Poll attribute has been set.
@@ -243,7 +245,7 @@ public class CamelMailConsumerTypeImpl extends EObjectImpl implements CamelMailC
      * @generated
      * @ordered
      */
-    protected static final int FETCH_SIZE_EDEFAULT = -1;
+    protected static final Object FETCH_SIZE_EDEFAULT = SwitchyardFactory.eINSTANCE.createFromString(SwitchyardPackage.eINSTANCE.getPropInteger(), "-1");
 
     /**
      * The cached value of the '{@link #getFetchSize() <em>Fetch Size</em>}' attribute.
@@ -253,7 +255,7 @@ public class CamelMailConsumerTypeImpl extends EObjectImpl implements CamelMailC
      * @generated
      * @ordered
      */
-    protected int fetchSize = FETCH_SIZE_EDEFAULT;
+    protected Object fetchSize = FETCH_SIZE_EDEFAULT;
 
     /**
      * This is true if the Fetch Size attribute has been set.
@@ -424,7 +426,7 @@ public class CamelMailConsumerTypeImpl extends EObjectImpl implements CamelMailC
      * <!-- end-user-doc -->
      * @generated
      */
-    public int getInitialDelay() {
+    public Object getInitialDelay() {
         return initialDelay;
     }
 
@@ -433,8 +435,8 @@ public class CamelMailConsumerTypeImpl extends EObjectImpl implements CamelMailC
      * <!-- end-user-doc -->
      * @generated
      */
-    public void setInitialDelay(int newInitialDelay) {
-        int oldInitialDelay = initialDelay;
+    public void setInitialDelay(Object newInitialDelay) {
+        Object oldInitialDelay = initialDelay;
         initialDelay = newInitialDelay;
         boolean oldInitialDelayESet = initialDelayESet;
         initialDelayESet = true;
@@ -448,7 +450,7 @@ public class CamelMailConsumerTypeImpl extends EObjectImpl implements CamelMailC
      * @generated
      */
     public void unsetInitialDelay() {
-        int oldInitialDelay = initialDelay;
+        Object oldInitialDelay = initialDelay;
         boolean oldInitialDelayESet = initialDelayESet;
         initialDelay = INITIAL_DELAY_EDEFAULT;
         initialDelayESet = false;
@@ -470,7 +472,7 @@ public class CamelMailConsumerTypeImpl extends EObjectImpl implements CamelMailC
      * <!-- end-user-doc -->
      * @generated
      */
-    public int getDelay() {
+    public Object getDelay() {
         return delay;
     }
 
@@ -479,8 +481,8 @@ public class CamelMailConsumerTypeImpl extends EObjectImpl implements CamelMailC
      * <!-- end-user-doc -->
      * @generated
      */
-    public void setDelay(int newDelay) {
-        int oldDelay = delay;
+    public void setDelay(Object newDelay) {
+        Object oldDelay = delay;
         delay = newDelay;
         boolean oldDelayESet = delayESet;
         delayESet = true;
@@ -494,7 +496,7 @@ public class CamelMailConsumerTypeImpl extends EObjectImpl implements CamelMailC
      * @generated
      */
     public void unsetDelay() {
-        int oldDelay = delay;
+        Object oldDelay = delay;
         boolean oldDelayESet = delayESet;
         delay = DELAY_EDEFAULT;
         delayESet = false;
@@ -654,7 +656,7 @@ public class CamelMailConsumerTypeImpl extends EObjectImpl implements CamelMailC
      * <!-- end-user-doc -->
      * @generated
      */
-    public int getMaxMessagesPerPoll() {
+    public Object getMaxMessagesPerPoll() {
         return maxMessagesPerPoll;
     }
 
@@ -663,8 +665,8 @@ public class CamelMailConsumerTypeImpl extends EObjectImpl implements CamelMailC
      * <!-- end-user-doc -->
      * @generated
      */
-    public void setMaxMessagesPerPoll(int newMaxMessagesPerPoll) {
-        int oldMaxMessagesPerPoll = maxMessagesPerPoll;
+    public void setMaxMessagesPerPoll(Object newMaxMessagesPerPoll) {
+        Object oldMaxMessagesPerPoll = maxMessagesPerPoll;
         maxMessagesPerPoll = newMaxMessagesPerPoll;
         boolean oldMaxMessagesPerPollESet = maxMessagesPerPollESet;
         maxMessagesPerPollESet = true;
@@ -678,7 +680,7 @@ public class CamelMailConsumerTypeImpl extends EObjectImpl implements CamelMailC
      * @generated
      */
     public void unsetMaxMessagesPerPoll() {
-        int oldMaxMessagesPerPoll = maxMessagesPerPoll;
+        Object oldMaxMessagesPerPoll = maxMessagesPerPoll;
         boolean oldMaxMessagesPerPollESet = maxMessagesPerPollESet;
         maxMessagesPerPoll = MAX_MESSAGES_PER_POLL_EDEFAULT;
         maxMessagesPerPollESet = false;
@@ -721,7 +723,7 @@ public class CamelMailConsumerTypeImpl extends EObjectImpl implements CamelMailC
      * <!-- end-user-doc -->
      * @generated
      */
-    public int getFetchSize() {
+    public Object getFetchSize() {
         return fetchSize;
     }
 
@@ -730,8 +732,8 @@ public class CamelMailConsumerTypeImpl extends EObjectImpl implements CamelMailC
      * <!-- end-user-doc -->
      * @generated
      */
-    public void setFetchSize(int newFetchSize) {
-        int oldFetchSize = fetchSize;
+    public void setFetchSize(Object newFetchSize) {
+        Object oldFetchSize = fetchSize;
         fetchSize = newFetchSize;
         boolean oldFetchSizeESet = fetchSizeESet;
         fetchSizeESet = true;
@@ -745,7 +747,7 @@ public class CamelMailConsumerTypeImpl extends EObjectImpl implements CamelMailC
      * @generated
      */
     public void unsetFetchSize() {
-        int oldFetchSize = fetchSize;
+        Object oldFetchSize = fetchSize;
         boolean oldFetchSizeESet = fetchSizeESet;
         fetchSize = FETCH_SIZE_EDEFAULT;
         fetchSizeESet = false;
@@ -1014,10 +1016,10 @@ public class CamelMailConsumerTypeImpl extends EObjectImpl implements CamelMailC
     public void eSet(int featureID, Object newValue) {
         switch (featureID) {
             case MailPackage.CAMEL_MAIL_CONSUMER_TYPE__INITIAL_DELAY:
-                setInitialDelay((Integer)newValue);
+                setInitialDelay(newValue);
                 return;
             case MailPackage.CAMEL_MAIL_CONSUMER_TYPE__DELAY:
-                setDelay((Integer)newValue);
+                setDelay(newValue);
                 return;
             case MailPackage.CAMEL_MAIL_CONSUMER_TYPE__USE_FIXED_DELAY:
                 setUseFixedDelay((Boolean)newValue);
@@ -1029,13 +1031,13 @@ public class CamelMailConsumerTypeImpl extends EObjectImpl implements CamelMailC
                 setTimeUnit((TimeUnitType)newValue);
                 return;
             case MailPackage.CAMEL_MAIL_CONSUMER_TYPE__MAX_MESSAGES_PER_POLL:
-                setMaxMessagesPerPoll((Integer)newValue);
+                setMaxMessagesPerPoll(newValue);
                 return;
             case MailPackage.CAMEL_MAIL_CONSUMER_TYPE__FOLDER_NAME:
                 setFolderName((String)newValue);
                 return;
             case MailPackage.CAMEL_MAIL_CONSUMER_TYPE__FETCH_SIZE:
-                setFetchSize((Integer)newValue);
+                setFetchSize(newValue);
                 return;
             case MailPackage.CAMEL_MAIL_CONSUMER_TYPE__UNSEEN:
                 setUnseen((Boolean)newValue);

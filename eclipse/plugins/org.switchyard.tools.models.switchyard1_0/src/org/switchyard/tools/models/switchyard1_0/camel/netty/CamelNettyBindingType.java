@@ -14,6 +14,14 @@ package org.switchyard.tools.models.switchyard1_0.camel.netty;
  *   <li>{@link org.switchyard.tools.models.switchyard1_0.camel.netty.CamelNettyBindingType#getPort <em>Port</em>}</li>
  *   <li>{@link org.switchyard.tools.models.switchyard1_0.camel.netty.CamelNettyBindingType#getReceiveBufferSize <em>Receive Buffer Size</em>}</li>
  *   <li>{@link org.switchyard.tools.models.switchyard1_0.camel.netty.CamelNettyBindingType#getSendBufferSize <em>Send Buffer Size</em>}</li>
+ *   <li>{@link org.switchyard.tools.models.switchyard1_0.camel.netty.CamelNettyBindingType#isSsl <em>Ssl</em>}</li>
+ *   <li>{@link org.switchyard.tools.models.switchyard1_0.camel.netty.CamelNettyBindingType#getSslHandler <em>Ssl Handler</em>}</li>
+ *   <li>{@link org.switchyard.tools.models.switchyard1_0.camel.netty.CamelNettyBindingType#getPassphrase <em>Passphrase</em>}</li>
+ *   <li>{@link org.switchyard.tools.models.switchyard1_0.camel.netty.CamelNettyBindingType#getSecurityProvider <em>Security Provider</em>}</li>
+ *   <li>{@link org.switchyard.tools.models.switchyard1_0.camel.netty.CamelNettyBindingType#getKeyStoreFormat <em>Key Store Format</em>}</li>
+ *   <li>{@link org.switchyard.tools.models.switchyard1_0.camel.netty.CamelNettyBindingType#getKeyStoreFile <em>Key Store File</em>}</li>
+ *   <li>{@link org.switchyard.tools.models.switchyard1_0.camel.netty.CamelNettyBindingType#getTrustStoreFile <em>Trust Store File</em>}</li>
+ *   <li>{@link org.switchyard.tools.models.switchyard1_0.camel.netty.CamelNettyBindingType#getSslContextParametersRef <em>Ssl Context Parameters Ref</em>}</li>
  *   <li>{@link org.switchyard.tools.models.switchyard1_0.camel.netty.CamelNettyBindingType#isReuseAddress <em>Reuse Address</em>}</li>
  *   <li>{@link org.switchyard.tools.models.switchyard1_0.camel.netty.CamelNettyBindingType#getEncoders <em>Encoders</em>}</li>
  *   <li>{@link org.switchyard.tools.models.switchyard1_0.camel.netty.CamelNettyBindingType#getDecoders <em>Decoders</em>}</li>
@@ -68,13 +76,13 @@ public interface CamelNettyBindingType extends BaseCamelBinding {
      * @return the value of the '<em>Port</em>' attribute.
      * @see #isSetPort()
      * @see #unsetPort()
-     * @see #setPort(int)
+     * @see #setPort(Object)
      * @see org.switchyard.tools.models.switchyard1_0.camel.netty.NettyPackage#getCamelNettyBindingType_Port()
-     * @model unsettable="true" dataType="org.eclipse.emf.ecore.xml.type.Int" required="true"
+     * @model unsettable="true" dataType="org.switchyard.tools.models.switchyard1_0.switchyard.PropInteger" required="true"
      *        extendedMetaData="kind='element' name='port' namespace='##targetNamespace'"
      * @generated
      */
-    int getPort();
+    Object getPort();
 
     /**
      * Sets the value of the '{@link org.switchyard.tools.models.switchyard1_0.camel.netty.CamelNettyBindingType#getPort <em>Port</em>}' attribute.
@@ -86,7 +94,7 @@ public interface CamelNettyBindingType extends BaseCamelBinding {
      * @see #getPort()
      * @generated
      */
-    void setPort(int value);
+    void setPort(Object value);
 
     /**
      * Unsets the value of the '{@link org.switchyard.tools.models.switchyard1_0.camel.netty.CamelNettyBindingType#getPort <em>Port</em>}' attribute.
@@ -94,7 +102,7 @@ public interface CamelNettyBindingType extends BaseCamelBinding {
      * <!-- end-user-doc -->
      * @see #isSetPort()
      * @see #getPort()
-     * @see #setPort(int)
+     * @see #setPort(Object)
      * @generated
      */
     void unsetPort();
@@ -106,7 +114,7 @@ public interface CamelNettyBindingType extends BaseCamelBinding {
      * @return whether the value of the '<em>Port</em>' attribute is set.
      * @see #unsetPort()
      * @see #getPort()
-     * @see #setPort(int)
+     * @see #setPort(Object)
      * @generated
      */
     boolean isSetPort();
@@ -123,13 +131,13 @@ public interface CamelNettyBindingType extends BaseCamelBinding {
      * @return the value of the '<em>Receive Buffer Size</em>' attribute.
      * @see #isSetReceiveBufferSize()
      * @see #unsetReceiveBufferSize()
-     * @see #setReceiveBufferSize(long)
+     * @see #setReceiveBufferSize(Object)
      * @see org.switchyard.tools.models.switchyard1_0.camel.netty.NettyPackage#getCamelNettyBindingType_ReceiveBufferSize()
-     * @model default="65536" unsettable="true" dataType="org.eclipse.emf.ecore.xml.type.Long"
+     * @model default="65536" unsettable="true" dataType="org.switchyard.tools.models.switchyard1_0.switchyard.PropLong"
      *        extendedMetaData="kind='element' name='receiveBufferSize' namespace='##targetNamespace'"
      * @generated
      */
-    long getReceiveBufferSize();
+    Object getReceiveBufferSize();
 
     /**
      * Sets the value of the '{@link org.switchyard.tools.models.switchyard1_0.camel.netty.CamelNettyBindingType#getReceiveBufferSize <em>Receive Buffer Size</em>}' attribute.
@@ -141,7 +149,7 @@ public interface CamelNettyBindingType extends BaseCamelBinding {
      * @see #getReceiveBufferSize()
      * @generated
      */
-    void setReceiveBufferSize(long value);
+    void setReceiveBufferSize(Object value);
 
     /**
      * Unsets the value of the '{@link org.switchyard.tools.models.switchyard1_0.camel.netty.CamelNettyBindingType#getReceiveBufferSize <em>Receive Buffer Size</em>}' attribute.
@@ -149,7 +157,7 @@ public interface CamelNettyBindingType extends BaseCamelBinding {
      * <!-- end-user-doc -->
      * @see #isSetReceiveBufferSize()
      * @see #getReceiveBufferSize()
-     * @see #setReceiveBufferSize(long)
+     * @see #setReceiveBufferSize(Object)
      * @generated
      */
     void unsetReceiveBufferSize();
@@ -161,7 +169,7 @@ public interface CamelNettyBindingType extends BaseCamelBinding {
      * @return whether the value of the '<em>Receive Buffer Size</em>' attribute is set.
      * @see #unsetReceiveBufferSize()
      * @see #getReceiveBufferSize()
-     * @see #setReceiveBufferSize(long)
+     * @see #setReceiveBufferSize(Object)
      * @generated
      */
     boolean isSetReceiveBufferSize();
@@ -178,13 +186,13 @@ public interface CamelNettyBindingType extends BaseCamelBinding {
      * @return the value of the '<em>Send Buffer Size</em>' attribute.
      * @see #isSetSendBufferSize()
      * @see #unsetSendBufferSize()
-     * @see #setSendBufferSize(long)
+     * @see #setSendBufferSize(Object)
      * @see org.switchyard.tools.models.switchyard1_0.camel.netty.NettyPackage#getCamelNettyBindingType_SendBufferSize()
-     * @model default="65536" unsettable="true" dataType="org.eclipse.emf.ecore.xml.type.Long"
+     * @model default="65536" unsettable="true" dataType="org.switchyard.tools.models.switchyard1_0.switchyard.PropLong"
      *        extendedMetaData="kind='element' name='sendBufferSize' namespace='##targetNamespace'"
      * @generated
      */
-    long getSendBufferSize();
+    Object getSendBufferSize();
 
     /**
      * Sets the value of the '{@link org.switchyard.tools.models.switchyard1_0.camel.netty.CamelNettyBindingType#getSendBufferSize <em>Send Buffer Size</em>}' attribute.
@@ -196,7 +204,7 @@ public interface CamelNettyBindingType extends BaseCamelBinding {
      * @see #getSendBufferSize()
      * @generated
      */
-    void setSendBufferSize(long value);
+    void setSendBufferSize(Object value);
 
     /**
      * Unsets the value of the '{@link org.switchyard.tools.models.switchyard1_0.camel.netty.CamelNettyBindingType#getSendBufferSize <em>Send Buffer Size</em>}' attribute.
@@ -204,7 +212,7 @@ public interface CamelNettyBindingType extends BaseCamelBinding {
      * <!-- end-user-doc -->
      * @see #isSetSendBufferSize()
      * @see #getSendBufferSize()
-     * @see #setSendBufferSize(long)
+     * @see #setSendBufferSize(Object)
      * @generated
      */
     void unsetSendBufferSize();
@@ -216,10 +224,253 @@ public interface CamelNettyBindingType extends BaseCamelBinding {
      * @return whether the value of the '<em>Send Buffer Size</em>' attribute is set.
      * @see #unsetSendBufferSize()
      * @see #getSendBufferSize()
-     * @see #setSendBufferSize(long)
+     * @see #setSendBufferSize(Object)
      * @generated
      */
     boolean isSetSendBufferSize();
+
+    /**
+     * Returns the value of the '<em><b>Ssl</b></em>' attribute.
+     * <!-- begin-user-doc -->
+     * <p>
+     * If the meaning of the '<em>Ssl</em>' attribute isn't clear,
+     * there really should be more of a description here...
+     * </p>
+     * <!-- end-user-doc -->
+     * @return the value of the '<em>Ssl</em>' attribute.
+     * @see #isSetSsl()
+     * @see #unsetSsl()
+     * @see #setSsl(boolean)
+     * @see org.switchyard.tools.models.switchyard1_0.camel.netty.NettyPackage#getCamelNettyBindingType_Ssl()
+     * @model unsettable="true" dataType="org.eclipse.emf.ecore.xml.type.Boolean"
+     *        extendedMetaData="kind='element' name='ssl' namespace='##targetNamespace'"
+     * @generated
+     */
+    boolean isSsl();
+
+    /**
+     * Sets the value of the '{@link org.switchyard.tools.models.switchyard1_0.camel.netty.CamelNettyBindingType#isSsl <em>Ssl</em>}' attribute.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @param value the new value of the '<em>Ssl</em>' attribute.
+     * @see #isSetSsl()
+     * @see #unsetSsl()
+     * @see #isSsl()
+     * @generated
+     */
+    void setSsl(boolean value);
+
+    /**
+     * Unsets the value of the '{@link org.switchyard.tools.models.switchyard1_0.camel.netty.CamelNettyBindingType#isSsl <em>Ssl</em>}' attribute.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @see #isSetSsl()
+     * @see #isSsl()
+     * @see #setSsl(boolean)
+     * @generated
+     */
+    void unsetSsl();
+
+    /**
+     * Returns whether the value of the '{@link org.switchyard.tools.models.switchyard1_0.camel.netty.CamelNettyBindingType#isSsl <em>Ssl</em>}' attribute is set.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @return whether the value of the '<em>Ssl</em>' attribute is set.
+     * @see #unsetSsl()
+     * @see #isSsl()
+     * @see #setSsl(boolean)
+     * @generated
+     */
+    boolean isSetSsl();
+
+    /**
+     * Returns the value of the '<em><b>Ssl Handler</b></em>' attribute.
+     * <!-- begin-user-doc -->
+     * <p>
+     * If the meaning of the '<em>Ssl Handler</em>' attribute isn't clear,
+     * there really should be more of a description here...
+     * </p>
+     * <!-- end-user-doc -->
+     * @return the value of the '<em>Ssl Handler</em>' attribute.
+     * @see #setSslHandler(String)
+     * @see org.switchyard.tools.models.switchyard1_0.camel.netty.NettyPackage#getCamelNettyBindingType_SslHandler()
+     * @model dataType="org.eclipse.emf.ecore.xml.type.String"
+     *        extendedMetaData="kind='element' name='sslHandler' namespace='##targetNamespace'"
+     * @generated
+     */
+    String getSslHandler();
+
+    /**
+     * Sets the value of the '{@link org.switchyard.tools.models.switchyard1_0.camel.netty.CamelNettyBindingType#getSslHandler <em>Ssl Handler</em>}' attribute.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @param value the new value of the '<em>Ssl Handler</em>' attribute.
+     * @see #getSslHandler()
+     * @generated
+     */
+    void setSslHandler(String value);
+
+    /**
+     * Returns the value of the '<em><b>Passphrase</b></em>' attribute.
+     * <!-- begin-user-doc -->
+     * <p>
+     * If the meaning of the '<em>Passphrase</em>' attribute isn't clear,
+     * there really should be more of a description here...
+     * </p>
+     * <!-- end-user-doc -->
+     * @return the value of the '<em>Passphrase</em>' attribute.
+     * @see #setPassphrase(String)
+     * @see org.switchyard.tools.models.switchyard1_0.camel.netty.NettyPackage#getCamelNettyBindingType_Passphrase()
+     * @model dataType="org.eclipse.emf.ecore.xml.type.String"
+     *        extendedMetaData="kind='element' name='passphrase' namespace='##targetNamespace'"
+     * @generated
+     */
+    String getPassphrase();
+
+    /**
+     * Sets the value of the '{@link org.switchyard.tools.models.switchyard1_0.camel.netty.CamelNettyBindingType#getPassphrase <em>Passphrase</em>}' attribute.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @param value the new value of the '<em>Passphrase</em>' attribute.
+     * @see #getPassphrase()
+     * @generated
+     */
+    void setPassphrase(String value);
+
+    /**
+     * Returns the value of the '<em><b>Security Provider</b></em>' attribute.
+     * <!-- begin-user-doc -->
+     * <p>
+     * If the meaning of the '<em>Security Provider</em>' attribute isn't clear,
+     * there really should be more of a description here...
+     * </p>
+     * <!-- end-user-doc -->
+     * @return the value of the '<em>Security Provider</em>' attribute.
+     * @see #setSecurityProvider(String)
+     * @see org.switchyard.tools.models.switchyard1_0.camel.netty.NettyPackage#getCamelNettyBindingType_SecurityProvider()
+     * @model dataType="org.eclipse.emf.ecore.xml.type.String"
+     *        extendedMetaData="kind='element' name='securityProvider' namespace='##targetNamespace'"
+     * @generated
+     */
+    String getSecurityProvider();
+
+    /**
+     * Sets the value of the '{@link org.switchyard.tools.models.switchyard1_0.camel.netty.CamelNettyBindingType#getSecurityProvider <em>Security Provider</em>}' attribute.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @param value the new value of the '<em>Security Provider</em>' attribute.
+     * @see #getSecurityProvider()
+     * @generated
+     */
+    void setSecurityProvider(String value);
+
+    /**
+     * Returns the value of the '<em><b>Key Store Format</b></em>' attribute.
+     * <!-- begin-user-doc -->
+     * <p>
+     * If the meaning of the '<em>Key Store Format</em>' attribute isn't clear,
+     * there really should be more of a description here...
+     * </p>
+     * <!-- end-user-doc -->
+     * @return the value of the '<em>Key Store Format</em>' attribute.
+     * @see #setKeyStoreFormat(String)
+     * @see org.switchyard.tools.models.switchyard1_0.camel.netty.NettyPackage#getCamelNettyBindingType_KeyStoreFormat()
+     * @model dataType="org.eclipse.emf.ecore.xml.type.String"
+     *        extendedMetaData="kind='element' name='keyStoreFormat' namespace='##targetNamespace'"
+     * @generated
+     */
+    String getKeyStoreFormat();
+
+    /**
+     * Sets the value of the '{@link org.switchyard.tools.models.switchyard1_0.camel.netty.CamelNettyBindingType#getKeyStoreFormat <em>Key Store Format</em>}' attribute.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @param value the new value of the '<em>Key Store Format</em>' attribute.
+     * @see #getKeyStoreFormat()
+     * @generated
+     */
+    void setKeyStoreFormat(String value);
+
+    /**
+     * Returns the value of the '<em><b>Key Store File</b></em>' attribute.
+     * <!-- begin-user-doc -->
+     * <p>
+     * If the meaning of the '<em>Key Store File</em>' attribute isn't clear,
+     * there really should be more of a description here...
+     * </p>
+     * <!-- end-user-doc -->
+     * @return the value of the '<em>Key Store File</em>' attribute.
+     * @see #setKeyStoreFile(String)
+     * @see org.switchyard.tools.models.switchyard1_0.camel.netty.NettyPackage#getCamelNettyBindingType_KeyStoreFile()
+     * @model dataType="org.eclipse.emf.ecore.xml.type.String"
+     *        extendedMetaData="kind='element' name='keyStoreFile' namespace='##targetNamespace'"
+     * @generated
+     */
+    String getKeyStoreFile();
+
+    /**
+     * Sets the value of the '{@link org.switchyard.tools.models.switchyard1_0.camel.netty.CamelNettyBindingType#getKeyStoreFile <em>Key Store File</em>}' attribute.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @param value the new value of the '<em>Key Store File</em>' attribute.
+     * @see #getKeyStoreFile()
+     * @generated
+     */
+    void setKeyStoreFile(String value);
+
+    /**
+     * Returns the value of the '<em><b>Trust Store File</b></em>' attribute.
+     * <!-- begin-user-doc -->
+     * <p>
+     * If the meaning of the '<em>Trust Store File</em>' attribute isn't clear,
+     * there really should be more of a description here...
+     * </p>
+     * <!-- end-user-doc -->
+     * @return the value of the '<em>Trust Store File</em>' attribute.
+     * @see #setTrustStoreFile(String)
+     * @see org.switchyard.tools.models.switchyard1_0.camel.netty.NettyPackage#getCamelNettyBindingType_TrustStoreFile()
+     * @model dataType="org.eclipse.emf.ecore.xml.type.String"
+     *        extendedMetaData="kind='element' name='trustStoreFile' namespace='##targetNamespace'"
+     * @generated
+     */
+    String getTrustStoreFile();
+
+    /**
+     * Sets the value of the '{@link org.switchyard.tools.models.switchyard1_0.camel.netty.CamelNettyBindingType#getTrustStoreFile <em>Trust Store File</em>}' attribute.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @param value the new value of the '<em>Trust Store File</em>' attribute.
+     * @see #getTrustStoreFile()
+     * @generated
+     */
+    void setTrustStoreFile(String value);
+
+    /**
+     * Returns the value of the '<em><b>Ssl Context Parameters Ref</b></em>' attribute.
+     * <!-- begin-user-doc -->
+     * <p>
+     * If the meaning of the '<em>Ssl Context Parameters Ref</em>' attribute isn't clear,
+     * there really should be more of a description here...
+     * </p>
+     * <!-- end-user-doc -->
+     * @return the value of the '<em>Ssl Context Parameters Ref</em>' attribute.
+     * @see #setSslContextParametersRef(String)
+     * @see org.switchyard.tools.models.switchyard1_0.camel.netty.NettyPackage#getCamelNettyBindingType_SslContextParametersRef()
+     * @model dataType="org.eclipse.emf.ecore.xml.type.String"
+     *        extendedMetaData="kind='element' name='sslContextParametersRef' namespace='##targetNamespace'"
+     * @generated
+     */
+    String getSslContextParametersRef();
+
+    /**
+     * Sets the value of the '{@link org.switchyard.tools.models.switchyard1_0.camel.netty.CamelNettyBindingType#getSslContextParametersRef <em>Ssl Context Parameters Ref</em>}' attribute.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @param value the new value of the '<em>Ssl Context Parameters Ref</em>' attribute.
+     * @see #getSslContextParametersRef()
+     * @generated
+     */
+    void setSslContextParametersRef(String value);
 
     /**
      * Returns the value of the '<em><b>Reuse Address</b></em>' attribute.
@@ -396,13 +647,13 @@ public interface CamelNettyBindingType extends BaseCamelBinding {
      * @return the value of the '<em>Worker Count</em>' attribute.
      * @see #isSetWorkerCount()
      * @see #unsetWorkerCount()
-     * @see #setWorkerCount(int)
+     * @see #setWorkerCount(Object)
      * @see org.switchyard.tools.models.switchyard1_0.camel.netty.NettyPackage#getCamelNettyBindingType_WorkerCount()
-     * @model unsettable="true" dataType="org.eclipse.emf.ecore.xml.type.Int"
+     * @model unsettable="true" dataType="org.switchyard.tools.models.switchyard1_0.switchyard.PropInteger"
      *        extendedMetaData="kind='element' name='workerCount' namespace='##targetNamespace'"
      * @generated
      */
-    int getWorkerCount();
+    Object getWorkerCount();
 
     /**
      * Sets the value of the '{@link org.switchyard.tools.models.switchyard1_0.camel.netty.CamelNettyBindingType#getWorkerCount <em>Worker Count</em>}' attribute.
@@ -414,7 +665,7 @@ public interface CamelNettyBindingType extends BaseCamelBinding {
      * @see #getWorkerCount()
      * @generated
      */
-    void setWorkerCount(int value);
+    void setWorkerCount(Object value);
 
     /**
      * Unsets the value of the '{@link org.switchyard.tools.models.switchyard1_0.camel.netty.CamelNettyBindingType#getWorkerCount <em>Worker Count</em>}' attribute.
@@ -422,7 +673,7 @@ public interface CamelNettyBindingType extends BaseCamelBinding {
      * <!-- end-user-doc -->
      * @see #isSetWorkerCount()
      * @see #getWorkerCount()
-     * @see #setWorkerCount(int)
+     * @see #setWorkerCount(Object)
      * @generated
      */
     void unsetWorkerCount();
@@ -434,7 +685,7 @@ public interface CamelNettyBindingType extends BaseCamelBinding {
      * @return whether the value of the '<em>Worker Count</em>' attribute is set.
      * @see #unsetWorkerCount()
      * @see #getWorkerCount()
-     * @see #setWorkerCount(int)
+     * @see #setWorkerCount(Object)
      * @generated
      */
     boolean isSetWorkerCount();

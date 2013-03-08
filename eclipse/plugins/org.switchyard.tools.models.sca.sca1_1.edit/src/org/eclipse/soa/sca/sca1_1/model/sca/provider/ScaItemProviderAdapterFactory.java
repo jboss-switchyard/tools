@@ -42,2217 +42,2217 @@ import org.eclipse.soa.sca.sca1_1.model.sca.util.ScaAdapterFactory;
  */
 public class ScaItemProviderAdapterFactory extends ScaAdapterFactory implements ComposeableAdapterFactory, IChangeNotifier, IDisposable, IChildCreationExtender {
 	/**
-	 * This keeps track of the root adapter factory that delegates to this adapter factory.
-	 * <!-- begin-user-doc -->
+     * This keeps track of the root adapter factory that delegates to this adapter factory.
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	protected ComposedAdapterFactory parentAdapterFactory;
 
 	/**
-	 * This is used to implement {@link org.eclipse.emf.edit.provider.IChangeNotifier}.
-	 * <!-- begin-user-doc -->
+     * This is used to implement {@link org.eclipse.emf.edit.provider.IChangeNotifier}.
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	protected IChangeNotifier changeNotifier = new ChangeNotifier();
 
 	/**
-	 * This helps manage the child creation extenders.
-	 * <!-- begin-user-doc -->
+     * This helps manage the child creation extenders.
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	protected ChildCreationExtenderManager childCreationExtenderManager = new ChildCreationExtenderManager(ScaEditPlugin.INSTANCE, ScaPackage.eNS_URI);
 
 	/**
-	 * This keeps track of all the supported types checked by {@link #isFactoryForType isFactoryForType}.
-	 * <!-- begin-user-doc -->
+     * This keeps track of all the supported types checked by {@link #isFactoryForType isFactoryForType}.
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	protected Collection<Object> supportedTypes = new ArrayList<Object>();
 
 	/**
-	 * This constructs an instance.
-	 * <!-- begin-user-doc -->
+     * This constructs an instance.
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public ScaItemProviderAdapterFactory() {
-		supportedTypes.add(IEditingDomainItemProvider.class);
-		supportedTypes.add(IStructuredItemContentProvider.class);
-		supportedTypes.add(ITreeItemContentProvider.class);
-		supportedTypes.add(IItemLabelProvider.class);
-		supportedTypes.add(IItemPropertySource.class);
-	}
+        supportedTypes.add(IEditingDomainItemProvider.class);
+        supportedTypes.add(IStructuredItemContentProvider.class);
+        supportedTypes.add(ITreeItemContentProvider.class);
+        supportedTypes.add(IItemLabelProvider.class);
+        supportedTypes.add(IItemPropertySource.class);
+    }
 
 	/**
-	 * This keeps track of the one adapter used for all {@link org.eclipse.soa.sca.sca1_1.model.sca.ActivationSpec} instances.
-	 * <!-- begin-user-doc -->
+     * This keeps track of the one adapter used for all {@link org.eclipse.soa.sca.sca1_1.model.sca.ActivationSpec} instances.
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	protected ActivationSpecItemProvider activationSpecItemProvider;
 
 	/**
-	 * This creates an adapter for a {@link org.eclipse.soa.sca.sca1_1.model.sca.ActivationSpec}.
-	 * <!-- begin-user-doc -->
+     * This creates an adapter for a {@link org.eclipse.soa.sca.sca1_1.model.sca.ActivationSpec}.
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	@Override
 	public Adapter createActivationSpecAdapter() {
-		if (activationSpecItemProvider == null) {
-			activationSpecItemProvider = new ActivationSpecItemProvider(this);
-		}
+        if (activationSpecItemProvider == null) {
+            activationSpecItemProvider = new ActivationSpecItemProvider(this);
+        }
 
-		return activationSpecItemProvider;
-	}
+        return activationSpecItemProvider;
+    }
 
 	/**
-	 * This keeps track of the one adapter used for all {@link org.eclipse.soa.sca.sca1_1.model.sca.BindingProperty} instances.
-	 * <!-- begin-user-doc -->
+     * This keeps track of the one adapter used for all {@link org.eclipse.soa.sca.sca1_1.model.sca.BindingProperty} instances.
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	protected BindingPropertyItemProvider bindingPropertyItemProvider;
 
 	/**
-	 * This creates an adapter for a {@link org.eclipse.soa.sca.sca1_1.model.sca.BindingProperty}.
-	 * <!-- begin-user-doc -->
+     * This creates an adapter for a {@link org.eclipse.soa.sca.sca1_1.model.sca.BindingProperty}.
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	@Override
 	public Adapter createBindingPropertyAdapter() {
-		if (bindingPropertyItemProvider == null) {
-			bindingPropertyItemProvider = new BindingPropertyItemProvider(this);
-		}
+        if (bindingPropertyItemProvider == null) {
+            bindingPropertyItemProvider = new BindingPropertyItemProvider(this);
+        }
 
-		return bindingPropertyItemProvider;
-	}
+        return bindingPropertyItemProvider;
+    }
 
 	/**
-	 * This keeps track of the one adapter used for all {@link org.eclipse.soa.sca.sca1_1.model.sca.BindingType} instances.
-	 * <!-- begin-user-doc -->
+     * This keeps track of the one adapter used for all {@link org.eclipse.soa.sca.sca1_1.model.sca.BindingType} instances.
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	protected BindingTypeItemProvider bindingTypeItemProvider;
 
 	/**
-	 * This creates an adapter for a {@link org.eclipse.soa.sca.sca1_1.model.sca.BindingType}.
-	 * <!-- begin-user-doc -->
+     * This creates an adapter for a {@link org.eclipse.soa.sca.sca1_1.model.sca.BindingType}.
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	@Override
 	public Adapter createBindingTypeAdapter() {
-		if (bindingTypeItemProvider == null) {
-			bindingTypeItemProvider = new BindingTypeItemProvider(this);
-		}
+        if (bindingTypeItemProvider == null) {
+            bindingTypeItemProvider = new BindingTypeItemProvider(this);
+        }
 
-		return bindingTypeItemProvider;
-	}
+        return bindingTypeItemProvider;
+    }
 
 	/**
-	 * This keeps track of the one adapter used for all {@link org.eclipse.soa.sca.sca1_1.model.sca.BPELImplementation} instances.
-	 * <!-- begin-user-doc -->
+     * This keeps track of the one adapter used for all {@link org.eclipse.soa.sca.sca1_1.model.sca.BPELImplementation} instances.
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	protected BPELImplementationItemProvider bpelImplementationItemProvider;
 
 	/**
-	 * This creates an adapter for a {@link org.eclipse.soa.sca.sca1_1.model.sca.BPELImplementation}.
-	 * <!-- begin-user-doc -->
+     * This creates an adapter for a {@link org.eclipse.soa.sca.sca1_1.model.sca.BPELImplementation}.
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	@Override
 	public Adapter createBPELImplementationAdapter() {
-		if (bpelImplementationItemProvider == null) {
-			bpelImplementationItemProvider = new BPELImplementationItemProvider(this);
-		}
+        if (bpelImplementationItemProvider == null) {
+            bpelImplementationItemProvider = new BPELImplementationItemProvider(this);
+        }
 
-		return bpelImplementationItemProvider;
-	}
+        return bpelImplementationItemProvider;
+    }
 
 	/**
-	 * This keeps track of the one adapter used for all {@link org.eclipse.soa.sca.sca1_1.model.sca.Callback} instances.
-	 * <!-- begin-user-doc -->
+     * This keeps track of the one adapter used for all {@link org.eclipse.soa.sca.sca1_1.model.sca.Callback} instances.
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	protected CallbackItemProvider callbackItemProvider;
 
 	/**
-	 * This creates an adapter for a {@link org.eclipse.soa.sca.sca1_1.model.sca.Callback}.
-	 * <!-- begin-user-doc -->
+     * This creates an adapter for a {@link org.eclipse.soa.sca.sca1_1.model.sca.Callback}.
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	@Override
 	public Adapter createCallbackAdapter() {
-		if (callbackItemProvider == null) {
-			callbackItemProvider = new CallbackItemProvider(this);
-		}
+        if (callbackItemProvider == null) {
+            callbackItemProvider = new CallbackItemProvider(this);
+        }
 
-		return callbackItemProvider;
-	}
+        return callbackItemProvider;
+    }
 
 	/**
-	 * This keeps track of the one adapter used for all {@link org.eclipse.soa.sca.sca1_1.model.sca.CExport} instances.
-	 * <!-- begin-user-doc -->
+     * This keeps track of the one adapter used for all {@link org.eclipse.soa.sca.sca1_1.model.sca.CExport} instances.
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	protected CExportItemProvider cExportItemProvider;
 
 	/**
-	 * This creates an adapter for a {@link org.eclipse.soa.sca.sca1_1.model.sca.CExport}.
-	 * <!-- begin-user-doc -->
+     * This creates an adapter for a {@link org.eclipse.soa.sca.sca1_1.model.sca.CExport}.
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	@Override
 	public Adapter createCExportAdapter() {
-		if (cExportItemProvider == null) {
-			cExportItemProvider = new CExportItemProvider(this);
-		}
+        if (cExportItemProvider == null) {
+            cExportItemProvider = new CExportItemProvider(this);
+        }
 
-		return cExportItemProvider;
-	}
+        return cExportItemProvider;
+    }
 
 	/**
-	 * This keeps track of the one adapter used for all {@link org.eclipse.soa.sca.sca1_1.model.sca.CFunction} instances.
-	 * <!-- begin-user-doc -->
+     * This keeps track of the one adapter used for all {@link org.eclipse.soa.sca.sca1_1.model.sca.CFunction} instances.
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	protected CFunctionItemProvider cFunctionItemProvider;
 
 	/**
-	 * This creates an adapter for a {@link org.eclipse.soa.sca.sca1_1.model.sca.CFunction}.
-	 * <!-- begin-user-doc -->
+     * This creates an adapter for a {@link org.eclipse.soa.sca.sca1_1.model.sca.CFunction}.
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	@Override
 	public Adapter createCFunctionAdapter() {
-		if (cFunctionItemProvider == null) {
-			cFunctionItemProvider = new CFunctionItemProvider(this);
-		}
+        if (cFunctionItemProvider == null) {
+            cFunctionItemProvider = new CFunctionItemProvider(this);
+        }
 
-		return cFunctionItemProvider;
-	}
+        return cFunctionItemProvider;
+    }
 
 	/**
-	 * This keeps track of the one adapter used for all {@link org.eclipse.soa.sca.sca1_1.model.sca.CImplementation} instances.
-	 * <!-- begin-user-doc -->
+     * This keeps track of the one adapter used for all {@link org.eclipse.soa.sca.sca1_1.model.sca.CImplementation} instances.
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	protected CImplementationItemProvider cImplementationItemProvider;
 
 	/**
-	 * This creates an adapter for a {@link org.eclipse.soa.sca.sca1_1.model.sca.CImplementation}.
-	 * <!-- begin-user-doc -->
+     * This creates an adapter for a {@link org.eclipse.soa.sca.sca1_1.model.sca.CImplementation}.
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	@Override
 	public Adapter createCImplementationAdapter() {
-		if (cImplementationItemProvider == null) {
-			cImplementationItemProvider = new CImplementationItemProvider(this);
-		}
+        if (cImplementationItemProvider == null) {
+            cImplementationItemProvider = new CImplementationItemProvider(this);
+        }
 
-		return cImplementationItemProvider;
-	}
+        return cImplementationItemProvider;
+    }
 
 	/**
-	 * This keeps track of the one adapter used for all {@link org.eclipse.soa.sca.sca1_1.model.sca.CImplementationFunction} instances.
-	 * <!-- begin-user-doc -->
+     * This keeps track of the one adapter used for all {@link org.eclipse.soa.sca.sca1_1.model.sca.CImplementationFunction} instances.
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	protected CImplementationFunctionItemProvider cImplementationFunctionItemProvider;
 
 	/**
-	 * This creates an adapter for a {@link org.eclipse.soa.sca.sca1_1.model.sca.CImplementationFunction}.
-	 * <!-- begin-user-doc -->
+     * This creates an adapter for a {@link org.eclipse.soa.sca.sca1_1.model.sca.CImplementationFunction}.
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	@Override
 	public Adapter createCImplementationFunctionAdapter() {
-		if (cImplementationFunctionItemProvider == null) {
-			cImplementationFunctionItemProvider = new CImplementationFunctionItemProvider(this);
-		}
+        if (cImplementationFunctionItemProvider == null) {
+            cImplementationFunctionItemProvider = new CImplementationFunctionItemProvider(this);
+        }
 
-		return cImplementationFunctionItemProvider;
-	}
+        return cImplementationFunctionItemProvider;
+    }
 
 	/**
-	 * This keeps track of the one adapter used for all {@link org.eclipse.soa.sca.sca1_1.model.sca.CImport} instances.
-	 * <!-- begin-user-doc -->
+     * This keeps track of the one adapter used for all {@link org.eclipse.soa.sca.sca1_1.model.sca.CImport} instances.
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	protected CImportItemProvider cImportItemProvider;
 
 	/**
-	 * This creates an adapter for a {@link org.eclipse.soa.sca.sca1_1.model.sca.CImport}.
-	 * <!-- begin-user-doc -->
+     * This creates an adapter for a {@link org.eclipse.soa.sca.sca1_1.model.sca.CImport}.
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	@Override
 	public Adapter createCImportAdapter() {
-		if (cImportItemProvider == null) {
-			cImportItemProvider = new CImportItemProvider(this);
-		}
+        if (cImportItemProvider == null) {
+            cImportItemProvider = new CImportItemProvider(this);
+        }
 
-		return cImportItemProvider;
-	}
+        return cImportItemProvider;
+    }
 
 	/**
-	 * This keeps track of the one adapter used for all {@link org.eclipse.soa.sca.sca1_1.model.sca.CInterface} instances.
-	 * <!-- begin-user-doc -->
+     * This keeps track of the one adapter used for all {@link org.eclipse.soa.sca.sca1_1.model.sca.CInterface} instances.
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	protected CInterfaceItemProvider cInterfaceItemProvider;
 
 	/**
-	 * This creates an adapter for a {@link org.eclipse.soa.sca.sca1_1.model.sca.CInterface}.
-	 * <!-- begin-user-doc -->
+     * This creates an adapter for a {@link org.eclipse.soa.sca.sca1_1.model.sca.CInterface}.
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	@Override
 	public Adapter createCInterfaceAdapter() {
-		if (cInterfaceItemProvider == null) {
-			cInterfaceItemProvider = new CInterfaceItemProvider(this);
-		}
+        if (cInterfaceItemProvider == null) {
+            cInterfaceItemProvider = new CInterfaceItemProvider(this);
+        }
 
-		return cInterfaceItemProvider;
-	}
+        return cInterfaceItemProvider;
+    }
 
 	/**
-	 * This keeps track of the one adapter used for all {@link org.eclipse.soa.sca.sca1_1.model.sca.CommonExtensionBase} instances.
-	 * <!-- begin-user-doc -->
+     * This keeps track of the one adapter used for all {@link org.eclipse.soa.sca.sca1_1.model.sca.CommonExtensionBase} instances.
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	protected CommonExtensionBaseItemProvider commonExtensionBaseItemProvider;
 
 	/**
-	 * This creates an adapter for a {@link org.eclipse.soa.sca.sca1_1.model.sca.CommonExtensionBase}.
-	 * <!-- begin-user-doc -->
+     * This creates an adapter for a {@link org.eclipse.soa.sca.sca1_1.model.sca.CommonExtensionBase}.
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	@Override
 	public Adapter createCommonExtensionBaseAdapter() {
-		if (commonExtensionBaseItemProvider == null) {
-			commonExtensionBaseItemProvider = new CommonExtensionBaseItemProvider(this);
-		}
+        if (commonExtensionBaseItemProvider == null) {
+            commonExtensionBaseItemProvider = new CommonExtensionBaseItemProvider(this);
+        }
 
-		return commonExtensionBaseItemProvider;
-	}
+        return commonExtensionBaseItemProvider;
+    }
 
 	/**
-	 * This keeps track of the one adapter used for all {@link org.eclipse.soa.sca.sca1_1.model.sca.Component} instances.
-	 * <!-- begin-user-doc -->
+     * This keeps track of the one adapter used for all {@link org.eclipse.soa.sca.sca1_1.model.sca.Component} instances.
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	protected ComponentItemProvider componentItemProvider;
 
 	/**
-	 * This creates an adapter for a {@link org.eclipse.soa.sca.sca1_1.model.sca.Component}.
-	 * <!-- begin-user-doc -->
+     * This creates an adapter for a {@link org.eclipse.soa.sca.sca1_1.model.sca.Component}.
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	@Override
 	public Adapter createComponentAdapter() {
-		if (componentItemProvider == null) {
-			componentItemProvider = new ComponentItemProvider(this);
-		}
+        if (componentItemProvider == null) {
+            componentItemProvider = new ComponentItemProvider(this);
+        }
 
-		return componentItemProvider;
-	}
+        return componentItemProvider;
+    }
 
 	/**
-	 * This keeps track of the one adapter used for all {@link org.eclipse.soa.sca.sca1_1.model.sca.ComponentReference} instances.
-	 * <!-- begin-user-doc -->
+     * This keeps track of the one adapter used for all {@link org.eclipse.soa.sca.sca1_1.model.sca.ComponentReference} instances.
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	protected ComponentReferenceItemProvider componentReferenceItemProvider;
 
 	/**
-	 * This creates an adapter for a {@link org.eclipse.soa.sca.sca1_1.model.sca.ComponentReference}.
-	 * <!-- begin-user-doc -->
+     * This creates an adapter for a {@link org.eclipse.soa.sca.sca1_1.model.sca.ComponentReference}.
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	@Override
 	public Adapter createComponentReferenceAdapter() {
-		if (componentReferenceItemProvider == null) {
-			componentReferenceItemProvider = new ComponentReferenceItemProvider(this);
-		}
+        if (componentReferenceItemProvider == null) {
+            componentReferenceItemProvider = new ComponentReferenceItemProvider(this);
+        }
 
-		return componentReferenceItemProvider;
-	}
+        return componentReferenceItemProvider;
+    }
 
 	/**
-	 * This keeps track of the one adapter used for all {@link org.eclipse.soa.sca.sca1_1.model.sca.ComponentService} instances.
-	 * <!-- begin-user-doc -->
+     * This keeps track of the one adapter used for all {@link org.eclipse.soa.sca.sca1_1.model.sca.ComponentService} instances.
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	protected ComponentServiceItemProvider componentServiceItemProvider;
 
 	/**
-	 * This creates an adapter for a {@link org.eclipse.soa.sca.sca1_1.model.sca.ComponentService}.
-	 * <!-- begin-user-doc -->
+     * This creates an adapter for a {@link org.eclipse.soa.sca.sca1_1.model.sca.ComponentService}.
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	@Override
 	public Adapter createComponentServiceAdapter() {
-		if (componentServiceItemProvider == null) {
-			componentServiceItemProvider = new ComponentServiceItemProvider(this);
-		}
+        if (componentServiceItemProvider == null) {
+            componentServiceItemProvider = new ComponentServiceItemProvider(this);
+        }
 
-		return componentServiceItemProvider;
-	}
+        return componentServiceItemProvider;
+    }
 
 	/**
-	 * This keeps track of the one adapter used for all {@link org.eclipse.soa.sca.sca1_1.model.sca.ComponentType} instances.
-	 * <!-- begin-user-doc -->
+     * This keeps track of the one adapter used for all {@link org.eclipse.soa.sca.sca1_1.model.sca.ComponentType} instances.
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	protected ComponentTypeItemProvider componentTypeItemProvider;
 
 	/**
-	 * This creates an adapter for a {@link org.eclipse.soa.sca.sca1_1.model.sca.ComponentType}.
-	 * <!-- begin-user-doc -->
+     * This creates an adapter for a {@link org.eclipse.soa.sca.sca1_1.model.sca.ComponentType}.
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	@Override
 	public Adapter createComponentTypeAdapter() {
-		if (componentTypeItemProvider == null) {
-			componentTypeItemProvider = new ComponentTypeItemProvider(this);
-		}
+        if (componentTypeItemProvider == null) {
+            componentTypeItemProvider = new ComponentTypeItemProvider(this);
+        }
 
-		return componentTypeItemProvider;
-	}
+        return componentTypeItemProvider;
+    }
 
 	/**
-	 * This keeps track of the one adapter used for all {@link org.eclipse.soa.sca.sca1_1.model.sca.ComponentTypeReference} instances.
-	 * <!-- begin-user-doc -->
+     * This keeps track of the one adapter used for all {@link org.eclipse.soa.sca.sca1_1.model.sca.ComponentTypeReference} instances.
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	protected ComponentTypeReferenceItemProvider componentTypeReferenceItemProvider;
 
 	/**
-	 * This creates an adapter for a {@link org.eclipse.soa.sca.sca1_1.model.sca.ComponentTypeReference}.
-	 * <!-- begin-user-doc -->
+     * This creates an adapter for a {@link org.eclipse.soa.sca.sca1_1.model.sca.ComponentTypeReference}.
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	@Override
 	public Adapter createComponentTypeReferenceAdapter() {
-		if (componentTypeReferenceItemProvider == null) {
-			componentTypeReferenceItemProvider = new ComponentTypeReferenceItemProvider(this);
-		}
+        if (componentTypeReferenceItemProvider == null) {
+            componentTypeReferenceItemProvider = new ComponentTypeReferenceItemProvider(this);
+        }
 
-		return componentTypeReferenceItemProvider;
-	}
+        return componentTypeReferenceItemProvider;
+    }
 
 	/**
-	 * This keeps track of the one adapter used for all {@link org.eclipse.soa.sca.sca1_1.model.sca.Composite} instances.
-	 * <!-- begin-user-doc -->
+     * This keeps track of the one adapter used for all {@link org.eclipse.soa.sca.sca1_1.model.sca.Composite} instances.
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	protected CompositeItemProvider compositeItemProvider;
 
 	/**
-	 * This creates an adapter for a {@link org.eclipse.soa.sca.sca1_1.model.sca.Composite}.
-	 * <!-- begin-user-doc -->
+     * This creates an adapter for a {@link org.eclipse.soa.sca.sca1_1.model.sca.Composite}.
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	@Override
 	public Adapter createCompositeAdapter() {
-		if (compositeItemProvider == null) {
-			compositeItemProvider = new CompositeItemProvider(this);
-		}
+        if (compositeItemProvider == null) {
+            compositeItemProvider = new CompositeItemProvider(this);
+        }
 
-		return compositeItemProvider;
-	}
+        return compositeItemProvider;
+    }
 
 	/**
-	 * This keeps track of the one adapter used for all {@link org.eclipse.soa.sca.sca1_1.model.sca.Connection} instances.
-	 * <!-- begin-user-doc -->
+     * This keeps track of the one adapter used for all {@link org.eclipse.soa.sca.sca1_1.model.sca.Connection} instances.
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	protected ConnectionItemProvider connectionItemProvider;
 
 	/**
-	 * This creates an adapter for a {@link org.eclipse.soa.sca.sca1_1.model.sca.Connection}.
-	 * <!-- begin-user-doc -->
+     * This creates an adapter for a {@link org.eclipse.soa.sca.sca1_1.model.sca.Connection}.
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	@Override
 	public Adapter createConnectionAdapter() {
-		if (connectionItemProvider == null) {
-			connectionItemProvider = new ConnectionItemProvider(this);
-		}
+        if (connectionItemProvider == null) {
+            connectionItemProvider = new ConnectionItemProvider(this);
+        }
 
-		return connectionItemProvider;
-	}
+        return connectionItemProvider;
+    }
 
 	/**
-	 * This keeps track of the one adapter used for all {@link org.eclipse.soa.sca.sca1_1.model.sca.ConnectionSpec} instances.
-	 * <!-- begin-user-doc -->
+     * This keeps track of the one adapter used for all {@link org.eclipse.soa.sca.sca1_1.model.sca.ConnectionSpec} instances.
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	protected ConnectionSpecItemProvider connectionSpecItemProvider;
 
 	/**
-	 * This creates an adapter for a {@link org.eclipse.soa.sca.sca1_1.model.sca.ConnectionSpec}.
-	 * <!-- begin-user-doc -->
+     * This creates an adapter for a {@link org.eclipse.soa.sca.sca1_1.model.sca.ConnectionSpec}.
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	@Override
 	public Adapter createConnectionSpecAdapter() {
-		if (connectionSpecItemProvider == null) {
-			connectionSpecItemProvider = new ConnectionSpecItemProvider(this);
-		}
+        if (connectionSpecItemProvider == null) {
+            connectionSpecItemProvider = new ConnectionSpecItemProvider(this);
+        }
 
-		return connectionSpecItemProvider;
-	}
+        return connectionSpecItemProvider;
+    }
 
 	/**
-	 * This keeps track of the one adapter used for all {@link org.eclipse.soa.sca.sca1_1.model.sca.ConstrainingProperty} instances.
-	 * <!-- begin-user-doc -->
+     * This keeps track of the one adapter used for all {@link org.eclipse.soa.sca.sca1_1.model.sca.ConstrainingProperty} instances.
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	protected ConstrainingPropertyItemProvider constrainingPropertyItemProvider;
 
 	/**
-	 * This creates an adapter for a {@link org.eclipse.soa.sca.sca1_1.model.sca.ConstrainingProperty}.
-	 * <!-- begin-user-doc -->
+     * This creates an adapter for a {@link org.eclipse.soa.sca.sca1_1.model.sca.ConstrainingProperty}.
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	@Override
 	public Adapter createConstrainingPropertyAdapter() {
-		if (constrainingPropertyItemProvider == null) {
-			constrainingPropertyItemProvider = new ConstrainingPropertyItemProvider(this);
-		}
+        if (constrainingPropertyItemProvider == null) {
+            constrainingPropertyItemProvider = new ConstrainingPropertyItemProvider(this);
+        }
 
-		return constrainingPropertyItemProvider;
-	}
+        return constrainingPropertyItemProvider;
+    }
 
 	/**
-	 * This keeps track of the one adapter used for all {@link org.eclipse.soa.sca.sca1_1.model.sca.ConstrainingReference} instances.
-	 * <!-- begin-user-doc -->
+     * This keeps track of the one adapter used for all {@link org.eclipse.soa.sca.sca1_1.model.sca.ConstrainingReference} instances.
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	protected ConstrainingReferenceItemProvider constrainingReferenceItemProvider;
 
 	/**
-	 * This creates an adapter for a {@link org.eclipse.soa.sca.sca1_1.model.sca.ConstrainingReference}.
-	 * <!-- begin-user-doc -->
+     * This creates an adapter for a {@link org.eclipse.soa.sca.sca1_1.model.sca.ConstrainingReference}.
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	@Override
 	public Adapter createConstrainingReferenceAdapter() {
-		if (constrainingReferenceItemProvider == null) {
-			constrainingReferenceItemProvider = new ConstrainingReferenceItemProvider(this);
-		}
+        if (constrainingReferenceItemProvider == null) {
+            constrainingReferenceItemProvider = new ConstrainingReferenceItemProvider(this);
+        }
 
-		return constrainingReferenceItemProvider;
-	}
+        return constrainingReferenceItemProvider;
+    }
 
 	/**
-	 * This keeps track of the one adapter used for all {@link org.eclipse.soa.sca.sca1_1.model.sca.ConstrainingService} instances.
-	 * <!-- begin-user-doc -->
+     * This keeps track of the one adapter used for all {@link org.eclipse.soa.sca.sca1_1.model.sca.ConstrainingService} instances.
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	protected ConstrainingServiceItemProvider constrainingServiceItemProvider;
 
 	/**
-	 * This creates an adapter for a {@link org.eclipse.soa.sca.sca1_1.model.sca.ConstrainingService}.
-	 * <!-- begin-user-doc -->
+     * This creates an adapter for a {@link org.eclipse.soa.sca.sca1_1.model.sca.ConstrainingService}.
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	@Override
 	public Adapter createConstrainingServiceAdapter() {
-		if (constrainingServiceItemProvider == null) {
-			constrainingServiceItemProvider = new ConstrainingServiceItemProvider(this);
-		}
+        if (constrainingServiceItemProvider == null) {
+            constrainingServiceItemProvider = new ConstrainingServiceItemProvider(this);
+        }
 
-		return constrainingServiceItemProvider;
-	}
+        return constrainingServiceItemProvider;
+    }
 
 	/**
-	 * This keeps track of the one adapter used for all {@link org.eclipse.soa.sca.sca1_1.model.sca.ConstrainingType} instances.
-	 * <!-- begin-user-doc -->
+     * This keeps track of the one adapter used for all {@link org.eclipse.soa.sca.sca1_1.model.sca.ConstrainingType} instances.
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	protected ConstrainingTypeItemProvider constrainingTypeItemProvider;
 
 	/**
-	 * This creates an adapter for a {@link org.eclipse.soa.sca.sca1_1.model.sca.ConstrainingType}.
-	 * <!-- begin-user-doc -->
+     * This creates an adapter for a {@link org.eclipse.soa.sca.sca1_1.model.sca.ConstrainingType}.
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	@Override
 	public Adapter createConstrainingTypeAdapter() {
-		if (constrainingTypeItemProvider == null) {
-			constrainingTypeItemProvider = new ConstrainingTypeItemProvider(this);
-		}
+        if (constrainingTypeItemProvider == null) {
+            constrainingTypeItemProvider = new ConstrainingTypeItemProvider(this);
+        }
 
-		return constrainingTypeItemProvider;
-	}
+        return constrainingTypeItemProvider;
+    }
 
 	/**
-	 * This keeps track of the one adapter used for all {@link org.eclipse.soa.sca.sca1_1.model.sca.ContributionType} instances.
-	 * <!-- begin-user-doc -->
+     * This keeps track of the one adapter used for all {@link org.eclipse.soa.sca.sca1_1.model.sca.ContributionType} instances.
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	protected ContributionTypeItemProvider contributionTypeItemProvider;
 
 	/**
-	 * This creates an adapter for a {@link org.eclipse.soa.sca.sca1_1.model.sca.ContributionType}.
-	 * <!-- begin-user-doc -->
+     * This creates an adapter for a {@link org.eclipse.soa.sca.sca1_1.model.sca.ContributionType}.
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	@Override
 	public Adapter createContributionTypeAdapter() {
-		if (contributionTypeItemProvider == null) {
-			contributionTypeItemProvider = new ContributionTypeItemProvider(this);
-		}
+        if (contributionTypeItemProvider == null) {
+            contributionTypeItemProvider = new ContributionTypeItemProvider(this);
+        }
 
-		return contributionTypeItemProvider;
-	}
+        return contributionTypeItemProvider;
+    }
 
 	/**
-	 * This keeps track of the one adapter used for all {@link org.eclipse.soa.sca.sca1_1.model.sca.CPPExport} instances.
-	 * <!-- begin-user-doc -->
+     * This keeps track of the one adapter used for all {@link org.eclipse.soa.sca.sca1_1.model.sca.CPPExport} instances.
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	protected CPPExportItemProvider cppExportItemProvider;
 
 	/**
-	 * This creates an adapter for a {@link org.eclipse.soa.sca.sca1_1.model.sca.CPPExport}.
-	 * <!-- begin-user-doc -->
+     * This creates an adapter for a {@link org.eclipse.soa.sca.sca1_1.model.sca.CPPExport}.
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	@Override
 	public Adapter createCPPExportAdapter() {
-		if (cppExportItemProvider == null) {
-			cppExportItemProvider = new CPPExportItemProvider(this);
-		}
+        if (cppExportItemProvider == null) {
+            cppExportItemProvider = new CPPExportItemProvider(this);
+        }
 
-		return cppExportItemProvider;
-	}
+        return cppExportItemProvider;
+    }
 
 	/**
-	 * This keeps track of the one adapter used for all {@link org.eclipse.soa.sca.sca1_1.model.sca.CPPFunction} instances.
-	 * <!-- begin-user-doc -->
+     * This keeps track of the one adapter used for all {@link org.eclipse.soa.sca.sca1_1.model.sca.CPPFunction} instances.
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	protected CPPFunctionItemProvider cppFunctionItemProvider;
 
 	/**
-	 * This creates an adapter for a {@link org.eclipse.soa.sca.sca1_1.model.sca.CPPFunction}.
-	 * <!-- begin-user-doc -->
+     * This creates an adapter for a {@link org.eclipse.soa.sca.sca1_1.model.sca.CPPFunction}.
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	@Override
 	public Adapter createCPPFunctionAdapter() {
-		if (cppFunctionItemProvider == null) {
-			cppFunctionItemProvider = new CPPFunctionItemProvider(this);
-		}
+        if (cppFunctionItemProvider == null) {
+            cppFunctionItemProvider = new CPPFunctionItemProvider(this);
+        }
 
-		return cppFunctionItemProvider;
-	}
+        return cppFunctionItemProvider;
+    }
 
 	/**
-	 * This keeps track of the one adapter used for all {@link org.eclipse.soa.sca.sca1_1.model.sca.CPPImplementation} instances.
-	 * <!-- begin-user-doc -->
+     * This keeps track of the one adapter used for all {@link org.eclipse.soa.sca.sca1_1.model.sca.CPPImplementation} instances.
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	protected CPPImplementationItemProvider cppImplementationItemProvider;
 
 	/**
-	 * This creates an adapter for a {@link org.eclipse.soa.sca.sca1_1.model.sca.CPPImplementation}.
-	 * <!-- begin-user-doc -->
+     * This creates an adapter for a {@link org.eclipse.soa.sca.sca1_1.model.sca.CPPImplementation}.
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	@Override
 	public Adapter createCPPImplementationAdapter() {
-		if (cppImplementationItemProvider == null) {
-			cppImplementationItemProvider = new CPPImplementationItemProvider(this);
-		}
+        if (cppImplementationItemProvider == null) {
+            cppImplementationItemProvider = new CPPImplementationItemProvider(this);
+        }
 
-		return cppImplementationItemProvider;
-	}
+        return cppImplementationItemProvider;
+    }
 
 	/**
-	 * This keeps track of the one adapter used for all {@link org.eclipse.soa.sca.sca1_1.model.sca.CPPImplementationFunction} instances.
-	 * <!-- begin-user-doc -->
+     * This keeps track of the one adapter used for all {@link org.eclipse.soa.sca.sca1_1.model.sca.CPPImplementationFunction} instances.
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	protected CPPImplementationFunctionItemProvider cppImplementationFunctionItemProvider;
 
 	/**
-	 * This creates an adapter for a {@link org.eclipse.soa.sca.sca1_1.model.sca.CPPImplementationFunction}.
-	 * <!-- begin-user-doc -->
+     * This creates an adapter for a {@link org.eclipse.soa.sca.sca1_1.model.sca.CPPImplementationFunction}.
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	@Override
 	public Adapter createCPPImplementationFunctionAdapter() {
-		if (cppImplementationFunctionItemProvider == null) {
-			cppImplementationFunctionItemProvider = new CPPImplementationFunctionItemProvider(this);
-		}
+        if (cppImplementationFunctionItemProvider == null) {
+            cppImplementationFunctionItemProvider = new CPPImplementationFunctionItemProvider(this);
+        }
 
-		return cppImplementationFunctionItemProvider;
-	}
+        return cppImplementationFunctionItemProvider;
+    }
 
 	/**
-	 * This keeps track of the one adapter used for all {@link org.eclipse.soa.sca.sca1_1.model.sca.CPPImport} instances.
-	 * <!-- begin-user-doc -->
+     * This keeps track of the one adapter used for all {@link org.eclipse.soa.sca.sca1_1.model.sca.CPPImport} instances.
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	protected CPPImportItemProvider cppImportItemProvider;
 
 	/**
-	 * This creates an adapter for a {@link org.eclipse.soa.sca.sca1_1.model.sca.CPPImport}.
-	 * <!-- begin-user-doc -->
+     * This creates an adapter for a {@link org.eclipse.soa.sca.sca1_1.model.sca.CPPImport}.
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	@Override
 	public Adapter createCPPImportAdapter() {
-		if (cppImportItemProvider == null) {
-			cppImportItemProvider = new CPPImportItemProvider(this);
-		}
+        if (cppImportItemProvider == null) {
+            cppImportItemProvider = new CPPImportItemProvider(this);
+        }
 
-		return cppImportItemProvider;
-	}
+        return cppImportItemProvider;
+    }
 
 	/**
-	 * This keeps track of the one adapter used for all {@link org.eclipse.soa.sca.sca1_1.model.sca.CPPInterface} instances.
-	 * <!-- begin-user-doc -->
+     * This keeps track of the one adapter used for all {@link org.eclipse.soa.sca.sca1_1.model.sca.CPPInterface} instances.
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	protected CPPInterfaceItemProvider cppInterfaceItemProvider;
 
 	/**
-	 * This creates an adapter for a {@link org.eclipse.soa.sca.sca1_1.model.sca.CPPInterface}.
-	 * <!-- begin-user-doc -->
+     * This creates an adapter for a {@link org.eclipse.soa.sca.sca1_1.model.sca.CPPInterface}.
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	@Override
 	public Adapter createCPPInterfaceAdapter() {
-		if (cppInterfaceItemProvider == null) {
-			cppInterfaceItemProvider = new CPPInterfaceItemProvider(this);
-		}
+        if (cppInterfaceItemProvider == null) {
+            cppInterfaceItemProvider = new CPPInterfaceItemProvider(this);
+        }
 
-		return cppInterfaceItemProvider;
-	}
+        return cppInterfaceItemProvider;
+    }
 
 	/**
-	 * This keeps track of the one adapter used for all {@link org.eclipse.soa.sca.sca1_1.model.sca.DeployableType} instances.
-	 * <!-- begin-user-doc -->
+     * This keeps track of the one adapter used for all {@link org.eclipse.soa.sca.sca1_1.model.sca.DeployableType} instances.
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	protected DeployableTypeItemProvider deployableTypeItemProvider;
 
 	/**
-	 * This creates an adapter for a {@link org.eclipse.soa.sca.sca1_1.model.sca.DeployableType}.
-	 * <!-- begin-user-doc -->
+     * This creates an adapter for a {@link org.eclipse.soa.sca.sca1_1.model.sca.DeployableType}.
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	@Override
 	public Adapter createDeployableTypeAdapter() {
-		if (deployableTypeItemProvider == null) {
-			deployableTypeItemProvider = new DeployableTypeItemProvider(this);
-		}
+        if (deployableTypeItemProvider == null) {
+            deployableTypeItemProvider = new DeployableTypeItemProvider(this);
+        }
 
-		return deployableTypeItemProvider;
-	}
+        return deployableTypeItemProvider;
+    }
 
 	/**
-	 * This keeps track of the one adapter used for all {@link org.eclipse.soa.sca.sca1_1.model.sca.Documentation} instances.
-	 * <!-- begin-user-doc -->
+     * This keeps track of the one adapter used for all {@link org.eclipse.soa.sca.sca1_1.model.sca.Documentation} instances.
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	protected DocumentationItemProvider documentationItemProvider;
 
 	/**
-	 * This creates an adapter for a {@link org.eclipse.soa.sca.sca1_1.model.sca.Documentation}.
-	 * <!-- begin-user-doc -->
+     * This creates an adapter for a {@link org.eclipse.soa.sca.sca1_1.model.sca.Documentation}.
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	@Override
 	public Adapter createDocumentationAdapter() {
-		if (documentationItemProvider == null) {
-			documentationItemProvider = new DocumentationItemProvider(this);
-		}
+        if (documentationItemProvider == null) {
+            documentationItemProvider = new DocumentationItemProvider(this);
+        }
 
-		return documentationItemProvider;
-	}
+        return documentationItemProvider;
+    }
 
 	/**
-	 * This keeps track of the one adapter used for all {@link org.eclipse.soa.sca.sca1_1.model.sca.DocumentRoot} instances.
-	 * <!-- begin-user-doc -->
+     * This keeps track of the one adapter used for all {@link org.eclipse.soa.sca.sca1_1.model.sca.DocumentRoot} instances.
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	protected DocumentRootItemProvider documentRootItemProvider;
 
 	/**
-	 * This creates an adapter for a {@link org.eclipse.soa.sca.sca1_1.model.sca.DocumentRoot}.
-	 * <!-- begin-user-doc -->
+     * This creates an adapter for a {@link org.eclipse.soa.sca.sca1_1.model.sca.DocumentRoot}.
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	@Override
 	public Adapter createDocumentRootAdapter() {
-		if (documentRootItemProvider == null) {
-			documentRootItemProvider = new DocumentRootItemProvider(this);
-		}
+        if (documentRootItemProvider == null) {
+            documentRootItemProvider = new DocumentRootItemProvider(this);
+        }
 
-		return documentRootItemProvider;
-	}
+        return documentRootItemProvider;
+    }
 
 	/**
-	 * This keeps track of the one adapter used for all {@link org.eclipse.soa.sca.sca1_1.model.sca.EJBImplementation} instances.
-	 * <!-- begin-user-doc -->
+     * This keeps track of the one adapter used for all {@link org.eclipse.soa.sca.sca1_1.model.sca.EJBImplementation} instances.
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	protected EJBImplementationItemProvider ejbImplementationItemProvider;
 
 	/**
-	 * This creates an adapter for a {@link org.eclipse.soa.sca.sca1_1.model.sca.EJBImplementation}.
-	 * <!-- begin-user-doc -->
+     * This creates an adapter for a {@link org.eclipse.soa.sca.sca1_1.model.sca.EJBImplementation}.
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	@Override
 	public Adapter createEJBImplementationAdapter() {
-		if (ejbImplementationItemProvider == null) {
-			ejbImplementationItemProvider = new EJBImplementationItemProvider(this);
-		}
+        if (ejbImplementationItemProvider == null) {
+            ejbImplementationItemProvider = new EJBImplementationItemProvider(this);
+        }
 
-		return ejbImplementationItemProvider;
-	}
+        return ejbImplementationItemProvider;
+    }
 
 	/**
-	 * This keeps track of the one adapter used for all {@link org.eclipse.soa.sca.sca1_1.model.sca.EJBSessionBeanBinding} instances.
-	 * <!-- begin-user-doc -->
+     * This keeps track of the one adapter used for all {@link org.eclipse.soa.sca.sca1_1.model.sca.EJBSessionBeanBinding} instances.
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	protected EJBSessionBeanBindingItemProvider ejbSessionBeanBindingItemProvider;
 
 	/**
-	 * This creates an adapter for a {@link org.eclipse.soa.sca.sca1_1.model.sca.EJBSessionBeanBinding}.
-	 * <!-- begin-user-doc -->
+     * This creates an adapter for a {@link org.eclipse.soa.sca.sca1_1.model.sca.EJBSessionBeanBinding}.
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	@Override
 	public Adapter createEJBSessionBeanBindingAdapter() {
-		if (ejbSessionBeanBindingItemProvider == null) {
-			ejbSessionBeanBindingItemProvider = new EJBSessionBeanBindingItemProvider(this);
-		}
+        if (ejbSessionBeanBindingItemProvider == null) {
+            ejbSessionBeanBindingItemProvider = new EJBSessionBeanBindingItemProvider(this);
+        }
 
-		return ejbSessionBeanBindingItemProvider;
-	}
+        return ejbSessionBeanBindingItemProvider;
+    }
 
 	/**
-	 * This keeps track of the one adapter used for all {@link org.eclipse.soa.sca.sca1_1.model.sca.ExportType} instances.
-	 * <!-- begin-user-doc -->
+     * This keeps track of the one adapter used for all {@link org.eclipse.soa.sca.sca1_1.model.sca.ExportType} instances.
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	protected ExportTypeItemProvider exportTypeItemProvider;
 
 	/**
-	 * This creates an adapter for a {@link org.eclipse.soa.sca.sca1_1.model.sca.ExportType}.
-	 * <!-- begin-user-doc -->
+     * This creates an adapter for a {@link org.eclipse.soa.sca.sca1_1.model.sca.ExportType}.
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	@Override
 	public Adapter createExportTypeAdapter() {
-		if (exportTypeItemProvider == null) {
-			exportTypeItemProvider = new ExportTypeItemProvider(this);
-		}
+        if (exportTypeItemProvider == null) {
+            exportTypeItemProvider = new ExportTypeItemProvider(this);
+        }
 
-		return exportTypeItemProvider;
-	}
+        return exportTypeItemProvider;
+    }
 
 	/**
-	 * This keeps track of the one adapter used for all {@link org.eclipse.soa.sca.sca1_1.model.sca.ImplementationType} instances.
-	 * <!-- begin-user-doc -->
+     * This keeps track of the one adapter used for all {@link org.eclipse.soa.sca.sca1_1.model.sca.ImplementationType} instances.
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	protected ImplementationTypeItemProvider implementationTypeItemProvider;
 
 	/**
-	 * This creates an adapter for a {@link org.eclipse.soa.sca.sca1_1.model.sca.ImplementationType}.
-	 * <!-- begin-user-doc -->
+     * This creates an adapter for a {@link org.eclipse.soa.sca.sca1_1.model.sca.ImplementationType}.
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	@Override
 	public Adapter createImplementationTypeAdapter() {
-		if (implementationTypeItemProvider == null) {
-			implementationTypeItemProvider = new ImplementationTypeItemProvider(this);
-		}
+        if (implementationTypeItemProvider == null) {
+            implementationTypeItemProvider = new ImplementationTypeItemProvider(this);
+        }
 
-		return implementationTypeItemProvider;
-	}
+        return implementationTypeItemProvider;
+    }
 
 	/**
-	 * This keeps track of the one adapter used for all {@link org.eclipse.soa.sca.sca1_1.model.sca.ImportType} instances.
-	 * <!-- begin-user-doc -->
+     * This keeps track of the one adapter used for all {@link org.eclipse.soa.sca.sca1_1.model.sca.ImportType} instances.
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	protected ImportTypeItemProvider importTypeItemProvider;
 
 	/**
-	 * This creates an adapter for a {@link org.eclipse.soa.sca.sca1_1.model.sca.ImportType}.
-	 * <!-- begin-user-doc -->
+     * This creates an adapter for a {@link org.eclipse.soa.sca.sca1_1.model.sca.ImportType}.
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	@Override
 	public Adapter createImportTypeAdapter() {
-		if (importTypeItemProvider == null) {
-			importTypeItemProvider = new ImportTypeItemProvider(this);
-		}
+        if (importTypeItemProvider == null) {
+            importTypeItemProvider = new ImportTypeItemProvider(this);
+        }
 
-		return importTypeItemProvider;
-	}
+        return importTypeItemProvider;
+    }
 
 	/**
-	 * This keeps track of the one adapter used for all {@link org.eclipse.soa.sca.sca1_1.model.sca.InboundOperation} instances.
-	 * <!-- begin-user-doc -->
+     * This keeps track of the one adapter used for all {@link org.eclipse.soa.sca.sca1_1.model.sca.InboundOperation} instances.
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	protected InboundOperationItemProvider inboundOperationItemProvider;
 
 	/**
-	 * This creates an adapter for a {@link org.eclipse.soa.sca.sca1_1.model.sca.InboundOperation}.
-	 * <!-- begin-user-doc -->
+     * This creates an adapter for a {@link org.eclipse.soa.sca.sca1_1.model.sca.InboundOperation}.
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	@Override
 	public Adapter createInboundOperationAdapter() {
-		if (inboundOperationItemProvider == null) {
-			inboundOperationItemProvider = new InboundOperationItemProvider(this);
-		}
+        if (inboundOperationItemProvider == null) {
+            inboundOperationItemProvider = new InboundOperationItemProvider(this);
+        }
 
-		return inboundOperationItemProvider;
-	}
+        return inboundOperationItemProvider;
+    }
 
 	/**
-	 * This keeps track of the one adapter used for all {@link org.eclipse.soa.sca.sca1_1.model.sca.Include} instances.
-	 * <!-- begin-user-doc -->
+     * This keeps track of the one adapter used for all {@link org.eclipse.soa.sca.sca1_1.model.sca.Include} instances.
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	protected IncludeItemProvider includeItemProvider;
 
 	/**
-	 * This creates an adapter for a {@link org.eclipse.soa.sca.sca1_1.model.sca.Include}.
-	 * <!-- begin-user-doc -->
+     * This creates an adapter for a {@link org.eclipse.soa.sca.sca1_1.model.sca.Include}.
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	@Override
 	public Adapter createIncludeAdapter() {
-		if (includeItemProvider == null) {
-			includeItemProvider = new IncludeItemProvider(this);
-		}
+        if (includeItemProvider == null) {
+            includeItemProvider = new IncludeItemProvider(this);
+        }
 
-		return includeItemProvider;
-	}
+        return includeItemProvider;
+    }
 
 	/**
-	 * This keeps track of the one adapter used for all {@link org.eclipse.soa.sca.sca1_1.model.sca.Intent} instances.
-	 * <!-- begin-user-doc -->
+     * This keeps track of the one adapter used for all {@link org.eclipse.soa.sca.sca1_1.model.sca.Intent} instances.
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	protected IntentItemProvider intentItemProvider;
 
 	/**
-	 * This creates an adapter for a {@link org.eclipse.soa.sca.sca1_1.model.sca.Intent}.
-	 * <!-- begin-user-doc -->
+     * This creates an adapter for a {@link org.eclipse.soa.sca.sca1_1.model.sca.Intent}.
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	@Override
 	public Adapter createIntentAdapter() {
-		if (intentItemProvider == null) {
-			intentItemProvider = new IntentItemProvider(this);
-		}
+        if (intentItemProvider == null) {
+            intentItemProvider = new IntentItemProvider(this);
+        }
 
-		return intentItemProvider;
-	}
+        return intentItemProvider;
+    }
 
 	/**
-	 * This keeps track of the one adapter used for all {@link org.eclipse.soa.sca.sca1_1.model.sca.IntentMap} instances.
-	 * <!-- begin-user-doc -->
+     * This keeps track of the one adapter used for all {@link org.eclipse.soa.sca.sca1_1.model.sca.IntentMap} instances.
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	protected IntentMapItemProvider intentMapItemProvider;
 
 	/**
-	 * This creates an adapter for a {@link org.eclipse.soa.sca.sca1_1.model.sca.IntentMap}.
-	 * <!-- begin-user-doc -->
+     * This creates an adapter for a {@link org.eclipse.soa.sca.sca1_1.model.sca.IntentMap}.
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	@Override
 	public Adapter createIntentMapAdapter() {
-		if (intentMapItemProvider == null) {
-			intentMapItemProvider = new IntentMapItemProvider(this);
-		}
+        if (intentMapItemProvider == null) {
+            intentMapItemProvider = new IntentMapItemProvider(this);
+        }
 
-		return intentMapItemProvider;
-	}
+        return intentMapItemProvider;
+    }
 
 	/**
-	 * This keeps track of the one adapter used for all {@link org.eclipse.soa.sca.sca1_1.model.sca.IntentQualifier} instances.
-	 * <!-- begin-user-doc -->
+     * This keeps track of the one adapter used for all {@link org.eclipse.soa.sca.sca1_1.model.sca.IntentQualifier} instances.
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	protected IntentQualifierItemProvider intentQualifierItemProvider;
 
 	/**
-	 * This creates an adapter for a {@link org.eclipse.soa.sca.sca1_1.model.sca.IntentQualifier}.
-	 * <!-- begin-user-doc -->
+     * This creates an adapter for a {@link org.eclipse.soa.sca.sca1_1.model.sca.IntentQualifier}.
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	@Override
 	public Adapter createIntentQualifierAdapter() {
-		if (intentQualifierItemProvider == null) {
-			intentQualifierItemProvider = new IntentQualifierItemProvider(this);
-		}
+        if (intentQualifierItemProvider == null) {
+            intentQualifierItemProvider = new IntentQualifierItemProvider(this);
+        }
 
-		return intentQualifierItemProvider;
-	}
+        return intentQualifierItemProvider;
+    }
 
 	/**
-	 * This keeps track of the one adapter used for all {@link org.eclipse.soa.sca.sca1_1.model.sca.InteractionSpec} instances.
-	 * <!-- begin-user-doc -->
+     * This keeps track of the one adapter used for all {@link org.eclipse.soa.sca.sca1_1.model.sca.InteractionSpec} instances.
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	protected InteractionSpecItemProvider interactionSpecItemProvider;
 
 	/**
-	 * This creates an adapter for a {@link org.eclipse.soa.sca.sca1_1.model.sca.InteractionSpec}.
-	 * <!-- begin-user-doc -->
+     * This creates an adapter for a {@link org.eclipse.soa.sca.sca1_1.model.sca.InteractionSpec}.
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	@Override
 	public Adapter createInteractionSpecAdapter() {
-		if (interactionSpecItemProvider == null) {
-			interactionSpecItemProvider = new InteractionSpecItemProvider(this);
-		}
+        if (interactionSpecItemProvider == null) {
+            interactionSpecItemProvider = new InteractionSpecItemProvider(this);
+        }
 
-		return interactionSpecItemProvider;
-	}
+        return interactionSpecItemProvider;
+    }
 
 	/**
-	 * This keeps track of the one adapter used for all {@link org.eclipse.soa.sca.sca1_1.model.sca.JavaExportType} instances.
-	 * <!-- begin-user-doc -->
+     * This keeps track of the one adapter used for all {@link org.eclipse.soa.sca.sca1_1.model.sca.JavaExportType} instances.
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	protected JavaExportTypeItemProvider javaExportTypeItemProvider;
 
 	/**
-	 * This creates an adapter for a {@link org.eclipse.soa.sca.sca1_1.model.sca.JavaExportType}.
-	 * <!-- begin-user-doc -->
+     * This creates an adapter for a {@link org.eclipse.soa.sca.sca1_1.model.sca.JavaExportType}.
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	@Override
 	public Adapter createJavaExportTypeAdapter() {
-		if (javaExportTypeItemProvider == null) {
-			javaExportTypeItemProvider = new JavaExportTypeItemProvider(this);
-		}
+        if (javaExportTypeItemProvider == null) {
+            javaExportTypeItemProvider = new JavaExportTypeItemProvider(this);
+        }
 
-		return javaExportTypeItemProvider;
-	}
+        return javaExportTypeItemProvider;
+    }
 
 	/**
-	 * This keeps track of the one adapter used for all {@link org.eclipse.soa.sca.sca1_1.model.sca.JavaImplementation} instances.
-	 * <!-- begin-user-doc -->
+     * This keeps track of the one adapter used for all {@link org.eclipse.soa.sca.sca1_1.model.sca.JavaImplementation} instances.
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	protected JavaImplementationItemProvider javaImplementationItemProvider;
 
 	/**
-	 * This creates an adapter for a {@link org.eclipse.soa.sca.sca1_1.model.sca.JavaImplementation}.
-	 * <!-- begin-user-doc -->
+     * This creates an adapter for a {@link org.eclipse.soa.sca.sca1_1.model.sca.JavaImplementation}.
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	@Override
 	public Adapter createJavaImplementationAdapter() {
-		if (javaImplementationItemProvider == null) {
-			javaImplementationItemProvider = new JavaImplementationItemProvider(this);
-		}
+        if (javaImplementationItemProvider == null) {
+            javaImplementationItemProvider = new JavaImplementationItemProvider(this);
+        }
 
-		return javaImplementationItemProvider;
-	}
+        return javaImplementationItemProvider;
+    }
 
 	/**
-	 * This keeps track of the one adapter used for all {@link org.eclipse.soa.sca.sca1_1.model.sca.JavaImportType} instances.
-	 * <!-- begin-user-doc -->
+     * This keeps track of the one adapter used for all {@link org.eclipse.soa.sca.sca1_1.model.sca.JavaImportType} instances.
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	protected JavaImportTypeItemProvider javaImportTypeItemProvider;
 
 	/**
-	 * This creates an adapter for a {@link org.eclipse.soa.sca.sca1_1.model.sca.JavaImportType}.
-	 * <!-- begin-user-doc -->
+     * This creates an adapter for a {@link org.eclipse.soa.sca.sca1_1.model.sca.JavaImportType}.
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	@Override
 	public Adapter createJavaImportTypeAdapter() {
-		if (javaImportTypeItemProvider == null) {
-			javaImportTypeItemProvider = new JavaImportTypeItemProvider(this);
-		}
+        if (javaImportTypeItemProvider == null) {
+            javaImportTypeItemProvider = new JavaImportTypeItemProvider(this);
+        }
 
-		return javaImportTypeItemProvider;
-	}
+        return javaImportTypeItemProvider;
+    }
 
 	/**
-	 * This keeps track of the one adapter used for all {@link org.eclipse.soa.sca.sca1_1.model.sca.JavaInterface} instances.
-	 * <!-- begin-user-doc -->
+     * This keeps track of the one adapter used for all {@link org.eclipse.soa.sca.sca1_1.model.sca.JavaInterface} instances.
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	protected JavaInterfaceItemProvider javaInterfaceItemProvider;
 
 	/**
-	 * This creates an adapter for a {@link org.eclipse.soa.sca.sca1_1.model.sca.JavaInterface}.
-	 * <!-- begin-user-doc -->
+     * This creates an adapter for a {@link org.eclipse.soa.sca.sca1_1.model.sca.JavaInterface}.
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	@Override
 	public Adapter createJavaInterfaceAdapter() {
-		if (javaInterfaceItemProvider == null) {
-			javaInterfaceItemProvider = new JavaInterfaceItemProvider(this);
-		}
+        if (javaInterfaceItemProvider == null) {
+            javaInterfaceItemProvider = new JavaInterfaceItemProvider(this);
+        }
 
-		return javaInterfaceItemProvider;
-	}
+        return javaInterfaceItemProvider;
+    }
 
 	/**
-	 * This keeps track of the one adapter used for all {@link org.eclipse.soa.sca.sca1_1.model.sca.JCABinding} instances.
-	 * <!-- begin-user-doc -->
+     * This keeps track of the one adapter used for all {@link org.eclipse.soa.sca.sca1_1.model.sca.JCABinding} instances.
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	protected JCABindingItemProvider jcaBindingItemProvider;
 
 	/**
-	 * This creates an adapter for a {@link org.eclipse.soa.sca.sca1_1.model.sca.JCABinding}.
-	 * <!-- begin-user-doc -->
+     * This creates an adapter for a {@link org.eclipse.soa.sca.sca1_1.model.sca.JCABinding}.
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	@Override
 	public Adapter createJCABindingAdapter() {
-		if (jcaBindingItemProvider == null) {
-			jcaBindingItemProvider = new JCABindingItemProvider(this);
-		}
+        if (jcaBindingItemProvider == null) {
+            jcaBindingItemProvider = new JCABindingItemProvider(this);
+        }
 
-		return jcaBindingItemProvider;
-	}
+        return jcaBindingItemProvider;
+    }
 
 	/**
-	 * This keeps track of the one adapter used for all {@link org.eclipse.soa.sca.sca1_1.model.sca.JCAInboundConnection} instances.
-	 * <!-- begin-user-doc -->
+     * This keeps track of the one adapter used for all {@link org.eclipse.soa.sca.sca1_1.model.sca.JCAInboundConnection} instances.
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	protected JCAInboundConnectionItemProvider jcaInboundConnectionItemProvider;
 
 	/**
-	 * This creates an adapter for a {@link org.eclipse.soa.sca.sca1_1.model.sca.JCAInboundConnection}.
-	 * <!-- begin-user-doc -->
+     * This creates an adapter for a {@link org.eclipse.soa.sca.sca1_1.model.sca.JCAInboundConnection}.
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	@Override
 	public Adapter createJCAInboundConnectionAdapter() {
-		if (jcaInboundConnectionItemProvider == null) {
-			jcaInboundConnectionItemProvider = new JCAInboundConnectionItemProvider(this);
-		}
+        if (jcaInboundConnectionItemProvider == null) {
+            jcaInboundConnectionItemProvider = new JCAInboundConnectionItemProvider(this);
+        }
 
-		return jcaInboundConnectionItemProvider;
-	}
+        return jcaInboundConnectionItemProvider;
+    }
 
 	/**
-	 * This keeps track of the one adapter used for all {@link org.eclipse.soa.sca.sca1_1.model.sca.JCAInboundInteraction} instances.
-	 * <!-- begin-user-doc -->
+     * This keeps track of the one adapter used for all {@link org.eclipse.soa.sca.sca1_1.model.sca.JCAInboundInteraction} instances.
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	protected JCAInboundInteractionItemProvider jcaInboundInteractionItemProvider;
 
 	/**
-	 * This creates an adapter for a {@link org.eclipse.soa.sca.sca1_1.model.sca.JCAInboundInteraction}.
-	 * <!-- begin-user-doc -->
+     * This creates an adapter for a {@link org.eclipse.soa.sca.sca1_1.model.sca.JCAInboundInteraction}.
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	@Override
 	public Adapter createJCAInboundInteractionAdapter() {
-		if (jcaInboundInteractionItemProvider == null) {
-			jcaInboundInteractionItemProvider = new JCAInboundInteractionItemProvider(this);
-		}
+        if (jcaInboundInteractionItemProvider == null) {
+            jcaInboundInteractionItemProvider = new JCAInboundInteractionItemProvider(this);
+        }
 
-		return jcaInboundInteractionItemProvider;
-	}
+        return jcaInboundInteractionItemProvider;
+    }
 
 	/**
-	 * This keeps track of the one adapter used for all {@link org.eclipse.soa.sca.sca1_1.model.sca.JCAOutboundConnection} instances.
-	 * <!-- begin-user-doc -->
+     * This keeps track of the one adapter used for all {@link org.eclipse.soa.sca.sca1_1.model.sca.JCAOutboundConnection} instances.
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	protected JCAOutboundConnectionItemProvider jcaOutboundConnectionItemProvider;
 
 	/**
-	 * This creates an adapter for a {@link org.eclipse.soa.sca.sca1_1.model.sca.JCAOutboundConnection}.
-	 * <!-- begin-user-doc -->
+     * This creates an adapter for a {@link org.eclipse.soa.sca.sca1_1.model.sca.JCAOutboundConnection}.
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	@Override
 	public Adapter createJCAOutboundConnectionAdapter() {
-		if (jcaOutboundConnectionItemProvider == null) {
-			jcaOutboundConnectionItemProvider = new JCAOutboundConnectionItemProvider(this);
-		}
+        if (jcaOutboundConnectionItemProvider == null) {
+            jcaOutboundConnectionItemProvider = new JCAOutboundConnectionItemProvider(this);
+        }
 
-		return jcaOutboundConnectionItemProvider;
-	}
+        return jcaOutboundConnectionItemProvider;
+    }
 
 	/**
-	 * This keeps track of the one adapter used for all {@link org.eclipse.soa.sca.sca1_1.model.sca.JCAOutboundInteraction} instances.
-	 * <!-- begin-user-doc -->
+     * This keeps track of the one adapter used for all {@link org.eclipse.soa.sca.sca1_1.model.sca.JCAOutboundInteraction} instances.
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	protected JCAOutboundInteractionItemProvider jcaOutboundInteractionItemProvider;
 
 	/**
-	 * This creates an adapter for a {@link org.eclipse.soa.sca.sca1_1.model.sca.JCAOutboundInteraction}.
-	 * <!-- begin-user-doc -->
+     * This creates an adapter for a {@link org.eclipse.soa.sca.sca1_1.model.sca.JCAOutboundInteraction}.
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	@Override
 	public Adapter createJCAOutboundInteractionAdapter() {
-		if (jcaOutboundInteractionItemProvider == null) {
-			jcaOutboundInteractionItemProvider = new JCAOutboundInteractionItemProvider(this);
-		}
+        if (jcaOutboundInteractionItemProvider == null) {
+            jcaOutboundInteractionItemProvider = new JCAOutboundInteractionItemProvider(this);
+        }
 
-		return jcaOutboundInteractionItemProvider;
-	}
+        return jcaOutboundInteractionItemProvider;
+    }
 
 	/**
-	 * This keeps track of the one adapter used for all {@link org.eclipse.soa.sca.sca1_1.model.sca.JEEImplementation} instances.
-	 * <!-- begin-user-doc -->
+     * This keeps track of the one adapter used for all {@link org.eclipse.soa.sca.sca1_1.model.sca.JEEImplementation} instances.
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	protected JEEImplementationItemProvider jeeImplementationItemProvider;
 
 	/**
-	 * This creates an adapter for a {@link org.eclipse.soa.sca.sca1_1.model.sca.JEEImplementation}.
-	 * <!-- begin-user-doc -->
+     * This creates an adapter for a {@link org.eclipse.soa.sca.sca1_1.model.sca.JEEImplementation}.
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	@Override
 	public Adapter createJEEImplementationAdapter() {
-		if (jeeImplementationItemProvider == null) {
-			jeeImplementationItemProvider = new JEEImplementationItemProvider(this);
-		}
+        if (jeeImplementationItemProvider == null) {
+            jeeImplementationItemProvider = new JEEImplementationItemProvider(this);
+        }
 
-		return jeeImplementationItemProvider;
-	}
+        return jeeImplementationItemProvider;
+    }
 
 	/**
-	 * This keeps track of the one adapter used for all {@link org.eclipse.soa.sca.sca1_1.model.sca.JMSActivationSpec} instances.
-	 * <!-- begin-user-doc -->
+     * This keeps track of the one adapter used for all {@link org.eclipse.soa.sca.sca1_1.model.sca.JMSActivationSpec} instances.
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	protected JMSActivationSpecItemProvider jmsActivationSpecItemProvider;
 
 	/**
-	 * This creates an adapter for a {@link org.eclipse.soa.sca.sca1_1.model.sca.JMSActivationSpec}.
-	 * <!-- begin-user-doc -->
+     * This creates an adapter for a {@link org.eclipse.soa.sca.sca1_1.model.sca.JMSActivationSpec}.
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	@Override
 	public Adapter createJMSActivationSpecAdapter() {
-		if (jmsActivationSpecItemProvider == null) {
-			jmsActivationSpecItemProvider = new JMSActivationSpecItemProvider(this);
-		}
+        if (jmsActivationSpecItemProvider == null) {
+            jmsActivationSpecItemProvider = new JMSActivationSpecItemProvider(this);
+        }
 
-		return jmsActivationSpecItemProvider;
-	}
+        return jmsActivationSpecItemProvider;
+    }
 
 	/**
-	 * This keeps track of the one adapter used for all {@link org.eclipse.soa.sca.sca1_1.model.sca.JMSBinding} instances.
-	 * <!-- begin-user-doc -->
+     * This keeps track of the one adapter used for all {@link org.eclipse.soa.sca.sca1_1.model.sca.JMSBinding} instances.
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	protected JMSBindingItemProvider jmsBindingItemProvider;
 
 	/**
-	 * This creates an adapter for a {@link org.eclipse.soa.sca.sca1_1.model.sca.JMSBinding}.
-	 * <!-- begin-user-doc -->
+     * This creates an adapter for a {@link org.eclipse.soa.sca.sca1_1.model.sca.JMSBinding}.
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	@Override
 	public Adapter createJMSBindingAdapter() {
-		if (jmsBindingItemProvider == null) {
-			jmsBindingItemProvider = new JMSBindingItemProvider(this);
-		}
+        if (jmsBindingItemProvider == null) {
+            jmsBindingItemProvider = new JMSBindingItemProvider(this);
+        }
 
-		return jmsBindingItemProvider;
-	}
+        return jmsBindingItemProvider;
+    }
 
 	/**
-	 * This keeps track of the one adapter used for all {@link org.eclipse.soa.sca.sca1_1.model.sca.JMSConnectionFactory} instances.
-	 * <!-- begin-user-doc -->
+     * This keeps track of the one adapter used for all {@link org.eclipse.soa.sca.sca1_1.model.sca.JMSConnectionFactory} instances.
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	protected JMSConnectionFactoryItemProvider jmsConnectionFactoryItemProvider;
 
 	/**
-	 * This creates an adapter for a {@link org.eclipse.soa.sca.sca1_1.model.sca.JMSConnectionFactory}.
-	 * <!-- begin-user-doc -->
+     * This creates an adapter for a {@link org.eclipse.soa.sca.sca1_1.model.sca.JMSConnectionFactory}.
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	@Override
 	public Adapter createJMSConnectionFactoryAdapter() {
-		if (jmsConnectionFactoryItemProvider == null) {
-			jmsConnectionFactoryItemProvider = new JMSConnectionFactoryItemProvider(this);
-		}
+        if (jmsConnectionFactoryItemProvider == null) {
+            jmsConnectionFactoryItemProvider = new JMSConnectionFactoryItemProvider(this);
+        }
 
-		return jmsConnectionFactoryItemProvider;
-	}
+        return jmsConnectionFactoryItemProvider;
+    }
 
 	/**
-	 * This keeps track of the one adapter used for all {@link org.eclipse.soa.sca.sca1_1.model.sca.JMSDestination} instances.
-	 * <!-- begin-user-doc -->
+     * This keeps track of the one adapter used for all {@link org.eclipse.soa.sca.sca1_1.model.sca.JMSDestination} instances.
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	protected JMSDestinationItemProvider jmsDestinationItemProvider;
 
 	/**
-	 * This creates an adapter for a {@link org.eclipse.soa.sca.sca1_1.model.sca.JMSDestination}.
-	 * <!-- begin-user-doc -->
+     * This creates an adapter for a {@link org.eclipse.soa.sca.sca1_1.model.sca.JMSDestination}.
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	@Override
 	public Adapter createJMSDestinationAdapter() {
-		if (jmsDestinationItemProvider == null) {
-			jmsDestinationItemProvider = new JMSDestinationItemProvider(this);
-		}
+        if (jmsDestinationItemProvider == null) {
+            jmsDestinationItemProvider = new JMSDestinationItemProvider(this);
+        }
 
-		return jmsDestinationItemProvider;
-	}
+        return jmsDestinationItemProvider;
+    }
 
 	/**
-	 * This keeps track of the one adapter used for all {@link org.eclipse.soa.sca.sca1_1.model.sca.JMSHeaders} instances.
-	 * <!-- begin-user-doc -->
+     * This keeps track of the one adapter used for all {@link org.eclipse.soa.sca.sca1_1.model.sca.JMSHeaders} instances.
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	protected JMSHeadersItemProvider jmsHeadersItemProvider;
 
 	/**
-	 * This creates an adapter for a {@link org.eclipse.soa.sca.sca1_1.model.sca.JMSHeaders}.
-	 * <!-- begin-user-doc -->
+     * This creates an adapter for a {@link org.eclipse.soa.sca.sca1_1.model.sca.JMSHeaders}.
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	@Override
 	public Adapter createJMSHeadersAdapter() {
-		if (jmsHeadersItemProvider == null) {
-			jmsHeadersItemProvider = new JMSHeadersItemProvider(this);
-		}
+        if (jmsHeadersItemProvider == null) {
+            jmsHeadersItemProvider = new JMSHeadersItemProvider(this);
+        }
 
-		return jmsHeadersItemProvider;
-	}
+        return jmsHeadersItemProvider;
+    }
 
 	/**
-	 * This keeps track of the one adapter used for all {@link org.eclipse.soa.sca.sca1_1.model.sca.JMSMessageSelection} instances.
-	 * <!-- begin-user-doc -->
+     * This keeps track of the one adapter used for all {@link org.eclipse.soa.sca.sca1_1.model.sca.JMSMessageSelection} instances.
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	protected JMSMessageSelectionItemProvider jmsMessageSelectionItemProvider;
 
 	/**
-	 * This creates an adapter for a {@link org.eclipse.soa.sca.sca1_1.model.sca.JMSMessageSelection}.
-	 * <!-- begin-user-doc -->
+     * This creates an adapter for a {@link org.eclipse.soa.sca.sca1_1.model.sca.JMSMessageSelection}.
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	@Override
 	public Adapter createJMSMessageSelectionAdapter() {
-		if (jmsMessageSelectionItemProvider == null) {
-			jmsMessageSelectionItemProvider = new JMSMessageSelectionItemProvider(this);
-		}
+        if (jmsMessageSelectionItemProvider == null) {
+            jmsMessageSelectionItemProvider = new JMSMessageSelectionItemProvider(this);
+        }
 
-		return jmsMessageSelectionItemProvider;
-	}
+        return jmsMessageSelectionItemProvider;
+    }
 
 	/**
-	 * This keeps track of the one adapter used for all {@link org.eclipse.soa.sca.sca1_1.model.sca.JMSOperationProperties} instances.
-	 * <!-- begin-user-doc -->
+     * This keeps track of the one adapter used for all {@link org.eclipse.soa.sca.sca1_1.model.sca.JMSOperationProperties} instances.
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	protected JMSOperationPropertiesItemProvider jmsOperationPropertiesItemProvider;
 
 	/**
-	 * This creates an adapter for a {@link org.eclipse.soa.sca.sca1_1.model.sca.JMSOperationProperties}.
-	 * <!-- begin-user-doc -->
+     * This creates an adapter for a {@link org.eclipse.soa.sca.sca1_1.model.sca.JMSOperationProperties}.
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	@Override
 	public Adapter createJMSOperationPropertiesAdapter() {
-		if (jmsOperationPropertiesItemProvider == null) {
-			jmsOperationPropertiesItemProvider = new JMSOperationPropertiesItemProvider(this);
-		}
+        if (jmsOperationPropertiesItemProvider == null) {
+            jmsOperationPropertiesItemProvider = new JMSOperationPropertiesItemProvider(this);
+        }
 
-		return jmsOperationPropertiesItemProvider;
-	}
+        return jmsOperationPropertiesItemProvider;
+    }
 
 	/**
-	 * This keeps track of the one adapter used for all {@link org.eclipse.soa.sca.sca1_1.model.sca.JMSResourceAdapter} instances.
-	 * <!-- begin-user-doc -->
+     * This keeps track of the one adapter used for all {@link org.eclipse.soa.sca.sca1_1.model.sca.JMSResourceAdapter} instances.
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	protected JMSResourceAdapterItemProvider jmsResourceAdapterItemProvider;
 
 	/**
-	 * This creates an adapter for a {@link org.eclipse.soa.sca.sca1_1.model.sca.JMSResourceAdapter}.
-	 * <!-- begin-user-doc -->
+     * This creates an adapter for a {@link org.eclipse.soa.sca.sca1_1.model.sca.JMSResourceAdapter}.
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	@Override
 	public Adapter createJMSResourceAdapterAdapter() {
-		if (jmsResourceAdapterItemProvider == null) {
-			jmsResourceAdapterItemProvider = new JMSResourceAdapterItemProvider(this);
-		}
+        if (jmsResourceAdapterItemProvider == null) {
+            jmsResourceAdapterItemProvider = new JMSResourceAdapterItemProvider(this);
+        }
 
-		return jmsResourceAdapterItemProvider;
-	}
+        return jmsResourceAdapterItemProvider;
+    }
 
 	/**
-	 * This keeps track of the one adapter used for all {@link org.eclipse.soa.sca.sca1_1.model.sca.JMSResponse} instances.
-	 * <!-- begin-user-doc -->
+     * This keeps track of the one adapter used for all {@link org.eclipse.soa.sca.sca1_1.model.sca.JMSResponse} instances.
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	protected JMSResponseItemProvider jmsResponseItemProvider;
 
 	/**
-	 * This creates an adapter for a {@link org.eclipse.soa.sca.sca1_1.model.sca.JMSResponse}.
-	 * <!-- begin-user-doc -->
+     * This creates an adapter for a {@link org.eclipse.soa.sca.sca1_1.model.sca.JMSResponse}.
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	@Override
 	public Adapter createJMSResponseAdapter() {
-		if (jmsResponseItemProvider == null) {
-			jmsResponseItemProvider = new JMSResponseItemProvider(this);
-		}
+        if (jmsResponseItemProvider == null) {
+            jmsResponseItemProvider = new JMSResponseItemProvider(this);
+        }
 
-		return jmsResponseItemProvider;
-	}
+        return jmsResponseItemProvider;
+    }
 
 	/**
-	 * This keeps track of the one adapter used for all {@link org.eclipse.soa.sca.sca1_1.model.sca.Operation} instances.
-	 * <!-- begin-user-doc -->
+     * This keeps track of the one adapter used for all {@link org.eclipse.soa.sca.sca1_1.model.sca.Operation} instances.
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	protected OperationItemProvider operationItemProvider;
 
 	/**
-	 * This creates an adapter for a {@link org.eclipse.soa.sca.sca1_1.model.sca.Operation}.
-	 * <!-- begin-user-doc -->
+     * This creates an adapter for a {@link org.eclipse.soa.sca.sca1_1.model.sca.Operation}.
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	@Override
 	public Adapter createOperationAdapter() {
-		if (operationItemProvider == null) {
-			operationItemProvider = new OperationItemProvider(this);
-		}
+        if (operationItemProvider == null) {
+            operationItemProvider = new OperationItemProvider(this);
+        }
 
-		return operationItemProvider;
-	}
+        return operationItemProvider;
+    }
 
 	/**
-	 * This keeps track of the one adapter used for all {@link org.eclipse.soa.sca.sca1_1.model.sca.PolicySet} instances.
-	 * <!-- begin-user-doc -->
+     * This keeps track of the one adapter used for all {@link org.eclipse.soa.sca.sca1_1.model.sca.PolicySet} instances.
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	protected PolicySetItemProvider policySetItemProvider;
 
 	/**
-	 * This creates an adapter for a {@link org.eclipse.soa.sca.sca1_1.model.sca.PolicySet}.
-	 * <!-- begin-user-doc -->
+     * This creates an adapter for a {@link org.eclipse.soa.sca.sca1_1.model.sca.PolicySet}.
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	@Override
 	public Adapter createPolicySetAdapter() {
-		if (policySetItemProvider == null) {
-			policySetItemProvider = new PolicySetItemProvider(this);
-		}
+        if (policySetItemProvider == null) {
+            policySetItemProvider = new PolicySetItemProvider(this);
+        }
 
-		return policySetItemProvider;
-	}
+        return policySetItemProvider;
+    }
 
 	/**
-	 * This keeps track of the one adapter used for all {@link org.eclipse.soa.sca.sca1_1.model.sca.PolicySetAttachment} instances.
-	 * <!-- begin-user-doc -->
+     * This keeps track of the one adapter used for all {@link org.eclipse.soa.sca.sca1_1.model.sca.PolicySetAttachment} instances.
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	protected PolicySetAttachmentItemProvider policySetAttachmentItemProvider;
 
 	/**
-	 * This creates an adapter for a {@link org.eclipse.soa.sca.sca1_1.model.sca.PolicySetAttachment}.
-	 * <!-- begin-user-doc -->
+     * This creates an adapter for a {@link org.eclipse.soa.sca.sca1_1.model.sca.PolicySetAttachment}.
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	@Override
 	public Adapter createPolicySetAttachmentAdapter() {
-		if (policySetAttachmentItemProvider == null) {
-			policySetAttachmentItemProvider = new PolicySetAttachmentItemProvider(this);
-		}
+        if (policySetAttachmentItemProvider == null) {
+            policySetAttachmentItemProvider = new PolicySetAttachmentItemProvider(this);
+        }
 
-		return policySetAttachmentItemProvider;
-	}
+        return policySetAttachmentItemProvider;
+    }
 
 	/**
-	 * This keeps track of the one adapter used for all {@link org.eclipse.soa.sca.sca1_1.model.sca.PolicySetReference} instances.
-	 * <!-- begin-user-doc -->
+     * This keeps track of the one adapter used for all {@link org.eclipse.soa.sca.sca1_1.model.sca.PolicySetReference} instances.
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	protected PolicySetReferenceItemProvider policySetReferenceItemProvider;
 
 	/**
-	 * This creates an adapter for a {@link org.eclipse.soa.sca.sca1_1.model.sca.PolicySetReference}.
-	 * <!-- begin-user-doc -->
+     * This creates an adapter for a {@link org.eclipse.soa.sca.sca1_1.model.sca.PolicySetReference}.
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	@Override
 	public Adapter createPolicySetReferenceAdapter() {
-		if (policySetReferenceItemProvider == null) {
-			policySetReferenceItemProvider = new PolicySetReferenceItemProvider(this);
-		}
+        if (policySetReferenceItemProvider == null) {
+            policySetReferenceItemProvider = new PolicySetReferenceItemProvider(this);
+        }
 
-		return policySetReferenceItemProvider;
-	}
+        return policySetReferenceItemProvider;
+    }
 
 	/**
-	 * This keeps track of the one adapter used for all {@link org.eclipse.soa.sca.sca1_1.model.sca.Property} instances.
-	 * <!-- begin-user-doc -->
+     * This keeps track of the one adapter used for all {@link org.eclipse.soa.sca.sca1_1.model.sca.Property} instances.
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	protected PropertyItemProvider propertyItemProvider;
 
 	/**
-	 * This creates an adapter for a {@link org.eclipse.soa.sca.sca1_1.model.sca.Property}.
-	 * <!-- begin-user-doc -->
+     * This creates an adapter for a {@link org.eclipse.soa.sca.sca1_1.model.sca.Property}.
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	@Override
 	public Adapter createPropertyAdapter() {
-		if (propertyItemProvider == null) {
-			propertyItemProvider = new PropertyItemProvider(this);
-		}
+        if (propertyItemProvider == null) {
+            propertyItemProvider = new PropertyItemProvider(this);
+        }
 
-		return propertyItemProvider;
-	}
+        return propertyItemProvider;
+    }
 
 	/**
-	 * This keeps track of the one adapter used for all {@link org.eclipse.soa.sca.sca1_1.model.sca.PropertyValue} instances.
-	 * <!-- begin-user-doc -->
+     * This keeps track of the one adapter used for all {@link org.eclipse.soa.sca.sca1_1.model.sca.PropertyValue} instances.
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	protected PropertyValueItemProvider propertyValueItemProvider;
 
 	/**
-	 * This creates an adapter for a {@link org.eclipse.soa.sca.sca1_1.model.sca.PropertyValue}.
-	 * <!-- begin-user-doc -->
+     * This creates an adapter for a {@link org.eclipse.soa.sca.sca1_1.model.sca.PropertyValue}.
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	@Override
 	public Adapter createPropertyValueAdapter() {
-		if (propertyValueItemProvider == null) {
-			propertyValueItemProvider = new PropertyValueItemProvider(this);
-		}
+        if (propertyValueItemProvider == null) {
+            propertyValueItemProvider = new PropertyValueItemProvider(this);
+        }
 
-		return propertyValueItemProvider;
-	}
+        return propertyValueItemProvider;
+    }
 
 	/**
-	 * This keeps track of the one adapter used for all {@link org.eclipse.soa.sca.sca1_1.model.sca.Qualifier} instances.
-	 * <!-- begin-user-doc -->
+     * This keeps track of the one adapter used for all {@link org.eclipse.soa.sca.sca1_1.model.sca.Qualifier} instances.
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	protected QualifierItemProvider qualifierItemProvider;
 
 	/**
-	 * This creates an adapter for a {@link org.eclipse.soa.sca.sca1_1.model.sca.Qualifier}.
-	 * <!-- begin-user-doc -->
+     * This creates an adapter for a {@link org.eclipse.soa.sca.sca1_1.model.sca.Qualifier}.
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	@Override
 	public Adapter createQualifierAdapter() {
-		if (qualifierItemProvider == null) {
-			qualifierItemProvider = new QualifierItemProvider(this);
-		}
+        if (qualifierItemProvider == null) {
+            qualifierItemProvider = new QualifierItemProvider(this);
+        }
 
-		return qualifierItemProvider;
-	}
+        return qualifierItemProvider;
+    }
 
 	/**
-	 * This keeps track of the one adapter used for all {@link org.eclipse.soa.sca.sca1_1.model.sca.Reference} instances.
-	 * <!-- begin-user-doc -->
+     * This keeps track of the one adapter used for all {@link org.eclipse.soa.sca.sca1_1.model.sca.Reference} instances.
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	protected ReferenceItemProvider referenceItemProvider;
 
 	/**
-	 * This creates an adapter for a {@link org.eclipse.soa.sca.sca1_1.model.sca.Reference}.
-	 * <!-- begin-user-doc -->
+     * This creates an adapter for a {@link org.eclipse.soa.sca.sca1_1.model.sca.Reference}.
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	@Override
 	public Adapter createReferenceAdapter() {
-		if (referenceItemProvider == null) {
-			referenceItemProvider = new ReferenceItemProvider(this);
-		}
+        if (referenceItemProvider == null) {
+            referenceItemProvider = new ReferenceItemProvider(this);
+        }
 
-		return referenceItemProvider;
-	}
+        return referenceItemProvider;
+    }
 
 	/**
-	 * This keeps track of the one adapter used for all {@link org.eclipse.soa.sca.sca1_1.model.sca.ResourceAdapter} instances.
-	 * <!-- begin-user-doc -->
+     * This keeps track of the one adapter used for all {@link org.eclipse.soa.sca.sca1_1.model.sca.ResourceAdapter} instances.
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	protected ResourceAdapterItemProvider resourceAdapterItemProvider;
 
 	/**
-	 * This creates an adapter for a {@link org.eclipse.soa.sca.sca1_1.model.sca.ResourceAdapter}.
-	 * <!-- begin-user-doc -->
+     * This creates an adapter for a {@link org.eclipse.soa.sca.sca1_1.model.sca.ResourceAdapter}.
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	@Override
 	public Adapter createResourceAdapterAdapter() {
-		if (resourceAdapterItemProvider == null) {
-			resourceAdapterItemProvider = new ResourceAdapterItemProvider(this);
-		}
+        if (resourceAdapterItemProvider == null) {
+            resourceAdapterItemProvider = new ResourceAdapterItemProvider(this);
+        }
 
-		return resourceAdapterItemProvider;
-	}
+        return resourceAdapterItemProvider;
+    }
 
 	/**
-	 * This keeps track of the one adapter used for all {@link org.eclipse.soa.sca.sca1_1.model.sca.SCABinding} instances.
-	 * <!-- begin-user-doc -->
+     * This keeps track of the one adapter used for all {@link org.eclipse.soa.sca.sca1_1.model.sca.SCABinding} instances.
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	protected SCABindingItemProvider scaBindingItemProvider;
 
 	/**
-	 * This creates an adapter for a {@link org.eclipse.soa.sca.sca1_1.model.sca.SCABinding}.
-	 * <!-- begin-user-doc -->
+     * This creates an adapter for a {@link org.eclipse.soa.sca.sca1_1.model.sca.SCABinding}.
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	@Override
 	public Adapter createSCABindingAdapter() {
-		if (scaBindingItemProvider == null) {
-			scaBindingItemProvider = new SCABindingItemProvider(this);
-		}
+        if (scaBindingItemProvider == null) {
+            scaBindingItemProvider = new SCABindingItemProvider(this);
+        }
 
-		return scaBindingItemProvider;
-	}
+        return scaBindingItemProvider;
+    }
 
 	/**
-	 * This keeps track of the one adapter used for all {@link org.eclipse.soa.sca.sca1_1.model.sca.SCAImplementation} instances.
-	 * <!-- begin-user-doc -->
+     * This keeps track of the one adapter used for all {@link org.eclipse.soa.sca.sca1_1.model.sca.SCAImplementation} instances.
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	protected SCAImplementationItemProvider scaImplementationItemProvider;
 
 	/**
-	 * This creates an adapter for a {@link org.eclipse.soa.sca.sca1_1.model.sca.SCAImplementation}.
-	 * <!-- begin-user-doc -->
+     * This creates an adapter for a {@link org.eclipse.soa.sca.sca1_1.model.sca.SCAImplementation}.
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	@Override
 	public Adapter createSCAImplementationAdapter() {
-		if (scaImplementationItemProvider == null) {
-			scaImplementationItemProvider = new SCAImplementationItemProvider(this);
-		}
+        if (scaImplementationItemProvider == null) {
+            scaImplementationItemProvider = new SCAImplementationItemProvider(this);
+        }
 
-		return scaImplementationItemProvider;
-	}
+        return scaImplementationItemProvider;
+    }
 
 	/**
-	 * This keeps track of the one adapter used for all {@link org.eclipse.soa.sca.sca1_1.model.sca.SCAPropertyBase} instances.
-	 * <!-- begin-user-doc -->
+     * This keeps track of the one adapter used for all {@link org.eclipse.soa.sca.sca1_1.model.sca.SCAPropertyBase} instances.
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	protected SCAPropertyBaseItemProvider scaPropertyBaseItemProvider;
 
 	/**
-	 * This creates an adapter for a {@link org.eclipse.soa.sca.sca1_1.model.sca.SCAPropertyBase}.
-	 * <!-- begin-user-doc -->
+     * This creates an adapter for a {@link org.eclipse.soa.sca.sca1_1.model.sca.SCAPropertyBase}.
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	@Override
 	public Adapter createSCAPropertyBaseAdapter() {
-		if (scaPropertyBaseItemProvider == null) {
-			scaPropertyBaseItemProvider = new SCAPropertyBaseItemProvider(this);
-		}
+        if (scaPropertyBaseItemProvider == null) {
+            scaPropertyBaseItemProvider = new SCAPropertyBaseItemProvider(this);
+        }
 
-		return scaPropertyBaseItemProvider;
-	}
+        return scaPropertyBaseItemProvider;
+    }
 
 	/**
-	 * This keeps track of the one adapter used for all {@link org.eclipse.soa.sca.sca1_1.model.sca.Service} instances.
-	 * <!-- begin-user-doc -->
+     * This keeps track of the one adapter used for all {@link org.eclipse.soa.sca.sca1_1.model.sca.Service} instances.
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	protected ServiceItemProvider serviceItemProvider;
 
 	/**
-	 * This creates an adapter for a {@link org.eclipse.soa.sca.sca1_1.model.sca.Service}.
-	 * <!-- begin-user-doc -->
+     * This creates an adapter for a {@link org.eclipse.soa.sca.sca1_1.model.sca.Service}.
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	@Override
 	public Adapter createServiceAdapter() {
-		if (serviceItemProvider == null) {
-			serviceItemProvider = new ServiceItemProvider(this);
-		}
+        if (serviceItemProvider == null) {
+            serviceItemProvider = new ServiceItemProvider(this);
+        }
 
-		return serviceItemProvider;
-	}
+        return serviceItemProvider;
+    }
 
 	/**
-	 * This keeps track of the one adapter used for all {@link org.eclipse.soa.sca.sca1_1.model.sca.SpringImplementation} instances.
-	 * <!-- begin-user-doc -->
+     * This keeps track of the one adapter used for all {@link org.eclipse.soa.sca.sca1_1.model.sca.SpringImplementation} instances.
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	protected SpringImplementationItemProvider springImplementationItemProvider;
 
 	/**
-	 * This creates an adapter for a {@link org.eclipse.soa.sca.sca1_1.model.sca.SpringImplementation}.
-	 * <!-- begin-user-doc -->
+     * This creates an adapter for a {@link org.eclipse.soa.sca.sca1_1.model.sca.SpringImplementation}.
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	@Override
 	public Adapter createSpringImplementationAdapter() {
-		if (springImplementationItemProvider == null) {
-			springImplementationItemProvider = new SpringImplementationItemProvider(this);
-		}
+        if (springImplementationItemProvider == null) {
+            springImplementationItemProvider = new SpringImplementationItemProvider(this);
+        }
 
-		return springImplementationItemProvider;
-	}
+        return springImplementationItemProvider;
+    }
 
 	/**
-	 * This keeps track of the one adapter used for all {@link org.eclipse.soa.sca.sca1_1.model.sca.TDefinitions} instances.
-	 * <!-- begin-user-doc -->
+     * This keeps track of the one adapter used for all {@link org.eclipse.soa.sca.sca1_1.model.sca.TDefinitions} instances.
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	protected TDefinitionsItemProvider tDefinitionsItemProvider;
 
 	/**
-	 * This creates an adapter for a {@link org.eclipse.soa.sca.sca1_1.model.sca.TDefinitions}.
-	 * <!-- begin-user-doc -->
+     * This creates an adapter for a {@link org.eclipse.soa.sca.sca1_1.model.sca.TDefinitions}.
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	@Override
 	public Adapter createTDefinitionsAdapter() {
-		if (tDefinitionsItemProvider == null) {
-			tDefinitionsItemProvider = new TDefinitionsItemProvider(this);
-		}
+        if (tDefinitionsItemProvider == null) {
+            tDefinitionsItemProvider = new TDefinitionsItemProvider(this);
+        }
 
-		return tDefinitionsItemProvider;
-	}
+        return tDefinitionsItemProvider;
+    }
 
 	/**
-	 * This keeps track of the one adapter used for all {@link org.eclipse.soa.sca.sca1_1.model.sca.ValueType} instances.
-	 * <!-- begin-user-doc -->
+     * This keeps track of the one adapter used for all {@link org.eclipse.soa.sca.sca1_1.model.sca.ValueType} instances.
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	protected ValueTypeItemProvider valueTypeItemProvider;
 
 	/**
-	 * This creates an adapter for a {@link org.eclipse.soa.sca.sca1_1.model.sca.ValueType}.
-	 * <!-- begin-user-doc -->
+     * This creates an adapter for a {@link org.eclipse.soa.sca.sca1_1.model.sca.ValueType}.
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	@Override
 	public Adapter createValueTypeAdapter() {
-		if (valueTypeItemProvider == null) {
-			valueTypeItemProvider = new ValueTypeItemProvider(this);
-		}
+        if (valueTypeItemProvider == null) {
+            valueTypeItemProvider = new ValueTypeItemProvider(this);
+        }
 
-		return valueTypeItemProvider;
-	}
+        return valueTypeItemProvider;
+    }
 
 	/**
-	 * This keeps track of the one adapter used for all {@link org.eclipse.soa.sca.sca1_1.model.sca.WebImplementation} instances.
-	 * <!-- begin-user-doc -->
+     * This keeps track of the one adapter used for all {@link org.eclipse.soa.sca.sca1_1.model.sca.WebImplementation} instances.
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	protected WebImplementationItemProvider webImplementationItemProvider;
 
 	/**
-	 * This creates an adapter for a {@link org.eclipse.soa.sca.sca1_1.model.sca.WebImplementation}.
-	 * <!-- begin-user-doc -->
+     * This creates an adapter for a {@link org.eclipse.soa.sca.sca1_1.model.sca.WebImplementation}.
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	@Override
 	public Adapter createWebImplementationAdapter() {
-		if (webImplementationItemProvider == null) {
-			webImplementationItemProvider = new WebImplementationItemProvider(this);
-		}
+        if (webImplementationItemProvider == null) {
+            webImplementationItemProvider = new WebImplementationItemProvider(this);
+        }
 
-		return webImplementationItemProvider;
-	}
+        return webImplementationItemProvider;
+    }
 
 	/**
-	 * This keeps track of the one adapter used for all {@link org.eclipse.soa.sca.sca1_1.model.sca.WebServiceBinding} instances.
-	 * <!-- begin-user-doc -->
+     * This keeps track of the one adapter used for all {@link org.eclipse.soa.sca.sca1_1.model.sca.WebServiceBinding} instances.
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	protected WebServiceBindingItemProvider webServiceBindingItemProvider;
 
 	/**
-	 * This creates an adapter for a {@link org.eclipse.soa.sca.sca1_1.model.sca.WebServiceBinding}.
-	 * <!-- begin-user-doc -->
+     * This creates an adapter for a {@link org.eclipse.soa.sca.sca1_1.model.sca.WebServiceBinding}.
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	@Override
 	public Adapter createWebServiceBindingAdapter() {
-		if (webServiceBindingItemProvider == null) {
-			webServiceBindingItemProvider = new WebServiceBindingItemProvider(this);
-		}
+        if (webServiceBindingItemProvider == null) {
+            webServiceBindingItemProvider = new WebServiceBindingItemProvider(this);
+        }
 
-		return webServiceBindingItemProvider;
-	}
+        return webServiceBindingItemProvider;
+    }
 
 	/**
-	 * This keeps track of the one adapter used for all {@link org.eclipse.soa.sca.sca1_1.model.sca.Wire} instances.
-	 * <!-- begin-user-doc -->
+     * This keeps track of the one adapter used for all {@link org.eclipse.soa.sca.sca1_1.model.sca.Wire} instances.
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	protected WireItemProvider wireItemProvider;
 
 	/**
-	 * This creates an adapter for a {@link org.eclipse.soa.sca.sca1_1.model.sca.Wire}.
-	 * <!-- begin-user-doc -->
+     * This creates an adapter for a {@link org.eclipse.soa.sca.sca1_1.model.sca.Wire}.
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	@Override
 	public Adapter createWireAdapter() {
-		if (wireItemProvider == null) {
-			wireItemProvider = new WireItemProvider(this);
-		}
+        if (wireItemProvider == null) {
+            wireItemProvider = new WireItemProvider(this);
+        }
 
-		return wireItemProvider;
-	}
+        return wireItemProvider;
+    }
 
 	/**
-	 * This keeps track of the one adapter used for all {@link org.eclipse.soa.sca.sca1_1.model.sca.WSCallbackType} instances.
-	 * <!-- begin-user-doc -->
+     * This keeps track of the one adapter used for all {@link org.eclipse.soa.sca.sca1_1.model.sca.WSCallbackType} instances.
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	protected WSCallbackTypeItemProvider wsCallbackTypeItemProvider;
 
 	/**
-	 * This creates an adapter for a {@link org.eclipse.soa.sca.sca1_1.model.sca.WSCallbackType}.
-	 * <!-- begin-user-doc -->
+     * This creates an adapter for a {@link org.eclipse.soa.sca.sca1_1.model.sca.WSCallbackType}.
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	@Override
 	public Adapter createWSCallbackTypeAdapter() {
-		if (wsCallbackTypeItemProvider == null) {
-			wsCallbackTypeItemProvider = new WSCallbackTypeItemProvider(this);
-		}
+        if (wsCallbackTypeItemProvider == null) {
+            wsCallbackTypeItemProvider = new WSCallbackTypeItemProvider(this);
+        }
 
-		return wsCallbackTypeItemProvider;
-	}
+        return wsCallbackTypeItemProvider;
+    }
 
 	/**
-	 * This keeps track of the one adapter used for all {@link org.eclipse.soa.sca.sca1_1.model.sca.WSDLPortType} instances.
-	 * <!-- begin-user-doc -->
+     * This keeps track of the one adapter used for all {@link org.eclipse.soa.sca.sca1_1.model.sca.WSDLPortType} instances.
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	protected WSDLPortTypeItemProvider wsdlPortTypeItemProvider;
 
 	/**
-	 * This creates an adapter for a {@link org.eclipse.soa.sca.sca1_1.model.sca.WSDLPortType}.
-	 * <!-- begin-user-doc -->
+     * This creates an adapter for a {@link org.eclipse.soa.sca.sca1_1.model.sca.WSDLPortType}.
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	@Override
 	public Adapter createWSDLPortTypeAdapter() {
-		if (wsdlPortTypeItemProvider == null) {
-			wsdlPortTypeItemProvider = new WSDLPortTypeItemProvider(this);
-		}
+        if (wsdlPortTypeItemProvider == null) {
+            wsdlPortTypeItemProvider = new WSDLPortTypeItemProvider(this);
+        }
 
-		return wsdlPortTypeItemProvider;
-	}
+        return wsdlPortTypeItemProvider;
+    }
 
 	/**
-	 * This returns the root adapter factory that contains this factory.
-	 * <!-- begin-user-doc -->
+     * This returns the root adapter factory that contains this factory.
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public ComposeableAdapterFactory getRootAdapterFactory() {
-		return parentAdapterFactory == null ? this : parentAdapterFactory.getRootAdapterFactory();
-	}
+        return parentAdapterFactory == null ? this : parentAdapterFactory.getRootAdapterFactory();
+    }
 
 	/**
-	 * This sets the composed adapter factory that contains this factory.
-	 * <!-- begin-user-doc -->
+     * This sets the composed adapter factory that contains this factory.
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public void setParentAdapterFactory(ComposedAdapterFactory parentAdapterFactory) {
-		this.parentAdapterFactory = parentAdapterFactory;
-	}
+        this.parentAdapterFactory = parentAdapterFactory;
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	@Override
 	public boolean isFactoryForType(Object type) {
-		return supportedTypes.contains(type) || super.isFactoryForType(type);
-	}
+        return supportedTypes.contains(type) || super.isFactoryForType(type);
+    }
 
 	/**
-	 * This implementation substitutes the factory itself as the key for the adapter.
-	 * <!-- begin-user-doc -->
+     * This implementation substitutes the factory itself as the key for the adapter.
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	@Override
 	public Adapter adapt(Notifier notifier, Object type) {
-		return super.adapt(notifier, this);
-	}
+        return super.adapt(notifier, this);
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	@Override
 	public Object adapt(Object object, Object type) {
-		if (isFactoryForType(type)) {
-			Object adapter = super.adapt(object, type);
-			if (!(type instanceof Class<?>) || (((Class<?>)type).isInstance(adapter))) {
-				return adapter;
-			}
-		}
+        if (isFactoryForType(type)) {
+            Object adapter = super.adapt(object, type);
+            if (!(type instanceof Class<?>) || (((Class<?>)type).isInstance(adapter))) {
+                return adapter;
+            }
+        }
 
-		return null;
-	}
+        return null;
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public List<IChildCreationExtender> getChildCreationExtenders() {
-		return childCreationExtenderManager.getChildCreationExtenders();
-	}
+        return childCreationExtenderManager.getChildCreationExtenders();
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public Collection<?> getNewChildDescriptors(Object object, EditingDomain editingDomain) {
-		return childCreationExtenderManager.getNewChildDescriptors(object, editingDomain);
-	}
+        return childCreationExtenderManager.getNewChildDescriptors(object, editingDomain);
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public ResourceLocator getResourceLocator() {
-		return childCreationExtenderManager;
-	}
+        return childCreationExtenderManager;
+    }
 
 	/**
-	 * This adds a listener.
-	 * <!-- begin-user-doc -->
+     * This adds a listener.
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public void addListener(INotifyChangedListener notifyChangedListener) {
-		changeNotifier.addListener(notifyChangedListener);
-	}
+        changeNotifier.addListener(notifyChangedListener);
+    }
 
 	/**
-	 * This removes a listener.
-	 * <!-- begin-user-doc -->
+     * This removes a listener.
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public void removeListener(INotifyChangedListener notifyChangedListener) {
-		changeNotifier.removeListener(notifyChangedListener);
-	}
+        changeNotifier.removeListener(notifyChangedListener);
+    }
 
 	/**
-	 * This delegates to {@link #changeNotifier} and to {@link #parentAdapterFactory}.
-	 * <!-- begin-user-doc -->
+     * This delegates to {@link #changeNotifier} and to {@link #parentAdapterFactory}.
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public void fireNotifyChanged(Notification notification) {
-		changeNotifier.fireNotifyChanged(notification);
+        changeNotifier.fireNotifyChanged(notification);
 
-		if (parentAdapterFactory != null) {
-			parentAdapterFactory.fireNotifyChanged(notification);
-		}
-	}
+        if (parentAdapterFactory != null) {
+            parentAdapterFactory.fireNotifyChanged(notification);
+        }
+    }
 
 	/**
-	 * This disposes all of the item providers created by this factory. 
-	 * <!-- begin-user-doc -->
+     * This disposes all of the item providers created by this factory. 
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public void dispose() {
-		if (activationSpecItemProvider != null) activationSpecItemProvider.dispose();
-		if (bindingPropertyItemProvider != null) bindingPropertyItemProvider.dispose();
-		if (bindingTypeItemProvider != null) bindingTypeItemProvider.dispose();
-		if (bpelImplementationItemProvider != null) bpelImplementationItemProvider.dispose();
-		if (callbackItemProvider != null) callbackItemProvider.dispose();
-		if (cExportItemProvider != null) cExportItemProvider.dispose();
-		if (cFunctionItemProvider != null) cFunctionItemProvider.dispose();
-		if (cImplementationItemProvider != null) cImplementationItemProvider.dispose();
-		if (cImplementationFunctionItemProvider != null) cImplementationFunctionItemProvider.dispose();
-		if (cImportItemProvider != null) cImportItemProvider.dispose();
-		if (cInterfaceItemProvider != null) cInterfaceItemProvider.dispose();
-		if (commonExtensionBaseItemProvider != null) commonExtensionBaseItemProvider.dispose();
-		if (componentItemProvider != null) componentItemProvider.dispose();
-		if (componentReferenceItemProvider != null) componentReferenceItemProvider.dispose();
-		if (componentServiceItemProvider != null) componentServiceItemProvider.dispose();
-		if (componentTypeItemProvider != null) componentTypeItemProvider.dispose();
-		if (componentTypeReferenceItemProvider != null) componentTypeReferenceItemProvider.dispose();
-		if (compositeItemProvider != null) compositeItemProvider.dispose();
-		if (connectionItemProvider != null) connectionItemProvider.dispose();
-		if (connectionSpecItemProvider != null) connectionSpecItemProvider.dispose();
-		if (constrainingPropertyItemProvider != null) constrainingPropertyItemProvider.dispose();
-		if (constrainingReferenceItemProvider != null) constrainingReferenceItemProvider.dispose();
-		if (constrainingServiceItemProvider != null) constrainingServiceItemProvider.dispose();
-		if (constrainingTypeItemProvider != null) constrainingTypeItemProvider.dispose();
-		if (contributionTypeItemProvider != null) contributionTypeItemProvider.dispose();
-		if (cppExportItemProvider != null) cppExportItemProvider.dispose();
-		if (cppFunctionItemProvider != null) cppFunctionItemProvider.dispose();
-		if (cppImplementationItemProvider != null) cppImplementationItemProvider.dispose();
-		if (cppImplementationFunctionItemProvider != null) cppImplementationFunctionItemProvider.dispose();
-		if (cppImportItemProvider != null) cppImportItemProvider.dispose();
-		if (cppInterfaceItemProvider != null) cppInterfaceItemProvider.dispose();
-		if (deployableTypeItemProvider != null) deployableTypeItemProvider.dispose();
-		if (documentationItemProvider != null) documentationItemProvider.dispose();
-		if (documentRootItemProvider != null) documentRootItemProvider.dispose();
-		if (ejbImplementationItemProvider != null) ejbImplementationItemProvider.dispose();
-		if (ejbSessionBeanBindingItemProvider != null) ejbSessionBeanBindingItemProvider.dispose();
-		if (exportTypeItemProvider != null) exportTypeItemProvider.dispose();
-		if (implementationTypeItemProvider != null) implementationTypeItemProvider.dispose();
-		if (importTypeItemProvider != null) importTypeItemProvider.dispose();
-		if (inboundOperationItemProvider != null) inboundOperationItemProvider.dispose();
-		if (includeItemProvider != null) includeItemProvider.dispose();
-		if (intentItemProvider != null) intentItemProvider.dispose();
-		if (intentMapItemProvider != null) intentMapItemProvider.dispose();
-		if (intentQualifierItemProvider != null) intentQualifierItemProvider.dispose();
-		if (interactionSpecItemProvider != null) interactionSpecItemProvider.dispose();
-		if (javaExportTypeItemProvider != null) javaExportTypeItemProvider.dispose();
-		if (javaImplementationItemProvider != null) javaImplementationItemProvider.dispose();
-		if (javaImportTypeItemProvider != null) javaImportTypeItemProvider.dispose();
-		if (javaInterfaceItemProvider != null) javaInterfaceItemProvider.dispose();
-		if (jcaBindingItemProvider != null) jcaBindingItemProvider.dispose();
-		if (jcaInboundConnectionItemProvider != null) jcaInboundConnectionItemProvider.dispose();
-		if (jcaInboundInteractionItemProvider != null) jcaInboundInteractionItemProvider.dispose();
-		if (jcaOutboundConnectionItemProvider != null) jcaOutboundConnectionItemProvider.dispose();
-		if (jcaOutboundInteractionItemProvider != null) jcaOutboundInteractionItemProvider.dispose();
-		if (jeeImplementationItemProvider != null) jeeImplementationItemProvider.dispose();
-		if (jmsActivationSpecItemProvider != null) jmsActivationSpecItemProvider.dispose();
-		if (jmsBindingItemProvider != null) jmsBindingItemProvider.dispose();
-		if (jmsConnectionFactoryItemProvider != null) jmsConnectionFactoryItemProvider.dispose();
-		if (jmsDestinationItemProvider != null) jmsDestinationItemProvider.dispose();
-		if (jmsHeadersItemProvider != null) jmsHeadersItemProvider.dispose();
-		if (jmsMessageSelectionItemProvider != null) jmsMessageSelectionItemProvider.dispose();
-		if (jmsOperationPropertiesItemProvider != null) jmsOperationPropertiesItemProvider.dispose();
-		if (jmsResourceAdapterItemProvider != null) jmsResourceAdapterItemProvider.dispose();
-		if (jmsResponseItemProvider != null) jmsResponseItemProvider.dispose();
-		if (operationItemProvider != null) operationItemProvider.dispose();
-		if (policySetItemProvider != null) policySetItemProvider.dispose();
-		if (policySetAttachmentItemProvider != null) policySetAttachmentItemProvider.dispose();
-		if (policySetReferenceItemProvider != null) policySetReferenceItemProvider.dispose();
-		if (propertyItemProvider != null) propertyItemProvider.dispose();
-		if (propertyValueItemProvider != null) propertyValueItemProvider.dispose();
-		if (qualifierItemProvider != null) qualifierItemProvider.dispose();
-		if (referenceItemProvider != null) referenceItemProvider.dispose();
-		if (resourceAdapterItemProvider != null) resourceAdapterItemProvider.dispose();
-		if (scaBindingItemProvider != null) scaBindingItemProvider.dispose();
-		if (scaImplementationItemProvider != null) scaImplementationItemProvider.dispose();
-		if (scaPropertyBaseItemProvider != null) scaPropertyBaseItemProvider.dispose();
-		if (serviceItemProvider != null) serviceItemProvider.dispose();
-		if (springImplementationItemProvider != null) springImplementationItemProvider.dispose();
-		if (tDefinitionsItemProvider != null) tDefinitionsItemProvider.dispose();
-		if (valueTypeItemProvider != null) valueTypeItemProvider.dispose();
-		if (webImplementationItemProvider != null) webImplementationItemProvider.dispose();
-		if (webServiceBindingItemProvider != null) webServiceBindingItemProvider.dispose();
-		if (wireItemProvider != null) wireItemProvider.dispose();
-		if (wsCallbackTypeItemProvider != null) wsCallbackTypeItemProvider.dispose();
-		if (wsdlPortTypeItemProvider != null) wsdlPortTypeItemProvider.dispose();
-	}
+        if (activationSpecItemProvider != null) activationSpecItemProvider.dispose();
+        if (bindingPropertyItemProvider != null) bindingPropertyItemProvider.dispose();
+        if (bindingTypeItemProvider != null) bindingTypeItemProvider.dispose();
+        if (bpelImplementationItemProvider != null) bpelImplementationItemProvider.dispose();
+        if (callbackItemProvider != null) callbackItemProvider.dispose();
+        if (cExportItemProvider != null) cExportItemProvider.dispose();
+        if (cFunctionItemProvider != null) cFunctionItemProvider.dispose();
+        if (cImplementationItemProvider != null) cImplementationItemProvider.dispose();
+        if (cImplementationFunctionItemProvider != null) cImplementationFunctionItemProvider.dispose();
+        if (cImportItemProvider != null) cImportItemProvider.dispose();
+        if (cInterfaceItemProvider != null) cInterfaceItemProvider.dispose();
+        if (commonExtensionBaseItemProvider != null) commonExtensionBaseItemProvider.dispose();
+        if (componentItemProvider != null) componentItemProvider.dispose();
+        if (componentReferenceItemProvider != null) componentReferenceItemProvider.dispose();
+        if (componentServiceItemProvider != null) componentServiceItemProvider.dispose();
+        if (componentTypeItemProvider != null) componentTypeItemProvider.dispose();
+        if (componentTypeReferenceItemProvider != null) componentTypeReferenceItemProvider.dispose();
+        if (compositeItemProvider != null) compositeItemProvider.dispose();
+        if (connectionItemProvider != null) connectionItemProvider.dispose();
+        if (connectionSpecItemProvider != null) connectionSpecItemProvider.dispose();
+        if (constrainingPropertyItemProvider != null) constrainingPropertyItemProvider.dispose();
+        if (constrainingReferenceItemProvider != null) constrainingReferenceItemProvider.dispose();
+        if (constrainingServiceItemProvider != null) constrainingServiceItemProvider.dispose();
+        if (constrainingTypeItemProvider != null) constrainingTypeItemProvider.dispose();
+        if (contributionTypeItemProvider != null) contributionTypeItemProvider.dispose();
+        if (cppExportItemProvider != null) cppExportItemProvider.dispose();
+        if (cppFunctionItemProvider != null) cppFunctionItemProvider.dispose();
+        if (cppImplementationItemProvider != null) cppImplementationItemProvider.dispose();
+        if (cppImplementationFunctionItemProvider != null) cppImplementationFunctionItemProvider.dispose();
+        if (cppImportItemProvider != null) cppImportItemProvider.dispose();
+        if (cppInterfaceItemProvider != null) cppInterfaceItemProvider.dispose();
+        if (deployableTypeItemProvider != null) deployableTypeItemProvider.dispose();
+        if (documentationItemProvider != null) documentationItemProvider.dispose();
+        if (documentRootItemProvider != null) documentRootItemProvider.dispose();
+        if (ejbImplementationItemProvider != null) ejbImplementationItemProvider.dispose();
+        if (ejbSessionBeanBindingItemProvider != null) ejbSessionBeanBindingItemProvider.dispose();
+        if (exportTypeItemProvider != null) exportTypeItemProvider.dispose();
+        if (implementationTypeItemProvider != null) implementationTypeItemProvider.dispose();
+        if (importTypeItemProvider != null) importTypeItemProvider.dispose();
+        if (inboundOperationItemProvider != null) inboundOperationItemProvider.dispose();
+        if (includeItemProvider != null) includeItemProvider.dispose();
+        if (intentItemProvider != null) intentItemProvider.dispose();
+        if (intentMapItemProvider != null) intentMapItemProvider.dispose();
+        if (intentQualifierItemProvider != null) intentQualifierItemProvider.dispose();
+        if (interactionSpecItemProvider != null) interactionSpecItemProvider.dispose();
+        if (javaExportTypeItemProvider != null) javaExportTypeItemProvider.dispose();
+        if (javaImplementationItemProvider != null) javaImplementationItemProvider.dispose();
+        if (javaImportTypeItemProvider != null) javaImportTypeItemProvider.dispose();
+        if (javaInterfaceItemProvider != null) javaInterfaceItemProvider.dispose();
+        if (jcaBindingItemProvider != null) jcaBindingItemProvider.dispose();
+        if (jcaInboundConnectionItemProvider != null) jcaInboundConnectionItemProvider.dispose();
+        if (jcaInboundInteractionItemProvider != null) jcaInboundInteractionItemProvider.dispose();
+        if (jcaOutboundConnectionItemProvider != null) jcaOutboundConnectionItemProvider.dispose();
+        if (jcaOutboundInteractionItemProvider != null) jcaOutboundInteractionItemProvider.dispose();
+        if (jeeImplementationItemProvider != null) jeeImplementationItemProvider.dispose();
+        if (jmsActivationSpecItemProvider != null) jmsActivationSpecItemProvider.dispose();
+        if (jmsBindingItemProvider != null) jmsBindingItemProvider.dispose();
+        if (jmsConnectionFactoryItemProvider != null) jmsConnectionFactoryItemProvider.dispose();
+        if (jmsDestinationItemProvider != null) jmsDestinationItemProvider.dispose();
+        if (jmsHeadersItemProvider != null) jmsHeadersItemProvider.dispose();
+        if (jmsMessageSelectionItemProvider != null) jmsMessageSelectionItemProvider.dispose();
+        if (jmsOperationPropertiesItemProvider != null) jmsOperationPropertiesItemProvider.dispose();
+        if (jmsResourceAdapterItemProvider != null) jmsResourceAdapterItemProvider.dispose();
+        if (jmsResponseItemProvider != null) jmsResponseItemProvider.dispose();
+        if (operationItemProvider != null) operationItemProvider.dispose();
+        if (policySetItemProvider != null) policySetItemProvider.dispose();
+        if (policySetAttachmentItemProvider != null) policySetAttachmentItemProvider.dispose();
+        if (policySetReferenceItemProvider != null) policySetReferenceItemProvider.dispose();
+        if (propertyItemProvider != null) propertyItemProvider.dispose();
+        if (propertyValueItemProvider != null) propertyValueItemProvider.dispose();
+        if (qualifierItemProvider != null) qualifierItemProvider.dispose();
+        if (referenceItemProvider != null) referenceItemProvider.dispose();
+        if (resourceAdapterItemProvider != null) resourceAdapterItemProvider.dispose();
+        if (scaBindingItemProvider != null) scaBindingItemProvider.dispose();
+        if (scaImplementationItemProvider != null) scaImplementationItemProvider.dispose();
+        if (scaPropertyBaseItemProvider != null) scaPropertyBaseItemProvider.dispose();
+        if (serviceItemProvider != null) serviceItemProvider.dispose();
+        if (springImplementationItemProvider != null) springImplementationItemProvider.dispose();
+        if (tDefinitionsItemProvider != null) tDefinitionsItemProvider.dispose();
+        if (valueTypeItemProvider != null) valueTypeItemProvider.dispose();
+        if (webImplementationItemProvider != null) webImplementationItemProvider.dispose();
+        if (webServiceBindingItemProvider != null) webServiceBindingItemProvider.dispose();
+        if (wireItemProvider != null) wireItemProvider.dispose();
+        if (wsCallbackTypeItemProvider != null) wsCallbackTypeItemProvider.dispose();
+        if (wsdlPortTypeItemProvider != null) wsdlPortTypeItemProvider.dispose();
+    }
 
 }

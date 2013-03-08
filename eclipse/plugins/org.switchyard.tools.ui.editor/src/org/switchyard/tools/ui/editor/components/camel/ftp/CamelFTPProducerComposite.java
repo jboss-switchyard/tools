@@ -34,6 +34,7 @@ import org.switchyard.tools.models.switchyard1_0.switchyard.MessageComposerType;
 import org.switchyard.tools.models.switchyard1_0.switchyard.SwitchyardFactory;
 import org.switchyard.tools.ui.editor.diagram.binding.AbstractSYBindingComposite;
 import org.switchyard.tools.ui.editor.diagram.shared.ModelOperation;
+import org.switchyard.tools.ui.editor.util.PropTypeUtil;
 
 /**
  * @author bfitzpat
@@ -95,7 +96,8 @@ public class CamelFTPProducerComposite extends AbstractSYBindingComposite {
                 _hostText.setText("");
             }
             if (this._binding.isSetPort()) {
-                _portText.setText(Integer.toString(this._binding.getPort()));
+                setTextValue(_portText, PropTypeUtil.getPropValueString(this._binding.getPort()));
+//                _portText.setText(Integer.toString(this._binding.getPort()));
             } else {
                 _portText.setText("");
             }
@@ -125,12 +127,12 @@ public class CamelFTPProducerComposite extends AbstractSYBindingComposite {
         if (getBinding() != null) {
             if (_directoryText.getText().trim().isEmpty()) {
                 setErrorMessage("Directory may not be empty.");
-            } else if (!_portText.getText().trim().isEmpty()) {
-                try {
-                    new Integer(_portText.getText().trim());
-                } catch (NumberFormatException nfe) {
-                    setErrorMessage("Port value must be a valid number.");
-                }
+//            } else if (!_portText.getText().trim().isEmpty()) {
+//                try {
+//                    new Integer(_portText.getText().trim());
+//                } catch (NumberFormatException nfe) {
+//                    setErrorMessage("Port value must be a valid number.");
+//                }
             }
         }
         super.validateTabs();
@@ -226,7 +228,7 @@ public class CamelFTPProducerComposite extends AbstractSYBindingComposite {
                 int port = Integer.parseInt(_portText.getText().trim());
                 updateFeature(_binding, "port", port);
             } catch (NumberFormatException nfe) {
-                nfe.fillInStackTrace();
+                updateFeature(_binding, "port", _portText.getText().trim());
             }
         } else if (control.equals(_fileExistText)) {
             updateProduceFeature("fileExist", _fileExistText.getText().trim());
@@ -251,7 +253,8 @@ public class CamelFTPProducerComposite extends AbstractSYBindingComposite {
             } else if (control.equals(_hostText)) {
                 _hostText.setText(this._binding.getHost());
             } else if (control.equals(_portText)) {
-                _portText.setText(Integer.toString(this._binding.getPort()));
+                setTextValue(_portText, PropTypeUtil.getPropValueString(this._binding.getPort()));
+//                _portText.setText(Integer.toString(this._binding.getPort()));
             } else if (control.equals(_usernameText)) {
                 _usernameText.setText(this._binding.getUsername());
             } else if (control.equals(_pwdText)) {

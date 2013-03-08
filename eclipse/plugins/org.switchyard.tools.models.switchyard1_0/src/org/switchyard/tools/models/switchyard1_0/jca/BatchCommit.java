@@ -31,13 +31,13 @@ public interface BatchCommit extends EObject {
      * </p>
      * <!-- end-user-doc -->
      * @return the value of the '<em>Batch Size</em>' attribute.
-     * @see #setBatchSize(String)
+     * @see #setBatchSize(Object)
      * @see org.switchyard.tools.models.switchyard1_0.jca.JcaPackage#getBatchCommit_BatchSize()
-     * @model dataType="org.eclipse.emf.ecore.xml.type.String" required="true"
+     * @model dataType="org.switchyard.tools.models.switchyard1_0.switchyard.PropInteger" required="true"
      *        extendedMetaData="kind='attribute' name='batchSize'"
      * @generated
      */
-    String getBatchSize();
+    Object getBatchSize();
 
     /**
      * Sets the value of the '{@link org.switchyard.tools.models.switchyard1_0.jca.BatchCommit#getBatchSize <em>Batch Size</em>}' attribute.
@@ -47,7 +47,7 @@ public interface BatchCommit extends EObject {
      * @see #getBatchSize()
      * @generated
      */
-    void setBatchSize(String value);
+    void setBatchSize(Object value);
 
     /**
      * Returns the value of the '<em><b>Batch Timeout</b></em>' attribute.
@@ -58,13 +58,13 @@ public interface BatchCommit extends EObject {
      * </p>
      * <!-- end-user-doc -->
      * @return the value of the '<em>Batch Timeout</em>' attribute.
-     * @see #setBatchTimeout(String)
+     * @see #setBatchTimeout(Object)
      * @see org.switchyard.tools.models.switchyard1_0.jca.JcaPackage#getBatchCommit_BatchTimeout()
-     * @model dataType="org.eclipse.emf.ecore.xml.type.String" required="true"
+     * @model dataType="org.switchyard.tools.models.switchyard1_0.switchyard.PropInteger" required="true"
      *        extendedMetaData="kind='attribute' name='batchTimeout'"
      * @generated
      */
-    String getBatchTimeout();
+    Object getBatchTimeout();
 
     /**
      * Sets the value of the '{@link org.switchyard.tools.models.switchyard1_0.jca.BatchCommit#getBatchTimeout <em>Batch Timeout</em>}' attribute.
@@ -74,6 +74,6 @@ public interface BatchCommit extends EObject {
      * @see #getBatchTimeout()
      * @generated
      */
-    void setBatchTimeout(String value);
+    void setBatchTimeout(Object value);
 
 } // BatchCommit

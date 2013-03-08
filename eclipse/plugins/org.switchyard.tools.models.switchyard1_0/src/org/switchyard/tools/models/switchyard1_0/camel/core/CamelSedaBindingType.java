@@ -61,13 +61,13 @@ public interface CamelSedaBindingType extends BaseCamelBinding {
      * </p>
      * <!-- end-user-doc -->
      * @return the value of the '<em>Size</em>' attribute.
-     * @see #setSize(int)
+     * @see #setSize(Object)
      * @see org.switchyard.tools.models.switchyard1_0.camel.core.CorePackage#getCamelSedaBindingType_Size()
-     * @model dataType="org.eclipse.emf.ecore.xml.type.Int" required="true"
+     * @model dataType="org.switchyard.tools.models.switchyard1_0.switchyard.PropInteger" required="true"
      *        extendedMetaData="kind='element' name='size' namespace='##targetNamespace'"
      * @generated
      */
-    int getSize();
+    Object getSize();
 
     /**
      * Sets the value of the '{@link org.switchyard.tools.models.switchyard1_0.camel.core.CamelSedaBindingType#getSize <em>Size</em>}' attribute.
@@ -77,7 +77,7 @@ public interface CamelSedaBindingType extends BaseCamelBinding {
      * @see #getSize()
      * @generated
      */
-    void setSize(int value);
+    void setSize(Object value);
 
     /**
      * Returns the value of the '<em><b>Concurrent Consumers</b></em>' attribute.
@@ -89,13 +89,13 @@ public interface CamelSedaBindingType extends BaseCamelBinding {
      * </p>
      * <!-- end-user-doc -->
      * @return the value of the '<em>Concurrent Consumers</em>' attribute.
-     * @see #setConcurrentConsumers(int)
+     * @see #setConcurrentConsumers(Object)
      * @see org.switchyard.tools.models.switchyard1_0.camel.core.CorePackage#getCamelSedaBindingType_ConcurrentConsumers()
-     * @model default="1" dataType="org.eclipse.emf.ecore.xml.type.Int" required="true"
+     * @model default="1" dataType="org.switchyard.tools.models.switchyard1_0.switchyard.PropInteger" required="true"
      *        extendedMetaData="kind='element' name='concurrentConsumers' namespace='##targetNamespace'"
      * @generated
      */
-    int getConcurrentConsumers();
+    Object getConcurrentConsumers();
 
     /**
      * Sets the value of the '{@link org.switchyard.tools.models.switchyard1_0.camel.core.CamelSedaBindingType#getConcurrentConsumers <em>Concurrent Consumers</em>}' attribute.
@@ -105,7 +105,7 @@ public interface CamelSedaBindingType extends BaseCamelBinding {
      * @see #getConcurrentConsumers()
      * @generated
      */
-    void setConcurrentConsumers(int value);
+    void setConcurrentConsumers(Object value);
 
     /**
      * Returns the value of the '<em><b>Wait For Task To Complete</b></em>' attribute.
@@ -147,13 +147,13 @@ public interface CamelSedaBindingType extends BaseCamelBinding {
      * @return the value of the '<em>Timeout</em>' attribute.
      * @see #isSetTimeout()
      * @see #unsetTimeout()
-     * @see #setTimeout(long)
+     * @see #setTimeout(Object)
      * @see org.switchyard.tools.models.switchyard1_0.camel.core.CorePackage#getCamelSedaBindingType_Timeout()
-     * @model default="30000" unsettable="true" dataType="org.eclipse.emf.ecore.xml.type.Long" required="true"
+     * @model default="30000" unsettable="true" dataType="org.switchyard.tools.models.switchyard1_0.switchyard.PropLong" required="true"
      *        extendedMetaData="kind='element' name='timeout' namespace='##targetNamespace'"
      * @generated
      */
-    long getTimeout();
+    Object getTimeout();
 
     /**
      * Sets the value of the '{@link org.switchyard.tools.models.switchyard1_0.camel.core.CamelSedaBindingType#getTimeout <em>Timeout</em>}' attribute.
@@ -165,7 +165,7 @@ public interface CamelSedaBindingType extends BaseCamelBinding {
      * @see #getTimeout()
      * @generated
      */
-    void setTimeout(long value);
+    void setTimeout(Object value);
 
     /**
      * Unsets the value of the '{@link org.switchyard.tools.models.switchyard1_0.camel.core.CamelSedaBindingType#getTimeout <em>Timeout</em>}' attribute.
@@ -173,7 +173,7 @@ public interface CamelSedaBindingType extends BaseCamelBinding {
      * <!-- end-user-doc -->
      * @see #isSetTimeout()
      * @see #getTimeout()
-     * @see #setTimeout(long)
+     * @see #setTimeout(Object)
      * @generated
      */
     void unsetTimeout();
@@ -185,7 +185,7 @@ public interface CamelSedaBindingType extends BaseCamelBinding {
      * @return whether the value of the '<em>Timeout</em>' attribute is set.
      * @see #unsetTimeout()
      * @see #getTimeout()
-     * @see #setTimeout(long)
+     * @see #setTimeout(Object)
      * @generated
      */
     boolean isSetTimeout();

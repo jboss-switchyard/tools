@@ -88,7 +88,9 @@ public class AdvancedBindingPropertyTable extends Composite implements ICellModi
                     String type = feature.getEType().getName();
                     System.out.println("Creating cell editor for: " + type);
                     boolean isEnum = feature.getEType().getInstanceClass().isEnum();
-                    if (type.equalsIgnoreCase("String") || type.equalsIgnoreCase("AnyURI")) {
+                    if (type.equalsIgnoreCase("String") || type.equalsIgnoreCase("AnyURI")
+                            || type.equalsIgnoreCase("PropInteger") 
+                            || type.equalsIgnoreCase("PropLong")) {
                         ce = new TextCellEditor(_viewer.getTable());
                     } else if (type.equalsIgnoreCase("BooleanObject") || type.equalsIgnoreCase("Boolean")) {
                         if (feature.getDefaultValueLiteral() == null) {
@@ -213,12 +215,12 @@ public class AdvancedBindingPropertyTable extends Composite implements ICellModi
                             return ((Integer) value).toString();
                         }
                         return value;
-                    } else if (feature.getEType().getInstanceClass().isAssignableFrom(BigInteger.class)) {
-                        BigInteger bigIntValue = (BigInteger) value;
-                        return bigIntValue.toString();
                     } else if (value instanceof Long) {
                         Long longValue = (Long) value;
                         return longValue.toString();
+                    } else if (feature.getEType().getInstanceClass().isAssignableFrom(BigInteger.class)) {
+                        BigInteger bigIntValue = (BigInteger) value;
+                        return bigIntValue.toString();
                     } else if (isEnum) {
                         Object[] enums = feature.getEType().getInstanceClass().getEnumConstants();
                         for (int i = 0; i < enums.length; i++) {
@@ -242,7 +244,9 @@ public class AdvancedBindingPropertyTable extends Composite implements ICellModi
                     String type = feature.getEType().getName();
                     boolean isEnum = feature.getEType().getInstanceClass().isEnum();
                     Object realValue = null;
-                    if (type.equalsIgnoreCase("String") || type.equalsIgnoreCase("AnyURI")) {
+                    if (type.equalsIgnoreCase("String") || type.equalsIgnoreCase("AnyURI")
+                            || type.equalsIgnoreCase("PropInteger") 
+                            || type.equalsIgnoreCase("PropLong")) {
                         if (((String) value).trim().isEmpty()) {
                             realValue = null;
                         } else {

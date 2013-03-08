@@ -59,13 +59,13 @@ public interface CamelMockBindingType extends BaseCamelBinding {
      * @return the value of the '<em>Report Group</em>' attribute.
      * @see #isSetReportGroup()
      * @see #unsetReportGroup()
-     * @see #setReportGroup(int)
+     * @see #setReportGroup(Object)
      * @see org.switchyard.tools.models.switchyard1_0.camel.core.CorePackage#getCamelMockBindingType_ReportGroup()
-     * @model unsettable="true" dataType="org.eclipse.emf.ecore.xml.type.Int"
+     * @model unsettable="true" dataType="org.switchyard.tools.models.switchyard1_0.switchyard.PropInteger"
      *        extendedMetaData="kind='element' name='reportGroup' namespace='##targetNamespace'"
      * @generated
      */
-    int getReportGroup();
+    Object getReportGroup();
 
     /**
      * Sets the value of the '{@link org.switchyard.tools.models.switchyard1_0.camel.core.CamelMockBindingType#getReportGroup <em>Report Group</em>}' attribute.
@@ -77,7 +77,7 @@ public interface CamelMockBindingType extends BaseCamelBinding {
      * @see #getReportGroup()
      * @generated
      */
-    void setReportGroup(int value);
+    void setReportGroup(Object value);
 
     /**
      * Unsets the value of the '{@link org.switchyard.tools.models.switchyard1_0.camel.core.CamelMockBindingType#getReportGroup <em>Report Group</em>}' attribute.
@@ -85,7 +85,7 @@ public interface CamelMockBindingType extends BaseCamelBinding {
      * <!-- end-user-doc -->
      * @see #isSetReportGroup()
      * @see #getReportGroup()
-     * @see #setReportGroup(int)
+     * @see #setReportGroup(Object)
      * @generated
      */
     void unsetReportGroup();
@@ -97,7 +97,7 @@ public interface CamelMockBindingType extends BaseCamelBinding {
      * @return whether the value of the '<em>Report Group</em>' attribute is set.
      * @see #unsetReportGroup()
      * @see #getReportGroup()
-     * @see #setReportGroup(int)
+     * @see #setReportGroup(Object)
      * @generated
      */
     boolean isSetReportGroup();

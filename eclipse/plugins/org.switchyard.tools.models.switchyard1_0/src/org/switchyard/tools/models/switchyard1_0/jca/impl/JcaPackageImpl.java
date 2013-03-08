@@ -1676,8 +1676,8 @@ public class JcaPackageImpl extends EPackageImpl implements JcaPackage {
         initEClass(jcaMessageComposerTypeEClass, JCAMessageComposerType.class, "JCAMessageComposerType", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 
         initEClass(batchCommitEClass, BatchCommit.class, "BatchCommit", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-        initEAttribute(getBatchCommit_BatchSize(), theXMLTypePackage.getString(), "batchSize", null, 1, 1, BatchCommit.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-        initEAttribute(getBatchCommit_BatchTimeout(), theXMLTypePackage.getString(), "batchTimeout", null, 1, 1, BatchCommit.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+        initEAttribute(getBatchCommit_BatchSize(), theSwitchyardPackage.getPropInteger(), "batchSize", null, 1, 1, BatchCommit.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+        initEAttribute(getBatchCommit_BatchTimeout(), theSwitchyardPackage.getPropInteger(), "batchTimeout", null, 1, 1, BatchCommit.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
         // Initialize enums and add enum literals
         initEEnum(jcaCreateResourceEEnum, JCACreateResource.class, "JCACreateResource");

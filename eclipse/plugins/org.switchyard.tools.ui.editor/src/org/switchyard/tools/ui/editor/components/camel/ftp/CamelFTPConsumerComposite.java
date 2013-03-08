@@ -43,6 +43,7 @@ import org.switchyard.tools.ui.editor.diagram.binding.AbstractSYBindingComposite
 import org.switchyard.tools.ui.editor.diagram.binding.OperationSelectorComposite;
 import org.switchyard.tools.ui.editor.diagram.binding.OperationSelectorUtil;
 import org.switchyard.tools.ui.editor.diagram.shared.ModelOperation;
+import org.switchyard.tools.ui.editor.util.PropTypeUtil;
 
 /**
  * @author bfitzpat
@@ -84,7 +85,8 @@ public class CamelFTPConsumerComposite extends AbstractSYBindingComposite {
             setInUpdate(true);
             if (this._binding.getConsume() != null) {
                 if (this._binding.getConsume().isSetDelay()) {
-                    _delayText.setText(Integer.toString(this._binding.getConsume().getDelay()));
+                    setTextValue(_delayText, PropTypeUtil.getPropValueString(this._binding.getConsume().getDelay()));
+//                    _delayText.setText(Integer.toString(this._binding.getConsume().getDelay()));
                 } else {
                     _delayText.setText("");
                 }
@@ -133,7 +135,8 @@ public class CamelFTPConsumerComposite extends AbstractSYBindingComposite {
                 _hostText.setText("");
             }
             if (this._binding.isSetPort()) {
-                _portText.setText(Integer.toString(this._binding.getPort()));
+                setTextValue(_portText, PropTypeUtil.getPropValueString(this._binding.getPort()));
+//                _portText.setText(Integer.toString(this._binding.getPort()));
             } else {
                 _portText.setText("");
             }
@@ -176,20 +179,20 @@ public class CamelFTPConsumerComposite extends AbstractSYBindingComposite {
             if (_directoryText.getText().trim().isEmpty()) {
                 setErrorMessage("Directory may not be empty.");
                 return false;
-            } else if (!_delayText.getText().trim().isEmpty()) {
-                try {
-                    new BigInteger(_delayText.getText().trim());
-                } catch (NumberFormatException nfe) {
-                    setErrorMessage("Delay value must be a valid number.");
-                    return false;
-                }
-            } else if (!_portText.getText().trim().isEmpty()) {
-                try {
-                    new Integer(_portText.getText().trim());
-                } catch (NumberFormatException nfe) {
-                    setErrorMessage("Port value must be a valid number.");
-                    return false;
-                }
+//            } else if (!_delayText.getText().trim().isEmpty()) {
+//                try {
+//                    new BigInteger(_delayText.getText().trim());
+//                } catch (NumberFormatException nfe) {
+//                    setErrorMessage("Delay value must be a valid number.");
+//                    return false;
+//                }
+//            } else if (!_portText.getText().trim().isEmpty()) {
+//                try {
+//                    new Integer(_portText.getText().trim());
+//                } catch (NumberFormatException nfe) {
+//                    setErrorMessage("Port value must be a valid number.");
+//                    return false;
+//                }
             }
         }
         super.validateTabs();
@@ -298,8 +301,7 @@ public class CamelFTPConsumerComposite extends AbstractSYBindingComposite {
             try {
                 updateConsumeFeature("delay", new BigInteger(_delayText.getText().trim()));
             } catch (NumberFormatException nfe) {
-                // do nothing
-                nfe.fillInStackTrace();
+                updateConsumeFeature("delay", _delayText.getText().trim());
             }
         } else if (control.equals(_deleteButton)) {
             updateConsumeFeature("delete", new Boolean(_deleteButton.getSelection()));
@@ -341,7 +343,7 @@ public class CamelFTPConsumerComposite extends AbstractSYBindingComposite {
                 int port = Integer.parseInt(_portText.getText().trim());
                 updateFeature(_binding, "port", port);
             } catch (NumberFormatException nfe) {
-                nfe.fillInStackTrace();
+                updateFeature(_binding, "port", _portText.getText().trim());
             }
         } else {
             handleConsumer(control);
@@ -362,7 +364,8 @@ public class CamelFTPConsumerComposite extends AbstractSYBindingComposite {
             } else if (control.equals(_hostText)) {
                 _hostText.setText(this._binding.getHost());
             } else if (control.equals(_portText)) {
-                _portText.setText(Integer.toString(this._binding.getPort()));
+                setTextValue(_portText, PropTypeUtil.getPropValueString(this._binding.getPort()));
+//                _portText.setText(Integer.toString(this._binding.getPort()));
             } else if (control.equals(_usernameText)) {
                 _usernameText.setText(this._binding.getUsername());
             } else if (control.equals(_pwdText)) {
@@ -374,7 +377,8 @@ public class CamelFTPConsumerComposite extends AbstractSYBindingComposite {
 //                setTextValue(_operationSelectionCombo, opName);
             } else if (this._binding.getConsume() != null) {
                 if (control.equals(_delayText)) {
-                    _delayText.setText(Integer.toString(this._binding.getConsume().getDelay()));
+                    setTextValue(_delayText, PropTypeUtil.getPropValueString(this._binding.getConsume().getDelay()));
+//                    _delayText.setText(Integer.toString(this._binding.getConsume().getDelay()));
                 } else if (control.equals(_excludeText)) {
                     _excludeText.setText(this._binding.getConsume().getExclude());
                 } else if (control.equals(_includeText)) {

@@ -10,6 +10,8 @@ import org.eclipse.emf.ecore.impl.ENotificationImpl;
 
 import org.switchyard.tools.models.switchyard1_0.camel.netty.CamelNettyBindingType;
 import org.switchyard.tools.models.switchyard1_0.camel.netty.NettyPackage;
+import org.switchyard.tools.models.switchyard1_0.switchyard.SwitchyardFactory;
+import org.switchyard.tools.models.switchyard1_0.switchyard.SwitchyardPackage;
 
 /**
  * <!-- begin-user-doc -->
@@ -22,6 +24,14 @@ import org.switchyard.tools.models.switchyard1_0.camel.netty.NettyPackage;
  *   <li>{@link org.switchyard.tools.models.switchyard1_0.camel.netty.impl.CamelNettyBindingTypeImpl#getPort <em>Port</em>}</li>
  *   <li>{@link org.switchyard.tools.models.switchyard1_0.camel.netty.impl.CamelNettyBindingTypeImpl#getReceiveBufferSize <em>Receive Buffer Size</em>}</li>
  *   <li>{@link org.switchyard.tools.models.switchyard1_0.camel.netty.impl.CamelNettyBindingTypeImpl#getSendBufferSize <em>Send Buffer Size</em>}</li>
+ *   <li>{@link org.switchyard.tools.models.switchyard1_0.camel.netty.impl.CamelNettyBindingTypeImpl#isSsl <em>Ssl</em>}</li>
+ *   <li>{@link org.switchyard.tools.models.switchyard1_0.camel.netty.impl.CamelNettyBindingTypeImpl#getSslHandler <em>Ssl Handler</em>}</li>
+ *   <li>{@link org.switchyard.tools.models.switchyard1_0.camel.netty.impl.CamelNettyBindingTypeImpl#getPassphrase <em>Passphrase</em>}</li>
+ *   <li>{@link org.switchyard.tools.models.switchyard1_0.camel.netty.impl.CamelNettyBindingTypeImpl#getSecurityProvider <em>Security Provider</em>}</li>
+ *   <li>{@link org.switchyard.tools.models.switchyard1_0.camel.netty.impl.CamelNettyBindingTypeImpl#getKeyStoreFormat <em>Key Store Format</em>}</li>
+ *   <li>{@link org.switchyard.tools.models.switchyard1_0.camel.netty.impl.CamelNettyBindingTypeImpl#getKeyStoreFile <em>Key Store File</em>}</li>
+ *   <li>{@link org.switchyard.tools.models.switchyard1_0.camel.netty.impl.CamelNettyBindingTypeImpl#getTrustStoreFile <em>Trust Store File</em>}</li>
+ *   <li>{@link org.switchyard.tools.models.switchyard1_0.camel.netty.impl.CamelNettyBindingTypeImpl#getSslContextParametersRef <em>Ssl Context Parameters Ref</em>}</li>
  *   <li>{@link org.switchyard.tools.models.switchyard1_0.camel.netty.impl.CamelNettyBindingTypeImpl#isReuseAddress <em>Reuse Address</em>}</li>
  *   <li>{@link org.switchyard.tools.models.switchyard1_0.camel.netty.impl.CamelNettyBindingTypeImpl#getEncoders <em>Encoders</em>}</li>
  *   <li>{@link org.switchyard.tools.models.switchyard1_0.camel.netty.impl.CamelNettyBindingTypeImpl#getDecoders <em>Decoders</em>}</li>
@@ -63,7 +73,7 @@ public abstract class CamelNettyBindingTypeImpl extends BaseCamelBindingImpl imp
      * @generated
      * @ordered
      */
-    protected static final int PORT_EDEFAULT = 0;
+    protected static final Object PORT_EDEFAULT = null;
 
     /**
      * The cached value of the '{@link #getPort() <em>Port</em>}' attribute.
@@ -73,7 +83,7 @@ public abstract class CamelNettyBindingTypeImpl extends BaseCamelBindingImpl imp
      * @generated
      * @ordered
      */
-    protected int port = PORT_EDEFAULT;
+    protected Object port = PORT_EDEFAULT;
 
     /**
      * This is true if the Port attribute has been set.
@@ -92,7 +102,7 @@ public abstract class CamelNettyBindingTypeImpl extends BaseCamelBindingImpl imp
      * @generated
      * @ordered
      */
-    protected static final long RECEIVE_BUFFER_SIZE_EDEFAULT = 65536L;
+    protected static final Object RECEIVE_BUFFER_SIZE_EDEFAULT = SwitchyardFactory.eINSTANCE.createFromString(SwitchyardPackage.eINSTANCE.getPropLong(), "65536");
 
     /**
      * The cached value of the '{@link #getReceiveBufferSize() <em>Receive Buffer Size</em>}' attribute.
@@ -102,7 +112,7 @@ public abstract class CamelNettyBindingTypeImpl extends BaseCamelBindingImpl imp
      * @generated
      * @ordered
      */
-    protected long receiveBufferSize = RECEIVE_BUFFER_SIZE_EDEFAULT;
+    protected Object receiveBufferSize = RECEIVE_BUFFER_SIZE_EDEFAULT;
 
     /**
      * This is true if the Receive Buffer Size attribute has been set.
@@ -121,7 +131,7 @@ public abstract class CamelNettyBindingTypeImpl extends BaseCamelBindingImpl imp
      * @generated
      * @ordered
      */
-    protected static final long SEND_BUFFER_SIZE_EDEFAULT = 65536L;
+    protected static final Object SEND_BUFFER_SIZE_EDEFAULT = SwitchyardFactory.eINSTANCE.createFromString(SwitchyardPackage.eINSTANCE.getPropLong(), "65536");
 
     /**
      * The cached value of the '{@link #getSendBufferSize() <em>Send Buffer Size</em>}' attribute.
@@ -131,7 +141,7 @@ public abstract class CamelNettyBindingTypeImpl extends BaseCamelBindingImpl imp
      * @generated
      * @ordered
      */
-    protected long sendBufferSize = SEND_BUFFER_SIZE_EDEFAULT;
+    protected Object sendBufferSize = SEND_BUFFER_SIZE_EDEFAULT;
 
     /**
      * This is true if the Send Buffer Size attribute has been set.
@@ -141,6 +151,175 @@ public abstract class CamelNettyBindingTypeImpl extends BaseCamelBindingImpl imp
      * @ordered
      */
     protected boolean sendBufferSizeESet;
+
+    /**
+     * The default value of the '{@link #isSsl() <em>Ssl</em>}' attribute.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @see #isSsl()
+     * @generated
+     * @ordered
+     */
+    protected static final boolean SSL_EDEFAULT = false;
+
+    /**
+     * The cached value of the '{@link #isSsl() <em>Ssl</em>}' attribute.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @see #isSsl()
+     * @generated
+     * @ordered
+     */
+    protected boolean ssl = SSL_EDEFAULT;
+
+    /**
+     * This is true if the Ssl attribute has been set.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    protected boolean sslESet;
+
+    /**
+     * The default value of the '{@link #getSslHandler() <em>Ssl Handler</em>}' attribute.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @see #getSslHandler()
+     * @generated
+     * @ordered
+     */
+    protected static final String SSL_HANDLER_EDEFAULT = null;
+
+    /**
+     * The cached value of the '{@link #getSslHandler() <em>Ssl Handler</em>}' attribute.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @see #getSslHandler()
+     * @generated
+     * @ordered
+     */
+    protected String sslHandler = SSL_HANDLER_EDEFAULT;
+
+    /**
+     * The default value of the '{@link #getPassphrase() <em>Passphrase</em>}' attribute.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @see #getPassphrase()
+     * @generated
+     * @ordered
+     */
+    protected static final String PASSPHRASE_EDEFAULT = null;
+
+    /**
+     * The cached value of the '{@link #getPassphrase() <em>Passphrase</em>}' attribute.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @see #getPassphrase()
+     * @generated
+     * @ordered
+     */
+    protected String passphrase = PASSPHRASE_EDEFAULT;
+
+    /**
+     * The default value of the '{@link #getSecurityProvider() <em>Security Provider</em>}' attribute.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @see #getSecurityProvider()
+     * @generated
+     * @ordered
+     */
+    protected static final String SECURITY_PROVIDER_EDEFAULT = null;
+
+    /**
+     * The cached value of the '{@link #getSecurityProvider() <em>Security Provider</em>}' attribute.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @see #getSecurityProvider()
+     * @generated
+     * @ordered
+     */
+    protected String securityProvider = SECURITY_PROVIDER_EDEFAULT;
+
+    /**
+     * The default value of the '{@link #getKeyStoreFormat() <em>Key Store Format</em>}' attribute.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @see #getKeyStoreFormat()
+     * @generated
+     * @ordered
+     */
+    protected static final String KEY_STORE_FORMAT_EDEFAULT = null;
+
+    /**
+     * The cached value of the '{@link #getKeyStoreFormat() <em>Key Store Format</em>}' attribute.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @see #getKeyStoreFormat()
+     * @generated
+     * @ordered
+     */
+    protected String keyStoreFormat = KEY_STORE_FORMAT_EDEFAULT;
+
+    /**
+     * The default value of the '{@link #getKeyStoreFile() <em>Key Store File</em>}' attribute.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @see #getKeyStoreFile()
+     * @generated
+     * @ordered
+     */
+    protected static final String KEY_STORE_FILE_EDEFAULT = null;
+
+    /**
+     * The cached value of the '{@link #getKeyStoreFile() <em>Key Store File</em>}' attribute.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @see #getKeyStoreFile()
+     * @generated
+     * @ordered
+     */
+    protected String keyStoreFile = KEY_STORE_FILE_EDEFAULT;
+
+    /**
+     * The default value of the '{@link #getTrustStoreFile() <em>Trust Store File</em>}' attribute.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @see #getTrustStoreFile()
+     * @generated
+     * @ordered
+     */
+    protected static final String TRUST_STORE_FILE_EDEFAULT = null;
+
+    /**
+     * The cached value of the '{@link #getTrustStoreFile() <em>Trust Store File</em>}' attribute.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @see #getTrustStoreFile()
+     * @generated
+     * @ordered
+     */
+    protected String trustStoreFile = TRUST_STORE_FILE_EDEFAULT;
+
+    /**
+     * The default value of the '{@link #getSslContextParametersRef() <em>Ssl Context Parameters Ref</em>}' attribute.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @see #getSslContextParametersRef()
+     * @generated
+     * @ordered
+     */
+    protected static final String SSL_CONTEXT_PARAMETERS_REF_EDEFAULT = null;
+
+    /**
+     * The cached value of the '{@link #getSslContextParametersRef() <em>Ssl Context Parameters Ref</em>}' attribute.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @see #getSslContextParametersRef()
+     * @generated
+     * @ordered
+     */
+    protected String sslContextParametersRef = SSL_CONTEXT_PARAMETERS_REF_EDEFAULT;
 
     /**
      * The default value of the '{@link #isReuseAddress() <em>Reuse Address</em>}' attribute.
@@ -248,7 +427,7 @@ public abstract class CamelNettyBindingTypeImpl extends BaseCamelBindingImpl imp
      * @generated
      * @ordered
      */
-    protected static final int WORKER_COUNT_EDEFAULT = 0;
+    protected static final Object WORKER_COUNT_EDEFAULT = null;
 
     /**
      * The cached value of the '{@link #getWorkerCount() <em>Worker Count</em>}' attribute.
@@ -258,7 +437,7 @@ public abstract class CamelNettyBindingTypeImpl extends BaseCamelBindingImpl imp
      * @generated
      * @ordered
      */
-    protected int workerCount = WORKER_COUNT_EDEFAULT;
+    protected Object workerCount = WORKER_COUNT_EDEFAULT;
 
     /**
      * This is true if the Worker Count attribute has been set.
@@ -372,7 +551,7 @@ public abstract class CamelNettyBindingTypeImpl extends BaseCamelBindingImpl imp
      * <!-- end-user-doc -->
      * @generated
      */
-    public int getPort() {
+    public Object getPort() {
         return port;
     }
 
@@ -381,8 +560,8 @@ public abstract class CamelNettyBindingTypeImpl extends BaseCamelBindingImpl imp
      * <!-- end-user-doc -->
      * @generated
      */
-    public void setPort(int newPort) {
-        int oldPort = port;
+    public void setPort(Object newPort) {
+        Object oldPort = port;
         port = newPort;
         boolean oldPortESet = portESet;
         portESet = true;
@@ -396,7 +575,7 @@ public abstract class CamelNettyBindingTypeImpl extends BaseCamelBindingImpl imp
      * @generated
      */
     public void unsetPort() {
-        int oldPort = port;
+        Object oldPort = port;
         boolean oldPortESet = portESet;
         port = PORT_EDEFAULT;
         portESet = false;
@@ -418,7 +597,7 @@ public abstract class CamelNettyBindingTypeImpl extends BaseCamelBindingImpl imp
      * <!-- end-user-doc -->
      * @generated
      */
-    public long getReceiveBufferSize() {
+    public Object getReceiveBufferSize() {
         return receiveBufferSize;
     }
 
@@ -427,8 +606,8 @@ public abstract class CamelNettyBindingTypeImpl extends BaseCamelBindingImpl imp
      * <!-- end-user-doc -->
      * @generated
      */
-    public void setReceiveBufferSize(long newReceiveBufferSize) {
-        long oldReceiveBufferSize = receiveBufferSize;
+    public void setReceiveBufferSize(Object newReceiveBufferSize) {
+        Object oldReceiveBufferSize = receiveBufferSize;
         receiveBufferSize = newReceiveBufferSize;
         boolean oldReceiveBufferSizeESet = receiveBufferSizeESet;
         receiveBufferSizeESet = true;
@@ -442,7 +621,7 @@ public abstract class CamelNettyBindingTypeImpl extends BaseCamelBindingImpl imp
      * @generated
      */
     public void unsetReceiveBufferSize() {
-        long oldReceiveBufferSize = receiveBufferSize;
+        Object oldReceiveBufferSize = receiveBufferSize;
         boolean oldReceiveBufferSizeESet = receiveBufferSizeESet;
         receiveBufferSize = RECEIVE_BUFFER_SIZE_EDEFAULT;
         receiveBufferSizeESet = false;
@@ -464,7 +643,7 @@ public abstract class CamelNettyBindingTypeImpl extends BaseCamelBindingImpl imp
      * <!-- end-user-doc -->
      * @generated
      */
-    public long getSendBufferSize() {
+    public Object getSendBufferSize() {
         return sendBufferSize;
     }
 
@@ -473,8 +652,8 @@ public abstract class CamelNettyBindingTypeImpl extends BaseCamelBindingImpl imp
      * <!-- end-user-doc -->
      * @generated
      */
-    public void setSendBufferSize(long newSendBufferSize) {
-        long oldSendBufferSize = sendBufferSize;
+    public void setSendBufferSize(Object newSendBufferSize) {
+        Object oldSendBufferSize = sendBufferSize;
         sendBufferSize = newSendBufferSize;
         boolean oldSendBufferSizeESet = sendBufferSizeESet;
         sendBufferSizeESet = true;
@@ -488,7 +667,7 @@ public abstract class CamelNettyBindingTypeImpl extends BaseCamelBindingImpl imp
      * @generated
      */
     public void unsetSendBufferSize() {
-        long oldSendBufferSize = sendBufferSize;
+        Object oldSendBufferSize = sendBufferSize;
         boolean oldSendBufferSizeESet = sendBufferSizeESet;
         sendBufferSize = SEND_BUFFER_SIZE_EDEFAULT;
         sendBufferSizeESet = false;
@@ -503,6 +682,199 @@ public abstract class CamelNettyBindingTypeImpl extends BaseCamelBindingImpl imp
      */
     public boolean isSetSendBufferSize() {
         return sendBufferSizeESet;
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public boolean isSsl() {
+        return ssl;
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public void setSsl(boolean newSsl) {
+        boolean oldSsl = ssl;
+        ssl = newSsl;
+        boolean oldSslESet = sslESet;
+        sslESet = true;
+        if (eNotificationRequired())
+            eNotify(new ENotificationImpl(this, Notification.SET, NettyPackage.CAMEL_NETTY_BINDING_TYPE__SSL, oldSsl, ssl, !oldSslESet));
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public void unsetSsl() {
+        boolean oldSsl = ssl;
+        boolean oldSslESet = sslESet;
+        ssl = SSL_EDEFAULT;
+        sslESet = false;
+        if (eNotificationRequired())
+            eNotify(new ENotificationImpl(this, Notification.UNSET, NettyPackage.CAMEL_NETTY_BINDING_TYPE__SSL, oldSsl, SSL_EDEFAULT, oldSslESet));
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public boolean isSetSsl() {
+        return sslESet;
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public String getSslHandler() {
+        return sslHandler;
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public void setSslHandler(String newSslHandler) {
+        String oldSslHandler = sslHandler;
+        sslHandler = newSslHandler;
+        if (eNotificationRequired())
+            eNotify(new ENotificationImpl(this, Notification.SET, NettyPackage.CAMEL_NETTY_BINDING_TYPE__SSL_HANDLER, oldSslHandler, sslHandler));
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public String getPassphrase() {
+        return passphrase;
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public void setPassphrase(String newPassphrase) {
+        String oldPassphrase = passphrase;
+        passphrase = newPassphrase;
+        if (eNotificationRequired())
+            eNotify(new ENotificationImpl(this, Notification.SET, NettyPackage.CAMEL_NETTY_BINDING_TYPE__PASSPHRASE, oldPassphrase, passphrase));
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public String getSecurityProvider() {
+        return securityProvider;
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public void setSecurityProvider(String newSecurityProvider) {
+        String oldSecurityProvider = securityProvider;
+        securityProvider = newSecurityProvider;
+        if (eNotificationRequired())
+            eNotify(new ENotificationImpl(this, Notification.SET, NettyPackage.CAMEL_NETTY_BINDING_TYPE__SECURITY_PROVIDER, oldSecurityProvider, securityProvider));
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public String getKeyStoreFormat() {
+        return keyStoreFormat;
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public void setKeyStoreFormat(String newKeyStoreFormat) {
+        String oldKeyStoreFormat = keyStoreFormat;
+        keyStoreFormat = newKeyStoreFormat;
+        if (eNotificationRequired())
+            eNotify(new ENotificationImpl(this, Notification.SET, NettyPackage.CAMEL_NETTY_BINDING_TYPE__KEY_STORE_FORMAT, oldKeyStoreFormat, keyStoreFormat));
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public String getKeyStoreFile() {
+        return keyStoreFile;
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public void setKeyStoreFile(String newKeyStoreFile) {
+        String oldKeyStoreFile = keyStoreFile;
+        keyStoreFile = newKeyStoreFile;
+        if (eNotificationRequired())
+            eNotify(new ENotificationImpl(this, Notification.SET, NettyPackage.CAMEL_NETTY_BINDING_TYPE__KEY_STORE_FILE, oldKeyStoreFile, keyStoreFile));
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public String getTrustStoreFile() {
+        return trustStoreFile;
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public void setTrustStoreFile(String newTrustStoreFile) {
+        String oldTrustStoreFile = trustStoreFile;
+        trustStoreFile = newTrustStoreFile;
+        if (eNotificationRequired())
+            eNotify(new ENotificationImpl(this, Notification.SET, NettyPackage.CAMEL_NETTY_BINDING_TYPE__TRUST_STORE_FILE, oldTrustStoreFile, trustStoreFile));
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public String getSslContextParametersRef() {
+        return sslContextParametersRef;
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public void setSslContextParametersRef(String newSslContextParametersRef) {
+        String oldSslContextParametersRef = sslContextParametersRef;
+        sslContextParametersRef = newSslContextParametersRef;
+        if (eNotificationRequired())
+            eNotify(new ENotificationImpl(this, Notification.SET, NettyPackage.CAMEL_NETTY_BINDING_TYPE__SSL_CONTEXT_PARAMETERS_REF, oldSslContextParametersRef, sslContextParametersRef));
     }
 
     /**
@@ -644,7 +1016,7 @@ public abstract class CamelNettyBindingTypeImpl extends BaseCamelBindingImpl imp
      * <!-- end-user-doc -->
      * @generated
      */
-    public int getWorkerCount() {
+    public Object getWorkerCount() {
         return workerCount;
     }
 
@@ -653,8 +1025,8 @@ public abstract class CamelNettyBindingTypeImpl extends BaseCamelBindingImpl imp
      * <!-- end-user-doc -->
      * @generated
      */
-    public void setWorkerCount(int newWorkerCount) {
-        int oldWorkerCount = workerCount;
+    public void setWorkerCount(Object newWorkerCount) {
+        Object oldWorkerCount = workerCount;
         workerCount = newWorkerCount;
         boolean oldWorkerCountESet = workerCountESet;
         workerCountESet = true;
@@ -668,7 +1040,7 @@ public abstract class CamelNettyBindingTypeImpl extends BaseCamelBindingImpl imp
      * @generated
      */
     public void unsetWorkerCount() {
-        int oldWorkerCount = workerCount;
+        Object oldWorkerCount = workerCount;
         boolean oldWorkerCountESet = workerCountESet;
         workerCount = WORKER_COUNT_EDEFAULT;
         workerCountESet = false;
@@ -793,6 +1165,22 @@ public abstract class CamelNettyBindingTypeImpl extends BaseCamelBindingImpl imp
                 return getReceiveBufferSize();
             case NettyPackage.CAMEL_NETTY_BINDING_TYPE__SEND_BUFFER_SIZE:
                 return getSendBufferSize();
+            case NettyPackage.CAMEL_NETTY_BINDING_TYPE__SSL:
+                return isSsl();
+            case NettyPackage.CAMEL_NETTY_BINDING_TYPE__SSL_HANDLER:
+                return getSslHandler();
+            case NettyPackage.CAMEL_NETTY_BINDING_TYPE__PASSPHRASE:
+                return getPassphrase();
+            case NettyPackage.CAMEL_NETTY_BINDING_TYPE__SECURITY_PROVIDER:
+                return getSecurityProvider();
+            case NettyPackage.CAMEL_NETTY_BINDING_TYPE__KEY_STORE_FORMAT:
+                return getKeyStoreFormat();
+            case NettyPackage.CAMEL_NETTY_BINDING_TYPE__KEY_STORE_FILE:
+                return getKeyStoreFile();
+            case NettyPackage.CAMEL_NETTY_BINDING_TYPE__TRUST_STORE_FILE:
+                return getTrustStoreFile();
+            case NettyPackage.CAMEL_NETTY_BINDING_TYPE__SSL_CONTEXT_PARAMETERS_REF:
+                return getSslContextParametersRef();
             case NettyPackage.CAMEL_NETTY_BINDING_TYPE__REUSE_ADDRESS:
                 return isReuseAddress();
             case NettyPackage.CAMEL_NETTY_BINDING_TYPE__ENCODERS:
@@ -823,13 +1211,37 @@ public abstract class CamelNettyBindingTypeImpl extends BaseCamelBindingImpl imp
                 setHost((String)newValue);
                 return;
             case NettyPackage.CAMEL_NETTY_BINDING_TYPE__PORT:
-                setPort((Integer)newValue);
+                setPort(newValue);
                 return;
             case NettyPackage.CAMEL_NETTY_BINDING_TYPE__RECEIVE_BUFFER_SIZE:
-                setReceiveBufferSize((Long)newValue);
+                setReceiveBufferSize(newValue);
                 return;
             case NettyPackage.CAMEL_NETTY_BINDING_TYPE__SEND_BUFFER_SIZE:
-                setSendBufferSize((Long)newValue);
+                setSendBufferSize(newValue);
+                return;
+            case NettyPackage.CAMEL_NETTY_BINDING_TYPE__SSL:
+                setSsl((Boolean)newValue);
+                return;
+            case NettyPackage.CAMEL_NETTY_BINDING_TYPE__SSL_HANDLER:
+                setSslHandler((String)newValue);
+                return;
+            case NettyPackage.CAMEL_NETTY_BINDING_TYPE__PASSPHRASE:
+                setPassphrase((String)newValue);
+                return;
+            case NettyPackage.CAMEL_NETTY_BINDING_TYPE__SECURITY_PROVIDER:
+                setSecurityProvider((String)newValue);
+                return;
+            case NettyPackage.CAMEL_NETTY_BINDING_TYPE__KEY_STORE_FORMAT:
+                setKeyStoreFormat((String)newValue);
+                return;
+            case NettyPackage.CAMEL_NETTY_BINDING_TYPE__KEY_STORE_FILE:
+                setKeyStoreFile((String)newValue);
+                return;
+            case NettyPackage.CAMEL_NETTY_BINDING_TYPE__TRUST_STORE_FILE:
+                setTrustStoreFile((String)newValue);
+                return;
+            case NettyPackage.CAMEL_NETTY_BINDING_TYPE__SSL_CONTEXT_PARAMETERS_REF:
+                setSslContextParametersRef((String)newValue);
                 return;
             case NettyPackage.CAMEL_NETTY_BINDING_TYPE__REUSE_ADDRESS:
                 setReuseAddress((Boolean)newValue);
@@ -844,7 +1256,7 @@ public abstract class CamelNettyBindingTypeImpl extends BaseCamelBindingImpl imp
                 setAllowDefaultCodec((Boolean)newValue);
                 return;
             case NettyPackage.CAMEL_NETTY_BINDING_TYPE__WORKER_COUNT:
-                setWorkerCount((Integer)newValue);
+                setWorkerCount(newValue);
                 return;
             case NettyPackage.CAMEL_NETTY_BINDING_TYPE__SYNC:
                 setSync((Boolean)newValue);
@@ -875,6 +1287,30 @@ public abstract class CamelNettyBindingTypeImpl extends BaseCamelBindingImpl imp
                 return;
             case NettyPackage.CAMEL_NETTY_BINDING_TYPE__SEND_BUFFER_SIZE:
                 unsetSendBufferSize();
+                return;
+            case NettyPackage.CAMEL_NETTY_BINDING_TYPE__SSL:
+                unsetSsl();
+                return;
+            case NettyPackage.CAMEL_NETTY_BINDING_TYPE__SSL_HANDLER:
+                setSslHandler(SSL_HANDLER_EDEFAULT);
+                return;
+            case NettyPackage.CAMEL_NETTY_BINDING_TYPE__PASSPHRASE:
+                setPassphrase(PASSPHRASE_EDEFAULT);
+                return;
+            case NettyPackage.CAMEL_NETTY_BINDING_TYPE__SECURITY_PROVIDER:
+                setSecurityProvider(SECURITY_PROVIDER_EDEFAULT);
+                return;
+            case NettyPackage.CAMEL_NETTY_BINDING_TYPE__KEY_STORE_FORMAT:
+                setKeyStoreFormat(KEY_STORE_FORMAT_EDEFAULT);
+                return;
+            case NettyPackage.CAMEL_NETTY_BINDING_TYPE__KEY_STORE_FILE:
+                setKeyStoreFile(KEY_STORE_FILE_EDEFAULT);
+                return;
+            case NettyPackage.CAMEL_NETTY_BINDING_TYPE__TRUST_STORE_FILE:
+                setTrustStoreFile(TRUST_STORE_FILE_EDEFAULT);
+                return;
+            case NettyPackage.CAMEL_NETTY_BINDING_TYPE__SSL_CONTEXT_PARAMETERS_REF:
+                setSslContextParametersRef(SSL_CONTEXT_PARAMETERS_REF_EDEFAULT);
                 return;
             case NettyPackage.CAMEL_NETTY_BINDING_TYPE__REUSE_ADDRESS:
                 unsetReuseAddress();
@@ -917,6 +1353,22 @@ public abstract class CamelNettyBindingTypeImpl extends BaseCamelBindingImpl imp
                 return isSetReceiveBufferSize();
             case NettyPackage.CAMEL_NETTY_BINDING_TYPE__SEND_BUFFER_SIZE:
                 return isSetSendBufferSize();
+            case NettyPackage.CAMEL_NETTY_BINDING_TYPE__SSL:
+                return isSetSsl();
+            case NettyPackage.CAMEL_NETTY_BINDING_TYPE__SSL_HANDLER:
+                return SSL_HANDLER_EDEFAULT == null ? sslHandler != null : !SSL_HANDLER_EDEFAULT.equals(sslHandler);
+            case NettyPackage.CAMEL_NETTY_BINDING_TYPE__PASSPHRASE:
+                return PASSPHRASE_EDEFAULT == null ? passphrase != null : !PASSPHRASE_EDEFAULT.equals(passphrase);
+            case NettyPackage.CAMEL_NETTY_BINDING_TYPE__SECURITY_PROVIDER:
+                return SECURITY_PROVIDER_EDEFAULT == null ? securityProvider != null : !SECURITY_PROVIDER_EDEFAULT.equals(securityProvider);
+            case NettyPackage.CAMEL_NETTY_BINDING_TYPE__KEY_STORE_FORMAT:
+                return KEY_STORE_FORMAT_EDEFAULT == null ? keyStoreFormat != null : !KEY_STORE_FORMAT_EDEFAULT.equals(keyStoreFormat);
+            case NettyPackage.CAMEL_NETTY_BINDING_TYPE__KEY_STORE_FILE:
+                return KEY_STORE_FILE_EDEFAULT == null ? keyStoreFile != null : !KEY_STORE_FILE_EDEFAULT.equals(keyStoreFile);
+            case NettyPackage.CAMEL_NETTY_BINDING_TYPE__TRUST_STORE_FILE:
+                return TRUST_STORE_FILE_EDEFAULT == null ? trustStoreFile != null : !TRUST_STORE_FILE_EDEFAULT.equals(trustStoreFile);
+            case NettyPackage.CAMEL_NETTY_BINDING_TYPE__SSL_CONTEXT_PARAMETERS_REF:
+                return SSL_CONTEXT_PARAMETERS_REF_EDEFAULT == null ? sslContextParametersRef != null : !SSL_CONTEXT_PARAMETERS_REF_EDEFAULT.equals(sslContextParametersRef);
             case NettyPackage.CAMEL_NETTY_BINDING_TYPE__REUSE_ADDRESS:
                 return isSetReuseAddress();
             case NettyPackage.CAMEL_NETTY_BINDING_TYPE__ENCODERS:
@@ -953,6 +1405,22 @@ public abstract class CamelNettyBindingTypeImpl extends BaseCamelBindingImpl imp
         if (receiveBufferSizeESet) result.append(receiveBufferSize); else result.append("<unset>");
         result.append(", sendBufferSize: ");
         if (sendBufferSizeESet) result.append(sendBufferSize); else result.append("<unset>");
+        result.append(", ssl: ");
+        if (sslESet) result.append(ssl); else result.append("<unset>");
+        result.append(", sslHandler: ");
+        result.append(sslHandler);
+        result.append(", passphrase: ");
+        result.append(passphrase);
+        result.append(", securityProvider: ");
+        result.append(securityProvider);
+        result.append(", keyStoreFormat: ");
+        result.append(keyStoreFormat);
+        result.append(", keyStoreFile: ");
+        result.append(keyStoreFile);
+        result.append(", trustStoreFile: ");
+        result.append(trustStoreFile);
+        result.append(", sslContextParametersRef: ");
+        result.append(sslContextParametersRef);
         result.append(", reuseAddress: ");
         if (reuseAddressESet) result.append(reuseAddress); else result.append("<unset>");
         result.append(", encoders: ");

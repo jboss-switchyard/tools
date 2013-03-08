@@ -377,7 +377,7 @@ public class BeanPackageImpl extends EPackageImpl implements BeanPackage {
 
         // Initialize classes and features; add operations and parameters
         initEClass(beanImplementationTypeEClass, BeanImplementationType.class, "BeanImplementationType", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-        initEAttribute(getBeanImplementationType_Class(), theXMLTypePackage.getNCName(), "class", null, 1, 1, BeanImplementationType.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+        initEAttribute(getBeanImplementationType_Class(), theXMLTypePackage.getString(), "class", null, 1, 1, BeanImplementationType.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
         initEClass(documentRootEClass, DocumentRoot.class, "DocumentRoot", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
         initEAttribute(getDocumentRoot_Mixed(), ecorePackage.getEFeatureMapEntry(), "mixed", null, 0, -1, null, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
@@ -406,7 +406,7 @@ public class BeanPackageImpl extends EPackageImpl implements BeanPackage {
            source, 
            new String[] {
              "name", "BeanImplementationType",
-             "kind", "empty"
+             "kind", "elementOnly"
            });		
         addAnnotation
           (getBeanImplementationType_Class(), 

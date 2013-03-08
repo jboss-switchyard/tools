@@ -31,7 +31,7 @@ public interface CamelBindingType extends BaseCamelBinding {
      * @return the value of the '<em>Config URI</em>' attribute.
      * @see #setConfigURI(String)
      * @see org.switchyard.tools.models.switchyard1_0.camel.core.CorePackage#getCamelBindingType_ConfigURI()
-     * @model dataType="org.eclipse.emf.ecore.xml.type.AnyURI"
+     * @model dataType="org.eclipse.emf.ecore.xml.type.String"
      *        extendedMetaData="kind='attribute' name='configURI'"
      * @generated
      */

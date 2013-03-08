@@ -43,142 +43,107 @@ public class JavaExportTypeItemProvider
 		IItemLabelProvider,
 		IItemPropertySource {
 	/**
-	 * This constructs an instance from a factory and a notifier.
-	 * <!-- begin-user-doc -->
+     * This constructs an instance from a factory and a notifier.
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public JavaExportTypeItemProvider(AdapterFactory adapterFactory) {
-		super(adapterFactory);
-	}
+        super(adapterFactory);
+    }
 
 	/**
-	 * This returns the property descriptors for the adapted class.
-	 * <!-- begin-user-doc -->
+     * This returns the property descriptors for the adapted class.
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	@Override
 	public List<IItemPropertyDescriptor> getPropertyDescriptors(Object object) {
-		if (itemPropertyDescriptors == null) {
-			super.getPropertyDescriptors(object);
+        if (itemPropertyDescriptors == null) {
+            super.getPropertyDescriptors(object);
 
-			addPackagePropertyDescriptor(object);
-		}
-		return itemPropertyDescriptors;
-	}
+            addPackagePropertyDescriptor(object);
+        }
+        return itemPropertyDescriptors;
+    }
 
 	/**
-	 * This adds a property descriptor for the Package feature.
-	 * <!-- begin-user-doc -->
+     * This adds a property descriptor for the Package feature.
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	protected void addPackagePropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add
-			(createItemPropertyDescriptor
-				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
-				 getResourceLocator(),
-				 getString("_UI_JavaExportType_package_feature"),
-				 getString("_UI_PropertyDescriptor_description", "_UI_JavaExportType_package_feature", "_UI_JavaExportType_type"),
-				 ScaPackage.eINSTANCE.getJavaExportType_Package(),
-				 true,
-				 false,
-				 false,
-				 ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
-				 null,
-				 null));
-	}
+        itemPropertyDescriptors.add
+            (createItemPropertyDescriptor
+                (((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+                 getResourceLocator(),
+                 getString("_UI_JavaExportType_package_feature"),
+                 getString("_UI_PropertyDescriptor_description", "_UI_JavaExportType_package_feature", "_UI_JavaExportType_type"),
+                 ScaPackage.eINSTANCE.getJavaExportType_Package(),
+                 true,
+                 false,
+                 false,
+                 ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
+                 null,
+                 null));
+    }
 
 	/**
-	 * This returns JavaExportType.gif.
-	 * <!-- begin-user-doc -->
+     * This returns JavaExportType.gif.
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	@Override
 	public Object getImage(Object object) {
-		return overlayImage(object, getResourceLocator().getImage("full/obj16/JavaExportType"));
-	}
+        return overlayImage(object, getResourceLocator().getImage("full/obj16/JavaExportType"));
+    }
 
 	/**
-	 * This returns the label text for the adapted class.
-	 * <!-- begin-user-doc -->
+     * This returns the label text for the adapted class.
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	@Override
 	public String getText(Object object) {
-		String label = ((JavaExportType)object).getPackage();
-		return label == null || label.length() == 0 ?
-			getString("_UI_JavaExportType_type") :
-			getString("_UI_JavaExportType_type") + " " + label;
-	}
+        String label = ((JavaExportType)object).getPackage();
+        return label == null || label.length() == 0 ?
+            getString("_UI_JavaExportType_type") :
+            getString("_UI_JavaExportType_type") + " " + label;
+    }
 
 	/**
-	 * This handles model notifications by calling {@link #updateChildren} to update any cached
-	 * children and by creating a viewer notification, which it passes to {@link #fireNotifyChanged}.
-	 * <!-- begin-user-doc -->
+     * This handles model notifications by calling {@link #updateChildren} to update any cached
+     * children and by creating a viewer notification, which it passes to {@link #fireNotifyChanged}.
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	@Override
 	public void notifyChanged(Notification notification) {
-		updateChildren(notification);
+        updateChildren(notification);
 
-		switch (notification.getFeatureID(JavaExportType.class)) {
-			case ScaPackage.JAVA_EXPORT_TYPE__PACKAGE:
-				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
-				return;
-		}
-		super.notifyChanged(notification);
-	}
+        switch (notification.getFeatureID(JavaExportType.class)) {
+            case ScaPackage.JAVA_EXPORT_TYPE__PACKAGE:
+                fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
+                return;
+        }
+        super.notifyChanged(notification);
+    }
 
 	/**
-	 * This adds {@link org.eclipse.emf.edit.command.CommandParameter}s describing the children
-	 * that can be created under this object.
-	 * <!-- begin-user-doc -->
+     * This adds {@link org.eclipse.emf.edit.command.CommandParameter}s describing the children
+     * that can be created under this object.
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	@Override
 	protected void collectNewChildDescriptors(Collection<Object> newChildDescriptors, Object object) {
-		super.collectNewChildDescriptors(newChildDescriptors, object);
-	}
-
-	/**
-	 * This returns the label text for {@link org.eclipse.emf.edit.command.CreateChildCommand}.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public String getCreateChildText(Object owner, Object feature, Object child, Collection<?> selection) {
-		Object childFeature = feature;
-		Object childObject = child;
-
-		if (childFeature instanceof EStructuralFeature && FeatureMapUtil.isFeatureMap((EStructuralFeature)childFeature)) {
-			FeatureMap.Entry entry = (FeatureMap.Entry)childObject;
-			childFeature = entry.getEStructuralFeature();
-			childObject = entry.getValue();
-		}
-
-		boolean qualify =
-			childFeature == AddressingPackage.Literals.DOCUMENT_ROOT__ACTION ||
-			childFeature == AddressingPackage.Literals.DOCUMENT_ROOT__MESSAGE_ID ||
-			childFeature == AddressingPackage.Literals.DOCUMENT_ROOT__PROBLEM_IRI ||
-			childFeature == AddressingPackage.Literals.DOCUMENT_ROOT__TO ||
-			childFeature == AddressingPackage.Literals.DOCUMENT_ROOT__ENDPOINT_REFERENCE ||
-			childFeature == AddressingPackage.Literals.DOCUMENT_ROOT__FAULT_TO ||
-			childFeature == AddressingPackage.Literals.DOCUMENT_ROOT__FROM ||
-			childFeature == AddressingPackage.Literals.DOCUMENT_ROOT__REPLY_TO;
-
-		if (qualify) {
-			return getString
-				("_UI_CreateChild_text2",
-				 new Object[] { getTypeText(childObject), getFeatureText(childFeature), getTypeText(owner) });
-		}
-		return super.getCreateChildText(owner, feature, child, selection);
-	}
+        super.collectNewChildDescriptors(newChildDescriptors, object);
+    }
 
 }

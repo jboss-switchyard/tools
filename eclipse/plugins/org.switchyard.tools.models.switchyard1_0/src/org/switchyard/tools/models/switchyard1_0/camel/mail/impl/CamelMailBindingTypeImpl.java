@@ -14,6 +14,8 @@ import org.switchyard.tools.models.switchyard1_0.camel.mail.CamelMailBindingType
 import org.switchyard.tools.models.switchyard1_0.camel.mail.CamelMailConsumerType;
 import org.switchyard.tools.models.switchyard1_0.camel.mail.CamelMailProducerType;
 import org.switchyard.tools.models.switchyard1_0.camel.mail.MailPackage;
+import org.switchyard.tools.models.switchyard1_0.switchyard.SwitchyardFactory;
+import org.switchyard.tools.models.switchyard1_0.switchyard.SwitchyardPackage;
 
 /**
  * <!-- begin-user-doc -->
@@ -64,7 +66,7 @@ public class CamelMailBindingTypeImpl extends BaseCamelBindingImpl implements Ca
      * @generated
      * @ordered
      */
-    protected static final int PORT_EDEFAULT = 0;
+    protected static final Object PORT_EDEFAULT = null;
 
     /**
      * The cached value of the '{@link #getPort() <em>Port</em>}' attribute.
@@ -74,7 +76,7 @@ public class CamelMailBindingTypeImpl extends BaseCamelBindingImpl implements Ca
      * @generated
      * @ordered
      */
-    protected int port = PORT_EDEFAULT;
+    protected Object port = PORT_EDEFAULT;
 
     /**
      * This is true if the Port attribute has been set.
@@ -133,7 +135,7 @@ public class CamelMailBindingTypeImpl extends BaseCamelBindingImpl implements Ca
      * @generated
      * @ordered
      */
-    protected static final int CONNECTION_TIMEOUT_EDEFAULT = 30000;
+    protected static final Object CONNECTION_TIMEOUT_EDEFAULT = SwitchyardFactory.eINSTANCE.createFromString(SwitchyardPackage.eINSTANCE.getPropInteger(), "30000");
 
     /**
      * The cached value of the '{@link #getConnectionTimeout() <em>Connection Timeout</em>}' attribute.
@@ -143,7 +145,7 @@ public class CamelMailBindingTypeImpl extends BaseCamelBindingImpl implements Ca
      * @generated
      * @ordered
      */
-    protected int connectionTimeout = CONNECTION_TIMEOUT_EDEFAULT;
+    protected Object connectionTimeout = CONNECTION_TIMEOUT_EDEFAULT;
 
     /**
      * This is true if the Connection Timeout attribute has been set.
@@ -248,7 +250,7 @@ public class CamelMailBindingTypeImpl extends BaseCamelBindingImpl implements Ca
      * <!-- end-user-doc -->
      * @generated
      */
-    public int getPort() {
+    public Object getPort() {
         return port;
     }
 
@@ -257,8 +259,8 @@ public class CamelMailBindingTypeImpl extends BaseCamelBindingImpl implements Ca
      * <!-- end-user-doc -->
      * @generated
      */
-    public void setPort(int newPort) {
-        int oldPort = port;
+    public void setPort(Object newPort) {
+        Object oldPort = port;
         port = newPort;
         boolean oldPortESet = portESet;
         portESet = true;
@@ -272,7 +274,7 @@ public class CamelMailBindingTypeImpl extends BaseCamelBindingImpl implements Ca
      * @generated
      */
     public void unsetPort() {
-        int oldPort = port;
+        Object oldPort = port;
         boolean oldPortESet = portESet;
         port = PORT_EDEFAULT;
         portESet = false;
@@ -336,7 +338,7 @@ public class CamelMailBindingTypeImpl extends BaseCamelBindingImpl implements Ca
      * <!-- end-user-doc -->
      * @generated
      */
-    public int getConnectionTimeout() {
+    public Object getConnectionTimeout() {
         return connectionTimeout;
     }
 
@@ -345,8 +347,8 @@ public class CamelMailBindingTypeImpl extends BaseCamelBindingImpl implements Ca
      * <!-- end-user-doc -->
      * @generated
      */
-    public void setConnectionTimeout(int newConnectionTimeout) {
-        int oldConnectionTimeout = connectionTimeout;
+    public void setConnectionTimeout(Object newConnectionTimeout) {
+        Object oldConnectionTimeout = connectionTimeout;
         connectionTimeout = newConnectionTimeout;
         boolean oldConnectionTimeoutESet = connectionTimeoutESet;
         connectionTimeoutESet = true;
@@ -360,7 +362,7 @@ public class CamelMailBindingTypeImpl extends BaseCamelBindingImpl implements Ca
      * @generated
      */
     public void unsetConnectionTimeout() {
-        int oldConnectionTimeout = connectionTimeout;
+        Object oldConnectionTimeout = connectionTimeout;
         boolean oldConnectionTimeoutESet = connectionTimeoutESet;
         connectionTimeout = CONNECTION_TIMEOUT_EDEFAULT;
         connectionTimeoutESet = false;
@@ -565,7 +567,7 @@ public class CamelMailBindingTypeImpl extends BaseCamelBindingImpl implements Ca
                 setHost((String)newValue);
                 return;
             case MailPackage.CAMEL_MAIL_BINDING_TYPE__PORT:
-                setPort((Integer)newValue);
+                setPort(newValue);
                 return;
             case MailPackage.CAMEL_MAIL_BINDING_TYPE__USERNAME:
                 setUsername((String)newValue);
@@ -574,7 +576,7 @@ public class CamelMailBindingTypeImpl extends BaseCamelBindingImpl implements Ca
                 setPassword((String)newValue);
                 return;
             case MailPackage.CAMEL_MAIL_BINDING_TYPE__CONNECTION_TIMEOUT:
-                setConnectionTimeout((Integer)newValue);
+                setConnectionTimeout(newValue);
                 return;
             case MailPackage.CAMEL_MAIL_BINDING_TYPE__CONSUME:
                 setConsume((CamelMailConsumerType)newValue);

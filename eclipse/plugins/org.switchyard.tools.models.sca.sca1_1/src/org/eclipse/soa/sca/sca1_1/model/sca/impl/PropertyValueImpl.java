@@ -36,7 +36,6 @@ import org.eclipse.soa.sca.sca1_1.model.sca.ScaPackage;
  *   <li>{@link org.eclipse.soa.sca.sca1_1.model.sca.impl.PropertyValueImpl#getName <em>Name</em>}</li>
  *   <li>{@link org.eclipse.soa.sca.sca1_1.model.sca.impl.PropertyValueImpl#getSource <em>Source</em>}</li>
  *   <li>{@link org.eclipse.soa.sca.sca1_1.model.sca.impl.PropertyValueImpl#getType <em>Type</em>}</li>
- *   <li>{@link org.eclipse.soa.sca.sca1_1.model.sca.impl.PropertyValueImpl#getValue <em>Value</em>}</li>
  *   <li>{@link org.eclipse.soa.sca.sca1_1.model.sca.impl.PropertyValueImpl#getAnyAttribute <em>Any Attribute</em>}</li>
  * </ul>
  * </p>
@@ -172,26 +171,6 @@ public class PropertyValueImpl extends SCAPropertyBaseImpl implements PropertyVa
      * @ordered
      */
 	protected QName type = TYPE_EDEFAULT;
-
-	/**
-     * The default value of the '{@link #getValue() <em>Value</em>}' attribute.
-     * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-     * @see #getValue()
-     * @generated
-     * @ordered
-     */
-	protected static final String VALUE_EDEFAULT = null;
-
-	/**
-     * The cached value of the '{@link #getValue() <em>Value</em>}' attribute.
-     * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-     * @see #getValue()
-     * @generated
-     * @ordered
-     */
-	protected String value = VALUE_EDEFAULT;
 
 	/**
      * The cached value of the '{@link #getAnyAttribute() <em>Any Attribute</em>}' attribute list.
@@ -378,27 +357,6 @@ public class PropertyValueImpl extends SCAPropertyBaseImpl implements PropertyVa
 	 * <!-- end-user-doc -->
      * @generated
      */
-	public String getValue() {
-        return value;
-    }
-
-	/**
-     * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-     * @generated
-     */
-	public void setValue(String newValue) {
-        String oldValue = value;
-        value = newValue;
-        if (eNotificationRequired())
-            eNotify(new ENotificationImpl(this, Notification.SET, ScaPackage.PROPERTY_VALUE__VALUE, oldValue, value));
-    }
-
-	/**
-     * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-     * @generated
-     */
 	public FeatureMap getAnyAttribute() {
         if (anyAttribute == null) {
             anyAttribute = new BasicFeatureMap(this, ScaPackage.PROPERTY_VALUE__ANY_ATTRIBUTE);
@@ -440,8 +398,6 @@ public class PropertyValueImpl extends SCAPropertyBaseImpl implements PropertyVa
                 return getSource();
             case ScaPackage.PROPERTY_VALUE__TYPE:
                 return getType();
-            case ScaPackage.PROPERTY_VALUE__VALUE:
-                return getValue();
             case ScaPackage.PROPERTY_VALUE__ANY_ATTRIBUTE:
                 if (coreType) return getAnyAttribute();
                 return ((FeatureMap.Internal)getAnyAttribute()).getWrapper();
@@ -474,9 +430,6 @@ public class PropertyValueImpl extends SCAPropertyBaseImpl implements PropertyVa
                 return;
             case ScaPackage.PROPERTY_VALUE__TYPE:
                 setType((QName)newValue);
-                return;
-            case ScaPackage.PROPERTY_VALUE__VALUE:
-                setValue((String)newValue);
                 return;
             case ScaPackage.PROPERTY_VALUE__ANY_ATTRIBUTE:
                 ((FeatureMap.Internal)getAnyAttribute()).set(newValue);
@@ -511,9 +464,6 @@ public class PropertyValueImpl extends SCAPropertyBaseImpl implements PropertyVa
             case ScaPackage.PROPERTY_VALUE__TYPE:
                 setType(TYPE_EDEFAULT);
                 return;
-            case ScaPackage.PROPERTY_VALUE__VALUE:
-                setValue(VALUE_EDEFAULT);
-                return;
             case ScaPackage.PROPERTY_VALUE__ANY_ATTRIBUTE:
                 getAnyAttribute().clear();
                 return;
@@ -541,8 +491,6 @@ public class PropertyValueImpl extends SCAPropertyBaseImpl implements PropertyVa
                 return SOURCE_EDEFAULT == null ? source != null : !SOURCE_EDEFAULT.equals(source);
             case ScaPackage.PROPERTY_VALUE__TYPE:
                 return TYPE_EDEFAULT == null ? type != null : !TYPE_EDEFAULT.equals(type);
-            case ScaPackage.PROPERTY_VALUE__VALUE:
-                return VALUE_EDEFAULT == null ? value != null : !VALUE_EDEFAULT.equals(value);
             case ScaPackage.PROPERTY_VALUE__ANY_ATTRIBUTE:
                 return anyAttribute != null && !anyAttribute.isEmpty();
         }
@@ -571,8 +519,6 @@ public class PropertyValueImpl extends SCAPropertyBaseImpl implements PropertyVa
         result.append(source);
         result.append(", type: ");
         result.append(type);
-        result.append(", value: ");
-        result.append(value);
         result.append(", anyAttribute: ");
         result.append(anyAttribute);
         result.append(')');

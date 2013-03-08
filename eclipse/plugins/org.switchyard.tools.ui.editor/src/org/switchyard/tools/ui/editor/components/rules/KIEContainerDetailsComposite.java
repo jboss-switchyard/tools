@@ -33,6 +33,7 @@ import org.eclipse.ui.views.properties.tabbed.TabbedPropertySheetWidgetFactory;
 import org.switchyard.tools.models.switchyard1_0.rules.ContainerType;
 import org.switchyard.tools.models.switchyard1_0.rules.RulesFactory;
 import org.switchyard.tools.ui.editor.Activator;
+import org.switchyard.tools.ui.editor.util.PropTypeUtil;
 
 /**
  * KIEContainerDetailsComposite
@@ -188,7 +189,13 @@ public class KIEContainerDetailsComposite extends Composite {
                 try {
                     final long newValue = _scanIntervalText.getText().length() == 0 ? 0 : Long
                             .valueOf(_scanIntervalText.getText());
-                    if (!_updating && newValue != _container.getScanInterval()) {
+                    long oldValue = -1;
+                    try {
+                        oldValue = Long.parseLong(PropTypeUtil.getPropValueString(_container.getScanInterval()));
+                    } catch (NumberFormatException nfe) {
+                        nfe.printStackTrace();
+                    }
+                    if (!_updating && newValue != oldValue) {
                         wrapOperation(new Runnable() {
                             public void run() {
                                 _container.setScanInterval(newValue);
@@ -217,7 +224,7 @@ public class KIEContainerDetailsComposite extends Composite {
         _baseNameText.setText(_container.getBaseName() == null ? "" : _container.getBaseName());
         _scanCheckbox.setSelection(_container.isScan());
         _scanIntervalText.setEnabled(_container.isScan());
-        _scanIntervalText.setText(Long.toString(_container.getScanInterval()));
+        _scanIntervalText.setText(PropTypeUtil.getPropValueString(_container.getScanInterval()));
         if (_container.getReleaseId() == null) {
             _groupIdText.setText("");
             _artifactIdText.setText("");

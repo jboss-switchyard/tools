@@ -9,6 +9,8 @@ import org.eclipse.emf.ecore.impl.ENotificationImpl;
 
 import org.switchyard.tools.models.switchyard1_0.camel.jms.CamelJmsBindingType;
 import org.switchyard.tools.models.switchyard1_0.camel.jms.JmsPackage;
+import org.switchyard.tools.models.switchyard1_0.switchyard.SwitchyardFactory;
+import org.switchyard.tools.models.switchyard1_0.switchyard.SwitchyardPackage;
 
 /**
  * <!-- begin-user-doc -->
@@ -178,7 +180,7 @@ public class CamelJmsBindingTypeImpl extends BaseCamelBindingImpl implements Cam
      * @generated
      * @ordered
      */
-    protected static final int CONCURRENT_CONSUMERS_EDEFAULT = 1;
+    protected static final Object CONCURRENT_CONSUMERS_EDEFAULT = SwitchyardFactory.eINSTANCE.createFromString(SwitchyardPackage.eINSTANCE.getPropInteger(), "1");
     /**
      * The cached value of the '{@link #getConcurrentConsumers() <em>Concurrent Consumers</em>}' attribute.
      * <!-- begin-user-doc -->
@@ -187,7 +189,7 @@ public class CamelJmsBindingTypeImpl extends BaseCamelBindingImpl implements Cam
      * @generated
      * @ordered
      */
-    protected int concurrentConsumers = CONCURRENT_CONSUMERS_EDEFAULT;
+    protected Object concurrentConsumers = CONCURRENT_CONSUMERS_EDEFAULT;
     /**
      * This is true if the Concurrent Consumers attribute has been set.
      * <!-- begin-user-doc -->
@@ -204,7 +206,7 @@ public class CamelJmsBindingTypeImpl extends BaseCamelBindingImpl implements Cam
      * @generated
      * @ordered
      */
-    protected static final int MAX_CONCURRENT_CONSUMERS_EDEFAULT = 1;
+    protected static final Object MAX_CONCURRENT_CONSUMERS_EDEFAULT = SwitchyardFactory.eINSTANCE.createFromString(SwitchyardPackage.eINSTANCE.getPropInteger(), "1");
     /**
      * The cached value of the '{@link #getMaxConcurrentConsumers() <em>Max Concurrent Consumers</em>}' attribute.
      * <!-- begin-user-doc -->
@@ -213,7 +215,7 @@ public class CamelJmsBindingTypeImpl extends BaseCamelBindingImpl implements Cam
      * @generated
      * @ordered
      */
-    protected int maxConcurrentConsumers = MAX_CONCURRENT_CONSUMERS_EDEFAULT;
+    protected Object maxConcurrentConsumers = MAX_CONCURRENT_CONSUMERS_EDEFAULT;
     /**
      * This is true if the Max Concurrent Consumers attribute has been set.
      * <!-- begin-user-doc -->
@@ -308,7 +310,7 @@ public class CamelJmsBindingTypeImpl extends BaseCamelBindingImpl implements Cam
      * @generated
      * @ordered
      */
-    protected static final int PRIORITY_EDEFAULT = 4;
+    protected static final Object PRIORITY_EDEFAULT = SwitchyardFactory.eINSTANCE.createFromString(SwitchyardPackage.eINSTANCE.getPropInteger(), "4");
     /**
      * The cached value of the '{@link #getPriority() <em>Priority</em>}' attribute.
      * <!-- begin-user-doc -->
@@ -317,7 +319,7 @@ public class CamelJmsBindingTypeImpl extends BaseCamelBindingImpl implements Cam
      * @generated
      * @ordered
      */
-    protected int priority = PRIORITY_EDEFAULT;
+    protected Object priority = PRIORITY_EDEFAULT;
     /**
      * This is true if the Priority attribute has been set.
      * <!-- begin-user-doc -->
@@ -396,7 +398,7 @@ public class CamelJmsBindingTypeImpl extends BaseCamelBindingImpl implements Cam
      * @generated
      * @ordered
      */
-    protected static final int REQUEST_TIMEOUT_EDEFAULT = 20000;
+    protected static final Object REQUEST_TIMEOUT_EDEFAULT = SwitchyardFactory.eINSTANCE.createFromString(SwitchyardPackage.eINSTANCE.getPropInteger(), "20000");
     /**
      * The cached value of the '{@link #getRequestTimeout() <em>Request Timeout</em>}' attribute.
      * <!-- begin-user-doc -->
@@ -405,7 +407,7 @@ public class CamelJmsBindingTypeImpl extends BaseCamelBindingImpl implements Cam
      * @generated
      * @ordered
      */
-    protected int requestTimeout = REQUEST_TIMEOUT_EDEFAULT;
+    protected Object requestTimeout = REQUEST_TIMEOUT_EDEFAULT;
     /**
      * This is true if the Request Timeout attribute has been set.
      * <!-- begin-user-doc -->
@@ -440,7 +442,7 @@ public class CamelJmsBindingTypeImpl extends BaseCamelBindingImpl implements Cam
      * @generated
      * @ordered
      */
-    protected static final int TIME_TO_LIVE_EDEFAULT = 0;
+    protected static final Object TIME_TO_LIVE_EDEFAULT = null;
     /**
      * The cached value of the '{@link #getTimeToLive() <em>Time To Live</em>}' attribute.
      * <!-- begin-user-doc -->
@@ -449,7 +451,7 @@ public class CamelJmsBindingTypeImpl extends BaseCamelBindingImpl implements Cam
      * @generated
      * @ordered
      */
-    protected int timeToLive = TIME_TO_LIVE_EDEFAULT;
+    protected Object timeToLive = TIME_TO_LIVE_EDEFAULT;
     /**
      * This is true if the Time To Live attribute has been set.
      * <!-- begin-user-doc -->
@@ -674,7 +676,7 @@ public class CamelJmsBindingTypeImpl extends BaseCamelBindingImpl implements Cam
      * <!-- end-user-doc -->
      * @generated
      */
-    public int getConcurrentConsumers() {
+    public Object getConcurrentConsumers() {
         return concurrentConsumers;
     }
 
@@ -683,8 +685,8 @@ public class CamelJmsBindingTypeImpl extends BaseCamelBindingImpl implements Cam
      * <!-- end-user-doc -->
      * @generated
      */
-    public void setConcurrentConsumers(int newConcurrentConsumers) {
-        int oldConcurrentConsumers = concurrentConsumers;
+    public void setConcurrentConsumers(Object newConcurrentConsumers) {
+        Object oldConcurrentConsumers = concurrentConsumers;
         concurrentConsumers = newConcurrentConsumers;
         boolean oldConcurrentConsumersESet = concurrentConsumersESet;
         concurrentConsumersESet = true;
@@ -698,7 +700,7 @@ public class CamelJmsBindingTypeImpl extends BaseCamelBindingImpl implements Cam
      * @generated
      */
     public void unsetConcurrentConsumers() {
-        int oldConcurrentConsumers = concurrentConsumers;
+        Object oldConcurrentConsumers = concurrentConsumers;
         boolean oldConcurrentConsumersESet = concurrentConsumersESet;
         concurrentConsumers = CONCURRENT_CONSUMERS_EDEFAULT;
         concurrentConsumersESet = false;
@@ -720,7 +722,7 @@ public class CamelJmsBindingTypeImpl extends BaseCamelBindingImpl implements Cam
      * <!-- end-user-doc -->
      * @generated
      */
-    public int getMaxConcurrentConsumers() {
+    public Object getMaxConcurrentConsumers() {
         return maxConcurrentConsumers;
     }
 
@@ -729,8 +731,8 @@ public class CamelJmsBindingTypeImpl extends BaseCamelBindingImpl implements Cam
      * <!-- end-user-doc -->
      * @generated
      */
-    public void setMaxConcurrentConsumers(int newMaxConcurrentConsumers) {
-        int oldMaxConcurrentConsumers = maxConcurrentConsumers;
+    public void setMaxConcurrentConsumers(Object newMaxConcurrentConsumers) {
+        Object oldMaxConcurrentConsumers = maxConcurrentConsumers;
         maxConcurrentConsumers = newMaxConcurrentConsumers;
         boolean oldMaxConcurrentConsumersESet = maxConcurrentConsumersESet;
         maxConcurrentConsumersESet = true;
@@ -744,7 +746,7 @@ public class CamelJmsBindingTypeImpl extends BaseCamelBindingImpl implements Cam
      * @generated
      */
     public void unsetMaxConcurrentConsumers() {
-        int oldMaxConcurrentConsumers = maxConcurrentConsumers;
+        Object oldMaxConcurrentConsumers = maxConcurrentConsumers;
         boolean oldMaxConcurrentConsumersESet = maxConcurrentConsumersESet;
         maxConcurrentConsumers = MAX_CONCURRENT_CONSUMERS_EDEFAULT;
         maxConcurrentConsumersESet = false;
@@ -904,7 +906,7 @@ public class CamelJmsBindingTypeImpl extends BaseCamelBindingImpl implements Cam
      * <!-- end-user-doc -->
      * @generated
      */
-    public int getPriority() {
+    public Object getPriority() {
         return priority;
     }
 
@@ -913,8 +915,8 @@ public class CamelJmsBindingTypeImpl extends BaseCamelBindingImpl implements Cam
      * <!-- end-user-doc -->
      * @generated
      */
-    public void setPriority(int newPriority) {
-        int oldPriority = priority;
+    public void setPriority(Object newPriority) {
+        Object oldPriority = priority;
         priority = newPriority;
         boolean oldPriorityESet = priorityESet;
         priorityESet = true;
@@ -928,7 +930,7 @@ public class CamelJmsBindingTypeImpl extends BaseCamelBindingImpl implements Cam
      * @generated
      */
     public void unsetPriority() {
-        int oldPriority = priority;
+        Object oldPriority = priority;
         boolean oldPriorityESet = priorityESet;
         priority = PRIORITY_EDEFAULT;
         priorityESet = false;
@@ -1038,7 +1040,7 @@ public class CamelJmsBindingTypeImpl extends BaseCamelBindingImpl implements Cam
      * <!-- end-user-doc -->
      * @generated
      */
-    public int getRequestTimeout() {
+    public Object getRequestTimeout() {
         return requestTimeout;
     }
 
@@ -1047,8 +1049,8 @@ public class CamelJmsBindingTypeImpl extends BaseCamelBindingImpl implements Cam
      * <!-- end-user-doc -->
      * @generated
      */
-    public void setRequestTimeout(int newRequestTimeout) {
-        int oldRequestTimeout = requestTimeout;
+    public void setRequestTimeout(Object newRequestTimeout) {
+        Object oldRequestTimeout = requestTimeout;
         requestTimeout = newRequestTimeout;
         boolean oldRequestTimeoutESet = requestTimeoutESet;
         requestTimeoutESet = true;
@@ -1062,7 +1064,7 @@ public class CamelJmsBindingTypeImpl extends BaseCamelBindingImpl implements Cam
      * @generated
      */
     public void unsetRequestTimeout() {
-        int oldRequestTimeout = requestTimeout;
+        Object oldRequestTimeout = requestTimeout;
         boolean oldRequestTimeoutESet = requestTimeoutESet;
         requestTimeout = REQUEST_TIMEOUT_EDEFAULT;
         requestTimeoutESet = false;
@@ -1105,7 +1107,7 @@ public class CamelJmsBindingTypeImpl extends BaseCamelBindingImpl implements Cam
      * <!-- end-user-doc -->
      * @generated
      */
-    public int getTimeToLive() {
+    public Object getTimeToLive() {
         return timeToLive;
     }
 
@@ -1114,8 +1116,8 @@ public class CamelJmsBindingTypeImpl extends BaseCamelBindingImpl implements Cam
      * <!-- end-user-doc -->
      * @generated
      */
-    public void setTimeToLive(int newTimeToLive) {
-        int oldTimeToLive = timeToLive;
+    public void setTimeToLive(Object newTimeToLive) {
+        Object oldTimeToLive = timeToLive;
         timeToLive = newTimeToLive;
         boolean oldTimeToLiveESet = timeToLiveESet;
         timeToLiveESet = true;
@@ -1129,7 +1131,7 @@ public class CamelJmsBindingTypeImpl extends BaseCamelBindingImpl implements Cam
      * @generated
      */
     public void unsetTimeToLive() {
-        int oldTimeToLive = timeToLive;
+        Object oldTimeToLive = timeToLive;
         boolean oldTimeToLiveESet = timeToLiveESet;
         timeToLive = TIME_TO_LIVE_EDEFAULT;
         timeToLiveESet = false;
@@ -1297,10 +1299,10 @@ public class CamelJmsBindingTypeImpl extends BaseCamelBindingImpl implements Cam
                 setDurableSubscriptionName((String)newValue);
                 return;
             case JmsPackage.CAMEL_JMS_BINDING_TYPE__CONCURRENT_CONSUMERS:
-                setConcurrentConsumers((Integer)newValue);
+                setConcurrentConsumers(newValue);
                 return;
             case JmsPackage.CAMEL_JMS_BINDING_TYPE__MAX_CONCURRENT_CONSUMERS:
-                setMaxConcurrentConsumers((Integer)newValue);
+                setMaxConcurrentConsumers(newValue);
                 return;
             case JmsPackage.CAMEL_JMS_BINDING_TYPE__DISABLE_REPLY_TO:
                 setDisableReplyTo((Boolean)newValue);
@@ -1312,7 +1314,7 @@ public class CamelJmsBindingTypeImpl extends BaseCamelBindingImpl implements Cam
                 setDeliveryPersistent((Boolean)newValue);
                 return;
             case JmsPackage.CAMEL_JMS_BINDING_TYPE__PRIORITY:
-                setPriority((Integer)newValue);
+                setPriority(newValue);
                 return;
             case JmsPackage.CAMEL_JMS_BINDING_TYPE__EXPLICIT_QOS_ENABLED:
                 setExplicitQosEnabled((Boolean)newValue);
@@ -1324,13 +1326,13 @@ public class CamelJmsBindingTypeImpl extends BaseCamelBindingImpl implements Cam
                 setReplyToType((String)newValue);
                 return;
             case JmsPackage.CAMEL_JMS_BINDING_TYPE__REQUEST_TIMEOUT:
-                setRequestTimeout((Integer)newValue);
+                setRequestTimeout(newValue);
                 return;
             case JmsPackage.CAMEL_JMS_BINDING_TYPE__SELECTOR:
                 setSelector((String)newValue);
                 return;
             case JmsPackage.CAMEL_JMS_BINDING_TYPE__TIME_TO_LIVE:
-                setTimeToLive((Integer)newValue);
+                setTimeToLive(newValue);
                 return;
             case JmsPackage.CAMEL_JMS_BINDING_TYPE__TRANSACTED:
                 setTransacted((Boolean)newValue);

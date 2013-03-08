@@ -150,7 +150,7 @@
         <details key="name" value="scan"/>
       </eAnnotations>
     </eStructuralFeatures>
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="scanInterval" eType="ecore:EDataType http://www.eclipse.org/emf/2003/XMLType#//Long"
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="scanInterval" eType="ecore:EDataType platform:/plugin/org.switchyard.tools.models.switchyard1_0/model/config.switchyard.ecore#//PropLong"
         defaultValueLiteral="60000" unsettable="true">
       <eAnnotations source="http:///org/eclipse/emf/ecore/util/ExtendedMetaData">
         <details key="kind" value="attribute"/>
@@ -430,7 +430,7 @@
       <details key="name" value="LoggerType"/>
       <details key="kind" value="elementOnly"/>
     </eAnnotations>
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="interval" eType="ecore:EDataType http://www.eclipse.org/emf/2003/XMLType#//Integer"
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="interval" eType="ecore:EDataType platform:/plugin/org.switchyard.tools.models.switchyard1_0/model/config.switchyard.ecore#//PropInteger"
         defaultValueLiteral="1000">
       <eAnnotations source="http:///org/eclipse/emf/ecore/util/ExtendedMetaData">
         <details key="kind" value="attribute"/>

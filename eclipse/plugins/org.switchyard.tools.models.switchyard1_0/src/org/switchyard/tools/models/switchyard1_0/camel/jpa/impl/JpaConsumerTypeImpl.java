@@ -20,6 +20,8 @@ import org.eclipse.emf.ecore.util.InternalEList;
 import org.switchyard.tools.models.switchyard1_0.camel.jpa.JpaConsumerType;
 import org.switchyard.tools.models.switchyard1_0.camel.jpa.JpaPackage;
 import org.switchyard.tools.models.switchyard1_0.camel.jpa.TimeUnitType;
+import org.switchyard.tools.models.switchyard1_0.switchyard.SwitchyardFactory;
+import org.switchyard.tools.models.switchyard1_0.switchyard.SwitchyardPackage;
 
 /**
  * <!-- begin-user-doc -->
@@ -136,7 +138,7 @@ public class JpaConsumerTypeImpl extends EObjectImpl implements JpaConsumerType 
      * @generated
      * @ordered
      */
-    protected static final int MAXIMUM_RESULTS_EDEFAULT = -1;
+    protected static final Object MAXIMUM_RESULTS_EDEFAULT = SwitchyardFactory.eINSTANCE.createFromString(SwitchyardPackage.eINSTANCE.getPropInteger(), "-1");
 
     /**
      * The cached value of the '{@link #getMaximumResults() <em>Maximum Results</em>}' attribute.
@@ -146,7 +148,7 @@ public class JpaConsumerTypeImpl extends EObjectImpl implements JpaConsumerType 
      * @generated
      * @ordered
      */
-    protected int maximumResults = MAXIMUM_RESULTS_EDEFAULT;
+    protected Object maximumResults = MAXIMUM_RESULTS_EDEFAULT;
 
     /**
      * This is true if the Maximum Results attribute has been set.
@@ -302,7 +304,7 @@ public class JpaConsumerTypeImpl extends EObjectImpl implements JpaConsumerType 
      * <!-- end-user-doc -->
      * @generated
      */
-    public EList<Integer> getInitialDelay() {
+    public EList<Object> getInitialDelay() {
         return getScheduledPollConsumerType().list(JpaPackage.Literals.JPA_CONSUMER_TYPE__INITIAL_DELAY);
     }
 
@@ -329,7 +331,7 @@ public class JpaConsumerTypeImpl extends EObjectImpl implements JpaConsumerType 
      * <!-- end-user-doc -->
      * @generated
      */
-    public EList<Integer> getDelay() {
+    public EList<Object> getDelay() {
         return getScheduledPollConsumerType().list(JpaPackage.Literals.JPA_CONSUMER_TYPE__DELAY);
     }
 
@@ -431,7 +433,7 @@ public class JpaConsumerTypeImpl extends EObjectImpl implements JpaConsumerType 
      * <!-- end-user-doc -->
      * @generated
      */
-    public EList<Integer> getMaxMessagesPerPoll() {
+    public EList<Object> getMaxMessagesPerPoll() {
         return getScheduledBatchPollConsumerType().list(JpaPackage.Literals.JPA_CONSUMER_TYPE__MAX_MESSAGES_PER_POLL);
     }
 
@@ -550,7 +552,7 @@ public class JpaConsumerTypeImpl extends EObjectImpl implements JpaConsumerType 
      * <!-- end-user-doc -->
      * @generated
      */
-    public int getMaximumResults() {
+    public Object getMaximumResults() {
         return maximumResults;
     }
 
@@ -559,8 +561,8 @@ public class JpaConsumerTypeImpl extends EObjectImpl implements JpaConsumerType 
      * <!-- end-user-doc -->
      * @generated
      */
-    public void setMaximumResults(int newMaximumResults) {
-        int oldMaximumResults = maximumResults;
+    public void setMaximumResults(Object newMaximumResults) {
+        Object oldMaximumResults = maximumResults;
         maximumResults = newMaximumResults;
         boolean oldMaximumResultsESet = maximumResultsESet;
         maximumResultsESet = true;
@@ -574,7 +576,7 @@ public class JpaConsumerTypeImpl extends EObjectImpl implements JpaConsumerType 
      * @generated
      */
     public void unsetMaximumResults() {
-        int oldMaximumResults = maximumResults;
+        Object oldMaximumResults = maximumResults;
         boolean oldMaximumResultsESet = maximumResultsESet;
         maximumResults = MAXIMUM_RESULTS_EDEFAULT;
         maximumResultsESet = false;
@@ -797,11 +799,11 @@ public class JpaConsumerTypeImpl extends EObjectImpl implements JpaConsumerType 
                 return;
             case JpaPackage.JPA_CONSUMER_TYPE__INITIAL_DELAY:
                 getInitialDelay().clear();
-                getInitialDelay().addAll((Collection<? extends Integer>)newValue);
+                getInitialDelay().addAll((Collection<? extends Object>)newValue);
                 return;
             case JpaPackage.JPA_CONSUMER_TYPE__DELAY:
                 getDelay().clear();
-                getDelay().addAll((Collection<? extends Integer>)newValue);
+                getDelay().addAll((Collection<? extends Object>)newValue);
                 return;
             case JpaPackage.JPA_CONSUMER_TYPE__USE_FIXED_DELAY:
                 getUseFixedDelay().clear();
@@ -820,7 +822,7 @@ public class JpaConsumerTypeImpl extends EObjectImpl implements JpaConsumerType 
                 return;
             case JpaPackage.JPA_CONSUMER_TYPE__MAX_MESSAGES_PER_POLL:
                 getMaxMessagesPerPoll().clear();
-                getMaxMessagesPerPoll().addAll((Collection<? extends Integer>)newValue);
+                getMaxMessagesPerPoll().addAll((Collection<? extends Object>)newValue);
                 return;
             case JpaPackage.JPA_CONSUMER_TYPE__CONSUME_DELETE:
                 setConsumeDelete((Boolean)newValue);
@@ -829,7 +831,7 @@ public class JpaConsumerTypeImpl extends EObjectImpl implements JpaConsumerType 
                 setConsumeLockEntity((Boolean)newValue);
                 return;
             case JpaPackage.JPA_CONSUMER_TYPE__MAXIMUM_RESULTS:
-                setMaximumResults((Integer)newValue);
+                setMaximumResults(newValue);
                 return;
             case JpaPackage.JPA_CONSUMER_TYPE__CONSUMER_QUERY:
                 setConsumerQuery((String)newValue);

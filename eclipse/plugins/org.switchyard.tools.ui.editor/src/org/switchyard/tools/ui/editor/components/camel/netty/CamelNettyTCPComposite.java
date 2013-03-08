@@ -41,6 +41,7 @@ import org.switchyard.tools.ui.editor.diagram.binding.AbstractSYBindingComposite
 import org.switchyard.tools.ui.editor.diagram.binding.OperationSelectorComposite;
 import org.switchyard.tools.ui.editor.diagram.binding.OperationSelectorUtil;
 import org.switchyard.tools.ui.editor.diagram.shared.ModelOperation;
+import org.switchyard.tools.ui.editor.util.PropTypeUtil;
 
 /**
  * @author bfitzpat
@@ -125,30 +126,30 @@ public class CamelNettyTCPComposite extends AbstractSYBindingComposite {
             if (_portText.getText().trim().isEmpty()) {
                 setErrorMessage("Port may not be empty.");
                 return false;
-            } else {
-                try {
-                    Integer.valueOf(_portText.getText().trim());
-                } catch (NumberFormatException nfe) {
-                    setErrorMessage("Port must be a valid number.");
-                    return false;
-                }
+//            } else {
+//                try {
+//                    Integer.valueOf(_portText.getText().trim());
+//                } catch (NumberFormatException nfe) {
+//                    setErrorMessage("Port must be a valid number.");
+//                    return false;
+//                }
             }
-            if (!_sendBufferSizeText.getText().trim().isEmpty()) {
-                try {
-                    Long.valueOf(_sendBufferSizeText.getText().trim());
-                } catch (NumberFormatException nfe) {
-                    setErrorMessage("Send Buffer Size must be a valid number.");
-                    return false;
-                }
-            }
-            if (!_receiveBufferSizeText.getText().trim().isEmpty()) {
-                try {
-                    Long.valueOf(_receiveBufferSizeText.getText().trim());
-                } catch (NumberFormatException nfe) {
-                    setErrorMessage("Receive Buffer Size must be a valid number.");
-                    return false;
-                }
-            }
+//            if (!_sendBufferSizeText.getText().trim().isEmpty()) {
+//                try {
+//                    Long.valueOf(_sendBufferSizeText.getText().trim());
+//                } catch (NumberFormatException nfe) {
+//                    setErrorMessage("Send Buffer Size must be a valid number.");
+//                    return false;
+//                }
+//            }
+//            if (!_receiveBufferSizeText.getText().trim().isEmpty()) {
+//                try {
+//                    Long.valueOf(_receiveBufferSizeText.getText().trim());
+//                } catch (NumberFormatException nfe) {
+//                    setErrorMessage("Receive Buffer Size must be a valid number.");
+//                    return false;
+//                }
+//            }
         }
         super.validateTabs();
         return (getErrorMessage() == null);
@@ -226,8 +227,7 @@ public class CamelNettyTCPComposite extends AbstractSYBindingComposite {
                     updateFeature(_binding, "port", portInt);
                 }
             } catch (NumberFormatException nfe) {
-                // ignore
-                nfe.fillInStackTrace();
+                updateFeature(_binding, "port", _portText.getText().trim());
             }
         } else if (control.equals(_sendBufferSizeText)) {
             long sendSizeLong = -1;
@@ -237,8 +237,7 @@ public class CamelNettyTCPComposite extends AbstractSYBindingComposite {
                     updateFeature(_binding, "sendBufferSize", sendSizeLong);
                 }
             } catch (NumberFormatException nfe) {
-                // ignore
-                nfe.fillInStackTrace();
+                updateFeature(_binding, "sendBufferSize", _sendBufferSizeText.getText().trim());
             }
         } else if (control.equals(_receiveBufferSizeText)) {
             long receiveSizeLong = -1;
@@ -248,8 +247,7 @@ public class CamelNettyTCPComposite extends AbstractSYBindingComposite {
                     updateFeature(_binding, "receiveBufferSize", receiveSizeLong);
                 }
             } catch (NumberFormatException nfe) {
-                // ignore
-                nfe.fillInStackTrace();
+                updateFeature(_binding, "receiveBufferSize", _receiveBufferSizeText.getText().trim());
             }
         } else if (control.equals(_syncCheckbox)) {
             boolean value = _syncCheckbox.getSelection();
@@ -271,11 +269,14 @@ public class CamelNettyTCPComposite extends AbstractSYBindingComposite {
             if (control.equals(_hostText)) {
                 _hostText.setText(this._binding.getHost());
             } else if (control.equals(_portText)) {
-                _portText.setText(Integer.toString(this._binding.getPort()));
+                setTextValue(_portText, PropTypeUtil.getPropValueString(this._binding.getPort()));
+//                _portText.setText(Integer.toString(this._binding.getPort()));
             } else if (control.equals(_receiveBufferSizeText)) {
-                _receiveBufferSizeText.setText(Long.toString(this._binding.getReceiveBufferSize()));
+                setTextValue(_receiveBufferSizeText, PropTypeUtil.getPropValueString(this._binding.getReceiveBufferSize()));
+//                _receiveBufferSizeText.setText(Long.toString(this._binding.getReceiveBufferSize()));
             } else if (control.equals(_sendBufferSizeText)) {
-                _sendBufferSizeText.setText(Long.toString(this._binding.getSendBufferSize()));
+                setTextValue(_sendBufferSizeText, PropTypeUtil.getPropValueString(this._binding.getSendBufferSize()));
+//                _sendBufferSizeText.setText(Long.toString(this._binding.getSendBufferSize()));
             } else if (control.equals(_keepAliveCheckbox)) {
                 _keepAliveCheckbox.setSelection(this._binding.isKeepAlive());
             } else if (control.equals(_syncCheckbox)) {

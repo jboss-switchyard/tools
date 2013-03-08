@@ -45,13 +45,13 @@ public interface CamelMailConsumerType extends EObject {
      * @return the value of the '<em>Initial Delay</em>' attribute.
      * @see #isSetInitialDelay()
      * @see #unsetInitialDelay()
-     * @see #setInitialDelay(int)
+     * @see #setInitialDelay(Object)
      * @see org.switchyard.tools.models.switchyard1_0.camel.mail.MailPackage#getCamelMailConsumerType_InitialDelay()
-     * @model default="1000" unsettable="true" dataType="org.eclipse.emf.ecore.xml.type.Int"
+     * @model default="1000" unsettable="true" dataType="org.switchyard.tools.models.switchyard1_0.switchyard.PropInteger"
      *        extendedMetaData="kind='element' name='initialDelay' namespace='##targetNamespace'"
      * @generated
      */
-    int getInitialDelay();
+    Object getInitialDelay();
 
     /**
      * Sets the value of the '{@link org.switchyard.tools.models.switchyard1_0.camel.mail.CamelMailConsumerType#getInitialDelay <em>Initial Delay</em>}' attribute.
@@ -63,7 +63,7 @@ public interface CamelMailConsumerType extends EObject {
      * @see #getInitialDelay()
      * @generated
      */
-    void setInitialDelay(int value);
+    void setInitialDelay(Object value);
 
     /**
      * Unsets the value of the '{@link org.switchyard.tools.models.switchyard1_0.camel.mail.CamelMailConsumerType#getInitialDelay <em>Initial Delay</em>}' attribute.
@@ -71,7 +71,7 @@ public interface CamelMailConsumerType extends EObject {
      * <!-- end-user-doc -->
      * @see #isSetInitialDelay()
      * @see #getInitialDelay()
-     * @see #setInitialDelay(int)
+     * @see #setInitialDelay(Object)
      * @generated
      */
     void unsetInitialDelay();
@@ -83,7 +83,7 @@ public interface CamelMailConsumerType extends EObject {
      * @return whether the value of the '<em>Initial Delay</em>' attribute is set.
      * @see #unsetInitialDelay()
      * @see #getInitialDelay()
-     * @see #setInitialDelay(int)
+     * @see #setInitialDelay(Object)
      * @generated
      */
     boolean isSetInitialDelay();
@@ -100,13 +100,13 @@ public interface CamelMailConsumerType extends EObject {
      * @return the value of the '<em>Delay</em>' attribute.
      * @see #isSetDelay()
      * @see #unsetDelay()
-     * @see #setDelay(int)
+     * @see #setDelay(Object)
      * @see org.switchyard.tools.models.switchyard1_0.camel.mail.MailPackage#getCamelMailConsumerType_Delay()
-     * @model default="60000" unsettable="true" dataType="org.eclipse.emf.ecore.xml.type.Int"
+     * @model default="60000" unsettable="true" dataType="org.switchyard.tools.models.switchyard1_0.switchyard.PropInteger"
      *        extendedMetaData="kind='element' name='delay' namespace='##targetNamespace'"
      * @generated
      */
-    int getDelay();
+    Object getDelay();
 
     /**
      * Sets the value of the '{@link org.switchyard.tools.models.switchyard1_0.camel.mail.CamelMailConsumerType#getDelay <em>Delay</em>}' attribute.
@@ -118,7 +118,7 @@ public interface CamelMailConsumerType extends EObject {
      * @see #getDelay()
      * @generated
      */
-    void setDelay(int value);
+    void setDelay(Object value);
 
     /**
      * Unsets the value of the '{@link org.switchyard.tools.models.switchyard1_0.camel.mail.CamelMailConsumerType#getDelay <em>Delay</em>}' attribute.
@@ -126,7 +126,7 @@ public interface CamelMailConsumerType extends EObject {
      * <!-- end-user-doc -->
      * @see #isSetDelay()
      * @see #getDelay()
-     * @see #setDelay(int)
+     * @see #setDelay(Object)
      * @generated
      */
     void unsetDelay();
@@ -138,7 +138,7 @@ public interface CamelMailConsumerType extends EObject {
      * @return whether the value of the '<em>Delay</em>' attribute is set.
      * @see #unsetDelay()
      * @see #getDelay()
-     * @see #setDelay(int)
+     * @see #setDelay(Object)
      * @generated
      */
     boolean isSetDelay();
@@ -323,13 +323,13 @@ public interface CamelMailConsumerType extends EObject {
      * @return the value of the '<em>Max Messages Per Poll</em>' attribute.
      * @see #isSetMaxMessagesPerPoll()
      * @see #unsetMaxMessagesPerPoll()
-     * @see #setMaxMessagesPerPoll(int)
+     * @see #setMaxMessagesPerPoll(Object)
      * @see org.switchyard.tools.models.switchyard1_0.camel.mail.MailPackage#getCamelMailConsumerType_MaxMessagesPerPoll()
-     * @model default="0" unsettable="true" dataType="org.eclipse.emf.ecore.xml.type.Int"
+     * @model default="0" unsettable="true" dataType="org.switchyard.tools.models.switchyard1_0.switchyard.PropInteger"
      *        extendedMetaData="kind='element' name='maxMessagesPerPoll' namespace='##targetNamespace'"
      * @generated
      */
-    int getMaxMessagesPerPoll();
+    Object getMaxMessagesPerPoll();
 
     /**
      * Sets the value of the '{@link org.switchyard.tools.models.switchyard1_0.camel.mail.CamelMailConsumerType#getMaxMessagesPerPoll <em>Max Messages Per Poll</em>}' attribute.
@@ -341,7 +341,7 @@ public interface CamelMailConsumerType extends EObject {
      * @see #getMaxMessagesPerPoll()
      * @generated
      */
-    void setMaxMessagesPerPoll(int value);
+    void setMaxMessagesPerPoll(Object value);
 
     /**
      * Unsets the value of the '{@link org.switchyard.tools.models.switchyard1_0.camel.mail.CamelMailConsumerType#getMaxMessagesPerPoll <em>Max Messages Per Poll</em>}' attribute.
@@ -349,7 +349,7 @@ public interface CamelMailConsumerType extends EObject {
      * <!-- end-user-doc -->
      * @see #isSetMaxMessagesPerPoll()
      * @see #getMaxMessagesPerPoll()
-     * @see #setMaxMessagesPerPoll(int)
+     * @see #setMaxMessagesPerPoll(Object)
      * @generated
      */
     void unsetMaxMessagesPerPoll();
@@ -361,7 +361,7 @@ public interface CamelMailConsumerType extends EObject {
      * @return whether the value of the '<em>Max Messages Per Poll</em>' attribute is set.
      * @see #unsetMaxMessagesPerPoll()
      * @see #getMaxMessagesPerPoll()
-     * @see #setMaxMessagesPerPoll(int)
+     * @see #setMaxMessagesPerPoll(Object)
      * @generated
      */
     boolean isSetMaxMessagesPerPoll();
@@ -405,13 +405,13 @@ public interface CamelMailConsumerType extends EObject {
      * @return the value of the '<em>Fetch Size</em>' attribute.
      * @see #isSetFetchSize()
      * @see #unsetFetchSize()
-     * @see #setFetchSize(int)
+     * @see #setFetchSize(Object)
      * @see org.switchyard.tools.models.switchyard1_0.camel.mail.MailPackage#getCamelMailConsumerType_FetchSize()
-     * @model default="-1" unsettable="true" dataType="org.eclipse.emf.ecore.xml.type.Int"
+     * @model default="-1" unsettable="true" dataType="org.switchyard.tools.models.switchyard1_0.switchyard.PropInteger"
      *        extendedMetaData="kind='element' name='fetchSize' namespace='##targetNamespace'"
      * @generated
      */
-    int getFetchSize();
+    Object getFetchSize();
 
     /**
      * Sets the value of the '{@link org.switchyard.tools.models.switchyard1_0.camel.mail.CamelMailConsumerType#getFetchSize <em>Fetch Size</em>}' attribute.
@@ -423,7 +423,7 @@ public interface CamelMailConsumerType extends EObject {
      * @see #getFetchSize()
      * @generated
      */
-    void setFetchSize(int value);
+    void setFetchSize(Object value);
 
     /**
      * Unsets the value of the '{@link org.switchyard.tools.models.switchyard1_0.camel.mail.CamelMailConsumerType#getFetchSize <em>Fetch Size</em>}' attribute.
@@ -431,7 +431,7 @@ public interface CamelMailConsumerType extends EObject {
      * <!-- end-user-doc -->
      * @see #isSetFetchSize()
      * @see #getFetchSize()
-     * @see #setFetchSize(int)
+     * @see #setFetchSize(Object)
      * @generated
      */
     void unsetFetchSize();
@@ -443,7 +443,7 @@ public interface CamelMailConsumerType extends EObject {
      * @return whether the value of the '<em>Fetch Size</em>' attribute is set.
      * @see #unsetFetchSize()
      * @see #getFetchSize()
-     * @see #setFetchSize(int)
+     * @see #setFetchSize(Object)
      * @generated
      */
     boolean isSetFetchSize();

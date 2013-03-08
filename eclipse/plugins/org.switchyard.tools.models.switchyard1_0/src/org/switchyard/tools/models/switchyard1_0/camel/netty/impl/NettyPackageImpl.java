@@ -437,7 +437,7 @@ public class NettyPackageImpl extends EPackageImpl implements NettyPackage {
      * <!-- end-user-doc -->
      * @generated
      */
-    public EAttribute getCamelNettyBindingType_ReuseAddress() {
+    public EAttribute getCamelNettyBindingType_Ssl() {
         return (EAttribute)camelNettyBindingTypeEClass.getEStructuralFeatures().get(4);
     }
 
@@ -446,7 +446,7 @@ public class NettyPackageImpl extends EPackageImpl implements NettyPackage {
      * <!-- end-user-doc -->
      * @generated
      */
-    public EAttribute getCamelNettyBindingType_Encoders() {
+    public EAttribute getCamelNettyBindingType_SslHandler() {
         return (EAttribute)camelNettyBindingTypeEClass.getEStructuralFeatures().get(5);
     }
 
@@ -455,7 +455,7 @@ public class NettyPackageImpl extends EPackageImpl implements NettyPackage {
      * <!-- end-user-doc -->
      * @generated
      */
-    public EAttribute getCamelNettyBindingType_Decoders() {
+    public EAttribute getCamelNettyBindingType_Passphrase() {
         return (EAttribute)camelNettyBindingTypeEClass.getEStructuralFeatures().get(6);
     }
 
@@ -464,7 +464,7 @@ public class NettyPackageImpl extends EPackageImpl implements NettyPackage {
      * <!-- end-user-doc -->
      * @generated
      */
-    public EAttribute getCamelNettyBindingType_AllowDefaultCodec() {
+    public EAttribute getCamelNettyBindingType_SecurityProvider() {
         return (EAttribute)camelNettyBindingTypeEClass.getEStructuralFeatures().get(7);
     }
 
@@ -473,7 +473,7 @@ public class NettyPackageImpl extends EPackageImpl implements NettyPackage {
      * <!-- end-user-doc -->
      * @generated
      */
-    public EAttribute getCamelNettyBindingType_WorkerCount() {
+    public EAttribute getCamelNettyBindingType_KeyStoreFormat() {
         return (EAttribute)camelNettyBindingTypeEClass.getEStructuralFeatures().get(8);
     }
 
@@ -482,7 +482,7 @@ public class NettyPackageImpl extends EPackageImpl implements NettyPackage {
      * <!-- end-user-doc -->
      * @generated
      */
-    public EAttribute getCamelNettyBindingType_Sync() {
+    public EAttribute getCamelNettyBindingType_KeyStoreFile() {
         return (EAttribute)camelNettyBindingTypeEClass.getEStructuralFeatures().get(9);
     }
 
@@ -491,8 +491,80 @@ public class NettyPackageImpl extends EPackageImpl implements NettyPackage {
      * <!-- end-user-doc -->
      * @generated
      */
-    public EAttribute getCamelNettyBindingType_Disconnect() {
+    public EAttribute getCamelNettyBindingType_TrustStoreFile() {
         return (EAttribute)camelNettyBindingTypeEClass.getEStructuralFeatures().get(10);
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public EAttribute getCamelNettyBindingType_SslContextParametersRef() {
+        return (EAttribute)camelNettyBindingTypeEClass.getEStructuralFeatures().get(11);
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public EAttribute getCamelNettyBindingType_ReuseAddress() {
+        return (EAttribute)camelNettyBindingTypeEClass.getEStructuralFeatures().get(12);
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public EAttribute getCamelNettyBindingType_Encoders() {
+        return (EAttribute)camelNettyBindingTypeEClass.getEStructuralFeatures().get(13);
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public EAttribute getCamelNettyBindingType_Decoders() {
+        return (EAttribute)camelNettyBindingTypeEClass.getEStructuralFeatures().get(14);
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public EAttribute getCamelNettyBindingType_AllowDefaultCodec() {
+        return (EAttribute)camelNettyBindingTypeEClass.getEStructuralFeatures().get(15);
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public EAttribute getCamelNettyBindingType_WorkerCount() {
+        return (EAttribute)camelNettyBindingTypeEClass.getEStructuralFeatures().get(16);
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public EAttribute getCamelNettyBindingType_Sync() {
+        return (EAttribute)camelNettyBindingTypeEClass.getEStructuralFeatures().get(17);
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public EAttribute getCamelNettyBindingType_Disconnect() {
+        return (EAttribute)camelNettyBindingTypeEClass.getEStructuralFeatures().get(18);
     }
 
     /**
@@ -586,6 +658,14 @@ public class NettyPackageImpl extends EPackageImpl implements NettyPackage {
         createEAttribute(camelNettyBindingTypeEClass, CAMEL_NETTY_BINDING_TYPE__PORT);
         createEAttribute(camelNettyBindingTypeEClass, CAMEL_NETTY_BINDING_TYPE__RECEIVE_BUFFER_SIZE);
         createEAttribute(camelNettyBindingTypeEClass, CAMEL_NETTY_BINDING_TYPE__SEND_BUFFER_SIZE);
+        createEAttribute(camelNettyBindingTypeEClass, CAMEL_NETTY_BINDING_TYPE__SSL);
+        createEAttribute(camelNettyBindingTypeEClass, CAMEL_NETTY_BINDING_TYPE__SSL_HANDLER);
+        createEAttribute(camelNettyBindingTypeEClass, CAMEL_NETTY_BINDING_TYPE__PASSPHRASE);
+        createEAttribute(camelNettyBindingTypeEClass, CAMEL_NETTY_BINDING_TYPE__SECURITY_PROVIDER);
+        createEAttribute(camelNettyBindingTypeEClass, CAMEL_NETTY_BINDING_TYPE__KEY_STORE_FORMAT);
+        createEAttribute(camelNettyBindingTypeEClass, CAMEL_NETTY_BINDING_TYPE__KEY_STORE_FILE);
+        createEAttribute(camelNettyBindingTypeEClass, CAMEL_NETTY_BINDING_TYPE__TRUST_STORE_FILE);
+        createEAttribute(camelNettyBindingTypeEClass, CAMEL_NETTY_BINDING_TYPE__SSL_CONTEXT_PARAMETERS_REF);
         createEAttribute(camelNettyBindingTypeEClass, CAMEL_NETTY_BINDING_TYPE__REUSE_ADDRESS);
         createEAttribute(camelNettyBindingTypeEClass, CAMEL_NETTY_BINDING_TYPE__ENCODERS);
         createEAttribute(camelNettyBindingTypeEClass, CAMEL_NETTY_BINDING_TYPE__DECODERS);
@@ -654,14 +734,22 @@ public class NettyPackageImpl extends EPackageImpl implements NettyPackage {
 
         initEClass(camelNettyBindingTypeEClass, CamelNettyBindingType.class, "CamelNettyBindingType", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
         initEAttribute(getCamelNettyBindingType_Host(), theXMLTypePackage.getString(), "host", null, 1, 1, CamelNettyBindingType.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-        initEAttribute(getCamelNettyBindingType_Port(), theXMLTypePackage.getInt(), "port", null, 1, 1, CamelNettyBindingType.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-        initEAttribute(getCamelNettyBindingType_ReceiveBufferSize(), theXMLTypePackage.getLong(), "receiveBufferSize", "65536", 0, 1, CamelNettyBindingType.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-        initEAttribute(getCamelNettyBindingType_SendBufferSize(), theXMLTypePackage.getLong(), "sendBufferSize", "65536", 0, 1, CamelNettyBindingType.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+        initEAttribute(getCamelNettyBindingType_Port(), theSwitchyardPackage.getPropInteger(), "port", null, 1, 1, CamelNettyBindingType.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+        initEAttribute(getCamelNettyBindingType_ReceiveBufferSize(), theSwitchyardPackage.getPropLong(), "receiveBufferSize", "65536", 0, 1, CamelNettyBindingType.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+        initEAttribute(getCamelNettyBindingType_SendBufferSize(), theSwitchyardPackage.getPropLong(), "sendBufferSize", "65536", 0, 1, CamelNettyBindingType.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+        initEAttribute(getCamelNettyBindingType_Ssl(), theXMLTypePackage.getBoolean(), "ssl", null, 0, 1, CamelNettyBindingType.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+        initEAttribute(getCamelNettyBindingType_SslHandler(), theXMLTypePackage.getString(), "sslHandler", null, 0, 1, CamelNettyBindingType.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+        initEAttribute(getCamelNettyBindingType_Passphrase(), theXMLTypePackage.getString(), "passphrase", null, 0, 1, CamelNettyBindingType.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+        initEAttribute(getCamelNettyBindingType_SecurityProvider(), theXMLTypePackage.getString(), "securityProvider", null, 0, 1, CamelNettyBindingType.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+        initEAttribute(getCamelNettyBindingType_KeyStoreFormat(), theXMLTypePackage.getString(), "keyStoreFormat", null, 0, 1, CamelNettyBindingType.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+        initEAttribute(getCamelNettyBindingType_KeyStoreFile(), theXMLTypePackage.getString(), "keyStoreFile", null, 0, 1, CamelNettyBindingType.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+        initEAttribute(getCamelNettyBindingType_TrustStoreFile(), theXMLTypePackage.getString(), "trustStoreFile", null, 0, 1, CamelNettyBindingType.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+        initEAttribute(getCamelNettyBindingType_SslContextParametersRef(), theXMLTypePackage.getString(), "sslContextParametersRef", null, 0, 1, CamelNettyBindingType.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
         initEAttribute(getCamelNettyBindingType_ReuseAddress(), theXMLTypePackage.getBoolean(), "reuseAddress", "true", 0, 1, CamelNettyBindingType.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
         initEAttribute(getCamelNettyBindingType_Encoders(), theXMLTypePackage.getString(), "encoders", null, 0, 1, CamelNettyBindingType.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
         initEAttribute(getCamelNettyBindingType_Decoders(), theXMLTypePackage.getString(), "decoders", null, 0, 1, CamelNettyBindingType.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
         initEAttribute(getCamelNettyBindingType_AllowDefaultCodec(), theXMLTypePackage.getBoolean(), "allowDefaultCodec", "true", 0, 1, CamelNettyBindingType.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-        initEAttribute(getCamelNettyBindingType_WorkerCount(), theXMLTypePackage.getInt(), "workerCount", null, 0, 1, CamelNettyBindingType.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+        initEAttribute(getCamelNettyBindingType_WorkerCount(), theSwitchyardPackage.getPropInteger(), "workerCount", null, 0, 1, CamelNettyBindingType.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
         initEAttribute(getCamelNettyBindingType_Sync(), theXMLTypePackage.getBoolean(), "sync", "true", 0, 1, CamelNettyBindingType.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
         initEAttribute(getCamelNettyBindingType_Disconnect(), theXMLTypePackage.getBoolean(), "disconnect", "false", 0, 1, CamelNettyBindingType.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
@@ -756,6 +844,70 @@ public class NettyPackageImpl extends EPackageImpl implements NettyPackage {
            new String[] {
              "kind", "element",
              "name", "sendBufferSize",
+             "namespace", "##targetNamespace"
+           });		
+        addAnnotation
+          (getCamelNettyBindingType_Ssl(), 
+           source, 
+           new String[] {
+             "kind", "element",
+             "name", "ssl",
+             "namespace", "##targetNamespace"
+           });		
+        addAnnotation
+          (getCamelNettyBindingType_SslHandler(), 
+           source, 
+           new String[] {
+             "kind", "element",
+             "name", "sslHandler",
+             "namespace", "##targetNamespace"
+           });		
+        addAnnotation
+          (getCamelNettyBindingType_Passphrase(), 
+           source, 
+           new String[] {
+             "kind", "element",
+             "name", "passphrase",
+             "namespace", "##targetNamespace"
+           });		
+        addAnnotation
+          (getCamelNettyBindingType_SecurityProvider(), 
+           source, 
+           new String[] {
+             "kind", "element",
+             "name", "securityProvider",
+             "namespace", "##targetNamespace"
+           });		
+        addAnnotation
+          (getCamelNettyBindingType_KeyStoreFormat(), 
+           source, 
+           new String[] {
+             "kind", "element",
+             "name", "keyStoreFormat",
+             "namespace", "##targetNamespace"
+           });		
+        addAnnotation
+          (getCamelNettyBindingType_KeyStoreFile(), 
+           source, 
+           new String[] {
+             "kind", "element",
+             "name", "keyStoreFile",
+             "namespace", "##targetNamespace"
+           });		
+        addAnnotation
+          (getCamelNettyBindingType_TrustStoreFile(), 
+           source, 
+           new String[] {
+             "kind", "element",
+             "name", "trustStoreFile",
+             "namespace", "##targetNamespace"
+           });		
+        addAnnotation
+          (getCamelNettyBindingType_SslContextParametersRef(), 
+           source, 
+           new String[] {
+             "kind", "element",
+             "name", "sslContextParametersRef",
              "namespace", "##targetNamespace"
            });		
         addAnnotation

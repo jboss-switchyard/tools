@@ -35,13 +35,13 @@ public interface LoggerType1 extends CommonExtensionBase {
      * </p>
      * <!-- end-user-doc -->
      * @return the value of the '<em>Interval</em>' attribute.
-     * @see #setInterval(BigInteger)
+     * @see #setInterval(Object)
      * @see org.switchyard.tools.models.switchyard1_0.bpm.BPMPackage#getLoggerType1_Interval()
-     * @model default="1000" dataType="org.eclipse.emf.ecore.xml.type.Integer"
+     * @model default="1000" dataType="org.switchyard.tools.models.switchyard1_0.switchyard.PropInteger"
      *        extendedMetaData="kind='attribute' name='interval'"
      * @generated
      */
-    BigInteger getInterval();
+    Object getInterval();
 
     /**
      * Sets the value of the '{@link org.switchyard.tools.models.switchyard1_0.bpm.LoggerType1#getInterval <em>Interval</em>}' attribute.
@@ -51,7 +51,7 @@ public interface LoggerType1 extends CommonExtensionBase {
      * @see #getInterval()
      * @generated
      */
-    void setInterval(BigInteger value);
+    void setInterval(Object value);
 
     /**
      * Returns the value of the '<em><b>Log</b></em>' attribute.

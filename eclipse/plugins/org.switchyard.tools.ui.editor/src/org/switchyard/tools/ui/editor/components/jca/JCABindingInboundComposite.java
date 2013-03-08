@@ -56,6 +56,7 @@ import org.switchyard.tools.ui.editor.diagram.binding.AbstractSYBindingComposite
 import org.switchyard.tools.ui.editor.diagram.binding.OperationSelectorComposite;
 import org.switchyard.tools.ui.editor.diagram.binding.OperationSelectorUtil;
 import org.switchyard.tools.ui.editor.diagram.shared.ModelOperation;
+import org.switchyard.tools.ui.editor.util.PropTypeUtil;
 
 /**
  * @author bfitzpat
@@ -120,8 +121,10 @@ public class JCABindingInboundComposite extends AbstractSYBindingComposite {
                     }
                     if (interaction.getBatchCommit() != null) {
                         _batchEnabledCheckbox.setSelection(true);
-                        setTextValue(_batchSizeText, _binding.getInboundInteraction().getBatchCommit().getBatchSize());
-                        setTextValue(_batchTimeoutText, _binding.getInboundInteraction().getBatchCommit().getBatchTimeout());
+                        setTextValue(_batchSizeText, PropTypeUtil.getPropValueString(this._binding.getInboundInteraction().getBatchCommit().getBatchSize()));
+//                        setTextValue(_batchSizeText, _binding.getInboundInteraction().getBatchCommit().getBatchSize());
+                        setTextValue(_batchTimeoutText, PropTypeUtil.getPropValueString(this._binding.getInboundInteraction().getBatchCommit().getBatchTimeout()));
+//                        setTextValue(_batchTimeoutText, _binding.getInboundInteraction().getBatchCommit().getBatchTimeout());
                     } else {
                         _batchEnabledCheckbox.setSelection(false);
                     }
@@ -463,9 +466,11 @@ public class JCABindingInboundComposite extends AbstractSYBindingComposite {
             if (control.equals(_resourceAdapterText)) {
                 _resourceAdapterText.setText(_binding.getInboundConnection().getResourceAdapter().getName());
             } else if (control.equals(_batchSizeText)) {
-                setTextValue(_batchSizeText, _binding.getInboundInteraction().getBatchCommit().getBatchSize());
+                setTextValue(_batchSizeText, PropTypeUtil.getPropValueString(this._binding.getInboundInteraction().getBatchCommit().getBatchSize()));
+//                setTextValue(_batchSizeText, _binding.getInboundInteraction().getBatchCommit().getBatchSize());
             } else if (control.equals(_batchTimeoutText)) {
-                setTextValue(_batchTimeoutText, _binding.getInboundInteraction().getBatchCommit().getBatchTimeout());
+                setTextValue(_batchTimeoutText, PropTypeUtil.getPropValueString(this._binding.getInboundInteraction().getBatchCommit().getBatchTimeout()));
+//                setTextValue(_batchTimeoutText, _binding.getInboundInteraction().getBatchCommit().getBatchTimeout());
 //            } else if (control.equals(_operationSelectionCombo)) {
 //                String opName = OperationSelectorUtil.getOperationNameForStaticOperationSelector(this._binding);
 //                setTextValue(_operationSelectionCombo, opName);

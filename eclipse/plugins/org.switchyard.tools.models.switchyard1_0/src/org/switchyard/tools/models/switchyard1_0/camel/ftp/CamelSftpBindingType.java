@@ -135,13 +135,13 @@ public interface CamelSftpBindingType extends BaseCamelBinding {
      * @return the value of the '<em>Buffer Size</em>' attribute.
      * @see #isSetBufferSize()
      * @see #unsetBufferSize()
-     * @see #setBufferSize(int)
+     * @see #setBufferSize(Object)
      * @see org.switchyard.tools.models.switchyard1_0.camel.ftp.FtpPackage#getCamelSftpBindingType_BufferSize()
-     * @model default="131072" unsettable="true" dataType="org.eclipse.emf.ecore.xml.type.Int"
+     * @model default="131072" unsettable="true" dataType="org.switchyard.tools.models.switchyard1_0.switchyard.PropInteger"
      *        extendedMetaData="kind='element' name='bufferSize' namespace='##targetNamespace'"
      * @generated
      */
-    int getBufferSize();
+    Object getBufferSize();
 
     /**
      * Sets the value of the '{@link org.switchyard.tools.models.switchyard1_0.camel.ftp.CamelSftpBindingType#getBufferSize <em>Buffer Size</em>}' attribute.
@@ -153,7 +153,7 @@ public interface CamelSftpBindingType extends BaseCamelBinding {
      * @see #getBufferSize()
      * @generated
      */
-    void setBufferSize(int value);
+    void setBufferSize(Object value);
 
     /**
      * Unsets the value of the '{@link org.switchyard.tools.models.switchyard1_0.camel.ftp.CamelSftpBindingType#getBufferSize <em>Buffer Size</em>}' attribute.
@@ -161,7 +161,7 @@ public interface CamelSftpBindingType extends BaseCamelBinding {
      * <!-- end-user-doc -->
      * @see #isSetBufferSize()
      * @see #getBufferSize()
-     * @see #setBufferSize(int)
+     * @see #setBufferSize(Object)
      * @generated
      */
     void unsetBufferSize();
@@ -173,7 +173,7 @@ public interface CamelSftpBindingType extends BaseCamelBinding {
      * @return whether the value of the '<em>Buffer Size</em>' attribute is set.
      * @see #unsetBufferSize()
      * @see #getBufferSize()
-     * @see #setBufferSize(int)
+     * @see #setBufferSize(Object)
      * @generated
      */
     boolean isSetBufferSize();
@@ -325,13 +325,13 @@ public interface CamelSftpBindingType extends BaseCamelBinding {
      * @return the value of the '<em>Port</em>' attribute.
      * @see #isSetPort()
      * @see #unsetPort()
-     * @see #setPort(int)
+     * @see #setPort(Object)
      * @see org.switchyard.tools.models.switchyard1_0.camel.ftp.FtpPackage#getCamelSftpBindingType_Port()
-     * @model unsettable="true" dataType="org.eclipse.emf.ecore.xml.type.Int"
+     * @model unsettable="true" dataType="org.switchyard.tools.models.switchyard1_0.switchyard.PropInteger"
      *        extendedMetaData="kind='element' name='port' namespace='##targetNamespace'"
      * @generated
      */
-    int getPort();
+    Object getPort();
 
     /**
      * Sets the value of the '{@link org.switchyard.tools.models.switchyard1_0.camel.ftp.CamelSftpBindingType#getPort <em>Port</em>}' attribute.
@@ -343,7 +343,7 @@ public interface CamelSftpBindingType extends BaseCamelBinding {
      * @see #getPort()
      * @generated
      */
-    void setPort(int value);
+    void setPort(Object value);
 
     /**
      * Unsets the value of the '{@link org.switchyard.tools.models.switchyard1_0.camel.ftp.CamelSftpBindingType#getPort <em>Port</em>}' attribute.
@@ -351,7 +351,7 @@ public interface CamelSftpBindingType extends BaseCamelBinding {
      * <!-- end-user-doc -->
      * @see #isSetPort()
      * @see #getPort()
-     * @see #setPort(int)
+     * @see #setPort(Object)
      * @generated
      */
     void unsetPort();
@@ -363,7 +363,7 @@ public interface CamelSftpBindingType extends BaseCamelBinding {
      * @return whether the value of the '<em>Port</em>' attribute is set.
      * @see #unsetPort()
      * @see #getPort()
-     * @see #setPort(int)
+     * @see #setPort(Object)
      * @generated
      */
     boolean isSetPort();
@@ -489,13 +489,13 @@ public interface CamelSftpBindingType extends BaseCamelBinding {
      * @return the value of the '<em>Connect Timeout</em>' attribute.
      * @see #isSetConnectTimeout()
      * @see #unsetConnectTimeout()
-     * @see #setConnectTimeout(int)
+     * @see #setConnectTimeout(Object)
      * @see org.switchyard.tools.models.switchyard1_0.camel.ftp.FtpPackage#getCamelSftpBindingType_ConnectTimeout()
-     * @model default="10000" unsettable="true" dataType="org.eclipse.emf.ecore.xml.type.Int"
+     * @model default="10000" unsettable="true" dataType="org.switchyard.tools.models.switchyard1_0.switchyard.PropInteger"
      *        extendedMetaData="kind='element' name='connectTimeout' namespace='##targetNamespace'"
      * @generated
      */
-    int getConnectTimeout();
+    Object getConnectTimeout();
 
     /**
      * Sets the value of the '{@link org.switchyard.tools.models.switchyard1_0.camel.ftp.CamelSftpBindingType#getConnectTimeout <em>Connect Timeout</em>}' attribute.
@@ -507,7 +507,7 @@ public interface CamelSftpBindingType extends BaseCamelBinding {
      * @see #getConnectTimeout()
      * @generated
      */
-    void setConnectTimeout(int value);
+    void setConnectTimeout(Object value);
 
     /**
      * Unsets the value of the '{@link org.switchyard.tools.models.switchyard1_0.camel.ftp.CamelSftpBindingType#getConnectTimeout <em>Connect Timeout</em>}' attribute.
@@ -515,7 +515,7 @@ public interface CamelSftpBindingType extends BaseCamelBinding {
      * <!-- end-user-doc -->
      * @see #isSetConnectTimeout()
      * @see #getConnectTimeout()
-     * @see #setConnectTimeout(int)
+     * @see #setConnectTimeout(Object)
      * @generated
      */
     void unsetConnectTimeout();
@@ -527,7 +527,7 @@ public interface CamelSftpBindingType extends BaseCamelBinding {
      * @return whether the value of the '<em>Connect Timeout</em>' attribute is set.
      * @see #unsetConnectTimeout()
      * @see #getConnectTimeout()
-     * @see #setConnectTimeout(int)
+     * @see #setConnectTimeout(Object)
      * @generated
      */
     boolean isSetConnectTimeout();
@@ -599,13 +599,13 @@ public interface CamelSftpBindingType extends BaseCamelBinding {
      * @return the value of the '<em>Maximum Reconnect Attempts</em>' attribute.
      * @see #isSetMaximumReconnectAttempts()
      * @see #unsetMaximumReconnectAttempts()
-     * @see #setMaximumReconnectAttempts(int)
+     * @see #setMaximumReconnectAttempts(Object)
      * @see org.switchyard.tools.models.switchyard1_0.camel.ftp.FtpPackage#getCamelSftpBindingType_MaximumReconnectAttempts()
-     * @model default="3" unsettable="true" dataType="org.eclipse.emf.ecore.xml.type.Int"
+     * @model default="3" unsettable="true" dataType="org.switchyard.tools.models.switchyard1_0.switchyard.PropInteger"
      *        extendedMetaData="kind='element' name='maximumReconnectAttempts' namespace='##targetNamespace'"
      * @generated
      */
-    int getMaximumReconnectAttempts();
+    Object getMaximumReconnectAttempts();
 
     /**
      * Sets the value of the '{@link org.switchyard.tools.models.switchyard1_0.camel.ftp.CamelSftpBindingType#getMaximumReconnectAttempts <em>Maximum Reconnect Attempts</em>}' attribute.
@@ -617,7 +617,7 @@ public interface CamelSftpBindingType extends BaseCamelBinding {
      * @see #getMaximumReconnectAttempts()
      * @generated
      */
-    void setMaximumReconnectAttempts(int value);
+    void setMaximumReconnectAttempts(Object value);
 
     /**
      * Unsets the value of the '{@link org.switchyard.tools.models.switchyard1_0.camel.ftp.CamelSftpBindingType#getMaximumReconnectAttempts <em>Maximum Reconnect Attempts</em>}' attribute.
@@ -625,7 +625,7 @@ public interface CamelSftpBindingType extends BaseCamelBinding {
      * <!-- end-user-doc -->
      * @see #isSetMaximumReconnectAttempts()
      * @see #getMaximumReconnectAttempts()
-     * @see #setMaximumReconnectAttempts(int)
+     * @see #setMaximumReconnectAttempts(Object)
      * @generated
      */
     void unsetMaximumReconnectAttempts();
@@ -637,7 +637,7 @@ public interface CamelSftpBindingType extends BaseCamelBinding {
      * @return whether the value of the '<em>Maximum Reconnect Attempts</em>' attribute is set.
      * @see #unsetMaximumReconnectAttempts()
      * @see #getMaximumReconnectAttempts()
-     * @see #setMaximumReconnectAttempts(int)
+     * @see #setMaximumReconnectAttempts(Object)
      * @generated
      */
     boolean isSetMaximumReconnectAttempts();
@@ -654,13 +654,13 @@ public interface CamelSftpBindingType extends BaseCamelBinding {
      * @return the value of the '<em>Reconnect Delay</em>' attribute.
      * @see #isSetReconnectDelay()
      * @see #unsetReconnectDelay()
-     * @see #setReconnectDelay(int)
+     * @see #setReconnectDelay(Object)
      * @see org.switchyard.tools.models.switchyard1_0.camel.ftp.FtpPackage#getCamelSftpBindingType_ReconnectDelay()
-     * @model default="1000" unsettable="true" dataType="org.eclipse.emf.ecore.xml.type.Int"
+     * @model default="1000" unsettable="true" dataType="org.switchyard.tools.models.switchyard1_0.switchyard.PropInteger"
      *        extendedMetaData="kind='element' name='reconnectDelay' namespace='##targetNamespace'"
      * @generated
      */
-    int getReconnectDelay();
+    Object getReconnectDelay();
 
     /**
      * Sets the value of the '{@link org.switchyard.tools.models.switchyard1_0.camel.ftp.CamelSftpBindingType#getReconnectDelay <em>Reconnect Delay</em>}' attribute.
@@ -672,7 +672,7 @@ public interface CamelSftpBindingType extends BaseCamelBinding {
      * @see #getReconnectDelay()
      * @generated
      */
-    void setReconnectDelay(int value);
+    void setReconnectDelay(Object value);
 
     /**
      * Unsets the value of the '{@link org.switchyard.tools.models.switchyard1_0.camel.ftp.CamelSftpBindingType#getReconnectDelay <em>Reconnect Delay</em>}' attribute.
@@ -680,7 +680,7 @@ public interface CamelSftpBindingType extends BaseCamelBinding {
      * <!-- end-user-doc -->
      * @see #isSetReconnectDelay()
      * @see #getReconnectDelay()
-     * @see #setReconnectDelay(int)
+     * @see #setReconnectDelay(Object)
      * @generated
      */
     void unsetReconnectDelay();
@@ -692,7 +692,7 @@ public interface CamelSftpBindingType extends BaseCamelBinding {
      * @return whether the value of the '<em>Reconnect Delay</em>' attribute is set.
      * @see #unsetReconnectDelay()
      * @see #getReconnectDelay()
-     * @see #setReconnectDelay(int)
+     * @see #setReconnectDelay(Object)
      * @generated
      */
     boolean isSetReconnectDelay();

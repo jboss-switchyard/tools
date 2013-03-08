@@ -51,7 +51,7 @@ public class CamelMockBindingTypeImpl extends BaseCamelBindingImpl implements Ca
      * @generated
      * @ordered
      */
-    protected static final int REPORT_GROUP_EDEFAULT = 0;
+    protected static final Object REPORT_GROUP_EDEFAULT = null;
 
     /**
      * The cached value of the '{@link #getReportGroup() <em>Report Group</em>}' attribute.
@@ -61,7 +61,7 @@ public class CamelMockBindingTypeImpl extends BaseCamelBindingImpl implements Ca
      * @generated
      * @ordered
      */
-    protected int reportGroup = REPORT_GROUP_EDEFAULT;
+    protected Object reportGroup = REPORT_GROUP_EDEFAULT;
 
     /**
      * This is true if the Report Group attribute has been set.
@@ -117,7 +117,7 @@ public class CamelMockBindingTypeImpl extends BaseCamelBindingImpl implements Ca
      * <!-- end-user-doc -->
      * @generated
      */
-    public int getReportGroup() {
+    public Object getReportGroup() {
         return reportGroup;
     }
 
@@ -126,8 +126,8 @@ public class CamelMockBindingTypeImpl extends BaseCamelBindingImpl implements Ca
      * <!-- end-user-doc -->
      * @generated
      */
-    public void setReportGroup(int newReportGroup) {
-        int oldReportGroup = reportGroup;
+    public void setReportGroup(Object newReportGroup) {
+        Object oldReportGroup = reportGroup;
         reportGroup = newReportGroup;
         boolean oldReportGroupESet = reportGroupESet;
         reportGroupESet = true;
@@ -141,7 +141,7 @@ public class CamelMockBindingTypeImpl extends BaseCamelBindingImpl implements Ca
      * @generated
      */
     public void unsetReportGroup() {
-        int oldReportGroup = reportGroup;
+        Object oldReportGroup = reportGroup;
         boolean oldReportGroupESet = reportGroupESet;
         reportGroup = REPORT_GROUP_EDEFAULT;
         reportGroupESet = false;
@@ -186,7 +186,7 @@ public class CamelMockBindingTypeImpl extends BaseCamelBindingImpl implements Ca
                 setCamelBindingName((String)newValue);
                 return;
             case CorePackage.CAMEL_MOCK_BINDING_TYPE__REPORT_GROUP:
-                setReportGroup((Integer)newValue);
+                setReportGroup(newValue);
                 return;
         }
         super.eSet(featureID, newValue);

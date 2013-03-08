@@ -5418,17 +5418,8 @@ public class ScaPackageImpl extends EPackageImpl implements ScaPackage {
 	 * <!-- end-user-doc -->
      * @generated
      */
-	public EAttribute getPropertyValue_Value() {
-        return (EAttribute)getPropertyValue().getEStructuralFeatures().get(6);
-    }
-
-	/**
-     * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-     * @generated
-     */
 	public EAttribute getPropertyValue_AnyAttribute() {
-        return (EAttribute)getPropertyValue().getEStructuralFeatures().get(7);
+        return (EAttribute)getPropertyValue().getEStructuralFeatures().get(6);
     }
 
 	/**
@@ -5684,6 +5675,15 @@ public class ScaPackageImpl extends EPackageImpl implements ScaPackage {
     }
 
 	/**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public EAttribute getSCAPropertyBase_Value() {
+        return (EAttribute)getSCAPropertyBase().getEStructuralFeatures().get(4);
+    }
+
+    /**
      * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
      * @generated

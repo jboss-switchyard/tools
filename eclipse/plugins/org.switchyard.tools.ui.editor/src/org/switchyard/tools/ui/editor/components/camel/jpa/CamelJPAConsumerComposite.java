@@ -53,6 +53,7 @@ import org.switchyard.tools.models.switchyard1_0.switchyard.SwitchyardFactory;
 import org.switchyard.tools.ui.editor.diagram.binding.AbstractSYBindingComposite;
 import org.switchyard.tools.ui.editor.diagram.shared.ModelOperation;
 import org.switchyard.tools.ui.editor.model.merge.MergedModelUtil;
+import org.switchyard.tools.ui.editor.util.PropTypeUtil;
 
 /**
  * @author bfitzpat
@@ -94,7 +95,8 @@ public class CamelJPAConsumerComposite extends AbstractSYBindingComposite {
                 _deleteCheckbox.setSelection(this._binding.getConsume().isConsumeDelete());
                 _lockEntityCheckbox.setSelection(this._binding.getConsume().isConsumeLockEntity());
                 if (this._binding.getConsume().isSetMaximumResults()) {
-                    _maximumResultsText.setText(Integer.toString(this._binding.getConsume().getMaximumResults()));
+                    setTextValue(_maximumResultsText, PropTypeUtil.getPropValueString(this._binding.getConsume().getMaximumResults()));
+//                    _maximumResultsText.setText(Integer.toString(this._binding.getConsume().getMaximumResults()));
                 } else {
                     _maximumResultsText.setText("");
                 }
@@ -167,12 +169,12 @@ public class CamelJPAConsumerComposite extends AbstractSYBindingComposite {
                 setErrorMessage("Entity Class Name may not be empty.");
             } else if (_entityClassNameText.getText().trim().isEmpty()) {
                 setErrorMessage("Persistence Unit may not be empty.");
-            } else if (!_maximumResultsText.getText().trim().isEmpty()) {
-                try {
-                    new Integer(_maximumResultsText.getText().trim());
-                } catch (NumberFormatException nfe) {
-                    setErrorMessage("Maximum Results must be a valid number.");
-                }
+//            } else if (!_maximumResultsText.getText().trim().isEmpty()) {
+//                try {
+//                    new Integer(_maximumResultsText.getText().trim());
+//                } catch (NumberFormatException nfe) {
+//                    setErrorMessage("Maximum Results must be a valid number.");
+//                }
             }
         }
         super.validateTabs();
@@ -326,8 +328,7 @@ public class CamelJPAConsumerComposite extends AbstractSYBindingComposite {
                 Integer port = new Integer(_maximumResultsText.getText().trim());
                 updateConsumeFeature("maximumResults", port.intValue());
             } catch (NumberFormatException nfe) {
-                // ignore
-                nfe.fillInStackTrace();
+                updateConsumeFeature("maximumResults", _maximumResultsText.getText().trim());
             }
         } else if (control.equals(_queryText)) {
             updateConsumeFeature("consumerQuery", _queryText.getText().trim());
@@ -360,7 +361,8 @@ public class CamelJPAConsumerComposite extends AbstractSYBindingComposite {
             } else if (control.equals(_lockEntityCheckbox)) {
                 _lockEntityCheckbox.setSelection(this._binding.getConsume().isConsumeLockEntity());
             } else if (control.equals(_maximumResultsText)) {
-                _maximumResultsText.setText(Integer.toString(this._binding.getConsume().getMaximumResults()));
+                setTextValue(_maximumResultsText, PropTypeUtil.getPropValueString(this._binding.getConsume().getMaximumResults()));
+//                _maximumResultsText.setText(Integer.toString(this._binding.getConsume().getMaximumResults()));
             } else if (control.equals(_queryText)) {
                 _queryText.setText(this._binding.getConsume().getConsumerQuery());
             } else if (control.equals(_namedQueryText)) {

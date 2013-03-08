@@ -86,7 +86,7 @@ public class CamelFtpsBindingTypeImpl extends CamelFtpBindingTypeImpl implements
      * @generated
      * @ordered
      */
-    protected static final long EXEC_PBSZ_EDEFAULT = 0L;
+    protected static final Object EXEC_PBSZ_EDEFAULT = null;
 
     /**
      * The cached value of the '{@link #getExecPbsz() <em>Exec Pbsz</em>}' attribute.
@@ -96,7 +96,7 @@ public class CamelFtpsBindingTypeImpl extends CamelFtpBindingTypeImpl implements
      * @generated
      * @ordered
      */
-    protected long execPbsz = EXEC_PBSZ_EDEFAULT;
+    protected Object execPbsz = EXEC_PBSZ_EDEFAULT;
 
     /**
      * This is true if the Exec Pbsz attribute has been set.
@@ -247,7 +247,7 @@ public class CamelFtpsBindingTypeImpl extends CamelFtpBindingTypeImpl implements
      * <!-- end-user-doc -->
      * @generated
      */
-    public long getExecPbsz() {
+    public Object getExecPbsz() {
         return execPbsz;
     }
 
@@ -256,8 +256,8 @@ public class CamelFtpsBindingTypeImpl extends CamelFtpBindingTypeImpl implements
      * <!-- end-user-doc -->
      * @generated
      */
-    public void setExecPbsz(long newExecPbsz) {
-        long oldExecPbsz = execPbsz;
+    public void setExecPbsz(Object newExecPbsz) {
+        Object oldExecPbsz = execPbsz;
         execPbsz = newExecPbsz;
         boolean oldExecPbszESet = execPbszESet;
         execPbszESet = true;
@@ -271,7 +271,7 @@ public class CamelFtpsBindingTypeImpl extends CamelFtpBindingTypeImpl implements
      * @generated
      */
     public void unsetExecPbsz() {
-        long oldExecPbsz = execPbsz;
+        Object oldExecPbsz = execPbsz;
         boolean oldExecPbszESet = execPbszESet;
         execPbsz = EXEC_PBSZ_EDEFAULT;
         execPbszESet = false;
@@ -392,7 +392,7 @@ public class CamelFtpsBindingTypeImpl extends CamelFtpBindingTypeImpl implements
                 setIsImplicit((Boolean)newValue);
                 return;
             case FtpPackage.CAMEL_FTPS_BINDING_TYPE__EXEC_PBSZ:
-                setExecPbsz((Long)newValue);
+                setExecPbsz(newValue);
                 return;
             case FtpPackage.CAMEL_FTPS_BINDING_TYPE__EXEC_PROT:
                 setExecProt((String)newValue);
