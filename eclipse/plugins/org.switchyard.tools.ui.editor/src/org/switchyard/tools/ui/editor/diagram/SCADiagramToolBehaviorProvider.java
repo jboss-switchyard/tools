@@ -31,6 +31,7 @@ import org.eclipse.graphiti.features.context.ICreateContext;
 import org.eclipse.graphiti.features.context.ICustomContext;
 import org.eclipse.graphiti.features.context.IDoubleClickContext;
 import org.eclipse.graphiti.features.context.IPictogramElementContext;
+import org.eclipse.graphiti.features.context.impl.CreateConnectionContext;
 import org.eclipse.graphiti.features.context.impl.CreateContext;
 import org.eclipse.graphiti.features.context.impl.CustomContext;
 import org.eclipse.graphiti.features.custom.ICustomFeature;
@@ -39,6 +40,7 @@ import org.eclipse.graphiti.mm.algorithms.Polygon;
 import org.eclipse.graphiti.mm.algorithms.RoundedRectangle;
 import org.eclipse.graphiti.mm.algorithms.styles.Point;
 import org.eclipse.graphiti.mm.pictograms.Anchor;
+import org.eclipse.graphiti.mm.pictograms.AnchorContainer;
 import org.eclipse.graphiti.mm.pictograms.ConnectionDecorator;
 import org.eclipse.graphiti.mm.pictograms.ContainerShape;
 import org.eclipse.graphiti.mm.pictograms.PictogramElement;
@@ -47,6 +49,7 @@ import org.eclipse.graphiti.palette.impl.ConnectionCreationToolEntry;
 import org.eclipse.graphiti.palette.impl.ObjectCreationToolEntry;
 import org.eclipse.graphiti.palette.impl.PaletteCompartmentEntry;
 import org.eclipse.graphiti.platform.IPlatformImageConstants;
+import org.eclipse.graphiti.services.Graphiti;
 import org.eclipse.graphiti.tb.BorderDecorator;
 import org.eclipse.graphiti.tb.ContextButtonEntry;
 import org.eclipse.graphiti.tb.ContextMenuEntry;
@@ -80,8 +83,11 @@ import org.switchyard.tools.ui.editor.diagram.componentreference.SCADiagramCreat
 import org.switchyard.tools.ui.editor.diagram.componentreference.SCADiagramCustomPromoteReferenceFeature;
 import org.switchyard.tools.ui.editor.diagram.componentservice.SCADiagramCreateComponentServiceFeature;
 import org.switchyard.tools.ui.editor.diagram.compositereference.SCADiagramCreateCompositeReferenceFeature;
+import org.switchyard.tools.ui.editor.diagram.connections.SCADiagramCreateComponentServiceLinkFeature;
+import org.switchyard.tools.ui.editor.diagram.connections.SCADiagramCreateReferenceLinkFeature;
 import org.switchyard.tools.ui.editor.diagram.service.SCADiagramCreateServiceFeature;
 import org.switchyard.tools.ui.editor.diagram.service.SCADiagramCustomPromoteServiceFeature;
+import org.switchyard.tools.ui.editor.diagram.shared.CompositeCreateConnectionFeature;
 import org.switchyard.tools.ui.editor.property.adapters.LabelAdapter;
 import org.switchyard.tools.ui.validation.ValidationStatusAdapter;
 
@@ -694,12 +700,42 @@ public class SCADiagramToolBehaviorProvider extends DefaultToolBehaviorProvider 
                         addCreateFeatureAsContextButtonToPad(cf, createContext, addBindingButton);
                     }
                 }
+                
+                CreateConnectionContext ccc = new CreateConnectionContext();
+                ccc.setSourcePictogramElement(pe);
+                Anchor anchor = null;
+                if (pe instanceof Anchor) {
+                    anchor = (Anchor) pe;
+                } else if (pe instanceof AnchorContainer) {
+                    // assume, that our shapes always have chopbox anchors
+                    anchor = Graphiti.getPeService()
+                             .getChopboxAnchor((AnchorContainer) pe);
+                }
+                ccc.setSourceAnchor(anchor);
+                
+                ContextButtonEntry linkbutton = new ContextButtonEntry(null, context);
+                CompositeCreateConnectionFeature linkFeature = new CompositeCreateConnectionFeature(getFeatureProvider(), 
+                        "Promote",
+                        "Promote a composite service/reference", 
+                        new SCADiagramCreateReferenceLinkFeature(getFeatureProvider()),
+                        new SCADiagramCreateComponentServiceLinkFeature(getFeatureProvider()));
+                linkbutton.setText(linkFeature.getCreateName());
+                linkbutton.setDescription(linkFeature.getCreateDescription());
+                linkbutton.setIconId(linkFeature.getCreateImageId());
+                if (linkFeature.isAvailable(ccc) && linkFeature.canStartConnection(ccc)) {
+                    linkbutton.addDragAndDropFeature(linkFeature);
+                }
+                if (linkbutton.getDragAndDropFeatures().size() > 0) {
+                    data.getDomainSpecificContextButtons().add(linkbutton);
+                }
 
                 Java2WSDLCustomFeature java2WSDL = new Java2WSDLCustomFeature(getFeatureProvider());
                 ContextButtonEntry java2WSDLButton = new ContextButtonEntry(java2WSDL, customContext);
                 if (java2WSDLButton.canExecute()) {
                     data.getDomainSpecificContextButtons().add(java2WSDLButton);
                 }
+                
+                
             }
             setGenericContextButtons(data, pe, CONTEXT_BUTTON_DELETE);
         }
