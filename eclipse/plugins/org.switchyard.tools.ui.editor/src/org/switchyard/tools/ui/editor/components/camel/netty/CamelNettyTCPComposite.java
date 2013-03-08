@@ -25,7 +25,6 @@ import org.eclipse.swt.SWT;
 import org.eclipse.swt.layout.FillLayout;
 import org.eclipse.swt.layout.GridData;
 import org.eclipse.swt.layout.GridLayout;
-import org.eclipse.swt.widgets.Button;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Control;
 import org.eclipse.swt.widgets.Group;
@@ -53,10 +52,6 @@ public class CamelNettyTCPComposite extends AbstractSYBindingComposite {
     private CamelNettyTcpBindingType _binding = null;
     private Text _hostText;
     private Text _portText;
-    private Text _sendBufferSizeText;
-    private Text _receiveBufferSizeText;
-    private Button _syncCheckbox;
-    private Button _keepAliveCheckbox;
     private TabFolder _tabFolder;
     private List<String> _advancedPropsFilterList;
     private OperationSelectorComposite _opSelectorComposite;
@@ -81,18 +76,6 @@ public class CamelNettyTCPComposite extends AbstractSYBindingComposite {
             } else {
                 _portText.setText("");
             }
-            if (this._binding.isSetSendBufferSize()) {
-                _sendBufferSizeText.setText(""+this._binding.getSendBufferSize());
-            } else {
-                _sendBufferSizeText.setText("");
-            }
-            if (this._binding.isSetReceiveBufferSize()) {
-                _receiveBufferSizeText.setText(""+this._binding.getReceiveBufferSize());
-            } else {
-                _receiveBufferSizeText.setText("");
-            }
-            _syncCheckbox.setSelection(this._binding.isSync());
-            _keepAliveCheckbox.setSelection(this._binding.isKeepAlive());
 
             OperationSelectorType opSelector = OperationSelectorUtil.getFirstOperationSelector(this._binding);
             _opSelectorComposite.setBinding(this._binding);
@@ -134,22 +117,6 @@ public class CamelNettyTCPComposite extends AbstractSYBindingComposite {
 //                    return false;
 //                }
             }
-//            if (!_sendBufferSizeText.getText().trim().isEmpty()) {
-//                try {
-//                    Long.valueOf(_sendBufferSizeText.getText().trim());
-//                } catch (NumberFormatException nfe) {
-//                    setErrorMessage("Send Buffer Size must be a valid number.");
-//                    return false;
-//                }
-//            }
-//            if (!_receiveBufferSizeText.getText().trim().isEmpty()) {
-//                try {
-//                    Long.valueOf(_receiveBufferSizeText.getText().trim());
-//                } catch (NumberFormatException nfe) {
-//                    setErrorMessage("Receive Buffer Size must be a valid number.");
-//                    return false;
-//                }
-//            }
         }
         super.validateTabs();
         return (getErrorMessage() == null);
@@ -184,11 +151,7 @@ public class CamelNettyTCPComposite extends AbstractSYBindingComposite {
 
         _hostText = createLabelAndText(tcpGroup, "Host*");
         _portText = createLabelAndText(tcpGroup, "Port*");
-        _syncCheckbox = createCheckbox(tcpGroup, "Sync");
-        _keepAliveCheckbox = createCheckbox(tcpGroup, "Keep Alive");
-        _sendBufferSizeText = createLabelAndText(tcpGroup, "Send Buffer Size");
-        _receiveBufferSizeText = createLabelAndText(tcpGroup, "Receive Buffer Size");
-
+        
         _opSelectorComposite = new OperationSelectorComposite(composite, SWT.NONE);
         _opSelectorComposite.setLayoutData(new GridData(SWT.FILL, SWT.FILL, true, true));
         _opSelectorComposite.setLayout(new GridLayout(2, false));
@@ -229,32 +192,6 @@ public class CamelNettyTCPComposite extends AbstractSYBindingComposite {
             } catch (NumberFormatException nfe) {
                 updateFeature(_binding, "port", _portText.getText().trim());
             }
-        } else if (control.equals(_sendBufferSizeText)) {
-            long sendSizeLong = -1;
-            try {
-                sendSizeLong = Long.valueOf(_sendBufferSizeText.getText().trim());
-                if (sendSizeLong > -1) {
-                    updateFeature(_binding, "sendBufferSize", sendSizeLong);
-                }
-            } catch (NumberFormatException nfe) {
-                updateFeature(_binding, "sendBufferSize", _sendBufferSizeText.getText().trim());
-            }
-        } else if (control.equals(_receiveBufferSizeText)) {
-            long receiveSizeLong = -1;
-            try {
-                receiveSizeLong = Long.valueOf(_receiveBufferSizeText.getText().trim());
-                if (receiveSizeLong > -1) {
-                    updateFeature(_binding, "receiveBufferSize", receiveSizeLong);
-                }
-            } catch (NumberFormatException nfe) {
-                updateFeature(_binding, "receiveBufferSize", _receiveBufferSizeText.getText().trim());
-            }
-        } else if (control.equals(_syncCheckbox)) {
-            boolean value = _syncCheckbox.getSelection();
-            updateFeature(_binding, "sync", value);
-        } else if (control.equals(_keepAliveCheckbox)) {
-            boolean value = _keepAliveCheckbox.getSelection();
-            updateFeature(_binding, "keepAlive", value);
         } else if (control.equals(_opSelectorComposite)) {
             int opType = _opSelectorComposite.getSelectedOperationSelectorType();
             updateOperationSelectorFeature(opType, _opSelectorComposite.getSelectedOperationSelectorValue());
@@ -270,20 +207,6 @@ public class CamelNettyTCPComposite extends AbstractSYBindingComposite {
                 _hostText.setText(this._binding.getHost());
             } else if (control.equals(_portText)) {
                 setTextValue(_portText, PropTypeUtil.getPropValueString(this._binding.getPort()));
-//                _portText.setText(Integer.toString(this._binding.getPort()));
-            } else if (control.equals(_receiveBufferSizeText)) {
-                setTextValue(_receiveBufferSizeText, PropTypeUtil.getPropValueString(this._binding.getReceiveBufferSize()));
-//                _receiveBufferSizeText.setText(Long.toString(this._binding.getReceiveBufferSize()));
-            } else if (control.equals(_sendBufferSizeText)) {
-                setTextValue(_sendBufferSizeText, PropTypeUtil.getPropValueString(this._binding.getSendBufferSize()));
-//                _sendBufferSizeText.setText(Long.toString(this._binding.getSendBufferSize()));
-            } else if (control.equals(_keepAliveCheckbox)) {
-                _keepAliveCheckbox.setSelection(this._binding.isKeepAlive());
-            } else if (control.equals(_syncCheckbox)) {
-                _syncCheckbox.setSelection(this._binding.isSync());
-//            } else if (control.equals(_operationSelectionCombo)) {
-//                String opName = OperationSelectorUtil.getOperationNameForStaticOperationSelector(this._binding);
-//                setTextValue(_operationSelectionCombo, opName);
             } else {
                 super.handleUndo(control);
             }
@@ -303,6 +226,19 @@ public class CamelNettyTCPComposite extends AbstractSYBindingComposite {
             _advancedPropsFilterList.add("allowDefaultCodec");
             _advancedPropsFilterList.add("workerCount");
             _advancedPropsFilterList.add("disconnect");
+            _advancedPropsFilterList.add("receiveBufferSize");
+            _advancedPropsFilterList.add("sendBufferSize");
+            _advancedPropsFilterList.add("ssl");
+            _advancedPropsFilterList.add("sslHandler");
+            _advancedPropsFilterList.add("passphrase");
+            _advancedPropsFilterList.add("securityProvider");
+            _advancedPropsFilterList.add("keyStoreFormat");
+            _advancedPropsFilterList.add("keyStoreFile");
+            _advancedPropsFilterList.add("trustStoreFile");
+            _advancedPropsFilterList.add("sslContextParametersRef");
+            _advancedPropsFilterList.add("sync");
+            _advancedPropsFilterList.add("keepAlive");
+
         }
         return _advancedPropsFilterList;
     }

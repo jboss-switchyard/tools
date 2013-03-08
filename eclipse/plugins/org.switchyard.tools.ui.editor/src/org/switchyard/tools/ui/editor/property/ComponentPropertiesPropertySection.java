@@ -177,7 +177,6 @@ public class ComponentPropertiesPropertySection extends GFPropertySection implem
                     if (_componentProperties != null && !_componentProperties.isDisposed()) {
                         if (_businessObject instanceof Component) {
                             _componentObject = (Component) _businessObject;
-                            System.out.println(_componentObject.getProperty());
                             _componentProperties.setSelection(_componentObject.getProperty());
                         }
                     }
